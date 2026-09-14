@@ -262,17 +262,17 @@ def serialize_aws_json_1_1(value: Cluster) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Cluster:
     out: Cluster = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_emr.types.cluster_status
 
         out["status"] = capo_emr.types.cluster_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Ec2InstanceAttributes" in data:
+    if data.get("Ec2InstanceAttributes") is not None:
         import capo_emr.types.ec2_instance_attributes
 
         out["ec2_instance_attributes"] = (
@@ -280,7 +280,7 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["Ec2InstanceAttributes"]
             )
         )
-    if "InstanceCollectionType" in data:
+    if data.get("InstanceCollectionType") is not None:
         import capo_emr.types.instance_collection_type
 
         out["instance_collection_type"] = (
@@ -288,41 +288,41 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["InstanceCollectionType"]
             )
         )
-    if "LogUri" in data:
+    if data.get("LogUri") is not None:
         out["log_uri"] = data["LogUri"]
-    if "LogEncryptionKmsKeyId" in data:
+    if data.get("LogEncryptionKmsKeyId") is not None:
         out["log_encryption_kms_key_id"] = data["LogEncryptionKmsKeyId"]
-    if "RequestedAmiVersion" in data:
+    if data.get("RequestedAmiVersion") is not None:
         out["requested_ami_version"] = data["RequestedAmiVersion"]
-    if "RunningAmiVersion" in data:
+    if data.get("RunningAmiVersion") is not None:
         out["running_ami_version"] = data["RunningAmiVersion"]
-    if "ReleaseLabel" in data:
+    if data.get("ReleaseLabel") is not None:
         out["release_label"] = data["ReleaseLabel"]
-    if "AutoTerminate" in data:
+    if data.get("AutoTerminate") is not None:
         out["auto_terminate"] = data["AutoTerminate"]
-    if "TerminationProtected" in data:
+    if data.get("TerminationProtected") is not None:
         out["termination_protected"] = data["TerminationProtected"]
-    if "UnhealthyNodeReplacement" in data:
+    if data.get("UnhealthyNodeReplacement") is not None:
         out["unhealthy_node_replacement"] = data["UnhealthyNodeReplacement"]
-    if "VisibleToAllUsers" in data:
+    if data.get("VisibleToAllUsers") is not None:
         out["visible_to_all_users"] = data["VisibleToAllUsers"]
-    if "Applications" in data:
+    if data.get("Applications") is not None:
         import capo_emr.types.application_list
 
         out["applications"] = capo_emr.types.application_list.deserialize_aws_json_1_1(
             data["Applications"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_emr.types.tag_list
 
         out["tags"] = capo_emr.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "ServiceRole" in data:
+    if data.get("ServiceRole") is not None:
         out["service_role"] = data["ServiceRole"]
-    if "NormalizedInstanceHours" in data:
+    if data.get("NormalizedInstanceHours") is not None:
         out["normalized_instance_hours"] = data["NormalizedInstanceHours"]
-    if "MasterPublicDnsName" in data:
+    if data.get("MasterPublicDnsName") is not None:
         out["master_public_dns_name"] = data["MasterPublicDnsName"]
-    if "Configurations" in data:
+    if data.get("Configurations") is not None:
         import capo_emr.types.configuration_list
 
         out["configurations"] = (
@@ -330,11 +330,11 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["Configurations"]
             )
         )
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "AutoScalingRole" in data:
+    if data.get("AutoScalingRole") is not None:
         out["auto_scaling_role"] = data["AutoScalingRole"]
-    if "ScaleDownBehavior" in data:
+    if data.get("ScaleDownBehavior") is not None:
         import capo_emr.types.scale_down_behavior
 
         out["scale_down_behavior"] = (
@@ -342,11 +342,11 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["ScaleDownBehavior"]
             )
         )
-    if "CustomAmiId" in data:
+    if data.get("CustomAmiId") is not None:
         out["custom_ami_id"] = data["CustomAmiId"]
-    if "EbsRootVolumeSize" in data:
+    if data.get("EbsRootVolumeSize") is not None:
         out["ebs_root_volume_size"] = data["EbsRootVolumeSize"]
-    if "RepoUpgradeOnBoot" in data:
+    if data.get("RepoUpgradeOnBoot") is not None:
         import capo_emr.types.repo_upgrade_on_boot
 
         out["repo_upgrade_on_boot"] = (
@@ -354,7 +354,7 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["RepoUpgradeOnBoot"]
             )
         )
-    if "KerberosAttributes" in data:
+    if data.get("KerberosAttributes") is not None:
         import capo_emr.types.kerberos_attributes
 
         out["kerberos_attributes"] = (
@@ -362,13 +362,13 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["KerberosAttributes"]
             )
         )
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "OutpostArn" in data:
+    if data.get("OutpostArn") is not None:
         out["outpost_arn"] = data["OutpostArn"]
-    if "StepConcurrencyLevel" in data:
+    if data.get("StepConcurrencyLevel") is not None:
         out["step_concurrency_level"] = data["StepConcurrencyLevel"]
-    if "PlacementGroups" in data:
+    if data.get("PlacementGroups") is not None:
         import capo_emr.types.placement_group_config_list
 
         out["placement_groups"] = (
@@ -376,15 +376,15 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["PlacementGroups"]
             )
         )
-    if "OSReleaseLabel" in data:
+    if data.get("OSReleaseLabel") is not None:
         out["os_release_label"] = data["OSReleaseLabel"]
-    if "EbsRootVolumeIops" in data:
+    if data.get("EbsRootVolumeIops") is not None:
         out["ebs_root_volume_iops"] = data["EbsRootVolumeIops"]
-    if "EbsRootVolumeThroughput" in data:
+    if data.get("EbsRootVolumeThroughput") is not None:
         out["ebs_root_volume_throughput"] = data["EbsRootVolumeThroughput"]
-    if "ExtendedSupport" in data:
+    if data.get("ExtendedSupport") is not None:
         out["extended_support"] = data["ExtendedSupport"]
-    if "MonitoringConfiguration" in data:
+    if data.get("MonitoringConfiguration") is not None:
         import capo_emr.types.monitoring_configuration
 
         out["monitoring_configuration"] = (
@@ -392,6 +392,6 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["MonitoringConfiguration"]
             )
         )
-    if "SessionEnabled" in data:
+    if data.get("SessionEnabled") is not None:
         out["session_enabled"] = data["SessionEnabled"]
     return out

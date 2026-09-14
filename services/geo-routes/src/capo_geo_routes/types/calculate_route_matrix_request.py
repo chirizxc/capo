@@ -157,7 +157,7 @@ def serialize_json(value: CalculateRouteMatrixRequest) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
     out: CalculateRouteMatrixRequest = {}  # type: ignore[typeddict-item]
-    if "Allow" in data:
+    if data.get("Allow") is not None:
         import capo_geo_routes.types.route_matrix_allow_options
 
         out["allow"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
                 data["Allow"]
             )
         )
-    if "Avoid" in data:
+    if data.get("Avoid") is not None:
         import capo_geo_routes.types.route_matrix_avoidance_options
 
         out["avoid"] = (
@@ -173,11 +173,11 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
                 data["Avoid"]
             )
         )
-    if "DepartNow" in data:
+    if data.get("DepartNow") is not None:
         out["depart_now"] = data["DepartNow"]
-    if "DepartureTime" in data:
+    if data.get("DepartureTime") is not None:
         out["departure_time"] = data["DepartureTime"]
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_geo_routes.types.route_matrix_destination_list
 
         out["destinations"] = (
@@ -187,7 +187,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
         )
     else:
         raise DeserializationError("CalculateRouteMatrixRequest.destinations required")
-    if "Exclude" in data:
+    if data.get("Exclude") is not None:
         import capo_geo_routes.types.route_matrix_exclusion_options
 
         out["exclude"] = (
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
                 data["Exclude"]
             )
         )
-    if "OptimizeRoutingFor" in data:
+    if data.get("OptimizeRoutingFor") is not None:
         import capo_geo_routes.types.routing_objective
 
         out["optimize_routing_for"] = (
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
                 data["OptimizeRoutingFor"]
             )
         )
-    if "Origins" in data:
+    if data.get("Origins") is not None:
         import capo_geo_routes.types.route_matrix_origin_list
 
         out["origins"] = (
@@ -213,7 +213,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
         )
     else:
         raise DeserializationError("CalculateRouteMatrixRequest.origins required")
-    if "RoutingBoundary" in data:
+    if data.get("RoutingBoundary") is not None:
         import capo_geo_routes.types.route_matrix_boundary
 
         out["routing_boundary"] = (
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
                 data["RoutingBoundary"]
             )
         )
-    if "Traffic" in data:
+    if data.get("Traffic") is not None:
         import capo_geo_routes.types.route_matrix_traffic_options
 
         out["traffic"] = (
@@ -229,7 +229,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
                 data["Traffic"]
             )
         )
-    if "TravelMode" in data:
+    if data.get("TravelMode") is not None:
         import capo_geo_routes.types.route_matrix_travel_mode
 
         out["travel_mode"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
                 data["TravelMode"]
             )
         )
-    if "TravelModeOptions" in data:
+    if data.get("TravelModeOptions") is not None:
         import capo_geo_routes.types.route_matrix_travel_mode_options
 
         out["travel_mode_options"] = (

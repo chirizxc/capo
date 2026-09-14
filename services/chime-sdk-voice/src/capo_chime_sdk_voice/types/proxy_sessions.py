@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ProxySessions:
 
     out: ProxySessions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime_sdk_voice.types.proxy_session.deserialize_json(item))
     return out

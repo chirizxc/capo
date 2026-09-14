@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: PutInboundDmarcSettingsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutInboundDmarcSettingsRequest:
     out: PutInboundDmarcSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "PutInboundDmarcSettingsRequest.organization_id required"
         )
-    if "Enforced" in data:
+    if data.get("Enforced") is not None:
         out["enforced"] = data["Enforced"]
     else:
         raise DeserializationError("PutInboundDmarcSettingsRequest.enforced required")

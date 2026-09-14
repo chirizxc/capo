@@ -35,9 +35,9 @@ def serialize_json(value: StartReadSetExportJobResponse) -> dict:
     out["sequenceStoreId"] = value["sequence_store_id"]
     out["destination"] = value["destination"]
     out["status"] = value["status"]
-    import capo_omics.types._prelude.timestamp
+    import capo_omics._protocol.serialize
 
-    out["creationTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+    out["creationTime"] = capo_omics._protocol.serialize.fmt_date_time(
         value["creation_time"]
     )
     return out
@@ -45,29 +45,29 @@ def serialize_json(value: StartReadSetExportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartReadSetExportJobResponse:
     out: StartReadSetExportJobResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("StartReadSetExportJobResponse.id required")
-    if "sequenceStoreId" in data:
+    if data.get("sequenceStoreId") is not None:
         out["sequence_store_id"] = data["sequenceStoreId"]
     else:
         raise DeserializationError(
             "StartReadSetExportJobResponse.sequence_store_id required"
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
     else:
         raise DeserializationError("StartReadSetExportJobResponse.destination required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("StartReadSetExportJobResponse.status required")
-    if "creationTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("creationTime") is not None:
+        import datetime
 
-        out["creation_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["creationTime"]
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["creationTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(

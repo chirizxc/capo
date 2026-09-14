@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: GetSystemTemplateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSystemTemplateRequest:
     out: GetSystemTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetSystemTemplateRequest.id required")
-    if "revisionNumber" in data:
+    if data.get("revisionNumber") is not None:
         out["revision_number"] = data["revisionNumber"]
     return out

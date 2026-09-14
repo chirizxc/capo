@@ -39,15 +39,18 @@ class TooManyCertificatesException(ServiceError):
 
     code: str | None = "TooManyCertificatesException"
 
-    def __init__(self, data: TooManyCertificatesException_):
+    def __init__(self, data: TooManyCertificatesException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyCertificatesException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TooManyCertificatesException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TooManyCertificatesException":
+        return cls(deserialize_query(el), message)

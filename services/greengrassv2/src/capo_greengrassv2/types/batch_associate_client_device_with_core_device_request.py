@@ -34,7 +34,7 @@ def serialize_json(value: BatchAssociateClientDeviceWithCoreDeviceRequest) -> di
 
 def deserialize_json(data: dict) -> BatchAssociateClientDeviceWithCoreDeviceRequest:
     out: BatchAssociateClientDeviceWithCoreDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "entries" in data:
+    if data.get("entries") is not None:
         import capo_greengrassv2.types.associate_client_device_with_core_device_entry_list
 
         out["entries"] = (

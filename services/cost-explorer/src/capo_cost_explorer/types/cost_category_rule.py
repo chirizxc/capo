@@ -57,15 +57,15 @@ def serialize_aws_json_1_1(value: CostCategoryRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostCategoryRule:
     out: CostCategoryRule = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_cost_explorer.types.expression
 
         out["rule"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(
             data["Rule"]
         )
-    if "InheritedValue" in data:
+    if data.get("InheritedValue") is not None:
         import capo_cost_explorer.types.cost_category_inherited_value_dimension
 
         out["inherited_value"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostCategoryRule:
                 data["InheritedValue"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_cost_explorer.types.cost_category_rule_type
 
         out["type"] = (

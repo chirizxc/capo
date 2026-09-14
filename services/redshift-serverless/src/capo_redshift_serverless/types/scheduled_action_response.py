@@ -108,9 +108,9 @@ def serialize_aws_json_1_1(value: ScheduledActionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScheduledActionResponse:
     out: ScheduledActionResponse = {}  # type: ignore[typeddict-item]
-    if "scheduledActionName" in data:
+    if data.get("scheduledActionName") is not None:
         out["scheduled_action_name"] = data["scheduledActionName"]
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_redshift_serverless.types.schedule
 
         out["schedule"] = (
@@ -118,9 +118,9 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledActionResponse:
                 data["schedule"]
             )
         )
-    if "scheduledActionDescription" in data:
+    if data.get("scheduledActionDescription") is not None:
         out["scheduled_action_description"] = data["scheduledActionDescription"]
-    if "nextInvocations" in data:
+    if data.get("nextInvocations") is not None:
         import capo_redshift_serverless.types.next_invocations_list
 
         out["next_invocations"] = (
@@ -128,11 +128,11 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledActionResponse:
                 data["nextInvocations"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["start_time"] = (
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledActionResponse:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["end_time"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledActionResponse:
                 data["endTime"]
             )
         )
-    if "targetAction" in data:
+    if data.get("targetAction") is not None:
         import capo_redshift_serverless.types.target_action
 
         out["target_action"] = (
@@ -156,8 +156,8 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledActionResponse:
                 data["targetAction"]
             )
         )
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "scheduledActionUuid" in data:
+    if data.get("scheduledActionUuid") is not None:
         out["scheduled_action_uuid"] = data["scheduledActionUuid"]
     return out

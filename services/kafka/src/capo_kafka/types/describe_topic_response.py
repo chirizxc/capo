@@ -47,17 +47,17 @@ def serialize_json(value: DescribeTopicResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTopicResponse:
     out: DescribeTopicResponse = {}  # type: ignore[typeddict-item]
-    if "topicArn" in data:
+    if data.get("topicArn") is not None:
         out["topic_arn"] = data["topicArn"]
-    if "topicName" in data:
+    if data.get("topicName") is not None:
         out["topic_name"] = data["topicName"]
-    if "replicationFactor" in data:
+    if data.get("replicationFactor") is not None:
         out["replication_factor"] = data["replicationFactor"]
-    if "partitionCount" in data:
+    if data.get("partitionCount") is not None:
         out["partition_count"] = data["partitionCount"]
-    if "configs" in data:
+    if data.get("configs") is not None:
         out["configs"] = data["configs"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_kafka.types.topic_state
 
         out["status"] = capo_kafka.types.topic_state.deserialize_json(data["status"])

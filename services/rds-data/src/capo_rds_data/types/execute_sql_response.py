@@ -31,7 +31,7 @@ def serialize_json(value: ExecuteSqlResponse) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteSqlResponse:
     out: ExecuteSqlResponse = {}  # type: ignore[typeddict-item]
-    if "sqlStatementResults" in data:
+    if data.get("sqlStatementResults") is not None:
         import capo_rds_data.types.sql_statement_results
 
         out["sql_statement_results"] = (

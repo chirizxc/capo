@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ReservedInstanceOfferingList:
 
     out: ReservedInstanceOfferingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_opensearch.types.reserved_instance_offering.deserialize_json(item)
         )

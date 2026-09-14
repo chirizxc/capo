@@ -32,12 +32,12 @@ def serialize_json(value: Checksum) -> dict:
 
 def deserialize_json(data: dict) -> Checksum:
     out: Checksum = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker_edge.types.checksum_type
 
         out["type"] = capo_sagemaker_edge.types.checksum_type.deserialize_json(
             data["Type"]
         )
-    if "Sum" in data:
+    if data.get("Sum") is not None:
         out["sum"] = data["Sum"]
     return out

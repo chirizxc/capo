@@ -40,15 +40,15 @@ def serialize_json(value: RegionStatus) -> dict:
 
 def deserialize_json(data: dict) -> RegionStatus:
     out: RegionStatus = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "Index" in data:
+    if data.get("Index") is not None:
         import capo_resource_explorer_2.types.index_status
 
         out["index"] = capo_resource_explorer_2.types.index_status.deserialize_json(
             data["Index"]
         )
-    if "View" in data:
+    if data.get("View") is not None:
         import capo_resource_explorer_2.types.view_status
 
         out["view"] = capo_resource_explorer_2.types.view_status.deserialize_json(

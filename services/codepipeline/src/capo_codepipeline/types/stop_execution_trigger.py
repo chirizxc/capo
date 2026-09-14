@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StopExecutionTrigger) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopExecutionTrigger:
     out: StopExecutionTrigger = {}  # type: ignore[typeddict-item]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

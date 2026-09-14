@@ -22,11 +22,11 @@ def serialize_json(value: ReverseGeocodingConfig) -> dict:
 
 def deserialize_json(data: dict) -> ReverseGeocodingConfig:
     out: ReverseGeocodingConfig = {}  # type: ignore[typeddict-item]
-    if "YAttributeName" in data:
+    if data.get("YAttributeName") is not None:
         out["y_attribute_name"] = data["YAttributeName"]
     else:
         raise DeserializationError("ReverseGeocodingConfig.y_attribute_name required")
-    if "XAttributeName" in data:
+    if data.get("XAttributeName") is not None:
         out["x_attribute_name"] = data["XAttributeName"]
     else:
         raise DeserializationError("ReverseGeocodingConfig.x_attribute_name required")

@@ -24,7 +24,7 @@ def serialize_json(value: ContactFlowNotPublishedException_) -> dict:
 
 def deserialize_json(data: dict) -> ContactFlowNotPublishedException_:
     out: ContactFlowNotPublishedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class ContactFlowNotPublishedException(ServiceError):
 
     code: str | None = "ContactFlowNotPublishedException"
 
-    def __init__(self, data: ContactFlowNotPublishedException_):
+    def __init__(
+        self, data: ContactFlowNotPublishedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ContactFlowNotPublishedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ContactFlowNotPublishedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ContactFlowNotPublishedException":
+        return cls(deserialize_json(data), message)

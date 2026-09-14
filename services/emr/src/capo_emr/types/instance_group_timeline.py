@@ -43,19 +43,19 @@ def serialize_aws_json_1_1(value: InstanceGroupTimeline) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceGroupTimeline:
     out: InstanceGroupTimeline = {}  # type: ignore[typeddict-item]
-    if "CreationDateTime" in data:
+    if data.get("CreationDateTime") is not None:
         import capo_emr.types.date
 
         out["creation_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreationDateTime"]
         )
-    if "ReadyDateTime" in data:
+    if data.get("ReadyDateTime") is not None:
         import capo_emr.types.date
 
         out["ready_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["ReadyDateTime"]
         )
-    if "EndDateTime" in data:
+    if data.get("EndDateTime") is not None:
         import capo_emr.types.date
 
         out["end_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(

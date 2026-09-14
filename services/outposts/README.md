@@ -13,9 +13,9 @@ from capo_outposts import AsyncOutpostsClient
 
 
 async def main():
-    async with AsyncOutpostsClient() as s3:
+    async with AsyncOutpostsClient() as outposts:
         # Example: call the cancel_capacity_task operation
-        response = await s3.cancel_capacity_task()
+        response = await outposts.cancel_capacity_task()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_outposts import AsyncOutpostsClient
 
 
 async def main():
-    async with AsyncOutpostsClient() as s3:
+    async with AsyncOutpostsClient() as outposts:
         # Example: paginate over get_outpost_billing_information
-        async for item in s3.iter_get_outpost_billing_information():
+        async for item in outposts.iter_get_outpost_billing_information():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_outposts.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncOutpostsClient() as s3:
+    async with AsyncOutpostsClient() as outposts:
         try:
-            await s3.cancel_capacity_task()
+            await outposts.cancel_capacity_task()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_outposts import AsyncOutpostsClient
 
 
 async def main():
-    async with AsyncOutpostsClient() as s3:
+    async with AsyncOutpostsClient() as outposts:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_capacity_task()
+        response = await outposts.cancel_capacity_task()
 
         # Override per operation
-        response = await s3.cancel_capacity_task(config_overrides={"retry_max_attempts": 5})
+        response = await outposts.cancel_capacity_task(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_capacity_task(config_overrides={"retry_max_attempts": 1})
+        response = await outposts.cancel_capacity_task(config_overrides={"retry_max_attempts": 1})
 ```

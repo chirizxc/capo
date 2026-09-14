@@ -44,16 +44,16 @@ def serialize_aws_json_1_1(value: ListCrossAccountResourcesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCrossAccountResourcesRequest:
     out: ListCrossAccountResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "AcceleratorArn" in data:
+    if data.get("AcceleratorArn") is not None:
         out["accelerator_arn"] = data["AcceleratorArn"]
-    if "ResourceOwnerAwsAccountId" in data:
+    if data.get("ResourceOwnerAwsAccountId") is not None:
         out["resource_owner_aws_account_id"] = data["ResourceOwnerAwsAccountId"]
     else:
         raise DeserializationError(
             "ListCrossAccountResourcesRequest.resource_owner_aws_account_id required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

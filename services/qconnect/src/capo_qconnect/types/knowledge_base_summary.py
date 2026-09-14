@@ -104,27 +104,27 @@ def serialize_json(value: KnowledgeBaseSummary) -> dict:
 
 def deserialize_json(data: dict) -> KnowledgeBaseSummary:
     out: KnowledgeBaseSummary = {}  # type: ignore[typeddict-item]
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
     else:
         raise DeserializationError("KnowledgeBaseSummary.knowledge_base_id required")
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError("KnowledgeBaseSummary.knowledge_base_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("KnowledgeBaseSummary.name required")
-    if "knowledgeBaseType" in data:
+    if data.get("knowledgeBaseType") is not None:
         out["knowledge_base_type"] = data["knowledgeBaseType"]
     else:
         raise DeserializationError("KnowledgeBaseSummary.knowledge_base_type required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("KnowledgeBaseSummary.status required")
-    if "sourceConfiguration" in data:
+    if data.get("sourceConfiguration") is not None:
         import capo_qconnect.types.source_configuration
 
         out["source_configuration"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> KnowledgeBaseSummary:
                 data["sourceConfiguration"]
             )
         )
-    if "vectorIngestionConfiguration" in data:
+    if data.get("vectorIngestionConfiguration") is not None:
         import capo_qconnect.types.vector_ingestion_configuration
 
         out["vector_ingestion_configuration"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> KnowledgeBaseSummary:
                 data["vectorIngestionConfiguration"]
             )
         )
-    if "renderingConfiguration" in data:
+    if data.get("renderingConfiguration") is not None:
         import capo_qconnect.types.rendering_configuration
 
         out["rendering_configuration"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> KnowledgeBaseSummary:
                 data["renderingConfiguration"]
             )
         )
-    if "serverSideEncryptionConfiguration" in data:
+    if data.get("serverSideEncryptionConfiguration") is not None:
         import capo_qconnect.types.server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (
@@ -156,9 +156,9 @@ def deserialize_json(data: dict) -> KnowledgeBaseSummary:
                 data["serverSideEncryptionConfiguration"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

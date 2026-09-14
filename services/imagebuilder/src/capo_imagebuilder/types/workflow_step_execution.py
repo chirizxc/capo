@@ -63,18 +63,18 @@ def serialize_json(value: WorkflowStepExecution) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowStepExecution:
     out: WorkflowStepExecution = {}  # type: ignore[typeddict-item]
-    if "stepExecutionId" in data:
+    if data.get("stepExecutionId") is not None:
         out["step_execution_id"] = data["stepExecutionId"]
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
-    if "workflowExecutionId" in data:
+    if data.get("workflowExecutionId") is not None:
         out["workflow_execution_id"] = data["workflowExecutionId"]
-    if "workflowBuildVersionArn" in data:
+    if data.get("workflowBuildVersionArn") is not None:
         out["workflow_build_version_arn"] = data["workflowBuildVersionArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
     return out

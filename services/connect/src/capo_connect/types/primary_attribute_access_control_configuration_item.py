@@ -31,7 +31,7 @@ def serialize_json(value: PrimaryAttributeAccessControlConfigurationItem) -> dic
 
 def deserialize_json(data: dict) -> PrimaryAttributeAccessControlConfigurationItem:
     out: PrimaryAttributeAccessControlConfigurationItem = {}  # type: ignore[typeddict-item]
-    if "PrimaryAttributeValues" in data:
+    if data.get("PrimaryAttributeValues") is not None:
         import capo_connect.types.primary_attribute_values_set
 
         out["primary_attribute_values"] = (

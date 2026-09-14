@@ -13,9 +13,9 @@ from capo_rekognition import AsyncRekognitionClient
 
 
 async def main():
-    async with AsyncRekognitionClient() as s3:
+    async with AsyncRekognitionClient() as rekognition:
         # Example: call the associate_faces operation
-        response = await s3.associate_faces()
+        response = await rekognition.associate_faces()
         print(response["associated_faces"])
 ```
 
@@ -28,9 +28,9 @@ from capo_rekognition import AsyncRekognitionClient
 
 
 async def main():
-    async with AsyncRekognitionClient() as s3:
+    async with AsyncRekognitionClient() as rekognition:
         # Example: paginate over describe_projects
-        async for item in s3.iter_describe_projects():
+        async for item in rekognition.iter_describe_projects():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_rekognition.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncRekognitionClient() as s3:
+    async with AsyncRekognitionClient() as rekognition:
         try:
-            await s3.associate_faces()
+            await rekognition.associate_faces()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_rekognition import AsyncRekognitionClient
 
 
 async def main():
-    async with AsyncRekognitionClient() as s3:
+    async with AsyncRekognitionClient() as rekognition:
         # Default: 3 attempts for every operation
-        response = await s3.associate_faces()
+        response = await rekognition.associate_faces()
 
         # Override per operation
-        response = await s3.associate_faces(config_overrides={"retry_max_attempts": 5})
+        response = await rekognition.associate_faces(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_faces(config_overrides={"retry_max_attempts": 1})
+        response = await rekognition.associate_faces(config_overrides={"retry_max_attempts": 1})
 ```

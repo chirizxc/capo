@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SsmParameterConfigurationList:
 
     out: SsmParameterConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.ssm_parameter_configuration.deserialize_json(item)
         )

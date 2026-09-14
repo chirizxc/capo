@@ -70,13 +70,13 @@ def serialize_json(value: ConversationLevelTestResultItem) -> dict:
 
 def deserialize_json(data: dict) -> ConversationLevelTestResultItem:
     out: ConversationLevelTestResultItem = {}  # type: ignore[typeddict-item]
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
     else:
         raise DeserializationError(
             "ConversationLevelTestResultItem.conversation_id required"
         )
-    if "endToEndResult" in data:
+    if data.get("endToEndResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["end_to_end_result"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> ConversationLevelTestResultItem:
         raise DeserializationError(
             "ConversationLevelTestResultItem.end_to_end_result required"
         )
-    if "speechTranscriptionResult" in data:
+    if data.get("speechTranscriptionResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["speech_transcription_result"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> ConversationLevelTestResultItem:
                 data["speechTranscriptionResult"]
             )
         )
-    if "intentClassificationResults" in data:
+    if data.get("intentClassificationResults") is not None:
         import capo_lex_models_v2.types.conversation_level_intent_classification_results
 
         out["intent_classification_results"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> ConversationLevelTestResultItem:
         raise DeserializationError(
             "ConversationLevelTestResultItem.intent_classification_results required"
         )
-    if "slotResolutionResults" in data:
+    if data.get("slotResolutionResults") is not None:
         import capo_lex_models_v2.types.conversation_level_slot_resolution_results
 
         out["slot_resolution_results"] = (

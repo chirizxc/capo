@@ -110,11 +110,11 @@ def serialize_json(value: TaskSummary) -> dict:
 
 def deserialize_json(data: dict) -> TaskSummary:
     out: TaskSummary = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("TaskSummary.task_id required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -122,11 +122,11 @@ def deserialize_json(data: dict) -> TaskSummary:
         )
     else:
         raise DeserializationError("TaskSummary.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("TaskSummary.created_by required")
-    if "runStatus" in data:
+    if data.get("runStatus") is not None:
         import capo_deadline.types.task_run_status
 
         out["run_status"] = capo_deadline.types.task_run_status.deserialize_json(
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> TaskSummary:
         )
     else:
         raise DeserializationError("TaskSummary.run_status required")
-    if "targetRunStatus" in data:
+    if data.get("targetRunStatus") is not None:
         import capo_deadline.types.task_target_run_status
 
         out["target_run_status"] = (
@@ -142,29 +142,29 @@ def deserialize_json(data: dict) -> TaskSummary:
                 data["targetRunStatus"]
             )
         )
-    if "failureRetryCount" in data:
+    if data.get("failureRetryCount") is not None:
         out["failure_retry_count"] = data["failureRetryCount"]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_deadline.types.started_at
 
         out["started_at"] = capo_deadline.types.started_at.deserialize_json(
             data["startedAt"]
         )
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_deadline.types.ended_at
 
         out["ended_at"] = capo_deadline.types.ended_at.deserialize_json(data["endedAt"])
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "latestSessionActionId" in data:
+    if data.get("latestSessionActionId") is not None:
         out["latest_session_action_id"] = data["latestSessionActionId"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_deadline.types.task_parameters
 
         out["parameters"] = capo_deadline.types.task_parameters.deserialize_json(

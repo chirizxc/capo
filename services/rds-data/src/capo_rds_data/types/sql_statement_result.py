@@ -31,13 +31,13 @@ def serialize_json(value: SqlStatementResult) -> dict:
 
 def deserialize_json(data: dict) -> SqlStatementResult:
     out: SqlStatementResult = {}  # type: ignore[typeddict-item]
-    if "resultFrame" in data:
+    if data.get("resultFrame") is not None:
         import capo_rds_data.types.result_frame
 
         out["result_frame"] = capo_rds_data.types.result_frame.deserialize_json(
             data["resultFrame"]
         )
-    if "numberOfRecordsUpdated" in data:
+    if data.get("numberOfRecordsUpdated") is not None:
         out["number_of_records_updated"] = data["numberOfRecordsUpdated"]
     else:
         out["number_of_records_updated"] = 0

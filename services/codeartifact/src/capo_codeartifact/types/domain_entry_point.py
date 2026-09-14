@@ -32,8 +32,8 @@ def serialize_json(value: DomainEntryPoint) -> dict:
 
 def deserialize_json(data: dict) -> DomainEntryPoint:
     out: DomainEntryPoint = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "externalConnectionName" in data:
+    if data.get("externalConnectionName") is not None:
         out["external_connection_name"] = data["externalConnectionName"]
     return out

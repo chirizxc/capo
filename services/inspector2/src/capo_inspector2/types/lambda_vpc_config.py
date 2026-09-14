@@ -45,13 +45,13 @@ def serialize_json(value: LambdaVpcConfig) -> dict:
 
 def deserialize_json(data: dict) -> LambdaVpcConfig:
     out: LambdaVpcConfig = {}  # type: ignore[typeddict-item]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_inspector2.types.subnet_id_list
 
         out["subnet_ids"] = capo_inspector2.types.subnet_id_list.deserialize_json(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_inspector2.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -59,6 +59,6 @@ def deserialize_json(data: dict) -> LambdaVpcConfig:
                 data["securityGroupIds"]
             )
         )
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     return out

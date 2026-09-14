@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: ExcludedDatasetColumns) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ExcludedDatasetColumns:
     out: ExcludedDatasetColumns = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_personalize.types.column_names_list
 
         out[key] = capo_personalize.types.column_names_list.deserialize_aws_json_1_1(

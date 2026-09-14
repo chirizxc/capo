@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AIGuardrailVersionSummariesList:
 
     out: AIGuardrailVersionSummariesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qconnect.types.ai_guardrail_version_summary.deserialize_json(item)
         )

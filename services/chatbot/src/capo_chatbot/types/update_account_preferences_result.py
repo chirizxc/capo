@@ -31,7 +31,7 @@ def serialize_json(value: UpdateAccountPreferencesResult) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountPreferencesResult:
     out: UpdateAccountPreferencesResult = {}  # type: ignore[typeddict-item]
-    if "AccountPreferences" in data:
+    if data.get("AccountPreferences") is not None:
         import capo_chatbot.types.account_preferences
 
         out["account_preferences"] = (

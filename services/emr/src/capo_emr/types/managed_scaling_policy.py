@@ -43,15 +43,15 @@ def serialize_aws_json_1_1(value: ManagedScalingPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedScalingPolicy:
     out: ManagedScalingPolicy = {}  # type: ignore[typeddict-item]
-    if "ComputeLimits" in data:
+    if data.get("ComputeLimits") is not None:
         import capo_emr.types.compute_limits
 
         out["compute_limits"] = capo_emr.types.compute_limits.deserialize_aws_json_1_1(
             data["ComputeLimits"]
         )
-    if "UtilizationPerformanceIndex" in data:
+    if data.get("UtilizationPerformanceIndex") is not None:
         out["utilization_performance_index"] = data["UtilizationPerformanceIndex"]
-    if "ScalingStrategy" in data:
+    if data.get("ScalingStrategy") is not None:
         import capo_emr.types.scaling_strategy
 
         out["scaling_strategy"] = (

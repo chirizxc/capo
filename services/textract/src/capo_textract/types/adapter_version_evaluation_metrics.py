@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AdapterVersionEvaluationMetrics:
 
     out: AdapterVersionEvaluationMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_textract.types.adapter_version_evaluation_metric.deserialize_aws_json_1_1(
                 item

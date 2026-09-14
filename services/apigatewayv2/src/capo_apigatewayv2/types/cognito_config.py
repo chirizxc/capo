@@ -38,10 +38,10 @@ def serialize_json(value: CognitoConfig) -> dict:
 
 def deserialize_json(data: dict) -> CognitoConfig:
     out: CognitoConfig = {}  # type: ignore[typeddict-item]
-    if "appClientId" in data:
+    if data.get("appClientId") is not None:
         out["app_client_id"] = data["appClientId"]
-    if "userPoolArn" in data:
+    if data.get("userPoolArn") is not None:
         out["user_pool_arn"] = data["userPoolArn"]
-    if "userPoolDomain" in data:
+    if data.get("userPoolDomain") is not None:
         out["user_pool_domain"] = data["userPoolDomain"]
     return out

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_billingconductor._auth._signers
@@ -110,12 +111,14 @@ class BillingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.create_billing_group_input.CreateBillingGroupInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
-        input_["account_grouping"] = account_grouping
-        input_["computation_preference"] = computation_preference
+        input_: capo_billingconductor.types.create_billing_group_input.CreateBillingGroupInput = {
+            "name": name,
+            "account_grouping": account_grouping,
+            "computation_preference": computation_preference,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if primary_account_id is not None:
             input_["primary_account_id"] = primary_account_id
         if description is not None:
@@ -128,6 +131,7 @@ class BillingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -186,8 +190,9 @@ class BillingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.update_billing_group_input.UpdateBillingGroupInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.update_billing_group_input.UpdateBillingGroupInput = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if status is not None:
@@ -204,6 +209,7 @@ class BillingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -240,14 +246,16 @@ class BillingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.delete_billing_group_input.DeleteBillingGroupInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.delete_billing_group_input.DeleteBillingGroupInput = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -299,7 +307,7 @@ class BillingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_billing_groups_input.ListBillingGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_billing_groups_input.ListBillingGroupsInput = {}
         if billing_period is not None:
             input_["billing_period"] = billing_period
         if max_results is not None:
@@ -314,6 +322,7 @@ class BillingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_accounts(
@@ -357,15 +366,17 @@ class BillingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.associate_accounts_input.AssociateAccountsInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["account_ids"] = account_ids
+        input_: capo_billingconductor.types.associate_accounts_input.AssociateAccountsInput = {
+            "arn": arn,
+            "account_ids": account_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_accounts(
@@ -406,15 +417,17 @@ class BillingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.disassociate_accounts_input.DisassociateAccountsInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["account_ids"] = account_ids
+        input_: capo_billingconductor.types.disassociate_accounts_input.DisassociateAccountsInput = {
+            "arn": arn,
+            "account_ids": account_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -477,12 +490,14 @@ class AsyncBillingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.create_billing_group_input.CreateBillingGroupInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
-        input_["account_grouping"] = account_grouping
-        input_["computation_preference"] = computation_preference
+        input_: capo_billingconductor.types.create_billing_group_input.CreateBillingGroupInput = {
+            "name": name,
+            "account_grouping": account_grouping,
+            "computation_preference": computation_preference,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if primary_account_id is not None:
             input_["primary_account_id"] = primary_account_id
         if description is not None:
@@ -495,6 +510,7 @@ class AsyncBillingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -554,8 +570,9 @@ class AsyncBillingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.update_billing_group_input.UpdateBillingGroupInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.update_billing_group_input.UpdateBillingGroupInput = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if status is not None:
@@ -572,6 +589,7 @@ class AsyncBillingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -609,14 +627,16 @@ class AsyncBillingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.delete_billing_group_input.DeleteBillingGroupInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.delete_billing_group_input.DeleteBillingGroupInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -669,7 +689,7 @@ class AsyncBillingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_billing_groups_input.ListBillingGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_billing_groups_input.ListBillingGroupsInput = {}
         if billing_period is not None:
             input_["billing_period"] = billing_period
         if max_results is not None:
@@ -684,6 +704,7 @@ class AsyncBillingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_accounts(
@@ -728,15 +749,17 @@ class AsyncBillingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.associate_accounts_input.AssociateAccountsInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["account_ids"] = account_ids
+        input_: capo_billingconductor.types.associate_accounts_input.AssociateAccountsInput = {
+            "arn": arn,
+            "account_ids": account_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_accounts(
@@ -778,13 +801,15 @@ class AsyncBillingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.disassociate_accounts_input.DisassociateAccountsInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["account_ids"] = account_ids
+        input_: capo_billingconductor.types.disassociate_accounts_input.DisassociateAccountsInput = {
+            "arn": arn,
+            "account_ids": account_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

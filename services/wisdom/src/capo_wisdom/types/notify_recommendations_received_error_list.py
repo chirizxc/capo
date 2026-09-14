@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> NotifyRecommendationsReceivedErrorList:
 
     out: NotifyRecommendationsReceivedErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wisdom.types.notify_recommendations_received_error.deserialize_json(
                 item

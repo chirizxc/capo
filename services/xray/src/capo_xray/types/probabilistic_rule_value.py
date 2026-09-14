@@ -22,20 +22,37 @@ class ProbabilisticRuleValue(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ProbabilisticRuleValue) -> dict:
     out: dict = {}
-    out["DesiredSamplingPercentage"] = value["desired_sampling_percentage"]
+    out["DesiredSamplingPercentage"] = (
+        "NaN"
+        if value["desired_sampling_percentage"] != value["desired_sampling_percentage"]
+        else "Infinity"
+        if value["desired_sampling_percentage"] == float("inf")
+        else "-Infinity"
+        if value["desired_sampling_percentage"] == float("-inf")
+        else value["desired_sampling_percentage"]
+    )
     if "actual_sampling_percentage" in value:
-        out["ActualSamplingPercentage"] = value["actual_sampling_percentage"]
+        out["ActualSamplingPercentage"] = (
+            "NaN"
+            if value["actual_sampling_percentage"]
+            != value["actual_sampling_percentage"]
+            else "Infinity"
+            if value["actual_sampling_percentage"] == float("inf")
+            else "-Infinity"
+            if value["actual_sampling_percentage"] == float("-inf")
+            else value["actual_sampling_percentage"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> ProbabilisticRuleValue:
     out: ProbabilisticRuleValue = {}  # type: ignore[typeddict-item]
-    if "DesiredSamplingPercentage" in data:
-        out["desired_sampling_percentage"] = data["DesiredSamplingPercentage"]
+    if data.get("DesiredSamplingPercentage") is not None:
+        out["desired_sampling_percentage"] = float(data["DesiredSamplingPercentage"])
     else:
         raise DeserializationError(
             "ProbabilisticRuleValue.desired_sampling_percentage required"
         )
-    if "ActualSamplingPercentage" in data:
-        out["actual_sampling_percentage"] = data["ActualSamplingPercentage"]
+    if data.get("ActualSamplingPercentage") is not None:
+        out["actual_sampling_percentage"] = float(data["ActualSamplingPercentage"])
     return out

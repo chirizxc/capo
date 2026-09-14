@@ -32,12 +32,12 @@ def serialize_json(value: UpdateLoggingConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLoggingConfigurationRequest:
     out: UpdateLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "logGroupArn" in data:
+    if data.get("logGroupArn") is not None:
         out["log_group_arn"] = data["logGroupArn"]
     else:
         raise DeserializationError(
             "UpdateLoggingConfigurationRequest.log_group_arn required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

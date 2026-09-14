@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> NotificationMessageTypes:
 
     out: NotificationMessageTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.notification_message_type.deserialize_json(item)
         )

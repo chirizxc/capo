@@ -157,25 +157,25 @@ def serialize_json(value: CreateImagePipelineRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateImagePipelineRequest:
     out: CreateImagePipelineRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateImagePipelineRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "imageRecipeArn" in data:
+    if data.get("imageRecipeArn") is not None:
         out["image_recipe_arn"] = data["imageRecipeArn"]
-    if "containerRecipeArn" in data:
+    if data.get("containerRecipeArn") is not None:
         out["container_recipe_arn"] = data["containerRecipeArn"]
-    if "infrastructureConfigurationArn" in data:
+    if data.get("infrastructureConfigurationArn") is not None:
         out["infrastructure_configuration_arn"] = data["infrastructureConfigurationArn"]
     else:
         raise DeserializationError(
             "CreateImagePipelineRequest.infrastructure_configuration_arn required"
         )
-    if "distributionConfigurationArn" in data:
+    if data.get("distributionConfigurationArn") is not None:
         out["distribution_configuration_arn"] = data["distributionConfigurationArn"]
-    if "imageTestsConfiguration" in data:
+    if data.get("imageTestsConfiguration") is not None:
         import capo_imagebuilder.types.image_tests_configuration
 
         out["image_tests_configuration"] = (
@@ -183,35 +183,35 @@ def deserialize_json(data: dict) -> CreateImagePipelineRequest:
                 data["imageTestsConfiguration"]
             )
         )
-    if "enhancedImageMetadataEnabled" in data:
+    if data.get("enhancedImageMetadataEnabled") is not None:
         out["enhanced_image_metadata_enabled"] = data["enhancedImageMetadataEnabled"]
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_imagebuilder.types.schedule
 
         out["schedule"] = capo_imagebuilder.types.schedule.deserialize_json(
             data["schedule"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.pipeline_status
 
         out["status"] = capo_imagebuilder.types.pipeline_status.deserialize_json(
             data["status"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "imageTags" in data:
+    if data.get("imageTags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["image_tags"] = capo_imagebuilder.types.tag_map.deserialize_json(
             data["imageTags"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateImagePipelineRequest.client_token required")
-    if "imageScanningConfiguration" in data:
+    if data.get("imageScanningConfiguration") is not None:
         import capo_imagebuilder.types.image_scanning_configuration
 
         out["image_scanning_configuration"] = (
@@ -219,7 +219,7 @@ def deserialize_json(data: dict) -> CreateImagePipelineRequest:
                 data["imageScanningConfiguration"]
             )
         )
-    if "workflows" in data:
+    if data.get("workflows") is not None:
         import capo_imagebuilder.types.workflow_configuration_list
 
         out["workflows"] = (
@@ -227,9 +227,9 @@ def deserialize_json(data: dict) -> CreateImagePipelineRequest:
                 data["workflows"]
             )
         )
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
-    if "loggingConfiguration" in data:
+    if data.get("loggingConfiguration") is not None:
         import capo_imagebuilder.types.pipeline_logging_configuration
 
         out["logging_configuration"] = (

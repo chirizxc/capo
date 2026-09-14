@@ -32,12 +32,12 @@ def serialize_json(value: ListNotificationChannelsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListNotificationChannelsResponse:
     out: ListNotificationChannelsResponse = {}  # type: ignore[typeddict-item]
-    if "Channels" in data:
+    if data.get("Channels") is not None:
         import capo_devops_guru.types.channels
 
         out["channels"] = capo_devops_guru.types.channels.deserialize_json(
             data["Channels"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

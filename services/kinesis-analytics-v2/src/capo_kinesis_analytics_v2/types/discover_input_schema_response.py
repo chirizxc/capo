@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: DiscoverInputSchemaResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiscoverInputSchemaResponse:
     out: DiscoverInputSchemaResponse = {}  # type: ignore[typeddict-item]
-    if "InputSchema" in data:
+    if data.get("InputSchema") is not None:
         import capo_kinesis_analytics_v2.types.source_schema
 
         out["input_schema"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInputSchemaResponse:
                 data["InputSchema"]
             )
         )
-    if "ParsedInputRecords" in data:
+    if data.get("ParsedInputRecords") is not None:
         import capo_kinesis_analytics_v2.types.parsed_input_records
 
         out["parsed_input_records"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInputSchemaResponse:
                 data["ParsedInputRecords"]
             )
         )
-    if "ProcessedInputRecords" in data:
+    if data.get("ProcessedInputRecords") is not None:
         import capo_kinesis_analytics_v2.types.processed_input_records
 
         out["processed_input_records"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInputSchemaResponse:
                 data["ProcessedInputRecords"]
             )
         )
-    if "RawInputRecords" in data:
+    if data.get("RawInputRecords") is not None:
         import capo_kinesis_analytics_v2.types.raw_input_records
 
         out["raw_input_records"] = (

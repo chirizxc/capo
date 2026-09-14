@@ -27,6 +27,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails:
     out: AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails = {}  # type: ignore[typeddict-item]
-    if "ImmunityTime" in data:
+    if data.get("ImmunityTime") is not None:
         out["immunity_time"] = data["ImmunityTime"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: MessageAttributeValue) -> dict:
 
 def deserialize_json(data: dict) -> MessageAttributeValue:
     out: MessageAttributeValue = {}  # type: ignore[typeddict-item]
-    if "StringValues" in data:
+    if data.get("StringValues") is not None:
         import capo_chime_sdk_messaging.types.message_attribute_string_values
 
         out["string_values"] = (

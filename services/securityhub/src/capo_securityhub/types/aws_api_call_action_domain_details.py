@@ -23,6 +23,6 @@ def serialize_json(value: AwsApiCallActionDomainDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsApiCallActionDomainDetails:
     out: AwsApiCallActionDomainDetails = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     return out

@@ -45,25 +45,25 @@ def serialize_json(value: UpdateNetworkMigrationMapperSegmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNetworkMigrationMapperSegmentRequest:
     out: UpdateNetworkMigrationMapperSegmentRequest = {}  # type: ignore[typeddict-item]
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
     else:
         raise DeserializationError(
             "UpdateNetworkMigrationMapperSegmentRequest.network_migration_definition_id required"
         )
-    if "networkMigrationExecutionID" in data:
+    if data.get("networkMigrationExecutionID") is not None:
         out["network_migration_execution_id"] = data["networkMigrationExecutionID"]
     else:
         raise DeserializationError(
             "UpdateNetworkMigrationMapperSegmentRequest.network_migration_execution_id required"
         )
-    if "segmentID" in data:
+    if data.get("segmentID") is not None:
         out["segment_id"] = data["segmentID"]
     else:
         raise DeserializationError(
             "UpdateNetworkMigrationMapperSegmentRequest.segment_id required"
         )
-    if "scopeTags" in data:
+    if data.get("scopeTags") is not None:
         import capo_mgn.types.scope_tags_map
 
         out["scope_tags"] = capo_mgn.types.scope_tags_map.deserialize_json(

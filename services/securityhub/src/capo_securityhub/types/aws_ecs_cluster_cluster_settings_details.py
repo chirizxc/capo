@@ -27,8 +27,8 @@ def serialize_json(value: AwsEcsClusterClusterSettingsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsClusterClusterSettingsDetails:
     out: AwsEcsClusterClusterSettingsDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

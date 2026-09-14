@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteHostInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteHostInput:
     out: DeleteHostInput = {}  # type: ignore[typeddict-item]
-    if "HostArn" in data:
+    if data.get("HostArn") is not None:
         out["host_arn"] = data["HostArn"]
     else:
         raise DeserializationError("DeleteHostInput.host_arn required")

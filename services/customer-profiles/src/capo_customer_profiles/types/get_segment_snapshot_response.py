@@ -66,11 +66,11 @@ def serialize_json(value: GetSegmentSnapshotResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSegmentSnapshotResponse:
     out: GetSegmentSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
     else:
         raise DeserializationError("GetSegmentSnapshotResponse.snapshot_id required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.segment_snapshot_status
 
         out["status"] = (
@@ -80,9 +80,9 @@ def deserialize_json(data: dict) -> GetSegmentSnapshotResponse:
         )
     else:
         raise DeserializationError("GetSegmentSnapshotResponse.status required")
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_customer_profiles.types.data_format
 
         out["data_format"] = capo_customer_profiles.types.data_format.deserialize_json(
@@ -90,10 +90,10 @@ def deserialize_json(data: dict) -> GetSegmentSnapshotResponse:
         )
     else:
         raise DeserializationError("GetSegmentSnapshotResponse.data_format required")
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         out["encryption_key"] = data["EncryptionKey"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "DestinationUri" in data:
+    if data.get("DestinationUri") is not None:
         out["destination_uri"] = data["DestinationUri"]
     return out

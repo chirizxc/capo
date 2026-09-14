@@ -25,7 +25,7 @@ def serialize_json(value: DescribeSchedulingPoliciesRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSchedulingPoliciesRequest:
     out: DescribeSchedulingPoliciesRequest = {}  # type: ignore[typeddict-item]
-    if "arns" in data:
+    if data.get("arns") is not None:
         import capo_batch.types.string_list
 
         out["arns"] = capo_batch.types.string_list.deserialize_json(data["arns"])

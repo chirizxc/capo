@@ -46,20 +46,20 @@ def serialize_aws_json_1_1(value: CurrentRevision) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CurrentRevision:
     out: CurrentRevision = {}  # type: ignore[typeddict-item]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         raise DeserializationError("CurrentRevision.revision required")
-    if "changeIdentifier" in data:
+    if data.get("changeIdentifier") is not None:
         out["change_identifier"] = data["changeIdentifier"]
     else:
         raise DeserializationError("CurrentRevision.change_identifier required")
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_codepipeline.types.time
 
         out["created"] = capo_codepipeline.types.time.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "revisionSummary" in data:
+    if data.get("revisionSummary") is not None:
         out["revision_summary"] = data["revisionSummary"]
     return out

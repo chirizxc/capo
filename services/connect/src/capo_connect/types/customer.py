@@ -39,13 +39,13 @@ def serialize_json(value: Customer) -> dict:
 
 def deserialize_json(data: dict) -> Customer:
     out: Customer = {}  # type: ignore[typeddict-item]
-    if "DeviceInfo" in data:
+    if data.get("DeviceInfo") is not None:
         import capo_connect.types.device_info
 
         out["device_info"] = capo_connect.types.device_info.deserialize_json(
             data["DeviceInfo"]
         )
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_connect.types.participant_capabilities
 
         out["capabilities"] = (

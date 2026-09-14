@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeOrganizationConformancePackStatusesResponse:
     out: DescribeOrganizationConformancePackStatusesResponse = {}  # type: ignore[typeddict-item]
-    if "OrganizationConformancePackStatuses" in data:
+    if data.get("OrganizationConformancePackStatuses") is not None:
         import capo_config_service.types.organization_conformance_pack_statuses
 
         out["organization_conformance_pack_statuses"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["OrganizationConformancePackStatuses"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

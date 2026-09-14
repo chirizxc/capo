@@ -27,8 +27,8 @@ def serialize_json(value: IsolineAllowOptions) -> dict:
 
 def deserialize_json(data: dict) -> IsolineAllowOptions:
     out: IsolineAllowOptions = {}  # type: ignore[typeddict-item]
-    if "Hot" in data:
+    if data.get("Hot") is not None:
         out["hot"] = data["Hot"]
-    if "Hov" in data:
+    if data.get("Hov") is not None:
         out["hov"] = data["Hov"]
     return out

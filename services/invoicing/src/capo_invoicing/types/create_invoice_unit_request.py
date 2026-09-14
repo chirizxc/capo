@@ -67,21 +67,21 @@ def serialize_aws_json_1_0(value: CreateInvoiceUnitRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateInvoiceUnitRequest:
     out: CreateInvoiceUnitRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateInvoiceUnitRequest.name required")
-    if "InvoiceReceiver" in data:
+    if data.get("InvoiceReceiver") is not None:
         out["invoice_receiver"] = data["InvoiceReceiver"]
     else:
         raise DeserializationError("CreateInvoiceUnitRequest.invoice_receiver required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TaxInheritanceDisabled" in data:
+    if data.get("TaxInheritanceDisabled") is not None:
         out["tax_inheritance_disabled"] = data["TaxInheritanceDisabled"]
     else:
         out["tax_inheritance_disabled"] = False
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_invoicing.types.invoice_unit_rule
 
         out["rule"] = capo_invoicing.types.invoice_unit_rule.deserialize_aws_json_1_0(
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateInvoiceUnitRequest:
         )
     else:
         raise DeserializationError("CreateInvoiceUnitRequest.rule required")
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_invoicing.types.resource_tag_list
 
         out["resource_tags"] = (
@@ -97,6 +97,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateInvoiceUnitRequest:
                 data["ResourceTags"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

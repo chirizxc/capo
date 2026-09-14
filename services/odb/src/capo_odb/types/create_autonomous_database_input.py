@@ -142,7 +142,15 @@ def serialize_aws_json_1_0(value: CreateAutonomousDatabaseInput) -> dict:
     if "admin_password" in value:
         out["adminPassword"] = value["admin_password"]
     if "compute_count" in value:
-        out["computeCount"] = value["compute_count"]
+        out["computeCount"] = (
+            "NaN"
+            if value["compute_count"] != value["compute_count"]
+            else "Infinity"
+            if value["compute_count"] == float("inf")
+            else "-Infinity"
+            if value["compute_count"] == float("-inf")
+            else value["compute_count"]
+        )
     if "data_storage_size_in_t_bs" in value:
         out["dataStorageSizeInTBs"] = value["data_storage_size_in_t_bs"]
     if "data_storage_size_in_g_bs" in value:
@@ -196,7 +204,15 @@ def serialize_aws_json_1_0(value: CreateAutonomousDatabaseInput) -> dict:
     if "backup_retention_period_in_days" in value:
         out["backupRetentionPeriodInDays"] = value["backup_retention_period_in_days"]
     if "byol_compute_count_limit" in value:
-        out["byolComputeCountLimit"] = value["byol_compute_count_limit"]
+        out["byolComputeCountLimit"] = (
+            "NaN"
+            if value["byol_compute_count_limit"] != value["byol_compute_count_limit"]
+            else "Infinity"
+            if value["byol_compute_count_limit"] == float("inf")
+            else "-Infinity"
+            if value["byol_compute_count_limit"] == float("-inf")
+            else value["byol_compute_count_limit"]
+        )
     if "cpu_core_count" in value:
         out["cpuCoreCount"] = value["cpu_core_count"]
     if "customer_contacts_to_send_to_oci" in value:
@@ -308,45 +324,45 @@ def serialize_aws_json_1_0(value: CreateAutonomousDatabaseInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
     out: CreateAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-    if "odbNetworkId" in data:
+    if data.get("odbNetworkId") is not None:
         out["odb_network_id"] = data["odbNetworkId"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "dbName" in data:
+    if data.get("dbName") is not None:
         out["db_name"] = data["dbName"]
-    if "adminPassword" in data:
+    if data.get("adminPassword") is not None:
         out["admin_password"] = data["adminPassword"]
-    if "computeCount" in data:
-        out["compute_count"] = data["computeCount"]
-    if "dataStorageSizeInTBs" in data:
+    if data.get("computeCount") is not None:
+        out["compute_count"] = float(data["computeCount"])
+    if data.get("dataStorageSizeInTBs") is not None:
         out["data_storage_size_in_t_bs"] = data["dataStorageSizeInTBs"]
-    if "dataStorageSizeInGBs" in data:
+    if data.get("dataStorageSizeInGBs") is not None:
         out["data_storage_size_in_g_bs"] = data["dataStorageSizeInGBs"]
-    if "dbWorkload" in data:
+    if data.get("dbWorkload") is not None:
         import capo_odb.types.db_workload
 
         out["db_workload"] = capo_odb.types.db_workload.deserialize_aws_json_1_0(
             data["dbWorkload"]
         )
-    if "isAutoScalingEnabled" in data:
+    if data.get("isAutoScalingEnabled") is not None:
         out["is_auto_scaling_enabled"] = data["isAutoScalingEnabled"]
-    if "isAutoScalingForStorageEnabled" in data:
+    if data.get("isAutoScalingForStorageEnabled") is not None:
         out["is_auto_scaling_for_storage_enabled"] = data[
             "isAutoScalingForStorageEnabled"
         ]
-    if "licenseModel" in data:
+    if data.get("licenseModel") is not None:
         import capo_odb.types.license_model
 
         out["license_model"] = capo_odb.types.license_model.deserialize_aws_json_1_0(
             data["licenseModel"]
         )
-    if "characterSet" in data:
+    if data.get("characterSet") is not None:
         out["character_set"] = data["characterSet"]
-    if "ncharacterSet" in data:
+    if data.get("ncharacterSet") is not None:
         out["ncharacter_set"] = data["ncharacterSet"]
-    if "dbVersion" in data:
+    if data.get("dbVersion") is not None:
         out["db_version"] = data["dbVersion"]
-    if "databaseEdition" in data:
+    if data.get("databaseEdition") is not None:
         import capo_odb.types.database_edition
 
         out["database_edition"] = (
@@ -354,7 +370,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["databaseEdition"]
             )
         )
-    if "standbyAllowlistedIpsSource" in data:
+    if data.get("standbyAllowlistedIpsSource") is not None:
         import capo_odb.types.standby_allowlisted_ips_source
 
         out["standby_allowlisted_ips_source"] = (
@@ -362,7 +378,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["standbyAllowlistedIpsSource"]
             )
         )
-    if "autonomousMaintenanceScheduleType" in data:
+    if data.get("autonomousMaintenanceScheduleType") is not None:
         import capo_odb.types.autonomous_maintenance_schedule_type
 
         out["autonomous_maintenance_schedule_type"] = (
@@ -370,13 +386,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["autonomousMaintenanceScheduleType"]
             )
         )
-    if "backupRetentionPeriodInDays" in data:
+    if data.get("backupRetentionPeriodInDays") is not None:
         out["backup_retention_period_in_days"] = data["backupRetentionPeriodInDays"]
-    if "byolComputeCountLimit" in data:
-        out["byol_compute_count_limit"] = data["byolComputeCountLimit"]
-    if "cpuCoreCount" in data:
+    if data.get("byolComputeCountLimit") is not None:
+        out["byol_compute_count_limit"] = float(data["byolComputeCountLimit"])
+    if data.get("cpuCoreCount") is not None:
         out["cpu_core_count"] = data["cpuCoreCount"]
-    if "customerContactsToSendToOCI" in data:
+    if data.get("customerContactsToSendToOCI") is not None:
         import capo_odb.types.customer_contacts
 
         out["customer_contacts_to_send_to_oci"] = (
@@ -384,13 +400,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["customerContactsToSendToOCI"]
             )
         )
-    if "privateEndpointIp" in data:
+    if data.get("privateEndpointIp") is not None:
         out["private_endpoint_ip"] = data["privateEndpointIp"]
-    if "privateEndpointLabel" in data:
+    if data.get("privateEndpointLabel") is not None:
         out["private_endpoint_label"] = data["privateEndpointLabel"]
-    if "resourcePoolLeaderId" in data:
+    if data.get("resourcePoolLeaderId") is not None:
         out["resource_pool_leader_id"] = data["resourcePoolLeaderId"]
-    if "resourcePoolSummary" in data:
+    if data.get("resourcePoolSummary") is not None:
         import capo_odb.types.resource_pool_summary
 
         out["resource_pool_summary"] = (
@@ -398,7 +414,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["resourcePoolSummary"]
             )
         )
-    if "scheduledOperations" in data:
+    if data.get("scheduledOperations") is not None:
         import capo_odb.types.scheduled_operation_details_list
 
         out["scheduled_operations"] = (
@@ -406,7 +422,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["scheduledOperations"]
             )
         )
-    if "standbyAllowlistedIps" in data:
+    if data.get("standbyAllowlistedIps") is not None:
         import capo_odb.types.string_list
 
         out["standby_allowlisted_ips"] = (
@@ -414,13 +430,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["standbyAllowlistedIps"]
             )
         )
-    if "allowlistedIps" in data:
+    if data.get("allowlistedIps") is not None:
         import capo_odb.types.string_list
 
         out["allowlisted_ips"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["allowlistedIps"]
         )
-    if "transportableTablespace" in data:
+    if data.get("transportableTablespace") is not None:
         import capo_odb.types.transportable_tablespace
 
         out["transportable_tablespace"] = (
@@ -428,13 +444,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["transportableTablespace"]
             )
         )
-    if "isBackupRetentionLocked" in data:
+    if data.get("isBackupRetentionLocked") is not None:
         out["is_backup_retention_locked"] = data["isBackupRetentionLocked"]
-    if "isLocalDataGuardEnabled" in data:
+    if data.get("isLocalDataGuardEnabled") is not None:
         out["is_local_data_guard_enabled"] = data["isLocalDataGuardEnabled"]
-    if "isMtlsConnectionRequired" in data:
+    if data.get("isMtlsConnectionRequired") is not None:
         out["is_mtls_connection_required"] = data["isMtlsConnectionRequired"]
-    if "dbToolsDetails" in data:
+    if data.get("dbToolsDetails") is not None:
         import capo_odb.types.database_tool_list
 
         out["db_tools_details"] = (
@@ -442,13 +458,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["dbToolsDetails"]
             )
         )
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_odb.types.source_type
 
         out["source"] = capo_odb.types.source_type.deserialize_aws_json_1_0(
             data["source"]
         )
-    if "sourceConfiguration" in data:
+    if data.get("sourceConfiguration") is not None:
         import capo_odb.types.source_configuration
 
         out["source_configuration"] = (
@@ -456,7 +472,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["sourceConfiguration"]
             )
         )
-    if "encryptionKeyProvider" in data:
+    if data.get("encryptionKeyProvider") is not None:
         import capo_odb.types.encryption_key_provider_input
 
         out["encryption_key_provider"] = (
@@ -464,7 +480,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["encryptionKeyProvider"]
             )
         )
-    if "encryptionKeyConfiguration" in data:
+    if data.get("encryptionKeyConfiguration") is not None:
         import capo_odb.types.encryption_key_configuration_input
 
         out["encryption_key_configuration"] = (
@@ -472,9 +488,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseInput:
                 data["encryptionKeyConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_odb.types.request_tag_map
 
         out["tags"] = capo_odb.types.request_tag_map.deserialize_aws_json_1_0(

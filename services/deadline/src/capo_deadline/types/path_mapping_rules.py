@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PathMappingRules:
 
     out: PathMappingRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.path_mapping_rule.deserialize_json(item))
     return out

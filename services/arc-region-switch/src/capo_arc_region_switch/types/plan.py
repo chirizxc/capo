@@ -130,13 +130,13 @@ def serialize_aws_json_1_0(value: Plan) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Plan:
     out: Plan = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Plan.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "workflows" in data:
+    if data.get("workflows") is not None:
         import capo_arc_region_switch.types.workflow_list
 
         out["workflows"] = (
@@ -146,13 +146,13 @@ def deserialize_aws_json_1_0(data: dict) -> Plan:
         )
     else:
         raise DeserializationError("Plan.workflows required")
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
     else:
         raise DeserializationError("Plan.execution_role required")
-    if "recoveryTimeObjectiveMinutes" in data:
+    if data.get("recoveryTimeObjectiveMinutes") is not None:
         out["recovery_time_objective_minutes"] = data["recoveryTimeObjectiveMinutes"]
-    if "associatedAlarms" in data:
+    if data.get("associatedAlarms") is not None:
         import capo_arc_region_switch.types.associated_alarm_map
 
         out["associated_alarms"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_0(data: dict) -> Plan:
                 data["associatedAlarms"]
             )
         )
-    if "triggers" in data:
+    if data.get("triggers") is not None:
         import capo_arc_region_switch.types.trigger_list
 
         out["triggers"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_0(data: dict) -> Plan:
                 data["triggers"]
             )
         )
-    if "reportConfiguration" in data:
+    if data.get("reportConfiguration") is not None:
         import capo_arc_region_switch.types.report_configuration
 
         out["report_configuration"] = (
@@ -176,11 +176,11 @@ def deserialize_aws_json_1_0(data: dict) -> Plan:
                 data["reportConfiguration"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Plan.name required")
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_arc_region_switch.types.region_list
 
         out["regions"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_0(data: dict) -> Plan:
         )
     else:
         raise DeserializationError("Plan.regions required")
-    if "recoveryApproach" in data:
+    if data.get("recoveryApproach") is not None:
         import capo_arc_region_switch.types.recovery_approach
 
         out["recovery_approach"] = (
@@ -200,15 +200,15 @@ def deserialize_aws_json_1_0(data: dict) -> Plan:
         )
     else:
         raise DeserializationError("Plan.recovery_approach required")
-    if "primaryRegion" in data:
+    if data.get("primaryRegion") is not None:
         out["primary_region"] = data["primaryRegion"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
     else:
         raise DeserializationError("Plan.owner required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["updated_at"] = (

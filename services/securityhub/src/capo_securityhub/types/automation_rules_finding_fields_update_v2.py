@@ -32,10 +32,10 @@ def serialize_json(value: AutomationRulesFindingFieldsUpdateV2) -> dict:
 
 def deserialize_json(data: dict) -> AutomationRulesFindingFieldsUpdateV2:
     out: AutomationRulesFindingFieldsUpdateV2 = {}  # type: ignore[typeddict-item]
-    if "SeverityId" in data:
+    if data.get("SeverityId") is not None:
         out["severity_id"] = data["SeverityId"]
-    if "Comment" in data:
+    if data.get("Comment") is not None:
         out["comment"] = data["Comment"]
-    if "StatusId" in data:
+    if data.get("StatusId") is not None:
         out["status_id"] = data["StatusId"]
     return out

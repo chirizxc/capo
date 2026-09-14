@@ -73,21 +73,21 @@ def serialize_json(value: CreateConfiguredModelAlgorithmRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfiguredModelAlgorithmRequest:
     out: CreateConfiguredModelAlgorithmRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "CreateConfiguredModelAlgorithmRequest.name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(
             "CreateConfiguredModelAlgorithmRequest.role_arn required"
         )
-    if "trainingContainerConfig" in data:
+    if data.get("trainingContainerConfig") is not None:
         import capo_cleanroomsml.types.container_config
 
         out["training_container_config"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> CreateConfiguredModelAlgorithmRequest:
                 data["trainingContainerConfig"]
             )
         )
-    if "inferenceContainerConfig" in data:
+    if data.get("inferenceContainerConfig") is not None:
         import capo_cleanroomsml.types.inference_container_config
 
         out["inference_container_config"] = (
@@ -103,10 +103,10 @@ def deserialize_json(data: dict) -> CreateConfiguredModelAlgorithmRequest:
                 data["inferenceContainerConfig"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

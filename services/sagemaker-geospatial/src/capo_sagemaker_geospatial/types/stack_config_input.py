@@ -44,7 +44,7 @@ def serialize_json(value: StackConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> StackConfigInput:
     out: StackConfigInput = {}  # type: ignore[typeddict-item]
-    if "OutputResolution" in data:
+    if data.get("OutputResolution") is not None:
         import capo_sagemaker_geospatial.types.output_resolution_stack_input
 
         out["output_resolution"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> StackConfigInput:
                 data["OutputResolution"]
             )
         )
-    if "TargetBands" in data:
+    if data.get("TargetBands") is not None:
         import capo_sagemaker_geospatial.types.string_list_input
 
         out["target_bands"] = (

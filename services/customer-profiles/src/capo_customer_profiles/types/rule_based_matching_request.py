@@ -92,11 +92,11 @@ def serialize_json(value: RuleBasedMatchingRequest) -> dict:
 
 def deserialize_json(data: dict) -> RuleBasedMatchingRequest:
     out: RuleBasedMatchingRequest = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("RuleBasedMatchingRequest.enabled required")
-    if "MatchingRules" in data:
+    if data.get("MatchingRules") is not None:
         import capo_customer_profiles.types.matching_rules
 
         out["matching_rules"] = (
@@ -104,15 +104,15 @@ def deserialize_json(data: dict) -> RuleBasedMatchingRequest:
                 data["MatchingRules"]
             )
         )
-    if "MaxAllowedRuleLevelForMerging" in data:
+    if data.get("MaxAllowedRuleLevelForMerging") is not None:
         out["max_allowed_rule_level_for_merging"] = data[
             "MaxAllowedRuleLevelForMerging"
         ]
-    if "MaxAllowedRuleLevelForMatching" in data:
+    if data.get("MaxAllowedRuleLevelForMatching") is not None:
         out["max_allowed_rule_level_for_matching"] = data[
             "MaxAllowedRuleLevelForMatching"
         ]
-    if "AttributeTypesSelector" in data:
+    if data.get("AttributeTypesSelector") is not None:
         import capo_customer_profiles.types.attribute_types_selector
 
         out["attribute_types_selector"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> RuleBasedMatchingRequest:
                 data["AttributeTypesSelector"]
             )
         )
-    if "ConflictResolution" in data:
+    if data.get("ConflictResolution") is not None:
         import capo_customer_profiles.types.conflict_resolution
 
         out["conflict_resolution"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> RuleBasedMatchingRequest:
                 data["ConflictResolution"]
             )
         )
-    if "ExportingConfig" in data:
+    if data.get("ExportingConfig") is not None:
         import capo_customer_profiles.types.exporting_config
 
         out["exporting_config"] = (

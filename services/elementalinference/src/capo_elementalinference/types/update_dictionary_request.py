@@ -46,9 +46,9 @@ def serialize_json(value: UpdateDictionaryRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDictionaryRequest:
     out: UpdateDictionaryRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "language" in data:
+    if data.get("language") is not None:
         import capo_elementalinference.types.dictionary_language
 
         out["language"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> UpdateDictionaryRequest:
                 data["language"]
             )
         )
-    if "entries" in data:
+    if data.get("entries") is not None:
         out["entries"] = data["entries"]
     return out

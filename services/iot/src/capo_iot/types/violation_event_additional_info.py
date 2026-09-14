@@ -27,7 +27,7 @@ def serialize_json(value: ViolationEventAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> ViolationEventAdditionalInfo:
     out: ViolationEventAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "confidenceLevel" in data:
+    if data.get("confidenceLevel") is not None:
         import capo_iot.types.confidence_level
 
         out["confidence_level"] = capo_iot.types.confidence_level.deserialize_json(

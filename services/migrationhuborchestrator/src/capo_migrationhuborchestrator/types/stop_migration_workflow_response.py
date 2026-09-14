@@ -52,15 +52,15 @@ def serialize_json(value: StopMigrationWorkflowResponse) -> dict:
 
 def deserialize_json(data: dict) -> StopMigrationWorkflowResponse:
     out: StopMigrationWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "lastStopTime" in data:
+    if data.get("lastStopTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["last_stop_time"] = (

@@ -30,8 +30,8 @@ def serialize_json(value: NetworkResourceCount) -> dict:
 
 def deserialize_json(data: dict) -> NetworkResourceCount:
     out: NetworkResourceCount = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     return out

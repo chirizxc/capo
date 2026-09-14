@@ -94,15 +94,15 @@ def serialize_aws_json_1_1(value: FirewallRuleGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallRuleGroup:
     out: FirewallRuleGroup = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RuleCount" in data:
+    if data.get("RuleCount") is not None:
         out["rule_count"] = data["RuleCount"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53resolver.types.firewall_rule_group_status
 
         out["status"] = (
@@ -110,13 +110,13 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRuleGroup:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "ShareStatus" in data:
+    if data.get("ShareStatus") is not None:
         import capo_route53resolver.types.share_status
 
         out["share_status"] = (
@@ -124,8 +124,8 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRuleGroup:
                 data["ShareStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "ModificationTime" in data:
+    if data.get("ModificationTime") is not None:
         out["modification_time"] = data["ModificationTime"]
     return out

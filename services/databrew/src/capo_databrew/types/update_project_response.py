@@ -33,13 +33,13 @@ def serialize_json(value: UpdateProjectResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProjectResponse:
     out: UpdateProjectResponse = {}  # type: ignore[typeddict-item]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_databrew.types.date
 
         out["last_modified_date"] = capo_databrew.types.date.deserialize_json(
             data["LastModifiedDate"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateProjectResponse.name required")

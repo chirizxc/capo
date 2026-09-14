@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: DatabaseTableList) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatabaseTableList:
     out: DatabaseTableList = {}  # type: ignore[typeddict-item]
-    if "Include" in data:
+    if data.get("Include") is not None:
         import capo_firehose.types.database_table_include_or_exclude_list
 
         out["include"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseTableList:
                 data["Include"]
             )
         )
-    if "Exclude" in data:
+    if data.get("Exclude") is not None:
         import capo_firehose.types.database_table_include_or_exclude_list
 
         out["exclude"] = (

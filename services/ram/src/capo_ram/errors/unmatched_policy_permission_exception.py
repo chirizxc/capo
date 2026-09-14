@@ -23,7 +23,7 @@ def serialize_json(value: UnmatchedPolicyPermissionException_) -> dict:
 
 def deserialize_json(data: dict) -> UnmatchedPolicyPermissionException_:
     out: UnmatchedPolicyPermissionException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
@@ -37,15 +37,20 @@ class UnmatchedPolicyPermissionException(ServiceError):
 
     code: str | None = "UnmatchedPolicyPermissionException"
 
-    def __init__(self, data: UnmatchedPolicyPermissionException_):
+    def __init__(
+        self, data: UnmatchedPolicyPermissionException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnmatchedPolicyPermissionException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UnmatchedPolicyPermissionException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UnmatchedPolicyPermissionException":
+        return cls(deserialize_json(data), message)

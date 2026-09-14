@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListDbInstancesForClusterOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListDbInstancesForClusterOutput:
     out: ListDbInstancesForClusterOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_timestream_influxdb.types.db_instance_for_cluster_summary_list
 
         out["items"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListDbInstancesForClusterOutput:
         )
     else:
         raise DeserializationError("ListDbInstancesForClusterOutput.items required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

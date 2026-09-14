@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: AssessmentRunStateChange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentRunStateChange:
     out: AssessmentRunStateChange = {}  # type: ignore[typeddict-item]
-    if "stateChangedAt" in data:
+    if data.get("stateChangedAt") is not None:
         import capo_inspector.types.timestamp
 
         out["state_changed_at"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentRunStateChange:
         )
     else:
         raise DeserializationError("AssessmentRunStateChange.state_changed_at required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_inspector.types.assessment_run_state
 
         out["state"] = (

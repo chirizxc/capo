@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: NullCheckBoxList) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NullCheckBoxList:
     out: NullCheckBoxList = {}  # type: ignore[typeddict-item]
-    if "IsEmpty" in data:
+    if data.get("IsEmpty") is not None:
         out["is_empty"] = data["IsEmpty"]
-    if "IsNullString" in data:
+    if data.get("IsNullString") is not None:
         out["is_null_string"] = data["IsNullString"]
-    if "IsNegOne" in data:
+    if data.get("IsNegOne") is not None:
         out["is_neg_one"] = data["IsNegOne"]
     return out

@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: RemoveTagsFromResourceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveTagsFromResourceRequest:
     out: RemoveTagsFromResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("RemoveTagsFromResourceRequest.resource_id required")
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_directory_service.types.tag_keys
 
         out["tag_keys"] = (

@@ -35,12 +35,12 @@ def serialize_json(value: CreateGroupMembershipResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupMembershipResponse:
     out: CreateGroupMembershipResponse = {}  # type: ignore[typeddict-item]
-    if "GroupMember" in data:
+    if data.get("GroupMember") is not None:
         import capo_quicksight.types.group_member
 
         out["group_member"] = capo_quicksight.types.group_member.deserialize_json(
             data["GroupMember"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

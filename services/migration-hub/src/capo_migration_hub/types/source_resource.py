@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: SourceResource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceResource:
     out: SourceResource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SourceResource.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "StatusDetail" in data:
+    if data.get("StatusDetail") is not None:
         out["status_detail"] = data["StatusDetail"]
     return out

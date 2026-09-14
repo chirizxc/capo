@@ -80,29 +80,29 @@ def serialize_aws_json_1_1(value: UpdateOntapVolumeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateOntapVolumeConfiguration:
     out: UpdateOntapVolumeConfiguration = {}  # type: ignore[typeddict-item]
-    if "JunctionPath" in data:
+    if data.get("JunctionPath") is not None:
         out["junction_path"] = data["JunctionPath"]
-    if "SecurityStyle" in data:
+    if data.get("SecurityStyle") is not None:
         import capo_fsx.types.security_style
 
         out["security_style"] = capo_fsx.types.security_style.deserialize_aws_json_1_1(
             data["SecurityStyle"]
         )
-    if "SizeInMegabytes" in data:
+    if data.get("SizeInMegabytes") is not None:
         out["size_in_megabytes"] = data["SizeInMegabytes"]
-    if "StorageEfficiencyEnabled" in data:
+    if data.get("StorageEfficiencyEnabled") is not None:
         out["storage_efficiency_enabled"] = data["StorageEfficiencyEnabled"]
-    if "TieringPolicy" in data:
+    if data.get("TieringPolicy") is not None:
         import capo_fsx.types.tiering_policy
 
         out["tiering_policy"] = capo_fsx.types.tiering_policy.deserialize_aws_json_1_1(
             data["TieringPolicy"]
         )
-    if "SnapshotPolicy" in data:
+    if data.get("SnapshotPolicy") is not None:
         out["snapshot_policy"] = data["SnapshotPolicy"]
-    if "CopyTagsToBackups" in data:
+    if data.get("CopyTagsToBackups") is not None:
         out["copy_tags_to_backups"] = data["CopyTagsToBackups"]
-    if "SnaplockConfiguration" in data:
+    if data.get("SnaplockConfiguration") is not None:
         import capo_fsx.types.update_snaplock_configuration
 
         out["snaplock_configuration"] = (
@@ -110,6 +110,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateOntapVolumeConfiguration:
                 data["SnaplockConfiguration"]
             )
         )
-    if "SizeInBytes" in data:
+    if data.get("SizeInBytes") is not None:
         out["size_in_bytes"] = data["SizeInBytes"]
     return out

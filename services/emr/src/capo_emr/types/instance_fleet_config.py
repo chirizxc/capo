@@ -88,9 +88,9 @@ def serialize_aws_json_1_1(value: InstanceFleetConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceFleetConfig:
     out: InstanceFleetConfig = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "InstanceFleetType" in data:
+    if data.get("InstanceFleetType") is not None:
         import capo_emr.types.instance_fleet_type
 
         out["instance_fleet_type"] = (
@@ -98,11 +98,11 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleetConfig:
                 data["InstanceFleetType"]
             )
         )
-    if "TargetOnDemandCapacity" in data:
+    if data.get("TargetOnDemandCapacity") is not None:
         out["target_on_demand_capacity"] = data["TargetOnDemandCapacity"]
-    if "TargetSpotCapacity" in data:
+    if data.get("TargetSpotCapacity") is not None:
         out["target_spot_capacity"] = data["TargetSpotCapacity"]
-    if "InstanceTypeConfigs" in data:
+    if data.get("InstanceTypeConfigs") is not None:
         import capo_emr.types.instance_type_config_list
 
         out["instance_type_configs"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleetConfig:
                 data["InstanceTypeConfigs"]
             )
         )
-    if "LaunchSpecifications" in data:
+    if data.get("LaunchSpecifications") is not None:
         import capo_emr.types.instance_fleet_provisioning_specifications
 
         out["launch_specifications"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleetConfig:
                 data["LaunchSpecifications"]
             )
         )
-    if "ResizeSpecifications" in data:
+    if data.get("ResizeSpecifications") is not None:
         import capo_emr.types.instance_fleet_resizing_specifications
 
         out["resize_specifications"] = (
@@ -126,6 +126,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleetConfig:
                 data["ResizeSpecifications"]
             )
         )
-    if "Context" in data:
+    if data.get("Context") is not None:
         out["context"] = data["Context"]
     return out

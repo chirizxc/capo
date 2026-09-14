@@ -36,15 +36,15 @@ def serialize_aws_json_1_1(value: UpdateGeoMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateGeoMatchSetRequest:
     out: UpdateGeoMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "GeoMatchSetId" in data:
+    if data.get("GeoMatchSetId") is not None:
         out["geo_match_set_id"] = data["GeoMatchSetId"]
     else:
         raise DeserializationError("UpdateGeoMatchSetRequest.geo_match_set_id required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("UpdateGeoMatchSetRequest.change_token required")
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_waf.types.geo_match_set_updates
 
         out["updates"] = capo_waf.types.geo_match_set_updates.deserialize_aws_json_1_1(

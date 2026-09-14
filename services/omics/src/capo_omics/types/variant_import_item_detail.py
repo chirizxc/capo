@@ -33,14 +33,14 @@ def serialize_json(value: VariantImportItemDetail) -> dict:
 
 def deserialize_json(data: dict) -> VariantImportItemDetail:
     out: VariantImportItemDetail = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("VariantImportItemDetail.source required")
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         out["job_status"] = data["jobStatus"]
     else:
         raise DeserializationError("VariantImportItemDetail.job_status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

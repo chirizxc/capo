@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DeleteArtifactRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteArtifactRequest:
     out: DeleteArtifactRequest = {}  # type: ignore[typeddict-item]
-    if "ArtifactArn" in data:
+    if data.get("ArtifactArn") is not None:
         out["artifact_arn"] = data["ArtifactArn"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_sagemaker.types.artifact_source
 
         out["source"] = capo_sagemaker.types.artifact_source.deserialize_aws_json_1_1(

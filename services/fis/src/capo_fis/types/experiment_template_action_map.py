@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ExperimentTemplateActionMap) -> dict:
 def deserialize_json(data: dict) -> ExperimentTemplateActionMap:
     out: ExperimentTemplateActionMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_fis.types.experiment_template_action
 
         out[key] = capo_fis.types.experiment_template_action.deserialize_json(value)

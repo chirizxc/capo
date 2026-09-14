@@ -111,27 +111,27 @@ def serialize_json(value: CreateProgramResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateProgramResponse:
     out: CreateProgramResponse = {}  # type: ignore[typeddict-item]
-    if "AdBreaks" in data:
+    if data.get("AdBreaks") is not None:
         import capo_mediatailor.types.__list_of_ad_break
 
         out["ad_breaks"] = capo_mediatailor.types.__list_of_ad_break.deserialize_json(
             data["AdBreaks"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["creation_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(
             data["CreationTime"]
         )
-    if "LiveSourceName" in data:
+    if data.get("LiveSourceName") is not None:
         out["live_source_name"] = data["LiveSourceName"]
-    if "ProgramName" in data:
+    if data.get("ProgramName") is not None:
         out["program_name"] = data["ProgramName"]
-    if "ScheduledStartTime" in data:
+    if data.get("ScheduledStartTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["scheduled_start_time"] = (
@@ -139,19 +139,19 @@ def deserialize_json(data: dict) -> CreateProgramResponse:
                 data["ScheduledStartTime"]
             )
         )
-    if "SourceLocationName" in data:
+    if data.get("SourceLocationName") is not None:
         out["source_location_name"] = data["SourceLocationName"]
-    if "VodSourceName" in data:
+    if data.get("VodSourceName") is not None:
         out["vod_source_name"] = data["VodSourceName"]
-    if "ClipRange" in data:
+    if data.get("ClipRange") is not None:
         import capo_mediatailor.types.clip_range
 
         out["clip_range"] = capo_mediatailor.types.clip_range.deserialize_json(
             data["ClipRange"]
         )
-    if "DurationMillis" in data:
+    if data.get("DurationMillis") is not None:
         out["duration_millis"] = data["DurationMillis"]
-    if "AudienceMedia" in data:
+    if data.get("AudienceMedia") is not None:
         import capo_mediatailor.types.__list_of_audience_media
 
         out["audience_media"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> CreateProgramResponse:
                 data["AudienceMedia"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(

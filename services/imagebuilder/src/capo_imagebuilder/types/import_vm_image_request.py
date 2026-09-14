@@ -70,17 +70,17 @@ def serialize_json(value: ImportVmImageRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportVmImageRequest:
     out: ImportVmImageRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ImportVmImageRequest.name required")
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
     else:
         raise DeserializationError("ImportVmImageRequest.semantic_version required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_imagebuilder.types.platform
 
         out["platform"] = capo_imagebuilder.types.platform.deserialize_json(
@@ -88,13 +88,13 @@ def deserialize_json(data: dict) -> ImportVmImageRequest:
         )
     else:
         raise DeserializationError("ImportVmImageRequest.platform required")
-    if "osVersion" in data:
+    if data.get("osVersion") is not None:
         out["os_version"] = data["osVersion"]
-    if "vmImportTaskId" in data:
+    if data.get("vmImportTaskId") is not None:
         out["vm_import_task_id"] = data["vmImportTaskId"]
     else:
         raise DeserializationError("ImportVmImageRequest.vm_import_task_id required")
-    if "loggingConfiguration" in data:
+    if data.get("loggingConfiguration") is not None:
         import capo_imagebuilder.types.image_logging_configuration
 
         out["logging_configuration"] = (
@@ -102,11 +102,11 @@ def deserialize_json(data: dict) -> ImportVmImageRequest:
                 data["loggingConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("ImportVmImageRequest.client_token required")

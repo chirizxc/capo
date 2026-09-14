@@ -81,21 +81,21 @@ def serialize_json(value: MountTargetDescription) -> dict:
 
 def deserialize_json(data: dict) -> MountTargetDescription:
     out: MountTargetDescription = {}  # type: ignore[typeddict-item]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "MountTargetId" in data:
+    if data.get("MountTargetId") is not None:
         out["mount_target_id"] = data["MountTargetId"]
     else:
         raise DeserializationError("MountTargetDescription.mount_target_id required")
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
     else:
         raise DeserializationError("MountTargetDescription.file_system_id required")
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
     else:
         raise DeserializationError("MountTargetDescription.subnet_id required")
-    if "LifeCycleState" in data:
+    if data.get("LifeCycleState") is not None:
         import capo_efs.types.life_cycle_state
 
         out["life_cycle_state"] = capo_efs.types.life_cycle_state.deserialize_json(
@@ -103,16 +103,16 @@ def deserialize_json(data: dict) -> MountTargetDescription:
         )
     else:
         raise DeserializationError("MountTargetDescription.life_cycle_state required")
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "Ipv6Address" in data:
+    if data.get("Ipv6Address") is not None:
         out["ipv6_address"] = data["Ipv6Address"]
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
-    if "AvailabilityZoneId" in data:
+    if data.get("AvailabilityZoneId") is not None:
         out["availability_zone_id"] = data["AvailabilityZoneId"]
-    if "AvailabilityZoneName" in data:
+    if data.get("AvailabilityZoneName") is not None:
         out["availability_zone_name"] = data["AvailabilityZoneName"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

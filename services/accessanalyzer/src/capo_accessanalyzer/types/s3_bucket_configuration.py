@@ -64,9 +64,9 @@ def serialize_json(value: S3BucketConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketConfiguration:
     out: S3BucketConfiguration = {}  # type: ignore[typeddict-item]
-    if "bucketPolicy" in data:
+    if data.get("bucketPolicy") is not None:
         out["bucket_policy"] = data["bucketPolicy"]
-    if "bucketAclGrants" in data:
+    if data.get("bucketAclGrants") is not None:
         import capo_accessanalyzer.types.s3_bucket_acl_grant_configurations_list
 
         out["bucket_acl_grants"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> S3BucketConfiguration:
                 data["bucketAclGrants"]
             )
         )
-    if "bucketPublicAccessBlock" in data:
+    if data.get("bucketPublicAccessBlock") is not None:
         import capo_accessanalyzer.types.s3_public_access_block_configuration
 
         out["bucket_public_access_block"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> S3BucketConfiguration:
                 data["bucketPublicAccessBlock"]
             )
         )
-    if "accessPoints" in data:
+    if data.get("accessPoints") is not None:
         import capo_accessanalyzer.types.s3_access_point_configurations_map
 
         out["access_points"] = (

@@ -100,46 +100,46 @@ def serialize_json(value: DescribeFleetMetricResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFleetMetricResponse:
     out: DescribeFleetMetricResponse = {}  # type: ignore[typeddict-item]
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         out["metric_name"] = data["metricName"]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
-    if "aggregationType" in data:
+    if data.get("aggregationType") is not None:
         import capo_iot.types.aggregation_type
 
         out["aggregation_type"] = capo_iot.types.aggregation_type.deserialize_json(
             data["aggregationType"]
         )
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
-    if "aggregationField" in data:
+    if data.get("aggregationField") is not None:
         out["aggregation_field"] = data["aggregationField"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "queryVersion" in data:
+    if data.get("queryVersion") is not None:
         out["query_version"] = data["queryVersion"]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.creation_date
 
         out["creation_date"] = capo_iot.types.creation_date.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.last_modified_date
 
         out["last_modified_date"] = capo_iot.types.last_modified_date.deserialize_json(
             data["lastModifiedDate"]
         )
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_iot.types.fleet_metric_unit
 
         out["unit"] = capo_iot.types.fleet_metric_unit.deserialize_json(data["unit"])
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         out["version"] = 0
-    if "metricArn" in data:
+    if data.get("metricArn") is not None:
         out["metric_arn"] = data["metricArn"]
     return out

@@ -47,13 +47,13 @@ def serialize_aws_json_1_1(value: DescribeCollectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCollectionResponse:
     out: DescribeCollectionResponse = {}  # type: ignore[typeddict-item]
-    if "FaceCount" in data:
+    if data.get("FaceCount") is not None:
         out["face_count"] = data["FaceCount"]
-    if "FaceModelVersion" in data:
+    if data.get("FaceModelVersion") is not None:
         out["face_model_version"] = data["FaceModelVersion"]
-    if "CollectionARN" in data:
+    if data.get("CollectionARN") is not None:
         out["collection_arn"] = data["CollectionARN"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["creation_timestamp"] = (
@@ -61,6 +61,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCollectionResponse:
                 data["CreationTimestamp"]
             )
         )
-    if "UserCount" in data:
+    if data.get("UserCount") is not None:
         out["user_count"] = data["UserCount"]
     return out

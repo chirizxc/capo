@@ -35,14 +35,14 @@ def serialize_aws_json_1_1(value: RevokeTokenRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RevokeTokenRequest:
     out: RevokeTokenRequest = {}  # type: ignore[typeddict-item]
-    if "Token" in data:
+    if data.get("Token") is not None:
         out["token"] = data["Token"]
     else:
         raise DeserializationError("RevokeTokenRequest.token required")
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError("RevokeTokenRequest.client_id required")
-    if "ClientSecret" in data:
+    if data.get("ClientSecret") is not None:
         out["client_secret"] = data["ClientSecret"]
     return out

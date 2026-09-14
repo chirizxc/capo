@@ -27,7 +27,7 @@ def serialize_json(value: SnapshotFileGroup) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotFileGroup:
     out: SnapshotFileGroup = {}  # type: ignore[typeddict-item]
-    if "Files" in data:
+    if data.get("Files") is not None:
         import capo_quicksight.types.snapshot_file_list
 
         out["files"] = capo_quicksight.types.snapshot_file_list.deserialize_json(

@@ -53,9 +53,9 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "componentId" in data:
+    if data.get("componentId") is not None:
         out["component_id"] = data["componentId"]
-    if "dnsTargetResource" in data:
+    if data.get("dnsTargetResource") is not None:
         import capo_route53_recovery_readiness.types.dns_target_resource
 
         out["dns_target_resource"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["dnsTargetResource"]
             )
         )
-    if "readinessScopes" in data:
+    if data.get("readinessScopes") is not None:
         import capo_route53_recovery_readiness.types.__list_of__string
 
         out["readiness_scopes"] = (
@@ -71,6 +71,6 @@ def deserialize_json(data: dict) -> Resource:
                 data["readinessScopes"]
             )
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     return out

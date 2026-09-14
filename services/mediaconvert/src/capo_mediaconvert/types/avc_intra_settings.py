@@ -139,7 +139,7 @@ def serialize_json(value: AvcIntraSettings) -> dict:
 
 def deserialize_json(data: dict) -> AvcIntraSettings:
     out: AvcIntraSettings = {}  # type: ignore[typeddict-item]
-    if "avcIntraClass" in data:
+    if data.get("avcIntraClass") is not None:
         import capo_mediaconvert.types.avc_intra_class
 
         out["avc_intra_class"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> AvcIntraSettings:
                 data["avcIntraClass"]
             )
         )
-    if "avcIntraUhdSettings" in data:
+    if data.get("avcIntraUhdSettings") is not None:
         import capo_mediaconvert.types.avc_intra_uhd_settings
 
         out["avc_intra_uhd_settings"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> AvcIntraSettings:
                 data["avcIntraUhdSettings"]
             )
         )
-    if "framerateControl" in data:
+    if data.get("framerateControl") is not None:
         import capo_mediaconvert.types.avc_intra_framerate_control
 
         out["framerate_control"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> AvcIntraSettings:
                 data["framerateControl"]
             )
         )
-    if "framerateConversionAlgorithm" in data:
+    if data.get("framerateConversionAlgorithm") is not None:
         import capo_mediaconvert.types.avc_intra_framerate_conversion_algorithm
 
         out["framerate_conversion_algorithm"] = (
@@ -171,11 +171,11 @@ def deserialize_json(data: dict) -> AvcIntraSettings:
                 data["framerateConversionAlgorithm"]
             )
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "interlaceMode" in data:
+    if data.get("interlaceMode") is not None:
         import capo_mediaconvert.types.avc_intra_interlace_mode
 
         out["interlace_mode"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> AvcIntraSettings:
                 data["interlaceMode"]
             )
         )
-    if "perFrameMetrics" in data:
+    if data.get("perFrameMetrics") is not None:
         import capo_mediaconvert.types.__list_of_frame_metric_type
 
         out["per_frame_metrics"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> AvcIntraSettings:
                 data["perFrameMetrics"]
             )
         )
-    if "scanTypeConversionMode" in data:
+    if data.get("scanTypeConversionMode") is not None:
         import capo_mediaconvert.types.avc_intra_scan_type_conversion_mode
 
         out["scan_type_conversion_mode"] = (
@@ -199,13 +199,13 @@ def deserialize_json(data: dict) -> AvcIntraSettings:
                 data["scanTypeConversionMode"]
             )
         )
-    if "slowPal" in data:
+    if data.get("slowPal") is not None:
         import capo_mediaconvert.types.avc_intra_slow_pal
 
         out["slow_pal"] = capo_mediaconvert.types.avc_intra_slow_pal.deserialize_json(
             data["slowPal"]
         )
-    if "telecine" in data:
+    if data.get("telecine") is not None:
         import capo_mediaconvert.types.avc_intra_telecine
 
         out["telecine"] = capo_mediaconvert.types.avc_intra_telecine.deserialize_json(

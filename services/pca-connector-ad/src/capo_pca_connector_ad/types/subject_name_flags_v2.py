@@ -54,24 +54,24 @@ def serialize_json(value: SubjectNameFlagsV2) -> dict:
 
 def deserialize_json(data: dict) -> SubjectNameFlagsV2:
     out: SubjectNameFlagsV2 = {}  # type: ignore[typeddict-item]
-    if "SanRequireDomainDns" in data:
+    if data.get("SanRequireDomainDns") is not None:
         out["san_require_domain_dns"] = data["SanRequireDomainDns"]
-    if "SanRequireSpn" in data:
+    if data.get("SanRequireSpn") is not None:
         out["san_require_spn"] = data["SanRequireSpn"]
-    if "SanRequireDirectoryGuid" in data:
+    if data.get("SanRequireDirectoryGuid") is not None:
         out["san_require_directory_guid"] = data["SanRequireDirectoryGuid"]
-    if "SanRequireUpn" in data:
+    if data.get("SanRequireUpn") is not None:
         out["san_require_upn"] = data["SanRequireUpn"]
-    if "SanRequireEmail" in data:
+    if data.get("SanRequireEmail") is not None:
         out["san_require_email"] = data["SanRequireEmail"]
-    if "SanRequireDns" in data:
+    if data.get("SanRequireDns") is not None:
         out["san_require_dns"] = data["SanRequireDns"]
-    if "RequireDnsAsCn" in data:
+    if data.get("RequireDnsAsCn") is not None:
         out["require_dns_as_cn"] = data["RequireDnsAsCn"]
-    if "RequireEmail" in data:
+    if data.get("RequireEmail") is not None:
         out["require_email"] = data["RequireEmail"]
-    if "RequireCommonName" in data:
+    if data.get("RequireCommonName") is not None:
         out["require_common_name"] = data["RequireCommonName"]
-    if "RequireDirectoryPath" in data:
+    if data.get("RequireDirectoryPath") is not None:
         out["require_directory_path"] = data["RequireDirectoryPath"]
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> InputModes:
 
     out: InputModes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.training_input_mode.deserialize_aws_json_1_1(item)
         )

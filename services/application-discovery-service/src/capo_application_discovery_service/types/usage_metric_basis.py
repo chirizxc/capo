@@ -26,14 +26,22 @@ def serialize_aws_json_1_1(value: UsageMetricBasis) -> dict:
     if "name" in value:
         out["name"] = value["name"]
     if "percentage_adjust" in value:
-        out["percentageAdjust"] = value["percentage_adjust"]
+        out["percentageAdjust"] = (
+            "NaN"
+            if value["percentage_adjust"] != value["percentage_adjust"]
+            else "Infinity"
+            if value["percentage_adjust"] == float("inf")
+            else "-Infinity"
+            if value["percentage_adjust"] == float("-inf")
+            else value["percentage_adjust"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> UsageMetricBasis:
     out: UsageMetricBasis = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "percentageAdjust" in data:
-        out["percentage_adjust"] = data["percentageAdjust"]
+    if data.get("percentageAdjust") is not None:
+        out["percentage_adjust"] = float(data["percentageAdjust"])
     return out

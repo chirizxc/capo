@@ -25,9 +25,9 @@ class AzElSegment(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: AzElSegment) -> dict:
     out: dict = {}
-    import capo_groundstation.types._prelude.timestamp
+    import capo_groundstation._protocol.serialize
 
-    out["referenceEpoch"] = capo_groundstation.types._prelude.timestamp.serialize_json(
+    out["referenceEpoch"] = capo_groundstation._protocol.serialize.fmt_date_time(
         value["reference_epoch"]
     )
     import capo_groundstation.types.iso8601_time_range
@@ -45,17 +45,15 @@ def serialize_json(value: AzElSegment) -> dict:
 
 def deserialize_json(data: dict) -> AzElSegment:
     out: AzElSegment = {}  # type: ignore[typeddict-item]
-    if "referenceEpoch" in data:
-        import capo_groundstation.types._prelude.timestamp
+    if data.get("referenceEpoch") is not None:
+        import datetime
 
-        out["reference_epoch"] = (
-            capo_groundstation.types._prelude.timestamp.deserialize_json(
-                data["referenceEpoch"]
-            )
+        out["reference_epoch"] = datetime.datetime.fromisoformat(
+            data["referenceEpoch"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("AzElSegment.reference_epoch required")
-    if "validTimeRange" in data:
+    if data.get("validTimeRange") is not None:
         import capo_groundstation.types.iso8601_time_range
 
         out["valid_time_range"] = (
@@ -65,7 +63,7 @@ def deserialize_json(data: dict) -> AzElSegment:
         )
     else:
         raise DeserializationError("AzElSegment.valid_time_range required")
-    if "azElList" in data:
+    if data.get("azElList") is not None:
         import capo_groundstation.types.time_az_el_list
 
         out["az_el_list"] = capo_groundstation.types.time_az_el_list.deserialize_json(

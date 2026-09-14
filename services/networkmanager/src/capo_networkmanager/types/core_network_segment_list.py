@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CoreNetworkSegmentList:
 
     out: CoreNetworkSegmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmanager.types.core_network_segment.deserialize_json(item)
         )

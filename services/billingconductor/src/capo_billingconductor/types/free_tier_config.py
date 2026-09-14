@@ -24,7 +24,7 @@ def serialize_json(value: FreeTierConfig) -> dict:
 
 def deserialize_json(data: dict) -> FreeTierConfig:
     out: FreeTierConfig = {}  # type: ignore[typeddict-item]
-    if "Activated" in data:
+    if data.get("Activated") is not None:
         out["activated"] = data["Activated"]
     else:
         raise DeserializationError("FreeTierConfig.activated required")

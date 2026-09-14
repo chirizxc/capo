@@ -32,7 +32,7 @@ def serialize_json(value: Backend) -> dict:
 
 
 def deserialize_json(data: dict) -> Backend:
-    if "virtualService" in data:
+    if data.get("virtualService") is not None:
         import capo_app_mesh.types.virtual_service_backend
 
         return {

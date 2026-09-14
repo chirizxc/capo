@@ -31,19 +31,19 @@ def serialize_aws_json_1_1(value: TrustedAdvisorResourcesSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrustedAdvisorResourcesSummary:
     out: TrustedAdvisorResourcesSummary = {}  # type: ignore[typeddict-item]
-    if "resourcesProcessed" in data:
+    if data.get("resourcesProcessed") is not None:
         out["resources_processed"] = data["resourcesProcessed"]
     else:
         out["resources_processed"] = 0
-    if "resourcesFlagged" in data:
+    if data.get("resourcesFlagged") is not None:
         out["resources_flagged"] = data["resourcesFlagged"]
     else:
         out["resources_flagged"] = 0
-    if "resourcesIgnored" in data:
+    if data.get("resourcesIgnored") is not None:
         out["resources_ignored"] = data["resourcesIgnored"]
     else:
         out["resources_ignored"] = 0
-    if "resourcesSuppressed" in data:
+    if data.get("resourcesSuppressed") is not None:
         out["resources_suppressed"] = data["resourcesSuppressed"]
     else:
         out["resources_suppressed"] = 0

@@ -59,19 +59,19 @@ def serialize_json(value: ServiceView) -> dict:
 
 def deserialize_json(data: dict) -> ServiceView:
     out: ServiceView = {}  # type: ignore[typeddict-item]
-    if "ServiceViewArn" in data:
+    if data.get("ServiceViewArn") is not None:
         out["service_view_arn"] = data["ServiceViewArn"]
     else:
         raise DeserializationError("ServiceView.service_view_arn required")
-    if "ServiceViewName" in data:
+    if data.get("ServiceViewName") is not None:
         out["service_view_name"] = data["ServiceViewName"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_resource_explorer_2.types.search_filter
 
         out["filters"] = capo_resource_explorer_2.types.search_filter.deserialize_json(
             data["Filters"]
         )
-    if "IncludedProperties" in data:
+    if data.get("IncludedProperties") is not None:
         import capo_resource_explorer_2.types.included_property_list
 
         out["included_properties"] = (
@@ -79,8 +79,8 @@ def deserialize_json(data: dict) -> ServiceView:
                 data["IncludedProperties"]
             )
         )
-    if "StreamingAccessForService" in data:
+    if data.get("StreamingAccessForService") is not None:
         out["streaming_access_for_service"] = data["StreamingAccessForService"]
-    if "ScopeType" in data:
+    if data.get("ScopeType") is not None:
         out["scope_type"] = data["ScopeType"]
     return out

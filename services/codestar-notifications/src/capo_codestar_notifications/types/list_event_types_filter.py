@@ -34,7 +34,7 @@ def serialize_json(value: ListEventTypesFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListEventTypesFilter:
     out: ListEventTypesFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_codestar_notifications.types.list_event_types_filter_name
 
         out["name"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> ListEventTypesFilter:
         )
     else:
         raise DeserializationError("ListEventTypesFilter.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("ListEventTypesFilter.value required")

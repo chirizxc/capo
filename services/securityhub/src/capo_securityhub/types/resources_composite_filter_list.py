@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ResourcesCompositeFilterList:
 
     out: ResourcesCompositeFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.resources_composite_filter.deserialize_json(item)
         )

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: SchemaChangePolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SchemaChangePolicy:
     out: SchemaChangePolicy = {}  # type: ignore[typeddict-item]
-    if "UpdateBehavior" in data:
+    if data.get("UpdateBehavior") is not None:
         import capo_glue.types.update_behavior
 
         out["update_behavior"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> SchemaChangePolicy:
                 data["UpdateBehavior"]
             )
         )
-    if "DeleteBehavior" in data:
+    if data.get("DeleteBehavior") is not None:
         import capo_glue.types.delete_behavior
 
         out["delete_behavior"] = (

@@ -36,12 +36,12 @@ def serialize_aws_json_1_0(value: ListOperationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListOperationsRequest:
     out: ListOperationsRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
     else:
         raise DeserializationError("ListOperationsRequest.service_arn required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

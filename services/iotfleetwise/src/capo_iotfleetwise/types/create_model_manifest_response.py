@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: CreateModelManifestResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateModelManifestResponse:
     out: CreateModelManifestResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateModelManifestResponse.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateModelManifestResponse.arn required")

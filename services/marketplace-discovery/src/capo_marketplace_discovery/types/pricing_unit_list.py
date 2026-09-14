@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PricingUnitList:
 
     out: PricingUnitList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_marketplace_discovery.types.pricing_unit.deserialize_json(item))
     return out

@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: ComputeQuotaConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaConfig:
     out: ComputeQuotaConfig = {}  # type: ignore[typeddict-item]
-    if "ComputeQuotaResources" in data:
+    if data.get("ComputeQuotaResources") is not None:
         import capo_sagemaker.types.compute_quota_resource_config_list
 
         out["compute_quota_resources"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaConfig:
                 data["ComputeQuotaResources"]
             )
         )
-    if "ResourceSharingConfig" in data:
+    if data.get("ResourceSharingConfig") is not None:
         import capo_sagemaker.types.resource_sharing_config
 
         out["resource_sharing_config"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaConfig:
                 data["ResourceSharingConfig"]
             )
         )
-    if "PreemptTeamTasks" in data:
+    if data.get("PreemptTeamTasks") is not None:
         import capo_sagemaker.types.preempt_team_tasks
 
         out["preempt_team_tasks"] = (

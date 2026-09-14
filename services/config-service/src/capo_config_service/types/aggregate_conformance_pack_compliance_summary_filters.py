@@ -32,8 +32,8 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AggregateConformancePackComplianceSummaryFilters:
     out: AggregateConformancePackComplianceSummaryFilters = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
     return out

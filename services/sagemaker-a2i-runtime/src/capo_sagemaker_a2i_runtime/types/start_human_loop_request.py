@@ -58,11 +58,11 @@ def serialize_json(value: StartHumanLoopRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartHumanLoopRequest:
     out: StartHumanLoopRequest = {}  # type: ignore[typeddict-item]
-    if "HumanLoopName" in data:
+    if data.get("HumanLoopName") is not None:
         out["human_loop_name"] = data["HumanLoopName"]
-    if "FlowDefinitionArn" in data:
+    if data.get("FlowDefinitionArn") is not None:
         out["flow_definition_arn"] = data["FlowDefinitionArn"]
-    if "HumanLoopInput" in data:
+    if data.get("HumanLoopInput") is not None:
         import capo_sagemaker_a2i_runtime.types.human_loop_input
 
         out["human_loop_input"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> StartHumanLoopRequest:
                 data["HumanLoopInput"]
             )
         )
-    if "DataAttributes" in data:
+    if data.get("DataAttributes") is not None:
         import capo_sagemaker_a2i_runtime.types.human_loop_data_attributes
 
         out["data_attributes"] = (

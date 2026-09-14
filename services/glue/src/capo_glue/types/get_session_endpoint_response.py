@@ -20,7 +20,7 @@ def serialize_aws_json_1_1(value: GetSessionEndpointResponse) -> dict:
     out: dict = {}
     import capo_glue.types.session_endpoint
 
-    out["SPARK_CONNECT"] = capo_glue.types.session_endpoint.serialize_aws_json_1_1(
+    out["SparkConnect"] = capo_glue.types.session_endpoint.serialize_aws_json_1_1(
         value["spark_connect"]
     )
     return out
@@ -28,12 +28,12 @@ def serialize_aws_json_1_1(value: GetSessionEndpointResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSessionEndpointResponse:
     out: GetSessionEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "SPARK_CONNECT" in data:
+    if data.get("SparkConnect") is not None:
         import capo_glue.types.session_endpoint
 
         out["spark_connect"] = (
             capo_glue.types.session_endpoint.deserialize_aws_json_1_1(
-                data["SPARK_CONNECT"]
+                data["SparkConnect"]
             )
         )
     else:

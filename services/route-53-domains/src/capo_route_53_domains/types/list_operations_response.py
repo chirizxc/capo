@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListOperationsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListOperationsResponse:
     out: ListOperationsResponse = {}  # type: ignore[typeddict-item]
-    if "Operations" in data:
+    if data.get("Operations") is not None:
         import capo_route_53_domains.types.operation_summary_list
 
         out["operations"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListOperationsResponse:
                 data["Operations"]
             )
         )
-    if "NextPageMarker" in data:
+    if data.get("NextPageMarker") is not None:
         out["next_page_marker"] = data["NextPageMarker"]
     return out

@@ -36,9 +36,9 @@ def serialize_json(value: KMSKeyDetails) -> dict:
 
 def deserialize_json(data: dict) -> KMSKeyDetails:
     out: KMSKeyDetails = {}  # type: ignore[typeddict-item]
-    if "KMSKeyId" in data:
+    if data.get("KMSKeyId") is not None:
         out["kms_key_id"] = data["KMSKeyId"]
-    if "EncryptionOption" in data:
+    if data.get("EncryptionOption") is not None:
         import capo_codeguru_reviewer.types.encryption_option
 
         out["encryption_option"] = (

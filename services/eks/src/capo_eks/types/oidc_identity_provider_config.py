@@ -78,35 +78,35 @@ def serialize_json(value: OidcIdentityProviderConfig) -> dict:
 
 def deserialize_json(data: dict) -> OidcIdentityProviderConfig:
     out: OidcIdentityProviderConfig = {}  # type: ignore[typeddict-item]
-    if "identityProviderConfigName" in data:
+    if data.get("identityProviderConfigName") is not None:
         out["identity_provider_config_name"] = data["identityProviderConfigName"]
-    if "identityProviderConfigArn" in data:
+    if data.get("identityProviderConfigArn") is not None:
         out["identity_provider_config_arn"] = data["identityProviderConfigArn"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "issuerUrl" in data:
+    if data.get("issuerUrl") is not None:
         out["issuer_url"] = data["issuerUrl"]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
-    if "usernameClaim" in data:
+    if data.get("usernameClaim") is not None:
         out["username_claim"] = data["usernameClaim"]
-    if "usernamePrefix" in data:
+    if data.get("usernamePrefix") is not None:
         out["username_prefix"] = data["usernamePrefix"]
-    if "groupsClaim" in data:
+    if data.get("groupsClaim") is not None:
         out["groups_claim"] = data["groupsClaim"]
-    if "groupsPrefix" in data:
+    if data.get("groupsPrefix") is not None:
         out["groups_prefix"] = data["groupsPrefix"]
-    if "requiredClaims" in data:
+    if data.get("requiredClaims") is not None:
         import capo_eks.types.required_claims_map
 
         out["required_claims"] = capo_eks.types.required_claims_map.deserialize_json(
             data["requiredClaims"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_eks.types.config_status
 
         out["status"] = capo_eks.types.config_status.deserialize_json(data["status"])

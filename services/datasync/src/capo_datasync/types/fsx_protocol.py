@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: FsxProtocol) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FsxProtocol:
     out: FsxProtocol = {}  # type: ignore[typeddict-item]
-    if "NFS" in data:
+    if data.get("NFS") is not None:
         import capo_datasync.types.fsx_protocol_nfs
 
         out["nfs"] = capo_datasync.types.fsx_protocol_nfs.deserialize_aws_json_1_1(
             data["NFS"]
         )
-    if "SMB" in data:
+    if data.get("SMB") is not None:
         import capo_datasync.types.fsx_protocol_smb
 
         out["smb"] = capo_datasync.types.fsx_protocol_smb.deserialize_aws_json_1_1(

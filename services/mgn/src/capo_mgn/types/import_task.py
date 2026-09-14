@@ -59,7 +59,15 @@ def serialize_json(value: ImportTask) -> dict:
     if "status" in value:
         out["status"] = value["status"]
     if "progress_percentage" in value:
-        out["progressPercentage"] = value["progress_percentage"]
+        out["progressPercentage"] = (
+            "NaN"
+            if value["progress_percentage"] != value["progress_percentage"]
+            else "Infinity"
+            if value["progress_percentage"] == float("inf")
+            else "-Infinity"
+            if value["progress_percentage"] == float("-inf")
+            else value["progress_percentage"]
+        )
     if "summary" in value:
         import capo_mgn.types.import_task_summary
 
@@ -75,31 +83,31 @@ def serialize_json(value: ImportTask) -> dict:
 
 def deserialize_json(data: dict) -> ImportTask:
     out: ImportTask = {}  # type: ignore[typeddict-item]
-    if "importID" in data:
+    if data.get("importID") is not None:
         out["import_id"] = data["importID"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "s3BucketSource" in data:
+    if data.get("s3BucketSource") is not None:
         import capo_mgn.types.s3_bucket_source
 
         out["s3_bucket_source"] = capo_mgn.types.s3_bucket_source.deserialize_json(
             data["s3BucketSource"]
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         out["creation_date_time"] = data["creationDateTime"]
-    if "endDateTime" in data:
+    if data.get("endDateTime") is not None:
         out["end_date_time"] = data["endDateTime"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "progressPercentage" in data:
-        out["progress_percentage"] = data["progressPercentage"]
-    if "summary" in data:
+    if data.get("progressPercentage") is not None:
+        out["progress_percentage"] = float(data["progressPercentage"])
+    if data.get("summary") is not None:
         import capo_mgn.types.import_task_summary
 
         out["summary"] = capo_mgn.types.import_task_summary.deserialize_json(
             data["summary"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])

@@ -24,7 +24,7 @@ def serialize_json(value: HighAvailabilityConfig) -> dict:
 
 def deserialize_json(data: dict) -> HighAvailabilityConfig:
     out: HighAvailabilityConfig = {}  # type: ignore[typeddict-item]
-    if "desiredCapacity" in data:
+    if data.get("desiredCapacity") is not None:
         out["desired_capacity"] = data["desiredCapacity"]
     else:
         raise DeserializationError("HighAvailabilityConfig.desired_capacity required")

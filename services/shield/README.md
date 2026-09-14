@@ -13,9 +13,9 @@ from capo_shield import AsyncShieldClient
 
 
 async def main():
-    async with AsyncShieldClient() as s3:
+    async with AsyncShieldClient() as shield:
         # Example: call the associate_drt_log_bucket operation
-        response = await s3.associate_drt_log_bucket()
+        response = await shield.associate_drt_log_bucket()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_shield import AsyncShieldClient
 
 
 async def main():
-    async with AsyncShieldClient() as s3:
+    async with AsyncShieldClient() as shield:
         # Example: paginate over list_attacks
-        async for item in s3.iter_list_attacks():
+        async for item in shield.iter_list_attacks():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_shield.error import AccessDeniedForDependencyException
 
 
 async def main():
-    async with AsyncShieldClient() as s3:
+    async with AsyncShieldClient() as shield:
         try:
-            await s3.associate_drt_log_bucket()
+            await shield.associate_drt_log_bucket()
         except AccessDeniedForDependencyException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_shield import AsyncShieldClient
 
 
 async def main():
-    async with AsyncShieldClient() as s3:
+    async with AsyncShieldClient() as shield:
         # Default: 3 attempts for every operation
-        response = await s3.associate_drt_log_bucket()
+        response = await shield.associate_drt_log_bucket()
 
         # Override per operation
-        response = await s3.associate_drt_log_bucket(config_overrides={"retry_max_attempts": 5})
+        response = await shield.associate_drt_log_bucket(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_drt_log_bucket(config_overrides={"retry_max_attempts": 1})
+        response = await shield.associate_drt_log_bucket(config_overrides={"retry_max_attempts": 1})
 ```

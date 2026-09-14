@@ -59,7 +59,7 @@ def serialize_json(value: EnableOperatorAppInput) -> dict:
 
 def deserialize_json(data: dict) -> EnableOperatorAppInput:
     out: EnableOperatorAppInput = {}  # type: ignore[typeddict-item]
-    if "authFlow" in data:
+    if data.get("authFlow") is not None:
         import capo_devops_agent.types.auth_flow
 
         out["auth_flow"] = capo_devops_agent.types.auth_flow.deserialize_json(
@@ -67,20 +67,20 @@ def deserialize_json(data: dict) -> EnableOperatorAppInput:
         )
     else:
         raise DeserializationError("EnableOperatorAppInput.auth_flow required")
-    if "operatorAppRoleArn" in data:
+    if data.get("operatorAppRoleArn") is not None:
         out["operator_app_role_arn"] = data["operatorAppRoleArn"]
     else:
         raise DeserializationError(
             "EnableOperatorAppInput.operator_app_role_arn required"
         )
-    if "idcInstanceArn" in data:
+    if data.get("idcInstanceArn") is not None:
         out["idc_instance_arn"] = data["idcInstanceArn"]
-    if "issuerUrl" in data:
+    if data.get("issuerUrl") is not None:
         out["issuer_url"] = data["issuerUrl"]
-    if "idpClientId" in data:
+    if data.get("idpClientId") is not None:
         out["idp_client_id"] = data["idpClientId"]
-    if "idpClientSecret" in data:
+    if data.get("idpClientSecret") is not None:
         out["idp_client_secret"] = data["idpClientSecret"]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     return out

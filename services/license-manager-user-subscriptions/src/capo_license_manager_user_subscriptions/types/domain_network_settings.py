@@ -30,7 +30,7 @@ def serialize_json(value: DomainNetworkSettings) -> dict:
 
 def deserialize_json(data: dict) -> DomainNetworkSettings:
     out: DomainNetworkSettings = {}  # type: ignore[typeddict-item]
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_license_manager_user_subscriptions.types.subnets
 
         out["subnets"] = (

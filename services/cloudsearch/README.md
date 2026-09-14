@@ -13,9 +13,9 @@ from capo_cloudsearch import AsyncCloudSearchClient
 
 
 async def main():
-    async with AsyncCloudSearchClient() as s3:
+    async with AsyncCloudSearchClient() as cloud_search:
         # Example: call the build_suggesters operation
-        response = await s3.build_suggesters()
+        response = await cloud_search.build_suggesters()
         print(response["field_names"])
 ```
 
@@ -29,9 +29,9 @@ from capo_cloudsearch.error import BaseException
 
 
 async def main():
-    async with AsyncCloudSearchClient() as s3:
+    async with AsyncCloudSearchClient() as cloud_search:
         try:
-            await s3.build_suggesters()
+            await cloud_search.build_suggesters()
         except BaseException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_cloudsearch import AsyncCloudSearchClient
 
 
 async def main():
-    async with AsyncCloudSearchClient() as s3:
+    async with AsyncCloudSearchClient() as cloud_search:
         # Default: 3 attempts for every operation
-        response = await s3.build_suggesters()
+        response = await cloud_search.build_suggesters()
 
         # Override per operation
-        response = await s3.build_suggesters(config_overrides={"retry_max_attempts": 5})
+        response = await cloud_search.build_suggesters(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.build_suggesters(config_overrides={"retry_max_attempts": 1})
+        response = await cloud_search.build_suggesters(config_overrides={"retry_max_attempts": 1})
 ```

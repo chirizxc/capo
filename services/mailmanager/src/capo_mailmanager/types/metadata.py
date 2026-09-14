@@ -88,7 +88,7 @@ def serialize_aws_json_1_0(value: Metadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Metadata:
     out: Metadata = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["timestamp"] = (
@@ -96,28 +96,28 @@ def deserialize_aws_json_1_0(data: dict) -> Metadata:
                 data["Timestamp"]
             )
         )
-    if "IngressPointId" in data:
+    if data.get("IngressPointId") is not None:
         out["ingress_point_id"] = data["IngressPointId"]
-    if "TrafficPolicyId" in data:
+    if data.get("TrafficPolicyId") is not None:
         out["traffic_policy_id"] = data["TrafficPolicyId"]
-    if "RuleSetId" in data:
+    if data.get("RuleSetId") is not None:
         out["rule_set_id"] = data["RuleSetId"]
-    if "SenderHostname" in data:
+    if data.get("SenderHostname") is not None:
         out["sender_hostname"] = data["SenderHostname"]
-    if "SenderIpAddress" in data:
+    if data.get("SenderIpAddress") is not None:
         out["sender_ip_address"] = data["SenderIpAddress"]
-    if "TlsCipherSuite" in data:
+    if data.get("TlsCipherSuite") is not None:
         out["tls_cipher_suite"] = data["TlsCipherSuite"]
-    if "TlsProtocol" in data:
+    if data.get("TlsProtocol") is not None:
         out["tls_protocol"] = data["TlsProtocol"]
-    if "SendingMethod" in data:
+    if data.get("SendingMethod") is not None:
         out["sending_method"] = data["SendingMethod"]
-    if "SourceIdentity" in data:
+    if data.get("SourceIdentity") is not None:
         out["source_identity"] = data["SourceIdentity"]
-    if "SendingPool" in data:
+    if data.get("SendingPool") is not None:
         out["sending_pool"] = data["SendingPool"]
-    if "ConfigurationSet" in data:
+    if data.get("ConfigurationSet") is not None:
         out["configuration_set"] = data["ConfigurationSet"]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
     return out

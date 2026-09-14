@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CommandCapabilities:
 
     out: CommandCapabilities = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.command_capability.deserialize_json(
                 item

@@ -27,7 +27,7 @@ def serialize_json(value: WaypointOptimizationTrafficOptions) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationTrafficOptions:
     out: WaypointOptimizationTrafficOptions = {}  # type: ignore[typeddict-item]
-    if "Usage" in data:
+    if data.get("Usage") is not None:
         import capo_geo_routes.types.traffic_usage
 
         out["usage"] = capo_geo_routes.types.traffic_usage.deserialize_json(

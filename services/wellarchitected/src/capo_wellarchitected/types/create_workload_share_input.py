@@ -42,9 +42,9 @@ def serialize_json(value: CreateWorkloadShareInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkloadShareInput:
     out: CreateWorkloadShareInput = {}  # type: ignore[typeddict-item]
-    if "SharedWith" in data:
+    if data.get("SharedWith") is not None:
         out["shared_with"] = data["SharedWith"]
-    if "PermissionType" in data:
+    if data.get("PermissionType") is not None:
         import capo_wellarchitected.types.permission_type
 
         out["permission_type"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> CreateWorkloadShareInput:
                 data["PermissionType"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

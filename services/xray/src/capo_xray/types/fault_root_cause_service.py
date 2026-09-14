@@ -54,17 +54,17 @@ def serialize_json(value: FaultRootCauseService) -> dict:
 
 def deserialize_json(data: dict) -> FaultRootCauseService:
     out: FaultRootCauseService = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_xray.types.service_names
 
         out["names"] = capo_xray.types.service_names.deserialize_json(data["Names"])
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "EntityPath" in data:
+    if data.get("EntityPath") is not None:
         import capo_xray.types.fault_root_cause_entity_path
 
         out["entity_path"] = (
@@ -72,6 +72,6 @@ def deserialize_json(data: dict) -> FaultRootCauseService:
                 data["EntityPath"]
             )
         )
-    if "Inferred" in data:
+    if data.get("Inferred") is not None:
         out["inferred"] = data["Inferred"]
     return out

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ClusterKubernetesConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterKubernetesConfig:
     out: ClusterKubernetesConfig = {}  # type: ignore[typeddict-item]
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_sagemaker.types.cluster_kubernetes_labels
 
         out["labels"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterKubernetesConfig:
                 data["Labels"]
             )
         )
-    if "Taints" in data:
+    if data.get("Taints") is not None:
         import capo_sagemaker.types.cluster_kubernetes_taints
 
         out["taints"] = (

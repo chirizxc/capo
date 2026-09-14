@@ -37,7 +37,7 @@ def serialize_json(value: UpdatePublishingDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePublishingDestinationRequest:
     out: UpdatePublishingDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "destinationProperties" in data:
+    if data.get("destinationProperties") is not None:
         import capo_guardduty.types.destination_properties
 
         out["destination_properties"] = (

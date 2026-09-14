@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: WebhookAuthConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WebhookAuthConfiguration:
     out: WebhookAuthConfiguration = {}  # type: ignore[typeddict-item]
-    if "AllowedIPRange" in data:
+    if data.get("AllowedIPRange") is not None:
         out["allowed_ip_range"] = data["AllowedIPRange"]
-    if "SecretToken" in data:
+    if data.get("SecretToken") is not None:
         out["secret_token"] = data["SecretToken"]
     return out

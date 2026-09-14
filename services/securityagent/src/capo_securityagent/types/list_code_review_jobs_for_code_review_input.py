@@ -36,20 +36,20 @@ def serialize_json(value: ListCodeReviewJobsForCodeReviewInput) -> dict:
 
 def deserialize_json(data: dict) -> ListCodeReviewJobsForCodeReviewInput:
     out: ListCodeReviewJobsForCodeReviewInput = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "codeReviewId" in data:
+    if data.get("codeReviewId") is not None:
         out["code_review_id"] = data["codeReviewId"]
     else:
         raise DeserializationError(
             "ListCodeReviewJobsForCodeReviewInput.code_review_id required"
         )
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError(
             "ListCodeReviewJobsForCodeReviewInput.agent_space_id required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

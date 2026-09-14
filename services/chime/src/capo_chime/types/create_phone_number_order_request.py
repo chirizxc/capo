@@ -36,7 +36,7 @@ def serialize_json(value: CreatePhoneNumberOrderRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePhoneNumberOrderRequest:
     out: CreatePhoneNumberOrderRequest = {}  # type: ignore[typeddict-item]
-    if "ProductType" in data:
+    if data.get("ProductType") is not None:
         import capo_chime.types.phone_number_product_type
 
         out["product_type"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> CreatePhoneNumberOrderRequest:
         raise DeserializationError(
             "CreatePhoneNumberOrderRequest.product_type required"
         )
-    if "E164PhoneNumbers" in data:
+    if data.get("E164PhoneNumbers") is not None:
         import capo_chime.types.e164_phone_number_list
 
         out["e164_phone_numbers"] = (

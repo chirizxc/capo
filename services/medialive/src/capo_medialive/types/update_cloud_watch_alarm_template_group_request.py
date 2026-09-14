@@ -28,6 +28,6 @@ def serialize_json(value: UpdateCloudWatchAlarmTemplateGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCloudWatchAlarmTemplateGroupRequest:
     out: UpdateCloudWatchAlarmTemplateGroupRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

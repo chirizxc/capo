@@ -90,9 +90,9 @@ def serialize_aws_json_1_0(value: FraudDetectionResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FraudDetectionResult:
     out: FraudDetectionResult = {}  # type: ignore[typeddict-item]
-    if "FraudDetectionResultId" in data:
+    if data.get("FraudDetectionResultId") is not None:
         out["fraud_detection_result_id"] = data["FraudDetectionResultId"]
-    if "AudioAggregationStartedAt" in data:
+    if data.get("AudioAggregationStartedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["audio_aggregation_started_at"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_0(data: dict) -> FraudDetectionResult:
                 data["AudioAggregationStartedAt"]
             )
         )
-    if "AudioAggregationEndedAt" in data:
+    if data.get("AudioAggregationEndedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["audio_aggregation_ended_at"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_0(data: dict) -> FraudDetectionResult:
                 data["AudioAggregationEndedAt"]
             )
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_voice_id.types.fraud_detection_configuration
 
         out["configuration"] = (
@@ -116,9 +116,9 @@ def deserialize_aws_json_1_0(data: dict) -> FraudDetectionResult:
                 data["Configuration"]
             )
         )
-    if "Decision" in data:
+    if data.get("Decision") is not None:
         out["decision"] = data["Decision"]
-    if "Reasons" in data:
+    if data.get("Reasons") is not None:
         import capo_voice_id.types.fraud_detection_reasons
 
         out["reasons"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_0(data: dict) -> FraudDetectionResult:
                 data["Reasons"]
             )
         )
-    if "RiskDetails" in data:
+    if data.get("RiskDetails") is not None:
         import capo_voice_id.types.fraud_risk_details
 
         out["risk_details"] = (

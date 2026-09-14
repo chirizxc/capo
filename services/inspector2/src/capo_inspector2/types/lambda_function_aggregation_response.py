@@ -68,31 +68,31 @@ def serialize_json(value: LambdaFunctionAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> LambdaFunctionAggregationResponse:
     out: LambdaFunctionAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError(
             "LambdaFunctionAggregationResponse.resource_id required"
         )
-    if "functionName" in data:
+    if data.get("functionName") is not None:
         out["function_name"] = data["functionName"]
-    if "runtime" in data:
+    if data.get("runtime") is not None:
         out["runtime"] = data["runtime"]
-    if "lambdaTags" in data:
+    if data.get("lambdaTags") is not None:
         import capo_inspector2.types.tag_map
 
         out["lambda_tags"] = capo_inspector2.types.tag_map.deserialize_json(
             data["lambdaTags"]
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(
             data["severityCounts"]
         )
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["last_modified_at"] = (

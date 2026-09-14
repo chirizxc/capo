@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: CreatedArtifact) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatedArtifact:
     out: CreatedArtifact = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreatedArtifact.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

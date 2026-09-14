@@ -30,11 +30,11 @@ def serialize_json(value: DescribeOrganizationOverviewResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOrganizationOverviewResponse:
     out: DescribeOrganizationOverviewResponse = {}  # type: ignore[typeddict-item]
-    if "ReactiveInsights" in data:
+    if data.get("ReactiveInsights") is not None:
         out["reactive_insights"] = data["ReactiveInsights"]
     else:
         out["reactive_insights"] = 0
-    if "ProactiveInsights" in data:
+    if data.get("ProactiveInsights") is not None:
         out["proactive_insights"] = data["ProactiveInsights"]
     else:
         out["proactive_insights"] = 0

@@ -68,13 +68,13 @@ def serialize_json(value: CreateBrowserSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBrowserSettingsRequest:
     out: CreateBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_workspaces_web.types.tag_list
 
         out["tags"] = capo_workspaces_web.types.tag_list.deserialize_json(data["tags"])
-    if "customerManagedKey" in data:
+    if data.get("customerManagedKey") is not None:
         out["customer_managed_key"] = data["customerManagedKey"]
-    if "additionalEncryptionContext" in data:
+    if data.get("additionalEncryptionContext") is not None:
         import capo_workspaces_web.types.encryption_context_map
 
         out["additional_encryption_context"] = (
@@ -82,11 +82,11 @@ def deserialize_json(data: dict) -> CreateBrowserSettingsRequest:
                 data["additionalEncryptionContext"]
             )
         )
-    if "browserPolicy" in data:
+    if data.get("browserPolicy") is not None:
         out["browser_policy"] = data["browserPolicy"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "webContentFilteringPolicy" in data:
+    if data.get("webContentFilteringPolicy") is not None:
         import capo_workspaces_web.types.web_content_filtering_policy
 
         out["web_content_filtering_policy"] = (

@@ -51,13 +51,13 @@ def serialize_aws_json_1_1(value: FailedServiceActionAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailedServiceActionAssociation:
     out: FailedServiceActionAssociation = {}  # type: ignore[typeddict-item]
-    if "ServiceActionId" in data:
+    if data.get("ServiceActionId") is not None:
         out["service_action_id"] = data["ServiceActionId"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_service_catalog.types.service_action_association_error_code
 
         out["error_code"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> FailedServiceActionAssociation:
                 data["ErrorCode"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

@@ -26,6 +26,8 @@ def serialize_json(input_to_serialize: ComponentOverrides) -> dict:
 def deserialize_json(data: dict) -> ComponentOverrides:
     out: ComponentOverrides = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_amplifyuibuilder.types.component_overrides_value
 
         out[key] = (

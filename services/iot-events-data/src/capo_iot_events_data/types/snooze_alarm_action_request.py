@@ -42,19 +42,19 @@ def serialize_json(value: SnoozeAlarmActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> SnoozeAlarmActionRequest:
     out: SnoozeAlarmActionRequest = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("SnoozeAlarmActionRequest.request_id required")
-    if "alarmModelName" in data:
+    if data.get("alarmModelName") is not None:
         out["alarm_model_name"] = data["alarmModelName"]
     else:
         raise DeserializationError("SnoozeAlarmActionRequest.alarm_model_name required")
-    if "keyValue" in data:
+    if data.get("keyValue") is not None:
         out["key_value"] = data["keyValue"]
-    if "note" in data:
+    if data.get("note") is not None:
         out["note"] = data["note"]
-    if "snoozeDuration" in data:
+    if data.get("snoozeDuration") is not None:
         out["snooze_duration"] = data["snoozeDuration"]
     else:
         raise DeserializationError("SnoozeAlarmActionRequest.snooze_duration required")

@@ -57,9 +57,9 @@ def serialize_aws_json_1_1(value: CreatePersistentAppUIInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePersistentAppUIInput:
     out: CreatePersistentAppUIInput = {}  # type: ignore[typeddict-item]
-    if "TargetResourceArn" in data:
+    if data.get("TargetResourceArn") is not None:
         out["target_resource_arn"] = data["TargetResourceArn"]
-    if "EMRContainersConfig" in data:
+    if data.get("EMRContainersConfig") is not None:
         import capo_emr.types.emr_containers_config
 
         out["emr_containers_config"] = (
@@ -67,13 +67,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePersistentAppUIInput:
                 data["EMRContainersConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_emr.types.tag_list
 
         out["tags"] = capo_emr.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "XReferer" in data:
+    if data.get("XReferer") is not None:
         out["x_referer"] = data["XReferer"]
-    if "ProfilerType" in data:
+    if data.get("ProfilerType") is not None:
         import capo_emr.types.profiler_type
 
         out["profiler_type"] = capo_emr.types.profiler_type.deserialize_aws_json_1_1(

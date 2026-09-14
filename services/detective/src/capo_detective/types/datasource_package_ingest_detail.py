@@ -44,7 +44,7 @@ def serialize_json(value: DatasourcePackageIngestDetail) -> dict:
 
 def deserialize_json(data: dict) -> DatasourcePackageIngestDetail:
     out: DatasourcePackageIngestDetail = {}  # type: ignore[typeddict-item]
-    if "DatasourcePackageIngestState" in data:
+    if data.get("DatasourcePackageIngestState") is not None:
         import capo_detective.types.datasource_package_ingest_state
 
         out["datasource_package_ingest_state"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DatasourcePackageIngestDetail:
                 data["DatasourcePackageIngestState"]
             )
         )
-    if "LastIngestStateChange" in data:
+    if data.get("LastIngestStateChange") is not None:
         import capo_detective.types.last_ingest_state_change_dates
 
         out["last_ingest_state_change"] = (

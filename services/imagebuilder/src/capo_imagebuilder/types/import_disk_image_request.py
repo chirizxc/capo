@@ -105,37 +105,37 @@ def serialize_json(value: ImportDiskImageRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportDiskImageRequest:
     out: ImportDiskImageRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ImportDiskImageRequest.name required")
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
     else:
         raise DeserializationError("ImportDiskImageRequest.semantic_version required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
     else:
         raise DeserializationError("ImportDiskImageRequest.platform required")
-    if "osVersion" in data:
+    if data.get("osVersion") is not None:
         out["os_version"] = data["osVersion"]
     else:
         raise DeserializationError("ImportDiskImageRequest.os_version required")
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
-    if "infrastructureConfigurationArn" in data:
+    if data.get("infrastructureConfigurationArn") is not None:
         out["infrastructure_configuration_arn"] = data["infrastructureConfigurationArn"]
     else:
         raise DeserializationError(
             "ImportDiskImageRequest.infrastructure_configuration_arn required"
         )
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
     else:
         raise DeserializationError("ImportDiskImageRequest.uri required")
-    if "loggingConfiguration" in data:
+    if data.get("loggingConfiguration") is not None:
         import capo_imagebuilder.types.image_logging_configuration
 
         out["logging_configuration"] = (
@@ -143,11 +143,11 @@ def deserialize_json(data: dict) -> ImportDiskImageRequest:
                 data["loggingConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "registerImageOptions" in data:
+    if data.get("registerImageOptions") is not None:
         import capo_imagebuilder.types.register_image_options
 
         out["register_image_options"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> ImportDiskImageRequest:
                 data["registerImageOptions"]
             )
         )
-    if "windowsConfiguration" in data:
+    if data.get("windowsConfiguration") is not None:
         import capo_imagebuilder.types.windows_configuration
 
         out["windows_configuration"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> ImportDiskImageRequest:
                 data["windowsConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("ImportDiskImageRequest.client_token required")

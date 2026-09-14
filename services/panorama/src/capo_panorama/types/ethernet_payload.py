@@ -37,11 +37,11 @@ def serialize_json(value: EthernetPayload) -> dict:
 
 def deserialize_json(data: dict) -> EthernetPayload:
     out: EthernetPayload = {}  # type: ignore[typeddict-item]
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         out["connection_type"] = data["ConnectionType"]
     else:
         raise DeserializationError("EthernetPayload.connection_type required")
-    if "StaticIpConnectionInfo" in data:
+    if data.get("StaticIpConnectionInfo") is not None:
         import capo_panorama.types.static_ip_connection_info
 
         out["static_ip_connection_info"] = (

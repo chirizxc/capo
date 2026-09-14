@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: ScanProvisionedProductsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScanProvisionedProductsInput:
     out: ScanProvisionedProductsInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "AccessLevelFilter" in data:
+    if data.get("AccessLevelFilter") is not None:
         import capo_service_catalog.types.access_level_filter
 
         out["access_level_filter"] = (
@@ -57,10 +57,10 @@ def deserialize_aws_json_1_1(data: dict) -> ScanProvisionedProductsInput:
                 data["AccessLevelFilter"]
             )
         )
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "PageToken" in data:
+    if data.get("PageToken") is not None:
         out["page_token"] = data["PageToken"]
     return out

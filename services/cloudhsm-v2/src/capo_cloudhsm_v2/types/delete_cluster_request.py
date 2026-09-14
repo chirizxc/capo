@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteClusterRequest:
     out: DeleteClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
     else:
         raise DeserializationError("DeleteClusterRequest.cluster_id required")

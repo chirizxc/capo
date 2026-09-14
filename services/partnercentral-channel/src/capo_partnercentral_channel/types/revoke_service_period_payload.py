@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: RevokeServicePeriodPayload) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RevokeServicePeriodPayload:
     out: RevokeServicePeriodPayload = {}  # type: ignore[typeddict-item]
-    if "programManagementAccountIdentifier" in data:
+    if data.get("programManagementAccountIdentifier") is not None:
         out["program_management_account_identifier"] = data[
             "programManagementAccountIdentifier"
         ]
@@ -39,6 +39,6 @@ def deserialize_aws_json_1_0(data: dict) -> RevokeServicePeriodPayload:
         raise DeserializationError(
             "RevokeServicePeriodPayload.program_management_account_identifier required"
         )
-    if "note" in data:
+    if data.get("note") is not None:
         out["note"] = data["note"]
     return out

@@ -42,16 +42,16 @@ def serialize_aws_json_1_1(value: AssociatedGateway) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociatedGateway:
     out: AssociatedGateway = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_direct_connect.types.gateway_type
 
         out["type"] = capo_direct_connect.types.gateway_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     return out

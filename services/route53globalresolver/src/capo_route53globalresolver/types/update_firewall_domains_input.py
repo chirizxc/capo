@@ -34,7 +34,7 @@ def serialize_json(value: UpdateFirewallDomainsInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFirewallDomainsInput:
     out: UpdateFirewallDomainsInput = {}  # type: ignore[typeddict-item]
-    if "domains" in data:
+    if data.get("domains") is not None:
         import capo_route53globalresolver.types.domains
 
         out["domains"] = capo_route53globalresolver.types.domains.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> UpdateFirewallDomainsInput:
         )
     else:
         raise DeserializationError("UpdateFirewallDomainsInput.domains required")
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
     else:
         raise DeserializationError("UpdateFirewallDomainsInput.operation required")

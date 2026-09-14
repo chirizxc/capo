@@ -20,7 +20,15 @@ class UserMatch(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: UserMatch) -> dict:
     out: dict = {}
     if "similarity" in value:
-        out["Similarity"] = value["similarity"]
+        out["Similarity"] = (
+            "NaN"
+            if value["similarity"] != value["similarity"]
+            else "Infinity"
+            if value["similarity"] == float("inf")
+            else "-Infinity"
+            if value["similarity"] == float("-inf")
+            else value["similarity"]
+        )
     if "user" in value:
         import capo_rekognition.types.matched_user
 
@@ -32,9 +40,9 @@ def serialize_aws_json_1_1(value: UserMatch) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserMatch:
     out: UserMatch = {}  # type: ignore[typeddict-item]
-    if "Similarity" in data:
-        out["similarity"] = data["Similarity"]
-    if "User" in data:
+    if data.get("Similarity") is not None:
+        out["similarity"] = float(data["Similarity"])
+    if data.get("User") is not None:
         import capo_rekognition.types.matched_user
 
         out["user"] = capo_rekognition.types.matched_user.deserialize_aws_json_1_1(

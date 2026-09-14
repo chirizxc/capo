@@ -27,8 +27,8 @@ def serialize_json(value: AwsWafv2CustomHttpHeader) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafv2CustomHttpHeader:
     out: AwsWafv2CustomHttpHeader = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

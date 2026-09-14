@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetSoftwareUpdatesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSoftwareUpdatesResult:
     out: GetSoftwareUpdatesResult = {}  # type: ignore[typeddict-item]
-    if "UpdatesURI" in data:
+    if data.get("UpdatesURI") is not None:
         out["updates_uri"] = data["UpdatesURI"]
     return out

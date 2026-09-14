@@ -78,23 +78,23 @@ def serialize_aws_json_1_1(value: ComputeConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComputeConfig:
     out: ComputeConfig = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "DnsNameServers" in data:
+    if data.get("DnsNameServers") is not None:
         out["dns_name_servers"] = data["DnsNameServers"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "MaxCapacityUnits" in data:
+    if data.get("MaxCapacityUnits") is not None:
         out["max_capacity_units"] = data["MaxCapacityUnits"]
-    if "MinCapacityUnits" in data:
+    if data.get("MinCapacityUnits") is not None:
         out["min_capacity_units"] = data["MinCapacityUnits"]
-    if "MultiAZ" in data:
+    if data.get("MultiAZ") is not None:
         out["multi_az"] = data["MultiAZ"]
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "ReplicationSubnetGroupId" in data:
+    if data.get("ReplicationSubnetGroupId") is not None:
         out["replication_subnet_group_id"] = data["ReplicationSubnetGroupId"]
-    if "VpcSecurityGroupIds" in data:
+    if data.get("VpcSecurityGroupIds") is not None:
         import capo_database_migration_service.types.string_list
 
         out["vpc_security_group_ids"] = (

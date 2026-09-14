@@ -80,7 +80,7 @@ def serialize_json(value: CreateMLInputChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMLInputChannelRequest:
     out: CreateMLInputChannelRequest = {}  # type: ignore[typeddict-item]
-    if "configuredModelAlgorithmAssociations" in data:
+    if data.get("configuredModelAlgorithmAssociations") is not None:
         import capo_cleanroomsml.types.configured_model_algorithm_association_arn_list
 
         out["configured_model_algorithm_associations"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> CreateMLInputChannelRequest:
         raise DeserializationError(
             "CreateMLInputChannelRequest.configured_model_algorithm_associations required"
         )
-    if "inputChannel" in data:
+    if data.get("inputChannel") is not None:
         import capo_cleanroomsml.types.input_channel
 
         out["input_channel"] = capo_cleanroomsml.types.input_channel.deserialize_json(
@@ -100,25 +100,25 @@ def deserialize_json(data: dict) -> CreateMLInputChannelRequest:
         )
     else:
         raise DeserializationError("CreateMLInputChannelRequest.input_channel required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateMLInputChannelRequest.name required")
-    if "retentionInDays" in data:
+    if data.get("retentionInDays") is not None:
         out["retention_in_days"] = data["retentionInDays"]
     else:
         raise DeserializationError(
             "CreateMLInputChannelRequest.retention_in_days required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "payerConfiguration" in data:
+    if data.get("payerConfiguration") is not None:
         import capo_cleanroomsml.types.payer_configuration
 
         out["payer_configuration"] = (

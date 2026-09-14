@@ -43,11 +43,11 @@ def serialize_aws_json_1_0(value: StartFlowCaptureResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartFlowCaptureResponse:
     out: StartFlowCaptureResponse = {}  # type: ignore[typeddict-item]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "FlowOperationId" in data:
+    if data.get("FlowOperationId") is not None:
         out["flow_operation_id"] = data["FlowOperationId"]
-    if "FlowOperationStatus" in data:
+    if data.get("FlowOperationStatus") is not None:
         import capo_network_firewall.types.flow_operation_status
 
         out["flow_operation_status"] = (

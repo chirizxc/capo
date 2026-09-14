@@ -41,11 +41,11 @@ def serialize_json(value: ListSessionAnalyticsDataResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSessionAnalyticsDataResponse:
     out: ListSessionAnalyticsDataResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sessions" in data:
+    if data.get("sessions") is not None:
         import capo_lex_models_v2.types.session_specifications
 
         out["sessions"] = (

@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: GetSnapshotsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSnapshotsRequest:
     out: GetSnapshotsRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("GetSnapshotsRequest.index_id required")
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         import capo_kendra.types.interval
 
         out["interval"] = capo_kendra.types.interval.deserialize_aws_json_1_1(
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSnapshotsRequest:
         )
     else:
         raise DeserializationError("GetSnapshotsRequest.interval required")
-    if "MetricType" in data:
+    if data.get("MetricType") is not None:
         import capo_kendra.types.metric_type
 
         out["metric_type"] = capo_kendra.types.metric_type.deserialize_aws_json_1_1(
@@ -70,8 +70,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetSnapshotsRequest:
         )
     else:
         raise DeserializationError("GetSnapshotsRequest.metric_type required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

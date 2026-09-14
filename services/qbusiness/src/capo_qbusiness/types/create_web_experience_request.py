@@ -120,13 +120,13 @@ def serialize_json(value: CreateWebExperienceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWebExperienceRequest:
     out: CreateWebExperienceRequest = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "subtitle" in data:
+    if data.get("subtitle") is not None:
         out["subtitle"] = data["subtitle"]
-    if "welcomeMessage" in data:
+    if data.get("welcomeMessage") is not None:
         out["welcome_message"] = data["welcomeMessage"]
-    if "samplePromptsControlMode" in data:
+    if data.get("samplePromptsControlMode") is not None:
         import capo_qbusiness.types.web_experience_sample_prompts_control_mode
 
         out["sample_prompts_control_mode"] = (
@@ -134,21 +134,21 @@ def deserialize_json(data: dict) -> CreateWebExperienceRequest:
                 data["samplePromptsControlMode"]
             )
         )
-    if "origins" in data:
+    if data.get("origins") is not None:
         import capo_qbusiness.types.web_experience_origins
 
         out["origins"] = capo_qbusiness.types.web_experience_origins.deserialize_json(
             data["origins"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qbusiness.types.tags
 
         out["tags"] = capo_qbusiness.types.tags.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "identityProviderConfiguration" in data:
+    if data.get("identityProviderConfiguration") is not None:
         import capo_qbusiness.types.identity_provider_configuration
 
         out["identity_provider_configuration"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> CreateWebExperienceRequest:
                 data["identityProviderConfiguration"]
             )
         )
-    if "browserExtensionConfiguration" in data:
+    if data.get("browserExtensionConfiguration") is not None:
         import capo_qbusiness.types.browser_extension_configuration
 
         out["browser_extension_configuration"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> CreateWebExperienceRequest:
                 data["browserExtensionConfiguration"]
             )
         )
-    if "customizationConfiguration" in data:
+    if data.get("customizationConfiguration") is not None:
         import capo_qbusiness.types.customization_configuration
 
         out["customization_configuration"] = (

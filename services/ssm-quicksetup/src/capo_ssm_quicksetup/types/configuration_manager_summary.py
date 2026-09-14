@@ -57,15 +57,15 @@ def serialize_json(value: ConfigurationManagerSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationManagerSummary:
     out: ConfigurationManagerSummary = {}  # type: ignore[typeddict-item]
-    if "ManagerArn" in data:
+    if data.get("ManagerArn") is not None:
         out["manager_arn"] = data["ManagerArn"]
     else:
         raise DeserializationError("ConfigurationManagerSummary.manager_arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "StatusSummaries" in data:
+    if data.get("StatusSummaries") is not None:
         import capo_ssm_quicksetup.types.status_summaries_list
 
         out["status_summaries"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ConfigurationManagerSummary:
                 data["StatusSummaries"]
             )
         )
-    if "ConfigurationDefinitionSummaries" in data:
+    if data.get("ConfigurationDefinitionSummaries") is not None:
         import capo_ssm_quicksetup.types.configuration_definition_summaries_list
 
         out["configuration_definition_summaries"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TopicColumns:
 
     out: TopicColumns = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.topic_column.deserialize_json(item))
     return out

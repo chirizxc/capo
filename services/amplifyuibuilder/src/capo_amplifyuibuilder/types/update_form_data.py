@@ -98,9 +98,9 @@ def serialize_json(value: UpdateFormData) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFormData:
     out: UpdateFormData = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_amplifyuibuilder.types.form_data_type_config
 
         out["data_type"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> UpdateFormData:
                 data["dataType"]
             )
         )
-    if "formActionType" in data:
+    if data.get("formActionType") is not None:
         import capo_amplifyuibuilder.types.form_action_type
 
         out["form_action_type"] = (
@@ -116,19 +116,19 @@ def deserialize_json(data: dict) -> UpdateFormData:
                 data["formActionType"]
             )
         )
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_amplifyuibuilder.types.fields_map
 
         out["fields"] = capo_amplifyuibuilder.types.fields_map.deserialize_json(
             data["fields"]
         )
-    if "style" in data:
+    if data.get("style") is not None:
         import capo_amplifyuibuilder.types.form_style
 
         out["style"] = capo_amplifyuibuilder.types.form_style.deserialize_json(
             data["style"]
         )
-    if "sectionalElements" in data:
+    if data.get("sectionalElements") is not None:
         import capo_amplifyuibuilder.types.sectional_element_map
 
         out["sectional_elements"] = (
@@ -136,12 +136,12 @@ def deserialize_json(data: dict) -> UpdateFormData:
                 data["sectionalElements"]
             )
         )
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
-    if "cta" in data:
+    if data.get("cta") is not None:
         import capo_amplifyuibuilder.types.form_cta
 
         out["cta"] = capo_amplifyuibuilder.types.form_cta.deserialize_json(data["cta"])
-    if "labelDecorator" in data:
+    if data.get("labelDecorator") is not None:
         out["label_decorator"] = data["labelDecorator"]
     return out

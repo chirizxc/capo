@@ -58,7 +58,7 @@ def serialize_json(value: SelectParameters) -> dict:
 
 def deserialize_json(data: dict) -> SelectParameters:
     out: SelectParameters = {}  # type: ignore[typeddict-item]
-    if "InputSerialization" in data:
+    if data.get("InputSerialization") is not None:
         import capo_glacier.types.input_serialization
 
         out["input_serialization"] = (
@@ -66,15 +66,15 @@ def deserialize_json(data: dict) -> SelectParameters:
                 data["InputSerialization"]
             )
         )
-    if "ExpressionType" in data:
+    if data.get("ExpressionType") is not None:
         import capo_glacier.types.expression_type
 
         out["expression_type"] = capo_glacier.types.expression_type.deserialize_json(
             data["ExpressionType"]
         )
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
-    if "OutputSerialization" in data:
+    if data.get("OutputSerialization") is not None:
         import capo_glacier.types.output_serialization
 
         out["output_serialization"] = (

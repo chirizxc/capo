@@ -61,28 +61,28 @@ def serialize_json(value: BulkDeploymentResult) -> dict:
 
 def deserialize_json(data: dict) -> BulkDeploymentResult:
     out: BulkDeploymentResult = {}  # type: ignore[typeddict-item]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         out["created_at"] = data["CreatedAt"]
-    if "DeploymentArn" in data:
+    if data.get("DeploymentArn") is not None:
         out["deployment_arn"] = data["DeploymentArn"]
-    if "DeploymentId" in data:
+    if data.get("DeploymentId") is not None:
         out["deployment_id"] = data["DeploymentId"]
-    if "DeploymentStatus" in data:
+    if data.get("DeploymentStatus") is not None:
         out["deployment_status"] = data["DeploymentStatus"]
-    if "DeploymentType" in data:
+    if data.get("DeploymentType") is not None:
         import capo_greengrass.types.deployment_type
 
         out["deployment_type"] = capo_greengrass.types.deployment_type.deserialize_json(
             data["DeploymentType"]
         )
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_greengrass.types.error_details
 
         out["error_details"] = capo_greengrass.types.error_details.deserialize_json(
             data["ErrorDetails"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "GroupArn" in data:
+    if data.get("GroupArn") is not None:
         out["group_arn"] = data["GroupArn"]
     return out

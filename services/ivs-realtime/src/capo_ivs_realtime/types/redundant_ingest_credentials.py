@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RedundantIngestCredentials:
 
     out: RedundantIngestCredentials = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs_realtime.types.redundant_ingest_credential.deserialize_json(item)
         )

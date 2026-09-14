@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> WhatsAppPhoneNumberDetailList:
 
     out: WhatsAppPhoneNumberDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_socialmessaging.types.whats_app_phone_number_detail.deserialize_json(
                 item

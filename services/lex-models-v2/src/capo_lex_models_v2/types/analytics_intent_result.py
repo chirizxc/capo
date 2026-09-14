@@ -55,13 +55,13 @@ def serialize_json(value: AnalyticsIntentResult) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsIntentResult:
     out: AnalyticsIntentResult = {}  # type: ignore[typeddict-item]
-    if "binKeys" in data:
+    if data.get("binKeys") is not None:
         import capo_lex_models_v2.types.analytics_bin_keys
 
         out["bin_keys"] = capo_lex_models_v2.types.analytics_bin_keys.deserialize_json(
             data["binKeys"]
         )
-    if "groupByKeys" in data:
+    if data.get("groupByKeys") is not None:
         import capo_lex_models_v2.types.analytics_intent_group_by_keys
 
         out["group_by_keys"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> AnalyticsIntentResult:
                 data["groupByKeys"]
             )
         )
-    if "metricsResults" in data:
+    if data.get("metricsResults") is not None:
         import capo_lex_models_v2.types.analytics_intent_metric_results
 
         out["metrics_results"] = (

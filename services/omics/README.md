@@ -13,9 +13,9 @@ from capo_omics import AsyncOmicsClient
 
 
 async def main():
-    async with AsyncOmicsClient() as s3:
+    async with AsyncOmicsClient() as omics:
         # Example: call the delete_s3_access_policy operation
-        response = await s3.delete_s3_access_policy()
+        response = await omics.delete_s3_access_policy()
         print(response)
 ```
 
@@ -29,9 +29,9 @@ from capo_omics.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncOmicsClient() as s3:
+    async with AsyncOmicsClient() as omics:
         try:
-            await s3.delete_s3_access_policy()
+            await omics.delete_s3_access_policy()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_omics import AsyncOmicsClient
 
 
 async def main():
-    async with AsyncOmicsClient() as s3:
+    async with AsyncOmicsClient() as omics:
         # Default: 3 attempts for every operation
-        response = await s3.delete_s3_access_policy()
+        response = await omics.delete_s3_access_policy()
 
         # Override per operation
-        response = await s3.delete_s3_access_policy(config_overrides={"retry_max_attempts": 5})
+        response = await omics.delete_s3_access_policy(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_s3_access_policy(config_overrides={"retry_max_attempts": 1})
+        response = await omics.delete_s3_access_policy(config_overrides={"retry_max_attempts": 1})
 ```

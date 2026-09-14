@@ -22,8 +22,6 @@ _FilterClause_and = TypedDict(
     },
     closed=True,
 )
-
-
 _FilterClause_or = TypedDict(
     "_FilterClause_or",
     {
@@ -54,15 +52,15 @@ def serialize_json(value: FilterClause) -> dict:
 
 
 def deserialize_json(data: dict) -> FilterClause:
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_datazone.types.filter
 
         return {"filter": capo_datazone.types.filter.deserialize_json(data["filter"])}
-    elif "and" in data:
+    elif data.get("and") is not None:
         import capo_datazone.types.filter_list
 
         return {"and": capo_datazone.types.filter_list.deserialize_json(data["and"])}
-    elif "or" in data:
+    elif data.get("or") is not None:
         import capo_datazone.types.filter_list
 
         return {"or": capo_datazone.types.filter_list.deserialize_json(data["or"])}

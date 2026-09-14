@@ -31,7 +31,7 @@ def serialize_json(value: GetRemainingFreeTrialDaysRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetRemainingFreeTrialDaysRequest:
     out: GetRemainingFreeTrialDaysRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_guardduty.types.account_ids
 
         out["account_ids"] = capo_guardduty.types.account_ids.deserialize_json(

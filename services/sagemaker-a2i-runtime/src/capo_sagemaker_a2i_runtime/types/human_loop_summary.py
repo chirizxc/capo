@@ -61,9 +61,9 @@ def serialize_json(value: HumanLoopSummary) -> dict:
 
 def deserialize_json(data: dict) -> HumanLoopSummary:
     out: HumanLoopSummary = {}  # type: ignore[typeddict-item]
-    if "HumanLoopName" in data:
+    if data.get("HumanLoopName") is not None:
         out["human_loop_name"] = data["HumanLoopName"]
-    if "HumanLoopStatus" in data:
+    if data.get("HumanLoopStatus") is not None:
         import capo_sagemaker_a2i_runtime.types.human_loop_status
 
         out["human_loop_status"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> HumanLoopSummary:
                 data["HumanLoopStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker_a2i_runtime.types.timestamp
 
         out["creation_time"] = (
@@ -79,8 +79,8 @@ def deserialize_json(data: dict) -> HumanLoopSummary:
                 data["CreationTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "FlowDefinitionArn" in data:
+    if data.get("FlowDefinitionArn") is not None:
         out["flow_definition_arn"] = data["FlowDefinitionArn"]
     return out

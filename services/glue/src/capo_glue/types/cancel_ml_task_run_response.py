@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: CancelMLTaskRunResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelMLTaskRunResponse:
     out: CancelMLTaskRunResponse = {}  # type: ignore[typeddict-item]
-    if "TransformId" in data:
+    if data.get("TransformId") is not None:
         out["transform_id"] = data["TransformId"]
-    if "TaskRunId" in data:
+    if data.get("TaskRunId") is not None:
         out["task_run_id"] = data["TaskRunId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.task_status_type
 
         out["status"] = capo_glue.types.task_status_type.deserialize_aws_json_1_1(

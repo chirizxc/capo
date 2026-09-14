@@ -27,7 +27,7 @@ def serialize_json(value: UpdateAIGuardrailResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAIGuardrailResponse:
     out: UpdateAIGuardrailResponse = {}  # type: ignore[typeddict-item]
-    if "aiGuardrail" in data:
+    if data.get("aiGuardrail") is not None:
         import capo_qconnect.types.ai_guardrail_data
 
         out["ai_guardrail"] = capo_qconnect.types.ai_guardrail_data.deserialize_json(

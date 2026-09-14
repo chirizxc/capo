@@ -23,6 +23,6 @@ def serialize_json(value: S3GlueDataCatalog) -> dict:
 
 def deserialize_json(data: dict) -> S3GlueDataCatalog:
     out: S3GlueDataCatalog = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

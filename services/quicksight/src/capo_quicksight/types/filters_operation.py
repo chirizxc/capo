@@ -42,11 +42,11 @@ def serialize_json(value: FiltersOperation) -> dict:
 
 def deserialize_json(data: dict) -> FiltersOperation:
     out: FiltersOperation = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("FiltersOperation.alias required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.transform_operation_source
 
         out["source"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> FiltersOperation:
         )
     else:
         raise DeserializationError("FiltersOperation.source required")
-    if "FilterOperations" in data:
+    if data.get("FilterOperations") is not None:
         import capo_quicksight.types.filter_operation_list
 
         out["filter_operations"] = (

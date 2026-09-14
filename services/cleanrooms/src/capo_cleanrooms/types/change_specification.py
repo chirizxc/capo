@@ -49,7 +49,7 @@ def serialize_json(value: ChangeSpecification) -> dict:
 
 
 def deserialize_json(data: dict) -> ChangeSpecification:
-    if "member" in data:
+    if data.get("member") is not None:
         import capo_cleanrooms.types.member_change_specification
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> ChangeSpecification:
                 data["member"]
             )
         }
-    elif "collaboration" in data:
+    elif data.get("collaboration") is not None:
         import capo_cleanrooms.types.collaboration_change_specification
 
         return {

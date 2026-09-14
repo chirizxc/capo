@@ -73,7 +73,7 @@ def serialize_json(value: EcsTaskOverride) -> dict:
 
 def deserialize_json(data: dict) -> EcsTaskOverride:
     out: EcsTaskOverride = {}  # type: ignore[typeddict-item]
-    if "ContainerOverrides" in data:
+    if data.get("ContainerOverrides") is not None:
         import capo_pipes.types.ecs_container_override_list
 
         out["container_overrides"] = (
@@ -81,9 +81,9 @@ def deserialize_json(data: dict) -> EcsTaskOverride:
                 data["ContainerOverrides"]
             )
         )
-    if "Cpu" in data:
+    if data.get("Cpu") is not None:
         out["cpu"] = data["Cpu"]
-    if "EphemeralStorage" in data:
+    if data.get("EphemeralStorage") is not None:
         import capo_pipes.types.ecs_ephemeral_storage
 
         out["ephemeral_storage"] = (
@@ -91,9 +91,9 @@ def deserialize_json(data: dict) -> EcsTaskOverride:
                 data["EphemeralStorage"]
             )
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "InferenceAcceleratorOverrides" in data:
+    if data.get("InferenceAcceleratorOverrides") is not None:
         import capo_pipes.types.ecs_inference_accelerator_override_list
 
         out["inference_accelerator_overrides"] = (
@@ -101,8 +101,8 @@ def deserialize_json(data: dict) -> EcsTaskOverride:
                 data["InferenceAcceleratorOverrides"]
             )
         )
-    if "Memory" in data:
+    if data.get("Memory") is not None:
         out["memory"] = data["Memory"]
-    if "TaskRoleArn" in data:
+    if data.get("TaskRoleArn") is not None:
         out["task_role_arn"] = data["TaskRoleArn"]
     return out

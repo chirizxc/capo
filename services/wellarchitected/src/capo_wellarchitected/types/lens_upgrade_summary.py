@@ -56,20 +56,20 @@ def serialize_json(value: LensUpgradeSummary) -> dict:
 
 def deserialize_json(data: dict) -> LensUpgradeSummary:
     out: LensUpgradeSummary = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "WorkloadName" in data:
+    if data.get("WorkloadName") is not None:
         out["workload_name"] = data["WorkloadName"]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "CurrentLensVersion" in data:
+    if data.get("CurrentLensVersion") is not None:
         out["current_lens_version"] = data["CurrentLensVersion"]
-    if "LatestLensVersion" in data:
+    if data.get("LatestLensVersion") is not None:
         out["latest_lens_version"] = data["LatestLensVersion"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     return out

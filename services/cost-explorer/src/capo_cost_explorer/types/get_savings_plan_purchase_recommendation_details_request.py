@@ -30,7 +30,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetSavingsPlanPurchaseRecommendationDetailsRequest:
     out: GetSavingsPlanPurchaseRecommendationDetailsRequest = {}  # type: ignore[typeddict-item]
-    if "RecommendationDetailId" in data:
+    if data.get("RecommendationDetailId") is not None:
         out["recommendation_detail_id"] = data["RecommendationDetailId"]
     else:
         raise DeserializationError(

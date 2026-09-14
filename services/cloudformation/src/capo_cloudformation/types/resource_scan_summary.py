@@ -69,7 +69,18 @@ def serialize_query(
         )
     if "percentage_completed" in value:
         pairs.append(
-            (f"{key_prefix}PercentageCompleted", str(value["percentage_completed"]))
+            (
+                f"{key_prefix}PercentageCompleted",
+                (
+                    "NaN"
+                    if value["percentage_completed"] != value["percentage_completed"]
+                    else "Infinity"
+                    if value["percentage_completed"] == float("inf")
+                    else "-Infinity"
+                    if value["percentage_completed"] == float("-inf")
+                    else str(value["percentage_completed"])
+                ),
+            )
         )
     if "scan_type" in value:
         import capo_cloudformation.types.scan_type

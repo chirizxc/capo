@@ -22,8 +22,8 @@ def serialize_json(value: EgressGatewayBridge) -> dict:
 
 def deserialize_json(data: dict) -> EgressGatewayBridge:
     out: EgressGatewayBridge = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
     return out

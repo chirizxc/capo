@@ -43,7 +43,7 @@ def serialize_json(value: RecommendationSet) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationSet:
     out: RecommendationSet = {}  # type: ignore[typeddict-item]
-    if "transformationTool" in data:
+    if data.get("transformationTool") is not None:
         import capo_migrationhubstrategy.types.transformation_tool
 
         out["transformation_tool"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> RecommendationSet:
                 data["transformationTool"]
             )
         )
-    if "targetDestination" in data:
+    if data.get("targetDestination") is not None:
         out["target_destination"] = data["targetDestination"]
-    if "strategy" in data:
+    if data.get("strategy") is not None:
         out["strategy"] = data["strategy"]
     return out

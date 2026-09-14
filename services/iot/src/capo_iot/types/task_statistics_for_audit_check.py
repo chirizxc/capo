@@ -53,14 +53,14 @@ def serialize_json(value: TaskStatisticsForAuditCheck) -> dict:
 
 def deserialize_json(data: dict) -> TaskStatisticsForAuditCheck:
     out: TaskStatisticsForAuditCheck = {}  # type: ignore[typeddict-item]
-    if "totalFindingsCount" in data:
+    if data.get("totalFindingsCount") is not None:
         out["total_findings_count"] = data["totalFindingsCount"]
-    if "failedFindingsCount" in data:
+    if data.get("failedFindingsCount") is not None:
         out["failed_findings_count"] = data["failedFindingsCount"]
-    if "succeededFindingsCount" in data:
+    if data.get("succeededFindingsCount") is not None:
         out["succeeded_findings_count"] = data["succeededFindingsCount"]
-    if "skippedFindingsCount" in data:
+    if data.get("skippedFindingsCount") is not None:
         out["skipped_findings_count"] = data["skippedFindingsCount"]
-    if "canceledFindingsCount" in data:
+    if data.get("canceledFindingsCount") is not None:
         out["canceled_findings_count"] = data["canceledFindingsCount"]
     return out

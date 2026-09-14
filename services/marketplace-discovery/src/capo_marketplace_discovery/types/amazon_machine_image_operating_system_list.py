@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AmazonMachineImageOperatingSystemList:
 
     out: AmazonMachineImageOperatingSystemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.amazon_machine_image_operating_system.deserialize_json(
                 item

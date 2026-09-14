@@ -27,8 +27,8 @@ def serialize_json(value: UpdateBrokerTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrokerTypeResponse:
     out: UpdateBrokerTypeResponse = {}  # type: ignore[typeddict-item]
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
-    if "clusterOperationArn" in data:
+    if data.get("clusterOperationArn") is not None:
         out["cluster_operation_arn"] = data["clusterOperationArn"]
     return out

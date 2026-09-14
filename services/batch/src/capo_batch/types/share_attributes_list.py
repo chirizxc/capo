@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ShareAttributesList:
 
     out: ShareAttributesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.share_attributes.deserialize_json(item))
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DeleteUniqueIdErrorsList:
 
     out: DeleteUniqueIdErrorsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.delete_unique_id_error.deserialize_json(item)
         )

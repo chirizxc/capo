@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: GetRelationalDatabaseParametersRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseParametersRequest:
     out: GetRelationalDatabaseParametersRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "GetRelationalDatabaseParametersRequest.relational_database_name required"
         )
-    if "pageToken" in data:
+    if data.get("pageToken") is not None:
         out["page_token"] = data["pageToken"]
     return out

@@ -22,8 +22,8 @@ def serialize_json(value: AssertionDeletedMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AssertionDeletedMetadata:
     out: AssertionDeletedMetadata = {}  # type: ignore[typeddict-item]
-    if "assertionId" in data:
+    if data.get("assertionId") is not None:
         out["assertion_id"] = data["assertionId"]
-    if "assertionName" in data:
+    if data.get("assertionName") is not None:
         out["assertion_name"] = data["assertionName"]
     return out

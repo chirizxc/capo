@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: BatchMeterUsageResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchMeterUsageResult:
     out: BatchMeterUsageResult = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_marketplace_metering.types.usage_record_result_list
 
         out["results"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchMeterUsageResult:
                 data["Results"]
             )
         )
-    if "UnprocessedRecords" in data:
+    if data.get("UnprocessedRecords") is not None:
         import capo_marketplace_metering.types.usage_record_list
 
         out["unprocessed_records"] = (

@@ -31,11 +31,11 @@ def serialize_aws_json_1_1(value: TimestampRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimestampRange:
     out: TimestampRange = {}  # type: ignore[typeddict-item]
-    if "Start" in data:
+    if data.get("Start") is not None:
         import capo_acm.types.t_stamp
 
         out["start"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(data["Start"])
-    if "End" in data:
+    if data.get("End") is not None:
         import capo_acm.types.t_stamp
 
         out["end"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(data["End"])

@@ -50,11 +50,11 @@ def serialize_json(value: ObjectAttribute) -> dict:
 
 def deserialize_json(data: dict) -> ObjectAttribute:
     out: ObjectAttribute = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         import capo_customer_profiles.types.comparison_operator
 
         out["comparison_operator"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ObjectAttribute:
         )
     else:
         raise DeserializationError("ObjectAttribute.comparison_operator required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_customer_profiles.types.event_trigger_values
 
         out["values"] = (

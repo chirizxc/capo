@@ -45,7 +45,7 @@ def serialize_json(value: TestExecutionResultFilterBy) -> dict:
 
 def deserialize_json(data: dict) -> TestExecutionResultFilterBy:
     out: TestExecutionResultFilterBy = {}  # type: ignore[typeddict-item]
-    if "resultTypeFilter" in data:
+    if data.get("resultTypeFilter") is not None:
         import capo_lex_models_v2.types.test_result_type_filter
 
         out["result_type_filter"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> TestExecutionResultFilterBy:
         raise DeserializationError(
             "TestExecutionResultFilterBy.result_type_filter required"
         )
-    if "conversationLevelTestResultsFilterBy" in data:
+    if data.get("conversationLevelTestResultsFilterBy") is not None:
         import capo_lex_models_v2.types.conversation_level_test_results_filter_by
 
         out["conversation_level_test_results_filter_by"] = (

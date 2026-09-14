@@ -25,6 +25,6 @@ def serialize_json(value: ResourcePermission) -> dict:
 
 def deserialize_json(data: dict) -> ResourcePermission:
     out: ResourcePermission = {}  # type: ignore[typeddict-item]
-    if "permission" in data:
+    if data.get("permission") is not None:
         out["permission"] = data["permission"]
     return out

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CancelCacheReportOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelCacheReportOutput:
     out: CancelCacheReportOutput = {}  # type: ignore[typeddict-item]
-    if "CacheReportARN" in data:
+    if data.get("CacheReportARN") is not None:
         out["cache_report_arn"] = data["CacheReportARN"]
     return out

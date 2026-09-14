@@ -114,7 +114,7 @@ def serialize_json(value: PostFulfillmentStatusSpecification) -> dict:
 
 def deserialize_json(data: dict) -> PostFulfillmentStatusSpecification:
     out: PostFulfillmentStatusSpecification = {}  # type: ignore[typeddict-item]
-    if "successResponse" in data:
+    if data.get("successResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["success_response"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> PostFulfillmentStatusSpecification:
                 data["successResponse"]
             )
         )
-    if "failureResponse" in data:
+    if data.get("failureResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["failure_response"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> PostFulfillmentStatusSpecification:
                 data["failureResponse"]
             )
         )
-    if "timeoutResponse" in data:
+    if data.get("timeoutResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["timeout_response"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> PostFulfillmentStatusSpecification:
                 data["timeoutResponse"]
             )
         )
-    if "successNextStep" in data:
+    if data.get("successNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["success_next_step"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> PostFulfillmentStatusSpecification:
                 data["successNextStep"]
             )
         )
-    if "successConditional" in data:
+    if data.get("successConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["success_conditional"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> PostFulfillmentStatusSpecification:
                 data["successConditional"]
             )
         )
-    if "failureNextStep" in data:
+    if data.get("failureNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["failure_next_step"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> PostFulfillmentStatusSpecification:
                 data["failureNextStep"]
             )
         )
-    if "failureConditional" in data:
+    if data.get("failureConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["failure_conditional"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> PostFulfillmentStatusSpecification:
                 data["failureConditional"]
             )
         )
-    if "timeoutNextStep" in data:
+    if data.get("timeoutNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["timeout_next_step"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> PostFulfillmentStatusSpecification:
                 data["timeoutNextStep"]
             )
         )
-    if "timeoutConditional" in data:
+    if data.get("timeoutConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["timeout_conditional"] = (

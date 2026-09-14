@@ -57,11 +57,11 @@ def serialize_aws_json_1_0(value: ConnectionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConnectionSummary:
     out: ConnectionSummary = {}  # type: ignore[typeddict-item]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_apprunner.types.provider_type
 
         out["provider_type"] = (
@@ -69,13 +69,13 @@ def deserialize_aws_json_1_0(data: dict) -> ConnectionSummary:
                 data["ProviderType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_apprunner.types.connection_status
 
         out["status"] = capo_apprunner.types.connection_status.deserialize_aws_json_1_0(
             data["Status"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["created_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(

@@ -52,7 +52,7 @@ def serialize_json(value: Smpte2110ReceiverGroupSdpSettings) -> dict:
 
 def deserialize_json(data: dict) -> Smpte2110ReceiverGroupSdpSettings:
     out: Smpte2110ReceiverGroupSdpSettings = {}  # type: ignore[typeddict-item]
-    if "ancillarySdps" in data:
+    if data.get("ancillarySdps") is not None:
         import capo_medialive.types.__list_of_input_sdp_location
 
         out["ancillary_sdps"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> Smpte2110ReceiverGroupSdpSettings:
                 data["ancillarySdps"]
             )
         )
-    if "audioSdps" in data:
+    if data.get("audioSdps") is not None:
         import capo_medialive.types.__list_of_input_sdp_location
 
         out["audio_sdps"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> Smpte2110ReceiverGroupSdpSettings:
                 data["audioSdps"]
             )
         )
-    if "videoSdp" in data:
+    if data.get("videoSdp") is not None:
         import capo_medialive.types.input_sdp_location
 
         out["video_sdp"] = capo_medialive.types.input_sdp_location.deserialize_json(

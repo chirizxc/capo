@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: InboundFederationLambdaType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InboundFederationLambdaType:
     out: InboundFederationLambdaType = {}  # type: ignore[typeddict-item]
-    if "LambdaVersion" in data:
+    if data.get("LambdaVersion") is not None:
         import capo_cognito_identity_provider.types.inbound_federation_lambda_version_type
 
         out["lambda_version"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> InboundFederationLambdaType:
         raise DeserializationError(
             "InboundFederationLambdaType.lambda_version required"
         )
-    if "LambdaArn" in data:
+    if data.get("LambdaArn") is not None:
         out["lambda_arn"] = data["LambdaArn"]
     else:
         raise DeserializationError("InboundFederationLambdaType.lambda_arn required")

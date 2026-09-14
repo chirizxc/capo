@@ -51,7 +51,7 @@ def serialize_json(value: BatchGetCaseRuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCaseRuleResponse:
     out: BatchGetCaseRuleResponse = {}  # type: ignore[typeddict-item]
-    if "caseRules" in data:
+    if data.get("caseRules") is not None:
         import capo_connectcases.types.batch_get_case_rule_list
 
         out["case_rules"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> BatchGetCaseRuleResponse:
         )
     else:
         raise DeserializationError("BatchGetCaseRuleResponse.case_rules required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_connectcases.types.batch_get_case_rule_error_list
 
         out["errors"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> BatchGetCaseRuleResponse:
         )
     else:
         raise DeserializationError("BatchGetCaseRuleResponse.errors required")
-    if "unprocessedCaseRules" in data:
+    if data.get("unprocessedCaseRules") is not None:
         import capo_connectcases.types.batch_get_case_rule_unprocessed_list
 
         out["unprocessed_case_rules"] = (

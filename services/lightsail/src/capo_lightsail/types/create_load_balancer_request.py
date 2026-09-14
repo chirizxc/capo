@@ -79,23 +79,23 @@ def serialize_aws_json_1_1(value: CreateLoadBalancerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLoadBalancerRequest:
     out: CreateLoadBalancerRequest = {}  # type: ignore[typeddict-item]
-    if "loadBalancerName" in data:
+    if data.get("loadBalancerName") is not None:
         out["load_balancer_name"] = data["loadBalancerName"]
     else:
         raise DeserializationError(
             "CreateLoadBalancerRequest.load_balancer_name required"
         )
-    if "instancePort" in data:
+    if data.get("instancePort") is not None:
         out["instance_port"] = data["instancePort"]
     else:
         out["instance_port"] = 0
-    if "healthCheckPath" in data:
+    if data.get("healthCheckPath") is not None:
         out["health_check_path"] = data["healthCheckPath"]
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
-    if "certificateDomainName" in data:
+    if data.get("certificateDomainName") is not None:
         out["certificate_domain_name"] = data["certificateDomainName"]
-    if "certificateAlternativeNames" in data:
+    if data.get("certificateAlternativeNames") is not None:
         import capo_lightsail.types.domain_name_list
 
         out["certificate_alternative_names"] = (
@@ -103,13 +103,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLoadBalancerRequest:
                 data["certificateAlternativeNames"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_lightsail.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -117,6 +117,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLoadBalancerRequest:
                 data["ipAddressType"]
             )
         )
-    if "tlsPolicyName" in data:
+    if data.get("tlsPolicyName") is not None:
         out["tls_policy_name"] = data["tlsPolicyName"]
     return out

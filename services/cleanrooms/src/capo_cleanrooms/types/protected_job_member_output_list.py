@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ProtectedJobMemberOutputList:
 
     out: ProtectedJobMemberOutputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.protected_job_single_member_output.deserialize_json(
                 item

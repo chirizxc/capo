@@ -62,9 +62,9 @@ def serialize_aws_json_1_1(value: ConditionalForwarder) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConditionalForwarder:
     out: ConditionalForwarder = {}  # type: ignore[typeddict-item]
-    if "RemoteDomainName" in data:
+    if data.get("RemoteDomainName") is not None:
         out["remote_domain_name"] = data["RemoteDomainName"]
-    if "DnsIpAddrs" in data:
+    if data.get("DnsIpAddrs") is not None:
         import capo_directory_service.types.dns_ip_addrs
 
         out["dns_ip_addrs"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConditionalForwarder:
                 data["DnsIpAddrs"]
             )
         )
-    if "DnsIpv6Addrs" in data:
+    if data.get("DnsIpv6Addrs") is not None:
         import capo_directory_service.types.dns_ipv6_addrs
 
         out["dns_ipv6_addrs"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConditionalForwarder:
                 data["DnsIpv6Addrs"]
             )
         )
-    if "ReplicationScope" in data:
+    if data.get("ReplicationScope") is not None:
         import capo_directory_service.types.replication_scope
 
         out["replication_scope"] = (

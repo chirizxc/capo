@@ -14,4 +14,4 @@ def serialize_json(value: GroupByColumnNameList) -> list:
 
 
 def deserialize_json(data: list) -> GroupByColumnNameList:
-    return list(data)
+    return [item for item in data if item is not None]

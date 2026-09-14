@@ -13,9 +13,9 @@ from capo_sagemaker_runtime import AsyncSageMakerRuntimeClient
 
 
 async def main():
-    async with AsyncSageMakerRuntimeClient() as s3:
+    async with AsyncSageMakerRuntimeClient() as sage_maker_runtime:
         # Example: call the invoke_endpoint operation
-        response = await s3.invoke_endpoint()
+        response = await sage_maker_runtime.invoke_endpoint()
         print(response["body"])
 ```
 
@@ -29,9 +29,9 @@ from capo_sagemaker_runtime.error import InternalDependencyException
 
 
 async def main():
-    async with AsyncSageMakerRuntimeClient() as s3:
+    async with AsyncSageMakerRuntimeClient() as sage_maker_runtime:
         try:
-            await s3.invoke_endpoint()
+            await sage_maker_runtime.invoke_endpoint()
         except InternalDependencyException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_sagemaker_runtime import AsyncSageMakerRuntimeClient
 
 
 async def main():
-    async with AsyncSageMakerRuntimeClient() as s3:
+    async with AsyncSageMakerRuntimeClient() as sage_maker_runtime:
         # Default: 3 attempts for every operation
-        response = await s3.invoke_endpoint()
+        response = await sage_maker_runtime.invoke_endpoint()
 
         # Override per operation
-        response = await s3.invoke_endpoint(config_overrides={"retry_max_attempts": 5})
+        response = await sage_maker_runtime.invoke_endpoint(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.invoke_endpoint(config_overrides={"retry_max_attempts": 1})
+        response = await sage_maker_runtime.invoke_endpoint(config_overrides={"retry_max_attempts": 1})
 ```

@@ -43,14 +43,14 @@ def serialize_aws_json_1_1(value: ListEntitiesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEntitiesRequest:
     out: ListEntitiesRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "ParentEntityName" in data:
+    if data.get("ParentEntityName") is not None:
         out["parent_entity_name"] = data["ParentEntityName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "DataStoreApiVersion" in data:
+    if data.get("DataStoreApiVersion") is not None:
         out["data_store_api_version"] = data["DataStoreApiVersion"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SubscriberResourceList:
 
     out: SubscriberResourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securitylake.types.subscriber_resource.deserialize_json(item))
     return out

@@ -13,9 +13,9 @@ from capo_network_firewall import AsyncNetworkFirewallClient
 
 
 async def main():
-    async with AsyncNetworkFirewallClient() as s3:
+    async with AsyncNetworkFirewallClient() as network_firewall:
         # Example: call the accept_network_firewall_transit_gateway_attachment operation
-        response = await s3.accept_network_firewall_transit_gateway_attachment()
+        response = await network_firewall.accept_network_firewall_transit_gateway_attachment()
         print(response["transit_gateway_attachment_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_network_firewall import AsyncNetworkFirewallClient
 
 
 async def main():
-    async with AsyncNetworkFirewallClient() as s3:
+    async with AsyncNetworkFirewallClient() as network_firewall:
         # Example: paginate over get_analysis_report_results
-        async for item in s3.iter_get_analysis_report_results():
+        async for item in network_firewall.iter_get_analysis_report_results():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_network_firewall.error import InternalServerError
 
 
 async def main():
-    async with AsyncNetworkFirewallClient() as s3:
+    async with AsyncNetworkFirewallClient() as network_firewall:
         try:
-            await s3.accept_network_firewall_transit_gateway_attachment()
+            await network_firewall.accept_network_firewall_transit_gateway_attachment()
         except InternalServerError as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_network_firewall import AsyncNetworkFirewallClient
 
 
 async def main():
-    async with AsyncNetworkFirewallClient() as s3:
+    async with AsyncNetworkFirewallClient() as network_firewall:
         # Default: 3 attempts for every operation
-        response = await s3.accept_network_firewall_transit_gateway_attachment()
+        response = await network_firewall.accept_network_firewall_transit_gateway_attachment()
 
         # Override per operation
-        response = await s3.accept_network_firewall_transit_gateway_attachment(config_overrides={"retry_max_attempts": 5})
+        response = await network_firewall.accept_network_firewall_transit_gateway_attachment(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_network_firewall_transit_gateway_attachment(config_overrides={"retry_max_attempts": 1})
+        response = await network_firewall.accept_network_firewall_transit_gateway_attachment(config_overrides={"retry_max_attempts": 1})
 ```

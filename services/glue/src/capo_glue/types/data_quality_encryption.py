@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DataQualityEncryption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityEncryption:
     out: DataQualityEncryption = {}  # type: ignore[typeddict-item]
-    if "DataQualityEncryptionMode" in data:
+    if data.get("DataQualityEncryptionMode") is not None:
         import capo_glue.types.data_quality_encryption_mode
 
         out["data_quality_encryption_mode"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityEncryption:
                 data["DataQualityEncryptionMode"]
             )
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

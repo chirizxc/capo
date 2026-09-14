@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AccountRecoverySettingType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountRecoverySettingType:
     out: AccountRecoverySettingType = {}  # type: ignore[typeddict-item]
-    if "RecoveryMechanisms" in data:
+    if data.get("RecoveryMechanisms") is not None:
         import capo_cognito_identity_provider.types.recovery_mechanisms_type
 
         out["recovery_mechanisms"] = (

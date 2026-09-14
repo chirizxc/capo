@@ -35,7 +35,7 @@ def serialize_json(value: PutVoiceConnectorLoggingConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutVoiceConnectorLoggingConfigurationRequest:
     out: PutVoiceConnectorLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "LoggingConfiguration" in data:
+    if data.get("LoggingConfiguration") is not None:
         import capo_chime_sdk_voice.types.logging_configuration
 
         out["logging_configuration"] = (

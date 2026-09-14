@@ -43,7 +43,7 @@ def serialize_json(value: ListDashboardVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDashboardVersionsResponse:
     out: ListDashboardVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "DashboardVersionSummaryList" in data:
+    if data.get("DashboardVersionSummaryList") is not None:
         import capo_quicksight.types.dashboard_version_summary_list
 
         out["dashboard_version_summary_list"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> ListDashboardVersionsResponse:
                 data["DashboardVersionSummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

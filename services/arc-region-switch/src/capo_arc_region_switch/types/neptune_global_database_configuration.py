@@ -73,15 +73,15 @@ def serialize_aws_json_1_0(value: NeptuneGlobalDatabaseConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NeptuneGlobalDatabaseConfiguration:
     out: NeptuneGlobalDatabaseConfiguration = {}  # type: ignore[typeddict-item]
-    if "timeoutMinutes" in data:
+    if data.get("timeoutMinutes") is not None:
         out["timeout_minutes"] = data["timeoutMinutes"]
     else:
         out["timeout_minutes"] = 60
-    if "crossAccountRole" in data:
+    if data.get("crossAccountRole") is not None:
         out["cross_account_role"] = data["crossAccountRole"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "behavior" in data:
+    if data.get("behavior") is not None:
         import capo_arc_region_switch.types.neptune_default_behavior
 
         out["behavior"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> NeptuneGlobalDatabaseConfiguration:
         )
     else:
         out["behavior"] = "switchoverOnly"
-    if "ungraceful" in data:
+    if data.get("ungraceful") is not None:
         import capo_arc_region_switch.types.neptune_ungraceful
 
         out["ungraceful"] = (
@@ -99,13 +99,13 @@ def deserialize_aws_json_1_0(data: dict) -> NeptuneGlobalDatabaseConfiguration:
                 data["ungraceful"]
             )
         )
-    if "globalClusterIdentifier" in data:
+    if data.get("globalClusterIdentifier") is not None:
         out["global_cluster_identifier"] = data["globalClusterIdentifier"]
     else:
         raise DeserializationError(
             "NeptuneGlobalDatabaseConfiguration.global_cluster_identifier required"
         )
-    if "regionDatabaseClusterArns" in data:
+    if data.get("regionDatabaseClusterArns") is not None:
         import capo_arc_region_switch.types.region_neptune_cluster_arn_map
 
         out["region_database_cluster_arns"] = (

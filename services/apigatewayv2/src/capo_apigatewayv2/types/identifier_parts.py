@@ -44,12 +44,12 @@ def serialize_json(value: IdentifierParts) -> dict:
 
 def deserialize_json(data: dict) -> IdentifierParts:
     out: IdentifierParts = {}  # type: ignore[typeddict-item]
-    if "method" in data:
+    if data.get("method") is not None:
         out["method"] = data["method"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "restApiId" in data:
+    if data.get("restApiId") is not None:
         out["rest_api_id"] = data["restApiId"]
-    if "stage" in data:
+    if data.get("stage") is not None:
         out["stage"] = data["stage"]
     return out

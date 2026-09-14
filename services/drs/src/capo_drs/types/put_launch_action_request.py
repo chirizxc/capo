@@ -61,49 +61,49 @@ def serialize_json(value: PutLaunchActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutLaunchActionRequest:
     out: PutLaunchActionRequest = {}  # type: ignore[typeddict-item]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("PutLaunchActionRequest.resource_id required")
-    if "actionCode" in data:
+    if data.get("actionCode") is not None:
         out["action_code"] = data["actionCode"]
     else:
         raise DeserializationError("PutLaunchActionRequest.action_code required")
-    if "order" in data:
+    if data.get("order") is not None:
         out["order"] = data["order"]
     else:
         raise DeserializationError("PutLaunchActionRequest.order required")
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
     else:
         raise DeserializationError("PutLaunchActionRequest.action_id required")
-    if "optional" in data:
+    if data.get("optional") is not None:
         out["optional"] = data["optional"]
     else:
         raise DeserializationError("PutLaunchActionRequest.optional required")
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
     else:
         raise DeserializationError("PutLaunchActionRequest.active required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("PutLaunchActionRequest.name required")
-    if "actionVersion" in data:
+    if data.get("actionVersion") is not None:
         out["action_version"] = data["actionVersion"]
     else:
         raise DeserializationError("PutLaunchActionRequest.action_version required")
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
     else:
         raise DeserializationError("PutLaunchActionRequest.category required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_drs.types.launch_action_parameters
 
         out["parameters"] = capo_drs.types.launch_action_parameters.deserialize_json(
             data["parameters"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("PutLaunchActionRequest.description required")

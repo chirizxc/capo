@@ -88,15 +88,15 @@ def serialize_aws_json_1_1(value: ApprovalRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApprovalRule:
     out: ApprovalRule = {}  # type: ignore[typeddict-item]
-    if "approvalRuleId" in data:
+    if data.get("approvalRuleId") is not None:
         out["approval_rule_id"] = data["approvalRuleId"]
-    if "approvalRuleName" in data:
+    if data.get("approvalRuleName") is not None:
         out["approval_rule_name"] = data["approvalRuleName"]
-    if "approvalRuleContent" in data:
+    if data.get("approvalRuleContent") is not None:
         out["approval_rule_content"] = data["approvalRuleContent"]
-    if "ruleContentSha256" in data:
+    if data.get("ruleContentSha256") is not None:
         out["rule_content_sha256"] = data["ruleContentSha256"]
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_codecommit.types.last_modified_date
 
         out["last_modified_date"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApprovalRule:
                 data["lastModifiedDate"]
             )
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_codecommit.types.creation_date
 
         out["creation_date"] = (
@@ -112,9 +112,9 @@ def deserialize_aws_json_1_1(data: dict) -> ApprovalRule:
                 data["creationDate"]
             )
         )
-    if "lastModifiedUser" in data:
+    if data.get("lastModifiedUser") is not None:
         out["last_modified_user"] = data["lastModifiedUser"]
-    if "originApprovalRuleTemplate" in data:
+    if data.get("originApprovalRuleTemplate") is not None:
         import capo_codecommit.types.origin_approval_rule_template
 
         out["origin_approval_rule_template"] = (

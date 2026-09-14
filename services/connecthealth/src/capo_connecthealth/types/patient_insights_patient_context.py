@@ -42,13 +42,13 @@ def serialize_json(value: PatientInsightsPatientContext) -> dict:
 
 def deserialize_json(data: dict) -> PatientInsightsPatientContext:
     out: PatientInsightsPatientContext = {}  # type: ignore[typeddict-item]
-    if "patientId" in data:
+    if data.get("patientId") is not None:
         out["patient_id"] = data["patientId"]
     else:
         raise DeserializationError("PatientInsightsPatientContext.patient_id required")
-    if "dateOfBirth" in data:
+    if data.get("dateOfBirth") is not None:
         out["date_of_birth"] = data["dateOfBirth"]
-    if "pronouns" in data:
+    if data.get("pronouns") is not None:
         import capo_connecthealth.types.pronouns
 
         out["pronouns"] = capo_connecthealth.types.pronouns.deserialize_json(

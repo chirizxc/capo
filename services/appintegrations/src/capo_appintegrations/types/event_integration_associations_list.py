@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> EventIntegrationAssociationsList:
 
     out: EventIntegrationAssociationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appintegrations.types.event_integration_association.deserialize_json(
                 item

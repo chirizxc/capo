@@ -31,7 +31,7 @@ def serialize_json(value: OrganizationScanEc2InstanceWithFindings) -> dict:
 
 def deserialize_json(data: dict) -> OrganizationScanEc2InstanceWithFindings:
     out: OrganizationScanEc2InstanceWithFindings = {}  # type: ignore[typeddict-item]
-    if "ebsVolumes" in data:
+    if data.get("ebsVolumes") is not None:
         import capo_guardduty.types.organization_ebs_volumes
 
         out["ebs_volumes"] = (

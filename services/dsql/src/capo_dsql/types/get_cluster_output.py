@@ -83,21 +83,21 @@ def serialize_json(value: GetClusterOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetClusterOutput:
     out: GetClusterOutput = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("GetClusterOutput.identifier required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetClusterOutput.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_dsql.types.cluster_status
 
         out["status"] = capo_dsql.types.cluster_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("GetClusterOutput.status required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_dsql.types.cluster_creation_time
 
         out["creation_time"] = capo_dsql.types.cluster_creation_time.deserialize_json(
@@ -105,13 +105,13 @@ def deserialize_json(data: dict) -> GetClusterOutput:
         )
     else:
         raise DeserializationError("GetClusterOutput.creation_time required")
-    if "deletionProtectionEnabled" in data:
+    if data.get("deletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["deletionProtectionEnabled"]
     else:
         raise DeserializationError(
             "GetClusterOutput.deletion_protection_enabled required"
         )
-    if "multiRegionProperties" in data:
+    if data.get("multiRegionProperties") is not None:
         import capo_dsql.types.multi_region_properties
 
         out["multi_region_properties"] = (
@@ -119,16 +119,16 @@ def deserialize_json(data: dict) -> GetClusterOutput:
                 data["multiRegionProperties"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_dsql.types.tag_map
 
         out["tags"] = capo_dsql.types.tag_map.deserialize_json(data["tags"])
-    if "encryptionDetails" in data:
+    if data.get("encryptionDetails") is not None:
         import capo_dsql.types.encryption_details
 
         out["encryption_details"] = capo_dsql.types.encryption_details.deserialize_json(
             data["encryptionDetails"]
         )
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     return out

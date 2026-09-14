@@ -87,9 +87,9 @@ def serialize_json(value: TelemetryConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TelemetryConfiguration:
     out: TelemetryConfiguration = {}  # type: ignore[typeddict-item]
-    if "AccountIdentifier" in data:
+    if data.get("AccountIdentifier") is not None:
         out["account_identifier"] = data["AccountIdentifier"]
-    if "TelemetryConfigurationState" in data:
+    if data.get("TelemetryConfigurationState") is not None:
         import capo_observabilityadmin.types.telemetry_configuration_state
 
         out["telemetry_configuration_state"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> TelemetryConfiguration:
                 data["TelemetryConfigurationState"]
             )
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_observabilityadmin.types.resource_type
 
         out["resource_type"] = (
@@ -105,9 +105,9 @@ def deserialize_json(data: dict) -> TelemetryConfiguration:
                 data["ResourceType"]
             )
         )
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_observabilityadmin.types.tag_map_output
 
         out["resource_tags"] = (
@@ -115,9 +115,9 @@ def deserialize_json(data: dict) -> TelemetryConfiguration:
                 data["ResourceTags"]
             )
         )
-    if "LastUpdateTimeStamp" in data:
+    if data.get("LastUpdateTimeStamp") is not None:
         out["last_update_time_stamp"] = data["LastUpdateTimeStamp"]
-    if "TelemetrySourceType" in data:
+    if data.get("TelemetrySourceType") is not None:
         import capo_observabilityadmin.types.telemetry_source_type
 
         out["telemetry_source_type"] = (

@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: Alarm) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Alarm:
     out: Alarm = {}  # type: ignore[typeddict-item]
-    if "AlarmName" in data:
+    if data.get("AlarmName") is not None:
         out["alarm_name"] = data["AlarmName"]
     else:
         raise DeserializationError("Alarm.alarm_name required")
-    if "AlarmARN" in data:
+    if data.get("AlarmARN") is not None:
         out["alarm_arn"] = data["AlarmARN"]
     else:
         raise DeserializationError("Alarm.alarm_arn required")

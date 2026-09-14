@@ -31,7 +31,7 @@ def serialize_json(value: VideoFeatures) -> dict:
 
 def deserialize_json(data: dict) -> VideoFeatures:
     out: VideoFeatures = {}  # type: ignore[typeddict-item]
-    if "MaxResolution" in data:
+    if data.get("MaxResolution") is not None:
         import capo_chime_sdk_meetings.types.video_resolution
 
         out["max_resolution"] = (

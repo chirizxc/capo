@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: DevEndpointCustomLibraries) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DevEndpointCustomLibraries:
     out: DevEndpointCustomLibraries = {}  # type: ignore[typeddict-item]
-    if "ExtraPythonLibsS3Path" in data:
+    if data.get("ExtraPythonLibsS3Path") is not None:
         out["extra_python_libs_s3_path"] = data["ExtraPythonLibsS3Path"]
-    if "ExtraJarsS3Path" in data:
+    if data.get("ExtraJarsS3Path") is not None:
         out["extra_jars_s3_path"] = data["ExtraJarsS3Path"]
     return out

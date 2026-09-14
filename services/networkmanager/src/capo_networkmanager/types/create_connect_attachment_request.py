@@ -63,27 +63,27 @@ def serialize_json(value: CreateConnectAttachmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectAttachmentRequest:
     out: CreateConnectAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
     else:
         raise DeserializationError(
             "CreateConnectAttachmentRequest.core_network_id required"
         )
-    if "EdgeLocation" in data:
+    if data.get("EdgeLocation") is not None:
         out["edge_location"] = data["EdgeLocation"]
     else:
         raise DeserializationError(
             "CreateConnectAttachmentRequest.edge_location required"
         )
-    if "TransportAttachmentId" in data:
+    if data.get("TransportAttachmentId") is not None:
         out["transport_attachment_id"] = data["TransportAttachmentId"]
     else:
         raise DeserializationError(
             "CreateConnectAttachmentRequest.transport_attachment_id required"
         )
-    if "RoutingPolicyLabel" in data:
+    if data.get("RoutingPolicyLabel") is not None:
         out["routing_policy_label"] = data["RoutingPolicyLabel"]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_networkmanager.types.connect_attachment_options
 
         out["options"] = (
@@ -93,10 +93,10 @@ def deserialize_json(data: dict) -> CreateConnectAttachmentRequest:
         )
     else:
         raise DeserializationError("CreateConnectAttachmentRequest.options required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

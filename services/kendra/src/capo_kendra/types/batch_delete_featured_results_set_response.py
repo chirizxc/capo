@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: BatchDeleteFeaturedResultsSetResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteFeaturedResultsSetResponse:
     out: BatchDeleteFeaturedResultsSetResponse = {}  # type: ignore[typeddict-item]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_kendra.types.batch_delete_featured_results_set_errors
 
         out["errors"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: LineageConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LineageConfiguration:
     out: LineageConfiguration = {}  # type: ignore[typeddict-item]
-    if "CrawlerLineageSettings" in data:
+    if data.get("CrawlerLineageSettings") is not None:
         import capo_glue.types.crawler_lineage_settings
 
         out["crawler_lineage_settings"] = (

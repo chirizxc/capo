@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfPatchOperation:
 
     out: ListOfPatchOperation = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_api_gateway.types.patch_operation.deserialize_json(item))
     return out

@@ -37,15 +37,20 @@ class ResourceScanInProgressException(ServiceError):
 
     code: str | None = "ResourceScanInProgressException"
 
-    def __init__(self, data: ResourceScanInProgressException_):
+    def __init__(
+        self, data: ResourceScanInProgressException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceScanInProgressException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ResourceScanInProgressException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ResourceScanInProgressException":
+        return cls(deserialize_query(el), message)

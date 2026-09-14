@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: JoinColumn) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JoinColumn:
     out: JoinColumn = {}  # type: ignore[typeddict-item]
-    if "From" in data:
+    if data.get("From") is not None:
         out["from"] = data["From"]
     else:
         raise DeserializationError("JoinColumn.from required")
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["keys"] = capo_glue.types.glue_studio_path_list.deserialize_aws_json_1_1(

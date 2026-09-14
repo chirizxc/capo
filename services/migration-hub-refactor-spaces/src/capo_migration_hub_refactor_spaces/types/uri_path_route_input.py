@@ -54,15 +54,15 @@ def serialize_json(value: UriPathRouteInput) -> dict:
 
 def deserialize_json(data: dict) -> UriPathRouteInput:
     out: UriPathRouteInput = {}  # type: ignore[typeddict-item]
-    if "SourcePath" in data:
+    if data.get("SourcePath") is not None:
         out["source_path"] = data["SourcePath"]
     else:
         raise DeserializationError("UriPathRouteInput.source_path required")
-    if "ActivationState" in data:
+    if data.get("ActivationState") is not None:
         out["activation_state"] = data["ActivationState"]
     else:
         raise DeserializationError("UriPathRouteInput.activation_state required")
-    if "Methods" in data:
+    if data.get("Methods") is not None:
         import capo_migration_hub_refactor_spaces.types.http_methods
 
         out["methods"] = (
@@ -70,8 +70,8 @@ def deserialize_json(data: dict) -> UriPathRouteInput:
                 data["Methods"]
             )
         )
-    if "IncludeChildPaths" in data:
+    if data.get("IncludeChildPaths") is not None:
         out["include_child_paths"] = data["IncludeChildPaths"]
-    if "AppendSourcePath" in data:
+    if data.get("AppendSourcePath") is not None:
         out["append_source_path"] = data["AppendSourcePath"]
     return out

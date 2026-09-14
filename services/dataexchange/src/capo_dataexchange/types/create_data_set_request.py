@@ -41,19 +41,19 @@ def serialize_json(value: CreateDataSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataSetRequest:
     out: CreateDataSetRequest = {}  # type: ignore[typeddict-item]
-    if "AssetType" in data:
+    if data.get("AssetType") is not None:
         out["asset_type"] = data["AssetType"]
     else:
         raise DeserializationError("CreateDataSetRequest.asset_type required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateDataSetRequest.description required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDataSetRequest.name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_dataexchange.types.map_of__string
 
         out["tags"] = capo_dataexchange.types.map_of__string.deserialize_json(

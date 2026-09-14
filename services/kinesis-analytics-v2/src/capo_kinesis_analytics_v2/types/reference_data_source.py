@@ -47,11 +47,11 @@ def serialize_aws_json_1_1(value: ReferenceDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReferenceDataSource:
     out: ReferenceDataSource = {}  # type: ignore[typeddict-item]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("ReferenceDataSource.table_name required")
-    if "S3ReferenceDataSource" in data:
+    if data.get("S3ReferenceDataSource") is not None:
         import capo_kinesis_analytics_v2.types.s3_reference_data_source
 
         out["s3_reference_data_source"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReferenceDataSource:
                 data["S3ReferenceDataSource"]
             )
         )
-    if "ReferenceSchema" in data:
+    if data.get("ReferenceSchema") is not None:
         import capo_kinesis_analytics_v2.types.source_schema
 
         out["reference_schema"] = (

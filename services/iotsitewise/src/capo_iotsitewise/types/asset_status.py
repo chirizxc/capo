@@ -35,7 +35,7 @@ def serialize_json(value: AssetStatus) -> dict:
 
 def deserialize_json(data: dict) -> AssetStatus:
     out: AssetStatus = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_iotsitewise.types.asset_state
 
         out["state"] = capo_iotsitewise.types.asset_state.deserialize_json(
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> AssetStatus:
         )
     else:
         raise DeserializationError("AssetStatus.state required")
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_iotsitewise.types.error_details
 
         out["error"] = capo_iotsitewise.types.error_details.deserialize_json(

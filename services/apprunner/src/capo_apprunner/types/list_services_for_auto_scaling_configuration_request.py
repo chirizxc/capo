@@ -40,14 +40,14 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ListServicesForAutoScalingConfigurationRequest:
     out: ListServicesForAutoScalingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "AutoScalingConfigurationArn" in data:
+    if data.get("AutoScalingConfigurationArn") is not None:
         out["auto_scaling_configuration_arn"] = data["AutoScalingConfigurationArn"]
     else:
         raise DeserializationError(
             "ListServicesForAutoScalingConfigurationRequest.auto_scaling_configuration_arn required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

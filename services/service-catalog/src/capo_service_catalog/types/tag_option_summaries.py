@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> TagOptionSummaries:
 
     out: TagOptionSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_service_catalog.types.tag_option_summary.deserialize_aws_json_1_1(item)
         )

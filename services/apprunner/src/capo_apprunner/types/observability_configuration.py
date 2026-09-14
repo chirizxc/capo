@@ -87,11 +87,11 @@ def serialize_aws_json_1_0(value: ObservabilityConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ObservabilityConfiguration:
     out: ObservabilityConfiguration = {}  # type: ignore[typeddict-item]
-    if "ObservabilityConfigurationArn" in data:
+    if data.get("ObservabilityConfigurationArn") is not None:
         out["observability_configuration_arn"] = data["ObservabilityConfigurationArn"]
-    if "ObservabilityConfigurationName" in data:
+    if data.get("ObservabilityConfigurationName") is not None:
         out["observability_configuration_name"] = data["ObservabilityConfigurationName"]
-    if "TraceConfiguration" in data:
+    if data.get("TraceConfiguration") is not None:
         import capo_apprunner.types.trace_configuration
 
         out["trace_configuration"] = (
@@ -99,17 +99,17 @@ def deserialize_aws_json_1_0(data: dict) -> ObservabilityConfiguration:
                 data["TraceConfiguration"]
             )
         )
-    if "ObservabilityConfigurationRevision" in data:
+    if data.get("ObservabilityConfigurationRevision") is not None:
         out["observability_configuration_revision"] = data[
             "ObservabilityConfigurationRevision"
         ]
     else:
         out["observability_configuration_revision"] = 0
-    if "Latest" in data:
+    if data.get("Latest") is not None:
         out["latest"] = data["Latest"]
     else:
         out["latest"] = False
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_apprunner.types.observability_configuration_status
 
         out["status"] = (
@@ -117,13 +117,13 @@ def deserialize_aws_json_1_0(data: dict) -> ObservabilityConfiguration:
                 data["Status"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["created_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "DeletedAt" in data:
+    if data.get("DeletedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["deleted_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(

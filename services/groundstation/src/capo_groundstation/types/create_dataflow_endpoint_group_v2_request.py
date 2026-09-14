@@ -54,7 +54,7 @@ def serialize_json(value: CreateDataflowEndpointGroupV2Request) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataflowEndpointGroupV2Request:
     out: CreateDataflowEndpointGroupV2Request = {}  # type: ignore[typeddict-item]
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_groundstation.types.create_endpoint_details_list
 
         out["endpoints"] = (
@@ -66,13 +66,13 @@ def deserialize_json(data: dict) -> CreateDataflowEndpointGroupV2Request:
         raise DeserializationError(
             "CreateDataflowEndpointGroupV2Request.endpoints required"
         )
-    if "contactPrePassDurationSeconds" in data:
+    if data.get("contactPrePassDurationSeconds") is not None:
         out["contact_pre_pass_duration_seconds"] = data["contactPrePassDurationSeconds"]
-    if "contactPostPassDurationSeconds" in data:
+    if data.get("contactPostPassDurationSeconds") is not None:
         out["contact_post_pass_duration_seconds"] = data[
             "contactPostPassDurationSeconds"
         ]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_groundstation.types.tags_map
 
         out["tags"] = capo_groundstation.types.tags_map.deserialize_json(data["tags"])

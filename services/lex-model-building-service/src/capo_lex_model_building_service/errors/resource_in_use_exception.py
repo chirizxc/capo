@@ -44,7 +44,7 @@ def serialize_json(value: ResourceInUseException_) -> dict:
 
 def deserialize_json(data: dict) -> ResourceInUseException_:
     out: ResourceInUseException_ = {}  # type: ignore[typeddict-item]
-    if "referenceType" in data:
+    if data.get("referenceType") is not None:
         import capo_lex_model_building_service.types.reference_type
 
         out["reference_type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ResourceInUseException_:
                 data["referenceType"]
             )
         )
-    if "exampleReference" in data:
+    if data.get("exampleReference") is not None:
         import capo_lex_model_building_service.types.resource_reference
 
         out["example_reference"] = (
@@ -68,15 +68,18 @@ class ResourceInUseException(ServiceError):
 
     code: str | None = "ResourceInUseException"
 
-    def __init__(self, data: ResourceInUseException_):
+    def __init__(self, data: ResourceInUseException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceInUseException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceInUseException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceInUseException":
+        return cls(deserialize_json(data), message)

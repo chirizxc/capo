@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: CreateAdapterVersionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAdapterVersionResponse:
     out: CreateAdapterVersionResponse = {}  # type: ignore[typeddict-item]
-    if "AdapterId" in data:
+    if data.get("AdapterId") is not None:
         out["adapter_id"] = data["AdapterId"]
-    if "AdapterVersion" in data:
+    if data.get("AdapterVersion") is not None:
         out["adapter_version"] = data["AdapterVersion"]
     return out

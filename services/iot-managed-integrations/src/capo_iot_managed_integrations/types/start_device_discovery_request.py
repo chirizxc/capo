@@ -134,7 +134,7 @@ def serialize_json(value: StartDeviceDiscoveryRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDeviceDiscoveryRequest:
     out: StartDeviceDiscoveryRequest = {}  # type: ignore[typeddict-item]
-    if "DiscoveryType" in data:
+    if data.get("DiscoveryType") is not None:
         import capo_iot_managed_integrations.types.discovery_type
 
         out["discovery_type"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> StartDeviceDiscoveryRequest:
         raise DeserializationError(
             "StartDeviceDiscoveryRequest.discovery_type required"
         )
-    if "CustomProtocolDetail" in data:
+    if data.get("CustomProtocolDetail") is not None:
         import capo_iot_managed_integrations.types.custom_protocol_detail
 
         out["custom_protocol_detail"] = (
@@ -154,15 +154,15 @@ def deserialize_json(data: dict) -> StartDeviceDiscoveryRequest:
                 data["CustomProtocolDetail"]
             )
         )
-    if "ControllerIdentifier" in data:
+    if data.get("ControllerIdentifier") is not None:
         out["controller_identifier"] = data["ControllerIdentifier"]
-    if "ConnectorAssociationIdentifier" in data:
+    if data.get("ConnectorAssociationIdentifier") is not None:
         out["connector_association_identifier"] = data["ConnectorAssociationIdentifier"]
-    if "AccountAssociationId" in data:
+    if data.get("AccountAssociationId") is not None:
         out["account_association_id"] = data["AccountAssociationId"]
-    if "AuthenticationMaterial" in data:
+    if data.get("AuthenticationMaterial") is not None:
         out["authentication_material"] = data["AuthenticationMaterial"]
-    if "AuthenticationMaterialType" in data:
+    if data.get("AuthenticationMaterialType") is not None:
         import capo_iot_managed_integrations.types.discovery_auth_material_type
 
         out["authentication_material_type"] = (
@@ -170,15 +170,15 @@ def deserialize_json(data: dict) -> StartDeviceDiscoveryRequest:
                 data["AuthenticationMaterialType"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(
             data["Tags"]
         )
-    if "ConnectorDeviceIdList" in data:
+    if data.get("ConnectorDeviceIdList") is not None:
         import capo_iot_managed_integrations.types.connector_device_id_list
 
         out["connector_device_id_list"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> StartDeviceDiscoveryRequest:
                 data["ConnectorDeviceIdList"]
             )
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_iot_managed_integrations.types.protocol_type
 
         out["protocol"] = (
@@ -194,6 +194,6 @@ def deserialize_json(data: dict) -> StartDeviceDiscoveryRequest:
                 data["Protocol"]
             )
         )
-    if "EndDeviceIdentifier" in data:
+    if data.get("EndDeviceIdentifier") is not None:
         out["end_device_identifier"] = data["EndDeviceIdentifier"]
     return out

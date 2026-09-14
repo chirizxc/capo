@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MatchGroupsList:
 
     out: MatchGroupsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_entityresolution.types.match_group.deserialize_json(item))
     return out

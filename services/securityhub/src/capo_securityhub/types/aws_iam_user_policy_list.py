@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AwsIamUserPolicyList:
 
     out: AwsIamUserPolicyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.aws_iam_user_policy.deserialize_json(item))
     return out

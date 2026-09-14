@@ -57,13 +57,13 @@ def serialize_json(value: CentralizationRuleDestination) -> dict:
 
 def deserialize_json(data: dict) -> CentralizationRuleDestination:
     out: CentralizationRuleDestination = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("CentralizationRuleDestination.region required")
-    if "Account" in data:
+    if data.get("Account") is not None:
         out["account"] = data["Account"]
-    if "DestinationLogsConfiguration" in data:
+    if data.get("DestinationLogsConfiguration") is not None:
         import capo_observabilityadmin.types.destination_logs_configuration
 
         out["destination_logs_configuration"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> CentralizationRuleDestination:
                 data["DestinationLogsConfiguration"]
             )
         )
-    if "DestinationMetricsConfiguration" in data:
+    if data.get("DestinationMetricsConfiguration") is not None:
         import capo_observabilityadmin.types.destination_metrics_configuration
 
         out["destination_metrics_configuration"] = (

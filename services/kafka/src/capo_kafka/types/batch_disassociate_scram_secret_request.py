@@ -30,7 +30,7 @@ def serialize_json(value: BatchDisassociateScramSecretRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDisassociateScramSecretRequest:
     out: BatchDisassociateScramSecretRequest = {}  # type: ignore[typeddict-item]
-    if "secretArnList" in data:
+    if data.get("secretArnList") is not None:
         import capo_kafka.types.__list_of__string
 
         out["secret_arn_list"] = capo_kafka.types.__list_of__string.deserialize_json(

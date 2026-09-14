@@ -36,9 +36,9 @@ def serialize_json(value: SimulationAppEndpointInfo) -> dict:
 
 def deserialize_json(data: dict) -> SimulationAppEndpointInfo:
     out: SimulationAppEndpointInfo = {}  # type: ignore[typeddict-item]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
-    if "IngressPortMappings" in data:
+    if data.get("IngressPortMappings") is not None:
         import capo_simspaceweaver.types.app_port_mappings
 
         out["ingress_port_mappings"] = (

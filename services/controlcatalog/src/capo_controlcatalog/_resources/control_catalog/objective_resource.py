@@ -78,7 +78,7 @@ class ObjectiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controlcatalog.types.list_objectives_request.ListObjectivesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_controlcatalog.types.list_objectives_request.ListObjectivesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -91,6 +91,7 @@ class ObjectiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -143,7 +144,7 @@ class AsyncObjectiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controlcatalog.types.list_objectives_request.ListObjectivesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_controlcatalog.types.list_objectives_request.ListObjectivesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -156,4 +157,5 @@ class AsyncObjectiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

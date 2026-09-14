@@ -36,7 +36,7 @@ def serialize_json(value: ListDataLakeExceptionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDataLakeExceptionsResponse:
     out: ListDataLakeExceptionsResponse = {}  # type: ignore[typeddict-item]
-    if "exceptions" in data:
+    if data.get("exceptions") is not None:
         import capo_securitylake.types.data_lake_exception_list
 
         out["exceptions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListDataLakeExceptionsResponse:
                 data["exceptions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

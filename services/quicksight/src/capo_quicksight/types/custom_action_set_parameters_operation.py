@@ -30,7 +30,7 @@ def serialize_json(value: CustomActionSetParametersOperation) -> dict:
 
 def deserialize_json(data: dict) -> CustomActionSetParametersOperation:
     out: CustomActionSetParametersOperation = {}  # type: ignore[typeddict-item]
-    if "ParameterValueConfigurations" in data:
+    if data.get("ParameterValueConfigurations") is not None:
         import capo_quicksight.types.set_parameter_value_configuration_list
 
         out["parameter_value_configurations"] = (

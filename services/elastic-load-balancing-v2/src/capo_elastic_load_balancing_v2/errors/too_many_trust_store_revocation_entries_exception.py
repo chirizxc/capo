@@ -41,15 +41,22 @@ class TooManyTrustStoreRevocationEntriesException(ServiceError):
 
     code: str | None = "TooManyTrustStoreRevocationEntriesException"
 
-    def __init__(self, data: TooManyTrustStoreRevocationEntriesException_):
+    def __init__(
+        self,
+        data: TooManyTrustStoreRevocationEntriesException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyTrustStoreRevocationEntriesException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TooManyTrustStoreRevocationEntriesException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TooManyTrustStoreRevocationEntriesException":
+        return cls(deserialize_query(el), message)

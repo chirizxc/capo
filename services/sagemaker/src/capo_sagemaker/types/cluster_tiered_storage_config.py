@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: ClusterTieredStorageConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterTieredStorageConfig:
     out: ClusterTieredStorageConfig = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_sagemaker.types.cluster_config_mode
 
         out["mode"] = capo_sagemaker.types.cluster_config_mode.deserialize_aws_json_1_1(
             data["Mode"]
         )
-    if "InstanceMemoryAllocationPercentage" in data:
+    if data.get("InstanceMemoryAllocationPercentage") is not None:
         out["instance_memory_allocation_percentage"] = data[
             "InstanceMemoryAllocationPercentage"
         ]

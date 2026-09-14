@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: AuditNotificationTargetConfigurations) ->
 def deserialize_json(data: dict) -> AuditNotificationTargetConfigurations:
     out: AuditNotificationTargetConfigurations = {}
     for key, value in data.items():
-        import capo_iot.types.audit_notification_target
         import capo_iot.types.audit_notification_type
+
+        if value is None:
+            continue
+        import capo_iot.types.audit_notification_target
 
         out[capo_iot.types.audit_notification_type.deserialize_json(key)] = (
             capo_iot.types.audit_notification_target.deserialize_json(value)

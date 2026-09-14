@@ -66,29 +66,29 @@ def serialize_json(value: LegendOptions) -> dict:
 
 def deserialize_json(data: dict) -> LegendOptions:
     out: LegendOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         import capo_quicksight.types.label_options
 
         out["title"] = capo_quicksight.types.label_options.deserialize_json(
             data["Title"]
         )
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_quicksight.types.legend_position
 
         out["position"] = capo_quicksight.types.legend_position.deserialize_json(
             data["Position"]
         )
-    if "Width" in data:
+    if data.get("Width") is not None:
         out["width"] = data["Width"]
-    if "Height" in data:
+    if data.get("Height") is not None:
         out["height"] = data["Height"]
-    if "ValueFontConfiguration" in data:
+    if data.get("ValueFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["value_font_configuration"] = (

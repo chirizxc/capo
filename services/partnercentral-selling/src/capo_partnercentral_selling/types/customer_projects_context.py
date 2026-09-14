@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: CustomerProjectsContext) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CustomerProjectsContext:
     out: CustomerProjectsContext = {}  # type: ignore[typeddict-item]
-    if "Customer" in data:
+    if data.get("Customer") is not None:
         import capo_partnercentral_selling.types.engagement_customer
 
         out["customer"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> CustomerProjectsContext:
                 data["Customer"]
             )
         )
-    if "Project" in data:
+    if data.get("Project") is not None:
         import capo_partnercentral_selling.types.engagement_customer_project_details
 
         out["project"] = (

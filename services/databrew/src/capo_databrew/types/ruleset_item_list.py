@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RulesetItemList:
 
     out: RulesetItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_databrew.types.ruleset_item.deserialize_json(item))
     return out

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidApprovalRuleTemplateNameException_) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidApprovalRuleTemplateNameException_:
     out: InvalidApprovalRuleTemplateNameException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,17 +35,22 @@ class InvalidApprovalRuleTemplateNameException(ServiceError):
 
     code: str | None = "InvalidApprovalRuleTemplateNameException"
 
-    def __init__(self, data: InvalidApprovalRuleTemplateNameException_):
+    def __init__(
+        self,
+        data: InvalidApprovalRuleTemplateNameException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidApprovalRuleTemplateNameException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "InvalidApprovalRuleTemplateNameException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

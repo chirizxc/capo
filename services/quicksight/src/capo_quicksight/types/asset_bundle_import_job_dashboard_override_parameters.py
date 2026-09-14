@@ -29,12 +29,12 @@ def serialize_json(value: AssetBundleImportJobDashboardOverrideParameters) -> di
 
 def deserialize_json(data: dict) -> AssetBundleImportJobDashboardOverrideParameters:
     out: AssetBundleImportJobDashboardOverrideParameters = {}  # type: ignore[typeddict-item]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
     else:
         raise DeserializationError(
             "AssetBundleImportJobDashboardOverrideParameters.dashboard_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

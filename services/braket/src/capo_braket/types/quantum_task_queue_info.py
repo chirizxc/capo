@@ -36,16 +36,16 @@ def serialize_json(value: QuantumTaskQueueInfo) -> dict:
 
 def deserialize_json(data: dict) -> QuantumTaskQueueInfo:
     out: QuantumTaskQueueInfo = {}  # type: ignore[typeddict-item]
-    if "queue" in data:
+    if data.get("queue") is not None:
         out["queue"] = data["queue"]
     else:
         raise DeserializationError("QuantumTaskQueueInfo.queue required")
-    if "position" in data:
+    if data.get("position") is not None:
         out["position"] = data["position"]
     else:
         raise DeserializationError("QuantumTaskQueueInfo.position required")
-    if "queuePriority" in data:
+    if data.get("queuePriority") is not None:
         out["queue_priority"] = data["queuePriority"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

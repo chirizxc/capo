@@ -75,9 +75,9 @@ def serialize_json(value: DescribeIpRestrictionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeIpRestrictionResponse:
     out: DescribeIpRestrictionResponse = {}  # type: ignore[typeddict-item]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "IpRestrictionRuleMap" in data:
+    if data.get("IpRestrictionRuleMap") is not None:
         import capo_quicksight.types.ip_restriction_rule_map
 
         out["ip_restriction_rule_map"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> DescribeIpRestrictionResponse:
                 data["IpRestrictionRuleMap"]
             )
         )
-    if "VpcIdRestrictionRuleMap" in data:
+    if data.get("VpcIdRestrictionRuleMap") is not None:
         import capo_quicksight.types.vpc_id_restriction_rule_map
 
         out["vpc_id_restriction_rule_map"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> DescribeIpRestrictionResponse:
                 data["VpcIdRestrictionRuleMap"]
             )
         )
-    if "VpcEndpointIdRestrictionRuleMap" in data:
+    if data.get("VpcEndpointIdRestrictionRuleMap") is not None:
         import capo_quicksight.types.vpc_endpoint_id_restriction_rule_map
 
         out["vpc_endpoint_id_restriction_rule_map"] = (
@@ -101,8 +101,8 @@ def deserialize_json(data: dict) -> DescribeIpRestrictionResponse:
                 data["VpcEndpointIdRestrictionRuleMap"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

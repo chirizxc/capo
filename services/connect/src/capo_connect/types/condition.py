@@ -36,13 +36,13 @@ def serialize_json(value: Condition) -> dict:
 
 def deserialize_json(data: dict) -> Condition:
     out: Condition = {}  # type: ignore[typeddict-item]
-    if "StringCondition" in data:
+    if data.get("StringCondition") is not None:
         import capo_connect.types.string_condition
 
         out["string_condition"] = capo_connect.types.string_condition.deserialize_json(
             data["StringCondition"]
         )
-    if "NumberCondition" in data:
+    if data.get("NumberCondition") is not None:
         import capo_connect.types.number_condition
 
         out["number_condition"] = capo_connect.types.number_condition.deserialize_json(

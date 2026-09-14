@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: DeleteGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteGroupRequest:
     out: DeleteGroupRequest = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     else:
         raise DeserializationError("DeleteGroupRequest.group_name required")
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("DeleteGroupRequest.user_pool_id required")

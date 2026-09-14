@@ -77,31 +77,31 @@ def serialize_json(value: UpdateLaunchConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLaunchConfigurationRequest:
     out: UpdateLaunchConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError(
             "UpdateLaunchConfigurationRequest.source_server_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "launchDisposition" in data:
+    if data.get("launchDisposition") is not None:
         out["launch_disposition"] = data["launchDisposition"]
-    if "targetInstanceTypeRightSizingMethod" in data:
+    if data.get("targetInstanceTypeRightSizingMethod") is not None:
         out["target_instance_type_right_sizing_method"] = data[
             "targetInstanceTypeRightSizingMethod"
         ]
-    if "copyPrivateIp" in data:
+    if data.get("copyPrivateIp") is not None:
         out["copy_private_ip"] = data["copyPrivateIp"]
-    if "copyTags" in data:
+    if data.get("copyTags") is not None:
         out["copy_tags"] = data["copyTags"]
-    if "licensing" in data:
+    if data.get("licensing") is not None:
         import capo_drs.types.licensing
 
         out["licensing"] = capo_drs.types.licensing.deserialize_json(data["licensing"])
-    if "postLaunchEnabled" in data:
+    if data.get("postLaunchEnabled") is not None:
         out["post_launch_enabled"] = data["postLaunchEnabled"]
-    if "launchIntoInstanceProperties" in data:
+    if data.get("launchIntoInstanceProperties") is not None:
         import capo_drs.types.launch_into_instance_properties
 
         out["launch_into_instance_properties"] = (

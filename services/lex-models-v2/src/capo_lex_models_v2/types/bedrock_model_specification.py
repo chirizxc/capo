@@ -57,11 +57,11 @@ def serialize_json(value: BedrockModelSpecification) -> dict:
 
 def deserialize_json(data: dict) -> BedrockModelSpecification:
     out: BedrockModelSpecification = {}  # type: ignore[typeddict-item]
-    if "modelArn" in data:
+    if data.get("modelArn") is not None:
         out["model_arn"] = data["modelArn"]
     else:
         raise DeserializationError("BedrockModelSpecification.model_arn required")
-    if "guardrail" in data:
+    if data.get("guardrail") is not None:
         import capo_lex_models_v2.types.bedrock_guardrail_configuration
 
         out["guardrail"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> BedrockModelSpecification:
                 data["guardrail"]
             )
         )
-    if "traceStatus" in data:
+    if data.get("traceStatus") is not None:
         import capo_lex_models_v2.types.bedrock_trace_status
 
         out["trace_status"] = (
@@ -77,6 +77,6 @@ def deserialize_json(data: dict) -> BedrockModelSpecification:
                 data["traceStatus"]
             )
         )
-    if "customPrompt" in data:
+    if data.get("customPrompt") is not None:
         out["custom_prompt"] = data["customPrompt"]
     return out

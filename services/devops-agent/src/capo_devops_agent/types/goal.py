@@ -102,19 +102,19 @@ def serialize_json(value: Goal) -> dict:
 
 def deserialize_json(data: dict) -> Goal:
     out: Goal = {}  # type: ignore[typeddict-item]
-    if "agentSpaceArn" in data:
+    if data.get("agentSpaceArn") is not None:
         out["agent_space_arn"] = data["agentSpaceArn"]
     else:
         raise DeserializationError("Goal.agent_space_arn required")
-    if "goalId" in data:
+    if data.get("goalId") is not None:
         out["goal_id"] = data["goalId"]
     else:
         raise DeserializationError("Goal.goal_id required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("Goal.title required")
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_devops_agent.types.goal_content
 
         out["content"] = capo_devops_agent.types.goal_content.deserialize_json(
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> Goal:
         )
     else:
         raise DeserializationError("Goal.content required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_devops_agent.types.goal_status
 
         out["status"] = capo_devops_agent.types.goal_status.deserialize_json(
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> Goal:
         )
     else:
         raise DeserializationError("Goal.status required")
-    if "goalType" in data:
+    if data.get("goalType") is not None:
         import capo_devops_agent.types.goal_type
 
         out["goal_type"] = capo_devops_agent.types.goal_type.deserialize_json(
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> Goal:
         )
     else:
         out["goal_type"] = "ONCALL_REPORT"
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_devops_agent.types.back_log_timestamp
 
         out["created_at"] = capo_devops_agent.types.back_log_timestamp.deserialize_json(
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> Goal:
         )
     else:
         raise DeserializationError("Goal.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_devops_agent.types.back_log_timestamp
 
         out["updated_at"] = capo_devops_agent.types.back_log_timestamp.deserialize_json(
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> Goal:
         )
     else:
         raise DeserializationError("Goal.updated_at required")
-    if "lastEvaluatedAt" in data:
+    if data.get("lastEvaluatedAt") is not None:
         import capo_devops_agent.types.back_log_timestamp
 
         out["last_evaluated_at"] = (
@@ -162,15 +162,15 @@ def deserialize_json(data: dict) -> Goal:
                 data["lastEvaluatedAt"]
             )
         )
-    if "lastTaskId" in data:
+    if data.get("lastTaskId") is not None:
         out["last_task_id"] = data["lastTaskId"]
-    if "lastSuccessfulTaskId" in data:
+    if data.get("lastSuccessfulTaskId") is not None:
         out["last_successful_task_id"] = data["lastSuccessfulTaskId"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("Goal.version required")
-    if "evaluationSchedule" in data:
+    if data.get("evaluationSchedule") is not None:
         import capo_devops_agent.types.goal_schedule
 
         out["evaluation_schedule"] = (

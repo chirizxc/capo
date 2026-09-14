@@ -57,15 +57,15 @@ def serialize_json(value: CreateSubscriptionGrantInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSubscriptionGrantInput:
     out: CreateSubscriptionGrantInput = {}  # type: ignore[typeddict-item]
-    if "environmentIdentifier" in data:
+    if data.get("environmentIdentifier") is not None:
         out["environment_identifier"] = data["environmentIdentifier"]
     else:
         raise DeserializationError(
             "CreateSubscriptionGrantInput.environment_identifier required"
         )
-    if "subscriptionTargetIdentifier" in data:
+    if data.get("subscriptionTargetIdentifier") is not None:
         out["subscription_target_identifier"] = data["subscriptionTargetIdentifier"]
-    if "grantedEntity" in data:
+    if data.get("grantedEntity") is not None:
         import capo_datazone.types.granted_entity_input
 
         out["granted_entity"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> CreateSubscriptionGrantInput:
         raise DeserializationError(
             "CreateSubscriptionGrantInput.granted_entity required"
         )
-    if "assetTargetNames" in data:
+    if data.get("assetTargetNames") is not None:
         import capo_datazone.types.asset_target_names
 
         out["asset_target_names"] = (
@@ -85,6 +85,6 @@ def deserialize_json(data: dict) -> CreateSubscriptionGrantInput:
                 data["assetTargetNames"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

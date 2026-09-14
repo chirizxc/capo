@@ -45,15 +45,15 @@ def serialize_json(value: Preview) -> dict:
 
 def deserialize_json(data: dict) -> Preview:
     out: Preview = {}  # type: ignore[typeddict-item]
-    if "previewStatus" in data:
+    if data.get("previewStatus") is not None:
         import capo_apigatewayv2.types.preview_status
 
         out["preview_status"] = capo_apigatewayv2.types.preview_status.deserialize_json(
             data["previewStatus"]
         )
-    if "previewUrl" in data:
+    if data.get("previewUrl") is not None:
         out["preview_url"] = data["previewUrl"]
-    if "statusException" in data:
+    if data.get("statusException") is not None:
         import capo_apigatewayv2.types.status_exception
 
         out["status_exception"] = (

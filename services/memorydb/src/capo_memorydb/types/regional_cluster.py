@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: RegionalCluster) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegionalCluster:
     out: RegionalCluster = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     return out

@@ -57,7 +57,7 @@ def serialize_json(value: PluginVisualConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PluginVisualConfiguration:
     out: PluginVisualConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.plugin_visual_field_wells
 
         out["field_wells"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> PluginVisualConfiguration:
                 data["FieldWells"]
             )
         )
-    if "VisualOptions" in data:
+    if data.get("VisualOptions") is not None:
         import capo_quicksight.types.plugin_visual_options
 
         out["visual_options"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> PluginVisualConfiguration:
                 data["VisualOptions"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.plugin_visual_sort_configuration
 
         out["sort_configuration"] = (

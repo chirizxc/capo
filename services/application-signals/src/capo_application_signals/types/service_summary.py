@@ -66,7 +66,7 @@ def serialize_json(value: ServiceSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceSummary:
     out: ServiceSummary = {}  # type: ignore[typeddict-item]
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["key_attributes"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> ServiceSummary:
         )
     else:
         raise DeserializationError("ServiceSummary.key_attributes required")
-    if "AttributeMaps" in data:
+    if data.get("AttributeMaps") is not None:
         import capo_application_signals.types.attribute_maps
 
         out["attribute_maps"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> ServiceSummary:
                 data["AttributeMaps"]
             )
         )
-    if "MetricReferences" in data:
+    if data.get("MetricReferences") is not None:
         import capo_application_signals.types.metric_references
 
         out["metric_references"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> ServiceSummary:
         )
     else:
         raise DeserializationError("ServiceSummary.metric_references required")
-    if "ServiceGroups" in data:
+    if data.get("ServiceGroups") is not None:
         import capo_application_signals.types.service_groups
 
         out["service_groups"] = (

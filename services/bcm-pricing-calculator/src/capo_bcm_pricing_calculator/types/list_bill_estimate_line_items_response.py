@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: ListBillEstimateLineItemsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListBillEstimateLineItemsResponse:
     out: ListBillEstimateLineItemsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_bcm_pricing_calculator.types.bill_estimate_line_item_summaries
 
         out["items"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListBillEstimateLineItemsResponse:
                 data["items"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

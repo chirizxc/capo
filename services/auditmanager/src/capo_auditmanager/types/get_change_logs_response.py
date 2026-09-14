@@ -32,12 +32,12 @@ def serialize_json(value: GetChangeLogsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetChangeLogsResponse:
     out: GetChangeLogsResponse = {}  # type: ignore[typeddict-item]
-    if "changeLogs" in data:
+    if data.get("changeLogs") is not None:
         import capo_auditmanager.types.change_logs
 
         out["change_logs"] = capo_auditmanager.types.change_logs.deserialize_json(
             data["changeLogs"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

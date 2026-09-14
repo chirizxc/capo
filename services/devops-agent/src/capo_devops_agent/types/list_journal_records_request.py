@@ -46,21 +46,21 @@ def serialize_json(value: ListJournalRecordsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListJournalRecordsRequest:
     out: ListJournalRecordsRequest = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("ListJournalRecordsRequest.execution_id required")
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     else:
         out["limit"] = 100
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "recordType" in data:
+    if data.get("recordType") is not None:
         out["record_type"] = data["recordType"]
     else:
         out["record_type"] = ""
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_devops_agent.types.order_type
 
         out["order"] = capo_devops_agent.types.order_type.deserialize_json(

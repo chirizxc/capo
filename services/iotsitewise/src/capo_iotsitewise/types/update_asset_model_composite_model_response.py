@@ -37,7 +37,7 @@ def serialize_json(value: UpdateAssetModelCompositeModelResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssetModelCompositeModelResponse:
     out: UpdateAssetModelCompositeModelResponse = {}  # type: ignore[typeddict-item]
-    if "assetModelCompositeModelPath" in data:
+    if data.get("assetModelCompositeModelPath") is not None:
         import capo_iotsitewise.types.asset_model_composite_model_path
 
         out["asset_model_composite_model_path"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> UpdateAssetModelCompositeModelResponse:
         raise DeserializationError(
             "UpdateAssetModelCompositeModelResponse.asset_model_composite_model_path required"
         )
-    if "assetModelStatus" in data:
+    if data.get("assetModelStatus") is not None:
         import capo_iotsitewise.types.asset_model_status
 
         out["asset_model_status"] = (

@@ -25,7 +25,7 @@ def serialize_json(value: ListMLModelTransformJobsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListMLModelTransformJobsOutput:
     out: ListMLModelTransformJobsOutput = {}  # type: ignore[typeddict-item]
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_neptunedata.types.string_list
 
         out["ids"] = capo_neptunedata.types.string_list.deserialize_json(data["ids"])

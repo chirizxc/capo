@@ -42,11 +42,11 @@ def serialize_json(value: ListAnnotationImportJobsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAnnotationImportJobsRequest:
     out: ListAnnotationImportJobsRequest = {}  # type: ignore[typeddict-item]
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_omics.types.id_list
 
         out["ids"] = capo_omics.types.id_list.deserialize_json(data["ids"])
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_omics.types.list_annotation_import_jobs_filter
 
         out["filter"] = (

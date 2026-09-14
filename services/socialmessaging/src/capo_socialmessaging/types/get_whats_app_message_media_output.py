@@ -22,8 +22,8 @@ def serialize_json(value: GetWhatsAppMessageMediaOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetWhatsAppMessageMediaOutput:
     out: GetWhatsAppMessageMediaOutput = {}  # type: ignore[typeddict-item]
-    if "mimeType" in data:
+    if data.get("mimeType") is not None:
         out["mime_type"] = data["mimeType"]
-    if "fileSize" in data:
+    if data.get("fileSize") is not None:
         out["file_size"] = data["fileSize"]
     return out

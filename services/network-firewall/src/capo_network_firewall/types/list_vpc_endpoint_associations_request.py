@@ -37,10 +37,10 @@ def serialize_aws_json_1_0(value: ListVpcEndpointAssociationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListVpcEndpointAssociationsRequest:
     out: ListVpcEndpointAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
     return out

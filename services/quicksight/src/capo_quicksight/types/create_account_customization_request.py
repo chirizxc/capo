@@ -45,7 +45,7 @@ def serialize_json(value: CreateAccountCustomizationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccountCustomizationRequest:
     out: CreateAccountCustomizationRequest = {}  # type: ignore[typeddict-item]
-    if "AccountCustomization" in data:
+    if data.get("AccountCustomization") is not None:
         import capo_quicksight.types.account_customization
 
         out["account_customization"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> CreateAccountCustomizationRequest:
         raise DeserializationError(
             "CreateAccountCustomizationRequest.account_customization required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: BatchDescribeModelPackageError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDescribeModelPackageError:
     out: BatchDescribeModelPackageError = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorResponse" in data:
+    if data.get("ErrorResponse") is not None:
         out["error_response"] = data["ErrorResponse"]
     return out

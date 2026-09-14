@@ -30,10 +30,10 @@ def serialize_json(value: RuleGroupsNamespaceStatus) -> dict:
 
 def deserialize_json(data: dict) -> RuleGroupsNamespaceStatus:
     out: RuleGroupsNamespaceStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
     else:
         raise DeserializationError("RuleGroupsNamespaceStatus.status_code required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

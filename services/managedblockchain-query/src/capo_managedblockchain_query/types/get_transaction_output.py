@@ -28,7 +28,7 @@ def serialize_json(value: GetTransactionOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetTransactionOutput:
     out: GetTransactionOutput = {}  # type: ignore[typeddict-item]
-    if "transaction" in data:
+    if data.get("transaction") is not None:
         import capo_managedblockchain_query.types.transaction
 
         out["transaction"] = (

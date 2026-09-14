@@ -39,17 +39,17 @@ def serialize_json(value: SrtListenerRouterInputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SrtListenerRouterInputConfiguration:
     out: SrtListenerRouterInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         raise DeserializationError("SrtListenerRouterInputConfiguration.port required")
-    if "minimumLatencyMilliseconds" in data:
+    if data.get("minimumLatencyMilliseconds") is not None:
         out["minimum_latency_milliseconds"] = data["minimumLatencyMilliseconds"]
     else:
         raise DeserializationError(
             "SrtListenerRouterInputConfiguration.minimum_latency_milliseconds required"
         )
-    if "decryptionConfiguration" in data:
+    if data.get("decryptionConfiguration") is not None:
         import capo_mediaconnect.types.srt_decryption_configuration
 
         out["decryption_configuration"] = (

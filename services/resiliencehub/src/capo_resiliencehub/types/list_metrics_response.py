@@ -31,12 +31,12 @@ def serialize_json(value: ListMetricsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMetricsResponse:
     out: ListMetricsResponse = {}  # type: ignore[typeddict-item]
-    if "rows" in data:
+    if data.get("rows") is not None:
         import capo_resiliencehub.types.row_list
 
         out["rows"] = capo_resiliencehub.types.row_list.deserialize_json(data["rows"])
     else:
         raise DeserializationError("ListMetricsResponse.rows required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

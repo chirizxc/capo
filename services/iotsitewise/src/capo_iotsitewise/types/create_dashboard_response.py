@@ -28,11 +28,11 @@ def serialize_json(value: CreateDashboardResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDashboardResponse:
     out: CreateDashboardResponse = {}  # type: ignore[typeddict-item]
-    if "dashboardId" in data:
+    if data.get("dashboardId") is not None:
         out["dashboard_id"] = data["dashboardId"]
     else:
         raise DeserializationError("CreateDashboardResponse.dashboard_id required")
-    if "dashboardArn" in data:
+    if data.get("dashboardArn") is not None:
         out["dashboard_arn"] = data["dashboardArn"]
     else:
         raise DeserializationError("CreateDashboardResponse.dashboard_arn required")

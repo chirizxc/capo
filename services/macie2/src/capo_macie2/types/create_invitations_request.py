@@ -37,14 +37,14 @@ def serialize_json(value: CreateInvitationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateInvitationsRequest:
     out: CreateInvitationsRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_macie2.types.__list_of__string
 
         out["account_ids"] = capo_macie2.types.__list_of__string.deserialize_json(
             data["accountIds"]
         )
-    if "disableEmailNotification" in data:
+    if data.get("disableEmailNotification") is not None:
         out["disable_email_notification"] = data["disableEmailNotification"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

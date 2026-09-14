@@ -36,10 +36,10 @@ def serialize_json(value: AwsEc2ClientVpnEndpointConnectionLogOptionsDetails) ->
 
 def deserialize_json(data: dict) -> AwsEc2ClientVpnEndpointConnectionLogOptionsDetails:
     out: AwsEc2ClientVpnEndpointConnectionLogOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "CloudwatchLogGroup" in data:
+    if data.get("CloudwatchLogGroup") is not None:
         out["cloudwatch_log_group"] = data["CloudwatchLogGroup"]
-    if "CloudwatchLogStream" in data:
+    if data.get("CloudwatchLogStream") is not None:
         out["cloudwatch_log_stream"] = data["CloudwatchLogStream"]
     return out

@@ -54,11 +54,11 @@ def serialize_aws_json_1_0(value: UpdateModelRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateModelRequest:
     out: UpdateModelRequest = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
     else:
         raise DeserializationError("UpdateModelRequest.model_name required")
-    if "LabelsInputConfiguration" in data:
+    if data.get("LabelsInputConfiguration") is not None:
         import capo_lookoutequipment.types.labels_input_configuration
 
         out["labels_input_configuration"] = (
@@ -66,9 +66,9 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateModelRequest:
                 data["LabelsInputConfiguration"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ModelDiagnosticsOutputConfiguration" in data:
+    if data.get("ModelDiagnosticsOutputConfiguration") is not None:
         import capo_lookoutequipment.types.model_diagnostics_output_configuration
 
         out["model_diagnostics_output_configuration"] = (

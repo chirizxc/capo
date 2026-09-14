@@ -13,9 +13,9 @@ from capo_odb import AsyncodbClient
 
 
 async def main():
-    async with AsyncodbClient() as s3:
+    async with AsyncodbClient() as odb:
         # Example: call the accept_marketplace_registration operation
-        response = await s3.accept_marketplace_registration()
+        response = await odb.accept_marketplace_registration()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_odb import AsyncodbClient
 
 
 async def main():
-    async with AsyncodbClient() as s3:
+    async with AsyncodbClient() as odb:
         # Example: paginate over list_autonomous_database_character_sets
-        async for item in s3.iter_list_autonomous_database_character_sets():
+        async for item in odb.iter_list_autonomous_database_character_sets():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_odb.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncodbClient() as s3:
+    async with AsyncodbClient() as odb:
         try:
-            await s3.accept_marketplace_registration()
+            await odb.accept_marketplace_registration()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_odb import AsyncodbClient
 
 
 async def main():
-    async with AsyncodbClient() as s3:
+    async with AsyncodbClient() as odb:
         # Default: 3 attempts for every operation
-        response = await s3.accept_marketplace_registration()
+        response = await odb.accept_marketplace_registration()
 
         # Override per operation
-        response = await s3.accept_marketplace_registration(config_overrides={"retry_max_attempts": 5})
+        response = await odb.accept_marketplace_registration(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_marketplace_registration(config_overrides={"retry_max_attempts": 1})
+        response = await odb.accept_marketplace_registration(config_overrides={"retry_max_attempts": 1})
 ```

@@ -40,16 +40,16 @@ def serialize_json(value: DescribeConfigurationRevisionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeConfigurationRevisionResponse:
     out: DescribeConfigurationRevisionResponse = {}  # type: ignore[typeddict-item]
-    if "configurationId" in data:
+    if data.get("configurationId") is not None:
         out["configuration_id"] = data["configurationId"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_mq.types.__timestamp_iso8601
 
         out["created"] = capo_mq.types.__timestamp_iso8601.deserialize_json(
             data["created"]
         )
-    if "data" in data:
+    if data.get("data") is not None:
         out["data"] = data["data"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

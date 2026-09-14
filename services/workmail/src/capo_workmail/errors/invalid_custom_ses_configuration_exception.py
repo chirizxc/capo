@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidCustomSesConfigurationException_) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidCustomSesConfigurationException_:
     out: InvalidCustomSesConfigurationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class InvalidCustomSesConfigurationException(ServiceError):
 
     code: str | None = "InvalidCustomSesConfigurationException"
 
-    def __init__(self, data: InvalidCustomSesConfigurationException_):
+    def __init__(
+        self, data: InvalidCustomSesConfigurationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidCustomSesConfigurationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidCustomSesConfigurationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidCustomSesConfigurationException":
+        return cls(deserialize_aws_json_1_1(data), message)

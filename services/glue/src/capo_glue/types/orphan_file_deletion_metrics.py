@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: OrphanFileDeletionMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrphanFileDeletionMetrics:
     out: OrphanFileDeletionMetrics = {}  # type: ignore[typeddict-item]
-    if "IcebergMetrics" in data:
+    if data.get("IcebergMetrics") is not None:
         import capo_glue.types.iceberg_orphan_file_deletion_metrics
 
         out["iceberg_metrics"] = (

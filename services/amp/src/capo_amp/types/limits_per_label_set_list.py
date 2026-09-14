@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LimitsPerLabelSetList:
 
     out: LimitsPerLabelSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amp.types.limits_per_label_set.deserialize_json(item))
     return out

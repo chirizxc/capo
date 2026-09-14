@@ -34,7 +34,7 @@ def serialize_json(value: NodeInterface) -> dict:
 
 def deserialize_json(data: dict) -> NodeInterface:
     out: NodeInterface = {}  # type: ignore[typeddict-item]
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_panorama.types.input_port_list
 
         out["inputs"] = capo_panorama.types.input_port_list.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> NodeInterface:
         )
     else:
         raise DeserializationError("NodeInterface.inputs required")
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_panorama.types.output_port_list
 
         out["outputs"] = capo_panorama.types.output_port_list.deserialize_json(

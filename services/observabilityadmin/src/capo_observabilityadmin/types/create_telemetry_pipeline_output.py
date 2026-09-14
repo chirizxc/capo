@@ -23,6 +23,6 @@ def serialize_json(value: CreateTelemetryPipelineOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateTelemetryPipelineOutput:
     out: CreateTelemetryPipelineOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

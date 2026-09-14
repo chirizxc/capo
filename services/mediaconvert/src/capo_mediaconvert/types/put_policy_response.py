@@ -25,7 +25,7 @@ def serialize_json(value: PutPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutPolicyResponse:
     out: PutPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "policy" in data:
+    if data.get("policy") is not None:
         import capo_mediaconvert.types.policy
 
         out["policy"] = capo_mediaconvert.types.policy.deserialize_json(data["policy"])

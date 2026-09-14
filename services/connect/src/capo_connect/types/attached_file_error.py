@@ -33,10 +33,10 @@ def serialize_json(value: AttachedFileError) -> dict:
 
 def deserialize_json(data: dict) -> AttachedFileError:
     out: AttachedFileError = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "FileId" in data:
+    if data.get("FileId") is not None:
         out["file_id"] = data["FileId"]
     return out

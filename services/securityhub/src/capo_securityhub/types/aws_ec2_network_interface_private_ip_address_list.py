@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEc2NetworkInterfacePrivateIpAddressList:
 
     out: AwsEc2NetworkInterfacePrivateIpAddressList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_network_interface_private_ip_address_detail.deserialize_json(
                 item

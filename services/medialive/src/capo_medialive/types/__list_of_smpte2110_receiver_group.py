@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfSmpte2110ReceiverGroup:
 
     out: __listOfSmpte2110ReceiverGroup = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.smpte2110_receiver_group.deserialize_json(item))
     return out

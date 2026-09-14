@@ -42,7 +42,7 @@ def serialize_json(value: FragmentSelector) -> dict:
 
 def deserialize_json(data: dict) -> FragmentSelector:
     out: FragmentSelector = {}  # type: ignore[typeddict-item]
-    if "FragmentSelectorType" in data:
+    if data.get("FragmentSelectorType") is not None:
         import capo_chime_sdk_media_pipelines.types.fragment_selector_type
 
         out["fragment_selector_type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> FragmentSelector:
         )
     else:
         raise DeserializationError("FragmentSelector.fragment_selector_type required")
-    if "TimestampRange" in data:
+    if data.get("TimestampRange") is not None:
         import capo_chime_sdk_media_pipelines.types.timestamp_range
 
         out["timestamp_range"] = (

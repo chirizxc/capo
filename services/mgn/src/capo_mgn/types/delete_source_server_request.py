@@ -29,12 +29,12 @@ def serialize_json(value: DeleteSourceServerRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSourceServerRequest:
     out: DeleteSourceServerRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError(
             "DeleteSourceServerRequest.source_server_id required"
         )
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

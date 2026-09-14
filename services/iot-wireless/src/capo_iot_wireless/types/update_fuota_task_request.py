@@ -72,11 +72,11 @@ def serialize_json(value: UpdateFuotaTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFuotaTaskRequest:
     out: UpdateFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_fuota_task
 
         out["lo_ra_wan"] = (
@@ -84,16 +84,16 @@ def deserialize_json(data: dict) -> UpdateFuotaTaskRequest:
                 data["LoRaWAN"]
             )
         )
-    if "FirmwareUpdateImage" in data:
+    if data.get("FirmwareUpdateImage") is not None:
         out["firmware_update_image"] = data["FirmwareUpdateImage"]
-    if "FirmwareUpdateRole" in data:
+    if data.get("FirmwareUpdateRole") is not None:
         out["firmware_update_role"] = data["FirmwareUpdateRole"]
-    if "RedundancyPercent" in data:
+    if data.get("RedundancyPercent") is not None:
         out["redundancy_percent"] = data["RedundancyPercent"]
-    if "FragmentSizeBytes" in data:
+    if data.get("FragmentSizeBytes") is not None:
         out["fragment_size_bytes"] = data["FragmentSizeBytes"]
-    if "FragmentIntervalMS" in data:
+    if data.get("FragmentIntervalMS") is not None:
         out["fragment_interval_ms"] = data["FragmentIntervalMS"]
-    if "Descriptor" in data:
+    if data.get("Descriptor") is not None:
         out["descriptor"] = data["Descriptor"]
     return out

@@ -111,7 +111,16 @@ def serialize_json(value: MemberDetail) -> dict:
             value["volume_usage_updated_time"]
         )
     if "percent_of_graph_utilization" in value:
-        out["PercentOfGraphUtilization"] = value["percent_of_graph_utilization"]
+        out["PercentOfGraphUtilization"] = (
+            "NaN"
+            if value["percent_of_graph_utilization"]
+            != value["percent_of_graph_utilization"]
+            else "Infinity"
+            if value["percent_of_graph_utilization"] == float("inf")
+            else "-Infinity"
+            if value["percent_of_graph_utilization"] == float("-inf")
+            else value["percent_of_graph_utilization"]
+        )
     if "percent_of_graph_utilization_updated_time" in value:
         import capo_detective.types.timestamp
 
@@ -147,23 +156,23 @@ def serialize_json(value: MemberDetail) -> dict:
 
 def deserialize_json(data: dict) -> MemberDetail:
     out: MemberDetail = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
-    if "MasterId" in data:
+    if data.get("MasterId") is not None:
         out["master_id"] = data["MasterId"]
-    if "AdministratorId" in data:
+    if data.get("AdministratorId") is not None:
         out["administrator_id"] = data["AdministratorId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_detective.types.member_status
 
         out["status"] = capo_detective.types.member_status.deserialize_json(
             data["Status"]
         )
-    if "DisabledReason" in data:
+    if data.get("DisabledReason") is not None:
         import capo_detective.types.member_disabled_reason
 
         out["disabled_reason"] = (
@@ -171,21 +180,21 @@ def deserialize_json(data: dict) -> MemberDetail:
                 data["DisabledReason"]
             )
         )
-    if "InvitedTime" in data:
+    if data.get("InvitedTime") is not None:
         import capo_detective.types.timestamp
 
         out["invited_time"] = capo_detective.types.timestamp.deserialize_json(
             data["InvitedTime"]
         )
-    if "UpdatedTime" in data:
+    if data.get("UpdatedTime") is not None:
         import capo_detective.types.timestamp
 
         out["updated_time"] = capo_detective.types.timestamp.deserialize_json(
             data["UpdatedTime"]
         )
-    if "VolumeUsageInBytes" in data:
+    if data.get("VolumeUsageInBytes") is not None:
         out["volume_usage_in_bytes"] = data["VolumeUsageInBytes"]
-    if "VolumeUsageUpdatedTime" in data:
+    if data.get("VolumeUsageUpdatedTime") is not None:
         import capo_detective.types.timestamp
 
         out["volume_usage_updated_time"] = (
@@ -193,9 +202,9 @@ def deserialize_json(data: dict) -> MemberDetail:
                 data["VolumeUsageUpdatedTime"]
             )
         )
-    if "PercentOfGraphUtilization" in data:
-        out["percent_of_graph_utilization"] = data["PercentOfGraphUtilization"]
-    if "PercentOfGraphUtilizationUpdatedTime" in data:
+    if data.get("PercentOfGraphUtilization") is not None:
+        out["percent_of_graph_utilization"] = float(data["PercentOfGraphUtilization"])
+    if data.get("PercentOfGraphUtilizationUpdatedTime") is not None:
         import capo_detective.types.timestamp
 
         out["percent_of_graph_utilization_updated_time"] = (
@@ -203,13 +212,13 @@ def deserialize_json(data: dict) -> MemberDetail:
                 data["PercentOfGraphUtilizationUpdatedTime"]
             )
         )
-    if "InvitationType" in data:
+    if data.get("InvitationType") is not None:
         import capo_detective.types.invitation_type
 
         out["invitation_type"] = capo_detective.types.invitation_type.deserialize_json(
             data["InvitationType"]
         )
-    if "VolumeUsageByDatasourcePackage" in data:
+    if data.get("VolumeUsageByDatasourcePackage") is not None:
         import capo_detective.types.volume_usage_by_datasource_package
 
         out["volume_usage_by_datasource_package"] = (
@@ -217,7 +226,7 @@ def deserialize_json(data: dict) -> MemberDetail:
                 data["VolumeUsageByDatasourcePackage"]
             )
         )
-    if "DatasourcePackageIngestStates" in data:
+    if data.get("DatasourcePackageIngestStates") is not None:
         import capo_detective.types.datasource_package_ingest_states
 
         out["datasource_package_ingest_states"] = (

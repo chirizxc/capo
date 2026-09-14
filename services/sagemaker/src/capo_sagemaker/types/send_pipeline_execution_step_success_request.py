@@ -43,9 +43,9 @@ def serialize_aws_json_1_1(value: SendPipelineExecutionStepSuccessRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> SendPipelineExecutionStepSuccessRequest:
     out: SendPipelineExecutionStepSuccessRequest = {}  # type: ignore[typeddict-item]
-    if "CallbackToken" in data:
+    if data.get("CallbackToken") is not None:
         out["callback_token"] = data["CallbackToken"]
-    if "OutputParameters" in data:
+    if data.get("OutputParameters") is not None:
         import capo_sagemaker.types.output_parameter_list
 
         out["output_parameters"] = (
@@ -53,6 +53,6 @@ def deserialize_aws_json_1_1(data: dict) -> SendPipelineExecutionStepSuccessRequ
                 data["OutputParameters"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

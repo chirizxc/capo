@@ -161,57 +161,57 @@ def serialize_aws_json_1_1(value: Session) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Session:
     out: Session = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_emr.types.session_state
 
         out["state"] = capo_emr.types.session_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StateChangeReason" in data:
+    if data.get("StateChangeReason") is not None:
         out["state_change_reason"] = data["StateChangeReason"]
-    if "ReleaseLabel" in data:
+    if data.get("ReleaseLabel") is not None:
         out["release_label"] = data["ReleaseLabel"]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_emr.types.date
 
         out["created_at"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_emr.types.date
 
         out["updated_at"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["UpdatedAt"]
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_emr.types.date
 
         out["started_at"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["StartedAt"]
         )
-    if "EndedAt" in data:
+    if data.get("EndedAt") is not None:
         import capo_emr.types.date
 
         out["ended_at"] = capo_emr.types.date.deserialize_aws_json_1_1(data["EndedAt"])
-    if "IdleSince" in data:
+    if data.get("IdleSince") is not None:
         import capo_emr.types.date
 
         out["idle_since"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["IdleSince"]
         )
-    if "EngineConfigurations" in data:
+    if data.get("EngineConfigurations") is not None:
         import capo_emr.types.configuration_list
 
         out["engine_configurations"] = (
@@ -219,7 +219,7 @@ def deserialize_aws_json_1_1(data: dict) -> Session:
                 data["EngineConfigurations"]
             )
         )
-    if "MonitoringConfiguration" in data:
+    if data.get("MonitoringConfiguration") is not None:
         import capo_emr.types.session_monitoring_configuration
 
         out["monitoring_configuration"] = (
@@ -227,9 +227,9 @@ def deserialize_aws_json_1_1(data: dict) -> Session:
                 data["MonitoringConfiguration"]
             )
         )
-    if "SessionIdleTimeoutInMinutes" in data:
+    if data.get("SessionIdleTimeoutInMinutes") is not None:
         out["session_idle_timeout_in_minutes"] = data["SessionIdleTimeoutInMinutes"]
-    if "CertificateAuthority" in data:
+    if data.get("CertificateAuthority") is not None:
         import capo_emr.types.certificate_authority
 
         out["certificate_authority"] = (
@@ -237,9 +237,9 @@ def deserialize_aws_json_1_1(data: dict) -> Session:
                 data["CertificateAuthority"]
             )
         )
-    if "ServerUrl" in data:
+    if data.get("ServerUrl") is not None:
         out["server_url"] = data["ServerUrl"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_emr.types.tag_list
 
         out["tags"] = capo_emr.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

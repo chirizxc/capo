@@ -28,10 +28,10 @@ def serialize_json(value: OnDemandConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OnDemandConfiguration:
     out: OnDemandConfiguration = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         out["start_time"] = data["StartTime"]
     else:
         raise DeserializationError("OnDemandConfiguration.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         out["end_time"] = data["EndTime"]
     return out

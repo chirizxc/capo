@@ -132,11 +132,11 @@ def serialize_aws_json_1_1(value: ReportDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportDefinition:
     out: ReportDefinition = {}  # type: ignore[typeddict-item]
-    if "ReportName" in data:
+    if data.get("ReportName") is not None:
         out["report_name"] = data["ReportName"]
     else:
         raise DeserializationError("ReportDefinition.report_name required")
-    if "TimeUnit" in data:
+    if data.get("TimeUnit") is not None:
         import capo_cost_and_usage_report_service.types.time_unit
 
         out["time_unit"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReportDefinition:
         )
     else:
         raise DeserializationError("ReportDefinition.time_unit required")
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_cost_and_usage_report_service.types.report_format
 
         out["format"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReportDefinition:
         )
     else:
         raise DeserializationError("ReportDefinition.format required")
-    if "Compression" in data:
+    if data.get("Compression") is not None:
         import capo_cost_and_usage_report_service.types.compression_format
 
         out["compression"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReportDefinition:
         )
     else:
         raise DeserializationError("ReportDefinition.compression required")
-    if "AdditionalSchemaElements" in data:
+    if data.get("AdditionalSchemaElements") is not None:
         import capo_cost_and_usage_report_service.types.schema_element_list
 
         out["additional_schema_elements"] = (
@@ -178,15 +178,15 @@ def deserialize_aws_json_1_1(data: dict) -> ReportDefinition:
         raise DeserializationError(
             "ReportDefinition.additional_schema_elements required"
         )
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
     else:
         raise DeserializationError("ReportDefinition.s3_bucket required")
-    if "S3Prefix" in data:
+    if data.get("S3Prefix") is not None:
         out["s3_prefix"] = data["S3Prefix"]
     else:
         raise DeserializationError("ReportDefinition.s3_prefix required")
-    if "S3Region" in data:
+    if data.get("S3Region") is not None:
         import capo_cost_and_usage_report_service.types.aws_region
 
         out["s3_region"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReportDefinition:
         )
     else:
         raise DeserializationError("ReportDefinition.s3_region required")
-    if "AdditionalArtifacts" in data:
+    if data.get("AdditionalArtifacts") is not None:
         import capo_cost_and_usage_report_service.types.additional_artifact_list
 
         out["additional_artifacts"] = (
@@ -204,9 +204,9 @@ def deserialize_aws_json_1_1(data: dict) -> ReportDefinition:
                 data["AdditionalArtifacts"]
             )
         )
-    if "RefreshClosedReports" in data:
+    if data.get("RefreshClosedReports") is not None:
         out["refresh_closed_reports"] = data["RefreshClosedReports"]
-    if "ReportVersioning" in data:
+    if data.get("ReportVersioning") is not None:
         import capo_cost_and_usage_report_service.types.report_versioning
 
         out["report_versioning"] = (
@@ -214,9 +214,9 @@ def deserialize_aws_json_1_1(data: dict) -> ReportDefinition:
                 data["ReportVersioning"]
             )
         )
-    if "BillingViewArn" in data:
+    if data.get("BillingViewArn") is not None:
         out["billing_view_arn"] = data["BillingViewArn"]
-    if "ReportStatus" in data:
+    if data.get("ReportStatus") is not None:
         import capo_cost_and_usage_report_service.types.report_status
 
         out["report_status"] = (

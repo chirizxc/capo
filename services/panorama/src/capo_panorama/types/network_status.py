@@ -55,25 +55,25 @@ def serialize_json(value: NetworkStatus) -> dict:
 
 def deserialize_json(data: dict) -> NetworkStatus:
     out: NetworkStatus = {}  # type: ignore[typeddict-item]
-    if "Ethernet0Status" in data:
+    if data.get("Ethernet0Status") is not None:
         import capo_panorama.types.ethernet_status
 
         out["ethernet0_status"] = capo_panorama.types.ethernet_status.deserialize_json(
             data["Ethernet0Status"]
         )
-    if "Ethernet1Status" in data:
+    if data.get("Ethernet1Status") is not None:
         import capo_panorama.types.ethernet_status
 
         out["ethernet1_status"] = capo_panorama.types.ethernet_status.deserialize_json(
             data["Ethernet1Status"]
         )
-    if "NtpStatus" in data:
+    if data.get("NtpStatus") is not None:
         import capo_panorama.types.ntp_status
 
         out["ntp_status"] = capo_panorama.types.ntp_status.deserialize_json(
             data["NtpStatus"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_panorama.types.last_updated_time
 
         out["last_updated_time"] = (

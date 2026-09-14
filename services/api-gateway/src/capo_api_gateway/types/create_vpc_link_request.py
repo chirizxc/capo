@@ -47,13 +47,13 @@ def serialize_json(value: CreateVpcLinkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVpcLinkRequest:
     out: CreateVpcLinkRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateVpcLinkRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "targetArns" in data:
+    if data.get("targetArns") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["target_arns"] = capo_api_gateway.types.list_of_string.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> CreateVpcLinkRequest:
         )
     else:
         raise DeserializationError("CreateVpcLinkRequest.target_arns required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

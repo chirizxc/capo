@@ -22,8 +22,8 @@ def serialize_json(value: MlConfigDefinition) -> dict:
 
 def deserialize_json(data: dict) -> MlConfigDefinition:
     out: MlConfigDefinition = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

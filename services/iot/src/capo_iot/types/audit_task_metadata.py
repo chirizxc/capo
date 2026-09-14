@@ -41,15 +41,15 @@ def serialize_json(value: AuditTaskMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AuditTaskMetadata:
     out: AuditTaskMetadata = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "taskStatus" in data:
+    if data.get("taskStatus") is not None:
         import capo_iot.types.audit_task_status
 
         out["task_status"] = capo_iot.types.audit_task_status.deserialize_json(
             data["taskStatus"]
         )
-    if "taskType" in data:
+    if data.get("taskType") is not None:
         import capo_iot.types.audit_task_type
 
         out["task_type"] = capo_iot.types.audit_task_type.deserialize_json(

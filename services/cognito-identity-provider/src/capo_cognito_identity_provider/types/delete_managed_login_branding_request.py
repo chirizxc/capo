@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: DeleteManagedLoginBrandingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteManagedLoginBrandingRequest:
     out: DeleteManagedLoginBrandingRequest = {}  # type: ignore[typeddict-item]
-    if "ManagedLoginBrandingId" in data:
+    if data.get("ManagedLoginBrandingId") is not None:
         out["managed_login_branding_id"] = data["ManagedLoginBrandingId"]
     else:
         raise DeserializationError(
             "DeleteManagedLoginBrandingRequest.managed_login_branding_id required"
         )
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(

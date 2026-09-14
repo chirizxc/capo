@@ -11,6 +11,7 @@ from typing_extensions import Never
 import capo_transcribe_streaming._auth._signers
 import capo_transcribe_streaming._auth._sigv4
 import capo_transcribe_streaming._iter
+import capo_transcribe_streaming._protocol.eventstream
 import capo_transcribe_streaming.errors.bad_request_exception
 import capo_transcribe_streaming.errors.conflict_exception
 import capo_transcribe_streaming.errors.internal_failure_exception
@@ -49,23 +50,23 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "BadRequestException":
             raise capo_transcribe_streaming.errors.bad_request_exception.BadRequestException.from_json(
-                data
+                data, message
             )
         case "ConflictException":
             raise capo_transcribe_streaming.errors.conflict_exception.ConflictException.from_json(
-                data
+                data, message
             )
         case "InternalFailureException":
             raise capo_transcribe_streaming.errors.internal_failure_exception.InternalFailureException.from_json(
-                data
+                data, message
             )
         case "LimitExceededException":
             raise capo_transcribe_streaming.errors.limit_exceeded_exception.LimitExceededException.from_json(
-                data
+                data, message
             )
         case "ServiceUnavailableException":
             raise capo_transcribe_streaming.errors.service_unavailable_exception.ServiceUnavailableException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -85,7 +86,7 @@ def handle_response(
         )
     }  # type: ignore[reportAssignmentType]
     if "x-amzn-request-id" in response.headers:
-        out["request_id"] = str(response.headers["x-amzn-request-id"])
+        out["request_id"] = response.headers["x-amzn-request-id"]
     if "x-amzn-transcribe-language-code" in response.headers:
         out["language_code"] = (
             capo_transcribe_streaming.types.language_code.deserialize_json(
@@ -103,15 +104,13 @@ def handle_response(
             )
         )
     if "x-amzn-transcribe-vocabulary-name" in response.headers:
-        out["vocabulary_name"] = str(
-            response.headers["x-amzn-transcribe-vocabulary-name"]
-        )
+        out["vocabulary_name"] = response.headers["x-amzn-transcribe-vocabulary-name"]
     if "x-amzn-transcribe-session-id" in response.headers:
-        out["session_id"] = str(response.headers["x-amzn-transcribe-session-id"])
+        out["session_id"] = response.headers["x-amzn-transcribe-session-id"]
     if "x-amzn-transcribe-vocabulary-filter-name" in response.headers:
-        out["vocabulary_filter_name"] = str(
-            response.headers["x-amzn-transcribe-vocabulary-filter-name"]
-        )
+        out["vocabulary_filter_name"] = response.headers[
+            "x-amzn-transcribe-vocabulary-filter-name"
+        ]
     if "x-amzn-transcribe-vocabulary-filter-method" in response.headers:
         out["vocabulary_filter_method"] = (
             capo_transcribe_streaming.types.vocabulary_filter_method.deserialize_json(
@@ -154,20 +153,16 @@ def handle_response(
             )
         )
     if "x-amzn-transcribe-pii-entity-types" in response.headers:
-        out["pii_entity_types"] = str(
-            response.headers["x-amzn-transcribe-pii-entity-types"]
-        )
+        out["pii_entity_types"] = response.headers["x-amzn-transcribe-pii-entity-types"]
     if "x-amzn-transcribe-language-model-name" in response.headers:
-        out["language_model_name"] = str(
-            response.headers["x-amzn-transcribe-language-model-name"]
-        )
+        out["language_model_name"] = response.headers[
+            "x-amzn-transcribe-language-model-name"
+        ]
     out["identify_language"] = (
         response.headers["x-amzn-transcribe-identify-language"].lower() == "true"
     )
     if "x-amzn-transcribe-language-options" in response.headers:
-        out["language_options"] = str(
-            response.headers["x-amzn-transcribe-language-options"]
-        )
+        out["language_options"] = response.headers["x-amzn-transcribe-language-options"]
     if "x-amzn-transcribe-preferred-language" in response.headers:
         out["preferred_language"] = (
             capo_transcribe_streaming.types.language_code.deserialize_json(
@@ -179,13 +174,11 @@ def handle_response(
         == "true"
     )
     if "x-amzn-transcribe-vocabulary-names" in response.headers:
-        out["vocabulary_names"] = str(
-            response.headers["x-amzn-transcribe-vocabulary-names"]
-        )
+        out["vocabulary_names"] = response.headers["x-amzn-transcribe-vocabulary-names"]
     if "x-amzn-transcribe-vocabulary-filter-names" in response.headers:
-        out["vocabulary_filter_names"] = str(
-            response.headers["x-amzn-transcribe-vocabulary-filter-names"]
-        )
+        out["vocabulary_filter_names"] = response.headers[
+            "x-amzn-transcribe-vocabulary-filter-names"
+        ]
     if "x-amzn-transcribe-session-resume-window" in response.headers:
         out["session_resume_window"] = int(
             response.headers["x-amzn-transcribe-session-resume-window"]
@@ -207,7 +200,7 @@ async def async_handle_response(
         )
     }  # type: ignore[reportAssignmentType]
     if "x-amzn-request-id" in response.headers:
-        out["request_id"] = str(response.headers["x-amzn-request-id"])
+        out["request_id"] = response.headers["x-amzn-request-id"]
     if "x-amzn-transcribe-language-code" in response.headers:
         out["language_code"] = (
             capo_transcribe_streaming.types.language_code.deserialize_json(
@@ -225,15 +218,13 @@ async def async_handle_response(
             )
         )
     if "x-amzn-transcribe-vocabulary-name" in response.headers:
-        out["vocabulary_name"] = str(
-            response.headers["x-amzn-transcribe-vocabulary-name"]
-        )
+        out["vocabulary_name"] = response.headers["x-amzn-transcribe-vocabulary-name"]
     if "x-amzn-transcribe-session-id" in response.headers:
-        out["session_id"] = str(response.headers["x-amzn-transcribe-session-id"])
+        out["session_id"] = response.headers["x-amzn-transcribe-session-id"]
     if "x-amzn-transcribe-vocabulary-filter-name" in response.headers:
-        out["vocabulary_filter_name"] = str(
-            response.headers["x-amzn-transcribe-vocabulary-filter-name"]
-        )
+        out["vocabulary_filter_name"] = response.headers[
+            "x-amzn-transcribe-vocabulary-filter-name"
+        ]
     if "x-amzn-transcribe-vocabulary-filter-method" in response.headers:
         out["vocabulary_filter_method"] = (
             capo_transcribe_streaming.types.vocabulary_filter_method.deserialize_json(
@@ -276,20 +267,16 @@ async def async_handle_response(
             )
         )
     if "x-amzn-transcribe-pii-entity-types" in response.headers:
-        out["pii_entity_types"] = str(
-            response.headers["x-amzn-transcribe-pii-entity-types"]
-        )
+        out["pii_entity_types"] = response.headers["x-amzn-transcribe-pii-entity-types"]
     if "x-amzn-transcribe-language-model-name" in response.headers:
-        out["language_model_name"] = str(
-            response.headers["x-amzn-transcribe-language-model-name"]
-        )
+        out["language_model_name"] = response.headers[
+            "x-amzn-transcribe-language-model-name"
+        ]
     out["identify_language"] = (
         response.headers["x-amzn-transcribe-identify-language"].lower() == "true"
     )
     if "x-amzn-transcribe-language-options" in response.headers:
-        out["language_options"] = str(
-            response.headers["x-amzn-transcribe-language-options"]
-        )
+        out["language_options"] = response.headers["x-amzn-transcribe-language-options"]
     if "x-amzn-transcribe-preferred-language" in response.headers:
         out["preferred_language"] = (
             capo_transcribe_streaming.types.language_code.deserialize_json(
@@ -301,13 +288,11 @@ async def async_handle_response(
         == "true"
     )
     if "x-amzn-transcribe-vocabulary-names" in response.headers:
-        out["vocabulary_names"] = str(
-            response.headers["x-amzn-transcribe-vocabulary-names"]
-        )
+        out["vocabulary_names"] = response.headers["x-amzn-transcribe-vocabulary-names"]
     if "x-amzn-transcribe-vocabulary-filter-names" in response.headers:
-        out["vocabulary_filter_names"] = str(
-            response.headers["x-amzn-transcribe-vocabulary-filter-names"]
-        )
+        out["vocabulary_filter_names"] = response.headers[
+            "x-amzn-transcribe-vocabulary-filter-names"
+        ]
     if "x-amzn-transcribe-session-resume-window" in response.headers:
         out["session_resume_window"] = int(
             response.headers["x-amzn-transcribe-session-resume-window"]
@@ -320,19 +305,28 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_transcribe_streaming._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_transcribe_streaming._auth._sigv4.build_sigv4_auth_scheme(
-                "transcribe", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_transcribe_streaming._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = (
+                capo_transcribe_streaming._auth._sigv4.build_sigv4_auth_scheme(
+                    "transcribe", options.region, endpoint_scheme
+                )
             )
+            if sigv4_config is not None:
+                return capo_transcribe_streaming._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -348,78 +342,101 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_transcribe_streaming.types.content_identification_type
+    import capo_transcribe_streaming.types.content_redaction_type
+    import capo_transcribe_streaming.types.language_code
+    import capo_transcribe_streaming.types.media_encoding
+    import capo_transcribe_streaming.types.partial_results_stability
+    import capo_transcribe_streaming.types.vocabulary_filter_method
+
     url = endpoint.url.rstrip("/") + "/stream-transcription"
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     if "language_code" in input_:
-        headers["x-amzn-transcribe-language-code"] = str(input_["language_code"])
+        headers["x-amzn-transcribe-language-code"] = (
+            capo_transcribe_streaming.types.language_code.serialize_json(
+                input_["language_code"]
+            )
+        )
     if "media_sample_rate_hertz" in input_:
         headers["x-amzn-transcribe-sample-rate"] = str(
             input_["media_sample_rate_hertz"]
         )
     if "media_encoding" in input_:
-        headers["x-amzn-transcribe-media-encoding"] = str(input_["media_encoding"])
+        headers["x-amzn-transcribe-media-encoding"] = (
+            capo_transcribe_streaming.types.media_encoding.serialize_json(
+                input_["media_encoding"]
+            )
+        )
     if "vocabulary_name" in input_:
-        headers["x-amzn-transcribe-vocabulary-name"] = str(input_["vocabulary_name"])
+        headers["x-amzn-transcribe-vocabulary-name"] = input_["vocabulary_name"]
     if "session_id" in input_:
-        headers["x-amzn-transcribe-session-id"] = str(input_["session_id"])
+        headers["x-amzn-transcribe-session-id"] = input_["session_id"]
     if "vocabulary_filter_name" in input_:
-        headers["x-amzn-transcribe-vocabulary-filter-name"] = str(
-            input_["vocabulary_filter_name"]
-        )
+        headers["x-amzn-transcribe-vocabulary-filter-name"] = input_[
+            "vocabulary_filter_name"
+        ]
     if "vocabulary_filter_method" in input_:
-        headers["x-amzn-transcribe-vocabulary-filter-method"] = str(
-            input_["vocabulary_filter_method"]
+        headers["x-amzn-transcribe-vocabulary-filter-method"] = (
+            capo_transcribe_streaming.types.vocabulary_filter_method.serialize_json(
+                input_["vocabulary_filter_method"]
+            )
         )
-    headers["x-amzn-transcribe-show-speaker-label"] = str(
-        input_.get("show_speaker_label", False)
+    headers["x-amzn-transcribe-show-speaker-label"] = (
+        "true" if input_.get("show_speaker_label", False) else "false"
     )
-    headers["x-amzn-transcribe-enable-channel-identification"] = str(
-        input_.get("enable_channel_identification", False)
+    headers["x-amzn-transcribe-enable-channel-identification"] = (
+        "true" if input_.get("enable_channel_identification", False) else "false"
     )
     if "number_of_channels" in input_:
         headers["x-amzn-transcribe-number-of-channels"] = str(
             input_["number_of_channels"]
         )
-    headers["x-amzn-transcribe-enable-partial-results-stabilization"] = str(
-        input_.get("enable_partial_results_stabilization", False)
+    headers["x-amzn-transcribe-enable-partial-results-stabilization"] = (
+        "true" if input_.get("enable_partial_results_stabilization", False) else "false"
     )
     if "partial_results_stability" in input_:
-        headers["x-amzn-transcribe-partial-results-stability"] = str(
-            input_["partial_results_stability"]
+        headers["x-amzn-transcribe-partial-results-stability"] = (
+            capo_transcribe_streaming.types.partial_results_stability.serialize_json(
+                input_["partial_results_stability"]
+            )
         )
     if "content_identification_type" in input_:
-        headers["x-amzn-transcribe-content-identification-type"] = str(
-            input_["content_identification_type"]
+        headers["x-amzn-transcribe-content-identification-type"] = (
+            capo_transcribe_streaming.types.content_identification_type.serialize_json(
+                input_["content_identification_type"]
+            )
         )
     if "content_redaction_type" in input_:
-        headers["x-amzn-transcribe-content-redaction-type"] = str(
-            input_["content_redaction_type"]
+        headers["x-amzn-transcribe-content-redaction-type"] = (
+            capo_transcribe_streaming.types.content_redaction_type.serialize_json(
+                input_["content_redaction_type"]
+            )
         )
     if "pii_entity_types" in input_:
-        headers["x-amzn-transcribe-pii-entity-types"] = str(input_["pii_entity_types"])
+        headers["x-amzn-transcribe-pii-entity-types"] = input_["pii_entity_types"]
     if "language_model_name" in input_:
-        headers["x-amzn-transcribe-language-model-name"] = str(
-            input_["language_model_name"]
-        )
-    headers["x-amzn-transcribe-identify-language"] = str(
-        input_.get("identify_language", False)
+        headers["x-amzn-transcribe-language-model-name"] = input_["language_model_name"]
+    headers["x-amzn-transcribe-identify-language"] = (
+        "true" if input_.get("identify_language", False) else "false"
     )
     if "language_options" in input_:
-        headers["x-amzn-transcribe-language-options"] = str(input_["language_options"])
+        headers["x-amzn-transcribe-language-options"] = input_["language_options"]
     if "preferred_language" in input_:
-        headers["x-amzn-transcribe-preferred-language"] = str(
-            input_["preferred_language"]
+        headers["x-amzn-transcribe-preferred-language"] = (
+            capo_transcribe_streaming.types.language_code.serialize_json(
+                input_["preferred_language"]
+            )
         )
-    headers["x-amzn-transcribe-identify-multiple-languages"] = str(
-        input_.get("identify_multiple_languages", False)
+    headers["x-amzn-transcribe-identify-multiple-languages"] = (
+        "true" if input_.get("identify_multiple_languages", False) else "false"
     )
     if "vocabulary_names" in input_:
-        headers["x-amzn-transcribe-vocabulary-names"] = str(input_["vocabulary_names"])
+        headers["x-amzn-transcribe-vocabulary-names"] = input_["vocabulary_names"]
     if "vocabulary_filter_names" in input_:
-        headers["x-amzn-transcribe-vocabulary-filter-names"] = str(
-            input_["vocabulary_filter_names"]
-        )
+        headers["x-amzn-transcribe-vocabulary-filter-names"] = input_[
+            "vocabulary_filter_names"
+        ]
     if "session_resume_window" in input_:
         headers["x-amzn-transcribe-session-resume-window"] = str(
             input_["session_resume_window"]
@@ -433,7 +450,8 @@ def build_request(
     headers["content-type"] = "application/vnd.amazon-eventstream"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -451,78 +469,101 @@ def async_build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_transcribe_streaming.types.content_identification_type
+    import capo_transcribe_streaming.types.content_redaction_type
+    import capo_transcribe_streaming.types.language_code
+    import capo_transcribe_streaming.types.media_encoding
+    import capo_transcribe_streaming.types.partial_results_stability
+    import capo_transcribe_streaming.types.vocabulary_filter_method
+
     url = endpoint.url.rstrip("/") + "/stream-transcription"
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     if "language_code" in input_:
-        headers["x-amzn-transcribe-language-code"] = str(input_["language_code"])
+        headers["x-amzn-transcribe-language-code"] = (
+            capo_transcribe_streaming.types.language_code.serialize_json(
+                input_["language_code"]
+            )
+        )
     if "media_sample_rate_hertz" in input_:
         headers["x-amzn-transcribe-sample-rate"] = str(
             input_["media_sample_rate_hertz"]
         )
     if "media_encoding" in input_:
-        headers["x-amzn-transcribe-media-encoding"] = str(input_["media_encoding"])
+        headers["x-amzn-transcribe-media-encoding"] = (
+            capo_transcribe_streaming.types.media_encoding.serialize_json(
+                input_["media_encoding"]
+            )
+        )
     if "vocabulary_name" in input_:
-        headers["x-amzn-transcribe-vocabulary-name"] = str(input_["vocabulary_name"])
+        headers["x-amzn-transcribe-vocabulary-name"] = input_["vocabulary_name"]
     if "session_id" in input_:
-        headers["x-amzn-transcribe-session-id"] = str(input_["session_id"])
+        headers["x-amzn-transcribe-session-id"] = input_["session_id"]
     if "vocabulary_filter_name" in input_:
-        headers["x-amzn-transcribe-vocabulary-filter-name"] = str(
-            input_["vocabulary_filter_name"]
-        )
+        headers["x-amzn-transcribe-vocabulary-filter-name"] = input_[
+            "vocabulary_filter_name"
+        ]
     if "vocabulary_filter_method" in input_:
-        headers["x-amzn-transcribe-vocabulary-filter-method"] = str(
-            input_["vocabulary_filter_method"]
+        headers["x-amzn-transcribe-vocabulary-filter-method"] = (
+            capo_transcribe_streaming.types.vocabulary_filter_method.serialize_json(
+                input_["vocabulary_filter_method"]
+            )
         )
-    headers["x-amzn-transcribe-show-speaker-label"] = str(
-        input_.get("show_speaker_label", False)
+    headers["x-amzn-transcribe-show-speaker-label"] = (
+        "true" if input_.get("show_speaker_label", False) else "false"
     )
-    headers["x-amzn-transcribe-enable-channel-identification"] = str(
-        input_.get("enable_channel_identification", False)
+    headers["x-amzn-transcribe-enable-channel-identification"] = (
+        "true" if input_.get("enable_channel_identification", False) else "false"
     )
     if "number_of_channels" in input_:
         headers["x-amzn-transcribe-number-of-channels"] = str(
             input_["number_of_channels"]
         )
-    headers["x-amzn-transcribe-enable-partial-results-stabilization"] = str(
-        input_.get("enable_partial_results_stabilization", False)
+    headers["x-amzn-transcribe-enable-partial-results-stabilization"] = (
+        "true" if input_.get("enable_partial_results_stabilization", False) else "false"
     )
     if "partial_results_stability" in input_:
-        headers["x-amzn-transcribe-partial-results-stability"] = str(
-            input_["partial_results_stability"]
+        headers["x-amzn-transcribe-partial-results-stability"] = (
+            capo_transcribe_streaming.types.partial_results_stability.serialize_json(
+                input_["partial_results_stability"]
+            )
         )
     if "content_identification_type" in input_:
-        headers["x-amzn-transcribe-content-identification-type"] = str(
-            input_["content_identification_type"]
+        headers["x-amzn-transcribe-content-identification-type"] = (
+            capo_transcribe_streaming.types.content_identification_type.serialize_json(
+                input_["content_identification_type"]
+            )
         )
     if "content_redaction_type" in input_:
-        headers["x-amzn-transcribe-content-redaction-type"] = str(
-            input_["content_redaction_type"]
+        headers["x-amzn-transcribe-content-redaction-type"] = (
+            capo_transcribe_streaming.types.content_redaction_type.serialize_json(
+                input_["content_redaction_type"]
+            )
         )
     if "pii_entity_types" in input_:
-        headers["x-amzn-transcribe-pii-entity-types"] = str(input_["pii_entity_types"])
+        headers["x-amzn-transcribe-pii-entity-types"] = input_["pii_entity_types"]
     if "language_model_name" in input_:
-        headers["x-amzn-transcribe-language-model-name"] = str(
-            input_["language_model_name"]
-        )
-    headers["x-amzn-transcribe-identify-language"] = str(
-        input_.get("identify_language", False)
+        headers["x-amzn-transcribe-language-model-name"] = input_["language_model_name"]
+    headers["x-amzn-transcribe-identify-language"] = (
+        "true" if input_.get("identify_language", False) else "false"
     )
     if "language_options" in input_:
-        headers["x-amzn-transcribe-language-options"] = str(input_["language_options"])
+        headers["x-amzn-transcribe-language-options"] = input_["language_options"]
     if "preferred_language" in input_:
-        headers["x-amzn-transcribe-preferred-language"] = str(
-            input_["preferred_language"]
+        headers["x-amzn-transcribe-preferred-language"] = (
+            capo_transcribe_streaming.types.language_code.serialize_json(
+                input_["preferred_language"]
+            )
         )
-    headers["x-amzn-transcribe-identify-multiple-languages"] = str(
-        input_.get("identify_multiple_languages", False)
+    headers["x-amzn-transcribe-identify-multiple-languages"] = (
+        "true" if input_.get("identify_multiple_languages", False) else "false"
     )
     if "vocabulary_names" in input_:
-        headers["x-amzn-transcribe-vocabulary-names"] = str(input_["vocabulary_names"])
+        headers["x-amzn-transcribe-vocabulary-names"] = input_["vocabulary_names"]
     if "vocabulary_filter_names" in input_:
-        headers["x-amzn-transcribe-vocabulary-filter-names"] = str(
-            input_["vocabulary_filter_names"]
-        )
+        headers["x-amzn-transcribe-vocabulary-filter-names"] = input_[
+            "vocabulary_filter_names"
+        ]
     if "session_resume_window" in input_:
         headers["x-amzn-transcribe-session-resume-window"] = str(
             input_["session_resume_window"]
@@ -536,7 +577,8 @@ def async_build_request(
     headers["content-type"] = "application/vnd.amazon-eventstream"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -551,7 +593,7 @@ def start_stream_transcription(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -571,7 +613,7 @@ async def async_start_stream_transcription(
         async_build_request(options, input_)
     )
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

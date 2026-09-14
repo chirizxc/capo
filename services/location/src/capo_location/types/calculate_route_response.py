@@ -34,13 +34,13 @@ def serialize_json(value: CalculateRouteResponse) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRouteResponse:
     out: CalculateRouteResponse = {}  # type: ignore[typeddict-item]
-    if "Legs" in data:
+    if data.get("Legs") is not None:
         import capo_location.types.leg_list
 
         out["legs"] = capo_location.types.leg_list.deserialize_json(data["Legs"])
     else:
         raise DeserializationError("CalculateRouteResponse.legs required")
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         import capo_location.types.calculate_route_summary
 
         out["summary"] = capo_location.types.calculate_route_summary.deserialize_json(

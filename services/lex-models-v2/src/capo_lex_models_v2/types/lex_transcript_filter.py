@@ -31,7 +31,7 @@ def serialize_json(value: LexTranscriptFilter) -> dict:
 
 def deserialize_json(data: dict) -> LexTranscriptFilter:
     out: LexTranscriptFilter = {}  # type: ignore[typeddict-item]
-    if "dateRangeFilter" in data:
+    if data.get("dateRangeFilter") is not None:
         import capo_lex_models_v2.types.date_range_filter
 
         out["date_range_filter"] = (

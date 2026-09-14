@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: BucketCorsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BucketCorsConfig:
     out: BucketCorsConfig = {}  # type: ignore[typeddict-item]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_lightsail.types.bucket_cors_rules
 
         out["rules"] = capo_lightsail.types.bucket_cors_rules.deserialize_aws_json_1_1(

@@ -24,7 +24,7 @@ def serialize_json(value: DeleteGraphRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteGraphRequest:
     out: DeleteGraphRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError("DeleteGraphRequest.graph_arn required")

@@ -30,9 +30,9 @@ def serialize_json(value: RouteEmissionType) -> dict:
 
 def deserialize_json(data: dict) -> RouteEmissionType:
     out: RouteEmissionType = {}  # type: ignore[typeddict-item]
-    if "Co2EmissionClass" in data:
+    if data.get("Co2EmissionClass") is not None:
         out["co2_emission_class"] = data["Co2EmissionClass"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("RouteEmissionType.type required")

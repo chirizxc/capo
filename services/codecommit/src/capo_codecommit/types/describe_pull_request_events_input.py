@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: DescribePullRequestEventsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePullRequestEventsInput:
     out: DescribePullRequestEventsInput = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
     else:
         raise DeserializationError(
             "DescribePullRequestEventsInput.pull_request_id required"
         )
-    if "pullRequestEventType" in data:
+    if data.get("pullRequestEventType") is not None:
         import capo_codecommit.types.pull_request_event_type
 
         out["pull_request_event_type"] = (
@@ -66,10 +66,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePullRequestEventsInput:
                 data["pullRequestEventType"]
             )
         )
-    if "actorArn" in data:
+    if data.get("actorArn") is not None:
         out["actor_arn"] = data["actorArn"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

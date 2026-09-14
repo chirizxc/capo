@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: TransformInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransformInput:
     out: TransformInput = {}  # type: ignore[typeddict-item]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_sagemaker.types.transform_data_source
 
         out["data_source"] = (
@@ -66,9 +66,9 @@ def deserialize_aws_json_1_1(data: dict) -> TransformInput:
                 data["DataSource"]
             )
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "CompressionType" in data:
+    if data.get("CompressionType") is not None:
         import capo_sagemaker.types.compression_type
 
         out["compression_type"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformInput:
                 data["CompressionType"]
             )
         )
-    if "SplitType" in data:
+    if data.get("SplitType") is not None:
         import capo_sagemaker.types.split_type
 
         out["split_type"] = capo_sagemaker.types.split_type.deserialize_aws_json_1_1(

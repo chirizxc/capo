@@ -34,11 +34,11 @@ def serialize_json(value: RegistrySummary) -> dict:
 
 def deserialize_json(data: dict) -> RegistrySummary:
     out: RegistrySummary = {}  # type: ignore[typeddict-item]
-    if "RegistryArn" in data:
+    if data.get("RegistryArn") is not None:
         out["registry_arn"] = data["RegistryArn"]
-    if "RegistryName" in data:
+    if data.get("RegistryName") is not None:
         out["registry_name"] = data["RegistryName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_schemas.types.tags
 
         out["tags"] = capo_schemas.types.tags.deserialize_json(data["tags"])

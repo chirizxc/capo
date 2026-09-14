@@ -35,12 +35,12 @@ def serialize_json(value: AnalyzableServerSummary) -> dict:
 
 def deserialize_json(data: dict) -> AnalyzableServerSummary:
     out: AnalyzableServerSummary = {}  # type: ignore[typeddict-item]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
-    if "vmId" in data:
+    if data.get("vmId") is not None:
         out["vm_id"] = data["vmId"]
     return out

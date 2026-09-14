@@ -36,14 +36,14 @@ def serialize_json(value: ConsentPopupConfig) -> dict:
 
 def deserialize_json(data: dict) -> ConsentPopupConfig:
     out: ConsentPopupConfig = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("ConsentPopupConfig.enabled required")
-    if "header" in data:
+    if data.get("header") is not None:
         out["header"] = data["header"]
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
-    if "closeButtonLabel" in data:
+    if data.get("closeButtonLabel") is not None:
         out["close_button_label"] = data["closeButtonLabel"]
     return out

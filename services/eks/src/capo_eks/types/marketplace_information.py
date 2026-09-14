@@ -27,8 +27,8 @@ def serialize_json(value: MarketplaceInformation) -> dict:
 
 def deserialize_json(data: dict) -> MarketplaceInformation:
     out: MarketplaceInformation = {}  # type: ignore[typeddict-item]
-    if "productId" in data:
+    if data.get("productId") is not None:
         out["product_id"] = data["productId"]
-    if "productUrl" in data:
+    if data.get("productUrl") is not None:
         out["product_url"] = data["productUrl"]
     return out

@@ -31,15 +31,15 @@ def serialize_json(value: GroupingAppComponent) -> dict:
 
 def deserialize_json(data: dict) -> GroupingAppComponent:
     out: GroupingAppComponent = {}  # type: ignore[typeddict-item]
-    if "appComponentId" in data:
+    if data.get("appComponentId") is not None:
         out["app_component_id"] = data["appComponentId"]
     else:
         raise DeserializationError("GroupingAppComponent.app_component_id required")
-    if "appComponentType" in data:
+    if data.get("appComponentType") is not None:
         out["app_component_type"] = data["appComponentType"]
     else:
         raise DeserializationError("GroupingAppComponent.app_component_type required")
-    if "appComponentName" in data:
+    if data.get("appComponentName") is not None:
         out["app_component_name"] = data["appComponentName"]
     else:
         raise DeserializationError("GroupingAppComponent.app_component_name required")

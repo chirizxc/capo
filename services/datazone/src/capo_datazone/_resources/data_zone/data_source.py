@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_datazone._auth._signers
@@ -123,17 +124,18 @@ class DataSource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_data_source_input.CreateDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_datazone.types.create_data_source_input.CreateDataSourceInput = {
+            "name": name,
+            "domain_identifier": domain_identifier,
+            "project_identifier": project_identifier,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["domain_identifier"] = domain_identifier
-        input_["project_identifier"] = project_identifier
         if environment_identifier is not None:
             input_["environment_identifier"] = environment_identifier
         if connection_identifier is not None:
             input_["connection_identifier"] = connection_identifier
-        input_["type"] = type
         if configuration is not None:
             input_["configuration"] = configuration
         if recommendation is not None:
@@ -146,14 +148,16 @@ class DataSource:
             input_["publish_on_import"] = publish_on_import
         if asset_forms_input is not None:
             input_["asset_forms_input"] = asset_forms_input
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -196,15 +200,17 @@ class DataSource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_data_source_input.GetDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_data_source_input.GetDataSourceInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -275,9 +281,10 @@ class DataSource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_data_source_input.UpdateDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_data_source_input.UpdateDataSourceInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -304,6 +311,7 @@ class DataSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -350,11 +358,13 @@ class DataSource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_data_source_input.DeleteDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.delete_data_source_input.DeleteDataSourceInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if retain_permissions_on_revoke_failure is not None:
             input_["retain_permissions_on_revoke_failure"] = (
                 retain_permissions_on_revoke_failure
@@ -365,6 +375,7 @@ class DataSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -425,9 +436,10 @@ class DataSource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_data_sources_input.ListDataSourcesInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["project_identifier"] = project_identifier
+        input_: capo_datazone.types.list_data_sources_input.ListDataSourcesInput = {
+            "domain_identifier": domain_identifier,
+            "project_identifier": project_identifier,
+        }
         if environment_identifier is not None:
             input_["environment_identifier"] = environment_identifier
         if connection_identifier is not None:
@@ -448,6 +460,7 @@ class DataSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -530,17 +543,18 @@ class AsyncDataSource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_data_source_input.CreateDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_datazone.types.create_data_source_input.CreateDataSourceInput = {
+            "name": name,
+            "domain_identifier": domain_identifier,
+            "project_identifier": project_identifier,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["domain_identifier"] = domain_identifier
-        input_["project_identifier"] = project_identifier
         if environment_identifier is not None:
             input_["environment_identifier"] = environment_identifier
         if connection_identifier is not None:
             input_["connection_identifier"] = connection_identifier
-        input_["type"] = type
         if configuration is not None:
             input_["configuration"] = configuration
         if recommendation is not None:
@@ -553,14 +567,16 @@ class AsyncDataSource:
             input_["publish_on_import"] = publish_on_import
         if asset_forms_input is not None:
             input_["asset_forms_input"] = asset_forms_input
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -604,15 +620,17 @@ class AsyncDataSource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_data_source_input.GetDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_data_source_input.GetDataSourceInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -684,9 +702,10 @@ class AsyncDataSource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_data_source_input.UpdateDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_data_source_input.UpdateDataSourceInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -713,6 +732,7 @@ class AsyncDataSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -760,11 +780,13 @@ class AsyncDataSource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_data_source_input.DeleteDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.delete_data_source_input.DeleteDataSourceInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if retain_permissions_on_revoke_failure is not None:
             input_["retain_permissions_on_revoke_failure"] = (
                 retain_permissions_on_revoke_failure
@@ -775,6 +797,7 @@ class AsyncDataSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -836,9 +859,10 @@ class AsyncDataSource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_data_sources_input.ListDataSourcesInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["project_identifier"] = project_identifier
+        input_: capo_datazone.types.list_data_sources_input.ListDataSourcesInput = {
+            "domain_identifier": domain_identifier,
+            "project_identifier": project_identifier,
+        }
         if environment_identifier is not None:
             input_["environment_identifier"] = environment_identifier
         if connection_identifier is not None:
@@ -859,4 +883,5 @@ class AsyncDataSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

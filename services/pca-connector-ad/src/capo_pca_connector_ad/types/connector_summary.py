@@ -98,17 +98,17 @@ def serialize_json(value: ConnectorSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorSummary:
     out: ConnectorSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
-    if "CertificateEnrollmentPolicyServerEndpoint" in data:
+    if data.get("CertificateEnrollmentPolicyServerEndpoint") is not None:
         out["certificate_enrollment_policy_server_endpoint"] = data[
             "CertificateEnrollmentPolicyServerEndpoint"
         ]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "VpcInformation" in data:
+    if data.get("VpcInformation") is not None:
         import capo_pca_connector_ad.types.vpc_information
 
         out["vpc_information"] = (
@@ -116,13 +116,13 @@ def deserialize_json(data: dict) -> ConnectorSummary:
                 data["VpcInformation"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_pca_connector_ad.types.connector_status
 
         out["status"] = capo_pca_connector_ad.types.connector_status.deserialize_json(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_pca_connector_ad.types.connector_status_reason
 
         out["status_reason"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> ConnectorSummary:
                 data["StatusReason"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_pca_connector_ad.types._prelude.timestamp
 
         out["created_at"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> ConnectorSummary:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_pca_connector_ad.types._prelude.timestamp
 
         out["updated_at"] = (

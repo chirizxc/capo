@@ -34,11 +34,11 @@ def serialize_json(value: NewGeolocationDetail) -> dict:
 
 def deserialize_json(data: dict) -> NewGeolocationDetail:
     out: NewGeolocationDetail = {}  # type: ignore[typeddict-item]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "IsNewForEntireAccount" in data:
+    if data.get("IsNewForEntireAccount") is not None:
         out["is_new_for_entire_account"] = data["IsNewForEntireAccount"]
     else:
         out["is_new_for_entire_account"] = False

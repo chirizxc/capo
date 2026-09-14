@@ -80,15 +80,15 @@ def serialize_json(value: GetSuiteDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSuiteDefinitionResponse:
     out: GetSuiteDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "suiteDefinitionId" in data:
+    if data.get("suiteDefinitionId") is not None:
         out["suite_definition_id"] = data["suiteDefinitionId"]
-    if "suiteDefinitionArn" in data:
+    if data.get("suiteDefinitionArn") is not None:
         out["suite_definition_arn"] = data["suiteDefinitionArn"]
-    if "suiteDefinitionVersion" in data:
+    if data.get("suiteDefinitionVersion") is not None:
         out["suite_definition_version"] = data["suiteDefinitionVersion"]
-    if "latestVersion" in data:
+    if data.get("latestVersion") is not None:
         out["latest_version"] = data["latestVersion"]
-    if "suiteDefinitionConfiguration" in data:
+    if data.get("suiteDefinitionConfiguration") is not None:
         import capo_iotdeviceadvisor.types.suite_definition_configuration
 
         out["suite_definition_configuration"] = (
@@ -96,13 +96,13 @@ def deserialize_json(data: dict) -> GetSuiteDefinitionResponse:
                 data["suiteDefinitionConfiguration"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["created_at"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["last_modified_at"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> GetSuiteDefinitionResponse:
                 data["lastModifiedAt"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotdeviceadvisor.types.tag_map
 
         out["tags"] = capo_iotdeviceadvisor.types.tag_map.deserialize_json(data["tags"])

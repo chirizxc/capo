@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: BatchStopJobRunSuccessfulSubmission) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchStopJobRunSuccessfulSubmission:
     out: BatchStopJobRunSuccessfulSubmission = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobRunId" in data:
+    if data.get("JobRunId") is not None:
         out["job_run_id"] = data["JobRunId"]
     return out

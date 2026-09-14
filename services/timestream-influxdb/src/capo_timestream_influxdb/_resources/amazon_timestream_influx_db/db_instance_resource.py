@@ -146,23 +146,24 @@ class DbInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.create_db_instance_input.CreateDbInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_timestream_influxdb.types.create_db_instance_input.CreateDbInstanceInput = {
+            "name": name,
+            "password": password,
+            "db_instance_type": db_instance_type,
+            "vpc_subnet_ids": vpc_subnet_ids,
+            "vpc_security_group_ids": vpc_security_group_ids,
+            "allocated_storage": allocated_storage,
+        }
         if username is not None:
             input_["username"] = username
-        input_["password"] = password
         if organization is not None:
             input_["organization"] = organization
         if bucket is not None:
             input_["bucket"] = bucket
-        input_["db_instance_type"] = db_instance_type
-        input_["vpc_subnet_ids"] = vpc_subnet_ids
-        input_["vpc_security_group_ids"] = vpc_security_group_ids
         if publicly_accessible is not None:
             input_["publicly_accessible"] = publicly_accessible
         if db_storage_type is not None:
             input_["db_storage_type"] = db_storage_type
-        input_["allocated_storage"] = allocated_storage
         if db_parameter_group_identifier is not None:
             input_["db_parameter_group_identifier"] = db_parameter_group_identifier
         if deployment_type is not None:
@@ -183,6 +184,7 @@ class DbInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -220,14 +222,16 @@ class DbInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.get_db_instance_input.GetDbInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_timestream_influxdb.types.get_db_instance_input.GetDbInstanceInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -296,8 +300,9 @@ class DbInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.update_db_instance_input.UpdateDbInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_timestream_influxdb.types.update_db_instance_input.UpdateDbInstanceInput = {
+            "identifier": identifier
+        }
         if log_delivery_configuration is not None:
             input_["log_delivery_configuration"] = log_delivery_configuration
         if db_parameter_group_identifier is not None:
@@ -320,6 +325,7 @@ class DbInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -358,14 +364,16 @@ class DbInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.delete_db_instance_input.DeleteDbInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_timestream_influxdb.types.delete_db_instance_input.DeleteDbInstanceInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -411,7 +419,7 @@ class DbInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.list_db_instances_input.ListDbInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_influxdb.types.list_db_instances_input.ListDbInstancesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -422,6 +430,7 @@ class DbInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reboot_db_instance(
@@ -460,14 +469,16 @@ class DbInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.reboot_db_instance_input.RebootDbInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_timestream_influxdb.types.reboot_db_instance_input.RebootDbInstanceInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -563,23 +574,24 @@ class AsyncDbInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.create_db_instance_input.CreateDbInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_timestream_influxdb.types.create_db_instance_input.CreateDbInstanceInput = {
+            "name": name,
+            "password": password,
+            "db_instance_type": db_instance_type,
+            "vpc_subnet_ids": vpc_subnet_ids,
+            "vpc_security_group_ids": vpc_security_group_ids,
+            "allocated_storage": allocated_storage,
+        }
         if username is not None:
             input_["username"] = username
-        input_["password"] = password
         if organization is not None:
             input_["organization"] = organization
         if bucket is not None:
             input_["bucket"] = bucket
-        input_["db_instance_type"] = db_instance_type
-        input_["vpc_subnet_ids"] = vpc_subnet_ids
-        input_["vpc_security_group_ids"] = vpc_security_group_ids
         if publicly_accessible is not None:
             input_["publicly_accessible"] = publicly_accessible
         if db_storage_type is not None:
             input_["db_storage_type"] = db_storage_type
-        input_["allocated_storage"] = allocated_storage
         if db_parameter_group_identifier is not None:
             input_["db_parameter_group_identifier"] = db_parameter_group_identifier
         if deployment_type is not None:
@@ -600,6 +612,7 @@ class AsyncDbInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -638,14 +651,16 @@ class AsyncDbInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.get_db_instance_input.GetDbInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_timestream_influxdb.types.get_db_instance_input.GetDbInstanceInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -715,8 +730,9 @@ class AsyncDbInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.update_db_instance_input.UpdateDbInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_timestream_influxdb.types.update_db_instance_input.UpdateDbInstanceInput = {
+            "identifier": identifier
+        }
         if log_delivery_configuration is not None:
             input_["log_delivery_configuration"] = log_delivery_configuration
         if db_parameter_group_identifier is not None:
@@ -739,6 +755,7 @@ class AsyncDbInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -778,14 +795,16 @@ class AsyncDbInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.delete_db_instance_input.DeleteDbInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_timestream_influxdb.types.delete_db_instance_input.DeleteDbInstanceInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -832,7 +851,7 @@ class AsyncDbInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.list_db_instances_input.ListDbInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_influxdb.types.list_db_instances_input.ListDbInstancesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -843,6 +862,7 @@ class AsyncDbInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_db_instance(
@@ -882,12 +902,14 @@ class AsyncDbInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.reboot_db_instance_input.RebootDbInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_timestream_influxdb.types.reboot_db_instance_input.RebootDbInstanceInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

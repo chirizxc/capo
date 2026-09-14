@@ -28,12 +28,12 @@ def serialize_json(value: RejectResourceShareInvitationRequest) -> dict:
 
 def deserialize_json(data: dict) -> RejectResourceShareInvitationRequest:
     out: RejectResourceShareInvitationRequest = {}  # type: ignore[typeddict-item]
-    if "resourceShareInvitationArn" in data:
+    if data.get("resourceShareInvitationArn") is not None:
         out["resource_share_invitation_arn"] = data["resourceShareInvitationArn"]
     else:
         raise DeserializationError(
             "RejectResourceShareInvitationRequest.resource_share_invitation_arn required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

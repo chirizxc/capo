@@ -97,23 +97,23 @@ def serialize_aws_json_1_1(value: Document) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Document:
     out: Document = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("Document.id required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Blob" in data:
+    if data.get("Blob") is not None:
         import capo_kendra.types.blob
 
         out["blob"] = capo_kendra.types.blob.deserialize_aws_json_1_1(data["Blob"])
-    if "S3Path" in data:
+    if data.get("S3Path") is not None:
         import capo_kendra.types.s3_path
 
         out["s3_path"] = capo_kendra.types.s3_path.deserialize_aws_json_1_1(
             data["S3Path"]
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_kendra.types.document_attribute_list
 
         out["attributes"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> Document:
                 data["Attributes"]
             )
         )
-    if "AccessControlList" in data:
+    if data.get("AccessControlList") is not None:
         import capo_kendra.types.principal_list
 
         out["access_control_list"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> Document:
                 data["AccessControlList"]
             )
         )
-    if "HierarchicalAccessControlList" in data:
+    if data.get("HierarchicalAccessControlList") is not None:
         import capo_kendra.types.hierarchical_principal_list
 
         out["hierarchical_access_control_list"] = (
@@ -137,12 +137,12 @@ def deserialize_aws_json_1_1(data: dict) -> Document:
                 data["HierarchicalAccessControlList"]
             )
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_kendra.types.content_type
 
         out["content_type"] = capo_kendra.types.content_type.deserialize_aws_json_1_1(
             data["ContentType"]
         )
-    if "AccessControlConfigurationId" in data:
+    if data.get("AccessControlConfigurationId") is not None:
         out["access_control_configuration_id"] = data["AccessControlConfigurationId"]
     return out

@@ -48,13 +48,21 @@ def serialize_json(value: HistogramBinOptions) -> dict:
             value["bin_width"]
         )
     if "start_value" in value:
-        out["StartValue"] = value["start_value"]
+        out["StartValue"] = (
+            "NaN"
+            if value["start_value"] != value["start_value"]
+            else "Infinity"
+            if value["start_value"] == float("inf")
+            else "-Infinity"
+            if value["start_value"] == float("-inf")
+            else value["start_value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> HistogramBinOptions:
     out: HistogramBinOptions = {}  # type: ignore[typeddict-item]
-    if "SelectedBinType" in data:
+    if data.get("SelectedBinType") is not None:
         import capo_quicksight.types.histogram_bin_type
 
         out["selected_bin_type"] = (
@@ -62,18 +70,18 @@ def deserialize_json(data: dict) -> HistogramBinOptions:
                 data["SelectedBinType"]
             )
         )
-    if "BinCount" in data:
+    if data.get("BinCount") is not None:
         import capo_quicksight.types.bin_count_options
 
         out["bin_count"] = capo_quicksight.types.bin_count_options.deserialize_json(
             data["BinCount"]
         )
-    if "BinWidth" in data:
+    if data.get("BinWidth") is not None:
         import capo_quicksight.types.bin_width_options
 
         out["bin_width"] = capo_quicksight.types.bin_width_options.deserialize_json(
             data["BinWidth"]
         )
-    if "StartValue" in data:
-        out["start_value"] = data["StartValue"]
+    if data.get("StartValue") is not None:
+        out["start_value"] = float(data["StartValue"])
     return out

@@ -51,7 +51,15 @@ def serialize_json(value: CreateAutomationRuleV2Request) -> dict:
     if "description" in value:
         out["Description"] = value["description"]
     if "rule_order" in value:
-        out["RuleOrder"] = value["rule_order"]
+        out["RuleOrder"] = (
+            "NaN"
+            if value["rule_order"] != value["rule_order"]
+            else "Infinity"
+            if value["rule_order"] == float("inf")
+            else "-Infinity"
+            if value["rule_order"] == float("-inf")
+            else value["rule_order"]
+        )
     if "criteria" in value:
         import capo_securityhub.types.criteria
 
@@ -77,25 +85,25 @@ def serialize_json(value: CreateAutomationRuleV2Request) -> dict:
 
 def deserialize_json(data: dict) -> CreateAutomationRuleV2Request:
     out: CreateAutomationRuleV2Request = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "RuleStatus" in data:
+    if data.get("RuleStatus") is not None:
         import capo_securityhub.types.rule_status_v2
 
         out["rule_status"] = capo_securityhub.types.rule_status_v2.deserialize_json(
             data["RuleStatus"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RuleOrder" in data:
-        out["rule_order"] = data["RuleOrder"]
-    if "Criteria" in data:
+    if data.get("RuleOrder") is not None:
+        out["rule_order"] = float(data["RuleOrder"])
+    if data.get("Criteria") is not None:
         import capo_securityhub.types.criteria
 
         out["criteria"] = capo_securityhub.types.criteria.deserialize_json(
             data["Criteria"]
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_securityhub.types.automation_rules_action_list_v2
 
         out["actions"] = (
@@ -103,10 +111,10 @@ def deserialize_json(data: dict) -> CreateAutomationRuleV2Request:
                 data["Actions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_securityhub.types.tag_map
 
         out["tags"] = capo_securityhub.types.tag_map.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -42,12 +42,12 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeAppBlockBuilderAppBlockAssociationsRequest:
     out: DescribeAppBlockBuilderAppBlockAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "AppBlockArn" in data:
+    if data.get("AppBlockArn") is not None:
         out["app_block_arn"] = data["AppBlockArn"]
-    if "AppBlockBuilderName" in data:
+    if data.get("AppBlockBuilderName") is not None:
         out["app_block_builder_name"] = data["AppBlockBuilderName"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

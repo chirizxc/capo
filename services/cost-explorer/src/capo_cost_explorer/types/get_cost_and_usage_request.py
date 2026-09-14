@@ -78,7 +78,7 @@ def serialize_aws_json_1_1(value: GetCostAndUsageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageRequest:
     out: GetCostAndUsageRequest = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageRequest:
         )
     else:
         raise DeserializationError("GetCostAndUsageRequest.time_period required")
-    if "Granularity" in data:
+    if data.get("Granularity") is not None:
         import capo_cost_explorer.types.granularity
 
         out["granularity"] = (
@@ -98,13 +98,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageRequest:
         )
     else:
         raise DeserializationError("GetCostAndUsageRequest.granularity required")
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_cost_explorer.types.expression
 
         out["filter"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_cost_explorer.types.metric_names
 
         out["metrics"] = capo_cost_explorer.types.metric_names.deserialize_aws_json_1_1(
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageRequest:
         )
     else:
         raise DeserializationError("GetCostAndUsageRequest.metrics required")
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_cost_explorer.types.group_definitions
 
         out["group_by"] = (
@@ -120,8 +120,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageRequest:
                 data["GroupBy"]
             )
         )
-    if "BillingViewArn" in data:
+    if data.get("BillingViewArn") is not None:
         out["billing_view_arn"] = data["BillingViewArn"]
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

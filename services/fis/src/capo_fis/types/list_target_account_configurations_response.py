@@ -36,7 +36,7 @@ def serialize_json(value: ListTargetAccountConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTargetAccountConfigurationsResponse:
     out: ListTargetAccountConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "targetAccountConfigurations" in data:
+    if data.get("targetAccountConfigurations") is not None:
         import capo_fis.types.target_account_configuration_list
 
         out["target_account_configurations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListTargetAccountConfigurationsResponse:
                 data["targetAccountConfigurations"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

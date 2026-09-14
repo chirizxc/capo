@@ -82,9 +82,9 @@ def serialize_aws_json_1_1(value: ListResourceCatalogsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListResourceCatalogsRequest:
     out: ListResourceCatalogsRequest = {}  # type: ignore[typeddict-item]
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListResourceCatalogsRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListResourceCatalogsRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.resource_catalog_sort_order
 
         out["sort_order"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListResourceCatalogsRequest:
                 data["SortOrder"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.resource_catalog_sort_by
 
         out["sort_by"] = (
@@ -116,8 +116,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListResourceCatalogsRequest:
                 data["SortBy"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -30,7 +30,7 @@ def serialize_json(value: UpdateFolderRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFolderRequest:
     out: UpdateFolderRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateFolderRequest.name required")

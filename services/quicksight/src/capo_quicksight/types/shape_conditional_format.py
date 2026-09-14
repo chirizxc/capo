@@ -32,7 +32,7 @@ def serialize_json(value: ShapeConditionalFormat) -> dict:
 
 def deserialize_json(data: dict) -> ShapeConditionalFormat:
     out: ShapeConditionalFormat = {}  # type: ignore[typeddict-item]
-    if "BackgroundColor" in data:
+    if data.get("BackgroundColor") is not None:
         import capo_quicksight.types.conditional_formatting_color
 
         out["background_color"] = (

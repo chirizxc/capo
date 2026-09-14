@@ -19,7 +19,7 @@ def serialize_json(value: CustomActionDefinition) -> dict:
 
 def deserialize_json(data: dict) -> CustomActionDefinition:
     out: CustomActionDefinition = {}  # type: ignore[typeddict-item]
-    if "CommandText" in data:
+    if data.get("CommandText") is not None:
         out["command_text"] = data["CommandText"]
     else:
         raise DeserializationError("CustomActionDefinition.command_text required")

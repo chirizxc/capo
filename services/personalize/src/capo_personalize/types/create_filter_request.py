@@ -39,19 +39,19 @@ def serialize_aws_json_1_1(value: CreateFilterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFilterRequest:
     out: CreateFilterRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateFilterRequest.name required")
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
     else:
         raise DeserializationError("CreateFilterRequest.dataset_group_arn required")
-    if "filterExpression" in data:
+    if data.get("filterExpression") is not None:
         out["filter_expression"] = data["filterExpression"]
     else:
         raise DeserializationError("CreateFilterRequest.filter_expression required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])

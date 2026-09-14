@@ -113,13 +113,13 @@ def serialize_aws_json_1_1(value: Backup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Backup:
     out: Backup = {}  # type: ignore[typeddict-item]
-    if "BackupId" in data:
+    if data.get("BackupId") is not None:
         out["backup_id"] = data["BackupId"]
     else:
         raise DeserializationError("Backup.backup_id required")
-    if "BackupArn" in data:
+    if data.get("BackupArn") is not None:
         out["backup_arn"] = data["BackupArn"]
-    if "BackupState" in data:
+    if data.get("BackupState") is not None:
         import capo_cloudhsm_v2.types.backup_state
 
         out["backup_state"] = (
@@ -127,9 +127,9 @@ def deserialize_aws_json_1_1(data: dict) -> Backup:
                 data["BackupState"]
             )
         )
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "CreateTimestamp" in data:
+    if data.get("CreateTimestamp") is not None:
         import capo_cloudhsm_v2.types.timestamp
 
         out["create_timestamp"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> Backup:
                 data["CreateTimestamp"]
             )
         )
-    if "CopyTimestamp" in data:
+    if data.get("CopyTimestamp") is not None:
         import capo_cloudhsm_v2.types.timestamp
 
         out["copy_timestamp"] = (
@@ -145,15 +145,15 @@ def deserialize_aws_json_1_1(data: dict) -> Backup:
                 data["CopyTimestamp"]
             )
         )
-    if "NeverExpires" in data:
+    if data.get("NeverExpires") is not None:
         out["never_expires"] = data["NeverExpires"]
-    if "SourceRegion" in data:
+    if data.get("SourceRegion") is not None:
         out["source_region"] = data["SourceRegion"]
-    if "SourceBackup" in data:
+    if data.get("SourceBackup") is not None:
         out["source_backup"] = data["SourceBackup"]
-    if "SourceCluster" in data:
+    if data.get("SourceCluster") is not None:
         out["source_cluster"] = data["SourceCluster"]
-    if "DeleteTimestamp" in data:
+    if data.get("DeleteTimestamp") is not None:
         import capo_cloudhsm_v2.types.timestamp
 
         out["delete_timestamp"] = (
@@ -161,15 +161,15 @@ def deserialize_aws_json_1_1(data: dict) -> Backup:
                 data["DeleteTimestamp"]
             )
         )
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_cloudhsm_v2.types.tag_list
 
         out["tag_list"] = capo_cloudhsm_v2.types.tag_list.deserialize_aws_json_1_1(
             data["TagList"]
         )
-    if "HsmType" in data:
+    if data.get("HsmType") is not None:
         out["hsm_type"] = data["HsmType"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_cloudhsm_v2.types.cluster_mode
 
         out["mode"] = capo_cloudhsm_v2.types.cluster_mode.deserialize_aws_json_1_1(

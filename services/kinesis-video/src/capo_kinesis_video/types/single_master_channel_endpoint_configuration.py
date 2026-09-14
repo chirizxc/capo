@@ -36,13 +36,13 @@ def serialize_json(value: SingleMasterChannelEndpointConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SingleMasterChannelEndpointConfiguration:
     out: SingleMasterChannelEndpointConfiguration = {}  # type: ignore[typeddict-item]
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_kinesis_video.types.list_of_protocols
 
         out["protocols"] = capo_kinesis_video.types.list_of_protocols.deserialize_json(
             data["Protocols"]
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_kinesis_video.types.channel_role
 
         out["role"] = capo_kinesis_video.types.channel_role.deserialize_json(

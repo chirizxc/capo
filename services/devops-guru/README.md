@@ -13,9 +13,9 @@ from capo_devops_guru import AsyncDevOpsGuruClient
 
 
 async def main():
-    async with AsyncDevOpsGuruClient() as s3:
+    async with AsyncDevOpsGuruClient() as dev_ops_guru:
         # Example: call the add_notification_channel operation
-        response = await s3.add_notification_channel()
+        response = await dev_ops_guru.add_notification_channel()
         print(response["id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_devops_guru import AsyncDevOpsGuruClient
 
 
 async def main():
-    async with AsyncDevOpsGuruClient() as s3:
-        # Example: paginate over list_events
-        async for item in s3.iter_list_events():
+    async with AsyncDevOpsGuruClient() as dev_ops_guru:
+        # Example: paginate over describe_organization_resource_collection_health
+        async for item in dev_ops_guru.iter_describe_organization_resource_collection_health():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_devops_guru.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncDevOpsGuruClient() as s3:
+    async with AsyncDevOpsGuruClient() as dev_ops_guru:
         try:
-            await s3.add_notification_channel()
+            await dev_ops_guru.add_notification_channel()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_devops_guru import AsyncDevOpsGuruClient
 
 
 async def main():
-    async with AsyncDevOpsGuruClient() as s3:
+    async with AsyncDevOpsGuruClient() as dev_ops_guru:
         # Default: 3 attempts for every operation
-        response = await s3.add_notification_channel()
+        response = await dev_ops_guru.add_notification_channel()
 
         # Override per operation
-        response = await s3.add_notification_channel(config_overrides={"retry_max_attempts": 5})
+        response = await dev_ops_guru.add_notification_channel(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_notification_channel(config_overrides={"retry_max_attempts": 1})
+        response = await dev_ops_guru.add_notification_channel(config_overrides={"retry_max_attempts": 1})
 ```

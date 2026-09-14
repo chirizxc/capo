@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: BatchDeleteConnectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteConnectionResponse:
     out: BatchDeleteConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "Succeeded" in data:
+    if data.get("Succeeded") is not None:
         import capo_glue.types.name_string_list
 
         out["succeeded"] = capo_glue.types.name_string_list.deserialize_aws_json_1_1(
             data["Succeeded"]
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_glue.types.error_by_name
 
         out["errors"] = capo_glue.types.error_by_name.deserialize_aws_json_1_1(

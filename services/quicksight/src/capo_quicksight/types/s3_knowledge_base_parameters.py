@@ -36,12 +36,12 @@ def serialize_json(value: S3KnowledgeBaseParameters) -> dict:
 
 def deserialize_json(data: dict) -> S3KnowledgeBaseParameters:
     out: S3KnowledgeBaseParameters = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "BucketUrl" in data:
+    if data.get("BucketUrl") is not None:
         out["bucket_url"] = data["BucketUrl"]
     else:
         raise DeserializationError("S3KnowledgeBaseParameters.bucket_url required")
-    if "MetadataFilesLocation" in data:
+    if data.get("MetadataFilesLocation") is not None:
         out["metadata_files_location"] = data["MetadataFilesLocation"]
     return out

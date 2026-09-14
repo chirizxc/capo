@@ -61,9 +61,9 @@ def serialize_aws_json_1_1(value: DeliveryChannelStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeliveryChannelStatus:
     out: DeliveryChannelStatus = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "configSnapshotDeliveryInfo" in data:
+    if data.get("configSnapshotDeliveryInfo") is not None:
         import capo_config_service.types.config_export_delivery_info
 
         out["config_snapshot_delivery_info"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeliveryChannelStatus:
                 data["configSnapshotDeliveryInfo"]
             )
         )
-    if "configHistoryDeliveryInfo" in data:
+    if data.get("configHistoryDeliveryInfo") is not None:
         import capo_config_service.types.config_export_delivery_info
 
         out["config_history_delivery_info"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeliveryChannelStatus:
                 data["configHistoryDeliveryInfo"]
             )
         )
-    if "configStreamDeliveryInfo" in data:
+    if data.get("configStreamDeliveryInfo") is not None:
         import capo_config_service.types.config_stream_delivery_info
 
         out["config_stream_delivery_info"] = (

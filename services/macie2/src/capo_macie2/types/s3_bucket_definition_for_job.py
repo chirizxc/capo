@@ -32,9 +32,9 @@ def serialize_json(value: S3BucketDefinitionForJob) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketDefinitionForJob:
     out: S3BucketDefinitionForJob = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "buckets" in data:
+    if data.get("buckets") is not None:
         import capo_macie2.types.__list_of__string
 
         out["buckets"] = capo_macie2.types.__list_of__string.deserialize_json(

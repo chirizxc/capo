@@ -48,13 +48,13 @@ def serialize_json(value: DescribeMetricsExportResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeMetricsExportResponse:
     out: DescribeMetricsExportResponse = {}  # type: ignore[typeddict-item]
-    if "metricsExportId" in data:
+    if data.get("metricsExportId") is not None:
         out["metrics_export_id"] = data["metricsExportId"]
     else:
         raise DeserializationError(
             "DescribeMetricsExportResponse.metrics_export_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehub.types.metrics_export_status_type
 
         out["status"] = (
@@ -64,12 +64,12 @@ def deserialize_json(data: dict) -> DescribeMetricsExportResponse:
         )
     else:
         raise DeserializationError("DescribeMetricsExportResponse.status required")
-    if "exportLocation" in data:
+    if data.get("exportLocation") is not None:
         import capo_resiliencehub.types.s3_location
 
         out["export_location"] = capo_resiliencehub.types.s3_location.deserialize_json(
             data["exportLocation"]
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

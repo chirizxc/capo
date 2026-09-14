@@ -38,9 +38,9 @@ def serialize_json(value: AwsS3BucketObjectLockConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketObjectLockConfiguration:
     out: AwsS3BucketObjectLockConfiguration = {}  # type: ignore[typeddict-item]
-    if "ObjectLockEnabled" in data:
+    if data.get("ObjectLockEnabled") is not None:
         out["object_lock_enabled"] = data["ObjectLockEnabled"]
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_securityhub.types.aws_s3_bucket_object_lock_configuration_rule_details
 
         out["rule"] = (

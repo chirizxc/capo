@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListLifecyclePoliciesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListLifecyclePoliciesResponse:
     out: ListLifecyclePoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "lifecyclePolicySummaries" in data:
+    if data.get("lifecyclePolicySummaries") is not None:
         import capo_opensearchserverless.types.lifecycle_policy_summaries
 
         out["lifecycle_policy_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListLifecyclePoliciesResponse:
                 data["lifecyclePolicySummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

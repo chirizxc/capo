@@ -36,7 +36,7 @@ def serialize_json(value: ListChallengeMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListChallengeMetadataResponse:
     out: ListChallengeMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "Challenges" in data:
+    if data.get("Challenges") is not None:
         import capo_pca_connector_scep.types.challenge_metadata_list
 
         out["challenges"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListChallengeMetadataResponse:
                 data["Challenges"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

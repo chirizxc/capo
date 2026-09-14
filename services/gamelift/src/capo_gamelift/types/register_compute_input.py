@@ -52,16 +52,16 @@ def serialize_aws_json_1_1(value: RegisterComputeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterComputeInput:
     out: RegisterComputeInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "ComputeName" in data:
+    if data.get("ComputeName") is not None:
         out["compute_name"] = data["ComputeName"]
-    if "CertificatePath" in data:
+    if data.get("CertificatePath") is not None:
         out["certificate_path"] = data["CertificatePath"]
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     return out

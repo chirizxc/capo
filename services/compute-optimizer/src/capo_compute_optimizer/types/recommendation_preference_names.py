@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> RecommendationPreferenceNames:
 
     out: RecommendationPreferenceNames = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer.types.recommendation_preference_name.deserialize_aws_json_1_0(
                 item

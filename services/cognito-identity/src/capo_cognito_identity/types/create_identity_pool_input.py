@@ -111,19 +111,19 @@ def serialize_aws_json_1_1(value: CreateIdentityPoolInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIdentityPoolInput:
     out: CreateIdentityPoolInput = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolName" in data:
+    if data.get("IdentityPoolName") is not None:
         out["identity_pool_name"] = data["IdentityPoolName"]
     else:
         raise DeserializationError(
             "CreateIdentityPoolInput.identity_pool_name required"
         )
-    if "AllowUnauthenticatedIdentities" in data:
+    if data.get("AllowUnauthenticatedIdentities") is not None:
         out["allow_unauthenticated_identities"] = data["AllowUnauthenticatedIdentities"]
     else:
         out["allow_unauthenticated_identities"] = False
-    if "AllowClassicFlow" in data:
+    if data.get("AllowClassicFlow") is not None:
         out["allow_classic_flow"] = data["AllowClassicFlow"]
-    if "SupportedLoginProviders" in data:
+    if data.get("SupportedLoginProviders") is not None:
         import capo_cognito_identity.types.identity_providers
 
         out["supported_login_providers"] = (
@@ -131,9 +131,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIdentityPoolInput:
                 data["SupportedLoginProviders"]
             )
         )
-    if "DeveloperProviderName" in data:
+    if data.get("DeveloperProviderName") is not None:
         out["developer_provider_name"] = data["DeveloperProviderName"]
-    if "OpenIdConnectProviderARNs" in data:
+    if data.get("OpenIdConnectProviderARNs") is not None:
         import capo_cognito_identity.types.oidc_provider_list
 
         out["open_id_connect_provider_ar_ns"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIdentityPoolInput:
                 data["OpenIdConnectProviderARNs"]
             )
         )
-    if "CognitoIdentityProviders" in data:
+    if data.get("CognitoIdentityProviders") is not None:
         import capo_cognito_identity.types.cognito_identity_provider_list
 
         out["cognito_identity_providers"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIdentityPoolInput:
                 data["CognitoIdentityProviders"]
             )
         )
-    if "SamlProviderARNs" in data:
+    if data.get("SamlProviderARNs") is not None:
         import capo_cognito_identity.types.saml_provider_list
 
         out["saml_provider_ar_ns"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIdentityPoolInput:
                 data["SamlProviderARNs"]
             )
         )
-    if "IdentityPoolTags" in data:
+    if data.get("IdentityPoolTags") is not None:
         import capo_cognito_identity.types.identity_pool_tags_type
 
         out["identity_pool_tags"] = (

@@ -53,13 +53,13 @@ def serialize_json(value: PutGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutGroupRequest:
     out: PutGroupRequest = {}  # type: ignore[typeddict-item]
-    if "groupName" in data:
+    if data.get("groupName") is not None:
         out["group_name"] = data["groupName"]
     else:
         raise DeserializationError("PutGroupRequest.group_name required")
-    if "dataSourceId" in data:
+    if data.get("dataSourceId") is not None:
         out["data_source_id"] = data["dataSourceId"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.membership_type
 
         out["type"] = capo_qbusiness.types.membership_type.deserialize_json(
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> PutGroupRequest:
         )
     else:
         raise DeserializationError("PutGroupRequest.type required")
-    if "groupMembers" in data:
+    if data.get("groupMembers") is not None:
         import capo_qbusiness.types.group_members
 
         out["group_members"] = capo_qbusiness.types.group_members.deserialize_json(
@@ -75,6 +75,6 @@ def deserialize_json(data: dict) -> PutGroupRequest:
         )
     else:
         raise DeserializationError("PutGroupRequest.group_members required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

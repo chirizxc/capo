@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ConcatenationSourceList:
 
     out: ConcatenationSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_media_pipelines.types.concatenation_source.deserialize_json(
                 item

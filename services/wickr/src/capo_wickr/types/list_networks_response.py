@@ -31,7 +31,7 @@ def serialize_json(value: ListNetworksResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListNetworksResponse:
     out: ListNetworksResponse = {}  # type: ignore[typeddict-item]
-    if "networks" in data:
+    if data.get("networks") is not None:
         import capo_wickr.types.network_list
 
         out["networks"] = capo_wickr.types.network_list.deserialize_json(
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> ListNetworksResponse:
         )
     else:
         raise DeserializationError("ListNetworksResponse.networks required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

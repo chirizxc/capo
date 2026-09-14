@@ -28,7 +28,7 @@ def serialize_json(value: DescribeVirtualRouterOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeVirtualRouterOutput:
     out: DescribeVirtualRouterOutput = {}  # type: ignore[typeddict-item]
-    if "virtualRouter" in data:
+    if data.get("virtualRouter") is not None:
         import capo_app_mesh.types.virtual_router_data
 
         out["virtual_router"] = (

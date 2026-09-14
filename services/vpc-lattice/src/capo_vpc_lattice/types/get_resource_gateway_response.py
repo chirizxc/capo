@@ -115,27 +115,27 @@ def serialize_json(value: GetResourceGatewayResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceGatewayResponse:
     out: GetResourceGatewayResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_vpc_lattice.types.subnet_list
 
         out["subnet_ids"] = capo_vpc_lattice.types.subnet_list.deserialize_json(
             data["subnetIds"]
         )
-    if "serviceManaged" in data:
+    if data.get("serviceManaged") is not None:
         out["service_managed"] = data["serviceManaged"]
-    if "managedBy" in data:
+    if data.get("managedBy") is not None:
         out["managed_by"] = data["managedBy"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_vpc_lattice.types.security_group_list
 
         out["security_group_ids"] = (
@@ -143,19 +143,19 @@ def deserialize_json(data: dict) -> GetResourceGatewayResponse:
                 data["securityGroupIds"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         out["ip_address_type"] = data["ipAddressType"]
-    if "ipv4AddressesPerEni" in data:
+    if data.get("ipv4AddressesPerEni") is not None:
         out["ipv4_addresses_per_eni"] = data["ipv4AddressesPerEni"]
-    if "resourceConfigDnsResolution" in data:
+    if data.get("resourceConfigDnsResolution") is not None:
         out["resource_config_dns_resolution"] = data["resourceConfigDnsResolution"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(

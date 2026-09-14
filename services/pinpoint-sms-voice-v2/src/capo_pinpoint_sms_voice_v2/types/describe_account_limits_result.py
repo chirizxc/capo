@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: DescribeAccountLimitsResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeAccountLimitsResult:
     out: DescribeAccountLimitsResult = {}  # type: ignore[typeddict-item]
-    if "AccountLimits" in data:
+    if data.get("AccountLimits") is not None:
         import capo_pinpoint_sms_voice_v2.types.account_limit_list
 
         out["account_limits"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAccountLimitsResult:
                 data["AccountLimits"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

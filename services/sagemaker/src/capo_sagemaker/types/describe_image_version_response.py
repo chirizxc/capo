@@ -133,23 +133,23 @@ def serialize_aws_json_1_1(value: DescribeImageVersionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeImageVersionResponse:
     out: DescribeImageVersionResponse = {}  # type: ignore[typeddict-item]
-    if "BaseImage" in data:
+    if data.get("BaseImage") is not None:
         out["base_image"] = data["BaseImage"]
-    if "ContainerImage" in data:
+    if data.get("ContainerImage") is not None:
         out["container_image"] = data["ContainerImage"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ImageArn" in data:
+    if data.get("ImageArn") is not None:
         out["image_arn"] = data["ImageArn"]
-    if "ImageVersionArn" in data:
+    if data.get("ImageVersionArn") is not None:
         out["image_version_arn"] = data["ImageVersionArn"]
-    if "ImageVersionStatus" in data:
+    if data.get("ImageVersionStatus") is not None:
         import capo_sagemaker.types.image_version_status
 
         out["image_version_status"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeImageVersionResponse:
                 data["ImageVersionStatus"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -165,9 +165,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeImageVersionResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "VendorGuidance" in data:
+    if data.get("VendorGuidance") is not None:
         import capo_sagemaker.types.vendor_guidance
 
         out["vendor_guidance"] = (
@@ -175,24 +175,24 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeImageVersionResponse:
                 data["VendorGuidance"]
             )
         )
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         import capo_sagemaker.types.job_type
 
         out["job_type"] = capo_sagemaker.types.job_type.deserialize_aws_json_1_1(
             data["JobType"]
         )
-    if "MLFramework" in data:
+    if data.get("MLFramework") is not None:
         out["ml_framework"] = data["MLFramework"]
-    if "ProgrammingLang" in data:
+    if data.get("ProgrammingLang") is not None:
         out["programming_lang"] = data["ProgrammingLang"]
-    if "Processor" in data:
+    if data.get("Processor") is not None:
         import capo_sagemaker.types.processor
 
         out["processor"] = capo_sagemaker.types.processor.deserialize_aws_json_1_1(
             data["Processor"]
         )
-    if "Horovod" in data:
+    if data.get("Horovod") is not None:
         out["horovod"] = data["Horovod"]
-    if "ReleaseNotes" in data:
+    if data.get("ReleaseNotes") is not None:
         out["release_notes"] = data["ReleaseNotes"]
     return out

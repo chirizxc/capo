@@ -33,9 +33,9 @@ def serialize_json(value: EventReference) -> dict:
 
 
 def deserialize_json(data: dict) -> EventReference:
-    if "resource" in data:
+    if data.get("resource") is not None:
         return {"resource": data["resource"]}
-    elif "relatedItemId" in data:
+    elif data.get("relatedItemId") is not None:
         return {"relatedItemId": data["relatedItemId"]}
     else:
         raise DeserializationError("EventReference: no recognized variant key")

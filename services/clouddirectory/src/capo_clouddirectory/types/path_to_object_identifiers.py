@@ -36,9 +36,9 @@ def serialize_json(value: PathToObjectIdentifiers) -> dict:
 
 def deserialize_json(data: dict) -> PathToObjectIdentifiers:
     out: PathToObjectIdentifiers = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "ObjectIdentifiers" in data:
+    if data.get("ObjectIdentifiers") is not None:
         import capo_clouddirectory.types.object_identifier_list
 
         out["object_identifiers"] = (

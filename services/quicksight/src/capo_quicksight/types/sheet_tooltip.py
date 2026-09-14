@@ -25,6 +25,6 @@ def serialize_json(value: SheetTooltip) -> dict:
 
 def deserialize_json(data: dict) -> SheetTooltip:
     out: SheetTooltip = {}  # type: ignore[typeddict-item]
-    if "SheetId" in data:
+    if data.get("SheetId") is not None:
         out["sheet_id"] = data["SheetId"]
     return out

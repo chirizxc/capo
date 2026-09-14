@@ -83,7 +83,7 @@ def serialize_json(value: ControlOperationFilter) -> dict:
 
 def deserialize_json(data: dict) -> ControlOperationFilter:
     out: ControlOperationFilter = {}  # type: ignore[typeddict-item]
-    if "controlIdentifiers" in data:
+    if data.get("controlIdentifiers") is not None:
         import capo_controltower.types.control_identifiers
 
         out["control_identifiers"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> ControlOperationFilter:
                 data["controlIdentifiers"]
             )
         )
-    if "targetIdentifiers" in data:
+    if data.get("targetIdentifiers") is not None:
         import capo_controltower.types.target_identifiers
 
         out["target_identifiers"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> ControlOperationFilter:
                 data["targetIdentifiers"]
             )
         )
-    if "enabledControlIdentifiers" in data:
+    if data.get("enabledControlIdentifiers") is not None:
         import capo_controltower.types.enabled_control_identifiers
 
         out["enabled_control_identifiers"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> ControlOperationFilter:
                 data["enabledControlIdentifiers"]
             )
         )
-    if "statuses" in data:
+    if data.get("statuses") is not None:
         import capo_controltower.types.control_operation_statuses
 
         out["statuses"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> ControlOperationFilter:
                 data["statuses"]
             )
         )
-    if "controlOperationTypes" in data:
+    if data.get("controlOperationTypes") is not None:
         import capo_controltower.types.control_operation_types
 
         out["control_operation_types"] = (

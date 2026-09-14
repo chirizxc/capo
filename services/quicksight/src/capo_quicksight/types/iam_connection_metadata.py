@@ -24,7 +24,7 @@ def serialize_json(value: IAMConnectionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> IAMConnectionMetadata:
     out: IAMConnectionMetadata = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("IAMConnectionMetadata.role_arn required")

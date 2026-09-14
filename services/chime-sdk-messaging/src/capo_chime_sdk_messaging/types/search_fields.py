@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SearchFields:
 
     out: SearchFields = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime_sdk_messaging.types.search_field.deserialize_json(item))
     return out

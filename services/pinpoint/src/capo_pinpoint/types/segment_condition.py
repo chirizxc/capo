@@ -23,6 +23,6 @@ def serialize_json(value: SegmentCondition) -> dict:
 
 def deserialize_json(data: dict) -> SegmentCondition:
     out: SegmentCondition = {}  # type: ignore[typeddict-item]
-    if "SegmentId" in data:
+    if data.get("SegmentId") is not None:
         out["segment_id"] = data["SegmentId"]
     return out

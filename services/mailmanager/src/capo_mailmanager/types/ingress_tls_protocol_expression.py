@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: IngressTlsProtocolExpression) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngressTlsProtocolExpression:
     out: IngressTlsProtocolExpression = {}  # type: ignore[typeddict-item]
-    if "Evaluate" in data:
+    if data.get("Evaluate") is not None:
         import capo_mailmanager.types.ingress_tls_protocol_to_evaluate
 
         out["evaluate"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> IngressTlsProtocolExpression:
         )
     else:
         raise DeserializationError("IngressTlsProtocolExpression.evaluate required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_mailmanager.types.ingress_tls_protocol_operator
 
         out["operator"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> IngressTlsProtocolExpression:
         )
     else:
         raise DeserializationError("IngressTlsProtocolExpression.operator required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_mailmanager.types.ingress_tls_protocol_attribute
 
         out["value"] = (

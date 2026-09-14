@@ -344,15 +344,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.clone_receipt_rule_set_request.CloneReceiptRuleSetRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_set_name"] = rule_set_name
-        input_["original_rule_set_name"] = original_rule_set_name
+        input_: capo_ses.types.clone_receipt_rule_set_request.CloneReceiptRuleSetRequest = {
+            "rule_set_name": rule_set_name,
+            "original_rule_set_name": original_rule_set_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_configuration_set(
@@ -389,14 +391,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.create_configuration_set_request.CreateConfigurationSetRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set"] = configuration_set
+        input_: capo_ses.types.create_configuration_set_request.CreateConfigurationSetRequest = {
+            "configuration_set": configuration_set
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_configuration_set_event_destination(
@@ -438,15 +442,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.create_configuration_set_event_destination_request.CreateConfigurationSetEventDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["event_destination"] = event_destination
+        input_: capo_ses.types.create_configuration_set_event_destination_request.CreateConfigurationSetEventDestinationRequest = {
+            "configuration_set_name": configuration_set_name,
+            "event_destination": event_destination,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_configuration_set_tracking_options(
@@ -484,15 +490,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.create_configuration_set_tracking_options_request.CreateConfigurationSetTrackingOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["tracking_options"] = tracking_options
+        input_: capo_ses.types.create_configuration_set_tracking_options_request.CreateConfigurationSetTrackingOptionsRequest = {
+            "configuration_set_name": configuration_set_name,
+            "tracking_options": tracking_options,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_custom_verification_email_template(
@@ -538,19 +546,21 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.create_custom_verification_email_template_request.CreateCustomVerificationEmailTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["from_email_address"] = from_email_address
-        input_["template_subject"] = template_subject
-        input_["template_content"] = template_content
-        input_["success_redirection_url"] = success_redirection_url
-        input_["failure_redirection_url"] = failure_redirection_url
+        input_: capo_ses.types.create_custom_verification_email_template_request.CreateCustomVerificationEmailTemplateRequest = {
+            "template_name": template_name,
+            "from_email_address": from_email_address,
+            "template_subject": template_subject,
+            "template_content": template_content,
+            "success_redirection_url": success_redirection_url,
+            "failure_redirection_url": failure_redirection_url,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_receipt_filter(
@@ -592,14 +602,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.create_receipt_filter_request.CreateReceiptFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["filter"] = filter
+        input_: capo_ses.types.create_receipt_filter_request.CreateReceiptFilterRequest = {
+            "filter": filter
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_receipt_rule(
@@ -650,17 +662,19 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.create_receipt_rule_request.CreateReceiptRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_set_name"] = rule_set_name
+        input_: capo_ses.types.create_receipt_rule_request.CreateReceiptRuleRequest = {
+            "rule_set_name": rule_set_name,
+            "rule": rule,
+        }
         if after is not None:
             input_["after"] = after
-        input_["rule"] = rule
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_receipt_rule_set(
@@ -702,14 +716,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.create_receipt_rule_set_request.CreateReceiptRuleSetRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_set_name"] = rule_set_name
+        input_: capo_ses.types.create_receipt_rule_set_request.CreateReceiptRuleSetRequest = {
+            "rule_set_name": rule_set_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_template(
@@ -746,14 +762,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.create_template_request.CreateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template"] = template
+        input_: capo_ses.types.create_template_request.CreateTemplateRequest = {
+            "template": template
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configuration_set(
@@ -788,14 +806,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_configuration_set_request.DeleteConfigurationSetRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_ses.types.delete_configuration_set_request.DeleteConfigurationSetRequest = {
+            "configuration_set_name": configuration_set_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configuration_set_event_destination(
@@ -833,15 +853,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_configuration_set_event_destination_request.DeleteConfigurationSetEventDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["event_destination_name"] = event_destination_name
+        input_: capo_ses.types.delete_configuration_set_event_destination_request.DeleteConfigurationSetEventDestinationRequest = {
+            "configuration_set_name": configuration_set_name,
+            "event_destination_name": event_destination_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configuration_set_tracking_options(
@@ -877,14 +899,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_configuration_set_tracking_options_request.DeleteConfigurationSetTrackingOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_ses.types.delete_configuration_set_tracking_options_request.DeleteConfigurationSetTrackingOptionsRequest = {
+            "configuration_set_name": configuration_set_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_custom_verification_email_template(
@@ -916,14 +940,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_custom_verification_email_template_request.DeleteCustomVerificationEmailTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_ses.types.delete_custom_verification_email_template_request.DeleteCustomVerificationEmailTemplateRequest = {
+            "template_name": template_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_identity(
@@ -963,14 +989,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_identity_request.DeleteIdentityRequest = {}  # type: ignore[typeddict-item]
-        input_["identity"] = identity
+        input_: capo_ses.types.delete_identity_request.DeleteIdentityRequest = {
+            "identity": identity
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_identity_policy(
@@ -1012,15 +1040,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_identity_policy_request.DeleteIdentityPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identity"] = identity
-        input_["policy_name"] = policy_name
+        input_: capo_ses.types.delete_identity_policy_request.DeleteIdentityPolicyRequest = {
+            "identity": identity,
+            "policy_name": policy_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_receipt_filter(
@@ -1060,14 +1090,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_receipt_filter_request.DeleteReceiptFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["filter_name"] = filter_name
+        input_: capo_ses.types.delete_receipt_filter_request.DeleteReceiptFilterRequest = {
+            "filter_name": filter_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_receipt_rule(
@@ -1110,15 +1142,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_receipt_rule_request.DeleteReceiptRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_set_name"] = rule_set_name
-        input_["rule_name"] = rule_name
+        input_: capo_ses.types.delete_receipt_rule_request.DeleteReceiptRuleRequest = {
+            "rule_set_name": rule_set_name,
+            "rule_name": rule_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_receipt_rule_set(
@@ -1159,14 +1193,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_receipt_rule_set_request.DeleteReceiptRuleSetRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_set_name"] = rule_set_name
+        input_: capo_ses.types.delete_receipt_rule_set_request.DeleteReceiptRuleSetRequest = {
+            "rule_set_name": rule_set_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_template(
@@ -1200,14 +1236,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_template_request.DeleteTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_ses.types.delete_template_request.DeleteTemplateRequest = {
+            "template_name": template_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_verified_email_address(
@@ -1245,14 +1283,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.delete_verified_email_address_request.DeleteVerifiedEmailAddressRequest = {}  # type: ignore[typeddict-item]
-        input_["email_address"] = email_address
+        input_: capo_ses.types.delete_verified_email_address_request.DeleteVerifiedEmailAddressRequest = {
+            "email_address": email_address
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_active_receipt_rule_set(
@@ -1286,13 +1326,14 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.describe_active_receipt_rule_set_request.DescribeActiveReceiptRuleSetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ses.types.describe_active_receipt_rule_set_request.DescribeActiveReceiptRuleSetRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_configuration_set(
@@ -1331,8 +1372,9 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.describe_configuration_set_request.DescribeConfigurationSetRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_ses.types.describe_configuration_set_request.DescribeConfigurationSetRequest = {
+            "configuration_set_name": configuration_set_name
+        }
         if configuration_set_attribute_names is not None:
             input_["configuration_set_attribute_names"] = (
                 configuration_set_attribute_names
@@ -1343,6 +1385,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_receipt_rule(
@@ -1386,15 +1429,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.describe_receipt_rule_request.DescribeReceiptRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_set_name"] = rule_set_name
-        input_["rule_name"] = rule_name
+        input_: capo_ses.types.describe_receipt_rule_request.DescribeReceiptRuleRequest = {
+            "rule_set_name": rule_set_name,
+            "rule_name": rule_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_receipt_rule_set(
@@ -1435,14 +1480,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.describe_receipt_rule_set_request.DescribeReceiptRuleSetRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_set_name"] = rule_set_name
+        input_: capo_ses.types.describe_receipt_rule_set_request.DescribeReceiptRuleSetRequest = {
+            "rule_set_name": rule_set_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_sending_enabled(
@@ -1482,6 +1529,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_custom_verification_email_template(
@@ -1516,14 +1564,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.get_custom_verification_email_template_request.GetCustomVerificationEmailTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_ses.types.get_custom_verification_email_template_request.GetCustomVerificationEmailTemplateRequest = {
+            "template_name": template_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_identity_dkim_attributes(
@@ -1563,14 +1613,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.get_identity_dkim_attributes_request.GetIdentityDkimAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["identities"] = identities
+        input_: capo_ses.types.get_identity_dkim_attributes_request.GetIdentityDkimAttributesRequest = {
+            "identities": identities
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_identity_mail_from_domain_attributes(
@@ -1610,14 +1662,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.get_identity_mail_from_domain_attributes_request.GetIdentityMailFromDomainAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["identities"] = identities
+        input_: capo_ses.types.get_identity_mail_from_domain_attributes_request.GetIdentityMailFromDomainAttributesRequest = {
+            "identities": identities
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_identity_notification_attributes(
@@ -1657,14 +1711,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.get_identity_notification_attributes_request.GetIdentityNotificationAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["identities"] = identities
+        input_: capo_ses.types.get_identity_notification_attributes_request.GetIdentityNotificationAttributesRequest = {
+            "identities": identities
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_identity_policies(
@@ -1706,15 +1762,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.get_identity_policies_request.GetIdentityPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["identity"] = identity
-        input_["policy_names"] = policy_names
+        input_: capo_ses.types.get_identity_policies_request.GetIdentityPoliciesRequest = {
+            "identity": identity,
+            "policy_names": policy_names,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_identity_verification_attributes(
@@ -1754,14 +1812,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.get_identity_verification_attributes_request.GetIdentityVerificationAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["identities"] = identities
+        input_: capo_ses.types.get_identity_verification_attributes_request.GetIdentityVerificationAttributesRequest = {
+            "identities": identities
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_send_quota(
@@ -1801,6 +1861,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_send_statistics(
@@ -1840,6 +1901,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_template(
@@ -1874,14 +1936,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.get_template_request.GetTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_ses.types.get_template_request.GetTemplateRequest = {
+            "template_name": template_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_configuration_sets(
@@ -1919,7 +1983,7 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.list_configuration_sets_request.ListConfigurationSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ses.types.list_configuration_sets_request.ListConfigurationSetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_items is not None:
@@ -1930,6 +1994,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_custom_verification_email_templates(
@@ -1965,7 +2030,7 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.list_custom_verification_email_templates_request.ListCustomVerificationEmailTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ses.types.list_custom_verification_email_templates_request.ListCustomVerificationEmailTemplatesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1976,7 +2041,27 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_custom_verification_email_templates(
+        self,
+        *,
+        config_overrides: Optional[AsyncSESClientConfig] = None,
+        next_token: Optional["capo_ses.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_ses.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_ses.types.list_custom_verification_email_templates_response.ListCustomVerificationEmailTemplatesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_custom_verification_email_templates(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_identities(
         self,
@@ -2019,7 +2104,7 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.list_identities_request.ListIdentitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ses.types.list_identities_request.ListIdentitiesRequest = {}
         if identity_type is not None:
             input_["identity_type"] = identity_type
         if next_token is not None:
@@ -2032,6 +2117,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_identities(
@@ -2094,14 +2180,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.list_identity_policies_request.ListIdentityPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["identity"] = identity
+        input_: capo_ses.types.list_identity_policies_request.ListIdentityPoliciesRequest = {
+            "identity": identity
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_receipt_filters(
@@ -2135,13 +2223,14 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.list_receipt_filters_request.ListReceiptFiltersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ses.types.list_receipt_filters_request.ListReceiptFiltersRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_receipt_rule_sets(
@@ -2181,7 +2270,7 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.list_receipt_rule_sets_request.ListReceiptRuleSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ses.types.list_receipt_rule_sets_request.ListReceiptRuleSetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2190,6 +2279,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_templates(
@@ -2225,7 +2315,7 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.list_templates_request.ListTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ses.types.list_templates_request.ListTemplatesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_items is not None:
@@ -2236,6 +2326,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_verified_email_addresses(
@@ -2275,6 +2366,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_configuration_set_delivery_options(
@@ -2314,8 +2406,9 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.put_configuration_set_delivery_options_request.PutConfigurationSetDeliveryOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_ses.types.put_configuration_set_delivery_options_request.PutConfigurationSetDeliveryOptionsRequest = {
+            "configuration_set_name": configuration_set_name
+        }
         if delivery_options is not None:
             input_["delivery_options"] = delivery_options
 
@@ -2324,6 +2417,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_identity_policy(
@@ -2368,16 +2462,18 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.put_identity_policy_request.PutIdentityPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identity"] = identity
-        input_["policy_name"] = policy_name
-        input_["policy"] = policy
+        input_: capo_ses.types.put_identity_policy_request.PutIdentityPolicyRequest = {
+            "identity": identity,
+            "policy_name": policy_name,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reorder_receipt_rule_set(
@@ -2423,15 +2519,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.reorder_receipt_rule_set_request.ReorderReceiptRuleSetRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_set_name"] = rule_set_name
-        input_["rule_names"] = rule_names
+        input_: capo_ses.types.reorder_receipt_rule_set_request.ReorderReceiptRuleSetRequest = {
+            "rule_set_name": rule_set_name,
+            "rule_names": rule_names,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_bounce(
@@ -2478,14 +2576,15 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.send_bounce_request.SendBounceRequest = {}  # type: ignore[typeddict-item]
-        input_["original_message_id"] = original_message_id
-        input_["bounce_sender"] = bounce_sender
+        input_: capo_ses.types.send_bounce_request.SendBounceRequest = {
+            "original_message_id": original_message_id,
+            "bounce_sender": bounce_sender,
+            "bounced_recipient_info_list": bounced_recipient_info_list,
+        }
         if explanation is not None:
             input_["explanation"] = explanation
         if message_dsn is not None:
             input_["message_dsn"] = message_dsn
-        input_["bounced_recipient_info_list"] = bounced_recipient_info_list
         if bounce_sender_arn is not None:
             input_["bounce_sender_arn"] = bounce_sender_arn
 
@@ -2494,6 +2593,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_bulk_templated_email(
@@ -2561,8 +2661,12 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.send_bulk_templated_email_request.SendBulkTemplatedEmailRequest = {}  # type: ignore[typeddict-item]
-        input_["source"] = source
+        input_: capo_ses.types.send_bulk_templated_email_request.SendBulkTemplatedEmailRequest = {
+            "source": source,
+            "template": template,
+            "default_template_data": default_template_data,
+            "destinations": destinations,
+        }
         if source_arn is not None:
             input_["source_arn"] = source_arn
         if reply_to_addresses is not None:
@@ -2575,17 +2679,15 @@ class AsyncSESClient:
             input_["configuration_set_name"] = configuration_set_name
         if default_tags is not None:
             input_["default_tags"] = default_tags
-        input_["template"] = template
         if template_arn is not None:
             input_["template_arn"] = template_arn
-        input_["default_template_data"] = default_template_data
-        input_["destinations"] = destinations
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_custom_verification_email(
@@ -2630,9 +2732,10 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.send_custom_verification_email_request.SendCustomVerificationEmailRequest = {}  # type: ignore[typeddict-item]
-        input_["email_address"] = email_address
-        input_["template_name"] = template_name
+        input_: capo_ses.types.send_custom_verification_email_request.SendCustomVerificationEmailRequest = {
+            "email_address": email_address,
+            "template_name": template_name,
+        }
         if configuration_set_name is not None:
             input_["configuration_set_name"] = configuration_set_name
 
@@ -2641,6 +2744,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_email(
@@ -2707,10 +2811,11 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.send_email_request.SendEmailRequest = {}  # type: ignore[typeddict-item]
-        input_["source"] = source
-        input_["destination"] = destination
-        input_["message"] = message
+        input_: capo_ses.types.send_email_request.SendEmailRequest = {
+            "source": source,
+            "destination": destination,
+            "message": message,
+        }
         if reply_to_addresses is not None:
             input_["reply_to_addresses"] = reply_to_addresses
         if return_path is not None:
@@ -2729,6 +2834,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_raw_email(
@@ -2795,12 +2901,13 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.send_raw_email_request.SendRawEmailRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ses.types.send_raw_email_request.SendRawEmailRequest = {
+            "raw_message": raw_message
+        }
         if source is not None:
             input_["source"] = source
         if destinations is not None:
             input_["destinations"] = destinations
-        input_["raw_message"] = raw_message
         if from_arn is not None:
             input_["from_arn"] = from_arn
         if source_arn is not None:
@@ -2817,6 +2924,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_templated_email(
@@ -2884,9 +2992,12 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.send_templated_email_request.SendTemplatedEmailRequest = {}  # type: ignore[typeddict-item]
-        input_["source"] = source
-        input_["destination"] = destination
+        input_: capo_ses.types.send_templated_email_request.SendTemplatedEmailRequest = {
+            "source": source,
+            "destination": destination,
+            "template": template,
+            "template_data": template_data,
+        }
         if reply_to_addresses is not None:
             input_["reply_to_addresses"] = reply_to_addresses
         if return_path is not None:
@@ -2899,16 +3010,15 @@ class AsyncSESClient:
             input_["tags"] = tags
         if configuration_set_name is not None:
             input_["configuration_set_name"] = configuration_set_name
-        input_["template"] = template
         if template_arn is not None:
             input_["template_arn"] = template_arn
-        input_["template_data"] = template_data
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_active_receipt_rule_set(
@@ -2951,7 +3061,7 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.set_active_receipt_rule_set_request.SetActiveReceiptRuleSetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ses.types.set_active_receipt_rule_set_request.SetActiveReceiptRuleSetRequest = {}
         if rule_set_name is not None:
             input_["rule_set_name"] = rule_set_name
 
@@ -2960,6 +3070,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_identity_dkim_enabled(
@@ -3001,15 +3112,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.set_identity_dkim_enabled_request.SetIdentityDkimEnabledRequest = {}  # type: ignore[typeddict-item]
-        input_["identity"] = identity
-        input_["dkim_enabled"] = dkim_enabled
+        input_: capo_ses.types.set_identity_dkim_enabled_request.SetIdentityDkimEnabledRequest = {
+            "identity": identity,
+            "dkim_enabled": dkim_enabled,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_identity_feedback_forwarding_enabled(
@@ -3051,15 +3164,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.set_identity_feedback_forwarding_enabled_request.SetIdentityFeedbackForwardingEnabledRequest = {}  # type: ignore[typeddict-item]
-        input_["identity"] = identity
-        input_["forwarding_enabled"] = forwarding_enabled
+        input_: capo_ses.types.set_identity_feedback_forwarding_enabled_request.SetIdentityFeedbackForwardingEnabledRequest = {
+            "identity": identity,
+            "forwarding_enabled": forwarding_enabled,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_identity_headers_in_notifications_enabled(
@@ -3103,16 +3218,18 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.set_identity_headers_in_notifications_enabled_request.SetIdentityHeadersInNotificationsEnabledRequest = {}  # type: ignore[typeddict-item]
-        input_["identity"] = identity
-        input_["notification_type"] = notification_type
-        input_["enabled"] = enabled
+        input_: capo_ses.types.set_identity_headers_in_notifications_enabled_request.SetIdentityHeadersInNotificationsEnabledRequest = {
+            "identity": identity,
+            "notification_type": notification_type,
+            "enabled": enabled,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_identity_mail_from_domain(
@@ -3160,8 +3277,9 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.set_identity_mail_from_domain_request.SetIdentityMailFromDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["identity"] = identity
+        input_: capo_ses.types.set_identity_mail_from_domain_request.SetIdentityMailFromDomainRequest = {
+            "identity": identity
+        }
         if mail_from_domain is not None:
             input_["mail_from_domain"] = mail_from_domain
         if behavior_on_mx_failure is not None:
@@ -3172,6 +3290,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_identity_notification_topic(
@@ -3217,9 +3336,10 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.set_identity_notification_topic_request.SetIdentityNotificationTopicRequest = {}  # type: ignore[typeddict-item]
-        input_["identity"] = identity
-        input_["notification_type"] = notification_type
+        input_: capo_ses.types.set_identity_notification_topic_request.SetIdentityNotificationTopicRequest = {
+            "identity": identity,
+            "notification_type": notification_type,
+        }
         if sns_topic is not None:
             input_["sns_topic"] = sns_topic
 
@@ -3228,6 +3348,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_receipt_rule_position(
@@ -3273,9 +3394,10 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.set_receipt_rule_position_request.SetReceiptRulePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_set_name"] = rule_set_name
-        input_["rule_name"] = rule_name
+        input_: capo_ses.types.set_receipt_rule_position_request.SetReceiptRulePositionRequest = {
+            "rule_set_name": rule_set_name,
+            "rule_name": rule_name,
+        }
         if after is not None:
             input_["after"] = after
 
@@ -3284,6 +3406,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def test_render_template(
@@ -3322,15 +3445,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.test_render_template_request.TestRenderTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_data"] = template_data
+        input_: capo_ses.types.test_render_template_request.TestRenderTemplateRequest = {
+            "template_name": template_name,
+            "template_data": template_data,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_account_sending_enabled(
@@ -3368,7 +3493,7 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.update_account_sending_enabled_request.UpdateAccountSendingEnabledRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ses.types.update_account_sending_enabled_request.UpdateAccountSendingEnabledRequest = {}
         if enabled is not None:
             input_["enabled"] = enabled
 
@@ -3377,6 +3502,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_configuration_set_event_destination(
@@ -3417,15 +3543,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.update_configuration_set_event_destination_request.UpdateConfigurationSetEventDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["event_destination"] = event_destination
+        input_: capo_ses.types.update_configuration_set_event_destination_request.UpdateConfigurationSetEventDestinationRequest = {
+            "configuration_set_name": configuration_set_name,
+            "event_destination": event_destination,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_configuration_set_reputation_metrics_enabled(
@@ -3466,15 +3594,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.update_configuration_set_reputation_metrics_enabled_request.UpdateConfigurationSetReputationMetricsEnabledRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["enabled"] = enabled
+        input_: capo_ses.types.update_configuration_set_reputation_metrics_enabled_request.UpdateConfigurationSetReputationMetricsEnabledRequest = {
+            "configuration_set_name": configuration_set_name,
+            "enabled": enabled,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_configuration_set_sending_enabled(
@@ -3515,15 +3645,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.update_configuration_set_sending_enabled_request.UpdateConfigurationSetSendingEnabledRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["enabled"] = enabled
+        input_: capo_ses.types.update_configuration_set_sending_enabled_request.UpdateConfigurationSetSendingEnabledRequest = {
+            "configuration_set_name": configuration_set_name,
+            "enabled": enabled,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_configuration_set_tracking_options(
@@ -3561,15 +3693,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.update_configuration_set_tracking_options_request.UpdateConfigurationSetTrackingOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["tracking_options"] = tracking_options
+        input_: capo_ses.types.update_configuration_set_tracking_options_request.UpdateConfigurationSetTrackingOptionsRequest = {
+            "configuration_set_name": configuration_set_name,
+            "tracking_options": tracking_options,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_custom_verification_email_template(
@@ -3620,8 +3754,9 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.update_custom_verification_email_template_request.UpdateCustomVerificationEmailTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_ses.types.update_custom_verification_email_template_request.UpdateCustomVerificationEmailTemplateRequest = {
+            "template_name": template_name
+        }
         if from_email_address is not None:
             input_["from_email_address"] = from_email_address
         if template_subject is not None:
@@ -3638,6 +3773,7 @@ class AsyncSESClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_receipt_rule(
@@ -3685,15 +3821,17 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.update_receipt_rule_request.UpdateReceiptRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_set_name"] = rule_set_name
-        input_["rule"] = rule
+        input_: capo_ses.types.update_receipt_rule_request.UpdateReceiptRuleRequest = {
+            "rule_set_name": rule_set_name,
+            "rule": rule,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_template(
@@ -3726,14 +3864,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.update_template_request.UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template"] = template
+        input_: capo_ses.types.update_template_request.UpdateTemplateRequest = {
+            "template": template
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def verify_domain_dkim(
@@ -3773,14 +3913,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.verify_domain_dkim_request.VerifyDomainDkimRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_ses.types.verify_domain_dkim_request.VerifyDomainDkimRequest = {
+            "domain": domain
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def verify_domain_identity(
@@ -3820,14 +3962,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.verify_domain_identity_request.VerifyDomainIdentityRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_ses.types.verify_domain_identity_request.VerifyDomainIdentityRequest = {
+            "domain": domain
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def verify_email_address(
@@ -3865,14 +4009,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.verify_email_address_request.VerifyEmailAddressRequest = {}  # type: ignore[typeddict-item]
-        input_["email_address"] = email_address
+        input_: capo_ses.types.verify_email_address_request.VerifyEmailAddressRequest = {
+            "email_address": email_address
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def verify_email_identity(
@@ -3912,14 +4058,16 @@ class AsyncSESClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ses.types.verify_email_identity_request.VerifyEmailIdentityRequest = {}  # type: ignore[typeddict-item]
-        input_["email_address"] = email_address
+        input_: capo_ses.types.verify_email_identity_request.VerifyEmailIdentityRequest = {
+            "email_address": email_address
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

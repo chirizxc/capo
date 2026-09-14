@@ -28,7 +28,7 @@ def serialize_json(value: UpdateDataCellsFilterRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataCellsFilterRequest:
     out: UpdateDataCellsFilterRequest = {}  # type: ignore[typeddict-item]
-    if "TableData" in data:
+    if data.get("TableData") is not None:
         import capo_lakeformation.types.data_cells_filter
 
         out["table_data"] = capo_lakeformation.types.data_cells_filter.deserialize_json(

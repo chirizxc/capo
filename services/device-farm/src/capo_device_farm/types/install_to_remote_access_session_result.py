@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: InstallToRemoteAccessSessionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstallToRemoteAccessSessionResult:
     out: InstallToRemoteAccessSessionResult = {}  # type: ignore[typeddict-item]
-    if "appUpload" in data:
+    if data.get("appUpload") is not None:
         import capo_device_farm.types.upload
 
         out["app_upload"] = capo_device_farm.types.upload.deserialize_aws_json_1_1(

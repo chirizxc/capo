@@ -162,9 +162,9 @@ def serialize_json(value: UpdateEnvironmentInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentInput:
     out: UpdateEnvironmentInput = {}  # type: ignore[typeddict-item]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "AirflowConfigurationOptions" in data:
+    if data.get("AirflowConfigurationOptions") is not None:
         import capo_mwaa.types.airflow_configuration_options
 
         out["airflow_configuration_options"] = (
@@ -172,13 +172,13 @@ def deserialize_json(data: dict) -> UpdateEnvironmentInput:
                 data["AirflowConfigurationOptions"]
             )
         )
-    if "AirflowVersion" in data:
+    if data.get("AirflowVersion") is not None:
         out["airflow_version"] = data["AirflowVersion"]
-    if "DagS3Path" in data:
+    if data.get("DagS3Path") is not None:
         out["dag_s3_path"] = data["DagS3Path"]
-    if "EnvironmentClass" in data:
+    if data.get("EnvironmentClass") is not None:
         out["environment_class"] = data["EnvironmentClass"]
-    if "LoggingConfiguration" in data:
+    if data.get("LoggingConfiguration") is not None:
         import capo_mwaa.types.logging_configuration_input
 
         out["logging_configuration"] = (
@@ -186,17 +186,17 @@ def deserialize_json(data: dict) -> UpdateEnvironmentInput:
                 data["LoggingConfiguration"]
             )
         )
-    if "MaxWorkers" in data:
+    if data.get("MaxWorkers") is not None:
         out["max_workers"] = data["MaxWorkers"]
-    if "MinWorkers" in data:
+    if data.get("MinWorkers") is not None:
         out["min_workers"] = data["MinWorkers"]
-    if "MaxWebservers" in data:
+    if data.get("MaxWebservers") is not None:
         out["max_webservers"] = data["MaxWebservers"]
-    if "MinWebservers" in data:
+    if data.get("MinWebservers") is not None:
         out["min_webservers"] = data["MinWebservers"]
-    if "WorkerReplacementStrategy" in data:
+    if data.get("WorkerReplacementStrategy") is not None:
         out["worker_replacement_strategy"] = data["WorkerReplacementStrategy"]
-    if "NetworkConfiguration" in data:
+    if data.get("NetworkConfiguration") is not None:
         import capo_mwaa.types.update_network_configuration_input
 
         out["network_configuration"] = (
@@ -204,24 +204,24 @@ def deserialize_json(data: dict) -> UpdateEnvironmentInput:
                 data["NetworkConfiguration"]
             )
         )
-    if "PluginsS3Path" in data:
+    if data.get("PluginsS3Path") is not None:
         out["plugins_s3_path"] = data["PluginsS3Path"]
-    if "PluginsS3ObjectVersion" in data:
+    if data.get("PluginsS3ObjectVersion") is not None:
         out["plugins_s3_object_version"] = data["PluginsS3ObjectVersion"]
-    if "RequirementsS3Path" in data:
+    if data.get("RequirementsS3Path") is not None:
         out["requirements_s3_path"] = data["RequirementsS3Path"]
-    if "RequirementsS3ObjectVersion" in data:
+    if data.get("RequirementsS3ObjectVersion") is not None:
         out["requirements_s3_object_version"] = data["RequirementsS3ObjectVersion"]
-    if "Schedulers" in data:
+    if data.get("Schedulers") is not None:
         out["schedulers"] = data["Schedulers"]
-    if "SourceBucketArn" in data:
+    if data.get("SourceBucketArn") is not None:
         out["source_bucket_arn"] = data["SourceBucketArn"]
-    if "StartupScriptS3Path" in data:
+    if data.get("StartupScriptS3Path") is not None:
         out["startup_script_s3_path"] = data["StartupScriptS3Path"]
-    if "StartupScriptS3ObjectVersion" in data:
+    if data.get("StartupScriptS3ObjectVersion") is not None:
         out["startup_script_s3_object_version"] = data["StartupScriptS3ObjectVersion"]
-    if "WebserverAccessMode" in data:
+    if data.get("WebserverAccessMode") is not None:
         out["webserver_access_mode"] = data["WebserverAccessMode"]
-    if "WeeklyMaintenanceWindowStart" in data:
+    if data.get("WeeklyMaintenanceWindowStart") is not None:
         out["weekly_maintenance_window_start"] = data["WeeklyMaintenanceWindowStart"]
     return out

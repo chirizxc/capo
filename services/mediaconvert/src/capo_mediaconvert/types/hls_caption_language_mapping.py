@@ -46,16 +46,16 @@ def serialize_json(value: HlsCaptionLanguageMapping) -> dict:
 
 def deserialize_json(data: dict) -> HlsCaptionLanguageMapping:
     out: HlsCaptionLanguageMapping = {}  # type: ignore[typeddict-item]
-    if "captionChannel" in data:
+    if data.get("captionChannel") is not None:
         out["caption_channel"] = data["captionChannel"]
-    if "customLanguageCode" in data:
+    if data.get("customLanguageCode") is not None:
         out["custom_language_code"] = data["customLanguageCode"]
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         import capo_mediaconvert.types.language_code
 
         out["language_code"] = capo_mediaconvert.types.language_code.deserialize_json(
             data["languageCode"]
         )
-    if "languageDescription" in data:
+    if data.get("languageDescription") is not None:
         out["language_description"] = data["languageDescription"]
     return out

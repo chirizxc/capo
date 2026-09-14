@@ -44,18 +44,18 @@ def serialize_json(value: GetGroupVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetGroupVersionResponse:
     out: GetGroupVersionResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         out["creation_timestamp"] = data["CreationTimestamp"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_greengrass.types.group_version
 
         out["definition"] = capo_greengrass.types.group_version.deserialize_json(
             data["Definition"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

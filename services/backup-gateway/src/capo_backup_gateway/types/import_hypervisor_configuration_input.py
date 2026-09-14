@@ -52,21 +52,21 @@ def serialize_aws_json_1_0(value: ImportHypervisorConfigurationInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportHypervisorConfigurationInput:
     out: ImportHypervisorConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ImportHypervisorConfigurationInput.name required")
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("ImportHypervisorConfigurationInput.host required")
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_backup_gateway.types.tags
 
         out["tags"] = capo_backup_gateway.types.tags.deserialize_aws_json_1_0(

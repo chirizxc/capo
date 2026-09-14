@@ -80,25 +80,25 @@ def serialize_aws_json_1_1(value: StartCacheReportInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartCacheReportInput:
     out: StartCacheReportInput = {}  # type: ignore[typeddict-item]
-    if "FileShareARN" in data:
+    if data.get("FileShareARN") is not None:
         out["file_share_arn"] = data["FileShareARN"]
     else:
         raise DeserializationError("StartCacheReportInput.file_share_arn required")
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError("StartCacheReportInput.role required")
-    if "LocationARN" in data:
+    if data.get("LocationARN") is not None:
         out["location_arn"] = data["LocationARN"]
     else:
         raise DeserializationError("StartCacheReportInput.location_arn required")
-    if "BucketRegion" in data:
+    if data.get("BucketRegion") is not None:
         out["bucket_region"] = data["BucketRegion"]
     else:
         raise DeserializationError("StartCacheReportInput.bucket_region required")
-    if "VPCEndpointDNSName" in data:
+    if data.get("VPCEndpointDNSName") is not None:
         out["vpc_endpoint_dns_name"] = data["VPCEndpointDNSName"]
-    if "InclusionFilters" in data:
+    if data.get("InclusionFilters") is not None:
         import capo_storage_gateway.types.cache_report_filter_list
 
         out["inclusion_filters"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartCacheReportInput:
                 data["InclusionFilters"]
             )
         )
-    if "ExclusionFilters" in data:
+    if data.get("ExclusionFilters") is not None:
         import capo_storage_gateway.types.cache_report_filter_list
 
         out["exclusion_filters"] = (
@@ -114,11 +114,11 @@ def deserialize_aws_json_1_1(data: dict) -> StartCacheReportInput:
                 data["ExclusionFilters"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("StartCacheReportInput.client_token required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(

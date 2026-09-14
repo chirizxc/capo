@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchGetAssetPropertyValueSkippedEntries:
 
     out: BatchGetAssetPropertyValueSkippedEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.batch_get_asset_property_value_skipped_entry.deserialize_json(
                 item

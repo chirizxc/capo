@@ -28,7 +28,7 @@ def serialize_json(value: DataSource) -> dict:
 
 def deserialize_json(data: dict) -> DataSource:
     out: DataSource = {}  # type: ignore[typeddict-item]
-    if "s3DataSource" in data:
+    if data.get("s3DataSource") is not None:
         import capo_braket.types.s3_data_source
 
         out["s3_data_source"] = capo_braket.types.s3_data_source.deserialize_json(

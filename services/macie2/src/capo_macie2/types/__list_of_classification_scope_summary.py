@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> __listOfClassificationScopeSummary:
 
     out: __listOfClassificationScopeSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_macie2.types.classification_scope_summary.deserialize_json(item)
         )

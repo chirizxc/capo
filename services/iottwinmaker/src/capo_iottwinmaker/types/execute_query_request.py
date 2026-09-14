@@ -40,16 +40,16 @@ def serialize_json(value: ExecuteQueryRequest) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteQueryRequest:
     out: ExecuteQueryRequest = {}  # type: ignore[typeddict-item]
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError("ExecuteQueryRequest.workspace_id required")
-    if "queryStatement" in data:
+    if data.get("queryStatement") is not None:
         out["query_statement"] = data["queryStatement"]
     else:
         raise DeserializationError("ExecuteQueryRequest.query_statement required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

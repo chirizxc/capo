@@ -34,12 +34,12 @@ def serialize_json(value: JWTConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> JWTConfiguration:
     out: JWTConfiguration = {}  # type: ignore[typeddict-item]
-    if "audience" in data:
+    if data.get("audience") is not None:
         import capo_apigatewayv2.types.__list_of__string
 
         out["audience"] = capo_apigatewayv2.types.__list_of__string.deserialize_json(
             data["audience"]
         )
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
     return out

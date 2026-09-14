@@ -26,7 +26,7 @@ def serialize_json(value: DeleteIndexResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteIndexResponse:
     out: DeleteIndexResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.index_status
 
         out["status"] = capo_opensearch.types.index_status.deserialize_json(

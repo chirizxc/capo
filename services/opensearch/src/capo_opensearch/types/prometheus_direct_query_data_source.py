@@ -28,11 +28,11 @@ def serialize_json(value: PrometheusDirectQueryDataSource) -> dict:
 
 def deserialize_json(data: dict) -> PrometheusDirectQueryDataSource:
     out: PrometheusDirectQueryDataSource = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("PrometheusDirectQueryDataSource.role_arn required")
-    if "WorkspaceArn" in data:
+    if data.get("WorkspaceArn") is not None:
         out["workspace_arn"] = data["WorkspaceArn"]
     else:
         raise DeserializationError(

@@ -82,11 +82,11 @@ def serialize_aws_json_1_1(value: UpdateDomainContactRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDomainContactRequest:
     out: UpdateDomainContactRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("UpdateDomainContactRequest.domain_name required")
-    if "AdminContact" in data:
+    if data.get("AdminContact") is not None:
         import capo_route_53_domains.types.contact_detail
 
         out["admin_contact"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDomainContactRequest:
                 data["AdminContact"]
             )
         )
-    if "RegistrantContact" in data:
+    if data.get("RegistrantContact") is not None:
         import capo_route_53_domains.types.contact_detail
 
         out["registrant_contact"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDomainContactRequest:
                 data["RegistrantContact"]
             )
         )
-    if "TechContact" in data:
+    if data.get("TechContact") is not None:
         import capo_route_53_domains.types.contact_detail
 
         out["tech_contact"] = (
@@ -110,13 +110,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDomainContactRequest:
                 data["TechContact"]
             )
         )
-    if "Consent" in data:
+    if data.get("Consent") is not None:
         import capo_route_53_domains.types.consent
 
         out["consent"] = capo_route_53_domains.types.consent.deserialize_aws_json_1_1(
             data["Consent"]
         )
-    if "BillingContact" in data:
+    if data.get("BillingContact") is not None:
         import capo_route_53_domains.types.contact_detail
 
         out["billing_contact"] = (

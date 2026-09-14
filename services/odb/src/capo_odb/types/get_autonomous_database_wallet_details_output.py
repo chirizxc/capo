@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: GetAutonomousDatabaseWalletDetailsOutput) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> GetAutonomousDatabaseWalletDetailsOutput:
     out: GetAutonomousDatabaseWalletDetailsOutput = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseWalletDetails" in data:
+    if data.get("autonomousDatabaseWalletDetails") is not None:
         import capo_odb.types.autonomous_database_wallet_details
 
         out["autonomous_database_wallet_details"] = (

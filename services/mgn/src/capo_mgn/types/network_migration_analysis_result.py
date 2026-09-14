@@ -79,15 +79,15 @@ def serialize_json(value: NetworkMigrationAnalysisResult) -> dict:
 
 def deserialize_json(data: dict) -> NetworkMigrationAnalysisResult:
     out: NetworkMigrationAnalysisResult = {}  # type: ignore[typeddict-item]
-    if "jobID" in data:
+    if data.get("jobID") is not None:
         out["job_id"] = data["jobID"]
-    if "networkMigrationExecutionID" in data:
+    if data.get("networkMigrationExecutionID") is not None:
         out["network_migration_execution_id"] = data["networkMigrationExecutionID"]
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
-    if "analyzerType" in data:
+    if data.get("analyzerType") is not None:
         out["analyzer_type"] = data["analyzerType"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_mgn.types.network_migration_analysis_result_source
 
         out["source"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> NetworkMigrationAnalysisResult:
                 data["source"]
             )
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_mgn.types.network_migration_analysis_result_target
 
         out["target"] = (
@@ -103,8 +103,8 @@ def deserialize_json(data: dict) -> NetworkMigrationAnalysisResult:
                 data["target"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "analysisResult" in data:
+    if data.get("analysisResult") is not None:
         out["analysis_result"] = data["analysisResult"]
     return out

@@ -76,36 +76,36 @@ def serialize_aws_json_1_1(value: ListTrialsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTrialsRequest:
     out: ListTrialsRequest = {}  # type: ignore[typeddict-item]
-    if "ExperimentName" in data:
+    if data.get("ExperimentName") is not None:
         out["experiment_name"] = data["ExperimentName"]
-    if "TrialComponentName" in data:
+    if data.get("TrialComponentName") is not None:
         out["trial_component_name"] = data["TrialComponentName"]
-    if "CreatedAfter" in data:
+    if data.get("CreatedAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["created_after"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAfter"]
         )
-    if "CreatedBefore" in data:
+    if data.get("CreatedBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["created_before"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedBefore"]
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.sort_trials_by
 
         out["sort_by"] = capo_sagemaker.types.sort_trials_by.deserialize_aws_json_1_1(
             data["SortBy"]
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

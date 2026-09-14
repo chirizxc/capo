@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: InferICD10CMResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferICD10CMResponse:
     out: InferICD10CMResponse = {}  # type: ignore[typeddict-item]
-    if "Entities" in data:
+    if data.get("Entities") is not None:
         import capo_comprehendmedical.types.icd10_cm_entity_list
 
         out["entities"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> InferICD10CMResponse:
         )
     else:
         raise DeserializationError("InferICD10CMResponse.entities required")
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
     return out

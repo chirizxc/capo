@@ -74,13 +74,13 @@ def serialize_aws_json_1_1(value: RegisterConnectionTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterConnectionTypeRequest:
     out: RegisterConnectionTypeRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         out["connection_type"] = data["ConnectionType"]
     else:
         raise DeserializationError(
             "RegisterConnectionTypeRequest.connection_type required"
         )
-    if "IntegrationType" in data:
+    if data.get("IntegrationType") is not None:
         import capo_glue.types.integration_type
 
         out["integration_type"] = (
@@ -92,9 +92,9 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterConnectionTypeRequest:
         raise DeserializationError(
             "RegisterConnectionTypeRequest.integration_type required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ConnectionProperties" in data:
+    if data.get("ConnectionProperties") is not None:
         import capo_glue.types.connection_properties_configuration
 
         out["connection_properties"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterConnectionTypeRequest:
         raise DeserializationError(
             "RegisterConnectionTypeRequest.connection_properties required"
         )
-    if "ConnectorAuthenticationConfiguration" in data:
+    if data.get("ConnectorAuthenticationConfiguration") is not None:
         import capo_glue.types.connector_authentication_configuration
 
         out["connector_authentication_configuration"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterConnectionTypeRequest:
         raise DeserializationError(
             "RegisterConnectionTypeRequest.connector_authentication_configuration required"
         )
-    if "RestConfiguration" in data:
+    if data.get("RestConfiguration") is not None:
         import capo_glue.types.rest_configuration
 
         out["rest_configuration"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterConnectionTypeRequest:
         raise DeserializationError(
             "RegisterConnectionTypeRequest.rest_configuration required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

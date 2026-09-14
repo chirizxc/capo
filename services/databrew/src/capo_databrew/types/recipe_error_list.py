@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> RecipeErrorList:
 
     out: RecipeErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_databrew.types.recipe_version_error_detail.deserialize_json(item)
         )

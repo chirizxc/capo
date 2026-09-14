@@ -14,4 +14,4 @@ def serialize_json(value: LifeCycleStates) -> list:
 
 
 def deserialize_json(data: list) -> LifeCycleStates:
-    return list(data)
+    return [item for item in data if item is not None]

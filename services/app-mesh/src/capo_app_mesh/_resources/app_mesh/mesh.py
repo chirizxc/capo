@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_app_mesh._auth._signers
@@ -85,20 +86,23 @@ class Mesh:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_app_mesh.types.create_mesh_input.CreateMeshInput = {}  # type: ignore[typeddict-item]
-        input_["mesh_name"] = mesh_name
+        input_: capo_app_mesh.types.create_mesh_input.CreateMeshInput = {
+            "mesh_name": mesh_name
+        }
         if spec is not None:
             input_["spec"] = spec
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -139,8 +143,9 @@ class Mesh:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_app_mesh.types.describe_mesh_input.DescribeMeshInput = {}  # type: ignore[typeddict-item]
-        input_["mesh_name"] = mesh_name
+        input_: capo_app_mesh.types.describe_mesh_input.DescribeMeshInput = {
+            "mesh_name": mesh_name
+        }
         if mesh_owner is not None:
             input_["mesh_owner"] = mesh_owner
 
@@ -149,6 +154,7 @@ class Mesh:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -192,18 +198,21 @@ class Mesh:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_app_mesh.types.update_mesh_input.UpdateMeshInput = {}  # type: ignore[typeddict-item]
-        input_["mesh_name"] = mesh_name
+        input_: capo_app_mesh.types.update_mesh_input.UpdateMeshInput = {
+            "mesh_name": mesh_name
+        }
         if spec is not None:
             input_["spec"] = spec
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -243,14 +252,16 @@ class Mesh:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_app_mesh.types.delete_mesh_input.DeleteMeshInput = {}  # type: ignore[typeddict-item]
-        input_["mesh_name"] = mesh_name
+        input_: capo_app_mesh.types.delete_mesh_input.DeleteMeshInput = {
+            "mesh_name": mesh_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -291,7 +302,7 @@ class Mesh:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_app_mesh.types.list_meshes_input.ListMeshesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_app_mesh.types.list_meshes_input.ListMeshesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if limit is not None:
@@ -302,6 +313,7 @@ class Mesh:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -354,20 +366,23 @@ class AsyncMesh:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_app_mesh.types.create_mesh_input.CreateMeshInput = {}  # type: ignore[typeddict-item]
-        input_["mesh_name"] = mesh_name
+        input_: capo_app_mesh.types.create_mesh_input.CreateMeshInput = {
+            "mesh_name": mesh_name
+        }
         if spec is not None:
             input_["spec"] = spec
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -409,8 +424,9 @@ class AsyncMesh:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_app_mesh.types.describe_mesh_input.DescribeMeshInput = {}  # type: ignore[typeddict-item]
-        input_["mesh_name"] = mesh_name
+        input_: capo_app_mesh.types.describe_mesh_input.DescribeMeshInput = {
+            "mesh_name": mesh_name
+        }
         if mesh_owner is not None:
             input_["mesh_owner"] = mesh_owner
 
@@ -419,6 +435,7 @@ class AsyncMesh:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -463,18 +480,21 @@ class AsyncMesh:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_app_mesh.types.update_mesh_input.UpdateMeshInput = {}  # type: ignore[typeddict-item]
-        input_["mesh_name"] = mesh_name
+        input_: capo_app_mesh.types.update_mesh_input.UpdateMeshInput = {
+            "mesh_name": mesh_name
+        }
         if spec is not None:
             input_["spec"] = spec
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -515,14 +535,16 @@ class AsyncMesh:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_app_mesh.types.delete_mesh_input.DeleteMeshInput = {}  # type: ignore[typeddict-item]
-        input_["mesh_name"] = mesh_name
+        input_: capo_app_mesh.types.delete_mesh_input.DeleteMeshInput = {
+            "mesh_name": mesh_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -564,7 +586,7 @@ class AsyncMesh:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_app_mesh.types.list_meshes_input.ListMeshesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_app_mesh.types.list_meshes_input.ListMeshesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if limit is not None:
@@ -575,4 +597,5 @@ class AsyncMesh:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

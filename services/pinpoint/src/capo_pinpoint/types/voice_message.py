@@ -48,13 +48,13 @@ def serialize_json(value: VoiceMessage) -> dict:
 
 def deserialize_json(data: dict) -> VoiceMessage:
     out: VoiceMessage = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "OriginationNumber" in data:
+    if data.get("OriginationNumber") is not None:
         out["origination_number"] = data["OriginationNumber"]
-    if "Substitutions" in data:
+    if data.get("Substitutions") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["substitutions"] = (
@@ -62,6 +62,6 @@ def deserialize_json(data: dict) -> VoiceMessage:
                 data["Substitutions"]
             )
         )
-    if "VoiceId" in data:
+    if data.get("VoiceId") is not None:
         out["voice_id"] = data["VoiceId"]
     return out

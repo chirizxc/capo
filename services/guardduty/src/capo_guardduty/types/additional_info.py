@@ -27,8 +27,8 @@ def serialize_json(value: AdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> AdditionalInfo:
     out: AdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "versionId" in data:
+    if data.get("versionId") is not None:
         out["version_id"] = data["versionId"]
-    if "deviceName" in data:
+    if data.get("deviceName") is not None:
         out["device_name"] = data["deviceName"]
     return out

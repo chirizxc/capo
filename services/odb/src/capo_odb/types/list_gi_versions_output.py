@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: ListGiVersionsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListGiVersionsOutput:
     out: ListGiVersionsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "giVersions" in data:
+    if data.get("giVersions") is not None:
         import capo_odb.types.gi_version_list
 
         out["gi_versions"] = capo_odb.types.gi_version_list.deserialize_aws_json_1_0(

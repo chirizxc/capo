@@ -31,7 +31,7 @@ def serialize_json(value: Measurement) -> dict:
 
 def deserialize_json(data: dict) -> Measurement:
     out: Measurement = {}  # type: ignore[typeddict-item]
-    if "processingConfig" in data:
+    if data.get("processingConfig") is not None:
         import capo_iotsitewise.types.measurement_processing_config
 
         out["processing_config"] = (

@@ -23,6 +23,6 @@ def serialize_json(value: IpPoolUpdateRequest) -> dict:
 
 def deserialize_json(data: dict) -> IpPoolUpdateRequest:
     out: IpPoolUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
     return out

@@ -30,10 +30,10 @@ def serialize_json(value: KxNAS1Configuration) -> dict:
 
 def deserialize_json(data: dict) -> KxNAS1Configuration:
     out: KxNAS1Configuration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_finspace.types.kx_nas1_type
 
         out["type"] = capo_finspace.types.kx_nas1_type.deserialize_json(data["type"])
-    if "size" in data:
+    if data.get("size") is not None:
         out["size"] = data["size"]
     return out

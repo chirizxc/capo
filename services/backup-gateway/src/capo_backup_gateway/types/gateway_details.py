@@ -87,21 +87,21 @@ def serialize_aws_json_1_0(value: GatewayDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GatewayDetails:
     out: GatewayDetails = {}  # type: ignore[typeddict-item]
-    if "GatewayArn" in data:
+    if data.get("GatewayArn") is not None:
         out["gateway_arn"] = data["GatewayArn"]
-    if "GatewayDisplayName" in data:
+    if data.get("GatewayDisplayName") is not None:
         out["gateway_display_name"] = data["GatewayDisplayName"]
-    if "GatewayType" in data:
+    if data.get("GatewayType") is not None:
         out["gateway_type"] = data["GatewayType"]
-    if "HypervisorId" in data:
+    if data.get("HypervisorId") is not None:
         out["hypervisor_id"] = data["HypervisorId"]
-    if "LastSeenTime" in data:
+    if data.get("LastSeenTime") is not None:
         import capo_backup_gateway.types.time
 
         out["last_seen_time"] = capo_backup_gateway.types.time.deserialize_aws_json_1_0(
             data["LastSeenTime"]
         )
-    if "MaintenanceStartTime" in data:
+    if data.get("MaintenanceStartTime") is not None:
         import capo_backup_gateway.types.maintenance_start_time
 
         out["maintenance_start_time"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> GatewayDetails:
                 data["MaintenanceStartTime"]
             )
         )
-    if "NextUpdateAvailabilityTime" in data:
+    if data.get("NextUpdateAvailabilityTime") is not None:
         import capo_backup_gateway.types.time
 
         out["next_update_availability_time"] = (
@@ -117,9 +117,9 @@ def deserialize_aws_json_1_0(data: dict) -> GatewayDetails:
                 data["NextUpdateAvailabilityTime"]
             )
         )
-    if "VpcEndpoint" in data:
+    if data.get("VpcEndpoint") is not None:
         out["vpc_endpoint"] = data["VpcEndpoint"]
-    if "DeprecationDate" in data:
+    if data.get("DeprecationDate") is not None:
         import capo_backup_gateway.types.time
 
         out["deprecation_date"] = (
@@ -127,6 +127,6 @@ def deserialize_aws_json_1_0(data: dict) -> GatewayDetails:
                 data["DeprecationDate"]
             )
         )
-    if "SoftwareVersion" in data:
+    if data.get("SoftwareVersion") is not None:
         out["software_version"] = data["SoftwareVersion"]
     return out

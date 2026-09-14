@@ -26,14 +26,14 @@ def serialize_json(value: GitLabConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GitLabConfiguration:
     out: GitLabConfiguration = {}  # type: ignore[typeddict-item]
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
     else:
         raise DeserializationError("GitLabConfiguration.project_id required")
-    if "projectPath" in data:
+    if data.get("projectPath") is not None:
         out["project_path"] = data["projectPath"]
     else:
         raise DeserializationError("GitLabConfiguration.project_path required")
-    if "instanceIdentifier" in data:
+    if data.get("instanceIdentifier") is not None:
         out["instance_identifier"] = data["instanceIdentifier"]
     return out

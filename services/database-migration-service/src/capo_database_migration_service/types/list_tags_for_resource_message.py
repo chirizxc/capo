@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListTagsForResourceMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTagsForResourceMessage:
     out: ListTagsForResourceMessage = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceArnList" in data:
+    if data.get("ResourceArnList") is not None:
         import capo_database_migration_service.types.arn_list
 
         out["resource_arn_list"] = (

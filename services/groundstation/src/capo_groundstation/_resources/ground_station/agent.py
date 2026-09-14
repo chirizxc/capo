@@ -77,9 +77,10 @@ class Agent:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.register_agent_request.RegisterAgentRequest = {}  # type: ignore[typeddict-item]
-        input_["discovery_data"] = discovery_data
-        input_["agent_details"] = agent_details
+        input_: capo_groundstation.types.register_agent_request.RegisterAgentRequest = {
+            "discovery_data": discovery_data,
+            "agent_details": agent_details,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -88,6 +89,7 @@ class Agent:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -123,14 +125,16 @@ class Agent:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.get_agent_configuration_request.GetAgentConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_id"] = agent_id
+        input_: capo_groundstation.types.get_agent_configuration_request.GetAgentConfigurationRequest = {
+            "agent_id": agent_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -172,17 +176,19 @@ class Agent:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.update_agent_status_request.UpdateAgentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_id"] = agent_id
-        input_["task_id"] = task_id
-        input_["aggregate_status"] = aggregate_status
-        input_["component_statuses"] = component_statuses
+        input_: capo_groundstation.types.update_agent_status_request.UpdateAgentStatusRequest = {
+            "agent_id": agent_id,
+            "task_id": task_id,
+            "aggregate_status": aggregate_status,
+            "component_statuses": component_statuses,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -228,9 +234,10 @@ class AsyncAgent:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.register_agent_request.RegisterAgentRequest = {}  # type: ignore[typeddict-item]
-        input_["discovery_data"] = discovery_data
-        input_["agent_details"] = agent_details
+        input_: capo_groundstation.types.register_agent_request.RegisterAgentRequest = {
+            "discovery_data": discovery_data,
+            "agent_details": agent_details,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -239,6 +246,7 @@ class AsyncAgent:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -275,14 +283,16 @@ class AsyncAgent:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.get_agent_configuration_request.GetAgentConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_id"] = agent_id
+        input_: capo_groundstation.types.get_agent_configuration_request.GetAgentConfigurationRequest = {
+            "agent_id": agent_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -325,15 +335,17 @@ class AsyncAgent:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.update_agent_status_request.UpdateAgentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_id"] = agent_id
-        input_["task_id"] = task_id
-        input_["aggregate_status"] = aggregate_status
-        input_["component_statuses"] = component_statuses
+        input_: capo_groundstation.types.update_agent_status_request.UpdateAgentStatusRequest = {
+            "agent_id": agent_id,
+            "task_id": task_id,
+            "aggregate_status": aggregate_status,
+            "component_statuses": component_statuses,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

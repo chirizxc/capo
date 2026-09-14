@@ -33,9 +33,9 @@ def serialize_json(value: EdgeStructure) -> dict:
 
 def deserialize_json(data: dict) -> EdgeStructure:
     out: EdgeStructure = {}  # type: ignore[typeddict-item]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "edgeProperties" in data:
+    if data.get("edgeProperties") is not None:
         import capo_neptune_graph.types.edge_properties
 
         out["edge_properties"] = (

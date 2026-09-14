@@ -27,7 +27,7 @@ def serialize_json(value: AddLFTagsToResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> AddLFTagsToResourceResponse:
     out: AddLFTagsToResourceResponse = {}  # type: ignore[typeddict-item]
-    if "Failures" in data:
+    if data.get("Failures") is not None:
         import capo_lakeformation.types.lf_tag_errors
 
         out["failures"] = capo_lakeformation.types.lf_tag_errors.deserialize_json(

@@ -69,19 +69,19 @@ def serialize_aws_json_1_0(value: CreateCapabilityResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCapabilityResponse:
     out: CreateCapabilityResponse = {}  # type: ignore[typeddict-item]
-    if "capabilityId" in data:
+    if data.get("capabilityId") is not None:
         out["capability_id"] = data["capabilityId"]
     else:
         raise DeserializationError("CreateCapabilityResponse.capability_id required")
-    if "capabilityArn" in data:
+    if data.get("capabilityArn") is not None:
         out["capability_arn"] = data["capabilityArn"]
     else:
         raise DeserializationError("CreateCapabilityResponse.capability_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateCapabilityResponse.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_b2bi.types.capability_type
 
         out["type"] = capo_b2bi.types.capability_type.deserialize_aws_json_1_0(
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCapabilityResponse:
         )
     else:
         raise DeserializationError("CreateCapabilityResponse.type required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_b2bi.types.capability_configuration
 
         out["configuration"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCapabilityResponse:
         )
     else:
         raise DeserializationError("CreateCapabilityResponse.configuration required")
-    if "instructionsDocuments" in data:
+    if data.get("instructionsDocuments") is not None:
         import capo_b2bi.types.instructions_documents
 
         out["instructions_documents"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCapabilityResponse:
                 data["instructionsDocuments"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_b2bi.types.created_date
 
         out["created_at"] = capo_b2bi.types.created_date.deserialize_aws_json_1_0(

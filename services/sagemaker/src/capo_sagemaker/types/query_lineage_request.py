@@ -73,7 +73,7 @@ def serialize_aws_json_1_1(value: QueryLineageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryLineageRequest:
     out: QueryLineageRequest = {}  # type: ignore[typeddict-item]
-    if "StartArns" in data:
+    if data.get("StartArns") is not None:
         import capo_sagemaker.types.query_lineage_start_arns
 
         out["start_arns"] = (
@@ -81,24 +81,24 @@ def deserialize_aws_json_1_1(data: dict) -> QueryLineageRequest:
                 data["StartArns"]
             )
         )
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         import capo_sagemaker.types.direction
 
         out["direction"] = capo_sagemaker.types.direction.deserialize_aws_json_1_1(
             data["Direction"]
         )
-    if "IncludeEdges" in data:
+    if data.get("IncludeEdges") is not None:
         out["include_edges"] = data["IncludeEdges"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_sagemaker.types.query_filters
 
         out["filters"] = capo_sagemaker.types.query_filters.deserialize_aws_json_1_1(
             data["Filters"]
         )
-    if "MaxDepth" in data:
+    if data.get("MaxDepth") is not None:
         out["max_depth"] = data["MaxDepth"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

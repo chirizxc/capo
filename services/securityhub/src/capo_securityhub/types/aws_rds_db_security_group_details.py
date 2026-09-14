@@ -71,13 +71,13 @@ def serialize_json(value: AwsRdsDbSecurityGroupDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbSecurityGroupDetails:
     out: AwsRdsDbSecurityGroupDetails = {}  # type: ignore[typeddict-item]
-    if "DbSecurityGroupArn" in data:
+    if data.get("DbSecurityGroupArn") is not None:
         out["db_security_group_arn"] = data["DbSecurityGroupArn"]
-    if "DbSecurityGroupDescription" in data:
+    if data.get("DbSecurityGroupDescription") is not None:
         out["db_security_group_description"] = data["DbSecurityGroupDescription"]
-    if "DbSecurityGroupName" in data:
+    if data.get("DbSecurityGroupName") is not None:
         out["db_security_group_name"] = data["DbSecurityGroupName"]
-    if "Ec2SecurityGroups" in data:
+    if data.get("Ec2SecurityGroups") is not None:
         import capo_securityhub.types.aws_rds_db_security_group_ec2_security_groups
 
         out["ec2_security_groups"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> AwsRdsDbSecurityGroupDetails:
                 data["Ec2SecurityGroups"]
             )
         )
-    if "IpRanges" in data:
+    if data.get("IpRanges") is not None:
         import capo_securityhub.types.aws_rds_db_security_group_ip_ranges
 
         out["ip_ranges"] = (
@@ -93,8 +93,8 @@ def deserialize_json(data: dict) -> AwsRdsDbSecurityGroupDetails:
                 data["IpRanges"]
             )
         )
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

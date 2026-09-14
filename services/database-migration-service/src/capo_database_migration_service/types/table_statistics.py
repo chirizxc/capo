@@ -166,53 +166,61 @@ def serialize_aws_json_1_1(value: TableStatistics) -> dict:
     if "resync_rows_failed" in value:
         out["ResyncRowsFailed"] = value["resync_rows_failed"]
     if "resync_progress" in value:
-        out["ResyncProgress"] = value["resync_progress"]
+        out["ResyncProgress"] = (
+            "NaN"
+            if value["resync_progress"] != value["resync_progress"]
+            else "Infinity"
+            if value["resync_progress"] == float("inf")
+            else "-Infinity"
+            if value["resync_progress"] == float("-inf")
+            else value["resync_progress"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> TableStatistics:
     out: TableStatistics = {}  # type: ignore[typeddict-item]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "Inserts" in data:
+    if data.get("Inserts") is not None:
         out["inserts"] = data["Inserts"]
     else:
         out["inserts"] = 0
-    if "Deletes" in data:
+    if data.get("Deletes") is not None:
         out["deletes"] = data["Deletes"]
     else:
         out["deletes"] = 0
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         out["updates"] = data["Updates"]
     else:
         out["updates"] = 0
-    if "Ddls" in data:
+    if data.get("Ddls") is not None:
         out["ddls"] = data["Ddls"]
     else:
         out["ddls"] = 0
-    if "AppliedInserts" in data:
+    if data.get("AppliedInserts") is not None:
         out["applied_inserts"] = data["AppliedInserts"]
-    if "AppliedDeletes" in data:
+    if data.get("AppliedDeletes") is not None:
         out["applied_deletes"] = data["AppliedDeletes"]
-    if "AppliedUpdates" in data:
+    if data.get("AppliedUpdates") is not None:
         out["applied_updates"] = data["AppliedUpdates"]
-    if "AppliedDdls" in data:
+    if data.get("AppliedDdls") is not None:
         out["applied_ddls"] = data["AppliedDdls"]
-    if "FullLoadRows" in data:
+    if data.get("FullLoadRows") is not None:
         out["full_load_rows"] = data["FullLoadRows"]
     else:
         out["full_load_rows"] = 0
-    if "FullLoadCondtnlChkFailedRows" in data:
+    if data.get("FullLoadCondtnlChkFailedRows") is not None:
         out["full_load_condtnl_chk_failed_rows"] = data["FullLoadCondtnlChkFailedRows"]
     else:
         out["full_load_condtnl_chk_failed_rows"] = 0
-    if "FullLoadErrorRows" in data:
+    if data.get("FullLoadErrorRows") is not None:
         out["full_load_error_rows"] = data["FullLoadErrorRows"]
     else:
         out["full_load_error_rows"] = 0
-    if "FullLoadStartTime" in data:
+    if data.get("FullLoadStartTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["full_load_start_time"] = (
@@ -220,7 +228,7 @@ def deserialize_aws_json_1_1(data: dict) -> TableStatistics:
                 data["FullLoadStartTime"]
             )
         )
-    if "FullLoadEndTime" in data:
+    if data.get("FullLoadEndTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["full_load_end_time"] = (
@@ -228,9 +236,9 @@ def deserialize_aws_json_1_1(data: dict) -> TableStatistics:
                 data["FullLoadEndTime"]
             )
         )
-    if "FullLoadReloaded" in data:
+    if data.get("FullLoadReloaded") is not None:
         out["full_load_reloaded"] = data["FullLoadReloaded"]
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["last_update_time"] = (
@@ -238,32 +246,32 @@ def deserialize_aws_json_1_1(data: dict) -> TableStatistics:
                 data["LastUpdateTime"]
             )
         )
-    if "TableState" in data:
+    if data.get("TableState") is not None:
         out["table_state"] = data["TableState"]
-    if "ValidationPendingRecords" in data:
+    if data.get("ValidationPendingRecords") is not None:
         out["validation_pending_records"] = data["ValidationPendingRecords"]
     else:
         out["validation_pending_records"] = 0
-    if "ValidationFailedRecords" in data:
+    if data.get("ValidationFailedRecords") is not None:
         out["validation_failed_records"] = data["ValidationFailedRecords"]
     else:
         out["validation_failed_records"] = 0
-    if "ValidationSuspendedRecords" in data:
+    if data.get("ValidationSuspendedRecords") is not None:
         out["validation_suspended_records"] = data["ValidationSuspendedRecords"]
     else:
         out["validation_suspended_records"] = 0
-    if "ValidationState" in data:
+    if data.get("ValidationState") is not None:
         out["validation_state"] = data["ValidationState"]
-    if "ValidationStateDetails" in data:
+    if data.get("ValidationStateDetails") is not None:
         out["validation_state_details"] = data["ValidationStateDetails"]
-    if "ResyncState" in data:
+    if data.get("ResyncState") is not None:
         out["resync_state"] = data["ResyncState"]
-    if "ResyncRowsAttempted" in data:
+    if data.get("ResyncRowsAttempted") is not None:
         out["resync_rows_attempted"] = data["ResyncRowsAttempted"]
-    if "ResyncRowsSucceeded" in data:
+    if data.get("ResyncRowsSucceeded") is not None:
         out["resync_rows_succeeded"] = data["ResyncRowsSucceeded"]
-    if "ResyncRowsFailed" in data:
+    if data.get("ResyncRowsFailed") is not None:
         out["resync_rows_failed"] = data["ResyncRowsFailed"]
-    if "ResyncProgress" in data:
-        out["resync_progress"] = data["ResyncProgress"]
+    if data.get("ResyncProgress") is not None:
+        out["resync_progress"] = float(data["ResyncProgress"])
     return out

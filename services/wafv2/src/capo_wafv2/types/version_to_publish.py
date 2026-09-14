@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: VersionToPublish) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VersionToPublish:
     out: VersionToPublish = {}  # type: ignore[typeddict-item]
-    if "AssociatedRuleGroupArn" in data:
+    if data.get("AssociatedRuleGroupArn") is not None:
         out["associated_rule_group_arn"] = data["AssociatedRuleGroupArn"]
-    if "ForecastedLifetime" in data:
+    if data.get("ForecastedLifetime") is not None:
         out["forecasted_lifetime"] = data["ForecastedLifetime"]
     return out

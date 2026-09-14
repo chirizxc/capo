@@ -55,7 +55,7 @@ def serialize_aws_json_1_0(value: UpdatePreferencesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdatePreferencesResponse:
     out: UpdatePreferencesResponse = {}  # type: ignore[typeddict-item]
-    if "managementAccountRateTypeSelections" in data:
+    if data.get("managementAccountRateTypeSelections") is not None:
         import capo_bcm_pricing_calculator.types.rate_types
 
         out["management_account_rate_type_selections"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePreferencesResponse:
                 data["managementAccountRateTypeSelections"]
             )
         )
-    if "memberAccountRateTypeSelections" in data:
+    if data.get("memberAccountRateTypeSelections") is not None:
         import capo_bcm_pricing_calculator.types.rate_types
 
         out["member_account_rate_type_selections"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePreferencesResponse:
                 data["memberAccountRateTypeSelections"]
             )
         )
-    if "standaloneAccountRateTypeSelections" in data:
+    if data.get("standaloneAccountRateTypeSelections") is not None:
         import capo_bcm_pricing_calculator.types.rate_types
 
         out["standalone_account_rate_type_selections"] = (

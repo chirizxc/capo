@@ -29,7 +29,7 @@ def serialize_json(value: PutDialRequestBatchRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutDialRequestBatchRequest:
     out: PutDialRequestBatchRequest = {}  # type: ignore[typeddict-item]
-    if "dialRequests" in data:
+    if data.get("dialRequests") is not None:
         import capo_connectcampaigns.types.dial_request_list
 
         out["dial_requests"] = (

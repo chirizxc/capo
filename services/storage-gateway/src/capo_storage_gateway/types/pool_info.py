@@ -72,11 +72,11 @@ def serialize_aws_json_1_1(value: PoolInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PoolInfo:
     out: PoolInfo = {}  # type: ignore[typeddict-item]
-    if "PoolARN" in data:
+    if data.get("PoolARN") is not None:
         out["pool_arn"] = data["PoolARN"]
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
-    if "StorageClass" in data:
+    if data.get("StorageClass") is not None:
         import capo_storage_gateway.types.tape_storage_class
 
         out["storage_class"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> PoolInfo:
                 data["StorageClass"]
             )
         )
-    if "RetentionLockType" in data:
+    if data.get("RetentionLockType") is not None:
         import capo_storage_gateway.types.retention_lock_type
 
         out["retention_lock_type"] = (
@@ -92,9 +92,9 @@ def deserialize_aws_json_1_1(data: dict) -> PoolInfo:
                 data["RetentionLockType"]
             )
         )
-    if "RetentionLockTimeInDays" in data:
+    if data.get("RetentionLockTimeInDays") is not None:
         out["retention_lock_time_in_days"] = data["RetentionLockTimeInDays"]
-    if "PoolStatus" in data:
+    if data.get("PoolStatus") is not None:
         import capo_storage_gateway.types.pool_status
 
         out["pool_status"] = (

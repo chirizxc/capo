@@ -29,7 +29,7 @@ def serialize_json(value: AdditionalDestinations) -> dict:
 
 def deserialize_json(data: dict) -> AdditionalDestinations:
     out: AdditionalDestinations = {}  # type: ignore[typeddict-item]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(

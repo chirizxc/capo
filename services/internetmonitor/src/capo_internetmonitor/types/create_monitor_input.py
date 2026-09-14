@@ -84,25 +84,25 @@ def serialize_json(value: CreateMonitorInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateMonitorInput:
     out: CreateMonitorInput = {}  # type: ignore[typeddict-item]
-    if "MonitorName" in data:
+    if data.get("MonitorName") is not None:
         out["monitor_name"] = data["MonitorName"]
     else:
         raise DeserializationError("CreateMonitorInput.monitor_name required")
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_internetmonitor.types.set_of_ar_ns
 
         out["resources"] = capo_internetmonitor.types.set_of_ar_ns.deserialize_json(
             data["Resources"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_internetmonitor.types.tag_map
 
         out["tags"] = capo_internetmonitor.types.tag_map.deserialize_json(data["Tags"])
-    if "MaxCityNetworksToMonitor" in data:
+    if data.get("MaxCityNetworksToMonitor") is not None:
         out["max_city_networks_to_monitor"] = data["MaxCityNetworksToMonitor"]
-    if "InternetMeasurementsLogDelivery" in data:
+    if data.get("InternetMeasurementsLogDelivery") is not None:
         import capo_internetmonitor.types.internet_measurements_log_delivery
 
         out["internet_measurements_log_delivery"] = (
@@ -110,9 +110,9 @@ def deserialize_json(data: dict) -> CreateMonitorInput:
                 data["InternetMeasurementsLogDelivery"]
             )
         )
-    if "TrafficPercentageToMonitor" in data:
+    if data.get("TrafficPercentageToMonitor") is not None:
         out["traffic_percentage_to_monitor"] = data["TrafficPercentageToMonitor"]
-    if "HealthEventsConfig" in data:
+    if data.get("HealthEventsConfig") is not None:
         import capo_internetmonitor.types.health_events_config
 
         out["health_events_config"] = (

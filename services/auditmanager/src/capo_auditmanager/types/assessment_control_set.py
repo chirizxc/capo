@@ -71,37 +71,37 @@ def serialize_json(value: AssessmentControlSet) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentControlSet:
     out: AssessmentControlSet = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_auditmanager.types.control_set_status
 
         out["status"] = capo_auditmanager.types.control_set_status.deserialize_json(
             data["status"]
         )
-    if "roles" in data:
+    if data.get("roles") is not None:
         import capo_auditmanager.types.roles
 
         out["roles"] = capo_auditmanager.types.roles.deserialize_json(data["roles"])
-    if "controls" in data:
+    if data.get("controls") is not None:
         import capo_auditmanager.types.assessment_controls
 
         out["controls"] = capo_auditmanager.types.assessment_controls.deserialize_json(
             data["controls"]
         )
-    if "delegations" in data:
+    if data.get("delegations") is not None:
         import capo_auditmanager.types.delegations
 
         out["delegations"] = capo_auditmanager.types.delegations.deserialize_json(
             data["delegations"]
         )
-    if "systemEvidenceCount" in data:
+    if data.get("systemEvidenceCount") is not None:
         out["system_evidence_count"] = data["systemEvidenceCount"]
     else:
         out["system_evidence_count"] = 0
-    if "manualEvidenceCount" in data:
+    if data.get("manualEvidenceCount") is not None:
         out["manual_evidence_count"] = data["manualEvidenceCount"]
     else:
         out["manual_evidence_count"] = 0

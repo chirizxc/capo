@@ -33,14 +33,14 @@ def serialize_json(value: ListIncidentFindingsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListIncidentFindingsInput:
     out: ListIncidentFindingsInput = {}  # type: ignore[typeddict-item]
-    if "incidentRecordArn" in data:
+    if data.get("incidentRecordArn") is not None:
         out["incident_record_arn"] = data["incidentRecordArn"]
     else:
         raise DeserializationError(
             "ListIncidentFindingsInput.incident_record_arn required"
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

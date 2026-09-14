@@ -47,11 +47,11 @@ def serialize_json(value: FreeTrialPricingTerm) -> dict:
 
 def deserialize_json(data: dict) -> FreeTrialPricingTerm:
     out: FreeTrialPricingTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("FreeTrialPricingTerm.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.term_type
 
         out["type"] = capo_marketplace_discovery.types.term_type.deserialize_json(
@@ -59,9 +59,9 @@ def deserialize_json(data: dict) -> FreeTrialPricingTerm:
         )
     else:
         raise DeserializationError("FreeTrialPricingTerm.type required")
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "grants" in data:
+    if data.get("grants") is not None:
         import capo_marketplace_discovery.types.grant_list
 
         out["grants"] = capo_marketplace_discovery.types.grant_list.deserialize_json(

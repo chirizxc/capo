@@ -36,13 +36,13 @@ def serialize_json(value: TopicRangeFilterConstant) -> dict:
 
 def deserialize_json(data: dict) -> TopicRangeFilterConstant:
     out: TopicRangeFilterConstant = {}  # type: ignore[typeddict-item]
-    if "ConstantType" in data:
+    if data.get("ConstantType") is not None:
         import capo_quicksight.types.constant_type
 
         out["constant_type"] = capo_quicksight.types.constant_type.deserialize_json(
             data["ConstantType"]
         )
-    if "RangeConstant" in data:
+    if data.get("RangeConstant") is not None:
         import capo_quicksight.types.range_constant
 
         out["range_constant"] = capo_quicksight.types.range_constant.deserialize_json(

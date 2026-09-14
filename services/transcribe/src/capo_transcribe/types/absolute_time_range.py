@@ -43,12 +43,12 @@ def serialize_aws_json_1_1(value: AbsoluteTimeRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AbsoluteTimeRange:
     out: AbsoluteTimeRange = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         out["start_time"] = data["StartTime"]
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         out["end_time"] = data["EndTime"]
-    if "First" in data:
+    if data.get("First") is not None:
         out["first"] = data["First"]
-    if "Last" in data:
+    if data.get("Last") is not None:
         out["last"] = data["Last"]
     return out

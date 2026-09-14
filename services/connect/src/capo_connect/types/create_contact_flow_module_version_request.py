@@ -38,8 +38,8 @@ def serialize_json(value: CreateContactFlowModuleVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateContactFlowModuleVersionRequest:
     out: CreateContactFlowModuleVersionRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FlowModuleContentSha256" in data:
+    if data.get("FlowModuleContentSha256") is not None:
         out["flow_module_content_sha256"] = data["FlowModuleContentSha256"]
     return out

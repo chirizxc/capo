@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> Ec2CapacityReservationsList:
 
     out: Ec2CapacityReservationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.ec2_capacity_reservation.deserialize_aws_json_1_1(item)
         )

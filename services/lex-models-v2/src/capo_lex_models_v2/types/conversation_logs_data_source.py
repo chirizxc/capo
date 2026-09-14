@@ -42,19 +42,19 @@ def serialize_json(value: ConversationLogsDataSource) -> dict:
 
 def deserialize_json(data: dict) -> ConversationLogsDataSource:
     out: ConversationLogsDataSource = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
     else:
         raise DeserializationError("ConversationLogsDataSource.bot_id required")
-    if "botAliasId" in data:
+    if data.get("botAliasId") is not None:
         out["bot_alias_id"] = data["botAliasId"]
     else:
         raise DeserializationError("ConversationLogsDataSource.bot_alias_id required")
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
     else:
         raise DeserializationError("ConversationLogsDataSource.locale_id required")
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_lex_models_v2.types.conversation_logs_data_source_filter_by
 
         out["filter"] = (

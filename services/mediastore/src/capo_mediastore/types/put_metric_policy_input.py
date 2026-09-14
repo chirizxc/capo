@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: PutMetricPolicyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutMetricPolicyInput:
     out: PutMetricPolicyInput = {}  # type: ignore[typeddict-item]
-    if "ContainerName" in data:
+    if data.get("ContainerName") is not None:
         out["container_name"] = data["ContainerName"]
     else:
         raise DeserializationError("PutMetricPolicyInput.container_name required")
-    if "MetricPolicy" in data:
+    if data.get("MetricPolicy") is not None:
         import capo_mediastore.types.metric_policy
 
         out["metric_policy"] = (

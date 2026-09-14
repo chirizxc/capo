@@ -46,7 +46,7 @@ def serialize_json(value: UpdateRetrieverRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRetrieverRequest:
     out: UpdateRetrieverRequest = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_qbusiness.types.retriever_configuration
 
         out["configuration"] = (
@@ -54,8 +54,8 @@ def deserialize_json(data: dict) -> UpdateRetrieverRequest:
                 data["configuration"]
             )
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

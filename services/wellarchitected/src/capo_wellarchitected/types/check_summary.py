@@ -91,39 +91,39 @@ def serialize_json(value: CheckSummary) -> dict:
 
 def deserialize_json(data: dict) -> CheckSummary:
     out: CheckSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Provider" in data:
+    if data.get("Provider") is not None:
         import capo_wellarchitected.types.check_provider
 
         out["provider"] = capo_wellarchitected.types.check_provider.deserialize_json(
             data["Provider"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "PillarId" in data:
+    if data.get("PillarId") is not None:
         out["pillar_id"] = data["PillarId"]
-    if "QuestionId" in data:
+    if data.get("QuestionId") is not None:
         out["question_id"] = data["QuestionId"]
-    if "ChoiceId" in data:
+    if data.get("ChoiceId") is not None:
         out["choice_id"] = data["ChoiceId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_wellarchitected.types.check_status
 
         out["status"] = capo_wellarchitected.types.check_status.deserialize_json(
             data["Status"]
         )
-    if "AccountSummary" in data:
+    if data.get("AccountSummary") is not None:
         import capo_wellarchitected.types.account_summary
 
         out["account_summary"] = (

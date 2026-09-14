@@ -153,17 +153,17 @@ def serialize_aws_json_1_0(value: DatastoreProperties) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DatastoreProperties:
     out: DatastoreProperties = {}  # type: ignore[typeddict-item]
-    if "DatastoreId" in data:
+    if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]
     else:
         raise DeserializationError("DatastoreProperties.datastore_id required")
-    if "DatastoreArn" in data:
+    if data.get("DatastoreArn") is not None:
         out["datastore_arn"] = data["DatastoreArn"]
     else:
         raise DeserializationError("DatastoreProperties.datastore_arn required")
-    if "DatastoreName" in data:
+    if data.get("DatastoreName") is not None:
         out["datastore_name"] = data["DatastoreName"]
-    if "DatastoreStatus" in data:
+    if data.get("DatastoreStatus") is not None:
         import capo_healthlake.types.datastore_status
 
         out["datastore_status"] = (
@@ -173,13 +173,13 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreProperties:
         )
     else:
         raise DeserializationError("DatastoreProperties.datastore_status required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_healthlake.types.timestamp
 
         out["created_at"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "DatastoreTypeVersion" in data:
+    if data.get("DatastoreTypeVersion") is not None:
         import capo_healthlake.types.fhir_version
 
         out["datastore_type_version"] = (
@@ -191,11 +191,11 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreProperties:
         raise DeserializationError(
             "DatastoreProperties.datastore_type_version required"
         )
-    if "DatastoreEndpoint" in data:
+    if data.get("DatastoreEndpoint") is not None:
         out["datastore_endpoint"] = data["DatastoreEndpoint"]
     else:
         raise DeserializationError("DatastoreProperties.datastore_endpoint required")
-    if "SseConfiguration" in data:
+    if data.get("SseConfiguration") is not None:
         import capo_healthlake.types.sse_configuration
 
         out["sse_configuration"] = (
@@ -203,7 +203,7 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreProperties:
                 data["SseConfiguration"]
             )
         )
-    if "PreloadDataConfig" in data:
+    if data.get("PreloadDataConfig") is not None:
         import capo_healthlake.types.preload_data_config
 
         out["preload_data_config"] = (
@@ -211,7 +211,7 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreProperties:
                 data["PreloadDataConfig"]
             )
         )
-    if "IdentityProviderConfiguration" in data:
+    if data.get("IdentityProviderConfiguration") is not None:
         import capo_healthlake.types.identity_provider_configuration
 
         out["identity_provider_configuration"] = (
@@ -219,13 +219,13 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreProperties:
                 data["IdentityProviderConfiguration"]
             )
         )
-    if "ErrorCause" in data:
+    if data.get("ErrorCause") is not None:
         import capo_healthlake.types.error_cause
 
         out["error_cause"] = capo_healthlake.types.error_cause.deserialize_aws_json_1_0(
             data["ErrorCause"]
         )
-    if "NlpConfiguration" in data:
+    if data.get("NlpConfiguration") is not None:
         import capo_healthlake.types.nlp_configuration
 
         out["nlp_configuration"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreProperties:
                 data["NlpConfiguration"]
             )
         )
-    if "AnalyticsConfiguration" in data:
+    if data.get("AnalyticsConfiguration") is not None:
         import capo_healthlake.types.analytics_configuration
 
         out["analytics_configuration"] = (
@@ -241,7 +241,7 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreProperties:
                 data["AnalyticsConfiguration"]
             )
         )
-    if "ProfileConfiguration" in data:
+    if data.get("ProfileConfiguration") is not None:
         import capo_healthlake.types.profile_configuration
 
         out["profile_configuration"] = (

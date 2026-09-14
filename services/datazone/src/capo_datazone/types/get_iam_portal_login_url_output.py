@@ -23,9 +23,9 @@ def serialize_json(value: GetIamPortalLoginUrlOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetIamPortalLoginUrlOutput:
     out: GetIamPortalLoginUrlOutput = {}  # type: ignore[typeddict-item]
-    if "authCodeUrl" in data:
+    if data.get("authCodeUrl") is not None:
         out["auth_code_url"] = data["authCodeUrl"]
-    if "userProfileId" in data:
+    if data.get("userProfileId") is not None:
         out["user_profile_id"] = data["userProfileId"]
     else:
         raise DeserializationError(

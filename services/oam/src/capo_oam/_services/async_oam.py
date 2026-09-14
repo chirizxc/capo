@@ -217,10 +217,11 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.create_link_input.CreateLinkInput = {}  # type: ignore[typeddict-item]
-        input_["label_template"] = label_template
-        input_["resource_types"] = resource_types
-        input_["sink_identifier"] = sink_identifier
+        input_: capo_oam.types.create_link_input.CreateLinkInput = {
+            "label_template": label_template,
+            "resource_types": resource_types,
+            "sink_identifier": sink_identifier,
+        }
         if tags is not None:
             input_["tags"] = tags
         if link_configuration is not None:
@@ -231,6 +232,7 @@ class AsyncOAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_sink(
@@ -271,8 +273,7 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.create_sink_input.CreateSinkInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_oam.types.create_sink_input.CreateSinkInput = {"name": name}
         if tags is not None:
             input_["tags"] = tags
 
@@ -281,6 +282,7 @@ class AsyncOAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_link(
@@ -318,14 +320,16 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.delete_link_input.DeleteLinkInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_oam.types.delete_link_input.DeleteLinkInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_sink(
@@ -364,14 +368,16 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.delete_sink_input.DeleteSinkInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_oam.types.delete_sink_input.DeleteSinkInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_link(
@@ -409,8 +415,7 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.get_link_input.GetLinkInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_oam.types.get_link_input.GetLinkInput = {"identifier": identifier}
         if include_tags is not None:
             input_["include_tags"] = include_tags
 
@@ -419,6 +424,7 @@ class AsyncOAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sink(
@@ -456,8 +462,7 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.get_sink_input.GetSinkInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_oam.types.get_sink_input.GetSinkInput = {"identifier": identifier}
         if include_tags is not None:
             input_["include_tags"] = include_tags
 
@@ -466,6 +471,7 @@ class AsyncOAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sink_policy(
@@ -503,14 +509,16 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.get_sink_policy_input.GetSinkPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["sink_identifier"] = sink_identifier
+        input_: capo_oam.types.get_sink_policy_input.GetSinkPolicyInput = {
+            "sink_identifier": sink_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_attached_links(
@@ -554,18 +562,20 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.list_attached_links_input.ListAttachedLinksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_oam.types.list_attached_links_input.ListAttachedLinksInput = {
+            "sink_identifier": sink_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["sink_identifier"] = sink_identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_attached_links(
@@ -629,7 +639,7 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.list_links_input.ListLinksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_oam.types.list_links_input.ListLinksInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -640,6 +650,7 @@ class AsyncOAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_links(
@@ -701,7 +712,7 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.list_sinks_input.ListSinksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_oam.types.list_sinks_input.ListSinksInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -712,6 +723,7 @@ class AsyncOAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sinks(
@@ -770,14 +782,16 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_oam.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_sink_policy(
@@ -817,15 +831,17 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.put_sink_policy_input.PutSinkPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["sink_identifier"] = sink_identifier
-        input_["policy"] = policy
+        input_: capo_oam.types.put_sink_policy_input.PutSinkPolicyInput = {
+            "sink_identifier": sink_identifier,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -864,15 +880,17 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_oam.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -910,15 +928,17 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_oam.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_link(
@@ -964,9 +984,10 @@ class AsyncOAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_oam.types.update_link_input.UpdateLinkInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["resource_types"] = resource_types
+        input_: capo_oam.types.update_link_input.UpdateLinkInput = {
+            "identifier": identifier,
+            "resource_types": resource_types,
+        }
         if link_configuration is not None:
             input_["link_configuration"] = link_configuration
         if include_tags is not None:
@@ -977,6 +998,7 @@ class AsyncOAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

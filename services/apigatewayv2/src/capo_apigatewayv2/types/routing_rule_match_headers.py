@@ -31,7 +31,7 @@ def serialize_json(value: RoutingRuleMatchHeaders) -> dict:
 
 def deserialize_json(data: dict) -> RoutingRuleMatchHeaders:
     out: RoutingRuleMatchHeaders = {}  # type: ignore[typeddict-item]
-    if "anyOf" in data:
+    if data.get("anyOf") is not None:
         import capo_apigatewayv2.types.__list_of_routing_rule_match_header_value
 
         out["any_of"] = (

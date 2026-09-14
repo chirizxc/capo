@@ -34,7 +34,7 @@ def serialize_json(value: CompleteMultipartReadSetUploadRequest) -> dict:
 
 def deserialize_json(data: dict) -> CompleteMultipartReadSetUploadRequest:
     out: CompleteMultipartReadSetUploadRequest = {}  # type: ignore[typeddict-item]
-    if "parts" in data:
+    if data.get("parts") is not None:
         import capo_omics.types.complete_read_set_upload_part_list
 
         out["parts"] = (

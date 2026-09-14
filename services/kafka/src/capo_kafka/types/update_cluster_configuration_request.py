@@ -36,7 +36,7 @@ def serialize_json(value: UpdateClusterConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClusterConfigurationRequest:
     out: UpdateClusterConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "configurationInfo" in data:
+    if data.get("configurationInfo") is not None:
         import capo_kafka.types.configuration_info
 
         out["configuration_info"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> UpdateClusterConfigurationRequest:
                 data["configurationInfo"]
             )
         )
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
     return out

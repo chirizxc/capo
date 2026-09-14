@@ -38,13 +38,13 @@ def serialize_json(value: BotRecommendationResultStatistics) -> dict:
 
 def deserialize_json(data: dict) -> BotRecommendationResultStatistics:
     out: BotRecommendationResultStatistics = {}  # type: ignore[typeddict-item]
-    if "intents" in data:
+    if data.get("intents") is not None:
         import capo_lex_models_v2.types.intent_statistics
 
         out["intents"] = capo_lex_models_v2.types.intent_statistics.deserialize_json(
             data["intents"]
         )
-    if "slotTypes" in data:
+    if data.get("slotTypes") is not None:
         import capo_lex_models_v2.types.slot_type_statistics
 
         out["slot_types"] = (

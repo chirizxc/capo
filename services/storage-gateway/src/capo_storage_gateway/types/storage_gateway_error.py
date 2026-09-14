@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: StorageGatewayError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StorageGatewayError:
     out: StorageGatewayError = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_storage_gateway.types.error_code
 
         out["error_code"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> StorageGatewayError:
                 data["errorCode"]
             )
         )
-    if "errorDetails" in data:
+    if data.get("errorDetails") is not None:
         import capo_storage_gateway.types.error_details
 
         out["error_details"] = (

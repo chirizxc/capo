@@ -35,11 +35,11 @@ def serialize_json(value: ScheduleConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ScheduleConfiguration:
     out: ScheduleConfiguration = {}  # type: ignore[typeddict-item]
-    if "FirstExecutionFrom" in data:
+    if data.get("FirstExecutionFrom") is not None:
         out["first_execution_from"] = data["FirstExecutionFrom"]
-    if "Object" in data:
+    if data.get("Object") is not None:
         out["object"] = data["Object"]
-    if "ScheduleExpression" in data:
+    if data.get("ScheduleExpression") is not None:
         out["schedule_expression"] = data["ScheduleExpression"]
     else:
         raise DeserializationError("ScheduleConfiguration.schedule_expression required")

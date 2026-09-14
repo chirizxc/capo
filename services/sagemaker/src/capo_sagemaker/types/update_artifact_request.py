@@ -56,11 +56,11 @@ def serialize_aws_json_1_1(value: UpdateArtifactRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateArtifactRequest:
     out: UpdateArtifactRequest = {}  # type: ignore[typeddict-item]
-    if "ArtifactArn" in data:
+    if data.get("ArtifactArn") is not None:
         out["artifact_arn"] = data["ArtifactArn"]
-    if "ArtifactName" in data:
+    if data.get("ArtifactName") is not None:
         out["artifact_name"] = data["ArtifactName"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker.types.artifact_properties
 
         out["properties"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateArtifactRequest:
                 data["Properties"]
             )
         )
-    if "PropertiesToRemove" in data:
+    if data.get("PropertiesToRemove") is not None:
         import capo_sagemaker.types.list_lineage_entity_parameter_key
 
         out["properties_to_remove"] = (

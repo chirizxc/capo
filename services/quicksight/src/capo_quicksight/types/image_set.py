@@ -38,17 +38,17 @@ def serialize_json(value: ImageSet) -> dict:
 
 def deserialize_json(data: dict) -> ImageSet:
     out: ImageSet = {}  # type: ignore[typeddict-item]
-    if "Original" in data:
+    if data.get("Original") is not None:
         import capo_quicksight.types.image
 
         out["original"] = capo_quicksight.types.image.deserialize_json(data["Original"])
     else:
         raise DeserializationError("ImageSet.original required")
-    if "Height64" in data:
+    if data.get("Height64") is not None:
         import capo_quicksight.types.image
 
         out["height64"] = capo_quicksight.types.image.deserialize_json(data["Height64"])
-    if "Height32" in data:
+    if data.get("Height32") is not None:
         import capo_quicksight.types.image
 
         out["height32"] = capo_quicksight.types.image.deserialize_json(data["Height32"])

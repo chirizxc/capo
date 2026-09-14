@@ -38,20 +38,20 @@ def serialize_aws_json_1_1(value: AssociateProductWithPortfolioInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateProductWithPortfolioInput:
     out: AssociateProductWithPortfolioInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
     else:
         raise DeserializationError(
             "AssociateProductWithPortfolioInput.product_id required"
         )
-    if "PortfolioId" in data:
+    if data.get("PortfolioId") is not None:
         out["portfolio_id"] = data["PortfolioId"]
     else:
         raise DeserializationError(
             "AssociateProductWithPortfolioInput.portfolio_id required"
         )
-    if "SourcePortfolioId" in data:
+    if data.get("SourcePortfolioId") is not None:
         out["source_portfolio_id"] = data["SourcePortfolioId"]
     return out

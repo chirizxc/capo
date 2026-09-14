@@ -31,7 +31,7 @@ def serialize_json(value: CreateDeploymentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentRequest:
     out: CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "fileMap" in data:
+    if data.get("fileMap") is not None:
         import capo_amplify.types.file_map
 
         out["file_map"] = capo_amplify.types.file_map.deserialize_json(data["fileMap"])

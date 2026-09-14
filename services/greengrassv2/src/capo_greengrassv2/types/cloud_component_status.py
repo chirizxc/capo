@@ -62,7 +62,7 @@ def serialize_json(value: CloudComponentStatus) -> dict:
 
 def deserialize_json(data: dict) -> CloudComponentStatus:
     out: CloudComponentStatus = {}  # type: ignore[typeddict-item]
-    if "componentState" in data:
+    if data.get("componentState") is not None:
         import capo_greengrassv2.types.cloud_component_state
 
         out["component_state"] = (
@@ -70,15 +70,15 @@ def deserialize_json(data: dict) -> CloudComponentStatus:
                 data["componentState"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_greengrassv2.types.string_map
 
         out["errors"] = capo_greengrassv2.types.string_map.deserialize_json(
             data["errors"]
         )
-    if "vendorGuidance" in data:
+    if data.get("vendorGuidance") is not None:
         import capo_greengrassv2.types.vendor_guidance
 
         out["vendor_guidance"] = (
@@ -86,6 +86,6 @@ def deserialize_json(data: dict) -> CloudComponentStatus:
                 data["vendorGuidance"]
             )
         )
-    if "vendorGuidanceMessage" in data:
+    if data.get("vendorGuidanceMessage") is not None:
         out["vendor_guidance_message"] = data["vendorGuidanceMessage"]
     return out

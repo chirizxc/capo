@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: PredictInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredictInput:
     out: PredictInput = {}  # type: ignore[typeddict-item]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
     else:
         raise DeserializationError("PredictInput.ml_model_id required")
-    if "Record" in data:
+    if data.get("Record") is not None:
         import capo_machine_learning.types.record
 
         out["record"] = capo_machine_learning.types.record.deserialize_aws_json_1_1(
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictInput:
         )
     else:
         raise DeserializationError("PredictInput.record required")
-    if "PredictEndpoint" in data:
+    if data.get("PredictEndpoint") is not None:
         out["predict_endpoint"] = data["PredictEndpoint"]
     else:
         raise DeserializationError("PredictInput.predict_endpoint required")

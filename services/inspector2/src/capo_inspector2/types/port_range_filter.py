@@ -27,8 +27,8 @@ def serialize_json(value: PortRangeFilter) -> dict:
 
 def deserialize_json(data: dict) -> PortRangeFilter:
     out: PortRangeFilter = {}  # type: ignore[typeddict-item]
-    if "beginInclusive" in data:
+    if data.get("beginInclusive") is not None:
         out["begin_inclusive"] = data["beginInclusive"]
-    if "endInclusive" in data:
+    if data.get("endInclusive") is not None:
         out["end_inclusive"] = data["endInclusive"]
     return out

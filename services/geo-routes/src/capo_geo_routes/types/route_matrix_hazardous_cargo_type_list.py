@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RouteMatrixHazardousCargoTypeList:
 
     out: RouteMatrixHazardousCargoTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_matrix_hazardous_cargo_type.deserialize_json(
                 item

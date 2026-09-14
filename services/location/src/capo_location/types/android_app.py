@@ -30,11 +30,11 @@ def serialize_json(value: AndroidApp) -> dict:
 
 def deserialize_json(data: dict) -> AndroidApp:
     out: AndroidApp = {}  # type: ignore[typeddict-item]
-    if "Package" in data:
+    if data.get("Package") is not None:
         out["package"] = data["Package"]
     else:
         raise DeserializationError("AndroidApp.package required")
-    if "CertificateFingerprint" in data:
+    if data.get("CertificateFingerprint") is not None:
         out["certificate_fingerprint"] = data["CertificateFingerprint"]
     else:
         raise DeserializationError("AndroidApp.certificate_fingerprint required")

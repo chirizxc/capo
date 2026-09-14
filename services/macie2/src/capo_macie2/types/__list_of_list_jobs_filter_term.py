@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfListJobsFilterTerm:
 
     out: __listOfListJobsFilterTerm = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.list_jobs_filter_term.deserialize_json(item))
     return out

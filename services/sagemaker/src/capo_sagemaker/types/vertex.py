@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: Vertex) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Vertex:
     out: Vertex = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "LineageType" in data:
+    if data.get("LineageType") is not None:
         import capo_sagemaker.types.lineage_type
 
         out["lineage_type"] = (

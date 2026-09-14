@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ProductionVariantManagedInstanceScalingScaleInPolicy:
     out: ProductionVariantManagedInstanceScalingScaleInPolicy = {}  # type: ignore[typeddict-item]
-    if "Strategy" in data:
+    if data.get("Strategy") is not None:
         import capo_sagemaker.types.managed_instance_scaling_scale_in_strategy
 
         out["strategy"] = (
@@ -57,8 +57,8 @@ def deserialize_aws_json_1_1(
                 data["Strategy"]
             )
         )
-    if "MaximumStepSize" in data:
+    if data.get("MaximumStepSize") is not None:
         out["maximum_step_size"] = data["MaximumStepSize"]
-    if "CooldownInMinutes" in data:
+    if data.get("CooldownInMinutes") is not None:
         out["cooldown_in_minutes"] = data["CooldownInMinutes"]
     return out

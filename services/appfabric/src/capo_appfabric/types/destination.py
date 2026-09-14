@@ -43,7 +43,7 @@ def serialize_json(value: Destination) -> dict:
 
 
 def deserialize_json(data: dict) -> Destination:
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         import capo_appfabric.types.s3_bucket
 
         return {
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> Destination:
                 data["s3Bucket"]
             )
         }
-    elif "firehoseStream" in data:
+    elif data.get("firehoseStream") is not None:
         import capo_appfabric.types.firehose_stream
 
         return {

@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_fsx._auth._signers
 import capo_fsx._auth._sigv4
+import capo_fsx._protocol.eventstream
 import capo_fsx.errors.bad_request
 import capo_fsx.errors.data_repository_task_executing
 import capo_fsx.errors.file_system_not_found
@@ -36,30 +37,32 @@ def handle_error(response: zapros.Response) -> Never:
     code, message = parse_error_metadata_json(response, data)
     match code:
         case "BadRequest":
-            raise capo_fsx.errors.bad_request.BadRequest.from_aws_json_1_1(data)
+            raise capo_fsx.errors.bad_request.BadRequest.from_aws_json_1_1(
+                data, message
+            )
         case "DataRepositoryTaskExecuting":
             raise capo_fsx.errors.data_repository_task_executing.DataRepositoryTaskExecuting.from_aws_json_1_1(
-                data
+                data, message
             )
         case "FileSystemNotFound":
             raise capo_fsx.errors.file_system_not_found.FileSystemNotFound.from_aws_json_1_1(
-                data
+                data, message
             )
         case "IncompatibleParameterError":
             raise capo_fsx.errors.incompatible_parameter_error.IncompatibleParameterError.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InternalServerError":
             raise capo_fsx.errors.internal_server_error.InternalServerError.from_aws_json_1_1(
-                data
+                data, message
             )
         case "ServiceLimitExceeded":
             raise capo_fsx.errors.service_limit_exceeded.ServiceLimitExceeded.from_aws_json_1_1(
-                data
+                data, message
             )
         case "UnsupportedOperation":
             raise capo_fsx.errors.unsupported_operation.UnsupportedOperation.from_aws_json_1_1(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -92,17 +95,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_fsx._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_fsx._auth._sigv4.build_sigv4_auth_scheme("fsx", options.region)
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_fsx._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_fsx._auth._sigv4.build_sigv4_auth_scheme(
+                "fsx", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_fsx._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -119,18 +131,20 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     headers["X-Amz-Target"] = "AWSSimbaAPIService_v20180301.CreateDataRepositoryTask"
     body: bytes | None = json.dumps(
         capo_fsx.types.create_data_repository_task_request.serialize_aws_json_1_1(
             input_
-        )
+        ),
+        allow_nan=False,
     ).encode()
     headers["content-type"] = "application/x-amz-json-1.1"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -145,7 +159,7 @@ def create_data_repository_task(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -163,7 +177,7 @@ async def async_create_data_repository_task(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

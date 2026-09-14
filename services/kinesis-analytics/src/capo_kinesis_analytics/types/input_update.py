@@ -96,13 +96,13 @@ def serialize_aws_json_1_1(value: InputUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputUpdate:
     out: InputUpdate = {}  # type: ignore[typeddict-item]
-    if "InputId" in data:
+    if data.get("InputId") is not None:
         out["input_id"] = data["InputId"]
     else:
         raise DeserializationError("InputUpdate.input_id required")
-    if "NamePrefixUpdate" in data:
+    if data.get("NamePrefixUpdate") is not None:
         out["name_prefix_update"] = data["NamePrefixUpdate"]
-    if "InputProcessingConfigurationUpdate" in data:
+    if data.get("InputProcessingConfigurationUpdate") is not None:
         import capo_kinesis_analytics.types.input_processing_configuration_update
 
         out["input_processing_configuration_update"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputUpdate:
                 data["InputProcessingConfigurationUpdate"]
             )
         )
-    if "KinesisStreamsInputUpdate" in data:
+    if data.get("KinesisStreamsInputUpdate") is not None:
         import capo_kinesis_analytics.types.kinesis_streams_input_update
 
         out["kinesis_streams_input_update"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputUpdate:
                 data["KinesisStreamsInputUpdate"]
             )
         )
-    if "KinesisFirehoseInputUpdate" in data:
+    if data.get("KinesisFirehoseInputUpdate") is not None:
         import capo_kinesis_analytics.types.kinesis_firehose_input_update
 
         out["kinesis_firehose_input_update"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputUpdate:
                 data["KinesisFirehoseInputUpdate"]
             )
         )
-    if "InputSchemaUpdate" in data:
+    if data.get("InputSchemaUpdate") is not None:
         import capo_kinesis_analytics.types.input_schema_update
 
         out["input_schema_update"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputUpdate:
                 data["InputSchemaUpdate"]
             )
         )
-    if "InputParallelismUpdate" in data:
+    if data.get("InputParallelismUpdate") is not None:
         import capo_kinesis_analytics.types.input_parallelism_update
 
         out["input_parallelism_update"] = (

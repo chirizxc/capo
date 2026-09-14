@@ -32,12 +32,12 @@ def serialize_json(value: ServiceResourceId) -> dict:
 
 def deserialize_json(data: dict) -> ServiceResourceId:
     out: ServiceResourceId = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_batch.types.service_resource_id_name
 
         out["name"] = capo_batch.types.service_resource_id_name.deserialize_json(
             data["name"]
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

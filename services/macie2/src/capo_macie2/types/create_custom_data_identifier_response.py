@@ -23,6 +23,6 @@ def serialize_json(value: CreateCustomDataIdentifierResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCustomDataIdentifierResponse:
     out: CreateCustomDataIdentifierResponse = {}  # type: ignore[typeddict-item]
-    if "customDataIdentifierId" in data:
+    if data.get("customDataIdentifierId") is not None:
         out["custom_data_identifier_id"] = data["customDataIdentifierId"]
     return out

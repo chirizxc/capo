@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: ActionSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionSource:
     out: ActionSource = {}  # type: ignore[typeddict-item]
-    if "SourceUri" in data:
+    if data.get("SourceUri") is not None:
         out["source_uri"] = data["SourceUri"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
     return out

@@ -35,10 +35,10 @@ def serialize_json(value: AwsEc2NetworkAclAssociation) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2NetworkAclAssociation:
     out: AwsEc2NetworkAclAssociation = {}  # type: ignore[typeddict-item]
-    if "NetworkAclAssociationId" in data:
+    if data.get("NetworkAclAssociationId") is not None:
         out["network_acl_association_id"] = data["NetworkAclAssociationId"]
-    if "NetworkAclId" in data:
+    if data.get("NetworkAclId") is not None:
         out["network_acl_id"] = data["NetworkAclId"]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
     return out

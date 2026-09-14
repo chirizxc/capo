@@ -31,7 +31,7 @@ def serialize_json(value: DashSubtitleConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DashSubtitleConfiguration:
     out: DashSubtitleConfiguration = {}  # type: ignore[typeddict-item]
-    if "TtmlConfiguration" in data:
+    if data.get("TtmlConfiguration") is not None:
         import capo_mediapackagev2.types.dash_ttml_configuration
 
         out["ttml_configuration"] = (

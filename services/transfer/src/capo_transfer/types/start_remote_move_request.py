@@ -31,15 +31,15 @@ def serialize_aws_json_1_1(value: StartRemoteMoveRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartRemoteMoveRequest:
     out: StartRemoteMoveRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
     else:
         raise DeserializationError("StartRemoteMoveRequest.connector_id required")
-    if "SourcePath" in data:
+    if data.get("SourcePath") is not None:
         out["source_path"] = data["SourcePath"]
     else:
         raise DeserializationError("StartRemoteMoveRequest.source_path required")
-    if "TargetPath" in data:
+    if data.get("TargetPath") is not None:
         out["target_path"] = data["TargetPath"]
     else:
         raise DeserializationError("StartRemoteMoveRequest.target_path required")

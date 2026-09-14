@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: ListBuildBatchesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBuildBatchesInput:
     out: ListBuildBatchesInput = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_codebuild.types.build_batch_filter
 
         out["filter"] = (
@@ -54,9 +54,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListBuildBatchesInput:
                 data["filter"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_codebuild.types.sort_order_type
 
         out["sort_order"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListBuildBatchesInput:
                 data["sortOrder"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

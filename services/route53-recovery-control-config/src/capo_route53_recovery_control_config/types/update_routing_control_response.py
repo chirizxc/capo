@@ -31,7 +31,7 @@ def serialize_json(value: UpdateRoutingControlResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRoutingControlResponse:
     out: UpdateRoutingControlResponse = {}  # type: ignore[typeddict-item]
-    if "RoutingControl" in data:
+    if data.get("RoutingControl") is not None:
         import capo_route53_recovery_control_config.types.routing_control
 
         out["routing_control"] = (

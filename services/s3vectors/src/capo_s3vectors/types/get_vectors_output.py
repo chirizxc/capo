@@ -28,7 +28,7 @@ def serialize_json(value: GetVectorsOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetVectorsOutput:
     out: GetVectorsOutput = {}  # type: ignore[typeddict-item]
-    if "vectors" in data:
+    if data.get("vectors") is not None:
         import capo_s3vectors.types.get_vectors_output_list
 
         out["vectors"] = capo_s3vectors.types.get_vectors_output_list.deserialize_json(

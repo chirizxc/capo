@@ -23,24 +23,56 @@ class SentimentScore(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: SentimentScore) -> dict:
     out: dict = {}
     if "positive" in value:
-        out["Positive"] = value["positive"]
+        out["Positive"] = (
+            "NaN"
+            if value["positive"] != value["positive"]
+            else "Infinity"
+            if value["positive"] == float("inf")
+            else "-Infinity"
+            if value["positive"] == float("-inf")
+            else value["positive"]
+        )
     if "negative" in value:
-        out["Negative"] = value["negative"]
+        out["Negative"] = (
+            "NaN"
+            if value["negative"] != value["negative"]
+            else "Infinity"
+            if value["negative"] == float("inf")
+            else "-Infinity"
+            if value["negative"] == float("-inf")
+            else value["negative"]
+        )
     if "neutral" in value:
-        out["Neutral"] = value["neutral"]
+        out["Neutral"] = (
+            "NaN"
+            if value["neutral"] != value["neutral"]
+            else "Infinity"
+            if value["neutral"] == float("inf")
+            else "-Infinity"
+            if value["neutral"] == float("-inf")
+            else value["neutral"]
+        )
     if "mixed" in value:
-        out["Mixed"] = value["mixed"]
+        out["Mixed"] = (
+            "NaN"
+            if value["mixed"] != value["mixed"]
+            else "Infinity"
+            if value["mixed"] == float("inf")
+            else "-Infinity"
+            if value["mixed"] == float("-inf")
+            else value["mixed"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> SentimentScore:
     out: SentimentScore = {}  # type: ignore[typeddict-item]
-    if "Positive" in data:
-        out["positive"] = data["Positive"]
-    if "Negative" in data:
-        out["negative"] = data["Negative"]
-    if "Neutral" in data:
-        out["neutral"] = data["Neutral"]
-    if "Mixed" in data:
-        out["mixed"] = data["Mixed"]
+    if data.get("Positive") is not None:
+        out["positive"] = float(data["Positive"])
+    if data.get("Negative") is not None:
+        out["negative"] = float(data["Negative"])
+    if data.get("Neutral") is not None:
+        out["neutral"] = float(data["Neutral"])
+    if data.get("Mixed") is not None:
+        out["mixed"] = float(data["Mixed"])
     return out

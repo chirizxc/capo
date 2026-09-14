@@ -25,5 +25,7 @@ def deserialize_aws_json_1_0(data: list) -> TrafficPolicyList:
 
     out: TrafficPolicyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mailmanager.types.traffic_policy.deserialize_aws_json_1_0(item))
     return out

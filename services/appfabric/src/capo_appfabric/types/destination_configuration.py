@@ -32,7 +32,7 @@ def serialize_json(value: DestinationConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> DestinationConfiguration:
-    if "auditLog" in data:
+    if data.get("auditLog") is not None:
         import capo_appfabric.types.audit_log_destination_configuration
 
         return {

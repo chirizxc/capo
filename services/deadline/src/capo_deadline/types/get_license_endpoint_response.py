@@ -68,13 +68,13 @@ def serialize_json(value: GetLicenseEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetLicenseEndpointResponse:
     out: GetLicenseEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "licenseEndpointId" in data:
+    if data.get("licenseEndpointId") is not None:
         out["license_endpoint_id"] = data["licenseEndpointId"]
     else:
         raise DeserializationError(
             "GetLicenseEndpointResponse.license_endpoint_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.license_endpoint_status
 
         out["status"] = capo_deadline.types.license_endpoint_status.deserialize_json(
@@ -82,21 +82,21 @@ def deserialize_json(data: dict) -> GetLicenseEndpointResponse:
         )
     else:
         raise DeserializationError("GetLicenseEndpointResponse.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     else:
         raise DeserializationError("GetLicenseEndpointResponse.status_message required")
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "dnsName" in data:
+    if data.get("dnsName") is not None:
         out["dns_name"] = data["dnsName"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_deadline.types.subnet_id_list
 
         out["subnet_ids"] = capo_deadline.types.subnet_id_list.deserialize_json(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_deadline.types.security_group_id_list
 
         out["security_group_ids"] = (

@@ -46,13 +46,13 @@ def serialize_json(value: RedshiftIAMParameters) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftIAMParameters:
     out: RedshiftIAMParameters = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("RedshiftIAMParameters.role_arn required")
-    if "DatabaseUser" in data:
+    if data.get("DatabaseUser") is not None:
         out["database_user"] = data["DatabaseUser"]
-    if "DatabaseGroups" in data:
+    if data.get("DatabaseGroups") is not None:
         import capo_quicksight.types.database_group_list
 
         out["database_groups"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> RedshiftIAMParameters:
                 data["DatabaseGroups"]
             )
         )
-    if "AutoCreateDatabaseUser" in data:
+    if data.get("AutoCreateDatabaseUser") is not None:
         out["auto_create_database_user"] = data["AutoCreateDatabaseUser"]
     else:
         out["auto_create_database_user"] = False

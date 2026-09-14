@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: MicrosoftSQLServerCatalogTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MicrosoftSQLServerCatalogTarget:
     out: MicrosoftSQLServerCatalogTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("MicrosoftSQLServerCatalogTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -49,11 +49,11 @@ def deserialize_aws_json_1_1(data: dict) -> MicrosoftSQLServerCatalogTarget:
         )
     else:
         raise DeserializationError("MicrosoftSQLServerCatalogTarget.inputs required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("MicrosoftSQLServerCatalogTarget.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("MicrosoftSQLServerCatalogTarget.table required")

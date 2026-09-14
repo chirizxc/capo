@@ -57,7 +57,7 @@ def serialize_json(value: AutoTuneOptions) -> dict:
 
 def deserialize_json(data: dict) -> AutoTuneOptions:
     out: AutoTuneOptions = {}  # type: ignore[typeddict-item]
-    if "DesiredState" in data:
+    if data.get("DesiredState") is not None:
         import capo_elasticsearch_service.types.auto_tune_desired_state
 
         out["desired_state"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> AutoTuneOptions:
                 data["DesiredState"]
             )
         )
-    if "RollbackOnDisable" in data:
+    if data.get("RollbackOnDisable") is not None:
         import capo_elasticsearch_service.types.rollback_on_disable
 
         out["rollback_on_disable"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> AutoTuneOptions:
                 data["RollbackOnDisable"]
             )
         )
-    if "MaintenanceSchedules" in data:
+    if data.get("MaintenanceSchedules") is not None:
         import capo_elasticsearch_service.types.auto_tune_maintenance_schedule_list
 
         out["maintenance_schedules"] = (

@@ -35,10 +35,10 @@ def serialize_json(value: GlobalResiliencyMetadata) -> dict:
 
 def deserialize_json(data: dict) -> GlobalResiliencyMetadata:
     out: GlobalResiliencyMetadata = {}  # type: ignore[typeddict-item]
-    if "ActiveRegion" in data:
+    if data.get("ActiveRegion") is not None:
         out["active_region"] = data["ActiveRegion"]
-    if "OriginRegion" in data:
+    if data.get("OriginRegion") is not None:
         out["origin_region"] = data["OriginRegion"]
-    if "TrafficDistributionGroupId" in data:
+    if data.get("TrafficDistributionGroupId") is not None:
         out["traffic_distribution_group_id"] = data["TrafficDistributionGroupId"]
     return out

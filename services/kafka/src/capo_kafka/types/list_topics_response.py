@@ -32,12 +32,12 @@ def serialize_json(value: ListTopicsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTopicsResponse:
     out: ListTopicsResponse = {}  # type: ignore[typeddict-item]
-    if "topics" in data:
+    if data.get("topics") is not None:
         import capo_kafka.types.__list_of_topic_info
 
         out["topics"] = capo_kafka.types.__list_of_topic_info.deserialize_json(
             data["topics"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

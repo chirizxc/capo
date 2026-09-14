@@ -71,13 +71,13 @@ def serialize_json(value: AppInstanceUser) -> dict:
 
 def deserialize_json(data: dict) -> AppInstanceUser:
     out: AppInstanceUser = {}  # type: ignore[typeddict-item]
-    if "AppInstanceUserArn" in data:
+    if data.get("AppInstanceUserArn") is not None:
         out["app_instance_user_arn"] = data["AppInstanceUserArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_identity.types.timestamp
 
         out["created_timestamp"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> AppInstanceUser:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_chime_sdk_identity.types.timestamp
 
         out["last_updated_timestamp"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> AppInstanceUser:
                 data["LastUpdatedTimestamp"]
             )
         )
-    if "ExpirationSettings" in data:
+    if data.get("ExpirationSettings") is not None:
         import capo_chime_sdk_identity.types.expiration_settings
 
         out["expiration_settings"] = (

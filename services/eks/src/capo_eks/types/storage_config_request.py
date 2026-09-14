@@ -27,7 +27,7 @@ def serialize_json(value: StorageConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> StorageConfigRequest:
     out: StorageConfigRequest = {}  # type: ignore[typeddict-item]
-    if "blockStorage" in data:
+    if data.get("blockStorage") is not None:
         import capo_eks.types.block_storage
 
         out["block_storage"] = capo_eks.types.block_storage.deserialize_json(

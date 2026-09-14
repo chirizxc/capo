@@ -38,7 +38,7 @@ def serialize_json(value: OtaTaskExecutionRolloutConfig) -> dict:
 
 def deserialize_json(data: dict) -> OtaTaskExecutionRolloutConfig:
     out: OtaTaskExecutionRolloutConfig = {}  # type: ignore[typeddict-item]
-    if "ExponentialRolloutRate" in data:
+    if data.get("ExponentialRolloutRate") is not None:
         import capo_iot_managed_integrations.types.exponential_rollout_rate
 
         out["exponential_rollout_rate"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> OtaTaskExecutionRolloutConfig:
                 data["ExponentialRolloutRate"]
             )
         )
-    if "MaximumPerMinute" in data:
+    if data.get("MaximumPerMinute") is not None:
         out["maximum_per_minute"] = data["MaximumPerMinute"]
     return out

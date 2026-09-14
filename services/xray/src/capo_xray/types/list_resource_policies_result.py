@@ -36,7 +36,7 @@ def serialize_json(value: ListResourcePoliciesResult) -> dict:
 
 def deserialize_json(data: dict) -> ListResourcePoliciesResult:
     out: ListResourcePoliciesResult = {}  # type: ignore[typeddict-item]
-    if "ResourcePolicies" in data:
+    if data.get("ResourcePolicies") is not None:
         import capo_xray.types.resource_policy_list
 
         out["resource_policies"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListResourcePoliciesResult:
                 data["ResourcePolicies"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -112,21 +112,21 @@ def serialize_json(value: Network) -> dict:
 
 def deserialize_json(data: dict) -> Network:
     out: Network = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Framework" in data:
+    if data.get("Framework") is not None:
         import capo_managedblockchain.types.framework
 
         out["framework"] = capo_managedblockchain.types.framework.deserialize_json(
             data["Framework"]
         )
-    if "FrameworkVersion" in data:
+    if data.get("FrameworkVersion") is not None:
         out["framework_version"] = data["FrameworkVersion"]
-    if "FrameworkAttributes" in data:
+    if data.get("FrameworkAttributes") is not None:
         import capo_managedblockchain.types.network_framework_attributes
 
         out["framework_attributes"] = (
@@ -134,9 +134,9 @@ def deserialize_json(data: dict) -> Network:
                 data["FrameworkAttributes"]
             )
         )
-    if "VpcEndpointServiceName" in data:
+    if data.get("VpcEndpointServiceName") is not None:
         out["vpc_endpoint_service_name"] = data["VpcEndpointServiceName"]
-    if "VotingPolicy" in data:
+    if data.get("VotingPolicy") is not None:
         import capo_managedblockchain.types.voting_policy
 
         out["voting_policy"] = (
@@ -144,24 +144,24 @@ def deserialize_json(data: dict) -> Network:
                 data["VotingPolicy"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_managedblockchain.types.network_status
 
         out["status"] = capo_managedblockchain.types.network_status.deserialize_json(
             data["Status"]
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["creation_date"] = capo_managedblockchain.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_managedblockchain.types.output_tag_map
 
         out["tags"] = capo_managedblockchain.types.output_tag_map.deserialize_json(
             data["Tags"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

@@ -44,16 +44,16 @@ def serialize_json(value: EmailChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> EmailChannelRequest:
     out: EmailChannelRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSet" in data:
+    if data.get("ConfigurationSet") is not None:
         out["configuration_set"] = data["ConfigurationSet"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "FromAddress" in data:
+    if data.get("FromAddress") is not None:
         out["from_address"] = data["FromAddress"]
-    if "Identity" in data:
+    if data.get("Identity") is not None:
         out["identity"] = data["Identity"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "OrchestrationSendingRoleArn" in data:
+    if data.get("OrchestrationSendingRoleArn") is not None:
         out["orchestration_sending_role_arn"] = data["OrchestrationSendingRoleArn"]
     return out

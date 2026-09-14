@@ -52,13 +52,13 @@ def serialize_json(value: PivotTableAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableAggregatedFieldWells:
     out: PivotTableAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "Rows" in data:
+    if data.get("Rows") is not None:
         import capo_quicksight.types.pivot_table_dimension_list
 
         out["rows"] = capo_quicksight.types.pivot_table_dimension_list.deserialize_json(
             data["Rows"]
         )
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_quicksight.types.pivot_table_dimension_list
 
         out["columns"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> PivotTableAggregatedFieldWells:
                 data["Columns"]
             )
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.pivot_measure_field_list
 
         out["values"] = capo_quicksight.types.pivot_measure_field_list.deserialize_json(

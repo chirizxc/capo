@@ -38,9 +38,9 @@ def serialize_json(value: PackageGroupAllowedRepository) -> dict:
 
 def deserialize_json(data: dict) -> PackageGroupAllowedRepository:
     out: PackageGroupAllowedRepository = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "originRestrictionType" in data:
+    if data.get("originRestrictionType") is not None:
         import capo_codeartifact.types.package_group_origin_restriction_type
 
         out["origin_restriction_type"] = (

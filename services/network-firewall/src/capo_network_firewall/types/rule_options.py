@@ -23,6 +23,8 @@ def deserialize_aws_json_1_0(data: list) -> RuleOptions:
 
     out: RuleOptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_network_firewall.types.rule_option.deserialize_aws_json_1_0(item)
         )

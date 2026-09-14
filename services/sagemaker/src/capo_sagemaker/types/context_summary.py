@@ -59,25 +59,25 @@ def serialize_aws_json_1_1(value: ContextSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContextSummary:
     out: ContextSummary = {}  # type: ignore[typeddict-item]
-    if "ContextArn" in data:
+    if data.get("ContextArn") is not None:
         out["context_arn"] = data["ContextArn"]
-    if "ContextName" in data:
+    if data.get("ContextName") is not None:
         out["context_name"] = data["ContextName"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_sagemaker.types.context_source
 
         out["source"] = capo_sagemaker.types.context_source.deserialize_aws_json_1_1(
             data["Source"]
         )
-    if "ContextType" in data:
+    if data.get("ContextType") is not None:
         out["context_type"] = data["ContextType"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

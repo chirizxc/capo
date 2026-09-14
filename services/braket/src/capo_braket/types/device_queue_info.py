@@ -32,14 +32,14 @@ def serialize_json(value: DeviceQueueInfo) -> dict:
 
 def deserialize_json(data: dict) -> DeviceQueueInfo:
     out: DeviceQueueInfo = {}  # type: ignore[typeddict-item]
-    if "queue" in data:
+    if data.get("queue") is not None:
         out["queue"] = data["queue"]
     else:
         raise DeserializationError("DeviceQueueInfo.queue required")
-    if "queueSize" in data:
+    if data.get("queueSize") is not None:
         out["queue_size"] = data["queueSize"]
     else:
         raise DeserializationError("DeviceQueueInfo.queue_size required")
-    if "queuePriority" in data:
+    if data.get("queuePriority") is not None:
         out["queue_priority"] = data["queuePriority"]
     return out

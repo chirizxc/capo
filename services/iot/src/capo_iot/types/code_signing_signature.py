@@ -27,7 +27,7 @@ def serialize_json(value: CodeSigningSignature) -> dict:
 
 def deserialize_json(data: dict) -> CodeSigningSignature:
     out: CodeSigningSignature = {}  # type: ignore[typeddict-item]
-    if "inlineDocument" in data:
+    if data.get("inlineDocument") is not None:
         import capo_iot.types.signature
 
         out["inline_document"] = capo_iot.types.signature.deserialize_json(

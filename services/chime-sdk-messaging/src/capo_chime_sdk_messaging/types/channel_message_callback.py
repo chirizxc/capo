@@ -74,15 +74,15 @@ def serialize_json(value: ChannelMessageCallback) -> dict:
 
 def deserialize_json(data: dict) -> ChannelMessageCallback:
     out: ChannelMessageCallback = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
     else:
         raise DeserializationError("ChannelMessageCallback.message_id required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "PushNotification" in data:
+    if data.get("PushNotification") is not None:
         import capo_chime_sdk_messaging.types.push_notification_configuration
 
         out["push_notification"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ChannelMessageCallback:
                 data["PushNotification"]
             )
         )
-    if "MessageAttributes" in data:
+    if data.get("MessageAttributes") is not None:
         import capo_chime_sdk_messaging.types.message_attribute_map
 
         out["message_attributes"] = (
@@ -98,8 +98,8 @@ def deserialize_json(data: dict) -> ChannelMessageCallback:
                 data["MessageAttributes"]
             )
         )
-    if "SubChannelId" in data:
+    if data.get("SubChannelId") is not None:
         out["sub_channel_id"] = data["SubChannelId"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
     return out

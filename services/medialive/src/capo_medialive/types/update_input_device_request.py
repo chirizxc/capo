@@ -54,7 +54,7 @@ def serialize_json(value: UpdateInputDeviceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateInputDeviceRequest:
     out: UpdateInputDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "hdDeviceSettings" in data:
+    if data.get("hdDeviceSettings") is not None:
         import capo_medialive.types.input_device_configurable_settings
 
         out["hd_device_settings"] = (
@@ -62,9 +62,9 @@ def deserialize_json(data: dict) -> UpdateInputDeviceRequest:
                 data["hdDeviceSettings"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "uhdDeviceSettings" in data:
+    if data.get("uhdDeviceSettings") is not None:
         import capo_medialive.types.input_device_configurable_settings
 
         out["uhd_device_settings"] = (
@@ -72,6 +72,6 @@ def deserialize_json(data: dict) -> UpdateInputDeviceRequest:
                 data["uhdDeviceSettings"]
             )
         )
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
     return out

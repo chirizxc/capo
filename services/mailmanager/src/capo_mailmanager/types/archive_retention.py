@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: ArchiveRetention) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ArchiveRetention:
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         import capo_mailmanager.types.retention_period
 
         return {

@@ -63,7 +63,7 @@ def serialize_json(value: AttributeTypesSelector) -> dict:
 
 def deserialize_json(data: dict) -> AttributeTypesSelector:
     out: AttributeTypesSelector = {}  # type: ignore[typeddict-item]
-    if "AttributeMatchingModel" in data:
+    if data.get("AttributeMatchingModel") is not None:
         import capo_customer_profiles.types.attribute_matching_model
 
         out["attribute_matching_model"] = (
@@ -75,13 +75,13 @@ def deserialize_json(data: dict) -> AttributeTypesSelector:
         raise DeserializationError(
             "AttributeTypesSelector.attribute_matching_model required"
         )
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_customer_profiles.types.address_list
 
         out["address"] = capo_customer_profiles.types.address_list.deserialize_json(
             data["Address"]
         )
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         import capo_customer_profiles.types.phone_number_list
 
         out["phone_number"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> AttributeTypesSelector:
                 data["PhoneNumber"]
             )
         )
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         import capo_customer_profiles.types.email_list
 
         out["email_address"] = capo_customer_profiles.types.email_list.deserialize_json(

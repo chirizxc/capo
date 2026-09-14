@@ -51,13 +51,13 @@ def serialize_json(value: ListIntentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIntentsResponse:
     out: ListIntentsResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "intentSummaries" in data:
+    if data.get("intentSummaries") is not None:
         import capo_lex_models_v2.types.intent_summary_list
 
         out["intent_summaries"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> ListIntentsResponse:
                 data["intentSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

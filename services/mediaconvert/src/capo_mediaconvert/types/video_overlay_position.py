@@ -60,20 +60,20 @@ def serialize_json(value: VideoOverlayPosition) -> dict:
 
 def deserialize_json(data: dict) -> VideoOverlayPosition:
     out: VideoOverlayPosition = {}  # type: ignore[typeddict-item]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "opacity" in data:
+    if data.get("opacity") is not None:
         out["opacity"] = data["opacity"]
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_mediaconvert.types.video_overlay_unit
 
         out["unit"] = capo_mediaconvert.types.video_overlay_unit.deserialize_json(
             data["unit"]
         )
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
-    if "xPosition" in data:
+    if data.get("xPosition") is not None:
         out["x_position"] = data["xPosition"]
-    if "yPosition" in data:
+    if data.get("yPosition") is not None:
         out["y_position"] = data["yPosition"]
     return out

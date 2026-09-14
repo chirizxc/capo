@@ -65,28 +65,28 @@ def serialize_aws_json_1_1(value: TrainingPlanExtensionOffering) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingPlanExtensionOffering:
     out: TrainingPlanExtensionOffering = {}  # type: ignore[typeddict-item]
-    if "TrainingPlanExtensionOfferingId" in data:
+    if data.get("TrainingPlanExtensionOfferingId") is not None:
         out["training_plan_extension_offering_id"] = data[
             "TrainingPlanExtensionOfferingId"
         ]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_date"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartDate"]
         )
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_date"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndDate"]
         )
-    if "DurationHours" in data:
+    if data.get("DurationHours") is not None:
         out["duration_hours"] = data["DurationHours"]
-    if "UpfrontFee" in data:
+    if data.get("UpfrontFee") is not None:
         out["upfront_fee"] = data["UpfrontFee"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
     return out

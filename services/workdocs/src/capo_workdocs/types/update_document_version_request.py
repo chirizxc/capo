@@ -42,7 +42,7 @@ def serialize_json(value: UpdateDocumentVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDocumentVersionRequest:
     out: UpdateDocumentVersionRequest = {}  # type: ignore[typeddict-item]
-    if "VersionStatus" in data:
+    if data.get("VersionStatus") is not None:
         import capo_workdocs.types.document_version_status
 
         out["version_status"] = (

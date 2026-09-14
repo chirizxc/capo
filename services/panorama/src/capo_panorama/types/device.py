@@ -113,19 +113,19 @@ def serialize_json(value: Device) -> dict:
 
 def deserialize_json(data: dict) -> Device:
     out: Device = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.created_time
 
         out["created_time"] = capo_panorama.types.created_time.deserialize_json(
             data["CreatedTime"]
         )
-    if "ProvisioningStatus" in data:
+    if data.get("ProvisioningStatus") is not None:
         out["provisioning_status"] = data["ProvisioningStatus"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_panorama.types.last_updated_time
 
         out["last_updated_time"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> Device:
                 data["LastUpdatedTime"]
             )
         )
-    if "LeaseExpirationTime" in data:
+    if data.get("LeaseExpirationTime") is not None:
         import capo_panorama.types.lease_expiration_time
 
         out["lease_expiration_time"] = (
@@ -141,19 +141,19 @@ def deserialize_json(data: dict) -> Device:
                 data["LeaseExpirationTime"]
             )
         )
-    if "Brand" in data:
+    if data.get("Brand") is not None:
         out["brand"] = data["Brand"]
-    if "CurrentSoftware" in data:
+    if data.get("CurrentSoftware") is not None:
         out["current_software"] = data["CurrentSoftware"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_panorama.types.tag_map
 
         out["tags"] = capo_panorama.types.tag_map.deserialize_json(data["Tags"])
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "LatestDeviceJob" in data:
+    if data.get("LatestDeviceJob") is not None:
         import capo_panorama.types.latest_device_job
 
         out["latest_device_job"] = (
@@ -161,6 +161,6 @@ def deserialize_json(data: dict) -> Device:
                 data["LatestDeviceJob"]
             )
         )
-    if "DeviceAggregatedStatus" in data:
+    if data.get("DeviceAggregatedStatus") is not None:
         out["device_aggregated_status"] = data["DeviceAggregatedStatus"]
     return out

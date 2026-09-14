@@ -46,13 +46,13 @@ def serialize_json(value: ListIndicatorsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIndicatorsResponse:
     out: ListIndicatorsResponse = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
-    if "InvestigationId" in data:
+    if data.get("InvestigationId") is not None:
         out["investigation_id"] = data["InvestigationId"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Indicators" in data:
+    if data.get("Indicators") is not None:
         import capo_detective.types.indicators
 
         out["indicators"] = capo_detective.types.indicators.deserialize_json(

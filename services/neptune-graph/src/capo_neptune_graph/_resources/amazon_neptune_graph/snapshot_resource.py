@@ -83,9 +83,10 @@ class SnapshotResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.create_graph_snapshot_input.CreateGraphSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["snapshot_name"] = snapshot_name
+        input_: capo_neptune_graph.types.create_graph_snapshot_input.CreateGraphSnapshotInput = {
+            "graph_identifier": graph_identifier,
+            "snapshot_name": snapshot_name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -94,6 +95,7 @@ class SnapshotResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_graph_snapshot(
@@ -131,14 +133,16 @@ class SnapshotResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.delete_graph_snapshot_input.DeleteGraphSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["snapshot_identifier"] = snapshot_identifier
+        input_: capo_neptune_graph.types.delete_graph_snapshot_input.DeleteGraphSnapshotInput = {
+            "snapshot_identifier": snapshot_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_graph_snapshot(
@@ -175,14 +179,16 @@ class SnapshotResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_graph_snapshot_input.GetGraphSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["snapshot_identifier"] = snapshot_identifier
+        input_: capo_neptune_graph.types.get_graph_snapshot_input.GetGraphSnapshotInput = {
+            "snapshot_identifier": snapshot_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_graph_snapshots(
@@ -229,7 +235,7 @@ class SnapshotResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_graph_snapshots_input.ListGraphSnapshotsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune_graph.types.list_graph_snapshots_input.ListGraphSnapshotsInput = {}
         if graph_identifier is not None:
             input_["graph_identifier"] = graph_identifier
         if next_token is not None:
@@ -242,6 +248,7 @@ class SnapshotResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -290,9 +297,10 @@ class AsyncSnapshotResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.create_graph_snapshot_input.CreateGraphSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["snapshot_name"] = snapshot_name
+        input_: capo_neptune_graph.types.create_graph_snapshot_input.CreateGraphSnapshotInput = {
+            "graph_identifier": graph_identifier,
+            "snapshot_name": snapshot_name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -301,6 +309,7 @@ class AsyncSnapshotResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_graph_snapshot(
@@ -339,14 +348,16 @@ class AsyncSnapshotResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.delete_graph_snapshot_input.DeleteGraphSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["snapshot_identifier"] = snapshot_identifier
+        input_: capo_neptune_graph.types.delete_graph_snapshot_input.DeleteGraphSnapshotInput = {
+            "snapshot_identifier": snapshot_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_graph_snapshot(
@@ -384,14 +395,16 @@ class AsyncSnapshotResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_graph_snapshot_input.GetGraphSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["snapshot_identifier"] = snapshot_identifier
+        input_: capo_neptune_graph.types.get_graph_snapshot_input.GetGraphSnapshotInput = {
+            "snapshot_identifier": snapshot_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_graph_snapshots(
@@ -439,7 +452,7 @@ class AsyncSnapshotResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_graph_snapshots_input.ListGraphSnapshotsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune_graph.types.list_graph_snapshots_input.ListGraphSnapshotsInput = {}
         if graph_identifier is not None:
             input_["graph_identifier"] = graph_identifier
         if next_token is not None:
@@ -452,4 +465,5 @@ class AsyncSnapshotResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

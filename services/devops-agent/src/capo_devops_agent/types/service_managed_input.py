@@ -96,15 +96,15 @@ def serialize_json(value: ServiceManagedInput) -> dict:
 
 def deserialize_json(data: dict) -> ServiceManagedInput:
     out: ServiceManagedInput = {}  # type: ignore[typeddict-item]
-    if "hostAddress" in data:
+    if data.get("hostAddress") is not None:
         out["host_address"] = data["hostAddress"]
     else:
         raise DeserializationError("ServiceManagedInput.host_address required")
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("ServiceManagedInput.vpc_id required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_devops_agent.types.list_of_subnet_ids
 
         out["subnet_ids"] = capo_devops_agent.types.list_of_subnet_ids.deserialize_json(
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> ServiceManagedInput:
         )
     else:
         raise DeserializationError("ServiceManagedInput.subnet_ids required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_devops_agent.types.list_of_security_group_ids
 
         out["security_group_ids"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> ServiceManagedInput:
                 data["securityGroupIds"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_devops_agent.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -128,17 +128,17 @@ def deserialize_json(data: dict) -> ServiceManagedInput:
                 data["ipAddressType"]
             )
         )
-    if "ipv4AddressesPerEni" in data:
+    if data.get("ipv4AddressesPerEni") is not None:
         out["ipv4_addresses_per_eni"] = data["ipv4AddressesPerEni"]
-    if "portRanges" in data:
+    if data.get("portRanges") is not None:
         import capo_devops_agent.types.port_ranges
 
         out["port_ranges"] = capo_devops_agent.types.port_ranges.deserialize_json(
             data["portRanges"]
         )
-    if "certificate" in data:
+    if data.get("certificate") is not None:
         out["certificate"] = data["certificate"]
-    if "dnsResolution" in data:
+    if data.get("dnsResolution") is not None:
         import capo_devops_agent.types.resource_config_dns_resolution
 
         out["dns_resolution"] = (

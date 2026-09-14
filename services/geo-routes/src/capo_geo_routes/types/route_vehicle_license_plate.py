@@ -25,6 +25,6 @@ def serialize_json(value: RouteVehicleLicensePlate) -> dict:
 
 def deserialize_json(data: dict) -> RouteVehicleLicensePlate:
     out: RouteVehicleLicensePlate = {}  # type: ignore[typeddict-item]
-    if "LastCharacter" in data:
+    if data.get("LastCharacter") is not None:
         out["last_character"] = data["LastCharacter"]
     return out

@@ -52,7 +52,7 @@ def serialize_json(value: PinVerificationAttributes) -> dict:
 
 
 def deserialize_json(data: dict) -> PinVerificationAttributes:
-    if "VisaPin" in data:
+    if data.get("VisaPin") is not None:
         import capo_payment_cryptography_data.types.visa_pin_verification
 
         return {
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> PinVerificationAttributes:
                 data["VisaPin"]
             )
         }
-    elif "Ibm3624Pin" in data:
+    elif data.get("Ibm3624Pin") is not None:
         import capo_payment_cryptography_data.types.ibm3624_pin_verification
 
         return {

@@ -31,7 +31,7 @@ def serialize_json(value: ResourcePath) -> dict:
 
 def deserialize_json(data: dict) -> ResourcePath:
     out: ResourcePath = {}  # type: ignore[typeddict-item]
-    if "Components" in data:
+    if data.get("Components") is not None:
         import capo_workdocs.types.resource_path_component_list
 
         out["components"] = (

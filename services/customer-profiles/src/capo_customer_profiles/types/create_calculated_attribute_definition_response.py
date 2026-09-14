@@ -126,13 +126,13 @@ def serialize_json(value: CreateCalculatedAttributeDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCalculatedAttributeDefinitionResponse:
     out: CreateCalculatedAttributeDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "CalculatedAttributeName" in data:
+    if data.get("CalculatedAttributeName") is not None:
         out["calculated_attribute_name"] = data["CalculatedAttributeName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AttributeDetails" in data:
+    if data.get("AttributeDetails") is not None:
         import capo_customer_profiles.types.attribute_details
 
         out["attribute_details"] = (
@@ -140,31 +140,31 @@ def deserialize_json(data: dict) -> CreateCalculatedAttributeDefinitionResponse:
                 data["AttributeDetails"]
             )
         )
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_customer_profiles.types.conditions
 
         out["conditions"] = capo_customer_profiles.types.conditions.deserialize_json(
             data["Conditions"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_customer_profiles.types.filter
 
         out["filter"] = capo_customer_profiles.types.filter.deserialize_json(
             data["Filter"]
         )
-    if "Statistic" in data:
+    if data.get("Statistic") is not None:
         import capo_customer_profiles.types.statistic
 
         out["statistic"] = capo_customer_profiles.types.statistic.deserialize_json(
             data["Statistic"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -172,21 +172,21 @@ def deserialize_json(data: dict) -> CreateCalculatedAttributeDefinitionResponse:
                 data["LastUpdatedAt"]
             )
         )
-    if "UseHistoricalData" in data:
+    if data.get("UseHistoricalData") is not None:
         out["use_historical_data"] = data["UseHistoricalData"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.readiness_status
 
         out["status"] = capo_customer_profiles.types.readiness_status.deserialize_json(
             data["Status"]
         )
-    if "Readiness" in data:
+    if data.get("Readiness") is not None:
         import capo_customer_profiles.types.readiness
 
         out["readiness"] = capo_customer_profiles.types.readiness.deserialize_json(
             data["Readiness"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

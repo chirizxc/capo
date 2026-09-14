@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SchemaAnalysisRuleRequestList:
 
     out: SchemaAnalysisRuleRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.schema_analysis_rule_request.deserialize_json(item)
         )

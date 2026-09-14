@@ -60,13 +60,13 @@ def serialize_json(value: ItemValue) -> dict:
 
 
 def deserialize_json(data: dict) -> ItemValue:
-    if "arn" in data:
+    if data.get("arn") is not None:
         return {"arn": data["arn"]}
-    elif "url" in data:
+    elif data.get("url") is not None:
         return {"url": data["url"]}
-    elif "metricDefinition" in data:
+    elif data.get("metricDefinition") is not None:
         return {"metricDefinition": data["metricDefinition"]}
-    elif "pagerDutyIncidentDetail" in data:
+    elif data.get("pagerDutyIncidentDetail") is not None:
         import capo_ssm_incidents.types.pager_duty_incident_detail
 
         return {

@@ -29,7 +29,7 @@ def serialize_json(value: UpdateEksAnywhereSubscriptionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEksAnywhereSubscriptionResponse:
     out: UpdateEksAnywhereSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "subscription" in data:
+    if data.get("subscription") is not None:
         import capo_eks.types.eks_anywhere_subscription
 
         out["subscription"] = capo_eks.types.eks_anywhere_subscription.deserialize_json(

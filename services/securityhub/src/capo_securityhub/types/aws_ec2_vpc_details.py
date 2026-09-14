@@ -55,7 +55,7 @@ def serialize_json(value: AwsEc2VpcDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VpcDetails:
     out: AwsEc2VpcDetails = {}  # type: ignore[typeddict-item]
-    if "CidrBlockAssociationSet" in data:
+    if data.get("CidrBlockAssociationSet") is not None:
         import capo_securityhub.types.cidr_block_association_list
 
         out["cidr_block_association_set"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> AwsEc2VpcDetails:
                 data["CidrBlockAssociationSet"]
             )
         )
-    if "Ipv6CidrBlockAssociationSet" in data:
+    if data.get("Ipv6CidrBlockAssociationSet") is not None:
         import capo_securityhub.types.ipv6_cidr_block_association_list
 
         out["ipv6_cidr_block_association_set"] = (
@@ -71,8 +71,8 @@ def deserialize_json(data: dict) -> AwsEc2VpcDetails:
                 data["Ipv6CidrBlockAssociationSet"]
             )
         )
-    if "DhcpOptionsId" in data:
+    if data.get("DhcpOptionsId") is not None:
         out["dhcp_options_id"] = data["DhcpOptionsId"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
     return out

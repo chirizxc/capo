@@ -43,15 +43,15 @@ def serialize_json(value: CreateClusterV2Response) -> dict:
 
 def deserialize_json(data: dict) -> CreateClusterV2Response:
     out: CreateClusterV2Response = {}  # type: ignore[typeddict-item]
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_kafka.types.cluster_state
 
         out["state"] = capo_kafka.types.cluster_state.deserialize_json(data["state"])
-    if "clusterType" in data:
+    if data.get("clusterType") is not None:
         import capo_kafka.types.cluster_type
 
         out["cluster_type"] = capo_kafka.types.cluster_type.deserialize_json(

@@ -123,55 +123,55 @@ def serialize_json(value: DescribeBackupVaultOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBackupVaultOutput:
     out: DescribeBackupVaultOutput = {}  # type: ignore[typeddict-item]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
-    if "VaultType" in data:
+    if data.get("VaultType") is not None:
         import capo_backup.types.vault_type
 
         out["vault_type"] = capo_backup.types.vault_type.deserialize_json(
             data["VaultType"]
         )
-    if "VaultState" in data:
+    if data.get("VaultState") is not None:
         import capo_backup.types.vault_state
 
         out["vault_state"] = capo_backup.types.vault_state.deserialize_json(
             data["VaultState"]
         )
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "NumberOfRecoveryPoints" in data:
+    if data.get("NumberOfRecoveryPoints") is not None:
         out["number_of_recovery_points"] = data["NumberOfRecoveryPoints"]
     else:
         out["number_of_recovery_points"] = 0
-    if "Locked" in data:
+    if data.get("Locked") is not None:
         out["locked"] = data["Locked"]
-    if "MinRetentionDays" in data:
+    if data.get("MinRetentionDays") is not None:
         out["min_retention_days"] = data["MinRetentionDays"]
-    if "MaxRetentionDays" in data:
+    if data.get("MaxRetentionDays") is not None:
         out["max_retention_days"] = data["MaxRetentionDays"]
-    if "LockDate" in data:
+    if data.get("LockDate") is not None:
         import capo_backup.types.timestamp
 
         out["lock_date"] = capo_backup.types.timestamp.deserialize_json(
             data["LockDate"]
         )
-    if "SourceBackupVaultArn" in data:
+    if data.get("SourceBackupVaultArn") is not None:
         out["source_backup_vault_arn"] = data["SourceBackupVaultArn"]
-    if "MpaApprovalTeamArn" in data:
+    if data.get("MpaApprovalTeamArn") is not None:
         out["mpa_approval_team_arn"] = data["MpaApprovalTeamArn"]
-    if "MpaSessionArn" in data:
+    if data.get("MpaSessionArn") is not None:
         out["mpa_session_arn"] = data["MpaSessionArn"]
-    if "LatestMpaApprovalTeamUpdate" in data:
+    if data.get("LatestMpaApprovalTeamUpdate") is not None:
         import capo_backup.types.latest_mpa_approval_team_update
 
         out["latest_mpa_approval_team_update"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> DescribeBackupVaultOutput:
                 data["LatestMpaApprovalTeamUpdate"]
             )
         )
-    if "EncryptionKeyType" in data:
+    if data.get("EncryptionKeyType") is not None:
         import capo_backup.types.encryption_key_type
 
         out["encryption_key_type"] = (

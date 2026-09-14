@@ -70,7 +70,7 @@ def serialize_json(value: KPIConditionalFormattingOption) -> dict:
 
 def deserialize_json(data: dict) -> KPIConditionalFormattingOption:
     out: KPIConditionalFormattingOption = {}  # type: ignore[typeddict-item]
-    if "PrimaryValue" in data:
+    if data.get("PrimaryValue") is not None:
         import capo_quicksight.types.kpi_primary_value_conditional_formatting
 
         out["primary_value"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> KPIConditionalFormattingOption:
                 data["PrimaryValue"]
             )
         )
-    if "ProgressBar" in data:
+    if data.get("ProgressBar") is not None:
         import capo_quicksight.types.kpi_progress_bar_conditional_formatting
 
         out["progress_bar"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> KPIConditionalFormattingOption:
                 data["ProgressBar"]
             )
         )
-    if "ActualValue" in data:
+    if data.get("ActualValue") is not None:
         import capo_quicksight.types.kpi_actual_value_conditional_formatting
 
         out["actual_value"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> KPIConditionalFormattingOption:
                 data["ActualValue"]
             )
         )
-    if "ComparisonValue" in data:
+    if data.get("ComparisonValue") is not None:
         import capo_quicksight.types.kpi_comparison_value_conditional_formatting
 
         out["comparison_value"] = (

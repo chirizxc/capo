@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: AssociateConnectionAliasRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateConnectionAliasRequest:
     out: AssociateConnectionAliasRequest = {}  # type: ignore[typeddict-item]
-    if "AliasId" in data:
+    if data.get("AliasId") is not None:
         out["alias_id"] = data["AliasId"]
     else:
         raise DeserializationError("AssociateConnectionAliasRequest.alias_id required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(

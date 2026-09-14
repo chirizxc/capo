@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: EffectivePolicyValidationError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EffectivePolicyValidationError:
     out: EffectivePolicyValidationError = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "PathToError" in data:
+    if data.get("PathToError") is not None:
         out["path_to_error"] = data["PathToError"]
-    if "ContributingPolicies" in data:
+    if data.get("ContributingPolicies") is not None:
         import capo_organizations.types.policy_ids
 
         out["contributing_policies"] = (

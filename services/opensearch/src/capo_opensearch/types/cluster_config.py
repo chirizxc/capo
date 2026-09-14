@@ -123,7 +123,7 @@ def serialize_json(value: ClusterConfig) -> dict:
 
 def deserialize_json(data: dict) -> ClusterConfig:
     out: ClusterConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_opensearch.types.open_search_partition_instance_type
 
         out["instance_type"] = (
@@ -131,13 +131,13 @@ def deserialize_json(data: dict) -> ClusterConfig:
                 data["InstanceType"]
             )
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "DedicatedMasterEnabled" in data:
+    if data.get("DedicatedMasterEnabled") is not None:
         out["dedicated_master_enabled"] = data["DedicatedMasterEnabled"]
-    if "ZoneAwarenessEnabled" in data:
+    if data.get("ZoneAwarenessEnabled") is not None:
         out["zone_awareness_enabled"] = data["ZoneAwarenessEnabled"]
-    if "ZoneAwarenessConfig" in data:
+    if data.get("ZoneAwarenessConfig") is not None:
         import capo_opensearch.types.zone_awareness_config
 
         out["zone_awareness_config"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> ClusterConfig:
                 data["ZoneAwarenessConfig"]
             )
         )
-    if "DedicatedMasterType" in data:
+    if data.get("DedicatedMasterType") is not None:
         import capo_opensearch.types.open_search_partition_instance_type
 
         out["dedicated_master_type"] = (
@@ -153,11 +153,11 @@ def deserialize_json(data: dict) -> ClusterConfig:
                 data["DedicatedMasterType"]
             )
         )
-    if "DedicatedMasterCount" in data:
+    if data.get("DedicatedMasterCount") is not None:
         out["dedicated_master_count"] = data["DedicatedMasterCount"]
-    if "WarmEnabled" in data:
+    if data.get("WarmEnabled") is not None:
         out["warm_enabled"] = data["WarmEnabled"]
-    if "WarmType" in data:
+    if data.get("WarmType") is not None:
         import capo_opensearch.types.open_search_warm_partition_instance_type
 
         out["warm_type"] = (
@@ -165,9 +165,9 @@ def deserialize_json(data: dict) -> ClusterConfig:
                 data["WarmType"]
             )
         )
-    if "WarmCount" in data:
+    if data.get("WarmCount") is not None:
         out["warm_count"] = data["WarmCount"]
-    if "ColdStorageOptions" in data:
+    if data.get("ColdStorageOptions") is not None:
         import capo_opensearch.types.cold_storage_options
 
         out["cold_storage_options"] = (
@@ -175,9 +175,9 @@ def deserialize_json(data: dict) -> ClusterConfig:
                 data["ColdStorageOptions"]
             )
         )
-    if "MultiAZWithStandbyEnabled" in data:
+    if data.get("MultiAZWithStandbyEnabled") is not None:
         out["multi_az_with_standby_enabled"] = data["MultiAZWithStandbyEnabled"]
-    if "NodeOptions" in data:
+    if data.get("NodeOptions") is not None:
         import capo_opensearch.types.node_options_list
 
         out["node_options"] = capo_opensearch.types.node_options_list.deserialize_json(

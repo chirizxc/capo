@@ -43,7 +43,7 @@ def serialize_json(value: Document) -> dict:
 
 def deserialize_json(data: dict) -> Document:
     out: Document = {}  # type: ignore[typeddict-item]
-    if "contentReference" in data:
+    if data.get("contentReference") is not None:
         import capo_wisdom.types.content_reference
 
         out["content_reference"] = capo_wisdom.types.content_reference.deserialize_json(
@@ -51,11 +51,11 @@ def deserialize_json(data: dict) -> Document:
         )
     else:
         raise DeserializationError("Document.content_reference required")
-    if "title" in data:
+    if data.get("title") is not None:
         import capo_wisdom.types.document_text
 
         out["title"] = capo_wisdom.types.document_text.deserialize_json(data["title"])
-    if "excerpt" in data:
+    if data.get("excerpt") is not None:
         import capo_wisdom.types.document_text
 
         out["excerpt"] = capo_wisdom.types.document_text.deserialize_json(

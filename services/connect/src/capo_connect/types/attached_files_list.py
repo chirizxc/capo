@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AttachedFilesList:
 
     out: AttachedFilesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.attached_file.deserialize_json(item))
     return out

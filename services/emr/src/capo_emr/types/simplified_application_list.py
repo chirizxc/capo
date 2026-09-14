@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> SimplifiedApplicationList:
 
     out: SimplifiedApplicationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_emr.types.simplified_application.deserialize_aws_json_1_1(item))
     return out

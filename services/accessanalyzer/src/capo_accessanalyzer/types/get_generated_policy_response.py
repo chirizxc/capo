@@ -40,7 +40,7 @@ def serialize_json(value: GetGeneratedPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetGeneratedPolicyResponse:
     out: GetGeneratedPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "jobDetails" in data:
+    if data.get("jobDetails") is not None:
         import capo_accessanalyzer.types.job_details
 
         out["job_details"] = capo_accessanalyzer.types.job_details.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> GetGeneratedPolicyResponse:
         )
     else:
         raise DeserializationError("GetGeneratedPolicyResponse.job_details required")
-    if "generatedPolicyResult" in data:
+    if data.get("generatedPolicyResult") is not None:
         import capo_accessanalyzer.types.generated_policy_result
 
         out["generated_policy_result"] = (

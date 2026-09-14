@@ -66,27 +66,27 @@ def serialize_aws_json_1_0(value: ServiceSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServiceSummary:
     out: ServiceSummary = {}  # type: ignore[typeddict-item]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
-    if "ServiceUrl" in data:
+    if data.get("ServiceUrl") is not None:
         out["service_url"] = data["ServiceUrl"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["created_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["updated_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
             data["UpdatedAt"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_apprunner.types.service_status
 
         out["status"] = capo_apprunner.types.service_status.deserialize_aws_json_1_0(

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RestoreTestingSelections:
 
     out: RestoreTestingSelections = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_backup.types.restore_testing_selection_for_list.deserialize_json(item)
         )

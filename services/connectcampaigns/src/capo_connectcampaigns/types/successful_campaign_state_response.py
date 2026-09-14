@@ -26,8 +26,8 @@ def serialize_json(value: SuccessfulCampaignStateResponse) -> dict:
 
 def deserialize_json(data: dict) -> SuccessfulCampaignStateResponse:
     out: SuccessfulCampaignStateResponse = {}  # type: ignore[typeddict-item]
-    if "campaignId" in data:
+    if data.get("campaignId") is not None:
         out["campaign_id"] = data["campaignId"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     return out

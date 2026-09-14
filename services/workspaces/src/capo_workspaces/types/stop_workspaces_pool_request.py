@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StopWorkspacesPoolRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopWorkspacesPoolRequest:
     out: StopWorkspacesPoolRequest = {}  # type: ignore[typeddict-item]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
     else:
         raise DeserializationError("StopWorkspacesPoolRequest.pool_id required")

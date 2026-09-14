@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: FieldValidationMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FieldValidationMessage:
     out: FieldValidationMessage = {}  # type: ignore[typeddict-item]
-    if "fieldName" in data:
+    if data.get("fieldName") is not None:
         out["field_name"] = data["fieldName"]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

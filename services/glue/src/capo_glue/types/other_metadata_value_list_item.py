@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: OtherMetadataValueListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OtherMetadataValueListItem:
     out: OtherMetadataValueListItem = {}  # type: ignore[typeddict-item]
-    if "MetadataValue" in data:
+    if data.get("MetadataValue") is not None:
         out["metadata_value"] = data["MetadataValue"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         out["created_time"] = data["CreatedTime"]
     return out

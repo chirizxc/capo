@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UpdateCatalogRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCatalogRequest:
     out: UpdateCatalogRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     else:
         raise DeserializationError("UpdateCatalogRequest.catalog_id required")
-    if "CatalogInput" in data:
+    if data.get("CatalogInput") is not None:
         import capo_glue.types.catalog_input
 
         out["catalog_input"] = capo_glue.types.catalog_input.deserialize_aws_json_1_1(

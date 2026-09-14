@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: TelemetryConfigurationState) -> dict:
 def deserialize_json(data: dict) -> TelemetryConfigurationState:
     out: TelemetryConfigurationState = {}
     for key, value in data.items():
-        import capo_observabilityadmin.types.telemetry_state
         import capo_observabilityadmin.types.telemetry_type
+
+        if value is None:
+            continue
+        import capo_observabilityadmin.types.telemetry_state
 
         out[capo_observabilityadmin.types.telemetry_type.deserialize_json(key)] = (
             capo_observabilityadmin.types.telemetry_state.deserialize_json(value)

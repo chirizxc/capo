@@ -18,6 +18,6 @@ def serialize_json(value: DataLakeLifecycleExpiration) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeLifecycleExpiration:
     out: DataLakeLifecycleExpiration = {}  # type: ignore[typeddict-item]
-    if "days" in data:
+    if data.get("days") is not None:
         out["days"] = data["days"]
     return out

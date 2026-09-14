@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ResourceEvaluations:
 
     out: ResourceEvaluations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.resource_evaluation.deserialize_aws_json_1_1(item)
         )

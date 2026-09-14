@@ -30,8 +30,8 @@ def serialize_json(value: NotesChunkDataDetails) -> dict:
 
 def deserialize_json(data: dict) -> NotesChunkDataDetails:
     out: NotesChunkDataDetails = {}  # type: ignore[typeddict-item]
-    if "completion" in data:
+    if data.get("completion") is not None:
         out["completion"] = data["completion"]
-    if "nextChunkToken" in data:
+    if data.get("nextChunkToken") is not None:
         out["next_chunk_token"] = data["nextChunkToken"]
     return out

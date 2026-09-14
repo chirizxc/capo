@@ -35,12 +35,12 @@ def serialize_json(value: AwsS3AccountPublicAccessBlockDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3AccountPublicAccessBlockDetails:
     out: AwsS3AccountPublicAccessBlockDetails = {}  # type: ignore[typeddict-item]
-    if "BlockPublicAcls" in data:
+    if data.get("BlockPublicAcls") is not None:
         out["block_public_acls"] = data["BlockPublicAcls"]
-    if "BlockPublicPolicy" in data:
+    if data.get("BlockPublicPolicy") is not None:
         out["block_public_policy"] = data["BlockPublicPolicy"]
-    if "IgnorePublicAcls" in data:
+    if data.get("IgnorePublicAcls") is not None:
         out["ignore_public_acls"] = data["IgnorePublicAcls"]
-    if "RestrictPublicBuckets" in data:
+    if data.get("RestrictPublicBuckets") is not None:
         out["restrict_public_buckets"] = data["RestrictPublicBuckets"]
     return out

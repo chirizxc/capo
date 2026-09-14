@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> FilterGroupList:
 
     out: FilterGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.filter_group.deserialize_json(item))
     return out

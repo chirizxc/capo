@@ -88,13 +88,13 @@ def serialize_json(value: PipConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PipConfiguration:
     out: PipConfiguration = {}  # type: ignore[typeddict-item]
-    if "featuredParticipantAttribute" in data:
+    if data.get("featuredParticipantAttribute") is not None:
         out["featured_participant_attribute"] = data["featuredParticipantAttribute"]
-    if "omitStoppedVideo" in data:
+    if data.get("omitStoppedVideo") is not None:
         out["omit_stopped_video"] = data["omitStoppedVideo"]
     else:
         out["omit_stopped_video"] = False
-    if "videoFillMode" in data:
+    if data.get("videoFillMode") is not None:
         import capo_ivs_realtime.types.video_fill_mode
 
         out["video_fill_mode"] = (
@@ -102,32 +102,32 @@ def deserialize_json(data: dict) -> PipConfiguration:
                 data["videoFillMode"]
             )
         )
-    if "gridGap" in data:
+    if data.get("gridGap") is not None:
         out["grid_gap"] = data["gridGap"]
     else:
         out["grid_gap"] = 0
-    if "pipParticipantAttribute" in data:
+    if data.get("pipParticipantAttribute") is not None:
         out["pip_participant_attribute"] = data["pipParticipantAttribute"]
-    if "pipBehavior" in data:
+    if data.get("pipBehavior") is not None:
         import capo_ivs_realtime.types.pip_behavior
 
         out["pip_behavior"] = capo_ivs_realtime.types.pip_behavior.deserialize_json(
             data["pipBehavior"]
         )
-    if "pipOffset" in data:
+    if data.get("pipOffset") is not None:
         out["pip_offset"] = data["pipOffset"]
     else:
         out["pip_offset"] = 0
-    if "pipPosition" in data:
+    if data.get("pipPosition") is not None:
         import capo_ivs_realtime.types.pip_position
 
         out["pip_position"] = capo_ivs_realtime.types.pip_position.deserialize_json(
             data["pipPosition"]
         )
-    if "pipWidth" in data:
+    if data.get("pipWidth") is not None:
         out["pip_width"] = data["pipWidth"]
-    if "pipHeight" in data:
+    if data.get("pipHeight") is not None:
         out["pip_height"] = data["pipHeight"]
-    if "participantOrderAttribute" in data:
+    if data.get("participantOrderAttribute") is not None:
         out["participant_order_attribute"] = data["participantOrderAttribute"]
     return out

@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: PutResourcePolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutResourcePolicyRequest:
     out: PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("PutResourcePolicyRequest.content required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_organizations.types.tags
 
         out["tags"] = capo_organizations.types.tags.deserialize_aws_json_1_1(

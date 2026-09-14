@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AddUserPoolClientSecretResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddUserPoolClientSecretResponse:
     out: AddUserPoolClientSecretResponse = {}  # type: ignore[typeddict-item]
-    if "ClientSecretDescriptor" in data:
+    if data.get("ClientSecretDescriptor") is not None:
         import capo_cognito_identity_provider.types.client_secret_descriptor_type
 
         out["client_secret_descriptor"] = (

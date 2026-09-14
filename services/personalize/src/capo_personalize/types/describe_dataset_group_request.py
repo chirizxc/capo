@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeDatasetGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetGroupRequest:
     out: DescribeDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
     else:
         raise DeserializationError(

@@ -32,8 +32,8 @@ def serialize_json(value: EmbeddedDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> EmbeddedDestinationSettings:
     out: EmbeddedDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "destination608ChannelNumber" in data:
+    if data.get("destination608ChannelNumber") is not None:
         out["destination608_channel_number"] = data["destination608ChannelNumber"]
-    if "destination708ServiceNumber" in data:
+    if data.get("destination708ServiceNumber") is not None:
         out["destination708_service_number"] = data["destination708ServiceNumber"]
     return out

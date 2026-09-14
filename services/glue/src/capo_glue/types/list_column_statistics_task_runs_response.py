@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListColumnStatisticsTaskRunsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListColumnStatisticsTaskRunsResponse:
     out: ListColumnStatisticsTaskRunsResponse = {}  # type: ignore[typeddict-item]
-    if "ColumnStatisticsTaskRunIds" in data:
+    if data.get("ColumnStatisticsTaskRunIds") is not None:
         import capo_glue.types.column_statistics_task_run_id_list
 
         out["column_statistics_task_run_ids"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListColumnStatisticsTaskRunsResponse
                 data["ColumnStatisticsTaskRunIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

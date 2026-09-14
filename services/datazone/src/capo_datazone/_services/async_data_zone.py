@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.datazone#DataZone``."""
 
 import datetime
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -624,23 +625,26 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.accept_predictions_input.AcceptPredictionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.accept_predictions_input.AcceptPredictionsInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
         if accept_rule is not None:
             input_["accept_rule"] = accept_rule
         if accept_choices is not None:
             input_["accept_choices"] = accept_choices
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def accept_subscription_request(
@@ -696,9 +700,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.accept_subscription_request_input.AcceptSubscriptionRequestInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.accept_subscription_request_input.AcceptSubscriptionRequestInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if decision_comment is not None:
             input_["decision_comment"] = decision_comment
         if asset_scopes is not None:
@@ -711,6 +716,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_entity_owner(
@@ -760,19 +766,22 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.add_entity_owner_input.AddEntityOwnerInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_type"] = entity_type
-        input_["entity_identifier"] = entity_identifier
-        input_["owner"] = owner
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.add_entity_owner_input.AddEntityOwnerInput = {
+            "domain_identifier": domain_identifier,
+            "entity_type": entity_type,
+            "entity_identifier": entity_identifier,
+            "owner": owner,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_policy_grant(
@@ -825,21 +834,24 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.add_policy_grant_input.AddPolicyGrantInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_type"] = entity_type
-        input_["entity_identifier"] = entity_identifier
-        input_["policy_type"] = policy_type
-        input_["principal"] = principal
-        input_["detail"] = detail
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.add_policy_grant_input.AddPolicyGrantInput = {
+            "domain_identifier": domain_identifier,
+            "entity_type": entity_type,
+            "entity_identifier": entity_identifier,
+            "policy_type": policy_type,
+            "principal": principal,
+            "detail": detail,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_environment_role(
@@ -884,16 +896,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.associate_environment_role_input.AssociateEnvironmentRoleInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["environment_role_arn"] = environment_role_arn
+        input_: capo_datazone.types.associate_environment_role_input.AssociateEnvironmentRoleInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "environment_role_arn": environment_role_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_governed_terms(
@@ -940,17 +954,19 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.associate_governed_terms_input.AssociateGovernedTermsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_identifier"] = entity_identifier
-        input_["entity_type"] = entity_type
-        input_["governed_glossary_terms"] = governed_glossary_terms
+        input_: capo_datazone.types.associate_governed_terms_input.AssociateGovernedTermsInput = {
+            "domain_identifier": domain_identifier,
+            "entity_identifier": entity_identifier,
+            "entity_type": entity_type,
+            "governed_glossary_terms": governed_glossary_terms,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_attributes_metadata(
@@ -998,19 +1014,21 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.batch_get_attributes_metadata_input.BatchGetAttributesMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_type"] = entity_type
-        input_["entity_identifier"] = entity_identifier
+        input_: capo_datazone.types.batch_get_attributes_metadata_input.BatchGetAttributesMetadataInput = {
+            "domain_identifier": domain_identifier,
+            "entity_type": entity_type,
+            "entity_identifier": entity_identifier,
+            "attribute_identifiers": attribute_identifiers,
+        }
         if entity_revision is not None:
             input_["entity_revision"] = entity_revision
-        input_["attribute_identifiers"] = attribute_identifiers
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_put_attributes_metadata(
@@ -1059,19 +1077,22 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.batch_put_attributes_metadata_input.BatchPutAttributesMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_type"] = entity_type
-        input_["entity_identifier"] = entity_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["attributes"] = attributes
+        input_: capo_datazone.types.batch_put_attributes_metadata_input.BatchPutAttributesMetadataInput = {
+            "domain_identifier": domain_identifier,
+            "entity_type": entity_type,
+            "entity_identifier": entity_identifier,
+            "attributes": attributes,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_subscription(
@@ -1114,15 +1135,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.cancel_subscription_input.CancelSubscriptionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.cancel_subscription_input.CancelSubscriptionInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_account_pool(
@@ -1172,19 +1195,21 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_account_pool_input.CreateAccountPoolInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_account_pool_input.CreateAccountPoolInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "resolution_strategy": resolution_strategy,
+            "account_source": account_source,
+        }
         if description is not None:
             input_["description"] = description
-        input_["resolution_strategy"] = resolution_strategy
-        input_["account_source"] = account_source
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_asset_filter(
@@ -1236,21 +1261,24 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_asset_filter_input.CreateAssetFilterInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["asset_identifier"] = asset_identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_asset_filter_input.CreateAssetFilterInput = {
+            "domain_identifier": domain_identifier,
+            "asset_identifier": asset_identifier,
+            "name": name,
+            "configuration": configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["configuration"] = configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_connection(
@@ -1316,19 +1344,21 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_connection_input.CreateConnectionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_datazone.types.create_connection_input.CreateConnectionInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+        }
         if aws_location is not None:
             input_["aws_location"] = aws_location
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if configurations is not None:
             input_["configurations"] = configurations
         if description is not None:
             input_["description"] = description
-        input_["domain_identifier"] = domain_identifier
         if environment_identifier is not None:
             input_["environment_identifier"] = environment_identifier
-        input_["name"] = name
         if props is not None:
             input_["props"] = props
         if enable_trusted_identity_propagation is not None:
@@ -1343,6 +1373,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_environment(
@@ -1415,12 +1446,13 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_environment_input.CreateEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["project_identifier"] = project_identifier
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.create_environment_input.CreateEnvironmentInput = {
+            "project_identifier": project_identifier,
+            "domain_identifier": domain_identifier,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
-        input_["name"] = name
         if environment_profile_identifier is not None:
             input_["environment_profile_identifier"] = environment_profile_identifier
         if user_parameters is not None:
@@ -1447,6 +1479,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_environment_action(
@@ -1495,11 +1528,12 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_environment_action_input.CreateEnvironmentActionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["name"] = name
-        input_["parameters"] = parameters
+        input_: capo_datazone.types.create_environment_action_input.CreateEnvironmentActionInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "name": name,
+            "parameters": parameters,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -1508,6 +1542,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_environment_blueprint(
@@ -1559,12 +1594,13 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_environment_blueprint_input.CreateEnvironmentBlueprintInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_environment_blueprint_input.CreateEnvironmentBlueprintInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "provisioning_properties": provisioning_properties,
+        }
         if description is not None:
             input_["description"] = description
-        input_["provisioning_properties"] = provisioning_properties
         if user_parameters is not None:
             input_["user_parameters"] = user_parameters
 
@@ -1573,6 +1609,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_environment_profile(
@@ -1632,13 +1669,14 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_environment_profile_input.CreateEnvironmentProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_environment_profile_input.CreateEnvironmentProfileInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "environment_blueprint_identifier": environment_blueprint_identifier,
+            "project_identifier": project_identifier,
+        }
         if description is not None:
             input_["description"] = description
-        input_["environment_blueprint_identifier"] = environment_blueprint_identifier
-        input_["project_identifier"] = project_identifier
         if user_parameters is not None:
             input_["user_parameters"] = user_parameters
         if aws_account_id is not None:
@@ -1651,6 +1689,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_group_profile(
@@ -1698,20 +1737,23 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_group_profile_input.CreateGroupProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.create_group_profile_input.CreateGroupProfileInput = {
+            "domain_identifier": domain_identifier
+        }
         if group_identifier is not None:
             input_["group_identifier"] = group_identifier
         if role_principal_arn is not None:
             input_["role_principal_arn"] = role_principal_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_listing_change_set(
@@ -1763,21 +1805,24 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_listing_change_set_input.CreateListingChangeSetInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_identifier"] = entity_identifier
-        input_["entity_type"] = entity_type
+        input_: capo_datazone.types.create_listing_change_set_input.CreateListingChangeSetInput = {
+            "domain_identifier": domain_identifier,
+            "entity_identifier": entity_identifier,
+            "entity_type": entity_type,
+            "action": action,
+        }
         if entity_revision is not None:
             input_["entity_revision"] = entity_revision
-        input_["action"] = action
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_project(
@@ -1849,9 +1894,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_project_input.CreateProjectInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_project_input.CreateProjectInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if resource_tags is not None:
@@ -1876,6 +1922,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_project_membership(
@@ -1921,17 +1968,19 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_project_membership_input.CreateProjectMembershipInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["project_identifier"] = project_identifier
-        input_["member"] = member
-        input_["designation"] = designation
+        input_: capo_datazone.types.create_project_membership_input.CreateProjectMembershipInput = {
+            "domain_identifier": domain_identifier,
+            "project_identifier": project_identifier,
+            "member": member,
+            "designation": designation,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_project_profile(
@@ -1997,9 +2046,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_project_profile_input.CreateProjectProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_project_profile_input.CreateProjectProfileInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
@@ -2024,6 +2074,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_subscription_grant(
@@ -2078,22 +2129,25 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_subscription_grant_input.CreateSubscriptionGrantInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
+        input_: capo_datazone.types.create_subscription_grant_input.CreateSubscriptionGrantInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "granted_entity": granted_entity,
+        }
         if subscription_target_identifier is not None:
             input_["subscription_target_identifier"] = subscription_target_identifier
-        input_["granted_entity"] = granted_entity
         if asset_target_names is not None:
             input_["asset_target_names"] = asset_target_names
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_subscription_request(
@@ -2155,13 +2209,15 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_subscription_request_input.CreateSubscriptionRequestInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["subscribed_principals"] = subscribed_principals
-        input_["subscribed_listings"] = subscribed_listings
-        input_["request_reason"] = request_reason
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.create_subscription_request_input.CreateSubscriptionRequestInput = {
+            "domain_identifier": domain_identifier,
+            "subscribed_principals": subscribed_principals,
+            "subscribed_listings": subscribed_listings,
+            "request_reason": request_reason,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if metadata_forms is not None:
             input_["metadata_forms"] = metadata_forms
         if asset_permissions is not None:
@@ -2174,6 +2230,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_subscription_target(
@@ -2236,19 +2293,21 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_subscription_target_input.CreateSubscriptionTargetInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["name"] = name
-        input_["type"] = type
-        input_["subscription_target_config"] = subscription_target_config
-        input_["authorized_principals"] = authorized_principals
-        input_["manage_access_role"] = manage_access_role
-        input_["applicable_asset_types"] = applicable_asset_types
+        input_: capo_datazone.types.create_subscription_target_input.CreateSubscriptionTargetInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "name": name,
+            "type": type,
+            "subscription_target_config": subscription_target_config,
+            "authorized_principals": authorized_principals,
+            "manage_access_role": manage_access_role,
+            "applicable_asset_types": applicable_asset_types,
+        }
         if provider is not None:
             input_["provider"] = provider
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if subscription_grant_creation_mode is not None:
             input_["subscription_grant_creation_mode"] = (
                 subscription_grant_creation_mode
@@ -2259,6 +2318,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user_profile(
@@ -2306,21 +2366,24 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.create_user_profile_input.CreateUserProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["user_identifier"] = user_identifier
+        input_: capo_datazone.types.create_user_profile_input.CreateUserProfileInput = {
+            "domain_identifier": domain_identifier,
+            "user_identifier": user_identifier,
+        }
         if user_type is not None:
             input_["user_type"] = user_type
         if session_name is not None:
             input_["session_name"] = session_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_account_pool(
@@ -2362,15 +2425,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_account_pool_input.DeleteAccountPoolInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_account_pool_input.DeleteAccountPoolInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_asset_filter(
@@ -2413,16 +2478,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_asset_filter_input.DeleteAssetFilterInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["asset_identifier"] = asset_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_asset_filter_input.DeleteAssetFilterInput = {
+            "domain_identifier": domain_identifier,
+            "asset_identifier": asset_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connection(
@@ -2464,15 +2531,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_connection_input.DeleteConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_connection_input.DeleteConnectionInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_export_configuration(
@@ -2513,14 +2582,16 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_data_export_configuration_input.DeleteDataExportConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.delete_data_export_configuration_input.DeleteDataExportConfigurationInput = {
+            "domain_identifier": domain_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_environment(
@@ -2560,15 +2631,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_environment_input.DeleteEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_environment_input.DeleteEnvironmentInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_environment_action(
@@ -2611,16 +2684,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_environment_action_input.DeleteEnvironmentActionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_environment_action_input.DeleteEnvironmentActionInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_environment_blueprint(
@@ -2661,15 +2736,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_environment_blueprint_input.DeleteEnvironmentBlueprintInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_environment_blueprint_input.DeleteEnvironmentBlueprintInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_environment_profile(
@@ -2709,15 +2786,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_environment_profile_input.DeleteEnvironmentProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_environment_profile_input.DeleteEnvironmentProfileInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_project(
@@ -2761,9 +2840,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_project_input.DeleteProjectInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_project_input.DeleteProjectInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if skip_deletion_check is not None:
             input_["skip_deletion_check"] = skip_deletion_check
 
@@ -2772,6 +2852,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_project_membership(
@@ -2816,16 +2897,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_project_membership_input.DeleteProjectMembershipInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["project_identifier"] = project_identifier
-        input_["member"] = member
+        input_: capo_datazone.types.delete_project_membership_input.DeleteProjectMembershipInput = {
+            "domain_identifier": domain_identifier,
+            "project_identifier": project_identifier,
+            "member": member,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_project_profile(
@@ -2867,15 +2950,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_project_profile_input.DeleteProjectProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_project_profile_input.DeleteProjectProfileInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_subscription_grant(
@@ -2918,15 +3003,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_subscription_grant_input.DeleteSubscriptionGrantInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_subscription_grant_input.DeleteSubscriptionGrantInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_subscription_request(
@@ -2967,15 +3054,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_subscription_request_input.DeleteSubscriptionRequestInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_subscription_request_input.DeleteSubscriptionRequestInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_subscription_target(
@@ -3018,16 +3107,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_subscription_target_input.DeleteSubscriptionTargetInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_subscription_target_input.DeleteSubscriptionTargetInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_time_series_data_points(
@@ -3075,19 +3166,22 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_time_series_data_points_input.DeleteTimeSeriesDataPointsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_identifier"] = entity_identifier
-        input_["entity_type"] = entity_type
-        input_["form_name"] = form_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.delete_time_series_data_points_input.DeleteTimeSeriesDataPointsInput = {
+            "domain_identifier": domain_identifier,
+            "entity_identifier": entity_identifier,
+            "entity_type": entity_type,
+            "form_name": form_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_environment_role(
@@ -3132,16 +3226,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.disassociate_environment_role_input.DisassociateEnvironmentRoleInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["environment_role_arn"] = environment_role_arn
+        input_: capo_datazone.types.disassociate_environment_role_input.DisassociateEnvironmentRoleInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "environment_role_arn": environment_role_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_governed_terms(
@@ -3188,17 +3284,19 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.disassociate_governed_terms_input.DisassociateGovernedTermsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_identifier"] = entity_identifier
-        input_["entity_type"] = entity_type
-        input_["governed_glossary_terms"] = governed_glossary_terms
+        input_: capo_datazone.types.disassociate_governed_terms_input.DisassociateGovernedTermsInput = {
+            "domain_identifier": domain_identifier,
+            "entity_identifier": entity_identifier,
+            "entity_type": entity_type,
+            "governed_glossary_terms": governed_glossary_terms,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_pool(
@@ -3240,15 +3338,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_account_pool_input.GetAccountPoolInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_account_pool_input.GetAccountPoolInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_asset_filter(
@@ -3292,16 +3392,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_asset_filter_input.GetAssetFilterInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["asset_identifier"] = asset_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_asset_filter_input.GetAssetFilterInput = {
+            "domain_identifier": domain_identifier,
+            "asset_identifier": asset_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_connection(
@@ -3345,9 +3447,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_connection_input.GetConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_connection_input.GetConnectionInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if with_secret is not None:
             input_["with_secret"] = with_secret
 
@@ -3356,6 +3459,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_export_configuration(
@@ -3395,14 +3499,16 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_data_export_configuration_input.GetDataExportConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.get_data_export_configuration_input.GetDataExportConfigurationInput = {
+            "domain_identifier": domain_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_environment(
@@ -3444,15 +3550,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_environment_input.GetEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_environment_input.GetEnvironmentInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_environment_action(
@@ -3496,16 +3604,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_environment_action_input.GetEnvironmentActionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_environment_action_input.GetEnvironmentActionInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_environment_blueprint(
@@ -3547,15 +3657,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_environment_blueprint_input.GetEnvironmentBlueprintInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_environment_blueprint_input.GetEnvironmentBlueprintInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_environment_credentials(
@@ -3597,15 +3709,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_environment_credentials_input.GetEnvironmentCredentialsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
+        input_: capo_datazone.types.get_environment_credentials_input.GetEnvironmentCredentialsInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_environment_profile(
@@ -3649,15 +3763,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_environment_profile_input.GetEnvironmentProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_environment_profile_input.GetEnvironmentProfileInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_group_profile(
@@ -3699,15 +3815,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_group_profile_input.GetGroupProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["group_identifier"] = group_identifier
+        input_: capo_datazone.types.get_group_profile_input.GetGroupProfileInput = {
+            "domain_identifier": domain_identifier,
+            "group_identifier": group_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_iam_portal_login_url(
@@ -3750,14 +3868,16 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_iam_portal_login_url_input.GetIamPortalLoginUrlInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.get_iam_portal_login_url_input.GetIamPortalLoginUrlInput = {
+            "domain_identifier": domain_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_job_run(
@@ -3799,15 +3919,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_job_run_input.GetJobRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_job_run_input.GetJobRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_lineage_event(
@@ -3849,15 +3971,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_lineage_event_input.GetLineageEventInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_lineage_event_input.GetLineageEventInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_lineage_node(
@@ -3901,9 +4025,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_lineage_node_input.GetLineageNodeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_lineage_node_input.GetLineageNodeInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if event_timestamp is not None:
             input_["event_timestamp"] = event_timestamp
 
@@ -3912,6 +4037,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_project(
@@ -3953,15 +4079,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_project_input.GetProjectInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_project_input.GetProjectInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_project_profile(
@@ -4003,15 +4131,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_project_profile_input.GetProjectProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_project_profile_input.GetProjectProfileInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_subscription(
@@ -4053,15 +4183,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_subscription_input.GetSubscriptionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_subscription_input.GetSubscriptionInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_subscription_grant(
@@ -4103,15 +4235,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_subscription_grant_input.GetSubscriptionGrantInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_subscription_grant_input.GetSubscriptionGrantInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_subscription_request_details(
@@ -4153,15 +4287,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_subscription_request_details_input.GetSubscriptionRequestDetailsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_subscription_request_details_input.GetSubscriptionRequestDetailsInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_subscription_target(
@@ -4207,16 +4343,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_subscription_target_input.GetSubscriptionTargetInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_subscription_target_input.GetSubscriptionTargetInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_time_series_data_point(
@@ -4264,18 +4402,20 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_time_series_data_point_input.GetTimeSeriesDataPointInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_identifier"] = entity_identifier
-        input_["entity_type"] = entity_type
-        input_["identifier"] = identifier
-        input_["form_name"] = form_name
+        input_: capo_datazone.types.get_time_series_data_point_input.GetTimeSeriesDataPointInput = {
+            "domain_identifier": domain_identifier,
+            "entity_identifier": entity_identifier,
+            "entity_type": entity_type,
+            "identifier": identifier,
+            "form_name": form_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_user_profile(
@@ -4321,9 +4461,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.get_user_profile_input.GetUserProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["user_identifier"] = user_identifier
+        input_: capo_datazone.types.get_user_profile_input.GetUserProfileInput = {
+            "domain_identifier": domain_identifier,
+            "user_identifier": user_identifier,
+        }
         if type is not None:
             input_["type"] = type
         if session_name is not None:
@@ -4334,6 +4475,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_account_pools(
@@ -4386,8 +4528,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_account_pools_input.ListAccountPoolsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_account_pools_input.ListAccountPoolsInput = {
+            "domain_identifier": domain_identifier
+        }
         if name is not None:
             input_["name"] = name
         if sort_by is not None:
@@ -4404,6 +4547,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_account_pools(
@@ -4484,9 +4628,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_accounts_in_account_pool_input.ListAccountsInAccountPoolInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.list_accounts_in_account_pool_input.ListAccountsInAccountPoolInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4497,6 +4642,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_accounts_in_account_pool(
@@ -4573,9 +4719,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_asset_filters_input.ListAssetFiltersInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["asset_identifier"] = asset_identifier
+        input_: capo_datazone.types.list_asset_filters_input.ListAssetFiltersInput = {
+            "domain_identifier": domain_identifier,
+            "asset_identifier": asset_identifier,
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -4588,6 +4735,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_asset_filters(
@@ -4664,9 +4812,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_asset_revisions_input.ListAssetRevisionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.list_asset_revisions_input.ListAssetRevisionsInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4677,6 +4826,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_connections(
@@ -4739,8 +4889,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_connections_input.ListConnectionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_connections_input.ListConnectionsInput = {
+            "domain_identifier": domain_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4765,6 +4916,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_connections(
@@ -4855,9 +5007,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_data_product_revisions_input.ListDataProductRevisionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.list_data_product_revisions_input.ListDataProductRevisionsInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4868,6 +5021,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_product_revisions(
@@ -4948,9 +5102,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_data_source_run_activities_input.ListDataSourceRunActivitiesInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.list_data_source_run_activities_input.ListDataSourceRunActivitiesInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -4963,6 +5118,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_source_run_activities(
@@ -5044,10 +5200,11 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_entity_owners_input.ListEntityOwnersInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_type"] = entity_type
-        input_["entity_identifier"] = entity_identifier
+        input_: capo_datazone.types.list_entity_owners_input.ListEntityOwnersInput = {
+            "domain_identifier": domain_identifier,
+            "entity_type": entity_type,
+            "entity_identifier": entity_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5058,6 +5215,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_entity_owners(
@@ -5135,9 +5293,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_environment_actions_input.ListEnvironmentActionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
+        input_: capo_datazone.types.list_environment_actions_input.ListEnvironmentActionsInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5148,6 +5307,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_environment_actions(
@@ -5226,8 +5386,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_environment_blueprints_input.ListEnvironmentBlueprintsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_environment_blueprints_input.ListEnvironmentBlueprintsInput = {
+            "domain_identifier": domain_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5242,6 +5403,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_environment_blueprints(
@@ -5333,8 +5495,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_environment_profiles_input.ListEnvironmentProfilesInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_environment_profiles_input.ListEnvironmentProfilesInput = {
+            "domain_identifier": domain_identifier
+        }
         if aws_account_id is not None:
             input_["aws_account_id"] = aws_account_id
         if aws_account_region is not None:
@@ -5357,6 +5520,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_environment_profiles(
@@ -5466,15 +5630,16 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_environments_input.ListEnvironmentsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_environments_input.ListEnvironmentsInput = {
+            "domain_identifier": domain_identifier,
+            "project_identifier": project_identifier,
+        }
         if aws_account_id is not None:
             input_["aws_account_id"] = aws_account_id
         if status is not None:
             input_["status"] = status
         if aws_account_region is not None:
             input_["aws_account_region"] = aws_account_region
-        input_["project_identifier"] = project_identifier
         if environment_profile_identifier is not None:
             input_["environment_profile_identifier"] = environment_profile_identifier
         if environment_blueprint_identifier is not None:
@@ -5495,6 +5660,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_environments(
@@ -5595,9 +5761,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_job_runs_input.ListJobRunsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["job_identifier"] = job_identifier
+        input_: capo_datazone.types.list_job_runs_input.ListJobRunsInput = {
+            "domain_identifier": domain_identifier,
+            "job_identifier": job_identifier,
+        }
         if status is not None:
             input_["status"] = status
         if sort_order is not None:
@@ -5612,6 +5779,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_job_runs(
@@ -5697,8 +5865,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_lineage_events_input.ListLineageEventsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_lineage_events_input.ListLineageEventsInput = {
+            "domain_identifier": domain_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if timestamp_after is not None:
@@ -5717,6 +5886,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_lineage_events(
@@ -5807,13 +5977,14 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_lineage_node_history_input.ListLineageNodeHistoryInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_lineage_node_history_input.ListLineageNodeHistoryInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["identifier"] = identifier
         if direction is not None:
             input_["direction"] = direction
         if event_timestamp_gte is not None:
@@ -5828,6 +5999,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_lineage_node_history(
@@ -5920,9 +6092,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_notifications_input.ListNotificationsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["type"] = type
+        input_: capo_datazone.types.list_notifications_input.ListNotificationsInput = {
+            "domain_identifier": domain_identifier,
+            "type": type,
+        }
         if after_timestamp is not None:
             input_["after_timestamp"] = after_timestamp
         if before_timestamp is not None:
@@ -5941,6 +6114,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_notifications(
@@ -6030,11 +6204,12 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_policy_grants_input.ListPolicyGrantsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_type"] = entity_type
-        input_["entity_identifier"] = entity_identifier
-        input_["policy_type"] = policy_type
+        input_: capo_datazone.types.list_policy_grants_input.ListPolicyGrantsInput = {
+            "domain_identifier": domain_identifier,
+            "entity_type": entity_type,
+            "entity_identifier": entity_identifier,
+            "policy_type": policy_type,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -6045,6 +6220,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_policy_grants(
@@ -6131,9 +6307,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_project_memberships_input.ListProjectMembershipsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["project_identifier"] = project_identifier
+        input_: capo_datazone.types.list_project_memberships_input.ListProjectMembershipsInput = {
+            "domain_identifier": domain_identifier,
+            "project_identifier": project_identifier,
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if sort_order is not None:
@@ -6148,6 +6325,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_project_memberships(
@@ -6235,8 +6413,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_project_profiles_input.ListProjectProfilesInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_project_profiles_input.ListProjectProfilesInput = {
+            "domain_identifier": domain_identifier
+        }
         if name is not None:
             input_["name"] = name
         if sort_by is not None:
@@ -6253,6 +6432,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_project_profiles(
@@ -6340,8 +6520,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_projects_input.ListProjectsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_projects_input.ListProjectsInput = {
+            "domain_identifier": domain_identifier
+        }
         if user_identifier is not None:
             input_["user_identifier"] = user_identifier
         if group_identifier is not None:
@@ -6360,6 +6541,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_projects(
@@ -6472,8 +6654,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_subscription_grants_input.ListSubscriptionGrantsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_subscription_grants_input.ListSubscriptionGrantsInput = {
+            "domain_identifier": domain_identifier
+        }
         if environment_id is not None:
             input_["environment_id"] = environment_id
         if subscription_target_id is not None:
@@ -6504,6 +6687,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_subscription_grants(
@@ -6638,8 +6822,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_subscription_requests_input.ListSubscriptionRequestsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_subscription_requests_input.ListSubscriptionRequestsInput = {
+            "domain_identifier": domain_identifier
+        }
         if status is not None:
             input_["status"] = status
         if subscribed_listing_id is not None:
@@ -6668,6 +6853,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_subscription_requests(
@@ -6802,8 +6988,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_subscriptions_input.ListSubscriptionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_subscriptions_input.ListSubscriptionsInput = {
+            "domain_identifier": domain_identifier
+        }
         if subscription_request_identifier is not None:
             input_["subscription_request_identifier"] = subscription_request_identifier
         if status is not None:
@@ -6834,6 +7021,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_subscriptions(
@@ -6944,9 +7132,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_subscription_targets_input.ListSubscriptionTargetsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
+        input_: capo_datazone.types.list_subscription_targets_input.ListSubscriptionTargetsInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if sort_order is not None:
@@ -6961,6 +7150,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_subscription_targets(
@@ -7031,14 +7221,16 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_datazone.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_time_series_data_points(
@@ -7094,11 +7286,12 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.list_time_series_data_points_input.ListTimeSeriesDataPointsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_identifier"] = entity_identifier
-        input_["entity_type"] = entity_type
-        input_["form_name"] = form_name
+        input_: capo_datazone.types.list_time_series_data_points_input.ListTimeSeriesDataPointsInput = {
+            "domain_identifier": domain_identifier,
+            "entity_identifier": entity_identifier,
+            "entity_type": entity_type,
+            "form_name": form_name,
+        }
         if started_at is not None:
             input_["started_at"] = started_at
         if ended_at is not None:
@@ -7113,6 +7306,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_time_series_data_points(
@@ -7193,17 +7387,20 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.post_lineage_event_input.PostLineageEventInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["event"] = event
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.post_lineage_event_input.PostLineageEventInput = {
+            "domain_identifier": domain_identifier,
+            "event": event,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def post_time_series_data_points(
@@ -7253,19 +7450,22 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.post_time_series_data_points_input.PostTimeSeriesDataPointsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_identifier"] = entity_identifier
-        input_["entity_type"] = entity_type
-        input_["forms"] = forms
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.post_time_series_data_points_input.PostTimeSeriesDataPointsInput = {
+            "domain_identifier": domain_identifier,
+            "entity_identifier": entity_identifier,
+            "entity_type": entity_type,
+            "forms": forms,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_data_export_configuration(
@@ -7315,19 +7515,22 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.put_data_export_configuration_input.PutDataExportConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["enable_export"] = enable_export
+        input_: capo_datazone.types.put_data_export_configuration_input.PutDataExportConfigurationInput = {
+            "domain_identifier": domain_identifier,
+            "enable_export": enable_export,
+        }
         if encryption_configuration is not None:
             input_["encryption_configuration"] = encryption_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def query_graph(
@@ -7378,9 +7581,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.query_graph_input.QueryGraphInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["match"] = match
+        input_: capo_datazone.types.query_graph_input.QueryGraphInput = {
+            "domain_identifier": domain_identifier,
+            "match": match,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -7393,6 +7597,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_query_graph(
@@ -7476,23 +7681,26 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.reject_predictions_input.RejectPredictionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.reject_predictions_input.RejectPredictionsInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
         if reject_rule is not None:
             input_["reject_rule"] = reject_rule
         if reject_choices is not None:
             input_["reject_choices"] = reject_choices
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_subscription_request(
@@ -7539,9 +7747,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.reject_subscription_request_input.RejectSubscriptionRequestInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.reject_subscription_request_input.RejectSubscriptionRequestInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if decision_comment is not None:
             input_["decision_comment"] = decision_comment
 
@@ -7550,6 +7759,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_entity_owner(
@@ -7597,19 +7807,22 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.remove_entity_owner_input.RemoveEntityOwnerInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_type"] = entity_type
-        input_["entity_identifier"] = entity_identifier
-        input_["owner"] = owner
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.remove_entity_owner_input.RemoveEntityOwnerInput = {
+            "domain_identifier": domain_identifier,
+            "entity_type": entity_type,
+            "entity_identifier": entity_identifier,
+            "owner": owner,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_policy_grant(
@@ -7662,22 +7875,25 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.remove_policy_grant_input.RemovePolicyGrantInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["entity_type"] = entity_type
-        input_["entity_identifier"] = entity_identifier
-        input_["policy_type"] = policy_type
-        input_["principal"] = principal
+        input_: capo_datazone.types.remove_policy_grant_input.RemovePolicyGrantInput = {
+            "domain_identifier": domain_identifier,
+            "entity_type": entity_type,
+            "entity_identifier": entity_identifier,
+            "policy_type": policy_type,
+            "principal": principal,
+        }
         if grant_identifier is not None:
             input_["grant_identifier"] = grant_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def revoke_subscription(
@@ -7722,9 +7938,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.revoke_subscription_input.RevokeSubscriptionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.revoke_subscription_input.RevokeSubscriptionInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if retain_permissions is not None:
             input_["retain_permissions"] = retain_permissions
 
@@ -7733,6 +7950,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search(
@@ -7793,15 +8011,16 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.search_input.SearchInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.search_input.SearchInput = {
+            "domain_identifier": domain_identifier,
+            "search_scope": search_scope,
+        }
         if owning_project_identifier is not None:
             input_["owning_project_identifier"] = owning_project_identifier
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["search_scope"] = search_scope
         if search_text is not None:
             input_["search_text"] = search_text
         if search_in is not None:
@@ -7818,6 +8037,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search(
@@ -7912,9 +8132,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.search_group_profiles_input.SearchGroupProfilesInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["group_type"] = group_type
+        input_: capo_datazone.types.search_group_profiles_input.SearchGroupProfilesInput = {
+            "domain_identifier": domain_identifier,
+            "group_type": group_type,
+        }
         if search_text is not None:
             input_["search_text"] = search_text
         if max_results is not None:
@@ -7927,6 +8148,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_group_profiles(
@@ -8018,8 +8240,9 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.search_listings_input.SearchListingsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.search_listings_input.SearchListingsInput = {
+            "domain_identifier": domain_identifier
+        }
         if search_text is not None:
             input_["search_text"] = search_text
         if search_in is not None:
@@ -8042,6 +8265,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_listings(
@@ -8139,13 +8363,15 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.search_types_input.SearchTypesInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.search_types_input.SearchTypesInput = {
+            "domain_identifier": domain_identifier,
+            "search_scope": search_scope,
+            "managed": managed,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["search_scope"] = search_scope
         if search_text is not None:
             input_["search_text"] = search_text
         if search_in is not None:
@@ -8154,13 +8380,13 @@ class AsyncDataZoneClient:
             input_["filters"] = filters
         if sort is not None:
             input_["sort"] = sort
-        input_["managed"] = managed
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_types(
@@ -8249,9 +8475,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.search_user_profiles_input.SearchUserProfilesInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["user_type"] = user_type
+        input_: capo_datazone.types.search_user_profiles_input.SearchUserProfilesInput = {
+            "domain_identifier": domain_identifier,
+            "user_type": user_type,
+        }
         if search_text is not None:
             input_["search_text"] = search_text
         if max_results is not None:
@@ -8264,6 +8491,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_user_profiles(
@@ -8346,21 +8574,24 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.start_notebook_import_input.StartNotebookImportInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["owning_project_identifier"] = owning_project_identifier
-        input_["source_location"] = source_location
-        input_["name"] = name
+        input_: capo_datazone.types.start_notebook_import_input.StartNotebookImportInput = {
+            "domain_identifier": domain_identifier,
+            "owning_project_identifier": owning_project_identifier,
+            "source_location": source_location,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -8402,15 +8633,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_datazone.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -8451,15 +8684,17 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_datazone.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_account_pool(
@@ -8515,9 +8750,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_account_pool_input.UpdateAccountPoolInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_account_pool_input.UpdateAccountPoolInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -8532,6 +8768,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_asset_filter(
@@ -8584,10 +8821,11 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_asset_filter_input.UpdateAssetFilterInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["asset_identifier"] = asset_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_asset_filter_input.UpdateAssetFilterInput = {
+            "domain_identifier": domain_identifier,
+            "asset_identifier": asset_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -8600,6 +8838,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_connection(
@@ -8655,11 +8894,12 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_connection_input.UpdateConnectionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_datazone.types.update_connection_input.UpdateConnectionInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if configurations is not None:
             input_["configurations"] = configurations
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
         if description is not None:
             input_["description"] = description
         if aws_location is not None:
@@ -8672,6 +8912,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_environment(
@@ -8732,9 +8973,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_environment_input.UpdateEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_environment_input.UpdateEnvironmentInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -8753,6 +8995,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_environment_action(
@@ -8805,10 +9048,11 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_environment_action_input.UpdateEnvironmentActionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_environment_action_input.UpdateEnvironmentActionInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "identifier": identifier,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
         if name is not None:
@@ -8821,6 +9065,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_environment_blueprint(
@@ -8874,9 +9119,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_environment_blueprint_input.UpdateEnvironmentBlueprintInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_environment_blueprint_input.UpdateEnvironmentBlueprintInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if description is not None:
             input_["description"] = description
         if provisioning_properties is not None:
@@ -8889,6 +9135,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_environment_profile(
@@ -8948,9 +9195,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_environment_profile_input.UpdateEnvironmentProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_environment_profile_input.UpdateEnvironmentProfileInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -8967,6 +9215,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_group_profile(
@@ -9010,16 +9259,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_group_profile_input.UpdateGroupProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["group_identifier"] = group_identifier
-        input_["status"] = status
+        input_: capo_datazone.types.update_group_profile_input.UpdateGroupProfileInput = {
+            "domain_identifier": domain_identifier,
+            "group_identifier": group_identifier,
+            "status": status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_project(
@@ -9087,9 +9338,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_project_input.UpdateProjectInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_project_input.UpdateProjectInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -9112,6 +9364,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_project_profile(
@@ -9181,9 +9434,10 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_project_profile_input.UpdateProjectProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_project_profile_input.UpdateProjectProfileInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -9210,6 +9464,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_root_domain_unit_owner(
@@ -9256,18 +9511,21 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_root_domain_unit_owner_input.UpdateRootDomainUnitOwnerInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["current_owner"] = current_owner
-        input_["new_owner"] = new_owner
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.update_root_domain_unit_owner_input.UpdateRootDomainUnitOwnerInput = {
+            "domain_identifier": domain_identifier,
+            "current_owner": current_owner,
+            "new_owner": new_owner,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_subscription_grant_status(
@@ -9320,11 +9578,12 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_subscription_grant_status_input.UpdateSubscriptionGrantStatusInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
-        input_["asset_identifier"] = asset_identifier
-        input_["status"] = status
+        input_: capo_datazone.types.update_subscription_grant_status_input.UpdateSubscriptionGrantStatusInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+            "asset_identifier": asset_identifier,
+            "status": status,
+        }
         if failure_cause is not None:
             input_["failure_cause"] = failure_cause
         if target_name is not None:
@@ -9335,6 +9594,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_subscription_request(
@@ -9379,16 +9639,18 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_subscription_request_input.UpdateSubscriptionRequestInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
-        input_["request_reason"] = request_reason
+        input_: capo_datazone.types.update_subscription_request_input.UpdateSubscriptionRequestInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+            "request_reason": request_reason,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_subscription_target(
@@ -9459,10 +9721,11 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_subscription_target_input.UpdateSubscriptionTargetInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_subscription_target_input.UpdateSubscriptionTargetInput = {
+            "domain_identifier": domain_identifier,
+            "environment_identifier": environment_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if authorized_principals is not None:
@@ -9485,6 +9748,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_profile(
@@ -9532,12 +9796,13 @@ class AsyncDataZoneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datazone.types.update_user_profile_input.UpdateUserProfileInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["user_identifier"] = user_identifier
+        input_: capo_datazone.types.update_user_profile_input.UpdateUserProfileInput = {
+            "domain_identifier": domain_identifier,
+            "user_identifier": user_identifier,
+            "status": status,
+        }
         if type is not None:
             input_["type"] = type
-        input_["status"] = status
         if session_name is not None:
             input_["session_name"] = session_name
 
@@ -9546,6 +9811,7 @@ class AsyncDataZoneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

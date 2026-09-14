@@ -48,22 +48,22 @@ def serialize_aws_json_1_1(value: ListFirewallRulesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFirewallRulesRequest:
     out: ListFirewallRulesRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallRuleGroupId" in data:
+    if data.get("FirewallRuleGroupId") is not None:
         out["firewall_rule_group_id"] = data["FirewallRuleGroupId"]
     else:
         raise DeserializationError(
             "ListFirewallRulesRequest.firewall_rule_group_id required"
         )
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_route53resolver.types.action
 
         out["action"] = capo_route53resolver.types.action.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

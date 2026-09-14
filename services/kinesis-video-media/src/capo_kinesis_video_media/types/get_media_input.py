@@ -38,11 +38,11 @@ def serialize_json(value: GetMediaInput) -> dict:
 
 def deserialize_json(data: dict) -> GetMediaInput:
     out: GetMediaInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StartSelector" in data:
+    if data.get("StartSelector") is not None:
         import capo_kinesis_video_media.types.start_selector
 
         out["start_selector"] = (

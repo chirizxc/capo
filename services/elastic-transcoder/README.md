@@ -13,9 +13,9 @@ from capo_elastic_transcoder import AsyncElasticTranscoderClient
 
 
 async def main():
-    async with AsyncElasticTranscoderClient() as s3:
+    async with AsyncElasticTranscoderClient() as elastic_transcoder:
         # Example: call the cancel_job operation
-        response = await s3.cancel_job()
+        response = await elastic_transcoder.cancel_job()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_elastic_transcoder import AsyncElasticTranscoderClient
 
 
 async def main():
-    async with AsyncElasticTranscoderClient() as s3:
+    async with AsyncElasticTranscoderClient() as elastic_transcoder:
         # Example: paginate over list_jobs_by_pipeline
-        async for item in s3.iter_list_jobs_by_pipeline():
+        async for item in elastic_transcoder.iter_list_jobs_by_pipeline():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_elastic_transcoder.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncElasticTranscoderClient() as s3:
+    async with AsyncElasticTranscoderClient() as elastic_transcoder:
         try:
-            await s3.cancel_job()
+            await elastic_transcoder.cancel_job()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_elastic_transcoder import AsyncElasticTranscoderClient
 
 
 async def main():
-    async with AsyncElasticTranscoderClient() as s3:
+    async with AsyncElasticTranscoderClient() as elastic_transcoder:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_job()
+        response = await elastic_transcoder.cancel_job()
 
         # Override per operation
-        response = await s3.cancel_job(config_overrides={"retry_max_attempts": 5})
+        response = await elastic_transcoder.cancel_job(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_job(config_overrides={"retry_max_attempts": 1})
+        response = await elastic_transcoder.cancel_job(config_overrides={"retry_max_attempts": 1})
 ```

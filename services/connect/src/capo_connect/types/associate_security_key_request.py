@@ -32,10 +32,10 @@ def serialize_json(value: AssociateSecurityKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateSecurityKeyRequest:
     out: AssociateSecurityKeyRequest = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("AssociateSecurityKeyRequest.key required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

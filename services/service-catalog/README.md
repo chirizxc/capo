@@ -13,10 +13,25 @@ from capo_service_catalog import AsyncServiceCatalogClient
 
 
 async def main():
-    async with AsyncServiceCatalogClient() as s3:
+    async with AsyncServiceCatalogClient() as service_catalog:
         # Example: call the accept_portfolio_share operation
-        response = await s3.accept_portfolio_share()
+        response = await service_catalog.accept_portfolio_share()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_service_catalog import AsyncServiceCatalogClient
+
+
+async def main():
+    async with AsyncServiceCatalogClient() as service_catalog:
+        # Example: paginate over describe_portfolio_shares
+        async for item in service_catalog.iter_describe_portfolio_shares():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_service_catalog.error import InvalidParametersException
 
 
 async def main():
-    async with AsyncServiceCatalogClient() as s3:
+    async with AsyncServiceCatalogClient() as service_catalog:
         try:
-            await s3.accept_portfolio_share()
+            await service_catalog.accept_portfolio_share()
         except InvalidParametersException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_service_catalog import AsyncServiceCatalogClient
 
 
 async def main():
-    async with AsyncServiceCatalogClient() as s3:
+    async with AsyncServiceCatalogClient() as service_catalog:
         # Default: 3 attempts for every operation
-        response = await s3.accept_portfolio_share()
+        response = await service_catalog.accept_portfolio_share()
 
         # Override per operation
-        response = await s3.accept_portfolio_share(config_overrides={"retry_max_attempts": 5})
+        response = await service_catalog.accept_portfolio_share(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_portfolio_share(config_overrides={"retry_max_attempts": 1})
+        response = await service_catalog.accept_portfolio_share(config_overrides={"retry_max_attempts": 1})
 ```

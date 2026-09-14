@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: GetWorkflowRunsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetWorkflowRunsRequest:
     out: GetWorkflowRunsRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetWorkflowRunsRequest.name required")
-    if "IncludeGraph" in data:
+    if data.get("IncludeGraph") is not None:
         out["include_graph"] = data["IncludeGraph"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

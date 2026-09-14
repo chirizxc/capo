@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: AddAttachmentsToSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddAttachmentsToSetResponse:
     out: AddAttachmentsToSetResponse = {}  # type: ignore[typeddict-item]
-    if "attachmentSetId" in data:
+    if data.get("attachmentSetId") is not None:
         out["attachment_set_id"] = data["attachmentSetId"]
-    if "expiryTime" in data:
+    if data.get("expiryTime") is not None:
         out["expiry_time"] = data["expiryTime"]
     return out

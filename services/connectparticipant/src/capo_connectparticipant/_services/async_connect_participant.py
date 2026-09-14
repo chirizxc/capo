@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.connectparticipant#AmazonConnectParticipantServiceLambda``."""
 
+import uuid
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_connectparticipant._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_connectparticipant._auth._zapros_handler import AuthMiddleware
+from capo_connectparticipant._pagination import resolve_path as _resolve_path
 from capo_connectparticipant._services._aws_config import aaws_config
 from capo_connectparticipant._services._pipeline import (
     AsyncInterceptor,
@@ -203,15 +206,17 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.cancel_participant_authentication_request.CancelParticipantAuthenticationRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
-        input_["connection_token"] = connection_token
+        input_: capo_connectparticipant.types.cancel_participant_authentication_request.CancelParticipantAuthenticationRequest = {
+            "session_id": session_id,
+            "connection_token": connection_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def complete_attachment_upload(
@@ -255,16 +260,18 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.complete_attachment_upload_request.CompleteAttachmentUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_ids"] = attachment_ids
-        input_["client_token"] = client_token
-        input_["connection_token"] = connection_token
+        input_: capo_connectparticipant.types.complete_attachment_upload_request.CompleteAttachmentUploadRequest = {
+            "attachment_ids": attachment_ids,
+            "client_token": client_token,
+            "connection_token": connection_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_participant_connection(
@@ -308,10 +315,11 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.create_participant_connection_request.CreateParticipantConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connectparticipant.types.create_participant_connection_request.CreateParticipantConnectionRequest = {
+            "participant_token": participant_token
+        }
         if type is not None:
             input_["type"] = type
-        input_["participant_token"] = participant_token
         if connect_participant is not None:
             input_["connect_participant"] = connect_participant
 
@@ -320,6 +328,7 @@ class AsyncConnectParticipantClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_view(
@@ -360,15 +369,17 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.describe_view_request.DescribeViewRequest = {}  # type: ignore[typeddict-item]
-        input_["view_token"] = view_token
-        input_["connection_token"] = connection_token
+        input_: capo_connectparticipant.types.describe_view_request.DescribeViewRequest = {
+            "view_token": view_token,
+            "connection_token": connection_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disconnect_participant(
@@ -410,16 +421,19 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.disconnect_participant_request.DisconnectParticipantRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["connection_token"] = connection_token
+        input_: capo_connectparticipant.types.disconnect_participant_request.DisconnectParticipantRequest = {
+            "connection_token": connection_token
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_attachment(
@@ -463,9 +477,10 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.get_attachment_request.GetAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
-        input_["connection_token"] = connection_token
+        input_: capo_connectparticipant.types.get_attachment_request.GetAttachmentRequest = {
+            "attachment_id": attachment_id,
+            "connection_token": connection_token,
+        }
         if url_expiry_in_seconds is not None:
             input_["url_expiry_in_seconds"] = url_expiry_in_seconds
 
@@ -474,6 +489,7 @@ class AsyncConnectParticipantClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_authentication_url(
@@ -515,16 +531,18 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.get_authentication_url_request.GetAuthenticationUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
-        input_["redirect_uri"] = redirect_uri
-        input_["connection_token"] = connection_token
+        input_: capo_connectparticipant.types.get_authentication_url_request.GetAuthenticationUrlRequest = {
+            "session_id": session_id,
+            "redirect_uri": redirect_uri,
+            "connection_token": connection_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_transcript(
@@ -584,7 +602,9 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.get_transcript_request.GetTranscriptRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connectparticipant.types.get_transcript_request.GetTranscriptRequest = {
+            "connection_token": connection_token
+        }
         if contact_id is not None:
             input_["contact_id"] = contact_id
         if max_results is not None:
@@ -597,14 +617,53 @@ class AsyncConnectParticipantClient:
             input_["sort_order"] = sort_order
         if start_position is not None:
             input_["start_position"] = start_position
-        input_["connection_token"] = connection_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_transcript(
+        self,
+        connection_token: "capo_connectparticipant.types.participant_token.ParticipantToken",
+        *,
+        config_overrides: Optional[AsyncConnectParticipantClientConfig] = None,
+        contact_id: Optional[
+            "capo_connectparticipant.types.contact_id.ContactId"
+        ] = None,
+        max_results: Optional[
+            "capo_connectparticipant.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_connectparticipant.types.next_token.NextToken"
+        ] = None,
+        scan_direction: Optional[
+            "capo_connectparticipant.types.scan_direction.ScanDirection"
+        ] = None,
+        sort_order: Optional["capo_connectparticipant.types.sort_key.SortKey"] = None,
+        start_position: Optional[
+            "capo_connectparticipant.types.start_position.StartPosition"
+        ] = None,
+    ) -> "AsyncIterator[capo_connectparticipant.types.get_transcript_response.GetTranscriptResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_transcript(
+                connection_token,
+                config_overrides=config_overrides,
+                contact_id=contact_id,
+                max_results=max_results,
+                next_token=_token,
+                scan_direction=scan_direction,
+                sort_order=sort_order,
+                start_position=start_position,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def send_event(
         self,
@@ -652,19 +711,22 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.send_event_request.SendEventRequest = {}  # type: ignore[typeddict-item]
-        input_["content_type"] = content_type
+        input_: capo_connectparticipant.types.send_event_request.SendEventRequest = {
+            "content_type": content_type,
+            "connection_token": connection_token,
+        }
         if content is not None:
             input_["content"] = content
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["connection_token"] = connection_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_message(
@@ -710,18 +772,21 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.send_message_request.SendMessageRequest = {}  # type: ignore[typeddict-item]
-        input_["content_type"] = content_type
-        input_["content"] = content
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["connection_token"] = connection_token
+        input_: capo_connectparticipant.types.send_message_request.SendMessageRequest = {
+            "content_type": content_type,
+            "content": content,
+            "connection_token": connection_token,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_attachment_upload(
@@ -768,18 +833,20 @@ class AsyncConnectParticipantClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectparticipant.types.start_attachment_upload_request.StartAttachmentUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["content_type"] = content_type
-        input_["attachment_size_in_bytes"] = attachment_size_in_bytes
-        input_["attachment_name"] = attachment_name
-        input_["client_token"] = client_token
-        input_["connection_token"] = connection_token
+        input_: capo_connectparticipant.types.start_attachment_upload_request.StartAttachmentUploadRequest = {
+            "content_type": content_type,
+            "attachment_size_in_bytes": attachment_size_in_bytes,
+            "attachment_name": attachment_name,
+            "client_token": client_token,
+            "connection_token": connection_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

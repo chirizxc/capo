@@ -44,16 +44,16 @@ def serialize_aws_json_1_1(value: ReviewResultDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReviewResultDetail:
     out: ReviewResultDetail = {}  # type: ignore[typeddict-item]
-    if "ActionId" in data:
+    if data.get("ActionId") is not None:
         out["action_id"] = data["ActionId"]
-    if "SubjectId" in data:
+    if data.get("SubjectId") is not None:
         out["subject_id"] = data["SubjectId"]
-    if "SubjectType" in data:
+    if data.get("SubjectType") is not None:
         out["subject_type"] = data["SubjectType"]
-    if "QuestionId" in data:
+    if data.get("QuestionId") is not None:
         out["question_id"] = data["QuestionId"]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

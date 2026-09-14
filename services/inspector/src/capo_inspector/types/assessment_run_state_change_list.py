@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AssessmentRunStateChangeList:
 
     out: AssessmentRunStateChangeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector.types.assessment_run_state_change.deserialize_aws_json_1_1(
                 item

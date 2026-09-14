@@ -95,31 +95,31 @@ def serialize_aws_json_1_1(value: ReplicationTaskStats) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationTaskStats:
     out: ReplicationTaskStats = {}  # type: ignore[typeddict-item]
-    if "FullLoadProgressPercent" in data:
+    if data.get("FullLoadProgressPercent") is not None:
         out["full_load_progress_percent"] = data["FullLoadProgressPercent"]
     else:
         out["full_load_progress_percent"] = 0
-    if "ElapsedTimeMillis" in data:
+    if data.get("ElapsedTimeMillis") is not None:
         out["elapsed_time_millis"] = data["ElapsedTimeMillis"]
     else:
         out["elapsed_time_millis"] = 0
-    if "TablesLoaded" in data:
+    if data.get("TablesLoaded") is not None:
         out["tables_loaded"] = data["TablesLoaded"]
     else:
         out["tables_loaded"] = 0
-    if "TablesLoading" in data:
+    if data.get("TablesLoading") is not None:
         out["tables_loading"] = data["TablesLoading"]
     else:
         out["tables_loading"] = 0
-    if "TablesQueued" in data:
+    if data.get("TablesQueued") is not None:
         out["tables_queued"] = data["TablesQueued"]
     else:
         out["tables_queued"] = 0
-    if "TablesErrored" in data:
+    if data.get("TablesErrored") is not None:
         out["tables_errored"] = data["TablesErrored"]
     else:
         out["tables_errored"] = 0
-    if "FreshStartDate" in data:
+    if data.get("FreshStartDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["fresh_start_date"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationTaskStats:
                 data["FreshStartDate"]
             )
         )
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["start_date"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationTaskStats:
                 data["StartDate"]
             )
         )
-    if "StopDate" in data:
+    if data.get("StopDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["stop_date"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationTaskStats:
                 data["StopDate"]
             )
         )
-    if "FullLoadStartDate" in data:
+    if data.get("FullLoadStartDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["full_load_start_date"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationTaskStats:
                 data["FullLoadStartDate"]
             )
         )
-    if "FullLoadFinishDate" in data:
+    if data.get("FullLoadFinishDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["full_load_finish_date"] = (

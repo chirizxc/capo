@@ -215,21 +215,21 @@ def serialize_aws_json_1_1(value: Image) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Image:
     out: Image = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "BaseImageArn" in data:
+    if data.get("BaseImageArn") is not None:
         out["base_image_arn"] = data["BaseImageArn"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_appstream.types.image_state
 
         out["state"] = capo_appstream.types.image_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_appstream.types.visibility_type
 
         out["visibility"] = (
@@ -237,19 +237,19 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["Visibility"]
             )
         )
-    if "ImageBuilderSupported" in data:
+    if data.get("ImageBuilderSupported") is not None:
         out["image_builder_supported"] = data["ImageBuilderSupported"]
-    if "ImageBuilderName" in data:
+    if data.get("ImageBuilderName") is not None:
         out["image_builder_name"] = data["ImageBuilderName"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_appstream.types.platform_type
 
         out["platform"] = capo_appstream.types.platform_type.deserialize_aws_json_1_1(
             data["Platform"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "StateChangeReason" in data:
+    if data.get("StateChangeReason") is not None:
         import capo_appstream.types.image_state_change_reason
 
         out["state_change_reason"] = (
@@ -257,7 +257,7 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["StateChangeReason"]
             )
         )
-    if "Applications" in data:
+    if data.get("Applications") is not None:
         import capo_appstream.types.applications
 
         out["applications"] = (
@@ -265,13 +265,13 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["Applications"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_appstream.types.timestamp
 
         out["created_time"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedTime"]
         )
-    if "PublicBaseImageReleasedDate" in data:
+    if data.get("PublicBaseImageReleasedDate") is not None:
         import capo_appstream.types.timestamp
 
         out["public_base_image_released_date"] = (
@@ -279,9 +279,9 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["PublicBaseImageReleasedDate"]
             )
         )
-    if "AppstreamAgentVersion" in data:
+    if data.get("AppstreamAgentVersion") is not None:
         out["appstream_agent_version"] = data["AppstreamAgentVersion"]
-    if "ImagePermissions" in data:
+    if data.get("ImagePermissions") is not None:
         import capo_appstream.types.image_permissions
 
         out["image_permissions"] = (
@@ -289,7 +289,7 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["ImagePermissions"]
             )
         )
-    if "ImageErrors" in data:
+    if data.get("ImageErrors") is not None:
         import capo_appstream.types.resource_errors
 
         out["image_errors"] = (
@@ -297,7 +297,7 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["ImageErrors"]
             )
         )
-    if "LatestAppstreamAgentVersion" in data:
+    if data.get("LatestAppstreamAgentVersion") is not None:
         import capo_appstream.types.latest_appstream_agent_version
 
         out["latest_appstream_agent_version"] = (
@@ -305,7 +305,7 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["LatestAppstreamAgentVersion"]
             )
         )
-    if "SupportedInstanceFamilies" in data:
+    if data.get("SupportedInstanceFamilies") is not None:
         import capo_appstream.types.string_list
 
         out["supported_instance_families"] = (
@@ -313,7 +313,7 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["SupportedInstanceFamilies"]
             )
         )
-    if "DynamicAppProvidersEnabled" in data:
+    if data.get("DynamicAppProvidersEnabled") is not None:
         import capo_appstream.types.dynamic_app_providers_enabled
 
         out["dynamic_app_providers_enabled"] = (
@@ -321,7 +321,7 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["DynamicAppProvidersEnabled"]
             )
         )
-    if "ImageSharedWithOthers" in data:
+    if data.get("ImageSharedWithOthers") is not None:
         import capo_appstream.types.image_shared_with_others
 
         out["image_shared_with_others"] = (
@@ -329,9 +329,9 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["ImageSharedWithOthers"]
             )
         )
-    if "ManagedSoftwareIncluded" in data:
+    if data.get("ManagedSoftwareIncluded") is not None:
         out["managed_software_included"] = data["ManagedSoftwareIncluded"]
-    if "ImageType" in data:
+    if data.get("ImageType") is not None:
         import capo_appstream.types.image_type
 
         out["image_type"] = capo_appstream.types.image_type.deserialize_aws_json_1_1(

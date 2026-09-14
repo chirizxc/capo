@@ -13,9 +13,9 @@ from capo_resource_groups_tagging_api import AsyncResourceGroupsTaggingAPIClient
 
 
 async def main():
-    async with AsyncResourceGroupsTaggingAPIClient() as s3:
+    async with AsyncResourceGroupsTaggingAPIClient() as resource_groups_tagging_api:
         # Example: call the describe_report_creation operation
-        response = await s3.describe_report_creation()
+        response = await resource_groups_tagging_api.describe_report_creation()
         print(response["status"])
 ```
 
@@ -28,9 +28,9 @@ from capo_resource_groups_tagging_api import AsyncResourceGroupsTaggingAPIClient
 
 
 async def main():
-    async with AsyncResourceGroupsTaggingAPIClient() as s3:
+    async with AsyncResourceGroupsTaggingAPIClient() as resource_groups_tagging_api:
         # Example: paginate over get_compliance_summary
-        async for item in s3.iter_get_compliance_summary():
+        async for item in resource_groups_tagging_api.iter_get_compliance_summary():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_resource_groups_tagging_api.error import ConstraintViolationException
 
 
 async def main():
-    async with AsyncResourceGroupsTaggingAPIClient() as s3:
+    async with AsyncResourceGroupsTaggingAPIClient() as resource_groups_tagging_api:
         try:
-            await s3.describe_report_creation()
+            await resource_groups_tagging_api.describe_report_creation()
         except ConstraintViolationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_resource_groups_tagging_api import AsyncResourceGroupsTaggingAPIClient
 
 
 async def main():
-    async with AsyncResourceGroupsTaggingAPIClient() as s3:
+    async with AsyncResourceGroupsTaggingAPIClient() as resource_groups_tagging_api:
         # Default: 3 attempts for every operation
-        response = await s3.describe_report_creation()
+        response = await resource_groups_tagging_api.describe_report_creation()
 
         # Override per operation
-        response = await s3.describe_report_creation(config_overrides={"retry_max_attempts": 5})
+        response = await resource_groups_tagging_api.describe_report_creation(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.describe_report_creation(config_overrides={"retry_max_attempts": 1})
+        response = await resource_groups_tagging_api.describe_report_creation(config_overrides={"retry_max_attempts": 1})
 ```

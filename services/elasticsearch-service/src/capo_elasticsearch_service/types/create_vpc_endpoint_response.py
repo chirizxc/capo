@@ -28,7 +28,7 @@ def serialize_json(value: CreateVpcEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateVpcEndpointResponse:
     out: CreateVpcEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "VpcEndpoint" in data:
+    if data.get("VpcEndpoint") is not None:
         import capo_elasticsearch_service.types.vpc_endpoint
 
         out["vpc_endpoint"] = (

@@ -108,21 +108,21 @@ def serialize_json(value: CreateProbeOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateProbeOutput:
     out: CreateProbeOutput = {}  # type: ignore[typeddict-item]
-    if "probeId" in data:
+    if data.get("probeId") is not None:
         out["probe_id"] = data["probeId"]
-    if "probeArn" in data:
+    if data.get("probeArn") is not None:
         out["probe_arn"] = data["probeArn"]
-    if "sourceArn" in data:
+    if data.get("sourceArn") is not None:
         out["source_arn"] = data["sourceArn"]
     else:
         raise DeserializationError("CreateProbeOutput.source_arn required")
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
     else:
         raise DeserializationError("CreateProbeOutput.destination required")
-    if "destinationPort" in data:
+    if data.get("destinationPort") is not None:
         out["destination_port"] = data["destinationPort"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_networkmonitor.types.protocol
 
         out["protocol"] = capo_networkmonitor.types.protocol.deserialize_json(
@@ -130,9 +130,9 @@ def deserialize_json(data: dict) -> CreateProbeOutput:
         )
     else:
         raise DeserializationError("CreateProbeOutput.protocol required")
-    if "packetSize" in data:
+    if data.get("packetSize") is not None:
         out["packet_size"] = data["packetSize"]
-    if "addressFamily" in data:
+    if data.get("addressFamily") is not None:
         import capo_networkmonitor.types.address_family
 
         out["address_family"] = (
@@ -140,15 +140,15 @@ def deserialize_json(data: dict) -> CreateProbeOutput:
                 data["addressFamily"]
             )
         )
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_networkmonitor.types.probe_state
 
         out["state"] = capo_networkmonitor.types.probe_state.deserialize_json(
             data["state"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_networkmonitor.types.iso8601_timestamp
 
         out["created_at"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> CreateProbeOutput:
                 data["createdAt"]
             )
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_networkmonitor.types.iso8601_timestamp
 
         out["modified_at"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> CreateProbeOutput:
                 data["modifiedAt"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_networkmonitor.types.tag_map
 
         out["tags"] = capo_networkmonitor.types.tag_map.deserialize_json(data["tags"])

@@ -33,10 +33,10 @@ def serialize_aws_json_1_0(value: EipAssociation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EipAssociation:
     out: EipAssociation = {}  # type: ignore[typeddict-item]
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
-    if "allocationId" in data:
+    if data.get("allocationId") is not None:
         out["allocation_id"] = data["allocationId"]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
     return out

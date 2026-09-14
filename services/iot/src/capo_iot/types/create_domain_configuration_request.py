@@ -128,9 +128,9 @@ def serialize_json(value: CreateDomainConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainConfigurationRequest:
     out: CreateDomainConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "serverCertificateArns" in data:
+    if data.get("serverCertificateArns") is not None:
         import capo_iot.types.server_certificate_arns
 
         out["server_certificate_arns"] = (
@@ -138,31 +138,31 @@ def deserialize_json(data: dict) -> CreateDomainConfigurationRequest:
                 data["serverCertificateArns"]
             )
         )
-    if "validationCertificateArn" in data:
+    if data.get("validationCertificateArn") is not None:
         out["validation_certificate_arn"] = data["validationCertificateArn"]
-    if "authorizerConfig" in data:
+    if data.get("authorizerConfig") is not None:
         import capo_iot.types.authorizer_config
 
         out["authorizer_config"] = capo_iot.types.authorizer_config.deserialize_json(
             data["authorizerConfig"]
         )
-    if "serviceType" in data:
+    if data.get("serviceType") is not None:
         import capo_iot.types.service_type
 
         out["service_type"] = capo_iot.types.service_type.deserialize_json(
             data["serviceType"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])
-    if "tlsConfig" in data:
+    if data.get("tlsConfig") is not None:
         import capo_iot.types.tls_config
 
         out["tls_config"] = capo_iot.types.tls_config.deserialize_json(
             data["tlsConfig"]
         )
-    if "serverCertificateConfig" in data:
+    if data.get("serverCertificateConfig") is not None:
         import capo_iot.types.server_certificate_config
 
         out["server_certificate_config"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> CreateDomainConfigurationRequest:
                 data["serverCertificateConfig"]
             )
         )
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         import capo_iot.types.authentication_type
 
         out["authentication_type"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> CreateDomainConfigurationRequest:
                 data["authenticationType"]
             )
         )
-    if "applicationProtocol" in data:
+    if data.get("applicationProtocol") is not None:
         import capo_iot.types.application_protocol
 
         out["application_protocol"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> CreateDomainConfigurationRequest:
                 data["applicationProtocol"]
             )
         )
-    if "clientCertificateConfig" in data:
+    if data.get("clientCertificateConfig") is not None:
         import capo_iot.types.client_certificate_config
 
         out["client_certificate_config"] = (

@@ -47,7 +47,7 @@ def serialize_json(value: ListLakeFormationOptInsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListLakeFormationOptInsRequest:
     out: ListLakeFormationOptInsRequest = {}  # type: ignore[typeddict-item]
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         import capo_lakeformation.types.data_lake_principal
 
         out["principal"] = (
@@ -55,14 +55,14 @@ def deserialize_json(data: dict) -> ListLakeFormationOptInsRequest:
                 data["Principal"]
             )
         )
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_lakeformation.types.resource
 
         out["resource"] = capo_lakeformation.types.resource.deserialize_json(
             data["Resource"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -58,15 +58,15 @@ def serialize_json(value: GetSatelliteResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSatelliteResponse:
     out: GetSatelliteResponse = {}  # type: ignore[typeddict-item]
-    if "satelliteId" in data:
+    if data.get("satelliteId") is not None:
         out["satellite_id"] = data["satelliteId"]
-    if "satelliteArn" in data:
+    if data.get("satelliteArn") is not None:
         out["satellite_arn"] = data["satelliteArn"]
-    if "noradSatelliteID" in data:
+    if data.get("noradSatelliteID") is not None:
         out["norad_satellite_id"] = data["noradSatelliteID"]
     else:
         out["norad_satellite_id"] = 0
-    if "groundStations" in data:
+    if data.get("groundStations") is not None:
         import capo_groundstation.types.ground_station_id_list
 
         out["ground_stations"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> GetSatelliteResponse:
                 data["groundStations"]
             )
         )
-    if "currentEphemeris" in data:
+    if data.get("currentEphemeris") is not None:
         import capo_groundstation.types.ephemeris_meta_data
 
         out["current_ephemeris"] = (

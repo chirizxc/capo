@@ -51,7 +51,7 @@ def serialize_json(value: VerifyDevicePositionResponse) -> dict:
 
 def deserialize_json(data: dict) -> VerifyDevicePositionResponse:
     out: VerifyDevicePositionResponse = {}  # type: ignore[typeddict-item]
-    if "InferredState" in data:
+    if data.get("InferredState") is not None:
         import capo_location.types.inferred_state
 
         out["inferred_state"] = capo_location.types.inferred_state.deserialize_json(
@@ -61,11 +61,11 @@ def deserialize_json(data: dict) -> VerifyDevicePositionResponse:
         raise DeserializationError(
             "VerifyDevicePositionResponse.inferred_state required"
         )
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError("VerifyDevicePositionResponse.device_id required")
-    if "SampleTime" in data:
+    if data.get("SampleTime") is not None:
         import capo_location.types.timestamp
 
         out["sample_time"] = capo_location.types.timestamp.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> VerifyDevicePositionResponse:
         )
     else:
         raise DeserializationError("VerifyDevicePositionResponse.sample_time required")
-    if "ReceivedTime" in data:
+    if data.get("ReceivedTime") is not None:
         import capo_location.types.timestamp
 
         out["received_time"] = capo_location.types.timestamp.deserialize_json(
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> VerifyDevicePositionResponse:
         raise DeserializationError(
             "VerifyDevicePositionResponse.received_time required"
         )
-    if "DistanceUnit" in data:
+    if data.get("DistanceUnit") is not None:
         out["distance_unit"] = data["DistanceUnit"]
     else:
         raise DeserializationError(

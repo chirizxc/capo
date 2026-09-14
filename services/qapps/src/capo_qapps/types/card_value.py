@@ -38,15 +38,15 @@ def serialize_json(value: CardValue) -> dict:
 
 def deserialize_json(data: dict) -> CardValue:
     out: CardValue = {}  # type: ignore[typeddict-item]
-    if "cardId" in data:
+    if data.get("cardId") is not None:
         out["card_id"] = data["cardId"]
     else:
         raise DeserializationError("CardValue.card_id required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("CardValue.value required")
-    if "submissionMutation" in data:
+    if data.get("submissionMutation") is not None:
         import capo_qapps.types.submission_mutation
 
         out["submission_mutation"] = (

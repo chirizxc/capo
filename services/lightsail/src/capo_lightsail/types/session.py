@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: Session) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Session:
     out: Session = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "isPrimary" in data:
+    if data.get("isPrimary") is not None:
         out["is_primary"] = data["isPrimary"]
     return out

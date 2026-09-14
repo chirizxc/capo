@@ -27,7 +27,7 @@ def serialize_json(value: CollectiveConstant) -> dict:
 
 def deserialize_json(data: dict) -> CollectiveConstant:
     out: CollectiveConstant = {}  # type: ignore[typeddict-item]
-    if "ValueList" in data:
+    if data.get("ValueList") is not None:
         import capo_quicksight.types.string_list
 
         out["value_list"] = capo_quicksight.types.string_list.deserialize_json(

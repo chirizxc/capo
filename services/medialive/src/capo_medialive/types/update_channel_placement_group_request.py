@@ -36,9 +36,9 @@ def serialize_json(value: UpdateChannelPlacementGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChannelPlacementGroupRequest:
     out: UpdateChannelPlacementGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "nodes" in data:
+    if data.get("nodes") is not None:
         import capo_medialive.types.__list_of__string
 
         out["nodes"] = capo_medialive.types.__list_of__string.deserialize_json(

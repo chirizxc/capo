@@ -98,21 +98,21 @@ def serialize_aws_json_1_1(value: MonitoringExecutionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringExecutionSummary:
     out: MonitoringExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "MonitoringScheduleName" in data:
+    if data.get("MonitoringScheduleName") is not None:
         out["monitoring_schedule_name"] = data["MonitoringScheduleName"]
-    if "ScheduledTime" in data:
+    if data.get("ScheduledTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["scheduled_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["ScheduledTime"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringExecutionSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "MonitoringExecutionStatus" in data:
+    if data.get("MonitoringExecutionStatus") is not None:
         import capo_sagemaker.types.execution_status
 
         out["monitoring_execution_status"] = (
@@ -128,15 +128,15 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringExecutionSummary:
                 data["MonitoringExecutionStatus"]
             )
         )
-    if "ProcessingJobArn" in data:
+    if data.get("ProcessingJobArn") is not None:
         out["processing_job_arn"] = data["ProcessingJobArn"]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "MonitoringJobDefinitionName" in data:
+    if data.get("MonitoringJobDefinitionName") is not None:
         out["monitoring_job_definition_name"] = data["MonitoringJobDefinitionName"]
-    if "MonitoringType" in data:
+    if data.get("MonitoringType") is not None:
         import capo_sagemaker.types.monitoring_type
 
         out["monitoring_type"] = (

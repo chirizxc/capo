@@ -39,15 +39,15 @@ def serialize_json(value: AgentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AgentConfiguration:
     out: AgentConfiguration = {}  # type: ignore[typeddict-item]
-    if "shouldProfile" in data:
+    if data.get("shouldProfile") is not None:
         out["should_profile"] = data["shouldProfile"]
     else:
         raise DeserializationError("AgentConfiguration.should_profile required")
-    if "periodInSeconds" in data:
+    if data.get("periodInSeconds") is not None:
         out["period_in_seconds"] = data["periodInSeconds"]
     else:
         raise DeserializationError("AgentConfiguration.period_in_seconds required")
-    if "agentParameters" in data:
+    if data.get("agentParameters") is not None:
         import capo_codeguruprofiler.types.agent_parameters
 
         out["agent_parameters"] = (

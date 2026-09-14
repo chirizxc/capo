@@ -95,15 +95,15 @@ def serialize_json(value: StreamGroupSummary) -> dict:
 
 def deserialize_json(data: dict) -> StreamGroupSummary:
     out: StreamGroupSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("StreamGroupSummary.arn required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DefaultApplication" in data:
+    if data.get("DefaultApplication") is not None:
         import capo_gameliftstreams.types.default_application
 
         out["default_application"] = (
@@ -111,19 +111,19 @@ def deserialize_json(data: dict) -> StreamGroupSummary:
                 data["DefaultApplication"]
             )
         )
-    if "StreamClass" in data:
+    if data.get("StreamClass") is not None:
         import capo_gameliftstreams.types.stream_class
 
         out["stream_class"] = capo_gameliftstreams.types.stream_class.deserialize_json(
             data["StreamClass"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gameliftstreams.types.stream_group_status
 
         out["status"] = capo_gameliftstreams.types.stream_group_status.deserialize_json(
             data["Status"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["created_at"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> StreamGroupSummary:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["last_updated_at"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> StreamGroupSummary:
                 data["LastUpdatedAt"]
             )
         )
-    if "ExpiresAt" in data:
+    if data.get("ExpiresAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["expires_at"] = (

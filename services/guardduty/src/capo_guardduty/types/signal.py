@@ -88,7 +88,15 @@ def serialize_json(value: Signal) -> dict:
             value["last_seen_at"]
         )
     if "severity" in value:
-        out["severity"] = value["severity"]
+        out["severity"] = (
+            "NaN"
+            if value["severity"] != value["severity"]
+            else "Infinity"
+            if value["severity"] == float("inf")
+            else "-Infinity"
+            if value["severity"] == float("-inf")
+            else value["severity"]
+        )
     if "count" in value:
         out["count"] = value["count"]
     if "resource_uids" in value:
@@ -120,63 +128,63 @@ def serialize_json(value: Signal) -> dict:
 
 def deserialize_json(data: dict) -> Signal:
     out: Signal = {}  # type: ignore[typeddict-item]
-    if "uid" in data:
+    if data.get("uid") is not None:
         out["uid"] = data["uid"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_guardduty.types.signal_type
 
         out["type"] = capo_guardduty.types.signal_type.deserialize_json(data["type"])
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["created_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["updated_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "firstSeenAt" in data:
+    if data.get("firstSeenAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["first_seen_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["firstSeenAt"]
         )
-    if "lastSeenAt" in data:
+    if data.get("lastSeenAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["last_seen_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["lastSeenAt"]
         )
-    if "severity" in data:
-        out["severity"] = data["severity"]
-    if "count" in data:
+    if data.get("severity") is not None:
+        out["severity"] = float(data["severity"])
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "resourceUids" in data:
+    if data.get("resourceUids") is not None:
         import capo_guardduty.types.resource_uids
 
         out["resource_uids"] = capo_guardduty.types.resource_uids.deserialize_json(
             data["resourceUids"]
         )
-    if "actorIds" in data:
+    if data.get("actorIds") is not None:
         import capo_guardduty.types.actor_ids
 
         out["actor_ids"] = capo_guardduty.types.actor_ids.deserialize_json(
             data["actorIds"]
         )
-    if "endpointIds" in data:
+    if data.get("endpointIds") is not None:
         import capo_guardduty.types.endpoint_ids
 
         out["endpoint_ids"] = capo_guardduty.types.endpoint_ids.deserialize_json(
             data["endpointIds"]
         )
-    if "signalIndicators" in data:
+    if data.get("signalIndicators") is not None:
         import capo_guardduty.types.indicators
 
         out["signal_indicators"] = capo_guardduty.types.indicators.deserialize_json(

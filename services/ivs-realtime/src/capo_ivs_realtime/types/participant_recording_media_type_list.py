@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ParticipantRecordingMediaTypeList:
 
     out: ParticipantRecordingMediaTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs_realtime.types.participant_recording_media_type.deserialize_json(
                 item

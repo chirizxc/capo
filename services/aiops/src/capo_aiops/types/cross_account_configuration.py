@@ -23,6 +23,6 @@ def serialize_json(value: CrossAccountConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CrossAccountConfiguration:
     out: CrossAccountConfiguration = {}  # type: ignore[typeddict-item]
-    if "sourceRoleArn" in data:
+    if data.get("sourceRoleArn") is not None:
         out["source_role_arn"] = data["sourceRoleArn"]
     return out

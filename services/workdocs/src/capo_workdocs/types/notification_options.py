@@ -27,10 +27,10 @@ def serialize_json(value: NotificationOptions) -> dict:
 
 def deserialize_json(data: dict) -> NotificationOptions:
     out: NotificationOptions = {}  # type: ignore[typeddict-item]
-    if "SendEmail" in data:
+    if data.get("SendEmail") is not None:
         out["send_email"] = data["SendEmail"]
     else:
         out["send_email"] = False
-    if "EmailMessage" in data:
+    if data.get("EmailMessage") is not None:
         out["email_message"] = data["EmailMessage"]
     return out

@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: UserContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserContext:
     out: UserContext = {}  # type: ignore[typeddict-item]
-    if "UserProfileArn" in data:
+    if data.get("UserProfileArn") is not None:
         out["user_profile_arn"] = data["UserProfileArn"]
-    if "UserProfileName" in data:
+    if data.get("UserProfileName") is not None:
         out["user_profile_name"] = data["UserProfileName"]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "IamIdentity" in data:
+    if data.get("IamIdentity") is not None:
         import capo_sagemaker.types.iam_identity
 
         out["iam_identity"] = (

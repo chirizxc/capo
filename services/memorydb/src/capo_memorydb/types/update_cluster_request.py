@@ -120,13 +120,13 @@ def serialize_aws_json_1_1(value: UpdateClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateClusterRequest:
     out: UpdateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError("UpdateClusterRequest.cluster_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_memorydb.types.security_group_ids_list
 
         out["security_group_ids"] = (
@@ -134,25 +134,25 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateClusterRequest:
                 data["SecurityGroupIds"]
             )
         )
-    if "MaintenanceWindow" in data:
+    if data.get("MaintenanceWindow") is not None:
         out["maintenance_window"] = data["MaintenanceWindow"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "SnsTopicStatus" in data:
+    if data.get("SnsTopicStatus") is not None:
         out["sns_topic_status"] = data["SnsTopicStatus"]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
-    if "SnapshotWindow" in data:
+    if data.get("SnapshotWindow") is not None:
         out["snapshot_window"] = data["SnapshotWindow"]
-    if "SnapshotRetentionLimit" in data:
+    if data.get("SnapshotRetentionLimit") is not None:
         out["snapshot_retention_limit"] = data["SnapshotRetentionLimit"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "ReplicaConfiguration" in data:
+    if data.get("ReplicaConfiguration") is not None:
         import capo_memorydb.types.replica_configuration_request
 
         out["replica_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateClusterRequest:
                 data["ReplicaConfiguration"]
             )
         )
-    if "ShardConfiguration" in data:
+    if data.get("ShardConfiguration") is not None:
         import capo_memorydb.types.shard_configuration_request
 
         out["shard_configuration"] = (
@@ -168,9 +168,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateClusterRequest:
                 data["ShardConfiguration"]
             )
         )
-    if "ACLName" in data:
+    if data.get("ACLName") is not None:
         out["acl_name"] = data["ACLName"]
-    if "IpDiscovery" in data:
+    if data.get("IpDiscovery") is not None:
         import capo_memorydb.types.ip_discovery
 
         out["ip_discovery"] = capo_memorydb.types.ip_discovery.deserialize_aws_json_1_1(

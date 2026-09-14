@@ -38,15 +38,15 @@ def serialize_json(value: InternetEventSummary) -> dict:
     out: dict = {}
     out["EventId"] = value["event_id"]
     out["EventArn"] = value["event_arn"]
-    import capo_internetmonitor.types._prelude.timestamp
+    import capo_internetmonitor._protocol.serialize
 
-    out["StartedAt"] = capo_internetmonitor.types._prelude.timestamp.serialize_json(
+    out["StartedAt"] = capo_internetmonitor._protocol.serialize.fmt_date_time(
         value["started_at"]
     )
     if "ended_at" in value:
-        import capo_internetmonitor.types._prelude.timestamp
+        import capo_internetmonitor._protocol.serialize
 
-        out["EndedAt"] = capo_internetmonitor.types._prelude.timestamp.serialize_json(
+        out["EndedAt"] = capo_internetmonitor._protocol.serialize.fmt_date_time(
             value["ended_at"]
         )
     import capo_internetmonitor.types.client_location
@@ -61,33 +61,29 @@ def serialize_json(value: InternetEventSummary) -> dict:
 
 def deserialize_json(data: dict) -> InternetEventSummary:
     out: InternetEventSummary = {}  # type: ignore[typeddict-item]
-    if "EventId" in data:
+    if data.get("EventId") is not None:
         out["event_id"] = data["EventId"]
     else:
         raise DeserializationError("InternetEventSummary.event_id required")
-    if "EventArn" in data:
+    if data.get("EventArn") is not None:
         out["event_arn"] = data["EventArn"]
     else:
         raise DeserializationError("InternetEventSummary.event_arn required")
-    if "StartedAt" in data:
-        import capo_internetmonitor.types._prelude.timestamp
+    if data.get("StartedAt") is not None:
+        import datetime
 
-        out["started_at"] = (
-            capo_internetmonitor.types._prelude.timestamp.deserialize_json(
-                data["StartedAt"]
-            )
+        out["started_at"] = datetime.datetime.fromisoformat(
+            data["StartedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("InternetEventSummary.started_at required")
-    if "EndedAt" in data:
-        import capo_internetmonitor.types._prelude.timestamp
+    if data.get("EndedAt") is not None:
+        import datetime
 
-        out["ended_at"] = (
-            capo_internetmonitor.types._prelude.timestamp.deserialize_json(
-                data["EndedAt"]
-            )
+        out["ended_at"] = datetime.datetime.fromisoformat(
+            data["EndedAt"].replace("Z", "+00:00")
         )
-    if "ClientLocation" in data:
+    if data.get("ClientLocation") is not None:
         import capo_internetmonitor.types.client_location
 
         out["client_location"] = (
@@ -97,11 +93,11 @@ def deserialize_json(data: dict) -> InternetEventSummary:
         )
     else:
         raise DeserializationError("InternetEventSummary.client_location required")
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         out["event_type"] = data["EventType"]
     else:
         raise DeserializationError("InternetEventSummary.event_type required")
-    if "EventStatus" in data:
+    if data.get("EventStatus") is not None:
         out["event_status"] = data["EventStatus"]
     else:
         raise DeserializationError("InternetEventSummary.event_status required")

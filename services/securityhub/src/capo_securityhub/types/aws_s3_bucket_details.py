@@ -151,15 +151,15 @@ def serialize_json(value: AwsS3BucketDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketDetails:
     out: AwsS3BucketDetails = {}  # type: ignore[typeddict-item]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "OwnerName" in data:
+    if data.get("OwnerName") is not None:
         out["owner_name"] = data["OwnerName"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         out["created_at"] = data["CreatedAt"]
-    if "ServerSideEncryptionConfiguration" in data:
+    if data.get("ServerSideEncryptionConfiguration") is not None:
         import capo_securityhub.types.aws_s3_bucket_server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> AwsS3BucketDetails:
                 data["ServerSideEncryptionConfiguration"]
             )
         )
-    if "BucketLifecycleConfiguration" in data:
+    if data.get("BucketLifecycleConfiguration") is not None:
         import capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_details
 
         out["bucket_lifecycle_configuration"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> AwsS3BucketDetails:
                 data["BucketLifecycleConfiguration"]
             )
         )
-    if "PublicAccessBlockConfiguration" in data:
+    if data.get("PublicAccessBlockConfiguration") is not None:
         import capo_securityhub.types.aws_s3_account_public_access_block_details
 
         out["public_access_block_configuration"] = (
@@ -183,9 +183,9 @@ def deserialize_json(data: dict) -> AwsS3BucketDetails:
                 data["PublicAccessBlockConfiguration"]
             )
         )
-    if "AccessControlList" in data:
+    if data.get("AccessControlList") is not None:
         out["access_control_list"] = data["AccessControlList"]
-    if "BucketLoggingConfiguration" in data:
+    if data.get("BucketLoggingConfiguration") is not None:
         import capo_securityhub.types.aws_s3_bucket_logging_configuration
 
         out["bucket_logging_configuration"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> AwsS3BucketDetails:
                 data["BucketLoggingConfiguration"]
             )
         )
-    if "BucketWebsiteConfiguration" in data:
+    if data.get("BucketWebsiteConfiguration") is not None:
         import capo_securityhub.types.aws_s3_bucket_website_configuration
 
         out["bucket_website_configuration"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> AwsS3BucketDetails:
                 data["BucketWebsiteConfiguration"]
             )
         )
-    if "BucketNotificationConfiguration" in data:
+    if data.get("BucketNotificationConfiguration") is not None:
         import capo_securityhub.types.aws_s3_bucket_notification_configuration
 
         out["bucket_notification_configuration"] = (
@@ -209,7 +209,7 @@ def deserialize_json(data: dict) -> AwsS3BucketDetails:
                 data["BucketNotificationConfiguration"]
             )
         )
-    if "BucketVersioningConfiguration" in data:
+    if data.get("BucketVersioningConfiguration") is not None:
         import capo_securityhub.types.aws_s3_bucket_bucket_versioning_configuration
 
         out["bucket_versioning_configuration"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> AwsS3BucketDetails:
                 data["BucketVersioningConfiguration"]
             )
         )
-    if "ObjectLockConfiguration" in data:
+    if data.get("ObjectLockConfiguration") is not None:
         import capo_securityhub.types.aws_s3_bucket_object_lock_configuration
 
         out["object_lock_configuration"] = (
@@ -225,6 +225,6 @@ def deserialize_json(data: dict) -> AwsS3BucketDetails:
                 data["ObjectLockConfiguration"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

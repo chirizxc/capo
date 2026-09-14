@@ -63,19 +63,19 @@ def serialize_json(value: StartDomainExportRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDomainExportRequest:
     out: StartDomainExportRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("StartDomainExportRequest.domain_name required")
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
     else:
         raise DeserializationError("StartDomainExportRequest.s3_bucket required")
-    if "s3KeyPrefix" in data:
+    if data.get("s3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["s3KeyPrefix"]
-    if "s3SseAlgorithm" in data:
+    if data.get("s3SseAlgorithm") is not None:
         import capo_simpledbv2.types.s3_sse_algorithm
 
         out["s3_sse_algorithm"] = (
@@ -83,8 +83,8 @@ def deserialize_json(data: dict) -> StartDomainExportRequest:
                 data["s3SseAlgorithm"]
             )
         )
-    if "s3SseKmsKeyId" in data:
+    if data.get("s3SseKmsKeyId") is not None:
         out["s3_sse_kms_key_id"] = data["s3SseKmsKeyId"]
-    if "s3BucketOwner" in data:
+    if data.get("s3BucketOwner") is not None:
         out["s3_bucket_owner"] = data["s3BucketOwner"]
     return out

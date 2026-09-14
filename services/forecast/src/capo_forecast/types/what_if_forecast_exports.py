@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> WhatIfForecastExports:
 
     out: WhatIfForecastExports = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_forecast.types.what_if_forecast_export_summary.deserialize_aws_json_1_1(
                 item

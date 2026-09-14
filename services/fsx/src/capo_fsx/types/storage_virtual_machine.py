@@ -133,7 +133,7 @@ def serialize_aws_json_1_1(value: StorageVirtualMachine) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StorageVirtualMachine:
     out: StorageVirtualMachine = {}  # type: ignore[typeddict-item]
-    if "ActiveDirectoryConfiguration" in data:
+    if data.get("ActiveDirectoryConfiguration") is not None:
         import capo_fsx.types.svm_active_directory_configuration
 
         out["active_directory_configuration"] = (
@@ -141,21 +141,21 @@ def deserialize_aws_json_1_1(data: dict) -> StorageVirtualMachine:
                 data["ActiveDirectoryConfiguration"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_fsx.types.creation_time
 
         out["creation_time"] = capo_fsx.types.creation_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_fsx.types.svm_endpoints
 
         out["endpoints"] = capo_fsx.types.svm_endpoints.deserialize_aws_json_1_1(
             data["Endpoints"]
         )
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.storage_virtual_machine_lifecycle
 
         out["lifecycle"] = (
@@ -163,13 +163,13 @@ def deserialize_aws_json_1_1(data: dict) -> StorageVirtualMachine:
                 data["Lifecycle"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "StorageVirtualMachineId" in data:
+    if data.get("StorageVirtualMachineId") is not None:
         out["storage_virtual_machine_id"] = data["StorageVirtualMachineId"]
-    if "Subtype" in data:
+    if data.get("Subtype") is not None:
         import capo_fsx.types.storage_virtual_machine_subtype
 
         out["subtype"] = (
@@ -177,13 +177,13 @@ def deserialize_aws_json_1_1(data: dict) -> StorageVirtualMachine:
                 data["Subtype"]
             )
         )
-    if "UUID" in data:
+    if data.get("UUID") is not None:
         out["uuid"] = data["UUID"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "LifecycleTransitionReason" in data:
+    if data.get("LifecycleTransitionReason") is not None:
         import capo_fsx.types.lifecycle_transition_reason
 
         out["lifecycle_transition_reason"] = (
@@ -191,7 +191,7 @@ def deserialize_aws_json_1_1(data: dict) -> StorageVirtualMachine:
                 data["LifecycleTransitionReason"]
             )
         )
-    if "RootVolumeSecurityStyle" in data:
+    if data.get("RootVolumeSecurityStyle") is not None:
         import capo_fsx.types.storage_virtual_machine_root_volume_security_style
 
         out["root_volume_security_style"] = (

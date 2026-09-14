@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: CreateVpcEndpointResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateVpcEndpointResponse:
     out: CreateVpcEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "createVpcEndpointDetail" in data:
+    if data.get("createVpcEndpointDetail") is not None:
         import capo_opensearchserverless.types.create_vpc_endpoint_detail
 
         out["create_vpc_endpoint_detail"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> StartSourceNetworkRecoveryRequestNetworkEntr
 
     out: StartSourceNetworkRecoveryRequestNetworkEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_drs.types.start_source_network_recovery_request_network_entry.deserialize_json(
                 item

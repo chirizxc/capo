@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> LoadBalancerTlsCertificateSummaryLis
 
     out: LoadBalancerTlsCertificateSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.load_balancer_tls_certificate_summary.deserialize_aws_json_1_1(
                 item

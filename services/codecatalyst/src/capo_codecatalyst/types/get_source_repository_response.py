@@ -53,21 +53,21 @@ def serialize_json(value: GetSourceRepositoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSourceRepositoryResponse:
     out: GetSourceRepositoryResponse = {}  # type: ignore[typeddict-item]
-    if "spaceName" in data:
+    if data.get("spaceName") is not None:
         out["space_name"] = data["spaceName"]
     else:
         raise DeserializationError("GetSourceRepositoryResponse.space_name required")
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("GetSourceRepositoryResponse.project_name required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetSourceRepositoryResponse.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_codecatalyst.types.timestamp
 
         out["last_updated_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> GetSourceRepositoryResponse:
         raise DeserializationError(
             "GetSourceRepositoryResponse.last_updated_time required"
         )
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_codecatalyst.types.timestamp
 
         out["created_time"] = capo_codecatalyst.types.timestamp.deserialize_json(

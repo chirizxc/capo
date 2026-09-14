@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: ListStreamsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListStreamsOutput:
     out: ListStreamsOutput = {}  # type: ignore[typeddict-item]
-    if "streams" in data:
+    if data.get("streams") is not None:
         import capo_keyspacesstreams.types.stream_list
 
         out["streams"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListStreamsOutput:
                 data["streams"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

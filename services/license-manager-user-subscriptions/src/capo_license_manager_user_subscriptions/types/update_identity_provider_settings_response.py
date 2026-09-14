@@ -29,7 +29,7 @@ def serialize_json(value: UpdateIdentityProviderSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIdentityProviderSettingsResponse:
     out: UpdateIdentityProviderSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityProviderSummary" in data:
+    if data.get("IdentityProviderSummary") is not None:
         import capo_license_manager_user_subscriptions.types.identity_provider_summary
 
         out["identity_provider_summary"] = (

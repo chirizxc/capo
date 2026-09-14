@@ -109,11 +109,11 @@ def serialize_aws_json_1_0(value: ListOpportunityFromEngagementTasksRequest) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> ListOpportunityFromEngagementTasksRequest:
     out: ListOpportunityFromEngagementTasksRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_partnercentral_selling.types.list_tasks_sort_base
 
         out["sort"] = (
@@ -121,13 +121,13 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunityFromEngagementTasksRe
                 data["Sort"]
             )
         )
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError(
             "ListOpportunityFromEngagementTasksRequest.catalog required"
         )
-    if "TaskStatus" in data:
+    if data.get("TaskStatus") is not None:
         import capo_partnercentral_selling.types.task_statuses
 
         out["task_status"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunityFromEngagementTasksRe
                 data["TaskStatus"]
             )
         )
-    if "TaskIdentifier" in data:
+    if data.get("TaskIdentifier") is not None:
         import capo_partnercentral_selling.types.task_identifiers
 
         out["task_identifier"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunityFromEngagementTasksRe
                 data["TaskIdentifier"]
             )
         )
-    if "OpportunityIdentifier" in data:
+    if data.get("OpportunityIdentifier") is not None:
         import capo_partnercentral_selling.types.opportunity_identifiers
 
         out["opportunity_identifier"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunityFromEngagementTasksRe
                 data["OpportunityIdentifier"]
             )
         )
-    if "EngagementIdentifier" in data:
+    if data.get("EngagementIdentifier") is not None:
         import capo_partnercentral_selling.types.engagement_identifiers
 
         out["engagement_identifier"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunityFromEngagementTasksRe
                 data["EngagementIdentifier"]
             )
         )
-    if "ContextIdentifier" in data:
+    if data.get("ContextIdentifier") is not None:
         import capo_partnercentral_selling.types.context_identifiers
 
         out["context_identifier"] = (

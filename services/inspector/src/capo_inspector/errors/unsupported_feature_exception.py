@@ -26,11 +26,11 @@ def serialize_aws_json_1_1(value: UnsupportedFeatureException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnsupportedFeatureException_:
     out: UnsupportedFeatureException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("UnsupportedFeatureException_.message required")
-    if "canRetry" in data:
+    if data.get("canRetry") is not None:
         out["can_retry"] = data["canRetry"]
     else:
         raise DeserializationError("UnsupportedFeatureException_.can_retry required")
@@ -42,15 +42,18 @@ class UnsupportedFeatureException(ServiceError):
 
     code: str | None = "UnsupportedFeatureException"
 
-    def __init__(self, data: UnsupportedFeatureException_):
+    def __init__(self, data: UnsupportedFeatureException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedFeatureException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "UnsupportedFeatureException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedFeatureException":
+        return cls(deserialize_aws_json_1_1(data), message)

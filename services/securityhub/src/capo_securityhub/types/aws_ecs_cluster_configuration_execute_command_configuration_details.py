@@ -46,9 +46,9 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsClusterConfigurationExecuteCommandConfigurationDetails:
     out: AwsEcsClusterConfigurationExecuteCommandConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "LogConfiguration" in data:
+    if data.get("LogConfiguration") is not None:
         import capo_securityhub.types.aws_ecs_cluster_configuration_execute_command_configuration_log_configuration_details
 
         out["log_configuration"] = (
@@ -56,6 +56,6 @@ def deserialize_json(
                 data["LogConfiguration"]
             )
         )
-    if "Logging" in data:
+    if data.get("Logging") is not None:
         out["logging"] = data["Logging"]
     return out

@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: EnvironmentLifecycle) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnvironmentLifecycle:
     out: EnvironmentLifecycle = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cloud9.types.environment_lifecycle_status
 
         out["status"] = (
@@ -48,8 +48,8 @@ def deserialize_aws_json_1_1(data: dict) -> EnvironmentLifecycle:
                 data["status"]
             )
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "failureResource" in data:
+    if data.get("failureResource") is not None:
         out["failure_resource"] = data["failureResource"]
     return out

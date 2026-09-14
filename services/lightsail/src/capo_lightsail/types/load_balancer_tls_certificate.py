@@ -215,19 +215,19 @@ def serialize_aws_json_1_1(value: LoadBalancerTlsCertificate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificate:
     out: LoadBalancerTlsCertificate = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -235,7 +235,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificate:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -243,17 +243,17 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificate:
                 data["resourceType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "loadBalancerName" in data:
+    if data.get("loadBalancerName") is not None:
         out["load_balancer_name"] = data["loadBalancerName"]
-    if "isAttached" in data:
+    if data.get("isAttached") is not None:
         out["is_attached"] = data["isAttached"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_status
 
         out["status"] = (
@@ -261,9 +261,9 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificate:
                 data["status"]
             )
         )
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "domainValidationRecords" in data:
+    if data.get("domainValidationRecords") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_domain_validation_record_list
 
         out["domain_validation_records"] = (
@@ -271,7 +271,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificate:
                 data["domainValidationRecords"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_failure_reason
 
         out["failure_reason"] = (
@@ -279,29 +279,29 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificate:
                 data["failureReason"]
             )
         )
-    if "issuedAt" in data:
+    if data.get("issuedAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["issued_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["issuedAt"]
         )
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
-    if "keyAlgorithm" in data:
+    if data.get("keyAlgorithm") is not None:
         out["key_algorithm"] = data["keyAlgorithm"]
-    if "notAfter" in data:
+    if data.get("notAfter") is not None:
         import capo_lightsail.types.iso_date
 
         out["not_after"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["notAfter"]
         )
-    if "notBefore" in data:
+    if data.get("notBefore") is not None:
         import capo_lightsail.types.iso_date
 
         out["not_before"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["notBefore"]
         )
-    if "renewalSummary" in data:
+    if data.get("renewalSummary") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_renewal_summary
 
         out["renewal_summary"] = (
@@ -309,7 +309,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificate:
                 data["renewalSummary"]
             )
         )
-    if "revocationReason" in data:
+    if data.get("revocationReason") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_revocation_reason
 
         out["revocation_reason"] = (
@@ -317,19 +317,19 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificate:
                 data["revocationReason"]
             )
         )
-    if "revokedAt" in data:
+    if data.get("revokedAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["revoked_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["revokedAt"]
         )
-    if "serial" in data:
+    if data.get("serial") is not None:
         out["serial"] = data["serial"]
-    if "signatureAlgorithm" in data:
+    if data.get("signatureAlgorithm") is not None:
         out["signature_algorithm"] = data["signatureAlgorithm"]
-    if "subject" in data:
+    if data.get("subject") is not None:
         out["subject"] = data["subject"]
-    if "subjectAlternativeNames" in data:
+    if data.get("subjectAlternativeNames") is not None:
         import capo_lightsail.types.string_list
 
         out["subject_alternative_names"] = (

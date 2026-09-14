@@ -379,15 +379,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.associate_api_request.AssociateApiRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.associate_api_request.AssociateApiRequest = {
+            "domain_name": domain_name,
+            "api_id": api_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_merged_graphql_api(
@@ -435,9 +437,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.associate_merged_graphql_api_request.AssociateMergedGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-        input_["source_api_identifier"] = source_api_identifier
-        input_["merged_api_identifier"] = merged_api_identifier
+        input_: capo_appsync.types.associate_merged_graphql_api_request.AssociateMergedGraphqlApiRequest = {
+            "source_api_identifier": source_api_identifier,
+            "merged_api_identifier": merged_api_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if source_api_association_config is not None:
@@ -448,6 +451,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_source_graphql_api(
@@ -495,9 +499,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.associate_source_graphql_api_request.AssociateSourceGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-        input_["merged_api_identifier"] = merged_api_identifier
-        input_["source_api_identifier"] = source_api_identifier
+        input_: capo_appsync.types.associate_source_graphql_api_request.AssociateSourceGraphqlApiRequest = {
+            "merged_api_identifier": merged_api_identifier,
+            "source_api_identifier": source_api_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if source_api_association_config is not None:
@@ -508,6 +513,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_api(
@@ -551,19 +557,21 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.create_api_request.CreateApiRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_appsync.types.create_api_request.CreateApiRequest = {
+            "name": name,
+            "event_config": event_config,
+        }
         if owner_contact is not None:
             input_["owner_contact"] = owner_contact
         if tags is not None:
             input_["tags"] = tags
-        input_["event_config"] = event_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_api_cache(
@@ -620,15 +628,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.create_api_cache_request.CreateApiCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["ttl"] = ttl
+        input_: capo_appsync.types.create_api_cache_request.CreateApiCacheRequest = {
+            "api_id": api_id,
+            "ttl": ttl,
+            "api_caching_behavior": api_caching_behavior,
+            "type": type,
+        }
         if transit_encryption_enabled is not None:
             input_["transit_encryption_enabled"] = transit_encryption_enabled
         if at_rest_encryption_enabled is not None:
             input_["at_rest_encryption_enabled"] = at_rest_encryption_enabled
-        input_["api_caching_behavior"] = api_caching_behavior
-        input_["type"] = type
         if health_metrics_config is not None:
             input_["health_metrics_config"] = health_metrics_config
 
@@ -637,6 +646,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_api_key(
@@ -681,8 +691,9 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.create_api_key_request.CreateApiKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.create_api_key_request.CreateApiKeyRequest = {
+            "api_id": api_id
+        }
         if description is not None:
             input_["description"] = description
         if expires is not None:
@@ -693,6 +704,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_channel_namespace(
@@ -748,9 +760,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.create_channel_namespace_request.CreateChannelNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.create_channel_namespace_request.CreateChannelNamespaceRequest = {
+            "api_id": api_id,
+            "name": name,
+        }
         if subscribe_auth_modes is not None:
             input_["subscribe_auth_modes"] = subscribe_auth_modes
         if publish_auth_modes is not None:
@@ -767,6 +780,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_source(
@@ -845,12 +859,13 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.create_data_source_request.CreateDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.create_data_source_request.CreateDataSourceRequest = {
+            "api_id": api_id,
+            "name": name,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["type"] = type
         if service_role_arn is not None:
             input_["service_role_arn"] = service_role_arn
         if dynamodb_config is not None:
@@ -875,6 +890,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_domain_name(
@@ -916,9 +932,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.create_domain_name_request.CreateDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["certificate_arn"] = certificate_arn
+        input_: capo_appsync.types.create_domain_name_request.CreateDomainNameRequest = {
+            "domain_name": domain_name,
+            "certificate_arn": certificate_arn,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -929,6 +946,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_function(
@@ -991,12 +1009,13 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.create_function_request.CreateFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.create_function_request.CreateFunctionRequest = {
+            "api_id": api_id,
+            "name": name,
+            "data_source_name": data_source_name,
+        }
         if description is not None:
             input_["description"] = description
-        input_["data_source_name"] = data_source_name
         if request_mapping_template is not None:
             input_["request_mapping_template"] = request_mapping_template
         if response_mapping_template is not None:
@@ -1017,6 +1036,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_graphql_api(
@@ -1110,11 +1130,12 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.create_graphql_api_request.CreateGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_appsync.types.create_graphql_api_request.CreateGraphqlApiRequest = {
+            "name": name,
+            "authentication_type": authentication_type,
+        }
         if log_config is not None:
             input_["log_config"] = log_config
-        input_["authentication_type"] = authentication_type
         if user_pool_config is not None:
             input_["user_pool_config"] = user_pool_config
         if open_id_connect_config is not None:
@@ -1151,6 +1172,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resolver(
@@ -1228,10 +1250,11 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.create_resolver_request.CreateResolverRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["type_name"] = type_name
-        input_["field_name"] = field_name
+        input_: capo_appsync.types.create_resolver_request.CreateResolverRequest = {
+            "api_id": api_id,
+            "type_name": type_name,
+            "field_name": field_name,
+        }
         if data_source_name is not None:
             input_["data_source_name"] = data_source_name
         if request_mapping_template is not None:
@@ -1260,6 +1283,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_type(
@@ -1302,16 +1326,18 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.create_type_request.CreateTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["definition"] = definition
-        input_["format"] = format
+        input_: capo_appsync.types.create_type_request.CreateTypeRequest = {
+            "api_id": api_id,
+            "definition": definition,
+            "format": format,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_api(
@@ -1351,14 +1377,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.delete_api_request.DeleteApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.delete_api_request.DeleteApiRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_api_cache(
@@ -1397,14 +1425,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.delete_api_cache_request.DeleteApiCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.delete_api_cache_request.DeleteApiCacheRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_api_key(
@@ -1444,15 +1474,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.delete_api_key_request.DeleteApiKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["id"] = id
+        input_: capo_appsync.types.delete_api_key_request.DeleteApiKeyRequest = {
+            "api_id": api_id,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_channel_namespace(
@@ -1494,15 +1526,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.delete_channel_namespace_request.DeleteChannelNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.delete_channel_namespace_request.DeleteChannelNamespaceRequest = {
+            "api_id": api_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_source(
@@ -1543,15 +1577,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.delete_data_source_request.DeleteDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.delete_data_source_request.DeleteDataSourceRequest = {
+            "api_id": api_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_domain_name(
@@ -1590,14 +1626,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.delete_domain_name_request.DeleteDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_appsync.types.delete_domain_name_request.DeleteDomainNameRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_function(
@@ -1638,15 +1676,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.delete_function_request.DeleteFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["function_id"] = function_id
+        input_: capo_appsync.types.delete_function_request.DeleteFunctionRequest = {
+            "api_id": api_id,
+            "function_id": function_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_graphql_api(
@@ -1686,14 +1726,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.delete_graphql_api_request.DeleteGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.delete_graphql_api_request.DeleteGraphqlApiRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resolver(
@@ -1736,16 +1778,18 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.delete_resolver_request.DeleteResolverRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["type_name"] = type_name
-        input_["field_name"] = field_name
+        input_: capo_appsync.types.delete_resolver_request.DeleteResolverRequest = {
+            "api_id": api_id,
+            "type_name": type_name,
+            "field_name": field_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_type(
@@ -1786,15 +1830,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.delete_type_request.DeleteTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["type_name"] = type_name
+        input_: capo_appsync.types.delete_type_request.DeleteTypeRequest = {
+            "api_id": api_id,
+            "type_name": type_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_api(
@@ -1833,14 +1879,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.disassociate_api_request.DisassociateApiRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_appsync.types.disassociate_api_request.DisassociateApiRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_merged_graphql_api(
@@ -1881,15 +1929,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.disassociate_merged_graphql_api_request.DisassociateMergedGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-        input_["source_api_identifier"] = source_api_identifier
-        input_["association_id"] = association_id
+        input_: capo_appsync.types.disassociate_merged_graphql_api_request.DisassociateMergedGraphqlApiRequest = {
+            "source_api_identifier": source_api_identifier,
+            "association_id": association_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_source_graphql_api(
@@ -1930,15 +1980,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.disassociate_source_graphql_api_request.DisassociateSourceGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-        input_["merged_api_identifier"] = merged_api_identifier
-        input_["association_id"] = association_id
+        input_: capo_appsync.types.disassociate_source_graphql_api_request.DisassociateSourceGraphqlApiRequest = {
+            "merged_api_identifier": merged_api_identifier,
+            "association_id": association_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def evaluate_code(
@@ -1981,10 +2033,11 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.evaluate_code_request.EvaluateCodeRequest = {}  # type: ignore[typeddict-item]
-        input_["runtime"] = runtime
-        input_["code"] = code
-        input_["context"] = context
+        input_: capo_appsync.types.evaluate_code_request.EvaluateCodeRequest = {
+            "runtime": runtime,
+            "code": code,
+            "context": context,
+        }
         if function is not None:
             input_["function"] = function
 
@@ -1993,6 +2046,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def evaluate_mapping_template(
@@ -2031,15 +2085,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.evaluate_mapping_template_request.EvaluateMappingTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template"] = template
-        input_["context"] = context
+        input_: capo_appsync.types.evaluate_mapping_template_request.EvaluateMappingTemplateRequest = {
+            "template": template,
+            "context": context,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def flush_api_cache(
@@ -2078,14 +2134,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.flush_api_cache_request.FlushApiCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.flush_api_cache_request.FlushApiCacheRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_api(
@@ -2124,14 +2182,14 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_api_request.GetApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.get_api_request.GetApiRequest = {"api_id": api_id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_api_association(
@@ -2169,14 +2227,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_api_association_request.GetApiAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_appsync.types.get_api_association_request.GetApiAssociationRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_api_cache(
@@ -2215,14 +2275,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_api_cache_request.GetApiCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.get_api_cache_request.GetApiCacheRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_channel_namespace(
@@ -2265,15 +2327,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_channel_namespace_request.GetChannelNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.get_channel_namespace_request.GetChannelNamespaceRequest = {
+            "api_id": api_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_source(
@@ -2314,15 +2378,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_data_source_request.GetDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.get_data_source_request.GetDataSourceRequest = {
+            "api_id": api_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_source_introspection(
@@ -2367,8 +2433,9 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_data_source_introspection_request.GetDataSourceIntrospectionRequest = {}  # type: ignore[typeddict-item]
-        input_["introspection_id"] = introspection_id
+        input_: capo_appsync.types.get_data_source_introspection_request.GetDataSourceIntrospectionRequest = {
+            "introspection_id": introspection_id
+        }
         if include_models_sdl is not None:
             input_["include_models_sdl"] = include_models_sdl
         if next_token is not None:
@@ -2381,6 +2448,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_domain_name(
@@ -2418,14 +2486,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_domain_name_request.GetDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_appsync.types.get_domain_name_request.GetDomainNameRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_function(
@@ -2464,15 +2534,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_function_request.GetFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["function_id"] = function_id
+        input_: capo_appsync.types.get_function_request.GetFunctionRequest = {
+            "api_id": api_id,
+            "function_id": function_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_graphql_api(
@@ -2511,14 +2583,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_graphql_api_request.GetGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.get_graphql_api_request.GetGraphqlApiRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_graphql_api_environment_variables(
@@ -2557,14 +2631,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_graphql_api_environment_variables_request.GetGraphqlApiEnvironmentVariablesRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.get_graphql_api_environment_variables_request.GetGraphqlApiEnvironmentVariablesRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_introspection_schema(
@@ -2608,9 +2684,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_introspection_schema_request.GetIntrospectionSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["format"] = format
+        input_: capo_appsync.types.get_introspection_schema_request.GetIntrospectionSchemaRequest = {
+            "api_id": api_id,
+            "format": format,
+        }
         if include_directives is not None:
             input_["include_directives"] = include_directives
 
@@ -2619,6 +2696,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resolver(
@@ -2659,16 +2737,18 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_resolver_request.GetResolverRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["type_name"] = type_name
-        input_["field_name"] = field_name
+        input_: capo_appsync.types.get_resolver_request.GetResolverRequest = {
+            "api_id": api_id,
+            "type_name": type_name,
+            "field_name": field_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_schema_creation_status(
@@ -2706,14 +2786,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_schema_creation_status_request.GetSchemaCreationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.get_schema_creation_status_request.GetSchemaCreationStatusRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_source_api_association(
@@ -2753,15 +2835,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_source_api_association_request.GetSourceApiAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["merged_api_identifier"] = merged_api_identifier
-        input_["association_id"] = association_id
+        input_: capo_appsync.types.get_source_api_association_request.GetSourceApiAssociationRequest = {
+            "merged_api_identifier": merged_api_identifier,
+            "association_id": association_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_type(
@@ -2804,16 +2888,18 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.get_type_request.GetTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["type_name"] = type_name
-        input_["format"] = format
+        input_: capo_appsync.types.get_type_request.GetTypeRequest = {
+            "api_id": api_id,
+            "type_name": type_name,
+            "format": format,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_api_keys(
@@ -2857,8 +2943,9 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_api_keys_request.ListApiKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.list_api_keys_request.ListApiKeysRequest = {
+            "api_id": api_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2869,6 +2956,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_api_keys(
@@ -2934,7 +3022,7 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_apis_request.ListApisRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appsync.types.list_apis_request.ListApisRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2945,6 +3033,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_apis(
@@ -3011,8 +3100,9 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_channel_namespaces_request.ListChannelNamespacesRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.list_channel_namespaces_request.ListChannelNamespacesRequest = {
+            "api_id": api_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3023,6 +3113,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_channel_namespaces(
@@ -3091,8 +3182,9 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_data_sources_request.ListDataSourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.list_data_sources_request.ListDataSourcesRequest = {
+            "api_id": api_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3103,6 +3195,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_sources(
@@ -3168,7 +3261,7 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_domain_names_request.ListDomainNamesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appsync.types.list_domain_names_request.ListDomainNamesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3179,6 +3272,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_domain_names(
@@ -3245,8 +3339,9 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_functions_request.ListFunctionsRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.list_functions_request.ListFunctionsRequest = {
+            "api_id": api_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3257,6 +3352,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_functions(
@@ -3330,7 +3426,7 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_graphql_apis_request.ListGraphqlApisRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appsync.types.list_graphql_apis_request.ListGraphqlApisRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3345,6 +3441,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_graphql_apis(
@@ -3419,9 +3516,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_resolvers_request.ListResolversRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["type_name"] = type_name
+        input_: capo_appsync.types.list_resolvers_request.ListResolversRequest = {
+            "api_id": api_id,
+            "type_name": type_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3432,6 +3530,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resolvers(
@@ -3504,9 +3603,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_resolvers_by_function_request.ListResolversByFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["function_id"] = function_id
+        input_: capo_appsync.types.list_resolvers_by_function_request.ListResolversByFunctionRequest = {
+            "api_id": api_id,
+            "function_id": function_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3517,6 +3617,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resolvers_by_function(
@@ -3587,8 +3688,9 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_source_api_associations_request.ListSourceApiAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_appsync.types.list_source_api_associations_request.ListSourceApiAssociationsRequest = {
+            "api_id": api_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3599,6 +3701,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_source_api_associations(
@@ -3665,14 +3768,16 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_appsync.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_types(
@@ -3719,9 +3824,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_types_request.ListTypesRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["format"] = format
+        input_: capo_appsync.types.list_types_request.ListTypesRequest = {
+            "api_id": api_id,
+            "format": format,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3732,6 +3838,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_types(
@@ -3807,10 +3914,11 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.list_types_by_association_request.ListTypesByAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["merged_api_identifier"] = merged_api_identifier
-        input_["association_id"] = association_id
-        input_["format"] = format
+        input_: capo_appsync.types.list_types_by_association_request.ListTypesByAssociationRequest = {
+            "merged_api_identifier": merged_api_identifier,
+            "association_id": association_id,
+            "format": format,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3821,6 +3929,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_types_by_association(
@@ -3891,15 +4000,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.put_graphql_api_environment_variables_request.PutGraphqlApiEnvironmentVariablesRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["environment_variables"] = environment_variables
+        input_: capo_appsync.types.put_graphql_api_environment_variables_request.PutGraphqlApiEnvironmentVariablesRequest = {
+            "api_id": api_id,
+            "environment_variables": environment_variables,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_data_source_introspection(
@@ -3939,7 +4050,7 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.start_data_source_introspection_request.StartDataSourceIntrospectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appsync.types.start_data_source_introspection_request.StartDataSourceIntrospectionRequest = {}
         if rds_data_api_config is not None:
             input_["rds_data_api_config"] = rds_data_api_config
 
@@ -3948,6 +4059,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_schema_creation(
@@ -3990,15 +4102,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.start_schema_creation_request.StartSchemaCreationRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["definition"] = definition
+        input_: capo_appsync.types.start_schema_creation_request.StartSchemaCreationRequest = {
+            "api_id": api_id,
+            "definition": definition,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_schema_merge(
@@ -4039,15 +4153,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.start_schema_merge_request.StartSchemaMergeRequest = {}  # type: ignore[typeddict-item]
-        input_["association_id"] = association_id
-        input_["merged_api_identifier"] = merged_api_identifier
+        input_: capo_appsync.types.start_schema_merge_request.StartSchemaMergeRequest = {
+            "association_id": association_id,
+            "merged_api_identifier": merged_api_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -4089,15 +4205,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_appsync.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -4139,15 +4257,17 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_appsync.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_api(
@@ -4193,18 +4313,20 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_api_request.UpdateApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.update_api_request.UpdateApiRequest = {
+            "api_id": api_id,
+            "name": name,
+            "event_config": event_config,
+        }
         if owner_contact is not None:
             input_["owner_contact"] = owner_contact
-        input_["event_config"] = event_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_api_cache(
@@ -4253,11 +4375,12 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_api_cache_request.UpdateApiCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["ttl"] = ttl
-        input_["api_caching_behavior"] = api_caching_behavior
-        input_["type"] = type
+        input_: capo_appsync.types.update_api_cache_request.UpdateApiCacheRequest = {
+            "api_id": api_id,
+            "ttl": ttl,
+            "api_caching_behavior": api_caching_behavior,
+            "type": type,
+        }
         if health_metrics_config is not None:
             input_["health_metrics_config"] = health_metrics_config
 
@@ -4266,6 +4389,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_api_key(
@@ -4311,9 +4435,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_api_key_request.UpdateApiKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["id"] = id
+        input_: capo_appsync.types.update_api_key_request.UpdateApiKeyRequest = {
+            "api_id": api_id,
+            "id": id,
+        }
         if description is not None:
             input_["description"] = description
         if expires is not None:
@@ -4324,6 +4449,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_channel_namespace(
@@ -4377,9 +4503,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_channel_namespace_request.UpdateChannelNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.update_channel_namespace_request.UpdateChannelNamespaceRequest = {
+            "api_id": api_id,
+            "name": name,
+        }
         if subscribe_auth_modes is not None:
             input_["subscribe_auth_modes"] = subscribe_auth_modes
         if publish_auth_modes is not None:
@@ -4394,6 +4521,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_data_source(
@@ -4472,12 +4600,13 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_data_source_request.UpdateDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.update_data_source_request.UpdateDataSourceRequest = {
+            "api_id": api_id,
+            "name": name,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["type"] = type
         if service_role_arn is not None:
             input_["service_role_arn"] = service_role_arn
         if dynamodb_config is not None:
@@ -4502,6 +4631,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_domain_name(
@@ -4542,8 +4672,9 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_domain_name_request.UpdateDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_appsync.types.update_domain_name_request.UpdateDomainNameRequest = {
+            "domain_name": domain_name
+        }
         if description is not None:
             input_["description"] = description
 
@@ -4552,6 +4683,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_function(
@@ -4616,13 +4748,14 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_function_request.UpdateFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.update_function_request.UpdateFunctionRequest = {
+            "api_id": api_id,
+            "name": name,
+            "function_id": function_id,
+            "data_source_name": data_source_name,
+        }
         if description is not None:
             input_["description"] = description
-        input_["function_id"] = function_id
-        input_["data_source_name"] = data_source_name
         if request_mapping_template is not None:
             input_["request_mapping_template"] = request_mapping_template
         if response_mapping_template is not None:
@@ -4643,6 +4776,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_graphql_api(
@@ -4728,12 +4862,13 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_graphql_api_request.UpdateGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["name"] = name
+        input_: capo_appsync.types.update_graphql_api_request.UpdateGraphqlApiRequest = {
+            "api_id": api_id,
+            "name": name,
+            "authentication_type": authentication_type,
+        }
         if log_config is not None:
             input_["log_config"] = log_config
-        input_["authentication_type"] = authentication_type
         if user_pool_config is not None:
             input_["user_pool_config"] = user_pool_config
         if open_id_connect_config is not None:
@@ -4764,6 +4899,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resolver(
@@ -4841,10 +4977,11 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_resolver_request.UpdateResolverRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["type_name"] = type_name
-        input_["field_name"] = field_name
+        input_: capo_appsync.types.update_resolver_request.UpdateResolverRequest = {
+            "api_id": api_id,
+            "type_name": type_name,
+            "field_name": field_name,
+        }
         if data_source_name is not None:
             input_["data_source_name"] = data_source_name
         if request_mapping_template is not None:
@@ -4873,6 +5010,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_source_api_association(
@@ -4919,9 +5057,10 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_source_api_association_request.UpdateSourceApiAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["association_id"] = association_id
-        input_["merged_api_identifier"] = merged_api_identifier
+        input_: capo_appsync.types.update_source_api_association_request.UpdateSourceApiAssociationRequest = {
+            "association_id": association_id,
+            "merged_api_identifier": merged_api_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if source_api_association_config is not None:
@@ -4932,6 +5071,7 @@ class AsyncAppSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_type(
@@ -4976,18 +5116,20 @@ class AsyncAppSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appsync.types.update_type_request.UpdateTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["type_name"] = type_name
+        input_: capo_appsync.types.update_type_request.UpdateTypeRequest = {
+            "api_id": api_id,
+            "type_name": type_name,
+            "format": format,
+        }
         if definition is not None:
             input_["definition"] = definition
-        input_["format"] = format
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -61,20 +61,20 @@ def serialize_json(value: GetCustomVerificationEmailTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCustomVerificationEmailTemplateResponse:
     out: GetCustomVerificationEmailTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         out["from_email_address"] = data["FromEmailAddress"]
-    if "TemplateSubject" in data:
+    if data.get("TemplateSubject") is not None:
         out["template_subject"] = data["TemplateSubject"]
-    if "TemplateContent" in data:
+    if data.get("TemplateContent") is not None:
         out["template_content"] = data["TemplateContent"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])
-    if "SuccessRedirectionURL" in data:
+    if data.get("SuccessRedirectionURL") is not None:
         out["success_redirection_url"] = data["SuccessRedirectionURL"]
-    if "FailureRedirectionURL" in data:
+    if data.get("FailureRedirectionURL") is not None:
         out["failure_redirection_url"] = data["FailureRedirectionURL"]
     return out

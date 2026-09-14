@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: Receipt) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Receipt:
     out: Receipt = {}  # type: ignore[typeddict-item]
-    if "ContactChannelArn" in data:
+    if data.get("ContactChannelArn") is not None:
         out["contact_channel_arn"] = data["ContactChannelArn"]
-    if "ReceiptType" in data:
+    if data.get("ReceiptType") is not None:
         import capo_ssm_contacts.types.receipt_type
 
         out["receipt_type"] = (
@@ -60,9 +60,9 @@ def deserialize_aws_json_1_1(data: dict) -> Receipt:
         )
     else:
         raise DeserializationError("Receipt.receipt_type required")
-    if "ReceiptInfo" in data:
+    if data.get("ReceiptInfo") is not None:
         out["receipt_info"] = data["ReceiptInfo"]
-    if "ReceiptTime" in data:
+    if data.get("ReceiptTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["receipt_time"] = (

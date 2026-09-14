@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: FileLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileLocation:
     out: FileLocation = {}  # type: ignore[typeddict-item]
-    if "S3FileLocation" in data:
+    if data.get("S3FileLocation") is not None:
         import capo_transfer.types.s3_file_location
 
         out["s3_file_location"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileLocation:
                 data["S3FileLocation"]
             )
         )
-    if "EfsFileLocation" in data:
+    if data.get("EfsFileLocation") is not None:
         import capo_transfer.types.efs_file_location
 
         out["efs_file_location"] = (

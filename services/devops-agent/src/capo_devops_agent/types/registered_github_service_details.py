@@ -35,11 +35,11 @@ def serialize_json(value: RegisteredGithubServiceDetails) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredGithubServiceDetails:
     out: RegisteredGithubServiceDetails = {}  # type: ignore[typeddict-item]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
     else:
         raise DeserializationError("RegisteredGithubServiceDetails.owner required")
-    if "ownerType" in data:
+    if data.get("ownerType") is not None:
         import capo_devops_agent.types.github_repo_owner_type
 
         out["owner_type"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> RegisteredGithubServiceDetails:
         )
     else:
         raise DeserializationError("RegisteredGithubServiceDetails.owner_type required")
-    if "targetUrl" in data:
+    if data.get("targetUrl") is not None:
         out["target_url"] = data["targetUrl"]
     return out

@@ -40,9 +40,9 @@ def serialize_json(value: UpdateSessionDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSessionDataRequest:
     out: UpdateSessionDataRequest = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_qconnect.types.runtime_session_data_list
 
         out["data"] = capo_qconnect.types.runtime_session_data_list.deserialize_json(

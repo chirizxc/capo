@@ -25,6 +25,6 @@ def serialize_json(value: CreateConnectorProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorProfileResponse:
     out: CreateConnectorProfileResponse = {}  # type: ignore[typeddict-item]
-    if "connectorProfileArn" in data:
+    if data.get("connectorProfileArn") is not None:
         out["connector_profile_arn"] = data["connectorProfileArn"]
     return out

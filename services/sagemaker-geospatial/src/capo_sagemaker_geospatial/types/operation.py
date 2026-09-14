@@ -31,14 +31,14 @@ def serialize_json(value: Operation) -> dict:
 
 def deserialize_json(data: dict) -> Operation:
     out: Operation = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Operation.name required")
-    if "Equation" in data:
+    if data.get("Equation") is not None:
         out["equation"] = data["Equation"]
     else:
         raise DeserializationError("Operation.equation required")
-    if "OutputType" in data:
+    if data.get("OutputType") is not None:
         out["output_type"] = data["OutputType"]
     return out

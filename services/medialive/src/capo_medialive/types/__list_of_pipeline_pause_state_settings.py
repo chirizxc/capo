@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfPipelinePauseStateSettings:
 
     out: __listOfPipelinePauseStateSettings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.pipeline_pause_state_settings.deserialize_json(item)
         )

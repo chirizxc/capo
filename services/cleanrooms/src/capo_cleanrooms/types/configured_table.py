@@ -100,21 +100,21 @@ def serialize_json(value: ConfiguredTable) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredTable:
     out: ConfiguredTable = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ConfiguredTable.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ConfiguredTable.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ConfiguredTable.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tableReference" in data:
+    if data.get("tableReference") is not None:
         import capo_cleanrooms.types.table_reference
 
         out["table_reference"] = capo_cleanrooms.types.table_reference.deserialize_json(
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> ConfiguredTable:
         )
     else:
         raise DeserializationError("ConfiguredTable.table_reference required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> ConfiguredTable:
         )
     else:
         raise DeserializationError("ConfiguredTable.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> ConfiguredTable:
         )
     else:
         raise DeserializationError("ConfiguredTable.update_time required")
-    if "analysisRuleTypes" in data:
+    if data.get("analysisRuleTypes") is not None:
         import capo_cleanrooms.types.configured_table_analysis_rule_type_list
 
         out["analysis_rule_types"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> ConfiguredTable:
         )
     else:
         raise DeserializationError("ConfiguredTable.analysis_rule_types required")
-    if "analysisMethod" in data:
+    if data.get("analysisMethod") is not None:
         import capo_cleanrooms.types.analysis_method
 
         out["analysis_method"] = capo_cleanrooms.types.analysis_method.deserialize_json(
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> ConfiguredTable:
         )
     else:
         raise DeserializationError("ConfiguredTable.analysis_method required")
-    if "allowedColumns" in data:
+    if data.get("allowedColumns") is not None:
         import capo_cleanrooms.types.allowed_column_list
 
         out["allowed_columns"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> ConfiguredTable:
         )
     else:
         raise DeserializationError("ConfiguredTable.allowed_columns required")
-    if "selectedAnalysisMethods" in data:
+    if data.get("selectedAnalysisMethods") is not None:
         import capo_cleanrooms.types.selected_analysis_methods
 
         out["selected_analysis_methods"] = (

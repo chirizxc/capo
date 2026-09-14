@@ -64,7 +64,16 @@ def serialize_json(value: CreateFileSystemRequest) -> dict:
             value["throughput_mode"]
         )
     if "provisioned_throughput_in_mibps" in value:
-        out["ProvisionedThroughputInMibps"] = value["provisioned_throughput_in_mibps"]
+        out["ProvisionedThroughputInMibps"] = (
+            "NaN"
+            if value["provisioned_throughput_in_mibps"]
+            != value["provisioned_throughput_in_mibps"]
+            else "Infinity"
+            if value["provisioned_throughput_in_mibps"] == float("inf")
+            else "-Infinity"
+            if value["provisioned_throughput_in_mibps"] == float("-inf")
+            else value["provisioned_throughput_in_mibps"]
+        )
     if "availability_zone_name" in value:
         out["AvailabilityZoneName"] = value["availability_zone_name"]
     if "backup" in value:
@@ -78,33 +87,35 @@ def serialize_json(value: CreateFileSystemRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFileSystemRequest:
     out: CreateFileSystemRequest = {}  # type: ignore[typeddict-item]
-    if "CreationToken" in data:
+    if data.get("CreationToken") is not None:
         out["creation_token"] = data["CreationToken"]
     else:
         raise DeserializationError("CreateFileSystemRequest.creation_token required")
-    if "PerformanceMode" in data:
+    if data.get("PerformanceMode") is not None:
         import capo_efs.types.performance_mode
 
         out["performance_mode"] = capo_efs.types.performance_mode.deserialize_json(
             data["PerformanceMode"]
         )
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "ThroughputMode" in data:
+    if data.get("ThroughputMode") is not None:
         import capo_efs.types.throughput_mode
 
         out["throughput_mode"] = capo_efs.types.throughput_mode.deserialize_json(
             data["ThroughputMode"]
         )
-    if "ProvisionedThroughputInMibps" in data:
-        out["provisioned_throughput_in_mibps"] = data["ProvisionedThroughputInMibps"]
-    if "AvailabilityZoneName" in data:
+    if data.get("ProvisionedThroughputInMibps") is not None:
+        out["provisioned_throughput_in_mibps"] = float(
+            data["ProvisionedThroughputInMibps"]
+        )
+    if data.get("AvailabilityZoneName") is not None:
         out["availability_zone_name"] = data["AvailabilityZoneName"]
-    if "Backup" in data:
+    if data.get("Backup") is not None:
         out["backup"] = data["Backup"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_efs.types.tags
 
         out["tags"] = capo_efs.types.tags.deserialize_json(data["Tags"])

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: HealthCheckCustomConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HealthCheckCustomConfig:
     out: HealthCheckCustomConfig = {}  # type: ignore[typeddict-item]
-    if "FailureThreshold" in data:
+    if data.get("FailureThreshold") is not None:
         out["failure_threshold"] = data["FailureThreshold"]
     return out

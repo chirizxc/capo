@@ -83,25 +83,25 @@ def serialize_json(value: GetStreamOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetStreamOutput:
     out: GetStreamOutput = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError("GetStreamOutput.cluster_identifier required")
-    if "streamIdentifier" in data:
+    if data.get("streamIdentifier") is not None:
         out["stream_identifier"] = data["streamIdentifier"]
     else:
         raise DeserializationError("GetStreamOutput.stream_identifier required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetStreamOutput.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_dsql.types.stream_status
 
         out["status"] = capo_dsql.types.stream_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("GetStreamOutput.status required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_dsql.types.stream_creation_time
 
         out["creation_time"] = capo_dsql.types.stream_creation_time.deserialize_json(
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> GetStreamOutput:
         )
     else:
         raise DeserializationError("GetStreamOutput.creation_time required")
-    if "ordering" in data:
+    if data.get("ordering") is not None:
         import capo_dsql.types.stream_ordering
 
         out["ordering"] = capo_dsql.types.stream_ordering.deserialize_json(
@@ -117,25 +117,25 @@ def deserialize_json(data: dict) -> GetStreamOutput:
         )
     else:
         raise DeserializationError("GetStreamOutput.ordering required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_dsql.types.stream_format
 
         out["format"] = capo_dsql.types.stream_format.deserialize_json(data["format"])
     else:
         raise DeserializationError("GetStreamOutput.format required")
-    if "targetDefinition" in data:
+    if data.get("targetDefinition") is not None:
         import capo_dsql.types.target_definition
 
         out["target_definition"] = capo_dsql.types.target_definition.deserialize_json(
             data["targetDefinition"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         import capo_dsql.types.status_reason
 
         out["status_reason"] = capo_dsql.types.status_reason.deserialize_json(
             data["statusReason"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_dsql.types.tag_map
 
         out["tags"] = capo_dsql.types.tag_map.deserialize_json(data["tags"])

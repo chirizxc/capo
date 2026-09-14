@@ -39,15 +39,15 @@ def serialize_json(value: EmailContent) -> dict:
 
 def deserialize_json(data: dict) -> EmailContent:
     out: EmailContent = {}  # type: ignore[typeddict-item]
-    if "Simple" in data:
+    if data.get("Simple") is not None:
         import capo_sesv2.types.message
 
         out["simple"] = capo_sesv2.types.message.deserialize_json(data["Simple"])
-    if "Raw" in data:
+    if data.get("Raw") is not None:
         import capo_sesv2.types.raw_message
 
         out["raw"] = capo_sesv2.types.raw_message.deserialize_json(data["Raw"])
-    if "Template" in data:
+    if data.get("Template") is not None:
         import capo_sesv2.types.template
 
         out["template"] = capo_sesv2.types.template.deserialize_json(data["Template"])

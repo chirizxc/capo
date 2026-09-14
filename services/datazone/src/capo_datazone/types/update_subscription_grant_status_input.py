@@ -50,7 +50,7 @@ def serialize_json(value: UpdateSubscriptionGrantStatusInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSubscriptionGrantStatusInput:
     out: UpdateSubscriptionGrantStatusInput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.subscription_grant_status
 
         out["status"] = capo_datazone.types.subscription_grant_status.deserialize_json(
@@ -58,12 +58,12 @@ def deserialize_json(data: dict) -> UpdateSubscriptionGrantStatusInput:
         )
     else:
         raise DeserializationError("UpdateSubscriptionGrantStatusInput.status required")
-    if "failureCause" in data:
+    if data.get("failureCause") is not None:
         import capo_datazone.types.failure_cause
 
         out["failure_cause"] = capo_datazone.types.failure_cause.deserialize_json(
             data["failureCause"]
         )
-    if "targetName" in data:
+    if data.get("targetName") is not None:
         out["target_name"] = data["targetName"]
     return out

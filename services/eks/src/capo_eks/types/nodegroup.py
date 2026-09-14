@@ -202,37 +202,37 @@ def serialize_json(value: Nodegroup) -> dict:
 
 def deserialize_json(data: dict) -> Nodegroup:
     out: Nodegroup = {}  # type: ignore[typeddict-item]
-    if "nodegroupName" in data:
+    if data.get("nodegroupName") is not None:
         out["nodegroup_name"] = data["nodegroupName"]
-    if "nodegroupArn" in data:
+    if data.get("nodegroupArn") is not None:
         out["nodegroup_arn"] = data["nodegroupArn"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "releaseVersion" in data:
+    if data.get("releaseVersion") is not None:
         out["release_version"] = data["releaseVersion"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_eks.types.timestamp
 
         out["created_at"] = capo_eks.types.timestamp.deserialize_json(data["createdAt"])
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_eks.types.timestamp
 
         out["modified_at"] = capo_eks.types.timestamp.deserialize_json(
             data["modifiedAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_eks.types.nodegroup_status
 
         out["status"] = capo_eks.types.nodegroup_status.deserialize_json(data["status"])
-    if "capacityType" in data:
+    if data.get("capacityType") is not None:
         import capo_eks.types.capacity_types
 
         out["capacity_type"] = capo_eks.types.capacity_types.deserialize_json(
             data["capacityType"]
         )
-    if "scalingConfig" in data:
+    if data.get("scalingConfig") is not None:
         import capo_eks.types.nodegroup_scaling_config
 
         out["scaling_config"] = (
@@ -240,61 +240,61 @@ def deserialize_json(data: dict) -> Nodegroup:
                 data["scalingConfig"]
             )
         )
-    if "instanceTypes" in data:
+    if data.get("instanceTypes") is not None:
         import capo_eks.types.string_list
 
         out["instance_types"] = capo_eks.types.string_list.deserialize_json(
             data["instanceTypes"]
         )
-    if "subnets" in data:
+    if data.get("subnets") is not None:
         import capo_eks.types.string_list
 
         out["subnets"] = capo_eks.types.string_list.deserialize_json(data["subnets"])
-    if "remoteAccess" in data:
+    if data.get("remoteAccess") is not None:
         import capo_eks.types.remote_access_config
 
         out["remote_access"] = capo_eks.types.remote_access_config.deserialize_json(
             data["remoteAccess"]
         )
-    if "amiType" in data:
+    if data.get("amiType") is not None:
         import capo_eks.types.ami_types
 
         out["ami_type"] = capo_eks.types.ami_types.deserialize_json(data["amiType"])
-    if "nodeRole" in data:
+    if data.get("nodeRole") is not None:
         out["node_role"] = data["nodeRole"]
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_eks.types.labels_map
 
         out["labels"] = capo_eks.types.labels_map.deserialize_json(data["labels"])
-    if "taints" in data:
+    if data.get("taints") is not None:
         import capo_eks.types.taints_list
 
         out["taints"] = capo_eks.types.taints_list.deserialize_json(data["taints"])
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_eks.types.nodegroup_resources
 
         out["resources"] = capo_eks.types.nodegroup_resources.deserialize_json(
             data["resources"]
         )
-    if "diskSize" in data:
+    if data.get("diskSize") is not None:
         out["disk_size"] = data["diskSize"]
-    if "health" in data:
+    if data.get("health") is not None:
         import capo_eks.types.nodegroup_health
 
         out["health"] = capo_eks.types.nodegroup_health.deserialize_json(data["health"])
-    if "updateConfig" in data:
+    if data.get("updateConfig") is not None:
         import capo_eks.types.nodegroup_update_config
 
         out["update_config"] = capo_eks.types.nodegroup_update_config.deserialize_json(
             data["updateConfig"]
         )
-    if "nodeRepairConfig" in data:
+    if data.get("nodeRepairConfig") is not None:
         import capo_eks.types.node_repair_config
 
         out["node_repair_config"] = capo_eks.types.node_repair_config.deserialize_json(
             data["nodeRepairConfig"]
         )
-    if "launchTemplate" in data:
+    if data.get("launchTemplate") is not None:
         import capo_eks.types.launch_template_specification
 
         out["launch_template"] = (
@@ -302,11 +302,11 @@ def deserialize_json(data: dict) -> Nodegroup:
                 data["launchTemplate"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "warmPoolConfig" in data:
+    if data.get("warmPoolConfig") is not None:
         import capo_eks.types.warm_pool_config
 
         out["warm_pool_config"] = capo_eks.types.warm_pool_config.deserialize_json(

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetClusterSessionCredentialsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetClusterSessionCredentialsInput:
     out: GetClusterSessionCredentialsInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     return out

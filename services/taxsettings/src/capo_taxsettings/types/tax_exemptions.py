@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TaxExemptions:
 
     out: TaxExemptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_taxsettings.types.tax_exemption.deserialize_json(item))
     return out

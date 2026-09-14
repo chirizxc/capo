@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: BasicCatalogTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BasicCatalogTarget:
     out: BasicCatalogTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("BasicCatalogTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> BasicCatalogTarget:
         )
     else:
         raise DeserializationError("BasicCatalogTarget.inputs required")
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["partition_keys"] = (
@@ -70,11 +70,11 @@ def deserialize_aws_json_1_1(data: dict) -> BasicCatalogTarget:
                 data["PartitionKeys"]
             )
         )
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("BasicCatalogTarget.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("BasicCatalogTarget.table required")

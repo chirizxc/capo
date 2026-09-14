@@ -49,25 +49,25 @@ def serialize_aws_json_1_0(value: OriginationIdentityMetadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OriginationIdentityMetadata:
     out: OriginationIdentityMetadata = {}  # type: ignore[typeddict-item]
-    if "OriginationIdentityArn" in data:
+    if data.get("OriginationIdentityArn") is not None:
         out["origination_identity_arn"] = data["OriginationIdentityArn"]
     else:
         raise DeserializationError(
             "OriginationIdentityMetadata.origination_identity_arn required"
         )
-    if "OriginationIdentity" in data:
+    if data.get("OriginationIdentity") is not None:
         out["origination_identity"] = data["OriginationIdentity"]
     else:
         raise DeserializationError(
             "OriginationIdentityMetadata.origination_identity required"
         )
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
     else:
         raise DeserializationError(
             "OriginationIdentityMetadata.iso_country_code required"
         )
-    if "NumberCapabilities" in data:
+    if data.get("NumberCapabilities") is not None:
         import capo_pinpoint_sms_voice_v2.types.number_capability_list
 
         out["number_capabilities"] = (
@@ -79,6 +79,6 @@ def deserialize_aws_json_1_0(data: dict) -> OriginationIdentityMetadata:
         raise DeserializationError(
             "OriginationIdentityMetadata.number_capabilities required"
         )
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
     return out

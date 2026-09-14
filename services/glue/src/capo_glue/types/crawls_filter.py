@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: CrawlsFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CrawlsFilter:
     out: CrawlsFilter = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         import capo_glue.types.field_name
 
         out["field_name"] = capo_glue.types.field_name.deserialize_aws_json_1_1(
             data["FieldName"]
         )
-    if "FilterOperator" in data:
+    if data.get("FilterOperator") is not None:
         import capo_glue.types.filter_operator
 
         out["filter_operator"] = (
@@ -55,6 +55,6 @@ def deserialize_aws_json_1_1(data: dict) -> CrawlsFilter:
                 data["FilterOperator"]
             )
         )
-    if "FieldValue" in data:
+    if data.get("FieldValue") is not None:
         out["field_value"] = data["FieldValue"]
     return out

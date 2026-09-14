@@ -39,15 +39,18 @@ class TrustStoreNotFoundException(ServiceError):
 
     code: str | None = "TrustStoreNotFoundException"
 
-    def __init__(self, data: TrustStoreNotFoundException_):
+    def __init__(self, data: TrustStoreNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TrustStoreNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TrustStoreNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TrustStoreNotFoundException":
+        return cls(deserialize_query(el), message)

@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: ShardFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShardFilter:
     out: ShardFilter = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kinesis.types.shard_filter_type
 
         out["type"] = capo_kinesis.types.shard_filter_type.deserialize_aws_json_1_1(
@@ -50,9 +50,9 @@ def deserialize_aws_json_1_1(data: dict) -> ShardFilter:
         )
     else:
         raise DeserializationError("ShardFilter.type required")
-    if "ShardId" in data:
+    if data.get("ShardId") is not None:
         out["shard_id"] = data["ShardId"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_kinesis.types.timestamp
 
         out["timestamp"] = capo_kinesis.types.timestamp.deserialize_aws_json_1_1(

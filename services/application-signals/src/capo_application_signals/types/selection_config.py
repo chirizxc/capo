@@ -34,7 +34,7 @@ def serialize_json(value: SelectionConfig) -> dict:
 
 def deserialize_json(data: dict) -> SelectionConfig:
     out: SelectionConfig = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_application_signals.types.selection_type
 
         out["type"] = capo_application_signals.types.selection_type.deserialize_json(
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> SelectionConfig:
         )
     else:
         raise DeserializationError("SelectionConfig.type required")
-    if "Pattern" in data:
+    if data.get("Pattern") is not None:
         out["pattern"] = data["Pattern"]
     return out

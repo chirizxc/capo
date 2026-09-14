@@ -62,7 +62,7 @@ def serialize_json(value: ColumnTooltipItem) -> dict:
 
 def deserialize_json(data: dict) -> ColumnTooltipItem:
     out: ColumnTooltipItem = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -70,15 +70,15 @@ def deserialize_json(data: dict) -> ColumnTooltipItem:
         )
     else:
         raise DeserializationError("ColumnTooltipItem.column required")
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_quicksight.types.aggregation_function
 
         out["aggregation"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ColumnTooltipItem:
                 data["Aggregation"]
             )
         )
-    if "TooltipTarget" in data:
+    if data.get("TooltipTarget") is not None:
         import capo_quicksight.types.tooltip_target
 
         out["tooltip_target"] = capo_quicksight.types.tooltip_target.deserialize_json(

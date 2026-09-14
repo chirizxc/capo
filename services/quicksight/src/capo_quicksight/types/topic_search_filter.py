@@ -40,7 +40,7 @@ def serialize_json(value: TopicSearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> TopicSearchFilter:
     out: TopicSearchFilter = {}  # type: ignore[typeddict-item]
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_quicksight.types.topic_filter_operator
 
         out["operator"] = capo_quicksight.types.topic_filter_operator.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> TopicSearchFilter:
         )
     else:
         raise DeserializationError("TopicSearchFilter.operator required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_quicksight.types.topic_filter_attribute
 
         out["name"] = capo_quicksight.types.topic_filter_attribute.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> TopicSearchFilter:
         )
     else:
         raise DeserializationError("TopicSearchFilter.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("TopicSearchFilter.value required")

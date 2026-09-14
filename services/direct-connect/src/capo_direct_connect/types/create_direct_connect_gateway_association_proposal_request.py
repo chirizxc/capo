@@ -67,13 +67,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CreateDirectConnectGatewayAssociationProposalRequest:
     out: CreateDirectConnectGatewayAssociationProposalRequest = {}  # type: ignore[typeddict-item]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
     else:
         raise DeserializationError(
             "CreateDirectConnectGatewayAssociationProposalRequest.direct_connect_gateway_id required"
         )
-    if "directConnectGatewayOwnerAccount" in data:
+    if data.get("directConnectGatewayOwnerAccount") is not None:
         out["direct_connect_gateway_owner_account"] = data[
             "directConnectGatewayOwnerAccount"
         ]
@@ -81,13 +81,13 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "CreateDirectConnectGatewayAssociationProposalRequest.direct_connect_gateway_owner_account required"
         )
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError(
             "CreateDirectConnectGatewayAssociationProposalRequest.gateway_id required"
         )
-    if "addAllowedPrefixesToDirectConnectGateway" in data:
+    if data.get("addAllowedPrefixesToDirectConnectGateway") is not None:
         import capo_direct_connect.types.route_filter_prefix_list
 
         out["add_allowed_prefixes_to_direct_connect_gateway"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(
                 data["addAllowedPrefixesToDirectConnectGateway"]
             )
         )
-    if "removeAllowedPrefixesToDirectConnectGateway" in data:
+    if data.get("removeAllowedPrefixesToDirectConnectGateway") is not None:
         import capo_direct_connect.types.route_filter_prefix_list
 
         out["remove_allowed_prefixes_to_direct_connect_gateway"] = (

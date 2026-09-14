@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DatabaseSourceVPCConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatabaseSourceVPCConfiguration:
     out: DatabaseSourceVPCConfiguration = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointServiceName" in data:
+    if data.get("VpcEndpointServiceName") is not None:
         out["vpc_endpoint_service_name"] = data["VpcEndpointServiceName"]
     else:
         raise DeserializationError(

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ResaleAuthorizationStatusFilterValueList:
 
     out: ResaleAuthorizationStatusFilterValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_catalog.types.resale_authorization_status_string.deserialize_json(
                 item

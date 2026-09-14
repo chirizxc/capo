@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateConnectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateConnectionResponse:
     out: CreateConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "CreateConnectionStatus" in data:
+    if data.get("CreateConnectionStatus") is not None:
         import capo_glue.types.connection_status
 
         out["create_connection_status"] = (

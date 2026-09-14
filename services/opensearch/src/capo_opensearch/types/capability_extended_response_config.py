@@ -32,7 +32,7 @@ def serialize_json(value: CapabilityExtendedResponseConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> CapabilityExtendedResponseConfig:
-    if "aiConfig" in data:
+    if data.get("aiConfig") is not None:
         import capo_opensearch.types.ai_config
 
         return {

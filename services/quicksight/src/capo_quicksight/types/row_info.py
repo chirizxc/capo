@@ -31,10 +31,10 @@ def serialize_json(value: RowInfo) -> dict:
 
 def deserialize_json(data: dict) -> RowInfo:
     out: RowInfo = {}  # type: ignore[typeddict-item]
-    if "RowsIngested" in data:
+    if data.get("RowsIngested") is not None:
         out["rows_ingested"] = data["RowsIngested"]
-    if "RowsDropped" in data:
+    if data.get("RowsDropped") is not None:
         out["rows_dropped"] = data["RowsDropped"]
-    if "TotalRowsInDataset" in data:
+    if data.get("TotalRowsInDataset") is not None:
         out["total_rows_in_dataset"] = data["TotalRowsInDataset"]
     return out

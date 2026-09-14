@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EcsResourceRequirementsList:
 
     out: EcsResourceRequirementsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pipes.types.ecs_resource_requirement.deserialize_json(item))
     return out

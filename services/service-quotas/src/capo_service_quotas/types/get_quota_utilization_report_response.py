@@ -78,9 +78,9 @@ def serialize_aws_json_1_1(value: GetQuotaUtilizationReportResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetQuotaUtilizationReportResponse:
     out: GetQuotaUtilizationReportResponse = {}  # type: ignore[typeddict-item]
-    if "ReportId" in data:
+    if data.get("ReportId") is not None:
         out["report_id"] = data["ReportId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_quotas.types.report_status
 
         out["status"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetQuotaUtilizationReportResponse:
                 data["Status"]
             )
         )
-    if "GeneratedAt" in data:
+    if data.get("GeneratedAt") is not None:
         import capo_service_quotas.types.date_time
 
         out["generated_at"] = (
@@ -96,9 +96,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetQuotaUtilizationReportResponse:
                 data["GeneratedAt"]
             )
         )
-    if "TotalCount" in data:
+    if data.get("TotalCount") is not None:
         out["total_count"] = data["TotalCount"]
-    if "Quotas" in data:
+    if data.get("Quotas") is not None:
         import capo_service_quotas.types.quota_utilization_info_list
 
         out["quotas"] = (
@@ -106,10 +106,10 @@ def deserialize_aws_json_1_1(data: dict) -> GetQuotaUtilizationReportResponse:
                 data["Quotas"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

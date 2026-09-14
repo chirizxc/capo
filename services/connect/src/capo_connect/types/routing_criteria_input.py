@@ -29,7 +29,7 @@ def serialize_json(value: RoutingCriteriaInput) -> dict:
 
 def deserialize_json(data: dict) -> RoutingCriteriaInput:
     out: RoutingCriteriaInput = {}  # type: ignore[typeddict-item]
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_connect.types.routing_criteria_input_steps
 
         out["steps"] = capo_connect.types.routing_criteria_input_steps.deserialize_json(

@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: PrincipalPermissions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PrincipalPermissions:
     out: PrincipalPermissions = {}  # type: ignore[typeddict-item]
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         import capo_glue.types.data_lake_principal
 
         out["principal"] = capo_glue.types.data_lake_principal.deserialize_aws_json_1_1(
             data["Principal"]
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_glue.types.permission_list
 
         out["permissions"] = capo_glue.types.permission_list.deserialize_aws_json_1_1(

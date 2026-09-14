@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: BatchRebootClusterNodesError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchRebootClusterNodesError:
     out: BatchRebootClusterNodesError = {}  # type: ignore[typeddict-item]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_sagemaker.types.batch_reboot_cluster_nodes_error_code
 
         out["error_code"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> BatchRebootClusterNodesError:
                 data["ErrorCode"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

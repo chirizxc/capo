@@ -95,9 +95,9 @@ def serialize_aws_json_1_1(value: AssessmentRunFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentRunFilter:
     out: AssessmentRunFilter = {}  # type: ignore[typeddict-item]
-    if "namePattern" in data:
+    if data.get("namePattern") is not None:
         out["name_pattern"] = data["namePattern"]
-    if "states" in data:
+    if data.get("states") is not None:
         import capo_inspector.types.assessment_run_state_list
 
         out["states"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentRunFilter:
                 data["states"]
             )
         )
-    if "durationRange" in data:
+    if data.get("durationRange") is not None:
         import capo_inspector.types.duration_range
 
         out["duration_range"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentRunFilter:
                 data["durationRange"]
             )
         )
-    if "rulesPackageArns" in data:
+    if data.get("rulesPackageArns") is not None:
         import capo_inspector.types.filter_rules_package_arn_list
 
         out["rules_package_arns"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentRunFilter:
                 data["rulesPackageArns"]
             )
         )
-    if "startTimeRange" in data:
+    if data.get("startTimeRange") is not None:
         import capo_inspector.types.timestamp_range
 
         out["start_time_range"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentRunFilter:
                 data["startTimeRange"]
             )
         )
-    if "completionTimeRange" in data:
+    if data.get("completionTimeRange") is not None:
         import capo_inspector.types.timestamp_range
 
         out["completion_time_range"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentRunFilter:
                 data["completionTimeRange"]
             )
         )
-    if "stateChangeTimeRange" in data:
+    if data.get("stateChangeTimeRange") is not None:
         import capo_inspector.types.timestamp_range
 
         out["state_change_time_range"] = (

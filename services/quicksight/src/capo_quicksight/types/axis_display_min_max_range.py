@@ -19,16 +19,32 @@ class AxisDisplayMinMaxRange(TypedDict, closed=True):
 def serialize_json(value: AxisDisplayMinMaxRange) -> dict:
     out: dict = {}
     if "minimum" in value:
-        out["Minimum"] = value["minimum"]
+        out["Minimum"] = (
+            "NaN"
+            if value["minimum"] != value["minimum"]
+            else "Infinity"
+            if value["minimum"] == float("inf")
+            else "-Infinity"
+            if value["minimum"] == float("-inf")
+            else value["minimum"]
+        )
     if "maximum" in value:
-        out["Maximum"] = value["maximum"]
+        out["Maximum"] = (
+            "NaN"
+            if value["maximum"] != value["maximum"]
+            else "Infinity"
+            if value["maximum"] == float("inf")
+            else "-Infinity"
+            if value["maximum"] == float("-inf")
+            else value["maximum"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AxisDisplayMinMaxRange:
     out: AxisDisplayMinMaxRange = {}  # type: ignore[typeddict-item]
-    if "Minimum" in data:
-        out["minimum"] = data["Minimum"]
-    if "Maximum" in data:
-        out["maximum"] = data["Maximum"]
+    if data.get("Minimum") is not None:
+        out["minimum"] = float(data["Minimum"])
+    if data.get("Maximum") is not None:
+        out["maximum"] = float(data["Maximum"])
     return out

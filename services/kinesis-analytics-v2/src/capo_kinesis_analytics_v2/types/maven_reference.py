@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: MavenReference) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MavenReference:
     out: MavenReference = {}  # type: ignore[typeddict-item]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     else:
         raise DeserializationError("MavenReference.group_id required")
-    if "ArtifactId" in data:
+    if data.get("ArtifactId") is not None:
         out["artifact_id"] = data["ArtifactId"]
     else:
         raise DeserializationError("MavenReference.artifact_id required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         raise DeserializationError("MavenReference.version required")

@@ -70,21 +70,21 @@ def serialize_aws_json_1_1(value: QueryStage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryStage:
     out: QueryStage = {}  # type: ignore[typeddict-item]
-    if "StageId" in data:
+    if data.get("StageId") is not None:
         out["stage_id"] = data["StageId"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "OutputBytes" in data:
+    if data.get("OutputBytes") is not None:
         out["output_bytes"] = data["OutputBytes"]
-    if "OutputRows" in data:
+    if data.get("OutputRows") is not None:
         out["output_rows"] = data["OutputRows"]
-    if "InputBytes" in data:
+    if data.get("InputBytes") is not None:
         out["input_bytes"] = data["InputBytes"]
-    if "InputRows" in data:
+    if data.get("InputRows") is not None:
         out["input_rows"] = data["InputRows"]
-    if "ExecutionTime" in data:
+    if data.get("ExecutionTime") is not None:
         out["execution_time"] = data["ExecutionTime"]
-    if "QueryStagePlan" in data:
+    if data.get("QueryStagePlan") is not None:
         import capo_athena.types.query_stage_plan_node
 
         out["query_stage_plan"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryStage:
                 data["QueryStagePlan"]
             )
         )
-    if "SubStages" in data:
+    if data.get("SubStages") is not None:
         import capo_athena.types.query_stages
 
         out["sub_stages"] = capo_athena.types.query_stages.deserialize_aws_json_1_1(

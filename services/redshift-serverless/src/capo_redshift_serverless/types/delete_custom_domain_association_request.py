@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: DeleteCustomDomainAssociationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteCustomDomainAssociationRequest:
     out: DeleteCustomDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     else:
         raise DeserializationError(
             "DeleteCustomDomainAssociationRequest.workgroup_name required"
         )
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
     else:
         raise DeserializationError(

@@ -27,7 +27,7 @@ def serialize_json(value: StartExportResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartExportResponse:
     out: StartExportResponse = {}  # type: ignore[typeddict-item]
-    if "exportTask" in data:
+    if data.get("exportTask") is not None:
         import capo_mgn.types.export_task
 
         out["export_task"] = capo_mgn.types.export_task.deserialize_json(

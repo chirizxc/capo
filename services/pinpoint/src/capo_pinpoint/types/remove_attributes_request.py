@@ -35,7 +35,7 @@ def serialize_json(value: RemoveAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> RemoveAttributesRequest:
     out: RemoveAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "UpdateAttributesRequest" in data:
+    if data.get("UpdateAttributesRequest") is not None:
         import capo_pinpoint.types.update_attributes_request
 
         out["update_attributes_request"] = (

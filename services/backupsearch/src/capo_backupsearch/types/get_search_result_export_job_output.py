@@ -80,21 +80,21 @@ def serialize_json(value: GetSearchResultExportJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSearchResultExportJobOutput:
     out: GetSearchResultExportJobOutput = {}  # type: ignore[typeddict-item]
-    if "ExportJobIdentifier" in data:
+    if data.get("ExportJobIdentifier") is not None:
         out["export_job_identifier"] = data["ExportJobIdentifier"]
     else:
         raise DeserializationError(
             "GetSearchResultExportJobOutput.export_job_identifier required"
         )
-    if "ExportJobArn" in data:
+    if data.get("ExportJobArn") is not None:
         out["export_job_arn"] = data["ExportJobArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_backupsearch.types.export_job_status
 
         out["status"] = capo_backupsearch.types.export_job_status.deserialize_json(
             data["Status"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> GetSearchResultExportJobOutput:
                 data["CreationTime"]
             )
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["completion_time"] = (
@@ -110,9 +110,9 @@ def deserialize_json(data: dict) -> GetSearchResultExportJobOutput:
                 data["CompletionTime"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "ExportSpecification" in data:
+    if data.get("ExportSpecification") is not None:
         import capo_backupsearch.types.export_specification
 
         out["export_specification"] = (
@@ -120,6 +120,6 @@ def deserialize_json(data: dict) -> GetSearchResultExportJobOutput:
                 data["ExportSpecification"]
             )
         )
-    if "SearchJobArn" in data:
+    if data.get("SearchJobArn") is not None:
         out["search_job_arn"] = data["SearchJobArn"]
     return out

@@ -68,49 +68,49 @@ def serialize_json(value: ColumnMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ColumnMetadata:
     out: ColumnMetadata = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         out["type"] = 0
-    if "typeName" in data:
+    if data.get("typeName") is not None:
         out["type_name"] = data["typeName"]
-    if "label" in data:
+    if data.get("label") is not None:
         out["label"] = data["label"]
-    if "schemaName" in data:
+    if data.get("schemaName") is not None:
         out["schema_name"] = data["schemaName"]
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
-    if "isAutoIncrement" in data:
+    if data.get("isAutoIncrement") is not None:
         out["is_auto_increment"] = data["isAutoIncrement"]
     else:
         out["is_auto_increment"] = False
-    if "isSigned" in data:
+    if data.get("isSigned") is not None:
         out["is_signed"] = data["isSigned"]
     else:
         out["is_signed"] = False
-    if "isCurrency" in data:
+    if data.get("isCurrency") is not None:
         out["is_currency"] = data["isCurrency"]
     else:
         out["is_currency"] = False
-    if "isCaseSensitive" in data:
+    if data.get("isCaseSensitive") is not None:
         out["is_case_sensitive"] = data["isCaseSensitive"]
     else:
         out["is_case_sensitive"] = False
-    if "nullable" in data:
+    if data.get("nullable") is not None:
         out["nullable"] = data["nullable"]
     else:
         out["nullable"] = 0
-    if "precision" in data:
+    if data.get("precision") is not None:
         out["precision"] = data["precision"]
     else:
         out["precision"] = 0
-    if "scale" in data:
+    if data.get("scale") is not None:
         out["scale"] = data["scale"]
     else:
         out["scale"] = 0
-    if "arrayBaseColumnType" in data:
+    if data.get("arrayBaseColumnType") is not None:
         out["array_base_column_type"] = data["arrayBaseColumnType"]
     else:
         out["array_base_column_type"] = 0

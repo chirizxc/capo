@@ -35,7 +35,15 @@ def serialize_json(value: OverallVolume) -> dict:
             )
         )
     if "read_rate_percent" in value:
-        out["ReadRatePercent"] = value["read_rate_percent"]
+        out["ReadRatePercent"] = (
+            "NaN"
+            if value["read_rate_percent"] != value["read_rate_percent"]
+            else "Infinity"
+            if value["read_rate_percent"] == float("inf")
+            else "-Infinity"
+            if value["read_rate_percent"] == float("-inf")
+            else value["read_rate_percent"]
+        )
     if "domain_isp_placements" in value:
         import capo_pinpoint_email.types.domain_isp_placements
 
@@ -49,7 +57,7 @@ def serialize_json(value: OverallVolume) -> dict:
 
 def deserialize_json(data: dict) -> OverallVolume:
     out: OverallVolume = {}  # type: ignore[typeddict-item]
-    if "VolumeStatistics" in data:
+    if data.get("VolumeStatistics") is not None:
         import capo_pinpoint_email.types.volume_statistics
 
         out["volume_statistics"] = (
@@ -57,9 +65,9 @@ def deserialize_json(data: dict) -> OverallVolume:
                 data["VolumeStatistics"]
             )
         )
-    if "ReadRatePercent" in data:
-        out["read_rate_percent"] = data["ReadRatePercent"]
-    if "DomainIspPlacements" in data:
+    if data.get("ReadRatePercent") is not None:
+        out["read_rate_percent"] = float(data["ReadRatePercent"])
+    if data.get("DomainIspPlacements") is not None:
         import capo_pinpoint_email.types.domain_isp_placements
 
         out["domain_isp_placements"] = (

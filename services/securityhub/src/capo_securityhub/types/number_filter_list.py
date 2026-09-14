@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> NumberFilterList:
 
     out: NumberFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.number_filter.deserialize_json(item))
     return out

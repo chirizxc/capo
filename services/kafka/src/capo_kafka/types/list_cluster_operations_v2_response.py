@@ -36,7 +36,7 @@ def serialize_json(value: ListClusterOperationsV2Response) -> dict:
 
 def deserialize_json(data: dict) -> ListClusterOperationsV2Response:
     out: ListClusterOperationsV2Response = {}  # type: ignore[typeddict-item]
-    if "clusterOperationInfoList" in data:
+    if data.get("clusterOperationInfoList") is not None:
         import capo_kafka.types.__list_of_cluster_operation_v2_summary
 
         out["cluster_operation_info_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListClusterOperationsV2Response:
                 data["clusterOperationInfoList"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

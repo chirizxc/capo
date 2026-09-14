@@ -59,7 +59,7 @@ def serialize_json(value: SectionBasedLayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SectionBasedLayoutConfiguration:
     out: SectionBasedLayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "HeaderSections" in data:
+    if data.get("HeaderSections") is not None:
         import capo_quicksight.types.header_footer_section_configuration_list
 
         out["header_sections"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> SectionBasedLayoutConfiguration:
         raise DeserializationError(
             "SectionBasedLayoutConfiguration.header_sections required"
         )
-    if "BodySections" in data:
+    if data.get("BodySections") is not None:
         import capo_quicksight.types.body_section_configuration_list
 
         out["body_sections"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> SectionBasedLayoutConfiguration:
         raise DeserializationError(
             "SectionBasedLayoutConfiguration.body_sections required"
         )
-    if "FooterSections" in data:
+    if data.get("FooterSections") is not None:
         import capo_quicksight.types.header_footer_section_configuration_list
 
         out["footer_sections"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> SectionBasedLayoutConfiguration:
         raise DeserializationError(
             "SectionBasedLayoutConfiguration.footer_sections required"
         )
-    if "CanvasSizeOptions" in data:
+    if data.get("CanvasSizeOptions") is not None:
         import capo_quicksight.types.section_based_layout_canvas_size_options
 
         out["canvas_size_options"] = (

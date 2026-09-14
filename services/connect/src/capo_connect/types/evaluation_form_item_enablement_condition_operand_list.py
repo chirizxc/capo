@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> EvaluationFormItemEnablementConditionOperand
 
     out: EvaluationFormItemEnablementConditionOperandList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.evaluation_form_item_enablement_condition_operand.deserialize_json(
                 item

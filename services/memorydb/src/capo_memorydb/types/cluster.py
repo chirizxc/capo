@@ -200,13 +200,13 @@ def serialize_aws_json_1_1(value: Cluster) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Cluster:
     out: Cluster = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "PendingUpdates" in data:
+    if data.get("PendingUpdates") is not None:
         import capo_memorydb.types.cluster_pending_updates
 
         out["pending_updates"] = (
@@ -214,17 +214,17 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["PendingUpdates"]
             )
         )
-    if "MultiRegionClusterName" in data:
+    if data.get("MultiRegionClusterName") is not None:
         out["multi_region_cluster_name"] = data["MultiRegionClusterName"]
-    if "NumberOfShards" in data:
+    if data.get("NumberOfShards") is not None:
         out["number_of_shards"] = data["NumberOfShards"]
-    if "Shards" in data:
+    if data.get("Shards") is not None:
         import capo_memorydb.types.shard_list
 
         out["shards"] = capo_memorydb.types.shard_list.deserialize_aws_json_1_1(
             data["Shards"]
         )
-    if "AvailabilityMode" in data:
+    if data.get("AvailabilityMode") is not None:
         import capo_memorydb.types.az_status
 
         out["availability_mode"] = (
@@ -232,25 +232,25 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["AvailabilityMode"]
             )
         )
-    if "ClusterEndpoint" in data:
+    if data.get("ClusterEndpoint") is not None:
         import capo_memorydb.types.endpoint
 
         out["cluster_endpoint"] = capo_memorydb.types.endpoint.deserialize_aws_json_1_1(
             data["ClusterEndpoint"]
         )
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "EnginePatchVersion" in data:
+    if data.get("EnginePatchVersion") is not None:
         out["engine_patch_version"] = data["EnginePatchVersion"]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
-    if "ParameterGroupStatus" in data:
+    if data.get("ParameterGroupStatus") is not None:
         out["parameter_group_status"] = data["ParameterGroupStatus"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_memorydb.types.security_group_membership_list
 
         out["security_groups"] = (
@@ -258,29 +258,29 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["SecurityGroups"]
             )
         )
-    if "SubnetGroupName" in data:
+    if data.get("SubnetGroupName") is not None:
         out["subnet_group_name"] = data["SubnetGroupName"]
-    if "TLSEnabled" in data:
+    if data.get("TLSEnabled") is not None:
         out["tls_enabled"] = data["TLSEnabled"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "SnsTopicStatus" in data:
+    if data.get("SnsTopicStatus") is not None:
         out["sns_topic_status"] = data["SnsTopicStatus"]
-    if "SnapshotRetentionLimit" in data:
+    if data.get("SnapshotRetentionLimit") is not None:
         out["snapshot_retention_limit"] = data["SnapshotRetentionLimit"]
-    if "MaintenanceWindow" in data:
+    if data.get("MaintenanceWindow") is not None:
         out["maintenance_window"] = data["MaintenanceWindow"]
-    if "SnapshotWindow" in data:
+    if data.get("SnapshotWindow") is not None:
         out["snapshot_window"] = data["SnapshotWindow"]
-    if "ACLName" in data:
+    if data.get("ACLName") is not None:
         out["acl_name"] = data["ACLName"]
-    if "AutoMinorVersionUpgrade" in data:
+    if data.get("AutoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["AutoMinorVersionUpgrade"]
-    if "DataTiering" in data:
+    if data.get("DataTiering") is not None:
         import capo_memorydb.types.data_tiering_status
 
         out["data_tiering"] = (
@@ -288,13 +288,13 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["DataTiering"]
             )
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_memorydb.types.network_type
 
         out["network_type"] = capo_memorydb.types.network_type.deserialize_aws_json_1_1(
             data["NetworkType"]
         )
-    if "IpDiscovery" in data:
+    if data.get("IpDiscovery") is not None:
         import capo_memorydb.types.ip_discovery
 
         out["ip_discovery"] = capo_memorydb.types.ip_discovery.deserialize_aws_json_1_1(

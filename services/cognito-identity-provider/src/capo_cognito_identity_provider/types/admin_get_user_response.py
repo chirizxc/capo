@@ -112,11 +112,11 @@ def serialize_aws_json_1_1(value: AdminGetUserResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminGetUserResponse:
     out: AdminGetUserResponse = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("AdminGetUserResponse.username required")
-    if "UserAttributes" in data:
+    if data.get("UserAttributes") is not None:
         import capo_cognito_identity_provider.types.attribute_list_type
 
         out["user_attributes"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminGetUserResponse:
                 data["UserAttributes"]
             )
         )
-    if "UserCreateDate" in data:
+    if data.get("UserCreateDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["user_create_date"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminGetUserResponse:
                 data["UserCreateDate"]
             )
         )
-    if "UserLastModifiedDate" in data:
+    if data.get("UserLastModifiedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["user_last_modified_date"] = (
@@ -140,11 +140,11 @@ def deserialize_aws_json_1_1(data: dict) -> AdminGetUserResponse:
                 data["UserLastModifiedDate"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         out["enabled"] = False
-    if "UserStatus" in data:
+    if data.get("UserStatus") is not None:
         import capo_cognito_identity_provider.types.user_status_type
 
         out["user_status"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminGetUserResponse:
                 data["UserStatus"]
             )
         )
-    if "MFAOptions" in data:
+    if data.get("MFAOptions") is not None:
         import capo_cognito_identity_provider.types.mfa_option_list_type
 
         out["mfa_options"] = (
@@ -160,9 +160,9 @@ def deserialize_aws_json_1_1(data: dict) -> AdminGetUserResponse:
                 data["MFAOptions"]
             )
         )
-    if "PreferredMfaSetting" in data:
+    if data.get("PreferredMfaSetting") is not None:
         out["preferred_mfa_setting"] = data["PreferredMfaSetting"]
-    if "UserMFASettingList" in data:
+    if data.get("UserMFASettingList") is not None:
         import capo_cognito_identity_provider.types.user_mfa_setting_list_type
 
         out["user_mfa_setting_list"] = (

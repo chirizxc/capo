@@ -54,11 +54,11 @@ def serialize_aws_json_1_1(value: CreateBudgetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateBudgetRequest:
     out: CreateBudgetRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("CreateBudgetRequest.account_id required")
-    if "Budget" in data:
+    if data.get("Budget") is not None:
         import capo_budgets.types.budget
 
         out["budget"] = capo_budgets.types.budget.deserialize_aws_json_1_1(
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateBudgetRequest:
         )
     else:
         raise DeserializationError("CreateBudgetRequest.budget required")
-    if "NotificationsWithSubscribers" in data:
+    if data.get("NotificationsWithSubscribers") is not None:
         import capo_budgets.types.notification_with_subscribers_list
 
         out["notifications_with_subscribers"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateBudgetRequest:
                 data["NotificationsWithSubscribers"]
             )
         )
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_budgets.types.resource_tag_list
 
         out["resource_tags"] = (

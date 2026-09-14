@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: ConfirmCustomerAgreementRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfirmCustomerAgreementRequest:
     out: ConfirmCustomerAgreementRequest = {}  # type: ignore[typeddict-item]
-    if "agreementName" in data:
+    if data.get("agreementName") is not None:
         out["agreement_name"] = data["agreementName"]
     return out

@@ -27,13 +27,13 @@ def serialize_json(value: AssociateBrowserSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateBrowserSettingsResponse:
     out: AssociateBrowserSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
     else:
         raise DeserializationError(
             "AssociateBrowserSettingsResponse.portal_arn required"
         )
-    if "browserSettingsArn" in data:
+    if data.get("browserSettingsArn") is not None:
         out["browser_settings_arn"] = data["browserSettingsArn"]
     else:
         raise DeserializationError(

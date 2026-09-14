@@ -159,25 +159,25 @@ def serialize_aws_json_1_1(value: TextTranslationJobProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TextTranslationJobProperties:
     out: TextTranslationJobProperties = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_translate.types.job_status
 
         out["job_status"] = capo_translate.types.job_status.deserialize_aws_json_1_1(
             data["JobStatus"]
         )
-    if "JobDetails" in data:
+    if data.get("JobDetails") is not None:
         import capo_translate.types.job_details
 
         out["job_details"] = capo_translate.types.job_details.deserialize_aws_json_1_1(
             data["JobDetails"]
         )
-    if "SourceLanguageCode" in data:
+    if data.get("SourceLanguageCode") is not None:
         out["source_language_code"] = data["SourceLanguageCode"]
-    if "TargetLanguageCodes" in data:
+    if data.get("TargetLanguageCodes") is not None:
         import capo_translate.types.target_language_code_string_list
 
         out["target_language_codes"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> TextTranslationJobProperties:
                 data["TargetLanguageCodes"]
             )
         )
-    if "TerminologyNames" in data:
+    if data.get("TerminologyNames") is not None:
         import capo_translate.types.resource_name_list
 
         out["terminology_names"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> TextTranslationJobProperties:
                 data["TerminologyNames"]
             )
         )
-    if "ParallelDataNames" in data:
+    if data.get("ParallelDataNames") is not None:
         import capo_translate.types.resource_name_list
 
         out["parallel_data_names"] = (
@@ -201,21 +201,21 @@ def deserialize_aws_json_1_1(data: dict) -> TextTranslationJobProperties:
                 data["ParallelDataNames"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "SubmittedTime" in data:
+    if data.get("SubmittedTime") is not None:
         import capo_translate.types.timestamp
 
         out["submitted_time"] = capo_translate.types.timestamp.deserialize_aws_json_1_1(
             data["SubmittedTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_translate.types.timestamp
 
         out["end_time"] = capo_translate.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_translate.types.input_data_config
 
         out["input_data_config"] = (
@@ -223,7 +223,7 @@ def deserialize_aws_json_1_1(data: dict) -> TextTranslationJobProperties:
                 data["InputDataConfig"]
             )
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_translate.types.output_data_config
 
         out["output_data_config"] = (
@@ -231,9 +231,9 @@ def deserialize_aws_json_1_1(data: dict) -> TextTranslationJobProperties:
                 data["OutputDataConfig"]
             )
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_translate.types.translation_settings
 
         out["settings"] = (

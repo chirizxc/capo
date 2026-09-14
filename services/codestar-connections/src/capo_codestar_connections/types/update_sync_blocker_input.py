@@ -44,11 +44,11 @@ def serialize_aws_json_1_0(value: UpdateSyncBlockerInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateSyncBlockerInput:
     out: UpdateSyncBlockerInput = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateSyncBlockerInput.id required")
-    if "SyncType" in data:
+    if data.get("SyncType") is not None:
         import capo_codestar_connections.types.sync_configuration_type
 
         out["sync_type"] = (
@@ -58,11 +58,11 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateSyncBlockerInput:
         )
     else:
         raise DeserializationError("UpdateSyncBlockerInput.sync_type required")
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     else:
         raise DeserializationError("UpdateSyncBlockerInput.resource_name required")
-    if "ResolvedReason" in data:
+    if data.get("ResolvedReason") is not None:
         out["resolved_reason"] = data["ResolvedReason"]
     else:
         raise DeserializationError("UpdateSyncBlockerInput.resolved_reason required")

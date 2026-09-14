@@ -13,10 +13,25 @@ from capo_polly import AsyncPollyClient
 
 
 async def main():
-    async with AsyncPollyClient() as s3:
+    async with AsyncPollyClient() as polly:
         # Example: call the delete_lexicon operation
-        response = await s3.delete_lexicon()
+        response = await polly.delete_lexicon()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_polly import AsyncPollyClient
+
+
+async def main():
+    async with AsyncPollyClient() as polly:
+        # Example: paginate over list_speech_synthesis_tasks
+        async for item in polly.iter_list_speech_synthesis_tasks():
+            print(item)
 ```
 
 ## Streaming Request
@@ -28,16 +43,16 @@ from capo_polly import AsyncPollyClient
 
 
 async def main():
-    async with AsyncPollyClient() as s3:
+    async with AsyncPollyClient() as polly:
         # Example: call start_speech_synthesis_stream with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.start_speech_synthesis_stream(action_stream=chunks())
+        response = await polly.start_speech_synthesis_stream(action_stream=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.start_speech_synthesis_stream(action_stream=b'Hello, World!')
+        response = await polly.start_speech_synthesis_stream(action_stream=b'Hello, World!')
         print(response)
 ```
 
@@ -50,9 +65,9 @@ from capo_polly import AsyncPollyClient
 
 
 async def main():
-    async with AsyncPollyClient() as s3:
+    async with AsyncPollyClient() as polly:
         # Example: call synthesize_speech and read the streaming response
-        async with s3.synthesize_speech() as response:
+        async with polly.synthesize_speech() as response:
             async for chunk in response["audio_stream"]:
                 print(chunk)
 ```
@@ -67,9 +82,9 @@ from capo_polly.error import LexiconNotFoundException
 
 
 async def main():
-    async with AsyncPollyClient() as s3:
+    async with AsyncPollyClient() as polly:
         try:
-            await s3.delete_lexicon()
+            await polly.delete_lexicon()
         except LexiconNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -86,13 +101,13 @@ from capo_polly import AsyncPollyClient
 
 
 async def main():
-    async with AsyncPollyClient() as s3:
+    async with AsyncPollyClient() as polly:
         # Default: 3 attempts for every operation
-        response = await s3.delete_lexicon()
+        response = await polly.delete_lexicon()
 
         # Override per operation
-        response = await s3.delete_lexicon(config_overrides={"retry_max_attempts": 5})
+        response = await polly.delete_lexicon(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_lexicon(config_overrides={"retry_max_attempts": 1})
+        response = await polly.delete_lexicon(config_overrides={"retry_max_attempts": 1})
 ```

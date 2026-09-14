@@ -23,24 +23,56 @@ class DataQualityMetricValues(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: DataQualityMetricValues) -> dict:
     out: dict = {}
     if "actual_value" in value:
-        out["ActualValue"] = value["actual_value"]
+        out["ActualValue"] = (
+            "NaN"
+            if value["actual_value"] != value["actual_value"]
+            else "Infinity"
+            if value["actual_value"] == float("inf")
+            else "-Infinity"
+            if value["actual_value"] == float("-inf")
+            else value["actual_value"]
+        )
     if "expected_value" in value:
-        out["ExpectedValue"] = value["expected_value"]
+        out["ExpectedValue"] = (
+            "NaN"
+            if value["expected_value"] != value["expected_value"]
+            else "Infinity"
+            if value["expected_value"] == float("inf")
+            else "-Infinity"
+            if value["expected_value"] == float("-inf")
+            else value["expected_value"]
+        )
     if "lower_limit" in value:
-        out["LowerLimit"] = value["lower_limit"]
+        out["LowerLimit"] = (
+            "NaN"
+            if value["lower_limit"] != value["lower_limit"]
+            else "Infinity"
+            if value["lower_limit"] == float("inf")
+            else "-Infinity"
+            if value["lower_limit"] == float("-inf")
+            else value["lower_limit"]
+        )
     if "upper_limit" in value:
-        out["UpperLimit"] = value["upper_limit"]
+        out["UpperLimit"] = (
+            "NaN"
+            if value["upper_limit"] != value["upper_limit"]
+            else "Infinity"
+            if value["upper_limit"] == float("inf")
+            else "-Infinity"
+            if value["upper_limit"] == float("-inf")
+            else value["upper_limit"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityMetricValues:
     out: DataQualityMetricValues = {}  # type: ignore[typeddict-item]
-    if "ActualValue" in data:
-        out["actual_value"] = data["ActualValue"]
-    if "ExpectedValue" in data:
-        out["expected_value"] = data["ExpectedValue"]
-    if "LowerLimit" in data:
-        out["lower_limit"] = data["LowerLimit"]
-    if "UpperLimit" in data:
-        out["upper_limit"] = data["UpperLimit"]
+    if data.get("ActualValue") is not None:
+        out["actual_value"] = float(data["ActualValue"])
+    if data.get("ExpectedValue") is not None:
+        out["expected_value"] = float(data["ExpectedValue"])
+    if data.get("LowerLimit") is not None:
+        out["lower_limit"] = float(data["LowerLimit"])
+    if data.get("UpperLimit") is not None:
+        out["upper_limit"] = float(data["UpperLimit"])
     return out

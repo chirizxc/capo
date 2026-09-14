@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PathElementList:
 
     out: PathElementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_accessanalyzer.types.path_element.deserialize_json(item))
     return out

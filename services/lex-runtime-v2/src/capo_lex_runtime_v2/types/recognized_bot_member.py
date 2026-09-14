@@ -29,10 +29,10 @@ def serialize_json(value: RecognizedBotMember) -> dict:
 
 def deserialize_json(data: dict) -> RecognizedBotMember:
     out: RecognizedBotMember = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
     else:
         raise DeserializationError("RecognizedBotMember.bot_id required")
-    if "botName" in data:
+    if data.get("botName") is not None:
         out["bot_name"] = data["botName"]
     return out

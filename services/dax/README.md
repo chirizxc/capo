@@ -13,9 +13,9 @@ from capo_dax import AsyncDAXClient
 
 
 async def main():
-    async with AsyncDAXClient() as s3:
+    async with AsyncDAXClient() as dax:
         # Example: call the create_cluster operation
-        response = await s3.create_cluster()
+        response = await dax.create_cluster()
         print(response["cluster"])
 ```
 
@@ -29,9 +29,9 @@ from capo_dax.error import ClusterAlreadyExistsFault
 
 
 async def main():
-    async with AsyncDAXClient() as s3:
+    async with AsyncDAXClient() as dax:
         try:
-            await s3.create_cluster()
+            await dax.create_cluster()
         except ClusterAlreadyExistsFault as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_dax import AsyncDAXClient
 
 
 async def main():
-    async with AsyncDAXClient() as s3:
+    async with AsyncDAXClient() as dax:
         # Default: 3 attempts for every operation
-        response = await s3.create_cluster()
+        response = await dax.create_cluster()
 
         # Override per operation
-        response = await s3.create_cluster(config_overrides={"retry_max_attempts": 5})
+        response = await dax.create_cluster(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_cluster(config_overrides={"retry_max_attempts": 1})
+        response = await dax.create_cluster(config_overrides={"retry_max_attempts": 1})
 ```

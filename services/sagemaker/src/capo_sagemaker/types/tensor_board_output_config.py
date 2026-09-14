@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: TensorBoardOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TensorBoardOutputConfig:
     out: TensorBoardOutputConfig = {}  # type: ignore[typeddict-item]
-    if "LocalPath" in data:
+    if data.get("LocalPath") is not None:
         out["local_path"] = data["LocalPath"]
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
     return out

@@ -50,7 +50,7 @@ def serialize_json(value: EvaluationFormNumericQuestionAutomation) -> dict:
 
 
 def deserialize_json(data: dict) -> EvaluationFormNumericQuestionAutomation:
-    if "PropertyValue" in data:
+    if data.get("PropertyValue") is not None:
         import capo_connect.types.numeric_question_property_value_automation
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> EvaluationFormNumericQuestionAutomation:
                 data["PropertyValue"]
             )
         }
-    elif "AnswerSource" in data:
+    elif data.get("AnswerSource") is not None:
         import capo_connect.types.evaluation_form_question_automation_answer_source
 
         return {

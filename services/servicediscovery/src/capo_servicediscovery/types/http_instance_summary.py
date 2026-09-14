@@ -57,13 +57,13 @@ def serialize_aws_json_1_1(value: HttpInstanceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HttpInstanceSummary:
     out: HttpInstanceSummary = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "NamespaceName" in data:
+    if data.get("NamespaceName") is not None:
         out["namespace_name"] = data["NamespaceName"]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "HealthStatus" in data:
+    if data.get("HealthStatus") is not None:
         import capo_servicediscovery.types.health_status
 
         out["health_status"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpInstanceSummary:
                 data["HealthStatus"]
             )
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_servicediscovery.types.attributes
 
         out["attributes"] = (

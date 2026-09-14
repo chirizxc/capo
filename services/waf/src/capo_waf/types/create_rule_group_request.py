@@ -39,19 +39,19 @@ def serialize_aws_json_1_1(value: CreateRuleGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRuleGroupRequest:
     out: CreateRuleGroupRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateRuleGroupRequest.name required")
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
     else:
         raise DeserializationError("CreateRuleGroupRequest.metric_name required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("CreateRuleGroupRequest.change_token required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_waf.types.tag_list
 
         out["tags"] = capo_waf.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

@@ -63,7 +63,7 @@ def serialize_json(value: VirtualNodeSpec) -> dict:
 
 def deserialize_json(data: dict) -> VirtualNodeSpec:
     out: VirtualNodeSpec = {}  # type: ignore[typeddict-item]
-    if "serviceDiscovery" in data:
+    if data.get("serviceDiscovery") is not None:
         import capo_app_mesh.types.service_discovery
 
         out["service_discovery"] = (
@@ -71,25 +71,25 @@ def deserialize_json(data: dict) -> VirtualNodeSpec:
                 data["serviceDiscovery"]
             )
         )
-    if "listeners" in data:
+    if data.get("listeners") is not None:
         import capo_app_mesh.types.listeners
 
         out["listeners"] = capo_app_mesh.types.listeners.deserialize_json(
             data["listeners"]
         )
-    if "backends" in data:
+    if data.get("backends") is not None:
         import capo_app_mesh.types.backends
 
         out["backends"] = capo_app_mesh.types.backends.deserialize_json(
             data["backends"]
         )
-    if "backendDefaults" in data:
+    if data.get("backendDefaults") is not None:
         import capo_app_mesh.types.backend_defaults
 
         out["backend_defaults"] = capo_app_mesh.types.backend_defaults.deserialize_json(
             data["backendDefaults"]
         )
-    if "logging" in data:
+    if data.get("logging") is not None:
         import capo_app_mesh.types.logging
 
         out["logging"] = capo_app_mesh.types.logging.deserialize_json(data["logging"])

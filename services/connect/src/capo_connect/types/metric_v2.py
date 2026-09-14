@@ -50,17 +50,17 @@ def serialize_json(value: MetricV2) -> dict:
 
 def deserialize_json(data: dict) -> MetricV2:
     out: MetricV2 = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Threshold" in data:
+    if data.get("Threshold") is not None:
         import capo_connect.types.threshold_collections
 
         out["threshold"] = capo_connect.types.threshold_collections.deserialize_json(
             data["Threshold"]
         )
-    if "MetricId" in data:
+    if data.get("MetricId") is not None:
         out["metric_id"] = data["MetricId"]
-    if "MetricFilters" in data:
+    if data.get("MetricFilters") is not None:
         import capo_connect.types.metric_filters_v2_list
 
         out["metric_filters"] = (

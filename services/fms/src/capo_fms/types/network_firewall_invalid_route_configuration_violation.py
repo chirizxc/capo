@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> NetworkFirewallInvalidRouteConfigurationViolation:
     out: NetworkFirewallInvalidRouteConfigurationViolation = {}  # type: ignore[typeddict-item]
-    if "AffectedSubnets" in data:
+    if data.get("AffectedSubnets") is not None:
         import capo_fms.types.resource_id_list
 
         out["affected_subnets"] = (
@@ -145,33 +145,33 @@ def deserialize_aws_json_1_1(
                 data["AffectedSubnets"]
             )
         )
-    if "RouteTableId" in data:
+    if data.get("RouteTableId") is not None:
         out["route_table_id"] = data["RouteTableId"]
-    if "IsRouteTableUsedInDifferentAZ" in data:
+    if data.get("IsRouteTableUsedInDifferentAZ") is not None:
         out["is_route_table_used_in_different_az"] = data[
             "IsRouteTableUsedInDifferentAZ"
         ]
     else:
         out["is_route_table_used_in_different_az"] = False
-    if "ViolatingRoute" in data:
+    if data.get("ViolatingRoute") is not None:
         import capo_fms.types.route
 
         out["violating_route"] = capo_fms.types.route.deserialize_aws_json_1_1(
             data["ViolatingRoute"]
         )
-    if "CurrentFirewallSubnetRouteTable" in data:
+    if data.get("CurrentFirewallSubnetRouteTable") is not None:
         out["current_firewall_subnet_route_table"] = data[
             "CurrentFirewallSubnetRouteTable"
         ]
-    if "ExpectedFirewallEndpoint" in data:
+    if data.get("ExpectedFirewallEndpoint") is not None:
         out["expected_firewall_endpoint"] = data["ExpectedFirewallEndpoint"]
-    if "ActualFirewallEndpoint" in data:
+    if data.get("ActualFirewallEndpoint") is not None:
         out["actual_firewall_endpoint"] = data["ActualFirewallEndpoint"]
-    if "ExpectedFirewallSubnetId" in data:
+    if data.get("ExpectedFirewallSubnetId") is not None:
         out["expected_firewall_subnet_id"] = data["ExpectedFirewallSubnetId"]
-    if "ActualFirewallSubnetId" in data:
+    if data.get("ActualFirewallSubnetId") is not None:
         out["actual_firewall_subnet_id"] = data["ActualFirewallSubnetId"]
-    if "ExpectedFirewallSubnetRoutes" in data:
+    if data.get("ExpectedFirewallSubnetRoutes") is not None:
         import capo_fms.types.expected_routes
 
         out["expected_firewall_subnet_routes"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_1(
                 data["ExpectedFirewallSubnetRoutes"]
             )
         )
-    if "ActualFirewallSubnetRoutes" in data:
+    if data.get("ActualFirewallSubnetRoutes") is not None:
         import capo_fms.types.routes
 
         out["actual_firewall_subnet_routes"] = (
@@ -187,13 +187,13 @@ def deserialize_aws_json_1_1(
                 data["ActualFirewallSubnetRoutes"]
             )
         )
-    if "InternetGatewayId" in data:
+    if data.get("InternetGatewayId") is not None:
         out["internet_gateway_id"] = data["InternetGatewayId"]
-    if "CurrentInternetGatewayRouteTable" in data:
+    if data.get("CurrentInternetGatewayRouteTable") is not None:
         out["current_internet_gateway_route_table"] = data[
             "CurrentInternetGatewayRouteTable"
         ]
-    if "ExpectedInternetGatewayRoutes" in data:
+    if data.get("ExpectedInternetGatewayRoutes") is not None:
         import capo_fms.types.expected_routes
 
         out["expected_internet_gateway_routes"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_1(
                 data["ExpectedInternetGatewayRoutes"]
             )
         )
-    if "ActualInternetGatewayRoutes" in data:
+    if data.get("ActualInternetGatewayRoutes") is not None:
         import capo_fms.types.routes
 
         out["actual_internet_gateway_routes"] = (
@@ -209,6 +209,6 @@ def deserialize_aws_json_1_1(
                 data["ActualInternetGatewayRoutes"]
             )
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

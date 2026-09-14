@@ -28,20 +28,44 @@ class RouteChargeStepDetails(TypedDict, closed=True):
 def serialize_json(value: RouteChargeStepDetails) -> dict:
     out: dict = {}
     if "arrival_charge" in value:
-        out["ArrivalCharge"] = value["arrival_charge"]
+        out["ArrivalCharge"] = (
+            "NaN"
+            if value["arrival_charge"] != value["arrival_charge"]
+            else "Infinity"
+            if value["arrival_charge"] == float("inf")
+            else "-Infinity"
+            if value["arrival_charge"] == float("-inf")
+            else value["arrival_charge"]
+        )
     if "consumable_power" in value:
-        out["ConsumablePower"] = value["consumable_power"]
+        out["ConsumablePower"] = (
+            "NaN"
+            if value["consumable_power"] != value["consumable_power"]
+            else "Infinity"
+            if value["consumable_power"] == float("inf")
+            else "-Infinity"
+            if value["consumable_power"] == float("-inf")
+            else value["consumable_power"]
+        )
     if "desired_charge" in value:
-        out["DesiredCharge"] = value["desired_charge"]
+        out["DesiredCharge"] = (
+            "NaN"
+            if value["desired_charge"] != value["desired_charge"]
+            else "Infinity"
+            if value["desired_charge"] == float("inf")
+            else "-Infinity"
+            if value["desired_charge"] == float("-inf")
+            else value["desired_charge"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> RouteChargeStepDetails:
     out: RouteChargeStepDetails = {}  # type: ignore[typeddict-item]
-    if "ArrivalCharge" in data:
-        out["arrival_charge"] = data["ArrivalCharge"]
-    if "ConsumablePower" in data:
-        out["consumable_power"] = data["ConsumablePower"]
-    if "DesiredCharge" in data:
-        out["desired_charge"] = data["DesiredCharge"]
+    if data.get("ArrivalCharge") is not None:
+        out["arrival_charge"] = float(data["ArrivalCharge"])
+    if data.get("ConsumablePower") is not None:
+        out["consumable_power"] = float(data["ConsumablePower"])
+    if data.get("DesiredCharge") is not None:
+        out["desired_charge"] = float(data["DesiredCharge"])
     return out

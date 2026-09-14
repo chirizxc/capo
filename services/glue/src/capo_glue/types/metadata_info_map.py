@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: MetadataInfoMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> MetadataInfoMap:
     out: MetadataInfoMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_glue.types.metadata_info
 
         out[key] = capo_glue.types.metadata_info.deserialize_aws_json_1_1(value)

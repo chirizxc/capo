@@ -43,18 +43,18 @@ def serialize_json(value: UpdateDashboardRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDashboardRequest:
     out: UpdateDashboardRequest = {}  # type: ignore[typeddict-item]
-    if "dashboardName" in data:
+    if data.get("dashboardName") is not None:
         out["dashboard_name"] = data["dashboardName"]
     else:
         raise DeserializationError("UpdateDashboardRequest.dashboard_name required")
-    if "dashboardDescription" in data:
+    if data.get("dashboardDescription") is not None:
         out["dashboard_description"] = data["dashboardDescription"]
-    if "dashboardDefinition" in data:
+    if data.get("dashboardDefinition") is not None:
         out["dashboard_definition"] = data["dashboardDefinition"]
     else:
         raise DeserializationError(
             "UpdateDashboardRequest.dashboard_definition required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

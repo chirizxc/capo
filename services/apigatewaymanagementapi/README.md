@@ -13,9 +13,9 @@ from capo_apigatewaymanagementapi import AsyncApiGatewayManagementApiClient
 
 
 async def main():
-    async with AsyncApiGatewayManagementApiClient() as s3:
+    async with AsyncApiGatewayManagementApiClient() as api_gateway_management_api:
         # Example: call the delete_connection operation
-        response = await s3.delete_connection()
+        response = await api_gateway_management_api.delete_connection()
         print(response)
 ```
 
@@ -29,9 +29,9 @@ from capo_apigatewaymanagementapi.error import ForbiddenException
 
 
 async def main():
-    async with AsyncApiGatewayManagementApiClient() as s3:
+    async with AsyncApiGatewayManagementApiClient() as api_gateway_management_api:
         try:
-            await s3.delete_connection()
+            await api_gateway_management_api.delete_connection()
         except ForbiddenException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_apigatewaymanagementapi import AsyncApiGatewayManagementApiClient
 
 
 async def main():
-    async with AsyncApiGatewayManagementApiClient() as s3:
+    async with AsyncApiGatewayManagementApiClient() as api_gateway_management_api:
         # Default: 3 attempts for every operation
-        response = await s3.delete_connection()
+        response = await api_gateway_management_api.delete_connection()
 
         # Override per operation
-        response = await s3.delete_connection(config_overrides={"retry_max_attempts": 5})
+        response = await api_gateway_management_api.delete_connection(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_connection(config_overrides={"retry_max_attempts": 1})
+        response = await api_gateway_management_api.delete_connection(config_overrides={"retry_max_attempts": 1})
 ```

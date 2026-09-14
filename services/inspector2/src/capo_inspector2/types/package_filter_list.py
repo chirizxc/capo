@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PackageFilterList:
 
     out: PackageFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.package_filter.deserialize_json(item))
     return out

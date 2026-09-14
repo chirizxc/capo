@@ -31,7 +31,7 @@ def serialize_json(value: UpdateResolverTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResolverTypeRequest:
     out: UpdateResolverTypeRequest = {}  # type: ignore[typeddict-item]
-    if "resolverType" in data:
+    if data.get("resolverType") is not None:
         import capo_security_ir.types.resolver_type
 
         out["resolver_type"] = capo_security_ir.types.resolver_type.deserialize_json(

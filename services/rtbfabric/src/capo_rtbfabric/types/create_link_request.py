@@ -61,23 +61,23 @@ def serialize_json(value: CreateLinkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateLinkRequest:
     out: CreateLinkRequest = {}  # type: ignore[typeddict-item]
-    if "peerGatewayId" in data:
+    if data.get("peerGatewayId") is not None:
         out["peer_gateway_id"] = data["peerGatewayId"]
     else:
         raise DeserializationError("CreateLinkRequest.peer_gateway_id required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_rtbfabric.types.link_attributes
 
         out["attributes"] = capo_rtbfabric.types.link_attributes.deserialize_json(
             data["attributes"]
         )
-    if "httpResponderAllowed" in data:
+    if data.get("httpResponderAllowed") is not None:
         out["http_responder_allowed"] = data["httpResponderAllowed"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_rtbfabric.types.tags_map
 
         out["tags"] = capo_rtbfabric.types.tags_map.deserialize_json(data["tags"])
-    if "logSettings" in data:
+    if data.get("logSettings") is not None:
         import capo_rtbfabric.types.link_log_settings
 
         out["log_settings"] = capo_rtbfabric.types.link_log_settings.deserialize_json(
@@ -85,6 +85,6 @@ def deserialize_json(data: dict) -> CreateLinkRequest:
         )
     else:
         raise DeserializationError("CreateLinkRequest.log_settings required")
-    if "timeoutInMillis" in data:
+    if data.get("timeoutInMillis") is not None:
         out["timeout_in_millis"] = data["timeoutInMillis"]
     return out

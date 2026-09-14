@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: TagInfoForResource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagInfoForResource:
     out: TagInfoForResource = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_wafv2.types.tag_list
 
         out["tag_list"] = capo_wafv2.types.tag_list.deserialize_aws_json_1_1(

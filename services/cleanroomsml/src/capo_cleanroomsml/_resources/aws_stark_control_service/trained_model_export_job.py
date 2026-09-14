@@ -81,15 +81,16 @@ class TrainedModelExportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.start_trained_model_export_job_request.StartTrainedModelExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["trained_model_arn"] = trained_model_arn
+        input_: capo_cleanroomsml.types.start_trained_model_export_job_request.StartTrainedModelExportJobRequest = {
+            "name": name,
+            "trained_model_arn": trained_model_arn,
+            "membership_identifier": membership_identifier,
+            "output_configuration": output_configuration,
+        }
         if trained_model_version_identifier is not None:
             input_["trained_model_version_identifier"] = (
                 trained_model_version_identifier
             )
-        input_["membership_identifier"] = membership_identifier
-        input_["output_configuration"] = output_configuration
         if description is not None:
             input_["description"] = description
 
@@ -98,6 +99,7 @@ class TrainedModelExportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -153,15 +155,16 @@ class AsyncTrainedModelExportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.start_trained_model_export_job_request.StartTrainedModelExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["trained_model_arn"] = trained_model_arn
+        input_: capo_cleanroomsml.types.start_trained_model_export_job_request.StartTrainedModelExportJobRequest = {
+            "name": name,
+            "trained_model_arn": trained_model_arn,
+            "membership_identifier": membership_identifier,
+            "output_configuration": output_configuration,
+        }
         if trained_model_version_identifier is not None:
             input_["trained_model_version_identifier"] = (
                 trained_model_version_identifier
             )
-        input_["membership_identifier"] = membership_identifier
-        input_["output_configuration"] = output_configuration
         if description is not None:
             input_["description"] = description
 
@@ -170,4 +173,5 @@ class AsyncTrainedModelExportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

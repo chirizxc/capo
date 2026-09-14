@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListOptimizationJobsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListOptimizationJobsResponse:
     out: ListOptimizationJobsResponse = {}  # type: ignore[typeddict-item]
-    if "OptimizationJobSummaries" in data:
+    if data.get("OptimizationJobSummaries") is not None:
         import capo_sagemaker.types.optimization_job_summaries
 
         out["optimization_job_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListOptimizationJobsResponse:
                 data["OptimizationJobSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

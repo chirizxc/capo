@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ConnectorProfileDetailList:
 
     out: ConnectorProfileDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appflow.types.connector_profile.deserialize_json(item))
     return out

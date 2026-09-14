@@ -32,7 +32,7 @@ def serialize_json(value: AnalysisSourceMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> AnalysisSourceMetadata:
-    if "artifacts" in data:
+    if data.get("artifacts") is not None:
         import capo_cleanrooms.types.analysis_template_artifact_metadata
 
         return {

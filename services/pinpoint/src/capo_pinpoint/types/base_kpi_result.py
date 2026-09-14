@@ -27,7 +27,7 @@ def serialize_json(value: BaseKpiResult) -> dict:
 
 def deserialize_json(data: dict) -> BaseKpiResult:
     out: BaseKpiResult = {}  # type: ignore[typeddict-item]
-    if "Rows" in data:
+    if data.get("Rows") is not None:
         import capo_pinpoint.types.list_of_result_row
 
         out["rows"] = capo_pinpoint.types.list_of_result_row.deserialize_json(

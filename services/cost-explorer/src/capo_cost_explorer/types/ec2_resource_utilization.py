@@ -80,17 +80,17 @@ def serialize_aws_json_1_1(value: EC2ResourceUtilization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2ResourceUtilization:
     out: EC2ResourceUtilization = {}  # type: ignore[typeddict-item]
-    if "MaxCpuUtilizationPercentage" in data:
+    if data.get("MaxCpuUtilizationPercentage") is not None:
         out["max_cpu_utilization_percentage"] = data["MaxCpuUtilizationPercentage"]
-    if "MaxMemoryUtilizationPercentage" in data:
+    if data.get("MaxMemoryUtilizationPercentage") is not None:
         out["max_memory_utilization_percentage"] = data[
             "MaxMemoryUtilizationPercentage"
         ]
-    if "MaxStorageUtilizationPercentage" in data:
+    if data.get("MaxStorageUtilizationPercentage") is not None:
         out["max_storage_utilization_percentage"] = data[
             "MaxStorageUtilizationPercentage"
         ]
-    if "EBSResourceUtilization" in data:
+    if data.get("EBSResourceUtilization") is not None:
         import capo_cost_explorer.types.ebs_resource_utilization
 
         out["ebs_resource_utilization"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> EC2ResourceUtilization:
                 data["EBSResourceUtilization"]
             )
         )
-    if "DiskResourceUtilization" in data:
+    if data.get("DiskResourceUtilization") is not None:
         import capo_cost_explorer.types.disk_resource_utilization
 
         out["disk_resource_utilization"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> EC2ResourceUtilization:
                 data["DiskResourceUtilization"]
             )
         )
-    if "NetworkResourceUtilization" in data:
+    if data.get("NetworkResourceUtilization") is not None:
         import capo_cost_explorer.types.network_resource_utilization
 
         out["network_resource_utilization"] = (

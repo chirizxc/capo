@@ -36,7 +36,7 @@ def serialize_json(value: ListSchedulingPoliciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSchedulingPoliciesResponse:
     out: ListSchedulingPoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "schedulingPolicies" in data:
+    if data.get("schedulingPolicies") is not None:
         import capo_batch.types.scheduling_policy_listing_detail_list
 
         out["scheduling_policies"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListSchedulingPoliciesResponse:
                 data["schedulingPolicies"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

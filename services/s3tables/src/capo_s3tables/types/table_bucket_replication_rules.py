@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TableBucketReplicationRules:
 
     out: TableBucketReplicationRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_s3tables.types.table_bucket_replication_rule.deserialize_json(item)
         )

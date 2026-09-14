@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteWebhookInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWebhookInput:
     out: DeleteWebhookInput = {}  # type: ignore[typeddict-item]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("DeleteWebhookInput.project_name required")

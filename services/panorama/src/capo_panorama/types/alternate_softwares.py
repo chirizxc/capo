@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AlternateSoftwares:
 
     out: AlternateSoftwares = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_panorama.types.alternate_software_metadata.deserialize_json(item)
         )

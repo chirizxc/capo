@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: RStudioServerProAppSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RStudioServerProAppSettings:
     out: RStudioServerProAppSettings = {}  # type: ignore[typeddict-item]
-    if "AccessStatus" in data:
+    if data.get("AccessStatus") is not None:
         import capo_sagemaker.types.r_studio_server_pro_access_status
 
         out["access_status"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> RStudioServerProAppSettings:
                 data["AccessStatus"]
             )
         )
-    if "UserGroup" in data:
+    if data.get("UserGroup") is not None:
         import capo_sagemaker.types.r_studio_server_pro_user_group
 
         out["user_group"] = (

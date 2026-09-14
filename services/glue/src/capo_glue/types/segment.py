@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: Segment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Segment:
     out: Segment = {}  # type: ignore[typeddict-item]
-    if "SegmentNumber" in data:
+    if data.get("SegmentNumber") is not None:
         out["segment_number"] = data["SegmentNumber"]
     else:
         out["segment_number"] = 0
-    if "TotalSegments" in data:
+    if data.get("TotalSegments") is not None:
         out["total_segments"] = data["TotalSegments"]
     else:
         raise DeserializationError("Segment.total_segments required")

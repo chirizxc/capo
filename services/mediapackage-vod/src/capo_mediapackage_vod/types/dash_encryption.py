@@ -30,7 +30,7 @@ def serialize_json(value: DashEncryption) -> dict:
 
 def deserialize_json(data: dict) -> DashEncryption:
     out: DashEncryption = {}  # type: ignore[typeddict-item]
-    if "spekeKeyProvider" in data:
+    if data.get("spekeKeyProvider") is not None:
         import capo_mediapackage_vod.types.speke_key_provider
 
         out["speke_key_provider"] = (

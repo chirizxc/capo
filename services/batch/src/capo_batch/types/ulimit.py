@@ -32,10 +32,10 @@ def serialize_json(value: Ulimit) -> dict:
 
 def deserialize_json(data: dict) -> Ulimit:
     out: Ulimit = {}  # type: ignore[typeddict-item]
-    if "hardLimit" in data:
+    if data.get("hardLimit") is not None:
         out["hard_limit"] = data["hardLimit"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "softLimit" in data:
+    if data.get("softLimit") is not None:
         out["soft_limit"] = data["softLimit"]
     return out

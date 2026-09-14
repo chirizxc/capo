@@ -93,13 +93,13 @@ def serialize_aws_json_1_0(value: VpcIngressConnection) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VpcIngressConnection:
     out: VpcIngressConnection = {}  # type: ignore[typeddict-item]
-    if "VpcIngressConnectionArn" in data:
+    if data.get("VpcIngressConnectionArn") is not None:
         out["vpc_ingress_connection_arn"] = data["VpcIngressConnectionArn"]
-    if "VpcIngressConnectionName" in data:
+    if data.get("VpcIngressConnectionName") is not None:
         out["vpc_ingress_connection_name"] = data["VpcIngressConnectionName"]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_apprunner.types.vpc_ingress_connection_status
 
         out["status"] = (
@@ -107,11 +107,11 @@ def deserialize_aws_json_1_0(data: dict) -> VpcIngressConnection:
                 data["Status"]
             )
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "IngressVpcConfiguration" in data:
+    if data.get("IngressVpcConfiguration") is not None:
         import capo_apprunner.types.ingress_vpc_configuration
 
         out["ingress_vpc_configuration"] = (
@@ -119,13 +119,13 @@ def deserialize_aws_json_1_0(data: dict) -> VpcIngressConnection:
                 data["IngressVpcConfiguration"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["created_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "DeletedAt" in data:
+    if data.get("DeletedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["deleted_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(

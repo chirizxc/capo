@@ -44,9 +44,9 @@ def serialize_aws_json_1_1(value: UrlRedirectionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UrlRedirectionConfig:
     out: UrlRedirectionConfig = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "AllowedUrls" in data:
+    if data.get("AllowedUrls") is not None:
         import capo_appstream.types.url_pattern_list
 
         out["allowed_urls"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> UrlRedirectionConfig:
                 data["AllowedUrls"]
             )
         )
-    if "DeniedUrls" in data:
+    if data.get("DeniedUrls") is not None:
         import capo_appstream.types.url_pattern_list
 
         out["denied_urls"] = (

@@ -79,33 +79,33 @@ def serialize_json(value: DescribeMitigationActionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeMitigationActionResponse:
     out: DescribeMitigationActionResponse = {}  # type: ignore[typeddict-item]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
-    if "actionType" in data:
+    if data.get("actionType") is not None:
         import capo_iot.types.mitigation_action_type
 
         out["action_type"] = capo_iot.types.mitigation_action_type.deserialize_json(
             data["actionType"]
         )
-    if "actionArn" in data:
+    if data.get("actionArn") is not None:
         out["action_arn"] = data["actionArn"]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "actionParams" in data:
+    if data.get("actionParams") is not None:
         import capo_iot.types.mitigation_action_params
 
         out["action_params"] = capo_iot.types.mitigation_action_params.deserialize_json(
             data["actionParams"]
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.timestamp
 
         out["creation_date"] = capo_iot.types.timestamp.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.timestamp
 
         out["last_modified_date"] = capo_iot.types.timestamp.deserialize_json(

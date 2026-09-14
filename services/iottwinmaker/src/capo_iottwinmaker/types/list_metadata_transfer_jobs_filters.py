@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListMetadataTransferJobsFilters:
 
     out: ListMetadataTransferJobsFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iottwinmaker.types.list_metadata_transfer_jobs_filter.deserialize_json(
                 item

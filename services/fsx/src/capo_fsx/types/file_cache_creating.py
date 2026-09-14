@@ -157,17 +157,17 @@ def serialize_aws_json_1_1(value: FileCacheCreating) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileCacheCreating:
     out: FileCacheCreating = {}  # type: ignore[typeddict-item]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_fsx.types.creation_time
 
         out["creation_time"] = capo_fsx.types.creation_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FileCacheId" in data:
+    if data.get("FileCacheId") is not None:
         out["file_cache_id"] = data["FileCacheId"]
-    if "FileCacheType" in data:
+    if data.get("FileCacheType") is not None:
         import capo_fsx.types.file_cache_type
 
         out["file_cache_type"] = (
@@ -175,15 +175,15 @@ def deserialize_aws_json_1_1(data: dict) -> FileCacheCreating:
                 data["FileCacheType"]
             )
         )
-    if "FileCacheTypeVersion" in data:
+    if data.get("FileCacheTypeVersion") is not None:
         out["file_cache_type_version"] = data["FileCacheTypeVersion"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.file_cache_lifecycle
 
         out["lifecycle"] = capo_fsx.types.file_cache_lifecycle.deserialize_aws_json_1_1(
             data["Lifecycle"]
         )
-    if "FailureDetails" in data:
+    if data.get("FailureDetails") is not None:
         import capo_fsx.types.file_cache_failure_details
 
         out["failure_details"] = (
@@ -191,17 +191,17 @@ def deserialize_aws_json_1_1(data: dict) -> FileCacheCreating:
                 data["FailureDetails"]
             )
         )
-    if "StorageCapacity" in data:
+    if data.get("StorageCapacity") is not None:
         out["storage_capacity"] = data["StorageCapacity"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_fsx.types.subnet_ids
 
         out["subnet_ids"] = capo_fsx.types.subnet_ids.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "NetworkInterfaceIds" in data:
+    if data.get("NetworkInterfaceIds") is not None:
         import capo_fsx.types.network_interface_ids
 
         out["network_interface_ids"] = (
@@ -209,21 +209,21 @@ def deserialize_aws_json_1_1(data: dict) -> FileCacheCreating:
                 data["NetworkInterfaceIds"]
             )
         )
-    if "DNSName" in data:
+    if data.get("DNSName") is not None:
         out["dns_name"] = data["DNSName"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "CopyTagsToDataRepositoryAssociations" in data:
+    if data.get("CopyTagsToDataRepositoryAssociations") is not None:
         out["copy_tags_to_data_repository_associations"] = data[
             "CopyTagsToDataRepositoryAssociations"
         ]
-    if "LustreConfiguration" in data:
+    if data.get("LustreConfiguration") is not None:
         import capo_fsx.types.file_cache_lustre_configuration
 
         out["lustre_configuration"] = (
@@ -231,7 +231,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileCacheCreating:
                 data["LustreConfiguration"]
             )
         )
-    if "DataRepositoryAssociationIds" in data:
+    if data.get("DataRepositoryAssociationIds") is not None:
         import capo_fsx.types.data_repository_association_ids
 
         out["data_repository_association_ids"] = (

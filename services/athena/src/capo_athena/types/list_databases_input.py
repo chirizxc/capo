@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: ListDatabasesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDatabasesInput:
     out: ListDatabasesInput = {}  # type: ignore[typeddict-item]
-    if "CatalogName" in data:
+    if data.get("CatalogName") is not None:
         out["catalog_name"] = data["CatalogName"]
     else:
         raise DeserializationError("ListDatabasesInput.catalog_name required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     return out

@@ -29,6 +29,8 @@ def serialize_aws_json_1_1(input_to_serialize: PortMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> PortMap:
     out: PortMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_lightsail.types.container_service_protocol
 
         out[key] = (

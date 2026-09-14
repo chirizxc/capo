@@ -33,7 +33,7 @@ def serialize_json(value: DisassociateApplicationsInput) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateApplicationsInput:
     out: DisassociateApplicationsInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationIdentifiers" in data:
+    if data.get("ApplicationIdentifiers") is not None:
         import capo_gameliftstreams.types.identifiers
 
         out["application_identifiers"] = (

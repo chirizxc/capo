@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: DescribeMetadataModelResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMetadataModelResponse:
     out: DescribeMetadataModelResponse = {}  # type: ignore[typeddict-item]
-    if "MetadataModelName" in data:
+    if data.get("MetadataModelName") is not None:
         out["metadata_model_name"] = data["MetadataModelName"]
-    if "MetadataModelType" in data:
+    if data.get("MetadataModelType") is not None:
         out["metadata_model_type"] = data["MetadataModelType"]
-    if "TargetMetadataModels" in data:
+    if data.get("TargetMetadataModels") is not None:
         import capo_database_migration_service.types.metadata_model_reference_list
 
         out["target_metadata_models"] = (
@@ -60,6 +60,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMetadataModelResponse:
                 data["TargetMetadataModels"]
             )
         )
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         out["definition"] = data["Definition"]
     return out

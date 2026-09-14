@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: MongoDBTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MongoDBTarget:
     out: MongoDBTarget = {}  # type: ignore[typeddict-item]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "ScanAll" in data:
+    if data.get("ScanAll") is not None:
         out["scan_all"] = data["ScanAll"]
     return out

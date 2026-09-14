@@ -71,7 +71,7 @@ def serialize_aws_json_1_0(value: LeadCustomer) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LeadCustomer:
     out: LeadCustomer = {}  # type: ignore[typeddict-item]
-    if "Industry" in data:
+    if data.get("Industry") is not None:
         import capo_partnercentral_selling.types.industry
 
         out["industry"] = (
@@ -79,13 +79,13 @@ def deserialize_aws_json_1_0(data: dict) -> LeadCustomer:
                 data["Industry"]
             )
         )
-    if "CompanyName" in data:
+    if data.get("CompanyName") is not None:
         out["company_name"] = data["CompanyName"]
     else:
         raise DeserializationError("LeadCustomer.company_name required")
-    if "WebsiteUrl" in data:
+    if data.get("WebsiteUrl") is not None:
         out["website_url"] = data["WebsiteUrl"]
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_partnercentral_selling.types.address_summary
 
         out["address"] = (
@@ -95,9 +95,9 @@ def deserialize_aws_json_1_0(data: dict) -> LeadCustomer:
         )
     else:
         raise DeserializationError("LeadCustomer.address required")
-    if "AwsMaturity" in data:
+    if data.get("AwsMaturity") is not None:
         out["aws_maturity"] = data["AwsMaturity"]
-    if "MarketSegment" in data:
+    if data.get("MarketSegment") is not None:
         import capo_partnercentral_selling.types.market_segment
 
         out["market_segment"] = (

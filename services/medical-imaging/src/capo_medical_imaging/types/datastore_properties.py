@@ -83,15 +83,15 @@ def serialize_json(value: DatastoreProperties) -> dict:
 
 def deserialize_json(data: dict) -> DatastoreProperties:
     out: DatastoreProperties = {}  # type: ignore[typeddict-item]
-    if "datastoreId" in data:
+    if data.get("datastoreId") is not None:
         out["datastore_id"] = data["datastoreId"]
     else:
         raise DeserializationError("DatastoreProperties.datastore_id required")
-    if "datastoreName" in data:
+    if data.get("datastoreName") is not None:
         out["datastore_name"] = data["datastoreName"]
     else:
         raise DeserializationError("DatastoreProperties.datastore_name required")
-    if "datastoreStatus" in data:
+    if data.get("datastoreStatus") is not None:
         import capo_medical_imaging.types.datastore_status
 
         out["datastore_status"] = (
@@ -101,11 +101,11 @@ def deserialize_json(data: dict) -> DatastoreProperties:
         )
     else:
         raise DeserializationError("DatastoreProperties.datastore_status required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "lambdaAuthorizerArn" in data:
+    if data.get("lambdaAuthorizerArn") is not None:
         out["lambda_authorizer_arn"] = data["lambdaAuthorizerArn"]
-    if "losslessStorageFormat" in data:
+    if data.get("losslessStorageFormat") is not None:
         import capo_medical_imaging.types.lossless_storage_format
 
         out["lossless_storage_format"] = (
@@ -113,15 +113,15 @@ def deserialize_json(data: dict) -> DatastoreProperties:
                 data["losslessStorageFormat"]
             )
         )
-    if "datastoreArn" in data:
+    if data.get("datastoreArn") is not None:
         out["datastore_arn"] = data["datastoreArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_medical_imaging.types.date
 
         out["created_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["updated_at"] = capo_medical_imaging.types.date.deserialize_json(

@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: JobResource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobResource:
     out: JobResource = {}  # type: ignore[typeddict-item]
-    if "S3Resources" in data:
+    if data.get("S3Resources") is not None:
         import capo_snowball.types.s3_resource_list
 
         out["s3_resources"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobResource:
                 data["S3Resources"]
             )
         )
-    if "LambdaResources" in data:
+    if data.get("LambdaResources") is not None:
         import capo_snowball.types.lambda_resource_list
 
         out["lambda_resources"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobResource:
                 data["LambdaResources"]
             )
         )
-    if "Ec2AmiResources" in data:
+    if data.get("Ec2AmiResources") is not None:
         import capo_snowball.types.ec2_ami_resource_list
 
         out["ec2_ami_resources"] = (

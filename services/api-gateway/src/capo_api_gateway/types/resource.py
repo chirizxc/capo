@@ -44,15 +44,15 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "parentId" in data:
+    if data.get("parentId") is not None:
         out["parent_id"] = data["parentId"]
-    if "pathPart" in data:
+    if data.get("pathPart") is not None:
         out["path_part"] = data["pathPart"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "resourceMethods" in data:
+    if data.get("resourceMethods") is not None:
         import capo_api_gateway.types.map_of_method
 
         out["resource_methods"] = capo_api_gateway.types.map_of_method.deserialize_json(

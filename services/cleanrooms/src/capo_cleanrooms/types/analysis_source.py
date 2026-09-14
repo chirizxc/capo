@@ -41,9 +41,9 @@ def serialize_json(value: AnalysisSource) -> dict:
 
 
 def deserialize_json(data: dict) -> AnalysisSource:
-    if "text" in data:
+    if data.get("text") is not None:
         return {"text": data["text"]}
-    elif "artifacts" in data:
+    elif data.get("artifacts") is not None:
         import capo_cleanrooms.types.analysis_template_artifacts
 
         return {

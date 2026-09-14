@@ -80,7 +80,7 @@ def serialize_aws_json_1_1(value: AuthenticationConfigurationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthenticationConfigurationInput:
     out: AuthenticationConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_glue.types.authentication_type
 
         out["authentication_type"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> AuthenticationConfigurationInput:
                 data["AuthenticationType"]
             )
         )
-    if "OAuth2Properties" in data:
+    if data.get("OAuth2Properties") is not None:
         import capo_glue.types.o_auth2_properties_input
 
         out["o_auth2_properties"] = (
@@ -96,11 +96,11 @@ def deserialize_aws_json_1_1(data: dict) -> AuthenticationConfigurationInput:
                 data["OAuth2Properties"]
             )
         )
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "BasicAuthenticationCredentials" in data:
+    if data.get("BasicAuthenticationCredentials") is not None:
         import capo_glue.types.basic_authentication_credentials
 
         out["basic_authentication_credentials"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> AuthenticationConfigurationInput:
                 data["BasicAuthenticationCredentials"]
             )
         )
-    if "CustomAuthenticationCredentials" in data:
+    if data.get("CustomAuthenticationCredentials") is not None:
         import capo_glue.types.credential_map
 
         out["custom_authentication_credentials"] = (

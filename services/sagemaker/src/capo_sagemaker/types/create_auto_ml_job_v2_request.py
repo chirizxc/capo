@@ -141,9 +141,9 @@ def serialize_aws_json_1_1(value: CreateAutoMLJobV2Request) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobV2Request:
     out: CreateAutoMLJobV2Request = {}  # type: ignore[typeddict-item]
-    if "AutoMLJobName" in data:
+    if data.get("AutoMLJobName") is not None:
         out["auto_ml_job_name"] = data["AutoMLJobName"]
-    if "AutoMLJobInputDataConfig" in data:
+    if data.get("AutoMLJobInputDataConfig") is not None:
         import capo_sagemaker.types.auto_ml_job_input_data_config
 
         out["auto_ml_job_input_data_config"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobV2Request:
                 data["AutoMLJobInputDataConfig"]
             )
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_sagemaker.types.auto_ml_output_data_config
 
         out["output_data_config"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobV2Request:
                 data["OutputDataConfig"]
             )
         )
-    if "AutoMLProblemTypeConfig" in data:
+    if data.get("AutoMLProblemTypeConfig") is not None:
         import capo_sagemaker.types.auto_ml_problem_type_config
 
         out["auto_ml_problem_type_config"] = (
@@ -167,15 +167,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobV2Request:
                 data["AutoMLProblemTypeConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "SecurityConfig" in data:
+    if data.get("SecurityConfig") is not None:
         import capo_sagemaker.types.auto_ml_security_config
 
         out["security_config"] = (
@@ -183,7 +183,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobV2Request:
                 data["SecurityConfig"]
             )
         )
-    if "AutoMLJobObjective" in data:
+    if data.get("AutoMLJobObjective") is not None:
         import capo_sagemaker.types.auto_ml_job_objective
 
         out["auto_ml_job_objective"] = (
@@ -191,7 +191,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobV2Request:
                 data["AutoMLJobObjective"]
             )
         )
-    if "ModelDeployConfig" in data:
+    if data.get("ModelDeployConfig") is not None:
         import capo_sagemaker.types.model_deploy_config
 
         out["model_deploy_config"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobV2Request:
                 data["ModelDeployConfig"]
             )
         )
-    if "DataSplitConfig" in data:
+    if data.get("DataSplitConfig") is not None:
         import capo_sagemaker.types.auto_ml_data_split_config
 
         out["data_split_config"] = (
@@ -207,7 +207,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoMLJobV2Request:
                 data["DataSplitConfig"]
             )
         )
-    if "AutoMLComputeConfig" in data:
+    if data.get("AutoMLComputeConfig") is not None:
         import capo_sagemaker.types.auto_ml_compute_config
 
         out["auto_ml_compute_config"] = (

@@ -69,26 +69,26 @@ def serialize_json(value: DescribeDeviceJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDeviceJobResponse:
     out: DescribeDeviceJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "DeviceArn" in data:
+    if data.get("DeviceArn") is not None:
         out["device_arn"] = data["DeviceArn"]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "DeviceType" in data:
+    if data.get("DeviceType") is not None:
         out["device_type"] = data["DeviceType"]
-    if "ImageVersion" in data:
+    if data.get("ImageVersion") is not None:
         out["image_version"] = data["ImageVersion"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.update_created_time
 
         out["created_time"] = capo_panorama.types.update_created_time.deserialize_json(
             data["CreatedTime"]
         )
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         out["job_type"] = data["JobType"]
     return out

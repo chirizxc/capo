@@ -55,15 +55,15 @@ def serialize_json(value: CustomerGatewayAssociation) -> dict:
 
 def deserialize_json(data: dict) -> CustomerGatewayAssociation:
     out: CustomerGatewayAssociation = {}  # type: ignore[typeddict-item]
-    if "CustomerGatewayArn" in data:
+    if data.get("CustomerGatewayArn") is not None:
         out["customer_gateway_arn"] = data["CustomerGatewayArn"]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.customer_gateway_association_state
 
         out["state"] = (

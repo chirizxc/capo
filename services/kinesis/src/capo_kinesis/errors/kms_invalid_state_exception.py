@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: KMSInvalidStateException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KMSInvalidStateException_:
     out: KMSInvalidStateException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,18 +36,21 @@ class KMSInvalidStateException(ServiceError):
 
     code: str | None = "KMSInvalidStateException"
 
-    def __init__(self, data: KMSInvalidStateException_):
+    def __init__(self, data: KMSInvalidStateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="KMSInvalidStateException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "KMSInvalidStateException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "KMSInvalidStateException":
+        return cls(deserialize_aws_json_1_1(data), message)
 
 
 def serialize_event_aws_json_1_1(value: KMSInvalidStateException_) -> bytes:

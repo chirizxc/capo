@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CreateTableResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateTableResponse:
     out: CreateTableResponse = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("CreateTableResponse.resource_arn required")

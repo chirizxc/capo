@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: BatchDeleteImportDataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteImportDataRequest:
     out: BatchDeleteImportDataRequest = {}  # type: ignore[typeddict-item]
-    if "importTaskIds" in data:
+    if data.get("importTaskIds") is not None:
         import capo_application_discovery_service.types.to_delete_identifier_list
 
         out["import_task_ids"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteImportDataRequest:
         raise DeserializationError(
             "BatchDeleteImportDataRequest.import_task_ids required"
         )
-    if "deleteHistory" in data:
+    if data.get("deleteHistory") is not None:
         out["delete_history"] = data["deleteHistory"]
     else:
         out["delete_history"] = False

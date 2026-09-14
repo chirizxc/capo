@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: AttributeConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttributeConfig:
     out: AttributeConfig = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError("AttributeConfig.attribute_name required")
-    if "Transformations" in data:
+    if data.get("Transformations") is not None:
         import capo_forecast.types.transformations
 
         out["transformations"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InboundConnections:
 
     out: InboundConnections = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.inbound_connection.deserialize_json(item))
     return out

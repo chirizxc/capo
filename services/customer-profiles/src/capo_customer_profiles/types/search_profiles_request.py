@@ -66,11 +66,11 @@ def serialize_json(value: SearchProfilesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchProfilesRequest:
     out: SearchProfilesRequest = {}  # type: ignore[typeddict-item]
-    if "KeyName" in data:
+    if data.get("KeyName") is not None:
         out["key_name"] = data["KeyName"]
     else:
         raise DeserializationError("SearchProfilesRequest.key_name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_customer_profiles.types.request_value_list
 
         out["values"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> SearchProfilesRequest:
         )
     else:
         raise DeserializationError("SearchProfilesRequest.values required")
-    if "AdditionalSearchKeys" in data:
+    if data.get("AdditionalSearchKeys") is not None:
         import capo_customer_profiles.types.additional_search_keys_list
 
         out["additional_search_keys"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> SearchProfilesRequest:
                 data["AdditionalSearchKeys"]
             )
         )
-    if "LogicalOperator" in data:
+    if data.get("LogicalOperator") is not None:
         import capo_customer_profiles.types.logical_operator
 
         out["logical_operator"] = (

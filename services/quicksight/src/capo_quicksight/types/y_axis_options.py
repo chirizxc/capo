@@ -28,7 +28,7 @@ def serialize_json(value: YAxisOptions) -> dict:
 
 def deserialize_json(data: dict) -> YAxisOptions:
     out: YAxisOptions = {}  # type: ignore[typeddict-item]
-    if "YAxis" in data:
+    if data.get("YAxis") is not None:
         import capo_quicksight.types.single_y_axis_option
 
         out["y_axis"] = capo_quicksight.types.single_y_axis_option.deserialize_json(

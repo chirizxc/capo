@@ -40,13 +40,13 @@ def serialize_json(value: TableSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TableSortConfiguration:
     out: TableSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "RowSort" in data:
+    if data.get("RowSort") is not None:
         import capo_quicksight.types.row_sort_list
 
         out["row_sort"] = capo_quicksight.types.row_sort_list.deserialize_json(
             data["RowSort"]
         )
-    if "PaginationConfiguration" in data:
+    if data.get("PaginationConfiguration") is not None:
         import capo_quicksight.types.pagination_configuration
 
         out["pagination_configuration"] = (

@@ -46,11 +46,11 @@ def serialize_json(value: UpdatePlaceIndexRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePlaceIndexRequest:
     out: UpdatePlaceIndexRequest = {}  # type: ignore[typeddict-item]
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DataSourceConfiguration" in data:
+    if data.get("DataSourceConfiguration") is not None:
         import capo_location.types.data_source_configuration
 
         out["data_source_configuration"] = (

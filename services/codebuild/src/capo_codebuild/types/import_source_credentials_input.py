@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: ImportSourceCredentialsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportSourceCredentialsInput:
     out: ImportSourceCredentialsInput = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
     else:
         raise DeserializationError("ImportSourceCredentialsInput.token required")
-    if "serverType" in data:
+    if data.get("serverType") is not None:
         import capo_codebuild.types.server_type
 
         out["server_type"] = capo_codebuild.types.server_type.deserialize_aws_json_1_1(
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportSourceCredentialsInput:
         )
     else:
         raise DeserializationError("ImportSourceCredentialsInput.server_type required")
-    if "authType" in data:
+    if data.get("authType") is not None:
         import capo_codebuild.types.auth_type
 
         out["auth_type"] = capo_codebuild.types.auth_type.deserialize_aws_json_1_1(
@@ -72,6 +72,6 @@ def deserialize_aws_json_1_1(data: dict) -> ImportSourceCredentialsInput:
         )
     else:
         raise DeserializationError("ImportSourceCredentialsInput.auth_type required")
-    if "shouldOverwrite" in data:
+    if data.get("shouldOverwrite") is not None:
         out["should_overwrite"] = data["shouldOverwrite"]
     return out

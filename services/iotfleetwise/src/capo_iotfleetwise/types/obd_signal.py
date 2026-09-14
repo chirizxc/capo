@@ -50,8 +50,24 @@ def serialize_aws_json_1_0(value: ObdSignal) -> dict:
     out["pidResponseLength"] = value["pid_response_length"]
     out["serviceMode"] = value.get("service_mode", 0)
     out["pid"] = value.get("pid", 0)
-    out["scaling"] = value["scaling"]
-    out["offset"] = value["offset"]
+    out["scaling"] = (
+        "NaN"
+        if value["scaling"] != value["scaling"]
+        else "Infinity"
+        if value["scaling"] == float("inf")
+        else "-Infinity"
+        if value["scaling"] == float("-inf")
+        else value["scaling"]
+    )
+    out["offset"] = (
+        "NaN"
+        if value["offset"] != value["offset"]
+        else "Infinity"
+        if value["offset"] == float("inf")
+        else "-Infinity"
+        if value["offset"] == float("-inf")
+        else value["offset"]
+    )
     out["startByte"] = value.get("start_byte", 0)
     out["byteLength"] = value["byte_length"]
     out["bitRightShift"] = value.get("bit_right_shift", 0)
@@ -72,43 +88,43 @@ def serialize_aws_json_1_0(value: ObdSignal) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ObdSignal:
     out: ObdSignal = {}  # type: ignore[typeddict-item]
-    if "pidResponseLength" in data:
+    if data.get("pidResponseLength") is not None:
         out["pid_response_length"] = data["pidResponseLength"]
     else:
         raise DeserializationError("ObdSignal.pid_response_length required")
-    if "serviceMode" in data:
+    if data.get("serviceMode") is not None:
         out["service_mode"] = data["serviceMode"]
     else:
         out["service_mode"] = 0
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
     else:
         out["pid"] = 0
-    if "scaling" in data:
-        out["scaling"] = data["scaling"]
+    if data.get("scaling") is not None:
+        out["scaling"] = float(data["scaling"])
     else:
         raise DeserializationError("ObdSignal.scaling required")
-    if "offset" in data:
-        out["offset"] = data["offset"]
+    if data.get("offset") is not None:
+        out["offset"] = float(data["offset"])
     else:
         raise DeserializationError("ObdSignal.offset required")
-    if "startByte" in data:
+    if data.get("startByte") is not None:
         out["start_byte"] = data["startByte"]
     else:
         out["start_byte"] = 0
-    if "byteLength" in data:
+    if data.get("byteLength") is not None:
         out["byte_length"] = data["byteLength"]
     else:
         raise DeserializationError("ObdSignal.byte_length required")
-    if "bitRightShift" in data:
+    if data.get("bitRightShift") is not None:
         out["bit_right_shift"] = data["bitRightShift"]
     else:
         out["bit_right_shift"] = 0
-    if "bitMaskLength" in data:
+    if data.get("bitMaskLength") is not None:
         out["bit_mask_length"] = data["bitMaskLength"]
-    if "isSigned" in data:
+    if data.get("isSigned") is not None:
         out["is_signed"] = data["isSigned"]
-    if "signalValueType" in data:
+    if data.get("signalValueType") is not None:
         import capo_iotfleetwise.types.signal_value_type
 
         out["signal_value_type"] = (

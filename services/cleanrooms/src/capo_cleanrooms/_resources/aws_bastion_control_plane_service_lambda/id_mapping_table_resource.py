@@ -100,12 +100,13 @@ class IdMappingTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_id_mapping_table_input.CreateIdMappingTableInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["name"] = name
+        input_: capo_cleanrooms.types.create_id_mapping_table_input.CreateIdMappingTableInput = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "input_reference_config": input_reference_config,
+        }
         if description is not None:
             input_["description"] = description
-        input_["input_reference_config"] = input_reference_config
         if tags is not None:
             input_["tags"] = tags
         if kms_key_arn is not None:
@@ -116,6 +117,7 @@ class IdMappingTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -155,15 +157,17 @@ class IdMappingTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_id_mapping_table_input.GetIdMappingTableInput = {}  # type: ignore[typeddict-item]
-        input_["id_mapping_table_identifier"] = id_mapping_table_identifier
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.get_id_mapping_table_input.GetIdMappingTableInput = {
+            "id_mapping_table_identifier": id_mapping_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -209,9 +213,10 @@ class IdMappingTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_id_mapping_table_input.UpdateIdMappingTableInput = {}  # type: ignore[typeddict-item]
-        input_["id_mapping_table_identifier"] = id_mapping_table_identifier
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.update_id_mapping_table_input.UpdateIdMappingTableInput = {
+            "id_mapping_table_identifier": id_mapping_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if kms_key_arn is not None:
@@ -222,6 +227,7 @@ class IdMappingTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -261,15 +267,17 @@ class IdMappingTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_id_mapping_table_input.DeleteIdMappingTableInput = {}  # type: ignore[typeddict-item]
-        input_["id_mapping_table_identifier"] = id_mapping_table_identifier
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.delete_id_mapping_table_input.DeleteIdMappingTableInput = {
+            "id_mapping_table_identifier": id_mapping_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -315,8 +323,9 @@ class IdMappingTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_id_mapping_tables_input.ListIdMappingTablesInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_id_mapping_tables_input.ListIdMappingTablesInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -327,6 +336,7 @@ class IdMappingTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def populate_id_mapping_table(
@@ -370,9 +380,10 @@ class IdMappingTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.populate_id_mapping_table_input.PopulateIdMappingTableInput = {}  # type: ignore[typeddict-item]
-        input_["id_mapping_table_identifier"] = id_mapping_table_identifier
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.populate_id_mapping_table_input.PopulateIdMappingTableInput = {
+            "id_mapping_table_identifier": id_mapping_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
         if job_type is not None:
             input_["job_type"] = job_type
 
@@ -381,6 +392,7 @@ class IdMappingTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -438,12 +450,13 @@ class AsyncIdMappingTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_id_mapping_table_input.CreateIdMappingTableInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["name"] = name
+        input_: capo_cleanrooms.types.create_id_mapping_table_input.CreateIdMappingTableInput = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "input_reference_config": input_reference_config,
+        }
         if description is not None:
             input_["description"] = description
-        input_["input_reference_config"] = input_reference_config
         if tags is not None:
             input_["tags"] = tags
         if kms_key_arn is not None:
@@ -454,6 +467,7 @@ class AsyncIdMappingTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -494,15 +508,17 @@ class AsyncIdMappingTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_id_mapping_table_input.GetIdMappingTableInput = {}  # type: ignore[typeddict-item]
-        input_["id_mapping_table_identifier"] = id_mapping_table_identifier
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.get_id_mapping_table_input.GetIdMappingTableInput = {
+            "id_mapping_table_identifier": id_mapping_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -549,9 +565,10 @@ class AsyncIdMappingTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_id_mapping_table_input.UpdateIdMappingTableInput = {}  # type: ignore[typeddict-item]
-        input_["id_mapping_table_identifier"] = id_mapping_table_identifier
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.update_id_mapping_table_input.UpdateIdMappingTableInput = {
+            "id_mapping_table_identifier": id_mapping_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if kms_key_arn is not None:
@@ -562,6 +579,7 @@ class AsyncIdMappingTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -602,15 +620,17 @@ class AsyncIdMappingTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_id_mapping_table_input.DeleteIdMappingTableInput = {}  # type: ignore[typeddict-item]
-        input_["id_mapping_table_identifier"] = id_mapping_table_identifier
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.delete_id_mapping_table_input.DeleteIdMappingTableInput = {
+            "id_mapping_table_identifier": id_mapping_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -657,8 +677,9 @@ class AsyncIdMappingTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_id_mapping_tables_input.ListIdMappingTablesInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_id_mapping_tables_input.ListIdMappingTablesInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -669,6 +690,7 @@ class AsyncIdMappingTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def populate_id_mapping_table(
@@ -713,9 +735,10 @@ class AsyncIdMappingTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.populate_id_mapping_table_input.PopulateIdMappingTableInput = {}  # type: ignore[typeddict-item]
-        input_["id_mapping_table_identifier"] = id_mapping_table_identifier
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.populate_id_mapping_table_input.PopulateIdMappingTableInput = {
+            "id_mapping_table_identifier": id_mapping_table_identifier,
+            "membership_identifier": membership_identifier,
+        }
         if job_type is not None:
             input_["job_type"] = job_type
 
@@ -724,4 +747,5 @@ class AsyncIdMappingTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

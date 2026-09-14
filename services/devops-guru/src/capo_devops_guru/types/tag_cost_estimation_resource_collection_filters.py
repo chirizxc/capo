@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> TagCostEstimationResourceCollectionFilters:
 
     out: TagCostEstimationResourceCollectionFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.tag_cost_estimation_resource_collection_filter.deserialize_json(
                 item

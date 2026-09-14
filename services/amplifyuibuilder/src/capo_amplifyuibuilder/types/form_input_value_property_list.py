@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FormInputValuePropertyList:
 
     out: FormInputValuePropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_amplifyuibuilder.types.form_input_value_property.deserialize_json(item)
         )

@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: DataSourceSyncJobMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSourceSyncJobMetrics:
     out: DataSourceSyncJobMetrics = {}  # type: ignore[typeddict-item]
-    if "DocumentsAdded" in data:
+    if data.get("DocumentsAdded") is not None:
         out["documents_added"] = data["DocumentsAdded"]
-    if "DocumentsModified" in data:
+    if data.get("DocumentsModified") is not None:
         out["documents_modified"] = data["DocumentsModified"]
-    if "DocumentsDeleted" in data:
+    if data.get("DocumentsDeleted") is not None:
         out["documents_deleted"] = data["DocumentsDeleted"]
-    if "DocumentsFailed" in data:
+    if data.get("DocumentsFailed") is not None:
         out["documents_failed"] = data["DocumentsFailed"]
-    if "DocumentsScanned" in data:
+    if data.get("DocumentsScanned") is not None:
         out["documents_scanned"] = data["DocumentsScanned"]
     return out

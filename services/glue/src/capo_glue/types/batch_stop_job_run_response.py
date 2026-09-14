@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: BatchStopJobRunResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchStopJobRunResponse:
     out: BatchStopJobRunResponse = {}  # type: ignore[typeddict-item]
-    if "SuccessfulSubmissions" in data:
+    if data.get("SuccessfulSubmissions") is not None:
         import capo_glue.types.batch_stop_job_run_successful_submission_list
 
         out["successful_submissions"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchStopJobRunResponse:
                 data["SuccessfulSubmissions"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_glue.types.batch_stop_job_run_error_list
 
         out["errors"] = (

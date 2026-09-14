@@ -87,27 +87,27 @@ def serialize_json(value: S3BucketDetail) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketDetail:
     out: S3BucketDetail = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["created_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "owner" in data:
+    if data.get("owner") is not None:
         import capo_guardduty.types.owner
 
         out["owner"] = capo_guardduty.types.owner.deserialize_json(data["owner"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tags
 
         out["tags"] = capo_guardduty.types.tags.deserialize_json(data["tags"])
-    if "defaultServerSideEncryption" in data:
+    if data.get("defaultServerSideEncryption") is not None:
         import capo_guardduty.types.default_server_side_encryption
 
         out["default_server_side_encryption"] = (
@@ -115,13 +115,13 @@ def deserialize_json(data: dict) -> S3BucketDetail:
                 data["defaultServerSideEncryption"]
             )
         )
-    if "publicAccess" in data:
+    if data.get("publicAccess") is not None:
         import capo_guardduty.types.public_access
 
         out["public_access"] = capo_guardduty.types.public_access.deserialize_json(
             data["publicAccess"]
         )
-    if "s3ObjectDetails" in data:
+    if data.get("s3ObjectDetails") is not None:
         import capo_guardduty.types.s3_object_details
 
         out["s3_object_details"] = (

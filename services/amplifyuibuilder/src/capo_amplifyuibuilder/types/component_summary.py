@@ -38,23 +38,23 @@ def serialize_json(value: ComponentSummary) -> dict:
 
 def deserialize_json(data: dict) -> ComponentSummary:
     out: ComponentSummary = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("ComponentSummary.app_id required")
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError("ComponentSummary.environment_name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ComponentSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ComponentSummary.name required")
-    if "componentType" in data:
+    if data.get("componentType") is not None:
         out["component_type"] = data["componentType"]
     else:
         raise DeserializationError("ComponentSummary.component_type required")

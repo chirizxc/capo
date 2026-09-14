@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetJobUnlockCodeResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetJobUnlockCodeResult:
     out: GetJobUnlockCodeResult = {}  # type: ignore[typeddict-item]
-    if "UnlockCode" in data:
+    if data.get("UnlockCode") is not None:
         out["unlock_code"] = data["UnlockCode"]
     return out

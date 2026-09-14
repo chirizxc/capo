@@ -31,12 +31,12 @@ def serialize_json(value: CustomAccountPoolHandler) -> dict:
 
 def deserialize_json(data: dict) -> CustomAccountPoolHandler:
     out: CustomAccountPoolHandler = {}  # type: ignore[typeddict-item]
-    if "lambdaFunctionArn" in data:
+    if data.get("lambdaFunctionArn") is not None:
         out["lambda_function_arn"] = data["lambdaFunctionArn"]
     else:
         raise DeserializationError(
             "CustomAccountPoolHandler.lambda_function_arn required"
         )
-    if "lambdaExecutionRoleArn" in data:
+    if data.get("lambdaExecutionRoleArn") is not None:
         out["lambda_execution_role_arn"] = data["lambdaExecutionRoleArn"]
     return out

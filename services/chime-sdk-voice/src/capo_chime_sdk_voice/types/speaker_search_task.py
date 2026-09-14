@@ -96,17 +96,17 @@ def serialize_json(value: SpeakerSearchTask) -> dict:
 
 def deserialize_json(data: dict) -> SpeakerSearchTask:
     out: SpeakerSearchTask = {}  # type: ignore[typeddict-item]
-    if "SpeakerSearchTaskId" in data:
+    if data.get("SpeakerSearchTaskId") is not None:
         out["speaker_search_task_id"] = data["SpeakerSearchTaskId"]
-    if "SpeakerSearchTaskStatus" in data:
+    if data.get("SpeakerSearchTaskStatus") is not None:
         out["speaker_search_task_status"] = data["SpeakerSearchTaskStatus"]
-    if "CallDetails" in data:
+    if data.get("CallDetails") is not None:
         import capo_chime_sdk_voice.types.call_details
 
         out["call_details"] = capo_chime_sdk_voice.types.call_details.deserialize_json(
             data["CallDetails"]
         )
-    if "SpeakerSearchDetails" in data:
+    if data.get("SpeakerSearchDetails") is not None:
         import capo_chime_sdk_voice.types.speaker_search_details
 
         out["speaker_search_details"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> SpeakerSearchTask:
                 data["SpeakerSearchDetails"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> SpeakerSearchTask:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["updated_timestamp"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> SpeakerSearchTask:
                 data["UpdatedTimestamp"]
             )
         )
-    if "StartedTimestamp" in data:
+    if data.get("StartedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["started_timestamp"] = (
@@ -138,6 +138,6 @@ def deserialize_json(data: dict) -> SpeakerSearchTask:
                 data["StartedTimestamp"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

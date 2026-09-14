@@ -47,22 +47,22 @@ def serialize_json(value: TransferContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> TransferContactRequest:
     out: TransferContactRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("TransferContactRequest.instance_id required")
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("TransferContactRequest.contact_id required")
-    if "QueueId" in data:
+    if data.get("QueueId") is not None:
         out["queue_id"] = data["QueueId"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
     else:
         raise DeserializationError("TransferContactRequest.contact_flow_id required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

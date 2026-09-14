@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: StartingPosition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartingPosition:
     out: StartingPosition = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kinesis.types.shard_iterator_type
 
         out["type"] = capo_kinesis.types.shard_iterator_type.deserialize_aws_json_1_1(
@@ -50,9 +50,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartingPosition:
         )
     else:
         raise DeserializationError("StartingPosition.type required")
-    if "SequenceNumber" in data:
+    if data.get("SequenceNumber") is not None:
         out["sequence_number"] = data["SequenceNumber"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_kinesis.types.timestamp
 
         out["timestamp"] = capo_kinesis.types.timestamp.deserialize_aws_json_1_1(

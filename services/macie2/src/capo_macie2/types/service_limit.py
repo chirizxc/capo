@@ -35,12 +35,12 @@ def serialize_json(value: ServiceLimit) -> dict:
 
 def deserialize_json(data: dict) -> ServiceLimit:
     out: ServiceLimit = {}  # type: ignore[typeddict-item]
-    if "isServiceLimited" in data:
+    if data.get("isServiceLimited") is not None:
         out["is_service_limited"] = data["isServiceLimited"]
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_macie2.types.unit
 
         out["unit"] = capo_macie2.types.unit.deserialize_json(data["unit"])
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

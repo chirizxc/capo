@@ -40,7 +40,15 @@ def serialize_aws_json_1_1(value: AssociateFacesRequest) -> dict:
         value["face_ids"]
     )
     if "user_match_threshold" in value:
-        out["UserMatchThreshold"] = value["user_match_threshold"]
+        out["UserMatchThreshold"] = (
+            "NaN"
+            if value["user_match_threshold"] != value["user_match_threshold"]
+            else "Infinity"
+            if value["user_match_threshold"] == float("inf")
+            else "-Infinity"
+            if value["user_match_threshold"] == float("-inf")
+            else value["user_match_threshold"]
+        )
     if "client_request_token" in value:
         out["ClientRequestToken"] = value["client_request_token"]
     return out
@@ -48,15 +56,15 @@ def serialize_aws_json_1_1(value: AssociateFacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateFacesRequest:
     out: AssociateFacesRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("AssociateFacesRequest.collection_id required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("AssociateFacesRequest.user_id required")
-    if "FaceIds" in data:
+    if data.get("FaceIds") is not None:
         import capo_rekognition.types.user_face_id_list
 
         out["face_ids"] = (
@@ -66,8 +74,8 @@ def deserialize_aws_json_1_1(data: dict) -> AssociateFacesRequest:
         )
     else:
         raise DeserializationError("AssociateFacesRequest.face_ids required")
-    if "UserMatchThreshold" in data:
-        out["user_match_threshold"] = data["UserMatchThreshold"]
-    if "ClientRequestToken" in data:
+    if data.get("UserMatchThreshold") is not None:
+        out["user_match_threshold"] = float(data["UserMatchThreshold"])
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

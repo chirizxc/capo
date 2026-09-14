@@ -103,17 +103,17 @@ def serialize_json(value: DescribeTestSetDiscrepancyReportResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTestSetDiscrepancyReportResponse:
     out: DescribeTestSetDiscrepancyReportResponse = {}  # type: ignore[typeddict-item]
-    if "testSetDiscrepancyReportId" in data:
+    if data.get("testSetDiscrepancyReportId") is not None:
         out["test_set_discrepancy_report_id"] = data["testSetDiscrepancyReportId"]
-    if "testSetId" in data:
+    if data.get("testSetId") is not None:
         out["test_set_id"] = data["testSetId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_lex_models_v2.types.test_set_discrepancy_report_resource_target
 
         out["target"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> DescribeTestSetDiscrepancyReportResponse:
                 data["target"]
             )
         )
-    if "testSetDiscrepancyReportStatus" in data:
+    if data.get("testSetDiscrepancyReportStatus") is not None:
         import capo_lex_models_v2.types.test_set_discrepancy_report_status
 
         out["test_set_discrepancy_report_status"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> DescribeTestSetDiscrepancyReportResponse:
                 data["testSetDiscrepancyReportStatus"]
             )
         )
-    if "lastUpdatedDataTime" in data:
+    if data.get("lastUpdatedDataTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_data_time"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> DescribeTestSetDiscrepancyReportResponse:
                 data["lastUpdatedDataTime"]
             )
         )
-    if "testSetDiscrepancyTopErrors" in data:
+    if data.get("testSetDiscrepancyTopErrors") is not None:
         import capo_lex_models_v2.types.test_set_discrepancy_errors
 
         out["test_set_discrepancy_top_errors"] = (
@@ -145,11 +145,11 @@ def deserialize_json(data: dict) -> DescribeTestSetDiscrepancyReportResponse:
                 data["testSetDiscrepancyTopErrors"]
             )
         )
-    if "testSetDiscrepancyRawOutputUrl" in data:
+    if data.get("testSetDiscrepancyRawOutputUrl") is not None:
         out["test_set_discrepancy_raw_output_url"] = data[
             "testSetDiscrepancyRawOutputUrl"
         ]
-    if "failureReasons" in data:
+    if data.get("failureReasons") is not None:
         import capo_lex_models_v2.types.failure_reasons
 
         out["failure_reasons"] = (

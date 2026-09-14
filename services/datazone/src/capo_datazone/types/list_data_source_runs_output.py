@@ -33,7 +33,7 @@ def serialize_json(value: ListDataSourceRunsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListDataSourceRunsOutput:
     out: ListDataSourceRunsOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.data_source_run_summaries
 
         out["items"] = capo_datazone.types.data_source_run_summaries.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListDataSourceRunsOutput:
         )
     else:
         raise DeserializationError("ListDataSourceRunsOutput.items required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

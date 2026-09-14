@@ -40,7 +40,7 @@ def serialize_json(value: CisSecurityLevelFilter) -> dict:
 
 def deserialize_json(data: dict) -> CisSecurityLevelFilter:
     out: CisSecurityLevelFilter = {}  # type: ignore[typeddict-item]
-    if "comparison" in data:
+    if data.get("comparison") is not None:
         import capo_inspector2.types.cis_security_level_comparison
 
         out["comparison"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> CisSecurityLevelFilter:
         )
     else:
         raise DeserializationError("CisSecurityLevelFilter.comparison required")
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_inspector2.types.cis_security_level
 
         out["value"] = capo_inspector2.types.cis_security_level.deserialize_json(

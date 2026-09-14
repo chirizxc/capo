@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: AgentNetworkInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AgentNetworkInfo:
     out: AgentNetworkInfo = {}  # type: ignore[typeddict-item]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "macAddress" in data:
+    if data.get("macAddress") is not None:
         out["mac_address"] = data["macAddress"]
     return out

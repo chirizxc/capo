@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: SearchSystemInstancesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchSystemInstancesRequest:
     out: SearchSystemInstancesRequest = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_iotthingsgraph.types.system_instance_filters
 
         out["filters"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> SearchSystemInstancesRequest:
                 data["filters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

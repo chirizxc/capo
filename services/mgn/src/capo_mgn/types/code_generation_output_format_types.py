@@ -16,4 +16,4 @@ def serialize_json(value: CodeGenerationOutputFormatTypes) -> list:
 
 
 def deserialize_json(data: list) -> CodeGenerationOutputFormatTypes:
-    return list(data)
+    return [item for item in data if item is not None]

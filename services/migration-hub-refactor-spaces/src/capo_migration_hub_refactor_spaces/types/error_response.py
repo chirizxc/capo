@@ -64,17 +64,17 @@ def serialize_json(value: ErrorResponse) -> dict:
 
 def deserialize_json(data: dict) -> ErrorResponse:
     out: ErrorResponse = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "AdditionalDetails" in data:
+    if data.get("AdditionalDetails") is not None:
         import capo_migration_hub_refactor_spaces.types.additional_details
 
         out["additional_details"] = (

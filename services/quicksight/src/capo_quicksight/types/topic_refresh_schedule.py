@@ -59,25 +59,25 @@ def serialize_json(value: TopicRefreshSchedule) -> dict:
 
 def deserialize_json(data: dict) -> TopicRefreshSchedule:
     out: TopicRefreshSchedule = {}  # type: ignore[typeddict-item]
-    if "IsEnabled" in data:
+    if data.get("IsEnabled") is not None:
         out["is_enabled"] = data["IsEnabled"]
     else:
         raise DeserializationError("TopicRefreshSchedule.is_enabled required")
-    if "BasedOnSpiceSchedule" in data:
+    if data.get("BasedOnSpiceSchedule") is not None:
         out["based_on_spice_schedule"] = data["BasedOnSpiceSchedule"]
     else:
         out["based_on_spice_schedule"] = False
-    if "StartingAt" in data:
+    if data.get("StartingAt") is not None:
         import capo_quicksight.types.timestamp
 
         out["starting_at"] = capo_quicksight.types.timestamp.deserialize_json(
             data["StartingAt"]
         )
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
-    if "RepeatAt" in data:
+    if data.get("RepeatAt") is not None:
         out["repeat_at"] = data["RepeatAt"]
-    if "TopicScheduleType" in data:
+    if data.get("TopicScheduleType") is not None:
         import capo_quicksight.types.topic_schedule_type
 
         out["topic_schedule_type"] = (

@@ -33,7 +33,7 @@ def serialize_json(value: SearchSessionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchSessionsResponse:
     out: SearchSessionsResponse = {}  # type: ignore[typeddict-item]
-    if "sessionSummaries" in data:
+    if data.get("sessionSummaries") is not None:
         import capo_wisdom.types.session_summaries
 
         out["session_summaries"] = capo_wisdom.types.session_summaries.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> SearchSessionsResponse:
         )
     else:
         raise DeserializationError("SearchSessionsResponse.session_summaries required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -57,26 +57,26 @@ def serialize_aws_json_1_1(value: DescribeImagesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeImagesRequest:
     out: DescribeImagesRequest = {}  # type: ignore[typeddict-item]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_appstream.types.string_list
 
         out["names"] = capo_appstream.types.string_list.deserialize_aws_json_1_1(
             data["Names"]
         )
-    if "Arns" in data:
+    if data.get("Arns") is not None:
         import capo_appstream.types.arn_list
 
         out["arns"] = capo_appstream.types.arn_list.deserialize_aws_json_1_1(
             data["Arns"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_appstream.types.visibility_type
 
         out["type"] = capo_appstream.types.visibility_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -56,21 +56,21 @@ def serialize_json(value: UserAppItem) -> dict:
 
 def deserialize_json(data: dict) -> UserAppItem:
     out: UserAppItem = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("UserAppItem.app_id required")
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("UserAppItem.app_arn required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("UserAppItem.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qapps.types.q_apps_timestamp
 
         out["created_at"] = capo_qapps.types.q_apps_timestamp.deserialize_json(
@@ -78,11 +78,11 @@ def deserialize_json(data: dict) -> UserAppItem:
         )
     else:
         raise DeserializationError("UserAppItem.created_at required")
-    if "canEdit" in data:
+    if data.get("canEdit") is not None:
         out["can_edit"] = data["canEdit"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "isVerified" in data:
+    if data.get("isVerified") is not None:
         out["is_verified"] = data["isVerified"]
     else:
         out["is_verified"] = False

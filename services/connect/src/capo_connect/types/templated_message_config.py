@@ -36,17 +36,17 @@ def serialize_json(value: TemplatedMessageConfig) -> dict:
 
 def deserialize_json(data: dict) -> TemplatedMessageConfig:
     out: TemplatedMessageConfig = {}  # type: ignore[typeddict-item]
-    if "KnowledgeBaseId" in data:
+    if data.get("KnowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["KnowledgeBaseId"]
     else:
         raise DeserializationError("TemplatedMessageConfig.knowledge_base_id required")
-    if "MessageTemplateId" in data:
+    if data.get("MessageTemplateId") is not None:
         out["message_template_id"] = data["MessageTemplateId"]
     else:
         raise DeserializationError(
             "TemplatedMessageConfig.message_template_id required"
         )
-    if "TemplateAttributes" in data:
+    if data.get("TemplateAttributes") is not None:
         import capo_connect.types.template_attributes
 
         out["template_attributes"] = (

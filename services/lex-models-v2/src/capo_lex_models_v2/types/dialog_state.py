@@ -43,19 +43,19 @@ def serialize_json(value: DialogState) -> dict:
 
 def deserialize_json(data: dict) -> DialogState:
     out: DialogState = {}  # type: ignore[typeddict-item]
-    if "dialogAction" in data:
+    if data.get("dialogAction") is not None:
         import capo_lex_models_v2.types.dialog_action
 
         out["dialog_action"] = capo_lex_models_v2.types.dialog_action.deserialize_json(
             data["dialogAction"]
         )
-    if "intent" in data:
+    if data.get("intent") is not None:
         import capo_lex_models_v2.types.intent_override
 
         out["intent"] = capo_lex_models_v2.types.intent_override.deserialize_json(
             data["intent"]
         )
-    if "sessionAttributes" in data:
+    if data.get("sessionAttributes") is not None:
         import capo_lex_models_v2.types.string_map
 
         out["session_attributes"] = (

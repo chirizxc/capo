@@ -27,8 +27,8 @@ def serialize_json(value: SlateSource) -> dict:
 
 def deserialize_json(data: dict) -> SlateSource:
     out: SlateSource = {}  # type: ignore[typeddict-item]
-    if "SourceLocationName" in data:
+    if data.get("SourceLocationName") is not None:
         out["source_location_name"] = data["SourceLocationName"]
-    if "VodSourceName" in data:
+    if data.get("VodSourceName") is not None:
         out["vod_source_name"] = data["VodSourceName"]
     return out

@@ -30,7 +30,7 @@ def serialize_json(value: ProtectedJobResultConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedJobResultConfigurationInput:
     out: ProtectedJobResultConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "outputConfiguration" in data:
+    if data.get("outputConfiguration") is not None:
         import capo_cleanrooms.types.protected_job_output_configuration_input
 
         out["output_configuration"] = (

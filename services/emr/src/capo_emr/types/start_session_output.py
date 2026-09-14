@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: StartSessionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartSessionOutput:
     out: StartSessionOutput = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_emr.types.session_state
 
         out["state"] = capo_emr.types.session_state.deserialize_aws_json_1_1(

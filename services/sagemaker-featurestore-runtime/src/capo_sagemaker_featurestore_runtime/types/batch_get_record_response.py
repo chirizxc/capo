@@ -57,7 +57,7 @@ def serialize_json(value: BatchGetRecordResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetRecordResponse:
     out: BatchGetRecordResponse = {}  # type: ignore[typeddict-item]
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_sagemaker_featurestore_runtime.types.batch_get_record_result_details
 
         out["records"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> BatchGetRecordResponse:
                 data["Records"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_sagemaker_featurestore_runtime.types.batch_get_record_errors
 
         out["errors"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> BatchGetRecordResponse:
                 data["Errors"]
             )
         )
-    if "UnprocessedIdentifiers" in data:
+    if data.get("UnprocessedIdentifiers") is not None:
         import capo_sagemaker_featurestore_runtime.types.unprocessed_identifiers
 
         out["unprocessed_identifiers"] = (

@@ -74,37 +74,37 @@ def serialize_json(value: Edge) -> dict:
 
 def deserialize_json(data: dict) -> Edge:
     out: Edge = {}  # type: ignore[typeddict-item]
-    if "ReferenceId" in data:
+    if data.get("ReferenceId") is not None:
         out["reference_id"] = data["ReferenceId"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])
-    if "SummaryStatistics" in data:
+    if data.get("SummaryStatistics") is not None:
         import capo_xray.types.edge_statistics
 
         out["summary_statistics"] = capo_xray.types.edge_statistics.deserialize_json(
             data["SummaryStatistics"]
         )
-    if "ResponseTimeHistogram" in data:
+    if data.get("ResponseTimeHistogram") is not None:
         import capo_xray.types.histogram
 
         out["response_time_histogram"] = capo_xray.types.histogram.deserialize_json(
             data["ResponseTimeHistogram"]
         )
-    if "Aliases" in data:
+    if data.get("Aliases") is not None:
         import capo_xray.types.alias_list
 
         out["aliases"] = capo_xray.types.alias_list.deserialize_json(data["Aliases"])
-    if "EdgeType" in data:
+    if data.get("EdgeType") is not None:
         out["edge_type"] = data["EdgeType"]
-    if "ReceivedEventAgeHistogram" in data:
+    if data.get("ReceivedEventAgeHistogram") is not None:
         import capo_xray.types.histogram
 
         out["received_event_age_histogram"] = (

@@ -94,6 +94,7 @@ class StartTranscriptionJobRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: StartTranscriptionJobRequest) -> dict:
     out: dict = {}
+    out["TranscriptionJobName"] = value["transcription_job_name"]
     if "language_code" in value:
         import capo_transcribe.types.language_code
 
@@ -202,7 +203,13 @@ def serialize_aws_json_1_1(value: StartTranscriptionJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobRequest:
     out: StartTranscriptionJobRequest = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("TranscriptionJobName") is not None:
+        out["transcription_job_name"] = data["TranscriptionJobName"]
+    else:
+        raise DeserializationError(
+            "StartTranscriptionJobRequest.transcription_job_name required"
+        )
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -210,9 +217,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobRequest:
                 data["LanguageCode"]
             )
         )
-    if "MediaSampleRateHertz" in data:
+    if data.get("MediaSampleRateHertz") is not None:
         out["media_sample_rate_hertz"] = data["MediaSampleRateHertz"]
-    if "MediaFormat" in data:
+    if data.get("MediaFormat") is not None:
         import capo_transcribe.types.media_format
 
         out["media_format"] = (
@@ -220,7 +227,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobRequest:
                 data["MediaFormat"]
             )
         )
-    if "Media" in data:
+    if data.get("Media") is not None:
         import capo_transcribe.types.media
 
         out["media"] = capo_transcribe.types.media.deserialize_aws_json_1_1(
@@ -228,13 +235,13 @@ def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobRequest:
         )
     else:
         raise DeserializationError("StartTranscriptionJobRequest.media required")
-    if "OutputBucketName" in data:
+    if data.get("OutputBucketName") is not None:
         out["output_bucket_name"] = data["OutputBucketName"]
-    if "OutputKey" in data:
+    if data.get("OutputKey") is not None:
         out["output_key"] = data["OutputKey"]
-    if "OutputEncryptionKMSKeyId" in data:
+    if data.get("OutputEncryptionKMSKeyId") is not None:
         out["output_encryption_kms_key_id"] = data["OutputEncryptionKMSKeyId"]
-    if "KMSEncryptionContext" in data:
+    if data.get("KMSEncryptionContext") is not None:
         import capo_transcribe.types.kms_encryption_context_map
 
         out["kms_encryption_context"] = (
@@ -242,13 +249,13 @@ def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobRequest:
                 data["KMSEncryptionContext"]
             )
         )
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_transcribe.types.settings
 
         out["settings"] = capo_transcribe.types.settings.deserialize_aws_json_1_1(
             data["Settings"]
         )
-    if "ModelSettings" in data:
+    if data.get("ModelSettings") is not None:
         import capo_transcribe.types.model_settings
 
         out["model_settings"] = (
@@ -256,7 +263,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobRequest:
                 data["ModelSettings"]
             )
         )
-    if "JobExecutionSettings" in data:
+    if data.get("JobExecutionSettings") is not None:
         import capo_transcribe.types.job_execution_settings
 
         out["job_execution_settings"] = (
@@ -264,7 +271,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobRequest:
                 data["JobExecutionSettings"]
             )
         )
-    if "ContentRedaction" in data:
+    if data.get("ContentRedaction") is not None:
         import capo_transcribe.types.content_redaction
 
         out["content_redaction"] = (
@@ -272,11 +279,11 @@ def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobRequest:
                 data["ContentRedaction"]
             )
         )
-    if "IdentifyLanguage" in data:
+    if data.get("IdentifyLanguage") is not None:
         out["identify_language"] = data["IdentifyLanguage"]
-    if "IdentifyMultipleLanguages" in data:
+    if data.get("IdentifyMultipleLanguages") is not None:
         out["identify_multiple_languages"] = data["IdentifyMultipleLanguages"]
-    if "LanguageOptions" in data:
+    if data.get("LanguageOptions") is not None:
         import capo_transcribe.types.language_options
 
         out["language_options"] = (
@@ -284,19 +291,19 @@ def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobRequest:
                 data["LanguageOptions"]
             )
         )
-    if "Subtitles" in data:
+    if data.get("Subtitles") is not None:
         import capo_transcribe.types.subtitles
 
         out["subtitles"] = capo_transcribe.types.subtitles.deserialize_aws_json_1_1(
             data["Subtitles"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "LanguageIdSettings" in data:
+    if data.get("LanguageIdSettings") is not None:
         import capo_transcribe.types.language_id_settings_map
 
         out["language_id_settings"] = (
@@ -304,7 +311,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobRequest:
                 data["LanguageIdSettings"]
             )
         )
-    if "ToxicityDetection" in data:
+    if data.get("ToxicityDetection") is not None:
         import capo_transcribe.types.toxicity_detection
 
         out["toxicity_detection"] = (

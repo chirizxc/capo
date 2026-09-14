@@ -49,19 +49,19 @@ def serialize_json(value: CreatePresetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePresetRequest:
     out: CreatePresetRequest = {}  # type: ignore[typeddict-item]
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_mediaconvert.types.preset_settings
 
         out["settings"] = capo_mediaconvert.types.preset_settings.deserialize_json(
             data["settings"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediaconvert.types.__map_of__string
 
         out["tags"] = capo_mediaconvert.types.__map_of__string.deserialize_json(

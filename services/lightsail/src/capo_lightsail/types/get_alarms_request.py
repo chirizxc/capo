@@ -23,9 +23,21 @@ class GetAlarmsRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: GetAlarmsRequest) -> dict:
     out: dict = {}
+    if "alarm_name" in value:
+        out["alarmName"] = value["alarm_name"]
+    if "page_token" in value:
+        out["pageToken"] = value["page_token"]
+    if "monitored_resource_name" in value:
+        out["monitoredResourceName"] = value["monitored_resource_name"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> GetAlarmsRequest:
     out: GetAlarmsRequest = {}  # type: ignore[typeddict-item]
+    if data.get("alarmName") is not None:
+        out["alarm_name"] = data["alarmName"]
+    if data.get("pageToken") is not None:
+        out["page_token"] = data["pageToken"]
+    if data.get("monitoredResourceName") is not None:
+        out["monitored_resource_name"] = data["monitoredResourceName"]
     return out

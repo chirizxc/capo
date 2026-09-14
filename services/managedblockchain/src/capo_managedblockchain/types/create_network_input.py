@@ -91,17 +91,17 @@ def serialize_json(value: CreateNetworkInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateNetworkInput:
     out: CreateNetworkInput = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     else:
         raise DeserializationError("CreateNetworkInput.client_request_token required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateNetworkInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Framework" in data:
+    if data.get("Framework") is not None:
         import capo_managedblockchain.types.framework
 
         out["framework"] = capo_managedblockchain.types.framework.deserialize_json(
@@ -109,11 +109,11 @@ def deserialize_json(data: dict) -> CreateNetworkInput:
         )
     else:
         raise DeserializationError("CreateNetworkInput.framework required")
-    if "FrameworkVersion" in data:
+    if data.get("FrameworkVersion") is not None:
         out["framework_version"] = data["FrameworkVersion"]
     else:
         raise DeserializationError("CreateNetworkInput.framework_version required")
-    if "FrameworkConfiguration" in data:
+    if data.get("FrameworkConfiguration") is not None:
         import capo_managedblockchain.types.network_framework_configuration
 
         out["framework_configuration"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> CreateNetworkInput:
                 data["FrameworkConfiguration"]
             )
         )
-    if "VotingPolicy" in data:
+    if data.get("VotingPolicy") is not None:
         import capo_managedblockchain.types.voting_policy
 
         out["voting_policy"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> CreateNetworkInput:
         )
     else:
         raise DeserializationError("CreateNetworkInput.voting_policy required")
-    if "MemberConfiguration" in data:
+    if data.get("MemberConfiguration") is not None:
         import capo_managedblockchain.types.member_configuration
 
         out["member_configuration"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> CreateNetworkInput:
         )
     else:
         raise DeserializationError("CreateNetworkInput.member_configuration required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_managedblockchain.types.input_tag_map
 
         out["tags"] = capo_managedblockchain.types.input_tag_map.deserialize_json(

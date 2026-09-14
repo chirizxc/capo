@@ -24,7 +24,7 @@ def serialize_json(value: CreateStorageProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateStorageProfileResponse:
     out: CreateStorageProfileResponse = {}  # type: ignore[typeddict-item]
-    if "storageProfileId" in data:
+    if data.get("storageProfileId") is not None:
         out["storage_profile_id"] = data["storageProfileId"]
     else:
         raise DeserializationError(

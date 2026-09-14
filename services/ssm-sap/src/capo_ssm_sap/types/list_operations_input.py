@@ -41,15 +41,15 @@ def serialize_json(value: ListOperationsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListOperationsInput:
     out: ListOperationsInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError("ListOperationsInput.application_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_ssm_sap.types.filter_list
 
         out["filters"] = capo_ssm_sap.types.filter_list.deserialize_json(

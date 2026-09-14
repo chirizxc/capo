@@ -51,14 +51,14 @@ def serialize_json(value: TableSummary) -> dict:
 
     out["type"] = capo_s3tables.types.table_type.serialize_json(value["type"])
     out["tableARN"] = value["table_arn"]
-    import capo_s3tables.types._prelude.timestamp
+    import capo_s3tables._protocol.serialize
 
-    out["createdAt"] = capo_s3tables.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_s3tables._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
-    import capo_s3tables.types._prelude.timestamp
+    import capo_s3tables._protocol.serialize
 
-    out["modifiedAt"] = capo_s3tables.types._prelude.timestamp.serialize_json(
+    out["modifiedAt"] = capo_s3tables._protocol.serialize.fmt_date_time(
         value["modified_at"]
     )
     if "managed_by_service" in value:
@@ -72,7 +72,7 @@ def serialize_json(value: TableSummary) -> dict:
 
 def deserialize_json(data: dict) -> TableSummary:
     out: TableSummary = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_s3tables.types.namespace_list
 
         out["namespace"] = capo_s3tables.types.namespace_list.deserialize_json(
@@ -80,40 +80,40 @@ def deserialize_json(data: dict) -> TableSummary:
         )
     else:
         raise DeserializationError("TableSummary.namespace required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("TableSummary.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_s3tables.types.table_type
 
         out["type"] = capo_s3tables.types.table_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("TableSummary.type required")
-    if "tableARN" in data:
+    if data.get("tableARN") is not None:
         out["table_arn"] = data["tableARN"]
     else:
         raise DeserializationError("TableSummary.table_arn required")
-    if "createdAt" in data:
-        import capo_s3tables.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_s3tables.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("TableSummary.created_at required")
-    if "modifiedAt" in data:
-        import capo_s3tables.types._prelude.timestamp
+    if data.get("modifiedAt") is not None:
+        import datetime
 
-        out["modified_at"] = capo_s3tables.types._prelude.timestamp.deserialize_json(
-            data["modifiedAt"]
+        out["modified_at"] = datetime.datetime.fromisoformat(
+            data["modifiedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("TableSummary.modified_at required")
-    if "managedByService" in data:
+    if data.get("managedByService") is not None:
         out["managed_by_service"] = data["managedByService"]
-    if "namespaceId" in data:
+    if data.get("namespaceId") is not None:
         out["namespace_id"] = data["namespaceId"]
-    if "tableBucketId" in data:
+    if data.get("tableBucketId") is not None:
         out["table_bucket_id"] = data["tableBucketId"]
     return out

@@ -36,13 +36,13 @@ def serialize_json(value: PolicyVersion) -> dict:
 
 def deserialize_json(data: dict) -> PolicyVersion:
     out: PolicyVersion = {}  # type: ignore[typeddict-item]
-    if "versionId" in data:
+    if data.get("versionId") is not None:
         out["version_id"] = data["versionId"]
-    if "isDefaultVersion" in data:
+    if data.get("isDefaultVersion") is not None:
         out["is_default_version"] = data["isDefaultVersion"]
     else:
         out["is_default_version"] = False
-    if "createDate" in data:
+    if data.get("createDate") is not None:
         import capo_iot.types.date_type
 
         out["create_date"] = capo_iot.types.date_type.deserialize_json(

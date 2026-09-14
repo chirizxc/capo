@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: S3LoggingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3LoggingConfiguration:
     out: S3LoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("S3LoggingConfiguration.enabled required")
-    if "KmsKey" in data:
+    if data.get("KmsKey") is not None:
         out["kms_key"] = data["KmsKey"]
-    if "LogLocation" in data:
+    if data.get("LogLocation") is not None:
         out["log_location"] = data["LogLocation"]
     return out

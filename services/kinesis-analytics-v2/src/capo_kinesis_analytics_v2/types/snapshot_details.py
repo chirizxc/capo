@@ -79,11 +79,11 @@ def serialize_aws_json_1_1(value: SnapshotDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnapshotDetails:
     out: SnapshotDetails = {}  # type: ignore[typeddict-item]
-    if "SnapshotName" in data:
+    if data.get("SnapshotName") is not None:
         out["snapshot_name"] = data["SnapshotName"]
     else:
         raise DeserializationError("SnapshotDetails.snapshot_name required")
-    if "SnapshotStatus" in data:
+    if data.get("SnapshotStatus") is not None:
         import capo_kinesis_analytics_v2.types.snapshot_status
 
         out["snapshot_status"] = (
@@ -93,11 +93,11 @@ def deserialize_aws_json_1_1(data: dict) -> SnapshotDetails:
         )
     else:
         raise DeserializationError("SnapshotDetails.snapshot_status required")
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
     else:
         raise DeserializationError("SnapshotDetails.application_version_id required")
-    if "SnapshotCreationTimestamp" in data:
+    if data.get("SnapshotCreationTimestamp") is not None:
         import capo_kinesis_analytics_v2.types.timestamp
 
         out["snapshot_creation_timestamp"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnapshotDetails:
                 data["SnapshotCreationTimestamp"]
             )
         )
-    if "RuntimeEnvironment" in data:
+    if data.get("RuntimeEnvironment") is not None:
         import capo_kinesis_analytics_v2.types.runtime_environment
 
         out["runtime_environment"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnapshotDetails:
                 data["RuntimeEnvironment"]
             )
         )
-    if "ApplicationEncryptionConfigurationDescription" in data:
+    if data.get("ApplicationEncryptionConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.application_encryption_configuration_description
 
         out["application_encryption_configuration_description"] = (

@@ -40,7 +40,7 @@ def serialize_json(value: ListBackupJobSummariesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListBackupJobSummariesOutput:
     out: ListBackupJobSummariesOutput = {}  # type: ignore[typeddict-item]
-    if "BackupJobSummaries" in data:
+    if data.get("BackupJobSummaries") is not None:
         import capo_backup.types.backup_job_summary_list
 
         out["backup_job_summaries"] = (
@@ -48,8 +48,8 @@ def deserialize_json(data: dict) -> ListBackupJobSummariesOutput:
                 data["BackupJobSummaries"]
             )
         )
-    if "AggregationPeriod" in data:
+    if data.get("AggregationPeriod") is not None:
         out["aggregation_period"] = data["AggregationPeriod"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

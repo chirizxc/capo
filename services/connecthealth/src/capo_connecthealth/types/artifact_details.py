@@ -41,9 +41,9 @@ def serialize_json(value: ArtifactDetails) -> dict:
 
 def deserialize_json(data: dict) -> ArtifactDetails:
     out: ArtifactDetails = {}  # type: ignore[typeddict-item]
-    if "outputLocation" in data:
+    if data.get("outputLocation") is not None:
         out["output_location"] = data["outputLocation"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_connecthealth.types.post_stream_artifact_generation_status
 
         out["status"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> ArtifactDetails:
                 data["status"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
     return out

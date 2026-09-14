@@ -32,7 +32,7 @@ def serialize_json(value: ListFormsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFormsResponse:
     out: ListFormsResponse = {}  # type: ignore[typeddict-item]
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_amplifyuibuilder.types.form_summary_list
 
         out["entities"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListFormsResponse:
         )
     else:
         raise DeserializationError("ListFormsResponse.entities required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UserProfileSummaries:
 
     out: UserProfileSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.user_profile_summary.deserialize_json(item))
     return out

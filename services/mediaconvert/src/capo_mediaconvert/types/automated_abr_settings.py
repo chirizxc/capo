@@ -40,7 +40,15 @@ def serialize_json(value: AutomatedAbrSettings) -> dict:
     if "max_abr_bitrate" in value:
         out["maxAbrBitrate"] = value["max_abr_bitrate"]
     if "max_quality_level" in value:
-        out["maxQualityLevel"] = value["max_quality_level"]
+        out["maxQualityLevel"] = (
+            "NaN"
+            if value["max_quality_level"] != value["max_quality_level"]
+            else "Infinity"
+            if value["max_quality_level"] == float("inf")
+            else "-Infinity"
+            if value["max_quality_level"] == float("-inf")
+            else value["max_quality_level"]
+        )
     if "max_renditions" in value:
         out["maxRenditions"] = value["max_renditions"]
     if "min_abr_bitrate" in value:
@@ -58,15 +66,15 @@ def serialize_json(value: AutomatedAbrSettings) -> dict:
 
 def deserialize_json(data: dict) -> AutomatedAbrSettings:
     out: AutomatedAbrSettings = {}  # type: ignore[typeddict-item]
-    if "maxAbrBitrate" in data:
+    if data.get("maxAbrBitrate") is not None:
         out["max_abr_bitrate"] = data["maxAbrBitrate"]
-    if "maxQualityLevel" in data:
-        out["max_quality_level"] = data["maxQualityLevel"]
-    if "maxRenditions" in data:
+    if data.get("maxQualityLevel") is not None:
+        out["max_quality_level"] = float(data["maxQualityLevel"])
+    if data.get("maxRenditions") is not None:
         out["max_renditions"] = data["maxRenditions"]
-    if "minAbrBitrate" in data:
+    if data.get("minAbrBitrate") is not None:
         out["min_abr_bitrate"] = data["minAbrBitrate"]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_mediaconvert.types.__list_of_automated_abr_rule
 
         out["rules"] = (

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DocumentClassificationJobPropertiesL
 
     out: DocumentClassificationJobPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.document_classification_job_properties.deserialize_aws_json_1_1(
                 item

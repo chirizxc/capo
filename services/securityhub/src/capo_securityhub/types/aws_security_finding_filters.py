@@ -1175,13 +1175,13 @@ def serialize_json(value: AwsSecurityFindingFilters) -> dict:
 
 def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
     out: AwsSecurityFindingFilters = {}  # type: ignore[typeddict-item]
-    if "ProductArn" in data:
+    if data.get("ProductArn") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["product_arn"] = capo_securityhub.types.string_filter_list.deserialize_json(
             data["ProductArn"]
         )
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["aws_account_id"] = (
@@ -1189,13 +1189,13 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["AwsAccountId"]
             )
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["id"] = capo_securityhub.types.string_filter_list.deserialize_json(
             data["Id"]
         )
-    if "GeneratorId" in data:
+    if data.get("GeneratorId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["generator_id"] = (
@@ -1203,19 +1203,19 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["GeneratorId"]
             )
         )
-    if "Region" in data:
+    if data.get("Region") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["region"] = capo_securityhub.types.string_filter_list.deserialize_json(
             data["Region"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["type"] = capo_securityhub.types.string_filter_list.deserialize_json(
             data["Type"]
         )
-    if "FirstObservedAt" in data:
+    if data.get("FirstObservedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["first_observed_at"] = (
@@ -1223,7 +1223,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["FirstObservedAt"]
             )
         )
-    if "LastObservedAt" in data:
+    if data.get("LastObservedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["last_observed_at"] = (
@@ -1231,19 +1231,19 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["LastObservedAt"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["created_at"] = capo_securityhub.types.date_filter_list.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["updated_at"] = capo_securityhub.types.date_filter_list.deserialize_json(
             data["UpdatedAt"]
         )
-    if "SeverityProduct" in data:
+    if data.get("SeverityProduct") is not None:
         import capo_securityhub.types.number_filter_list
 
         out["severity_product"] = (
@@ -1251,7 +1251,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["SeverityProduct"]
             )
         )
-    if "SeverityNormalized" in data:
+    if data.get("SeverityNormalized") is not None:
         import capo_securityhub.types.number_filter_list
 
         out["severity_normalized"] = (
@@ -1259,7 +1259,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["SeverityNormalized"]
             )
         )
-    if "SeverityLabel" in data:
+    if data.get("SeverityLabel") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["severity_label"] = (
@@ -1267,31 +1267,31 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["SeverityLabel"]
             )
         )
-    if "Confidence" in data:
+    if data.get("Confidence") is not None:
         import capo_securityhub.types.number_filter_list
 
         out["confidence"] = capo_securityhub.types.number_filter_list.deserialize_json(
             data["Confidence"]
         )
-    if "Criticality" in data:
+    if data.get("Criticality") is not None:
         import capo_securityhub.types.number_filter_list
 
         out["criticality"] = capo_securityhub.types.number_filter_list.deserialize_json(
             data["Criticality"]
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["title"] = capo_securityhub.types.string_filter_list.deserialize_json(
             data["Title"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["description"] = capo_securityhub.types.string_filter_list.deserialize_json(
             data["Description"]
         )
-    if "RecommendationText" in data:
+    if data.get("RecommendationText") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["recommendation_text"] = (
@@ -1299,19 +1299,19 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["RecommendationText"]
             )
         )
-    if "SourceUrl" in data:
+    if data.get("SourceUrl") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["source_url"] = capo_securityhub.types.string_filter_list.deserialize_json(
             data["SourceUrl"]
         )
-    if "ProductFields" in data:
+    if data.get("ProductFields") is not None:
         import capo_securityhub.types.map_filter_list
 
         out["product_fields"] = capo_securityhub.types.map_filter_list.deserialize_json(
             data["ProductFields"]
         )
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["product_name"] = (
@@ -1319,7 +1319,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ProductName"]
             )
         )
-    if "CompanyName" in data:
+    if data.get("CompanyName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["company_name"] = (
@@ -1327,7 +1327,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["CompanyName"]
             )
         )
-    if "UserDefinedFields" in data:
+    if data.get("UserDefinedFields") is not None:
         import capo_securityhub.types.map_filter_list
 
         out["user_defined_fields"] = (
@@ -1335,7 +1335,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["UserDefinedFields"]
             )
         )
-    if "MalwareName" in data:
+    if data.get("MalwareName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["malware_name"] = (
@@ -1343,7 +1343,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["MalwareName"]
             )
         )
-    if "MalwareType" in data:
+    if data.get("MalwareType") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["malware_type"] = (
@@ -1351,7 +1351,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["MalwareType"]
             )
         )
-    if "MalwarePath" in data:
+    if data.get("MalwarePath") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["malware_path"] = (
@@ -1359,7 +1359,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["MalwarePath"]
             )
         )
-    if "MalwareState" in data:
+    if data.get("MalwareState") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["malware_state"] = (
@@ -1367,7 +1367,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["MalwareState"]
             )
         )
-    if "NetworkDirection" in data:
+    if data.get("NetworkDirection") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["network_direction"] = (
@@ -1375,7 +1375,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkDirection"]
             )
         )
-    if "NetworkProtocol" in data:
+    if data.get("NetworkProtocol") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["network_protocol"] = (
@@ -1383,7 +1383,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkProtocol"]
             )
         )
-    if "NetworkSourceIpV4" in data:
+    if data.get("NetworkSourceIpV4") is not None:
         import capo_securityhub.types.ip_filter_list
 
         out["network_source_ip_v4"] = (
@@ -1391,7 +1391,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkSourceIpV4"]
             )
         )
-    if "NetworkSourceIpV6" in data:
+    if data.get("NetworkSourceIpV6") is not None:
         import capo_securityhub.types.ip_filter_list
 
         out["network_source_ip_v6"] = (
@@ -1399,7 +1399,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkSourceIpV6"]
             )
         )
-    if "NetworkSourcePort" in data:
+    if data.get("NetworkSourcePort") is not None:
         import capo_securityhub.types.number_filter_list
 
         out["network_source_port"] = (
@@ -1407,7 +1407,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkSourcePort"]
             )
         )
-    if "NetworkSourceDomain" in data:
+    if data.get("NetworkSourceDomain") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["network_source_domain"] = (
@@ -1415,7 +1415,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkSourceDomain"]
             )
         )
-    if "NetworkSourceMac" in data:
+    if data.get("NetworkSourceMac") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["network_source_mac"] = (
@@ -1423,7 +1423,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkSourceMac"]
             )
         )
-    if "NetworkDestinationIpV4" in data:
+    if data.get("NetworkDestinationIpV4") is not None:
         import capo_securityhub.types.ip_filter_list
 
         out["network_destination_ip_v4"] = (
@@ -1431,7 +1431,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkDestinationIpV4"]
             )
         )
-    if "NetworkDestinationIpV6" in data:
+    if data.get("NetworkDestinationIpV6") is not None:
         import capo_securityhub.types.ip_filter_list
 
         out["network_destination_ip_v6"] = (
@@ -1439,7 +1439,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkDestinationIpV6"]
             )
         )
-    if "NetworkDestinationPort" in data:
+    if data.get("NetworkDestinationPort") is not None:
         import capo_securityhub.types.number_filter_list
 
         out["network_destination_port"] = (
@@ -1447,7 +1447,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkDestinationPort"]
             )
         )
-    if "NetworkDestinationDomain" in data:
+    if data.get("NetworkDestinationDomain") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["network_destination_domain"] = (
@@ -1455,7 +1455,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NetworkDestinationDomain"]
             )
         )
-    if "ProcessName" in data:
+    if data.get("ProcessName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["process_name"] = (
@@ -1463,7 +1463,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ProcessName"]
             )
         )
-    if "ProcessPath" in data:
+    if data.get("ProcessPath") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["process_path"] = (
@@ -1471,13 +1471,13 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ProcessPath"]
             )
         )
-    if "ProcessPid" in data:
+    if data.get("ProcessPid") is not None:
         import capo_securityhub.types.number_filter_list
 
         out["process_pid"] = capo_securityhub.types.number_filter_list.deserialize_json(
             data["ProcessPid"]
         )
-    if "ProcessParentPid" in data:
+    if data.get("ProcessParentPid") is not None:
         import capo_securityhub.types.number_filter_list
 
         out["process_parent_pid"] = (
@@ -1485,7 +1485,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ProcessParentPid"]
             )
         )
-    if "ProcessLaunchedAt" in data:
+    if data.get("ProcessLaunchedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["process_launched_at"] = (
@@ -1493,7 +1493,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ProcessLaunchedAt"]
             )
         )
-    if "ProcessTerminatedAt" in data:
+    if data.get("ProcessTerminatedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["process_terminated_at"] = (
@@ -1501,7 +1501,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ProcessTerminatedAt"]
             )
         )
-    if "ThreatIntelIndicatorType" in data:
+    if data.get("ThreatIntelIndicatorType") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["threat_intel_indicator_type"] = (
@@ -1509,7 +1509,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ThreatIntelIndicatorType"]
             )
         )
-    if "ThreatIntelIndicatorValue" in data:
+    if data.get("ThreatIntelIndicatorValue") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["threat_intel_indicator_value"] = (
@@ -1517,7 +1517,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ThreatIntelIndicatorValue"]
             )
         )
-    if "ThreatIntelIndicatorCategory" in data:
+    if data.get("ThreatIntelIndicatorCategory") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["threat_intel_indicator_category"] = (
@@ -1525,7 +1525,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ThreatIntelIndicatorCategory"]
             )
         )
-    if "ThreatIntelIndicatorLastObservedAt" in data:
+    if data.get("ThreatIntelIndicatorLastObservedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["threat_intel_indicator_last_observed_at"] = (
@@ -1533,7 +1533,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ThreatIntelIndicatorLastObservedAt"]
             )
         )
-    if "ThreatIntelIndicatorSource" in data:
+    if data.get("ThreatIntelIndicatorSource") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["threat_intel_indicator_source"] = (
@@ -1541,7 +1541,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ThreatIntelIndicatorSource"]
             )
         )
-    if "ThreatIntelIndicatorSourceUrl" in data:
+    if data.get("ThreatIntelIndicatorSourceUrl") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["threat_intel_indicator_source_url"] = (
@@ -1549,7 +1549,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ThreatIntelIndicatorSourceUrl"]
             )
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_type"] = (
@@ -1557,13 +1557,13 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceType"]
             )
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_id"] = capo_securityhub.types.string_filter_list.deserialize_json(
             data["ResourceId"]
         )
-    if "ResourcePartition" in data:
+    if data.get("ResourcePartition") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_partition"] = (
@@ -1571,7 +1571,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourcePartition"]
             )
         )
-    if "ResourceRegion" in data:
+    if data.get("ResourceRegion") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_region"] = (
@@ -1579,13 +1579,13 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceRegion"]
             )
         )
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_securityhub.types.map_filter_list
 
         out["resource_tags"] = capo_securityhub.types.map_filter_list.deserialize_json(
             data["ResourceTags"]
         )
-    if "ResourceAwsEc2InstanceType" in data:
+    if data.get("ResourceAwsEc2InstanceType") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_ec2_instance_type"] = (
@@ -1593,7 +1593,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsEc2InstanceType"]
             )
         )
-    if "ResourceAwsEc2InstanceImageId" in data:
+    if data.get("ResourceAwsEc2InstanceImageId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_ec2_instance_image_id"] = (
@@ -1601,7 +1601,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsEc2InstanceImageId"]
             )
         )
-    if "ResourceAwsEc2InstanceIpV4Addresses" in data:
+    if data.get("ResourceAwsEc2InstanceIpV4Addresses") is not None:
         import capo_securityhub.types.ip_filter_list
 
         out["resource_aws_ec2_instance_ip_v4_addresses"] = (
@@ -1609,7 +1609,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsEc2InstanceIpV4Addresses"]
             )
         )
-    if "ResourceAwsEc2InstanceIpV6Addresses" in data:
+    if data.get("ResourceAwsEc2InstanceIpV6Addresses") is not None:
         import capo_securityhub.types.ip_filter_list
 
         out["resource_aws_ec2_instance_ip_v6_addresses"] = (
@@ -1617,7 +1617,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsEc2InstanceIpV6Addresses"]
             )
         )
-    if "ResourceAwsEc2InstanceKeyName" in data:
+    if data.get("ResourceAwsEc2InstanceKeyName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_ec2_instance_key_name"] = (
@@ -1625,7 +1625,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsEc2InstanceKeyName"]
             )
         )
-    if "ResourceAwsEc2InstanceIamInstanceProfileArn" in data:
+    if data.get("ResourceAwsEc2InstanceIamInstanceProfileArn") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_ec2_instance_iam_instance_profile_arn"] = (
@@ -1633,7 +1633,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsEc2InstanceIamInstanceProfileArn"]
             )
         )
-    if "ResourceAwsEc2InstanceVpcId" in data:
+    if data.get("ResourceAwsEc2InstanceVpcId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_ec2_instance_vpc_id"] = (
@@ -1641,7 +1641,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsEc2InstanceVpcId"]
             )
         )
-    if "ResourceAwsEc2InstanceSubnetId" in data:
+    if data.get("ResourceAwsEc2InstanceSubnetId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_ec2_instance_subnet_id"] = (
@@ -1649,7 +1649,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsEc2InstanceSubnetId"]
             )
         )
-    if "ResourceAwsEc2InstanceLaunchedAt" in data:
+    if data.get("ResourceAwsEc2InstanceLaunchedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["resource_aws_ec2_instance_launched_at"] = (
@@ -1657,7 +1657,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsEc2InstanceLaunchedAt"]
             )
         )
-    if "ResourceAwsS3BucketOwnerId" in data:
+    if data.get("ResourceAwsS3BucketOwnerId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_s3_bucket_owner_id"] = (
@@ -1665,7 +1665,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsS3BucketOwnerId"]
             )
         )
-    if "ResourceAwsS3BucketOwnerName" in data:
+    if data.get("ResourceAwsS3BucketOwnerName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_s3_bucket_owner_name"] = (
@@ -1673,7 +1673,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsS3BucketOwnerName"]
             )
         )
-    if "ResourceAwsIamAccessKeyUserName" in data:
+    if data.get("ResourceAwsIamAccessKeyUserName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_iam_access_key_user_name"] = (
@@ -1681,7 +1681,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsIamAccessKeyUserName"]
             )
         )
-    if "ResourceAwsIamAccessKeyPrincipalName" in data:
+    if data.get("ResourceAwsIamAccessKeyPrincipalName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_iam_access_key_principal_name"] = (
@@ -1689,7 +1689,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsIamAccessKeyPrincipalName"]
             )
         )
-    if "ResourceAwsIamAccessKeyStatus" in data:
+    if data.get("ResourceAwsIamAccessKeyStatus") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_iam_access_key_status"] = (
@@ -1697,7 +1697,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsIamAccessKeyStatus"]
             )
         )
-    if "ResourceAwsIamAccessKeyCreatedAt" in data:
+    if data.get("ResourceAwsIamAccessKeyCreatedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["resource_aws_iam_access_key_created_at"] = (
@@ -1705,7 +1705,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsIamAccessKeyCreatedAt"]
             )
         )
-    if "ResourceAwsIamUserUserName" in data:
+    if data.get("ResourceAwsIamUserUserName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_aws_iam_user_user_name"] = (
@@ -1713,7 +1713,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceAwsIamUserUserName"]
             )
         )
-    if "ResourceContainerName" in data:
+    if data.get("ResourceContainerName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_container_name"] = (
@@ -1721,7 +1721,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceContainerName"]
             )
         )
-    if "ResourceContainerImageId" in data:
+    if data.get("ResourceContainerImageId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_container_image_id"] = (
@@ -1729,7 +1729,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceContainerImageId"]
             )
         )
-    if "ResourceContainerImageName" in data:
+    if data.get("ResourceContainerImageName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_container_image_name"] = (
@@ -1737,7 +1737,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceContainerImageName"]
             )
         )
-    if "ResourceContainerLaunchedAt" in data:
+    if data.get("ResourceContainerLaunchedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["resource_container_launched_at"] = (
@@ -1745,7 +1745,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceContainerLaunchedAt"]
             )
         )
-    if "ResourceDetailsOther" in data:
+    if data.get("ResourceDetailsOther") is not None:
         import capo_securityhub.types.map_filter_list
 
         out["resource_details_other"] = (
@@ -1753,7 +1753,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceDetailsOther"]
             )
         )
-    if "ComplianceStatus" in data:
+    if data.get("ComplianceStatus") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["compliance_status"] = (
@@ -1761,7 +1761,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ComplianceStatus"]
             )
         )
-    if "VerificationState" in data:
+    if data.get("VerificationState") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["verification_state"] = (
@@ -1769,7 +1769,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["VerificationState"]
             )
         )
-    if "WorkflowState" in data:
+    if data.get("WorkflowState") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["workflow_state"] = (
@@ -1777,7 +1777,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["WorkflowState"]
             )
         )
-    if "WorkflowStatus" in data:
+    if data.get("WorkflowStatus") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["workflow_status"] = (
@@ -1785,7 +1785,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["WorkflowStatus"]
             )
         )
-    if "RecordState" in data:
+    if data.get("RecordState") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["record_state"] = (
@@ -1793,7 +1793,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["RecordState"]
             )
         )
-    if "RelatedFindingsProductArn" in data:
+    if data.get("RelatedFindingsProductArn") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["related_findings_product_arn"] = (
@@ -1801,7 +1801,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["RelatedFindingsProductArn"]
             )
         )
-    if "RelatedFindingsId" in data:
+    if data.get("RelatedFindingsId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["related_findings_id"] = (
@@ -1809,13 +1809,13 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["RelatedFindingsId"]
             )
         )
-    if "NoteText" in data:
+    if data.get("NoteText") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["note_text"] = capo_securityhub.types.string_filter_list.deserialize_json(
             data["NoteText"]
         )
-    if "NoteUpdatedAt" in data:
+    if data.get("NoteUpdatedAt") is not None:
         import capo_securityhub.types.date_filter_list
 
         out["note_updated_at"] = (
@@ -1823,7 +1823,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NoteUpdatedAt"]
             )
         )
-    if "NoteUpdatedBy" in data:
+    if data.get("NoteUpdatedBy") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["note_updated_by"] = (
@@ -1831,13 +1831,13 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["NoteUpdatedBy"]
             )
         )
-    if "Keyword" in data:
+    if data.get("Keyword") is not None:
         import capo_securityhub.types.keyword_filter_list
 
         out["keyword"] = capo_securityhub.types.keyword_filter_list.deserialize_json(
             data["Keyword"]
         )
-    if "FindingProviderFieldsConfidence" in data:
+    if data.get("FindingProviderFieldsConfidence") is not None:
         import capo_securityhub.types.number_filter_list
 
         out["finding_provider_fields_confidence"] = (
@@ -1845,7 +1845,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["FindingProviderFieldsConfidence"]
             )
         )
-    if "FindingProviderFieldsCriticality" in data:
+    if data.get("FindingProviderFieldsCriticality") is not None:
         import capo_securityhub.types.number_filter_list
 
         out["finding_provider_fields_criticality"] = (
@@ -1853,7 +1853,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["FindingProviderFieldsCriticality"]
             )
         )
-    if "FindingProviderFieldsRelatedFindingsId" in data:
+    if data.get("FindingProviderFieldsRelatedFindingsId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["finding_provider_fields_related_findings_id"] = (
@@ -1861,7 +1861,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["FindingProviderFieldsRelatedFindingsId"]
             )
         )
-    if "FindingProviderFieldsRelatedFindingsProductArn" in data:
+    if data.get("FindingProviderFieldsRelatedFindingsProductArn") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["finding_provider_fields_related_findings_product_arn"] = (
@@ -1869,7 +1869,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["FindingProviderFieldsRelatedFindingsProductArn"]
             )
         )
-    if "FindingProviderFieldsSeverityLabel" in data:
+    if data.get("FindingProviderFieldsSeverityLabel") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["finding_provider_fields_severity_label"] = (
@@ -1877,7 +1877,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["FindingProviderFieldsSeverityLabel"]
             )
         )
-    if "FindingProviderFieldsSeverityOriginal" in data:
+    if data.get("FindingProviderFieldsSeverityOriginal") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["finding_provider_fields_severity_original"] = (
@@ -1885,7 +1885,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["FindingProviderFieldsSeverityOriginal"]
             )
         )
-    if "FindingProviderFieldsTypes" in data:
+    if data.get("FindingProviderFieldsTypes") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["finding_provider_fields_types"] = (
@@ -1893,13 +1893,13 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["FindingProviderFieldsTypes"]
             )
         )
-    if "Sample" in data:
+    if data.get("Sample") is not None:
         import capo_securityhub.types.boolean_filter_list
 
         out["sample"] = capo_securityhub.types.boolean_filter_list.deserialize_json(
             data["Sample"]
         )
-    if "ComplianceSecurityControlId" in data:
+    if data.get("ComplianceSecurityControlId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["compliance_security_control_id"] = (
@@ -1907,7 +1907,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ComplianceSecurityControlId"]
             )
         )
-    if "ComplianceAssociatedStandardsId" in data:
+    if data.get("ComplianceAssociatedStandardsId") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["compliance_associated_standards_id"] = (
@@ -1915,7 +1915,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ComplianceAssociatedStandardsId"]
             )
         )
-    if "VulnerabilitiesExploitAvailable" in data:
+    if data.get("VulnerabilitiesExploitAvailable") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["vulnerabilities_exploit_available"] = (
@@ -1923,7 +1923,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["VulnerabilitiesExploitAvailable"]
             )
         )
-    if "VulnerabilitiesFixAvailable" in data:
+    if data.get("VulnerabilitiesFixAvailable") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["vulnerabilities_fix_available"] = (
@@ -1931,7 +1931,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["VulnerabilitiesFixAvailable"]
             )
         )
-    if "ComplianceSecurityControlParametersName" in data:
+    if data.get("ComplianceSecurityControlParametersName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["compliance_security_control_parameters_name"] = (
@@ -1939,7 +1939,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ComplianceSecurityControlParametersName"]
             )
         )
-    if "ComplianceSecurityControlParametersValue" in data:
+    if data.get("ComplianceSecurityControlParametersValue") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["compliance_security_control_parameters_value"] = (
@@ -1947,7 +1947,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ComplianceSecurityControlParametersValue"]
             )
         )
-    if "AwsAccountName" in data:
+    if data.get("AwsAccountName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["aws_account_name"] = (
@@ -1955,7 +1955,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["AwsAccountName"]
             )
         )
-    if "ResourceApplicationName" in data:
+    if data.get("ResourceApplicationName") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_application_name"] = (
@@ -1963,7 +1963,7 @@ def deserialize_json(data: dict) -> AwsSecurityFindingFilters:
                 data["ResourceApplicationName"]
             )
         )
-    if "ResourceApplicationArn" in data:
+    if data.get("ResourceApplicationArn") is not None:
         import capo_securityhub.types.string_filter_list
 
         out["resource_application_arn"] = (

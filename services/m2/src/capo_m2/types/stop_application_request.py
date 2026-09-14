@@ -25,7 +25,7 @@ def serialize_json(value: StopApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StopApplicationRequest:
     out: StopApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "forceStop" in data:
+    if data.get("forceStop") is not None:
         out["force_stop"] = data["forceStop"]
     else:
         out["force_stop"] = False

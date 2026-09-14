@@ -41,7 +41,7 @@ def deserialize_json(
     data: dict,
 ) -> DisassociatePhoneNumbersFromVoiceConnectorGroupRequest:
     out: DisassociatePhoneNumbersFromVoiceConnectorGroupRequest = {}  # type: ignore[typeddict-item]
-    if "E164PhoneNumbers" in data:
+    if data.get("E164PhoneNumbers") is not None:
         import capo_chime_sdk_voice.types.e164_phone_number_list
 
         out["e164_phone_numbers"] = (

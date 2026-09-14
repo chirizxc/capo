@@ -66,27 +66,27 @@ def serialize_json(value: UpdateRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRuleRequest:
     out: UpdateRuleRequest = {}  # type: ignore[typeddict-item]
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         import capo_rbin.types.retention_period
 
         out["retention_period"] = capo_rbin.types.retention_period.deserialize_json(
             data["RetentionPeriod"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_rbin.types.resource_type
 
         out["resource_type"] = capo_rbin.types.resource_type.deserialize_json(
             data["ResourceType"]
         )
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_rbin.types.resource_tags
 
         out["resource_tags"] = capo_rbin.types.resource_tags.deserialize_json(
             data["ResourceTags"]
         )
-    if "ExcludeResourceTags" in data:
+    if data.get("ExcludeResourceTags") is not None:
         import capo_rbin.types.exclude_resource_tags
 
         out["exclude_resource_tags"] = (

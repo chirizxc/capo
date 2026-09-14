@@ -42,7 +42,7 @@ def serialize_json(value: AttendeeCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> AttendeeCapabilities:
     out: AttendeeCapabilities = {}  # type: ignore[typeddict-item]
-    if "Audio" in data:
+    if data.get("Audio") is not None:
         import capo_chime_sdk_meetings.types.media_capabilities
 
         out["audio"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AttendeeCapabilities:
         )
     else:
         raise DeserializationError("AttendeeCapabilities.audio required")
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_chime_sdk_meetings.types.media_capabilities
 
         out["video"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> AttendeeCapabilities:
         )
     else:
         raise DeserializationError("AttendeeCapabilities.video required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_chime_sdk_meetings.types.media_capabilities
 
         out["content"] = (

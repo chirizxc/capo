@@ -108,27 +108,27 @@ def serialize_json(value: UserSettingsSummary) -> dict:
 
 def deserialize_json(data: dict) -> UserSettingsSummary:
     out: UserSettingsSummary = {}  # type: ignore[typeddict-item]
-    if "userSettingsArn" in data:
+    if data.get("userSettingsArn") is not None:
         out["user_settings_arn"] = data["userSettingsArn"]
     else:
         raise DeserializationError("UserSettingsSummary.user_settings_arn required")
-    if "copyAllowed" in data:
+    if data.get("copyAllowed") is not None:
         out["copy_allowed"] = data["copyAllowed"]
-    if "pasteAllowed" in data:
+    if data.get("pasteAllowed") is not None:
         out["paste_allowed"] = data["pasteAllowed"]
-    if "downloadAllowed" in data:
+    if data.get("downloadAllowed") is not None:
         out["download_allowed"] = data["downloadAllowed"]
-    if "uploadAllowed" in data:
+    if data.get("uploadAllowed") is not None:
         out["upload_allowed"] = data["uploadAllowed"]
-    if "printAllowed" in data:
+    if data.get("printAllowed") is not None:
         out["print_allowed"] = data["printAllowed"]
-    if "disconnectTimeoutInMinutes" in data:
+    if data.get("disconnectTimeoutInMinutes") is not None:
         out["disconnect_timeout_in_minutes"] = data["disconnectTimeoutInMinutes"]
-    if "idleDisconnectTimeoutInMinutes" in data:
+    if data.get("idleDisconnectTimeoutInMinutes") is not None:
         out["idle_disconnect_timeout_in_minutes"] = data[
             "idleDisconnectTimeoutInMinutes"
         ]
-    if "cookieSynchronizationConfiguration" in data:
+    if data.get("cookieSynchronizationConfiguration") is not None:
         import capo_workspaces_web.types.cookie_synchronization_configuration
 
         out["cookie_synchronization_configuration"] = (
@@ -136,9 +136,9 @@ def deserialize_json(data: dict) -> UserSettingsSummary:
                 data["cookieSynchronizationConfiguration"]
             )
         )
-    if "deepLinkAllowed" in data:
+    if data.get("deepLinkAllowed") is not None:
         out["deep_link_allowed"] = data["deepLinkAllowed"]
-    if "toolbarConfiguration" in data:
+    if data.get("toolbarConfiguration") is not None:
         import capo_workspaces_web.types.toolbar_configuration
 
         out["toolbar_configuration"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> UserSettingsSummary:
                 data["toolbarConfiguration"]
             )
         )
-    if "brandingConfiguration" in data:
+    if data.get("brandingConfiguration") is not None:
         import capo_workspaces_web.types.branding_configuration
 
         out["branding_configuration"] = (
@@ -154,6 +154,6 @@ def deserialize_json(data: dict) -> UserSettingsSummary:
                 data["brandingConfiguration"]
             )
         )
-    if "webAuthnAllowed" in data:
+    if data.get("webAuthnAllowed") is not None:
         out["web_authn_allowed"] = data["webAuthnAllowed"]
     return out

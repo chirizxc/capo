@@ -31,9 +31,9 @@ def serialize_json(value: Sample) -> dict:
 
 def deserialize_json(data: dict) -> Sample:
     out: Sample = {}  # type: ignore[typeddict-item]
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_databrew.types.sample_type
 
         out["type"] = capo_databrew.types.sample_type.deserialize_json(data["Type"])

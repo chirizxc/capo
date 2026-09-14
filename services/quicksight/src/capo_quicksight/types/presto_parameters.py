@@ -32,15 +32,15 @@ def serialize_json(value: PrestoParameters) -> dict:
 
 def deserialize_json(data: dict) -> PrestoParameters:
     out: PrestoParameters = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("PrestoParameters.host required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("PrestoParameters.port required")
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("PrestoParameters.catalog required")

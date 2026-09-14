@@ -31,7 +31,7 @@ def serialize_json(value: VisualCustomActionDefaults) -> dict:
 
 def deserialize_json(data: dict) -> VisualCustomActionDefaults:
     out: VisualCustomActionDefaults = {}  # type: ignore[typeddict-item]
-    if "highlightOperation" in data:
+    if data.get("highlightOperation") is not None:
         import capo_quicksight.types.visual_highlight_operation
 
         out["highlight_operation"] = (

@@ -36,9 +36,9 @@ def serialize_json(value: ListSchemaVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSchemaVersionsResponse:
     out: ListSchemaVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SchemaVersions" in data:
+    if data.get("SchemaVersions") is not None:
         import capo_schemas.types.__list_of_schema_version_summary
 
         out["schema_versions"] = (

@@ -34,12 +34,12 @@ def serialize_json(value: ListResourceGatewaysResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListResourceGatewaysResponse:
     out: ListResourceGatewaysResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_vpc_lattice.types.resource_gateway_list
 
         out["items"] = capo_vpc_lattice.types.resource_gateway_list.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

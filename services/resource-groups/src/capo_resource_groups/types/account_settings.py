@@ -53,7 +53,7 @@ def serialize_json(value: AccountSettings) -> dict:
 
 def deserialize_json(data: dict) -> AccountSettings:
     out: AccountSettings = {}  # type: ignore[typeddict-item]
-    if "GroupLifecycleEventsDesiredStatus" in data:
+    if data.get("GroupLifecycleEventsDesiredStatus") is not None:
         import capo_resource_groups.types.group_lifecycle_events_desired_status
 
         out["group_lifecycle_events_desired_status"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> AccountSettings:
                 data["GroupLifecycleEventsDesiredStatus"]
             )
         )
-    if "GroupLifecycleEventsStatus" in data:
+    if data.get("GroupLifecycleEventsStatus") is not None:
         import capo_resource_groups.types.group_lifecycle_events_status
 
         out["group_lifecycle_events_status"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> AccountSettings:
                 data["GroupLifecycleEventsStatus"]
             )
         )
-    if "GroupLifecycleEventsStatusMessage" in data:
+    if data.get("GroupLifecycleEventsStatusMessage") is not None:
         out["group_lifecycle_events_status_message"] = data[
             "GroupLifecycleEventsStatusMessage"
         ]

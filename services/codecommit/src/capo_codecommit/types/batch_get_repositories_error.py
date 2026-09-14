@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: BatchGetRepositoriesError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetRepositoriesError:
     out: BatchGetRepositoriesError = {}  # type: ignore[typeddict-item]
-    if "repositoryId" in data:
+    if data.get("repositoryId") is not None:
         out["repository_id"] = data["repositoryId"]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_codecommit.types.batch_get_repositories_error_code_enum
 
         out["error_code"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetRepositoriesError:
                 data["errorCode"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

@@ -67,7 +67,7 @@ def serialize_aws_json_1_1(value: GetUsageForecastRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUsageForecastRequest:
     out: GetUsageForecastRequest = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetUsageForecastRequest:
         )
     else:
         raise DeserializationError("GetUsageForecastRequest.time_period required")
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         import capo_cost_explorer.types.metric
 
         out["metric"] = capo_cost_explorer.types.metric.deserialize_aws_json_1_1(
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetUsageForecastRequest:
         )
     else:
         raise DeserializationError("GetUsageForecastRequest.metric required")
-    if "Granularity" in data:
+    if data.get("Granularity") is not None:
         import capo_cost_explorer.types.granularity
 
         out["granularity"] = (
@@ -95,14 +95,14 @@ def deserialize_aws_json_1_1(data: dict) -> GetUsageForecastRequest:
         )
     else:
         raise DeserializationError("GetUsageForecastRequest.granularity required")
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_cost_explorer.types.expression
 
         out["filter"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "BillingViewArn" in data:
+    if data.get("BillingViewArn") is not None:
         out["billing_view_arn"] = data["BillingViewArn"]
-    if "PredictionIntervalLevel" in data:
+    if data.get("PredictionIntervalLevel") is not None:
         out["prediction_interval_level"] = data["PredictionIntervalLevel"]
     return out

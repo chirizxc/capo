@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EdgePropertyList:
 
     out: EdgePropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehubv2.types.edge_property_summary.deserialize_json(item)
         )

@@ -65,25 +65,25 @@ def serialize_aws_json_1_1(value: DeviceInstance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceInstance:
     out: DeviceInstance = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "deviceArn" in data:
+    if data.get("deviceArn") is not None:
         out["device_arn"] = data["deviceArn"]
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_device_farm.types.instance_labels
 
         out["labels"] = capo_device_farm.types.instance_labels.deserialize_aws_json_1_1(
             data["labels"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_device_farm.types.instance_status
 
         out["status"] = capo_device_farm.types.instance_status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "udid" in data:
+    if data.get("udid") is not None:
         out["udid"] = data["udid"]
-    if "instanceProfile" in data:
+    if data.get("instanceProfile") is not None:
         import capo_device_farm.types.instance_profile
 
         out["instance_profile"] = (

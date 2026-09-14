@@ -57,17 +57,17 @@ def serialize_json(value: AssumeRoleForPodIdentityResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssumeRoleForPodIdentityResponse:
     out: AssumeRoleForPodIdentityResponse = {}  # type: ignore[typeddict-item]
-    if "subject" in data:
+    if data.get("subject") is not None:
         import capo_eks_auth.types.subject
 
         out["subject"] = capo_eks_auth.types.subject.deserialize_json(data["subject"])
     else:
         raise DeserializationError("AssumeRoleForPodIdentityResponse.subject required")
-    if "audience" in data:
+    if data.get("audience") is not None:
         out["audience"] = data["audience"]
     else:
         raise DeserializationError("AssumeRoleForPodIdentityResponse.audience required")
-    if "podIdentityAssociation" in data:
+    if data.get("podIdentityAssociation") is not None:
         import capo_eks_auth.types.pod_identity_association
 
         out["pod_identity_association"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> AssumeRoleForPodIdentityResponse:
         raise DeserializationError(
             "AssumeRoleForPodIdentityResponse.pod_identity_association required"
         )
-    if "assumedRoleUser" in data:
+    if data.get("assumedRoleUser") is not None:
         import capo_eks_auth.types.assumed_role_user
 
         out["assumed_role_user"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> AssumeRoleForPodIdentityResponse:
         raise DeserializationError(
             "AssumeRoleForPodIdentityResponse.assumed_role_user required"
         )
-    if "credentials" in data:
+    if data.get("credentials") is not None:
         import capo_eks_auth.types.credentials
 
         out["credentials"] = capo_eks_auth.types.credentials.deserialize_json(

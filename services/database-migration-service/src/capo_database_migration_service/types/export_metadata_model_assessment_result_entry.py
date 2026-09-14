@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ExportMetadataModelAssessmentResultEntry) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> ExportMetadataModelAssessmentResultEntry:
     out: ExportMetadataModelAssessmentResultEntry = {}  # type: ignore[typeddict-item]
-    if "S3ObjectKey" in data:
+    if data.get("S3ObjectKey") is not None:
         out["s3_object_key"] = data["S3ObjectKey"]
-    if "ObjectURL" in data:
+    if data.get("ObjectURL") is not None:
         out["object_url"] = data["ObjectURL"]
     return out

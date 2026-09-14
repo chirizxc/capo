@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.healthlake#HealthLake``."""
 
+import uuid
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_healthlake._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_healthlake._auth._zapros_handler import AuthMiddleware
+from capo_healthlake._pagination import resolve_path as _resolve_path
 from capo_healthlake._services._aws_config import aaws_config
 from capo_healthlake._services._pipeline import (
     AsyncInterceptor,
@@ -231,16 +234,18 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.create_fhir_datastore_request.CreateFHIRDatastoreRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_healthlake.types.create_fhir_datastore_request.CreateFHIRDatastoreRequest = {
+            "datastore_type_version": datastore_type_version
+        }
         if datastore_name is not None:
             input_["datastore_name"] = datastore_name
-        input_["datastore_type_version"] = datastore_type_version
         if sse_configuration is not None:
             input_["sse_configuration"] = sse_configuration
         if preload_data_config is not None:
             input_["preload_data_config"] = preload_data_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if identity_provider_configuration is not None:
@@ -251,6 +256,7 @@ class AsyncHealthLakeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_fhir_datastore(
@@ -290,14 +296,16 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.delete_fhir_datastore_request.DeleteFHIRDatastoreRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_healthlake.types.delete_fhir_datastore_request.DeleteFHIRDatastoreRequest = {
+            "datastore_id": datastore_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_fhir_datastore(
@@ -335,14 +343,16 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.describe_fhir_datastore_request.DescribeFHIRDatastoreRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_healthlake.types.describe_fhir_datastore_request.DescribeFHIRDatastoreRequest = {
+            "datastore_id": datastore_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_fhir_export_job(
@@ -382,15 +392,17 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.describe_fhir_export_job_request.DescribeFHIRExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
-        input_["job_id"] = job_id
+        input_: capo_healthlake.types.describe_fhir_export_job_request.DescribeFHIRExportJobRequest = {
+            "datastore_id": datastore_id,
+            "job_id": job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_fhir_import_job(
@@ -430,15 +442,17 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.describe_fhir_import_job_request.DescribeFHIRImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
-        input_["job_id"] = job_id
+        input_: capo_healthlake.types.describe_fhir_import_job_request.DescribeFHIRImportJobRequest = {
+            "datastore_id": datastore_id,
+            "job_id": job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_fhir_datastores(
@@ -485,7 +499,7 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.list_fhir_datastores_request.ListFHIRDatastoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_healthlake.types.list_fhir_datastores_request.ListFHIRDatastoresRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -498,7 +512,33 @@ class AsyncHealthLakeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_fhir_datastores(
+        self,
+        *,
+        config_overrides: Optional[AsyncHealthLakeClientConfig] = None,
+        filter: Optional[
+            "capo_healthlake.types.datastore_filter.DatastoreFilter"
+        ] = None,
+        next_token: Optional["capo_healthlake.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_healthlake.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+    ) -> "AsyncIterator[capo_healthlake.types.list_fhir_datastores_response.ListFHIRDatastoresResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_fhir_datastores(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_fhir_export_jobs(
         self,
@@ -550,8 +590,9 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.list_fhir_export_jobs_request.ListFHIRExportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_healthlake.types.list_fhir_export_jobs_request.ListFHIRExportJobsRequest = {
+            "datastore_id": datastore_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -570,7 +611,39 @@ class AsyncHealthLakeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_fhir_export_jobs(
+        self,
+        datastore_id: "capo_healthlake.types.datastore_id.DatastoreId",
+        *,
+        config_overrides: Optional[AsyncHealthLakeClientConfig] = None,
+        next_token: Optional["capo_healthlake.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_healthlake.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+        job_name: Optional["capo_healthlake.types.job_name.JobName"] = None,
+        job_status: Optional["capo_healthlake.types.job_status.JobStatus"] = None,
+        submitted_before: Optional["capo_healthlake.types.timestamp.Timestamp"] = None,
+        submitted_after: Optional["capo_healthlake.types.timestamp.Timestamp"] = None,
+    ) -> "AsyncIterator[capo_healthlake.types.list_fhir_export_jobs_response.ListFHIRExportJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_fhir_export_jobs(
+                datastore_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                job_name=job_name,
+                job_status=job_status,
+                submitted_before=submitted_before,
+                submitted_after=submitted_after,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_fhir_import_jobs(
         self,
@@ -622,8 +695,9 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.list_fhir_import_jobs_request.ListFHIRImportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_healthlake.types.list_fhir_import_jobs_request.ListFHIRImportJobsRequest = {
+            "datastore_id": datastore_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -642,7 +716,39 @@ class AsyncHealthLakeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_fhir_import_jobs(
+        self,
+        datastore_id: "capo_healthlake.types.datastore_id.DatastoreId",
+        *,
+        config_overrides: Optional[AsyncHealthLakeClientConfig] = None,
+        next_token: Optional["capo_healthlake.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_healthlake.types.max_results_integer.MaxResultsInteger"
+        ] = None,
+        job_name: Optional["capo_healthlake.types.job_name.JobName"] = None,
+        job_status: Optional["capo_healthlake.types.job_status.JobStatus"] = None,
+        submitted_before: Optional["capo_healthlake.types.timestamp.Timestamp"] = None,
+        submitted_after: Optional["capo_healthlake.types.timestamp.Timestamp"] = None,
+    ) -> "AsyncIterator[capo_healthlake.types.list_fhir_import_jobs_response.ListFHIRImportJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_fhir_import_jobs(
+                datastore_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                job_name=job_name,
+                job_status=job_status,
+                submitted_before=submitted_before,
+                submitted_after=submitted_after,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -677,14 +783,16 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_healthlake.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_fhir_export_job(
@@ -733,20 +841,23 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.start_fhir_export_job_request.StartFHIRExportJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_healthlake.types.start_fhir_export_job_request.StartFHIRExportJobRequest = {
+            "output_data_config": output_data_config,
+            "datastore_id": datastore_id,
+            "data_access_role_arn": data_access_role_arn,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["output_data_config"] = output_data_config
-        input_["datastore_id"] = datastore_id
-        input_["data_access_role_arn"] = data_access_role_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_fhir_import_job(
@@ -800,15 +911,17 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.start_fhir_import_job_request.StartFHIRImportJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_healthlake.types.start_fhir_import_job_request.StartFHIRImportJobRequest = {
+            "input_data_config": input_data_config,
+            "job_output_data_config": job_output_data_config,
+            "datastore_id": datastore_id,
+            "data_access_role_arn": data_access_role_arn,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["input_data_config"] = input_data_config
-        input_["job_output_data_config"] = job_output_data_config
-        input_["datastore_id"] = datastore_id
-        input_["data_access_role_arn"] = data_access_role_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if validation_level is not None:
             input_["validation_level"] = validation_level
 
@@ -817,6 +930,7 @@ class AsyncHealthLakeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -854,15 +968,17 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_healthlake.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -900,15 +1016,17 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_healthlake.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_fhir_datastore(
@@ -968,8 +1086,9 @@ class AsyncHealthLakeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_healthlake.types.update_fhir_datastore_request.UpdateFHIRDatastoreRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_healthlake.types.update_fhir_datastore_request.UpdateFHIRDatastoreRequest = {
+            "datastore_id": datastore_id
+        }
         if datastore_name is not None:
             input_["datastore_name"] = datastore_name
         if analytics_configuration is not None:
@@ -986,6 +1105,7 @@ class AsyncHealthLakeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

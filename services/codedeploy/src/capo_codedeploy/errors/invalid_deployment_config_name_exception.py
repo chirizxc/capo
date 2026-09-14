@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidDeploymentConfigNameException_) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidDeploymentConfigNameException_:
     out: InvalidDeploymentConfigNameException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class InvalidDeploymentConfigNameException(ServiceError):
 
     code: str | None = "InvalidDeploymentConfigNameException"
 
-    def __init__(self, data: InvalidDeploymentConfigNameException_):
+    def __init__(
+        self, data: InvalidDeploymentConfigNameException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidDeploymentConfigNameException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidDeploymentConfigNameException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidDeploymentConfigNameException":
+        return cls(deserialize_aws_json_1_1(data), message)

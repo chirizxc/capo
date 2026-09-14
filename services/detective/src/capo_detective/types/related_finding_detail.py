@@ -33,10 +33,10 @@ def serialize_json(value: RelatedFindingDetail) -> dict:
 
 def deserialize_json(data: dict) -> RelatedFindingDetail:
     out: RelatedFindingDetail = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
     return out

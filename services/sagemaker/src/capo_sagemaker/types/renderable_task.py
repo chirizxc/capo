@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: RenderableTask) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenderableTask:
     out: RenderableTask = {}  # type: ignore[typeddict-item]
-    if "Input" in data:
+    if data.get("Input") is not None:
         out["input"] = data["Input"]
     return out

@@ -63,9 +63,9 @@ def serialize_aws_json_1_1(value: UpdateFeatureGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFeatureGroupRequest:
     out: UpdateFeatureGroupRequest = {}  # type: ignore[typeddict-item]
-    if "FeatureGroupName" in data:
+    if data.get("FeatureGroupName") is not None:
         out["feature_group_name"] = data["FeatureGroupName"]
-    if "FeatureAdditions" in data:
+    if data.get("FeatureAdditions") is not None:
         import capo_sagemaker.types.feature_additions
 
         out["feature_additions"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFeatureGroupRequest:
                 data["FeatureAdditions"]
             )
         )
-    if "OnlineStoreConfig" in data:
+    if data.get("OnlineStoreConfig") is not None:
         import capo_sagemaker.types.online_store_config_update
 
         out["online_store_config"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFeatureGroupRequest:
                 data["OnlineStoreConfig"]
             )
         )
-    if "ThroughputConfig" in data:
+    if data.get("ThroughputConfig") is not None:
         import capo_sagemaker.types.throughput_config_update
 
         out["throughput_config"] = (

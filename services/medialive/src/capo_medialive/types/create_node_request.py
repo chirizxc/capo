@@ -56,9 +56,9 @@ def serialize_json(value: CreateNodeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNodeRequest:
     out: CreateNodeRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "nodeInterfaceMappings" in data:
+    if data.get("nodeInterfaceMappings") is not None:
         import capo_medialive.types.__list_of_node_interface_mapping_create_request
 
         out["node_interface_mappings"] = (
@@ -66,13 +66,13 @@ def deserialize_json(data: dict) -> CreateNodeRequest:
                 data["nodeInterfaceMappings"]
             )
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "role" in data:
+    if data.get("role") is not None:
         import capo_medialive.types.node_role
 
         out["role"] = capo_medialive.types.node_role.deserialize_json(data["role"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])

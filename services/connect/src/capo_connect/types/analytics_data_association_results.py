@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AnalyticsDataAssociationResults:
 
     out: AnalyticsDataAssociationResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.analytics_data_association_result.deserialize_json(item)
         )

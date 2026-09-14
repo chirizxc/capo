@@ -40,9 +40,9 @@ def serialize_json(value: BatchPutContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutContactRequest:
     out: BatchPutContactRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ContactDataRequestList" in data:
+    if data.get("ContactDataRequestList") is not None:
         import capo_connect.types.contact_data_request_list
 
         out["contact_data_request_list"] = (

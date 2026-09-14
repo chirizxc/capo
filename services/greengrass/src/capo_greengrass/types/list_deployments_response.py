@@ -32,12 +32,12 @@ def serialize_json(value: ListDeploymentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDeploymentsResponse:
     out: ListDeploymentsResponse = {}  # type: ignore[typeddict-item]
-    if "Deployments" in data:
+    if data.get("Deployments") is not None:
         import capo_greengrass.types.deployments
 
         out["deployments"] = capo_greengrass.types.deployments.deserialize_json(
             data["Deployments"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: SheetControlsOption) -> dict:
 
 def deserialize_json(data: dict) -> SheetControlsOption:
     out: SheetControlsOption = {}  # type: ignore[typeddict-item]
-    if "VisibilityState" in data:
+    if data.get("VisibilityState") is not None:
         import capo_quicksight.types.dashboard_ui_state
 
         out["visibility_state"] = (

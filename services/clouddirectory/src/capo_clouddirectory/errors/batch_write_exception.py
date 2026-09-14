@@ -39,11 +39,11 @@ def serialize_json(value: BatchWriteException_) -> dict:
 
 def deserialize_json(data: dict) -> BatchWriteException_:
     out: BatchWriteException_ = {}  # type: ignore[typeddict-item]
-    if "Index" in data:
+    if data.get("Index") is not None:
         out["index"] = data["Index"]
     else:
         out["index"] = 0
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_clouddirectory.types.batch_write_exception_type
 
         out["type"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> BatchWriteException_:
                 data["Type"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -61,15 +61,16 @@ class BatchWriteException(ServiceError):
 
     code: str | None = "BatchWriteException"
 
-    def __init__(self, data: BatchWriteException_):
+    def __init__(self, data: BatchWriteException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="BatchWriteException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "BatchWriteException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "BatchWriteException":
+        return cls(deserialize_json(data), message)

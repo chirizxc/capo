@@ -41,11 +41,11 @@ def serialize_json(value: QuestionDifference) -> dict:
 
 def deserialize_json(data: dict) -> QuestionDifference:
     out: QuestionDifference = {}  # type: ignore[typeddict-item]
-    if "QuestionId" in data:
+    if data.get("QuestionId") is not None:
         out["question_id"] = data["QuestionId"]
-    if "QuestionTitle" in data:
+    if data.get("QuestionTitle") is not None:
         out["question_title"] = data["QuestionTitle"]
-    if "DifferenceStatus" in data:
+    if data.get("DifferenceStatus") is not None:
         import capo_wellarchitected.types.difference_status
 
         out["difference_status"] = (

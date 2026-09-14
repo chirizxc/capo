@@ -40,26 +40,26 @@ def serialize_aws_json_1_1(value: SelectAggregateResourceConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SelectAggregateResourceConfigRequest:
     out: SelectAggregateResourceConfigRequest = {}  # type: ignore[typeddict-item]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError(
             "SelectAggregateResourceConfigRequest.expression required"
         )
-    if "ConfigurationAggregatorName" in data:
+    if data.get("ConfigurationAggregatorName") is not None:
         out["configuration_aggregator_name"] = data["ConfigurationAggregatorName"]
     else:
         raise DeserializationError(
             "SelectAggregateResourceConfigRequest.configuration_aggregator_name required"
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -45,7 +45,7 @@ def serialize_json(value: ConversationLogsDataSourceFilterBy) -> dict:
 
 def deserialize_json(data: dict) -> ConversationLogsDataSourceFilterBy:
     out: ConversationLogsDataSourceFilterBy = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["start_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> ConversationLogsDataSourceFilterBy:
         raise DeserializationError(
             "ConversationLogsDataSourceFilterBy.start_time required"
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["end_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ConversationLogsDataSourceFilterBy:
         raise DeserializationError(
             "ConversationLogsDataSourceFilterBy.end_time required"
         )
-    if "inputMode" in data:
+    if data.get("inputMode") is not None:
         import capo_lex_models_v2.types.conversation_logs_input_mode_filter
 
         out["input_mode"] = (

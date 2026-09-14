@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: UpdateRepositoryEncryptionKeyOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRepositoryEncryptionKeyOutput:
     out: UpdateRepositoryEncryptionKeyOutput = {}  # type: ignore[typeddict-item]
-    if "repositoryId" in data:
+    if data.get("repositoryId") is not None:
         out["repository_id"] = data["repositoryId"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "originalKmsKeyId" in data:
+    if data.get("originalKmsKeyId") is not None:
         out["original_kms_key_id"] = data["originalKmsKeyId"]
     return out

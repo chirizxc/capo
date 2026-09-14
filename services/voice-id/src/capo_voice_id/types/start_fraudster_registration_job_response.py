@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: StartFraudsterRegistrationJobResponse) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> StartFraudsterRegistrationJobResponse:
     out: StartFraudsterRegistrationJobResponse = {}  # type: ignore[typeddict-item]
-    if "Job" in data:
+    if data.get("Job") is not None:
         import capo_voice_id.types.fraudster_registration_job
 
         out["job"] = (

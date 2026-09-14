@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: RecommendationSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationSettings:
     out: RecommendationSettings = {}  # type: ignore[typeddict-item]
-    if "InstanceSizingType" in data:
+    if data.get("InstanceSizingType") is not None:
         out["instance_sizing_type"] = data["InstanceSizingType"]
     else:
         raise DeserializationError(
             "RecommendationSettings.instance_sizing_type required"
         )
-    if "WorkloadType" in data:
+    if data.get("WorkloadType") is not None:
         out["workload_type"] = data["WorkloadType"]
     else:
         raise DeserializationError("RecommendationSettings.workload_type required")

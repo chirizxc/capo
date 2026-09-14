@@ -39,9 +39,9 @@ def serialize_json(value: S3MachineLearningModelResourceData) -> dict:
 
 def deserialize_json(data: dict) -> S3MachineLearningModelResourceData:
     out: S3MachineLearningModelResourceData = {}  # type: ignore[typeddict-item]
-    if "DestinationPath" in data:
+    if data.get("DestinationPath") is not None:
         out["destination_path"] = data["DestinationPath"]
-    if "OwnerSetting" in data:
+    if data.get("OwnerSetting") is not None:
         import capo_greengrass.types.resource_download_owner_setting
 
         out["owner_setting"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> S3MachineLearningModelResourceData:
                 data["OwnerSetting"]
             )
         )
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     return out

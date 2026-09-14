@@ -65,7 +65,7 @@ def serialize_aws_json_1_1(value: SavingsPlansUtilizationByTime) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationByTime:
     out: SavingsPlansUtilizationByTime = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationByTime:
         )
     else:
         raise DeserializationError("SavingsPlansUtilizationByTime.time_period required")
-    if "Utilization" in data:
+    if data.get("Utilization") is not None:
         import capo_cost_explorer.types.savings_plans_utilization
 
         out["utilization"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationByTime:
         )
     else:
         raise DeserializationError("SavingsPlansUtilizationByTime.utilization required")
-    if "Savings" in data:
+    if data.get("Savings") is not None:
         import capo_cost_explorer.types.savings_plans_savings
 
         out["savings"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationByTime:
                 data["Savings"]
             )
         )
-    if "AmortizedCommitment" in data:
+    if data.get("AmortizedCommitment") is not None:
         import capo_cost_explorer.types.savings_plans_amortized_commitment
 
         out["amortized_commitment"] = (

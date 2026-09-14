@@ -24,7 +24,7 @@ def serialize_json(value: AcceptGroupingRecommendationEntry) -> dict:
 
 def deserialize_json(data: dict) -> AcceptGroupingRecommendationEntry:
     out: AcceptGroupingRecommendationEntry = {}  # type: ignore[typeddict-item]
-    if "groupingRecommendationId" in data:
+    if data.get("groupingRecommendationId") is not None:
         out["grouping_recommendation_id"] = data["groupingRecommendationId"]
     else:
         raise DeserializationError(

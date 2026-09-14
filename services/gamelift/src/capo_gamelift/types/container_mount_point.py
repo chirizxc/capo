@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: ContainerMountPoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerMountPoint:
     out: ContainerMountPoint = {}  # type: ignore[typeddict-item]
-    if "InstancePath" in data:
+    if data.get("InstancePath") is not None:
         out["instance_path"] = data["InstancePath"]
-    if "ContainerPath" in data:
+    if data.get("ContainerPath") is not None:
         out["container_path"] = data["ContainerPath"]
-    if "AccessLevel" in data:
+    if data.get("AccessLevel") is not None:
         import capo_gamelift.types.container_mount_point_access_level
 
         out["access_level"] = (

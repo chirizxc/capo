@@ -146,23 +146,23 @@ def serialize_json(value: GetNotebookOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetNotebookOutput:
     out: GetNotebookOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetNotebookOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetNotebookOutput.name required")
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
     else:
         raise DeserializationError("GetNotebookOutput.owning_project_id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("GetNotebookOutput.domain_id required")
-    if "cellOrder" in data:
+    if data.get("cellOrder") is not None:
         import capo_datazone.types.cell_order
 
         out["cell_order"] = capo_datazone.types.cell_order.deserialize_json(
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> GetNotebookOutput:
         )
     else:
         raise DeserializationError("GetNotebookOutput.cell_order required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.notebook_status
 
         out["status"] = capo_datazone.types.notebook_status.deserialize_json(
@@ -178,33 +178,33 @@ def deserialize_json(data: dict) -> GetNotebookOutput:
         )
     else:
         raise DeserializationError("GetNotebookOutput.status required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "lockedBy" in data:
+    if data.get("lockedBy") is not None:
         out["locked_by"] = data["lockedBy"]
-    if "lockedAt" in data:
+    if data.get("lockedAt") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["locked_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
             data["lockedAt"]
         )
-    if "lockExpiresAt" in data:
+    if data.get("lockExpiresAt") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["lock_expires_at"] = (
@@ -212,21 +212,21 @@ def deserialize_json(data: dict) -> GetNotebookOutput:
                 data["lockExpiresAt"]
             )
         )
-    if "computeId" in data:
+    if data.get("computeId") is not None:
         out["compute_id"] = data["computeId"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_datazone.types.metadata
 
         out["metadata"] = capo_datazone.types.metadata.deserialize_json(
             data["metadata"]
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_datazone.types.parameters
 
         out["parameters"] = capo_datazone.types.parameters.deserialize_json(
             data["parameters"]
         )
-    if "environmentConfiguration" in data:
+    if data.get("environmentConfiguration") is not None:
         import capo_datazone.types.environment_config
 
         out["environment_configuration"] = (
@@ -234,7 +234,7 @@ def deserialize_json(data: dict) -> GetNotebookOutput:
                 data["environmentConfiguration"]
             )
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_datazone.types.notebook_error
 
         out["error"] = capo_datazone.types.notebook_error.deserialize_json(

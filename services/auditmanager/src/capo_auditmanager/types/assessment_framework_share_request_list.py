@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AssessmentFrameworkShareRequestList:
 
     out: AssessmentFrameworkShareRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auditmanager.types.assessment_framework_share_request.deserialize_json(
                 item

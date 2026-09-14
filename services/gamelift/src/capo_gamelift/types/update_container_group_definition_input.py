@@ -74,7 +74,15 @@ def serialize_aws_json_1_1(value: UpdateContainerGroupDefinitionInput) -> dict:
     if "total_memory_limit_mebibytes" in value:
         out["TotalMemoryLimitMebibytes"] = value["total_memory_limit_mebibytes"]
     if "total_vcpu_limit" in value:
-        out["TotalVcpuLimit"] = value["total_vcpu_limit"]
+        out["TotalVcpuLimit"] = (
+            "NaN"
+            if value["total_vcpu_limit"] != value["total_vcpu_limit"]
+            else "Infinity"
+            if value["total_vcpu_limit"] == float("inf")
+            else "-Infinity"
+            if value["total_vcpu_limit"] == float("-inf")
+            else value["total_vcpu_limit"]
+        )
     if "version_description" in value:
         out["VersionDescription"] = value["version_description"]
     if "source_version_number" in value:
@@ -92,9 +100,9 @@ def serialize_aws_json_1_1(value: UpdateContainerGroupDefinitionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateContainerGroupDefinitionInput:
     out: UpdateContainerGroupDefinitionInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "GameServerContainerDefinition" in data:
+    if data.get("GameServerContainerDefinition") is not None:
         import capo_gamelift.types.game_server_container_definition_input
 
         out["game_server_container_definition"] = (
@@ -102,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateContainerGroupDefinitionInput:
                 data["GameServerContainerDefinition"]
             )
         )
-    if "SupportContainerDefinitions" in data:
+    if data.get("SupportContainerDefinitions") is not None:
         import capo_gamelift.types.support_container_definition_input_list
 
         out["support_container_definitions"] = (
@@ -110,15 +118,15 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateContainerGroupDefinitionInput:
                 data["SupportContainerDefinitions"]
             )
         )
-    if "TotalMemoryLimitMebibytes" in data:
+    if data.get("TotalMemoryLimitMebibytes") is not None:
         out["total_memory_limit_mebibytes"] = data["TotalMemoryLimitMebibytes"]
-    if "TotalVcpuLimit" in data:
-        out["total_vcpu_limit"] = data["TotalVcpuLimit"]
-    if "VersionDescription" in data:
+    if data.get("TotalVcpuLimit") is not None:
+        out["total_vcpu_limit"] = float(data["TotalVcpuLimit"])
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "SourceVersionNumber" in data:
+    if data.get("SourceVersionNumber") is not None:
         out["source_version_number"] = data["SourceVersionNumber"]
-    if "OperatingSystem" in data:
+    if data.get("OperatingSystem") is not None:
         import capo_gamelift.types.container_operating_system
 
         out["operating_system"] = (

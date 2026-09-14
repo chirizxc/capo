@@ -77,7 +77,7 @@ def serialize_json(value: DefaultFilterDropDownControlOptions) -> dict:
 
 def deserialize_json(data: dict) -> DefaultFilterDropDownControlOptions:
     out: DefaultFilterDropDownControlOptions = {}  # type: ignore[typeddict-item]
-    if "DisplayOptions" in data:
+    if data.get("DisplayOptions") is not None:
         import capo_quicksight.types.drop_down_control_display_options
 
         out["display_options"] = (
@@ -85,13 +85,13 @@ def deserialize_json(data: dict) -> DefaultFilterDropDownControlOptions:
                 data["DisplayOptions"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.sheet_control_list_type
 
         out["type"] = capo_quicksight.types.sheet_control_list_type.deserialize_json(
             data["Type"]
         )
-    if "SelectableValues" in data:
+    if data.get("SelectableValues") is not None:
         import capo_quicksight.types.filter_selectable_values
 
         out["selectable_values"] = (
@@ -99,13 +99,13 @@ def deserialize_json(data: dict) -> DefaultFilterDropDownControlOptions:
                 data["SelectableValues"]
             )
         )
-    if "CommitMode" in data:
+    if data.get("CommitMode") is not None:
         import capo_quicksight.types.commit_mode
 
         out["commit_mode"] = capo_quicksight.types.commit_mode.deserialize_json(
             data["CommitMode"]
         )
-    if "ControlSortConfigurations" in data:
+    if data.get("ControlSortConfigurations") is not None:
         import capo_quicksight.types.control_sort_configuration_list
 
         out["control_sort_configurations"] = (

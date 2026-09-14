@@ -82,35 +82,35 @@ def serialize_aws_json_1_1(value: AssociateFileSystemInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateFileSystemInput:
     out: AssociateFileSystemInput = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     else:
         raise DeserializationError("AssociateFileSystemInput.user_name required")
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError("AssociateFileSystemInput.password required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("AssociateFileSystemInput.client_token required")
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("AssociateFileSystemInput.gateway_arn required")
-    if "LocationARN" in data:
+    if data.get("LocationARN") is not None:
         out["location_arn"] = data["LocationARN"]
     else:
         raise DeserializationError("AssociateFileSystemInput.location_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "AuditDestinationARN" in data:
+    if data.get("AuditDestinationARN") is not None:
         out["audit_destination_arn"] = data["AuditDestinationARN"]
-    if "CacheAttributes" in data:
+    if data.get("CacheAttributes") is not None:
         import capo_storage_gateway.types.cache_attributes
 
         out["cache_attributes"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssociateFileSystemInput:
                 data["CacheAttributes"]
             )
         )
-    if "EndpointNetworkConfiguration" in data:
+    if data.get("EndpointNetworkConfiguration") is not None:
         import capo_storage_gateway.types.endpoint_network_configuration
 
         out["endpoint_network_configuration"] = (

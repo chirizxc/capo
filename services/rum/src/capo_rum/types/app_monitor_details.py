@@ -26,10 +26,10 @@ def serialize_json(value: AppMonitorDetails) -> dict:
 
 def deserialize_json(data: dict) -> AppMonitorDetails:
     out: AppMonitorDetails = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

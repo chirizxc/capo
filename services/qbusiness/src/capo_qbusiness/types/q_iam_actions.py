@@ -14,4 +14,4 @@ def serialize_json(value: QIamActions) -> list:
 
 
 def deserialize_json(data: list) -> QIamActions:
-    return list(data)
+    return [item for item in data if item is not None]

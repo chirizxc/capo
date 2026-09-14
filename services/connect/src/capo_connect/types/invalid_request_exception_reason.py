@@ -36,7 +36,7 @@ def serialize_json(value: InvalidRequestExceptionReason) -> dict:
 
 
 def deserialize_json(data: dict) -> InvalidRequestExceptionReason:
-    if "AttachedFileInvalidRequestExceptionReason" in data:
+    if data.get("AttachedFileInvalidRequestExceptionReason") is not None:
         import capo_connect.types.attached_file_invalid_request_exception_reason
 
         return {

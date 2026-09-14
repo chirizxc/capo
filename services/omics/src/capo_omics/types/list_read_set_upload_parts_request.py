@@ -48,11 +48,11 @@ def serialize_json(value: ListReadSetUploadPartsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListReadSetUploadPartsRequest:
     out: ListReadSetUploadPartsRequest = {}  # type: ignore[typeddict-item]
-    if "partSource" in data:
+    if data.get("partSource") is not None:
         out["part_source"] = data["partSource"]
     else:
         raise DeserializationError("ListReadSetUploadPartsRequest.part_source required")
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_omics.types.read_set_upload_part_list_filter
 
         out["filter"] = (

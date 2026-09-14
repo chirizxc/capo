@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AbortCriteriaList:
 
     out: AbortCriteriaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.abort_criteria.deserialize_json(item))
     return out

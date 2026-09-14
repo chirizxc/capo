@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsWafRegionalRulePredicateList:
 
     out: AwsWafRegionalRulePredicateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_waf_regional_rule_predicate_list_details.deserialize_json(
                 item

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DeleteGitHubAccountTokenOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteGitHubAccountTokenOutput:
     out: DeleteGitHubAccountTokenOutput = {}  # type: ignore[typeddict-item]
-    if "tokenName" in data:
+    if data.get("tokenName") is not None:
         out["token_name"] = data["tokenName"]
     return out

@@ -68,21 +68,21 @@ def serialize_json(value: FilterTextAreaControl) -> dict:
 
 def deserialize_json(data: dict) -> FilterTextAreaControl:
     out: FilterTextAreaControl = {}  # type: ignore[typeddict-item]
-    if "FilterControlId" in data:
+    if data.get("FilterControlId") is not None:
         out["filter_control_id"] = data["FilterControlId"]
     else:
         raise DeserializationError("FilterTextAreaControl.filter_control_id required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         out["title"] = ""
-    if "SourceFilterId" in data:
+    if data.get("SourceFilterId") is not None:
         out["source_filter_id"] = data["SourceFilterId"]
     else:
         raise DeserializationError("FilterTextAreaControl.source_filter_id required")
-    if "Delimiter" in data:
+    if data.get("Delimiter") is not None:
         out["delimiter"] = data["Delimiter"]
-    if "DisplayOptions" in data:
+    if data.get("DisplayOptions") is not None:
         import capo_quicksight.types.text_area_control_display_options
 
         out["display_options"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> FilterTextAreaControl:
                 data["DisplayOptions"]
             )
         )
-    if "ControlTitleFormatText" in data:
+    if data.get("ControlTitleFormatText") is not None:
         import capo_quicksight.types.control_title_format_text
 
         out["control_title_format_text"] = (

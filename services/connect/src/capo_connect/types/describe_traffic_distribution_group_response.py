@@ -31,7 +31,7 @@ def serialize_json(value: DescribeTrafficDistributionGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTrafficDistributionGroupResponse:
     out: DescribeTrafficDistributionGroupResponse = {}  # type: ignore[typeddict-item]
-    if "TrafficDistributionGroup" in data:
+    if data.get("TrafficDistributionGroup") is not None:
         import capo_connect.types.traffic_distribution_group
 
         out["traffic_distribution_group"] = (

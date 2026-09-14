@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: RegionStatusMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> RegionStatusMap:
     out: RegionStatusMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_license_manager.types.region_status
 
         out[key] = capo_license_manager.types.region_status.deserialize_aws_json_1_1(

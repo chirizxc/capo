@@ -28,15 +28,15 @@ def serialize_aws_json_1_1(value: FileSizes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileSizes:
     out: FileSizes = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         out["source"] = 0
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
     else:
         out["destination"] = 0
-    if "base" in data:
+    if data.get("base") is not None:
         out["base"] = data["base"]
     else:
         out["base"] = 0

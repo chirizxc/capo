@@ -112,7 +112,7 @@ def serialize_aws_json_1_0(value: RuleCondition) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> RuleCondition:
-    if "BooleanExpression" in data:
+    if data.get("BooleanExpression") is not None:
         import capo_mailmanager.types.rule_boolean_expression
 
         return {
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleCondition:
                 data["BooleanExpression"]
             )
         }
-    elif "StringExpression" in data:
+    elif data.get("StringExpression") is not None:
         import capo_mailmanager.types.rule_string_expression
 
         return {
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleCondition:
                 data["StringExpression"]
             )
         }
-    elif "NumberExpression" in data:
+    elif data.get("NumberExpression") is not None:
         import capo_mailmanager.types.rule_number_expression
 
         return {
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleCondition:
                 data["NumberExpression"]
             )
         }
-    elif "IpExpression" in data:
+    elif data.get("IpExpression") is not None:
         import capo_mailmanager.types.rule_ip_expression
 
         return {
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleCondition:
                 data["IpExpression"]
             )
         }
-    elif "VerdictExpression" in data:
+    elif data.get("VerdictExpression") is not None:
         import capo_mailmanager.types.rule_verdict_expression
 
         return {
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleCondition:
                 data["VerdictExpression"]
             )
         }
-    elif "DmarcExpression" in data:
+    elif data.get("DmarcExpression") is not None:
         import capo_mailmanager.types.rule_dmarc_expression
 
         return {

@@ -31,7 +31,7 @@ def serialize_json(value: StartConfigurationChecksOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartConfigurationChecksOutput:
     out: StartConfigurationChecksOutput = {}  # type: ignore[typeddict-item]
-    if "ConfigurationCheckOperations" in data:
+    if data.get("ConfigurationCheckOperations") is not None:
         import capo_ssm_sap.types.configuration_check_operation_list
 
         out["configuration_check_operations"] = (

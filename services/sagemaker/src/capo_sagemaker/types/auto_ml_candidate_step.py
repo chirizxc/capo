@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: AutoMLCandidateStep) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidateStep:
     out: AutoMLCandidateStep = {}  # type: ignore[typeddict-item]
-    if "CandidateStepType" in data:
+    if data.get("CandidateStepType") is not None:
         import capo_sagemaker.types.candidate_step_type
 
         out["candidate_step_type"] = (
@@ -53,8 +53,8 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidateStep:
                 data["CandidateStepType"]
             )
         )
-    if "CandidateStepArn" in data:
+    if data.get("CandidateStepArn") is not None:
         out["candidate_step_arn"] = data["CandidateStepArn"]
-    if "CandidateStepName" in data:
+    if data.get("CandidateStepName") is not None:
         out["candidate_step_name"] = data["CandidateStepName"]
     return out

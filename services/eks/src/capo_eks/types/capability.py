@@ -107,27 +107,27 @@ def serialize_json(value: Capability) -> dict:
 
 def deserialize_json(data: dict) -> Capability:
     out: Capability = {}  # type: ignore[typeddict-item]
-    if "capabilityName" in data:
+    if data.get("capabilityName") is not None:
         out["capability_name"] = data["capabilityName"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_eks.types.capability_type
 
         out["type"] = capo_eks.types.capability_type.deserialize_json(data["type"])
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_eks.types.capability_status
 
         out["status"] = capo_eks.types.capability_status.deserialize_json(
             data["status"]
         )
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_eks.types.capability_configuration_response
 
         out["configuration"] = (
@@ -135,27 +135,27 @@ def deserialize_json(data: dict) -> Capability:
                 data["configuration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "health" in data:
+    if data.get("health") is not None:
         import capo_eks.types.capability_health
 
         out["health"] = capo_eks.types.capability_health.deserialize_json(
             data["health"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_eks.types.timestamp
 
         out["created_at"] = capo_eks.types.timestamp.deserialize_json(data["createdAt"])
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_eks.types.timestamp
 
         out["modified_at"] = capo_eks.types.timestamp.deserialize_json(
             data["modifiedAt"]
         )
-    if "deletePropagationPolicy" in data:
+    if data.get("deletePropagationPolicy") is not None:
         import capo_eks.types.capability_delete_propagation_policy
 
         out["delete_propagation_policy"] = (

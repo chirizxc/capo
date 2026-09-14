@@ -32,9 +32,9 @@ def serialize_json(value: LexiconDescription) -> dict:
 
 def deserialize_json(data: dict) -> LexiconDescription:
     out: LexiconDescription = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_polly.types.lexicon_attributes
 
         out["attributes"] = capo_polly.types.lexicon_attributes.deserialize_json(

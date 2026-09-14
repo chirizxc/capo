@@ -88,47 +88,47 @@ def serialize_json(value: StartBackupJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartBackupJobInput:
     out: StartBackupJobInput = {}  # type: ignore[typeddict-item]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
     else:
         raise DeserializationError("StartBackupJobInput.backup_vault_name required")
-    if "LogicallyAirGappedBackupVaultArn" in data:
+    if data.get("LogicallyAirGappedBackupVaultArn") is not None:
         out["logically_air_gapped_backup_vault_arn"] = data[
             "LogicallyAirGappedBackupVaultArn"
         ]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("StartBackupJobInput.resource_arn required")
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("StartBackupJobInput.iam_role_arn required")
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "StartWindowMinutes" in data:
+    if data.get("StartWindowMinutes") is not None:
         out["start_window_minutes"] = data["StartWindowMinutes"]
-    if "CompleteWindowMinutes" in data:
+    if data.get("CompleteWindowMinutes") is not None:
         out["complete_window_minutes"] = data["CompleteWindowMinutes"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_backup.types.lifecycle
 
         out["lifecycle"] = capo_backup.types.lifecycle.deserialize_json(
             data["Lifecycle"]
         )
-    if "RecoveryPointTags" in data:
+    if data.get("RecoveryPointTags") is not None:
         import capo_backup.types.tags
 
         out["recovery_point_tags"] = capo_backup.types.tags.deserialize_json(
             data["RecoveryPointTags"]
         )
-    if "BackupOptions" in data:
+    if data.get("BackupOptions") is not None:
         import capo_backup.types.backup_options
 
         out["backup_options"] = capo_backup.types.backup_options.deserialize_json(
             data["BackupOptions"]
         )
-    if "Index" in data:
+    if data.get("Index") is not None:
         import capo_backup.types.index
 
         out["index"] = capo_backup.types.index.deserialize_json(data["Index"])

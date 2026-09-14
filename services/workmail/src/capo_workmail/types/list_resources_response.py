@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListResourcesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListResourcesResponse:
     out: ListResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_workmail.types.resources
 
         out["resources"] = capo_workmail.types.resources.deserialize_aws_json_1_1(
             data["Resources"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

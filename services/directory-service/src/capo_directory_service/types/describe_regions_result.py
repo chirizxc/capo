@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeRegionsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRegionsResult:
     out: DescribeRegionsResult = {}  # type: ignore[typeddict-item]
-    if "RegionsDescription" in data:
+    if data.get("RegionsDescription") is not None:
         import capo_directory_service.types.regions_description
 
         out["regions_description"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeRegionsResult:
                 data["RegionsDescription"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

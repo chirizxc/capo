@@ -26,7 +26,7 @@ def serialize_json(value: GetPlaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPlaceResponse:
     out: GetPlaceResponse = {}  # type: ignore[typeddict-item]
-    if "Place" in data:
+    if data.get("Place") is not None:
         import capo_location.types.place
 
         out["place"] = capo_location.types.place.deserialize_json(data["Place"])

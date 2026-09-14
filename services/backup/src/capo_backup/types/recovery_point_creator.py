@@ -52,20 +52,20 @@ def serialize_json(value: RecoveryPointCreator) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryPointCreator:
     out: RecoveryPointCreator = {}  # type: ignore[typeddict-item]
-    if "BackupPlanId" in data:
+    if data.get("BackupPlanId") is not None:
         out["backup_plan_id"] = data["BackupPlanId"]
-    if "BackupPlanArn" in data:
+    if data.get("BackupPlanArn") is not None:
         out["backup_plan_arn"] = data["BackupPlanArn"]
-    if "BackupPlanName" in data:
+    if data.get("BackupPlanName") is not None:
         out["backup_plan_name"] = data["BackupPlanName"]
-    if "BackupPlanVersion" in data:
+    if data.get("BackupPlanVersion") is not None:
         out["backup_plan_version"] = data["BackupPlanVersion"]
-    if "BackupRuleId" in data:
+    if data.get("BackupRuleId") is not None:
         out["backup_rule_id"] = data["BackupRuleId"]
-    if "BackupRuleName" in data:
+    if data.get("BackupRuleName") is not None:
         out["backup_rule_name"] = data["BackupRuleName"]
-    if "BackupRuleCron" in data:
+    if data.get("BackupRuleCron") is not None:
         out["backup_rule_cron"] = data["BackupRuleCron"]
-    if "BackupRuleTimezone" in data:
+    if data.get("BackupRuleTimezone") is not None:
         out["backup_rule_timezone"] = data["BackupRuleTimezone"]
     return out

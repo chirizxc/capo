@@ -37,15 +37,20 @@ class InvalidTrackingOptionsException(ServiceError):
 
     code: str | None = "InvalidTrackingOptionsException"
 
-    def __init__(self, data: InvalidTrackingOptionsException_):
+    def __init__(
+        self, data: InvalidTrackingOptionsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidTrackingOptionsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidTrackingOptionsException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidTrackingOptionsException":
+        return cls(deserialize_query(el), message)

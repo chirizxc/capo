@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeDeliveryChannelsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDeliveryChannelsRequest:
     out: DescribeDeliveryChannelsRequest = {}  # type: ignore[typeddict-item]
-    if "DeliveryChannelNames" in data:
+    if data.get("DeliveryChannelNames") is not None:
         import capo_config_service.types.delivery_channel_name_list
 
         out["delivery_channel_names"] = (

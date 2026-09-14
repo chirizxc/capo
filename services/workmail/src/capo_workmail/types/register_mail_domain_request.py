@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: RegisterMailDomainRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterMailDomainRequest:
     out: RegisterMailDomainRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError("RegisterMailDomainRequest.organization_id required")
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("RegisterMailDomainRequest.domain_name required")

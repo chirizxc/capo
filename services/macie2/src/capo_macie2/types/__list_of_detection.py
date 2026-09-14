@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfDetection:
 
     out: __listOfDetection = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.detection.deserialize_json(item))
     return out

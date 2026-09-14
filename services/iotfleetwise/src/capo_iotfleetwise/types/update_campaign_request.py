@@ -29,6 +29,7 @@ class UpdateCampaignRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: UpdateCampaignRequest) -> dict:
     out: dict = {}
+    out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
     if "data_extra_dimensions" in value:
@@ -51,9 +52,13 @@ def serialize_aws_json_1_0(value: UpdateCampaignRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateCampaignRequest:
     out: UpdateCampaignRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("UpdateCampaignRequest.name required")
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "dataExtraDimensions" in data:
+    if data.get("dataExtraDimensions") is not None:
         import capo_iotfleetwise.types.data_extra_dimension_node_path_list
 
         out["data_extra_dimensions"] = (
@@ -61,7 +66,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateCampaignRequest:
                 data["dataExtraDimensions"]
             )
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_iotfleetwise.types.update_campaign_action
 
         out["action"] = (

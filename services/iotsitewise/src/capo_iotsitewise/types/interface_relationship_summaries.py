@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> InterfaceRelationshipSummaries:
 
     out: InterfaceRelationshipSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.interface_relationship_summary.deserialize_json(item)
         )

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> OrganizationRecommendationResourceSummaryLis
 
     out: OrganizationRecommendationResourceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_trustedadvisor.types.organization_recommendation_resource_summary.deserialize_json(
                 item

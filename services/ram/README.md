@@ -13,9 +13,9 @@ from capo_ram import AsyncRAMClient
 
 
 async def main():
-    async with AsyncRAMClient() as s3:
+    async with AsyncRAMClient() as ram:
         # Example: call the accept_resource_share_invitation operation
-        response = await s3.accept_resource_share_invitation()
+        response = await ram.accept_resource_share_invitation()
         print(response["resource_share_invitation"])
 ```
 
@@ -28,9 +28,9 @@ from capo_ram import AsyncRAMClient
 
 
 async def main():
-    async with AsyncRAMClient() as s3:
-        # Example: paginate over list_source_associations
-        async for item in s3.iter_list_source_associations():
+    async with AsyncRAMClient() as ram:
+        # Example: paginate over get_resource_policies
+        async for item in ram.iter_get_resource_policies():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_ram.error import IdempotentParameterMismatchException
 
 
 async def main():
-    async with AsyncRAMClient() as s3:
+    async with AsyncRAMClient() as ram:
         try:
-            await s3.accept_resource_share_invitation()
+            await ram.accept_resource_share_invitation()
         except IdempotentParameterMismatchException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_ram import AsyncRAMClient
 
 
 async def main():
-    async with AsyncRAMClient() as s3:
+    async with AsyncRAMClient() as ram:
         # Default: 3 attempts for every operation
-        response = await s3.accept_resource_share_invitation()
+        response = await ram.accept_resource_share_invitation()
 
         # Override per operation
-        response = await s3.accept_resource_share_invitation(config_overrides={"retry_max_attempts": 5})
+        response = await ram.accept_resource_share_invitation(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_resource_share_invitation(config_overrides={"retry_max_attempts": 1})
+        response = await ram.accept_resource_share_invitation(config_overrides={"retry_max_attempts": 1})
 ```

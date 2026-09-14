@@ -104,27 +104,27 @@ def serialize_json(value: JobRunSummary) -> dict:
 
 def deserialize_json(data: dict) -> JobRunSummary:
     out: JobRunSummary = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("JobRunSummary.application_id required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("JobRunSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "mode" in data:
+    if data.get("mode") is not None:
         out["mode"] = data["mode"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("JobRunSummary.arn required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("JobRunSummary.created_by required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_emr_serverless.types.date
 
         out["created_at"] = capo_emr_serverless.types.date.deserialize_json(
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> JobRunSummary:
         )
     else:
         raise DeserializationError("JobRunSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["updated_at"] = capo_emr_serverless.types.date.deserialize_json(
@@ -140,33 +140,33 @@ def deserialize_json(data: dict) -> JobRunSummary:
         )
     else:
         raise DeserializationError("JobRunSummary.updated_at required")
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
     else:
         raise DeserializationError("JobRunSummary.execution_role required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("JobRunSummary.state required")
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
     else:
         raise DeserializationError("JobRunSummary.state_details required")
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
     else:
         raise DeserializationError("JobRunSummary.release_label required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "attempt" in data:
+    if data.get("attempt") is not None:
         out["attempt"] = data["attempt"]
-    if "attemptCreatedAt" in data:
+    if data.get("attemptCreatedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["attempt_created_at"] = capo_emr_serverless.types.date.deserialize_json(
             data["attemptCreatedAt"]
         )
-    if "attemptUpdatedAt" in data:
+    if data.get("attemptUpdatedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["attempt_updated_at"] = capo_emr_serverless.types.date.deserialize_json(

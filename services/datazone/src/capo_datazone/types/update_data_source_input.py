@@ -99,31 +99,31 @@ def serialize_json(value: UpdateDataSourceInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataSourceInput:
     out: UpdateDataSourceInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "enableSetting" in data:
+    if data.get("enableSetting") is not None:
         import capo_datazone.types.enable_setting
 
         out["enable_setting"] = capo_datazone.types.enable_setting.deserialize_json(
             data["enableSetting"]
         )
-    if "publishOnImport" in data:
+    if data.get("publishOnImport") is not None:
         out["publish_on_import"] = data["publishOnImport"]
-    if "assetFormsInput" in data:
+    if data.get("assetFormsInput") is not None:
         import capo_datazone.types.form_input_list
 
         out["asset_forms_input"] = capo_datazone.types.form_input_list.deserialize_json(
             data["assetFormsInput"]
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_datazone.types.schedule_configuration
 
         out["schedule"] = capo_datazone.types.schedule_configuration.deserialize_json(
             data["schedule"]
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_datazone.types.data_source_configuration_input
 
         out["configuration"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceInput:
                 data["configuration"]
             )
         )
-    if "recommendation" in data:
+    if data.get("recommendation") is not None:
         import capo_datazone.types.recommendation_configuration
 
         out["recommendation"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceInput:
                 data["recommendation"]
             )
         )
-    if "retainPermissionsOnRevokeFailure" in data:
+    if data.get("retainPermissionsOnRevokeFailure") is not None:
         out["retain_permissions_on_revoke_failure"] = data[
             "retainPermissionsOnRevokeFailure"
         ]

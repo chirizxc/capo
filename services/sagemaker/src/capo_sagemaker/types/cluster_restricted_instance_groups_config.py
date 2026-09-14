@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ClusterRestrictedInstanceGroupsConfig) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterRestrictedInstanceGroupsConfig:
     out: ClusterRestrictedInstanceGroupsConfig = {}  # type: ignore[typeddict-item]
-    if "SharedEnvironmentConfig" in data:
+    if data.get("SharedEnvironmentConfig") is not None:
         import capo_sagemaker.types.cluster_shared_environment_config
 
         out["shared_environment_config"] = (

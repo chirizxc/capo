@@ -44,18 +44,18 @@ def serialize_aws_json_1_1(value: ProjectFileSystemLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectFileSystemLocation:
     out: ProjectFileSystemLocation = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.file_system_type
 
         out["type"] = capo_codebuild.types.file_system_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "mountPoint" in data:
+    if data.get("mountPoint") is not None:
         out["mount_point"] = data["mountPoint"]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
-    if "mountOptions" in data:
+    if data.get("mountOptions") is not None:
         out["mount_options"] = data["mountOptions"]
     return out

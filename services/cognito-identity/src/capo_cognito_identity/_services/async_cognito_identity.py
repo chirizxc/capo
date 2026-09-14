@@ -258,9 +258,10 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.create_identity_pool_input.CreateIdentityPoolInput = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_name"] = identity_pool_name
-        input_["allow_unauthenticated_identities"] = allow_unauthenticated_identities
+        input_: capo_cognito_identity.types.create_identity_pool_input.CreateIdentityPoolInput = {
+            "identity_pool_name": identity_pool_name,
+            "allow_unauthenticated_identities": allow_unauthenticated_identities,
+        }
         if allow_classic_flow is not None:
             input_["allow_classic_flow"] = allow_classic_flow
         if supported_login_providers is not None:
@@ -281,6 +282,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_identities(
@@ -317,14 +319,16 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.delete_identities_input.DeleteIdentitiesInput = {}  # type: ignore[typeddict-item]
-        input_["identity_ids_to_delete"] = identity_ids_to_delete
+        input_: capo_cognito_identity.types.delete_identities_input.DeleteIdentitiesInput = {
+            "identity_ids_to_delete": identity_ids_to_delete
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_identity_pool(
@@ -361,14 +365,16 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.delete_identity_pool_input.DeleteIdentityPoolInput = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_id"] = identity_pool_id
+        input_: capo_cognito_identity.types.delete_identity_pool_input.DeleteIdentityPoolInput = {
+            "identity_pool_id": identity_pool_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_identity(
@@ -407,14 +413,16 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.describe_identity_input.DescribeIdentityInput = {}  # type: ignore[typeddict-item]
-        input_["identity_id"] = identity_id
+        input_: capo_cognito_identity.types.describe_identity_input.DescribeIdentityInput = {
+            "identity_id": identity_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_identity_pool(
@@ -453,14 +461,16 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.describe_identity_pool_input.DescribeIdentityPoolInput = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_id"] = identity_pool_id
+        input_: capo_cognito_identity.types.describe_identity_pool_input.DescribeIdentityPoolInput = {
+            "identity_pool_id": identity_pool_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_credentials_for_identity(
@@ -508,8 +518,9 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.get_credentials_for_identity_input.GetCredentialsForIdentityInput = {}  # type: ignore[typeddict-item]
-        input_["identity_id"] = identity_id
+        input_: capo_cognito_identity.types.get_credentials_for_identity_input.GetCredentialsForIdentityInput = {
+            "identity_id": identity_id
+        }
         if logins is not None:
             input_["logins"] = logins
         if custom_role_arn is not None:
@@ -520,6 +531,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_id(
@@ -565,10 +577,11 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.get_id_input.GetIdInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cognito_identity.types.get_id_input.GetIdInput = {
+            "identity_pool_id": identity_pool_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
-        input_["identity_pool_id"] = identity_pool_id
         if logins is not None:
             input_["logins"] = logins
 
@@ -577,6 +590,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_identity_pool_roles(
@@ -616,14 +630,16 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.get_identity_pool_roles_input.GetIdentityPoolRolesInput = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_id"] = identity_pool_id
+        input_: capo_cognito_identity.types.get_identity_pool_roles_input.GetIdentityPoolRolesInput = {
+            "identity_pool_id": identity_pool_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_open_id_token(
@@ -668,8 +684,9 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.get_open_id_token_input.GetOpenIdTokenInput = {}  # type: ignore[typeddict-item]
-        input_["identity_id"] = identity_id
+        input_: capo_cognito_identity.types.get_open_id_token_input.GetOpenIdTokenInput = {
+            "identity_id": identity_id
+        }
         if logins is not None:
             input_["logins"] = logins
 
@@ -678,6 +695,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_open_id_token_for_developer_identity(
@@ -732,11 +750,12 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.get_open_id_token_for_developer_identity_input.GetOpenIdTokenForDeveloperIdentityInput = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_id"] = identity_pool_id
+        input_: capo_cognito_identity.types.get_open_id_token_for_developer_identity_input.GetOpenIdTokenForDeveloperIdentityInput = {
+            "identity_pool_id": identity_pool_id,
+            "logins": logins,
+        }
         if identity_id is not None:
             input_["identity_id"] = identity_id
-        input_["logins"] = logins
         if principal_tags is not None:
             input_["principal_tags"] = principal_tags
         if token_duration is not None:
@@ -747,6 +766,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_principal_tag_attribute_map(
@@ -787,15 +807,17 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.get_principal_tag_attribute_map_input.GetPrincipalTagAttributeMapInput = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_id"] = identity_pool_id
-        input_["identity_provider_name"] = identity_provider_name
+        input_: capo_cognito_identity.types.get_principal_tag_attribute_map_input.GetPrincipalTagAttributeMapInput = {
+            "identity_pool_id": identity_pool_id,
+            "identity_provider_name": identity_provider_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_identities(
@@ -844,9 +866,10 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.list_identities_input.ListIdentitiesInput = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_id"] = identity_pool_id
-        input_["max_results"] = max_results
+        input_: capo_cognito_identity.types.list_identities_input.ListIdentitiesInput = {
+            "identity_pool_id": identity_pool_id,
+            "max_results": max_results,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if hide_disabled is not None:
@@ -857,6 +880,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_identity_pools(
@@ -899,8 +923,9 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.list_identity_pools_input.ListIdentityPoolsInput = {}  # type: ignore[typeddict-item]
-        input_["max_results"] = max_results
+        input_: capo_cognito_identity.types.list_identity_pools_input.ListIdentityPoolsInput = {
+            "max_results": max_results
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -909,6 +934,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_identity_pools(
@@ -970,14 +996,16 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_cognito_identity.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def lookup_developer_identity(
@@ -1033,8 +1061,9 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.lookup_developer_identity_input.LookupDeveloperIdentityInput = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_id"] = identity_pool_id
+        input_: capo_cognito_identity.types.lookup_developer_identity_input.LookupDeveloperIdentityInput = {
+            "identity_pool_id": identity_pool_id
+        }
         if identity_id is not None:
             input_["identity_id"] = identity_id
         if developer_user_identifier is not None:
@@ -1049,6 +1078,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def merge_developer_identities(
@@ -1094,17 +1124,19 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.merge_developer_identities_input.MergeDeveloperIdentitiesInput = {}  # type: ignore[typeddict-item]
-        input_["source_user_identifier"] = source_user_identifier
-        input_["destination_user_identifier"] = destination_user_identifier
-        input_["developer_provider_name"] = developer_provider_name
-        input_["identity_pool_id"] = identity_pool_id
+        input_: capo_cognito_identity.types.merge_developer_identities_input.MergeDeveloperIdentitiesInput = {
+            "source_user_identifier": source_user_identifier,
+            "destination_user_identifier": destination_user_identifier,
+            "developer_provider_name": developer_provider_name,
+            "identity_pool_id": identity_pool_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_identity_pool_roles(
@@ -1149,9 +1181,10 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.set_identity_pool_roles_input.SetIdentityPoolRolesInput = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_id"] = identity_pool_id
-        input_["roles"] = roles
+        input_: capo_cognito_identity.types.set_identity_pool_roles_input.SetIdentityPoolRolesInput = {
+            "identity_pool_id": identity_pool_id,
+            "roles": roles,
+        }
         if role_mappings is not None:
             input_["role_mappings"] = role_mappings
 
@@ -1160,6 +1193,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_principal_tag_attribute_map(
@@ -1208,9 +1242,10 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.set_principal_tag_attribute_map_input.SetPrincipalTagAttributeMapInput = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_id"] = identity_pool_id
-        input_["identity_provider_name"] = identity_provider_name
+        input_: capo_cognito_identity.types.set_principal_tag_attribute_map_input.SetPrincipalTagAttributeMapInput = {
+            "identity_pool_id": identity_pool_id,
+            "identity_provider_name": identity_provider_name,
+        }
         if use_defaults is not None:
             input_["use_defaults"] = use_defaults
         if principal_tags is not None:
@@ -1221,6 +1256,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1261,15 +1297,17 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_cognito_identity.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def unlink_developer_identity(
@@ -1313,17 +1351,19 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.unlink_developer_identity_input.UnlinkDeveloperIdentityInput = {}  # type: ignore[typeddict-item]
-        input_["identity_id"] = identity_id
-        input_["identity_pool_id"] = identity_pool_id
-        input_["developer_provider_name"] = developer_provider_name
-        input_["developer_user_identifier"] = developer_user_identifier
+        input_: capo_cognito_identity.types.unlink_developer_identity_input.UnlinkDeveloperIdentityInput = {
+            "identity_id": identity_id,
+            "identity_pool_id": identity_pool_id,
+            "developer_provider_name": developer_provider_name,
+            "developer_user_identifier": developer_user_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def unlink_identity(
@@ -1366,16 +1406,18 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.unlink_identity_input.UnlinkIdentityInput = {}  # type: ignore[typeddict-item]
-        input_["identity_id"] = identity_id
-        input_["logins"] = logins
-        input_["logins_to_remove"] = logins_to_remove
+        input_: capo_cognito_identity.types.unlink_identity_input.UnlinkIdentityInput = {
+            "identity_id": identity_id,
+            "logins": logins,
+            "logins_to_remove": logins_to_remove,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1416,15 +1458,17 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_cognito_identity.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_identity_pool(
@@ -1498,10 +1542,11 @@ class AsyncCognitoIdentityClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity.types.identity_pool.IdentityPool = {}  # type: ignore[typeddict-item]
-        input_["identity_pool_id"] = identity_pool_id
-        input_["identity_pool_name"] = identity_pool_name
-        input_["allow_unauthenticated_identities"] = allow_unauthenticated_identities
+        input_: capo_cognito_identity.types.identity_pool.IdentityPool = {
+            "identity_pool_id": identity_pool_id,
+            "identity_pool_name": identity_pool_name,
+            "allow_unauthenticated_identities": allow_unauthenticated_identities,
+        }
         if allow_classic_flow is not None:
             input_["allow_classic_flow"] = allow_classic_flow
         if supported_login_providers is not None:
@@ -1522,6 +1567,7 @@ class AsyncCognitoIdentityClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

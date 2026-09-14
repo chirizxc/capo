@@ -31,7 +31,7 @@ def serialize_json(value: SchemaUnion) -> dict:
 
 def deserialize_json(data: dict) -> SchemaUnion:
     out: SchemaUnion = {}  # type: ignore[typeddict-item]
-    if "tabularSchemaConfig" in data:
+    if data.get("tabularSchemaConfig") is not None:
         import capo_finspace_data.types.schema_definition
 
         out["tabular_schema_config"] = (

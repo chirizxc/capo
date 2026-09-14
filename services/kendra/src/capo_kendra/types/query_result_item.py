@@ -140,21 +140,21 @@ def serialize_aws_json_1_1(value: QueryResultItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryResultItem:
     out: QueryResultItem = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kendra.types.query_result_type
 
         out["type"] = capo_kendra.types.query_result_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_kendra.types.query_result_format
 
         out["format"] = capo_kendra.types.query_result_format.deserialize_aws_json_1_1(
             data["Format"]
         )
-    if "AdditionalAttributes" in data:
+    if data.get("AdditionalAttributes") is not None:
         import capo_kendra.types.additional_result_attribute_list
 
         out["additional_attributes"] = (
@@ -162,9 +162,9 @@ def deserialize_aws_json_1_1(data: dict) -> QueryResultItem:
                 data["AdditionalAttributes"]
             )
         )
-    if "DocumentId" in data:
+    if data.get("DocumentId") is not None:
         out["document_id"] = data["DocumentId"]
-    if "DocumentTitle" in data:
+    if data.get("DocumentTitle") is not None:
         import capo_kendra.types.text_with_highlights
 
         out["document_title"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryResultItem:
                 data["DocumentTitle"]
             )
         )
-    if "DocumentExcerpt" in data:
+    if data.get("DocumentExcerpt") is not None:
         import capo_kendra.types.text_with_highlights
 
         out["document_excerpt"] = (
@@ -180,9 +180,9 @@ def deserialize_aws_json_1_1(data: dict) -> QueryResultItem:
                 data["DocumentExcerpt"]
             )
         )
-    if "DocumentURI" in data:
+    if data.get("DocumentURI") is not None:
         out["document_uri"] = data["DocumentURI"]
-    if "DocumentAttributes" in data:
+    if data.get("DocumentAttributes") is not None:
         import capo_kendra.types.document_attribute_list
 
         out["document_attributes"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryResultItem:
                 data["DocumentAttributes"]
             )
         )
-    if "ScoreAttributes" in data:
+    if data.get("ScoreAttributes") is not None:
         import capo_kendra.types.score_attributes
 
         out["score_attributes"] = (
@@ -198,15 +198,15 @@ def deserialize_aws_json_1_1(data: dict) -> QueryResultItem:
                 data["ScoreAttributes"]
             )
         )
-    if "FeedbackToken" in data:
+    if data.get("FeedbackToken") is not None:
         out["feedback_token"] = data["FeedbackToken"]
-    if "TableExcerpt" in data:
+    if data.get("TableExcerpt") is not None:
         import capo_kendra.types.table_excerpt
 
         out["table_excerpt"] = capo_kendra.types.table_excerpt.deserialize_aws_json_1_1(
             data["TableExcerpt"]
         )
-    if "CollapsedResultDetail" in data:
+    if data.get("CollapsedResultDetail") is not None:
         import capo_kendra.types.collapsed_result_detail
 
         out["collapsed_result_detail"] = (

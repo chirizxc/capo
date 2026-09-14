@@ -53,15 +53,15 @@ def serialize_aws_json_1_0(value: ImportModelVersionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportModelVersionResponse:
     out: ImportModelVersionResponse = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "ModelVersionArn" in data:
+    if data.get("ModelVersionArn") is not None:
         out["model_version_arn"] = data["ModelVersionArn"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.model_version_status
 
         out["status"] = (

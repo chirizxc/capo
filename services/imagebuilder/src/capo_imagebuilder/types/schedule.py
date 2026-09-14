@@ -56,11 +56,11 @@ def serialize_json(value: Schedule) -> dict:
 
 def deserialize_json(data: dict) -> Schedule:
     out: Schedule = {}  # type: ignore[typeddict-item]
-    if "scheduleExpression" in data:
+    if data.get("scheduleExpression") is not None:
         out["schedule_expression"] = data["scheduleExpression"]
-    if "timezone" in data:
+    if data.get("timezone") is not None:
         out["timezone"] = data["timezone"]
-    if "pipelineExecutionStartCondition" in data:
+    if data.get("pipelineExecutionStartCondition") is not None:
         import capo_imagebuilder.types.pipeline_execution_start_condition
 
         out["pipeline_execution_start_condition"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> Schedule:
                 data["pipelineExecutionStartCondition"]
             )
         )
-    if "autoDisablePolicy" in data:
+    if data.get("autoDisablePolicy") is not None:
         import capo_imagebuilder.types.auto_disable_policy
 
         out["auto_disable_policy"] = (

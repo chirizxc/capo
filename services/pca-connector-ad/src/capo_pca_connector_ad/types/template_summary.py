@@ -99,11 +99,11 @@ def serialize_json(value: TemplateSummary) -> dict:
 
 def deserialize_json(data: dict) -> TemplateSummary:
     out: TemplateSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_pca_connector_ad.types.template_definition
 
         out["definition"] = (
@@ -111,19 +111,19 @@ def deserialize_json(data: dict) -> TemplateSummary:
                 data["Definition"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ObjectIdentifier" in data:
+    if data.get("ObjectIdentifier") is not None:
         out["object_identifier"] = data["ObjectIdentifier"]
-    if "PolicySchema" in data:
+    if data.get("PolicySchema") is not None:
         out["policy_schema"] = data["PolicySchema"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_pca_connector_ad.types.template_status
 
         out["status"] = capo_pca_connector_ad.types.template_status.deserialize_json(
             data["Status"]
         )
-    if "Revision" in data:
+    if data.get("Revision") is not None:
         import capo_pca_connector_ad.types.template_revision
 
         out["revision"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> TemplateSummary:
                 data["Revision"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_pca_connector_ad.types._prelude.timestamp
 
         out["created_at"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> TemplateSummary:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_pca_connector_ad.types._prelude.timestamp
 
         out["updated_at"] = (

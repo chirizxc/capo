@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FilterDimensionList:
 
     out: FilterDimensionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_customer_profiles.types.filter_dimension.deserialize_json(item))
     return out

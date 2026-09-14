@@ -19,7 +19,7 @@ def serialize_json(value: RedshiftClusterStorage) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftClusterStorage:
     out: RedshiftClusterStorage = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
     else:
         raise DeserializationError("RedshiftClusterStorage.cluster_name required")

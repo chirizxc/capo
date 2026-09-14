@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ProbeList:
 
     out: ProbeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_networkmonitor.types.probe.deserialize_json(item))
     return out

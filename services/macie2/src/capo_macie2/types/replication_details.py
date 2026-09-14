@@ -38,11 +38,11 @@ def serialize_json(value: ReplicationDetails) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationDetails:
     out: ReplicationDetails = {}  # type: ignore[typeddict-item]
-    if "replicated" in data:
+    if data.get("replicated") is not None:
         out["replicated"] = data["replicated"]
-    if "replicatedExternally" in data:
+    if data.get("replicatedExternally") is not None:
         out["replicated_externally"] = data["replicatedExternally"]
-    if "replicationAccounts" in data:
+    if data.get("replicationAccounts") is not None:
         import capo_macie2.types.__list_of__string
 
         out["replication_accounts"] = (

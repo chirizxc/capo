@@ -26,10 +26,10 @@ def serialize_aws_json_1_0(value: NatGatewayConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NatGatewayConfiguration:
     out: NatGatewayConfiguration = {}  # type: ignore[typeddict-item]
-    if "activeConnectionCount" in data:
+    if data.get("activeConnectionCount") is not None:
         out["active_connection_count"] = data["activeConnectionCount"]
-    if "packetsInFromSource" in data:
+    if data.get("packetsInFromSource") is not None:
         out["packets_in_from_source"] = data["packetsInFromSource"]
-    if "packetsInFromDestination" in data:
+    if data.get("packetsInFromDestination") is not None:
         out["packets_in_from_destination"] = data["packetsInFromDestination"]
     return out

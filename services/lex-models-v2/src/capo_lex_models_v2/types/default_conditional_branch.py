@@ -39,13 +39,13 @@ def serialize_json(value: DefaultConditionalBranch) -> dict:
 
 def deserialize_json(data: dict) -> DefaultConditionalBranch:
     out: DefaultConditionalBranch = {}  # type: ignore[typeddict-item]
-    if "nextStep" in data:
+    if data.get("nextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["next_step"] = capo_lex_models_v2.types.dialog_state.deserialize_json(
             data["nextStep"]
         )
-    if "response" in data:
+    if data.get("response") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["response"] = (

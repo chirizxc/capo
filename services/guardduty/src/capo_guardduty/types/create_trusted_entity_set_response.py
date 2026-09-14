@@ -23,6 +23,6 @@ def serialize_json(value: CreateTrustedEntitySetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateTrustedEntitySetResponse:
     out: CreateTrustedEntitySetResponse = {}  # type: ignore[typeddict-item]
-    if "trustedEntitySetId" in data:
+    if data.get("trustedEntitySetId") is not None:
         out["trusted_entity_set_id"] = data["trustedEntitySetId"]
     return out

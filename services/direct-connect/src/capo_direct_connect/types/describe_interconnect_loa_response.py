@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: DescribeInterconnectLoaResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeInterconnectLoaResponse:
     out: DescribeInterconnectLoaResponse = {}  # type: ignore[typeddict-item]
-    if "loa" in data:
+    if data.get("loa") is not None:
         import capo_direct_connect.types.loa
 
         out["loa"] = capo_direct_connect.types.loa.deserialize_aws_json_1_1(data["loa"])

@@ -109,7 +109,7 @@ def serialize_json(value: SlotCaptureSetting) -> dict:
 
 def deserialize_json(data: dict) -> SlotCaptureSetting:
     out: SlotCaptureSetting = {}  # type: ignore[typeddict-item]
-    if "captureResponse" in data:
+    if data.get("captureResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["capture_response"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> SlotCaptureSetting:
                 data["captureResponse"]
             )
         )
-    if "captureNextStep" in data:
+    if data.get("captureNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["capture_next_step"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> SlotCaptureSetting:
                 data["captureNextStep"]
             )
         )
-    if "captureConditional" in data:
+    if data.get("captureConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["capture_conditional"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> SlotCaptureSetting:
                 data["captureConditional"]
             )
         )
-    if "failureResponse" in data:
+    if data.get("failureResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["failure_response"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> SlotCaptureSetting:
                 data["failureResponse"]
             )
         )
-    if "failureNextStep" in data:
+    if data.get("failureNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["failure_next_step"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> SlotCaptureSetting:
                 data["failureNextStep"]
             )
         )
-    if "failureConditional" in data:
+    if data.get("failureConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["failure_conditional"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> SlotCaptureSetting:
                 data["failureConditional"]
             )
         )
-    if "codeHook" in data:
+    if data.get("codeHook") is not None:
         import capo_lex_models_v2.types.dialog_code_hook_invocation_setting
 
         out["code_hook"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> SlotCaptureSetting:
                 data["codeHook"]
             )
         )
-    if "elicitationCodeHook" in data:
+    if data.get("elicitationCodeHook") is not None:
         import capo_lex_models_v2.types.elicitation_code_hook_invocation_setting
 
         out["elicitation_code_hook"] = (

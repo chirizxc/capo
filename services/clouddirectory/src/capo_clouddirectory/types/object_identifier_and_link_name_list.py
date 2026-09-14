@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ObjectIdentifierAndLinkNameList:
 
     out: ObjectIdentifierAndLinkNameList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_clouddirectory.types.object_identifier_and_link_name_tuple.deserialize_json(
                 item

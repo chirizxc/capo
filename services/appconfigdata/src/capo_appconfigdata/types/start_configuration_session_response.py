@@ -23,6 +23,6 @@ def serialize_json(value: StartConfigurationSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartConfigurationSessionResponse:
     out: StartConfigurationSessionResponse = {}  # type: ignore[typeddict-item]
-    if "InitialConfigurationToken" in data:
+    if data.get("InitialConfigurationToken") is not None:
         out["initial_configuration_token"] = data["InitialConfigurationToken"]
     return out

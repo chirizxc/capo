@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: ReleasePhoneNumberRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReleasePhoneNumberRequest:
     out: ReleasePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberId" in data:
+    if data.get("PhoneNumberId") is not None:
         out["phone_number_id"] = data["PhoneNumberId"]
     else:
         raise DeserializationError("ReleasePhoneNumberRequest.phone_number_id required")

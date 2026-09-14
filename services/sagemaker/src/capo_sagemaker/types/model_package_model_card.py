@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: ModelPackageModelCard) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelPackageModelCard:
     out: ModelPackageModelCard = {}  # type: ignore[typeddict-item]
-    if "ModelCardContent" in data:
+    if data.get("ModelCardContent") is not None:
         out["model_card_content"] = data["ModelCardContent"]
-    if "ModelCardStatus" in data:
+    if data.get("ModelCardStatus") is not None:
         import capo_sagemaker.types.model_card_status
 
         out["model_card_status"] = (

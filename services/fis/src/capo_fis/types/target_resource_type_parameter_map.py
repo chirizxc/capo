@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: TargetResourceTypeParameterMap) -> dict:
 def deserialize_json(data: dict) -> TargetResourceTypeParameterMap:
     out: TargetResourceTypeParameterMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_fis.types.target_resource_type_parameter
 
         out[key] = capo_fis.types.target_resource_type_parameter.deserialize_json(value)

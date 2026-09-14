@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeListenerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeListenerRequest:
     out: DescribeListenerRequest = {}  # type: ignore[typeddict-item]
-    if "ListenerArn" in data:
+    if data.get("ListenerArn") is not None:
         out["listener_arn"] = data["ListenerArn"]
     else:
         raise DeserializationError("DescribeListenerRequest.listener_arn required")

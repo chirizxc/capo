@@ -31,7 +31,7 @@ def serialize_json(value: TransportMediaInfo) -> dict:
 
 def deserialize_json(data: dict) -> TransportMediaInfo:
     out: TransportMediaInfo = {}  # type: ignore[typeddict-item]
-    if "programs" in data:
+    if data.get("programs") is not None:
         import capo_mediaconnect.types.__list_of_transport_stream_program
 
         out["programs"] = (

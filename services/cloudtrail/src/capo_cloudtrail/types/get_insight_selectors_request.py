@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: GetInsightSelectorsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInsightSelectorsRequest:
     out: GetInsightSelectorsRequest = {}  # type: ignore[typeddict-item]
-    if "TrailName" in data:
+    if data.get("TrailName") is not None:
         out["trail_name"] = data["TrailName"]
-    if "EventDataStore" in data:
+    if data.get("EventDataStore") is not None:
         out["event_data_store"] = data["EventDataStore"]
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ListOfLogOddsMetrics:
 
     out: ListOfLogOddsMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_frauddetector.types.log_odds_metric.deserialize_aws_json_1_1(item)
         )

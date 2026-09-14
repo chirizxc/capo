@@ -32,8 +32,8 @@ def serialize_json(value: ActiveContextTimeToLive) -> dict:
 
 def deserialize_json(data: dict) -> ActiveContextTimeToLive:
     out: ActiveContextTimeToLive = {}  # type: ignore[typeddict-item]
-    if "timeToLiveInSeconds" in data:
+    if data.get("timeToLiveInSeconds") is not None:
         out["time_to_live_in_seconds"] = data["timeToLiveInSeconds"]
-    if "turnsToLive" in data:
+    if data.get("turnsToLive") is not None:
         out["turns_to_live"] = data["turnsToLive"]
     return out

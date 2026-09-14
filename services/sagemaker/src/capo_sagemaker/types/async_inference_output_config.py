@@ -49,11 +49,11 @@ def serialize_aws_json_1_1(value: AsyncInferenceOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AsyncInferenceOutputConfig:
     out: AsyncInferenceOutputConfig = {}  # type: ignore[typeddict-item]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
-    if "NotificationConfig" in data:
+    if data.get("NotificationConfig") is not None:
         import capo_sagemaker.types.async_inference_notification_config
 
         out["notification_config"] = (
@@ -61,6 +61,6 @@ def deserialize_aws_json_1_1(data: dict) -> AsyncInferenceOutputConfig:
                 data["NotificationConfig"]
             )
         )
-    if "S3FailurePath" in data:
+    if data.get("S3FailurePath") is not None:
         out["s3_failure_path"] = data["S3FailurePath"]
     return out

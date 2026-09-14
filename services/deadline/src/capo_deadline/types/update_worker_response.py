@@ -38,11 +38,11 @@ def serialize_json(value: UpdateWorkerResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkerResponse:
     out: UpdateWorkerResponse = {}  # type: ignore[typeddict-item]
-    if "log" in data:
+    if data.get("log") is not None:
         import capo_deadline.types.log_configuration
 
         out["log"] = capo_deadline.types.log_configuration.deserialize_json(data["log"])
-    if "hostConfiguration" in data:
+    if data.get("hostConfiguration") is not None:
         import capo_deadline.types.host_configuration
 
         out["host_configuration"] = (

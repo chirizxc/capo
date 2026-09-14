@@ -41,11 +41,11 @@ def serialize_json(value: ExcludePeriodConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ExcludePeriodConfiguration:
     out: ExcludePeriodConfiguration = {}  # type: ignore[typeddict-item]
-    if "Amount" in data:
+    if data.get("Amount") is not None:
         out["amount"] = data["Amount"]
     else:
         raise DeserializationError("ExcludePeriodConfiguration.amount required")
-    if "Granularity" in data:
+    if data.get("Granularity") is not None:
         import capo_quicksight.types.time_granularity
 
         out["granularity"] = capo_quicksight.types.time_granularity.deserialize_json(
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> ExcludePeriodConfiguration:
         )
     else:
         raise DeserializationError("ExcludePeriodConfiguration.granularity required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.widget_status
 
         out["status"] = capo_quicksight.types.widget_status.deserialize_json(

@@ -39,19 +39,19 @@ def serialize_json(value: RegisterSubscriptionProviderRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterSubscriptionProviderRequest:
     out: RegisterSubscriptionProviderRequest = {}  # type: ignore[typeddict-item]
-    if "SubscriptionProviderSource" in data:
+    if data.get("SubscriptionProviderSource") is not None:
         out["subscription_provider_source"] = data["SubscriptionProviderSource"]
     else:
         raise DeserializationError(
             "RegisterSubscriptionProviderRequest.subscription_provider_source required"
         )
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError(
             "RegisterSubscriptionProviderRequest.secret_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_license_manager_linux_subscriptions.types.tags
 
         out["tags"] = (

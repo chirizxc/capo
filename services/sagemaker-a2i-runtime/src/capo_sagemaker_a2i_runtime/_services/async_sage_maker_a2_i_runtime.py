@@ -178,14 +178,16 @@ class AsyncSageMakerA2IRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_a2i_runtime.types.delete_human_loop_request.DeleteHumanLoopRequest = {}  # type: ignore[typeddict-item]
-        input_["human_loop_name"] = human_loop_name
+        input_: capo_sagemaker_a2i_runtime.types.delete_human_loop_request.DeleteHumanLoopRequest = {
+            "human_loop_name": human_loop_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_human_loop(
@@ -223,14 +225,16 @@ class AsyncSageMakerA2IRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_a2i_runtime.types.describe_human_loop_request.DescribeHumanLoopRequest = {}  # type: ignore[typeddict-item]
-        input_["human_loop_name"] = human_loop_name
+        input_: capo_sagemaker_a2i_runtime.types.describe_human_loop_request.DescribeHumanLoopRequest = {
+            "human_loop_name": human_loop_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_human_loops(
@@ -290,7 +294,7 @@ class AsyncSageMakerA2IRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_a2i_runtime.types.list_human_loops_request.ListHumanLoopsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_a2i_runtime.types.list_human_loops_request.ListHumanLoopsRequest = {}
         if creation_time_after is not None:
             input_["creation_time_after"] = creation_time_after
         if creation_time_before is not None:
@@ -309,6 +313,7 @@ class AsyncSageMakerA2IRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_human_loops(
@@ -402,7 +407,7 @@ class AsyncSageMakerA2IRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_a2i_runtime.types.start_human_loop_request.StartHumanLoopRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_a2i_runtime.types.start_human_loop_request.StartHumanLoopRequest = {}
         if human_loop_name is not None:
             input_["human_loop_name"] = human_loop_name
         if flow_definition_arn is not None:
@@ -417,6 +422,7 @@ class AsyncSageMakerA2IRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_human_loop(
@@ -456,7 +462,7 @@ class AsyncSageMakerA2IRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_a2i_runtime.types.stop_human_loop_request.StopHumanLoopRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_a2i_runtime.types.stop_human_loop_request.StopHumanLoopRequest = {}
         if human_loop_name is not None:
             input_["human_loop_name"] = human_loop_name
 
@@ -465,6 +471,7 @@ class AsyncSageMakerA2IRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

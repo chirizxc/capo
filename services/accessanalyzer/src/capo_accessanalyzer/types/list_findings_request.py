@@ -53,24 +53,24 @@ def serialize_json(value: ListFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListFindingsRequest:
     out: ListFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "analyzerArn" in data:
+    if data.get("analyzerArn") is not None:
         out["analyzer_arn"] = data["analyzerArn"]
     else:
         raise DeserializationError("ListFindingsRequest.analyzer_arn required")
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_accessanalyzer.types.filter_criteria_map
 
         out["filter"] = capo_accessanalyzer.types.filter_criteria_map.deserialize_json(
             data["filter"]
         )
-    if "sort" in data:
+    if data.get("sort") is not None:
         import capo_accessanalyzer.types.sort_criteria
 
         out["sort"] = capo_accessanalyzer.types.sort_criteria.deserialize_json(
             data["sort"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

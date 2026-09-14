@@ -168,15 +168,17 @@ class PersonalizeEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize_events.types.put_action_interactions_request.PutActionInteractionsRequest = {}  # type: ignore[typeddict-item]
-        input_["tracking_id"] = tracking_id
-        input_["action_interactions"] = action_interactions
+        input_: capo_personalize_events.types.put_action_interactions_request.PutActionInteractionsRequest = {
+            "tracking_id": tracking_id,
+            "action_interactions": action_interactions,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_actions(
@@ -212,15 +214,17 @@ class PersonalizeEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize_events.types.put_actions_request.PutActionsRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
-        input_["actions"] = actions
+        input_: capo_personalize_events.types.put_actions_request.PutActionsRequest = {
+            "dataset_arn": dataset_arn,
+            "actions": actions,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_events(
@@ -258,18 +262,20 @@ class PersonalizeEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize_events.types.put_events_request.PutEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["tracking_id"] = tracking_id
+        input_: capo_personalize_events.types.put_events_request.PutEventsRequest = {
+            "tracking_id": tracking_id,
+            "session_id": session_id,
+            "event_list": event_list,
+        }
         if user_id is not None:
             input_["user_id"] = user_id
-        input_["session_id"] = session_id
-        input_["event_list"] = event_list
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_items(
@@ -305,15 +311,17 @@ class PersonalizeEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize_events.types.put_items_request.PutItemsRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
-        input_["items"] = items
+        input_: capo_personalize_events.types.put_items_request.PutItemsRequest = {
+            "dataset_arn": dataset_arn,
+            "items": items,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_users(
@@ -349,15 +357,17 @@ class PersonalizeEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize_events.types.put_users_request.PutUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
-        input_["users"] = users
+        input_: capo_personalize_events.types.put_users_request.PutUsersRequest = {
+            "dataset_arn": dataset_arn,
+            "users": users,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

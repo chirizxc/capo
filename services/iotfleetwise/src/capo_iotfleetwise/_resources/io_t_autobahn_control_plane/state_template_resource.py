@@ -102,12 +102,13 @@ class StateTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_state_template_request.CreateStateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.create_state_template_request.CreateStateTemplateRequest = {
+            "name": name,
+            "signal_catalog_arn": signal_catalog_arn,
+            "state_template_properties": state_template_properties,
+        }
         if description is not None:
             input_["description"] = description
-        input_["signal_catalog_arn"] = signal_catalog_arn
-        input_["state_template_properties"] = state_template_properties
         if data_extra_dimensions is not None:
             input_["data_extra_dimensions"] = data_extra_dimensions
         if metadata_extra_dimensions is not None:
@@ -120,6 +121,7 @@ class StateTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -157,14 +159,16 @@ class StateTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_state_template_request.GetStateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iotfleetwise.types.get_state_template_request.GetStateTemplateRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -222,8 +226,9 @@ class StateTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_state_template_request.UpdateStateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iotfleetwise.types.update_state_template_request.UpdateStateTemplateRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if state_template_properties_to_add is not None:
@@ -244,6 +249,7 @@ class StateTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -280,14 +286,16 @@ class StateTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_state_template_request.DeleteStateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iotfleetwise.types.delete_state_template_request.DeleteStateTemplateRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -330,7 +338,7 @@ class StateTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_state_templates_request.ListStateTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_state_templates_request.ListStateTemplatesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -343,6 +351,7 @@ class StateTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -405,12 +414,13 @@ class AsyncStateTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_state_template_request.CreateStateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.create_state_template_request.CreateStateTemplateRequest = {
+            "name": name,
+            "signal_catalog_arn": signal_catalog_arn,
+            "state_template_properties": state_template_properties,
+        }
         if description is not None:
             input_["description"] = description
-        input_["signal_catalog_arn"] = signal_catalog_arn
-        input_["state_template_properties"] = state_template_properties
         if data_extra_dimensions is not None:
             input_["data_extra_dimensions"] = data_extra_dimensions
         if metadata_extra_dimensions is not None:
@@ -423,6 +433,7 @@ class AsyncStateTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -461,14 +472,16 @@ class AsyncStateTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_state_template_request.GetStateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iotfleetwise.types.get_state_template_request.GetStateTemplateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -527,8 +540,9 @@ class AsyncStateTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_state_template_request.UpdateStateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iotfleetwise.types.update_state_template_request.UpdateStateTemplateRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if state_template_properties_to_add is not None:
@@ -549,6 +563,7 @@ class AsyncStateTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -586,14 +601,16 @@ class AsyncStateTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_state_template_request.DeleteStateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iotfleetwise.types.delete_state_template_request.DeleteStateTemplateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -637,7 +654,7 @@ class AsyncStateTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_state_templates_request.ListStateTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_state_templates_request.ListStateTemplatesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -650,4 +667,5 @@ class AsyncStateTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

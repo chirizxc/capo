@@ -101,17 +101,17 @@ def serialize_aws_json_1_0(value: SyncConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SyncConfiguration:
     out: SyncConfiguration = {}  # type: ignore[typeddict-item]
-    if "Branch" in data:
+    if data.get("Branch") is not None:
         out["branch"] = data["Branch"]
     else:
         raise DeserializationError("SyncConfiguration.branch required")
-    if "ConfigFile" in data:
+    if data.get("ConfigFile") is not None:
         out["config_file"] = data["ConfigFile"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
     else:
         raise DeserializationError("SyncConfiguration.owner_id required")
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_codestar_connections.types.provider_type
 
         out["provider_type"] = (
@@ -121,23 +121,23 @@ def deserialize_aws_json_1_0(data: dict) -> SyncConfiguration:
         )
     else:
         raise DeserializationError("SyncConfiguration.provider_type required")
-    if "RepositoryLinkId" in data:
+    if data.get("RepositoryLinkId") is not None:
         out["repository_link_id"] = data["RepositoryLinkId"]
     else:
         raise DeserializationError("SyncConfiguration.repository_link_id required")
-    if "RepositoryName" in data:
+    if data.get("RepositoryName") is not None:
         out["repository_name"] = data["RepositoryName"]
     else:
         raise DeserializationError("SyncConfiguration.repository_name required")
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     else:
         raise DeserializationError("SyncConfiguration.resource_name required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("SyncConfiguration.role_arn required")
-    if "SyncType" in data:
+    if data.get("SyncType") is not None:
         import capo_codestar_connections.types.sync_configuration_type
 
         out["sync_type"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_0(data: dict) -> SyncConfiguration:
         )
     else:
         raise DeserializationError("SyncConfiguration.sync_type required")
-    if "PublishDeploymentStatus" in data:
+    if data.get("PublishDeploymentStatus") is not None:
         import capo_codestar_connections.types.publish_deployment_status
 
         out["publish_deployment_status"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_0(data: dict) -> SyncConfiguration:
                 data["PublishDeploymentStatus"]
             )
         )
-    if "TriggerResourceUpdateOn" in data:
+    if data.get("TriggerResourceUpdateOn") is not None:
         import capo_codestar_connections.types.trigger_resource_update_on
 
         out["trigger_resource_update_on"] = (

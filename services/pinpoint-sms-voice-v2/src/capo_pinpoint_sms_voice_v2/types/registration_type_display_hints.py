@@ -35,16 +35,16 @@ def serialize_aws_json_1_0(value: RegistrationTypeDisplayHints) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationTypeDisplayHints:
     out: RegistrationTypeDisplayHints = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("RegistrationTypeDisplayHints.title required")
-    if "ShortDescription" in data:
+    if data.get("ShortDescription") is not None:
         out["short_description"] = data["ShortDescription"]
-    if "LongDescription" in data:
+    if data.get("LongDescription") is not None:
         out["long_description"] = data["LongDescription"]
-    if "DocumentationTitle" in data:
+    if data.get("DocumentationTitle") is not None:
         out["documentation_title"] = data["DocumentationTitle"]
-    if "DocumentationLink" in data:
+    if data.get("DocumentationLink") is not None:
         out["documentation_link"] = data["DocumentationLink"]
     return out

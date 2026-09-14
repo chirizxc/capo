@@ -46,11 +46,11 @@ def deserialize_json(
     data: dict,
 ) -> AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails:
     out: AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "InternalUserDatabaseEnabled" in data:
+    if data.get("InternalUserDatabaseEnabled") is not None:
         out["internal_user_database_enabled"] = data["InternalUserDatabaseEnabled"]
-    if "MasterUserOptions" in data:
+    if data.get("MasterUserOptions") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_master_user_options_details
 
         out["master_user_options"] = (

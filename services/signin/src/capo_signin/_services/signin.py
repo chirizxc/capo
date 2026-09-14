@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.signin#Signin``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -187,14 +188,16 @@ class SigninClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signin.types.create_o_auth2_token_request.CreateOAuth2TokenRequest = {}  # type: ignore[typeddict-item]
-        input_["token_input"] = token_input
+        input_: capo_signin.types.create_o_auth2_token_request.CreateOAuth2TokenRequest = {
+            "token_input": token_input
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_console_authorization_configuration(
@@ -232,7 +235,7 @@ class SigninClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signin.types.delete_console_authorization_configuration_input.DeleteConsoleAuthorizationConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_signin.types.delete_console_authorization_configuration_input.DeleteConsoleAuthorizationConfigurationInput = {}
         if target_id is not None:
             input_["target_id"] = target_id
 
@@ -241,6 +244,7 @@ class SigninClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_permission_statement(
@@ -280,16 +284,19 @@ class SigninClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signin.types.delete_resource_permission_statement_input.DeleteResourcePermissionStatementInput = {}  # type: ignore[typeddict-item]
-        input_["statement_id"] = statement_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_signin.types.delete_resource_permission_statement_input.DeleteResourcePermissionStatementInput = {
+            "statement_id": statement_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_console_authorization_configuration(
@@ -327,7 +334,7 @@ class SigninClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signin.types.get_console_authorization_configuration_input.GetConsoleAuthorizationConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_signin.types.get_console_authorization_configuration_input.GetConsoleAuthorizationConfigurationInput = {}
         if target_id is not None:
             input_["target_id"] = target_id
 
@@ -336,6 +343,7 @@ class SigninClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_policy(
@@ -366,13 +374,14 @@ class SigninClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signin.types.get_resource_policy_input.GetResourcePolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_signin.types.get_resource_policy_input.GetResourcePolicyInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_resource_permission_statements(
@@ -414,7 +423,7 @@ class SigninClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signin.types.list_resource_permission_statements_input.ListResourcePermissionStatementsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_signin.types.list_resource_permission_statements_input.ListResourcePermissionStatementsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -425,6 +434,7 @@ class SigninClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resource_permission_statements(
@@ -486,7 +496,7 @@ class SigninClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signin.types.put_console_authorization_configuration_input.PutConsoleAuthorizationConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_signin.types.put_console_authorization_configuration_input.PutConsoleAuthorizationConfigurationInput = {}
         if target_id is not None:
             input_["target_id"] = target_id
 
@@ -495,6 +505,7 @@ class SigninClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resource_permission_statement(
@@ -553,7 +564,7 @@ class SigninClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signin.types.put_resource_permission_statement_input.PutResourcePermissionStatementInput = {}  # type: ignore[typeddict-item]
+        input_: capo_signin.types.put_resource_permission_statement_input.PutResourcePermissionStatementInput = {}
         if source_vpc is not None:
             input_["source_vpc"] = source_vpc
         if signin_source_vpce is not None:
@@ -568,14 +579,16 @@ class SigninClient:
             input_["requested_region"] = requested_region
         if excluded_principal is not None:
             input_["excluded_principal"] = excluded_principal
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

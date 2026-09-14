@@ -47,22 +47,22 @@ def serialize_json(value: JobExecutionSummary) -> dict:
 
 def deserialize_json(data: dict) -> JobExecutionSummary:
     out: JobExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "queuedAt" in data:
+    if data.get("queuedAt") is not None:
         out["queued_at"] = data["queuedAt"]
     else:
         out["queued_at"] = 0
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         out["started_at"] = data["startedAt"]
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         out["last_updated_at"] = data["lastUpdatedAt"]
     else:
         out["last_updated_at"] = 0
-    if "versionNumber" in data:
+    if data.get("versionNumber") is not None:
         out["version_number"] = data["versionNumber"]
     else:
         out["version_number"] = 0
-    if "executionNumber" in data:
+    if data.get("executionNumber") is not None:
         out["execution_number"] = data["executionNumber"]
     return out

@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: ResourceRecord) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceRecord:
     out: ResourceRecord = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

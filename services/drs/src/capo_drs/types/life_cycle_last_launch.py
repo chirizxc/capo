@@ -36,7 +36,7 @@ def serialize_json(value: LifeCycleLastLaunch) -> dict:
 
 def deserialize_json(data: dict) -> LifeCycleLastLaunch:
     out: LifeCycleLastLaunch = {}  # type: ignore[typeddict-item]
-    if "initiated" in data:
+    if data.get("initiated") is not None:
         import capo_drs.types.life_cycle_last_launch_initiated
 
         out["initiated"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> LifeCycleLastLaunch:
                 data["initiated"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

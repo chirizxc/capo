@@ -43,11 +43,11 @@ def serialize_aws_json_1_0(value: ProxyRuleCondition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProxyRuleCondition:
     out: ProxyRuleCondition = {}  # type: ignore[typeddict-item]
-    if "ConditionOperator" in data:
+    if data.get("ConditionOperator") is not None:
         out["condition_operator"] = data["ConditionOperator"]
-    if "ConditionKey" in data:
+    if data.get("ConditionKey") is not None:
         out["condition_key"] = data["ConditionKey"]
-    if "ConditionValues" in data:
+    if data.get("ConditionValues") is not None:
         import capo_network_firewall.types.proxy_condition_value_list
 
         out["condition_values"] = (

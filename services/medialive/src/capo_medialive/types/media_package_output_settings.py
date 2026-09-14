@@ -31,7 +31,7 @@ def serialize_json(value: MediaPackageOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> MediaPackageOutputSettings:
     out: MediaPackageOutputSettings = {}  # type: ignore[typeddict-item]
-    if "mediaPackageV2DestinationSettings" in data:
+    if data.get("mediaPackageV2DestinationSettings") is not None:
         import capo_medialive.types.media_package_v2_destination_settings
 
         out["media_package_v2_destination_settings"] = (

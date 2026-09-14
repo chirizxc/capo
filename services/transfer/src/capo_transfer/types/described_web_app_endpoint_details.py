@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DescribedWebAppEndpointDetails) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> DescribedWebAppEndpointDetails:
-    if "Vpc" in data:
+    if data.get("Vpc") is not None:
         import capo_transfer.types.described_web_app_vpc_config
 
         return {

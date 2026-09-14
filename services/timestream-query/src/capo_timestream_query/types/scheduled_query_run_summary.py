@@ -94,7 +94,7 @@ def serialize_aws_json_1_0(value: ScheduledQueryRunSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryRunSummary:
     out: ScheduledQueryRunSummary = {}  # type: ignore[typeddict-item]
-    if "InvocationTime" in data:
+    if data.get("InvocationTime") is not None:
         import capo_timestream_query.types.time
 
         out["invocation_time"] = (
@@ -102,13 +102,13 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryRunSummary:
                 data["InvocationTime"]
             )
         )
-    if "TriggerTime" in data:
+    if data.get("TriggerTime") is not None:
         import capo_timestream_query.types.time
 
         out["trigger_time"] = capo_timestream_query.types.time.deserialize_aws_json_1_0(
             data["TriggerTime"]
         )
-    if "RunStatus" in data:
+    if data.get("RunStatus") is not None:
         import capo_timestream_query.types.scheduled_query_run_status
 
         out["run_status"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryRunSummary:
                 data["RunStatus"]
             )
         )
-    if "ExecutionStats" in data:
+    if data.get("ExecutionStats") is not None:
         import capo_timestream_query.types.execution_stats
 
         out["execution_stats"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryRunSummary:
                 data["ExecutionStats"]
             )
         )
-    if "QueryInsightsResponse" in data:
+    if data.get("QueryInsightsResponse") is not None:
         import capo_timestream_query.types.scheduled_query_insights_response
 
         out["query_insights_response"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryRunSummary:
                 data["QueryInsightsResponse"]
             )
         )
-    if "ErrorReportLocation" in data:
+    if data.get("ErrorReportLocation") is not None:
         import capo_timestream_query.types.error_report_location
 
         out["error_report_location"] = (
@@ -140,6 +140,6 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryRunSummary:
                 data["ErrorReportLocation"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

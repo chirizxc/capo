@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfMediaResourceNeighbor:
 
     out: __listOfMediaResourceNeighbor = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.media_resource_neighbor.deserialize_json(item))
     return out

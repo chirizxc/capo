@@ -72,11 +72,11 @@ def serialize_json(value: StartProtectedQueryInput) -> dict:
 
 def deserialize_json(data: dict) -> StartProtectedQueryInput:
     out: StartProtectedQueryInput = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("StartProtectedQueryInput.type required")
-    if "sqlParameters" in data:
+    if data.get("sqlParameters") is not None:
         import capo_cleanrooms.types.protected_query_sql_parameters
 
         out["sql_parameters"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> StartProtectedQueryInput:
         )
     else:
         raise DeserializationError("StartProtectedQueryInput.sql_parameters required")
-    if "resultConfiguration" in data:
+    if data.get("resultConfiguration") is not None:
         import capo_cleanrooms.types.protected_query_result_configuration
 
         out["result_configuration"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> StartProtectedQueryInput:
                 data["resultConfiguration"]
             )
         )
-    if "computeConfiguration" in data:
+    if data.get("computeConfiguration") is not None:
         import capo_cleanrooms.types.compute_configuration
 
         out["compute_configuration"] = (
@@ -102,6 +102,6 @@ def deserialize_json(data: dict) -> StartProtectedQueryInput:
                 data["computeConfiguration"]
             )
         )
-    if "queryComputePayerAccountId" in data:
+    if data.get("queryComputePayerAccountId") is not None:
         out["query_compute_payer_account_id"] = data["queryComputePayerAccountId"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ImprovementSummaries:
 
     out: ImprovementSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.improvement_summary.deserialize_json(item)
         )

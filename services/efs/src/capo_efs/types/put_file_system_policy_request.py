@@ -33,11 +33,11 @@ def serialize_json(value: PutFileSystemPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutFileSystemPolicyRequest:
     out: PutFileSystemPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     else:
         raise DeserializationError("PutFileSystemPolicyRequest.policy required")
-    if "BypassPolicyLockoutSafetyCheck" in data:
+    if data.get("BypassPolicyLockoutSafetyCheck") is not None:
         out["bypass_policy_lockout_safety_check"] = data[
             "BypassPolicyLockoutSafetyCheck"
         ]

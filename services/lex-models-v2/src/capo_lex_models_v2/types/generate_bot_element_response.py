@@ -52,15 +52,15 @@ def serialize_json(value: GenerateBotElementResponse) -> dict:
 
 def deserialize_json(data: dict) -> GenerateBotElementResponse:
     out: GenerateBotElementResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "intentId" in data:
+    if data.get("intentId") is not None:
         out["intent_id"] = data["intentId"]
-    if "sampleUtterances" in data:
+    if data.get("sampleUtterances") is not None:
         import capo_lex_models_v2.types.sample_utterances_list
 
         out["sample_utterances"] = (

@@ -45,17 +45,17 @@ def serialize_aws_json_1_1(value: CreateKeyPairResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateKeyPairResult:
     out: CreateKeyPairResult = {}  # type: ignore[typeddict-item]
-    if "keyPair" in data:
+    if data.get("keyPair") is not None:
         import capo_lightsail.types.key_pair
 
         out["key_pair"] = capo_lightsail.types.key_pair.deserialize_aws_json_1_1(
             data["keyPair"]
         )
-    if "publicKeyBase64" in data:
+    if data.get("publicKeyBase64") is not None:
         out["public_key_base64"] = data["publicKeyBase64"]
-    if "privateKeyBase64" in data:
+    if data.get("privateKeyBase64") is not None:
         out["private_key_base64"] = data["privateKeyBase64"]
-    if "operation" in data:
+    if data.get("operation") is not None:
         import capo_lightsail.types.operation
 
         out["operation"] = capo_lightsail.types.operation.deserialize_aws_json_1_1(

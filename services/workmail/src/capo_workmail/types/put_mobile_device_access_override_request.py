@@ -49,25 +49,25 @@ def serialize_aws_json_1_1(value: PutMobileDeviceAccessOverrideRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutMobileDeviceAccessOverrideRequest:
     out: PutMobileDeviceAccessOverrideRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "PutMobileDeviceAccessOverrideRequest.organization_id required"
         )
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError(
             "PutMobileDeviceAccessOverrideRequest.user_id required"
         )
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError(
             "PutMobileDeviceAccessOverrideRequest.device_id required"
         )
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.mobile_device_access_rule_effect
 
         out["effect"] = (
@@ -79,6 +79,6 @@ def deserialize_aws_json_1_1(data: dict) -> PutMobileDeviceAccessOverrideRequest
         raise DeserializationError(
             "PutMobileDeviceAccessOverrideRequest.effect required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

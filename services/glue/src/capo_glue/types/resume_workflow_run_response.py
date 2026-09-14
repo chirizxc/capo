@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ResumeWorkflowRunResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResumeWorkflowRunResponse:
     out: ResumeWorkflowRunResponse = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "NodeIds" in data:
+    if data.get("NodeIds") is not None:
         import capo_glue.types.node_id_list
 
         out["node_ids"] = capo_glue.types.node_id_list.deserialize_aws_json_1_1(

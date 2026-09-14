@@ -39,15 +39,15 @@ def serialize_json(value: FormatOptions) -> dict:
 
 def deserialize_json(data: dict) -> FormatOptions:
     out: FormatOptions = {}  # type: ignore[typeddict-item]
-    if "Json" in data:
+    if data.get("Json") is not None:
         import capo_databrew.types.json_options
 
         out["json"] = capo_databrew.types.json_options.deserialize_json(data["Json"])
-    if "Excel" in data:
+    if data.get("Excel") is not None:
         import capo_databrew.types.excel_options
 
         out["excel"] = capo_databrew.types.excel_options.deserialize_json(data["Excel"])
-    if "Csv" in data:
+    if data.get("Csv") is not None:
         import capo_databrew.types.csv_options
 
         out["csv"] = capo_databrew.types.csv_options.deserialize_json(data["Csv"])

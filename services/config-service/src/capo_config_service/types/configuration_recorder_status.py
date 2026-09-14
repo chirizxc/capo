@@ -87,11 +87,11 @@ def serialize_aws_json_1_1(value: ConfigurationRecorderStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorderStatus:
     out: ConfigurationRecorderStatus = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "lastStartTime" in data:
+    if data.get("lastStartTime") is not None:
         import capo_config_service.types.date
 
         out["last_start_time"] = (
@@ -99,17 +99,17 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorderStatus:
                 data["lastStartTime"]
             )
         )
-    if "lastStopTime" in data:
+    if data.get("lastStopTime") is not None:
         import capo_config_service.types.date
 
         out["last_stop_time"] = capo_config_service.types.date.deserialize_aws_json_1_1(
             data["lastStopTime"]
         )
-    if "recording" in data:
+    if data.get("recording") is not None:
         out["recording"] = data["recording"]
     else:
         out["recording"] = False
-    if "lastStatus" in data:
+    if data.get("lastStatus") is not None:
         import capo_config_service.types.recorder_status
 
         out["last_status"] = (
@@ -117,11 +117,11 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorderStatus:
                 data["lastStatus"]
             )
         )
-    if "lastErrorCode" in data:
+    if data.get("lastErrorCode") is not None:
         out["last_error_code"] = data["lastErrorCode"]
-    if "lastErrorMessage" in data:
+    if data.get("lastErrorMessage") is not None:
         out["last_error_message"] = data["lastErrorMessage"]
-    if "lastStatusChangeTime" in data:
+    if data.get("lastStatusChangeTime") is not None:
         import capo_config_service.types.date
 
         out["last_status_change_time"] = (
@@ -129,6 +129,6 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorderStatus:
                 data["lastStatusChangeTime"]
             )
         )
-    if "servicePrincipal" in data:
+    if data.get("servicePrincipal") is not None:
         out["service_principal"] = data["servicePrincipal"]
     return out

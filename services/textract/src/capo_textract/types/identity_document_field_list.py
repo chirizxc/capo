@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> IdentityDocumentFieldList:
 
     out: IdentityDocumentFieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_textract.types.identity_document_field.deserialize_aws_json_1_1(item)
         )

@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: RuleGroupUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleGroupUpdate:
     out: RuleGroupUpdate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf.types.change_action
 
         out["action"] = capo_waf.types.change_action.deserialize_aws_json_1_1(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleGroupUpdate:
         )
     else:
         raise DeserializationError("RuleGroupUpdate.action required")
-    if "ActivatedRule" in data:
+    if data.get("ActivatedRule") is not None:
         import capo_waf.types.activated_rule
 
         out["activated_rule"] = capo_waf.types.activated_rule.deserialize_aws_json_1_1(

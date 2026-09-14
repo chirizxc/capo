@@ -25,6 +25,6 @@ def serialize_json(value: GetDataLakeSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetDataLakeSettingsRequest:
     out: GetDataLakeSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     return out

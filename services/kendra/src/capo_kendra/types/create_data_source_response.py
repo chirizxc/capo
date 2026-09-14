@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateDataSourceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceResponse:
     out: CreateDataSourceResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("CreateDataSourceResponse.id required")

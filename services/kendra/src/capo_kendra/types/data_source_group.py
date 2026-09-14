@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DataSourceGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSourceGroup:
     out: DataSourceGroup = {}  # type: ignore[typeddict-item]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     else:
         raise DeserializationError("DataSourceGroup.group_id required")
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     else:
         raise DeserializationError("DataSourceGroup.data_source_id required")

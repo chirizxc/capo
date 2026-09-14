@@ -98,35 +98,35 @@ def serialize_json(value: Reservation) -> dict:
 
 def deserialize_json(data: dict) -> Reservation:
     out: Reservation = {}  # type: ignore[typeddict-item]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "durationUnits" in data:
+    if data.get("durationUnits") is not None:
         import capo_mediaconnect.types.duration_units
 
         out["duration_units"] = capo_mediaconnect.types.duration_units.deserialize_json(
             data["durationUnits"]
         )
-    if "end" in data:
+    if data.get("end") is not None:
         out["end"] = data["end"]
-    if "offeringArn" in data:
+    if data.get("offeringArn") is not None:
         out["offering_arn"] = data["offeringArn"]
-    if "offeringDescription" in data:
+    if data.get("offeringDescription") is not None:
         out["offering_description"] = data["offeringDescription"]
-    if "pricePerUnit" in data:
+    if data.get("pricePerUnit") is not None:
         out["price_per_unit"] = data["pricePerUnit"]
-    if "priceUnits" in data:
+    if data.get("priceUnits") is not None:
         import capo_mediaconnect.types.price_units
 
         out["price_units"] = capo_mediaconnect.types.price_units.deserialize_json(
             data["priceUnits"]
         )
-    if "reservationArn" in data:
+    if data.get("reservationArn") is not None:
         out["reservation_arn"] = data["reservationArn"]
-    if "reservationName" in data:
+    if data.get("reservationName") is not None:
         out["reservation_name"] = data["reservationName"]
-    if "reservationState" in data:
+    if data.get("reservationState") is not None:
         import capo_mediaconnect.types.reservation_state
 
         out["reservation_state"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> Reservation:
                 data["reservationState"]
             )
         )
-    if "resourceSpecification" in data:
+    if data.get("resourceSpecification") is not None:
         import capo_mediaconnect.types.resource_specification
 
         out["resource_specification"] = (
@@ -142,6 +142,6 @@ def deserialize_json(data: dict) -> Reservation:
                 data["resourceSpecification"]
             )
         )
-    if "start" in data:
+    if data.get("start") is not None:
         out["start"] = data["start"]
     return out

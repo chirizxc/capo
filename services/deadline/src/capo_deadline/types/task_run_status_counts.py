@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> TaskRunStatusCounts:
     for key, value in data.items():
         import capo_deadline.types.task_run_status
 
+        if value is None:
+            continue
         out[capo_deadline.types.task_run_status.deserialize_json(key)] = value
     return out

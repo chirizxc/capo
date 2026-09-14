@@ -18,6 +18,6 @@ def serialize_json(value: TimeoutConfig) -> dict:
 
 def deserialize_json(data: dict) -> TimeoutConfig:
     out: TimeoutConfig = {}  # type: ignore[typeddict-item]
-    if "runTimeoutInMinutes" in data:
+    if data.get("runTimeoutInMinutes") is not None:
         out["run_timeout_in_minutes"] = data["runTimeoutInMinutes"]
     return out

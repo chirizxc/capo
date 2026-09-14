@@ -18,6 +18,6 @@ def serialize_json(value: FormInputBindingPropertiesValueProperties) -> dict:
 
 def deserialize_json(data: dict) -> FormInputBindingPropertiesValueProperties:
     out: FormInputBindingPropertiesValueProperties = {}  # type: ignore[typeddict-item]
-    if "model" in data:
+    if data.get("model") is not None:
         out["model"] = data["model"]
     return out

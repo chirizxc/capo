@@ -98,10 +98,11 @@ class AnnotationImportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_annotation_import_request.StartAnnotationImportRequest = {}  # type: ignore[typeddict-item]
-        input_["destination_name"] = destination_name
-        input_["role_arn"] = role_arn
-        input_["items"] = items
+        input_: capo_omics.types.start_annotation_import_request.StartAnnotationImportRequest = {
+            "destination_name": destination_name,
+            "role_arn": role_arn,
+            "items": items,
+        }
         if version_name is not None:
             input_["version_name"] = version_name
         if format_options is not None:
@@ -116,6 +117,7 @@ class AnnotationImportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -153,14 +155,16 @@ class AnnotationImportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_annotation_import_request.GetAnnotationImportRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_omics.types.get_annotation_import_request.GetAnnotationImportRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -198,14 +202,16 @@ class AnnotationImportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.cancel_annotation_import_request.CancelAnnotationImportRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_omics.types.cancel_annotation_import_request.CancelAnnotationImportRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -251,7 +257,7 @@ class AnnotationImportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_annotation_import_jobs_request.ListAnnotationImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_annotation_import_jobs_request.ListAnnotationImportJobsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if ids is not None:
@@ -266,6 +272,7 @@ class AnnotationImportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -328,10 +335,11 @@ class AsyncAnnotationImportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_annotation_import_request.StartAnnotationImportRequest = {}  # type: ignore[typeddict-item]
-        input_["destination_name"] = destination_name
-        input_["role_arn"] = role_arn
-        input_["items"] = items
+        input_: capo_omics.types.start_annotation_import_request.StartAnnotationImportRequest = {
+            "destination_name": destination_name,
+            "role_arn": role_arn,
+            "items": items,
+        }
         if version_name is not None:
             input_["version_name"] = version_name
         if format_options is not None:
@@ -346,6 +354,7 @@ class AsyncAnnotationImportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -384,14 +393,16 @@ class AsyncAnnotationImportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_annotation_import_request.GetAnnotationImportRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_omics.types.get_annotation_import_request.GetAnnotationImportRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -430,14 +441,16 @@ class AsyncAnnotationImportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.cancel_annotation_import_request.CancelAnnotationImportRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_omics.types.cancel_annotation_import_request.CancelAnnotationImportRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -484,7 +497,7 @@ class AsyncAnnotationImportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_annotation_import_jobs_request.ListAnnotationImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_annotation_import_jobs_request.ListAnnotationImportJobsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if ids is not None:
@@ -499,4 +512,5 @@ class AsyncAnnotationImportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

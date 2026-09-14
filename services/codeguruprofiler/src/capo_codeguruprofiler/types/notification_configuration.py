@@ -27,7 +27,7 @@ def serialize_json(value: NotificationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NotificationConfiguration:
     out: NotificationConfiguration = {}  # type: ignore[typeddict-item]
-    if "channels" in data:
+    if data.get("channels") is not None:
         import capo_codeguruprofiler.types.channels
 
         out["channels"] = capo_codeguruprofiler.types.channels.deserialize_json(

@@ -41,7 +41,7 @@ def serialize_json(value: LogRedactionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogRedactionConfiguration:
     out: LogRedactionConfiguration = {}  # type: ignore[typeddict-item]
-    if "entitiesToRedact" in data:
+    if data.get("entitiesToRedact") is not None:
         import capo_cleanroomsml.types.entity_type_list
 
         out["entities_to_redact"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> LogRedactionConfiguration:
         raise DeserializationError(
             "LogRedactionConfiguration.entities_to_redact required"
         )
-    if "customEntityConfig" in data:
+    if data.get("customEntityConfig") is not None:
         import capo_cleanroomsml.types.custom_entity_config
 
         out["custom_entity_config"] = (

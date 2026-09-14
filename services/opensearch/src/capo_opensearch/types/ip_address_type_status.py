@@ -33,7 +33,7 @@ def serialize_json(value: IPAddressTypeStatus) -> dict:
 
 def deserialize_json(data: dict) -> IPAddressTypeStatus:
     out: IPAddressTypeStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_opensearch.types.ip_address_type
 
         out["options"] = capo_opensearch.types.ip_address_type.deserialize_json(
@@ -41,7 +41,7 @@ def deserialize_json(data: dict) -> IPAddressTypeStatus:
         )
     else:
         raise DeserializationError("IPAddressTypeStatus.options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.option_status
 
         out["status"] = capo_opensearch.types.option_status.deserialize_json(

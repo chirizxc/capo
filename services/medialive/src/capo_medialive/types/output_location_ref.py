@@ -22,6 +22,6 @@ def serialize_json(value: OutputLocationRef) -> dict:
 
 def deserialize_json(data: dict) -> OutputLocationRef:
     out: OutputLocationRef = {}  # type: ignore[typeddict-item]
-    if "destinationRefId" in data:
+    if data.get("destinationRefId") is not None:
         out["destination_ref_id"] = data["destinationRefId"]
     return out

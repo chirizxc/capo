@@ -56,25 +56,25 @@ def serialize_json(value: ComboChartAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> ComboChartAggregatedFieldWells:
     out: ComboChartAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["category"] = capo_quicksight.types.dimension_field_list.deserialize_json(
             data["Category"]
         )
-    if "BarValues" in data:
+    if data.get("BarValues") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["bar_values"] = capo_quicksight.types.measure_field_list.deserialize_json(
             data["BarValues"]
         )
-    if "Colors" in data:
+    if data.get("Colors") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["colors"] = capo_quicksight.types.dimension_field_list.deserialize_json(
             data["Colors"]
         )
-    if "LineValues" in data:
+    if data.get("LineValues") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["line_values"] = capo_quicksight.types.measure_field_list.deserialize_json(

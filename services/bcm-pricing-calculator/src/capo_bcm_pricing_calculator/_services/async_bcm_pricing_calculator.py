@@ -175,13 +175,14 @@ class AsyncBCMPricingCalculatorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.get_preferences_request.GetPreferencesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_pricing_calculator.types.get_preferences_request.GetPreferencesRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -220,14 +221,16 @@ class AsyncBCMPricingCalculatorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_bcm_pricing_calculator.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -269,15 +272,17 @@ class AsyncBCMPricingCalculatorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tags"] = tags
+        input_: capo_bcm_pricing_calculator.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -318,15 +323,17 @@ class AsyncBCMPricingCalculatorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_bcm_pricing_calculator.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_preferences(
@@ -376,7 +383,7 @@ class AsyncBCMPricingCalculatorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.update_preferences_request.UpdatePreferencesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_pricing_calculator.types.update_preferences_request.UpdatePreferencesRequest = {}
         if management_account_rate_type_selections is not None:
             input_["management_account_rate_type_selections"] = (
                 management_account_rate_type_selections
@@ -395,6 +402,7 @@ class AsyncBCMPricingCalculatorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

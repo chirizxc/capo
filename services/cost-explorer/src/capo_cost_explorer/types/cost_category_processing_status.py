@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: CostCategoryProcessingStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostCategoryProcessingStatus:
     out: CostCategoryProcessingStatus = {}  # type: ignore[typeddict-item]
-    if "Component" in data:
+    if data.get("Component") is not None:
         import capo_cost_explorer.types.cost_category_status_component
 
         out["component"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostCategoryProcessingStatus:
                 data["Component"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cost_explorer.types.cost_category_status
 
         out["status"] = (

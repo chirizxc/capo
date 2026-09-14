@@ -39,11 +39,11 @@ def serialize_json(value: PipelineOutputConfig) -> dict:
 
 def deserialize_json(data: dict) -> PipelineOutputConfig:
     out: PipelineOutputConfig = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
-    if "StorageClass" in data:
+    if data.get("StorageClass") is not None:
         out["storage_class"] = data["StorageClass"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_elastic_transcoder.types.permissions
 
         out["permissions"] = capo_elastic_transcoder.types.permissions.deserialize_json(

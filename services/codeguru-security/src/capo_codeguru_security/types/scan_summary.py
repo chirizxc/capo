@@ -60,7 +60,7 @@ def serialize_json(value: ScanSummary) -> dict:
 
 def deserialize_json(data: dict) -> ScanSummary:
     out: ScanSummary = {}  # type: ignore[typeddict-item]
-    if "scanState" in data:
+    if data.get("scanState") is not None:
         import capo_codeguru_security.types.scan_state
 
         out["scan_state"] = capo_codeguru_security.types.scan_state.deserialize_json(
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> ScanSummary:
         )
     else:
         raise DeserializationError("ScanSummary.scan_state required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_codeguru_security.types._prelude.timestamp
 
         out["created_at"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ScanSummary:
         )
     else:
         raise DeserializationError("ScanSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_codeguru_security.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -86,14 +86,14 @@ def deserialize_json(data: dict) -> ScanSummary:
                 data["updatedAt"]
             )
         )
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
     else:
         raise DeserializationError("ScanSummary.scan_name required")
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
     else:
         raise DeserializationError("ScanSummary.run_id required")
-    if "scanNameArn" in data:
+    if data.get("scanNameArn") is not None:
         out["scan_name_arn"] = data["scanNameArn"]
     return out

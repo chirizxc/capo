@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UpdateLinkPermissionList:
 
     out: UpdateLinkPermissionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.resource_permission.deserialize_json(item))
     return out

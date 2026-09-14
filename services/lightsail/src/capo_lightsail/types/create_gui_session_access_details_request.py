@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateGUISessionAccessDetailsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateGUISessionAccessDetailsRequest:
     out: CreateGUISessionAccessDetailsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     else:
         raise DeserializationError(

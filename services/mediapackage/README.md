@@ -13,9 +13,9 @@ from capo_mediapackage import AsyncMediaPackageClient
 
 
 async def main():
-    async with AsyncMediaPackageClient() as s3:
+    async with AsyncMediaPackageClient() as media_package:
         # Example: call the configure_logs operation
-        response = await s3.configure_logs()
+        response = await media_package.configure_logs()
         print(response["arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_mediapackage import AsyncMediaPackageClient
 
 
 async def main():
-    async with AsyncMediaPackageClient() as s3:
+    async with AsyncMediaPackageClient() as media_package:
         # Example: paginate over list_channels
-        async for item in s3.iter_list_channels():
+        async for item in media_package.iter_list_channels():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_mediapackage.error import ForbiddenException
 
 
 async def main():
-    async with AsyncMediaPackageClient() as s3:
+    async with AsyncMediaPackageClient() as media_package:
         try:
-            await s3.configure_logs()
+            await media_package.configure_logs()
         except ForbiddenException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_mediapackage import AsyncMediaPackageClient
 
 
 async def main():
-    async with AsyncMediaPackageClient() as s3:
+    async with AsyncMediaPackageClient() as media_package:
         # Default: 3 attempts for every operation
-        response = await s3.configure_logs()
+        response = await media_package.configure_logs()
 
         # Override per operation
-        response = await s3.configure_logs(config_overrides={"retry_max_attempts": 5})
+        response = await media_package.configure_logs(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.configure_logs(config_overrides={"retry_max_attempts": 1})
+        response = await media_package.configure_logs(config_overrides={"retry_max_attempts": 1})
 ```

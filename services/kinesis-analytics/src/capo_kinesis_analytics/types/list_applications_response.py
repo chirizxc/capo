@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListApplicationsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationsResponse:
     out: ListApplicationsResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationSummaries" in data:
+    if data.get("ApplicationSummaries") is not None:
         import capo_kinesis_analytics.types.application_summaries
 
         out["application_summaries"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListApplicationsResponse:
         raise DeserializationError(
             "ListApplicationsResponse.application_summaries required"
         )
-    if "HasMoreApplications" in data:
+    if data.get("HasMoreApplications") is not None:
         out["has_more_applications"] = data["HasMoreApplications"]
     else:
         raise DeserializationError(

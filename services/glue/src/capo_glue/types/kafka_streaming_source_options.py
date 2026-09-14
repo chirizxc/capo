@@ -139,43 +139,43 @@ def serialize_aws_json_1_1(value: KafkaStreamingSourceOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KafkaStreamingSourceOptions:
     out: KafkaStreamingSourceOptions = {}  # type: ignore[typeddict-item]
-    if "BootstrapServers" in data:
+    if data.get("BootstrapServers") is not None:
         out["bootstrap_servers"] = data["BootstrapServers"]
-    if "SecurityProtocol" in data:
+    if data.get("SecurityProtocol") is not None:
         out["security_protocol"] = data["SecurityProtocol"]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
-    if "Assign" in data:
+    if data.get("Assign") is not None:
         out["assign"] = data["Assign"]
-    if "SubscribePattern" in data:
+    if data.get("SubscribePattern") is not None:
         out["subscribe_pattern"] = data["SubscribePattern"]
-    if "Classification" in data:
+    if data.get("Classification") is not None:
         out["classification"] = data["Classification"]
-    if "Delimiter" in data:
+    if data.get("Delimiter") is not None:
         out["delimiter"] = data["Delimiter"]
-    if "StartingOffsets" in data:
+    if data.get("StartingOffsets") is not None:
         out["starting_offsets"] = data["StartingOffsets"]
-    if "EndingOffsets" in data:
+    if data.get("EndingOffsets") is not None:
         out["ending_offsets"] = data["EndingOffsets"]
-    if "PollTimeoutMs" in data:
+    if data.get("PollTimeoutMs") is not None:
         out["poll_timeout_ms"] = data["PollTimeoutMs"]
-    if "NumRetries" in data:
+    if data.get("NumRetries") is not None:
         out["num_retries"] = data["NumRetries"]
-    if "RetryIntervalMs" in data:
+    if data.get("RetryIntervalMs") is not None:
         out["retry_interval_ms"] = data["RetryIntervalMs"]
-    if "MaxOffsetsPerTrigger" in data:
+    if data.get("MaxOffsetsPerTrigger") is not None:
         out["max_offsets_per_trigger"] = data["MaxOffsetsPerTrigger"]
-    if "MinPartitions" in data:
+    if data.get("MinPartitions") is not None:
         out["min_partitions"] = data["MinPartitions"]
-    if "IncludeHeaders" in data:
+    if data.get("IncludeHeaders") is not None:
         out["include_headers"] = data["IncludeHeaders"]
-    if "AddRecordTimestamp" in data:
+    if data.get("AddRecordTimestamp") is not None:
         out["add_record_timestamp"] = data["AddRecordTimestamp"]
-    if "EmitConsumerLagMetrics" in data:
+    if data.get("EmitConsumerLagMetrics") is not None:
         out["emit_consumer_lag_metrics"] = data["EmitConsumerLagMetrics"]
-    if "StartingTimestamp" in data:
+    if data.get("StartingTimestamp") is not None:
         import capo_glue.types.iso8601_date_time
 
         out["starting_timestamp"] = (

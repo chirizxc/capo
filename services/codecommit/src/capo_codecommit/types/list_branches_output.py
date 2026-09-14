@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ListBranchesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBranchesOutput:
     out: ListBranchesOutput = {}  # type: ignore[typeddict-item]
-    if "branches" in data:
+    if data.get("branches") is not None:
         import capo_codecommit.types.branch_name_list
 
         out["branches"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListBranchesOutput:
                 data["branches"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

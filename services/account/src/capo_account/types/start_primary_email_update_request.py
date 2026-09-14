@@ -28,11 +28,11 @@ def serialize_json(value: StartPrimaryEmailUpdateRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartPrimaryEmailUpdateRequest:
     out: StartPrimaryEmailUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("StartPrimaryEmailUpdateRequest.account_id required")
-    if "PrimaryEmail" in data:
+    if data.get("PrimaryEmail") is not None:
         out["primary_email"] = data["PrimaryEmail"]
     else:
         raise DeserializationError(

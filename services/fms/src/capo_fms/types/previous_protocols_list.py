@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: PreviousProtocolsList) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> PreviousProtocolsList:
     out: PreviousProtocolsList = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_fms.types.protocols_list
 
         out[key] = capo_fms.types.protocols_list.deserialize_aws_json_1_1(value)

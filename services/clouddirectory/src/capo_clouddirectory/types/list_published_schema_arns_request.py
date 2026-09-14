@@ -33,10 +33,10 @@ def serialize_json(value: ListPublishedSchemaArnsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListPublishedSchemaArnsRequest:
     out: ListPublishedSchemaArnsRequest = {}  # type: ignore[typeddict-item]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

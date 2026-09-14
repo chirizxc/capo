@@ -40,9 +40,25 @@ def serialize_aws_json_1_1(value: RelationalDatabaseBundle) -> dict:
     if "name" in value:
         out["name"] = value["name"]
     if "price" in value:
-        out["price"] = value["price"]
+        out["price"] = (
+            "NaN"
+            if value["price"] != value["price"]
+            else "Infinity"
+            if value["price"] == float("inf")
+            else "-Infinity"
+            if value["price"] == float("-inf")
+            else value["price"]
+        )
     if "ram_size_in_gb" in value:
-        out["ramSizeInGb"] = value["ram_size_in_gb"]
+        out["ramSizeInGb"] = (
+            "NaN"
+            if value["ram_size_in_gb"] != value["ram_size_in_gb"]
+            else "Infinity"
+            if value["ram_size_in_gb"] == float("inf")
+            else "-Infinity"
+            if value["ram_size_in_gb"] == float("-inf")
+            else value["ram_size_in_gb"]
+        )
     if "disk_size_in_gb" in value:
         out["diskSizeInGb"] = value["disk_size_in_gb"]
     if "transfer_per_month_in_gb" in value:
@@ -58,22 +74,22 @@ def serialize_aws_json_1_1(value: RelationalDatabaseBundle) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelationalDatabaseBundle:
     out: RelationalDatabaseBundle = {}  # type: ignore[typeddict-item]
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "price" in data:
-        out["price"] = data["price"]
-    if "ramSizeInGb" in data:
-        out["ram_size_in_gb"] = data["ramSizeInGb"]
-    if "diskSizeInGb" in data:
+    if data.get("price") is not None:
+        out["price"] = float(data["price"])
+    if data.get("ramSizeInGb") is not None:
+        out["ram_size_in_gb"] = float(data["ramSizeInGb"])
+    if data.get("diskSizeInGb") is not None:
         out["disk_size_in_gb"] = data["diskSizeInGb"]
-    if "transferPerMonthInGb" in data:
+    if data.get("transferPerMonthInGb") is not None:
         out["transfer_per_month_in_gb"] = data["transferPerMonthInGb"]
-    if "cpuCount" in data:
+    if data.get("cpuCount") is not None:
         out["cpu_count"] = data["cpuCount"]
-    if "isEncrypted" in data:
+    if data.get("isEncrypted") is not None:
         out["is_encrypted"] = data["isEncrypted"]
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
     return out

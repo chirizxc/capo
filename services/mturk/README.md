@@ -13,10 +13,25 @@ from capo_mturk import AsyncMTurkClient
 
 
 async def main():
-    async with AsyncMTurkClient() as s3:
+    async with AsyncMTurkClient() as m_turk:
         # Example: call the accept_qualification_request operation
-        response = await s3.accept_qualification_request()
+        response = await m_turk.accept_qualification_request()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_mturk import AsyncMTurkClient
+
+
+async def main():
+    async with AsyncMTurkClient() as m_turk:
+        # Example: paginate over list_assignments_for_hit
+        async for item in m_turk.iter_list_assignments_for_hit():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_mturk.error import RequestError
 
 
 async def main():
-    async with AsyncMTurkClient() as s3:
+    async with AsyncMTurkClient() as m_turk:
         try:
-            await s3.accept_qualification_request()
+            await m_turk.accept_qualification_request()
         except RequestError as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_mturk import AsyncMTurkClient
 
 
 async def main():
-    async with AsyncMTurkClient() as s3:
+    async with AsyncMTurkClient() as m_turk:
         # Default: 3 attempts for every operation
-        response = await s3.accept_qualification_request()
+        response = await m_turk.accept_qualification_request()
 
         # Override per operation
-        response = await s3.accept_qualification_request(config_overrides={"retry_max_attempts": 5})
+        response = await m_turk.accept_qualification_request(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_qualification_request(config_overrides={"retry_max_attempts": 1})
+        response = await m_turk.accept_qualification_request(config_overrides={"retry_max_attempts": 1})
 ```

@@ -52,19 +52,19 @@ def serialize_json(value: DescribeConfigurationRevisionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeConfigurationRevisionResponse:
     out: DescribeConfigurationRevisionResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["creation_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["creationTime"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "serverProperties" in data:
+    if data.get("serverProperties") is not None:
         import capo_kafka.types.__blob
 
         out["server_properties"] = capo_kafka.types.__blob.deserialize_json(

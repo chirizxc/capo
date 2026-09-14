@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: ConformancePackComplianceScore) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConformancePackComplianceScore:
     out: ConformancePackComplianceScore = {}  # type: ignore[typeddict-item]
-    if "Score" in data:
+    if data.get("Score") is not None:
         out["score"] = data["Score"]
-    if "ConformancePackName" in data:
+    if data.get("ConformancePackName") is not None:
         out["conformance_pack_name"] = data["ConformancePackName"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_config_service.types.last_updated_time
 
         out["last_updated_time"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> HistoricalMetrics:
 
     out: HistoricalMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.historical_metric.deserialize_json(item))
     return out

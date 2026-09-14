@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: RuleExecutionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleExecutionOutput:
     out: RuleExecutionOutput = {}  # type: ignore[typeddict-item]
-    if "executionResult" in data:
+    if data.get("executionResult") is not None:
         import capo_codepipeline.types.rule_execution_result
 
         out["execution_result"] = (

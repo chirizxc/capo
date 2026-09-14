@@ -48,11 +48,11 @@ def serialize_json(value: UpdateScheduledActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateScheduledActionRequest:
     out: UpdateScheduledActionRequest = {}  # type: ignore[typeddict-item]
-    if "ActionID" in data:
+    if data.get("ActionID") is not None:
         out["action_id"] = data["ActionID"]
     else:
         raise DeserializationError("UpdateScheduledActionRequest.action_id required")
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         import capo_opensearch.types.action_type
 
         out["action_type"] = capo_opensearch.types.action_type.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> UpdateScheduledActionRequest:
         )
     else:
         raise DeserializationError("UpdateScheduledActionRequest.action_type required")
-    if "ScheduleAt" in data:
+    if data.get("ScheduleAt") is not None:
         import capo_opensearch.types.schedule_at
 
         out["schedule_at"] = capo_opensearch.types.schedule_at.deserialize_json(
@@ -68,6 +68,6 @@ def deserialize_json(data: dict) -> UpdateScheduledActionRequest:
         )
     else:
         raise DeserializationError("UpdateScheduledActionRequest.schedule_at required")
-    if "DesiredStartTime" in data:
+    if data.get("DesiredStartTime") is not None:
         out["desired_start_time"] = data["DesiredStartTime"]
     return out

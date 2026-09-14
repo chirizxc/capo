@@ -52,23 +52,23 @@ def serialize_json(value: TransferData) -> dict:
 
 def deserialize_json(data: dict) -> TransferData:
     out: TransferData = {}  # type: ignore[typeddict-item]
-    if "transferMessage" in data:
+    if data.get("transferMessage") is not None:
         out["transfer_message"] = data["transferMessage"]
-    if "rejectReason" in data:
+    if data.get("rejectReason") is not None:
         out["reject_reason"] = data["rejectReason"]
-    if "transferDate" in data:
+    if data.get("transferDate") is not None:
         import capo_iot.types.date_type
 
         out["transfer_date"] = capo_iot.types.date_type.deserialize_json(
             data["transferDate"]
         )
-    if "acceptDate" in data:
+    if data.get("acceptDate") is not None:
         import capo_iot.types.date_type
 
         out["accept_date"] = capo_iot.types.date_type.deserialize_json(
             data["acceptDate"]
         )
-    if "rejectDate" in data:
+    if data.get("rejectDate") is not None:
         import capo_iot.types.date_type
 
         out["reject_date"] = capo_iot.types.date_type.deserialize_json(

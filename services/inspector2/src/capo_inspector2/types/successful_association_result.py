@@ -35,9 +35,9 @@ def serialize_json(value: SuccessfulAssociationResult) -> dict:
 
 def deserialize_json(data: dict) -> SuccessfulAssociationResult:
     out: SuccessfulAssociationResult = {}  # type: ignore[typeddict-item]
-    if "scanConfigurationArn" in data:
+    if data.get("scanConfigurationArn") is not None:
         out["scan_configuration_arn"] = data["scanConfigurationArn"]
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_inspector2.types.code_security_resource
 
         out["resource"] = capo_inspector2.types.code_security_resource.deserialize_json(

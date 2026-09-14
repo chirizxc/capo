@@ -32,8 +32,8 @@ def serialize_json(value: InputChannelLevel) -> dict:
 
 def deserialize_json(data: dict) -> InputChannelLevel:
     out: InputChannelLevel = {}  # type: ignore[typeddict-item]
-    if "gain" in data:
+    if data.get("gain") is not None:
         out["gain"] = data["gain"]
-    if "inputChannel" in data:
+    if data.get("inputChannel") is not None:
         out["input_channel"] = data["inputChannel"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ResourceSharePermissionList:
 
     out: ResourceSharePermissionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ram.types.resource_share_permission_summary.deserialize_json(item)
         )

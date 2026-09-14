@@ -23,6 +23,8 @@ def deserialize_json(data: list) -> __listOfRule:
 
     out: __listOfRule = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53_recovery_control_config.types.rule.deserialize_json(item)
         )

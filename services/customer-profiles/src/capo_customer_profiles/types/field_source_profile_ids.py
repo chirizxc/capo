@@ -120,47 +120,47 @@ def serialize_json(value: FieldSourceProfileIds) -> dict:
 
 def deserialize_json(data: dict) -> FieldSourceProfileIds:
     out: FieldSourceProfileIds = {}  # type: ignore[typeddict-item]
-    if "AccountNumber" in data:
+    if data.get("AccountNumber") is not None:
         out["account_number"] = data["AccountNumber"]
-    if "AdditionalInformation" in data:
+    if data.get("AdditionalInformation") is not None:
         out["additional_information"] = data["AdditionalInformation"]
-    if "PartyType" in data:
+    if data.get("PartyType") is not None:
         out["party_type"] = data["PartyType"]
-    if "BusinessName" in data:
+    if data.get("BusinessName") is not None:
         out["business_name"] = data["BusinessName"]
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "MiddleName" in data:
+    if data.get("MiddleName") is not None:
         out["middle_name"] = data["MiddleName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
-    if "BirthDate" in data:
+    if data.get("BirthDate") is not None:
         out["birth_date"] = data["BirthDate"]
-    if "Gender" in data:
+    if data.get("Gender") is not None:
         out["gender"] = data["Gender"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
-    if "MobilePhoneNumber" in data:
+    if data.get("MobilePhoneNumber") is not None:
         out["mobile_phone_number"] = data["MobilePhoneNumber"]
-    if "HomePhoneNumber" in data:
+    if data.get("HomePhoneNumber") is not None:
         out["home_phone_number"] = data["HomePhoneNumber"]
-    if "BusinessPhoneNumber" in data:
+    if data.get("BusinessPhoneNumber") is not None:
         out["business_phone_number"] = data["BusinessPhoneNumber"]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "PersonalEmailAddress" in data:
+    if data.get("PersonalEmailAddress") is not None:
         out["personal_email_address"] = data["PersonalEmailAddress"]
-    if "BusinessEmailAddress" in data:
+    if data.get("BusinessEmailAddress") is not None:
         out["business_email_address"] = data["BusinessEmailAddress"]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
-    if "ShippingAddress" in data:
+    if data.get("ShippingAddress") is not None:
         out["shipping_address"] = data["ShippingAddress"]
-    if "MailingAddress" in data:
+    if data.get("MailingAddress") is not None:
         out["mailing_address"] = data["MailingAddress"]
-    if "BillingAddress" in data:
+    if data.get("BillingAddress") is not None:
         out["billing_address"] = data["BillingAddress"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_customer_profiles.types.attribute_source_id_map
 
         out["attributes"] = (
@@ -168,8 +168,8 @@ def deserialize_json(data: dict) -> FieldSourceProfileIds:
                 data["Attributes"]
             )
         )
-    if "ProfileType" in data:
+    if data.get("ProfileType") is not None:
         out["profile_type"] = data["ProfileType"]
-    if "EngagementPreferences" in data:
+    if data.get("EngagementPreferences") is not None:
         out["engagement_preferences"] = data["EngagementPreferences"]
     return out

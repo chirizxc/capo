@@ -38,15 +38,15 @@ def serialize_json(value: BatchGetFindingsError) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFindingsError:
     out: BatchGetFindingsError = {}  # type: ignore[typeddict-item]
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
     else:
         raise DeserializationError("BatchGetFindingsError.scan_name required")
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
     else:
         raise DeserializationError("BatchGetFindingsError.finding_id required")
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_codeguru_security.types.error_code
 
         out["error_code"] = capo_codeguru_security.types.error_code.deserialize_json(
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> BatchGetFindingsError:
         )
     else:
         raise DeserializationError("BatchGetFindingsError.error_code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("BatchGetFindingsError.message required")

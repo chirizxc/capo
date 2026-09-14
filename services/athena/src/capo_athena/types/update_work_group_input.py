@@ -53,13 +53,13 @@ def serialize_aws_json_1_1(value: UpdateWorkGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWorkGroupInput:
     out: UpdateWorkGroupInput = {}  # type: ignore[typeddict-item]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     else:
         raise DeserializationError("UpdateWorkGroupInput.work_group required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ConfigurationUpdates" in data:
+    if data.get("ConfigurationUpdates") is not None:
         import capo_athena.types.work_group_configuration_updates
 
         out["configuration_updates"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateWorkGroupInput:
                 data["ConfigurationUpdates"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_athena.types.work_group_state
 
         out["state"] = capo_athena.types.work_group_state.deserialize_aws_json_1_1(

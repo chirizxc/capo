@@ -52,7 +52,7 @@ def serialize_json(value: LifecyclePolicyDetailFilter) -> dict:
 
 def deserialize_json(data: dict) -> LifecyclePolicyDetailFilter:
     out: LifecyclePolicyDetailFilter = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_imagebuilder.types.lifecycle_policy_detail_filter_type
 
         out["type"] = (
@@ -62,11 +62,11 @@ def deserialize_json(data: dict) -> LifecyclePolicyDetailFilter:
         )
     else:
         raise DeserializationError("LifecyclePolicyDetailFilter.type required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("LifecyclePolicyDetailFilter.value required")
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_imagebuilder.types.lifecycle_policy_time_unit
 
         out["unit"] = (
@@ -74,6 +74,6 @@ def deserialize_json(data: dict) -> LifecyclePolicyDetailFilter:
                 data["unit"]
             )
         )
-    if "retainAtLeast" in data:
+    if data.get("retainAtLeast") is not None:
         out["retain_at_least"] = data["retainAtLeast"]
     return out

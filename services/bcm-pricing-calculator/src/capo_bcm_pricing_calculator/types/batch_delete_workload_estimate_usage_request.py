@@ -34,13 +34,13 @@ def serialize_aws_json_1_0(value: BatchDeleteWorkloadEstimateUsageRequest) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> BatchDeleteWorkloadEstimateUsageRequest:
     out: BatchDeleteWorkloadEstimateUsageRequest = {}  # type: ignore[typeddict-item]
-    if "workloadEstimateId" in data:
+    if data.get("workloadEstimateId") is not None:
         out["workload_estimate_id"] = data["workloadEstimateId"]
     else:
         raise DeserializationError(
             "BatchDeleteWorkloadEstimateUsageRequest.workload_estimate_id required"
         )
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_bcm_pricing_calculator.types.batch_delete_workload_estimate_usage_entries
 
         out["ids"] = (

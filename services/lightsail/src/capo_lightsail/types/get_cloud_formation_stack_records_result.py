@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetCloudFormationStackRecordsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCloudFormationStackRecordsResult:
     out: GetCloudFormationStackRecordsResult = {}  # type: ignore[typeddict-item]
-    if "cloudFormationStackRecords" in data:
+    if data.get("cloudFormationStackRecords") is not None:
         import capo_lightsail.types.cloud_formation_stack_record_list
 
         out["cloud_formation_stack_records"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetCloudFormationStackRecordsResult:
                 data["cloudFormationStackRecords"]
             )
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

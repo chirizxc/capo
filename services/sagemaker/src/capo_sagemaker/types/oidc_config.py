@@ -73,25 +73,25 @@ def serialize_aws_json_1_1(value: OidcConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OidcConfig:
     out: OidcConfig = {}  # type: ignore[typeddict-item]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "ClientSecret" in data:
+    if data.get("ClientSecret") is not None:
         out["client_secret"] = data["ClientSecret"]
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         out["issuer"] = data["Issuer"]
-    if "AuthorizationEndpoint" in data:
+    if data.get("AuthorizationEndpoint") is not None:
         out["authorization_endpoint"] = data["AuthorizationEndpoint"]
-    if "TokenEndpoint" in data:
+    if data.get("TokenEndpoint") is not None:
         out["token_endpoint"] = data["TokenEndpoint"]
-    if "UserInfoEndpoint" in data:
+    if data.get("UserInfoEndpoint") is not None:
         out["user_info_endpoint"] = data["UserInfoEndpoint"]
-    if "LogoutEndpoint" in data:
+    if data.get("LogoutEndpoint") is not None:
         out["logout_endpoint"] = data["LogoutEndpoint"]
-    if "JwksUri" in data:
+    if data.get("JwksUri") is not None:
         out["jwks_uri"] = data["JwksUri"]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         out["scope"] = data["Scope"]
-    if "AuthenticationRequestExtraParams" in data:
+    if data.get("AuthenticationRequestExtraParams") is not None:
         import capo_sagemaker.types.authentication_request_extra_params
 
         out["authentication_request_extra_params"] = (

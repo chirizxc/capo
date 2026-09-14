@@ -82,11 +82,11 @@ def serialize_aws_json_1_1(value: ListProblemsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListProblemsRequest:
     out: ListProblemsRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_insights.types.start_time
 
         out["start_time"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListProblemsRequest:
                 data["StartTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_application_insights.types.end_time
 
         out["end_time"] = (
@@ -102,13 +102,13 @@ def deserialize_aws_json_1_1(data: dict) -> ListProblemsRequest:
                 data["EndTime"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ComponentName" in data:
+    if data.get("ComponentName") is not None:
         out["component_name"] = data["ComponentName"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_application_insights.types.visibility
 
         out["visibility"] = (

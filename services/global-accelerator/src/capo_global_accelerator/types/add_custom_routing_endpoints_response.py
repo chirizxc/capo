@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: AddCustomRoutingEndpointsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddCustomRoutingEndpointsResponse:
     out: AddCustomRoutingEndpointsResponse = {}  # type: ignore[typeddict-item]
-    if "EndpointDescriptions" in data:
+    if data.get("EndpointDescriptions") is not None:
         import capo_global_accelerator.types.custom_routing_endpoint_descriptions
 
         out["endpoint_descriptions"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> AddCustomRoutingEndpointsResponse:
                 data["EndpointDescriptions"]
             )
         )
-    if "EndpointGroupArn" in data:
+    if data.get("EndpointGroupArn") is not None:
         out["endpoint_group_arn"] = data["EndpointGroupArn"]
     return out

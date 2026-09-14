@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribePersistentAppUIInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePersistentAppUIInput:
     out: DescribePersistentAppUIInput = {}  # type: ignore[typeddict-item]
-    if "PersistentAppUIId" in data:
+    if data.get("PersistentAppUIId") is not None:
         out["persistent_app_ui_id"] = data["PersistentAppUIId"]
     return out

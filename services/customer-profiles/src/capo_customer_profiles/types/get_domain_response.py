@@ -113,23 +113,23 @@ def serialize_json(value: GetDomainResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDomainResponse:
     out: GetDomainResponse = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("GetDomainResponse.domain_name required")
-    if "DefaultExpirationDays" in data:
+    if data.get("DefaultExpirationDays") is not None:
         out["default_expiration_days"] = data["DefaultExpirationDays"]
-    if "DefaultEncryptionKey" in data:
+    if data.get("DefaultEncryptionKey") is not None:
         out["default_encryption_key"] = data["DefaultEncryptionKey"]
-    if "DeadLetterQueueUrl" in data:
+    if data.get("DeadLetterQueueUrl") is not None:
         out["dead_letter_queue_url"] = data["DeadLetterQueueUrl"]
-    if "Stats" in data:
+    if data.get("Stats") is not None:
         import capo_customer_profiles.types.domain_stats
 
         out["stats"] = capo_customer_profiles.types.domain_stats.deserialize_json(
             data["Stats"]
         )
-    if "Matching" in data:
+    if data.get("Matching") is not None:
         import capo_customer_profiles.types.matching_response
 
         out["matching"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> GetDomainResponse:
                 data["Matching"]
             )
         )
-    if "RuleBasedMatching" in data:
+    if data.get("RuleBasedMatching") is not None:
         import capo_customer_profiles.types.rule_based_matching_response
 
         out["rule_based_matching"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> GetDomainResponse:
                 data["RuleBasedMatching"]
             )
         )
-    if "DataStore" in data:
+    if data.get("DataStore") is not None:
         import capo_customer_profiles.types.data_store_response
 
         out["data_store"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> GetDomainResponse:
                 data["DataStore"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> GetDomainResponse:
         )
     else:
         raise DeserializationError("GetDomainResponse.created_at required")
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> GetDomainResponse:
         )
     else:
         raise DeserializationError("GetDomainResponse.last_updated_at required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

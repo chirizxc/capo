@@ -40,7 +40,7 @@ def serialize_json(value: SpaceResourceOperation) -> dict:
 
 def deserialize_json(data: dict) -> SpaceResourceOperation:
     out: SpaceResourceOperation = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_quicksight.types.space_quick_sight_resource_type
 
         out["resource_type"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> SpaceResourceOperation:
         )
     else:
         raise DeserializationError("SpaceResourceOperation.resource_type required")
-    if "ResourceDetails" in data:
+    if data.get("ResourceDetails") is not None:
         import capo_quicksight.types.space_quick_sight_resource_details
 
         out["resource_details"] = (

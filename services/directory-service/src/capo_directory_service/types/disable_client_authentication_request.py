@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: DisableClientAuthenticationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisableClientAuthenticationRequest:
     out: DisableClientAuthenticationRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError(
             "DisableClientAuthenticationRequest.directory_id required"
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_directory_service.types.client_authentication_type
 
         out["type"] = (

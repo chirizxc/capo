@@ -67,7 +67,7 @@ def serialize_aws_json_1_0(value: Account) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Account:
     out: Account = {}  # type: ignore[typeddict-item]
-    if "Industry" in data:
+    if data.get("Industry") is not None:
         import capo_partnercentral_selling.types.industry
 
         out["industry"] = (
@@ -75,17 +75,17 @@ def deserialize_aws_json_1_0(data: dict) -> Account:
                 data["Industry"]
             )
         )
-    if "OtherIndustry" in data:
+    if data.get("OtherIndustry") is not None:
         out["other_industry"] = data["OtherIndustry"]
-    if "CompanyName" in data:
+    if data.get("CompanyName") is not None:
         out["company_name"] = data["CompanyName"]
     else:
         raise DeserializationError("Account.company_name required")
-    if "WebsiteUrl" in data:
+    if data.get("WebsiteUrl") is not None:
         out["website_url"] = data["WebsiteUrl"]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_partnercentral_selling.types.address
 
         out["address"] = (
@@ -93,6 +93,6 @@ def deserialize_aws_json_1_0(data: dict) -> Account:
                 data["Address"]
             )
         )
-    if "Duns" in data:
+    if data.get("Duns") is not None:
         out["duns"] = data["Duns"]
     return out

@@ -51,9 +51,9 @@ def serialize_json(value: Scte35SpliceInsert) -> dict:
 
 def deserialize_json(data: dict) -> Scte35SpliceInsert:
     out: Scte35SpliceInsert = {}  # type: ignore[typeddict-item]
-    if "adAvailOffset" in data:
+    if data.get("adAvailOffset") is not None:
         out["ad_avail_offset"] = data["adAvailOffset"]
-    if "noRegionalBlackoutFlag" in data:
+    if data.get("noRegionalBlackoutFlag") is not None:
         import capo_medialive.types.scte35_splice_insert_no_regional_blackout_behavior
 
         out["no_regional_blackout_flag"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> Scte35SpliceInsert:
                 data["noRegionalBlackoutFlag"]
             )
         )
-    if "webDeliveryAllowedFlag" in data:
+    if data.get("webDeliveryAllowedFlag") is not None:
         import capo_medialive.types.scte35_splice_insert_web_delivery_allowed_behavior
 
         out["web_delivery_allowed_flag"] = (

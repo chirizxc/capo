@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: EncryptionIntegrityChecksFailedException_) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> EncryptionIntegrityChecksFailedException_:
     out: EncryptionIntegrityChecksFailedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,17 +35,22 @@ class EncryptionIntegrityChecksFailedException(ServiceError):
 
     code: str | None = "EncryptionIntegrityChecksFailedException"
 
-    def __init__(self, data: EncryptionIntegrityChecksFailedException_):
+    def __init__(
+        self,
+        data: EncryptionIntegrityChecksFailedException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="EncryptionIntegrityChecksFailedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "EncryptionIntegrityChecksFailedException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

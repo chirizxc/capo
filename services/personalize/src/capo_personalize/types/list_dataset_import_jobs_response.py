@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListDatasetImportJobsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDatasetImportJobsResponse:
     out: ListDatasetImportJobsResponse = {}  # type: ignore[typeddict-item]
-    if "datasetImportJobs" in data:
+    if data.get("datasetImportJobs") is not None:
         import capo_personalize.types.dataset_import_jobs
 
         out["dataset_import_jobs"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListDatasetImportJobsResponse:
                 data["datasetImportJobs"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

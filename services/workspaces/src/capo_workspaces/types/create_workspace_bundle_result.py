@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: CreateWorkspaceBundleResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkspaceBundleResult:
     out: CreateWorkspaceBundleResult = {}  # type: ignore[typeddict-item]
-    if "WorkspaceBundle" in data:
+    if data.get("WorkspaceBundle") is not None:
         import capo_workspaces.types.workspace_bundle
 
         out["workspace_bundle"] = (

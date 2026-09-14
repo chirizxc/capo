@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: RoleGroupAssignment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RoleGroupAssignment:
     out: RoleGroupAssignment = {}  # type: ignore[typeddict-item]
-    if "RoleName" in data:
+    if data.get("RoleName") is not None:
         out["role_name"] = data["RoleName"]
     else:
         raise DeserializationError("RoleGroupAssignment.role_name required")
-    if "GroupPatterns" in data:
+    if data.get("GroupPatterns") is not None:
         import capo_sagemaker.types.group_patterns_list
 
         out["group_patterns"] = (

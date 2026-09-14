@@ -40,23 +40,23 @@ def serialize_aws_json_1_1(value: ConnectionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionConfiguration:
     out: ConnectionConfiguration = {}  # type: ignore[typeddict-item]
-    if "DatabaseHost" in data:
+    if data.get("DatabaseHost") is not None:
         out["database_host"] = data["DatabaseHost"]
     else:
         raise DeserializationError("ConnectionConfiguration.database_host required")
-    if "DatabasePort" in data:
+    if data.get("DatabasePort") is not None:
         out["database_port"] = data["DatabasePort"]
     else:
         raise DeserializationError("ConnectionConfiguration.database_port required")
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("ConnectionConfiguration.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("ConnectionConfiguration.table_name required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("ConnectionConfiguration.secret_arn required")

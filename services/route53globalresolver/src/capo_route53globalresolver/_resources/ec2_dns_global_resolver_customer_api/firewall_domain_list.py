@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_route53globalresolver._auth._signers
@@ -99,13 +100,15 @@ class FirewallDomainList:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.create_firewall_domain_list_input.CreateFirewallDomainListInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["global_resolver_id"] = global_resolver_id
+        input_: capo_route53globalresolver.types.create_firewall_domain_list_input.CreateFirewallDomainListInput = {
+            "global_resolver_id": global_resolver_id,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
-        input_["name"] = name
         if tags is not None:
             input_["tags"] = tags
 
@@ -114,6 +117,7 @@ class FirewallDomainList:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -151,14 +155,16 @@ class FirewallDomainList:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_firewall_domain_list_input.GetFirewallDomainListInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
+        input_: capo_route53globalresolver.types.get_firewall_domain_list_input.GetFirewallDomainListInput = {
+            "firewall_domain_list_id": firewall_domain_list_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -197,14 +203,16 @@ class FirewallDomainList:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.delete_firewall_domain_list_input.DeleteFirewallDomainListInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
+        input_: capo_route53globalresolver.types.delete_firewall_domain_list_input.DeleteFirewallDomainListInput = {
+            "firewall_domain_list_id": firewall_domain_list_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -248,7 +256,7 @@ class FirewallDomainList:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_firewall_domain_lists_input.ListFirewallDomainListsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_firewall_domain_lists_input.ListFirewallDomainListsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -261,6 +269,7 @@ class FirewallDomainList:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_firewall_domains(
@@ -304,16 +313,18 @@ class FirewallDomainList:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.import_firewall_domains_input.ImportFirewallDomainsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_file_url"] = domain_file_url
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
-        input_["operation"] = operation
+        input_: capo_route53globalresolver.types.import_firewall_domains_input.ImportFirewallDomainsInput = {
+            "domain_file_url": domain_file_url,
+            "firewall_domain_list_id": firewall_domain_list_id,
+            "operation": operation,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_firewall_domains(
@@ -355,18 +366,20 @@ class FirewallDomainList:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_firewall_domains_input.ListFirewallDomainsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_firewall_domains_input.ListFirewallDomainsInput = {
+            "firewall_domain_list_id": firewall_domain_list_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_domains(
@@ -410,16 +423,18 @@ class FirewallDomainList:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_firewall_domains_input.UpdateFirewallDomainsInput = {}  # type: ignore[typeddict-item]
-        input_["domains"] = domains
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
-        input_["operation"] = operation
+        input_: capo_route53globalresolver.types.update_firewall_domains_input.UpdateFirewallDomainsInput = {
+            "domains": domains,
+            "firewall_domain_list_id": firewall_domain_list_id,
+            "operation": operation,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -477,13 +492,15 @@ class AsyncFirewallDomainList:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.create_firewall_domain_list_input.CreateFirewallDomainListInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["global_resolver_id"] = global_resolver_id
+        input_: capo_route53globalresolver.types.create_firewall_domain_list_input.CreateFirewallDomainListInput = {
+            "global_resolver_id": global_resolver_id,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
-        input_["name"] = name
         if tags is not None:
             input_["tags"] = tags
 
@@ -492,6 +509,7 @@ class AsyncFirewallDomainList:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -530,14 +548,16 @@ class AsyncFirewallDomainList:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_firewall_domain_list_input.GetFirewallDomainListInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
+        input_: capo_route53globalresolver.types.get_firewall_domain_list_input.GetFirewallDomainListInput = {
+            "firewall_domain_list_id": firewall_domain_list_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -577,14 +597,16 @@ class AsyncFirewallDomainList:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.delete_firewall_domain_list_input.DeleteFirewallDomainListInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
+        input_: capo_route53globalresolver.types.delete_firewall_domain_list_input.DeleteFirewallDomainListInput = {
+            "firewall_domain_list_id": firewall_domain_list_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -629,7 +651,7 @@ class AsyncFirewallDomainList:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_firewall_domain_lists_input.ListFirewallDomainListsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_firewall_domain_lists_input.ListFirewallDomainListsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -642,6 +664,7 @@ class AsyncFirewallDomainList:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_firewall_domains(
@@ -686,16 +709,18 @@ class AsyncFirewallDomainList:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.import_firewall_domains_input.ImportFirewallDomainsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_file_url"] = domain_file_url
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
-        input_["operation"] = operation
+        input_: capo_route53globalresolver.types.import_firewall_domains_input.ImportFirewallDomainsInput = {
+            "domain_file_url": domain_file_url,
+            "firewall_domain_list_id": firewall_domain_list_id,
+            "operation": operation,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_firewall_domains(
@@ -738,18 +763,20 @@ class AsyncFirewallDomainList:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_firewall_domains_input.ListFirewallDomainsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_firewall_domains_input.ListFirewallDomainsInput = {
+            "firewall_domain_list_id": firewall_domain_list_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_firewall_domains(
@@ -794,14 +821,16 @@ class AsyncFirewallDomainList:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_firewall_domains_input.UpdateFirewallDomainsInput = {}  # type: ignore[typeddict-item]
-        input_["domains"] = domains
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
-        input_["operation"] = operation
+        input_: capo_route53globalresolver.types.update_firewall_domains_input.UpdateFirewallDomainsInput = {
+            "domains": domains,
+            "firewall_domain_list_id": firewall_domain_list_id,
+            "operation": operation,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

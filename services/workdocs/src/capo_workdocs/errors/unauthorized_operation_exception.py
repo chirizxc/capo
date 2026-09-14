@@ -28,9 +28,9 @@ def serialize_json(value: UnauthorizedOperationException_) -> dict:
 
 def deserialize_json(data: dict) -> UnauthorizedOperationException_:
     out: UnauthorizedOperationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     return out
 
@@ -40,15 +40,20 @@ class UnauthorizedOperationException(ServiceError):
 
     code: str | None = "UnauthorizedOperationException"
 
-    def __init__(self, data: UnauthorizedOperationException_):
+    def __init__(
+        self, data: UnauthorizedOperationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnauthorizedOperationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UnauthorizedOperationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UnauthorizedOperationException":
+        return cls(deserialize_json(data), message)

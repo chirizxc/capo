@@ -94,17 +94,18 @@ class SourceLocationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_source_location_request.CreateSourceLocationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.create_source_location_request.CreateSourceLocationRequest = {
+            "http_configuration": http_configuration,
+            "source_location_name": source_location_name,
+        }
         if access_configuration is not None:
             input_["access_configuration"] = access_configuration
         if default_segment_delivery_configuration is not None:
             input_["default_segment_delivery_configuration"] = (
                 default_segment_delivery_configuration
             )
-        input_["http_configuration"] = http_configuration
         if segment_delivery_configurations is not None:
             input_["segment_delivery_configurations"] = segment_delivery_configurations
-        input_["source_location_name"] = source_location_name
         if tags is not None:
             input_["tags"] = tags
 
@@ -113,6 +114,7 @@ class SourceLocationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -145,14 +147,16 @@ class SourceLocationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.describe_source_location_request.DescribeSourceLocationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.describe_source_location_request.DescribeSourceLocationRequest = {
+            "source_location_name": source_location_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -199,23 +203,25 @@ class SourceLocationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.update_source_location_request.UpdateSourceLocationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.update_source_location_request.UpdateSourceLocationRequest = {
+            "http_configuration": http_configuration,
+            "source_location_name": source_location_name,
+        }
         if access_configuration is not None:
             input_["access_configuration"] = access_configuration
         if default_segment_delivery_configuration is not None:
             input_["default_segment_delivery_configuration"] = (
                 default_segment_delivery_configuration
             )
-        input_["http_configuration"] = http_configuration
         if segment_delivery_configurations is not None:
             input_["segment_delivery_configurations"] = segment_delivery_configurations
-        input_["source_location_name"] = source_location_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -248,14 +254,16 @@ class SourceLocationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_source_location_request.DeleteSourceLocationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.delete_source_location_request.DeleteSourceLocationRequest = {
+            "source_location_name": source_location_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -290,7 +298,7 @@ class SourceLocationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_source_locations_request.ListSourceLocationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_source_locations_request.ListSourceLocationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -301,6 +309,7 @@ class SourceLocationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -357,17 +366,18 @@ class AsyncSourceLocationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_source_location_request.CreateSourceLocationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.create_source_location_request.CreateSourceLocationRequest = {
+            "http_configuration": http_configuration,
+            "source_location_name": source_location_name,
+        }
         if access_configuration is not None:
             input_["access_configuration"] = access_configuration
         if default_segment_delivery_configuration is not None:
             input_["default_segment_delivery_configuration"] = (
                 default_segment_delivery_configuration
             )
-        input_["http_configuration"] = http_configuration
         if segment_delivery_configurations is not None:
             input_["segment_delivery_configurations"] = segment_delivery_configurations
-        input_["source_location_name"] = source_location_name
         if tags is not None:
             input_["tags"] = tags
 
@@ -376,6 +386,7 @@ class AsyncSourceLocationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -409,14 +420,16 @@ class AsyncSourceLocationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.describe_source_location_request.DescribeSourceLocationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.describe_source_location_request.DescribeSourceLocationRequest = {
+            "source_location_name": source_location_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -464,23 +477,25 @@ class AsyncSourceLocationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.update_source_location_request.UpdateSourceLocationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.update_source_location_request.UpdateSourceLocationRequest = {
+            "http_configuration": http_configuration,
+            "source_location_name": source_location_name,
+        }
         if access_configuration is not None:
             input_["access_configuration"] = access_configuration
         if default_segment_delivery_configuration is not None:
             input_["default_segment_delivery_configuration"] = (
                 default_segment_delivery_configuration
             )
-        input_["http_configuration"] = http_configuration
         if segment_delivery_configurations is not None:
             input_["segment_delivery_configurations"] = segment_delivery_configurations
-        input_["source_location_name"] = source_location_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -514,14 +529,16 @@ class AsyncSourceLocationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_source_location_request.DeleteSourceLocationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.delete_source_location_request.DeleteSourceLocationRequest = {
+            "source_location_name": source_location_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -557,7 +574,7 @@ class AsyncSourceLocationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_source_locations_request.ListSourceLocationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_source_locations_request.ListSourceLocationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -568,4 +585,5 @@ class AsyncSourceLocationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

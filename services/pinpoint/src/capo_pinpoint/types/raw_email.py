@@ -25,7 +25,7 @@ def serialize_json(value: RawEmail) -> dict:
 
 def deserialize_json(data: dict) -> RawEmail:
     out: RawEmail = {}  # type: ignore[typeddict-item]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_pinpoint.types.__blob
 
         out["data"] = capo_pinpoint.types.__blob.deserialize_json(data["Data"])

@@ -22,11 +22,11 @@ def serialize_json(value: LessThanExpression) -> dict:
 
 def deserialize_json(data: dict) -> LessThanExpression:
     out: LessThanExpression = {}  # type: ignore[typeddict-item]
-    if "columnName" in data:
+    if data.get("columnName") is not None:
         out["column_name"] = data["columnName"]
     else:
         raise DeserializationError("LessThanExpression.column_name required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("LessThanExpression.value required")

@@ -45,7 +45,7 @@ def serialize_json(value: ListEntitySecurityProfilesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListEntitySecurityProfilesRequest:
     out: ListEntitySecurityProfilesRequest = {}  # type: ignore[typeddict-item]
-    if "EntityType" in data:
+    if data.get("EntityType") is not None:
         import capo_connect.types.entity_type
 
         out["entity_type"] = capo_connect.types.entity_type.deserialize_json(
@@ -55,14 +55,14 @@ def deserialize_json(data: dict) -> ListEntitySecurityProfilesRequest:
         raise DeserializationError(
             "ListEntitySecurityProfilesRequest.entity_type required"
         )
-    if "EntityArn" in data:
+    if data.get("EntityArn") is not None:
         out["entity_arn"] = data["EntityArn"]
     else:
         raise DeserializationError(
             "ListEntitySecurityProfilesRequest.entity_arn required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

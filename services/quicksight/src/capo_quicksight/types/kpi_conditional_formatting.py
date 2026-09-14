@@ -31,7 +31,7 @@ def serialize_json(value: KPIConditionalFormatting) -> dict:
 
 def deserialize_json(data: dict) -> KPIConditionalFormatting:
     out: KPIConditionalFormatting = {}  # type: ignore[typeddict-item]
-    if "ConditionalFormattingOptions" in data:
+    if data.get("ConditionalFormattingOptions") is not None:
         import capo_quicksight.types.kpi_conditional_formatting_option_list
 
         out["conditional_formatting_options"] = (

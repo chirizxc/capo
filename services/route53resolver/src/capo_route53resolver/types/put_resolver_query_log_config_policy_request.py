@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: PutResolverQueryLogConfigPolicyRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> PutResolverQueryLogConfigPolicyRequest:
     out: PutResolverQueryLogConfigPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError(
             "PutResolverQueryLogConfigPolicyRequest.arn required"
         )
-    if "ResolverQueryLogConfigPolicy" in data:
+    if data.get("ResolverQueryLogConfigPolicy") is not None:
         out["resolver_query_log_config_policy"] = data["ResolverQueryLogConfigPolicy"]
     else:
         raise DeserializationError(

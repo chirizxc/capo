@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: BackupRestoring_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BackupRestoring_:
     out: BackupRestoring_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
     return out
 
@@ -41,15 +41,18 @@ class BackupRestoring(ServiceError):
 
     code: str | None = "BackupRestoring"
 
-    def __init__(self, data: BackupRestoring_):
+    def __init__(self, data: BackupRestoring_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="BackupRestoring",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "BackupRestoring":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "BackupRestoring":
+        return cls(deserialize_aws_json_1_1(data), message)

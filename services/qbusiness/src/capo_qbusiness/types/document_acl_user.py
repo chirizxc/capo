@@ -30,9 +30,9 @@ def serialize_json(value: DocumentAclUser) -> dict:
 
 def deserialize_json(data: dict) -> DocumentAclUser:
     out: DocumentAclUser = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.membership_type
 
         out["type"] = capo_qbusiness.types.membership_type.deserialize_json(

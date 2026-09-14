@@ -36,7 +36,7 @@ def serialize_json(value: ListTestSetRecordsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTestSetRecordsResponse:
     out: ListTestSetRecordsResponse = {}  # type: ignore[typeddict-item]
-    if "testSetRecords" in data:
+    if data.get("testSetRecords") is not None:
         import capo_lex_models_v2.types.test_set_turn_record_list
 
         out["test_set_records"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListTestSetRecordsResponse:
                 data["testSetRecords"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

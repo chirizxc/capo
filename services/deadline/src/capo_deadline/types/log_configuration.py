@@ -47,22 +47,22 @@ def serialize_json(value: LogConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogConfiguration:
     out: LogConfiguration = {}  # type: ignore[typeddict-item]
-    if "logDriver" in data:
+    if data.get("logDriver") is not None:
         out["log_driver"] = data["logDriver"]
     else:
         raise DeserializationError("LogConfiguration.log_driver required")
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_deadline.types.log_options
 
         out["options"] = capo_deadline.types.log_options.deserialize_json(
             data["options"]
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_deadline.types.log_parameters
 
         out["parameters"] = capo_deadline.types.log_parameters.deserialize_json(
             data["parameters"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
     return out

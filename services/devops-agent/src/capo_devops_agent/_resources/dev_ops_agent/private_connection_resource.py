@@ -85,9 +85,10 @@ class PrivateConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.create_private_connection_input.CreatePrivateConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["mode"] = mode
+        input_: capo_devops_agent.types.create_private_connection_input.CreatePrivateConnectionInput = {
+            "name": name,
+            "mode": mode,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -96,6 +97,7 @@ class PrivateConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -137,14 +139,16 @@ class PrivateConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.describe_private_connection_input.DescribePrivateConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_devops_agent.types.describe_private_connection_input.DescribePrivateConnectionInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -186,14 +190,16 @@ class PrivateConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.delete_private_connection_input.DeletePrivateConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_devops_agent.types.delete_private_connection_input.DeletePrivateConnectionInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -229,13 +235,14 @@ class PrivateConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_private_connections_input.ListPrivateConnectionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_agent.types.list_private_connections_input.ListPrivateConnectionsInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_private_connection_certificate(
@@ -279,15 +286,17 @@ class PrivateConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_private_connection_certificate_input.UpdatePrivateConnectionCertificateInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["certificate"] = certificate
+        input_: capo_devops_agent.types.update_private_connection_certificate_input.UpdatePrivateConnectionCertificateInput = {
+            "name": name,
+            "certificate": certificate,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -339,9 +348,10 @@ class AsyncPrivateConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.create_private_connection_input.CreatePrivateConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["mode"] = mode
+        input_: capo_devops_agent.types.create_private_connection_input.CreatePrivateConnectionInput = {
+            "name": name,
+            "mode": mode,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -350,6 +360,7 @@ class AsyncPrivateConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -392,14 +403,16 @@ class AsyncPrivateConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.describe_private_connection_input.DescribePrivateConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_devops_agent.types.describe_private_connection_input.DescribePrivateConnectionInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -442,14 +455,16 @@ class AsyncPrivateConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.delete_private_connection_input.DeletePrivateConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_devops_agent.types.delete_private_connection_input.DeletePrivateConnectionInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -486,13 +501,14 @@ class AsyncPrivateConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_private_connections_input.ListPrivateConnectionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_agent.types.list_private_connections_input.ListPrivateConnectionsInput = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_private_connection_certificate(
@@ -537,13 +553,15 @@ class AsyncPrivateConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_private_connection_certificate_input.UpdatePrivateConnectionCertificateInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["certificate"] = certificate
+        input_: capo_devops_agent.types.update_private_connection_certificate_input.UpdatePrivateConnectionCertificateInput = {
+            "name": name,
+            "certificate": certificate,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

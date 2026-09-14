@@ -39,11 +39,11 @@ def serialize_json(value: JobWatermark) -> dict:
 
 def deserialize_json(data: dict) -> JobWatermark:
     out: JobWatermark = {}  # type: ignore[typeddict-item]
-    if "PresetWatermarkId" in data:
+    if data.get("PresetWatermarkId") is not None:
         out["preset_watermark_id"] = data["PresetWatermarkId"]
-    if "InputKey" in data:
+    if data.get("InputKey") is not None:
         out["input_key"] = data["InputKey"]
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_elastic_transcoder.types.encryption
 
         out["encryption"] = capo_elastic_transcoder.types.encryption.deserialize_json(

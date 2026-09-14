@@ -62,23 +62,23 @@ def serialize_aws_json_1_1(value: Disk) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Disk:
     out: Disk = {}  # type: ignore[typeddict-item]
-    if "DiskId" in data:
+    if data.get("DiskId") is not None:
         out["disk_id"] = data["DiskId"]
-    if "DiskPath" in data:
+    if data.get("DiskPath") is not None:
         out["disk_path"] = data["DiskPath"]
-    if "DiskNode" in data:
+    if data.get("DiskNode") is not None:
         out["disk_node"] = data["DiskNode"]
-    if "DiskStatus" in data:
+    if data.get("DiskStatus") is not None:
         out["disk_status"] = data["DiskStatus"]
-    if "DiskSizeInBytes" in data:
+    if data.get("DiskSizeInBytes") is not None:
         out["disk_size_in_bytes"] = data["DiskSizeInBytes"]
     else:
         out["disk_size_in_bytes"] = 0
-    if "DiskAllocationType" in data:
+    if data.get("DiskAllocationType") is not None:
         out["disk_allocation_type"] = data["DiskAllocationType"]
-    if "DiskAllocationResource" in data:
+    if data.get("DiskAllocationResource") is not None:
         out["disk_allocation_resource"] = data["DiskAllocationResource"]
-    if "DiskAttributeList" in data:
+    if data.get("DiskAttributeList") is not None:
         import capo_storage_gateway.types.disk_attribute_list
 
         out["disk_attribute_list"] = (

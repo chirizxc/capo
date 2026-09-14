@@ -37,15 +37,15 @@ def serialize_json(value: RouteMatrixEntry) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixEntry:
     out: RouteMatrixEntry = {}  # type: ignore[typeddict-item]
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_geo_routes.types.route_matrix_error_code
 
         out["error"] = capo_geo_routes.types.route_matrix_error_code.deserialize_json(

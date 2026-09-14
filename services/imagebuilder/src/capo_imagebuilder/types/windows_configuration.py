@@ -24,7 +24,7 @@ def serialize_json(value: WindowsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WindowsConfiguration:
     out: WindowsConfiguration = {}  # type: ignore[typeddict-item]
-    if "imageIndex" in data:
+    if data.get("imageIndex") is not None:
         out["image_index"] = data["imageIndex"]
     else:
         raise DeserializationError("WindowsConfiguration.image_index required")

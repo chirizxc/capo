@@ -60,17 +60,17 @@ def serialize_json(value: CreateServiceNetworkServiceAssociationResponse) -> dic
 
 def deserialize_json(data: dict) -> CreateServiceNetworkServiceAssociationResponse:
     out: CreateServiceNetworkServiceAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "dnsEntry" in data:
+    if data.get("dnsEntry") is not None:
         import capo_vpc_lattice.types.dns_entry
 
         out["dns_entry"] = capo_vpc_lattice.types.dns_entry.deserialize_json(

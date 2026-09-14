@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> IntegrationResourcePropertyFilterLis
 
     out: IntegrationResourcePropertyFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.integration_resource_property_filter.deserialize_aws_json_1_1(
                 item

@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: GetMLTaskRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMLTaskRunRequest:
     out: GetMLTaskRunRequest = {}  # type: ignore[typeddict-item]
-    if "TransformId" in data:
+    if data.get("TransformId") is not None:
         out["transform_id"] = data["TransformId"]
     else:
         raise DeserializationError("GetMLTaskRunRequest.transform_id required")
-    if "TaskRunId" in data:
+    if data.get("TaskRunId") is not None:
         out["task_run_id"] = data["TaskRunId"]
     else:
         raise DeserializationError("GetMLTaskRunRequest.task_run_id required")

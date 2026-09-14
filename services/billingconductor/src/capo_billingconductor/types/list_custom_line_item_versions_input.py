@@ -49,15 +49,15 @@ def serialize_json(value: ListCustomLineItemVersionsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListCustomLineItemVersionsInput:
     out: ListCustomLineItemVersionsInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ListCustomLineItemVersionsInput.arn required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_billingconductor.types.list_custom_line_item_versions_filter
 
         out["filters"] = (

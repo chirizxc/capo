@@ -27,8 +27,8 @@ def serialize_json(value: NodeFabricAttributes) -> dict:
 
 def deserialize_json(data: dict) -> NodeFabricAttributes:
     out: NodeFabricAttributes = {}  # type: ignore[typeddict-item]
-    if "PeerEndpoint" in data:
+    if data.get("PeerEndpoint") is not None:
         out["peer_endpoint"] = data["PeerEndpoint"]
-    if "PeerEventEndpoint" in data:
+    if data.get("PeerEventEndpoint") is not None:
         out["peer_event_endpoint"] = data["PeerEventEndpoint"]
     return out

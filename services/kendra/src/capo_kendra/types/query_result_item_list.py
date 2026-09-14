@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> QueryResultItemList:
 
     out: QueryResultItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kendra.types.query_result_item.deserialize_aws_json_1_1(item))
     return out

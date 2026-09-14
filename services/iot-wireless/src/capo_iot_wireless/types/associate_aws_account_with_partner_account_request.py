@@ -42,7 +42,7 @@ def serialize_json(value: AssociateAwsAccountWithPartnerAccountRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateAwsAccountWithPartnerAccountRequest:
     out: AssociateAwsAccountWithPartnerAccountRequest = {}  # type: ignore[typeddict-item]
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_account_info
 
         out["sidewalk"] = (
@@ -54,9 +54,9 @@ def deserialize_json(data: dict) -> AssociateAwsAccountWithPartnerAccountRequest
         raise DeserializationError(
             "AssociateAwsAccountWithPartnerAccountRequest.sidewalk required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_wireless.types.tag_list
 
         out["tags"] = capo_iot_wireless.types.tag_list.deserialize_json(data["Tags"])

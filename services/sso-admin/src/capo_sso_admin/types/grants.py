@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Grants:
 
     out: Grants = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sso_admin.types.grant_item.deserialize_aws_json_1_1(item))
     return out

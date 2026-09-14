@@ -50,7 +50,7 @@ def serialize_json(value: NetworkOriginConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> NetworkOriginConfiguration:
-    if "vpcConfiguration" in data:
+    if data.get("vpcConfiguration") is not None:
         import capo_accessanalyzer.types.vpc_configuration
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> NetworkOriginConfiguration:
                 data["vpcConfiguration"]
             )
         }
-    elif "internetConfiguration" in data:
+    elif data.get("internetConfiguration") is not None:
         import capo_accessanalyzer.types.internet_configuration
 
         return {

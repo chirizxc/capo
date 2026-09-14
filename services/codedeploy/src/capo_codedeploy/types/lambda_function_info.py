@@ -39,22 +39,31 @@ def serialize_aws_json_1_1(value: LambdaFunctionInfo) -> dict:
         out["currentVersion"] = value["current_version"]
     if "target_version" in value:
         out["targetVersion"] = value["target_version"]
-    out["targetVersionWeight"] = value.get("target_version_weight", 0)
+    out["targetVersionWeight"] = (
+        "NaN"
+        if value.get("target_version_weight", 0)
+        != value.get("target_version_weight", 0)
+        else "Infinity"
+        if value.get("target_version_weight", 0) == float("inf")
+        else "-Infinity"
+        if value.get("target_version_weight", 0) == float("-inf")
+        else value.get("target_version_weight", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> LambdaFunctionInfo:
     out: LambdaFunctionInfo = {}  # type: ignore[typeddict-item]
-    if "functionName" in data:
+    if data.get("functionName") is not None:
         out["function_name"] = data["functionName"]
-    if "functionAlias" in data:
+    if data.get("functionAlias") is not None:
         out["function_alias"] = data["functionAlias"]
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "targetVersion" in data:
+    if data.get("targetVersion") is not None:
         out["target_version"] = data["targetVersion"]
-    if "targetVersionWeight" in data:
-        out["target_version_weight"] = data["targetVersionWeight"]
+    if data.get("targetVersionWeight") is not None:
+        out["target_version_weight"] = float(data["targetVersionWeight"])
     else:
         out["target_version_weight"] = 0
     return out

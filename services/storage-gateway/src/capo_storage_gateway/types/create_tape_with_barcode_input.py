@@ -60,31 +60,31 @@ def serialize_aws_json_1_1(value: CreateTapeWithBarcodeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTapeWithBarcodeInput:
     out: CreateTapeWithBarcodeInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("CreateTapeWithBarcodeInput.gateway_arn required")
-    if "TapeSizeInBytes" in data:
+    if data.get("TapeSizeInBytes") is not None:
         out["tape_size_in_bytes"] = data["TapeSizeInBytes"]
     else:
         raise DeserializationError(
             "CreateTapeWithBarcodeInput.tape_size_in_bytes required"
         )
-    if "TapeBarcode" in data:
+    if data.get("TapeBarcode") is not None:
         out["tape_barcode"] = data["TapeBarcode"]
     else:
         raise DeserializationError("CreateTapeWithBarcodeInput.tape_barcode required")
-    if "KMSEncrypted" in data:
+    if data.get("KMSEncrypted") is not None:
         out["kms_encrypted"] = data["KMSEncrypted"]
-    if "KMSKey" in data:
+    if data.get("KMSKey") is not None:
         out["kms_key"] = data["KMSKey"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "Worm" in data:
+    if data.get("Worm") is not None:
         out["worm"] = data["Worm"]
     else:
         out["worm"] = False
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(

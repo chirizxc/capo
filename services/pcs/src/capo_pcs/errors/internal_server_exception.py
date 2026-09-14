@@ -18,7 +18,7 @@ def serialize_aws_json_1_0(value: InternalServerException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InternalServerException_:
     out: InternalServerException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("InternalServerException_.message required")
@@ -30,15 +30,18 @@ class InternalServerException(ServiceError):
 
     code: str | None = "InternalServerException"
 
-    def __init__(self, data: InternalServerException_):
+    def __init__(self, data: InternalServerException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=True,
             code="InternalServerException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "InternalServerException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "InternalServerException":
+        return cls(deserialize_aws_json_1_0(data), message)

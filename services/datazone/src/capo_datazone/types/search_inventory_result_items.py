@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SearchInventoryResultItems:
 
     out: SearchInventoryResultItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.search_inventory_result_item.deserialize_json(item)
         )

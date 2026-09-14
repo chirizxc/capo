@@ -46,9 +46,9 @@ def serialize_aws_json_1_1(value: ListedAccess) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListedAccess:
     out: ListedAccess = {}  # type: ignore[typeddict-item]
-    if "HomeDirectory" in data:
+    if data.get("HomeDirectory") is not None:
         out["home_directory"] = data["HomeDirectory"]
-    if "HomeDirectoryType" in data:
+    if data.get("HomeDirectoryType") is not None:
         import capo_transfer.types.home_directory_type
 
         out["home_directory_type"] = (
@@ -56,8 +56,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListedAccess:
                 data["HomeDirectoryType"]
             )
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "ExternalId" in data:
+    if data.get("ExternalId") is not None:
         out["external_id"] = data["ExternalId"]
     return out

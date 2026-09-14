@@ -36,19 +36,19 @@ def serialize_aws_json_1_1(value: UpdateEventLabelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEventLabelRequest:
     out: UpdateEventLabelRequest = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("UpdateEventLabelRequest.event_id required")
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
     else:
         raise DeserializationError("UpdateEventLabelRequest.event_type_name required")
-    if "assignedLabel" in data:
+    if data.get("assignedLabel") is not None:
         out["assigned_label"] = data["assignedLabel"]
     else:
         raise DeserializationError("UpdateEventLabelRequest.assigned_label required")
-    if "labelTimestamp" in data:
+    if data.get("labelTimestamp") is not None:
         out["label_timestamp"] = data["labelTimestamp"]
     else:
         raise DeserializationError("UpdateEventLabelRequest.label_timestamp required")

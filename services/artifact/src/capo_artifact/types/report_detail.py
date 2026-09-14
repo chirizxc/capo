@@ -164,31 +164,31 @@ def serialize_json(value: ReportDetail) -> dict:
 
 def deserialize_json(data: dict) -> ReportDetail:
     out: ReportDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "periodStart" in data:
+    if data.get("periodStart") is not None:
         import capo_artifact.types.timestamp_attribute
 
         out["period_start"] = capo_artifact.types.timestamp_attribute.deserialize_json(
             data["periodStart"]
         )
-    if "periodEnd" in data:
+    if data.get("periodEnd") is not None:
         import capo_artifact.types.timestamp_attribute
 
         out["period_end"] = capo_artifact.types.timestamp_attribute.deserialize_json(
             data["periodEnd"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_artifact.types.timestamp_attribute
 
         out["created_at"] = capo_artifact.types.timestamp_attribute.deserialize_json(
             data["createdAt"]
         )
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_artifact.types.timestamp_attribute
 
         out["last_modified_at"] = (
@@ -196,46 +196,46 @@ def deserialize_json(data: dict) -> ReportDetail:
                 data["lastModifiedAt"]
             )
         )
-    if "deletedAt" in data:
+    if data.get("deletedAt") is not None:
         import capo_artifact.types.timestamp_attribute
 
         out["deleted_at"] = capo_artifact.types.timestamp_attribute.deserialize_json(
             data["deletedAt"]
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_artifact.types.published_state
 
         out["state"] = capo_artifact.types.published_state.deserialize_json(
             data["state"]
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "series" in data:
+    if data.get("series") is not None:
         out["series"] = data["series"]
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
-    if "companyName" in data:
+    if data.get("companyName") is not None:
         out["company_name"] = data["companyName"]
-    if "productName" in data:
+    if data.get("productName") is not None:
         out["product_name"] = data["productName"]
-    if "termArn" in data:
+    if data.get("termArn") is not None:
         out["term_arn"] = data["termArn"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "acceptanceType" in data:
+    if data.get("acceptanceType") is not None:
         import capo_artifact.types.acceptance_type
 
         out["acceptance_type"] = capo_artifact.types.acceptance_type.deserialize_json(
             data["acceptanceType"]
         )
-    if "sequenceNumber" in data:
+    if data.get("sequenceNumber") is not None:
         out["sequence_number"] = data["sequenceNumber"]
-    if "uploadState" in data:
+    if data.get("uploadState") is not None:
         import capo_artifact.types.upload_state
 
         out["upload_state"] = capo_artifact.types.upload_state.deserialize_json(
             data["uploadState"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteWorkspaceImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWorkspaceImageRequest:
     out: DeleteWorkspaceImageRequest = {}  # type: ignore[typeddict-item]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
     else:
         raise DeserializationError("DeleteWorkspaceImageRequest.image_id required")

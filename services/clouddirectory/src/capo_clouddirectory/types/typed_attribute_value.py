@@ -76,9 +76,9 @@ def serialize_json(value: TypedAttributeValue) -> dict:
 
 
 def deserialize_json(data: dict) -> TypedAttributeValue:
-    if "StringValue" in data:
+    if data.get("StringValue") is not None:
         return {"StringValue": data["StringValue"]}
-    elif "BinaryValue" in data:
+    elif data.get("BinaryValue") is not None:
         import capo_clouddirectory.types.binary_attribute_value
 
         return {
@@ -86,11 +86,11 @@ def deserialize_json(data: dict) -> TypedAttributeValue:
                 data["BinaryValue"]
             )
         }
-    elif "BooleanValue" in data:
+    elif data.get("BooleanValue") is not None:
         return {"BooleanValue": data["BooleanValue"]}
-    elif "NumberValue" in data:
+    elif data.get("NumberValue") is not None:
         return {"NumberValue": data["NumberValue"]}
-    elif "DatetimeValue" in data:
+    elif data.get("DatetimeValue") is not None:
         import capo_clouddirectory.types.datetime_attribute_value
 
         return {

@@ -23,6 +23,6 @@ def serialize_json(value: JourneyPushMessage) -> dict:
 
 def deserialize_json(data: dict) -> JourneyPushMessage:
     out: JourneyPushMessage = {}  # type: ignore[typeddict-item]
-    if "TimeToLive" in data:
+    if data.get("TimeToLive") is not None:
         out["time_to_live"] = data["TimeToLive"]
     return out

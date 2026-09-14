@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: CustomRoutingListener) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomRoutingListener:
     out: CustomRoutingListener = {}  # type: ignore[typeddict-item]
-    if "ListenerArn" in data:
+    if data.get("ListenerArn") is not None:
         out["listener_arn"] = data["ListenerArn"]
-    if "PortRanges" in data:
+    if data.get("PortRanges") is not None:
         import capo_global_accelerator.types.port_ranges
 
         out["port_ranges"] = (

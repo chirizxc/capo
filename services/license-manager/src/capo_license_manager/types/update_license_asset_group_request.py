@@ -91,11 +91,11 @@ def serialize_aws_json_1_1(value: UpdateLicenseAssetGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseAssetGroupRequest:
     out: UpdateLicenseAssetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LicenseAssetGroupConfigurations" in data:
+    if data.get("LicenseAssetGroupConfigurations") is not None:
         import capo_license_manager.types.license_asset_group_configuration_list
 
         out["license_asset_group_configurations"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseAssetGroupRequest:
                 data["LicenseAssetGroupConfigurations"]
             )
         )
-    if "AssociatedLicenseAssetRulesetARNs" in data:
+    if data.get("AssociatedLicenseAssetRulesetARNs") is not None:
         import capo_license_manager.types.license_asset_ruleset_arn_list
 
         out["associated_license_asset_ruleset_ar_ns"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseAssetGroupRequest:
         raise DeserializationError(
             "UpdateLicenseAssetGroupRequest.associated_license_asset_ruleset_ar_ns required"
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_license_manager.types.license_asset_group_property_list
 
         out["properties"] = (
@@ -123,13 +123,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseAssetGroupRequest:
                 data["Properties"]
             )
         )
-    if "LicenseAssetGroupArn" in data:
+    if data.get("LicenseAssetGroupArn") is not None:
         out["license_asset_group_arn"] = data["LicenseAssetGroupArn"]
     else:
         raise DeserializationError(
             "UpdateLicenseAssetGroupRequest.license_asset_group_arn required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_license_manager.types.license_asset_group_status
 
         out["status"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseAssetGroupRequest:
                 data["Status"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(

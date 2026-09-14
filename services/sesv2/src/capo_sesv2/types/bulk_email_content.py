@@ -25,7 +25,7 @@ def serialize_json(value: BulkEmailContent) -> dict:
 
 def deserialize_json(data: dict) -> BulkEmailContent:
     out: BulkEmailContent = {}  # type: ignore[typeddict-item]
-    if "Template" in data:
+    if data.get("Template") is not None:
         import capo_sesv2.types.template
 
         out["template"] = capo_sesv2.types.template.deserialize_json(data["Template"])

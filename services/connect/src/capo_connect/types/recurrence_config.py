@@ -28,7 +28,7 @@ def serialize_json(value: RecurrenceConfig) -> dict:
 
 def deserialize_json(data: dict) -> RecurrenceConfig:
     out: RecurrenceConfig = {}  # type: ignore[typeddict-item]
-    if "RecurrencePattern" in data:
+    if data.get("RecurrencePattern") is not None:
         import capo_connect.types.recurrence_pattern
 
         out["recurrence_pattern"] = (

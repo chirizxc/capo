@@ -31,12 +31,12 @@ def serialize_json(value: ListLibraryItemsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListLibraryItemsOutput:
     out: ListLibraryItemsOutput = {}  # type: ignore[typeddict-item]
-    if "libraryItems" in data:
+    if data.get("libraryItems") is not None:
         import capo_qapps.types.library_item_list
 
         out["library_items"] = capo_qapps.types.library_item_list.deserialize_json(
             data["libraryItems"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

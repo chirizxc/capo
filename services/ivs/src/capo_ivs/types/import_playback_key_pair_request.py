@@ -38,15 +38,15 @@ def serialize_json(value: ImportPlaybackKeyPairRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportPlaybackKeyPairRequest:
     out: ImportPlaybackKeyPairRequest = {}  # type: ignore[typeddict-item]
-    if "publicKeyMaterial" in data:
+    if data.get("publicKeyMaterial") is not None:
         out["public_key_material"] = data["publicKeyMaterial"]
     else:
         raise DeserializationError(
             "ImportPlaybackKeyPairRequest.public_key_material required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])

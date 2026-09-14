@@ -25,6 +25,8 @@ def deserialize_aws_json_1_0(data: list) -> FilterList:
 
     out: FilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer_automation.types.filter.deserialize_aws_json_1_0(
                 item

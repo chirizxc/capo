@@ -49,16 +49,16 @@ def serialize_aws_json_1_0(value: SamlConfigOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SamlConfigOptions:
     out: SamlConfigOptions = {}  # type: ignore[typeddict-item]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
     else:
         raise DeserializationError("SamlConfigOptions.metadata required")
-    if "userAttribute" in data:
+    if data.get("userAttribute") is not None:
         out["user_attribute"] = data["userAttribute"]
-    if "groupAttribute" in data:
+    if data.get("groupAttribute") is not None:
         out["group_attribute"] = data["groupAttribute"]
-    if "openSearchServerlessEntityId" in data:
+    if data.get("openSearchServerlessEntityId") is not None:
         out["open_search_serverless_entity_id"] = data["openSearchServerlessEntityId"]
-    if "sessionTimeout" in data:
+    if data.get("sessionTimeout") is not None:
         out["session_timeout"] = data["sessionTimeout"]
     return out

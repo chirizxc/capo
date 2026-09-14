@@ -75,23 +75,23 @@ def serialize_json(value: ChimeWebhookConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ChimeWebhookConfiguration:
     out: ChimeWebhookConfiguration = {}  # type: ignore[typeddict-item]
-    if "WebhookDescription" in data:
+    if data.get("WebhookDescription") is not None:
         out["webhook_description"] = data["WebhookDescription"]
     else:
         raise DeserializationError(
             "ChimeWebhookConfiguration.webhook_description required"
         )
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
     else:
         raise DeserializationError(
             "ChimeWebhookConfiguration.chat_configuration_arn required"
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("ChimeWebhookConfiguration.iam_role_arn required")
-    if "SnsTopicArns" in data:
+    if data.get("SnsTopicArns") is not None:
         import capo_chatbot.types.sns_topic_arn_list
 
         out["sns_topic_arns"] = capo_chatbot.types.sns_topic_arn_list.deserialize_json(
@@ -99,16 +99,16 @@ def deserialize_json(data: dict) -> ChimeWebhookConfiguration:
         )
     else:
         raise DeserializationError("ChimeWebhookConfiguration.sns_topic_arns required")
-    if "ConfigurationName" in data:
+    if data.get("ConfigurationName") is not None:
         out["configuration_name"] = data["ConfigurationName"]
-    if "LoggingLevel" in data:
+    if data.get("LoggingLevel") is not None:
         out["logging_level"] = data["LoggingLevel"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chatbot.types.tags
 
         out["tags"] = capo_chatbot.types.tags.deserialize_json(data["Tags"])
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
     return out

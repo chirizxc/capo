@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsElbLoadBalancerBackendServerDescriptions:
 
     out: AwsElbLoadBalancerBackendServerDescriptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_elb_load_balancer_backend_server_description.deserialize_json(
                 item

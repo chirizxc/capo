@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SlaFieldValueUnionList:
 
     out: SlaFieldValueUnionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectcases.types.field_value_union.deserialize_json(item))
     return out

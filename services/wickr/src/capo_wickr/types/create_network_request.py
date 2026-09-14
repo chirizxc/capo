@@ -40,11 +40,11 @@ def serialize_json(value: CreateNetworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNetworkRequest:
     out: CreateNetworkRequest = {}  # type: ignore[typeddict-item]
-    if "networkName" in data:
+    if data.get("networkName") is not None:
         out["network_name"] = data["networkName"]
     else:
         raise DeserializationError("CreateNetworkRequest.network_name required")
-    if "accessLevel" in data:
+    if data.get("accessLevel") is not None:
         import capo_wickr.types.access_level
 
         out["access_level"] = capo_wickr.types.access_level.deserialize_json(
@@ -52,8 +52,8 @@ def deserialize_json(data: dict) -> CreateNetworkRequest:
         )
     else:
         raise DeserializationError("CreateNetworkRequest.access_level required")
-    if "enablePremiumFreeTrial" in data:
+    if data.get("enablePremiumFreeTrial") is not None:
         out["enable_premium_free_trial"] = data["enablePremiumFreeTrial"]
-    if "encryptionKeyArn" in data:
+    if data.get("encryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["encryptionKeyArn"]
     return out

@@ -82,35 +82,35 @@ def serialize_json(value: GetSolFunctionInstanceOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSolFunctionInstanceOutput:
     out: GetSolFunctionInstanceOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetSolFunctionInstanceOutput.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetSolFunctionInstanceOutput.arn required")
-    if "nsInstanceId" in data:
+    if data.get("nsInstanceId") is not None:
         out["ns_instance_id"] = data["nsInstanceId"]
     else:
         raise DeserializationError(
             "GetSolFunctionInstanceOutput.ns_instance_id required"
         )
-    if "vnfPkgId" in data:
+    if data.get("vnfPkgId") is not None:
         out["vnf_pkg_id"] = data["vnfPkgId"]
     else:
         raise DeserializationError("GetSolFunctionInstanceOutput.vnf_pkg_id required")
-    if "vnfdId" in data:
+    if data.get("vnfdId") is not None:
         out["vnfd_id"] = data["vnfdId"]
     else:
         raise DeserializationError("GetSolFunctionInstanceOutput.vnfd_id required")
-    if "vnfProvider" in data:
+    if data.get("vnfProvider") is not None:
         out["vnf_provider"] = data["vnfProvider"]
-    if "vnfProductName" in data:
+    if data.get("vnfProductName") is not None:
         out["vnf_product_name"] = data["vnfProductName"]
-    if "vnfdVersion" in data:
+    if data.get("vnfdVersion") is not None:
         out["vnfd_version"] = data["vnfdVersion"]
-    if "instantiationState" in data:
+    if data.get("instantiationState") is not None:
         import capo_tnb.types.vnf_instantiation_state
 
         out["instantiation_state"] = (
@@ -122,13 +122,13 @@ def deserialize_json(data: dict) -> GetSolFunctionInstanceOutput:
         raise DeserializationError(
             "GetSolFunctionInstanceOutput.instantiation_state required"
         )
-    if "instantiatedVnfInfo" in data:
+    if data.get("instantiatedVnfInfo") is not None:
         import capo_tnb.types.get_sol_vnf_info
 
         out["instantiated_vnf_info"] = capo_tnb.types.get_sol_vnf_info.deserialize_json(
             data["instantiatedVnfInfo"]
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_tnb.types.get_sol_function_instance_metadata
 
         out["metadata"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> GetSolFunctionInstanceOutput:
         )
     else:
         raise DeserializationError("GetSolFunctionInstanceOutput.metadata required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_tnb.types.tag_map
 
         out["tags"] = capo_tnb.types.tag_map.deserialize_json(data["tags"])

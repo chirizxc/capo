@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> InputSourceSummaryList:
 
     out: InputSourceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehubv2.types.input_source_summary.deserialize_json(item)
         )

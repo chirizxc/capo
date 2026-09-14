@@ -31,7 +31,7 @@ def serialize_json(value: SubscriptionDefinitionVersion) -> dict:
 
 def deserialize_json(data: dict) -> SubscriptionDefinitionVersion:
     out: SubscriptionDefinitionVersion = {}  # type: ignore[typeddict-item]
-    if "Subscriptions" in data:
+    if data.get("Subscriptions") is not None:
         import capo_greengrass.types.__list_of_subscription
 
         out["subscriptions"] = (

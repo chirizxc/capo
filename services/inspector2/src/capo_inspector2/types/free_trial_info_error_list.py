@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FreeTrialInfoErrorList:
 
     out: FreeTrialInfoErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.free_trial_info_error.deserialize_json(item))
     return out

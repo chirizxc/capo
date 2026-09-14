@@ -160,7 +160,7 @@ def serialize_json(value: EngineTranscribeSettings) -> dict:
 
 def deserialize_json(data: dict) -> EngineTranscribeSettings:
     out: EngineTranscribeSettings = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_chime_sdk_meetings.types.transcribe_language_code
 
         out["language_code"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> EngineTranscribeSettings:
                 data["LanguageCode"]
             )
         )
-    if "VocabularyFilterMethod" in data:
+    if data.get("VocabularyFilterMethod") is not None:
         import capo_chime_sdk_meetings.types.transcribe_vocabulary_filter_method
 
         out["vocabulary_filter_method"] = (
@@ -176,11 +176,11 @@ def deserialize_json(data: dict) -> EngineTranscribeSettings:
                 data["VocabularyFilterMethod"]
             )
         )
-    if "VocabularyFilterName" in data:
+    if data.get("VocabularyFilterName") is not None:
         out["vocabulary_filter_name"] = data["VocabularyFilterName"]
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         import capo_chime_sdk_meetings.types.transcribe_region
 
         out["region"] = (
@@ -188,13 +188,13 @@ def deserialize_json(data: dict) -> EngineTranscribeSettings:
                 data["Region"]
             )
         )
-    if "EnablePartialResultsStabilization" in data:
+    if data.get("EnablePartialResultsStabilization") is not None:
         out["enable_partial_results_stabilization"] = data[
             "EnablePartialResultsStabilization"
         ]
     else:
         out["enable_partial_results_stabilization"] = False
-    if "PartialResultsStability" in data:
+    if data.get("PartialResultsStability") is not None:
         import capo_chime_sdk_meetings.types.transcribe_partial_results_stability
 
         out["partial_results_stability"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> EngineTranscribeSettings:
                 data["PartialResultsStability"]
             )
         )
-    if "ContentIdentificationType" in data:
+    if data.get("ContentIdentificationType") is not None:
         import capo_chime_sdk_meetings.types.transcribe_content_identification_type
 
         out["content_identification_type"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> EngineTranscribeSettings:
                 data["ContentIdentificationType"]
             )
         )
-    if "ContentRedactionType" in data:
+    if data.get("ContentRedactionType") is not None:
         import capo_chime_sdk_meetings.types.transcribe_content_redaction_type
 
         out["content_redaction_type"] = (
@@ -218,17 +218,17 @@ def deserialize_json(data: dict) -> EngineTranscribeSettings:
                 data["ContentRedactionType"]
             )
         )
-    if "PiiEntityTypes" in data:
+    if data.get("PiiEntityTypes") is not None:
         out["pii_entity_types"] = data["PiiEntityTypes"]
-    if "LanguageModelName" in data:
+    if data.get("LanguageModelName") is not None:
         out["language_model_name"] = data["LanguageModelName"]
-    if "IdentifyLanguage" in data:
+    if data.get("IdentifyLanguage") is not None:
         out["identify_language"] = data["IdentifyLanguage"]
     else:
         out["identify_language"] = False
-    if "LanguageOptions" in data:
+    if data.get("LanguageOptions") is not None:
         out["language_options"] = data["LanguageOptions"]
-    if "PreferredLanguage" in data:
+    if data.get("PreferredLanguage") is not None:
         import capo_chime_sdk_meetings.types.transcribe_language_code
 
         out["preferred_language"] = (
@@ -236,8 +236,8 @@ def deserialize_json(data: dict) -> EngineTranscribeSettings:
                 data["PreferredLanguage"]
             )
         )
-    if "VocabularyNames" in data:
+    if data.get("VocabularyNames") is not None:
         out["vocabulary_names"] = data["VocabularyNames"]
-    if "VocabularyFilterNames" in data:
+    if data.get("VocabularyFilterNames") is not None:
         out["vocabulary_filter_names"] = data["VocabularyFilterNames"]
     return out

@@ -48,15 +48,15 @@ def serialize_json(value: DeleteImageSetResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteImageSetResponse:
     out: DeleteImageSetResponse = {}  # type: ignore[typeddict-item]
-    if "datastoreId" in data:
+    if data.get("datastoreId") is not None:
         out["datastore_id"] = data["datastoreId"]
     else:
         raise DeserializationError("DeleteImageSetResponse.datastore_id required")
-    if "imageSetId" in data:
+    if data.get("imageSetId") is not None:
         out["image_set_id"] = data["imageSetId"]
     else:
         raise DeserializationError("DeleteImageSetResponse.image_set_id required")
-    if "imageSetState" in data:
+    if data.get("imageSetState") is not None:
         import capo_medical_imaging.types.image_set_state
 
         out["image_set_state"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> DeleteImageSetResponse:
         )
     else:
         raise DeserializationError("DeleteImageSetResponse.image_set_state required")
-    if "imageSetWorkflowStatus" in data:
+    if data.get("imageSetWorkflowStatus") is not None:
         import capo_medical_imaging.types.image_set_workflow_status
 
         out["image_set_workflow_status"] = (

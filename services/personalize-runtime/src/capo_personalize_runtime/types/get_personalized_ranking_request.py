@@ -75,13 +75,13 @@ def serialize_json(value: GetPersonalizedRankingRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetPersonalizedRankingRequest:
     out: GetPersonalizedRankingRequest = {}  # type: ignore[typeddict-item]
-    if "campaignArn" in data:
+    if data.get("campaignArn") is not None:
         out["campaign_arn"] = data["campaignArn"]
     else:
         raise DeserializationError(
             "GetPersonalizedRankingRequest.campaign_arn required"
         )
-    if "inputList" in data:
+    if data.get("inputList") is not None:
         import capo_personalize_runtime.types.input_list
 
         out["input_list"] = capo_personalize_runtime.types.input_list.deserialize_json(
@@ -89,19 +89,19 @@ def deserialize_json(data: dict) -> GetPersonalizedRankingRequest:
         )
     else:
         raise DeserializationError("GetPersonalizedRankingRequest.input_list required")
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError("GetPersonalizedRankingRequest.user_id required")
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_personalize_runtime.types.context
 
         out["context"] = capo_personalize_runtime.types.context.deserialize_json(
             data["context"]
         )
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
-    if "filterValues" in data:
+    if data.get("filterValues") is not None:
         import capo_personalize_runtime.types.filter_values
 
         out["filter_values"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> GetPersonalizedRankingRequest:
                 data["filterValues"]
             )
         )
-    if "metadataColumns" in data:
+    if data.get("metadataColumns") is not None:
         import capo_personalize_runtime.types.metadata_columns
 
         out["metadata_columns"] = (

@@ -33,6 +33,8 @@ def deserialize_aws_json_1_0(
 
     out: BatchCreateBillScenarioUsageModificationItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_pricing_calculator.types.batch_create_bill_scenario_usage_modification_item.deserialize_aws_json_1_0(
                 item

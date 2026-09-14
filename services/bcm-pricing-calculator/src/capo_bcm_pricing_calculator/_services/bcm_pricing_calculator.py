@@ -172,13 +172,14 @@ class BCMPricingCalculatorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.get_preferences_request.GetPreferencesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_pricing_calculator.types.get_preferences_request.GetPreferencesRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -216,14 +217,16 @@ class BCMPricingCalculatorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_bcm_pricing_calculator.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -264,15 +267,17 @@ class BCMPricingCalculatorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tags"] = tags
+        input_: capo_bcm_pricing_calculator.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -312,15 +317,17 @@ class BCMPricingCalculatorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_bcm_pricing_calculator.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_preferences(
@@ -369,7 +376,7 @@ class BCMPricingCalculatorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.update_preferences_request.UpdatePreferencesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_pricing_calculator.types.update_preferences_request.UpdatePreferencesRequest = {}
         if management_account_rate_type_selections is not None:
             input_["management_account_rate_type_selections"] = (
                 management_account_rate_type_selections
@@ -388,6 +395,7 @@ class BCMPricingCalculatorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

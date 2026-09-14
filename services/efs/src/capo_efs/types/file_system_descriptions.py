@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FileSystemDescriptions:
 
     out: FileSystemDescriptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_efs.types.file_system_description.deserialize_json(item))
     return out

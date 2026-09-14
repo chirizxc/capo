@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: DescribeObservationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeObservationRequest:
     out: DescribeObservationRequest = {}  # type: ignore[typeddict-item]
-    if "ObservationId" in data:
+    if data.get("ObservationId") is not None:
         out["observation_id"] = data["ObservationId"]
     else:
         raise DeserializationError("DescribeObservationRequest.observation_id required")
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

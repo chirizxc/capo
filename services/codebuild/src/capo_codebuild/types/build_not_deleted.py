@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: BuildNotDeleted) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BuildNotDeleted:
     out: BuildNotDeleted = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
     return out

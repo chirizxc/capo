@@ -74,7 +74,7 @@ def serialize_aws_json_1_1(value: AssetType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssetType:
     out: AssetType = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_cognito_identity_provider.types.asset_category_type
 
         out["category"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssetType:
         )
     else:
         raise DeserializationError("AssetType.category required")
-    if "ColorMode" in data:
+    if data.get("ColorMode") is not None:
         import capo_cognito_identity_provider.types.color_scheme_mode_type
 
         out["color_mode"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssetType:
         )
     else:
         raise DeserializationError("AssetType.color_mode required")
-    if "Extension" in data:
+    if data.get("Extension") is not None:
         import capo_cognito_identity_provider.types.asset_extension_type
 
         out["extension"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssetType:
         )
     else:
         raise DeserializationError("AssetType.extension required")
-    if "Bytes" in data:
+    if data.get("Bytes") is not None:
         import capo_cognito_identity_provider.types.asset_bytes_type
 
         out["bytes"] = (
@@ -112,6 +112,6 @@ def deserialize_aws_json_1_1(data: dict) -> AssetType:
                 data["Bytes"]
             )
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     return out

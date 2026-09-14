@@ -50,21 +50,21 @@ def serialize_aws_json_1_1(value: GovernedCatalogSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GovernedCatalogSource:
     out: GovernedCatalogSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GovernedCatalogSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("GovernedCatalogSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("GovernedCatalogSource.table required")
-    if "PartitionPredicate" in data:
+    if data.get("PartitionPredicate") is not None:
         out["partition_predicate"] = data["PartitionPredicate"]
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.s3_source_additional_options
 
         out["additional_options"] = (

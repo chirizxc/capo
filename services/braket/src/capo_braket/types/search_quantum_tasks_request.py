@@ -36,11 +36,11 @@ def serialize_json(value: SearchQuantumTasksRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchQuantumTasksRequest:
     out: SearchQuantumTasksRequest = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_braket.types.search_quantum_tasks_filter_list
 
         out["filters"] = (

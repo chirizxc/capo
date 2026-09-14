@@ -33,10 +33,10 @@ def serialize_aws_json_1_0(value: GetRecommendationError) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRecommendationError:
     out: GetRecommendationError = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

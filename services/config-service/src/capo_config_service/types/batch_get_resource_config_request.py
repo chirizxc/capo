@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: BatchGetResourceConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetResourceConfigRequest:
     out: BatchGetResourceConfigRequest = {}  # type: ignore[typeddict-item]
-    if "resourceKeys" in data:
+    if data.get("resourceKeys") is not None:
         import capo_config_service.types.resource_keys
 
         out["resource_keys"] = (

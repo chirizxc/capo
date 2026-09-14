@@ -32,13 +32,13 @@ def serialize_json(value: SendMessageResponseFailedEvent) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageResponseFailedEvent:
     out: SendMessageResponseFailedEvent = {}  # type: ignore[typeddict-item]
-    if "responseId" in data:
+    if data.get("responseId") is not None:
         out["response_id"] = data["responseId"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "sequenceNumber" in data:
+    if data.get("sequenceNumber") is not None:
         out["sequence_number"] = data["sequenceNumber"]
     return out
 

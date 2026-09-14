@@ -44,7 +44,7 @@ def serialize_json(value: WaypointOptimizationTravelModeOptions) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationTravelModeOptions:
     out: WaypointOptimizationTravelModeOptions = {}  # type: ignore[typeddict-item]
-    if "Pedestrian" in data:
+    if data.get("Pedestrian") is not None:
         import capo_geo_routes.types.waypoint_optimization_pedestrian_options
 
         out["pedestrian"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> WaypointOptimizationTravelModeOptions:
                 data["Pedestrian"]
             )
         )
-    if "Truck" in data:
+    if data.get("Truck") is not None:
         import capo_geo_routes.types.waypoint_optimization_truck_options
 
         out["truck"] = (

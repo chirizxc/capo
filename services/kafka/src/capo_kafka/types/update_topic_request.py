@@ -32,8 +32,8 @@ def serialize_json(value: UpdateTopicRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTopicRequest:
     out: UpdateTopicRequest = {}  # type: ignore[typeddict-item]
-    if "configs" in data:
+    if data.get("configs") is not None:
         out["configs"] = data["configs"]
-    if "partitionCount" in data:
+    if data.get("partitionCount") is not None:
         out["partition_count"] = data["partitionCount"]
     return out

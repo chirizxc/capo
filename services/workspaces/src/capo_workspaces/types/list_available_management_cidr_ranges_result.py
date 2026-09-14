@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListAvailableManagementCidrRangesResult) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ListAvailableManagementCidrRangesResult:
     out: ListAvailableManagementCidrRangesResult = {}  # type: ignore[typeddict-item]
-    if "ManagementCidrRanges" in data:
+    if data.get("ManagementCidrRanges") is not None:
         import capo_workspaces.types.dedicated_tenancy_cidr_range_list
 
         out["management_cidr_ranges"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListAvailableManagementCidrRangesRes
                 data["ManagementCidrRanges"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

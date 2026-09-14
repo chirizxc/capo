@@ -31,10 +31,10 @@ def serialize_json(value: ResultRowValue) -> dict:
 
 def deserialize_json(data: dict) -> ResultRowValue:
     out: ResultRowValue = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

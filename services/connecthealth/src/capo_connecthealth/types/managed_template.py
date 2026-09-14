@@ -28,7 +28,7 @@ def serialize_json(value: ManagedTemplate) -> dict:
 
 def deserialize_json(data: dict) -> ManagedTemplate:
     out: ManagedTemplate = {}  # type: ignore[typeddict-item]
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         import capo_connecthealth.types.managed_note_template
 
         out["template_type"] = (

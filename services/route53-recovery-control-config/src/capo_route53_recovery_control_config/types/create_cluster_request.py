@@ -57,11 +57,11 @@ def serialize_json(value: CreateClusterRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateClusterRequest:
     out: CreateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53_recovery_control_config.types.__map_of__string_min0_max256_pattern_s
 
         out["tags"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> CreateClusterRequest:
                 data["Tags"]
             )
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_route53_recovery_control_config.types.network_type
 
         out["network_type"] = (

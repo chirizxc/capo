@@ -32,12 +32,12 @@ def serialize_json(value: ListRuleBasedMatchesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRuleBasedMatchesResponse:
     out: ListRuleBasedMatchesResponse = {}  # type: ignore[typeddict-item]
-    if "MatchIds" in data:
+    if data.get("MatchIds") is not None:
         import capo_customer_profiles.types.match_id_list
 
         out["match_ids"] = capo_customer_profiles.types.match_id_list.deserialize_json(
             data["MatchIds"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

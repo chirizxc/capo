@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: UpdatePullRequestStatusInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePullRequestStatusInput:
     out: UpdatePullRequestStatusInput = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
     else:
         raise DeserializationError(
             "UpdatePullRequestStatusInput.pull_request_id required"
         )
-    if "pullRequestStatus" in data:
+    if data.get("pullRequestStatus") is not None:
         import capo_codecommit.types.pull_request_status_enum
 
         out["pull_request_status"] = (

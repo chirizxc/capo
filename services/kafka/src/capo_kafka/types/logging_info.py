@@ -26,7 +26,7 @@ def serialize_json(value: LoggingInfo) -> dict:
 
 def deserialize_json(data: dict) -> LoggingInfo:
     out: LoggingInfo = {}  # type: ignore[typeddict-item]
-    if "brokerLogs" in data:
+    if data.get("brokerLogs") is not None:
         import capo_kafka.types.broker_logs
 
         out["broker_logs"] = capo_kafka.types.broker_logs.deserialize_json(

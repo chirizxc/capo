@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: AnalyzeExpenseResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnalyzeExpenseResponse:
     out: AnalyzeExpenseResponse = {}  # type: ignore[typeddict-item]
-    if "DocumentMetadata" in data:
+    if data.get("DocumentMetadata") is not None:
         import capo_textract.types.document_metadata
 
         out["document_metadata"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> AnalyzeExpenseResponse:
                 data["DocumentMetadata"]
             )
         )
-    if "ExpenseDocuments" in data:
+    if data.get("ExpenseDocuments") is not None:
         import capo_textract.types.expense_document_list
 
         out["expense_documents"] = (

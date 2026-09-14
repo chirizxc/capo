@@ -28,8 +28,8 @@ def serialize_json(value: Segment) -> dict:
 
 def deserialize_json(data: dict) -> Segment:
     out: Segment = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Document" in data:
+    if data.get("Document") is not None:
         out["document"] = data["Document"]
     return out

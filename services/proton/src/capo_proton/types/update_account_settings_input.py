@@ -50,9 +50,9 @@ def serialize_aws_json_1_0(value: UpdateAccountSettingsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateAccountSettingsInput:
     out: UpdateAccountSettingsInput = {}  # type: ignore[typeddict-item]
-    if "pipelineServiceRoleArn" in data:
+    if data.get("pipelineServiceRoleArn") is not None:
         out["pipeline_service_role_arn"] = data["pipelineServiceRoleArn"]
-    if "pipelineProvisioningRepository" in data:
+    if data.get("pipelineProvisioningRepository") is not None:
         import capo_proton.types.repository_branch_input
 
         out["pipeline_provisioning_repository"] = (
@@ -60,10 +60,10 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateAccountSettingsInput:
                 data["pipelineProvisioningRepository"]
             )
         )
-    if "deletePipelineProvisioningRepository" in data:
+    if data.get("deletePipelineProvisioningRepository") is not None:
         out["delete_pipeline_provisioning_repository"] = data[
             "deletePipelineProvisioningRepository"
         ]
-    if "pipelineCodebuildRoleArn" in data:
+    if data.get("pipelineCodebuildRoleArn") is not None:
         out["pipeline_codebuild_role_arn"] = data["pipelineCodebuildRoleArn"]
     return out

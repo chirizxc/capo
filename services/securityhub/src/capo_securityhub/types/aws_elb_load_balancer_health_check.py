@@ -40,14 +40,14 @@ def serialize_json(value: AwsElbLoadBalancerHealthCheck) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerHealthCheck:
     out: AwsElbLoadBalancerHealthCheck = {}  # type: ignore[typeddict-item]
-    if "HealthyThreshold" in data:
+    if data.get("HealthyThreshold") is not None:
         out["healthy_threshold"] = data["HealthyThreshold"]
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "UnhealthyThreshold" in data:
+    if data.get("UnhealthyThreshold") is not None:
         out["unhealthy_threshold"] = data["UnhealthyThreshold"]
     return out

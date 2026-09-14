@@ -31,7 +31,7 @@ def serialize_json(value: GranularAccessControlConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GranularAccessControlConfiguration:
     out: GranularAccessControlConfiguration = {}  # type: ignore[typeddict-item]
-    if "DataTableAccessControlConfiguration" in data:
+    if data.get("DataTableAccessControlConfiguration") is not None:
         import capo_connect.types.data_table_access_control_configuration
 
         out["data_table_access_control_configuration"] = (

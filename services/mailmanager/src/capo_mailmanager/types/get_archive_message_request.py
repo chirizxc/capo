@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetArchiveMessageRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetArchiveMessageRequest:
     out: GetArchiveMessageRequest = {}  # type: ignore[typeddict-item]
-    if "ArchivedMessageId" in data:
+    if data.get("ArchivedMessageId") is not None:
         out["archived_message_id"] = data["ArchivedMessageId"]
     else:
         raise DeserializationError(

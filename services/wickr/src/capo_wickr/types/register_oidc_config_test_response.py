@@ -88,39 +88,39 @@ def serialize_json(value: RegisterOidcConfigTestResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterOidcConfigTestResponse:
     out: RegisterOidcConfigTestResponse = {}  # type: ignore[typeddict-item]
-    if "tokenEndpoint" in data:
+    if data.get("tokenEndpoint") is not None:
         out["token_endpoint"] = data["tokenEndpoint"]
-    if "userinfoEndpoint" in data:
+    if data.get("userinfoEndpoint") is not None:
         out["userinfo_endpoint"] = data["userinfoEndpoint"]
-    if "responseTypesSupported" in data:
+    if data.get("responseTypesSupported") is not None:
         import capo_wickr.types.string_list
 
         out["response_types_supported"] = capo_wickr.types.string_list.deserialize_json(
             data["responseTypesSupported"]
         )
-    if "scopesSupported" in data:
+    if data.get("scopesSupported") is not None:
         import capo_wickr.types.string_list
 
         out["scopes_supported"] = capo_wickr.types.string_list.deserialize_json(
             data["scopesSupported"]
         )
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
-    if "authorizationEndpoint" in data:
+    if data.get("authorizationEndpoint") is not None:
         out["authorization_endpoint"] = data["authorizationEndpoint"]
-    if "endSessionEndpoint" in data:
+    if data.get("endSessionEndpoint") is not None:
         out["end_session_endpoint"] = data["endSessionEndpoint"]
-    if "logoutEndpoint" in data:
+    if data.get("logoutEndpoint") is not None:
         out["logout_endpoint"] = data["logoutEndpoint"]
-    if "grantTypesSupported" in data:
+    if data.get("grantTypesSupported") is not None:
         import capo_wickr.types.string_list
 
         out["grant_types_supported"] = capo_wickr.types.string_list.deserialize_json(
             data["grantTypesSupported"]
         )
-    if "revocationEndpoint" in data:
+    if data.get("revocationEndpoint") is not None:
         out["revocation_endpoint"] = data["revocationEndpoint"]
-    if "tokenEndpointAuthMethodsSupported" in data:
+    if data.get("tokenEndpointAuthMethodsSupported") is not None:
         import capo_wickr.types.string_list
 
         out["token_endpoint_auth_methods_supported"] = (
@@ -128,6 +128,6 @@ def deserialize_json(data: dict) -> RegisterOidcConfigTestResponse:
                 data["tokenEndpointAuthMethodsSupported"]
             )
         )
-    if "microsoftMultiRefreshToken" in data:
+    if data.get("microsoftMultiRefreshToken") is not None:
         out["microsoft_multi_refresh_token"] = data["microsoftMultiRefreshToken"]
     return out

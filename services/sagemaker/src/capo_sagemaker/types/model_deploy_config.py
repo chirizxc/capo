@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ModelDeployConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelDeployConfig:
     out: ModelDeployConfig = {}  # type: ignore[typeddict-item]
-    if "AutoGenerateEndpointName" in data:
+    if data.get("AutoGenerateEndpointName") is not None:
         out["auto_generate_endpoint_name"] = data["AutoGenerateEndpointName"]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
     return out

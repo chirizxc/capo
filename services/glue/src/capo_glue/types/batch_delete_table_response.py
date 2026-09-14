@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: BatchDeleteTableResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteTableResponse:
     out: BatchDeleteTableResponse = {}  # type: ignore[typeddict-item]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_glue.types.table_errors
 
         out["errors"] = capo_glue.types.table_errors.deserialize_aws_json_1_1(

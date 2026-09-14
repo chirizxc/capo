@@ -45,15 +45,15 @@ def serialize_json(value: UserJourneySummary) -> dict:
 
 def deserialize_json(data: dict) -> UserJourneySummary:
     out: UserJourneySummary = {}  # type: ignore[typeddict-item]
-    if "userJourneyId" in data:
+    if data.get("userJourneyId") is not None:
         out["user_journey_id"] = data["userJourneyId"]
     else:
         raise DeserializationError("UserJourneySummary.user_journey_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UserJourneySummary.name required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> UserJourneySummary:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["updated_at"] = (

@@ -41,7 +41,7 @@ def serialize_json(value: GetServiceEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceEndpointResponse:
     out: GetServiceEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_iot_wireless.types.wireless_gateway_service_type
 
         out["service_type"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> GetServiceEndpointResponse:
                 data["ServiceType"]
             )
         )
-    if "ServiceEndpoint" in data:
+    if data.get("ServiceEndpoint") is not None:
         out["service_endpoint"] = data["ServiceEndpoint"]
-    if "ServerTrust" in data:
+    if data.get("ServerTrust") is not None:
         out["server_trust"] = data["ServerTrust"]
     return out

@@ -47,17 +47,17 @@ def serialize_json(value: AssetFileSummary) -> dict:
 
 def deserialize_json(data: dict) -> AssetFileSummary:
     out: AssetFileSummary = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     else:
         raise DeserializationError("AssetFileSummary.path required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("AssetFileSummary.version required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_devops_agent.types._prelude.timestamp
 
         out["created_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> AssetFileSummary:
         )
     else:
         raise DeserializationError("AssetFileSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_devops_agent.types._prelude.timestamp
 
         out["updated_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(

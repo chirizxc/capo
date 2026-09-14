@@ -44,7 +44,7 @@ def serialize_json(value: GetConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConfigurationResponse:
     out: GetConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ecrConfiguration" in data:
+    if data.get("ecrConfiguration") is not None:
         import capo_inspector2.types.ecr_configuration_state
 
         out["ecr_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> GetConfigurationResponse:
                 data["ecrConfiguration"]
             )
         )
-    if "ec2Configuration" in data:
+    if data.get("ec2Configuration") is not None:
         import capo_inspector2.types.ec2_configuration_state
 
         out["ec2_configuration"] = (

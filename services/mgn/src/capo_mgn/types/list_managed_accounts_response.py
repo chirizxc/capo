@@ -31,12 +31,12 @@ def serialize_json(value: ListManagedAccountsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListManagedAccountsResponse:
     out: ListManagedAccountsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_mgn.types.managed_accounts
 
         out["items"] = capo_mgn.types.managed_accounts.deserialize_json(data["items"])
     else:
         raise DeserializationError("ListManagedAccountsResponse.items required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: GetAssetContentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAssetContentResponse:
     out: GetAssetContentResponse = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_devops_agent.types.asset_zip_content
 
         out["content"] = capo_devops_agent.types.asset_zip_content.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> GetAssetContentResponse:
         )
     else:
         raise DeserializationError("GetAssetContentResponse.content required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("GetAssetContentResponse.version required")

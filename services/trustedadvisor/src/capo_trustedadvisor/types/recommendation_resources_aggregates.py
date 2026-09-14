@@ -29,24 +29,24 @@ def serialize_json(value: RecommendationResourcesAggregates) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationResourcesAggregates:
     out: RecommendationResourcesAggregates = {}  # type: ignore[typeddict-item]
-    if "okCount" in data:
+    if data.get("okCount") is not None:
         out["ok_count"] = data["okCount"]
     else:
         raise DeserializationError(
             "RecommendationResourcesAggregates.ok_count required"
         )
-    if "warningCount" in data:
+    if data.get("warningCount") is not None:
         out["warning_count"] = data["warningCount"]
     else:
         raise DeserializationError(
             "RecommendationResourcesAggregates.warning_count required"
         )
-    if "errorCount" in data:
+    if data.get("errorCount") is not None:
         out["error_count"] = data["errorCount"]
     else:
         raise DeserializationError(
             "RecommendationResourcesAggregates.error_count required"
         )
-    if "excludedCount" in data:
+    if data.get("excludedCount") is not None:
         out["excluded_count"] = data["excludedCount"]
     return out

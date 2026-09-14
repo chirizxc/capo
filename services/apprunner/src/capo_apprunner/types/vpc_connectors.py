@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> VpcConnectors:
 
     out: VpcConnectors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_apprunner.types.vpc_connector.deserialize_aws_json_1_0(item))
     return out

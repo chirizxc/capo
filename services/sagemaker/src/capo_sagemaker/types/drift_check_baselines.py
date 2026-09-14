@@ -66,13 +66,13 @@ def serialize_aws_json_1_1(value: DriftCheckBaselines) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DriftCheckBaselines:
     out: DriftCheckBaselines = {}  # type: ignore[typeddict-item]
-    if "Bias" in data:
+    if data.get("Bias") is not None:
         import capo_sagemaker.types.drift_check_bias
 
         out["bias"] = capo_sagemaker.types.drift_check_bias.deserialize_aws_json_1_1(
             data["Bias"]
         )
-    if "Explainability" in data:
+    if data.get("Explainability") is not None:
         import capo_sagemaker.types.drift_check_explainability
 
         out["explainability"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> DriftCheckBaselines:
                 data["Explainability"]
             )
         )
-    if "ModelQuality" in data:
+    if data.get("ModelQuality") is not None:
         import capo_sagemaker.types.drift_check_model_quality
 
         out["model_quality"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> DriftCheckBaselines:
                 data["ModelQuality"]
             )
         )
-    if "ModelDataQuality" in data:
+    if data.get("ModelDataQuality") is not None:
         import capo_sagemaker.types.drift_check_model_data_quality
 
         out["model_data_quality"] = (

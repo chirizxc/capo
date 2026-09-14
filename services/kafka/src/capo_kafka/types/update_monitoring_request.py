@@ -55,9 +55,9 @@ def serialize_json(value: UpdateMonitoringRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMonitoringRequest:
     out: UpdateMonitoringRequest = {}  # type: ignore[typeddict-item]
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "enhancedMonitoring" in data:
+    if data.get("enhancedMonitoring") is not None:
         import capo_kafka.types.enhanced_monitoring
 
         out["enhanced_monitoring"] = (
@@ -65,13 +65,13 @@ def deserialize_json(data: dict) -> UpdateMonitoringRequest:
                 data["enhancedMonitoring"]
             )
         )
-    if "openMonitoring" in data:
+    if data.get("openMonitoring") is not None:
         import capo_kafka.types.open_monitoring_info
 
         out["open_monitoring"] = capo_kafka.types.open_monitoring_info.deserialize_json(
             data["openMonitoring"]
         )
-    if "loggingInfo" in data:
+    if data.get("loggingInfo") is not None:
         import capo_kafka.types.logging_info
 
         out["logging_info"] = capo_kafka.types.logging_info.deserialize_json(

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PermissionsOutputList:
 
     out: PermissionsOutputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qapps.types.permission_output.deserialize_json(item))
     return out

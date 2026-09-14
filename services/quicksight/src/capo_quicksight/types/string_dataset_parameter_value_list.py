@@ -16,4 +16,4 @@ def serialize_json(value: StringDatasetParameterValueList) -> list:
 
 
 def deserialize_json(data: list) -> StringDatasetParameterValueList:
-    return list(data)
+    return [item for item in data if item is not None]

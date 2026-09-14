@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DescribePermissionSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePermissionSetResponse:
     out: DescribePermissionSetResponse = {}  # type: ignore[typeddict-item]
-    if "PermissionSet" in data:
+    if data.get("PermissionSet") is not None:
         import capo_sso_admin.types.permission_set
 
         out["permission_set"] = (

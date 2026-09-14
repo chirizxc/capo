@@ -43,18 +43,18 @@ def serialize_json(value: AutoTuneMaintenanceSchedule) -> dict:
 
 def deserialize_json(data: dict) -> AutoTuneMaintenanceSchedule:
     out: AutoTuneMaintenanceSchedule = {}  # type: ignore[typeddict-item]
-    if "StartAt" in data:
+    if data.get("StartAt") is not None:
         import capo_elasticsearch_service.types.start_at
 
         out["start_at"] = capo_elasticsearch_service.types.start_at.deserialize_json(
             data["StartAt"]
         )
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         import capo_elasticsearch_service.types.duration
 
         out["duration"] = capo_elasticsearch_service.types.duration.deserialize_json(
             data["Duration"]
         )
-    if "CronExpressionForRecurrence" in data:
+    if data.get("CronExpressionForRecurrence") is not None:
         out["cron_expression_for_recurrence"] = data["CronExpressionForRecurrence"]
     return out

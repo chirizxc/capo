@@ -53,11 +53,11 @@ def serialize_json(value: BatchCreateUserRequestItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateUserRequestItem:
     out: BatchCreateUserRequestItem = {}  # type: ignore[typeddict-item]
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_wickr.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -69,14 +69,14 @@ def deserialize_json(data: dict) -> BatchCreateUserRequestItem:
         raise DeserializationError(
             "BatchCreateUserRequestItem.security_group_ids required"
         )
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     else:
         raise DeserializationError("BatchCreateUserRequestItem.username required")
-    if "inviteCode" in data:
+    if data.get("inviteCode") is not None:
         out["invite_code"] = data["inviteCode"]
-    if "inviteCodeTtl" in data:
+    if data.get("inviteCodeTtl") is not None:
         out["invite_code_ttl"] = data["inviteCodeTtl"]
-    if "codeValidation" in data:
+    if data.get("codeValidation") is not None:
         out["code_validation"] = data["codeValidation"]
     return out

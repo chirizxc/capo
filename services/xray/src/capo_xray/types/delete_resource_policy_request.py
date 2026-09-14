@@ -31,10 +31,10 @@ def serialize_json(value: DeleteResourcePolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteResourcePolicyRequest:
     out: DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
     else:
         raise DeserializationError("DeleteResourcePolicyRequest.policy_name required")
-    if "PolicyRevisionId" in data:
+    if data.get("PolicyRevisionId") is not None:
         out["policy_revision_id"] = data["PolicyRevisionId"]
     return out

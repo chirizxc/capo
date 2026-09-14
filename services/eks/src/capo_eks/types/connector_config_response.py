@@ -44,18 +44,18 @@ def serialize_json(value: ConnectorConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorConfigResponse:
     out: ConnectorConfigResponse = {}  # type: ignore[typeddict-item]
-    if "activationId" in data:
+    if data.get("activationId") is not None:
         out["activation_id"] = data["activationId"]
-    if "activationCode" in data:
+    if data.get("activationCode") is not None:
         out["activation_code"] = data["activationCode"]
-    if "activationExpiry" in data:
+    if data.get("activationExpiry") is not None:
         import capo_eks.types.timestamp
 
         out["activation_expiry"] = capo_eks.types.timestamp.deserialize_json(
             data["activationExpiry"]
         )
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

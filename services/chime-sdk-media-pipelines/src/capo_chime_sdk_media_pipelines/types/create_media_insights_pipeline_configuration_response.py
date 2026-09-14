@@ -31,7 +31,7 @@ def serialize_json(value: CreateMediaInsightsPipelineConfigurationResponse) -> d
 
 def deserialize_json(data: dict) -> CreateMediaInsightsPipelineConfigurationResponse:
     out: CreateMediaInsightsPipelineConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "MediaInsightsPipelineConfiguration" in data:
+    if data.get("MediaInsightsPipelineConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.media_insights_pipeline_configuration
 
         out["media_insights_pipeline_configuration"] = (

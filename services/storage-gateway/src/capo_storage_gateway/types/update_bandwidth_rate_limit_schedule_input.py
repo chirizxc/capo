@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: UpdateBandwidthRateLimitScheduleInput) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateBandwidthRateLimitScheduleInput:
     out: UpdateBandwidthRateLimitScheduleInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError(
             "UpdateBandwidthRateLimitScheduleInput.gateway_arn required"
         )
-    if "BandwidthRateLimitIntervals" in data:
+    if data.get("BandwidthRateLimitIntervals") is not None:
         import capo_storage_gateway.types.bandwidth_rate_limit_intervals
 
         out["bandwidth_rate_limit_intervals"] = (

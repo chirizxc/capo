@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: EnvironmentParameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnvironmentParameter:
     out: EnvironmentParameter = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "ValueType" in data:
+    if data.get("ValueType") is not None:
         out["value_type"] = data["ValueType"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

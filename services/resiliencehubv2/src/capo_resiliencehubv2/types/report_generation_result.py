@@ -65,7 +65,7 @@ def serialize_json(value: ReportGenerationResult) -> dict:
 
 def deserialize_json(data: dict) -> ReportGenerationResult:
     out: ReportGenerationResult = {}  # type: ignore[typeddict-item]
-    if "reportType" in data:
+    if data.get("reportType") is not None:
         import capo_resiliencehubv2.types.report_type
 
         out["report_type"] = capo_resiliencehubv2.types.report_type.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ReportGenerationResult:
         )
     else:
         raise DeserializationError("ReportGenerationResult.report_type required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehubv2.types.report_generation_status
 
         out["status"] = (
@@ -83,11 +83,11 @@ def deserialize_json(data: dict) -> ReportGenerationResult:
         )
     else:
         raise DeserializationError("ReportGenerationResult.status required")
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
-    if "assessmentId" in data:
+    if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> ReportGenerationResult:
                 data["createdAt"]
             )
         )
-    if "reportOutput" in data:
+    if data.get("reportOutput") is not None:
         import capo_resiliencehubv2.types.report_output
 
         out["report_output"] = (

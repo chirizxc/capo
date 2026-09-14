@@ -37,15 +37,18 @@ class ClusterOnLatestRevisionFault(ServiceError):
 
     code: str | None = "ClusterOnLatestRevisionFault"
 
-    def __init__(self, data: ClusterOnLatestRevisionFault_):
+    def __init__(self, data: ClusterOnLatestRevisionFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ClusterOnLatestRevisionFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ClusterOnLatestRevisionFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ClusterOnLatestRevisionFault":
+        return cls(deserialize_query(el), message)

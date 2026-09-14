@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfDestinationConfigurationRequest:
 
     out: __listOfDestinationConfigurationRequest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.destination_configuration_request.deserialize_json(
                 item

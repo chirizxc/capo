@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: PolicyInformation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PolicyInformation:
     out: PolicyInformation = {}  # type: ignore[typeddict-item]
-    if "CertPolicyId" in data:
+    if data.get("CertPolicyId") is not None:
         out["cert_policy_id"] = data["CertPolicyId"]
     else:
         raise DeserializationError("PolicyInformation.cert_policy_id required")
-    if "PolicyQualifiers" in data:
+    if data.get("PolicyQualifiers") is not None:
         import capo_acm_pca.types.policy_qualifier_info_list
 
         out["policy_qualifiers"] = (

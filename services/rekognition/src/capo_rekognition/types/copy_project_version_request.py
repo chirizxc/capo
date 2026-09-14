@@ -59,29 +59,29 @@ def serialize_aws_json_1_1(value: CopyProjectVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyProjectVersionRequest:
     out: CopyProjectVersionRequest = {}  # type: ignore[typeddict-item]
-    if "SourceProjectArn" in data:
+    if data.get("SourceProjectArn") is not None:
         out["source_project_arn"] = data["SourceProjectArn"]
     else:
         raise DeserializationError(
             "CopyProjectVersionRequest.source_project_arn required"
         )
-    if "SourceProjectVersionArn" in data:
+    if data.get("SourceProjectVersionArn") is not None:
         out["source_project_version_arn"] = data["SourceProjectVersionArn"]
     else:
         raise DeserializationError(
             "CopyProjectVersionRequest.source_project_version_arn required"
         )
-    if "DestinationProjectArn" in data:
+    if data.get("DestinationProjectArn") is not None:
         out["destination_project_arn"] = data["DestinationProjectArn"]
     else:
         raise DeserializationError(
             "CopyProjectVersionRequest.destination_project_arn required"
         )
-    if "VersionName" in data:
+    if data.get("VersionName") is not None:
         out["version_name"] = data["VersionName"]
     else:
         raise DeserializationError("CopyProjectVersionRequest.version_name required")
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_rekognition.types.output_config
 
         out["output_config"] = (
@@ -91,12 +91,12 @@ def deserialize_aws_json_1_1(data: dict) -> CopyProjectVersionRequest:
         )
     else:
         raise DeserializationError("CopyProjectVersionRequest.output_config required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_rekognition.types.tag_map
 
         out["tags"] = capo_rekognition.types.tag_map.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

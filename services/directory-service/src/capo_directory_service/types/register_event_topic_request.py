@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: RegisterEventTopicRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterEventTopicRequest:
     out: RegisterEventTopicRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("RegisterEventTopicRequest.directory_id required")
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
     else:
         raise DeserializationError("RegisterEventTopicRequest.topic_name required")

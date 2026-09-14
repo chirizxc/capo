@@ -32,13 +32,13 @@ def serialize_aws_json_1_0(value: X12ElementRequirementValidationRule) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12ElementRequirementValidationRule:
     out: X12ElementRequirementValidationRule = {}  # type: ignore[typeddict-item]
-    if "elementPosition" in data:
+    if data.get("elementPosition") is not None:
         out["element_position"] = data["elementPosition"]
     else:
         raise DeserializationError(
             "X12ElementRequirementValidationRule.element_position required"
         )
-    if "requirement" in data:
+    if data.get("requirement") is not None:
         import capo_b2bi.types.element_requirement
 
         out["requirement"] = (

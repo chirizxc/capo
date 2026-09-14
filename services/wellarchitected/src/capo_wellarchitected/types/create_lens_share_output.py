@@ -22,6 +22,6 @@ def serialize_json(value: CreateLensShareOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateLensShareOutput:
     out: CreateLensShareOutput = {}  # type: ignore[typeddict-item]
-    if "ShareId" in data:
+    if data.get("ShareId") is not None:
         out["share_id"] = data["ShareId"]
     return out

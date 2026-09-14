@@ -30,6 +30,10 @@ class ListCustomDomainAssociationsRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListCustomDomainAssociationsRequest) -> dict:
     out: dict = {}
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
     if "custom_domain_name" in value:
         out["customDomainName"] = value["custom_domain_name"]
     if "custom_domain_certificate_arn" in value:
@@ -39,8 +43,12 @@ def serialize_aws_json_1_1(value: ListCustomDomainAssociationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCustomDomainAssociationsRequest:
     out: ListCustomDomainAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "customDomainName" in data:
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "customDomainCertificateArn" in data:
+    if data.get("customDomainCertificateArn") is not None:
         out["custom_domain_certificate_arn"] = data["customDomainCertificateArn"]
     return out

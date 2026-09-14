@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: Filter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_pricing.types.filter_type
 
         out["type"] = capo_pricing.types.filter_type.deserialize_aws_json_1_1(
@@ -42,11 +42,11 @@ def deserialize_aws_json_1_1(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.type required")
-    if "Field" in data:
+    if data.get("Field") is not None:
         out["field"] = data["Field"]
     else:
         raise DeserializationError("Filter.field required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("Filter.value required")

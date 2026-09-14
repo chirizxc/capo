@@ -67,11 +67,11 @@ def serialize_aws_json_1_1(value: GetBucketMetricDataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBucketMetricDataRequest:
     out: GetBucketMetricDataRequest = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("GetBucketMetricDataRequest.bucket_name required")
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         import capo_lightsail.types.bucket_metric_name
 
         out["metric_name"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetBucketMetricDataRequest:
         )
     else:
         raise DeserializationError("GetBucketMetricDataRequest.metric_name required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_lightsail.types.iso_date
 
         out["start_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetBucketMetricDataRequest:
         )
     else:
         raise DeserializationError("GetBucketMetricDataRequest.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_lightsail.types.iso_date
 
         out["end_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
@@ -97,11 +97,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetBucketMetricDataRequest:
         )
     else:
         raise DeserializationError("GetBucketMetricDataRequest.end_time required")
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
     else:
         raise DeserializationError("GetBucketMetricDataRequest.period required")
-    if "statistics" in data:
+    if data.get("statistics") is not None:
         import capo_lightsail.types.metric_statistic_list
 
         out["statistics"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetBucketMetricDataRequest:
         )
     else:
         raise DeserializationError("GetBucketMetricDataRequest.statistics required")
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_lightsail.types.metric_unit
 
         out["unit"] = capo_lightsail.types.metric_unit.deserialize_aws_json_1_1(

@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeEntityAggregatesForOrganizationRequest:
     out: DescribeEntityAggregatesForOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "eventArns" in data:
+    if data.get("eventArns") is not None:
         import capo_health.types.organization_event_arns_list
 
         out["event_arns"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "DescribeEntityAggregatesForOrganizationRequest.event_arns required"
         )
-    if "awsAccountIds" in data:
+    if data.get("awsAccountIds") is not None:
         import capo_health.types.organization_account_ids_list
 
         out["aws_account_ids"] = (

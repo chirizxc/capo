@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: InstanceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceSummary:
     out: InstanceSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_servicediscovery.types.attributes
 
         out["attributes"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceSummary:
                 data["Attributes"]
             )
         )
-    if "CreatedByAccount" in data:
+    if data.get("CreatedByAccount") is not None:
         out["created_by_account"] = data["CreatedByAccount"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: GetBillOfMaterialsImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBillOfMaterialsImportJobResponse:
     out: GetBillOfMaterialsImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "job" in data:
+    if data.get("job") is not None:
         import capo_supplychain.types.bill_of_materials_import_job
 
         out["job"] = (

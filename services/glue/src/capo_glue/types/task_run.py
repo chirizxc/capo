@@ -83,19 +83,19 @@ def serialize_aws_json_1_1(value: TaskRun) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskRun:
     out: TaskRun = {}  # type: ignore[typeddict-item]
-    if "TransformId" in data:
+    if data.get("TransformId") is not None:
         out["transform_id"] = data["TransformId"]
-    if "TaskRunId" in data:
+    if data.get("TaskRunId") is not None:
         out["task_run_id"] = data["TaskRunId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.task_status_type
 
         out["status"] = capo_glue.types.task_status_type.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "LogGroupName" in data:
+    if data.get("LogGroupName") is not None:
         out["log_group_name"] = data["LogGroupName"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_glue.types.task_run_properties
 
         out["properties"] = (
@@ -103,27 +103,27 @@ def deserialize_aws_json_1_1(data: dict) -> TaskRun:
                 data["Properties"]
             )
         )
-    if "ErrorString" in data:
+    if data.get("ErrorString") is not None:
         out["error_string"] = data["ErrorString"]
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp
 
         out["started_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["StartedOn"]
         )
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp
 
         out["last_modified_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastModifiedOn"]
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp
 
         out["completed_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "ExecutionTime" in data:
+    if data.get("ExecutionTime") is not None:
         out["execution_time"] = data["ExecutionTime"]
     else:
         out["execution_time"] = 0

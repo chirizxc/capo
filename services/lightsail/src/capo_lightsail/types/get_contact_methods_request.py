@@ -18,9 +18,25 @@ class GetContactMethodsRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: GetContactMethodsRequest) -> dict:
     out: dict = {}
+    if "protocols" in value:
+        import capo_lightsail.types.contact_protocols_list
+
+        out["protocols"] = (
+            capo_lightsail.types.contact_protocols_list.serialize_aws_json_1_1(
+                value["protocols"]
+            )
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> GetContactMethodsRequest:
     out: GetContactMethodsRequest = {}  # type: ignore[typeddict-item]
+    if data.get("protocols") is not None:
+        import capo_lightsail.types.contact_protocols_list
+
+        out["protocols"] = (
+            capo_lightsail.types.contact_protocols_list.deserialize_aws_json_1_1(
+                data["protocols"]
+            )
+        )
     return out

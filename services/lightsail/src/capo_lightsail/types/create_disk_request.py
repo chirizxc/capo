@@ -50,25 +50,25 @@ def serialize_aws_json_1_1(value: CreateDiskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDiskRequest:
     out: CreateDiskRequest = {}  # type: ignore[typeddict-item]
-    if "diskName" in data:
+    if data.get("diskName") is not None:
         out["disk_name"] = data["diskName"]
     else:
         raise DeserializationError("CreateDiskRequest.disk_name required")
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
     else:
         raise DeserializationError("CreateDiskRequest.availability_zone required")
-    if "sizeInGb" in data:
+    if data.get("sizeInGb") is not None:
         out["size_in_gb"] = data["sizeInGb"]
     else:
         raise DeserializationError("CreateDiskRequest.size_in_gb required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "addOns" in data:
+    if data.get("addOns") is not None:
         import capo_lightsail.types.add_on_request_list
 
         out["add_ons"] = (

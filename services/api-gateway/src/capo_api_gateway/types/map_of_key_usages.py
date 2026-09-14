@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: MapOfKeyUsages) -> dict:
 def deserialize_json(data: dict) -> MapOfKeyUsages:
     out: MapOfKeyUsages = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_api_gateway.types.list_of_usage
 
         out[key] = capo_api_gateway.types.list_of_usage.deserialize_json(value)

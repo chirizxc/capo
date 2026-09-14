@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ResourceUri) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceUri:
     out: ResourceUri = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_glue.types.resource_type
 
         out["resource_type"] = capo_glue.types.resource_type.deserialize_aws_json_1_1(
             data["ResourceType"]
         )
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
     return out

@@ -30,13 +30,13 @@ def serialize_json(value: RemoveTemplateActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> RemoveTemplateActionRequest:
     out: RemoveTemplateActionRequest = {}  # type: ignore[typeddict-item]
-    if "launchConfigurationTemplateID" in data:
+    if data.get("launchConfigurationTemplateID") is not None:
         out["launch_configuration_template_id"] = data["launchConfigurationTemplateID"]
     else:
         raise DeserializationError(
             "RemoveTemplateActionRequest.launch_configuration_template_id required"
         )
-    if "actionID" in data:
+    if data.get("actionID") is not None:
         out["action_id"] = data["actionID"]
     else:
         raise DeserializationError("RemoveTemplateActionRequest.action_id required")

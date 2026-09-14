@@ -36,7 +36,15 @@ def serialize_aws_json_1_1(value: ReservedNodesOffering) -> dict:
     if "node_type" in value:
         out["NodeType"] = value["node_type"]
     out["Duration"] = value.get("duration", 0)
-    out["FixedPrice"] = value.get("fixed_price", 0)
+    out["FixedPrice"] = (
+        "NaN"
+        if value.get("fixed_price", 0) != value.get("fixed_price", 0)
+        else "Infinity"
+        if value.get("fixed_price", 0) == float("inf")
+        else "-Infinity"
+        if value.get("fixed_price", 0) == float("-inf")
+        else value.get("fixed_price", 0)
+    )
     if "offering_type" in value:
         out["OfferingType"] = value["offering_type"]
     if "recurring_charges" in value:
@@ -52,21 +60,21 @@ def serialize_aws_json_1_1(value: ReservedNodesOffering) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservedNodesOffering:
     out: ReservedNodesOffering = {}  # type: ignore[typeddict-item]
-    if "ReservedNodesOfferingId" in data:
+    if data.get("ReservedNodesOfferingId") is not None:
         out["reserved_nodes_offering_id"] = data["ReservedNodesOfferingId"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "FixedPrice" in data:
-        out["fixed_price"] = data["FixedPrice"]
+    if data.get("FixedPrice") is not None:
+        out["fixed_price"] = float(data["FixedPrice"])
     else:
         out["fixed_price"] = 0
-    if "OfferingType" in data:
+    if data.get("OfferingType") is not None:
         out["offering_type"] = data["OfferingType"]
-    if "RecurringCharges" in data:
+    if data.get("RecurringCharges") is not None:
         import capo_memorydb.types.recurring_charge_list
 
         out["recurring_charges"] = (

@@ -60,9 +60,9 @@ def serialize_json(value: NetworkRoute) -> dict:
 
 def deserialize_json(data: dict) -> NetworkRoute:
     out: NetworkRoute = {}  # type: ignore[typeddict-item]
-    if "DestinationCidrBlock" in data:
+    if data.get("DestinationCidrBlock") is not None:
         out["destination_cidr_block"] = data["DestinationCidrBlock"]
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_networkmanager.types.network_route_destination_list
 
         out["destinations"] = (
@@ -70,15 +70,15 @@ def deserialize_json(data: dict) -> NetworkRoute:
                 data["Destinations"]
             )
         )
-    if "PrefixListId" in data:
+    if data.get("PrefixListId") is not None:
         out["prefix_list_id"] = data["PrefixListId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.route_state
 
         out["state"] = capo_networkmanager.types.route_state.deserialize_json(
             data["State"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_networkmanager.types.route_type
 
         out["type"] = capo_networkmanager.types.route_type.deserialize_json(

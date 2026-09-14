@@ -125,15 +125,15 @@ def serialize_json(value: CreateClassificationJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateClassificationJobRequest:
     out: CreateClassificationJobRequest = {}  # type: ignore[typeddict-item]
-    if "allowListIds" in data:
+    if data.get("allowListIds") is not None:
         import capo_macie2.types.__list_of__string
 
         out["allow_list_ids"] = capo_macie2.types.__list_of__string.deserialize_json(
             data["allowListIds"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "customDataIdentifierIds" in data:
+    if data.get("customDataIdentifierIds") is not None:
         import capo_macie2.types.__list_of__string
 
         out["custom_data_identifier_ids"] = (
@@ -141,15 +141,15 @@ def deserialize_json(data: dict) -> CreateClassificationJobRequest:
                 data["customDataIdentifierIds"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "initialRun" in data:
+    if data.get("initialRun") is not None:
         out["initial_run"] = data["initialRun"]
-    if "jobType" in data:
+    if data.get("jobType") is not None:
         import capo_macie2.types.job_type
 
         out["job_type"] = capo_macie2.types.job_type.deserialize_json(data["jobType"])
-    if "managedDataIdentifierIds" in data:
+    if data.get("managedDataIdentifierIds") is not None:
         import capo_macie2.types.__list_of__string
 
         out["managed_data_identifier_ids"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> CreateClassificationJobRequest:
                 data["managedDataIdentifierIds"]
             )
         )
-    if "managedDataIdentifierSelector" in data:
+    if data.get("managedDataIdentifierSelector") is not None:
         import capo_macie2.types.managed_data_identifier_selector
 
         out["managed_data_identifier_selector"] = (
@@ -165,17 +165,17 @@ def deserialize_json(data: dict) -> CreateClassificationJobRequest:
                 data["managedDataIdentifierSelector"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "s3JobDefinition" in data:
+    if data.get("s3JobDefinition") is not None:
         import capo_macie2.types.s3_job_definition
 
         out["s3_job_definition"] = capo_macie2.types.s3_job_definition.deserialize_json(
             data["s3JobDefinition"]
         )
-    if "samplingPercentage" in data:
+    if data.get("samplingPercentage") is not None:
         out["sampling_percentage"] = data["samplingPercentage"]
-    if "scheduleFrequency" in data:
+    if data.get("scheduleFrequency") is not None:
         import capo_macie2.types.job_schedule_frequency
 
         out["schedule_frequency"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> CreateClassificationJobRequest:
                 data["scheduleFrequency"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_macie2.types.tag_map
 
         out["tags"] = capo_macie2.types.tag_map.deserialize_json(data["tags"])

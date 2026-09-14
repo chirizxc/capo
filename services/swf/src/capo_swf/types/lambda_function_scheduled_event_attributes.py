@@ -51,23 +51,23 @@ def serialize_aws_json_1_0(value: LambdaFunctionScheduledEventAttributes) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionScheduledEventAttributes:
     out: LambdaFunctionScheduledEventAttributes = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("LambdaFunctionScheduledEventAttributes.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "LambdaFunctionScheduledEventAttributes.name required"
         )
-    if "control" in data:
+    if data.get("control") is not None:
         out["control"] = data["control"]
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
-    if "startToCloseTimeout" in data:
+    if data.get("startToCloseTimeout") is not None:
         out["start_to_close_timeout"] = data["startToCloseTimeout"]
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0

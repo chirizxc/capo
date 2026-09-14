@@ -32,8 +32,8 @@ def serialize_json(value: SecretsManagerSecretConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SecretsManagerSecretConfiguration:
     out: SecretsManagerSecretConfiguration = {}  # type: ignore[typeddict-item]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "secretPolicy" in data:
+    if data.get("secretPolicy") is not None:
         out["secret_policy"] = data["secretPolicy"]
     return out

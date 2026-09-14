@@ -117,11 +117,11 @@ def serialize_aws_json_1_1(value: ContainerDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerDefinition:
     out: ContainerDefinition = {}  # type: ignore[typeddict-item]
-    if "ContainerHostname" in data:
+    if data.get("ContainerHostname") is not None:
         out["container_hostname"] = data["ContainerHostname"]
-    if "Image" in data:
+    if data.get("Image") is not None:
         out["image"] = data["Image"]
-    if "ImageConfig" in data:
+    if data.get("ImageConfig") is not None:
         import capo_sagemaker.types.image_config
 
         out["image_config"] = (
@@ -129,15 +129,15 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerDefinition:
                 data["ImageConfig"]
             )
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_sagemaker.types.container_mode
 
         out["mode"] = capo_sagemaker.types.container_mode.deserialize_aws_json_1_1(
             data["Mode"]
         )
-    if "ModelDataUrl" in data:
+    if data.get("ModelDataUrl") is not None:
         out["model_data_url"] = data["ModelDataUrl"]
-    if "ModelDataSource" in data:
+    if data.get("ModelDataSource") is not None:
         import capo_sagemaker.types.model_data_source
 
         out["model_data_source"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerDefinition:
                 data["ModelDataSource"]
             )
         )
-    if "AdditionalModelDataSources" in data:
+    if data.get("AdditionalModelDataSources") is not None:
         import capo_sagemaker.types.additional_model_data_sources
 
         out["additional_model_data_sources"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerDefinition:
                 data["AdditionalModelDataSources"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.environment_map
 
         out["environment"] = (
@@ -161,11 +161,11 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerDefinition:
                 data["Environment"]
             )
         )
-    if "ModelPackageName" in data:
+    if data.get("ModelPackageName") is not None:
         out["model_package_name"] = data["ModelPackageName"]
-    if "InferenceSpecificationName" in data:
+    if data.get("InferenceSpecificationName") is not None:
         out["inference_specification_name"] = data["InferenceSpecificationName"]
-    if "MultiModelConfig" in data:
+    if data.get("MultiModelConfig") is not None:
         import capo_sagemaker.types.multi_model_config
 
         out["multi_model_config"] = (

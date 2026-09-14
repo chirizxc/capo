@@ -33,15 +33,15 @@ def serialize_json(value: AggregationConstraint) -> dict:
 
 def deserialize_json(data: dict) -> AggregationConstraint:
     out: AggregationConstraint = {}  # type: ignore[typeddict-item]
-    if "columnName" in data:
+    if data.get("columnName") is not None:
         out["column_name"] = data["columnName"]
     else:
         raise DeserializationError("AggregationConstraint.column_name required")
-    if "minimum" in data:
+    if data.get("minimum") is not None:
         out["minimum"] = data["minimum"]
     else:
         raise DeserializationError("AggregationConstraint.minimum required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("AggregationConstraint.type required")

@@ -53,7 +53,7 @@ def serialize_json(value: ListRealtimeContactAnalysisSegmentsV2Response) -> dict
 
 def deserialize_json(data: dict) -> ListRealtimeContactAnalysisSegmentsV2Response:
     out: ListRealtimeContactAnalysisSegmentsV2Response = {}  # type: ignore[typeddict-item]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.real_time_contact_analysis_supported_channel
 
         out["channel"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ListRealtimeContactAnalysisSegmentsV2Respons
         raise DeserializationError(
             "ListRealtimeContactAnalysisSegmentsV2Response.channel required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.real_time_contact_analysis_status
 
         out["status"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> ListRealtimeContactAnalysisSegmentsV2Respons
         raise DeserializationError(
             "ListRealtimeContactAnalysisSegmentsV2Response.status required"
         )
-    if "Segments" in data:
+    if data.get("Segments") is not None:
         import capo_connect.types.realtime_contact_analysis_segments
 
         out["segments"] = (
@@ -89,6 +89,6 @@ def deserialize_json(data: dict) -> ListRealtimeContactAnalysisSegmentsV2Respons
         raise DeserializationError(
             "ListRealtimeContactAnalysisSegmentsV2Response.segments required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

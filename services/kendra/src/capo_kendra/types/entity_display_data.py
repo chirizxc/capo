@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: EntityDisplayData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityDisplayData:
     out: EntityDisplayData = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "IdentifiedUserName" in data:
+    if data.get("IdentifiedUserName") is not None:
         out["identified_user_name"] = data["IdentifiedUserName"]
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
     return out

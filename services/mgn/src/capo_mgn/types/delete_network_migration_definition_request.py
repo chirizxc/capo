@@ -26,7 +26,7 @@ def serialize_json(value: DeleteNetworkMigrationDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteNetworkMigrationDefinitionRequest:
     out: DeleteNetworkMigrationDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
     else:
         raise DeserializationError(

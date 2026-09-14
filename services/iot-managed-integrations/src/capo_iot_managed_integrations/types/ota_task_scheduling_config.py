@@ -56,7 +56,7 @@ def serialize_json(value: OtaTaskSchedulingConfig) -> dict:
 
 def deserialize_json(data: dict) -> OtaTaskSchedulingConfig:
     out: OtaTaskSchedulingConfig = {}  # type: ignore[typeddict-item]
-    if "EndBehavior" in data:
+    if data.get("EndBehavior") is not None:
         import capo_iot_managed_integrations.types.scheduling_config_end_behavior
 
         out["end_behavior"] = (
@@ -64,9 +64,9 @@ def deserialize_json(data: dict) -> OtaTaskSchedulingConfig:
                 data["EndBehavior"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         out["end_time"] = data["EndTime"]
-    if "MaintenanceWindows" in data:
+    if data.get("MaintenanceWindows") is not None:
         import capo_iot_managed_integrations.types.schedule_maintenance_window_list
 
         out["maintenance_windows"] = (
@@ -74,6 +74,6 @@ def deserialize_json(data: dict) -> OtaTaskSchedulingConfig:
                 data["MaintenanceWindows"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         out["start_time"] = data["StartTime"]
     return out

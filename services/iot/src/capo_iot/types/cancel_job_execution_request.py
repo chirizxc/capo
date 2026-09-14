@@ -41,9 +41,9 @@ def serialize_json(value: CancelJobExecutionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelJobExecutionRequest:
     out: CancelJobExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "expectedVersion" in data:
+    if data.get("expectedVersion") is not None:
         out["expected_version"] = data["expectedVersion"]
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         import capo_iot.types.details_map
 
         out["status_details"] = capo_iot.types.details_map.deserialize_json(

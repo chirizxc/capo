@@ -33,7 +33,7 @@ def serialize_json(value: GetRDFGraphSummaryOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetRDFGraphSummaryOutput:
     out: GetRDFGraphSummaryOutput = {}  # type: ignore[typeddict-item]
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_neptunedata.types.rdf_graph_summary_value_map
 
         out["payload"] = (

@@ -44,7 +44,7 @@ def serialize_json(value: BackendStoragePermissions) -> dict:
 
 def deserialize_json(data: dict) -> BackendStoragePermissions:
     out: BackendStoragePermissions = {}  # type: ignore[typeddict-item]
-    if "authenticated" in data:
+    if data.get("authenticated") is not None:
         import capo_amplifybackend.types.list_of_authenticated_element
 
         out["authenticated"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BackendStoragePermissions:
                 data["authenticated"]
             )
         )
-    if "unAuthenticated" in data:
+    if data.get("unAuthenticated") is not None:
         import capo_amplifybackend.types.list_of_un_authenticated_element
 
         out["un_authenticated"] = (

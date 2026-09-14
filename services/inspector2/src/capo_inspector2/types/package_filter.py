@@ -86,41 +86,41 @@ def serialize_json(value: PackageFilter) -> dict:
 
 def deserialize_json(data: dict) -> PackageFilter:
     out: PackageFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_inspector2.types.string_filter
 
         out["name"] = capo_inspector2.types.string_filter.deserialize_json(data["name"])
-    if "version" in data:
+    if data.get("version") is not None:
         import capo_inspector2.types.string_filter
 
         out["version"] = capo_inspector2.types.string_filter.deserialize_json(
             data["version"]
         )
-    if "epoch" in data:
+    if data.get("epoch") is not None:
         import capo_inspector2.types.number_filter
 
         out["epoch"] = capo_inspector2.types.number_filter.deserialize_json(
             data["epoch"]
         )
-    if "release" in data:
+    if data.get("release") is not None:
         import capo_inspector2.types.string_filter
 
         out["release"] = capo_inspector2.types.string_filter.deserialize_json(
             data["release"]
         )
-    if "architecture" in data:
+    if data.get("architecture") is not None:
         import capo_inspector2.types.string_filter
 
         out["architecture"] = capo_inspector2.types.string_filter.deserialize_json(
             data["architecture"]
         )
-    if "sourceLayerHash" in data:
+    if data.get("sourceLayerHash") is not None:
         import capo_inspector2.types.string_filter
 
         out["source_layer_hash"] = capo_inspector2.types.string_filter.deserialize_json(
             data["sourceLayerHash"]
         )
-    if "sourceLambdaLayerArn" in data:
+    if data.get("sourceLambdaLayerArn") is not None:
         import capo_inspector2.types.string_filter
 
         out["source_lambda_layer_arn"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> PackageFilter:
                 data["sourceLambdaLayerArn"]
             )
         )
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         import capo_inspector2.types.string_filter
 
         out["file_path"] = capo_inspector2.types.string_filter.deserialize_json(

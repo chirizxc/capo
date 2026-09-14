@@ -36,7 +36,7 @@ def serialize_json(value: QueryError) -> dict:
 
 def deserialize_json(data: dict) -> QueryError:
     out: QueryError = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_resource_groups.types.query_error_code
 
         out["error_code"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> QueryError:
                 data["ErrorCode"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

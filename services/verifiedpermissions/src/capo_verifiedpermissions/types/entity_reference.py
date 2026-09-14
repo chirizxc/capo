@@ -38,9 +38,9 @@ def serialize_aws_json_1_0(value: EntityReference) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> EntityReference:
-    if "unspecified" in data:
+    if data.get("unspecified") is not None:
         return {"unspecified": data["unspecified"]}
-    elif "identifier" in data:
+    elif data.get("identifier") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         return {

@@ -28,7 +28,7 @@ def serialize_json(value: BatchGetMembershipDatasourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetMembershipDatasourcesRequest:
     out: BatchGetMembershipDatasourcesRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArns" in data:
+    if data.get("GraphArns") is not None:
         import capo_detective.types.graph_arn_list
 
         out["graph_arns"] = capo_detective.types.graph_arn_list.deserialize_json(

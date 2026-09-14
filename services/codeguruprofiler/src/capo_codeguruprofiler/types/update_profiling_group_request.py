@@ -35,7 +35,7 @@ def serialize_json(value: UpdateProfilingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProfilingGroupRequest:
     out: UpdateProfilingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "agentOrchestrationConfig" in data:
+    if data.get("agentOrchestrationConfig") is not None:
         import capo_codeguruprofiler.types.agent_orchestration_config
 
         out["agent_orchestration_config"] = (

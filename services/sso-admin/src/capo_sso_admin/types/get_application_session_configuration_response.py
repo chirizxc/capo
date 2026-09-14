@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetApplicationSessionConfigurationResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> GetApplicationSessionConfigurationResponse:
     out: GetApplicationSessionConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "UserBackgroundSessionApplicationStatus" in data:
+    if data.get("UserBackgroundSessionApplicationStatus") is not None:
         import capo_sso_admin.types.user_background_session_application_status
 
         out["user_background_session_application_status"] = (

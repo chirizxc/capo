@@ -205,7 +205,7 @@ class AsyncPricingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pricing.types.describe_services_request.DescribeServicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pricing.types.describe_services_request.DescribeServicesRequest = {}
         if service_code is not None:
             input_["service_code"] = service_code
         if format_version is not None:
@@ -220,6 +220,7 @@ class AsyncPricingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_services(
@@ -303,9 +304,10 @@ class AsyncPricingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pricing.types.get_attribute_values_request.GetAttributeValuesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
-        input_["attribute_name"] = attribute_name
+        input_: capo_pricing.types.get_attribute_values_request.GetAttributeValuesRequest = {
+            "service_code": service_code,
+            "attribute_name": attribute_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -316,6 +318,7 @@ class AsyncPricingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_attribute_values(
@@ -384,15 +387,17 @@ class AsyncPricingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pricing.types.get_price_list_file_url_request.GetPriceListFileUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["price_list_arn"] = price_list_arn
-        input_["file_format"] = file_format
+        input_: capo_pricing.types.get_price_list_file_url_request.GetPriceListFileUrlRequest = {
+            "price_list_arn": price_list_arn,
+            "file_format": file_format,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_products(
@@ -445,8 +450,9 @@ class AsyncPricingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pricing.types.get_products_request.GetProductsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
+        input_: capo_pricing.types.get_products_request.GetProductsRequest = {
+            "service_code": service_code
+        }
         if filters is not None:
             input_["filters"] = filters
         if format_version is not None:
@@ -461,6 +467,7 @@ class AsyncPricingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_products(
@@ -543,12 +550,13 @@ class AsyncPricingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pricing.types.list_price_lists_request.ListPriceListsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
-        input_["effective_date"] = effective_date
+        input_: capo_pricing.types.list_price_lists_request.ListPriceListsRequest = {
+            "service_code": service_code,
+            "effective_date": effective_date,
+            "currency_code": currency_code,
+        }
         if region_code is not None:
             input_["region_code"] = region_code
-        input_["currency_code"] = currency_code
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -559,6 +567,7 @@ class AsyncPricingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_price_lists(

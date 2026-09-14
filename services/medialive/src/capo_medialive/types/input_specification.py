@@ -47,11 +47,11 @@ def serialize_json(value: InputSpecification) -> dict:
 
 def deserialize_json(data: dict) -> InputSpecification:
     out: InputSpecification = {}  # type: ignore[typeddict-item]
-    if "codec" in data:
+    if data.get("codec") is not None:
         import capo_medialive.types.input_codec
 
         out["codec"] = capo_medialive.types.input_codec.deserialize_json(data["codec"])
-    if "maximumBitrate" in data:
+    if data.get("maximumBitrate") is not None:
         import capo_medialive.types.input_maximum_bitrate
 
         out["maximum_bitrate"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> InputSpecification:
                 data["maximumBitrate"]
             )
         )
-    if "resolution" in data:
+    if data.get("resolution") is not None:
         import capo_medialive.types.input_resolution
 
         out["resolution"] = capo_medialive.types.input_resolution.deserialize_json(

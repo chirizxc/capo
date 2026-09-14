@@ -57,15 +57,15 @@ def serialize_json(value: MetadataCatalogDetail) -> dict:
 
 def deserialize_json(data: dict) -> MetadataCatalogDetail:
     out: MetadataCatalogDetail = {}  # type: ignore[typeddict-item]
-    if "catalogType" in data:
+    if data.get("catalogType") is not None:
         import capo_appflow.types.catalog_type
 
         out["catalog_type"] = capo_appflow.types.catalog_type.deserialize_json(
             data["catalogType"]
         )
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
-    if "tableRegistrationOutput" in data:
+    if data.get("tableRegistrationOutput") is not None:
         import capo_appflow.types.registration_output
 
         out["table_registration_output"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> MetadataCatalogDetail:
                 data["tableRegistrationOutput"]
             )
         )
-    if "partitionRegistrationOutput" in data:
+    if data.get("partitionRegistrationOutput") is not None:
         import capo_appflow.types.registration_output
 
         out["partition_registration_output"] = (

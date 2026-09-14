@@ -34,12 +34,12 @@ def serialize_json(value: DnsServiceDiscovery) -> dict:
 
 def deserialize_json(data: dict) -> DnsServiceDiscovery:
     out: DnsServiceDiscovery = {}  # type: ignore[typeddict-item]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
     else:
         raise DeserializationError("DnsServiceDiscovery.hostname required")
-    if "responseType" in data:
+    if data.get("responseType") is not None:
         out["response_type"] = data["responseType"]
-    if "ipPreference" in data:
+    if data.get("ipPreference") is not None:
         out["ip_preference"] = data["ipPreference"]
     return out

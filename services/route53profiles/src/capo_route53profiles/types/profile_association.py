@@ -80,25 +80,25 @@ def serialize_json(value: ProfileAssociation) -> dict:
 
 def deserialize_json(data: dict) -> ProfileAssociation:
     out: ProfileAssociation = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53profiles.types.profile_status
 
         out["status"] = capo_route53profiles.types.profile_status.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_route53profiles.types.rfc3339_timestamp
 
         out["creation_time"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> ProfileAssociation:
                 data["CreationTime"]
             )
         )
-    if "ModificationTime" in data:
+    if data.get("ModificationTime") is not None:
         import capo_route53profiles.types.rfc3339_timestamp
 
         out["modification_time"] = (

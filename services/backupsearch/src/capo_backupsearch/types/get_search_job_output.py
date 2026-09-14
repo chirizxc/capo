@@ -112,9 +112,9 @@ def serialize_json(value: GetSearchJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSearchJobOutput:
     out: GetSearchJobOutput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SearchScopeSummary" in data:
+    if data.get("SearchScopeSummary") is not None:
         import capo_backupsearch.types.search_scope_summary
 
         out["search_scope_summary"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> GetSearchJobOutput:
                 data["SearchScopeSummary"]
             )
         )
-    if "CurrentSearchProgress" in data:
+    if data.get("CurrentSearchProgress") is not None:
         import capo_backupsearch.types.current_search_progress
 
         out["current_search_progress"] = (
@@ -130,11 +130,11 @@ def deserialize_json(data: dict) -> GetSearchJobOutput:
                 data["CurrentSearchProgress"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["completion_time"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> GetSearchJobOutput:
                 data["CompletionTime"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_backupsearch.types.search_job_state
 
         out["status"] = capo_backupsearch.types.search_job_state.deserialize_json(
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> GetSearchJobOutput:
         )
     else:
         raise DeserializationError("GetSearchJobOutput.status required")
-    if "SearchScope" in data:
+    if data.get("SearchScope") is not None:
         import capo_backupsearch.types.search_scope
 
         out["search_scope"] = capo_backupsearch.types.search_scope.deserialize_json(
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> GetSearchJobOutput:
         )
     else:
         raise DeserializationError("GetSearchJobOutput.search_scope required")
-    if "ItemFilters" in data:
+    if data.get("ItemFilters") is not None:
         import capo_backupsearch.types.item_filters
 
         out["item_filters"] = capo_backupsearch.types.item_filters.deserialize_json(
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> GetSearchJobOutput:
         )
     else:
         raise DeserializationError("GetSearchJobOutput.item_filters required")
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -176,11 +176,11 @@ def deserialize_json(data: dict) -> GetSearchJobOutput:
         )
     else:
         raise DeserializationError("GetSearchJobOutput.creation_time required")
-    if "SearchJobIdentifier" in data:
+    if data.get("SearchJobIdentifier") is not None:
         out["search_job_identifier"] = data["SearchJobIdentifier"]
     else:
         raise DeserializationError("GetSearchJobOutput.search_job_identifier required")
-    if "SearchJobArn" in data:
+    if data.get("SearchJobArn") is not None:
         out["search_job_arn"] = data["SearchJobArn"]
     else:
         raise DeserializationError("GetSearchJobOutput.search_job_arn required")

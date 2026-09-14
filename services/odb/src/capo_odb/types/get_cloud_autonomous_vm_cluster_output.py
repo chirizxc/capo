@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: GetCloudAutonomousVmClusterOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetCloudAutonomousVmClusterOutput:
     out: GetCloudAutonomousVmClusterOutput = {}  # type: ignore[typeddict-item]
-    if "cloudAutonomousVmCluster" in data:
+    if data.get("cloudAutonomousVmCluster") is not None:
         import capo_odb.types.cloud_autonomous_vm_cluster
 
         out["cloud_autonomous_vm_cluster"] = (

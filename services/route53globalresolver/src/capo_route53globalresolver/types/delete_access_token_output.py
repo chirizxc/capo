@@ -42,11 +42,11 @@ def serialize_json(value: DeleteAccessTokenOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAccessTokenOutput:
     out: DeleteAccessTokenOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeleteAccessTokenOutput.id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_route53globalresolver.types.token_status
 
         out["status"] = capo_route53globalresolver.types.token_status.deserialize_json(
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> DeleteAccessTokenOutput:
         )
     else:
         raise DeserializationError("DeleteAccessTokenOutput.status required")
-    if "deletedAt" in data:
+    if data.get("deletedAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["deleted_at"] = (

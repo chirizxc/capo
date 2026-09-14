@@ -16,4 +16,4 @@ def serialize_json(value: AdditionalDashboardIdList) -> list:
 
 
 def deserialize_json(data: list) -> AdditionalDashboardIdList:
-    return list(data)
+    return [item for item in data if item is not None]

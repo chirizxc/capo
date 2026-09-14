@@ -79,17 +79,17 @@ def serialize_json(value: GetResponsePlanOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetResponsePlanOutput:
     out: GetResponsePlanOutput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetResponsePlanOutput.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetResponsePlanOutput.name required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "incidentTemplate" in data:
+    if data.get("incidentTemplate") is not None:
         import capo_ssm_incidents.types.incident_template
 
         out["incident_template"] = (
@@ -99,25 +99,25 @@ def deserialize_json(data: dict) -> GetResponsePlanOutput:
         )
     else:
         raise DeserializationError("GetResponsePlanOutput.incident_template required")
-    if "chatChannel" in data:
+    if data.get("chatChannel") is not None:
         import capo_ssm_incidents.types.chat_channel
 
         out["chat_channel"] = capo_ssm_incidents.types.chat_channel.deserialize_json(
             data["chatChannel"]
         )
-    if "engagements" in data:
+    if data.get("engagements") is not None:
         import capo_ssm_incidents.types.engagement_set
 
         out["engagements"] = capo_ssm_incidents.types.engagement_set.deserialize_json(
             data["engagements"]
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_ssm_incidents.types.actions_list
 
         out["actions"] = capo_ssm_incidents.types.actions_list.deserialize_json(
             data["actions"]
         )
-    if "integrations" in data:
+    if data.get("integrations") is not None:
         import capo_ssm_incidents.types.integrations
 
         out["integrations"] = capo_ssm_incidents.types.integrations.deserialize_json(

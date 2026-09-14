@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: CancelServiceInstanceDeploymentOutput) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> CancelServiceInstanceDeploymentOutput:
     out: CancelServiceInstanceDeploymentOutput = {}  # type: ignore[typeddict-item]
-    if "serviceInstance" in data:
+    if data.get("serviceInstance") is not None:
         import capo_proton.types.service_instance
 
         out["service_instance"] = (

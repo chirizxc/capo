@@ -27,13 +27,13 @@ def serialize_json(value: IdMappingTableInputReferenceConfig) -> dict:
 
 def deserialize_json(data: dict) -> IdMappingTableInputReferenceConfig:
     out: IdMappingTableInputReferenceConfig = {}  # type: ignore[typeddict-item]
-    if "inputReferenceArn" in data:
+    if data.get("inputReferenceArn") is not None:
         out["input_reference_arn"] = data["inputReferenceArn"]
     else:
         raise DeserializationError(
             "IdMappingTableInputReferenceConfig.input_reference_arn required"
         )
-    if "manageResourcePolicies" in data:
+    if data.get("manageResourcePolicies") is not None:
         out["manage_resource_policies"] = data["manageResourcePolicies"]
     else:
         raise DeserializationError(

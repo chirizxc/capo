@@ -27,7 +27,7 @@ def serialize_json(value: ListDataSourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDataSourcesResponse:
     out: ListDataSourcesResponse = {}  # type: ignore[typeddict-item]
-    if "DataSources" in data:
+    if data.get("DataSources") is not None:
         import capo_opensearch.types.data_source_list
 
         out["data_sources"] = capo_opensearch.types.data_source_list.deserialize_json(

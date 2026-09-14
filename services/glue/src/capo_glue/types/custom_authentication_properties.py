@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: CustomAuthenticationProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomAuthenticationProperties:
     out: CustomAuthenticationProperties = {}  # type: ignore[typeddict-item]
-    if "AuthenticationParameters" in data:
+    if data.get("AuthenticationParameters") is not None:
         import capo_glue.types.connector_property_list
 
         out["authentication_parameters"] = (

@@ -25,7 +25,7 @@ def serialize_json(value: OutputLocation) -> dict:
 
 def deserialize_json(data: dict) -> OutputLocation:
     out: OutputLocation = {}  # type: ignore[typeddict-item]
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_glacier.types.s3_location
 
         out["s3"] = capo_glacier.types.s3_location.deserialize_json(data["S3"])

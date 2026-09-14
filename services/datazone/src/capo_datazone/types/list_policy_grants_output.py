@@ -33,7 +33,7 @@ def serialize_json(value: ListPolicyGrantsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListPolicyGrantsOutput:
     out: ListPolicyGrantsOutput = {}  # type: ignore[typeddict-item]
-    if "grantList" in data:
+    if data.get("grantList") is not None:
         import capo_datazone.types.policy_grant_list
 
         out["grant_list"] = capo_datazone.types.policy_grant_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListPolicyGrantsOutput:
         )
     else:
         raise DeserializationError("ListPolicyGrantsOutput.grant_list required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

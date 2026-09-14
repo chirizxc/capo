@@ -44,17 +44,17 @@ def serialize_json(value: StartAudienceExportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAudienceExportJobRequest:
     out: StartAudienceExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StartAudienceExportJobRequest.name required")
-    if "audienceGenerationJobArn" in data:
+    if data.get("audienceGenerationJobArn") is not None:
         out["audience_generation_job_arn"] = data["audienceGenerationJobArn"]
     else:
         raise DeserializationError(
             "StartAudienceExportJobRequest.audience_generation_job_arn required"
         )
-    if "audienceSize" in data:
+    if data.get("audienceSize") is not None:
         import capo_cleanroomsml.types.audience_size
 
         out["audience_size"] = capo_cleanroomsml.types.audience_size.deserialize_json(
@@ -64,6 +64,6 @@ def deserialize_json(data: dict) -> StartAudienceExportJobRequest:
         raise DeserializationError(
             "StartAudienceExportJobRequest.audience_size required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

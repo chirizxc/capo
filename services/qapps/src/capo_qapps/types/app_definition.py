@@ -33,16 +33,16 @@ def serialize_json(value: AppDefinition) -> dict:
 
 def deserialize_json(data: dict) -> AppDefinition:
     out: AppDefinition = {}  # type: ignore[typeddict-item]
-    if "appDefinitionVersion" in data:
+    if data.get("appDefinitionVersion") is not None:
         out["app_definition_version"] = data["appDefinitionVersion"]
     else:
         raise DeserializationError("AppDefinition.app_definition_version required")
-    if "cards" in data:
+    if data.get("cards") is not None:
         import capo_qapps.types.card_model_list
 
         out["cards"] = capo_qapps.types.card_model_list.deserialize_json(data["cards"])
     else:
         raise DeserializationError("AppDefinition.cards required")
-    if "canEdit" in data:
+    if data.get("canEdit") is not None:
         out["can_edit"] = data["canEdit"]
     return out

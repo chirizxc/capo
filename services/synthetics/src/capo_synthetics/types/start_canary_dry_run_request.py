@@ -133,15 +133,15 @@ def serialize_json(value: StartCanaryDryRunRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartCanaryDryRunRequest:
     out: StartCanaryDryRunRequest = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_synthetics.types.canary_code_input
 
         out["code"] = capo_synthetics.types.canary_code_input.deserialize_json(
             data["Code"]
         )
-    if "RuntimeVersion" in data:
+    if data.get("RuntimeVersion") is not None:
         out["runtime_version"] = data["RuntimeVersion"]
-    if "RunConfig" in data:
+    if data.get("RunConfig") is not None:
         import capo_synthetics.types.canary_run_config_input
 
         out["run_config"] = (
@@ -149,19 +149,19 @@ def deserialize_json(data: dict) -> StartCanaryDryRunRequest:
                 data["RunConfig"]
             )
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_synthetics.types.vpc_config_input
 
         out["vpc_config"] = capo_synthetics.types.vpc_config_input.deserialize_json(
             data["VpcConfig"]
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "SuccessRetentionPeriodInDays" in data:
+    if data.get("SuccessRetentionPeriodInDays") is not None:
         out["success_retention_period_in_days"] = data["SuccessRetentionPeriodInDays"]
-    if "FailureRetentionPeriodInDays" in data:
+    if data.get("FailureRetentionPeriodInDays") is not None:
         out["failure_retention_period_in_days"] = data["FailureRetentionPeriodInDays"]
-    if "VisualReference" in data:
+    if data.get("VisualReference") is not None:
         import capo_synthetics.types.visual_reference_input
 
         out["visual_reference"] = (
@@ -169,9 +169,9 @@ def deserialize_json(data: dict) -> StartCanaryDryRunRequest:
                 data["VisualReference"]
             )
         )
-    if "ArtifactS3Location" in data:
+    if data.get("ArtifactS3Location") is not None:
         out["artifact_s3_location"] = data["ArtifactS3Location"]
-    if "ArtifactConfig" in data:
+    if data.get("ArtifactConfig") is not None:
         import capo_synthetics.types.artifact_config_input
 
         out["artifact_config"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> StartCanaryDryRunRequest:
                 data["ArtifactConfig"]
             )
         )
-    if "ProvisionedResourceCleanup" in data:
+    if data.get("ProvisionedResourceCleanup") is not None:
         import capo_synthetics.types.provisioned_resource_cleanup_setting
 
         out["provisioned_resource_cleanup"] = (
@@ -187,13 +187,13 @@ def deserialize_json(data: dict) -> StartCanaryDryRunRequest:
                 data["ProvisionedResourceCleanup"]
             )
         )
-    if "BrowserConfigs" in data:
+    if data.get("BrowserConfigs") is not None:
         import capo_synthetics.types.browser_configs
 
         out["browser_configs"] = capo_synthetics.types.browser_configs.deserialize_json(
             data["BrowserConfigs"]
         )
-    if "VisualReferences" in data:
+    if data.get("VisualReferences") is not None:
         import capo_synthetics.types.visual_references
 
         out["visual_references"] = (

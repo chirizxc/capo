@@ -49,19 +49,19 @@ def serialize_aws_json_1_1(value: ManifestConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManifestConfig:
     out: ManifestConfig = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_datasync.types.manifest_action
 
         out["action"] = capo_datasync.types.manifest_action.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_datasync.types.manifest_format
 
         out["format"] = capo_datasync.types.manifest_format.deserialize_aws_json_1_1(
             data["Format"]
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_datasync.types.source_manifest_config
 
         out["source"] = (

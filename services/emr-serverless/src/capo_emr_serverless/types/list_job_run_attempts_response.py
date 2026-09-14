@@ -33,7 +33,7 @@ def serialize_json(value: ListJobRunAttemptsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListJobRunAttemptsResponse:
     out: ListJobRunAttemptsResponse = {}  # type: ignore[typeddict-item]
-    if "jobRunAttempts" in data:
+    if data.get("jobRunAttempts") is not None:
         import capo_emr_serverless.types.job_run_attempts
 
         out["job_run_attempts"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListJobRunAttemptsResponse:
         raise DeserializationError(
             "ListJobRunAttemptsResponse.job_run_attempts required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -96,15 +96,15 @@ def serialize_aws_json_1_1(value: ScalingPlan) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingPlan:
     out: ScalingPlan = {}  # type: ignore[typeddict-item]
-    if "ScalingPlanName" in data:
+    if data.get("ScalingPlanName") is not None:
         out["scaling_plan_name"] = data["ScalingPlanName"]
     else:
         raise DeserializationError("ScalingPlan.scaling_plan_name required")
-    if "ScalingPlanVersion" in data:
+    if data.get("ScalingPlanVersion") is not None:
         out["scaling_plan_version"] = data["ScalingPlanVersion"]
     else:
         raise DeserializationError("ScalingPlan.scaling_plan_version required")
-    if "ApplicationSource" in data:
+    if data.get("ApplicationSource") is not None:
         import capo_auto_scaling_plans.types.application_source
 
         out["application_source"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPlan:
         )
     else:
         raise DeserializationError("ScalingPlan.application_source required")
-    if "ScalingInstructions" in data:
+    if data.get("ScalingInstructions") is not None:
         import capo_auto_scaling_plans.types.scaling_instructions
 
         out["scaling_instructions"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPlan:
         )
     else:
         raise DeserializationError("ScalingPlan.scaling_instructions required")
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_auto_scaling_plans.types.scaling_plan_status_code
 
         out["status_code"] = (
@@ -134,9 +134,9 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPlan:
         )
     else:
         raise DeserializationError("ScalingPlan.status_code required")
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "StatusStartTime" in data:
+    if data.get("StatusStartTime") is not None:
         import capo_auto_scaling_plans.types.timestamp_type
 
         out["status_start_time"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPlan:
                 data["StatusStartTime"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_auto_scaling_plans.types.timestamp_type
 
         out["creation_time"] = (

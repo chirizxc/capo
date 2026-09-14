@@ -38,7 +38,7 @@ def serialize_json(value: GetQueryResultsOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetQueryResultsOutput:
     out: GetQueryResultsOutput = {}  # type: ignore[typeddict-item]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_internetmonitor.types.query_fields
 
         out["fields"] = capo_internetmonitor.types.query_fields.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> GetQueryResultsOutput:
         )
     else:
         raise DeserializationError("GetQueryResultsOutput.fields required")
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_internetmonitor.types.query_data
 
         out["data"] = capo_internetmonitor.types.query_data.deserialize_json(
@@ -54,6 +54,6 @@ def deserialize_json(data: dict) -> GetQueryResultsOutput:
         )
     else:
         raise DeserializationError("GetQueryResultsOutput.data required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

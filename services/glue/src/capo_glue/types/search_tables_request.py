@@ -80,11 +80,11 @@ def serialize_aws_json_1_1(value: SearchTablesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchTablesRequest:
     out: SearchTablesRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_glue.types.search_property_predicates
 
         out["filters"] = (
@@ -92,17 +92,17 @@ def deserialize_aws_json_1_1(data: dict) -> SearchTablesRequest:
                 data["Filters"]
             )
         )
-    if "SearchText" in data:
+    if data.get("SearchText") is not None:
         out["search_text"] = data["SearchText"]
-    if "SortCriteria" in data:
+    if data.get("SortCriteria") is not None:
         import capo_glue.types.sort_criteria
 
         out["sort_criteria"] = capo_glue.types.sort_criteria.deserialize_aws_json_1_1(
             data["SortCriteria"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ResourceShareType" in data:
+    if data.get("ResourceShareType") is not None:
         import capo_glue.types.resource_share_type
 
         out["resource_share_type"] = (
@@ -110,6 +110,6 @@ def deserialize_aws_json_1_1(data: dict) -> SearchTablesRequest:
                 data["ResourceShareType"]
             )
         )
-    if "IncludeStatusDetails" in data:
+    if data.get("IncludeStatusDetails") is not None:
         out["include_status_details"] = data["IncludeStatusDetails"]
     return out

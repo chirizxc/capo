@@ -22,6 +22,6 @@ def serialize_aws_json_1_1(value: UpdateFileCacheLustreConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFileCacheLustreConfiguration:
     out: UpdateFileCacheLustreConfiguration = {}  # type: ignore[typeddict-item]
-    if "WeeklyMaintenanceStartTime" in data:
+    if data.get("WeeklyMaintenanceStartTime") is not None:
         out["weekly_maintenance_start_time"] = data["WeeklyMaintenanceStartTime"]
     return out

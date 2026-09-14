@@ -48,7 +48,17 @@ def serialize_json(value: EvaluationAnswerData) -> dict:
     if "StringValue" in value:
         return {"StringValue": value["StringValue"]}
     elif "NumericValue" in value:
-        return {"NumericValue": value["NumericValue"]}
+        return {
+            "NumericValue": (
+                "NaN"
+                if value["NumericValue"] != value["NumericValue"]
+                else "Infinity"
+                if value["NumericValue"] == float("inf")
+                else "-Infinity"
+                if value["NumericValue"] == float("-inf")
+                else value["NumericValue"]
+            )
+        }
     elif "StringValues" in value:
         import capo_connect.types.evaluation_answer_data_string_value_list
 
@@ -66,11 +76,11 @@ def serialize_json(value: EvaluationAnswerData) -> dict:
 
 
 def deserialize_json(data: dict) -> EvaluationAnswerData:
-    if "StringValue" in data:
+    if data.get("StringValue") is not None:
         return {"StringValue": data["StringValue"]}
-    elif "NumericValue" in data:
-        return {"NumericValue": data["NumericValue"]}
-    elif "StringValues" in data:
+    elif data.get("NumericValue") is not None:
+        return {"NumericValue": float(data["NumericValue"])}
+    elif data.get("StringValues") is not None:
         import capo_connect.types.evaluation_answer_data_string_value_list
 
         return {
@@ -78,9 +88,9 @@ def deserialize_json(data: dict) -> EvaluationAnswerData:
                 data["StringValues"]
             )
         }
-    elif "DateTimeValue" in data:
+    elif data.get("DateTimeValue") is not None:
         return {"DateTimeValue": data["DateTimeValue"]}
-    elif "NotApplicable" in data:
+    elif data.get("NotApplicable") is not None:
         return {"NotApplicable": data["NotApplicable"]}
     else:
         raise DeserializationError("EvaluationAnswerData: no recognized variant key")

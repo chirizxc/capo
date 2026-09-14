@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SortCriteria:
 
     out: SortCriteria = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.sort_criterion.deserialize_json(item))
     return out

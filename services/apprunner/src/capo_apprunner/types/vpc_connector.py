@@ -81,21 +81,21 @@ def serialize_aws_json_1_0(value: VpcConnector) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VpcConnector:
     out: VpcConnector = {}  # type: ignore[typeddict-item]
-    if "VpcConnectorName" in data:
+    if data.get("VpcConnectorName") is not None:
         out["vpc_connector_name"] = data["VpcConnectorName"]
-    if "VpcConnectorArn" in data:
+    if data.get("VpcConnectorArn") is not None:
         out["vpc_connector_arn"] = data["VpcConnectorArn"]
-    if "VpcConnectorRevision" in data:
+    if data.get("VpcConnectorRevision") is not None:
         out["vpc_connector_revision"] = data["VpcConnectorRevision"]
     else:
         out["vpc_connector_revision"] = 0
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_apprunner.types.string_list
 
         out["subnets"] = capo_apprunner.types.string_list.deserialize_aws_json_1_0(
             data["Subnets"]
         )
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_apprunner.types.string_list
 
         out["security_groups"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_0(data: dict) -> VpcConnector:
                 data["SecurityGroups"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_apprunner.types.vpc_connector_status
 
         out["status"] = (
@@ -111,13 +111,13 @@ def deserialize_aws_json_1_0(data: dict) -> VpcConnector:
                 data["Status"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["created_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "DeletedAt" in data:
+    if data.get("DeletedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["deleted_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(

@@ -52,7 +52,7 @@ def serialize_json(value: ExecutionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionConfiguration:
     out: ExecutionConfiguration = {}  # type: ignore[typeddict-item]
-    if "ExecutionMode" in data:
+    if data.get("ExecutionMode") is not None:
         import capo_appintegrations.types.execution_mode
 
         out["execution_mode"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> ExecutionConfiguration:
         )
     else:
         raise DeserializationError("ExecutionConfiguration.execution_mode required")
-    if "OnDemandConfiguration" in data:
+    if data.get("OnDemandConfiguration") is not None:
         import capo_appintegrations.types.on_demand_configuration
 
         out["on_demand_configuration"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ExecutionConfiguration:
                 data["OnDemandConfiguration"]
             )
         )
-    if "ScheduleConfiguration" in data:
+    if data.get("ScheduleConfiguration") is not None:
         import capo_appintegrations.types.schedule_configuration
 
         out["schedule_configuration"] = (

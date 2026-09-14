@@ -80,7 +80,7 @@ def serialize_aws_json_1_0(value: FulfillmentDetails) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> FulfillmentDetails:
-    if "DisbursementDetails" in data:
+    if data.get("DisbursementDetails") is not None:
         import capo_partnercentral_benefits.types.disbursement_details
 
         return {
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> FulfillmentDetails:
                 data["DisbursementDetails"]
             )
         }
-    elif "ConsumableDetails" in data:
+    elif data.get("ConsumableDetails") is not None:
         import capo_partnercentral_benefits.types.consumable_details
 
         return {
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> FulfillmentDetails:
                 data["ConsumableDetails"]
             )
         }
-    elif "CreditDetails" in data:
+    elif data.get("CreditDetails") is not None:
         import capo_partnercentral_benefits.types.credit_details
 
         return {
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> FulfillmentDetails:
                 data["CreditDetails"]
             )
         }
-    elif "AccessDetails" in data:
+    elif data.get("AccessDetails") is not None:
         import capo_partnercentral_benefits.types.access_details
 
         return {

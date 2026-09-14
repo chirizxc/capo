@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> CostEstimates:
 
     out: CostEstimates = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lightsail.types.cost_estimate.deserialize_aws_json_1_1(item))
     return out

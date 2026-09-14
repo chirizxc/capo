@@ -50,7 +50,7 @@ def serialize_json(value: ExportAssetsToS3RequestDetails) -> dict:
 
 def deserialize_json(data: dict) -> ExportAssetsToS3RequestDetails:
     out: ExportAssetsToS3RequestDetails = {}  # type: ignore[typeddict-item]
-    if "AssetDestinations" in data:
+    if data.get("AssetDestinations") is not None:
         import capo_dataexchange.types.list_of_asset_destination_entry
 
         out["asset_destinations"] = (
@@ -62,13 +62,13 @@ def deserialize_json(data: dict) -> ExportAssetsToS3RequestDetails:
         raise DeserializationError(
             "ExportAssetsToS3RequestDetails.asset_destinations required"
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "ExportAssetsToS3RequestDetails.data_set_id required"
         )
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_dataexchange.types.export_server_side_encryption
 
         out["encryption"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> ExportAssetsToS3RequestDetails:
                 data["Encryption"]
             )
         )
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError(

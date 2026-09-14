@@ -117,9 +117,9 @@ def serialize_json(value: VideoParameters) -> dict:
 
 def deserialize_json(data: dict) -> VideoParameters:
     out: VideoParameters = {}  # type: ignore[typeddict-item]
-    if "Codec" in data:
+    if data.get("Codec") is not None:
         out["codec"] = data["Codec"]
-    if "CodecOptions" in data:
+    if data.get("CodecOptions") is not None:
         import capo_elastic_transcoder.types.codec_options
 
         out["codec_options"] = (
@@ -127,31 +127,31 @@ def deserialize_json(data: dict) -> VideoParameters:
                 data["CodecOptions"]
             )
         )
-    if "KeyframesMaxDist" in data:
+    if data.get("KeyframesMaxDist") is not None:
         out["keyframes_max_dist"] = data["KeyframesMaxDist"]
-    if "FixedGOP" in data:
+    if data.get("FixedGOP") is not None:
         out["fixed_gop"] = data["FixedGOP"]
-    if "BitRate" in data:
+    if data.get("BitRate") is not None:
         out["bit_rate"] = data["BitRate"]
-    if "FrameRate" in data:
+    if data.get("FrameRate") is not None:
         out["frame_rate"] = data["FrameRate"]
-    if "MaxFrameRate" in data:
+    if data.get("MaxFrameRate") is not None:
         out["max_frame_rate"] = data["MaxFrameRate"]
-    if "Resolution" in data:
+    if data.get("Resolution") is not None:
         out["resolution"] = data["Resolution"]
-    if "AspectRatio" in data:
+    if data.get("AspectRatio") is not None:
         out["aspect_ratio"] = data["AspectRatio"]
-    if "MaxWidth" in data:
+    if data.get("MaxWidth") is not None:
         out["max_width"] = data["MaxWidth"]
-    if "MaxHeight" in data:
+    if data.get("MaxHeight") is not None:
         out["max_height"] = data["MaxHeight"]
-    if "DisplayAspectRatio" in data:
+    if data.get("DisplayAspectRatio") is not None:
         out["display_aspect_ratio"] = data["DisplayAspectRatio"]
-    if "SizingPolicy" in data:
+    if data.get("SizingPolicy") is not None:
         out["sizing_policy"] = data["SizingPolicy"]
-    if "PaddingPolicy" in data:
+    if data.get("PaddingPolicy") is not None:
         out["padding_policy"] = data["PaddingPolicy"]
-    if "Watermarks" in data:
+    if data.get("Watermarks") is not None:
         import capo_elastic_transcoder.types.preset_watermarks
 
         out["watermarks"] = (

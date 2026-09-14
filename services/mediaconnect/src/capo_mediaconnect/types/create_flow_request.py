@@ -172,9 +172,9 @@ def serialize_json(value: CreateFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFlowRequest:
     out: CreateFlowRequest = {}  # type: ignore[typeddict-item]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "entitlements" in data:
+    if data.get("entitlements") is not None:
         import capo_mediaconnect.types.__list_of_grant_entitlement_request
 
         out["entitlements"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> CreateFlowRequest:
                 data["entitlements"]
             )
         )
-    if "mediaStreams" in data:
+    if data.get("mediaStreams") is not None:
         import capo_mediaconnect.types.__list_of_add_media_stream_request
 
         out["media_streams"] = (
@@ -190,9 +190,9 @@ def deserialize_json(data: dict) -> CreateFlowRequest:
                 data["mediaStreams"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_mediaconnect.types.__list_of_add_output_request
 
         out["outputs"] = (
@@ -200,13 +200,13 @@ def deserialize_json(data: dict) -> CreateFlowRequest:
                 data["outputs"]
             )
         )
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_mediaconnect.types.set_source_request
 
         out["source"] = capo_mediaconnect.types.set_source_request.deserialize_json(
             data["source"]
         )
-    if "sourceFailoverConfig" in data:
+    if data.get("sourceFailoverConfig") is not None:
         import capo_mediaconnect.types.failover_config
 
         out["source_failover_config"] = (
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> CreateFlowRequest:
                 data["sourceFailoverConfig"]
             )
         )
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_mediaconnect.types.__list_of_set_source_request
 
         out["sources"] = (
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> CreateFlowRequest:
                 data["sources"]
             )
         )
-    if "vpcInterfaces" in data:
+    if data.get("vpcInterfaces") is not None:
         import capo_mediaconnect.types.__list_of_vpc_interface_request
 
         out["vpc_interfaces"] = (
@@ -230,13 +230,13 @@ def deserialize_json(data: dict) -> CreateFlowRequest:
                 data["vpcInterfaces"]
             )
         )
-    if "maintenance" in data:
+    if data.get("maintenance") is not None:
         import capo_mediaconnect.types.add_maintenance
 
         out["maintenance"] = capo_mediaconnect.types.add_maintenance.deserialize_json(
             data["maintenance"]
         )
-    if "sourceMonitoringConfig" in data:
+    if data.get("sourceMonitoringConfig") is not None:
         import capo_mediaconnect.types.monitoring_config
 
         out["source_monitoring_config"] = (
@@ -244,19 +244,19 @@ def deserialize_json(data: dict) -> CreateFlowRequest:
                 data["sourceMonitoringConfig"]
             )
         )
-    if "flowSize" in data:
+    if data.get("flowSize") is not None:
         import capo_mediaconnect.types.flow_size
 
         out["flow_size"] = capo_mediaconnect.types.flow_size.deserialize_json(
             data["flowSize"]
         )
-    if "ndiConfig" in data:
+    if data.get("ndiConfig") is not None:
         import capo_mediaconnect.types.ndi_config
 
         out["ndi_config"] = capo_mediaconnect.types.ndi_config.deserialize_json(
             data["ndiConfig"]
         )
-    if "encodingConfig" in data:
+    if data.get("encodingConfig") is not None:
         import capo_mediaconnect.types.encoding_config
 
         out["encoding_config"] = (
@@ -264,7 +264,7 @@ def deserialize_json(data: dict) -> CreateFlowRequest:
                 data["encodingConfig"]
             )
         )
-    if "flowTags" in data:
+    if data.get("flowTags") is not None:
         import capo_mediaconnect.types.__map_of_string
 
         out["flow_tags"] = capo_mediaconnect.types.__map_of_string.deserialize_json(

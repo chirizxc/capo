@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeAccountRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAccountRequest:
     out: DescribeAccountRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("DescribeAccountRequest.account_id required")

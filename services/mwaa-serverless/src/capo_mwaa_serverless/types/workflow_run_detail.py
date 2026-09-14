@@ -124,19 +124,19 @@ def serialize_aws_json_1_0(value: WorkflowRunDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowRunDetail:
     out: WorkflowRunDetail = {}  # type: ignore[typeddict-item]
-    if "WorkflowArn" in data:
+    if data.get("WorkflowArn") is not None:
         out["workflow_arn"] = data["WorkflowArn"]
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "RunType" in data:
+    if data.get("RunType") is not None:
         import capo_mwaa_serverless.types.run_type
 
         out["run_type"] = capo_mwaa_serverless.types.run_type.deserialize_aws_json_1_0(
             data["RunType"]
         )
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["started_on"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowRunDetail:
                 data["StartedOn"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["created_at"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowRunDetail:
                 data["CreatedAt"]
             )
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["completed_on"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowRunDetail:
                 data["CompletedOn"]
             )
         )
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["modified_at"] = (
@@ -168,11 +168,11 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowRunDetail:
                 data["ModifiedAt"]
             )
         )
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "TaskInstances" in data:
+    if data.get("TaskInstances") is not None:
         import capo_mwaa_serverless.types.task_instance_ids
 
         out["task_instances"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowRunDetail:
                 data["TaskInstances"]
             )
         )
-    if "RunState" in data:
+    if data.get("RunState") is not None:
         import capo_mwaa_serverless.types.workflow_run_status
 
         out["run_state"] = (

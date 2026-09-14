@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: DeleteProcurementPortalPreferenceRequest) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteProcurementPortalPreferenceRequest:
     out: DeleteProcurementPortalPreferenceRequest = {}  # type: ignore[typeddict-item]
-    if "ProcurementPortalPreferenceArn" in data:
+    if data.get("ProcurementPortalPreferenceArn") is not None:
         out["procurement_portal_preference_arn"] = data[
             "ProcurementPortalPreferenceArn"
         ]
@@ -39,6 +39,6 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteProcurementPortalPreferenceReq
         raise DeserializationError(
             "DeleteProcurementPortalPreferenceRequest.procurement_portal_preference_arn required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

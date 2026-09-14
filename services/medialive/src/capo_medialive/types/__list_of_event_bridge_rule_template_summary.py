@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfEventBridgeRuleTemplateSummary:
 
     out: __listOfEventBridgeRuleTemplateSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.event_bridge_rule_template_summary.deserialize_json(
                 item

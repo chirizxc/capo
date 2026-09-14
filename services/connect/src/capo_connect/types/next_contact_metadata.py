@@ -34,7 +34,7 @@ def serialize_json(value: NextContactMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> NextContactMetadata:
-    if "QuickConnectContactData" in data:
+    if data.get("QuickConnectContactData") is not None:
         import capo_connect.types.quick_connect_contact_data
 
         return {

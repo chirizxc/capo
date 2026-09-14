@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: FeaturedResultsConflictException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FeaturedResultsConflictException_:
     out: FeaturedResultsConflictException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ConflictingItems" in data:
+    if data.get("ConflictingItems") is not None:
         import capo_kendra.types.conflicting_items
 
         out["conflicting_items"] = (
@@ -56,15 +56,20 @@ class FeaturedResultsConflictException(ServiceError):
 
     code: str | None = "FeaturedResultsConflictException"
 
-    def __init__(self, data: FeaturedResultsConflictException_):
+    def __init__(
+        self, data: FeaturedResultsConflictException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="FeaturedResultsConflictException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "FeaturedResultsConflictException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "FeaturedResultsConflictException":
+        return cls(deserialize_aws_json_1_1(data), message)

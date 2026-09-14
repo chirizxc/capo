@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteDeviceFleetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDeviceFleetRequest:
     out: DeleteDeviceFleetRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
     return out

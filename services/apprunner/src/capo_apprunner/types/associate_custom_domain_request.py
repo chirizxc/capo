@@ -35,14 +35,14 @@ def serialize_aws_json_1_0(value: AssociateCustomDomainRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateCustomDomainRequest:
     out: AssociateCustomDomainRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
     else:
         raise DeserializationError("AssociateCustomDomainRequest.service_arn required")
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("AssociateCustomDomainRequest.domain_name required")
-    if "EnableWWWSubdomain" in data:
+    if data.get("EnableWWWSubdomain") is not None:
         out["enable_www_subdomain"] = data["EnableWWWSubdomain"]
     return out

@@ -27,11 +27,11 @@ def serialize_json(value: ExecutionErrorDetails) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionErrorDetails:
     out: ExecutionErrorDetails = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     else:
         raise DeserializationError("ExecutionErrorDetails.error_code required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError("ExecutionErrorDetails.error_message required")

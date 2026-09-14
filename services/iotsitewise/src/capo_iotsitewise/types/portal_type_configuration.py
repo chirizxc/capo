@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: PortalTypeConfiguration) -> dict:
 def deserialize_json(data: dict) -> PortalTypeConfiguration:
     out: PortalTypeConfiguration = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iotsitewise.types.portal_type_entry
 
         out[key] = capo_iotsitewise.types.portal_type_entry.deserialize_json(value)

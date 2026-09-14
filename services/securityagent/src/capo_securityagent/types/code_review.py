@@ -64,15 +64,15 @@ def serialize_json(value: CodeReview) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["createdAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["updatedAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     return out
@@ -80,33 +80,33 @@ def serialize_json(value: CodeReview) -> dict:
 
 def deserialize_json(data: dict) -> CodeReview:
     out: CodeReview = {}  # type: ignore[typeddict-item]
-    if "codeReviewId" in data:
+    if data.get("codeReviewId") is not None:
         out["code_review_id"] = data["codeReviewId"]
     else:
         raise DeserializationError("CodeReview.code_review_id required")
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("CodeReview.agent_space_id required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("CodeReview.title required")
-    if "assets" in data:
+    if data.get("assets") is not None:
         import capo_securityagent.types.assets
 
         out["assets"] = capo_securityagent.types.assets.deserialize_json(data["assets"])
     else:
         raise DeserializationError("CodeReview.assets required")
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "logConfig" in data:
+    if data.get("logConfig") is not None:
         import capo_securityagent.types.cloud_watch_log
 
         out["log_config"] = capo_securityagent.types.cloud_watch_log.deserialize_json(
             data["logConfig"]
         )
-    if "codeRemediationStrategy" in data:
+    if data.get("codeRemediationStrategy") is not None:
         import capo_securityagent.types.code_remediation_strategy
 
         out["code_remediation_strategy"] = (
@@ -114,20 +114,16 @@ def deserialize_json(data: dict) -> CodeReview:
                 data["codeRemediationStrategy"]
             )
         )
-    if "createdAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     return out

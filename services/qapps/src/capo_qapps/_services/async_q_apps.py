@@ -253,15 +253,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.associate_library_item_review_input.AssociateLibraryItemReviewInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["library_item_id"] = library_item_id
+        input_: capo_qapps.types.associate_library_item_review_input.AssociateLibraryItemReviewInput = {
+            "instance_id": instance_id,
+            "library_item_id": library_item_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_q_app_with_user(
@@ -307,15 +309,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.associate_q_app_with_user_input.AssociateQAppWithUserInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["app_id"] = app_id
+        input_: capo_qapps.types.associate_q_app_with_user_input.AssociateQAppWithUserInput = {
+            "instance_id": instance_id,
+            "app_id": app_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_create_category(
@@ -361,15 +365,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.batch_create_category_input.BatchCreateCategoryInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["categories"] = categories
+        input_: capo_qapps.types.batch_create_category_input.BatchCreateCategoryInput = {
+            "instance_id": instance_id,
+            "categories": categories,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_category(
@@ -415,15 +421,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.batch_delete_category_input.BatchDeleteCategoryInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["categories"] = categories
+        input_: capo_qapps.types.batch_delete_category_input.BatchDeleteCategoryInput = {
+            "instance_id": instance_id,
+            "categories": categories,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_category(
@@ -469,15 +477,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.batch_update_category_input.BatchUpdateCategoryInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["categories"] = categories
+        input_: capo_qapps.types.batch_update_category_input.BatchUpdateCategoryInput = {
+            "instance_id": instance_id,
+            "categories": categories,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_library_item(
@@ -529,17 +539,19 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.create_library_item_input.CreateLibraryItemInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["app_id"] = app_id
-        input_["app_version"] = app_version
-        input_["categories"] = categories
+        input_: capo_qapps.types.create_library_item_input.CreateLibraryItemInput = {
+            "instance_id": instance_id,
+            "app_id": app_id,
+            "app_version": app_version,
+            "categories": categories,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_presigned_url(
@@ -598,13 +610,14 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.create_presigned_url_input.CreatePresignedUrlInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["card_id"] = card_id
-        input_["app_id"] = app_id
-        input_["file_contents_sha256"] = file_contents_sha256
-        input_["file_name"] = file_name
-        input_["scope"] = scope
+        input_: capo_qapps.types.create_presigned_url_input.CreatePresignedUrlInput = {
+            "instance_id": instance_id,
+            "card_id": card_id,
+            "app_id": app_id,
+            "file_contents_sha256": file_contents_sha256,
+            "file_name": file_name,
+            "scope": scope,
+        }
         if session_id is not None:
             input_["session_id"] = session_id
 
@@ -613,6 +626,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_q_app(
@@ -667,12 +681,13 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.create_q_app_input.CreateQAppInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["title"] = title
+        input_: capo_qapps.types.create_q_app_input.CreateQAppInput = {
+            "instance_id": instance_id,
+            "title": title,
+            "app_definition": app_definition,
+        }
         if description is not None:
             input_["description"] = description
-        input_["app_definition"] = app_definition
         if tags is not None:
             input_["tags"] = tags
 
@@ -681,6 +696,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_library_item(
@@ -726,15 +742,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.delete_library_item_input.DeleteLibraryItemInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["library_item_id"] = library_item_id
+        input_: capo_qapps.types.delete_library_item_input.DeleteLibraryItemInput = {
+            "instance_id": instance_id,
+            "library_item_id": library_item_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_q_app(
@@ -779,15 +797,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.delete_q_app_input.DeleteQAppInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["app_id"] = app_id
+        input_: capo_qapps.types.delete_q_app_input.DeleteQAppInput = {
+            "instance_id": instance_id,
+            "app_id": app_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_q_app_permissions(
@@ -834,15 +854,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.describe_q_app_permissions_input.DescribeQAppPermissionsInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["app_id"] = app_id
+        input_: capo_qapps.types.describe_q_app_permissions_input.DescribeQAppPermissionsInput = {
+            "instance_id": instance_id,
+            "app_id": app_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_library_item_review(
@@ -889,15 +911,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.disassociate_library_item_review_input.DisassociateLibraryItemReviewInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["library_item_id"] = library_item_id
+        input_: capo_qapps.types.disassociate_library_item_review_input.DisassociateLibraryItemReviewInput = {
+            "instance_id": instance_id,
+            "library_item_id": library_item_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_q_app_from_user(
@@ -942,15 +966,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.disassociate_q_app_from_user_input.DisassociateQAppFromUserInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["app_id"] = app_id
+        input_: capo_qapps.types.disassociate_q_app_from_user_input.DisassociateQAppFromUserInput = {
+            "instance_id": instance_id,
+            "app_id": app_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_q_app_session_data(
@@ -996,15 +1022,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.export_q_app_session_data_input.ExportQAppSessionDataInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["session_id"] = session_id
+        input_: capo_qapps.types.export_q_app_session_data_input.ExportQAppSessionDataInput = {
+            "instance_id": instance_id,
+            "session_id": session_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_library_item(
@@ -1053,9 +1081,10 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.get_library_item_input.GetLibraryItemInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["library_item_id"] = library_item_id
+        input_: capo_qapps.types.get_library_item_input.GetLibraryItemInput = {
+            "instance_id": instance_id,
+            "library_item_id": library_item_id,
+        }
         if app_id is not None:
             input_["app_id"] = app_id
 
@@ -1064,6 +1093,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_q_app(
@@ -1110,9 +1140,10 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.get_q_app_input.GetQAppInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["app_id"] = app_id
+        input_: capo_qapps.types.get_q_app_input.GetQAppInput = {
+            "instance_id": instance_id,
+            "app_id": app_id,
+        }
         if app_version is not None:
             input_["app_version"] = app_version
 
@@ -1121,6 +1152,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_q_app_session(
@@ -1168,15 +1200,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.get_q_app_session_input.GetQAppSessionInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["session_id"] = session_id
+        input_: capo_qapps.types.get_q_app_session_input.GetQAppSessionInput = {
+            "instance_id": instance_id,
+            "session_id": session_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_q_app_session_metadata(
@@ -1224,15 +1258,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.get_q_app_session_metadata_input.GetQAppSessionMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["session_id"] = session_id
+        input_: capo_qapps.types.get_q_app_session_metadata_input.GetQAppSessionMetadataInput = {
+            "instance_id": instance_id,
+            "session_id": session_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_document(
@@ -1294,13 +1330,14 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.import_document_input.ImportDocumentInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["card_id"] = card_id
-        input_["app_id"] = app_id
-        input_["file_contents_base64"] = file_contents_base64
-        input_["file_name"] = file_name
-        input_["scope"] = scope
+        input_: capo_qapps.types.import_document_input.ImportDocumentInput = {
+            "instance_id": instance_id,
+            "card_id": card_id,
+            "app_id": app_id,
+            "file_contents_base64": file_contents_base64,
+            "file_name": file_name,
+            "scope": scope,
+        }
         if session_id is not None:
             input_["session_id"] = session_id
 
@@ -1309,6 +1346,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_categories(
@@ -1353,14 +1391,16 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.list_categories_input.ListCategoriesInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_qapps.types.list_categories_input.ListCategoriesInput = {
+            "instance_id": instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_library_items(
@@ -1413,8 +1453,9 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.list_library_items_input.ListLibraryItemsInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_qapps.types.list_library_items_input.ListLibraryItemsInput = {
+            "instance_id": instance_id
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -1427,6 +1468,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_library_items(
@@ -1506,8 +1548,9 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.list_q_apps_input.ListQAppsInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_qapps.types.list_q_apps_input.ListQAppsInput = {
+            "instance_id": instance_id
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -1518,6 +1561,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_q_apps(
@@ -1585,15 +1629,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.list_q_app_session_data_input.ListQAppSessionDataInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["session_id"] = session_id
+        input_: capo_qapps.types.list_q_app_session_data_input.ListQAppSessionDataInput = {
+            "instance_id": instance_id,
+            "session_id": session_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -1637,14 +1683,16 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_qapps.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def predict_q_app(
@@ -1687,8 +1735,9 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.predict_q_app_input.PredictQAppInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_qapps.types.predict_q_app_input.PredictQAppInput = {
+            "instance_id": instance_id
+        }
         if options is not None:
             input_["options"] = options
 
@@ -1697,6 +1746,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_q_app_session(
@@ -1754,10 +1804,11 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.start_q_app_session_input.StartQAppSessionInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["app_id"] = app_id
-        input_["app_version"] = app_version
+        input_: capo_qapps.types.start_q_app_session_input.StartQAppSessionInput = {
+            "instance_id": instance_id,
+            "app_id": app_id,
+            "app_version": app_version,
+        }
         if initial_values is not None:
             input_["initial_values"] = initial_values
         if session_id is not None:
@@ -1770,6 +1821,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_q_app_session(
@@ -1810,15 +1862,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.stop_q_app_session_input.StopQAppSessionInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["session_id"] = session_id
+        input_: capo_qapps.types.stop_q_app_session_input.StopQAppSessionInput = {
+            "instance_id": instance_id,
+            "session_id": session_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1865,15 +1919,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_qapps.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1919,15 +1975,17 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_qapps.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_library_item(
@@ -1981,9 +2039,10 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.update_library_item_input.UpdateLibraryItemInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["library_item_id"] = library_item_id
+        input_: capo_qapps.types.update_library_item_input.UpdateLibraryItemInput = {
+            "instance_id": instance_id,
+            "library_item_id": library_item_id,
+        }
         if status is not None:
             input_["status"] = status
         if categories is not None:
@@ -1994,6 +2053,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_library_item_metadata(
@@ -2041,9 +2101,10 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.update_library_item_metadata_input.UpdateLibraryItemMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["library_item_id"] = library_item_id
+        input_: capo_qapps.types.update_library_item_metadata_input.UpdateLibraryItemMetadataInput = {
+            "instance_id": instance_id,
+            "library_item_id": library_item_id,
+        }
         if is_verified is not None:
             input_["is_verified"] = is_verified
 
@@ -2052,6 +2113,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_q_app(
@@ -2110,9 +2172,10 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.update_q_app_input.UpdateQAppInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["app_id"] = app_id
+        input_: capo_qapps.types.update_q_app_input.UpdateQAppInput = {
+            "instance_id": instance_id,
+            "app_id": app_id,
+        }
         if title is not None:
             input_["title"] = title
         if description is not None:
@@ -2125,6 +2188,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_q_app_permissions(
@@ -2182,9 +2246,10 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.update_q_app_permissions_input.UpdateQAppPermissionsInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["app_id"] = app_id
+        input_: capo_qapps.types.update_q_app_permissions_input.UpdateQAppPermissionsInput = {
+            "instance_id": instance_id,
+            "app_id": app_id,
+        }
         if grant_permissions is not None:
             input_["grant_permissions"] = grant_permissions
         if revoke_permissions is not None:
@@ -2195,6 +2260,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_q_app_session(
@@ -2239,9 +2305,10 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.update_q_app_session_input.UpdateQAppSessionInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["session_id"] = session_id
+        input_: capo_qapps.types.update_q_app_session_input.UpdateQAppSessionInput = {
+            "instance_id": instance_id,
+            "session_id": session_id,
+        }
         if values is not None:
             input_["values"] = values
 
@@ -2250,6 +2317,7 @@ class AsyncQAppsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_q_app_session_metadata(
@@ -2301,18 +2369,20 @@ class AsyncQAppsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qapps.types.update_q_app_session_metadata_input.UpdateQAppSessionMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["session_id"] = session_id
+        input_: capo_qapps.types.update_q_app_session_metadata_input.UpdateQAppSessionMetadataInput = {
+            "instance_id": instance_id,
+            "session_id": session_id,
+            "sharing_configuration": sharing_configuration,
+        }
         if session_name is not None:
             input_["session_name"] = session_name
-        input_["sharing_configuration"] = sharing_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

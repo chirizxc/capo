@@ -31,7 +31,7 @@ def serialize_json(value: DimensionEntry) -> dict:
 
 def deserialize_json(data: dict) -> DimensionEntry:
     out: DimensionEntry = {}  # type: ignore[typeddict-item]
-    if "Dimension" in data:
+    if data.get("Dimension") is not None:
         import capo_sustainability.types.dimension
 
         out["dimension"] = capo_sustainability.types.dimension.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> DimensionEntry:
         )
     else:
         raise DeserializationError("DimensionEntry.dimension required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("DimensionEntry.value required")

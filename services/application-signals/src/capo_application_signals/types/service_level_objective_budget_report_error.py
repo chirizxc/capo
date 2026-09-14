@@ -36,25 +36,25 @@ def serialize_json(value: ServiceLevelObjectiveBudgetReportError) -> dict:
 
 def deserialize_json(data: dict) -> ServiceLevelObjectiveBudgetReportError:
     out: ServiceLevelObjectiveBudgetReportError = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "ServiceLevelObjectiveBudgetReportError.name required"
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError(
             "ServiceLevelObjectiveBudgetReportError.arn required"
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError(
             "ServiceLevelObjectiveBudgetReportError.error_code required"
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     else:
         raise DeserializationError(

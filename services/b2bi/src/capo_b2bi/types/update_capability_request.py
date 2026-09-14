@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_b2bi.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_b2bi.types.capability_configuration
     import capo_b2bi.types.capability_id
@@ -29,6 +31,7 @@ class UpdateCapabilityRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: UpdateCapabilityRequest) -> dict:
     out: dict = {}
+    out["capabilityId"] = value["capability_id"]
     if "name" in value:
         out["name"] = value["name"]
     if "configuration" in value:
@@ -52,9 +55,13 @@ def serialize_aws_json_1_0(value: UpdateCapabilityRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateCapabilityRequest:
     out: UpdateCapabilityRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("capabilityId") is not None:
+        out["capability_id"] = data["capabilityId"]
+    else:
+        raise DeserializationError("UpdateCapabilityRequest.capability_id required")
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_b2bi.types.capability_configuration
 
         out["configuration"] = (
@@ -62,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateCapabilityRequest:
                 data["configuration"]
             )
         )
-    if "instructionsDocuments" in data:
+    if data.get("instructionsDocuments") is not None:
         import capo_b2bi.types.instructions_documents
 
         out["instructions_documents"] = (

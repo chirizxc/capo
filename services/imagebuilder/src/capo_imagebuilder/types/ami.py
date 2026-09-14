@@ -47,20 +47,20 @@ def serialize_json(value: Ami) -> dict:
 
 def deserialize_json(data: dict) -> Ami:
     out: Ami = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_imagebuilder.types.image_state
 
         out["state"] = capo_imagebuilder.types.image_state.deserialize_json(
             data["state"]
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     return out

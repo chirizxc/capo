@@ -26,7 +26,7 @@ def serialize_json(value: UpdateCisScanConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCisScanConfigurationResponse:
     out: UpdateCisScanConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "scanConfigurationArn" in data:
+    if data.get("scanConfigurationArn") is not None:
         out["scan_configuration_arn"] = data["scanConfigurationArn"]
     else:
         raise DeserializationError(

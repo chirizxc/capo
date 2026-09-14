@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: CreateContainerInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContainerInput:
     out: CreateContainerInput = {}  # type: ignore[typeddict-item]
-    if "ContainerName" in data:
+    if data.get("ContainerName") is not None:
         out["container_name"] = data["ContainerName"]
     else:
         raise DeserializationError("CreateContainerInput.container_name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mediastore.types.tag_list
 
         out["tags"] = capo_mediastore.types.tag_list.deserialize_aws_json_1_1(

@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: AlgorithmImage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AlgorithmImage:
     out: AlgorithmImage = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "dockerURI" in data:
+    if data.get("dockerURI") is not None:
         out["docker_uri"] = data["dockerURI"]
     else:
         raise DeserializationError("AlgorithmImage.docker_uri required")

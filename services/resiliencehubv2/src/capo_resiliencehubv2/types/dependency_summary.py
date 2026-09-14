@@ -83,27 +83,27 @@ def serialize_json(value: DependencySummary) -> dict:
 
 def deserialize_json(data: dict) -> DependencySummary:
     out: DependencySummary = {}  # type: ignore[typeddict-item]
-    if "dependencyId" in data:
+    if data.get("dependencyId") is not None:
         out["dependency_id"] = data["dependencyId"]
     else:
         raise DeserializationError("DependencySummary.dependency_id required")
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("DependencySummary.service_arn required")
-    if "dependencyName" in data:
+    if data.get("dependencyName") is not None:
         out["dependency_name"] = data["dependencyName"]
     else:
         raise DeserializationError("DependencySummary.dependency_name required")
-    if "dnsName" in data:
+    if data.get("dnsName") is not None:
         out["dns_name"] = data["dnsName"]
     else:
         raise DeserializationError("DependencySummary.dns_name required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("DependencySummary.location required")
-    if "lastDetectedTime" in data:
+    if data.get("lastDetectedTime") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["last_detected_time"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> DependencySummary:
         )
     else:
         raise DeserializationError("DependencySummary.last_detected_time required")
-    if "sourceRegions" in data:
+    if data.get("sourceRegions") is not None:
         import capo_resiliencehubv2.types.region_list
 
         out["source_regions"] = capo_resiliencehubv2.types.region_list.deserialize_json(
@@ -121,9 +121,9 @@ def deserialize_json(data: dict) -> DependencySummary:
         )
     else:
         raise DeserializationError("DependencySummary.source_regions required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
-    if "queryRange" in data:
+    if data.get("queryRange") is not None:
         import capo_resiliencehubv2.types.query_range
 
         out["query_range"] = capo_resiliencehubv2.types.query_range.deserialize_json(
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> DependencySummary:
         )
     else:
         raise DeserializationError("DependencySummary.query_range required")
-    if "criticality" in data:
+    if data.get("criticality") is not None:
         import capo_resiliencehubv2.types.dependency_criticality
 
         out["criticality"] = (
@@ -141,6 +141,6 @@ def deserialize_json(data: dict) -> DependencySummary:
         )
     else:
         raise DeserializationError("DependencySummary.criticality required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DeleteReplicationSubnetGroupMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteReplicationSubnetGroupMessage:
     out: DeleteReplicationSubnetGroupMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationSubnetGroupIdentifier" in data:
+    if data.get("ReplicationSubnetGroupIdentifier") is not None:
         out["replication_subnet_group_identifier"] = data[
             "ReplicationSubnetGroupIdentifier"
         ]

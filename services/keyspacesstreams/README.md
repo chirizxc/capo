@@ -13,9 +13,9 @@ from capo_keyspacesstreams import AsyncKeyspacesStreamsClient
 
 
 async def main():
-    async with AsyncKeyspacesStreamsClient() as s3:
+    async with AsyncKeyspacesStreamsClient() as keyspaces_streams:
         # Example: call the get_records operation
-        response = await s3.get_records()
+        response = await keyspaces_streams.get_records()
         print(response["change_records"])
 ```
 
@@ -28,9 +28,9 @@ from capo_keyspacesstreams import AsyncKeyspacesStreamsClient
 
 
 async def main():
-    async with AsyncKeyspacesStreamsClient() as s3:
+    async with AsyncKeyspacesStreamsClient() as keyspaces_streams:
         # Example: paginate over get_stream
-        async for item in s3.iter_get_stream():
+        async for item in keyspaces_streams.iter_get_stream():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_keyspacesstreams.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncKeyspacesStreamsClient() as s3:
+    async with AsyncKeyspacesStreamsClient() as keyspaces_streams:
         try:
-            await s3.get_records()
+            await keyspaces_streams.get_records()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_keyspacesstreams import AsyncKeyspacesStreamsClient
 
 
 async def main():
-    async with AsyncKeyspacesStreamsClient() as s3:
+    async with AsyncKeyspacesStreamsClient() as keyspaces_streams:
         # Default: 3 attempts for every operation
-        response = await s3.get_records()
+        response = await keyspaces_streams.get_records()
 
         # Override per operation
-        response = await s3.get_records(config_overrides={"retry_max_attempts": 5})
+        response = await keyspaces_streams.get_records(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_records(config_overrides={"retry_max_attempts": 1})
+        response = await keyspaces_streams.get_records(config_overrides={"retry_max_attempts": 1})
 ```

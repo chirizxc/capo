@@ -53,13 +53,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> UpdateLicenseSpecificationsForResourceRequest:
     out: UpdateLicenseSpecificationsForResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "UpdateLicenseSpecificationsForResourceRequest.resource_arn required"
         )
-    if "AddLicenseSpecifications" in data:
+    if data.get("AddLicenseSpecifications") is not None:
         import capo_license_manager.types.license_specifications
 
         out["add_license_specifications"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(
                 data["AddLicenseSpecifications"]
             )
         )
-    if "RemoveLicenseSpecifications" in data:
+    if data.get("RemoveLicenseSpecifications") is not None:
         import capo_license_manager.types.license_specifications
 
         out["remove_license_specifications"] = (

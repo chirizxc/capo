@@ -46,17 +46,17 @@ def serialize_json(value: Directory) -> dict:
 
 def deserialize_json(data: dict) -> Directory:
     out: Directory = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DirectoryArn" in data:
+    if data.get("DirectoryArn") is not None:
         out["directory_arn"] = data["DirectoryArn"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_clouddirectory.types.directory_state
 
         out["state"] = capo_clouddirectory.types.directory_state.deserialize_json(
             data["State"]
         )
-    if "CreationDateTime" in data:
+    if data.get("CreationDateTime") is not None:
         import capo_clouddirectory.types.date
 
         out["creation_date_time"] = capo_clouddirectory.types.date.deserialize_json(

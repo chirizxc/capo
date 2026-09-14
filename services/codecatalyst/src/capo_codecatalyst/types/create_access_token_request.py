@@ -23,9 +23,9 @@ def serialize_json(value: CreateAccessTokenRequest) -> dict:
     out: dict = {}
     out["name"] = value["name"]
     if "expires_time" in value:
-        import capo_codecatalyst.types.timestamp
+        import capo_codecatalyst._protocol.serialize
 
-        out["expiresTime"] = capo_codecatalyst.types.timestamp.serialize_json(
+        out["expiresTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
             value["expires_time"]
         )
     return out
@@ -33,14 +33,14 @@ def serialize_json(value: CreateAccessTokenRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessTokenRequest:
     out: CreateAccessTokenRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAccessTokenRequest.name required")
-    if "expiresTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("expiresTime") is not None:
+        import datetime
 
-        out["expires_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["expiresTime"]
+        out["expires_time"] = datetime.datetime.fromisoformat(
+            data["expiresTime"].replace("Z", "+00:00")
         )
     return out

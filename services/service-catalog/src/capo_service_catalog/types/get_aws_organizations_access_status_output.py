@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: GetAWSOrganizationsAccessStatusOutput) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> GetAWSOrganizationsAccessStatusOutput:
     out: GetAWSOrganizationsAccessStatusOutput = {}  # type: ignore[typeddict-item]
-    if "AccessStatus" in data:
+    if data.get("AccessStatus") is not None:
         import capo_service_catalog.types.access_status
 
         out["access_status"] = (

@@ -25,6 +25,6 @@ def serialize_json(value: RegisteredUserQSearchBarEmbeddingConfiguration) -> dic
 
 def deserialize_json(data: dict) -> RegisteredUserQSearchBarEmbeddingConfiguration:
     out: RegisteredUserQSearchBarEmbeddingConfiguration = {}  # type: ignore[typeddict-item]
-    if "InitialTopicId" in data:
+    if data.get("InitialTopicId") is not None:
         out["initial_topic_id"] = data["InitialTopicId"]
     return out

@@ -97,11 +97,11 @@ def serialize_aws_json_1_1(value: CallAnalyticsJobSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobSettings:
     out: CallAnalyticsJobSettings = {}  # type: ignore[typeddict-item]
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
-    if "VocabularyFilterName" in data:
+    if data.get("VocabularyFilterName") is not None:
         out["vocabulary_filter_name"] = data["VocabularyFilterName"]
-    if "VocabularyFilterMethod" in data:
+    if data.get("VocabularyFilterMethod") is not None:
         import capo_transcribe.types.vocabulary_filter_method
 
         out["vocabulary_filter_method"] = (
@@ -109,9 +109,9 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobSettings:
                 data["VocabularyFilterMethod"]
             )
         )
-    if "LanguageModelName" in data:
+    if data.get("LanguageModelName") is not None:
         out["language_model_name"] = data["LanguageModelName"]
-    if "ContentRedaction" in data:
+    if data.get("ContentRedaction") is not None:
         import capo_transcribe.types.content_redaction
 
         out["content_redaction"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobSettings:
                 data["ContentRedaction"]
             )
         )
-    if "LanguageOptions" in data:
+    if data.get("LanguageOptions") is not None:
         import capo_transcribe.types.language_options
 
         out["language_options"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobSettings:
                 data["LanguageOptions"]
             )
         )
-    if "LanguageIdSettings" in data:
+    if data.get("LanguageIdSettings") is not None:
         import capo_transcribe.types.language_id_settings_map
 
         out["language_id_settings"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobSettings:
                 data["LanguageIdSettings"]
             )
         )
-    if "Summarization" in data:
+    if data.get("Summarization") is not None:
         import capo_transcribe.types.summarization
 
         out["summarization"] = (

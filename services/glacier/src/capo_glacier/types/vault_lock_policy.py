@@ -23,6 +23,6 @@ def serialize_json(value: VaultLockPolicy) -> dict:
 
 def deserialize_json(data: dict) -> VaultLockPolicy:
     out: VaultLockPolicy = {}  # type: ignore[typeddict-item]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     return out

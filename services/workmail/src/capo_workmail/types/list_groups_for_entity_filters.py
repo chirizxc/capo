@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ListGroupsForEntityFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListGroupsForEntityFilters:
     out: ListGroupsForEntityFilters = {}  # type: ignore[typeddict-item]
-    if "GroupNamePrefix" in data:
+    if data.get("GroupNamePrefix") is not None:
         out["group_name_prefix"] = data["GroupNamePrefix"]
     return out

@@ -42,7 +42,7 @@ def serialize_json(value: GenerativeAISettings) -> dict:
 
 def deserialize_json(data: dict) -> GenerativeAISettings:
     out: GenerativeAISettings = {}  # type: ignore[typeddict-item]
-    if "runtimeSettings" in data:
+    if data.get("runtimeSettings") is not None:
         import capo_lex_models_v2.types.runtime_settings
 
         out["runtime_settings"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> GenerativeAISettings:
                 data["runtimeSettings"]
             )
         )
-    if "buildtimeSettings" in data:
+    if data.get("buildtimeSettings") is not None:
         import capo_lex_models_v2.types.buildtime_settings
 
         out["buildtime_settings"] = (

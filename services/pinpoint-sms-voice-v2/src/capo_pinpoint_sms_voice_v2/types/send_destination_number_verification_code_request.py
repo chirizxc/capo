@@ -77,25 +77,25 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> SendDestinationNumberVerificationCodeRequest:
     out: SendDestinationNumberVerificationCodeRequest = {}  # type: ignore[typeddict-item]
-    if "VerifiedDestinationNumberId" in data:
+    if data.get("VerifiedDestinationNumberId") is not None:
         out["verified_destination_number_id"] = data["VerifiedDestinationNumberId"]
     else:
         raise DeserializationError(
             "SendDestinationNumberVerificationCodeRequest.verified_destination_number_id required"
         )
-    if "VerificationChannel" in data:
+    if data.get("VerificationChannel") is not None:
         out["verification_channel"] = data["VerificationChannel"]
     else:
         raise DeserializationError(
             "SendDestinationNumberVerificationCodeRequest.verification_channel required"
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "OriginationIdentity" in data:
+    if data.get("OriginationIdentity") is not None:
         out["origination_identity"] = data["OriginationIdentity"]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "Context" in data:
+    if data.get("Context") is not None:
         import capo_pinpoint_sms_voice_v2.types.context_map
 
         out["context"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_0(
                 data["Context"]
             )
         )
-    if "DestinationCountryParameters" in data:
+    if data.get("DestinationCountryParameters") is not None:
         import capo_pinpoint_sms_voice_v2.types.destination_country_parameters
 
         out["destination_country_parameters"] = (

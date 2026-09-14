@@ -44,23 +44,23 @@ def serialize_aws_json_1_0(value: CreateEngagementInvitationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEngagementInvitationRequest:
     out: CreateEngagementInvitationRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("CreateEngagementInvitationRequest.catalog required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(
             "CreateEngagementInvitationRequest.client_token required"
         )
-    if "EngagementIdentifier" in data:
+    if data.get("EngagementIdentifier") is not None:
         out["engagement_identifier"] = data["EngagementIdentifier"]
     else:
         raise DeserializationError(
             "CreateEngagementInvitationRequest.engagement_identifier required"
         )
-    if "Invitation" in data:
+    if data.get("Invitation") is not None:
         import capo_partnercentral_selling.types.invitation
 
         out["invitation"] = (

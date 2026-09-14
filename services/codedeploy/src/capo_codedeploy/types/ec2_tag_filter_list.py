@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> EC2TagFilterList:
 
     out: EC2TagFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codedeploy.types.ec2_tag_filter.deserialize_aws_json_1_1(item))
     return out

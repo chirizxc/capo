@@ -37,14 +37,14 @@ def serialize_json(value: DescribeIndexResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeIndexResponse:
     out: DescribeIndexResponse = {}  # type: ignore[typeddict-item]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "indexStatus" in data:
+    if data.get("indexStatus") is not None:
         import capo_iot.types.index_status
 
         out["index_status"] = capo_iot.types.index_status.deserialize_json(
             data["indexStatus"]
         )
-    if "schema" in data:
+    if data.get("schema") is not None:
         out["schema"] = data["schema"]
     return out

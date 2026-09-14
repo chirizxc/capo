@@ -37,7 +37,7 @@ def serialize_json(value: ListAnomalyDetectorsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAnomalyDetectorsResponse:
     out: ListAnomalyDetectorsResponse = {}  # type: ignore[typeddict-item]
-    if "anomalyDetectors" in data:
+    if data.get("anomalyDetectors") is not None:
         import capo_amp.types.anomaly_detector_summary_list
 
         out["anomaly_detectors"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListAnomalyDetectorsResponse:
         raise DeserializationError(
             "ListAnomalyDetectorsResponse.anomaly_detectors required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

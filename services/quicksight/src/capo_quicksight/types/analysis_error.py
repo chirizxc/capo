@@ -41,15 +41,15 @@ def serialize_json(value: AnalysisError) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisError:
     out: AnalysisError = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.analysis_error_type
 
         out["type"] = capo_quicksight.types.analysis_error_type.deserialize_json(
             data["Type"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ViolatedEntities" in data:
+    if data.get("ViolatedEntities") is not None:
         import capo_quicksight.types.entity_list
 
         out["violated_entities"] = capo_quicksight.types.entity_list.deserialize_json(

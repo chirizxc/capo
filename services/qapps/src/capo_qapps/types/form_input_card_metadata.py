@@ -26,7 +26,7 @@ def serialize_json(value: FormInputCardMetadata) -> dict:
 
 def deserialize_json(data: dict) -> FormInputCardMetadata:
     out: FormInputCardMetadata = {}  # type: ignore[typeddict-item]
-    if "schema" in data:
+    if data.get("schema") is not None:
         out["schema"] = data["schema"]
     else:
         raise DeserializationError("FormInputCardMetadata.schema required")

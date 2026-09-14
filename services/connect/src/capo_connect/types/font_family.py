@@ -27,7 +27,7 @@ def serialize_json(value: FontFamily) -> dict:
 
 def deserialize_json(data: dict) -> FontFamily:
     out: FontFamily = {}  # type: ignore[typeddict-item]
-    if "Default" in data:
+    if data.get("Default") is not None:
         import capo_connect.types.workspace_font_family
 
         out["default"] = capo_connect.types.workspace_font_family.deserialize_json(

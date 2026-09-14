@@ -34,13 +34,13 @@ def serialize_json(value: TagCostEstimationResourceCollectionFilter) -> dict:
 
 def deserialize_json(data: dict) -> TagCostEstimationResourceCollectionFilter:
     out: TagCostEstimationResourceCollectionFilter = {}  # type: ignore[typeddict-item]
-    if "AppBoundaryKey" in data:
+    if data.get("AppBoundaryKey") is not None:
         out["app_boundary_key"] = data["AppBoundaryKey"]
     else:
         raise DeserializationError(
             "TagCostEstimationResourceCollectionFilter.app_boundary_key required"
         )
-    if "TagValues" in data:
+    if data.get("TagValues") is not None:
         import capo_devops_guru.types.cost_estimation_tag_values
 
         out["tag_values"] = (

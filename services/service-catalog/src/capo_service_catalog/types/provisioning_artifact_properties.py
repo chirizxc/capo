@@ -62,11 +62,11 @@ def serialize_aws_json_1_1(value: ProvisioningArtifactProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvisioningArtifactProperties:
     out: ProvisioningArtifactProperties = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Info" in data:
+    if data.get("Info") is not None:
         import capo_service_catalog.types.provisioning_artifact_info
 
         out["info"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisioningArtifactProperties:
                 data["Info"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_service_catalog.types.provisioning_artifact_type
 
         out["type"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisioningArtifactProperties:
                 data["Type"]
             )
         )
-    if "DisableTemplateValidation" in data:
+    if data.get("DisableTemplateValidation") is not None:
         out["disable_template_validation"] = data["DisableTemplateValidation"]
     else:
         out["disable_template_validation"] = False

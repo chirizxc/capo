@@ -32,8 +32,8 @@ def serialize_json(value: CreateSecurityProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSecurityProfileResponse:
     out: CreateSecurityProfileResponse = {}  # type: ignore[typeddict-item]
-    if "securityProfileName" in data:
+    if data.get("securityProfileName") is not None:
         out["security_profile_name"] = data["securityProfileName"]
-    if "securityProfileArn" in data:
+    if data.get("securityProfileArn") is not None:
         out["security_profile_arn"] = data["securityProfileArn"]
     return out

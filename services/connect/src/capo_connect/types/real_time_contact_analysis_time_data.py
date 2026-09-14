@@ -34,7 +34,7 @@ def serialize_json(value: RealTimeContactAnalysisTimeData) -> dict:
 
 
 def deserialize_json(data: dict) -> RealTimeContactAnalysisTimeData:
-    if "AbsoluteTime" in data:
+    if data.get("AbsoluteTime") is not None:
         import capo_connect.types.real_time_contact_analysis_time_instant
 
         return {

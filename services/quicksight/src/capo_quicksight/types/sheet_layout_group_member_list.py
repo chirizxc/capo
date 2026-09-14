@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SheetLayoutGroupMemberList:
 
     out: SheetLayoutGroupMemberList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.sheet_layout_group_member.deserialize_json(item)
         )

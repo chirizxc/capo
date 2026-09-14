@@ -26,7 +26,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> SetAccountDefaultProtectConfigurationRequest:
     out: SetAccountDefaultProtectConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     else:
         raise DeserializationError(

@@ -81,15 +81,15 @@ def serialize_aws_json_1_1(value: UpdateEventDataStoreRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEventDataStoreRequest:
     out: UpdateEventDataStoreRequest = {}  # type: ignore[typeddict-item]
-    if "EventDataStore" in data:
+    if data.get("EventDataStore") is not None:
         out["event_data_store"] = data["EventDataStore"]
     else:
         raise DeserializationError(
             "UpdateEventDataStoreRequest.event_data_store required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AdvancedEventSelectors" in data:
+    if data.get("AdvancedEventSelectors") is not None:
         import capo_cloudtrail.types.advanced_event_selectors
 
         out["advanced_event_selectors"] = (
@@ -97,17 +97,17 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateEventDataStoreRequest:
                 data["AdvancedEventSelectors"]
             )
         )
-    if "MultiRegionEnabled" in data:
+    if data.get("MultiRegionEnabled") is not None:
         out["multi_region_enabled"] = data["MultiRegionEnabled"]
-    if "OrganizationEnabled" in data:
+    if data.get("OrganizationEnabled") is not None:
         out["organization_enabled"] = data["OrganizationEnabled"]
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         out["retention_period"] = data["RetentionPeriod"]
-    if "TerminationProtectionEnabled" in data:
+    if data.get("TerminationProtectionEnabled") is not None:
         out["termination_protection_enabled"] = data["TerminationProtectionEnabled"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "BillingMode" in data:
+    if data.get("BillingMode") is not None:
         import capo_cloudtrail.types.billing_mode
 
         out["billing_mode"] = (

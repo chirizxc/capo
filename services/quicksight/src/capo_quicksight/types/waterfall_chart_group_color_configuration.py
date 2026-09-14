@@ -31,10 +31,10 @@ def serialize_json(value: WaterfallChartGroupColorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WaterfallChartGroupColorConfiguration:
     out: WaterfallChartGroupColorConfiguration = {}  # type: ignore[typeddict-item]
-    if "PositiveBarColor" in data:
+    if data.get("PositiveBarColor") is not None:
         out["positive_bar_color"] = data["PositiveBarColor"]
-    if "NegativeBarColor" in data:
+    if data.get("NegativeBarColor") is not None:
         out["negative_bar_color"] = data["NegativeBarColor"]
-    if "TotalBarColor" in data:
+    if data.get("TotalBarColor") is not None:
         out["total_bar_color"] = data["TotalBarColor"]
     return out

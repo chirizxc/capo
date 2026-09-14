@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: UpdateServiceSyncBlockerInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateServiceSyncBlockerInput:
     out: UpdateServiceSyncBlockerInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateServiceSyncBlockerInput.id required")
-    if "resolvedReason" in data:
+    if data.get("resolvedReason") is not None:
         out["resolved_reason"] = data["resolvedReason"]
     else:
         raise DeserializationError(

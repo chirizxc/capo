@@ -83,17 +83,17 @@ def serialize_aws_json_1_1(value: Parameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Parameter:
     out: Parameter = {}  # type: ignore[typeddict-item]
-    if "ParameterName" in data:
+    if data.get("ParameterName") is not None:
         out["parameter_name"] = data["ParameterName"]
-    if "ParameterType" in data:
+    if data.get("ParameterType") is not None:
         import capo_dax.types.parameter_type
 
         out["parameter_type"] = capo_dax.types.parameter_type.deserialize_aws_json_1_1(
             data["ParameterType"]
         )
-    if "ParameterValue" in data:
+    if data.get("ParameterValue") is not None:
         out["parameter_value"] = data["ParameterValue"]
-    if "NodeTypeSpecificValues" in data:
+    if data.get("NodeTypeSpecificValues") is not None:
         import capo_dax.types.node_type_specific_value_list
 
         out["node_type_specific_values"] = (
@@ -101,21 +101,21 @@ def deserialize_aws_json_1_1(data: dict) -> Parameter:
                 data["NodeTypeSpecificValues"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "DataType" in data:
+    if data.get("DataType") is not None:
         out["data_type"] = data["DataType"]
-    if "AllowedValues" in data:
+    if data.get("AllowedValues") is not None:
         out["allowed_values"] = data["AllowedValues"]
-    if "IsModifiable" in data:
+    if data.get("IsModifiable") is not None:
         import capo_dax.types.is_modifiable
 
         out["is_modifiable"] = capo_dax.types.is_modifiable.deserialize_aws_json_1_1(
             data["IsModifiable"]
         )
-    if "ChangeType" in data:
+    if data.get("ChangeType") is not None:
         import capo_dax.types.change_type
 
         out["change_type"] = capo_dax.types.change_type.deserialize_aws_json_1_1(

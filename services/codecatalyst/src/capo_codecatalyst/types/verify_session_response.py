@@ -18,6 +18,6 @@ def serialize_json(value: VerifySessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> VerifySessionResponse:
     out: VerifySessionResponse = {}  # type: ignore[typeddict-item]
-    if "identity" in data:
+    if data.get("identity") is not None:
         out["identity"] = data["identity"]
     return out

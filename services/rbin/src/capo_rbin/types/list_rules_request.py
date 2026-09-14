@@ -69,11 +69,11 @@ def serialize_json(value: ListRulesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListRulesRequest:
     out: ListRulesRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_rbin.types.resource_type
 
         out["resource_type"] = capo_rbin.types.resource_type.deserialize_json(
@@ -81,19 +81,19 @@ def deserialize_json(data: dict) -> ListRulesRequest:
         )
     else:
         raise DeserializationError("ListRulesRequest.resource_type required")
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_rbin.types.resource_tags
 
         out["resource_tags"] = capo_rbin.types.resource_tags.deserialize_json(
             data["ResourceTags"]
         )
-    if "LockState" in data:
+    if data.get("LockState") is not None:
         import capo_rbin.types.lock_state
 
         out["lock_state"] = capo_rbin.types.lock_state.deserialize_json(
             data["LockState"]
         )
-    if "ExcludeResourceTags" in data:
+    if data.get("ExcludeResourceTags") is not None:
         import capo_rbin.types.exclude_resource_tags
 
         out["exclude_resource_tags"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RouteTransitBeforeTravelStepList:
 
     out: RouteTransitBeforeTravelStepList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_transit_before_travel_step.deserialize_json(
                 item

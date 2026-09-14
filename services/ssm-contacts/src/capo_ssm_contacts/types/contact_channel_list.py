@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ContactChannelList:
 
     out: ContactChannelList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ssm_contacts.types.contact_channel.deserialize_aws_json_1_1(item)
         )

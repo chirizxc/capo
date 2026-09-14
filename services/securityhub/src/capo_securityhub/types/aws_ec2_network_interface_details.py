@@ -92,7 +92,7 @@ def serialize_json(value: AwsEc2NetworkInterfaceDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2NetworkInterfaceDetails:
     out: AwsEc2NetworkInterfaceDetails = {}  # type: ignore[typeddict-item]
-    if "Attachment" in data:
+    if data.get("Attachment") is not None:
         import capo_securityhub.types.aws_ec2_network_interface_attachment
 
         out["attachment"] = (
@@ -100,9 +100,9 @@ def deserialize_json(data: dict) -> AwsEc2NetworkInterfaceDetails:
                 data["Attachment"]
             )
         )
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_securityhub.types.aws_ec2_network_interface_security_group_list
 
         out["security_groups"] = (
@@ -110,9 +110,9 @@ def deserialize_json(data: dict) -> AwsEc2NetworkInterfaceDetails:
                 data["SecurityGroups"]
             )
         )
-    if "SourceDestCheck" in data:
+    if data.get("SourceDestCheck") is not None:
         out["source_dest_check"] = data["SourceDestCheck"]
-    if "IpV6Addresses" in data:
+    if data.get("IpV6Addresses") is not None:
         import capo_securityhub.types.aws_ec2_network_interface_ip_v6_address_list
 
         out["ip_v6_addresses"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> AwsEc2NetworkInterfaceDetails:
                 data["IpV6Addresses"]
             )
         )
-    if "PrivateIpAddresses" in data:
+    if data.get("PrivateIpAddresses") is not None:
         import capo_securityhub.types.aws_ec2_network_interface_private_ip_address_list
 
         out["private_ip_addresses"] = (
@@ -128,8 +128,8 @@ def deserialize_json(data: dict) -> AwsEc2NetworkInterfaceDetails:
                 data["PrivateIpAddresses"]
             )
         )
-    if "PublicDnsName" in data:
+    if data.get("PublicDnsName") is not None:
         out["public_dns_name"] = data["PublicDnsName"]
-    if "PublicIp" in data:
+    if data.get("PublicIp") is not None:
         out["public_ip"] = data["PublicIp"]
     return out

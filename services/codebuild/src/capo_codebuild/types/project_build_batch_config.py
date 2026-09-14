@@ -61,11 +61,11 @@ def serialize_aws_json_1_1(value: ProjectBuildBatchConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectBuildBatchConfig:
     out: ProjectBuildBatchConfig = {}  # type: ignore[typeddict-item]
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "combineArtifacts" in data:
+    if data.get("combineArtifacts") is not None:
         out["combine_artifacts"] = data["combineArtifacts"]
-    if "restrictions" in data:
+    if data.get("restrictions") is not None:
         import capo_codebuild.types.batch_restrictions
 
         out["restrictions"] = (
@@ -73,9 +73,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectBuildBatchConfig:
                 data["restrictions"]
             )
         )
-    if "timeoutInMins" in data:
+    if data.get("timeoutInMins") is not None:
         out["timeout_in_mins"] = data["timeoutInMins"]
-    if "batchReportMode" in data:
+    if data.get("batchReportMode") is not None:
         import capo_codebuild.types.batch_report_mode_type
 
         out["batch_report_mode"] = (

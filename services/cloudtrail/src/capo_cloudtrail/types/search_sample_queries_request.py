@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: SearchSampleQueriesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchSampleQueriesRequest:
     out: SearchSampleQueriesRequest = {}  # type: ignore[typeddict-item]
-    if "SearchPhrase" in data:
+    if data.get("SearchPhrase") is not None:
         out["search_phrase"] = data["SearchPhrase"]
     else:
         raise DeserializationError("SearchSampleQueriesRequest.search_phrase required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

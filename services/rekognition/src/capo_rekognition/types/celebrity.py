@@ -45,7 +45,15 @@ def serialize_aws_json_1_1(value: Celebrity) -> dict:
             value["face"]
         )
     if "match_confidence" in value:
-        out["MatchConfidence"] = value["match_confidence"]
+        out["MatchConfidence"] = (
+            "NaN"
+            if value["match_confidence"] != value["match_confidence"]
+            else "Infinity"
+            if value["match_confidence"] == float("inf")
+            else "-Infinity"
+            if value["match_confidence"] == float("-inf")
+            else value["match_confidence"]
+        )
     if "known_gender" in value:
         import capo_rekognition.types.known_gender
 
@@ -57,23 +65,23 @@ def serialize_aws_json_1_1(value: Celebrity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Celebrity:
     out: Celebrity = {}  # type: ignore[typeddict-item]
-    if "Urls" in data:
+    if data.get("Urls") is not None:
         import capo_rekognition.types.urls
 
         out["urls"] = capo_rekognition.types.urls.deserialize_aws_json_1_1(data["Urls"])
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Face" in data:
+    if data.get("Face") is not None:
         import capo_rekognition.types.compared_face
 
         out["face"] = capo_rekognition.types.compared_face.deserialize_aws_json_1_1(
             data["Face"]
         )
-    if "MatchConfidence" in data:
-        out["match_confidence"] = data["MatchConfidence"]
-    if "KnownGender" in data:
+    if data.get("MatchConfidence") is not None:
+        out["match_confidence"] = float(data["MatchConfidence"])
+    if data.get("KnownGender") is not None:
         import capo_rekognition.types.known_gender
 
         out["known_gender"] = (

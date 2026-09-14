@@ -48,18 +48,18 @@ def serialize_json(value: GetSegmentEstimateResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSegmentEstimateResponse:
     out: GetSegmentEstimateResponse = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "EstimateId" in data:
+    if data.get("EstimateId") is not None:
         out["estimate_id"] = data["EstimateId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.estimate_status
 
         out["status"] = capo_customer_profiles.types.estimate_status.deserialize_json(
             data["Status"]
         )
-    if "Estimate" in data:
+    if data.get("Estimate") is not None:
         out["estimate"] = data["Estimate"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

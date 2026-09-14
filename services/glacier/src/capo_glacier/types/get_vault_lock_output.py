@@ -35,12 +35,12 @@ def serialize_json(value: GetVaultLockOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetVaultLockOutput:
     out: GetVaultLockOutput = {}  # type: ignore[typeddict-item]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         out["expiration_date"] = data["ExpirationDate"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
     return out

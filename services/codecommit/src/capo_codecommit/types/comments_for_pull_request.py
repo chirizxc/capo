@@ -64,25 +64,25 @@ def serialize_aws_json_1_1(value: CommentsForPullRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CommentsForPullRequest:
     out: CommentsForPullRequest = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "beforeCommitId" in data:
+    if data.get("beforeCommitId") is not None:
         out["before_commit_id"] = data["beforeCommitId"]
-    if "afterCommitId" in data:
+    if data.get("afterCommitId") is not None:
         out["after_commit_id"] = data["afterCommitId"]
-    if "beforeBlobId" in data:
+    if data.get("beforeBlobId") is not None:
         out["before_blob_id"] = data["beforeBlobId"]
-    if "afterBlobId" in data:
+    if data.get("afterBlobId") is not None:
         out["after_blob_id"] = data["afterBlobId"]
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_codecommit.types.location
 
         out["location"] = capo_codecommit.types.location.deserialize_aws_json_1_1(
             data["location"]
         )
-    if "comments" in data:
+    if data.get("comments") is not None:
         import capo_codecommit.types.comments
 
         out["comments"] = capo_codecommit.types.comments.deserialize_aws_json_1_1(

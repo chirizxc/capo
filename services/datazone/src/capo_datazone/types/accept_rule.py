@@ -25,18 +25,26 @@ def serialize_json(value: AcceptRule) -> dict:
             value["rule"]
         )
     if "threshold" in value:
-        out["threshold"] = value["threshold"]
+        out["threshold"] = (
+            "NaN"
+            if value["threshold"] != value["threshold"]
+            else "Infinity"
+            if value["threshold"] == float("inf")
+            else "-Infinity"
+            if value["threshold"] == float("-inf")
+            else value["threshold"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AcceptRule:
     out: AcceptRule = {}  # type: ignore[typeddict-item]
-    if "rule" in data:
+    if data.get("rule") is not None:
         import capo_datazone.types.accept_rule_behavior
 
         out["rule"] = capo_datazone.types.accept_rule_behavior.deserialize_json(
             data["rule"]
         )
-    if "threshold" in data:
-        out["threshold"] = data["threshold"]
+    if data.get("threshold") is not None:
+        out["threshold"] = float(data["threshold"])
     return out

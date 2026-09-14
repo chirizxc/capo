@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: BatchDescribeModelPackageOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDescribeModelPackageOutput:
     out: BatchDescribeModelPackageOutput = {}  # type: ignore[typeddict-item]
-    if "ModelPackageSummaries" in data:
+    if data.get("ModelPackageSummaries") is not None:
         import capo_sagemaker.types.model_package_summaries
 
         out["model_package_summaries"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDescribeModelPackageOutput:
                 data["ModelPackageSummaries"]
             )
         )
-    if "BatchDescribeModelPackageErrorMap" in data:
+    if data.get("BatchDescribeModelPackageErrorMap") is not None:
         import capo_sagemaker.types.batch_describe_model_package_error_map
 
         out["batch_describe_model_package_error_map"] = (

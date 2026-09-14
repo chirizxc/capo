@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ListOfClasses:
 
     out: ListOfClasses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_comprehend.types.document_class.deserialize_aws_json_1_1(item))
     return out

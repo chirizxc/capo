@@ -188,16 +188,18 @@ class LexRuntimeServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_service.types.delete_session_request.DeleteSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_name"] = bot_name
-        input_["bot_alias"] = bot_alias
-        input_["user_id"] = user_id
+        input_: capo_lex_runtime_service.types.delete_session_request.DeleteSessionRequest = {
+            "bot_name": bot_name,
+            "bot_alias": bot_alias,
+            "user_id": user_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_session(
@@ -242,10 +244,11 @@ class LexRuntimeServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_service.types.get_session_request.GetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_name"] = bot_name
-        input_["bot_alias"] = bot_alias
-        input_["user_id"] = user_id
+        input_: capo_lex_runtime_service.types.get_session_request.GetSessionRequest = {
+            "bot_name": bot_name,
+            "bot_alias": bot_alias,
+            "user_id": user_id,
+        }
         if checkpoint_label_filter is not None:
             input_["checkpoint_label_filter"] = checkpoint_label_filter
 
@@ -254,6 +257,7 @@ class LexRuntimeServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -320,18 +324,19 @@ class LexRuntimeServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_service.types.post_content_request.PostContentRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_name"] = bot_name
-        input_["bot_alias"] = bot_alias
-        input_["user_id"] = user_id
+        input_: capo_lex_runtime_service.types.post_content_request.PostContentRequest = {
+            "bot_name": bot_name,
+            "bot_alias": bot_alias,
+            "user_id": user_id,
+            "content_type": content_type,
+            "input_stream": ensure_sync_iterator(input_stream),
+        }
         if session_attributes is not None:
             input_["session_attributes"] = session_attributes
         if request_attributes is not None:
             input_["request_attributes"] = request_attributes
-        input_["content_type"] = content_type
         if accept is not None:
             input_["accept"] = accept
-        input_["input_stream"] = ensure_sync_iterator(input_stream)
         if active_contexts is not None:
             input_["active_contexts"] = active_contexts
 
@@ -340,7 +345,10 @@ class LexRuntimeServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def post_text(
         self,
@@ -398,15 +406,16 @@ class LexRuntimeServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_service.types.post_text_request.PostTextRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_name"] = bot_name
-        input_["bot_alias"] = bot_alias
-        input_["user_id"] = user_id
+        input_: capo_lex_runtime_service.types.post_text_request.PostTextRequest = {
+            "bot_name": bot_name,
+            "bot_alias": bot_alias,
+            "user_id": user_id,
+            "input_text": input_text,
+        }
         if session_attributes is not None:
             input_["session_attributes"] = session_attributes
         if request_attributes is not None:
             input_["request_attributes"] = request_attributes
-        input_["input_text"] = input_text
         if active_contexts is not None:
             input_["active_contexts"] = active_contexts
 
@@ -415,6 +424,7 @@ class LexRuntimeServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -478,10 +488,11 @@ class LexRuntimeServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_service.types.put_session_request.PutSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_name"] = bot_name
-        input_["bot_alias"] = bot_alias
-        input_["user_id"] = user_id
+        input_: capo_lex_runtime_service.types.put_session_request.PutSessionRequest = {
+            "bot_name": bot_name,
+            "bot_alias": bot_alias,
+            "user_id": user_id,
+        }
         if session_attributes is not None:
             input_["session_attributes"] = session_attributes
         if dialog_action is not None:
@@ -498,7 +509,10 @@ class LexRuntimeServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def __enter__(self) -> Self:
         return self

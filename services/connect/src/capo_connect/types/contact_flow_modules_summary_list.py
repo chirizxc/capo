@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ContactFlowModulesSummaryList:
 
     out: ContactFlowModulesSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.contact_flow_module_summary.deserialize_json(item)
         )

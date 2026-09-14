@@ -32,8 +32,8 @@ def serialize_json(value: UpdateBrokerCountRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrokerCountRequest:
     out: UpdateBrokerCountRequest = {}  # type: ignore[typeddict-item]
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "targetNumberOfBrokerNodes" in data:
+    if data.get("targetNumberOfBrokerNodes") is not None:
         out["target_number_of_broker_nodes"] = data["targetNumberOfBrokerNodes"]
     return out

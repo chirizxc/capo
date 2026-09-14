@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> KxDatabaseCacheConfigurations:
 
     out: KxDatabaseCacheConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_finspace.types.kx_database_cache_configuration.deserialize_json(item)
         )

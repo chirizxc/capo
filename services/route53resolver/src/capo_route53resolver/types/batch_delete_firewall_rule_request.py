@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: BatchDeleteFirewallRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteFirewallRuleRequest:
     out: BatchDeleteFirewallRuleRequest = {}  # type: ignore[typeddict-item]
-    if "DeleteFirewallRuleEntries" in data:
+    if data.get("DeleteFirewallRuleEntries") is not None:
         import capo_route53resolver.types.delete_firewall_rule_entries
 
         out["delete_firewall_rule_entries"] = (

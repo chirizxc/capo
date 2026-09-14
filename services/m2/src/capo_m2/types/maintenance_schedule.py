@@ -31,11 +31,11 @@ def serialize_json(value: MaintenanceSchedule) -> dict:
 
 def deserialize_json(data: dict) -> MaintenanceSchedule:
     out: MaintenanceSchedule = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_m2.types.timestamp
 
         out["start_time"] = capo_m2.types.timestamp.deserialize_json(data["startTime"])
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_m2.types.timestamp
 
         out["end_time"] = capo_m2.types.timestamp.deserialize_json(data["endTime"])

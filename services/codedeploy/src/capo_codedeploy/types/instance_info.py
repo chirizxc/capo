@@ -64,21 +64,21 @@ def serialize_aws_json_1_1(value: InstanceInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceInfo:
     out: InstanceInfo = {}  # type: ignore[typeddict-item]
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
-    if "iamSessionArn" in data:
+    if data.get("iamSessionArn") is not None:
         out["iam_session_arn"] = data["iamSessionArn"]
-    if "iamUserArn" in data:
+    if data.get("iamUserArn") is not None:
         out["iam_user_arn"] = data["iamUserArn"]
-    if "instanceArn" in data:
+    if data.get("instanceArn") is not None:
         out["instance_arn"] = data["instanceArn"]
-    if "registerTime" in data:
+    if data.get("registerTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["register_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(
             data["registerTime"]
         )
-    if "deregisterTime" in data:
+    if data.get("deregisterTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["deregister_time"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceInfo:
                 data["deregisterTime"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codedeploy.types.tag_list
 
         out["tags"] = capo_codedeploy.types.tag_list.deserialize_aws_json_1_1(

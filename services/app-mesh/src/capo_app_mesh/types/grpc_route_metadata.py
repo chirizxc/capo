@@ -41,13 +41,13 @@ def serialize_json(value: GrpcRouteMetadata) -> dict:
 
 def deserialize_json(data: dict) -> GrpcRouteMetadata:
     out: GrpcRouteMetadata = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GrpcRouteMetadata.name required")
-    if "invert" in data:
+    if data.get("invert") is not None:
         out["invert"] = data["invert"]
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_app_mesh.types.grpc_route_metadata_match_method
 
         out["match"] = (

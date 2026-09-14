@@ -23,6 +23,6 @@ def serialize_json(value: RegionMapInputValue) -> dict:
 
 def deserialize_json(data: dict) -> RegionMapInputValue:
     out: RegionMapInputValue = {}  # type: ignore[typeddict-item]
-    if "sseKmsKeyId" in data:
+    if data.get("sseKmsKeyId") is not None:
         out["sse_kms_key_id"] = data["sseKmsKeyId"]
     return out

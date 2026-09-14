@@ -40,14 +40,14 @@ def serialize_json(value: CreateDeploymentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentRequest:
     out: CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "DeploymentId" in data:
+    if data.get("DeploymentId") is not None:
         out["deployment_id"] = data["DeploymentId"]
-    if "DeploymentType" in data:
+    if data.get("DeploymentType") is not None:
         import capo_greengrass.types.deployment_type
 
         out["deployment_type"] = capo_greengrass.types.deployment_type.deserialize_json(
             data["DeploymentType"]
         )
-    if "GroupVersionId" in data:
+    if data.get("GroupVersionId") is not None:
         out["group_version_id"] = data["GroupVersionId"]
     return out

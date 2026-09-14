@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: GetRecommendationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRecommendationRequest:
     out: GetRecommendationRequest = {}  # type: ignore[typeddict-item]
-    if "recommendationId" in data:
+    if data.get("recommendationId") is not None:
         out["recommendation_id"] = data["recommendationId"]
     else:
         raise DeserializationError(

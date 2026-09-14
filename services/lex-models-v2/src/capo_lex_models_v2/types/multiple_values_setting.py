@@ -22,7 +22,7 @@ def serialize_json(value: MultipleValuesSetting) -> dict:
 
 def deserialize_json(data: dict) -> MultipleValuesSetting:
     out: MultipleValuesSetting = {}  # type: ignore[typeddict-item]
-    if "allowMultipleValues" in data:
+    if data.get("allowMultipleValues") is not None:
         out["allow_multiple_values"] = data["allowMultipleValues"]
     else:
         out["allow_multiple_values"] = False

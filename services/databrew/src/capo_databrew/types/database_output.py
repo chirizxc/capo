@@ -49,11 +49,11 @@ def serialize_json(value: DatabaseOutput) -> dict:
 
 def deserialize_json(data: dict) -> DatabaseOutput:
     out: DatabaseOutput = {}  # type: ignore[typeddict-item]
-    if "GlueConnectionName" in data:
+    if data.get("GlueConnectionName") is not None:
         out["glue_connection_name"] = data["GlueConnectionName"]
     else:
         raise DeserializationError("DatabaseOutput.glue_connection_name required")
-    if "DatabaseOptions" in data:
+    if data.get("DatabaseOptions") is not None:
         import capo_databrew.types.database_table_output_options
 
         out["database_options"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> DatabaseOutput:
         )
     else:
         raise DeserializationError("DatabaseOutput.database_options required")
-    if "DatabaseOutputMode" in data:
+    if data.get("DatabaseOutputMode") is not None:
         import capo_databrew.types.database_output_mode
 
         out["database_output_mode"] = (

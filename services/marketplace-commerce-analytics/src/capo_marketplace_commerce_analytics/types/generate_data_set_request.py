@@ -72,7 +72,7 @@ def serialize_aws_json_1_1(value: GenerateDataSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GenerateDataSetRequest:
     out: GenerateDataSetRequest = {}  # type: ignore[typeddict-item]
-    if "dataSetType" in data:
+    if data.get("dataSetType") is not None:
         import capo_marketplace_commerce_analytics.types.data_set_type
 
         out["data_set_type"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> GenerateDataSetRequest:
         )
     else:
         raise DeserializationError("GenerateDataSetRequest.data_set_type required")
-    if "dataSetPublicationDate" in data:
+    if data.get("dataSetPublicationDate") is not None:
         import capo_marketplace_commerce_analytics.types.data_set_publication_date
 
         out["data_set_publication_date"] = (
@@ -94,23 +94,23 @@ def deserialize_aws_json_1_1(data: dict) -> GenerateDataSetRequest:
         raise DeserializationError(
             "GenerateDataSetRequest.data_set_publication_date required"
         )
-    if "roleNameArn" in data:
+    if data.get("roleNameArn") is not None:
         out["role_name_arn"] = data["roleNameArn"]
     else:
         raise DeserializationError("GenerateDataSetRequest.role_name_arn required")
-    if "destinationS3BucketName" in data:
+    if data.get("destinationS3BucketName") is not None:
         out["destination_s3_bucket_name"] = data["destinationS3BucketName"]
     else:
         raise DeserializationError(
             "GenerateDataSetRequest.destination_s3_bucket_name required"
         )
-    if "destinationS3Prefix" in data:
+    if data.get("destinationS3Prefix") is not None:
         out["destination_s3_prefix"] = data["destinationS3Prefix"]
-    if "snsTopicArn" in data:
+    if data.get("snsTopicArn") is not None:
         out["sns_topic_arn"] = data["snsTopicArn"]
     else:
         raise DeserializationError("GenerateDataSetRequest.sns_topic_arn required")
-    if "customerDefinedValues" in data:
+    if data.get("customerDefinedValues") is not None:
         import capo_marketplace_commerce_analytics.types.customer_defined_values
 
         out["customer_defined_values"] = (

@@ -25,7 +25,7 @@ def serialize_json(value: AssociateWirelessDeviceWithMulticastGroupRequest) -> d
 
 def deserialize_json(data: dict) -> AssociateWirelessDeviceWithMulticastGroupRequest:
     out: AssociateWirelessDeviceWithMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-    if "WirelessDeviceId" in data:
+    if data.get("WirelessDeviceId") is not None:
         out["wireless_device_id"] = data["WirelessDeviceId"]
     else:
         raise DeserializationError(

@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: MonetaryValue) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MonetaryValue:
     out: MonetaryValue = {}  # type: ignore[typeddict-item]
-    if "Amount" in data:
+    if data.get("Amount") is not None:
         out["amount"] = data["Amount"]
     else:
         raise DeserializationError("MonetaryValue.amount required")
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         import capo_partnercentral_benefits.types.currency_code
 
         out["currency_code"] = (

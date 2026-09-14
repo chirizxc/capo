@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: ListAccessesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAccessesRequest:
     out: ListAccessesRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("ListAccessesRequest.server_id required")

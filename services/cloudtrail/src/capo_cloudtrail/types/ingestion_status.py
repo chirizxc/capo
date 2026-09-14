@@ -59,7 +59,7 @@ def serialize_aws_json_1_1(value: IngestionStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IngestionStatus:
     out: IngestionStatus = {}  # type: ignore[typeddict-item]
-    if "LatestIngestionSuccessTime" in data:
+    if data.get("LatestIngestionSuccessTime") is not None:
         import capo_cloudtrail.types.date
 
         out["latest_ingestion_success_time"] = (
@@ -67,11 +67,11 @@ def deserialize_aws_json_1_1(data: dict) -> IngestionStatus:
                 data["LatestIngestionSuccessTime"]
             )
         )
-    if "LatestIngestionSuccessEventID" in data:
+    if data.get("LatestIngestionSuccessEventID") is not None:
         out["latest_ingestion_success_event_id"] = data["LatestIngestionSuccessEventID"]
-    if "LatestIngestionErrorCode" in data:
+    if data.get("LatestIngestionErrorCode") is not None:
         out["latest_ingestion_error_code"] = data["LatestIngestionErrorCode"]
-    if "LatestIngestionAttemptTime" in data:
+    if data.get("LatestIngestionAttemptTime") is not None:
         import capo_cloudtrail.types.date
 
         out["latest_ingestion_attempt_time"] = (
@@ -79,6 +79,6 @@ def deserialize_aws_json_1_1(data: dict) -> IngestionStatus:
                 data["LatestIngestionAttemptTime"]
             )
         )
-    if "LatestIngestionAttemptEventID" in data:
+    if data.get("LatestIngestionAttemptEventID") is not None:
         out["latest_ingestion_attempt_event_id"] = data["LatestIngestionAttemptEventID"]
     return out

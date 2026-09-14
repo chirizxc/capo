@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: GetDeploymentTargetInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDeploymentTargetInput:
     out: GetDeploymentTargetInput = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     else:
         raise DeserializationError("GetDeploymentTargetInput.deployment_id required")
-    if "targetId" in data:
+    if data.get("targetId") is not None:
         out["target_id"] = data["targetId"]
     else:
         raise DeserializationError("GetDeploymentTargetInput.target_id required")

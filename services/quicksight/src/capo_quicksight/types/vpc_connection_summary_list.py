@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> VPCConnectionSummaryList:
 
     out: VPCConnectionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.vpc_connection_summary.deserialize_json(item))
     return out

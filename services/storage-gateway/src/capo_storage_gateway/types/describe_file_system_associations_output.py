@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeFileSystemAssociationsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFileSystemAssociationsOutput:
     out: DescribeFileSystemAssociationsOutput = {}  # type: ignore[typeddict-item]
-    if "FileSystemAssociationInfoList" in data:
+    if data.get("FileSystemAssociationInfoList") is not None:
         import capo_storage_gateway.types.file_system_association_info_list
 
         out["file_system_association_info_list"] = (

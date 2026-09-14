@@ -198,7 +198,7 @@ def serialize_json(value: TopicIRFilterOption) -> dict:
 
 def deserialize_json(data: dict) -> TopicIRFilterOption:
     out: TopicIRFilterOption = {}  # type: ignore[typeddict-item]
-    if "FilterType" in data:
+    if data.get("FilterType") is not None:
         import capo_quicksight.types.topic_ir_filter_type
 
         out["filter_type"] = (
@@ -206,19 +206,19 @@ def deserialize_json(data: dict) -> TopicIRFilterOption:
                 data["FilterType"]
             )
         )
-    if "FilterClass" in data:
+    if data.get("FilterClass") is not None:
         import capo_quicksight.types.filter_class
 
         out["filter_class"] = capo_quicksight.types.filter_class.deserialize_json(
             data["FilterClass"]
         )
-    if "OperandField" in data:
+    if data.get("OperandField") is not None:
         import capo_quicksight.types.identifier
 
         out["operand_field"] = capo_quicksight.types.identifier.deserialize_json(
             data["OperandField"]
         )
-    if "Function" in data:
+    if data.get("Function") is not None:
         import capo_quicksight.types.topic_ir_filter_function
 
         out["function"] = (
@@ -226,29 +226,29 @@ def deserialize_json(data: dict) -> TopicIRFilterOption:
                 data["Function"]
             )
         )
-    if "Constant" in data:
+    if data.get("Constant") is not None:
         import capo_quicksight.types.topic_constant_value
 
         out["constant"] = capo_quicksight.types.topic_constant_value.deserialize_json(
             data["Constant"]
         )
-    if "Inverse" in data:
+    if data.get("Inverse") is not None:
         out["inverse"] = data["Inverse"]
     else:
         out["inverse"] = False
-    if "NullFilter" in data:
+    if data.get("NullFilter") is not None:
         import capo_quicksight.types.null_filter_option
 
         out["null_filter"] = capo_quicksight.types.null_filter_option.deserialize_json(
             data["NullFilter"]
         )
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_quicksight.types.agg_type
 
         out["aggregation"] = capo_quicksight.types.agg_type.deserialize_json(
             data["Aggregation"]
         )
-    if "AggregationFunctionParameters" in data:
+    if data.get("AggregationFunctionParameters") is not None:
         import capo_quicksight.types.agg_function_param_map
 
         out["aggregation_function_parameters"] = (
@@ -256,7 +256,7 @@ def deserialize_json(data: dict) -> TopicIRFilterOption:
                 data["AggregationFunctionParameters"]
             )
         )
-    if "AggregationPartitionBy" in data:
+    if data.get("AggregationPartitionBy") is not None:
         import capo_quicksight.types.aggregation_partition_by_list
 
         out["aggregation_partition_by"] = (
@@ -264,17 +264,17 @@ def deserialize_json(data: dict) -> TopicIRFilterOption:
                 data["AggregationPartitionBy"]
             )
         )
-    if "Range" in data:
+    if data.get("Range") is not None:
         import capo_quicksight.types.topic_constant_value
 
         out["range"] = capo_quicksight.types.topic_constant_value.deserialize_json(
             data["Range"]
         )
-    if "Inclusive" in data:
+    if data.get("Inclusive") is not None:
         out["inclusive"] = data["Inclusive"]
     else:
         out["inclusive"] = False
-    if "TimeGranularity" in data:
+    if data.get("TimeGranularity") is not None:
         import capo_quicksight.types.time_granularity
 
         out["time_granularity"] = (
@@ -282,7 +282,7 @@ def deserialize_json(data: dict) -> TopicIRFilterOption:
                 data["TimeGranularity"]
             )
         )
-    if "LastNextOffset" in data:
+    if data.get("LastNextOffset") is not None:
         import capo_quicksight.types.topic_constant_value
 
         out["last_next_offset"] = (
@@ -290,7 +290,7 @@ def deserialize_json(data: dict) -> TopicIRFilterOption:
                 data["LastNextOffset"]
             )
         )
-    if "AggMetrics" in data:
+    if data.get("AggMetrics") is not None:
         import capo_quicksight.types.filter_agg_metrics_list
 
         out["agg_metrics"] = (
@@ -298,7 +298,7 @@ def deserialize_json(data: dict) -> TopicIRFilterOption:
                 data["AggMetrics"]
             )
         )
-    if "TopBottomLimit" in data:
+    if data.get("TopBottomLimit") is not None:
         import capo_quicksight.types.topic_constant_value
 
         out["top_bottom_limit"] = (
@@ -306,7 +306,7 @@ def deserialize_json(data: dict) -> TopicIRFilterOption:
                 data["TopBottomLimit"]
             )
         )
-    if "SortDirection" in data:
+    if data.get("SortDirection") is not None:
         import capo_quicksight.types.topic_sort_direction
 
         out["sort_direction"] = (
@@ -314,7 +314,7 @@ def deserialize_json(data: dict) -> TopicIRFilterOption:
                 data["SortDirection"]
             )
         )
-    if "Anchor" in data:
+    if data.get("Anchor") is not None:
         import capo_quicksight.types.anchor
 
         out["anchor"] = capo_quicksight.types.anchor.deserialize_json(data["Anchor"])

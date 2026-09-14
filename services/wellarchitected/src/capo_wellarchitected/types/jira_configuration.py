@@ -33,9 +33,9 @@ def serialize_json(value: JiraConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> JiraConfiguration:
     out: JiraConfiguration = {}  # type: ignore[typeddict-item]
-    if "JiraIssueUrl" in data:
+    if data.get("JiraIssueUrl") is not None:
         out["jira_issue_url"] = data["JiraIssueUrl"]
-    if "LastSyncedTime" in data:
+    if data.get("LastSyncedTime") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["last_synced_time"] = capo_wellarchitected.types.timestamp.deserialize_json(

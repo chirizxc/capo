@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IdMappingTableInputSourceList:
 
     out: IdMappingTableInputSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.id_mapping_table_input_source.deserialize_json(item)
         )

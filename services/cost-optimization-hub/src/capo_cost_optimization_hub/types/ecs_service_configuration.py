@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: EcsServiceConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EcsServiceConfiguration:
     out: EcsServiceConfiguration = {}  # type: ignore[typeddict-item]
-    if "compute" in data:
+    if data.get("compute") is not None:
         import capo_cost_optimization_hub.types.compute_configuration
 
         out["compute"] = (

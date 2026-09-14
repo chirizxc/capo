@@ -66,35 +66,35 @@ def serialize_aws_json_1_1(value: DataMigrationStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataMigrationStatistics:
     out: DataMigrationStatistics = {}  # type: ignore[typeddict-item]
-    if "TablesLoaded" in data:
+    if data.get("TablesLoaded") is not None:
         out["tables_loaded"] = data["TablesLoaded"]
     else:
         out["tables_loaded"] = 0
-    if "ElapsedTimeMillis" in data:
+    if data.get("ElapsedTimeMillis") is not None:
         out["elapsed_time_millis"] = data["ElapsedTimeMillis"]
     else:
         out["elapsed_time_millis"] = 0
-    if "TablesLoading" in data:
+    if data.get("TablesLoading") is not None:
         out["tables_loading"] = data["TablesLoading"]
     else:
         out["tables_loading"] = 0
-    if "FullLoadPercentage" in data:
+    if data.get("FullLoadPercentage") is not None:
         out["full_load_percentage"] = data["FullLoadPercentage"]
     else:
         out["full_load_percentage"] = 0
-    if "CDCLatency" in data:
+    if data.get("CDCLatency") is not None:
         out["cdc_latency"] = data["CDCLatency"]
     else:
         out["cdc_latency"] = 0
-    if "TablesQueued" in data:
+    if data.get("TablesQueued") is not None:
         out["tables_queued"] = data["TablesQueued"]
     else:
         out["tables_queued"] = 0
-    if "TablesErrored" in data:
+    if data.get("TablesErrored") is not None:
         out["tables_errored"] = data["TablesErrored"]
     else:
         out["tables_errored"] = 0
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_database_migration_service.types.iso8601_date_time
 
         out["start_time"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigrationStatistics:
                 data["StartTime"]
             )
         )
-    if "StopTime" in data:
+    if data.get("StopTime") is not None:
         import capo_database_migration_service.types.iso8601_date_time
 
         out["stop_time"] = (

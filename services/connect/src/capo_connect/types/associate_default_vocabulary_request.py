@@ -29,6 +29,6 @@ def serialize_json(value: AssociateDefaultVocabularyRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateDefaultVocabularyRequest:
     out: AssociateDefaultVocabularyRequest = {}  # type: ignore[typeddict-item]
-    if "VocabularyId" in data:
+    if data.get("VocabularyId") is not None:
         out["vocabulary_id"] = data["VocabularyId"]
     return out

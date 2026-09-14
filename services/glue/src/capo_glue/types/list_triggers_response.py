@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ListTriggersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTriggersResponse:
     out: ListTriggersResponse = {}  # type: ignore[typeddict-item]
-    if "TriggerNames" in data:
+    if data.get("TriggerNames") is not None:
         import capo_glue.types.trigger_name_list
 
         out["trigger_names"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListTriggersResponse:
                 data["TriggerNames"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

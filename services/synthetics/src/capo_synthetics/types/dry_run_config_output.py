@@ -28,8 +28,8 @@ def serialize_json(value: DryRunConfigOutput) -> dict:
 
 def deserialize_json(data: dict) -> DryRunConfigOutput:
     out: DryRunConfigOutput = {}  # type: ignore[typeddict-item]
-    if "DryRunId" in data:
+    if data.get("DryRunId") is not None:
         out["dry_run_id"] = data["DryRunId"]
-    if "LastDryRunExecutionStatus" in data:
+    if data.get("LastDryRunExecutionStatus") is not None:
         out["last_dry_run_execution_status"] = data["LastDryRunExecutionStatus"]
     return out

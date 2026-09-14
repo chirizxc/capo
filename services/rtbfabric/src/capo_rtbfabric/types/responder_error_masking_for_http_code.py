@@ -39,19 +39,28 @@ def serialize_json(value: ResponderErrorMaskingForHttpCode) -> dict:
         )
     )
     if "response_logging_percentage" in value:
-        out["responseLoggingPercentage"] = value["response_logging_percentage"]
+        out["responseLoggingPercentage"] = (
+            "NaN"
+            if value["response_logging_percentage"]
+            != value["response_logging_percentage"]
+            else "Infinity"
+            if value["response_logging_percentage"] == float("inf")
+            else "-Infinity"
+            if value["response_logging_percentage"] == float("-inf")
+            else value["response_logging_percentage"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> ResponderErrorMaskingForHttpCode:
     out: ResponderErrorMaskingForHttpCode = {}  # type: ignore[typeddict-item]
-    if "httpCode" in data:
+    if data.get("httpCode") is not None:
         out["http_code"] = data["httpCode"]
     else:
         raise DeserializationError(
             "ResponderErrorMaskingForHttpCode.http_code required"
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_rtbfabric.types.responder_error_masking_action
 
         out["action"] = (
@@ -61,7 +70,7 @@ def deserialize_json(data: dict) -> ResponderErrorMaskingForHttpCode:
         )
     else:
         raise DeserializationError("ResponderErrorMaskingForHttpCode.action required")
-    if "loggingTypes" in data:
+    if data.get("loggingTypes") is not None:
         import capo_rtbfabric.types.responder_error_masking_logging_types
 
         out["logging_types"] = (
@@ -73,6 +82,6 @@ def deserialize_json(data: dict) -> ResponderErrorMaskingForHttpCode:
         raise DeserializationError(
             "ResponderErrorMaskingForHttpCode.logging_types required"
         )
-    if "responseLoggingPercentage" in data:
-        out["response_logging_percentage"] = data["responseLoggingPercentage"]
+    if data.get("responseLoggingPercentage") is not None:
+        out["response_logging_percentage"] = float(data["responseLoggingPercentage"])
     return out

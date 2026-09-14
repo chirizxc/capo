@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> UsageAllocations:
 
     out: UsageAllocations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_metering.types.usage_allocation.deserialize_aws_json_1_1(
                 item

@@ -47,28 +47,28 @@ def serialize_json(value: PutAlternateContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAlternateContactRequest:
     out: PutAlternateContactRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PutAlternateContactRequest.name required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("PutAlternateContactRequest.title required")
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
     else:
         raise DeserializationError("PutAlternateContactRequest.email_address required")
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
     else:
         raise DeserializationError("PutAlternateContactRequest.phone_number required")
-    if "AlternateContactType" in data:
+    if data.get("AlternateContactType") is not None:
         out["alternate_contact_type"] = data["AlternateContactType"]
     else:
         raise DeserializationError(
             "PutAlternateContactRequest.alternate_contact_type required"
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

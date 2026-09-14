@@ -78,13 +78,13 @@ def serialize_aws_json_1_0(value: VpcEndpointDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VpcEndpointDetail:
     out: VpcEndpointDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_opensearchserverless.types.subnet_ids
 
         out["subnet_ids"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> VpcEndpointDetail:
                 data["subnetIds"]
             )
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_opensearchserverless.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -100,12 +100,12 @@ def deserialize_aws_json_1_0(data: dict) -> VpcEndpointDetail:
                 data["securityGroupIds"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         out["created_date"] = data["createdDate"]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
     return out

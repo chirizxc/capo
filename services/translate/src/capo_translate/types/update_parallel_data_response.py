@@ -57,9 +57,9 @@ def serialize_aws_json_1_1(value: UpdateParallelDataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateParallelDataResponse:
     out: UpdateParallelDataResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_translate.types.parallel_data_status
 
         out["status"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateParallelDataResponse:
                 data["Status"]
             )
         )
-    if "LatestUpdateAttemptStatus" in data:
+    if data.get("LatestUpdateAttemptStatus") is not None:
         import capo_translate.types.parallel_data_status
 
         out["latest_update_attempt_status"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateParallelDataResponse:
                 data["LatestUpdateAttemptStatus"]
             )
         )
-    if "LatestUpdateAttemptAt" in data:
+    if data.get("LatestUpdateAttemptAt") is not None:
         import capo_translate.types.timestamp
 
         out["latest_update_attempt_at"] = (

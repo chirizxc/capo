@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: StageExecution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StageExecution:
     out: StageExecution = {}  # type: ignore[typeddict-item]
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
     else:
         raise DeserializationError("StageExecution.pipeline_execution_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codepipeline.types.stage_execution_status
 
         out["status"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageExecution:
         )
     else:
         raise DeserializationError("StageExecution.status required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codepipeline.types.execution_type
 
         out["type"] = capo_codepipeline.types.execution_type.deserialize_aws_json_1_1(

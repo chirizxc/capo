@@ -39,14 +39,14 @@ def serialize_json(value: CloudFormationHealth) -> dict:
 
 def deserialize_json(data: dict) -> CloudFormationHealth:
     out: CloudFormationHealth = {}  # type: ignore[typeddict-item]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "Insight" in data:
+    if data.get("Insight") is not None:
         import capo_devops_guru.types.insight_health
 
         out["insight"] = capo_devops_guru.types.insight_health.deserialize_json(
             data["Insight"]
         )
-    if "AnalyzedResourceCount" in data:
+    if data.get("AnalyzedResourceCount") is not None:
         out["analyzed_resource_count"] = data["AnalyzedResourceCount"]
     return out

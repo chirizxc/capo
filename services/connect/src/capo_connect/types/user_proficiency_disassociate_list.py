@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UserProficiencyDisassociateList:
 
     out: UserProficiencyDisassociateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.user_proficiency_disassociate.deserialize_json(item)
         )

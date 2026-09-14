@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: AthenaError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AthenaError:
     out: AthenaError = {}  # type: ignore[typeddict-item]
-    if "ErrorCategory" in data:
+    if data.get("ErrorCategory") is not None:
         out["error_category"] = data["ErrorCategory"]
-    if "ErrorType" in data:
+    if data.get("ErrorType") is not None:
         out["error_type"] = data["ErrorType"]
-    if "Retryable" in data:
+    if data.get("Retryable") is not None:
         out["retryable"] = data["Retryable"]
     else:
         out["retryable"] = False
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

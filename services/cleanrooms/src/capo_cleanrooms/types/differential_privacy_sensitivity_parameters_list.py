@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DifferentialPrivacySensitivityParametersList
 
     out: DifferentialPrivacySensitivityParametersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.differential_privacy_sensitivity_parameters.deserialize_json(
                 item

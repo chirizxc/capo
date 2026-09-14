@@ -28,11 +28,11 @@ def serialize_json(value: HttpActionHeader) -> dict:
 
 def deserialize_json(data: dict) -> HttpActionHeader:
     out: HttpActionHeader = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("HttpActionHeader.key required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("HttpActionHeader.value required")

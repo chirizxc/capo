@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AnomalyDetectorSummaryList:
 
     out: AnomalyDetectorSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amp.types.anomaly_detector_summary.deserialize_json(item))
     return out

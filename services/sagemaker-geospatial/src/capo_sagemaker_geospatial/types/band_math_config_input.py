@@ -44,7 +44,7 @@ def serialize_json(value: BandMathConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> BandMathConfigInput:
     out: BandMathConfigInput = {}  # type: ignore[typeddict-item]
-    if "PredefinedIndices" in data:
+    if data.get("PredefinedIndices") is not None:
         import capo_sagemaker_geospatial.types.string_list_input
 
         out["predefined_indices"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BandMathConfigInput:
                 data["PredefinedIndices"]
             )
         )
-    if "CustomIndices" in data:
+    if data.get("CustomIndices") is not None:
         import capo_sagemaker_geospatial.types.custom_indices_input
 
         out["custom_indices"] = (

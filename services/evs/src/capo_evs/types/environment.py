@@ -167,9 +167,9 @@ def serialize_aws_json_1_0(value: Environment) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Environment:
     out: Environment = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "environmentState" in data:
+    if data.get("environmentState") is not None:
         import capo_evs.types.environment_state
 
         out["environment_state"] = (
@@ -177,45 +177,45 @@ def deserialize_aws_json_1_0(data: dict) -> Environment:
                 data["environmentState"]
             )
         )
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["created_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["createdAt"]
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["modified_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["modifiedAt"]
         )
-    if "environmentArn" in data:
+    if data.get("environmentArn") is not None:
         out["environment_arn"] = data["environmentArn"]
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "serviceAccessSubnetId" in data:
+    if data.get("serviceAccessSubnetId") is not None:
         out["service_access_subnet_id"] = data["serviceAccessSubnetId"]
-    if "vcfVersion" in data:
+    if data.get("vcfVersion") is not None:
         import capo_evs.types.vcf_version
 
         out["vcf_version"] = capo_evs.types.vcf_version.deserialize_aws_json_1_0(
             data["vcfVersion"]
         )
-    if "termsAccepted" in data:
+    if data.get("termsAccepted") is not None:
         out["terms_accepted"] = data["termsAccepted"]
-    if "licenseInfo" in data:
+    if data.get("licenseInfo") is not None:
         import capo_evs.types.license_info_list
 
         out["license_info"] = capo_evs.types.license_info_list.deserialize_aws_json_1_0(
             data["licenseInfo"]
         )
-    if "siteId" in data:
+    if data.get("siteId") is not None:
         out["site_id"] = data["siteId"]
-    if "environmentStatus" in data:
+    if data.get("environmentStatus") is not None:
         import capo_evs.types.check_result
 
         out["environment_status"] = (
@@ -223,13 +223,13 @@ def deserialize_aws_json_1_0(data: dict) -> Environment:
                 data["environmentStatus"]
             )
         )
-    if "checks" in data:
+    if data.get("checks") is not None:
         import capo_evs.types.checks_list
 
         out["checks"] = capo_evs.types.checks_list.deserialize_aws_json_1_0(
             data["checks"]
         )
-    if "connectivityInfo" in data:
+    if data.get("connectivityInfo") is not None:
         import capo_evs.types.connectivity_info
 
         out["connectivity_info"] = (
@@ -237,15 +237,15 @@ def deserialize_aws_json_1_0(data: dict) -> Environment:
                 data["connectivityInfo"]
             )
         )
-    if "vcfHostnames" in data:
+    if data.get("vcfHostnames") is not None:
         import capo_evs.types.vcf_hostnames
 
         out["vcf_hostnames"] = capo_evs.types.vcf_hostnames.deserialize_aws_json_1_0(
             data["vcfHostnames"]
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "serviceAccessSecurityGroups" in data:
+    if data.get("serviceAccessSecurityGroups") is not None:
         import capo_evs.types.service_access_security_groups
 
         out["service_access_security_groups"] = (
@@ -253,7 +253,7 @@ def deserialize_aws_json_1_0(data: dict) -> Environment:
                 data["serviceAccessSecurityGroups"]
             )
         )
-    if "credentials" in data:
+    if data.get("credentials") is not None:
         import capo_evs.types.secret_list
 
         out["credentials"] = capo_evs.types.secret_list.deserialize_aws_json_1_0(

@@ -38,18 +38,18 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeServiceActionExecutionParametersInput:
     out: DescribeServiceActionExecutionParametersInput = {}  # type: ignore[typeddict-item]
-    if "ProvisionedProductId" in data:
+    if data.get("ProvisionedProductId") is not None:
         out["provisioned_product_id"] = data["ProvisionedProductId"]
     else:
         raise DeserializationError(
             "DescribeServiceActionExecutionParametersInput.provisioned_product_id required"
         )
-    if "ServiceActionId" in data:
+    if data.get("ServiceActionId") is not None:
         out["service_action_id"] = data["ServiceActionId"]
     else:
         raise DeserializationError(
             "DescribeServiceActionExecutionParametersInput.service_action_id required"
         )
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
     return out

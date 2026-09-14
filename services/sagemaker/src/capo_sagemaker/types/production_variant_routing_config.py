@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ProductionVariantRoutingConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProductionVariantRoutingConfig:
     out: ProductionVariantRoutingConfig = {}  # type: ignore[typeddict-item]
-    if "RoutingStrategy" in data:
+    if data.get("RoutingStrategy") is not None:
         import capo_sagemaker.types.routing_strategy
 
         out["routing_strategy"] = (

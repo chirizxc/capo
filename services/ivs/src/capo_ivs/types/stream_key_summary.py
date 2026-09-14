@@ -35,11 +35,11 @@ def serialize_json(value: StreamKeySummary) -> dict:
 
 def deserialize_json(data: dict) -> StreamKeySummary:
     out: StreamKeySummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])

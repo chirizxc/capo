@@ -38,9 +38,9 @@ def serialize_json(value: ListInvestigationGroupsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListInvestigationGroupsOutput:
     out: ListInvestigationGroupsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "investigationGroups" in data:
+    if data.get("investigationGroups") is not None:
         import capo_aiops.types.investigation_groups
 
         out["investigation_groups"] = (

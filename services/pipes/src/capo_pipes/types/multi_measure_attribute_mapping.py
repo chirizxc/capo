@@ -34,19 +34,19 @@ def serialize_json(value: MultiMeasureAttributeMapping) -> dict:
 
 def deserialize_json(data: dict) -> MultiMeasureAttributeMapping:
     out: MultiMeasureAttributeMapping = {}  # type: ignore[typeddict-item]
-    if "MeasureValue" in data:
+    if data.get("MeasureValue") is not None:
         out["measure_value"] = data["MeasureValue"]
     else:
         raise DeserializationError(
             "MultiMeasureAttributeMapping.measure_value required"
         )
-    if "MeasureValueType" in data:
+    if data.get("MeasureValueType") is not None:
         out["measure_value_type"] = data["MeasureValueType"]
     else:
         raise DeserializationError(
             "MultiMeasureAttributeMapping.measure_value_type required"
         )
-    if "MultiMeasureAttributeName" in data:
+    if data.get("MultiMeasureAttributeName") is not None:
         out["multi_measure_attribute_name"] = data["MultiMeasureAttributeName"]
     else:
         raise DeserializationError(

@@ -32,8 +32,8 @@ def serialize_json(value: SparkSqlJobDriver) -> dict:
 
 def deserialize_json(data: dict) -> SparkSqlJobDriver:
     out: SparkSqlJobDriver = {}  # type: ignore[typeddict-item]
-    if "entryPoint" in data:
+    if data.get("entryPoint") is not None:
         out["entry_point"] = data["entryPoint"]
-    if "sparkSqlParameters" in data:
+    if data.get("sparkSqlParameters") is not None:
         out["spark_sql_parameters"] = data["sparkSqlParameters"]
     return out

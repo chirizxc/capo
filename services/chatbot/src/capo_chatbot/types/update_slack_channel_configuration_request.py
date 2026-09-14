@@ -78,31 +78,31 @@ def serialize_json(value: UpdateSlackChannelConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSlackChannelConfigurationRequest:
     out: UpdateSlackChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
     else:
         raise DeserializationError(
             "UpdateSlackChannelConfigurationRequest.chat_configuration_arn required"
         )
-    if "SlackChannelId" in data:
+    if data.get("SlackChannelId") is not None:
         out["slack_channel_id"] = data["SlackChannelId"]
     else:
         raise DeserializationError(
             "UpdateSlackChannelConfigurationRequest.slack_channel_id required"
         )
-    if "SlackChannelName" in data:
+    if data.get("SlackChannelName") is not None:
         out["slack_channel_name"] = data["SlackChannelName"]
-    if "SnsTopicArns" in data:
+    if data.get("SnsTopicArns") is not None:
         import capo_chatbot.types.sns_topic_arn_list
 
         out["sns_topic_arns"] = capo_chatbot.types.sns_topic_arn_list.deserialize_json(
             data["SnsTopicArns"]
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "LoggingLevel" in data:
+    if data.get("LoggingLevel") is not None:
         out["logging_level"] = data["LoggingLevel"]
-    if "GuardrailPolicyArns" in data:
+    if data.get("GuardrailPolicyArns") is not None:
         import capo_chatbot.types.guardrail_policy_arn_list
 
         out["guardrail_policy_arns"] = (
@@ -110,6 +110,6 @@ def deserialize_json(data: dict) -> UpdateSlackChannelConfigurationRequest:
                 data["GuardrailPolicyArns"]
             )
         )
-    if "UserAuthorizationRequired" in data:
+    if data.get("UserAuthorizationRequired") is not None:
         out["user_authorization_required"] = data["UserAuthorizationRequired"]
     return out

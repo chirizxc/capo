@@ -29,6 +29,6 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DeleteModelExplainabilityJobDefinitionRequest:
     out: DeleteModelExplainabilityJobDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "JobDefinitionName" in data:
+    if data.get("JobDefinitionName") is not None:
         out["job_definition_name"] = data["JobDefinitionName"]
     return out

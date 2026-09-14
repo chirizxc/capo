@@ -13,10 +13,25 @@ from capo_synthetics import AsyncsyntheticsClient
 
 
 async def main():
-    async with AsyncsyntheticsClient() as s3:
+    async with AsyncsyntheticsClient() as synthetics:
         # Example: call the associate_resource operation
-        response = await s3.associate_resource()
+        response = await synthetics.associate_resource()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_synthetics import AsyncsyntheticsClient
+
+
+async def main():
+    async with AsyncsyntheticsClient() as synthetics:
+        # Example: paginate over describe_canaries
+        async for item in synthetics.iter_describe_canaries():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_synthetics.error import ConflictException
 
 
 async def main():
-    async with AsyncsyntheticsClient() as s3:
+    async with AsyncsyntheticsClient() as synthetics:
         try:
-            await s3.associate_resource()
+            await synthetics.associate_resource()
         except ConflictException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_synthetics import AsyncsyntheticsClient
 
 
 async def main():
-    async with AsyncsyntheticsClient() as s3:
+    async with AsyncsyntheticsClient() as synthetics:
         # Default: 3 attempts for every operation
-        response = await s3.associate_resource()
+        response = await synthetics.associate_resource()
 
         # Override per operation
-        response = await s3.associate_resource(config_overrides={"retry_max_attempts": 5})
+        response = await synthetics.associate_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_resource(config_overrides={"retry_max_attempts": 1})
+        response = await synthetics.associate_resource(config_overrides={"retry_max_attempts": 1})
 ```

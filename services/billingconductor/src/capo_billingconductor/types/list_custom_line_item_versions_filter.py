@@ -31,7 +31,7 @@ def serialize_json(value: ListCustomLineItemVersionsFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListCustomLineItemVersionsFilter:
     out: ListCustomLineItemVersionsFilter = {}  # type: ignore[typeddict-item]
-    if "BillingPeriodRange" in data:
+    if data.get("BillingPeriodRange") is not None:
         import capo_billingconductor.types.list_custom_line_item_versions_billing_period_range_filter
 
         out["billing_period_range"] = (

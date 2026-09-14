@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GeneralServiceException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GeneralServiceException_:
     out: GeneralServiceException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class GeneralServiceException(ServiceError):
 
     code: str | None = "GeneralServiceException"
 
-    def __init__(self, data: GeneralServiceException_):
+    def __init__(self, data: GeneralServiceException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="GeneralServiceException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "GeneralServiceException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "GeneralServiceException":
+        return cls(deserialize_aws_json_1_0(data), message)

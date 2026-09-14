@@ -78,21 +78,21 @@ def serialize_aws_json_1_1(value: MultiRegionCluster) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MultiRegionCluster:
     out: MultiRegionCluster = {}  # type: ignore[typeddict-item]
-    if "MultiRegionClusterName" in data:
+    if data.get("MultiRegionClusterName") is not None:
         out["multi_region_cluster_name"] = data["MultiRegionClusterName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "NumberOfShards" in data:
+    if data.get("NumberOfShards") is not None:
         out["number_of_shards"] = data["NumberOfShards"]
-    if "Clusters" in data:
+    if data.get("Clusters") is not None:
         import capo_memorydb.types.regional_cluster_list
 
         out["clusters"] = (
@@ -100,10 +100,10 @@ def deserialize_aws_json_1_1(data: dict) -> MultiRegionCluster:
                 data["Clusters"]
             )
         )
-    if "MultiRegionParameterGroupName" in data:
+    if data.get("MultiRegionParameterGroupName") is not None:
         out["multi_region_parameter_group_name"] = data["MultiRegionParameterGroupName"]
-    if "TLSEnabled" in data:
+    if data.get("TLSEnabled") is not None:
         out["tls_enabled"] = data["TLSEnabled"]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     return out

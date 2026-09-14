@@ -25,13 +25,13 @@ def serialize_json(value: WhatsAppOutboundConfig) -> dict:
 
 def deserialize_json(data: dict) -> WhatsAppOutboundConfig:
     out: WhatsAppOutboundConfig = {}  # type: ignore[typeddict-item]
-    if "connectSourcePhoneNumberArn" in data:
+    if data.get("connectSourcePhoneNumberArn") is not None:
         out["connect_source_phone_number_arn"] = data["connectSourcePhoneNumberArn"]
     else:
         raise DeserializationError(
             "WhatsAppOutboundConfig.connect_source_phone_number_arn required"
         )
-    if "wisdomTemplateArn" in data:
+    if data.get("wisdomTemplateArn") is not None:
         out["wisdom_template_arn"] = data["wisdomTemplateArn"]
     else:
         raise DeserializationError(

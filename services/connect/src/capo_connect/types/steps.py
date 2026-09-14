@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Steps:
 
     out: Steps = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.step.deserialize_json(item))
     return out

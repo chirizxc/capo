@@ -69,32 +69,32 @@ def serialize_json(value: PropertyDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PropertyDefinitionRequest:
     out: PropertyDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_iottwinmaker.types.data_type
 
         out["data_type"] = capo_iottwinmaker.types.data_type.deserialize_json(
             data["dataType"]
         )
-    if "isRequiredInEntity" in data:
+    if data.get("isRequiredInEntity") is not None:
         out["is_required_in_entity"] = data["isRequiredInEntity"]
-    if "isExternalId" in data:
+    if data.get("isExternalId") is not None:
         out["is_external_id"] = data["isExternalId"]
-    if "isStoredExternally" in data:
+    if data.get("isStoredExternally") is not None:
         out["is_stored_externally"] = data["isStoredExternally"]
-    if "isTimeSeries" in data:
+    if data.get("isTimeSeries") is not None:
         out["is_time_series"] = data["isTimeSeries"]
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         import capo_iottwinmaker.types.data_value
 
         out["default_value"] = capo_iottwinmaker.types.data_value.deserialize_json(
             data["defaultValue"]
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_iottwinmaker.types.configuration
 
         out["configuration"] = capo_iottwinmaker.types.configuration.deserialize_json(
             data["configuration"]
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     return out

@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: FailedResourceAccessException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailedResourceAccessException_:
     out: FailedResourceAccessException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -36,15 +36,20 @@ class FailedResourceAccessException(ServiceError):
 
     code: str | None = "FailedResourceAccessException"
 
-    def __init__(self, data: FailedResourceAccessException_):
+    def __init__(
+        self, data: FailedResourceAccessException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="FailedResourceAccessException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "FailedResourceAccessException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "FailedResourceAccessException":
+        return cls(deserialize_aws_json_1_1(data), message)

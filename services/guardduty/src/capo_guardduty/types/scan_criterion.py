@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: ScanCriterion) -> dict:
 def deserialize_json(data: dict) -> ScanCriterion:
     out: ScanCriterion = {}
     for key, value in data.items():
-        import capo_guardduty.types.scan_condition
         import capo_guardduty.types.scan_criterion_key
+
+        if value is None:
+            continue
+        import capo_guardduty.types.scan_condition
 
         out[capo_guardduty.types.scan_criterion_key.deserialize_json(key)] = (
             capo_guardduty.types.scan_condition.deserialize_json(value)

@@ -122,13 +122,13 @@ def serialize_aws_json_1_1(value: As2ConnectorConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> As2ConnectorConfig:
     out: As2ConnectorConfig = {}  # type: ignore[typeddict-item]
-    if "LocalProfileId" in data:
+    if data.get("LocalProfileId") is not None:
         out["local_profile_id"] = data["LocalProfileId"]
-    if "PartnerProfileId" in data:
+    if data.get("PartnerProfileId") is not None:
         out["partner_profile_id"] = data["PartnerProfileId"]
-    if "MessageSubject" in data:
+    if data.get("MessageSubject") is not None:
         out["message_subject"] = data["MessageSubject"]
-    if "Compression" in data:
+    if data.get("Compression") is not None:
         import capo_transfer.types.compression_enum
 
         out["compression"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> As2ConnectorConfig:
                 data["Compression"]
             )
         )
-    if "EncryptionAlgorithm" in data:
+    if data.get("EncryptionAlgorithm") is not None:
         import capo_transfer.types.encryption_alg
 
         out["encryption_algorithm"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> As2ConnectorConfig:
                 data["EncryptionAlgorithm"]
             )
         )
-    if "SigningAlgorithm" in data:
+    if data.get("SigningAlgorithm") is not None:
         import capo_transfer.types.signing_alg
 
         out["signing_algorithm"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> As2ConnectorConfig:
                 data["SigningAlgorithm"]
             )
         )
-    if "MdnSigningAlgorithm" in data:
+    if data.get("MdnSigningAlgorithm") is not None:
         import capo_transfer.types.mdn_signing_alg
 
         out["mdn_signing_algorithm"] = (
@@ -160,15 +160,15 @@ def deserialize_aws_json_1_1(data: dict) -> As2ConnectorConfig:
                 data["MdnSigningAlgorithm"]
             )
         )
-    if "MdnResponse" in data:
+    if data.get("MdnResponse") is not None:
         import capo_transfer.types.mdn_response
 
         out["mdn_response"] = capo_transfer.types.mdn_response.deserialize_aws_json_1_1(
             data["MdnResponse"]
         )
-    if "BasicAuthSecretId" in data:
+    if data.get("BasicAuthSecretId") is not None:
         out["basic_auth_secret_id"] = data["BasicAuthSecretId"]
-    if "PreserveContentType" in data:
+    if data.get("PreserveContentType") is not None:
         import capo_transfer.types.preserve_content_type
 
         out["preserve_content_type"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> As2ConnectorConfig:
                 data["PreserveContentType"]
             )
         )
-    if "AsyncMdnConfig" in data:
+    if data.get("AsyncMdnConfig") is not None:
         import capo_transfer.types.as2_async_mdn_connector_config
 
         out["async_mdn_config"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RouteWaypointList:
 
     out: RouteWaypointList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_routes.types.route_waypoint.deserialize_json(item))
     return out

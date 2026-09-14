@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: SMBLocalGroups) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SMBLocalGroups:
     out: SMBLocalGroups = {}  # type: ignore[typeddict-item]
-    if "GatewayAdmins" in data:
+    if data.get("GatewayAdmins") is not None:
         import capo_storage_gateway.types.user_list
 
         out["gateway_admins"] = (

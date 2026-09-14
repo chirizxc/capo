@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> Rules:
 
     out: Rules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mailmanager.types.rule.deserialize_aws_json_1_0(item))
     return out

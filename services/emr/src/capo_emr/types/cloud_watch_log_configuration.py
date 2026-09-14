@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: CloudWatchLogConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CloudWatchLogConfiguration:
     out: CloudWatchLogConfiguration = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "LogGroupName" in data:
+    if data.get("LogGroupName") is not None:
         out["log_group_name"] = data["LogGroupName"]
-    if "LogStreamNamePrefix" in data:
+    if data.get("LogStreamNamePrefix") is not None:
         out["log_stream_name_prefix"] = data["LogStreamNamePrefix"]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "LogTypes" in data:
+    if data.get("LogTypes") is not None:
         import capo_emr.types.log_types_map
 
         out["log_types"] = capo_emr.types.log_types_map.deserialize_aws_json_1_1(

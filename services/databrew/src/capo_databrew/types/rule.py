@@ -63,31 +63,31 @@ def serialize_json(value: Rule) -> dict:
 
 def deserialize_json(data: dict) -> Rule:
     out: Rule = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Rule.name required")
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
     else:
         out["disabled"] = False
-    if "CheckExpression" in data:
+    if data.get("CheckExpression") is not None:
         out["check_expression"] = data["CheckExpression"]
     else:
         raise DeserializationError("Rule.check_expression required")
-    if "SubstitutionMap" in data:
+    if data.get("SubstitutionMap") is not None:
         import capo_databrew.types.values_map
 
         out["substitution_map"] = capo_databrew.types.values_map.deserialize_json(
             data["SubstitutionMap"]
         )
-    if "Threshold" in data:
+    if data.get("Threshold") is not None:
         import capo_databrew.types.threshold
 
         out["threshold"] = capo_databrew.types.threshold.deserialize_json(
             data["Threshold"]
         )
-    if "ColumnSelectors" in data:
+    if data.get("ColumnSelectors") is not None:
         import capo_databrew.types.column_selector_list
 
         out["column_selectors"] = (

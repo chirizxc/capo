@@ -22,17 +22,15 @@ class WindowMaintenanceSchedule(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: WindowMaintenanceSchedule) -> dict:
     out: dict = {}
-    import capo_mediaconnect.types._prelude.timestamp
+    import capo_mediaconnect._protocol.serialize
 
-    out["start"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
-        value["start"]
-    )
-    import capo_mediaconnect.types._prelude.timestamp
+    out["start"] = capo_mediaconnect._protocol.serialize.fmt_date_time(value["start"])
+    import capo_mediaconnect._protocol.serialize
 
-    out["end"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(value["end"])
-    import capo_mediaconnect.types._prelude.timestamp
+    out["end"] = capo_mediaconnect._protocol.serialize.fmt_date_time(value["end"])
+    import capo_mediaconnect._protocol.serialize
 
-    out["scheduledTime"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
+    out["scheduledTime"] = capo_mediaconnect._protocol.serialize.fmt_date_time(
         value["scheduled_time"]
     )
     return out
@@ -40,29 +38,25 @@ def serialize_json(value: WindowMaintenanceSchedule) -> dict:
 
 def deserialize_json(data: dict) -> WindowMaintenanceSchedule:
     out: WindowMaintenanceSchedule = {}  # type: ignore[typeddict-item]
-    if "start" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("start") is not None:
+        import datetime
 
-        out["start"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["start"]
+        out["start"] = datetime.datetime.fromisoformat(
+            data["start"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("WindowMaintenanceSchedule.start required")
-    if "end" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("end") is not None:
+        import datetime
 
-        out["end"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["end"]
-        )
+        out["end"] = datetime.datetime.fromisoformat(data["end"].replace("Z", "+00:00"))
     else:
         raise DeserializationError("WindowMaintenanceSchedule.end required")
-    if "scheduledTime" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("scheduledTime") is not None:
+        import datetime
 
-        out["scheduled_time"] = (
-            capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-                data["scheduledTime"]
-            )
+        out["scheduled_time"] = datetime.datetime.fromisoformat(
+            data["scheduledTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("WindowMaintenanceSchedule.scheduled_time required")

@@ -34,7 +34,7 @@ def serialize_json(value: WebExperienceAuthConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> WebExperienceAuthConfiguration:
-    if "samlConfiguration" in data:
+    if data.get("samlConfiguration") is not None:
         import capo_qbusiness.types.saml_configuration
 
         return {

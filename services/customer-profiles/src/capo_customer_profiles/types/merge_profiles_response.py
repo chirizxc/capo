@@ -23,6 +23,6 @@ def serialize_json(value: MergeProfilesResponse) -> dict:
 
 def deserialize_json(data: dict) -> MergeProfilesResponse:
     out: MergeProfilesResponse = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

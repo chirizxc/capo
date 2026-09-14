@@ -140,27 +140,27 @@ def serialize_json(value: AwsEc2ClientVpnEndpointDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2ClientVpnEndpointDetails:
     out: AwsEc2ClientVpnEndpointDetails = {}  # type: ignore[typeddict-item]
-    if "ClientVpnEndpointId" in data:
+    if data.get("ClientVpnEndpointId") is not None:
         out["client_vpn_endpoint_id"] = data["ClientVpnEndpointId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ClientCidrBlock" in data:
+    if data.get("ClientCidrBlock") is not None:
         out["client_cidr_block"] = data["ClientCidrBlock"]
-    if "DnsServer" in data:
+    if data.get("DnsServer") is not None:
         import capo_securityhub.types.string_list
 
         out["dns_server"] = capo_securityhub.types.string_list.deserialize_json(
             data["DnsServer"]
         )
-    if "SplitTunnel" in data:
+    if data.get("SplitTunnel") is not None:
         out["split_tunnel"] = data["SplitTunnel"]
-    if "TransportProtocol" in data:
+    if data.get("TransportProtocol") is not None:
         out["transport_protocol"] = data["TransportProtocol"]
-    if "VpnPort" in data:
+    if data.get("VpnPort") is not None:
         out["vpn_port"] = data["VpnPort"]
-    if "ServerCertificateArn" in data:
+    if data.get("ServerCertificateArn") is not None:
         out["server_certificate_arn"] = data["ServerCertificateArn"]
-    if "AuthenticationOptions" in data:
+    if data.get("AuthenticationOptions") is not None:
         import capo_securityhub.types.aws_ec2_client_vpn_endpoint_authentication_options_list
 
         out["authentication_options"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> AwsEc2ClientVpnEndpointDetails:
                 data["AuthenticationOptions"]
             )
         )
-    if "ConnectionLogOptions" in data:
+    if data.get("ConnectionLogOptions") is not None:
         import capo_securityhub.types.aws_ec2_client_vpn_endpoint_connection_log_options_details
 
         out["connection_log_options"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> AwsEc2ClientVpnEndpointDetails:
                 data["ConnectionLogOptions"]
             )
         )
-    if "SecurityGroupIdSet" in data:
+    if data.get("SecurityGroupIdSet") is not None:
         import capo_securityhub.types.string_list
 
         out["security_group_id_set"] = (
@@ -184,11 +184,11 @@ def deserialize_json(data: dict) -> AwsEc2ClientVpnEndpointDetails:
                 data["SecurityGroupIdSet"]
             )
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SelfServicePortalUrl" in data:
+    if data.get("SelfServicePortalUrl") is not None:
         out["self_service_portal_url"] = data["SelfServicePortalUrl"]
-    if "ClientConnectOptions" in data:
+    if data.get("ClientConnectOptions") is not None:
         import capo_securityhub.types.aws_ec2_client_vpn_endpoint_client_connect_options_details
 
         out["client_connect_options"] = (
@@ -196,9 +196,9 @@ def deserialize_json(data: dict) -> AwsEc2ClientVpnEndpointDetails:
                 data["ClientConnectOptions"]
             )
         )
-    if "SessionTimeoutHours" in data:
+    if data.get("SessionTimeoutHours") is not None:
         out["session_timeout_hours"] = data["SessionTimeoutHours"]
-    if "ClientLoginBannerOptions" in data:
+    if data.get("ClientLoginBannerOptions") is not None:
         import capo_securityhub.types.aws_ec2_client_vpn_endpoint_client_login_banner_options_details
 
         out["client_login_banner_options"] = (

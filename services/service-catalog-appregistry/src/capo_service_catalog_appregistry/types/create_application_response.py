@@ -31,7 +31,7 @@ def serialize_json(value: CreateApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationResponse:
     out: CreateApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "application" in data:
+    if data.get("application") is not None:
         import capo_service_catalog_appregistry.types.application
 
         out["application"] = (

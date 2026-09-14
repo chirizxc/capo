@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: StepStateChangeReason) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StepStateChangeReason:
     out: StepStateChangeReason = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_emr.types.step_state_change_reason_code
 
         out["code"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> StepStateChangeReason:
                 data["Code"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

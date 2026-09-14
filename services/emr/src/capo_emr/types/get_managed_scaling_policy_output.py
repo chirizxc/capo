@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetManagedScalingPolicyOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetManagedScalingPolicyOutput:
     out: GetManagedScalingPolicyOutput = {}  # type: ignore[typeddict-item]
-    if "ManagedScalingPolicy" in data:
+    if data.get("ManagedScalingPolicy") is not None:
         import capo_emr.types.managed_scaling_policy
 
         out["managed_scaling_policy"] = (

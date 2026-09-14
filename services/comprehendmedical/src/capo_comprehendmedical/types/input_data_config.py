@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: InputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputDataConfig:
     out: InputDataConfig = {}  # type: ignore[typeddict-item]
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
     else:
         raise DeserializationError("InputDataConfig.s3_bucket required")
-    if "S3Key" in data:
+    if data.get("S3Key") is not None:
         out["s3_key"] = data["S3Key"]
     return out

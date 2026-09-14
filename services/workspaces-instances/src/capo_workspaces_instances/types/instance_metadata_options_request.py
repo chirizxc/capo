@@ -77,7 +77,7 @@ def serialize_aws_json_1_0(value: InstanceMetadataOptionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceMetadataOptionsRequest:
     out: InstanceMetadataOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "HttpEndpoint" in data:
+    if data.get("HttpEndpoint") is not None:
         import capo_workspaces_instances.types.http_endpoint_enum
 
         out["http_endpoint"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceMetadataOptionsRequest:
                 data["HttpEndpoint"]
             )
         )
-    if "HttpProtocolIpv6" in data:
+    if data.get("HttpProtocolIpv6") is not None:
         import capo_workspaces_instances.types.http_protocol_ipv6_enum
 
         out["http_protocol_ipv6"] = (
@@ -93,9 +93,9 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceMetadataOptionsRequest:
                 data["HttpProtocolIpv6"]
             )
         )
-    if "HttpPutResponseHopLimit" in data:
+    if data.get("HttpPutResponseHopLimit") is not None:
         out["http_put_response_hop_limit"] = data["HttpPutResponseHopLimit"]
-    if "HttpTokens" in data:
+    if data.get("HttpTokens") is not None:
         import capo_workspaces_instances.types.http_tokens_enum
 
         out["http_tokens"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceMetadataOptionsRequest:
                 data["HttpTokens"]
             )
         )
-    if "InstanceMetadataTags" in data:
+    if data.get("InstanceMetadataTags") is not None:
         import capo_workspaces_instances.types.instance_metadata_tags_enum
 
         out["instance_metadata_tags"] = (

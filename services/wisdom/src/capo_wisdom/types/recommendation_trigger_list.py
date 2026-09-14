@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RecommendationTriggerList:
 
     out: RecommendationTriggerList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wisdom.types.recommendation_trigger.deserialize_json(item))
     return out

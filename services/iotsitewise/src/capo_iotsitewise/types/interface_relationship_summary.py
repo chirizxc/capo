@@ -24,7 +24,7 @@ def serialize_json(value: InterfaceRelationshipSummary) -> dict:
 
 def deserialize_json(data: dict) -> InterfaceRelationshipSummary:
     out: InterfaceRelationshipSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("InterfaceRelationshipSummary.id required")

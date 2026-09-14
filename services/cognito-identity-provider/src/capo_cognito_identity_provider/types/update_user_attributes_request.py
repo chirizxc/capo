@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: UpdateUserAttributesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateUserAttributesRequest:
     out: UpdateUserAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "UserAttributes" in data:
+    if data.get("UserAttributes") is not None:
         import capo_cognito_identity_provider.types.attribute_list_type
 
         out["user_attributes"] = (
@@ -61,11 +61,11 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateUserAttributesRequest:
         raise DeserializationError(
             "UpdateUserAttributesRequest.user_attributes required"
         )
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError("UpdateUserAttributesRequest.access_token required")
-    if "ClientMetadata" in data:
+    if data.get("ClientMetadata") is not None:
         import capo_cognito_identity_provider.types.client_metadata_type
 
         out["client_metadata"] = (

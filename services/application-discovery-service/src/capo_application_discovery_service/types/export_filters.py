@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ExportFilters:
 
     out: ExportFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_discovery_service.types.export_filter.deserialize_aws_json_1_1(
                 item

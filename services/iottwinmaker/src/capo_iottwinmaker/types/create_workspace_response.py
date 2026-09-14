@@ -32,11 +32,11 @@ def serialize_json(value: CreateWorkspaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkspaceResponse:
     out: CreateWorkspaceResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateWorkspaceResponse.arn required")
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(

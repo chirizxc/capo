@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: SelectFromCollection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SelectFromCollection:
     out: SelectFromCollection = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SelectFromCollection.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> SelectFromCollection:
         )
     else:
         raise DeserializationError("SelectFromCollection.inputs required")
-    if "Index" in data:
+    if data.get("Index") is not None:
         out["index"] = data["Index"]
     else:
         out["index"] = 0

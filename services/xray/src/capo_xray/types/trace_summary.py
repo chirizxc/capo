@@ -84,9 +84,25 @@ def serialize_json(value: TraceSummary) -> dict:
 
         out["StartTime"] = capo_xray.types.timestamp.serialize_json(value["start_time"])
     if "duration" in value:
-        out["Duration"] = value["duration"]
+        out["Duration"] = (
+            "NaN"
+            if value["duration"] != value["duration"]
+            else "Infinity"
+            if value["duration"] == float("inf")
+            else "-Infinity"
+            if value["duration"] == float("-inf")
+            else value["duration"]
+        )
     if "response_time" in value:
-        out["ResponseTime"] = value["response_time"]
+        out["ResponseTime"] = (
+            "NaN"
+            if value["response_time"] != value["response_time"]
+            else "Infinity"
+            if value["response_time"] == float("inf")
+            else "-Infinity"
+            if value["response_time"] == float("-inf")
+            else value["response_time"]
+        )
     if "has_fault" in value:
         out["HasFault"] = value["has_fault"]
     if "has_error" in value:
@@ -173,59 +189,59 @@ def serialize_json(value: TraceSummary) -> dict:
 
 def deserialize_json(data: dict) -> TraceSummary:
     out: TraceSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "Duration" in data:
-        out["duration"] = data["Duration"]
-    if "ResponseTime" in data:
-        out["response_time"] = data["ResponseTime"]
-    if "HasFault" in data:
+    if data.get("Duration") is not None:
+        out["duration"] = float(data["Duration"])
+    if data.get("ResponseTime") is not None:
+        out["response_time"] = float(data["ResponseTime"])
+    if data.get("HasFault") is not None:
         out["has_fault"] = data["HasFault"]
-    if "HasError" in data:
+    if data.get("HasError") is not None:
         out["has_error"] = data["HasError"]
-    if "HasThrottle" in data:
+    if data.get("HasThrottle") is not None:
         out["has_throttle"] = data["HasThrottle"]
-    if "IsPartial" in data:
+    if data.get("IsPartial") is not None:
         out["is_partial"] = data["IsPartial"]
-    if "Http" in data:
+    if data.get("Http") is not None:
         import capo_xray.types.http
 
         out["http"] = capo_xray.types.http.deserialize_json(data["Http"])
-    if "Annotations" in data:
+    if data.get("Annotations") is not None:
         import capo_xray.types.annotations
 
         out["annotations"] = capo_xray.types.annotations.deserialize_json(
             data["Annotations"]
         )
-    if "Users" in data:
+    if data.get("Users") is not None:
         import capo_xray.types.trace_users
 
         out["users"] = capo_xray.types.trace_users.deserialize_json(data["Users"])
-    if "ServiceIds" in data:
+    if data.get("ServiceIds") is not None:
         import capo_xray.types.service_ids
 
         out["service_ids"] = capo_xray.types.service_ids.deserialize_json(
             data["ServiceIds"]
         )
-    if "ResourceARNs" in data:
+    if data.get("ResourceARNs") is not None:
         import capo_xray.types.trace_resource_ar_ns
 
         out["resource_ar_ns"] = capo_xray.types.trace_resource_ar_ns.deserialize_json(
             data["ResourceARNs"]
         )
-    if "InstanceIds" in data:
+    if data.get("InstanceIds") is not None:
         import capo_xray.types.trace_instance_ids
 
         out["instance_ids"] = capo_xray.types.trace_instance_ids.deserialize_json(
             data["InstanceIds"]
         )
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_xray.types.trace_availability_zones
 
         out["availability_zones"] = (
@@ -233,25 +249,25 @@ def deserialize_json(data: dict) -> TraceSummary:
                 data["AvailabilityZones"]
             )
         )
-    if "EntryPoint" in data:
+    if data.get("EntryPoint") is not None:
         import capo_xray.types.service_id
 
         out["entry_point"] = capo_xray.types.service_id.deserialize_json(
             data["EntryPoint"]
         )
-    if "FaultRootCauses" in data:
+    if data.get("FaultRootCauses") is not None:
         import capo_xray.types.fault_root_causes
 
         out["fault_root_causes"] = capo_xray.types.fault_root_causes.deserialize_json(
             data["FaultRootCauses"]
         )
-    if "ErrorRootCauses" in data:
+    if data.get("ErrorRootCauses") is not None:
         import capo_xray.types.error_root_causes
 
         out["error_root_causes"] = capo_xray.types.error_root_causes.deserialize_json(
             data["ErrorRootCauses"]
         )
-    if "ResponseTimeRootCauses" in data:
+    if data.get("ResponseTimeRootCauses") is not None:
         import capo_xray.types.response_time_root_causes
 
         out["response_time_root_causes"] = (
@@ -259,11 +275,11 @@ def deserialize_json(data: dict) -> TraceSummary:
                 data["ResponseTimeRootCauses"]
             )
         )
-    if "Revision" in data:
+    if data.get("Revision") is not None:
         out["revision"] = data["Revision"]
     else:
         out["revision"] = 0
-    if "MatchedEventTime" in data:
+    if data.get("MatchedEventTime") is not None:
         import capo_xray.types.timestamp
 
         out["matched_event_time"] = capo_xray.types.timestamp.deserialize_json(

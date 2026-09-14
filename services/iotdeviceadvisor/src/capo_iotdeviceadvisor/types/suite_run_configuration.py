@@ -49,7 +49,7 @@ def serialize_json(value: SuiteRunConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SuiteRunConfiguration:
     out: SuiteRunConfiguration = {}  # type: ignore[typeddict-item]
-    if "primaryDevice" in data:
+    if data.get("primaryDevice") is not None:
         import capo_iotdeviceadvisor.types.device_under_test
 
         out["primary_device"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> SuiteRunConfiguration:
                 data["primaryDevice"]
             )
         )
-    if "selectedTestList" in data:
+    if data.get("selectedTestList") is not None:
         import capo_iotdeviceadvisor.types.selected_test_list
 
         out["selected_test_list"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> SuiteRunConfiguration:
                 data["selectedTestList"]
             )
         )
-    if "parallelRun" in data:
+    if data.get("parallelRun") is not None:
         out["parallel_run"] = data["parallelRun"]
     return out

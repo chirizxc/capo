@@ -26,7 +26,7 @@ def serialize_json(value: ResourceId) -> dict:
 
 
 def deserialize_json(data: dict) -> ResourceId:
-    if "codeArtifactId" in data:
+    if data.get("codeArtifactId") is not None:
         return {"codeArtifactId": data["codeArtifactId"]}
     else:
         raise DeserializationError("ResourceId: no recognized variant key")

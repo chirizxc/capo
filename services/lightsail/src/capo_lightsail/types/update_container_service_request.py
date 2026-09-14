@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_lightsail.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_lightsail.types.boolean
     import capo_lightsail.types.container_service_name
@@ -39,6 +41,7 @@ class UpdateContainerServiceRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: UpdateContainerServiceRequest) -> dict:
     out: dict = {}
+    out["serviceName"] = value["service_name"]
     if "power" in value:
         import capo_lightsail.types.container_service_power_name
 
@@ -72,7 +75,13 @@ def serialize_aws_json_1_1(value: UpdateContainerServiceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateContainerServiceRequest:
     out: UpdateContainerServiceRequest = {}  # type: ignore[typeddict-item]
-    if "power" in data:
+    if data.get("serviceName") is not None:
+        out["service_name"] = data["serviceName"]
+    else:
+        raise DeserializationError(
+            "UpdateContainerServiceRequest.service_name required"
+        )
+    if data.get("power") is not None:
         import capo_lightsail.types.container_service_power_name
 
         out["power"] = (
@@ -80,11 +89,11 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateContainerServiceRequest:
                 data["power"]
             )
         )
-    if "scale" in data:
+    if data.get("scale") is not None:
         out["scale"] = data["scale"]
-    if "isDisabled" in data:
+    if data.get("isDisabled") is not None:
         out["is_disabled"] = data["isDisabled"]
-    if "publicDomainNames" in data:
+    if data.get("publicDomainNames") is not None:
         import capo_lightsail.types.container_service_public_domains
 
         out["public_domain_names"] = (
@@ -92,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateContainerServiceRequest:
                 data["publicDomainNames"]
             )
         )
-    if "privateRegistryAccess" in data:
+    if data.get("privateRegistryAccess") is not None:
         import capo_lightsail.types.private_registry_access_request
 
         out["private_registry_access"] = (

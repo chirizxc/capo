@@ -39,14 +39,14 @@ def serialize_json(value: CampaignLimits) -> dict:
 
 def deserialize_json(data: dict) -> CampaignLimits:
     out: CampaignLimits = {}  # type: ignore[typeddict-item]
-    if "Daily" in data:
+    if data.get("Daily") is not None:
         out["daily"] = data["Daily"]
-    if "MaximumDuration" in data:
+    if data.get("MaximumDuration") is not None:
         out["maximum_duration"] = data["MaximumDuration"]
-    if "MessagesPerSecond" in data:
+    if data.get("MessagesPerSecond") is not None:
         out["messages_per_second"] = data["MessagesPerSecond"]
-    if "Total" in data:
+    if data.get("Total") is not None:
         out["total"] = data["Total"]
-    if "Session" in data:
+    if data.get("Session") is not None:
         out["session"] = data["Session"]
     return out

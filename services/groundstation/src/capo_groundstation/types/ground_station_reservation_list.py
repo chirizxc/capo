@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> GroundStationReservationList:
 
     out: GroundStationReservationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_groundstation.types.ground_station_reservation_list_item.deserialize_json(
                 item

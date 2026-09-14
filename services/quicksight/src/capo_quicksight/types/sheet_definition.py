@@ -142,17 +142,17 @@ def serialize_json(value: SheetDefinition) -> dict:
 
 def deserialize_json(data: dict) -> SheetDefinition:
     out: SheetDefinition = {}  # type: ignore[typeddict-item]
-    if "SheetId" in data:
+    if data.get("SheetId") is not None:
         out["sheet_id"] = data["SheetId"]
     else:
         raise DeserializationError("SheetDefinition.sheet_id required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ParameterControls" in data:
+    if data.get("ParameterControls") is not None:
         import capo_quicksight.types.parameter_control_list
 
         out["parameter_controls"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> SheetDefinition:
                 data["ParameterControls"]
             )
         )
-    if "FilterControls" in data:
+    if data.get("FilterControls") is not None:
         import capo_quicksight.types.filter_control_list
 
         out["filter_controls"] = (
@@ -168,31 +168,31 @@ def deserialize_json(data: dict) -> SheetDefinition:
                 data["FilterControls"]
             )
         )
-    if "Visuals" in data:
+    if data.get("Visuals") is not None:
         import capo_quicksight.types.visual_list
 
         out["visuals"] = capo_quicksight.types.visual_list.deserialize_json(
             data["Visuals"]
         )
-    if "TextBoxes" in data:
+    if data.get("TextBoxes") is not None:
         import capo_quicksight.types.sheet_text_box_list
 
         out["text_boxes"] = capo_quicksight.types.sheet_text_box_list.deserialize_json(
             data["TextBoxes"]
         )
-    if "Images" in data:
+    if data.get("Images") is not None:
         import capo_quicksight.types.sheet_image_list
 
         out["images"] = capo_quicksight.types.sheet_image_list.deserialize_json(
             data["Images"]
         )
-    if "Layouts" in data:
+    if data.get("Layouts") is not None:
         import capo_quicksight.types.layout_list
 
         out["layouts"] = capo_quicksight.types.layout_list.deserialize_json(
             data["Layouts"]
         )
-    if "SheetControlLayouts" in data:
+    if data.get("SheetControlLayouts") is not None:
         import capo_quicksight.types.sheet_control_layout_list
 
         out["sheet_control_layouts"] = (
@@ -200,13 +200,13 @@ def deserialize_json(data: dict) -> SheetDefinition:
                 data["SheetControlLayouts"]
             )
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_quicksight.types.sheet_content_type
 
         out["content_type"] = capo_quicksight.types.sheet_content_type.deserialize_json(
             data["ContentType"]
         )
-    if "CustomActionDefaults" in data:
+    if data.get("CustomActionDefaults") is not None:
         import capo_quicksight.types.visual_custom_action_defaults
 
         out["custom_action_defaults"] = (

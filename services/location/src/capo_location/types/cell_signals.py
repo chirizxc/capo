@@ -28,7 +28,7 @@ def serialize_json(value: CellSignals) -> dict:
 
 def deserialize_json(data: dict) -> CellSignals:
     out: CellSignals = {}  # type: ignore[typeddict-item]
-    if "LteCellDetails" in data:
+    if data.get("LteCellDetails") is not None:
         import capo_location.types.lte_cell_details_list
 
         out["lte_cell_details"] = (

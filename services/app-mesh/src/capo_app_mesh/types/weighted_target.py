@@ -33,14 +33,14 @@ def serialize_json(value: WeightedTarget) -> dict:
 
 def deserialize_json(data: dict) -> WeightedTarget:
     out: WeightedTarget = {}  # type: ignore[typeddict-item]
-    if "virtualNode" in data:
+    if data.get("virtualNode") is not None:
         out["virtual_node"] = data["virtualNode"]
     else:
         raise DeserializationError("WeightedTarget.virtual_node required")
-    if "weight" in data:
+    if data.get("weight") is not None:
         out["weight"] = data["weight"]
     else:
         out["weight"] = 0
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     return out

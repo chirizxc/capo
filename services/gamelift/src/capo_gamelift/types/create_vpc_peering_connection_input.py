@@ -36,10 +36,10 @@ def serialize_aws_json_1_1(value: CreateVpcPeeringConnectionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateVpcPeeringConnectionInput:
     out: CreateVpcPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "PeerVpcAwsAccountId" in data:
+    if data.get("PeerVpcAwsAccountId") is not None:
         out["peer_vpc_aws_account_id"] = data["PeerVpcAwsAccountId"]
-    if "PeerVpcId" in data:
+    if data.get("PeerVpcId") is not None:
         out["peer_vpc_id"] = data["PeerVpcId"]
     return out

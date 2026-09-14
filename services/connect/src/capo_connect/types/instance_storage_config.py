@@ -81,9 +81,9 @@ def serialize_json(value: InstanceStorageConfig) -> dict:
 
 def deserialize_json(data: dict) -> InstanceStorageConfig:
     out: InstanceStorageConfig = {}  # type: ignore[typeddict-item]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         import capo_connect.types.storage_type
 
         out["storage_type"] = capo_connect.types.storage_type.deserialize_json(
@@ -91,13 +91,13 @@ def deserialize_json(data: dict) -> InstanceStorageConfig:
         )
     else:
         raise DeserializationError("InstanceStorageConfig.storage_type required")
-    if "S3Config" in data:
+    if data.get("S3Config") is not None:
         import capo_connect.types.s3_config
 
         out["s3_config"] = capo_connect.types.s3_config.deserialize_json(
             data["S3Config"]
         )
-    if "KinesisVideoStreamConfig" in data:
+    if data.get("KinesisVideoStreamConfig") is not None:
         import capo_connect.types.kinesis_video_stream_config
 
         out["kinesis_video_stream_config"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> InstanceStorageConfig:
                 data["KinesisVideoStreamConfig"]
             )
         )
-    if "KinesisStreamConfig" in data:
+    if data.get("KinesisStreamConfig") is not None:
         import capo_connect.types.kinesis_stream_config
 
         out["kinesis_stream_config"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> InstanceStorageConfig:
                 data["KinesisStreamConfig"]
             )
         )
-    if "KinesisFirehoseConfig" in data:
+    if data.get("KinesisFirehoseConfig") is not None:
         import capo_connect.types.kinesis_firehose_config
 
         out["kinesis_firehose_config"] = (

@@ -103,9 +103,9 @@ def serialize_json(value: LocationState) -> dict:
 
 def deserialize_json(data: dict) -> LocationState:
     out: LocationState = {}  # type: ignore[typeddict-item]
-    if "LocationName" in data:
+    if data.get("LocationName") is not None:
         out["location_name"] = data["LocationName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gameliftstreams.types.stream_group_location_status
 
         out["status"] = (
@@ -113,23 +113,23 @@ def deserialize_json(data: dict) -> LocationState:
                 data["Status"]
             )
         )
-    if "AlwaysOnCapacity" in data:
+    if data.get("AlwaysOnCapacity") is not None:
         out["always_on_capacity"] = data["AlwaysOnCapacity"]
-    if "OnDemandCapacity" in data:
+    if data.get("OnDemandCapacity") is not None:
         out["on_demand_capacity"] = data["OnDemandCapacity"]
-    if "TargetIdleCapacity" in data:
+    if data.get("TargetIdleCapacity") is not None:
         out["target_idle_capacity"] = data["TargetIdleCapacity"]
-    if "MaximumCapacity" in data:
+    if data.get("MaximumCapacity") is not None:
         out["maximum_capacity"] = data["MaximumCapacity"]
-    if "RequestedCapacity" in data:
+    if data.get("RequestedCapacity") is not None:
         out["requested_capacity"] = data["RequestedCapacity"]
-    if "AllocatedCapacity" in data:
+    if data.get("AllocatedCapacity") is not None:
         out["allocated_capacity"] = data["AllocatedCapacity"]
-    if "IdleCapacity" in data:
+    if data.get("IdleCapacity") is not None:
         out["idle_capacity"] = data["IdleCapacity"]
-    if "InternalVpcIpv4CidrBlock" in data:
+    if data.get("InternalVpcIpv4CidrBlock") is not None:
         out["internal_vpc_ipv4_cidr_block"] = data["InternalVpcIpv4CidrBlock"]
-    if "VpcTransitConfiguration" in data:
+    if data.get("VpcTransitConfiguration") is not None:
         import capo_gameliftstreams.types.vpc_transit_configuration_response
 
         out["vpc_transit_configuration"] = (

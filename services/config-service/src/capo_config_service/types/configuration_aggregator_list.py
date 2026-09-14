@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ConfigurationAggregatorList:
 
     out: ConfigurationAggregatorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.configuration_aggregator.deserialize_aws_json_1_1(
                 item

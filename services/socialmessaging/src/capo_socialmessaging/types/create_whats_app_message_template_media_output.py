@@ -18,6 +18,6 @@ def serialize_json(value: CreateWhatsAppMessageTemplateMediaOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateWhatsAppMessageTemplateMediaOutput:
     out: CreateWhatsAppMessageTemplateMediaOutput = {}  # type: ignore[typeddict-item]
-    if "metaHeaderHandle" in data:
+    if data.get("metaHeaderHandle") is not None:
         out["meta_header_handle"] = data["metaHeaderHandle"]
     return out

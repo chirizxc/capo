@@ -23,6 +23,6 @@ def serialize_json(value: PluginVisualItemsLimitConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PluginVisualItemsLimitConfiguration:
     out: PluginVisualItemsLimitConfiguration = {}  # type: ignore[typeddict-item]
-    if "ItemsLimit" in data:
+    if data.get("ItemsLimit") is not None:
         out["items_limit"] = data["ItemsLimit"]
     return out

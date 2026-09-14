@@ -44,19 +44,19 @@ def serialize_json(value: TopicIRComparisonMethod) -> dict:
 
 def deserialize_json(data: dict) -> TopicIRComparisonMethod:
     out: TopicIRComparisonMethod = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.comparison_method_type
 
         out["type"] = capo_quicksight.types.comparison_method_type.deserialize_json(
             data["Type"]
         )
-    if "Period" in data:
+    if data.get("Period") is not None:
         import capo_quicksight.types.topic_time_granularity
 
         out["period"] = capo_quicksight.types.topic_time_granularity.deserialize_json(
             data["Period"]
         )
-    if "WindowSize" in data:
+    if data.get("WindowSize") is not None:
         out["window_size"] = data["WindowSize"]
     else:
         out["window_size"] = 0

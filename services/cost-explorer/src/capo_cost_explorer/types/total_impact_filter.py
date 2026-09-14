@@ -30,14 +30,30 @@ def serialize_aws_json_1_1(value: TotalImpactFilter) -> dict:
             value["numeric_operator"]
         )
     )
-    out["StartValue"] = value.get("start_value", 0)
-    out["EndValue"] = value.get("end_value", 0)
+    out["StartValue"] = (
+        "NaN"
+        if value.get("start_value", 0) != value.get("start_value", 0)
+        else "Infinity"
+        if value.get("start_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("start_value", 0) == float("-inf")
+        else value.get("start_value", 0)
+    )
+    out["EndValue"] = (
+        "NaN"
+        if value.get("end_value", 0) != value.get("end_value", 0)
+        else "Infinity"
+        if value.get("end_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("end_value", 0) == float("-inf")
+        else value.get("end_value", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> TotalImpactFilter:
     out: TotalImpactFilter = {}  # type: ignore[typeddict-item]
-    if "NumericOperator" in data:
+    if data.get("NumericOperator") is not None:
         import capo_cost_explorer.types.numeric_operator
 
         out["numeric_operator"] = (
@@ -47,12 +63,12 @@ def deserialize_aws_json_1_1(data: dict) -> TotalImpactFilter:
         )
     else:
         raise DeserializationError("TotalImpactFilter.numeric_operator required")
-    if "StartValue" in data:
-        out["start_value"] = data["StartValue"]
+    if data.get("StartValue") is not None:
+        out["start_value"] = float(data["StartValue"])
     else:
         out["start_value"] = 0
-    if "EndValue" in data:
-        out["end_value"] = data["EndValue"]
+    if data.get("EndValue") is not None:
+        out["end_value"] = float(data["EndValue"])
     else:
         out["end_value"] = 0
     return out

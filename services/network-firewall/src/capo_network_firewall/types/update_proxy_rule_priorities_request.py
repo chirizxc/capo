@@ -60,11 +60,11 @@ def serialize_aws_json_1_0(value: UpdateProxyRulePrioritiesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRulePrioritiesRequest:
     out: UpdateProxyRulePrioritiesRequest = {}  # type: ignore[typeddict-item]
-    if "ProxyRuleGroupName" in data:
+    if data.get("ProxyRuleGroupName") is not None:
         out["proxy_rule_group_name"] = data["ProxyRuleGroupName"]
-    if "ProxyRuleGroupArn" in data:
+    if data.get("ProxyRuleGroupArn") is not None:
         out["proxy_rule_group_arn"] = data["ProxyRuleGroupArn"]
-    if "RuleGroupRequestPhase" in data:
+    if data.get("RuleGroupRequestPhase") is not None:
         import capo_network_firewall.types.rule_group_request_phase
 
         out["rule_group_request_phase"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRulePrioritiesRequest:
         raise DeserializationError(
             "UpdateProxyRulePrioritiesRequest.rule_group_request_phase required"
         )
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_network_firewall.types.proxy_rule_priority_list
 
         out["rules"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRulePrioritiesRequest:
         )
     else:
         raise DeserializationError("UpdateProxyRulePrioritiesRequest.rules required")
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError(

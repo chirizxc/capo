@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ModifyInstanceFleetInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyInstanceFleetInput:
     out: ModifyInstanceFleetInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "InstanceFleet" in data:
+    if data.get("InstanceFleet") is not None:
         import capo_emr.types.instance_fleet_modify_config
 
         out["instance_fleet"] = (

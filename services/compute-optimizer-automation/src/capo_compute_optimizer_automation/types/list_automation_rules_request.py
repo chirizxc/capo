@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: ListAutomationRulesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutomationRulesRequest:
     out: ListAutomationRulesRequest = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_compute_optimizer_automation.types.filter_list
 
         out["filters"] = (
@@ -50,8 +50,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutomationRulesRequest:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

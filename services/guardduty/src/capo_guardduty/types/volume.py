@@ -32,9 +32,9 @@ def serialize_json(value: Volume) -> dict:
 
 def deserialize_json(data: dict) -> Volume:
     out: Volume = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "hostPath" in data:
+    if data.get("hostPath") is not None:
         import capo_guardduty.types.host_path
 
         out["host_path"] = capo_guardduty.types.host_path.deserialize_json(

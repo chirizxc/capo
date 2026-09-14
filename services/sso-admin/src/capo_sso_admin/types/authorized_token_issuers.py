@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AuthorizedTokenIssuers:
 
     out: AuthorizedTokenIssuers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sso_admin.types.authorized_token_issuer.deserialize_aws_json_1_1(item)
         )

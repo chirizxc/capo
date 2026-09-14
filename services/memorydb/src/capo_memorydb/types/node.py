@@ -49,19 +49,19 @@ def serialize_aws_json_1_1(value: Node) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Node:
     out: Node = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_memorydb.types.t_stamp
 
         out["create_time"] = capo_memorydb.types.t_stamp.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         import capo_memorydb.types.endpoint
 
         out["endpoint"] = capo_memorydb.types.endpoint.deserialize_aws_json_1_1(

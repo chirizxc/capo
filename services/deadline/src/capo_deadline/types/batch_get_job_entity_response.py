@@ -36,7 +36,7 @@ def serialize_json(value: BatchGetJobEntityResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetJobEntityResponse:
     out: BatchGetJobEntityResponse = {}  # type: ignore[typeddict-item]
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_deadline.types.batch_get_job_entity_list
 
         out["entities"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> BatchGetJobEntityResponse:
         )
     else:
         raise DeserializationError("BatchGetJobEntityResponse.entities required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_deadline.types.batch_get_job_entity_errors
 
         out["errors"] = (

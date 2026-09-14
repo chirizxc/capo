@@ -99,11 +99,12 @@ class PrefetchScheduleResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_prefetch_schedule_request.CreatePrefetchScheduleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.create_prefetch_schedule_request.CreatePrefetchScheduleRequest = {
+            "name": name,
+            "playback_configuration_name": playback_configuration_name,
+        }
         if consumption is not None:
             input_["consumption"] = consumption
-        input_["name"] = name
-        input_["playback_configuration_name"] = playback_configuration_name
         if retrieval is not None:
             input_["retrieval"] = retrieval
         if recurring_prefetch_configuration is not None:
@@ -122,6 +123,7 @@ class PrefetchScheduleResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -156,15 +158,17 @@ class PrefetchScheduleResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.get_prefetch_schedule_request.GetPrefetchScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["playback_configuration_name"] = playback_configuration_name
+        input_: capo_mediatailor.types.get_prefetch_schedule_request.GetPrefetchScheduleRequest = {
+            "name": name,
+            "playback_configuration_name": playback_configuration_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -199,15 +203,17 @@ class PrefetchScheduleResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_prefetch_schedule_request.DeletePrefetchScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["playback_configuration_name"] = playback_configuration_name
+        input_: capo_mediatailor.types.delete_prefetch_schedule_request.DeletePrefetchScheduleRequest = {
+            "name": name,
+            "playback_configuration_name": playback_configuration_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -252,12 +258,13 @@ class PrefetchScheduleResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_prefetch_schedules_request.ListPrefetchSchedulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_prefetch_schedules_request.ListPrefetchSchedulesRequest = {
+            "playback_configuration_name": playback_configuration_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["playback_configuration_name"] = playback_configuration_name
         if schedule_type is not None:
             input_["schedule_type"] = schedule_type
         if stream_id is not None:
@@ -268,6 +275,7 @@ class PrefetchScheduleResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -330,11 +338,12 @@ class AsyncPrefetchScheduleResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_prefetch_schedule_request.CreatePrefetchScheduleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.create_prefetch_schedule_request.CreatePrefetchScheduleRequest = {
+            "name": name,
+            "playback_configuration_name": playback_configuration_name,
+        }
         if consumption is not None:
             input_["consumption"] = consumption
-        input_["name"] = name
-        input_["playback_configuration_name"] = playback_configuration_name
         if retrieval is not None:
             input_["retrieval"] = retrieval
         if recurring_prefetch_configuration is not None:
@@ -353,6 +362,7 @@ class AsyncPrefetchScheduleResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -388,15 +398,17 @@ class AsyncPrefetchScheduleResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.get_prefetch_schedule_request.GetPrefetchScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["playback_configuration_name"] = playback_configuration_name
+        input_: capo_mediatailor.types.get_prefetch_schedule_request.GetPrefetchScheduleRequest = {
+            "name": name,
+            "playback_configuration_name": playback_configuration_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -432,15 +444,17 @@ class AsyncPrefetchScheduleResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_prefetch_schedule_request.DeletePrefetchScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["playback_configuration_name"] = playback_configuration_name
+        input_: capo_mediatailor.types.delete_prefetch_schedule_request.DeletePrefetchScheduleRequest = {
+            "name": name,
+            "playback_configuration_name": playback_configuration_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -486,12 +500,13 @@ class AsyncPrefetchScheduleResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_prefetch_schedules_request.ListPrefetchSchedulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_prefetch_schedules_request.ListPrefetchSchedulesRequest = {
+            "playback_configuration_name": playback_configuration_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["playback_configuration_name"] = playback_configuration_name
         if schedule_type is not None:
             input_["schedule_type"] = schedule_type
         if stream_id is not None:
@@ -502,4 +517,5 @@ class AsyncPrefetchScheduleResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

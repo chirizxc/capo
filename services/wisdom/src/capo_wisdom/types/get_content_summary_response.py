@@ -27,7 +27,7 @@ def serialize_json(value: GetContentSummaryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetContentSummaryResponse:
     out: GetContentSummaryResponse = {}  # type: ignore[typeddict-item]
-    if "contentSummary" in data:
+    if data.get("contentSummary") is not None:
         import capo_wisdom.types.content_summary
 
         out["content_summary"] = capo_wisdom.types.content_summary.deserialize_json(

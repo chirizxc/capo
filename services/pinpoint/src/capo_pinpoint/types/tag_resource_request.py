@@ -29,7 +29,7 @@ def serialize_json(value: TagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "TagsModel" in data:
+    if data.get("TagsModel") is not None:
         import capo_pinpoint.types.tags_model
 
         out["tags_model"] = capo_pinpoint.types.tags_model.deserialize_json(

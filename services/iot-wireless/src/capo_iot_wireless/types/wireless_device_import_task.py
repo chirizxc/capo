@@ -111,13 +111,13 @@ def serialize_json(value: WirelessDeviceImportTask) -> dict:
 
 def deserialize_json(data: dict) -> WirelessDeviceImportTask:
     out: WirelessDeviceImportTask = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
-    if "Positioning" in data:
+    if data.get("Positioning") is not None:
         import capo_iot_wireless.types.positioning_config_status
 
         out["positioning"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> WirelessDeviceImportTask:
                 data["Positioning"]
             )
         )
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_get_start_import_info
 
         out["sidewalk"] = (
@@ -133,28 +133,28 @@ def deserialize_json(data: dict) -> WirelessDeviceImportTask:
                 data["Sidewalk"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_iot_wireless.types.creation_time
 
         out["creation_time"] = capo_iot_wireless.types.creation_time.deserialize_json(
             data["CreationTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_wireless.types.import_task_status
 
         out["status"] = capo_iot_wireless.types.import_task_status.deserialize_json(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "InitializedImportedDeviceCount" in data:
+    if data.get("InitializedImportedDeviceCount") is not None:
         out["initialized_imported_device_count"] = data[
             "InitializedImportedDeviceCount"
         ]
-    if "PendingImportedDeviceCount" in data:
+    if data.get("PendingImportedDeviceCount") is not None:
         out["pending_imported_device_count"] = data["PendingImportedDeviceCount"]
-    if "OnboardedImportedDeviceCount" in data:
+    if data.get("OnboardedImportedDeviceCount") is not None:
         out["onboarded_imported_device_count"] = data["OnboardedImportedDeviceCount"]
-    if "FailedImportedDeviceCount" in data:
+    if data.get("FailedImportedDeviceCount") is not None:
         out["failed_imported_device_count"] = data["FailedImportedDeviceCount"]
     return out

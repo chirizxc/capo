@@ -19,7 +19,7 @@ def serialize_json(value: ModelInferencePaymentConfig) -> dict:
 
 def deserialize_json(data: dict) -> ModelInferencePaymentConfig:
     out: ModelInferencePaymentConfig = {}  # type: ignore[typeddict-item]
-    if "isResponsible" in data:
+    if data.get("isResponsible") is not None:
         out["is_responsible"] = data["isResponsible"]
     else:
         raise DeserializationError(

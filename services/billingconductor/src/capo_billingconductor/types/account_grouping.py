@@ -39,7 +39,7 @@ def serialize_json(value: AccountGrouping) -> dict:
 
 def deserialize_json(data: dict) -> AccountGrouping:
     out: AccountGrouping = {}  # type: ignore[typeddict-item]
-    if "LinkedAccountIds" in data:
+    if data.get("LinkedAccountIds") is not None:
         import capo_billingconductor.types.account_id_list
 
         out["linked_account_ids"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> AccountGrouping:
         )
     else:
         out["linked_account_ids"] = []
-    if "AutoAssociate" in data:
+    if data.get("AutoAssociate") is not None:
         out["auto_associate"] = data["AutoAssociate"]
-    if "ResponsibilityTransferArn" in data:
+    if data.get("ResponsibilityTransferArn") is not None:
         out["responsibility_transfer_arn"] = data["ResponsibilityTransferArn"]
     return out

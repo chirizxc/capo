@@ -27,8 +27,8 @@ def serialize_json(value: GetClusterPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetClusterPolicyResponse:
     out: GetClusterPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     return out

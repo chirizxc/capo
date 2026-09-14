@@ -14,4 +14,4 @@ def serialize_json(value: MetricNames) -> list:
 
 
 def deserialize_json(data: list) -> MetricNames:
-    return list(data)
+    return [item for item in data if item is not None]

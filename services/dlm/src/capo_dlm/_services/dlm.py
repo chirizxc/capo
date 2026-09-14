@@ -234,7 +234,7 @@ class DLMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dlm.types.create_lifecycle_policy_request.CreateLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dlm.types.create_lifecycle_policy_request.CreateLifecyclePolicyRequest = {}
         if execution_role_arn is not None:
             input_["execution_role_arn"] = execution_role_arn
         if description is not None:
@@ -265,6 +265,7 @@ class DLMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_lifecycle_policy(
@@ -302,14 +303,16 @@ class DLMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dlm.types.delete_lifecycle_policy_request.DeleteLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_dlm.types.delete_lifecycle_policy_request.DeleteLifecyclePolicyRequest = {
+            "policy_id": policy_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lifecycle_policies(
@@ -366,7 +369,7 @@ class DLMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dlm.types.get_lifecycle_policies_request.GetLifecyclePoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dlm.types.get_lifecycle_policies_request.GetLifecyclePoliciesRequest = {}
         if policy_ids is not None:
             input_["policy_ids"] = policy_ids
         if state is not None:
@@ -385,6 +388,7 @@ class DLMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lifecycle_policy(
@@ -420,14 +424,16 @@ class DLMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dlm.types.get_lifecycle_policy_request.GetLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_dlm.types.get_lifecycle_policy_request.GetLifecyclePolicyRequest = {
+            "policy_id": policy_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -463,14 +469,16 @@ class DLMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dlm.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_dlm.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -508,8 +516,9 @@ class DLMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dlm.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_dlm.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -518,6 +527,7 @@ class DLMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -555,8 +565,9 @@ class DLMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dlm.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_dlm.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -565,6 +576,7 @@ class DLMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_lifecycle_policy(
@@ -639,8 +651,9 @@ class DLMClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dlm.types.update_lifecycle_policy_request.UpdateLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_dlm.types.update_lifecycle_policy_request.UpdateLifecyclePolicyRequest = {
+            "policy_id": policy_id
+        }
         if execution_role_arn is not None:
             input_["execution_role_arn"] = execution_role_arn
         if state is not None:
@@ -667,6 +680,7 @@ class DLMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

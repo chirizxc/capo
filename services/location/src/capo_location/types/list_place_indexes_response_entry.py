@@ -51,21 +51,21 @@ def serialize_json(value: ListPlaceIndexesResponseEntry) -> dict:
 
 def deserialize_json(data: dict) -> ListPlaceIndexesResponseEntry:
     out: ListPlaceIndexesResponseEntry = {}  # type: ignore[typeddict-item]
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
     else:
         raise DeserializationError("ListPlaceIndexesResponseEntry.index_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("ListPlaceIndexesResponseEntry.description required")
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         out["data_source"] = data["DataSource"]
     else:
         raise DeserializationError("ListPlaceIndexesResponseEntry.data_source required")
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ListPlaceIndexesResponseEntry:
         )
     else:
         raise DeserializationError("ListPlaceIndexesResponseEntry.create_time required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(

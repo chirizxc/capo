@@ -13,9 +13,9 @@ from capo_elastic_beanstalk import AsyncElasticBeanstalkClient
 
 
 async def main():
-    async with AsyncElasticBeanstalkClient() as s3:
+    async with AsyncElasticBeanstalkClient() as elastic_beanstalk:
         # Example: call the abort_environment_update operation
-        response = await s3.abort_environment_update()
+        response = await elastic_beanstalk.abort_environment_update()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_elastic_beanstalk import AsyncElasticBeanstalkClient
 
 
 async def main():
-    async with AsyncElasticBeanstalkClient() as s3:
+    async with AsyncElasticBeanstalkClient() as elastic_beanstalk:
         # Example: paginate over describe_environment_managed_action_history
-        async for item in s3.iter_describe_environment_managed_action_history():
+        async for item in elastic_beanstalk.iter_describe_environment_managed_action_history():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_elastic_beanstalk.error import InsufficientPrivilegesException
 
 
 async def main():
-    async with AsyncElasticBeanstalkClient() as s3:
+    async with AsyncElasticBeanstalkClient() as elastic_beanstalk:
         try:
-            await s3.abort_environment_update()
+            await elastic_beanstalk.abort_environment_update()
         except InsufficientPrivilegesException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_elastic_beanstalk import AsyncElasticBeanstalkClient
 
 
 async def main():
-    async with AsyncElasticBeanstalkClient() as s3:
+    async with AsyncElasticBeanstalkClient() as elastic_beanstalk:
         # Default: 3 attempts for every operation
-        response = await s3.abort_environment_update()
+        response = await elastic_beanstalk.abort_environment_update()
 
         # Override per operation
-        response = await s3.abort_environment_update(config_overrides={"retry_max_attempts": 5})
+        response = await elastic_beanstalk.abort_environment_update(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.abort_environment_update(config_overrides={"retry_max_attempts": 1})
+        response = await elastic_beanstalk.abort_environment_update(config_overrides={"retry_max_attempts": 1})
 ```

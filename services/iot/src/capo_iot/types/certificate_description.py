@@ -109,53 +109,53 @@ def serialize_json(value: CertificateDescription) -> dict:
 
 def deserialize_json(data: dict) -> CertificateDescription:
     out: CertificateDescription = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "certificateId" in data:
+    if data.get("certificateId") is not None:
         out["certificate_id"] = data["certificateId"]
-    if "caCertificateId" in data:
+    if data.get("caCertificateId") is not None:
         out["ca_certificate_id"] = data["caCertificateId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.certificate_status
 
         out["status"] = capo_iot.types.certificate_status.deserialize_json(
             data["status"]
         )
-    if "certificatePem" in data:
+    if data.get("certificatePem") is not None:
         out["certificate_pem"] = data["certificatePem"]
-    if "ownedBy" in data:
+    if data.get("ownedBy") is not None:
         out["owned_by"] = data["ownedBy"]
-    if "previousOwnedBy" in data:
+    if data.get("previousOwnedBy") is not None:
         out["previous_owned_by"] = data["previousOwnedBy"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.date_type
 
         out["last_modified_date"] = capo_iot.types.date_type.deserialize_json(
             data["lastModifiedDate"]
         )
-    if "customerVersion" in data:
+    if data.get("customerVersion") is not None:
         out["customer_version"] = data["customerVersion"]
-    if "transferData" in data:
+    if data.get("transferData") is not None:
         import capo_iot.types.transfer_data
 
         out["transfer_data"] = capo_iot.types.transfer_data.deserialize_json(
             data["transferData"]
         )
-    if "generationId" in data:
+    if data.get("generationId") is not None:
         out["generation_id"] = data["generationId"]
-    if "validity" in data:
+    if data.get("validity") is not None:
         import capo_iot.types.certificate_validity
 
         out["validity"] = capo_iot.types.certificate_validity.deserialize_json(
             data["validity"]
         )
-    if "certificateMode" in data:
+    if data.get("certificateMode") is not None:
         import capo_iot.types.certificate_mode
 
         out["certificate_mode"] = capo_iot.types.certificate_mode.deserialize_json(

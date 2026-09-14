@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> WorkflowRunStatusReasons:
 
     out: WorkflowRunStatusReasons = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecatalyst.types.workflow_run_status_reason.deserialize_json(item)
         )

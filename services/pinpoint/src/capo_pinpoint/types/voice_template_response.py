@@ -75,34 +75,34 @@ def serialize_json(value: VoiceTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> VoiceTemplateResponse:
     out: VoiceTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "DefaultSubstitutions" in data:
+    if data.get("DefaultSubstitutions") is not None:
         out["default_substitutions"] = data["DefaultSubstitutions"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "TemplateDescription" in data:
+    if data.get("TemplateDescription") is not None:
         out["template_description"] = data["TemplateDescription"]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "TemplateType" in data:
+    if data.get("TemplateType") is not None:
         import capo_pinpoint.types.template_type
 
         out["template_type"] = capo_pinpoint.types.template_type.deserialize_json(
             data["TemplateType"]
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "VoiceId" in data:
+    if data.get("VoiceId") is not None:
         out["voice_id"] = data["VoiceId"]
     return out

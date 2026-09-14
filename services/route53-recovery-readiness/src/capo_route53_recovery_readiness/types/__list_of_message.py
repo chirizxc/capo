@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfMessage:
 
     out: __listOfMessage = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_route53_recovery_readiness.types.message.deserialize_json(item))
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RouteSummaries:
 
     out: RouteSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migration_hub_refactor_spaces.types.route_summary.deserialize_json(
                 item

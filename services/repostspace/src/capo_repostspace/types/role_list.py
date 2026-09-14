@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RoleList:
 
     out: RoleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_repostspace.types.role.deserialize_json(item))
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> UpdateTargetsList:
 
     out: UpdateTargetsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_redshift_serverless.types.update_target.deserialize_aws_json_1_1(item)
         )

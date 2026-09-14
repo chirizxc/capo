@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: BatchUpdateClusterResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchUpdateClusterResponse:
     out: BatchUpdateClusterResponse = {}  # type: ignore[typeddict-item]
-    if "ProcessedClusters" in data:
+    if data.get("ProcessedClusters") is not None:
         import capo_memorydb.types.cluster_list
 
         out["processed_clusters"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchUpdateClusterResponse:
                 data["ProcessedClusters"]
             )
         )
-    if "UnprocessedClusters" in data:
+    if data.get("UnprocessedClusters") is not None:
         import capo_memorydb.types.unprocessed_cluster_list
 
         out["unprocessed_clusters"] = (

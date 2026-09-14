@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: FailedReportOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FailedReportOutput:
     out: FailedReportOutput = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_arc_region_switch.types.failed_report_error_code
 
         out["error_code"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> FailedReportOutput:
                 data["errorCode"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

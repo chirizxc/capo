@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DeleteFleetAdvisorDatabasesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFleetAdvisorDatabasesRequest:
     out: DeleteFleetAdvisorDatabasesRequest = {}  # type: ignore[typeddict-item]
-    if "DatabaseIds" in data:
+    if data.get("DatabaseIds") is not None:
         import capo_database_migration_service.types.string_list
 
         out["database_ids"] = (

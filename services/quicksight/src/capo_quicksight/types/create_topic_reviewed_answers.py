@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CreateTopicReviewedAnswers:
 
     out: CreateTopicReviewedAnswers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.create_topic_reviewed_answer.deserialize_json(item)
         )

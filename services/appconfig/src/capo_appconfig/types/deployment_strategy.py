@@ -54,7 +54,15 @@ def serialize_json(value: DeploymentStrategy) -> dict:
             value["growth_type"]
         )
     if "growth_factor" in value:
-        out["GrowthFactor"] = value["growth_factor"]
+        out["GrowthFactor"] = (
+            "NaN"
+            if value["growth_factor"] != value["growth_factor"]
+            else "Infinity"
+            if value["growth_factor"] == float("inf")
+            else "-Infinity"
+            if value["growth_factor"] == float("-inf")
+            else value["growth_factor"]
+        )
     out["FinalBakeTimeInMinutes"] = value.get("final_bake_time_in_minutes", 0)
     if "replicate_to" in value:
         import capo_appconfig.types.replicate_to
@@ -67,29 +75,29 @@ def serialize_json(value: DeploymentStrategy) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentStrategy:
     out: DeploymentStrategy = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DeploymentDurationInMinutes" in data:
+    if data.get("DeploymentDurationInMinutes") is not None:
         out["deployment_duration_in_minutes"] = data["DeploymentDurationInMinutes"]
     else:
         out["deployment_duration_in_minutes"] = 0
-    if "GrowthType" in data:
+    if data.get("GrowthType") is not None:
         import capo_appconfig.types.growth_type
 
         out["growth_type"] = capo_appconfig.types.growth_type.deserialize_json(
             data["GrowthType"]
         )
-    if "GrowthFactor" in data:
-        out["growth_factor"] = data["GrowthFactor"]
-    if "FinalBakeTimeInMinutes" in data:
+    if data.get("GrowthFactor") is not None:
+        out["growth_factor"] = float(data["GrowthFactor"])
+    if data.get("FinalBakeTimeInMinutes") is not None:
         out["final_bake_time_in_minutes"] = data["FinalBakeTimeInMinutes"]
     else:
         out["final_bake_time_in_minutes"] = 0
-    if "ReplicateTo" in data:
+    if data.get("ReplicateTo") is not None:
         import capo_appconfig.types.replicate_to
 
         out["replicate_to"] = capo_appconfig.types.replicate_to.deserialize_json(

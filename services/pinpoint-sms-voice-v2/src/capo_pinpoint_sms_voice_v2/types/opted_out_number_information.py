@@ -38,13 +38,13 @@ def serialize_aws_json_1_0(value: OptedOutNumberInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OptedOutNumberInformation:
     out: OptedOutNumberInformation = {}  # type: ignore[typeddict-item]
-    if "OptedOutNumber" in data:
+    if data.get("OptedOutNumber") is not None:
         out["opted_out_number"] = data["OptedOutNumber"]
     else:
         raise DeserializationError(
             "OptedOutNumberInformation.opted_out_number required"
         )
-    if "OptedOutTimestamp" in data:
+    if data.get("OptedOutTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["opted_out_timestamp"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_0(data: dict) -> OptedOutNumberInformation:
         raise DeserializationError(
             "OptedOutNumberInformation.opted_out_timestamp required"
         )
-    if "EndUserOptedOut" in data:
+    if data.get("EndUserOptedOut") is not None:
         out["end_user_opted_out"] = data["EndUserOptedOut"]
     else:
         out["end_user_opted_out"] = False

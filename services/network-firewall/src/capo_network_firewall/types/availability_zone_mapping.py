@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: AvailabilityZoneMapping) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AvailabilityZoneMapping:
     out: AvailabilityZoneMapping = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
     else:
         raise DeserializationError("AvailabilityZoneMapping.availability_zone required")

@@ -28,10 +28,10 @@ def serialize_aws_json_1_1(value: DatetimeRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatetimeRange:
     out: DatetimeRange = {}  # type: ignore[typeddict-item]
-    if "Begin" in data:
+    if data.get("Begin") is not None:
         out["begin"] = data["Begin"]
     else:
         raise DeserializationError("DatetimeRange.begin required")
-    if "End" in data:
+    if data.get("End") is not None:
         out["end"] = data["End"]
     return out

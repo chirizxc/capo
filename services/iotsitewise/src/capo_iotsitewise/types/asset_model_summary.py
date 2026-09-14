@@ -80,21 +80,21 @@ def serialize_json(value: AssetModelSummary) -> dict:
 
 def deserialize_json(data: dict) -> AssetModelSummary:
     out: AssetModelSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("AssetModelSummary.id required")
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AssetModelSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AssetModelSummary.name required")
-    if "assetModelType" in data:
+    if data.get("assetModelType") is not None:
         import capo_iotsitewise.types.asset_model_type
 
         out["asset_model_type"] = (
@@ -102,11 +102,11 @@ def deserialize_json(data: dict) -> AssetModelSummary:
                 data["assetModelType"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("AssetModelSummary.description required")
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["creation_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> AssetModelSummary:
         )
     else:
         raise DeserializationError("AssetModelSummary.creation_date required")
-    if "lastUpdateDate" in data:
+    if data.get("lastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["last_update_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> AssetModelSummary:
         )
     else:
         raise DeserializationError("AssetModelSummary.last_update_date required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotsitewise.types.asset_model_status
 
         out["status"] = capo_iotsitewise.types.asset_model_status.deserialize_json(
@@ -130,6 +130,6 @@ def deserialize_json(data: dict) -> AssetModelSummary:
         )
     else:
         raise DeserializationError("AssetModelSummary.status required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

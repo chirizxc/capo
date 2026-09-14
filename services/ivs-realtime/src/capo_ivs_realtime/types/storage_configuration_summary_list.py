@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> StorageConfigurationSummaryList:
 
     out: StorageConfigurationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs_realtime.types.storage_configuration_summary.deserialize_json(item)
         )

@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: GetDetectorsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDetectorsRequest:
     out: GetDetectorsRequest = {}  # type: ignore[typeddict-item]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

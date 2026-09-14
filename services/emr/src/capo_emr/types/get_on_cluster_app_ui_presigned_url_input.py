@@ -52,9 +52,9 @@ def serialize_aws_json_1_1(value: GetOnClusterAppUIPresignedURLInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetOnClusterAppUIPresignedURLInput:
     out: GetOnClusterAppUIPresignedURLInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "OnClusterAppUIType" in data:
+    if data.get("OnClusterAppUIType") is not None:
         import capo_emr.types.on_cluster_app_ui_type
 
         out["on_cluster_app_ui_type"] = (
@@ -62,10 +62,10 @@ def deserialize_aws_json_1_1(data: dict) -> GetOnClusterAppUIPresignedURLInput:
                 data["OnClusterAppUIType"]
             )
         )
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     return out

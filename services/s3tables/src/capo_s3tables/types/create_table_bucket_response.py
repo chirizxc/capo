@@ -24,7 +24,7 @@ def serialize_json(value: CreateTableBucketResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateTableBucketResponse:
     out: CreateTableBucketResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateTableBucketResponse.arn required")

@@ -67,21 +67,21 @@ def serialize_json(value: Entitlement) -> dict:
 
 def deserialize_json(data: dict) -> Entitlement:
     out: Entitlement = {}  # type: ignore[typeddict-item]
-    if "dataTransferSubscriberFeePercent" in data:
+    if data.get("dataTransferSubscriberFeePercent") is not None:
         out["data_transfer_subscriber_fee_percent"] = data[
             "dataTransferSubscriberFeePercent"
         ]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediaconnect.types.encryption
 
         out["encryption"] = capo_mediaconnect.types.encryption.deserialize_json(
             data["encryption"]
         )
-    if "entitlementArn" in data:
+    if data.get("entitlementArn") is not None:
         out["entitlement_arn"] = data["entitlementArn"]
-    if "entitlementStatus" in data:
+    if data.get("entitlementStatus") is not None:
         import capo_mediaconnect.types.entitlement_status
 
         out["entitlement_status"] = (
@@ -89,9 +89,9 @@ def deserialize_json(data: dict) -> Entitlement:
                 data["entitlementStatus"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "subscribers" in data:
+    if data.get("subscribers") is not None:
         import capo_mediaconnect.types.__list_of_string
 
         out["subscribers"] = capo_mediaconnect.types.__list_of_string.deserialize_json(

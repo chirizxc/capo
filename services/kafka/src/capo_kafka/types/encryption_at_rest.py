@@ -23,6 +23,6 @@ def serialize_json(value: EncryptionAtRest) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionAtRest:
     out: EncryptionAtRest = {}  # type: ignore[typeddict-item]
-    if "dataVolumeKMSKeyId" in data:
+    if data.get("dataVolumeKMSKeyId") is not None:
         out["data_volume_kms_key_id"] = data["dataVolumeKMSKeyId"]
     return out

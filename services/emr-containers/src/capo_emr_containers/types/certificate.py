@@ -30,8 +30,8 @@ def serialize_json(value: Certificate) -> dict:
 
 def deserialize_json(data: dict) -> Certificate:
     out: Certificate = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "certificateData" in data:
+    if data.get("certificateData") is not None:
         out["certificate_data"] = data["certificateData"]
     return out

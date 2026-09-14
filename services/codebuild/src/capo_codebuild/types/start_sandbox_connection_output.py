@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: StartSandboxConnectionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartSandboxConnectionOutput:
     out: StartSandboxConnectionOutput = {}  # type: ignore[typeddict-item]
-    if "ssmSession" in data:
+    if data.get("ssmSession") is not None:
         import capo_codebuild.types.ssm_session
 
         out["ssm_session"] = capo_codebuild.types.ssm_session.deserialize_aws_json_1_1(

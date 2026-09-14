@@ -50,10 +50,10 @@ def serialize_json(value: UpdateContactFlowModuleAliasRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContactFlowModuleAliasRequest:
     out: UpdateContactFlowModuleAliasRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ContactFlowModuleVersion" in data:
+    if data.get("ContactFlowModuleVersion") is not None:
         out["contact_flow_module_version"] = data["ContactFlowModuleVersion"]
     return out

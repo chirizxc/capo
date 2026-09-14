@@ -45,16 +45,16 @@ def serialize_json(value: ValidatePolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> ValidatePolicyRequest:
     out: ValidatePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
     else:
         raise DeserializationError("ValidatePolicyRequest.policy_document required")
-    if "policyType" in data:
+    if data.get("policyType") is not None:
         out["policy_type"] = data["policyType"]
     else:
         raise DeserializationError("ValidatePolicyRequest.policy_type required")
-    if "validatePolicyResourceType" in data:
+    if data.get("validatePolicyResourceType") is not None:
         out["validate_policy_resource_type"] = data["validatePolicyResourceType"]
     return out

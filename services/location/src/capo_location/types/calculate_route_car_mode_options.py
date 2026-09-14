@@ -27,8 +27,8 @@ def serialize_json(value: CalculateRouteCarModeOptions) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRouteCarModeOptions:
     out: CalculateRouteCarModeOptions = {}  # type: ignore[typeddict-item]
-    if "AvoidFerries" in data:
+    if data.get("AvoidFerries") is not None:
         out["avoid_ferries"] = data["AvoidFerries"]
-    if "AvoidTolls" in data:
+    if data.get("AvoidTolls") is not None:
         out["avoid_tolls"] = data["AvoidTolls"]
     return out

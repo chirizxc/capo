@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> HoursOfOperationSearchConditionList:
 
     out: HoursOfOperationSearchConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.hours_of_operation_search_criteria.deserialize_json(item)
         )

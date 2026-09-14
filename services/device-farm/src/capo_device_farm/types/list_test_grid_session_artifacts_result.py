@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListTestGridSessionArtifactsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionArtifactsResult:
     out: ListTestGridSessionArtifactsResult = {}  # type: ignore[typeddict-item]
-    if "artifacts" in data:
+    if data.get("artifacts") is not None:
         import capo_device_farm.types.test_grid_session_artifacts
 
         out["artifacts"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionArtifactsResult:
                 data["artifacts"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

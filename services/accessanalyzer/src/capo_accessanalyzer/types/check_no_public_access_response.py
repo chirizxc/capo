@@ -40,11 +40,11 @@ def serialize_json(value: CheckNoPublicAccessResponse) -> dict:
 
 def deserialize_json(data: dict) -> CheckNoPublicAccessResponse:
     out: CheckNoPublicAccessResponse = {}  # type: ignore[typeddict-item]
-    if "result" in data:
+    if data.get("result") is not None:
         out["result"] = data["result"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "reasons" in data:
+    if data.get("reasons") is not None:
         import capo_accessanalyzer.types.reason_summary_list
 
         out["reasons"] = capo_accessanalyzer.types.reason_summary_list.deserialize_json(

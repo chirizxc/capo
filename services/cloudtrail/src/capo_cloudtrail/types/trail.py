@@ -84,36 +84,36 @@ def serialize_aws_json_1_1(value: Trail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Trail:
     out: Trail = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "S3KeyPrefix" in data:
+    if data.get("S3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["S3KeyPrefix"]
-    if "SnsTopicName" in data:
+    if data.get("SnsTopicName") is not None:
         out["sns_topic_name"] = data["SnsTopicName"]
-    if "SnsTopicARN" in data:
+    if data.get("SnsTopicARN") is not None:
         out["sns_topic_arn"] = data["SnsTopicARN"]
-    if "IncludeGlobalServiceEvents" in data:
+    if data.get("IncludeGlobalServiceEvents") is not None:
         out["include_global_service_events"] = data["IncludeGlobalServiceEvents"]
-    if "IsMultiRegionTrail" in data:
+    if data.get("IsMultiRegionTrail") is not None:
         out["is_multi_region_trail"] = data["IsMultiRegionTrail"]
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
-    if "TrailARN" in data:
+    if data.get("TrailARN") is not None:
         out["trail_arn"] = data["TrailARN"]
-    if "LogFileValidationEnabled" in data:
+    if data.get("LogFileValidationEnabled") is not None:
         out["log_file_validation_enabled"] = data["LogFileValidationEnabled"]
-    if "CloudWatchLogsLogGroupArn" in data:
+    if data.get("CloudWatchLogsLogGroupArn") is not None:
         out["cloud_watch_logs_log_group_arn"] = data["CloudWatchLogsLogGroupArn"]
-    if "CloudWatchLogsRoleArn" in data:
+    if data.get("CloudWatchLogsRoleArn") is not None:
         out["cloud_watch_logs_role_arn"] = data["CloudWatchLogsRoleArn"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "HasCustomEventSelectors" in data:
+    if data.get("HasCustomEventSelectors") is not None:
         out["has_custom_event_selectors"] = data["HasCustomEventSelectors"]
-    if "HasInsightSelectors" in data:
+    if data.get("HasInsightSelectors") is not None:
         out["has_insight_selectors"] = data["HasInsightSelectors"]
-    if "IsOrganizationTrail" in data:
+    if data.get("IsOrganizationTrail") is not None:
         out["is_organization_trail"] = data["IsOrganizationTrail"]
     return out

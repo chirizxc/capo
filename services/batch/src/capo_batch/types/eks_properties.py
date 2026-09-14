@@ -27,7 +27,7 @@ def serialize_json(value: EksProperties) -> dict:
 
 def deserialize_json(data: dict) -> EksProperties:
     out: EksProperties = {}  # type: ignore[typeddict-item]
-    if "podProperties" in data:
+    if data.get("podProperties") is not None:
         import capo_batch.types.eks_pod_properties
 
         out["pod_properties"] = capo_batch.types.eks_pod_properties.deserialize_json(

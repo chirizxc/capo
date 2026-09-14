@@ -28,13 +28,13 @@ def serialize_json(value: CreateNotificationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateNotificationResponse:
     out: CreateNotificationResponse = {}  # type: ignore[typeddict-item]
-    if "NotificationId" in data:
+    if data.get("NotificationId") is not None:
         out["notification_id"] = data["NotificationId"]
     else:
         raise DeserializationError(
             "CreateNotificationResponse.notification_id required"
         )
-    if "NotificationArn" in data:
+    if data.get("NotificationArn") is not None:
         out["notification_arn"] = data["NotificationArn"]
     else:
         raise DeserializationError(

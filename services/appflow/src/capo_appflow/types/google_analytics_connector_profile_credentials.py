@@ -51,23 +51,23 @@ def serialize_json(value: GoogleAnalyticsConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> GoogleAnalyticsConnectorProfileCredentials:
     out: GoogleAnalyticsConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     else:
         raise DeserializationError(
             "GoogleAnalyticsConnectorProfileCredentials.client_id required"
         )
-    if "clientSecret" in data:
+    if data.get("clientSecret") is not None:
         out["client_secret"] = data["clientSecret"]
     else:
         raise DeserializationError(
             "GoogleAnalyticsConnectorProfileCredentials.client_secret required"
         )
-    if "accessToken" in data:
+    if data.get("accessToken") is not None:
         out["access_token"] = data["accessToken"]
-    if "refreshToken" in data:
+    if data.get("refreshToken") is not None:
         out["refresh_token"] = data["refreshToken"]
-    if "oAuthRequest" in data:
+    if data.get("oAuthRequest") is not None:
         import capo_appflow.types.connector_o_auth_request
 
         out["o_auth_request"] = (

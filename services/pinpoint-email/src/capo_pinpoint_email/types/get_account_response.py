@@ -46,23 +46,23 @@ def serialize_json(value: GetAccountResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAccountResponse:
     out: GetAccountResponse = {}  # type: ignore[typeddict-item]
-    if "SendQuota" in data:
+    if data.get("SendQuota") is not None:
         import capo_pinpoint_email.types.send_quota
 
         out["send_quota"] = capo_pinpoint_email.types.send_quota.deserialize_json(
             data["SendQuota"]
         )
-    if "SendingEnabled" in data:
+    if data.get("SendingEnabled") is not None:
         out["sending_enabled"] = data["SendingEnabled"]
     else:
         out["sending_enabled"] = False
-    if "DedicatedIpAutoWarmupEnabled" in data:
+    if data.get("DedicatedIpAutoWarmupEnabled") is not None:
         out["dedicated_ip_auto_warmup_enabled"] = data["DedicatedIpAutoWarmupEnabled"]
     else:
         out["dedicated_ip_auto_warmup_enabled"] = False
-    if "EnforcementStatus" in data:
+    if data.get("EnforcementStatus") is not None:
         out["enforcement_status"] = data["EnforcementStatus"]
-    if "ProductionAccessEnabled" in data:
+    if data.get("ProductionAccessEnabled") is not None:
         out["production_access_enabled"] = data["ProductionAccessEnabled"]
     else:
         out["production_access_enabled"] = False

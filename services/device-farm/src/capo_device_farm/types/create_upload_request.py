@@ -41,15 +41,15 @@ def serialize_aws_json_1_1(value: CreateUploadRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUploadRequest:
     out: CreateUploadRequest = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError("CreateUploadRequest.project_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateUploadRequest.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.upload_type
 
         out["type"] = capo_device_farm.types.upload_type.deserialize_aws_json_1_1(
@@ -57,6 +57,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUploadRequest:
         )
     else:
         raise DeserializationError("CreateUploadRequest.type required")
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
     return out

@@ -36,7 +36,7 @@ def serialize_json(value: AnalyticsUtteranceGroupByKey) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsUtteranceGroupByKey:
     out: AnalyticsUtteranceGroupByKey = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lex_models_v2.types.analytics_utterance_field
 
         out["name"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> AnalyticsUtteranceGroupByKey:
                 data["name"]
             )
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

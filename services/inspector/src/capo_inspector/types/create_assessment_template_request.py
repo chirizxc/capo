@@ -59,25 +59,25 @@ def serialize_aws_json_1_1(value: CreateAssessmentTemplateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAssessmentTemplateRequest:
     out: CreateAssessmentTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentTargetArn" in data:
+    if data.get("assessmentTargetArn") is not None:
         out["assessment_target_arn"] = data["assessmentTargetArn"]
     else:
         raise DeserializationError(
             "CreateAssessmentTemplateRequest.assessment_target_arn required"
         )
-    if "assessmentTemplateName" in data:
+    if data.get("assessmentTemplateName") is not None:
         out["assessment_template_name"] = data["assessmentTemplateName"]
     else:
         raise DeserializationError(
             "CreateAssessmentTemplateRequest.assessment_template_name required"
         )
-    if "durationInSeconds" in data:
+    if data.get("durationInSeconds") is not None:
         out["duration_in_seconds"] = data["durationInSeconds"]
     else:
         raise DeserializationError(
             "CreateAssessmentTemplateRequest.duration_in_seconds required"
         )
-    if "rulesPackageArns" in data:
+    if data.get("rulesPackageArns") is not None:
         import capo_inspector.types.assessment_template_rules_package_arn_list
 
         out["rules_package_arns"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAssessmentTemplateRequest:
         raise DeserializationError(
             "CreateAssessmentTemplateRequest.rules_package_arns required"
         )
-    if "userAttributesForFindings" in data:
+    if data.get("userAttributesForFindings") is not None:
         import capo_inspector.types.user_attribute_list
 
         out["user_attributes_for_findings"] = (

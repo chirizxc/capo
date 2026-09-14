@@ -36,7 +36,7 @@ def serialize_json(value: UpdateThingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateThingGroupRequest:
     out: UpdateThingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "thingGroupProperties" in data:
+    if data.get("thingGroupProperties") is not None:
         import capo_iot.types.thing_group_properties
 
         out["thing_group_properties"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> UpdateThingGroupRequest:
         raise DeserializationError(
             "UpdateThingGroupRequest.thing_group_properties required"
         )
-    if "expectedVersion" in data:
+    if data.get("expectedVersion") is not None:
         out["expected_version"] = data["expectedVersion"]
     return out

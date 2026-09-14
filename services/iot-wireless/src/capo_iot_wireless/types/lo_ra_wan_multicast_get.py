@@ -60,23 +60,23 @@ def serialize_json(value: LoRaWANMulticastGet) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANMulticastGet:
     out: LoRaWANMulticastGet = {}  # type: ignore[typeddict-item]
-    if "RfRegion" in data:
+    if data.get("RfRegion") is not None:
         import capo_iot_wireless.types.supported_rf_region
 
         out["rf_region"] = capo_iot_wireless.types.supported_rf_region.deserialize_json(
             data["RfRegion"]
         )
-    if "DlClass" in data:
+    if data.get("DlClass") is not None:
         import capo_iot_wireless.types.dl_class
 
         out["dl_class"] = capo_iot_wireless.types.dl_class.deserialize_json(
             data["DlClass"]
         )
-    if "NumberOfDevicesRequested" in data:
+    if data.get("NumberOfDevicesRequested") is not None:
         out["number_of_devices_requested"] = data["NumberOfDevicesRequested"]
-    if "NumberOfDevicesInGroup" in data:
+    if data.get("NumberOfDevicesInGroup") is not None:
         out["number_of_devices_in_group"] = data["NumberOfDevicesInGroup"]
-    if "ParticipatingGateways" in data:
+    if data.get("ParticipatingGateways") is not None:
         import capo_iot_wireless.types.participating_gateways_multicast
 
         out["participating_gateways"] = (

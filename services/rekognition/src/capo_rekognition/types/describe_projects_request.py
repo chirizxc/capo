@@ -56,11 +56,11 @@ def serialize_aws_json_1_1(value: DescribeProjectsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProjectsRequest:
     out: DescribeProjectsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ProjectNames" in data:
+    if data.get("ProjectNames") is not None:
         import capo_rekognition.types.project_names
 
         out["project_names"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProjectsRequest:
                 data["ProjectNames"]
             )
         )
-    if "Features" in data:
+    if data.get("Features") is not None:
         import capo_rekognition.types.customization_features
 
         out["features"] = (

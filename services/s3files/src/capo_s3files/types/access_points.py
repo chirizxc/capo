@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AccessPoints:
 
     out: AccessPoints = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_s3files.types.list_access_points_description.deserialize_json(item)
         )

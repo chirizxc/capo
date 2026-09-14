@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> GeospatialCategoricalDataColorList:
 
     out: GeospatialCategoricalDataColorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.geospatial_categorical_data_color.deserialize_json(
                 item

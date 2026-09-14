@@ -29,10 +29,10 @@ def serialize_json(value: GetSinkInput) -> dict:
 
 def deserialize_json(data: dict) -> GetSinkInput:
     out: GetSinkInput = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("GetSinkInput.identifier required")
-    if "IncludeTags" in data:
+    if data.get("IncludeTags") is not None:
         out["include_tags"] = data["IncludeTags"]
     return out

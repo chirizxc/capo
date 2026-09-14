@@ -42,7 +42,7 @@ def serialize_json(value: BatchGetFreeTrialInfoResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFreeTrialInfoResponse:
     out: BatchGetFreeTrialInfoResponse = {}  # type: ignore[typeddict-item]
-    if "accounts" in data:
+    if data.get("accounts") is not None:
         import capo_inspector2.types.free_trial_account_info_list
 
         out["accounts"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchGetFreeTrialInfoResponse:
         )
     else:
         raise DeserializationError("BatchGetFreeTrialInfoResponse.accounts required")
-    if "failedAccounts" in data:
+    if data.get("failedAccounts") is not None:
         import capo_inspector2.types.free_trial_info_error_list
 
         out["failed_accounts"] = (

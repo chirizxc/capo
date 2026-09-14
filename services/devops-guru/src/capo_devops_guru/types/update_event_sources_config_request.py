@@ -31,7 +31,7 @@ def serialize_json(value: UpdateEventSourcesConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEventSourcesConfigRequest:
     out: UpdateEventSourcesConfigRequest = {}  # type: ignore[typeddict-item]
-    if "EventSources" in data:
+    if data.get("EventSources") is not None:
         import capo_devops_guru.types.event_sources_config
 
         out["event_sources"] = (

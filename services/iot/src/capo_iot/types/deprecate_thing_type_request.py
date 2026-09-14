@@ -25,7 +25,7 @@ def serialize_json(value: DeprecateThingTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeprecateThingTypeRequest:
     out: DeprecateThingTypeRequest = {}  # type: ignore[typeddict-item]
-    if "undoDeprecate" in data:
+    if data.get("undoDeprecate") is not None:
         out["undo_deprecate"] = data["undoDeprecate"]
     else:
         out["undo_deprecate"] = False

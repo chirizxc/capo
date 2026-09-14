@@ -39,12 +39,12 @@ def serialize_json(value: ProposedNetworkFunctionGroupChange) -> dict:
 
 def deserialize_json(data: dict) -> ProposedNetworkFunctionGroupChange:
     out: ProposedNetworkFunctionGroupChange = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "AttachmentPolicyRuleNumber" in data:
+    if data.get("AttachmentPolicyRuleNumber") is not None:
         out["attachment_policy_rule_number"] = data["AttachmentPolicyRuleNumber"]
-    if "NetworkFunctionGroupName" in data:
+    if data.get("NetworkFunctionGroupName") is not None:
         out["network_function_group_name"] = data["NetworkFunctionGroupName"]
     return out

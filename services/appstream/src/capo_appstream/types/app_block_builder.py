@@ -138,15 +138,15 @@ def serialize_aws_json_1_1(value: AppBlockBuilder) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AppBlockBuilder:
     out: AppBlockBuilder = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_appstream.types.app_block_builder_platform_type
 
         out["platform"] = (
@@ -154,19 +154,19 @@ def deserialize_aws_json_1_1(data: dict) -> AppBlockBuilder:
                 data["Platform"]
             )
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "EnableDefaultInternetAccess" in data:
+    if data.get("EnableDefaultInternetAccess") is not None:
         out["enable_default_internet_access"] = data["EnableDefaultInternetAccess"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_appstream.types.vpc_config
 
         out["vpc_config"] = capo_appstream.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_appstream.types.app_block_builder_state
 
         out["state"] = (
@@ -174,13 +174,13 @@ def deserialize_aws_json_1_1(data: dict) -> AppBlockBuilder:
                 data["State"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_appstream.types.timestamp
 
         out["created_time"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedTime"]
         )
-    if "AppBlockBuilderErrors" in data:
+    if data.get("AppBlockBuilderErrors") is not None:
         import capo_appstream.types.resource_errors
 
         out["app_block_builder_errors"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> AppBlockBuilder:
                 data["AppBlockBuilderErrors"]
             )
         )
-    if "StateChangeReason" in data:
+    if data.get("StateChangeReason") is not None:
         import capo_appstream.types.app_block_builder_state_change_reason
 
         out["state_change_reason"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> AppBlockBuilder:
                 data["StateChangeReason"]
             )
         )
-    if "AccessEndpoints" in data:
+    if data.get("AccessEndpoints") is not None:
         import capo_appstream.types.access_endpoint_list
 
         out["access_endpoints"] = (
@@ -204,6 +204,6 @@ def deserialize_aws_json_1_1(data: dict) -> AppBlockBuilder:
                 data["AccessEndpoints"]
             )
         )
-    if "DisableIMDSV1" in data:
+    if data.get("DisableIMDSV1") is not None:
         out["disable_imdsv1"] = data["DisableIMDSV1"]
     return out

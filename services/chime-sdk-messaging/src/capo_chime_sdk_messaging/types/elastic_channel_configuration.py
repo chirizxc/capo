@@ -34,13 +34,13 @@ def serialize_json(value: ElasticChannelConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ElasticChannelConfiguration:
     out: ElasticChannelConfiguration = {}  # type: ignore[typeddict-item]
-    if "MaximumSubChannels" in data:
+    if data.get("MaximumSubChannels") is not None:
         out["maximum_sub_channels"] = data["MaximumSubChannels"]
     else:
         raise DeserializationError(
             "ElasticChannelConfiguration.maximum_sub_channels required"
         )
-    if "TargetMembershipsPerSubChannel" in data:
+    if data.get("TargetMembershipsPerSubChannel") is not None:
         out["target_memberships_per_sub_channel"] = data[
             "TargetMembershipsPerSubChannel"
         ]
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ElasticChannelConfiguration:
         raise DeserializationError(
             "ElasticChannelConfiguration.target_memberships_per_sub_channel required"
         )
-    if "MinimumMembershipPercentage" in data:
+    if data.get("MinimumMembershipPercentage") is not None:
         out["minimum_membership_percentage"] = data["MinimumMembershipPercentage"]
     else:
         raise DeserializationError(

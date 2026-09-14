@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AssetBundleImportJobThemeOverrideTagsList:
 
     out: AssetBundleImportJobThemeOverrideTagsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.asset_bundle_import_job_theme_override_tags.deserialize_json(
                 item

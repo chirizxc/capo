@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> Streams:
 
     out: Streams = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_media_pipelines.types.stream_configuration.deserialize_json(
                 item

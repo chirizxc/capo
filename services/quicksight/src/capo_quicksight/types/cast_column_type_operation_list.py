@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CastColumnTypeOperationList:
 
     out: CastColumnTypeOperationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.cast_column_type_operation.deserialize_json(item)
         )

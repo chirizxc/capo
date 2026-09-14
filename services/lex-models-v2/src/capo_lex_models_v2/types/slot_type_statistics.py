@@ -23,6 +23,6 @@ def serialize_json(value: SlotTypeStatistics) -> dict:
 
 def deserialize_json(data: dict) -> SlotTypeStatistics:
     out: SlotTypeStatistics = {}  # type: ignore[typeddict-item]
-    if "discoveredSlotTypeCount" in data:
+    if data.get("discoveredSlotTypeCount") is not None:
         out["discovered_slot_type_count"] = data["discoveredSlotTypeCount"]
     return out

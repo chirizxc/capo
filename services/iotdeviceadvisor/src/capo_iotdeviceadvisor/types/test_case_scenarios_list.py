@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> TestCaseScenariosList:
 
     out: TestCaseScenariosList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotdeviceadvisor.types.test_case_scenario.deserialize_json(item)
         )

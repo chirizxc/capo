@@ -68,27 +68,27 @@ def serialize_json(value: ListSolFunctionInstanceInfo) -> dict:
 
 def deserialize_json(data: dict) -> ListSolFunctionInstanceInfo:
     out: ListSolFunctionInstanceInfo = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ListSolFunctionInstanceInfo.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ListSolFunctionInstanceInfo.arn required")
-    if "nsInstanceId" in data:
+    if data.get("nsInstanceId") is not None:
         out["ns_instance_id"] = data["nsInstanceId"]
     else:
         raise DeserializationError(
             "ListSolFunctionInstanceInfo.ns_instance_id required"
         )
-    if "vnfPkgId" in data:
+    if data.get("vnfPkgId") is not None:
         out["vnf_pkg_id"] = data["vnfPkgId"]
     else:
         raise DeserializationError("ListSolFunctionInstanceInfo.vnf_pkg_id required")
-    if "vnfPkgName" in data:
+    if data.get("vnfPkgName") is not None:
         out["vnf_pkg_name"] = data["vnfPkgName"]
-    if "instantiationState" in data:
+    if data.get("instantiationState") is not None:
         import capo_tnb.types.vnf_instantiation_state
 
         out["instantiation_state"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> ListSolFunctionInstanceInfo:
         raise DeserializationError(
             "ListSolFunctionInstanceInfo.instantiation_state required"
         )
-    if "instantiatedVnfInfo" in data:
+    if data.get("instantiatedVnfInfo") is not None:
         import capo_tnb.types.get_sol_instantiated_vnf_info
 
         out["instantiated_vnf_info"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> ListSolFunctionInstanceInfo:
                 data["instantiatedVnfInfo"]
             )
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_tnb.types.list_sol_function_instance_metadata
 
         out["metadata"] = (

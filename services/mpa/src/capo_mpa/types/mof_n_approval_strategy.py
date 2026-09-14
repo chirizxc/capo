@@ -19,7 +19,7 @@ def serialize_json(value: MofNApprovalStrategy) -> dict:
 
 def deserialize_json(data: dict) -> MofNApprovalStrategy:
     out: MofNApprovalStrategy = {}  # type: ignore[typeddict-item]
-    if "MinApprovalsRequired" in data:
+    if data.get("MinApprovalsRequired") is not None:
         out["min_approvals_required"] = data["MinApprovalsRequired"]
     else:
         raise DeserializationError(

@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: JsonTokenTypeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JsonTokenTypeConfiguration:
     out: JsonTokenTypeConfiguration = {}  # type: ignore[typeddict-item]
-    if "UserNameAttributeField" in data:
+    if data.get("UserNameAttributeField") is not None:
         out["user_name_attribute_field"] = data["UserNameAttributeField"]
     else:
         raise DeserializationError(
             "JsonTokenTypeConfiguration.user_name_attribute_field required"
         )
-    if "GroupAttributeField" in data:
+    if data.get("GroupAttributeField") is not None:
         out["group_attribute_field"] = data["GroupAttributeField"]
     else:
         raise DeserializationError(

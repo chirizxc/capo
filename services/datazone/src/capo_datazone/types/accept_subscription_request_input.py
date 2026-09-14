@@ -53,9 +53,9 @@ def serialize_json(value: AcceptSubscriptionRequestInput) -> dict:
 
 def deserialize_json(data: dict) -> AcceptSubscriptionRequestInput:
     out: AcceptSubscriptionRequestInput = {}  # type: ignore[typeddict-item]
-    if "decisionComment" in data:
+    if data.get("decisionComment") is not None:
         out["decision_comment"] = data["decisionComment"]
-    if "assetScopes" in data:
+    if data.get("assetScopes") is not None:
         import capo_datazone.types.accepted_asset_scopes
 
         out["asset_scopes"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> AcceptSubscriptionRequestInput:
                 data["assetScopes"]
             )
         )
-    if "assetPermissions" in data:
+    if data.get("assetPermissions") is not None:
         import capo_datazone.types.asset_permissions
 
         out["asset_permissions"] = (

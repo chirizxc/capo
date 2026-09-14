@@ -54,7 +54,7 @@ def serialize_aws_json_1_0(value: ImageConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImageConfiguration:
     out: ImageConfiguration = {}  # type: ignore[typeddict-item]
-    if "RuntimeEnvironmentVariables" in data:
+    if data.get("RuntimeEnvironmentVariables") is not None:
         import capo_apprunner.types.runtime_environment_variables
 
         out["runtime_environment_variables"] = (
@@ -62,11 +62,11 @@ def deserialize_aws_json_1_0(data: dict) -> ImageConfiguration:
                 data["RuntimeEnvironmentVariables"]
             )
         )
-    if "StartCommand" in data:
+    if data.get("StartCommand") is not None:
         out["start_command"] = data["StartCommand"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "RuntimeEnvironmentSecrets" in data:
+    if data.get("RuntimeEnvironmentSecrets") is not None:
         import capo_apprunner.types.runtime_environment_secrets
 
         out["runtime_environment_secrets"] = (

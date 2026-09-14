@@ -24,7 +24,7 @@ def serialize_json(value: DeleteLinkInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteLinkInput:
     out: DeleteLinkInput = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("DeleteLinkInput.identifier required")

@@ -35,13 +35,13 @@ def serialize_aws_json_1_0(value: MarkerRecordedEventAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MarkerRecordedEventAttributes:
     out: MarkerRecordedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "markerName" in data:
+    if data.get("markerName") is not None:
         out["marker_name"] = data["markerName"]
     else:
         raise DeserializationError("MarkerRecordedEventAttributes.marker_name required")
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0

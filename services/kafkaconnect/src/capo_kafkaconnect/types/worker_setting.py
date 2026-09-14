@@ -28,7 +28,7 @@ def serialize_json(value: WorkerSetting) -> dict:
 
 def deserialize_json(data: dict) -> WorkerSetting:
     out: WorkerSetting = {}  # type: ignore[typeddict-item]
-    if "capacity" in data:
+    if data.get("capacity") is not None:
         import capo_kafkaconnect.types.capacity_description
 
         out["capacity"] = capo_kafkaconnect.types.capacity_description.deserialize_json(

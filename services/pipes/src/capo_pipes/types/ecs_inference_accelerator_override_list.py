@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EcsInferenceAcceleratorOverrideList:
 
     out: EcsInferenceAcceleratorOverrideList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pipes.types.ecs_inference_accelerator_override.deserialize_json(item)
         )

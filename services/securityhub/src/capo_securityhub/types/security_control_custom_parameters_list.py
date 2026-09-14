@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SecurityControlCustomParametersList:
 
     out: SecurityControlCustomParametersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.security_control_custom_parameter.deserialize_json(
                 item

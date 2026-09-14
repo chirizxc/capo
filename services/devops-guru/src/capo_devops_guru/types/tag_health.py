@@ -46,16 +46,16 @@ def serialize_json(value: TagHealth) -> dict:
 
 def deserialize_json(data: dict) -> TagHealth:
     out: TagHealth = {}  # type: ignore[typeddict-item]
-    if "AppBoundaryKey" in data:
+    if data.get("AppBoundaryKey") is not None:
         out["app_boundary_key"] = data["AppBoundaryKey"]
-    if "TagValue" in data:
+    if data.get("TagValue") is not None:
         out["tag_value"] = data["TagValue"]
-    if "Insight" in data:
+    if data.get("Insight") is not None:
         import capo_devops_guru.types.insight_health
 
         out["insight"] = capo_devops_guru.types.insight_health.deserialize_json(
             data["Insight"]
         )
-    if "AnalyzedResourceCount" in data:
+    if data.get("AnalyzedResourceCount") is not None:
         out["analyzed_resource_count"] = data["AnalyzedResourceCount"]
     return out

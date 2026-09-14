@@ -28,8 +28,8 @@ def serialize_json(value: RemoteAccountDetails) -> dict:
 
 def deserialize_json(data: dict) -> RemoteAccountDetails:
     out: RemoteAccountDetails = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "affiliated" in data:
+    if data.get("affiliated") is not None:
         out["affiliated"] = data["affiliated"]
     return out

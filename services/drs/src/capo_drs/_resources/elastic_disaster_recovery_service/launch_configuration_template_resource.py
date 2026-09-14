@@ -96,7 +96,7 @@ class LaunchConfigurationTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.create_launch_configuration_template_request.CreateLaunchConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.create_launch_configuration_template_request.CreateLaunchConfigurationTemplateRequest = {}
         if tags is not None:
             input_["tags"] = tags
         if launch_disposition is not None:
@@ -123,6 +123,7 @@ class LaunchConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -181,8 +182,9 @@ class LaunchConfigurationTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.update_launch_configuration_template_request.UpdateLaunchConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["launch_configuration_template_id"] = launch_configuration_template_id
+        input_: capo_drs.types.update_launch_configuration_template_request.UpdateLaunchConfigurationTemplateRequest = {
+            "launch_configuration_template_id": launch_configuration_template_id
+        }
         if launch_disposition is not None:
             input_["launch_disposition"] = launch_disposition
         if target_instance_type_right_sizing_method is not None:
@@ -207,6 +209,7 @@ class LaunchConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -244,14 +247,16 @@ class LaunchConfigurationTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.delete_launch_configuration_template_request.DeleteLaunchConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["launch_configuration_template_id"] = launch_configuration_template_id
+        input_: capo_drs.types.delete_launch_configuration_template_request.DeleteLaunchConfigurationTemplateRequest = {
+            "launch_configuration_template_id": launch_configuration_template_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -295,7 +300,7 @@ class LaunchConfigurationTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.describe_launch_configuration_templates_request.DescribeLaunchConfigurationTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.describe_launch_configuration_templates_request.DescribeLaunchConfigurationTemplatesRequest = {}
         if launch_configuration_template_i_ds is not None:
             input_["launch_configuration_template_i_ds"] = (
                 launch_configuration_template_i_ds
@@ -310,6 +315,7 @@ class LaunchConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -374,7 +380,7 @@ class AsyncLaunchConfigurationTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.create_launch_configuration_template_request.CreateLaunchConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.create_launch_configuration_template_request.CreateLaunchConfigurationTemplateRequest = {}
         if tags is not None:
             input_["tags"] = tags
         if launch_disposition is not None:
@@ -401,6 +407,7 @@ class AsyncLaunchConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -460,8 +467,9 @@ class AsyncLaunchConfigurationTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.update_launch_configuration_template_request.UpdateLaunchConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["launch_configuration_template_id"] = launch_configuration_template_id
+        input_: capo_drs.types.update_launch_configuration_template_request.UpdateLaunchConfigurationTemplateRequest = {
+            "launch_configuration_template_id": launch_configuration_template_id
+        }
         if launch_disposition is not None:
             input_["launch_disposition"] = launch_disposition
         if target_instance_type_right_sizing_method is not None:
@@ -486,6 +494,7 @@ class AsyncLaunchConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -524,14 +533,16 @@ class AsyncLaunchConfigurationTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.delete_launch_configuration_template_request.DeleteLaunchConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["launch_configuration_template_id"] = launch_configuration_template_id
+        input_: capo_drs.types.delete_launch_configuration_template_request.DeleteLaunchConfigurationTemplateRequest = {
+            "launch_configuration_template_id": launch_configuration_template_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -576,7 +587,7 @@ class AsyncLaunchConfigurationTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.describe_launch_configuration_templates_request.DescribeLaunchConfigurationTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.describe_launch_configuration_templates_request.DescribeLaunchConfigurationTemplatesRequest = {}
         if launch_configuration_template_i_ds is not None:
             input_["launch_configuration_template_i_ds"] = (
                 launch_configuration_template_i_ds
@@ -591,4 +602,5 @@ class AsyncLaunchConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

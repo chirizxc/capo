@@ -56,27 +56,27 @@ def serialize_json(value: Occurrences) -> dict:
 
 def deserialize_json(data: dict) -> Occurrences:
     out: Occurrences = {}  # type: ignore[typeddict-item]
-    if "cells" in data:
+    if data.get("cells") is not None:
         import capo_macie2.types.cells
 
         out["cells"] = capo_macie2.types.cells.deserialize_json(data["cells"])
-    if "lineRanges" in data:
+    if data.get("lineRanges") is not None:
         import capo_macie2.types.ranges
 
         out["line_ranges"] = capo_macie2.types.ranges.deserialize_json(
             data["lineRanges"]
         )
-    if "offsetRanges" in data:
+    if data.get("offsetRanges") is not None:
         import capo_macie2.types.ranges
 
         out["offset_ranges"] = capo_macie2.types.ranges.deserialize_json(
             data["offsetRanges"]
         )
-    if "pages" in data:
+    if data.get("pages") is not None:
         import capo_macie2.types.pages
 
         out["pages"] = capo_macie2.types.pages.deserialize_json(data["pages"])
-    if "records" in data:
+    if data.get("records") is not None:
         import capo_macie2.types.records
 
         out["records"] = capo_macie2.types.records.deserialize_json(data["records"])

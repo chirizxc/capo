@@ -59,17 +59,17 @@ def serialize_aws_json_1_0(value: GetSignalCatalogResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetSignalCatalogResponse:
     out: GetSignalCatalogResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetSignalCatalogResponse.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetSignalCatalogResponse.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "nodeCounts" in data:
+    if data.get("nodeCounts") is not None:
         import capo_iotfleetwise.types.node_counts
 
         out["node_counts"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetSignalCatalogResponse:
                 data["nodeCounts"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["creation_time"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetSignalCatalogResponse:
         )
     else:
         raise DeserializationError("GetSignalCatalogResponse.creation_time required")
-    if "lastModificationTime" in data:
+    if data.get("lastModificationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["last_modification_time"] = (

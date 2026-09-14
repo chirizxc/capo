@@ -77,36 +77,36 @@ def serialize_json(value: CreateComputeEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateComputeEnvironmentRequest:
     out: CreateComputeEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "computeEnvironmentName" in data:
+    if data.get("computeEnvironmentName") is not None:
         out["compute_environment_name"] = data["computeEnvironmentName"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_batch.types.ce_type
 
         out["type"] = capo_batch.types.ce_type.deserialize_json(data["type"])
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_batch.types.ce_state
 
         out["state"] = capo_batch.types.ce_state.deserialize_json(data["state"])
-    if "unmanagedvCpus" in data:
+    if data.get("unmanagedvCpus") is not None:
         out["unmanagedv_cpus"] = data["unmanagedvCpus"]
-    if "computeResources" in data:
+    if data.get("computeResources") is not None:
         import capo_batch.types.compute_resource
 
         out["compute_resources"] = capo_batch.types.compute_resource.deserialize_json(
             data["computeResources"]
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])
-    if "eksConfiguration" in data:
+    if data.get("eksConfiguration") is not None:
         import capo_batch.types.eks_configuration
 
         out["eks_configuration"] = capo_batch.types.eks_configuration.deserialize_json(
             data["eksConfiguration"]
         )
-    if "context" in data:
+    if data.get("context") is not None:
         out["context"] = data["context"]
     return out

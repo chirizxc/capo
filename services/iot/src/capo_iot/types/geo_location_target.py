@@ -30,9 +30,9 @@ def serialize_json(value: GeoLocationTarget) -> dict:
 
 def deserialize_json(data: dict) -> GeoLocationTarget:
     out: GeoLocationTarget = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_iot.types.target_field_order
 
         out["order"] = capo_iot.types.target_field_order.deserialize_json(data["order"])

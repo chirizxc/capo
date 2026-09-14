@@ -25,28 +25,68 @@ class NumberFilter(TypedDict, closed=True):
 def serialize_json(value: NumberFilter) -> dict:
     out: dict = {}
     if "gte" in value:
-        out["Gte"] = value["gte"]
+        out["Gte"] = (
+            "NaN"
+            if value["gte"] != value["gte"]
+            else "Infinity"
+            if value["gte"] == float("inf")
+            else "-Infinity"
+            if value["gte"] == float("-inf")
+            else value["gte"]
+        )
     if "lte" in value:
-        out["Lte"] = value["lte"]
+        out["Lte"] = (
+            "NaN"
+            if value["lte"] != value["lte"]
+            else "Infinity"
+            if value["lte"] == float("inf")
+            else "-Infinity"
+            if value["lte"] == float("-inf")
+            else value["lte"]
+        )
     if "eq" in value:
-        out["Eq"] = value["eq"]
+        out["Eq"] = (
+            "NaN"
+            if value["eq"] != value["eq"]
+            else "Infinity"
+            if value["eq"] == float("inf")
+            else "-Infinity"
+            if value["eq"] == float("-inf")
+            else value["eq"]
+        )
     if "gt" in value:
-        out["Gt"] = value["gt"]
+        out["Gt"] = (
+            "NaN"
+            if value["gt"] != value["gt"]
+            else "Infinity"
+            if value["gt"] == float("inf")
+            else "-Infinity"
+            if value["gt"] == float("-inf")
+            else value["gt"]
+        )
     if "lt" in value:
-        out["Lt"] = value["lt"]
+        out["Lt"] = (
+            "NaN"
+            if value["lt"] != value["lt"]
+            else "Infinity"
+            if value["lt"] == float("inf")
+            else "-Infinity"
+            if value["lt"] == float("-inf")
+            else value["lt"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> NumberFilter:
     out: NumberFilter = {}  # type: ignore[typeddict-item]
-    if "Gte" in data:
-        out["gte"] = data["Gte"]
-    if "Lte" in data:
-        out["lte"] = data["Lte"]
-    if "Eq" in data:
-        out["eq"] = data["Eq"]
-    if "Gt" in data:
-        out["gt"] = data["Gt"]
-    if "Lt" in data:
-        out["lt"] = data["Lt"]
+    if data.get("Gte") is not None:
+        out["gte"] = float(data["Gte"])
+    if data.get("Lte") is not None:
+        out["lte"] = float(data["Lte"])
+    if data.get("Eq") is not None:
+        out["eq"] = float(data["Eq"])
+    if data.get("Gt") is not None:
+        out["gt"] = float(data["Gt"])
+    if data.get("Lt") is not None:
+        out["lt"] = float(data["Lt"])
     return out

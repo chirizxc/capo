@@ -53,11 +53,11 @@ def serialize_aws_json_1_1(value: DetectProtectiveEquipmentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectProtectiveEquipmentResponse:
     out: DetectProtectiveEquipmentResponse = {}  # type: ignore[typeddict-item]
-    if "ProtectiveEquipmentModelVersion" in data:
+    if data.get("ProtectiveEquipmentModelVersion") is not None:
         out["protective_equipment_model_version"] = data[
             "ProtectiveEquipmentModelVersion"
         ]
-    if "Persons" in data:
+    if data.get("Persons") is not None:
         import capo_rekognition.types.protective_equipment_persons
 
         out["persons"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectProtectiveEquipmentResponse:
                 data["Persons"]
             )
         )
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         import capo_rekognition.types.protective_equipment_summary
 
         out["summary"] = (

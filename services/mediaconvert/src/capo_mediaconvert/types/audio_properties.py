@@ -54,22 +54,22 @@ def serialize_json(value: AudioProperties) -> dict:
 
 def deserialize_json(data: dict) -> AudioProperties:
     out: AudioProperties = {}  # type: ignore[typeddict-item]
-    if "bitDepth" in data:
+    if data.get("bitDepth") is not None:
         out["bit_depth"] = data["bitDepth"]
-    if "bitRate" in data:
+    if data.get("bitRate") is not None:
         out["bit_rate"] = data["bitRate"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "frameRate" in data:
+    if data.get("frameRate") is not None:
         import capo_mediaconvert.types.frame_rate
 
         out["frame_rate"] = capo_mediaconvert.types.frame_rate.deserialize_json(
             data["frameRate"]
         )
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         out["language_code"] = data["languageCode"]
-    if "objectCount" in data:
+    if data.get("objectCount") is not None:
         out["object_count"] = data["objectCount"]
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
     return out

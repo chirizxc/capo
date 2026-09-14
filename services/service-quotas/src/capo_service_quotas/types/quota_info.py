@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: QuotaInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QuotaInfo:
     out: QuotaInfo = {}  # type: ignore[typeddict-item]
-    if "QuotaCode" in data:
+    if data.get("QuotaCode") is not None:
         out["quota_code"] = data["QuotaCode"]
-    if "QuotaName" in data:
+    if data.get("QuotaName") is not None:
         out["quota_name"] = data["QuotaName"]
     return out

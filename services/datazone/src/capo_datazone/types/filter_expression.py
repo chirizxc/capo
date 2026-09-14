@@ -31,7 +31,7 @@ def serialize_json(value: FilterExpression) -> dict:
 
 def deserialize_json(data: dict) -> FilterExpression:
     out: FilterExpression = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.filter_expression_type
 
         out["type"] = capo_datazone.types.filter_expression_type.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> FilterExpression:
         )
     else:
         raise DeserializationError("FilterExpression.type required")
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
     else:
         raise DeserializationError("FilterExpression.expression required")

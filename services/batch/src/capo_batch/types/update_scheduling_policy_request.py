@@ -43,9 +43,9 @@ def serialize_json(value: UpdateSchedulingPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSchedulingPolicyRequest:
     out: UpdateSchedulingPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "quotaSharePolicy" in data:
+    if data.get("quotaSharePolicy") is not None:
         import capo_batch.types.quota_share_policy
 
         out["quota_share_policy"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> UpdateSchedulingPolicyRequest:
                 data["quotaSharePolicy"]
             )
         )
-    if "fairsharePolicy" in data:
+    if data.get("fairsharePolicy") is not None:
         import capo_batch.types.fairshare_policy
 
         out["fairshare_policy"] = capo_batch.types.fairshare_policy.deserialize_json(

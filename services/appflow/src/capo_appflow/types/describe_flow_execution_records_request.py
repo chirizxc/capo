@@ -34,14 +34,14 @@ def serialize_json(value: DescribeFlowExecutionRecordsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFlowExecutionRecordsRequest:
     out: DescribeFlowExecutionRecordsRequest = {}  # type: ignore[typeddict-item]
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
     else:
         raise DeserializationError(
             "DescribeFlowExecutionRecordsRequest.flow_name required"
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -99,15 +99,15 @@ def serialize_aws_json_1_1(value: UpdateFileSystemOntapConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemOntapConfiguration:
     out: UpdateFileSystemOntapConfiguration = {}  # type: ignore[typeddict-item]
-    if "AutomaticBackupRetentionDays" in data:
+    if data.get("AutomaticBackupRetentionDays") is not None:
         out["automatic_backup_retention_days"] = data["AutomaticBackupRetentionDays"]
-    if "DailyAutomaticBackupStartTime" in data:
+    if data.get("DailyAutomaticBackupStartTime") is not None:
         out["daily_automatic_backup_start_time"] = data["DailyAutomaticBackupStartTime"]
-    if "FsxAdminPassword" in data:
+    if data.get("FsxAdminPassword") is not None:
         out["fsx_admin_password"] = data["FsxAdminPassword"]
-    if "WeeklyMaintenanceStartTime" in data:
+    if data.get("WeeklyMaintenanceStartTime") is not None:
         out["weekly_maintenance_start_time"] = data["WeeklyMaintenanceStartTime"]
-    if "DiskIopsConfiguration" in data:
+    if data.get("DiskIopsConfiguration") is not None:
         import capo_fsx.types.disk_iops_configuration
 
         out["disk_iops_configuration"] = (
@@ -115,9 +115,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemOntapConfiguration:
                 data["DiskIopsConfiguration"]
             )
         )
-    if "ThroughputCapacity" in data:
+    if data.get("ThroughputCapacity") is not None:
         out["throughput_capacity"] = data["ThroughputCapacity"]
-    if "AddRouteTableIds" in data:
+    if data.get("AddRouteTableIds") is not None:
         import capo_fsx.types.route_table_ids
 
         out["add_route_table_ids"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemOntapConfiguration:
                 data["AddRouteTableIds"]
             )
         )
-    if "RemoveRouteTableIds" in data:
+    if data.get("RemoveRouteTableIds") is not None:
         import capo_fsx.types.route_table_ids
 
         out["remove_route_table_ids"] = (
@@ -133,10 +133,10 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemOntapConfiguration:
                 data["RemoveRouteTableIds"]
             )
         )
-    if "ThroughputCapacityPerHAPair" in data:
+    if data.get("ThroughputCapacityPerHAPair") is not None:
         out["throughput_capacity_per_ha_pair"] = data["ThroughputCapacityPerHAPair"]
-    if "HAPairs" in data:
+    if data.get("HAPairs") is not None:
         out["ha_pairs"] = data["HAPairs"]
-    if "EndpointIpv6AddressRange" in data:
+    if data.get("EndpointIpv6AddressRange") is not None:
         out["endpoint_ipv6_address_range"] = data["EndpointIpv6AddressRange"]
     return out

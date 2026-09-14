@@ -32,10 +32,10 @@ def serialize_json(value: AwsWafv2VisibilityConfigDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafv2VisibilityConfigDetails:
     out: AwsWafv2VisibilityConfigDetails = {}  # type: ignore[typeddict-item]
-    if "CloudWatchMetricsEnabled" in data:
+    if data.get("CloudWatchMetricsEnabled") is not None:
         out["cloud_watch_metrics_enabled"] = data["CloudWatchMetricsEnabled"]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "SampledRequestsEnabled" in data:
+    if data.get("SampledRequestsEnabled") is not None:
         out["sampled_requests_enabled"] = data["SampledRequestsEnabled"]
     return out

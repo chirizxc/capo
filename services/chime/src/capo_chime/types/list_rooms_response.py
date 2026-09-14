@@ -30,10 +30,10 @@ def serialize_json(value: ListRoomsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRoomsResponse:
     out: ListRoomsResponse = {}  # type: ignore[typeddict-item]
-    if "Rooms" in data:
+    if data.get("Rooms") is not None:
         import capo_chime.types.room_list
 
         out["rooms"] = capo_chime.types.room_list.deserialize_json(data["Rooms"])
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

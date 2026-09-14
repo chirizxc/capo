@@ -27,7 +27,7 @@ def serialize_json(value: Detection) -> dict:
 
 def deserialize_json(data: dict) -> Detection:
     out: Detection = {}  # type: ignore[typeddict-item]
-    if "Sequence" in data:
+    if data.get("Sequence") is not None:
         import capo_securityhub.types.sequence
 
         out["sequence"] = capo_securityhub.types.sequence.deserialize_json(

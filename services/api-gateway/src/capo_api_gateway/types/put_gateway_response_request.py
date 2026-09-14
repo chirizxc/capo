@@ -54,9 +54,9 @@ def serialize_json(value: PutGatewayResponseRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutGatewayResponseRequest:
     out: PutGatewayResponseRequest = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
-    if "responseParameters" in data:
+    if data.get("responseParameters") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["response_parameters"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> PutGatewayResponseRequest:
                 data["responseParameters"]
             )
         )
-    if "responseTemplates" in data:
+    if data.get("responseTemplates") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["response_templates"] = (

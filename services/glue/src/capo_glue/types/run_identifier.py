@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: RunIdentifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RunIdentifier:
     out: RunIdentifier = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "JobRunId" in data:
+    if data.get("JobRunId") is not None:
         out["job_run_id"] = data["JobRunId"]
     return out

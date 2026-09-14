@@ -44,13 +44,13 @@ def serialize_json(value: GetQueryResultsMonitorTopContributorsOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetQueryResultsMonitorTopContributorsOutput:
     out: GetQueryResultsMonitorTopContributorsOutput = {}  # type: ignore[typeddict-item]
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_networkflowmonitor.types.metric_unit
 
         out["unit"] = capo_networkflowmonitor.types.metric_unit.deserialize_json(
             data["unit"]
         )
-    if "topContributors" in data:
+    if data.get("topContributors") is not None:
         import capo_networkflowmonitor.types.monitor_top_contributors_row_list
 
         out["top_contributors"] = (
@@ -58,6 +58,6 @@ def deserialize_json(data: dict) -> GetQueryResultsMonitorTopContributorsOutput:
                 data["topContributors"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

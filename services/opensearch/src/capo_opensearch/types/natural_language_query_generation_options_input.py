@@ -31,7 +31,7 @@ def serialize_json(value: NaturalLanguageQueryGenerationOptionsInput) -> dict:
 
 def deserialize_json(data: dict) -> NaturalLanguageQueryGenerationOptionsInput:
     out: NaturalLanguageQueryGenerationOptionsInput = {}  # type: ignore[typeddict-item]
-    if "DesiredState" in data:
+    if data.get("DesiredState") is not None:
         import capo_opensearch.types.natural_language_query_generation_desired_state
 
         out["desired_state"] = (

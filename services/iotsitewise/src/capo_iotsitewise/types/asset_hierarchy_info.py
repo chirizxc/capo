@@ -27,8 +27,8 @@ def serialize_json(value: AssetHierarchyInfo) -> dict:
 
 def deserialize_json(data: dict) -> AssetHierarchyInfo:
     out: AssetHierarchyInfo = {}  # type: ignore[typeddict-item]
-    if "parentAssetId" in data:
+    if data.get("parentAssetId") is not None:
         out["parent_asset_id"] = data["parentAssetId"]
-    if "childAssetId" in data:
+    if data.get("childAssetId") is not None:
         out["child_asset_id"] = data["childAssetId"]
     return out

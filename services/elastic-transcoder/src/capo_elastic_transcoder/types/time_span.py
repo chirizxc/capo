@@ -27,8 +27,8 @@ def serialize_json(value: TimeSpan) -> dict:
 
 def deserialize_json(data: dict) -> TimeSpan:
     out: TimeSpan = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         out["start_time"] = data["StartTime"]
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     return out

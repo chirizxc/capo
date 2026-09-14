@@ -235,16 +235,18 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.abort_multipart_upload_input.AbortMultipartUploadInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
-        input_["upload_id"] = upload_id
+        input_: capo_glacier.types.abort_multipart_upload_input.AbortMultipartUploadInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+            "upload_id": upload_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def abort_vault_lock(
@@ -288,15 +290,17 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.abort_vault_lock_input.AbortVaultLockInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.abort_vault_lock_input.AbortVaultLockInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_tags_to_vault(
@@ -343,9 +347,10 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.add_tags_to_vault_input.AddTagsToVaultInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.add_tags_to_vault_input.AddTagsToVaultInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -354,6 +359,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def complete_multipart_upload(
@@ -405,10 +411,11 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.complete_multipart_upload_input.CompleteMultipartUploadInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
-        input_["upload_id"] = upload_id
+        input_: capo_glacier.types.complete_multipart_upload_input.CompleteMultipartUploadInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+            "upload_id": upload_id,
+        }
         if archive_size is not None:
             input_["archive_size"] = archive_size
         if checksum is not None:
@@ -419,6 +426,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def complete_vault_lock(
@@ -464,16 +472,18 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.complete_vault_lock_input.CompleteVaultLockInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
-        input_["lock_id"] = lock_id
+        input_: capo_glacier.types.complete_vault_lock_input.CompleteVaultLockInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+            "lock_id": lock_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_vault(
@@ -519,15 +529,17 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.create_vault_input.CreateVaultInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.create_vault_input.CreateVaultInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_archive(
@@ -573,16 +585,18 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.delete_archive_input.DeleteArchiveInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
-        input_["archive_id"] = archive_id
+        input_: capo_glacier.types.delete_archive_input.DeleteArchiveInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+            "archive_id": archive_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vault(
@@ -626,15 +640,17 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.delete_vault_input.DeleteVaultInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.delete_vault_input.DeleteVaultInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vault_access_policy(
@@ -678,15 +694,17 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.delete_vault_access_policy_input.DeleteVaultAccessPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.delete_vault_access_policy_input.DeleteVaultAccessPolicyInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vault_notifications(
@@ -730,15 +748,17 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.delete_vault_notifications_input.DeleteVaultNotificationsInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.delete_vault_notifications_input.DeleteVaultNotificationsInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_job(
@@ -786,16 +806,18 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.describe_job_input.DescribeJobInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
-        input_["job_id"] = job_id
+        input_: capo_glacier.types.describe_job_input.DescribeJobInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_vault(
@@ -841,15 +863,17 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.describe_vault_input.DescribeVaultInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.describe_vault_input.DescribeVaultInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def wait_until_vault_exists(
@@ -980,14 +1004,16 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.get_data_retrieval_policy_input.GetDataRetrievalPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_glacier.types.get_data_retrieval_policy_input.GetDataRetrievalPolicyInput = {
+            "account_id": account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -1038,10 +1064,11 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.get_job_output_input.GetJobOutputInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
-        input_["job_id"] = job_id
+        input_: capo_glacier.types.get_job_output_input.GetJobOutputInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+            "job_id": job_id,
+        }
         if range is not None:
             input_["range"] = range
 
@@ -1050,7 +1077,10 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def get_vault_access_policy(
         self,
@@ -1095,15 +1125,17 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.get_vault_access_policy_input.GetVaultAccessPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.get_vault_access_policy_input.GetVaultAccessPolicyInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_vault_lock(
@@ -1149,15 +1181,17 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.get_vault_lock_input.GetVaultLockInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.get_vault_lock_input.GetVaultLockInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_vault_notifications(
@@ -1205,15 +1239,17 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.get_vault_notifications_input.GetVaultNotificationsInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.get_vault_notifications_input.GetVaultNotificationsInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def initiate_job(
@@ -1265,9 +1301,10 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.initiate_job_input.InitiateJobInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.initiate_job_input.InitiateJobInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
         if job_parameters is not None:
             input_["job_parameters"] = job_parameters
 
@@ -1276,6 +1313,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def initiate_multipart_upload(
@@ -1325,9 +1363,10 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.initiate_multipart_upload_input.InitiateMultipartUploadInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.initiate_multipart_upload_input.InitiateMultipartUploadInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
         if archive_description is not None:
             input_["archive_description"] = archive_description
         if part_size is not None:
@@ -1338,6 +1377,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def initiate_vault_lock(
@@ -1385,9 +1425,10 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.initiate_vault_lock_input.InitiateVaultLockInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.initiate_vault_lock_input.InitiateVaultLockInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
         if policy is not None:
             input_["policy"] = policy
 
@@ -1396,6 +1437,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_jobs(
@@ -1447,9 +1489,10 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.list_jobs_input.ListJobsInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.list_jobs_input.ListJobsInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
         if limit is not None:
             input_["limit"] = limit
         if marker is not None:
@@ -1464,6 +1507,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_jobs(
@@ -1542,9 +1586,10 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.list_multipart_uploads_input.ListMultipartUploadsInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.list_multipart_uploads_input.ListMultipartUploadsInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
         if limit is not None:
             input_["limit"] = limit
         if marker is not None:
@@ -1555,6 +1600,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_multipart_uploads(
@@ -1629,10 +1675,11 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.list_parts_input.ListPartsInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
-        input_["upload_id"] = upload_id
+        input_: capo_glacier.types.list_parts_input.ListPartsInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+            "upload_id": upload_id,
+        }
         if marker is not None:
             input_["marker"] = marker
         if limit is not None:
@@ -1643,6 +1690,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_parts(
@@ -1712,14 +1760,16 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.list_provisioned_capacity_input.ListProvisionedCapacityInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_glacier.types.list_provisioned_capacity_input.ListProvisionedCapacityInput = {
+            "account_id": account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_vault(
@@ -1765,15 +1815,17 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.list_tags_for_vault_input.ListTagsForVaultInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.list_tags_for_vault_input.ListTagsForVaultInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_vaults(
@@ -1821,8 +1873,9 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.list_vaults_input.ListVaultsInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_glacier.types.list_vaults_input.ListVaultsInput = {
+            "account_id": account_id
+        }
         if marker is not None:
             input_["marker"] = marker
         if limit is not None:
@@ -1833,6 +1886,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_vaults(
@@ -1899,14 +1953,16 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.purchase_provisioned_capacity_input.PurchaseProvisionedCapacityInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_glacier.types.purchase_provisioned_capacity_input.PurchaseProvisionedCapacityInput = {
+            "account_id": account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_tags_from_vault(
@@ -1952,9 +2008,10 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.remove_tags_from_vault_input.RemoveTagsFromVaultInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.remove_tags_from_vault_input.RemoveTagsFromVaultInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -1963,6 +2020,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_data_retrieval_policy(
@@ -2007,8 +2065,9 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.set_data_retrieval_policy_input.SetDataRetrievalPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_glacier.types.set_data_retrieval_policy_input.SetDataRetrievalPolicyInput = {
+            "account_id": account_id
+        }
         if policy is not None:
             input_["policy"] = policy
 
@@ -2017,6 +2076,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_vault_access_policy(
@@ -2064,9 +2124,10 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.set_vault_access_policy_input.SetVaultAccessPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.set_vault_access_policy_input.SetVaultAccessPolicyInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
         if policy is not None:
             input_["policy"] = policy
 
@@ -2075,6 +2136,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_vault_notifications(
@@ -2122,9 +2184,10 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.set_vault_notifications_input.SetVaultNotificationsInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
+        input_: capo_glacier.types.set_vault_notifications_input.SetVaultNotificationsInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+        }
         if vault_notification_config is not None:
             input_["vault_notification_config"] = vault_notification_config
 
@@ -2133,6 +2196,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upload_archive(
@@ -2185,9 +2249,10 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.upload_archive_input.UploadArchiveInput = {}  # type: ignore[typeddict-item]
-        input_["vault_name"] = vault_name
-        input_["account_id"] = account_id
+        input_: capo_glacier.types.upload_archive_input.UploadArchiveInput = {
+            "vault_name": vault_name,
+            "account_id": account_id,
+        }
         if archive_description is not None:
             input_["archive_description"] = archive_description
         if checksum is not None:
@@ -2200,6 +2265,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upload_multipart_part(
@@ -2254,10 +2320,11 @@ class GlacierClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glacier.types.upload_multipart_part_input.UploadMultipartPartInput = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["vault_name"] = vault_name
-        input_["upload_id"] = upload_id
+        input_: capo_glacier.types.upload_multipart_part_input.UploadMultipartPartInput = {
+            "account_id": account_id,
+            "vault_name": vault_name,
+            "upload_id": upload_id,
+        }
         if checksum is not None:
             input_["checksum"] = checksum
         if range is not None:
@@ -2270,6 +2337,7 @@ class GlacierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -32,9 +32,9 @@ def serialize_json(value: RemoteAccessConfig) -> dict:
 
 def deserialize_json(data: dict) -> RemoteAccessConfig:
     out: RemoteAccessConfig = {}  # type: ignore[typeddict-item]
-    if "ec2SshKey" in data:
+    if data.get("ec2SshKey") is not None:
         out["ec2_ssh_key"] = data["ec2SshKey"]
-    if "sourceSecurityGroups" in data:
+    if data.get("sourceSecurityGroups") is not None:
         import capo_eks.types.string_list
 
         out["source_security_groups"] = capo_eks.types.string_list.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_json(value: PlainTextMessage) -> dict:
 
 def deserialize_json(data: dict) -> PlainTextMessage:
     out: PlainTextMessage = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("PlainTextMessage.value required")

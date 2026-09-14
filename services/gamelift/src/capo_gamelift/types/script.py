@@ -67,23 +67,23 @@ def serialize_aws_json_1_1(value: Script) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Script:
     out: Script = {}  # type: ignore[typeddict-item]
-    if "ScriptId" in data:
+    if data.get("ScriptId") is not None:
         out["script_id"] = data["ScriptId"]
-    if "ScriptArn" in data:
+    if data.get("ScriptArn") is not None:
         out["script_arn"] = data["ScriptArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "SizeOnDisk" in data:
+    if data.get("SizeOnDisk") is not None:
         out["size_on_disk"] = data["SizeOnDisk"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "StorageLocation" in data:
+    if data.get("StorageLocation") is not None:
         import capo_gamelift.types.s3_location
 
         out["storage_location"] = (
@@ -91,6 +91,6 @@ def deserialize_aws_json_1_1(data: dict) -> Script:
                 data["StorageLocation"]
             )
         )
-    if "NodeJsVersion" in data:
+    if data.get("NodeJsVersion") is not None:
         out["node_js_version"] = data["NodeJsVersion"]
     return out

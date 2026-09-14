@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_supplychain._auth._signers
@@ -113,7 +114,7 @@ class InstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.create_instance_request.CreateInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_supplychain.types.create_instance_request.CreateInstanceRequest = {}
         if instance_name is not None:
             input_["instance_name"] = instance_name
         if instance_description is not None:
@@ -124,14 +125,16 @@ class InstanceResource:
             input_["web_app_dns_domain"] = web_app_dns_domain
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -179,14 +182,16 @@ class InstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.get_instance_request.GetInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_supplychain.types.get_instance_request.GetInstanceRequest = {
+            "instance_id": instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -239,8 +244,9 @@ class InstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.update_instance_request.UpdateInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_supplychain.types.update_instance_request.UpdateInstanceRequest = {
+            "instance_id": instance_id
+        }
         if instance_name is not None:
             input_["instance_name"] = instance_name
         if instance_description is not None:
@@ -251,6 +257,7 @@ class InstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -295,14 +302,16 @@ class InstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.delete_instance_request.DeleteInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_supplychain.types.delete_instance_request.DeleteInstanceRequest = {
+            "instance_id": instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -370,7 +379,7 @@ class InstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.list_instances_request.ListInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_supplychain.types.list_instances_request.ListInstancesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -385,6 +394,7 @@ class InstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -456,7 +466,7 @@ class AsyncInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.create_instance_request.CreateInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_supplychain.types.create_instance_request.CreateInstanceRequest = {}
         if instance_name is not None:
             input_["instance_name"] = instance_name
         if instance_description is not None:
@@ -467,14 +477,16 @@ class AsyncInstanceResource:
             input_["web_app_dns_domain"] = web_app_dns_domain
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -523,14 +535,16 @@ class AsyncInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.get_instance_request.GetInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_supplychain.types.get_instance_request.GetInstanceRequest = {
+            "instance_id": instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -584,8 +598,9 @@ class AsyncInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.update_instance_request.UpdateInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_supplychain.types.update_instance_request.UpdateInstanceRequest = {
+            "instance_id": instance_id
+        }
         if instance_name is not None:
             input_["instance_name"] = instance_name
         if instance_description is not None:
@@ -596,6 +611,7 @@ class AsyncInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -641,14 +657,16 @@ class AsyncInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.delete_instance_request.DeleteInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_supplychain.types.delete_instance_request.DeleteInstanceRequest = {
+            "instance_id": instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -717,7 +735,7 @@ class AsyncInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.list_instances_request.ListInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_supplychain.types.list_instances_request.ListInstancesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -732,4 +750,5 @@ class AsyncInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

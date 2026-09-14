@@ -18,6 +18,6 @@ def serialize_json(value: QueryParameterMatch) -> dict:
 
 def deserialize_json(data: dict) -> QueryParameterMatch:
     out: QueryParameterMatch = {}  # type: ignore[typeddict-item]
-    if "exact" in data:
+    if data.get("exact") is not None:
         out["exact"] = data["exact"]
     return out

@@ -39,13 +39,13 @@ def serialize_json(value: CapabilityReport) -> dict:
 
 def deserialize_json(data: dict) -> CapabilityReport:
     out: CapabilityReport = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("CapabilityReport.version required")
-    if "nodeId" in data:
+    if data.get("nodeId") is not None:
         out["node_id"] = data["nodeId"]
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_iot_managed_integrations.types.capability_report_endpoints
 
         out["endpoints"] = (

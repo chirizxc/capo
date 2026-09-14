@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ToolOutputFilterList:
 
     out: ToolOutputFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.tool_output_filter.deserialize_json(item))
     return out

@@ -35,11 +35,11 @@ def serialize_json(value: ListOpenCypherQueriesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListOpenCypherQueriesOutput:
     out: ListOpenCypherQueriesOutput = {}  # type: ignore[typeddict-item]
-    if "acceptedQueryCount" in data:
+    if data.get("acceptedQueryCount") is not None:
         out["accepted_query_count"] = data["acceptedQueryCount"]
-    if "runningQueryCount" in data:
+    if data.get("runningQueryCount") is not None:
         out["running_query_count"] = data["runningQueryCount"]
-    if "queries" in data:
+    if data.get("queries") is not None:
         import capo_neptunedata.types.open_cypher_queries
 
         out["queries"] = capo_neptunedata.types.open_cypher_queries.deserialize_json(

@@ -41,7 +41,7 @@ def serialize_json(value: InboundEmailContent) -> dict:
 
 def deserialize_json(data: dict) -> InboundEmailContent:
     out: InboundEmailContent = {}  # type: ignore[typeddict-item]
-    if "MessageSourceType" in data:
+    if data.get("MessageSourceType") is not None:
         import capo_connect.types.inbound_message_source_type
 
         out["message_source_type"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> InboundEmailContent:
         )
     else:
         raise DeserializationError("InboundEmailContent.message_source_type required")
-    if "RawMessage" in data:
+    if data.get("RawMessage") is not None:
         import capo_connect.types.inbound_raw_message
 
         out["raw_message"] = capo_connect.types.inbound_raw_message.deserialize_json(

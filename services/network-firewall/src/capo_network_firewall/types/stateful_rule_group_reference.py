@@ -49,13 +49,13 @@ def serialize_aws_json_1_0(value: StatefulRuleGroupReference) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StatefulRuleGroupReference:
     out: StatefulRuleGroupReference = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("StatefulRuleGroupReference.resource_arn required")
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "Override" in data:
+    if data.get("Override") is not None:
         import capo_network_firewall.types.stateful_rule_group_override
 
         out["override"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_0(data: dict) -> StatefulRuleGroupReference:
                 data["Override"]
             )
         )
-    if "DeepThreatInspection" in data:
+    if data.get("DeepThreatInspection") is not None:
         out["deep_threat_inspection"] = data["DeepThreatInspection"]
     return out

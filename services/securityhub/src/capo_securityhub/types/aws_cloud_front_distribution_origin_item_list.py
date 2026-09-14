@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsCloudFrontDistributionOriginItemList:
 
     out: AwsCloudFrontDistributionOriginItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_cloud_front_distribution_origin_item.deserialize_json(
                 item

@@ -31,7 +31,7 @@ def serialize_json(value: MetadataCatalogConfig) -> dict:
 
 def deserialize_json(data: dict) -> MetadataCatalogConfig:
     out: MetadataCatalogConfig = {}  # type: ignore[typeddict-item]
-    if "glueDataCatalog" in data:
+    if data.get("glueDataCatalog") is not None:
         import capo_appflow.types.glue_data_catalog_config
 
         out["glue_data_catalog"] = (

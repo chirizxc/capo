@@ -112,7 +112,15 @@ def serialize_json(value: CreateCloudWatchAlarmTemplateRequest) -> dict:
             )
         )
     if "threshold" in value:
-        out["threshold"] = value["threshold"]
+        out["threshold"] = (
+            "NaN"
+            if value["threshold"] != value["threshold"]
+            else "Infinity"
+            if value["threshold"] == float("inf")
+            else "-Infinity"
+            if value["threshold"] == float("-inf")
+            else value["threshold"]
+        )
     if "treat_missing_data" in value:
         import capo_medialive.types.cloud_watch_alarm_template_treat_missing_data
 
@@ -128,7 +136,7 @@ def serialize_json(value: CreateCloudWatchAlarmTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCloudWatchAlarmTemplateRequest:
     out: CreateCloudWatchAlarmTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "comparisonOperator" in data:
+    if data.get("comparisonOperator") is not None:
         import capo_medialive.types.cloud_watch_alarm_template_comparison_operator
 
         out["comparison_operator"] = (
@@ -136,21 +144,21 @@ def deserialize_json(data: dict) -> CreateCloudWatchAlarmTemplateRequest:
                 data["comparisonOperator"]
             )
         )
-    if "datapointsToAlarm" in data:
+    if data.get("datapointsToAlarm") is not None:
         out["datapoints_to_alarm"] = data["datapointsToAlarm"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "evaluationPeriods" in data:
+    if data.get("evaluationPeriods") is not None:
         out["evaluation_periods"] = data["evaluationPeriods"]
-    if "groupIdentifier" in data:
+    if data.get("groupIdentifier") is not None:
         out["group_identifier"] = data["groupIdentifier"]
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         out["metric_name"] = data["metricName"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
-    if "statistic" in data:
+    if data.get("statistic") is not None:
         import capo_medialive.types.cloud_watch_alarm_template_statistic
 
         out["statistic"] = (
@@ -158,11 +166,11 @@ def deserialize_json(data: dict) -> CreateCloudWatchAlarmTemplateRequest:
                 data["statistic"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tag_map
 
         out["tags"] = capo_medialive.types.tag_map.deserialize_json(data["tags"])
-    if "targetResourceType" in data:
+    if data.get("targetResourceType") is not None:
         import capo_medialive.types.cloud_watch_alarm_template_target_resource_type
 
         out["target_resource_type"] = (
@@ -170,9 +178,9 @@ def deserialize_json(data: dict) -> CreateCloudWatchAlarmTemplateRequest:
                 data["targetResourceType"]
             )
         )
-    if "threshold" in data:
-        out["threshold"] = data["threshold"]
-    if "treatMissingData" in data:
+    if data.get("threshold") is not None:
+        out["threshold"] = float(data["threshold"])
+    if data.get("treatMissingData") is not None:
         import capo_medialive.types.cloud_watch_alarm_template_treat_missing_data
 
         out["treat_missing_data"] = (
@@ -180,6 +188,6 @@ def deserialize_json(data: dict) -> CreateCloudWatchAlarmTemplateRequest:
                 data["treatMissingData"]
             )
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     return out

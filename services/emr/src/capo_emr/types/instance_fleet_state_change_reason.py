@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: InstanceFleetStateChangeReason) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceFleetStateChangeReason:
     out: InstanceFleetStateChangeReason = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_emr.types.instance_fleet_state_change_reason_code
 
         out["code"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleetStateChangeReason:
                 data["Code"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

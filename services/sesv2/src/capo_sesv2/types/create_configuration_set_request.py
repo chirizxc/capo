@@ -102,25 +102,25 @@ def serialize_json(value: CreateConfigurationSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationSetRequest:
     out: CreateConfigurationSetRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     else:
         raise DeserializationError(
             "CreateConfigurationSetRequest.configuration_set_name required"
         )
-    if "TrackingOptions" in data:
+    if data.get("TrackingOptions") is not None:
         import capo_sesv2.types.tracking_options
 
         out["tracking_options"] = capo_sesv2.types.tracking_options.deserialize_json(
             data["TrackingOptions"]
         )
-    if "DeliveryOptions" in data:
+    if data.get("DeliveryOptions") is not None:
         import capo_sesv2.types.delivery_options
 
         out["delivery_options"] = capo_sesv2.types.delivery_options.deserialize_json(
             data["DeliveryOptions"]
         )
-    if "ReputationOptions" in data:
+    if data.get("ReputationOptions") is not None:
         import capo_sesv2.types.reputation_options
 
         out["reputation_options"] = (
@@ -128,17 +128,17 @@ def deserialize_json(data: dict) -> CreateConfigurationSetRequest:
                 data["ReputationOptions"]
             )
         )
-    if "SendingOptions" in data:
+    if data.get("SendingOptions") is not None:
         import capo_sesv2.types.sending_options
 
         out["sending_options"] = capo_sesv2.types.sending_options.deserialize_json(
             data["SendingOptions"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])
-    if "SuppressionOptions" in data:
+    if data.get("SuppressionOptions") is not None:
         import capo_sesv2.types.suppression_options
 
         out["suppression_options"] = (
@@ -146,13 +146,13 @@ def deserialize_json(data: dict) -> CreateConfigurationSetRequest:
                 data["SuppressionOptions"]
             )
         )
-    if "VdmOptions" in data:
+    if data.get("VdmOptions") is not None:
         import capo_sesv2.types.vdm_options
 
         out["vdm_options"] = capo_sesv2.types.vdm_options.deserialize_json(
             data["VdmOptions"]
         )
-    if "ArchivingOptions" in data:
+    if data.get("ArchivingOptions") is not None:
         import capo_sesv2.types.archiving_options
 
         out["archiving_options"] = capo_sesv2.types.archiving_options.deserialize_json(

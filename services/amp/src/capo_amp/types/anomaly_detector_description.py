@@ -107,23 +107,23 @@ def serialize_json(value: AnomalyDetectorDescription) -> dict:
 
 def deserialize_json(data: dict) -> AnomalyDetectorDescription:
     out: AnomalyDetectorDescription = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AnomalyDetectorDescription.arn required")
-    if "anomalyDetectorId" in data:
+    if data.get("anomalyDetectorId") is not None:
         out["anomaly_detector_id"] = data["anomalyDetectorId"]
     else:
         raise DeserializationError(
             "AnomalyDetectorDescription.anomaly_detector_id required"
         )
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
     else:
         raise DeserializationError("AnomalyDetectorDescription.alias required")
-    if "evaluationIntervalInSeconds" in data:
+    if data.get("evaluationIntervalInSeconds") is not None:
         out["evaluation_interval_in_seconds"] = data["evaluationIntervalInSeconds"]
-    if "missingDataAction" in data:
+    if data.get("missingDataAction") is not None:
         import capo_amp.types.anomaly_detector_missing_data_action
 
         out["missing_data_action"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> AnomalyDetectorDescription:
                 data["missingDataAction"]
             )
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_amp.types.anomaly_detector_configuration
 
         out["configuration"] = (
@@ -139,13 +139,13 @@ def deserialize_json(data: dict) -> AnomalyDetectorDescription:
                 data["configuration"]
             )
         )
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_amp.types.prometheus_metric_label_map
 
         out["labels"] = capo_amp.types.prometheus_metric_label_map.deserialize_json(
             data["labels"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.anomaly_detector_status
 
         out["status"] = capo_amp.types.anomaly_detector_status.deserialize_json(
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> AnomalyDetectorDescription:
         )
     else:
         raise DeserializationError("AnomalyDetectorDescription.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["created_at"] = capo_amp.types._prelude.timestamp.deserialize_json(
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> AnomalyDetectorDescription:
         )
     else:
         raise DeserializationError("AnomalyDetectorDescription.created_at required")
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["modified_at"] = capo_amp.types._prelude.timestamp.deserialize_json(
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> AnomalyDetectorDescription:
         )
     else:
         raise DeserializationError("AnomalyDetectorDescription.modified_at required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])

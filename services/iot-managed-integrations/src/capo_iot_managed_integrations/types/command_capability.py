@@ -42,19 +42,19 @@ def serialize_json(value: CommandCapability) -> dict:
 
 def deserialize_json(data: dict) -> CommandCapability:
     out: CommandCapability = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CommandCapability.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CommandCapability.name required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("CommandCapability.version required")
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_iot_managed_integrations.types.capability_actions
 
         out["actions"] = (

@@ -36,12 +36,12 @@ def serialize_json(value: S3LogDestination) -> dict:
 
 def deserialize_json(data: dict) -> S3LogDestination:
     out: S3LogDestination = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "BucketOwner" in data:
+    if data.get("BucketOwner") is not None:
         out["bucket_owner"] = data["BucketOwner"]
-    if "OutputFormat" in data:
+    if data.get("OutputFormat") is not None:
         out["output_format"] = data["OutputFormat"]
     return out

@@ -66,19 +66,19 @@ def serialize_aws_json_1_0(value: ListAgreementPaymentRequestsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAgreementPaymentRequestsInput:
     out: ListAgreementPaymentRequestsInput = {}  # type: ignore[typeddict-item]
-    if "partyType" in data:
+    if data.get("partyType") is not None:
         out["party_type"] = data["partyType"]
     else:
         raise DeserializationError(
             "ListAgreementPaymentRequestsInput.party_type required"
         )
-    if "agreementType" in data:
+    if data.get("agreementType") is not None:
         out["agreement_type"] = data["agreementType"]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_marketplace_agreement.types.payment_request_status
 
         out["status"] = (
@@ -86,8 +86,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListAgreementPaymentRequestsInput:
                 data["status"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

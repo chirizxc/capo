@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> FirewallPolicies:
 
     out: FirewallPolicies = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_network_firewall.types.firewall_policy_metadata.deserialize_aws_json_1_0(
                 item

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteModelRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteModelRequest:
     out: DeleteModelRequest = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
     else:
         raise DeserializationError("DeleteModelRequest.model_name required")

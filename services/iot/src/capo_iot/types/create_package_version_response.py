@@ -65,26 +65,26 @@ def serialize_json(value: CreatePackageVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePackageVersionResponse:
     out: CreatePackageVersionResponse = {}  # type: ignore[typeddict-item]
-    if "packageVersionArn" in data:
+    if data.get("packageVersionArn") is not None:
         out["package_version_arn"] = data["packageVersionArn"]
-    if "packageName" in data:
+    if data.get("packageName") is not None:
         out["package_name"] = data["packageName"]
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iot.types.resource_attributes
 
         out["attributes"] = capo_iot.types.resource_attributes.deserialize_json(
             data["attributes"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.package_version_status
 
         out["status"] = capo_iot.types.package_version_status.deserialize_json(
             data["status"]
         )
-    if "errorReason" in data:
+    if data.get("errorReason") is not None:
         out["error_reason"] = data["errorReason"]
     return out

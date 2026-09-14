@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: UpdateFlywheelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFlywheelRequest:
     out: UpdateFlywheelRequest = {}  # type: ignore[typeddict-item]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
     else:
         raise DeserializationError("UpdateFlywheelRequest.flywheel_arn required")
-    if "ActiveModelArn" in data:
+    if data.get("ActiveModelArn") is not None:
         out["active_model_arn"] = data["ActiveModelArn"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "DataSecurityConfig" in data:
+    if data.get("DataSecurityConfig") is not None:
         import capo_comprehend.types.update_data_security_config
 
         out["data_security_config"] = (

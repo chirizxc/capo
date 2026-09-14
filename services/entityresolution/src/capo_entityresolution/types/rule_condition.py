@@ -22,11 +22,11 @@ def serialize_json(value: RuleCondition) -> dict:
 
 def deserialize_json(data: dict) -> RuleCondition:
     out: RuleCondition = {}  # type: ignore[typeddict-item]
-    if "ruleName" in data:
+    if data.get("ruleName") is not None:
         out["rule_name"] = data["ruleName"]
     else:
         raise DeserializationError("RuleCondition.rule_name required")
-    if "condition" in data:
+    if data.get("condition") is not None:
         out["condition"] = data["condition"]
     else:
         raise DeserializationError("RuleCondition.condition required")

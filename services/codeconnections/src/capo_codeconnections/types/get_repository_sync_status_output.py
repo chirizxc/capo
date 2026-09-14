@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: GetRepositorySyncStatusOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRepositorySyncStatusOutput:
     out: GetRepositorySyncStatusOutput = {}  # type: ignore[typeddict-item]
-    if "LatestSync" in data:
+    if data.get("LatestSync") is not None:
         import capo_codeconnections.types.repository_sync_attempt
 
         out["latest_sync"] = (

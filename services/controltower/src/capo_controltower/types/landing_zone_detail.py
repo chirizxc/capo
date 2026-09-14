@@ -74,11 +74,11 @@ def serialize_json(value: LandingZoneDetail) -> dict:
 
 def deserialize_json(data: dict) -> LandingZoneDetail:
     out: LandingZoneDetail = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("LandingZoneDetail.version required")
-    if "remediationTypes" in data:
+    if data.get("remediationTypes") is not None:
         import capo_controltower.types.remediation_types
 
         out["remediation_types"] = (
@@ -86,17 +86,17 @@ def deserialize_json(data: dict) -> LandingZoneDetail:
                 data["remediationTypes"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_controltower.types.landing_zone_status
 
         out["status"] = capo_controltower.types.landing_zone_status.deserialize_json(
             data["status"]
         )
-    if "latestAvailableVersion" in data:
+    if data.get("latestAvailableVersion") is not None:
         out["latest_available_version"] = data["latestAvailableVersion"]
-    if "driftStatus" in data:
+    if data.get("driftStatus") is not None:
         import capo_controltower.types.landing_zone_drift_status_summary
 
         out["drift_status"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> LandingZoneDetail:
                 data["driftStatus"]
             )
         )
-    if "manifest" in data:
+    if data.get("manifest") is not None:
         out["manifest"] = data["manifest"]
     else:
         raise DeserializationError("LandingZoneDetail.manifest required")

@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: LimitExceededException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LimitExceededException_:
     out: LimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("LimitExceededException_.message required")
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_inspector.types.limit_exceeded_error_code
 
         out["error_code"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> LimitExceededException_:
         )
     else:
         raise DeserializationError("LimitExceededException_.error_code required")
-    if "canRetry" in data:
+    if data.get("canRetry") is not None:
         out["can_retry"] = data["canRetry"]
     else:
         raise DeserializationError("LimitExceededException_.can_retry required")
@@ -64,15 +64,18 @@ class LimitExceededException(ServiceError):
 
     code: str | None = "LimitExceededException"
 
-    def __init__(self, data: LimitExceededException_):
+    def __init__(self, data: LimitExceededException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="LimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "LimitExceededException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "LimitExceededException":
+        return cls(deserialize_aws_json_1_1(data), message)

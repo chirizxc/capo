@@ -13,9 +13,9 @@ from capo_redshift_serverless import AsyncRedshiftServerlessClient
 
 
 async def main():
-    async with AsyncRedshiftServerlessClient() as s3:
+    async with AsyncRedshiftServerlessClient() as redshift_serverless:
         # Example: call the create_custom_domain_association operation
-        response = await s3.create_custom_domain_association()
+        response = await redshift_serverless.create_custom_domain_association()
         print(response["custom_domain_name"])
 ```
 
@@ -28,9 +28,9 @@ from capo_redshift_serverless import AsyncRedshiftServerlessClient
 
 
 async def main():
-    async with AsyncRedshiftServerlessClient() as s3:
+    async with AsyncRedshiftServerlessClient() as redshift_serverless:
         # Example: paginate over list_custom_domain_associations
-        async for item in s3.iter_list_custom_domain_associations():
+        async for item in redshift_serverless.iter_list_custom_domain_associations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_redshift_serverless.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncRedshiftServerlessClient() as s3:
+    async with AsyncRedshiftServerlessClient() as redshift_serverless:
         try:
-            await s3.create_custom_domain_association()
+            await redshift_serverless.create_custom_domain_association()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_redshift_serverless import AsyncRedshiftServerlessClient
 
 
 async def main():
-    async with AsyncRedshiftServerlessClient() as s3:
+    async with AsyncRedshiftServerlessClient() as redshift_serverless:
         # Default: 3 attempts for every operation
-        response = await s3.create_custom_domain_association()
+        response = await redshift_serverless.create_custom_domain_association()
 
         # Override per operation
-        response = await s3.create_custom_domain_association(config_overrides={"retry_max_attempts": 5})
+        response = await redshift_serverless.create_custom_domain_association(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_custom_domain_association(config_overrides={"retry_max_attempts": 1})
+        response = await redshift_serverless.create_custom_domain_association(config_overrides={"retry_max_attempts": 1})
 ```

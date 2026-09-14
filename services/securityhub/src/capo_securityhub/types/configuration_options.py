@@ -136,7 +136,7 @@ def serialize_json(value: ConfigurationOptions) -> dict:
 
 
 def deserialize_json(data: dict) -> ConfigurationOptions:
-    if "Integer" in data:
+    if data.get("Integer") is not None:
         import capo_securityhub.types.integer_configuration_options
 
         return {
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> ConfigurationOptions:
                 data["Integer"]
             )
         }
-    elif "IntegerList" in data:
+    elif data.get("IntegerList") is not None:
         import capo_securityhub.types.integer_list_configuration_options
 
         return {
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> ConfigurationOptions:
                 data["IntegerList"]
             )
         }
-    elif "Double" in data:
+    elif data.get("Double") is not None:
         import capo_securityhub.types.double_configuration_options
 
         return {
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> ConfigurationOptions:
                 data["Double"]
             )
         }
-    elif "String" in data:
+    elif data.get("String") is not None:
         import capo_securityhub.types.string_configuration_options
 
         return {
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> ConfigurationOptions:
                 data["String"]
             )
         }
-    elif "StringList" in data:
+    elif data.get("StringList") is not None:
         import capo_securityhub.types.string_list_configuration_options
 
         return {
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> ConfigurationOptions:
                 data["StringList"]
             )
         }
-    elif "Boolean" in data:
+    elif data.get("Boolean") is not None:
         import capo_securityhub.types.boolean_configuration_options
 
         return {
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> ConfigurationOptions:
                 data["Boolean"]
             )
         }
-    elif "Enum" in data:
+    elif data.get("Enum") is not None:
         import capo_securityhub.types.enum_configuration_options
 
         return {
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> ConfigurationOptions:
                 data["Enum"]
             )
         }
-    elif "EnumList" in data:
+    elif data.get("EnumList") is not None:
         import capo_securityhub.types.enum_list_configuration_options
 
         return {

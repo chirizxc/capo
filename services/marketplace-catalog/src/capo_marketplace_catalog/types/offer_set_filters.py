@@ -109,7 +109,7 @@ def serialize_json(value: OfferSetFilters) -> dict:
 
 def deserialize_json(data: dict) -> OfferSetFilters:
     out: OfferSetFilters = {}  # type: ignore[typeddict-item]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         import capo_marketplace_catalog.types.offer_set_entity_id_filter
 
         out["entity_id"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> OfferSetFilters:
                 data["EntityId"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_marketplace_catalog.types.offer_set_name_filter
 
         out["name"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> OfferSetFilters:
                 data["Name"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_marketplace_catalog.types.offer_set_state_filter
 
         out["state"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> OfferSetFilters:
                 data["State"]
             )
         )
-    if "ReleaseDate" in data:
+    if data.get("ReleaseDate") is not None:
         import capo_marketplace_catalog.types.offer_set_release_date_filter
 
         out["release_date"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> OfferSetFilters:
                 data["ReleaseDate"]
             )
         )
-    if "AssociatedOfferIds" in data:
+    if data.get("AssociatedOfferIds") is not None:
         import capo_marketplace_catalog.types.offer_set_associated_offer_ids_filter
 
         out["associated_offer_ids"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> OfferSetFilters:
                 data["AssociatedOfferIds"]
             )
         )
-    if "SolutionId" in data:
+    if data.get("SolutionId") is not None:
         import capo_marketplace_catalog.types.offer_set_solution_id_filter
 
         out["solution_id"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> OfferSetFilters:
                 data["SolutionId"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_marketplace_catalog.types.offer_set_last_modified_date_filter
 
         out["last_modified_date"] = (

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ProcessorParameterList:
 
     out: ProcessorParameterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_firehose.types.processor_parameter.deserialize_aws_json_1_1(item)
         )

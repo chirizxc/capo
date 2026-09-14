@@ -13,9 +13,9 @@ from capo_mediaconnect import AsyncMediaConnectClient
 
 
 async def main():
-    async with AsyncMediaConnectClient() as s3:
+    async with AsyncMediaConnectClient() as media_connect:
         # Example: call the list_entitlements operation
-        response = await s3.list_entitlements()
+        response = await media_connect.list_entitlements()
         print(response["entitlements"])
 ```
 
@@ -28,9 +28,9 @@ from capo_mediaconnect import AsyncMediaConnectClient
 
 
 async def main():
-    async with AsyncMediaConnectClient() as s3:
+    async with AsyncMediaConnectClient() as media_connect:
         # Example: paginate over list_entitlements
-        async for item in s3.iter_list_entitlements():
+        async for item in media_connect.iter_list_entitlements():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_mediaconnect.error import BadRequestException
 
 
 async def main():
-    async with AsyncMediaConnectClient() as s3:
+    async with AsyncMediaConnectClient() as media_connect:
         try:
-            await s3.list_entitlements()
+            await media_connect.list_entitlements()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_mediaconnect import AsyncMediaConnectClient
 
 
 async def main():
-    async with AsyncMediaConnectClient() as s3:
+    async with AsyncMediaConnectClient() as media_connect:
         # Default: 3 attempts for every operation
-        response = await s3.list_entitlements()
+        response = await media_connect.list_entitlements()
 
         # Override per operation
-        response = await s3.list_entitlements(config_overrides={"retry_max_attempts": 5})
+        response = await media_connect.list_entitlements(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_entitlements(config_overrides={"retry_max_attempts": 1})
+        response = await media_connect.list_entitlements(config_overrides={"retry_max_attempts": 1})
 ```

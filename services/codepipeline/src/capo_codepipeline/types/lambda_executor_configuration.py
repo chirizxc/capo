@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: LambdaExecutorConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LambdaExecutorConfiguration:
     out: LambdaExecutorConfiguration = {}  # type: ignore[typeddict-item]
-    if "lambdaFunctionArn" in data:
+    if data.get("lambdaFunctionArn") is not None:
         out["lambda_function_arn"] = data["lambdaFunctionArn"]
     else:
         raise DeserializationError(

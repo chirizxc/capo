@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: TaxConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TaxConfiguration:
     out: TaxConfiguration = {}  # type: ignore[typeddict-item]
-    if "taxEstimation" in data:
+    if data.get("taxEstimation") is not None:
         import capo_marketplace_agreement.types.tax_estimation
 
         out["tax_estimation"] = (

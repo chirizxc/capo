@@ -27,6 +27,8 @@ def serialize_aws_json_1_0(input_to_serialize: ServiceCostDifferenceMap) -> dict
 def deserialize_aws_json_1_0(data: dict) -> ServiceCostDifferenceMap:
     out: ServiceCostDifferenceMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_bcm_pricing_calculator.types.cost_difference
 
         out[key] = (

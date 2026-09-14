@@ -57,11 +57,11 @@ def serialize_aws_json_1_1(value: EntityRecognizerSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerSummary:
     out: EntityRecognizerSummary = {}  # type: ignore[typeddict-item]
-    if "RecognizerName" in data:
+    if data.get("RecognizerName") is not None:
         out["recognizer_name"] = data["RecognizerName"]
-    if "NumberOfVersions" in data:
+    if data.get("NumberOfVersions") is not None:
         out["number_of_versions"] = data["NumberOfVersions"]
-    if "LatestVersionCreatedAt" in data:
+    if data.get("LatestVersionCreatedAt") is not None:
         import capo_comprehend.types.timestamp
 
         out["latest_version_created_at"] = (
@@ -69,9 +69,9 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerSummary:
                 data["LatestVersionCreatedAt"]
             )
         )
-    if "LatestVersionName" in data:
+    if data.get("LatestVersionName") is not None:
         out["latest_version_name"] = data["LatestVersionName"]
-    if "LatestVersionStatus" in data:
+    if data.get("LatestVersionStatus") is not None:
         import capo_comprehend.types.model_status
 
         out["latest_version_status"] = (

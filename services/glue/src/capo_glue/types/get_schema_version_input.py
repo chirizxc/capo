@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: GetSchemaVersionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSchemaVersionInput:
     out: GetSchemaVersionInput = {}  # type: ignore[typeddict-item]
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         import capo_glue.types.schema_id
 
         out["schema_id"] = capo_glue.types.schema_id.deserialize_aws_json_1_1(
             data["SchemaId"]
         )
-    if "SchemaVersionId" in data:
+    if data.get("SchemaVersionId") is not None:
         out["schema_version_id"] = data["SchemaVersionId"]
-    if "SchemaVersionNumber" in data:
+    if data.get("SchemaVersionNumber") is not None:
         import capo_glue.types.schema_version_number
 
         out["schema_version_number"] = (

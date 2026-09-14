@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListGroupResourcesItemList:
 
     out: ListGroupResourcesItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resource_groups.types.list_group_resources_item.deserialize_json(item)
         )

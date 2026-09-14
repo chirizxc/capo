@@ -43,11 +43,11 @@ def serialize_json(value: AwsEc2ClientVpnEndpointClientConnectOptionsDetails) ->
 
 def deserialize_json(data: dict) -> AwsEc2ClientVpnEndpointClientConnectOptionsDetails:
     out: AwsEc2ClientVpnEndpointClientConnectOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "LambdaFunctionArn" in data:
+    if data.get("LambdaFunctionArn") is not None:
         out["lambda_function_arn"] = data["LambdaFunctionArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_securityhub.types.aws_ec2_client_vpn_endpoint_client_connect_options_status_details
 
         out["status"] = (

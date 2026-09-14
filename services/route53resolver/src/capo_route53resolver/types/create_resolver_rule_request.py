@@ -78,15 +78,15 @@ def serialize_aws_json_1_1(value: CreateResolverRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateResolverRuleRequest:
     out: CreateResolverRuleRequest = {}  # type: ignore[typeddict-item]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
     else:
         raise DeserializationError(
             "CreateResolverRuleRequest.creator_request_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RuleType" in data:
+    if data.get("RuleType") is not None:
         import capo_route53resolver.types.rule_type_option
 
         out["rule_type"] = (
@@ -96,9 +96,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateResolverRuleRequest:
         )
     else:
         raise DeserializationError("CreateResolverRuleRequest.rule_type required")
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "TargetIps" in data:
+    if data.get("TargetIps") is not None:
         import capo_route53resolver.types.target_list
 
         out["target_ips"] = (
@@ -106,14 +106,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreateResolverRuleRequest:
                 data["TargetIps"]
             )
         )
-    if "ResolverEndpointId" in data:
+    if data.get("ResolverEndpointId") is not None:
         out["resolver_endpoint_id"] = data["ResolverEndpointId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53resolver.types.tag_list
 
         out["tags"] = capo_route53resolver.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "DelegationRecord" in data:
+    if data.get("DelegationRecord") is not None:
         out["delegation_record"] = data["DelegationRecord"]
     return out

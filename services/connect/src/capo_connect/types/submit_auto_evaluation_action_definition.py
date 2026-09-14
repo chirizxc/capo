@@ -24,7 +24,7 @@ def serialize_json(value: SubmitAutoEvaluationActionDefinition) -> dict:
 
 def deserialize_json(data: dict) -> SubmitAutoEvaluationActionDefinition:
     out: SubmitAutoEvaluationActionDefinition = {}  # type: ignore[typeddict-item]
-    if "EvaluationFormId" in data:
+    if data.get("EvaluationFormId") is not None:
         out["evaluation_form_id"] = data["EvaluationFormId"]
     else:
         raise DeserializationError(

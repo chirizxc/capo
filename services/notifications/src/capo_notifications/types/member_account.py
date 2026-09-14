@@ -44,21 +44,21 @@ def serialize_json(value: MemberAccount) -> dict:
 
 def deserialize_json(data: dict) -> MemberAccount:
     out: MemberAccount = {}  # type: ignore[typeddict-item]
-    if "notificationConfigurationArn" in data:
+    if data.get("notificationConfigurationArn") is not None:
         out["notification_configuration_arn"] = data["notificationConfigurationArn"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("MemberAccount.account_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("MemberAccount.status required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     else:
         raise DeserializationError("MemberAccount.status_reason required")
-    if "organizationalUnitId" in data:
+    if data.get("organizationalUnitId") is not None:
         out["organizational_unit_id"] = data["organizationalUnitId"]
     else:
         raise DeserializationError("MemberAccount.organizational_unit_id required")

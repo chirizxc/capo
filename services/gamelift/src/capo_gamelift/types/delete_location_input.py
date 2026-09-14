@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DeleteLocationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteLocationInput:
     out: DeleteLocationInput = {}  # type: ignore[typeddict-item]
-    if "LocationName" in data:
+    if data.get("LocationName") is not None:
         out["location_name"] = data["LocationName"]
     return out

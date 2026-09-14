@@ -37,9 +37,9 @@ def serialize_json(value: CompatibleVersionsMap) -> dict:
 
 def deserialize_json(data: dict) -> CompatibleVersionsMap:
     out: CompatibleVersionsMap = {}  # type: ignore[typeddict-item]
-    if "SourceVersion" in data:
+    if data.get("SourceVersion") is not None:
         out["source_version"] = data["SourceVersion"]
-    if "TargetVersions" in data:
+    if data.get("TargetVersions") is not None:
         import capo_elasticsearch_service.types.elasticsearch_version_list
 
         out["target_versions"] = (

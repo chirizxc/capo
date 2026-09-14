@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> FailedCampaignStateResponseList:
 
     out: FailedCampaignStateResponseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connectcampaigns.types.failed_campaign_state_response.deserialize_json(
                 item

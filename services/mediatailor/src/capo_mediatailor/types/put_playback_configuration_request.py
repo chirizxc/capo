@@ -188,9 +188,9 @@ def serialize_json(value: PutPlaybackConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutPlaybackConfigurationRequest:
     out: PutPlaybackConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "AdDecisionServerUrl" in data:
+    if data.get("AdDecisionServerUrl") is not None:
         out["ad_decision_server_url"] = data["AdDecisionServerUrl"]
-    if "AvailSuppression" in data:
+    if data.get("AvailSuppression") is not None:
         import capo_mediatailor.types.avail_suppression
 
         out["avail_suppression"] = (
@@ -198,11 +198,11 @@ def deserialize_json(data: dict) -> PutPlaybackConfigurationRequest:
                 data["AvailSuppression"]
             )
         )
-    if "Bumper" in data:
+    if data.get("Bumper") is not None:
         import capo_mediatailor.types.bumper
 
         out["bumper"] = capo_mediatailor.types.bumper.deserialize_json(data["Bumper"])
-    if "CdnConfiguration" in data:
+    if data.get("CdnConfiguration") is not None:
         import capo_mediatailor.types.cdn_configuration
 
         out["cdn_configuration"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> PutPlaybackConfigurationRequest:
                 data["CdnConfiguration"]
             )
         )
-    if "ConfigurationAliases" in data:
+    if data.get("ConfigurationAliases") is not None:
         import capo_mediatailor.types.configuration_aliases_request
 
         out["configuration_aliases"] = (
@@ -218,7 +218,7 @@ def deserialize_json(data: dict) -> PutPlaybackConfigurationRequest:
                 data["ConfigurationAliases"]
             )
         )
-    if "DashConfiguration" in data:
+    if data.get("DashConfiguration") is not None:
         import capo_mediatailor.types.dash_configuration_for_put
 
         out["dash_configuration"] = (
@@ -226,7 +226,7 @@ def deserialize_json(data: dict) -> PutPlaybackConfigurationRequest:
                 data["DashConfiguration"]
             )
         )
-    if "InsertionMode" in data:
+    if data.get("InsertionMode") is not None:
         import capo_mediatailor.types.insertion_mode
 
         out["insertion_mode"] = capo_mediatailor.types.insertion_mode.deserialize_json(
@@ -234,7 +234,7 @@ def deserialize_json(data: dict) -> PutPlaybackConfigurationRequest:
         )
     else:
         out["insertion_mode"] = "STITCHED_ONLY"
-    if "LivePreRollConfiguration" in data:
+    if data.get("LivePreRollConfiguration") is not None:
         import capo_mediatailor.types.live_pre_roll_configuration
 
         out["live_pre_roll_configuration"] = (
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> PutPlaybackConfigurationRequest:
                 data["LivePreRollConfiguration"]
             )
         )
-    if "ManifestProcessingRules" in data:
+    if data.get("ManifestProcessingRules") is not None:
         import capo_mediatailor.types.manifest_processing_rules
 
         out["manifest_processing_rules"] = (
@@ -250,27 +250,27 @@ def deserialize_json(data: dict) -> PutPlaybackConfigurationRequest:
                 data["ManifestProcessingRules"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PutPlaybackConfigurationRequest.name required")
-    if "PersonalizationThresholdSeconds" in data:
+    if data.get("PersonalizationThresholdSeconds") is not None:
         out["personalization_threshold_seconds"] = data[
             "PersonalizationThresholdSeconds"
         ]
-    if "SlateAdUrl" in data:
+    if data.get("SlateAdUrl") is not None:
         out["slate_ad_url"] = data["SlateAdUrl"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(
             data["tags"]
         )
-    if "TranscodeProfileName" in data:
+    if data.get("TranscodeProfileName") is not None:
         out["transcode_profile_name"] = data["TranscodeProfileName"]
-    if "VideoContentSourceUrl" in data:
+    if data.get("VideoContentSourceUrl") is not None:
         out["video_content_source_url"] = data["VideoContentSourceUrl"]
-    if "AdConditioningConfiguration" in data:
+    if data.get("AdConditioningConfiguration") is not None:
         import capo_mediatailor.types.ad_conditioning_configuration
 
         out["ad_conditioning_configuration"] = (
@@ -278,7 +278,7 @@ def deserialize_json(data: dict) -> PutPlaybackConfigurationRequest:
                 data["AdConditioningConfiguration"]
             )
         )
-    if "AdDecisionServerConfiguration" in data:
+    if data.get("AdDecisionServerConfiguration") is not None:
         import capo_mediatailor.types.ad_decision_server_configuration
 
         out["ad_decision_server_configuration"] = (
@@ -286,7 +286,7 @@ def deserialize_json(data: dict) -> PutPlaybackConfigurationRequest:
                 data["AdDecisionServerConfiguration"]
             )
         )
-    if "FunctionMapping" in data:
+    if data.get("FunctionMapping") is not None:
         import capo_mediatailor.types.function_mapping
 
         out["function_mapping"] = (

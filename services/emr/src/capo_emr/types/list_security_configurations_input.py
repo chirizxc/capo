@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ListSecurityConfigurationsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSecurityConfigurationsInput:
     out: ListSecurityConfigurationsInput = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

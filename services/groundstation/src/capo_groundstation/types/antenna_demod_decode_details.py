@@ -18,6 +18,6 @@ def serialize_json(value: AntennaDemodDecodeDetails) -> dict:
 
 def deserialize_json(data: dict) -> AntennaDemodDecodeDetails:
     out: AntennaDemodDecodeDetails = {}  # type: ignore[typeddict-item]
-    if "outputNode" in data:
+    if data.get("outputNode") is not None:
         out["output_node"] = data["outputNode"]
     return out

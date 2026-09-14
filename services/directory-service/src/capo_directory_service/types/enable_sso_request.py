@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: EnableSsoRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnableSsoRequest:
     out: EnableSsoRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("EnableSsoRequest.directory_id required")
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     return out

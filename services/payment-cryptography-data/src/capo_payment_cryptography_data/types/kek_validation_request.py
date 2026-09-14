@@ -43,7 +43,7 @@ def serialize_json(value: KekValidationRequest) -> dict:
 
 def deserialize_json(data: dict) -> KekValidationRequest:
     out: KekValidationRequest = {}  # type: ignore[typeddict-item]
-    if "DeriveKeyAlgorithm" in data:
+    if data.get("DeriveKeyAlgorithm") is not None:
         import capo_payment_cryptography_data.types.symmetric_key_algorithm
 
         out["derive_key_algorithm"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> KekValidationRequest:
         )
     else:
         raise DeserializationError("KekValidationRequest.derive_key_algorithm required")
-    if "RandomKeyMaxLength" in data:
+    if data.get("RandomKeyMaxLength") is not None:
         import capo_payment_cryptography_data.types.random_key_max_length
 
         out["random_key_max_length"] = (

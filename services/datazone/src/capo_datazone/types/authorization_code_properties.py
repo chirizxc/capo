@@ -22,8 +22,8 @@ def serialize_json(value: AuthorizationCodeProperties) -> dict:
 
 def deserialize_json(data: dict) -> AuthorizationCodeProperties:
     out: AuthorizationCodeProperties = {}  # type: ignore[typeddict-item]
-    if "authorizationCode" in data:
+    if data.get("authorizationCode") is not None:
         out["authorization_code"] = data["authorizationCode"]
-    if "redirectUri" in data:
+    if data.get("redirectUri") is not None:
         out["redirect_uri"] = data["redirectUri"]
     return out

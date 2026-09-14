@@ -27,6 +27,6 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CreateGlueIdentityCenterConfigurationResponse:
     out: CreateGlueIdentityCenterConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     return out

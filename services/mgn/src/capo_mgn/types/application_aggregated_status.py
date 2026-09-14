@@ -43,13 +43,13 @@ def serialize_json(value: ApplicationAggregatedStatus) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationAggregatedStatus:
     out: ApplicationAggregatedStatus = {}  # type: ignore[typeddict-item]
-    if "lastUpdateDateTime" in data:
+    if data.get("lastUpdateDateTime") is not None:
         out["last_update_date_time"] = data["lastUpdateDateTime"]
-    if "healthStatus" in data:
+    if data.get("healthStatus") is not None:
         out["health_status"] = data["healthStatus"]
-    if "progressStatus" in data:
+    if data.get("progressStatus") is not None:
         out["progress_status"] = data["progressStatus"]
-    if "totalSourceServers" in data:
+    if data.get("totalSourceServers") is not None:
         out["total_source_servers"] = data["totalSourceServers"]
     else:
         out["total_source_servers"] = 0

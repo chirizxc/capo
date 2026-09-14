@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: DeleteTLSInspectionConfigurationResponse) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteTLSInspectionConfigurationResponse:
     out: DeleteTLSInspectionConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "TLSInspectionConfigurationResponse" in data:
+    if data.get("TLSInspectionConfigurationResponse") is not None:
         import capo_network_firewall.types.tls_inspection_configuration_response
 
         out["tls_inspection_configuration_response"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GroupedByFindingType:
 
     out: GroupedByFindingType = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.finding_type_statistics.deserialize_json(item))
     return out

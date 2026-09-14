@@ -28,12 +28,12 @@ def serialize_aws_json_1_1(value: LicenseSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LicenseSpecification:
     out: LicenseSpecification = {}  # type: ignore[typeddict-item]
-    if "LicenseConfigurationArn" in data:
+    if data.get("LicenseConfigurationArn") is not None:
         out["license_configuration_arn"] = data["LicenseConfigurationArn"]
     else:
         raise DeserializationError(
             "LicenseSpecification.license_configuration_arn required"
         )
-    if "AmiAssociationScope" in data:
+    if data.get("AmiAssociationScope") is not None:
         out["ami_association_scope"] = data["AmiAssociationScope"]
     return out

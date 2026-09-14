@@ -52,11 +52,11 @@ def serialize_aws_json_1_0(value: IngressPointConfiguration) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> IngressPointConfiguration:
-    if "SmtpPassword" in data:
+    if data.get("SmtpPassword") is not None:
         return {"SmtpPassword": data["SmtpPassword"]}
-    elif "SecretArn" in data:
+    elif data.get("SecretArn") is not None:
         return {"SecretArn": data["SecretArn"]}
-    elif "TlsAuthConfiguration" in data:
+    elif data.get("TlsAuthConfiguration") is not None:
         import capo_mailmanager.types.tls_auth_configuration
 
         return {

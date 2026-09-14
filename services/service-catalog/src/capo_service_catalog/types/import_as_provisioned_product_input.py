@@ -48,33 +48,33 @@ def serialize_aws_json_1_1(value: ImportAsProvisionedProductInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportAsProvisionedProductInput:
     out: ImportAsProvisionedProductInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
     else:
         raise DeserializationError(
             "ImportAsProvisionedProductInput.product_id required"
         )
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
     else:
         raise DeserializationError(
             "ImportAsProvisionedProductInput.provisioning_artifact_id required"
         )
-    if "ProvisionedProductName" in data:
+    if data.get("ProvisionedProductName") is not None:
         out["provisioned_product_name"] = data["ProvisionedProductName"]
     else:
         raise DeserializationError(
             "ImportAsProvisionedProductInput.provisioned_product_name required"
         )
-    if "PhysicalId" in data:
+    if data.get("PhysicalId") is not None:
         out["physical_id"] = data["PhysicalId"]
     else:
         raise DeserializationError(
             "ImportAsProvisionedProductInput.physical_id required"
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(

@@ -31,7 +31,7 @@ def serialize_json(value: DescribeDetectMitigationActionsTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDetectMitigationActionsTaskResponse:
     out: DescribeDetectMitigationActionsTaskResponse = {}  # type: ignore[typeddict-item]
-    if "taskSummary" in data:
+    if data.get("taskSummary") is not None:
         import capo_iot.types.detect_mitigation_actions_task_summary
 
         out["task_summary"] = (

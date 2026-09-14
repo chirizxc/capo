@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: ExportKeyCryptogram) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportKeyCryptogram:
     out: ExportKeyCryptogram = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityPublicKeyIdentifier" in data:
+    if data.get("CertificateAuthorityPublicKeyIdentifier") is not None:
         out["certificate_authority_public_key_identifier"] = data[
             "CertificateAuthorityPublicKeyIdentifier"
         ]
@@ -49,12 +49,12 @@ def deserialize_aws_json_1_0(data: dict) -> ExportKeyCryptogram:
         raise DeserializationError(
             "ExportKeyCryptogram.certificate_authority_public_key_identifier required"
         )
-    if "WrappingKeyCertificate" in data:
+    if data.get("WrappingKeyCertificate") is not None:
         out["wrapping_key_certificate"] = data["WrappingKeyCertificate"]
     else:
         raise DeserializationError(
             "ExportKeyCryptogram.wrapping_key_certificate required"
         )
-    if "WrappingSpec" in data:
+    if data.get("WrappingSpec") is not None:
         out["wrapping_spec"] = data["WrappingSpec"]
     return out

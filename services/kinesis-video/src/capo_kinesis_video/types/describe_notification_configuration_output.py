@@ -31,7 +31,7 @@ def serialize_json(value: DescribeNotificationConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeNotificationConfigurationOutput:
     out: DescribeNotificationConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "NotificationConfiguration" in data:
+    if data.get("NotificationConfiguration") is not None:
         import capo_kinesis_video.types.notification_configuration
 
         out["notification_configuration"] = (

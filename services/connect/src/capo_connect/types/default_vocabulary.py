@@ -40,11 +40,11 @@ def serialize_json(value: DefaultVocabulary) -> dict:
 
 def deserialize_json(data: dict) -> DefaultVocabulary:
     out: DefaultVocabulary = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("DefaultVocabulary.instance_id required")
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_connect.types.vocabulary_language_code
 
         out["language_code"] = (
@@ -54,11 +54,11 @@ def deserialize_json(data: dict) -> DefaultVocabulary:
         )
     else:
         raise DeserializationError("DefaultVocabulary.language_code required")
-    if "VocabularyId" in data:
+    if data.get("VocabularyId") is not None:
         out["vocabulary_id"] = data["VocabularyId"]
     else:
         raise DeserializationError("DefaultVocabulary.vocabulary_id required")
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
     else:
         raise DeserializationError("DefaultVocabulary.vocabulary_name required")

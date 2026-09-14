@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: ListDevicesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDevicesRequest:
     out: ListDevicesRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_device_farm.types.device_filters
 
         out["filters"] = capo_device_farm.types.device_filters.deserialize_aws_json_1_1(

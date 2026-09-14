@@ -60,24 +60,24 @@ def serialize_json(value: CommandSummary) -> dict:
 
 def deserialize_json(data: dict) -> CommandSummary:
     out: CommandSummary = {}  # type: ignore[typeddict-item]
-    if "commandArn" in data:
+    if data.get("commandArn") is not None:
         out["command_arn"] = data["commandArn"]
-    if "commandId" in data:
+    if data.get("commandId") is not None:
         out["command_id"] = data["commandId"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "deprecated" in data:
+    if data.get("deprecated") is not None:
         out["deprecated"] = data["deprecated"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iot.types.date_type
 
         out["created_at"] = capo_iot.types.date_type.deserialize_json(data["createdAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iot.types.date_type
 
         out["last_updated_at"] = capo_iot.types.date_type.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "pendingDeletion" in data:
+    if data.get("pendingDeletion") is not None:
         out["pending_deletion"] = data["pendingDeletion"]
     return out

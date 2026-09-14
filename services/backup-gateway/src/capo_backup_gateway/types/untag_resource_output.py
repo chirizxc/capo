@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: UntagResourceOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UntagResourceOutput:
     out: UntagResourceOutput = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     return out

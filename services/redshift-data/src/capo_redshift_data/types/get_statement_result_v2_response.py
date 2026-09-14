@@ -59,7 +59,7 @@ def serialize_aws_json_1_1(value: GetStatementResultV2Response) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetStatementResultV2Response:
     out: GetStatementResultV2Response = {}  # type: ignore[typeddict-item]
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_redshift_data.types.formatted_sql_records
 
         out["records"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetStatementResultV2Response:
         )
     else:
         raise DeserializationError("GetStatementResultV2Response.records required")
-    if "ColumnMetadata" in data:
+    if data.get("ColumnMetadata") is not None:
         import capo_redshift_data.types.column_metadata_list
 
         out["column_metadata"] = (
@@ -77,12 +77,12 @@ def deserialize_aws_json_1_1(data: dict) -> GetStatementResultV2Response:
                 data["ColumnMetadata"]
             )
         )
-    if "TotalNumRows" in data:
+    if data.get("TotalNumRows") is not None:
         out["total_num_rows"] = data["TotalNumRows"]
     else:
         out["total_num_rows"] = 0
-    if "ResultFormat" in data:
+    if data.get("ResultFormat") is not None:
         out["result_format"] = data["ResultFormat"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,10 +31,10 @@ def serialize_json(value: CancelledChangeProperty) -> dict:
 
 def deserialize_json(data: dict) -> CancelledChangeProperty:
     out: CancelledChangeProperty = {}  # type: ignore[typeddict-item]
-    if "PropertyName" in data:
+    if data.get("PropertyName") is not None:
         out["property_name"] = data["PropertyName"]
-    if "CancelledValue" in data:
+    if data.get("CancelledValue") is not None:
         out["cancelled_value"] = data["CancelledValue"]
-    if "ActiveValue" in data:
+    if data.get("ActiveValue") is not None:
         out["active_value"] = data["ActiveValue"]
     return out

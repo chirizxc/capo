@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: CategoricalValues) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CategoricalValues:
     out: CategoricalValues = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.statistical_issue_status
 
         out["status"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> CategoricalValues:
         )
     else:
         raise DeserializationError("CategoricalValues.status required")
-    if "NumberOfCategory" in data:
+    if data.get("NumberOfCategory") is not None:
         out["number_of_category"] = data["NumberOfCategory"]
     return out

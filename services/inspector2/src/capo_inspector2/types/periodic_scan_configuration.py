@@ -36,7 +36,7 @@ def serialize_json(value: PeriodicScanConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PeriodicScanConfiguration:
     out: PeriodicScanConfiguration = {}  # type: ignore[typeddict-item]
-    if "frequency" in data:
+    if data.get("frequency") is not None:
         import capo_inspector2.types.periodic_scan_frequency
 
         out["frequency"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> PeriodicScanConfiguration:
                 data["frequency"]
             )
         )
-    if "frequencyExpression" in data:
+    if data.get("frequencyExpression") is not None:
         out["frequency_expression"] = data["frequencyExpression"]
     return out

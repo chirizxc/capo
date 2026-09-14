@@ -44,13 +44,13 @@ def serialize_json(value: CreateJobTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobTemplateResponse:
     out: CreateJobTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_emr_containers.types.date
 
         out["created_at"] = capo_emr_containers.types.date.deserialize_json(

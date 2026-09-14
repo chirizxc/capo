@@ -45,14 +45,14 @@ def serialize_aws_json_1_1(value: ListAliasesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAliasesRequest:
     out: ListAliasesRequest = {}  # type: ignore[typeddict-item]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

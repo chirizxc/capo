@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: SourceIpConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceIpConfig:
     out: SourceIpConfig = {}  # type: ignore[typeddict-item]
-    if "Cidrs" in data:
+    if data.get("Cidrs") is not None:
         import capo_sagemaker.types.cidrs
 
         out["cidrs"] = capo_sagemaker.types.cidrs.deserialize_aws_json_1_1(

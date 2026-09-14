@@ -73,27 +73,27 @@ def serialize_json(value: ListJobsByConsumableResourceSummary) -> dict:
 
 def deserialize_json(data: dict) -> ListJobsByConsumableResourceSummary:
     out: ListJobsByConsumableResourceSummary = {}  # type: ignore[typeddict-item]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "jobQueueArn" in data:
+    if data.get("jobQueueArn") is not None:
         out["job_queue_arn"] = data["jobQueueArn"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "jobDefinitionArn" in data:
+    if data.get("jobDefinitionArn") is not None:
         out["job_definition_arn"] = data["jobDefinitionArn"]
-    if "shareIdentifier" in data:
+    if data.get("shareIdentifier") is not None:
         out["share_identifier"] = data["shareIdentifier"]
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         out["job_status"] = data["jobStatus"]
-    if "quantity" in data:
+    if data.get("quantity") is not None:
         out["quantity"] = data["quantity"]
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         out["started_at"] = data["startedAt"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "consumableResourceProperties" in data:
+    if data.get("consumableResourceProperties") is not None:
         import capo_batch.types.consumable_resource_properties
 
         out["consumable_resource_properties"] = (

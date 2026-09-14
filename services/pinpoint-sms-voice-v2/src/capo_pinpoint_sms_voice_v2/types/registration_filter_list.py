@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> RegistrationFilterList:
 
     out: RegistrationFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pinpoint_sms_voice_v2.types.registration_filter.deserialize_aws_json_1_0(
                 item

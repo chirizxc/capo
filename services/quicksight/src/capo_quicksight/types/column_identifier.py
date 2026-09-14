@@ -28,11 +28,11 @@ def serialize_json(value: ColumnIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> ColumnIdentifier:
     out: ColumnIdentifier = {}  # type: ignore[typeddict-item]
-    if "DataSetIdentifier" in data:
+    if data.get("DataSetIdentifier") is not None:
         out["data_set_identifier"] = data["DataSetIdentifier"]
     else:
         raise DeserializationError("ColumnIdentifier.data_set_identifier required")
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
     else:
         raise DeserializationError("ColumnIdentifier.column_name required")

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ContributionAnalysisFactorsList:
 
     out: ContributionAnalysisFactorsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.contribution_analysis_factor.deserialize_json(item)
         )

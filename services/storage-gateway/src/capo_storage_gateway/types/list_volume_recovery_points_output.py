@@ -35,9 +35,9 @@ def serialize_aws_json_1_1(value: ListVolumeRecoveryPointsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListVolumeRecoveryPointsOutput:
     out: ListVolumeRecoveryPointsOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "VolumeRecoveryPointInfos" in data:
+    if data.get("VolumeRecoveryPointInfos") is not None:
         import capo_storage_gateway.types.volume_recovery_point_infos
 
         out["volume_recovery_point_infos"] = (

@@ -54,21 +54,21 @@ def serialize_json(value: OperationEvent) -> dict:
 
 def deserialize_json(data: dict) -> OperationEvent:
     out: OperationEvent = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_ssm_sap.types.resource
 
         out["resource"] = capo_ssm_sap.types.resource.deserialize_json(data["Resource"])
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_ssm_sap.types.operation_event_status
 
         out["status"] = capo_ssm_sap.types.operation_event_status.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_ssm_sap.types._prelude.timestamp
 
         out["timestamp"] = capo_ssm_sap.types._prelude.timestamp.deserialize_json(

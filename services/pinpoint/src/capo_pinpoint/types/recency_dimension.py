@@ -34,13 +34,13 @@ def serialize_json(value: RecencyDimension) -> dict:
 
 def deserialize_json(data: dict) -> RecencyDimension:
     out: RecencyDimension = {}  # type: ignore[typeddict-item]
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         import capo_pinpoint.types.duration
 
         out["duration"] = capo_pinpoint.types.duration.deserialize_json(
             data["Duration"]
         )
-    if "RecencyType" in data:
+    if data.get("RecencyType") is not None:
         import capo_pinpoint.types.recency_type
 
         out["recency_type"] = capo_pinpoint.types.recency_type.deserialize_json(

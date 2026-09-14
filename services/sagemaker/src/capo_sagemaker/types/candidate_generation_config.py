@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CandidateGenerationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CandidateGenerationConfig:
     out: CandidateGenerationConfig = {}  # type: ignore[typeddict-item]
-    if "AlgorithmsConfig" in data:
+    if data.get("AlgorithmsConfig") is not None:
         import capo_sagemaker.types.auto_ml_algorithms_config
 
         out["algorithms_config"] = (

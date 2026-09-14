@@ -31,6 +31,8 @@ def deserialize_json(
 
     out: RoutingProfileManualAssignmentQueueConfigSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.routing_profile_manual_assignment_queue_config_summary.deserialize_json(
                 item

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ConflictingItems:
 
     out: ConflictingItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kendra.types.conflicting_item.deserialize_aws_json_1_1(item))
     return out

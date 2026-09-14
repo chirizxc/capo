@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: OrderByElement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrderByElement:
     out: OrderByElement = {}  # type: ignore[typeddict-item]
-    if "fieldName" in data:
+    if data.get("fieldName") is not None:
         out["field_name"] = data["fieldName"]
     else:
         raise DeserializationError("OrderByElement.field_name required")
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_application_discovery_service.types.order_string
 
         out["sort_order"] = (

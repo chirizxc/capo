@@ -54,13 +54,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AddApplicationInputProcessingConfigurationResponse:
     out: AddApplicationInputProcessingConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationARN" in data:
+    if data.get("ApplicationARN") is not None:
         out["application_arn"] = data["ApplicationARN"]
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
-    if "InputId" in data:
+    if data.get("InputId") is not None:
         out["input_id"] = data["InputId"]
-    if "InputProcessingConfigurationDescription" in data:
+    if data.get("InputProcessingConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.input_processing_configuration_description
 
         out["input_processing_configuration_description"] = (

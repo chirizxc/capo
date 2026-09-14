@@ -31,15 +31,15 @@ def serialize_json(value: Call) -> dict:
 
 def deserialize_json(data: dict) -> Call:
     out: Call = {}  # type: ignore[typeddict-item]
-    if "callId" in data:
+    if data.get("callId") is not None:
         out["call_id"] = data["callId"]
     else:
         raise DeserializationError("Call.call_id required")
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
     else:
         raise DeserializationError("Call.input required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Call.name required")

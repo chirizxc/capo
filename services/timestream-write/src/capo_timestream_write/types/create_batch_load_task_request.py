@@ -80,9 +80,9 @@ def serialize_aws_json_1_0(value: CreateBatchLoadTaskRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateBatchLoadTaskRequest:
     out: CreateBatchLoadTaskRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "DataModelConfiguration" in data:
+    if data.get("DataModelConfiguration") is not None:
         import capo_timestream_write.types.data_model_configuration
 
         out["data_model_configuration"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateBatchLoadTaskRequest:
                 data["DataModelConfiguration"]
             )
         )
-    if "DataSourceConfiguration" in data:
+    if data.get("DataSourceConfiguration") is not None:
         import capo_timestream_write.types.data_source_configuration
 
         out["data_source_configuration"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateBatchLoadTaskRequest:
         raise DeserializationError(
             "CreateBatchLoadTaskRequest.data_source_configuration required"
         )
-    if "ReportConfiguration" in data:
+    if data.get("ReportConfiguration") is not None:
         import capo_timestream_write.types.report_configuration
 
         out["report_configuration"] = (
@@ -114,18 +114,18 @@ def deserialize_aws_json_1_0(data: dict) -> CreateBatchLoadTaskRequest:
         raise DeserializationError(
             "CreateBatchLoadTaskRequest.report_configuration required"
         )
-    if "TargetDatabaseName" in data:
+    if data.get("TargetDatabaseName") is not None:
         out["target_database_name"] = data["TargetDatabaseName"]
     else:
         raise DeserializationError(
             "CreateBatchLoadTaskRequest.target_database_name required"
         )
-    if "TargetTableName" in data:
+    if data.get("TargetTableName") is not None:
         out["target_table_name"] = data["TargetTableName"]
     else:
         raise DeserializationError(
             "CreateBatchLoadTaskRequest.target_table_name required"
         )
-    if "RecordVersion" in data:
+    if data.get("RecordVersion") is not None:
         out["record_version"] = data["RecordVersion"]
     return out

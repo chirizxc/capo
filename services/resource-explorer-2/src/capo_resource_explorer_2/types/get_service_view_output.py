@@ -28,7 +28,7 @@ def serialize_json(value: GetServiceViewOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceViewOutput:
     out: GetServiceViewOutput = {}  # type: ignore[typeddict-item]
-    if "View" in data:
+    if data.get("View") is not None:
         import capo_resource_explorer_2.types.service_view
 
         out["view"] = capo_resource_explorer_2.types.service_view.deserialize_json(

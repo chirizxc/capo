@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> HeaderList:
 
     out: HeaderList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.http_action_header.deserialize_json(item))
     return out

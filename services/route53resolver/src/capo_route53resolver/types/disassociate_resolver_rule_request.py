@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: DisassociateResolverRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateResolverRuleRequest:
     out: DisassociateResolverRuleRequest = {}  # type: ignore[typeddict-item]
-    if "VPCId" in data:
+    if data.get("VPCId") is not None:
         out["vpc_id"] = data["VPCId"]
     else:
         raise DeserializationError("DisassociateResolverRuleRequest.vpc_id required")
-    if "ResolverRuleId" in data:
+    if data.get("ResolverRuleId") is not None:
         out["resolver_rule_id"] = data["ResolverRuleId"]
     else:
         raise DeserializationError(

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_internetmonitor._auth._signers
@@ -119,12 +120,14 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.create_monitor_input.CreateMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_internetmonitor.types.create_monitor_input.CreateMonitorInput = {
+            "monitor_name": monitor_name
+        }
         if resources is not None:
             input_["resources"] = resources
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if max_city_networks_to_monitor is not None:
@@ -143,6 +146,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -183,8 +187,9 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.get_monitor_input.GetMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_internetmonitor.types.get_monitor_input.GetMonitorInput = {
+            "monitor_name": monitor_name
+        }
         if linked_account_id is not None:
             input_["linked_account_id"] = linked_account_id
 
@@ -193,6 +198,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -261,16 +267,18 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.update_monitor_input.UpdateMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_internetmonitor.types.update_monitor_input.UpdateMonitorInput = {
+            "monitor_name": monitor_name
+        }
         if resources_to_add is not None:
             input_["resources_to_add"] = resources_to_add
         if resources_to_remove is not None:
             input_["resources_to_remove"] = resources_to_remove
         if status is not None:
             input_["status"] = status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if max_city_networks_to_monitor is not None:
             input_["max_city_networks_to_monitor"] = max_city_networks_to_monitor
         if internet_measurements_log_delivery is not None:
@@ -287,6 +295,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -323,14 +332,16 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.delete_monitor_input.DeleteMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_internetmonitor.types.delete_monitor_input.DeleteMonitorInput = {
+            "monitor_name": monitor_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -375,7 +386,7 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.list_monitors_input.ListMonitorsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_internetmonitor.types.list_monitors_input.ListMonitorsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -390,6 +401,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_results(
@@ -435,9 +447,10 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.get_query_results_input.GetQueryResultsInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_internetmonitor.types.get_query_results_input.GetQueryResultsInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -448,6 +461,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_status(
@@ -487,15 +501,17 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.get_query_status_input.GetQueryStatusInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_internetmonitor.types.get_query_status_input.GetQueryStatusInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_query(
@@ -547,11 +563,12 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.start_query_input.StartQueryInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["query_type"] = query_type
+        input_: capo_internetmonitor.types.start_query_input.StartQueryInput = {
+            "monitor_name": monitor_name,
+            "start_time": start_time,
+            "end_time": end_time,
+            "query_type": query_type,
+        }
         if filter_parameters is not None:
             input_["filter_parameters"] = filter_parameters
         if linked_account_id is not None:
@@ -562,6 +579,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_query(
@@ -601,15 +619,17 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.stop_query_input.StopQueryInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_internetmonitor.types.stop_query_input.StopQueryInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -676,12 +696,14 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.create_monitor_input.CreateMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_internetmonitor.types.create_monitor_input.CreateMonitorInput = {
+            "monitor_name": monitor_name
+        }
         if resources is not None:
             input_["resources"] = resources
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if max_city_networks_to_monitor is not None:
@@ -700,6 +722,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -741,8 +764,9 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.get_monitor_input.GetMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_internetmonitor.types.get_monitor_input.GetMonitorInput = {
+            "monitor_name": monitor_name
+        }
         if linked_account_id is not None:
             input_["linked_account_id"] = linked_account_id
 
@@ -751,6 +775,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -820,16 +845,18 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.update_monitor_input.UpdateMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_internetmonitor.types.update_monitor_input.UpdateMonitorInput = {
+            "monitor_name": monitor_name
+        }
         if resources_to_add is not None:
             input_["resources_to_add"] = resources_to_add
         if resources_to_remove is not None:
             input_["resources_to_remove"] = resources_to_remove
         if status is not None:
             input_["status"] = status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if max_city_networks_to_monitor is not None:
             input_["max_city_networks_to_monitor"] = max_city_networks_to_monitor
         if internet_measurements_log_delivery is not None:
@@ -846,6 +873,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -883,14 +911,16 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.delete_monitor_input.DeleteMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_internetmonitor.types.delete_monitor_input.DeleteMonitorInput = {
+            "monitor_name": monitor_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -936,7 +966,7 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.list_monitors_input.ListMonitorsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_internetmonitor.types.list_monitors_input.ListMonitorsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -951,6 +981,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query_results(
@@ -997,9 +1028,10 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.get_query_results_input.GetQueryResultsInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_internetmonitor.types.get_query_results_input.GetQueryResultsInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1010,6 +1042,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query_status(
@@ -1050,15 +1083,17 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.get_query_status_input.GetQueryStatusInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_internetmonitor.types.get_query_status_input.GetQueryStatusInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_query(
@@ -1111,11 +1146,12 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.start_query_input.StartQueryInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["query_type"] = query_type
+        input_: capo_internetmonitor.types.start_query_input.StartQueryInput = {
+            "monitor_name": monitor_name,
+            "start_time": start_time,
+            "end_time": end_time,
+            "query_type": query_type,
+        }
         if filter_parameters is not None:
             input_["filter_parameters"] = filter_parameters
         if linked_account_id is not None:
@@ -1126,6 +1162,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_query(
@@ -1166,13 +1203,15 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.stop_query_input.StopQueryInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_internetmonitor.types.stop_query_input.StopQueryInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

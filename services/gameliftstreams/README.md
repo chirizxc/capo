@@ -13,9 +13,9 @@ from capo_gameliftstreams import AsyncGameLiftStreamsClient
 
 
 async def main():
-    async with AsyncGameLiftStreamsClient() as s3:
+    async with AsyncGameLiftStreamsClient() as game_lift_streams:
         # Example: call the add_stream_group_locations operation
-        response = await s3.add_stream_group_locations()
+        response = await game_lift_streams.add_stream_group_locations()
         print(response["identifier"])
 ```
 
@@ -28,9 +28,9 @@ from capo_gameliftstreams import AsyncGameLiftStreamsClient
 
 
 async def main():
-    async with AsyncGameLiftStreamsClient() as s3:
+    async with AsyncGameLiftStreamsClient() as game_lift_streams:
         # Example: paginate over list_stream_sessions
-        async for item in s3.iter_list_stream_sessions():
+        async for item in game_lift_streams.iter_list_stream_sessions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_gameliftstreams.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncGameLiftStreamsClient() as s3:
+    async with AsyncGameLiftStreamsClient() as game_lift_streams:
         try:
-            await s3.add_stream_group_locations()
+            await game_lift_streams.add_stream_group_locations()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_gameliftstreams import AsyncGameLiftStreamsClient
 
 
 async def main():
-    async with AsyncGameLiftStreamsClient() as s3:
+    async with AsyncGameLiftStreamsClient() as game_lift_streams:
         # Default: 3 attempts for every operation
-        response = await s3.add_stream_group_locations()
+        response = await game_lift_streams.add_stream_group_locations()
 
         # Override per operation
-        response = await s3.add_stream_group_locations(config_overrides={"retry_max_attempts": 5})
+        response = await game_lift_streams.add_stream_group_locations(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_stream_group_locations(config_overrides={"retry_max_attempts": 1})
+        response = await game_lift_streams.add_stream_group_locations(config_overrides={"retry_max_attempts": 1})
 ```

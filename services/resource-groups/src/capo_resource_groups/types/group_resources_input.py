@@ -32,11 +32,11 @@ def serialize_json(value: GroupResourcesInput) -> dict:
 
 def deserialize_json(data: dict) -> GroupResourcesInput:
     out: GroupResourcesInput = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
     else:
         raise DeserializationError("GroupResourcesInput.group required")
-    if "ResourceArns" in data:
+    if data.get("ResourceArns") is not None:
         import capo_resource_groups.types.resource_arn_list
 
         out["resource_arns"] = (

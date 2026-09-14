@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ModelPackageValidationProfile) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelPackageValidationProfile:
     out: ModelPackageValidationProfile = {}  # type: ignore[typeddict-item]
-    if "ProfileName" in data:
+    if data.get("ProfileName") is not None:
         out["profile_name"] = data["ProfileName"]
-    if "TransformJobDefinition" in data:
+    if data.get("TransformJobDefinition") is not None:
         import capo_sagemaker.types.transform_job_definition
 
         out["transform_job_definition"] = (

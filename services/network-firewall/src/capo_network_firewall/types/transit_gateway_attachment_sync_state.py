@@ -43,9 +43,9 @@ def serialize_aws_json_1_0(value: TransitGatewayAttachmentSyncState) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TransitGatewayAttachmentSyncState:
     out: TransitGatewayAttachmentSyncState = {}  # type: ignore[typeddict-item]
-    if "AttachmentId" in data:
+    if data.get("AttachmentId") is not None:
         out["attachment_id"] = data["AttachmentId"]
-    if "TransitGatewayAttachmentStatus" in data:
+    if data.get("TransitGatewayAttachmentStatus") is not None:
         import capo_network_firewall.types.transit_gateway_attachment_status
 
         out["transit_gateway_attachment_status"] = (
@@ -53,6 +53,6 @@ def deserialize_aws_json_1_0(data: dict) -> TransitGatewayAttachmentSyncState:
                 data["TransitGatewayAttachmentStatus"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

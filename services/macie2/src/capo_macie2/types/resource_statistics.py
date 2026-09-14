@@ -63,25 +63,25 @@ def serialize_json(value: ResourceStatistics) -> dict:
 
 def deserialize_json(data: dict) -> ResourceStatistics:
     out: ResourceStatistics = {}  # type: ignore[typeddict-item]
-    if "totalBytesClassified" in data:
+    if data.get("totalBytesClassified") is not None:
         out["total_bytes_classified"] = data["totalBytesClassified"]
-    if "totalDetections" in data:
+    if data.get("totalDetections") is not None:
         out["total_detections"] = data["totalDetections"]
-    if "totalDetectionsSuppressed" in data:
+    if data.get("totalDetectionsSuppressed") is not None:
         out["total_detections_suppressed"] = data["totalDetectionsSuppressed"]
-    if "totalItemsClassified" in data:
+    if data.get("totalItemsClassified") is not None:
         out["total_items_classified"] = data["totalItemsClassified"]
-    if "totalItemsSensitive" in data:
+    if data.get("totalItemsSensitive") is not None:
         out["total_items_sensitive"] = data["totalItemsSensitive"]
-    if "totalItemsSkipped" in data:
+    if data.get("totalItemsSkipped") is not None:
         out["total_items_skipped"] = data["totalItemsSkipped"]
-    if "totalItemsSkippedInvalidEncryption" in data:
+    if data.get("totalItemsSkippedInvalidEncryption") is not None:
         out["total_items_skipped_invalid_encryption"] = data[
             "totalItemsSkippedInvalidEncryption"
         ]
-    if "totalItemsSkippedInvalidKms" in data:
+    if data.get("totalItemsSkippedInvalidKms") is not None:
         out["total_items_skipped_invalid_kms"] = data["totalItemsSkippedInvalidKms"]
-    if "totalItemsSkippedPermissionDenied" in data:
+    if data.get("totalItemsSkippedPermissionDenied") is not None:
         out["total_items_skipped_permission_denied"] = data[
             "totalItemsSkippedPermissionDenied"
         ]

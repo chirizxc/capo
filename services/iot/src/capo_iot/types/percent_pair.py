@@ -19,19 +19,35 @@ class PercentPair(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: PercentPair) -> dict:
     out: dict = {}
-    out["percent"] = value.get("percent", 0)
-    out["value"] = value.get("value", 0)
+    out["percent"] = (
+        "NaN"
+        if value.get("percent", 0) != value.get("percent", 0)
+        else "Infinity"
+        if value.get("percent", 0) == float("inf")
+        else "-Infinity"
+        if value.get("percent", 0) == float("-inf")
+        else value.get("percent", 0)
+    )
+    out["value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> PercentPair:
     out: PercentPair = {}  # type: ignore[typeddict-item]
-    if "percent" in data:
-        out["percent"] = data["percent"]
+    if data.get("percent") is not None:
+        out["percent"] = float(data["percent"])
     else:
         out["percent"] = 0
-    if "value" in data:
-        out["value"] = data["value"]
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
     else:
         out["value"] = 0
     return out

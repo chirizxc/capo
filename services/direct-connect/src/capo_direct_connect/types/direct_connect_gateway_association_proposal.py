@@ -92,15 +92,15 @@ def serialize_aws_json_1_1(value: DirectConnectGatewayAssociationProposal) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAssociationProposal:
     out: DirectConnectGatewayAssociationProposal = {}  # type: ignore[typeddict-item]
-    if "proposalId" in data:
+    if data.get("proposalId") is not None:
         out["proposal_id"] = data["proposalId"]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
-    if "directConnectGatewayOwnerAccount" in data:
+    if data.get("directConnectGatewayOwnerAccount") is not None:
         out["direct_connect_gateway_owner_account"] = data[
             "directConnectGatewayOwnerAccount"
         ]
-    if "proposalState" in data:
+    if data.get("proposalState") is not None:
         import capo_direct_connect.types.direct_connect_gateway_association_proposal_state
 
         out["proposal_state"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAssociationPropo
                 data["proposalState"]
             )
         )
-    if "associatedGateway" in data:
+    if data.get("associatedGateway") is not None:
         import capo_direct_connect.types.associated_gateway
 
         out["associated_gateway"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAssociationPropo
                 data["associatedGateway"]
             )
         )
-    if "existingAllowedPrefixesToDirectConnectGateway" in data:
+    if data.get("existingAllowedPrefixesToDirectConnectGateway") is not None:
         import capo_direct_connect.types.route_filter_prefix_list
 
         out["existing_allowed_prefixes_to_direct_connect_gateway"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAssociationPropo
                 data["existingAllowedPrefixesToDirectConnectGateway"]
             )
         )
-    if "requestedAllowedPrefixesToDirectConnectGateway" in data:
+    if data.get("requestedAllowedPrefixesToDirectConnectGateway") is not None:
         import capo_direct_connect.types.route_filter_prefix_list
 
         out["requested_allowed_prefixes_to_direct_connect_gateway"] = (

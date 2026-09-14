@@ -27,7 +27,7 @@ def serialize_json(value: GetAdConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAdConfigurationResponse:
     out: GetAdConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "adConfiguration" in data:
+    if data.get("adConfiguration") is not None:
         import capo_ivs.types.ad_configuration
 
         out["ad_configuration"] = capo_ivs.types.ad_configuration.deserialize_json(

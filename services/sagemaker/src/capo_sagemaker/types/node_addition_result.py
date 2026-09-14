@@ -64,15 +64,15 @@ def serialize_aws_json_1_1(value: NodeAdditionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NodeAdditionResult:
     out: NodeAdditionResult = {}  # type: ignore[typeddict-item]
-    if "NodeLogicalId" in data:
+    if data.get("NodeLogicalId") is not None:
         out["node_logical_id"] = data["NodeLogicalId"]
     else:
         raise DeserializationError("NodeAdditionResult.node_logical_id required")
-    if "InstanceGroupName" in data:
+    if data.get("InstanceGroupName") is not None:
         out["instance_group_name"] = data["InstanceGroupName"]
     else:
         raise DeserializationError("NodeAdditionResult.instance_group_name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.cluster_instance_status
 
         out["status"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> NodeAdditionResult:
         )
     else:
         raise DeserializationError("NodeAdditionResult.status required")
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_sagemaker.types.cluster_availability_zones
 
         out["availability_zones"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> NodeAdditionResult:
                 data["AvailabilityZones"]
             )
         )
-    if "InstanceTypes" in data:
+    if data.get("InstanceTypes") is not None:
         import capo_sagemaker.types.cluster_instance_types
 
         out["instance_types"] = (

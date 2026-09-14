@@ -28,24 +28,32 @@ def serialize_json(value: ResultData) -> dict:
     import capo_wisdom.types.document
 
     out["document"] = capo_wisdom.types.document.serialize_json(value["document"])
-    out["relevanceScore"] = value.get("relevance_score", 0)
+    out["relevanceScore"] = (
+        "NaN"
+        if value.get("relevance_score", 0) != value.get("relevance_score", 0)
+        else "Infinity"
+        if value.get("relevance_score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("relevance_score", 0) == float("-inf")
+        else value.get("relevance_score", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> ResultData:
     out: ResultData = {}  # type: ignore[typeddict-item]
-    if "resultId" in data:
+    if data.get("resultId") is not None:
         out["result_id"] = data["resultId"]
     else:
         raise DeserializationError("ResultData.result_id required")
-    if "document" in data:
+    if data.get("document") is not None:
         import capo_wisdom.types.document
 
         out["document"] = capo_wisdom.types.document.deserialize_json(data["document"])
     else:
         raise DeserializationError("ResultData.document required")
-    if "relevanceScore" in data:
-        out["relevance_score"] = data["relevanceScore"]
+    if data.get("relevanceScore") is not None:
+        out["relevance_score"] = float(data["relevanceScore"])
     else:
         out["relevance_score"] = 0
     return out

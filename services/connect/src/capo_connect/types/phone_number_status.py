@@ -36,7 +36,7 @@ def serialize_json(value: PhoneNumberStatus) -> dict:
 
 def deserialize_json(data: dict) -> PhoneNumberStatus:
     out: PhoneNumberStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.phone_number_workflow_status
 
         out["status"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> PhoneNumberStatus:
                 data["Status"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

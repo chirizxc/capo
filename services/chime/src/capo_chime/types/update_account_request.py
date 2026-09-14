@@ -35,9 +35,9 @@ def serialize_json(value: UpdateAccountRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountRequest:
     out: UpdateAccountRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DefaultLicense" in data:
+    if data.get("DefaultLicense") is not None:
         import capo_chime.types.license
 
         out["default_license"] = capo_chime.types.license.deserialize_json(

@@ -35,11 +35,11 @@ def serialize_aws_json_1_0(value: EventSourceMapping) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EventSourceMapping:
     out: EventSourceMapping = {}  # type: ignore[typeddict-item]
-    if "crossAccountRole" in data:
+    if data.get("crossAccountRole") is not None:
         out["cross_account_role"] = data["crossAccountRole"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("EventSourceMapping.arn required")

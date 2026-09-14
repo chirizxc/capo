@@ -37,7 +37,15 @@ def serialize_json(value: CreateFarmRequest) -> dict:
     out["description"] = value.get("description", "")
     if "kms_key_arn" in value:
         out["kmsKeyArn"] = value["kms_key_arn"]
-    out["costScaleFactor"] = value.get("cost_scale_factor", 1)
+    out["costScaleFactor"] = (
+        "NaN"
+        if value.get("cost_scale_factor", 1) != value.get("cost_scale_factor", 1)
+        else "Infinity"
+        if value.get("cost_scale_factor", 1) == float("inf")
+        else "-Infinity"
+        if value.get("cost_scale_factor", 1) == float("-inf")
+        else value.get("cost_scale_factor", 1)
+    )
     if "tags" in value:
         import capo_deadline.types.tags
 
@@ -47,21 +55,21 @@ def serialize_json(value: CreateFarmRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFarmRequest:
     out: CreateFarmRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateFarmRequest.display_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         out["description"] = ""
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "costScaleFactor" in data:
-        out["cost_scale_factor"] = data["costScaleFactor"]
+    if data.get("costScaleFactor") is not None:
+        out["cost_scale_factor"] = float(data["costScaleFactor"])
     else:
         out["cost_scale_factor"] = 1
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_deadline.types.tags
 
         out["tags"] = capo_deadline.types.tags.deserialize_json(data["tags"])

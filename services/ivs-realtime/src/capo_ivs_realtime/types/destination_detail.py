@@ -25,7 +25,7 @@ def serialize_json(value: DestinationDetail) -> dict:
 
 def deserialize_json(data: dict) -> DestinationDetail:
     out: DestinationDetail = {}  # type: ignore[typeddict-item]
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_ivs_realtime.types.s3_detail
 
         out["s3"] = capo_ivs_realtime.types.s3_detail.deserialize_json(data["s3"])

@@ -24,7 +24,7 @@ def serialize_json(value: AssociateServiceRoleToAccountRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateServiceRoleToAccountRequest:
     out: AssociateServiceRoleToAccountRequest = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError(

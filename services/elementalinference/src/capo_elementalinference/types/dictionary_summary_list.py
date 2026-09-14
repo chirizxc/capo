@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DictionarySummaryList:
 
     out: DictionarySummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elementalinference.types.dictionary_summary.deserialize_json(item)
         )

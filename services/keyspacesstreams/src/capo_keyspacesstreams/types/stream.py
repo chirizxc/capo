@@ -35,19 +35,19 @@ def serialize_aws_json_1_0(value: Stream) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Stream:
     out: Stream = {}  # type: ignore[typeddict-item]
-    if "streamArn" in data:
+    if data.get("streamArn") is not None:
         out["stream_arn"] = data["streamArn"]
     else:
         raise DeserializationError("Stream.stream_arn required")
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError("Stream.keyspace_name required")
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("Stream.table_name required")
-    if "streamLabel" in data:
+    if data.get("streamLabel") is not None:
         out["stream_label"] = data["streamLabel"]
     else:
         raise DeserializationError("Stream.stream_label required")

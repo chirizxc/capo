@@ -57,15 +57,15 @@ def serialize_aws_json_1_1(value: GetOpenIdTokenForDeveloperIdentityInput) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetOpenIdTokenForDeveloperIdentityInput:
     out: GetOpenIdTokenForDeveloperIdentityInput = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
     else:
         raise DeserializationError(
             "GetOpenIdTokenForDeveloperIdentityInput.identity_pool_id required"
         )
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
-    if "Logins" in data:
+    if data.get("Logins") is not None:
         import capo_cognito_identity.types.logins_map
 
         out["logins"] = capo_cognito_identity.types.logins_map.deserialize_aws_json_1_1(
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetOpenIdTokenForDeveloperIdentityIn
         raise DeserializationError(
             "GetOpenIdTokenForDeveloperIdentityInput.logins required"
         )
-    if "PrincipalTags" in data:
+    if data.get("PrincipalTags") is not None:
         import capo_cognito_identity.types.principal_tags
 
         out["principal_tags"] = (
@@ -83,6 +83,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetOpenIdTokenForDeveloperIdentityIn
                 data["PrincipalTags"]
             )
         )
-    if "TokenDuration" in data:
+    if data.get("TokenDuration") is not None:
         out["token_duration"] = data["TokenDuration"]
     return out

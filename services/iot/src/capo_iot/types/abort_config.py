@@ -28,7 +28,7 @@ def serialize_json(value: AbortConfig) -> dict:
 
 def deserialize_json(data: dict) -> AbortConfig:
     out: AbortConfig = {}  # type: ignore[typeddict-item]
-    if "criteriaList" in data:
+    if data.get("criteriaList") is not None:
         import capo_iot.types.abort_criteria_list
 
         out["criteria_list"] = capo_iot.types.abort_criteria_list.deserialize_json(

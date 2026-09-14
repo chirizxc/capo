@@ -31,13 +31,13 @@ def serialize_json(value: InstantiateSolNetworkInstanceOutput) -> dict:
 
 def deserialize_json(data: dict) -> InstantiateSolNetworkInstanceOutput:
     out: InstantiateSolNetworkInstanceOutput = {}  # type: ignore[typeddict-item]
-    if "nsLcmOpOccId" in data:
+    if data.get("nsLcmOpOccId") is not None:
         out["ns_lcm_op_occ_id"] = data["nsLcmOpOccId"]
     else:
         raise DeserializationError(
             "InstantiateSolNetworkInstanceOutput.ns_lcm_op_occ_id required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_tnb.types.tag_map
 
         out["tags"] = capo_tnb.types.tag_map.deserialize_json(data["tags"])

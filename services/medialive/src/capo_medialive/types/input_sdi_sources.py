@@ -14,4 +14,4 @@ def serialize_json(value: InputSdiSources) -> list:
 
 
 def deserialize_json(data: list) -> InputSdiSources:
-    return list(data)
+    return [item for item in data if item is not None]

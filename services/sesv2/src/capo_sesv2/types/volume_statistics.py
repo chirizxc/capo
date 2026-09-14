@@ -35,12 +35,12 @@ def serialize_json(value: VolumeStatistics) -> dict:
 
 def deserialize_json(data: dict) -> VolumeStatistics:
     out: VolumeStatistics = {}  # type: ignore[typeddict-item]
-    if "InboxRawCount" in data:
+    if data.get("InboxRawCount") is not None:
         out["inbox_raw_count"] = data["InboxRawCount"]
-    if "SpamRawCount" in data:
+    if data.get("SpamRawCount") is not None:
         out["spam_raw_count"] = data["SpamRawCount"]
-    if "ProjectedInbox" in data:
+    if data.get("ProjectedInbox") is not None:
         out["projected_inbox"] = data["ProjectedInbox"]
-    if "ProjectedSpam" in data:
+    if data.get("ProjectedSpam") is not None:
         out["projected_spam"] = data["ProjectedSpam"]
     return out

@@ -36,9 +36,9 @@ def serialize_json(value: PutFindingsPublicationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutFindingsPublicationConfigurationRequest:
     out: PutFindingsPublicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "securityHubConfiguration" in data:
+    if data.get("securityHubConfiguration") is not None:
         import capo_macie2.types.security_hub_configuration
 
         out["security_hub_configuration"] = (

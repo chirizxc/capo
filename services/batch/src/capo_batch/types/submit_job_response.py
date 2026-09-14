@@ -31,10 +31,10 @@ def serialize_json(value: SubmitJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> SubmitJobResponse:
     out: SubmitJobResponse = {}  # type: ignore[typeddict-item]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     return out

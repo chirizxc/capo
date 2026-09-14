@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DataSetColumnIdMappingList:
 
     out: DataSetColumnIdMappingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.data_set_column_id_mapping.deserialize_json(item)
         )

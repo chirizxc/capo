@@ -28,11 +28,11 @@ def serialize_json(value: EvaluateMappingTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> EvaluateMappingTemplateRequest:
     out: EvaluateMappingTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "template" in data:
+    if data.get("template") is not None:
         out["template"] = data["template"]
     else:
         raise DeserializationError("EvaluateMappingTemplateRequest.template required")
-    if "context" in data:
+    if data.get("context") is not None:
         out["context"] = data["context"]
     else:
         raise DeserializationError("EvaluateMappingTemplateRequest.context required")

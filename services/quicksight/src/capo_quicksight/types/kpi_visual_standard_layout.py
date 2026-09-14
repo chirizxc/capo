@@ -28,7 +28,7 @@ def serialize_json(value: KPIVisualStandardLayout) -> dict:
 
 def deserialize_json(data: dict) -> KPIVisualStandardLayout:
     out: KPIVisualStandardLayout = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.kpi_visual_standard_layout_type
 
         out["type"] = (

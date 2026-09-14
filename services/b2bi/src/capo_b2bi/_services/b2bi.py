@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.b2bi#B2BI``."""
 
+import uuid
 import warnings
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
@@ -212,17 +213,19 @@ class b2biClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_b2bi.types.create_starter_mapping_template_request.CreateStarterMappingTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_b2bi.types.create_starter_mapping_template_request.CreateStarterMappingTemplateRequest = {
+            "mapping_type": mapping_type,
+            "template_details": template_details,
+        }
         if output_sample_location is not None:
             input_["output_sample_location"] = output_sample_location
-        input_["mapping_type"] = mapping_type
-        input_["template_details"] = template_details
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_mapping(
@@ -268,16 +271,18 @@ class b2biClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_b2bi.types.generate_mapping_request.GenerateMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["input_file_content"] = input_file_content
-        input_["output_file_content"] = output_file_content
-        input_["mapping_type"] = mapping_type
+        input_: capo_b2bi.types.generate_mapping_request.GenerateMappingRequest = {
+            "input_file_content": input_file_content,
+            "output_file_content": output_file_content,
+            "mapping_type": mapping_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_transformer_job(
@@ -322,15 +327,17 @@ class b2biClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_b2bi.types.get_transformer_job_request.GetTransformerJobRequest = {}  # type: ignore[typeddict-item]
-        input_["transformer_job_id"] = transformer_job_id
-        input_["transformer_id"] = transformer_id
+        input_: capo_b2bi.types.get_transformer_job_request.GetTransformerJobRequest = {
+            "transformer_job_id": transformer_job_id,
+            "transformer_id": transformer_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -371,14 +378,16 @@ class b2biClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_b2bi.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_b2bi.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_transformer_job(
@@ -428,18 +437,21 @@ class b2biClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_b2bi.types.start_transformer_job_request.StartTransformerJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_file"] = input_file
-        input_["output_location"] = output_location
-        input_["transformer_id"] = transformer_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_b2bi.types.start_transformer_job_request.StartTransformerJobRequest = {
+            "input_file": input_file,
+            "output_location": output_location,
+            "transformer_id": transformer_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -481,15 +493,17 @@ class b2biClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_b2bi.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_b2bi.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_conversion(
@@ -534,15 +548,17 @@ class b2biClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_b2bi.types.test_conversion_request.TestConversionRequest = {}  # type: ignore[typeddict-item]
-        input_["source"] = source
-        input_["target"] = target
+        input_: capo_b2bi.types.test_conversion_request.TestConversionRequest = {
+            "source": source,
+            "target": target,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_mapping(
@@ -589,16 +605,18 @@ class b2biClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_b2bi.types.test_mapping_request.TestMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["input_file_content"] = input_file_content
-        input_["mapping_template"] = mapping_template
-        input_["file_format"] = file_format
+        input_: capo_b2bi.types.test_mapping_request.TestMappingRequest = {
+            "input_file_content": input_file_content,
+            "mapping_template": mapping_template,
+            "file_format": file_format,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_parsing(
@@ -658,10 +676,11 @@ class b2biClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_b2bi.types.test_parsing_request.TestParsingRequest = {}  # type: ignore[typeddict-item]
-        input_["input_file"] = input_file
-        input_["file_format"] = file_format
-        input_["edi_type"] = edi_type
+        input_: capo_b2bi.types.test_parsing_request.TestParsingRequest = {
+            "input_file": input_file,
+            "file_format": file_format,
+            "edi_type": edi_type,
+        }
         if advanced_options is not None:
             input_["advanced_options"] = advanced_options
 
@@ -670,6 +689,7 @@ class b2biClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -710,15 +730,17 @@ class b2biClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_b2bi.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_b2bi.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -80,13 +80,13 @@ def serialize_json(value: EksPodProperties) -> dict:
 
 def deserialize_json(data: dict) -> EksPodProperties:
     out: EksPodProperties = {}  # type: ignore[typeddict-item]
-    if "serviceAccountName" in data:
+    if data.get("serviceAccountName") is not None:
         out["service_account_name"] = data["serviceAccountName"]
-    if "hostNetwork" in data:
+    if data.get("hostNetwork") is not None:
         out["host_network"] = data["hostNetwork"]
-    if "dnsPolicy" in data:
+    if data.get("dnsPolicy") is not None:
         out["dns_policy"] = data["dnsPolicy"]
-    if "imagePullSecrets" in data:
+    if data.get("imagePullSecrets") is not None:
         import capo_batch.types.image_pull_secrets
 
         out["image_pull_secrets"] = (
@@ -94,28 +94,28 @@ def deserialize_json(data: dict) -> EksPodProperties:
                 data["imagePullSecrets"]
             )
         )
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_batch.types.eks_containers
 
         out["containers"] = capo_batch.types.eks_containers.deserialize_json(
             data["containers"]
         )
-    if "initContainers" in data:
+    if data.get("initContainers") is not None:
         import capo_batch.types.eks_containers
 
         out["init_containers"] = capo_batch.types.eks_containers.deserialize_json(
             data["initContainers"]
         )
-    if "volumes" in data:
+    if data.get("volumes") is not None:
         import capo_batch.types.eks_volumes
 
         out["volumes"] = capo_batch.types.eks_volumes.deserialize_json(data["volumes"])
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_batch.types.eks_metadata
 
         out["metadata"] = capo_batch.types.eks_metadata.deserialize_json(
             data["metadata"]
         )
-    if "shareProcessNamespace" in data:
+    if data.get("shareProcessNamespace") is not None:
         out["share_process_namespace"] = data["shareProcessNamespace"]
     return out

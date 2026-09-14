@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TemplateAliasList:
 
     out: TemplateAliasList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.template_alias.deserialize_json(item))
     return out

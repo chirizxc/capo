@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: StopAutonomousDatabaseInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StopAutonomousDatabaseInput:
     out: StopAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
     else:
         raise DeserializationError(

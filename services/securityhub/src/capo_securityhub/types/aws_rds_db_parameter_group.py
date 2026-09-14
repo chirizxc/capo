@@ -31,8 +31,8 @@ def serialize_json(value: AwsRdsDbParameterGroup) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbParameterGroup:
     out: AwsRdsDbParameterGroup = {}  # type: ignore[typeddict-item]
-    if "DbParameterGroupName" in data:
+    if data.get("DbParameterGroupName") is not None:
         out["db_parameter_group_name"] = data["DbParameterGroupName"]
-    if "ParameterApplyStatus" in data:
+    if data.get("ParameterApplyStatus") is not None:
         out["parameter_apply_status"] = data["ParameterApplyStatus"]
     return out

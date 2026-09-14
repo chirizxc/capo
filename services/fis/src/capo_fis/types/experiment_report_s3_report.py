@@ -32,8 +32,8 @@ def serialize_json(value: ExperimentReportS3Report) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentReportS3Report:
     out: ExperimentReportS3Report = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "reportType" in data:
+    if data.get("reportType") is not None:
         out["report_type"] = data["reportType"]
     return out

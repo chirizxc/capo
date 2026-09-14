@@ -36,9 +36,9 @@ def serialize_json(value: ExperimentTargetFilter) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentTargetFilter:
     out: ExperimentTargetFilter = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_fis.types.experiment_target_filter_values
 
         out["values"] = capo_fis.types.experiment_target_filter_values.deserialize_json(

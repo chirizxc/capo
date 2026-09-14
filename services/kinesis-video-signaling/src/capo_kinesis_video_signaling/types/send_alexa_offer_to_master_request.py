@@ -39,10 +39,10 @@ def serialize_json(value: SendAlexaOfferToMasterRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendAlexaOfferToMasterRequest:
     out: SendAlexaOfferToMasterRequest = {}  # type: ignore[typeddict-item]
-    if "ChannelARN" in data:
+    if data.get("ChannelARN") is not None:
         out["channel_arn"] = data["ChannelARN"]
-    if "SenderClientId" in data:
+    if data.get("SenderClientId") is not None:
         out["sender_client_id"] = data["SenderClientId"]
-    if "MessagePayload" in data:
+    if data.get("MessagePayload") is not None:
         out["message_payload"] = data["MessagePayload"]
     return out

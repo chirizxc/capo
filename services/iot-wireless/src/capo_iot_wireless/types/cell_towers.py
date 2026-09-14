@@ -55,27 +55,27 @@ def serialize_json(value: CellTowers) -> dict:
 
 def deserialize_json(data: dict) -> CellTowers:
     out: CellTowers = {}  # type: ignore[typeddict-item]
-    if "Gsm" in data:
+    if data.get("Gsm") is not None:
         import capo_iot_wireless.types.gsm_list
 
         out["gsm"] = capo_iot_wireless.types.gsm_list.deserialize_json(data["Gsm"])
-    if "Wcdma" in data:
+    if data.get("Wcdma") is not None:
         import capo_iot_wireless.types.wcdma_list
 
         out["wcdma"] = capo_iot_wireless.types.wcdma_list.deserialize_json(
             data["Wcdma"]
         )
-    if "Tdscdma" in data:
+    if data.get("Tdscdma") is not None:
         import capo_iot_wireless.types.tdscdma_list
 
         out["tdscdma"] = capo_iot_wireless.types.tdscdma_list.deserialize_json(
             data["Tdscdma"]
         )
-    if "Lte" in data:
+    if data.get("Lte") is not None:
         import capo_iot_wireless.types.lte_list
 
         out["lte"] = capo_iot_wireless.types.lte_list.deserialize_json(data["Lte"])
-    if "Cdma" in data:
+    if data.get("Cdma") is not None:
         import capo_iot_wireless.types.cdma_list
 
         out["cdma"] = capo_iot_wireless.types.cdma_list.deserialize_json(data["Cdma"])

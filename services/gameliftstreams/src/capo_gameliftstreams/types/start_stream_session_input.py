@@ -115,11 +115,11 @@ def serialize_json(value: StartStreamSessionInput) -> dict:
 
 def deserialize_json(data: dict) -> StartStreamSessionInput:
     out: StartStreamSessionInput = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_gameliftstreams.types.protocol
 
         out["protocol"] = capo_gameliftstreams.types.protocol.deserialize_json(
@@ -127,29 +127,29 @@ def deserialize_json(data: dict) -> StartStreamSessionInput:
         )
     else:
         raise DeserializationError("StartStreamSessionInput.protocol required")
-    if "SignalRequest" in data:
+    if data.get("SignalRequest") is not None:
         out["signal_request"] = data["SignalRequest"]
     else:
         raise DeserializationError("StartStreamSessionInput.signal_request required")
-    if "ApplicationIdentifier" in data:
+    if data.get("ApplicationIdentifier") is not None:
         out["application_identifier"] = data["ApplicationIdentifier"]
     else:
         raise DeserializationError(
             "StartStreamSessionInput.application_identifier required"
         )
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "Locations" in data:
+    if data.get("Locations") is not None:
         import capo_gameliftstreams.types.location_list
 
         out["locations"] = capo_gameliftstreams.types.location_list.deserialize_json(
             data["Locations"]
         )
-    if "ConnectionTimeoutSeconds" in data:
+    if data.get("ConnectionTimeoutSeconds") is not None:
         out["connection_timeout_seconds"] = data["ConnectionTimeoutSeconds"]
-    if "SessionLengthSeconds" in data:
+    if data.get("SessionLengthSeconds") is not None:
         out["session_length_seconds"] = data["SessionLengthSeconds"]
-    if "AdditionalLaunchArgs" in data:
+    if data.get("AdditionalLaunchArgs") is not None:
         import capo_gameliftstreams.types.game_launch_arg_list
 
         out["additional_launch_args"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> StartStreamSessionInput:
                 data["AdditionalLaunchArgs"]
             )
         )
-    if "AdditionalEnvironmentVariables" in data:
+    if data.get("AdditionalEnvironmentVariables") is not None:
         import capo_gameliftstreams.types.environment_variables
 
         out["additional_environment_variables"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> StartStreamSessionInput:
                 data["AdditionalEnvironmentVariables"]
             )
         )
-    if "PerformanceStatsConfiguration" in data:
+    if data.get("PerformanceStatsConfiguration") is not None:
         import capo_gameliftstreams.types.performance_stats_configuration
 
         out["performance_stats_configuration"] = (

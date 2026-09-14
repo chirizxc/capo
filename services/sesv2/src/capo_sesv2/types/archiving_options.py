@@ -23,6 +23,6 @@ def serialize_json(value: ArchivingOptions) -> dict:
 
 def deserialize_json(data: dict) -> ArchivingOptions:
     out: ArchivingOptions = {}  # type: ignore[typeddict-item]
-    if "ArchiveArn" in data:
+    if data.get("ArchiveArn") is not None:
         out["archive_arn"] = data["ArchiveArn"]
     return out

@@ -21,20 +21,44 @@ class DeviceMinutes(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: DeviceMinutes) -> dict:
     out: dict = {}
     if "total" in value:
-        out["total"] = value["total"]
+        out["total"] = (
+            "NaN"
+            if value["total"] != value["total"]
+            else "Infinity"
+            if value["total"] == float("inf")
+            else "-Infinity"
+            if value["total"] == float("-inf")
+            else value["total"]
+        )
     if "metered" in value:
-        out["metered"] = value["metered"]
+        out["metered"] = (
+            "NaN"
+            if value["metered"] != value["metered"]
+            else "Infinity"
+            if value["metered"] == float("inf")
+            else "-Infinity"
+            if value["metered"] == float("-inf")
+            else value["metered"]
+        )
     if "unmetered" in value:
-        out["unmetered"] = value["unmetered"]
+        out["unmetered"] = (
+            "NaN"
+            if value["unmetered"] != value["unmetered"]
+            else "Infinity"
+            if value["unmetered"] == float("inf")
+            else "-Infinity"
+            if value["unmetered"] == float("-inf")
+            else value["unmetered"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceMinutes:
     out: DeviceMinutes = {}  # type: ignore[typeddict-item]
-    if "total" in data:
-        out["total"] = data["total"]
-    if "metered" in data:
-        out["metered"] = data["metered"]
-    if "unmetered" in data:
-        out["unmetered"] = data["unmetered"]
+    if data.get("total") is not None:
+        out["total"] = float(data["total"])
+    if data.get("metered") is not None:
+        out["metered"] = float(data["metered"])
+    if data.get("unmetered") is not None:
+        out["unmetered"] = float(data["unmetered"])
     return out

@@ -41,12 +41,12 @@ def serialize_aws_json_1_1(value: TimeoutSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeoutSettings:
     out: TimeoutSettings = {}  # type: ignore[typeddict-item]
-    if "DisconnectTimeoutInSeconds" in data:
+    if data.get("DisconnectTimeoutInSeconds") is not None:
         out["disconnect_timeout_in_seconds"] = data["DisconnectTimeoutInSeconds"]
-    if "IdleDisconnectTimeoutInSeconds" in data:
+    if data.get("IdleDisconnectTimeoutInSeconds") is not None:
         out["idle_disconnect_timeout_in_seconds"] = data[
             "IdleDisconnectTimeoutInSeconds"
         ]
-    if "MaxUserDurationInSeconds" in data:
+    if data.get("MaxUserDurationInSeconds") is not None:
         out["max_user_duration_in_seconds"] = data["MaxUserDurationInSeconds"]
     return out

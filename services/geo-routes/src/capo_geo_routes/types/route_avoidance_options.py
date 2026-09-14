@@ -100,27 +100,27 @@ def serialize_json(value: RouteAvoidanceOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteAvoidanceOptions:
     out: RouteAvoidanceOptions = {}  # type: ignore[typeddict-item]
-    if "Areas" in data:
+    if data.get("Areas") is not None:
         import capo_geo_routes.types.route_avoidance_area_list
 
         out["areas"] = capo_geo_routes.types.route_avoidance_area_list.deserialize_json(
             data["Areas"]
         )
-    if "CarShuttleTrains" in data:
+    if data.get("CarShuttleTrains") is not None:
         out["car_shuttle_trains"] = data["CarShuttleTrains"]
-    if "ControlledAccessHighways" in data:
+    if data.get("ControlledAccessHighways") is not None:
         out["controlled_access_highways"] = data["ControlledAccessHighways"]
-    if "DirtRoads" in data:
+    if data.get("DirtRoads") is not None:
         out["dirt_roads"] = data["DirtRoads"]
-    if "Ferries" in data:
+    if data.get("Ferries") is not None:
         out["ferries"] = data["Ferries"]
-    if "SeasonalClosure" in data:
+    if data.get("SeasonalClosure") is not None:
         out["seasonal_closure"] = data["SeasonalClosure"]
-    if "TollRoads" in data:
+    if data.get("TollRoads") is not None:
         out["toll_roads"] = data["TollRoads"]
-    if "TollTransponders" in data:
+    if data.get("TollTransponders") is not None:
         out["toll_transponders"] = data["TollTransponders"]
-    if "TruckRoadTypes" in data:
+    if data.get("TruckRoadTypes") is not None:
         import capo_geo_routes.types.truck_road_type_list
 
         out["truck_road_types"] = (
@@ -128,11 +128,11 @@ def deserialize_json(data: dict) -> RouteAvoidanceOptions:
                 data["TruckRoadTypes"]
             )
         )
-    if "Tunnels" in data:
+    if data.get("Tunnels") is not None:
         out["tunnels"] = data["Tunnels"]
-    if "UTurns" in data:
+    if data.get("UTurns") is not None:
         out["u_turns"] = data["UTurns"]
-    if "ZoneCategories" in data:
+    if data.get("ZoneCategories") is not None:
         import capo_geo_routes.types.route_avoidance_zone_category_list
 
         out["zone_categories"] = (

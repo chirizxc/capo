@@ -13,9 +13,9 @@ from capo_support import AsyncSupportClient
 
 
 async def main():
-    async with AsyncSupportClient() as s3:
+    async with AsyncSupportClient() as support:
         # Example: call the add_attachments_to_set operation
-        response = await s3.add_attachments_to_set()
+        response = await support.add_attachments_to_set()
         print(response["attachment_set_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_support import AsyncSupportClient
 
 
 async def main():
-    async with AsyncSupportClient() as s3:
+    async with AsyncSupportClient() as support:
         # Example: paginate over describe_cases
-        async for item in s3.iter_describe_cases():
+        async for item in support.iter_describe_cases():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_support.error import AttachmentLimitExceeded
 
 
 async def main():
-    async with AsyncSupportClient() as s3:
+    async with AsyncSupportClient() as support:
         try:
-            await s3.add_attachments_to_set()
+            await support.add_attachments_to_set()
         except AttachmentLimitExceeded as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_support import AsyncSupportClient
 
 
 async def main():
-    async with AsyncSupportClient() as s3:
+    async with AsyncSupportClient() as support:
         # Default: 3 attempts for every operation
-        response = await s3.add_attachments_to_set()
+        response = await support.add_attachments_to_set()
 
         # Override per operation
-        response = await s3.add_attachments_to_set(config_overrides={"retry_max_attempts": 5})
+        response = await support.add_attachments_to_set(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_attachments_to_set(config_overrides={"retry_max_attempts": 1})
+        response = await support.add_attachments_to_set(config_overrides={"retry_max_attempts": 1})
 ```

@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> AssetHashes:
     for key, value in data.items():
         import capo_codeartifact.types.hash_algorithm
 
+        if value is None:
+            continue
         out[capo_codeartifact.types.hash_algorithm.deserialize_json(key)] = value
     return out

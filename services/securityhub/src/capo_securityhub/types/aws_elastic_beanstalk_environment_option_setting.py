@@ -35,12 +35,12 @@ def serialize_json(value: AwsElasticBeanstalkEnvironmentOptionSetting) -> dict:
 
 def deserialize_json(data: dict) -> AwsElasticBeanstalkEnvironmentOptionSetting:
     out: AwsElasticBeanstalkEnvironmentOptionSetting = {}  # type: ignore[typeddict-item]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "OptionName" in data:
+    if data.get("OptionName") is not None:
         out["option_name"] = data["OptionName"]
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

@@ -45,13 +45,13 @@ def serialize_json(value: LabelOptions) -> dict:
 
 def deserialize_json(data: dict) -> LabelOptions:
     out: LabelOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "FontConfiguration" in data:
+    if data.get("FontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["font_configuration"] = (
@@ -59,6 +59,6 @@ def deserialize_json(data: dict) -> LabelOptions:
                 data["FontConfiguration"]
             )
         )
-    if "CustomLabel" in data:
+    if data.get("CustomLabel") is not None:
         out["custom_label"] = data["CustomLabel"]
     return out

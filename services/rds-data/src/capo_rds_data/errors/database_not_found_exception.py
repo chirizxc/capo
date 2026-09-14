@@ -24,7 +24,7 @@ def serialize_json(value: DatabaseNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> DatabaseNotFoundException_:
     out: DatabaseNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class DatabaseNotFoundException(ServiceError):
 
     code: str | None = "DatabaseNotFoundException"
 
-    def __init__(self, data: DatabaseNotFoundException_):
+    def __init__(self, data: DatabaseNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DatabaseNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DatabaseNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DatabaseNotFoundException":
+        return cls(deserialize_json(data), message)

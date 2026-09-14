@@ -31,7 +31,7 @@ def serialize_json(value: GetPipelineChangeProgressResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPipelineChangeProgressResponse:
     out: GetPipelineChangeProgressResponse = {}  # type: ignore[typeddict-item]
-    if "ChangeProgressStatuses" in data:
+    if data.get("ChangeProgressStatuses") is not None:
         import capo_osis.types.change_progress_status_list
 
         out["change_progress_statuses"] = (

@@ -53,17 +53,17 @@ def serialize_json(value: ProbeInput) -> dict:
 
 def deserialize_json(data: dict) -> ProbeInput:
     out: ProbeInput = {}  # type: ignore[typeddict-item]
-    if "sourceArn" in data:
+    if data.get("sourceArn") is not None:
         out["source_arn"] = data["sourceArn"]
     else:
         raise DeserializationError("ProbeInput.source_arn required")
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
     else:
         raise DeserializationError("ProbeInput.destination required")
-    if "destinationPort" in data:
+    if data.get("destinationPort") is not None:
         out["destination_port"] = data["destinationPort"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_networkmonitor.types.protocol
 
         out["protocol"] = capo_networkmonitor.types.protocol.deserialize_json(
@@ -71,9 +71,9 @@ def deserialize_json(data: dict) -> ProbeInput:
         )
     else:
         raise DeserializationError("ProbeInput.protocol required")
-    if "packetSize" in data:
+    if data.get("packetSize") is not None:
         out["packet_size"] = data["packetSize"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_networkmonitor.types.tag_map
 
         out["tags"] = capo_networkmonitor.types.tag_map.deserialize_json(data["tags"])

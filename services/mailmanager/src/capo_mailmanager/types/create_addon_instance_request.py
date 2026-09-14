@@ -42,15 +42,15 @@ def serialize_aws_json_1_0(value: CreateAddonInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAddonInstanceRequest:
     out: CreateAddonInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "AddonSubscriptionId" in data:
+    if data.get("AddonSubscriptionId") is not None:
         out["addon_subscription_id"] = data["AddonSubscriptionId"]
     else:
         raise DeserializationError(
             "CreateAddonInstanceRequest.addon_subscription_id required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mailmanager.types.tag_list
 
         out["tags"] = capo_mailmanager.types.tag_list.deserialize_aws_json_1_0(

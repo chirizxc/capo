@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfSchemaVersionSummary:
 
     out: __listOfSchemaVersionSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_schemas.types.schema_version_summary.deserialize_json(item))
     return out

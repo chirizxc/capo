@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: FileSystemAssociationStatusDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileSystemAssociationStatusDetail:
     out: FileSystemAssociationStatusDetail = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     return out

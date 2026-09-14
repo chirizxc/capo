@@ -78,11 +78,11 @@ def serialize_json(value: CreateApplicationInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationInput:
     out: CreateApplicationInput = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateApplicationInput.description required")
-    if "RuntimeEnvironment" in data:
+    if data.get("RuntimeEnvironment") is not None:
         import capo_gameliftstreams.types.runtime_environment
 
         out["runtime_environment"] = (
@@ -94,17 +94,17 @@ def deserialize_json(data: dict) -> CreateApplicationInput:
         raise DeserializationError(
             "CreateApplicationInput.runtime_environment required"
         )
-    if "ExecutablePath" in data:
+    if data.get("ExecutablePath") is not None:
         out["executable_path"] = data["ExecutablePath"]
     else:
         raise DeserializationError("CreateApplicationInput.executable_path required")
-    if "ApplicationSourceUri" in data:
+    if data.get("ApplicationSourceUri") is not None:
         out["application_source_uri"] = data["ApplicationSourceUri"]
     else:
         raise DeserializationError(
             "CreateApplicationInput.application_source_uri required"
         )
-    if "ApplicationLogPaths" in data:
+    if data.get("ApplicationLogPaths") is not None:
         import capo_gameliftstreams.types.file_paths
 
         out["application_log_paths"] = (
@@ -112,12 +112,12 @@ def deserialize_json(data: dict) -> CreateApplicationInput:
                 data["ApplicationLogPaths"]
             )
         )
-    if "ApplicationLogOutputUri" in data:
+    if data.get("ApplicationLogOutputUri") is not None:
         out["application_log_output_uri"] = data["ApplicationLogOutputUri"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_gameliftstreams.types.tags
 
         out["tags"] = capo_gameliftstreams.types.tags.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -213,7 +213,7 @@ def serialize_json(value: BatchWriteOperation) -> dict:
 
 def deserialize_json(data: dict) -> BatchWriteOperation:
     out: BatchWriteOperation = {}  # type: ignore[typeddict-item]
-    if "CreateObject" in data:
+    if data.get("CreateObject") is not None:
         import capo_clouddirectory.types.batch_create_object
 
         out["create_object"] = (
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["CreateObject"]
             )
         )
-    if "AttachObject" in data:
+    if data.get("AttachObject") is not None:
         import capo_clouddirectory.types.batch_attach_object
 
         out["attach_object"] = (
@@ -229,7 +229,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["AttachObject"]
             )
         )
-    if "DetachObject" in data:
+    if data.get("DetachObject") is not None:
         import capo_clouddirectory.types.batch_detach_object
 
         out["detach_object"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["DetachObject"]
             )
         )
-    if "UpdateObjectAttributes" in data:
+    if data.get("UpdateObjectAttributes") is not None:
         import capo_clouddirectory.types.batch_update_object_attributes
 
         out["update_object_attributes"] = (
@@ -245,7 +245,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["UpdateObjectAttributes"]
             )
         )
-    if "DeleteObject" in data:
+    if data.get("DeleteObject") is not None:
         import capo_clouddirectory.types.batch_delete_object
 
         out["delete_object"] = (
@@ -253,7 +253,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["DeleteObject"]
             )
         )
-    if "AddFacetToObject" in data:
+    if data.get("AddFacetToObject") is not None:
         import capo_clouddirectory.types.batch_add_facet_to_object
 
         out["add_facet_to_object"] = (
@@ -261,7 +261,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["AddFacetToObject"]
             )
         )
-    if "RemoveFacetFromObject" in data:
+    if data.get("RemoveFacetFromObject") is not None:
         import capo_clouddirectory.types.batch_remove_facet_from_object
 
         out["remove_facet_from_object"] = (
@@ -269,7 +269,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["RemoveFacetFromObject"]
             )
         )
-    if "AttachPolicy" in data:
+    if data.get("AttachPolicy") is not None:
         import capo_clouddirectory.types.batch_attach_policy
 
         out["attach_policy"] = (
@@ -277,7 +277,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["AttachPolicy"]
             )
         )
-    if "DetachPolicy" in data:
+    if data.get("DetachPolicy") is not None:
         import capo_clouddirectory.types.batch_detach_policy
 
         out["detach_policy"] = (
@@ -285,7 +285,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["DetachPolicy"]
             )
         )
-    if "CreateIndex" in data:
+    if data.get("CreateIndex") is not None:
         import capo_clouddirectory.types.batch_create_index
 
         out["create_index"] = (
@@ -293,7 +293,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["CreateIndex"]
             )
         )
-    if "AttachToIndex" in data:
+    if data.get("AttachToIndex") is not None:
         import capo_clouddirectory.types.batch_attach_to_index
 
         out["attach_to_index"] = (
@@ -301,7 +301,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["AttachToIndex"]
             )
         )
-    if "DetachFromIndex" in data:
+    if data.get("DetachFromIndex") is not None:
         import capo_clouddirectory.types.batch_detach_from_index
 
         out["detach_from_index"] = (
@@ -309,7 +309,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["DetachFromIndex"]
             )
         )
-    if "AttachTypedLink" in data:
+    if data.get("AttachTypedLink") is not None:
         import capo_clouddirectory.types.batch_attach_typed_link
 
         out["attach_typed_link"] = (
@@ -317,7 +317,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["AttachTypedLink"]
             )
         )
-    if "DetachTypedLink" in data:
+    if data.get("DetachTypedLink") is not None:
         import capo_clouddirectory.types.batch_detach_typed_link
 
         out["detach_typed_link"] = (
@@ -325,7 +325,7 @@ def deserialize_json(data: dict) -> BatchWriteOperation:
                 data["DetachTypedLink"]
             )
         )
-    if "UpdateLinkAttributes" in data:
+    if data.get("UpdateLinkAttributes") is not None:
         import capo_clouddirectory.types.batch_update_link_attributes
 
         out["update_link_attributes"] = (

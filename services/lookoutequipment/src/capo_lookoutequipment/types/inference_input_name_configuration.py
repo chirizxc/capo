@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: InferenceInputNameConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InferenceInputNameConfiguration:
     out: InferenceInputNameConfiguration = {}  # type: ignore[typeddict-item]
-    if "TimestampFormat" in data:
+    if data.get("TimestampFormat") is not None:
         out["timestamp_format"] = data["TimestampFormat"]
-    if "ComponentTimestampDelimiter" in data:
+    if data.get("ComponentTimestampDelimiter") is not None:
         out["component_timestamp_delimiter"] = data["ComponentTimestampDelimiter"]
     return out

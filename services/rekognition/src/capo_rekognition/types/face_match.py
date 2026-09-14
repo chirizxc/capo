@@ -20,7 +20,15 @@ class FaceMatch(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: FaceMatch) -> dict:
     out: dict = {}
     if "similarity" in value:
-        out["Similarity"] = value["similarity"]
+        out["Similarity"] = (
+            "NaN"
+            if value["similarity"] != value["similarity"]
+            else "Infinity"
+            if value["similarity"] == float("inf")
+            else "-Infinity"
+            if value["similarity"] == float("-inf")
+            else value["similarity"]
+        )
     if "face" in value:
         import capo_rekognition.types.face
 
@@ -30,9 +38,9 @@ def serialize_aws_json_1_1(value: FaceMatch) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FaceMatch:
     out: FaceMatch = {}  # type: ignore[typeddict-item]
-    if "Similarity" in data:
-        out["similarity"] = data["Similarity"]
-    if "Face" in data:
+    if data.get("Similarity") is not None:
+        out["similarity"] = float(data["Similarity"])
+    if data.get("Face") is not None:
         import capo_rekognition.types.face
 
         out["face"] = capo_rekognition.types.face.deserialize_aws_json_1_1(data["Face"])

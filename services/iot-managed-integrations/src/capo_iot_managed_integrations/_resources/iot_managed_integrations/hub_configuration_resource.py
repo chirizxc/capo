@@ -63,13 +63,14 @@ class HubConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_hub_configuration_request.GetHubConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.get_hub_configuration_request.GetHubConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_hub_configuration(
@@ -108,16 +109,16 @@ class HubConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.put_hub_configuration_request.PutHubConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["hub_token_timer_expiry_setting_in_seconds"] = (
-            hub_token_timer_expiry_setting_in_seconds
-        )
+        input_: capo_iot_managed_integrations.types.put_hub_configuration_request.PutHubConfigurationRequest = {
+            "hub_token_timer_expiry_setting_in_seconds": hub_token_timer_expiry_setting_in_seconds
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -158,13 +159,14 @@ class AsyncHubConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_hub_configuration_request.GetHubConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.get_hub_configuration_request.GetHubConfigurationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_hub_configuration(
@@ -204,14 +206,14 @@ class AsyncHubConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.put_hub_configuration_request.PutHubConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["hub_token_timer_expiry_setting_in_seconds"] = (
-            hub_token_timer_expiry_setting_in_seconds
-        )
+        input_: capo_iot_managed_integrations.types.put_hub_configuration_request.PutHubConfigurationRequest = {
+            "hub_token_timer_expiry_setting_in_seconds": hub_token_timer_expiry_setting_in_seconds
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

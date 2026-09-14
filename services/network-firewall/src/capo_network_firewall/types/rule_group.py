@@ -69,7 +69,7 @@ def serialize_aws_json_1_0(value: RuleGroup) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleGroup:
     out: RuleGroup = {}  # type: ignore[typeddict-item]
-    if "RuleVariables" in data:
+    if data.get("RuleVariables") is not None:
         import capo_network_firewall.types.rule_variables
 
         out["rule_variables"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleGroup:
                 data["RuleVariables"]
             )
         )
-    if "ReferenceSets" in data:
+    if data.get("ReferenceSets") is not None:
         import capo_network_firewall.types.reference_sets
 
         out["reference_sets"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleGroup:
                 data["ReferenceSets"]
             )
         )
-    if "RulesSource" in data:
+    if data.get("RulesSource") is not None:
         import capo_network_firewall.types.rules_source
 
         out["rules_source"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleGroup:
         )
     else:
         raise DeserializationError("RuleGroup.rules_source required")
-    if "StatefulRuleOptions" in data:
+    if data.get("StatefulRuleOptions") is not None:
         import capo_network_firewall.types.stateful_rule_options
 
         out["stateful_rule_options"] = (

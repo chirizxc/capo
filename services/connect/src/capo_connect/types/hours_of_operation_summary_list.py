@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> HoursOfOperationSummaryList:
 
     out: HoursOfOperationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.hours_of_operation_summary.deserialize_json(item))
     return out

@@ -134,13 +134,13 @@ def serialize_json(value: Agent) -> dict:
 
 def deserialize_json(data: dict) -> Agent:
     out: Agent = {}  # type: ignore[typeddict-item]
-    if "Spaces" in data:
+    if data.get("Spaces") is not None:
         import capo_quicksight.types.agent_spaces_list
 
         out["spaces"] = capo_quicksight.types.agent_spaces_list.deserialize_json(
             data["Spaces"]
         )
-    if "ActionConnectors" in data:
+    if data.get("ActionConnectors") is not None:
         import capo_quicksight.types.agent_action_connectors_list
 
         out["action_connectors"] = (
@@ -148,15 +148,15 @@ def deserialize_json(data: dict) -> Agent:
                 data["ActionConnectors"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IconId" in data:
+    if data.get("IconId") is not None:
         out["icon_id"] = data["IconId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Agent.name required")
-    if "StarterPrompts" in data:
+    if data.get("StarterPrompts") is not None:
         import capo_quicksight.types.starter_prompt_list
 
         out["starter_prompts"] = (
@@ -164,17 +164,17 @@ def deserialize_json(data: dict) -> Agent:
                 data["StarterPrompts"]
             )
         )
-    if "WelcomeMessage" in data:
+    if data.get("WelcomeMessage") is not None:
         out["welcome_message"] = data["WelcomeMessage"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("Agent.arn required")
-    if "AgentId" in data:
+    if data.get("AgentId") is not None:
         out["agent_id"] = data["AgentId"]
     else:
         raise DeserializationError("Agent.agent_id required")
-    if "AgentLifecycle" in data:
+    if data.get("AgentLifecycle") is not None:
         import capo_quicksight.types.agent_lifecycle
 
         out["agent_lifecycle"] = capo_quicksight.types.agent_lifecycle.deserialize_json(
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> Agent:
         )
     else:
         raise DeserializationError("Agent.agent_lifecycle required")
-    if "AgentStatus" in data:
+    if data.get("AgentStatus") is not None:
         import capo_quicksight.types.agent_status
 
         out["agent_status"] = capo_quicksight.types.agent_status.deserialize_json(
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> Agent:
         )
     else:
         raise DeserializationError("Agent.agent_status required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["created_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
@@ -198,11 +198,11 @@ def deserialize_json(data: dict) -> Agent:
         )
     else:
         raise DeserializationError("Agent.created_at required")
-    if "Creator" in data:
+    if data.get("Creator") is not None:
         out["creator"] = data["Creator"]
     else:
         raise DeserializationError("Agent.creator required")
-    if "CustomPromptInterface" in data:
+    if data.get("CustomPromptInterface") is not None:
         import capo_quicksight.types.custom_prompt_interface
 
         out["custom_prompt_interface"] = (
@@ -210,9 +210,9 @@ def deserialize_json(data: dict) -> Agent:
                 data["CustomPromptInterface"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["updated_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(

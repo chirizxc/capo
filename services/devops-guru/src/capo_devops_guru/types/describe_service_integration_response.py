@@ -30,7 +30,7 @@ def serialize_json(value: DescribeServiceIntegrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeServiceIntegrationResponse:
     out: DescribeServiceIntegrationResponse = {}  # type: ignore[typeddict-item]
-    if "ServiceIntegration" in data:
+    if data.get("ServiceIntegration") is not None:
         import capo_devops_guru.types.service_integration_config
 
         out["service_integration"] = (

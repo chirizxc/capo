@@ -30,8 +30,8 @@ def serialize_json(value: GetTestExecutionArtifactsUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTestExecutionArtifactsUrlResponse:
     out: GetTestExecutionArtifactsUrlResponse = {}  # type: ignore[typeddict-item]
-    if "testExecutionId" in data:
+    if data.get("testExecutionId") is not None:
         out["test_execution_id"] = data["testExecutionId"]
-    if "downloadArtifactsUrl" in data:
+    if data.get("downloadArtifactsUrl") is not None:
         out["download_artifacts_url"] = data["downloadArtifactsUrl"]
     return out

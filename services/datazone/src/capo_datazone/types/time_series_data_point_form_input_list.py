@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TimeSeriesDataPointFormInputList:
 
     out: TimeSeriesDataPointFormInputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.time_series_data_point_form_input.deserialize_json(item)
         )

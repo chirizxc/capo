@@ -61,7 +61,7 @@ def serialize_json(value: WaitAndContinueSpecification) -> dict:
 
 def deserialize_json(data: dict) -> WaitAndContinueSpecification:
     out: WaitAndContinueSpecification = {}  # type: ignore[typeddict-item]
-    if "waitingResponse" in data:
+    if data.get("waitingResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["waiting_response"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> WaitAndContinueSpecification:
         raise DeserializationError(
             "WaitAndContinueSpecification.waiting_response required"
         )
-    if "continueResponse" in data:
+    if data.get("continueResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["continue_response"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> WaitAndContinueSpecification:
         raise DeserializationError(
             "WaitAndContinueSpecification.continue_response required"
         )
-    if "stillWaitingResponse" in data:
+    if data.get("stillWaitingResponse") is not None:
         import capo_lex_models_v2.types.still_waiting_response_specification
 
         out["still_waiting_response"] = (
@@ -93,6 +93,6 @@ def deserialize_json(data: dict) -> WaitAndContinueSpecification:
                 data["stillWaitingResponse"]
             )
         )
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
     return out

@@ -38,7 +38,7 @@ def serialize_json(value: DashAvailabilityStartTimeConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> DashAvailabilityStartTimeConfiguration:
-    if "FixedAvailabilityStartTime" in data:
+    if data.get("FixedAvailabilityStartTime") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         return {

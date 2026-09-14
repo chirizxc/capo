@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: ShardFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ShardFilter:
     out: ShardFilter = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_dynamodb_streams.types.shard_filter_type
 
         out["type"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_0(data: dict) -> ShardFilter:
                 data["Type"]
             )
         )
-    if "ShardId" in data:
+    if data.get("ShardId") is not None:
         out["shard_id"] = data["ShardId"]
     return out

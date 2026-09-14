@@ -54,13 +54,13 @@ def serialize_json(value: DownlinkAwsGroundStationAgentEndpointDetails) -> dict:
 
 def deserialize_json(data: dict) -> DownlinkAwsGroundStationAgentEndpointDetails:
     out: DownlinkAwsGroundStationAgentEndpointDetails = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "DownlinkAwsGroundStationAgentEndpointDetails.name required"
         )
-    if "dataflowDetails" in data:
+    if data.get("dataflowDetails") is not None:
         import capo_groundstation.types.downlink_dataflow_details
 
         out["dataflow_details"] = (
@@ -72,13 +72,13 @@ def deserialize_json(data: dict) -> DownlinkAwsGroundStationAgentEndpointDetails
         raise DeserializationError(
             "DownlinkAwsGroundStationAgentEndpointDetails.dataflow_details required"
         )
-    if "agentStatus" in data:
+    if data.get("agentStatus") is not None:
         import capo_groundstation.types.agent_status
 
         out["agent_status"] = capo_groundstation.types.agent_status.deserialize_json(
             data["agentStatus"]
         )
-    if "auditResults" in data:
+    if data.get("auditResults") is not None:
         import capo_groundstation.types.audit_results
 
         out["audit_results"] = capo_groundstation.types.audit_results.deserialize_json(

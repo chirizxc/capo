@@ -65,9 +65,9 @@ def serialize_json(value: CreateMultipartReadSetUploadResponse) -> dict:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.serialize_json(value["tags"])
-    import capo_omics.types._prelude.timestamp
+    import capo_omics._protocol.serialize
 
-    out["creationTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+    out["creationTime"] = capo_omics._protocol.serialize.fmt_date_time(
         value["creation_time"]
     )
     return out
@@ -75,57 +75,57 @@ def serialize_json(value: CreateMultipartReadSetUploadResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMultipartReadSetUploadResponse:
     out: CreateMultipartReadSetUploadResponse = {}  # type: ignore[typeddict-item]
-    if "sequenceStoreId" in data:
+    if data.get("sequenceStoreId") is not None:
         out["sequence_store_id"] = data["sequenceStoreId"]
     else:
         raise DeserializationError(
             "CreateMultipartReadSetUploadResponse.sequence_store_id required"
         )
-    if "uploadId" in data:
+    if data.get("uploadId") is not None:
         out["upload_id"] = data["uploadId"]
     else:
         raise DeserializationError(
             "CreateMultipartReadSetUploadResponse.upload_id required"
         )
-    if "sourceFileType" in data:
+    if data.get("sourceFileType") is not None:
         out["source_file_type"] = data["sourceFileType"]
     else:
         raise DeserializationError(
             "CreateMultipartReadSetUploadResponse.source_file_type required"
         )
-    if "subjectId" in data:
+    if data.get("subjectId") is not None:
         out["subject_id"] = data["subjectId"]
     else:
         raise DeserializationError(
             "CreateMultipartReadSetUploadResponse.subject_id required"
         )
-    if "sampleId" in data:
+    if data.get("sampleId") is not None:
         out["sample_id"] = data["sampleId"]
     else:
         raise DeserializationError(
             "CreateMultipartReadSetUploadResponse.sample_id required"
         )
-    if "generatedFrom" in data:
+    if data.get("generatedFrom") is not None:
         out["generated_from"] = data["generatedFrom"]
-    if "referenceArn" in data:
+    if data.get("referenceArn") is not None:
         out["reference_arn"] = data["referenceArn"]
     else:
         raise DeserializationError(
             "CreateMultipartReadSetUploadResponse.reference_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "creationTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("creationTime") is not None:
+        import datetime
 
-        out["creation_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["creationTime"]
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["creationTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(

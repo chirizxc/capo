@@ -89,7 +89,7 @@ def serialize_json(value: RouterInputFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> RouterInputFilter:
-    if "nameContains" in data:
+    if data.get("nameContains") is not None:
         import capo_mediaconnect.types.string_list
 
         return {
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> RouterInputFilter:
                 data["nameContains"]
             )
         }
-    elif "regionNames" in data:
+    elif data.get("regionNames") is not None:
         import capo_mediaconnect.types.string_list
 
         return {
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> RouterInputFilter:
                 data["regionNames"]
             )
         }
-    elif "networkInterfaceArns" in data:
+    elif data.get("networkInterfaceArns") is not None:
         import capo_mediaconnect.types.router_network_interface_arn_list
 
         return {
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> RouterInputFilter:
                 data["networkInterfaceArns"]
             )
         }
-    elif "routingScopes" in data:
+    elif data.get("routingScopes") is not None:
         import capo_mediaconnect.types.routing_scope_list
 
         return {
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> RouterInputFilter:
                 data["routingScopes"]
             )
         }
-    elif "inputTypes" in data:
+    elif data.get("inputTypes") is not None:
         import capo_mediaconnect.types.router_input_type_list
 
         return {

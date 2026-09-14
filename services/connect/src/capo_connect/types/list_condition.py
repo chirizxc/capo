@@ -36,13 +36,13 @@ def serialize_json(value: ListCondition) -> dict:
 
 def deserialize_json(data: dict) -> ListCondition:
     out: ListCondition = {}  # type: ignore[typeddict-item]
-    if "TargetListType" in data:
+    if data.get("TargetListType") is not None:
         import capo_connect.types.target_list_type
 
         out["target_list_type"] = capo_connect.types.target_list_type.deserialize_json(
             data["TargetListType"]
         )
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_connect.types.conditions
 
         out["conditions"] = capo_connect.types.conditions.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AggregationSortConfigurationList:
 
     out: AggregationSortConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.aggregation_sort_configuration.deserialize_json(item)
         )

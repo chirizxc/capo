@@ -50,13 +50,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeConfigurationAggregatorSourcesStatusRequest:
     out: DescribeConfigurationAggregatorSourcesStatusRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationAggregatorName" in data:
+    if data.get("ConfigurationAggregatorName") is not None:
         out["configuration_aggregator_name"] = data["ConfigurationAggregatorName"]
     else:
         raise DeserializationError(
             "DescribeConfigurationAggregatorSourcesStatusRequest.configuration_aggregator_name required"
         )
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         import capo_config_service.types.aggregated_source_status_type_list
 
         out["update_status"] = (
@@ -64,9 +64,9 @@ def deserialize_aws_json_1_1(
                 data["UpdateStatus"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0

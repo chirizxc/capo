@@ -31,11 +31,11 @@ def serialize_json(value: GetAuthenticationUrlRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetAuthenticationUrlRequest:
     out: GetAuthenticationUrlRequest = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     else:
         raise DeserializationError("GetAuthenticationUrlRequest.session_id required")
-    if "RedirectUri" in data:
+    if data.get("RedirectUri") is not None:
         out["redirect_uri"] = data["RedirectUri"]
     else:
         raise DeserializationError("GetAuthenticationUrlRequest.redirect_uri required")

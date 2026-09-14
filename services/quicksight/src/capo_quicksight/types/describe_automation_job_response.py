@@ -75,29 +75,29 @@ def serialize_json(value: DescribeAutomationJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAutomationJobResponse:
     out: DescribeAutomationJobResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DescribeAutomationJobResponse.arn required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["created_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["started_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["StartedAt"]
         )
-    if "EndedAt" in data:
+    if data.get("EndedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["ended_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["EndedAt"]
         )
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_quicksight.types.automation_job_status
 
         out["job_status"] = (
@@ -107,10 +107,10 @@ def deserialize_json(data: dict) -> DescribeAutomationJobResponse:
         )
     else:
         raise DeserializationError("DescribeAutomationJobResponse.job_status required")
-    if "InputPayload" in data:
+    if data.get("InputPayload") is not None:
         out["input_payload"] = data["InputPayload"]
-    if "OutputPayload" in data:
+    if data.get("OutputPayload") is not None:
         out["output_payload"] = data["OutputPayload"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

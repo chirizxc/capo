@@ -66,15 +66,15 @@ def serialize_aws_json_1_1(value: VpcPeeringConnection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VpcPeeringConnection:
     out: VpcPeeringConnection = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
-    if "IpV4CidrBlock" in data:
+    if data.get("IpV4CidrBlock") is not None:
         out["ip_v4_cidr_block"] = data["IpV4CidrBlock"]
-    if "VpcPeeringConnectionId" in data:
+    if data.get("VpcPeeringConnectionId") is not None:
         out["vpc_peering_connection_id"] = data["VpcPeeringConnectionId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.vpc_peering_connection_status
 
         out["status"] = (
@@ -82,8 +82,8 @@ def deserialize_aws_json_1_1(data: dict) -> VpcPeeringConnection:
                 data["Status"]
             )
         )
-    if "PeerVpcId" in data:
+    if data.get("PeerVpcId") is not None:
         out["peer_vpc_id"] = data["PeerVpcId"]
-    if "GameLiftVpcId" in data:
+    if data.get("GameLiftVpcId") is not None:
         out["game_lift_vpc_id"] = data["GameLiftVpcId"]
     return out

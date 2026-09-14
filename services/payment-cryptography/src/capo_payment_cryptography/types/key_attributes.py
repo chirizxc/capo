@@ -42,19 +42,19 @@ def serialize_aws_json_1_0(value: KeyAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KeyAttributes:
     out: KeyAttributes = {}  # type: ignore[typeddict-item]
-    if "KeyUsage" in data:
+    if data.get("KeyUsage") is not None:
         out["key_usage"] = data["KeyUsage"]
     else:
         raise DeserializationError("KeyAttributes.key_usage required")
-    if "KeyClass" in data:
+    if data.get("KeyClass") is not None:
         out["key_class"] = data["KeyClass"]
     else:
         raise DeserializationError("KeyAttributes.key_class required")
-    if "KeyAlgorithm" in data:
+    if data.get("KeyAlgorithm") is not None:
         out["key_algorithm"] = data["KeyAlgorithm"]
     else:
         raise DeserializationError("KeyAttributes.key_algorithm required")
-    if "KeyModesOfUse" in data:
+    if data.get("KeyModesOfUse") is not None:
         import capo_payment_cryptography.types.key_modes_of_use
 
         out["key_modes_of_use"] = (

@@ -25,7 +25,7 @@ def serialize_json(value: UserConfig) -> dict:
 
 def deserialize_json(data: dict) -> UserConfig:
     out: UserConfig = {}  # type: ignore[typeddict-item]
-    if "role" in data:
+    if data.get("role") is not None:
         import capo_securityagent.types.user_role
 
         out["role"] = capo_securityagent.types.user_role.deserialize_json(data["role"])

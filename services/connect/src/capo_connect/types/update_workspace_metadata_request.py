@@ -41,10 +41,10 @@ def serialize_json(value: UpdateWorkspaceMetadataRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkspaceMetadataRequest:
     out: UpdateWorkspaceMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     return out

@@ -39,7 +39,7 @@ def serialize_json(value: BatchDeleteCustomVocabularyItemRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteCustomVocabularyItemRequest:
     out: BatchDeleteCustomVocabularyItemRequest = {}  # type: ignore[typeddict-item]
-    if "customVocabularyItemList" in data:
+    if data.get("customVocabularyItemList") is not None:
         import capo_lex_models_v2.types.delete_custom_vocabulary_items_list
 
         out["custom_vocabulary_item_list"] = (

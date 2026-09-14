@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: App) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> App:
     out: App = {}  # type: ignore[typeddict-item]
-    if "AppName" in data:
+    if data.get("AppName") is not None:
         out["app_name"] = data["AppName"]
     else:
         raise DeserializationError("App.app_name required")
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
     else:
         raise DeserializationError("App.protocol required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("App.port required")

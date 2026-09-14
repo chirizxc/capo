@@ -48,19 +48,19 @@ def serialize_json(value: SidewalkDeviceMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkDeviceMetadata:
     out: SidewalkDeviceMetadata = {}  # type: ignore[typeddict-item]
-    if "Rssi" in data:
+    if data.get("Rssi") is not None:
         out["rssi"] = data["Rssi"]
-    if "BatteryLevel" in data:
+    if data.get("BatteryLevel") is not None:
         import capo_iot_wireless.types.battery_level
 
         out["battery_level"] = capo_iot_wireless.types.battery_level.deserialize_json(
             data["BatteryLevel"]
         )
-    if "Event" in data:
+    if data.get("Event") is not None:
         import capo_iot_wireless.types.event
 
         out["event"] = capo_iot_wireless.types.event.deserialize_json(data["Event"])
-    if "DeviceState" in data:
+    if data.get("DeviceState") is not None:
         import capo_iot_wireless.types.device_state
 
         out["device_state"] = capo_iot_wireless.types.device_state.deserialize_json(

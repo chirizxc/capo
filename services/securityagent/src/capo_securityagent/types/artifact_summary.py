@@ -35,15 +35,15 @@ def serialize_json(value: ArtifactSummary) -> dict:
 
 def deserialize_json(data: dict) -> ArtifactSummary:
     out: ArtifactSummary = {}  # type: ignore[typeddict-item]
-    if "artifactId" in data:
+    if data.get("artifactId") is not None:
         out["artifact_id"] = data["artifactId"]
     else:
         raise DeserializationError("ArtifactSummary.artifact_id required")
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     else:
         raise DeserializationError("ArtifactSummary.file_name required")
-    if "artifactType" in data:
+    if data.get("artifactType") is not None:
         import capo_securityagent.types.artifact_type
 
         out["artifact_type"] = capo_securityagent.types.artifact_type.deserialize_json(

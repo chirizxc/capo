@@ -58,11 +58,11 @@ def serialize_json(value: GetMLModelTransformJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetMLModelTransformJobOutput:
     out: GetMLModelTransformJobOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "baseProcessingJob" in data:
+    if data.get("baseProcessingJob") is not None:
         import capo_neptunedata.types.ml_resource_definition
 
         out["base_processing_job"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> GetMLModelTransformJobOutput:
                 data["baseProcessingJob"]
             )
         )
-    if "remoteModelTransformJob" in data:
+    if data.get("remoteModelTransformJob") is not None:
         import capo_neptunedata.types.ml_resource_definition
 
         out["remote_model_transform_job"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> GetMLModelTransformJobOutput:
                 data["remoteModelTransformJob"]
             )
         )
-    if "models" in data:
+    if data.get("models") is not None:
         import capo_neptunedata.types.models
 
         out["models"] = capo_neptunedata.types.models.deserialize_json(data["models"])

@@ -49,19 +49,19 @@ def serialize_json(value: TimestreamAction) -> dict:
 
 def deserialize_json(data: dict) -> TimestreamAction:
     out: TimestreamAction = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("TimestreamAction.role_arn required")
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError("TimestreamAction.database_name required")
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("TimestreamAction.table_name required")
-    if "dimensions" in data:
+    if data.get("dimensions") is not None:
         import capo_iot.types.timestream_dimension_list
 
         out["dimensions"] = capo_iot.types.timestream_dimension_list.deserialize_json(
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> TimestreamAction:
         )
     else:
         raise DeserializationError("TimestreamAction.dimensions required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iot.types.timestream_timestamp
 
         out["timestamp"] = capo_iot.types.timestream_timestamp.deserialize_json(

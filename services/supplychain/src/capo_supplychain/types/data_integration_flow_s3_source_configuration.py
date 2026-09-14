@@ -41,19 +41,19 @@ def serialize_json(value: DataIntegrationFlowS3SourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowS3SourceConfiguration:
     out: DataIntegrationFlowS3SourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError(
             "DataIntegrationFlowS3SourceConfiguration.bucket_name required"
         )
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     else:
         raise DeserializationError(
             "DataIntegrationFlowS3SourceConfiguration.prefix required"
         )
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_supplychain.types.data_integration_flow_s3_options
 
         out["options"] = (

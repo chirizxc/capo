@@ -31,10 +31,10 @@ def serialize_json(value: BatchSuccessfulResultModel) -> dict:
 
 def deserialize_json(data: dict) -> BatchSuccessfulResultModel:
     out: BatchSuccessfulResultModel = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     return out

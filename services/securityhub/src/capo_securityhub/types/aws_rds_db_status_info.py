@@ -36,12 +36,12 @@ def serialize_json(value: AwsRdsDbStatusInfo) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbStatusInfo:
     out: AwsRdsDbStatusInfo = {}  # type: ignore[typeddict-item]
-    if "StatusType" in data:
+    if data.get("StatusType") is not None:
         out["status_type"] = data["StatusType"]
-    if "Normal" in data:
+    if data.get("Normal") is not None:
         out["normal"] = data["Normal"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

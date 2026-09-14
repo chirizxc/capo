@@ -83,7 +83,7 @@ def serialize_json(value: ResourceDataContainer) -> dict:
 
 def deserialize_json(data: dict) -> ResourceDataContainer:
     out: ResourceDataContainer = {}  # type: ignore[typeddict-item]
-    if "LocalDeviceResourceData" in data:
+    if data.get("LocalDeviceResourceData") is not None:
         import capo_greengrass.types.local_device_resource_data
 
         out["local_device_resource_data"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> ResourceDataContainer:
                 data["LocalDeviceResourceData"]
             )
         )
-    if "LocalVolumeResourceData" in data:
+    if data.get("LocalVolumeResourceData") is not None:
         import capo_greengrass.types.local_volume_resource_data
 
         out["local_volume_resource_data"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> ResourceDataContainer:
                 data["LocalVolumeResourceData"]
             )
         )
-    if "S3MachineLearningModelResourceData" in data:
+    if data.get("S3MachineLearningModelResourceData") is not None:
         import capo_greengrass.types.s3_machine_learning_model_resource_data
 
         out["s3_machine_learning_model_resource_data"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> ResourceDataContainer:
                 data["S3MachineLearningModelResourceData"]
             )
         )
-    if "SageMakerMachineLearningModelResourceData" in data:
+    if data.get("SageMakerMachineLearningModelResourceData") is not None:
         import capo_greengrass.types.sage_maker_machine_learning_model_resource_data
 
         out["sage_maker_machine_learning_model_resource_data"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> ResourceDataContainer:
                 data["SageMakerMachineLearningModelResourceData"]
             )
         )
-    if "SecretsManagerSecretResourceData" in data:
+    if data.get("SecretsManagerSecretResourceData") is not None:
         import capo_greengrass.types.secrets_manager_secret_resource_data
 
         out["secrets_manager_secret_resource_data"] = (

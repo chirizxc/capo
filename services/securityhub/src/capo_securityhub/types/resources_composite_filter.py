@@ -92,7 +92,7 @@ def serialize_json(value: ResourcesCompositeFilter) -> dict:
 
 def deserialize_json(data: dict) -> ResourcesCompositeFilter:
     out: ResourcesCompositeFilter = {}  # type: ignore[typeddict-item]
-    if "StringFilters" in data:
+    if data.get("StringFilters") is not None:
         import capo_securityhub.types.resources_string_filter_list
 
         out["string_filters"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> ResourcesCompositeFilter:
                 data["StringFilters"]
             )
         )
-    if "DateFilters" in data:
+    if data.get("DateFilters") is not None:
         import capo_securityhub.types.resources_date_filter_list
 
         out["date_filters"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> ResourcesCompositeFilter:
                 data["DateFilters"]
             )
         )
-    if "NumberFilters" in data:
+    if data.get("NumberFilters") is not None:
         import capo_securityhub.types.resources_number_filter_list
 
         out["number_filters"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> ResourcesCompositeFilter:
                 data["NumberFilters"]
             )
         )
-    if "MapFilters" in data:
+    if data.get("MapFilters") is not None:
         import capo_securityhub.types.resources_map_filter_list
 
         out["map_filters"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> ResourcesCompositeFilter:
                 data["MapFilters"]
             )
         )
-    if "NestedCompositeFilters" in data:
+    if data.get("NestedCompositeFilters") is not None:
         import capo_securityhub.types.resources_composite_filter_list
 
         out["nested_composite_filters"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> ResourcesCompositeFilter:
                 data["NestedCompositeFilters"]
             )
         )
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_securityhub.types.allowed_operators
 
         out["operator"] = capo_securityhub.types.allowed_operators.deserialize_json(

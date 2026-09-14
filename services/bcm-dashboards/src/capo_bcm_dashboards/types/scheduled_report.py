@@ -130,17 +130,17 @@ def serialize_aws_json_1_0(value: ScheduledReport) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduledReport:
     out: ScheduledReport = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ScheduledReport.name required")
-    if "dashboardArn" in data:
+    if data.get("dashboardArn") is not None:
         out["dashboard_arn"] = data["dashboardArn"]
     else:
         raise DeserializationError("ScheduledReport.dashboard_arn required")
-    if "scheduledReportExecutionRoleArn" in data:
+    if data.get("scheduledReportExecutionRoleArn") is not None:
         out["scheduled_report_execution_role_arn"] = data[
             "scheduledReportExecutionRoleArn"
         ]
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledReport:
         raise DeserializationError(
             "ScheduledReport.scheduled_report_execution_role_arn required"
         )
-    if "scheduleConfig" in data:
+    if data.get("scheduleConfig") is not None:
         import capo_bcm_dashboards.types.schedule_config
 
         out["schedule_config"] = (
@@ -158,9 +158,9 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledReport:
         )
     else:
         raise DeserializationError("ScheduledReport.schedule_config required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "widgetIds" in data:
+    if data.get("widgetIds") is not None:
         import capo_bcm_dashboards.types.widget_id_list
 
         out["widget_ids"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledReport:
                 data["widgetIds"]
             )
         )
-    if "widgetDateRangeOverride" in data:
+    if data.get("widgetDateRangeOverride") is not None:
         import capo_bcm_dashboards.types.date_time_range
 
         out["widget_date_range_override"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledReport:
                 data["widgetDateRangeOverride"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_bcm_dashboards.types.generic_time_stamp
 
         out["created_at"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledReport:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_bcm_dashboards.types.generic_time_stamp
 
         out["updated_at"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledReport:
                 data["updatedAt"]
             )
         )
-    if "lastExecutionAt" in data:
+    if data.get("lastExecutionAt") is not None:
         import capo_bcm_dashboards.types.generic_time_stamp
 
         out["last_execution_at"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledReport:
                 data["lastExecutionAt"]
             )
         )
-    if "healthStatus" in data:
+    if data.get("healthStatus") is not None:
         import capo_bcm_dashboards.types.health_status
 
         out["health_status"] = (

@@ -75,9 +75,9 @@ def serialize_aws_json_1_1(value: UpdateJobFromSourceControlRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateJobFromSourceControlRequest:
     out: UpdateJobFromSourceControlRequest = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "Provider" in data:
+    if data.get("Provider") is not None:
         import capo_glue.types.source_control_provider
 
         out["provider"] = (
@@ -85,17 +85,17 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateJobFromSourceControlRequest:
                 data["Provider"]
             )
         )
-    if "RepositoryName" in data:
+    if data.get("RepositoryName") is not None:
         out["repository_name"] = data["RepositoryName"]
-    if "RepositoryOwner" in data:
+    if data.get("RepositoryOwner") is not None:
         out["repository_owner"] = data["RepositoryOwner"]
-    if "BranchName" in data:
+    if data.get("BranchName") is not None:
         out["branch_name"] = data["BranchName"]
-    if "Folder" in data:
+    if data.get("Folder") is not None:
         out["folder"] = data["Folder"]
-    if "CommitId" in data:
+    if data.get("CommitId") is not None:
         out["commit_id"] = data["CommitId"]
-    if "AuthStrategy" in data:
+    if data.get("AuthStrategy") is not None:
         import capo_glue.types.source_control_auth_strategy
 
         out["auth_strategy"] = (
@@ -103,6 +103,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateJobFromSourceControlRequest:
                 data["AuthStrategy"]
             )
         )
-    if "AuthToken" in data:
+    if data.get("AuthToken") is not None:
         out["auth_token"] = data["AuthToken"]
     return out

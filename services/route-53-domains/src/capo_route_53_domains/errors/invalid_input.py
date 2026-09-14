@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidInput_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidInput_:
     out: InvalidInput_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,12 +35,18 @@ class InvalidInput(ServiceError):
 
     code: str | None = "InvalidInput"
 
-    def __init__(self, data: InvalidInput_):
+    def __init__(self, data: InvalidInput_, message: str | None = None):
         super().__init__(
-            "client", is_throttling_error=False, is_retryable=False, code="InvalidInput"
+            "client",
+            is_throttling_error=False,
+            is_retryable=False,
+            code="InvalidInput",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidInput":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidInput":
+        return cls(deserialize_aws_json_1_1(data), message)

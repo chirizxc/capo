@@ -42,27 +42,27 @@ def serialize_json(value: UpdateAccessLogSubscriptionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccessLogSubscriptionResponse:
     out: UpdateAccessLogSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateAccessLogSubscriptionResponse.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateAccessLogSubscriptionResponse.arn required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError(
             "UpdateAccessLogSubscriptionResponse.resource_id required"
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
             "UpdateAccessLogSubscriptionResponse.resource_arn required"
         )
-    if "destinationArn" in data:
+    if data.get("destinationArn") is not None:
         out["destination_arn"] = data["destinationArn"]
     else:
         raise DeserializationError(

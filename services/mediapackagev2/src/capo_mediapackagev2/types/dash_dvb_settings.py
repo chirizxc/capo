@@ -44,7 +44,7 @@ def serialize_json(value: DashDvbSettings) -> dict:
 
 def deserialize_json(data: dict) -> DashDvbSettings:
     out: DashDvbSettings = {}  # type: ignore[typeddict-item]
-    if "FontDownload" in data:
+    if data.get("FontDownload") is not None:
         import capo_mediapackagev2.types.dash_dvb_font_download
 
         out["font_download"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DashDvbSettings:
                 data["FontDownload"]
             )
         )
-    if "ErrorMetrics" in data:
+    if data.get("ErrorMetrics") is not None:
         import capo_mediapackagev2.types.dash_dvb_error_metrics
 
         out["error_metrics"] = (

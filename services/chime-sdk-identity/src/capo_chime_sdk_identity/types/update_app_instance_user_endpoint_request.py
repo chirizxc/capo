@@ -44,9 +44,9 @@ def serialize_json(value: UpdateAppInstanceUserEndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAppInstanceUserEndpointRequest:
     out: UpdateAppInstanceUserEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AllowMessages" in data:
+    if data.get("AllowMessages") is not None:
         import capo_chime_sdk_identity.types.allow_messages
 
         out["allow_messages"] = (

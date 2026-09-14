@@ -27,12 +27,12 @@ def serialize_json(value: GetResourceExplorerSetupInput) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceExplorerSetupInput:
     out: GetResourceExplorerSetupInput = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
     else:
         raise DeserializationError("GetResourceExplorerSetupInput.task_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

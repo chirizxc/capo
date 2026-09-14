@@ -56,13 +56,13 @@ def serialize_aws_json_1_0(value: CreateProgramManagementAccountRequest) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> CreateProgramManagementAccountRequest:
     out: CreateProgramManagementAccountRequest = {}  # type: ignore[typeddict-item]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError(
             "CreateProgramManagementAccountRequest.catalog required"
         )
-    if "program" in data:
+    if data.get("program") is not None:
         import capo_partnercentral_channel.types.program
 
         out["program"] = (
@@ -74,21 +74,21 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProgramManagementAccountReques
         raise DeserializationError(
             "CreateProgramManagementAccountRequest.program required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError(
             "CreateProgramManagementAccountRequest.display_name required"
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError(
             "CreateProgramManagementAccountRequest.account_id required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_partnercentral_channel.types.tag_list
 
         out["tags"] = (

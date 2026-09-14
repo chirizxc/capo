@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MulticastGroupListByFuotaTask:
 
     out: MulticastGroupListByFuotaTask = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.multicast_group_by_fuota_task.deserialize_json(item)
         )

@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: PrivateDnsNameOptionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PrivateDnsNameOptionsRequest:
     out: PrivateDnsNameOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "HostnameType" in data:
+    if data.get("HostnameType") is not None:
         import capo_workspaces_instances.types.hostname_type_enum
 
         out["hostname_type"] = (
@@ -49,9 +49,9 @@ def deserialize_aws_json_1_0(data: dict) -> PrivateDnsNameOptionsRequest:
                 data["HostnameType"]
             )
         )
-    if "EnableResourceNameDnsARecord" in data:
+    if data.get("EnableResourceNameDnsARecord") is not None:
         out["enable_resource_name_dns_a_record"] = data["EnableResourceNameDnsARecord"]
-    if "EnableResourceNameDnsAAAARecord" in data:
+    if data.get("EnableResourceNameDnsAAAARecord") is not None:
         out["enable_resource_name_dns_aaaa_record"] = data[
             "EnableResourceNameDnsAAAARecord"
         ]

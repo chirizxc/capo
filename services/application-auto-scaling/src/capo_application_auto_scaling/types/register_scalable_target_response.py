@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: RegisterScalableTargetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterScalableTargetResponse:
     out: RegisterScalableTargetResponse = {}  # type: ignore[typeddict-item]
-    if "ScalableTargetARN" in data:
+    if data.get("ScalableTargetARN") is not None:
         out["scalable_target_arn"] = data["ScalableTargetARN"]
     return out

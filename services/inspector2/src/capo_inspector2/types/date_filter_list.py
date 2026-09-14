@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DateFilterList:
 
     out: DateFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.date_filter.deserialize_json(item))
     return out

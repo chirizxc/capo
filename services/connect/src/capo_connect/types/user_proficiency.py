@@ -28,22 +28,30 @@ def serialize_json(value: UserProficiency) -> dict:
     out: dict = {}
     out["AttributeName"] = value["attribute_name"]
     out["AttributeValue"] = value["attribute_value"]
-    out["Level"] = value.get("level", 1)
+    out["Level"] = (
+        "NaN"
+        if value.get("level", 1) != value.get("level", 1)
+        else "Infinity"
+        if value.get("level", 1) == float("inf")
+        else "-Infinity"
+        if value.get("level", 1) == float("-inf")
+        else value.get("level", 1)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> UserProficiency:
     out: UserProficiency = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError("UserProficiency.attribute_name required")
-    if "AttributeValue" in data:
+    if data.get("AttributeValue") is not None:
         out["attribute_value"] = data["AttributeValue"]
     else:
         raise DeserializationError("UserProficiency.attribute_value required")
-    if "Level" in data:
-        out["level"] = data["Level"]
+    if data.get("Level") is not None:
+        out["level"] = float(data["Level"])
     else:
         out["level"] = 1
     return out

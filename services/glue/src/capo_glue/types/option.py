@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: Option) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Option:
     out: Option = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

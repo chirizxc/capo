@@ -31,7 +31,15 @@ def serialize_json(value: ServiceLevelIndicator) -> dict:
             value["sli_metric"]
         )
     )
-    out["MetricThreshold"] = value["metric_threshold"]
+    out["MetricThreshold"] = (
+        "NaN"
+        if value["metric_threshold"] != value["metric_threshold"]
+        else "Infinity"
+        if value["metric_threshold"] == float("inf")
+        else "-Infinity"
+        if value["metric_threshold"] == float("-inf")
+        else value["metric_threshold"]
+    )
     import capo_application_signals.types.service_level_indicator_comparison_operator
 
     out["ComparisonOperator"] = (
@@ -44,7 +52,7 @@ def serialize_json(value: ServiceLevelIndicator) -> dict:
 
 def deserialize_json(data: dict) -> ServiceLevelIndicator:
     out: ServiceLevelIndicator = {}  # type: ignore[typeddict-item]
-    if "SliMetric" in data:
+    if data.get("SliMetric") is not None:
         import capo_application_signals.types.service_level_indicator_metric
 
         out["sli_metric"] = (
@@ -54,11 +62,11 @@ def deserialize_json(data: dict) -> ServiceLevelIndicator:
         )
     else:
         raise DeserializationError("ServiceLevelIndicator.sli_metric required")
-    if "MetricThreshold" in data:
-        out["metric_threshold"] = data["MetricThreshold"]
+    if data.get("MetricThreshold") is not None:
+        out["metric_threshold"] = float(data["MetricThreshold"])
     else:
         raise DeserializationError("ServiceLevelIndicator.metric_threshold required")
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         import capo_application_signals.types.service_level_indicator_comparison_operator
 
         out["comparison_operator"] = (

@@ -177,39 +177,39 @@ def serialize_json(value: GetWebExperienceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWebExperienceResponse:
     out: GetWebExperienceResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "webExperienceId" in data:
+    if data.get("webExperienceId") is not None:
         out["web_experience_id"] = data["webExperienceId"]
-    if "webExperienceArn" in data:
+    if data.get("webExperienceArn") is not None:
         out["web_experience_arn"] = data["webExperienceArn"]
-    if "defaultEndpoint" in data:
+    if data.get("defaultEndpoint") is not None:
         out["default_endpoint"] = data["defaultEndpoint"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.web_experience_status
 
         out["status"] = capo_qbusiness.types.web_experience_status.deserialize_json(
             data["status"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "subtitle" in data:
+    if data.get("subtitle") is not None:
         out["subtitle"] = data["subtitle"]
-    if "welcomeMessage" in data:
+    if data.get("welcomeMessage") is not None:
         out["welcome_message"] = data["welcomeMessage"]
-    if "samplePromptsControlMode" in data:
+    if data.get("samplePromptsControlMode") is not None:
         import capo_qbusiness.types.web_experience_sample_prompts_control_mode
 
         out["sample_prompts_control_mode"] = (
@@ -217,15 +217,15 @@ def deserialize_json(data: dict) -> GetWebExperienceResponse:
                 data["samplePromptsControlMode"]
             )
         )
-    if "origins" in data:
+    if data.get("origins") is not None:
         import capo_qbusiness.types.web_experience_origins
 
         out["origins"] = capo_qbusiness.types.web_experience_origins.deserialize_json(
             data["origins"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "identityProviderConfiguration" in data:
+    if data.get("identityProviderConfiguration") is not None:
         import capo_qbusiness.types.identity_provider_configuration
 
         out["identity_provider_configuration"] = (
@@ -233,7 +233,7 @@ def deserialize_json(data: dict) -> GetWebExperienceResponse:
                 data["identityProviderConfiguration"]
             )
         )
-    if "authenticationConfiguration" in data:
+    if data.get("authenticationConfiguration") is not None:
         import capo_qbusiness.types.web_experience_auth_configuration
 
         out["authentication_configuration"] = (
@@ -241,11 +241,11 @@ def deserialize_json(data: dict) -> GetWebExperienceResponse:
                 data["authenticationConfiguration"]
             )
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_qbusiness.types.error_detail
 
         out["error"] = capo_qbusiness.types.error_detail.deserialize_json(data["error"])
-    if "browserExtensionConfiguration" in data:
+    if data.get("browserExtensionConfiguration") is not None:
         import capo_qbusiness.types.browser_extension_configuration
 
         out["browser_extension_configuration"] = (
@@ -253,7 +253,7 @@ def deserialize_json(data: dict) -> GetWebExperienceResponse:
                 data["browserExtensionConfiguration"]
             )
         )
-    if "customizationConfiguration" in data:
+    if data.get("customizationConfiguration") is not None:
         import capo_qbusiness.types.customization_configuration
 
         out["customization_configuration"] = (

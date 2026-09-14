@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SubscribedListings:
 
     out: SubscribedListings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.subscribed_listing.deserialize_json(item))
     return out

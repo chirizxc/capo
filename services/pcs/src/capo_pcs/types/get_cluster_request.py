@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetClusterRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetClusterRequest:
     out: GetClusterRequest = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError("GetClusterRequest.cluster_identifier required")

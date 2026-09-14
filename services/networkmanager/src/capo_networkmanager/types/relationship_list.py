@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RelationshipList:
 
     out: RelationshipList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_networkmanager.types.relationship.deserialize_json(item))
     return out

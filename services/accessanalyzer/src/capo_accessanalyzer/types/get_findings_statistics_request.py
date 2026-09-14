@@ -24,7 +24,7 @@ def serialize_json(value: GetFindingsStatisticsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsStatisticsRequest:
     out: GetFindingsStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "analyzerArn" in data:
+    if data.get("analyzerArn") is not None:
         out["analyzer_arn"] = data["analyzerArn"]
     else:
         raise DeserializationError("GetFindingsStatisticsRequest.analyzer_arn required")

@@ -36,13 +36,13 @@ def serialize_json(value: AutoTuneOptionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> AutoTuneOptionsStatus:
     out: AutoTuneOptionsStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_opensearch.types.auto_tune_options
 
         out["options"] = capo_opensearch.types.auto_tune_options.deserialize_json(
             data["Options"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.auto_tune_status
 
         out["status"] = capo_opensearch.types.auto_tune_status.deserialize_json(

@@ -27,8 +27,8 @@ def serialize_json(value: OriginDetails) -> dict:
 
 def deserialize_json(data: dict) -> OriginDetails:
     out: OriginDetails = {}  # type: ignore[typeddict-item]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "DataGrantId" in data:
+    if data.get("DataGrantId") is not None:
         out["data_grant_id"] = data["DataGrantId"]
     return out

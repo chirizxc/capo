@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfPipelineDetail:
 
     out: __listOfPipelineDetail = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.pipeline_detail.deserialize_json(item))
     return out

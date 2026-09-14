@@ -19,7 +19,7 @@ def serialize_json(value: PublicRouterNetworkInterfaceRule) -> dict:
 
 def deserialize_json(data: dict) -> PublicRouterNetworkInterfaceRule:
     out: PublicRouterNetworkInterfaceRule = {}  # type: ignore[typeddict-item]
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
     else:
         raise DeserializationError("PublicRouterNetworkInterfaceRule.cidr required")

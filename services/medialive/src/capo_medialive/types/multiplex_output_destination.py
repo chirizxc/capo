@@ -31,7 +31,7 @@ def serialize_json(value: MultiplexOutputDestination) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexOutputDestination:
     out: MultiplexOutputDestination = {}  # type: ignore[typeddict-item]
-    if "mediaConnectSettings" in data:
+    if data.get("mediaConnectSettings") is not None:
         import capo_medialive.types.multiplex_media_connect_output_destination_settings
 
         out["media_connect_settings"] = (

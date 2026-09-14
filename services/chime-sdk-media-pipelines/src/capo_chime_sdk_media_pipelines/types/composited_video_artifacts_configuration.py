@@ -56,7 +56,7 @@ def serialize_json(value: CompositedVideoArtifactsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CompositedVideoArtifactsConfiguration:
     out: CompositedVideoArtifactsConfiguration = {}  # type: ignore[typeddict-item]
-    if "Layout" in data:
+    if data.get("Layout") is not None:
         import capo_chime_sdk_media_pipelines.types.layout_option
 
         out["layout"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> CompositedVideoArtifactsConfiguration:
                 data["Layout"]
             )
         )
-    if "Resolution" in data:
+    if data.get("Resolution") is not None:
         import capo_chime_sdk_media_pipelines.types.resolution_option
 
         out["resolution"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> CompositedVideoArtifactsConfiguration:
                 data["Resolution"]
             )
         )
-    if "GridViewConfiguration" in data:
+    if data.get("GridViewConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.grid_view_configuration
 
         out["grid_view_configuration"] = (

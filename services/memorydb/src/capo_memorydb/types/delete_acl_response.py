@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: DeleteACLResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteACLResponse:
     out: DeleteACLResponse = {}  # type: ignore[typeddict-item]
-    if "ACL" in data:
+    if data.get("ACL") is not None:
         import capo_memorydb.types.acl
 
         out["acl"] = capo_memorydb.types.acl.deserialize_aws_json_1_1(data["ACL"])

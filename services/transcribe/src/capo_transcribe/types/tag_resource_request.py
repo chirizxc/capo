@@ -21,6 +21,7 @@ class TagResourceRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: TagResourceRequest) -> dict:
     out: dict = {}
+    out["ResourceArn"] = value["resource_arn"]
     import capo_transcribe.types.tag_list
 
     out["Tags"] = capo_transcribe.types.tag_list.serialize_aws_json_1_1(value["tags"])
@@ -29,7 +30,11 @@ def serialize_aws_json_1_1(value: TagResourceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("ResourceArn") is not None:
+        out["resource_arn"] = data["ResourceArn"]
+    else:
+        raise DeserializationError("TagResourceRequest.resource_arn required")
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(

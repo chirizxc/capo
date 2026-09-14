@@ -55,13 +55,13 @@ def serialize_json(value: GetJobQueueSnapshotResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetJobQueueSnapshotResponse:
     out: GetJobQueueSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "frontOfQueue" in data:
+    if data.get("frontOfQueue") is not None:
         import capo_batch.types.front_of_queue_detail
 
         out["front_of_queue"] = capo_batch.types.front_of_queue_detail.deserialize_json(
             data["frontOfQueue"]
         )
-    if "frontOfQuotaShares" in data:
+    if data.get("frontOfQuotaShares") is not None:
         import capo_batch.types.front_of_quota_shares_detail
 
         out["front_of_quota_shares"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> GetJobQueueSnapshotResponse:
                 data["frontOfQuotaShares"]
             )
         )
-    if "queueUtilization" in data:
+    if data.get("queueUtilization") is not None:
         import capo_batch.types.queue_snapshot_utilization_detail
 
         out["queue_utilization"] = (

@@ -40,7 +40,7 @@ def serialize_json(value: SearchGroupsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchGroupsRequest:
     out: SearchGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_quicksight.types.group_search_filter_list
 
         out["filters"] = (

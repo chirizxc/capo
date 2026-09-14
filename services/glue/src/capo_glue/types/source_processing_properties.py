@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: SourceProcessingProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceProcessingProperties:
     out: SourceProcessingProperties = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

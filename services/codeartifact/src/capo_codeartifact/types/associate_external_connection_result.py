@@ -31,7 +31,7 @@ def serialize_json(value: AssociateExternalConnectionResult) -> dict:
 
 def deserialize_json(data: dict) -> AssociateExternalConnectionResult:
     out: AssociateExternalConnectionResult = {}  # type: ignore[typeddict-item]
-    if "repository" in data:
+    if data.get("repository") is not None:
         import capo_codeartifact.types.repository_description
 
         out["repository"] = (

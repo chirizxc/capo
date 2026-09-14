@@ -36,7 +36,7 @@ def serialize_json(value: BatchListObjectChildrenResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchListObjectChildrenResponse:
     out: BatchListObjectChildrenResponse = {}  # type: ignore[typeddict-item]
-    if "Children" in data:
+    if data.get("Children") is not None:
         import capo_clouddirectory.types.link_name_to_object_identifier_map
 
         out["children"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> BatchListObjectChildrenResponse:
                 data["Children"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

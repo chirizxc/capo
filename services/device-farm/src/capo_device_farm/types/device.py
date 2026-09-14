@@ -145,17 +145,17 @@ def serialize_aws_json_1_1(value: Device) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Device:
     out: Device = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "manufacturer" in data:
+    if data.get("manufacturer") is not None:
         out["manufacturer"] = data["manufacturer"]
-    if "model" in data:
+    if data.get("model") is not None:
         out["model"] = data["model"]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
-    if "formFactor" in data:
+    if data.get("formFactor") is not None:
         import capo_device_farm.types.device_form_factor
 
         out["form_factor"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_1(data: dict) -> Device:
                 data["formFactor"]
             )
         )
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_device_farm.types.device_platform
 
         out["platform"] = (
@@ -171,37 +171,37 @@ def deserialize_aws_json_1_1(data: dict) -> Device:
                 data["platform"]
             )
         )
-    if "os" in data:
+    if data.get("os") is not None:
         out["os"] = data["os"]
-    if "cpu" in data:
+    if data.get("cpu") is not None:
         import capo_device_farm.types.cpu
 
         out["cpu"] = capo_device_farm.types.cpu.deserialize_aws_json_1_1(data["cpu"])
-    if "resolution" in data:
+    if data.get("resolution") is not None:
         import capo_device_farm.types.resolution
 
         out["resolution"] = capo_device_farm.types.resolution.deserialize_aws_json_1_1(
             data["resolution"]
         )
-    if "heapSize" in data:
+    if data.get("heapSize") is not None:
         out["heap_size"] = data["heapSize"]
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
-    if "carrier" in data:
+    if data.get("carrier") is not None:
         out["carrier"] = data["carrier"]
-    if "radio" in data:
+    if data.get("radio") is not None:
         out["radio"] = data["radio"]
-    if "remoteAccessEnabled" in data:
+    if data.get("remoteAccessEnabled") is not None:
         out["remote_access_enabled"] = data["remoteAccessEnabled"]
-    if "remoteDebugEnabled" in data:
+    if data.get("remoteDebugEnabled") is not None:
         out["remote_debug_enabled"] = data["remoteDebugEnabled"]
-    if "fleetType" in data:
+    if data.get("fleetType") is not None:
         out["fleet_type"] = data["fleetType"]
-    if "fleetName" in data:
+    if data.get("fleetName") is not None:
         out["fleet_name"] = data["fleetName"]
-    if "instances" in data:
+    if data.get("instances") is not None:
         import capo_device_farm.types.device_instances
 
         out["instances"] = (
@@ -209,7 +209,7 @@ def deserialize_aws_json_1_1(data: dict) -> Device:
                 data["instances"]
             )
         )
-    if "availability" in data:
+    if data.get("availability") is not None:
         import capo_device_farm.types.device_availability
 
         out["availability"] = (

@@ -58,24 +58,24 @@ def serialize_json(value: AndroidPushNotificationTemplate) -> dict:
 
 def deserialize_json(data: dict) -> AndroidPushNotificationTemplate:
     out: AndroidPushNotificationTemplate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_pinpoint.types.action
 
         out["action"] = capo_pinpoint.types.action.deserialize_json(data["Action"])
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "ImageIconUrl" in data:
+    if data.get("ImageIconUrl") is not None:
         out["image_icon_url"] = data["ImageIconUrl"]
-    if "ImageUrl" in data:
+    if data.get("ImageUrl") is not None:
         out["image_url"] = data["ImageUrl"]
-    if "RawContent" in data:
+    if data.get("RawContent") is not None:
         out["raw_content"] = data["RawContent"]
-    if "SmallImageIconUrl" in data:
+    if data.get("SmallImageIconUrl") is not None:
         out["small_image_icon_url"] = data["SmallImageIconUrl"]
-    if "Sound" in data:
+    if data.get("Sound") is not None:
         out["sound"] = data["Sound"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

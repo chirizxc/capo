@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: DescribeRcsAgentsResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeRcsAgentsResult:
     out: DescribeRcsAgentsResult = {}  # type: ignore[typeddict-item]
-    if "RcsAgents" in data:
+    if data.get("RcsAgents") is not None:
         import capo_pinpoint_sms_voice_v2.types.rcs_agent_information_list
 
         out["rcs_agents"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRcsAgentsResult:
                 data["RcsAgents"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: DescribeTransactionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTransactionResponse:
     out: DescribeTransactionResponse = {}  # type: ignore[typeddict-item]
-    if "TransactionDescription" in data:
+    if data.get("TransactionDescription") is not None:
         import capo_lakeformation.types.transaction_description
 
         out["transaction_description"] = (

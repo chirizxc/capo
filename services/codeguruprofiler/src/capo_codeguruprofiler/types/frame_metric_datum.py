@@ -35,7 +35,7 @@ def serialize_json(value: FrameMetricDatum) -> dict:
 
 def deserialize_json(data: dict) -> FrameMetricDatum:
     out: FrameMetricDatum = {}  # type: ignore[typeddict-item]
-    if "frameMetric" in data:
+    if data.get("frameMetric") is not None:
         import capo_codeguruprofiler.types.frame_metric
 
         out["frame_metric"] = capo_codeguruprofiler.types.frame_metric.deserialize_json(
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> FrameMetricDatum:
         )
     else:
         raise DeserializationError("FrameMetricDatum.frame_metric required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_codeguruprofiler.types.frame_metric_values
 
         out["values"] = (

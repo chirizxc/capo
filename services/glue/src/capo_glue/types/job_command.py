@@ -42,12 +42,12 @@ def serialize_aws_json_1_1(value: JobCommand) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobCommand:
     out: JobCommand = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ScriptLocation" in data:
+    if data.get("ScriptLocation") is not None:
         out["script_location"] = data["ScriptLocation"]
-    if "PythonVersion" in data:
+    if data.get("PythonVersion") is not None:
         out["python_version"] = data["PythonVersion"]
-    if "Runtime" in data:
+    if data.get("Runtime") is not None:
         out["runtime"] = data["Runtime"]
     return out

@@ -33,14 +33,14 @@ def serialize_aws_json_1_1(value: CreateXMLClassifierRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateXMLClassifierRequest:
     out: CreateXMLClassifierRequest = {}  # type: ignore[typeddict-item]
-    if "Classification" in data:
+    if data.get("Classification") is not None:
         out["classification"] = data["Classification"]
     else:
         raise DeserializationError("CreateXMLClassifierRequest.classification required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateXMLClassifierRequest.name required")
-    if "RowTag" in data:
+    if data.get("RowTag") is not None:
         out["row_tag"] = data["RowTag"]
     return out

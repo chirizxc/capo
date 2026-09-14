@@ -70,25 +70,25 @@ def serialize_json(value: ConfiguredTableAssociationAnalysisRule) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredTableAssociationAnalysisRule:
     out: ConfiguredTableAssociationAnalysisRule = {}  # type: ignore[typeddict-item]
-    if "membershipIdentifier" in data:
+    if data.get("membershipIdentifier") is not None:
         out["membership_identifier"] = data["membershipIdentifier"]
     else:
         raise DeserializationError(
             "ConfiguredTableAssociationAnalysisRule.membership_identifier required"
         )
-    if "configuredTableAssociationId" in data:
+    if data.get("configuredTableAssociationId") is not None:
         out["configured_table_association_id"] = data["configuredTableAssociationId"]
     else:
         raise DeserializationError(
             "ConfiguredTableAssociationAnalysisRule.configured_table_association_id required"
         )
-    if "configuredTableAssociationArn" in data:
+    if data.get("configuredTableAssociationArn") is not None:
         out["configured_table_association_arn"] = data["configuredTableAssociationArn"]
     else:
         raise DeserializationError(
             "ConfiguredTableAssociationAnalysisRule.configured_table_association_arn required"
         )
-    if "policy" in data:
+    if data.get("policy") is not None:
         import capo_cleanrooms.types.configured_table_association_analysis_rule_policy
 
         out["policy"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociationAnalysisRule:
         raise DeserializationError(
             "ConfiguredTableAssociationAnalysisRule.policy required"
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanrooms.types.configured_table_association_analysis_rule_type
 
         out["type"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociationAnalysisRule:
         raise DeserializationError(
             "ConfiguredTableAssociationAnalysisRule.type required"
         )
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociationAnalysisRule:
         raise DeserializationError(
             "ConfiguredTableAssociationAnalysisRule.create_time required"
         )
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CompositionThumbnailConfigurationList:
 
     out: CompositionThumbnailConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs_realtime.types.composition_thumbnail_configuration.deserialize_json(
                 item

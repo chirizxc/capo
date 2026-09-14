@@ -57,21 +57,21 @@ def serialize_json(value: TextSegment) -> dict:
 
 def deserialize_json(data: dict) -> TextSegment:
     out: TextSegment = {}  # type: ignore[typeddict-item]
-    if "beginOffset" in data:
+    if data.get("beginOffset") is not None:
         out["begin_offset"] = data["beginOffset"]
-    if "endOffset" in data:
+    if data.get("endOffset") is not None:
         out["end_offset"] = data["endOffset"]
-    if "snippetExcerpt" in data:
+    if data.get("snippetExcerpt") is not None:
         import capo_qbusiness.types.snippet_excerpt
 
         out["snippet_excerpt"] = capo_qbusiness.types.snippet_excerpt.deserialize_json(
             data["snippetExcerpt"]
         )
-    if "mediaId" in data:
+    if data.get("mediaId") is not None:
         out["media_id"] = data["mediaId"]
-    if "mediaMimeType" in data:
+    if data.get("mediaMimeType") is not None:
         out["media_mime_type"] = data["mediaMimeType"]
-    if "sourceDetails" in data:
+    if data.get("sourceDetails") is not None:
         import capo_qbusiness.types.source_details
 
         out["source_details"] = capo_qbusiness.types.source_details.deserialize_json(

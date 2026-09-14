@@ -32,7 +32,7 @@ def serialize_json(value: DeleteProjectMembershipInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteProjectMembershipInput:
     out: DeleteProjectMembershipInput = {}  # type: ignore[typeddict-item]
-    if "member" in data:
+    if data.get("member") is not None:
         import capo_datazone.types.member
 
         out["member"] = capo_datazone.types.member.deserialize_json(data["member"])

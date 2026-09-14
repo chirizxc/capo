@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: CancelQueryResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelQueryResponse:
     out: CancelQueryResponse = {}  # type: ignore[typeddict-item]
-    if "CancellationMessage" in data:
+    if data.get("CancellationMessage") is not None:
         out["cancellation_message"] = data["CancellationMessage"]
     return out

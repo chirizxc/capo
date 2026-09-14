@@ -111,9 +111,9 @@ def serialize_aws_json_1_1(value: TimeSeriesForecastingJobConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeSeriesForecastingJobConfig:
     out: TimeSeriesForecastingJobConfig = {}  # type: ignore[typeddict-item]
-    if "FeatureSpecificationS3Uri" in data:
+    if data.get("FeatureSpecificationS3Uri") is not None:
         out["feature_specification_s3_uri"] = data["FeatureSpecificationS3Uri"]
-    if "CompletionCriteria" in data:
+    if data.get("CompletionCriteria") is not None:
         import capo_sagemaker.types.auto_ml_job_completion_criteria
 
         out["completion_criteria"] = (
@@ -121,11 +121,11 @@ def deserialize_aws_json_1_1(data: dict) -> TimeSeriesForecastingJobConfig:
                 data["CompletionCriteria"]
             )
         )
-    if "ForecastFrequency" in data:
+    if data.get("ForecastFrequency") is not None:
         out["forecast_frequency"] = data["ForecastFrequency"]
-    if "ForecastHorizon" in data:
+    if data.get("ForecastHorizon") is not None:
         out["forecast_horizon"] = data["ForecastHorizon"]
-    if "ForecastQuantiles" in data:
+    if data.get("ForecastQuantiles") is not None:
         import capo_sagemaker.types.forecast_quantiles
 
         out["forecast_quantiles"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> TimeSeriesForecastingJobConfig:
                 data["ForecastQuantiles"]
             )
         )
-    if "Transformations" in data:
+    if data.get("Transformations") is not None:
         import capo_sagemaker.types.time_series_transformations
 
         out["transformations"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> TimeSeriesForecastingJobConfig:
                 data["Transformations"]
             )
         )
-    if "TimeSeriesConfig" in data:
+    if data.get("TimeSeriesConfig") is not None:
         import capo_sagemaker.types.time_series_config
 
         out["time_series_config"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> TimeSeriesForecastingJobConfig:
                 data["TimeSeriesConfig"]
             )
         )
-    if "HolidayConfig" in data:
+    if data.get("HolidayConfig") is not None:
         import capo_sagemaker.types.holiday_config
 
         out["holiday_config"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> TimeSeriesForecastingJobConfig:
                 data["HolidayConfig"]
             )
         )
-    if "CandidateGenerationConfig" in data:
+    if data.get("CandidateGenerationConfig") is not None:
         import capo_sagemaker.types.candidate_generation_config
 
         out["candidate_generation_config"] = (

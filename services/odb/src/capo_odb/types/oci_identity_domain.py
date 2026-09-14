@@ -49,20 +49,20 @@ def serialize_aws_json_1_0(value: OciIdentityDomain) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OciIdentityDomain:
     out: OciIdentityDomain = {}  # type: ignore[typeddict-item]
-    if "ociIdentityDomainId" in data:
+    if data.get("ociIdentityDomainId") is not None:
         out["oci_identity_domain_id"] = data["ociIdentityDomainId"]
-    if "ociIdentityDomainResourceUrl" in data:
+    if data.get("ociIdentityDomainResourceUrl") is not None:
         out["oci_identity_domain_resource_url"] = data["ociIdentityDomainResourceUrl"]
-    if "ociIdentityDomainUrl" in data:
+    if data.get("ociIdentityDomainUrl") is not None:
         out["oci_identity_domain_url"] = data["ociIdentityDomainUrl"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.resource_status
 
         out["status"] = capo_odb.types.resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "accountSetupCloudFormationUrl" in data:
+    if data.get("accountSetupCloudFormationUrl") is not None:
         out["account_setup_cloud_formation_url"] = data["accountSetupCloudFormationUrl"]
     return out

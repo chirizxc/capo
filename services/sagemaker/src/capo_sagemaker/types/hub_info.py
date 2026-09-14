@@ -79,15 +79,15 @@ def serialize_aws_json_1_1(value: HubInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HubInfo:
     out: HubInfo = {}  # type: ignore[typeddict-item]
-    if "HubName" in data:
+    if data.get("HubName") is not None:
         out["hub_name"] = data["HubName"]
-    if "HubArn" in data:
+    if data.get("HubArn") is not None:
         out["hub_arn"] = data["HubArn"]
-    if "HubDisplayName" in data:
+    if data.get("HubDisplayName") is not None:
         out["hub_display_name"] = data["HubDisplayName"]
-    if "HubDescription" in data:
+    if data.get("HubDescription") is not None:
         out["hub_description"] = data["HubDescription"]
-    if "HubSearchKeywords" in data:
+    if data.get("HubSearchKeywords") is not None:
         import capo_sagemaker.types.hub_search_keyword_list
 
         out["hub_search_keywords"] = (
@@ -95,19 +95,19 @@ def deserialize_aws_json_1_1(data: dict) -> HubInfo:
                 data["HubSearchKeywords"]
             )
         )
-    if "HubStatus" in data:
+    if data.get("HubStatus") is not None:
         import capo_sagemaker.types.hub_status
 
         out["hub_status"] = capo_sagemaker.types.hub_status.deserialize_aws_json_1_1(
             data["HubStatus"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

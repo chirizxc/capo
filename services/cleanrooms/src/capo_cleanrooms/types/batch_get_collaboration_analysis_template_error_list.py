@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchGetCollaborationAnalysisTemplateErrorLi
 
     out: BatchGetCollaborationAnalysisTemplateErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.batch_get_collaboration_analysis_template_error.deserialize_json(
                 item

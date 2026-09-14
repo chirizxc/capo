@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListCustomRoutingPortMappingsByDestinationResponse:
     out: ListCustomRoutingPortMappingsByDestinationResponse = {}  # type: ignore[typeddict-item]
-    if "DestinationPortMappings" in data:
+    if data.get("DestinationPortMappings") is not None:
         import capo_global_accelerator.types.destination_port_mappings
 
         out["destination_port_mappings"] = (
@@ -50,6 +50,6 @@ def deserialize_aws_json_1_1(
                 data["DestinationPortMappings"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

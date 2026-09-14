@@ -13,9 +13,9 @@ from capo_sagemaker_a2i_runtime import AsyncSageMakerA2IRuntimeClient
 
 
 async def main():
-    async with AsyncSageMakerA2IRuntimeClient() as s3:
+    async with AsyncSageMakerA2IRuntimeClient() as sage_maker_a2_i_runtime:
         # Example: call the delete_human_loop operation
-        response = await s3.delete_human_loop()
+        response = await sage_maker_a2_i_runtime.delete_human_loop()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_sagemaker_a2i_runtime import AsyncSageMakerA2IRuntimeClient
 
 
 async def main():
-    async with AsyncSageMakerA2IRuntimeClient() as s3:
+    async with AsyncSageMakerA2IRuntimeClient() as sage_maker_a2_i_runtime:
         # Example: paginate over list_human_loops
-        async for item in s3.iter_list_human_loops():
+        async for item in sage_maker_a2_i_runtime.iter_list_human_loops():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_sagemaker_a2i_runtime.error import InternalServerException
 
 
 async def main():
-    async with AsyncSageMakerA2IRuntimeClient() as s3:
+    async with AsyncSageMakerA2IRuntimeClient() as sage_maker_a2_i_runtime:
         try:
-            await s3.delete_human_loop()
+            await sage_maker_a2_i_runtime.delete_human_loop()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_sagemaker_a2i_runtime import AsyncSageMakerA2IRuntimeClient
 
 
 async def main():
-    async with AsyncSageMakerA2IRuntimeClient() as s3:
+    async with AsyncSageMakerA2IRuntimeClient() as sage_maker_a2_i_runtime:
         # Default: 3 attempts for every operation
-        response = await s3.delete_human_loop()
+        response = await sage_maker_a2_i_runtime.delete_human_loop()
 
         # Override per operation
-        response = await s3.delete_human_loop(config_overrides={"retry_max_attempts": 5})
+        response = await sage_maker_a2_i_runtime.delete_human_loop(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_human_loop(config_overrides={"retry_max_attempts": 1})
+        response = await sage_maker_a2_i_runtime.delete_human_loop(config_overrides={"retry_max_attempts": 1})
 ```

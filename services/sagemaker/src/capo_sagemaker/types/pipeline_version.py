@@ -109,21 +109,21 @@ def serialize_aws_json_1_1(value: PipelineVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineVersion:
     out: PipelineVersion = {}  # type: ignore[typeddict-item]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
-    if "PipelineVersionId" in data:
+    if data.get("PipelineVersionId") is not None:
         out["pipeline_version_id"] = data["PipelineVersionId"]
-    if "PipelineVersionDisplayName" in data:
+    if data.get("PipelineVersionDisplayName") is not None:
         out["pipeline_version_display_name"] = data["PipelineVersionDisplayName"]
-    if "PipelineVersionDescription" in data:
+    if data.get("PipelineVersionDescription") is not None:
         out["pipeline_version_description"] = data["PipelineVersionDescription"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -131,13 +131,13 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineVersion:
                 data["LastModifiedTime"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["last_modified_by"] = (
@@ -145,15 +145,15 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineVersion:
                 data["LastModifiedBy"]
             )
         )
-    if "LastExecutedPipelineExecutionArn" in data:
+    if data.get("LastExecutedPipelineExecutionArn") is not None:
         out["last_executed_pipeline_execution_arn"] = data[
             "LastExecutedPipelineExecutionArn"
         ]
-    if "LastExecutedPipelineExecutionDisplayName" in data:
+    if data.get("LastExecutedPipelineExecutionDisplayName") is not None:
         out["last_executed_pipeline_execution_display_name"] = data[
             "LastExecutedPipelineExecutionDisplayName"
         ]
-    if "LastExecutedPipelineExecutionStatus" in data:
+    if data.get("LastExecutedPipelineExecutionStatus") is not None:
         import capo_sagemaker.types.pipeline_execution_status
 
         out["last_executed_pipeline_execution_status"] = (

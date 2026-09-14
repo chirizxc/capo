@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: SetUserMFAPreferenceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetUserMFAPreferenceRequest:
     out: SetUserMFAPreferenceRequest = {}  # type: ignore[typeddict-item]
-    if "SMSMfaSettings" in data:
+    if data.get("SMSMfaSettings") is not None:
         import capo_cognito_identity_provider.types.sms_mfa_settings_type
 
         out["sms_mfa_settings"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetUserMFAPreferenceRequest:
                 data["SMSMfaSettings"]
             )
         )
-    if "SoftwareTokenMfaSettings" in data:
+    if data.get("SoftwareTokenMfaSettings") is not None:
         import capo_cognito_identity_provider.types.software_token_mfa_settings_type
 
         out["software_token_mfa_settings"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetUserMFAPreferenceRequest:
                 data["SoftwareTokenMfaSettings"]
             )
         )
-    if "EmailMfaSettings" in data:
+    if data.get("EmailMfaSettings") is not None:
         import capo_cognito_identity_provider.types.email_mfa_settings_type
 
         out["email_mfa_settings"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetUserMFAPreferenceRequest:
                 data["EmailMfaSettings"]
             )
         )
-    if "WebAuthnMfaSettings" in data:
+    if data.get("WebAuthnMfaSettings") is not None:
         import capo_cognito_identity_provider.types.web_authn_mfa_settings_type
 
         out["web_authn_mfa_settings"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetUserMFAPreferenceRequest:
                 data["WebAuthnMfaSettings"]
             )
         )
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError("SetUserMFAPreferenceRequest.access_token required")

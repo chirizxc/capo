@@ -45,13 +45,13 @@ def serialize_json(value: UpdateActRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateActRequest:
     out: UpdateActRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_nova_act.types.act_status
 
         out["status"] = capo_nova_act.types.act_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("UpdateActRequest.status required")
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_nova_act.types.act_error
 
         out["error"] = capo_nova_act.types.act_error.deserialize_json(data["error"])

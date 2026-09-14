@@ -35,7 +35,7 @@ def serialize_json(value: DetachObjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> DetachObjectRequest:
     out: DetachObjectRequest = {}  # type: ignore[typeddict-item]
-    if "ParentReference" in data:
+    if data.get("ParentReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["parent_reference"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> DetachObjectRequest:
         )
     else:
         raise DeserializationError("DetachObjectRequest.parent_reference required")
-    if "LinkName" in data:
+    if data.get("LinkName") is not None:
         out["link_name"] = data["LinkName"]
     else:
         raise DeserializationError("DetachObjectRequest.link_name required")

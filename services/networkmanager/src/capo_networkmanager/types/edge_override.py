@@ -34,12 +34,12 @@ def serialize_json(value: EdgeOverride) -> dict:
 
 def deserialize_json(data: dict) -> EdgeOverride:
     out: EdgeOverride = {}  # type: ignore[typeddict-item]
-    if "EdgeSets" in data:
+    if data.get("EdgeSets") is not None:
         import capo_networkmanager.types.edge_set_list
 
         out["edge_sets"] = capo_networkmanager.types.edge_set_list.deserialize_json(
             data["EdgeSets"]
         )
-    if "UseEdge" in data:
+    if data.get("UseEdge") is not None:
         out["use_edge"] = data["UseEdge"]
     return out

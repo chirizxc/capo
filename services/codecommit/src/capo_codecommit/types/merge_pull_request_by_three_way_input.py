@@ -91,21 +91,21 @@ def serialize_aws_json_1_1(value: MergePullRequestByThreeWayInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MergePullRequestByThreeWayInput:
     out: MergePullRequestByThreeWayInput = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
     else:
         raise DeserializationError(
             "MergePullRequestByThreeWayInput.pull_request_id required"
         )
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "MergePullRequestByThreeWayInput.repository_name required"
         )
-    if "sourceCommitId" in data:
+    if data.get("sourceCommitId") is not None:
         out["source_commit_id"] = data["sourceCommitId"]
-    if "conflictDetailLevel" in data:
+    if data.get("conflictDetailLevel") is not None:
         import capo_codecommit.types.conflict_detail_level_type_enum
 
         out["conflict_detail_level"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> MergePullRequestByThreeWayInput:
                 data["conflictDetailLevel"]
             )
         )
-    if "conflictResolutionStrategy" in data:
+    if data.get("conflictResolutionStrategy") is not None:
         import capo_codecommit.types.conflict_resolution_strategy_type_enum
 
         out["conflict_resolution_strategy"] = (
@@ -121,17 +121,17 @@ def deserialize_aws_json_1_1(data: dict) -> MergePullRequestByThreeWayInput:
                 data["conflictResolutionStrategy"]
             )
         )
-    if "commitMessage" in data:
+    if data.get("commitMessage") is not None:
         out["commit_message"] = data["commitMessage"]
-    if "authorName" in data:
+    if data.get("authorName") is not None:
         out["author_name"] = data["authorName"]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "keepEmptyFolders" in data:
+    if data.get("keepEmptyFolders") is not None:
         out["keep_empty_folders"] = data["keepEmptyFolders"]
     else:
         out["keep_empty_folders"] = False
-    if "conflictResolution" in data:
+    if data.get("conflictResolution") is not None:
         import capo_codecommit.types.conflict_resolution
 
         out["conflict_resolution"] = (

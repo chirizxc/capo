@@ -32,9 +32,9 @@ def serialize_json(value: EngineConfig) -> dict:
 
 def deserialize_json(data: dict) -> EngineConfig:
     out: EngineConfig = {}  # type: ignore[typeddict-item]
-    if "EngineArn" in data:
+    if data.get("EngineArn") is not None:
         out["engine_arn"] = data["EngineArn"]
-    if "BrowserType" in data:
+    if data.get("BrowserType") is not None:
         import capo_synthetics.types.browser_type
 
         out["browser_type"] = capo_synthetics.types.browser_type.deserialize_json(

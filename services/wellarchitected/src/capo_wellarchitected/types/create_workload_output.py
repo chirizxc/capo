@@ -26,8 +26,8 @@ def serialize_json(value: CreateWorkloadOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkloadOutput:
     out: CreateWorkloadOutput = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "WorkloadArn" in data:
+    if data.get("WorkloadArn") is not None:
         out["workload_arn"] = data["WorkloadArn"]
     return out

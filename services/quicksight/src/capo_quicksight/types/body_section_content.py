@@ -31,7 +31,7 @@ def serialize_json(value: BodySectionContent) -> dict:
 
 def deserialize_json(data: dict) -> BodySectionContent:
     out: BodySectionContent = {}  # type: ignore[typeddict-item]
-    if "Layout" in data:
+    if data.get("Layout") is not None:
         import capo_quicksight.types.section_layout_configuration
 
         out["layout"] = (

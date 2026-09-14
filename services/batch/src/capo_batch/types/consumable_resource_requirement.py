@@ -28,8 +28,8 @@ def serialize_json(value: ConsumableResourceRequirement) -> dict:
 
 def deserialize_json(data: dict) -> ConsumableResourceRequirement:
     out: ConsumableResourceRequirement = {}  # type: ignore[typeddict-item]
-    if "consumableResource" in data:
+    if data.get("consumableResource") is not None:
         out["consumable_resource"] = data["consumableResource"]
-    if "quantity" in data:
+    if data.get("quantity") is not None:
         out["quantity"] = data["quantity"]
     return out

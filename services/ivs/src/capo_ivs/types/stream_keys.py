@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> StreamKeys:
 
     out: StreamKeys = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ivs.types.stream_key.deserialize_json(item))
     return out

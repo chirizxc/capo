@@ -25,6 +25,6 @@ def serialize_json(value: CreateHoursOfOperationOverrideResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateHoursOfOperationOverrideResponse:
     out: CreateHoursOfOperationOverrideResponse = {}  # type: ignore[typeddict-item]
-    if "HoursOfOperationOverrideId" in data:
+    if data.get("HoursOfOperationOverrideId") is not None:
         out["hours_of_operation_override_id"] = data["HoursOfOperationOverrideId"]
     return out

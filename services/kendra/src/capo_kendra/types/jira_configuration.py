@@ -171,37 +171,37 @@ def serialize_aws_json_1_1(value: JiraConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JiraConfiguration:
     out: JiraConfiguration = {}  # type: ignore[typeddict-item]
-    if "JiraAccountUrl" in data:
+    if data.get("JiraAccountUrl") is not None:
         out["jira_account_url"] = data["JiraAccountUrl"]
     else:
         raise DeserializationError("JiraConfiguration.jira_account_url required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("JiraConfiguration.secret_arn required")
-    if "UseChangeLog" in data:
+    if data.get("UseChangeLog") is not None:
         out["use_change_log"] = data["UseChangeLog"]
     else:
         out["use_change_log"] = False
-    if "Project" in data:
+    if data.get("Project") is not None:
         import capo_kendra.types.project
 
         out["project"] = capo_kendra.types.project.deserialize_aws_json_1_1(
             data["Project"]
         )
-    if "IssueType" in data:
+    if data.get("IssueType") is not None:
         import capo_kendra.types.issue_type
 
         out["issue_type"] = capo_kendra.types.issue_type.deserialize_aws_json_1_1(
             data["IssueType"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.jira_status
 
         out["status"] = capo_kendra.types.jira_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "IssueSubEntityFilter" in data:
+    if data.get("IssueSubEntityFilter") is not None:
         import capo_kendra.types.issue_sub_entity_filter
 
         out["issue_sub_entity_filter"] = (
@@ -209,7 +209,7 @@ def deserialize_aws_json_1_1(data: dict) -> JiraConfiguration:
                 data["IssueSubEntityFilter"]
             )
         )
-    if "AttachmentFieldMappings" in data:
+    if data.get("AttachmentFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["attachment_field_mappings"] = (
@@ -217,7 +217,7 @@ def deserialize_aws_json_1_1(data: dict) -> JiraConfiguration:
                 data["AttachmentFieldMappings"]
             )
         )
-    if "CommentFieldMappings" in data:
+    if data.get("CommentFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["comment_field_mappings"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> JiraConfiguration:
                 data["CommentFieldMappings"]
             )
         )
-    if "IssueFieldMappings" in data:
+    if data.get("IssueFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["issue_field_mappings"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_1(data: dict) -> JiraConfiguration:
                 data["IssueFieldMappings"]
             )
         )
-    if "ProjectFieldMappings" in data:
+    if data.get("ProjectFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["project_field_mappings"] = (
@@ -241,7 +241,7 @@ def deserialize_aws_json_1_1(data: dict) -> JiraConfiguration:
                 data["ProjectFieldMappings"]
             )
         )
-    if "WorkLogFieldMappings" in data:
+    if data.get("WorkLogFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["work_log_field_mappings"] = (
@@ -249,7 +249,7 @@ def deserialize_aws_json_1_1(data: dict) -> JiraConfiguration:
                 data["WorkLogFieldMappings"]
             )
         )
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -257,7 +257,7 @@ def deserialize_aws_json_1_1(data: dict) -> JiraConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -265,7 +265,7 @@ def deserialize_aws_json_1_1(data: dict) -> JiraConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (

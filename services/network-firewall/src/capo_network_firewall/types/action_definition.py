@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: ActionDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActionDefinition:
     out: ActionDefinition = {}  # type: ignore[typeddict-item]
-    if "PublishMetricAction" in data:
+    if data.get("PublishMetricAction") is not None:
         import capo_network_firewall.types.publish_metric_action
 
         out["publish_metric_action"] = (

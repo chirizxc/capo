@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchDescribeDataTableValueFailureResultList
 
     out: BatchDescribeDataTableValueFailureResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.batch_describe_data_table_value_failure_result.deserialize_json(
                 item

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ModelSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelSettings:
     out: ModelSettings = {}  # type: ignore[typeddict-item]
-    if "LanguageModelName" in data:
+    if data.get("LanguageModelName") is not None:
         out["language_model_name"] = data["LanguageModelName"]
     return out

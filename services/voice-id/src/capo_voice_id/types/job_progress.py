@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: JobProgress) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> JobProgress:
     out: JobProgress = {}  # type: ignore[typeddict-item]
-    if "PercentComplete" in data:
+    if data.get("PercentComplete") is not None:
         out["percent_complete"] = data["PercentComplete"]
     return out

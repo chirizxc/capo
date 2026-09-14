@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: BatchGetDeploymentTargetsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetDeploymentTargetsOutput:
     out: BatchGetDeploymentTargetsOutput = {}  # type: ignore[typeddict-item]
-    if "deploymentTargets" in data:
+    if data.get("deploymentTargets") is not None:
         import capo_codedeploy.types.deployment_target_list
 
         out["deployment_targets"] = (

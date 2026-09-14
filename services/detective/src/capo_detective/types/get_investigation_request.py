@@ -28,11 +28,11 @@ def serialize_json(value: GetInvestigationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetInvestigationRequest:
     out: GetInvestigationRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError("GetInvestigationRequest.graph_arn required")
-    if "InvestigationId" in data:
+    if data.get("InvestigationId") is not None:
         out["investigation_id"] = data["InvestigationId"]
     else:
         raise DeserializationError("GetInvestigationRequest.investigation_id required")

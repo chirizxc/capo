@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: ComputeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComputeConfiguration:
     out: ComputeConfiguration = {}  # type: ignore[typeddict-item]
-    if "vCpu" in data:
+    if data.get("vCpu") is not None:
         out["v_cpu"] = data["vCpu"]
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
-    if "disk" in data:
+    if data.get("disk") is not None:
         out["disk"] = data["disk"]
-    if "machineType" in data:
+    if data.get("machineType") is not None:
         import capo_codebuild.types.machine_type
 
         out["machine_type"] = (
@@ -59,6 +59,6 @@ def deserialize_aws_json_1_1(data: dict) -> ComputeConfiguration:
                 data["machineType"]
             )
         )
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     return out

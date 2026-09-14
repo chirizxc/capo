@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ServiceNetworkVpcEndpointAssociationList:
 
     out: ServiceNetworkVpcEndpointAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_vpc_lattice.types.service_network_endpoint_association.deserialize_json(
                 item

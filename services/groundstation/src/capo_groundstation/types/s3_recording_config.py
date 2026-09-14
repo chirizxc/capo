@@ -33,14 +33,14 @@ def serialize_json(value: S3RecordingConfig) -> dict:
 
 def deserialize_json(data: dict) -> S3RecordingConfig:
     out: S3RecordingConfig = {}  # type: ignore[typeddict-item]
-    if "bucketArn" in data:
+    if data.get("bucketArn") is not None:
         out["bucket_arn"] = data["bucketArn"]
     else:
         raise DeserializationError("S3RecordingConfig.bucket_arn required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("S3RecordingConfig.role_arn required")
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     return out

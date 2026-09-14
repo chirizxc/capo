@@ -35,13 +35,13 @@ def deserialize_json(
     data: dict,
 ) -> GenerateEmbedUrlForRegisteredUserWithIdentityResponse:
     out: GenerateEmbedUrlForRegisteredUserWithIdentityResponse = {}  # type: ignore[typeddict-item]
-    if "EmbedUrl" in data:
+    if data.get("EmbedUrl") is not None:
         out["embed_url"] = data["EmbedUrl"]
     else:
         raise DeserializationError(
             "GenerateEmbedUrlForRegisteredUserWithIdentityResponse.embed_url required"
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     else:
         raise DeserializationError(

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> HumanTaskUiSummaries:
 
     out: HumanTaskUiSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.human_task_ui_summary.deserialize_aws_json_1_1(item)
         )

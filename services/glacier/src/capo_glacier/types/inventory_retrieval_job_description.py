@@ -40,14 +40,14 @@ def serialize_json(value: InventoryRetrievalJobDescription) -> dict:
 
 def deserialize_json(data: dict) -> InventoryRetrievalJobDescription:
     out: InventoryRetrievalJobDescription = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         out["start_date"] = data["StartDate"]
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         out["end_date"] = data["EndDate"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

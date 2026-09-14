@@ -36,11 +36,11 @@ def serialize_json(value: UplinkAwsGroundStationAgentEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> UplinkAwsGroundStationAgentEndpoint:
     out: UplinkAwsGroundStationAgentEndpoint = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UplinkAwsGroundStationAgentEndpoint.name required")
-    if "dataflowDetails" in data:
+    if data.get("dataflowDetails") is not None:
         import capo_groundstation.types.uplink_dataflow_details
 
         out["dataflow_details"] = (

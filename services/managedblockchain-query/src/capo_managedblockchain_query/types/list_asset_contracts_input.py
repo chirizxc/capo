@@ -39,7 +39,7 @@ def serialize_json(value: ListAssetContractsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListAssetContractsInput:
     out: ListAssetContractsInput = {}  # type: ignore[typeddict-item]
-    if "contractFilter" in data:
+    if data.get("contractFilter") is not None:
         import capo_managedblockchain_query.types.contract_filter
 
         out["contract_filter"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> ListAssetContractsInput:
         )
     else:
         raise DeserializationError("ListAssetContractsInput.contract_filter required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

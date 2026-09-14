@@ -32,6 +32,7 @@ def serialize_aws_json_1_0(value: CreateEnvironmentConnectorRequest) -> dict:
     out: dict = {}
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
+    out["environmentId"] = value["environment_id"]
     import capo_evs.types.connector_type
 
     out["type"] = capo_evs.types.connector_type.serialize_aws_json_1_0(value["type"])
@@ -42,9 +43,15 @@ def serialize_aws_json_1_0(value: CreateEnvironmentConnectorRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentConnectorRequest:
     out: CreateEnvironmentConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "type" in data:
+    if data.get("environmentId") is not None:
+        out["environment_id"] = data["environmentId"]
+    else:
+        raise DeserializationError(
+            "CreateEnvironmentConnectorRequest.environment_id required"
+        )
+    if data.get("type") is not None:
         import capo_evs.types.connector_type
 
         out["type"] = capo_evs.types.connector_type.deserialize_aws_json_1_0(
@@ -52,13 +59,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentConnectorRequest:
         )
     else:
         raise DeserializationError("CreateEnvironmentConnectorRequest.type required")
-    if "applianceFqdn" in data:
+    if data.get("applianceFqdn") is not None:
         out["appliance_fqdn"] = data["applianceFqdn"]
     else:
         raise DeserializationError(
             "CreateEnvironmentConnectorRequest.appliance_fqdn required"
         )
-    if "secretIdentifier" in data:
+    if data.get("secretIdentifier") is not None:
         out["secret_identifier"] = data["secretIdentifier"]
     else:
         raise DeserializationError(

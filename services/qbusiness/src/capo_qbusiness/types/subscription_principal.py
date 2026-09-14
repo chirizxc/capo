@@ -35,9 +35,9 @@ def serialize_json(value: SubscriptionPrincipal) -> dict:
 
 
 def deserialize_json(data: dict) -> SubscriptionPrincipal:
-    if "user" in data:
+    if data.get("user") is not None:
         return {"user": data["user"]}
-    elif "group" in data:
+    elif data.get("group") is not None:
         return {"group": data["group"]}
     else:
         raise DeserializationError("SubscriptionPrincipal: no recognized variant key")

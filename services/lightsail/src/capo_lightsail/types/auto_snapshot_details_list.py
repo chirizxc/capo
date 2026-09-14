@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AutoSnapshotDetailsList:
 
     out: AutoSnapshotDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.auto_snapshot_details.deserialize_aws_json_1_1(item)
         )

@@ -28,11 +28,11 @@ def serialize_json(value: AnnotationImportItemDetail) -> dict:
 
 def deserialize_json(data: dict) -> AnnotationImportItemDetail:
     out: AnnotationImportItemDetail = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("AnnotationImportItemDetail.source required")
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         out["job_status"] = data["jobStatus"]
     else:
         raise DeserializationError("AnnotationImportItemDetail.job_status required")

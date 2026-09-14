@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteAggregationAuthorizationRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteAggregationAuthorizationRequest:
     out: DeleteAggregationAuthorizationRequest = {}  # type: ignore[typeddict-item]
-    if "AuthorizedAccountId" in data:
+    if data.get("AuthorizedAccountId") is not None:
         out["authorized_account_id"] = data["AuthorizedAccountId"]
     else:
         raise DeserializationError(
             "DeleteAggregationAuthorizationRequest.authorized_account_id required"
         )
-    if "AuthorizedAwsRegion" in data:
+    if data.get("AuthorizedAwsRegion") is not None:
         out["authorized_aws_region"] = data["AuthorizedAwsRegion"]
     else:
         raise DeserializationError(

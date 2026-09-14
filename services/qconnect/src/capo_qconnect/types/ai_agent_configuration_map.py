@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: AIAgentConfigurationMap) -> dict:
 def deserialize_json(data: dict) -> AIAgentConfigurationMap:
     out: AIAgentConfigurationMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_qconnect.types.ai_agent_configuration_data
 
         out[key] = capo_qconnect.types.ai_agent_configuration_data.deserialize_json(

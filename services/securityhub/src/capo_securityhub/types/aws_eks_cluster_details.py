@@ -77,17 +77,17 @@ def serialize_json(value: AwsEksClusterDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEksClusterDetails:
     out: AwsEksClusterDetails = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CertificateAuthorityData" in data:
+    if data.get("CertificateAuthorityData") is not None:
         out["certificate_authority_data"] = data["CertificateAuthorityData"]
-    if "ClusterStatus" in data:
+    if data.get("ClusterStatus") is not None:
         out["cluster_status"] = data["ClusterStatus"]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ResourcesVpcConfig" in data:
+    if data.get("ResourcesVpcConfig") is not None:
         import capo_securityhub.types.aws_eks_cluster_resources_vpc_config_details
 
         out["resources_vpc_config"] = (
@@ -95,11 +95,11 @@ def deserialize_json(data: dict) -> AwsEksClusterDetails:
                 data["ResourcesVpcConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Logging" in data:
+    if data.get("Logging") is not None:
         import capo_securityhub.types.aws_eks_cluster_logging_details
 
         out["logging"] = (

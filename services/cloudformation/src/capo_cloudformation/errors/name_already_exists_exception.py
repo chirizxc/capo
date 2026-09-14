@@ -37,15 +37,18 @@ class NameAlreadyExistsException(ServiceError):
 
     code: str | None = "NameAlreadyExistsException"
 
-    def __init__(self, data: NameAlreadyExistsException_):
+    def __init__(self, data: NameAlreadyExistsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NameAlreadyExistsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "NameAlreadyExistsException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "NameAlreadyExistsException":
+        return cls(deserialize_query(el), message)

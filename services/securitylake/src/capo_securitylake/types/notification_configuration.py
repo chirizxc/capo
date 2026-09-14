@@ -48,7 +48,7 @@ def serialize_json(value: NotificationConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> NotificationConfiguration:
-    if "sqsNotificationConfiguration" in data:
+    if data.get("sqsNotificationConfiguration") is not None:
         import capo_securitylake.types.sqs_notification_configuration
 
         return {
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> NotificationConfiguration:
                 data["sqsNotificationConfiguration"]
             )
         }
-    elif "httpsNotificationConfiguration" in data:
+    elif data.get("httpsNotificationConfiguration") is not None:
         import capo_securitylake.types.https_notification_configuration
 
         return {

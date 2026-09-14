@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: S3ObjectSource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> S3ObjectSource:
     out: S3ObjectSource = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError("S3ObjectSource.bucket required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("S3ObjectSource.key required")

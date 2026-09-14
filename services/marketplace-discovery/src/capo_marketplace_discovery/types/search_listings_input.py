@@ -67,9 +67,9 @@ def serialize_json(value: SearchListingsInput) -> dict:
 
 def deserialize_json(data: dict) -> SearchListingsInput:
     out: SearchListingsInput = {}  # type: ignore[typeddict-item]
-    if "searchText" in data:
+    if data.get("searchText") is not None:
         out["search_text"] = data["searchText"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_marketplace_discovery.types.search_filter_list
 
         out["filters"] = (
@@ -77,11 +77,11 @@ def deserialize_json(data: dict) -> SearchListingsInput:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 25
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_marketplace_discovery.types.search_listings_sort_by
 
         out["sort_by"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> SearchListingsInput:
         )
     else:
         out["sort_by"] = "RELEVANCE"
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_marketplace_discovery.types.search_listings_sort_order
 
         out["sort_order"] = (
@@ -101,6 +101,6 @@ def deserialize_json(data: dict) -> SearchListingsInput:
         )
     else:
         out["sort_order"] = "DESCENDING"
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -118,9 +118,9 @@ def serialize_json(value: ComponentProperty) -> dict:
 
 def deserialize_json(data: dict) -> ComponentProperty:
     out: ComponentProperty = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "bindingProperties" in data:
+    if data.get("bindingProperties") is not None:
         import capo_amplifyuibuilder.types.component_property_binding_properties
 
         out["binding_properties"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> ComponentProperty:
                 data["bindingProperties"]
             )
         )
-    if "collectionBindingProperties" in data:
+    if data.get("collectionBindingProperties") is not None:
         import capo_amplifyuibuilder.types.component_property_binding_properties
 
         out["collection_binding_properties"] = (
@@ -136,21 +136,21 @@ def deserialize_json(data: dict) -> ComponentProperty:
                 data["collectionBindingProperties"]
             )
         )
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
-    if "model" in data:
+    if data.get("model") is not None:
         out["model"] = data["model"]
-    if "bindings" in data:
+    if data.get("bindings") is not None:
         import capo_amplifyuibuilder.types.form_bindings
 
         out["bindings"] = capo_amplifyuibuilder.types.form_bindings.deserialize_json(
             data["bindings"]
         )
-    if "event" in data:
+    if data.get("event") is not None:
         out["event"] = data["event"]
-    if "userAttribute" in data:
+    if data.get("userAttribute") is not None:
         out["user_attribute"] = data["userAttribute"]
-    if "concat" in data:
+    if data.get("concat") is not None:
         import capo_amplifyuibuilder.types.component_property_list
 
         out["concat"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> ComponentProperty:
                 data["concat"]
             )
         )
-    if "condition" in data:
+    if data.get("condition") is not None:
         import capo_amplifyuibuilder.types.component_condition_property
 
         out["condition"] = (
@@ -166,14 +166,14 @@ def deserialize_json(data: dict) -> ComponentProperty:
                 data["condition"]
             )
         )
-    if "configured" in data:
+    if data.get("configured") is not None:
         out["configured"] = data["configured"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "importedValue" in data:
+    if data.get("importedValue") is not None:
         out["imported_value"] = data["importedValue"]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "property" in data:
+    if data.get("property") is not None:
         out["property"] = data["property"]
     return out

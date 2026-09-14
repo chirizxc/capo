@@ -35,7 +35,7 @@ def serialize_json(value: UpdatePermissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePermissionsRequest:
     out: UpdatePermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "updateInstructionBatch" in data:
+    if data.get("updateInstructionBatch") is not None:
         import capo_grafana.types.update_instruction_batch
 
         out["update_instruction_batch"] = (

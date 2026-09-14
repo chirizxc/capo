@@ -72,19 +72,19 @@ def serialize_json(value: LimitSummary) -> dict:
 
 def deserialize_json(data: dict) -> LimitSummary:
     out: LimitSummary = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("LimitSummary.farm_id required")
-    if "limitId" in data:
+    if data.get("limitId") is not None:
         out["limit_id"] = data["limitId"]
     else:
         raise DeserializationError("LimitSummary.limit_id required")
-    if "currentCount" in data:
+    if data.get("currentCount") is not None:
         out["current_count"] = data["currentCount"]
     else:
         raise DeserializationError("LimitSummary.current_count required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -92,27 +92,27 @@ def deserialize_json(data: dict) -> LimitSummary:
         )
     else:
         raise DeserializationError("LimitSummary.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("LimitSummary.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("LimitSummary.display_name required")
-    if "amountRequirementName" in data:
+    if data.get("amountRequirementName") is not None:
         out["amount_requirement_name"] = data["amountRequirementName"]
     else:
         raise DeserializationError("LimitSummary.amount_requirement_name required")
-    if "maxCount" in data:
+    if data.get("maxCount") is not None:
         out["max_count"] = data["maxCount"]
     else:
         raise DeserializationError("LimitSummary.max_count required")

@@ -31,11 +31,11 @@ def serialize_json(value: HiddenCaseRule) -> dict:
 
 def deserialize_json(data: dict) -> HiddenCaseRule:
     out: HiddenCaseRule = {}  # type: ignore[typeddict-item]
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
     else:
         raise DeserializationError("HiddenCaseRule.default_value required")
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_connectcases.types.boolean_condition_list
 
         out["conditions"] = (

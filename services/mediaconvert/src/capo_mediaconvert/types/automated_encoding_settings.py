@@ -31,7 +31,7 @@ def serialize_json(value: AutomatedEncodingSettings) -> dict:
 
 def deserialize_json(data: dict) -> AutomatedEncodingSettings:
     out: AutomatedEncodingSettings = {}  # type: ignore[typeddict-item]
-    if "abrSettings" in data:
+    if data.get("abrSettings") is not None:
         import capo_mediaconvert.types.automated_abr_settings
 
         out["abr_settings"] = (

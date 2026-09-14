@@ -70,27 +70,27 @@ def serialize_json(value: CreateKxScalingGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxScalingGroupResponse:
     out: CreateKxScalingGroupResponse = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "scalingGroupName" in data:
+    if data.get("scalingGroupName") is not None:
         out["scaling_group_name"] = data["scalingGroupName"]
-    if "hostType" in data:
+    if data.get("hostType") is not None:
         out["host_type"] = data["hostType"]
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.kx_scaling_group_status
 
         out["status"] = capo_finspace.types.kx_scaling_group_status.deserialize_json(
             data["status"]
         )
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["lastModifiedTimestamp"]
         )
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(

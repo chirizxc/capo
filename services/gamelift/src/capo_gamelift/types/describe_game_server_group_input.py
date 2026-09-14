@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeGameServerGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeGameServerGroupInput:
     out: DescribeGameServerGroupInput = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
     return out

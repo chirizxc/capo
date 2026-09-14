@@ -18,6 +18,6 @@ def serialize_json(value: DeleteConnectionOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteConnectionOutput:
     out: DeleteConnectionOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

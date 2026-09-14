@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: DateInterval) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DateInterval:
     out: DateInterval = {}  # type: ignore[typeddict-item]
-    if "startDateTime" in data:
+    if data.get("startDateTime") is not None:
         out["start_date_time"] = data["startDateTime"]
-    if "endDateTime" in data:
+    if data.get("endDateTime") is not None:
         out["end_date_time"] = data["endDateTime"]
     return out

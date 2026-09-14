@@ -101,9 +101,9 @@ def serialize_aws_json_1_1(value: ActionExecution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionExecution:
     out: ActionExecution = {}  # type: ignore[typeddict-item]
-    if "actionExecutionId" in data:
+    if data.get("actionExecutionId") is not None:
         out["action_execution_id"] = data["actionExecutionId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codepipeline.types.action_execution_status
 
         out["status"] = (
@@ -111,9 +111,9 @@ def deserialize_aws_json_1_1(data: dict) -> ActionExecution:
                 data["status"]
             )
         )
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
-    if "lastStatusChange" in data:
+    if data.get("lastStatusChange") is not None:
         import capo_codepipeline.types.timestamp
 
         out["last_status_change"] = (
@@ -121,17 +121,17 @@ def deserialize_aws_json_1_1(data: dict) -> ActionExecution:
                 data["lastStatusChange"]
             )
         )
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
-    if "lastUpdatedBy" in data:
+    if data.get("lastUpdatedBy") is not None:
         out["last_updated_by"] = data["lastUpdatedBy"]
-    if "externalExecutionId" in data:
+    if data.get("externalExecutionId") is not None:
         out["external_execution_id"] = data["externalExecutionId"]
-    if "externalExecutionUrl" in data:
+    if data.get("externalExecutionUrl") is not None:
         out["external_execution_url"] = data["externalExecutionUrl"]
-    if "percentComplete" in data:
+    if data.get("percentComplete") is not None:
         out["percent_complete"] = data["percentComplete"]
-    if "errorDetails" in data:
+    if data.get("errorDetails") is not None:
         import capo_codepipeline.types.error_details
 
         out["error_details"] = (
@@ -139,6 +139,6 @@ def deserialize_aws_json_1_1(data: dict) -> ActionExecution:
                 data["errorDetails"]
             )
         )
-    if "logStreamARN" in data:
+    if data.get("logStreamARN") is not None:
         out["log_stream_arn"] = data["logStreamARN"]
     return out

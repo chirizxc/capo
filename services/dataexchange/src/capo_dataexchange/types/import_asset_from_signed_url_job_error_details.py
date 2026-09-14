@@ -24,7 +24,7 @@ def serialize_json(value: ImportAssetFromSignedUrlJobErrorDetails) -> dict:
 
 def deserialize_json(data: dict) -> ImportAssetFromSignedUrlJobErrorDetails:
     out: ImportAssetFromSignedUrlJobErrorDetails = {}  # type: ignore[typeddict-item]
-    if "AssetName" in data:
+    if data.get("AssetName") is not None:
         out["asset_name"] = data["AssetName"]
     else:
         raise DeserializationError(

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SnapshotAnonymousUserList:
 
     out: SnapshotAnonymousUserList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.snapshot_anonymous_user.deserialize_json(item))
     return out

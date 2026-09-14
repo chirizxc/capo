@@ -62,9 +62,9 @@ def serialize_aws_json_1_0(value: RulesSource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RulesSource:
     out: RulesSource = {}  # type: ignore[typeddict-item]
-    if "RulesString" in data:
+    if data.get("RulesString") is not None:
         out["rules_string"] = data["RulesString"]
-    if "RulesSourceList" in data:
+    if data.get("RulesSourceList") is not None:
         import capo_network_firewall.types.rules_source_list
 
         out["rules_source_list"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> RulesSource:
                 data["RulesSourceList"]
             )
         )
-    if "StatefulRules" in data:
+    if data.get("StatefulRules") is not None:
         import capo_network_firewall.types.stateful_rules
 
         out["stateful_rules"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> RulesSource:
                 data["StatefulRules"]
             )
         )
-    if "StatelessRulesAndCustomActions" in data:
+    if data.get("StatelessRulesAndCustomActions") is not None:
         import capo_network_firewall.types.stateless_rules_and_custom_actions
 
         out["stateless_rules_and_custom_actions"] = (

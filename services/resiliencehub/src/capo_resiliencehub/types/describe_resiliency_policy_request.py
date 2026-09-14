@@ -24,7 +24,7 @@ def serialize_json(value: DescribeResiliencyPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeResiliencyPolicyRequest:
     out: DescribeResiliencyPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
     else:
         raise DeserializationError(

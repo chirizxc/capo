@@ -83,34 +83,34 @@ def serialize_json(value: SMSChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> SMSChannelResponse:
     out: SMSChannelResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "HasCredential" in data:
+    if data.get("HasCredential") is not None:
         out["has_credential"] = data["HasCredential"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "IsArchived" in data:
+    if data.get("IsArchived") is not None:
         out["is_archived"] = data["IsArchived"]
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         out["platform"] = data["Platform"]
-    if "PromotionalMessagesPerSecond" in data:
+    if data.get("PromotionalMessagesPerSecond") is not None:
         out["promotional_messages_per_second"] = data["PromotionalMessagesPerSecond"]
-    if "SenderId" in data:
+    if data.get("SenderId") is not None:
         out["sender_id"] = data["SenderId"]
-    if "ShortCode" in data:
+    if data.get("ShortCode") is not None:
         out["short_code"] = data["ShortCode"]
-    if "TransactionalMessagesPerSecond" in data:
+    if data.get("TransactionalMessagesPerSecond") is not None:
         out["transactional_messages_per_second"] = data[
             "TransactionalMessagesPerSecond"
         ]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

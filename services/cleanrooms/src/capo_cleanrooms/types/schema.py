@@ -141,7 +141,7 @@ def serialize_json(value: Schema) -> dict:
 
 def deserialize_json(data: dict) -> Schema:
     out: Schema = {}  # type: ignore[typeddict-item]
-    if "columns" in data:
+    if data.get("columns") is not None:
         import capo_cleanrooms.types.column_list
 
         out["columns"] = capo_cleanrooms.types.column_list.deserialize_json(
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> Schema:
         )
     else:
         raise DeserializationError("Schema.columns required")
-    if "partitionKeys" in data:
+    if data.get("partitionKeys") is not None:
         import capo_cleanrooms.types.column_list
 
         out["partition_keys"] = capo_cleanrooms.types.column_list.deserialize_json(
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> Schema:
         )
     else:
         raise DeserializationError("Schema.partition_keys required")
-    if "analysisRuleTypes" in data:
+    if data.get("analysisRuleTypes") is not None:
         import capo_cleanrooms.types.analysis_rule_type_list
 
         out["analysis_rule_types"] = (
@@ -167,13 +167,13 @@ def deserialize_json(data: dict) -> Schema:
         )
     else:
         raise DeserializationError("Schema.analysis_rule_types required")
-    if "analysisMethod" in data:
+    if data.get("analysisMethod") is not None:
         import capo_cleanrooms.types.analysis_method
 
         out["analysis_method"] = capo_cleanrooms.types.analysis_method.deserialize_json(
             data["analysisMethod"]
         )
-    if "selectedAnalysisMethods" in data:
+    if data.get("selectedAnalysisMethods") is not None:
         import capo_cleanrooms.types.selected_analysis_methods
 
         out["selected_analysis_methods"] = (
@@ -181,27 +181,27 @@ def deserialize_json(data: dict) -> Schema:
                 data["selectedAnalysisMethods"]
             )
         )
-    if "creatorAccountId" in data:
+    if data.get("creatorAccountId") is not None:
         out["creator_account_id"] = data["creatorAccountId"]
     else:
         raise DeserializationError("Schema.creator_account_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Schema.name required")
-    if "collaborationId" in data:
+    if data.get("collaborationId") is not None:
         out["collaboration_id"] = data["collaborationId"]
     else:
         raise DeserializationError("Schema.collaboration_id required")
-    if "collaborationArn" in data:
+    if data.get("collaborationArn") is not None:
         out["collaboration_arn"] = data["collaborationArn"]
     else:
         raise DeserializationError("Schema.collaboration_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("Schema.description required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -209,7 +209,7 @@ def deserialize_json(data: dict) -> Schema:
         )
     else:
         raise DeserializationError("Schema.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -217,13 +217,13 @@ def deserialize_json(data: dict) -> Schema:
         )
     else:
         raise DeserializationError("Schema.update_time required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanrooms.types.schema_type
 
         out["type"] = capo_cleanrooms.types.schema_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("Schema.type required")
-    if "schemaStatusDetails" in data:
+    if data.get("schemaStatusDetails") is not None:
         import capo_cleanrooms.types.schema_status_detail_list
 
         out["schema_status_details"] = (
@@ -233,9 +233,9 @@ def deserialize_json(data: dict) -> Schema:
         )
     else:
         out["schema_status_details"] = []
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "schemaTypeProperties" in data:
+    if data.get("schemaTypeProperties") is not None:
         import capo_cleanrooms.types.schema_type_properties
 
         out["schema_type_properties"] = (

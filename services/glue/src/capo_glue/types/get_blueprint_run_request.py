@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: GetBlueprintRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBlueprintRunRequest:
     out: GetBlueprintRunRequest = {}  # type: ignore[typeddict-item]
-    if "BlueprintName" in data:
+    if data.get("BlueprintName") is not None:
         out["blueprint_name"] = data["BlueprintName"]
     else:
         raise DeserializationError("GetBlueprintRunRequest.blueprint_name required")
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     else:
         raise DeserializationError("GetBlueprintRunRequest.run_id required")

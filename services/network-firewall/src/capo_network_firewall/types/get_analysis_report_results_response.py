@@ -87,9 +87,9 @@ def serialize_aws_json_1_0(value: GetAnalysisReportResultsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAnalysisReportResultsResponse:
     out: GetAnalysisReportResultsResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_network_firewall.types.start_time
 
         out["start_time"] = (
@@ -97,13 +97,13 @@ def deserialize_aws_json_1_0(data: dict) -> GetAnalysisReportResultsResponse:
                 data["StartTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_network_firewall.types.end_time
 
         out["end_time"] = capo_network_firewall.types.end_time.deserialize_aws_json_1_0(
             data["EndTime"]
         )
-    if "ReportTime" in data:
+    if data.get("ReportTime") is not None:
         import capo_network_firewall.types.report_time
 
         out["report_time"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetAnalysisReportResultsResponse:
                 data["ReportTime"]
             )
         )
-    if "AnalysisType" in data:
+    if data.get("AnalysisType") is not None:
         import capo_network_firewall.types.enabled_analysis_type
 
         out["analysis_type"] = (
@@ -119,9 +119,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetAnalysisReportResultsResponse:
                 data["AnalysisType"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "AnalysisReportResults" in data:
+    if data.get("AnalysisReportResults") is not None:
         import capo_network_firewall.types.analysis_report_results
 
         out["analysis_report_results"] = (

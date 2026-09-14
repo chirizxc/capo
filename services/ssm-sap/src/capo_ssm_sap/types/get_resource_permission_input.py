@@ -35,13 +35,13 @@ def serialize_json(value: GetResourcePermissionInput) -> dict:
 
 def deserialize_json(data: dict) -> GetResourcePermissionInput:
     out: GetResourcePermissionInput = {}  # type: ignore[typeddict-item]
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         import capo_ssm_sap.types.permission_action_type
 
         out["action_type"] = capo_ssm_sap.types.permission_action_type.deserialize_json(
             data["ActionType"]
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("GetResourcePermissionInput.resource_arn required")

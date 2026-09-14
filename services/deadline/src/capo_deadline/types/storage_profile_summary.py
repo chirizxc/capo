@@ -38,15 +38,15 @@ def serialize_json(value: StorageProfileSummary) -> dict:
 
 def deserialize_json(data: dict) -> StorageProfileSummary:
     out: StorageProfileSummary = {}  # type: ignore[typeddict-item]
-    if "storageProfileId" in data:
+    if data.get("storageProfileId") is not None:
         out["storage_profile_id"] = data["storageProfileId"]
     else:
         raise DeserializationError("StorageProfileSummary.storage_profile_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("StorageProfileSummary.display_name required")
-    if "osFamily" in data:
+    if data.get("osFamily") is not None:
         import capo_deadline.types.storage_profile_operating_system_family
 
         out["os_family"] = (

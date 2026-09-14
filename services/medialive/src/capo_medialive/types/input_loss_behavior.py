@@ -62,11 +62,11 @@ def serialize_json(value: InputLossBehavior) -> dict:
 
 def deserialize_json(data: dict) -> InputLossBehavior:
     out: InputLossBehavior = {}  # type: ignore[typeddict-item]
-    if "blackFrameMsec" in data:
+    if data.get("blackFrameMsec") is not None:
         out["black_frame_msec"] = data["blackFrameMsec"]
-    if "inputLossImageColor" in data:
+    if data.get("inputLossImageColor") is not None:
         out["input_loss_image_color"] = data["inputLossImageColor"]
-    if "inputLossImageSlate" in data:
+    if data.get("inputLossImageSlate") is not None:
         import capo_medialive.types.input_location
 
         out["input_loss_image_slate"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> InputLossBehavior:
                 data["inputLossImageSlate"]
             )
         )
-    if "inputLossImageType" in data:
+    if data.get("inputLossImageType") is not None:
         import capo_medialive.types.input_loss_image_type
 
         out["input_loss_image_type"] = (
@@ -82,6 +82,6 @@ def deserialize_json(data: dict) -> InputLossBehavior:
                 data["inputLossImageType"]
             )
         )
-    if "repeatFrameMsec" in data:
+    if data.get("repeatFrameMsec") is not None:
         out["repeat_frame_msec"] = data["repeatFrameMsec"]
     return out

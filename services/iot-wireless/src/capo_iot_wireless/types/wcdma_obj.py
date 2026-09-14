@@ -65,31 +65,31 @@ def serialize_json(value: WcdmaObj) -> dict:
 
 def deserialize_json(data: dict) -> WcdmaObj:
     out: WcdmaObj = {}  # type: ignore[typeddict-item]
-    if "Mcc" in data:
+    if data.get("Mcc") is not None:
         out["mcc"] = data["Mcc"]
     else:
         raise DeserializationError("WcdmaObj.mcc required")
-    if "Mnc" in data:
+    if data.get("Mnc") is not None:
         out["mnc"] = data["Mnc"]
     else:
         raise DeserializationError("WcdmaObj.mnc required")
-    if "Lac" in data:
+    if data.get("Lac") is not None:
         out["lac"] = data["Lac"]
-    if "UtranCid" in data:
+    if data.get("UtranCid") is not None:
         out["utran_cid"] = data["UtranCid"]
     else:
         raise DeserializationError("WcdmaObj.utran_cid required")
-    if "WcdmaLocalId" in data:
+    if data.get("WcdmaLocalId") is not None:
         import capo_iot_wireless.types.wcdma_local_id
 
         out["wcdma_local_id"] = capo_iot_wireless.types.wcdma_local_id.deserialize_json(
             data["WcdmaLocalId"]
         )
-    if "Rscp" in data:
+    if data.get("Rscp") is not None:
         out["rscp"] = data["Rscp"]
-    if "PathLoss" in data:
+    if data.get("PathLoss") is not None:
         out["path_loss"] = data["PathLoss"]
-    if "WcdmaNmr" in data:
+    if data.get("WcdmaNmr") is not None:
         import capo_iot_wireless.types.wcdma_nmr_list
 
         out["wcdma_nmr"] = capo_iot_wireless.types.wcdma_nmr_list.deserialize_json(

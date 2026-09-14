@@ -36,13 +36,13 @@ def serialize_json(value: DescribeGlobalSettingsOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeGlobalSettingsOutput:
     out: DescribeGlobalSettingsOutput = {}  # type: ignore[typeddict-item]
-    if "GlobalSettings" in data:
+    if data.get("GlobalSettings") is not None:
         import capo_backup.types.global_settings
 
         out["global_settings"] = capo_backup.types.global_settings.deserialize_json(
             data["GlobalSettings"]
         )
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_backup.types.timestamp
 
         out["last_update_time"] = capo_backup.types.timestamp.deserialize_json(

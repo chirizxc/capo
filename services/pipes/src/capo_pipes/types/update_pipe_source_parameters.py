@@ -118,13 +118,13 @@ def serialize_json(value: UpdatePipeSourceParameters) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePipeSourceParameters:
     out: UpdatePipeSourceParameters = {}  # type: ignore[typeddict-item]
-    if "FilterCriteria" in data:
+    if data.get("FilterCriteria") is not None:
         import capo_pipes.types.filter_criteria
 
         out["filter_criteria"] = capo_pipes.types.filter_criteria.deserialize_json(
             data["FilterCriteria"]
         )
-    if "KinesisStreamParameters" in data:
+    if data.get("KinesisStreamParameters") is not None:
         import capo_pipes.types.update_pipe_source_kinesis_stream_parameters
 
         out["kinesis_stream_parameters"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> UpdatePipeSourceParameters:
                 data["KinesisStreamParameters"]
             )
         )
-    if "DynamoDBStreamParameters" in data:
+    if data.get("DynamoDBStreamParameters") is not None:
         import capo_pipes.types.update_pipe_source_dynamo_db_stream_parameters
 
         out["dynamo_db_stream_parameters"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> UpdatePipeSourceParameters:
                 data["DynamoDBStreamParameters"]
             )
         )
-    if "SqsQueueParameters" in data:
+    if data.get("SqsQueueParameters") is not None:
         import capo_pipes.types.update_pipe_source_sqs_queue_parameters
 
         out["sqs_queue_parameters"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> UpdatePipeSourceParameters:
                 data["SqsQueueParameters"]
             )
         )
-    if "ActiveMQBrokerParameters" in data:
+    if data.get("ActiveMQBrokerParameters") is not None:
         import capo_pipes.types.update_pipe_source_active_mq_broker_parameters
 
         out["active_mq_broker_parameters"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> UpdatePipeSourceParameters:
                 data["ActiveMQBrokerParameters"]
             )
         )
-    if "RabbitMQBrokerParameters" in data:
+    if data.get("RabbitMQBrokerParameters") is not None:
         import capo_pipes.types.update_pipe_source_rabbit_mq_broker_parameters
 
         out["rabbit_mq_broker_parameters"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> UpdatePipeSourceParameters:
                 data["RabbitMQBrokerParameters"]
             )
         )
-    if "ManagedStreamingKafkaParameters" in data:
+    if data.get("ManagedStreamingKafkaParameters") is not None:
         import capo_pipes.types.update_pipe_source_managed_streaming_kafka_parameters
 
         out["managed_streaming_kafka_parameters"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> UpdatePipeSourceParameters:
                 data["ManagedStreamingKafkaParameters"]
             )
         )
-    if "SelfManagedKafkaParameters" in data:
+    if data.get("SelfManagedKafkaParameters") is not None:
         import capo_pipes.types.update_pipe_source_self_managed_kafka_parameters
 
         out["self_managed_kafka_parameters"] = (

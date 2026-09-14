@@ -31,7 +31,7 @@ def serialize_json(value: PointsOfInterest) -> dict:
 
 def deserialize_json(data: dict) -> PointsOfInterest:
     out: PointsOfInterest = {}  # type: ignore[typeddict-item]
-    if "TimestampRanges" in data:
+    if data.get("TimestampRanges") is not None:
         import capo_transcribe_streaming.types.timestamp_ranges
 
         out["timestamp_ranges"] = (

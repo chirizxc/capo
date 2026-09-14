@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsEc2NetworkAclAssociationList:
 
     out: AwsEc2NetworkAclAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_network_acl_association.deserialize_json(
                 item

@@ -54,24 +54,24 @@ def serialize_json(value: CreateAccessEntryRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessEntryRequest:
     out: CreateAccessEntryRequest = {}  # type: ignore[typeddict-item]
-    if "principalArn" in data:
+    if data.get("principalArn") is not None:
         out["principal_arn"] = data["principalArn"]
     else:
         raise DeserializationError("CreateAccessEntryRequest.principal_arn required")
-    if "kubernetesGroups" in data:
+    if data.get("kubernetesGroups") is not None:
         import capo_eks.types.string_list
 
         out["kubernetes_groups"] = capo_eks.types.string_list.deserialize_json(
             data["kubernetesGroups"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

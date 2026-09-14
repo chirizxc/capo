@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: NoAvailableConfigurationRecorderException_) ->
 
 def deserialize_aws_json_1_1(data: dict) -> NoAvailableConfigurationRecorderException_:
     out: NoAvailableConfigurationRecorderException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,17 +35,22 @@ class NoAvailableConfigurationRecorderException(ServiceError):
 
     code: str | None = "NoAvailableConfigurationRecorderException"
 
-    def __init__(self, data: NoAvailableConfigurationRecorderException_):
+    def __init__(
+        self,
+        data: NoAvailableConfigurationRecorderException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NoAvailableConfigurationRecorderException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "NoAvailableConfigurationRecorderException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: ContentRedaction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContentRedaction:
     out: ContentRedaction = {}  # type: ignore[typeddict-item]
-    if "RedactionType" in data:
+    if data.get("RedactionType") is not None:
         import capo_transcribe.types.redaction_type
 
         out["redaction_type"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContentRedaction:
         )
     else:
         raise DeserializationError("ContentRedaction.redaction_type required")
-    if "RedactionOutput" in data:
+    if data.get("RedactionOutput") is not None:
         import capo_transcribe.types.redaction_output
 
         out["redaction_output"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContentRedaction:
         )
     else:
         raise DeserializationError("ContentRedaction.redaction_output required")
-    if "PiiEntityTypes" in data:
+    if data.get("PiiEntityTypes") is not None:
         import capo_transcribe.types.pii_entity_types
 
         out["pii_entity_types"] = (

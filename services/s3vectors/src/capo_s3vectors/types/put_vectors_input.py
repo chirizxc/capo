@@ -45,13 +45,13 @@ def serialize_json(value: PutVectorsInput) -> dict:
 
 def deserialize_json(data: dict) -> PutVectorsInput:
     out: PutVectorsInput = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "indexArn" in data:
+    if data.get("indexArn") is not None:
         out["index_arn"] = data["indexArn"]
-    if "vectors" in data:
+    if data.get("vectors") is not None:
         import capo_s3vectors.types.put_vectors_input_list
 
         out["vectors"] = capo_s3vectors.types.put_vectors_input_list.deserialize_json(

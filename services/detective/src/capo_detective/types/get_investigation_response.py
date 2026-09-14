@@ -92,47 +92,47 @@ def serialize_json(value: GetInvestigationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetInvestigationResponse:
     out: GetInvestigationResponse = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
-    if "InvestigationId" in data:
+    if data.get("InvestigationId") is not None:
         out["investigation_id"] = data["InvestigationId"]
-    if "EntityArn" in data:
+    if data.get("EntityArn") is not None:
         out["entity_arn"] = data["EntityArn"]
-    if "EntityType" in data:
+    if data.get("EntityType") is not None:
         import capo_detective.types.entity_type
 
         out["entity_type"] = capo_detective.types.entity_type.deserialize_json(
             data["EntityType"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_detective.types.timestamp
 
         out["created_time"] = capo_detective.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "ScopeStartTime" in data:
+    if data.get("ScopeStartTime") is not None:
         import capo_detective.types.timestamp
 
         out["scope_start_time"] = capo_detective.types.timestamp.deserialize_json(
             data["ScopeStartTime"]
         )
-    if "ScopeEndTime" in data:
+    if data.get("ScopeEndTime") is not None:
         import capo_detective.types.timestamp
 
         out["scope_end_time"] = capo_detective.types.timestamp.deserialize_json(
             data["ScopeEndTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_detective.types.status
 
         out["status"] = capo_detective.types.status.deserialize_json(data["Status"])
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_detective.types.severity
 
         out["severity"] = capo_detective.types.severity.deserialize_json(
             data["Severity"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_detective.types.state
 
         out["state"] = capo_detective.types.state.deserialize_json(data["State"])

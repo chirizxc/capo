@@ -47,15 +47,15 @@ def serialize_json(value: UpdateCommandResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCommandResponse:
     out: UpdateCommandResponse = {}  # type: ignore[typeddict-item]
-    if "commandId" in data:
+    if data.get("commandId") is not None:
         out["command_id"] = data["commandId"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "deprecated" in data:
+    if data.get("deprecated") is not None:
         out["deprecated"] = data["deprecated"]
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iot.types.date_type
 
         out["last_updated_at"] = capo_iot.types.date_type.deserialize_json(

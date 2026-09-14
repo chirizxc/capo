@@ -57,24 +57,24 @@ def serialize_aws_json_1_1(value: PutRecordInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRecordInput:
     out: PutRecordInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_kinesis.types.data
 
         out["data"] = capo_kinesis.types.data.deserialize_aws_json_1_1(data["Data"])
     else:
         raise DeserializationError("PutRecordInput.data required")
-    if "PartitionKey" in data:
+    if data.get("PartitionKey") is not None:
         out["partition_key"] = data["PartitionKey"]
     else:
         raise DeserializationError("PutRecordInput.partition_key required")
-    if "ExplicitHashKey" in data:
+    if data.get("ExplicitHashKey") is not None:
         out["explicit_hash_key"] = data["ExplicitHashKey"]
-    if "SequenceNumberForOrdering" in data:
+    if data.get("SequenceNumberForOrdering") is not None:
         out["sequence_number_for_ordering"] = data["SequenceNumberForOrdering"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

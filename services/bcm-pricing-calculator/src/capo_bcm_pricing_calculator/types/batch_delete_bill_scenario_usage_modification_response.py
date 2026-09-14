@@ -35,7 +35,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> BatchDeleteBillScenarioUsageModificationResponse:
     out: BatchDeleteBillScenarioUsageModificationResponse = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_bcm_pricing_calculator.types.batch_delete_bill_scenario_usage_modification_errors
 
         out["errors"] = (

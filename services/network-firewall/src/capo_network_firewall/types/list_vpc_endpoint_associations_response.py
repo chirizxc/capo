@@ -38,9 +38,9 @@ def serialize_aws_json_1_0(value: ListVpcEndpointAssociationsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListVpcEndpointAssociationsResponse:
     out: ListVpcEndpointAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "VpcEndpointAssociations" in data:
+    if data.get("VpcEndpointAssociations") is not None:
         import capo_network_firewall.types.vpc_endpoint_associations
 
         out["vpc_endpoint_associations"] = (

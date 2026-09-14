@@ -31,10 +31,10 @@ def serialize_aws_json_1_0(value: VpcEndpointErrorDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VpcEndpointErrorDetail:
     out: VpcEndpointErrorDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     return out

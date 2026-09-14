@@ -23,7 +23,7 @@ def serialize_json(value: GetDefaultScraperConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDefaultScraperConfigurationResponse:
     out: GetDefaultScraperConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_amp.types._prelude.blob
 
         out["configuration"] = capo_amp.types._prelude.blob.deserialize_json(

@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: GetVersionsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetVersionsResponse:
     out: GetVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "vcfVersions" in data:
+    if data.get("vcfVersions") is not None:
         import capo_evs.types.vcf_version_list
 
         out["vcf_versions"] = capo_evs.types.vcf_version_list.deserialize_aws_json_1_0(
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetVersionsResponse:
         )
     else:
         raise DeserializationError("GetVersionsResponse.vcf_versions required")
-    if "instanceTypeEsxVersions" in data:
+    if data.get("instanceTypeEsxVersions") is not None:
         import capo_evs.types.instance_type_esx_versions_list
 
         out["instance_type_esx_versions"] = (

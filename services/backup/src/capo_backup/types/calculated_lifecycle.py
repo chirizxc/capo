@@ -33,13 +33,13 @@ def serialize_json(value: CalculatedLifecycle) -> dict:
 
 def deserialize_json(data: dict) -> CalculatedLifecycle:
     out: CalculatedLifecycle = {}  # type: ignore[typeddict-item]
-    if "MoveToColdStorageAt" in data:
+    if data.get("MoveToColdStorageAt") is not None:
         import capo_backup.types.timestamp
 
         out["move_to_cold_storage_at"] = capo_backup.types.timestamp.deserialize_json(
             data["MoveToColdStorageAt"]
         )
-    if "DeleteAt" in data:
+    if data.get("DeleteAt") is not None:
         import capo_backup.types.timestamp
 
         out["delete_at"] = capo_backup.types.timestamp.deserialize_json(

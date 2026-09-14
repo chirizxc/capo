@@ -35,10 +35,10 @@ def serialize_json(value: DeleteRefreshScheduleResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteRefreshScheduleResponse:
     out: DeleteRefreshScheduleResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "ScheduleId" in data:
+    if data.get("ScheduleId") is not None:
         out["schedule_id"] = data["ScheduleId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

@@ -96,7 +96,7 @@ def serialize_aws_json_1_0(value: ExportKeyMaterial) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ExportKeyMaterial:
-    if "Tr31KeyBlock" in data:
+    if data.get("Tr31KeyBlock") is not None:
         import capo_payment_cryptography.types.export_tr31_key_block
 
         return {
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportKeyMaterial:
                 data["Tr31KeyBlock"]
             )
         }
-    elif "Tr34KeyBlock" in data:
+    elif data.get("Tr34KeyBlock") is not None:
         import capo_payment_cryptography.types.export_tr34_key_block
 
         return {
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportKeyMaterial:
                 data["Tr34KeyBlock"]
             )
         }
-    elif "KeyCryptogram" in data:
+    elif data.get("KeyCryptogram") is not None:
         import capo_payment_cryptography.types.export_key_cryptogram
 
         return {
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportKeyMaterial:
                 data["KeyCryptogram"]
             )
         }
-    elif "DiffieHellmanTr31KeyBlock" in data:
+    elif data.get("DiffieHellmanTr31KeyBlock") is not None:
         import capo_payment_cryptography.types.export_diffie_hellman_tr31_key_block
 
         return {
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportKeyMaterial:
                 data["DiffieHellmanTr31KeyBlock"]
             )
         }
-    elif "As2805KeyCryptogram" in data:
+    elif data.get("As2805KeyCryptogram") is not None:
         import capo_payment_cryptography.types.export_as2805_key_cryptogram
 
         return {

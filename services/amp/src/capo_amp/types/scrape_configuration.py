@@ -29,7 +29,7 @@ def serialize_json(value: ScrapeConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ScrapeConfiguration:
-    if "configurationBlob" in data:
+    if data.get("configurationBlob") is not None:
         import capo_amp.types._prelude.blob
 
         return {

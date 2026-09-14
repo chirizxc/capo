@@ -66,25 +66,25 @@ def serialize_json(value: GlobalNetwork) -> dict:
 
 def deserialize_json(data: dict) -> GlobalNetwork:
     out: GlobalNetwork = {}  # type: ignore[typeddict-item]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "GlobalNetworkArn" in data:
+    if data.get("GlobalNetworkArn") is not None:
         out["global_network_arn"] = data["GlobalNetworkArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_networkmanager.types.date_time
 
         out["created_at"] = capo_networkmanager.types.date_time.deserialize_json(
             data["CreatedAt"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.global_network_state
 
         out["state"] = capo_networkmanager.types.global_network_state.deserialize_json(
             data["State"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])

@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: CommunicationTypeOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CommunicationTypeOptions:
     out: CommunicationTypeOptions = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "supportedHours" in data:
+    if data.get("supportedHours") is not None:
         import capo_support.types.supported_hours_list
 
         out["supported_hours"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> CommunicationTypeOptions:
                 data["supportedHours"]
             )
         )
-    if "datesWithoutSupport" in data:
+    if data.get("datesWithoutSupport") is not None:
         import capo_support.types.dates_without_support_list
 
         out["dates_without_support"] = (

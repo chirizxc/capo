@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> VTLDevices:
 
     out: VTLDevices = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_storage_gateway.types.vtl_device.deserialize_aws_json_1_1(item))
     return out

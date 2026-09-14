@@ -64,11 +64,11 @@ def serialize_aws_json_1_0(value: CreateCapabilityRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCapabilityRequest:
     out: CreateCapabilityRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateCapabilityRequest.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_b2bi.types.capability_type
 
         out["type"] = capo_b2bi.types.capability_type.deserialize_aws_json_1_0(
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCapabilityRequest:
         )
     else:
         raise DeserializationError("CreateCapabilityRequest.type required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_b2bi.types.capability_configuration
 
         out["configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCapabilityRequest:
         )
     else:
         raise DeserializationError("CreateCapabilityRequest.configuration required")
-    if "instructionsDocuments" in data:
+    if data.get("instructionsDocuments") is not None:
         import capo_b2bi.types.instructions_documents
 
         out["instructions_documents"] = (
@@ -94,9 +94,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCapabilityRequest:
                 data["instructionsDocuments"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_b2bi.types.tag_list
 
         out["tags"] = capo_b2bi.types.tag_list.deserialize_aws_json_1_0(data["tags"])

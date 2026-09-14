@@ -61,9 +61,9 @@ def serialize_json(value: UdpOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> UdpOutputSettings:
     out: UdpOutputSettings = {}  # type: ignore[typeddict-item]
-    if "bufferMsec" in data:
+    if data.get("bufferMsec") is not None:
         out["buffer_msec"] = data["bufferMsec"]
-    if "containerSettings" in data:
+    if data.get("containerSettings") is not None:
         import capo_medialive.types.udp_container_settings
 
         out["container_settings"] = (
@@ -71,13 +71,13 @@ def deserialize_json(data: dict) -> UdpOutputSettings:
                 data["containerSettings"]
             )
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(
             data["destination"]
         )
-    if "fecOutputSettings" in data:
+    if data.get("fecOutputSettings") is not None:
         import capo_medialive.types.fec_output_settings
 
         out["fec_output_settings"] = (

@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.chime#UCBuzzConsoleService``."""
 
+import uuid
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_chime._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_chime._auth._zapros_handler import AuthMiddleware
+from capo_chime._pagination import resolve_path as _resolve_path
 from capo_chime._services._aws_config import aaws_config
 from capo_chime._services._pipeline import (
     AsyncInterceptor,
@@ -317,16 +320,18 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.associate_phone_number_with_user_request.AssociatePhoneNumberWithUserRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_id"] = user_id
-        input_["e164_phone_number"] = e164_phone_number
+        input_: capo_chime.types.associate_phone_number_with_user_request.AssociatePhoneNumberWithUserRequest = {
+            "account_id": account_id,
+            "user_id": user_id,
+            "e164_phone_number": e164_phone_number,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_signin_delegate_groups_with_account(
@@ -369,15 +374,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.associate_signin_delegate_groups_with_account_request.AssociateSigninDelegateGroupsWithAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["signin_delegate_groups"] = signin_delegate_groups
+        input_: capo_chime.types.associate_signin_delegate_groups_with_account_request.AssociateSigninDelegateGroupsWithAccountRequest = {
+            "account_id": account_id,
+            "signin_delegate_groups": signin_delegate_groups,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_create_room_membership(
@@ -422,16 +429,18 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.batch_create_room_membership_request.BatchCreateRoomMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["room_id"] = room_id
-        input_["membership_item_list"] = membership_item_list
+        input_: capo_chime.types.batch_create_room_membership_request.BatchCreateRoomMembershipRequest = {
+            "account_id": account_id,
+            "room_id": room_id,
+            "membership_item_list": membership_item_list,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_phone_number(
@@ -472,14 +481,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.batch_delete_phone_number_request.BatchDeletePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_ids"] = phone_number_ids
+        input_: capo_chime.types.batch_delete_phone_number_request.BatchDeletePhoneNumberRequest = {
+            "phone_number_ids": phone_number_ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_suspend_user(
@@ -522,15 +533,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.batch_suspend_user_request.BatchSuspendUserRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_id_list"] = user_id_list
+        input_: capo_chime.types.batch_suspend_user_request.BatchSuspendUserRequest = {
+            "account_id": account_id,
+            "user_id_list": user_id_list,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_unsuspend_user(
@@ -573,15 +586,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.batch_unsuspend_user_request.BatchUnsuspendUserRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_id_list"] = user_id_list
+        input_: capo_chime.types.batch_unsuspend_user_request.BatchUnsuspendUserRequest = {
+            "account_id": account_id,
+            "user_id_list": user_id_list,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_phone_number(
@@ -622,14 +637,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.batch_update_phone_number_request.BatchUpdatePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["update_phone_number_request_items"] = update_phone_number_request_items
+        input_: capo_chime.types.batch_update_phone_number_request.BatchUpdatePhoneNumberRequest = {
+            "update_phone_number_request_items": update_phone_number_request_items
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_user(
@@ -672,15 +689,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.batch_update_user_request.BatchUpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["update_user_request_items"] = update_user_request_items
+        input_: capo_chime.types.batch_update_user_request.BatchUpdateUserRequest = {
+            "account_id": account_id,
+            "update_user_request_items": update_user_request_items,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_account(
@@ -721,14 +740,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.create_account_request.CreateAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_chime.types.create_account_request.CreateAccountRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_bot(
@@ -774,9 +795,10 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.create_bot_request.CreateBotRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["display_name"] = display_name
+        input_: capo_chime.types.create_bot_request.CreateBotRequest = {
+            "account_id": account_id,
+            "display_name": display_name,
+        }
         if domain is not None:
             input_["domain"] = domain
 
@@ -785,6 +807,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_meeting_dial_out(
@@ -834,17 +857,19 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.create_meeting_dial_out_request.CreateMeetingDialOutRequest = {}  # type: ignore[typeddict-item]
-        input_["meeting_id"] = meeting_id
-        input_["from_phone_number"] = from_phone_number
-        input_["to_phone_number"] = to_phone_number
-        input_["join_token"] = join_token
+        input_: capo_chime.types.create_meeting_dial_out_request.CreateMeetingDialOutRequest = {
+            "meeting_id": meeting_id,
+            "from_phone_number": from_phone_number,
+            "to_phone_number": to_phone_number,
+            "join_token": join_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_phone_number_order(
@@ -888,15 +913,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.create_phone_number_order_request.CreatePhoneNumberOrderRequest = {}  # type: ignore[typeddict-item]
-        input_["product_type"] = product_type
-        input_["e164_phone_numbers"] = e164_phone_numbers
+        input_: capo_chime.types.create_phone_number_order_request.CreatePhoneNumberOrderRequest = {
+            "product_type": product_type,
+            "e164_phone_numbers": e164_phone_numbers,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_room(
@@ -944,17 +971,20 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.create_room_request.CreateRoomRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_chime.types.create_room_request.CreateRoomRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_room_membership(
@@ -1007,10 +1037,11 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.create_room_membership_request.CreateRoomMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["room_id"] = room_id
-        input_["member_id"] = member_id
+        input_: capo_chime.types.create_room_membership_request.CreateRoomMembershipRequest = {
+            "account_id": account_id,
+            "room_id": room_id,
+            "member_id": member_id,
+        }
         if role is not None:
             input_["role"] = role
 
@@ -1019,6 +1050,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user(
@@ -1066,8 +1098,9 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_chime.types.create_user_request.CreateUserRequest = {
+            "account_id": account_id
+        }
         if username is not None:
             input_["username"] = username
         if email is not None:
@@ -1080,6 +1113,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_account(
@@ -1121,14 +1155,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.delete_account_request.DeleteAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_chime.types.delete_account_request.DeleteAccountRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_events_configuration(
@@ -1168,15 +1204,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.delete_events_configuration_request.DeleteEventsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bot_id"] = bot_id
+        input_: capo_chime.types.delete_events_configuration_request.DeleteEventsConfigurationRequest = {
+            "account_id": account_id,
+            "bot_id": bot_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_phone_number(
@@ -1215,14 +1253,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.delete_phone_number_request.DeletePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_chime.types.delete_phone_number_request.DeletePhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_room(
@@ -1263,15 +1303,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.delete_room_request.DeleteRoomRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["room_id"] = room_id
+        input_: capo_chime.types.delete_room_request.DeleteRoomRequest = {
+            "account_id": account_id,
+            "room_id": room_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_room_membership(
@@ -1314,16 +1356,18 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.delete_room_membership_request.DeleteRoomMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["room_id"] = room_id
-        input_["member_id"] = member_id
+        input_: capo_chime.types.delete_room_membership_request.DeleteRoomMembershipRequest = {
+            "account_id": account_id,
+            "room_id": room_id,
+            "member_id": member_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_phone_number_from_user(
@@ -1366,15 +1410,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.disassociate_phone_number_from_user_request.DisassociatePhoneNumberFromUserRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_id"] = user_id
+        input_: capo_chime.types.disassociate_phone_number_from_user_request.DisassociatePhoneNumberFromUserRequest = {
+            "account_id": account_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_signin_delegate_groups_from_account(
@@ -1417,15 +1463,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.disassociate_signin_delegate_groups_from_account_request.DisassociateSigninDelegateGroupsFromAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["group_names"] = group_names
+        input_: capo_chime.types.disassociate_signin_delegate_groups_from_account_request.DisassociateSigninDelegateGroupsFromAccountRequest = {
+            "account_id": account_id,
+            "group_names": group_names,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account(
@@ -1466,14 +1514,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.get_account_request.GetAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_chime.types.get_account_request.GetAccountRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_settings(
@@ -1514,14 +1564,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.get_account_settings_request.GetAccountSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_chime.types.get_account_settings_request.GetAccountSettingsRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_bot(
@@ -1562,15 +1614,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.get_bot_request.GetBotRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bot_id"] = bot_id
+        input_: capo_chime.types.get_bot_request.GetBotRequest = {
+            "account_id": account_id,
+            "bot_id": bot_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_events_configuration(
@@ -1613,15 +1667,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.get_events_configuration_request.GetEventsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bot_id"] = bot_id
+        input_: capo_chime.types.get_events_configuration_request.GetEventsConfigurationRequest = {
+            "account_id": account_id,
+            "bot_id": bot_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_global_settings(
@@ -1661,6 +1717,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_phone_number(
@@ -1701,14 +1758,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.get_phone_number_request.GetPhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_chime.types.get_phone_number_request.GetPhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_phone_number_order(
@@ -1749,14 +1808,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.get_phone_number_order_request.GetPhoneNumberOrderRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_order_id"] = phone_number_order_id
+        input_: capo_chime.types.get_phone_number_order_request.GetPhoneNumberOrderRequest = {
+            "phone_number_order_id": phone_number_order_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_phone_number_settings(
@@ -1796,6 +1857,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_retention_settings(
@@ -1838,14 +1900,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.get_retention_settings_request.GetRetentionSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_chime.types.get_retention_settings_request.GetRetentionSettingsRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_room(
@@ -1888,15 +1952,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.get_room_request.GetRoomRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["room_id"] = room_id
+        input_: capo_chime.types.get_room_request.GetRoomRequest = {
+            "account_id": account_id,
+            "room_id": room_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_user(
@@ -1939,15 +2005,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.get_user_request.GetUserRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_id"] = user_id
+        input_: capo_chime.types.get_user_request.GetUserRequest = {
+            "account_id": account_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_user_settings(
@@ -1990,15 +2058,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.get_user_settings_request.GetUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_id"] = user_id
+        input_: capo_chime.types.get_user_settings_request.GetUserSettingsRequest = {
+            "account_id": account_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def invite_users(
@@ -2043,9 +2113,10 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.invite_users_request.InviteUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_email_list"] = user_email_list
+        input_: capo_chime.types.invite_users_request.InviteUsersRequest = {
+            "account_id": account_id,
+            "user_email_list": user_email_list,
+        }
         if user_type is not None:
             input_["user_type"] = user_type
 
@@ -2054,6 +2125,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_accounts(
@@ -2102,7 +2174,7 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.list_accounts_request.ListAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime.types.list_accounts_request.ListAccountsRequest = {}
         if name is not None:
             input_["name"] = name
         if user_email is not None:
@@ -2117,7 +2189,33 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_accounts(
+        self,
+        *,
+        config_overrides: Optional[AsyncChimeClientConfig] = None,
+        name: Optional["capo_chime.types.account_name.AccountName"] = None,
+        user_email: Optional["capo_chime.types.email_address.EmailAddress"] = None,
+        next_token: Optional["capo_chime.types.string.String"] = None,
+        max_results: Optional[
+            "capo_chime.types.profile_service_max_results.ProfileServiceMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_chime.types.list_accounts_response.ListAccountsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_accounts(
+                config_overrides=config_overrides,
+                name=name,
+                user_email=user_email,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_bots(
         self,
@@ -2161,8 +2259,9 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.list_bots_request.ListBotsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_chime.types.list_bots_request.ListBotsRequest = {
+            "account_id": account_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2173,7 +2272,29 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_bots(
+        self,
+        account_id: "capo_chime.types.non_empty_string.NonEmptyString",
+        *,
+        config_overrides: Optional[AsyncChimeClientConfig] = None,
+        max_results: Optional["capo_chime.types.result_max.ResultMax"] = None,
+        next_token: Optional["capo_chime.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_chime.types.list_bots_response.ListBotsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_bots(
+                account_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_phone_number_orders(
         self,
@@ -2214,7 +2335,7 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.list_phone_number_orders_request.ListPhoneNumberOrdersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime.types.list_phone_number_orders_request.ListPhoneNumberOrdersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2225,7 +2346,27 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_phone_number_orders(
+        self,
+        *,
+        config_overrides: Optional[AsyncChimeClientConfig] = None,
+        next_token: Optional["capo_chime.types.string.String"] = None,
+        max_results: Optional["capo_chime.types.result_max.ResultMax"] = None,
+    ) -> "AsyncIterator[capo_chime.types.list_phone_number_orders_response.ListPhoneNumberOrdersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_phone_number_orders(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_phone_numbers(
         self,
@@ -2281,7 +2422,7 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.list_phone_numbers_request.ListPhoneNumbersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime.types.list_phone_numbers_request.ListPhoneNumbersRequest = {}
         if status is not None:
             input_["status"] = status
         if product_type is not None:
@@ -2300,7 +2441,41 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_phone_numbers(
+        self,
+        *,
+        config_overrides: Optional[AsyncChimeClientConfig] = None,
+        status: Optional[
+            "capo_chime.types.phone_number_status.PhoneNumberStatus"
+        ] = None,
+        product_type: Optional[
+            "capo_chime.types.phone_number_product_type.PhoneNumberProductType"
+        ] = None,
+        filter_name: Optional[
+            "capo_chime.types.phone_number_association_name.PhoneNumberAssociationName"
+        ] = None,
+        filter_value: Optional["capo_chime.types.string.String"] = None,
+        max_results: Optional["capo_chime.types.result_max.ResultMax"] = None,
+        next_token: Optional["capo_chime.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_chime.types.list_phone_numbers_response.ListPhoneNumbersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_phone_numbers(
+                config_overrides=config_overrides,
+                status=status,
+                product_type=product_type,
+                filter_name=filter_name,
+                filter_value=filter_value,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_room_memberships(
         self,
@@ -2346,9 +2521,10 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.list_room_memberships_request.ListRoomMembershipsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["room_id"] = room_id
+        input_: capo_chime.types.list_room_memberships_request.ListRoomMembershipsRequest = {
+            "account_id": account_id,
+            "room_id": room_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2359,7 +2535,31 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_room_memberships(
+        self,
+        account_id: "capo_chime.types.non_empty_string.NonEmptyString",
+        room_id: "capo_chime.types.non_empty_string.NonEmptyString",
+        *,
+        config_overrides: Optional[AsyncChimeClientConfig] = None,
+        max_results: Optional["capo_chime.types.result_max.ResultMax"] = None,
+        next_token: Optional["capo_chime.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_chime.types.list_room_memberships_response.ListRoomMembershipsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_room_memberships(
+                account_id,
+                room_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_rooms(
         self,
@@ -2405,8 +2605,9 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.list_rooms_request.ListRoomsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_chime.types.list_rooms_request.ListRoomsRequest = {
+            "account_id": account_id
+        }
         if member_id is not None:
             input_["member_id"] = member_id
         if max_results is not None:
@@ -2419,7 +2620,31 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_rooms(
+        self,
+        account_id: "capo_chime.types.non_empty_string.NonEmptyString",
+        *,
+        config_overrides: Optional[AsyncChimeClientConfig] = None,
+        member_id: Optional["capo_chime.types.string.String"] = None,
+        max_results: Optional["capo_chime.types.result_max.ResultMax"] = None,
+        next_token: Optional["capo_chime.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_chime.types.list_rooms_response.ListRoomsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_rooms(
+                account_id,
+                config_overrides=config_overrides,
+                member_id=member_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_supported_phone_number_countries(
         self,
@@ -2459,14 +2684,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.list_supported_phone_number_countries_request.ListSupportedPhoneNumberCountriesRequest = {}  # type: ignore[typeddict-item]
-        input_["product_type"] = product_type
+        input_: capo_chime.types.list_supported_phone_number_countries_request.ListSupportedPhoneNumberCountriesRequest = {
+            "product_type": product_type
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_users(
@@ -2517,8 +2744,9 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_chime.types.list_users_request.ListUsersRequest = {
+            "account_id": account_id
+        }
         if user_email is not None:
             input_["user_email"] = user_email
         if user_type is not None:
@@ -2533,7 +2761,35 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_users(
+        self,
+        account_id: "capo_chime.types.non_empty_string.NonEmptyString",
+        *,
+        config_overrides: Optional[AsyncChimeClientConfig] = None,
+        user_email: Optional["capo_chime.types.email_address.EmailAddress"] = None,
+        user_type: Optional["capo_chime.types.user_type.UserType"] = None,
+        max_results: Optional[
+            "capo_chime.types.profile_service_max_results.ProfileServiceMaxResults"
+        ] = None,
+        next_token: Optional["capo_chime.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_chime.types.list_users_response.ListUsersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_users(
+                account_id,
+                config_overrides=config_overrides,
+                user_email=user_email,
+                user_type=user_type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def logout_user(
         self,
@@ -2575,15 +2831,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.logout_user_request.LogoutUserRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_id"] = user_id
+        input_: capo_chime.types.logout_user_request.LogoutUserRequest = {
+            "account_id": account_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_events_configuration(
@@ -2634,9 +2892,10 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.put_events_configuration_request.PutEventsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bot_id"] = bot_id
+        input_: capo_chime.types.put_events_configuration_request.PutEventsConfigurationRequest = {
+            "account_id": account_id,
+            "bot_id": bot_id,
+        }
         if outbound_events_https_endpoint is not None:
             input_["outbound_events_https_endpoint"] = outbound_events_https_endpoint
         if lambda_function_arn is not None:
@@ -2647,6 +2906,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_retention_settings(
@@ -2692,15 +2952,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.put_retention_settings_request.PutRetentionSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["retention_settings"] = retention_settings
+        input_: capo_chime.types.put_retention_settings_request.PutRetentionSettingsRequest = {
+            "account_id": account_id,
+            "retention_settings": retention_settings,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def redact_conversation_message(
@@ -2745,16 +3007,18 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.redact_conversation_message_request.RedactConversationMessageRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["conversation_id"] = conversation_id
-        input_["message_id"] = message_id
+        input_: capo_chime.types.redact_conversation_message_request.RedactConversationMessageRequest = {
+            "account_id": account_id,
+            "conversation_id": conversation_id,
+            "message_id": message_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def redact_room_message(
@@ -2799,16 +3063,18 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.redact_room_message_request.RedactRoomMessageRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["room_id"] = room_id
-        input_["message_id"] = message_id
+        input_: capo_chime.types.redact_room_message_request.RedactRoomMessageRequest = {
+            "account_id": account_id,
+            "room_id": room_id,
+            "message_id": message_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def regenerate_security_token(
@@ -2851,15 +3117,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.regenerate_security_token_request.RegenerateSecurityTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bot_id"] = bot_id
+        input_: capo_chime.types.regenerate_security_token_request.RegenerateSecurityTokenRequest = {
+            "account_id": account_id,
+            "bot_id": bot_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_personal_pin(
@@ -2902,15 +3170,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.reset_personal_pin_request.ResetPersonalPINRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_id"] = user_id
+        input_: capo_chime.types.reset_personal_pin_request.ResetPersonalPINRequest = {
+            "account_id": account_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def restore_phone_number(
@@ -2952,14 +3222,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.restore_phone_number_request.RestorePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_chime.types.restore_phone_number_request.RestorePhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_available_phone_numbers(
@@ -3022,7 +3294,7 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.search_available_phone_numbers_request.SearchAvailablePhoneNumbersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime.types.search_available_phone_numbers_request.SearchAvailablePhoneNumbersRequest = {}
         if area_code is not None:
             input_["area_code"] = area_code
         if city is not None:
@@ -3045,7 +3317,47 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_search_available_phone_numbers(
+        self,
+        *,
+        config_overrides: Optional[AsyncChimeClientConfig] = None,
+        area_code: Optional["capo_chime.types.string.String"] = None,
+        city: Optional["capo_chime.types.string.String"] = None,
+        country: Optional[
+            "capo_chime.types.alpha2_country_code.Alpha2CountryCode"
+        ] = None,
+        state: Optional["capo_chime.types.string.String"] = None,
+        toll_free_prefix: Optional[
+            "capo_chime.types.toll_free_prefix.TollFreePrefix"
+        ] = None,
+        phone_number_type: Optional[
+            "capo_chime.types.phone_number_type.PhoneNumberType"
+        ] = None,
+        max_results: Optional[
+            "capo_chime.types.phone_number_max_results.PhoneNumberMaxResults"
+        ] = None,
+        next_token: Optional["capo_chime.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_chime.types.search_available_phone_numbers_response.SearchAvailablePhoneNumbersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.search_available_phone_numbers(
+                config_overrides=config_overrides,
+                area_code=area_code,
+                city=city,
+                country=country,
+                state=state,
+                toll_free_prefix=toll_free_prefix,
+                phone_number_type=phone_number_type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def update_account(
         self,
@@ -3089,8 +3401,9 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.update_account_request.UpdateAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_chime.types.update_account_request.UpdateAccountRequest = {
+            "account_id": account_id
+        }
         if name is not None:
             input_["name"] = name
         if default_license is not None:
@@ -3101,6 +3414,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_account_settings(
@@ -3144,15 +3458,17 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.update_account_settings_request.UpdateAccountSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["account_settings"] = account_settings
+        input_: capo_chime.types.update_account_settings_request.UpdateAccountSettingsRequest = {
+            "account_id": account_id,
+            "account_settings": account_settings,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_bot(
@@ -3197,9 +3513,10 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.update_bot_request.UpdateBotRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bot_id"] = bot_id
+        input_: capo_chime.types.update_bot_request.UpdateBotRequest = {
+            "account_id": account_id,
+            "bot_id": bot_id,
+        }
         if disabled is not None:
             input_["disabled"] = disabled
 
@@ -3208,6 +3525,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_global_settings(
@@ -3251,7 +3569,7 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.update_global_settings_request.UpdateGlobalSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime.types.update_global_settings_request.UpdateGlobalSettingsRequest = {}
         if business_calling is not None:
             input_["business_calling"] = business_calling
         if voice_connector is not None:
@@ -3262,6 +3580,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_phone_number(
@@ -3309,8 +3628,9 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.update_phone_number_request.UpdatePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_chime.types.update_phone_number_request.UpdatePhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
         if product_type is not None:
             input_["product_type"] = product_type
         if calling_name is not None:
@@ -3321,6 +3641,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_phone_number_settings(
@@ -3358,14 +3679,16 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.update_phone_number_settings_request.UpdatePhoneNumberSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["calling_name"] = calling_name
+        input_: capo_chime.types.update_phone_number_settings_request.UpdatePhoneNumberSettingsRequest = {
+            "calling_name": calling_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_room(
@@ -3410,9 +3733,10 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.update_room_request.UpdateRoomRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["room_id"] = room_id
+        input_: capo_chime.types.update_room_request.UpdateRoomRequest = {
+            "account_id": account_id,
+            "room_id": room_id,
+        }
         if name is not None:
             input_["name"] = name
 
@@ -3421,6 +3745,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_room_membership(
@@ -3471,10 +3796,11 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.update_room_membership_request.UpdateRoomMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["room_id"] = room_id
-        input_["member_id"] = member_id
+        input_: capo_chime.types.update_room_membership_request.UpdateRoomMembershipRequest = {
+            "account_id": account_id,
+            "room_id": room_id,
+            "member_id": member_id,
+        }
         if role is not None:
             input_["role"] = role
 
@@ -3483,6 +3809,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user(
@@ -3533,9 +3860,10 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_id"] = user_id
+        input_: capo_chime.types.update_user_request.UpdateUserRequest = {
+            "account_id": account_id,
+            "user_id": user_id,
+        }
         if license_type is not None:
             input_["license_type"] = license_type
         if user_type is not None:
@@ -3548,6 +3876,7 @@ class AsyncChimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_settings(
@@ -3590,16 +3919,18 @@ class AsyncChimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime.types.update_user_settings_request.UpdateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["user_id"] = user_id
-        input_["user_settings"] = user_settings
+        input_: capo_chime.types.update_user_settings_request.UpdateUserSettingsRequest = {
+            "account_id": account_id,
+            "user_id": user_id,
+            "user_settings": user_settings,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

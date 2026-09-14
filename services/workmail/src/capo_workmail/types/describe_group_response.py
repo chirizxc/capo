@@ -65,31 +65,31 @@ def serialize_aws_json_1_1(value: DescribeGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeGroupResponse:
     out: DescribeGroupResponse = {}  # type: ignore[typeddict-item]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workmail.types.entity_state
 
         out["state"] = capo_workmail.types.entity_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "EnabledDate" in data:
+    if data.get("EnabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["enabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["EnabledDate"]
         )
-    if "DisabledDate" in data:
+    if data.get("DisabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["disabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DisabledDate"]
         )
-    if "HiddenFromGlobalAddressList" in data:
+    if data.get("HiddenFromGlobalAddressList") is not None:
         out["hidden_from_global_address_list"] = data["HiddenFromGlobalAddressList"]
     else:
         out["hidden_from_global_address_list"] = False

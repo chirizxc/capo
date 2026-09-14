@@ -35,13 +35,45 @@ class FindMatchesMetrics(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: FindMatchesMetrics) -> dict:
     out: dict = {}
     if "area_under_pr_curve" in value:
-        out["AreaUnderPRCurve"] = value["area_under_pr_curve"]
+        out["AreaUnderPRCurve"] = (
+            "NaN"
+            if value["area_under_pr_curve"] != value["area_under_pr_curve"]
+            else "Infinity"
+            if value["area_under_pr_curve"] == float("inf")
+            else "-Infinity"
+            if value["area_under_pr_curve"] == float("-inf")
+            else value["area_under_pr_curve"]
+        )
     if "precision" in value:
-        out["Precision"] = value["precision"]
+        out["Precision"] = (
+            "NaN"
+            if value["precision"] != value["precision"]
+            else "Infinity"
+            if value["precision"] == float("inf")
+            else "-Infinity"
+            if value["precision"] == float("-inf")
+            else value["precision"]
+        )
     if "recall" in value:
-        out["Recall"] = value["recall"]
+        out["Recall"] = (
+            "NaN"
+            if value["recall"] != value["recall"]
+            else "Infinity"
+            if value["recall"] == float("inf")
+            else "-Infinity"
+            if value["recall"] == float("-inf")
+            else value["recall"]
+        )
     if "f1" in value:
-        out["F1"] = value["f1"]
+        out["F1"] = (
+            "NaN"
+            if value["f1"] != value["f1"]
+            else "Infinity"
+            if value["f1"] == float("inf")
+            else "-Infinity"
+            if value["f1"] == float("-inf")
+            else value["f1"]
+        )
     if "confusion_matrix" in value:
         import capo_glue.types.confusion_matrix
 
@@ -63,15 +95,15 @@ def serialize_aws_json_1_1(value: FindMatchesMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FindMatchesMetrics:
     out: FindMatchesMetrics = {}  # type: ignore[typeddict-item]
-    if "AreaUnderPRCurve" in data:
-        out["area_under_pr_curve"] = data["AreaUnderPRCurve"]
-    if "Precision" in data:
-        out["precision"] = data["Precision"]
-    if "Recall" in data:
-        out["recall"] = data["Recall"]
-    if "F1" in data:
-        out["f1"] = data["F1"]
-    if "ConfusionMatrix" in data:
+    if data.get("AreaUnderPRCurve") is not None:
+        out["area_under_pr_curve"] = float(data["AreaUnderPRCurve"])
+    if data.get("Precision") is not None:
+        out["precision"] = float(data["Precision"])
+    if data.get("Recall") is not None:
+        out["recall"] = float(data["Recall"])
+    if data.get("F1") is not None:
+        out["f1"] = float(data["F1"])
+    if data.get("ConfusionMatrix") is not None:
         import capo_glue.types.confusion_matrix
 
         out["confusion_matrix"] = (
@@ -79,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> FindMatchesMetrics:
                 data["ConfusionMatrix"]
             )
         )
-    if "ColumnImportances" in data:
+    if data.get("ColumnImportances") is not None:
         import capo_glue.types.column_importance_list
 
         out["column_importances"] = (

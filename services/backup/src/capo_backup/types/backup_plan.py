@@ -52,17 +52,17 @@ def serialize_json(value: BackupPlan) -> dict:
 
 def deserialize_json(data: dict) -> BackupPlan:
     out: BackupPlan = {}  # type: ignore[typeddict-item]
-    if "BackupPlanName" in data:
+    if data.get("BackupPlanName") is not None:
         out["backup_plan_name"] = data["BackupPlanName"]
     else:
         raise DeserializationError("BackupPlan.backup_plan_name required")
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_backup.types.backup_rules
 
         out["rules"] = capo_backup.types.backup_rules.deserialize_json(data["Rules"])
     else:
         raise DeserializationError("BackupPlan.rules required")
-    if "AdvancedBackupSettings" in data:
+    if data.get("AdvancedBackupSettings") is not None:
         import capo_backup.types.advanced_backup_settings
 
         out["advanced_backup_settings"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> BackupPlan:
                 data["AdvancedBackupSettings"]
             )
         )
-    if "ScanSettings" in data:
+    if data.get("ScanSettings") is not None:
         import capo_backup.types.scan_settings
 
         out["scan_settings"] = capo_backup.types.scan_settings.deserialize_json(

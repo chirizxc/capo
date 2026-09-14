@@ -355,7 +355,7 @@ def serialize_aws_json_1_1(value: ResourceViolation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
     out: ResourceViolation = {}  # type: ignore[typeddict-item]
-    if "AwsVPCSecurityGroupViolation" in data:
+    if data.get("AwsVPCSecurityGroupViolation") is not None:
         import capo_fms.types.aws_vpc_security_group_violation
 
         out["aws_vpc_security_group_violation"] = (
@@ -363,7 +363,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["AwsVPCSecurityGroupViolation"]
             )
         )
-    if "AwsEc2NetworkInterfaceViolation" in data:
+    if data.get("AwsEc2NetworkInterfaceViolation") is not None:
         import capo_fms.types.aws_ec2_network_interface_violation
 
         out["aws_ec2_network_interface_violation"] = (
@@ -371,7 +371,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["AwsEc2NetworkInterfaceViolation"]
             )
         )
-    if "AwsEc2InstanceViolation" in data:
+    if data.get("AwsEc2InstanceViolation") is not None:
         import capo_fms.types.aws_ec2_instance_violation
 
         out["aws_ec2_instance_violation"] = (
@@ -379,7 +379,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["AwsEc2InstanceViolation"]
             )
         )
-    if "NetworkFirewallMissingFirewallViolation" in data:
+    if data.get("NetworkFirewallMissingFirewallViolation") is not None:
         import capo_fms.types.network_firewall_missing_firewall_violation
 
         out["network_firewall_missing_firewall_violation"] = (
@@ -387,7 +387,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["NetworkFirewallMissingFirewallViolation"]
             )
         )
-    if "NetworkFirewallMissingSubnetViolation" in data:
+    if data.get("NetworkFirewallMissingSubnetViolation") is not None:
         import capo_fms.types.network_firewall_missing_subnet_violation
 
         out["network_firewall_missing_subnet_violation"] = (
@@ -395,7 +395,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["NetworkFirewallMissingSubnetViolation"]
             )
         )
-    if "NetworkFirewallMissingExpectedRTViolation" in data:
+    if data.get("NetworkFirewallMissingExpectedRTViolation") is not None:
         import capo_fms.types.network_firewall_missing_expected_rt_violation
 
         out["network_firewall_missing_expected_rt_violation"] = (
@@ -403,7 +403,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["NetworkFirewallMissingExpectedRTViolation"]
             )
         )
-    if "NetworkFirewallPolicyModifiedViolation" in data:
+    if data.get("NetworkFirewallPolicyModifiedViolation") is not None:
         import capo_fms.types.network_firewall_policy_modified_violation
 
         out["network_firewall_policy_modified_violation"] = (
@@ -411,7 +411,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["NetworkFirewallPolicyModifiedViolation"]
             )
         )
-    if "NetworkFirewallInternetTrafficNotInspectedViolation" in data:
+    if data.get("NetworkFirewallInternetTrafficNotInspectedViolation") is not None:
         import capo_fms.types.network_firewall_internet_traffic_not_inspected_violation
 
         out["network_firewall_internet_traffic_not_inspected_violation"] = (
@@ -419,7 +419,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["NetworkFirewallInternetTrafficNotInspectedViolation"]
             )
         )
-    if "NetworkFirewallInvalidRouteConfigurationViolation" in data:
+    if data.get("NetworkFirewallInvalidRouteConfigurationViolation") is not None:
         import capo_fms.types.network_firewall_invalid_route_configuration_violation
 
         out["network_firewall_invalid_route_configuration_violation"] = (
@@ -427,7 +427,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["NetworkFirewallInvalidRouteConfigurationViolation"]
             )
         )
-    if "NetworkFirewallBlackHoleRouteDetectedViolation" in data:
+    if data.get("NetworkFirewallBlackHoleRouteDetectedViolation") is not None:
         import capo_fms.types.network_firewall_black_hole_route_detected_violation
 
         out["network_firewall_black_hole_route_detected_violation"] = (
@@ -435,7 +435,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["NetworkFirewallBlackHoleRouteDetectedViolation"]
             )
         )
-    if "NetworkFirewallUnexpectedFirewallRoutesViolation" in data:
+    if data.get("NetworkFirewallUnexpectedFirewallRoutesViolation") is not None:
         import capo_fms.types.network_firewall_unexpected_firewall_routes_violation
 
         out["network_firewall_unexpected_firewall_routes_violation"] = (
@@ -443,7 +443,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["NetworkFirewallUnexpectedFirewallRoutesViolation"]
             )
         )
-    if "NetworkFirewallUnexpectedGatewayRoutesViolation" in data:
+    if data.get("NetworkFirewallUnexpectedGatewayRoutesViolation") is not None:
         import capo_fms.types.network_firewall_unexpected_gateway_routes_violation
 
         out["network_firewall_unexpected_gateway_routes_violation"] = (
@@ -451,7 +451,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["NetworkFirewallUnexpectedGatewayRoutesViolation"]
             )
         )
-    if "NetworkFirewallMissingExpectedRoutesViolation" in data:
+    if data.get("NetworkFirewallMissingExpectedRoutesViolation") is not None:
         import capo_fms.types.network_firewall_missing_expected_routes_violation
 
         out["network_firewall_missing_expected_routes_violation"] = (
@@ -459,7 +459,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["NetworkFirewallMissingExpectedRoutesViolation"]
             )
         )
-    if "DnsRuleGroupPriorityConflictViolation" in data:
+    if data.get("DnsRuleGroupPriorityConflictViolation") is not None:
         import capo_fms.types.dns_rule_group_priority_conflict_violation
 
         out["dns_rule_group_priority_conflict_violation"] = (
@@ -467,7 +467,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["DnsRuleGroupPriorityConflictViolation"]
             )
         )
-    if "DnsDuplicateRuleGroupViolation" in data:
+    if data.get("DnsDuplicateRuleGroupViolation") is not None:
         import capo_fms.types.dns_duplicate_rule_group_violation
 
         out["dns_duplicate_rule_group_violation"] = (
@@ -475,7 +475,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["DnsDuplicateRuleGroupViolation"]
             )
         )
-    if "DnsRuleGroupLimitExceededViolation" in data:
+    if data.get("DnsRuleGroupLimitExceededViolation") is not None:
         import capo_fms.types.dns_rule_group_limit_exceeded_violation
 
         out["dns_rule_group_limit_exceeded_violation"] = (
@@ -483,7 +483,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["DnsRuleGroupLimitExceededViolation"]
             )
         )
-    if "FirewallSubnetIsOutOfScopeViolation" in data:
+    if data.get("FirewallSubnetIsOutOfScopeViolation") is not None:
         import capo_fms.types.firewall_subnet_is_out_of_scope_violation
 
         out["firewall_subnet_is_out_of_scope_violation"] = (
@@ -491,7 +491,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["FirewallSubnetIsOutOfScopeViolation"]
             )
         )
-    if "RouteHasOutOfScopeEndpointViolation" in data:
+    if data.get("RouteHasOutOfScopeEndpointViolation") is not None:
         import capo_fms.types.route_has_out_of_scope_endpoint_violation
 
         out["route_has_out_of_scope_endpoint_violation"] = (
@@ -499,7 +499,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["RouteHasOutOfScopeEndpointViolation"]
             )
         )
-    if "ThirdPartyFirewallMissingFirewallViolation" in data:
+    if data.get("ThirdPartyFirewallMissingFirewallViolation") is not None:
         import capo_fms.types.third_party_firewall_missing_firewall_violation
 
         out["third_party_firewall_missing_firewall_violation"] = (
@@ -507,7 +507,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["ThirdPartyFirewallMissingFirewallViolation"]
             )
         )
-    if "ThirdPartyFirewallMissingSubnetViolation" in data:
+    if data.get("ThirdPartyFirewallMissingSubnetViolation") is not None:
         import capo_fms.types.third_party_firewall_missing_subnet_violation
 
         out["third_party_firewall_missing_subnet_violation"] = (
@@ -515,7 +515,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["ThirdPartyFirewallMissingSubnetViolation"]
             )
         )
-    if "ThirdPartyFirewallMissingExpectedRouteTableViolation" in data:
+    if data.get("ThirdPartyFirewallMissingExpectedRouteTableViolation") is not None:
         import capo_fms.types.third_party_firewall_missing_expected_route_table_violation
 
         out["third_party_firewall_missing_expected_route_table_violation"] = (
@@ -523,7 +523,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["ThirdPartyFirewallMissingExpectedRouteTableViolation"]
             )
         )
-    if "FirewallSubnetMissingVPCEndpointViolation" in data:
+    if data.get("FirewallSubnetMissingVPCEndpointViolation") is not None:
         import capo_fms.types.firewall_subnet_missing_vpc_endpoint_violation
 
         out["firewall_subnet_missing_vpc_endpoint_violation"] = (
@@ -531,7 +531,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["FirewallSubnetMissingVPCEndpointViolation"]
             )
         )
-    if "InvalidNetworkAclEntriesViolation" in data:
+    if data.get("InvalidNetworkAclEntriesViolation") is not None:
         import capo_fms.types.invalid_network_acl_entries_violation
 
         out["invalid_network_acl_entries_violation"] = (
@@ -539,7 +539,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["InvalidNetworkAclEntriesViolation"]
             )
         )
-    if "PossibleRemediationActions" in data:
+    if data.get("PossibleRemediationActions") is not None:
         import capo_fms.types.possible_remediation_actions
 
         out["possible_remediation_actions"] = (
@@ -547,7 +547,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["PossibleRemediationActions"]
             )
         )
-    if "WebACLHasIncompatibleConfigurationViolation" in data:
+    if data.get("WebACLHasIncompatibleConfigurationViolation") is not None:
         import capo_fms.types.web_acl_has_incompatible_configuration_violation
 
         out["web_acl_has_incompatible_configuration_violation"] = (
@@ -555,7 +555,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceViolation:
                 data["WebACLHasIncompatibleConfigurationViolation"]
             )
         )
-    if "WebACLHasOutOfScopeResourcesViolation" in data:
+    if data.get("WebACLHasOutOfScopeResourcesViolation") is not None:
         import capo_fms.types.web_acl_has_out_of_scope_resources_violation
 
         out["web_acl_has_out_of_scope_resources_violation"] = (

@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: UnauthorizedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnauthorizedException_:
     out: UnauthorizedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,18 @@ class UnauthorizedException(ServiceError):
 
     code: str | None = "UnauthorizedException"
 
-    def __init__(self, data: UnauthorizedException_):
+    def __init__(self, data: UnauthorizedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnauthorizedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "UnauthorizedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "UnauthorizedException":
+        return cls(deserialize_aws_json_1_1(data), message)

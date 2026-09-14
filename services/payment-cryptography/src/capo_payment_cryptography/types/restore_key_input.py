@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: RestoreKeyInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RestoreKeyInput:
     out: RestoreKeyInput = {}  # type: ignore[typeddict-item]
-    if "KeyIdentifier" in data:
+    if data.get("KeyIdentifier") is not None:
         out["key_identifier"] = data["KeyIdentifier"]
     else:
         raise DeserializationError("RestoreKeyInput.key_identifier required")

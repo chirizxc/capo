@@ -33,10 +33,10 @@ def serialize_json(value: Subscription) -> dict:
 
 def deserialize_json(data: dict) -> Subscription:
     out: Subscription = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
     return out

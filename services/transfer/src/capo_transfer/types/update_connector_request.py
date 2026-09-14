@@ -97,13 +97,13 @@ def serialize_aws_json_1_1(value: UpdateConnectorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateConnectorRequest:
     out: UpdateConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
     else:
         raise DeserializationError("UpdateConnectorRequest.connector_id required")
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "As2Config" in data:
+    if data.get("As2Config") is not None:
         import capo_transfer.types.as2_connector_config
 
         out["as2_config"] = (
@@ -111,11 +111,11 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateConnectorRequest:
                 data["As2Config"]
             )
         )
-    if "AccessRole" in data:
+    if data.get("AccessRole") is not None:
         out["access_role"] = data["AccessRole"]
-    if "LoggingRole" in data:
+    if data.get("LoggingRole") is not None:
         out["logging_role"] = data["LoggingRole"]
-    if "SftpConfig" in data:
+    if data.get("SftpConfig") is not None:
         import capo_transfer.types.sftp_connector_config
 
         out["sftp_config"] = (
@@ -123,9 +123,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateConnectorRequest:
                 data["SftpConfig"]
             )
         )
-    if "SecurityPolicyName" in data:
+    if data.get("SecurityPolicyName") is not None:
         out["security_policy_name"] = data["SecurityPolicyName"]
-    if "EgressConfig" in data:
+    if data.get("EgressConfig") is not None:
         import capo_transfer.types.update_connector_egress_config
 
         out["egress_config"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateConnectorRequest:
                 data["EgressConfig"]
             )
         )
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_transfer.types.connectors_ip_address_type
 
         out["ip_address_type"] = (

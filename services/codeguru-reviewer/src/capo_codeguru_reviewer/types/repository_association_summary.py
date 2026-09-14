@@ -84,11 +84,11 @@ def serialize_json(value: RepositoryAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> RepositoryAssociationSummary:
     out: RepositoryAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "AssociationArn" in data:
+    if data.get("AssociationArn") is not None:
         out["association_arn"] = data["AssociationArn"]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
-    if "LastUpdatedTimeStamp" in data:
+    if data.get("LastUpdatedTimeStamp") is not None:
         import capo_codeguru_reviewer.types.time_stamp
 
         out["last_updated_time_stamp"] = (
@@ -96,13 +96,13 @@ def deserialize_json(data: dict) -> RepositoryAssociationSummary:
                 data["LastUpdatedTimeStamp"]
             )
         )
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_codeguru_reviewer.types.provider_type
 
         out["provider_type"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> RepositoryAssociationSummary:
                 data["ProviderType"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_codeguru_reviewer.types.repository_association_state
 
         out["state"] = (

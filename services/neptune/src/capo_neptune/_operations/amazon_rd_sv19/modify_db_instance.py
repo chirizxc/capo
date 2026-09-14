@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_neptune._auth._signers
 import capo_neptune._auth._sigv4
+import capo_neptune._protocol.eventstream
 import capo_neptune.errors.authorization_not_found_fault
 import capo_neptune.errors.certificate_not_found_fault
 import capo_neptune.errors.db_instance_already_exists_fault
@@ -32,7 +33,7 @@ import capo_neptune.types.db_security_group_name_list
 import capo_neptune.types.modify_db_instance_message
 import capo_neptune.types.modify_db_instance_result
 import capo_neptune.types.vpc_security_group_id_list
-from capo_neptune._protocol.errors import parse_error_metadata
+from capo_neptune._protocol.errors import find_error_element, parse_error_metadata
 from capo_neptune._protocol.xml import fromstring
 from capo_neptune._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_neptune._services._pipeline import AsyncOperationOptions, OperationOptions
@@ -42,70 +43,71 @@ from capo_neptune.errors import UnknownServiceError
 def handle_error(response: zapros.Response) -> Never:
     root = fromstring(response.read())
     code, message = parse_error_metadata(root)
+    error_el = find_error_element(root)
     match code:
-        case "AuthorizationNotFoundFault":
+        case "AuthorizationNotFound":
             raise capo_neptune.errors.authorization_not_found_fault.AuthorizationNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "CertificateNotFoundFault":
+        case "CertificateNotFound":
             raise capo_neptune.errors.certificate_not_found_fault.CertificateNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "DBInstanceAlreadyExistsFault":
+        case "DBInstanceAlreadyExists":
             raise capo_neptune.errors.db_instance_already_exists_fault.DBInstanceAlreadyExistsFault.from_query(
-                root
+                error_el, message
             )
-        case "DBInstanceNotFoundFault":
+        case "DBInstanceNotFound":
             raise capo_neptune.errors.db_instance_not_found_fault.DBInstanceNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "DBParameterGroupNotFoundFault":
+        case "DBParameterGroupNotFound":
             raise capo_neptune.errors.db_parameter_group_not_found_fault.DBParameterGroupNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "DBSecurityGroupNotFoundFault":
+        case "DBSecurityGroupNotFound":
             raise capo_neptune.errors.db_security_group_not_found_fault.DBSecurityGroupNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "DBUpgradeDependencyFailureFault":
+        case "DBUpgradeDependencyFailure":
             raise capo_neptune.errors.db_upgrade_dependency_failure_fault.DBUpgradeDependencyFailureFault.from_query(
-                root
+                error_el, message
             )
         case "DomainNotFoundFault":
             raise capo_neptune.errors.domain_not_found_fault.DomainNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "InsufficientDBInstanceCapacityFault":
+        case "InsufficientDBInstanceCapacity":
             raise capo_neptune.errors.insufficient_db_instance_capacity_fault.InsufficientDBInstanceCapacityFault.from_query(
-                root
+                error_el, message
             )
-        case "InvalidDBInstanceStateFault":
+        case "InvalidDBInstanceState":
             raise capo_neptune.errors.invalid_db_instance_state_fault.InvalidDBInstanceStateFault.from_query(
-                root
+                error_el, message
             )
-        case "InvalidDBSecurityGroupStateFault":
+        case "InvalidDBSecurityGroupState":
             raise capo_neptune.errors.invalid_db_security_group_state_fault.InvalidDBSecurityGroupStateFault.from_query(
-                root
+                error_el, message
             )
         case "InvalidVPCNetworkStateFault":
             raise capo_neptune.errors.invalid_vpc_network_state_fault.InvalidVPCNetworkStateFault.from_query(
-                root
+                error_el, message
             )
         case "OptionGroupNotFoundFault":
             raise capo_neptune.errors.option_group_not_found_fault.OptionGroupNotFoundFault.from_query(
-                root
+                error_el, message
             )
         case "ProvisionedIopsNotAvailableInAZFault":
             raise capo_neptune.errors.provisioned_iops_not_available_in_az_fault.ProvisionedIopsNotAvailableInAZFault.from_query(
-                root
+                error_el, message
             )
-        case "StorageQuotaExceededFault":
+        case "StorageQuotaExceeded":
             raise capo_neptune.errors.storage_quota_exceeded_fault.StorageQuotaExceededFault.from_query(
-                root
+                error_el, message
             )
-        case "StorageTypeNotSupportedFault":
+        case "StorageTypeNotSupported":
             raise capo_neptune.errors.storage_type_not_supported_fault.StorageTypeNotSupportedFault.from_query(
-                root
+                error_el, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -142,17 +144,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_neptune._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_neptune._auth._sigv4.build_sigv4_auth_scheme("rds", options.region)
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_neptune._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_neptune._auth._sigv4.build_sigv4_auth_scheme(
+                "rds", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_neptune._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -169,7 +180,7 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     pairs: list[tuple[str, str]] = []
     pairs.append(("Action", "ModifyDBInstance"))
@@ -179,7 +190,8 @@ def build_request(
     headers["content-type"] = "application/x-www-form-urlencoded"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -193,7 +205,7 @@ def modify_db_instance(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -210,7 +222,7 @@ async def async_modify_db_instance(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

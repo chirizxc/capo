@@ -102,25 +102,25 @@ def serialize_json(value: ComponentResponse) -> dict:
 
 def deserialize_json(data: dict) -> ComponentResponse:
     out: ComponentResponse = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.status
 
         out["status"] = capo_iottwinmaker.types.status.deserialize_json(data["status"])
-    if "definedIn" in data:
+    if data.get("definedIn") is not None:
         out["defined_in"] = data["definedIn"]
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_iottwinmaker.types.property_responses
 
         out["properties"] = capo_iottwinmaker.types.property_responses.deserialize_json(
             data["properties"]
         )
-    if "propertyGroups" in data:
+    if data.get("propertyGroups") is not None:
         import capo_iottwinmaker.types.component_property_group_responses
 
         out["property_groups"] = (
@@ -128,11 +128,11 @@ def deserialize_json(data: dict) -> ComponentResponse:
                 data["propertyGroups"]
             )
         )
-    if "syncSource" in data:
+    if data.get("syncSource") is not None:
         out["sync_source"] = data["syncSource"]
-    if "areAllPropertiesReturned" in data:
+    if data.get("areAllPropertiesReturned") is not None:
         out["are_all_properties_returned"] = data["areAllPropertiesReturned"]
-    if "compositeComponents" in data:
+    if data.get("compositeComponents") is not None:
         import capo_iottwinmaker.types.composite_component_response
 
         out["composite_components"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> ComponentResponse:
                 data["compositeComponents"]
             )
         )
-    if "areAllCompositeComponentsReturned" in data:
+    if data.get("areAllCompositeComponentsReturned") is not None:
         out["are_all_composite_components_returned"] = data[
             "areAllCompositeComponentsReturned"
         ]

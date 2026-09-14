@@ -62,15 +62,15 @@ def serialize_json(value: JoinInstruction) -> dict:
 
 def deserialize_json(data: dict) -> JoinInstruction:
     out: JoinInstruction = {}  # type: ignore[typeddict-item]
-    if "LeftOperand" in data:
+    if data.get("LeftOperand") is not None:
         out["left_operand"] = data["LeftOperand"]
     else:
         raise DeserializationError("JoinInstruction.left_operand required")
-    if "RightOperand" in data:
+    if data.get("RightOperand") is not None:
         out["right_operand"] = data["RightOperand"]
     else:
         raise DeserializationError("JoinInstruction.right_operand required")
-    if "LeftJoinKeyProperties" in data:
+    if data.get("LeftJoinKeyProperties") is not None:
         import capo_quicksight.types.join_key_properties
 
         out["left_join_key_properties"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> JoinInstruction:
                 data["LeftJoinKeyProperties"]
             )
         )
-    if "RightJoinKeyProperties" in data:
+    if data.get("RightJoinKeyProperties") is not None:
         import capo_quicksight.types.join_key_properties
 
         out["right_join_key_properties"] = (
@@ -86,13 +86,13 @@ def deserialize_json(data: dict) -> JoinInstruction:
                 data["RightJoinKeyProperties"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.join_type
 
         out["type"] = capo_quicksight.types.join_type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("JoinInstruction.type required")
-    if "OnClause" in data:
+    if data.get("OnClause") is not None:
         out["on_clause"] = data["OnClause"]
     else:
         raise DeserializationError("JoinInstruction.on_clause required")

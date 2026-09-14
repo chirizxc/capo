@@ -124,7 +124,15 @@ def serialize_json(value: Finding) -> dict:
         value["resources"]
     )
     if "inspector_score" in value:
-        out["inspectorScore"] = value["inspector_score"]
+        out["inspectorScore"] = (
+            "NaN"
+            if value["inspector_score"] != value["inspector_score"]
+            else "Infinity"
+            if value["inspector_score"] == float("inf")
+            else "-Infinity"
+            if value["inspector_score"] == float("-inf")
+            else value["inspector_score"]
+        )
     if "inspector_score_details" in value:
         import capo_inspector2.types.inspector_score_details
 
@@ -178,25 +186,25 @@ def serialize_json(value: Finding) -> dict:
 
 def deserialize_json(data: dict) -> Finding:
     out: Finding = {}  # type: ignore[typeddict-item]
-    if "findingArn" in data:
+    if data.get("findingArn") is not None:
         out["finding_arn"] = data["findingArn"]
     else:
         raise DeserializationError("Finding.finding_arn required")
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
     else:
         raise DeserializationError("Finding.aws_account_id required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("Finding.type required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("Finding.description required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "remediation" in data:
+    if data.get("remediation") is not None:
         import capo_inspector2.types.remediation
 
         out["remediation"] = capo_inspector2.types.remediation.deserialize_json(
@@ -204,11 +212,11 @@ def deserialize_json(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.remediation required")
-    if "severity" in data:
+    if data.get("severity") is not None:
         out["severity"] = data["severity"]
     else:
         raise DeserializationError("Finding.severity required")
-    if "firstObservedAt" in data:
+    if data.get("firstObservedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["first_observed_at"] = (
@@ -218,7 +226,7 @@ def deserialize_json(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.first_observed_at required")
-    if "lastObservedAt" in data:
+    if data.get("lastObservedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["last_observed_at"] = (
@@ -228,17 +236,17 @@ def deserialize_json(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.last_observed_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["updated_at"] = capo_inspector2.types.date_time_timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("Finding.status required")
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_inspector2.types.resource_list
 
         out["resources"] = capo_inspector2.types.resource_list.deserialize_json(
@@ -246,9 +254,9 @@ def deserialize_json(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.resources required")
-    if "inspectorScore" in data:
-        out["inspector_score"] = data["inspectorScore"]
-    if "inspectorScoreDetails" in data:
+    if data.get("inspectorScore") is not None:
+        out["inspector_score"] = float(data["inspectorScore"])
+    if data.get("inspectorScoreDetails") is not None:
         import capo_inspector2.types.inspector_score_details
 
         out["inspector_score_details"] = (
@@ -256,7 +264,7 @@ def deserialize_json(data: dict) -> Finding:
                 data["inspectorScoreDetails"]
             )
         )
-    if "networkReachabilityDetails" in data:
+    if data.get("networkReachabilityDetails") is not None:
         import capo_inspector2.types.network_reachability_details
 
         out["network_reachability_details"] = (
@@ -264,7 +272,7 @@ def deserialize_json(data: dict) -> Finding:
                 data["networkReachabilityDetails"]
             )
         )
-    if "packageVulnerabilityDetails" in data:
+    if data.get("packageVulnerabilityDetails") is not None:
         import capo_inspector2.types.package_vulnerability_details
 
         out["package_vulnerability_details"] = (
@@ -272,11 +280,11 @@ def deserialize_json(data: dict) -> Finding:
                 data["packageVulnerabilityDetails"]
             )
         )
-    if "fixAvailable" in data:
+    if data.get("fixAvailable") is not None:
         out["fix_available"] = data["fixAvailable"]
-    if "exploitAvailable" in data:
+    if data.get("exploitAvailable") is not None:
         out["exploit_available"] = data["exploitAvailable"]
-    if "exploitabilityDetails" in data:
+    if data.get("exploitabilityDetails") is not None:
         import capo_inspector2.types.exploitability_details
 
         out["exploitability_details"] = (
@@ -284,7 +292,7 @@ def deserialize_json(data: dict) -> Finding:
                 data["exploitabilityDetails"]
             )
         )
-    if "codeVulnerabilityDetails" in data:
+    if data.get("codeVulnerabilityDetails") is not None:
         import capo_inspector2.types.code_vulnerability_details
 
         out["code_vulnerability_details"] = (
@@ -292,7 +300,7 @@ def deserialize_json(data: dict) -> Finding:
                 data["codeVulnerabilityDetails"]
             )
         )
-    if "epss" in data:
+    if data.get("epss") is not None:
         import capo_inspector2.types.epss_details
 
         out["epss"] = capo_inspector2.types.epss_details.deserialize_json(data["epss"])

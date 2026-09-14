@@ -25,6 +25,8 @@ def deserialize_aws_json_1_0(data: list) -> WidgetConfigList:
 
     out: WidgetConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_dashboards.types.widget_config.deserialize_aws_json_1_0(item)
         )

@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: GetCredentialsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCredentialsResponse:
     out: GetCredentialsResponse = {}  # type: ignore[typeddict-item]
-    if "dbUser" in data:
+    if data.get("dbUser") is not None:
         out["db_user"] = data["dbUser"]
-    if "dbPassword" in data:
+    if data.get("dbPassword") is not None:
         out["db_password"] = data["dbPassword"]
-    if "expiration" in data:
+    if data.get("expiration") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["expiration"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetCredentialsResponse:
                 data["expiration"]
             )
         )
-    if "nextRefreshTime" in data:
+    if data.get("nextRefreshTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["next_refresh_time"] = (

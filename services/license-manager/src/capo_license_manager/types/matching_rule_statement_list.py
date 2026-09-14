@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> MatchingRuleStatementList:
 
     out: MatchingRuleStatementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager.types.matching_rule_statement.deserialize_aws_json_1_1(
                 item

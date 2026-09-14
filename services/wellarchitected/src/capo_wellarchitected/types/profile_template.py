@@ -51,9 +51,9 @@ def serialize_json(value: ProfileTemplate) -> dict:
 
 def deserialize_json(data: dict) -> ProfileTemplate:
     out: ProfileTemplate = {}  # type: ignore[typeddict-item]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "TemplateQuestions" in data:
+    if data.get("TemplateQuestions") is not None:
         import capo_wellarchitected.types.template_questions
 
         out["template_questions"] = (
@@ -61,13 +61,13 @@ def deserialize_json(data: dict) -> ProfileTemplate:
                 data["TemplateQuestions"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["created_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(

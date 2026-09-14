@@ -91,13 +91,13 @@ def serialize_aws_json_1_1(value: UpdateLicenseConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseConfigurationRequest:
     out: UpdateLicenseConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseConfigurationArn" in data:
+    if data.get("LicenseConfigurationArn") is not None:
         out["license_configuration_arn"] = data["LicenseConfigurationArn"]
     else:
         raise DeserializationError(
             "UpdateLicenseConfigurationRequest.license_configuration_arn required"
         )
-    if "LicenseConfigurationStatus" in data:
+    if data.get("LicenseConfigurationStatus") is not None:
         import capo_license_manager.types.license_configuration_status
 
         out["license_configuration_status"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseConfigurationRequest:
                 data["LicenseConfigurationStatus"]
             )
         )
-    if "LicenseRules" in data:
+    if data.get("LicenseRules") is not None:
         import capo_license_manager.types.string_list
 
         out["license_rules"] = (
@@ -113,15 +113,15 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseConfigurationRequest:
                 data["LicenseRules"]
             )
         )
-    if "LicenseCount" in data:
+    if data.get("LicenseCount") is not None:
         out["license_count"] = data["LicenseCount"]
-    if "LicenseCountHardLimit" in data:
+    if data.get("LicenseCountHardLimit") is not None:
         out["license_count_hard_limit"] = data["LicenseCountHardLimit"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ProductInformationList" in data:
+    if data.get("ProductInformationList") is not None:
         import capo_license_manager.types.product_information_list
 
         out["product_information_list"] = (
@@ -129,8 +129,8 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseConfigurationRequest:
                 data["ProductInformationList"]
             )
         )
-    if "DisassociateWhenNotFound" in data:
+    if data.get("DisassociateWhenNotFound") is not None:
         out["disassociate_when_not_found"] = data["DisassociateWhenNotFound"]
-    if "LicenseExpiry" in data:
+    if data.get("LicenseExpiry") is not None:
         out["license_expiry"] = data["LicenseExpiry"]
     return out

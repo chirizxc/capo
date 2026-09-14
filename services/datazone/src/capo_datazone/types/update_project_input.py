@@ -87,25 +87,25 @@ def serialize_json(value: UpdateProjectInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProjectInput:
     out: UpdateProjectInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_datazone.types.tags
 
         out["resource_tags"] = capo_datazone.types.tags.deserialize_json(
             data["resourceTags"]
         )
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "domainUnitId" in data:
+    if data.get("domainUnitId") is not None:
         out["domain_unit_id"] = data["domainUnitId"]
-    if "environmentDeploymentDetails" in data:
+    if data.get("environmentDeploymentDetails") is not None:
         import capo_datazone.types.environment_deployment_details
 
         out["environment_deployment_details"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> UpdateProjectInput:
                 data["environmentDeploymentDetails"]
             )
         )
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.environment_configuration_user_parameters_list
 
         out["user_parameters"] = (
@@ -121,6 +121,6 @@ def deserialize_json(data: dict) -> UpdateProjectInput:
                 data["userParameters"]
             )
         )
-    if "projectProfileVersion" in data:
+    if data.get("projectProfileVersion") is not None:
         out["project_profile_version"] = data["projectProfileVersion"]
     return out

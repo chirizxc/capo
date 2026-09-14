@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> FirewallDomainListMetadataList:
 
     out: FirewallDomainListMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53resolver.types.firewall_domain_list_metadata.deserialize_aws_json_1_1(
                 item

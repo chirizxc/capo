@@ -35,9 +35,9 @@ def serialize_aws_json_1_0(value: ListRepositoriesOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRepositoriesOutput:
     out: ListRepositoriesOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "repositories" in data:
+    if data.get("repositories") is not None:
         import capo_proton.types.repository_summary_list
 
         out["repositories"] = (

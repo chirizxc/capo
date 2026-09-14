@@ -57,13 +57,13 @@ def serialize_json(value: SelfManagedKafkaAccessConfigurationCredentials) -> dic
 
 
 def deserialize_json(data: dict) -> SelfManagedKafkaAccessConfigurationCredentials:
-    if "BasicAuth" in data:
+    if data.get("BasicAuth") is not None:
         return {"BasicAuth": data["BasicAuth"]}
-    elif "SaslScram512Auth" in data:
+    elif data.get("SaslScram512Auth") is not None:
         return {"SaslScram512Auth": data["SaslScram512Auth"]}
-    elif "SaslScram256Auth" in data:
+    elif data.get("SaslScram256Auth") is not None:
         return {"SaslScram256Auth": data["SaslScram256Auth"]}
-    elif "ClientCertificateTlsAuth" in data:
+    elif data.get("ClientCertificateTlsAuth") is not None:
         return {"ClientCertificateTlsAuth": data["ClientCertificateTlsAuth"]}
     else:
         raise DeserializationError(

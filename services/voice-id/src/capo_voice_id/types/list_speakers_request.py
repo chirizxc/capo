@@ -36,12 +36,12 @@ def serialize_aws_json_1_0(value: ListSpeakersRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSpeakersRequest:
     out: ListSpeakersRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError("ListSpeakersRequest.domain_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

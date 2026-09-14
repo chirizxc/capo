@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: Receiver) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> Receiver:
-    if "Account" in data:
+    if data.get("Account") is not None:
         import capo_partnercentral_selling.types.account_receiver
 
         return {

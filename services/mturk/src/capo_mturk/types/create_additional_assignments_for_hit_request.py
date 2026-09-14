@@ -35,18 +35,18 @@ def serialize_aws_json_1_1(value: CreateAdditionalAssignmentsForHITRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAdditionalAssignmentsForHITRequest:
     out: CreateAdditionalAssignmentsForHITRequest = {}  # type: ignore[typeddict-item]
-    if "HITId" in data:
+    if data.get("HITId") is not None:
         out["hit_id"] = data["HITId"]
     else:
         raise DeserializationError(
             "CreateAdditionalAssignmentsForHITRequest.hit_id required"
         )
-    if "NumberOfAdditionalAssignments" in data:
+    if data.get("NumberOfAdditionalAssignments") is not None:
         out["number_of_additional_assignments"] = data["NumberOfAdditionalAssignments"]
     else:
         raise DeserializationError(
             "CreateAdditionalAssignmentsForHITRequest.number_of_additional_assignments required"
         )
-    if "UniqueRequestToken" in data:
+    if data.get("UniqueRequestToken") is not None:
         out["unique_request_token"] = data["UniqueRequestToken"]
     return out

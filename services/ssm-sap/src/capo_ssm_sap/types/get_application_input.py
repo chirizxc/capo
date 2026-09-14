@@ -33,10 +33,10 @@ def serialize_json(value: GetApplicationInput) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationInput:
     out: GetApplicationInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
-    if "AppRegistryArn" in data:
+    if data.get("AppRegistryArn") is not None:
         out["app_registry_arn"] = data["AppRegistryArn"]
     return out

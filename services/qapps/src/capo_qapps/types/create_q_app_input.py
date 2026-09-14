@@ -47,13 +47,13 @@ def serialize_json(value: CreateQAppInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateQAppInput:
     out: CreateQAppInput = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("CreateQAppInput.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "appDefinition" in data:
+    if data.get("appDefinition") is not None:
         import capo_qapps.types.app_definition_input
 
         out["app_definition"] = capo_qapps.types.app_definition_input.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> CreateQAppInput:
         )
     else:
         raise DeserializationError("CreateQAppInput.app_definition required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qapps.types.tag_map
 
         out["tags"] = capo_qapps.types.tag_map.deserialize_json(data["tags"])

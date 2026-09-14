@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_pca_connector_ad._auth._signers
@@ -92,12 +93,14 @@ class TemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.create_template_request.CreateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
-        input_["name"] = name
-        input_["definition"] = definition
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pca_connector_ad.types.create_template_request.CreateTemplateRequest = {
+            "connector_arn": connector_arn,
+            "name": name,
+            "definition": definition,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -106,6 +109,7 @@ class TemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -143,14 +147,16 @@ class TemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.get_template_request.GetTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
+        input_: capo_pca_connector_ad.types.get_template_request.GetTemplateRequest = {
+            "template_arn": template_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -193,8 +199,9 @@ class TemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.update_template_request.UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
+        input_: capo_pca_connector_ad.types.update_template_request.UpdateTemplateRequest = {
+            "template_arn": template_arn
+        }
         if definition is not None:
             input_["definition"] = definition
         if reenroll_all_certificate_holders is not None:
@@ -207,6 +214,7 @@ class TemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -243,14 +251,16 @@ class TemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.delete_template_request.DeleteTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
+        input_: capo_pca_connector_ad.types.delete_template_request.DeleteTemplateRequest = {
+            "template_arn": template_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -294,18 +304,20 @@ class TemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.list_templates_request.ListTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_ad.types.list_templates_request.ListTemplatesRequest = {
+            "connector_arn": connector_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["connector_arn"] = connector_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -361,12 +373,14 @@ class AsyncTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.create_template_request.CreateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
-        input_["name"] = name
-        input_["definition"] = definition
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pca_connector_ad.types.create_template_request.CreateTemplateRequest = {
+            "connector_arn": connector_arn,
+            "name": name,
+            "definition": definition,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -375,6 +389,7 @@ class AsyncTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -413,14 +428,16 @@ class AsyncTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.get_template_request.GetTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
+        input_: capo_pca_connector_ad.types.get_template_request.GetTemplateRequest = {
+            "template_arn": template_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -464,8 +481,9 @@ class AsyncTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.update_template_request.UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
+        input_: capo_pca_connector_ad.types.update_template_request.UpdateTemplateRequest = {
+            "template_arn": template_arn
+        }
         if definition is not None:
             input_["definition"] = definition
         if reenroll_all_certificate_holders is not None:
@@ -478,6 +496,7 @@ class AsyncTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -515,14 +534,16 @@ class AsyncTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.delete_template_request.DeleteTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
+        input_: capo_pca_connector_ad.types.delete_template_request.DeleteTemplateRequest = {
+            "template_arn": template_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -567,16 +588,18 @@ class AsyncTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.list_templates_request.ListTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_ad.types.list_templates_request.ListTemplatesRequest = {
+            "connector_arn": connector_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["connector_arn"] = connector_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

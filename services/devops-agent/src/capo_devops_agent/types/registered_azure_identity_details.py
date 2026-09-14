@@ -41,21 +41,21 @@ def serialize_json(value: RegisteredAzureIdentityDetails) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredAzureIdentityDetails:
     out: RegisteredAzureIdentityDetails = {}  # type: ignore[typeddict-item]
-    if "tenantId" in data:
+    if data.get("tenantId") is not None:
         out["tenant_id"] = data["tenantId"]
     else:
         raise DeserializationError("RegisteredAzureIdentityDetails.tenant_id required")
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     else:
         raise DeserializationError("RegisteredAzureIdentityDetails.client_id required")
-    if "webIdentityRoleArn" in data:
+    if data.get("webIdentityRoleArn") is not None:
         out["web_identity_role_arn"] = data["webIdentityRoleArn"]
     else:
         raise DeserializationError(
             "RegisteredAzureIdentityDetails.web_identity_role_arn required"
         )
-    if "webIdentityTokenAudiences" in data:
+    if data.get("webIdentityTokenAudiences") is not None:
         import capo_devops_agent.types.web_identity_token_audience_list
 
         out["web_identity_token_audiences"] = (

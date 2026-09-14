@@ -48,19 +48,19 @@ def serialize_aws_json_1_0(value: DisassociateVolumeRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateVolumeRequest:
     out: DisassociateVolumeRequest = {}  # type: ignore[typeddict-item]
-    if "WorkspaceInstanceId" in data:
+    if data.get("WorkspaceInstanceId") is not None:
         out["workspace_instance_id"] = data["WorkspaceInstanceId"]
     else:
         raise DeserializationError(
             "DisassociateVolumeRequest.workspace_instance_id required"
         )
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
     else:
         raise DeserializationError("DisassociateVolumeRequest.volume_id required")
-    if "Device" in data:
+    if data.get("Device") is not None:
         out["device"] = data["Device"]
-    if "DisassociateMode" in data:
+    if data.get("DisassociateMode") is not None:
         import capo_workspaces_instances.types.disassociate_mode_enum
 
         out["disassociate_mode"] = (

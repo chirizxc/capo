@@ -33,10 +33,10 @@ def serialize_aws_json_1_0(value: InstanceConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceConfiguration:
     out: InstanceConfiguration = {}  # type: ignore[typeddict-item]
-    if "Cpu" in data:
+    if data.get("Cpu") is not None:
         out["cpu"] = data["Cpu"]
-    if "Memory" in data:
+    if data.get("Memory") is not None:
         out["memory"] = data["Memory"]
-    if "InstanceRoleArn" in data:
+    if data.get("InstanceRoleArn") is not None:
         out["instance_role_arn"] = data["InstanceRoleArn"]
     return out

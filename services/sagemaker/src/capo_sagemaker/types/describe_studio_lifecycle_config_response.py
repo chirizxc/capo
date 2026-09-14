@@ -69,17 +69,17 @@ def serialize_aws_json_1_1(value: DescribeStudioLifecycleConfigResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeStudioLifecycleConfigResponse:
     out: DescribeStudioLifecycleConfigResponse = {}  # type: ignore[typeddict-item]
-    if "StudioLifecycleConfigArn" in data:
+    if data.get("StudioLifecycleConfigArn") is not None:
         out["studio_lifecycle_config_arn"] = data["StudioLifecycleConfigArn"]
-    if "StudioLifecycleConfigName" in data:
+    if data.get("StudioLifecycleConfigName") is not None:
         out["studio_lifecycle_config_name"] = data["StudioLifecycleConfigName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -87,9 +87,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStudioLifecycleConfigRespons
                 data["LastModifiedTime"]
             )
         )
-    if "StudioLifecycleConfigContent" in data:
+    if data.get("StudioLifecycleConfigContent") is not None:
         out["studio_lifecycle_config_content"] = data["StudioLifecycleConfigContent"]
-    if "StudioLifecycleConfigAppType" in data:
+    if data.get("StudioLifecycleConfigAppType") is not None:
         import capo_sagemaker.types.studio_lifecycle_config_app_type
 
         out["studio_lifecycle_config_app_type"] = (

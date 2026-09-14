@@ -27,7 +27,7 @@ def serialize_json(value: DescribeStreamResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeStreamResponse:
     out: DescribeStreamResponse = {}  # type: ignore[typeddict-item]
-    if "streamInfo" in data:
+    if data.get("streamInfo") is not None:
         import capo_iot.types.stream_info
 
         out["stream_info"] = capo_iot.types.stream_info.deserialize_json(

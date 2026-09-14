@@ -404,15 +404,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.associate_access_grants_identity_center_request.AssociateAccessGrantsIdentityCenterRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["identity_center_arn"] = identity_center_arn
+        input_: capo_s3_control.types.associate_access_grants_identity_center_request.AssociateAccessGrantsIdentityCenterRequest = {
+            "account_id": account_id,
+            "identity_center_arn": identity_center_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_access_grant(
@@ -466,15 +468,16 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.create_access_grant_request.CreateAccessGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["access_grants_location_id"] = access_grants_location_id
+        input_: capo_s3_control.types.create_access_grant_request.CreateAccessGrantRequest = {
+            "account_id": account_id,
+            "access_grants_location_id": access_grants_location_id,
+            "grantee": grantee,
+            "permission": permission,
+        }
         if access_grants_location_configuration is not None:
             input_["access_grants_location_configuration"] = (
                 access_grants_location_configuration
             )
-        input_["grantee"] = grantee
-        input_["permission"] = permission
         if application_arn is not None:
             input_["application_arn"] = application_arn
         if s3_prefix_type is not None:
@@ -487,6 +490,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_access_grants_instance(
@@ -526,8 +530,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.create_access_grants_instance_request.CreateAccessGrantsInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.create_access_grants_instance_request.CreateAccessGrantsInstanceRequest = {
+            "account_id": account_id
+        }
         if identity_center_arn is not None:
             input_["identity_center_arn"] = identity_center_arn
         if tags is not None:
@@ -538,6 +543,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_access_grants_location(
@@ -577,10 +583,11 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.create_access_grants_location_request.CreateAccessGrantsLocationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["location_scope"] = location_scope
-        input_["iam_role_arn"] = iam_role_arn
+        input_: capo_s3_control.types.create_access_grants_location_request.CreateAccessGrantsLocationRequest = {
+            "account_id": account_id,
+            "location_scope": location_scope,
+            "iam_role_arn": iam_role_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -589,6 +596,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_access_point(
@@ -642,10 +650,11 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.create_access_point_request.CreateAccessPointRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.create_access_point_request.CreateAccessPointRequest = {
+            "account_id": account_id,
+            "name": name,
+            "bucket": bucket,
+        }
         if vpc_configuration is not None:
             input_["vpc_configuration"] = vpc_configuration
         if public_access_block_configuration is not None:
@@ -664,6 +673,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_access_point_for_object_lambda(
@@ -701,16 +711,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.create_access_point_for_object_lambda_request.CreateAccessPointForObjectLambdaRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
-        input_["configuration"] = configuration
+        input_: capo_s3_control.types.create_access_point_for_object_lambda_request.CreateAccessPointForObjectLambdaRequest = {
+            "account_id": account_id,
+            "name": name,
+            "configuration": configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_bucket(
@@ -776,10 +788,11 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.create_bucket_request.CreateBucketRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_s3_control.types.create_bucket_request.CreateBucketRequest = {
+            "bucket": bucket
+        }
         if acl is not None:
             input_["acl"] = acl
-        input_["bucket"] = bucket
         if create_bucket_configuration is not None:
             input_["create_bucket_configuration"] = create_bucket_configuration
         if grant_full_control is not None:
@@ -802,6 +815,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_job(
@@ -865,19 +879,20 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.create_job_request.CreateJobRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.create_job_request.CreateJobRequest = {
+            "account_id": account_id,
+            "operation": operation,
+            "report": report,
+            "client_request_token": client_request_token,
+            "priority": priority,
+            "role_arn": role_arn,
+        }
         if confirmation_required is not None:
             input_["confirmation_required"] = confirmation_required
-        input_["operation"] = operation
-        input_["report"] = report
-        input_["client_request_token"] = client_request_token
         if manifest is not None:
             input_["manifest"] = manifest
         if description is not None:
             input_["description"] = description
-        input_["priority"] = priority
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if manifest_generator is not None:
@@ -888,6 +903,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_multi_region_access_point(
@@ -925,16 +941,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.create_multi_region_access_point_request.CreateMultiRegionAccessPointRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["client_token"] = client_token
-        input_["details"] = details
+        input_: capo_s3_control.types.create_multi_region_access_point_request.CreateMultiRegionAccessPointRequest = {
+            "account_id": account_id,
+            "client_token": client_token,
+            "details": details,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_storage_lens_group(
@@ -970,9 +988,10 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.create_storage_lens_group_request.CreateStorageLensGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["storage_lens_group"] = storage_lens_group
+        input_: capo_s3_control.types.create_storage_lens_group_request.CreateStorageLensGroupRequest = {
+            "account_id": account_id,
+            "storage_lens_group": storage_lens_group,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -981,6 +1000,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_grant(
@@ -1014,15 +1034,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_access_grant_request.DeleteAccessGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["access_grant_id"] = access_grant_id
+        input_: capo_s3_control.types.delete_access_grant_request.DeleteAccessGrantRequest = {
+            "account_id": account_id,
+            "access_grant_id": access_grant_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_grants_instance(
@@ -1054,14 +1076,16 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_access_grants_instance_request.DeleteAccessGrantsInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.delete_access_grants_instance_request.DeleteAccessGrantsInstanceRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_grants_instance_resource_policy(
@@ -1093,14 +1117,16 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_access_grants_instance_resource_policy_request.DeleteAccessGrantsInstanceResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.delete_access_grants_instance_resource_policy_request.DeleteAccessGrantsInstanceResourcePolicyRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_grants_location(
@@ -1134,15 +1160,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_access_grants_location_request.DeleteAccessGrantsLocationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["access_grants_location_id"] = access_grants_location_id
+        input_: capo_s3_control.types.delete_access_grants_location_request.DeleteAccessGrantsLocationRequest = {
+            "account_id": account_id,
+            "access_grants_location_id": access_grants_location_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_point(
@@ -1176,15 +1204,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_access_point_request.DeleteAccessPointRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.delete_access_point_request.DeleteAccessPointRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_point_for_object_lambda(
@@ -1218,15 +1248,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_access_point_for_object_lambda_request.DeleteAccessPointForObjectLambdaRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.delete_access_point_for_object_lambda_request.DeleteAccessPointForObjectLambdaRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_point_policy(
@@ -1260,15 +1292,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_access_point_policy_request.DeleteAccessPointPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.delete_access_point_policy_request.DeleteAccessPointPolicyRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_point_policy_for_object_lambda(
@@ -1302,15 +1336,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_access_point_policy_for_object_lambda_request.DeleteAccessPointPolicyForObjectLambdaRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.delete_access_point_policy_for_object_lambda_request.DeleteAccessPointPolicyForObjectLambdaRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_point_scope(
@@ -1344,15 +1380,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_access_point_scope_request.DeleteAccessPointScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.delete_access_point_scope_request.DeleteAccessPointScopeRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bucket(
@@ -1386,15 +1424,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_bucket_request.DeleteBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.delete_bucket_request.DeleteBucketRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bucket_lifecycle_configuration(
@@ -1428,15 +1468,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_bucket_lifecycle_configuration_request.DeleteBucketLifecycleConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.delete_bucket_lifecycle_configuration_request.DeleteBucketLifecycleConfigurationRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bucket_policy(
@@ -1470,15 +1512,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_bucket_policy_request.DeleteBucketPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.delete_bucket_policy_request.DeleteBucketPolicyRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bucket_replication(
@@ -1512,15 +1556,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_bucket_replication_request.DeleteBucketReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.delete_bucket_replication_request.DeleteBucketReplicationRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bucket_tagging(
@@ -1554,15 +1600,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_bucket_tagging_request.DeleteBucketTaggingRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.delete_bucket_tagging_request.DeleteBucketTaggingRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_job_tagging(
@@ -1601,15 +1649,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_job_tagging_request.DeleteJobTaggingRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["job_id"] = job_id
+        input_: capo_s3_control.types.delete_job_tagging_request.DeleteJobTaggingRequest = {
+            "account_id": account_id,
+            "job_id": job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_multi_region_access_point(
@@ -1647,16 +1697,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_multi_region_access_point_request.DeleteMultiRegionAccessPointRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["client_token"] = client_token
-        input_["details"] = details
+        input_: capo_s3_control.types.delete_multi_region_access_point_request.DeleteMultiRegionAccessPointRequest = {
+            "account_id": account_id,
+            "client_token": client_token,
+            "details": details,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_public_access_block(
@@ -1688,14 +1740,16 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_public_access_block_request.DeletePublicAccessBlockRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.delete_public_access_block_request.DeletePublicAccessBlockRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_storage_lens_configuration(
@@ -1729,15 +1783,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_storage_lens_configuration_request.DeleteStorageLensConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.delete_storage_lens_configuration_request.DeleteStorageLensConfigurationRequest = {
+            "config_id": config_id,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_storage_lens_configuration_tagging(
@@ -1773,15 +1829,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_storage_lens_configuration_tagging_request.DeleteStorageLensConfigurationTaggingRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.delete_storage_lens_configuration_tagging_request.DeleteStorageLensConfigurationTaggingRequest = {
+            "config_id": config_id,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_storage_lens_group(
@@ -1815,15 +1873,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.delete_storage_lens_group_request.DeleteStorageLensGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.delete_storage_lens_group_request.DeleteStorageLensGroupRequest = {
+            "name": name,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_job(
@@ -1863,15 +1923,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.describe_job_request.DescribeJobRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["job_id"] = job_id
+        input_: capo_s3_control.types.describe_job_request.DescribeJobRequest = {
+            "account_id": account_id,
+            "job_id": job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_multi_region_access_point_operation(
@@ -1907,15 +1969,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.describe_multi_region_access_point_operation_request.DescribeMultiRegionAccessPointOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["request_token_arn"] = request_token_arn
+        input_: capo_s3_control.types.describe_multi_region_access_point_operation_request.DescribeMultiRegionAccessPointOperationRequest = {
+            "account_id": account_id,
+            "request_token_arn": request_token_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def dissociate_access_grants_identity_center(
@@ -1947,14 +2011,16 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.dissociate_access_grants_identity_center_request.DissociateAccessGrantsIdentityCenterRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.dissociate_access_grants_identity_center_request.DissociateAccessGrantsIdentityCenterRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_grant(
@@ -1990,15 +2056,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_grant_request.GetAccessGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["access_grant_id"] = access_grant_id
+        input_: capo_s3_control.types.get_access_grant_request.GetAccessGrantRequest = {
+            "account_id": account_id,
+            "access_grant_id": access_grant_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_grants_instance(
@@ -2032,14 +2100,16 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_grants_instance_request.GetAccessGrantsInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.get_access_grants_instance_request.GetAccessGrantsInstanceRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_grants_instance_for_prefix(
@@ -2075,15 +2145,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_grants_instance_for_prefix_request.GetAccessGrantsInstanceForPrefixRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["s3_prefix"] = s3_prefix
+        input_: capo_s3_control.types.get_access_grants_instance_for_prefix_request.GetAccessGrantsInstanceForPrefixRequest = {
+            "account_id": account_id,
+            "s3_prefix": s3_prefix,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_grants_instance_resource_policy(
@@ -2117,14 +2189,16 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_grants_instance_resource_policy_request.GetAccessGrantsInstanceResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.get_access_grants_instance_resource_policy_request.GetAccessGrantsInstanceResourcePolicyRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_grants_location(
@@ -2160,15 +2234,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_grants_location_request.GetAccessGrantsLocationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["access_grants_location_id"] = access_grants_location_id
+        input_: capo_s3_control.types.get_access_grants_location_request.GetAccessGrantsLocationRequest = {
+            "account_id": account_id,
+            "access_grants_location_id": access_grants_location_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_point(
@@ -2204,15 +2280,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_point_request.GetAccessPointRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_access_point_request.GetAccessPointRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_point_configuration_for_object_lambda(
@@ -2248,15 +2326,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_point_configuration_for_object_lambda_request.GetAccessPointConfigurationForObjectLambdaRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_access_point_configuration_for_object_lambda_request.GetAccessPointConfigurationForObjectLambdaRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_point_for_object_lambda(
@@ -2292,15 +2372,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_point_for_object_lambda_request.GetAccessPointForObjectLambdaRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_access_point_for_object_lambda_request.GetAccessPointForObjectLambdaRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_point_policy(
@@ -2336,15 +2418,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_point_policy_request.GetAccessPointPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_access_point_policy_request.GetAccessPointPolicyRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_point_policy_for_object_lambda(
@@ -2380,15 +2464,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_point_policy_for_object_lambda_request.GetAccessPointPolicyForObjectLambdaRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_access_point_policy_for_object_lambda_request.GetAccessPointPolicyForObjectLambdaRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_point_policy_status(
@@ -2424,15 +2510,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_point_policy_status_request.GetAccessPointPolicyStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_access_point_policy_status_request.GetAccessPointPolicyStatusRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_point_policy_status_for_object_lambda(
@@ -2468,15 +2556,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_point_policy_status_for_object_lambda_request.GetAccessPointPolicyStatusForObjectLambdaRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_access_point_policy_status_for_object_lambda_request.GetAccessPointPolicyStatusForObjectLambdaRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_point_scope(
@@ -2514,15 +2604,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_access_point_scope_request.GetAccessPointScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_access_point_scope_request.GetAccessPointScopeRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_bucket(
@@ -2558,15 +2650,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_bucket_request.GetBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.get_bucket_request.GetBucketRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_bucket_lifecycle_configuration(
@@ -2602,15 +2696,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_bucket_lifecycle_configuration_request.GetBucketLifecycleConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.get_bucket_lifecycle_configuration_request.GetBucketLifecycleConfigurationRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_bucket_policy(
@@ -2646,15 +2742,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_bucket_policy_request.GetBucketPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.get_bucket_policy_request.GetBucketPolicyRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_bucket_replication(
@@ -2692,15 +2790,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_bucket_replication_request.GetBucketReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.get_bucket_replication_request.GetBucketReplicationRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_bucket_tagging(
@@ -2736,15 +2836,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_bucket_tagging_request.GetBucketTaggingRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.get_bucket_tagging_request.GetBucketTaggingRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_bucket_versioning(
@@ -2780,15 +2882,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_bucket_versioning_request.GetBucketVersioningRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.get_bucket_versioning_request.GetBucketVersioningRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_access(
@@ -2840,10 +2944,11 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_data_access_request.GetDataAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["target"] = target
-        input_["permission"] = permission
+        input_: capo_s3_control.types.get_data_access_request.GetDataAccessRequest = {
+            "account_id": account_id,
+            "target": target,
+            "permission": permission,
+        }
         if duration_seconds is not None:
             input_["duration_seconds"] = duration_seconds
         if privilege is not None:
@@ -2858,6 +2963,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_job_tagging(
@@ -2896,15 +3002,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_job_tagging_request.GetJobTaggingRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["job_id"] = job_id
+        input_: capo_s3_control.types.get_job_tagging_request.GetJobTaggingRequest = {
+            "account_id": account_id,
+            "job_id": job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_multi_region_access_point(
@@ -2940,15 +3048,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_multi_region_access_point_request.GetMultiRegionAccessPointRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_multi_region_access_point_request.GetMultiRegionAccessPointRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_multi_region_access_point_policy(
@@ -2984,15 +3094,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_multi_region_access_point_policy_request.GetMultiRegionAccessPointPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_multi_region_access_point_policy_request.GetMultiRegionAccessPointPolicyRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_multi_region_access_point_policy_status(
@@ -3028,15 +3140,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_multi_region_access_point_policy_status_request.GetMultiRegionAccessPointPolicyStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
+        input_: capo_s3_control.types.get_multi_region_access_point_policy_status_request.GetMultiRegionAccessPointPolicyStatusRequest = {
+            "account_id": account_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_multi_region_access_point_routes(
@@ -3072,15 +3186,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_multi_region_access_point_routes_request.GetMultiRegionAccessPointRoutesRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["mrap"] = mrap
+        input_: capo_s3_control.types.get_multi_region_access_point_routes_request.GetMultiRegionAccessPointRoutesRequest = {
+            "account_id": account_id,
+            "mrap": mrap,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_public_access_block(
@@ -3115,14 +3231,16 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_public_access_block_request.GetPublicAccessBlockRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.get_public_access_block_request.GetPublicAccessBlockRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_storage_lens_configuration(
@@ -3158,15 +3276,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_storage_lens_configuration_request.GetStorageLensConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.get_storage_lens_configuration_request.GetStorageLensConfigurationRequest = {
+            "config_id": config_id,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_storage_lens_configuration_tagging(
@@ -3202,15 +3322,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_storage_lens_configuration_tagging_request.GetStorageLensConfigurationTaggingRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.get_storage_lens_configuration_tagging_request.GetStorageLensConfigurationTaggingRequest = {
+            "config_id": config_id,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_storage_lens_group(
@@ -3248,15 +3370,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.get_storage_lens_group_request.GetStorageLensGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.get_storage_lens_group_request.GetStorageLensGroupRequest = {
+            "name": name,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_access_grants(
@@ -3310,8 +3434,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_access_grants_request.ListAccessGrantsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_access_grants_request.ListAccessGrantsRequest = {
+            "account_id": account_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3332,7 +3457,45 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_access_grants(
+        self,
+        account_id: "capo_s3_control.types.account_id.AccountId",
+        *,
+        config_overrides: Optional[AsyncS3ControlClientConfig] = None,
+        next_token: Optional[
+            "capo_s3_control.types.continuation_token.ContinuationToken"
+        ] = None,
+        max_results: Optional["capo_s3_control.types.max_results.MaxResults"] = None,
+        grantee_type: Optional["capo_s3_control.types.grantee_type.GranteeType"] = None,
+        grantee_identifier: Optional[
+            "capo_s3_control.types.grantee_identifier.GranteeIdentifier"
+        ] = None,
+        permission: Optional["capo_s3_control.types.permission.Permission"] = None,
+        grant_scope: Optional["capo_s3_control.types.s3_prefix.S3Prefix"] = None,
+        application_arn: Optional[
+            "capo_s3_control.types.identity_center_application_arn.IdentityCenterApplicationArn"
+        ] = None,
+    ) -> "AsyncIterator[capo_s3_control.types.list_access_grants_result.ListAccessGrantsResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_access_grants(
+                account_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                grantee_type=grantee_type,
+                grantee_identifier=grantee_identifier,
+                permission=permission,
+                grant_scope=grant_scope,
+                application_arn=application_arn,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_access_grants_instances(
         self,
@@ -3371,8 +3534,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_access_grants_instances_request.ListAccessGrantsInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_access_grants_instances_request.ListAccessGrantsInstancesRequest = {
+            "account_id": account_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3383,7 +3547,31 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_access_grants_instances(
+        self,
+        account_id: "capo_s3_control.types.account_id.AccountId",
+        *,
+        config_overrides: Optional[AsyncS3ControlClientConfig] = None,
+        next_token: Optional[
+            "capo_s3_control.types.continuation_token.ContinuationToken"
+        ] = None,
+        max_results: Optional["capo_s3_control.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_s3_control.types.list_access_grants_instances_result.ListAccessGrantsInstancesResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_access_grants_instances(
+                account_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_access_grants_locations(
         self,
@@ -3424,8 +3612,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_access_grants_locations_request.ListAccessGrantsLocationsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_access_grants_locations_request.ListAccessGrantsLocationsRequest = {
+            "account_id": account_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3438,7 +3627,33 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_access_grants_locations(
+        self,
+        account_id: "capo_s3_control.types.account_id.AccountId",
+        *,
+        config_overrides: Optional[AsyncS3ControlClientConfig] = None,
+        next_token: Optional[
+            "capo_s3_control.types.continuation_token.ContinuationToken"
+        ] = None,
+        max_results: Optional["capo_s3_control.types.max_results.MaxResults"] = None,
+        location_scope: Optional["capo_s3_control.types.s3_prefix.S3Prefix"] = None,
+    ) -> "AsyncIterator[capo_s3_control.types.list_access_grants_locations_result.ListAccessGrantsLocationsResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_access_grants_locations(
+                account_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                location_scope=location_scope,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_access_points(
         self,
@@ -3487,8 +3702,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_access_points_request.ListAccessPointsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_access_points_request.ListAccessPointsRequest = {
+            "account_id": account_id
+        }
         if bucket is not None:
             input_["bucket"] = bucket
         if next_token is not None:
@@ -3505,7 +3721,41 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_access_points(
+        self,
+        account_id: "capo_s3_control.types.account_id.AccountId",
+        *,
+        config_overrides: Optional[AsyncS3ControlClientConfig] = None,
+        bucket: Optional["capo_s3_control.types.bucket_name.BucketName"] = None,
+        next_token: Optional[
+            "capo_s3_control.types.non_empty_max_length1024_string.NonEmptyMaxLength1024String"
+        ] = None,
+        max_results: Optional["capo_s3_control.types.max_results.MaxResults"] = None,
+        data_source_id: Optional[
+            "capo_s3_control.types.data_source_id.DataSourceId"
+        ] = None,
+        data_source_type: Optional[
+            "capo_s3_control.types.data_source_type.DataSourceType"
+        ] = None,
+    ) -> "AsyncIterator[capo_s3_control.types.list_access_points_result.ListAccessPointsResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_access_points(
+                account_id,
+                config_overrides=config_overrides,
+                bucket=bucket,
+                next_token=_token,
+                max_results=max_results,
+                data_source_id=data_source_id,
+                data_source_type=data_source_type,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_access_points_for_directory_buckets(
         self,
@@ -3548,8 +3798,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_access_points_for_directory_buckets_request.ListAccessPointsForDirectoryBucketsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_access_points_for_directory_buckets_request.ListAccessPointsForDirectoryBucketsRequest = {
+            "account_id": account_id
+        }
         if directory_bucket is not None:
             input_["directory_bucket"] = directory_bucket
         if next_token is not None:
@@ -3562,6 +3813,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_access_points_for_directory_buckets(
@@ -3630,8 +3882,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_access_points_for_object_lambda_request.ListAccessPointsForObjectLambdaRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_access_points_for_object_lambda_request.ListAccessPointsForObjectLambdaRequest = {
+            "account_id": account_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3642,6 +3895,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_access_points_for_object_lambda(
@@ -3712,8 +3966,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_caller_access_grants_request.ListCallerAccessGrantsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_caller_access_grants_request.ListCallerAccessGrantsRequest = {
+            "account_id": account_id
+        }
         if grant_scope is not None:
             input_["grant_scope"] = grant_scope
         if next_token is not None:
@@ -3728,6 +3983,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_caller_access_grants(
@@ -3805,8 +4061,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_jobs_request.ListJobsRequest = {
+            "account_id": account_id
+        }
         if job_statuses is not None:
             input_["job_statuses"] = job_statuses
         if next_token is not None:
@@ -3819,7 +4076,35 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_jobs(
+        self,
+        account_id: "capo_s3_control.types.account_id.AccountId",
+        *,
+        config_overrides: Optional[AsyncS3ControlClientConfig] = None,
+        job_statuses: Optional[
+            "capo_s3_control.types.job_status_list.JobStatusList"
+        ] = None,
+        next_token: Optional[
+            "capo_s3_control.types.string_for_next_token.StringForNextToken"
+        ] = None,
+        max_results: Optional["capo_s3_control.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_s3_control.types.list_jobs_result.ListJobsResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_jobs(
+                account_id,
+                config_overrides=config_overrides,
+                job_statuses=job_statuses,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_multi_region_access_points(
         self,
@@ -3858,8 +4143,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_multi_region_access_points_request.ListMultiRegionAccessPointsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_multi_region_access_points_request.ListMultiRegionAccessPointsRequest = {
+            "account_id": account_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3870,7 +4156,31 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_multi_region_access_points(
+        self,
+        account_id: "capo_s3_control.types.account_id.AccountId",
+        *,
+        config_overrides: Optional[AsyncS3ControlClientConfig] = None,
+        next_token: Optional[
+            "capo_s3_control.types.non_empty_max_length1024_string.NonEmptyMaxLength1024String"
+        ] = None,
+        max_results: Optional["capo_s3_control.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_s3_control.types.list_multi_region_access_points_result.ListMultiRegionAccessPointsResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_multi_region_access_points(
+                account_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_regional_buckets(
         self,
@@ -3913,8 +4223,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_regional_buckets_request.ListRegionalBucketsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_regional_buckets_request.ListRegionalBucketsRequest = {
+            "account_id": account_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3927,7 +4238,35 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_regional_buckets(
+        self,
+        account_id: "capo_s3_control.types.account_id.AccountId",
+        *,
+        config_overrides: Optional[AsyncS3ControlClientConfig] = None,
+        next_token: Optional[
+            "capo_s3_control.types.non_empty_max_length1024_string.NonEmptyMaxLength1024String"
+        ] = None,
+        max_results: Optional["capo_s3_control.types.max_results.MaxResults"] = None,
+        outpost_id: Optional[
+            "capo_s3_control.types.non_empty_max_length64_string.NonEmptyMaxLength64String"
+        ] = None,
+    ) -> "AsyncIterator[capo_s3_control.types.list_regional_buckets_result.ListRegionalBucketsResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_regional_buckets(
+                account_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                outpost_id=outpost_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_storage_lens_configurations(
         self,
@@ -3964,8 +4303,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_storage_lens_configurations_request.ListStorageLensConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_storage_lens_configurations_request.ListStorageLensConfigurationsRequest = {
+            "account_id": account_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3974,7 +4314,29 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_storage_lens_configurations(
+        self,
+        account_id: "capo_s3_control.types.account_id.AccountId",
+        *,
+        config_overrides: Optional[AsyncS3ControlClientConfig] = None,
+        next_token: Optional[
+            "capo_s3_control.types.continuation_token.ContinuationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_s3_control.types.list_storage_lens_configurations_result.ListStorageLensConfigurationsResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_storage_lens_configurations(
+                account_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_storage_lens_groups(
         self,
@@ -4011,8 +4373,9 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_storage_lens_groups_request.ListStorageLensGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.list_storage_lens_groups_request.ListStorageLensGroupsRequest = {
+            "account_id": account_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -4021,7 +4384,29 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_storage_lens_groups(
+        self,
+        account_id: "capo_s3_control.types.account_id.AccountId",
+        *,
+        config_overrides: Optional[AsyncS3ControlClientConfig] = None,
+        next_token: Optional[
+            "capo_s3_control.types.continuation_token.ContinuationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_s3_control.types.list_storage_lens_groups_result.ListStorageLensGroupsResult]":
+        _token = next_token
+        while True:
+            _response = await self.list_storage_lens_groups(
+                account_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -4058,15 +4443,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["resource_arn"] = resource_arn
+        input_: capo_s3_control.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "account_id": account_id,
+            "resource_arn": resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_access_grants_instance_resource_policy(
@@ -4106,9 +4493,10 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_access_grants_instance_resource_policy_request.PutAccessGrantsInstanceResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["policy"] = policy
+        input_: capo_s3_control.types.put_access_grants_instance_resource_policy_request.PutAccessGrantsInstanceResourcePolicyRequest = {
+            "account_id": account_id,
+            "policy": policy,
+        }
         if organization is not None:
             input_["organization"] = organization
 
@@ -4117,6 +4505,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_access_point_configuration_for_object_lambda(
@@ -4152,16 +4541,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_access_point_configuration_for_object_lambda_request.PutAccessPointConfigurationForObjectLambdaRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
-        input_["configuration"] = configuration
+        input_: capo_s3_control.types.put_access_point_configuration_for_object_lambda_request.PutAccessPointConfigurationForObjectLambdaRequest = {
+            "account_id": account_id,
+            "name": name,
+            "configuration": configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_access_point_policy(
@@ -4197,16 +4588,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_access_point_policy_request.PutAccessPointPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
-        input_["policy"] = policy
+        input_: capo_s3_control.types.put_access_point_policy_request.PutAccessPointPolicyRequest = {
+            "account_id": account_id,
+            "name": name,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_access_point_policy_for_object_lambda(
@@ -4242,16 +4635,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_access_point_policy_for_object_lambda_request.PutAccessPointPolicyForObjectLambdaRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
-        input_["policy"] = policy
+        input_: capo_s3_control.types.put_access_point_policy_for_object_lambda_request.PutAccessPointPolicyForObjectLambdaRequest = {
+            "account_id": account_id,
+            "name": name,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_access_point_scope(
@@ -4287,16 +4682,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_access_point_scope_request.PutAccessPointScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["name"] = name
-        input_["scope"] = scope
+        input_: capo_s3_control.types.put_access_point_scope_request.PutAccessPointScopeRequest = {
+            "account_id": account_id,
+            "name": name,
+            "scope": scope,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_bucket_lifecycle_configuration(
@@ -4334,9 +4731,10 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_bucket_lifecycle_configuration_request.PutBucketLifecycleConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.put_bucket_lifecycle_configuration_request.PutBucketLifecycleConfigurationRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+        }
         if lifecycle_configuration is not None:
             input_["lifecycle_configuration"] = lifecycle_configuration
 
@@ -4345,6 +4743,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_bucket_policy(
@@ -4384,20 +4783,22 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_bucket_policy_request.PutBucketPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.put_bucket_policy_request.PutBucketPolicyRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+            "policy": policy,
+        }
         if confirm_remove_self_bucket_access is not None:
             input_["confirm_remove_self_bucket_access"] = (
                 confirm_remove_self_bucket_access
             )
-        input_["policy"] = policy
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_bucket_replication(
@@ -4433,16 +4834,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_bucket_replication_request.PutBucketReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
-        input_["replication_configuration"] = replication_configuration
+        input_: capo_s3_control.types.put_bucket_replication_request.PutBucketReplicationRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+            "replication_configuration": replication_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_bucket_tagging(
@@ -4478,16 +4881,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_bucket_tagging_request.PutBucketTaggingRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
-        input_["tagging"] = tagging
+        input_: capo_s3_control.types.put_bucket_tagging_request.PutBucketTaggingRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+            "tagging": tagging,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_bucket_versioning(
@@ -4525,18 +4930,20 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_bucket_versioning_request.PutBucketVersioningRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["bucket"] = bucket
+        input_: capo_s3_control.types.put_bucket_versioning_request.PutBucketVersioningRequest = {
+            "account_id": account_id,
+            "bucket": bucket,
+            "versioning_configuration": versioning_configuration,
+        }
         if mfa is not None:
             input_["mfa"] = mfa
-        input_["versioning_configuration"] = versioning_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_job_tagging(
@@ -4578,16 +4985,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_job_tagging_request.PutJobTaggingRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["job_id"] = job_id
-        input_["tags"] = tags
+        input_: capo_s3_control.types.put_job_tagging_request.PutJobTaggingRequest = {
+            "account_id": account_id,
+            "job_id": job_id,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_multi_region_access_point_policy(
@@ -4625,16 +5034,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_multi_region_access_point_policy_request.PutMultiRegionAccessPointPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["client_token"] = client_token
-        input_["details"] = details
+        input_: capo_s3_control.types.put_multi_region_access_point_policy_request.PutMultiRegionAccessPointPolicyRequest = {
+            "account_id": account_id,
+            "client_token": client_token,
+            "details": details,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_public_access_block(
@@ -4668,15 +5079,17 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_public_access_block_request.PutPublicAccessBlockRequest = {}  # type: ignore[typeddict-item]
-        input_["public_access_block_configuration"] = public_access_block_configuration
-        input_["account_id"] = account_id
+        input_: capo_s3_control.types.put_public_access_block_request.PutPublicAccessBlockRequest = {
+            "public_access_block_configuration": public_access_block_configuration,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_storage_lens_configuration(
@@ -4716,10 +5129,11 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_storage_lens_configuration_request.PutStorageLensConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["account_id"] = account_id
-        input_["storage_lens_configuration"] = storage_lens_configuration
+        input_: capo_s3_control.types.put_storage_lens_configuration_request.PutStorageLensConfigurationRequest = {
+            "config_id": config_id,
+            "account_id": account_id,
+            "storage_lens_configuration": storage_lens_configuration,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -4728,6 +5142,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_storage_lens_configuration_tagging(
@@ -4765,16 +5180,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.put_storage_lens_configuration_tagging_request.PutStorageLensConfigurationTaggingRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["account_id"] = account_id
-        input_["tags"] = tags
+        input_: capo_s3_control.types.put_storage_lens_configuration_tagging_request.PutStorageLensConfigurationTaggingRequest = {
+            "config_id": config_id,
+            "account_id": account_id,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def submit_multi_region_access_point_routes(
@@ -4812,16 +5229,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.submit_multi_region_access_point_routes_request.SubmitMultiRegionAccessPointRoutesRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["mrap"] = mrap
-        input_["route_updates"] = route_updates
+        input_: capo_s3_control.types.submit_multi_region_access_point_routes_request.SubmitMultiRegionAccessPointRoutesRequest = {
+            "account_id": account_id,
+            "mrap": mrap,
+            "route_updates": route_updates,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -4859,16 +5278,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_s3_control.types.tag_resource_request.TagResourceRequest = {
+            "account_id": account_id,
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -4906,16 +5327,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_s3_control.types.untag_resource_request.UntagResourceRequest = {
+            "account_id": account_id,
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_access_grants_location(
@@ -4953,16 +5376,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.update_access_grants_location_request.UpdateAccessGrantsLocationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["access_grants_location_id"] = access_grants_location_id
-        input_["iam_role_arn"] = iam_role_arn
+        input_: capo_s3_control.types.update_access_grants_location_request.UpdateAccessGrantsLocationRequest = {
+            "account_id": account_id,
+            "access_grants_location_id": access_grants_location_id,
+            "iam_role_arn": iam_role_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_job_priority(
@@ -5004,16 +5429,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.update_job_priority_request.UpdateJobPriorityRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["job_id"] = job_id
-        input_["priority"] = priority
+        input_: capo_s3_control.types.update_job_priority_request.UpdateJobPriorityRequest = {
+            "account_id": account_id,
+            "job_id": job_id,
+            "priority": priority,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_job_status(
@@ -5060,10 +5487,11 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.update_job_status_request.UpdateJobStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["job_id"] = job_id
-        input_["requested_job_status"] = requested_job_status
+        input_: capo_s3_control.types.update_job_status_request.UpdateJobStatusRequest = {
+            "account_id": account_id,
+            "job_id": job_id,
+            "requested_job_status": requested_job_status,
+        }
         if status_update_reason is not None:
             input_["status_update_reason"] = status_update_reason
 
@@ -5072,6 +5500,7 @@ class AsyncS3ControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_storage_lens_group(
@@ -5107,16 +5536,18 @@ class AsyncS3ControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3_control.types.update_storage_lens_group_request.UpdateStorageLensGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["account_id"] = account_id
-        input_["storage_lens_group"] = storage_lens_group
+        input_: capo_s3_control.types.update_storage_lens_group_request.UpdateStorageLensGroupRequest = {
+            "name": name,
+            "account_id": account_id,
+            "storage_lens_group": storage_lens_group,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

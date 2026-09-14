@@ -45,16 +45,16 @@ def serialize_aws_json_1_1(value: ExecutionEngineConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionEngineConfig:
     out: ExecutionEngineConfig = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_emr.types.execution_engine_type
 
         out["type"] = capo_emr.types.execution_engine_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "MasterInstanceSecurityGroupId" in data:
+    if data.get("MasterInstanceSecurityGroupId") is not None:
         out["master_instance_security_group_id"] = data["MasterInstanceSecurityGroupId"]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     return out

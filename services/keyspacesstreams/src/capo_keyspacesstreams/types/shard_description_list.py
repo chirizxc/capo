@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> ShardDescriptionList:
 
     out: ShardDescriptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_keyspacesstreams.types.shard.deserialize_aws_json_1_0(item))
     return out

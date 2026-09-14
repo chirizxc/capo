@@ -36,7 +36,7 @@ def serialize_json(value: Ec2LaunchTemplate) -> dict:
 
 def deserialize_json(data: dict) -> Ec2LaunchTemplate:
     out: Ec2LaunchTemplate = {}  # type: ignore[typeddict-item]
-    if "ec2InstanceUids" in data:
+    if data.get("ec2InstanceUids") is not None:
         import capo_guardduty.types.ec2_instance_uids
 
         out["ec2_instance_uids"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> Ec2LaunchTemplate:
                 data["ec2InstanceUids"]
             )
         )
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

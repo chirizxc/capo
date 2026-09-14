@@ -29,7 +29,7 @@ def serialize_json(value: RandomSplitActivity) -> dict:
 
 def deserialize_json(data: dict) -> RandomSplitActivity:
     out: RandomSplitActivity = {}  # type: ignore[typeddict-item]
-    if "Branches" in data:
+    if data.get("Branches") is not None:
         import capo_pinpoint.types.list_of_random_split_entry
 
         out["branches"] = (

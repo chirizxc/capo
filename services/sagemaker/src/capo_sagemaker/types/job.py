@@ -130,13 +130,13 @@ def serialize_aws_json_1_1(value: Job) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Job:
     out: Job = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobArn" in data:
+    if data.get("JobArn") is not None:
         out["job_arn"] = data["JobArn"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "JobCategory" in data:
+    if data.get("JobCategory") is not None:
         import capo_sagemaker.types.job_category
 
         out["job_category"] = (
@@ -144,17 +144,17 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["JobCategory"]
             )
         )
-    if "JobConfigSchemaVersion" in data:
+    if data.get("JobConfigSchemaVersion") is not None:
         out["job_config_schema_version"] = data["JobConfigSchemaVersion"]
-    if "JobConfigDocument" in data:
+    if data.get("JobConfigDocument") is not None:
         out["job_config_document"] = data["JobConfigDocument"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -162,19 +162,19 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["LastModifiedTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_sagemaker.types.job_status
 
         out["job_status"] = capo_sagemaker.types.job_status.deserialize_aws_json_1_1(
             data["JobStatus"]
         )
-    if "SecondaryStatus" in data:
+    if data.get("SecondaryStatus") is not None:
         import capo_sagemaker.types.job_secondary_status
 
         out["secondary_status"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["SecondaryStatus"]
             )
         )
-    if "SecondaryStatusTransitions" in data:
+    if data.get("SecondaryStatusTransitions") is not None:
         import capo_sagemaker.types.job_secondary_status_transitions
 
         out["secondary_status_transitions"] = (
@@ -190,9 +190,9 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["SecondaryStatusTransitions"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

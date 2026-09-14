@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_amplifyuibuilder._auth._signers
@@ -87,18 +88,21 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.create_component_request.CreateComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["component_to_create"] = component_to_create
+        input_: capo_amplifyuibuilder.types.create_component_request.CreateComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "component_to_create": component_to_create,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -138,16 +142,18 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.get_component_request.GetComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.get_component_request.GetComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -193,19 +199,22 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.update_component_request.UpdateComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["updated_component"] = updated_component
+        input_: capo_amplifyuibuilder.types.update_component_request.UpdateComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+            "updated_component": updated_component,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -243,16 +252,18 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.delete_component_request.DeleteComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.delete_component_request.DeleteComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -295,9 +306,10 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.list_components_request.ListComponentsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.list_components_request.ListComponentsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -308,6 +320,7 @@ class ComponentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_components(
@@ -346,9 +359,10 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.export_components_request.ExportComponentsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.export_components_request.ExportComponentsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -357,6 +371,7 @@ class ComponentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -407,18 +422,21 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.create_component_request.CreateComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["component_to_create"] = component_to_create
+        input_: capo_amplifyuibuilder.types.create_component_request.CreateComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "component_to_create": component_to_create,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -459,16 +477,18 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.get_component_request.GetComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.get_component_request.GetComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -515,19 +535,22 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.update_component_request.UpdateComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["updated_component"] = updated_component
+        input_: capo_amplifyuibuilder.types.update_component_request.UpdateComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+            "updated_component": updated_component,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -566,16 +589,18 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.delete_component_request.DeleteComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.delete_component_request.DeleteComponentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -619,9 +644,10 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.list_components_request.ListComponentsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.list_components_request.ListComponentsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -632,6 +658,7 @@ class AsyncComponentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_components(
@@ -671,9 +698,10 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.export_components_request.ExportComponentsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.export_components_request.ExportComponentsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -682,4 +710,5 @@ class AsyncComponentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

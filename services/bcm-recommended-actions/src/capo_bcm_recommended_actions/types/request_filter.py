@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: RequestFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RequestFilter:
     out: RequestFilter = {}  # type: ignore[typeddict-item]
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_bcm_recommended_actions.types.action_filter_list
 
         out["actions"] = (

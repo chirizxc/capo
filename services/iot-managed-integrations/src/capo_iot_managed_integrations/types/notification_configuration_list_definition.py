@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> NotificationConfigurationListDefinition:
 
     out: NotificationConfigurationListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.notification_configuration_summary.deserialize_json(
                 item

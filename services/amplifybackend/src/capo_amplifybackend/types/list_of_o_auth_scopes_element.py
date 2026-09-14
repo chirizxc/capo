@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ListOfOAuthScopesElement:
 
     out: ListOfOAuthScopesElement = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_amplifybackend.types.o_auth_scopes_element.deserialize_json(item)
         )

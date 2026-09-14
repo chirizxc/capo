@@ -47,13 +47,13 @@ def serialize_json(value: StartSigningJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartSigningJobRequest:
     out: StartSigningJobRequest = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_signer.types.source
 
         out["source"] = capo_signer.types.source.deserialize_json(data["source"])
     else:
         raise DeserializationError("StartSigningJobRequest.source required")
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_signer.types.destination
 
         out["destination"] = capo_signer.types.destination.deserialize_json(
@@ -61,16 +61,16 @@ def deserialize_json(data: dict) -> StartSigningJobRequest:
         )
     else:
         raise DeserializationError("StartSigningJobRequest.destination required")
-    if "profileName" in data:
+    if data.get("profileName") is not None:
         out["profile_name"] = data["profileName"]
     else:
         raise DeserializationError("StartSigningJobRequest.profile_name required")
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     else:
         raise DeserializationError(
             "StartSigningJobRequest.client_request_token required"
         )
-    if "profileOwner" in data:
+    if data.get("profileOwner") is not None:
         out["profile_owner"] = data["profileOwner"]
     return out

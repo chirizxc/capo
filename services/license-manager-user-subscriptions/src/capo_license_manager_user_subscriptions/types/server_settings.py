@@ -37,7 +37,7 @@ def serialize_json(value: ServerSettings) -> dict:
 
 
 def deserialize_json(data: dict) -> ServerSettings:
-    if "RdsSalSettings" in data:
+    if data.get("RdsSalSettings") is not None:
         import capo_license_manager_user_subscriptions.types.rds_sal_settings
 
         return {

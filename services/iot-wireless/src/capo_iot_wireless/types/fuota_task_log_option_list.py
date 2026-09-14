@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FuotaTaskLogOptionList:
 
     out: FuotaTaskLogOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_wireless.types.fuota_task_log_option.deserialize_json(item))
     return out

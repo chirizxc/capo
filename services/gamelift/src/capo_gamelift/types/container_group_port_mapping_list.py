@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ContainerGroupPortMappingList:
 
     out: ContainerGroupPortMappingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gamelift.types.container_group_port_mapping.deserialize_aws_json_1_1(
                 item

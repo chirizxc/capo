@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: VerificationResponseDetails) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> VerificationResponseDetails:
-    if "BusinessVerificationResponse" in data:
+    if data.get("BusinessVerificationResponse") is not None:
         import capo_partnercentral_account.types.business_verification_response
 
         return {
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_0(data: dict) -> VerificationResponseDetails:
                 data["BusinessVerificationResponse"]
             )
         }
-    elif "RegistrantVerificationResponse" in data:
+    elif data.get("RegistrantVerificationResponse") is not None:
         import capo_partnercentral_account.types.registrant_verification_response
 
         return {

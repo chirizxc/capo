@@ -30,13 +30,13 @@ def serialize_json(value: ProviderIdNameSpaceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProviderIdNameSpaceConfiguration:
     out: ProviderIdNameSpaceConfiguration = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "providerTargetConfigurationDefinition" in data:
+    if data.get("providerTargetConfigurationDefinition") is not None:
         out["provider_target_configuration_definition"] = data[
             "providerTargetConfigurationDefinition"
         ]
-    if "providerSourceConfigurationDefinition" in data:
+    if data.get("providerSourceConfigurationDefinition") is not None:
         out["provider_source_configuration_definition"] = data[
             "providerSourceConfigurationDefinition"
         ]

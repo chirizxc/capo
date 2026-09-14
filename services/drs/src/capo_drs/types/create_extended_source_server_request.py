@@ -31,13 +31,13 @@ def serialize_json(value: CreateExtendedSourceServerRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateExtendedSourceServerRequest:
     out: CreateExtendedSourceServerRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerArn" in data:
+    if data.get("sourceServerArn") is not None:
         out["source_server_arn"] = data["sourceServerArn"]
     else:
         raise DeserializationError(
             "CreateExtendedSourceServerRequest.source_server_arn required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])

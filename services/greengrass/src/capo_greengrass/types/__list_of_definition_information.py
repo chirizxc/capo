@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfDefinitionInformation:
 
     out: __listOfDefinitionInformation = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrass.types.definition_information.deserialize_json(item))
     return out

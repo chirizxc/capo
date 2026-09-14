@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListMobileSdkReleasesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMobileSdkReleasesResponse:
     out: ListMobileSdkReleasesResponse = {}  # type: ignore[typeddict-item]
-    if "ReleaseSummaries" in data:
+    if data.get("ReleaseSummaries") is not None:
         import capo_wafv2.types.release_summaries
 
         out["release_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListMobileSdkReleasesResponse:
                 data["ReleaseSummaries"]
             )
         )
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
     return out

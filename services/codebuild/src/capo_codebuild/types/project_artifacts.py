@@ -94,7 +94,7 @@ def serialize_aws_json_1_1(value: ProjectArtifacts) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectArtifacts:
     out: ProjectArtifacts = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.artifacts_type
 
         out["type"] = capo_codebuild.types.artifacts_type.deserialize_aws_json_1_1(
@@ -102,11 +102,11 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectArtifacts:
         )
     else:
         raise DeserializationError("ProjectArtifacts.type required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "namespaceType" in data:
+    if data.get("namespaceType") is not None:
         import capo_codebuild.types.artifact_namespace
 
         out["namespace_type"] = (
@@ -114,9 +114,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectArtifacts:
                 data["namespaceType"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "packaging" in data:
+    if data.get("packaging") is not None:
         import capo_codebuild.types.artifact_packaging
 
         out["packaging"] = (
@@ -124,13 +124,13 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectArtifacts:
                 data["packaging"]
             )
         )
-    if "overrideArtifactName" in data:
+    if data.get("overrideArtifactName") is not None:
         out["override_artifact_name"] = data["overrideArtifactName"]
-    if "encryptionDisabled" in data:
+    if data.get("encryptionDisabled") is not None:
         out["encryption_disabled"] = data["encryptionDisabled"]
-    if "artifactIdentifier" in data:
+    if data.get("artifactIdentifier") is not None:
         out["artifact_identifier"] = data["artifactIdentifier"]
-    if "bucketOwnerAccess" in data:
+    if data.get("bucketOwnerAccess") is not None:
         import capo_codebuild.types.bucket_owner_access
 
         out["bucket_owner_access"] = (

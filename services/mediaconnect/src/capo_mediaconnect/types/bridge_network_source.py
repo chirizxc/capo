@@ -56,9 +56,9 @@ def serialize_json(value: BridgeNetworkSource) -> dict:
 
 def deserialize_json(data: dict) -> BridgeNetworkSource:
     out: BridgeNetworkSource = {}  # type: ignore[typeddict-item]
-    if "multicastIp" in data:
+    if data.get("multicastIp") is not None:
         out["multicast_ip"] = data["multicastIp"]
-    if "multicastSourceSettings" in data:
+    if data.get("multicastSourceSettings") is not None:
         import capo_mediaconnect.types.multicast_source_settings
 
         out["multicast_source_settings"] = (
@@ -66,13 +66,13 @@ def deserialize_json(data: dict) -> BridgeNetworkSource:
                 data["multicastSourceSettings"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "networkName" in data:
+    if data.get("networkName") is not None:
         out["network_name"] = data["networkName"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_mediaconnect.types.protocol
 
         out["protocol"] = capo_mediaconnect.types.protocol.deserialize_json(

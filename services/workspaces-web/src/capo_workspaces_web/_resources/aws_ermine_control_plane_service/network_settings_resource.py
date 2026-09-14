@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_workspaces_web._auth._signers
@@ -92,20 +93,23 @@ class NetworkSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_network_settings_request.CreateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_id"] = vpc_id
-        input_["subnet_ids"] = subnet_ids
-        input_["security_group_ids"] = security_group_ids
+        input_: capo_workspaces_web.types.create_network_settings_request.CreateNetworkSettingsRequest = {
+            "vpc_id": vpc_id,
+            "subnet_ids": subnet_ids,
+            "security_group_ids": security_group_ids,
+        }
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -143,14 +147,16 @@ class NetworkSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_network_settings_request.GetNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_settings_arn"] = network_settings_arn
+        input_: capo_workspaces_web.types.get_network_settings_request.GetNetworkSettingsRequest = {
+            "network_settings_arn": network_settings_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -202,22 +208,25 @@ class NetworkSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_network_settings_request.UpdateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_settings_arn"] = network_settings_arn
+        input_: capo_workspaces_web.types.update_network_settings_request.UpdateNetworkSettingsRequest = {
+            "network_settings_arn": network_settings_arn
+        }
         if vpc_id is not None:
             input_["vpc_id"] = vpc_id
         if subnet_ids is not None:
             input_["subnet_ids"] = subnet_ids
         if security_group_ids is not None:
             input_["security_group_ids"] = security_group_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -255,14 +264,16 @@ class NetworkSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_network_settings_request.DeleteNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_settings_arn"] = network_settings_arn
+        input_: capo_workspaces_web.types.delete_network_settings_request.DeleteNetworkSettingsRequest = {
+            "network_settings_arn": network_settings_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -305,7 +316,7 @@ class NetworkSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_network_settings_request.ListNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_network_settings_request.ListNetworkSettingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -316,6 +327,7 @@ class NetworkSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -370,20 +382,23 @@ class AsyncNetworkSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_network_settings_request.CreateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_id"] = vpc_id
-        input_["subnet_ids"] = subnet_ids
-        input_["security_group_ids"] = security_group_ids
+        input_: capo_workspaces_web.types.create_network_settings_request.CreateNetworkSettingsRequest = {
+            "vpc_id": vpc_id,
+            "subnet_ids": subnet_ids,
+            "security_group_ids": security_group_ids,
+        }
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -422,14 +437,16 @@ class AsyncNetworkSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_network_settings_request.GetNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_settings_arn"] = network_settings_arn
+        input_: capo_workspaces_web.types.get_network_settings_request.GetNetworkSettingsRequest = {
+            "network_settings_arn": network_settings_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -482,22 +499,25 @@ class AsyncNetworkSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_network_settings_request.UpdateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_settings_arn"] = network_settings_arn
+        input_: capo_workspaces_web.types.update_network_settings_request.UpdateNetworkSettingsRequest = {
+            "network_settings_arn": network_settings_arn
+        }
         if vpc_id is not None:
             input_["vpc_id"] = vpc_id
         if subnet_ids is not None:
             input_["subnet_ids"] = subnet_ids
         if security_group_ids is not None:
             input_["security_group_ids"] = security_group_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -536,14 +556,16 @@ class AsyncNetworkSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_network_settings_request.DeleteNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_settings_arn"] = network_settings_arn
+        input_: capo_workspaces_web.types.delete_network_settings_request.DeleteNetworkSettingsRequest = {
+            "network_settings_arn": network_settings_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -587,7 +609,7 @@ class AsyncNetworkSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_network_settings_request.ListNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_network_settings_request.ListNetworkSettingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -598,4 +620,5 @@ class AsyncNetworkSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

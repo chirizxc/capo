@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SlackWorkspaceConfigurationList:
 
     out: SlackWorkspaceConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_support_app.types.slack_workspace_configuration.deserialize_json(item)
         )

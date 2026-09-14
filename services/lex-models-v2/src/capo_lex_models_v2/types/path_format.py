@@ -29,7 +29,7 @@ def serialize_json(value: PathFormat) -> dict:
 
 def deserialize_json(data: dict) -> PathFormat:
     out: PathFormat = {}  # type: ignore[typeddict-item]
-    if "objectPrefixes" in data:
+    if data.get("objectPrefixes") is not None:
         import capo_lex_models_v2.types.object_prefixes
 
         out["object_prefixes"] = (

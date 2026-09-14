@@ -27,7 +27,7 @@ def serialize_json(value: GetFailureModeFindingResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFailureModeFindingResponse:
     out: GetFailureModeFindingResponse = {}  # type: ignore[typeddict-item]
-    if "finding" in data:
+    if data.get("finding") is not None:
         import capo_resiliencehubv2.types.finding
 
         out["finding"] = capo_resiliencehubv2.types.finding.deserialize_json(

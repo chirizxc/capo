@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DataSourceList:
 
     out: DataSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.data_source.deserialize_json(item))
     return out

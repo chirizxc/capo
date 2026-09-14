@@ -32,7 +32,7 @@ def serialize_json(value: SnapshotS3DestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotS3DestinationConfiguration:
     out: SnapshotS3DestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "BucketConfiguration" in data:
+    if data.get("BucketConfiguration") is not None:
         import capo_quicksight.types.s3_bucket_configuration
 
         out["bucket_configuration"] = (

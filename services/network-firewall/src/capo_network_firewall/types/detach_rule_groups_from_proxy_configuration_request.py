@@ -68,11 +68,11 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> DetachRuleGroupsFromProxyConfigurationRequest:
     out: DetachRuleGroupsFromProxyConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ProxyConfigurationName" in data:
+    if data.get("ProxyConfigurationName") is not None:
         out["proxy_configuration_name"] = data["ProxyConfigurationName"]
-    if "ProxyConfigurationArn" in data:
+    if data.get("ProxyConfigurationArn") is not None:
         out["proxy_configuration_arn"] = data["ProxyConfigurationArn"]
-    if "RuleGroupNames" in data:
+    if data.get("RuleGroupNames") is not None:
         import capo_network_firewall.types.resource_name_list
 
         out["rule_group_names"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(
                 data["RuleGroupNames"]
             )
         )
-    if "RuleGroupArns" in data:
+    if data.get("RuleGroupArns") is not None:
         import capo_network_firewall.types.resource_arn_list
 
         out["rule_group_arns"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(
                 data["RuleGroupArns"]
             )
         )
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError(

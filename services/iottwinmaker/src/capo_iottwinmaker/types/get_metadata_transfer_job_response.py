@@ -100,19 +100,19 @@ def serialize_json(value: GetMetadataTransferJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMetadataTransferJobResponse:
     out: GetMetadataTransferJobResponse = {}  # type: ignore[typeddict-item]
-    if "metadataTransferJobId" in data:
+    if data.get("metadataTransferJobId") is not None:
         out["metadata_transfer_job_id"] = data["metadataTransferJobId"]
     else:
         raise DeserializationError(
             "GetMetadataTransferJobResponse.metadata_transfer_job_id required"
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetMetadataTransferJobResponse.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_iottwinmaker.types.source_configurations
 
         out["sources"] = capo_iottwinmaker.types.source_configurations.deserialize_json(
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> GetMetadataTransferJobResponse:
         )
     else:
         raise DeserializationError("GetMetadataTransferJobResponse.sources required")
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_iottwinmaker.types.destination_configuration
 
         out["destination"] = (
@@ -132,15 +132,15 @@ def deserialize_json(data: dict) -> GetMetadataTransferJobResponse:
         raise DeserializationError(
             "GetMetadataTransferJobResponse.destination required"
         )
-    if "metadataTransferJobRole" in data:
+    if data.get("metadataTransferJobRole") is not None:
         out["metadata_transfer_job_role"] = data["metadataTransferJobRole"]
     else:
         raise DeserializationError(
             "GetMetadataTransferJobResponse.metadata_transfer_job_role required"
         )
-    if "reportUrl" in data:
+    if data.get("reportUrl") is not None:
         out["report_url"] = data["reportUrl"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> GetMetadataTransferJobResponse:
         raise DeserializationError(
             "GetMetadataTransferJobResponse.creation_date_time required"
         )
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> GetMetadataTransferJobResponse:
         raise DeserializationError(
             "GetMetadataTransferJobResponse.update_date_time required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.metadata_transfer_job_status
 
         out["status"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> GetMetadataTransferJobResponse:
         )
     else:
         raise DeserializationError("GetMetadataTransferJobResponse.status required")
-    if "progress" in data:
+    if data.get("progress") is not None:
         import capo_iottwinmaker.types.metadata_transfer_job_progress
 
         out["progress"] = (

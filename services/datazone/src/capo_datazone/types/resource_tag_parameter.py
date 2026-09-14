@@ -31,15 +31,15 @@ def serialize_json(value: ResourceTagParameter) -> dict:
 
 def deserialize_json(data: dict) -> ResourceTagParameter:
     out: ResourceTagParameter = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("ResourceTagParameter.key required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("ResourceTagParameter.value required")
-    if "isValueEditable" in data:
+    if data.get("isValueEditable") is not None:
         out["is_value_editable"] = data["isValueEditable"]
     else:
         raise DeserializationError("ResourceTagParameter.is_value_editable required")

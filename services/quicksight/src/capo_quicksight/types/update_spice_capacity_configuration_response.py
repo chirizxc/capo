@@ -26,6 +26,6 @@ def serialize_json(value: UpdateSPICECapacityConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSPICECapacityConfigurationResponse:
     out: UpdateSPICECapacityConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

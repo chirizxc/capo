@@ -56,11 +56,11 @@ def serialize_aws_json_1_1(value: CreateRotationOverrideRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRotationOverrideRequest:
     out: CreateRotationOverrideRequest = {}  # type: ignore[typeddict-item]
-    if "RotationId" in data:
+    if data.get("RotationId") is not None:
         out["rotation_id"] = data["RotationId"]
     else:
         raise DeserializationError("CreateRotationOverrideRequest.rotation_id required")
-    if "NewContactIds" in data:
+    if data.get("NewContactIds") is not None:
         import capo_ssm_contacts.types.rotation_override_contacts_arn_list
 
         out["new_contact_ids"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRotationOverrideRequest:
         raise DeserializationError(
             "CreateRotationOverrideRequest.new_contact_ids required"
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["start_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRotationOverrideRequest:
         )
     else:
         raise DeserializationError("CreateRotationOverrideRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["end_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
@@ -88,6 +88,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRotationOverrideRequest:
         )
     else:
         raise DeserializationError("CreateRotationOverrideRequest.end_time required")
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

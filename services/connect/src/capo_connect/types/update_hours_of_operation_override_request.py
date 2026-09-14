@@ -89,11 +89,11 @@ def serialize_json(value: UpdateHoursOfOperationOverrideRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateHoursOfOperationOverrideRequest:
     out: UpdateHoursOfOperationOverrideRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_connect.types.hours_of_operation_override_config_list
 
         out["config"] = (
@@ -101,11 +101,11 @@ def deserialize_json(data: dict) -> UpdateHoursOfOperationOverrideRequest:
                 data["Config"]
             )
         )
-    if "EffectiveFrom" in data:
+    if data.get("EffectiveFrom") is not None:
         out["effective_from"] = data["EffectiveFrom"]
-    if "EffectiveTill" in data:
+    if data.get("EffectiveTill") is not None:
         out["effective_till"] = data["EffectiveTill"]
-    if "RecurrenceConfig" in data:
+    if data.get("RecurrenceConfig") is not None:
         import capo_connect.types.recurrence_config
 
         out["recurrence_config"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> UpdateHoursOfOperationOverrideRequest:
                 data["RecurrenceConfig"]
             )
         )
-    if "OverrideType" in data:
+    if data.get("OverrideType") is not None:
         import capo_connect.types.override_type
 
         out["override_type"] = capo_connect.types.override_type.deserialize_json(

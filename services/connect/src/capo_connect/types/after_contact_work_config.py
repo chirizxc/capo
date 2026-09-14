@@ -24,7 +24,7 @@ def serialize_json(value: AfterContactWorkConfig) -> dict:
 
 def deserialize_json(data: dict) -> AfterContactWorkConfig:
     out: AfterContactWorkConfig = {}  # type: ignore[typeddict-item]
-    if "AfterContactWorkTimeLimit" in data:
+    if data.get("AfterContactWorkTimeLimit") is not None:
         out["after_contact_work_time_limit"] = data["AfterContactWorkTimeLimit"]
     else:
         out["after_contact_work_time_limit"] = 0

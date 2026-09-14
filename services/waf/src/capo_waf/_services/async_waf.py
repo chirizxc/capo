@@ -344,15 +344,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_byte_match_set_request.CreateByteMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_byte_match_set_request.CreateByteMatchSetRequest = {
+            "name": name,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_geo_match_set(
@@ -394,15 +396,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_geo_match_set_request.CreateGeoMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_geo_match_set_request.CreateGeoMatchSetRequest = {
+            "name": name,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_ip_set(
@@ -450,15 +454,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_ip_set_request.CreateIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_ip_set_request.CreateIPSetRequest = {
+            "name": name,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_rate_based_rule(
@@ -510,12 +516,13 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_rate_based_rule_request.CreateRateBasedRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["metric_name"] = metric_name
-        input_["rate_key"] = rate_key
-        input_["rate_limit"] = rate_limit
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_rate_based_rule_request.CreateRateBasedRuleRequest = {
+            "name": name,
+            "metric_name": metric_name,
+            "rate_key": rate_key,
+            "rate_limit": rate_limit,
+            "change_token": change_token,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -524,6 +531,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_regex_match_set(
@@ -563,15 +571,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_regex_match_set_request.CreateRegexMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_regex_match_set_request.CreateRegexMatchSetRequest = {
+            "name": name,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_regex_pattern_set(
@@ -613,15 +623,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_regex_pattern_set_request.CreateRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_regex_pattern_set_request.CreateRegexPatternSetRequest = {
+            "name": name,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_rule(
@@ -675,10 +687,11 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_rule_request.CreateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["metric_name"] = metric_name
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_rule_request.CreateRuleRequest = {
+            "name": name,
+            "metric_name": metric_name,
+            "change_token": change_token,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -687,6 +700,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_rule_group(
@@ -733,10 +747,11 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_rule_group_request.CreateRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["metric_name"] = metric_name
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_rule_group_request.CreateRuleGroupRequest = {
+            "name": name,
+            "metric_name": metric_name,
+            "change_token": change_token,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -745,6 +760,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_size_constraint_set(
@@ -792,15 +808,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_size_constraint_set_request.CreateSizeConstraintSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_size_constraint_set_request.CreateSizeConstraintSetRequest = {
+            "name": name,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_sql_injection_match_set(
@@ -848,15 +866,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_sql_injection_match_set_request.CreateSqlInjectionMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_sql_injection_match_set_request.CreateSqlInjectionMatchSetRequest = {
+            "name": name,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_web_acl(
@@ -913,11 +933,12 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_web_acl_request.CreateWebACLRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["metric_name"] = metric_name
-        input_["default_action"] = default_action
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_web_acl_request.CreateWebACLRequest = {
+            "name": name,
+            "metric_name": metric_name,
+            "default_action": default_action,
+            "change_token": change_token,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -926,6 +947,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_web_acl_migration_stack(
@@ -968,16 +990,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_web_acl_migration_stack_request.CreateWebACLMigrationStackRequest = {}  # type: ignore[typeddict-item]
-        input_["web_acl_id"] = web_acl_id
-        input_["s3_bucket_name"] = s3_bucket_name
-        input_["ignore_unsupported_type"] = ignore_unsupported_type
+        input_: capo_waf.types.create_web_acl_migration_stack_request.CreateWebACLMigrationStackRequest = {
+            "web_acl_id": web_acl_id,
+            "s3_bucket_name": s3_bucket_name,
+            "ignore_unsupported_type": ignore_unsupported_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_xss_match_set(
@@ -1025,15 +1049,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.create_xss_match_set_request.CreateXssMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["change_token"] = change_token
+        input_: capo_waf.types.create_xss_match_set_request.CreateXssMatchSetRequest = {
+            "name": name,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_byte_match_set(
@@ -1081,15 +1107,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_byte_match_set_request.DeleteByteMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["byte_match_set_id"] = byte_match_set_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_byte_match_set_request.DeleteByteMatchSetRequest = {
+            "byte_match_set_id": byte_match_set_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_geo_match_set(
@@ -1131,15 +1159,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_geo_match_set_request.DeleteGeoMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["geo_match_set_id"] = geo_match_set_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_geo_match_set_request.DeleteGeoMatchSetRequest = {
+            "geo_match_set_id": geo_match_set_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_ip_set(
@@ -1187,15 +1217,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_ip_set_request.DeleteIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["ip_set_id"] = ip_set_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_ip_set_request.DeleteIPSetRequest = {
+            "ip_set_id": ip_set_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_logging_configuration(
@@ -1232,14 +1264,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_logging_configuration_request.DeleteLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_waf.types.delete_logging_configuration_request.DeleteLoggingConfigurationRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_permission_policy(
@@ -1276,14 +1310,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_permission_policy_request.DeletePermissionPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_waf.types.delete_permission_policy_request.DeletePermissionPolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_rate_based_rule(
@@ -1327,15 +1363,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_rate_based_rule_request.DeleteRateBasedRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_id"] = rule_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_rate_based_rule_request.DeleteRateBasedRuleRequest = {
+            "rule_id": rule_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_regex_match_set(
@@ -1377,15 +1415,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_regex_match_set_request.DeleteRegexMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["regex_match_set_id"] = regex_match_set_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_regex_match_set_request.DeleteRegexMatchSetRequest = {
+            "regex_match_set_id": regex_match_set_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_regex_pattern_set(
@@ -1429,15 +1469,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_regex_pattern_set_request.DeleteRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-        input_["regex_pattern_set_id"] = regex_pattern_set_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_regex_pattern_set_request.DeleteRegexPatternSetRequest = {
+            "regex_pattern_set_id": regex_pattern_set_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_rule(
@@ -1487,15 +1529,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_rule_request.DeleteRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_id"] = rule_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_rule_request.DeleteRuleRequest = {
+            "rule_id": rule_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_rule_group(
@@ -1539,15 +1583,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_rule_group_request.DeleteRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_group_id"] = rule_group_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_rule_group_request.DeleteRuleGroupRequest = {
+            "rule_group_id": rule_group_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_size_constraint_set(
@@ -1595,15 +1641,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_size_constraint_set_request.DeleteSizeConstraintSetRequest = {}  # type: ignore[typeddict-item]
-        input_["size_constraint_set_id"] = size_constraint_set_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_size_constraint_set_request.DeleteSizeConstraintSetRequest = {
+            "size_constraint_set_id": size_constraint_set_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_sql_injection_match_set(
@@ -1651,15 +1699,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_sql_injection_match_set_request.DeleteSqlInjectionMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["sql_injection_match_set_id"] = sql_injection_match_set_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_sql_injection_match_set_request.DeleteSqlInjectionMatchSetRequest = {
+            "sql_injection_match_set_id": sql_injection_match_set_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_web_acl(
@@ -1709,15 +1759,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_web_acl_request.DeleteWebACLRequest = {}  # type: ignore[typeddict-item]
-        input_["web_acl_id"] = web_acl_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_web_acl_request.DeleteWebACLRequest = {
+            "web_acl_id": web_acl_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_xss_match_set(
@@ -1765,15 +1817,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.delete_xss_match_set_request.DeleteXssMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["xss_match_set_id"] = xss_match_set_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.delete_xss_match_set_request.DeleteXssMatchSetRequest = {
+            "xss_match_set_id": xss_match_set_id,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_byte_match_set(
@@ -1816,14 +1870,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_byte_match_set_request.GetByteMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["byte_match_set_id"] = byte_match_set_id
+        input_: capo_waf.types.get_byte_match_set_request.GetByteMatchSetRequest = {
+            "byte_match_set_id": byte_match_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_change_token(
@@ -1858,13 +1914,14 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_change_token_request.GetChangeTokenRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.get_change_token_request.GetChangeTokenRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_change_token_status(
@@ -1906,14 +1963,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_change_token_status_request.GetChangeTokenStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["change_token"] = change_token
+        input_: capo_waf.types.get_change_token_status_request.GetChangeTokenStatusRequest = {
+            "change_token": change_token
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_geo_match_set(
@@ -1950,14 +2009,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_geo_match_set_request.GetGeoMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["geo_match_set_id"] = geo_match_set_id
+        input_: capo_waf.types.get_geo_match_set_request.GetGeoMatchSetRequest = {
+            "geo_match_set_id": geo_match_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_ip_set(
@@ -2000,14 +2061,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_ip_set_request.GetIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["ip_set_id"] = ip_set_id
+        input_: capo_waf.types.get_ip_set_request.GetIPSetRequest = {
+            "ip_set_id": ip_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_logging_configuration(
@@ -2043,14 +2106,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_logging_configuration_request.GetLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_waf.types.get_logging_configuration_request.GetLoggingConfigurationRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_permission_policy(
@@ -2086,14 +2151,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_permission_policy_request.GetPermissionPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_waf.types.get_permission_policy_request.GetPermissionPolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_rate_based_rule(
@@ -2130,14 +2197,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_rate_based_rule_request.GetRateBasedRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_id"] = rule_id
+        input_: capo_waf.types.get_rate_based_rule_request.GetRateBasedRuleRequest = {
+            "rule_id": rule_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_rate_based_rule_managed_keys(
@@ -2177,8 +2246,9 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_rate_based_rule_managed_keys_request.GetRateBasedRuleManagedKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_id"] = rule_id
+        input_: capo_waf.types.get_rate_based_rule_managed_keys_request.GetRateBasedRuleManagedKeysRequest = {
+            "rule_id": rule_id
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
 
@@ -2187,6 +2257,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_regex_match_set(
@@ -2223,14 +2294,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_regex_match_set_request.GetRegexMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["regex_match_set_id"] = regex_match_set_id
+        input_: capo_waf.types.get_regex_match_set_request.GetRegexMatchSetRequest = {
+            "regex_match_set_id": regex_match_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_regex_pattern_set(
@@ -2267,14 +2340,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_regex_pattern_set_request.GetRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-        input_["regex_pattern_set_id"] = regex_pattern_set_id
+        input_: capo_waf.types.get_regex_pattern_set_request.GetRegexPatternSetRequest = {
+            "regex_pattern_set_id": regex_pattern_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_rule(
@@ -2315,14 +2390,14 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_rule_request.GetRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_id"] = rule_id
+        input_: capo_waf.types.get_rule_request.GetRuleRequest = {"rule_id": rule_id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_rule_group(
@@ -2358,14 +2433,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_rule_group_request.GetRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_group_id"] = rule_group_id
+        input_: capo_waf.types.get_rule_group_request.GetRuleGroupRequest = {
+            "rule_group_id": rule_group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sampled_requests(
@@ -2407,17 +2484,19 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_sampled_requests_request.GetSampledRequestsRequest = {}  # type: ignore[typeddict-item]
-        input_["web_acl_id"] = web_acl_id
-        input_["rule_id"] = rule_id
-        input_["time_window"] = time_window
-        input_["max_items"] = max_items
+        input_: capo_waf.types.get_sampled_requests_request.GetSampledRequestsRequest = {
+            "web_acl_id": web_acl_id,
+            "rule_id": rule_id,
+            "time_window": time_window,
+            "max_items": max_items,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_size_constraint_set(
@@ -2460,14 +2539,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_size_constraint_set_request.GetSizeConstraintSetRequest = {}  # type: ignore[typeddict-item]
-        input_["size_constraint_set_id"] = size_constraint_set_id
+        input_: capo_waf.types.get_size_constraint_set_request.GetSizeConstraintSetRequest = {
+            "size_constraint_set_id": size_constraint_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sql_injection_match_set(
@@ -2510,14 +2591,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_sql_injection_match_set_request.GetSqlInjectionMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["sql_injection_match_set_id"] = sql_injection_match_set_id
+        input_: capo_waf.types.get_sql_injection_match_set_request.GetSqlInjectionMatchSetRequest = {
+            "sql_injection_match_set_id": sql_injection_match_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_web_acl(
@@ -2560,14 +2643,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_web_acl_request.GetWebACLRequest = {}  # type: ignore[typeddict-item]
-        input_["web_acl_id"] = web_acl_id
+        input_: capo_waf.types.get_web_acl_request.GetWebACLRequest = {
+            "web_acl_id": web_acl_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_xss_match_set(
@@ -2610,14 +2695,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.get_xss_match_set_request.GetXssMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["xss_match_set_id"] = xss_match_set_id
+        input_: capo_waf.types.get_xss_match_set_request.GetXssMatchSetRequest = {
+            "xss_match_set_id": xss_match_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_activated_rules_in_rule_group(
@@ -2658,7 +2745,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_activated_rules_in_rule_group_request.ListActivatedRulesInRuleGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_activated_rules_in_rule_group_request.ListActivatedRulesInRuleGroupRequest = {}
         if rule_group_id is not None:
             input_["rule_group_id"] = rule_group_id
         if next_marker is not None:
@@ -2671,6 +2758,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_byte_match_sets(
@@ -2708,7 +2796,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_byte_match_sets_request.ListByteMatchSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_byte_match_sets_request.ListByteMatchSetsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2719,6 +2807,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_geo_match_sets(
@@ -2756,7 +2845,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_geo_match_sets_request.ListGeoMatchSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_geo_match_sets_request.ListGeoMatchSetsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2767,6 +2856,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_ip_sets(
@@ -2810,7 +2900,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_ip_sets_request.ListIPSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_ip_sets_request.ListIPSetsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2821,6 +2911,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_logging_configurations(
@@ -2859,7 +2950,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_logging_configurations_request.ListLoggingConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_logging_configurations_request.ListLoggingConfigurationsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2870,6 +2961,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_rate_based_rules(
@@ -2907,7 +2999,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_rate_based_rules_request.ListRateBasedRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_rate_based_rules_request.ListRateBasedRulesRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2918,6 +3010,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_regex_match_sets(
@@ -2955,7 +3048,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_regex_match_sets_request.ListRegexMatchSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_regex_match_sets_request.ListRegexMatchSetsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2966,6 +3059,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_regex_pattern_sets(
@@ -3003,7 +3097,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_regex_pattern_sets_request.ListRegexPatternSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_regex_pattern_sets_request.ListRegexPatternSetsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -3014,6 +3108,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_rule_groups(
@@ -3050,7 +3145,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_rule_groups_request.ListRuleGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_rule_groups_request.ListRuleGroupsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -3061,6 +3156,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_rules(
@@ -3104,7 +3200,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_rules_request.ListRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_rules_request.ListRulesRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -3115,6 +3211,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_size_constraint_sets(
@@ -3158,7 +3255,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_size_constraint_sets_request.ListSizeConstraintSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_size_constraint_sets_request.ListSizeConstraintSetsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -3169,6 +3266,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_sql_injection_match_sets(
@@ -3212,7 +3310,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_sql_injection_match_sets_request.ListSqlInjectionMatchSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_sql_injection_match_sets_request.ListSqlInjectionMatchSetsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -3223,6 +3321,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_subscribed_rule_groups(
@@ -3260,7 +3359,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_subscribed_rule_groups_request.ListSubscribedRuleGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_subscribed_rule_groups_request.ListSubscribedRuleGroupsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -3271,6 +3370,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -3314,18 +3414,20 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
             input_["limit"] = limit
-        input_["resource_arn"] = resource_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_web_ac_ls(
@@ -3369,7 +3471,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_web_ac_ls_request.ListWebACLsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_web_ac_ls_request.ListWebACLsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -3380,6 +3482,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_xss_match_sets(
@@ -3423,7 +3526,7 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.list_xss_match_sets_request.ListXssMatchSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_waf.types.list_xss_match_sets_request.ListXssMatchSetsRequest = {}
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -3434,6 +3537,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_logging_configuration(
@@ -3471,14 +3575,16 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.put_logging_configuration_request.PutLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["logging_configuration"] = logging_configuration
+        input_: capo_waf.types.put_logging_configuration_request.PutLoggingConfigurationRequest = {
+            "logging_configuration": logging_configuration
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_permission_policy(
@@ -3518,15 +3624,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.put_permission_policy_request.PutPermissionPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_waf.types.put_permission_policy_request.PutPermissionPolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -3569,15 +3677,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_waf.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -3619,15 +3729,17 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_waf.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_byte_match_set(
@@ -3679,16 +3791,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_byte_match_set_request.UpdateByteMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["byte_match_set_id"] = byte_match_set_id
-        input_["change_token"] = change_token
-        input_["updates"] = updates
+        input_: capo_waf.types.update_byte_match_set_request.UpdateByteMatchSetRequest = {
+            "byte_match_set_id": byte_match_set_id,
+            "change_token": change_token,
+            "updates": updates,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_geo_match_set(
@@ -3735,16 +3849,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_geo_match_set_request.UpdateGeoMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["geo_match_set_id"] = geo_match_set_id
-        input_["change_token"] = change_token
-        input_["updates"] = updates
+        input_: capo_waf.types.update_geo_match_set_request.UpdateGeoMatchSetRequest = {
+            "geo_match_set_id": geo_match_set_id,
+            "change_token": change_token,
+            "updates": updates,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_ip_set(
@@ -3797,16 +3913,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_ip_set_request.UpdateIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["ip_set_id"] = ip_set_id
-        input_["change_token"] = change_token
-        input_["updates"] = updates
+        input_: capo_waf.types.update_ip_set_request.UpdateIPSetRequest = {
+            "ip_set_id": ip_set_id,
+            "change_token": change_token,
+            "updates": updates,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_rate_based_rule(
@@ -3855,17 +3973,19 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_rate_based_rule_request.UpdateRateBasedRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_id"] = rule_id
-        input_["change_token"] = change_token
-        input_["updates"] = updates
-        input_["rate_limit"] = rate_limit
+        input_: capo_waf.types.update_rate_based_rule_request.UpdateRateBasedRuleRequest = {
+            "rule_id": rule_id,
+            "change_token": change_token,
+            "updates": updates,
+            "rate_limit": rate_limit,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_regex_match_set(
@@ -3911,16 +4031,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_regex_match_set_request.UpdateRegexMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["regex_match_set_id"] = regex_match_set_id
-        input_["updates"] = updates
-        input_["change_token"] = change_token
+        input_: capo_waf.types.update_regex_match_set_request.UpdateRegexMatchSetRequest = {
+            "regex_match_set_id": regex_match_set_id,
+            "updates": updates,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_regex_pattern_set(
@@ -3968,16 +4090,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_regex_pattern_set_request.UpdateRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-        input_["regex_pattern_set_id"] = regex_pattern_set_id
-        input_["updates"] = updates
-        input_["change_token"] = change_token
+        input_: capo_waf.types.update_regex_pattern_set_request.UpdateRegexPatternSetRequest = {
+            "regex_pattern_set_id": regex_pattern_set_id,
+            "updates": updates,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_rule(
@@ -4030,16 +4154,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_rule_request.UpdateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_id"] = rule_id
-        input_["change_token"] = change_token
-        input_["updates"] = updates
+        input_: capo_waf.types.update_rule_request.UpdateRuleRequest = {
+            "rule_id": rule_id,
+            "change_token": change_token,
+            "updates": updates,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_rule_group(
@@ -4084,16 +4210,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_rule_group_request.UpdateRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_group_id"] = rule_group_id
-        input_["updates"] = updates
-        input_["change_token"] = change_token
+        input_: capo_waf.types.update_rule_group_request.UpdateRuleGroupRequest = {
+            "rule_group_id": rule_group_id,
+            "updates": updates,
+            "change_token": change_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_size_constraint_set(
@@ -4146,16 +4274,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_size_constraint_set_request.UpdateSizeConstraintSetRequest = {}  # type: ignore[typeddict-item]
-        input_["size_constraint_set_id"] = size_constraint_set_id
-        input_["change_token"] = change_token
-        input_["updates"] = updates
+        input_: capo_waf.types.update_size_constraint_set_request.UpdateSizeConstraintSetRequest = {
+            "size_constraint_set_id": size_constraint_set_id,
+            "change_token": change_token,
+            "updates": updates,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_sql_injection_match_set(
@@ -4207,16 +4337,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_sql_injection_match_set_request.UpdateSqlInjectionMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["sql_injection_match_set_id"] = sql_injection_match_set_id
-        input_["change_token"] = change_token
-        input_["updates"] = updates
+        input_: capo_waf.types.update_sql_injection_match_set_request.UpdateSqlInjectionMatchSetRequest = {
+            "sql_injection_match_set_id": sql_injection_match_set_id,
+            "change_token": change_token,
+            "updates": updates,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_web_acl(
@@ -4272,9 +4404,10 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_web_acl_request.UpdateWebACLRequest = {}  # type: ignore[typeddict-item]
-        input_["web_acl_id"] = web_acl_id
-        input_["change_token"] = change_token
+        input_: capo_waf.types.update_web_acl_request.UpdateWebACLRequest = {
+            "web_acl_id": web_acl_id,
+            "change_token": change_token,
+        }
         if updates is not None:
             input_["updates"] = updates
         if default_action is not None:
@@ -4285,6 +4418,7 @@ class AsyncWAFClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_xss_match_set(
@@ -4336,16 +4470,18 @@ class AsyncWAFClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_waf.types.update_xss_match_set_request.UpdateXssMatchSetRequest = {}  # type: ignore[typeddict-item]
-        input_["xss_match_set_id"] = xss_match_set_id
-        input_["change_token"] = change_token
-        input_["updates"] = updates
+        input_: capo_waf.types.update_xss_match_set_request.UpdateXssMatchSetRequest = {
+            "xss_match_set_id": xss_match_set_id,
+            "change_token": change_token,
+            "updates": updates,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

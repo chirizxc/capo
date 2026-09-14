@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: DescribeReplicationsMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReplicationsMessage:
     out: DescribeReplicationsMessage = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_database_migration_service.types.filter_list
 
         out["filters"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeReplicationsMessage:
                 data["Filters"]
             )
         )
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

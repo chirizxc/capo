@@ -56,11 +56,11 @@ def serialize_json(value: UpdateDeploymentInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDeploymentInput:
     out: UpdateDeploymentInput = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     else:
         raise DeserializationError("UpdateDeploymentInput.deployment_id required")
-    if "specifications" in data:
+    if data.get("specifications") is not None:
         import capo_launch_wizard.types.deployment_specifications
 
         out["specifications"] = (
@@ -70,15 +70,15 @@ def deserialize_json(data: dict) -> UpdateDeploymentInput:
         )
     else:
         raise DeserializationError("UpdateDeploymentInput.specifications required")
-    if "workloadVersionName" in data:
+    if data.get("workloadVersionName") is not None:
         out["workload_version_name"] = data["workloadVersionName"]
-    if "deploymentPatternVersionName" in data:
+    if data.get("deploymentPatternVersionName") is not None:
         out["deployment_pattern_version_name"] = data["deploymentPatternVersionName"]
-    if "dryRun" in data:
+    if data.get("dryRun") is not None:
         out["dry_run"] = data["dryRun"]
     else:
         out["dry_run"] = False
-    if "force" in data:
+    if data.get("force") is not None:
         out["force"] = data["force"]
     else:
         out["force"] = False

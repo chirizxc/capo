@@ -64,7 +64,7 @@ def serialize_json(value: BrandingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BrandingConfiguration:
     out: BrandingConfiguration = {}  # type: ignore[typeddict-item]
-    if "logo" in data:
+    if data.get("logo") is not None:
         import capo_workspaces_web.types.image_metadata
 
         out["logo"] = capo_workspaces_web.types.image_metadata.deserialize_json(
@@ -72,13 +72,13 @@ def deserialize_json(data: dict) -> BrandingConfiguration:
         )
     else:
         raise DeserializationError("BrandingConfiguration.logo required")
-    if "wallpaper" in data:
+    if data.get("wallpaper") is not None:
         import capo_workspaces_web.types.image_metadata
 
         out["wallpaper"] = capo_workspaces_web.types.image_metadata.deserialize_json(
             data["wallpaper"]
         )
-    if "favicon" in data:
+    if data.get("favicon") is not None:
         import capo_workspaces_web.types.image_metadata
 
         out["favicon"] = capo_workspaces_web.types.image_metadata.deserialize_json(
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> BrandingConfiguration:
         )
     else:
         raise DeserializationError("BrandingConfiguration.favicon required")
-    if "localizedStrings" in data:
+    if data.get("localizedStrings") is not None:
         import capo_workspaces_web.types.localized_branding_string_map
 
         out["localized_strings"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> BrandingConfiguration:
         )
     else:
         raise DeserializationError("BrandingConfiguration.localized_strings required")
-    if "colorTheme" in data:
+    if data.get("colorTheme") is not None:
         import capo_workspaces_web.types.color_theme
 
         out["color_theme"] = capo_workspaces_web.types.color_theme.deserialize_json(
@@ -104,6 +104,6 @@ def deserialize_json(data: dict) -> BrandingConfiguration:
         )
     else:
         raise DeserializationError("BrandingConfiguration.color_theme required")
-    if "termsOfService" in data:
+    if data.get("termsOfService") is not None:
         out["terms_of_service"] = data["termsOfService"]
     return out

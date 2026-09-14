@@ -40,7 +40,7 @@ def serialize_json(value: UpdateBillingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBillingGroupRequest:
     out: UpdateBillingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "billingGroupProperties" in data:
+    if data.get("billingGroupProperties") is not None:
         import capo_iot.types.billing_group_properties
 
         out["billing_group_properties"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> UpdateBillingGroupRequest:
         raise DeserializationError(
             "UpdateBillingGroupRequest.billing_group_properties required"
         )
-    if "expectedVersion" in data:
+    if data.get("expectedVersion") is not None:
         out["expected_version"] = data["expectedVersion"]
     return out

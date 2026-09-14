@@ -28,8 +28,8 @@ def serialize_json(value: GroupOwnerSetting) -> dict:
 
 def deserialize_json(data: dict) -> GroupOwnerSetting:
     out: GroupOwnerSetting = {}  # type: ignore[typeddict-item]
-    if "AutoAddGroupOwner" in data:
+    if data.get("AutoAddGroupOwner") is not None:
         out["auto_add_group_owner"] = data["AutoAddGroupOwner"]
-    if "GroupOwner" in data:
+    if data.get("GroupOwner") is not None:
         out["group_owner"] = data["GroupOwner"]
     return out

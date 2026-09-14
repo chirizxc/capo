@@ -37,7 +37,7 @@ def serialize_json(value: GetResourcePoliciesOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetResourcePoliciesOutput:
     out: GetResourcePoliciesOutput = {}  # type: ignore[typeddict-item]
-    if "resourcePolicies" in data:
+    if data.get("resourcePolicies") is not None:
         import capo_ssm_incidents.types.resource_policy_list
 
         out["resource_policies"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> GetResourcePoliciesOutput:
         raise DeserializationError(
             "GetResourcePoliciesOutput.resource_policies required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

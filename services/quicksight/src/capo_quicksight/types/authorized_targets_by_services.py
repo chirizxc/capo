@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AuthorizedTargetsByServices:
 
     out: AuthorizedTargetsByServices = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.authorized_targets_by_service.deserialize_json(item)
         )

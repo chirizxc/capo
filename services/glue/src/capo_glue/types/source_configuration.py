@@ -71,15 +71,15 @@ def serialize_aws_json_1_1(value: SourceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceConfiguration:
     out: SourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "RequestMethod" in data:
+    if data.get("RequestMethod") is not None:
         import capo_glue.types.http_method
 
         out["request_method"] = capo_glue.types.http_method.deserialize_aws_json_1_1(
             data["RequestMethod"]
         )
-    if "RequestPath" in data:
+    if data.get("RequestPath") is not None:
         out["request_path"] = data["RequestPath"]
-    if "RequestParameters" in data:
+    if data.get("RequestParameters") is not None:
         import capo_glue.types.connector_property_list
 
         out["request_parameters"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> SourceConfiguration:
                 data["RequestParameters"]
             )
         )
-    if "ResponseConfiguration" in data:
+    if data.get("ResponseConfiguration") is not None:
         import capo_glue.types.response_configuration
 
         out["response_configuration"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> SourceConfiguration:
                 data["ResponseConfiguration"]
             )
         )
-    if "PaginationConfiguration" in data:
+    if data.get("PaginationConfiguration") is not None:
         import capo_glue.types.pagination_configuration
 
         out["pagination_configuration"] = (

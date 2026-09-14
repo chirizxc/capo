@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: AnalyticsMetadataType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnalyticsMetadataType:
     out: AnalyticsMetadataType = {}  # type: ignore[typeddict-item]
-    if "AnalyticsEndpointId" in data:
+    if data.get("AnalyticsEndpointId") is not None:
         out["analytics_endpoint_id"] = data["AnalyticsEndpointId"]
     return out

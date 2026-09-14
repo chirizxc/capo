@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> BatchTableOptimizers:
 
     out: BatchTableOptimizers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.batch_table_optimizer.deserialize_aws_json_1_1(item))
     return out

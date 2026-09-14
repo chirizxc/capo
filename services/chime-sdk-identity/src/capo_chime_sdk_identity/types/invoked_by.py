@@ -44,7 +44,7 @@ def serialize_json(value: InvokedBy) -> dict:
 
 def deserialize_json(data: dict) -> InvokedBy:
     out: InvokedBy = {}  # type: ignore[typeddict-item]
-    if "StandardMessages" in data:
+    if data.get("StandardMessages") is not None:
         import capo_chime_sdk_identity.types.standard_messages
 
         out["standard_messages"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> InvokedBy:
         )
     else:
         raise DeserializationError("InvokedBy.standard_messages required")
-    if "TargetedMessages" in data:
+    if data.get("TargetedMessages") is not None:
         import capo_chime_sdk_identity.types.targeted_messages
 
         out["targeted_messages"] = (

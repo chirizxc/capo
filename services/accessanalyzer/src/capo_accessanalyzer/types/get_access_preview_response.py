@@ -28,7 +28,7 @@ def serialize_json(value: GetAccessPreviewResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAccessPreviewResponse:
     out: GetAccessPreviewResponse = {}  # type: ignore[typeddict-item]
-    if "accessPreview" in data:
+    if data.get("accessPreview") is not None:
         import capo_accessanalyzer.types.access_preview
 
         out["access_preview"] = (

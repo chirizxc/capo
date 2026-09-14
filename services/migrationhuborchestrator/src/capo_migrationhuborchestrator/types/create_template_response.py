@@ -35,11 +35,11 @@ def serialize_json(value: CreateTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateTemplateResponse:
     out: CreateTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
-    if "templateArn" in data:
+    if data.get("templateArn") is not None:
         out["template_arn"] = data["templateArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_migrationhuborchestrator.types.string_map
 
         out["tags"] = capo_migrationhuborchestrator.types.string_map.deserialize_json(

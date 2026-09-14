@@ -30,11 +30,11 @@ def serialize_json(value: IntuneConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IntuneConfiguration:
     out: IntuneConfiguration = {}  # type: ignore[typeddict-item]
-    if "AzureApplicationId" in data:
+    if data.get("AzureApplicationId") is not None:
         out["azure_application_id"] = data["AzureApplicationId"]
     else:
         raise DeserializationError("IntuneConfiguration.azure_application_id required")
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     else:
         raise DeserializationError("IntuneConfiguration.domain required")

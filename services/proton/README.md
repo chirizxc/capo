@@ -13,9 +13,9 @@ from capo_proton import AsyncProtonClient
 
 
 async def main():
-    async with AsyncProtonClient() as s3:
+    async with AsyncProtonClient() as proton:
         # Example: call the cancel_component_deployment operation
-        response = await s3.cancel_component_deployment()
+        response = await proton.cancel_component_deployment()
         print(response["component"])
 ```
 
@@ -28,9 +28,9 @@ from capo_proton import AsyncProtonClient
 
 
 async def main():
-    async with AsyncProtonClient() as s3:
+    async with AsyncProtonClient() as proton:
         # Example: paginate over list_repository_sync_definitions
-        async for item in s3.iter_list_repository_sync_definitions():
+        async for item in proton.iter_list_repository_sync_definitions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_proton.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncProtonClient() as s3:
+    async with AsyncProtonClient() as proton:
         try:
-            await s3.cancel_component_deployment()
+            await proton.cancel_component_deployment()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_proton import AsyncProtonClient
 
 
 async def main():
-    async with AsyncProtonClient() as s3:
+    async with AsyncProtonClient() as proton:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_component_deployment()
+        response = await proton.cancel_component_deployment()
 
         # Override per operation
-        response = await s3.cancel_component_deployment(config_overrides={"retry_max_attempts": 5})
+        response = await proton.cancel_component_deployment(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_component_deployment(config_overrides={"retry_max_attempts": 1})
+        response = await proton.cancel_component_deployment(config_overrides={"retry_max_attempts": 1})
 ```

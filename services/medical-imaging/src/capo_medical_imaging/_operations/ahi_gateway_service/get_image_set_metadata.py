@@ -11,6 +11,7 @@ from typing_extensions import Never
 
 import capo_medical_imaging._auth._signers
 import capo_medical_imaging._auth._sigv4
+import capo_medical_imaging._protocol.eventstream
 import capo_medical_imaging.errors.access_denied_exception
 import capo_medical_imaging.errors.conflict_exception
 import capo_medical_imaging.errors.internal_server_exception
@@ -35,27 +36,27 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_medical_imaging.errors.access_denied_exception.AccessDeniedException.from_json(
-                data
+                data, message
             )
         case "ConflictException":
             raise capo_medical_imaging.errors.conflict_exception.ConflictException.from_json(
-                data
+                data, message
             )
         case "InternalServerException":
             raise capo_medical_imaging.errors.internal_server_exception.InternalServerException.from_json(
-                data
+                data, message
             )
         case "ResourceNotFoundException":
             raise capo_medical_imaging.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
-                data
+                data, message
             )
         case "ThrottlingException":
             raise capo_medical_imaging.errors.throttling_exception.ThrottlingException.from_json(
-                data
+                data, message
             )
         case "ValidationException":
             raise capo_medical_imaging.errors.validation_exception.ValidationException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -64,28 +65,28 @@ def handle_error(response: zapros.Response) -> Never:
 def handle_response(
     response: zapros.Response,
 ) -> capo_medical_imaging.types.get_image_set_metadata_response.GetImageSetMetadataResponse:
-    _iter = cast(Any, response.iter_bytes())
+    _iter = cast(Any, response.iter_raw())
     out: capo_medical_imaging.types.get_image_set_metadata_response.GetImageSetMetadataResponse = {
         "image_set_metadata_blob": _iter
     }  # type: ignore[reportAssignmentType]
     if "Content-Type" in response.headers:
-        out["content_type"] = str(response.headers["Content-Type"])
+        out["content_type"] = response.headers["Content-Type"]
     if "Content-Encoding" in response.headers:
-        out["content_encoding"] = str(response.headers["Content-Encoding"])
+        out["content_encoding"] = response.headers["Content-Encoding"]
     return out
 
 
 async def async_handle_response(
     response: zapros.Response,
 ) -> capo_medical_imaging.types.get_image_set_metadata_response.GetImageSetMetadataResponse:
-    _iter = cast(Any, response.async_iter_bytes())
+    _iter = cast(Any, response.async_iter_raw())
     out: capo_medical_imaging.types.get_image_set_metadata_response.GetImageSetMetadataResponse = {
         "image_set_metadata_blob": _iter
     }  # type: ignore[reportAssignmentType]
     if "Content-Type" in response.headers:
-        out["content_type"] = str(response.headers["Content-Type"])
+        out["content_type"] = response.headers["Content-Type"]
     if "Content-Encoding" in response.headers:
-        out["content_encoding"] = str(response.headers["Content-Encoding"])
+        out["content_encoding"] = response.headers["Content-Encoding"]
     return out
 
 
@@ -94,19 +95,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_medical_imaging._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_medical_imaging._auth._sigv4.build_sigv4_auth_scheme(
-                "medical-imaging", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_medical_imaging._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_medical_imaging._auth._sigv4.build_sigv4_auth_scheme(
+                "medical-imaging", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_medical_imaging._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -126,16 +134,17 @@ def build_request(
         endpoint.url.rstrip("/")
         + "/datastore/{datastoreId}/imageSet/{imageSetId}/getImageSetMetadata"
     )
-    url = url.replace("{datastoreId}", quote(str(input_["datastore_id"]), safe=""))
-    url = url.replace("{imageSetId}", quote(str(input_["image_set_id"]), safe=""))
-    params: dict[str, str] = {}
+    url = url.replace("{datastoreId}", quote(input_["datastore_id"], safe=""))
+    url = url.replace("{imageSetId}", quote(input_["image_set_id"], safe=""))
+    params: list[tuple[str, str]] = []
     if "version_id" in input_:
-        params["version"] = str(input_["version_id"])
+        params.append(("version", input_["version_id"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -150,7 +159,7 @@ def get_image_set_metadata(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -168,7 +177,7 @@ async def async_get_image_set_metadata(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

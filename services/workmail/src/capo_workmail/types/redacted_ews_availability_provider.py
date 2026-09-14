@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: RedactedEwsAvailabilityProvider) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedactedEwsAvailabilityProvider:
     out: RedactedEwsAvailabilityProvider = {}  # type: ignore[typeddict-item]
-    if "EwsEndpoint" in data:
+    if data.get("EwsEndpoint") is not None:
         out["ews_endpoint"] = data["EwsEndpoint"]
-    if "EwsUsername" in data:
+    if data.get("EwsUsername") is not None:
         out["ews_username"] = data["EwsUsername"]
     return out

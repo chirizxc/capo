@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: GetAnomalySubscriptionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAnomalySubscriptionsRequest:
     out: GetAnomalySubscriptionsRequest = {}  # type: ignore[typeddict-item]
-    if "SubscriptionArnList" in data:
+    if data.get("SubscriptionArnList") is not None:
         import capo_cost_explorer.types.values
 
         out["subscription_arn_list"] = (
@@ -54,10 +54,10 @@ def deserialize_aws_json_1_1(data: dict) -> GetAnomalySubscriptionsRequest:
                 data["SubscriptionArnList"]
             )
         )
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

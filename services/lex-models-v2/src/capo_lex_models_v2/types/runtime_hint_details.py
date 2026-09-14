@@ -44,7 +44,7 @@ def serialize_json(value: RuntimeHintDetails) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeHintDetails:
     out: RuntimeHintDetails = {}  # type: ignore[typeddict-item]
-    if "runtimeHintValues" in data:
+    if data.get("runtimeHintValues") is not None:
         import capo_lex_models_v2.types.runtime_hint_values_list
 
         out["runtime_hint_values"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> RuntimeHintDetails:
                 data["runtimeHintValues"]
             )
         )
-    if "subSlotHints" in data:
+    if data.get("subSlotHints") is not None:
         import capo_lex_models_v2.types.slot_hints_slot_map
 
         out["sub_slot_hints"] = (

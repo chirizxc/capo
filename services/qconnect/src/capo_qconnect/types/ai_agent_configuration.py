@@ -152,7 +152,7 @@ def serialize_json(value: AIAgentConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> AIAgentConfiguration:
-    if "manualSearchAIAgentConfiguration" in data:
+    if data.get("manualSearchAIAgentConfiguration") is not None:
         import capo_qconnect.types.manual_search_ai_agent_configuration
 
         return {
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> AIAgentConfiguration:
                 data["manualSearchAIAgentConfiguration"]
             )
         }
-    elif "answerRecommendationAIAgentConfiguration" in data:
+    elif data.get("answerRecommendationAIAgentConfiguration") is not None:
         import capo_qconnect.types.answer_recommendation_ai_agent_configuration
 
         return {
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> AIAgentConfiguration:
                 data["answerRecommendationAIAgentConfiguration"]
             )
         }
-    elif "selfServiceAIAgentConfiguration" in data:
+    elif data.get("selfServiceAIAgentConfiguration") is not None:
         import capo_qconnect.types.self_service_ai_agent_configuration
 
         return {
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> AIAgentConfiguration:
                 data["selfServiceAIAgentConfiguration"]
             )
         }
-    elif "emailResponseAIAgentConfiguration" in data:
+    elif data.get("emailResponseAIAgentConfiguration") is not None:
         import capo_qconnect.types.email_response_ai_agent_configuration
 
         return {
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> AIAgentConfiguration:
                 data["emailResponseAIAgentConfiguration"]
             )
         }
-    elif "emailOverviewAIAgentConfiguration" in data:
+    elif data.get("emailOverviewAIAgentConfiguration") is not None:
         import capo_qconnect.types.email_overview_ai_agent_configuration
 
         return {
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> AIAgentConfiguration:
                 data["emailOverviewAIAgentConfiguration"]
             )
         }
-    elif "emailGenerativeAnswerAIAgentConfiguration" in data:
+    elif data.get("emailGenerativeAnswerAIAgentConfiguration") is not None:
         import capo_qconnect.types.email_generative_answer_ai_agent_configuration
 
         return {
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> AIAgentConfiguration:
                 data["emailGenerativeAnswerAIAgentConfiguration"]
             )
         }
-    elif "orchestrationAIAgentConfiguration" in data:
+    elif data.get("orchestrationAIAgentConfiguration") is not None:
         import capo_qconnect.types.orchestration_ai_agent_configuration
 
         return {
@@ -208,7 +208,7 @@ def deserialize_json(data: dict) -> AIAgentConfiguration:
                 data["orchestrationAIAgentConfiguration"]
             )
         }
-    elif "noteTakingAIAgentConfiguration" in data:
+    elif data.get("noteTakingAIAgentConfiguration") is not None:
         import capo_qconnect.types.note_taking_ai_agent_configuration
 
         return {
@@ -216,7 +216,7 @@ def deserialize_json(data: dict) -> AIAgentConfiguration:
                 data["noteTakingAIAgentConfiguration"]
             )
         }
-    elif "caseSummarizationAIAgentConfiguration" in data:
+    elif data.get("caseSummarizationAIAgentConfiguration") is not None:
         import capo_qconnect.types.case_summarization_ai_agent_configuration
 
         return {

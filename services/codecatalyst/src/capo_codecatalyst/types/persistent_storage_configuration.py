@@ -19,7 +19,7 @@ def serialize_json(value: PersistentStorageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PersistentStorageConfiguration:
     out: PersistentStorageConfiguration = {}  # type: ignore[typeddict-item]
-    if "sizeInGiB" in data:
+    if data.get("sizeInGiB") is not None:
         out["size_in_gi_b"] = data["sizeInGiB"]
     else:
         raise DeserializationError(

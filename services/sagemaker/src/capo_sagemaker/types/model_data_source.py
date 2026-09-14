@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ModelDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelDataSource:
     out: ModelDataSource = {}  # type: ignore[typeddict-item]
-    if "S3DataSource" in data:
+    if data.get("S3DataSource") is not None:
         import capo_sagemaker.types.s3_model_data_source
 
         out["s3_data_source"] = (

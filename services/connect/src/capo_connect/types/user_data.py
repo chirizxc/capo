@@ -117,11 +117,11 @@ def serialize_json(value: UserData) -> dict:
 
 def deserialize_json(data: dict) -> UserData:
     out: UserData = {}  # type: ignore[typeddict-item]
-    if "User" in data:
+    if data.get("User") is not None:
         import capo_connect.types.user_reference
 
         out["user"] = capo_connect.types.user_reference.deserialize_json(data["User"])
-    if "RoutingProfile" in data:
+    if data.get("RoutingProfile") is not None:
         import capo_connect.types.routing_profile_reference
 
         out["routing_profile"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> UserData:
                 data["RoutingProfile"]
             )
         )
-    if "HierarchyPath" in data:
+    if data.get("HierarchyPath") is not None:
         import capo_connect.types.hierarchy_path_reference
 
         out["hierarchy_path"] = (
@@ -137,13 +137,13 @@ def deserialize_json(data: dict) -> UserData:
                 data["HierarchyPath"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.agent_status_reference
 
         out["status"] = capo_connect.types.agent_status_reference.deserialize_json(
             data["Status"]
         )
-    if "AvailableSlotsByChannel" in data:
+    if data.get("AvailableSlotsByChannel") is not None:
         import capo_connect.types.channel_to_count_map
 
         out["available_slots_by_channel"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> UserData:
                 data["AvailableSlotsByChannel"]
             )
         )
-    if "MaxSlotsByChannel" in data:
+    if data.get("MaxSlotsByChannel") is not None:
         import capo_connect.types.channel_to_count_map
 
         out["max_slots_by_channel"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> UserData:
                 data["MaxSlotsByChannel"]
             )
         )
-    if "ActiveSlotsByChannel" in data:
+    if data.get("ActiveSlotsByChannel") is not None:
         import capo_connect.types.channel_to_count_map
 
         out["active_slots_by_channel"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> UserData:
                 data["ActiveSlotsByChannel"]
             )
         )
-    if "Contacts" in data:
+    if data.get("Contacts") is not None:
         import capo_connect.types.agent_contact_reference_list
 
         out["contacts"] = (
@@ -175,6 +175,6 @@ def deserialize_json(data: dict) -> UserData:
                 data["Contacts"]
             )
         )
-    if "NextStatus" in data:
+    if data.get("NextStatus") is not None:
         out["next_status"] = data["NextStatus"]
     return out

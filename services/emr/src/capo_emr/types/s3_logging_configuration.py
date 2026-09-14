@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: S3LoggingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3LoggingConfiguration:
     out: S3LoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "LogTypeUploadPolicy" in data:
+    if data.get("LogTypeUploadPolicy") is not None:
         import capo_emr.types.log_type_map
 
         out["log_type_upload_policy"] = (

@@ -32,12 +32,12 @@ def serialize_json(value: Dimension) -> dict:
 
 def deserialize_json(data: dict) -> Dimension:
     out: Dimension = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_iot_wireless.types.dimension_name
 
         out["name"] = capo_iot_wireless.types.dimension_name.deserialize_json(
             data["name"]
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

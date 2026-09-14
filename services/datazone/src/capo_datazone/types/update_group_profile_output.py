@@ -50,20 +50,20 @@ def serialize_json(value: UpdateGroupProfileOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGroupProfileOutput:
     out: UpdateGroupProfileOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.group_profile_status
 
         out["status"] = capo_datazone.types.group_profile_status.deserialize_json(
             data["status"]
         )
-    if "groupName" in data:
+    if data.get("groupName") is not None:
         out["group_name"] = data["groupName"]
-    if "rolePrincipalArn" in data:
+    if data.get("rolePrincipalArn") is not None:
         out["role_principal_arn"] = data["rolePrincipalArn"]
-    if "rolePrincipalId" in data:
+    if data.get("rolePrincipalId") is not None:
         out["role_principal_id"] = data["rolePrincipalId"]
     return out

@@ -31,9 +31,9 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseWalletDetails) -> dict:
             )
         )
     if "time_rotated" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeRotated"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["timeRotated"] = capo_odb._protocol.serialize.fmt_date_time(
             value["time_rotated"]
         )
     return out
@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseWalletDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseWalletDetails:
     out: AutonomousDatabaseWalletDetails = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.autonomous_database_wallet_status
 
         out["status"] = (
@@ -49,12 +49,10 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseWalletDetails:
                 data["status"]
             )
         )
-    if "timeRotated" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeRotated") is not None:
+        import datetime
 
-        out["time_rotated"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeRotated"]
-            )
+        out["time_rotated"] = datetime.datetime.fromisoformat(
+            data["timeRotated"].replace("Z", "+00:00")
         )
     return out

@@ -27,8 +27,8 @@ def serialize_json(value: PartListElement) -> dict:
 
 def deserialize_json(data: dict) -> PartListElement:
     out: PartListElement = {}  # type: ignore[typeddict-item]
-    if "RangeInBytes" in data:
+    if data.get("RangeInBytes") is not None:
         out["range_in_bytes"] = data["RangeInBytes"]
-    if "SHA256TreeHash" in data:
+    if data.get("SHA256TreeHash") is not None:
         out["sha256_tree_hash"] = data["SHA256TreeHash"]
     return out

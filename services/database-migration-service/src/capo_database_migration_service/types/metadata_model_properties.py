@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: MetadataModelProperties) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> MetadataModelProperties:
-    if "StatementProperties" in data:
+    if data.get("StatementProperties") is not None:
         import capo_database_migration_service.types.statement_properties
 
         return {

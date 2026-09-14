@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: StartAnalysisReportResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartAnalysisReportResponse:
     out: StartAnalysisReportResponse = {}  # type: ignore[typeddict-item]
-    if "AnalysisReportId" in data:
+    if data.get("AnalysisReportId") is not None:
         out["analysis_report_id"] = data["AnalysisReportId"]
     else:
         raise DeserializationError(

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DomainStatusList:
 
     out: DomainStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.domain_status.deserialize_json(item))
     return out

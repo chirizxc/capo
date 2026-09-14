@@ -35,7 +35,7 @@ def serialize_json(value: ValidatePolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> ValidatePolicyResponse:
     out: ValidatePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "findings" in data:
+    if data.get("findings") is not None:
         import capo_accessanalyzer.types.validate_policy_finding_list
 
         out["findings"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ValidatePolicyResponse:
         )
     else:
         raise DeserializationError("ValidatePolicyResponse.findings required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

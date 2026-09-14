@@ -77,11 +77,11 @@ def serialize_aws_json_1_1(value: DescribeDeviceFleetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDeviceFleetResponse:
     out: DescribeDeviceFleetResponse = {}  # type: ignore[typeddict-item]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "DeviceFleetArn" in data:
+    if data.get("DeviceFleetArn") is not None:
         out["device_fleet_arn"] = data["DeviceFleetArn"]
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.edge_output_config
 
         out["output_config"] = (
@@ -89,15 +89,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDeviceFleetResponse:
                 data["OutputConfig"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -105,8 +105,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDeviceFleetResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "IotRoleAlias" in data:
+    if data.get("IotRoleAlias") is not None:
         out["iot_role_alias"] = data["IotRoleAlias"]
     return out

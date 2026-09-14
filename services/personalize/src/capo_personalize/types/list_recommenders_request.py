@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ListRecommendersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRecommendersRequest:
     out: ListRecommendersRequest = {}  # type: ignore[typeddict-item]
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

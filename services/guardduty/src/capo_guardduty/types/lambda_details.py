@@ -68,31 +68,31 @@ def serialize_json(value: LambdaDetails) -> dict:
 
 def deserialize_json(data: dict) -> LambdaDetails:
     out: LambdaDetails = {}  # type: ignore[typeddict-item]
-    if "functionArn" in data:
+    if data.get("functionArn") is not None:
         out["function_arn"] = data["functionArn"]
-    if "functionName" in data:
+    if data.get("functionName") is not None:
         out["function_name"] = data["functionName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["last_modified_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["lastModifiedAt"]
         )
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "functionVersion" in data:
+    if data.get("functionVersion") is not None:
         out["function_version"] = data["functionVersion"]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_guardduty.types.vpc_config
 
         out["vpc_config"] = capo_guardduty.types.vpc_config.deserialize_json(
             data["vpcConfig"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tags
 
         out["tags"] = capo_guardduty.types.tags.deserialize_json(data["tags"])

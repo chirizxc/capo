@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: LambdaEffectiveRecommendationPreferences) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaEffectiveRecommendationPreferences:
     out: LambdaEffectiveRecommendationPreferences = {}  # type: ignore[typeddict-item]
-    if "savingsEstimationMode" in data:
+    if data.get("savingsEstimationMode") is not None:
         import capo_compute_optimizer.types.lambda_savings_estimation_mode
 
         out["savings_estimation_mode"] = (

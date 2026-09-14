@@ -32,22 +32,30 @@ def serialize_aws_json_1_1(value: SearchFacesRequest) -> dict:
     if "max_faces" in value:
         out["MaxFaces"] = value["max_faces"]
     if "face_match_threshold" in value:
-        out["FaceMatchThreshold"] = value["face_match_threshold"]
+        out["FaceMatchThreshold"] = (
+            "NaN"
+            if value["face_match_threshold"] != value["face_match_threshold"]
+            else "Infinity"
+            if value["face_match_threshold"] == float("inf")
+            else "-Infinity"
+            if value["face_match_threshold"] == float("-inf")
+            else value["face_match_threshold"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> SearchFacesRequest:
     out: SearchFacesRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("SearchFacesRequest.collection_id required")
-    if "FaceId" in data:
+    if data.get("FaceId") is not None:
         out["face_id"] = data["FaceId"]
     else:
         raise DeserializationError("SearchFacesRequest.face_id required")
-    if "MaxFaces" in data:
+    if data.get("MaxFaces") is not None:
         out["max_faces"] = data["MaxFaces"]
-    if "FaceMatchThreshold" in data:
-        out["face_match_threshold"] = data["FaceMatchThreshold"]
+    if data.get("FaceMatchThreshold") is not None:
+        out["face_match_threshold"] = float(data["FaceMatchThreshold"])
     return out

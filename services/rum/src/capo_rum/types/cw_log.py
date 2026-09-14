@@ -22,8 +22,8 @@ def serialize_json(value: CwLog) -> dict:
 
 def deserialize_json(data: dict) -> CwLog:
     out: CwLog = {}  # type: ignore[typeddict-item]
-    if "CwLogEnabled" in data:
+    if data.get("CwLogEnabled") is not None:
         out["cw_log_enabled"] = data["CwLogEnabled"]
-    if "CwLogGroup" in data:
+    if data.get("CwLogGroup") is not None:
         out["cw_log_group"] = data["CwLogGroup"]
     return out

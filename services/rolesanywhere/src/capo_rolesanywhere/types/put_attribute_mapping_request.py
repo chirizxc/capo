@@ -35,13 +35,13 @@ def serialize_json(value: PutAttributeMappingRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAttributeMappingRequest:
     out: PutAttributeMappingRequest = {}  # type: ignore[typeddict-item]
-    if "certificateField" in data:
+    if data.get("certificateField") is not None:
         out["certificate_field"] = data["certificateField"]
     else:
         raise DeserializationError(
             "PutAttributeMappingRequest.certificate_field required"
         )
-    if "mappingRules" in data:
+    if data.get("mappingRules") is not None:
         import capo_rolesanywhere.types.mapping_rules
 
         out["mapping_rules"] = capo_rolesanywhere.types.mapping_rules.deserialize_json(

@@ -52,17 +52,17 @@ def serialize_json(value: UpdateEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentRequest:
     out: UpdateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "federationMode" in data:
+    if data.get("federationMode") is not None:
         import capo_finspace.types.federation_mode
 
         out["federation_mode"] = capo_finspace.types.federation_mode.deserialize_json(
             data["federationMode"]
         )
-    if "federationParameters" in data:
+    if data.get("federationParameters") is not None:
         import capo_finspace.types.federation_parameters
 
         out["federation_parameters"] = (

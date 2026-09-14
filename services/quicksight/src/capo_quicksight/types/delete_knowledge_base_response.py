@@ -36,18 +36,18 @@ def serialize_json(value: DeleteKnowledgeBaseResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteKnowledgeBaseResponse:
     out: DeleteKnowledgeBaseResponse = {}  # type: ignore[typeddict-item]
-    if "KnowledgeBaseArn" in data:
+    if data.get("KnowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["KnowledgeBaseArn"]
     else:
         raise DeserializationError(
             "DeleteKnowledgeBaseResponse.knowledge_base_arn required"
         )
-    if "KnowledgeBaseId" in data:
+    if data.get("KnowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["KnowledgeBaseId"]
     else:
         raise DeserializationError(
             "DeleteKnowledgeBaseResponse.knowledge_base_id required"
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

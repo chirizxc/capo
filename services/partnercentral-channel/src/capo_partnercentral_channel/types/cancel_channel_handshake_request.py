@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: CancelChannelHandshakeRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelChannelHandshakeRequest:
     out: CancelChannelHandshakeRequest = {}  # type: ignore[typeddict-item]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("CancelChannelHandshakeRequest.catalog required")
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("CancelChannelHandshakeRequest.identifier required")

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_0(data: list) -> SyncBlockerContexts:
 
     out: SyncBlockerContexts = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_proton.types.sync_blocker_context.deserialize_aws_json_1_0(item)
         )

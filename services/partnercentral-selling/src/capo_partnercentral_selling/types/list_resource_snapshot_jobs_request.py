@@ -63,19 +63,19 @@ def serialize_aws_json_1_0(value: ListResourceSnapshotJobsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListResourceSnapshotJobsRequest:
     out: ListResourceSnapshotJobsRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListResourceSnapshotJobsRequest.catalog required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 100
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "EngagementIdentifier" in data:
+    if data.get("EngagementIdentifier") is not None:
         out["engagement_identifier"] = data["EngagementIdentifier"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_selling.types.resource_snapshot_job_status
 
         out["status"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListResourceSnapshotJobsRequest:
                 data["Status"]
             )
         )
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_partnercentral_selling.types.sort_object
 
         out["sort"] = (

@@ -64,19 +64,19 @@ def deserialize_json(
     data: dict,
 ) -> DescribeDraftAppVersionResourcesImportStatusResponse:
     out: DescribeDraftAppVersionResourcesImportStatusResponse = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "DescribeDraftAppVersionResourcesImportStatusResponse.app_arn required"
         )
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError(
             "DescribeDraftAppVersionResourcesImportStatusResponse.app_version required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehub.types.resource_import_status_type
 
         out["status"] = (
@@ -88,7 +88,7 @@ def deserialize_json(
         raise DeserializationError(
             "DescribeDraftAppVersionResourcesImportStatusResponse.status required"
         )
-    if "statusChangeTime" in data:
+    if data.get("statusChangeTime") is not None:
         import capo_resiliencehub.types.time_stamp
 
         out["status_change_time"] = (
@@ -100,9 +100,9 @@ def deserialize_json(
         raise DeserializationError(
             "DescribeDraftAppVersionResourcesImportStatusResponse.status_change_time required"
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "errorDetails" in data:
+    if data.get("errorDetails") is not None:
         import capo_resiliencehub.types.error_detail_list
 
         out["error_details"] = (

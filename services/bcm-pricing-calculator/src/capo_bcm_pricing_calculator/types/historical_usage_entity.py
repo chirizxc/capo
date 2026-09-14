@@ -60,25 +60,25 @@ def serialize_aws_json_1_0(value: HistoricalUsageEntity) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> HistoricalUsageEntity:
     out: HistoricalUsageEntity = {}  # type: ignore[typeddict-item]
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
     else:
         raise DeserializationError("HistoricalUsageEntity.service_code required")
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
     else:
         raise DeserializationError("HistoricalUsageEntity.usage_type required")
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
     else:
         raise DeserializationError("HistoricalUsageEntity.operation required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "usageAccountId" in data:
+    if data.get("usageAccountId") is not None:
         out["usage_account_id"] = data["usageAccountId"]
     else:
         raise DeserializationError("HistoricalUsageEntity.usage_account_id required")
-    if "billInterval" in data:
+    if data.get("billInterval") is not None:
         import capo_bcm_pricing_calculator.types.bill_interval
 
         out["bill_interval"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoricalUsageEntity:
         )
     else:
         raise DeserializationError("HistoricalUsageEntity.bill_interval required")
-    if "filterExpression" in data:
+    if data.get("filterExpression") is not None:
         import capo_bcm_pricing_calculator.types.expression
 
         out["filter_expression"] = (

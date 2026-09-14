@@ -83,19 +83,27 @@ def serialize_aws_json_1_1(value: SchemaResponse) -> dict:
             )
         )
     if "similarity" in value:
-        out["Similarity"] = value["similarity"]
+        out["Similarity"] = (
+            "NaN"
+            if value["similarity"] != value["similarity"]
+            else "Infinity"
+            if value["similarity"] == float("inf")
+            else "-Infinity"
+            if value["similarity"] == float("-inf")
+            else value["similarity"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> SchemaResponse:
     out: SchemaResponse = {}  # type: ignore[typeddict-item]
-    if "CodeLineCount" in data:
+    if data.get("CodeLineCount") is not None:
         out["code_line_count"] = data["CodeLineCount"]
-    if "CodeSize" in data:
+    if data.get("CodeSize") is not None:
         out["code_size"] = data["CodeSize"]
-    if "Complexity" in data:
+    if data.get("Complexity") is not None:
         out["complexity"] = data["Complexity"]
-    if "Server" in data:
+    if data.get("Server") is not None:
         import capo_database_migration_service.types.server_short_info_response
 
         out["server"] = (
@@ -103,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> SchemaResponse:
                 data["Server"]
             )
         )
-    if "DatabaseInstance" in data:
+    if data.get("DatabaseInstance") is not None:
         import capo_database_migration_service.types.database_short_info_response
 
         out["database_instance"] = (
@@ -111,11 +119,11 @@ def deserialize_aws_json_1_1(data: dict) -> SchemaResponse:
                 data["DatabaseInstance"]
             )
         )
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         out["schema_id"] = data["SchemaId"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "OriginalSchema" in data:
+    if data.get("OriginalSchema") is not None:
         import capo_database_migration_service.types.schema_short_info_response
 
         out["original_schema"] = (
@@ -123,6 +131,6 @@ def deserialize_aws_json_1_1(data: dict) -> SchemaResponse:
                 data["OriginalSchema"]
             )
         )
-    if "Similarity" in data:
-        out["similarity"] = data["Similarity"]
+    if data.get("Similarity") is not None:
+        out["similarity"] = float(data["Similarity"])
     return out

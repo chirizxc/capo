@@ -70,19 +70,19 @@ def serialize_json(value: PolicyVersion) -> dict:
 
 def deserialize_json(data: dict) -> PolicyVersion:
     out: PolicyVersion = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("PolicyVersion.arn required")
-    if "PolicyArn" in data:
+    if data.get("PolicyArn") is not None:
         out["policy_arn"] = data["PolicyArn"]
     else:
         raise DeserializationError("PolicyVersion.policy_arn required")
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
     else:
         raise DeserializationError("PolicyVersion.version_id required")
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_mpa.types.policy_type
 
         out["policy_type"] = capo_mpa.types.policy_type.deserialize_json(
@@ -90,21 +90,21 @@ def deserialize_json(data: dict) -> PolicyVersion:
         )
     else:
         raise DeserializationError("PolicyVersion.policy_type required")
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
     else:
         raise DeserializationError("PolicyVersion.is_default required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PolicyVersion.name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mpa.types.policy_status
 
         out["status"] = capo_mpa.types.policy_status.deserialize_json(data["Status"])
     else:
         raise DeserializationError("PolicyVersion.status required")
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["creation_time"] = capo_mpa.types.iso_timestamp.deserialize_json(
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> PolicyVersion:
         )
     else:
         raise DeserializationError("PolicyVersion.creation_time required")
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["last_updated_time"] = capo_mpa.types.iso_timestamp.deserialize_json(
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> PolicyVersion:
         )
     else:
         raise DeserializationError("PolicyVersion.last_updated_time required")
-    if "Document" in data:
+    if data.get("Document") is not None:
         out["document"] = data["Document"]
     else:
         raise DeserializationError("PolicyVersion.document required")

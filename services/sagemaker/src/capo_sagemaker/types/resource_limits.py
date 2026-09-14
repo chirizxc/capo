@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: ResourceLimits) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceLimits:
     out: ResourceLimits = {}  # type: ignore[typeddict-item]
-    if "MaxNumberOfTrainingJobs" in data:
+    if data.get("MaxNumberOfTrainingJobs") is not None:
         out["max_number_of_training_jobs"] = data["MaxNumberOfTrainingJobs"]
-    if "MaxParallelTrainingJobs" in data:
+    if data.get("MaxParallelTrainingJobs") is not None:
         out["max_parallel_training_jobs"] = data["MaxParallelTrainingJobs"]
-    if "MaxRuntimeInSeconds" in data:
+    if data.get("MaxRuntimeInSeconds") is not None:
         out["max_runtime_in_seconds"] = data["MaxRuntimeInSeconds"]
     return out

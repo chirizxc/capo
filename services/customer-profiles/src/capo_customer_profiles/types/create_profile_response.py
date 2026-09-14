@@ -24,7 +24,7 @@ def serialize_json(value: CreateProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateProfileResponse:
     out: CreateProfileResponse = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError("CreateProfileResponse.profile_id required")

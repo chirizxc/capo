@@ -268,7 +268,7 @@ def serialize_aws_json_1_0(value: ExecutionBlockConfiguration) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
-    if "customActionLambdaConfig" in data:
+    if data.get("customActionLambdaConfig") is not None:
         import capo_arc_region_switch.types.custom_action_lambda_configuration
 
         return {
@@ -276,7 +276,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["customActionLambdaConfig"]
             )
         }
-    elif "ec2AsgCapacityIncreaseConfig" in data:
+    elif data.get("ec2AsgCapacityIncreaseConfig") is not None:
         import capo_arc_region_switch.types.ec2_asg_capacity_increase_configuration
 
         return {
@@ -284,7 +284,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["ec2AsgCapacityIncreaseConfig"]
             )
         }
-    elif "executionApprovalConfig" in data:
+    elif data.get("executionApprovalConfig") is not None:
         import capo_arc_region_switch.types.execution_approval_configuration
 
         return {
@@ -292,7 +292,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["executionApprovalConfig"]
             )
         }
-    elif "arcRoutingControlConfig" in data:
+    elif data.get("arcRoutingControlConfig") is not None:
         import capo_arc_region_switch.types.arc_routing_control_configuration
 
         return {
@@ -300,7 +300,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["arcRoutingControlConfig"]
             )
         }
-    elif "globalAuroraConfig" in data:
+    elif data.get("globalAuroraConfig") is not None:
         import capo_arc_region_switch.types.global_aurora_configuration
 
         return {
@@ -308,7 +308,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["globalAuroraConfig"]
             )
         }
-    elif "parallelConfig" in data:
+    elif data.get("parallelConfig") is not None:
         import capo_arc_region_switch.types.parallel_execution_block_configuration
 
         return {
@@ -316,7 +316,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["parallelConfig"]
             )
         }
-    elif "regionSwitchPlanConfig" in data:
+    elif data.get("regionSwitchPlanConfig") is not None:
         import capo_arc_region_switch.types.region_switch_plan_configuration
 
         return {
@@ -324,7 +324,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["regionSwitchPlanConfig"]
             )
         }
-    elif "ecsCapacityIncreaseConfig" in data:
+    elif data.get("ecsCapacityIncreaseConfig") is not None:
         import capo_arc_region_switch.types.ecs_capacity_increase_configuration
 
         return {
@@ -332,7 +332,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["ecsCapacityIncreaseConfig"]
             )
         }
-    elif "eksResourceScalingConfig" in data:
+    elif data.get("eksResourceScalingConfig") is not None:
         import capo_arc_region_switch.types.eks_resource_scaling_configuration
 
         return {
@@ -340,7 +340,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["eksResourceScalingConfig"]
             )
         }
-    elif "route53HealthCheckConfig" in data:
+    elif data.get("route53HealthCheckConfig") is not None:
         import capo_arc_region_switch.types.route53_health_check_configuration
 
         return {
@@ -348,7 +348,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["route53HealthCheckConfig"]
             )
         }
-    elif "documentDbConfig" in data:
+    elif data.get("documentDbConfig") is not None:
         import capo_arc_region_switch.types.document_db_configuration
 
         return {
@@ -356,7 +356,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["documentDbConfig"]
             )
         }
-    elif "rdsPromoteReadReplicaConfig" in data:
+    elif data.get("rdsPromoteReadReplicaConfig") is not None:
         import capo_arc_region_switch.types.rds_promote_read_replica_configuration
 
         return {
@@ -364,7 +364,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["rdsPromoteReadReplicaConfig"]
             )
         }
-    elif "rdsCreateCrossRegionReadReplicaConfig" in data:
+    elif data.get("rdsCreateCrossRegionReadReplicaConfig") is not None:
         import capo_arc_region_switch.types.rds_create_cross_region_replica_configuration
 
         return {
@@ -372,7 +372,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["rdsCreateCrossRegionReadReplicaConfig"]
             )
         }
-    elif "lambdaEventSourceMappingConfig" in data:
+    elif data.get("lambdaEventSourceMappingConfig") is not None:
         import capo_arc_region_switch.types.lambda_event_source_mapping_configuration
 
         return {
@@ -380,7 +380,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["lambdaEventSourceMappingConfig"]
             )
         }
-    elif "auroraServerlessScalingConfig" in data:
+    elif data.get("auroraServerlessScalingConfig") is not None:
         import capo_arc_region_switch.types.aurora_serverless_scaling_configuration
 
         return {
@@ -388,7 +388,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["auroraServerlessScalingConfig"]
             )
         }
-    elif "auroraProvisionedScalingConfig" in data:
+    elif data.get("auroraProvisionedScalingConfig") is not None:
         import capo_arc_region_switch.types.aurora_provisioned_scaling_configuration
 
         return {
@@ -396,7 +396,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
                 data["auroraProvisionedScalingConfig"]
             )
         }
-    elif "neptuneGlobalDatabaseConfig" in data:
+    elif data.get("neptuneGlobalDatabaseConfig") is not None:
         import capo_arc_region_switch.types.neptune_global_database_configuration
 
         return {

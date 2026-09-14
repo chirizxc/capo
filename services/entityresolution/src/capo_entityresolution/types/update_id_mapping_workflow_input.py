@@ -80,9 +80,9 @@ def serialize_json(value: UpdateIdMappingWorkflowInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIdMappingWorkflowInput:
     out: UpdateIdMappingWorkflowInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "inputSourceConfig" in data:
+    if data.get("inputSourceConfig") is not None:
         import capo_entityresolution.types.id_mapping_workflow_input_source_config
 
         out["input_source_config"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> UpdateIdMappingWorkflowInput:
         raise DeserializationError(
             "UpdateIdMappingWorkflowInput.input_source_config required"
         )
-    if "outputSourceConfig" in data:
+    if data.get("outputSourceConfig") is not None:
         import capo_entityresolution.types.id_mapping_workflow_output_source_config
 
         out["output_source_config"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> UpdateIdMappingWorkflowInput:
                 data["outputSourceConfig"]
             )
         )
-    if "idMappingTechniques" in data:
+    if data.get("idMappingTechniques") is not None:
         import capo_entityresolution.types.id_mapping_techniques
 
         out["id_mapping_techniques"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> UpdateIdMappingWorkflowInput:
         raise DeserializationError(
             "UpdateIdMappingWorkflowInput.id_mapping_techniques required"
         )
-    if "incrementalRunConfig" in data:
+    if data.get("incrementalRunConfig") is not None:
         import capo_entityresolution.types.id_mapping_incremental_run_config
 
         out["incremental_run_config"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> UpdateIdMappingWorkflowInput:
                 data["incrementalRunConfig"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         out["role_arn"] = ""

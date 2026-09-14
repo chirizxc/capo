@@ -132,33 +132,33 @@ def serialize_aws_json_1_0(value: BillEstimateLineItemSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BillEstimateLineItemSummary:
     out: BillEstimateLineItemSummary = {}  # type: ignore[typeddict-item]
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
     else:
         raise DeserializationError("BillEstimateLineItemSummary.service_code required")
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
     else:
         raise DeserializationError("BillEstimateLineItemSummary.usage_type required")
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
     else:
         raise DeserializationError("BillEstimateLineItemSummary.operation required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "lineItemId" in data:
+    if data.get("lineItemId") is not None:
         out["line_item_id"] = data["lineItemId"]
-    if "lineItemType" in data:
+    if data.get("lineItemType") is not None:
         out["line_item_type"] = data["lineItemType"]
-    if "payerAccountId" in data:
+    if data.get("payerAccountId") is not None:
         out["payer_account_id"] = data["payerAccountId"]
-    if "usageAccountId" in data:
+    if data.get("usageAccountId") is not None:
         out["usage_account_id"] = data["usageAccountId"]
-    if "estimatedUsageQuantity" in data:
+    if data.get("estimatedUsageQuantity") is not None:
         import capo_bcm_pricing_calculator.types.usage_quantity_result
 
         out["estimated_usage_quantity"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillEstimateLineItemSummary:
                 data["estimatedUsageQuantity"]
             )
         )
-    if "estimatedCost" in data:
+    if data.get("estimatedCost") is not None:
         import capo_bcm_pricing_calculator.types.cost_amount
 
         out["estimated_cost"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillEstimateLineItemSummary:
                 data["estimatedCost"]
             )
         )
-    if "historicalUsageQuantity" in data:
+    if data.get("historicalUsageQuantity") is not None:
         import capo_bcm_pricing_calculator.types.usage_quantity_result
 
         out["historical_usage_quantity"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillEstimateLineItemSummary:
                 data["historicalUsageQuantity"]
             )
         )
-    if "historicalCost" in data:
+    if data.get("historicalCost") is not None:
         import capo_bcm_pricing_calculator.types.cost_amount
 
         out["historical_cost"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillEstimateLineItemSummary:
                 data["historicalCost"]
             )
         )
-    if "savingsPlanArns" in data:
+    if data.get("savingsPlanArns") is not None:
         import capo_bcm_pricing_calculator.types.savings_plan_arns
 
         out["savings_plan_arns"] = (

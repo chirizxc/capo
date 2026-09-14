@@ -45,13 +45,21 @@ def serialize_json(value: AnalyticsIntentStageMetricResult) -> dict:
             )
         )
     if "value" in value:
-        out["value"] = value["value"]
+        out["value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AnalyticsIntentStageMetricResult:
     out: AnalyticsIntentStageMetricResult = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lex_models_v2.types.analytics_intent_stage_metric_name
 
         out["name"] = (
@@ -59,7 +67,7 @@ def deserialize_json(data: dict) -> AnalyticsIntentStageMetricResult:
                 data["name"]
             )
         )
-    if "statistic" in data:
+    if data.get("statistic") is not None:
         import capo_lex_models_v2.types.analytics_metric_statistic
 
         out["statistic"] = (
@@ -67,6 +75,6 @@ def deserialize_json(data: dict) -> AnalyticsIntentStageMetricResult:
                 data["statistic"]
             )
         )
-    if "value" in data:
-        out["value"] = data["value"]
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
     return out

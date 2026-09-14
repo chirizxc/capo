@@ -23,8 +23,24 @@ class ScoringComponentResiliencyScore(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ScoringComponentResiliencyScore) -> dict:
     out: dict = {}
-    out["score"] = value.get("score", 0)
-    out["possibleScore"] = value.get("possible_score", 0)
+    out["score"] = (
+        "NaN"
+        if value.get("score", 0) != value.get("score", 0)
+        else "Infinity"
+        if value.get("score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("score", 0) == float("-inf")
+        else value.get("score", 0)
+    )
+    out["possibleScore"] = (
+        "NaN"
+        if value.get("possible_score", 0) != value.get("possible_score", 0)
+        else "Infinity"
+        if value.get("possible_score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("possible_score", 0) == float("-inf")
+        else value.get("possible_score", 0)
+    )
     out["outstandingCount"] = value.get("outstanding_count", 0)
     out["excludedCount"] = value.get("excluded_count", 0)
     return out
@@ -32,19 +48,19 @@ def serialize_json(value: ScoringComponentResiliencyScore) -> dict:
 
 def deserialize_json(data: dict) -> ScoringComponentResiliencyScore:
     out: ScoringComponentResiliencyScore = {}  # type: ignore[typeddict-item]
-    if "score" in data:
-        out["score"] = data["score"]
+    if data.get("score") is not None:
+        out["score"] = float(data["score"])
     else:
         out["score"] = 0
-    if "possibleScore" in data:
-        out["possible_score"] = data["possibleScore"]
+    if data.get("possibleScore") is not None:
+        out["possible_score"] = float(data["possibleScore"])
     else:
         out["possible_score"] = 0
-    if "outstandingCount" in data:
+    if data.get("outstandingCount") is not None:
         out["outstanding_count"] = data["outstandingCount"]
     else:
         out["outstanding_count"] = 0
-    if "excludedCount" in data:
+    if data.get("excludedCount") is not None:
         out["excluded_count"] = data["excludedCount"]
     else:
         out["excluded_count"] = 0

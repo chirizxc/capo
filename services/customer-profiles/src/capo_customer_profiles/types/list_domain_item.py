@@ -46,11 +46,11 @@ def serialize_json(value: ListDomainItem) -> dict:
 
 def deserialize_json(data: dict) -> ListDomainItem:
     out: ListDomainItem = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("ListDomainItem.domain_name required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> ListDomainItem:
         )
     else:
         raise DeserializationError("ListDomainItem.created_at required")
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> ListDomainItem:
         )
     else:
         raise DeserializationError("ListDomainItem.last_updated_at required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

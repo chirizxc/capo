@@ -50,18 +50,18 @@ def serialize_json(value: AcceptPredictionsInput) -> dict:
 
 def deserialize_json(data: dict) -> AcceptPredictionsInput:
     out: AcceptPredictionsInput = {}  # type: ignore[typeddict-item]
-    if "acceptRule" in data:
+    if data.get("acceptRule") is not None:
         import capo_datazone.types.accept_rule
 
         out["accept_rule"] = capo_datazone.types.accept_rule.deserialize_json(
             data["acceptRule"]
         )
-    if "acceptChoices" in data:
+    if data.get("acceptChoices") is not None:
         import capo_datazone.types.accept_choices
 
         out["accept_choices"] = capo_datazone.types.accept_choices.deserialize_json(
             data["acceptChoices"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

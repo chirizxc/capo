@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: VariantProperty) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VariantProperty:
     out: VariantProperty = {}  # type: ignore[typeddict-item]
-    if "VariantPropertyType" in data:
+    if data.get("VariantPropertyType") is not None:
         import capo_sagemaker.types.variant_property_type
 
         out["variant_property_type"] = (

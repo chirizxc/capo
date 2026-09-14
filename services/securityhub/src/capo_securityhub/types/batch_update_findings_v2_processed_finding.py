@@ -36,7 +36,7 @@ def serialize_json(value: BatchUpdateFindingsV2ProcessedFinding) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateFindingsV2ProcessedFinding:
     out: BatchUpdateFindingsV2ProcessedFinding = {}  # type: ignore[typeddict-item]
-    if "FindingIdentifier" in data:
+    if data.get("FindingIdentifier") is not None:
         import capo_securityhub.types.ocsf_finding_identifier
 
         out["finding_identifier"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> BatchUpdateFindingsV2ProcessedFinding:
                 data["FindingIdentifier"]
             )
         )
-    if "MetadataUid" in data:
+    if data.get("MetadataUid") is not None:
         out["metadata_uid"] = data["MetadataUid"]
     return out

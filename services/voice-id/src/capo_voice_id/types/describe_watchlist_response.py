@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: DescribeWatchlistResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeWatchlistResponse:
     out: DescribeWatchlistResponse = {}  # type: ignore[typeddict-item]
-    if "Watchlist" in data:
+    if data.get("Watchlist") is not None:
         import capo_voice_id.types.watchlist
 
         out["watchlist"] = capo_voice_id.types.watchlist.deserialize_aws_json_1_0(

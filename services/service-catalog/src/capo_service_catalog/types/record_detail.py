@@ -116,11 +116,11 @@ def serialize_aws_json_1_1(value: RecordDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecordDetail:
     out: RecordDetail = {}  # type: ignore[typeddict-item]
-    if "RecordId" in data:
+    if data.get("RecordId") is not None:
         out["record_id"] = data["RecordId"]
-    if "ProvisionedProductName" in data:
+    if data.get("ProvisionedProductName") is not None:
         out["provisioned_product_name"] = data["ProvisionedProductName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_catalog.types.record_status
 
         out["status"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecordDetail:
                 data["Status"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_service_catalog.types.created_time
 
         out["created_time"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecordDetail:
                 data["CreatedTime"]
             )
         )
-    if "UpdatedTime" in data:
+    if data.get("UpdatedTime") is not None:
         import capo_service_catalog.types.updated_time
 
         out["updated_time"] = (
@@ -144,19 +144,19 @@ def deserialize_aws_json_1_1(data: dict) -> RecordDetail:
                 data["UpdatedTime"]
             )
         )
-    if "ProvisionedProductType" in data:
+    if data.get("ProvisionedProductType") is not None:
         out["provisioned_product_type"] = data["ProvisionedProductType"]
-    if "RecordType" in data:
+    if data.get("RecordType") is not None:
         out["record_type"] = data["RecordType"]
-    if "ProvisionedProductId" in data:
+    if data.get("ProvisionedProductId") is not None:
         out["provisioned_product_id"] = data["ProvisionedProductId"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
-    if "PathId" in data:
+    if data.get("PathId") is not None:
         out["path_id"] = data["PathId"]
-    if "RecordErrors" in data:
+    if data.get("RecordErrors") is not None:
         import capo_service_catalog.types.record_errors
 
         out["record_errors"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecordDetail:
                 data["RecordErrors"]
             )
         )
-    if "RecordTags" in data:
+    if data.get("RecordTags") is not None:
         import capo_service_catalog.types.record_tags
 
         out["record_tags"] = (
@@ -172,6 +172,6 @@ def deserialize_aws_json_1_1(data: dict) -> RecordDetail:
                 data["RecordTags"]
             )
         )
-    if "LaunchRoleArn" in data:
+    if data.get("LaunchRoleArn") is not None:
         out["launch_role_arn"] = data["LaunchRoleArn"]
     return out

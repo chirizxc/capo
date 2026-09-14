@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MetaFlowSummaryList:
 
     out: MetaFlowSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_socialmessaging.types.meta_flow_summary.deserialize_json(item))
     return out

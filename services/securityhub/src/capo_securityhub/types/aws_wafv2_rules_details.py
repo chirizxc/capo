@@ -60,7 +60,7 @@ def serialize_json(value: AwsWafv2RulesDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafv2RulesDetails:
     out: AwsWafv2RulesDetails = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_securityhub.types.aws_wafv2_rules_action_details
 
         out["action"] = (
@@ -68,13 +68,13 @@ def deserialize_json(data: dict) -> AwsWafv2RulesDetails:
                 data["Action"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OverrideAction" in data:
+    if data.get("OverrideAction") is not None:
         out["override_action"] = data["OverrideAction"]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "VisibilityConfig" in data:
+    if data.get("VisibilityConfig") is not None:
         import capo_securityhub.types.aws_wafv2_visibility_config_details
 
         out["visibility_config"] = (

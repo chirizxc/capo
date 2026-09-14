@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DatasetChanges) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetChanges:
     out: DatasetChanges = {}  # type: ignore[typeddict-item]
-    if "GroundTruth" in data:
+    if data.get("GroundTruth") is not None:
         import capo_rekognition.types.ground_truth_blob
 
         out["ground_truth"] = (

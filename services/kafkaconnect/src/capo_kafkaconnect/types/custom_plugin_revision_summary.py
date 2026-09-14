@@ -73,9 +73,9 @@ def serialize_json(value: CustomPluginRevisionSummary) -> dict:
 
 def deserialize_json(data: dict) -> CustomPluginRevisionSummary:
     out: CustomPluginRevisionSummary = {}  # type: ignore[typeddict-item]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafkaconnect.types.__timestamp_iso8601
 
         out["creation_time"] = (
@@ -83,9 +83,9 @@ def deserialize_json(data: dict) -> CustomPluginRevisionSummary:
                 data["creationTime"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "fileDescription" in data:
+    if data.get("fileDescription") is not None:
         import capo_kafkaconnect.types.custom_plugin_file_description
 
         out["file_description"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> CustomPluginRevisionSummary:
                 data["fileDescription"]
             )
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_kafkaconnect.types.custom_plugin_location_description
 
         out["location"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> CustomPluginRevisionSummary:
                 data["location"]
             )
         )
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         out["revision"] = 0

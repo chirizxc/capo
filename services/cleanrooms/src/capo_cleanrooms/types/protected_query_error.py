@@ -22,11 +22,11 @@ def serialize_json(value: ProtectedQueryError) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedQueryError:
     out: ProtectedQueryError = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ProtectedQueryError.message required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("ProtectedQueryError.code required")

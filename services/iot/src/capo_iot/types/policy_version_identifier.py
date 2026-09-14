@@ -28,8 +28,8 @@ def serialize_json(value: PolicyVersionIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> PolicyVersionIdentifier:
     out: PolicyVersionIdentifier = {}  # type: ignore[typeddict-item]
-    if "policyName" in data:
+    if data.get("policyName") is not None:
         out["policy_name"] = data["policyName"]
-    if "policyVersionId" in data:
+    if data.get("policyVersionId") is not None:
         out["policy_version_id"] = data["policyVersionId"]
     return out

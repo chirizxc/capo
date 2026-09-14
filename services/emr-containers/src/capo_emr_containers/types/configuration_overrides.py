@@ -44,7 +44,7 @@ def serialize_json(value: ConfigurationOverrides) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationOverrides:
     out: ConfigurationOverrides = {}  # type: ignore[typeddict-item]
-    if "applicationConfiguration" in data:
+    if data.get("applicationConfiguration") is not None:
         import capo_emr_containers.types.configuration_list
 
         out["application_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ConfigurationOverrides:
                 data["applicationConfiguration"]
             )
         )
-    if "monitoringConfiguration" in data:
+    if data.get("monitoringConfiguration") is not None:
         import capo_emr_containers.types.monitoring_configuration
 
         out["monitoring_configuration"] = (

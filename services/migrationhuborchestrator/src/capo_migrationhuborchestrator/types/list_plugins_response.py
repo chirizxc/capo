@@ -36,9 +36,9 @@ def serialize_json(value: ListPluginsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPluginsResponse:
     out: ListPluginsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "plugins" in data:
+    if data.get("plugins") is not None:
         import capo_migrationhuborchestrator.types.plugin_summaries
 
         out["plugins"] = (

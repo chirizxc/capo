@@ -50,24 +50,24 @@ def serialize_json(value: CreateFormTypeOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateFormTypeOutput:
     out: CreateFormTypeOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("CreateFormTypeOutput.domain_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateFormTypeOutput.name required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         raise DeserializationError("CreateFormTypeOutput.revision required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
-    if "originDomainId" in data:
+    if data.get("originDomainId") is not None:
         out["origin_domain_id"] = data["originDomainId"]
-    if "originProjectId" in data:
+    if data.get("originProjectId") is not None:
         out["origin_project_id"] = data["originProjectId"]
     return out

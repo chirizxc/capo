@@ -28,9 +28,9 @@ def serialize_json(value: DeactivatingLastSystemUserException_) -> dict:
 
 def deserialize_json(data: dict) -> DeactivatingLastSystemUserException_:
     out: DeactivatingLastSystemUserException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     return out
 
@@ -40,15 +40,20 @@ class DeactivatingLastSystemUserException(ServiceError):
 
     code: str | None = "DeactivatingLastSystemUserException"
 
-    def __init__(self, data: DeactivatingLastSystemUserException_):
+    def __init__(
+        self, data: DeactivatingLastSystemUserException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DeactivatingLastSystemUserException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DeactivatingLastSystemUserException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DeactivatingLastSystemUserException":
+        return cls(deserialize_json(data), message)

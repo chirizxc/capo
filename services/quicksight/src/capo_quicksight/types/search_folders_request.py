@@ -41,7 +41,7 @@ def serialize_json(value: SearchFoldersRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchFoldersRequest:
     out: SearchFoldersRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_quicksight.types.folder_search_filter_list
 
         out["filters"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> SearchFoldersRequest:
         )
     else:
         raise DeserializationError("SearchFoldersRequest.filters required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

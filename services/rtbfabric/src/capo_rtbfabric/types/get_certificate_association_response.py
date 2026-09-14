@@ -54,19 +54,19 @@ def serialize_json(value: GetCertificateAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCertificateAssociationResponse:
     out: GetCertificateAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError(
             "GetCertificateAssociationResponse.gateway_id required"
         )
-    if "acmCertificateArn" in data:
+    if data.get("acmCertificateArn") is not None:
         out["acm_certificate_arn"] = data["acmCertificateArn"]
     else:
         raise DeserializationError(
             "GetCertificateAssociationResponse.acm_certificate_arn required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.certificate_association_status
 
         out["status"] = (
@@ -76,13 +76,13 @@ def deserialize_json(data: dict) -> GetCertificateAssociationResponse:
         )
     else:
         raise DeserializationError("GetCertificateAssociationResponse.status required")
-    if "associatedAt" in data:
+    if data.get("associatedAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["associated_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(
             data["associatedAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["updated_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(

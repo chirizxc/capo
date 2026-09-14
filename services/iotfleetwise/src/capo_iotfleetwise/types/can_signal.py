@@ -43,8 +43,24 @@ def serialize_aws_json_1_0(value: CanSignal) -> dict:
     out["isBigEndian"] = value.get("is_big_endian", False)
     out["isSigned"] = value.get("is_signed", False)
     out["startBit"] = value.get("start_bit", 0)
-    out["offset"] = value["offset"]
-    out["factor"] = value["factor"]
+    out["offset"] = (
+        "NaN"
+        if value["offset"] != value["offset"]
+        else "Infinity"
+        if value["offset"] == float("inf")
+        else "-Infinity"
+        if value["offset"] == float("-inf")
+        else value["offset"]
+    )
+    out["factor"] = (
+        "NaN"
+        if value["factor"] != value["factor"]
+        else "Infinity"
+        if value["factor"] == float("inf")
+        else "-Infinity"
+        if value["factor"] == float("-inf")
+        else value["factor"]
+    )
     out["length"] = value.get("length", 0)
     if "name" in value:
         out["name"] = value["name"]
@@ -61,37 +77,37 @@ def serialize_aws_json_1_0(value: CanSignal) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CanSignal:
     out: CanSignal = {}  # type: ignore[typeddict-item]
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
     else:
         out["message_id"] = 0
-    if "isBigEndian" in data:
+    if data.get("isBigEndian") is not None:
         out["is_big_endian"] = data["isBigEndian"]
     else:
         out["is_big_endian"] = False
-    if "isSigned" in data:
+    if data.get("isSigned") is not None:
         out["is_signed"] = data["isSigned"]
     else:
         out["is_signed"] = False
-    if "startBit" in data:
+    if data.get("startBit") is not None:
         out["start_bit"] = data["startBit"]
     else:
         out["start_bit"] = 0
-    if "offset" in data:
-        out["offset"] = data["offset"]
+    if data.get("offset") is not None:
+        out["offset"] = float(data["offset"])
     else:
         raise DeserializationError("CanSignal.offset required")
-    if "factor" in data:
-        out["factor"] = data["factor"]
+    if data.get("factor") is not None:
+        out["factor"] = float(data["factor"])
     else:
         raise DeserializationError("CanSignal.factor required")
-    if "length" in data:
+    if data.get("length") is not None:
         out["length"] = data["length"]
     else:
         out["length"] = 0
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "signalValueType" in data:
+    if data.get("signalValueType") is not None:
         import capo_iotfleetwise.types.signal_value_type
 
         out["signal_value_type"] = (

@@ -68,31 +68,39 @@ def serialize_aws_json_1_1(value: QueryExecutionStatistics) -> dict:
             )
         )
     if "dpu_count" in value:
-        out["DpuCount"] = value["dpu_count"]
+        out["DpuCount"] = (
+            "NaN"
+            if value["dpu_count"] != value["dpu_count"]
+            else "Infinity"
+            if value["dpu_count"] == float("inf")
+            else "-Infinity"
+            if value["dpu_count"] == float("-inf")
+            else value["dpu_count"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> QueryExecutionStatistics:
     out: QueryExecutionStatistics = {}  # type: ignore[typeddict-item]
-    if "EngineExecutionTimeInMillis" in data:
+    if data.get("EngineExecutionTimeInMillis") is not None:
         out["engine_execution_time_in_millis"] = data["EngineExecutionTimeInMillis"]
-    if "DataScannedInBytes" in data:
+    if data.get("DataScannedInBytes") is not None:
         out["data_scanned_in_bytes"] = data["DataScannedInBytes"]
-    if "DataManifestLocation" in data:
+    if data.get("DataManifestLocation") is not None:
         out["data_manifest_location"] = data["DataManifestLocation"]
-    if "TotalExecutionTimeInMillis" in data:
+    if data.get("TotalExecutionTimeInMillis") is not None:
         out["total_execution_time_in_millis"] = data["TotalExecutionTimeInMillis"]
-    if "QueryQueueTimeInMillis" in data:
+    if data.get("QueryQueueTimeInMillis") is not None:
         out["query_queue_time_in_millis"] = data["QueryQueueTimeInMillis"]
-    if "ServicePreProcessingTimeInMillis" in data:
+    if data.get("ServicePreProcessingTimeInMillis") is not None:
         out["service_pre_processing_time_in_millis"] = data[
             "ServicePreProcessingTimeInMillis"
         ]
-    if "QueryPlanningTimeInMillis" in data:
+    if data.get("QueryPlanningTimeInMillis") is not None:
         out["query_planning_time_in_millis"] = data["QueryPlanningTimeInMillis"]
-    if "ServiceProcessingTimeInMillis" in data:
+    if data.get("ServiceProcessingTimeInMillis") is not None:
         out["service_processing_time_in_millis"] = data["ServiceProcessingTimeInMillis"]
-    if "ResultReuseInformation" in data:
+    if data.get("ResultReuseInformation") is not None:
         import capo_athena.types.result_reuse_information
 
         out["result_reuse_information"] = (
@@ -100,6 +108,6 @@ def deserialize_aws_json_1_1(data: dict) -> QueryExecutionStatistics:
                 data["ResultReuseInformation"]
             )
         )
-    if "DpuCount" in data:
-        out["dpu_count"] = data["DpuCount"]
+    if data.get("DpuCount") is not None:
+        out["dpu_count"] = float(data["DpuCount"])
     return out

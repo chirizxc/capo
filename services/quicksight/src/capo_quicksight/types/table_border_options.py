@@ -39,11 +39,11 @@ def serialize_json(value: TableBorderOptions) -> dict:
 
 def deserialize_json(data: dict) -> TableBorderOptions:
     out: TableBorderOptions = {}  # type: ignore[typeddict-item]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
-    if "Thickness" in data:
+    if data.get("Thickness") is not None:
         out["thickness"] = data["Thickness"]
-    if "Style" in data:
+    if data.get("Style") is not None:
         import capo_quicksight.types.table_border_style
 
         out["style"] = capo_quicksight.types.table_border_style.deserialize_json(

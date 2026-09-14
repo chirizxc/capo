@@ -59,17 +59,17 @@ def serialize_aws_json_1_1(value: DescribeSessionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSessionsRequest:
     out: DescribeSessionsRequest = {}  # type: ignore[typeddict-item]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "FleetName" in data:
+    if data.get("FleetName") is not None:
         out["fleet_name"] = data["FleetName"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_appstream.types.authentication_type
 
         out["authentication_type"] = (
@@ -77,6 +77,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeSessionsRequest:
                 data["AuthenticationType"]
             )
         )
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     return out

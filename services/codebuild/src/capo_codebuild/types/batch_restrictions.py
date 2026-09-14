@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: BatchRestrictions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchRestrictions:
     out: BatchRestrictions = {}  # type: ignore[typeddict-item]
-    if "maximumBuildsAllowed" in data:
+    if data.get("maximumBuildsAllowed") is not None:
         out["maximum_builds_allowed"] = data["maximumBuildsAllowed"]
-    if "computeTypesAllowed" in data:
+    if data.get("computeTypesAllowed") is not None:
         import capo_codebuild.types.compute_types_allowed
 
         out["compute_types_allowed"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchRestrictions:
                 data["computeTypesAllowed"]
             )
         )
-    if "fleetsAllowed" in data:
+    if data.get("fleetsAllowed") is not None:
         import capo_codebuild.types.fleets_allowed
 
         out["fleets_allowed"] = (

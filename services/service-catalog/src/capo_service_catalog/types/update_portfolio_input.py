@@ -68,25 +68,25 @@ def serialize_aws_json_1_1(value: UpdatePortfolioInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePortfolioInput:
     out: UpdatePortfolioInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdatePortfolioInput.id required")
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ProviderName" in data:
+    if data.get("ProviderName") is not None:
         out["provider_name"] = data["ProviderName"]
-    if "AddTags" in data:
+    if data.get("AddTags") is not None:
         import capo_service_catalog.types.add_tags
 
         out["add_tags"] = capo_service_catalog.types.add_tags.deserialize_aws_json_1_1(
             data["AddTags"]
         )
-    if "RemoveTags" in data:
+    if data.get("RemoveTags") is not None:
         import capo_service_catalog.types.tag_keys
 
         out["remove_tags"] = (

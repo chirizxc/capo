@@ -56,9 +56,9 @@ def serialize_aws_json_1_1(value: UserPoolReplicaType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserPoolReplicaType:
     out: UserPoolReplicaType = {}  # type: ignore[typeddict-item]
-    if "RegionName" in data:
+    if data.get("RegionName") is not None:
         out["region_name"] = data["RegionName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cognito_identity_provider.types.replica_status_type
 
         out["status"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolReplicaType:
                 data["Status"]
             )
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_cognito_identity_provider.types.replica_role_type
 
         out["role"] = (
@@ -74,6 +74,6 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolReplicaType:
                 data["Role"]
             )
         )
-    if "UserPoolArn" in data:
+    if data.get("UserPoolArn") is not None:
         out["user_pool_arn"] = data["UserPoolArn"]
     return out

@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> DataSourceSummaryList:
 
     out: DataSourceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kendra.types.data_source_summary.deserialize_aws_json_1_1(item))
     return out

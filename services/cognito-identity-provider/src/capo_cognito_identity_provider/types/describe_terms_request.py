@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: DescribeTermsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTermsRequest:
     out: DescribeTermsRequest = {}  # type: ignore[typeddict-item]
-    if "TermsId" in data:
+    if data.get("TermsId") is not None:
         out["terms_id"] = data["TermsId"]
     else:
         raise DeserializationError("DescribeTermsRequest.terms_id required")
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("DescribeTermsRequest.user_pool_id required")

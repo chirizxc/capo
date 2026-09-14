@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: ListHITsForQualificationTypeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListHITsForQualificationTypeResponse:
     out: ListHITsForQualificationTypeResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "NumResults" in data:
+    if data.get("NumResults") is not None:
         out["num_results"] = data["NumResults"]
-    if "HITs" in data:
+    if data.get("HITs") is not None:
         import capo_mturk.types.hit_list
 
         out["hi_ts"] = capo_mturk.types.hit_list.deserialize_aws_json_1_1(data["HITs"])

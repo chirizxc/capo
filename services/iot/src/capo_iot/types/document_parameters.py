@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DocumentParameters:
 
     out: DocumentParameters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.document_parameter.deserialize_json(item))
     return out

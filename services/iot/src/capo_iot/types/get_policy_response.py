@@ -60,26 +60,26 @@ def serialize_json(value: GetPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPolicyResponse:
     out: GetPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "policyName" in data:
+    if data.get("policyName") is not None:
         out["policy_name"] = data["policyName"]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
-    if "defaultVersionId" in data:
+    if data.get("defaultVersionId") is not None:
         out["default_version_id"] = data["defaultVersionId"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.date_type
 
         out["last_modified_date"] = capo_iot.types.date_type.deserialize_json(
             data["lastModifiedDate"]
         )
-    if "generationId" in data:
+    if data.get("generationId") is not None:
         out["generation_id"] = data["generationId"]
     return out

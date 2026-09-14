@@ -69,11 +69,11 @@ def serialize_aws_json_1_1(value: CertificateInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateInfo:
     out: CertificateInfo = {}  # type: ignore[typeddict-item]
-    if "CertificateId" in data:
+    if data.get("CertificateId") is not None:
         out["certificate_id"] = data["CertificateId"]
-    if "CommonName" in data:
+    if data.get("CommonName") is not None:
         out["common_name"] = data["CommonName"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_directory_service.types.certificate_state
 
         out["state"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateInfo:
                 data["State"]
             )
         )
-    if "ExpiryDateTime" in data:
+    if data.get("ExpiryDateTime") is not None:
         import capo_directory_service.types.certificate_expiry_date_time
 
         out["expiry_date_time"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateInfo:
                 data["ExpiryDateTime"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_directory_service.types.certificate_type
 
         out["type"] = (

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateHubResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateHubResponse:
     out: UpdateHubResponse = {}  # type: ignore[typeddict-item]
-    if "HubArn" in data:
+    if data.get("HubArn") is not None:
         out["hub_arn"] = data["HubArn"]
     return out

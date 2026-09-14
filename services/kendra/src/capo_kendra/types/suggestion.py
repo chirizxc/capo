@@ -43,15 +43,15 @@ def serialize_aws_json_1_1(value: Suggestion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Suggestion:
     out: Suggestion = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_kendra.types.suggestion_value
 
         out["value"] = capo_kendra.types.suggestion_value.deserialize_aws_json_1_1(
             data["Value"]
         )
-    if "SourceDocuments" in data:
+    if data.get("SourceDocuments") is not None:
         import capo_kendra.types.source_documents
 
         out["source_documents"] = (

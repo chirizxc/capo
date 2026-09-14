@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: AcceleratorEvent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AcceleratorEvent:
     out: AcceleratorEvent = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_global_accelerator.types.timestamp
 
         out["timestamp"] = (

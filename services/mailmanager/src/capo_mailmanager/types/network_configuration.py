@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: NetworkConfiguration) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> NetworkConfiguration:
-    if "PublicNetworkConfiguration" in data:
+    if data.get("PublicNetworkConfiguration") is not None:
         import capo_mailmanager.types.public_network_configuration
 
         return {
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_0(data: dict) -> NetworkConfiguration:
                 data["PublicNetworkConfiguration"]
             )
         }
-    elif "PrivateNetworkConfiguration" in data:
+    elif data.get("PrivateNetworkConfiguration") is not None:
         import capo_mailmanager.types.private_network_configuration
 
         return {

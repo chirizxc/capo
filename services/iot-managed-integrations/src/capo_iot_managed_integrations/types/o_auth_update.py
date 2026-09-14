@@ -35,9 +35,9 @@ def serialize_json(value: OAuthUpdate) -> dict:
 
 def deserialize_json(data: dict) -> OAuthUpdate:
     out: OAuthUpdate = {}  # type: ignore[typeddict-item]
-    if "oAuthCompleteRedirectUrl" in data:
+    if data.get("oAuthCompleteRedirectUrl") is not None:
         out["o_auth_complete_redirect_url"] = data["oAuthCompleteRedirectUrl"]
-    if "proactiveRefreshTokenRenewal" in data:
+    if data.get("proactiveRefreshTokenRenewal") is not None:
         import capo_iot_managed_integrations.types.proactive_refresh_token_renewal
 
         out["proactive_refresh_token_renewal"] = (

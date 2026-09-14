@@ -43,7 +43,7 @@ def serialize_json(value: VpcDestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VpcDestinationConfiguration:
     out: VpcDestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_iot.types.subnet_id_list
 
         out["subnet_ids"] = capo_iot.types.subnet_id_list.deserialize_json(
@@ -51,17 +51,17 @@ def deserialize_json(data: dict) -> VpcDestinationConfiguration:
         )
     else:
         raise DeserializationError("VpcDestinationConfiguration.subnet_ids required")
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_iot.types.security_group_list
 
         out["security_groups"] = capo_iot.types.security_group_list.deserialize_json(
             data["securityGroups"]
         )
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("VpcDestinationConfiguration.vpc_id required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("VpcDestinationConfiguration.role_arn required")

@@ -37,20 +37,20 @@ def serialize_aws_json_1_0(value: ListServiceInstanceOutputsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListServiceInstanceOutputsInput:
     out: ListServiceInstanceOutputsInput = {}  # type: ignore[typeddict-item]
-    if "serviceInstanceName" in data:
+    if data.get("serviceInstanceName") is not None:
         out["service_instance_name"] = data["serviceInstanceName"]
     else:
         raise DeserializationError(
             "ListServiceInstanceOutputsInput.service_instance_name required"
         )
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError(
             "ListServiceInstanceOutputsInput.service_name required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     return out

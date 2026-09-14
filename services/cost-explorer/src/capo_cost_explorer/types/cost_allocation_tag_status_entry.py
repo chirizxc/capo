@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: CostAllocationTagStatusEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostAllocationTagStatusEntry:
     out: CostAllocationTagStatusEntry = {}  # type: ignore[typeddict-item]
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
     else:
         raise DeserializationError("CostAllocationTagStatusEntry.tag_key required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cost_explorer.types.cost_allocation_tag_status
 
         out["status"] = (

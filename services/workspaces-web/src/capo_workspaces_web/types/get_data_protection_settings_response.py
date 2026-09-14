@@ -31,7 +31,7 @@ def serialize_json(value: GetDataProtectionSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataProtectionSettingsResponse:
     out: GetDataProtectionSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "dataProtectionSettings" in data:
+    if data.get("dataProtectionSettings") is not None:
         import capo_workspaces_web.types.data_protection_settings
 
         out["data_protection_settings"] = (

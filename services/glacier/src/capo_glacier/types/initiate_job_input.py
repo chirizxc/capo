@@ -32,7 +32,7 @@ def serialize_json(value: InitiateJobInput) -> dict:
 
 def deserialize_json(data: dict) -> InitiateJobInput:
     out: InitiateJobInput = {}  # type: ignore[typeddict-item]
-    if "jobParameters" in data:
+    if data.get("jobParameters") is not None:
         import capo_glacier.types.job_parameters
 
         out["job_parameters"] = capo_glacier.types.job_parameters.deserialize_json(

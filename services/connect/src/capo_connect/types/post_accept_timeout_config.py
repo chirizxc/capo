@@ -24,7 +24,7 @@ def serialize_json(value: PostAcceptTimeoutConfig) -> dict:
 
 def deserialize_json(data: dict) -> PostAcceptTimeoutConfig:
     out: PostAcceptTimeoutConfig = {}  # type: ignore[typeddict-item]
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
     else:
         raise DeserializationError(

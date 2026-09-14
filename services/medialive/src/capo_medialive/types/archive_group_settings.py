@@ -47,7 +47,7 @@ def serialize_json(value: ArchiveGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> ArchiveGroupSettings:
     out: ArchiveGroupSettings = {}  # type: ignore[typeddict-item]
-    if "archiveCdnSettings" in data:
+    if data.get("archiveCdnSettings") is not None:
         import capo_medialive.types.archive_cdn_settings
 
         out["archive_cdn_settings"] = (
@@ -55,12 +55,12 @@ def deserialize_json(data: dict) -> ArchiveGroupSettings:
                 data["archiveCdnSettings"]
             )
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(
             data["destination"]
         )
-    if "rolloverInterval" in data:
+    if data.get("rolloverInterval") is not None:
         out["rollover_interval"] = data["rolloverInterval"]
     return out

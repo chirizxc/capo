@@ -73,7 +73,15 @@ def serialize_json(value: CreatePricingRuleInput) -> dict:
         value["type"]
     )
     if "modifier_percentage" in value:
-        out["ModifierPercentage"] = value["modifier_percentage"]
+        out["ModifierPercentage"] = (
+            "NaN"
+            if value["modifier_percentage"] != value["modifier_percentage"]
+            else "Infinity"
+            if value["modifier_percentage"] == float("inf")
+            else "-Infinity"
+            if value["modifier_percentage"] == float("-inf")
+            else value["modifier_percentage"]
+        )
     if "service" in value:
         out["Service"] = value["service"]
     if "tags" in value:
@@ -99,13 +107,13 @@ def serialize_json(value: CreatePricingRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> CreatePricingRuleInput:
     out: CreatePricingRuleInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreatePricingRuleInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_billingconductor.types.pricing_rule_scope
 
         out["scope"] = capo_billingconductor.types.pricing_rule_scope.deserialize_json(
@@ -113,7 +121,7 @@ def deserialize_json(data: dict) -> CreatePricingRuleInput:
         )
     else:
         raise DeserializationError("CreatePricingRuleInput.scope required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_billingconductor.types.pricing_rule_type
 
         out["type"] = capo_billingconductor.types.pricing_rule_type.deserialize_json(
@@ -121,17 +129,17 @@ def deserialize_json(data: dict) -> CreatePricingRuleInput:
         )
     else:
         raise DeserializationError("CreatePricingRuleInput.type required")
-    if "ModifierPercentage" in data:
-        out["modifier_percentage"] = data["ModifierPercentage"]
-    if "Service" in data:
+    if data.get("ModifierPercentage") is not None:
+        out["modifier_percentage"] = float(data["ModifierPercentage"])
+    if data.get("Service") is not None:
         out["service"] = data["Service"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_billingconductor.types.tag_map
 
         out["tags"] = capo_billingconductor.types.tag_map.deserialize_json(data["Tags"])
-    if "BillingEntity" in data:
+    if data.get("BillingEntity") is not None:
         out["billing_entity"] = data["BillingEntity"]
-    if "Tiering" in data:
+    if data.get("Tiering") is not None:
         import capo_billingconductor.types.create_tiering_input
 
         out["tiering"] = (
@@ -139,8 +147,8 @@ def deserialize_json(data: dict) -> CreatePricingRuleInput:
                 data["Tiering"]
             )
         )
-    if "UsageType" in data:
+    if data.get("UsageType") is not None:
         out["usage_type"] = data["UsageType"]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
     return out

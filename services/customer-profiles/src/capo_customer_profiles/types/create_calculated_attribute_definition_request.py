@@ -88,11 +88,11 @@ def serialize_json(value: CreateCalculatedAttributeDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCalculatedAttributeDefinitionRequest:
     out: CreateCalculatedAttributeDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AttributeDetails" in data:
+    if data.get("AttributeDetails") is not None:
         import capo_customer_profiles.types.attribute_details
 
         out["attribute_details"] = (
@@ -104,19 +104,19 @@ def deserialize_json(data: dict) -> CreateCalculatedAttributeDefinitionRequest:
         raise DeserializationError(
             "CreateCalculatedAttributeDefinitionRequest.attribute_details required"
         )
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_customer_profiles.types.conditions
 
         out["conditions"] = capo_customer_profiles.types.conditions.deserialize_json(
             data["Conditions"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_customer_profiles.types.filter
 
         out["filter"] = capo_customer_profiles.types.filter.deserialize_json(
             data["Filter"]
         )
-    if "Statistic" in data:
+    if data.get("Statistic") is not None:
         import capo_customer_profiles.types.statistic
 
         out["statistic"] = capo_customer_profiles.types.statistic.deserialize_json(
@@ -126,9 +126,9 @@ def deserialize_json(data: dict) -> CreateCalculatedAttributeDefinitionRequest:
         raise DeserializationError(
             "CreateCalculatedAttributeDefinitionRequest.statistic required"
         )
-    if "UseHistoricalData" in data:
+    if data.get("UseHistoricalData") is not None:
         out["use_historical_data"] = data["UseHistoricalData"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

@@ -31,7 +31,7 @@ def serialize_json(value: PutVoiceConnectorOriginationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutVoiceConnectorOriginationRequest:
     out: PutVoiceConnectorOriginationRequest = {}  # type: ignore[typeddict-item]
-    if "Origination" in data:
+    if data.get("Origination") is not None:
         import capo_chime_sdk_voice.types.origination
 
         out["origination"] = capo_chime_sdk_voice.types.origination.deserialize_json(

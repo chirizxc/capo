@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ListTransformersResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTransformersResponse:
     out: ListTransformersResponse = {}  # type: ignore[typeddict-item]
-    if "transformers" in data:
+    if data.get("transformers") is not None:
         import capo_b2bi.types.transformer_list
 
         out["transformers"] = capo_b2bi.types.transformer_list.deserialize_aws_json_1_0(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListTransformersResponse:
         )
     else:
         raise DeserializationError("ListTransformersResponse.transformers required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

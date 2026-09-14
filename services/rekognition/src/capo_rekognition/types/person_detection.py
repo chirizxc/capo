@@ -31,11 +31,11 @@ def serialize_aws_json_1_1(value: PersonDetection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PersonDetection:
     out: PersonDetection = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
     else:
         out["timestamp"] = 0
-    if "Person" in data:
+    if data.get("Person") is not None:
         import capo_rekognition.types.person_detail
 
         out["person"] = capo_rekognition.types.person_detail.deserialize_aws_json_1_1(

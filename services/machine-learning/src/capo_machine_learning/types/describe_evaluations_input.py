@@ -81,7 +81,7 @@ def serialize_aws_json_1_1(value: DescribeEvaluationsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEvaluationsInput:
     out: DescribeEvaluationsInput = {}  # type: ignore[typeddict-item]
-    if "FilterVariable" in data:
+    if data.get("FilterVariable") is not None:
         import capo_machine_learning.types.evaluation_filter_variable
 
         out["filter_variable"] = (
@@ -89,21 +89,21 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEvaluationsInput:
                 data["FilterVariable"]
             )
         )
-    if "EQ" in data:
+    if data.get("EQ") is not None:
         out["eq"] = data["EQ"]
-    if "GT" in data:
+    if data.get("GT") is not None:
         out["gt"] = data["GT"]
-    if "LT" in data:
+    if data.get("LT") is not None:
         out["lt"] = data["LT"]
-    if "GE" in data:
+    if data.get("GE") is not None:
         out["ge"] = data["GE"]
-    if "LE" in data:
+    if data.get("LE") is not None:
         out["le"] = data["LE"]
-    if "NE" in data:
+    if data.get("NE") is not None:
         out["ne"] = data["NE"]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_machine_learning.types.sort_order
 
         out["sort_order"] = (
@@ -111,8 +111,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEvaluationsInput:
                 data["SortOrder"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

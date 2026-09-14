@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: RecommendationPreferences) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecommendationPreferences:
     out: RecommendationPreferences = {}  # type: ignore[typeddict-item]
-    if "cpuVendorArchitectures" in data:
+    if data.get("cpuVendorArchitectures") is not None:
         import capo_compute_optimizer.types.cpu_vendor_architectures
 
         out["cpu_vendor_architectures"] = (

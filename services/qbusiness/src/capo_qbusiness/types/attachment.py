@@ -81,37 +81,37 @@ def serialize_json(value: Attachment) -> dict:
 
 def deserialize_json(data: dict) -> Attachment:
     out: Attachment = {}  # type: ignore[typeddict-item]
-    if "attachmentId" in data:
+    if data.get("attachmentId") is not None:
         out["attachment_id"] = data["attachmentId"]
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "copyFrom" in data:
+    if data.get("copyFrom") is not None:
         import capo_qbusiness.types.copy_from_source
 
         out["copy_from"] = capo_qbusiness.types.copy_from_source.deserialize_json(
             data["copyFrom"]
         )
-    if "fileType" in data:
+    if data.get("fileType") is not None:
         out["file_type"] = data["fileType"]
-    if "fileSize" in data:
+    if data.get("fileSize") is not None:
         out["file_size"] = data["fileSize"]
-    if "md5chksum" in data:
+    if data.get("md5chksum") is not None:
         out["md5chksum"] = data["md5chksum"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.attachment_status
 
         out["status"] = capo_qbusiness.types.attachment_status.deserialize_json(
             data["status"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_qbusiness.types.error_detail
 
         out["error"] = capo_qbusiness.types.error_detail.deserialize_json(data["error"])

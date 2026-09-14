@@ -82,17 +82,17 @@ def serialize_json(value: Application) -> dict:
 
 def deserialize_json(data: dict) -> Application:
     out: Application = {}  # type: ignore[typeddict-item]
-    if "applicationID" in data:
+    if data.get("applicationID") is not None:
         out["application_id"] = data["applicationID"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "isArchived" in data:
+    if data.get("isArchived") is not None:
         out["is_archived"] = data["isArchived"]
-    if "applicationAggregatedStatus" in data:
+    if data.get("applicationAggregatedStatus") is not None:
         import capo_mgn.types.application_aggregated_status
 
         out["application_aggregated_status"] = (
@@ -100,14 +100,14 @@ def deserialize_json(data: dict) -> Application:
                 data["applicationAggregatedStatus"]
             )
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         out["creation_date_time"] = data["creationDateTime"]
-    if "lastModifiedDateTime" in data:
+    if data.get("lastModifiedDateTime") is not None:
         out["last_modified_date_time"] = data["lastModifiedDateTime"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])
-    if "waveID" in data:
+    if data.get("waveID") is not None:
         out["wave_id"] = data["waveID"]
     return out

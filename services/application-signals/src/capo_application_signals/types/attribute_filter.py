@@ -38,11 +38,11 @@ def serialize_json(value: AttributeFilter) -> dict:
 
 def deserialize_json(data: dict) -> AttributeFilter:
     out: AttributeFilter = {}  # type: ignore[typeddict-item]
-    if "AttributeFilterName" in data:
+    if data.get("AttributeFilterName") is not None:
         out["attribute_filter_name"] = data["AttributeFilterName"]
     else:
         raise DeserializationError("AttributeFilter.attribute_filter_name required")
-    if "AttributeFilterValues" in data:
+    if data.get("AttributeFilterValues") is not None:
         import capo_application_signals.types.attribute_filter_values
 
         out["attribute_filter_values"] = (

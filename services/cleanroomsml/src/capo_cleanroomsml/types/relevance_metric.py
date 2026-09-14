@@ -25,13 +25,21 @@ def serialize_json(value: RelevanceMetric) -> dict:
         value["audience_size"]
     )
     if "score" in value:
-        out["score"] = value["score"]
+        out["score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> RelevanceMetric:
     out: RelevanceMetric = {}  # type: ignore[typeddict-item]
-    if "audienceSize" in data:
+    if data.get("audienceSize") is not None:
         import capo_cleanroomsml.types.audience_size
 
         out["audience_size"] = capo_cleanroomsml.types.audience_size.deserialize_json(
@@ -39,6 +47,6 @@ def deserialize_json(data: dict) -> RelevanceMetric:
         )
     else:
         raise DeserializationError("RelevanceMetric.audience_size required")
-    if "score" in data:
-        out["score"] = data["score"]
+    if data.get("score") is not None:
+        out["score"] = float(data["score"])
     return out

@@ -103,14 +103,16 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.delete_source_server_request.DeleteSourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.delete_source_server_request.DeleteSourceServerRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -157,7 +159,7 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.describe_source_servers_request.DescribeSourceServersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.describe_source_servers_request.DescribeSourceServersRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -170,6 +172,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_recovery_snapshots(
@@ -221,8 +224,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.describe_recovery_snapshots_request.DescribeRecoverySnapshotsRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.describe_recovery_snapshots_request.DescribeRecoverySnapshotsRequest = {
+            "source_server_id": source_server_id
+        }
         if filters is not None:
             input_["filters"] = filters
         if order is not None:
@@ -237,6 +241,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disconnect_source_server(
@@ -272,14 +277,16 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.disconnect_source_server_request.DisconnectSourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.disconnect_source_server_request.DisconnectSourceServerRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_launch_configuration(
@@ -316,14 +323,16 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.get_launch_configuration_request.GetLaunchConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.get_launch_configuration_request.GetLaunchConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_replication_configuration(
@@ -361,14 +370,16 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.get_replication_configuration_request.GetReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.get_replication_configuration_request.GetReplicationConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def retry_data_replication(
@@ -404,14 +415,16 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.retry_data_replication_request.RetryDataReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.retry_data_replication_request.RetryDataReplicationRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_replication(
@@ -449,14 +462,16 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.start_replication_request.StartReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.start_replication_request.StartReplicationRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_replication(
@@ -494,14 +509,16 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.stop_replication_request.StopReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.stop_replication_request.StopReplicationRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_launch_configuration(
@@ -562,8 +579,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.update_launch_configuration_request.UpdateLaunchConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.update_launch_configuration_request.UpdateLaunchConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if name is not None:
             input_["name"] = name
         if launch_disposition is not None:
@@ -588,6 +606,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_replication_configuration(
@@ -677,8 +696,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.update_replication_configuration_request.UpdateReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.update_replication_configuration_request.UpdateReplicationConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if name is not None:
             input_["name"] = name
         if staging_area_subnet_id is not None:
@@ -727,6 +747,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_recovery(
@@ -768,8 +789,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.start_recovery_request.StartRecoveryRequest = {}  # type: ignore[typeddict-item]
-        input_["source_servers"] = source_servers
+        input_: capo_drs.types.start_recovery_request.StartRecoveryRequest = {
+            "source_servers": source_servers
+        }
         if is_drill is not None:
             input_["is_drill"] = is_drill
         if tags is not None:
@@ -780,6 +802,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -823,14 +846,16 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.delete_source_server_request.DeleteSourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.delete_source_server_request.DeleteSourceServerRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -878,7 +903,7 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.describe_source_servers_request.DescribeSourceServersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.describe_source_servers_request.DescribeSourceServersRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -891,6 +916,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_recovery_snapshots(
@@ -943,8 +969,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.describe_recovery_snapshots_request.DescribeRecoverySnapshotsRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.describe_recovery_snapshots_request.DescribeRecoverySnapshotsRequest = {
+            "source_server_id": source_server_id
+        }
         if filters is not None:
             input_["filters"] = filters
         if order is not None:
@@ -959,6 +986,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disconnect_source_server(
@@ -995,14 +1023,16 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.disconnect_source_server_request.DisconnectSourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.disconnect_source_server_request.DisconnectSourceServerRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_launch_configuration(
@@ -1040,14 +1070,16 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.get_launch_configuration_request.GetLaunchConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.get_launch_configuration_request.GetLaunchConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_replication_configuration(
@@ -1086,14 +1118,16 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.get_replication_configuration_request.GetReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.get_replication_configuration_request.GetReplicationConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def retry_data_replication(
@@ -1130,14 +1164,16 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.retry_data_replication_request.RetryDataReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.retry_data_replication_request.RetryDataReplicationRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_replication(
@@ -1176,14 +1212,16 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.start_replication_request.StartReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.start_replication_request.StartReplicationRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_replication(
@@ -1222,14 +1260,16 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.stop_replication_request.StopReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.stop_replication_request.StopReplicationRequest = {
+            "source_server_id": source_server_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_launch_configuration(
@@ -1291,8 +1331,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.update_launch_configuration_request.UpdateLaunchConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.update_launch_configuration_request.UpdateLaunchConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if name is not None:
             input_["name"] = name
         if launch_disposition is not None:
@@ -1317,6 +1358,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_replication_configuration(
@@ -1407,8 +1449,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.update_replication_configuration_request.UpdateReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_drs.types.update_replication_configuration_request.UpdateReplicationConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if name is not None:
             input_["name"] = name
         if staging_area_subnet_id is not None:
@@ -1457,6 +1500,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_recovery(
@@ -1499,8 +1543,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.start_recovery_request.StartRecoveryRequest = {}  # type: ignore[typeddict-item]
-        input_["source_servers"] = source_servers
+        input_: capo_drs.types.start_recovery_request.StartRecoveryRequest = {
+            "source_servers": source_servers
+        }
         if is_drill is not None:
             input_["is_drill"] = is_drill
         if tags is not None:
@@ -1511,4 +1556,5 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

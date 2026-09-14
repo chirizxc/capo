@@ -27,7 +27,7 @@ def serialize_json(value: PutVoiceConnectorTerminationResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutVoiceConnectorTerminationResponse:
     out: PutVoiceConnectorTerminationResponse = {}  # type: ignore[typeddict-item]
-    if "Termination" in data:
+    if data.get("Termination") is not None:
         import capo_chime_sdk_voice.types.termination
 
         out["termination"] = capo_chime_sdk_voice.types.termination.deserialize_json(

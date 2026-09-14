@@ -138,9 +138,9 @@ def serialize_aws_json_1_1(value: AccessControlRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessControlRule:
     out: AccessControlRule = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.access_control_rule_effect
 
         out["effect"] = (
@@ -148,15 +148,15 @@ def deserialize_aws_json_1_1(data: dict) -> AccessControlRule:
                 data["Effect"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IpRanges" in data:
+    if data.get("IpRanges") is not None:
         import capo_workmail.types.ip_range_list
 
         out["ip_ranges"] = capo_workmail.types.ip_range_list.deserialize_aws_json_1_1(
             data["IpRanges"]
         )
-    if "NotIpRanges" in data:
+    if data.get("NotIpRanges") is not None:
         import capo_workmail.types.ip_range_list
 
         out["not_ip_ranges"] = (
@@ -164,43 +164,43 @@ def deserialize_aws_json_1_1(data: dict) -> AccessControlRule:
                 data["NotIpRanges"]
             )
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_workmail.types.actions_list
 
         out["actions"] = capo_workmail.types.actions_list.deserialize_aws_json_1_1(
             data["Actions"]
         )
-    if "NotActions" in data:
+    if data.get("NotActions") is not None:
         import capo_workmail.types.actions_list
 
         out["not_actions"] = capo_workmail.types.actions_list.deserialize_aws_json_1_1(
             data["NotActions"]
         )
-    if "UserIds" in data:
+    if data.get("UserIds") is not None:
         import capo_workmail.types.user_id_list
 
         out["user_ids"] = capo_workmail.types.user_id_list.deserialize_aws_json_1_1(
             data["UserIds"]
         )
-    if "NotUserIds" in data:
+    if data.get("NotUserIds") is not None:
         import capo_workmail.types.user_id_list
 
         out["not_user_ids"] = capo_workmail.types.user_id_list.deserialize_aws_json_1_1(
             data["NotUserIds"]
         )
-    if "DateCreated" in data:
+    if data.get("DateCreated") is not None:
         import capo_workmail.types.timestamp
 
         out["date_created"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DateCreated"]
         )
-    if "DateModified" in data:
+    if data.get("DateModified") is not None:
         import capo_workmail.types.timestamp
 
         out["date_modified"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DateModified"]
         )
-    if "ImpersonationRoleIds" in data:
+    if data.get("ImpersonationRoleIds") is not None:
         import capo_workmail.types.impersonation_role_id_list
 
         out["impersonation_role_ids"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_1(data: dict) -> AccessControlRule:
                 data["ImpersonationRoleIds"]
             )
         )
-    if "NotImpersonationRoleIds" in data:
+    if data.get("NotImpersonationRoleIds") is not None:
         import capo_workmail.types.impersonation_role_id_list
 
         out["not_impersonation_role_ids"] = (

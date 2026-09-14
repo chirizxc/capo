@@ -26,10 +26,10 @@ def serialize_json(value: ClipRange) -> dict:
 
 def deserialize_json(data: dict) -> ClipRange:
     out: ClipRange = {}  # type: ignore[typeddict-item]
-    if "EndOffsetMillis" in data:
+    if data.get("EndOffsetMillis") is not None:
         out["end_offset_millis"] = data["EndOffsetMillis"]
     else:
         out["end_offset_millis"] = 0
-    if "StartOffsetMillis" in data:
+    if data.get("StartOffsetMillis") is not None:
         out["start_offset_millis"] = data["StartOffsetMillis"]
     return out

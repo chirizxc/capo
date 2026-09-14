@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetViolationDetailsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetViolationDetailsResponse:
     out: GetViolationDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "ViolationDetail" in data:
+    if data.get("ViolationDetail") is not None:
         import capo_fms.types.violation_detail
 
         out["violation_detail"] = (

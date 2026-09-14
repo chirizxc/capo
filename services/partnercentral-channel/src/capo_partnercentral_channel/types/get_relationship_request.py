@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: GetRelationshipRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRelationshipRequest:
     out: GetRelationshipRequest = {}  # type: ignore[typeddict-item]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("GetRelationshipRequest.catalog required")
-    if "programManagementAccountIdentifier" in data:
+    if data.get("programManagementAccountIdentifier") is not None:
         out["program_management_account_identifier"] = data[
             "programManagementAccountIdentifier"
         ]
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetRelationshipRequest:
         raise DeserializationError(
             "GetRelationshipRequest.program_management_account_identifier required"
         )
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("GetRelationshipRequest.identifier required")

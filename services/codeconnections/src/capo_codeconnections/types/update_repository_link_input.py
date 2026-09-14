@@ -36,11 +36,11 @@ def serialize_aws_json_1_0(value: UpdateRepositoryLinkInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateRepositoryLinkInput:
     out: UpdateRepositoryLinkInput = {}  # type: ignore[typeddict-item]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "RepositoryLinkId" in data:
+    if data.get("RepositoryLinkId") is not None:
         out["repository_link_id"] = data["RepositoryLinkId"]
     else:
         raise DeserializationError(

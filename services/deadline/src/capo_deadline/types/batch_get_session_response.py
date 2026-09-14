@@ -36,7 +36,7 @@ def serialize_json(value: BatchGetSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSessionResponse:
     out: BatchGetSessionResponse = {}  # type: ignore[typeddict-item]
-    if "sessions" in data:
+    if data.get("sessions") is not None:
         import capo_deadline.types.batch_get_session_items
 
         out["sessions"] = capo_deadline.types.batch_get_session_items.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> BatchGetSessionResponse:
         )
     else:
         raise DeserializationError("BatchGetSessionResponse.sessions required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_deadline.types.batch_get_session_errors
 
         out["errors"] = capo_deadline.types.batch_get_session_errors.deserialize_json(

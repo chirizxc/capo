@@ -40,7 +40,7 @@ def serialize_json(value: AwsElbLoadBalancerListenerDescription) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerListenerDescription:
     out: AwsElbLoadBalancerListenerDescription = {}  # type: ignore[typeddict-item]
-    if "Listener" in data:
+    if data.get("Listener") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_listener
 
         out["listener"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerListenerDescription:
                 data["Listener"]
             )
         )
-    if "PolicyNames" in data:
+    if data.get("PolicyNames") is not None:
         import capo_securityhub.types.string_list
 
         out["policy_names"] = capo_securityhub.types.string_list.deserialize_json(

@@ -88,13 +88,13 @@ def serialize_aws_json_1_1(value: StartSessionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartSessionRequest:
     out: StartSessionRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     else:
         raise DeserializationError("StartSessionRequest.work_group required")
-    if "EngineConfiguration" in data:
+    if data.get("EngineConfiguration") is not None:
         import capo_athena.types.engine_configuration
 
         out["engine_configuration"] = (
@@ -104,9 +104,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartSessionRequest:
         )
     else:
         raise DeserializationError("StartSessionRequest.engine_configuration required")
-    if "ExecutionRole" in data:
+    if data.get("ExecutionRole") is not None:
         out["execution_role"] = data["ExecutionRole"]
-    if "MonitoringConfiguration" in data:
+    if data.get("MonitoringConfiguration") is not None:
         import capo_athena.types.monitoring_configuration
 
         out["monitoring_configuration"] = (
@@ -114,16 +114,16 @@ def deserialize_aws_json_1_1(data: dict) -> StartSessionRequest:
                 data["MonitoringConfiguration"]
             )
         )
-    if "NotebookVersion" in data:
+    if data.get("NotebookVersion") is not None:
         out["notebook_version"] = data["NotebookVersion"]
-    if "SessionIdleTimeoutInMinutes" in data:
+    if data.get("SessionIdleTimeoutInMinutes") is not None:
         out["session_idle_timeout_in_minutes"] = data["SessionIdleTimeoutInMinutes"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_athena.types.tag_list
 
         out["tags"] = capo_athena.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "CopyWorkGroupTags" in data:
+    if data.get("CopyWorkGroupTags") is not None:
         out["copy_work_group_tags"] = data["CopyWorkGroupTags"]
     return out

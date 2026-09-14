@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ClientDeviceTypeList:
 
     out: ClientDeviceTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.client_device_type.deserialize_aws_json_1_1(item)
         )

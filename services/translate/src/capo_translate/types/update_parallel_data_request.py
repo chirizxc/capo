@@ -43,13 +43,13 @@ def serialize_aws_json_1_1(value: UpdateParallelDataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateParallelDataRequest:
     out: UpdateParallelDataRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateParallelDataRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ParallelDataConfig" in data:
+    if data.get("ParallelDataConfig") is not None:
         import capo_translate.types.parallel_data_config
 
         out["parallel_data_config"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateParallelDataRequest:
         raise DeserializationError(
             "UpdateParallelDataRequest.parallel_data_config required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("UpdateParallelDataRequest.client_token required")

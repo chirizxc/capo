@@ -95,9 +95,9 @@ def serialize_json(value: UpdateSubscriptionTargetInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSubscriptionTargetInput:
     out: UpdateSubscriptionTargetInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "authorizedPrincipals" in data:
+    if data.get("authorizedPrincipals") is not None:
         import capo_datazone.types.authorized_principal_identifiers
 
         out["authorized_principals"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> UpdateSubscriptionTargetInput:
                 data["authorizedPrincipals"]
             )
         )
-    if "applicableAssetTypes" in data:
+    if data.get("applicableAssetTypes") is not None:
         import capo_datazone.types.applicable_asset_types
 
         out["applicable_asset_types"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> UpdateSubscriptionTargetInput:
                 data["applicableAssetTypes"]
             )
         )
-    if "subscriptionTargetConfig" in data:
+    if data.get("subscriptionTargetConfig") is not None:
         import capo_datazone.types.subscription_target_forms
 
         out["subscription_target_config"] = (
@@ -121,11 +121,11 @@ def deserialize_json(data: dict) -> UpdateSubscriptionTargetInput:
                 data["subscriptionTargetConfig"]
             )
         )
-    if "manageAccessRole" in data:
+    if data.get("manageAccessRole") is not None:
         out["manage_access_role"] = data["manageAccessRole"]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
-    if "subscriptionGrantCreationMode" in data:
+    if data.get("subscriptionGrantCreationMode") is not None:
         import capo_datazone.types.subscription_grant_creation_mode
 
         out["subscription_grant_creation_mode"] = (

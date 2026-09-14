@@ -33,9 +33,9 @@ def serialize_json(value: GetCaseAuditEventsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCaseAuditEventsResponse:
     out: GetCaseAuditEventsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "auditEvents" in data:
+    if data.get("auditEvents") is not None:
         import capo_connectcases.types.audit_events_list
 
         out["audit_events"] = (

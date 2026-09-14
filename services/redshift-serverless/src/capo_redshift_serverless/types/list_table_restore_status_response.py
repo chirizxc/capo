@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: ListTableRestoreStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTableRestoreStatusResponse:
     out: ListTableRestoreStatusResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "tableRestoreStatuses" in data:
+    if data.get("tableRestoreStatuses") is not None:
         import capo_redshift_serverless.types.table_restore_status_list
 
         out["table_restore_statuses"] = (

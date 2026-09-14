@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: InitialVlanInfo) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InitialVlanInfo:
     out: InitialVlanInfo = {}  # type: ignore[typeddict-item]
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
     else:
         raise DeserializationError("InitialVlanInfo.cidr required")

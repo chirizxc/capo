@@ -40,7 +40,7 @@ def serialize_json(value: ListPurchaseOptionsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListPurchaseOptionsInput:
     out: ListPurchaseOptionsInput = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_marketplace_discovery.types.purchase_option_filter_list
 
         out["filters"] = (
@@ -48,10 +48,10 @@ def deserialize_json(data: dict) -> ListPurchaseOptionsInput:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 25
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -43,21 +43,21 @@ def serialize_aws_json_1_1(value: CreateSnapshotScheduleActionParameters) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSnapshotScheduleActionParameters:
     out: CreateSnapshotScheduleActionParameters = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError(
             "CreateSnapshotScheduleActionParameters.namespace_name required"
         )
-    if "snapshotNamePrefix" in data:
+    if data.get("snapshotNamePrefix") is not None:
         out["snapshot_name_prefix"] = data["snapshotNamePrefix"]
     else:
         raise DeserializationError(
             "CreateSnapshotScheduleActionParameters.snapshot_name_prefix required"
         )
-    if "retentionPeriod" in data:
+    if data.get("retentionPeriod") is not None:
         out["retention_period"] = data["retentionPeriod"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_redshift_serverless.types.tag_list
 
         out["tags"] = capo_redshift_serverless.types.tag_list.deserialize_aws_json_1_1(

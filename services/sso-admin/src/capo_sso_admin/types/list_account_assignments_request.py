@@ -42,24 +42,24 @@ def serialize_aws_json_1_1(value: ListAccountAssignmentsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAccountAssignmentsRequest:
     out: ListAccountAssignmentsRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "ListAccountAssignmentsRequest.instance_arn required"
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("ListAccountAssignmentsRequest.account_id required")
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
     else:
         raise DeserializationError(
             "ListAccountAssignmentsRequest.permission_set_arn required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

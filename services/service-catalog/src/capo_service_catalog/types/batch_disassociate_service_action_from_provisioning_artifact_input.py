@@ -43,7 +43,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> BatchDisassociateServiceActionFromProvisioningArtifactInput:
     out: BatchDisassociateServiceActionFromProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
-    if "ServiceActionAssociations" in data:
+    if data.get("ServiceActionAssociations") is not None:
         import capo_service_catalog.types.service_action_associations
 
         out["service_action_associations"] = (
@@ -55,6 +55,6 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "BatchDisassociateServiceActionFromProvisioningArtifactInput.service_action_associations required"
         )
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
     return out

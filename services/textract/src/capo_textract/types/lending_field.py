@@ -46,9 +46,9 @@ def serialize_aws_json_1_1(value: LendingField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LendingField:
     out: LendingField = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "KeyDetection" in data:
+    if data.get("KeyDetection") is not None:
         import capo_textract.types.lending_detection
 
         out["key_detection"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> LendingField:
                 data["KeyDetection"]
             )
         )
-    if "ValueDetections" in data:
+    if data.get("ValueDetections") is not None:
         import capo_textract.types.lending_detection_list
 
         out["value_detections"] = (

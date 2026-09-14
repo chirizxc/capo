@@ -54,11 +54,11 @@ def serialize_aws_json_1_1(value: CreateStudioLifecycleConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStudioLifecycleConfigRequest:
     out: CreateStudioLifecycleConfigRequest = {}  # type: ignore[typeddict-item]
-    if "StudioLifecycleConfigName" in data:
+    if data.get("StudioLifecycleConfigName") is not None:
         out["studio_lifecycle_config_name"] = data["StudioLifecycleConfigName"]
-    if "StudioLifecycleConfigContent" in data:
+    if data.get("StudioLifecycleConfigContent") is not None:
         out["studio_lifecycle_config_content"] = data["StudioLifecycleConfigContent"]
-    if "StudioLifecycleConfigAppType" in data:
+    if data.get("StudioLifecycleConfigAppType") is not None:
         import capo_sagemaker.types.studio_lifecycle_config_app_type
 
         out["studio_lifecycle_config_app_type"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateStudioLifecycleConfigRequest:
                 data["StudioLifecycleConfigAppType"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

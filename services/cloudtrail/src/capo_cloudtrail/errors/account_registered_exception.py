@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: AccountRegisteredException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountRegisteredException_:
     out: AccountRegisteredException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,18 @@ class AccountRegisteredException(ServiceError):
 
     code: str | None = "AccountRegisteredException"
 
-    def __init__(self, data: AccountRegisteredException_):
+    def __init__(self, data: AccountRegisteredException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AccountRegisteredException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "AccountRegisteredException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "AccountRegisteredException":
+        return cls(deserialize_aws_json_1_1(data), message)

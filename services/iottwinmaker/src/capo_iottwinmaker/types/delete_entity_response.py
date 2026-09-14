@@ -24,7 +24,7 @@ def serialize_json(value: DeleteEntityResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteEntityResponse:
     out: DeleteEntityResponse = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("DeleteEntityResponse.state required")

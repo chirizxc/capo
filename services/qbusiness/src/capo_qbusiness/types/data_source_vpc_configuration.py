@@ -36,7 +36,7 @@ def serialize_json(value: DataSourceVpcConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceVpcConfiguration:
     out: DataSourceVpcConfiguration = {}  # type: ignore[typeddict-item]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_qbusiness.types.subnet_ids
 
         out["subnet_ids"] = capo_qbusiness.types.subnet_ids.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> DataSourceVpcConfiguration:
         )
     else:
         raise DeserializationError("DataSourceVpcConfiguration.subnet_ids required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_qbusiness.types.security_group_ids
 
         out["security_group_ids"] = (

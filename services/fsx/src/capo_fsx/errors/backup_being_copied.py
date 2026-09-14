@@ -28,9 +28,9 @@ def serialize_aws_json_1_1(value: BackupBeingCopied_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BackupBeingCopied_:
     out: BackupBeingCopied_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "BackupId" in data:
+    if data.get("BackupId") is not None:
         out["backup_id"] = data["BackupId"]
     return out
 
@@ -40,15 +40,18 @@ class BackupBeingCopied(ServiceError):
 
     code: str | None = "BackupBeingCopied"
 
-    def __init__(self, data: BackupBeingCopied_):
+    def __init__(self, data: BackupBeingCopied_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="BackupBeingCopied",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "BackupBeingCopied":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "BackupBeingCopied":
+        return cls(deserialize_aws_json_1_1(data), message)

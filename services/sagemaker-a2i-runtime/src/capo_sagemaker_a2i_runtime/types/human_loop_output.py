@@ -23,6 +23,6 @@ def serialize_json(value: HumanLoopOutput) -> dict:
 
 def deserialize_json(data: dict) -> HumanLoopOutput:
     out: HumanLoopOutput = {}  # type: ignore[typeddict-item]
-    if "OutputS3Uri" in data:
+    if data.get("OutputS3Uri") is not None:
         out["output_s3_uri"] = data["OutputS3Uri"]
     return out

@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: CostDifference) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CostDifference:
     out: CostDifference = {}  # type: ignore[typeddict-item]
-    if "historicalCost" in data:
+    if data.get("historicalCost") is not None:
         import capo_bcm_pricing_calculator.types.cost_amount
 
         out["historical_cost"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> CostDifference:
                 data["historicalCost"]
             )
         )
-    if "estimatedCost" in data:
+    if data.get("estimatedCost") is not None:
         import capo_bcm_pricing_calculator.types.cost_amount
 
         out["estimated_cost"] = (

@@ -13,9 +13,9 @@ from capo_tnb import AsynctnbClient
 
 
 async def main():
-    async with AsynctnbClient() as s3:
+    async with AsynctnbClient() as tnb:
         # Example: call the cancel_sol_network_operation operation
-        response = await s3.cancel_sol_network_operation()
+        response = await tnb.cancel_sol_network_operation()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_tnb import AsynctnbClient
 
 
 async def main():
-    async with AsynctnbClient() as s3:
+    async with AsynctnbClient() as tnb:
         # Example: paginate over list_sol_function_instances
-        async for item in s3.iter_list_sol_function_instances():
+        async for item in tnb.iter_list_sol_function_instances():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_tnb.error import AccessDeniedException
 
 
 async def main():
-    async with AsynctnbClient() as s3:
+    async with AsynctnbClient() as tnb:
         try:
-            await s3.cancel_sol_network_operation()
+            await tnb.cancel_sol_network_operation()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_tnb import AsynctnbClient
 
 
 async def main():
-    async with AsynctnbClient() as s3:
+    async with AsynctnbClient() as tnb:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_sol_network_operation()
+        response = await tnb.cancel_sol_network_operation()
 
         # Override per operation
-        response = await s3.cancel_sol_network_operation(config_overrides={"retry_max_attempts": 5})
+        response = await tnb.cancel_sol_network_operation(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_sol_network_operation(config_overrides={"retry_max_attempts": 1})
+        response = await tnb.cancel_sol_network_operation(config_overrides={"retry_max_attempts": 1})
 ```

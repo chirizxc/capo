@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: Conflict) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Conflict:
     out: Conflict = {}  # type: ignore[typeddict-item]
-    if "conflictMetadata" in data:
+    if data.get("conflictMetadata") is not None:
         import capo_codecommit.types.conflict_metadata
 
         out["conflict_metadata"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> Conflict:
                 data["conflictMetadata"]
             )
         )
-    if "mergeHunks" in data:
+    if data.get("mergeHunks") is not None:
         import capo_codecommit.types.merge_hunks
 
         out["merge_hunks"] = capo_codecommit.types.merge_hunks.deserialize_aws_json_1_1(

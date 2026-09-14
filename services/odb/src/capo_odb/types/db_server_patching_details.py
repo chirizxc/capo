@@ -43,9 +43,9 @@ def serialize_aws_json_1_0(value: DbServerPatchingDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DbServerPatchingDetails:
     out: DbServerPatchingDetails = {}  # type: ignore[typeddict-item]
-    if "estimatedPatchDuration" in data:
+    if data.get("estimatedPatchDuration") is not None:
         out["estimated_patch_duration"] = data["estimatedPatchDuration"]
-    if "patchingStatus" in data:
+    if data.get("patchingStatus") is not None:
         import capo_odb.types.db_server_patching_status
 
         out["patching_status"] = (
@@ -53,8 +53,8 @@ def deserialize_aws_json_1_0(data: dict) -> DbServerPatchingDetails:
                 data["patchingStatus"]
             )
         )
-    if "timePatchingEnded" in data:
+    if data.get("timePatchingEnded") is not None:
         out["time_patching_ended"] = data["timePatchingEnded"]
-    if "timePatchingStarted" in data:
+    if data.get("timePatchingStarted") is not None:
         out["time_patching_started"] = data["timePatchingStarted"]
     return out

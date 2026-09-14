@@ -13,9 +13,9 @@ from capo_workmailmessageflow import AsyncWorkMailMessageFlowClient
 
 
 async def main():
-    async with AsyncWorkMailMessageFlowClient() as s3:
+    async with AsyncWorkMailMessageFlowClient() as work_mail_message_flow:
         # Example: call the get_raw_message_content operation
-        response = await s3.get_raw_message_content()
+        response = await work_mail_message_flow.get_raw_message_content()
         print(response["message_content"])
 ```
 
@@ -28,9 +28,9 @@ from capo_workmailmessageflow import AsyncWorkMailMessageFlowClient
 
 
 async def main():
-    async with AsyncWorkMailMessageFlowClient() as s3:
+    async with AsyncWorkMailMessageFlowClient() as work_mail_message_flow:
         # Example: call get_raw_message_content and read the streaming response
-        async with s3.get_raw_message_content() as response:
+        async with work_mail_message_flow.get_raw_message_content() as response:
             async for chunk in response["message_content"]:
                 print(chunk)
 ```
@@ -45,9 +45,9 @@ from capo_workmailmessageflow.error import ResourceNotFoundException
 
 
 async def main():
-    async with AsyncWorkMailMessageFlowClient() as s3:
+    async with AsyncWorkMailMessageFlowClient() as work_mail_message_flow:
         try:
-            await s3.get_raw_message_content()
+            await work_mail_message_flow.get_raw_message_content()
         except ResourceNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -64,13 +64,13 @@ from capo_workmailmessageflow import AsyncWorkMailMessageFlowClient
 
 
 async def main():
-    async with AsyncWorkMailMessageFlowClient() as s3:
+    async with AsyncWorkMailMessageFlowClient() as work_mail_message_flow:
         # Default: 3 attempts for every operation
-        response = await s3.get_raw_message_content()
+        response = await work_mail_message_flow.get_raw_message_content()
 
         # Override per operation
-        response = await s3.get_raw_message_content(config_overrides={"retry_max_attempts": 5})
+        response = await work_mail_message_flow.get_raw_message_content(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_raw_message_content(config_overrides={"retry_max_attempts": 1})
+        response = await work_mail_message_flow.get_raw_message_content(config_overrides={"retry_max_attempts": 1})
 ```

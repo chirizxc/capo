@@ -36,13 +36,13 @@ def serialize_json(value: ConversationLevelIntentClassificationResultItem) -> di
 
 def deserialize_json(data: dict) -> ConversationLevelIntentClassificationResultItem:
     out: ConversationLevelIntentClassificationResultItem = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
     else:
         raise DeserializationError(
             "ConversationLevelIntentClassificationResultItem.intent_name required"
         )
-    if "matchResult" in data:
+    if data.get("matchResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["match_result"] = (

@@ -28,6 +28,6 @@ def serialize_json(value: DisassociateBackupVaultMpaApprovalTeamInput) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateBackupVaultMpaApprovalTeamInput:
     out: DisassociateBackupVaultMpaApprovalTeamInput = {}  # type: ignore[typeddict-item]
-    if "RequesterComment" in data:
+    if data.get("RequesterComment") is not None:
         out["requester_comment"] = data["RequesterComment"]
     return out

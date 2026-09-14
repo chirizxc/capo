@@ -68,27 +68,27 @@ def serialize_json(value: UpdateLinkOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLinkOutput:
     out: UpdateLinkOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "LabelTemplate" in data:
+    if data.get("LabelTemplate") is not None:
         out["label_template"] = data["LabelTemplate"]
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_oam.types.resource_types_output
 
         out["resource_types"] = capo_oam.types.resource_types_output.deserialize_json(
             data["ResourceTypes"]
         )
-    if "SinkArn" in data:
+    if data.get("SinkArn") is not None:
         out["sink_arn"] = data["SinkArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_oam.types.tag_map_output
 
         out["tags"] = capo_oam.types.tag_map_output.deserialize_json(data["Tags"])
-    if "LinkConfiguration" in data:
+    if data.get("LinkConfiguration") is not None:
         import capo_oam.types.link_configuration
 
         out["link_configuration"] = capo_oam.types.link_configuration.deserialize_json(

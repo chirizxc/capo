@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.codeguruprofiler#CodeGuruProfiler``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_codeguruprofiler._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_codeguruprofiler._auth._zapros_handler import AuthMiddleware
+from capo_codeguruprofiler._pagination import resolve_path as _resolve_path
 from capo_codeguruprofiler._resources.code_guru_profiler.profiling_group import (
     ProfilingGroup,
 )
@@ -182,7 +184,7 @@ class CodeGuruProfilerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.get_findings_report_account_summary_request.GetFindingsReportAccountSummaryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codeguruprofiler.types.get_findings_report_account_summary_request.GetFindingsReportAccountSummaryRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -195,7 +197,33 @@ class CodeGuruProfilerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_findings_report_account_summary(
+        self,
+        *,
+        config_overrides: Optional[CodeGuruProfilerClientConfig] = None,
+        next_token: Optional[
+            "capo_codeguruprofiler.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_codeguruprofiler.types.max_results.MaxResults"
+        ] = None,
+        daily_reports_only: Optional[bool] = None,
+    ) -> "Iterator[capo_codeguruprofiler.types.get_findings_report_account_summary_response.GetFindingsReportAccountSummaryResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_findings_report_account_summary(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                daily_reports_only=daily_reports_only,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -230,14 +258,16 @@ class CodeGuruProfilerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_codeguruprofiler.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -275,15 +305,17 @@ class CodeGuruProfilerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_codeguruprofiler.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -321,15 +353,17 @@ class CodeGuruProfilerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_codeguruprofiler.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

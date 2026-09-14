@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> FirewallConfigList:
 
     out: FirewallConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53resolver.types.firewall_config.deserialize_aws_json_1_1(item)
         )

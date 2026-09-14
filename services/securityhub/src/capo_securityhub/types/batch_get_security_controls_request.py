@@ -27,7 +27,7 @@ def serialize_json(value: BatchGetSecurityControlsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSecurityControlsRequest:
     out: BatchGetSecurityControlsRequest = {}  # type: ignore[typeddict-item]
-    if "SecurityControlIds" in data:
+    if data.get("SecurityControlIds") is not None:
         import capo_securityhub.types.string_list
 
         out["security_control_ids"] = (

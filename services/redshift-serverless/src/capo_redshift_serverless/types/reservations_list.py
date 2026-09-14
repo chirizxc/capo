@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ReservationsList:
 
     out: ReservationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_redshift_serverless.types.reservation.deserialize_aws_json_1_1(item)
         )

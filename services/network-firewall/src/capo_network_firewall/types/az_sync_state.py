@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: AZSyncState) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AZSyncState:
     out: AZSyncState = {}  # type: ignore[typeddict-item]
-    if "Attachment" in data:
+    if data.get("Attachment") is not None:
         import capo_network_firewall.types.attachment
 
         out["attachment"] = (

@@ -49,9 +49,9 @@ def serialize_json(value: Account) -> dict:
 
 def deserialize_json(data: dict) -> Account:
     out: Account = {}  # type: ignore[typeddict-item]
-    if "cloudwatchRoleArn" in data:
+    if data.get("cloudwatchRoleArn") is not None:
         out["cloudwatch_role_arn"] = data["cloudwatchRoleArn"]
-    if "throttleSettings" in data:
+    if data.get("throttleSettings") is not None:
         import capo_api_gateway.types.throttle_settings
 
         out["throttle_settings"] = (
@@ -59,12 +59,12 @@ def deserialize_json(data: dict) -> Account:
                 data["throttleSettings"]
             )
         )
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["features"] = capo_api_gateway.types.list_of_string.deserialize_json(
             data["features"]
         )
-    if "apiKeyVersion" in data:
+    if data.get("apiKeyVersion") is not None:
         out["api_key_version"] = data["apiKeyVersion"]
     return out

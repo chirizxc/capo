@@ -56,15 +56,15 @@ def serialize_json(value: UpdateThemeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateThemeRequest:
     out: UpdateThemeRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "BaseThemeId" in data:
+    if data.get("BaseThemeId") is not None:
         out["base_theme_id"] = data["BaseThemeId"]
     else:
         raise DeserializationError("UpdateThemeRequest.base_theme_id required")
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_quicksight.types.theme_configuration
 
         out["configuration"] = (

@@ -13,10 +13,25 @@ from capo_appstream import AsyncAppStreamClient
 
 
 async def main():
-    async with AsyncAppStreamClient() as s3:
+    async with AsyncAppStreamClient() as app_stream:
         # Example: call the associate_app_block_builder_app_block operation
-        response = await s3.associate_app_block_builder_app_block()
+        response = await app_stream.associate_app_block_builder_app_block()
         print(response["app_block_builder_app_block_association"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_appstream import AsyncAppStreamClient
+
+
+async def main():
+    async with AsyncAppStreamClient() as app_stream:
+        # Example: paginate over describe_app_block_builder_app_block_associations
+        async for item in app_stream.iter_describe_app_block_builder_app_block_associations():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_appstream.error import ConcurrentModificationException
 
 
 async def main():
-    async with AsyncAppStreamClient() as s3:
+    async with AsyncAppStreamClient() as app_stream:
         try:
-            await s3.associate_app_block_builder_app_block()
+            await app_stream.associate_app_block_builder_app_block()
         except ConcurrentModificationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_appstream import AsyncAppStreamClient
 
 
 async def main():
-    async with AsyncAppStreamClient() as s3:
+    async with AsyncAppStreamClient() as app_stream:
         # Default: 3 attempts for every operation
-        response = await s3.associate_app_block_builder_app_block()
+        response = await app_stream.associate_app_block_builder_app_block()
 
         # Override per operation
-        response = await s3.associate_app_block_builder_app_block(config_overrides={"retry_max_attempts": 5})
+        response = await app_stream.associate_app_block_builder_app_block(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_app_block_builder_app_block(config_overrides={"retry_max_attempts": 1})
+        response = await app_stream.associate_app_block_builder_app_block(config_overrides={"retry_max_attempts": 1})
 ```

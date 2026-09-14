@@ -62,7 +62,7 @@ def serialize_json(value: ResourceConfigurationDefinition) -> dict:
 
 
 def deserialize_json(data: dict) -> ResourceConfigurationDefinition:
-    if "dnsResource" in data:
+    if data.get("dnsResource") is not None:
         import capo_vpc_lattice.types.dns_resource
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ResourceConfigurationDefinition:
                 data["dnsResource"]
             )
         }
-    elif "ipResource" in data:
+    elif data.get("ipResource") is not None:
         import capo_vpc_lattice.types.ip_resource
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ResourceConfigurationDefinition:
                 data["ipResource"]
             )
         }
-    elif "arnResource" in data:
+    elif data.get("arnResource") is not None:
         import capo_vpc_lattice.types.arn_resource
 
         return {

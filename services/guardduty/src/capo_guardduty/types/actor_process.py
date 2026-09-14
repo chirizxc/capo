@@ -33,10 +33,10 @@ def serialize_json(value: ActorProcess) -> dict:
 
 def deserialize_json(data: dict) -> ActorProcess:
     out: ActorProcess = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "sha256" in data:
+    if data.get("sha256") is not None:
         out["sha256"] = data["sha256"]
     return out

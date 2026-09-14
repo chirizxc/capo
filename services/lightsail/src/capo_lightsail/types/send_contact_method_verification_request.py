@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: SendContactMethodVerificationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SendContactMethodVerificationRequest:
     out: SendContactMethodVerificationRequest = {}  # type: ignore[typeddict-item]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_lightsail.types.contact_method_verification_protocol
 
         out["protocol"] = (

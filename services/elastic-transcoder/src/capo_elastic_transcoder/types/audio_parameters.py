@@ -60,17 +60,17 @@ def serialize_json(value: AudioParameters) -> dict:
 
 def deserialize_json(data: dict) -> AudioParameters:
     out: AudioParameters = {}  # type: ignore[typeddict-item]
-    if "Codec" in data:
+    if data.get("Codec") is not None:
         out["codec"] = data["Codec"]
-    if "SampleRate" in data:
+    if data.get("SampleRate") is not None:
         out["sample_rate"] = data["SampleRate"]
-    if "BitRate" in data:
+    if data.get("BitRate") is not None:
         out["bit_rate"] = data["BitRate"]
-    if "Channels" in data:
+    if data.get("Channels") is not None:
         out["channels"] = data["Channels"]
-    if "AudioPackingMode" in data:
+    if data.get("AudioPackingMode") is not None:
         out["audio_packing_mode"] = data["AudioPackingMode"]
-    if "CodecOptions" in data:
+    if data.get("CodecOptions") is not None:
         import capo_elastic_transcoder.types.audio_codec_options
 
         out["codec_options"] = (

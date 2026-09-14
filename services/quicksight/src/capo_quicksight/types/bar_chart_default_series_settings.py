@@ -36,13 +36,13 @@ def serialize_json(value: BarChartDefaultSeriesSettings) -> dict:
 
 def deserialize_json(data: dict) -> BarChartDefaultSeriesSettings:
     out: BarChartDefaultSeriesSettings = {}  # type: ignore[typeddict-item]
-    if "DecalSettings" in data:
+    if data.get("DecalSettings") is not None:
         import capo_quicksight.types.decal_settings
 
         out["decal_settings"] = capo_quicksight.types.decal_settings.deserialize_json(
             data["DecalSettings"]
         )
-    if "BorderSettings" in data:
+    if data.get("BorderSettings") is not None:
         import capo_quicksight.types.border_settings
 
         out["border_settings"] = capo_quicksight.types.border_settings.deserialize_json(

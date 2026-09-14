@@ -38,11 +38,11 @@ def serialize_json(value: MapFilter) -> dict:
 
 def deserialize_json(data: dict) -> MapFilter:
     out: MapFilter = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Comparison" in data:
+    if data.get("Comparison") is not None:
         import capo_securityhub.types.map_filter_comparison
 
         out["comparison"] = (

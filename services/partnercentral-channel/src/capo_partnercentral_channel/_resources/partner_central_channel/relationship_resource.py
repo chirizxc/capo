@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_partnercentral_channel._services._pipeline import (
@@ -121,19 +122,19 @@ class RelationshipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.create_relationship_request.CreateRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["association_type"] = association_type
-        input_["program_management_account_identifier"] = (
-            program_management_account_identifier
-        )
-        input_["associated_account_id"] = associated_account_id
-        input_["display_name"] = display_name
+        input_: capo_partnercentral_channel.types.create_relationship_request.CreateRelationshipRequest = {
+            "catalog": catalog,
+            "association_type": association_type,
+            "program_management_account_identifier": program_management_account_identifier,
+            "associated_account_id": associated_account_id,
+            "display_name": display_name,
+            "sector": sector,
+        }
         if resale_account_model is not None:
             input_["resale_account_model"] = resale_account_model
-        input_["sector"] = sector
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if requested_support_plan is not None:
@@ -144,6 +145,7 @@ class RelationshipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -190,18 +192,18 @@ class RelationshipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.get_relationship_request.GetRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["program_management_account_identifier"] = (
-            program_management_account_identifier
-        )
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_channel.types.get_relationship_request.GetRelationshipRequest = {
+            "catalog": catalog,
+            "program_management_account_identifier": program_management_account_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -261,12 +263,11 @@ class RelationshipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.update_relationship_request.UpdateRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["program_management_account_identifier"] = (
-            program_management_account_identifier
-        )
+        input_: capo_partnercentral_channel.types.update_relationship_request.UpdateRelationshipRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "program_management_account_identifier": program_management_account_identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
         if display_name is not None:
@@ -279,6 +280,7 @@ class RelationshipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -330,20 +332,21 @@ class RelationshipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.delete_relationship_request.DeleteRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["program_management_account_identifier"] = (
-            program_management_account_identifier
-        )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_partnercentral_channel.types.delete_relationship_request.DeleteRelationshipRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "program_management_account_identifier": program_management_account_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -412,8 +415,9 @@ class RelationshipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.list_relationships_request.ListRelationshipsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_channel.types.list_relationships_request.ListRelationshipsRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if associated_account_ids is not None:
@@ -436,6 +440,7 @@ class RelationshipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -510,19 +515,19 @@ class AsyncRelationshipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.create_relationship_request.CreateRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["association_type"] = association_type
-        input_["program_management_account_identifier"] = (
-            program_management_account_identifier
-        )
-        input_["associated_account_id"] = associated_account_id
-        input_["display_name"] = display_name
+        input_: capo_partnercentral_channel.types.create_relationship_request.CreateRelationshipRequest = {
+            "catalog": catalog,
+            "association_type": association_type,
+            "program_management_account_identifier": program_management_account_identifier,
+            "associated_account_id": associated_account_id,
+            "display_name": display_name,
+            "sector": sector,
+        }
         if resale_account_model is not None:
             input_["resale_account_model"] = resale_account_model
-        input_["sector"] = sector
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if requested_support_plan is not None:
@@ -533,6 +538,7 @@ class AsyncRelationshipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -580,18 +586,18 @@ class AsyncRelationshipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.get_relationship_request.GetRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["program_management_account_identifier"] = (
-            program_management_account_identifier
-        )
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_channel.types.get_relationship_request.GetRelationshipRequest = {
+            "catalog": catalog,
+            "program_management_account_identifier": program_management_account_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -652,12 +658,11 @@ class AsyncRelationshipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.update_relationship_request.UpdateRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["program_management_account_identifier"] = (
-            program_management_account_identifier
-        )
+        input_: capo_partnercentral_channel.types.update_relationship_request.UpdateRelationshipRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "program_management_account_identifier": program_management_account_identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
         if display_name is not None:
@@ -670,6 +675,7 @@ class AsyncRelationshipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -722,20 +728,21 @@ class AsyncRelationshipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.delete_relationship_request.DeleteRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["program_management_account_identifier"] = (
-            program_management_account_identifier
-        )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_partnercentral_channel.types.delete_relationship_request.DeleteRelationshipRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "program_management_account_identifier": program_management_account_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -805,8 +812,9 @@ class AsyncRelationshipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.list_relationships_request.ListRelationshipsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_channel.types.list_relationships_request.ListRelationshipsRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if associated_account_ids is not None:
@@ -829,4 +837,5 @@ class AsyncRelationshipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

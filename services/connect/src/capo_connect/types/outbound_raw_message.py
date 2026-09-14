@@ -34,15 +34,15 @@ def serialize_json(value: OutboundRawMessage) -> dict:
 
 def deserialize_json(data: dict) -> OutboundRawMessage:
     out: OutboundRawMessage = {}  # type: ignore[typeddict-item]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
     else:
         raise DeserializationError("OutboundRawMessage.subject required")
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
     else:
         raise DeserializationError("OutboundRawMessage.body required")
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
     else:
         raise DeserializationError("OutboundRawMessage.content_type required")

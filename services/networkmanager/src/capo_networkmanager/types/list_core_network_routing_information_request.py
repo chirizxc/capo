@@ -95,25 +95,25 @@ def serialize_json(value: ListCoreNetworkRoutingInformationRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListCoreNetworkRoutingInformationRequest:
     out: ListCoreNetworkRoutingInformationRequest = {}  # type: ignore[typeddict-item]
-    if "SegmentName" in data:
+    if data.get("SegmentName") is not None:
         out["segment_name"] = data["SegmentName"]
     else:
         raise DeserializationError(
             "ListCoreNetworkRoutingInformationRequest.segment_name required"
         )
-    if "EdgeLocation" in data:
+    if data.get("EdgeLocation") is not None:
         out["edge_location"] = data["EdgeLocation"]
     else:
         raise DeserializationError(
             "ListCoreNetworkRoutingInformationRequest.edge_location required"
         )
-    if "NextHopFilters" in data:
+    if data.get("NextHopFilters") is not None:
         import capo_networkmanager.types.filter_map
 
         out["next_hop_filters"] = capo_networkmanager.types.filter_map.deserialize_json(
             data["NextHopFilters"]
         )
-    if "LocalPreferenceMatches" in data:
+    if data.get("LocalPreferenceMatches") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["local_preference_matches"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> ListCoreNetworkRoutingInformationRequest:
                 data["LocalPreferenceMatches"]
             )
         )
-    if "ExactAsPathMatches" in data:
+    if data.get("ExactAsPathMatches") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["exact_as_path_matches"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> ListCoreNetworkRoutingInformationRequest:
                 data["ExactAsPathMatches"]
             )
         )
-    if "MedMatches" in data:
+    if data.get("MedMatches") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["med_matches"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> ListCoreNetworkRoutingInformationRequest:
                 data["MedMatches"]
             )
         )
-    if "CommunityMatches" in data:
+    if data.get("CommunityMatches") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["community_matches"] = (

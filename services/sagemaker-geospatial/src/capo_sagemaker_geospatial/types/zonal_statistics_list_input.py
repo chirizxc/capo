@@ -16,4 +16,4 @@ def serialize_json(value: ZonalStatisticsListInput) -> list:
 
 
 def deserialize_json(data: list) -> ZonalStatisticsListInput:
-    return list(data)
+    return [item for item in data if item is not None]

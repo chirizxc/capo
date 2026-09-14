@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteCustomRoutingEndpointGroupRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteCustomRoutingEndpointGroupRequest:
     out: DeleteCustomRoutingEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointGroupArn" in data:
+    if data.get("EndpointGroupArn") is not None:
         out["endpoint_group_arn"] = data["EndpointGroupArn"]
     else:
         raise DeserializationError(

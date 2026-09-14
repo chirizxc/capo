@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ElasticsearchDomainStatusList:
 
     out: ElasticsearchDomainStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.elasticsearch_domain_status.deserialize_json(
                 item

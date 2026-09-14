@@ -273,15 +273,15 @@ def serialize_json(value: ConnectorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorConfiguration:
     out: ConnectorConfiguration = {}  # type: ignore[typeddict-item]
-    if "canUseAsSource" in data:
+    if data.get("canUseAsSource") is not None:
         out["can_use_as_source"] = data["canUseAsSource"]
     else:
         out["can_use_as_source"] = False
-    if "canUseAsDestination" in data:
+    if data.get("canUseAsDestination") is not None:
         out["can_use_as_destination"] = data["canUseAsDestination"]
     else:
         out["can_use_as_destination"] = False
-    if "supportedDestinationConnectors" in data:
+    if data.get("supportedDestinationConnectors") is not None:
         import capo_appflow.types.connector_type_list
 
         out["supported_destination_connectors"] = (
@@ -289,7 +289,7 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["supportedDestinationConnectors"]
             )
         )
-    if "supportedSchedulingFrequencies" in data:
+    if data.get("supportedSchedulingFrequencies") is not None:
         import capo_appflow.types.scheduling_frequency_type_list
 
         out["supported_scheduling_frequencies"] = (
@@ -297,17 +297,17 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["supportedSchedulingFrequencies"]
             )
         )
-    if "isPrivateLinkEnabled" in data:
+    if data.get("isPrivateLinkEnabled") is not None:
         out["is_private_link_enabled"] = data["isPrivateLinkEnabled"]
     else:
         out["is_private_link_enabled"] = False
-    if "isPrivateLinkEndpointUrlRequired" in data:
+    if data.get("isPrivateLinkEndpointUrlRequired") is not None:
         out["is_private_link_endpoint_url_required"] = data[
             "isPrivateLinkEndpointUrlRequired"
         ]
     else:
         out["is_private_link_endpoint_url_required"] = False
-    if "supportedTriggerTypes" in data:
+    if data.get("supportedTriggerTypes") is not None:
         import capo_appflow.types.trigger_type_list
 
         out["supported_trigger_types"] = (
@@ -315,7 +315,7 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["supportedTriggerTypes"]
             )
         )
-    if "connectorMetadata" in data:
+    if data.get("connectorMetadata") is not None:
         import capo_appflow.types.connector_metadata
 
         out["connector_metadata"] = (
@@ -323,25 +323,25 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["connectorMetadata"]
             )
         )
-    if "connectorType" in data:
+    if data.get("connectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["connector_type"] = capo_appflow.types.connector_type.deserialize_json(
             data["connectorType"]
         )
-    if "connectorLabel" in data:
+    if data.get("connectorLabel") is not None:
         out["connector_label"] = data["connectorLabel"]
-    if "connectorDescription" in data:
+    if data.get("connectorDescription") is not None:
         out["connector_description"] = data["connectorDescription"]
-    if "connectorOwner" in data:
+    if data.get("connectorOwner") is not None:
         out["connector_owner"] = data["connectorOwner"]
-    if "connectorName" in data:
+    if data.get("connectorName") is not None:
         out["connector_name"] = data["connectorName"]
-    if "connectorVersion" in data:
+    if data.get("connectorVersion") is not None:
         out["connector_version"] = data["connectorVersion"]
-    if "connectorArn" in data:
+    if data.get("connectorArn") is not None:
         out["connector_arn"] = data["connectorArn"]
-    if "connectorModes" in data:
+    if data.get("connectorModes") is not None:
         import capo_appflow.types.connector_mode_list
 
         out["connector_modes"] = (
@@ -349,7 +349,7 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["connectorModes"]
             )
         )
-    if "authenticationConfig" in data:
+    if data.get("authenticationConfig") is not None:
         import capo_appflow.types.authentication_config
 
         out["authentication_config"] = (
@@ -357,7 +357,7 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["authenticationConfig"]
             )
         )
-    if "connectorRuntimeSettings" in data:
+    if data.get("connectorRuntimeSettings") is not None:
         import capo_appflow.types.connector_runtime_setting_list
 
         out["connector_runtime_settings"] = (
@@ -365,7 +365,7 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["connectorRuntimeSettings"]
             )
         )
-    if "supportedApiVersions" in data:
+    if data.get("supportedApiVersions") is not None:
         import capo_appflow.types.supported_api_version_list
 
         out["supported_api_versions"] = (
@@ -373,7 +373,7 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["supportedApiVersions"]
             )
         )
-    if "supportedOperators" in data:
+    if data.get("supportedOperators") is not None:
         import capo_appflow.types.supported_operator_list
 
         out["supported_operators"] = (
@@ -381,7 +381,7 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["supportedOperators"]
             )
         )
-    if "supportedWriteOperations" in data:
+    if data.get("supportedWriteOperations") is not None:
         import capo_appflow.types.supported_write_operation_list
 
         out["supported_write_operations"] = (
@@ -389,7 +389,7 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["supportedWriteOperations"]
             )
         )
-    if "connectorProvisioningType" in data:
+    if data.get("connectorProvisioningType") is not None:
         import capo_appflow.types.connector_provisioning_type
 
         out["connector_provisioning_type"] = (
@@ -397,7 +397,7 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["connectorProvisioningType"]
             )
         )
-    if "connectorProvisioningConfig" in data:
+    if data.get("connectorProvisioningConfig") is not None:
         import capo_appflow.types.connector_provisioning_config
 
         out["connector_provisioning_config"] = (
@@ -405,17 +405,17 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["connectorProvisioningConfig"]
             )
         )
-    if "logoURL" in data:
+    if data.get("logoURL") is not None:
         out["logo_url"] = data["logoURL"]
-    if "registeredAt" in data:
+    if data.get("registeredAt") is not None:
         import capo_appflow.types.date
 
         out["registered_at"] = capo_appflow.types.date.deserialize_json(
             data["registeredAt"]
         )
-    if "registeredBy" in data:
+    if data.get("registeredBy") is not None:
         out["registered_by"] = data["registeredBy"]
-    if "supportedDataTransferTypes" in data:
+    if data.get("supportedDataTransferTypes") is not None:
         import capo_appflow.types.supported_data_transfer_type_list
 
         out["supported_data_transfer_types"] = (
@@ -423,7 +423,7 @@ def deserialize_json(data: dict) -> ConnectorConfiguration:
                 data["supportedDataTransferTypes"]
             )
         )
-    if "supportedDataTransferApis" in data:
+    if data.get("supportedDataTransferApis") is not None:
         import capo_appflow.types.supported_data_transfer_apis
 
         out["supported_data_transfer_apis"] = (

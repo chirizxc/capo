@@ -25,11 +25,11 @@ def serialize_json(value: ImportTaskSummaryApplications) -> dict:
 
 def deserialize_json(data: dict) -> ImportTaskSummaryApplications:
     out: ImportTaskSummaryApplications = {}  # type: ignore[typeddict-item]
-    if "createdCount" in data:
+    if data.get("createdCount") is not None:
         out["created_count"] = data["createdCount"]
     else:
         out["created_count"] = 0
-    if "modifiedCount" in data:
+    if data.get("modifiedCount") is not None:
         out["modified_count"] = data["modifiedCount"]
     else:
         out["modified_count"] = 0

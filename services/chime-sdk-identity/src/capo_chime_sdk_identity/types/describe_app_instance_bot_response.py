@@ -31,7 +31,7 @@ def serialize_json(value: DescribeAppInstanceBotResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAppInstanceBotResponse:
     out: DescribeAppInstanceBotResponse = {}  # type: ignore[typeddict-item]
-    if "AppInstanceBot" in data:
+    if data.get("AppInstanceBot") is not None:
         import capo_chime_sdk_identity.types.app_instance_bot
 
         out["app_instance_bot"] = (

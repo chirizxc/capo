@@ -50,16 +50,16 @@ def serialize_json(value: AwsRedshiftClusterLoggingStatus) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterLoggingStatus:
     out: AwsRedshiftClusterLoggingStatus = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
-    if "LastFailureMessage" in data:
+    if data.get("LastFailureMessage") is not None:
         out["last_failure_message"] = data["LastFailureMessage"]
-    if "LastFailureTime" in data:
+    if data.get("LastFailureTime") is not None:
         out["last_failure_time"] = data["LastFailureTime"]
-    if "LastSuccessfulDeliveryTime" in data:
+    if data.get("LastSuccessfulDeliveryTime") is not None:
         out["last_successful_delivery_time"] = data["LastSuccessfulDeliveryTime"]
-    if "LoggingEnabled" in data:
+    if data.get("LoggingEnabled") is not None:
         out["logging_enabled"] = data["LoggingEnabled"]
-    if "S3KeyPrefix" in data:
+    if data.get("S3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["S3KeyPrefix"]
     return out

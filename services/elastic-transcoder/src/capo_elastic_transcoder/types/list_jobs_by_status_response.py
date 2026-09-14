@@ -30,10 +30,10 @@ def serialize_json(value: ListJobsByStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListJobsByStatusResponse:
     out: ListJobsByStatusResponse = {}  # type: ignore[typeddict-item]
-    if "Jobs" in data:
+    if data.get("Jobs") is not None:
         import capo_elastic_transcoder.types.jobs
 
         out["jobs"] = capo_elastic_transcoder.types.jobs.deserialize_json(data["Jobs"])
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

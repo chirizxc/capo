@@ -30,10 +30,10 @@ def serialize_json(value: DescribeAddonVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAddonVersionsResponse:
     out: DescribeAddonVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "addons" in data:
+    if data.get("addons") is not None:
         import capo_eks.types.addons
 
         out["addons"] = capo_eks.types.addons.deserialize_json(data["addons"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

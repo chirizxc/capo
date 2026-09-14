@@ -24,7 +24,7 @@ def serialize_json(value: StopSimulationInput) -> dict:
 
 def deserialize_json(data: dict) -> StopSimulationInput:
     out: StopSimulationInput = {}  # type: ignore[typeddict-item]
-    if "Simulation" in data:
+    if data.get("Simulation") is not None:
         out["simulation"] = data["Simulation"]
     else:
         raise DeserializationError("StopSimulationInput.simulation required")

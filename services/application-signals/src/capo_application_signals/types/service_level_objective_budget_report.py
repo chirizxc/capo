@@ -81,7 +81,15 @@ def serialize_json(value: ServiceLevelObjectiveBudgetReport) -> dict:
         )
     )
     if "attainment" in value:
-        out["Attainment"] = value["attainment"]
+        out["Attainment"] = (
+            "NaN"
+            if value["attainment"] != value["attainment"]
+            else "Infinity"
+            if value["attainment"] == float("inf")
+            else "-Infinity"
+            if value["attainment"] == float("-inf")
+            else value["attainment"]
+        )
     if "total_budget_seconds" in value:
         out["TotalBudgetSeconds"] = value["total_budget_seconds"]
     if "budget_seconds_remaining" in value:
@@ -115,15 +123,15 @@ def serialize_json(value: ServiceLevelObjectiveBudgetReport) -> dict:
 
 def deserialize_json(data: dict) -> ServiceLevelObjectiveBudgetReport:
     out: ServiceLevelObjectiveBudgetReport = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ServiceLevelObjectiveBudgetReport.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ServiceLevelObjectiveBudgetReport.name required")
-    if "EvaluationType" in data:
+    if data.get("EvaluationType") is not None:
         import capo_application_signals.types.evaluation_type
 
         out["evaluation_type"] = (
@@ -131,7 +139,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjectiveBudgetReport:
                 data["EvaluationType"]
             )
         )
-    if "BudgetStatus" in data:
+    if data.get("BudgetStatus") is not None:
         import capo_application_signals.types.service_level_objective_budget_status
 
         out["budget_status"] = (
@@ -143,17 +151,17 @@ def deserialize_json(data: dict) -> ServiceLevelObjectiveBudgetReport:
         raise DeserializationError(
             "ServiceLevelObjectiveBudgetReport.budget_status required"
         )
-    if "Attainment" in data:
-        out["attainment"] = data["Attainment"]
-    if "TotalBudgetSeconds" in data:
+    if data.get("Attainment") is not None:
+        out["attainment"] = float(data["Attainment"])
+    if data.get("TotalBudgetSeconds") is not None:
         out["total_budget_seconds"] = data["TotalBudgetSeconds"]
-    if "BudgetSecondsRemaining" in data:
+    if data.get("BudgetSecondsRemaining") is not None:
         out["budget_seconds_remaining"] = data["BudgetSecondsRemaining"]
-    if "TotalBudgetRequests" in data:
+    if data.get("TotalBudgetRequests") is not None:
         out["total_budget_requests"] = data["TotalBudgetRequests"]
-    if "BudgetRequestsRemaining" in data:
+    if data.get("BudgetRequestsRemaining") is not None:
         out["budget_requests_remaining"] = data["BudgetRequestsRemaining"]
-    if "Sli" in data:
+    if data.get("Sli") is not None:
         import capo_application_signals.types.service_level_indicator
 
         out["sli"] = (
@@ -161,7 +169,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjectiveBudgetReport:
                 data["Sli"]
             )
         )
-    if "RequestBasedSli" in data:
+    if data.get("RequestBasedSli") is not None:
         import capo_application_signals.types.request_based_service_level_indicator
 
         out["request_based_sli"] = (
@@ -169,7 +177,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjectiveBudgetReport:
                 data["RequestBasedSli"]
             )
         )
-    if "Goal" in data:
+    if data.get("Goal") is not None:
         import capo_application_signals.types.goal
 
         out["goal"] = capo_application_signals.types.goal.deserialize_json(data["Goal"])

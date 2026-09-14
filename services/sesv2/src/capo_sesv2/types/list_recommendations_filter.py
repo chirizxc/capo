@@ -29,6 +29,8 @@ def deserialize_json(data: dict) -> ListRecommendationsFilter:
     for key, value in data.items():
         import capo_sesv2.types.list_recommendations_filter_key
 
+        if value is None:
+            continue
         out[capo_sesv2.types.list_recommendations_filter_key.deserialize_json(key)] = (
             value
         )

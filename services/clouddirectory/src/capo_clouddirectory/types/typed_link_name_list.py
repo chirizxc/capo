@@ -16,4 +16,4 @@ def serialize_json(value: TypedLinkNameList) -> list:
 
 
 def deserialize_json(data: list) -> TypedLinkNameList:
-    return list(data)
+    return [item for item in data if item is not None]

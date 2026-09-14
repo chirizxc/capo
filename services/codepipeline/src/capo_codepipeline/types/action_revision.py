@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: ActionRevision) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionRevision:
     out: ActionRevision = {}  # type: ignore[typeddict-item]
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
     else:
         raise DeserializationError("ActionRevision.revision_id required")
-    if "revisionChangeId" in data:
+    if data.get("revisionChangeId") is not None:
         out["revision_change_id"] = data["revisionChangeId"]
     else:
         raise DeserializationError("ActionRevision.revision_change_id required")
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_codepipeline.types.timestamp
 
         out["created"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(

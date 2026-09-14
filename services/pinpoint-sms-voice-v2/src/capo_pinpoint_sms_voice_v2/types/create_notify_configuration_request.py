@@ -83,21 +83,21 @@ def serialize_aws_json_1_0(value: CreateNotifyConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateNotifyConfigurationRequest:
     out: CreateNotifyConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError(
             "CreateNotifyConfigurationRequest.display_name required"
         )
-    if "UseCase" in data:
+    if data.get("UseCase") is not None:
         out["use_case"] = data["UseCase"]
     else:
         raise DeserializationError("CreateNotifyConfigurationRequest.use_case required")
-    if "DefaultTemplateId" in data:
+    if data.get("DefaultTemplateId") is not None:
         out["default_template_id"] = data["DefaultTemplateId"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "EnabledCountries" in data:
+    if data.get("EnabledCountries") is not None:
         import capo_pinpoint_sms_voice_v2.types.iso_country_code_list
 
         out["enabled_countries"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateNotifyConfigurationRequest:
                 data["EnabledCountries"]
             )
         )
-    if "EnabledChannels" in data:
+    if data.get("EnabledChannels") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_enabled_channels_list
 
         out["enabled_channels"] = (
@@ -117,11 +117,11 @@ def deserialize_aws_json_1_0(data: dict) -> CreateNotifyConfigurationRequest:
         raise DeserializationError(
             "CreateNotifyConfigurationRequest.enabled_channels required"
         )
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (

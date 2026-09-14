@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_b2bi._services._pipeline import (
@@ -93,15 +94,17 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.create_profile_request.CreateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_b2bi.types.create_profile_request.CreateProfileRequest = {
+            "name": name,
+            "phone": phone,
+            "business_name": business_name,
+            "logging": logging,
+        }
         if email is not None:
             input_["email"] = email
-        input_["phone"] = phone
-        input_["business_name"] = business_name
-        input_["logging"] = logging
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -110,6 +113,7 @@ class Profile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -150,14 +154,16 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.get_profile_request.GetProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_b2bi.types.get_profile_request.GetProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -210,8 +216,9 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.update_profile_request.UpdateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_b2bi.types.update_profile_request.UpdateProfileRequest = {
+            "profile_id": profile_id
+        }
         if name is not None:
             input_["name"] = name
         if email is not None:
@@ -226,6 +233,7 @@ class Profile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -267,14 +275,16 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.delete_profile_request.DeleteProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_b2bi.types.delete_profile_request.DeleteProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -318,7 +328,7 @@ class Profile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.list_profiles_request.ListProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_b2bi.types.list_profiles_request.ListProfilesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -329,6 +339,7 @@ class Profile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -391,15 +402,17 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.create_profile_request.CreateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_b2bi.types.create_profile_request.CreateProfileRequest = {
+            "name": name,
+            "phone": phone,
+            "business_name": business_name,
+            "logging": logging,
+        }
         if email is not None:
             input_["email"] = email
-        input_["phone"] = phone
-        input_["business_name"] = business_name
-        input_["logging"] = logging
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -408,6 +421,7 @@ class AsyncProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -451,14 +465,16 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.get_profile_request.GetProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_b2bi.types.get_profile_request.GetProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -512,8 +528,9 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.update_profile_request.UpdateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_b2bi.types.update_profile_request.UpdateProfileRequest = {
+            "profile_id": profile_id
+        }
         if name is not None:
             input_["name"] = name
         if email is not None:
@@ -528,6 +545,7 @@ class AsyncProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -570,14 +588,16 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.delete_profile_request.DeleteProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_b2bi.types.delete_profile_request.DeleteProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -622,7 +642,7 @@ class AsyncProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.list_profiles_request.ListProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_b2bi.types.list_profiles_request.ListProfilesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -633,4 +653,5 @@ class AsyncProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -175,9 +175,10 @@ class SageMakerRuntimeHTTP2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_runtime_http2.types.invoke_endpoint_with_bidirectional_stream_input.InvokeEndpointWithBidirectionalStreamInput = {}  # type: ignore[typeddict-item]
-        input_["endpoint_name"] = endpoint_name
-        input_["body"] = ensure_sync_iterator(body)
+        input_: capo_sagemaker_runtime_http2.types.invoke_endpoint_with_bidirectional_stream_input.InvokeEndpointWithBidirectionalStreamInput = {
+            "endpoint_name": endpoint_name,
+            "body": ensure_sync_iterator(body),
+        }
         if target_variant is not None:
             input_["target_variant"] = target_variant
         if model_invocation_path is not None:
@@ -190,7 +191,10 @@ class SageMakerRuntimeHTTP2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def __enter__(self) -> Self:
         return self

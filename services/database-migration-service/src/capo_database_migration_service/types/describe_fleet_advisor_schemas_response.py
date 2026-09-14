@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeFleetAdvisorSchemasResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFleetAdvisorSchemasResponse:
     out: DescribeFleetAdvisorSchemasResponse = {}  # type: ignore[typeddict-item]
-    if "FleetAdvisorSchemas" in data:
+    if data.get("FleetAdvisorSchemas") is not None:
         import capo_database_migration_service.types.fleet_advisor_schema_list
 
         out["fleet_advisor_schemas"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFleetAdvisorSchemasResponse:
                 data["FleetAdvisorSchemas"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

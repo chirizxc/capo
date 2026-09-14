@@ -29,6 +29,9 @@ def deserialize_json(data: dict) -> VolumeUsageByDatasourcePackage:
     out: VolumeUsageByDatasourcePackage = {}
     for key, value in data.items():
         import capo_detective.types.datasource_package
+
+        if value is None:
+            continue
         import capo_detective.types.datasource_package_usage_info
 
         out[capo_detective.types.datasource_package.deserialize_json(key)] = (

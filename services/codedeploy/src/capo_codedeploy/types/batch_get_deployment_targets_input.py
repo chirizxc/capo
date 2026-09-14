@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: BatchGetDeploymentTargetsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetDeploymentTargetsInput:
     out: BatchGetDeploymentTargetsInput = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     else:
         raise DeserializationError(
             "BatchGetDeploymentTargetsInput.deployment_id required"
         )
-    if "targetIds" in data:
+    if data.get("targetIds") is not None:
         import capo_codedeploy.types.target_id_list
 
         out["target_ids"] = (

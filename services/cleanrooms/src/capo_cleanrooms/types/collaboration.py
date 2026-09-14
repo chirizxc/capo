@@ -153,29 +153,29 @@ def serialize_json(value: Collaboration) -> dict:
 
 def deserialize_json(data: dict) -> Collaboration:
     out: Collaboration = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Collaboration.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Collaboration.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Collaboration.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creatorAccountId" in data:
+    if data.get("creatorAccountId") is not None:
         out["creator_account_id"] = data["creatorAccountId"]
     else:
         raise DeserializationError("Collaboration.creator_account_id required")
-    if "creatorDisplayName" in data:
+    if data.get("creatorDisplayName") is not None:
         out["creator_display_name"] = data["creatorDisplayName"]
     else:
         raise DeserializationError("Collaboration.creator_display_name required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> Collaboration:
         )
     else:
         raise DeserializationError("Collaboration.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -191,15 +191,15 @@ def deserialize_json(data: dict) -> Collaboration:
         )
     else:
         raise DeserializationError("Collaboration.update_time required")
-    if "memberStatus" in data:
+    if data.get("memberStatus") is not None:
         out["member_status"] = data["memberStatus"]
     else:
         raise DeserializationError("Collaboration.member_status required")
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
-    if "dataEncryptionMetadata" in data:
+    if data.get("dataEncryptionMetadata") is not None:
         import capo_cleanrooms.types.data_encryption_metadata
 
         out["data_encryption_metadata"] = (
@@ -207,7 +207,7 @@ def deserialize_json(data: dict) -> Collaboration:
                 data["dataEncryptionMetadata"]
             )
         )
-    if "queryLogStatus" in data:
+    if data.get("queryLogStatus") is not None:
         import capo_cleanrooms.types.collaboration_query_log_status
 
         out["query_log_status"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> Collaboration:
         )
     else:
         raise DeserializationError("Collaboration.query_log_status required")
-    if "jobLogStatus" in data:
+    if data.get("jobLogStatus") is not None:
         import capo_cleanrooms.types.collaboration_job_log_status
 
         out["job_log_status"] = (
@@ -225,7 +225,7 @@ def deserialize_json(data: dict) -> Collaboration:
                 data["jobLogStatus"]
             )
         )
-    if "analyticsEngine" in data:
+    if data.get("analyticsEngine") is not None:
         import capo_cleanrooms.types.analytics_engine
 
         out["analytics_engine"] = (
@@ -233,7 +233,7 @@ def deserialize_json(data: dict) -> Collaboration:
                 data["analyticsEngine"]
             )
         )
-    if "autoApprovedChangeTypes" in data:
+    if data.get("autoApprovedChangeTypes") is not None:
         import capo_cleanrooms.types.auto_approved_change_type_list
 
         out["auto_approved_change_types"] = (
@@ -241,7 +241,7 @@ def deserialize_json(data: dict) -> Collaboration:
                 data["autoApprovedChangeTypes"]
             )
         )
-    if "allowedResultRegions" in data:
+    if data.get("allowedResultRegions") is not None:
         import capo_cleanrooms.types.allowed_result_regions
 
         out["allowed_result_regions"] = (
@@ -249,6 +249,6 @@ def deserialize_json(data: dict) -> Collaboration:
                 data["allowedResultRegions"]
             )
         )
-    if "isMetricsEnabled" in data:
+    if data.get("isMetricsEnabled") is not None:
         out["is_metrics_enabled"] = data["isMetricsEnabled"]
     return out

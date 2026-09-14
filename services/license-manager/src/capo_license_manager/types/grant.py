@@ -79,31 +79,31 @@ def serialize_aws_json_1_1(value: Grant) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Grant:
     out: Grant = {}  # type: ignore[typeddict-item]
-    if "GrantArn" in data:
+    if data.get("GrantArn") is not None:
         out["grant_arn"] = data["GrantArn"]
     else:
         raise DeserializationError("Grant.grant_arn required")
-    if "GrantName" in data:
+    if data.get("GrantName") is not None:
         out["grant_name"] = data["GrantName"]
     else:
         raise DeserializationError("Grant.grant_name required")
-    if "ParentArn" in data:
+    if data.get("ParentArn") is not None:
         out["parent_arn"] = data["ParentArn"]
     else:
         raise DeserializationError("Grant.parent_arn required")
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     else:
         raise DeserializationError("Grant.license_arn required")
-    if "GranteePrincipalArn" in data:
+    if data.get("GranteePrincipalArn") is not None:
         out["grantee_principal_arn"] = data["GranteePrincipalArn"]
     else:
         raise DeserializationError("Grant.grantee_principal_arn required")
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
     else:
         raise DeserializationError("Grant.home_region required")
-    if "GrantStatus" in data:
+    if data.get("GrantStatus") is not None:
         import capo_license_manager.types.grant_status
 
         out["grant_status"] = (
@@ -113,13 +113,13 @@ def deserialize_aws_json_1_1(data: dict) -> Grant:
         )
     else:
         raise DeserializationError("Grant.grant_status required")
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         raise DeserializationError("Grant.version required")
-    if "GrantedOperations" in data:
+    if data.get("GrantedOperations") is not None:
         import capo_license_manager.types.allowed_operation_list
 
         out["granted_operations"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> Grant:
         )
     else:
         raise DeserializationError("Grant.granted_operations required")
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_license_manager.types.options
 
         out["options"] = capo_license_manager.types.options.deserialize_aws_json_1_1(

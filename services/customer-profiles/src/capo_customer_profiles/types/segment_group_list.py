@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SegmentGroupList:
 
     out: SegmentGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_customer_profiles.types.group.deserialize_json(item))
     return out

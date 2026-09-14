@@ -61,9 +61,9 @@ def serialize_aws_json_1_0(value: AutomationEventSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutomationEventSummary:
     out: AutomationEventSummary = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "dimensions" in data:
+    if data.get("dimensions") is not None:
         import capo_compute_optimizer_automation.types.summary_dimensions
 
         out["dimensions"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEventSummary:
                 data["dimensions"]
             )
         )
-    if "timePeriod" in data:
+    if data.get("timePeriod") is not None:
         import capo_compute_optimizer_automation.types.time_period
 
         out["time_period"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEventSummary:
                 data["timePeriod"]
             )
         )
-    if "total" in data:
+    if data.get("total") is not None:
         import capo_compute_optimizer_automation.types.summary_totals
 
         out["total"] = (

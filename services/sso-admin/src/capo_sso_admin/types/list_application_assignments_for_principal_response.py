@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListApplicationAssignmentsForPrincipalResponse:
     out: ListApplicationAssignmentsForPrincipalResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationAssignments" in data:
+    if data.get("ApplicationAssignments") is not None:
         import capo_sso_admin.types.application_assignment_list_for_principal
 
         out["application_assignments"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["ApplicationAssignments"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

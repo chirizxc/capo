@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ExportableLicenseFields:
 
     out: ExportableLicenseFields = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer.types.exportable_license_field.deserialize_aws_json_1_0(
                 item

@@ -61,7 +61,7 @@ def serialize_json(value: CustomFilterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomFilterConfiguration:
     out: CustomFilterConfiguration = {}  # type: ignore[typeddict-item]
-    if "MatchOperator" in data:
+    if data.get("MatchOperator") is not None:
         import capo_quicksight.types.category_filter_match_operator
 
         out["match_operator"] = (
@@ -71,9 +71,9 @@ def deserialize_json(data: dict) -> CustomFilterConfiguration:
         )
     else:
         raise DeserializationError("CustomFilterConfiguration.match_operator required")
-    if "CategoryValue" in data:
+    if data.get("CategoryValue") is not None:
         out["category_value"] = data["CategoryValue"]
-    if "SelectAllOptions" in data:
+    if data.get("SelectAllOptions") is not None:
         import capo_quicksight.types.category_filter_select_all_options
 
         out["select_all_options"] = (
@@ -81,9 +81,9 @@ def deserialize_json(data: dict) -> CustomFilterConfiguration:
                 data["SelectAllOptions"]
             )
         )
-    if "ParameterName" in data:
+    if data.get("ParameterName") is not None:
         out["parameter_name"] = data["ParameterName"]
-    if "NullOption" in data:
+    if data.get("NullOption") is not None:
         import capo_quicksight.types.filter_null_option
 
         out["null_option"] = capo_quicksight.types.filter_null_option.deserialize_json(

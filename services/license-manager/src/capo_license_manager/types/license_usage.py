@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: LicenseUsage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LicenseUsage:
     out: LicenseUsage = {}  # type: ignore[typeddict-item]
-    if "EntitlementUsages" in data:
+    if data.get("EntitlementUsages") is not None:
         import capo_license_manager.types.entitlement_usage_list
 
         out["entitlement_usages"] = (

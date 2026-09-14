@@ -222,8 +222,9 @@ class AsyncSageMakerRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_runtime.types.invoke_endpoint_input.InvokeEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["endpoint_name"] = endpoint_name
+        input_: capo_sagemaker_runtime.types.invoke_endpoint_input.InvokeEndpointInput = {
+            "endpoint_name": endpoint_name
+        }
         if body is not None:
             input_["body"] = body
         if content_type is not None:
@@ -252,6 +253,7 @@ class AsyncSageMakerRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def invoke_endpoint_async(
@@ -320,8 +322,9 @@ class AsyncSageMakerRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_runtime.types.invoke_endpoint_async_input.InvokeEndpointAsyncInput = {}  # type: ignore[typeddict-item]
-        input_["endpoint_name"] = endpoint_name
+        input_: capo_sagemaker_runtime.types.invoke_endpoint_async_input.InvokeEndpointAsyncInput = {
+            "endpoint_name": endpoint_name
+        }
         if content_type is not None:
             input_["content_type"] = content_type
         if accept is not None:
@@ -346,6 +349,7 @@ class AsyncSageMakerRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     @asynccontextmanager
@@ -416,8 +420,9 @@ class AsyncSageMakerRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_runtime.types.invoke_endpoint_with_response_stream_input.InvokeEndpointWithResponseStreamInput = {}  # type: ignore[typeddict-item]
-        input_["endpoint_name"] = endpoint_name
+        input_: capo_sagemaker_runtime.types.invoke_endpoint_with_response_stream_input.InvokeEndpointWithResponseStreamInput = {
+            "endpoint_name": endpoint_name
+        }
         if body is not None:
             input_["body"] = body
         if content_type is not None:
@@ -442,7 +447,10 @@ class AsyncSageMakerRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     async def __aenter__(self) -> Self:
         return self

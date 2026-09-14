@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: RetrieveTapeRecoveryPointInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetrieveTapeRecoveryPointInput:
     out: RetrieveTapeRecoveryPointInput = {}  # type: ignore[typeddict-item]
-    if "TapeARN" in data:
+    if data.get("TapeARN") is not None:
         out["tape_arn"] = data["TapeARN"]
     else:
         raise DeserializationError("RetrieveTapeRecoveryPointInput.tape_arn required")
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError(

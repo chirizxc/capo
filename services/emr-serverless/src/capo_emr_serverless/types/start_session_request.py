@@ -61,15 +61,15 @@ def serialize_json(value: StartSessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartSessionRequest:
     out: StartSessionRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("StartSessionRequest.client_token required")
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
         raise DeserializationError("StartSessionRequest.execution_role_arn required")
-    if "configurationOverrides" in data:
+    if data.get("configurationOverrides") is not None:
         import capo_emr_serverless.types.session_configuration_overrides
 
         out["configuration_overrides"] = (
@@ -77,12 +77,12 @@ def deserialize_json(data: dict) -> StartSessionRequest:
                 data["configurationOverrides"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_serverless.types.tag_map
 
         out["tags"] = capo_emr_serverless.types.tag_map.deserialize_json(data["tags"])
-    if "idleTimeoutMinutes" in data:
+    if data.get("idleTimeoutMinutes") is not None:
         out["idle_timeout_minutes"] = data["idleTimeoutMinutes"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

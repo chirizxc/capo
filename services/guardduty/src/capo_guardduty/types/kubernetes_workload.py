@@ -43,15 +43,15 @@ def serialize_json(value: KubernetesWorkload) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesWorkload:
     out: KubernetesWorkload = {}  # type: ignore[typeddict-item]
-    if "containerUids" in data:
+    if data.get("containerUids") is not None:
         import capo_guardduty.types.container_uids
 
         out["container_uids"] = capo_guardduty.types.container_uids.deserialize_json(
             data["containerUids"]
         )
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_guardduty.types.kubernetes_resources_types
 
         out["kubernetes_resources_types"] = (

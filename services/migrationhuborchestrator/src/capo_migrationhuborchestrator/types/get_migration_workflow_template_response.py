@@ -96,15 +96,15 @@ def serialize_json(value: GetMigrationWorkflowTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMigrationWorkflowTemplateResponse:
     out: GetMigrationWorkflowTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "templateArn" in data:
+    if data.get("templateArn") is not None:
         out["template_arn"] = data["templateArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "inputs" in data:
+    if data.get("inputs") is not None:
         import capo_migrationhuborchestrator.types.template_input_list
 
         out["inputs"] = (
@@ -112,13 +112,13 @@ def deserialize_json(data: dict) -> GetMigrationWorkflowTemplateResponse:
                 data["inputs"]
             )
         )
-    if "tools" in data:
+    if data.get("tools") is not None:
         import capo_migrationhuborchestrator.types.tools_list
 
         out["tools"] = capo_migrationhuborchestrator.types.tools_list.deserialize_json(
             data["tools"]
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -126,15 +126,15 @@ def deserialize_json(data: dict) -> GetMigrationWorkflowTemplateResponse:
                 data["creationTime"]
             )
         )
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "templateClass" in data:
+    if data.get("templateClass") is not None:
         out["template_class"] = data["templateClass"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_migrationhuborchestrator.types.string_map
 
         out["tags"] = capo_migrationhuborchestrator.types.string_map.deserialize_json(

@@ -28,11 +28,11 @@ def serialize_json(value: WiFiAccessPoint) -> dict:
 
 def deserialize_json(data: dict) -> WiFiAccessPoint:
     out: WiFiAccessPoint = {}  # type: ignore[typeddict-item]
-    if "MacAddress" in data:
+    if data.get("MacAddress") is not None:
         out["mac_address"] = data["MacAddress"]
     else:
         raise DeserializationError("WiFiAccessPoint.mac_address required")
-    if "Rss" in data:
+    if data.get("Rss") is not None:
         out["rss"] = data["Rss"]
     else:
         raise DeserializationError("WiFiAccessPoint.rss required")

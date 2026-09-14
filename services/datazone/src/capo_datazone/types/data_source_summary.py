@@ -129,27 +129,27 @@ def serialize_json(value: DataSourceSummary) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceSummary:
     out: DataSourceSummary = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("DataSourceSummary.domain_id required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
-    if "dataSourceId" in data:
+    if data.get("dataSourceId") is not None:
         out["data_source_id"] = data["dataSourceId"]
     else:
         raise DeserializationError("DataSourceSummary.data_source_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DataSourceSummary.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("DataSourceSummary.type required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.data_source_status
 
         out["status"] = capo_datazone.types.data_source_status.deserialize_json(
@@ -157,19 +157,19 @@ def deserialize_json(data: dict) -> DataSourceSummary:
         )
     else:
         raise DeserializationError("DataSourceSummary.status required")
-    if "enableSetting" in data:
+    if data.get("enableSetting") is not None:
         import capo_datazone.types.enable_setting
 
         out["enable_setting"] = capo_datazone.types.enable_setting.deserialize_json(
             data["enableSetting"]
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_datazone.types.schedule_configuration
 
         out["schedule"] = capo_datazone.types.schedule_configuration.deserialize_json(
             data["schedule"]
         )
-    if "lastRunStatus" in data:
+    if data.get("lastRunStatus") is not None:
         import capo_datazone.types.data_source_run_status
 
         out["last_run_status"] = (
@@ -177,13 +177,13 @@ def deserialize_json(data: dict) -> DataSourceSummary:
                 data["lastRunStatus"]
             )
         )
-    if "lastRunAt" in data:
+    if data.get("lastRunAt") is not None:
         import capo_datazone.types.date_time
 
         out["last_run_at"] = capo_datazone.types.date_time.deserialize_json(
             data["lastRunAt"]
         )
-    if "lastRunErrorMessage" in data:
+    if data.get("lastRunErrorMessage") is not None:
         import capo_datazone.types.data_source_error_message
 
         out["last_run_error_message"] = (
@@ -191,20 +191,20 @@ def deserialize_json(data: dict) -> DataSourceSummary:
                 data["lastRunErrorMessage"]
             )
         )
-    if "lastRunAssetCount" in data:
+    if data.get("lastRunAssetCount") is not None:
         out["last_run_asset_count"] = data["lastRunAssetCount"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.date_time
 
         out["created_at"] = capo_datazone.types.date_time.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.date_time
 
         out["updated_at"] = capo_datazone.types.date_time.deserialize_json(
             data["updatedAt"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

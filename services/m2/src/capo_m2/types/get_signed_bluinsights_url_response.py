@@ -19,7 +19,7 @@ def serialize_json(value: GetSignedBluinsightsUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSignedBluinsightsUrlResponse:
     out: GetSignedBluinsightsUrlResponse = {}  # type: ignore[typeddict-item]
-    if "signedBiUrl" in data:
+    if data.get("signedBiUrl") is not None:
         out["signed_bi_url"] = data["signedBiUrl"]
     else:
         raise DeserializationError(

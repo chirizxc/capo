@@ -30,7 +30,7 @@ def serialize_json(value: TrustStoreConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TrustStoreConfiguration:
     out: TrustStoreConfiguration = {}  # type: ignore[typeddict-item]
-    if "certificateAuthorityCertificates" in data:
+    if data.get("certificateAuthorityCertificates") is not None:
         import capo_rtbfabric.types.certificate_authority_certificates
 
         out["certificate_authority_certificates"] = (

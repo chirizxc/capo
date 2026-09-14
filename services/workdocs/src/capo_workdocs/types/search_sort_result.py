@@ -34,13 +34,13 @@ def serialize_json(value: SearchSortResult) -> dict:
 
 def deserialize_json(data: dict) -> SearchSortResult:
     out: SearchSortResult = {}  # type: ignore[typeddict-item]
-    if "Field" in data:
+    if data.get("Field") is not None:
         import capo_workdocs.types.order_by_field_type
 
         out["field"] = capo_workdocs.types.order_by_field_type.deserialize_json(
             data["Field"]
         )
-    if "Order" in data:
+    if data.get("Order") is not None:
         import capo_workdocs.types.sort_order
 
         out["order"] = capo_workdocs.types.sort_order.deserialize_json(data["Order"])

@@ -24,7 +24,7 @@ def serialize_json(value: ApiLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> ApiLimitExceededException_:
     out: ApiLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class ApiLimitExceededException(ServiceError):
 
     code: str | None = "ApiLimitExceededException"
 
-    def __init__(self, data: ApiLimitExceededException_):
+    def __init__(self, data: ApiLimitExceededException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ApiLimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ApiLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ApiLimitExceededException":
+        return cls(deserialize_json(data), message)

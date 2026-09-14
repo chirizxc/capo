@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListContextsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListContextsResponse:
     out: ListContextsResponse = {}  # type: ignore[typeddict-item]
-    if "ContextSummaries" in data:
+    if data.get("ContextSummaries") is not None:
         import capo_sagemaker.types.context_summaries
 
         out["context_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListContextsResponse:
                 data["ContextSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

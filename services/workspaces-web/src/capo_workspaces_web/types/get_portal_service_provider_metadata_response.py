@@ -31,12 +31,12 @@ def serialize_json(value: GetPortalServiceProviderMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPortalServiceProviderMetadataResponse:
     out: GetPortalServiceProviderMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
     else:
         raise DeserializationError(
             "GetPortalServiceProviderMetadataResponse.portal_arn required"
         )
-    if "serviceProviderSamlMetadata" in data:
+    if data.get("serviceProviderSamlMetadata") is not None:
         out["service_provider_saml_metadata"] = data["serviceProviderSamlMetadata"]
     return out

@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: RuleSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleSummary:
     out: RuleSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_wafv2.types.rule_action
 
         out["action"] = capo_wafv2.types.rule_action.deserialize_aws_json_1_1(

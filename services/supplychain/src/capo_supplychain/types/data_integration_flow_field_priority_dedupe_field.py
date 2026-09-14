@@ -34,13 +34,13 @@ def serialize_json(value: DataIntegrationFlowFieldPriorityDedupeField) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowFieldPriorityDedupeField:
     out: DataIntegrationFlowFieldPriorityDedupeField = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "DataIntegrationFlowFieldPriorityDedupeField.name required"
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_supplychain.types.data_integration_flow_field_priority_dedupe_sort_order
 
         out["sort_order"] = (

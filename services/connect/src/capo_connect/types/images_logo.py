@@ -27,8 +27,8 @@ def serialize_json(value: ImagesLogo) -> dict:
 
 def deserialize_json(data: dict) -> ImagesLogo:
     out: ImagesLogo = {}  # type: ignore[typeddict-item]
-    if "Default" in data:
+    if data.get("Default") is not None:
         out["default"] = data["Default"]
-    if "Favicon" in data:
+    if data.get("Favicon") is not None:
         out["favicon"] = data["Favicon"]
     return out

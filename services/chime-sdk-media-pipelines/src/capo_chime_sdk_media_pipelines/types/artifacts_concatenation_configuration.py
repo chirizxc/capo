@@ -90,7 +90,7 @@ def serialize_json(value: ArtifactsConcatenationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ArtifactsConcatenationConfiguration:
     out: ArtifactsConcatenationConfiguration = {}  # type: ignore[typeddict-item]
-    if "Audio" in data:
+    if data.get("Audio") is not None:
         import capo_chime_sdk_media_pipelines.types.audio_concatenation_configuration
 
         out["audio"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> ArtifactsConcatenationConfiguration:
         )
     else:
         raise DeserializationError("ArtifactsConcatenationConfiguration.audio required")
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_chime_sdk_media_pipelines.types.video_concatenation_configuration
 
         out["video"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> ArtifactsConcatenationConfiguration:
         )
     else:
         raise DeserializationError("ArtifactsConcatenationConfiguration.video required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_chime_sdk_media_pipelines.types.content_concatenation_configuration
 
         out["content"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> ArtifactsConcatenationConfiguration:
         raise DeserializationError(
             "ArtifactsConcatenationConfiguration.content required"
         )
-    if "DataChannel" in data:
+    if data.get("DataChannel") is not None:
         import capo_chime_sdk_media_pipelines.types.data_channel_concatenation_configuration
 
         out["data_channel"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> ArtifactsConcatenationConfiguration:
         raise DeserializationError(
             "ArtifactsConcatenationConfiguration.data_channel required"
         )
-    if "TranscriptionMessages" in data:
+    if data.get("TranscriptionMessages") is not None:
         import capo_chime_sdk_media_pipelines.types.transcription_messages_concatenation_configuration
 
         out["transcription_messages"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> ArtifactsConcatenationConfiguration:
         raise DeserializationError(
             "ArtifactsConcatenationConfiguration.transcription_messages required"
         )
-    if "MeetingEvents" in data:
+    if data.get("MeetingEvents") is not None:
         import capo_chime_sdk_media_pipelines.types.meeting_events_concatenation_configuration
 
         out["meeting_events"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> ArtifactsConcatenationConfiguration:
         raise DeserializationError(
             "ArtifactsConcatenationConfiguration.meeting_events required"
         )
-    if "CompositedVideo" in data:
+    if data.get("CompositedVideo") is not None:
         import capo_chime_sdk_media_pipelines.types.composited_video_concatenation_configuration
 
         out["composited_video"] = (

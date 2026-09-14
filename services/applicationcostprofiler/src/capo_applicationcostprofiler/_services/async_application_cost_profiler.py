@@ -181,14 +181,16 @@ class AsyncApplicationCostProfilerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_applicationcostprofiler.types.delete_report_definition_request.DeleteReportDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_applicationcostprofiler.types.delete_report_definition_request.DeleteReportDefinitionRequest = {
+            "report_id": report_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_report_definition(
@@ -226,14 +228,16 @@ class AsyncApplicationCostProfilerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_applicationcostprofiler.types.get_report_definition_request.GetReportDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_applicationcostprofiler.types.get_report_definition_request.GetReportDefinitionRequest = {
+            "report_id": report_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_application_usage(
@@ -271,14 +275,16 @@ class AsyncApplicationCostProfilerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_applicationcostprofiler.types.import_application_usage_request.ImportApplicationUsageRequest = {}  # type: ignore[typeddict-item]
-        input_["source_s3_location"] = source_s3_location
+        input_: capo_applicationcostprofiler.types.import_application_usage_request.ImportApplicationUsageRequest = {
+            "source_s3_location": source_s3_location
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_report_definitions(
@@ -320,7 +326,7 @@ class AsyncApplicationCostProfilerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_applicationcostprofiler.types.list_report_definitions_request.ListReportDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_applicationcostprofiler.types.list_report_definitions_request.ListReportDefinitionsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -331,6 +337,7 @@ class AsyncApplicationCostProfilerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_report_definitions(
@@ -400,18 +407,20 @@ class AsyncApplicationCostProfilerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_applicationcostprofiler.types.put_report_definition_request.PutReportDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
-        input_["report_description"] = report_description
-        input_["report_frequency"] = report_frequency
-        input_["format"] = format
-        input_["destination_s3_location"] = destination_s3_location
+        input_: capo_applicationcostprofiler.types.put_report_definition_request.PutReportDefinitionRequest = {
+            "report_id": report_id,
+            "report_description": report_description,
+            "report_frequency": report_frequency,
+            "format": format,
+            "destination_s3_location": destination_s3_location,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_report_definition(
@@ -457,18 +466,20 @@ class AsyncApplicationCostProfilerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_applicationcostprofiler.types.update_report_definition_request.UpdateReportDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
-        input_["report_description"] = report_description
-        input_["report_frequency"] = report_frequency
-        input_["format"] = format
-        input_["destination_s3_location"] = destination_s3_location
+        input_: capo_applicationcostprofiler.types.update_report_definition_request.UpdateReportDefinitionRequest = {
+            "report_id": report_id,
+            "report_description": report_description,
+            "report_frequency": report_frequency,
+            "format": format,
+            "destination_s3_location": destination_s3_location,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

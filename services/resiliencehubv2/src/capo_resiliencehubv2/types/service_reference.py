@@ -22,8 +22,8 @@ def serialize_json(value: ServiceReference) -> dict:
 
 def deserialize_json(data: dict) -> ServiceReference:
     out: ServiceReference = {}  # type: ignore[typeddict-item]
-    if "serviceId" in data:
+    if data.get("serviceId") is not None:
         out["service_id"] = data["serviceId"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     return out

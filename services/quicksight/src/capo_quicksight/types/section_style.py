@@ -30,9 +30,9 @@ def serialize_json(value: SectionStyle) -> dict:
 
 def deserialize_json(data: dict) -> SectionStyle:
     out: SectionStyle = {}  # type: ignore[typeddict-item]
-    if "Height" in data:
+    if data.get("Height") is not None:
         out["height"] = data["Height"]
-    if "Padding" in data:
+    if data.get("Padding") is not None:
         import capo_quicksight.types.spacing
 
         out["padding"] = capo_quicksight.types.spacing.deserialize_json(data["Padding"])

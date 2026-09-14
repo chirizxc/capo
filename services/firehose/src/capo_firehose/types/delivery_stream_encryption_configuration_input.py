@@ -33,9 +33,9 @@ def serialize_aws_json_1_1(value: DeliveryStreamEncryptionConfigurationInput) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DeliveryStreamEncryptionConfigurationInput:
     out: DeliveryStreamEncryptionConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "KeyARN" in data:
+    if data.get("KeyARN") is not None:
         out["key_arn"] = data["KeyARN"]
-    if "KeyType" in data:
+    if data.get("KeyType") is not None:
         import capo_firehose.types.key_type
 
         out["key_type"] = capo_firehose.types.key_type.deserialize_aws_json_1_1(

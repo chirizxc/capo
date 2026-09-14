@@ -54,15 +54,15 @@ def serialize_aws_json_1_1(value: SessionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionConfiguration:
     out: SessionConfiguration = {}  # type: ignore[typeddict-item]
-    if "ExecutionRole" in data:
+    if data.get("ExecutionRole") is not None:
         out["execution_role"] = data["ExecutionRole"]
-    if "WorkingDirectory" in data:
+    if data.get("WorkingDirectory") is not None:
         out["working_directory"] = data["WorkingDirectory"]
-    if "IdleTimeoutSeconds" in data:
+    if data.get("IdleTimeoutSeconds") is not None:
         out["idle_timeout_seconds"] = data["IdleTimeoutSeconds"]
-    if "SessionIdleTimeoutInMinutes" in data:
+    if data.get("SessionIdleTimeoutInMinutes") is not None:
         out["session_idle_timeout_in_minutes"] = data["SessionIdleTimeoutInMinutes"]
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_athena.types.encryption_configuration
 
         out["encryption_configuration"] = (

@@ -39,15 +39,20 @@ class DefaultUserAssociatedToUserGroupFault(ServiceError):
 
     code: str | None = "DefaultUserAssociatedToUserGroupFault"
 
-    def __init__(self, data: DefaultUserAssociatedToUserGroupFault_):
+    def __init__(
+        self, data: DefaultUserAssociatedToUserGroupFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DefaultUserAssociatedToUserGroupFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "DefaultUserAssociatedToUserGroupFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "DefaultUserAssociatedToUserGroupFault":
+        return cls(deserialize_query(el), message)

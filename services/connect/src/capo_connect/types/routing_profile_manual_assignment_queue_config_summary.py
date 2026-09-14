@@ -38,25 +38,25 @@ def serialize_json(value: RoutingProfileManualAssignmentQueueConfigSummary) -> d
 
 def deserialize_json(data: dict) -> RoutingProfileManualAssignmentQueueConfigSummary:
     out: RoutingProfileManualAssignmentQueueConfigSummary = {}  # type: ignore[typeddict-item]
-    if "QueueId" in data:
+    if data.get("QueueId") is not None:
         out["queue_id"] = data["QueueId"]
     else:
         raise DeserializationError(
             "RoutingProfileManualAssignmentQueueConfigSummary.queue_id required"
         )
-    if "QueueArn" in data:
+    if data.get("QueueArn") is not None:
         out["queue_arn"] = data["QueueArn"]
     else:
         raise DeserializationError(
             "RoutingProfileManualAssignmentQueueConfigSummary.queue_arn required"
         )
-    if "QueueName" in data:
+    if data.get("QueueName") is not None:
         out["queue_name"] = data["QueueName"]
     else:
         raise DeserializationError(
             "RoutingProfileManualAssignmentQueueConfigSummary.queue_name required"
         )
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])

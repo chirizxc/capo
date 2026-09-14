@@ -27,8 +27,8 @@ def serialize_json(value: AwsEc2LaunchTemplateDataCpuOptionsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataCpuOptionsDetails:
     out: AwsEc2LaunchTemplateDataCpuOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "CoreCount" in data:
+    if data.get("CoreCount") is not None:
         out["core_count"] = data["CoreCount"]
-    if "ThreadsPerCore" in data:
+    if data.get("ThreadsPerCore") is not None:
         out["threads_per_core"] = data["ThreadsPerCore"]
     return out

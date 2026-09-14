@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: CertificateLimitExceededException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateLimitExceededException_:
     out: CertificateLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -42,15 +42,20 @@ class CertificateLimitExceededException(ServiceError):
 
     code: str | None = "CertificateLimitExceededException"
 
-    def __init__(self, data: CertificateLimitExceededException_):
+    def __init__(
+        self, data: CertificateLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CertificateLimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "CertificateLimitExceededException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "CertificateLimitExceededException":
+        return cls(deserialize_aws_json_1_1(data), message)

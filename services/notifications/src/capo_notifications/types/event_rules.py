@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EventRules:
 
     out: EventRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_notifications.types.event_rule_structure.deserialize_json(item))
     return out

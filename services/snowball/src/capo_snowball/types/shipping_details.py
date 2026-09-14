@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: ShippingDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShippingDetails:
     out: ShippingDetails = {}  # type: ignore[typeddict-item]
-    if "ShippingOption" in data:
+    if data.get("ShippingOption") is not None:
         import capo_snowball.types.shipping_option
 
         out["shipping_option"] = (
@@ -54,13 +54,13 @@ def deserialize_aws_json_1_1(data: dict) -> ShippingDetails:
                 data["ShippingOption"]
             )
         )
-    if "InboundShipment" in data:
+    if data.get("InboundShipment") is not None:
         import capo_snowball.types.shipment
 
         out["inbound_shipment"] = capo_snowball.types.shipment.deserialize_aws_json_1_1(
             data["InboundShipment"]
         )
-    if "OutboundShipment" in data:
+    if data.get("OutboundShipment") is not None:
         import capo_snowball.types.shipment
 
         out["outbound_shipment"] = (

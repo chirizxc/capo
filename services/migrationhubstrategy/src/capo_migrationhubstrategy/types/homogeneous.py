@@ -31,7 +31,7 @@ def serialize_json(value: Homogeneous) -> dict:
 
 def deserialize_json(data: dict) -> Homogeneous:
     out: Homogeneous = {}  # type: ignore[typeddict-item]
-    if "targetDatabaseEngine" in data:
+    if data.get("targetDatabaseEngine") is not None:
         import capo_migrationhubstrategy.types.homogeneous_target_database_engines
 
         out["target_database_engine"] = (

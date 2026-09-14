@@ -67,19 +67,19 @@ def serialize_json(value: CreateClusterInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateClusterInput:
     out: CreateClusterInput = {}  # type: ignore[typeddict-item]
-    if "deletionProtectionEnabled" in data:
+    if data.get("deletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["deletionProtectionEnabled"]
     else:
         out["deletion_protection_enabled"] = True
-    if "kmsEncryptionKey" in data:
+    if data.get("kmsEncryptionKey") is not None:
         out["kms_encryption_key"] = data["kmsEncryptionKey"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_dsql.types.tag_map
 
         out["tags"] = capo_dsql.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "multiRegionProperties" in data:
+    if data.get("multiRegionProperties") is not None:
         import capo_dsql.types.multi_region_properties
 
         out["multi_region_properties"] = (
@@ -87,9 +87,9 @@ def deserialize_json(data: dict) -> CreateClusterInput:
                 data["multiRegionProperties"]
             )
         )
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
-    if "bypassPolicyLockoutSafetyCheck" in data:
+    if data.get("bypassPolicyLockoutSafetyCheck") is not None:
         out["bypass_policy_lockout_safety_check"] = data[
             "bypassPolicyLockoutSafetyCheck"
         ]

@@ -183,19 +183,19 @@ def serialize_json(value: VideoDescription) -> dict:
 
 def deserialize_json(data: dict) -> VideoDescription:
     out: VideoDescription = {}  # type: ignore[typeddict-item]
-    if "afdSignaling" in data:
+    if data.get("afdSignaling") is not None:
         import capo_mediaconvert.types.afd_signaling
 
         out["afd_signaling"] = capo_mediaconvert.types.afd_signaling.deserialize_json(
             data["afdSignaling"]
         )
-    if "antiAlias" in data:
+    if data.get("antiAlias") is not None:
         import capo_mediaconvert.types.anti_alias
 
         out["anti_alias"] = capo_mediaconvert.types.anti_alias.deserialize_json(
             data["antiAlias"]
         )
-    if "chromaPositionMode" in data:
+    if data.get("chromaPositionMode") is not None:
         import capo_mediaconvert.types.chroma_position_mode
 
         out["chroma_position_mode"] = (
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> VideoDescription:
                 data["chromaPositionMode"]
             )
         )
-    if "codecSettings" in data:
+    if data.get("codecSettings") is not None:
         import capo_mediaconvert.types.video_codec_settings
 
         out["codec_settings"] = (
@@ -211,17 +211,17 @@ def deserialize_json(data: dict) -> VideoDescription:
                 data["codecSettings"]
             )
         )
-    if "colorMetadata" in data:
+    if data.get("colorMetadata") is not None:
         import capo_mediaconvert.types.color_metadata
 
         out["color_metadata"] = capo_mediaconvert.types.color_metadata.deserialize_json(
             data["colorMetadata"]
         )
-    if "crop" in data:
+    if data.get("crop") is not None:
         import capo_mediaconvert.types.rectangle
 
         out["crop"] = capo_mediaconvert.types.rectangle.deserialize_json(data["crop"])
-    if "dropFrameTimecode" in data:
+    if data.get("dropFrameTimecode") is not None:
         import capo_mediaconvert.types.drop_frame_timecode
 
         out["drop_frame_timecode"] = (
@@ -229,23 +229,23 @@ def deserialize_json(data: dict) -> VideoDescription:
                 data["dropFrameTimecode"]
             )
         )
-    if "fixedAfd" in data:
+    if data.get("fixedAfd") is not None:
         out["fixed_afd"] = data["fixedAfd"]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "position" in data:
+    if data.get("position") is not None:
         import capo_mediaconvert.types.rectangle
 
         out["position"] = capo_mediaconvert.types.rectangle.deserialize_json(
             data["position"]
         )
-    if "respondToAfd" in data:
+    if data.get("respondToAfd") is not None:
         import capo_mediaconvert.types.respond_to_afd
 
         out["respond_to_afd"] = capo_mediaconvert.types.respond_to_afd.deserialize_json(
             data["respondToAfd"]
         )
-    if "scalingBehavior" in data:
+    if data.get("scalingBehavior") is not None:
         import capo_mediaconvert.types.scaling_behavior
 
         out["scaling_behavior"] = (
@@ -253,9 +253,9 @@ def deserialize_json(data: dict) -> VideoDescription:
                 data["scalingBehavior"]
             )
         )
-    if "sharpness" in data:
+    if data.get("sharpness") is not None:
         out["sharpness"] = data["sharpness"]
-    if "timecodeInsertion" in data:
+    if data.get("timecodeInsertion") is not None:
         import capo_mediaconvert.types.video_timecode_insertion
 
         out["timecode_insertion"] = (
@@ -263,13 +263,13 @@ def deserialize_json(data: dict) -> VideoDescription:
                 data["timecodeInsertion"]
             )
         )
-    if "timecodeTrack" in data:
+    if data.get("timecodeTrack") is not None:
         import capo_mediaconvert.types.timecode_track
 
         out["timecode_track"] = capo_mediaconvert.types.timecode_track.deserialize_json(
             data["timecodeTrack"]
         )
-    if "videoPreprocessors" in data:
+    if data.get("videoPreprocessors") is not None:
         import capo_mediaconvert.types.video_preprocessor
 
         out["video_preprocessors"] = (
@@ -277,6 +277,6 @@ def deserialize_json(data: dict) -> VideoDescription:
                 data["videoPreprocessors"]
             )
         )
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     return out

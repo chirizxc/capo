@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> ResourceDescriptions:
 
     out: ResourceDescriptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cloudcontrol.types.resource_description.deserialize_aws_json_1_0(item)
         )

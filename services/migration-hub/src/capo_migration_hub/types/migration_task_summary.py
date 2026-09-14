@@ -66,21 +66,21 @@ def serialize_aws_json_1_1(value: MigrationTaskSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MigrationTaskSummary:
     out: MigrationTaskSummary = {}  # type: ignore[typeddict-item]
-    if "ProgressUpdateStream" in data:
+    if data.get("ProgressUpdateStream") is not None:
         out["progress_update_stream"] = data["ProgressUpdateStream"]
-    if "MigrationTaskName" in data:
+    if data.get("MigrationTaskName") is not None:
         out["migration_task_name"] = data["MigrationTaskName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_migration_hub.types.status
 
         out["status"] = capo_migration_hub.types.status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ProgressPercent" in data:
+    if data.get("ProgressPercent") is not None:
         out["progress_percent"] = data["ProgressPercent"]
-    if "StatusDetail" in data:
+    if data.get("StatusDetail") is not None:
         out["status_detail"] = data["StatusDetail"]
-    if "UpdateDateTime" in data:
+    if data.get("UpdateDateTime") is not None:
         import capo_migration_hub.types.update_date_time
 
         out["update_date_time"] = (

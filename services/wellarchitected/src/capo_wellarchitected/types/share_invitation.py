@@ -61,9 +61,9 @@ def serialize_json(value: ShareInvitation) -> dict:
 
 def deserialize_json(data: dict) -> ShareInvitation:
     out: ShareInvitation = {}  # type: ignore[typeddict-item]
-    if "ShareInvitationId" in data:
+    if data.get("ShareInvitationId") is not None:
         out["share_invitation_id"] = data["ShareInvitationId"]
-    if "ShareResourceType" in data:
+    if data.get("ShareResourceType") is not None:
         import capo_wellarchitected.types.share_resource_type
 
         out["share_resource_type"] = (
@@ -71,14 +71,14 @@ def deserialize_json(data: dict) -> ShareInvitation:
                 data["ShareResourceType"]
             )
         )
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "ProfileArn" in data:
+    if data.get("ProfileArn") is not None:
         out["profile_arn"] = data["ProfileArn"]
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
     return out

@@ -44,23 +44,23 @@ def serialize_aws_json_1_1(value: Registry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Registry:
     out: Registry = {}  # type: ignore[typeddict-item]
-    if "registryId" in data:
+    if data.get("registryId") is not None:
         out["registry_id"] = data["registryId"]
     else:
         raise DeserializationError("Registry.registry_id required")
-    if "registryArn" in data:
+    if data.get("registryArn") is not None:
         out["registry_arn"] = data["registryArn"]
     else:
         raise DeserializationError("Registry.registry_arn required")
-    if "registryUri" in data:
+    if data.get("registryUri") is not None:
         out["registry_uri"] = data["registryUri"]
     else:
         raise DeserializationError("Registry.registry_uri required")
-    if "verified" in data:
+    if data.get("verified") is not None:
         out["verified"] = data["verified"]
     else:
         raise DeserializationError("Registry.verified required")
-    if "aliases" in data:
+    if data.get("aliases") is not None:
         import capo_ecr_public.types.registry_alias_list
 
         out["aliases"] = (

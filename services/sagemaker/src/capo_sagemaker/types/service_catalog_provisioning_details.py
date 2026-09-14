@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: ServiceCatalogProvisioningDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceCatalogProvisioningDetails:
     out: ServiceCatalogProvisioningDetails = {}  # type: ignore[typeddict-item]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
-    if "PathId" in data:
+    if data.get("PathId") is not None:
         out["path_id"] = data["PathId"]
-    if "ProvisioningParameters" in data:
+    if data.get("ProvisioningParameters") is not None:
         import capo_sagemaker.types.provisioning_parameters
 
         out["provisioning_parameters"] = (

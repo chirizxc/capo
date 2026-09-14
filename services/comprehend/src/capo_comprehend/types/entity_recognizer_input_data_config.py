@@ -93,7 +93,7 @@ def serialize_aws_json_1_1(value: EntityRecognizerInputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerInputDataConfig:
     out: EntityRecognizerInputDataConfig = {}  # type: ignore[typeddict-item]
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_comprehend.types.entity_recognizer_data_format
 
         out["data_format"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerInputDataConfig:
                 data["DataFormat"]
             )
         )
-    if "EntityTypes" in data:
+    if data.get("EntityTypes") is not None:
         import capo_comprehend.types.entity_types_list
 
         out["entity_types"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerInputDataConfig:
         raise DeserializationError(
             "EntityRecognizerInputDataConfig.entity_types required"
         )
-    if "Documents" in data:
+    if data.get("Documents") is not None:
         import capo_comprehend.types.entity_recognizer_documents
 
         out["documents"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerInputDataConfig:
                 data["Documents"]
             )
         )
-    if "Annotations" in data:
+    if data.get("Annotations") is not None:
         import capo_comprehend.types.entity_recognizer_annotations
 
         out["annotations"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerInputDataConfig:
                 data["Annotations"]
             )
         )
-    if "EntityList" in data:
+    if data.get("EntityList") is not None:
         import capo_comprehend.types.entity_recognizer_entity_list
 
         out["entity_list"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerInputDataConfig:
                 data["EntityList"]
             )
         )
-    if "AugmentedManifests" in data:
+    if data.get("AugmentedManifests") is not None:
         import capo_comprehend.types.entity_recognizer_augmented_manifests_list
 
         out["augmented_manifests"] = (

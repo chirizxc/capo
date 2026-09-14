@@ -30,8 +30,8 @@ def serialize_json(value: Readiness) -> dict:
 
 def deserialize_json(data: dict) -> Readiness:
     out: Readiness = {}  # type: ignore[typeddict-item]
-    if "ProgressPercentage" in data:
+    if data.get("ProgressPercentage") is not None:
         out["progress_percentage"] = data["ProgressPercentage"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

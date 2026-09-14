@@ -63,22 +63,22 @@ def serialize_aws_json_1_0(value: UpdatePhoneNumberRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdatePhoneNumberRequest:
     out: UpdatePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberId" in data:
+    if data.get("PhoneNumberId") is not None:
         out["phone_number_id"] = data["PhoneNumberId"]
     else:
         raise DeserializationError("UpdatePhoneNumberRequest.phone_number_id required")
-    if "TwoWayEnabled" in data:
+    if data.get("TwoWayEnabled") is not None:
         out["two_way_enabled"] = data["TwoWayEnabled"]
-    if "TwoWayChannelArn" in data:
+    if data.get("TwoWayChannelArn") is not None:
         out["two_way_channel_arn"] = data["TwoWayChannelArn"]
-    if "TwoWayChannelRole" in data:
+    if data.get("TwoWayChannelRole") is not None:
         out["two_way_channel_role"] = data["TwoWayChannelRole"]
-    if "SelfManagedOptOutsEnabled" in data:
+    if data.get("SelfManagedOptOutsEnabled") is not None:
         out["self_managed_opt_outs_enabled"] = data["SelfManagedOptOutsEnabled"]
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
-    if "InternationalSendingEnabled" in data:
+    if data.get("InternationalSendingEnabled") is not None:
         out["international_sending_enabled"] = data["InternationalSendingEnabled"]
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     return out

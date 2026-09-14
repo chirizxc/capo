@@ -106,29 +106,29 @@ def serialize_json(value: DataProductListingItem) -> dict:
 
 def deserialize_json(data: dict) -> DataProductListingItem:
     out: DataProductListingItem = {}  # type: ignore[typeddict-item]
-    if "listingId" in data:
+    if data.get("listingId") is not None:
         out["listing_id"] = data["listingId"]
-    if "listingRevision" in data:
+    if data.get("listingRevision") is not None:
         out["listing_revision"] = data["listingRevision"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "entityRevision" in data:
+    if data.get("entityRevision") is not None:
         out["entity_revision"] = data["entityRevision"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "listingCreatedBy" in data:
+    if data.get("listingCreatedBy") is not None:
         out["listing_created_by"] = data["listingCreatedBy"]
-    if "listingUpdatedBy" in data:
+    if data.get("listingUpdatedBy") is not None:
         out["listing_updated_by"] = data["listingUpdatedBy"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.detailed_glossary_terms
 
         out["glossary_terms"] = (
@@ -136,9 +136,9 @@ def deserialize_json(data: dict) -> DataProductListingItem:
                 data["glossaryTerms"]
             )
         )
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
-    if "additionalAttributes" in data:
+    if data.get("additionalAttributes") is not None:
         import capo_datazone.types.data_product_listing_item_additional_attributes
 
         out["additional_attributes"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> DataProductListingItem:
                 data["additionalAttributes"]
             )
         )
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.listing_summary_items
 
         out["items"] = capo_datazone.types.listing_summary_items.deserialize_json(

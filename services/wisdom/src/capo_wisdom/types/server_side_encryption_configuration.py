@@ -23,6 +23,6 @@ def serialize_json(value: ServerSideEncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ServerSideEncryptionConfiguration:
     out: ServerSideEncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

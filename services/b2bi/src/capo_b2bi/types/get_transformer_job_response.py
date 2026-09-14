@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: GetTransformerJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetTransformerJobResponse:
     out: GetTransformerJobResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_b2bi.types.transformer_job_status
 
         out["status"] = capo_b2bi.types.transformer_job_status.deserialize_aws_json_1_0(
@@ -49,12 +49,12 @@ def deserialize_aws_json_1_0(data: dict) -> GetTransformerJobResponse:
         )
     else:
         raise DeserializationError("GetTransformerJobResponse.status required")
-    if "outputFiles" in data:
+    if data.get("outputFiles") is not None:
         import capo_b2bi.types.s3_location_list
 
         out["output_files"] = capo_b2bi.types.s3_location_list.deserialize_aws_json_1_0(
             data["outputFiles"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

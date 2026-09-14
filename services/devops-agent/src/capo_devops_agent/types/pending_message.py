@@ -29,11 +29,11 @@ def serialize_json(value: PendingMessage) -> dict:
 
 def deserialize_json(data: dict) -> PendingMessage:
     out: PendingMessage = {}  # type: ignore[typeddict-item]
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
     else:
         raise DeserializationError("PendingMessage.message_id required")
-    if "message" in data:
+    if data.get("message") is not None:
         import capo_devops_agent.types.message
 
         out["message"] = capo_devops_agent.types.message.deserialize_json(

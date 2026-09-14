@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: GetEnvironmentResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetEnvironmentResponse:
     out: GetEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_evs.types.environment
 
         out["environment"] = capo_evs.types.environment.deserialize_aws_json_1_0(

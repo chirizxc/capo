@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PurchaseOptionSummaryList:
 
     out: PurchaseOptionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.purchase_option_summary.deserialize_json(
                 item

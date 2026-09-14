@@ -66,9 +66,9 @@ def serialize_aws_json_1_1(value: Event) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "SourceIdentifier" in data:
+    if data.get("SourceIdentifier") is not None:
         out["source_identifier"] = data["SourceIdentifier"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_database_migration_service.types.source_type
 
         out["source_type"] = (
@@ -76,9 +76,9 @@ def deserialize_aws_json_1_1(data: dict) -> Event:
                 data["SourceType"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "EventCategories" in data:
+    if data.get("EventCategories") is not None:
         import capo_database_migration_service.types.event_categories_list
 
         out["event_categories"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> Event:
                 data["EventCategories"]
             )
         )
-    if "Date" in data:
+    if data.get("Date") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["date"] = (

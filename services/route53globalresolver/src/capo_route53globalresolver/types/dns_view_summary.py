@@ -111,19 +111,19 @@ def serialize_json(value: DNSViewSummary) -> dict:
 
 def deserialize_json(data: dict) -> DNSViewSummary:
     out: DNSViewSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DNSViewSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DNSViewSummary.arn required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("DNSViewSummary.client_token required")
-    if "dnssecValidation" in data:
+    if data.get("dnssecValidation") is not None:
         import capo_route53globalresolver.types.dns_sec_validation_type
 
         out["dnssec_validation"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> DNSViewSummary:
         )
     else:
         raise DeserializationError("DNSViewSummary.dnssec_validation required")
-    if "ednsClientSubnet" in data:
+    if data.get("ednsClientSubnet") is not None:
         import capo_route53globalresolver.types.edns_client_subnet_type
 
         out["edns_client_subnet"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> DNSViewSummary:
         )
     else:
         raise DeserializationError("DNSViewSummary.edns_client_subnet required")
-    if "firewallRulesFailOpen" in data:
+    if data.get("firewallRulesFailOpen") is not None:
         import capo_route53globalresolver.types.firewall_rules_fail_open_type
 
         out["firewall_rules_fail_open"] = (
@@ -153,17 +153,17 @@ def deserialize_json(data: dict) -> DNSViewSummary:
         )
     else:
         raise DeserializationError("DNSViewSummary.firewall_rules_fail_open required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DNSViewSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "globalResolverId" in data:
+    if data.get("globalResolverId") is not None:
         out["global_resolver_id"] = data["globalResolverId"]
     else:
         raise DeserializationError("DNSViewSummary.global_resolver_id required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["created_at"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> DNSViewSummary:
         )
     else:
         raise DeserializationError("DNSViewSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["updated_at"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> DNSViewSummary:
         )
     else:
         raise DeserializationError("DNSViewSummary.updated_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_route53globalresolver.types.profile_resource_status
 
         out["status"] = (

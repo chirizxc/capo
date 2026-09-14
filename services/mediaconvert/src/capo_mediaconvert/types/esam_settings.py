@@ -51,7 +51,7 @@ def serialize_json(value: EsamSettings) -> dict:
 
 def deserialize_json(data: dict) -> EsamSettings:
     out: EsamSettings = {}  # type: ignore[typeddict-item]
-    if "manifestConfirmConditionNotification" in data:
+    if data.get("manifestConfirmConditionNotification") is not None:
         import capo_mediaconvert.types.esam_manifest_confirm_condition_notification
 
         out["manifest_confirm_condition_notification"] = (
@@ -59,9 +59,9 @@ def deserialize_json(data: dict) -> EsamSettings:
                 data["manifestConfirmConditionNotification"]
             )
         )
-    if "responseSignalPreroll" in data:
+    if data.get("responseSignalPreroll") is not None:
         out["response_signal_preroll"] = data["responseSignalPreroll"]
-    if "signalProcessingNotification" in data:
+    if data.get("signalProcessingNotification") is not None:
         import capo_mediaconvert.types.esam_signal_processing_notification
 
         out["signal_processing_notification"] = (

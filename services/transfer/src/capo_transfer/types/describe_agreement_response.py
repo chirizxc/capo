@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DescribeAgreementResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAgreementResponse:
     out: DescribeAgreementResponse = {}  # type: ignore[typeddict-item]
-    if "Agreement" in data:
+    if data.get("Agreement") is not None:
         import capo_transfer.types.described_agreement
 
         out["agreement"] = (

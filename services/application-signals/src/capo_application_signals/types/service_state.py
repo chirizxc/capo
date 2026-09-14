@@ -53,7 +53,7 @@ def serialize_json(value: ServiceState) -> dict:
 
 def deserialize_json(data: dict) -> ServiceState:
     out: ServiceState = {}  # type: ignore[typeddict-item]
-    if "AttributeFilters" in data:
+    if data.get("AttributeFilters") is not None:
         import capo_application_signals.types.attribute_filters
 
         out["attribute_filters"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> ServiceState:
                 data["AttributeFilters"]
             )
         )
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_application_signals.types.attributes
 
         out["service"] = capo_application_signals.types.attributes.deserialize_json(
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> ServiceState:
         )
     else:
         raise DeserializationError("ServiceState.service required")
-    if "LatestChangeEvents" in data:
+    if data.get("LatestChangeEvents") is not None:
         import capo_application_signals.types.latest_change_events
 
         out["latest_change_events"] = (

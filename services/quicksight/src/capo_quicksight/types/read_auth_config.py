@@ -42,7 +42,7 @@ def serialize_json(value: ReadAuthConfig) -> dict:
 
 def deserialize_json(data: dict) -> ReadAuthConfig:
     out: ReadAuthConfig = {}  # type: ignore[typeddict-item]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_quicksight.types.connection_auth_type
 
         out["authentication_type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ReadAuthConfig:
         )
     else:
         raise DeserializationError("ReadAuthConfig.authentication_type required")
-    if "AuthenticationMetadata" in data:
+    if data.get("AuthenticationMetadata") is not None:
         import capo_quicksight.types.read_authentication_metadata
 
         out["authentication_metadata"] = (

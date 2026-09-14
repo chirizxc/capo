@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: EventBatchingCondition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventBatchingCondition:
     out: EventBatchingCondition = {}  # type: ignore[typeddict-item]
-    if "BatchSize" in data:
+    if data.get("BatchSize") is not None:
         out["batch_size"] = data["BatchSize"]
     else:
         raise DeserializationError("EventBatchingCondition.batch_size required")
-    if "BatchWindow" in data:
+    if data.get("BatchWindow") is not None:
         out["batch_window"] = data["BatchWindow"]
     return out

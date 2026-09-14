@@ -30,12 +30,12 @@ def serialize_aws_json_1_1(value: HistoricalOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HistoricalOptions:
     out: HistoricalOptions = {}  # type: ignore[typeddict-item]
-    if "BudgetAdjustmentPeriod" in data:
+    if data.get("BudgetAdjustmentPeriod") is not None:
         out["budget_adjustment_period"] = data["BudgetAdjustmentPeriod"]
     else:
         raise DeserializationError(
             "HistoricalOptions.budget_adjustment_period required"
         )
-    if "LookBackAvailablePeriods" in data:
+    if data.get("LookBackAvailablePeriods") is not None:
         out["look_back_available_periods"] = data["LookBackAvailablePeriods"]
     return out

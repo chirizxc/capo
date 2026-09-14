@@ -23,6 +23,6 @@ def serialize_json(value: AwsLambdaFunctionDeadLetterConfig) -> dict:
 
 def deserialize_json(data: dict) -> AwsLambdaFunctionDeadLetterConfig:
     out: AwsLambdaFunctionDeadLetterConfig = {}  # type: ignore[typeddict-item]
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
     return out

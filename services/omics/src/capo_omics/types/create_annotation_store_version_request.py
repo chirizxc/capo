@@ -48,21 +48,21 @@ def serialize_json(value: CreateAnnotationStoreVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAnnotationStoreVersionRequest:
     out: CreateAnnotationStoreVersionRequest = {}  # type: ignore[typeddict-item]
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
     else:
         raise DeserializationError(
             "CreateAnnotationStoreVersionRequest.version_name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "versionOptions" in data:
+    if data.get("versionOptions") is not None:
         import capo_omics.types.version_options
 
         out["version_options"] = capo_omics.types.version_options.deserialize_json(
             data["versionOptions"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])

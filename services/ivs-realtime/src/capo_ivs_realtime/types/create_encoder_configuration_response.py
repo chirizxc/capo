@@ -31,7 +31,7 @@ def serialize_json(value: CreateEncoderConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateEncoderConfigurationResponse:
     out: CreateEncoderConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "encoderConfiguration" in data:
+    if data.get("encoderConfiguration") is not None:
         import capo_ivs_realtime.types.encoder_configuration
 
         out["encoder_configuration"] = (

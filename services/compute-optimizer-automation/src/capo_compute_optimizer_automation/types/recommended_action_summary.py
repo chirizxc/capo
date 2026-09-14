@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: RecommendedActionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecommendedActionSummary:
     out: RecommendedActionSummary = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("RecommendedActionSummary.key required")
-    if "total" in data:
+    if data.get("total") is not None:
         import capo_compute_optimizer_automation.types.recommended_action_total
 
         out["total"] = (

@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: UpdatePullRequestDescriptionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePullRequestDescriptionOutput:
     out: UpdatePullRequestDescriptionOutput = {}  # type: ignore[typeddict-item]
-    if "pullRequest" in data:
+    if data.get("pullRequest") is not None:
         import capo_codecommit.types.pull_request
 
         out["pull_request"] = (

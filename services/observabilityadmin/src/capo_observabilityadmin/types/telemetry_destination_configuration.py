@@ -120,7 +120,7 @@ def serialize_json(value: TelemetryDestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TelemetryDestinationConfiguration:
     out: TelemetryDestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "DestinationType" in data:
+    if data.get("DestinationType") is not None:
         import capo_observabilityadmin.types.destination_type
 
         out["destination_type"] = (
@@ -128,11 +128,11 @@ def deserialize_json(data: dict) -> TelemetryDestinationConfiguration:
                 data["DestinationType"]
             )
         )
-    if "DestinationPattern" in data:
+    if data.get("DestinationPattern") is not None:
         out["destination_pattern"] = data["DestinationPattern"]
-    if "RetentionInDays" in data:
+    if data.get("RetentionInDays") is not None:
         out["retention_in_days"] = data["RetentionInDays"]
-    if "VPCFlowLogParameters" in data:
+    if data.get("VPCFlowLogParameters") is not None:
         import capo_observabilityadmin.types.vpc_flow_log_parameters
 
         out["vpc_flow_log_parameters"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> TelemetryDestinationConfiguration:
                 data["VPCFlowLogParameters"]
             )
         )
-    if "CloudtrailParameters" in data:
+    if data.get("CloudtrailParameters") is not None:
         import capo_observabilityadmin.types.cloudtrail_parameters
 
         out["cloudtrail_parameters"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> TelemetryDestinationConfiguration:
                 data["CloudtrailParameters"]
             )
         )
-    if "ELBLoadBalancerLoggingParameters" in data:
+    if data.get("ELBLoadBalancerLoggingParameters") is not None:
         import capo_observabilityadmin.types.elb_load_balancer_logging_parameters
 
         out["elb_load_balancer_logging_parameters"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> TelemetryDestinationConfiguration:
                 data["ELBLoadBalancerLoggingParameters"]
             )
         )
-    if "WAFLoggingParameters" in data:
+    if data.get("WAFLoggingParameters") is not None:
         import capo_observabilityadmin.types.waf_logging_parameters
 
         out["waf_logging_parameters"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> TelemetryDestinationConfiguration:
                 data["WAFLoggingParameters"]
             )
         )
-    if "LogDeliveryParameters" in data:
+    if data.get("LogDeliveryParameters") is not None:
         import capo_observabilityadmin.types.log_delivery_parameters
 
         out["log_delivery_parameters"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> TelemetryDestinationConfiguration:
                 data["LogDeliveryParameters"]
             )
         )
-    if "MskMonitoringParameters" in data:
+    if data.get("MskMonitoringParameters") is not None:
         import capo_observabilityadmin.types.msk_monitoring_parameters
 
         out["msk_monitoring_parameters"] = (

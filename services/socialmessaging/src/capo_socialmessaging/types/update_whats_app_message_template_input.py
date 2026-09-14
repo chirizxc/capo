@@ -79,21 +79,21 @@ def serialize_json(value: UpdateWhatsAppMessageTemplateInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWhatsAppMessageTemplateInput:
     out: UpdateWhatsAppMessageTemplateInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateWhatsAppMessageTemplateInput.id required")
-    if "metaTemplateId" in data:
+    if data.get("metaTemplateId") is not None:
         out["meta_template_id"] = data["metaTemplateId"]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
-    if "templateLanguageCode" in data:
+    if data.get("templateLanguageCode") is not None:
         out["template_language_code"] = data["templateLanguageCode"]
-    if "parameterFormat" in data:
+    if data.get("parameterFormat") is not None:
         out["parameter_format"] = data["parameterFormat"]
-    if "templateCategory" in data:
+    if data.get("templateCategory") is not None:
         out["template_category"] = data["templateCategory"]
-    if "templateComponents" in data:
+    if data.get("templateComponents") is not None:
         import capo_socialmessaging.types.meta_template_components
 
         out["template_components"] = (
@@ -101,6 +101,6 @@ def deserialize_json(data: dict) -> UpdateWhatsAppMessageTemplateInput:
                 data["templateComponents"]
             )
         )
-    if "ctaUrlLinkTrackingOptedOut" in data:
+    if data.get("ctaUrlLinkTrackingOptedOut") is not None:
         out["cta_url_link_tracking_opted_out"] = data["ctaUrlLinkTrackingOptedOut"]
     return out

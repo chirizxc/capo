@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CdmaList:
 
     out: CdmaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_wireless.types.cdma_obj.deserialize_json(item))
     return out

@@ -35,15 +35,15 @@ def serialize_json(value: CreateProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProfileRequest:
     out: CreateProfileRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateProfileRequest.name required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateProfileRequest.client_token required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53profiles.types.tag_list
 
         out["tags"] = capo_route53profiles.types.tag_list.deserialize_json(data["Tags"])

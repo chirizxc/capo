@@ -88,25 +88,25 @@ def serialize_json(value: GetRetrieverResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRetrieverResponse:
     out: GetRetrieverResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "retrieverId" in data:
+    if data.get("retrieverId") is not None:
         out["retriever_id"] = data["retrieverId"]
-    if "retrieverArn" in data:
+    if data.get("retrieverArn") is not None:
         out["retriever_arn"] = data["retrieverArn"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.retriever_type
 
         out["type"] = capo_qbusiness.types.retriever_type.deserialize_json(data["type"])
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.retriever_status
 
         out["status"] = capo_qbusiness.types.retriever_status.deserialize_json(
             data["status"]
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_qbusiness.types.retriever_configuration
 
         out["configuration"] = (
@@ -114,15 +114,15 @@ def deserialize_json(data: dict) -> GetRetrieverResponse:
                 data["configuration"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(

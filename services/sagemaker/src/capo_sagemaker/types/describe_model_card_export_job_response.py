@@ -102,11 +102,11 @@ def serialize_aws_json_1_1(value: DescribeModelCardExportJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeModelCardExportJobResponse:
     out: DescribeModelCardExportJobResponse = {}  # type: ignore[typeddict-item]
-    if "ModelCardExportJobName" in data:
+    if data.get("ModelCardExportJobName") is not None:
         out["model_card_export_job_name"] = data["ModelCardExportJobName"]
-    if "ModelCardExportJobArn" in data:
+    if data.get("ModelCardExportJobArn") is not None:
         out["model_card_export_job_arn"] = data["ModelCardExportJobArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.model_card_export_job_status
 
         out["status"] = (
@@ -114,11 +114,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelCardExportJobResponse:
                 data["Status"]
             )
         )
-    if "ModelCardName" in data:
+    if data.get("ModelCardName") is not None:
         out["model_card_name"] = data["ModelCardName"]
-    if "ModelCardVersion" in data:
+    if data.get("ModelCardVersion") is not None:
         out["model_card_version"] = data["ModelCardVersion"]
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.model_card_export_output_config
 
         out["output_config"] = (
@@ -126,13 +126,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelCardExportJobResponse:
                 data["OutputConfig"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_sagemaker.types.timestamp
 
         out["created_at"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "LastModifiedAt" in data:
+    if data.get("LastModifiedAt") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_at"] = (
@@ -140,9 +140,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelCardExportJobResponse:
                 data["LastModifiedAt"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ExportArtifacts" in data:
+    if data.get("ExportArtifacts") is not None:
         import capo_sagemaker.types.model_card_export_artifacts
 
         out["export_artifacts"] = (

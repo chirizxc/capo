@@ -57,21 +57,21 @@ def serialize_json(value: ListTableStorageOptimizersRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListTableStorageOptimizersRequest:
     out: ListTableStorageOptimizersRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "ListTableStorageOptimizersRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(
             "ListTableStorageOptimizersRequest.table_name required"
         )
-    if "StorageOptimizerType" in data:
+    if data.get("StorageOptimizerType") is not None:
         import capo_lakeformation.types.optimizer_type
 
         out["storage_optimizer_type"] = (
@@ -79,8 +79,8 @@ def deserialize_json(data: dict) -> ListTableStorageOptimizersRequest:
                 data["StorageOptimizerType"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

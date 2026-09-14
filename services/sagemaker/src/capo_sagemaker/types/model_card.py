@@ -120,15 +120,15 @@ def serialize_aws_json_1_1(value: ModelCard) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelCard:
     out: ModelCard = {}  # type: ignore[typeddict-item]
-    if "ModelCardArn" in data:
+    if data.get("ModelCardArn") is not None:
         out["model_card_arn"] = data["ModelCardArn"]
-    if "ModelCardName" in data:
+    if data.get("ModelCardName") is not None:
         out["model_card_name"] = data["ModelCardName"]
-    if "ModelCardVersion" in data:
+    if data.get("ModelCardVersion") is not None:
         out["model_card_version"] = data["ModelCardVersion"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "ModelCardStatus" in data:
+    if data.get("ModelCardStatus") is not None:
         import capo_sagemaker.types.model_card_status
 
         out["model_card_status"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelCard:
                 data["ModelCardStatus"]
             )
         )
-    if "SecurityConfig" in data:
+    if data.get("SecurityConfig") is not None:
         import capo_sagemaker.types.model_card_security_config
 
         out["security_config"] = (
@@ -144,19 +144,19 @@ def deserialize_aws_json_1_1(data: dict) -> ModelCard:
                 data["SecurityConfig"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelCard:
                 data["LastModifiedTime"]
             )
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["last_modified_by"] = (
@@ -172,16 +172,16 @@ def deserialize_aws_json_1_1(data: dict) -> ModelCard:
                 data["LastModifiedBy"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ModelId" in data:
+    if data.get("ModelId") is not None:
         out["model_id"] = data["ModelId"]
-    if "RiskRating" in data:
+    if data.get("RiskRating") is not None:
         out["risk_rating"] = data["RiskRating"]
-    if "ModelPackageGroupName" in data:
+    if data.get("ModelPackageGroupName") is not None:
         out["model_package_group_name"] = data["ModelPackageGroupName"]
     return out

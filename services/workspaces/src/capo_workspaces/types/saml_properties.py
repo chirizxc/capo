@@ -41,14 +41,14 @@ def serialize_aws_json_1_1(value: SamlProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SamlProperties:
     out: SamlProperties = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_workspaces.types.saml_status_enum
 
         out["status"] = capo_workspaces.types.saml_status_enum.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "UserAccessUrl" in data:
+    if data.get("UserAccessUrl") is not None:
         out["user_access_url"] = data["UserAccessUrl"]
-    if "RelayStateParameterName" in data:
+    if data.get("RelayStateParameterName") is not None:
         out["relay_state_parameter_name"] = data["RelayStateParameterName"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FrontOfQuotaShareJobSummaryList:
 
     out: FrontOfQuotaShareJobSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.front_of_quota_share_job_summary.deserialize_json(item)
         )

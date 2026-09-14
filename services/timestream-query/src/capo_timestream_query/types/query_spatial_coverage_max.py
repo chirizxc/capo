@@ -26,7 +26,15 @@ class QuerySpatialCoverageMax(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: QuerySpatialCoverageMax) -> dict:
     out: dict = {}
-    out["Value"] = value.get("value", 0)
+    out["Value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     if "table_arn" in value:
         out["TableArn"] = value["table_arn"]
     if "partition_key" in value:
@@ -42,13 +50,13 @@ def serialize_aws_json_1_0(value: QuerySpatialCoverageMax) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QuerySpatialCoverageMax:
     out: QuerySpatialCoverageMax = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         out["value"] = 0
-    if "TableArn" in data:
+    if data.get("TableArn") is not None:
         out["table_arn"] = data["TableArn"]
-    if "PartitionKey" in data:
+    if data.get("PartitionKey") is not None:
         import capo_timestream_query.types.partition_key_list
 
         out["partition_key"] = (

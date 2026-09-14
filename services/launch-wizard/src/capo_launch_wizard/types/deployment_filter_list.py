@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DeploymentFilterList:
 
     out: DeploymentFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_launch_wizard.types.deployment_filter.deserialize_json(item))
     return out

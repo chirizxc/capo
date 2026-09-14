@@ -31,19 +31,19 @@ def serialize_json(value: CompositionRelationshipSummary) -> dict:
 
 def deserialize_json(data: dict) -> CompositionRelationshipSummary:
     out: CompositionRelationshipSummary = {}  # type: ignore[typeddict-item]
-    if "assetModelId" in data:
+    if data.get("assetModelId") is not None:
         out["asset_model_id"] = data["assetModelId"]
     else:
         raise DeserializationError(
             "CompositionRelationshipSummary.asset_model_id required"
         )
-    if "assetModelCompositeModelId" in data:
+    if data.get("assetModelCompositeModelId") is not None:
         out["asset_model_composite_model_id"] = data["assetModelCompositeModelId"]
     else:
         raise DeserializationError(
             "CompositionRelationshipSummary.asset_model_composite_model_id required"
         )
-    if "assetModelCompositeModelType" in data:
+    if data.get("assetModelCompositeModelType") is not None:
         out["asset_model_composite_model_type"] = data["assetModelCompositeModelType"]
     else:
         raise DeserializationError(

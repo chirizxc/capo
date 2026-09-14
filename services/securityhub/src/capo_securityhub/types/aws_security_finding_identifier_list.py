@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsSecurityFindingIdentifierList:
 
     out: AwsSecurityFindingIdentifierList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_security_finding_identifier.deserialize_json(
                 item

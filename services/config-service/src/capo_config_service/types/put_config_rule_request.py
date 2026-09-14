@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: PutConfigRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutConfigRuleRequest:
     out: PutConfigRuleRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigRule" in data:
+    if data.get("ConfigRule") is not None:
         import capo_config_service.types.config_rule
 
         out["config_rule"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutConfigRuleRequest:
         )
     else:
         raise DeserializationError("PutConfigRuleRequest.config_rule required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_config_service.types.tags_list
 
         out["tags"] = capo_config_service.types.tags_list.deserialize_aws_json_1_1(

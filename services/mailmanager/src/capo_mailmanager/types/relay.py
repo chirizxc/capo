@@ -40,11 +40,11 @@ def serialize_aws_json_1_0(value: Relay) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Relay:
     out: Relay = {}  # type: ignore[typeddict-item]
-    if "RelayId" in data:
+    if data.get("RelayId") is not None:
         out["relay_id"] = data["RelayId"]
-    if "RelayName" in data:
+    if data.get("RelayName") is not None:
         out["relay_name"] = data["RelayName"]
-    if "LastModifiedTimestamp" in data:
+    if data.get("LastModifiedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["last_modified_timestamp"] = (

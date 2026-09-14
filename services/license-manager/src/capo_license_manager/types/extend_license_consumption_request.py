@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: ExtendLicenseConsumptionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExtendLicenseConsumptionRequest:
     out: ExtendLicenseConsumptionRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseConsumptionToken" in data:
+    if data.get("LicenseConsumptionToken") is not None:
         out["license_consumption_token"] = data["LicenseConsumptionToken"]
     else:
         raise DeserializationError(
             "ExtendLicenseConsumptionRequest.license_consumption_token required"
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False

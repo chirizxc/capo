@@ -48,7 +48,7 @@ def serialize_json(value: EphemerisMetaData) -> dict:
 
 def deserialize_json(data: dict) -> EphemerisMetaData:
     out: EphemerisMetaData = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_groundstation.types.ephemeris_source
 
         out["source"] = capo_groundstation.types.ephemeris_source.deserialize_json(
@@ -56,14 +56,14 @@ def deserialize_json(data: dict) -> EphemerisMetaData:
         )
     else:
         raise DeserializationError("EphemerisMetaData.source required")
-    if "ephemerisId" in data:
+    if data.get("ephemerisId") is not None:
         out["ephemeris_id"] = data["ephemerisId"]
-    if "epoch" in data:
+    if data.get("epoch") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["epoch"] = capo_groundstation.types._prelude.timestamp.deserialize_json(
             data["epoch"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

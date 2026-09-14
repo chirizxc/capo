@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: ListEventSubscriptionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEventSubscriptionsResponse:
     out: ListEventSubscriptionsResponse = {}  # type: ignore[typeddict-item]
-    if "subscriptions" in data:
+    if data.get("subscriptions") is not None:
         import capo_inspector.types.subscription_list
 
         out["subscriptions"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListEventSubscriptionsResponse:
         raise DeserializationError(
             "ListEventSubscriptionsResponse.subscriptions required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

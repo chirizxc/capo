@@ -97,15 +97,15 @@ def serialize_aws_json_1_0(value: ListRelationshipsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRelationshipsRequest:
     out: ListRelationshipsRequest = {}  # type: ignore[typeddict-item]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("ListRelationshipsRequest.catalog required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 20
-    if "associatedAccountIds" in data:
+    if data.get("associatedAccountIds") is not None:
         import capo_partnercentral_channel.types.account_id_list
 
         out["associated_account_ids"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListRelationshipsRequest:
                 data["associatedAccountIds"]
             )
         )
-    if "associationTypes" in data:
+    if data.get("associationTypes") is not None:
         import capo_partnercentral_channel.types.association_type_list
 
         out["association_types"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListRelationshipsRequest:
                 data["associationTypes"]
             )
         )
-    if "displayNames" in data:
+    if data.get("displayNames") is not None:
         import capo_partnercentral_channel.types.relationship_display_name_list
 
         out["display_names"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListRelationshipsRequest:
                 data["displayNames"]
             )
         )
-    if "programManagementAccountIdentifiers" in data:
+    if data.get("programManagementAccountIdentifiers") is not None:
         import capo_partnercentral_channel.types.program_management_account_identifier_list
 
         out["program_management_account_identifiers"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListRelationshipsRequest:
                 data["programManagementAccountIdentifiers"]
             )
         )
-    if "sort" in data:
+    if data.get("sort") is not None:
         import capo_partnercentral_channel.types.list_relationships_sort_base
 
         out["sort"] = (
@@ -145,6 +145,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRelationshipsRequest:
                 data["sort"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

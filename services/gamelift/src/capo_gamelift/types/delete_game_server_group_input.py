@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: DeleteGameServerGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteGameServerGroupInput:
     out: DeleteGameServerGroupInput = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "DeleteOption" in data:
+    if data.get("DeleteOption") is not None:
         import capo_gamelift.types.game_server_group_delete_option
 
         out["delete_option"] = (

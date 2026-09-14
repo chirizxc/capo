@@ -70,31 +70,31 @@ def serialize_json(value: StartEdgeConfigurationUpdateOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartEdgeConfigurationUpdateOutput:
     out: StartEdgeConfigurationUpdateOutput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_kinesis_video.types.timestamp
 
         out["creation_time"] = capo_kinesis_video.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_kinesis_video.types.timestamp
 
         out["last_updated_time"] = capo_kinesis_video.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "SyncStatus" in data:
+    if data.get("SyncStatus") is not None:
         import capo_kinesis_video.types.sync_status
 
         out["sync_status"] = capo_kinesis_video.types.sync_status.deserialize_json(
             data["SyncStatus"]
         )
-    if "FailedStatusDetails" in data:
+    if data.get("FailedStatusDetails") is not None:
         out["failed_status_details"] = data["FailedStatusDetails"]
-    if "EdgeConfig" in data:
+    if data.get("EdgeConfig") is not None:
         import capo_kinesis_video.types.edge_config
 
         out["edge_config"] = capo_kinesis_video.types.edge_config.deserialize_json(

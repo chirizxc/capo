@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> NotebookInstanceLifecycleConfigSumma
 
     out: NotebookInstanceLifecycleConfigSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.notebook_instance_lifecycle_config_summary.deserialize_aws_json_1_1(
                 item

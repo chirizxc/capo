@@ -47,11 +47,11 @@ def serialize_json(value: ArchiveRuleSummary) -> dict:
 
 def deserialize_json(data: dict) -> ArchiveRuleSummary:
     out: ArchiveRuleSummary = {}  # type: ignore[typeddict-item]
-    if "ruleName" in data:
+    if data.get("ruleName") is not None:
         out["rule_name"] = data["ruleName"]
     else:
         raise DeserializationError("ArchiveRuleSummary.rule_name required")
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_accessanalyzer.types.filter_criteria_map
 
         out["filter"] = capo_accessanalyzer.types.filter_criteria_map.deserialize_json(
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> ArchiveRuleSummary:
         )
     else:
         raise DeserializationError("ArchiveRuleSummary.filter required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["created_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> ArchiveRuleSummary:
         )
     else:
         raise DeserializationError("ArchiveRuleSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["updated_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(

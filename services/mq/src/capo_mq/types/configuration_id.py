@@ -28,8 +28,8 @@ def serialize_json(value: ConfigurationId) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationId:
     out: ConfigurationId = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     return out

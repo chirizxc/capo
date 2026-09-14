@@ -54,25 +54,25 @@ def serialize_aws_json_1_1(value: CreateManagedLoginBrandingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateManagedLoginBrandingRequest:
     out: CreateManagedLoginBrandingRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "CreateManagedLoginBrandingRequest.user_pool_id required"
         )
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError(
             "CreateManagedLoginBrandingRequest.client_id required"
         )
-    if "UseCognitoProvidedValues" in data:
+    if data.get("UseCognitoProvidedValues") is not None:
         out["use_cognito_provided_values"] = data["UseCognitoProvidedValues"]
     else:
         out["use_cognito_provided_values"] = False
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         out["settings"] = data["Settings"]
-    if "Assets" in data:
+    if data.get("Assets") is not None:
         import capo_cognito_identity_provider.types.asset_list_type
 
         out["assets"] = (

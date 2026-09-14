@@ -36,14 +36,14 @@ def serialize_aws_json_1_1(value: UpdateVariableRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateVariableRequest:
     out: UpdateVariableRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateVariableRequest.name required")
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "variableType" in data:
+    if data.get("variableType") is not None:
         out["variable_type"] = data["variableType"]
     return out

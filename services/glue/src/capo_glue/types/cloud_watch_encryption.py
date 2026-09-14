@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: CloudWatchEncryption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CloudWatchEncryption:
     out: CloudWatchEncryption = {}  # type: ignore[typeddict-item]
-    if "CloudWatchEncryptionMode" in data:
+    if data.get("CloudWatchEncryptionMode") is not None:
         import capo_glue.types.cloud_watch_encryption_mode
 
         out["cloud_watch_encryption_mode"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> CloudWatchEncryption:
                 data["CloudWatchEncryptionMode"]
             )
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

@@ -110,15 +110,15 @@ def serialize_json(value: DescribeTestExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTestExecutionResponse:
     out: DescribeTestExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "testExecutionId" in data:
+    if data.get("testExecutionId") is not None:
         out["test_execution_id"] = data["testExecutionId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> DescribeTestExecutionResponse:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "testExecutionStatus" in data:
+    if data.get("testExecutionStatus") is not None:
         import capo_lex_models_v2.types.test_execution_status
 
         out["test_execution_status"] = (
@@ -134,17 +134,17 @@ def deserialize_json(data: dict) -> DescribeTestExecutionResponse:
                 data["testExecutionStatus"]
             )
         )
-    if "testSetId" in data:
+    if data.get("testSetId") is not None:
         out["test_set_id"] = data["testSetId"]
-    if "testSetName" in data:
+    if data.get("testSetName") is not None:
         out["test_set_name"] = data["testSetName"]
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_lex_models_v2.types.test_execution_target
 
         out["target"] = capo_lex_models_v2.types.test_execution_target.deserialize_json(
             data["target"]
         )
-    if "apiMode" in data:
+    if data.get("apiMode") is not None:
         import capo_lex_models_v2.types.test_execution_api_mode
 
         out["api_mode"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> DescribeTestExecutionResponse:
                 data["apiMode"]
             )
         )
-    if "testExecutionModality" in data:
+    if data.get("testExecutionModality") is not None:
         import capo_lex_models_v2.types.test_execution_modality
 
         out["test_execution_modality"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> DescribeTestExecutionResponse:
                 data["testExecutionModality"]
             )
         )
-    if "failureReasons" in data:
+    if data.get("failureReasons") is not None:
         import capo_lex_models_v2.types.failure_reasons
 
         out["failure_reasons"] = (

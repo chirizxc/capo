@@ -38,9 +38,9 @@ def serialize_json(value: GetNamespaceResponse) -> dict:
     out["namespace"] = capo_s3tables.types.namespace_list.serialize_json(
         value["namespace"]
     )
-    import capo_s3tables.types._prelude.timestamp
+    import capo_s3tables._protocol.serialize
 
-    out["createdAt"] = capo_s3tables.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_s3tables._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
     out["createdBy"] = value["created_by"]
@@ -54,7 +54,7 @@ def serialize_json(value: GetNamespaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetNamespaceResponse:
     out: GetNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_s3tables.types.namespace_list
 
         out["namespace"] = capo_s3tables.types.namespace_list.deserialize_json(
@@ -62,24 +62,24 @@ def deserialize_json(data: dict) -> GetNamespaceResponse:
         )
     else:
         raise DeserializationError("GetNamespaceResponse.namespace required")
-    if "createdAt" in data:
-        import capo_s3tables.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_s3tables.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetNamespaceResponse.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("GetNamespaceResponse.created_by required")
-    if "ownerAccountId" in data:
+    if data.get("ownerAccountId") is not None:
         out["owner_account_id"] = data["ownerAccountId"]
     else:
         raise DeserializationError("GetNamespaceResponse.owner_account_id required")
-    if "namespaceId" in data:
+    if data.get("namespaceId") is not None:
         out["namespace_id"] = data["namespaceId"]
-    if "tableBucketId" in data:
+    if data.get("tableBucketId") is not None:
         out["table_bucket_id"] = data["tableBucketId"]
     return out

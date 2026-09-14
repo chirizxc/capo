@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetTelemetryMetadataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTelemetryMetadataRequest:
     out: GetTelemetryMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentRunArn" in data:
+    if data.get("assessmentRunArn") is not None:
         out["assessment_run_arn"] = data["assessmentRunArn"]
     else:
         raise DeserializationError(

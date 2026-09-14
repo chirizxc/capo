@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ChapCredentials:
 
     out: ChapCredentials = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_storage_gateway.types.chap_info.deserialize_aws_json_1_1(item))
     return out

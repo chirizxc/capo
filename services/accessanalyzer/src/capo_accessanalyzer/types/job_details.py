@@ -53,15 +53,15 @@ def serialize_json(value: JobDetails) -> dict:
 
 def deserialize_json(data: dict) -> JobDetails:
     out: JobDetails = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("JobDetails.job_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("JobDetails.status required")
-    if "startedOn" in data:
+    if data.get("startedOn") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["started_on"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -69,13 +69,13 @@ def deserialize_json(data: dict) -> JobDetails:
         )
     else:
         raise DeserializationError("JobDetails.started_on required")
-    if "completedOn" in data:
+    if data.get("completedOn") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["completed_on"] = capo_accessanalyzer.types.timestamp.deserialize_json(
             data["completedOn"]
         )
-    if "jobError" in data:
+    if data.get("jobError") is not None:
         import capo_accessanalyzer.types.job_error
 
         out["job_error"] = capo_accessanalyzer.types.job_error.deserialize_json(

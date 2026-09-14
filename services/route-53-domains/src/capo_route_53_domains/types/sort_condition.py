@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: SortCondition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SortCondition:
     out: SortCondition = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_route_53_domains.types.list_domains_attribute_name
 
         out["name"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> SortCondition:
         )
     else:
         raise DeserializationError("SortCondition.name required")
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_route_53_domains.types.sort_order
 
         out["sort_order"] = (

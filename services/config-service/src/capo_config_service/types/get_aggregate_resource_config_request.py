@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: GetAggregateResourceConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAggregateResourceConfigRequest:
     out: GetAggregateResourceConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationAggregatorName" in data:
+    if data.get("ConfigurationAggregatorName") is not None:
         out["configuration_aggregator_name"] = data["ConfigurationAggregatorName"]
     else:
         raise DeserializationError(
             "GetAggregateResourceConfigRequest.configuration_aggregator_name required"
         )
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         import capo_config_service.types.aggregate_resource_identifier
 
         out["resource_identifier"] = (

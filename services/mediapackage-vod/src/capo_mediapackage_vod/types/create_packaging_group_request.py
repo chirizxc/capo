@@ -51,7 +51,7 @@ def serialize_json(value: CreatePackagingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePackagingGroupRequest:
     out: CreatePackagingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "authorization" in data:
+    if data.get("authorization") is not None:
         import capo_mediapackage_vod.types.authorization
 
         out["authorization"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> CreatePackagingGroupRequest:
                 data["authorization"]
             )
         )
-    if "egressAccessLogs" in data:
+    if data.get("egressAccessLogs") is not None:
         import capo_mediapackage_vod.types.egress_access_logs
 
         out["egress_access_logs"] = (
@@ -67,9 +67,9 @@ def deserialize_json(data: dict) -> CreatePackagingGroupRequest:
                 data["egressAccessLogs"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediapackage_vod.types.tags
 
         out["tags"] = capo_mediapackage_vod.types.tags.deserialize_json(data["tags"])

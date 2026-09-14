@@ -46,7 +46,7 @@ def serialize_json(value: ConfigurationEvent) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationEvent:
     out: ConfigurationEvent = {}  # type: ignore[typeddict-item]
-    if "ChannelDefinitions" in data:
+    if data.get("ChannelDefinitions") is not None:
         import capo_transcribe_streaming.types.channel_definitions
 
         out["channel_definitions"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> ConfigurationEvent:
                 data["ChannelDefinitions"]
             )
         )
-    if "PostCallAnalyticsSettings" in data:
+    if data.get("PostCallAnalyticsSettings") is not None:
         import capo_transcribe_streaming.types.post_call_analytics_settings
 
         out["post_call_analytics_settings"] = (

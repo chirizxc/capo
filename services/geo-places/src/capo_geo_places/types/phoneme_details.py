@@ -42,7 +42,7 @@ def serialize_json(value: PhonemeDetails) -> dict:
 
 def deserialize_json(data: dict) -> PhonemeDetails:
     out: PhonemeDetails = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         import capo_geo_places.types.phoneme_transcription_list
 
         out["title"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> PhonemeDetails:
                 data["Title"]
             )
         )
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_geo_places.types.address_component_phonemes
 
         out["address"] = (

@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: XssMatchTuple) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> XssMatchTuple:
     out: XssMatchTuple = {}  # type: ignore[typeddict-item]
-    if "FieldToMatch" in data:
+    if data.get("FieldToMatch") is not None:
         import capo_waf_regional.types.field_to_match
 
         out["field_to_match"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> XssMatchTuple:
         )
     else:
         raise DeserializationError("XssMatchTuple.field_to_match required")
-    if "TextTransformation" in data:
+    if data.get("TextTransformation") is not None:
         import capo_waf_regional.types.text_transformation
 
         out["text_transformation"] = (

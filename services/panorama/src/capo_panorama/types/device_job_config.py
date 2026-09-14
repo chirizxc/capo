@@ -27,7 +27,7 @@ def serialize_json(value: DeviceJobConfig) -> dict:
 
 def deserialize_json(data: dict) -> DeviceJobConfig:
     out: DeviceJobConfig = {}  # type: ignore[typeddict-item]
-    if "OTAJobConfig" in data:
+    if data.get("OTAJobConfig") is not None:
         import capo_panorama.types.ota_job_config
 
         out["ota_job_config"] = capo_panorama.types.ota_job_config.deserialize_json(

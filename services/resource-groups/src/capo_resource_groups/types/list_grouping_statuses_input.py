@@ -47,13 +47,13 @@ def serialize_json(value: ListGroupingStatusesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListGroupingStatusesInput:
     out: ListGroupingStatusesInput = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
     else:
         raise DeserializationError("ListGroupingStatusesInput.group required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_resource_groups.types.list_grouping_statuses_filter_list
 
         out["filters"] = (
@@ -61,6 +61,6 @@ def deserialize_json(data: dict) -> ListGroupingStatusesInput:
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

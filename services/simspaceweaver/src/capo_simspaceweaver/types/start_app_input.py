@@ -52,23 +52,23 @@ def serialize_json(value: StartAppInput) -> dict:
 
 def deserialize_json(data: dict) -> StartAppInput:
     out: StartAppInput = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Simulation" in data:
+    if data.get("Simulation") is not None:
         out["simulation"] = data["Simulation"]
     else:
         raise DeserializationError("StartAppInput.simulation required")
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     else:
         raise DeserializationError("StartAppInput.domain required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("StartAppInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LaunchOverrides" in data:
+    if data.get("LaunchOverrides") is not None:
         import capo_simspaceweaver.types.launch_overrides
 
         out["launch_overrides"] = (

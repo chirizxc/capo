@@ -42,19 +42,19 @@ def serialize_json(value: NetworkPayload) -> dict:
 
 def deserialize_json(data: dict) -> NetworkPayload:
     out: NetworkPayload = {}  # type: ignore[typeddict-item]
-    if "Ethernet0" in data:
+    if data.get("Ethernet0") is not None:
         import capo_panorama.types.ethernet_payload
 
         out["ethernet0"] = capo_panorama.types.ethernet_payload.deserialize_json(
             data["Ethernet0"]
         )
-    if "Ethernet1" in data:
+    if data.get("Ethernet1") is not None:
         import capo_panorama.types.ethernet_payload
 
         out["ethernet1"] = capo_panorama.types.ethernet_payload.deserialize_json(
             data["Ethernet1"]
         )
-    if "Ntp" in data:
+    if data.get("Ntp") is not None:
         import capo_panorama.types.ntp_payload
 
         out["ntp"] = capo_panorama.types.ntp_payload.deserialize_json(data["Ntp"])

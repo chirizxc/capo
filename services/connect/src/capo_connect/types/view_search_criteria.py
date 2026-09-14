@@ -69,7 +69,7 @@ def serialize_json(value: ViewSearchCriteria) -> dict:
 
 def deserialize_json(data: dict) -> ViewSearchCriteria:
     out: ViewSearchCriteria = {}  # type: ignore[typeddict-item]
-    if "OrConditions" in data:
+    if data.get("OrConditions") is not None:
         import capo_connect.types.view_search_condition_list
 
         out["or_conditions"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> ViewSearchCriteria:
                 data["OrConditions"]
             )
         )
-    if "AndConditions" in data:
+    if data.get("AndConditions") is not None:
         import capo_connect.types.view_search_condition_list
 
         out["and_conditions"] = (
@@ -85,19 +85,19 @@ def deserialize_json(data: dict) -> ViewSearchCriteria:
                 data["AndConditions"]
             )
         )
-    if "StringCondition" in data:
+    if data.get("StringCondition") is not None:
         import capo_connect.types.string_condition
 
         out["string_condition"] = capo_connect.types.string_condition.deserialize_json(
             data["StringCondition"]
         )
-    if "ViewTypeCondition" in data:
+    if data.get("ViewTypeCondition") is not None:
         import capo_connect.types.view_type
 
         out["view_type_condition"] = capo_connect.types.view_type.deserialize_json(
             data["ViewTypeCondition"]
         )
-    if "ViewStatusCondition" in data:
+    if data.get("ViewStatusCondition") is not None:
         import capo_connect.types.view_status
 
         out["view_status_condition"] = capo_connect.types.view_status.deserialize_json(

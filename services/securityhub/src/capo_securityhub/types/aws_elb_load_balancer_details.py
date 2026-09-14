@@ -169,13 +169,13 @@ def serialize_json(value: AwsElbLoadBalancerDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerDetails:
     out: AwsElbLoadBalancerDetails = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_securityhub.types.string_list
 
         out["availability_zones"] = capo_securityhub.types.string_list.deserialize_json(
             data["AvailabilityZones"]
         )
-    if "BackendServerDescriptions" in data:
+    if data.get("BackendServerDescriptions") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_backend_server_descriptions
 
         out["backend_server_descriptions"] = (
@@ -183,15 +183,15 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerDetails:
                 data["BackendServerDescriptions"]
             )
         )
-    if "CanonicalHostedZoneName" in data:
+    if data.get("CanonicalHostedZoneName") is not None:
         out["canonical_hosted_zone_name"] = data["CanonicalHostedZoneName"]
-    if "CanonicalHostedZoneNameID" in data:
+    if data.get("CanonicalHostedZoneNameID") is not None:
         out["canonical_hosted_zone_name_id"] = data["CanonicalHostedZoneNameID"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         out["created_time"] = data["CreatedTime"]
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
-    if "HealthCheck" in data:
+    if data.get("HealthCheck") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_health_check
 
         out["health_check"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerDetails:
                 data["HealthCheck"]
             )
         )
-    if "Instances" in data:
+    if data.get("Instances") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_instances
 
         out["instances"] = (
@@ -207,7 +207,7 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerDetails:
                 data["Instances"]
             )
         )
-    if "ListenerDescriptions" in data:
+    if data.get("ListenerDescriptions") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_listener_descriptions
 
         out["listener_descriptions"] = (
@@ -215,7 +215,7 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerDetails:
                 data["ListenerDescriptions"]
             )
         )
-    if "LoadBalancerAttributes" in data:
+    if data.get("LoadBalancerAttributes") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_attributes
 
         out["load_balancer_attributes"] = (
@@ -223,9 +223,9 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerDetails:
                 data["LoadBalancerAttributes"]
             )
         )
-    if "LoadBalancerName" in data:
+    if data.get("LoadBalancerName") is not None:
         out["load_balancer_name"] = data["LoadBalancerName"]
-    if "Policies" in data:
+    if data.get("Policies") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_policies
 
         out["policies"] = (
@@ -233,15 +233,15 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerDetails:
                 data["Policies"]
             )
         )
-    if "Scheme" in data:
+    if data.get("Scheme") is not None:
         out["scheme"] = data["Scheme"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_securityhub.types.string_list
 
         out["security_groups"] = capo_securityhub.types.string_list.deserialize_json(
             data["SecurityGroups"]
         )
-    if "SourceSecurityGroup" in data:
+    if data.get("SourceSecurityGroup") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_source_security_group
 
         out["source_security_group"] = (
@@ -249,12 +249,12 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerDetails:
                 data["SourceSecurityGroup"]
             )
         )
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_securityhub.types.string_list
 
         out["subnets"] = capo_securityhub.types.string_list.deserialize_json(
             data["Subnets"]
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

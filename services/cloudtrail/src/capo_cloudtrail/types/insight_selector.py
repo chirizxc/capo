@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: InsightSelector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InsightSelector:
     out: InsightSelector = {}  # type: ignore[typeddict-item]
-    if "InsightType" in data:
+    if data.get("InsightType") is not None:
         import capo_cloudtrail.types.insight_type
 
         out["insight_type"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> InsightSelector:
                 data["InsightType"]
             )
         )
-    if "EventCategories" in data:
+    if data.get("EventCategories") is not None:
         import capo_cloudtrail.types.source_event_categories
 
         out["event_categories"] = (

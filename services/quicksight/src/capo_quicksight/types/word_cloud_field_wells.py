@@ -31,7 +31,7 @@ def serialize_json(value: WordCloudFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> WordCloudFieldWells:
     out: WordCloudFieldWells = {}  # type: ignore[typeddict-item]
-    if "WordCloudAggregatedFieldWells" in data:
+    if data.get("WordCloudAggregatedFieldWells") is not None:
         import capo_quicksight.types.word_cloud_aggregated_field_wells
 
         out["word_cloud_aggregated_field_wells"] = (

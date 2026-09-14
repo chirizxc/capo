@@ -33,7 +33,7 @@ def serialize_json(value: ListExportsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListExportsResponse:
     out: ListExportsResponse = {}  # type: ignore[typeddict-item]
-    if "exportSummaries" in data:
+    if data.get("exportSummaries") is not None:
         import capo_simpledbv2.types.export_summaries
 
         out["export_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListExportsResponse:
         )
     else:
         raise DeserializationError("ListExportsResponse.export_summaries required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

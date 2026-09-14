@@ -57,22 +57,22 @@ def serialize_json(value: UpdateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserRequest:
     out: UpdateUserRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_finspace_data.types.user_type
 
         out["type"] = capo_finspace_data.types.user_type.deserialize_json(data["type"])
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
-    if "apiAccess" in data:
+    if data.get("apiAccess") is not None:
         import capo_finspace_data.types.api_access
 
         out["api_access"] = capo_finspace_data.types.api_access.deserialize_json(
             data["apiAccess"]
         )
-    if "apiAccessPrincipalArn" in data:
+    if data.get("apiAccessPrincipalArn") is not None:
         out["api_access_principal_arn"] = data["apiAccessPrincipalArn"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -45,7 +45,7 @@ def serialize_json(value: CreateAssetFileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetFileRequest:
     out: CreateAssetFileRequest = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_devops_agent.types.asset_file_body
 
         out["content"] = capo_devops_agent.types.asset_file_body.deserialize_json(
@@ -53,8 +53,8 @@ def deserialize_json(data: dict) -> CreateAssetFileRequest:
         )
     else:
         raise DeserializationError("CreateAssetFileRequest.content required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

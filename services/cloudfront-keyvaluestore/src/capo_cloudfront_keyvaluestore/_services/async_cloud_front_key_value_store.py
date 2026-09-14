@@ -183,16 +183,18 @@ class AsyncCloudFrontKeyValueStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.delete_key_request.DeleteKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["kvs_arn"] = kvs_arn
-        input_["key"] = key
-        input_["if_match"] = if_match
+        input_: capo_cloudfront_keyvaluestore.types.delete_key_request.DeleteKeyRequest = {
+            "kvs_arn": kvs_arn,
+            "key": key,
+            "if_match": if_match,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_key_value_store(
@@ -238,14 +240,16 @@ class AsyncCloudFrontKeyValueStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.describe_key_value_store_request.DescribeKeyValueStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["kvs_arn"] = kvs_arn
+        input_: capo_cloudfront_keyvaluestore.types.describe_key_value_store_request.DescribeKeyValueStoreRequest = {
+            "kvs_arn": kvs_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_key(
@@ -290,15 +294,17 @@ class AsyncCloudFrontKeyValueStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.get_key_request.GetKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["kvs_arn"] = kvs_arn
-        input_["key"] = key
+        input_: capo_cloudfront_keyvaluestore.types.get_key_request.GetKeyRequest = {
+            "kvs_arn": kvs_arn,
+            "key": key,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_keys(
@@ -349,8 +355,9 @@ class AsyncCloudFrontKeyValueStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.list_keys_request.ListKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["kvs_arn"] = kvs_arn
+        input_: capo_cloudfront_keyvaluestore.types.list_keys_request.ListKeysRequest = {
+            "kvs_arn": kvs_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -361,6 +368,7 @@ class AsyncCloudFrontKeyValueStoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_keys(
@@ -434,17 +442,19 @@ class AsyncCloudFrontKeyValueStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.put_key_request.PutKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["key"] = key
-        input_["value"] = value
-        input_["kvs_arn"] = kvs_arn
-        input_["if_match"] = if_match
+        input_: capo_cloudfront_keyvaluestore.types.put_key_request.PutKeyRequest = {
+            "key": key,
+            "value": value,
+            "kvs_arn": kvs_arn,
+            "if_match": if_match,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_keys(
@@ -505,9 +515,10 @@ class AsyncCloudFrontKeyValueStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.update_keys_request.UpdateKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["kvs_arn"] = kvs_arn
-        input_["if_match"] = if_match
+        input_: capo_cloudfront_keyvaluestore.types.update_keys_request.UpdateKeysRequest = {
+            "kvs_arn": kvs_arn,
+            "if_match": if_match,
+        }
         if puts is not None:
             input_["puts"] = puts
         if deletes is not None:
@@ -518,6 +529,7 @@ class AsyncCloudFrontKeyValueStoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

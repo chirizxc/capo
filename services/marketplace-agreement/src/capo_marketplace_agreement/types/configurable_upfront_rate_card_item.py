@@ -53,7 +53,7 @@ def serialize_aws_json_1_0(value: ConfigurableUpfrontRateCardItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConfigurableUpfrontRateCardItem:
     out: ConfigurableUpfrontRateCardItem = {}  # type: ignore[typeddict-item]
-    if "selector" in data:
+    if data.get("selector") is not None:
         import capo_marketplace_agreement.types.selector
 
         out["selector"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConfigurableUpfrontRateCardItem:
                 data["selector"]
             )
         )
-    if "constraints" in data:
+    if data.get("constraints") is not None:
         import capo_marketplace_agreement.types.constraints
 
         out["constraints"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConfigurableUpfrontRateCardItem:
                 data["constraints"]
             )
         )
-    if "rateCard" in data:
+    if data.get("rateCard") is not None:
         import capo_marketplace_agreement.types.rate_card_list
 
         out["rate_card"] = (

@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: JobFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> JobFilter:
     out: JobFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_compute_optimizer.types.job_filter_name
 
         out["name"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_0(data: dict) -> JobFilter:
                 data["name"]
             )
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_compute_optimizer.types.filter_values
 
         out["values"] = (

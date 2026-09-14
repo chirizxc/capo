@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: UpdateConnectorVpcLatticeEgressConfig) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateConnectorVpcLatticeEgressConfig:
     out: UpdateConnectorVpcLatticeEgressConfig = {}  # type: ignore[typeddict-item]
-    if "ResourceConfigurationArn" in data:
+    if data.get("ResourceConfigurationArn") is not None:
         out["resource_configuration_arn"] = data["ResourceConfigurationArn"]
-    if "PortNumber" in data:
+    if data.get("PortNumber") is not None:
         out["port_number"] = data["PortNumber"]
     return out

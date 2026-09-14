@@ -50,11 +50,11 @@ def serialize_json(value: ListPricingPlansAssociatedWithPricingRuleOutput) -> di
 
 def deserialize_json(data: dict) -> ListPricingPlansAssociatedWithPricingRuleOutput:
     out: ListPricingPlansAssociatedWithPricingRuleOutput = {}  # type: ignore[typeddict-item]
-    if "BillingPeriod" in data:
+    if data.get("BillingPeriod") is not None:
         out["billing_period"] = data["BillingPeriod"]
-    if "PricingRuleArn" in data:
+    if data.get("PricingRuleArn") is not None:
         out["pricing_rule_arn"] = data["PricingRuleArn"]
-    if "PricingPlanArns" in data:
+    if data.get("PricingPlanArns") is not None:
         import capo_billingconductor.types.pricing_plan_arns
 
         out["pricing_plan_arns"] = (
@@ -62,6 +62,6 @@ def deserialize_json(data: dict) -> ListPricingPlansAssociatedWithPricingRuleOut
                 data["PricingPlanArns"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

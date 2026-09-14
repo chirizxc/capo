@@ -51,7 +51,7 @@ def serialize_aws_json_1_0(value: S3Action) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> S3Action:
     out: S3Action = {}  # type: ignore[typeddict-item]
-    if "ActionFailurePolicy" in data:
+    if data.get("ActionFailurePolicy") is not None:
         import capo_mailmanager.types.action_failure_policy
 
         out["action_failure_policy"] = (
@@ -59,16 +59,16 @@ def deserialize_aws_json_1_0(data: dict) -> S3Action:
                 data["ActionFailurePolicy"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("S3Action.role_arn required")
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
     else:
         raise DeserializationError("S3Action.s3_bucket required")
-    if "S3Prefix" in data:
+    if data.get("S3Prefix") is not None:
         out["s3_prefix"] = data["S3Prefix"]
-    if "S3SseKmsKeyId" in data:
+    if data.get("S3SseKmsKeyId") is not None:
         out["s3_sse_kms_key_id"] = data["S3SseKmsKeyId"]
     return out

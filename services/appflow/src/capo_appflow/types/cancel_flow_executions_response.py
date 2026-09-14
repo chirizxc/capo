@@ -27,7 +27,7 @@ def serialize_json(value: CancelFlowExecutionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> CancelFlowExecutionsResponse:
     out: CancelFlowExecutionsResponse = {}  # type: ignore[typeddict-item]
-    if "invalidExecutions" in data:
+    if data.get("invalidExecutions") is not None:
         import capo_appflow.types.execution_ids
 
         out["invalid_executions"] = capo_appflow.types.execution_ids.deserialize_json(

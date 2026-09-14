@@ -96,39 +96,39 @@ def serialize_json(value: ClusterOperationV2) -> dict:
 
 def deserialize_json(data: dict) -> ClusterOperationV2:
     out: ClusterOperationV2 = {}  # type: ignore[typeddict-item]
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
-    if "clusterType" in data:
+    if data.get("clusterType") is not None:
         import capo_kafka.types.cluster_type
 
         out["cluster_type"] = capo_kafka.types.cluster_type.deserialize_json(
             data["clusterType"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["start_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["end_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["endTime"]
         )
-    if "errorInfo" in data:
+    if data.get("errorInfo") is not None:
         import capo_kafka.types.error_info
 
         out["error_info"] = capo_kafka.types.error_info.deserialize_json(
             data["errorInfo"]
         )
-    if "operationArn" in data:
+    if data.get("operationArn") is not None:
         out["operation_arn"] = data["operationArn"]
-    if "operationState" in data:
+    if data.get("operationState") is not None:
         out["operation_state"] = data["operationState"]
-    if "operationType" in data:
+    if data.get("operationType") is not None:
         out["operation_type"] = data["operationType"]
-    if "provisioned" in data:
+    if data.get("provisioned") is not None:
         import capo_kafka.types.cluster_operation_v2_provisioned
 
         out["provisioned"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> ClusterOperationV2:
                 data["provisioned"]
             )
         )
-    if "serverless" in data:
+    if data.get("serverless") is not None:
         import capo_kafka.types.cluster_operation_v2_serverless
 
         out["serverless"] = (

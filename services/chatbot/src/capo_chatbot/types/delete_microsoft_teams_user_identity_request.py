@@ -30,13 +30,13 @@ def serialize_json(value: DeleteMicrosoftTeamsUserIdentityRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteMicrosoftTeamsUserIdentityRequest:
     out: DeleteMicrosoftTeamsUserIdentityRequest = {}  # type: ignore[typeddict-item]
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
     else:
         raise DeserializationError(
             "DeleteMicrosoftTeamsUserIdentityRequest.chat_configuration_arn required"
         )
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError(

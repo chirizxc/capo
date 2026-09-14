@@ -159,17 +159,17 @@ def serialize_aws_json_1_1(value: CreateWebACLRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWebACLRequest:
     out: CreateWebACLRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateWebACLRequest.name required")
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("CreateWebACLRequest.scope required")
-    if "DefaultAction" in data:
+    if data.get("DefaultAction") is not None:
         import capo_wafv2.types.default_action
 
         out["default_action"] = (
@@ -179,13 +179,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebACLRequest:
         )
     else:
         raise DeserializationError("CreateWebACLRequest.default_action required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_wafv2.types.rules
 
         out["rules"] = capo_wafv2.types.rules.deserialize_aws_json_1_1(data["Rules"])
-    if "VisibilityConfig" in data:
+    if data.get("VisibilityConfig") is not None:
         import capo_wafv2.types.visibility_config
 
         out["visibility_config"] = (
@@ -195,7 +195,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebACLRequest:
         )
     else:
         raise DeserializationError("CreateWebACLRequest.visibility_config required")
-    if "DataProtectionConfig" in data:
+    if data.get("DataProtectionConfig") is not None:
         import capo_wafv2.types.data_protection_config
 
         out["data_protection_config"] = (
@@ -203,11 +203,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebACLRequest:
                 data["DataProtectionConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wafv2.types.tag_list
 
         out["tags"] = capo_wafv2.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "CustomResponseBodies" in data:
+    if data.get("CustomResponseBodies") is not None:
         import capo_wafv2.types.custom_response_bodies
 
         out["custom_response_bodies"] = (
@@ -215,7 +215,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebACLRequest:
                 data["CustomResponseBodies"]
             )
         )
-    if "CaptchaConfig" in data:
+    if data.get("CaptchaConfig") is not None:
         import capo_wafv2.types.captcha_config
 
         out["captcha_config"] = (
@@ -223,7 +223,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebACLRequest:
                 data["CaptchaConfig"]
             )
         )
-    if "ChallengeConfig" in data:
+    if data.get("ChallengeConfig") is not None:
         import capo_wafv2.types.challenge_config
 
         out["challenge_config"] = (
@@ -231,13 +231,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebACLRequest:
                 data["ChallengeConfig"]
             )
         )
-    if "TokenDomains" in data:
+    if data.get("TokenDomains") is not None:
         import capo_wafv2.types.token_domains
 
         out["token_domains"] = capo_wafv2.types.token_domains.deserialize_aws_json_1_1(
             data["TokenDomains"]
         )
-    if "AssociationConfig" in data:
+    if data.get("AssociationConfig") is not None:
         import capo_wafv2.types.association_config
 
         out["association_config"] = (
@@ -245,7 +245,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebACLRequest:
                 data["AssociationConfig"]
             )
         )
-    if "OnSourceDDoSProtectionConfig" in data:
+    if data.get("OnSourceDDoSProtectionConfig") is not None:
         import capo_wafv2.types.on_source_d_do_s_protection_config
 
         out["on_source_d_do_s_protection_config"] = (
@@ -253,7 +253,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebACLRequest:
                 data["OnSourceDDoSProtectionConfig"]
             )
         )
-    if "ApplicationConfig" in data:
+    if data.get("ApplicationConfig") is not None:
         import capo_wafv2.types.application_config
 
         out["application_config"] = (

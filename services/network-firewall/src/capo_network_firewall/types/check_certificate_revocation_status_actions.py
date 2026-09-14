@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: CheckCertificateRevocationStatusActions) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> CheckCertificateRevocationStatusActions:
     out: CheckCertificateRevocationStatusActions = {}  # type: ignore[typeddict-item]
-    if "RevokedStatusAction" in data:
+    if data.get("RevokedStatusAction") is not None:
         import capo_network_firewall.types.revocation_check_action
 
         out["revoked_status_action"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> CheckCertificateRevocationStatusActi
                 data["RevokedStatusAction"]
             )
         )
-    if "UnknownStatusAction" in data:
+    if data.get("UnknownStatusAction") is not None:
         import capo_network_firewall.types.revocation_check_action
 
         out["unknown_status_action"] = (

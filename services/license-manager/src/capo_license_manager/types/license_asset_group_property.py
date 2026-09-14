@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: LicenseAssetGroupProperty) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LicenseAssetGroupProperty:
     out: LicenseAssetGroupProperty = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("LicenseAssetGroupProperty.key required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("LicenseAssetGroupProperty.value required")

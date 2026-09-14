@@ -34,13 +34,13 @@ def serialize_aws_json_1_0(value: RegistrationSectionDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationSectionDefinition:
     out: RegistrationSectionDefinition = {}  # type: ignore[typeddict-item]
-    if "SectionPath" in data:
+    if data.get("SectionPath") is not None:
         out["section_path"] = data["SectionPath"]
     else:
         raise DeserializationError(
             "RegistrationSectionDefinition.section_path required"
         )
-    if "DisplayHints" in data:
+    if data.get("DisplayHints") is not None:
         import capo_pinpoint_sms_voice_v2.types.registration_section_display_hints
 
         out["display_hints"] = (

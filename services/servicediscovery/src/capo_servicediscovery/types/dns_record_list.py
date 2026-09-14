@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> DnsRecordList:
 
     out: DnsRecordList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_servicediscovery.types.dns_record.deserialize_aws_json_1_1(item)
         )

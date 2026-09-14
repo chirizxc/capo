@@ -111,33 +111,33 @@ def serialize_json(value: AwsEc2InstanceDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2InstanceDetails:
     out: AwsEc2InstanceDetails = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "IpV4Addresses" in data:
+    if data.get("IpV4Addresses") is not None:
         import capo_securityhub.types.string_list
 
         out["ip_v4_addresses"] = capo_securityhub.types.string_list.deserialize_json(
             data["IpV4Addresses"]
         )
-    if "IpV6Addresses" in data:
+    if data.get("IpV6Addresses") is not None:
         import capo_securityhub.types.string_list
 
         out["ip_v6_addresses"] = capo_securityhub.types.string_list.deserialize_json(
             data["IpV6Addresses"]
         )
-    if "KeyName" in data:
+    if data.get("KeyName") is not None:
         out["key_name"] = data["KeyName"]
-    if "IamInstanceProfileArn" in data:
+    if data.get("IamInstanceProfileArn") is not None:
         out["iam_instance_profile_arn"] = data["IamInstanceProfileArn"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "LaunchedAt" in data:
+    if data.get("LaunchedAt") is not None:
         out["launched_at"] = data["LaunchedAt"]
-    if "NetworkInterfaces" in data:
+    if data.get("NetworkInterfaces") is not None:
         import capo_securityhub.types.aws_ec2_instance_network_interfaces_list
 
         out["network_interfaces"] = (
@@ -145,9 +145,9 @@ def deserialize_json(data: dict) -> AwsEc2InstanceDetails:
                 data["NetworkInterfaces"]
             )
         )
-    if "VirtualizationType" in data:
+    if data.get("VirtualizationType") is not None:
         out["virtualization_type"] = data["VirtualizationType"]
-    if "MetadataOptions" in data:
+    if data.get("MetadataOptions") is not None:
         import capo_securityhub.types.aws_ec2_instance_metadata_options
 
         out["metadata_options"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> AwsEc2InstanceDetails:
                 data["MetadataOptions"]
             )
         )
-    if "Monitoring" in data:
+    if data.get("Monitoring") is not None:
         import capo_securityhub.types.aws_ec2_instance_monitoring_details
 
         out["monitoring"] = (

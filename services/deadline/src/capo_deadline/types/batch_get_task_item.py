@@ -126,27 +126,27 @@ def serialize_json(value: BatchGetTaskItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetTaskItem:
     out: BatchGetTaskItem = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("BatchGetTaskItem.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("BatchGetTaskItem.queue_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("BatchGetTaskItem.job_id required")
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
     else:
         raise DeserializationError("BatchGetTaskItem.step_id required")
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("BatchGetTaskItem.task_id required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -154,11 +154,11 @@ def deserialize_json(data: dict) -> BatchGetTaskItem:
         )
     else:
         raise DeserializationError("BatchGetTaskItem.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("BatchGetTaskItem.created_by required")
-    if "runStatus" in data:
+    if data.get("runStatus") is not None:
         import capo_deadline.types.task_run_status
 
         out["run_status"] = capo_deadline.types.task_run_status.deserialize_json(
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> BatchGetTaskItem:
         )
     else:
         raise DeserializationError("BatchGetTaskItem.run_status required")
-    if "targetRunStatus" in data:
+    if data.get("targetRunStatus") is not None:
         import capo_deadline.types.task_target_run_status
 
         out["target_run_status"] = (
@@ -174,29 +174,29 @@ def deserialize_json(data: dict) -> BatchGetTaskItem:
                 data["targetRunStatus"]
             )
         )
-    if "failureRetryCount" in data:
+    if data.get("failureRetryCount") is not None:
         out["failure_retry_count"] = data["failureRetryCount"]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_deadline.types.started_at
 
         out["started_at"] = capo_deadline.types.started_at.deserialize_json(
             data["startedAt"]
         )
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_deadline.types.ended_at
 
         out["ended_at"] = capo_deadline.types.ended_at.deserialize_json(data["endedAt"])
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "latestSessionActionId" in data:
+    if data.get("latestSessionActionId") is not None:
         out["latest_session_action_id"] = data["latestSessionActionId"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_deadline.types.task_parameters
 
         out["parameters"] = capo_deadline.types.task_parameters.deserialize_json(

@@ -31,7 +31,7 @@ def serialize_json(value: DeleteLicenseServerEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteLicenseServerEndpointResponse:
     out: DeleteLicenseServerEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "LicenseServerEndpoint" in data:
+    if data.get("LicenseServerEndpoint") is not None:
         import capo_license_manager_user_subscriptions.types.license_server_endpoint
 
         out["license_server_endpoint"] = (

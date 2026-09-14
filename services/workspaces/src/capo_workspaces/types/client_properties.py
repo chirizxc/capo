@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: ClientProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClientProperties:
     out: ClientProperties = {}  # type: ignore[typeddict-item]
-    if "ReconnectEnabled" in data:
+    if data.get("ReconnectEnabled") is not None:
         import capo_workspaces.types.reconnect_enum
 
         out["reconnect_enabled"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClientProperties:
                 data["ReconnectEnabled"]
             )
         )
-    if "LogUploadEnabled" in data:
+    if data.get("LogUploadEnabled") is not None:
         import capo_workspaces.types.log_upload_enum
 
         out["log_upload_enabled"] = (

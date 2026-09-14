@@ -35,11 +35,11 @@ def serialize_json(value: SearchPrincipalType) -> dict:
 
 def deserialize_json(data: dict) -> SearchPrincipalType:
     out: SearchPrincipalType = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("SearchPrincipalType.id required")
-    if "Roles" in data:
+    if data.get("Roles") is not None:
         import capo_workdocs.types.search_principal_role_list
 
         out["roles"] = capo_workdocs.types.search_principal_role_list.deserialize_json(

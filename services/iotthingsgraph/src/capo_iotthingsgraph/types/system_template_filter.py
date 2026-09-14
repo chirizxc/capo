@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: SystemTemplateFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SystemTemplateFilter:
     out: SystemTemplateFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_iotthingsgraph.types.system_template_filter_name
 
         out["name"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> SystemTemplateFilter:
         )
     else:
         raise DeserializationError("SystemTemplateFilter.name required")
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iotthingsgraph.types.system_template_filter_values
 
         out["value"] = (

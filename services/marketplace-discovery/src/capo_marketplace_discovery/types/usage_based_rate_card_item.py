@@ -28,7 +28,7 @@ def serialize_json(value: UsageBasedRateCardItem) -> dict:
 
 def deserialize_json(data: dict) -> UsageBasedRateCardItem:
     out: UsageBasedRateCardItem = {}  # type: ignore[typeddict-item]
-    if "rateCard" in data:
+    if data.get("rateCard") is not None:
         import capo_marketplace_discovery.types.rate_card_list
 
         out["rate_card"] = (

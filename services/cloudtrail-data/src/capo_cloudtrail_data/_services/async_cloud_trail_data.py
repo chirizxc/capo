@@ -170,9 +170,10 @@ class AsyncCloudTrailDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudtrail_data.types.put_audit_events_request.PutAuditEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["audit_events"] = audit_events
-        input_["channel_arn"] = channel_arn
+        input_: capo_cloudtrail_data.types.put_audit_events_request.PutAuditEventsRequest = {
+            "audit_events": audit_events,
+            "channel_arn": channel_arn,
+        }
         if external_id is not None:
             input_["external_id"] = external_id
 
@@ -181,6 +182,7 @@ class AsyncCloudTrailDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

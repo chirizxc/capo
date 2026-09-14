@@ -21,9 +21,17 @@ class ListRescoreExecutionPlansRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListRescoreExecutionPlansRequest) -> dict:
     out: dict = {}
+    if "next_token" in value:
+        out["NextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["MaxResults"] = value["max_results"]
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> ListRescoreExecutionPlansRequest:
     out: ListRescoreExecutionPlansRequest = {}  # type: ignore[typeddict-item]
+    if data.get("NextToken") is not None:
+        out["next_token"] = data["NextToken"]
+    if data.get("MaxResults") is not None:
+        out["max_results"] = data["MaxResults"]
     return out

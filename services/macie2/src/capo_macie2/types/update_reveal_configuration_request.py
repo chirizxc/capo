@@ -42,13 +42,13 @@ def serialize_json(value: UpdateRevealConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRevealConfigurationRequest:
     out: UpdateRevealConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_macie2.types.reveal_configuration
 
         out["configuration"] = capo_macie2.types.reveal_configuration.deserialize_json(
             data["configuration"]
         )
-    if "retrievalConfiguration" in data:
+    if data.get("retrievalConfiguration") is not None:
         import capo_macie2.types.update_retrieval_configuration
 
         out["retrieval_configuration"] = (

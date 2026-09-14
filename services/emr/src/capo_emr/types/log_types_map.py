@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: LogTypesMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> LogTypesMap:
     out: LogTypesMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_emr.types.xml_string_list
 
         out[key] = capo_emr.types.xml_string_list.deserialize_aws_json_1_1(value)

@@ -37,15 +37,18 @@ class InvalidS3KeyPrefixFault(ServiceError):
 
     code: str | None = "InvalidS3KeyPrefixFault"
 
-    def __init__(self, data: InvalidS3KeyPrefixFault_):
+    def __init__(self, data: InvalidS3KeyPrefixFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidS3KeyPrefixFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidS3KeyPrefixFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidS3KeyPrefixFault":
+        return cls(deserialize_query(el), message)

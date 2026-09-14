@@ -28,13 +28,13 @@ def serialize_json(value: CancelQuantumTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> CancelQuantumTaskResponse:
     out: CancelQuantumTaskResponse = {}  # type: ignore[typeddict-item]
-    if "quantumTaskArn" in data:
+    if data.get("quantumTaskArn") is not None:
         out["quantum_task_arn"] = data["quantumTaskArn"]
     else:
         raise DeserializationError(
             "CancelQuantumTaskResponse.quantum_task_arn required"
         )
-    if "cancellationStatus" in data:
+    if data.get("cancellationStatus") is not None:
         out["cancellation_status"] = data["cancellationStatus"]
     else:
         raise DeserializationError(

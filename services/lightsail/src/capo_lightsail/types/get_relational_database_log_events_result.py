@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: GetRelationalDatabaseLogEventsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseLogEventsResult:
     out: GetRelationalDatabaseLogEventsResult = {}  # type: ignore[typeddict-item]
-    if "resourceLogEvents" in data:
+    if data.get("resourceLogEvents") is not None:
         import capo_lightsail.types.log_event_list
 
         out["resource_log_events"] = (
@@ -46,8 +46,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseLogEventsResult
                 data["resourceLogEvents"]
             )
         )
-    if "nextBackwardToken" in data:
+    if data.get("nextBackwardToken") is not None:
         out["next_backward_token"] = data["nextBackwardToken"]
-    if "nextForwardToken" in data:
+    if data.get("nextForwardToken") is not None:
         out["next_forward_token"] = data["nextForwardToken"]
     return out

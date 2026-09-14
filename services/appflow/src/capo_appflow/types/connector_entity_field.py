@@ -100,25 +100,25 @@ def serialize_json(value: ConnectorEntityField) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorEntityField:
     out: ConnectorEntityField = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("ConnectorEntityField.identifier required")
-    if "parentIdentifier" in data:
+    if data.get("parentIdentifier") is not None:
         out["parent_identifier"] = data["parentIdentifier"]
-    if "label" in data:
+    if data.get("label") is not None:
         out["label"] = data["label"]
-    if "isPrimaryKey" in data:
+    if data.get("isPrimaryKey") is not None:
         out["is_primary_key"] = data["isPrimaryKey"]
     else:
         out["is_primary_key"] = False
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
-    if "isDeprecated" in data:
+    if data.get("isDeprecated") is not None:
         out["is_deprecated"] = data["isDeprecated"]
     else:
         out["is_deprecated"] = False
-    if "supportedFieldTypeDetails" in data:
+    if data.get("supportedFieldTypeDetails") is not None:
         import capo_appflow.types.supported_field_type_details
 
         out["supported_field_type_details"] = (
@@ -126,9 +126,9 @@ def deserialize_json(data: dict) -> ConnectorEntityField:
                 data["supportedFieldTypeDetails"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sourceProperties" in data:
+    if data.get("sourceProperties") is not None:
         import capo_appflow.types.source_field_properties
 
         out["source_properties"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> ConnectorEntityField:
                 data["sourceProperties"]
             )
         )
-    if "destinationProperties" in data:
+    if data.get("destinationProperties") is not None:
         import capo_appflow.types.destination_field_properties
 
         out["destination_properties"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> ConnectorEntityField:
                 data["destinationProperties"]
             )
         )
-    if "customProperties" in data:
+    if data.get("customProperties") is not None:
         import capo_appflow.types.custom_properties
 
         out["custom_properties"] = (

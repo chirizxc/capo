@@ -63,25 +63,25 @@ def serialize_aws_json_1_1(value: CreatePrivateDnsNamespaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePrivateDnsNamespaceRequest:
     out: CreatePrivateDnsNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreatePrivateDnsNamespaceRequest.name required")
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Vpc" in data:
+    if data.get("Vpc") is not None:
         out["vpc"] = data["Vpc"]
     else:
         raise DeserializationError("CreatePrivateDnsNamespaceRequest.vpc required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_servicediscovery.types.tag_list
 
         out["tags"] = capo_servicediscovery.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_servicediscovery.types.private_dns_namespace_properties
 
         out["properties"] = (

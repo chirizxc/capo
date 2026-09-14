@@ -27,7 +27,7 @@ def serialize_json(value: GetStageSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetStageSessionResponse:
     out: GetStageSessionResponse = {}  # type: ignore[typeddict-item]
-    if "stageSession" in data:
+    if data.get("stageSession") is not None:
         import capo_ivs_realtime.types.stage_session
 
         out["stage_session"] = capo_ivs_realtime.types.stage_session.deserialize_json(

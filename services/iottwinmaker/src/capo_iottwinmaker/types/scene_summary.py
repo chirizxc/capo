@@ -52,19 +52,19 @@ def serialize_json(value: SceneSummary) -> dict:
 
 def deserialize_json(data: dict) -> SceneSummary:
     out: SceneSummary = {}  # type: ignore[typeddict-item]
-    if "sceneId" in data:
+    if data.get("sceneId") is not None:
         out["scene_id"] = data["sceneId"]
     else:
         raise DeserializationError("SceneSummary.scene_id required")
-    if "contentLocation" in data:
+    if data.get("contentLocation") is not None:
         out["content_location"] = data["contentLocation"]
     else:
         raise DeserializationError("SceneSummary.content_location required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("SceneSummary.arn required")
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> SceneSummary:
         )
     else:
         raise DeserializationError("SceneSummary.creation_date_time required")
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -80,6 +80,6 @@ def deserialize_json(data: dict) -> SceneSummary:
         )
     else:
         raise DeserializationError("SceneSummary.update_date_time required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

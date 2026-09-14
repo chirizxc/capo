@@ -26,6 +26,6 @@ def serialize_json(value: UpdateResourceProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceProfileRequest:
     out: UpdateResourceProfileRequest = {}  # type: ignore[typeddict-item]
-    if "sensitivityScoreOverride" in data:
+    if data.get("sensitivityScoreOverride") is not None:
         out["sensitivity_score_override"] = data["sensitivityScoreOverride"]
     return out

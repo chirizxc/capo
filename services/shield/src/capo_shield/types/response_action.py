@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: ResponseAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponseAction:
     out: ResponseAction = {}  # type: ignore[typeddict-item]
-    if "Block" in data:
+    if data.get("Block") is not None:
         import capo_shield.types.block_action
 
         out["block"] = capo_shield.types.block_action.deserialize_aws_json_1_1(
             data["Block"]
         )
-    if "Count" in data:
+    if data.get("Count") is not None:
         import capo_shield.types.count_action
 
         out["count"] = capo_shield.types.count_action.deserialize_aws_json_1_1(

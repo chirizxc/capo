@@ -195,7 +195,7 @@ def serialize_json(value: M3u8Settings) -> dict:
 
 def deserialize_json(data: dict) -> M3u8Settings:
     out: M3u8Settings = {}  # type: ignore[typeddict-item]
-    if "audioDuration" in data:
+    if data.get("audioDuration") is not None:
         import capo_mediaconvert.types.m3u8_audio_duration
 
         out["audio_duration"] = (
@@ -203,9 +203,9 @@ def deserialize_json(data: dict) -> M3u8Settings:
                 data["audioDuration"]
             )
         )
-    if "audioFramesPerPes" in data:
+    if data.get("audioFramesPerPes") is not None:
         out["audio_frames_per_pes"] = data["audioFramesPerPes"]
-    if "audioPids" in data:
+    if data.get("audioPids") is not None:
         import capo_mediaconvert.types.__list_of__integer_min32_max8182
 
         out["audio_pids"] = (
@@ -213,9 +213,9 @@ def deserialize_json(data: dict) -> M3u8Settings:
                 data["audioPids"]
             )
         )
-    if "audioPtsOffsetDelta" in data:
+    if data.get("audioPtsOffsetDelta") is not None:
         out["audio_pts_offset_delta"] = data["audioPtsOffsetDelta"]
-    if "dataPTSControl" in data:
+    if data.get("dataPTSControl") is not None:
         import capo_mediaconvert.types.m3u8_data_pts_control
 
         out["data_pts_control"] = (
@@ -223,43 +223,43 @@ def deserialize_json(data: dict) -> M3u8Settings:
                 data["dataPTSControl"]
             )
         )
-    if "maxPcrInterval" in data:
+    if data.get("maxPcrInterval") is not None:
         out["max_pcr_interval"] = data["maxPcrInterval"]
-    if "nielsenId3" in data:
+    if data.get("nielsenId3") is not None:
         import capo_mediaconvert.types.m3u8_nielsen_id3
 
         out["nielsen_id3"] = capo_mediaconvert.types.m3u8_nielsen_id3.deserialize_json(
             data["nielsenId3"]
         )
-    if "patInterval" in data:
+    if data.get("patInterval") is not None:
         out["pat_interval"] = data["patInterval"]
-    if "pcrControl" in data:
+    if data.get("pcrControl") is not None:
         import capo_mediaconvert.types.m3u8_pcr_control
 
         out["pcr_control"] = capo_mediaconvert.types.m3u8_pcr_control.deserialize_json(
             data["pcrControl"]
         )
-    if "pcrPid" in data:
+    if data.get("pcrPid") is not None:
         out["pcr_pid"] = data["pcrPid"]
-    if "pmtInterval" in data:
+    if data.get("pmtInterval") is not None:
         out["pmt_interval"] = data["pmtInterval"]
-    if "pmtPid" in data:
+    if data.get("pmtPid") is not None:
         out["pmt_pid"] = data["pmtPid"]
-    if "privateMetadataPid" in data:
+    if data.get("privateMetadataPid") is not None:
         out["private_metadata_pid"] = data["privateMetadataPid"]
-    if "programNumber" in data:
+    if data.get("programNumber") is not None:
         out["program_number"] = data["programNumber"]
-    if "ptsOffset" in data:
+    if data.get("ptsOffset") is not None:
         out["pts_offset"] = data["ptsOffset"]
-    if "ptsOffsetMode" in data:
+    if data.get("ptsOffsetMode") is not None:
         import capo_mediaconvert.types.ts_pts_offset
 
         out["pts_offset_mode"] = capo_mediaconvert.types.ts_pts_offset.deserialize_json(
             data["ptsOffsetMode"]
         )
-    if "scte35Pid" in data:
+    if data.get("scte35Pid") is not None:
         out["scte35_pid"] = data["scte35Pid"]
-    if "scte35Source" in data:
+    if data.get("scte35Source") is not None:
         import capo_mediaconvert.types.m3u8_scte35_source
 
         out["scte35_source"] = (
@@ -267,16 +267,16 @@ def deserialize_json(data: dict) -> M3u8Settings:
                 data["scte35Source"]
             )
         )
-    if "timedMetadata" in data:
+    if data.get("timedMetadata") is not None:
         import capo_mediaconvert.types.timed_metadata
 
         out["timed_metadata"] = capo_mediaconvert.types.timed_metadata.deserialize_json(
             data["timedMetadata"]
         )
-    if "timedMetadataPid" in data:
+    if data.get("timedMetadataPid") is not None:
         out["timed_metadata_pid"] = data["timedMetadataPid"]
-    if "transportStreamId" in data:
+    if data.get("transportStreamId") is not None:
         out["transport_stream_id"] = data["transportStreamId"]
-    if "videoPid" in data:
+    if data.get("videoPid") is not None:
         out["video_pid"] = data["videoPid"]
     return out

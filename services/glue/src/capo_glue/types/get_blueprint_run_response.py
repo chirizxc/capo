@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetBlueprintRunResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBlueprintRunResponse:
     out: GetBlueprintRunResponse = {}  # type: ignore[typeddict-item]
-    if "BlueprintRun" in data:
+    if data.get("BlueprintRun") is not None:
         import capo_glue.types.blueprint_run
 
         out["blueprint_run"] = capo_glue.types.blueprint_run.deserialize_aws_json_1_1(

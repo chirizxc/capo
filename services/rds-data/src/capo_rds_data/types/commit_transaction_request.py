@@ -31,15 +31,15 @@ def serialize_json(value: CommitTransactionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CommitTransactionRequest:
     out: CommitTransactionRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("CommitTransactionRequest.resource_arn required")
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError("CommitTransactionRequest.secret_arn required")
-    if "transactionId" in data:
+    if data.get("transactionId") is not None:
         out["transaction_id"] = data["transactionId"]
     else:
         raise DeserializationError("CommitTransactionRequest.transaction_id required")

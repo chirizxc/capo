@@ -61,7 +61,7 @@ def serialize_json(value: ThreatIntelIndicator) -> dict:
 
 def deserialize_json(data: dict) -> ThreatIntelIndicator:
     out: ThreatIntelIndicator = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_securityhub.types.threat_intel_indicator_type
 
         out["type"] = (
@@ -69,9 +69,9 @@ def deserialize_json(data: dict) -> ThreatIntelIndicator:
                 data["Type"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_securityhub.types.threat_intel_indicator_category
 
         out["category"] = (
@@ -79,10 +79,10 @@ def deserialize_json(data: dict) -> ThreatIntelIndicator:
                 data["Category"]
             )
         )
-    if "LastObservedAt" in data:
+    if data.get("LastObservedAt") is not None:
         out["last_observed_at"] = data["LastObservedAt"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "SourceUrl" in data:
+    if data.get("SourceUrl") is not None:
         out["source_url"] = data["SourceUrl"]
     return out

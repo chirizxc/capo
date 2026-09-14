@@ -36,7 +36,7 @@ def serialize_json(value: NewRelicServiceAuthorizationConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> NewRelicServiceAuthorizationConfig:
-    if "apiKey" in data:
+    if data.get("apiKey") is not None:
         import capo_devops_agent.types.new_relic_api_key_config
 
         return {

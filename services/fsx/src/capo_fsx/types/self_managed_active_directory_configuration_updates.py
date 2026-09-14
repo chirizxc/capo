@@ -71,23 +71,23 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> SelfManagedActiveDirectoryConfigurationUpdates:
     out: SelfManagedActiveDirectoryConfigurationUpdates = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "DnsIps" in data:
+    if data.get("DnsIps") is not None:
         import capo_fsx.types.dns_ips
 
         out["dns_ips"] = capo_fsx.types.dns_ips.deserialize_aws_json_1_1(data["DnsIps"])
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "OrganizationalUnitDistinguishedName" in data:
+    if data.get("OrganizationalUnitDistinguishedName") is not None:
         out["organizational_unit_distinguished_name"] = data[
             "OrganizationalUnitDistinguishedName"
         ]
-    if "FileSystemAdministratorsGroup" in data:
+    if data.get("FileSystemAdministratorsGroup") is not None:
         out["file_system_administrators_group"] = data["FileSystemAdministratorsGroup"]
-    if "DomainJoinServiceAccountSecret" in data:
+    if data.get("DomainJoinServiceAccountSecret") is not None:
         out["domain_join_service_account_secret"] = data[
             "DomainJoinServiceAccountSecret"
         ]

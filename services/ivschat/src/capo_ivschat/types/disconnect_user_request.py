@@ -33,14 +33,14 @@ def serialize_json(value: DisconnectUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisconnectUserRequest:
     out: DisconnectUserRequest = {}  # type: ignore[typeddict-item]
-    if "roomIdentifier" in data:
+    if data.get("roomIdentifier") is not None:
         out["room_identifier"] = data["roomIdentifier"]
     else:
         raise DeserializationError("DisconnectUserRequest.room_identifier required")
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError("DisconnectUserRequest.user_id required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

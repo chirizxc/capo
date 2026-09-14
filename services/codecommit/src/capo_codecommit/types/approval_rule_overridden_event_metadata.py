@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: ApprovalRuleOverriddenEventMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApprovalRuleOverriddenEventMetadata:
     out: ApprovalRuleOverriddenEventMetadata = {}  # type: ignore[typeddict-item]
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "overrideStatus" in data:
+    if data.get("overrideStatus") is not None:
         import capo_codecommit.types.override_status
 
         out["override_status"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: CreateServiceSyncConfigOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateServiceSyncConfigOutput:
     out: CreateServiceSyncConfigOutput = {}  # type: ignore[typeddict-item]
-    if "serviceSyncConfig" in data:
+    if data.get("serviceSyncConfig") is not None:
         import capo_proton.types.service_sync_config
 
         out["service_sync_config"] = (

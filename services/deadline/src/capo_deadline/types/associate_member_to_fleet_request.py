@@ -56,7 +56,7 @@ def serialize_json(value: AssociateMemberToFleetRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateMemberToFleetRequest:
     out: AssociateMemberToFleetRequest = {}  # type: ignore[typeddict-item]
-    if "principalType" in data:
+    if data.get("principalType") is not None:
         import capo_deadline.types.deadline_principal_type
 
         out["principal_type"] = (
@@ -68,13 +68,13 @@ def deserialize_json(data: dict) -> AssociateMemberToFleetRequest:
         raise DeserializationError(
             "AssociateMemberToFleetRequest.principal_type required"
         )
-    if "identityStoreId" in data:
+    if data.get("identityStoreId") is not None:
         out["identity_store_id"] = data["identityStoreId"]
     else:
         raise DeserializationError(
             "AssociateMemberToFleetRequest.identity_store_id required"
         )
-    if "membershipLevel" in data:
+    if data.get("membershipLevel") is not None:
         import capo_deadline.types.membership_level
 
         out["membership_level"] = capo_deadline.types.membership_level.deserialize_json(
@@ -84,6 +84,6 @@ def deserialize_json(data: dict) -> AssociateMemberToFleetRequest:
         raise DeserializationError(
             "AssociateMemberToFleetRequest.membership_level required"
         )
-    if "identityCenterRegion" in data:
+    if data.get("identityCenterRegion") is not None:
         out["identity_center_region"] = data["identityCenterRegion"]
     return out

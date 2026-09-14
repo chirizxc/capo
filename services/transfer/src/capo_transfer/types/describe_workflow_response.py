@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DescribeWorkflowResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkflowResponse:
     out: DescribeWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "Workflow" in data:
+    if data.get("Workflow") is not None:
         import capo_transfer.types.described_workflow
 
         out["workflow"] = (

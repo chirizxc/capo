@@ -58,26 +58,26 @@ def serialize_aws_json_1_1(value: SetupExecutionDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetupExecutionDetails:
     out: SetupExecutionDetails = {}  # type: ignore[typeddict-item]
-    if "command" in data:
+    if data.get("command") is not None:
         out["command"] = data["command"]
-    if "dateTime" in data:
+    if data.get("dateTime") is not None:
         import capo_lightsail.types.iso_date
 
         out["date_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["dateTime"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lightsail.types.setup_status
 
         out["status"] = capo_lightsail.types.setup_status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "standardError" in data:
+    if data.get("standardError") is not None:
         out["standard_error"] = data["standardError"]
-    if "standardOutput" in data:
+    if data.get("standardOutput") is not None:
         out["standard_output"] = data["standardOutput"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

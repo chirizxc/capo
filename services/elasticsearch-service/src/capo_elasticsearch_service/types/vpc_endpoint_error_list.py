@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> VpcEndpointErrorList:
 
     out: VpcEndpointErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.vpc_endpoint_error.deserialize_json(item)
         )

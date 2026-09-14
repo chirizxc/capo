@@ -29,7 +29,7 @@ def serialize_json(value: BatchPutFieldOptionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutFieldOptionsResponse:
     out: BatchPutFieldOptionsResponse = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_connectcases.types.field_option_error_list
 
         out["errors"] = (

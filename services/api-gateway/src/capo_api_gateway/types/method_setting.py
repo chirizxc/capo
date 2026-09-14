@@ -45,7 +45,16 @@ def serialize_json(value: MethodSetting) -> dict:
         out["loggingLevel"] = value["logging_level"]
     out["dataTraceEnabled"] = value.get("data_trace_enabled", False)
     out["throttlingBurstLimit"] = value.get("throttling_burst_limit", 0)
-    out["throttlingRateLimit"] = value.get("throttling_rate_limit", 0)
+    out["throttlingRateLimit"] = (
+        "NaN"
+        if value.get("throttling_rate_limit", 0)
+        != value.get("throttling_rate_limit", 0)
+        else "Infinity"
+        if value.get("throttling_rate_limit", 0) == float("inf")
+        else "-Infinity"
+        if value.get("throttling_rate_limit", 0) == float("-inf")
+        else value.get("throttling_rate_limit", 0)
+    )
     out["cachingEnabled"] = value.get("caching_enabled", False)
     out["cacheTtlInSeconds"] = value.get("cache_ttl_in_seconds", 0)
     out["cacheDataEncrypted"] = value.get("cache_data_encrypted", False)
@@ -65,43 +74,43 @@ def serialize_json(value: MethodSetting) -> dict:
 
 def deserialize_json(data: dict) -> MethodSetting:
     out: MethodSetting = {}  # type: ignore[typeddict-item]
-    if "metricsEnabled" in data:
+    if data.get("metricsEnabled") is not None:
         out["metrics_enabled"] = data["metricsEnabled"]
     else:
         out["metrics_enabled"] = False
-    if "loggingLevel" in data:
+    if data.get("loggingLevel") is not None:
         out["logging_level"] = data["loggingLevel"]
-    if "dataTraceEnabled" in data:
+    if data.get("dataTraceEnabled") is not None:
         out["data_trace_enabled"] = data["dataTraceEnabled"]
     else:
         out["data_trace_enabled"] = False
-    if "throttlingBurstLimit" in data:
+    if data.get("throttlingBurstLimit") is not None:
         out["throttling_burst_limit"] = data["throttlingBurstLimit"]
     else:
         out["throttling_burst_limit"] = 0
-    if "throttlingRateLimit" in data:
-        out["throttling_rate_limit"] = data["throttlingRateLimit"]
+    if data.get("throttlingRateLimit") is not None:
+        out["throttling_rate_limit"] = float(data["throttlingRateLimit"])
     else:
         out["throttling_rate_limit"] = 0
-    if "cachingEnabled" in data:
+    if data.get("cachingEnabled") is not None:
         out["caching_enabled"] = data["cachingEnabled"]
     else:
         out["caching_enabled"] = False
-    if "cacheTtlInSeconds" in data:
+    if data.get("cacheTtlInSeconds") is not None:
         out["cache_ttl_in_seconds"] = data["cacheTtlInSeconds"]
     else:
         out["cache_ttl_in_seconds"] = 0
-    if "cacheDataEncrypted" in data:
+    if data.get("cacheDataEncrypted") is not None:
         out["cache_data_encrypted"] = data["cacheDataEncrypted"]
     else:
         out["cache_data_encrypted"] = False
-    if "requireAuthorizationForCacheControl" in data:
+    if data.get("requireAuthorizationForCacheControl") is not None:
         out["require_authorization_for_cache_control"] = data[
             "requireAuthorizationForCacheControl"
         ]
     else:
         out["require_authorization_for_cache_control"] = False
-    if "unauthorizedCacheControlHeaderStrategy" in data:
+    if data.get("unauthorizedCacheControlHeaderStrategy") is not None:
         import capo_api_gateway.types.unauthorized_cache_control_header_strategy
 
         out["unauthorized_cache_control_header_strategy"] = (

@@ -48,26 +48,22 @@ def serialize_aws_json_1_1(value: ExportStatus) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_bcm_data_exports.types._prelude.timestamp
+        import capo_bcm_data_exports._protocol.serialize
 
-        out["CreatedAt"] = (
-            capo_bcm_data_exports.types._prelude.timestamp.serialize_aws_json_1_1(
-                value["created_at"]
-            )
+        out["CreatedAt"] = capo_bcm_data_exports._protocol.serialize.fmt_date_time(
+            value["created_at"]
         )
     if "last_updated_at" in value:
-        import capo_bcm_data_exports.types._prelude.timestamp
+        import capo_bcm_data_exports._protocol.serialize
 
-        out["LastUpdatedAt"] = (
-            capo_bcm_data_exports.types._prelude.timestamp.serialize_aws_json_1_1(
-                value["last_updated_at"]
-            )
+        out["LastUpdatedAt"] = capo_bcm_data_exports._protocol.serialize.fmt_date_time(
+            value["last_updated_at"]
         )
     if "last_refreshed_at" in value:
-        import capo_bcm_data_exports.types._prelude.timestamp
+        import capo_bcm_data_exports._protocol.serialize
 
         out["LastRefreshedAt"] = (
-            capo_bcm_data_exports.types._prelude.timestamp.serialize_aws_json_1_1(
+            capo_bcm_data_exports._protocol.serialize.fmt_date_time(
                 value["last_refreshed_at"]
             )
         )
@@ -76,7 +72,7 @@ def serialize_aws_json_1_1(value: ExportStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportStatus:
     out: ExportStatus = {}  # type: ignore[typeddict-item]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_bcm_data_exports.types.export_status_code
 
         out["status_code"] = (
@@ -84,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExportStatus:
                 data["StatusCode"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_bcm_data_exports.types.execution_status_reason
 
         out["status_reason"] = (
@@ -92,28 +88,22 @@ def deserialize_aws_json_1_1(data: dict) -> ExportStatus:
                 data["StatusReason"]
             )
         )
-    if "CreatedAt" in data:
-        import capo_bcm_data_exports.types._prelude.timestamp
+    if data.get("CreatedAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_bcm_data_exports.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["CreatedAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["CreatedAt"].replace("Z", "+00:00")
         )
-    if "LastUpdatedAt" in data:
-        import capo_bcm_data_exports.types._prelude.timestamp
+    if data.get("LastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_bcm_data_exports.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["LastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["LastUpdatedAt"].replace("Z", "+00:00")
         )
-    if "LastRefreshedAt" in data:
-        import capo_bcm_data_exports.types._prelude.timestamp
+    if data.get("LastRefreshedAt") is not None:
+        import datetime
 
-        out["last_refreshed_at"] = (
-            capo_bcm_data_exports.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["LastRefreshedAt"]
-            )
+        out["last_refreshed_at"] = datetime.datetime.fromisoformat(
+            data["LastRefreshedAt"].replace("Z", "+00:00")
         )
     return out

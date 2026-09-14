@@ -43,11 +43,11 @@ def serialize_json(value: CreateTelemetryPipelineInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateTelemetryPipelineInput:
     out: CreateTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateTelemetryPipelineInput.name required")
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_observabilityadmin.types.telemetry_pipeline_configuration
 
         out["configuration"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> CreateTelemetryPipelineInput:
         raise DeserializationError(
             "CreateTelemetryPipelineInput.configuration required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_observabilityadmin.types.tag_map_input
 
         out["tags"] = capo_observabilityadmin.types.tag_map_input.deserialize_json(

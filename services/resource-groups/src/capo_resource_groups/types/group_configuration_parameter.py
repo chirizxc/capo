@@ -37,11 +37,11 @@ def serialize_json(value: GroupConfigurationParameter) -> dict:
 
 def deserialize_json(data: dict) -> GroupConfigurationParameter:
     out: GroupConfigurationParameter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GroupConfigurationParameter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_resource_groups.types.group_configuration_parameter_value_list
 
         out["values"] = (

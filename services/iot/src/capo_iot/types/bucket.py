@@ -27,9 +27,9 @@ def serialize_json(value: Bucket) -> dict:
 
 def deserialize_json(data: dict) -> Bucket:
     out: Bucket = {}  # type: ignore[typeddict-item]
-    if "keyValue" in data:
+    if data.get("keyValue") is not None:
         out["key_value"] = data["keyValue"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         out["count"] = 0

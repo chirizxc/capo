@@ -31,7 +31,7 @@ def serialize_json(value: TablePinnedFieldOptions) -> dict:
 
 def deserialize_json(data: dict) -> TablePinnedFieldOptions:
     out: TablePinnedFieldOptions = {}  # type: ignore[typeddict-item]
-    if "PinnedLeftFields" in data:
+    if data.get("PinnedLeftFields") is not None:
         import capo_quicksight.types.table_field_order_list
 
         out["pinned_left_fields"] = (

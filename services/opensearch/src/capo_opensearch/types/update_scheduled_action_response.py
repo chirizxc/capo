@@ -29,7 +29,7 @@ def serialize_json(value: UpdateScheduledActionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateScheduledActionResponse:
     out: UpdateScheduledActionResponse = {}  # type: ignore[typeddict-item]
-    if "ScheduledAction" in data:
+    if data.get("ScheduledAction") is not None:
         import capo_opensearch.types.scheduled_action
 
         out["scheduled_action"] = (

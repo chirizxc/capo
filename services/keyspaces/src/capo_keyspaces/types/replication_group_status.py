@@ -35,14 +35,14 @@ def serialize_aws_json_1_0(value: ReplicationGroupStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReplicationGroupStatus:
     out: ReplicationGroupStatus = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("ReplicationGroupStatus.region required")
-    if "keyspaceStatus" in data:
+    if data.get("keyspaceStatus") is not None:
         out["keyspace_status"] = data["keyspaceStatus"]
     else:
         raise DeserializationError("ReplicationGroupStatus.keyspace_status required")
-    if "tablesReplicationProgress" in data:
+    if data.get("tablesReplicationProgress") is not None:
         out["tables_replication_progress"] = data["tablesReplicationProgress"]
     return out

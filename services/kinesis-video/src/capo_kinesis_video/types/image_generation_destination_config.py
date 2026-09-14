@@ -28,11 +28,11 @@ def serialize_json(value: ImageGenerationDestinationConfig) -> dict:
 
 def deserialize_json(data: dict) -> ImageGenerationDestinationConfig:
     out: ImageGenerationDestinationConfig = {}  # type: ignore[typeddict-item]
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
     else:
         raise DeserializationError("ImageGenerationDestinationConfig.uri required")
-    if "DestinationRegion" in data:
+    if data.get("DestinationRegion") is not None:
         out["destination_region"] = data["DestinationRegion"]
     else:
         raise DeserializationError(

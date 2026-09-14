@@ -27,8 +27,8 @@ def serialize_json(value: TimeFilter) -> dict:
 
 def deserialize_json(data: dict) -> TimeFilter:
     out: TimeFilter = {}  # type: ignore[typeddict-item]
-    if "after" in data:
+    if data.get("after") is not None:
         out["after"] = data["after"]
-    if "before" in data:
+    if data.get("before") is not None:
         out["before"] = data["before"]
     return out

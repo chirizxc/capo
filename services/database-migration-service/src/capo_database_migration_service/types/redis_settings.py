@@ -71,15 +71,15 @@ def serialize_aws_json_1_1(value: RedisSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedisSettings:
     out: RedisSettings = {}  # type: ignore[typeddict-item]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
     else:
         raise DeserializationError("RedisSettings.server_name required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         out["port"] = 0
-    if "SslSecurityProtocol" in data:
+    if data.get("SslSecurityProtocol") is not None:
         import capo_database_migration_service.types.ssl_security_protocol_value
 
         out["ssl_security_protocol"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> RedisSettings:
                 data["SslSecurityProtocol"]
             )
         )
-    if "AuthType" in data:
+    if data.get("AuthType") is not None:
         import capo_database_migration_service.types.redis_auth_type_value
 
         out["auth_type"] = (
@@ -95,10 +95,10 @@ def deserialize_aws_json_1_1(data: dict) -> RedisSettings:
                 data["AuthType"]
             )
         )
-    if "AuthUserName" in data:
+    if data.get("AuthUserName") is not None:
         out["auth_user_name"] = data["AuthUserName"]
-    if "AuthPassword" in data:
+    if data.get("AuthPassword") is not None:
         out["auth_password"] = data["AuthPassword"]
-    if "SslCaCertificateArn" in data:
+    if data.get("SslCaCertificateArn") is not None:
         out["ssl_ca_certificate_arn"] = data["SslCaCertificateArn"]
     return out

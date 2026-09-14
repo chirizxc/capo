@@ -32,17 +32,17 @@ def serialize_aws_json_1_1(value: CreateConnectClientAddInRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateConnectClientAddInRequest:
     out: CreateConnectClientAddInRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(
             "CreateConnectClientAddInRequest.resource_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateConnectClientAddInRequest.name required")
-    if "URL" in data:
+    if data.get("URL") is not None:
         out["url"] = data["URL"]
     else:
         raise DeserializationError("CreateConnectClientAddInRequest.url required")

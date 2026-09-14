@@ -84,7 +84,7 @@ class GroundStationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_ground_stations_request.ListGroundStationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_ground_stations_request.ListGroundStationsRequest = {}
         if satellite_id is not None:
             input_["satellite_id"] = satellite_id
         if max_results is not None:
@@ -97,6 +97,7 @@ class GroundStationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_antennas(
@@ -139,8 +140,9 @@ class GroundStationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_antennas_request.ListAntennasRequest = {}  # type: ignore[typeddict-item]
-        input_["ground_station_id"] = ground_station_id
+        input_: capo_groundstation.types.list_antennas_request.ListAntennasRequest = {
+            "ground_station_id": ground_station_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -151,6 +153,7 @@ class GroundStationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_ground_station_reservations(
@@ -201,10 +204,11 @@ class GroundStationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_ground_station_reservations_request.ListGroundStationReservationsRequest = {}  # type: ignore[typeddict-item]
-        input_["ground_station_id"] = ground_station_id
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_groundstation.types.list_ground_station_reservations_request.ListGroundStationReservationsRequest = {
+            "ground_station_id": ground_station_id,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if reservation_types is not None:
             input_["reservation_types"] = reservation_types
         if max_results is not None:
@@ -217,6 +221,7 @@ class GroundStationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -266,7 +271,7 @@ class AsyncGroundStationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_ground_stations_request.ListGroundStationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_ground_stations_request.ListGroundStationsRequest = {}
         if satellite_id is not None:
             input_["satellite_id"] = satellite_id
         if max_results is not None:
@@ -279,6 +284,7 @@ class AsyncGroundStationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_antennas(
@@ -322,8 +328,9 @@ class AsyncGroundStationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_antennas_request.ListAntennasRequest = {}  # type: ignore[typeddict-item]
-        input_["ground_station_id"] = ground_station_id
+        input_: capo_groundstation.types.list_antennas_request.ListAntennasRequest = {
+            "ground_station_id": ground_station_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -334,6 +341,7 @@ class AsyncGroundStationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_ground_station_reservations(
@@ -385,10 +393,11 @@ class AsyncGroundStationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_ground_station_reservations_request.ListGroundStationReservationsRequest = {}  # type: ignore[typeddict-item]
-        input_["ground_station_id"] = ground_station_id
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_groundstation.types.list_ground_station_reservations_request.ListGroundStationReservationsRequest = {
+            "ground_station_id": ground_station_id,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if reservation_types is not None:
             input_["reservation_types"] = reservation_types
         if max_results is not None:
@@ -401,4 +410,5 @@ class AsyncGroundStationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

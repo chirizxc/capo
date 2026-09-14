@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MeteredProductSummaryList:
 
     out: MeteredProductSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.metered_product_summary.deserialize_json(item))
     return out

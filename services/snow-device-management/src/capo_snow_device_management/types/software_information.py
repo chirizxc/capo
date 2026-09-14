@@ -26,10 +26,10 @@ def serialize_json(value: SoftwareInformation) -> dict:
 
 def deserialize_json(data: dict) -> SoftwareInformation:
     out: SoftwareInformation = {}  # type: ignore[typeddict-item]
-    if "installedVersion" in data:
+    if data.get("installedVersion") is not None:
         out["installed_version"] = data["installedVersion"]
-    if "installingVersion" in data:
+    if data.get("installingVersion") is not None:
         out["installing_version"] = data["installingVersion"]
-    if "installState" in data:
+    if data.get("installState") is not None:
         out["install_state"] = data["installState"]
     return out

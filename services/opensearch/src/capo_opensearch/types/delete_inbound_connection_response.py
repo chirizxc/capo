@@ -29,7 +29,7 @@ def serialize_json(value: DeleteInboundConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteInboundConnectionResponse:
     out: DeleteInboundConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "Connection" in data:
+    if data.get("Connection") is not None:
         import capo_opensearch.types.inbound_connection
 
         out["connection"] = capo_opensearch.types.inbound_connection.deserialize_json(

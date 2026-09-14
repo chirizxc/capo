@@ -39,16 +39,16 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         import capo_mpa.types.filter_field
 
         out["field_name"] = capo_mpa.types.filter_field.deserialize_json(
             data["FieldName"]
         )
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_mpa.types.operator
 
         out["operator"] = capo_mpa.types.operator.deserialize_json(data["Operator"])
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

@@ -68,9 +68,9 @@ def serialize_aws_json_1_0(value: Record) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Record:
     out: Record = {}  # type: ignore[typeddict-item]
-    if "eventID" in data:
+    if data.get("eventID") is not None:
         out["event_id"] = data["eventID"]
-    if "eventName" in data:
+    if data.get("eventName") is not None:
         import capo_dynamodb_streams.types.operation_type
 
         out["event_name"] = (
@@ -78,13 +78,13 @@ def deserialize_aws_json_1_0(data: dict) -> Record:
                 data["eventName"]
             )
         )
-    if "eventVersion" in data:
+    if data.get("eventVersion") is not None:
         out["event_version"] = data["eventVersion"]
-    if "eventSource" in data:
+    if data.get("eventSource") is not None:
         out["event_source"] = data["eventSource"]
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         out["aws_region"] = data["awsRegion"]
-    if "dynamodb" in data:
+    if data.get("dynamodb") is not None:
         import capo_dynamodb_streams.types.stream_record
 
         out["dynamodb"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> Record:
                 data["dynamodb"]
             )
         )
-    if "userIdentity" in data:
+    if data.get("userIdentity") is not None:
         import capo_dynamodb_streams.types.identity
 
         out["user_identity"] = (

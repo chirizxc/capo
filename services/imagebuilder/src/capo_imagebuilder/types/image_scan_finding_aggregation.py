@@ -70,7 +70,7 @@ def serialize_json(value: ImageScanFindingAggregation) -> dict:
 
 def deserialize_json(data: dict) -> ImageScanFindingAggregation:
     out: ImageScanFindingAggregation = {}  # type: ignore[typeddict-item]
-    if "accountAggregation" in data:
+    if data.get("accountAggregation") is not None:
         import capo_imagebuilder.types.account_aggregation
 
         out["account_aggregation"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ImageScanFindingAggregation:
                 data["accountAggregation"]
             )
         )
-    if "imageAggregation" in data:
+    if data.get("imageAggregation") is not None:
         import capo_imagebuilder.types.image_aggregation
 
         out["image_aggregation"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ImageScanFindingAggregation:
                 data["imageAggregation"]
             )
         )
-    if "imagePipelineAggregation" in data:
+    if data.get("imagePipelineAggregation") is not None:
         import capo_imagebuilder.types.image_pipeline_aggregation
 
         out["image_pipeline_aggregation"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> ImageScanFindingAggregation:
                 data["imagePipelineAggregation"]
             )
         )
-    if "vulnerabilityIdAggregation" in data:
+    if data.get("vulnerabilityIdAggregation") is not None:
         import capo_imagebuilder.types.vulnerability_id_aggregation
 
         out["vulnerability_id_aggregation"] = (

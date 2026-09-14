@@ -103,9 +103,9 @@ def serialize_aws_json_1_1(value: ActionTypeDeclaration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionTypeDeclaration:
     out: ActionTypeDeclaration = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "executor" in data:
+    if data.get("executor") is not None:
         import capo_codepipeline.types.action_type_executor
 
         out["executor"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionTypeDeclaration:
         )
     else:
         raise DeserializationError("ActionTypeDeclaration.executor required")
-    if "id" in data:
+    if data.get("id") is not None:
         import capo_codepipeline.types.action_type_identifier
 
         out["id"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionTypeDeclaration:
         )
     else:
         raise DeserializationError("ActionTypeDeclaration.id required")
-    if "inputArtifactDetails" in data:
+    if data.get("inputArtifactDetails") is not None:
         import capo_codepipeline.types.action_type_artifact_details
 
         out["input_artifact_details"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionTypeDeclaration:
         raise DeserializationError(
             "ActionTypeDeclaration.input_artifact_details required"
         )
-    if "outputArtifactDetails" in data:
+    if data.get("outputArtifactDetails") is not None:
         import capo_codepipeline.types.action_type_artifact_details
 
         out["output_artifact_details"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionTypeDeclaration:
         raise DeserializationError(
             "ActionTypeDeclaration.output_artifact_details required"
         )
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_codepipeline.types.action_type_permissions
 
         out["permissions"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionTypeDeclaration:
                 data["permissions"]
             )
         )
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_codepipeline.types.action_type_properties
 
         out["properties"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionTypeDeclaration:
                 data["properties"]
             )
         )
-    if "urls" in data:
+    if data.get("urls") is not None:
         import capo_codepipeline.types.action_type_urls
 
         out["urls"] = capo_codepipeline.types.action_type_urls.deserialize_aws_json_1_1(

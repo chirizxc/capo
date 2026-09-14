@@ -32,12 +32,12 @@ def serialize_json(value: ListGraphqlApisResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListGraphqlApisResponse:
     out: ListGraphqlApisResponse = {}  # type: ignore[typeddict-item]
-    if "graphqlApis" in data:
+    if data.get("graphqlApis") is not None:
         import capo_appsync.types.graphql_apis
 
         out["graphql_apis"] = capo_appsync.types.graphql_apis.deserialize_json(
             data["graphqlApis"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

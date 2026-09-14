@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ModificationState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModificationState:
     out: ModificationState = {}  # type: ignore[typeddict-item]
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_workspaces.types.modification_resource_enum
 
         out["resource"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModificationState:
                 data["Resource"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.modification_state_enum
 
         out["state"] = (

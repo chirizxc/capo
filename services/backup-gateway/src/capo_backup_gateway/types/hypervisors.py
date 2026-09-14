@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> Hypervisors:
 
     out: Hypervisors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup_gateway.types.hypervisor.deserialize_aws_json_1_0(item))
     return out

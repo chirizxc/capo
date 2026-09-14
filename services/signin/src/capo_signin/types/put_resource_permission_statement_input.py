@@ -59,20 +59,20 @@ def serialize_json(value: PutResourcePermissionStatementInput) -> dict:
 
 def deserialize_json(data: dict) -> PutResourcePermissionStatementInput:
     out: PutResourcePermissionStatementInput = {}  # type: ignore[typeddict-item]
-    if "sourceVpc" in data:
+    if data.get("sourceVpc") is not None:
         out["source_vpc"] = data["sourceVpc"]
-    if "signinSourceVpce" in data:
+    if data.get("signinSourceVpce") is not None:
         out["signin_source_vpce"] = data["signinSourceVpce"]
-    if "consoleSourceVpce" in data:
+    if data.get("consoleSourceVpce") is not None:
         out["console_source_vpce"] = data["consoleSourceVpce"]
-    if "vpcSourceIp" in data:
+    if data.get("vpcSourceIp") is not None:
         out["vpc_source_ip"] = data["vpcSourceIp"]
-    if "sourceIp" in data:
+    if data.get("sourceIp") is not None:
         out["source_ip"] = data["sourceIp"]
-    if "requestedRegion" in data:
+    if data.get("requestedRegion") is not None:
         out["requested_region"] = data["requestedRegion"]
-    if "excludedPrincipal" in data:
+    if data.get("excludedPrincipal") is not None:
         out["excluded_principal"] = data["excludedPrincipal"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

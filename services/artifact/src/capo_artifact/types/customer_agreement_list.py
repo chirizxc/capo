@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CustomerAgreementList:
 
     out: CustomerAgreementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_artifact.types.customer_agreement_summary.deserialize_json(item)
         )

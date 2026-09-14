@@ -34,10 +34,10 @@ def serialize_json(value: GetMarketplaceResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMarketplaceResourceResponse:
     out: GetMarketplaceResourceResponse = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "data" in data:
+    if data.get("data") is not None:
         out["data"] = data["data"]
     return out

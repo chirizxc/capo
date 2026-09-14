@@ -25,6 +25,6 @@ def serialize_json(value: RegisteredUserGenerativeQnAEmbeddingConfiguration) -> 
 
 def deserialize_json(data: dict) -> RegisteredUserGenerativeQnAEmbeddingConfiguration:
     out: RegisteredUserGenerativeQnAEmbeddingConfiguration = {}  # type: ignore[typeddict-item]
-    if "InitialTopicId" in data:
+    if data.get("InitialTopicId") is not None:
         out["initial_topic_id"] = data["InitialTopicId"]
     return out

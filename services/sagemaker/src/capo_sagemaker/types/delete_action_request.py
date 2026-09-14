@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DeleteActionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteActionRequest:
     out: DeleteActionRequest = {}  # type: ignore[typeddict-item]
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
     return out

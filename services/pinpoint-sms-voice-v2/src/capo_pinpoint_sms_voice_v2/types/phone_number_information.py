@@ -115,29 +115,29 @@ def serialize_aws_json_1_0(value: PhoneNumberInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PhoneNumberInformation:
     out: PhoneNumberInformation = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberArn" in data:
+    if data.get("PhoneNumberArn") is not None:
         out["phone_number_arn"] = data["PhoneNumberArn"]
     else:
         raise DeserializationError("PhoneNumberInformation.phone_number_arn required")
-    if "PhoneNumberId" in data:
+    if data.get("PhoneNumberId") is not None:
         out["phone_number_id"] = data["PhoneNumberId"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
     else:
         raise DeserializationError("PhoneNumberInformation.phone_number required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("PhoneNumberInformation.status required")
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
     else:
         raise DeserializationError("PhoneNumberInformation.iso_country_code required")
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         out["message_type"] = data["MessageType"]
     else:
         raise DeserializationError("PhoneNumberInformation.message_type required")
-    if "NumberCapabilities" in data:
+    if data.get("NumberCapabilities") is not None:
         import capo_pinpoint_sms_voice_v2.types.number_capability_list
 
         out["number_capabilities"] = (
@@ -149,45 +149,45 @@ def deserialize_aws_json_1_0(data: dict) -> PhoneNumberInformation:
         raise DeserializationError(
             "PhoneNumberInformation.number_capabilities required"
         )
-    if "NumberType" in data:
+    if data.get("NumberType") is not None:
         out["number_type"] = data["NumberType"]
     else:
         raise DeserializationError("PhoneNumberInformation.number_type required")
-    if "MonthlyLeasingPrice" in data:
+    if data.get("MonthlyLeasingPrice") is not None:
         out["monthly_leasing_price"] = data["MonthlyLeasingPrice"]
     else:
         raise DeserializationError(
             "PhoneNumberInformation.monthly_leasing_price required"
         )
-    if "TwoWayEnabled" in data:
+    if data.get("TwoWayEnabled") is not None:
         out["two_way_enabled"] = data["TwoWayEnabled"]
     else:
         out["two_way_enabled"] = False
-    if "TwoWayChannelArn" in data:
+    if data.get("TwoWayChannelArn") is not None:
         out["two_way_channel_arn"] = data["TwoWayChannelArn"]
-    if "TwoWayChannelRole" in data:
+    if data.get("TwoWayChannelRole") is not None:
         out["two_way_channel_role"] = data["TwoWayChannelRole"]
-    if "SelfManagedOptOutsEnabled" in data:
+    if data.get("SelfManagedOptOutsEnabled") is not None:
         out["self_managed_opt_outs_enabled"] = data["SelfManagedOptOutsEnabled"]
     else:
         out["self_managed_opt_outs_enabled"] = False
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
     else:
         raise DeserializationError("PhoneNumberInformation.opt_out_list_name required")
-    if "InternationalSendingEnabled" in data:
+    if data.get("InternationalSendingEnabled") is not None:
         out["international_sending_enabled"] = data["InternationalSendingEnabled"]
     else:
         out["international_sending_enabled"] = False
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     else:
         out["deletion_protection_enabled"] = False
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

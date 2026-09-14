@@ -81,16 +81,18 @@ class GroupMembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.create_group_membership_request.CreateGroupMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["group_id"] = group_id
-        input_["member_id"] = member_id
+        input_: capo_identitystore.types.create_group_membership_request.CreateGroupMembershipRequest = {
+            "identity_store_id": identity_store_id,
+            "group_id": group_id,
+            "member_id": member_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -130,15 +132,17 @@ class GroupMembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.describe_group_membership_request.DescribeGroupMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["membership_id"] = membership_id
+        input_: capo_identitystore.types.describe_group_membership_request.DescribeGroupMembershipRequest = {
+            "identity_store_id": identity_store_id,
+            "membership_id": membership_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -179,15 +183,17 @@ class GroupMembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.delete_group_membership_request.DeleteGroupMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["membership_id"] = membership_id
+        input_: capo_identitystore.types.delete_group_membership_request.DeleteGroupMembershipRequest = {
+            "identity_store_id": identity_store_id,
+            "membership_id": membership_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -231,9 +237,10 @@ class GroupMembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.list_group_memberships_request.ListGroupMembershipsRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["group_id"] = group_id
+        input_: capo_identitystore.types.list_group_memberships_request.ListGroupMembershipsRequest = {
+            "identity_store_id": identity_store_id,
+            "group_id": group_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -244,6 +251,7 @@ class GroupMembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -293,16 +301,18 @@ class AsyncGroupMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.create_group_membership_request.CreateGroupMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["group_id"] = group_id
-        input_["member_id"] = member_id
+        input_: capo_identitystore.types.create_group_membership_request.CreateGroupMembershipRequest = {
+            "identity_store_id": identity_store_id,
+            "group_id": group_id,
+            "member_id": member_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -343,15 +353,17 @@ class AsyncGroupMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.describe_group_membership_request.DescribeGroupMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["membership_id"] = membership_id
+        input_: capo_identitystore.types.describe_group_membership_request.DescribeGroupMembershipRequest = {
+            "identity_store_id": identity_store_id,
+            "membership_id": membership_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -393,15 +405,17 @@ class AsyncGroupMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.delete_group_membership_request.DeleteGroupMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["membership_id"] = membership_id
+        input_: capo_identitystore.types.delete_group_membership_request.DeleteGroupMembershipRequest = {
+            "identity_store_id": identity_store_id,
+            "membership_id": membership_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -446,9 +460,10 @@ class AsyncGroupMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.list_group_memberships_request.ListGroupMembershipsRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["group_id"] = group_id
+        input_: capo_identitystore.types.list_group_memberships_request.ListGroupMembershipsRequest = {
+            "identity_store_id": identity_store_id,
+            "group_id": group_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -459,4 +474,5 @@ class AsyncGroupMembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

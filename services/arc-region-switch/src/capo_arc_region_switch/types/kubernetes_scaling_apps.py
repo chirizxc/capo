@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> KubernetesScalingApps:
 
     out: KubernetesScalingApps = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_arc_region_switch.types.kubernetes_scaling_application.deserialize_aws_json_1_0(
                 item

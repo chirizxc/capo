@@ -34,7 +34,7 @@ def serialize_json(value: UpdateResourceProfileDetectionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceProfileDetectionsRequest:
     out: UpdateResourceProfileDetectionsRequest = {}  # type: ignore[typeddict-item]
-    if "suppressDataIdentifiers" in data:
+    if data.get("suppressDataIdentifiers") is not None:
         import capo_macie2.types.__list_of_suppress_data_identifier
 
         out["suppress_data_identifiers"] = (

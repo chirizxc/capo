@@ -37,7 +37,7 @@ def serialize_json(value: CreateRestoreTestingSelectionOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateRestoreTestingSelectionOutput:
     out: CreateRestoreTestingSelectionOutput = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["creation_time"] = capo_backup.types._prelude.timestamp.deserialize_json(
@@ -47,19 +47,19 @@ def deserialize_json(data: dict) -> CreateRestoreTestingSelectionOutput:
         raise DeserializationError(
             "CreateRestoreTestingSelectionOutput.creation_time required"
         )
-    if "RestoreTestingPlanArn" in data:
+    if data.get("RestoreTestingPlanArn") is not None:
         out["restore_testing_plan_arn"] = data["RestoreTestingPlanArn"]
     else:
         raise DeserializationError(
             "CreateRestoreTestingSelectionOutput.restore_testing_plan_arn required"
         )
-    if "RestoreTestingPlanName" in data:
+    if data.get("RestoreTestingPlanName") is not None:
         out["restore_testing_plan_name"] = data["RestoreTestingPlanName"]
     else:
         raise DeserializationError(
             "CreateRestoreTestingSelectionOutput.restore_testing_plan_name required"
         )
-    if "RestoreTestingSelectionName" in data:
+    if data.get("RestoreTestingSelectionName") is not None:
         out["restore_testing_selection_name"] = data["RestoreTestingSelectionName"]
     else:
         raise DeserializationError(

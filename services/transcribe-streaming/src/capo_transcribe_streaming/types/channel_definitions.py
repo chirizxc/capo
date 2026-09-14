@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ChannelDefinitions:
 
     out: ChannelDefinitions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe_streaming.types.channel_definition.deserialize_json(item)
         )

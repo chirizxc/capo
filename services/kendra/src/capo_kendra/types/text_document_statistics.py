@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: TextDocumentStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TextDocumentStatistics:
     out: TextDocumentStatistics = {}  # type: ignore[typeddict-item]
-    if "IndexedTextDocumentsCount" in data:
+    if data.get("IndexedTextDocumentsCount") is not None:
         out["indexed_text_documents_count"] = data["IndexedTextDocumentsCount"]
     else:
         out["indexed_text_documents_count"] = 0
-    if "IndexedTextBytes" in data:
+    if data.get("IndexedTextBytes") is not None:
         out["indexed_text_bytes"] = data["IndexedTextBytes"]
     else:
         out["indexed_text_bytes"] = 0

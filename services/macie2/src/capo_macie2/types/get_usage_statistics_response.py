@@ -41,15 +41,15 @@ def serialize_json(value: GetUsageStatisticsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUsageStatisticsResponse:
     out: GetUsageStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "records" in data:
+    if data.get("records") is not None:
         import capo_macie2.types.__list_of_usage_record
 
         out["records"] = capo_macie2.types.__list_of_usage_record.deserialize_json(
             data["records"]
         )
-    if "timeRange" in data:
+    if data.get("timeRange") is not None:
         import capo_macie2.types.time_range
 
         out["time_range"] = capo_macie2.types.time_range.deserialize_json(

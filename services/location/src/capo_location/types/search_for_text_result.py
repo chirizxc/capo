@@ -30,9 +30,25 @@ def serialize_json(value: SearchForTextResult) -> dict:
 
     out["Place"] = capo_location.types.place.serialize_json(value["place"])
     if "distance" in value:
-        out["Distance"] = value["distance"]
+        out["Distance"] = (
+            "NaN"
+            if value["distance"] != value["distance"]
+            else "Infinity"
+            if value["distance"] == float("inf")
+            else "-Infinity"
+            if value["distance"] == float("-inf")
+            else value["distance"]
+        )
     if "relevance" in value:
-        out["Relevance"] = value["relevance"]
+        out["Relevance"] = (
+            "NaN"
+            if value["relevance"] != value["relevance"]
+            else "Infinity"
+            if value["relevance"] == float("inf")
+            else "-Infinity"
+            if value["relevance"] == float("-inf")
+            else value["relevance"]
+        )
     if "place_id" in value:
         out["PlaceId"] = value["place_id"]
     return out
@@ -40,16 +56,16 @@ def serialize_json(value: SearchForTextResult) -> dict:
 
 def deserialize_json(data: dict) -> SearchForTextResult:
     out: SearchForTextResult = {}  # type: ignore[typeddict-item]
-    if "Place" in data:
+    if data.get("Place") is not None:
         import capo_location.types.place
 
         out["place"] = capo_location.types.place.deserialize_json(data["Place"])
     else:
         raise DeserializationError("SearchForTextResult.place required")
-    if "Distance" in data:
-        out["distance"] = data["Distance"]
-    if "Relevance" in data:
-        out["relevance"] = data["Relevance"]
-    if "PlaceId" in data:
+    if data.get("Distance") is not None:
+        out["distance"] = float(data["Distance"])
+    if data.get("Relevance") is not None:
+        out["relevance"] = float(data["Relevance"])
+    if data.get("PlaceId") is not None:
         out["place_id"] = data["PlaceId"]
     return out

@@ -77,33 +77,33 @@ def serialize_json(value: ReactStartCodegenJobData) -> dict:
 
 def deserialize_json(data: dict) -> ReactStartCodegenJobData:
     out: ReactStartCodegenJobData = {}  # type: ignore[typeddict-item]
-    if "module" in data:
+    if data.get("module") is not None:
         import capo_amplifyuibuilder.types.js_module
 
         out["module"] = capo_amplifyuibuilder.types.js_module.deserialize_json(
             data["module"]
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_amplifyuibuilder.types.js_target
 
         out["target"] = capo_amplifyuibuilder.types.js_target.deserialize_json(
             data["target"]
         )
-    if "script" in data:
+    if data.get("script") is not None:
         import capo_amplifyuibuilder.types.js_script
 
         out["script"] = capo_amplifyuibuilder.types.js_script.deserialize_json(
             data["script"]
         )
-    if "renderTypeDeclarations" in data:
+    if data.get("renderTypeDeclarations") is not None:
         out["render_type_declarations"] = data["renderTypeDeclarations"]
     else:
         out["render_type_declarations"] = False
-    if "inlineSourceMap" in data:
+    if data.get("inlineSourceMap") is not None:
         out["inline_source_map"] = data["inlineSourceMap"]
     else:
         out["inline_source_map"] = False
-    if "apiConfiguration" in data:
+    if data.get("apiConfiguration") is not None:
         import capo_amplifyuibuilder.types.api_configuration
 
         out["api_configuration"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> ReactStartCodegenJobData:
                 data["apiConfiguration"]
             )
         )
-    if "dependencies" in data:
+    if data.get("dependencies") is not None:
         import capo_amplifyuibuilder.types.react_codegen_dependencies
 
         out["dependencies"] = (

@@ -24,7 +24,7 @@ def serialize_json(value: GetAdConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetAdConfigurationRequest:
     out: GetAdConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetAdConfigurationRequest.arn required")

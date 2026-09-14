@@ -79,11 +79,11 @@ def serialize_json(value: SourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> SourceProperties:
     out: SourceProperties = {}  # type: ignore[typeddict-item]
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         out["last_updated_date_time"] = data["lastUpdatedDateTime"]
-    if "recommendedInstanceType" in data:
+    if data.get("recommendedInstanceType") is not None:
         out["recommended_instance_type"] = data["recommendedInstanceType"]
-    if "identificationHints" in data:
+    if data.get("identificationHints") is not None:
         import capo_mgn.types.identification_hints
 
         out["identification_hints"] = (
@@ -91,25 +91,25 @@ def deserialize_json(data: dict) -> SourceProperties:
                 data["identificationHints"]
             )
         )
-    if "networkInterfaces" in data:
+    if data.get("networkInterfaces") is not None:
         import capo_mgn.types.network_interfaces
 
         out["network_interfaces"] = capo_mgn.types.network_interfaces.deserialize_json(
             data["networkInterfaces"]
         )
-    if "disks" in data:
+    if data.get("disks") is not None:
         import capo_mgn.types.disks
 
         out["disks"] = capo_mgn.types.disks.deserialize_json(data["disks"])
-    if "cpus" in data:
+    if data.get("cpus") is not None:
         import capo_mgn.types.cpus
 
         out["cpus"] = capo_mgn.types.cpus.deserialize_json(data["cpus"])
-    if "ramBytes" in data:
+    if data.get("ramBytes") is not None:
         out["ram_bytes"] = data["ramBytes"]
     else:
         out["ram_bytes"] = 0
-    if "os" in data:
+    if data.get("os") is not None:
         import capo_mgn.types.os
 
         out["os"] = capo_mgn.types.os.deserialize_json(data["os"])

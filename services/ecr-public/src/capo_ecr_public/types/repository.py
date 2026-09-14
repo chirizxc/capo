@@ -51,15 +51,15 @@ def serialize_aws_json_1_1(value: Repository) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Repository:
     out: Repository = {}  # type: ignore[typeddict-item]
-    if "repositoryArn" in data:
+    if data.get("repositoryArn") is not None:
         out["repository_arn"] = data["repositoryArn"]
-    if "registryId" in data:
+    if data.get("registryId") is not None:
         out["registry_id"] = data["registryId"]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "repositoryUri" in data:
+    if data.get("repositoryUri") is not None:
         out["repository_uri"] = data["repositoryUri"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_ecr_public.types.creation_timestamp
 
         out["created_at"] = (

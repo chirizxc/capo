@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: BatchGetNamedQueryOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetNamedQueryOutput:
     out: BatchGetNamedQueryOutput = {}  # type: ignore[typeddict-item]
-    if "NamedQueries" in data:
+    if data.get("NamedQueries") is not None:
         import capo_athena.types.named_query_list
 
         out["named_queries"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetNamedQueryOutput:
                 data["NamedQueries"]
             )
         )
-    if "UnprocessedNamedQueryIds" in data:
+    if data.get("UnprocessedNamedQueryIds") is not None:
         import capo_athena.types.unprocessed_named_query_id_list
 
         out["unprocessed_named_query_ids"] = (

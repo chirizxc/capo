@@ -71,19 +71,19 @@ def serialize_aws_json_1_1(value: UpdateIdentityProviderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateIdentityProviderRequest:
     out: UpdateIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "UpdateIdentityProviderRequest.user_pool_id required"
         )
-    if "ProviderName" in data:
+    if data.get("ProviderName") is not None:
         out["provider_name"] = data["ProviderName"]
     else:
         raise DeserializationError(
             "UpdateIdentityProviderRequest.provider_name required"
         )
-    if "ProviderDetails" in data:
+    if data.get("ProviderDetails") is not None:
         import capo_cognito_identity_provider.types.provider_details_type
 
         out["provider_details"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateIdentityProviderRequest:
                 data["ProviderDetails"]
             )
         )
-    if "AttributeMapping" in data:
+    if data.get("AttributeMapping") is not None:
         import capo_cognito_identity_provider.types.attribute_mapping_type
 
         out["attribute_mapping"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateIdentityProviderRequest:
                 data["AttributeMapping"]
             )
         )
-    if "IdpIdentifiers" in data:
+    if data.get("IdpIdentifiers") is not None:
         import capo_cognito_identity_provider.types.idp_identifiers_list_type
 
         out["idp_identifiers"] = (

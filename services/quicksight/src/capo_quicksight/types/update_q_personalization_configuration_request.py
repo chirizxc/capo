@@ -35,7 +35,7 @@ def serialize_json(value: UpdateQPersonalizationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQPersonalizationConfigurationRequest:
     out: UpdateQPersonalizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "PersonalizationMode" in data:
+    if data.get("PersonalizationMode") is not None:
         import capo_quicksight.types.personalization_mode
 
         out["personalization_mode"] = (

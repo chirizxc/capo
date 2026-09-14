@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfBrokerEngineType:
 
     out: __listOfBrokerEngineType = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mq.types.broker_engine_type.deserialize_json(item))
     return out

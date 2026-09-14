@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GuestUserHistoryCountList:
 
     out: GuestUserHistoryCountList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wickr.types.guest_user_history_count.deserialize_json(item))
     return out

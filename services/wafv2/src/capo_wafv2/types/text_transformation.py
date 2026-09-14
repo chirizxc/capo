@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: TextTransformation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TextTransformation:
     out: TextTransformation = {}  # type: ignore[typeddict-item]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         out["priority"] = 0
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_wafv2.types.text_transformation_type
 
         out["type"] = (

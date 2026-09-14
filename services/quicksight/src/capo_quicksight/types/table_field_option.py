@@ -56,21 +56,21 @@ def serialize_json(value: TableFieldOption) -> dict:
 
 def deserialize_json(data: dict) -> TableFieldOption:
     out: TableFieldOption = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("TableFieldOption.field_id required")
-    if "Width" in data:
+    if data.get("Width") is not None:
         out["width"] = data["Width"]
-    if "CustomLabel" in data:
+    if data.get("CustomLabel") is not None:
         out["custom_label"] = data["CustomLabel"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "URLStyling" in data:
+    if data.get("URLStyling") is not None:
         import capo_quicksight.types.table_field_url_configuration
 
         out["url_styling"] = (

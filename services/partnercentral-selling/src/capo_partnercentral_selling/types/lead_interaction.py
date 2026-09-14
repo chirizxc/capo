@@ -73,21 +73,21 @@ def serialize_aws_json_1_0(value: LeadInteraction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LeadInteraction:
     out: LeadInteraction = {}  # type: ignore[typeddict-item]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
     else:
         raise DeserializationError("LeadInteraction.source_type required")
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
     else:
         raise DeserializationError("LeadInteraction.source_id required")
-    if "SourceName" in data:
+    if data.get("SourceName") is not None:
         out["source_name"] = data["SourceName"]
     else:
         raise DeserializationError("LeadInteraction.source_name required")
-    if "Usecase" in data:
+    if data.get("Usecase") is not None:
         out["usecase"] = data["Usecase"]
-    if "InteractionDate" in data:
+    if data.get("InteractionDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["interaction_date"] = (
@@ -95,13 +95,13 @@ def deserialize_aws_json_1_0(data: dict) -> LeadInteraction:
                 data["InteractionDate"]
             )
         )
-    if "CustomerAction" in data:
+    if data.get("CustomerAction") is not None:
         out["customer_action"] = data["CustomerAction"]
     else:
         raise DeserializationError("LeadInteraction.customer_action required")
-    if "BusinessProblem" in data:
+    if data.get("BusinessProblem") is not None:
         out["business_problem"] = data["BusinessProblem"]
-    if "Contact" in data:
+    if data.get("Contact") is not None:
         import capo_partnercentral_selling.types.lead_contact
 
         out["contact"] = (

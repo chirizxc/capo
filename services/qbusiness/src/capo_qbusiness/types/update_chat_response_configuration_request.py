@@ -48,9 +48,9 @@ def serialize_json(value: UpdateChatResponseConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChatResponseConfigurationRequest:
     out: UpdateChatResponseConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "responseConfigurations" in data:
+    if data.get("responseConfigurations") is not None:
         import capo_qbusiness.types.response_configurations
 
         out["response_configurations"] = (
@@ -62,6 +62,6 @@ def deserialize_json(data: dict) -> UpdateChatResponseConfigurationRequest:
         raise DeserializationError(
             "UpdateChatResponseConfigurationRequest.response_configurations required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

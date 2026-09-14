@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeleteSchemaVersionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSchemaVersionsResponse:
     out: DeleteSchemaVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "SchemaVersionErrors" in data:
+    if data.get("SchemaVersionErrors") is not None:
         import capo_glue.types.schema_version_error_list
 
         out["schema_version_errors"] = (

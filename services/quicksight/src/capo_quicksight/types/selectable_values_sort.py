@@ -28,7 +28,7 @@ def serialize_json(value: SelectableValuesSort) -> dict:
 
 def deserialize_json(data: dict) -> SelectableValuesSort:
     out: SelectableValuesSort = {}  # type: ignore[typeddict-item]
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         import capo_quicksight.types.control_sort_direction
 
         out["direction"] = (

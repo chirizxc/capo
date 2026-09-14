@@ -27,7 +27,7 @@ def serialize_json(value: DescribeTestCaseResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTestCaseResponse:
     out: DescribeTestCaseResponse = {}  # type: ignore[typeddict-item]
-    if "TestCase" in data:
+    if data.get("TestCase") is not None:
         import capo_connect.types.test_case
 
         out["test_case"] = capo_connect.types.test_case.deserialize_json(

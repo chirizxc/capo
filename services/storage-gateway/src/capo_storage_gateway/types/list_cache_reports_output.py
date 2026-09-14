@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListCacheReportsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCacheReportsOutput:
     out: ListCacheReportsOutput = {}  # type: ignore[typeddict-item]
-    if "CacheReportList" in data:
+    if data.get("CacheReportList") is not None:
         import capo_storage_gateway.types.cache_report_list
 
         out["cache_report_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListCacheReportsOutput:
                 data["CacheReportList"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

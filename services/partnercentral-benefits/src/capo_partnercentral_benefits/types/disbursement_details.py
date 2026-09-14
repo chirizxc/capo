@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: DisbursementDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisbursementDetails:
     out: DisbursementDetails = {}  # type: ignore[typeddict-item]
-    if "DisbursedAmount" in data:
+    if data.get("DisbursedAmount") is not None:
         import capo_partnercentral_benefits.types.monetary_value
 
         out["disbursed_amount"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> DisbursementDetails:
                 data["DisbursedAmount"]
             )
         )
-    if "IssuanceDetails" in data:
+    if data.get("IssuanceDetails") is not None:
         import capo_partnercentral_benefits.types.issuance_detail
 
         out["issuance_details"] = (

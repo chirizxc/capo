@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: CreateContactMethodRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContactMethodRequest:
     out: CreateContactMethodRequest = {}  # type: ignore[typeddict-item]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_lightsail.types.contact_protocol
 
         out["protocol"] = (
@@ -51,13 +51,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContactMethodRequest:
         )
     else:
         raise DeserializationError("CreateContactMethodRequest.protocol required")
-    if "contactEndpoint" in data:
+    if data.get("contactEndpoint") is not None:
         out["contact_endpoint"] = data["contactEndpoint"]
     else:
         raise DeserializationError(
             "CreateContactMethodRequest.contact_endpoint required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

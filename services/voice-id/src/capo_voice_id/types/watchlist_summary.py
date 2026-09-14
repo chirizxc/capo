@@ -61,25 +61,25 @@ def serialize_aws_json_1_0(value: WatchlistSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WatchlistSummary:
     out: WatchlistSummary = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "WatchlistId" in data:
+    if data.get("WatchlistId") is not None:
         out["watchlist_id"] = data["WatchlistId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DefaultWatchlist" in data:
+    if data.get("DefaultWatchlist") is not None:
         out["default_watchlist"] = data["DefaultWatchlist"]
     else:
         out["default_watchlist"] = False
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["created_at"] = capo_voice_id.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["updated_at"] = capo_voice_id.types.timestamp.deserialize_aws_json_1_0(

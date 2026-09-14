@@ -24,14 +24,22 @@ def serialize_aws_json_1_0(value: AddSavingsPlanAction) -> dict:
     if "savings_plan_offering_id" in value:
         out["savingsPlanOfferingId"] = value["savings_plan_offering_id"]
     if "commitment" in value:
-        out["commitment"] = value["commitment"]
+        out["commitment"] = (
+            "NaN"
+            if value["commitment"] != value["commitment"]
+            else "Infinity"
+            if value["commitment"] == float("inf")
+            else "-Infinity"
+            if value["commitment"] == float("-inf")
+            else value["commitment"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> AddSavingsPlanAction:
     out: AddSavingsPlanAction = {}  # type: ignore[typeddict-item]
-    if "savingsPlanOfferingId" in data:
+    if data.get("savingsPlanOfferingId") is not None:
         out["savings_plan_offering_id"] = data["savingsPlanOfferingId"]
-    if "commitment" in data:
-        out["commitment"] = data["commitment"]
+    if data.get("commitment") is not None:
+        out["commitment"] = float(data["commitment"])
     return out

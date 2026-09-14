@@ -61,7 +61,7 @@ def serialize_aws_json_1_1(value: ListDiscoveredResourcesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDiscoveredResourcesRequest:
     out: ListDiscoveredResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_config_service.types.resource_type
 
         out["resource_type"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListDiscoveredResourcesRequest:
         raise DeserializationError(
             "ListDiscoveredResourcesRequest.resource_type required"
         )
-    if "resourceIds" in data:
+    if data.get("resourceIds") is not None:
         import capo_config_service.types.resource_id_list
 
         out["resource_ids"] = (
@@ -81,16 +81,16 @@ def deserialize_aws_json_1_1(data: dict) -> ListDiscoveredResourcesRequest:
                 data["resourceIds"]
             )
         )
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     else:
         out["limit"] = 0
-    if "includeDeletedResources" in data:
+    if data.get("includeDeletedResources") is not None:
         out["include_deleted_resources"] = data["includeDeletedResources"]
     else:
         out["include_deleted_resources"] = False
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

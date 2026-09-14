@@ -11,4 +11,4 @@ def serialize_json(value: AssociatedFieldsList) -> list:
 
 
 def deserialize_json(data: list) -> AssociatedFieldsList:
-    return list(data)
+    return [item for item in data if item is not None]

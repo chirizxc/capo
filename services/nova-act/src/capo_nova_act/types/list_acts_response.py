@@ -33,7 +33,7 @@ def serialize_json(value: ListActsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListActsResponse:
     out: ListActsResponse = {}  # type: ignore[typeddict-item]
-    if "actSummaries" in data:
+    if data.get("actSummaries") is not None:
         import capo_nova_act.types.act_summaries
 
         out["act_summaries"] = capo_nova_act.types.act_summaries.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListActsResponse:
         )
     else:
         raise DeserializationError("ListActsResponse.act_summaries required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

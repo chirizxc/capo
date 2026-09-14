@@ -54,18 +54,18 @@ def serialize_json(value: UpdateConfigurationProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConfigurationProfileRequest:
     out: UpdateConfigurationProfileRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RetrievalRoleArn" in data:
+    if data.get("RetrievalRoleArn") is not None:
         out["retrieval_role_arn"] = data["RetrievalRoleArn"]
-    if "Validators" in data:
+    if data.get("Validators") is not None:
         import capo_appconfig.types.validator_list
 
         out["validators"] = capo_appconfig.types.validator_list.deserialize_json(
             data["Validators"]
         )
-    if "KmsKeyIdentifier" in data:
+    if data.get("KmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["KmsKeyIdentifier"]
     return out

@@ -49,7 +49,7 @@ def serialize_json(value: AddResourcePermissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddResourcePermissionsRequest:
     out: AddResourcePermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "Principals" in data:
+    if data.get("Principals") is not None:
         import capo_workdocs.types.share_principal_list
 
         out["principals"] = capo_workdocs.types.share_principal_list.deserialize_json(
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> AddResourcePermissionsRequest:
         )
     else:
         raise DeserializationError("AddResourcePermissionsRequest.principals required")
-    if "NotificationOptions" in data:
+    if data.get("NotificationOptions") is not None:
         import capo_workdocs.types.notification_options
 
         out["notification_options"] = (

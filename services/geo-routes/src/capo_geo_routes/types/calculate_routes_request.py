@@ -262,25 +262,25 @@ def serialize_json(value: CalculateRoutesRequest) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRoutesRequest:
     out: CalculateRoutesRequest = {}  # type: ignore[typeddict-item]
-    if "Allow" in data:
+    if data.get("Allow") is not None:
         import capo_geo_routes.types.route_allow_options
 
         out["allow"] = capo_geo_routes.types.route_allow_options.deserialize_json(
             data["Allow"]
         )
-    if "ArrivalTime" in data:
+    if data.get("ArrivalTime") is not None:
         out["arrival_time"] = data["ArrivalTime"]
-    if "Avoid" in data:
+    if data.get("Avoid") is not None:
         import capo_geo_routes.types.route_avoidance_options
 
         out["avoid"] = capo_geo_routes.types.route_avoidance_options.deserialize_json(
             data["Avoid"]
         )
-    if "DepartNow" in data:
+    if data.get("DepartNow") is not None:
         out["depart_now"] = data["DepartNow"]
-    if "DepartureTime" in data:
+    if data.get("DepartureTime") is not None:
         out["departure_time"] = data["DepartureTime"]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_geo_routes.types.position
 
         out["destination"] = capo_geo_routes.types.position.deserialize_json(
@@ -288,7 +288,7 @@ def deserialize_json(data: dict) -> CalculateRoutesRequest:
         )
     else:
         raise DeserializationError("CalculateRoutesRequest.destination required")
-    if "DestinationOptions" in data:
+    if data.get("DestinationOptions") is not None:
         import capo_geo_routes.types.route_destination_options
 
         out["destination_options"] = (
@@ -296,19 +296,19 @@ def deserialize_json(data: dict) -> CalculateRoutesRequest:
                 data["DestinationOptions"]
             )
         )
-    if "Driver" in data:
+    if data.get("Driver") is not None:
         import capo_geo_routes.types.route_driver_options
 
         out["driver"] = capo_geo_routes.types.route_driver_options.deserialize_json(
             data["Driver"]
         )
-    if "Exclude" in data:
+    if data.get("Exclude") is not None:
         import capo_geo_routes.types.route_exclusion_options
 
         out["exclude"] = capo_geo_routes.types.route_exclusion_options.deserialize_json(
             data["Exclude"]
         )
-    if "InstructionsMeasurementSystem" in data:
+    if data.get("InstructionsMeasurementSystem") is not None:
         import capo_geo_routes.types.measurement_system
 
         out["instructions_measurement_system"] = (
@@ -316,13 +316,13 @@ def deserialize_json(data: dict) -> CalculateRoutesRequest:
                 data["InstructionsMeasurementSystem"]
             )
         )
-    if "Languages" in data:
+    if data.get("Languages") is not None:
         import capo_geo_routes.types.language_tag_list
 
         out["languages"] = capo_geo_routes.types.language_tag_list.deserialize_json(
             data["Languages"]
         )
-    if "LegAdditionalFeatures" in data:
+    if data.get("LegAdditionalFeatures") is not None:
         import capo_geo_routes.types.route_leg_additional_feature_list
 
         out["leg_additional_features"] = (
@@ -330,7 +330,7 @@ def deserialize_json(data: dict) -> CalculateRoutesRequest:
                 data["LegAdditionalFeatures"]
             )
         )
-    if "LegGeometryFormat" in data:
+    if data.get("LegGeometryFormat") is not None:
         import capo_geo_routes.types.geometry_format
 
         out["leg_geometry_format"] = (
@@ -338,9 +338,9 @@ def deserialize_json(data: dict) -> CalculateRoutesRequest:
                 data["LegGeometryFormat"]
             )
         )
-    if "MaxAlternatives" in data:
+    if data.get("MaxAlternatives") is not None:
         out["max_alternatives"] = data["MaxAlternatives"]
-    if "OptimizeRoutingFor" in data:
+    if data.get("OptimizeRoutingFor") is not None:
         import capo_geo_routes.types.routing_objective
 
         out["optimize_routing_for"] = (
@@ -348,13 +348,13 @@ def deserialize_json(data: dict) -> CalculateRoutesRequest:
                 data["OptimizeRoutingFor"]
             )
         )
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         import capo_geo_routes.types.position
 
         out["origin"] = capo_geo_routes.types.position.deserialize_json(data["Origin"])
     else:
         raise DeserializationError("CalculateRoutesRequest.origin required")
-    if "OriginOptions" in data:
+    if data.get("OriginOptions") is not None:
         import capo_geo_routes.types.route_origin_options
 
         out["origin_options"] = (
@@ -362,7 +362,7 @@ def deserialize_json(data: dict) -> CalculateRoutesRequest:
                 data["OriginOptions"]
             )
         )
-    if "SpanAdditionalFeatures" in data:
+    if data.get("SpanAdditionalFeatures") is not None:
         import capo_geo_routes.types.route_span_additional_feature_list
 
         out["span_additional_features"] = (
@@ -370,25 +370,25 @@ def deserialize_json(data: dict) -> CalculateRoutesRequest:
                 data["SpanAdditionalFeatures"]
             )
         )
-    if "Tolls" in data:
+    if data.get("Tolls") is not None:
         import capo_geo_routes.types.route_toll_options
 
         out["tolls"] = capo_geo_routes.types.route_toll_options.deserialize_json(
             data["Tolls"]
         )
-    if "Traffic" in data:
+    if data.get("Traffic") is not None:
         import capo_geo_routes.types.route_traffic_options
 
         out["traffic"] = capo_geo_routes.types.route_traffic_options.deserialize_json(
             data["Traffic"]
         )
-    if "TravelMode" in data:
+    if data.get("TravelMode") is not None:
         import capo_geo_routes.types.route_travel_mode
 
         out["travel_mode"] = capo_geo_routes.types.route_travel_mode.deserialize_json(
             data["TravelMode"]
         )
-    if "TravelModeOptions" in data:
+    if data.get("TravelModeOptions") is not None:
         import capo_geo_routes.types.route_travel_mode_options
 
         out["travel_mode_options"] = (
@@ -396,7 +396,7 @@ def deserialize_json(data: dict) -> CalculateRoutesRequest:
                 data["TravelModeOptions"]
             )
         )
-    if "TravelStepType" in data:
+    if data.get("TravelStepType") is not None:
         import capo_geo_routes.types.route_travel_step_type
 
         out["travel_step_type"] = (
@@ -404,7 +404,7 @@ def deserialize_json(data: dict) -> CalculateRoutesRequest:
                 data["TravelStepType"]
             )
         )
-    if "Waypoints" in data:
+    if data.get("Waypoints") is not None:
         import capo_geo_routes.types.route_waypoint_list
 
         out["waypoints"] = capo_geo_routes.types.route_waypoint_list.deserialize_json(

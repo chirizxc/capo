@@ -29,7 +29,7 @@ def serialize_json(value: RoutingRuleMatchBasePaths) -> dict:
 
 def deserialize_json(data: dict) -> RoutingRuleMatchBasePaths:
     out: RoutingRuleMatchBasePaths = {}  # type: ignore[typeddict-item]
-    if "anyOf" in data:
+    if data.get("anyOf") is not None:
         import capo_apigatewayv2.types.__list_of_selection_key
 
         out["any_of"] = (

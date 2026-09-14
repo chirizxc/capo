@@ -140,17 +140,17 @@ def serialize_aws_json_1_0(value: PreviewResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PreviewResult:
     out: PreviewResult = {}  # type: ignore[typeddict-item]
-    if "recommendedActionId" in data:
+    if data.get("recommendedActionId") is not None:
         out["recommended_action_id"] = data["recommendedActionId"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_compute_optimizer_automation.types.resource_type
 
         out["resource_type"] = (
@@ -158,9 +158,9 @@ def deserialize_aws_json_1_0(data: dict) -> PreviewResult:
                 data["resourceType"]
             )
         )
-    if "lookBackPeriodInDays" in data:
+    if data.get("lookBackPeriodInDays") is not None:
         out["look_back_period_in_days"] = data["lookBackPeriodInDays"]
-    if "recommendedActionType" in data:
+    if data.get("recommendedActionType") is not None:
         import capo_compute_optimizer_automation.types.recommended_action_type
 
         out["recommended_action_type"] = (
@@ -168,9 +168,9 @@ def deserialize_aws_json_1_0(data: dict) -> PreviewResult:
                 data["recommendedActionType"]
             )
         )
-    if "currentResourceSummary" in data:
+    if data.get("currentResourceSummary") is not None:
         out["current_resource_summary"] = data["currentResourceSummary"]
-    if "currentResourceDetails" in data:
+    if data.get("currentResourceDetails") is not None:
         import capo_compute_optimizer_automation.types.resource_details
 
         out["current_resource_details"] = (
@@ -178,9 +178,9 @@ def deserialize_aws_json_1_0(data: dict) -> PreviewResult:
                 data["currentResourceDetails"]
             )
         )
-    if "recommendedResourceSummary" in data:
+    if data.get("recommendedResourceSummary") is not None:
         out["recommended_resource_summary"] = data["recommendedResourceSummary"]
-    if "recommendedResourceDetails" in data:
+    if data.get("recommendedResourceDetails") is not None:
         import capo_compute_optimizer_automation.types.resource_details
 
         out["recommended_resource_details"] = (
@@ -188,9 +188,9 @@ def deserialize_aws_json_1_0(data: dict) -> PreviewResult:
                 data["recommendedResourceDetails"]
             )
         )
-    if "restartNeeded" in data:
+    if data.get("restartNeeded") is not None:
         out["restart_needed"] = data["restartNeeded"]
-    if "estimatedMonthlySavings" in data:
+    if data.get("estimatedMonthlySavings") is not None:
         import capo_compute_optimizer_automation.types.estimated_monthly_savings
 
         out["estimated_monthly_savings"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_0(data: dict) -> PreviewResult:
                 data["estimatedMonthlySavings"]
             )
         )
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_compute_optimizer_automation.types.tag_list
 
         out["resource_tags"] = (

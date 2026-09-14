@@ -32,11 +32,11 @@ def serialize_json(value: EventDetails) -> dict:
 
 def deserialize_json(data: dict) -> EventDetails:
     out: EventDetails = {}  # type: ignore[typeddict-item]
-    if "Bounce" in data:
+    if data.get("Bounce") is not None:
         import capo_sesv2.types.bounce
 
         out["bounce"] = capo_sesv2.types.bounce.deserialize_json(data["Bounce"])
-    if "Complaint" in data:
+    if data.get("Complaint") is not None:
         import capo_sesv2.types.complaint
 
         out["complaint"] = capo_sesv2.types.complaint.deserialize_json(

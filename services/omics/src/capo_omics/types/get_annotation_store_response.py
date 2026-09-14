@@ -99,11 +99,11 @@ def serialize_json(value: GetAnnotationStoreResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAnnotationStoreResponse:
     out: GetAnnotationStoreResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetAnnotationStoreResponse.id required")
-    if "reference" in data:
+    if data.get("reference") is not None:
         import capo_omics.types.reference_item
 
         out["reference"] = capo_omics.types.reference_item.deserialize_json(
@@ -111,23 +111,23 @@ def deserialize_json(data: dict) -> GetAnnotationStoreResponse:
         )
     else:
         raise DeserializationError("GetAnnotationStoreResponse.reference required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetAnnotationStoreResponse.status required")
-    if "storeArn" in data:
+    if data.get("storeArn") is not None:
         out["store_arn"] = data["storeArn"]
     else:
         raise DeserializationError("GetAnnotationStoreResponse.store_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetAnnotationStoreResponse.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("GetAnnotationStoreResponse.description required")
-    if "sseConfig" in data:
+    if data.get("sseConfig") is not None:
         import capo_omics.types.sse_config
 
         out["sse_config"] = capo_omics.types.sse_config.deserialize_json(
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> GetAnnotationStoreResponse:
         )
     else:
         raise DeserializationError("GetAnnotationStoreResponse.sse_config required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.creation_time
 
         out["creation_time"] = capo_omics.types.creation_time.deserialize_json(
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> GetAnnotationStoreResponse:
         )
     else:
         raise DeserializationError("GetAnnotationStoreResponse.creation_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_omics.types.update_time
 
         out["update_time"] = capo_omics.types.update_time.deserialize_json(
@@ -151,31 +151,31 @@ def deserialize_json(data: dict) -> GetAnnotationStoreResponse:
         )
     else:
         raise DeserializationError("GetAnnotationStoreResponse.update_time required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
     else:
         raise DeserializationError("GetAnnotationStoreResponse.tags required")
-    if "storeOptions" in data:
+    if data.get("storeOptions") is not None:
         import capo_omics.types.store_options
 
         out["store_options"] = capo_omics.types.store_options.deserialize_json(
             data["storeOptions"]
         )
-    if "storeFormat" in data:
+    if data.get("storeFormat") is not None:
         out["store_format"] = data["storeFormat"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     else:
         raise DeserializationError("GetAnnotationStoreResponse.status_message required")
-    if "storeSizeBytes" in data:
+    if data.get("storeSizeBytes") is not None:
         out["store_size_bytes"] = data["storeSizeBytes"]
     else:
         raise DeserializationError(
             "GetAnnotationStoreResponse.store_size_bytes required"
         )
-    if "numVersions" in data:
+    if data.get("numVersions") is not None:
         out["num_versions"] = data["numVersions"]
     else:
         raise DeserializationError("GetAnnotationStoreResponse.num_versions required")

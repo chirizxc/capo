@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ScheduleItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduleItem:
     out: ScheduleItem = {}  # type: ignore[typeddict-item]
-    if "chargeDate" in data:
+    if data.get("chargeDate") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["charge_date"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduleItem:
                 data["chargeDate"]
             )
         )
-    if "chargeAmount" in data:
+    if data.get("chargeAmount") is not None:
         out["charge_amount"] = data["chargeAmount"]
     return out

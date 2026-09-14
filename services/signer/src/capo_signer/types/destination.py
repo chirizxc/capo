@@ -25,7 +25,7 @@ def serialize_json(value: Destination) -> dict:
 
 def deserialize_json(data: dict) -> Destination:
     out: Destination = {}  # type: ignore[typeddict-item]
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_signer.types.s3_destination
 
         out["s3"] = capo_signer.types.s3_destination.deserialize_json(data["s3"])

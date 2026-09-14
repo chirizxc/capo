@@ -31,12 +31,12 @@ def serialize_json(value: ListWebhooksResult) -> dict:
 
 def deserialize_json(data: dict) -> ListWebhooksResult:
     out: ListWebhooksResult = {}  # type: ignore[typeddict-item]
-    if "webhooks" in data:
+    if data.get("webhooks") is not None:
         import capo_amplify.types.webhooks
 
         out["webhooks"] = capo_amplify.types.webhooks.deserialize_json(data["webhooks"])
     else:
         raise DeserializationError("ListWebhooksResult.webhooks required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

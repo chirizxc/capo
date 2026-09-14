@@ -64,29 +64,29 @@ def serialize_json(value: CreateChannelNamespaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelNamespaceRequest:
     out: CreateChannelNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateChannelNamespaceRequest.name required")
-    if "subscribeAuthModes" in data:
+    if data.get("subscribeAuthModes") is not None:
         import capo_appsync.types.auth_modes
 
         out["subscribe_auth_modes"] = capo_appsync.types.auth_modes.deserialize_json(
             data["subscribeAuthModes"]
         )
-    if "publishAuthModes" in data:
+    if data.get("publishAuthModes") is not None:
         import capo_appsync.types.auth_modes
 
         out["publish_auth_modes"] = capo_appsync.types.auth_modes.deserialize_json(
             data["publishAuthModes"]
         )
-    if "codeHandlers" in data:
+    if data.get("codeHandlers") is not None:
         out["code_handlers"] = data["codeHandlers"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appsync.types.tag_map
 
         out["tags"] = capo_appsync.types.tag_map.deserialize_json(data["tags"])
-    if "handlerConfigs" in data:
+    if data.get("handlerConfigs") is not None:
         import capo_appsync.types.handler_configs
 
         out["handler_configs"] = capo_appsync.types.handler_configs.deserialize_json(

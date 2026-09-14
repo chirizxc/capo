@@ -40,7 +40,7 @@ def serialize_json(value: ProtectedQueryS3OutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedQueryS3OutputConfiguration:
     out: ProtectedQueryS3OutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "resultFormat" in data:
+    if data.get("resultFormat") is not None:
         import capo_cleanrooms.types.result_format
 
         out["result_format"] = capo_cleanrooms.types.result_format.deserialize_json(
@@ -50,14 +50,14 @@ def deserialize_json(data: dict) -> ProtectedQueryS3OutputConfiguration:
         raise DeserializationError(
             "ProtectedQueryS3OutputConfiguration.result_format required"
         )
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError(
             "ProtectedQueryS3OutputConfiguration.bucket required"
         )
-    if "keyPrefix" in data:
+    if data.get("keyPrefix") is not None:
         out["key_prefix"] = data["keyPrefix"]
-    if "singleFileOutput" in data:
+    if data.get("singleFileOutput") is not None:
         out["single_file_output"] = data["singleFileOutput"]
     return out

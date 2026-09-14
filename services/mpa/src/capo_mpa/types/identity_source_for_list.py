@@ -80,7 +80,7 @@ def serialize_json(value: IdentitySourceForList) -> dict:
 
 def deserialize_json(data: dict) -> IdentitySourceForList:
     out: IdentitySourceForList = {}  # type: ignore[typeddict-item]
-    if "IdentitySourceType" in data:
+    if data.get("IdentitySourceType") is not None:
         import capo_mpa.types.identity_source_type
 
         out["identity_source_type"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> IdentitySourceForList:
                 data["IdentitySourceType"]
             )
         )
-    if "IdentitySourceParameters" in data:
+    if data.get("IdentitySourceParameters") is not None:
         import capo_mpa.types.identity_source_parameters_for_list
 
         out["identity_source_parameters"] = (
@@ -96,21 +96,21 @@ def deserialize_json(data: dict) -> IdentitySourceForList:
                 data["IdentitySourceParameters"]
             )
         )
-    if "IdentitySourceArn" in data:
+    if data.get("IdentitySourceArn") is not None:
         out["identity_source_arn"] = data["IdentitySourceArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["creation_time"] = capo_mpa.types.iso_timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mpa.types.identity_source_status
 
         out["status"] = capo_mpa.types.identity_source_status.deserialize_json(
             data["Status"]
         )
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_mpa.types.identity_source_status_code
 
         out["status_code"] = (
@@ -118,6 +118,6 @@ def deserialize_json(data: dict) -> IdentitySourceForList:
                 data["StatusCode"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ModifyLunaClientResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyLunaClientResponse:
     out: ModifyLunaClientResponse = {}  # type: ignore[typeddict-item]
-    if "ClientArn" in data:
+    if data.get("ClientArn") is not None:
         out["client_arn"] = data["ClientArn"]
     return out

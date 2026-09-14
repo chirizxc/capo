@@ -23,12 +23,12 @@ def serialize_json(value: DataflowEndpointConfig) -> dict:
 
 def deserialize_json(data: dict) -> DataflowEndpointConfig:
     out: DataflowEndpointConfig = {}  # type: ignore[typeddict-item]
-    if "dataflowEndpointName" in data:
+    if data.get("dataflowEndpointName") is not None:
         out["dataflow_endpoint_name"] = data["dataflowEndpointName"]
     else:
         raise DeserializationError(
             "DataflowEndpointConfig.dataflow_endpoint_name required"
         )
-    if "dataflowEndpointRegion" in data:
+    if data.get("dataflowEndpointRegion") is not None:
         out["dataflow_endpoint_region"] = data["dataflowEndpointRegion"]
     return out

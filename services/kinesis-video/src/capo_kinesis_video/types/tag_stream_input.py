@@ -36,11 +36,11 @@ def serialize_json(value: TagStreamInput) -> dict:
 
 def deserialize_json(data: dict) -> TagStreamInput:
     out: TagStreamInput = {}  # type: ignore[typeddict-item]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis_video.types.resource_tags
 
         out["tags"] = capo_kinesis_video.types.resource_tags.deserialize_json(

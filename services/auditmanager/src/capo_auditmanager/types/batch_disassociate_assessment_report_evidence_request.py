@@ -34,13 +34,13 @@ def serialize_json(value: BatchDisassociateAssessmentReportEvidenceRequest) -> d
 
 def deserialize_json(data: dict) -> BatchDisassociateAssessmentReportEvidenceRequest:
     out: BatchDisassociateAssessmentReportEvidenceRequest = {}  # type: ignore[typeddict-item]
-    if "evidenceFolderId" in data:
+    if data.get("evidenceFolderId") is not None:
         out["evidence_folder_id"] = data["evidenceFolderId"]
     else:
         raise DeserializationError(
             "BatchDisassociateAssessmentReportEvidenceRequest.evidence_folder_id required"
         )
-    if "evidenceIds" in data:
+    if data.get("evidenceIds") is not None:
         import capo_auditmanager.types.evidence_ids
 
         out["evidence_ids"] = capo_auditmanager.types.evidence_ids.deserialize_json(

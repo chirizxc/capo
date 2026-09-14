@@ -56,20 +56,20 @@ def serialize_json(value: RestoreGraphFromSnapshotInput) -> dict:
 
 def deserialize_json(data: dict) -> RestoreGraphFromSnapshotInput:
     out: RestoreGraphFromSnapshotInput = {}  # type: ignore[typeddict-item]
-    if "graphName" in data:
+    if data.get("graphName") is not None:
         out["graph_name"] = data["graphName"]
     else:
         raise DeserializationError("RestoreGraphFromSnapshotInput.graph_name required")
-    if "provisionedMemory" in data:
+    if data.get("provisionedMemory") is not None:
         out["provisioned_memory"] = data["provisionedMemory"]
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         out["deletion_protection"] = data["deletionProtection"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_neptune_graph.types.tag_map
 
         out["tags"] = capo_neptune_graph.types.tag_map.deserialize_json(data["tags"])
-    if "replicaCount" in data:
+    if data.get("replicaCount") is not None:
         out["replica_count"] = data["replicaCount"]
-    if "publicConnectivity" in data:
+    if data.get("publicConnectivity") is not None:
         out["public_connectivity"] = data["publicConnectivity"]
     return out

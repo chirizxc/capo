@@ -46,7 +46,7 @@ def deserialize_json(
     data: dict,
 ) -> GetQueryResultsWorkloadInsightsTopContributorsDataOutput:
     out: GetQueryResultsWorkloadInsightsTopContributorsDataOutput = {}  # type: ignore[typeddict-item]
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_networkflowmonitor.types.metric_unit
 
         out["unit"] = capo_networkflowmonitor.types.metric_unit.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(
         raise DeserializationError(
             "GetQueryResultsWorkloadInsightsTopContributorsDataOutput.unit required"
         )
-    if "datapoints" in data:
+    if data.get("datapoints") is not None:
         import capo_networkflowmonitor.types.workload_insights_top_contributors_data_points
 
         out["datapoints"] = (
@@ -68,6 +68,6 @@ def deserialize_json(
         raise DeserializationError(
             "GetQueryResultsWorkloadInsightsTopContributorsDataOutput.datapoints required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

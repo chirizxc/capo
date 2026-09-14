@@ -54,11 +54,11 @@ def serialize_json(value: UpdateApiCacheRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApiCacheRequest:
     out: UpdateApiCacheRequest = {}  # type: ignore[typeddict-item]
-    if "ttl" in data:
+    if data.get("ttl") is not None:
         out["ttl"] = data["ttl"]
     else:
         out["ttl"] = 0
-    if "apiCachingBehavior" in data:
+    if data.get("apiCachingBehavior") is not None:
         import capo_appsync.types.api_caching_behavior
 
         out["api_caching_behavior"] = (
@@ -70,13 +70,13 @@ def deserialize_json(data: dict) -> UpdateApiCacheRequest:
         raise DeserializationError(
             "UpdateApiCacheRequest.api_caching_behavior required"
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_appsync.types.api_cache_type
 
         out["type"] = capo_appsync.types.api_cache_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("UpdateApiCacheRequest.type required")
-    if "healthMetricsConfig" in data:
+    if data.get("healthMetricsConfig") is not None:
         import capo_appsync.types.cache_health_metrics_config
 
         out["health_metrics_config"] = (

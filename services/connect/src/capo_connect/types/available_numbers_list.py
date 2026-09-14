@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AvailableNumbersList:
 
     out: AvailableNumbersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.available_number_summary.deserialize_json(item))
     return out

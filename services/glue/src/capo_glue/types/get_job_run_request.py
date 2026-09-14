@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: GetJobRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetJobRunRequest:
     out: GetJobRunRequest = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
     else:
         raise DeserializationError("GetJobRunRequest.job_name required")
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     else:
         raise DeserializationError("GetJobRunRequest.run_id required")
-    if "PredecessorsIncluded" in data:
+    if data.get("PredecessorsIncluded") is not None:
         out["predecessors_included"] = data["PredecessorsIncluded"]
     else:
         out["predecessors_included"] = False

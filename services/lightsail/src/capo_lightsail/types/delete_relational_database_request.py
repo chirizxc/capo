@@ -37,15 +37,15 @@ def serialize_aws_json_1_1(value: DeleteRelationalDatabaseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteRelationalDatabaseRequest:
     out: DeleteRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "DeleteRelationalDatabaseRequest.relational_database_name required"
         )
-    if "skipFinalSnapshot" in data:
+    if data.get("skipFinalSnapshot") is not None:
         out["skip_final_snapshot"] = data["skipFinalSnapshot"]
-    if "finalRelationalDatabaseSnapshotName" in data:
+    if data.get("finalRelationalDatabaseSnapshotName") is not None:
         out["final_relational_database_snapshot_name"] = data[
             "finalRelationalDatabaseSnapshotName"
         ]

@@ -36,7 +36,7 @@ def serialize_json(value: Condition) -> dict:
 
 def deserialize_json(data: dict) -> Condition:
     out: Condition = {}  # type: ignore[typeddict-item]
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_pinpoint.types.list_of_simple_condition
 
         out["conditions"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> Condition:
                 data["Conditions"]
             )
         )
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_pinpoint.types.operator
 
         out["operator"] = capo_pinpoint.types.operator.deserialize_json(

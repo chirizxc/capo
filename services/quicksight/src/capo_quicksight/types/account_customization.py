@@ -29,9 +29,9 @@ def serialize_json(value: AccountCustomization) -> dict:
 
 def deserialize_json(data: dict) -> AccountCustomization:
     out: AccountCustomization = {}  # type: ignore[typeddict-item]
-    if "DefaultTheme" in data:
+    if data.get("DefaultTheme") is not None:
         out["default_theme"] = data["DefaultTheme"]
-    if "DefaultEmailCustomizationTemplate" in data:
+    if data.get("DefaultEmailCustomizationTemplate") is not None:
         out["default_email_customization_template"] = data[
             "DefaultEmailCustomizationTemplate"
         ]

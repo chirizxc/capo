@@ -40,7 +40,7 @@ def serialize_json(value: RouteAnalysisPath) -> dict:
 
 def deserialize_json(data: dict) -> RouteAnalysisPath:
     out: RouteAnalysisPath = {}  # type: ignore[typeddict-item]
-    if "CompletionStatus" in data:
+    if data.get("CompletionStatus") is not None:
         import capo_networkmanager.types.route_analysis_completion
 
         out["completion_status"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> RouteAnalysisPath:
                 data["CompletionStatus"]
             )
         )
-    if "Path" in data:
+    if data.get("Path") is not None:
         import capo_networkmanager.types.path_component_list
 
         out["path"] = capo_networkmanager.types.path_component_list.deserialize_json(

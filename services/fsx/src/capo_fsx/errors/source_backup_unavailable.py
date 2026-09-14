@@ -28,9 +28,9 @@ def serialize_aws_json_1_1(value: SourceBackupUnavailable_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceBackupUnavailable_:
     out: SourceBackupUnavailable_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "BackupId" in data:
+    if data.get("BackupId") is not None:
         out["backup_id"] = data["BackupId"]
     return out
 
@@ -40,15 +40,18 @@ class SourceBackupUnavailable(ServiceError):
 
     code: str | None = "SourceBackupUnavailable"
 
-    def __init__(self, data: SourceBackupUnavailable_):
+    def __init__(self, data: SourceBackupUnavailable_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SourceBackupUnavailable",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "SourceBackupUnavailable":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "SourceBackupUnavailable":
+        return cls(deserialize_aws_json_1_1(data), message)

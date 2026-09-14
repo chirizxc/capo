@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> EffectivePreferredResources:
 
     out: EffectivePreferredResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer.types.effective_preferred_resource.deserialize_aws_json_1_0(
                 item

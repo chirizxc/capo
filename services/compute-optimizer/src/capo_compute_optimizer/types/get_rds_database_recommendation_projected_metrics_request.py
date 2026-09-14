@@ -67,13 +67,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> GetRDSDatabaseRecommendationProjectedMetricsRequest:
     out: GetRDSDatabaseRecommendationProjectedMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
             "GetRDSDatabaseRecommendationProjectedMetricsRequest.resource_arn required"
         )
-    if "stat" in data:
+    if data.get("stat") is not None:
         import capo_compute_optimizer.types.metric_statistic
 
         out["stat"] = (
@@ -85,11 +85,11 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "GetRDSDatabaseRecommendationProjectedMetricsRequest.stat required"
         )
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
     else:
         out["period"] = 0
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_compute_optimizer.types.timestamp
 
         out["start_time"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "GetRDSDatabaseRecommendationProjectedMetricsRequest.start_time required"
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_compute_optimizer.types.timestamp
 
         out["end_time"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "GetRDSDatabaseRecommendationProjectedMetricsRequest.end_time required"
         )
-    if "recommendationPreferences" in data:
+    if data.get("recommendationPreferences") is not None:
         import capo_compute_optimizer.types.recommendation_preferences
 
         out["recommendation_preferences"] = (

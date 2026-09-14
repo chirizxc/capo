@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_proton._services._pipeline import (
@@ -100,16 +101,18 @@ class ServiceTemplateVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_service_template_version_input.CreateServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["template_name"] = template_name
+        input_: capo_proton.types.create_service_template_version_input.CreateServiceTemplateVersionInput = {
+            "template_name": template_name,
+            "source": source,
+            "compatible_environment_templates": compatible_environment_templates,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if major_version is not None:
             input_["major_version"] = major_version
-        input_["source"] = source
-        input_["compatible_environment_templates"] = compatible_environment_templates
         if tags is not None:
             input_["tags"] = tags
         if supported_component_sources is not None:
@@ -120,6 +123,7 @@ class ServiceTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -161,16 +165,18 @@ class ServiceTemplateVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_template_version_input.GetServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.get_service_template_version_input.GetServiceTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -227,10 +233,11 @@ class ServiceTemplateVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_template_version_input.UpdateServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.update_service_template_version_input.UpdateServiceTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
@@ -247,6 +254,7 @@ class ServiceTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -289,16 +297,18 @@ class ServiceTemplateVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_service_template_version_input.DeleteServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.delete_service_template_version_input.DeleteServiceTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -346,12 +356,13 @@ class ServiceTemplateVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_service_template_versions_input.ListServiceTemplateVersionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_service_template_versions_input.ListServiceTemplateVersionsInput = {
+            "template_name": template_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["template_name"] = template_name
         if major_version is not None:
             input_["major_version"] = major_version
 
@@ -360,6 +371,7 @@ class ServiceTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -423,16 +435,18 @@ class AsyncServiceTemplateVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_service_template_version_input.CreateServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["template_name"] = template_name
+        input_: capo_proton.types.create_service_template_version_input.CreateServiceTemplateVersionInput = {
+            "template_name": template_name,
+            "source": source,
+            "compatible_environment_templates": compatible_environment_templates,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if major_version is not None:
             input_["major_version"] = major_version
-        input_["source"] = source
-        input_["compatible_environment_templates"] = compatible_environment_templates
         if tags is not None:
             input_["tags"] = tags
         if supported_component_sources is not None:
@@ -443,6 +457,7 @@ class AsyncServiceTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -485,16 +500,18 @@ class AsyncServiceTemplateVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_template_version_input.GetServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.get_service_template_version_input.GetServiceTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -552,10 +569,11 @@ class AsyncServiceTemplateVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_template_version_input.UpdateServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.update_service_template_version_input.UpdateServiceTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
@@ -572,6 +590,7 @@ class AsyncServiceTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -615,16 +634,18 @@ class AsyncServiceTemplateVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_service_template_version_input.DeleteServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.delete_service_template_version_input.DeleteServiceTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -673,12 +694,13 @@ class AsyncServiceTemplateVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_service_template_versions_input.ListServiceTemplateVersionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_service_template_versions_input.ListServiceTemplateVersionsInput = {
+            "template_name": template_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["template_name"] = template_name
         if major_version is not None:
             input_["major_version"] = major_version
 
@@ -687,4 +709,5 @@ class AsyncServiceTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

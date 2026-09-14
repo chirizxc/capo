@@ -54,17 +54,17 @@ def serialize_json(value: ConnectionDetails) -> dict:
 
 def deserialize_json(data: dict) -> ConnectionDetails:
     out: ConnectionDetails = {}  # type: ignore[typeddict-item]
-    if "ClientPublicKey" in data:
+    if data.get("ClientPublicKey") is not None:
         out["client_public_key"] = data["ClientPublicKey"]
-    if "ServerPublicKey" in data:
+    if data.get("ServerPublicKey") is not None:
         out["server_public_key"] = data["ServerPublicKey"]
-    if "ServerEndpoint" in data:
+    if data.get("ServerEndpoint") is not None:
         out["server_endpoint"] = data["ServerEndpoint"]
-    if "ClientTunnelAddress" in data:
+    if data.get("ClientTunnelAddress") is not None:
         out["client_tunnel_address"] = data["ClientTunnelAddress"]
-    if "ServerTunnelAddress" in data:
+    if data.get("ServerTunnelAddress") is not None:
         out["server_tunnel_address"] = data["ServerTunnelAddress"]
-    if "AllowedIps" in data:
+    if data.get("AllowedIps") is not None:
         import capo_outposts.types.cidr_list
 
         out["allowed_ips"] = capo_outposts.types.cidr_list.deserialize_json(

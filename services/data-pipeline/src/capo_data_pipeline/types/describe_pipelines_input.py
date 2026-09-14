@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DescribePipelinesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePipelinesInput:
     out: DescribePipelinesInput = {}  # type: ignore[typeddict-item]
-    if "pipelineIds" in data:
+    if data.get("pipelineIds") is not None:
         import capo_data_pipeline.types.id_list
 
         out["pipeline_ids"] = capo_data_pipeline.types.id_list.deserialize_aws_json_1_1(

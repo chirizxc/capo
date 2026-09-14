@@ -72,21 +72,21 @@ def serialize_json(value: GetRecommenderFilterResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRecommenderFilterResponse:
     out: GetRecommenderFilterResponse = {}  # type: ignore[typeddict-item]
-    if "RecommenderFilterName" in data:
+    if data.get("RecommenderFilterName") is not None:
         out["recommender_filter_name"] = data["RecommenderFilterName"]
     else:
         raise DeserializationError(
             "GetRecommenderFilterResponse.recommender_filter_name required"
         )
-    if "RecommenderFilterExpression" in data:
+    if data.get("RecommenderFilterExpression") is not None:
         out["recommender_filter_expression"] = data["RecommenderFilterExpression"]
     else:
         raise DeserializationError(
             "GetRecommenderFilterResponse.recommender_filter_expression required"
         )
-    if "RecommenderSchemaName" in data:
+    if data.get("RecommenderSchemaName") is not None:
         out["recommender_schema_name"] = data["RecommenderSchemaName"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> GetRecommenderFilterResponse:
         )
     else:
         raise DeserializationError("GetRecommenderFilterResponse.created_at required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.recommender_filter_status
 
         out["status"] = (
@@ -104,11 +104,11 @@ def deserialize_json(data: dict) -> GetRecommenderFilterResponse:
         )
     else:
         raise DeserializationError("GetRecommenderFilterResponse.status required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

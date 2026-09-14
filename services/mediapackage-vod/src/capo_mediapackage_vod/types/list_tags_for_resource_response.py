@@ -27,7 +27,7 @@ def serialize_json(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediapackage_vod.types.__map_of__string
 
         out["tags"] = capo_mediapackage_vod.types.__map_of__string.deserialize_json(

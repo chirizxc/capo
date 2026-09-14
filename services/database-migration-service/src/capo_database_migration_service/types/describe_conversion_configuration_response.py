@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: DescribeConversionConfigurationResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConversionConfigurationResponse:
     out: DescribeConversionConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
-    if "ConversionConfiguration" in data:
+    if data.get("ConversionConfiguration") is not None:
         out["conversion_configuration"] = data["ConversionConfiguration"]
     return out

@@ -92,18 +92,20 @@ class CaseRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.create_case_rule_request.CreateCaseRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
+        input_: capo_connectcases.types.create_case_rule_request.CreateCaseRuleRequest = {
+            "domain_id": domain_id,
+            "name": name,
+            "rule": rule,
+        }
         if description is not None:
             input_["description"] = description
-        input_["rule"] = rule
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -155,9 +157,10 @@ class CaseRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.update_case_rule_request.UpdateCaseRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["case_rule_id"] = case_rule_id
+        input_: capo_connectcases.types.update_case_rule_request.UpdateCaseRuleRequest = {
+            "domain_id": domain_id,
+            "case_rule_id": case_rule_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -170,6 +173,7 @@ class CaseRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -209,15 +213,17 @@ class CaseRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.delete_case_rule_request.DeleteCaseRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["case_rule_id"] = case_rule_id
+        input_: capo_connectcases.types.delete_case_rule_request.DeleteCaseRuleRequest = {
+            "domain_id": domain_id,
+            "case_rule_id": case_rule_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -259,8 +265,9 @@ class CaseRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_case_rules_request.ListCaseRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.list_case_rules_request.ListCaseRulesRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -271,6 +278,7 @@ class CaseRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_case_rule(
@@ -312,15 +320,17 @@ class CaseRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.batch_get_case_rule_request.BatchGetCaseRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["case_rules"] = case_rules
+        input_: capo_connectcases.types.batch_get_case_rule_request.BatchGetCaseRuleRequest = {
+            "domain_id": domain_id,
+            "case_rules": case_rules,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -374,18 +384,20 @@ class AsyncCaseRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.create_case_rule_request.CreateCaseRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
+        input_: capo_connectcases.types.create_case_rule_request.CreateCaseRuleRequest = {
+            "domain_id": domain_id,
+            "name": name,
+            "rule": rule,
+        }
         if description is not None:
             input_["description"] = description
-        input_["rule"] = rule
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -438,9 +450,10 @@ class AsyncCaseRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.update_case_rule_request.UpdateCaseRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["case_rule_id"] = case_rule_id
+        input_: capo_connectcases.types.update_case_rule_request.UpdateCaseRuleRequest = {
+            "domain_id": domain_id,
+            "case_rule_id": case_rule_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -453,6 +466,7 @@ class AsyncCaseRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -493,15 +507,17 @@ class AsyncCaseRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.delete_case_rule_request.DeleteCaseRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["case_rule_id"] = case_rule_id
+        input_: capo_connectcases.types.delete_case_rule_request.DeleteCaseRuleRequest = {
+            "domain_id": domain_id,
+            "case_rule_id": case_rule_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -544,8 +560,9 @@ class AsyncCaseRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_case_rules_request.ListCaseRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.list_case_rules_request.ListCaseRulesRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -556,6 +573,7 @@ class AsyncCaseRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_case_rule(
@@ -598,13 +616,15 @@ class AsyncCaseRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.batch_get_case_rule_request.BatchGetCaseRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["case_rules"] = case_rules
+        input_: capo_connectcases.types.batch_get_case_rule_request.BatchGetCaseRuleRequest = {
+            "domain_id": domain_id,
+            "case_rules": case_rules,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

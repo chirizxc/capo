@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: OcspConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OcspConfiguration:
     out: OcspConfiguration = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("OcspConfiguration.enabled required")
-    if "OcspCustomCname" in data:
+    if data.get("OcspCustomCname") is not None:
         out["ocsp_custom_cname"] = data["OcspCustomCname"]
     return out

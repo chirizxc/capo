@@ -27,8 +27,8 @@ def serialize_json(value: RoleConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RoleConfiguration:
     out: RoleConfiguration = {}  # type: ignore[typeddict-item]
-    if "sourceRoleArn" in data:
+    if data.get("sourceRoleArn") is not None:
         out["source_role_arn"] = data["sourceRoleArn"]
-    if "targetRoleArn" in data:
+    if data.get("targetRoleArn") is not None:
         out["target_role_arn"] = data["targetRoleArn"]
     return out

@@ -32,11 +32,11 @@ def serialize_json(value: CreateNamespaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateNamespaceResponse:
     out: CreateNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "tableBucketARN" in data:
+    if data.get("tableBucketARN") is not None:
         out["table_bucket_arn"] = data["tableBucketARN"]
     else:
         raise DeserializationError("CreateNamespaceResponse.table_bucket_arn required")
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_s3tables.types.namespace_list
 
         out["namespace"] = capo_s3tables.types.namespace_list.deserialize_json(

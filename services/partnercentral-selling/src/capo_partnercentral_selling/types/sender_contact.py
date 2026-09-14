@@ -43,16 +43,16 @@ def serialize_aws_json_1_0(value: SenderContact) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SenderContact:
     out: SenderContact = {}  # type: ignore[typeddict-item]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     else:
         raise DeserializationError("SenderContact.email required")
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
-    if "BusinessTitle" in data:
+    if data.get("BusinessTitle") is not None:
         out["business_title"] = data["BusinessTitle"]
-    if "Phone" in data:
+    if data.get("Phone") is not None:
         out["phone"] = data["Phone"]
     return out

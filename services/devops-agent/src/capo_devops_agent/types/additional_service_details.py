@@ -202,7 +202,7 @@ def serialize_json(value: AdditionalServiceDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> AdditionalServiceDetails:
-    if "github" in data:
+    if data.get("github") is not None:
         import capo_devops_agent.types.registered_github_service_details
 
         return {
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["github"]
             )
         }
-    elif "slack" in data:
+    elif data.get("slack") is not None:
         import capo_devops_agent.types.registered_slack_service_details
 
         return {
@@ -218,7 +218,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["slack"]
             )
         }
-    elif "mcpserverdatadog" in data:
+    elif data.get("mcpserverdatadog") is not None:
         import capo_devops_agent.types.registered_mcp_server_details
 
         return {
@@ -226,7 +226,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["mcpserverdatadog"]
             )
         }
-    elif "mcpserver" in data:
+    elif data.get("mcpserver") is not None:
         import capo_devops_agent.types.registered_mcp_server_details
 
         return {
@@ -234,7 +234,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["mcpserver"]
             )
         }
-    elif "servicenow" in data:
+    elif data.get("servicenow") is not None:
         import capo_devops_agent.types.registered_service_now_details
 
         return {
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["servicenow"]
             )
         }
-    elif "gitlab" in data:
+    elif data.get("gitlab") is not None:
         import capo_devops_agent.types.registered_git_lab_service_details
 
         return {
@@ -250,7 +250,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["gitlab"]
             )
         }
-    elif "mcpserversplunk" in data:
+    elif data.get("mcpserversplunk") is not None:
         import capo_devops_agent.types.registered_mcp_server_details
 
         return {
@@ -258,7 +258,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["mcpserversplunk"]
             )
         }
-    elif "mcpservernewrelic" in data:
+    elif data.get("mcpservernewrelic") is not None:
         import capo_devops_agent.types.registered_new_relic_details
 
         return {
@@ -266,7 +266,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["mcpservernewrelic"]
             )
         }
-    elif "azuredevops" in data:
+    elif data.get("azuredevops") is not None:
         import capo_devops_agent.types.registered_azure_dev_ops_service_details
 
         return {
@@ -274,7 +274,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["azuredevops"]
             )
         }
-    elif "azureidentity" in data:
+    elif data.get("azureidentity") is not None:
         import capo_devops_agent.types.registered_azure_identity_details
 
         return {
@@ -282,7 +282,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["azureidentity"]
             )
         }
-    elif "mcpservergrafana" in data:
+    elif data.get("mcpservergrafana") is not None:
         import capo_devops_agent.types.registered_grafana_server_details
 
         return {
@@ -290,7 +290,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["mcpservergrafana"]
             )
         }
-    elif "pagerduty" in data:
+    elif data.get("pagerduty") is not None:
         import capo_devops_agent.types.registered_pager_duty_details
 
         return {
@@ -298,7 +298,7 @@ def deserialize_json(data: dict) -> AdditionalServiceDetails:
                 data["pagerduty"]
             )
         }
-    elif "mcpserversigv4" in data:
+    elif data.get("mcpserversigv4") is not None:
         import capo_devops_agent.types.registered_mcp_server_sig_v4_details
 
         return {

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FailedBatchAssociationSummaryList:
 
     out: FailedBatchAssociationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.failed_batch_association_summary.deserialize_json(item)
         )

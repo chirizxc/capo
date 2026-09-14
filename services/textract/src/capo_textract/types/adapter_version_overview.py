@@ -66,17 +66,17 @@ def serialize_aws_json_1_1(value: AdapterVersionOverview) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdapterVersionOverview:
     out: AdapterVersionOverview = {}  # type: ignore[typeddict-item]
-    if "AdapterId" in data:
+    if data.get("AdapterId") is not None:
         out["adapter_id"] = data["AdapterId"]
-    if "AdapterVersion" in data:
+    if data.get("AdapterVersion") is not None:
         out["adapter_version"] = data["AdapterVersion"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_textract.types.date_time
 
         out["creation_time"] = capo_textract.types.date_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FeatureTypes" in data:
+    if data.get("FeatureTypes") is not None:
         import capo_textract.types.feature_types
 
         out["feature_types"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdapterVersionOverview:
                 data["FeatureTypes"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_textract.types.adapter_version_status
 
         out["status"] = (
@@ -92,6 +92,6 @@ def deserialize_aws_json_1_1(data: dict) -> AdapterVersionOverview:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

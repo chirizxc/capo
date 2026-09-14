@@ -25,6 +25,6 @@ def serialize_json(value: CreateConfigurationSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationSetRequest:
     out: CreateConfigurationSetRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     return out

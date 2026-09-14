@@ -37,12 +37,12 @@ def serialize_aws_json_1_1(value: TagStepDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagStepDetails:
     out: TagStepDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.s3_tags
 
         out["tags"] = capo_transfer.types.s3_tags.deserialize_aws_json_1_1(data["Tags"])
-    if "SourceFileLocation" in data:
+    if data.get("SourceFileLocation") is not None:
         out["source_file_location"] = data["SourceFileLocation"]
     return out

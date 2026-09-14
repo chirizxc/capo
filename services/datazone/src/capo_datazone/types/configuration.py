@@ -31,9 +31,9 @@ def serialize_json(value: Configuration) -> dict:
 
 def deserialize_json(data: dict) -> Configuration:
     out: Configuration = {}  # type: ignore[typeddict-item]
-    if "classification" in data:
+    if data.get("classification") is not None:
         out["classification"] = data["classification"]
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_datazone.types.property_map
 
         out["properties"] = capo_datazone.types.property_map.deserialize_json(

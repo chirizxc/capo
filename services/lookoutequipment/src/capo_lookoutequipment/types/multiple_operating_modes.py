@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: MultipleOperatingModes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MultipleOperatingModes:
     out: MultipleOperatingModes = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.statistical_issue_status
 
         out["status"] = (

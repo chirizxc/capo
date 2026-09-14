@@ -32,7 +32,7 @@ def serialize_json(value: PutConfigurationSetVdmOptionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutConfigurationSetVdmOptionsRequest:
     out: PutConfigurationSetVdmOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "VdmOptions" in data:
+    if data.get("VdmOptions") is not None:
         import capo_sesv2.types.vdm_options
 
         out["vdm_options"] = capo_sesv2.types.vdm_options.deserialize_json(

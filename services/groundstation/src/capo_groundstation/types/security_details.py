@@ -44,7 +44,7 @@ def serialize_json(value: SecurityDetails) -> dict:
 
 def deserialize_json(data: dict) -> SecurityDetails:
     out: SecurityDetails = {}  # type: ignore[typeddict-item]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_groundstation.types.subnet_list
 
         out["subnet_ids"] = capo_groundstation.types.subnet_list.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> SecurityDetails:
         )
     else:
         raise DeserializationError("SecurityDetails.subnet_ids required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_groundstation.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> SecurityDetails:
         )
     else:
         raise DeserializationError("SecurityDetails.security_group_ids required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("SecurityDetails.role_arn required")

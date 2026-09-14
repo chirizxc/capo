@@ -32,11 +32,11 @@ def serialize_json(value: PivotFieldSortOptions) -> dict:
 
 def deserialize_json(data: dict) -> PivotFieldSortOptions:
     out: PivotFieldSortOptions = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("PivotFieldSortOptions.field_id required")
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_quicksight.types.pivot_table_sort_by
 
         out["sort_by"] = capo_quicksight.types.pivot_table_sort_by.deserialize_json(

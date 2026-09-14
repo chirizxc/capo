@@ -74,23 +74,23 @@ def serialize_json(value: UpdateResourceGatewayResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceGatewayResponse:
     out: UpdateResourceGatewayResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_vpc_lattice.types.subnet_list
 
         out["subnet_ids"] = capo_vpc_lattice.types.subnet_list.deserialize_json(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_vpc_lattice.types.security_group_list
 
         out["security_group_ids"] = (
@@ -98,6 +98,6 @@ def deserialize_json(data: dict) -> UpdateResourceGatewayResponse:
                 data["securityGroupIds"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         out["ip_address_type"] = data["ipAddressType"]
     return out

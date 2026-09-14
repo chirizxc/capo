@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_opensearchserverless._services._pipeline import (
@@ -102,9 +103,10 @@ class SecurityConfig:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_security_config_request.CreateSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
+        input_: capo_opensearchserverless.types.create_security_config_request.CreateSecurityConfigRequest = {
+            "type": type,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if saml_options is not None:
@@ -113,14 +115,16 @@ class SecurityConfig:
             input_["iam_identity_center_options"] = iam_identity_center_options
         if iam_federation_options is not None:
             input_["iam_federation_options"] = iam_federation_options
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -156,14 +160,16 @@ class SecurityConfig:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.get_security_config_request.GetSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_opensearchserverless.types.get_security_config_request.GetSecurityConfigRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -222,9 +228,10 @@ class SecurityConfig:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_security_config_request.UpdateSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["config_version"] = config_version
+        input_: capo_opensearchserverless.types.update_security_config_request.UpdateSecurityConfigRequest = {
+            "id": id,
+            "config_version": config_version,
+        }
         if description is not None:
             input_["description"] = description
         if saml_options is not None:
@@ -235,14 +242,16 @@ class SecurityConfig:
             )
         if iam_federation_options is not None:
             input_["iam_federation_options"] = iam_federation_options
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -283,16 +292,19 @@ class SecurityConfig:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_security_config_request.DeleteSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_security_config_request.DeleteSecurityConfigRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -331,8 +343,9 @@ class SecurityConfig:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_security_configs_request.ListSecurityConfigsRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_opensearchserverless.types.list_security_configs_request.ListSecurityConfigsRequest = {
+            "type": type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -343,6 +356,7 @@ class SecurityConfig:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -407,9 +421,10 @@ class AsyncSecurityConfig:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_security_config_request.CreateSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
+        input_: capo_opensearchserverless.types.create_security_config_request.CreateSecurityConfigRequest = {
+            "type": type,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if saml_options is not None:
@@ -418,14 +433,16 @@ class AsyncSecurityConfig:
             input_["iam_identity_center_options"] = iam_identity_center_options
         if iam_federation_options is not None:
             input_["iam_federation_options"] = iam_federation_options
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -462,14 +479,16 @@ class AsyncSecurityConfig:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.get_security_config_request.GetSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_opensearchserverless.types.get_security_config_request.GetSecurityConfigRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -529,9 +548,10 @@ class AsyncSecurityConfig:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_security_config_request.UpdateSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["config_version"] = config_version
+        input_: capo_opensearchserverless.types.update_security_config_request.UpdateSecurityConfigRequest = {
+            "id": id,
+            "config_version": config_version,
+        }
         if description is not None:
             input_["description"] = description
         if saml_options is not None:
@@ -542,14 +562,16 @@ class AsyncSecurityConfig:
             )
         if iam_federation_options is not None:
             input_["iam_federation_options"] = iam_federation_options
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -591,16 +613,19 @@ class AsyncSecurityConfig:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_security_config_request.DeleteSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_security_config_request.DeleteSecurityConfigRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -640,8 +665,9 @@ class AsyncSecurityConfig:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_security_configs_request.ListSecurityConfigsRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_opensearchserverless.types.list_security_configs_request.ListSecurityConfigsRequest = {
+            "type": type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -652,4 +678,5 @@ class AsyncSecurityConfig:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

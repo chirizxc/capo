@@ -47,27 +47,27 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> AssociateAwsTrainingCertificationEmailDomainRequest:
     out: AssociateAwsTrainingCertificationEmailDomainRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError(
             "AssociateAwsTrainingCertificationEmailDomainRequest.catalog required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "AssociateAwsTrainingCertificationEmailDomainRequest.identifier required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     else:
         raise DeserializationError(
             "AssociateAwsTrainingCertificationEmailDomainRequest.email required"
         )
-    if "EmailVerificationCode" in data:
+    if data.get("EmailVerificationCode") is not None:
         out["email_verification_code"] = data["EmailVerificationCode"]
     else:
         raise DeserializationError(

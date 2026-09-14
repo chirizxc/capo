@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeCertificateAuthorityAuditReportResponse:
     out: DescribeCertificateAuthorityAuditReportResponse = {}  # type: ignore[typeddict-item]
-    if "AuditReportStatus" in data:
+    if data.get("AuditReportStatus") is not None:
         import capo_acm_pca.types.audit_report_status
 
         out["audit_report_status"] = (
@@ -62,11 +62,11 @@ def deserialize_aws_json_1_1(
                 data["AuditReportStatus"]
             )
         )
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "S3Key" in data:
+    if data.get("S3Key") is not None:
         out["s3_key"] = data["S3Key"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_acm_pca.types.t_stamp
 
         out["created_at"] = capo_acm_pca.types.t_stamp.deserialize_aws_json_1_1(

@@ -75,7 +75,15 @@ def serialize_aws_json_1_1(value: EndpointGroup) -> dict:
             )
         )
     if "traffic_dial_percentage" in value:
-        out["TrafficDialPercentage"] = value["traffic_dial_percentage"]
+        out["TrafficDialPercentage"] = (
+            "NaN"
+            if value["traffic_dial_percentage"] != value["traffic_dial_percentage"]
+            else "Infinity"
+            if value["traffic_dial_percentage"] == float("inf")
+            else "-Infinity"
+            if value["traffic_dial_percentage"] == float("-inf")
+            else value["traffic_dial_percentage"]
+        )
     if "health_check_port" in value:
         out["HealthCheckPort"] = value["health_check_port"]
     if "health_check_protocol" in value:
@@ -105,11 +113,11 @@ def serialize_aws_json_1_1(value: EndpointGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointGroup:
     out: EndpointGroup = {}  # type: ignore[typeddict-item]
-    if "EndpointGroupArn" in data:
+    if data.get("EndpointGroupArn") is not None:
         out["endpoint_group_arn"] = data["EndpointGroupArn"]
-    if "EndpointGroupRegion" in data:
+    if data.get("EndpointGroupRegion") is not None:
         out["endpoint_group_region"] = data["EndpointGroupRegion"]
-    if "EndpointDescriptions" in data:
+    if data.get("EndpointDescriptions") is not None:
         import capo_global_accelerator.types.endpoint_descriptions
 
         out["endpoint_descriptions"] = (
@@ -117,11 +125,11 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointGroup:
                 data["EndpointDescriptions"]
             )
         )
-    if "TrafficDialPercentage" in data:
-        out["traffic_dial_percentage"] = data["TrafficDialPercentage"]
-    if "HealthCheckPort" in data:
+    if data.get("TrafficDialPercentage") is not None:
+        out["traffic_dial_percentage"] = float(data["TrafficDialPercentage"])
+    if data.get("HealthCheckPort") is not None:
         out["health_check_port"] = data["HealthCheckPort"]
-    if "HealthCheckProtocol" in data:
+    if data.get("HealthCheckProtocol") is not None:
         import capo_global_accelerator.types.health_check_protocol
 
         out["health_check_protocol"] = (
@@ -129,13 +137,13 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointGroup:
                 data["HealthCheckProtocol"]
             )
         )
-    if "HealthCheckPath" in data:
+    if data.get("HealthCheckPath") is not None:
         out["health_check_path"] = data["HealthCheckPath"]
-    if "HealthCheckIntervalSeconds" in data:
+    if data.get("HealthCheckIntervalSeconds") is not None:
         out["health_check_interval_seconds"] = data["HealthCheckIntervalSeconds"]
-    if "ThresholdCount" in data:
+    if data.get("ThresholdCount") is not None:
         out["threshold_count"] = data["ThresholdCount"]
-    if "PortOverrides" in data:
+    if data.get("PortOverrides") is not None:
         import capo_global_accelerator.types.port_overrides
 
         out["port_overrides"] = (

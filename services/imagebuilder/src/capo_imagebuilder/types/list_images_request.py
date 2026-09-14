@@ -57,24 +57,24 @@ def serialize_json(value: ListImagesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListImagesRequest:
     out: ListImagesRequest = {}  # type: ignore[typeddict-item]
-    if "owner" in data:
+    if data.get("owner") is not None:
         import capo_imagebuilder.types.ownership
 
         out["owner"] = capo_imagebuilder.types.ownership.deserialize_json(data["owner"])
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_imagebuilder.types.filter_list
 
         out["filters"] = capo_imagebuilder.types.filter_list.deserialize_json(
             data["filters"]
         )
-    if "byName" in data:
+    if data.get("byName") is not None:
         out["by_name"] = data["byName"]
     else:
         out["by_name"] = False
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "includeDeprecated" in data:
+    if data.get("includeDeprecated") is not None:
         out["include_deprecated"] = data["includeDeprecated"]
     return out

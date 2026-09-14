@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: AssociateTrialComponentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateTrialComponentResponse:
     out: AssociateTrialComponentResponse = {}  # type: ignore[typeddict-item]
-    if "TrialComponentArn" in data:
+    if data.get("TrialComponentArn") is not None:
         out["trial_component_arn"] = data["TrialComponentArn"]
-    if "TrialArn" in data:
+    if data.get("TrialArn") is not None:
         out["trial_arn"] = data["TrialArn"]
     return out

@@ -60,13 +60,13 @@ def serialize_json(value: ConnectorOperationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorOperationSummary:
     out: ConnectorOperationSummary = {}  # type: ignore[typeddict-item]
-    if "connectorOperationArn" in data:
+    if data.get("connectorOperationArn") is not None:
         out["connector_operation_arn"] = data["connectorOperationArn"]
-    if "connectorOperationType" in data:
+    if data.get("connectorOperationType") is not None:
         out["connector_operation_type"] = data["connectorOperationType"]
-    if "connectorOperationState" in data:
+    if data.get("connectorOperationState") is not None:
         out["connector_operation_state"] = data["connectorOperationState"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafkaconnect.types.__timestamp_iso8601
 
         out["creation_time"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ConnectorOperationSummary:
                 data["creationTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_kafkaconnect.types.__timestamp_iso8601
 
         out["end_time"] = capo_kafkaconnect.types.__timestamp_iso8601.deserialize_json(

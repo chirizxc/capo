@@ -62,11 +62,11 @@ def serialize_aws_json_1_0(value: RescoreExecutionPlanSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RescoreExecutionPlanSummary:
     out: RescoreExecutionPlanSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra_ranking.types.timestamp
 
         out["created_at"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_0(data: dict) -> RescoreExecutionPlanSummary:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra_ranking.types.timestamp
 
         out["updated_at"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> RescoreExecutionPlanSummary:
                 data["UpdatedAt"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra_ranking.types.rescore_execution_plan_status
 
         out["status"] = (

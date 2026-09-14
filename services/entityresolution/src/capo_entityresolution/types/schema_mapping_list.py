@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SchemaMappingList:
 
     out: SchemaMappingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.schema_mapping_summary.deserialize_json(item)
         )

@@ -97,27 +97,27 @@ def serialize_json(value: AwsDmsReplicationInstanceDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsDmsReplicationInstanceDetails:
     out: AwsDmsReplicationInstanceDetails = {}  # type: ignore[typeddict-item]
-    if "AllocatedStorage" in data:
+    if data.get("AllocatedStorage") is not None:
         out["allocated_storage"] = data["AllocatedStorage"]
-    if "AutoMinorVersionUpgrade" in data:
+    if data.get("AutoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["AutoMinorVersionUpgrade"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "MultiAZ" in data:
+    if data.get("MultiAZ") is not None:
         out["multi_az"] = data["MultiAZ"]
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "PubliclyAccessible" in data:
+    if data.get("PubliclyAccessible") is not None:
         out["publicly_accessible"] = data["PubliclyAccessible"]
-    if "ReplicationInstanceClass" in data:
+    if data.get("ReplicationInstanceClass") is not None:
         out["replication_instance_class"] = data["ReplicationInstanceClass"]
-    if "ReplicationInstanceIdentifier" in data:
+    if data.get("ReplicationInstanceIdentifier") is not None:
         out["replication_instance_identifier"] = data["ReplicationInstanceIdentifier"]
-    if "ReplicationSubnetGroup" in data:
+    if data.get("ReplicationSubnetGroup") is not None:
         import capo_securityhub.types.aws_dms_replication_instance_replication_subnet_group_details
 
         out["replication_subnet_group"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> AwsDmsReplicationInstanceDetails:
                 data["ReplicationSubnetGroup"]
             )
         )
-    if "VpcSecurityGroups" in data:
+    if data.get("VpcSecurityGroups") is not None:
         import capo_securityhub.types.aws_dms_replication_instance_vpc_security_groups_list
 
         out["vpc_security_groups"] = (

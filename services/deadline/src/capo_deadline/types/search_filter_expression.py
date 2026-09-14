@@ -112,7 +112,7 @@ def serialize_json(value: SearchFilterExpression) -> dict:
 
 
 def deserialize_json(data: dict) -> SearchFilterExpression:
-    if "dateTimeFilter" in data:
+    if data.get("dateTimeFilter") is not None:
         import capo_deadline.types.date_time_filter_expression
 
         return {
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> SearchFilterExpression:
                 data["dateTimeFilter"]
             )
         }
-    elif "parameterFilter" in data:
+    elif data.get("parameterFilter") is not None:
         import capo_deadline.types.parameter_filter_expression
 
         return {
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> SearchFilterExpression:
                 data["parameterFilter"]
             )
         }
-    elif "searchTermFilter" in data:
+    elif data.get("searchTermFilter") is not None:
         import capo_deadline.types.search_term_filter_expression
 
         return {
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> SearchFilterExpression:
                 data["searchTermFilter"]
             )
         }
-    elif "stringFilter" in data:
+    elif data.get("stringFilter") is not None:
         import capo_deadline.types.string_filter_expression
 
         return {
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> SearchFilterExpression:
                 data["stringFilter"]
             )
         }
-    elif "stringListFilter" in data:
+    elif data.get("stringListFilter") is not None:
         import capo_deadline.types.string_list_filter_expression
 
         return {
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> SearchFilterExpression:
                 data["stringListFilter"]
             )
         }
-    elif "groupFilter" in data:
+    elif data.get("groupFilter") is not None:
         import capo_deadline.types.search_grouped_filter_expressions
 
         return {

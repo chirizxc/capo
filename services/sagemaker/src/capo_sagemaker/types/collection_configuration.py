@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: CollectionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CollectionConfiguration:
     out: CollectionConfiguration = {}  # type: ignore[typeddict-item]
-    if "CollectionName" in data:
+    if data.get("CollectionName") is not None:
         out["collection_name"] = data["CollectionName"]
-    if "CollectionParameters" in data:
+    if data.get("CollectionParameters") is not None:
         import capo_sagemaker.types.collection_parameters
 
         out["collection_parameters"] = (

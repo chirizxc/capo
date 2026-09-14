@@ -40,14 +40,14 @@ def serialize_json(value: TopicInfo) -> dict:
 
 def deserialize_json(data: dict) -> TopicInfo:
     out: TopicInfo = {}  # type: ignore[typeddict-item]
-    if "topicArn" in data:
+    if data.get("topicArn") is not None:
         out["topic_arn"] = data["topicArn"]
-    if "topicName" in data:
+    if data.get("topicName") is not None:
         out["topic_name"] = data["topicName"]
-    if "replicationFactor" in data:
+    if data.get("replicationFactor") is not None:
         out["replication_factor"] = data["replicationFactor"]
-    if "partitionCount" in data:
+    if data.get("partitionCount") is not None:
         out["partition_count"] = data["partitionCount"]
-    if "outOfSyncReplicaCount" in data:
+    if data.get("outOfSyncReplicaCount") is not None:
         out["out_of_sync_replica_count"] = data["outOfSyncReplicaCount"]
     return out

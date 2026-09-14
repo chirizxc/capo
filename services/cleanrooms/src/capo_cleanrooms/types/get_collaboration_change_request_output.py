@@ -32,7 +32,7 @@ def serialize_json(value: GetCollaborationChangeRequestOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetCollaborationChangeRequestOutput:
     out: GetCollaborationChangeRequestOutput = {}  # type: ignore[typeddict-item]
-    if "collaborationChangeRequest" in data:
+    if data.get("collaborationChangeRequest") is not None:
         import capo_cleanrooms.types.collaboration_change_request
 
         out["collaboration_change_request"] = (

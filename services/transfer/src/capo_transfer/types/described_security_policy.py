@@ -116,15 +116,15 @@ def serialize_aws_json_1_1(value: DescribedSecurityPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribedSecurityPolicy:
     out: DescribedSecurityPolicy = {}  # type: ignore[typeddict-item]
-    if "Fips" in data:
+    if data.get("Fips") is not None:
         out["fips"] = data["Fips"]
-    if "SecurityPolicyName" in data:
+    if data.get("SecurityPolicyName") is not None:
         out["security_policy_name"] = data["SecurityPolicyName"]
     else:
         raise DeserializationError(
             "DescribedSecurityPolicy.security_policy_name required"
         )
-    if "SshCiphers" in data:
+    if data.get("SshCiphers") is not None:
         import capo_transfer.types.security_policy_options
 
         out["ssh_ciphers"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedSecurityPolicy:
                 data["SshCiphers"]
             )
         )
-    if "SshKexs" in data:
+    if data.get("SshKexs") is not None:
         import capo_transfer.types.security_policy_options
 
         out["ssh_kexs"] = (
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedSecurityPolicy:
                 data["SshKexs"]
             )
         )
-    if "SshMacs" in data:
+    if data.get("SshMacs") is not None:
         import capo_transfer.types.security_policy_options
 
         out["ssh_macs"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedSecurityPolicy:
                 data["SshMacs"]
             )
         )
-    if "TlsCiphers" in data:
+    if data.get("TlsCiphers") is not None:
         import capo_transfer.types.security_policy_options
 
         out["tls_ciphers"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedSecurityPolicy:
                 data["TlsCiphers"]
             )
         )
-    if "SshHostKeyAlgorithms" in data:
+    if data.get("SshHostKeyAlgorithms") is not None:
         import capo_transfer.types.security_policy_options
 
         out["ssh_host_key_algorithms"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedSecurityPolicy:
                 data["SshHostKeyAlgorithms"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_transfer.types.security_policy_resource_type
 
         out["type"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedSecurityPolicy:
                 data["Type"]
             )
         )
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_transfer.types.security_policy_protocols
 
         out["protocols"] = (

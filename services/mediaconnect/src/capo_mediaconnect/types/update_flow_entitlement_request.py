@@ -60,15 +60,15 @@ def serialize_json(value: UpdateFlowEntitlementRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFlowEntitlementRequest:
     out: UpdateFlowEntitlementRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediaconnect.types.update_encryption
 
         out["encryption"] = capo_mediaconnect.types.update_encryption.deserialize_json(
             data["encryption"]
         )
-    if "entitlementStatus" in data:
+    if data.get("entitlementStatus") is not None:
         import capo_mediaconnect.types.entitlement_status
 
         out["entitlement_status"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> UpdateFlowEntitlementRequest:
                 data["entitlementStatus"]
             )
         )
-    if "subscribers" in data:
+    if data.get("subscribers") is not None:
         import capo_mediaconnect.types.__list_of_string
 
         out["subscribers"] = capo_mediaconnect.types.__list_of_string.deserialize_json(

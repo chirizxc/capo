@@ -31,6 +31,9 @@ def deserialize_json(data: dict) -> PackageGroupAllowedRepositoryUpdate:
     out: PackageGroupAllowedRepositoryUpdate = {}
     for key, value in data.items():
         import capo_codeartifact.types.package_group_allowed_repository_update_type
+
+        if value is None:
+            continue
         import capo_codeartifact.types.repository_name_list
 
         out[

@@ -40,7 +40,7 @@ def serialize_json(value: RelationPattern) -> dict:
 
 def deserialize_json(data: dict) -> RelationPattern:
     out: RelationPattern = {}  # type: ignore[typeddict-item]
-    if "relationType" in data:
+    if data.get("relationType") is not None:
         import capo_datazone.types.relation_type
 
         out["relation_type"] = capo_datazone.types.relation_type.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> RelationPattern:
         )
     else:
         raise DeserializationError("RelationPattern.relation_type required")
-    if "relationDirection" in data:
+    if data.get("relationDirection") is not None:
         import capo_datazone.types.relation_direction
 
         out["relation_direction"] = (
@@ -58,6 +58,6 @@ def deserialize_json(data: dict) -> RelationPattern:
         )
     else:
         raise DeserializationError("RelationPattern.relation_direction required")
-    if "maxPathLength" in data:
+    if data.get("maxPathLength") is not None:
         out["max_path_length"] = data["maxPathLength"]
     return out

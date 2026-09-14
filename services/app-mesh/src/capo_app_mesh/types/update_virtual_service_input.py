@@ -39,7 +39,7 @@ def serialize_json(value: UpdateVirtualServiceInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVirtualServiceInput:
     out: UpdateVirtualServiceInput = {}  # type: ignore[typeddict-item]
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.virtual_service_spec
 
         out["spec"] = capo_app_mesh.types.virtual_service_spec.deserialize_json(
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> UpdateVirtualServiceInput:
         )
     else:
         raise DeserializationError("UpdateVirtualServiceInput.spec required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -47,11 +47,11 @@ def serialize_aws_json_1_1(value: RequestWidget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RequestWidget:
     out: RequestWidget = {}  # type: ignore[typeddict-item]
-    if "QueryStatement" in data:
+    if data.get("QueryStatement") is not None:
         out["query_statement"] = data["QueryStatement"]
     else:
         raise DeserializationError("RequestWidget.query_statement required")
-    if "QueryParameters" in data:
+    if data.get("QueryParameters") is not None:
         import capo_cloudtrail.types.query_parameters
 
         out["query_parameters"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> RequestWidget:
                 data["QueryParameters"]
             )
         )
-    if "ViewProperties" in data:
+    if data.get("ViewProperties") is not None:
         import capo_cloudtrail.types.view_properties_map
 
         out["view_properties"] = (

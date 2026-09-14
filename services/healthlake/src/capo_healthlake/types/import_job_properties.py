@@ -115,13 +115,13 @@ def serialize_aws_json_1_0(value: ImportJobProperties) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportJobProperties:
     out: ImportJobProperties = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("ImportJobProperties.job_id required")
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_healthlake.types.job_status
 
         out["job_status"] = capo_healthlake.types.job_status.deserialize_aws_json_1_0(
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(data: dict) -> ImportJobProperties:
         )
     else:
         raise DeserializationError("ImportJobProperties.job_status required")
-    if "SubmitTime" in data:
+    if data.get("SubmitTime") is not None:
         import capo_healthlake.types.timestamp
 
         out["submit_time"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
@@ -137,17 +137,17 @@ def deserialize_aws_json_1_0(data: dict) -> ImportJobProperties:
         )
     else:
         raise DeserializationError("ImportJobProperties.submit_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_healthlake.types.timestamp
 
         out["end_time"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
             data["EndTime"]
         )
-    if "DatastoreId" in data:
+    if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]
     else:
         raise DeserializationError("ImportJobProperties.datastore_id required")
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_healthlake.types.input_data_config
 
         out["input_data_config"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_0(data: dict) -> ImportJobProperties:
         )
     else:
         raise DeserializationError("ImportJobProperties.input_data_config required")
-    if "JobOutputDataConfig" in data:
+    if data.get("JobOutputDataConfig") is not None:
         import capo_healthlake.types.output_data_config
 
         out["job_output_data_config"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_0(data: dict) -> ImportJobProperties:
                 data["JobOutputDataConfig"]
             )
         )
-    if "JobProgressReport" in data:
+    if data.get("JobProgressReport") is not None:
         import capo_healthlake.types.job_progress_report
 
         out["job_progress_report"] = (
@@ -173,11 +173,11 @@ def deserialize_aws_json_1_0(data: dict) -> ImportJobProperties:
                 data["JobProgressReport"]
             )
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ValidationLevel" in data:
+    if data.get("ValidationLevel") is not None:
         import capo_healthlake.types.validation_level
 
         out["validation_level"] = (

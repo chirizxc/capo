@@ -71,7 +71,7 @@ def serialize_json(value: AuditFinding) -> dict:
 
 def deserialize_json(data: dict) -> AuditFinding:
     out: AuditFinding = {}  # type: ignore[typeddict-item]
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["key_attributes"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> AuditFinding:
         )
     else:
         raise DeserializationError("AuditFinding.key_attributes required")
-    if "AuditorResults" in data:
+    if data.get("AuditorResults") is not None:
         import capo_application_signals.types.auditor_results
 
         out["auditor_results"] = (
@@ -89,9 +89,9 @@ def deserialize_json(data: dict) -> AuditFinding:
                 data["AuditorResults"]
             )
         )
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
-    if "MetricGraph" in data:
+    if data.get("MetricGraph") is not None:
         import capo_application_signals.types.metric_graph
 
         out["metric_graph"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> AuditFinding:
                 data["MetricGraph"]
             )
         )
-    if "DependencyGraph" in data:
+    if data.get("DependencyGraph") is not None:
         import capo_application_signals.types.dependency_graph
 
         out["dependency_graph"] = (
@@ -107,6 +107,6 @@ def deserialize_json(data: dict) -> AuditFinding:
                 data["DependencyGraph"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

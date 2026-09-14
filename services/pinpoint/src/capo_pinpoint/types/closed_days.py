@@ -69,31 +69,31 @@ def serialize_json(value: ClosedDays) -> dict:
 
 def deserialize_json(data: dict) -> ClosedDays:
     out: ClosedDays = {}  # type: ignore[typeddict-item]
-    if "EMAIL" in data:
+    if data.get("EMAIL") is not None:
         import capo_pinpoint.types.list_of_closed_days_rules
 
         out["email"] = capo_pinpoint.types.list_of_closed_days_rules.deserialize_json(
             data["EMAIL"]
         )
-    if "SMS" in data:
+    if data.get("SMS") is not None:
         import capo_pinpoint.types.list_of_closed_days_rules
 
         out["sms"] = capo_pinpoint.types.list_of_closed_days_rules.deserialize_json(
             data["SMS"]
         )
-    if "PUSH" in data:
+    if data.get("PUSH") is not None:
         import capo_pinpoint.types.list_of_closed_days_rules
 
         out["push"] = capo_pinpoint.types.list_of_closed_days_rules.deserialize_json(
             data["PUSH"]
         )
-    if "VOICE" in data:
+    if data.get("VOICE") is not None:
         import capo_pinpoint.types.list_of_closed_days_rules
 
         out["voice"] = capo_pinpoint.types.list_of_closed_days_rules.deserialize_json(
             data["VOICE"]
         )
-    if "CUSTOM" in data:
+    if data.get("CUSTOM") is not None:
         import capo_pinpoint.types.list_of_closed_days_rules
 
         out["custom"] = capo_pinpoint.types.list_of_closed_days_rules.deserialize_json(

@@ -55,9 +55,9 @@ def serialize_json(value: Resilience) -> dict:
 
 def deserialize_json(data: dict) -> Resilience:
     out: Resilience = {}  # type: ignore[typeddict-item]
-    if "HsrTier" in data:
+    if data.get("HsrTier") is not None:
         out["hsr_tier"] = data["HsrTier"]
-    if "HsrReplicationMode" in data:
+    if data.get("HsrReplicationMode") is not None:
         import capo_ssm_sap.types.replication_mode
 
         out["hsr_replication_mode"] = (
@@ -65,18 +65,18 @@ def deserialize_json(data: dict) -> Resilience:
                 data["HsrReplicationMode"]
             )
         )
-    if "HsrOperationMode" in data:
+    if data.get("HsrOperationMode") is not None:
         import capo_ssm_sap.types.operation_mode
 
         out["hsr_operation_mode"] = capo_ssm_sap.types.operation_mode.deserialize_json(
             data["HsrOperationMode"]
         )
-    if "ClusterStatus" in data:
+    if data.get("ClusterStatus") is not None:
         import capo_ssm_sap.types.cluster_status
 
         out["cluster_status"] = capo_ssm_sap.types.cluster_status.deserialize_json(
             data["ClusterStatus"]
         )
-    if "EnqueueReplication" in data:
+    if data.get("EnqueueReplication") is not None:
         out["enqueue_replication"] = data["EnqueueReplication"]
     return out

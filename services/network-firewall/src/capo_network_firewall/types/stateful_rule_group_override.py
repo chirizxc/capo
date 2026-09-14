@@ -29,7 +29,7 @@ def serialize_aws_json_1_0(value: StatefulRuleGroupOverride) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StatefulRuleGroupOverride:
     out: StatefulRuleGroupOverride = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_network_firewall.types.override_action
 
         out["action"] = (

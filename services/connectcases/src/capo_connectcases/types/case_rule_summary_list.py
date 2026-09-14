@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CaseRuleSummaryList:
 
     out: CaseRuleSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectcases.types.case_rule_summary.deserialize_json(item))
     return out

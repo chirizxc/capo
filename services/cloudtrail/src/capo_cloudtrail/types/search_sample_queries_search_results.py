@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> SearchSampleQueriesSearchResults:
 
     out: SearchSampleQueriesSearchResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cloudtrail.types.search_sample_queries_search_result.deserialize_aws_json_1_1(
                 item

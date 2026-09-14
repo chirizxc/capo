@@ -32,17 +32,17 @@ def serialize_json(value: BatchUpdateExclusionWindowsError) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateExclusionWindowsError:
     out: BatchUpdateExclusionWindowsError = {}  # type: ignore[typeddict-item]
-    if "SloId" in data:
+    if data.get("SloId") is not None:
         out["slo_id"] = data["SloId"]
     else:
         raise DeserializationError("BatchUpdateExclusionWindowsError.slo_id required")
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError(
             "BatchUpdateExclusionWindowsError.error_code required"
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     else:
         raise DeserializationError(

@@ -25,6 +25,6 @@ def serialize_json(value: CreateScheduledAuditResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateScheduledAuditResponse:
     out: CreateScheduledAuditResponse = {}  # type: ignore[typeddict-item]
-    if "scheduledAuditArn" in data:
+    if data.get("scheduledAuditArn") is not None:
         out["scheduled_audit_arn"] = data["scheduledAuditArn"]
     return out

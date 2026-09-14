@@ -42,16 +42,16 @@ def serialize_json(value: GetFederationTokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFederationTokenResponse:
     out: GetFederationTokenResponse = {}  # type: ignore[typeddict-item]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_connect.types.credentials
 
         out["credentials"] = capo_connect.types.credentials.deserialize_json(
             data["Credentials"]
         )
-    if "SignInUrl" in data:
+    if data.get("SignInUrl") is not None:
         out["sign_in_url"] = data["SignInUrl"]
-    if "UserArn" in data:
+    if data.get("UserArn") is not None:
         out["user_arn"] = data["UserArn"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     return out

@@ -113,13 +113,13 @@ def serialize_json(value: Instance) -> dict:
 
 def deserialize_json(data: dict) -> Instance:
     out: Instance = {}  # type: ignore[typeddict-item]
-    if "imageId" in data:
+    if data.get("imageId") is not None:
         out["image_id"] = data["imageId"]
-    if "amiLaunchIndex" in data:
+    if data.get("amiLaunchIndex") is not None:
         out["ami_launch_index"] = data["amiLaunchIndex"]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_snow_device_management.types.instance_state
 
         out["state"] = (
@@ -127,13 +127,13 @@ def deserialize_json(data: dict) -> Instance:
                 data["state"]
             )
         )
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "privateIpAddress" in data:
+    if data.get("privateIpAddress") is not None:
         out["private_ip_address"] = data["privateIpAddress"]
-    if "publicIpAddress" in data:
+    if data.get("publicIpAddress") is not None:
         out["public_ip_address"] = data["publicIpAddress"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["created_at"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> Instance:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> Instance:
                 data["updatedAt"]
             )
         )
-    if "blockDeviceMappings" in data:
+    if data.get("blockDeviceMappings") is not None:
         import capo_snow_device_management.types.instance_block_device_mapping_list
 
         out["block_device_mappings"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> Instance:
                 data["blockDeviceMappings"]
             )
         )
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_snow_device_management.types.security_group_identifier_list
 
         out["security_groups"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> Instance:
                 data["securityGroups"]
             )
         )
-    if "cpuOptions" in data:
+    if data.get("cpuOptions") is not None:
         import capo_snow_device_management.types.cpu_options
 
         out["cpu_options"] = (
@@ -173,6 +173,6 @@ def deserialize_json(data: dict) -> Instance:
                 data["cpuOptions"]
             )
         )
-    if "rootDeviceName" in data:
+    if data.get("rootDeviceName") is not None:
         out["root_device_name"] = data["rootDeviceName"]
     return out

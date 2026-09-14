@@ -29,11 +29,11 @@ def serialize_json(value: FilterCriterion) -> dict:
 
 def deserialize_json(data: dict) -> FilterCriterion:
     out: FilterCriterion = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     else:
         raise DeserializationError("FilterCriterion.path required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_rtbfabric.types.value_list
 
         out["values"] = capo_rtbfabric.types.value_list.deserialize_json(data["values"])

@@ -41,9 +41,9 @@ def serialize_json(value: UpdateSecurityGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSecurityGroupRequest:
     out: UpdateSecurityGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "securityGroupSettings" in data:
+    if data.get("securityGroupSettings") is not None:
         import capo_wickr.types.security_group_settings
 
         out["security_group_settings"] = (

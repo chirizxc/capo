@@ -44,13 +44,13 @@ def serialize_aws_json_1_0(value: GetStreamInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetStreamInput:
     out: GetStreamInput = {}  # type: ignore[typeddict-item]
-    if "streamArn" in data:
+    if data.get("streamArn") is not None:
         out["stream_arn"] = data["streamArn"]
     else:
         raise DeserializationError("GetStreamInput.stream_arn required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "shardFilter" in data:
+    if data.get("shardFilter") is not None:
         import capo_keyspacesstreams.types.shard_filter
 
         out["shard_filter"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetStreamInput:
                 data["shardFilter"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

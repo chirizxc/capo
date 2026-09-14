@@ -36,7 +36,7 @@ def serialize_json(value: LinuxSubscriptionsDiscoverySettings) -> dict:
 
 def deserialize_json(data: dict) -> LinuxSubscriptionsDiscoverySettings:
     out: LinuxSubscriptionsDiscoverySettings = {}  # type: ignore[typeddict-item]
-    if "SourceRegions" in data:
+    if data.get("SourceRegions") is not None:
         import capo_license_manager_linux_subscriptions.types.string_list
 
         out["source_regions"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> LinuxSubscriptionsDiscoverySettings:
         raise DeserializationError(
             "LinuxSubscriptionsDiscoverySettings.source_regions required"
         )
-    if "OrganizationIntegration" in data:
+    if data.get("OrganizationIntegration") is not None:
         out["organization_integration"] = data["OrganizationIntegration"]
     else:
         raise DeserializationError(

@@ -63,21 +63,21 @@ def serialize_json(value: TestInvokeAuthorizerResponse) -> dict:
 
 def deserialize_json(data: dict) -> TestInvokeAuthorizerResponse:
     out: TestInvokeAuthorizerResponse = {}  # type: ignore[typeddict-item]
-    if "clientStatus" in data:
+    if data.get("clientStatus") is not None:
         out["client_status"] = data["clientStatus"]
     else:
         out["client_status"] = 0
-    if "log" in data:
+    if data.get("log") is not None:
         out["log"] = data["log"]
-    if "latency" in data:
+    if data.get("latency") is not None:
         out["latency"] = data["latency"]
     else:
         out["latency"] = 0
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
-    if "authorization" in data:
+    if data.get("authorization") is not None:
         import capo_api_gateway.types.map_of_string_to_list
 
         out["authorization"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> TestInvokeAuthorizerResponse:
                 data["authorization"]
             )
         )
-    if "claims" in data:
+    if data.get("claims") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["claims"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

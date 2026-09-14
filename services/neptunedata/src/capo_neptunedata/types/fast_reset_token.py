@@ -18,6 +18,6 @@ def serialize_json(value: FastResetToken) -> dict:
 
 def deserialize_json(data: dict) -> FastResetToken:
     out: FastResetToken = {}  # type: ignore[typeddict-item]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
     return out

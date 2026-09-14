@@ -54,23 +54,23 @@ def serialize_json(value: CreateTrustAnchorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTrustAnchorRequest:
     out: CreateTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateTrustAnchorRequest.name required")
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_rolesanywhere.types.source
 
         out["source"] = capo_rolesanywhere.types.source.deserialize_json(data["source"])
     else:
         raise DeserializationError("CreateTrustAnchorRequest.source required")
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_rolesanywhere.types.tag_list
 
         out["tags"] = capo_rolesanywhere.types.tag_list.deserialize_json(data["tags"])
-    if "notificationSettings" in data:
+    if data.get("notificationSettings") is not None:
         import capo_rolesanywhere.types.notification_settings
 
         out["notification_settings"] = (

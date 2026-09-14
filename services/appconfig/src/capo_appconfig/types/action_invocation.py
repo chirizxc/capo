@@ -52,18 +52,18 @@ def serialize_json(value: ActionInvocation) -> dict:
 
 def deserialize_json(data: dict) -> ActionInvocation:
     out: ActionInvocation = {}  # type: ignore[typeddict-item]
-    if "ExtensionIdentifier" in data:
+    if data.get("ExtensionIdentifier") is not None:
         out["extension_identifier"] = data["ExtensionIdentifier"]
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "InvocationId" in data:
+    if data.get("InvocationId") is not None:
         out["invocation_id"] = data["InvocationId"]
     return out

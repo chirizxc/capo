@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ValidatorList:
 
     out: ValidatorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appconfig.types.validator.deserialize_json(item))
     return out

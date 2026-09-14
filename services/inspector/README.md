@@ -13,10 +13,25 @@ from capo_inspector import AsyncInspectorClient
 
 
 async def main():
-    async with AsyncInspectorClient() as s3:
+    async with AsyncInspectorClient() as inspector:
         # Example: call the add_attributes_to_findings operation
-        response = await s3.add_attributes_to_findings()
+        response = await inspector.add_attributes_to_findings()
         print(response["failed_items"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_inspector import AsyncInspectorClient
+
+
+async def main():
+    async with AsyncInspectorClient() as inspector:
+        # Example: paginate over get_exclusions_preview
+        async for item in inspector.iter_get_exclusions_preview():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_inspector.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncInspectorClient() as s3:
+    async with AsyncInspectorClient() as inspector:
         try:
-            await s3.add_attributes_to_findings()
+            await inspector.add_attributes_to_findings()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_inspector import AsyncInspectorClient
 
 
 async def main():
-    async with AsyncInspectorClient() as s3:
+    async with AsyncInspectorClient() as inspector:
         # Default: 3 attempts for every operation
-        response = await s3.add_attributes_to_findings()
+        response = await inspector.add_attributes_to_findings()
 
         # Override per operation
-        response = await s3.add_attributes_to_findings(config_overrides={"retry_max_attempts": 5})
+        response = await inspector.add_attributes_to_findings(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_attributes_to_findings(config_overrides={"retry_max_attempts": 1})
+        response = await inspector.add_attributes_to_findings(config_overrides={"retry_max_attempts": 1})
 ```

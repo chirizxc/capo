@@ -55,21 +55,21 @@ def serialize_json(value: AssetModelCompositeModelDefinition) -> dict:
 
 def deserialize_json(data: dict) -> AssetModelCompositeModelDefinition:
     out: AssetModelCompositeModelDefinition = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AssetModelCompositeModelDefinition.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("AssetModelCompositeModelDefinition.type required")
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_iotsitewise.types.asset_model_property_definitions
 
         out["properties"] = (

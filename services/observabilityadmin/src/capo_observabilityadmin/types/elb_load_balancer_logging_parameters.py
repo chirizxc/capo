@@ -35,7 +35,7 @@ def serialize_json(value: ELBLoadBalancerLoggingParameters) -> dict:
 
 def deserialize_json(data: dict) -> ELBLoadBalancerLoggingParameters:
     out: ELBLoadBalancerLoggingParameters = {}  # type: ignore[typeddict-item]
-    if "OutputFormat" in data:
+    if data.get("OutputFormat") is not None:
         import capo_observabilityadmin.types.output_format
 
         out["output_format"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ELBLoadBalancerLoggingParameters:
                 data["OutputFormat"]
             )
         )
-    if "FieldDelimiter" in data:
+    if data.get("FieldDelimiter") is not None:
         out["field_delimiter"] = data["FieldDelimiter"]
     return out

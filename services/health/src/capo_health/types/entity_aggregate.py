@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: EntityAggregate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityAggregate:
     out: EntityAggregate = {}  # type: ignore[typeddict-item]
-    if "eventArn" in data:
+    if data.get("eventArn") is not None:
         out["event_arn"] = data["eventArn"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         out["count"] = 0
-    if "statuses" in data:
+    if data.get("statuses") is not None:
         import capo_health.types.entity_statuses
 
         out["statuses"] = capo_health.types.entity_statuses.deserialize_aws_json_1_1(

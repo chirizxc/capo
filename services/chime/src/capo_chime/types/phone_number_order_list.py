@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PhoneNumberOrderList:
 
     out: PhoneNumberOrderList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime.types.phone_number_order.deserialize_json(item))
     return out

@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: BatchCreateBillingAdjustmentRequestInput) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> BatchCreateBillingAdjustmentRequestInput:
     out: BatchCreateBillingAdjustmentRequestInput = {}  # type: ignore[typeddict-item]
-    if "billingAdjustmentRequestEntries" in data:
+    if data.get("billingAdjustmentRequestEntries") is not None:
         import capo_marketplace_agreement.types.batch_create_billing_adjustment_request_entry_list
 
         out["billing_adjustment_request_entries"] = (

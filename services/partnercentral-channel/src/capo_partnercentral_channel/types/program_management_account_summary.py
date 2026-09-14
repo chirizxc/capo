@@ -107,13 +107,13 @@ def serialize_aws_json_1_0(value: ProgramManagementAccountSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProgramManagementAccountSummary:
     out: ProgramManagementAccountSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
-    if "program" in data:
+    if data.get("program") is not None:
         import capo_partnercentral_channel.types.program
 
         out["program"] = (
@@ -121,13 +121,13 @@ def deserialize_aws_json_1_0(data: dict) -> ProgramManagementAccountSummary:
                 data["program"]
             )
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["created_at"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProgramManagementAccountSummary:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["updated_at"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProgramManagementAccountSummary:
                 data["updatedAt"]
             )
         )
-    if "startDate" in data:
+    if data.get("startDate") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["start_date"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProgramManagementAccountSummary:
                 data["startDate"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_partnercentral_channel.types.program_management_account_status
 
         out["status"] = (

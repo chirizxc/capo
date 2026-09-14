@@ -37,17 +37,17 @@ def serialize_json(value: Hits) -> dict:
 
 def deserialize_json(data: dict) -> Hits:
     out: Hits = {}  # type: ignore[typeddict-item]
-    if "found" in data:
+    if data.get("found") is not None:
         out["found"] = data["found"]
     else:
         out["found"] = 0
-    if "start" in data:
+    if data.get("start") is not None:
         out["start"] = data["start"]
     else:
         out["start"] = 0
-    if "cursor" in data:
+    if data.get("cursor") is not None:
         out["cursor"] = data["cursor"]
-    if "hit" in data:
+    if data.get("hit") is not None:
         import capo_cloudsearch_domain.types.hit_list
 
         out["hit"] = capo_cloudsearch_domain.types.hit_list.deserialize_json(

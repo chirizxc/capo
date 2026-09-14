@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BlacklistEntries:
 
     out: BlacklistEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint_email.types.blacklist_entry.deserialize_json(item))
     return out

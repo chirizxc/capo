@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfInAppMessageContent:
 
     out: ListOfInAppMessageContent = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint.types.in_app_message_content.deserialize_json(item))
     return out

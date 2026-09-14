@@ -27,6 +27,7 @@ class CreateCallAnalyticsCategoryRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: CreateCallAnalyticsCategoryRequest) -> dict:
     out: dict = {}
+    out["CategoryName"] = value["category_name"]
     import capo_transcribe.types.rule_list
 
     out["Rules"] = capo_transcribe.types.rule_list.serialize_aws_json_1_1(
@@ -49,7 +50,13 @@ def serialize_aws_json_1_1(value: CreateCallAnalyticsCategoryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCallAnalyticsCategoryRequest:
     out: CreateCallAnalyticsCategoryRequest = {}  # type: ignore[typeddict-item]
-    if "Rules" in data:
+    if data.get("CategoryName") is not None:
+        out["category_name"] = data["CategoryName"]
+    else:
+        raise DeserializationError(
+            "CreateCallAnalyticsCategoryRequest.category_name required"
+        )
+    if data.get("Rules") is not None:
         import capo_transcribe.types.rule_list
 
         out["rules"] = capo_transcribe.types.rule_list.deserialize_aws_json_1_1(
@@ -57,13 +64,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCallAnalyticsCategoryRequest:
         )
     else:
         raise DeserializationError("CreateCallAnalyticsCategoryRequest.rules required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "InputType" in data:
+    if data.get("InputType") is not None:
         import capo_transcribe.types.input_type
 
         out["input_type"] = capo_transcribe.types.input_type.deserialize_aws_json_1_1(

@@ -30,8 +30,8 @@ def serialize_json(value: PrivateIpAddressDetails) -> dict:
 
 def deserialize_json(data: dict) -> PrivateIpAddressDetails:
     out: PrivateIpAddressDetails = {}  # type: ignore[typeddict-item]
-    if "privateDnsName" in data:
+    if data.get("privateDnsName") is not None:
         out["private_dns_name"] = data["privateDnsName"]
-    if "privateIpAddress" in data:
+    if data.get("privateIpAddress") is not None:
         out["private_ip_address"] = data["privateIpAddress"]
     return out

@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: CreateCustomActionTypeOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCustomActionTypeOutput:
     out: CreateCustomActionTypeOutput = {}  # type: ignore[typeddict-item]
-    if "actionType" in data:
+    if data.get("actionType") is not None:
         import capo_codepipeline.types.action_type
 
         out["action_type"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCustomActionTypeOutput:
         )
     else:
         raise DeserializationError("CreateCustomActionTypeOutput.action_type required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codepipeline.types.tag_list
 
         out["tags"] = capo_codepipeline.types.tag_list.deserialize_aws_json_1_1(

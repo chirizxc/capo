@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GreenFleetProvisioningOption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GreenFleetProvisioningOption:
     out: GreenFleetProvisioningOption = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_codedeploy.types.green_fleet_provisioning_action
 
         out["action"] = (

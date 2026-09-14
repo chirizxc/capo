@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> SNOMEDCTConceptList:
 
     out: SNOMEDCTConceptList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehendmedical.types.snomedct_concept.deserialize_aws_json_1_1(item)
         )

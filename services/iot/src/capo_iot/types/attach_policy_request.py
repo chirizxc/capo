@@ -27,7 +27,7 @@ def serialize_json(value: AttachPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> AttachPolicyRequest:
     out: AttachPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "target" in data:
+    if data.get("target") is not None:
         out["target"] = data["target"]
     else:
         raise DeserializationError("AttachPolicyRequest.target required")

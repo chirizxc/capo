@@ -57,13 +57,13 @@ def serialize_aws_json_1_0(value: RegistrationFieldValueInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationFieldValueInformation:
     out: RegistrationFieldValueInformation = {}  # type: ignore[typeddict-item]
-    if "FieldPath" in data:
+    if data.get("FieldPath") is not None:
         out["field_path"] = data["FieldPath"]
     else:
         raise DeserializationError(
             "RegistrationFieldValueInformation.field_path required"
         )
-    if "SelectChoices" in data:
+    if data.get("SelectChoices") is not None:
         import capo_pinpoint_sms_voice_v2.types.select_choice_list
 
         out["select_choices"] = (
@@ -71,12 +71,12 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationFieldValueInformation:
                 data["SelectChoices"]
             )
         )
-    if "TextValue" in data:
+    if data.get("TextValue") is not None:
         out["text_value"] = data["TextValue"]
-    if "RegistrationAttachmentId" in data:
+    if data.get("RegistrationAttachmentId") is not None:
         out["registration_attachment_id"] = data["RegistrationAttachmentId"]
-    if "DeniedReason" in data:
+    if data.get("DeniedReason") is not None:
         out["denied_reason"] = data["DeniedReason"]
-    if "Feedback" in data:
+    if data.get("Feedback") is not None:
         out["feedback"] = data["Feedback"]
     return out

@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: ResourceCatalog) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceCatalog:
     out: ResourceCatalog = {}  # type: ignore[typeddict-item]
-    if "ResourceCatalogArn" in data:
+    if data.get("ResourceCatalogArn") is not None:
         out["resource_catalog_arn"] = data["ResourceCatalogArn"]
-    if "ResourceCatalogName" in data:
+    if data.get("ResourceCatalogName") is not None:
         out["resource_catalog_name"] = data["ResourceCatalogName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(

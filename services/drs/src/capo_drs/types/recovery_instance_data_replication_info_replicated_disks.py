@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RecoveryInstanceDataReplicationInfoReplicate
 
     out: RecoveryInstanceDataReplicationInfoReplicatedDisks = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_drs.types.recovery_instance_data_replication_info_replicated_disk.deserialize_json(
                 item

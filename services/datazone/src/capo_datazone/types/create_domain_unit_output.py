@@ -75,23 +75,23 @@ def serialize_json(value: CreateDomainUnitOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainUnitOutput:
     out: CreateDomainUnitOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateDomainUnitOutput.id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("CreateDomainUnitOutput.domain_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDomainUnitOutput.name required")
-    if "parentDomainUnitId" in data:
+    if data.get("parentDomainUnitId") is not None:
         out["parent_domain_unit_id"] = data["parentDomainUnitId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "owners" in data:
+    if data.get("owners") is not None:
         import capo_datazone.types.domain_unit_owners
 
         out["owners"] = capo_datazone.types.domain_unit_owners.deserialize_json(
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> CreateDomainUnitOutput:
         )
     else:
         raise DeserializationError("CreateDomainUnitOutput.owners required")
-    if "ancestorDomainUnitIds" in data:
+    if data.get("ancestorDomainUnitIds") is not None:
         import capo_datazone.types.domain_unit_ids
 
         out["ancestor_domain_unit_ids"] = (
@@ -111,12 +111,12 @@ def deserialize_json(data: dict) -> CreateDomainUnitOutput:
         raise DeserializationError(
             "CreateDomainUnitOutput.ancestor_domain_unit_ids required"
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     return out

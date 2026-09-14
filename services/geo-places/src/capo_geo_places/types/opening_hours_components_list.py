@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> OpeningHoursComponentsList:
 
     out: OpeningHoursComponentsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_places.types.opening_hours_components.deserialize_json(item)
         )

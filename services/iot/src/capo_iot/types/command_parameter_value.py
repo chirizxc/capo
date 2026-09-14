@@ -45,7 +45,15 @@ def serialize_json(value: CommandParameterValue) -> dict:
     if "l" in value:
         out["L"] = value["l"]
     if "d" in value:
-        out["D"] = value["d"]
+        out["D"] = (
+            "NaN"
+            if value["d"] != value["d"]
+            else "Infinity"
+            if value["d"] == float("inf")
+            else "-Infinity"
+            if value["d"] == float("-inf")
+            else value["d"]
+        )
     if "bin" in value:
         import capo_iot.types.binary_parameter_value
 
@@ -57,20 +65,20 @@ def serialize_json(value: CommandParameterValue) -> dict:
 
 def deserialize_json(data: dict) -> CommandParameterValue:
     out: CommandParameterValue = {}  # type: ignore[typeddict-item]
-    if "S" in data:
+    if data.get("S") is not None:
         out["s"] = data["S"]
-    if "B" in data:
+    if data.get("B") is not None:
         out["b"] = data["B"]
-    if "I" in data:
+    if data.get("I") is not None:
         out["i"] = data["I"]
-    if "L" in data:
+    if data.get("L") is not None:
         out["l"] = data["L"]
-    if "D" in data:
-        out["d"] = data["D"]
-    if "BIN" in data:
+    if data.get("D") is not None:
+        out["d"] = float(data["D"])
+    if data.get("BIN") is not None:
         import capo_iot.types.binary_parameter_value
 
         out["bin"] = capo_iot.types.binary_parameter_value.deserialize_json(data["BIN"])
-    if "UL" in data:
+    if data.get("UL") is not None:
         out["ul"] = data["UL"]
     return out

@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: OperationSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OperationSummary:
     out: OperationSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_servicediscovery.types.operation_status
 
         out["status"] = (

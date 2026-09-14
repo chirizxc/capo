@@ -76,7 +76,7 @@ def serialize_json(value: H265ColorSpaceSettings) -> dict:
 
 def deserialize_json(data: dict) -> H265ColorSpaceSettings:
     out: H265ColorSpaceSettings = {}  # type: ignore[typeddict-item]
-    if "colorSpacePassthroughSettings" in data:
+    if data.get("colorSpacePassthroughSettings") is not None:
         import capo_medialive.types.color_space_passthrough_settings
 
         out["color_space_passthrough_settings"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> H265ColorSpaceSettings:
                 data["colorSpacePassthroughSettings"]
             )
         )
-    if "dolbyVision81Settings" in data:
+    if data.get("dolbyVision81Settings") is not None:
         import capo_medialive.types.dolby_vision81_settings
 
         out["dolby_vision81_settings"] = (
@@ -92,25 +92,25 @@ def deserialize_json(data: dict) -> H265ColorSpaceSettings:
                 data["dolbyVision81Settings"]
             )
         )
-    if "hdr10Settings" in data:
+    if data.get("hdr10Settings") is not None:
         import capo_medialive.types.hdr10_settings
 
         out["hdr10_settings"] = capo_medialive.types.hdr10_settings.deserialize_json(
             data["hdr10Settings"]
         )
-    if "rec601Settings" in data:
+    if data.get("rec601Settings") is not None:
         import capo_medialive.types.rec601_settings
 
         out["rec601_settings"] = capo_medialive.types.rec601_settings.deserialize_json(
             data["rec601Settings"]
         )
-    if "rec709Settings" in data:
+    if data.get("rec709Settings") is not None:
         import capo_medialive.types.rec709_settings
 
         out["rec709_settings"] = capo_medialive.types.rec709_settings.deserialize_json(
             data["rec709Settings"]
         )
-    if "hlg2020Settings" in data:
+    if data.get("hlg2020Settings") is not None:
         import capo_medialive.types.hlg2020_settings
 
         out["hlg2020_settings"] = (

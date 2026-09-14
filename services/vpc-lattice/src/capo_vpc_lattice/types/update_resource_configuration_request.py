@@ -52,7 +52,7 @@ def serialize_json(value: UpdateResourceConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceConfigurationRequest:
     out: UpdateResourceConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "resourceConfigurationDefinition" in data:
+    if data.get("resourceConfigurationDefinition") is not None:
         import capo_vpc_lattice.types.resource_configuration_definition
 
         out["resource_configuration_definition"] = (
@@ -60,11 +60,11 @@ def deserialize_json(data: dict) -> UpdateResourceConfigurationRequest:
                 data["resourceConfigurationDefinition"]
             )
         )
-    if "allowAssociationToShareableServiceNetwork" in data:
+    if data.get("allowAssociationToShareableServiceNetwork") is not None:
         out["allow_association_to_shareable_service_network"] = data[
             "allowAssociationToShareableServiceNetwork"
         ]
-    if "portRanges" in data:
+    if data.get("portRanges") is not None:
         import capo_vpc_lattice.types.port_range_list
 
         out["port_ranges"] = capo_vpc_lattice.types.port_range_list.deserialize_json(

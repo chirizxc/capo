@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: PutStoredQueryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutStoredQueryResponse:
     out: PutStoredQueryResponse = {}  # type: ignore[typeddict-item]
-    if "QueryArn" in data:
+    if data.get("QueryArn") is not None:
         out["query_arn"] = data["QueryArn"]
     return out

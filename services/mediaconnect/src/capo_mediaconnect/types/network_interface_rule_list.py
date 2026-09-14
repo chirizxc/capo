@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> NetworkInterfaceRuleList:
 
     out: NetworkInterfaceRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.public_router_network_interface_rule.deserialize_json(
                 item

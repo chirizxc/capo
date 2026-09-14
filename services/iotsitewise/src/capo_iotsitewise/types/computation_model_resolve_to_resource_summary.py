@@ -26,7 +26,7 @@ def serialize_json(value: ComputationModelResolveToResourceSummary) -> dict:
 
 def deserialize_json(data: dict) -> ComputationModelResolveToResourceSummary:
     out: ComputationModelResolveToResourceSummary = {}  # type: ignore[typeddict-item]
-    if "resolveTo" in data:
+    if data.get("resolveTo") is not None:
         import capo_iotsitewise.types.resolve_to
 
         out["resolve_to"] = capo_iotsitewise.types.resolve_to.deserialize_json(

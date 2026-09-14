@@ -53,27 +53,27 @@ def serialize_json(value: CreateMonitorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMonitorRequest:
     out: CreateMonitorRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateMonitorRequest.display_name required")
-    if "identityCenterInstanceArn" in data:
+    if data.get("identityCenterInstanceArn") is not None:
         out["identity_center_instance_arn"] = data["identityCenterInstanceArn"]
     else:
         raise DeserializationError(
             "CreateMonitorRequest.identity_center_instance_arn required"
         )
-    if "identityCenterRegion" in data:
+    if data.get("identityCenterRegion") is not None:
         out["identity_center_region"] = data["identityCenterRegion"]
-    if "subdomain" in data:
+    if data.get("subdomain") is not None:
         out["subdomain"] = data["subdomain"]
     else:
         raise DeserializationError("CreateMonitorRequest.subdomain required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateMonitorRequest.role_arn required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_deadline.types.tags
 
         out["tags"] = capo_deadline.types.tags.deserialize_json(data["tags"])

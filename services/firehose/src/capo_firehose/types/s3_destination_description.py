@@ -83,19 +83,19 @@ def serialize_aws_json_1_1(value: S3DestinationDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DestinationDescription:
     out: S3DestinationDescription = {}  # type: ignore[typeddict-item]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError("S3DestinationDescription.role_arn required")
-    if "BucketARN" in data:
+    if data.get("BucketARN") is not None:
         out["bucket_arn"] = data["BucketARN"]
     else:
         raise DeserializationError("S3DestinationDescription.bucket_arn required")
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "ErrorOutputPrefix" in data:
+    if data.get("ErrorOutputPrefix") is not None:
         out["error_output_prefix"] = data["ErrorOutputPrefix"]
-    if "BufferingHints" in data:
+    if data.get("BufferingHints") is not None:
         import capo_firehose.types.buffering_hints
 
         out["buffering_hints"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DestinationDescription:
         )
     else:
         raise DeserializationError("S3DestinationDescription.buffering_hints required")
-    if "CompressionFormat" in data:
+    if data.get("CompressionFormat") is not None:
         import capo_firehose.types.compression_format
 
         out["compression_format"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DestinationDescription:
         raise DeserializationError(
             "S3DestinationDescription.compression_format required"
         )
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_firehose.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DestinationDescription:
         raise DeserializationError(
             "S3DestinationDescription.encryption_configuration required"
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_firehose.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (

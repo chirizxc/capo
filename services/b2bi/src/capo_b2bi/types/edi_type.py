@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: EdiType) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> EdiType:
-    if "x12Details" in data:
+    if data.get("x12Details") is not None:
         import capo_b2bi.types.x12_details
 
         return {

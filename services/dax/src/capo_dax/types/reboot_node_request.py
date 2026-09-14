@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: RebootNodeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RebootNodeRequest:
     out: RebootNodeRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError("RebootNodeRequest.cluster_name required")
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
     else:
         raise DeserializationError("RebootNodeRequest.node_id required")

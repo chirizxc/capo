@@ -72,37 +72,37 @@ def serialize_aws_json_1_1(value: TableMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableMetadata:
     out: TableMetadata = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("TableMetadata.name required")
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_athena.types.timestamp
 
         out["create_time"] = capo_athena.types.timestamp.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "LastAccessTime" in data:
+    if data.get("LastAccessTime") is not None:
         import capo_athena.types.timestamp
 
         out["last_access_time"] = capo_athena.types.timestamp.deserialize_aws_json_1_1(
             data["LastAccessTime"]
         )
-    if "TableType" in data:
+    if data.get("TableType") is not None:
         out["table_type"] = data["TableType"]
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_athena.types.column_list
 
         out["columns"] = capo_athena.types.column_list.deserialize_aws_json_1_1(
             data["Columns"]
         )
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_athena.types.column_list
 
         out["partition_keys"] = capo_athena.types.column_list.deserialize_aws_json_1_1(
             data["PartitionKeys"]
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_athena.types.parameters_map
 
         out["parameters"] = capo_athena.types.parameters_map.deserialize_aws_json_1_1(

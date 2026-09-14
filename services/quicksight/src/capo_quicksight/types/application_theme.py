@@ -57,7 +57,7 @@ def serialize_json(value: ApplicationTheme) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationTheme:
     out: ApplicationTheme = {}  # type: ignore[typeddict-item]
-    if "BrandColorPalette" in data:
+    if data.get("BrandColorPalette") is not None:
         import capo_quicksight.types.brand_color_palette
 
         out["brand_color_palette"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ApplicationTheme:
                 data["BrandColorPalette"]
             )
         )
-    if "ContextualAccentPalette" in data:
+    if data.get("ContextualAccentPalette") is not None:
         import capo_quicksight.types.contextual_accent_palette
 
         out["contextual_accent_palette"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ApplicationTheme:
                 data["ContextualAccentPalette"]
             )
         )
-    if "BrandElementStyle" in data:
+    if data.get("BrandElementStyle") is not None:
         import capo_quicksight.types.brand_element_style
 
         out["brand_element_style"] = (

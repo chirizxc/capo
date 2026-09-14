@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: FailedItems) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> FailedItems:
     out: FailedItems = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_inspector.types.failed_item_details
 
         out[key] = capo_inspector.types.failed_item_details.deserialize_aws_json_1_1(

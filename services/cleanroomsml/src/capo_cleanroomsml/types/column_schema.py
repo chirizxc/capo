@@ -32,11 +32,11 @@ def serialize_json(value: ColumnSchema) -> dict:
 
 def deserialize_json(data: dict) -> ColumnSchema:
     out: ColumnSchema = {}  # type: ignore[typeddict-item]
-    if "columnName" in data:
+    if data.get("columnName") is not None:
         out["column_name"] = data["columnName"]
     else:
         raise DeserializationError("ColumnSchema.column_name required")
-    if "columnTypes" in data:
+    if data.get("columnTypes") is not None:
         import capo_cleanroomsml.types.column_type_list
 
         out["column_types"] = capo_cleanroomsml.types.column_type_list.deserialize_json(

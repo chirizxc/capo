@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: ConfluenceAttachmentToIndexFieldMapping) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ConfluenceAttachmentToIndexFieldMapping:
     out: ConfluenceAttachmentToIndexFieldMapping = {}  # type: ignore[typeddict-item]
-    if "DataSourceFieldName" in data:
+    if data.get("DataSourceFieldName") is not None:
         import capo_kendra.types.confluence_attachment_field_name
 
         out["data_source_field_name"] = (
@@ -51,8 +51,8 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceAttachmentToIndexFieldMapp
                 data["DataSourceFieldName"]
             )
         )
-    if "DateFieldFormat" in data:
+    if data.get("DateFieldFormat") is not None:
         out["date_field_format"] = data["DateFieldFormat"]
-    if "IndexFieldName" in data:
+    if data.get("IndexFieldName") is not None:
         out["index_field_name"] = data["IndexFieldName"]
     return out

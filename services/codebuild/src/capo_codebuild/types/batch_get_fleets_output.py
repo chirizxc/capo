@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: BatchGetFleetsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetFleetsOutput:
     out: BatchGetFleetsOutput = {}  # type: ignore[typeddict-item]
-    if "fleets" in data:
+    if data.get("fleets") is not None:
         import capo_codebuild.types.fleets
 
         out["fleets"] = capo_codebuild.types.fleets.deserialize_aws_json_1_1(
             data["fleets"]
         )
-    if "fleetsNotFound" in data:
+    if data.get("fleetsNotFound") is not None:
         import capo_codebuild.types.fleet_names
 
         out["fleets_not_found"] = (

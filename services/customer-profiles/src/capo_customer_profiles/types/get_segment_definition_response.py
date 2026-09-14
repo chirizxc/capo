@@ -97,13 +97,13 @@ def serialize_json(value: GetSegmentDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSegmentDefinitionResponse:
     out: GetSegmentDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "SegmentDefinitionName" in data:
+    if data.get("SegmentDefinitionName") is not None:
         out["segment_definition_name"] = data["SegmentDefinitionName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SegmentGroups" in data:
+    if data.get("SegmentGroups") is not None:
         import capo_customer_profiles.types.segment_group
 
         out["segment_groups"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> GetSegmentDefinitionResponse:
                 data["SegmentGroups"]
             )
         )
-    if "SegmentSort" in data:
+    if data.get("SegmentSort") is not None:
         import capo_customer_profiles.types.segment_sort
 
         out["segment_sort"] = (
@@ -119,27 +119,27 @@ def deserialize_json(data: dict) -> GetSegmentDefinitionResponse:
                 data["SegmentSort"]
             )
         )
-    if "SegmentDefinitionArn" in data:
+    if data.get("SegmentDefinitionArn") is not None:
         out["segment_definition_arn"] = data["SegmentDefinitionArn"]
     else:
         raise DeserializationError(
             "GetSegmentDefinitionResponse.segment_definition_arn required"
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "SegmentSqlQuery" in data:
+    if data.get("SegmentSqlQuery") is not None:
         out["segment_sql_query"] = data["SegmentSqlQuery"]
-    if "SegmentType" in data:
+    if data.get("SegmentType") is not None:
         import capo_customer_profiles.types.segment_type
 
         out["segment_type"] = (

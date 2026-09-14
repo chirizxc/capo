@@ -14,4 +14,4 @@ def serialize_json(value: UpdateTargets) -> list:
 
 
 def deserialize_json(data: list) -> UpdateTargets:
-    return list(data)
+    return [item for item in data if item is not None]

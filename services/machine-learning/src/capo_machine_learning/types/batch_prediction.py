@@ -119,17 +119,17 @@ def serialize_aws_json_1_1(value: BatchPrediction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchPrediction:
     out: BatchPrediction = {}  # type: ignore[typeddict-item]
-    if "BatchPredictionId" in data:
+    if data.get("BatchPredictionId") is not None:
         out["batch_prediction_id"] = data["BatchPredictionId"]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
-    if "BatchPredictionDataSourceId" in data:
+    if data.get("BatchPredictionDataSourceId") is not None:
         out["batch_prediction_data_source_id"] = data["BatchPredictionDataSourceId"]
-    if "InputDataLocationS3" in data:
+    if data.get("InputDataLocationS3") is not None:
         out["input_data_location_s3"] = data["InputDataLocationS3"]
-    if "CreatedByIamUser" in data:
+    if data.get("CreatedByIamUser") is not None:
         out["created_by_iam_user"] = data["CreatedByIamUser"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["created_at"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchPrediction:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["last_updated_at"] = (
@@ -145,9 +145,9 @@ def deserialize_aws_json_1_1(data: dict) -> BatchPrediction:
                 data["LastUpdatedAt"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_machine_learning.types.entity_status
 
         out["status"] = (
@@ -155,13 +155,13 @@ def deserialize_aws_json_1_1(data: dict) -> BatchPrediction:
                 data["Status"]
             )
         )
-    if "OutputUri" in data:
+    if data.get("OutputUri") is not None:
         out["output_uri"] = data["OutputUri"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ComputeTime" in data:
+    if data.get("ComputeTime") is not None:
         out["compute_time"] = data["ComputeTime"]
-    if "FinishedAt" in data:
+    if data.get("FinishedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["finished_at"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchPrediction:
                 data["FinishedAt"]
             )
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["started_at"] = (
@@ -177,8 +177,8 @@ def deserialize_aws_json_1_1(data: dict) -> BatchPrediction:
                 data["StartedAt"]
             )
         )
-    if "TotalRecordCount" in data:
+    if data.get("TotalRecordCount") is not None:
         out["total_record_count"] = data["TotalRecordCount"]
-    if "InvalidRecordCount" in data:
+    if data.get("InvalidRecordCount") is not None:
         out["invalid_record_count"] = data["InvalidRecordCount"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: UpdateInputSecurityGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateInputSecurityGroupResponse:
     out: UpdateInputSecurityGroupResponse = {}  # type: ignore[typeddict-item]
-    if "securityGroup" in data:
+    if data.get("securityGroup") is not None:
         import capo_medialive.types.input_security_group
 
         out["security_group"] = (

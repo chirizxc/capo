@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: UpdateRecommenderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRecommenderRequest:
     out: UpdateRecommenderRequest = {}  # type: ignore[typeddict-item]
-    if "recommenderArn" in data:
+    if data.get("recommenderArn") is not None:
         out["recommender_arn"] = data["recommenderArn"]
     else:
         raise DeserializationError("UpdateRecommenderRequest.recommender_arn required")
-    if "recommenderConfig" in data:
+    if data.get("recommenderConfig") is not None:
         import capo_personalize.types.recommender_config
 
         out["recommender_config"] = (

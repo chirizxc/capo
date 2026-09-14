@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: HumanTaskUiSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HumanTaskUiSummary:
     out: HumanTaskUiSummary = {}  # type: ignore[typeddict-item]
-    if "HumanTaskUiName" in data:
+    if data.get("HumanTaskUiName") is not None:
         out["human_task_ui_name"] = data["HumanTaskUiName"]
-    if "HumanTaskUiArn" in data:
+    if data.get("HumanTaskUiArn") is not None:
         out["human_task_ui_arn"] = data["HumanTaskUiArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(

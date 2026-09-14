@@ -58,19 +58,19 @@ def serialize_aws_json_1_1(value: Action) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Action:
     out: Action = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "Arguments" in data:
+    if data.get("Arguments") is not None:
         import capo_glue.types.generic_map
 
         out["arguments"] = capo_glue.types.generic_map.deserialize_aws_json_1_1(
             data["Arguments"]
         )
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "NotificationProperty" in data:
+    if data.get("NotificationProperty") is not None:
         import capo_glue.types.notification_property
 
         out["notification_property"] = (
@@ -78,6 +78,6 @@ def deserialize_aws_json_1_1(data: dict) -> Action:
                 data["NotificationProperty"]
             )
         )
-    if "CrawlerName" in data:
+    if data.get("CrawlerName") is not None:
         out["crawler_name"] = data["CrawlerName"]
     return out

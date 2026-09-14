@@ -60,7 +60,15 @@ def serialize_json(value: UpdateBudgetRequest) -> dict:
             value["status"]
         )
     if "approximate_dollar_limit" in value:
-        out["approximateDollarLimit"] = value["approximate_dollar_limit"]
+        out["approximateDollarLimit"] = (
+            "NaN"
+            if value["approximate_dollar_limit"] != value["approximate_dollar_limit"]
+            else "Infinity"
+            if value["approximate_dollar_limit"] == float("inf")
+            else "-Infinity"
+            if value["approximate_dollar_limit"] == float("-inf")
+            else value["approximate_dollar_limit"]
+        )
     if "actions_to_add" in value:
         import capo_deadline.types.budget_actions_to_add
 
@@ -86,19 +94,19 @@ def serialize_json(value: UpdateBudgetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBudgetRequest:
     out: UpdateBudgetRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.budget_status
 
         out["status"] = capo_deadline.types.budget_status.deserialize_json(
             data["status"]
         )
-    if "approximateDollarLimit" in data:
-        out["approximate_dollar_limit"] = data["approximateDollarLimit"]
-    if "actionsToAdd" in data:
+    if data.get("approximateDollarLimit") is not None:
+        out["approximate_dollar_limit"] = float(data["approximateDollarLimit"])
+    if data.get("actionsToAdd") is not None:
         import capo_deadline.types.budget_actions_to_add
 
         out["actions_to_add"] = (
@@ -106,7 +114,7 @@ def deserialize_json(data: dict) -> UpdateBudgetRequest:
                 data["actionsToAdd"]
             )
         )
-    if "actionsToRemove" in data:
+    if data.get("actionsToRemove") is not None:
         import capo_deadline.types.budget_actions_to_remove
 
         out["actions_to_remove"] = (
@@ -114,7 +122,7 @@ def deserialize_json(data: dict) -> UpdateBudgetRequest:
                 data["actionsToRemove"]
             )
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_deadline.types.budget_schedule
 
         out["schedule"] = capo_deadline.types.budget_schedule.deserialize_json(

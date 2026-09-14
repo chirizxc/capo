@@ -24,7 +24,7 @@ def serialize_json(value: ConnectCaseContent) -> dict:
 
 def deserialize_json(data: dict) -> ConnectCaseContent:
     out: ConnectCaseContent = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
     else:
         raise DeserializationError("ConnectCaseContent.case_id required")

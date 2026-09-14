@@ -61,19 +61,19 @@ def serialize_json(value: GroupVersion) -> dict:
 
 def deserialize_json(data: dict) -> GroupVersion:
     out: GroupVersion = {}  # type: ignore[typeddict-item]
-    if "ConnectorDefinitionVersionArn" in data:
+    if data.get("ConnectorDefinitionVersionArn") is not None:
         out["connector_definition_version_arn"] = data["ConnectorDefinitionVersionArn"]
-    if "CoreDefinitionVersionArn" in data:
+    if data.get("CoreDefinitionVersionArn") is not None:
         out["core_definition_version_arn"] = data["CoreDefinitionVersionArn"]
-    if "DeviceDefinitionVersionArn" in data:
+    if data.get("DeviceDefinitionVersionArn") is not None:
         out["device_definition_version_arn"] = data["DeviceDefinitionVersionArn"]
-    if "FunctionDefinitionVersionArn" in data:
+    if data.get("FunctionDefinitionVersionArn") is not None:
         out["function_definition_version_arn"] = data["FunctionDefinitionVersionArn"]
-    if "LoggerDefinitionVersionArn" in data:
+    if data.get("LoggerDefinitionVersionArn") is not None:
         out["logger_definition_version_arn"] = data["LoggerDefinitionVersionArn"]
-    if "ResourceDefinitionVersionArn" in data:
+    if data.get("ResourceDefinitionVersionArn") is not None:
         out["resource_definition_version_arn"] = data["ResourceDefinitionVersionArn"]
-    if "SubscriptionDefinitionVersionArn" in data:
+    if data.get("SubscriptionDefinitionVersionArn") is not None:
         out["subscription_definition_version_arn"] = data[
             "SubscriptionDefinitionVersionArn"
         ]

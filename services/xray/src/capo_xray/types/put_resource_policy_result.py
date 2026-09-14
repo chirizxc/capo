@@ -27,7 +27,7 @@ def serialize_json(value: PutResourcePolicyResult) -> dict:
 
 def deserialize_json(data: dict) -> PutResourcePolicyResult:
     out: PutResourcePolicyResult = {}  # type: ignore[typeddict-item]
-    if "ResourcePolicy" in data:
+    if data.get("ResourcePolicy") is not None:
         import capo_xray.types.resource_policy
 
         out["resource_policy"] = capo_xray.types.resource_policy.deserialize_json(

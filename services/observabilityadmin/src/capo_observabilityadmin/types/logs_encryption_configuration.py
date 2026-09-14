@@ -50,7 +50,7 @@ def serialize_json(value: LogsEncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogsEncryptionConfiguration:
     out: LogsEncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "EncryptionStrategy" in data:
+    if data.get("EncryptionStrategy") is not None:
         import capo_observabilityadmin.types.encryption_strategy
 
         out["encryption_strategy"] = (
@@ -62,9 +62,9 @@ def deserialize_json(data: dict) -> LogsEncryptionConfiguration:
         raise DeserializationError(
             "LogsEncryptionConfiguration.encryption_strategy required"
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "EncryptionConflictResolutionStrategy" in data:
+    if data.get("EncryptionConflictResolutionStrategy") is not None:
         import capo_observabilityadmin.types.encryption_conflict_resolution_strategy
 
         out["encryption_conflict_resolution_strategy"] = (

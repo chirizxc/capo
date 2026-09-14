@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ContentRedirection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContentRedirection:
     out: ContentRedirection = {}  # type: ignore[typeddict-item]
-    if "HostToClient" in data:
+    if data.get("HostToClient") is not None:
         import capo_appstream.types.url_redirection_config
 
         out["host_to_client"] = (

@@ -59,7 +59,7 @@ def serialize_aws_json_1_0(value: EbsBlockDevice) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EbsBlockDevice:
     out: EbsBlockDevice = {}  # type: ignore[typeddict-item]
-    if "VolumeType" in data:
+    if data.get("VolumeType") is not None:
         import capo_workspaces_instances.types.volume_type_enum
 
         out["volume_type"] = (
@@ -67,14 +67,14 @@ def deserialize_aws_json_1_0(data: dict) -> EbsBlockDevice:
                 data["VolumeType"]
             )
         )
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Iops" in data:
+    if data.get("Iops") is not None:
         out["iops"] = data["Iops"]
-    if "Throughput" in data:
+    if data.get("Throughput") is not None:
         out["throughput"] = data["Throughput"]
-    if "VolumeSize" in data:
+    if data.get("VolumeSize") is not None:
         out["volume_size"] = data["VolumeSize"]
     return out

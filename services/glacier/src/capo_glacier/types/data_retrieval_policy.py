@@ -29,7 +29,7 @@ def serialize_json(value: DataRetrievalPolicy) -> dict:
 
 def deserialize_json(data: dict) -> DataRetrievalPolicy:
     out: DataRetrievalPolicy = {}  # type: ignore[typeddict-item]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_glacier.types.data_retrieval_rules_list
 
         out["rules"] = capo_glacier.types.data_retrieval_rules_list.deserialize_json(

@@ -43,7 +43,7 @@ def serialize_json(value: HealthCheck) -> dict:
 
 def deserialize_json(data: dict) -> HealthCheck:
     out: HealthCheck = {}  # type: ignore[typeddict-item]
-    if "ConnectorStatus" in data:
+    if data.get("ConnectorStatus") is not None:
         import capo_securityhub.types.connector_status
 
         out["connector_status"] = (
@@ -51,9 +51,9 @@ def deserialize_json(data: dict) -> HealthCheck:
                 data["ConnectorStatus"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "LastCheckedAt" in data:
+    if data.get("LastCheckedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["last_checked_at"] = capo_securityhub.types.timestamp.deserialize_json(

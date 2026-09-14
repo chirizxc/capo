@@ -108,25 +108,25 @@ def serialize_json(value: Endpoint) -> dict:
 
 def deserialize_json(data: dict) -> Endpoint:
     out: Endpoint = {}  # type: ignore[typeddict-item]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
-    if "OutpostsId" in data:
+    if data.get("OutpostsId") is not None:
         out["outposts_id"] = data["OutpostsId"]
-    if "CidrBlock" in data:
+    if data.get("CidrBlock") is not None:
         out["cidr_block"] = data["CidrBlock"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_s3outposts.types.endpoint_status
 
         out["status"] = capo_s3outposts.types.endpoint_status.deserialize_json(
             data["Status"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_s3outposts.types.creation_time
 
         out["creation_time"] = capo_s3outposts.types.creation_time.deserialize_json(
             data["CreationTime"]
         )
-    if "NetworkInterfaces" in data:
+    if data.get("NetworkInterfaces") is not None:
         import capo_s3outposts.types.network_interfaces
 
         out["network_interfaces"] = (
@@ -134,13 +134,13 @@ def deserialize_json(data: dict) -> Endpoint:
                 data["NetworkInterfaces"]
             )
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "SecurityGroupId" in data:
+    if data.get("SecurityGroupId") is not None:
         out["security_group_id"] = data["SecurityGroupId"]
-    if "AccessType" in data:
+    if data.get("AccessType") is not None:
         import capo_s3outposts.types.endpoint_access_type
 
         out["access_type"] = (
@@ -148,9 +148,9 @@ def deserialize_json(data: dict) -> Endpoint:
                 data["AccessType"]
             )
         )
-    if "CustomerOwnedIpv4Pool" in data:
+    if data.get("CustomerOwnedIpv4Pool") is not None:
         out["customer_owned_ipv4_pool"] = data["CustomerOwnedIpv4Pool"]
-    if "FailedReason" in data:
+    if data.get("FailedReason") is not None:
         import capo_s3outposts.types.failed_reason
 
         out["failed_reason"] = capo_s3outposts.types.failed_reason.deserialize_json(

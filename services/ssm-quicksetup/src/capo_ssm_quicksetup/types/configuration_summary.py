@@ -56,9 +56,9 @@ def serialize_json(value: ConfigurationSummary) -> dict:
     if "account" in value:
         out["Account"] = value["account"]
     if "created_at" in value:
-        import capo_ssm_quicksetup.types._prelude.timestamp
+        import capo_ssm_quicksetup._protocol.serialize
 
-        out["CreatedAt"] = capo_ssm_quicksetup.types._prelude.timestamp.serialize_json(
+        out["CreatedAt"] = capo_ssm_quicksetup._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "first_class_parameters" in value:
@@ -82,29 +82,27 @@ def serialize_json(value: ConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationSummary:
     out: ConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ManagerArn" in data:
+    if data.get("ManagerArn") is not None:
         out["manager_arn"] = data["ManagerArn"]
-    if "ConfigurationDefinitionId" in data:
+    if data.get("ConfigurationDefinitionId") is not None:
         out["configuration_definition_id"] = data["ConfigurationDefinitionId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "TypeVersion" in data:
+    if data.get("TypeVersion") is not None:
         out["type_version"] = data["TypeVersion"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "Account" in data:
+    if data.get("Account") is not None:
         out["account"] = data["Account"]
-    if "CreatedAt" in data:
-        import capo_ssm_quicksetup.types._prelude.timestamp
+    if data.get("CreatedAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_ssm_quicksetup.types._prelude.timestamp.deserialize_json(
-                data["CreatedAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["CreatedAt"].replace("Z", "+00:00")
         )
-    if "FirstClassParameters" in data:
+    if data.get("FirstClassParameters") is not None:
         import capo_ssm_quicksetup.types.configuration_parameters_map
 
         out["first_class_parameters"] = (
@@ -112,7 +110,7 @@ def deserialize_json(data: dict) -> ConfigurationSummary:
                 data["FirstClassParameters"]
             )
         )
-    if "StatusSummaries" in data:
+    if data.get("StatusSummaries") is not None:
         import capo_ssm_quicksetup.types.status_summaries_list
 
         out["status_summaries"] = (

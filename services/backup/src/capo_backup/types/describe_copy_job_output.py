@@ -25,7 +25,7 @@ def serialize_json(value: DescribeCopyJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeCopyJobOutput:
     out: DescribeCopyJobOutput = {}  # type: ignore[typeddict-item]
-    if "CopyJob" in data:
+    if data.get("CopyJob") is not None:
         import capo_backup.types.copy_job
 
         out["copy_job"] = capo_backup.types.copy_job.deserialize_json(data["CopyJob"])

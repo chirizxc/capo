@@ -41,13 +41,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetRelationalDatabaseMasterUserPasswordRequest:
     out: GetRelationalDatabaseMasterUserPasswordRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "GetRelationalDatabaseMasterUserPasswordRequest.relational_database_name required"
         )
-    if "passwordVersion" in data:
+    if data.get("passwordVersion") is not None:
         import capo_lightsail.types.relational_database_password_version
 
         out["password_version"] = (

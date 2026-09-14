@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: CreateParameterGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateParameterGroupRequest:
     out: CreateParameterGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
     else:
         raise DeserializationError(
             "CreateParameterGroupRequest.parameter_group_name required"
         )
-    if "Family" in data:
+    if data.get("Family") is not None:
         out["family"] = data["Family"]
     else:
         raise DeserializationError("CreateParameterGroupRequest.family required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_memorydb.types.tag_list
 
         out["tags"] = capo_memorydb.types.tag_list.deserialize_aws_json_1_1(

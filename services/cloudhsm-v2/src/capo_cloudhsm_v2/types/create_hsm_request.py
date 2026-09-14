@@ -33,14 +33,14 @@ def serialize_aws_json_1_1(value: CreateHsmRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHsmRequest:
     out: CreateHsmRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
     else:
         raise DeserializationError("CreateHsmRequest.cluster_id required")
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
     else:
         raise DeserializationError("CreateHsmRequest.availability_zone required")
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PathPrefixHierarchy:
 
     out: PathPrefixHierarchy = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appflow.types.path_prefix.deserialize_json(item))
     return out

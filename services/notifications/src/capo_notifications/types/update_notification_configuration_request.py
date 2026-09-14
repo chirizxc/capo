@@ -42,10 +42,10 @@ def serialize_json(value: UpdateNotificationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNotificationConfigurationRequest:
     out: UpdateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "aggregationDuration" in data:
+    if data.get("aggregationDuration") is not None:
         out["aggregation_duration"] = data["aggregationDuration"]
     return out

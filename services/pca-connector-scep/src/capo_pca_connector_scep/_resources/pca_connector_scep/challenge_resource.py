@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_pca_connector_scep._auth._signers
@@ -88,10 +89,12 @@ class ChallengeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.create_challenge_request.CreateChallengeRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pca_connector_scep.types.create_challenge_request.CreateChallengeRequest = {
+            "connector_arn": connector_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -100,6 +103,7 @@ class ChallengeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -137,14 +141,16 @@ class ChallengeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.get_challenge_metadata_request.GetChallengeMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["challenge_arn"] = challenge_arn
+        input_: capo_pca_connector_scep.types.get_challenge_metadata_request.GetChallengeMetadataRequest = {
+            "challenge_arn": challenge_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -181,14 +187,16 @@ class ChallengeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.delete_challenge_request.DeleteChallengeRequest = {}  # type: ignore[typeddict-item]
-        input_["challenge_arn"] = challenge_arn
+        input_: capo_pca_connector_scep.types.delete_challenge_request.DeleteChallengeRequest = {
+            "challenge_arn": challenge_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -234,18 +242,20 @@ class ChallengeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.list_challenge_metadata_request.ListChallengeMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_scep.types.list_challenge_metadata_request.ListChallengeMetadataRequest = {
+            "connector_arn": connector_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["connector_arn"] = connector_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_challenge_password(
@@ -283,14 +293,16 @@ class ChallengeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.get_challenge_password_request.GetChallengePasswordRequest = {}  # type: ignore[typeddict-item]
-        input_["challenge_arn"] = challenge_arn
+        input_: capo_pca_connector_scep.types.get_challenge_password_request.GetChallengePasswordRequest = {
+            "challenge_arn": challenge_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -343,10 +355,12 @@ class AsyncChallengeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.create_challenge_request.CreateChallengeRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pca_connector_scep.types.create_challenge_request.CreateChallengeRequest = {
+            "connector_arn": connector_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -355,6 +369,7 @@ class AsyncChallengeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -393,14 +408,16 @@ class AsyncChallengeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.get_challenge_metadata_request.GetChallengeMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["challenge_arn"] = challenge_arn
+        input_: capo_pca_connector_scep.types.get_challenge_metadata_request.GetChallengeMetadataRequest = {
+            "challenge_arn": challenge_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -438,14 +455,16 @@ class AsyncChallengeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.delete_challenge_request.DeleteChallengeRequest = {}  # type: ignore[typeddict-item]
-        input_["challenge_arn"] = challenge_arn
+        input_: capo_pca_connector_scep.types.delete_challenge_request.DeleteChallengeRequest = {
+            "challenge_arn": challenge_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -492,18 +511,20 @@ class AsyncChallengeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.list_challenge_metadata_request.ListChallengeMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_scep.types.list_challenge_metadata_request.ListChallengeMetadataRequest = {
+            "connector_arn": connector_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["connector_arn"] = connector_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_challenge_password(
@@ -542,12 +563,14 @@ class AsyncChallengeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.get_challenge_password_request.GetChallengePasswordRequest = {}  # type: ignore[typeddict-item]
-        input_["challenge_arn"] = challenge_arn
+        input_: capo_pca_connector_scep.types.get_challenge_password_request.GetChallengePasswordRequest = {
+            "challenge_arn": challenge_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

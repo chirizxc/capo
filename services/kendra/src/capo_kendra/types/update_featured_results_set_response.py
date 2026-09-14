@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateFeaturedResultsSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFeaturedResultsSetResponse:
     out: UpdateFeaturedResultsSetResponse = {}  # type: ignore[typeddict-item]
-    if "FeaturedResultsSet" in data:
+    if data.get("FeaturedResultsSet") is not None:
         import capo_kendra.types.featured_results_set
 
         out["featured_results_set"] = (

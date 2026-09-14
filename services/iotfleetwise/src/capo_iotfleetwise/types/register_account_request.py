@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: RegisterAccountRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegisterAccountRequest:
     out: RegisterAccountRequest = {}  # type: ignore[typeddict-item]
-    if "timestreamResources" in data:
+    if data.get("timestreamResources") is not None:
         import capo_iotfleetwise.types.timestream_resources
 
         out["timestream_resources"] = (
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegisterAccountRequest:
                 data["timestreamResources"]
             )
         )
-    if "iamResources" in data:
+    if data.get("iamResources") is not None:
         import capo_iotfleetwise.types.iam_resources
 
         out["iam_resources"] = (

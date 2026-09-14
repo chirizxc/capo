@@ -105,13 +105,13 @@ def serialize_aws_json_1_0(value: WorkflowExecutionStartedEventAttributes) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionStartedEventAttributes:
     out: WorkflowExecutionStartedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
-    if "executionStartToCloseTimeout" in data:
+    if data.get("executionStartToCloseTimeout") is not None:
         out["execution_start_to_close_timeout"] = data["executionStartToCloseTimeout"]
-    if "taskStartToCloseTimeout" in data:
+    if data.get("taskStartToCloseTimeout") is not None:
         out["task_start_to_close_timeout"] = data["taskStartToCloseTimeout"]
-    if "childPolicy" in data:
+    if data.get("childPolicy") is not None:
         import capo_swf.types.child_policy
 
         out["child_policy"] = capo_swf.types.child_policy.deserialize_aws_json_1_0(
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionStartedEventAttribu
         raise DeserializationError(
             "WorkflowExecutionStartedEventAttributes.child_policy required"
         )
-    if "taskList" in data:
+    if data.get("taskList") is not None:
         import capo_swf.types.task_list
 
         out["task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
@@ -131,9 +131,9 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionStartedEventAttribu
         raise DeserializationError(
             "WorkflowExecutionStartedEventAttributes.task_list required"
         )
-    if "taskPriority" in data:
+    if data.get("taskPriority") is not None:
         out["task_priority"] = data["taskPriority"]
-    if "workflowType" in data:
+    if data.get("workflowType") is not None:
         import capo_swf.types.workflow_type
 
         out["workflow_type"] = capo_swf.types.workflow_type.deserialize_aws_json_1_0(
@@ -143,15 +143,15 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionStartedEventAttribu
         raise DeserializationError(
             "WorkflowExecutionStartedEventAttributes.workflow_type required"
         )
-    if "tagList" in data:
+    if data.get("tagList") is not None:
         import capo_swf.types.tag_list
 
         out["tag_list"] = capo_swf.types.tag_list.deserialize_aws_json_1_0(
             data["tagList"]
         )
-    if "continuedExecutionRunId" in data:
+    if data.get("continuedExecutionRunId") is not None:
         out["continued_execution_run_id"] = data["continuedExecutionRunId"]
-    if "parentWorkflowExecution" in data:
+    if data.get("parentWorkflowExecution") is not None:
         import capo_swf.types.workflow_execution
 
         out["parent_workflow_execution"] = (
@@ -159,10 +159,10 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionStartedEventAttribu
                 data["parentWorkflowExecution"]
             )
         )
-    if "parentInitiatedEventId" in data:
+    if data.get("parentInitiatedEventId") is not None:
         out["parent_initiated_event_id"] = data["parentInitiatedEventId"]
     else:
         out["parent_initiated_event_id"] = 0
-    if "lambdaRole" in data:
+    if data.get("lambdaRole") is not None:
         out["lambda_role"] = data["lambdaRole"]
     return out

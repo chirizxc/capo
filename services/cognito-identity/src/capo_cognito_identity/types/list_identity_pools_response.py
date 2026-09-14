@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListIdentityPoolsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListIdentityPoolsResponse:
     out: ListIdentityPoolsResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityPools" in data:
+    if data.get("IdentityPools") is not None:
         import capo_cognito_identity.types.identity_pools_list
 
         out["identity_pools"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListIdentityPoolsResponse:
                 data["IdentityPools"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> S3BucketAclGrantConfigurationsList:
 
     out: S3BucketAclGrantConfigurationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_accessanalyzer.types.s3_bucket_acl_grant_configuration.deserialize_json(
                 item

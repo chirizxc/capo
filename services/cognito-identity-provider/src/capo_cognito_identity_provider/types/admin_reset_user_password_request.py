@@ -43,17 +43,17 @@ def serialize_aws_json_1_1(value: AdminResetUserPasswordRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminResetUserPasswordRequest:
     out: AdminResetUserPasswordRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "AdminResetUserPasswordRequest.user_pool_id required"
         )
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("AdminResetUserPasswordRequest.username required")
-    if "ClientMetadata" in data:
+    if data.get("ClientMetadata") is not None:
         import capo_cognito_identity_provider.types.client_metadata_type
 
         out["client_metadata"] = (

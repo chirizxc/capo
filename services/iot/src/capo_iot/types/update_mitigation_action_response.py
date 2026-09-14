@@ -28,8 +28,8 @@ def serialize_json(value: UpdateMitigationActionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMitigationActionResponse:
     out: UpdateMitigationActionResponse = {}  # type: ignore[typeddict-item]
-    if "actionArn" in data:
+    if data.get("actionArn") is not None:
         out["action_arn"] = data["actionArn"]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
     return out

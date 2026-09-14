@@ -24,7 +24,7 @@ def serialize_json(value: TemplateSourceTemplate) -> dict:
 
 def deserialize_json(data: dict) -> TemplateSourceTemplate:
     out: TemplateSourceTemplate = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("TemplateSourceTemplate.arn required")

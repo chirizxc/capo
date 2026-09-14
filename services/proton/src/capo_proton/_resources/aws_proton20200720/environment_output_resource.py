@@ -72,8 +72,9 @@ class EnvironmentOutputResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_environment_outputs_input.ListEnvironmentOutputsInput = {}  # type: ignore[typeddict-item]
-        input_["environment_name"] = environment_name
+        input_: capo_proton.types.list_environment_outputs_input.ListEnvironmentOutputsInput = {
+            "environment_name": environment_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if deployment_id is not None:
@@ -84,6 +85,7 @@ class EnvironmentOutputResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -135,8 +137,9 @@ class AsyncEnvironmentOutputResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_environment_outputs_input.ListEnvironmentOutputsInput = {}  # type: ignore[typeddict-item]
-        input_["environment_name"] = environment_name
+        input_: capo_proton.types.list_environment_outputs_input.ListEnvironmentOutputsInput = {
+            "environment_name": environment_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if deployment_id is not None:
@@ -147,4 +150,5 @@ class AsyncEnvironmentOutputResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

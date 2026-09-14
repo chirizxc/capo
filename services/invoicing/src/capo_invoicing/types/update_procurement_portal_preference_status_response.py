@@ -28,7 +28,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> UpdateProcurementPortalPreferenceStatusResponse:
     out: UpdateProcurementPortalPreferenceStatusResponse = {}  # type: ignore[typeddict-item]
-    if "ProcurementPortalPreferenceArn" in data:
+    if data.get("ProcurementPortalPreferenceArn") is not None:
         out["procurement_portal_preference_arn"] = data[
             "ProcurementPortalPreferenceArn"
         ]

@@ -63,13 +63,13 @@ def serialize_json(value: IdMappingRuleBasedProperties) -> dict:
 
 def deserialize_json(data: dict) -> IdMappingRuleBasedProperties:
     out: IdMappingRuleBasedProperties = {}  # type: ignore[typeddict-item]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_entityresolution.types.rule_list
 
         out["rules"] = capo_entityresolution.types.rule_list.deserialize_json(
             data["rules"]
         )
-    if "ruleDefinitionType" in data:
+    if data.get("ruleDefinitionType") is not None:
         import capo_entityresolution.types.id_mapping_workflow_rule_definition_type
 
         out["rule_definition_type"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> IdMappingRuleBasedProperties:
         raise DeserializationError(
             "IdMappingRuleBasedProperties.rule_definition_type required"
         )
-    if "attributeMatchingModel" in data:
+    if data.get("attributeMatchingModel") is not None:
         import capo_entityresolution.types.attribute_matching_model
 
         out["attribute_matching_model"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> IdMappingRuleBasedProperties:
         raise DeserializationError(
             "IdMappingRuleBasedProperties.attribute_matching_model required"
         )
-    if "recordMatchingModel" in data:
+    if data.get("recordMatchingModel") is not None:
         import capo_entityresolution.types.record_matching_model
 
         out["record_matching_model"] = (

@@ -34,19 +34,19 @@ def serialize_json(value: GenerateAuthRequestCryptogramOutput) -> dict:
 
 def deserialize_json(data: dict) -> GenerateAuthRequestCryptogramOutput:
     out: GenerateAuthRequestCryptogramOutput = {}  # type: ignore[typeddict-item]
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
     else:
         raise DeserializationError(
             "GenerateAuthRequestCryptogramOutput.key_arn required"
         )
-    if "KeyCheckValue" in data:
+    if data.get("KeyCheckValue") is not None:
         out["key_check_value"] = data["KeyCheckValue"]
     else:
         raise DeserializationError(
             "GenerateAuthRequestCryptogramOutput.key_check_value required"
         )
-    if "AuthRequestCryptogram" in data:
+    if data.get("AuthRequestCryptogram") is not None:
         out["auth_request_cryptogram"] = data["AuthRequestCryptogram"]
     else:
         raise DeserializationError(

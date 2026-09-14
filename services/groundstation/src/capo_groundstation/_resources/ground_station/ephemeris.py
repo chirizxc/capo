@@ -100,7 +100,9 @@ class Ephemeris:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.create_ephemeris_request.CreateEphemerisRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.create_ephemeris_request.CreateEphemerisRequest = {
+            "name": name
+        }
         if satellite_id is not None:
             input_["satellite_id"] = satellite_id
         if enabled is not None:
@@ -109,7 +111,6 @@ class Ephemeris:
             input_["priority"] = priority
         if expiration_time is not None:
             input_["expiration_time"] = expiration_time
-        input_["name"] = name
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
         if ephemeris is not None:
@@ -122,6 +123,7 @@ class Ephemeris:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -159,14 +161,16 @@ class Ephemeris:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.describe_ephemeris_request.DescribeEphemerisRequest = {}  # type: ignore[typeddict-item]
-        input_["ephemeris_id"] = ephemeris_id
+        input_: capo_groundstation.types.describe_ephemeris_request.DescribeEphemerisRequest = {
+            "ephemeris_id": ephemeris_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -210,9 +214,10 @@ class Ephemeris:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.update_ephemeris_request.UpdateEphemerisRequest = {}  # type: ignore[typeddict-item]
-        input_["ephemeris_id"] = ephemeris_id
-        input_["enabled"] = enabled
+        input_: capo_groundstation.types.update_ephemeris_request.UpdateEphemerisRequest = {
+            "ephemeris_id": ephemeris_id,
+            "enabled": enabled,
+        }
         if name is not None:
             input_["name"] = name
         if priority is not None:
@@ -223,6 +228,7 @@ class Ephemeris:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -259,14 +265,16 @@ class Ephemeris:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.delete_ephemeris_request.DeleteEphemerisRequest = {}  # type: ignore[typeddict-item]
-        input_["ephemeris_id"] = ephemeris_id
+        input_: capo_groundstation.types.delete_ephemeris_request.DeleteEphemerisRequest = {
+            "ephemeris_id": ephemeris_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -322,13 +330,14 @@ class Ephemeris:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_ephemerides_request.ListEphemeridesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_ephemerides_request.ListEphemeridesRequest = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if satellite_id is not None:
             input_["satellite_id"] = satellite_id
         if ephemeris_type is not None:
             input_["ephemeris_type"] = ephemeris_type
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
         if status_list is not None:
             input_["status_list"] = status_list
         if max_results is not None:
@@ -341,6 +350,7 @@ class Ephemeris:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -400,7 +410,9 @@ class AsyncEphemeris:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.create_ephemeris_request.CreateEphemerisRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.create_ephemeris_request.CreateEphemerisRequest = {
+            "name": name
+        }
         if satellite_id is not None:
             input_["satellite_id"] = satellite_id
         if enabled is not None:
@@ -409,7 +421,6 @@ class AsyncEphemeris:
             input_["priority"] = priority
         if expiration_time is not None:
             input_["expiration_time"] = expiration_time
-        input_["name"] = name
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
         if ephemeris is not None:
@@ -422,6 +433,7 @@ class AsyncEphemeris:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -460,14 +472,16 @@ class AsyncEphemeris:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.describe_ephemeris_request.DescribeEphemerisRequest = {}  # type: ignore[typeddict-item]
-        input_["ephemeris_id"] = ephemeris_id
+        input_: capo_groundstation.types.describe_ephemeris_request.DescribeEphemerisRequest = {
+            "ephemeris_id": ephemeris_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -512,9 +526,10 @@ class AsyncEphemeris:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.update_ephemeris_request.UpdateEphemerisRequest = {}  # type: ignore[typeddict-item]
-        input_["ephemeris_id"] = ephemeris_id
-        input_["enabled"] = enabled
+        input_: capo_groundstation.types.update_ephemeris_request.UpdateEphemerisRequest = {
+            "ephemeris_id": ephemeris_id,
+            "enabled": enabled,
+        }
         if name is not None:
             input_["name"] = name
         if priority is not None:
@@ -525,6 +540,7 @@ class AsyncEphemeris:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -562,14 +578,16 @@ class AsyncEphemeris:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.delete_ephemeris_request.DeleteEphemerisRequest = {}  # type: ignore[typeddict-item]
-        input_["ephemeris_id"] = ephemeris_id
+        input_: capo_groundstation.types.delete_ephemeris_request.DeleteEphemerisRequest = {
+            "ephemeris_id": ephemeris_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -626,13 +644,14 @@ class AsyncEphemeris:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_ephemerides_request.ListEphemeridesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_ephemerides_request.ListEphemeridesRequest = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if satellite_id is not None:
             input_["satellite_id"] = satellite_id
         if ephemeris_type is not None:
             input_["ephemeris_type"] = ephemeris_type
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
         if status_list is not None:
             input_["status_list"] = status_list
         if max_results is not None:
@@ -645,4 +664,5 @@ class AsyncEphemeris:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

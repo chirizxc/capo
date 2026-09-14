@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_vpc_lattice._auth._signers
@@ -96,10 +97,12 @@ class ServiceNetwork:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_service_network_request.CreateServiceNetworkRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_vpc_lattice.types.create_service_network_request.CreateServiceNetworkRequest = {
+            "name": name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if auth_type is not None:
             input_["auth_type"] = auth_type
         if tags is not None:
@@ -112,6 +115,7 @@ class ServiceNetwork:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -151,14 +155,16 @@ class ServiceNetwork:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_service_network_request.GetServiceNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["service_network_identifier"] = service_network_identifier
+        input_: capo_vpc_lattice.types.get_service_network_request.GetServiceNetworkRequest = {
+            "service_network_identifier": service_network_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -199,15 +205,17 @@ class ServiceNetwork:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_service_network_request.UpdateServiceNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["service_network_identifier"] = service_network_identifier
-        input_["auth_type"] = auth_type
+        input_: capo_vpc_lattice.types.update_service_network_request.UpdateServiceNetworkRequest = {
+            "service_network_identifier": service_network_identifier,
+            "auth_type": auth_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -246,14 +254,16 @@ class ServiceNetwork:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_service_network_request.DeleteServiceNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["service_network_identifier"] = service_network_identifier
+        input_: capo_vpc_lattice.types.delete_service_network_request.DeleteServiceNetworkRequest = {
+            "service_network_identifier": service_network_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -292,7 +302,7 @@ class ServiceNetwork:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_service_networks_request.ListServiceNetworksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_service_networks_request.ListServiceNetworksRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -303,6 +313,7 @@ class ServiceNetwork:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -360,10 +371,12 @@ class AsyncServiceNetwork:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_service_network_request.CreateServiceNetworkRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_vpc_lattice.types.create_service_network_request.CreateServiceNetworkRequest = {
+            "name": name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if auth_type is not None:
             input_["auth_type"] = auth_type
         if tags is not None:
@@ -376,6 +389,7 @@ class AsyncServiceNetwork:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -416,14 +430,16 @@ class AsyncServiceNetwork:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_service_network_request.GetServiceNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["service_network_identifier"] = service_network_identifier
+        input_: capo_vpc_lattice.types.get_service_network_request.GetServiceNetworkRequest = {
+            "service_network_identifier": service_network_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -465,15 +481,17 @@ class AsyncServiceNetwork:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_service_network_request.UpdateServiceNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["service_network_identifier"] = service_network_identifier
-        input_["auth_type"] = auth_type
+        input_: capo_vpc_lattice.types.update_service_network_request.UpdateServiceNetworkRequest = {
+            "service_network_identifier": service_network_identifier,
+            "auth_type": auth_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -513,14 +531,16 @@ class AsyncServiceNetwork:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_service_network_request.DeleteServiceNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["service_network_identifier"] = service_network_identifier
+        input_: capo_vpc_lattice.types.delete_service_network_request.DeleteServiceNetworkRequest = {
+            "service_network_identifier": service_network_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -560,7 +580,7 @@ class AsyncServiceNetwork:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_service_networks_request.ListServiceNetworksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_service_networks_request.ListServiceNetworksRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -571,4 +591,5 @@ class AsyncServiceNetwork:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

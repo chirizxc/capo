@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DomainResourceFilterList:
 
     out: DomainResourceFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_controlcatalog.types.domain_resource_filter.deserialize_json(item)
         )

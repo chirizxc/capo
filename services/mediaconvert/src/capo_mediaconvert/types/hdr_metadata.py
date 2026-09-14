@@ -44,7 +44,7 @@ def serialize_json(value: HdrMetadata) -> dict:
 
 def deserialize_json(data: dict) -> HdrMetadata:
     out: HdrMetadata = {}  # type: ignore[typeddict-item]
-    if "contentLightLevel" in data:
+    if data.get("contentLightLevel") is not None:
         import capo_mediaconvert.types.content_light_level
 
         out["content_light_level"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> HdrMetadata:
                 data["contentLightLevel"]
             )
         )
-    if "masteringDisplayColorVolume" in data:
+    if data.get("masteringDisplayColorVolume") is not None:
         import capo_mediaconvert.types.mastering_display_color_volume
 
         out["mastering_display_color_volume"] = (

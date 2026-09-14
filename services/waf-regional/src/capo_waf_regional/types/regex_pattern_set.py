@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: RegexPatternSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegexPatternSet:
     out: RegexPatternSet = {}  # type: ignore[typeddict-item]
-    if "RegexPatternSetId" in data:
+    if data.get("RegexPatternSetId") is not None:
         out["regex_pattern_set_id"] = data["RegexPatternSetId"]
     else:
         raise DeserializationError("RegexPatternSet.regex_pattern_set_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RegexPatternStrings" in data:
+    if data.get("RegexPatternStrings") is not None:
         import capo_waf_regional.types.regex_pattern_strings
 
         out["regex_pattern_strings"] = (

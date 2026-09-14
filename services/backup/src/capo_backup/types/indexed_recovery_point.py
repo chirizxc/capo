@@ -71,34 +71,34 @@ def serialize_json(value: IndexedRecoveryPoint) -> dict:
 
 def deserialize_json(data: dict) -> IndexedRecoveryPoint:
     out: IndexedRecoveryPoint = {}  # type: ignore[typeddict-item]
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
-    if "SourceResourceArn" in data:
+    if data.get("SourceResourceArn") is not None:
         out["source_resource_arn"] = data["SourceResourceArn"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "BackupCreationDate" in data:
+    if data.get("BackupCreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["backup_creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["BackupCreationDate"]
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "IndexCreationDate" in data:
+    if data.get("IndexCreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["index_creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["IndexCreationDate"]
         )
-    if "IndexStatus" in data:
+    if data.get("IndexStatus") is not None:
         import capo_backup.types.index_status
 
         out["index_status"] = capo_backup.types.index_status.deserialize_json(
             data["IndexStatus"]
         )
-    if "IndexStatusMessage" in data:
+    if data.get("IndexStatusMessage") is not None:
         out["index_status_message"] = data["IndexStatusMessage"]
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
     return out

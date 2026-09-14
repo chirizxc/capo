@@ -88,19 +88,19 @@ def serialize_aws_json_1_1(value: FleetDeployment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FleetDeployment:
     out: FleetDeployment = {}  # type: ignore[typeddict-item]
-    if "DeploymentId" in data:
+    if data.get("DeploymentId") is not None:
         out["deployment_id"] = data["DeploymentId"]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "GameServerBinaryArn" in data:
+    if data.get("GameServerBinaryArn") is not None:
         out["game_server_binary_arn"] = data["GameServerBinaryArn"]
-    if "RollbackGameServerBinaryArn" in data:
+    if data.get("RollbackGameServerBinaryArn") is not None:
         out["rollback_game_server_binary_arn"] = data["RollbackGameServerBinaryArn"]
-    if "PerInstanceBinaryArn" in data:
+    if data.get("PerInstanceBinaryArn") is not None:
         out["per_instance_binary_arn"] = data["PerInstanceBinaryArn"]
-    if "RollbackPerInstanceBinaryArn" in data:
+    if data.get("RollbackPerInstanceBinaryArn") is not None:
         out["rollback_per_instance_binary_arn"] = data["RollbackPerInstanceBinaryArn"]
-    if "DeploymentStatus" in data:
+    if data.get("DeploymentStatus") is not None:
         import capo_gamelift.types.deployment_status
 
         out["deployment_status"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetDeployment:
                 data["DeploymentStatus"]
             )
         )
-    if "DeploymentConfiguration" in data:
+    if data.get("DeploymentConfiguration") is not None:
         import capo_gamelift.types.deployment_configuration
 
         out["deployment_configuration"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetDeployment:
                 data["DeploymentConfiguration"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(

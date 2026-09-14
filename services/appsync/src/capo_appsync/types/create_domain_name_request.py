@@ -39,17 +39,17 @@ def serialize_json(value: CreateDomainNameRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainNameRequest:
     out: CreateDomainNameRequest = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("CreateDomainNameRequest.domain_name required")
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
     else:
         raise DeserializationError("CreateDomainNameRequest.certificate_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appsync.types.tag_map
 
         out["tags"] = capo_appsync.types.tag_map.deserialize_json(data["tags"])

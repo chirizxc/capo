@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> GameServerGroupActions:
 
     out: GameServerGroupActions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gamelift.types.game_server_group_action.deserialize_aws_json_1_1(item)
         )

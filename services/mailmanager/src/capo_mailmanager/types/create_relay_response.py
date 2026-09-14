@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CreateRelayResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRelayResponse:
     out: CreateRelayResponse = {}  # type: ignore[typeddict-item]
-    if "RelayId" in data:
+    if data.get("RelayId") is not None:
         out["relay_id"] = data["RelayId"]
     else:
         raise DeserializationError("CreateRelayResponse.relay_id required")

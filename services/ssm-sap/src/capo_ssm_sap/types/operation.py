@@ -93,43 +93,43 @@ def serialize_json(value: Operation) -> dict:
 
 def deserialize_json(data: dict) -> Operation:
     out: Operation = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_ssm_sap.types.operation_status
 
         out["status"] = capo_ssm_sap.types.operation_status.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_ssm_sap.types.operation_properties
 
         out["properties"] = capo_ssm_sap.types.operation_properties.deserialize_json(
             data["Properties"]
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_sap.types._prelude.timestamp
 
         out["start_time"] = capo_ssm_sap.types._prelude.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_ssm_sap.types._prelude.timestamp
 
         out["end_time"] = capo_ssm_sap.types._prelude.timestamp.deserialize_json(
             data["EndTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_ssm_sap.types._prelude.timestamp
 
         out["last_updated_time"] = (

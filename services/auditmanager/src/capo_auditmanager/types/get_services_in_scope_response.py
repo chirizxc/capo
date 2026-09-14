@@ -31,7 +31,7 @@ def serialize_json(value: GetServicesInScopeResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServicesInScopeResponse:
     out: GetServicesInScopeResponse = {}  # type: ignore[typeddict-item]
-    if "serviceMetadata" in data:
+    if data.get("serviceMetadata") is not None:
         import capo_auditmanager.types.service_metadata_list
 
         out["service_metadata"] = (

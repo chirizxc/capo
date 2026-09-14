@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RuleGroupsNamespaceSummaryList:
 
     out: RuleGroupsNamespaceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amp.types.rule_groups_namespace_summary.deserialize_json(item))
     return out

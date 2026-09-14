@@ -30,17 +30,17 @@ def serialize_json(value: GetMembershipAccountDetailError) -> dict:
 
 def deserialize_json(data: dict) -> GetMembershipAccountDetailError:
     out: GetMembershipAccountDetailError = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError(
             "GetMembershipAccountDetailError.account_id required"
         )
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
     else:
         raise DeserializationError("GetMembershipAccountDetailError.error required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("GetMembershipAccountDetailError.message required")

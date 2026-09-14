@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DuplicateAccountException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DuplicateAccountException_:
     out: DuplicateAccountException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class DuplicateAccountException(ServiceError):
 
     code: str | None = "DuplicateAccountException"
 
-    def __init__(self, data: DuplicateAccountException_):
+    def __init__(self, data: DuplicateAccountException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DuplicateAccountException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DuplicateAccountException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DuplicateAccountException":
+        return cls(deserialize_aws_json_1_1(data), message)

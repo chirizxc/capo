@@ -42,13 +42,13 @@ def serialize_json(value: DataFieldComboSeriesItem) -> dict:
 
 def deserialize_json(data: dict) -> DataFieldComboSeriesItem:
     out: DataFieldComboSeriesItem = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("DataFieldComboSeriesItem.field_id required")
-    if "FieldValue" in data:
+    if data.get("FieldValue") is not None:
         out["field_value"] = data["FieldValue"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_quicksight.types.combo_chart_series_settings
 
         out["settings"] = (

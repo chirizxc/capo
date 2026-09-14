@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SpecificationsConditionalData:
 
     out: SpecificationsConditionalData = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_launch_wizard.types.deployment_conditional_field.deserialize_json(item)
         )

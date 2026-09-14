@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsNetworkFirewallFirewallSubnetMappingsList
 
     out: AwsNetworkFirewallFirewallSubnetMappingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_network_firewall_firewall_subnet_mappings_details.deserialize_json(
                 item

@@ -26,7 +26,7 @@ def serialize_json(value: GetBacklogTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBacklogTaskResponse:
     out: GetBacklogTaskResponse = {}  # type: ignore[typeddict-item]
-    if "task" in data:
+    if data.get("task") is not None:
         import capo_devops_agent.types.task
 
         out["task"] = capo_devops_agent.types.task.deserialize_json(data["task"])

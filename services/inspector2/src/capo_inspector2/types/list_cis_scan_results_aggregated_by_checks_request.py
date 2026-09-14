@@ -67,13 +67,13 @@ def serialize_json(value: ListCisScanResultsAggregatedByChecksRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListCisScanResultsAggregatedByChecksRequest:
     out: ListCisScanResultsAggregatedByChecksRequest = {}  # type: ignore[typeddict-item]
-    if "scanArn" in data:
+    if data.get("scanArn") is not None:
         out["scan_arn"] = data["scanArn"]
     else:
         raise DeserializationError(
             "ListCisScanResultsAggregatedByChecksRequest.scan_arn required"
         )
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.cis_scan_results_aggregated_by_checks_filter_criteria
 
         out["filter_criteria"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> ListCisScanResultsAggregatedByChecksRequest:
                 data["filterCriteria"]
             )
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_inspector2.types.cis_scan_results_aggregated_by_checks_sort_by
 
         out["sort_by"] = (
@@ -91,15 +91,15 @@ def deserialize_json(data: dict) -> ListCisScanResultsAggregatedByChecksRequest:
         )
     else:
         out["sort_by"] = "FAILED_COUNTS"
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_inspector2.types.cis_sort_order
 
         out["sort_order"] = capo_inspector2.types.cis_sort_order.deserialize_json(
             data["sortOrder"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 100

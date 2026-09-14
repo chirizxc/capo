@@ -83,17 +83,17 @@ def serialize_json(value: GetTagSyncTaskOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetTagSyncTaskOutput:
     out: GetTagSyncTaskOutput = {}  # type: ignore[typeddict-item]
-    if "GroupArn" in data:
+    if data.get("GroupArn") is not None:
         out["group_arn"] = data["GroupArn"]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "TaskArn" in data:
+    if data.get("TaskArn") is not None:
         out["task_arn"] = data["TaskArn"]
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
-    if "TagValue" in data:
+    if data.get("TagValue") is not None:
         out["tag_value"] = data["TagValue"]
-    if "ResourceQuery" in data:
+    if data.get("ResourceQuery") is not None:
         import capo_resource_groups.types.resource_query
 
         out["resource_query"] = (
@@ -101,9 +101,9 @@ def deserialize_json(data: dict) -> GetTagSyncTaskOutput:
                 data["ResourceQuery"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_resource_groups.types.tag_sync_task_status
 
         out["status"] = (
@@ -111,9 +111,9 @@ def deserialize_json(data: dict) -> GetTagSyncTaskOutput:
                 data["Status"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_resource_groups.types.timestamp
 
         out["created_at"] = capo_resource_groups.types.timestamp.deserialize_json(

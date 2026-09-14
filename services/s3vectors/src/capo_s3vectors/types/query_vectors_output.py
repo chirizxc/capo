@@ -37,7 +37,7 @@ def serialize_json(value: QueryVectorsOutput) -> dict:
 
 def deserialize_json(data: dict) -> QueryVectorsOutput:
     out: QueryVectorsOutput = {}  # type: ignore[typeddict-item]
-    if "vectors" in data:
+    if data.get("vectors") is not None:
         import capo_s3vectors.types.query_vectors_output_list
 
         out["vectors"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> QueryVectorsOutput:
         )
     else:
         raise DeserializationError("QueryVectorsOutput.vectors required")
-    if "distanceMetric" in data:
+    if data.get("distanceMetric") is not None:
         import capo_s3vectors.types.distance_metric
 
         out["distance_metric"] = capo_s3vectors.types.distance_metric.deserialize_json(

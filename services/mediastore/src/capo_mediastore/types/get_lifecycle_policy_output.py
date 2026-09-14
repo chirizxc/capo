@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetLifecyclePolicyOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLifecyclePolicyOutput:
     out: GetLifecyclePolicyOutput = {}  # type: ignore[typeddict-item]
-    if "LifecyclePolicy" in data:
+    if data.get("LifecyclePolicy") is not None:
         out["lifecycle_policy"] = data["LifecyclePolicy"]
     else:
         raise DeserializationError("GetLifecyclePolicyOutput.lifecycle_policy required")

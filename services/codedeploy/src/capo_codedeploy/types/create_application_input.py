@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: CreateApplicationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateApplicationInput:
     out: CreateApplicationInput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
     else:
         raise DeserializationError("CreateApplicationInput.application_name required")
-    if "computePlatform" in data:
+    if data.get("computePlatform") is not None:
         import capo_codedeploy.types.compute_platform
 
         out["compute_platform"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateApplicationInput:
                 data["computePlatform"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codedeploy.types.tag_list
 
         out["tags"] = capo_codedeploy.types.tag_list.deserialize_aws_json_1_1(

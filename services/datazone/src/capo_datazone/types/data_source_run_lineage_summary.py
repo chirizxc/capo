@@ -29,7 +29,7 @@ def serialize_json(value: DataSourceRunLineageSummary) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceRunLineageSummary:
     out: DataSourceRunLineageSummary = {}  # type: ignore[typeddict-item]
-    if "importStatus" in data:
+    if data.get("importStatus") is not None:
         import capo_datazone.types.lineage_import_status
 
         out["import_status"] = (

@@ -194,15 +194,17 @@ class AsyncidentitystoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_identitystore.types.get_group_id_request.GetGroupIdRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["alternate_identifier"] = alternate_identifier
+        input_: capo_identitystore.types.get_group_id_request.GetGroupIdRequest = {
+            "identity_store_id": identity_store_id,
+            "alternate_identifier": alternate_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_group_membership_id(
@@ -245,16 +247,18 @@ class AsyncidentitystoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_identitystore.types.get_group_membership_id_request.GetGroupMembershipIdRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["group_id"] = group_id
-        input_["member_id"] = member_id
+        input_: capo_identitystore.types.get_group_membership_id_request.GetGroupMembershipIdRequest = {
+            "identity_store_id": identity_store_id,
+            "group_id": group_id,
+            "member_id": member_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_user_id(
@@ -295,15 +299,17 @@ class AsyncidentitystoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_identitystore.types.get_user_id_request.GetUserIdRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["alternate_identifier"] = alternate_identifier
+        input_: capo_identitystore.types.get_user_id_request.GetUserIdRequest = {
+            "identity_store_id": identity_store_id,
+            "alternate_identifier": alternate_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def is_member_in_groups(
@@ -348,16 +354,18 @@ class AsyncidentitystoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_identitystore.types.is_member_in_groups_request.IsMemberInGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["member_id"] = member_id
-        input_["group_ids"] = group_ids
+        input_: capo_identitystore.types.is_member_in_groups_request.IsMemberInGroupsRequest = {
+            "identity_store_id": identity_store_id,
+            "member_id": member_id,
+            "group_ids": group_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_group_memberships_for_member(
@@ -402,9 +410,10 @@ class AsyncidentitystoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_identitystore.types.list_group_memberships_for_member_request.ListGroupMembershipsForMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["member_id"] = member_id
+        input_: capo_identitystore.types.list_group_memberships_for_member_request.ListGroupMembershipsForMemberRequest = {
+            "identity_store_id": identity_store_id,
+            "member_id": member_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -415,6 +424,7 @@ class AsyncidentitystoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_group_memberships_for_member(

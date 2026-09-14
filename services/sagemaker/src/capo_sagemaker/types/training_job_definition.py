@@ -93,7 +93,7 @@ def serialize_aws_json_1_1(value: TrainingJobDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingJobDefinition:
     out: TrainingJobDefinition = {}  # type: ignore[typeddict-item]
-    if "TrainingInputMode" in data:
+    if data.get("TrainingInputMode") is not None:
         import capo_sagemaker.types.training_input_mode
 
         out["training_input_mode"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingJobDefinition:
                 data["TrainingInputMode"]
             )
         )
-    if "HyperParameters" in data:
+    if data.get("HyperParameters") is not None:
         import capo_sagemaker.types.hyper_parameters
 
         out["hyper_parameters"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingJobDefinition:
                 data["HyperParameters"]
             )
         )
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_sagemaker.types.input_data_config
 
         out["input_data_config"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingJobDefinition:
                 data["InputDataConfig"]
             )
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_sagemaker.types.output_data_config
 
         out["output_data_config"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingJobDefinition:
                 data["OutputDataConfig"]
             )
         )
-    if "ResourceConfig" in data:
+    if data.get("ResourceConfig") is not None:
         import capo_sagemaker.types.resource_config
 
         out["resource_config"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingJobDefinition:
                 data["ResourceConfig"]
             )
         )
-    if "StoppingCondition" in data:
+    if data.get("StoppingCondition") is not None:
         import capo_sagemaker.types.stopping_condition
 
         out["stopping_condition"] = (

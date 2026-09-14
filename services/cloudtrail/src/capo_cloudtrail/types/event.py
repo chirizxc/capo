@@ -65,30 +65,30 @@ def serialize_aws_json_1_1(value: Event) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "EventId" in data:
+    if data.get("EventId") is not None:
         out["event_id"] = data["EventId"]
-    if "EventName" in data:
+    if data.get("EventName") is not None:
         out["event_name"] = data["EventName"]
-    if "ReadOnly" in data:
+    if data.get("ReadOnly") is not None:
         out["read_only"] = data["ReadOnly"]
-    if "AccessKeyId" in data:
+    if data.get("AccessKeyId") is not None:
         out["access_key_id"] = data["AccessKeyId"]
-    if "EventTime" in data:
+    if data.get("EventTime") is not None:
         import capo_cloudtrail.types.date
 
         out["event_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["EventTime"]
         )
-    if "EventSource" in data:
+    if data.get("EventSource") is not None:
         out["event_source"] = data["EventSource"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_cloudtrail.types.resource_list
 
         out["resources"] = capo_cloudtrail.types.resource_list.deserialize_aws_json_1_1(
             data["Resources"]
         )
-    if "CloudTrailEvent" in data:
+    if data.get("CloudTrailEvent") is not None:
         out["cloud_trail_event"] = data["CloudTrailEvent"]
     return out

@@ -29,9 +29,9 @@ def serialize_json(value: Member) -> dict:
 
 
 def deserialize_json(data: dict) -> Member:
-    if "userIdentifier" in data:
+    if data.get("userIdentifier") is not None:
         return {"userIdentifier": data["userIdentifier"]}
-    elif "groupIdentifier" in data:
+    elif data.get("groupIdentifier") is not None:
         return {"groupIdentifier": data["groupIdentifier"]}
     else:
         raise DeserializationError("Member: no recognized variant key")

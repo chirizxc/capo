@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ImageSetPropertiesList:
 
     out: ImageSetPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medical_imaging.types.image_set_properties.deserialize_json(item)
         )

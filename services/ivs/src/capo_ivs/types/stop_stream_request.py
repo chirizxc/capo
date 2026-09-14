@@ -24,7 +24,7 @@ def serialize_json(value: StopStreamRequest) -> dict:
 
 def deserialize_json(data: dict) -> StopStreamRequest:
     out: StopStreamRequest = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
     else:
         raise DeserializationError("StopStreamRequest.channel_arn required")

@@ -116,15 +116,15 @@ def serialize_aws_json_1_1(value: ProvisionedProductDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductDetail:
     out: ProvisionedProductDetail = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_catalog.types.provisioned_product_status
 
         out["status"] = (
@@ -132,9 +132,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductDetail:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_service_catalog.types.created_time
 
         out["created_time"] = (
@@ -142,20 +142,20 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductDetail:
                 data["CreatedTime"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "LastRecordId" in data:
+    if data.get("LastRecordId") is not None:
         out["last_record_id"] = data["LastRecordId"]
-    if "LastProvisioningRecordId" in data:
+    if data.get("LastProvisioningRecordId") is not None:
         out["last_provisioning_record_id"] = data["LastProvisioningRecordId"]
-    if "LastSuccessfulProvisioningRecordId" in data:
+    if data.get("LastSuccessfulProvisioningRecordId") is not None:
         out["last_successful_provisioning_record_id"] = data[
             "LastSuccessfulProvisioningRecordId"
         ]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
-    if "LaunchRoleArn" in data:
+    if data.get("LaunchRoleArn") is not None:
         out["launch_role_arn"] = data["LaunchRoleArn"]
     return out

@@ -26,7 +26,7 @@ def serialize_json(value: TrackingOptions) -> dict:
 
 def deserialize_json(data: dict) -> TrackingOptions:
     out: TrackingOptions = {}  # type: ignore[typeddict-item]
-    if "CustomRedirectDomain" in data:
+    if data.get("CustomRedirectDomain") is not None:
         out["custom_redirect_domain"] = data["CustomRedirectDomain"]
     else:
         raise DeserializationError("TrackingOptions.custom_redirect_domain required")

@@ -114,9 +114,9 @@ def serialize_aws_json_1_1(value: ReportGenerator) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportGenerator:
     out: ReportGenerator = {}  # type: ignore[typeddict-item]
-    if "ReportGeneratorName" in data:
+    if data.get("ReportGeneratorName") is not None:
         out["report_generator_name"] = data["ReportGeneratorName"]
-    if "ReportType" in data:
+    if data.get("ReportType") is not None:
         import capo_license_manager.types.report_type_list
 
         out["report_type"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReportGenerator:
                 data["ReportType"]
             )
         )
-    if "ReportContext" in data:
+    if data.get("ReportContext") is not None:
         import capo_license_manager.types.report_context
 
         out["report_context"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReportGenerator:
                 data["ReportContext"]
             )
         )
-    if "ReportFrequency" in data:
+    if data.get("ReportFrequency") is not None:
         import capo_license_manager.types.report_frequency
 
         out["report_frequency"] = (
@@ -140,21 +140,21 @@ def deserialize_aws_json_1_1(data: dict) -> ReportGenerator:
                 data["ReportFrequency"]
             )
         )
-    if "LicenseManagerReportGeneratorArn" in data:
+    if data.get("LicenseManagerReportGeneratorArn") is not None:
         out["license_manager_report_generator_arn"] = data[
             "LicenseManagerReportGeneratorArn"
         ]
-    if "LastRunStatus" in data:
+    if data.get("LastRunStatus") is not None:
         out["last_run_status"] = data["LastRunStatus"]
-    if "LastRunFailureReason" in data:
+    if data.get("LastRunFailureReason") is not None:
         out["last_run_failure_reason"] = data["LastRunFailureReason"]
-    if "LastReportGenerationTime" in data:
+    if data.get("LastReportGenerationTime") is not None:
         out["last_report_generation_time"] = data["LastReportGenerationTime"]
-    if "ReportCreatorAccount" in data:
+    if data.get("ReportCreatorAccount") is not None:
         out["report_creator_account"] = data["ReportCreatorAccount"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "S3Location" in data:
+    if data.get("S3Location") is not None:
         import capo_license_manager.types.s3_location
 
         out["s3_location"] = (
@@ -162,9 +162,9 @@ def deserialize_aws_json_1_1(data: dict) -> ReportGenerator:
                 data["S3Location"]
             )
         )
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         out["create_time"] = data["CreateTime"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_license_manager.types.tag_list
 
         out["tags"] = capo_license_manager.types.tag_list.deserialize_aws_json_1_1(

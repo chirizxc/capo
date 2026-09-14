@@ -27,8 +27,8 @@ def serialize_json(value: WriteEventStream) -> dict:
 
 def deserialize_json(data: dict) -> WriteEventStream:
     out: WriteEventStream = {}  # type: ignore[typeddict-item]
-    if "DestinationStreamArn" in data:
+    if data.get("DestinationStreamArn") is not None:
         out["destination_stream_arn"] = data["DestinationStreamArn"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

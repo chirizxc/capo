@@ -31,14 +31,14 @@ def serialize_json(value: CoreNetworkPolicyError) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkPolicyError:
     out: CoreNetworkPolicyError = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError("CoreNetworkPolicyError.error_code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("CoreNetworkPolicyError.message required")
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     return out

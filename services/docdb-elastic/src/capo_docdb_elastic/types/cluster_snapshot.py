@@ -65,7 +65,7 @@ def serialize_json(value: ClusterSnapshot) -> dict:
 
 def deserialize_json(data: dict) -> ClusterSnapshot:
     out: ClusterSnapshot = {}  # type: ignore[typeddict-item]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_docdb_elastic.types.string_list
 
         out["subnet_ids"] = capo_docdb_elastic.types.string_list.deserialize_json(
@@ -73,31 +73,31 @@ def deserialize_json(data: dict) -> ClusterSnapshot:
         )
     else:
         raise DeserializationError("ClusterSnapshot.subnet_ids required")
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
     else:
         raise DeserializationError("ClusterSnapshot.snapshot_name required")
-    if "snapshotArn" in data:
+    if data.get("snapshotArn") is not None:
         out["snapshot_arn"] = data["snapshotArn"]
     else:
         raise DeserializationError("ClusterSnapshot.snapshot_arn required")
-    if "snapshotCreationTime" in data:
+    if data.get("snapshotCreationTime") is not None:
         out["snapshot_creation_time"] = data["snapshotCreationTime"]
     else:
         raise DeserializationError("ClusterSnapshot.snapshot_creation_time required")
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
     else:
         raise DeserializationError("ClusterSnapshot.cluster_arn required")
-    if "clusterCreationTime" in data:
+    if data.get("clusterCreationTime") is not None:
         out["cluster_creation_time"] = data["clusterCreationTime"]
     else:
         raise DeserializationError("ClusterSnapshot.cluster_creation_time required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ClusterSnapshot.status required")
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_docdb_elastic.types.string_list
 
         out["vpc_security_group_ids"] = (
@@ -107,14 +107,14 @@ def deserialize_json(data: dict) -> ClusterSnapshot:
         )
     else:
         raise DeserializationError("ClusterSnapshot.vpc_security_group_ids required")
-    if "adminUserName" in data:
+    if data.get("adminUserName") is not None:
         out["admin_user_name"] = data["adminUserName"]
     else:
         raise DeserializationError("ClusterSnapshot.admin_user_name required")
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     else:
         raise DeserializationError("ClusterSnapshot.kms_key_id required")
-    if "snapshotType" in data:
+    if data.get("snapshotType") is not None:
         out["snapshot_type"] = data["snapshotType"]
     return out

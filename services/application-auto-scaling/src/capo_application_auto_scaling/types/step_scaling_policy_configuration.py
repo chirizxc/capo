@@ -69,7 +69,7 @@ def serialize_aws_json_1_1(value: StepScalingPolicyConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StepScalingPolicyConfiguration:
     out: StepScalingPolicyConfiguration = {}  # type: ignore[typeddict-item]
-    if "AdjustmentType" in data:
+    if data.get("AdjustmentType") is not None:
         import capo_application_auto_scaling.types.adjustment_type
 
         out["adjustment_type"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> StepScalingPolicyConfiguration:
                 data["AdjustmentType"]
             )
         )
-    if "StepAdjustments" in data:
+    if data.get("StepAdjustments") is not None:
         import capo_application_auto_scaling.types.step_adjustments
 
         out["step_adjustments"] = (
@@ -85,11 +85,11 @@ def deserialize_aws_json_1_1(data: dict) -> StepScalingPolicyConfiguration:
                 data["StepAdjustments"]
             )
         )
-    if "MinAdjustmentMagnitude" in data:
+    if data.get("MinAdjustmentMagnitude") is not None:
         out["min_adjustment_magnitude"] = data["MinAdjustmentMagnitude"]
-    if "Cooldown" in data:
+    if data.get("Cooldown") is not None:
         out["cooldown"] = data["Cooldown"]
-    if "MetricAggregationType" in data:
+    if data.get("MetricAggregationType") is not None:
         import capo_application_auto_scaling.types.metric_aggregation_type
 
         out["metric_aggregation_type"] = (

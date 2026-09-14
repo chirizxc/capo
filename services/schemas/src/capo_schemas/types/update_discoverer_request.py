@@ -33,8 +33,8 @@ def serialize_json(value: UpdateDiscovererRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDiscovererRequest:
     out: UpdateDiscovererRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CrossAccount" in data:
+    if data.get("CrossAccount") is not None:
         out["cross_account"] = data["CrossAccount"]
     return out

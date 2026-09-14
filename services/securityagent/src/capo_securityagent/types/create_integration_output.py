@@ -24,7 +24,7 @@ def serialize_json(value: CreateIntegrationOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateIntegrationOutput:
     out: CreateIntegrationOutput = {}  # type: ignore[typeddict-item]
-    if "integrationId" in data:
+    if data.get("integrationId") is not None:
         out["integration_id"] = data["integrationId"]
     else:
         raise DeserializationError("CreateIntegrationOutput.integration_id required")

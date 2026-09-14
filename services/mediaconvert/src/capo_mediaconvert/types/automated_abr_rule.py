@@ -77,7 +77,7 @@ def serialize_json(value: AutomatedAbrRule) -> dict:
 
 def deserialize_json(data: dict) -> AutomatedAbrRule:
     out: AutomatedAbrRule = {}  # type: ignore[typeddict-item]
-    if "allowedRenditions" in data:
+    if data.get("allowedRenditions") is not None:
         import capo_mediaconvert.types.__list_of_allowed_rendition_size
 
         out["allowed_renditions"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> AutomatedAbrRule:
                 data["allowedRenditions"]
             )
         )
-    if "forceIncludeRenditions" in data:
+    if data.get("forceIncludeRenditions") is not None:
         import capo_mediaconvert.types.__list_of_force_include_rendition_size
 
         out["force_include_renditions"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> AutomatedAbrRule:
                 data["forceIncludeRenditions"]
             )
         )
-    if "minBottomRenditionSize" in data:
+    if data.get("minBottomRenditionSize") is not None:
         import capo_mediaconvert.types.min_bottom_rendition_size
 
         out["min_bottom_rendition_size"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> AutomatedAbrRule:
                 data["minBottomRenditionSize"]
             )
         )
-    if "minTopRenditionSize" in data:
+    if data.get("minTopRenditionSize") is not None:
         import capo_mediaconvert.types.min_top_rendition_size
 
         out["min_top_rendition_size"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> AutomatedAbrRule:
                 data["minTopRenditionSize"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_mediaconvert.types.rule_type
 
         out["type"] = capo_mediaconvert.types.rule_type.deserialize_json(data["type"])

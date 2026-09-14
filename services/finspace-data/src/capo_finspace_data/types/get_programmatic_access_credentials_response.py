@@ -34,12 +34,12 @@ def serialize_json(value: GetProgrammaticAccessCredentialsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetProgrammaticAccessCredentialsResponse:
     out: GetProgrammaticAccessCredentialsResponse = {}  # type: ignore[typeddict-item]
-    if "credentials" in data:
+    if data.get("credentials") is not None:
         import capo_finspace_data.types.credentials
 
         out["credentials"] = capo_finspace_data.types.credentials.deserialize_json(
             data["credentials"]
         )
-    if "durationInMinutes" in data:
+    if data.get("durationInMinutes") is not None:
         out["duration_in_minutes"] = data["durationInMinutes"]
     return out

@@ -30,9 +30,9 @@ def serialize_json(value: GetMilestoneOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetMilestoneOutput:
     out: GetMilestoneOutput = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "Milestone" in data:
+    if data.get("Milestone") is not None:
         import capo_wellarchitected.types.milestone
 
         out["milestone"] = capo_wellarchitected.types.milestone.deserialize_json(

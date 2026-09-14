@@ -65,16 +65,12 @@ def serialize_aws_json_1_0(value: ComputeNodeGroup) -> dict:
     out["id"] = value["id"]
     out["arn"] = value["arn"]
     out["clusterId"] = value["cluster_id"]
-    import capo_pcs.types._prelude.timestamp
+    import capo_pcs._protocol.serialize
 
-    out["createdAt"] = capo_pcs.types._prelude.timestamp.serialize_aws_json_1_0(
-        value["created_at"]
-    )
-    import capo_pcs.types._prelude.timestamp
+    out["createdAt"] = capo_pcs._protocol.serialize.fmt_date_time(value["created_at"])
+    import capo_pcs._protocol.serialize
 
-    out["modifiedAt"] = capo_pcs.types._prelude.timestamp.serialize_aws_json_1_0(
-        value["modified_at"]
-    )
+    out["modifiedAt"] = capo_pcs._protocol.serialize.fmt_date_time(value["modified_at"])
     import capo_pcs.types.compute_node_group_status
 
     out["status"] = capo_pcs.types.compute_node_group_status.serialize_aws_json_1_0(
@@ -138,39 +134,39 @@ def serialize_aws_json_1_0(value: ComputeNodeGroup) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroup:
     out: ComputeNodeGroup = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ComputeNodeGroup.name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ComputeNodeGroup.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ComputeNodeGroup.arn required")
-    if "clusterId" in data:
+    if data.get("clusterId") is not None:
         out["cluster_id"] = data["clusterId"]
     else:
         raise DeserializationError("ComputeNodeGroup.cluster_id required")
-    if "createdAt" in data:
-        import capo_pcs.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_pcs.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ComputeNodeGroup.created_at required")
-    if "modifiedAt" in data:
-        import capo_pcs.types._prelude.timestamp
+    if data.get("modifiedAt") is not None:
+        import datetime
 
-        out["modified_at"] = capo_pcs.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["modifiedAt"]
+        out["modified_at"] = datetime.datetime.fromisoformat(
+            data["modifiedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ComputeNodeGroup.modified_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_pcs.types.compute_node_group_status
 
         out["status"] = (
@@ -180,9 +176,9 @@ def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroup:
         )
     else:
         raise DeserializationError("ComputeNodeGroup.status required")
-    if "amiId" in data:
+    if data.get("amiId") is not None:
         out["ami_id"] = data["amiId"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_pcs.types.subnet_id_list
 
         out["subnet_ids"] = capo_pcs.types.subnet_id_list.deserialize_aws_json_1_0(
@@ -190,7 +186,7 @@ def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroup:
         )
     else:
         raise DeserializationError("ComputeNodeGroup.subnet_ids required")
-    if "purchaseOption" in data:
+    if data.get("purchaseOption") is not None:
         import capo_pcs.types.purchase_option
 
         out["purchase_option"] = (
@@ -198,7 +194,7 @@ def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroup:
                 data["purchaseOption"]
             )
         )
-    if "customLaunchTemplate" in data:
+    if data.get("customLaunchTemplate") is not None:
         import capo_pcs.types.custom_launch_template
 
         out["custom_launch_template"] = (
@@ -208,11 +204,11 @@ def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroup:
         )
     else:
         raise DeserializationError("ComputeNodeGroup.custom_launch_template required")
-    if "iamInstanceProfileArn" in data:
+    if data.get("iamInstanceProfileArn") is not None:
         out["iam_instance_profile_arn"] = data["iamInstanceProfileArn"]
     else:
         raise DeserializationError("ComputeNodeGroup.iam_instance_profile_arn required")
-    if "scalingConfiguration" in data:
+    if data.get("scalingConfiguration") is not None:
         import capo_pcs.types.scaling_configuration
 
         out["scaling_configuration"] = (
@@ -222,7 +218,7 @@ def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroup:
         )
     else:
         raise DeserializationError("ComputeNodeGroup.scaling_configuration required")
-    if "instanceConfigs" in data:
+    if data.get("instanceConfigs") is not None:
         import capo_pcs.types.instance_list
 
         out["instance_configs"] = capo_pcs.types.instance_list.deserialize_aws_json_1_0(
@@ -230,13 +226,13 @@ def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroup:
         )
     else:
         raise DeserializationError("ComputeNodeGroup.instance_configs required")
-    if "spotOptions" in data:
+    if data.get("spotOptions") is not None:
         import capo_pcs.types.spot_options
 
         out["spot_options"] = capo_pcs.types.spot_options.deserialize_aws_json_1_0(
             data["spotOptions"]
         )
-    if "slurmConfiguration" in data:
+    if data.get("slurmConfiguration") is not None:
         import capo_pcs.types.compute_node_group_slurm_configuration
 
         out["slurm_configuration"] = (
@@ -244,7 +240,7 @@ def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroup:
                 data["slurmConfiguration"]
             )
         )
-    if "errorInfo" in data:
+    if data.get("errorInfo") is not None:
         import capo_pcs.types.error_info_list
 
         out["error_info"] = capo_pcs.types.error_info_list.deserialize_aws_json_1_0(

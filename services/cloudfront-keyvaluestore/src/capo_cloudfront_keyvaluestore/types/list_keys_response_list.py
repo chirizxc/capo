@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListKeysResponseList:
 
     out: ListKeysResponseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cloudfront_keyvaluestore.types.list_keys_response_list_item.deserialize_json(
                 item

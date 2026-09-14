@@ -35,14 +35,14 @@ def serialize_json(value: ListCaseEditsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCaseEditsResponse:
     out: ListCaseEditsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_security_ir.types.case_edit_items
 
         out["items"] = capo_security_ir.types.case_edit_items.deserialize_json(
             data["items"]
         )
-    if "total" in data:
+    if data.get("total") is not None:
         out["total"] = data["total"]
     return out

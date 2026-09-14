@@ -54,7 +54,7 @@ def serialize_json(value: ImageCustomActionOperation) -> dict:
 
 def deserialize_json(data: dict) -> ImageCustomActionOperation:
     out: ImageCustomActionOperation = {}  # type: ignore[typeddict-item]
-    if "NavigationOperation" in data:
+    if data.get("NavigationOperation") is not None:
         import capo_quicksight.types.custom_action_navigation_operation
 
         out["navigation_operation"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> ImageCustomActionOperation:
                 data["NavigationOperation"]
             )
         )
-    if "URLOperation" in data:
+    if data.get("URLOperation") is not None:
         import capo_quicksight.types.custom_action_url_operation
 
         out["url_operation"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ImageCustomActionOperation:
                 data["URLOperation"]
             )
         )
-    if "SetParametersOperation" in data:
+    if data.get("SetParametersOperation") is not None:
         import capo_quicksight.types.custom_action_set_parameters_operation
 
         out["set_parameters_operation"] = (

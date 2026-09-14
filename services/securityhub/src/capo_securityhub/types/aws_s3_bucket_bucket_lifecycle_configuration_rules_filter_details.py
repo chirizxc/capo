@@ -35,7 +35,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails:
     out: AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails = {}  # type: ignore[typeddict-item]
-    if "Predicate" in data:
+    if data.get("Predicate") is not None:
         import capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_rules_filter_predicate_details
 
         out["predicate"] = (

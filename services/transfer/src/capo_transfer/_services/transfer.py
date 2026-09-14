@@ -296,7 +296,11 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.create_access_request.CreateAccessRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.create_access_request.CreateAccessRequest = {
+            "role": role,
+            "server_id": server_id,
+            "external_id": external_id,
+        }
         if home_directory is not None:
             input_["home_directory"] = home_directory
         if home_directory_type is not None:
@@ -307,15 +311,13 @@ class TransferClient:
             input_["policy"] = policy
         if posix_profile is not None:
             input_["posix_profile"] = posix_profile
-        input_["role"] = role
-        input_["server_id"] = server_id
-        input_["external_id"] = external_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_access(
@@ -352,15 +354,17 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_access_request.DeleteAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["external_id"] = external_id
+        input_: capo_transfer.types.delete_access_request.DeleteAccessRequest = {
+            "server_id": server_id,
+            "external_id": external_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_host_key(
@@ -398,15 +402,17 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_host_key_request.DeleteHostKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["host_key_id"] = host_key_id
+        input_: capo_transfer.types.delete_host_key_request.DeleteHostKeyRequest = {
+            "server_id": server_id,
+            "host_key_id": host_key_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_ssh_public_key(
@@ -446,16 +452,18 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_ssh_public_key_request.DeleteSshPublicKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["ssh_public_key_id"] = ssh_public_key_id
-        input_["user_name"] = user_name
+        input_: capo_transfer.types.delete_ssh_public_key_request.DeleteSshPublicKeyRequest = {
+            "server_id": server_id,
+            "ssh_public_key_id": ssh_public_key_id,
+            "user_name": user_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_access(
@@ -494,15 +502,17 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_access_request.DescribeAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["external_id"] = external_id
+        input_: capo_transfer.types.describe_access_request.DescribeAccessRequest = {
+            "server_id": server_id,
+            "external_id": external_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_execution(
@@ -541,15 +551,17 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_execution_request.DescribeExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["execution_id"] = execution_id
-        input_["workflow_id"] = workflow_id
+        input_: capo_transfer.types.describe_execution_request.DescribeExecutionRequest = {
+            "execution_id": execution_id,
+            "workflow_id": workflow_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_host_key(
@@ -588,15 +600,17 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_host_key_request.DescribeHostKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["host_key_id"] = host_key_id
+        input_: capo_transfer.types.describe_host_key_request.DescribeHostKeyRequest = {
+            "server_id": server_id,
+            "host_key_id": host_key_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_security_policy(
@@ -633,14 +647,16 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_security_policy_request.DescribeSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["security_policy_name"] = security_policy_name
+        input_: capo_transfer.types.describe_security_policy_request.DescribeSecurityPolicyRequest = {
+            "security_policy_name": security_policy_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_host_key(
@@ -687,9 +703,10 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.import_host_key_request.ImportHostKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["host_key_body"] = host_key_body
+        input_: capo_transfer.types.import_host_key_request.ImportHostKeyRequest = {
+            "server_id": server_id,
+            "host_key_body": host_key_body,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -700,6 +717,7 @@ class TransferClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_ssh_public_key(
@@ -744,16 +762,18 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.import_ssh_public_key_request.ImportSshPublicKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["ssh_public_key_body"] = ssh_public_key_body
-        input_["user_name"] = user_name
+        input_: capo_transfer.types.import_ssh_public_key_request.ImportSshPublicKeyRequest = {
+            "server_id": server_id,
+            "ssh_public_key_body": ssh_public_key_body,
+            "user_name": user_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_accesses(
@@ -795,18 +815,20 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.list_accesses_request.ListAccessesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_accesses_request.ListAccessesRequest = {
+            "server_id": server_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["server_id"] = server_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_accesses(
@@ -871,18 +893,20 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.list_executions_request.ListExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_executions_request.ListExecutionsRequest = {
+            "workflow_id": workflow_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["workflow_id"] = workflow_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_executions(
@@ -948,9 +972,10 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.list_file_transfer_results_request.ListFileTransferResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
-        input_["transfer_id"] = transfer_id
+        input_: capo_transfer.types.list_file_transfer_results_request.ListFileTransferResultsRequest = {
+            "connector_id": connector_id,
+            "transfer_id": transfer_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -961,6 +986,7 @@ class TransferClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_file_transfer_results(
@@ -1027,18 +1053,20 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.list_host_keys_request.ListHostKeysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_host_keys_request.ListHostKeysRequest = {
+            "server_id": server_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["server_id"] = server_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_security_policies(
@@ -1077,7 +1105,7 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.list_security_policies_request.ListSecurityPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_security_policies_request.ListSecurityPoliciesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1088,6 +1116,7 @@ class TransferClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_security_policies(
@@ -1149,8 +1178,9 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_transfer.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1161,6 +1191,7 @@ class TransferClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags_for_resource(
@@ -1228,17 +1259,19 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.send_workflow_step_state_request.SendWorkflowStepStateRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_id"] = workflow_id
-        input_["execution_id"] = execution_id
-        input_["token"] = token
-        input_["status"] = status
+        input_: capo_transfer.types.send_workflow_step_state_request.SendWorkflowStepStateRequest = {
+            "workflow_id": workflow_id,
+            "execution_id": execution_id,
+            "token": token,
+            "status": status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_directory_listing(
@@ -1282,18 +1315,20 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.start_directory_listing_request.StartDirectoryListingRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
-        input_["remote_directory_path"] = remote_directory_path
+        input_: capo_transfer.types.start_directory_listing_request.StartDirectoryListingRequest = {
+            "connector_id": connector_id,
+            "remote_directory_path": remote_directory_path,
+            "output_directory_path": output_directory_path,
+        }
         if max_items is not None:
             input_["max_items"] = max_items
-        input_["output_directory_path"] = output_directory_path
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_file_transfer(
@@ -1347,8 +1382,9 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.start_file_transfer_request.StartFileTransferRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
+        input_: capo_transfer.types.start_file_transfer_request.StartFileTransferRequest = {
+            "connector_id": connector_id
+        }
         if send_file_paths is not None:
             input_["send_file_paths"] = send_file_paths
         if retrieve_file_paths is not None:
@@ -1365,6 +1401,7 @@ class TransferClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_remote_delete(
@@ -1404,15 +1441,17 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.start_remote_delete_request.StartRemoteDeleteRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
-        input_["delete_path"] = delete_path
+        input_: capo_transfer.types.start_remote_delete_request.StartRemoteDeleteRequest = {
+            "connector_id": connector_id,
+            "delete_path": delete_path,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_remote_move(
@@ -1454,16 +1493,18 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.start_remote_move_request.StartRemoteMoveRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
-        input_["source_path"] = source_path
-        input_["target_path"] = target_path
+        input_: capo_transfer.types.start_remote_move_request.StartRemoteMoveRequest = {
+            "connector_id": connector_id,
+            "source_path": source_path,
+            "target_path": target_path,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_server(
@@ -1499,14 +1540,16 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.start_server_request.StartServerRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.start_server_request.StartServerRequest = {
+            "server_id": server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_server(
@@ -1542,14 +1585,16 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.stop_server_request.StopServerRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.stop_server_request.StopServerRequest = {
+            "server_id": server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1586,15 +1631,17 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tags"] = tags
+        input_: capo_transfer.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_connection(
@@ -1631,14 +1678,16 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.test_connection_request.TestConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
+        input_: capo_transfer.types.test_connection_request.TestConnectionRequest = {
+            "connector_id": connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_identity_provider(
@@ -1685,13 +1734,14 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.test_identity_provider_request.TestIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.test_identity_provider_request.TestIdentityProviderRequest = {
+            "server_id": server_id,
+            "user_name": user_name,
+        }
         if server_protocol is not None:
             input_["server_protocol"] = server_protocol
         if source_ip is not None:
             input_["source_ip"] = source_ip
-        input_["user_name"] = user_name
         if user_password is not None:
             input_["user_password"] = user_password
 
@@ -1700,6 +1750,7 @@ class TransferClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1736,15 +1787,17 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_transfer.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_access(
@@ -1804,7 +1857,10 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.update_access_request.UpdateAccessRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.update_access_request.UpdateAccessRequest = {
+            "server_id": server_id,
+            "external_id": external_id,
+        }
         if home_directory is not None:
             input_["home_directory"] = home_directory
         if home_directory_type is not None:
@@ -1817,14 +1873,13 @@ class TransferClient:
             input_["posix_profile"] = posix_profile
         if role is not None:
             input_["role"] = role
-        input_["server_id"] = server_id
-        input_["external_id"] = external_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_host_key(
@@ -1866,16 +1921,18 @@ class TransferClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transfer.types.update_host_key_request.UpdateHostKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
-        input_["host_key_id"] = host_key_id
-        input_["description"] = description
+        input_: capo_transfer.types.update_host_key_request.UpdateHostKeyRequest = {
+            "server_id": server_id,
+            "host_key_id": host_key_id,
+            "description": description,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

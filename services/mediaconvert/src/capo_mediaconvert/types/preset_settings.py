@@ -70,7 +70,7 @@ def serialize_json(value: PresetSettings) -> dict:
 
 def deserialize_json(data: dict) -> PresetSettings:
     out: PresetSettings = {}  # type: ignore[typeddict-item]
-    if "audioDescriptions" in data:
+    if data.get("audioDescriptions") is not None:
         import capo_mediaconvert.types.__list_of_audio_description
 
         out["audio_descriptions"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> PresetSettings:
                 data["audioDescriptions"]
             )
         )
-    if "captionDescriptions" in data:
+    if data.get("captionDescriptions") is not None:
         import capo_mediaconvert.types.__list_of_caption_description_preset
 
         out["caption_descriptions"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> PresetSettings:
                 data["captionDescriptions"]
             )
         )
-    if "containerSettings" in data:
+    if data.get("containerSettings") is not None:
         import capo_mediaconvert.types.container_settings
 
         out["container_settings"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> PresetSettings:
                 data["containerSettings"]
             )
         )
-    if "videoDescription" in data:
+    if data.get("videoDescription") is not None:
         import capo_mediaconvert.types.video_description
 
         out["video_description"] = (

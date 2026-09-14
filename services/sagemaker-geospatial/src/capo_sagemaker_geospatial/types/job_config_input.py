@@ -152,7 +152,7 @@ def serialize_json(value: JobConfigInput) -> dict:
 
 
 def deserialize_json(data: dict) -> JobConfigInput:
-    if "BandMathConfig" in data:
+    if data.get("BandMathConfig") is not None:
         import capo_sagemaker_geospatial.types.band_math_config_input
 
         return {
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> JobConfigInput:
                 data["BandMathConfig"]
             )
         }
-    elif "ResamplingConfig" in data:
+    elif data.get("ResamplingConfig") is not None:
         import capo_sagemaker_geospatial.types.resampling_config_input
 
         return {
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> JobConfigInput:
                 data["ResamplingConfig"]
             )
         }
-    elif "TemporalStatisticsConfig" in data:
+    elif data.get("TemporalStatisticsConfig") is not None:
         import capo_sagemaker_geospatial.types.temporal_statistics_config_input
 
         return {
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> JobConfigInput:
                 data["TemporalStatisticsConfig"]
             )
         }
-    elif "CloudRemovalConfig" in data:
+    elif data.get("CloudRemovalConfig") is not None:
         import capo_sagemaker_geospatial.types.cloud_removal_config_input
 
         return {
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> JobConfigInput:
                 data["CloudRemovalConfig"]
             )
         }
-    elif "ZonalStatisticsConfig" in data:
+    elif data.get("ZonalStatisticsConfig") is not None:
         import capo_sagemaker_geospatial.types.zonal_statistics_config_input
 
         return {
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> JobConfigInput:
                 data["ZonalStatisticsConfig"]
             )
         }
-    elif "GeoMosaicConfig" in data:
+    elif data.get("GeoMosaicConfig") is not None:
         import capo_sagemaker_geospatial.types.geo_mosaic_config_input
 
         return {
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> JobConfigInput:
                 data["GeoMosaicConfig"]
             )
         }
-    elif "StackConfig" in data:
+    elif data.get("StackConfig") is not None:
         import capo_sagemaker_geospatial.types.stack_config_input
 
         return {
@@ -208,7 +208,7 @@ def deserialize_json(data: dict) -> JobConfigInput:
                 data["StackConfig"]
             )
         }
-    elif "CloudMaskingConfig" in data:
+    elif data.get("CloudMaskingConfig") is not None:
         import capo_sagemaker_geospatial.types.cloud_masking_config_input
 
         return {
@@ -216,7 +216,7 @@ def deserialize_json(data: dict) -> JobConfigInput:
                 data["CloudMaskingConfig"]
             )
         }
-    elif "LandCoverSegmentationConfig" in data:
+    elif data.get("LandCoverSegmentationConfig") is not None:
         import capo_sagemaker_geospatial.types.land_cover_segmentation_config_input
 
         return {

@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: UtilizationPreference) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UtilizationPreference:
     out: UtilizationPreference = {}  # type: ignore[typeddict-item]
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         import capo_compute_optimizer.types.customizable_metric_name
 
         out["metric_name"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> UtilizationPreference:
                 data["metricName"]
             )
         )
-    if "metricParameters" in data:
+    if data.get("metricParameters") is not None:
         import capo_compute_optimizer.types.customizable_metric_parameters
 
         out["metric_parameters"] = (

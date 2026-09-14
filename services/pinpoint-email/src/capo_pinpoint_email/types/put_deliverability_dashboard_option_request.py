@@ -35,11 +35,11 @@ def serialize_json(value: PutDeliverabilityDashboardOptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutDeliverabilityDashboardOptionRequest:
     out: PutDeliverabilityDashboardOptionRequest = {}  # type: ignore[typeddict-item]
-    if "DashboardEnabled" in data:
+    if data.get("DashboardEnabled") is not None:
         out["dashboard_enabled"] = data["DashboardEnabled"]
     else:
         out["dashboard_enabled"] = False
-    if "SubscribedDomains" in data:
+    if data.get("SubscribedDomains") is not None:
         import capo_pinpoint_email.types.domain_deliverability_tracking_options
 
         out["subscribed_domains"] = (

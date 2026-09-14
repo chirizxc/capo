@@ -203,13 +203,13 @@ def serialize_aws_json_1_1(value: ClusterInstanceGroupSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
     out: ClusterInstanceGroupSpecification = {}  # type: ignore[typeddict-item]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "MinInstanceCount" in data:
+    if data.get("MinInstanceCount") is not None:
         out["min_instance_count"] = data["MinInstanceCount"]
-    if "InstanceGroupName" in data:
+    if data.get("InstanceGroupName") is not None:
         out["instance_group_name"] = data["InstanceGroupName"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.cluster_instance_type
 
         out["instance_type"] = (
@@ -217,7 +217,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
                 data["InstanceType"]
             )
         )
-    if "InstanceRequirements" in data:
+    if data.get("InstanceRequirements") is not None:
         import capo_sagemaker.types.cluster_instance_requirements
 
         out["instance_requirements"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
                 data["InstanceRequirements"]
             )
         )
-    if "LifeCycleConfig" in data:
+    if data.get("LifeCycleConfig") is not None:
         import capo_sagemaker.types.cluster_life_cycle_config
 
         out["life_cycle_config"] = (
@@ -233,11 +233,11 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
                 data["LifeCycleConfig"]
             )
         )
-    if "ExecutionRole" in data:
+    if data.get("ExecutionRole") is not None:
         out["execution_role"] = data["ExecutionRole"]
-    if "ThreadsPerCore" in data:
+    if data.get("ThreadsPerCore") is not None:
         out["threads_per_core"] = data["ThreadsPerCore"]
-    if "InstanceStorageConfigs" in data:
+    if data.get("InstanceStorageConfigs") is not None:
         import capo_sagemaker.types.cluster_instance_storage_configs
 
         out["instance_storage_configs"] = (
@@ -245,7 +245,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
                 data["InstanceStorageConfigs"]
             )
         )
-    if "OnStartDeepHealthChecks" in data:
+    if data.get("OnStartDeepHealthChecks") is not None:
         import capo_sagemaker.types.on_start_deep_health_checks
 
         out["on_start_deep_health_checks"] = (
@@ -253,9 +253,9 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
                 data["OnStartDeepHealthChecks"]
             )
         )
-    if "TrainingPlanArn" in data:
+    if data.get("TrainingPlanArn") is not None:
         out["training_plan_arn"] = data["TrainingPlanArn"]
-    if "OverrideVpcConfig" in data:
+    if data.get("OverrideVpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["override_vpc_config"] = (
@@ -263,7 +263,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
                 data["OverrideVpcConfig"]
             )
         )
-    if "ScheduledUpdateConfig" in data:
+    if data.get("ScheduledUpdateConfig") is not None:
         import capo_sagemaker.types.scheduled_update_config
 
         out["scheduled_update_config"] = (
@@ -271,9 +271,9 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
                 data["ScheduledUpdateConfig"]
             )
         )
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "KubernetesConfig" in data:
+    if data.get("KubernetesConfig") is not None:
         import capo_sagemaker.types.cluster_kubernetes_config
 
         out["kubernetes_config"] = (
@@ -281,7 +281,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
                 data["KubernetesConfig"]
             )
         )
-    if "SlurmConfig" in data:
+    if data.get("SlurmConfig") is not None:
         import capo_sagemaker.types.cluster_slurm_config
 
         out["slurm_config"] = (
@@ -289,7 +289,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
                 data["SlurmConfig"]
             )
         )
-    if "CapacityRequirements" in data:
+    if data.get("CapacityRequirements") is not None:
         import capo_sagemaker.types.cluster_capacity_requirements
 
         out["capacity_requirements"] = (
@@ -297,7 +297,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
                 data["CapacityRequirements"]
             )
         )
-    if "NetworkInterface" in data:
+    if data.get("NetworkInterface") is not None:
         import capo_sagemaker.types.cluster_network_interface
 
         out["network_interface"] = (

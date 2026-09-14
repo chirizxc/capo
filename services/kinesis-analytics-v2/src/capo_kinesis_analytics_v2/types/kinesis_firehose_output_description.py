@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: KinesisFirehoseOutputDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KinesisFirehoseOutputDescription:
     out: KinesisFirehoseOutputDescription = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError(
             "KinesisFirehoseOutputDescription.resource_arn required"
         )
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     return out

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListTerminologiesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTerminologiesResponse:
     out: ListTerminologiesResponse = {}  # type: ignore[typeddict-item]
-    if "TerminologyPropertiesList" in data:
+    if data.get("TerminologyPropertiesList") is not None:
         import capo_translate.types.terminology_properties_list
 
         out["terminology_properties_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListTerminologiesResponse:
                 data["TerminologyPropertiesList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

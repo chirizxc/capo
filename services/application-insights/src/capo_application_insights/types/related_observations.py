@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: RelatedObservations) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelatedObservations:
     out: RelatedObservations = {}  # type: ignore[typeddict-item]
-    if "ObservationList" in data:
+    if data.get("ObservationList") is not None:
         import capo_application_insights.types.observation_list
 
         out["observation_list"] = (

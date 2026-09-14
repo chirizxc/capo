@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_mwaa_serverless.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_mwaa_serverless.types.idempotency_token_string
     import capo_mwaa_serverless.types.object_map
@@ -27,6 +29,7 @@ class StartWorkflowRunRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: StartWorkflowRunRequest) -> dict:
     out: dict = {}
+    out["WorkflowArn"] = value["workflow_arn"]
     if "client_token" in value:
         out["ClientToken"] = value["client_token"]
     if "override_parameters" in value:
@@ -44,9 +47,13 @@ def serialize_aws_json_1_0(value: StartWorkflowRunRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartWorkflowRunRequest:
     out: StartWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("WorkflowArn") is not None:
+        out["workflow_arn"] = data["WorkflowArn"]
+    else:
+        raise DeserializationError("StartWorkflowRunRequest.workflow_arn required")
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "OverrideParameters" in data:
+    if data.get("OverrideParameters") is not None:
         import capo_mwaa_serverless.types.object_map
 
         out["override_parameters"] = (
@@ -54,6 +61,6 @@ def deserialize_aws_json_1_0(data: dict) -> StartWorkflowRunRequest:
                 data["OverrideParameters"]
             )
         )
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
     return out

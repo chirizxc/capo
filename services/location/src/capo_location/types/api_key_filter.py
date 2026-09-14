@@ -23,6 +23,6 @@ def serialize_json(value: ApiKeyFilter) -> dict:
 
 def deserialize_json(data: dict) -> ApiKeyFilter:
     out: ApiKeyFilter = {}  # type: ignore[typeddict-item]
-    if "KeyStatus" in data:
+    if data.get("KeyStatus") is not None:
         out["key_status"] = data["KeyStatus"]
     return out

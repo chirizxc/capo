@@ -31,7 +31,7 @@ def serialize_json(value: DisassociateConnectPeerResponse) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateConnectPeerResponse:
     out: DisassociateConnectPeerResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectPeerAssociation" in data:
+    if data.get("ConnectPeerAssociation") is not None:
         import capo_networkmanager.types.connect_peer_association
 
         out["connect_peer_association"] = (

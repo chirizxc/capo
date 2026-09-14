@@ -61,25 +61,25 @@ def serialize_json(value: EnableOperatorAppOutput) -> dict:
 
 def deserialize_json(data: dict) -> EnableOperatorAppOutput:
     out: EnableOperatorAppOutput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("EnableOperatorAppOutput.agent_space_id required")
-    if "operatorAppUrl" in data:
+    if data.get("operatorAppUrl") is not None:
         out["operator_app_url"] = data["operatorAppUrl"]
-    if "iam" in data:
+    if data.get("iam") is not None:
         import capo_devops_agent.types.iam_auth_configuration
 
         out["iam"] = capo_devops_agent.types.iam_auth_configuration.deserialize_json(
             data["iam"]
         )
-    if "idc" in data:
+    if data.get("idc") is not None:
         import capo_devops_agent.types.idc_auth_configuration
 
         out["idc"] = capo_devops_agent.types.idc_auth_configuration.deserialize_json(
             data["idc"]
         )
-    if "idp" in data:
+    if data.get("idp") is not None:
         import capo_devops_agent.types.idp_auth_configuration
 
         out["idp"] = capo_devops_agent.types.idp_auth_configuration.deserialize_json(

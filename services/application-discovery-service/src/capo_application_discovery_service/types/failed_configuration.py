@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: FailedConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailedConfiguration:
     out: FailedConfiguration = {}  # type: ignore[typeddict-item]
-    if "configurationId" in data:
+    if data.get("configurationId") is not None:
         out["configuration_id"] = data["configurationId"]
-    if "errorStatusCode" in data:
+    if data.get("errorStatusCode") is not None:
         out["error_status_code"] = data["errorStatusCode"]
     else:
         out["error_status_code"] = 0
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

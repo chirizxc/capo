@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListOfRedshiftDataShares:
 
     out: ListOfRedshiftDataShares = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_dataexchange.types.redshift_data_share_details.deserialize_json(item)
         )

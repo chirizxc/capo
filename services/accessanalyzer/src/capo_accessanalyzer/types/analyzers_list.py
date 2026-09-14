@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AnalyzersList:
 
     out: AnalyzersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_accessanalyzer.types.analyzer_summary.deserialize_json(item))
     return out

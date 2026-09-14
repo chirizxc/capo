@@ -28,10 +28,10 @@ def serialize_json(value: Positioning) -> dict:
 
 def deserialize_json(data: dict) -> Positioning:
     out: Positioning = {}  # type: ignore[typeddict-item]
-    if "ClockSync" in data:
+    if data.get("ClockSync") is not None:
         out["clock_sync"] = data["ClockSync"]
-    if "Stream" in data:
+    if data.get("Stream") is not None:
         out["stream"] = data["Stream"]
-    if "Gnss" in data:
+    if data.get("Gnss") is not None:
         out["gnss"] = data["Gnss"]
     return out

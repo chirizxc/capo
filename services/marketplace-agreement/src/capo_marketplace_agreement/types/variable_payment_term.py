@@ -57,15 +57,15 @@ def serialize_aws_json_1_0(value: VariablePaymentTerm) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VariablePaymentTerm:
     out: VariablePaymentTerm = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "maxTotalChargeAmount" in data:
+    if data.get("maxTotalChargeAmount") is not None:
         out["max_total_charge_amount"] = data["maxTotalChargeAmount"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_marketplace_agreement.types.variable_payment_term_configuration
 
         out["configuration"] = (

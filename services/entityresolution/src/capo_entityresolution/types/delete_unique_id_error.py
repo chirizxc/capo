@@ -34,11 +34,11 @@ def serialize_json(value: DeleteUniqueIdError) -> dict:
 
 def deserialize_json(data: dict) -> DeleteUniqueIdError:
     out: DeleteUniqueIdError = {}  # type: ignore[typeddict-item]
-    if "uniqueId" in data:
+    if data.get("uniqueId") is not None:
         out["unique_id"] = data["uniqueId"]
     else:
         raise DeserializationError("DeleteUniqueIdError.unique_id required")
-    if "errorType" in data:
+    if data.get("errorType") is not None:
         import capo_entityresolution.types.delete_unique_id_error_type
 
         out["error_type"] = (

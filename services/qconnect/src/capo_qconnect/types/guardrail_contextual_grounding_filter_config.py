@@ -22,20 +22,28 @@ class GuardrailContextualGroundingFilterConfig(TypedDict, closed=True):
 def serialize_json(value: GuardrailContextualGroundingFilterConfig) -> dict:
     out: dict = {}
     out["type"] = value["type"]
-    out["threshold"] = value.get("threshold", 0)
+    out["threshold"] = (
+        "NaN"
+        if value.get("threshold", 0) != value.get("threshold", 0)
+        else "Infinity"
+        if value.get("threshold", 0) == float("inf")
+        else "-Infinity"
+        if value.get("threshold", 0) == float("-inf")
+        else value.get("threshold", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> GuardrailContextualGroundingFilterConfig:
     out: GuardrailContextualGroundingFilterConfig = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError(
             "GuardrailContextualGroundingFilterConfig.type required"
         )
-    if "threshold" in data:
-        out["threshold"] = data["threshold"]
+    if data.get("threshold") is not None:
+        out["threshold"] = float(data["threshold"])
     else:
         out["threshold"] = 0
     return out

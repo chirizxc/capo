@@ -55,11 +55,11 @@ def serialize_json(value: SendVoiceMessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendVoiceMessageRequest:
     out: SendVoiceMessageRequest = {}  # type: ignore[typeddict-item]
-    if "CallerId" in data:
+    if data.get("CallerId") is not None:
         out["caller_id"] = data["CallerId"]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_pinpoint_sms_voice.types.voice_message_content
 
         out["content"] = (
@@ -67,8 +67,8 @@ def deserialize_json(data: dict) -> SendVoiceMessageRequest:
                 data["Content"]
             )
         )
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
-    if "OriginationPhoneNumber" in data:
+    if data.get("OriginationPhoneNumber") is not None:
         out["origination_phone_number"] = data["OriginationPhoneNumber"]
     return out

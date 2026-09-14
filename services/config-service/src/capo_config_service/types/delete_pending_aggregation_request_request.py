@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeletePendingAggregationRequestRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DeletePendingAggregationRequestRequest:
     out: DeletePendingAggregationRequestRequest = {}  # type: ignore[typeddict-item]
-    if "RequesterAccountId" in data:
+    if data.get("RequesterAccountId") is not None:
         out["requester_account_id"] = data["RequesterAccountId"]
     else:
         raise DeserializationError(
             "DeletePendingAggregationRequestRequest.requester_account_id required"
         )
-    if "RequesterAwsRegion" in data:
+    if data.get("RequesterAwsRegion") is not None:
         out["requester_aws_region"] = data["RequesterAwsRegion"]
     else:
         raise DeserializationError(

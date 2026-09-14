@@ -42,11 +42,11 @@ def serialize_json(value: PolandAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> PolandAdditionalInfo:
     out: PolandAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "individualRegistrationNumber" in data:
+    if data.get("individualRegistrationNumber") is not None:
         out["individual_registration_number"] = data["individualRegistrationNumber"]
-    if "isGroupVatEnabled" in data:
+    if data.get("isGroupVatEnabled") is not None:
         out["is_group_vat_enabled"] = data["isGroupVatEnabled"]
-    if "taxRegistrationNumberType" in data:
+    if data.get("taxRegistrationNumberType") is not None:
         import capo_taxsettings.types.poland_tax_registration_number_type
 
         out["tax_registration_number_type"] = (

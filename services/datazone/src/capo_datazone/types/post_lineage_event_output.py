@@ -30,8 +30,8 @@ def serialize_json(value: PostLineageEventOutput) -> dict:
 
 def deserialize_json(data: dict) -> PostLineageEventOutput:
     out: PostLineageEventOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     return out

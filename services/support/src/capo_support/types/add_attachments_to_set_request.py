@@ -35,9 +35,9 @@ def serialize_aws_json_1_1(value: AddAttachmentsToSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddAttachmentsToSetRequest:
     out: AddAttachmentsToSetRequest = {}  # type: ignore[typeddict-item]
-    if "attachmentSetId" in data:
+    if data.get("attachmentSetId") is not None:
         out["attachment_set_id"] = data["attachmentSetId"]
-    if "attachments" in data:
+    if data.get("attachments") is not None:
         import capo_support.types.attachments
 
         out["attachments"] = capo_support.types.attachments.deserialize_aws_json_1_1(

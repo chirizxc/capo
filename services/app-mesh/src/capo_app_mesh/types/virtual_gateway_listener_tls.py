@@ -47,11 +47,11 @@ def serialize_json(value: VirtualGatewayListenerTls) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayListenerTls:
     out: VirtualGatewayListenerTls = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         out["mode"] = data["mode"]
     else:
         raise DeserializationError("VirtualGatewayListenerTls.mode required")
-    if "validation" in data:
+    if data.get("validation") is not None:
         import capo_app_mesh.types.virtual_gateway_listener_tls_validation_context
 
         out["validation"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> VirtualGatewayListenerTls:
                 data["validation"]
             )
         )
-    if "certificate" in data:
+    if data.get("certificate") is not None:
         import capo_app_mesh.types.virtual_gateway_listener_tls_certificate
 
         out["certificate"] = (

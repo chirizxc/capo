@@ -29,11 +29,11 @@ def serialize_json(value: Artifact) -> dict:
 
 def deserialize_json(data: dict) -> Artifact:
     out: Artifact = {}  # type: ignore[typeddict-item]
-    if "contents" in data:
+    if data.get("contents") is not None:
         out["contents"] = data["contents"]
     else:
         raise DeserializationError("Artifact.contents required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_securityagent.types.artifact_type
 
         out["type"] = capo_securityagent.types.artifact_type.deserialize_json(

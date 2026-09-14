@@ -46,11 +46,11 @@ def serialize_json(value: TypedLinkFacet) -> dict:
 
 def deserialize_json(data: dict) -> TypedLinkFacet:
     out: TypedLinkFacet = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("TypedLinkFacet.name required")
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_clouddirectory.types.typed_link_attribute_definition_list
 
         out["attributes"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> TypedLinkFacet:
         )
     else:
         raise DeserializationError("TypedLinkFacet.attributes required")
-    if "IdentityAttributeOrder" in data:
+    if data.get("IdentityAttributeOrder") is not None:
         import capo_clouddirectory.types.attribute_name_list
 
         out["identity_attribute_order"] = (

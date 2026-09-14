@@ -72,21 +72,21 @@ def serialize_aws_json_1_1(value: UpdateLocationFsxWindowsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLocationFsxWindowsRequest:
     out: UpdateLocationFsxWindowsRequest = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
     else:
         raise DeserializationError(
             "UpdateLocationFsxWindowsRequest.location_arn required"
         )
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "User" in data:
+    if data.get("User") is not None:
         out["user"] = data["User"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "CmkSecretConfig" in data:
+    if data.get("CmkSecretConfig") is not None:
         import capo_datasync.types.cmk_secret_config
 
         out["cmk_secret_config"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLocationFsxWindowsRequest:
                 data["CmkSecretConfig"]
             )
         )
-    if "CustomSecretConfig" in data:
+    if data.get("CustomSecretConfig") is not None:
         import capo_datasync.types.custom_secret_config
 
         out["custom_secret_config"] = (

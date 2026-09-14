@@ -26,10 +26,10 @@ def serialize_json(value: ResourceTypeDetails) -> dict:
 
 def deserialize_json(data: dict) -> ResourceTypeDetails:
     out: ResourceTypeDetails = {}  # type: ignore[typeddict-item]
-    if "totalActivePublic" in data:
+    if data.get("totalActivePublic") is not None:
         out["total_active_public"] = data["totalActivePublic"]
-    if "totalActiveCrossAccount" in data:
+    if data.get("totalActiveCrossAccount") is not None:
         out["total_active_cross_account"] = data["totalActiveCrossAccount"]
-    if "totalActiveErrors" in data:
+    if data.get("totalActiveErrors") is not None:
         out["total_active_errors"] = data["totalActiveErrors"]
     return out

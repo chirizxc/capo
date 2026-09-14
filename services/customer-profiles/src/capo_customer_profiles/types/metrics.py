@@ -19,7 +19,13 @@ def serialize_json(input_to_serialize: Metrics) -> dict:
         import capo_customer_profiles.types.training_metric_name
 
         out[capo_customer_profiles.types.training_metric_name.serialize_json(key)] = (
-            value
+            "NaN"
+            if value != value
+            else "Infinity"
+            if value == float("inf")
+            else "-Infinity"
+            if value == float("-inf")
+            else value
         )
     return out
 
@@ -29,7 +35,9 @@ def deserialize_json(data: dict) -> Metrics:
     for key, value in data.items():
         import capo_customer_profiles.types.training_metric_name
 
+        if value is None:
+            continue
         out[capo_customer_profiles.types.training_metric_name.deserialize_json(key)] = (
-            value
+            float(value)
         )
     return out

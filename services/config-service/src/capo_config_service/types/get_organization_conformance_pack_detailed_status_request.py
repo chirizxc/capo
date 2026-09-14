@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetOrganizationConformancePackDetailedStatusRequest:
     out: GetOrganizationConformancePackDetailedStatusRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationConformancePackName" in data:
+    if data.get("OrganizationConformancePackName") is not None:
         out["organization_conformance_pack_name"] = data[
             "OrganizationConformancePackName"
         ]
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "GetOrganizationConformancePackDetailedStatusRequest.organization_conformance_pack_name required"
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_config_service.types.organization_resource_detailed_status_filters
 
         out["filters"] = (
@@ -66,10 +66,10 @@ def deserialize_aws_json_1_1(
                 data["Filters"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

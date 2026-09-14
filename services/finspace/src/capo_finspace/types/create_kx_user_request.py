@@ -43,18 +43,18 @@ def serialize_json(value: CreateKxUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxUserRequest:
     out: CreateKxUserRequest = {}  # type: ignore[typeddict-item]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
     else:
         raise DeserializationError("CreateKxUserRequest.user_name required")
-    if "iamRole" in data:
+    if data.get("iamRole") is not None:
         out["iam_role"] = data["iamRole"]
     else:
         raise DeserializationError("CreateKxUserRequest.iam_role required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_finspace.types.tag_map
 
         out["tags"] = capo_finspace.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

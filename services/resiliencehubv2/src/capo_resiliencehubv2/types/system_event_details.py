@@ -38,15 +38,15 @@ def serialize_json(value: SystemEventDetails) -> dict:
 
 def deserialize_json(data: dict) -> SystemEventDetails:
     out: SystemEventDetails = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("SystemEventDetails.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("SystemEventDetails.description required")
-    if "eventMetadata" in data:
+    if data.get("eventMetadata") is not None:
         import capo_resiliencehubv2.types.system_event_metadata
 
         out["event_metadata"] = (

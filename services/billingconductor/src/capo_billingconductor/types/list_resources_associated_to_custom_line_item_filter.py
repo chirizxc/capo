@@ -31,7 +31,7 @@ def serialize_json(value: ListResourcesAssociatedToCustomLineItemFilter) -> dict
 
 def deserialize_json(data: dict) -> ListResourcesAssociatedToCustomLineItemFilter:
     out: ListResourcesAssociatedToCustomLineItemFilter = {}  # type: ignore[typeddict-item]
-    if "Relationship" in data:
+    if data.get("Relationship") is not None:
         import capo_billingconductor.types.custom_line_item_relationship
 
         out["relationship"] = (

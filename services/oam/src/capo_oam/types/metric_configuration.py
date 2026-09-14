@@ -24,7 +24,7 @@ def serialize_json(value: MetricConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MetricConfiguration:
     out: MetricConfiguration = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         out["filter"] = data["Filter"]
     else:
         raise DeserializationError("MetricConfiguration.filter required")

@@ -53,7 +53,20 @@ def serialize_query(
 ) -> None:
     key_prefix = f"{prefix}." if prefix else ""
     if "target_value" in value:
-        pairs.append((f"{key_prefix}TargetValue", str(value["target_value"])))
+        pairs.append(
+            (
+                f"{key_prefix}TargetValue",
+                (
+                    "NaN"
+                    if value["target_value"] != value["target_value"]
+                    else "Infinity"
+                    if value["target_value"] == float("inf")
+                    else "-Infinity"
+                    if value["target_value"] == float("-inf")
+                    else str(value["target_value"])
+                ),
+            )
+        )
     if "predefined_metric_pair_specification" in value:
         import capo_auto_scaling.types.predictive_scaling_predefined_metric_pair
 

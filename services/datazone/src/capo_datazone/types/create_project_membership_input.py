@@ -40,13 +40,13 @@ def serialize_json(value: CreateProjectMembershipInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateProjectMembershipInput:
     out: CreateProjectMembershipInput = {}  # type: ignore[typeddict-item]
-    if "member" in data:
+    if data.get("member") is not None:
         import capo_datazone.types.member
 
         out["member"] = capo_datazone.types.member.deserialize_json(data["member"])
     else:
         raise DeserializationError("CreateProjectMembershipInput.member required")
-    if "designation" in data:
+    if data.get("designation") is not None:
         import capo_datazone.types.user_designation
 
         out["designation"] = capo_datazone.types.user_designation.deserialize_json(

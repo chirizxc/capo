@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: USD) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> USD:
     out: USD = {}  # type: ignore[typeddict-item]
-    if "Dollars" in data:
+    if data.get("Dollars") is not None:
         out["dollars"] = data["Dollars"]
-    if "Cents" in data:
+    if data.get("Cents") is not None:
         out["cents"] = data["Cents"]
-    if "TenthFractionsOfACent" in data:
+    if data.get("TenthFractionsOfACent") is not None:
         out["tenth_fractions_of_a_cent"] = data["TenthFractionsOfACent"]
     return out

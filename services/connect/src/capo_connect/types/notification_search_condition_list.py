@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> NotificationSearchConditionList:
 
     out: NotificationSearchConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.notification_search_criteria.deserialize_json(item)
         )

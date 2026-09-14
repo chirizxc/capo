@@ -52,17 +52,17 @@ def serialize_aws_json_1_1(value: RootCause) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RootCause:
     out: RootCause = {}  # type: ignore[typeddict-item]
-    if "Service" in data:
+    if data.get("Service") is not None:
         out["service"] = data["Service"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "LinkedAccount" in data:
+    if data.get("LinkedAccount") is not None:
         out["linked_account"] = data["LinkedAccount"]
-    if "LinkedAccountName" in data:
+    if data.get("LinkedAccountName") is not None:
         out["linked_account_name"] = data["LinkedAccountName"]
-    if "UsageType" in data:
+    if data.get("UsageType") is not None:
         out["usage_type"] = data["UsageType"]
-    if "Impact" in data:
+    if data.get("Impact") is not None:
         import capo_cost_explorer.types.root_cause_impact
 
         out["impact"] = (

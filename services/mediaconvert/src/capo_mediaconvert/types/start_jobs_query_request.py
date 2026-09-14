@@ -50,7 +50,7 @@ def serialize_json(value: StartJobsQueryRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartJobsQueryRequest:
     out: StartJobsQueryRequest = {}  # type: ignore[typeddict-item]
-    if "filterList" in data:
+    if data.get("filterList") is not None:
         import capo_mediaconvert.types.__list_of_jobs_query_filter
 
         out["filter_list"] = (
@@ -58,11 +58,11 @@ def deserialize_json(data: dict) -> StartJobsQueryRequest:
                 data["filterList"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_mediaconvert.types.order
 
         out["order"] = capo_mediaconvert.types.order.deserialize_json(data["order"])

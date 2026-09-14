@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ModifyClusterInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyClusterInput:
     out: ModifyClusterInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "StepConcurrencyLevel" in data:
+    if data.get("StepConcurrencyLevel") is not None:
         out["step_concurrency_level"] = data["StepConcurrencyLevel"]
-    if "ExtendedSupport" in data:
+    if data.get("ExtendedSupport") is not None:
         out["extended_support"] = data["ExtendedSupport"]
     return out

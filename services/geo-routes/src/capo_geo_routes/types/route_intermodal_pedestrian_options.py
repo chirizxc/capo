@@ -24,14 +24,22 @@ def serialize_json(value: RouteIntermodalPedestrianOptions) -> dict:
     if "max_distance" in value:
         out["MaxDistance"] = value["max_distance"]
     if "speed" in value:
-        out["Speed"] = value["speed"]
+        out["Speed"] = (
+            "NaN"
+            if value["speed"] != value["speed"]
+            else "Infinity"
+            if value["speed"] == float("inf")
+            else "-Infinity"
+            if value["speed"] == float("-inf")
+            else value["speed"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> RouteIntermodalPedestrianOptions:
     out: RouteIntermodalPedestrianOptions = {}  # type: ignore[typeddict-item]
-    if "MaxDistance" in data:
+    if data.get("MaxDistance") is not None:
         out["max_distance"] = data["MaxDistance"]
-    if "Speed" in data:
-        out["speed"] = data["Speed"]
+    if data.get("Speed") is not None:
+        out["speed"] = float(data["Speed"])
     return out

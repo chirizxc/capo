@@ -42,9 +42,9 @@ def serialize_aws_json_1_1(value: SftpConnectorConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SftpConnectorConfig:
     out: SftpConnectorConfig = {}  # type: ignore[typeddict-item]
-    if "UserSecretId" in data:
+    if data.get("UserSecretId") is not None:
         out["user_secret_id"] = data["UserSecretId"]
-    if "TrustedHostKeys" in data:
+    if data.get("TrustedHostKeys") is not None:
         import capo_transfer.types.sftp_connector_trusted_host_key_list
 
         out["trusted_host_keys"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> SftpConnectorConfig:
                 data["TrustedHostKeys"]
             )
         )
-    if "MaxConcurrentConnections" in data:
+    if data.get("MaxConcurrentConnections") is not None:
         out["max_concurrent_connections"] = data["MaxConcurrentConnections"]
     else:
         out["max_concurrent_connections"] = 1

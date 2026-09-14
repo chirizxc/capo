@@ -30,11 +30,11 @@ def serialize_json(value: KinesisDataStreamData) -> dict:
 
 def deserialize_json(data: dict) -> KinesisDataStreamData:
     out: KinesisDataStreamData = {}  # type: ignore[typeddict-item]
-    if "kinesisRoleArn" in data:
+    if data.get("kinesisRoleArn") is not None:
         out["kinesis_role_arn"] = data["kinesisRoleArn"]
     else:
         raise DeserializationError("KinesisDataStreamData.kinesis_role_arn required")
-    if "kinesisDataStreamArn" in data:
+    if data.get("kinesisDataStreamArn") is not None:
         out["kinesis_data_stream_arn"] = data["kinesisDataStreamArn"]
     else:
         raise DeserializationError(

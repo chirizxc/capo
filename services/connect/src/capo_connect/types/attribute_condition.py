@@ -42,7 +42,15 @@ def serialize_json(value: AttributeCondition) -> dict:
     if "value" in value:
         out["Value"] = value["value"]
     if "proficiency_level" in value:
-        out["ProficiencyLevel"] = value["proficiency_level"]
+        out["ProficiencyLevel"] = (
+            "NaN"
+            if value["proficiency_level"] != value["proficiency_level"]
+            else "Infinity"
+            if value["proficiency_level"] == float("inf")
+            else "-Infinity"
+            if value["proficiency_level"] == float("-inf")
+            else value["proficiency_level"]
+        )
     if "range" in value:
         import capo_connect.types.range
 
@@ -60,22 +68,22 @@ def serialize_json(value: AttributeCondition) -> dict:
 
 def deserialize_json(data: dict) -> AttributeCondition:
     out: AttributeCondition = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "ProficiencyLevel" in data:
-        out["proficiency_level"] = data["ProficiencyLevel"]
-    if "Range" in data:
+    if data.get("ProficiencyLevel") is not None:
+        out["proficiency_level"] = float(data["ProficiencyLevel"])
+    if data.get("Range") is not None:
         import capo_connect.types.range
 
         out["range"] = capo_connect.types.range.deserialize_json(data["Range"])
-    if "MatchCriteria" in data:
+    if data.get("MatchCriteria") is not None:
         import capo_connect.types.match_criteria
 
         out["match_criteria"] = capo_connect.types.match_criteria.deserialize_json(
             data["MatchCriteria"]
         )
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         out["comparison_operator"] = data["ComparisonOperator"]
     return out

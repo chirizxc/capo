@@ -48,7 +48,16 @@ def serialize_aws_json_1_0(value: JobProgressReport) -> dict:
     if "total_number_of_scanned_files" in value:
         out["TotalNumberOfScannedFiles"] = value["total_number_of_scanned_files"]
     if "total_size_of_scanned_files_in_mb" in value:
-        out["TotalSizeOfScannedFilesInMB"] = value["total_size_of_scanned_files_in_mb"]
+        out["TotalSizeOfScannedFilesInMB"] = (
+            "NaN"
+            if value["total_size_of_scanned_files_in_mb"]
+            != value["total_size_of_scanned_files_in_mb"]
+            else "Infinity"
+            if value["total_size_of_scanned_files_in_mb"] == float("inf")
+            else "-Infinity"
+            if value["total_size_of_scanned_files_in_mb"] == float("-inf")
+            else value["total_size_of_scanned_files_in_mb"]
+        )
     if "total_number_of_imported_files" in value:
         out["TotalNumberOfImportedFiles"] = value["total_number_of_imported_files"]
     if "total_number_of_resources_scanned" in value:
@@ -68,32 +77,42 @@ def serialize_aws_json_1_0(value: JobProgressReport) -> dict:
             "total_number_of_files_read_with_customer_error"
         ]
     if "throughput" in value:
-        out["Throughput"] = value["throughput"]
+        out["Throughput"] = (
+            "NaN"
+            if value["throughput"] != value["throughput"]
+            else "Infinity"
+            if value["throughput"] == float("inf")
+            else "-Infinity"
+            if value["throughput"] == float("-inf")
+            else value["throughput"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> JobProgressReport:
     out: JobProgressReport = {}  # type: ignore[typeddict-item]
-    if "TotalNumberOfScannedFiles" in data:
+    if data.get("TotalNumberOfScannedFiles") is not None:
         out["total_number_of_scanned_files"] = data["TotalNumberOfScannedFiles"]
-    if "TotalSizeOfScannedFilesInMB" in data:
-        out["total_size_of_scanned_files_in_mb"] = data["TotalSizeOfScannedFilesInMB"]
-    if "TotalNumberOfImportedFiles" in data:
+    if data.get("TotalSizeOfScannedFilesInMB") is not None:
+        out["total_size_of_scanned_files_in_mb"] = float(
+            data["TotalSizeOfScannedFilesInMB"]
+        )
+    if data.get("TotalNumberOfImportedFiles") is not None:
         out["total_number_of_imported_files"] = data["TotalNumberOfImportedFiles"]
-    if "TotalNumberOfResourcesScanned" in data:
+    if data.get("TotalNumberOfResourcesScanned") is not None:
         out["total_number_of_resources_scanned"] = data["TotalNumberOfResourcesScanned"]
-    if "TotalNumberOfResourcesImported" in data:
+    if data.get("TotalNumberOfResourcesImported") is not None:
         out["total_number_of_resources_imported"] = data[
             "TotalNumberOfResourcesImported"
         ]
-    if "TotalNumberOfResourcesWithCustomerError" in data:
+    if data.get("TotalNumberOfResourcesWithCustomerError") is not None:
         out["total_number_of_resources_with_customer_error"] = data[
             "TotalNumberOfResourcesWithCustomerError"
         ]
-    if "TotalNumberOfFilesReadWithCustomerError" in data:
+    if data.get("TotalNumberOfFilesReadWithCustomerError") is not None:
         out["total_number_of_files_read_with_customer_error"] = data[
             "TotalNumberOfFilesReadWithCustomerError"
         ]
-    if "Throughput" in data:
-        out["throughput"] = data["Throughput"]
+    if data.get("Throughput") is not None:
+        out["throughput"] = float(data["Throughput"])
     return out

@@ -37,15 +37,16 @@ class TagNotFoundFault(ServiceError):
 
     code: str | None = "TagNotFoundFault"
 
-    def __init__(self, data: TagNotFoundFault_):
+    def __init__(self, data: TagNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TagNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TagNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(cls, el: Element, message: str | None = None) -> "TagNotFoundFault":
+        return cls(deserialize_query(el), message)

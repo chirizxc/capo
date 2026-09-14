@@ -41,7 +41,7 @@ def serialize_json(value: ListCoverageStatisticsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListCoverageStatisticsRequest:
     out: ListCoverageStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.coverage_filter_criteria
 
         out["filter_criteria"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> ListCoverageStatisticsRequest:
                 data["filterCriteria"]
             )
         )
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         out["group_by"] = data["groupBy"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

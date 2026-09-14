@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ConfiguredTeamsList:
 
     out: ConfiguredTeamsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chatbot.types.configured_team.deserialize_json(item))
     return out

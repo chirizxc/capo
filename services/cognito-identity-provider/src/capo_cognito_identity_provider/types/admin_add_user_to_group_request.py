@@ -34,15 +34,15 @@ def serialize_aws_json_1_1(value: AdminAddUserToGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminAddUserToGroupRequest:
     out: AdminAddUserToGroupRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("AdminAddUserToGroupRequest.user_pool_id required")
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("AdminAddUserToGroupRequest.username required")
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     else:
         raise DeserializationError("AdminAddUserToGroupRequest.group_name required")

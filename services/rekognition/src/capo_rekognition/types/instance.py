@@ -31,7 +31,15 @@ def serialize_aws_json_1_1(value: Instance) -> dict:
             value["bounding_box"]
         )
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "dominant_colors" in value:
         import capo_rekognition.types.dominant_colors
 
@@ -45,7 +53,7 @@ def serialize_aws_json_1_1(value: Instance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Instance:
     out: Instance = {}  # type: ignore[typeddict-item]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_rekognition.types.bounding_box
 
         out["bounding_box"] = (
@@ -53,9 +61,9 @@ def deserialize_aws_json_1_1(data: dict) -> Instance:
                 data["BoundingBox"]
             )
         )
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "DominantColors" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("DominantColors") is not None:
         import capo_rekognition.types.dominant_colors
 
         out["dominant_colors"] = (

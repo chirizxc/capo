@@ -115,35 +115,35 @@ def serialize_json(value: CreateEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentRequest:
     out: CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEnvironmentRequest.name required")
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     else:
         raise DeserializationError("CreateEnvironmentRequest.instance_type required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         out["engine_type"] = data["engineType"]
     else:
         raise DeserializationError("CreateEnvironmentRequest.engine_type required")
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_m2.types.string50_list
 
         out["subnet_ids"] = capo_m2.types.string50_list.deserialize_json(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_m2.types.string50_list
 
         out["security_group_ids"] = capo_m2.types.string50_list.deserialize_json(
             data["securityGroupIds"]
         )
-    if "storageConfigurations" in data:
+    if data.get("storageConfigurations") is not None:
         import capo_m2.types.storage_configuration_list
 
         out["storage_configurations"] = (
@@ -151,11 +151,11 @@ def deserialize_json(data: dict) -> CreateEnvironmentRequest:
                 data["storageConfigurations"]
             )
         )
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
     else:
         out["publicly_accessible"] = False
-    if "highAvailabilityConfig" in data:
+    if data.get("highAvailabilityConfig") is not None:
         import capo_m2.types.high_availability_config
 
         out["high_availability_config"] = (
@@ -163,16 +163,16 @@ def deserialize_json(data: dict) -> CreateEnvironmentRequest:
                 data["highAvailabilityConfig"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_m2.types.tag_map
 
         out["tags"] = capo_m2.types.tag_map.deserialize_json(data["tags"])
-    if "preferredMaintenanceWindow" in data:
+    if data.get("preferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["preferredMaintenanceWindow"]
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         out["network_type"] = data["networkType"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

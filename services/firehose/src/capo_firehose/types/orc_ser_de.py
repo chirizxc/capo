@@ -60,7 +60,15 @@ def serialize_aws_json_1_1(value: OrcSerDe) -> dict:
     if "enable_padding" in value:
         out["EnablePadding"] = value["enable_padding"]
     if "padding_tolerance" in value:
-        out["PaddingTolerance"] = value["padding_tolerance"]
+        out["PaddingTolerance"] = (
+            "NaN"
+            if value["padding_tolerance"] != value["padding_tolerance"]
+            else "Infinity"
+            if value["padding_tolerance"] == float("inf")
+            else "-Infinity"
+            if value["padding_tolerance"] == float("-inf")
+            else value["padding_tolerance"]
+        )
     if "compression" in value:
         import capo_firehose.types.orc_compression
 
@@ -76,11 +84,26 @@ def serialize_aws_json_1_1(value: OrcSerDe) -> dict:
             )
         )
     if "bloom_filter_false_positive_probability" in value:
-        out["BloomFilterFalsePositiveProbability"] = value[
-            "bloom_filter_false_positive_probability"
-        ]
+        out["BloomFilterFalsePositiveProbability"] = (
+            "NaN"
+            if value["bloom_filter_false_positive_probability"]
+            != value["bloom_filter_false_positive_probability"]
+            else "Infinity"
+            if value["bloom_filter_false_positive_probability"] == float("inf")
+            else "-Infinity"
+            if value["bloom_filter_false_positive_probability"] == float("-inf")
+            else value["bloom_filter_false_positive_probability"]
+        )
     if "dictionary_key_threshold" in value:
-        out["DictionaryKeyThreshold"] = value["dictionary_key_threshold"]
+        out["DictionaryKeyThreshold"] = (
+            "NaN"
+            if value["dictionary_key_threshold"] != value["dictionary_key_threshold"]
+            else "Infinity"
+            if value["dictionary_key_threshold"] == float("inf")
+            else "-Infinity"
+            if value["dictionary_key_threshold"] == float("-inf")
+            else value["dictionary_key_threshold"]
+        )
     if "format_version" in value:
         import capo_firehose.types.orc_format_version
 
@@ -94,17 +117,17 @@ def serialize_aws_json_1_1(value: OrcSerDe) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrcSerDe:
     out: OrcSerDe = {}  # type: ignore[typeddict-item]
-    if "StripeSizeBytes" in data:
+    if data.get("StripeSizeBytes") is not None:
         out["stripe_size_bytes"] = data["StripeSizeBytes"]
-    if "BlockSizeBytes" in data:
+    if data.get("BlockSizeBytes") is not None:
         out["block_size_bytes"] = data["BlockSizeBytes"]
-    if "RowIndexStride" in data:
+    if data.get("RowIndexStride") is not None:
         out["row_index_stride"] = data["RowIndexStride"]
-    if "EnablePadding" in data:
+    if data.get("EnablePadding") is not None:
         out["enable_padding"] = data["EnablePadding"]
-    if "PaddingTolerance" in data:
-        out["padding_tolerance"] = data["PaddingTolerance"]
-    if "Compression" in data:
+    if data.get("PaddingTolerance") is not None:
+        out["padding_tolerance"] = float(data["PaddingTolerance"])
+    if data.get("Compression") is not None:
         import capo_firehose.types.orc_compression
 
         out["compression"] = (
@@ -112,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrcSerDe:
                 data["Compression"]
             )
         )
-    if "BloomFilterColumns" in data:
+    if data.get("BloomFilterColumns") is not None:
         import capo_firehose.types.list_of_non_empty_strings_without_whitespace
 
         out["bloom_filter_columns"] = (
@@ -120,13 +143,13 @@ def deserialize_aws_json_1_1(data: dict) -> OrcSerDe:
                 data["BloomFilterColumns"]
             )
         )
-    if "BloomFilterFalsePositiveProbability" in data:
-        out["bloom_filter_false_positive_probability"] = data[
-            "BloomFilterFalsePositiveProbability"
-        ]
-    if "DictionaryKeyThreshold" in data:
-        out["dictionary_key_threshold"] = data["DictionaryKeyThreshold"]
-    if "FormatVersion" in data:
+    if data.get("BloomFilterFalsePositiveProbability") is not None:
+        out["bloom_filter_false_positive_probability"] = float(
+            data["BloomFilterFalsePositiveProbability"]
+        )
+    if data.get("DictionaryKeyThreshold") is not None:
+        out["dictionary_key_threshold"] = float(data["DictionaryKeyThreshold"])
+    if data.get("FormatVersion") is not None:
         import capo_firehose.types.orc_format_version
 
         out["format_version"] = (

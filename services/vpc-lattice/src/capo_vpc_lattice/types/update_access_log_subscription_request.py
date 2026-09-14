@@ -29,7 +29,7 @@ def serialize_json(value: UpdateAccessLogSubscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccessLogSubscriptionRequest:
     out: UpdateAccessLogSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "destinationArn" in data:
+    if data.get("destinationArn") is not None:
         out["destination_arn"] = data["destinationArn"]
     else:
         raise DeserializationError(

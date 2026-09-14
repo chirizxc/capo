@@ -31,7 +31,7 @@ def serialize_json(value: AudioSelectorGroup) -> dict:
 
 def deserialize_json(data: dict) -> AudioSelectorGroup:
     out: AudioSelectorGroup = {}  # type: ignore[typeddict-item]
-    if "audioSelectorNames" in data:
+    if data.get("audioSelectorNames") is not None:
         import capo_mediaconvert.types.__list_of__string_min1
 
         out["audio_selector_names"] = (

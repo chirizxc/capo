@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreatePerformanceAnalysisReportResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePerformanceAnalysisReportResponse:
     out: CreatePerformanceAnalysisReportResponse = {}  # type: ignore[typeddict-item]
-    if "AnalysisReportId" in data:
+    if data.get("AnalysisReportId") is not None:
         out["analysis_report_id"] = data["AnalysisReportId"]
     return out

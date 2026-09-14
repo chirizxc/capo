@@ -194,15 +194,15 @@ def serialize_json(value: StartStreamSessionOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartStreamSessionOutput:
     out: StartStreamSessionOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "StreamGroupId" in data:
+    if data.get("StreamGroupId") is not None:
         out["stream_group_id"] = data["StreamGroupId"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gameliftstreams.types.stream_session_status
 
         out["status"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> StartStreamSessionOutput:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_gameliftstreams.types.stream_session_status_reason
 
         out["status_reason"] = (
@@ -218,23 +218,23 @@ def deserialize_json(data: dict) -> StartStreamSessionOutput:
                 data["StatusReason"]
             )
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_gameliftstreams.types.protocol
 
         out["protocol"] = capo_gameliftstreams.types.protocol.deserialize_json(
             data["Protocol"]
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "SignalRequest" in data:
+    if data.get("SignalRequest") is not None:
         out["signal_request"] = data["SignalRequest"]
-    if "SignalResponse" in data:
+    if data.get("SignalResponse") is not None:
         out["signal_response"] = data["SignalResponse"]
-    if "ConnectionTimeoutSeconds" in data:
+    if data.get("ConnectionTimeoutSeconds") is not None:
         out["connection_timeout_seconds"] = data["ConnectionTimeoutSeconds"]
-    if "SessionLengthSeconds" in data:
+    if data.get("SessionLengthSeconds") is not None:
         out["session_length_seconds"] = data["SessionLengthSeconds"]
-    if "AdditionalLaunchArgs" in data:
+    if data.get("AdditionalLaunchArgs") is not None:
         import capo_gameliftstreams.types.game_launch_arg_list
 
         out["additional_launch_args"] = (
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> StartStreamSessionOutput:
                 data["AdditionalLaunchArgs"]
             )
         )
-    if "AdditionalEnvironmentVariables" in data:
+    if data.get("AdditionalEnvironmentVariables") is not None:
         import capo_gameliftstreams.types.environment_variables
 
         out["additional_environment_variables"] = (
@@ -250,7 +250,7 @@ def deserialize_json(data: dict) -> StartStreamSessionOutput:
                 data["AdditionalEnvironmentVariables"]
             )
         )
-    if "PerformanceStatsConfiguration" in data:
+    if data.get("PerformanceStatsConfiguration") is not None:
         import capo_gameliftstreams.types.performance_stats_configuration
 
         out["performance_stats_configuration"] = (
@@ -258,11 +258,11 @@ def deserialize_json(data: dict) -> StartStreamSessionOutput:
                 data["PerformanceStatsConfiguration"]
             )
         )
-    if "LogFileLocationUri" in data:
+    if data.get("LogFileLocationUri") is not None:
         out["log_file_location_uri"] = data["LogFileLocationUri"]
-    if "WebSdkProtocolUrl" in data:
+    if data.get("WebSdkProtocolUrl") is not None:
         out["web_sdk_protocol_url"] = data["WebSdkProtocolUrl"]
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["last_updated_at"] = (
@@ -270,7 +270,7 @@ def deserialize_json(data: dict) -> StartStreamSessionOutput:
                 data["LastUpdatedAt"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["created_at"] = (
@@ -278,9 +278,9 @@ def deserialize_json(data: dict) -> StartStreamSessionOutput:
                 data["CreatedAt"]
             )
         )
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
-    if "ExportFilesMetadata" in data:
+    if data.get("ExportFilesMetadata") is not None:
         import capo_gameliftstreams.types.export_files_metadata
 
         out["export_files_metadata"] = (

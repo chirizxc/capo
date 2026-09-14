@@ -18,4 +18,4 @@ def serialize_json(value: ListNetworkMigrationMapperSegmentConstructsIDsFilter) 
 def deserialize_json(
     data: list,
 ) -> ListNetworkMigrationMapperSegmentConstructsIDsFilter:
-    return list(data)
+    return [item for item in data if item is not None]

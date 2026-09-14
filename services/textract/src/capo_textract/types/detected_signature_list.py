@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> DetectedSignatureList:
 
     out: DetectedSignatureList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_textract.types.detected_signature.deserialize_aws_json_1_1(item)
         )

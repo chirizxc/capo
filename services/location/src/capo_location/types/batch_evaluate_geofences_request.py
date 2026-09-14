@@ -35,7 +35,7 @@ def serialize_json(value: BatchEvaluateGeofencesRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchEvaluateGeofencesRequest:
     out: BatchEvaluateGeofencesRequest = {}  # type: ignore[typeddict-item]
-    if "DevicePositionUpdates" in data:
+    if data.get("DevicePositionUpdates") is not None:
         import capo_location.types.device_position_update_list
 
         out["device_position_updates"] = (

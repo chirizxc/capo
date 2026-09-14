@@ -44,7 +44,7 @@ def serialize_json(value: ConfigurableUpfrontRateCardItem) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurableUpfrontRateCardItem:
     out: ConfigurableUpfrontRateCardItem = {}  # type: ignore[typeddict-item]
-    if "selector" in data:
+    if data.get("selector") is not None:
         import capo_marketplace_discovery.types.selector
 
         out["selector"] = capo_marketplace_discovery.types.selector.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ConfigurableUpfrontRateCardItem:
         )
     else:
         raise DeserializationError("ConfigurableUpfrontRateCardItem.selector required")
-    if "constraints" in data:
+    if data.get("constraints") is not None:
         import capo_marketplace_discovery.types.constraints
 
         out["constraints"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ConfigurableUpfrontRateCardItem:
         raise DeserializationError(
             "ConfigurableUpfrontRateCardItem.constraints required"
         )
-    if "rateCard" in data:
+    if data.get("rateCard") is not None:
         import capo_marketplace_discovery.types.rate_card_list
 
         out["rate_card"] = (

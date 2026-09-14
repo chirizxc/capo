@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchGetStepErrors:
 
     out: BatchGetStepErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.batch_get_step_error.deserialize_json(item))
     return out

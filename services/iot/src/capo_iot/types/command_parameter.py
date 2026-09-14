@@ -72,29 +72,29 @@ def serialize_json(value: CommandParameter) -> dict:
 
 def deserialize_json(data: dict) -> CommandParameter:
     out: CommandParameter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CommandParameter.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iot.types.command_parameter_type
 
         out["type"] = capo_iot.types.command_parameter_type.deserialize_json(
             data["type"]
         )
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iot.types.command_parameter_value
 
         out["value"] = capo_iot.types.command_parameter_value.deserialize_json(
             data["value"]
         )
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         import capo_iot.types.command_parameter_value
 
         out["default_value"] = capo_iot.types.command_parameter_value.deserialize_json(
             data["defaultValue"]
         )
-    if "valueConditions" in data:
+    if data.get("valueConditions") is not None:
         import capo_iot.types.command_parameter_value_condition_list
 
         out["value_conditions"] = (
@@ -102,6 +102,6 @@ def deserialize_json(data: dict) -> CommandParameter:
                 data["valueConditions"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

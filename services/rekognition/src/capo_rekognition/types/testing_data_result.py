@@ -46,19 +46,19 @@ def serialize_aws_json_1_1(value: TestingDataResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestingDataResult:
     out: TestingDataResult = {}  # type: ignore[typeddict-item]
-    if "Input" in data:
+    if data.get("Input") is not None:
         import capo_rekognition.types.testing_data
 
         out["input"] = capo_rekognition.types.testing_data.deserialize_aws_json_1_1(
             data["Input"]
         )
-    if "Output" in data:
+    if data.get("Output") is not None:
         import capo_rekognition.types.testing_data
 
         out["output"] = capo_rekognition.types.testing_data.deserialize_aws_json_1_1(
             data["Output"]
         )
-    if "Validation" in data:
+    if data.get("Validation") is not None:
         import capo_rekognition.types.validation_data
 
         out["validation"] = (

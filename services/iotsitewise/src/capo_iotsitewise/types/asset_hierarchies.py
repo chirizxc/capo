@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssetHierarchies:
 
     out: AssetHierarchies = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotsitewise.types.asset_hierarchy.deserialize_json(item))
     return out

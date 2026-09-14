@@ -54,9 +54,9 @@ def serialize_json(value: ImportedSidewalkDevice) -> dict:
 
 def deserialize_json(data: dict) -> ImportedSidewalkDevice:
     out: ImportedSidewalkDevice = {}  # type: ignore[typeddict-item]
-    if "SidewalkManufacturingSn" in data:
+    if data.get("SidewalkManufacturingSn") is not None:
         out["sidewalk_manufacturing_sn"] = data["SidewalkManufacturingSn"]
-    if "OnboardingStatus" in data:
+    if data.get("OnboardingStatus") is not None:
         import capo_iot_wireless.types.onboard_status
 
         out["onboarding_status"] = (
@@ -64,9 +64,9 @@ def deserialize_json(data: dict) -> ImportedSidewalkDevice:
                 data["OnboardingStatus"]
             )
         )
-    if "OnboardingStatusReason" in data:
+    if data.get("OnboardingStatusReason") is not None:
         out["onboarding_status_reason"] = data["OnboardingStatusReason"]
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_iot_wireless.types.last_update_time
 
         out["last_update_time"] = (

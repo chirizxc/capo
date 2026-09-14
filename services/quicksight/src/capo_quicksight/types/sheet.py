@@ -39,11 +39,11 @@ def serialize_json(value: Sheet) -> dict:
 
 def deserialize_json(data: dict) -> Sheet:
     out: Sheet = {}  # type: ignore[typeddict-item]
-    if "SheetId" in data:
+    if data.get("SheetId") is not None:
         out["sheet_id"] = data["SheetId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Images" in data:
+    if data.get("Images") is not None:
         import capo_quicksight.types.sheet_image_list
 
         out["images"] = capo_quicksight.types.sheet_image_list.deserialize_json(

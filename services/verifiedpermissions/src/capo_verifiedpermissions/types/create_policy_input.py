@@ -46,13 +46,13 @@ def serialize_aws_json_1_0(value: CreatePolicyInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreatePolicyInput:
     out: CreatePolicyInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("CreatePolicyInput.policy_store_id required")
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_verifiedpermissions.types.policy_definition
 
         out["definition"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePolicyInput:
         )
     else:
         raise DeserializationError("CreatePolicyInput.definition required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

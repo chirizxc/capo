@@ -85,39 +85,39 @@ def serialize_json(value: FargateProfile) -> dict:
 
 def deserialize_json(data: dict) -> FargateProfile:
     out: FargateProfile = {}  # type: ignore[typeddict-item]
-    if "fargateProfileName" in data:
+    if data.get("fargateProfileName") is not None:
         out["fargate_profile_name"] = data["fargateProfileName"]
-    if "fargateProfileArn" in data:
+    if data.get("fargateProfileArn") is not None:
         out["fargate_profile_arn"] = data["fargateProfileArn"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_eks.types.timestamp
 
         out["created_at"] = capo_eks.types.timestamp.deserialize_json(data["createdAt"])
-    if "podExecutionRoleArn" in data:
+    if data.get("podExecutionRoleArn") is not None:
         out["pod_execution_role_arn"] = data["podExecutionRoleArn"]
-    if "subnets" in data:
+    if data.get("subnets") is not None:
         import capo_eks.types.string_list
 
         out["subnets"] = capo_eks.types.string_list.deserialize_json(data["subnets"])
-    if "selectors" in data:
+    if data.get("selectors") is not None:
         import capo_eks.types.fargate_profile_selectors
 
         out["selectors"] = capo_eks.types.fargate_profile_selectors.deserialize_json(
             data["selectors"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_eks.types.fargate_profile_status
 
         out["status"] = capo_eks.types.fargate_profile_status.deserialize_json(
             data["status"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "health" in data:
+    if data.get("health") is not None:
         import capo_eks.types.fargate_profile_health
 
         out["health"] = capo_eks.types.fargate_profile_health.deserialize_json(

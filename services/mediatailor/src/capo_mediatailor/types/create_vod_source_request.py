@@ -46,7 +46,7 @@ def serialize_json(value: CreateVodSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVodSourceRequest:
     out: CreateVodSourceRequest = {}  # type: ignore[typeddict-item]
-    if "HttpPackageConfigurations" in data:
+    if data.get("HttpPackageConfigurations") is not None:
         import capo_mediatailor.types.http_package_configurations
 
         out["http_package_configurations"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> CreateVodSourceRequest:
         raise DeserializationError(
             "CreateVodSourceRequest.http_package_configurations required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(

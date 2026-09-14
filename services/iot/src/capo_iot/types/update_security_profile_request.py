@@ -106,19 +106,19 @@ def serialize_json(value: UpdateSecurityProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSecurityProfileRequest:
     out: UpdateSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-    if "securityProfileDescription" in data:
+    if data.get("securityProfileDescription") is not None:
         out["security_profile_description"] = data["securityProfileDescription"]
-    if "behaviors" in data:
+    if data.get("behaviors") is not None:
         import capo_iot.types.behaviors
 
         out["behaviors"] = capo_iot.types.behaviors.deserialize_json(data["behaviors"])
-    if "alertTargets" in data:
+    if data.get("alertTargets") is not None:
         import capo_iot.types.alert_targets
 
         out["alert_targets"] = capo_iot.types.alert_targets.deserialize_json(
             data["alertTargets"]
         )
-    if "additionalMetricsToRetain" in data:
+    if data.get("additionalMetricsToRetain") is not None:
         import capo_iot.types.additional_metrics_to_retain_list
 
         out["additional_metrics_to_retain"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> UpdateSecurityProfileRequest:
                 data["additionalMetricsToRetain"]
             )
         )
-    if "additionalMetricsToRetainV2" in data:
+    if data.get("additionalMetricsToRetainV2") is not None:
         import capo_iot.types.additional_metrics_to_retain_v2_list
 
         out["additional_metrics_to_retain_v2"] = (
@@ -134,21 +134,21 @@ def deserialize_json(data: dict) -> UpdateSecurityProfileRequest:
                 data["additionalMetricsToRetainV2"]
             )
         )
-    if "deleteBehaviors" in data:
+    if data.get("deleteBehaviors") is not None:
         out["delete_behaviors"] = data["deleteBehaviors"]
     else:
         out["delete_behaviors"] = False
-    if "deleteAlertTargets" in data:
+    if data.get("deleteAlertTargets") is not None:
         out["delete_alert_targets"] = data["deleteAlertTargets"]
     else:
         out["delete_alert_targets"] = False
-    if "deleteAdditionalMetricsToRetain" in data:
+    if data.get("deleteAdditionalMetricsToRetain") is not None:
         out["delete_additional_metrics_to_retain"] = data[
             "deleteAdditionalMetricsToRetain"
         ]
     else:
         out["delete_additional_metrics_to_retain"] = False
-    if "metricsExportConfig" in data:
+    if data.get("metricsExportConfig") is not None:
         import capo_iot.types.metrics_export_config
 
         out["metrics_export_config"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> UpdateSecurityProfileRequest:
                 data["metricsExportConfig"]
             )
         )
-    if "deleteMetricsExportConfig" in data:
+    if data.get("deleteMetricsExportConfig") is not None:
         out["delete_metrics_export_config"] = data["deleteMetricsExportConfig"]
     else:
         out["delete_metrics_export_config"] = False

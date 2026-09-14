@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: AggregationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AggregationConfiguration:
     out: AggregationConfiguration = {}  # type: ignore[typeddict-item]
-    if "Templates" in data:
+    if data.get("Templates") is not None:
         import capo_cloudtrail.types.templates
 
         out["templates"] = capo_cloudtrail.types.templates.deserialize_aws_json_1_1(
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> AggregationConfiguration:
         )
     else:
         raise DeserializationError("AggregationConfiguration.templates required")
-    if "EventCategory" in data:
+    if data.get("EventCategory") is not None:
         import capo_cloudtrail.types.event_category_aggregation
 
         out["event_category"] = (

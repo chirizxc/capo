@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DescribeAlgorithmResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAlgorithmResponse:
     out: DescribeAlgorithmResponse = {}  # type: ignore[typeddict-item]
-    if "algorithm" in data:
+    if data.get("algorithm") is not None:
         import capo_personalize.types.algorithm
 
         out["algorithm"] = capo_personalize.types.algorithm.deserialize_aws_json_1_1(

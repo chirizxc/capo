@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: CacheReportFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CacheReportFilter:
     out: CacheReportFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_storage_gateway.types.cache_report_filter_name
 
         out["name"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> CacheReportFilter:
         )
     else:
         raise DeserializationError("CacheReportFilter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_storage_gateway.types.cache_report_filter_values
 
         out["values"] = (

@@ -50,17 +50,17 @@ def serialize_aws_json_1_0(value: CapacitySpecificationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CapacitySpecificationSummary:
     out: CapacitySpecificationSummary = {}  # type: ignore[typeddict-item]
-    if "throughputMode" in data:
+    if data.get("throughputMode") is not None:
         out["throughput_mode"] = data["throughputMode"]
     else:
         raise DeserializationError(
             "CapacitySpecificationSummary.throughput_mode required"
         )
-    if "readCapacityUnits" in data:
+    if data.get("readCapacityUnits") is not None:
         out["read_capacity_units"] = data["readCapacityUnits"]
-    if "writeCapacityUnits" in data:
+    if data.get("writeCapacityUnits") is not None:
         out["write_capacity_units"] = data["writeCapacityUnits"]
-    if "lastUpdateToPayPerRequestTimestamp" in data:
+    if data.get("lastUpdateToPayPerRequestTimestamp") is not None:
         import capo_keyspaces.types.timestamp
 
         out["last_update_to_pay_per_request_timestamp"] = (

@@ -27,9 +27,9 @@ def serialize_aws_json_1_1(value: InvalidKMSKeyException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidKMSKeyException_:
     out: InvalidKMSKeyException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     return out
 
@@ -39,15 +39,18 @@ class InvalidKMSKeyException(ServiceError):
 
     code: str | None = "InvalidKMSKeyException"
 
-    def __init__(self, data: InvalidKMSKeyException_):
+    def __init__(self, data: InvalidKMSKeyException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidKMSKeyException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidKMSKeyException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidKMSKeyException":
+        return cls(deserialize_aws_json_1_1(data), message)

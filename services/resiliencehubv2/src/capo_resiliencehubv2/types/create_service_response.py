@@ -26,7 +26,7 @@ def serialize_json(value: CreateServiceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateServiceResponse:
     out: CreateServiceResponse = {}  # type: ignore[typeddict-item]
-    if "service" in data:
+    if data.get("service") is not None:
         import capo_resiliencehubv2.types.service
 
         out["service"] = capo_resiliencehubv2.types.service.deserialize_json(

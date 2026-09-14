@@ -13,10 +13,25 @@ from capo_connectparticipant import AsyncConnectParticipantClient
 
 
 async def main():
-    async with AsyncConnectParticipantClient() as s3:
+    async with AsyncConnectParticipantClient() as connect_participant:
         # Example: call the cancel_participant_authentication operation
-        response = await s3.cancel_participant_authentication()
+        response = await connect_participant.cancel_participant_authentication()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_connectparticipant import AsyncConnectParticipantClient
+
+
+async def main():
+    async with AsyncConnectParticipantClient() as connect_participant:
+        # Example: paginate over get_transcript
+        async for item in connect_participant.iter_get_transcript():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_connectparticipant.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncConnectParticipantClient() as s3:
+    async with AsyncConnectParticipantClient() as connect_participant:
         try:
-            await s3.cancel_participant_authentication()
+            await connect_participant.cancel_participant_authentication()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_connectparticipant import AsyncConnectParticipantClient
 
 
 async def main():
-    async with AsyncConnectParticipantClient() as s3:
+    async with AsyncConnectParticipantClient() as connect_participant:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_participant_authentication()
+        response = await connect_participant.cancel_participant_authentication()
 
         # Override per operation
-        response = await s3.cancel_participant_authentication(config_overrides={"retry_max_attempts": 5})
+        response = await connect_participant.cancel_participant_authentication(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_participant_authentication(config_overrides={"retry_max_attempts": 1})
+        response = await connect_participant.cancel_participant_authentication(config_overrides={"retry_max_attempts": 1})
 ```

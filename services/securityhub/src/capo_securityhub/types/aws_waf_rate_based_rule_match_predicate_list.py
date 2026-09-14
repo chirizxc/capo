@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsWafRateBasedRuleMatchPredicateList:
 
     out: AwsWafRateBasedRuleMatchPredicateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_waf_rate_based_rule_match_predicate.deserialize_json(
                 item

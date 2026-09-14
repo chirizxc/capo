@@ -48,19 +48,19 @@ def serialize_aws_json_1_1(value: PutResourceAttributesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutResourceAttributesRequest:
     out: PutResourceAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "ProgressUpdateStream" in data:
+    if data.get("ProgressUpdateStream") is not None:
         out["progress_update_stream"] = data["ProgressUpdateStream"]
     else:
         raise DeserializationError(
             "PutResourceAttributesRequest.progress_update_stream required"
         )
-    if "MigrationTaskName" in data:
+    if data.get("MigrationTaskName") is not None:
         out["migration_task_name"] = data["MigrationTaskName"]
     else:
         raise DeserializationError(
             "PutResourceAttributesRequest.migration_task_name required"
         )
-    if "ResourceAttributeList" in data:
+    if data.get("ResourceAttributeList") is not None:
         import capo_migration_hub.types.resource_attribute_list
 
         out["resource_attribute_list"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutResourceAttributesRequest:
         raise DeserializationError(
             "PutResourceAttributesRequest.resource_attribute_list required"
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False

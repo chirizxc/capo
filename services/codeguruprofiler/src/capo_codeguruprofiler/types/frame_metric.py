@@ -35,15 +35,15 @@ def serialize_json(value: FrameMetric) -> dict:
 
 def deserialize_json(data: dict) -> FrameMetric:
     out: FrameMetric = {}  # type: ignore[typeddict-item]
-    if "frameName" in data:
+    if data.get("frameName") is not None:
         out["frame_name"] = data["frameName"]
     else:
         raise DeserializationError("FrameMetric.frame_name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("FrameMetric.type required")
-    if "threadStates" in data:
+    if data.get("threadStates") is not None:
         import capo_codeguruprofiler.types.thread_states
 
         out["thread_states"] = (

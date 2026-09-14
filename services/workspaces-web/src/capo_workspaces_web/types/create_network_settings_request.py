@@ -56,11 +56,11 @@ def serialize_json(value: CreateNetworkSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNetworkSettingsRequest:
     out: CreateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("CreateNetworkSettingsRequest.vpc_id required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_workspaces_web.types.subnet_id_list
 
         out["subnet_ids"] = capo_workspaces_web.types.subnet_id_list.deserialize_json(
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> CreateNetworkSettingsRequest:
         )
     else:
         raise DeserializationError("CreateNetworkSettingsRequest.subnet_ids required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_workspaces_web.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -80,10 +80,10 @@ def deserialize_json(data: dict) -> CreateNetworkSettingsRequest:
         raise DeserializationError(
             "CreateNetworkSettingsRequest.security_group_ids required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_workspaces_web.types.tag_list
 
         out["tags"] = capo_workspaces_web.types.tag_list.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

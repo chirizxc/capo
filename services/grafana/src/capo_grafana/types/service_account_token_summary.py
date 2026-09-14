@@ -49,15 +49,15 @@ def serialize_json(value: ServiceAccountTokenSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceAccountTokenSummary:
     out: ServiceAccountTokenSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ServiceAccountTokenSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ServiceAccountTokenSummary.name required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_grafana.types._prelude.timestamp
 
         out["created_at"] = capo_grafana.types._prelude.timestamp.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ServiceAccountTokenSummary:
         )
     else:
         raise DeserializationError("ServiceAccountTokenSummary.created_at required")
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_grafana.types._prelude.timestamp
 
         out["expires_at"] = capo_grafana.types._prelude.timestamp.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ServiceAccountTokenSummary:
         )
     else:
         raise DeserializationError("ServiceAccountTokenSummary.expires_at required")
-    if "lastUsedAt" in data:
+    if data.get("lastUsedAt") is not None:
         import capo_grafana.types._prelude.timestamp
 
         out["last_used_at"] = capo_grafana.types._prelude.timestamp.deserialize_json(

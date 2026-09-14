@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: DescribeScheduledQueryResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeScheduledQueryResponse:
     out: DescribeScheduledQueryResponse = {}  # type: ignore[typeddict-item]
-    if "ScheduledQuery" in data:
+    if data.get("ScheduledQuery") is not None:
         import capo_timestream_query.types.scheduled_query_description
 
         out["scheduled_query"] = (

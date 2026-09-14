@@ -115,31 +115,31 @@ def serialize_json(value: GraphDataSummary) -> dict:
 
 def deserialize_json(data: dict) -> GraphDataSummary:
     out: GraphDataSummary = {}  # type: ignore[typeddict-item]
-    if "numNodes" in data:
+    if data.get("numNodes") is not None:
         out["num_nodes"] = data["numNodes"]
-    if "numEdges" in data:
+    if data.get("numEdges") is not None:
         out["num_edges"] = data["numEdges"]
-    if "numNodeLabels" in data:
+    if data.get("numNodeLabels") is not None:
         out["num_node_labels"] = data["numNodeLabels"]
-    if "numEdgeLabels" in data:
+    if data.get("numEdgeLabels") is not None:
         out["num_edge_labels"] = data["numEdgeLabels"]
-    if "nodeLabels" in data:
+    if data.get("nodeLabels") is not None:
         import capo_neptune_graph.types.node_labels
 
         out["node_labels"] = capo_neptune_graph.types.node_labels.deserialize_json(
             data["nodeLabels"]
         )
-    if "edgeLabels" in data:
+    if data.get("edgeLabels") is not None:
         import capo_neptune_graph.types.edge_labels
 
         out["edge_labels"] = capo_neptune_graph.types.edge_labels.deserialize_json(
             data["edgeLabels"]
         )
-    if "numNodeProperties" in data:
+    if data.get("numNodeProperties") is not None:
         out["num_node_properties"] = data["numNodeProperties"]
-    if "numEdgeProperties" in data:
+    if data.get("numEdgeProperties") is not None:
         out["num_edge_properties"] = data["numEdgeProperties"]
-    if "nodeProperties" in data:
+    if data.get("nodeProperties") is not None:
         import capo_neptune_graph.types.long_valued_map_list
 
         out["node_properties"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> GraphDataSummary:
                 data["nodeProperties"]
             )
         )
-    if "edgeProperties" in data:
+    if data.get("edgeProperties") is not None:
         import capo_neptune_graph.types.long_valued_map_list
 
         out["edge_properties"] = (
@@ -155,11 +155,11 @@ def deserialize_json(data: dict) -> GraphDataSummary:
                 data["edgeProperties"]
             )
         )
-    if "totalNodePropertyValues" in data:
+    if data.get("totalNodePropertyValues") is not None:
         out["total_node_property_values"] = data["totalNodePropertyValues"]
-    if "totalEdgePropertyValues" in data:
+    if data.get("totalEdgePropertyValues") is not None:
         out["total_edge_property_values"] = data["totalEdgePropertyValues"]
-    if "nodeStructures" in data:
+    if data.get("nodeStructures") is not None:
         import capo_neptune_graph.types.node_structures
 
         out["node_structures"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> GraphDataSummary:
                 data["nodeStructures"]
             )
         )
-    if "edgeStructures" in data:
+    if data.get("edgeStructures") is not None:
         import capo_neptune_graph.types.edge_structures
 
         out["edge_structures"] = (

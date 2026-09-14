@@ -53,7 +53,7 @@ def serialize_json(value: StartVoiceToneAnalysisTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartVoiceToneAnalysisTaskRequest:
     out: StartVoiceToneAnalysisTaskRequest = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_chime_sdk_media_pipelines.types.voice_analytics_language_code
 
         out["language_code"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> StartVoiceToneAnalysisTaskRequest:
         raise DeserializationError(
             "StartVoiceToneAnalysisTaskRequest.language_code required"
         )
-    if "KinesisVideoStreamSourceTaskConfiguration" in data:
+    if data.get("KinesisVideoStreamSourceTaskConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_source_task_configuration
 
         out["kinesis_video_stream_source_task_configuration"] = (
@@ -73,6 +73,6 @@ def deserialize_json(data: dict) -> StartVoiceToneAnalysisTaskRequest:
                 data["KinesisVideoStreamSourceTaskConfiguration"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

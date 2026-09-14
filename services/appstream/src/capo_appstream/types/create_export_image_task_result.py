@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateExportImageTaskResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateExportImageTaskResult:
     out: CreateExportImageTaskResult = {}  # type: ignore[typeddict-item]
-    if "ExportImageTask" in data:
+    if data.get("ExportImageTask") is not None:
         import capo_appstream.types.export_image_task
 
         out["export_image_task"] = (

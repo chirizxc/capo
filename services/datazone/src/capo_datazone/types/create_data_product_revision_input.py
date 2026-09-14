@@ -69,30 +69,30 @@ def serialize_json(value: CreateDataProductRevisionInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataProductRevisionInput:
     out: CreateDataProductRevisionInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDataProductRevisionInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.data_product_items
 
         out["items"] = capo_datazone.types.data_product_items.deserialize_json(
             data["items"]
         )
-    if "formsInput" in data:
+    if data.get("formsInput") is not None:
         import capo_datazone.types.form_input_list
 
         out["forms_input"] = capo_datazone.types.form_input_list.deserialize_json(
             data["formsInput"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -57,17 +57,17 @@ def serialize_json(value: CreateRetrieverRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRetrieverRequest:
     out: CreateRetrieverRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.retriever_type
 
         out["type"] = capo_qbusiness.types.retriever_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("CreateRetrieverRequest.type required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateRetrieverRequest.display_name required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_qbusiness.types.retriever_configuration
 
         out["configuration"] = (
@@ -77,11 +77,11 @@ def deserialize_json(data: dict) -> CreateRetrieverRequest:
         )
     else:
         raise DeserializationError("CreateRetrieverRequest.configuration required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qbusiness.types.tags
 
         out["tags"] = capo_qbusiness.types.tags.deserialize_json(data["tags"])

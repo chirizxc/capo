@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: RecommenderConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommenderConfig:
     out: RecommenderConfig = {}  # type: ignore[typeddict-item]
-    if "itemExplorationConfig" in data:
+    if data.get("itemExplorationConfig") is not None:
         import capo_personalize.types.hyper_parameters
 
         out["item_exploration_config"] = (
@@ -70,11 +70,11 @@ def deserialize_aws_json_1_1(data: dict) -> RecommenderConfig:
                 data["itemExplorationConfig"]
             )
         )
-    if "minRecommendationRequestsPerSecond" in data:
+    if data.get("minRecommendationRequestsPerSecond") is not None:
         out["min_recommendation_requests_per_second"] = data[
             "minRecommendationRequestsPerSecond"
         ]
-    if "trainingDataConfig" in data:
+    if data.get("trainingDataConfig") is not None:
         import capo_personalize.types.training_data_config
 
         out["training_data_config"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecommenderConfig:
                 data["trainingDataConfig"]
             )
         )
-    if "enableMetadataWithRecommendations" in data:
+    if data.get("enableMetadataWithRecommendations") is not None:
         out["enable_metadata_with_recommendations"] = data[
             "enableMetadataWithRecommendations"
         ]

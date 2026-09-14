@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> PathStatisticsList:
 
     out: PathStatisticsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wafv2.types.path_statistics.deserialize_aws_json_1_1(item))
     return out

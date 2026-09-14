@@ -30,19 +30,19 @@ def serialize_aws_json_1_0(value: WarmThroughputSpecificationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WarmThroughputSpecificationSummary:
     out: WarmThroughputSpecificationSummary = {}  # type: ignore[typeddict-item]
-    if "readUnitsPerSecond" in data:
+    if data.get("readUnitsPerSecond") is not None:
         out["read_units_per_second"] = data["readUnitsPerSecond"]
     else:
         raise DeserializationError(
             "WarmThroughputSpecificationSummary.read_units_per_second required"
         )
-    if "writeUnitsPerSecond" in data:
+    if data.get("writeUnitsPerSecond") is not None:
         out["write_units_per_second"] = data["writeUnitsPerSecond"]
     else:
         raise DeserializationError(
             "WarmThroughputSpecificationSummary.write_units_per_second required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("WarmThroughputSpecificationSummary.status required")

@@ -121,15 +121,15 @@ def serialize_json(value: CreateSlotResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSlotResponse:
     out: CreateSlotResponse = {}  # type: ignore[typeddict-item]
-    if "slotId" in data:
+    if data.get("slotId") is not None:
         out["slot_id"] = data["slotId"]
-    if "slotName" in data:
+    if data.get("slotName") is not None:
         out["slot_name"] = data["slotName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "slotTypeId" in data:
+    if data.get("slotTypeId") is not None:
         out["slot_type_id"] = data["slotTypeId"]
-    if "valueElicitationSetting" in data:
+    if data.get("valueElicitationSetting") is not None:
         import capo_lex_models_v2.types.slot_value_elicitation_setting
 
         out["value_elicitation_setting"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> CreateSlotResponse:
                 data["valueElicitationSetting"]
             )
         )
-    if "obfuscationSetting" in data:
+    if data.get("obfuscationSetting") is not None:
         import capo_lex_models_v2.types.obfuscation_setting
 
         out["obfuscation_setting"] = (
@@ -145,21 +145,21 @@ def deserialize_json(data: dict) -> CreateSlotResponse:
                 data["obfuscationSetting"]
             )
         )
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "intentId" in data:
+    if data.get("intentId") is not None:
         out["intent_id"] = data["intentId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "multipleValuesSetting" in data:
+    if data.get("multipleValuesSetting") is not None:
         import capo_lex_models_v2.types.multiple_values_setting
 
         out["multiple_values_setting"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> CreateSlotResponse:
                 data["multipleValuesSetting"]
             )
         )
-    if "subSlotSetting" in data:
+    if data.get("subSlotSetting") is not None:
         import capo_lex_models_v2.types.sub_slot_setting
 
         out["sub_slot_setting"] = (

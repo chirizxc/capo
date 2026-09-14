@@ -95,11 +95,11 @@ def serialize_aws_json_1_1(value: AdditionalInferenceSpecificationDefinition) ->
 
 def deserialize_aws_json_1_1(data: dict) -> AdditionalInferenceSpecificationDefinition:
     out: AdditionalInferenceSpecificationDefinition = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Containers" in data:
+    if data.get("Containers") is not None:
         import capo_sagemaker.types.model_package_container_definition_list
 
         out["containers"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdditionalInferenceSpecificationDefi
                 data["Containers"]
             )
         )
-    if "SupportedTransformInstanceTypes" in data:
+    if data.get("SupportedTransformInstanceTypes") is not None:
         import capo_sagemaker.types.transform_instance_types
 
         out["supported_transform_instance_types"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdditionalInferenceSpecificationDefi
                 data["SupportedTransformInstanceTypes"]
             )
         )
-    if "SupportedRealtimeInferenceInstanceTypes" in data:
+    if data.get("SupportedRealtimeInferenceInstanceTypes") is not None:
         import capo_sagemaker.types.realtime_inference_instance_types
 
         out["supported_realtime_inference_instance_types"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdditionalInferenceSpecificationDefi
                 data["SupportedRealtimeInferenceInstanceTypes"]
             )
         )
-    if "SupportedContentTypes" in data:
+    if data.get("SupportedContentTypes") is not None:
         import capo_sagemaker.types.content_types
 
         out["supported_content_types"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdditionalInferenceSpecificationDefi
                 data["SupportedContentTypes"]
             )
         )
-    if "SupportedResponseMIMETypes" in data:
+    if data.get("SupportedResponseMIMETypes") is not None:
         import capo_sagemaker.types.response_mime_types
 
         out["supported_response_mime_types"] = (

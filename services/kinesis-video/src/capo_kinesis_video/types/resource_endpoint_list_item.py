@@ -34,12 +34,12 @@ def serialize_json(value: ResourceEndpointListItem) -> dict:
 
 def deserialize_json(data: dict) -> ResourceEndpointListItem:
     out: ResourceEndpointListItem = {}  # type: ignore[typeddict-item]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_kinesis_video.types.channel_protocol
 
         out["protocol"] = capo_kinesis_video.types.channel_protocol.deserialize_json(
             data["Protocol"]
         )
-    if "ResourceEndpoint" in data:
+    if data.get("ResourceEndpoint") is not None:
         out["resource_endpoint"] = data["ResourceEndpoint"]
     return out

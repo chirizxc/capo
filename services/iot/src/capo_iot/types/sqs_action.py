@@ -33,14 +33,14 @@ def serialize_json(value: SqsAction) -> dict:
 
 def deserialize_json(data: dict) -> SqsAction:
     out: SqsAction = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("SqsAction.role_arn required")
-    if "queueUrl" in data:
+    if data.get("queueUrl") is not None:
         out["queue_url"] = data["queueUrl"]
     else:
         raise DeserializationError("SqsAction.queue_url required")
-    if "useBase64" in data:
+    if data.get("useBase64") is not None:
         out["use_base64"] = data["useBase64"]
     return out

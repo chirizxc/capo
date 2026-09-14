@@ -19,7 +19,15 @@ class AssessmentCost(TypedDict, closed=True):
 def serialize_json(value: AssessmentCost) -> dict:
     out: dict = {}
     if "amount" in value:
-        out["amount"] = value["amount"]
+        out["amount"] = (
+            "NaN"
+            if value["amount"] != value["amount"]
+            else "Infinity"
+            if value["amount"] == float("inf")
+            else "-Infinity"
+            if value["amount"] == float("-inf")
+            else value["amount"]
+        )
     if "currency" in value:
         import capo_resiliencehubv2.types.cost_currency
 
@@ -31,9 +39,9 @@ def serialize_json(value: AssessmentCost) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentCost:
     out: AssessmentCost = {}  # type: ignore[typeddict-item]
-    if "amount" in data:
-        out["amount"] = data["amount"]
-    if "currency" in data:
+    if data.get("amount") is not None:
+        out["amount"] = float(data["amount"])
+    if data.get("currency") is not None:
         import capo_resiliencehubv2.types.cost_currency
 
         out["currency"] = capo_resiliencehubv2.types.cost_currency.deserialize_json(

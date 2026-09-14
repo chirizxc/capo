@@ -50,7 +50,7 @@ def serialize_json(value: AreaOfInterestGeometry) -> dict:
 
 
 def deserialize_json(data: dict) -> AreaOfInterestGeometry:
-    if "PolygonGeometry" in data:
+    if data.get("PolygonGeometry") is not None:
         import capo_sagemaker_geospatial.types.polygon_geometry_input
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> AreaOfInterestGeometry:
                 data["PolygonGeometry"]
             )
         }
-    elif "MultiPolygonGeometry" in data:
+    elif data.get("MultiPolygonGeometry") is not None:
         import capo_sagemaker_geospatial.types.multi_polygon_geometry_input
 
         return {

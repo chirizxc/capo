@@ -62,19 +62,19 @@ def serialize_aws_json_1_1(value: BuildGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BuildGroup:
     out: BuildGroup = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
-    if "dependsOn" in data:
+    if data.get("dependsOn") is not None:
         import capo_codebuild.types.identifiers
 
         out["depends_on"] = capo_codebuild.types.identifiers.deserialize_aws_json_1_1(
             data["dependsOn"]
         )
-    if "ignoreFailure" in data:
+    if data.get("ignoreFailure") is not None:
         out["ignore_failure"] = data["ignoreFailure"]
     else:
         out["ignore_failure"] = False
-    if "currentBuildSummary" in data:
+    if data.get("currentBuildSummary") is not None:
         import capo_codebuild.types.build_summary
 
         out["current_build_summary"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> BuildGroup:
                 data["currentBuildSummary"]
             )
         )
-    if "priorBuildSummaryList" in data:
+    if data.get("priorBuildSummaryList") is not None:
         import capo_codebuild.types.build_summaries
 
         out["prior_build_summary_list"] = (

@@ -36,7 +36,7 @@ def serialize_json(value: ReferenceLineStyleConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ReferenceLineStyleConfiguration:
     out: ReferenceLineStyleConfiguration = {}  # type: ignore[typeddict-item]
-    if "Pattern" in data:
+    if data.get("Pattern") is not None:
         import capo_quicksight.types.reference_line_pattern_type
 
         out["pattern"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ReferenceLineStyleConfiguration:
                 data["Pattern"]
             )
         )
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
     return out

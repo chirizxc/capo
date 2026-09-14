@@ -230,8 +230,9 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.create_keyspace_request.CreateKeyspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
+        input_: capo_keyspaces.types.create_keyspace_request.CreateKeyspaceRequest = {
+            "keyspace_name": keyspace_name
+        }
         if tags is not None:
             input_["tags"] = tags
         if replication_specification is not None:
@@ -242,6 +243,7 @@ class AsyncKeyspacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_table(
@@ -327,10 +329,11 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.create_table_request.CreateTableRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
-        input_["table_name"] = table_name
-        input_["schema_definition"] = schema_definition
+        input_: capo_keyspaces.types.create_table_request.CreateTableRequest = {
+            "keyspace_name": keyspace_name,
+            "table_name": table_name,
+            "schema_definition": schema_definition,
+        }
         if comment is not None:
             input_["comment"] = comment
         if capacity_specification is not None:
@@ -361,6 +364,7 @@ class AsyncKeyspacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_type(
@@ -404,16 +408,18 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.create_type_request.CreateTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
-        input_["type_name"] = type_name
-        input_["field_definitions"] = field_definitions
+        input_: capo_keyspaces.types.create_type_request.CreateTypeRequest = {
+            "keyspace_name": keyspace_name,
+            "type_name": type_name,
+            "field_definitions": field_definitions,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_keyspace(
@@ -453,14 +459,16 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.delete_keyspace_request.DeleteKeyspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
+        input_: capo_keyspaces.types.delete_keyspace_request.DeleteKeyspaceRequest = {
+            "keyspace_name": keyspace_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_table(
@@ -502,15 +510,17 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.delete_table_request.DeleteTableRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
-        input_["table_name"] = table_name
+        input_: capo_keyspaces.types.delete_table_request.DeleteTableRequest = {
+            "keyspace_name": keyspace_name,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_type(
@@ -552,15 +562,17 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.delete_type_request.DeleteTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
-        input_["type_name"] = type_name
+        input_: capo_keyspaces.types.delete_type_request.DeleteTypeRequest = {
+            "keyspace_name": keyspace_name,
+            "type_name": type_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_keyspace(
@@ -599,14 +611,16 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.get_keyspace_request.GetKeyspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
+        input_: capo_keyspaces.types.get_keyspace_request.GetKeyspaceRequest = {
+            "keyspace_name": keyspace_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table(
@@ -647,15 +661,17 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.get_table_request.GetTableRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
-        input_["table_name"] = table_name
+        input_: capo_keyspaces.types.get_table_request.GetTableRequest = {
+            "keyspace_name": keyspace_name,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_auto_scaling_settings(
@@ -696,15 +712,17 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.get_table_auto_scaling_settings_request.GetTableAutoScalingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
-        input_["table_name"] = table_name
+        input_: capo_keyspaces.types.get_table_auto_scaling_settings_request.GetTableAutoScalingSettingsRequest = {
+            "keyspace_name": keyspace_name,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_type(
@@ -745,15 +763,17 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.get_type_request.GetTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
-        input_["type_name"] = type_name
+        input_: capo_keyspaces.types.get_type_request.GetTypeRequest = {
+            "keyspace_name": keyspace_name,
+            "type_name": type_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_keyspaces(
@@ -794,7 +814,7 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.list_keyspaces_request.ListKeyspacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_keyspaces.types.list_keyspaces_request.ListKeyspacesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -805,6 +825,7 @@ class AsyncKeyspacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_keyspaces(
@@ -868,18 +889,20 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.list_tables_request.ListTablesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_keyspaces.types.list_tables_request.ListTablesRequest = {
+            "keyspace_name": keyspace_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["keyspace_name"] = keyspace_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_tables(
@@ -945,8 +968,9 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_keyspaces.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -957,6 +981,7 @@ class AsyncKeyspacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_tags_for_resource(
@@ -1022,18 +1047,20 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.list_types_request.ListTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_keyspaces.types.list_types_request.ListTypesRequest = {
+            "keyspace_name": keyspace_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["keyspace_name"] = keyspace_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_types(
@@ -1126,11 +1153,12 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.restore_table_request.RestoreTableRequest = {}  # type: ignore[typeddict-item]
-        input_["source_keyspace_name"] = source_keyspace_name
-        input_["source_table_name"] = source_table_name
-        input_["target_keyspace_name"] = target_keyspace_name
-        input_["target_table_name"] = target_table_name
+        input_: capo_keyspaces.types.restore_table_request.RestoreTableRequest = {
+            "source_keyspace_name": source_keyspace_name,
+            "source_table_name": source_table_name,
+            "target_keyspace_name": target_keyspace_name,
+            "target_table_name": target_table_name,
+        }
         if restore_timestamp is not None:
             input_["restore_timestamp"] = restore_timestamp
         if capacity_specification_override is not None:
@@ -1153,6 +1181,7 @@ class AsyncKeyspacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1194,15 +1223,17 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_keyspaces.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1244,15 +1275,17 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_keyspaces.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_keyspace(
@@ -1296,9 +1329,10 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.update_keyspace_request.UpdateKeyspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
-        input_["replication_specification"] = replication_specification
+        input_: capo_keyspaces.types.update_keyspace_request.UpdateKeyspaceRequest = {
+            "keyspace_name": keyspace_name,
+            "replication_specification": replication_specification,
+        }
         if client_side_timestamps is not None:
             input_["client_side_timestamps"] = client_side_timestamps
 
@@ -1307,6 +1341,7 @@ class AsyncKeyspacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_table(
@@ -1390,9 +1425,10 @@ class AsyncKeyspacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspaces.types.update_table_request.UpdateTableRequest = {}  # type: ignore[typeddict-item]
-        input_["keyspace_name"] = keyspace_name
-        input_["table_name"] = table_name
+        input_: capo_keyspaces.types.update_table_request.UpdateTableRequest = {
+            "keyspace_name": keyspace_name,
+            "table_name": table_name,
+        }
         if add_columns is not None:
             input_["add_columns"] = add_columns
         if capacity_specification is not None:
@@ -1421,6 +1457,7 @@ class AsyncKeyspacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

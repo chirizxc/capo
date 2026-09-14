@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RunBatchList:
 
     out: RunBatchList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_omics.types.run_batch_list_item.deserialize_json(item))
     return out

@@ -54,15 +54,15 @@ def serialize_json(value: GetCalculatedAttributeForProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCalculatedAttributeForProfileResponse:
     out: GetCalculatedAttributeForProfileResponse = {}  # type: ignore[typeddict-item]
-    if "CalculatedAttributeName" in data:
+    if data.get("CalculatedAttributeName") is not None:
         out["calculated_attribute_name"] = data["CalculatedAttributeName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "IsDataPartial" in data:
+    if data.get("IsDataPartial") is not None:
         out["is_data_partial"] = data["IsDataPartial"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "LastObjectTimestamp" in data:
+    if data.get("LastObjectTimestamp") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_object_timestamp"] = (

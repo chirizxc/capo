@@ -88,11 +88,11 @@ def serialize_aws_json_1_0(value: UpdateDbClusterInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateDbClusterInput:
     out: UpdateDbClusterInput = {}  # type: ignore[typeddict-item]
-    if "dbClusterId" in data:
+    if data.get("dbClusterId") is not None:
         out["db_cluster_id"] = data["dbClusterId"]
     else:
         raise DeserializationError("UpdateDbClusterInput.db_cluster_id required")
-    if "logDeliveryConfiguration" in data:
+    if data.get("logDeliveryConfiguration") is not None:
         import capo_timestream_influxdb.types.log_delivery_configuration
 
         out["log_delivery_configuration"] = (
@@ -100,11 +100,11 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDbClusterInput:
                 data["logDeliveryConfiguration"]
             )
         )
-    if "dbParameterGroupIdentifier" in data:
+    if data.get("dbParameterGroupIdentifier") is not None:
         out["db_parameter_group_identifier"] = data["dbParameterGroupIdentifier"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "dbInstanceType" in data:
+    if data.get("dbInstanceType") is not None:
         import capo_timestream_influxdb.types.db_instance_type
 
         out["db_instance_type"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDbClusterInput:
                 data["dbInstanceType"]
             )
         )
-    if "failoverMode" in data:
+    if data.get("failoverMode") is not None:
         import capo_timestream_influxdb.types.failover_mode
 
         out["failover_mode"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDbClusterInput:
                 data["failoverMode"]
             )
         )
-    if "maintenanceSchedule" in data:
+    if data.get("maintenanceSchedule") is not None:
         import capo_timestream_influxdb.types.maintenance_schedule
 
         out["maintenance_schedule"] = (

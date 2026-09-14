@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: IntegerCriteriaCondition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IntegerCriteriaCondition:
     out: IntegerCriteriaCondition = {}  # type: ignore[typeddict-item]
-    if "comparison" in data:
+    if data.get("comparison") is not None:
         import capo_compute_optimizer_automation.types.comparison_operator
 
         out["comparison"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> IntegerCriteriaCondition:
                 data["comparison"]
             )
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_compute_optimizer_automation.types.integer_list
 
         out["values"] = (

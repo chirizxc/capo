@@ -34,9 +34,9 @@ def serialize_json(value: OrderedPhoneNumber) -> dict:
 
 def deserialize_json(data: dict) -> OrderedPhoneNumber:
     out: OrderedPhoneNumber = {}  # type: ignore[typeddict-item]
-    if "E164PhoneNumber" in data:
+    if data.get("E164PhoneNumber") is not None:
         out["e164_phone_number"] = data["E164PhoneNumber"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime.types.ordered_phone_number_status
 
         out["status"] = capo_chime.types.ordered_phone_number_status.deserialize_json(

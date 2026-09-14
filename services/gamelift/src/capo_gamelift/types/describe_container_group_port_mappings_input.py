@@ -55,9 +55,9 @@ def serialize_aws_json_1_1(value: DescribeContainerGroupPortMappingsInput) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeContainerGroupPortMappingsInput:
     out: DescribeContainerGroupPortMappingsInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "ContainerGroupType" in data:
+    if data.get("ContainerGroupType") is not None:
         import capo_gamelift.types.container_group_type
 
         out["container_group_type"] = (
@@ -65,10 +65,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeContainerGroupPortMappingsIn
                 data["ContainerGroupType"]
             )
         )
-    if "ComputeName" in data:
+    if data.get("ComputeName") is not None:
         out["compute_name"] = data["ComputeName"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "ContainerName" in data:
+    if data.get("ContainerName") is not None:
         out["container_name"] = data["ContainerName"]
     return out

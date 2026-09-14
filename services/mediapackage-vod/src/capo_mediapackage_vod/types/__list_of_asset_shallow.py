@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfAssetShallow:
 
     out: __listOfAssetShallow = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackage_vod.types.asset_shallow.deserialize_json(item))
     return out

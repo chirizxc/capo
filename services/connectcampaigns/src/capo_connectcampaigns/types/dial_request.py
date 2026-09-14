@@ -42,15 +42,15 @@ def serialize_json(value: DialRequest) -> dict:
 
 def deserialize_json(data: dict) -> DialRequest:
     out: DialRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("DialRequest.client_token required")
-    if "phoneNumber" in data:
+    if data.get("phoneNumber") is not None:
         out["phone_number"] = data["phoneNumber"]
     else:
         raise DeserializationError("DialRequest.phone_number required")
-    if "expirationTime" in data:
+    if data.get("expirationTime") is not None:
         import capo_connectcampaigns.types.time_stamp
 
         out["expiration_time"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> DialRequest:
         )
     else:
         raise DeserializationError("DialRequest.expiration_time required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_connectcampaigns.types.attributes
 
         out["attributes"] = capo_connectcampaigns.types.attributes.deserialize_json(

@@ -74,7 +74,7 @@ def serialize_aws_json_1_0(value: RuleStringToEvaluate) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> RuleStringToEvaluate:
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_mailmanager.types.rule_string_email_attribute
 
         return {
@@ -82,9 +82,9 @@ def deserialize_aws_json_1_0(data: dict) -> RuleStringToEvaluate:
                 data["Attribute"]
             )
         }
-    elif "MimeHeaderAttribute" in data:
+    elif data.get("MimeHeaderAttribute") is not None:
         return {"MimeHeaderAttribute": data["MimeHeaderAttribute"]}
-    elif "Analysis" in data:
+    elif data.get("Analysis") is not None:
         import capo_mailmanager.types.analysis
 
         return {
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleStringToEvaluate:
                 data["Analysis"]
             )
         }
-    elif "ClientCertificateAttribute" in data:
+    elif data.get("ClientCertificateAttribute") is not None:
         import capo_mailmanager.types.rule_client_certificate_attribute
 
         return {

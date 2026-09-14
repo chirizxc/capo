@@ -30,7 +30,7 @@ def serialize_json(value: CreateTopicRuleDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTopicRuleDestinationRequest:
     out: CreateTopicRuleDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "destinationConfiguration" in data:
+    if data.get("destinationConfiguration") is not None:
         import capo_iot.types.topic_rule_destination_configuration
 
         out["destination_configuration"] = (

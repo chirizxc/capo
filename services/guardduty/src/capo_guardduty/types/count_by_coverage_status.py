@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> CountByCoverageStatus:
     for key, value in data.items():
         import capo_guardduty.types.coverage_status
 
+        if value is None:
+            continue
         out[capo_guardduty.types.coverage_status.deserialize_json(key)] = value
     return out

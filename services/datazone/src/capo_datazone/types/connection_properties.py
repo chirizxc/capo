@@ -16,5 +16,7 @@ def serialize_json(input_to_serialize: ConnectionProperties) -> dict:
 def deserialize_json(data: dict) -> ConnectionProperties:
     out: ConnectionProperties = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

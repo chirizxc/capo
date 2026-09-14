@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: ListRuleTypesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRuleTypesOutput:
     out: ListRuleTypesOutput = {}  # type: ignore[typeddict-item]
-    if "ruleTypes" in data:
+    if data.get("ruleTypes") is not None:
         import capo_codepipeline.types.rule_type_list
 
         out["rule_types"] = (

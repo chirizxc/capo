@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> updateVehicleErrors:
 
     out: updateVehicleErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotfleetwise.types.update_vehicle_error.deserialize_aws_json_1_0(item)
         )

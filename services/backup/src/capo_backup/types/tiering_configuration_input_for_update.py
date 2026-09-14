@@ -34,7 +34,7 @@ def serialize_json(value: TieringConfigurationInputForUpdate) -> dict:
 
 def deserialize_json(data: dict) -> TieringConfigurationInputForUpdate:
     out: TieringConfigurationInputForUpdate = {}  # type: ignore[typeddict-item]
-    if "ResourceSelection" in data:
+    if data.get("ResourceSelection") is not None:
         import capo_backup.types.resource_selections
 
         out["resource_selection"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> TieringConfigurationInputForUpdate:
         raise DeserializationError(
             "TieringConfigurationInputForUpdate.resource_selection required"
         )
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
     else:
         raise DeserializationError(

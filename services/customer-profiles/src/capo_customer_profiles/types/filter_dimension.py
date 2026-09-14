@@ -28,7 +28,7 @@ def serialize_json(value: FilterDimension) -> dict:
 
 def deserialize_json(data: dict) -> FilterDimension:
     out: FilterDimension = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_customer_profiles.types.attribute_map
 
         out["attributes"] = capo_customer_profiles.types.attribute_map.deserialize_json(

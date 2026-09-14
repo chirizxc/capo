@@ -30,7 +30,7 @@ def serialize_json(value: IntentClassificationTestResults) -> dict:
 
 def deserialize_json(data: dict) -> IntentClassificationTestResults:
     out: IntentClassificationTestResults = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_lex_models_v2.types.intent_classification_test_result_item_list
 
         out["items"] = (

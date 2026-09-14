@@ -14,4 +14,4 @@ def serialize_json(value: __listOfS3BucketName) -> list:
 
 
 def deserialize_json(data: list) -> __listOfS3BucketName:
-    return list(data)
+    return [item for item in data if item is not None]

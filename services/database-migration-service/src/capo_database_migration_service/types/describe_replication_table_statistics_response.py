@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: DescribeReplicationTableStatisticsResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReplicationTableStatisticsResponse:
     out: DescribeReplicationTableStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "ReplicationConfigArn" in data:
+    if data.get("ReplicationConfigArn") is not None:
         out["replication_config_arn"] = data["ReplicationConfigArn"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "ReplicationTableStatistics" in data:
+    if data.get("ReplicationTableStatistics") is not None:
         import capo_database_migration_service.types.replication_table_statistics_list
 
         out["replication_table_statistics"] = (

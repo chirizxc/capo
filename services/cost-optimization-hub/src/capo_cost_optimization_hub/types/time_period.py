@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: TimePeriod) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimePeriod:
     out: TimePeriod = {}  # type: ignore[typeddict-item]
-    if "start" in data:
+    if data.get("start") is not None:
         out["start"] = data["start"]
     else:
         raise DeserializationError("TimePeriod.start required")
-    if "end" in data:
+    if data.get("end") is not None:
         out["end"] = data["end"]
     else:
         raise DeserializationError("TimePeriod.end required")

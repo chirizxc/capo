@@ -28,11 +28,11 @@ def serialize_json(value: TimestreamTimestamp) -> dict:
 
 def deserialize_json(data: dict) -> TimestreamTimestamp:
     out: TimestreamTimestamp = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("TimestreamTimestamp.value required")
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
     else:
         raise DeserializationError("TimestreamTimestamp.unit required")

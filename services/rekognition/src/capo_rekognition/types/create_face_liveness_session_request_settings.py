@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: CreateFaceLivenessSessionRequestSettings) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFaceLivenessSessionRequestSettings:
     out: CreateFaceLivenessSessionRequestSettings = {}  # type: ignore[typeddict-item]
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_rekognition.types.liveness_output_config
 
         out["output_config"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFaceLivenessSessionRequestSett
                 data["OutputConfig"]
             )
         )
-    if "AuditImagesLimit" in data:
+    if data.get("AuditImagesLimit") is not None:
         out["audit_images_limit"] = data["AuditImagesLimit"]
-    if "ChallengePreferences" in data:
+    if data.get("ChallengePreferences") is not None:
         import capo_rekognition.types.challenge_preferences
 
         out["challenge_preferences"] = (

@@ -36,19 +36,19 @@ def serialize_json(value: UpdateGeofenceCollectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGeofenceCollectionResponse:
     out: UpdateGeofenceCollectionResponse = {}  # type: ignore[typeddict-item]
-    if "CollectionName" in data:
+    if data.get("CollectionName") is not None:
         out["collection_name"] = data["CollectionName"]
     else:
         raise DeserializationError(
             "UpdateGeofenceCollectionResponse.collection_name required"
         )
-    if "CollectionArn" in data:
+    if data.get("CollectionArn") is not None:
         out["collection_arn"] = data["CollectionArn"]
     else:
         raise DeserializationError(
             "UpdateGeofenceCollectionResponse.collection_arn required"
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(

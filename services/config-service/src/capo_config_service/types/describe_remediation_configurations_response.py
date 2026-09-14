@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeRemediationConfigurationsResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRemediationConfigurationsResponse:
     out: DescribeRemediationConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "RemediationConfigurations" in data:
+    if data.get("RemediationConfigurations") is not None:
         import capo_config_service.types.remediation_configurations
 
         out["remediation_configurations"] = (

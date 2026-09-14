@@ -49,14 +49,14 @@ def serialize_aws_json_1_1(value: TrainingJobStatusCounters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingJobStatusCounters:
     out: TrainingJobStatusCounters = {}  # type: ignore[typeddict-item]
-    if "Completed" in data:
+    if data.get("Completed") is not None:
         out["completed"] = data["Completed"]
-    if "InProgress" in data:
+    if data.get("InProgress") is not None:
         out["in_progress"] = data["InProgress"]
-    if "RetryableError" in data:
+    if data.get("RetryableError") is not None:
         out["retryable_error"] = data["RetryableError"]
-    if "NonRetryableError" in data:
+    if data.get("NonRetryableError") is not None:
         out["non_retryable_error"] = data["NonRetryableError"]
-    if "Stopped" in data:
+    if data.get("Stopped") is not None:
         out["stopped"] = data["Stopped"]
     return out

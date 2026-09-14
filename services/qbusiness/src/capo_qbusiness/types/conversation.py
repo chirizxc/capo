@@ -37,11 +37,11 @@ def serialize_json(value: Conversation) -> dict:
 
 def deserialize_json(data: dict) -> Conversation:
     out: Conversation = {}  # type: ignore[typeddict-item]
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_qbusiness.types.timestamp
 
         out["start_time"] = capo_qbusiness.types.timestamp.deserialize_json(

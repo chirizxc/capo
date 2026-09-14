@@ -91,15 +91,15 @@ def serialize_aws_json_1_1(value: UpdateCsvClassifierRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCsvClassifierRequest:
     out: UpdateCsvClassifierRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateCsvClassifierRequest.name required")
-    if "Delimiter" in data:
+    if data.get("Delimiter") is not None:
         out["delimiter"] = data["Delimiter"]
-    if "QuoteSymbol" in data:
+    if data.get("QuoteSymbol") is not None:
         out["quote_symbol"] = data["QuoteSymbol"]
-    if "ContainsHeader" in data:
+    if data.get("ContainsHeader") is not None:
         import capo_glue.types.csv_header_option
 
         out["contains_header"] = (
@@ -107,19 +107,19 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateCsvClassifierRequest:
                 data["ContainsHeader"]
             )
         )
-    if "Header" in data:
+    if data.get("Header") is not None:
         import capo_glue.types.csv_header
 
         out["header"] = capo_glue.types.csv_header.deserialize_aws_json_1_1(
             data["Header"]
         )
-    if "DisableValueTrimming" in data:
+    if data.get("DisableValueTrimming") is not None:
         out["disable_value_trimming"] = data["DisableValueTrimming"]
-    if "AllowSingleColumn" in data:
+    if data.get("AllowSingleColumn") is not None:
         out["allow_single_column"] = data["AllowSingleColumn"]
-    if "CustomDatatypeConfigured" in data:
+    if data.get("CustomDatatypeConfigured") is not None:
         out["custom_datatype_configured"] = data["CustomDatatypeConfigured"]
-    if "CustomDatatypes" in data:
+    if data.get("CustomDatatypes") is not None:
         import capo_glue.types.custom_datatypes
 
         out["custom_datatypes"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateCsvClassifierRequest:
                 data["CustomDatatypes"]
             )
         )
-    if "Serde" in data:
+    if data.get("Serde") is not None:
         import capo_glue.types.csv_serde_option
 
         out["serde"] = capo_glue.types.csv_serde_option.deserialize_aws_json_1_1(

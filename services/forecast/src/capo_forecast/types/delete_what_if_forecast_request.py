@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteWhatIfForecastRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWhatIfForecastRequest:
     out: DeleteWhatIfForecastRequest = {}  # type: ignore[typeddict-item]
-    if "WhatIfForecastArn" in data:
+    if data.get("WhatIfForecastArn") is not None:
         out["what_if_forecast_arn"] = data["WhatIfForecastArn"]
     else:
         raise DeserializationError(

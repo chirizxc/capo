@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: Filter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Filter.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_application_discovery_service.types.filter_values
 
         out["values"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.values required")
-    if "condition" in data:
+    if data.get("condition") is not None:
         out["condition"] = data["condition"]
     else:
         raise DeserializationError("Filter.condition required")

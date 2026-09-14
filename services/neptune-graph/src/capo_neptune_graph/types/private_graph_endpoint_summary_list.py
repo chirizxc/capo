@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PrivateGraphEndpointSummaryList:
 
     out: PrivateGraphEndpointSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_neptune_graph.types.private_graph_endpoint_summary.deserialize_json(
                 item

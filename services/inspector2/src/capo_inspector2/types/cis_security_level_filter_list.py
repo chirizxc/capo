@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CisSecurityLevelFilterList:
 
     out: CisSecurityLevelFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.cis_security_level_filter.deserialize_json(item)
         )

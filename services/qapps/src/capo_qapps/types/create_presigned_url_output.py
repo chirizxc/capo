@@ -42,15 +42,15 @@ def serialize_json(value: CreatePresignedUrlOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreatePresignedUrlOutput:
     out: CreatePresignedUrlOutput = {}  # type: ignore[typeddict-item]
-    if "fileId" in data:
+    if data.get("fileId") is not None:
         out["file_id"] = data["fileId"]
     else:
         raise DeserializationError("CreatePresignedUrlOutput.file_id required")
-    if "presignedUrl" in data:
+    if data.get("presignedUrl") is not None:
         out["presigned_url"] = data["presignedUrl"]
     else:
         raise DeserializationError("CreatePresignedUrlOutput.presigned_url required")
-    if "presignedUrlFields" in data:
+    if data.get("presignedUrlFields") is not None:
         import capo_qapps.types.presigned_url_fields
 
         out["presigned_url_fields"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> CreatePresignedUrlOutput:
         raise DeserializationError(
             "CreatePresignedUrlOutput.presigned_url_fields required"
         )
-    if "presignedUrlExpiration" in data:
+    if data.get("presignedUrlExpiration") is not None:
         import capo_qapps.types.q_apps_timestamp
 
         out["presigned_url_expiration"] = (

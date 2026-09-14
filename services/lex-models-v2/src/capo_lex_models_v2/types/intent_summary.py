@@ -82,17 +82,17 @@ def serialize_json(value: IntentSummary) -> dict:
 
 def deserialize_json(data: dict) -> IntentSummary:
     out: IntentSummary = {}  # type: ignore[typeddict-item]
-    if "intentId" in data:
+    if data.get("intentId") is not None:
         out["intent_id"] = data["intentId"]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
-    if "intentDisplayName" in data:
+    if data.get("intentDisplayName") is not None:
         out["intent_display_name"] = data["intentDisplayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "parentIntentSignature" in data:
+    if data.get("parentIntentSignature") is not None:
         out["parent_intent_signature"] = data["parentIntentSignature"]
-    if "inputContexts" in data:
+    if data.get("inputContexts") is not None:
         import capo_lex_models_v2.types.input_contexts_list
 
         out["input_contexts"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> IntentSummary:
                 data["inputContexts"]
             )
         )
-    if "outputContexts" in data:
+    if data.get("outputContexts") is not None:
         import capo_lex_models_v2.types.output_contexts_list
 
         out["output_contexts"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> IntentSummary:
                 data["outputContexts"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (

@@ -33,12 +33,12 @@ def serialize_json(value: ListAutoshiftsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAutoshiftsResponse:
     out: ListAutoshiftsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_arc_zonal_shift.types.autoshift_summaries
 
         out["items"] = capo_arc_zonal_shift.types.autoshift_summaries.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

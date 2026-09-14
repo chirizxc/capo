@@ -31,7 +31,7 @@ def serialize_json(value: PackageOriginConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PackageOriginConfiguration:
     out: PackageOriginConfiguration = {}  # type: ignore[typeddict-item]
-    if "restrictions" in data:
+    if data.get("restrictions") is not None:
         import capo_codeartifact.types.package_origin_restrictions
 
         out["restrictions"] = (

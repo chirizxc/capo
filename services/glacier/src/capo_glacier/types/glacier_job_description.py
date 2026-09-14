@@ -133,49 +133,49 @@ def serialize_json(value: GlacierJobDescription) -> dict:
 
 def deserialize_json(data: dict) -> GlacierJobDescription:
     out: GlacierJobDescription = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "JobDescription" in data:
+    if data.get("JobDescription") is not None:
         out["job_description"] = data["JobDescription"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_glacier.types.action_code
 
         out["action"] = capo_glacier.types.action_code.deserialize_json(data["Action"])
-    if "ArchiveId" in data:
+    if data.get("ArchiveId") is not None:
         out["archive_id"] = data["ArchiveId"]
-    if "VaultARN" in data:
+    if data.get("VaultARN") is not None:
         out["vault_arn"] = data["VaultARN"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "Completed" in data:
+    if data.get("Completed") is not None:
         out["completed"] = data["Completed"]
     else:
         out["completed"] = False
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_glacier.types.status_code
 
         out["status_code"] = capo_glacier.types.status_code.deserialize_json(
             data["StatusCode"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "ArchiveSizeInBytes" in data:
+    if data.get("ArchiveSizeInBytes") is not None:
         out["archive_size_in_bytes"] = data["ArchiveSizeInBytes"]
-    if "InventorySizeInBytes" in data:
+    if data.get("InventorySizeInBytes") is not None:
         out["inventory_size_in_bytes"] = data["InventorySizeInBytes"]
-    if "SNSTopic" in data:
+    if data.get("SNSTopic") is not None:
         out["sns_topic"] = data["SNSTopic"]
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         out["completion_date"] = data["CompletionDate"]
-    if "SHA256TreeHash" in data:
+    if data.get("SHA256TreeHash") is not None:
         out["sha256_tree_hash"] = data["SHA256TreeHash"]
-    if "ArchiveSHA256TreeHash" in data:
+    if data.get("ArchiveSHA256TreeHash") is not None:
         out["archive_sha256_tree_hash"] = data["ArchiveSHA256TreeHash"]
-    if "RetrievalByteRange" in data:
+    if data.get("RetrievalByteRange") is not None:
         out["retrieval_byte_range"] = data["RetrievalByteRange"]
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         out["tier"] = data["Tier"]
-    if "InventoryRetrievalParameters" in data:
+    if data.get("InventoryRetrievalParameters") is not None:
         import capo_glacier.types.inventory_retrieval_job_description
 
         out["inventory_retrieval_parameters"] = (
@@ -183,9 +183,9 @@ def deserialize_json(data: dict) -> GlacierJobDescription:
                 data["InventoryRetrievalParameters"]
             )
         )
-    if "JobOutputPath" in data:
+    if data.get("JobOutputPath") is not None:
         out["job_output_path"] = data["JobOutputPath"]
-    if "SelectParameters" in data:
+    if data.get("SelectParameters") is not None:
         import capo_glacier.types.select_parameters
 
         out["select_parameters"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> GlacierJobDescription:
                 data["SelectParameters"]
             )
         )
-    if "OutputLocation" in data:
+    if data.get("OutputLocation") is not None:
         import capo_glacier.types.output_location
 
         out["output_location"] = capo_glacier.types.output_location.deserialize_json(

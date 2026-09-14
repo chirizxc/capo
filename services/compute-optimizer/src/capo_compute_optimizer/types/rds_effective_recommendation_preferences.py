@@ -70,7 +70,7 @@ def serialize_aws_json_1_0(value: RDSEffectiveRecommendationPreferences) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> RDSEffectiveRecommendationPreferences:
     out: RDSEffectiveRecommendationPreferences = {}  # type: ignore[typeddict-item]
-    if "cpuVendorArchitectures" in data:
+    if data.get("cpuVendorArchitectures") is not None:
         import capo_compute_optimizer.types.cpu_vendor_architectures
 
         out["cpu_vendor_architectures"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSEffectiveRecommendationPreference
                 data["cpuVendorArchitectures"]
             )
         )
-    if "enhancedInfrastructureMetrics" in data:
+    if data.get("enhancedInfrastructureMetrics") is not None:
         import capo_compute_optimizer.types.enhanced_infrastructure_metrics
 
         out["enhanced_infrastructure_metrics"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSEffectiveRecommendationPreference
                 data["enhancedInfrastructureMetrics"]
             )
         )
-    if "lookBackPeriod" in data:
+    if data.get("lookBackPeriod") is not None:
         import capo_compute_optimizer.types.look_back_period_preference
 
         out["look_back_period"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSEffectiveRecommendationPreference
                 data["lookBackPeriod"]
             )
         )
-    if "savingsEstimationMode" in data:
+    if data.get("savingsEstimationMode") is not None:
         import capo_compute_optimizer.types.rds_savings_estimation_mode
 
         out["savings_estimation_mode"] = (

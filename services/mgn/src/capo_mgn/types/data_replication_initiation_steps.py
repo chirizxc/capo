@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> DataReplicationInitiationSteps:
 
     out: DataReplicationInitiationSteps = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.data_replication_initiation_step.deserialize_json(item)
         )

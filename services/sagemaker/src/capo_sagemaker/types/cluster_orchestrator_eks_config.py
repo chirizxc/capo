@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ClusterOrchestratorEksConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterOrchestratorEksConfig:
     out: ClusterOrchestratorEksConfig = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
     return out

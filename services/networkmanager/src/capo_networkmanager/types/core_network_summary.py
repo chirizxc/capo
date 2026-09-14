@@ -69,23 +69,23 @@ def serialize_json(value: CoreNetworkSummary) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkSummary:
     out: CoreNetworkSummary = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "CoreNetworkArn" in data:
+    if data.get("CoreNetworkArn") is not None:
         out["core_network_arn"] = data["CoreNetworkArn"]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.core_network_state
 
         out["state"] = capo_networkmanager.types.core_network_state.deserialize_json(
             data["State"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])

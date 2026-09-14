@@ -31,6 +31,8 @@ def deserialize_aws_json_1_1(data: dict) -> ActiveOperations:
     for key, value in data.items():
         import capo_sagemaker.types.active_cluster_operation_name
 
+        if value is None:
+            continue
         out[
             capo_sagemaker.types.active_cluster_operation_name.deserialize_aws_json_1_1(
                 key

@@ -162,13 +162,13 @@ def serialize_aws_json_1_1(value: UpdateStackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateStackRequest:
     out: UpdateStackRequest = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "StorageConnectors" in data:
+    if data.get("StorageConnectors") is not None:
         import capo_appstream.types.storage_connector_list
 
         out["storage_connectors"] = (
@@ -176,13 +176,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStackRequest:
                 data["StorageConnectors"]
             )
         )
-    if "DeleteStorageConnectors" in data:
+    if data.get("DeleteStorageConnectors") is not None:
         out["delete_storage_connectors"] = data["DeleteStorageConnectors"]
-    if "RedirectURL" in data:
+    if data.get("RedirectURL") is not None:
         out["redirect_url"] = data["RedirectURL"]
-    if "FeedbackURL" in data:
+    if data.get("FeedbackURL") is not None:
         out["feedback_url"] = data["FeedbackURL"]
-    if "AttributesToDelete" in data:
+    if data.get("AttributesToDelete") is not None:
         import capo_appstream.types.stack_attributes
 
         out["attributes_to_delete"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStackRequest:
                 data["AttributesToDelete"]
             )
         )
-    if "UserSettings" in data:
+    if data.get("UserSettings") is not None:
         import capo_appstream.types.user_setting_list
 
         out["user_settings"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStackRequest:
                 data["UserSettings"]
             )
         )
-    if "ApplicationSettings" in data:
+    if data.get("ApplicationSettings") is not None:
         import capo_appstream.types.application_settings
 
         out["application_settings"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStackRequest:
                 data["ApplicationSettings"]
             )
         )
-    if "AccessEndpoints" in data:
+    if data.get("AccessEndpoints") is not None:
         import capo_appstream.types.access_endpoint_list
 
         out["access_endpoints"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStackRequest:
                 data["AccessEndpoints"]
             )
         )
-    if "EmbedHostDomains" in data:
+    if data.get("EmbedHostDomains") is not None:
         import capo_appstream.types.embed_host_domains
 
         out["embed_host_domains"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStackRequest:
                 data["EmbedHostDomains"]
             )
         )
-    if "StreamingExperienceSettings" in data:
+    if data.get("StreamingExperienceSettings") is not None:
         import capo_appstream.types.streaming_experience_settings
 
         out["streaming_experience_settings"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStackRequest:
                 data["StreamingExperienceSettings"]
             )
         )
-    if "ContentRedirection" in data:
+    if data.get("ContentRedirection") is not None:
         import capo_appstream.types.content_redirection
 
         out["content_redirection"] = (
@@ -238,7 +238,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStackRequest:
                 data["ContentRedirection"]
             )
         )
-    if "AgentAccessConfig" in data:
+    if data.get("AgentAccessConfig") is not None:
         import capo_appstream.types.agent_access_config_for_update
 
         out["agent_access_config"] = (

@@ -23,6 +23,6 @@ def serialize_json(value: ConnectCaseFilter) -> dict:
 
 def deserialize_json(data: dict) -> ConnectCaseFilter:
     out: ConnectCaseFilter = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
     return out

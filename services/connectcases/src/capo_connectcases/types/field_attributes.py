@@ -32,7 +32,7 @@ def serialize_json(value: FieldAttributes) -> dict:
 
 
 def deserialize_json(data: dict) -> FieldAttributes:
-    if "text" in data:
+    if data.get("text") is not None:
         import capo_connectcases.types.text_attributes
 
         return {

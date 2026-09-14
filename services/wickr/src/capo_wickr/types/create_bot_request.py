@@ -38,17 +38,17 @@ def serialize_json(value: CreateBotRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBotRequest:
     out: CreateBotRequest = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     else:
         raise DeserializationError("CreateBotRequest.username required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
     else:
         raise DeserializationError("CreateBotRequest.group_id required")
-    if "challenge" in data:
+    if data.get("challenge") is not None:
         out["challenge"] = data["challenge"]
     else:
         raise DeserializationError("CreateBotRequest.challenge required")

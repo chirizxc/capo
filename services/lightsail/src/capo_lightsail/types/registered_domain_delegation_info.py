@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: RegisteredDomainDelegationInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisteredDomainDelegationInfo:
     out: RegisteredDomainDelegationInfo = {}  # type: ignore[typeddict-item]
-    if "nameServersUpdateState" in data:
+    if data.get("nameServersUpdateState") is not None:
         import capo_lightsail.types.name_servers_update_state
 
         out["name_servers_update_state"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegisteredDomainDelegationInfo:
                 data["nameServersUpdateState"]
             )
         )
-    if "r53HostedZoneDeletionState" in data:
+    if data.get("r53HostedZoneDeletionState") is not None:
         import capo_lightsail.types.r53_hosted_zone_deletion_state
 
         out["r53_hosted_zone_deletion_state"] = (

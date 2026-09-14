@@ -63,25 +63,25 @@ def serialize_aws_json_1_1(value: Block) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Block:
     out: Block = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "BlockType" in data:
+    if data.get("BlockType") is not None:
         import capo_comprehend.types.block_type
 
         out["block_type"] = capo_comprehend.types.block_type.deserialize_aws_json_1_1(
             data["BlockType"]
         )
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "Page" in data:
+    if data.get("Page") is not None:
         out["page"] = data["Page"]
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_comprehend.types.geometry
 
         out["geometry"] = capo_comprehend.types.geometry.deserialize_aws_json_1_1(
             data["Geometry"]
         )
-    if "Relationships" in data:
+    if data.get("Relationships") is not None:
         import capo_comprehend.types.list_of_relationships
 
         out["relationships"] = (

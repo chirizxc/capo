@@ -22,11 +22,11 @@ def serialize_json(value: Subject) -> dict:
 
 def deserialize_json(data: dict) -> Subject:
     out: Subject = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     else:
         raise DeserializationError("Subject.namespace required")
-    if "serviceAccount" in data:
+    if data.get("serviceAccount") is not None:
         out["service_account"] = data["serviceAccount"]
     else:
         raise DeserializationError("Subject.service_account required")

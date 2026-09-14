@@ -51,15 +51,15 @@ def serialize_aws_json_1_0(value: CreateProxyRuleGroupRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateProxyRuleGroupRequest:
     out: CreateProxyRuleGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ProxyRuleGroupName" in data:
+    if data.get("ProxyRuleGroupName") is not None:
         out["proxy_rule_group_name"] = data["ProxyRuleGroupName"]
     else:
         raise DeserializationError(
             "CreateProxyRuleGroupRequest.proxy_rule_group_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_network_firewall.types.proxy_rules_by_request_phase
 
         out["rules"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProxyRuleGroupRequest:
                 data["Rules"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(

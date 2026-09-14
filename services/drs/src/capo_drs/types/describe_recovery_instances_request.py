@@ -43,7 +43,7 @@ def serialize_json(value: DescribeRecoveryInstancesRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRecoveryInstancesRequest:
     out: DescribeRecoveryInstancesRequest = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_drs.types.describe_recovery_instances_request_filters
 
         out["filters"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> DescribeRecoveryInstancesRequest:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeAcceleratorAttributesResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAcceleratorAttributesResponse:
     out: DescribeAcceleratorAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "AcceleratorAttributes" in data:
+    if data.get("AcceleratorAttributes") is not None:
         import capo_global_accelerator.types.accelerator_attributes
 
         out["accelerator_attributes"] = (

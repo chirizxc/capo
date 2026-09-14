@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AuthorizedPrincipalList:
 
     out: AuthorizedPrincipalList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.authorized_principal.deserialize_json(item)
         )

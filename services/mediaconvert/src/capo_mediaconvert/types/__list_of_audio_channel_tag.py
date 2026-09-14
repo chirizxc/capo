@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfAudioChannelTag:
 
     out: __listOfAudioChannelTag = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.audio_channel_tag.deserialize_json(item))
     return out

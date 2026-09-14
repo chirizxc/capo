@@ -24,7 +24,7 @@ def serialize_json(value: AmazonOpenSearchParameters) -> dict:
 
 def deserialize_json(data: dict) -> AmazonOpenSearchParameters:
     out: AmazonOpenSearchParameters = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     else:
         raise DeserializationError("AmazonOpenSearchParameters.domain required")

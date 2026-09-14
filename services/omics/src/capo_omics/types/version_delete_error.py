@@ -27,11 +27,11 @@ def serialize_json(value: VersionDeleteError) -> dict:
 
 def deserialize_json(data: dict) -> VersionDeleteError:
     out: VersionDeleteError = {}  # type: ignore[typeddict-item]
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
     else:
         raise DeserializationError("VersionDeleteError.version_name required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("VersionDeleteError.message required")

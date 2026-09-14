@@ -39,7 +39,7 @@ def serialize_json(value: UpdateResourceCollectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceCollectionRequest:
     out: UpdateResourceCollectionRequest = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_devops_guru.types.update_resource_collection_action
 
         out["action"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> UpdateResourceCollectionRequest:
         )
     else:
         raise DeserializationError("UpdateResourceCollectionRequest.action required")
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.update_resource_collection_filter
 
         out["resource_collection"] = (

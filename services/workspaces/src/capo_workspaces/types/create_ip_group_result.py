@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateIpGroupResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIpGroupResult:
     out: CreateIpGroupResult = {}  # type: ignore[typeddict-item]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     return out

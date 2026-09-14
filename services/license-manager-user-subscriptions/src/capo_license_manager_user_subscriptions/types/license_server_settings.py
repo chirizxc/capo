@@ -36,11 +36,11 @@ def serialize_json(value: LicenseServerSettings) -> dict:
 
 def deserialize_json(data: dict) -> LicenseServerSettings:
     out: LicenseServerSettings = {}  # type: ignore[typeddict-item]
-    if "ServerType" in data:
+    if data.get("ServerType") is not None:
         out["server_type"] = data["ServerType"]
     else:
         raise DeserializationError("LicenseServerSettings.server_type required")
-    if "ServerSettings" in data:
+    if data.get("ServerSettings") is not None:
         import capo_license_manager_user_subscriptions.types.server_settings
 
         out["server_settings"] = (

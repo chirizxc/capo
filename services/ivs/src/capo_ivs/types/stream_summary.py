@@ -51,19 +51,19 @@ def serialize_json(value: StreamSummary) -> dict:
 
 def deserialize_json(data: dict) -> StreamSummary:
     out: StreamSummary = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "health" in data:
+    if data.get("health") is not None:
         out["health"] = data["health"]
-    if "viewerCount" in data:
+    if data.get("viewerCount") is not None:
         out["viewer_count"] = data["viewerCount"]
     else:
         out["viewer_count"] = 0
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_ivs.types.stream_start_time
 
         out["start_time"] = capo_ivs.types.stream_start_time.deserialize_json(

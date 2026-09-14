@@ -40,12 +40,12 @@ def serialize_json(value: Ec2Configuration) -> dict:
 
 def deserialize_json(data: dict) -> Ec2Configuration:
     out: Ec2Configuration = {}  # type: ignore[typeddict-item]
-    if "imageType" in data:
+    if data.get("imageType") is not None:
         out["image_type"] = data["imageType"]
-    if "imageIdOverride" in data:
+    if data.get("imageIdOverride") is not None:
         out["image_id_override"] = data["imageIdOverride"]
-    if "batchImageStatus" in data:
+    if data.get("batchImageStatus") is not None:
         out["batch_image_status"] = data["batchImageStatus"]
-    if "imageKubernetesVersion" in data:
+    if data.get("imageKubernetesVersion") is not None:
         out["image_kubernetes_version"] = data["imageKubernetesVersion"]
     return out

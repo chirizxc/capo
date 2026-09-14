@@ -82,11 +82,11 @@ def serialize_json(value: ResourceInfo) -> dict:
 
 def deserialize_json(data: dict) -> ResourceInfo:
     out: ResourceInfo = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         import capo_lakeformation.types.last_modified_timestamp
 
         out["last_modified"] = (
@@ -94,13 +94,13 @@ def deserialize_json(data: dict) -> ResourceInfo:
                 data["LastModified"]
             )
         )
-    if "WithFederation" in data:
+    if data.get("WithFederation") is not None:
         out["with_federation"] = data["WithFederation"]
-    if "HybridAccessEnabled" in data:
+    if data.get("HybridAccessEnabled") is not None:
         out["hybrid_access_enabled"] = data["HybridAccessEnabled"]
-    if "WithPrivilegedAccess" in data:
+    if data.get("WithPrivilegedAccess") is not None:
         out["with_privileged_access"] = data["WithPrivilegedAccess"]
-    if "VerificationStatus" in data:
+    if data.get("VerificationStatus") is not None:
         import capo_lakeformation.types.verification_status
 
         out["verification_status"] = (
@@ -108,6 +108,6 @@ def deserialize_json(data: dict) -> ResourceInfo:
                 data["VerificationStatus"]
             )
         )
-    if "ExpectedResourceOwnerAccount" in data:
+    if data.get("ExpectedResourceOwnerAccount") is not None:
         out["expected_resource_owner_account"] = data["ExpectedResourceOwnerAccount"]
     return out

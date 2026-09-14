@@ -30,10 +30,10 @@ def serialize_json(value: HttpContext) -> dict:
 
 def deserialize_json(data: dict) -> HttpContext:
     out: HttpContext = {}  # type: ignore[typeddict-item]
-    if "headers" in data:
+    if data.get("headers") is not None:
         import capo_iot.types.http_headers
 
         out["headers"] = capo_iot.types.http_headers.deserialize_json(data["headers"])
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
     return out

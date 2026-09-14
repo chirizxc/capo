@@ -31,7 +31,7 @@ def serialize_json(value: AttachTypedLinkResponse) -> dict:
 
 def deserialize_json(data: dict) -> AttachTypedLinkResponse:
     out: AttachTypedLinkResponse = {}  # type: ignore[typeddict-item]
-    if "TypedLinkSpecifier" in data:
+    if data.get("TypedLinkSpecifier") is not None:
         import capo_clouddirectory.types.typed_link_specifier
 
         out["typed_link_specifier"] = (

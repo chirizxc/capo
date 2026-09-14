@@ -37,11 +37,11 @@ def serialize_json(value: UpdateLinkModuleFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLinkModuleFlowRequest:
     out: UpdateLinkModuleFlowRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("UpdateLinkModuleFlowRequest.client_token required")
-    if "modules" in data:
+    if data.get("modules") is not None:
         import capo_rtbfabric.types.module_configuration_list
 
         out["modules"] = (

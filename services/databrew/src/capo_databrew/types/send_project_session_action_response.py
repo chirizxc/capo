@@ -34,12 +34,12 @@ def serialize_json(value: SendProjectSessionActionResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendProjectSessionActionResponse:
     out: SendProjectSessionActionResponse = {}  # type: ignore[typeddict-item]
-    if "Result" in data:
+    if data.get("Result") is not None:
         out["result"] = data["Result"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SendProjectSessionActionResponse.name required")
-    if "ActionId" in data:
+    if data.get("ActionId") is not None:
         out["action_id"] = data["ActionId"]
     return out

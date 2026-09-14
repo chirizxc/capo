@@ -40,19 +40,19 @@ def serialize_json(value: ConversationLevelSlotResolutionResultItem) -> dict:
 
 def deserialize_json(data: dict) -> ConversationLevelSlotResolutionResultItem:
     out: ConversationLevelSlotResolutionResultItem = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
     else:
         raise DeserializationError(
             "ConversationLevelSlotResolutionResultItem.intent_name required"
         )
-    if "slotName" in data:
+    if data.get("slotName") is not None:
         out["slot_name"] = data["slotName"]
     else:
         raise DeserializationError(
             "ConversationLevelSlotResolutionResultItem.slot_name required"
         )
-    if "matchResult" in data:
+    if data.get("matchResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["match_result"] = (

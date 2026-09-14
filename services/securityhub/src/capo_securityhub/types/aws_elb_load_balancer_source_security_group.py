@@ -27,8 +27,8 @@ def serialize_json(value: AwsElbLoadBalancerSourceSecurityGroup) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerSourceSecurityGroup:
     out: AwsElbLoadBalancerSourceSecurityGroup = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "OwnerAlias" in data:
+    if data.get("OwnerAlias") is not None:
         out["owner_alias"] = data["OwnerAlias"]
     return out

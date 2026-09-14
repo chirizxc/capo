@@ -23,6 +23,6 @@ def serialize_json(value: SplitConstruct) -> dict:
 
 def deserialize_json(data: dict) -> SplitConstruct:
     out: SplitConstruct = {}  # type: ignore[typeddict-item]
-    if "cidrBlock" in data:
+    if data.get("cidrBlock") is not None:
         out["cidr_block"] = data["cidrBlock"]
     return out

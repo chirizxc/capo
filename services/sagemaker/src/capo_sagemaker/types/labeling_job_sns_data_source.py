@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: LabelingJobSnsDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelingJobSnsDataSource:
     out: LabelingJobSnsDataSource = {}  # type: ignore[typeddict-item]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
     return out

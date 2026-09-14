@@ -24,7 +24,7 @@ def serialize_json(value: InviteAction) -> dict:
 
 def deserialize_json(data: dict) -> InviteAction:
     out: InviteAction = {}  # type: ignore[typeddict-item]
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         out["principal"] = data["Principal"]
     else:
         raise DeserializationError("InviteAction.principal required")

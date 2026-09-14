@@ -109,25 +109,25 @@ def serialize_json(value: DomainPackageDetails) -> dict:
 
 def deserialize_json(data: dict) -> DomainPackageDetails:
     out: DomainPackageDetails = {}  # type: ignore[typeddict-item]
-    if "PackageID" in data:
+    if data.get("PackageID") is not None:
         out["package_id"] = data["PackageID"]
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
-    if "PackageType" in data:
+    if data.get("PackageType") is not None:
         import capo_opensearch.types.package_type
 
         out["package_type"] = capo_opensearch.types.package_type.deserialize_json(
             data["PackageType"]
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_opensearch.types.last_updated
 
         out["last_updated"] = capo_opensearch.types.last_updated.deserialize_json(
             data["LastUpdated"]
         )
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "DomainPackageStatus" in data:
+    if data.get("DomainPackageStatus") is not None:
         import capo_opensearch.types.domain_package_status
 
         out["domain_package_status"] = (
@@ -135,9 +135,9 @@ def deserialize_json(data: dict) -> DomainPackageDetails:
                 data["DomainPackageStatus"]
             )
         )
-    if "PackageVersion" in data:
+    if data.get("PackageVersion") is not None:
         out["package_version"] = data["PackageVersion"]
-    if "PrerequisitePackageIDList" in data:
+    if data.get("PrerequisitePackageIDList") is not None:
         import capo_opensearch.types.package_id_list
 
         out["prerequisite_package_id_list"] = (
@@ -145,15 +145,15 @@ def deserialize_json(data: dict) -> DomainPackageDetails:
                 data["PrerequisitePackageIDList"]
             )
         )
-    if "ReferencePath" in data:
+    if data.get("ReferencePath") is not None:
         out["reference_path"] = data["ReferencePath"]
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_opensearch.types.error_details
 
         out["error_details"] = capo_opensearch.types.error_details.deserialize_json(
             data["ErrorDetails"]
         )
-    if "AssociationConfiguration" in data:
+    if data.get("AssociationConfiguration") is not None:
         import capo_opensearch.types.package_association_configuration
 
         out["association_configuration"] = (

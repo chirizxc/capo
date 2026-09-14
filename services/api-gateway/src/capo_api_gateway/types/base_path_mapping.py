@@ -31,10 +31,10 @@ def serialize_json(value: BasePathMapping) -> dict:
 
 def deserialize_json(data: dict) -> BasePathMapping:
     out: BasePathMapping = {}  # type: ignore[typeddict-item]
-    if "basePath" in data:
+    if data.get("basePath") is not None:
         out["base_path"] = data["basePath"]
-    if "restApiId" in data:
+    if data.get("restApiId") is not None:
         out["rest_api_id"] = data["restApiId"]
-    if "stage" in data:
+    if data.get("stage") is not None:
         out["stage"] = data["stage"]
     return out

@@ -26,6 +26,7 @@ class RescoreRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: RescoreRequest) -> dict:
     out: dict = {}
+    out["RescoreExecutionPlanId"] = value["rescore_execution_plan_id"]
     out["SearchQuery"] = value["search_query"]
     import capo_kendra_ranking.types.document_list
 
@@ -37,11 +38,15 @@ def serialize_aws_json_1_0(value: RescoreRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RescoreRequest:
     out: RescoreRequest = {}  # type: ignore[typeddict-item]
-    if "SearchQuery" in data:
+    if data.get("RescoreExecutionPlanId") is not None:
+        out["rescore_execution_plan_id"] = data["RescoreExecutionPlanId"]
+    else:
+        raise DeserializationError("RescoreRequest.rescore_execution_plan_id required")
+    if data.get("SearchQuery") is not None:
         out["search_query"] = data["SearchQuery"]
     else:
         raise DeserializationError("RescoreRequest.search_query required")
-    if "Documents" in data:
+    if data.get("Documents") is not None:
         import capo_kendra_ranking.types.document_list
 
         out["documents"] = (

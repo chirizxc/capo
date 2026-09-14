@@ -27,7 +27,7 @@ def serialize_json(value: UpdateConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectionResponse:
     out: UpdateConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "Connection" in data:
+    if data.get("Connection") is not None:
         import capo_networkmanager.types.connection
 
         out["connection"] = capo_networkmanager.types.connection.deserialize_json(

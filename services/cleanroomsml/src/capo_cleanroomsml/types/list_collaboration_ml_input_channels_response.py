@@ -35,9 +35,9 @@ def serialize_json(value: ListCollaborationMLInputChannelsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCollaborationMLInputChannelsResponse:
     out: ListCollaborationMLInputChannelsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "collaborationMLInputChannelsList" in data:
+    if data.get("collaborationMLInputChannelsList") is not None:
         import capo_cleanroomsml.types.collaboration_ml_input_channels_list
 
         out["collaboration_ml_input_channels_list"] = (

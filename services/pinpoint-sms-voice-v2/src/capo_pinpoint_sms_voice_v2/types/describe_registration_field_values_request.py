@@ -63,17 +63,17 @@ def serialize_aws_json_1_0(value: DescribeRegistrationFieldValuesRequest) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeRegistrationFieldValuesRequest:
     out: DescribeRegistrationFieldValuesRequest = {}  # type: ignore[typeddict-item]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(
             "DescribeRegistrationFieldValuesRequest.registration_id required"
         )
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
-    if "SectionPath" in data:
+    if data.get("SectionPath") is not None:
         out["section_path"] = data["SectionPath"]
-    if "FieldPaths" in data:
+    if data.get("FieldPaths") is not None:
         import capo_pinpoint_sms_voice_v2.types.field_path_list
 
         out["field_paths"] = (
@@ -81,8 +81,8 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRegistrationFieldValuesReque
                 data["FieldPaths"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

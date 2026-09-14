@@ -43,12 +43,12 @@ def serialize_aws_json_1_0(value: ComponentState) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ComponentState:
     out: ComponentState = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "serviceInstanceName" in data:
+    if data.get("serviceInstanceName") is not None:
         out["service_instance_name"] = data["serviceInstanceName"]
-    if "serviceSpec" in data:
+    if data.get("serviceSpec") is not None:
         out["service_spec"] = data["serviceSpec"]
-    if "templateFile" in data:
+    if data.get("templateFile") is not None:
         out["template_file"] = data["templateFile"]
     return out

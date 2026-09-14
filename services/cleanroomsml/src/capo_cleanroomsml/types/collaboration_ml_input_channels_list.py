@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CollaborationMLInputChannelsList:
 
     out: CollaborationMLInputChannelsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.collaboration_ml_input_channel_summary.deserialize_json(
                 item

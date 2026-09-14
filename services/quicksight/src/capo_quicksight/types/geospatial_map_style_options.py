@@ -29,7 +29,7 @@ def serialize_json(value: GeospatialMapStyleOptions) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialMapStyleOptions:
     out: GeospatialMapStyleOptions = {}  # type: ignore[typeddict-item]
-    if "BaseMapStyle" in data:
+    if data.get("BaseMapStyle") is not None:
         import capo_quicksight.types.base_map_style_type
 
         out["base_map_style"] = (

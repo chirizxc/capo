@@ -34,14 +34,14 @@ def serialize_aws_json_1_1(value: ListTestGridSessionActionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionActionsRequest:
     out: ListTestGridSessionActionsRequest = {}  # type: ignore[typeddict-item]
-    if "sessionArn" in data:
+    if data.get("sessionArn") is not None:
         out["session_arn"] = data["sessionArn"]
     else:
         raise DeserializationError(
             "ListTestGridSessionActionsRequest.session_arn required"
         )
-    if "maxResult" in data:
+    if data.get("maxResult") is not None:
         out["max_result"] = data["maxResult"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

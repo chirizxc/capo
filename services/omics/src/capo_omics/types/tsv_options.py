@@ -27,7 +27,7 @@ def serialize_json(value: TsvOptions) -> dict:
 
 def deserialize_json(data: dict) -> TsvOptions:
     out: TsvOptions = {}  # type: ignore[typeddict-item]
-    if "readOptions" in data:
+    if data.get("readOptions") is not None:
         import capo_omics.types.read_options
 
         out["read_options"] = capo_omics.types.read_options.deserialize_json(

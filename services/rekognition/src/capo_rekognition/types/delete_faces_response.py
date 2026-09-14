@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: DeleteFacesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFacesResponse:
     out: DeleteFacesResponse = {}  # type: ignore[typeddict-item]
-    if "DeletedFaces" in data:
+    if data.get("DeletedFaces") is not None:
         import capo_rekognition.types.face_id_list
 
         out["deleted_faces"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteFacesResponse:
                 data["DeletedFaces"]
             )
         )
-    if "UnsuccessfulFaceDeletions" in data:
+    if data.get("UnsuccessfulFaceDeletions") is not None:
         import capo_rekognition.types.unsuccessful_face_deletions_list
 
         out["unsuccessful_face_deletions"] = (

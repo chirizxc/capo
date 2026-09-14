@@ -34,26 +34,34 @@ def serialize_json(value: LteNetworkMeasurements) -> dict:
     if "rsrp" in value:
         out["Rsrp"] = value["rsrp"]
     if "rsrq" in value:
-        out["Rsrq"] = value["rsrq"]
+        out["Rsrq"] = (
+            "NaN"
+            if value["rsrq"] != value["rsrq"]
+            else "Infinity"
+            if value["rsrq"] == float("inf")
+            else "-Infinity"
+            if value["rsrq"] == float("-inf")
+            else value["rsrq"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> LteNetworkMeasurements:
     out: LteNetworkMeasurements = {}  # type: ignore[typeddict-item]
-    if "Earfcn" in data:
+    if data.get("Earfcn") is not None:
         out["earfcn"] = data["Earfcn"]
     else:
         out["earfcn"] = 0
-    if "CellId" in data:
+    if data.get("CellId") is not None:
         out["cell_id"] = data["CellId"]
     else:
         out["cell_id"] = 0
-    if "Pci" in data:
+    if data.get("Pci") is not None:
         out["pci"] = data["Pci"]
     else:
         out["pci"] = 0
-    if "Rsrp" in data:
+    if data.get("Rsrp") is not None:
         out["rsrp"] = data["Rsrp"]
-    if "Rsrq" in data:
-        out["rsrq"] = data["Rsrq"]
+    if data.get("Rsrq") is not None:
+        out["rsrq"] = float(data["Rsrq"])
     return out

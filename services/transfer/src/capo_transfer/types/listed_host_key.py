@@ -57,19 +57,19 @@ def serialize_aws_json_1_1(value: ListedHostKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListedHostKey:
     out: ListedHostKey = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ListedHostKey.arn required")
-    if "HostKeyId" in data:
+    if data.get("HostKeyId") is not None:
         out["host_key_id"] = data["HostKeyId"]
-    if "Fingerprint" in data:
+    if data.get("Fingerprint") is not None:
         out["fingerprint"] = data["Fingerprint"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "DateImported" in data:
+    if data.get("DateImported") is not None:
         import capo_transfer.types.date_imported
 
         out["date_imported"] = (

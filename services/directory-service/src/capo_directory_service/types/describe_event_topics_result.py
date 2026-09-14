@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DescribeEventTopicsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventTopicsResult:
     out: DescribeEventTopicsResult = {}  # type: ignore[typeddict-item]
-    if "EventTopics" in data:
+    if data.get("EventTopics") is not None:
         import capo_directory_service.types.event_topics
 
         out["event_topics"] = (

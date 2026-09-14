@@ -56,28 +56,28 @@ def serialize_json(value: BatchExecuteStatementRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchExecuteStatementRequest:
     out: BatchExecuteStatementRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("BatchExecuteStatementRequest.resource_arn required")
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError("BatchExecuteStatementRequest.secret_arn required")
-    if "sql" in data:
+    if data.get("sql") is not None:
         out["sql"] = data["sql"]
     else:
         raise DeserializationError("BatchExecuteStatementRequest.sql required")
-    if "database" in data:
+    if data.get("database") is not None:
         out["database"] = data["database"]
-    if "schema" in data:
+    if data.get("schema") is not None:
         out["schema"] = data["schema"]
-    if "parameterSets" in data:
+    if data.get("parameterSets") is not None:
         import capo_rds_data.types.sql_parameter_sets
 
         out["parameter_sets"] = capo_rds_data.types.sql_parameter_sets.deserialize_json(
             data["parameterSets"]
         )
-    if "transactionId" in data:
+    if data.get("transactionId") is not None:
         out["transaction_id"] = data["transactionId"]
     return out

@@ -135,7 +135,7 @@ def serialize_aws_json_1_0(value: FirewallPolicy) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FirewallPolicy:
     out: FirewallPolicy = {}  # type: ignore[typeddict-item]
-    if "StatelessRuleGroupReferences" in data:
+    if data.get("StatelessRuleGroupReferences") is not None:
         import capo_network_firewall.types.stateless_rule_group_references
 
         out["stateless_rule_group_references"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallPolicy:
                 data["StatelessRuleGroupReferences"]
             )
         )
-    if "StatelessDefaultActions" in data:
+    if data.get("StatelessDefaultActions") is not None:
         import capo_network_firewall.types.stateless_actions
 
         out["stateless_default_actions"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallPolicy:
         )
     else:
         raise DeserializationError("FirewallPolicy.stateless_default_actions required")
-    if "StatelessFragmentDefaultActions" in data:
+    if data.get("StatelessFragmentDefaultActions") is not None:
         import capo_network_firewall.types.stateless_actions
 
         out["stateless_fragment_default_actions"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallPolicy:
         raise DeserializationError(
             "FirewallPolicy.stateless_fragment_default_actions required"
         )
-    if "StatelessCustomActions" in data:
+    if data.get("StatelessCustomActions") is not None:
         import capo_network_firewall.types.custom_actions
 
         out["stateless_custom_actions"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallPolicy:
                 data["StatelessCustomActions"]
             )
         )
-    if "StatefulRuleGroupReferences" in data:
+    if data.get("StatefulRuleGroupReferences") is not None:
         import capo_network_firewall.types.stateful_rule_group_references
 
         out["stateful_rule_group_references"] = (
@@ -181,7 +181,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallPolicy:
                 data["StatefulRuleGroupReferences"]
             )
         )
-    if "StatefulDefaultActions" in data:
+    if data.get("StatefulDefaultActions") is not None:
         import capo_network_firewall.types.stateful_actions
 
         out["stateful_default_actions"] = (
@@ -189,7 +189,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallPolicy:
                 data["StatefulDefaultActions"]
             )
         )
-    if "StatefulEngineOptions" in data:
+    if data.get("StatefulEngineOptions") is not None:
         import capo_network_firewall.types.stateful_engine_options
 
         out["stateful_engine_options"] = (
@@ -197,9 +197,9 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallPolicy:
                 data["StatefulEngineOptions"]
             )
         )
-    if "TLSInspectionConfigurationArn" in data:
+    if data.get("TLSInspectionConfigurationArn") is not None:
         out["tls_inspection_configuration_arn"] = data["TLSInspectionConfigurationArn"]
-    if "PolicyVariables" in data:
+    if data.get("PolicyVariables") is not None:
         import capo_network_firewall.types.policy_variables
 
         out["policy_variables"] = (
@@ -207,6 +207,6 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallPolicy:
                 data["PolicyVariables"]
             )
         )
-    if "EnableTLSSessionHolding" in data:
+    if data.get("EnableTLSSessionHolding") is not None:
         out["enable_tls_session_holding"] = data["EnableTLSSessionHolding"]
     return out

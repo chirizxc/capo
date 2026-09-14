@@ -39,7 +39,7 @@ def serialize_json(value: StartCodegenJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartCodegenJobRequest:
     out: StartCodegenJobRequest = {}  # type: ignore[typeddict-item]
-    if "codegenJobToCreate" in data:
+    if data.get("codegenJobToCreate") is not None:
         import capo_amplifyuibuilder.types.start_codegen_job_data
 
         out["codegen_job_to_create"] = (

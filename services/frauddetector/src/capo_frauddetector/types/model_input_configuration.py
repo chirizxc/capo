@@ -57,9 +57,9 @@ def serialize_aws_json_1_1(value: ModelInputConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelInputConfiguration:
     out: ModelInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_frauddetector.types.model_input_data_format
 
         out["format"] = (
@@ -67,14 +67,14 @@ def deserialize_aws_json_1_1(data: dict) -> ModelInputConfiguration:
                 data["format"]
             )
         )
-    if "useEventVariables" in data:
+    if data.get("useEventVariables") is not None:
         out["use_event_variables"] = data["useEventVariables"]
     else:
         raise DeserializationError(
             "ModelInputConfiguration.use_event_variables required"
         )
-    if "jsonInputTemplate" in data:
+    if data.get("jsonInputTemplate") is not None:
         out["json_input_template"] = data["jsonInputTemplate"]
-    if "csvInputTemplate" in data:
+    if data.get("csvInputTemplate") is not None:
         out["csv_input_template"] = data["csvInputTemplate"]
     return out

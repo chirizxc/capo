@@ -27,8 +27,8 @@ def serialize_json(value: UpdateServiceEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceEnvironmentResponse:
     out: UpdateServiceEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "serviceEnvironmentName" in data:
+    if data.get("serviceEnvironmentName") is not None:
         out["service_environment_name"] = data["serviceEnvironmentName"]
-    if "serviceEnvironmentArn" in data:
+    if data.get("serviceEnvironmentArn") is not None:
         out["service_environment_arn"] = data["serviceEnvironmentArn"]
     return out

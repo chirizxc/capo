@@ -47,7 +47,15 @@ def serialize_aws_json_1_1(value: FinalAutoMLJobObjectiveMetric) -> dict:
             )
         )
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     if "standard_metric_name" in value:
         import capo_sagemaker.types.auto_ml_metric_enum
 
@@ -61,7 +69,7 @@ def serialize_aws_json_1_1(value: FinalAutoMLJobObjectiveMetric) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FinalAutoMLJobObjectiveMetric:
     out: FinalAutoMLJobObjectiveMetric = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.auto_ml_job_objective_type
 
         out["type"] = (
@@ -69,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> FinalAutoMLJobObjectiveMetric:
                 data["Type"]
             )
         )
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         import capo_sagemaker.types.auto_ml_metric_enum
 
         out["metric_name"] = (
@@ -77,9 +85,9 @@ def deserialize_aws_json_1_1(data: dict) -> FinalAutoMLJobObjectiveMetric:
                 data["MetricName"]
             )
         )
-    if "Value" in data:
-        out["value"] = data["Value"]
-    if "StandardMetricName" in data:
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
+    if data.get("StandardMetricName") is not None:
         import capo_sagemaker.types.auto_ml_metric_enum
 
         out["standard_metric_name"] = (

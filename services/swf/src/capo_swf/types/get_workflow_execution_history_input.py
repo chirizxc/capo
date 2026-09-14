@@ -45,11 +45,11 @@ def serialize_aws_json_1_0(value: GetWorkflowExecutionHistoryInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetWorkflowExecutionHistoryInput:
     out: GetWorkflowExecutionHistoryInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("GetWorkflowExecutionHistoryInput.domain required")
-    if "execution" in data:
+    if data.get("execution") is not None:
         import capo_swf.types.workflow_execution
 
         out["execution"] = capo_swf.types.workflow_execution.deserialize_aws_json_1_0(
@@ -59,13 +59,13 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowExecutionHistoryInput:
         raise DeserializationError(
             "GetWorkflowExecutionHistoryInput.execution required"
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
-    if "maximumPageSize" in data:
+    if data.get("maximumPageSize") is not None:
         out["maximum_page_size"] = data["maximumPageSize"]
     else:
         out["maximum_page_size"] = 0
-    if "reverseOrder" in data:
+    if data.get("reverseOrder") is not None:
         out["reverse_order"] = data["reverseOrder"]
     else:
         out["reverse_order"] = False

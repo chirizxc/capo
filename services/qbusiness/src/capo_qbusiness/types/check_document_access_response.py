@@ -49,21 +49,21 @@ def serialize_json(value: CheckDocumentAccessResponse) -> dict:
 
 def deserialize_json(data: dict) -> CheckDocumentAccessResponse:
     out: CheckDocumentAccessResponse = {}  # type: ignore[typeddict-item]
-    if "userGroups" in data:
+    if data.get("userGroups") is not None:
         import capo_qbusiness.types.associated_groups
 
         out["user_groups"] = capo_qbusiness.types.associated_groups.deserialize_json(
             data["userGroups"]
         )
-    if "userAliases" in data:
+    if data.get("userAliases") is not None:
         import capo_qbusiness.types.associated_users
 
         out["user_aliases"] = capo_qbusiness.types.associated_users.deserialize_json(
             data["userAliases"]
         )
-    if "hasAccess" in data:
+    if data.get("hasAccess") is not None:
         out["has_access"] = data["hasAccess"]
-    if "documentAcl" in data:
+    if data.get("documentAcl") is not None:
         import capo_qbusiness.types.document_acl
 
         out["document_acl"] = capo_qbusiness.types.document_acl.deserialize_json(

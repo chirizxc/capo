@@ -32,7 +32,7 @@ def serialize_json(value: GetCaseEventConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCaseEventConfigurationResponse:
     out: GetCaseEventConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "eventBridge" in data:
+    if data.get("eventBridge") is not None:
         import capo_connectcases.types.event_bridge_configuration
 
         out["event_bridge"] = (

@@ -30,12 +30,12 @@ def serialize_aws_json_1_1(value: SequenceNumberRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SequenceNumberRange:
     out: SequenceNumberRange = {}  # type: ignore[typeddict-item]
-    if "StartingSequenceNumber" in data:
+    if data.get("StartingSequenceNumber") is not None:
         out["starting_sequence_number"] = data["StartingSequenceNumber"]
     else:
         raise DeserializationError(
             "SequenceNumberRange.starting_sequence_number required"
         )
-    if "EndingSequenceNumber" in data:
+    if data.get("EndingSequenceNumber") is not None:
         out["ending_sequence_number"] = data["EndingSequenceNumber"]
     return out

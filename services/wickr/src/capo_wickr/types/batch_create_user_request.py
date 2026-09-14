@@ -36,7 +36,7 @@ def serialize_json(value: BatchCreateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateUserRequest:
     out: BatchCreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "users" in data:
+    if data.get("users") is not None:
         import capo_wickr.types.batch_create_user_request_items
 
         out["users"] = (

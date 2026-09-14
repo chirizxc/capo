@@ -36,7 +36,7 @@ def serialize_json(value: DescribeRuntimeVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRuntimeVersionsResponse:
     out: DescribeRuntimeVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "RuntimeVersions" in data:
+    if data.get("RuntimeVersions") is not None:
         import capo_synthetics.types.runtime_version_list
 
         out["runtime_versions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DescribeRuntimeVersionsResponse:
                 data["RuntimeVersions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

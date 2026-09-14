@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ConfluencePageConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfluencePageConfiguration:
     out: ConfluencePageConfiguration = {}  # type: ignore[typeddict-item]
-    if "PageFieldMappings" in data:
+    if data.get("PageFieldMappings") is not None:
         import capo_kendra.types.confluence_page_field_mappings_list
 
         out["page_field_mappings"] = (

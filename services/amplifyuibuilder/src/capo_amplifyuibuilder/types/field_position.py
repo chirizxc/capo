@@ -46,7 +46,7 @@ def serialize_json(value: FieldPosition) -> dict:
 
 
 def deserialize_json(data: dict) -> FieldPosition:
-    if "fixed" in data:
+    if data.get("fixed") is not None:
         import capo_amplifyuibuilder.types.fixed_position
 
         return {
@@ -54,9 +54,9 @@ def deserialize_json(data: dict) -> FieldPosition:
                 data["fixed"]
             )
         }
-    elif "rightOf" in data:
+    elif data.get("rightOf") is not None:
         return {"rightOf": data["rightOf"]}
-    elif "below" in data:
+    elif data.get("below") is not None:
         return {"below": data["below"]}
     else:
         raise DeserializationError("FieldPosition: no recognized variant key")

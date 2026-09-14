@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PutKeyRequestsList:
 
     out: PutKeyRequestsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cloudfront_keyvaluestore.types.put_key_request_list_item.deserialize_json(
                 item

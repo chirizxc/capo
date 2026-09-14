@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_codeartifact._auth._signers
 import capo_codeartifact._auth._sigv4
+import capo_codeartifact._protocol.eventstream
 import capo_codeartifact.errors.access_denied_exception
 import capo_codeartifact.errors.internal_server_exception
 import capo_codeartifact.errors.resource_not_found_exception
@@ -36,23 +37,23 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_codeartifact.errors.access_denied_exception.AccessDeniedException.from_json(
-                data
+                data, message
             )
         case "InternalServerException":
             raise capo_codeartifact.errors.internal_server_exception.InternalServerException.from_json(
-                data
+                data, message
             )
         case "ResourceNotFoundException":
             raise capo_codeartifact.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
-                data
+                data, message
             )
         case "ThrottlingException":
             raise capo_codeartifact.errors.throttling_exception.ThrottlingException.from_json(
-                data
+                data, message
             )
         case "ValidationException":
             raise capo_codeartifact.errors.validation_exception.ValidationException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -85,19 +86,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_codeartifact._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_codeartifact._auth._sigv4.build_sigv4_auth_scheme(
-                "codeartifact", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_codeartifact._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_codeartifact._auth._sigv4.build_sigv4_auth_scheme(
+                "codeartifact", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_codeartifact._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -113,33 +121,55 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_codeartifact.types.allow_publish
+    import capo_codeartifact.types.allow_upstream
+    import capo_codeartifact.types.package_format
+
     url = endpoint.url.rstrip("/") + "/v1/packages"
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     if "domain" in input_:
-        params["domain"] = str(input_["domain"])
+        params.append(("domain", input_["domain"]))
     if "domain_owner" in input_:
-        params["domain-owner"] = str(input_["domain_owner"])
+        params.append(("domain-owner", input_["domain_owner"]))
     if "repository" in input_:
-        params["repository"] = str(input_["repository"])
+        params.append(("repository", input_["repository"]))
     if "format" in input_:
-        params["format"] = str(input_["format"])
+        params.append(
+            (
+                "format",
+                capo_codeartifact.types.package_format.serialize_json(input_["format"]),
+            )
+        )
     if "namespace" in input_:
-        params["namespace"] = str(input_["namespace"])
+        params.append(("namespace", input_["namespace"]))
     if "package_prefix" in input_:
-        params["package-prefix"] = str(input_["package_prefix"])
+        params.append(("package-prefix", input_["package_prefix"]))
     if "max_results" in input_:
-        params["max-results"] = str(input_["max_results"])
+        params.append(("max-results", str(input_["max_results"])))
     if "next_token" in input_:
-        params["next-token"] = str(input_["next_token"])
+        params.append(("next-token", input_["next_token"]))
     if "publish" in input_:
-        params["publish"] = str(input_["publish"])
+        params.append(
+            (
+                "publish",
+                capo_codeartifact.types.allow_publish.serialize_json(input_["publish"]),
+            )
+        )
     if "upstream" in input_:
-        params["upstream"] = str(input_["upstream"])
+        params.append(
+            (
+                "upstream",
+                capo_codeartifact.types.allow_upstream.serialize_json(
+                    input_["upstream"]
+                ),
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -153,7 +183,7 @@ def list_packages(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -170,7 +200,7 @@ async def async_list_packages(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

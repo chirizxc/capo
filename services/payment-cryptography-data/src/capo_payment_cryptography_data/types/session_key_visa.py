@@ -30,11 +30,11 @@ def serialize_json(value: SessionKeyVisa) -> dict:
 
 def deserialize_json(data: dict) -> SessionKeyVisa:
     out: SessionKeyVisa = {}  # type: ignore[typeddict-item]
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
     else:
         raise DeserializationError("SessionKeyVisa.primary_account_number required")
-    if "PanSequenceNumber" in data:
+    if data.get("PanSequenceNumber") is not None:
         out["pan_sequence_number"] = data["PanSequenceNumber"]
     else:
         raise DeserializationError("SessionKeyVisa.pan_sequence_number required")

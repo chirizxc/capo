@@ -45,7 +45,7 @@ def serialize_json(value: UpdateImageSetMetadataRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateImageSetMetadataRequest:
     out: UpdateImageSetMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "updateImageSetMetadataUpdates" in data:
+    if data.get("updateImageSetMetadataUpdates") is not None:
         import capo_medical_imaging.types.metadata_updates
 
         out["update_image_set_metadata_updates"] = (

@@ -41,7 +41,7 @@ def serialize_json(value: CreateSegmentEstimateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSegmentEstimateRequest:
     out: CreateSegmentEstimateRequest = {}  # type: ignore[typeddict-item]
-    if "SegmentQuery" in data:
+    if data.get("SegmentQuery") is not None:
         import capo_customer_profiles.types.segment_group_structure
 
         out["segment_query"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> CreateSegmentEstimateRequest:
                 data["SegmentQuery"]
             )
         )
-    if "SegmentSqlQuery" in data:
+    if data.get("SegmentSqlQuery") is not None:
         out["segment_sql_query"] = data["SegmentSqlQuery"]
     return out

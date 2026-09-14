@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: BatchStartRecommendationsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchStartRecommendationsResponse:
     out: BatchStartRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "ErrorEntries" in data:
+    if data.get("ErrorEntries") is not None:
         import capo_database_migration_service.types.batch_start_recommendations_error_entry_list
 
         out["error_entries"] = (

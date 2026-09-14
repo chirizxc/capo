@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> NodeOptionsList:
 
     out: NodeOptionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.node_option.deserialize_json(item))
     return out

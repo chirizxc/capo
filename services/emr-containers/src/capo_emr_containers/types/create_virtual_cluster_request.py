@@ -52,11 +52,11 @@ def serialize_json(value: CreateVirtualClusterRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVirtualClusterRequest:
     out: CreateVirtualClusterRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateVirtualClusterRequest.name required")
-    if "containerProvider" in data:
+    if data.get("containerProvider") is not None:
         import capo_emr_containers.types.container_provider
 
         out["container_provider"] = (
@@ -68,14 +68,14 @@ def deserialize_json(data: dict) -> CreateVirtualClusterRequest:
         raise DeserializationError(
             "CreateVirtualClusterRequest.container_provider required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateVirtualClusterRequest.client_token required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_containers.types.tag_map
 
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])
-    if "securityConfigurationId" in data:
+    if data.get("securityConfigurationId") is not None:
         out["security_configuration_id"] = data["securityConfigurationId"]
     return out

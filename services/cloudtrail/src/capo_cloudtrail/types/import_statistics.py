@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: ImportStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportStatistics:
     out: ImportStatistics = {}  # type: ignore[typeddict-item]
-    if "PrefixesFound" in data:
+    if data.get("PrefixesFound") is not None:
         out["prefixes_found"] = data["PrefixesFound"]
-    if "PrefixesCompleted" in data:
+    if data.get("PrefixesCompleted") is not None:
         out["prefixes_completed"] = data["PrefixesCompleted"]
-    if "FilesCompleted" in data:
+    if data.get("FilesCompleted") is not None:
         out["files_completed"] = data["FilesCompleted"]
-    if "EventsCompleted" in data:
+    if data.get("EventsCompleted") is not None:
         out["events_completed"] = data["EventsCompleted"]
-    if "FailedEntries" in data:
+    if data.get("FailedEntries") is not None:
         out["failed_entries"] = data["FailedEntries"]
     return out

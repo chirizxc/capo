@@ -65,17 +65,17 @@ def serialize_aws_json_1_1(value: FirewallDomainListMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallDomainListMetadata:
     out: FirewallDomainListMetadata = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "ManagedOwnerName" in data:
+    if data.get("ManagedOwnerName") is not None:
         out["managed_owner_name"] = data["ManagedOwnerName"]
-    if "ManagedListType" in data:
+    if data.get("ManagedListType") is not None:
         import capo_route53resolver.types.domain_list_type
 
         out["managed_list_type"] = (
@@ -83,6 +83,6 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallDomainListMetadata:
                 data["ManagedListType"]
             )
         )
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
     return out

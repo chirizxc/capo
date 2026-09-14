@@ -31,7 +31,7 @@ def serialize_json(value: ListProvisionedCapacityOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListProvisionedCapacityOutput:
     out: ListProvisionedCapacityOutput = {}  # type: ignore[typeddict-item]
-    if "ProvisionedCapacityList" in data:
+    if data.get("ProvisionedCapacityList") is not None:
         import capo_glacier.types.provisioned_capacity_list
 
         out["provisioned_capacity_list"] = (

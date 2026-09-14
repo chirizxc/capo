@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> VolumeMounts:
 
     out: VolumeMounts = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.volume_mount.deserialize_json(item))
     return out

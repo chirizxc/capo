@@ -27,7 +27,7 @@ def serialize_json(value: CreateFolderResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateFolderResponse:
     out: CreateFolderResponse = {}  # type: ignore[typeddict-item]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_workdocs.types.folder_metadata
 
         out["metadata"] = capo_workdocs.types.folder_metadata.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeAlgorithmRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAlgorithmRequest:
     out: DescribeAlgorithmRequest = {}  # type: ignore[typeddict-item]
-    if "algorithmArn" in data:
+    if data.get("algorithmArn") is not None:
         out["algorithm_arn"] = data["algorithmArn"]
     else:
         raise DeserializationError("DescribeAlgorithmRequest.algorithm_arn required")

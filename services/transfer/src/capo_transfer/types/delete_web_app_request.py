@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteWebAppRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWebAppRequest:
     out: DeleteWebAppRequest = {}  # type: ignore[typeddict-item]
-    if "WebAppId" in data:
+    if data.get("WebAppId") is not None:
         out["web_app_id"] = data["WebAppId"]
     else:
         raise DeserializationError("DeleteWebAppRequest.web_app_id required")

@@ -34,11 +34,11 @@ def serialize_json(value: SheetElementRenderingRule) -> dict:
 
 def deserialize_json(data: dict) -> SheetElementRenderingRule:
     out: SheetElementRenderingRule = {}  # type: ignore[typeddict-item]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError("SheetElementRenderingRule.expression required")
-    if "ConfigurationOverrides" in data:
+    if data.get("ConfigurationOverrides") is not None:
         import capo_quicksight.types.sheet_element_configuration_overrides
 
         out["configuration_overrides"] = (

@@ -57,7 +57,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails:
     out: AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "AuthorizationConfig" in data:
+    if data.get("AuthorizationConfig") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_volumes_efs_volume_configuration_authorization_config_details
 
         out["authorization_config"] = (
@@ -65,12 +65,12 @@ def deserialize_json(
                 data["AuthorizationConfig"]
             )
         )
-    if "FilesystemId" in data:
+    if data.get("FilesystemId") is not None:
         out["filesystem_id"] = data["FilesystemId"]
-    if "RootDirectory" in data:
+    if data.get("RootDirectory") is not None:
         out["root_directory"] = data["RootDirectory"]
-    if "TransitEncryption" in data:
+    if data.get("TransitEncryption") is not None:
         out["transit_encryption"] = data["TransitEncryption"]
-    if "TransitEncryptionPort" in data:
+    if data.get("TransitEncryptionPort") is not None:
         out["transit_encryption_port"] = data["TransitEncryptionPort"]
     return out

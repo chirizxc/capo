@@ -38,15 +38,18 @@ class NetworkTypeNotSupportedFault(ServiceError):
 
     code: str | None = "NetworkTypeNotSupportedFault"
 
-    def __init__(self, data: NetworkTypeNotSupportedFault_):
+    def __init__(self, data: NetworkTypeNotSupportedFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NetworkTypeNotSupportedFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "NetworkTypeNotSupportedFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "NetworkTypeNotSupportedFault":
+        return cls(deserialize_query(el), message)

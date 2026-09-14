@@ -28,7 +28,7 @@ def serialize_json(value: JobConfig) -> dict:
 
 def deserialize_json(data: dict) -> JobConfig:
     out: JobConfig = {}  # type: ignore[typeddict-item]
-    if "buildComputeType" in data:
+    if data.get("buildComputeType") is not None:
         import capo_amplify.types.build_compute_type
 
         out["build_compute_type"] = (

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DescribeConfigurationsAttributes:
 
     out: DescribeConfigurationsAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_discovery_service.types.describe_configurations_attribute.deserialize_aws_json_1_1(
                 item

@@ -56,11 +56,11 @@ def serialize_json(value: CreateSipRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSipRuleRequest:
     out: CreateSipRuleRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateSipRuleRequest.name required")
-    if "TriggerType" in data:
+    if data.get("TriggerType") is not None:
         import capo_chime_sdk_voice.types.sip_rule_trigger_type
 
         out["trigger_type"] = (
@@ -70,13 +70,13 @@ def deserialize_json(data: dict) -> CreateSipRuleRequest:
         )
     else:
         raise DeserializationError("CreateSipRuleRequest.trigger_type required")
-    if "TriggerValue" in data:
+    if data.get("TriggerValue") is not None:
         out["trigger_value"] = data["TriggerValue"]
     else:
         raise DeserializationError("CreateSipRuleRequest.trigger_value required")
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
-    if "TargetApplications" in data:
+    if data.get("TargetApplications") is not None:
         import capo_chime_sdk_voice.types.sip_rule_target_application_list
 
         out["target_applications"] = (

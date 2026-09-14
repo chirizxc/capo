@@ -40,13 +40,13 @@ def serialize_json(value: ImportLensInput) -> dict:
 
 def deserialize_json(data: dict) -> ImportLensInput:
     out: ImportLensInput = {}  # type: ignore[typeddict-item]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "JSONString" in data:
+    if data.get("JSONString") is not None:
         out["json_string"] = data["JSONString"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wellarchitected.types.tag_map
 
         out["tags"] = capo_wellarchitected.types.tag_map.deserialize_json(data["Tags"])

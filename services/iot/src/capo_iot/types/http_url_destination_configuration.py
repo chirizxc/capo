@@ -24,7 +24,7 @@ def serialize_json(value: HttpUrlDestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HttpUrlDestinationConfiguration:
     out: HttpUrlDestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "confirmationUrl" in data:
+    if data.get("confirmationUrl") is not None:
         out["confirmation_url"] = data["confirmationUrl"]
     else:
         raise DeserializationError(

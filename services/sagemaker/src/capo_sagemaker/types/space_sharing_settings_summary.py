@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: SpaceSharingSettingsSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SpaceSharingSettingsSummary:
     out: SpaceSharingSettingsSummary = {}  # type: ignore[typeddict-item]
-    if "SharingType" in data:
+    if data.get("SharingType") is not None:
         import capo_sagemaker.types.sharing_type
 
         out["sharing_type"] = (

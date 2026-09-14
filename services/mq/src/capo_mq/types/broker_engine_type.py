@@ -38,13 +38,13 @@ def serialize_json(value: BrokerEngineType) -> dict:
 
 def deserialize_json(data: dict) -> BrokerEngineType:
     out: BrokerEngineType = {}  # type: ignore[typeddict-item]
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         import capo_mq.types.engine_type
 
         out["engine_type"] = capo_mq.types.engine_type.deserialize_json(
             data["engineType"]
         )
-    if "engineVersions" in data:
+    if data.get("engineVersions") is not None:
         import capo_mq.types.__list_of_engine_version
 
         out["engine_versions"] = (

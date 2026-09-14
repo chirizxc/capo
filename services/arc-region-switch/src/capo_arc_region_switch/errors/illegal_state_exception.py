@@ -18,7 +18,7 @@ def serialize_aws_json_1_0(value: IllegalStateException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IllegalStateException_:
     out: IllegalStateException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("IllegalStateException_.message required")
@@ -30,15 +30,18 @@ class IllegalStateException(ServiceError):
 
     code: str | None = "IllegalStateException"
 
-    def __init__(self, data: IllegalStateException_):
+    def __init__(self, data: IllegalStateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IllegalStateException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "IllegalStateException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "IllegalStateException":
+        return cls(deserialize_aws_json_1_0(data), message)

@@ -61,25 +61,25 @@ def serialize_json(value: EksVolume) -> dict:
 
 def deserialize_json(data: dict) -> EksVolume:
     out: EksVolume = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "hostPath" in data:
+    if data.get("hostPath") is not None:
         import capo_batch.types.eks_host_path
 
         out["host_path"] = capo_batch.types.eks_host_path.deserialize_json(
             data["hostPath"]
         )
-    if "emptyDir" in data:
+    if data.get("emptyDir") is not None:
         import capo_batch.types.eks_empty_dir
 
         out["empty_dir"] = capo_batch.types.eks_empty_dir.deserialize_json(
             data["emptyDir"]
         )
-    if "secret" in data:
+    if data.get("secret") is not None:
         import capo_batch.types.eks_secret
 
         out["secret"] = capo_batch.types.eks_secret.deserialize_json(data["secret"])
-    if "persistentVolumeClaim" in data:
+    if data.get("persistentVolumeClaim") is not None:
         import capo_batch.types.eks_persistent_volume_claim
 
         out["persistent_volume_claim"] = (

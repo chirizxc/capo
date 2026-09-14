@@ -116,13 +116,13 @@ def serialize_aws_json_1_1(value: ResponsibilityTransfer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponsibilityTransfer:
     out: ResponsibilityTransfer = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_organizations.types.responsibility_transfer_type
 
         out["type"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponsibilityTransfer:
                 data["Type"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_organizations.types.responsibility_transfer_status
 
         out["status"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponsibilityTransfer:
                 data["Status"]
             )
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_organizations.types.transfer_participant
 
         out["source"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponsibilityTransfer:
                 data["Source"]
             )
         )
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_organizations.types.transfer_participant
 
         out["target"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponsibilityTransfer:
                 data["Target"]
             )
         )
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["start_timestamp"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponsibilityTransfer:
                 data["StartTimestamp"]
             )
         )
-    if "EndTimestamp" in data:
+    if data.get("EndTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["end_timestamp"] = (
@@ -170,6 +170,6 @@ def deserialize_aws_json_1_1(data: dict) -> ResponsibilityTransfer:
                 data["EndTimestamp"]
             )
         )
-    if "ActiveHandshakeId" in data:
+    if data.get("ActiveHandshakeId") is not None:
         out["active_handshake_id"] = data["ActiveHandshakeId"]
     return out

@@ -50,11 +50,11 @@ def serialize_json(value: DescribeCanariesLastRunRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeCanariesLastRunRequest:
     out: DescribeCanariesLastRunRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_synthetics.types.describe_canaries_last_run_name_filter
 
         out["names"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> DescribeCanariesLastRunRequest:
                 data["Names"]
             )
         )
-    if "BrowserType" in data:
+    if data.get("BrowserType") is not None:
         import capo_synthetics.types.browser_type
 
         out["browser_type"] = capo_synthetics.types.browser_type.deserialize_json(

@@ -28,7 +28,7 @@ def serialize_json(value: UpdateNetworkConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNetworkConfigurationInput:
     out: UpdateNetworkConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_mwaa.types.security_group_list
 
         out["security_group_ids"] = (

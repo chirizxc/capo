@@ -30,7 +30,15 @@ def serialize_aws_json_1_1(value: DesiredWeightAndCapacity) -> dict:
     if "variant_name" in value:
         out["VariantName"] = value["variant_name"]
     if "desired_weight" in value:
-        out["DesiredWeight"] = value["desired_weight"]
+        out["DesiredWeight"] = (
+            "NaN"
+            if value["desired_weight"] != value["desired_weight"]
+            else "Infinity"
+            if value["desired_weight"] == float("inf")
+            else "-Infinity"
+            if value["desired_weight"] == float("-inf")
+            else value["desired_weight"]
+        )
     if "desired_instance_count" in value:
         out["DesiredInstanceCount"] = value["desired_instance_count"]
     if "serverless_update_config" in value:
@@ -46,13 +54,13 @@ def serialize_aws_json_1_1(value: DesiredWeightAndCapacity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DesiredWeightAndCapacity:
     out: DesiredWeightAndCapacity = {}  # type: ignore[typeddict-item]
-    if "VariantName" in data:
+    if data.get("VariantName") is not None:
         out["variant_name"] = data["VariantName"]
-    if "DesiredWeight" in data:
-        out["desired_weight"] = data["DesiredWeight"]
-    if "DesiredInstanceCount" in data:
+    if data.get("DesiredWeight") is not None:
+        out["desired_weight"] = float(data["DesiredWeight"])
+    if data.get("DesiredInstanceCount") is not None:
         out["desired_instance_count"] = data["DesiredInstanceCount"]
-    if "ServerlessUpdateConfig" in data:
+    if data.get("ServerlessUpdateConfig") is not None:
         import capo_sagemaker.types.production_variant_serverless_update_config
 
         out["serverless_update_config"] = (

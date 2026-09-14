@@ -44,27 +44,27 @@ def serialize_json(value: ExportAssetToSignedUrlResponseDetails) -> dict:
 
 def deserialize_json(data: dict) -> ExportAssetToSignedUrlResponseDetails:
     out: ExportAssetToSignedUrlResponseDetails = {}  # type: ignore[typeddict-item]
-    if "AssetId" in data:
+    if data.get("AssetId") is not None:
         out["asset_id"] = data["AssetId"]
     else:
         raise DeserializationError(
             "ExportAssetToSignedUrlResponseDetails.asset_id required"
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "ExportAssetToSignedUrlResponseDetails.data_set_id required"
         )
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError(
             "ExportAssetToSignedUrlResponseDetails.revision_id required"
         )
-    if "SignedUrl" in data:
+    if data.get("SignedUrl") is not None:
         out["signed_url"] = data["SignedUrl"]
-    if "SignedUrlExpiresAt" in data:
+    if data.get("SignedUrlExpiresAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["signed_url_expires_at"] = (

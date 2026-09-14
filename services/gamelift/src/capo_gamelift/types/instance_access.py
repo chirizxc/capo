@@ -59,13 +59,13 @@ def serialize_aws_json_1_1(value: InstanceAccess) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceAccess:
     out: InstanceAccess = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "OperatingSystem" in data:
+    if data.get("OperatingSystem") is not None:
         import capo_gamelift.types.operating_system
 
         out["operating_system"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceAccess:
                 data["OperatingSystem"]
             )
         )
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_gamelift.types.instance_credentials
 
         out["credentials"] = (

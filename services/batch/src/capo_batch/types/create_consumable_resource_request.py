@@ -39,13 +39,13 @@ def serialize_json(value: CreateConsumableResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConsumableResourceRequest:
     out: CreateConsumableResourceRequest = {}  # type: ignore[typeddict-item]
-    if "consumableResourceName" in data:
+    if data.get("consumableResourceName") is not None:
         out["consumable_resource_name"] = data["consumableResourceName"]
-    if "totalQuantity" in data:
+    if data.get("totalQuantity") is not None:
         out["total_quantity"] = data["totalQuantity"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])

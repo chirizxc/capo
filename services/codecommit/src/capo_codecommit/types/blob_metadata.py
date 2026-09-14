@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: BlobMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BlobMetadata:
     out: BlobMetadata = {}  # type: ignore[typeddict-item]
-    if "blobId" in data:
+    if data.get("blobId") is not None:
         out["blob_id"] = data["blobId"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "mode" in data:
+    if data.get("mode") is not None:
         out["mode"] = data["mode"]
     return out

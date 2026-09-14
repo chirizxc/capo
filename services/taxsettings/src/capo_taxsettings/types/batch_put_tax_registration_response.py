@@ -41,13 +41,13 @@ def serialize_json(value: BatchPutTaxRegistrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutTaxRegistrationResponse:
     out: BatchPutTaxRegistrationResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_taxsettings.types.tax_registration_status
 
         out["status"] = capo_taxsettings.types.tax_registration_status.deserialize_json(
             data["status"]
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_taxsettings.types.batch_put_tax_registration_errors
 
         out["errors"] = (

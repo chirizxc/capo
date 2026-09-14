@@ -30,7 +30,7 @@ def serialize_json(value: ReviewSummary) -> dict:
 
 def deserialize_json(data: dict) -> ReviewSummary:
     out: ReviewSummary = {}  # type: ignore[typeddict-item]
-    if "reviewSourceSummaries" in data:
+    if data.get("reviewSourceSummaries") is not None:
         import capo_marketplace_discovery.types.review_source_summary_list
 
         out["review_source_summaries"] = (

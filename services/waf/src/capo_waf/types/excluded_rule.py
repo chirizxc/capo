@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ExcludedRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExcludedRule:
     out: ExcludedRule = {}  # type: ignore[typeddict-item]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     else:
         raise DeserializationError("ExcludedRule.rule_id required")

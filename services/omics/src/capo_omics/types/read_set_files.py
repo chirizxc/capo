@@ -41,19 +41,19 @@ def serialize_json(value: ReadSetFiles) -> dict:
 
 def deserialize_json(data: dict) -> ReadSetFiles:
     out: ReadSetFiles = {}  # type: ignore[typeddict-item]
-    if "source1" in data:
+    if data.get("source1") is not None:
         import capo_omics.types.file_information
 
         out["source1"] = capo_omics.types.file_information.deserialize_json(
             data["source1"]
         )
-    if "source2" in data:
+    if data.get("source2") is not None:
         import capo_omics.types.file_information
 
         out["source2"] = capo_omics.types.file_information.deserialize_json(
             data["source2"]
         )
-    if "index" in data:
+    if data.get("index") is not None:
         import capo_omics.types.file_information
 
         out["index"] = capo_omics.types.file_information.deserialize_json(data["index"])

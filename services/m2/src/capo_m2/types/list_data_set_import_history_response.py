@@ -35,7 +35,7 @@ def serialize_json(value: ListDataSetImportHistoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDataSetImportHistoryResponse:
     out: ListDataSetImportHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "dataSetImportTasks" in data:
+    if data.get("dataSetImportTasks") is not None:
         import capo_m2.types.data_set_import_task_list
 
         out["data_set_import_tasks"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListDataSetImportHistoryResponse:
         raise DeserializationError(
             "ListDataSetImportHistoryResponse.data_set_import_tasks required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

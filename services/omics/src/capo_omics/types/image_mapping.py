@@ -27,8 +27,8 @@ def serialize_json(value: ImageMapping) -> dict:
 
 def deserialize_json(data: dict) -> ImageMapping:
     out: ImageMapping = {}  # type: ignore[typeddict-item]
-    if "sourceImage" in data:
+    if data.get("sourceImage") is not None:
         out["source_image"] = data["sourceImage"]
-    if "destinationImage" in data:
+    if data.get("destinationImage") is not None:
         out["destination_image"] = data["destinationImage"]
     return out

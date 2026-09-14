@@ -52,17 +52,17 @@ def serialize_aws_json_1_1(value: ListServiceQuotasRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListServiceQuotasRequest:
     out: ListServiceQuotasRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
     else:
         raise DeserializationError("ListServiceQuotasRequest.service_code required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "QuotaCode" in data:
+    if data.get("QuotaCode") is not None:
         out["quota_code"] = data["QuotaCode"]
-    if "QuotaAppliedAtLevel" in data:
+    if data.get("QuotaAppliedAtLevel") is not None:
         import capo_service_quotas.types.applied_level_enum
 
         out["quota_applied_at_level"] = (

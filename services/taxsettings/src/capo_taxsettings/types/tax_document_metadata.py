@@ -30,13 +30,13 @@ def serialize_json(value: TaxDocumentMetadata) -> dict:
 
 def deserialize_json(data: dict) -> TaxDocumentMetadata:
     out: TaxDocumentMetadata = {}  # type: ignore[typeddict-item]
-    if "taxDocumentAccessToken" in data:
+    if data.get("taxDocumentAccessToken") is not None:
         out["tax_document_access_token"] = data["taxDocumentAccessToken"]
     else:
         raise DeserializationError(
             "TaxDocumentMetadata.tax_document_access_token required"
         )
-    if "taxDocumentName" in data:
+    if data.get("taxDocumentName") is not None:
         out["tax_document_name"] = data["taxDocumentName"]
     else:
         raise DeserializationError("TaxDocumentMetadata.tax_document_name required")

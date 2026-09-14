@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SearchSortExpressions:
 
     out: SearchSortExpressions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.search_sort_expression.deserialize_json(item))
     return out

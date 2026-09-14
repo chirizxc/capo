@@ -25,6 +25,6 @@ def serialize_json(value: StartHumanLoopResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartHumanLoopResponse:
     out: StartHumanLoopResponse = {}  # type: ignore[typeddict-item]
-    if "HumanLoopArn" in data:
+    if data.get("HumanLoopArn") is not None:
         out["human_loop_arn"] = data["HumanLoopArn"]
     return out

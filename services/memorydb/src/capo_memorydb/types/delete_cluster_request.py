@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DeleteClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteClusterRequest:
     out: DeleteClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError("DeleteClusterRequest.cluster_name required")
-    if "MultiRegionClusterName" in data:
+    if data.get("MultiRegionClusterName") is not None:
         out["multi_region_cluster_name"] = data["MultiRegionClusterName"]
-    if "FinalSnapshotName" in data:
+    if data.get("FinalSnapshotName") is not None:
         out["final_snapshot_name"] = data["FinalSnapshotName"]
     return out

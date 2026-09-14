@@ -36,12 +36,12 @@ def serialize_json(value: IpOrganizationDetails) -> dict:
 
 def deserialize_json(data: dict) -> IpOrganizationDetails:
     out: IpOrganizationDetails = {}  # type: ignore[typeddict-item]
-    if "Asn" in data:
+    if data.get("Asn") is not None:
         out["asn"] = data["Asn"]
-    if "AsnOrg" in data:
+    if data.get("AsnOrg") is not None:
         out["asn_org"] = data["AsnOrg"]
-    if "Isp" in data:
+    if data.get("Isp") is not None:
         out["isp"] = data["Isp"]
-    if "Org" in data:
+    if data.get("Org") is not None:
         out["org"] = data["Org"]
     return out

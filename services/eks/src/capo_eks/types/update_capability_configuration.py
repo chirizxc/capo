@@ -27,7 +27,7 @@ def serialize_json(value: UpdateCapabilityConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCapabilityConfiguration:
     out: UpdateCapabilityConfiguration = {}  # type: ignore[typeddict-item]
-    if "argoCd" in data:
+    if data.get("argoCd") is not None:
         import capo_eks.types.update_argo_cd_config
 
         out["argo_cd"] = capo_eks.types.update_argo_cd_config.deserialize_json(

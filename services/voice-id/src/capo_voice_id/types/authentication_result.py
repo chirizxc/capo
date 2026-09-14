@@ -85,9 +85,9 @@ def serialize_aws_json_1_0(value: AuthenticationResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AuthenticationResult:
     out: AuthenticationResult = {}  # type: ignore[typeddict-item]
-    if "AuthenticationResultId" in data:
+    if data.get("AuthenticationResultId") is not None:
         out["authentication_result_id"] = data["AuthenticationResultId"]
-    if "AudioAggregationStartedAt" in data:
+    if data.get("AudioAggregationStartedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["audio_aggregation_started_at"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> AuthenticationResult:
                 data["AudioAggregationStartedAt"]
             )
         )
-    if "AudioAggregationEndedAt" in data:
+    if data.get("AudioAggregationEndedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["audio_aggregation_ended_at"] = (
@@ -103,15 +103,15 @@ def deserialize_aws_json_1_0(data: dict) -> AuthenticationResult:
                 data["AudioAggregationEndedAt"]
             )
         )
-    if "CustomerSpeakerId" in data:
+    if data.get("CustomerSpeakerId") is not None:
         out["customer_speaker_id"] = data["CustomerSpeakerId"]
-    if "GeneratedSpeakerId" in data:
+    if data.get("GeneratedSpeakerId") is not None:
         out["generated_speaker_id"] = data["GeneratedSpeakerId"]
-    if "Decision" in data:
+    if data.get("Decision") is not None:
         out["decision"] = data["Decision"]
-    if "Score" in data:
+    if data.get("Score") is not None:
         out["score"] = data["Score"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_voice_id.types.authentication_configuration
 
         out["configuration"] = (

@@ -46,11 +46,11 @@ def serialize_json(value: UpdateAgentStatusRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAgentStatusRequest:
     out: UpdateAgentStatusRequest = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("UpdateAgentStatusRequest.task_id required")
-    if "aggregateStatus" in data:
+    if data.get("aggregateStatus") is not None:
         import capo_groundstation.types.aggregate_status
 
         out["aggregate_status"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> UpdateAgentStatusRequest:
         )
     else:
         raise DeserializationError("UpdateAgentStatusRequest.aggregate_status required")
-    if "componentStatuses" in data:
+    if data.get("componentStatuses") is not None:
         import capo_groundstation.types.component_status_list
 
         out["component_statuses"] = (

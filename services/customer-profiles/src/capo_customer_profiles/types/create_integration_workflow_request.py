@@ -58,7 +58,7 @@ def serialize_json(value: CreateIntegrationWorkflowRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIntegrationWorkflowRequest:
     out: CreateIntegrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-    if "WorkflowType" in data:
+    if data.get("WorkflowType") is not None:
         import capo_customer_profiles.types.workflow_type
 
         out["workflow_type"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> CreateIntegrationWorkflowRequest:
         raise DeserializationError(
             "CreateIntegrationWorkflowRequest.workflow_type required"
         )
-    if "IntegrationConfig" in data:
+    if data.get("IntegrationConfig") is not None:
         import capo_customer_profiles.types.integration_config
 
         out["integration_config"] = (
@@ -82,17 +82,17 @@ def deserialize_json(data: dict) -> CreateIntegrationWorkflowRequest:
         raise DeserializationError(
             "CreateIntegrationWorkflowRequest.integration_config required"
         )
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
     else:
         raise DeserializationError(
             "CreateIntegrationWorkflowRequest.object_type_name required"
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateIntegrationWorkflowRequest.role_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

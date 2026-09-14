@@ -244,13 +244,13 @@ def serialize_aws_json_1_1(value: CreateDeliveryStreamInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
     out: CreateDeliveryStreamInput = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamName" in data:
+    if data.get("DeliveryStreamName") is not None:
         out["delivery_stream_name"] = data["DeliveryStreamName"]
     else:
         raise DeserializationError(
             "CreateDeliveryStreamInput.delivery_stream_name required"
         )
-    if "DeliveryStreamType" in data:
+    if data.get("DeliveryStreamType") is not None:
         import capo_firehose.types.delivery_stream_type
 
         out["delivery_stream_type"] = (
@@ -258,7 +258,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["DeliveryStreamType"]
             )
         )
-    if "DirectPutSourceConfiguration" in data:
+    if data.get("DirectPutSourceConfiguration") is not None:
         import capo_firehose.types.direct_put_source_configuration
 
         out["direct_put_source_configuration"] = (
@@ -266,7 +266,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["DirectPutSourceConfiguration"]
             )
         )
-    if "KinesisStreamSourceConfiguration" in data:
+    if data.get("KinesisStreamSourceConfiguration") is not None:
         import capo_firehose.types.kinesis_stream_source_configuration
 
         out["kinesis_stream_source_configuration"] = (
@@ -274,7 +274,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["KinesisStreamSourceConfiguration"]
             )
         )
-    if "DeliveryStreamEncryptionConfigurationInput" in data:
+    if data.get("DeliveryStreamEncryptionConfigurationInput") is not None:
         import capo_firehose.types.delivery_stream_encryption_configuration_input
 
         out["delivery_stream_encryption_configuration_input"] = (
@@ -282,7 +282,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["DeliveryStreamEncryptionConfigurationInput"]
             )
         )
-    if "S3DestinationConfiguration" in data:
+    if data.get("S3DestinationConfiguration") is not None:
         import capo_firehose.types.s3_destination_configuration
 
         out["s3_destination_configuration"] = (
@@ -290,7 +290,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["S3DestinationConfiguration"]
             )
         )
-    if "ExtendedS3DestinationConfiguration" in data:
+    if data.get("ExtendedS3DestinationConfiguration") is not None:
         import capo_firehose.types.extended_s3_destination_configuration
 
         out["extended_s3_destination_configuration"] = (
@@ -298,7 +298,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["ExtendedS3DestinationConfiguration"]
             )
         )
-    if "RedshiftDestinationConfiguration" in data:
+    if data.get("RedshiftDestinationConfiguration") is not None:
         import capo_firehose.types.redshift_destination_configuration
 
         out["redshift_destination_configuration"] = (
@@ -306,7 +306,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["RedshiftDestinationConfiguration"]
             )
         )
-    if "ElasticsearchDestinationConfiguration" in data:
+    if data.get("ElasticsearchDestinationConfiguration") is not None:
         import capo_firehose.types.elasticsearch_destination_configuration
 
         out["elasticsearch_destination_configuration"] = (
@@ -314,7 +314,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["ElasticsearchDestinationConfiguration"]
             )
         )
-    if "AmazonopensearchserviceDestinationConfiguration" in data:
+    if data.get("AmazonopensearchserviceDestinationConfiguration") is not None:
         import capo_firehose.types.amazonopensearchservice_destination_configuration
 
         out["amazonopensearchservice_destination_configuration"] = (
@@ -322,7 +322,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["AmazonopensearchserviceDestinationConfiguration"]
             )
         )
-    if "SplunkDestinationConfiguration" in data:
+    if data.get("SplunkDestinationConfiguration") is not None:
         import capo_firehose.types.splunk_destination_configuration
 
         out["splunk_destination_configuration"] = (
@@ -330,7 +330,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["SplunkDestinationConfiguration"]
             )
         )
-    if "HttpEndpointDestinationConfiguration" in data:
+    if data.get("HttpEndpointDestinationConfiguration") is not None:
         import capo_firehose.types.http_endpoint_destination_configuration
 
         out["http_endpoint_destination_configuration"] = (
@@ -338,7 +338,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["HttpEndpointDestinationConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_firehose.types.tag_delivery_stream_input_tag_list
 
         out["tags"] = (
@@ -346,7 +346,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["Tags"]
             )
         )
-    if "AmazonOpenSearchServerlessDestinationConfiguration" in data:
+    if data.get("AmazonOpenSearchServerlessDestinationConfiguration") is not None:
         import capo_firehose.types.amazon_open_search_serverless_destination_configuration
 
         out["amazon_open_search_serverless_destination_configuration"] = (
@@ -354,7 +354,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["AmazonOpenSearchServerlessDestinationConfiguration"]
             )
         )
-    if "MSKSourceConfiguration" in data:
+    if data.get("MSKSourceConfiguration") is not None:
         import capo_firehose.types.msk_source_configuration
 
         out["msk_source_configuration"] = (
@@ -362,7 +362,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["MSKSourceConfiguration"]
             )
         )
-    if "SnowflakeDestinationConfiguration" in data:
+    if data.get("SnowflakeDestinationConfiguration") is not None:
         import capo_firehose.types.snowflake_destination_configuration
 
         out["snowflake_destination_configuration"] = (
@@ -370,7 +370,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["SnowflakeDestinationConfiguration"]
             )
         )
-    if "IcebergDestinationConfiguration" in data:
+    if data.get("IcebergDestinationConfiguration") is not None:
         import capo_firehose.types.iceberg_destination_configuration
 
         out["iceberg_destination_configuration"] = (
@@ -378,7 +378,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamInput:
                 data["IcebergDestinationConfiguration"]
             )
         )
-    if "DatabaseSourceConfiguration" in data:
+    if data.get("DatabaseSourceConfiguration") is not None:
         import capo_firehose.types.database_source_configuration
 
         out["database_source_configuration"] = (

@@ -48,16 +48,16 @@ def serialize_json(value: WavSettings) -> dict:
 
 def deserialize_json(data: dict) -> WavSettings:
     out: WavSettings = {}  # type: ignore[typeddict-item]
-    if "bitDepth" in data:
+    if data.get("bitDepth") is not None:
         out["bit_depth"] = data["bitDepth"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_mediaconvert.types.wav_format
 
         out["format"] = capo_mediaconvert.types.wav_format.deserialize_json(
             data["format"]
         )
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
     return out

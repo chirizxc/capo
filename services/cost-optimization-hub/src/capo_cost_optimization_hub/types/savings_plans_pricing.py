@@ -18,28 +18,60 @@ class SavingsPlansPricing(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: SavingsPlansPricing) -> dict:
     out: dict = {}
     if "monthly_savings_plans_eligible_cost" in value:
-        out["monthlySavingsPlansEligibleCost"] = value[
-            "monthly_savings_plans_eligible_cost"
-        ]
+        out["monthlySavingsPlansEligibleCost"] = (
+            "NaN"
+            if value["monthly_savings_plans_eligible_cost"]
+            != value["monthly_savings_plans_eligible_cost"]
+            else "Infinity"
+            if value["monthly_savings_plans_eligible_cost"] == float("inf")
+            else "-Infinity"
+            if value["monthly_savings_plans_eligible_cost"] == float("-inf")
+            else value["monthly_savings_plans_eligible_cost"]
+        )
     if "estimated_monthly_commitment" in value:
-        out["estimatedMonthlyCommitment"] = value["estimated_monthly_commitment"]
+        out["estimatedMonthlyCommitment"] = (
+            "NaN"
+            if value["estimated_monthly_commitment"]
+            != value["estimated_monthly_commitment"]
+            else "Infinity"
+            if value["estimated_monthly_commitment"] == float("inf")
+            else "-Infinity"
+            if value["estimated_monthly_commitment"] == float("-inf")
+            else value["estimated_monthly_commitment"]
+        )
     if "savings_percentage" in value:
-        out["savingsPercentage"] = value["savings_percentage"]
+        out["savingsPercentage"] = (
+            "NaN"
+            if value["savings_percentage"] != value["savings_percentage"]
+            else "Infinity"
+            if value["savings_percentage"] == float("inf")
+            else "-Infinity"
+            if value["savings_percentage"] == float("-inf")
+            else value["savings_percentage"]
+        )
     if "estimated_on_demand_cost" in value:
-        out["estimatedOnDemandCost"] = value["estimated_on_demand_cost"]
+        out["estimatedOnDemandCost"] = (
+            "NaN"
+            if value["estimated_on_demand_cost"] != value["estimated_on_demand_cost"]
+            else "Infinity"
+            if value["estimated_on_demand_cost"] == float("inf")
+            else "-Infinity"
+            if value["estimated_on_demand_cost"] == float("-inf")
+            else value["estimated_on_demand_cost"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> SavingsPlansPricing:
     out: SavingsPlansPricing = {}  # type: ignore[typeddict-item]
-    if "monthlySavingsPlansEligibleCost" in data:
-        out["monthly_savings_plans_eligible_cost"] = data[
-            "monthlySavingsPlansEligibleCost"
-        ]
-    if "estimatedMonthlyCommitment" in data:
-        out["estimated_monthly_commitment"] = data["estimatedMonthlyCommitment"]
-    if "savingsPercentage" in data:
-        out["savings_percentage"] = data["savingsPercentage"]
-    if "estimatedOnDemandCost" in data:
-        out["estimated_on_demand_cost"] = data["estimatedOnDemandCost"]
+    if data.get("monthlySavingsPlansEligibleCost") is not None:
+        out["monthly_savings_plans_eligible_cost"] = float(
+            data["monthlySavingsPlansEligibleCost"]
+        )
+    if data.get("estimatedMonthlyCommitment") is not None:
+        out["estimated_monthly_commitment"] = float(data["estimatedMonthlyCommitment"])
+    if data.get("savingsPercentage") is not None:
+        out["savings_percentage"] = float(data["savingsPercentage"])
+    if data.get("estimatedOnDemandCost") is not None:
+        out["estimated_on_demand_cost"] = float(data["estimatedOnDemandCost"])
     return out

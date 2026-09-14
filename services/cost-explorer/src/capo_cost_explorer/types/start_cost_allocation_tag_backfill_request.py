@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartCostAllocationTagBackfillRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> StartCostAllocationTagBackfillRequest:
     out: StartCostAllocationTagBackfillRequest = {}  # type: ignore[typeddict-item]
-    if "BackfillFrom" in data:
+    if data.get("BackfillFrom") is not None:
         out["backfill_from"] = data["BackfillFrom"]
     else:
         raise DeserializationError(

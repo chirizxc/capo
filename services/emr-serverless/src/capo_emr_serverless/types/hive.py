@@ -38,12 +38,12 @@ def serialize_json(value: Hive) -> dict:
 
 def deserialize_json(data: dict) -> Hive:
     out: Hive = {}  # type: ignore[typeddict-item]
-    if "query" in data:
+    if data.get("query") is not None:
         out["query"] = data["query"]
     else:
         raise DeserializationError("Hive.query required")
-    if "initQueryFile" in data:
+    if data.get("initQueryFile") is not None:
         out["init_query_file"] = data["initQueryFile"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         out["parameters"] = data["parameters"]
     return out

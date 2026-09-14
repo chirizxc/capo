@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: PlayerAttributeMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> PlayerAttributeMap:
     out: PlayerAttributeMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_gamelift.types.attribute_value
 
         out[key] = capo_gamelift.types.attribute_value.deserialize_aws_json_1_1(value)

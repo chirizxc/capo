@@ -56,17 +56,17 @@ def serialize_aws_json_1_1(value: ModelDashboardEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelDashboardEndpoint:
     out: ModelDashboardEndpoint = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelDashboardEndpoint:
                 data["LastModifiedTime"]
             )
         )
-    if "EndpointStatus" in data:
+    if data.get("EndpointStatus") is not None:
         import capo_sagemaker.types.endpoint_status
 
         out["endpoint_status"] = (

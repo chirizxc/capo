@@ -27,11 +27,11 @@ def serialize_json(value: WindowsUser) -> dict:
 
 def deserialize_json(data: dict) -> WindowsUser:
     out: WindowsUser = {}  # type: ignore[typeddict-item]
-    if "user" in data:
+    if data.get("user") is not None:
         out["user"] = data["user"]
     else:
         raise DeserializationError("WindowsUser.user required")
-    if "passwordArn" in data:
+    if data.get("passwordArn") is not None:
         out["password_arn"] = data["passwordArn"]
     else:
         raise DeserializationError("WindowsUser.password_arn required")

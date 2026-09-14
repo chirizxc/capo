@@ -38,17 +38,17 @@ def serialize_json(value: EnrollmentFlagsV4) -> dict:
 
 def deserialize_json(data: dict) -> EnrollmentFlagsV4:
     out: EnrollmentFlagsV4 = {}  # type: ignore[typeddict-item]
-    if "IncludeSymmetricAlgorithms" in data:
+    if data.get("IncludeSymmetricAlgorithms") is not None:
         out["include_symmetric_algorithms"] = data["IncludeSymmetricAlgorithms"]
-    if "UserInteractionRequired" in data:
+    if data.get("UserInteractionRequired") is not None:
         out["user_interaction_required"] = data["UserInteractionRequired"]
-    if "RemoveInvalidCertificateFromPersonalStore" in data:
+    if data.get("RemoveInvalidCertificateFromPersonalStore") is not None:
         out["remove_invalid_certificate_from_personal_store"] = data[
             "RemoveInvalidCertificateFromPersonalStore"
         ]
-    if "NoSecurityExtension" in data:
+    if data.get("NoSecurityExtension") is not None:
         out["no_security_extension"] = data["NoSecurityExtension"]
-    if "EnableKeyReuseOnNtTokenKeysetStorageFull" in data:
+    if data.get("EnableKeyReuseOnNtTokenKeysetStorageFull") is not None:
         out["enable_key_reuse_on_nt_token_keyset_storage_full"] = data[
             "EnableKeyReuseOnNtTokenKeysetStorageFull"
         ]

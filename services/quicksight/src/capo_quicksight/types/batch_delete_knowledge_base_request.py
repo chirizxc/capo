@@ -33,7 +33,7 @@ def serialize_json(value: BatchDeleteKnowledgeBaseRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteKnowledgeBaseRequest:
     out: BatchDeleteKnowledgeBaseRequest = {}  # type: ignore[typeddict-item]
-    if "KnowledgeBaseIds" in data:
+    if data.get("KnowledgeBaseIds") is not None:
         import capo_quicksight.types.batch_delete_knowledge_base_request_knowledge_base_ids_list
 
         out["knowledge_base_ids"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> WorkflowStepsSummaryList:
 
     out: WorkflowStepsSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhuborchestrator.types.workflow_step_summary.deserialize_json(
                 item

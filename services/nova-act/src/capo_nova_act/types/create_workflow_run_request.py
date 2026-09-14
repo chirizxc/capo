@@ -49,15 +49,15 @@ def serialize_json(value: CreateWorkflowRunRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkflowRunRequest:
     out: CreateWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("CreateWorkflowRunRequest.model_id required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "logGroupName" in data:
+    if data.get("logGroupName") is not None:
         out["log_group_name"] = data["logGroupName"]
-    if "clientInfo" in data:
+    if data.get("clientInfo") is not None:
         import capo_nova_act.types.client_info
 
         out["client_info"] = capo_nova_act.types.client_info.deserialize_json(

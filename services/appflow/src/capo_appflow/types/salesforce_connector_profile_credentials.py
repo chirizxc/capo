@@ -64,11 +64,11 @@ def serialize_json(value: SalesforceConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> SalesforceConnectorProfileCredentials:
     out: SalesforceConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "accessToken" in data:
+    if data.get("accessToken") is not None:
         out["access_token"] = data["accessToken"]
-    if "refreshToken" in data:
+    if data.get("refreshToken") is not None:
         out["refresh_token"] = data["refreshToken"]
-    if "oAuthRequest" in data:
+    if data.get("oAuthRequest") is not None:
         import capo_appflow.types.connector_o_auth_request
 
         out["o_auth_request"] = (
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> SalesforceConnectorProfileCredentials:
                 data["oAuthRequest"]
             )
         )
-    if "clientCredentialsArn" in data:
+    if data.get("clientCredentialsArn") is not None:
         out["client_credentials_arn"] = data["clientCredentialsArn"]
-    if "oAuth2GrantType" in data:
+    if data.get("oAuth2GrantType") is not None:
         import capo_appflow.types.o_auth2_grant_type
 
         out["o_auth2_grant_type"] = (
@@ -86,6 +86,6 @@ def deserialize_json(data: dict) -> SalesforceConnectorProfileCredentials:
                 data["oAuth2GrantType"]
             )
         )
-    if "jwtToken" in data:
+    if data.get("jwtToken") is not None:
         out["jwt_token"] = data["jwtToken"]
     return out

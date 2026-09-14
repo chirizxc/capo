@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Participants:
 
     out: Participants = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime_sdk_voice.types.participant.deserialize_json(item))
     return out

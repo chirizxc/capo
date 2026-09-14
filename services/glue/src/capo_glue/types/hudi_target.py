@@ -45,18 +45,18 @@ def serialize_aws_json_1_1(value: HudiTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HudiTarget:
     out: HudiTarget = {}  # type: ignore[typeddict-item]
-    if "Paths" in data:
+    if data.get("Paths") is not None:
         import capo_glue.types.path_list
 
         out["paths"] = capo_glue.types.path_list.deserialize_aws_json_1_1(data["Paths"])
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "Exclusions" in data:
+    if data.get("Exclusions") is not None:
         import capo_glue.types.path_list
 
         out["exclusions"] = capo_glue.types.path_list.deserialize_aws_json_1_1(
             data["Exclusions"]
         )
-    if "MaximumTraversalDepth" in data:
+    if data.get("MaximumTraversalDepth") is not None:
         out["maximum_traversal_depth"] = data["MaximumTraversalDepth"]
     return out

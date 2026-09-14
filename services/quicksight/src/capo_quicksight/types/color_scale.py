@@ -45,7 +45,7 @@ def serialize_json(value: ColorScale) -> dict:
 
 def deserialize_json(data: dict) -> ColorScale:
     out: ColorScale = {}  # type: ignore[typeddict-item]
-    if "Colors" in data:
+    if data.get("Colors") is not None:
         import capo_quicksight.types.color_scale_color_list
 
         out["colors"] = capo_quicksight.types.color_scale_color_list.deserialize_json(
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> ColorScale:
         )
     else:
         raise DeserializationError("ColorScale.colors required")
-    if "ColorFillType" in data:
+    if data.get("ColorFillType") is not None:
         import capo_quicksight.types.color_fill_type
 
         out["color_fill_type"] = capo_quicksight.types.color_fill_type.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> ColorScale:
         )
     else:
         raise DeserializationError("ColorScale.color_fill_type required")
-    if "NullValueColor" in data:
+    if data.get("NullValueColor") is not None:
         import capo_quicksight.types.data_color
 
         out["null_value_color"] = capo_quicksight.types.data_color.deserialize_json(

@@ -74,15 +74,15 @@ def serialize_json(value: AssetBundleImportJobDataSourceOverrideParameters) -> d
 
 def deserialize_json(data: dict) -> AssetBundleImportJobDataSourceOverrideParameters:
     out: AssetBundleImportJobDataSourceOverrideParameters = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     else:
         raise DeserializationError(
             "AssetBundleImportJobDataSourceOverrideParameters.data_source_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DataSourceParameters" in data:
+    if data.get("DataSourceParameters") is not None:
         import capo_quicksight.types.data_source_parameters
 
         out["data_source_parameters"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobDataSourceOverrideParame
                 data["DataSourceParameters"]
             )
         )
-    if "VpcConnectionProperties" in data:
+    if data.get("VpcConnectionProperties") is not None:
         import capo_quicksight.types.vpc_connection_properties
 
         out["vpc_connection_properties"] = (
@@ -98,13 +98,13 @@ def deserialize_json(data: dict) -> AssetBundleImportJobDataSourceOverrideParame
                 data["VpcConnectionProperties"]
             )
         )
-    if "SslProperties" in data:
+    if data.get("SslProperties") is not None:
         import capo_quicksight.types.ssl_properties
 
         out["ssl_properties"] = capo_quicksight.types.ssl_properties.deserialize_json(
             data["SslProperties"]
         )
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_quicksight.types.asset_bundle_import_job_data_source_credentials
 
         out["credentials"] = (

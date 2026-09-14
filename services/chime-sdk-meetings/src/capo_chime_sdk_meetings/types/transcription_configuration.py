@@ -44,7 +44,7 @@ def serialize_json(value: TranscriptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TranscriptionConfiguration:
     out: TranscriptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "EngineTranscribeSettings" in data:
+    if data.get("EngineTranscribeSettings") is not None:
         import capo_chime_sdk_meetings.types.engine_transcribe_settings
 
         out["engine_transcribe_settings"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TranscriptionConfiguration:
                 data["EngineTranscribeSettings"]
             )
         )
-    if "EngineTranscribeMedicalSettings" in data:
+    if data.get("EngineTranscribeMedicalSettings") is not None:
         import capo_chime_sdk_meetings.types.engine_transcribe_medical_settings
 
         out["engine_transcribe_medical_settings"] = (

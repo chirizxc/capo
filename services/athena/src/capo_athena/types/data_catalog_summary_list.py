@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> DataCatalogSummaryList:
 
     out: DataCatalogSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_athena.types.data_catalog_summary.deserialize_aws_json_1_1(item)
         )

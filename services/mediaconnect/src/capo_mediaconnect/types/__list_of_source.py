@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfSource:
 
     out: __listOfSource = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconnect.types.source.deserialize_json(item))
     return out

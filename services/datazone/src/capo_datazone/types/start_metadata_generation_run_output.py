@@ -82,17 +82,17 @@ def serialize_json(value: StartMetadataGenerationRunOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartMetadataGenerationRunOutput:
     out: StartMetadataGenerationRunOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError(
             "StartMetadataGenerationRunOutput.domain_id required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("StartMetadataGenerationRunOutput.id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.metadata_generation_run_status
 
         out["status"] = (
@@ -100,13 +100,13 @@ def deserialize_json(data: dict) -> StartMetadataGenerationRunOutput:
                 data["status"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.metadata_generation_run_type
 
         out["type"] = capo_datazone.types.metadata_generation_run_type.deserialize_json(
             data["type"]
         )
-    if "types" in data:
+    if data.get("types") is not None:
         import capo_datazone.types.metadata_generation_run_types
 
         out["types"] = (
@@ -114,14 +114,14 @@ def deserialize_json(data: dict) -> StartMetadataGenerationRunOutput:
                 data["types"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
     return out

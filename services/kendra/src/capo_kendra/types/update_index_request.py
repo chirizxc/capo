@@ -104,17 +104,17 @@ def serialize_aws_json_1_1(value: UpdateIndexRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateIndexRequest:
     out: UpdateIndexRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateIndexRequest.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DocumentMetadataConfigurationUpdates" in data:
+    if data.get("DocumentMetadataConfigurationUpdates") is not None:
         import capo_kendra.types.document_metadata_configuration_list
 
         out["document_metadata_configuration_updates"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateIndexRequest:
                 data["DocumentMetadataConfigurationUpdates"]
             )
         )
-    if "CapacityUnits" in data:
+    if data.get("CapacityUnits") is not None:
         import capo_kendra.types.capacity_units_configuration
 
         out["capacity_units"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateIndexRequest:
                 data["CapacityUnits"]
             )
         )
-    if "UserTokenConfigurations" in data:
+    if data.get("UserTokenConfigurations") is not None:
         import capo_kendra.types.user_token_configuration_list
 
         out["user_token_configurations"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateIndexRequest:
                 data["UserTokenConfigurations"]
             )
         )
-    if "UserContextPolicy" in data:
+    if data.get("UserContextPolicy") is not None:
         import capo_kendra.types.user_context_policy
 
         out["user_context_policy"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateIndexRequest:
                 data["UserContextPolicy"]
             )
         )
-    if "UserGroupResolutionConfiguration" in data:
+    if data.get("UserGroupResolutionConfiguration") is not None:
         import capo_kendra.types.user_group_resolution_configuration
 
         out["user_group_resolution_configuration"] = (

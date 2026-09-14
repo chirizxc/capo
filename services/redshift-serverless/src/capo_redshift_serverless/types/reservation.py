@@ -45,20 +45,16 @@ def serialize_aws_json_1_1(value: Reservation) -> dict:
     if "reservation_arn" in value:
         out["reservationArn"] = value["reservation_arn"]
     if "start_date" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
-        out["startDate"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
-                value["start_date"]
-            )
+        out["startDate"] = capo_redshift_serverless._protocol.serialize.fmt_date_time(
+            value["start_date"]
         )
     if "end_date" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
-        out["endDate"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
-                value["end_date"]
-            )
+        out["endDate"] = capo_redshift_serverless._protocol.serialize.fmt_date_time(
+            value["end_date"]
         )
     out["capacity"] = value.get("capacity", 0)
     if "offering" in value:
@@ -76,31 +72,27 @@ def serialize_aws_json_1_1(value: Reservation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Reservation:
     out: Reservation = {}  # type: ignore[typeddict-item]
-    if "reservationId" in data:
+    if data.get("reservationId") is not None:
         out["reservation_id"] = data["reservationId"]
-    if "reservationArn" in data:
+    if data.get("reservationArn") is not None:
         out["reservation_arn"] = data["reservationArn"]
-    if "startDate" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("startDate") is not None:
+        import datetime
 
-        out["start_date"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["startDate"]
-            )
+        out["start_date"] = datetime.datetime.fromisoformat(
+            data["startDate"].replace("Z", "+00:00")
         )
-    if "endDate" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("endDate") is not None:
+        import datetime
 
-        out["end_date"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["endDate"]
-            )
+        out["end_date"] = datetime.datetime.fromisoformat(
+            data["endDate"].replace("Z", "+00:00")
         )
-    if "capacity" in data:
+    if data.get("capacity") is not None:
         out["capacity"] = data["capacity"]
     else:
         out["capacity"] = 0
-    if "offering" in data:
+    if data.get("offering") is not None:
         import capo_redshift_serverless.types.reservation_offering
 
         out["offering"] = (
@@ -108,6 +100,6 @@ def deserialize_aws_json_1_1(data: dict) -> Reservation:
                 data["offering"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

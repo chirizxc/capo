@@ -102,47 +102,47 @@ def serialize_json(value: PutTemplateActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutTemplateActionRequest:
     out: PutTemplateActionRequest = {}  # type: ignore[typeddict-item]
-    if "launchConfigurationTemplateID" in data:
+    if data.get("launchConfigurationTemplateID") is not None:
         out["launch_configuration_template_id"] = data["launchConfigurationTemplateID"]
     else:
         raise DeserializationError(
             "PutTemplateActionRequest.launch_configuration_template_id required"
         )
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
     else:
         raise DeserializationError("PutTemplateActionRequest.action_name required")
-    if "documentIdentifier" in data:
+    if data.get("documentIdentifier") is not None:
         out["document_identifier"] = data["documentIdentifier"]
     else:
         raise DeserializationError(
             "PutTemplateActionRequest.document_identifier required"
         )
-    if "order" in data:
+    if data.get("order") is not None:
         out["order"] = data["order"]
     else:
         raise DeserializationError("PutTemplateActionRequest.order required")
-    if "actionID" in data:
+    if data.get("actionID") is not None:
         out["action_id"] = data["actionID"]
     else:
         raise DeserializationError("PutTemplateActionRequest.action_id required")
-    if "documentVersion" in data:
+    if data.get("documentVersion") is not None:
         out["document_version"] = data["documentVersion"]
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
-    if "timeoutSeconds" in data:
+    if data.get("timeoutSeconds") is not None:
         out["timeout_seconds"] = data["timeoutSeconds"]
-    if "mustSucceedForCutover" in data:
+    if data.get("mustSucceedForCutover") is not None:
         out["must_succeed_for_cutover"] = data["mustSucceedForCutover"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_mgn.types.ssm_document_parameters
 
         out["parameters"] = capo_mgn.types.ssm_document_parameters.deserialize_json(
             data["parameters"]
         )
-    if "operatingSystem" in data:
+    if data.get("operatingSystem") is not None:
         out["operating_system"] = data["operatingSystem"]
-    if "externalParameters" in data:
+    if data.get("externalParameters") is not None:
         import capo_mgn.types.ssm_document_external_parameters
 
         out["external_parameters"] = (
@@ -150,8 +150,8 @@ def deserialize_json(data: dict) -> PutTemplateActionRequest:
                 data["externalParameters"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
     return out

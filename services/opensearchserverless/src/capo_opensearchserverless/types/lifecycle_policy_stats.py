@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: LifecyclePolicyStats) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LifecyclePolicyStats:
     out: LifecyclePolicyStats = {}  # type: ignore[typeddict-item]
-    if "RetentionPolicyCount" in data:
+    if data.get("RetentionPolicyCount") is not None:
         out["retention_policy_count"] = data["RetentionPolicyCount"]
     return out

@@ -84,13 +84,13 @@ def serialize_aws_json_1_1(value: CreateCompilationJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCompilationJobRequest:
     out: CreateCompilationJobRequest = {}  # type: ignore[typeddict-item]
-    if "CompilationJobName" in data:
+    if data.get("CompilationJobName") is not None:
         out["compilation_job_name"] = data["CompilationJobName"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ModelPackageVersionArn" in data:
+    if data.get("ModelPackageVersionArn") is not None:
         out["model_package_version_arn"] = data["ModelPackageVersionArn"]
-    if "InputConfig" in data:
+    if data.get("InputConfig") is not None:
         import capo_sagemaker.types.input_config
 
         out["input_config"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCompilationJobRequest:
                 data["InputConfig"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.output_config
 
         out["output_config"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCompilationJobRequest:
                 data["OutputConfig"]
             )
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.neo_vpc_config
 
         out["vpc_config"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCompilationJobRequest:
                 data["VpcConfig"]
             )
         )
-    if "StoppingCondition" in data:
+    if data.get("StoppingCondition") is not None:
         import capo_sagemaker.types.stopping_condition
 
         out["stopping_condition"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCompilationJobRequest:
                 data["StoppingCondition"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

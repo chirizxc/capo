@@ -74,19 +74,19 @@ def serialize_json(value: SemanticType) -> dict:
 
 def deserialize_json(data: dict) -> SemanticType:
     out: SemanticType = {}  # type: ignore[typeddict-item]
-    if "TypeName" in data:
+    if data.get("TypeName") is not None:
         out["type_name"] = data["TypeName"]
-    if "SubTypeName" in data:
+    if data.get("SubTypeName") is not None:
         out["sub_type_name"] = data["SubTypeName"]
-    if "TypeParameters" in data:
+    if data.get("TypeParameters") is not None:
         import capo_quicksight.types.type_parameters
 
         out["type_parameters"] = capo_quicksight.types.type_parameters.deserialize_json(
             data["TypeParameters"]
         )
-    if "TruthyCellValue" in data:
+    if data.get("TruthyCellValue") is not None:
         out["truthy_cell_value"] = data["TruthyCellValue"]
-    if "TruthyCellValueSynonyms" in data:
+    if data.get("TruthyCellValueSynonyms") is not None:
         import capo_quicksight.types.sensitive_string_list
 
         out["truthy_cell_value_synonyms"] = (
@@ -94,9 +94,9 @@ def deserialize_json(data: dict) -> SemanticType:
                 data["TruthyCellValueSynonyms"]
             )
         )
-    if "FalseyCellValue" in data:
+    if data.get("FalseyCellValue") is not None:
         out["falsey_cell_value"] = data["FalseyCellValue"]
-    if "FalseyCellValueSynonyms" in data:
+    if data.get("FalseyCellValueSynonyms") is not None:
         import capo_quicksight.types.sensitive_string_list
 
         out["falsey_cell_value_synonyms"] = (

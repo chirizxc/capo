@@ -28,11 +28,11 @@ def serialize_json(value: PutKeyRequestListItem) -> dict:
 
 def deserialize_json(data: dict) -> PutKeyRequestListItem:
     out: PutKeyRequestListItem = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("PutKeyRequestListItem.key required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("PutKeyRequestListItem.value required")

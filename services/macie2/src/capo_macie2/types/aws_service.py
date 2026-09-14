@@ -23,6 +23,6 @@ def serialize_json(value: AwsService) -> dict:
 
 def deserialize_json(data: dict) -> AwsService:
     out: AwsService = {}  # type: ignore[typeddict-item]
-    if "invokedBy" in data:
+    if data.get("invokedBy") is not None:
         out["invoked_by"] = data["invokedBy"]
     return out

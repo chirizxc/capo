@@ -36,13 +36,13 @@ def serialize_json(value: UsageStatisticsSortBy) -> dict:
 
 def deserialize_json(data: dict) -> UsageStatisticsSortBy:
     out: UsageStatisticsSortBy = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         import capo_macie2.types.usage_statistics_sort_key
 
         out["key"] = capo_macie2.types.usage_statistics_sort_key.deserialize_json(
             data["key"]
         )
-    if "orderBy" in data:
+    if data.get("orderBy") is not None:
         import capo_macie2.types.order_by
 
         out["order_by"] = capo_macie2.types.order_by.deserialize_json(data["orderBy"])

@@ -30,7 +30,7 @@ def serialize_json(value: AuthChallengeResponse) -> dict:
 
 def deserialize_json(data: dict) -> AuthChallengeResponse:
     out: AuthChallengeResponse = {}  # type: ignore[typeddict-item]
-    if "responseMap" in data:
+    if data.get("responseMap") is not None:
         import capo_qbusiness.types.authorization_response_map
 
         out["response_map"] = (

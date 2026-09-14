@@ -150,27 +150,27 @@ def serialize_json(value: AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) ->
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails:
     out: AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails = {}  # type: ignore[typeddict-item]
-    if "AssociateCarrierIpAddress" in data:
+    if data.get("AssociateCarrierIpAddress") is not None:
         out["associate_carrier_ip_address"] = data["AssociateCarrierIpAddress"]
-    if "AssociatePublicIpAddress" in data:
+    if data.get("AssociatePublicIpAddress") is not None:
         out["associate_public_ip_address"] = data["AssociatePublicIpAddress"]
-    if "DeleteOnTermination" in data:
+    if data.get("DeleteOnTermination") is not None:
         out["delete_on_termination"] = data["DeleteOnTermination"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DeviceIndex" in data:
+    if data.get("DeviceIndex") is not None:
         out["device_index"] = data["DeviceIndex"]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["groups"] = capo_securityhub.types.non_empty_string_list.deserialize_json(
             data["Groups"]
         )
-    if "InterfaceType" in data:
+    if data.get("InterfaceType") is not None:
         out["interface_type"] = data["InterfaceType"]
-    if "Ipv4PrefixCount" in data:
+    if data.get("Ipv4PrefixCount") is not None:
         out["ipv4_prefix_count"] = data["Ipv4PrefixCount"]
-    if "Ipv4Prefixes" in data:
+    if data.get("Ipv4Prefixes") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_network_interface_set_ipv4_prefixes_list
 
         out["ipv4_prefixes"] = (
@@ -178,9 +178,9 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataNetworkInterfaceSetD
                 data["Ipv4Prefixes"]
             )
         )
-    if "Ipv6AddressCount" in data:
+    if data.get("Ipv6AddressCount") is not None:
         out["ipv6_address_count"] = data["Ipv6AddressCount"]
-    if "Ipv6Addresses" in data:
+    if data.get("Ipv6Addresses") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_network_interface_set_ipv6_addresses_list
 
         out["ipv6_addresses"] = (
@@ -188,9 +188,9 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataNetworkInterfaceSetD
                 data["Ipv6Addresses"]
             )
         )
-    if "Ipv6PrefixCount" in data:
+    if data.get("Ipv6PrefixCount") is not None:
         out["ipv6_prefix_count"] = data["Ipv6PrefixCount"]
-    if "Ipv6Prefixes" in data:
+    if data.get("Ipv6Prefixes") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_network_interface_set_ipv6_prefixes_list
 
         out["ipv6_prefixes"] = (
@@ -198,13 +198,13 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataNetworkInterfaceSetD
                 data["Ipv6Prefixes"]
             )
         )
-    if "NetworkCardIndex" in data:
+    if data.get("NetworkCardIndex") is not None:
         out["network_card_index"] = data["NetworkCardIndex"]
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
-    if "PrivateIpAddress" in data:
+    if data.get("PrivateIpAddress") is not None:
         out["private_ip_address"] = data["PrivateIpAddress"]
-    if "PrivateIpAddresses" in data:
+    if data.get("PrivateIpAddresses") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_network_interface_set_private_ip_addresses_list
 
         out["private_ip_addresses"] = (
@@ -212,10 +212,10 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataNetworkInterfaceSetD
                 data["PrivateIpAddresses"]
             )
         )
-    if "SecondaryPrivateIpAddressCount" in data:
+    if data.get("SecondaryPrivateIpAddressCount") is not None:
         out["secondary_private_ip_address_count"] = data[
             "SecondaryPrivateIpAddressCount"
         ]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
     return out

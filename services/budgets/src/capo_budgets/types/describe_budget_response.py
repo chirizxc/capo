@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DescribeBudgetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBudgetResponse:
     out: DescribeBudgetResponse = {}  # type: ignore[typeddict-item]
-    if "Budget" in data:
+    if data.get("Budget") is not None:
         import capo_budgets.types.budget
 
         out["budget"] = capo_budgets.types.budget.deserialize_aws_json_1_1(

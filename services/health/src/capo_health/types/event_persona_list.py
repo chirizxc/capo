@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> EventPersonaList:
 
     out: EventPersonaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_health.types.event_persona.deserialize_aws_json_1_1(item))
     return out

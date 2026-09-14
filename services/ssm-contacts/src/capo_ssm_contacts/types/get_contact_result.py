@@ -47,17 +47,17 @@ def serialize_aws_json_1_1(value: GetContactResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContactResult:
     out: GetContactResult = {}  # type: ignore[typeddict-item]
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
     else:
         raise DeserializationError("GetContactResult.contact_arn required")
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("GetContactResult.alias required")
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_ssm_contacts.types.contact_type
 
         out["type"] = capo_ssm_contacts.types.contact_type.deserialize_aws_json_1_1(
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetContactResult:
         )
     else:
         raise DeserializationError("GetContactResult.type required")
-    if "Plan" in data:
+    if data.get("Plan") is not None:
         import capo_ssm_contacts.types.plan
 
         out["plan"] = capo_ssm_contacts.types.plan.deserialize_aws_json_1_1(

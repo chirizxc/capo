@@ -30,13 +30,13 @@ def serialize_json(value: CancelLifecycleExecutionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelLifecycleExecutionRequest:
     out: CancelLifecycleExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "lifecycleExecutionId" in data:
+    if data.get("lifecycleExecutionId") is not None:
         out["lifecycle_execution_id"] = data["lifecycleExecutionId"]
     else:
         raise DeserializationError(
             "CancelLifecycleExecutionRequest.lifecycle_execution_id required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(

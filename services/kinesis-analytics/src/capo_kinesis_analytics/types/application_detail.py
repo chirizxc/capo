@@ -135,17 +135,17 @@ def serialize_aws_json_1_1(value: ApplicationDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
     out: ApplicationDetail = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError("ApplicationDetail.application_name required")
-    if "ApplicationDescription" in data:
+    if data.get("ApplicationDescription") is not None:
         out["application_description"] = data["ApplicationDescription"]
-    if "ApplicationARN" in data:
+    if data.get("ApplicationARN") is not None:
         out["application_arn"] = data["ApplicationARN"]
     else:
         raise DeserializationError("ApplicationDetail.application_arn required")
-    if "ApplicationStatus" in data:
+    if data.get("ApplicationStatus") is not None:
         import capo_kinesis_analytics.types.application_status
 
         out["application_status"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
         )
     else:
         raise DeserializationError("ApplicationDetail.application_status required")
-    if "CreateTimestamp" in data:
+    if data.get("CreateTimestamp") is not None:
         import capo_kinesis_analytics.types.timestamp
 
         out["create_timestamp"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["CreateTimestamp"]
             )
         )
-    if "LastUpdateTimestamp" in data:
+    if data.get("LastUpdateTimestamp") is not None:
         import capo_kinesis_analytics.types.timestamp
 
         out["last_update_timestamp"] = (
@@ -171,7 +171,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["LastUpdateTimestamp"]
             )
         )
-    if "InputDescriptions" in data:
+    if data.get("InputDescriptions") is not None:
         import capo_kinesis_analytics.types.input_descriptions
 
         out["input_descriptions"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["InputDescriptions"]
             )
         )
-    if "OutputDescriptions" in data:
+    if data.get("OutputDescriptions") is not None:
         import capo_kinesis_analytics.types.output_descriptions
 
         out["output_descriptions"] = (
@@ -187,7 +187,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["OutputDescriptions"]
             )
         )
-    if "ReferenceDataSourceDescriptions" in data:
+    if data.get("ReferenceDataSourceDescriptions") is not None:
         import capo_kinesis_analytics.types.reference_data_source_descriptions
 
         out["reference_data_source_descriptions"] = (
@@ -195,7 +195,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["ReferenceDataSourceDescriptions"]
             )
         )
-    if "CloudWatchLoggingOptionDescriptions" in data:
+    if data.get("CloudWatchLoggingOptionDescriptions") is not None:
         import capo_kinesis_analytics.types.cloud_watch_logging_option_descriptions
 
         out["cloud_watch_logging_option_descriptions"] = (
@@ -203,9 +203,9 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["CloudWatchLoggingOptionDescriptions"]
             )
         )
-    if "ApplicationCode" in data:
+    if data.get("ApplicationCode") is not None:
         out["application_code"] = data["ApplicationCode"]
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
     else:
         raise DeserializationError("ApplicationDetail.application_version_id required")

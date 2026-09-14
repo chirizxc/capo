@@ -33,9 +33,9 @@ def serialize_json(value: ListAssociationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListAssociationsOutput:
     out: ListAssociationsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "associations" in data:
+    if data.get("associations") is not None:
         import capo_devops_agent.types.associations_list
 
         out["associations"] = (

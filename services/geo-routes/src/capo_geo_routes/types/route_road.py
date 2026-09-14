@@ -52,7 +52,7 @@ def serialize_json(value: RouteRoad) -> dict:
 
 def deserialize_json(data: dict) -> RouteRoad:
     out: RouteRoad = {}  # type: ignore[typeddict-item]
-    if "RoadName" in data:
+    if data.get("RoadName") is not None:
         import capo_geo_routes.types.localized_string_list
 
         out["road_name"] = capo_geo_routes.types.localized_string_list.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> RouteRoad:
         )
     else:
         raise DeserializationError("RouteRoad.road_name required")
-    if "RouteNumber" in data:
+    if data.get("RouteNumber") is not None:
         import capo_geo_routes.types.route_number_list
 
         out["route_number"] = capo_geo_routes.types.route_number_list.deserialize_json(
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> RouteRoad:
         )
     else:
         raise DeserializationError("RouteRoad.route_number required")
-    if "Towards" in data:
+    if data.get("Towards") is not None:
         import capo_geo_routes.types.localized_string_list
 
         out["towards"] = capo_geo_routes.types.localized_string_list.deserialize_json(
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> RouteRoad:
         )
     else:
         raise DeserializationError("RouteRoad.towards required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_geo_routes.types.route_road_type
 
         out["type"] = capo_geo_routes.types.route_road_type.deserialize_json(

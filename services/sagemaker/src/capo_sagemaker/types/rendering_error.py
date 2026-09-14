@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: RenderingError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenderingError:
     out: RenderingError = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

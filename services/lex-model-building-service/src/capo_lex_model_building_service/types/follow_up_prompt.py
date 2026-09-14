@@ -38,7 +38,7 @@ def serialize_json(value: FollowUpPrompt) -> dict:
 
 def deserialize_json(data: dict) -> FollowUpPrompt:
     out: FollowUpPrompt = {}  # type: ignore[typeddict-item]
-    if "prompt" in data:
+    if data.get("prompt") is not None:
         import capo_lex_model_building_service.types.prompt
 
         out["prompt"] = capo_lex_model_building_service.types.prompt.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> FollowUpPrompt:
         )
     else:
         raise DeserializationError("FollowUpPrompt.prompt required")
-    if "rejectionStatement" in data:
+    if data.get("rejectionStatement") is not None:
         import capo_lex_model_building_service.types.statement
 
         out["rejection_statement"] = (

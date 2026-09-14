@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: Sample) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Sample:
     out: Sample = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.sample_type
 
         out["type"] = capo_device_farm.types.sample_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

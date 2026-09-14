@@ -70,7 +70,7 @@ def serialize_json(value: ScanDetections) -> dict:
 
 def deserialize_json(data: dict) -> ScanDetections:
     out: ScanDetections = {}  # type: ignore[typeddict-item]
-    if "scannedItemCount" in data:
+    if data.get("scannedItemCount") is not None:
         import capo_guardduty.types.scanned_item_count
 
         out["scanned_item_count"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ScanDetections:
                 data["scannedItemCount"]
             )
         )
-    if "threatsDetectedItemCount" in data:
+    if data.get("threatsDetectedItemCount") is not None:
         import capo_guardduty.types.threats_detected_item_count
 
         out["threats_detected_item_count"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ScanDetections:
                 data["threatsDetectedItemCount"]
             )
         )
-    if "highestSeverityThreatDetails" in data:
+    if data.get("highestSeverityThreatDetails") is not None:
         import capo_guardduty.types.highest_severity_threat_details
 
         out["highest_severity_threat_details"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> ScanDetections:
                 data["highestSeverityThreatDetails"]
             )
         )
-    if "threatDetectedByName" in data:
+    if data.get("threatDetectedByName") is not None:
         import capo_guardduty.types.threat_detected_by_name
 
         out["threat_detected_by_name"] = (

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: Channel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Channel:
     out: Channel = {}  # type: ignore[typeddict-item]
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

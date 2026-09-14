@@ -87,17 +87,17 @@ def serialize_json(value: CreateDomainRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainRequest:
     out: CreateDomainRequest = {}  # type: ignore[typeddict-item]
-    if "DefaultExpirationDays" in data:
+    if data.get("DefaultExpirationDays") is not None:
         out["default_expiration_days"] = data["DefaultExpirationDays"]
     else:
         raise DeserializationError(
             "CreateDomainRequest.default_expiration_days required"
         )
-    if "DefaultEncryptionKey" in data:
+    if data.get("DefaultEncryptionKey") is not None:
         out["default_encryption_key"] = data["DefaultEncryptionKey"]
-    if "DeadLetterQueueUrl" in data:
+    if data.get("DeadLetterQueueUrl") is not None:
         out["dead_letter_queue_url"] = data["DeadLetterQueueUrl"]
-    if "Matching" in data:
+    if data.get("Matching") is not None:
         import capo_customer_profiles.types.matching_request
 
         out["matching"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> CreateDomainRequest:
                 data["Matching"]
             )
         )
-    if "RuleBasedMatching" in data:
+    if data.get("RuleBasedMatching") is not None:
         import capo_customer_profiles.types.rule_based_matching_request
 
         out["rule_based_matching"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> CreateDomainRequest:
                 data["RuleBasedMatching"]
             )
         )
-    if "DataStore" in data:
+    if data.get("DataStore") is not None:
         import capo_customer_profiles.types.data_store_request
 
         out["data_store"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> CreateDomainRequest:
                 data["DataStore"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

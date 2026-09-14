@@ -13,9 +13,9 @@ from capo_s3outposts import AsyncS3OutpostsClient
 
 
 async def main():
-    async with AsyncS3OutpostsClient() as s3:
+    async with AsyncS3OutpostsClient() as s3_outposts:
         # Example: call the create_endpoint operation
-        response = await s3.create_endpoint()
+        response = await s3_outposts.create_endpoint()
         print(response["endpoint_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_s3outposts import AsyncS3OutpostsClient
 
 
 async def main():
-    async with AsyncS3OutpostsClient() as s3:
+    async with AsyncS3OutpostsClient() as s3_outposts:
         # Example: paginate over list_endpoints
-        async for item in s3.iter_list_endpoints():
+        async for item in s3_outposts.iter_list_endpoints():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_s3outposts.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncS3OutpostsClient() as s3:
+    async with AsyncS3OutpostsClient() as s3_outposts:
         try:
-            await s3.create_endpoint()
+            await s3_outposts.create_endpoint()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_s3outposts import AsyncS3OutpostsClient
 
 
 async def main():
-    async with AsyncS3OutpostsClient() as s3:
+    async with AsyncS3OutpostsClient() as s3_outposts:
         # Default: 3 attempts for every operation
-        response = await s3.create_endpoint()
+        response = await s3_outposts.create_endpoint()
 
         # Override per operation
-        response = await s3.create_endpoint(config_overrides={"retry_max_attempts": 5})
+        response = await s3_outposts.create_endpoint(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_endpoint(config_overrides={"retry_max_attempts": 1})
+        response = await s3_outposts.create_endpoint(config_overrides={"retry_max_attempts": 1})
 ```

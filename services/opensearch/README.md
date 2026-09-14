@@ -13,9 +13,9 @@ from capo_opensearch import AsyncOpenSearchClient
 
 
 async def main():
-    async with AsyncOpenSearchClient() as s3:
+    async with AsyncOpenSearchClient() as open_search:
         # Example: call the accept_inbound_connection operation
-        response = await s3.accept_inbound_connection()
+        response = await open_search.accept_inbound_connection()
         print(response["connection"])
 ```
 
@@ -28,9 +28,9 @@ from capo_opensearch import AsyncOpenSearchClient
 
 
 async def main():
-    async with AsyncOpenSearchClient() as s3:
-        # Example: paginate over list_applications
-        async for item in s3.iter_list_applications():
+    async with AsyncOpenSearchClient() as open_search:
+        # Example: paginate over describe_domain_auto_tunes
+        async for item in open_search.iter_describe_domain_auto_tunes():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_opensearch.error import DisabledOperationException
 
 
 async def main():
-    async with AsyncOpenSearchClient() as s3:
+    async with AsyncOpenSearchClient() as open_search:
         try:
-            await s3.accept_inbound_connection()
+            await open_search.accept_inbound_connection()
         except DisabledOperationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_opensearch import AsyncOpenSearchClient
 
 
 async def main():
-    async with AsyncOpenSearchClient() as s3:
+    async with AsyncOpenSearchClient() as open_search:
         # Default: 3 attempts for every operation
-        response = await s3.accept_inbound_connection()
+        response = await open_search.accept_inbound_connection()
 
         # Override per operation
-        response = await s3.accept_inbound_connection(config_overrides={"retry_max_attempts": 5})
+        response = await open_search.accept_inbound_connection(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_inbound_connection(config_overrides={"retry_max_attempts": 1})
+        response = await open_search.accept_inbound_connection(config_overrides={"retry_max_attempts": 1})
 ```

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: IncompatibleRegionForMultiAZ_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IncompatibleRegionForMultiAZ_:
     out: IncompatibleRegionForMultiAZ_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class IncompatibleRegionForMultiAZ(ServiceError):
 
     code: str | None = "IncompatibleRegionForMultiAZ"
 
-    def __init__(self, data: IncompatibleRegionForMultiAZ_):
+    def __init__(self, data: IncompatibleRegionForMultiAZ_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IncompatibleRegionForMultiAZ",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "IncompatibleRegionForMultiAZ":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "IncompatibleRegionForMultiAZ":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -35,13 +35,13 @@ def serialize_json(value: CostEstimationTimeRange) -> dict:
 
 def deserialize_json(data: dict) -> CostEstimationTimeRange:
     out: CostEstimationTimeRange = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["start_time"] = capo_devops_guru.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["end_time"] = capo_devops_guru.types.timestamp.deserialize_json(

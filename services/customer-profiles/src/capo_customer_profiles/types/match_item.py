@@ -33,15 +33,23 @@ def serialize_json(value: MatchItem) -> dict:
             value["profile_ids"]
         )
     if "confidence_score" in value:
-        out["ConfidenceScore"] = value["confidence_score"]
+        out["ConfidenceScore"] = (
+            "NaN"
+            if value["confidence_score"] != value["confidence_score"]
+            else "Infinity"
+            if value["confidence_score"] == float("inf")
+            else "-Infinity"
+            if value["confidence_score"] == float("-inf")
+            else value["confidence_score"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> MatchItem:
     out: MatchItem = {}  # type: ignore[typeddict-item]
-    if "MatchId" in data:
+    if data.get("MatchId") is not None:
         out["match_id"] = data["MatchId"]
-    if "ProfileIds" in data:
+    if data.get("ProfileIds") is not None:
         import capo_customer_profiles.types.profile_id_list
 
         out["profile_ids"] = (
@@ -49,6 +57,6 @@ def deserialize_json(data: dict) -> MatchItem:
                 data["ProfileIds"]
             )
         )
-    if "ConfidenceScore" in data:
-        out["confidence_score"] = data["ConfidenceScore"]
+    if data.get("ConfidenceScore") is not None:
+        out["confidence_score"] = float(data["ConfidenceScore"])
     return out

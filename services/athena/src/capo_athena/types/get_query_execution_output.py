@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: GetQueryExecutionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetQueryExecutionOutput:
     out: GetQueryExecutionOutput = {}  # type: ignore[typeddict-item]
-    if "QueryExecution" in data:
+    if data.get("QueryExecution") is not None:
         import capo_athena.types.query_execution
 
         out["query_execution"] = (

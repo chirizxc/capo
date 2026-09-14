@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetRelationalDatabaseBundlesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseBundlesRequest:
     out: GetRelationalDatabaseBundlesRequest = {}  # type: ignore[typeddict-item]
-    if "pageToken" in data:
+    if data.get("pageToken") is not None:
         out["page_token"] = data["pageToken"]
-    if "includeInactive" in data:
+    if data.get("includeInactive") is not None:
         out["include_inactive"] = data["includeInactive"]
     return out

@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: KerberosAuthenticationSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KerberosAuthenticationSettings:
     out: KerberosAuthenticationSettings = {}  # type: ignore[typeddict-item]
-    if "KeyCacheSecretId" in data:
+    if data.get("KeyCacheSecretId") is not None:
         out["key_cache_secret_id"] = data["KeyCacheSecretId"]
-    if "KeyCacheSecretIamArn" in data:
+    if data.get("KeyCacheSecretIamArn") is not None:
         out["key_cache_secret_iam_arn"] = data["KeyCacheSecretIamArn"]
-    if "Krb5FileContents" in data:
+    if data.get("Krb5FileContents") is not None:
         out["krb5_file_contents"] = data["Krb5FileContents"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteNotebookInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteNotebookInput:
     out: DeleteNotebookInput = {}  # type: ignore[typeddict-item]
-    if "NotebookId" in data:
+    if data.get("NotebookId") is not None:
         out["notebook_id"] = data["NotebookId"]
     else:
         raise DeserializationError("DeleteNotebookInput.notebook_id required")

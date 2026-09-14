@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: NotificationChannel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotificationChannel:
     out: NotificationChannel = {}  # type: ignore[typeddict-item]
-    if "SNSTopicArn" in data:
+    if data.get("SNSTopicArn") is not None:
         out["sns_topic_arn"] = data["SNSTopicArn"]
     else:
         raise DeserializationError("NotificationChannel.sns_topic_arn required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("NotificationChannel.role_arn required")

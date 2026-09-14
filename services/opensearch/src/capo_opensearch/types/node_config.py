@@ -41,9 +41,9 @@ def serialize_json(value: NodeConfig) -> dict:
 
 def deserialize_json(data: dict) -> NodeConfig:
     out: NodeConfig = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_opensearch.types.open_search_partition_instance_type
 
         out["type"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> NodeConfig:
                 data["Type"]
             )
         )
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     return out

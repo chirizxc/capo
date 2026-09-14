@@ -151,13 +151,13 @@ def serialize_json(value: MedicalScribeListeningSessionDetails) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeListeningSessionDetails:
     out: MedicalScribeListeningSessionDetails = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "subscriptionId" in data:
+    if data.get("subscriptionId") is not None:
         out["subscription_id"] = data["subscriptionId"]
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         import capo_connecthealth.types.medical_scribe_language_code
 
         out["language_code"] = (
@@ -165,9 +165,9 @@ def deserialize_json(data: dict) -> MedicalScribeListeningSessionDetails:
                 data["languageCode"]
             )
         )
-    if "mediaSampleRateHertz" in data:
+    if data.get("mediaSampleRateHertz") is not None:
         out["media_sample_rate_hertz"] = data["mediaSampleRateHertz"]
-    if "mediaEncoding" in data:
+    if data.get("mediaEncoding") is not None:
         import capo_connecthealth.types.medical_scribe_media_encoding
 
         out["media_encoding"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> MedicalScribeListeningSessionDetails:
                 data["mediaEncoding"]
             )
         )
-    if "channelDefinitions" in data:
+    if data.get("channelDefinitions") is not None:
         import capo_connecthealth.types.medical_scribe_channel_definitions
 
         out["channel_definitions"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> MedicalScribeListeningSessionDetails:
                 data["channelDefinitions"]
             )
         )
-    if "postStreamActionSettings" in data:
+    if data.get("postStreamActionSettings") is not None:
         import capo_connecthealth.types.medical_scribe_post_stream_action_settings_response
 
         out["post_stream_action_settings"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> MedicalScribeListeningSessionDetails:
                 data["postStreamActionSettings"]
             )
         )
-    if "postStreamActionResult" in data:
+    if data.get("postStreamActionResult") is not None:
         import capo_connecthealth.types.medical_scribe_post_stream_actions_result
 
         out["post_stream_action_result"] = (
@@ -199,9 +199,9 @@ def deserialize_json(data: dict) -> MedicalScribeListeningSessionDetails:
                 data["postStreamActionResult"]
             )
         )
-    if "encounterContextProvided" in data:
+    if data.get("encounterContextProvided") is not None:
         out["encounter_context_provided"] = data["encounterContextProvided"]
-    if "streamStatus" in data:
+    if data.get("streamStatus") is not None:
         import capo_connecthealth.types.medical_scribe_stream_status
 
         out["stream_status"] = (
@@ -209,7 +209,7 @@ def deserialize_json(data: dict) -> MedicalScribeListeningSessionDetails:
                 data["streamStatus"]
             )
         )
-    if "streamCreationTime" in data:
+    if data.get("streamCreationTime") is not None:
         import capo_connecthealth.types._prelude.timestamp
 
         out["stream_creation_time"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> MedicalScribeListeningSessionDetails:
                 data["streamCreationTime"]
             )
         )
-    if "streamEndTime" in data:
+    if data.get("streamEndTime") is not None:
         import capo_connecthealth.types._prelude.timestamp
 
         out["stream_end_time"] = (

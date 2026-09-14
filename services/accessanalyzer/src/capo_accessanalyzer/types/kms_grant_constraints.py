@@ -43,7 +43,7 @@ def serialize_json(value: KmsGrantConstraints) -> dict:
 
 def deserialize_json(data: dict) -> KmsGrantConstraints:
     out: KmsGrantConstraints = {}  # type: ignore[typeddict-item]
-    if "encryptionContextEquals" in data:
+    if data.get("encryptionContextEquals") is not None:
         import capo_accessanalyzer.types.kms_constraints_map
 
         out["encryption_context_equals"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> KmsGrantConstraints:
                 data["encryptionContextEquals"]
             )
         )
-    if "encryptionContextSubset" in data:
+    if data.get("encryptionContextSubset") is not None:
         import capo_accessanalyzer.types.kms_constraints_map
 
         out["encryption_context_subset"] = (

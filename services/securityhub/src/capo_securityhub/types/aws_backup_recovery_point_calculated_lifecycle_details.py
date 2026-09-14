@@ -29,8 +29,8 @@ def serialize_json(value: AwsBackupRecoveryPointCalculatedLifecycleDetails) -> d
 
 def deserialize_json(data: dict) -> AwsBackupRecoveryPointCalculatedLifecycleDetails:
     out: AwsBackupRecoveryPointCalculatedLifecycleDetails = {}  # type: ignore[typeddict-item]
-    if "DeleteAt" in data:
+    if data.get("DeleteAt") is not None:
         out["delete_at"] = data["DeleteAt"]
-    if "MoveToColdStorageAt" in data:
+    if data.get("MoveToColdStorageAt") is not None:
         out["move_to_cold_storage_at"] = data["MoveToColdStorageAt"]
     return out

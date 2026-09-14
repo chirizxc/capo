@@ -32,9 +32,9 @@ def serialize_json(value: LineItemAssetInformation) -> dict:
 
 def deserialize_json(data: dict) -> LineItemAssetInformation:
     out: LineItemAssetInformation = {}  # type: ignore[typeddict-item]
-    if "AssetId" in data:
+    if data.get("AssetId") is not None:
         out["asset_id"] = data["AssetId"]
-    if "MacAddressList" in data:
+    if data.get("MacAddressList") is not None:
         import capo_outposts.types.mac_address_list
 
         out["mac_address_list"] = capo_outposts.types.mac_address_list.deserialize_json(

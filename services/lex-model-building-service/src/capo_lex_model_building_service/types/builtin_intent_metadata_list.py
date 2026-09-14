@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BuiltinIntentMetadataList:
 
     out: BuiltinIntentMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_model_building_service.types.builtin_intent_metadata.deserialize_json(
                 item

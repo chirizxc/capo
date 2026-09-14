@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DescribeEvaluationsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEvaluationsOutput:
     out: DescribeEvaluationsOutput = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_machine_learning.types.evaluations
 
         out["results"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEvaluationsOutput:
                 data["Results"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> TagFilterList:
 
     out: TagFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resource_groups_tagging_api.types.tag_filter.deserialize_aws_json_1_1(
                 item

@@ -94,25 +94,25 @@ def serialize_aws_json_1_1(value: CaseDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CaseDetails:
     out: CaseDetails = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
-    if "displayId" in data:
+    if data.get("displayId") is not None:
         out["display_id"] = data["displayId"]
-    if "subject" in data:
+    if data.get("subject") is not None:
         out["subject"] = data["subject"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
-    if "categoryCode" in data:
+    if data.get("categoryCode") is not None:
         out["category_code"] = data["categoryCode"]
-    if "severityCode" in data:
+    if data.get("severityCode") is not None:
         out["severity_code"] = data["severityCode"]
-    if "submittedBy" in data:
+    if data.get("submittedBy") is not None:
         out["submitted_by"] = data["submittedBy"]
-    if "timeCreated" in data:
+    if data.get("timeCreated") is not None:
         out["time_created"] = data["timeCreated"]
-    if "recentCommunications" in data:
+    if data.get("recentCommunications") is not None:
         import capo_support.types.recent_case_communications
 
         out["recent_communications"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> CaseDetails:
                 data["recentCommunications"]
             )
         )
-    if "ccEmailAddresses" in data:
+    if data.get("ccEmailAddresses") is not None:
         import capo_support.types.cc_email_address_list
 
         out["cc_email_addresses"] = (
@@ -128,6 +128,6 @@ def deserialize_aws_json_1_1(data: dict) -> CaseDetails:
                 data["ccEmailAddresses"]
             )
         )
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
     return out

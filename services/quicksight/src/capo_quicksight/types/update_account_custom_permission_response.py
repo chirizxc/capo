@@ -27,9 +27,9 @@ def serialize_json(value: UpdateAccountCustomPermissionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountCustomPermissionResponse:
     out: UpdateAccountCustomPermissionResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         out["status"] = 0

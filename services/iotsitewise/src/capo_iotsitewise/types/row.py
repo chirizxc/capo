@@ -26,7 +26,7 @@ def serialize_json(value: Row) -> dict:
 
 def deserialize_json(data: dict) -> Row:
     out: Row = {}  # type: ignore[typeddict-item]
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_iotsitewise.types.datum_list
 
         out["data"] = capo_iotsitewise.types.datum_list.deserialize_json(data["data"])

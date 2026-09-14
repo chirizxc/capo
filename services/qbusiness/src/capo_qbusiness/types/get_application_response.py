@@ -190,33 +190,33 @@ def serialize_json(value: GetApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationResponse:
     out: GetApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
-    if "identityType" in data:
+    if data.get("identityType") is not None:
         import capo_qbusiness.types.identity_type
 
         out["identity_type"] = capo_qbusiness.types.identity_type.deserialize_json(
             data["identityType"]
         )
-    if "iamIdentityProviderArn" in data:
+    if data.get("iamIdentityProviderArn") is not None:
         out["iam_identity_provider_arn"] = data["iamIdentityProviderArn"]
-    if "identityCenterApplicationArn" in data:
+    if data.get("identityCenterApplicationArn") is not None:
         out["identity_center_application_arn"] = data["identityCenterApplicationArn"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.application_status
 
         out["status"] = capo_qbusiness.types.application_status.deserialize_json(
             data["status"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_qbusiness.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -224,23 +224,23 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["encryptionConfiguration"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_qbusiness.types.error_detail
 
         out["error"] = capo_qbusiness.types.error_detail.deserialize_json(data["error"])
-    if "attachmentsConfiguration" in data:
+    if data.get("attachmentsConfiguration") is not None:
         import capo_qbusiness.types.applied_attachments_configuration
 
         out["attachments_configuration"] = (
@@ -248,7 +248,7 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["attachmentsConfiguration"]
             )
         )
-    if "qAppsConfiguration" in data:
+    if data.get("qAppsConfiguration") is not None:
         import capo_qbusiness.types.q_apps_configuration
 
         out["q_apps_configuration"] = (
@@ -256,7 +256,7 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["qAppsConfiguration"]
             )
         )
-    if "personalizationConfiguration" in data:
+    if data.get("personalizationConfiguration") is not None:
         import capo_qbusiness.types.personalization_configuration
 
         out["personalization_configuration"] = (
@@ -264,7 +264,7 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["personalizationConfiguration"]
             )
         )
-    if "autoSubscriptionConfiguration" in data:
+    if data.get("autoSubscriptionConfiguration") is not None:
         import capo_qbusiness.types.auto_subscription_configuration
 
         out["auto_subscription_configuration"] = (
@@ -272,7 +272,7 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["autoSubscriptionConfiguration"]
             )
         )
-    if "clientIdsForOIDC" in data:
+    if data.get("clientIdsForOIDC") is not None:
         import capo_qbusiness.types.client_ids_for_oidc
 
         out["client_ids_for_oidc"] = (
@@ -280,7 +280,7 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["clientIdsForOIDC"]
             )
         )
-    if "quickSightConfiguration" in data:
+    if data.get("quickSightConfiguration") is not None:
         import capo_qbusiness.types.quick_sight_configuration
 
         out["quick_sight_configuration"] = (

@@ -57,10 +57,10 @@ def serialize_aws_json_1_0(value: GetAccountPlanStateResponse) -> dict:
             )
         )
     if "account_plan_expiration_date" in value:
-        import capo_freetier.types._prelude.timestamp
+        import capo_freetier._protocol.serialize
 
         out["accountPlanExpirationDate"] = (
-            capo_freetier.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_freetier._protocol.serialize.fmt_date_time(
                 value["account_plan_expiration_date"]
             )
         )
@@ -69,11 +69,11 @@ def serialize_aws_json_1_0(value: GetAccountPlanStateResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAccountPlanStateResponse:
     out: GetAccountPlanStateResponse = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("GetAccountPlanStateResponse.account_id required")
-    if "accountPlanType" in data:
+    if data.get("accountPlanType") is not None:
         import capo_freetier.types.account_plan_type
 
         out["account_plan_type"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetAccountPlanStateResponse:
         raise DeserializationError(
             "GetAccountPlanStateResponse.account_plan_type required"
         )
-    if "accountPlanStatus" in data:
+    if data.get("accountPlanStatus") is not None:
         import capo_freetier.types.account_plan_status
 
         out["account_plan_status"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetAccountPlanStateResponse:
         raise DeserializationError(
             "GetAccountPlanStateResponse.account_plan_status required"
         )
-    if "accountPlanRemainingCredits" in data:
+    if data.get("accountPlanRemainingCredits") is not None:
         import capo_freetier.types.monetary_amount
 
         out["account_plan_remaining_credits"] = (
@@ -105,12 +105,10 @@ def deserialize_aws_json_1_0(data: dict) -> GetAccountPlanStateResponse:
                 data["accountPlanRemainingCredits"]
             )
         )
-    if "accountPlanExpirationDate" in data:
-        import capo_freetier.types._prelude.timestamp
+    if data.get("accountPlanExpirationDate") is not None:
+        import datetime
 
-        out["account_plan_expiration_date"] = (
-            capo_freetier.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["accountPlanExpirationDate"]
-            )
+        out["account_plan_expiration_date"] = datetime.datetime.fromisoformat(
+            data["accountPlanExpirationDate"].replace("Z", "+00:00")
         )
     return out

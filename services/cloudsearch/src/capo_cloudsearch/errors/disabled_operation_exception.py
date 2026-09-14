@@ -44,15 +44,18 @@ class DisabledOperationException(ServiceError):
 
     code: str | None = "DisabledOperationException"
 
-    def __init__(self, data: DisabledOperationException_):
+    def __init__(self, data: DisabledOperationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DisabledOperationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "DisabledOperationException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "DisabledOperationException":
+        return cls(deserialize_query(el), message)

@@ -207,7 +207,7 @@ class AsyncControlTowerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_controltower.types.disable_control_input.DisableControlInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.disable_control_input.DisableControlInput = {}
         if control_identifier is not None:
             input_["control_identifier"] = control_identifier
         if target_identifier is not None:
@@ -220,6 +220,7 @@ class AsyncControlTowerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

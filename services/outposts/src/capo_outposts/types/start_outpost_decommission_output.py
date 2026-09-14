@@ -42,7 +42,7 @@ def serialize_json(value: StartOutpostDecommissionOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartOutpostDecommissionOutput:
     out: StartOutpostDecommissionOutput = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_outposts.types.decommission_request_status
 
         out["status"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> StartOutpostDecommissionOutput:
                 data["Status"]
             )
         )
-    if "BlockingResourceTypes" in data:
+    if data.get("BlockingResourceTypes") is not None:
         import capo_outposts.types.blocking_resource_type_list
 
         out["blocking_resource_types"] = (

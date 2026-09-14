@@ -41,14 +41,14 @@ class ConfiguredAudienceModelSummary(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ConfiguredAudienceModelSummary) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     out["name"] = value["name"]
@@ -75,41 +75,37 @@ def serialize_json(value: ConfiguredAudienceModelSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredAudienceModelSummary:
     out: ConfiguredAudienceModelSummary = {}  # type: ignore[typeddict-item]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "ConfiguredAudienceModelSummary.create_time required"
         )
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "ConfiguredAudienceModelSummary.update_time required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ConfiguredAudienceModelSummary.name required")
-    if "audienceModelArn" in data:
+    if data.get("audienceModelArn") is not None:
         out["audience_model_arn"] = data["audienceModelArn"]
     else:
         raise DeserializationError(
             "ConfiguredAudienceModelSummary.audience_model_arn required"
         )
-    if "outputConfig" in data:
+    if data.get("outputConfig") is not None:
         import capo_cleanroomsml.types.configured_audience_model_output_config
 
         out["output_config"] = (
@@ -121,15 +117,15 @@ def deserialize_json(data: dict) -> ConfiguredAudienceModelSummary:
         raise DeserializationError(
             "ConfiguredAudienceModelSummary.output_config required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "configuredAudienceModelArn" in data:
+    if data.get("configuredAudienceModelArn") is not None:
         out["configured_audience_model_arn"] = data["configuredAudienceModelArn"]
     else:
         raise DeserializationError(
             "ConfiguredAudienceModelSummary.configured_audience_model_arn required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanroomsml.types.configured_audience_model_status
 
         out["status"] = (

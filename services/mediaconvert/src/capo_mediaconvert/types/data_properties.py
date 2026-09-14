@@ -23,6 +23,6 @@ def serialize_json(value: DataProperties) -> dict:
 
 def deserialize_json(data: dict) -> DataProperties:
     out: DataProperties = {}  # type: ignore[typeddict-item]
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         out["language_code"] = data["languageCode"]
     return out

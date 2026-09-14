@@ -19,5 +19,7 @@ def serialize_json(input_to_serialize: TextByLocale) -> dict:
 def deserialize_json(data: dict) -> TextByLocale:
     out: TextByLocale = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

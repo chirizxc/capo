@@ -29,7 +29,7 @@ def serialize_aws_json_1_0(value: PeriodicStateTemplateUpdateStrategy) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PeriodicStateTemplateUpdateStrategy:
     out: PeriodicStateTemplateUpdateStrategy = {}  # type: ignore[typeddict-item]
-    if "stateTemplateUpdateRate" in data:
+    if data.get("stateTemplateUpdateRate") is not None:
         import capo_iotfleetwise.types.time_period
 
         out["state_template_update_rate"] = (

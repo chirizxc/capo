@@ -77,27 +77,35 @@ def serialize_json(value: EvaluationFormQuestion) -> dict:
                 value["enablement"]
             )
         )
-    out["Weight"] = value.get("weight", 0)
+    out["Weight"] = (
+        "NaN"
+        if value.get("weight", 0) != value.get("weight", 0)
+        else "Infinity"
+        if value.get("weight", 0) == float("inf")
+        else "-Infinity"
+        if value.get("weight", 0) == float("-inf")
+        else value.get("weight", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> EvaluationFormQuestion:
     out: EvaluationFormQuestion = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("EvaluationFormQuestion.title required")
-    if "Instructions" in data:
+    if data.get("Instructions") is not None:
         out["instructions"] = data["Instructions"]
-    if "RefId" in data:
+    if data.get("RefId") is not None:
         out["ref_id"] = data["RefId"]
     else:
         raise DeserializationError("EvaluationFormQuestion.ref_id required")
-    if "NotApplicableEnabled" in data:
+    if data.get("NotApplicableEnabled") is not None:
         out["not_applicable_enabled"] = data["NotApplicableEnabled"]
     else:
         out["not_applicable_enabled"] = False
-    if "QuestionType" in data:
+    if data.get("QuestionType") is not None:
         import capo_connect.types.evaluation_form_question_type
 
         out["question_type"] = (
@@ -107,7 +115,7 @@ def deserialize_json(data: dict) -> EvaluationFormQuestion:
         )
     else:
         raise DeserializationError("EvaluationFormQuestion.question_type required")
-    if "QuestionTypeProperties" in data:
+    if data.get("QuestionTypeProperties") is not None:
         import capo_connect.types.evaluation_form_question_type_properties
 
         out["question_type_properties"] = (
@@ -115,7 +123,7 @@ def deserialize_json(data: dict) -> EvaluationFormQuestion:
                 data["QuestionTypeProperties"]
             )
         )
-    if "Enablement" in data:
+    if data.get("Enablement") is not None:
         import capo_connect.types.evaluation_form_item_enablement_configuration
 
         out["enablement"] = (
@@ -123,8 +131,8 @@ def deserialize_json(data: dict) -> EvaluationFormQuestion:
                 data["Enablement"]
             )
         )
-    if "Weight" in data:
-        out["weight"] = data["Weight"]
+    if data.get("Weight") is not None:
+        out["weight"] = float(data["Weight"])
     else:
         out["weight"] = 0
     return out

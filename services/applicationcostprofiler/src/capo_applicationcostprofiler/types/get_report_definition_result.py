@@ -75,17 +75,17 @@ def serialize_json(value: GetReportDefinitionResult) -> dict:
 
 def deserialize_json(data: dict) -> GetReportDefinitionResult:
     out: GetReportDefinitionResult = {}  # type: ignore[typeddict-item]
-    if "reportId" in data:
+    if data.get("reportId") is not None:
         out["report_id"] = data["reportId"]
     else:
         raise DeserializationError("GetReportDefinitionResult.report_id required")
-    if "reportDescription" in data:
+    if data.get("reportDescription") is not None:
         out["report_description"] = data["reportDescription"]
     else:
         raise DeserializationError(
             "GetReportDefinitionResult.report_description required"
         )
-    if "reportFrequency" in data:
+    if data.get("reportFrequency") is not None:
         import capo_applicationcostprofiler.types.report_frequency
 
         out["report_frequency"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> GetReportDefinitionResult:
         raise DeserializationError(
             "GetReportDefinitionResult.report_frequency required"
         )
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_applicationcostprofiler.types.format
 
         out["format"] = capo_applicationcostprofiler.types.format.deserialize_json(
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> GetReportDefinitionResult:
         )
     else:
         raise DeserializationError("GetReportDefinitionResult.format required")
-    if "destinationS3Location" in data:
+    if data.get("destinationS3Location") is not None:
         import capo_applicationcostprofiler.types.s3_location
 
         out["destination_s3_location"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> GetReportDefinitionResult:
         raise DeserializationError(
             "GetReportDefinitionResult.destination_s3_location required"
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_applicationcostprofiler.types.timestamp
 
         out["created_at"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> GetReportDefinitionResult:
         )
     else:
         raise DeserializationError("GetReportDefinitionResult.created_at required")
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_applicationcostprofiler.types.timestamp
 
         out["last_updated"] = (

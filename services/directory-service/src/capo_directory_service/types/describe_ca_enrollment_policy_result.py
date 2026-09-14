@@ -65,11 +65,11 @@ def serialize_aws_json_1_1(value: DescribeCAEnrollmentPolicyResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCAEnrollmentPolicyResult:
     out: DescribeCAEnrollmentPolicyResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "PcaConnectorArn" in data:
+    if data.get("PcaConnectorArn") is not None:
         out["pca_connector_arn"] = data["PcaConnectorArn"]
-    if "CaEnrollmentPolicyStatus" in data:
+    if data.get("CaEnrollmentPolicyStatus") is not None:
         import capo_directory_service.types.ca_enrollment_policy_status
 
         out["ca_enrollment_policy_status"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCAEnrollmentPolicyResult:
                 data["CaEnrollmentPolicyStatus"]
             )
         )
-    if "LastUpdatedDateTime" in data:
+    if data.get("LastUpdatedDateTime") is not None:
         import capo_directory_service.types.last_updated_date_time
 
         out["last_updated_date_time"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCAEnrollmentPolicyResult:
                 data["LastUpdatedDateTime"]
             )
         )
-    if "CaEnrollmentPolicyStatusReason" in data:
+    if data.get("CaEnrollmentPolicyStatusReason") is not None:
         out["ca_enrollment_policy_status_reason"] = data[
             "CaEnrollmentPolicyStatusReason"
         ]

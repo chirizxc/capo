@@ -60,7 +60,7 @@ def serialize_json(value: TypedAttributeValueRange) -> dict:
 
 def deserialize_json(data: dict) -> TypedAttributeValueRange:
     out: TypedAttributeValueRange = {}  # type: ignore[typeddict-item]
-    if "StartMode" in data:
+    if data.get("StartMode") is not None:
         import capo_clouddirectory.types.range_mode
 
         out["start_mode"] = capo_clouddirectory.types.range_mode.deserialize_json(
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> TypedAttributeValueRange:
         )
     else:
         raise DeserializationError("TypedAttributeValueRange.start_mode required")
-    if "StartValue" in data:
+    if data.get("StartValue") is not None:
         import capo_clouddirectory.types.typed_attribute_value
 
         out["start_value"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> TypedAttributeValueRange:
                 data["StartValue"]
             )
         )
-    if "EndMode" in data:
+    if data.get("EndMode") is not None:
         import capo_clouddirectory.types.range_mode
 
         out["end_mode"] = capo_clouddirectory.types.range_mode.deserialize_json(
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> TypedAttributeValueRange:
         )
     else:
         raise DeserializationError("TypedAttributeValueRange.end_mode required")
-    if "EndValue" in data:
+    if data.get("EndValue") is not None:
         import capo_clouddirectory.types.typed_attribute_value
 
         out["end_value"] = (

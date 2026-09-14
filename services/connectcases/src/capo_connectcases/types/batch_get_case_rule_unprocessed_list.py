@@ -16,4 +16,4 @@ def serialize_json(value: BatchGetCaseRuleUnprocessedList) -> list:
 
 
 def deserialize_json(data: list) -> BatchGetCaseRuleUnprocessedList:
-    return list(data)
+    return [item for item in data if item is not None]

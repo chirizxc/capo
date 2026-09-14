@@ -24,7 +24,7 @@ def serialize_json(value: DirectoryNotEnabledException_) -> dict:
 
 def deserialize_json(data: dict) -> DirectoryNotEnabledException_:
     out: DirectoryNotEnabledException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class DirectoryNotEnabledException(ServiceError):
 
     code: str | None = "DirectoryNotEnabledException"
 
-    def __init__(self, data: DirectoryNotEnabledException_):
+    def __init__(self, data: DirectoryNotEnabledException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DirectoryNotEnabledException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DirectoryNotEnabledException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DirectoryNotEnabledException":
+        return cls(deserialize_json(data), message)

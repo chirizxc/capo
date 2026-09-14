@@ -44,16 +44,16 @@ def serialize_json(value: PutCoreNetworkPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutCoreNetworkPolicyRequest:
     out: PutCoreNetworkPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyDocument" in data:
+    if data.get("PolicyDocument") is not None:
         out["policy_document"] = data["PolicyDocument"]
     else:
         raise DeserializationError(
             "PutCoreNetworkPolicyRequest.policy_document required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LatestVersionId" in data:
+    if data.get("LatestVersionId") is not None:
         out["latest_version_id"] = data["LatestVersionId"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -34,12 +34,12 @@ def serialize_json(value: Watcher) -> dict:
 
 def deserialize_json(data: dict) -> Watcher:
     out: Watcher = {}  # type: ignore[typeddict-item]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
     else:
         raise DeserializationError("Watcher.email required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "jobTitle" in data:
+    if data.get("jobTitle") is not None:
         out["job_title"] = data["jobTitle"]
     return out

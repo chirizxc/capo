@@ -13,10 +13,25 @@ from capo_codeguruprofiler import AsyncCodeGuruProfilerClient
 
 
 async def main():
-    async with AsyncCodeGuruProfilerClient() as s3:
+    async with AsyncCodeGuruProfilerClient() as code_guru_profiler:
         # Example: call the get_findings_report_account_summary operation
-        response = await s3.get_findings_report_account_summary()
+        response = await code_guru_profiler.get_findings_report_account_summary()
         print(response["report_summaries"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_codeguruprofiler import AsyncCodeGuruProfilerClient
+
+
+async def main():
+    async with AsyncCodeGuruProfilerClient() as code_guru_profiler:
+        # Example: paginate over get_findings_report_account_summary
+        async for item in code_guru_profiler.iter_get_findings_report_account_summary():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_codeguruprofiler.error import InternalServerException
 
 
 async def main():
-    async with AsyncCodeGuruProfilerClient() as s3:
+    async with AsyncCodeGuruProfilerClient() as code_guru_profiler:
         try:
-            await s3.get_findings_report_account_summary()
+            await code_guru_profiler.get_findings_report_account_summary()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_codeguruprofiler import AsyncCodeGuruProfilerClient
 
 
 async def main():
-    async with AsyncCodeGuruProfilerClient() as s3:
+    async with AsyncCodeGuruProfilerClient() as code_guru_profiler:
         # Default: 3 attempts for every operation
-        response = await s3.get_findings_report_account_summary()
+        response = await code_guru_profiler.get_findings_report_account_summary()
 
         # Override per operation
-        response = await s3.get_findings_report_account_summary(config_overrides={"retry_max_attempts": 5})
+        response = await code_guru_profiler.get_findings_report_account_summary(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_findings_report_account_summary(config_overrides={"retry_max_attempts": 1})
+        response = await code_guru_profiler.get_findings_report_account_summary(config_overrides={"retry_max_attempts": 1})
 ```

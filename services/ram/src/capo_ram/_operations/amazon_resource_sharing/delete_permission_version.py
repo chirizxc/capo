@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_ram._auth._signers
 import capo_ram._auth._sigv4
+import capo_ram._protocol.eventstream
 import capo_ram.errors.idempotent_parameter_mismatch_exception
 import capo_ram.errors.invalid_client_token_exception
 import capo_ram.errors.invalid_parameter_exception
@@ -33,35 +34,35 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "IdempotentParameterMismatchException":
             raise capo_ram.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException.from_json(
-                data
+                data, message
             )
         case "InvalidClientTokenException":
             raise capo_ram.errors.invalid_client_token_exception.InvalidClientTokenException.from_json(
-                data
+                data, message
             )
         case "InvalidParameterException":
             raise capo_ram.errors.invalid_parameter_exception.InvalidParameterException.from_json(
-                data
+                data, message
             )
         case "MalformedArnException":
             raise capo_ram.errors.malformed_arn_exception.MalformedArnException.from_json(
-                data
+                data, message
             )
         case "OperationNotPermittedException":
             raise capo_ram.errors.operation_not_permitted_exception.OperationNotPermittedException.from_json(
-                data
+                data, message
             )
         case "ServerInternalException":
             raise capo_ram.errors.server_internal_exception.ServerInternalException.from_json(
-                data
+                data, message
             )
         case "ServiceUnavailableException":
             raise capo_ram.errors.service_unavailable_exception.ServiceUnavailableException.from_json(
-                data
+                data, message
             )
         case "UnknownResourceException":
             raise capo_ram.errors.unknown_resource_exception.UnknownResourceException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -90,17 +91,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_ram._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_ram._auth._sigv4.build_sigv4_auth_scheme("ram", options.region)
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_ram._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_ram._auth._sigv4.build_sigv4_auth_scheme(
+                "ram", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_ram._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -117,18 +127,19 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/deletepermissionversion"
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     if "permission_arn" in input_:
-        params["permissionArn"] = str(input_["permission_arn"])
+        params.append(("permissionArn", input_["permission_arn"]))
     if "permission_version" in input_:
-        params["permissionVersion"] = str(input_["permission_version"])
+        params.append(("permissionVersion", str(input_["permission_version"])))
     if "client_token" in input_:
-        params["clientToken"] = str(input_["client_token"])
+        params.append(("clientToken", input_["client_token"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "DELETE", headers=headers, body=body, context={"signer": signer}
     )
@@ -143,7 +154,7 @@ def delete_permission_version(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -161,7 +172,7 @@ async def async_delete_permission_version(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

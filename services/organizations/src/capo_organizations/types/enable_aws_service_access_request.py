@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: EnableAWSServiceAccessRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnableAWSServiceAccessRequest:
     out: EnableAWSServiceAccessRequest = {}  # type: ignore[typeddict-item]
-    if "ServicePrincipal" in data:
+    if data.get("ServicePrincipal") is not None:
         out["service_principal"] = data["ServicePrincipal"]
     else:
         raise DeserializationError(

@@ -53,17 +53,17 @@ def serialize_json(value: GrantItem) -> dict:
 
 def deserialize_json(data: dict) -> GrantItem:
     out: GrantItem = {}  # type: ignore[typeddict-item]
-    if "dimensionKey" in data:
+    if data.get("dimensionKey") is not None:
         out["dimension_key"] = data["dimensionKey"]
     else:
         raise DeserializationError("GrantItem.dimension_key required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("GrantItem.display_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "dimensionLabels" in data:
+    if data.get("dimensionLabels") is not None:
         import capo_marketplace_discovery.types.dimension_label_list
 
         out["dimension_labels"] = (
@@ -71,10 +71,10 @@ def deserialize_json(data: dict) -> GrantItem:
                 data["dimensionLabels"]
             )
         )
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
     else:
         raise DeserializationError("GrantItem.unit required")
-    if "maxQuantity" in data:
+    if data.get("maxQuantity") is not None:
         out["max_quantity"] = data["maxQuantity"]
     return out

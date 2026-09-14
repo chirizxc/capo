@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: PropertyPredicate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PropertyPredicate:
     out: PropertyPredicate = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Comparator" in data:
+    if data.get("Comparator") is not None:
         import capo_glue.types.comparator
 
         out["comparator"] = capo_glue.types.comparator.deserialize_aws_json_1_1(

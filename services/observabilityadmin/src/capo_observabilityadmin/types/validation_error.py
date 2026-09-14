@@ -35,11 +35,11 @@ def serialize_json(value: ValidationError) -> dict:
 
 def deserialize_json(data: dict) -> ValidationError:
     out: ValidationError = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
-    if "FieldMap" in data:
+    if data.get("FieldMap") is not None:
         import capo_observabilityadmin.types.field_map
 
         out["field_map"] = capo_observabilityadmin.types.field_map.deserialize_json(

@@ -36,7 +36,7 @@ def serialize_json(value: ListCodeReviewJobsForCodeReviewOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListCodeReviewJobsForCodeReviewOutput:
     out: ListCodeReviewJobsForCodeReviewOutput = {}  # type: ignore[typeddict-item]
-    if "codeReviewJobSummaries" in data:
+    if data.get("codeReviewJobSummaries") is not None:
         import capo_securityagent.types.code_review_job_summary_list
 
         out["code_review_job_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListCodeReviewJobsForCodeReviewOutput:
                 data["codeReviewJobSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

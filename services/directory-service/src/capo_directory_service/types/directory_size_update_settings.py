@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DirectorySizeUpdateSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectorySizeUpdateSettings:
     out: DirectorySizeUpdateSettings = {}  # type: ignore[typeddict-item]
-    if "DirectorySize" in data:
+    if data.get("DirectorySize") is not None:
         import capo_directory_service.types.directory_size
 
         out["directory_size"] = (

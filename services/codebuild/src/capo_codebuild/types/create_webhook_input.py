@@ -80,13 +80,13 @@ def serialize_aws_json_1_1(value: CreateWebhookInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWebhookInput:
     out: CreateWebhookInput = {}  # type: ignore[typeddict-item]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("CreateWebhookInput.project_name required")
-    if "branchFilter" in data:
+    if data.get("branchFilter") is not None:
         out["branch_filter"] = data["branchFilter"]
-    if "filterGroups" in data:
+    if data.get("filterGroups") is not None:
         import capo_codebuild.types.filter_groups
 
         out["filter_groups"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebhookInput:
                 data["filterGroups"]
             )
         )
-    if "buildType" in data:
+    if data.get("buildType") is not None:
         import capo_codebuild.types.webhook_build_type
 
         out["build_type"] = (
@@ -102,9 +102,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebhookInput:
                 data["buildType"]
             )
         )
-    if "manualCreation" in data:
+    if data.get("manualCreation") is not None:
         out["manual_creation"] = data["manualCreation"]
-    if "scopeConfiguration" in data:
+    if data.get("scopeConfiguration") is not None:
         import capo_codebuild.types.scope_configuration
 
         out["scope_configuration"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebhookInput:
                 data["scopeConfiguration"]
             )
         )
-    if "pullRequestBuildPolicy" in data:
+    if data.get("pullRequestBuildPolicy") is not None:
         import capo_codebuild.types.pull_request_build_policy
 
         out["pull_request_build_policy"] = (

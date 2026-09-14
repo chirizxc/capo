@@ -110,25 +110,25 @@ def serialize_json(value: CreateDataSourceInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataSourceInput:
     out: CreateDataSourceInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDataSourceInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "projectIdentifier" in data:
+    if data.get("projectIdentifier") is not None:
         out["project_identifier"] = data["projectIdentifier"]
     else:
         raise DeserializationError("CreateDataSourceInput.project_identifier required")
-    if "environmentIdentifier" in data:
+    if data.get("environmentIdentifier") is not None:
         out["environment_identifier"] = data["environmentIdentifier"]
-    if "connectionIdentifier" in data:
+    if data.get("connectionIdentifier") is not None:
         out["connection_identifier"] = data["connectionIdentifier"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("CreateDataSourceInput.type required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_datazone.types.data_source_configuration_input
 
         out["configuration"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> CreateDataSourceInput:
                 data["configuration"]
             )
         )
-    if "recommendation" in data:
+    if data.get("recommendation") is not None:
         import capo_datazone.types.recommendation_configuration
 
         out["recommendation"] = (
@@ -144,26 +144,26 @@ def deserialize_json(data: dict) -> CreateDataSourceInput:
                 data["recommendation"]
             )
         )
-    if "enableSetting" in data:
+    if data.get("enableSetting") is not None:
         import capo_datazone.types.enable_setting
 
         out["enable_setting"] = capo_datazone.types.enable_setting.deserialize_json(
             data["enableSetting"]
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_datazone.types.schedule_configuration
 
         out["schedule"] = capo_datazone.types.schedule_configuration.deserialize_json(
             data["schedule"]
         )
-    if "publishOnImport" in data:
+    if data.get("publishOnImport") is not None:
         out["publish_on_import"] = data["publishOnImport"]
-    if "assetFormsInput" in data:
+    if data.get("assetFormsInput") is not None:
         import capo_datazone.types.form_input_list
 
         out["asset_forms_input"] = capo_datazone.types.form_input_list.deserialize_json(
             data["assetFormsInput"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

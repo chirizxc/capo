@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: GenerateQueryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GenerateQueryResponse:
     out: GenerateQueryResponse = {}  # type: ignore[typeddict-item]
-    if "QueryStatement" in data:
+    if data.get("QueryStatement") is not None:
         out["query_statement"] = data["QueryStatement"]
-    if "QueryAlias" in data:
+    if data.get("QueryAlias") is not None:
         out["query_alias"] = data["QueryAlias"]
-    if "EventDataStoreOwnerAccountId" in data:
+    if data.get("EventDataStoreOwnerAccountId") is not None:
         out["event_data_store_owner_account_id"] = data["EventDataStoreOwnerAccountId"]
     return out

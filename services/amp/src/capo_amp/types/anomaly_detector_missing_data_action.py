@@ -32,9 +32,9 @@ def serialize_json(value: AnomalyDetectorMissingDataAction) -> dict:
 
 
 def deserialize_json(data: dict) -> AnomalyDetectorMissingDataAction:
-    if "markAsAnomaly" in data:
+    if data.get("markAsAnomaly") is not None:
         return {"markAsAnomaly": data["markAsAnomaly"]}
-    elif "skip" in data:
+    elif data.get("skip") is not None:
         return {"skip": data["skip"]}
     else:
         raise DeserializationError(

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> EnabledServicePrincipals:
 
     out: EnabledServicePrincipals = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_organizations.types.enabled_service_principal.deserialize_aws_json_1_1(
                 item

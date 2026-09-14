@@ -27,8 +27,8 @@ def serialize_json(value: NodeEthereumAttributes) -> dict:
 
 def deserialize_json(data: dict) -> NodeEthereumAttributes:
     out: NodeEthereumAttributes = {}  # type: ignore[typeddict-item]
-    if "HttpEndpoint" in data:
+    if data.get("HttpEndpoint") is not None:
         out["http_endpoint"] = data["HttpEndpoint"]
-    if "WebSocketEndpoint" in data:
+    if data.get("WebSocketEndpoint") is not None:
         out["web_socket_endpoint"] = data["WebSocketEndpoint"]
     return out

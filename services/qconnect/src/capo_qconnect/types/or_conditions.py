@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> OrConditions:
 
     out: OrConditions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.or_condition.deserialize_json(item))
     return out

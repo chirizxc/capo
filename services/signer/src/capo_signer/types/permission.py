@@ -36,12 +36,12 @@ def serialize_json(value: Permission) -> dict:
 
 def deserialize_json(data: dict) -> Permission:
     out: Permission = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
-    if "statementId" in data:
+    if data.get("statementId") is not None:
         out["statement_id"] = data["statementId"]
-    if "profileVersion" in data:
+    if data.get("profileVersion") is not None:
         out["profile_version"] = data["profileVersion"]
     return out

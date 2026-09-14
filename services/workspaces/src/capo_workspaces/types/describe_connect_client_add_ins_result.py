@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeConnectClientAddInsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConnectClientAddInsResult:
     out: DescribeConnectClientAddInsResult = {}  # type: ignore[typeddict-item]
-    if "AddIns" in data:
+    if data.get("AddIns") is not None:
         import capo_workspaces.types.connect_client_add_in_list
 
         out["add_ins"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeConnectClientAddInsResult:
                 data["AddIns"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

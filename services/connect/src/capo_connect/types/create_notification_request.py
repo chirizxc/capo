@@ -79,13 +79,13 @@ def serialize_json(value: CreateNotificationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNotificationRequest:
     out: CreateNotificationRequest = {}  # type: ignore[typeddict-item]
-    if "ExpiresAt" in data:
+    if data.get("ExpiresAt") is not None:
         import capo_connect.types.timestamp
 
         out["expires_at"] = capo_connect.types.timestamp.deserialize_json(
             data["ExpiresAt"]
         )
-    if "Recipients" in data:
+    if data.get("Recipients") is not None:
         import capo_connect.types.recipient_list
 
         out["recipients"] = capo_connect.types.recipient_list.deserialize_json(
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> CreateNotificationRequest:
         )
     else:
         raise DeserializationError("CreateNotificationRequest.recipients required")
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         import capo_connect.types.configurable_notification_priority
 
         out["priority"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> CreateNotificationRequest:
                 data["Priority"]
             )
         )
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_connect.types.notification_content
 
         out["content"] = capo_connect.types.notification_content.deserialize_json(
@@ -109,12 +109,12 @@ def deserialize_json(data: dict) -> CreateNotificationRequest:
         )
     else:
         raise DeserializationError("CreateNotificationRequest.content required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "PredefinedNotificationId" in data:
+    if data.get("PredefinedNotificationId") is not None:
         out["predefined_notification_id"] = data["PredefinedNotificationId"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

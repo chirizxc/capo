@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __manifestServiceExcludeEventTypesList:
 
     out: __manifestServiceExcludeEventTypesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediatailor.types.manifest_service_exclude_event_type.deserialize_json(
                 item

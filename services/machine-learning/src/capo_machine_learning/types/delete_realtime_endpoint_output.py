@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DeleteRealtimeEndpointOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteRealtimeEndpointOutput:
     out: DeleteRealtimeEndpointOutput = {}  # type: ignore[typeddict-item]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
-    if "RealtimeEndpointInfo" in data:
+    if data.get("RealtimeEndpointInfo") is not None:
         import capo_machine_learning.types.realtime_endpoint_info
 
         out["realtime_endpoint_info"] = (

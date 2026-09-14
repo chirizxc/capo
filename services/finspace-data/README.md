@@ -13,9 +13,9 @@ from capo_finspace_data import AsyncfinspacedataClient
 
 
 async def main():
-    async with AsyncfinspacedataClient() as s3:
+    async with AsyncfinspacedataClient() as finspacedata:
         # Example: call the associate_user_to_permission_group operation
-        response = await s3.associate_user_to_permission_group()
+        response = await finspacedata.associate_user_to_permission_group()
         print(response["status_code"])
 ```
 
@@ -28,9 +28,9 @@ from capo_finspace_data import AsyncfinspacedataClient
 
 
 async def main():
-    async with AsyncfinspacedataClient() as s3:
+    async with AsyncfinspacedataClient() as finspacedata:
         # Example: paginate over list_changesets
-        async for item in s3.iter_list_changesets():
+        async for item in finspacedata.iter_list_changesets():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_finspace_data.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncfinspacedataClient() as s3:
+    async with AsyncfinspacedataClient() as finspacedata:
         try:
-            await s3.associate_user_to_permission_group()
+            await finspacedata.associate_user_to_permission_group()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_finspace_data import AsyncfinspacedataClient
 
 
 async def main():
-    async with AsyncfinspacedataClient() as s3:
+    async with AsyncfinspacedataClient() as finspacedata:
         # Default: 3 attempts for every operation
-        response = await s3.associate_user_to_permission_group()
+        response = await finspacedata.associate_user_to_permission_group()
 
         # Override per operation
-        response = await s3.associate_user_to_permission_group(config_overrides={"retry_max_attempts": 5})
+        response = await finspacedata.associate_user_to_permission_group(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_user_to_permission_group(config_overrides={"retry_max_attempts": 1})
+        response = await finspacedata.associate_user_to_permission_group(config_overrides={"retry_max_attempts": 1})
 ```

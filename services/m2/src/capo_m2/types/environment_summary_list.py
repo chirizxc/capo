@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EnvironmentSummaryList:
 
     out: EnvironmentSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_m2.types.environment_summary.deserialize_json(item))
     return out

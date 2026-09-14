@@ -39,15 +39,20 @@ class AuthenticationProfileNotFoundFault(ServiceError):
 
     code: str | None = "AuthenticationProfileNotFoundFault"
 
-    def __init__(self, data: AuthenticationProfileNotFoundFault_):
+    def __init__(
+        self, data: AuthenticationProfileNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AuthenticationProfileNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "AuthenticationProfileNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "AuthenticationProfileNotFoundFault":
+        return cls(deserialize_query(el), message)

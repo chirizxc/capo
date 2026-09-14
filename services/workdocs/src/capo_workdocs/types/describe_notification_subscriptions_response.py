@@ -32,12 +32,12 @@ def serialize_json(value: DescribeNotificationSubscriptionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeNotificationSubscriptionsResponse:
     out: DescribeNotificationSubscriptionsResponse = {}  # type: ignore[typeddict-item]
-    if "Subscriptions" in data:
+    if data.get("Subscriptions") is not None:
         import capo_workdocs.types.subscription_list
 
         out["subscriptions"] = capo_workdocs.types.subscription_list.deserialize_json(
             data["Subscriptions"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

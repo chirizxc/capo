@@ -61,7 +61,7 @@ def serialize_aws_json_1_0(value: TestEnvPreferenceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TestEnvPreferenceInput:
     out: TestEnvPreferenceInput = {}  # type: ignore[typeddict-item]
-    if "BuyerDomain" in data:
+    if data.get("BuyerDomain") is not None:
         import capo_invoicing.types.buyer_domain
 
         out["buyer_domain"] = (
@@ -71,11 +71,11 @@ def deserialize_aws_json_1_0(data: dict) -> TestEnvPreferenceInput:
         )
     else:
         raise DeserializationError("TestEnvPreferenceInput.buyer_domain required")
-    if "BuyerIdentifier" in data:
+    if data.get("BuyerIdentifier") is not None:
         out["buyer_identifier"] = data["BuyerIdentifier"]
     else:
         raise DeserializationError("TestEnvPreferenceInput.buyer_identifier required")
-    if "SupplierDomain" in data:
+    if data.get("SupplierDomain") is not None:
         import capo_invoicing.types.supplier_domain
 
         out["supplier_domain"] = (
@@ -85,15 +85,15 @@ def deserialize_aws_json_1_0(data: dict) -> TestEnvPreferenceInput:
         )
     else:
         raise DeserializationError("TestEnvPreferenceInput.supplier_domain required")
-    if "SupplierIdentifier" in data:
+    if data.get("SupplierIdentifier") is not None:
         out["supplier_identifier"] = data["SupplierIdentifier"]
     else:
         raise DeserializationError(
             "TestEnvPreferenceInput.supplier_identifier required"
         )
-    if "ProcurementPortalSharedSecret" in data:
+    if data.get("ProcurementPortalSharedSecret") is not None:
         out["procurement_portal_shared_secret"] = data["ProcurementPortalSharedSecret"]
-    if "ProcurementPortalInstanceEndpoint" in data:
+    if data.get("ProcurementPortalInstanceEndpoint") is not None:
         out["procurement_portal_instance_endpoint"] = data[
             "ProcurementPortalInstanceEndpoint"
         ]

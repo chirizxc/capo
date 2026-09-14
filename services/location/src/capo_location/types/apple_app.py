@@ -24,7 +24,7 @@ def serialize_json(value: AppleApp) -> dict:
 
 def deserialize_json(data: dict) -> AppleApp:
     out: AppleApp = {}  # type: ignore[typeddict-item]
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
     else:
         raise DeserializationError("AppleApp.bundle_id required")

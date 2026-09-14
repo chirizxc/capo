@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: StartUserImportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartUserImportJobRequest:
     out: StartUserImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("StartUserImportJobRequest.user_pool_id required")
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("StartUserImportJobRequest.job_id required")

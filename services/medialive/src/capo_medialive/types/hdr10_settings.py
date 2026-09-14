@@ -31,8 +31,8 @@ def serialize_json(value: Hdr10Settings) -> dict:
 
 def deserialize_json(data: dict) -> Hdr10Settings:
     out: Hdr10Settings = {}  # type: ignore[typeddict-item]
-    if "maxCll" in data:
+    if data.get("maxCll") is not None:
         out["max_cll"] = data["maxCll"]
-    if "maxFall" in data:
+    if data.get("maxFall") is not None:
         out["max_fall"] = data["maxFall"]
     return out

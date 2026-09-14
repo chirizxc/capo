@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfInsertableImage:
 
     out: __listOfInsertableImage = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.insertable_image.deserialize_json(item))
     return out

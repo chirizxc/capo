@@ -30,8 +30,8 @@ def serialize_json(value: CreateRoutingProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRoutingProfileResponse:
     out: CreateRoutingProfileResponse = {}  # type: ignore[typeddict-item]
-    if "RoutingProfileArn" in data:
+    if data.get("RoutingProfileArn") is not None:
         out["routing_profile_arn"] = data["RoutingProfileArn"]
-    if "RoutingProfileId" in data:
+    if data.get("RoutingProfileId") is not None:
         out["routing_profile_id"] = data["RoutingProfileId"]
     return out

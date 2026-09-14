@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: KinesisStreamSourceDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KinesisStreamSourceDescription:
     out: KinesisStreamSourceDescription = {}  # type: ignore[typeddict-item]
-    if "KinesisStreamARN" in data:
+    if data.get("KinesisStreamARN") is not None:
         out["kinesis_stream_arn"] = data["KinesisStreamARN"]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "DeliveryStartTimestamp" in data:
+    if data.get("DeliveryStartTimestamp") is not None:
         import capo_firehose.types.delivery_start_timestamp
 
         out["delivery_start_timestamp"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetAccountSettingsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAccountSettingsResult:
     out: GetAccountSettingsResult = {}  # type: ignore[typeddict-item]
-    if "accountSettings" in data:
+    if data.get("accountSettings") is not None:
         import capo_device_farm.types.account_settings
 
         out["account_settings"] = (

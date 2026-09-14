@@ -38,10 +38,10 @@ def serialize_json(value: StartDashboardSnapshotJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartDashboardSnapshotJobResponse:
     out: StartDashboardSnapshotJobResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "SnapshotJobId" in data:
+    if data.get("SnapshotJobId") is not None:
         out["snapshot_job_id"] = data["SnapshotJobId"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

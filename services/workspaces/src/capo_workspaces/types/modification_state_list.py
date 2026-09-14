@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ModificationStateList:
 
     out: ModificationStateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.modification_state.deserialize_aws_json_1_1(item)
         )

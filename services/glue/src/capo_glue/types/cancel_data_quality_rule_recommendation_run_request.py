@@ -28,7 +28,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CancelDataQualityRuleRecommendationRunRequest:
     out: CancelDataQualityRuleRecommendationRunRequest = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     else:
         raise DeserializationError(

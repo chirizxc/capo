@@ -21,20 +21,35 @@ class Statistics(TypedDict, closed=True):
 def serialize_json(value: Statistics) -> dict:
     out: dict = {}
     if "approximate_number_of_objects_to_process" in value:
-        out["approximateNumberOfObjectsToProcess"] = value[
-            "approximate_number_of_objects_to_process"
-        ]
+        out["approximateNumberOfObjectsToProcess"] = (
+            "NaN"
+            if value["approximate_number_of_objects_to_process"]
+            != value["approximate_number_of_objects_to_process"]
+            else "Infinity"
+            if value["approximate_number_of_objects_to_process"] == float("inf")
+            else "-Infinity"
+            if value["approximate_number_of_objects_to_process"] == float("-inf")
+            else value["approximate_number_of_objects_to_process"]
+        )
     if "number_of_runs" in value:
-        out["numberOfRuns"] = value["number_of_runs"]
+        out["numberOfRuns"] = (
+            "NaN"
+            if value["number_of_runs"] != value["number_of_runs"]
+            else "Infinity"
+            if value["number_of_runs"] == float("inf")
+            else "-Infinity"
+            if value["number_of_runs"] == float("-inf")
+            else value["number_of_runs"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Statistics:
     out: Statistics = {}  # type: ignore[typeddict-item]
-    if "approximateNumberOfObjectsToProcess" in data:
-        out["approximate_number_of_objects_to_process"] = data[
-            "approximateNumberOfObjectsToProcess"
-        ]
-    if "numberOfRuns" in data:
-        out["number_of_runs"] = data["numberOfRuns"]
+    if data.get("approximateNumberOfObjectsToProcess") is not None:
+        out["approximate_number_of_objects_to_process"] = float(
+            data["approximateNumberOfObjectsToProcess"]
+        )
+    if data.get("numberOfRuns") is not None:
+        out["number_of_runs"] = float(data["numberOfRuns"])
     return out

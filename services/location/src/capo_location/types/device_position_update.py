@@ -60,11 +60,11 @@ def serialize_json(value: DevicePositionUpdate) -> dict:
 
 def deserialize_json(data: dict) -> DevicePositionUpdate:
     out: DevicePositionUpdate = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError("DevicePositionUpdate.device_id required")
-    if "SampleTime" in data:
+    if data.get("SampleTime") is not None:
         import capo_location.types.timestamp
 
         out["sample_time"] = capo_location.types.timestamp.deserialize_json(
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> DevicePositionUpdate:
         )
     else:
         raise DeserializationError("DevicePositionUpdate.sample_time required")
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_location.types.position
 
         out["position"] = capo_location.types.position.deserialize_json(
@@ -80,13 +80,13 @@ def deserialize_json(data: dict) -> DevicePositionUpdate:
         )
     else:
         raise DeserializationError("DevicePositionUpdate.position required")
-    if "Accuracy" in data:
+    if data.get("Accuracy") is not None:
         import capo_location.types.positional_accuracy
 
         out["accuracy"] = capo_location.types.positional_accuracy.deserialize_json(
             data["Accuracy"]
         )
-    if "PositionProperties" in data:
+    if data.get("PositionProperties") is not None:
         import capo_location.types.position_property_map
 
         out["position_properties"] = (

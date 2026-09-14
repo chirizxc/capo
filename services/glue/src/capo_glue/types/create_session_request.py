@@ -93,7 +93,15 @@ def serialize_aws_json_1_1(value: CreateSessionRequest) -> dict:
             value["connections"]
         )
     if "max_capacity" in value:
-        out["MaxCapacity"] = value["max_capacity"]
+        out["MaxCapacity"] = (
+            "NaN"
+            if value["max_capacity"] != value["max_capacity"]
+            else "Infinity"
+            if value["max_capacity"] == float("inf")
+            else "-Infinity"
+            if value["max_capacity"] == float("-inf")
+            else value["max_capacity"]
+        )
     if "number_of_workers" in value:
         out["NumberOfWorkers"] = value["number_of_workers"]
     if "worker_type" in value:
@@ -123,17 +131,17 @@ def serialize_aws_json_1_1(value: CreateSessionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSessionRequest:
     out: CreateSessionRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("CreateSessionRequest.id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError("CreateSessionRequest.role required")
-    if "Command" in data:
+    if data.get("Command") is not None:
         import capo_glue.types.session_command
 
         out["command"] = capo_glue.types.session_command.deserialize_aws_json_1_1(
@@ -141,11 +149,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSessionRequest:
         )
     else:
         raise DeserializationError("CreateSessionRequest.command required")
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "IdleTimeout" in data:
+    if data.get("IdleTimeout") is not None:
         out["idle_timeout"] = data["IdleTimeout"]
-    if "DefaultArguments" in data:
+    if data.get("DefaultArguments") is not None:
         import capo_glue.types.orchestration_arguments_map
 
         out["default_arguments"] = (
@@ -153,33 +161,33 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSessionRequest:
                 data["DefaultArguments"]
             )
         )
-    if "Connections" in data:
+    if data.get("Connections") is not None:
         import capo_glue.types.connections_list
 
         out["connections"] = capo_glue.types.connections_list.deserialize_aws_json_1_1(
             data["Connections"]
         )
-    if "MaxCapacity" in data:
-        out["max_capacity"] = data["MaxCapacity"]
-    if "NumberOfWorkers" in data:
+    if data.get("MaxCapacity") is not None:
+        out["max_capacity"] = float(data["MaxCapacity"])
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "WorkerType" in data:
+    if data.get("WorkerType") is not None:
         import capo_glue.types.worker_type
 
         out["worker_type"] = capo_glue.types.worker_type.deserialize_aws_json_1_1(
             data["WorkerType"]
         )
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "GlueVersion" in data:
+    if data.get("GlueVersion") is not None:
         out["glue_version"] = data["GlueVersion"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])
-    if "RequestOrigin" in data:
+    if data.get("RequestOrigin") is not None:
         out["request_origin"] = data["RequestOrigin"]
-    if "SessionType" in data:
+    if data.get("SessionType") is not None:
         import capo_glue.types.session_type
 
         out["session_type"] = capo_glue.types.session_type.deserialize_aws_json_1_1(

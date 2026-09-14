@@ -44,7 +44,7 @@ def serialize_json(value: WaterfallChartSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WaterfallChartSortConfiguration:
     out: WaterfallChartSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "CategorySort" in data:
+    if data.get("CategorySort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["category_sort"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> WaterfallChartSortConfiguration:
                 data["CategorySort"]
             )
         )
-    if "BreakdownItemsLimit" in data:
+    if data.get("BreakdownItemsLimit") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["breakdown_items_limit"] = (

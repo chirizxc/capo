@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetInstanceAccessInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstanceAccessInput:
     out: GetInstanceAccessInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     return out

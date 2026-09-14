@@ -31,7 +31,7 @@ def serialize_json(value: DeobfuscationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DeobfuscationConfiguration:
     out: DeobfuscationConfiguration = {}  # type: ignore[typeddict-item]
-    if "JavaScriptSourceMaps" in data:
+    if data.get("JavaScriptSourceMaps") is not None:
         import capo_rum.types.java_script_source_maps
 
         out["java_script_source_maps"] = (

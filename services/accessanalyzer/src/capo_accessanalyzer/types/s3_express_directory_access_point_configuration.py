@@ -37,9 +37,9 @@ def serialize_json(value: S3ExpressDirectoryAccessPointConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3ExpressDirectoryAccessPointConfiguration:
     out: S3ExpressDirectoryAccessPointConfiguration = {}  # type: ignore[typeddict-item]
-    if "accessPointPolicy" in data:
+    if data.get("accessPointPolicy") is not None:
         out["access_point_policy"] = data["accessPointPolicy"]
-    if "networkOrigin" in data:
+    if data.get("networkOrigin") is not None:
         import capo_accessanalyzer.types.network_origin_configuration
 
         out["network_origin"] = (

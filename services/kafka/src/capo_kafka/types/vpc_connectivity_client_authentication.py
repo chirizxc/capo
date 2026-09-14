@@ -34,13 +34,13 @@ def serialize_json(value: VpcConnectivityClientAuthentication) -> dict:
 
 def deserialize_json(data: dict) -> VpcConnectivityClientAuthentication:
     out: VpcConnectivityClientAuthentication = {}  # type: ignore[typeddict-item]
-    if "sasl" in data:
+    if data.get("sasl") is not None:
         import capo_kafka.types.vpc_connectivity_sasl
 
         out["sasl"] = capo_kafka.types.vpc_connectivity_sasl.deserialize_json(
             data["sasl"]
         )
-    if "tls" in data:
+    if data.get("tls") is not None:
         import capo_kafka.types.vpc_connectivity_tls
 
         out["tls"] = capo_kafka.types.vpc_connectivity_tls.deserialize_json(data["tls"])

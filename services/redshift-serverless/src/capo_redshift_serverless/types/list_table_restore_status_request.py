@@ -24,6 +24,10 @@ class ListTableRestoreStatusRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListTableRestoreStatusRequest) -> dict:
     out: dict = {}
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
     if "namespace_name" in value:
         out["namespaceName"] = value["namespace_name"]
     if "workgroup_name" in value:
@@ -33,8 +37,12 @@ def serialize_aws_json_1_1(value: ListTableRestoreStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTableRestoreStatusRequest:
     out: ListTableRestoreStatusRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     return out

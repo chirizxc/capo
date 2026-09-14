@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: AttachmentDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttachmentDetails:
     out: AttachmentDetails = {}  # type: ignore[typeddict-item]
-    if "attachmentId" in data:
+    if data.get("attachmentId") is not None:
         out["attachment_id"] = data["attachmentId"]
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     return out

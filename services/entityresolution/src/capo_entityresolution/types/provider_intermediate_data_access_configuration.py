@@ -44,7 +44,7 @@ def serialize_json(value: ProviderIntermediateDataAccessConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProviderIntermediateDataAccessConfiguration:
     out: ProviderIntermediateDataAccessConfiguration = {}  # type: ignore[typeddict-item]
-    if "awsAccountIds" in data:
+    if data.get("awsAccountIds") is not None:
         import capo_entityresolution.types.aws_account_id_list
 
         out["aws_account_ids"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ProviderIntermediateDataAccessConfiguration:
                 data["awsAccountIds"]
             )
         )
-    if "requiredBucketActions" in data:
+    if data.get("requiredBucketActions") is not None:
         import capo_entityresolution.types.required_bucket_actions_list
 
         out["required_bucket_actions"] = (

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> MetricsSource:
 
     out: MetricsSource = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer.types.metric_source.deserialize_aws_json_1_0(item)
         )

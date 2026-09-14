@@ -70,43 +70,51 @@ def serialize_aws_json_1_0(value: OdbPeeringConnection) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["createdAt"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["createdAt"] = capo_odb._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "percent_progress" in value:
-        out["percentProgress"] = value["percent_progress"]
+        out["percentProgress"] = (
+            "NaN"
+            if value["percent_progress"] != value["percent_progress"]
+            else "Infinity"
+            if value["percent_progress"] == float("inf")
+            else "-Infinity"
+            if value["percent_progress"] == float("-inf")
+            else value["percent_progress"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> OdbPeeringConnection:
     out: OdbPeeringConnection = {}  # type: ignore[typeddict-item]
-    if "odbPeeringConnectionId" in data:
+    if data.get("odbPeeringConnectionId") is not None:
         out["odb_peering_connection_id"] = data["odbPeeringConnectionId"]
     else:
         raise DeserializationError(
             "OdbPeeringConnection.odb_peering_connection_id required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.resource_status
 
         out["status"] = capo_odb.types.resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "odbPeeringConnectionArn" in data:
+    if data.get("odbPeeringConnectionArn") is not None:
         out["odb_peering_connection_arn"] = data["odbPeeringConnectionArn"]
-    if "odbNetworkArn" in data:
+    if data.get("odbNetworkArn") is not None:
         out["odb_network_arn"] = data["odbNetworkArn"]
-    if "peerNetworkArn" in data:
+    if data.get("peerNetworkArn") is not None:
         out["peer_network_arn"] = data["peerNetworkArn"]
-    if "odbPeeringConnectionType" in data:
+    if data.get("odbPeeringConnectionType") is not None:
         out["odb_peering_connection_type"] = data["odbPeeringConnectionType"]
-    if "peerNetworkCidrs" in data:
+    if data.get("peerNetworkCidrs") is not None:
         import capo_odb.types.peered_cidr_list
 
         out["peer_network_cidrs"] = (
@@ -114,12 +122,12 @@ def deserialize_aws_json_1_0(data: dict) -> OdbPeeringConnection:
                 data["peerNetworkCidrs"]
             )
         )
-    if "createdAt" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "percentProgress" in data:
-        out["percent_progress"] = data["percentProgress"]
+    if data.get("percentProgress") is not None:
+        out["percent_progress"] = float(data["percentProgress"])
     return out

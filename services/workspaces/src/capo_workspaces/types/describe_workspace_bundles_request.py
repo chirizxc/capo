@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceBundlesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceBundlesRequest:
     out: DescribeWorkspaceBundlesRequest = {}  # type: ignore[typeddict-item]
-    if "BundleIds" in data:
+    if data.get("BundleIds") is not None:
         import capo_workspaces.types.bundle_id_list
 
         out["bundle_ids"] = (
@@ -45,8 +45,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceBundlesRequest:
                 data["BundleIds"]
             )
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

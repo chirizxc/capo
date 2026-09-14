@@ -91,7 +91,7 @@ def serialize_json(value: EmailAddressInsightsMailboxEvaluations) -> dict:
 
 def deserialize_json(data: dict) -> EmailAddressInsightsMailboxEvaluations:
     out: EmailAddressInsightsMailboxEvaluations = {}  # type: ignore[typeddict-item]
-    if "HasValidSyntax" in data:
+    if data.get("HasValidSyntax") is not None:
         import capo_sesv2.types.email_address_insights_verdict
 
         out["has_valid_syntax"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> EmailAddressInsightsMailboxEvaluations:
                 data["HasValidSyntax"]
             )
         )
-    if "HasValidDnsRecords" in data:
+    if data.get("HasValidDnsRecords") is not None:
         import capo_sesv2.types.email_address_insights_verdict
 
         out["has_valid_dns_records"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> EmailAddressInsightsMailboxEvaluations:
                 data["HasValidDnsRecords"]
             )
         )
-    if "MailboxExists" in data:
+    if data.get("MailboxExists") is not None:
         import capo_sesv2.types.email_address_insights_verdict
 
         out["mailbox_exists"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> EmailAddressInsightsMailboxEvaluations:
                 data["MailboxExists"]
             )
         )
-    if "IsRoleAddress" in data:
+    if data.get("IsRoleAddress") is not None:
         import capo_sesv2.types.email_address_insights_verdict
 
         out["is_role_address"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> EmailAddressInsightsMailboxEvaluations:
                 data["IsRoleAddress"]
             )
         )
-    if "IsDisposable" in data:
+    if data.get("IsDisposable") is not None:
         import capo_sesv2.types.email_address_insights_verdict
 
         out["is_disposable"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> EmailAddressInsightsMailboxEvaluations:
                 data["IsDisposable"]
             )
         )
-    if "IsRandomInput" in data:
+    if data.get("IsRandomInput") is not None:
         import capo_sesv2.types.email_address_insights_verdict
 
         out["is_random_input"] = (

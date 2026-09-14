@@ -32,9 +32,9 @@ def serialize_json(value: WisdomInfo) -> dict:
 
 def deserialize_json(data: dict) -> WisdomInfo:
     out: WisdomInfo = {}  # type: ignore[typeddict-item]
-    if "SessionArn" in data:
+    if data.get("SessionArn") is not None:
         out["session_arn"] = data["SessionArn"]
-    if "AiAgents" in data:
+    if data.get("AiAgents") is not None:
         import capo_connect.types.ai_agents
 
         out["ai_agents"] = capo_connect.types.ai_agents.deserialize_json(

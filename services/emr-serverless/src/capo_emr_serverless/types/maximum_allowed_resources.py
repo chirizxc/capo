@@ -33,14 +33,14 @@ def serialize_json(value: MaximumAllowedResources) -> dict:
 
 def deserialize_json(data: dict) -> MaximumAllowedResources:
     out: MaximumAllowedResources = {}  # type: ignore[typeddict-item]
-    if "cpu" in data:
+    if data.get("cpu") is not None:
         out["cpu"] = data["cpu"]
     else:
         raise DeserializationError("MaximumAllowedResources.cpu required")
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
     else:
         raise DeserializationError("MaximumAllowedResources.memory required")
-    if "disk" in data:
+    if data.get("disk") is not None:
         out["disk"] = data["disk"]
     return out

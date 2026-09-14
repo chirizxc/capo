@@ -54,21 +54,21 @@ def serialize_aws_json_1_0(value: FleetSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FleetSummary:
     out: FleetSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("FleetSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("FleetSummary.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "signalCatalogArn" in data:
+    if data.get("signalCatalogArn") is not None:
         out["signal_catalog_arn"] = data["signalCatalogArn"]
     else:
         raise DeserializationError("FleetSummary.signal_catalog_arn required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["creation_time"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> FleetSummary:
         )
     else:
         raise DeserializationError("FleetSummary.creation_time required")
-    if "lastModificationTime" in data:
+    if data.get("lastModificationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["last_modification_time"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ModelAliases:
 
     out: ModelAliases = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_nova_act.types.model_alias.deserialize_json(item))
     return out

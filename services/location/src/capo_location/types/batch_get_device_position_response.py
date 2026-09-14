@@ -38,7 +38,7 @@ def serialize_json(value: BatchGetDevicePositionResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetDevicePositionResponse:
     out: BatchGetDevicePositionResponse = {}  # type: ignore[typeddict-item]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_location.types.batch_get_device_position_error_list
 
         out["errors"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> BatchGetDevicePositionResponse:
         )
     else:
         raise DeserializationError("BatchGetDevicePositionResponse.errors required")
-    if "DevicePositions" in data:
+    if data.get("DevicePositions") is not None:
         import capo_location.types.device_position_list
 
         out["device_positions"] = (

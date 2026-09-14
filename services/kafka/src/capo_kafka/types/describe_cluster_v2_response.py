@@ -27,7 +27,7 @@ def serialize_json(value: DescribeClusterV2Response) -> dict:
 
 def deserialize_json(data: dict) -> DescribeClusterV2Response:
     out: DescribeClusterV2Response = {}  # type: ignore[typeddict-item]
-    if "clusterInfo" in data:
+    if data.get("clusterInfo") is not None:
         import capo_kafka.types.cluster
 
         out["cluster_info"] = capo_kafka.types.cluster.deserialize_json(

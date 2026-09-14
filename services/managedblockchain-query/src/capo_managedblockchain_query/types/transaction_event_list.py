@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TransactionEventList:
 
     out: TransactionEventList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_managedblockchain_query.types.transaction_event.deserialize_json(item)
         )

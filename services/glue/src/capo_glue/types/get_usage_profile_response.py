@@ -58,11 +58,11 @@ def serialize_aws_json_1_1(value: GetUsageProfileResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUsageProfileResponse:
     out: GetUsageProfileResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_glue.types.profile_configuration
 
         out["configuration"] = (
@@ -70,13 +70,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetUsageProfileResponse:
                 data["Configuration"]
             )
         )
-    if "CreatedOn" in data:
+    if data.get("CreatedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["created_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["CreatedOn"]
         )
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["last_modified_on"] = (

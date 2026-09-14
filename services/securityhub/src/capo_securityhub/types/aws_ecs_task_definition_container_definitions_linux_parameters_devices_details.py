@@ -48,11 +48,11 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails = {}  # type: ignore[typeddict-item]
-    if "ContainerPath" in data:
+    if data.get("ContainerPath") is not None:
         out["container_path"] = data["ContainerPath"]
-    if "HostPath" in data:
+    if data.get("HostPath") is not None:
         out["host_path"] = data["HostPath"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["permissions"] = (

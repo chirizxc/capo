@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateConnectClientAddInResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateConnectClientAddInResult:
     out: CreateConnectClientAddInResult = {}  # type: ignore[typeddict-item]
-    if "AddInId" in data:
+    if data.get("AddInId") is not None:
         out["add_in_id"] = data["AddInId"]
     return out

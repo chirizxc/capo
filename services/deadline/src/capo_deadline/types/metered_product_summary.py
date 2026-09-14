@@ -35,19 +35,19 @@ def serialize_json(value: MeteredProductSummary) -> dict:
 
 def deserialize_json(data: dict) -> MeteredProductSummary:
     out: MeteredProductSummary = {}  # type: ignore[typeddict-item]
-    if "productId" in data:
+    if data.get("productId") is not None:
         out["product_id"] = data["productId"]
     else:
         raise DeserializationError("MeteredProductSummary.product_id required")
-    if "family" in data:
+    if data.get("family") is not None:
         out["family"] = data["family"]
     else:
         raise DeserializationError("MeteredProductSummary.family required")
-    if "vendor" in data:
+    if data.get("vendor") is not None:
         out["vendor"] = data["vendor"]
     else:
         raise DeserializationError("MeteredProductSummary.vendor required")
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         raise DeserializationError("MeteredProductSummary.port required")

@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: UpdateEnvironmentOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateEnvironmentOutput:
     out: UpdateEnvironmentOutput = {}  # type: ignore[typeddict-item]
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_proton.types.environment
 
         out["environment"] = capo_proton.types.environment.deserialize_aws_json_1_0(

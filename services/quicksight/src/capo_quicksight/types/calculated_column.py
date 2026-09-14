@@ -32,15 +32,15 @@ def serialize_json(value: CalculatedColumn) -> dict:
 
 def deserialize_json(data: dict) -> CalculatedColumn:
     out: CalculatedColumn = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
     else:
         raise DeserializationError("CalculatedColumn.column_name required")
-    if "ColumnId" in data:
+    if data.get("ColumnId") is not None:
         out["column_id"] = data["ColumnId"]
     else:
         raise DeserializationError("CalculatedColumn.column_id required")
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError("CalculatedColumn.expression required")

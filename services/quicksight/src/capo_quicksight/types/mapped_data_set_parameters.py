@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> MappedDataSetParameters:
 
     out: MappedDataSetParameters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.mapped_data_set_parameter.deserialize_json(item)
         )

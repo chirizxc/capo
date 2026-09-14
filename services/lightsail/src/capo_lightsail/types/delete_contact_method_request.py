@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DeleteContactMethodRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteContactMethodRequest:
     out: DeleteContactMethodRequest = {}  # type: ignore[typeddict-item]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_lightsail.types.contact_protocol
 
         out["protocol"] = (

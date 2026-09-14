@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ListAttemptTaskContainerDetails:
 
     out: ListAttemptTaskContainerDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.attempt_task_container_details.deserialize_json(item)
         )

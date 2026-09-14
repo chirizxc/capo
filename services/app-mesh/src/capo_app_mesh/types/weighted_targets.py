@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> WeightedTargets:
 
     out: WeightedTargets = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_app_mesh.types.weighted_target.deserialize_json(item))
     return out

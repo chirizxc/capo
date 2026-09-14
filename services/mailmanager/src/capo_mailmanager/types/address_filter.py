@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: AddressFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AddressFilter:
     out: AddressFilter = {}  # type: ignore[typeddict-item]
-    if "AddressPrefix" in data:
+    if data.get("AddressPrefix") is not None:
         out["address_prefix"] = data["AddressPrefix"]
     return out

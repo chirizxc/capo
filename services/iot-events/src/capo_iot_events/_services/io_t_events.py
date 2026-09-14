@@ -264,18 +264,19 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.create_alarm_model_request.CreateAlarmModelRequest = {}  # type: ignore[typeddict-item]
-        input_["alarm_model_name"] = alarm_model_name
+        input_: capo_iot_events.types.create_alarm_model_request.CreateAlarmModelRequest = {
+            "alarm_model_name": alarm_model_name,
+            "role_arn": role_arn,
+            "alarm_rule": alarm_rule,
+        }
         if alarm_model_description is not None:
             input_["alarm_model_description"] = alarm_model_description
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if key is not None:
             input_["key"] = key
         if severity is not None:
             input_["severity"] = severity
-        input_["alarm_rule"] = alarm_rule
         if alarm_notification is not None:
             input_["alarm_notification"] = alarm_notification
         if alarm_event_actions is not None:
@@ -288,6 +289,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_detector_model(
@@ -345,14 +347,15 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.create_detector_model_request.CreateDetectorModelRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_model_name"] = detector_model_name
-        input_["detector_model_definition"] = detector_model_definition
+        input_: capo_iot_events.types.create_detector_model_request.CreateDetectorModelRequest = {
+            "detector_model_name": detector_model_name,
+            "detector_model_definition": detector_model_definition,
+            "role_arn": role_arn,
+        }
         if detector_model_description is not None:
             input_["detector_model_description"] = detector_model_description
         if key is not None:
             input_["key"] = key
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if evaluation_method is not None:
@@ -363,6 +366,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_input(
@@ -408,11 +412,12 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.create_input_request.CreateInputRequest = {}  # type: ignore[typeddict-item]
-        input_["input_name"] = input_name
+        input_: capo_iot_events.types.create_input_request.CreateInputRequest = {
+            "input_name": input_name,
+            "input_definition": input_definition,
+        }
         if input_description is not None:
             input_["input_description"] = input_description
-        input_["input_definition"] = input_definition
         if tags is not None:
             input_["tags"] = tags
 
@@ -421,6 +426,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_alarm_model(
@@ -459,14 +465,16 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.delete_alarm_model_request.DeleteAlarmModelRequest = {}  # type: ignore[typeddict-item]
-        input_["alarm_model_name"] = alarm_model_name
+        input_: capo_iot_events.types.delete_alarm_model_request.DeleteAlarmModelRequest = {
+            "alarm_model_name": alarm_model_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_detector_model(
@@ -505,14 +513,16 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.delete_detector_model_request.DeleteDetectorModelRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_model_name"] = detector_model_name
+        input_: capo_iot_events.types.delete_detector_model_request.DeleteDetectorModelRequest = {
+            "detector_model_name": detector_model_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_input(
@@ -551,14 +561,16 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.delete_input_request.DeleteInputRequest = {}  # type: ignore[typeddict-item]
-        input_["input_name"] = input_name
+        input_: capo_iot_events.types.delete_input_request.DeleteInputRequest = {
+            "input_name": input_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_alarm_model(
@@ -602,8 +614,9 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.describe_alarm_model_request.DescribeAlarmModelRequest = {}  # type: ignore[typeddict-item]
-        input_["alarm_model_name"] = alarm_model_name
+        input_: capo_iot_events.types.describe_alarm_model_request.DescribeAlarmModelRequest = {
+            "alarm_model_name": alarm_model_name
+        }
         if alarm_model_version is not None:
             input_["alarm_model_version"] = alarm_model_version
 
@@ -612,6 +625,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_detector_model(
@@ -653,8 +667,9 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.describe_detector_model_request.DescribeDetectorModelRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_model_name"] = detector_model_name
+        input_: capo_iot_events.types.describe_detector_model_request.DescribeDetectorModelRequest = {
+            "detector_model_name": detector_model_name
+        }
         if detector_model_version is not None:
             input_["detector_model_version"] = detector_model_version
 
@@ -663,6 +678,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_detector_model_analysis(
@@ -700,14 +716,16 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.describe_detector_model_analysis_request.DescribeDetectorModelAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["analysis_id"] = analysis_id
+        input_: capo_iot_events.types.describe_detector_model_analysis_request.DescribeDetectorModelAnalysisRequest = {
+            "analysis_id": analysis_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_input(
@@ -745,14 +763,16 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.describe_input_request.DescribeInputRequest = {}  # type: ignore[typeddict-item]
-        input_["input_name"] = input_name
+        input_: capo_iot_events.types.describe_input_request.DescribeInputRequest = {
+            "input_name": input_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_logging_options(
@@ -785,13 +805,14 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.describe_logging_options_request.DescribeLoggingOptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_events.types.describe_logging_options_request.DescribeLoggingOptionsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_detector_model_analysis_results(
@@ -835,8 +856,9 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.get_detector_model_analysis_results_request.GetDetectorModelAnalysisResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["analysis_id"] = analysis_id
+        input_: capo_iot_events.types.get_detector_model_analysis_results_request.GetDetectorModelAnalysisResultsRequest = {
+            "analysis_id": analysis_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -847,6 +869,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_alarm_models(
@@ -885,7 +908,7 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.list_alarm_models_request.ListAlarmModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_events.types.list_alarm_models_request.ListAlarmModelsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -896,6 +919,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_alarm_model_versions(
@@ -937,8 +961,9 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.list_alarm_model_versions_request.ListAlarmModelVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["alarm_model_name"] = alarm_model_name
+        input_: capo_iot_events.types.list_alarm_model_versions_request.ListAlarmModelVersionsRequest = {
+            "alarm_model_name": alarm_model_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -949,6 +974,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_detector_models(
@@ -989,7 +1015,7 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.list_detector_models_request.ListDetectorModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_events.types.list_detector_models_request.ListDetectorModelsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1000,6 +1026,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_detector_model_versions(
@@ -1041,8 +1068,9 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.list_detector_model_versions_request.ListDetectorModelVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_model_name"] = detector_model_name
+        input_: capo_iot_events.types.list_detector_model_versions_request.ListDetectorModelVersionsRequest = {
+            "detector_model_name": detector_model_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1053,6 +1081,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_input_routings(
@@ -1094,8 +1123,9 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.list_input_routings_request.ListInputRoutingsRequest = {}  # type: ignore[typeddict-item]
-        input_["input_identifier"] = input_identifier
+        input_: capo_iot_events.types.list_input_routings_request.ListInputRoutingsRequest = {
+            "input_identifier": input_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1106,6 +1136,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_inputs(
@@ -1144,7 +1175,7 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.list_inputs_request.ListInputsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_events.types.list_inputs_request.ListInputsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1155,6 +1186,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -1192,14 +1224,16 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_iot_events.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_logging_options(
@@ -1236,14 +1270,16 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.put_logging_options_request.PutLoggingOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["logging_options"] = logging_options
+        input_: capo_iot_events.types.put_logging_options_request.PutLoggingOptionsRequest = {
+            "logging_options": logging_options
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_detector_model_analysis(
@@ -1278,14 +1314,16 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.start_detector_model_analysis_request.StartDetectorModelAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_model_definition"] = detector_model_definition
+        input_: capo_iot_events.types.start_detector_model_analysis_request.StartDetectorModelAnalysisRequest = {
+            "detector_model_definition": detector_model_definition
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1326,15 +1364,17 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_iot_events.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1374,15 +1414,17 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_iot_events.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_alarm_model(
@@ -1443,14 +1485,15 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.update_alarm_model_request.UpdateAlarmModelRequest = {}  # type: ignore[typeddict-item]
-        input_["alarm_model_name"] = alarm_model_name
+        input_: capo_iot_events.types.update_alarm_model_request.UpdateAlarmModelRequest = {
+            "alarm_model_name": alarm_model_name,
+            "role_arn": role_arn,
+            "alarm_rule": alarm_rule,
+        }
         if alarm_model_description is not None:
             input_["alarm_model_description"] = alarm_model_description
-        input_["role_arn"] = role_arn
         if severity is not None:
             input_["severity"] = severity
-        input_["alarm_rule"] = alarm_rule
         if alarm_notification is not None:
             input_["alarm_notification"] = alarm_notification
         if alarm_event_actions is not None:
@@ -1463,6 +1506,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_detector_model(
@@ -1513,12 +1557,13 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.update_detector_model_request.UpdateDetectorModelRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_model_name"] = detector_model_name
-        input_["detector_model_definition"] = detector_model_definition
+        input_: capo_iot_events.types.update_detector_model_request.UpdateDetectorModelRequest = {
+            "detector_model_name": detector_model_name,
+            "detector_model_definition": detector_model_definition,
+            "role_arn": role_arn,
+        }
         if detector_model_description is not None:
             input_["detector_model_description"] = detector_model_description
-        input_["role_arn"] = role_arn
         if evaluation_method is not None:
             input_["evaluation_method"] = evaluation_method
 
@@ -1527,6 +1572,7 @@ class IoTEventsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_input(
@@ -1571,17 +1617,19 @@ class IoTEventsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events.types.update_input_request.UpdateInputRequest = {}  # type: ignore[typeddict-item]
-        input_["input_name"] = input_name
+        input_: capo_iot_events.types.update_input_request.UpdateInputRequest = {
+            "input_name": input_name,
+            "input_definition": input_definition,
+        }
         if input_description is not None:
             input_["input_description"] = input_description
-        input_["input_definition"] = input_definition
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

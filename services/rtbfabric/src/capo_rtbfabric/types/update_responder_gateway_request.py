@@ -79,13 +79,13 @@ def serialize_json(value: UpdateResponderGatewayRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResponderGatewayRequest:
     out: UpdateResponderGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         raise DeserializationError("UpdateResponderGatewayRequest.port required")
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_rtbfabric.types.protocol
 
         out["protocol"] = capo_rtbfabric.types.protocol.deserialize_json(
@@ -93,13 +93,13 @@ def deserialize_json(data: dict) -> UpdateResponderGatewayRequest:
         )
     else:
         raise DeserializationError("UpdateResponderGatewayRequest.protocol required")
-    if "listenerConfig" in data:
+    if data.get("listenerConfig") is not None:
         import capo_rtbfabric.types.listener_config
 
         out["listener_config"] = capo_rtbfabric.types.listener_config.deserialize_json(
             data["listenerConfig"]
         )
-    if "trustStoreConfiguration" in data:
+    if data.get("trustStoreConfiguration") is not None:
         import capo_rtbfabric.types.trust_store_configuration
 
         out["trust_store_configuration"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> UpdateResponderGatewayRequest:
                 data["trustStoreConfiguration"]
             )
         )
-    if "managedEndpointConfiguration" in data:
+    if data.get("managedEndpointConfiguration") is not None:
         import capo_rtbfabric.types.managed_endpoint_configuration
 
         out["managed_endpoint_configuration"] = (
@@ -115,12 +115,12 @@ def deserialize_json(data: dict) -> UpdateResponderGatewayRequest:
                 data["managedEndpointConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(
             "UpdateResponderGatewayRequest.client_token required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

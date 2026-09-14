@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CisCheckAggregationList:
 
     out: CisCheckAggregationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.cis_check_aggregation.deserialize_json(item))
     return out

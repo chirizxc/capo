@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: ListImportFailuresRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListImportFailuresRequest:
     out: ListImportFailuresRequest = {}  # type: ignore[typeddict-item]
-    if "ImportId" in data:
+    if data.get("ImportId") is not None:
         out["import_id"] = data["ImportId"]
     else:
         raise DeserializationError("ListImportFailuresRequest.import_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

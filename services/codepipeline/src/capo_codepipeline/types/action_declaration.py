@@ -133,11 +133,11 @@ def serialize_aws_json_1_1(value: ActionDeclaration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionDeclaration:
     out: ActionDeclaration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ActionDeclaration.name required")
-    if "actionTypeId" in data:
+    if data.get("actionTypeId") is not None:
         import capo_codepipeline.types.action_type_id
 
         out["action_type_id"] = (
@@ -147,9 +147,9 @@ def deserialize_aws_json_1_1(data: dict) -> ActionDeclaration:
         )
     else:
         raise DeserializationError("ActionDeclaration.action_type_id required")
-    if "runOrder" in data:
+    if data.get("runOrder") is not None:
         out["run_order"] = data["runOrder"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_codepipeline.types.action_configuration_map
 
         out["configuration"] = (
@@ -157,13 +157,13 @@ def deserialize_aws_json_1_1(data: dict) -> ActionDeclaration:
                 data["configuration"]
             )
         )
-    if "commands" in data:
+    if data.get("commands") is not None:
         import capo_codepipeline.types.command_list
 
         out["commands"] = capo_codepipeline.types.command_list.deserialize_aws_json_1_1(
             data["commands"]
         )
-    if "outputArtifacts" in data:
+    if data.get("outputArtifacts") is not None:
         import capo_codepipeline.types.output_artifact_list
 
         out["output_artifacts"] = (
@@ -171,7 +171,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionDeclaration:
                 data["outputArtifacts"]
             )
         )
-    if "inputArtifacts" in data:
+    if data.get("inputArtifacts") is not None:
         import capo_codepipeline.types.input_artifact_list
 
         out["input_artifacts"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionDeclaration:
                 data["inputArtifacts"]
             )
         )
-    if "outputVariables" in data:
+    if data.get("outputVariables") is not None:
         import capo_codepipeline.types.output_variable_list
 
         out["output_variables"] = (
@@ -187,15 +187,15 @@ def deserialize_aws_json_1_1(data: dict) -> ActionDeclaration:
                 data["outputVariables"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "timeoutInMinutes" in data:
+    if data.get("timeoutInMinutes") is not None:
         out["timeout_in_minutes"] = data["timeoutInMinutes"]
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_codepipeline.types.environment_variable_list
 
         out["environment_variables"] = (

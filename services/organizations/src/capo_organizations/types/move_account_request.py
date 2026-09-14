@@ -31,15 +31,15 @@ def serialize_aws_json_1_1(value: MoveAccountRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MoveAccountRequest:
     out: MoveAccountRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("MoveAccountRequest.account_id required")
-    if "SourceParentId" in data:
+    if data.get("SourceParentId") is not None:
         out["source_parent_id"] = data["SourceParentId"]
     else:
         raise DeserializationError("MoveAccountRequest.source_parent_id required")
-    if "DestinationParentId" in data:
+    if data.get("DestinationParentId") is not None:
         out["destination_parent_id"] = data["DestinationParentId"]
     else:
         raise DeserializationError("MoveAccountRequest.destination_parent_id required")

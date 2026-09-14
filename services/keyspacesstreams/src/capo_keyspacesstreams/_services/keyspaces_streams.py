@@ -174,8 +174,9 @@ class KeyspacesStreamsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspacesstreams.types.get_records_input.GetRecordsInput = {}  # type: ignore[typeddict-item]
-        input_["shard_iterator"] = shard_iterator
+        input_: capo_keyspacesstreams.types.get_records_input.GetRecordsInput = {
+            "shard_iterator": shard_iterator
+        }
         if max_results is not None:
             input_["max_results"] = max_results
 
@@ -184,6 +185,7 @@ class KeyspacesStreamsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_shard_iterator(
@@ -229,10 +231,11 @@ class KeyspacesStreamsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspacesstreams.types.get_shard_iterator_input.GetShardIteratorInput = {}  # type: ignore[typeddict-item]
-        input_["stream_arn"] = stream_arn
-        input_["shard_id"] = shard_id
-        input_["shard_iterator_type"] = shard_iterator_type
+        input_: capo_keyspacesstreams.types.get_shard_iterator_input.GetShardIteratorInput = {
+            "stream_arn": stream_arn,
+            "shard_id": shard_id,
+            "shard_iterator_type": shard_iterator_type,
+        }
         if sequence_number is not None:
             input_["sequence_number"] = sequence_number
 
@@ -241,6 +244,7 @@ class KeyspacesStreamsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_stream(
@@ -288,8 +292,9 @@ class KeyspacesStreamsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspacesstreams.types.get_stream_input.GetStreamInput = {}  # type: ignore[typeddict-item]
-        input_["stream_arn"] = stream_arn
+        input_: capo_keyspacesstreams.types.get_stream_input.GetStreamInput = {
+            "stream_arn": stream_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if shard_filter is not None:
@@ -302,6 +307,7 @@ class KeyspacesStreamsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_stream(
@@ -378,7 +384,7 @@ class KeyspacesStreamsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_keyspacesstreams.types.list_streams_input.ListStreamsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_keyspacesstreams.types.list_streams_input.ListStreamsInput = {}
         if keyspace_name is not None:
             input_["keyspace_name"] = keyspace_name
         if table_name is not None:
@@ -393,6 +399,7 @@ class KeyspacesStreamsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_streams(

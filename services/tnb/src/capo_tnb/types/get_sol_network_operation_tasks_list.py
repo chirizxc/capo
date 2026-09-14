@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> GetSolNetworkOperationTasksList:
 
     out: GetSolNetworkOperationTasksList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_tnb.types.get_sol_network_operation_task_details.deserialize_json(item)
         )

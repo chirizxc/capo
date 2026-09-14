@@ -28,7 +28,7 @@ def serialize_json(value: Details) -> dict:
 
 def deserialize_json(data: dict) -> Details:
     out: Details = {}  # type: ignore[typeddict-item]
-    if "RoutesDetails" in data:
+    if data.get("RoutesDetails") is not None:
         import capo_sesv2.types.routes_details
 
         out["routes_details"] = capo_sesv2.types.routes_details.deserialize_json(

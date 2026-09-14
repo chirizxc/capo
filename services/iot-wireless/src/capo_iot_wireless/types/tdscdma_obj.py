@@ -74,21 +74,21 @@ def serialize_json(value: TdscdmaObj) -> dict:
 
 def deserialize_json(data: dict) -> TdscdmaObj:
     out: TdscdmaObj = {}  # type: ignore[typeddict-item]
-    if "Mcc" in data:
+    if data.get("Mcc") is not None:
         out["mcc"] = data["Mcc"]
     else:
         raise DeserializationError("TdscdmaObj.mcc required")
-    if "Mnc" in data:
+    if data.get("Mnc") is not None:
         out["mnc"] = data["Mnc"]
     else:
         raise DeserializationError("TdscdmaObj.mnc required")
-    if "Lac" in data:
+    if data.get("Lac") is not None:
         out["lac"] = data["Lac"]
-    if "UtranCid" in data:
+    if data.get("UtranCid") is not None:
         out["utran_cid"] = data["UtranCid"]
     else:
         raise DeserializationError("TdscdmaObj.utran_cid required")
-    if "TdscdmaLocalId" in data:
+    if data.get("TdscdmaLocalId") is not None:
         import capo_iot_wireless.types.tdscdma_local_id
 
         out["tdscdma_local_id"] = (
@@ -96,13 +96,13 @@ def deserialize_json(data: dict) -> TdscdmaObj:
                 data["TdscdmaLocalId"]
             )
         )
-    if "TdscdmaTimingAdvance" in data:
+    if data.get("TdscdmaTimingAdvance") is not None:
         out["tdscdma_timing_advance"] = data["TdscdmaTimingAdvance"]
-    if "Rscp" in data:
+    if data.get("Rscp") is not None:
         out["rscp"] = data["Rscp"]
-    if "PathLoss" in data:
+    if data.get("PathLoss") is not None:
         out["path_loss"] = data["PathLoss"]
-    if "TdscdmaNmr" in data:
+    if data.get("TdscdmaNmr") is not None:
         import capo_iot_wireless.types.tdscdma_nmr_list
 
         out["tdscdma_nmr"] = capo_iot_wireless.types.tdscdma_nmr_list.deserialize_json(

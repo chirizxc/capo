@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteMLModelOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteMLModelOutput:
     out: DeleteMLModelOutput = {}  # type: ignore[typeddict-item]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
     return out

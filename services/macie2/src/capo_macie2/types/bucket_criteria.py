@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: BucketCriteria) -> dict:
 def deserialize_json(data: dict) -> BucketCriteria:
     out: BucketCriteria = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_macie2.types.bucket_criteria_additional_properties
 
         out[key] = (

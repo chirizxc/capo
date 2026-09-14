@@ -43,11 +43,11 @@ def serialize_json(value: TargetSummary) -> dict:
 
 def deserialize_json(data: dict) -> TargetSummary:
     out: TargetSummary = {}  # type: ignore[typeddict-item]
-    if "TargetAddress" in data:
+    if data.get("TargetAddress") is not None:
         out["target_address"] = data["TargetAddress"]
-    if "TargetType" in data:
+    if data.get("TargetType") is not None:
         out["target_type"] = data["TargetType"]
-    if "TargetStatus" in data:
+    if data.get("TargetStatus") is not None:
         import capo_codestar_notifications.types.target_status
 
         out["target_status"] = (

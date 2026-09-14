@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import TypedDict
 
+from capo_lightsail.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_lightsail.types.alarm_state
     import capo_lightsail.types.resource_name
@@ -19,9 +21,27 @@ class TestAlarmRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: TestAlarmRequest) -> dict:
     out: dict = {}
+    out["alarmName"] = value["alarm_name"]
+    import capo_lightsail.types.alarm_state
+
+    out["state"] = capo_lightsail.types.alarm_state.serialize_aws_json_1_1(
+        value["state"]
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> TestAlarmRequest:
     out: TestAlarmRequest = {}  # type: ignore[typeddict-item]
+    if data.get("alarmName") is not None:
+        out["alarm_name"] = data["alarmName"]
+    else:
+        raise DeserializationError("TestAlarmRequest.alarm_name required")
+    if data.get("state") is not None:
+        import capo_lightsail.types.alarm_state
+
+        out["state"] = capo_lightsail.types.alarm_state.deserialize_aws_json_1_1(
+            data["state"]
+        )
+    else:
+        raise DeserializationError("TestAlarmRequest.state required")
     return out

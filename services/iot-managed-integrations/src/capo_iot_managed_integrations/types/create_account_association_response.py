@@ -47,17 +47,17 @@ def serialize_json(value: CreateAccountAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccountAssociationResponse:
     out: CreateAccountAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "OAuthAuthorizationUrl" in data:
+    if data.get("OAuthAuthorizationUrl") is not None:
         out["o_auth_authorization_url"] = data["OAuthAuthorizationUrl"]
     else:
         out["o_auth_authorization_url"] = ""
-    if "AccountAssociationId" in data:
+    if data.get("AccountAssociationId") is not None:
         out["account_association_id"] = data["AccountAssociationId"]
     else:
         raise DeserializationError(
             "CreateAccountAssociationResponse.account_association_id required"
         )
-    if "AssociationState" in data:
+    if data.get("AssociationState") is not None:
         import capo_iot_managed_integrations.types.association_state
 
         out["association_state"] = (
@@ -69,6 +69,6 @@ def deserialize_json(data: dict) -> CreateAccountAssociationResponse:
         raise DeserializationError(
             "CreateAccountAssociationResponse.association_state required"
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

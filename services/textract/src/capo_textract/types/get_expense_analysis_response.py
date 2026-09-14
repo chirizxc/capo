@@ -77,7 +77,7 @@ def serialize_aws_json_1_1(value: GetExpenseAnalysisResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetExpenseAnalysisResponse:
     out: GetExpenseAnalysisResponse = {}  # type: ignore[typeddict-item]
-    if "DocumentMetadata" in data:
+    if data.get("DocumentMetadata") is not None:
         import capo_textract.types.document_metadata
 
         out["document_metadata"] = (
@@ -85,15 +85,15 @@ def deserialize_aws_json_1_1(data: dict) -> GetExpenseAnalysisResponse:
                 data["DocumentMetadata"]
             )
         )
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_textract.types.job_status
 
         out["job_status"] = capo_textract.types.job_status.deserialize_aws_json_1_1(
             data["JobStatus"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ExpenseDocuments" in data:
+    if data.get("ExpenseDocuments") is not None:
         import capo_textract.types.expense_document_list
 
         out["expense_documents"] = (
@@ -101,14 +101,14 @@ def deserialize_aws_json_1_1(data: dict) -> GetExpenseAnalysisResponse:
                 data["ExpenseDocuments"]
             )
         )
-    if "Warnings" in data:
+    if data.get("Warnings") is not None:
         import capo_textract.types.warnings
 
         out["warnings"] = capo_textract.types.warnings.deserialize_aws_json_1_1(
             data["Warnings"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "AnalyzeExpenseModelVersion" in data:
+    if data.get("AnalyzeExpenseModelVersion") is not None:
         out["analyze_expense_model_version"] = data["AnalyzeExpenseModelVersion"]
     return out

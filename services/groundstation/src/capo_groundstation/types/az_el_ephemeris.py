@@ -32,11 +32,11 @@ def serialize_json(value: AzElEphemeris) -> dict:
 
 def deserialize_json(data: dict) -> AzElEphemeris:
     out: AzElEphemeris = {}  # type: ignore[typeddict-item]
-    if "groundStation" in data:
+    if data.get("groundStation") is not None:
         out["ground_station"] = data["groundStation"]
     else:
         raise DeserializationError("AzElEphemeris.ground_station required")
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_groundstation.types.az_el_segments_data
 
         out["data"] = capo_groundstation.types.az_el_segments_data.deserialize_json(

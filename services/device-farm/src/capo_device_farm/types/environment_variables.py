@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> EnvironmentVariables:
 
     out: EnvironmentVariables = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_device_farm.types.environment_variable.deserialize_aws_json_1_1(item)
         )

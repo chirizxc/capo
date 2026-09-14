@@ -144,9 +144,9 @@ def serialize_json(value: GetBucketStatisticsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBucketStatisticsResponse:
     out: GetBucketStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "bucketCount" in data:
+    if data.get("bucketCount") is not None:
         out["bucket_count"] = data["bucketCount"]
-    if "bucketCountByEffectivePermission" in data:
+    if data.get("bucketCountByEffectivePermission") is not None:
         import capo_macie2.types.bucket_count_by_effective_permission
 
         out["bucket_count_by_effective_permission"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> GetBucketStatisticsResponse:
                 data["bucketCountByEffectivePermission"]
             )
         )
-    if "bucketCountByEncryptionType" in data:
+    if data.get("bucketCountByEncryptionType") is not None:
         import capo_macie2.types.bucket_count_by_encryption_type
 
         out["bucket_count_by_encryption_type"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> GetBucketStatisticsResponse:
                 data["bucketCountByEncryptionType"]
             )
         )
-    if "bucketCountByObjectEncryptionRequirement" in data:
+    if data.get("bucketCountByObjectEncryptionRequirement") is not None:
         import capo_macie2.types.bucket_count_policy_allows_unencrypted_object_uploads
 
         out["bucket_count_by_object_encryption_requirement"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> GetBucketStatisticsResponse:
                 data["bucketCountByObjectEncryptionRequirement"]
             )
         )
-    if "bucketCountBySharedAccessType" in data:
+    if data.get("bucketCountBySharedAccessType") is not None:
         import capo_macie2.types.bucket_count_by_shared_access_type
 
         out["bucket_count_by_shared_access_type"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> GetBucketStatisticsResponse:
                 data["bucketCountBySharedAccessType"]
             )
         )
-    if "bucketStatisticsBySensitivity" in data:
+    if data.get("bucketStatisticsBySensitivity") is not None:
         import capo_macie2.types.bucket_statistics_by_sensitivity
 
         out["bucket_statistics_by_sensitivity"] = (
@@ -186,23 +186,23 @@ def deserialize_json(data: dict) -> GetBucketStatisticsResponse:
                 data["bucketStatisticsBySensitivity"]
             )
         )
-    if "classifiableObjectCount" in data:
+    if data.get("classifiableObjectCount") is not None:
         out["classifiable_object_count"] = data["classifiableObjectCount"]
-    if "classifiableSizeInBytes" in data:
+    if data.get("classifiableSizeInBytes") is not None:
         out["classifiable_size_in_bytes"] = data["classifiableSizeInBytes"]
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["last_updated"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["lastUpdated"]
         )
-    if "objectCount" in data:
+    if data.get("objectCount") is not None:
         out["object_count"] = data["objectCount"]
-    if "sizeInBytes" in data:
+    if data.get("sizeInBytes") is not None:
         out["size_in_bytes"] = data["sizeInBytes"]
-    if "sizeInBytesCompressed" in data:
+    if data.get("sizeInBytesCompressed") is not None:
         out["size_in_bytes_compressed"] = data["sizeInBytesCompressed"]
-    if "unclassifiableObjectCount" in data:
+    if data.get("unclassifiableObjectCount") is not None:
         import capo_macie2.types.object_level_statistics
 
         out["unclassifiable_object_count"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> GetBucketStatisticsResponse:
                 data["unclassifiableObjectCount"]
             )
         )
-    if "unclassifiableObjectSizeInBytes" in data:
+    if data.get("unclassifiableObjectSizeInBytes") is not None:
         import capo_macie2.types.object_level_statistics
 
         out["unclassifiable_object_size_in_bytes"] = (

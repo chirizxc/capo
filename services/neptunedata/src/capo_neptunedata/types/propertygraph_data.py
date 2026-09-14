@@ -34,24 +34,24 @@ def serialize_json(value: PropertygraphData) -> dict:
 
 def deserialize_json(data: dict) -> PropertygraphData:
     out: PropertygraphData = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("PropertygraphData.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("PropertygraphData.type required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("PropertygraphData.key required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("PropertygraphData.value required")
-    if "from" in data:
+    if data.get("from") is not None:
         out["from"] = data["from"]
-    if "to" in data:
+    if data.get("to") is not None:
         out["to"] = data["to"]
     return out

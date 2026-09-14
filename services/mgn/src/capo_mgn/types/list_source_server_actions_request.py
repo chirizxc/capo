@@ -52,13 +52,13 @@ def serialize_json(value: ListSourceServerActionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListSourceServerActionsRequest:
     out: ListSourceServerActionsRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError(
             "ListSourceServerActionsRequest.source_server_id required"
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_mgn.types.source_server_actions_request_filters
 
         out["filters"] = (
@@ -66,10 +66,10 @@ def deserialize_json(data: dict) -> ListSourceServerActionsRequest:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

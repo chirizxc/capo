@@ -30,7 +30,7 @@ def serialize_json(value: ListSharesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSharesResponse:
     out: ListSharesResponse = {}  # type: ignore[typeddict-item]
-    if "shares" in data:
+    if data.get("shares") is not None:
         import capo_omics.types.share_details_list
 
         out["shares"] = capo_omics.types.share_details_list.deserialize_json(
@@ -38,6 +38,6 @@ def deserialize_json(data: dict) -> ListSharesResponse:
         )
     else:
         raise DeserializationError("ListSharesResponse.shares required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

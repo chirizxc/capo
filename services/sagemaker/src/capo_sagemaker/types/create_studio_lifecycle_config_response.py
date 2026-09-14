@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateStudioLifecycleConfigResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStudioLifecycleConfigResponse:
     out: CreateStudioLifecycleConfigResponse = {}  # type: ignore[typeddict-item]
-    if "StudioLifecycleConfigArn" in data:
+    if data.get("StudioLifecycleConfigArn") is not None:
         out["studio_lifecycle_config_arn"] = data["StudioLifecycleConfigArn"]
     return out

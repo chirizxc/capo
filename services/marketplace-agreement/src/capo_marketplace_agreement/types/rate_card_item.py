@@ -29,8 +29,8 @@ def serialize_aws_json_1_0(value: RateCardItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RateCardItem:
     out: RateCardItem = {}  # type: ignore[typeddict-item]
-    if "dimensionKey" in data:
+    if data.get("dimensionKey") is not None:
         out["dimension_key"] = data["dimensionKey"]
-    if "price" in data:
+    if data.get("price") is not None:
         out["price"] = data["price"]
     return out

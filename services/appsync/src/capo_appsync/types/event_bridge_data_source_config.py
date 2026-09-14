@@ -24,7 +24,7 @@ def serialize_json(value: EventBridgeDataSourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> EventBridgeDataSourceConfig:
     out: EventBridgeDataSourceConfig = {}  # type: ignore[typeddict-item]
-    if "eventBusArn" in data:
+    if data.get("eventBusArn") is not None:
         out["event_bus_arn"] = data["eventBusArn"]
     else:
         raise DeserializationError("EventBridgeDataSourceConfig.event_bus_arn required")

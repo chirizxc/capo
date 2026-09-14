@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CodeRemediationTaskDetailsList:
 
     out: CodeRemediationTaskDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityagent.types.code_remediation_task_details.deserialize_json(
                 item

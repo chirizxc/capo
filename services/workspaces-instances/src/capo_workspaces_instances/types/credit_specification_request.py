@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: CreditSpecificationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreditSpecificationRequest:
     out: CreditSpecificationRequest = {}  # type: ignore[typeddict-item]
-    if "CpuCredits" in data:
+    if data.get("CpuCredits") is not None:
         import capo_workspaces_instances.types.cpu_credits_enum
 
         out["cpu_credits"] = (

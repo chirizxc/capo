@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: LoadBalancerInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LoadBalancerInfo:
     out: LoadBalancerInfo = {}  # type: ignore[typeddict-item]
-    if "elbInfoList" in data:
+    if data.get("elbInfoList") is not None:
         import capo_codedeploy.types.elb_info_list
 
         out["elb_info_list"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerInfo:
                 data["elbInfoList"]
             )
         )
-    if "targetGroupInfoList" in data:
+    if data.get("targetGroupInfoList") is not None:
         import capo_codedeploy.types.target_group_info_list
 
         out["target_group_info_list"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerInfo:
                 data["targetGroupInfoList"]
             )
         )
-    if "targetGroupPairInfoList" in data:
+    if data.get("targetGroupPairInfoList") is not None:
         import capo_codedeploy.types.target_group_pair_info_list
 
         out["target_group_pair_info_list"] = (

@@ -65,21 +65,21 @@ def serialize_json(value: TestCaseExecution) -> dict:
 
 def deserialize_json(data: dict) -> TestCaseExecution:
     out: TestCaseExecution = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_connect.types.timestamp
 
         out["start_time"] = capo_connect.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_connect.types.timestamp
 
         out["end_time"] = capo_connect.types.timestamp.deserialize_json(data["EndTime"])
-    if "TestCaseExecutionId" in data:
+    if data.get("TestCaseExecutionId") is not None:
         out["test_case_execution_id"] = data["TestCaseExecutionId"]
-    if "TestCaseId" in data:
+    if data.get("TestCaseId") is not None:
         out["test_case_id"] = data["TestCaseId"]
-    if "TestCaseExecutionStatus" in data:
+    if data.get("TestCaseExecutionStatus") is not None:
         import capo_connect.types.test_case_execution_status
 
         out["test_case_execution_status"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> TestCaseExecution:
                 data["TestCaseExecutionStatus"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

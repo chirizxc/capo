@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteAssessmentTemplateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteAssessmentTemplateRequest:
     out: DeleteAssessmentTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentTemplateArn" in data:
+    if data.get("assessmentTemplateArn") is not None:
         out["assessment_template_arn"] = data["assessmentTemplateArn"]
     else:
         raise DeserializationError(

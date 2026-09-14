@@ -55,11 +55,11 @@ def serialize_json(value: BatchContainerOverrides) -> dict:
 
 def deserialize_json(data: dict) -> BatchContainerOverrides:
     out: BatchContainerOverrides = {}  # type: ignore[typeddict-item]
-    if "Command" in data:
+    if data.get("Command") is not None:
         import capo_pipes.types.string_list
 
         out["command"] = capo_pipes.types.string_list.deserialize_json(data["Command"])
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_pipes.types.batch_environment_variable_list
 
         out["environment"] = (
@@ -67,9 +67,9 @@ def deserialize_json(data: dict) -> BatchContainerOverrides:
                 data["Environment"]
             )
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "ResourceRequirements" in data:
+    if data.get("ResourceRequirements") is not None:
         import capo_pipes.types.batch_resource_requirements_list
 
         out["resource_requirements"] = (

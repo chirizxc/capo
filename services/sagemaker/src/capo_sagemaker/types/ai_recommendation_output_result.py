@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: AIRecommendationOutputResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendationOutputResult:
     out: AIRecommendationOutputResult = {}  # type: ignore[typeddict-item]
-    if "S3OutputLocation" in data:
+    if data.get("S3OutputLocation") is not None:
         out["s3_output_location"] = data["S3OutputLocation"]
-    if "ModelPackageGroupIdentifier" in data:
+    if data.get("ModelPackageGroupIdentifier") is not None:
         out["model_package_group_identifier"] = data["ModelPackageGroupIdentifier"]
-    if "MlflowConfig" in data:
+    if data.get("MlflowConfig") is not None:
         import capo_sagemaker.types.ai_mlflow_config
 
         out["mlflow_config"] = (

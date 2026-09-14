@@ -32,15 +32,15 @@ def serialize_json(value: DeleteDataLakeDatasetResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDataLakeDatasetResponse:
     out: DeleteDataLakeDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError("DeleteDataLakeDatasetResponse.instance_id required")
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     else:
         raise DeserializationError("DeleteDataLakeDatasetResponse.namespace required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeleteDataLakeDatasetResponse.name required")

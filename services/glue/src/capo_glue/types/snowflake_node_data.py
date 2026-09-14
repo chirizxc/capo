@@ -141,29 +141,29 @@ def serialize_aws_json_1_1(value: SnowflakeNodeData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnowflakeNodeData:
     out: SnowflakeNodeData = {}  # type: ignore[typeddict-item]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
-    if "Connection" in data:
+    if data.get("Connection") is not None:
         import capo_glue.types.option
 
         out["connection"] = capo_glue.types.option.deserialize_aws_json_1_1(
             data["Connection"]
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "TempDir" in data:
+    if data.get("TempDir") is not None:
         out["temp_dir"] = data["TempDir"]
-    if "IamRole" in data:
+    if data.get("IamRole") is not None:
         import capo_glue.types.option
 
         out["iam_role"] = capo_glue.types.option.deserialize_aws_json_1_1(
             data["IamRole"]
         )
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.additional_options
 
         out["additional_options"] = (
@@ -171,39 +171,39 @@ def deserialize_aws_json_1_1(data: dict) -> SnowflakeNodeData:
                 data["AdditionalOptions"]
             )
         )
-    if "SampleQuery" in data:
+    if data.get("SampleQuery") is not None:
         out["sample_query"] = data["SampleQuery"]
-    if "PreAction" in data:
+    if data.get("PreAction") is not None:
         out["pre_action"] = data["PreAction"]
-    if "PostAction" in data:
+    if data.get("PostAction") is not None:
         out["post_action"] = data["PostAction"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
-    if "Upsert" in data:
+    if data.get("Upsert") is not None:
         out["upsert"] = data["Upsert"]
     else:
         out["upsert"] = False
-    if "MergeAction" in data:
+    if data.get("MergeAction") is not None:
         out["merge_action"] = data["MergeAction"]
-    if "MergeWhenMatched" in data:
+    if data.get("MergeWhenMatched") is not None:
         out["merge_when_matched"] = data["MergeWhenMatched"]
-    if "MergeWhenNotMatched" in data:
+    if data.get("MergeWhenNotMatched") is not None:
         out["merge_when_not_matched"] = data["MergeWhenNotMatched"]
-    if "MergeClause" in data:
+    if data.get("MergeClause") is not None:
         out["merge_clause"] = data["MergeClause"]
-    if "StagingTable" in data:
+    if data.get("StagingTable") is not None:
         out["staging_table"] = data["StagingTable"]
-    if "SelectedColumns" in data:
+    if data.get("SelectedColumns") is not None:
         import capo_glue.types.option_list
 
         out["selected_columns"] = capo_glue.types.option_list.deserialize_aws_json_1_1(
             data["SelectedColumns"]
         )
-    if "AutoPushdown" in data:
+    if data.get("AutoPushdown") is not None:
         out["auto_pushdown"] = data["AutoPushdown"]
     else:
         out["auto_pushdown"] = False
-    if "TableSchema" in data:
+    if data.get("TableSchema") is not None:
         import capo_glue.types.option_list
 
         out["table_schema"] = capo_glue.types.option_list.deserialize_aws_json_1_1(

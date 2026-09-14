@@ -13,9 +13,9 @@ from capo_iot_jobs_data_plane import AsyncIoTJobsDataPlaneClient
 
 
 async def main():
-    async with AsyncIoTJobsDataPlaneClient() as s3:
+    async with AsyncIoTJobsDataPlaneClient() as io_t_jobs_data_plane:
         # Example: call the describe_job_execution operation
-        response = await s3.describe_job_execution()
+        response = await io_t_jobs_data_plane.describe_job_execution()
         print(response["execution"])
 ```
 
@@ -29,9 +29,9 @@ from capo_iot_jobs_data_plane.error import CertificateValidationException
 
 
 async def main():
-    async with AsyncIoTJobsDataPlaneClient() as s3:
+    async with AsyncIoTJobsDataPlaneClient() as io_t_jobs_data_plane:
         try:
-            await s3.describe_job_execution()
+            await io_t_jobs_data_plane.describe_job_execution()
         except CertificateValidationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_iot_jobs_data_plane import AsyncIoTJobsDataPlaneClient
 
 
 async def main():
-    async with AsyncIoTJobsDataPlaneClient() as s3:
+    async with AsyncIoTJobsDataPlaneClient() as io_t_jobs_data_plane:
         # Default: 3 attempts for every operation
-        response = await s3.describe_job_execution()
+        response = await io_t_jobs_data_plane.describe_job_execution()
 
         # Override per operation
-        response = await s3.describe_job_execution(config_overrides={"retry_max_attempts": 5})
+        response = await io_t_jobs_data_plane.describe_job_execution(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.describe_job_execution(config_overrides={"retry_max_attempts": 1})
+        response = await io_t_jobs_data_plane.describe_job_execution(config_overrides={"retry_max_attempts": 1})
 ```

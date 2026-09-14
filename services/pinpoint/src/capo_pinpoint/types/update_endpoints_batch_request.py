@@ -33,7 +33,7 @@ def serialize_json(value: UpdateEndpointsBatchRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEndpointsBatchRequest:
     out: UpdateEndpointsBatchRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointBatchRequest" in data:
+    if data.get("EndpointBatchRequest") is not None:
         import capo_pinpoint.types.endpoint_batch_request
 
         out["endpoint_batch_request"] = (

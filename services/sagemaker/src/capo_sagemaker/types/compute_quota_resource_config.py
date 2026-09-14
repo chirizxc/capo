@@ -52,9 +52,25 @@ def serialize_aws_json_1_1(value: ComputeQuotaResourceConfig) -> dict:
     if "accelerators" in value:
         out["Accelerators"] = value["accelerators"]
     if "v_cpu" in value:
-        out["VCpu"] = value["v_cpu"]
+        out["VCpu"] = (
+            "NaN"
+            if value["v_cpu"] != value["v_cpu"]
+            else "Infinity"
+            if value["v_cpu"] == float("inf")
+            else "-Infinity"
+            if value["v_cpu"] == float("-inf")
+            else value["v_cpu"]
+        )
     if "memory_in_gi_b" in value:
-        out["MemoryInGiB"] = value["memory_in_gi_b"]
+        out["MemoryInGiB"] = (
+            "NaN"
+            if value["memory_in_gi_b"] != value["memory_in_gi_b"]
+            else "Infinity"
+            if value["memory_in_gi_b"] == float("inf")
+            else "-Infinity"
+            if value["memory_in_gi_b"] == float("-inf")
+            else value["memory_in_gi_b"]
+        )
     if "accelerator_partition" in value:
         import capo_sagemaker.types.accelerator_partition_config
 
@@ -68,7 +84,7 @@ def serialize_aws_json_1_1(value: ComputeQuotaResourceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaResourceConfig:
     out: ComputeQuotaResourceConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.cluster_instance_type
 
         out["instance_type"] = (
@@ -76,15 +92,15 @@ def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaResourceConfig:
                 data["InstanceType"]
             )
         )
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "Accelerators" in data:
+    if data.get("Accelerators") is not None:
         out["accelerators"] = data["Accelerators"]
-    if "VCpu" in data:
-        out["v_cpu"] = data["VCpu"]
-    if "MemoryInGiB" in data:
-        out["memory_in_gi_b"] = data["MemoryInGiB"]
-    if "AcceleratorPartition" in data:
+    if data.get("VCpu") is not None:
+        out["v_cpu"] = float(data["VCpu"])
+    if data.get("MemoryInGiB") is not None:
+        out["memory_in_gi_b"] = float(data["MemoryInGiB"])
+    if data.get("AcceleratorPartition") is not None:
         import capo_sagemaker.types.accelerator_partition_config
 
         out["accelerator_partition"] = (

@@ -23,7 +23,15 @@ class RoadSnapSnappedTracePoint(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: RoadSnapSnappedTracePoint) -> dict:
     out: dict = {}
-    out["Confidence"] = value["confidence"]
+    out["Confidence"] = (
+        "NaN"
+        if value["confidence"] != value["confidence"]
+        else "Infinity"
+        if value["confidence"] == float("inf")
+        else "-Infinity"
+        if value["confidence"] == float("-inf")
+        else value["confidence"]
+    )
     import capo_geo_routes.types.position
 
     out["OriginalPosition"] = capo_geo_routes.types.position.serialize_json(
@@ -39,11 +47,11 @@ def serialize_json(value: RoadSnapSnappedTracePoint) -> dict:
 
 def deserialize_json(data: dict) -> RoadSnapSnappedTracePoint:
     out: RoadSnapSnappedTracePoint = {}  # type: ignore[typeddict-item]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
     else:
         raise DeserializationError("RoadSnapSnappedTracePoint.confidence required")
-    if "OriginalPosition" in data:
+    if data.get("OriginalPosition") is not None:
         import capo_geo_routes.types.position
 
         out["original_position"] = capo_geo_routes.types.position.deserialize_json(
@@ -53,7 +61,7 @@ def deserialize_json(data: dict) -> RoadSnapSnappedTracePoint:
         raise DeserializationError(
             "RoadSnapSnappedTracePoint.original_position required"
         )
-    if "SnappedPosition" in data:
+    if data.get("SnappedPosition") is not None:
         import capo_geo_routes.types.position
 
         out["snapped_position"] = capo_geo_routes.types.position.deserialize_json(

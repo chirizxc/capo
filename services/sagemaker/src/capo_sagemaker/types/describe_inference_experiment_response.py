@@ -172,11 +172,11 @@ def serialize_aws_json_1_1(value: DescribeInferenceExperimentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceExperimentResponse:
     out: DescribeInferenceExperimentResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.inference_experiment_type
 
         out["type"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceExperimentResponse:
                 data["Type"]
             )
         )
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_sagemaker.types.inference_experiment_schedule
 
         out["schedule"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceExperimentResponse:
                 data["Schedule"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.inference_experiment_status
 
         out["status"] = (
@@ -200,17 +200,17 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceExperimentResponse:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["completion_time"] = (
@@ -218,7 +218,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceExperimentResponse:
                 data["CompletionTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -226,9 +226,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceExperimentResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "EndpointMetadata" in data:
+    if data.get("EndpointMetadata") is not None:
         import capo_sagemaker.types.endpoint_metadata
 
         out["endpoint_metadata"] = (
@@ -236,7 +236,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceExperimentResponse:
                 data["EndpointMetadata"]
             )
         )
-    if "ModelVariants" in data:
+    if data.get("ModelVariants") is not None:
         import capo_sagemaker.types.model_variant_config_summary_list
 
         out["model_variants"] = (
@@ -244,7 +244,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceExperimentResponse:
                 data["ModelVariants"]
             )
         )
-    if "DataStorageConfig" in data:
+    if data.get("DataStorageConfig") is not None:
         import capo_sagemaker.types.inference_experiment_data_storage_config
 
         out["data_storage_config"] = (
@@ -252,7 +252,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceExperimentResponse:
                 data["DataStorageConfig"]
             )
         )
-    if "ShadowModeConfig" in data:
+    if data.get("ShadowModeConfig") is not None:
         import capo_sagemaker.types.shadow_mode_config
 
         out["shadow_mode_config"] = (
@@ -260,6 +260,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceExperimentResponse:
                 data["ShadowModeConfig"]
             )
         )
-    if "KmsKey" in data:
+    if data.get("KmsKey") is not None:
         out["kms_key"] = data["KmsKey"]
     return out

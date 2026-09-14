@@ -208,13 +208,14 @@ class AsyncrbinClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rbin.types.create_rule_request.CreateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["retention_period"] = retention_period
+        input_: capo_rbin.types.create_rule_request.CreateRuleRequest = {
+            "retention_period": retention_period,
+            "resource_type": resource_type,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
-        input_["resource_type"] = resource_type
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
         if lock_configuration is not None:
@@ -227,6 +228,7 @@ class AsyncrbinClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_rule(
@@ -264,14 +266,16 @@ class AsyncrbinClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rbin.types.delete_rule_request.DeleteRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_rbin.types.delete_rule_request.DeleteRuleRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_rule(
@@ -308,14 +312,16 @@ class AsyncrbinClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rbin.types.get_rule_request.GetRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_rbin.types.get_rule_request.GetRuleRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_rules(
@@ -363,12 +369,13 @@ class AsyncrbinClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rbin.types.list_rules_request.ListRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rbin.types.list_rules_request.ListRulesRequest = {
+            "resource_type": resource_type
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["resource_type"] = resource_type
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
         if lock_state is not None:
@@ -381,6 +388,7 @@ class AsyncrbinClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_rules(
@@ -448,14 +456,16 @@ class AsyncrbinClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rbin.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_rbin.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def lock_rule(
@@ -495,15 +505,17 @@ class AsyncrbinClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rbin.types.lock_rule_request.LockRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["lock_configuration"] = lock_configuration
+        input_: capo_rbin.types.lock_rule_request.LockRuleRequest = {
+            "identifier": identifier,
+            "lock_configuration": lock_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -543,15 +555,17 @@ class AsyncrbinClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rbin.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_rbin.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def unlock_rule(
@@ -589,14 +603,16 @@ class AsyncrbinClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rbin.types.unlock_rule_request.UnlockRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_rbin.types.unlock_rule_request.UnlockRuleRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -635,15 +651,17 @@ class AsyncrbinClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rbin.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_rbin.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_rule(
@@ -696,8 +714,9 @@ class AsyncrbinClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rbin.types.update_rule_request.UpdateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_rbin.types.update_rule_request.UpdateRuleRequest = {
+            "identifier": identifier
+        }
         if retention_period is not None:
             input_["retention_period"] = retention_period
         if description is not None:
@@ -714,6 +733,7 @@ class AsyncrbinClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

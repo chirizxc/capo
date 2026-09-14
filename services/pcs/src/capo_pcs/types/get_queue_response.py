@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetQueueResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetQueueResponse:
     out: GetQueueResponse = {}  # type: ignore[typeddict-item]
-    if "queue" in data:
+    if data.get("queue") is not None:
         import capo_pcs.types.queue
 
         out["queue"] = capo_pcs.types.queue.deserialize_aws_json_1_0(data["queue"])

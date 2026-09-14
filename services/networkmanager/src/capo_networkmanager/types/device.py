@@ -110,49 +110,49 @@ def serialize_json(value: Device) -> dict:
 
 def deserialize_json(data: dict) -> Device:
     out: Device = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "DeviceArn" in data:
+    if data.get("DeviceArn") is not None:
         out["device_arn"] = data["DeviceArn"]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "AWSLocation" in data:
+    if data.get("AWSLocation") is not None:
         import capo_networkmanager.types.aws_location
 
         out["aws_location"] = capo_networkmanager.types.aws_location.deserialize_json(
             data["AWSLocation"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Vendor" in data:
+    if data.get("Vendor") is not None:
         out["vendor"] = data["Vendor"]
-    if "Model" in data:
+    if data.get("Model") is not None:
         out["model"] = data["Model"]
-    if "SerialNumber" in data:
+    if data.get("SerialNumber") is not None:
         out["serial_number"] = data["SerialNumber"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         import capo_networkmanager.types.location
 
         out["location"] = capo_networkmanager.types.location.deserialize_json(
             data["Location"]
         )
-    if "SiteId" in data:
+    if data.get("SiteId") is not None:
         out["site_id"] = data["SiteId"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_networkmanager.types.date_time
 
         out["created_at"] = capo_networkmanager.types.date_time.deserialize_json(
             data["CreatedAt"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.device_state
 
         out["state"] = capo_networkmanager.types.device_state.deserialize_json(
             data["State"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])

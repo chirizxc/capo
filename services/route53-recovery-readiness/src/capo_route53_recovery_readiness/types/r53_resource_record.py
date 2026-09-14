@@ -29,8 +29,8 @@ def serialize_json(value: R53ResourceRecord) -> dict:
 
 def deserialize_json(data: dict) -> R53ResourceRecord:
     out: R53ResourceRecord = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "recordSetId" in data:
+    if data.get("recordSetId") is not None:
         out["record_set_id"] = data["recordSetId"]
     return out

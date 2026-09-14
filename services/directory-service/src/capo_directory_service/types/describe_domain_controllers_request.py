@@ -47,13 +47,13 @@ def serialize_aws_json_1_1(value: DescribeDomainControllersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDomainControllersRequest:
     out: DescribeDomainControllersRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError(
             "DescribeDomainControllersRequest.directory_id required"
         )
-    if "DomainControllerIds" in data:
+    if data.get("DomainControllerIds") is not None:
         import capo_directory_service.types.domain_controller_ids
 
         out["domain_controller_ids"] = (
@@ -61,8 +61,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDomainControllersRequest:
                 data["DomainControllerIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

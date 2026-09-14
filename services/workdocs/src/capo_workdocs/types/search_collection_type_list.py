@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SearchCollectionTypeList:
 
     out: SearchCollectionTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workdocs.types.search_collection_type.deserialize_json(item))
     return out

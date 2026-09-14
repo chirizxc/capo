@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: LocationalDeployments) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> LocationalDeployments:
     out: LocationalDeployments = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_gamelift.types.locational_deployment
 
         out[key] = capo_gamelift.types.locational_deployment.deserialize_aws_json_1_1(

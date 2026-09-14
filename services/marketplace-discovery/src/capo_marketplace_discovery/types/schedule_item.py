@@ -35,7 +35,7 @@ def serialize_json(value: ScheduleItem) -> dict:
 
 def deserialize_json(data: dict) -> ScheduleItem:
     out: ScheduleItem = {}  # type: ignore[typeddict-item]
-    if "chargeDate" in data:
+    if data.get("chargeDate") is not None:
         import capo_marketplace_discovery.types._prelude.timestamp
 
         out["charge_date"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> ScheduleItem:
         )
     else:
         raise DeserializationError("ScheduleItem.charge_date required")
-    if "chargeAmount" in data:
+    if data.get("chargeAmount") is not None:
         out["charge_amount"] = data["chargeAmount"]
     else:
         raise DeserializationError("ScheduleItem.charge_amount required")

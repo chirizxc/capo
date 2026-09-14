@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfOriginEndpoint:
 
     out: __listOfOriginEndpoint = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackage.types.origin_endpoint.deserialize_json(item))
     return out

@@ -20,11 +20,11 @@ def serialize_aws_json_1_0(value: ScalingConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScalingConfiguration:
     out: ScalingConfiguration = {}  # type: ignore[typeddict-item]
-    if "minInstanceCount" in data:
+    if data.get("minInstanceCount") is not None:
         out["min_instance_count"] = data["minInstanceCount"]
     else:
         out["min_instance_count"] = 0
-    if "maxInstanceCount" in data:
+    if data.get("maxInstanceCount") is not None:
         out["max_instance_count"] = data["maxInstanceCount"]
     else:
         out["max_instance_count"] = 0

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> TransformConfigParameterList:
 
     out: TransformConfigParameterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.transform_config_parameter.deserialize_aws_json_1_1(item)
         )

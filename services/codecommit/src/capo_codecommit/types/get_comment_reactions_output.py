@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: GetCommentReactionsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCommentReactionsOutput:
     out: GetCommentReactionsOutput = {}  # type: ignore[typeddict-item]
-    if "reactionsForComment" in data:
+    if data.get("reactionsForComment") is not None:
         import capo_codecommit.types.reactions_for_comment_list
 
         out["reactions_for_comment"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetCommentReactionsOutput:
         raise DeserializationError(
             "GetCommentReactionsOutput.reactions_for_comment required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

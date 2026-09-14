@@ -32,7 +32,7 @@ def serialize_json(value: Job) -> dict:
 
 def deserialize_json(data: dict) -> Job:
     out: Job = {}  # type: ignore[typeddict-item]
-    if "summary" in data:
+    if data.get("summary") is not None:
         import capo_amplify.types.job_summary
 
         out["summary"] = capo_amplify.types.job_summary.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> Job:
         )
     else:
         raise DeserializationError("Job.summary required")
-    if "steps" in data:
+    if data.get("steps") is not None:
         import capo_amplify.types.steps
 
         out["steps"] = capo_amplify.types.steps.deserialize_json(data["steps"])

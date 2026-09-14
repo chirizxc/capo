@@ -55,13 +55,13 @@ def serialize_json(value: CreateTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTemplateRequest:
     out: CreateTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("CreateTemplateRequest.template_name required")
-    if "templateDescription" in data:
+    if data.get("templateDescription") is not None:
         out["template_description"] = data["templateDescription"]
-    if "templateSource" in data:
+    if data.get("templateSource") is not None:
         import capo_migrationhuborchestrator.types.template_source
 
         out["template_source"] = (
@@ -71,9 +71,9 @@ def deserialize_json(data: dict) -> CreateTemplateRequest:
         )
     else:
         raise DeserializationError("CreateTemplateRequest.template_source required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_migrationhuborchestrator.types.tag_map
 
         out["tags"] = capo_migrationhuborchestrator.types.tag_map.deserialize_json(

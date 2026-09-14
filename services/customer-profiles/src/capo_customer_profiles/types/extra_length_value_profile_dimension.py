@@ -40,7 +40,7 @@ def serialize_json(value: ExtraLengthValueProfileDimension) -> dict:
 
 def deserialize_json(data: dict) -> ExtraLengthValueProfileDimension:
     out: ExtraLengthValueProfileDimension = {}  # type: ignore[typeddict-item]
-    if "DimensionType" in data:
+    if data.get("DimensionType") is not None:
         import capo_customer_profiles.types.string_dimension_type
 
         out["dimension_type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ExtraLengthValueProfileDimension:
         raise DeserializationError(
             "ExtraLengthValueProfileDimension.dimension_type required"
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_customer_profiles.types.extra_length_values
 
         out["values"] = (

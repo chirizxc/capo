@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: IamFederationConfigOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IamFederationConfigOptions:
     out: IamFederationConfigOptions = {}  # type: ignore[typeddict-item]
-    if "groupAttribute" in data:
+    if data.get("groupAttribute") is not None:
         out["group_attribute"] = data["groupAttribute"]
-    if "userAttribute" in data:
+    if data.get("userAttribute") is not None:
         out["user_attribute"] = data["userAttribute"]
     return out

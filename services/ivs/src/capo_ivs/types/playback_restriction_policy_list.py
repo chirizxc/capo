@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PlaybackRestrictionPolicyList:
 
     out: PlaybackRestrictionPolicyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs.types.playback_restriction_policy_summary.deserialize_json(item)
         )

@@ -65,15 +65,15 @@ def serialize_aws_json_1_1(value: ImpersonationRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImpersonationRule:
     out: ImpersonationRule = {}  # type: ignore[typeddict-item]
-    if "ImpersonationRuleId" in data:
+    if data.get("ImpersonationRuleId") is not None:
         out["impersonation_rule_id"] = data["ImpersonationRuleId"]
     else:
         raise DeserializationError("ImpersonationRule.impersonation_rule_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.access_effect
 
         out["effect"] = capo_workmail.types.access_effect.deserialize_aws_json_1_1(
@@ -81,13 +81,13 @@ def deserialize_aws_json_1_1(data: dict) -> ImpersonationRule:
         )
     else:
         raise DeserializationError("ImpersonationRule.effect required")
-    if "TargetUsers" in data:
+    if data.get("TargetUsers") is not None:
         import capo_workmail.types.target_users
 
         out["target_users"] = capo_workmail.types.target_users.deserialize_aws_json_1_1(
             data["TargetUsers"]
         )
-    if "NotTargetUsers" in data:
+    if data.get("NotTargetUsers") is not None:
         import capo_workmail.types.target_users
 
         out["not_target_users"] = (

@@ -40,10 +40,44 @@ class WeightedBalancedSchedulingConfiguration(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: WeightedBalancedSchedulingConfiguration) -> dict:
     out: dict = {}
-    out["priorityWeight"] = value.get("priority_weight", 100.0)
-    out["errorWeight"] = value.get("error_weight", -10.0)
-    out["submissionTimeWeight"] = value.get("submission_time_weight", 3.0)
-    out["renderingTaskWeight"] = value.get("rendering_task_weight", -100.0)
+    out["priorityWeight"] = (
+        "NaN"
+        if value.get("priority_weight", 100.0) != value.get("priority_weight", 100.0)
+        else "Infinity"
+        if value.get("priority_weight", 100.0) == float("inf")
+        else "-Infinity"
+        if value.get("priority_weight", 100.0) == float("-inf")
+        else value.get("priority_weight", 100.0)
+    )
+    out["errorWeight"] = (
+        "NaN"
+        if value.get("error_weight", -10.0) != value.get("error_weight", -10.0)
+        else "Infinity"
+        if value.get("error_weight", -10.0) == float("inf")
+        else "-Infinity"
+        if value.get("error_weight", -10.0) == float("-inf")
+        else value.get("error_weight", -10.0)
+    )
+    out["submissionTimeWeight"] = (
+        "NaN"
+        if value.get("submission_time_weight", 3.0)
+        != value.get("submission_time_weight", 3.0)
+        else "Infinity"
+        if value.get("submission_time_weight", 3.0) == float("inf")
+        else "-Infinity"
+        if value.get("submission_time_weight", 3.0) == float("-inf")
+        else value.get("submission_time_weight", 3.0)
+    )
+    out["renderingTaskWeight"] = (
+        "NaN"
+        if value.get("rendering_task_weight", -100.0)
+        != value.get("rendering_task_weight", -100.0)
+        else "Infinity"
+        if value.get("rendering_task_weight", -100.0) == float("inf")
+        else "-Infinity"
+        if value.get("rendering_task_weight", -100.0) == float("-inf")
+        else value.get("rendering_task_weight", -100.0)
+    )
     out["renderingTaskBuffer"] = value.get("rendering_task_buffer", 1)
     if "max_priority_override" in value:
         import capo_deadline.types.scheduling_max_priority_override
@@ -66,27 +100,27 @@ def serialize_json(value: WeightedBalancedSchedulingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WeightedBalancedSchedulingConfiguration:
     out: WeightedBalancedSchedulingConfiguration = {}  # type: ignore[typeddict-item]
-    if "priorityWeight" in data:
-        out["priority_weight"] = data["priorityWeight"]
+    if data.get("priorityWeight") is not None:
+        out["priority_weight"] = float(data["priorityWeight"])
     else:
         out["priority_weight"] = 100.0
-    if "errorWeight" in data:
-        out["error_weight"] = data["errorWeight"]
+    if data.get("errorWeight") is not None:
+        out["error_weight"] = float(data["errorWeight"])
     else:
         out["error_weight"] = -10.0
-    if "submissionTimeWeight" in data:
-        out["submission_time_weight"] = data["submissionTimeWeight"]
+    if data.get("submissionTimeWeight") is not None:
+        out["submission_time_weight"] = float(data["submissionTimeWeight"])
     else:
         out["submission_time_weight"] = 3.0
-    if "renderingTaskWeight" in data:
-        out["rendering_task_weight"] = data["renderingTaskWeight"]
+    if data.get("renderingTaskWeight") is not None:
+        out["rendering_task_weight"] = float(data["renderingTaskWeight"])
     else:
         out["rendering_task_weight"] = -100.0
-    if "renderingTaskBuffer" in data:
+    if data.get("renderingTaskBuffer") is not None:
         out["rendering_task_buffer"] = data["renderingTaskBuffer"]
     else:
         out["rendering_task_buffer"] = 1
-    if "maxPriorityOverride" in data:
+    if data.get("maxPriorityOverride") is not None:
         import capo_deadline.types.scheduling_max_priority_override
 
         out["max_priority_override"] = (
@@ -94,7 +128,7 @@ def deserialize_json(data: dict) -> WeightedBalancedSchedulingConfiguration:
                 data["maxPriorityOverride"]
             )
         )
-    if "minPriorityOverride" in data:
+    if data.get("minPriorityOverride") is not None:
         import capo_deadline.types.scheduling_min_priority_override
 
         out["min_priority_override"] = (

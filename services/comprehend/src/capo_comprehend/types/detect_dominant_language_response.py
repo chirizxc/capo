@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DetectDominantLanguageResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectDominantLanguageResponse:
     out: DetectDominantLanguageResponse = {}  # type: ignore[typeddict-item]
-    if "Languages" in data:
+    if data.get("Languages") is not None:
         import capo_comprehend.types.list_of_dominant_languages
 
         out["languages"] = (

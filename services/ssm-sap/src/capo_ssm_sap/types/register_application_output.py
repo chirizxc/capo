@@ -32,12 +32,12 @@ def serialize_json(value: RegisterApplicationOutput) -> dict:
 
 def deserialize_json(data: dict) -> RegisterApplicationOutput:
     out: RegisterApplicationOutput = {}  # type: ignore[typeddict-item]
-    if "Application" in data:
+    if data.get("Application") is not None:
         import capo_ssm_sap.types.application
 
         out["application"] = capo_ssm_sap.types.application.deserialize_json(
             data["Application"]
         )
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: AwsS3BucketServerSideEncryptionRule) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketServerSideEncryptionRule:
     out: AwsS3BucketServerSideEncryptionRule = {}  # type: ignore[typeddict-item]
-    if "ApplyServerSideEncryptionByDefault" in data:
+    if data.get("ApplyServerSideEncryptionByDefault") is not None:
         import capo_securityhub.types.aws_s3_bucket_server_side_encryption_by_default
 
         out["apply_server_side_encryption_by_default"] = (

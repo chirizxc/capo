@@ -94,37 +94,37 @@ def serialize_json(value: Environment) -> dict:
 
 def deserialize_json(data: dict) -> Environment:
     out: Environment = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.environment_status
 
         out["status"] = capo_finspace.types.environment_status.deserialize_json(
             data["status"]
         )
-    if "environmentUrl" in data:
+    if data.get("environmentUrl") is not None:
         out["environment_url"] = data["environmentUrl"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "environmentArn" in data:
+    if data.get("environmentArn") is not None:
         out["environment_arn"] = data["environmentArn"]
-    if "sageMakerStudioDomainUrl" in data:
+    if data.get("sageMakerStudioDomainUrl") is not None:
         out["sage_maker_studio_domain_url"] = data["sageMakerStudioDomainUrl"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "dedicatedServiceAccountId" in data:
+    if data.get("dedicatedServiceAccountId") is not None:
         out["dedicated_service_account_id"] = data["dedicatedServiceAccountId"]
-    if "federationMode" in data:
+    if data.get("federationMode") is not None:
         import capo_finspace.types.federation_mode
 
         out["federation_mode"] = capo_finspace.types.federation_mode.deserialize_json(
             data["federationMode"]
         )
-    if "federationParameters" in data:
+    if data.get("federationParameters") is not None:
         import capo_finspace.types.federation_parameters
 
         out["federation_parameters"] = (

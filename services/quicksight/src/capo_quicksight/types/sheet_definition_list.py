@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SheetDefinitionList:
 
     out: SheetDefinitionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.sheet_definition.deserialize_json(item))
     return out

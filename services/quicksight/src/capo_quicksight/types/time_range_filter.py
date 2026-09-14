@@ -113,11 +113,11 @@ def serialize_json(value: TimeRangeFilter) -> dict:
 
 def deserialize_json(data: dict) -> TimeRangeFilter:
     out: TimeRangeFilter = {}  # type: ignore[typeddict-item]
-    if "FilterId" in data:
+    if data.get("FilterId") is not None:
         out["filter_id"] = data["FilterId"]
     else:
         raise DeserializationError("TimeRangeFilter.filter_id required")
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -125,11 +125,11 @@ def deserialize_json(data: dict) -> TimeRangeFilter:
         )
     else:
         raise DeserializationError("TimeRangeFilter.column required")
-    if "IncludeMinimum" in data:
+    if data.get("IncludeMinimum") is not None:
         out["include_minimum"] = data["IncludeMinimum"]
-    if "IncludeMaximum" in data:
+    if data.get("IncludeMaximum") is not None:
         out["include_maximum"] = data["IncludeMaximum"]
-    if "RangeMinimumValue" in data:
+    if data.get("RangeMinimumValue") is not None:
         import capo_quicksight.types.time_range_filter_value
 
         out["range_minimum_value"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> TimeRangeFilter:
                 data["RangeMinimumValue"]
             )
         )
-    if "RangeMaximumValue" in data:
+    if data.get("RangeMaximumValue") is not None:
         import capo_quicksight.types.time_range_filter_value
 
         out["range_maximum_value"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> TimeRangeFilter:
                 data["RangeMaximumValue"]
             )
         )
-    if "NullOption" in data:
+    if data.get("NullOption") is not None:
         import capo_quicksight.types.filter_null_option
 
         out["null_option"] = capo_quicksight.types.filter_null_option.deserialize_json(
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> TimeRangeFilter:
         )
     else:
         raise DeserializationError("TimeRangeFilter.null_option required")
-    if "ExcludePeriodConfiguration" in data:
+    if data.get("ExcludePeriodConfiguration") is not None:
         import capo_quicksight.types.exclude_period_configuration
 
         out["exclude_period_configuration"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> TimeRangeFilter:
                 data["ExcludePeriodConfiguration"]
             )
         )
-    if "TimeGranularity" in data:
+    if data.get("TimeGranularity") is not None:
         import capo_quicksight.types.time_granularity
 
         out["time_granularity"] = (
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> TimeRangeFilter:
                 data["TimeGranularity"]
             )
         )
-    if "DefaultFilterControlConfiguration" in data:
+    if data.get("DefaultFilterControlConfiguration") is not None:
         import capo_quicksight.types.default_filter_control_configuration
 
         out["default_filter_control_configuration"] = (

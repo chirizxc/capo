@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: RdsRecommendation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RdsRecommendation:
     out: RdsRecommendation = {}  # type: ignore[typeddict-item]
-    if "RequirementsToTarget" in data:
+    if data.get("RequirementsToTarget") is not None:
         import capo_database_migration_service.types.rds_requirements
 
         out["requirements_to_target"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> RdsRecommendation:
                 data["RequirementsToTarget"]
             )
         )
-    if "TargetConfiguration" in data:
+    if data.get("TargetConfiguration") is not None:
         import capo_database_migration_service.types.rds_configuration
 
         out["target_configuration"] = (

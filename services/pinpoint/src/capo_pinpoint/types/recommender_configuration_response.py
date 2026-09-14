@@ -77,32 +77,32 @@ def serialize_json(value: RecommenderConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> RecommenderConfigurationResponse:
     out: RecommenderConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["attributes"] = capo_pinpoint.types.map_of__string.deserialize_json(
             data["Attributes"]
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RecommendationProviderIdType" in data:
+    if data.get("RecommendationProviderIdType") is not None:
         out["recommendation_provider_id_type"] = data["RecommendationProviderIdType"]
-    if "RecommendationProviderRoleArn" in data:
+    if data.get("RecommendationProviderRoleArn") is not None:
         out["recommendation_provider_role_arn"] = data["RecommendationProviderRoleArn"]
-    if "RecommendationProviderUri" in data:
+    if data.get("RecommendationProviderUri") is not None:
         out["recommendation_provider_uri"] = data["RecommendationProviderUri"]
-    if "RecommendationTransformerUri" in data:
+    if data.get("RecommendationTransformerUri") is not None:
         out["recommendation_transformer_uri"] = data["RecommendationTransformerUri"]
-    if "RecommendationsDisplayName" in data:
+    if data.get("RecommendationsDisplayName") is not None:
         out["recommendations_display_name"] = data["RecommendationsDisplayName"]
-    if "RecommendationsPerMessage" in data:
+    if data.get("RecommendationsPerMessage") is not None:
         out["recommendations_per_message"] = data["RecommendationsPerMessage"]
     return out

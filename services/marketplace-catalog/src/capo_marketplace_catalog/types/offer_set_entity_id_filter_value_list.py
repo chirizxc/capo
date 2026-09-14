@@ -16,4 +16,4 @@ def serialize_json(value: OfferSetEntityIdFilterValueList) -> list:
 
 
 def deserialize_json(data: list) -> OfferSetEntityIdFilterValueList:
-    return list(data)
+    return [item for item in data if item is not None]

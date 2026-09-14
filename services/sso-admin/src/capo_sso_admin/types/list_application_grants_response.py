@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ListApplicationGrantsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationGrantsResponse:
     out: ListApplicationGrantsResponse = {}  # type: ignore[typeddict-item]
-    if "Grants" in data:
+    if data.get("Grants") is not None:
         import capo_sso_admin.types.grants
 
         out["grants"] = capo_sso_admin.types.grants.deserialize_aws_json_1_1(
@@ -39,6 +39,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListApplicationGrantsResponse:
         )
     else:
         raise DeserializationError("ListApplicationGrantsResponse.grants required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

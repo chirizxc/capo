@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SuppressionListReasons:
 
     out: SuppressionListReasons = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.suppression_list_reason.deserialize_json(item))
     return out

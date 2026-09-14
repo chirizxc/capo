@@ -41,15 +41,15 @@ def serialize_aws_json_1_1(value: UpdateDeviceStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDeviceStatusRequest:
     out: UpdateDeviceStatusRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError("UpdateDeviceStatusRequest.access_token required")
-    if "DeviceKey" in data:
+    if data.get("DeviceKey") is not None:
         out["device_key"] = data["DeviceKey"]
     else:
         raise DeserializationError("UpdateDeviceStatusRequest.device_key required")
-    if "DeviceRememberedStatus" in data:
+    if data.get("DeviceRememberedStatus") is not None:
         import capo_cognito_identity_provider.types.device_remembered_status_type
 
         out["device_remembered_status"] = (

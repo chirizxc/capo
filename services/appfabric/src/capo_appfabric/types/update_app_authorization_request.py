@@ -39,13 +39,13 @@ def serialize_json(value: UpdateAppAuthorizationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAppAuthorizationRequest:
     out: UpdateAppAuthorizationRequest = {}  # type: ignore[typeddict-item]
-    if "credential" in data:
+    if data.get("credential") is not None:
         import capo_appfabric.types.credential
 
         out["credential"] = capo_appfabric.types.credential.deserialize_json(
             data["credential"]
         )
-    if "tenant" in data:
+    if data.get("tenant") is not None:
         import capo_appfabric.types.tenant
 
         out["tenant"] = capo_appfabric.types.tenant.deserialize_json(data["tenant"])

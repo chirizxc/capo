@@ -37,11 +37,11 @@ def serialize_json(value: DateTimeHierarchy) -> dict:
 
 def deserialize_json(data: dict) -> DateTimeHierarchy:
     out: DateTimeHierarchy = {}  # type: ignore[typeddict-item]
-    if "HierarchyId" in data:
+    if data.get("HierarchyId") is not None:
         out["hierarchy_id"] = data["HierarchyId"]
     else:
         raise DeserializationError("DateTimeHierarchy.hierarchy_id required")
-    if "DrillDownFilters" in data:
+    if data.get("DrillDownFilters") is not None:
         import capo_quicksight.types.drill_down_filter_list
 
         out["drill_down_filters"] = (

@@ -56,13 +56,13 @@ def serialize_aws_json_1_1(value: PutIdentityProviderConfigurationRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> PutIdentityProviderConfigurationRequest:
     out: PutIdentityProviderConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "PutIdentityProviderConfigurationRequest.organization_id required"
         )
-    if "AuthenticationMode" in data:
+    if data.get("AuthenticationMode") is not None:
         import capo_workmail.types.identity_provider_authentication_mode
 
         out["authentication_mode"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutIdentityProviderConfigurationRequ
         raise DeserializationError(
             "PutIdentityProviderConfigurationRequest.authentication_mode required"
         )
-    if "IdentityCenterConfiguration" in data:
+    if data.get("IdentityCenterConfiguration") is not None:
         import capo_workmail.types.identity_center_configuration
 
         out["identity_center_configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutIdentityProviderConfigurationRequ
         raise DeserializationError(
             "PutIdentityProviderConfigurationRequest.identity_center_configuration required"
         )
-    if "PersonalAccessTokenConfiguration" in data:
+    if data.get("PersonalAccessTokenConfiguration") is not None:
         import capo_workmail.types.personal_access_token_configuration
 
         out["personal_access_token_configuration"] = (

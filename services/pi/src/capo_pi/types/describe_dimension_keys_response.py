@@ -66,7 +66,7 @@ def serialize_aws_json_1_1(value: DescribeDimensionKeysResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDimensionKeysResponse:
     out: DescribeDimensionKeysResponse = {}  # type: ignore[typeddict-item]
-    if "AlignedStartTime" in data:
+    if data.get("AlignedStartTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["aligned_start_time"] = (
@@ -74,13 +74,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDimensionKeysResponse:
                 data["AlignedStartTime"]
             )
         )
-    if "AlignedEndTime" in data:
+    if data.get("AlignedEndTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["aligned_end_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["AlignedEndTime"]
         )
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_pi.types.response_partition_key_list
 
         out["partition_keys"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDimensionKeysResponse:
                 data["PartitionKeys"]
             )
         )
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_pi.types.dimension_key_description_list
 
         out["keys"] = (
@@ -96,6 +96,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDimensionKeysResponse:
                 data["Keys"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -69,15 +69,15 @@ def serialize_json(value: ListPhoneNumbersV2Request) -> dict:
 
 def deserialize_json(data: dict) -> ListPhoneNumbersV2Request:
     out: ListPhoneNumbersV2Request = {}  # type: ignore[typeddict-item]
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PhoneNumberCountryCodes" in data:
+    if data.get("PhoneNumberCountryCodes") is not None:
         import capo_connect.types.phone_number_country_codes
 
         out["phone_number_country_codes"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> ListPhoneNumbersV2Request:
                 data["PhoneNumberCountryCodes"]
             )
         )
-    if "PhoneNumberTypes" in data:
+    if data.get("PhoneNumberTypes") is not None:
         import capo_connect.types.phone_number_types
 
         out["phone_number_types"] = (
@@ -93,6 +93,6 @@ def deserialize_json(data: dict) -> ListPhoneNumbersV2Request:
                 data["PhoneNumberTypes"]
             )
         )
-    if "PhoneNumberPrefix" in data:
+    if data.get("PhoneNumberPrefix") is not None:
         out["phone_number_prefix"] = data["PhoneNumberPrefix"]
     return out

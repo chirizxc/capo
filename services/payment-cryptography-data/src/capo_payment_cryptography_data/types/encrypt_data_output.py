@@ -35,13 +35,13 @@ def serialize_json(value: EncryptDataOutput) -> dict:
 
 def deserialize_json(data: dict) -> EncryptDataOutput:
     out: EncryptDataOutput = {}  # type: ignore[typeddict-item]
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
     else:
         raise DeserializationError("EncryptDataOutput.key_arn required")
-    if "KeyCheckValue" in data:
+    if data.get("KeyCheckValue") is not None:
         out["key_check_value"] = data["KeyCheckValue"]
-    if "CipherText" in data:
+    if data.get("CipherText") is not None:
         out["cipher_text"] = data["CipherText"]
     else:
         raise DeserializationError("EncryptDataOutput.cipher_text required")

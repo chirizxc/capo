@@ -13,9 +13,9 @@ from capo_socialmessaging import AsyncSocialMessagingClient
 
 
 async def main():
-    async with AsyncSocialMessagingClient() as s3:
+    async with AsyncSocialMessagingClient() as social_messaging:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await social_messaging.list_tags_for_resource()
         print(response["status_code"])
 ```
 
@@ -29,9 +29,9 @@ from capo_socialmessaging.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSocialMessagingClient() as s3:
+    async with AsyncSocialMessagingClient() as social_messaging:
         try:
-            await s3.list_tags_for_resource()
+            await social_messaging.list_tags_for_resource()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_socialmessaging import AsyncSocialMessagingClient
 
 
 async def main():
-    async with AsyncSocialMessagingClient() as s3:
+    async with AsyncSocialMessagingClient() as social_messaging:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await social_messaging.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await social_messaging.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await social_messaging.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

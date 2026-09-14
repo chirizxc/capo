@@ -35,11 +35,11 @@ def serialize_aws_json_1_0(value: SavedAddress) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SavedAddress:
     out: SavedAddress = {}  # type: ignore[typeddict-item]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
     else:
         raise DeserializationError("SavedAddress.address required")
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["created_timestamp"] = (

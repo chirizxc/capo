@@ -249,14 +249,16 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.accept_marketplace_registration_input.AcceptMarketplaceRegistrationInput = {}  # type: ignore[typeddict-item]
-        input_["marketplace_registration_token"] = marketplace_registration_token
+        input_: capo_odb.types.accept_marketplace_registration_input.AcceptMarketplaceRegistrationInput = {
+            "marketplace_registration_token": marketplace_registration_token
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_iam_role_to_resource(
@@ -300,16 +302,18 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.associate_iam_role_to_resource_input.AssociateIamRoleToResourceInput = {}  # type: ignore[typeddict-item]
-        input_["iam_role_arn"] = iam_role_arn
-        input_["aws_integration"] = aws_integration
-        input_["resource_arn"] = resource_arn
+        input_: capo_odb.types.associate_iam_role_to_resource_input.AssociateIamRoleToResourceInput = {
+            "iam_role_arn": iam_role_arn,
+            "aws_integration": aws_integration,
+            "resource_arn": resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_iam_role_from_resource(
@@ -353,16 +357,18 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.disassociate_iam_role_from_resource_input.DisassociateIamRoleFromResourceInput = {}  # type: ignore[typeddict-item]
-        input_["iam_role_arn"] = iam_role_arn
-        input_["aws_integration"] = aws_integration
-        input_["resource_arn"] = resource_arn
+        input_: capo_odb.types.disassociate_iam_role_from_resource_input.DisassociateIamRoleFromResourceInput = {
+            "iam_role_arn": iam_role_arn,
+            "aws_integration": aws_integration,
+            "resource_arn": resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_oci_onboarding_status(
@@ -394,13 +400,14 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.get_oci_onboarding_status_input.GetOciOnboardingStatusInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.get_oci_onboarding_status_input.GetOciOnboardingStatusInput = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def initialize_service(
@@ -438,7 +445,7 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.initialize_service_input.InitializeServiceInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.initialize_service_input.InitializeServiceInput = {}
         if oci_identity_domain is not None:
             input_["oci_identity_domain"] = oci_identity_domain
 
@@ -447,6 +454,7 @@ class AsyncodbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_autonomous_database_character_sets(
@@ -490,7 +498,7 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.list_autonomous_database_character_sets_input.ListAutonomousDatabaseCharacterSetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_autonomous_database_character_sets_input.ListAutonomousDatabaseCharacterSetsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -503,6 +511,7 @@ class AsyncodbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_autonomous_database_character_sets(
@@ -569,7 +578,7 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.list_autonomous_database_versions_input.ListAutonomousDatabaseVersionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_autonomous_database_versions_input.ListAutonomousDatabaseVersionsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -582,6 +591,7 @@ class AsyncodbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_autonomous_database_versions(
@@ -648,7 +658,7 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.list_db_system_shapes_input.ListDbSystemShapesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_db_system_shapes_input.ListDbSystemShapesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -663,6 +673,7 @@ class AsyncodbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_db_system_shapes(
@@ -729,7 +740,7 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.list_gi_versions_input.ListGiVersionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_gi_versions_input.ListGiVersionsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -742,6 +753,7 @@ class AsyncodbClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_gi_versions(
@@ -809,19 +821,21 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.list_system_versions_input.ListSystemVersionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_system_versions_input.ListSystemVersionsInput = {
+            "gi_version": gi_version,
+            "shape": shape,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["gi_version"] = gi_version
-        input_["shape"] = shape
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_system_versions(
@@ -881,14 +895,16 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_odb.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -926,15 +942,17 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_odb.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -971,15 +989,17 @@ class AsyncodbClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_odb.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_odb.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

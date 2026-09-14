@@ -44,19 +44,19 @@ def serialize_aws_json_1_1(value: ElastiCacheInstanceDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ElastiCacheInstanceDetails:
     out: ElastiCacheInstanceDetails = {}  # type: ignore[typeddict-item]
-    if "Family" in data:
+    if data.get("Family") is not None:
         out["family"] = data["Family"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "ProductDescription" in data:
+    if data.get("ProductDescription") is not None:
         out["product_description"] = data["ProductDescription"]
-    if "CurrentGeneration" in data:
+    if data.get("CurrentGeneration") is not None:
         out["current_generation"] = data["CurrentGeneration"]
     else:
         out["current_generation"] = False
-    if "SizeFlexEligible" in data:
+    if data.get("SizeFlexEligible") is not None:
         out["size_flex_eligible"] = data["SizeFlexEligible"]
     else:
         out["size_flex_eligible"] = False

@@ -63,13 +63,13 @@ def serialize_json(value: GridConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GridConfiguration:
     out: GridConfiguration = {}  # type: ignore[typeddict-item]
-    if "featuredParticipantAttribute" in data:
+    if data.get("featuredParticipantAttribute") is not None:
         out["featured_participant_attribute"] = data["featuredParticipantAttribute"]
-    if "omitStoppedVideo" in data:
+    if data.get("omitStoppedVideo") is not None:
         out["omit_stopped_video"] = data["omitStoppedVideo"]
     else:
         out["omit_stopped_video"] = False
-    if "videoAspectRatio" in data:
+    if data.get("videoAspectRatio") is not None:
         import capo_ivs_realtime.types.video_aspect_ratio
 
         out["video_aspect_ratio"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> GridConfiguration:
                 data["videoAspectRatio"]
             )
         )
-    if "videoFillMode" in data:
+    if data.get("videoFillMode") is not None:
         import capo_ivs_realtime.types.video_fill_mode
 
         out["video_fill_mode"] = (
@@ -85,10 +85,10 @@ def deserialize_json(data: dict) -> GridConfiguration:
                 data["videoFillMode"]
             )
         )
-    if "gridGap" in data:
+    if data.get("gridGap") is not None:
         out["grid_gap"] = data["gridGap"]
     else:
         out["grid_gap"] = 0
-    if "participantOrderAttribute" in data:
+    if data.get("participantOrderAttribute") is not None:
         out["participant_order_attribute"] = data["participantOrderAttribute"]
     return out

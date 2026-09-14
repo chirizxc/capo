@@ -51,15 +51,15 @@ def serialize_json(value: EmailResponseAIAgentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EmailResponseAIAgentConfiguration:
     out: EmailResponseAIAgentConfiguration = {}  # type: ignore[typeddict-item]
-    if "emailResponseAIPromptId" in data:
+    if data.get("emailResponseAIPromptId") is not None:
         out["email_response_ai_prompt_id"] = data["emailResponseAIPromptId"]
-    if "emailQueryReformulationAIPromptId" in data:
+    if data.get("emailQueryReformulationAIPromptId") is not None:
         out["email_query_reformulation_ai_prompt_id"] = data[
             "emailQueryReformulationAIPromptId"
         ]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
-    if "associationConfigurations" in data:
+    if data.get("associationConfigurations") is not None:
         import capo_qconnect.types.association_configuration_list
 
         out["association_configurations"] = (

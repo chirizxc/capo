@@ -63,11 +63,11 @@ def serialize_aws_json_1_1(value: CreateIcebergTableInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIcebergTableInput:
     out: CreateIcebergTableInput = {}  # type: ignore[typeddict-item]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     else:
         raise DeserializationError("CreateIcebergTableInput.location required")
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_glue.types.iceberg_schema
 
         out["schema"] = capo_glue.types.iceberg_schema.deserialize_aws_json_1_1(
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIcebergTableInput:
         )
     else:
         raise DeserializationError("CreateIcebergTableInput.schema required")
-    if "PartitionSpec" in data:
+    if data.get("PartitionSpec") is not None:
         import capo_glue.types.iceberg_partition_spec
 
         out["partition_spec"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIcebergTableInput:
                 data["PartitionSpec"]
             )
         )
-    if "WriteOrder" in data:
+    if data.get("WriteOrder") is not None:
         import capo_glue.types.iceberg_sort_order
 
         out["write_order"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIcebergTableInput:
                 data["WriteOrder"]
             )
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_glue.types.string_to_string_map
 
         out["properties"] = (

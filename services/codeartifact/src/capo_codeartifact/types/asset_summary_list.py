@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AssetSummaryList:
 
     out: AssetSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeartifact.types.asset_summary.deserialize_json(item))
     return out

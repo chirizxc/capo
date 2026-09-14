@@ -32,7 +32,7 @@ def serialize_json(value: PrivacyImpact) -> dict:
 
 
 def deserialize_json(data: dict) -> PrivacyImpact:
-    if "differentialPrivacy" in data:
+    if data.get("differentialPrivacy") is not None:
         import capo_cleanrooms.types.differential_privacy_privacy_impact
 
         return {

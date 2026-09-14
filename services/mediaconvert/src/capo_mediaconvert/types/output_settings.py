@@ -27,7 +27,7 @@ def serialize_json(value: OutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> OutputSettings:
     out: OutputSettings = {}  # type: ignore[typeddict-item]
-    if "hlsSettings" in data:
+    if data.get("hlsSettings") is not None:
         import capo_mediaconvert.types.hls_settings
 
         out["hls_settings"] = capo_mediaconvert.types.hls_settings.deserialize_json(

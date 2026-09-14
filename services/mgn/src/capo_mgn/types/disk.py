@@ -27,9 +27,9 @@ def serialize_json(value: Disk) -> dict:
 
 def deserialize_json(data: dict) -> Disk:
     out: Disk = {}  # type: ignore[typeddict-item]
-    if "deviceName" in data:
+    if data.get("deviceName") is not None:
         out["device_name"] = data["deviceName"]
-    if "bytes" in data:
+    if data.get("bytes") is not None:
         out["bytes"] = data["bytes"]
     else:
         out["bytes"] = 0

@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: ProductCodeListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProductCodeListItem:
     out: ProductCodeListItem = {}  # type: ignore[typeddict-item]
-    if "ProductCodeId" in data:
+    if data.get("ProductCodeId") is not None:
         out["product_code_id"] = data["ProductCodeId"]
     else:
         raise DeserializationError("ProductCodeListItem.product_code_id required")
-    if "ProductCodeType" in data:
+    if data.get("ProductCodeType") is not None:
         import capo_license_manager.types.product_code_type
 
         out["product_code_type"] = (

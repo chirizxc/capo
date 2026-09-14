@@ -84,11 +84,11 @@ def serialize_aws_json_1_1(value: JobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobSummary:
     out: JobSummary = {}  # type: ignore[typeddict-item]
-    if "JobArn" in data:
+    if data.get("JobArn") is not None:
         out["job_arn"] = data["JobArn"]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobCategory" in data:
+    if data.get("JobCategory") is not None:
         import capo_sagemaker.types.job_category
 
         out["job_category"] = (
@@ -96,13 +96,13 @@ def deserialize_aws_json_1_1(data: dict) -> JobSummary:
                 data["JobCategory"]
             )
         )
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_sagemaker.types.job_status
 
         out["job_status"] = capo_sagemaker.types.job_status.deserialize_aws_json_1_1(
             data["JobStatus"]
         )
-    if "JobSecondaryStatus" in data:
+    if data.get("JobSecondaryStatus") is not None:
         import capo_sagemaker.types.job_secondary_status
 
         out["job_secondary_status"] = (
@@ -110,13 +110,13 @@ def deserialize_aws_json_1_1(data: dict) -> JobSummary:
                 data["JobSecondaryStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(

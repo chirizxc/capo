@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListClusterSchedulerConfigsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListClusterSchedulerConfigsResponse:
     out: ListClusterSchedulerConfigsResponse = {}  # type: ignore[typeddict-item]
-    if "ClusterSchedulerConfigSummaries" in data:
+    if data.get("ClusterSchedulerConfigSummaries") is not None:
         import capo_sagemaker.types.cluster_scheduler_config_summary_list
 
         out["cluster_scheduler_config_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListClusterSchedulerConfigsResponse:
                 data["ClusterSchedulerConfigSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DeployAsApplicationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeployAsApplicationConfiguration:
     out: DeployAsApplicationConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3ContentLocation" in data:
+    if data.get("S3ContentLocation") is not None:
         import capo_kinesis_analytics_v2.types.s3_content_base_location
 
         out["s3_content_location"] = (

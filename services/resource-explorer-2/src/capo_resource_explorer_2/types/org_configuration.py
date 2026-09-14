@@ -28,12 +28,12 @@ def serialize_json(value: OrgConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OrgConfiguration:
     out: OrgConfiguration = {}  # type: ignore[typeddict-item]
-    if "AWSServiceAccessStatus" in data:
+    if data.get("AWSServiceAccessStatus") is not None:
         out["aws_service_access_status"] = data["AWSServiceAccessStatus"]
     else:
         raise DeserializationError(
             "OrgConfiguration.aws_service_access_status required"
         )
-    if "ServiceLinkedRole" in data:
+    if data.get("ServiceLinkedRole") is not None:
         out["service_linked_role"] = data["ServiceLinkedRole"]
     return out

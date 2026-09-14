@@ -39,11 +39,11 @@ def serialize_json(value: ListConfigurationPolicyAssociationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListConfigurationPolicyAssociationsRequest:
     out: ListConfigurationPolicyAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_securityhub.types.association_filters
 
         out["filters"] = capo_securityhub.types.association_filters.deserialize_json(

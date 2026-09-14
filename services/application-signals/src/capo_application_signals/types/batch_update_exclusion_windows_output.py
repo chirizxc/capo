@@ -40,7 +40,7 @@ def serialize_json(value: BatchUpdateExclusionWindowsOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateExclusionWindowsOutput:
     out: BatchUpdateExclusionWindowsOutput = {}  # type: ignore[typeddict-item]
-    if "SloIds" in data:
+    if data.get("SloIds") is not None:
         import capo_application_signals.types.service_level_objective_ids
 
         out["slo_ids"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> BatchUpdateExclusionWindowsOutput:
         )
     else:
         raise DeserializationError("BatchUpdateExclusionWindowsOutput.slo_ids required")
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_application_signals.types.batch_update_exclusion_windows_errors
 
         out["errors"] = (

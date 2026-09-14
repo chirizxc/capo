@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: SvmEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SvmEndpoint:
     out: SvmEndpoint = {}  # type: ignore[typeddict-item]
-    if "DNSName" in data:
+    if data.get("DNSName") is not None:
         out["dns_name"] = data["DNSName"]
-    if "IpAddresses" in data:
+    if data.get("IpAddresses") is not None:
         import capo_fsx.types.ontap_endpoint_ip_addresses
 
         out["ip_addresses"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> SvmEndpoint:
                 data["IpAddresses"]
             )
         )
-    if "Ipv6Addresses" in data:
+    if data.get("Ipv6Addresses") is not None:
         import capo_fsx.types.ontap_endpoint_ip_addresses
 
         out["ipv6_addresses"] = (

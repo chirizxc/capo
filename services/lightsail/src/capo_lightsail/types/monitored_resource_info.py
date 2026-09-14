@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: MonitoredResourceInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoredResourceInfo:
     out: MonitoredResourceInfo = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (

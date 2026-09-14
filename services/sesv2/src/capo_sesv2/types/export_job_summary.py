@@ -60,9 +60,9 @@ def serialize_json(value: ExportJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> ExportJobSummary:
     out: ExportJobSummary = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "ExportSourceType" in data:
+    if data.get("ExportSourceType") is not None:
         import capo_sesv2.types.export_source_type
 
         out["export_source_type"] = (
@@ -70,19 +70,19 @@ def deserialize_json(data: dict) -> ExportJobSummary:
                 data["ExportSourceType"]
             )
         )
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_sesv2.types.job_status
 
         out["job_status"] = capo_sesv2.types.job_status.deserialize_json(
             data["JobStatus"]
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["created_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "CompletedTimestamp" in data:
+    if data.get("CompletedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["completed_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(

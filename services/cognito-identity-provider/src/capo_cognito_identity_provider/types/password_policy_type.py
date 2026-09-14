@@ -51,27 +51,27 @@ def serialize_aws_json_1_1(value: PasswordPolicyType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PasswordPolicyType:
     out: PasswordPolicyType = {}  # type: ignore[typeddict-item]
-    if "MinimumLength" in data:
+    if data.get("MinimumLength") is not None:
         out["minimum_length"] = data["MinimumLength"]
-    if "RequireUppercase" in data:
+    if data.get("RequireUppercase") is not None:
         out["require_uppercase"] = data["RequireUppercase"]
     else:
         out["require_uppercase"] = False
-    if "RequireLowercase" in data:
+    if data.get("RequireLowercase") is not None:
         out["require_lowercase"] = data["RequireLowercase"]
     else:
         out["require_lowercase"] = False
-    if "RequireNumbers" in data:
+    if data.get("RequireNumbers") is not None:
         out["require_numbers"] = data["RequireNumbers"]
     else:
         out["require_numbers"] = False
-    if "RequireSymbols" in data:
+    if data.get("RequireSymbols") is not None:
         out["require_symbols"] = data["RequireSymbols"]
     else:
         out["require_symbols"] = False
-    if "PasswordHistorySize" in data:
+    if data.get("PasswordHistorySize") is not None:
         out["password_history_size"] = data["PasswordHistorySize"]
-    if "TemporaryPasswordValidityDays" in data:
+    if data.get("TemporaryPasswordValidityDays") is not None:
         out["temporary_password_validity_days"] = data["TemporaryPasswordValidityDays"]
     else:
         out["temporary_password_validity_days"] = 0

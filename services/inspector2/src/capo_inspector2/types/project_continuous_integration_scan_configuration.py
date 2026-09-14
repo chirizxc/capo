@@ -44,7 +44,7 @@ def serialize_json(value: ProjectContinuousIntegrationScanConfiguration) -> dict
 
 def deserialize_json(data: dict) -> ProjectContinuousIntegrationScanConfiguration:
     out: ProjectContinuousIntegrationScanConfiguration = {}  # type: ignore[typeddict-item]
-    if "supportedEvent" in data:
+    if data.get("supportedEvent") is not None:
         import capo_inspector2.types.continuous_integration_scan_event
 
         out["supported_event"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ProjectContinuousIntegrationScanConfiguratio
                 data["supportedEvent"]
             )
         )
-    if "ruleSetCategories" in data:
+    if data.get("ruleSetCategories") is not None:
         import capo_inspector2.types.rule_set_categories
 
         out["rule_set_categories"] = (

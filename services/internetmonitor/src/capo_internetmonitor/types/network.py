@@ -22,11 +22,11 @@ def serialize_json(value: Network) -> dict:
 
 def deserialize_json(data: dict) -> Network:
     out: Network = {}  # type: ignore[typeddict-item]
-    if "ASName" in data:
+    if data.get("ASName") is not None:
         out["as_name"] = data["ASName"]
     else:
         raise DeserializationError("Network.as_name required")
-    if "ASNumber" in data:
+    if data.get("ASNumber") is not None:
         out["as_number"] = data["ASNumber"]
     else:
         raise DeserializationError("Network.as_number required")

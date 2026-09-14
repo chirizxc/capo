@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeleteInstanceProfileResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteInstanceProfileResponse:
     out: DeleteInstanceProfileResponse = {}  # type: ignore[typeddict-item]
-    if "InstanceProfile" in data:
+    if data.get("InstanceProfile") is not None:
         import capo_database_migration_service.types.instance_profile
 
         out["instance_profile"] = (

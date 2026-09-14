@@ -31,7 +31,7 @@ def serialize_json(value: BatchWriteResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchWriteResponse:
     out: BatchWriteResponse = {}  # type: ignore[typeddict-item]
-    if "Responses" in data:
+    if data.get("Responses") is not None:
         import capo_clouddirectory.types.batch_write_operation_response_list
 
         out["responses"] = (

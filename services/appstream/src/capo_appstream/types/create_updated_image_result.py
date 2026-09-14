@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: CreateUpdatedImageResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUpdatedImageResult:
     out: CreateUpdatedImageResult = {}  # type: ignore[typeddict-item]
-    if "image" in data:
+    if data.get("image") is not None:
         import capo_appstream.types.image
 
         out["image"] = capo_appstream.types.image.deserialize_aws_json_1_1(
             data["image"]
         )
-    if "canUpdateImage" in data:
+    if data.get("canUpdateImage") is not None:
         out["can_update_image"] = data["canUpdateImage"]
     return out

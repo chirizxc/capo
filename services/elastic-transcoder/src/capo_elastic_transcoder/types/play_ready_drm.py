@@ -57,16 +57,16 @@ def serialize_json(value: PlayReadyDrm) -> dict:
 
 def deserialize_json(data: dict) -> PlayReadyDrm:
     out: PlayReadyDrm = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "KeyMd5" in data:
+    if data.get("KeyMd5") is not None:
         out["key_md5"] = data["KeyMd5"]
-    if "KeyId" in data:
+    if data.get("KeyId") is not None:
         out["key_id"] = data["KeyId"]
-    if "InitializationVector" in data:
+    if data.get("InitializationVector") is not None:
         out["initialization_vector"] = data["InitializationVector"]
-    if "LicenseAcquisitionUrl" in data:
+    if data.get("LicenseAcquisitionUrl") is not None:
         out["license_acquisition_url"] = data["LicenseAcquisitionUrl"]
     return out

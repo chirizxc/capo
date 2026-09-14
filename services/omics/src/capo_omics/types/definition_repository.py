@@ -50,21 +50,21 @@ def serialize_json(value: DefinitionRepository) -> dict:
 
 def deserialize_json(data: dict) -> DefinitionRepository:
     out: DefinitionRepository = {}  # type: ignore[typeddict-item]
-    if "connectionArn" in data:
+    if data.get("connectionArn") is not None:
         out["connection_arn"] = data["connectionArn"]
     else:
         raise DeserializationError("DefinitionRepository.connection_arn required")
-    if "fullRepositoryId" in data:
+    if data.get("fullRepositoryId") is not None:
         out["full_repository_id"] = data["fullRepositoryId"]
     else:
         raise DeserializationError("DefinitionRepository.full_repository_id required")
-    if "sourceReference" in data:
+    if data.get("sourceReference") is not None:
         import capo_omics.types.source_reference
 
         out["source_reference"] = capo_omics.types.source_reference.deserialize_json(
             data["sourceReference"]
         )
-    if "excludeFilePatterns" in data:
+    if data.get("excludeFilePatterns") is not None:
         import capo_omics.types.exclude_file_pattern_list
 
         out["exclude_file_patterns"] = (

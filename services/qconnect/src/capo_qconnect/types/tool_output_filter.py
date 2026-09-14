@@ -37,11 +37,11 @@ def serialize_json(value: ToolOutputFilter) -> dict:
 
 def deserialize_json(data: dict) -> ToolOutputFilter:
     out: ToolOutputFilter = {}  # type: ignore[typeddict-item]
-    if "jsonPath" in data:
+    if data.get("jsonPath") is not None:
         out["json_path"] = data["jsonPath"]
     else:
         raise DeserializationError("ToolOutputFilter.json_path required")
-    if "outputConfiguration" in data:
+    if data.get("outputConfiguration") is not None:
         import capo_qconnect.types.tool_output_configuration
 
         out["output_configuration"] = (

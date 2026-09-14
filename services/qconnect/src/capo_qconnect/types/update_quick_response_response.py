@@ -29,7 +29,7 @@ def serialize_json(value: UpdateQuickResponseResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQuickResponseResponse:
     out: UpdateQuickResponseResponse = {}  # type: ignore[typeddict-item]
-    if "quickResponse" in data:
+    if data.get("quickResponse") is not None:
         import capo_qconnect.types.quick_response_data
 
         out["quick_response"] = (

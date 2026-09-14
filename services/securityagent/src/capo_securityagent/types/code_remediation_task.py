@@ -47,7 +47,7 @@ def serialize_json(value: CodeRemediationTask) -> dict:
 
 def deserialize_json(data: dict) -> CodeRemediationTask:
     out: CodeRemediationTask = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_securityagent.types.code_remediation_task_status
 
         out["status"] = (
@@ -57,9 +57,9 @@ def deserialize_json(data: dict) -> CodeRemediationTask:
         )
     else:
         raise DeserializationError("CodeRemediationTask.status required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "taskDetails" in data:
+    if data.get("taskDetails") is not None:
         import capo_securityagent.types.code_remediation_task_details_list
 
         out["task_details"] = (

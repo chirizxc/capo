@@ -59,7 +59,7 @@ def serialize_aws_json_1_0(value: ReservationUtilizationQuery) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReservationUtilizationQuery:
     out: ReservationUtilizationQuery = {}  # type: ignore[typeddict-item]
-    if "timeRange" in data:
+    if data.get("timeRange") is not None:
         import capo_bcm_dashboards.types.date_time_range
 
         out["time_range"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> ReservationUtilizationQuery:
         )
     else:
         raise DeserializationError("ReservationUtilizationQuery.time_range required")
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         import capo_bcm_dashboards.types.group_definitions
 
         out["group_by"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> ReservationUtilizationQuery:
                 data["groupBy"]
             )
         )
-    if "granularity" in data:
+    if data.get("granularity") is not None:
         import capo_bcm_dashboards.types.granularity
 
         out["granularity"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_0(data: dict) -> ReservationUtilizationQuery:
                 data["granularity"]
             )
         )
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_bcm_dashboards.types.expression
 
         out["filter"] = capo_bcm_dashboards.types.expression.deserialize_aws_json_1_0(

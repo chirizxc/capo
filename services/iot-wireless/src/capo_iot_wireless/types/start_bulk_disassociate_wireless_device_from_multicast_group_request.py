@@ -36,9 +36,9 @@ def deserialize_json(
     data: dict,
 ) -> StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest:
     out: StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_wireless.types.tag_list
 
         out["tags"] = capo_iot_wireless.types.tag_list.deserialize_json(data["Tags"])

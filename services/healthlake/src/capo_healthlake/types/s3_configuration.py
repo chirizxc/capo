@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: S3Configuration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> S3Configuration:
     out: S3Configuration = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("S3Configuration.s3_uri required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     else:
         raise DeserializationError("S3Configuration.kms_key_id required")

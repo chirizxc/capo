@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ClusterVersionList:
 
     out: ClusterVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.cluster_version_information.deserialize_json(item))
     return out

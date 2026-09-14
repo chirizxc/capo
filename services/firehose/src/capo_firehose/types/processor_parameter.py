@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ProcessorParameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProcessorParameter:
     out: ProcessorParameter = {}  # type: ignore[typeddict-item]
-    if "ParameterName" in data:
+    if data.get("ParameterName") is not None:
         import capo_firehose.types.processor_parameter_name
 
         out["parameter_name"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessorParameter:
         )
     else:
         raise DeserializationError("ProcessorParameter.parameter_name required")
-    if "ParameterValue" in data:
+    if data.get("ParameterValue") is not None:
         out["parameter_value"] = data["ParameterValue"]
     else:
         raise DeserializationError("ProcessorParameter.parameter_value required")

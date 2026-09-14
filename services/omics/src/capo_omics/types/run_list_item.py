@@ -98,44 +98,44 @@ def serialize_json(value: RunListItem) -> dict:
 
 def deserialize_json(data: dict) -> RunListItem:
     out: RunListItem = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
-    if "batchId" in data:
+    if data.get("batchId") is not None:
         out["batch_id"] = data["batchId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "storageCapacity" in data:
+    if data.get("storageCapacity") is not None:
         out["storage_capacity"] = data["storageCapacity"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.run_timestamp
 
         out["creation_time"] = capo_omics.types.run_timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_omics.types.run_timestamp
 
         out["start_time"] = capo_omics.types.run_timestamp.deserialize_json(
             data["startTime"]
         )
-    if "stopTime" in data:
+    if data.get("stopTime") is not None:
         import capo_omics.types.run_timestamp
 
         out["stop_time"] = capo_omics.types.run_timestamp.deserialize_json(
             data["stopTime"]
         )
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         out["storage_type"] = data["storageType"]
-    if "workflowVersionName" in data:
+    if data.get("workflowVersionName") is not None:
         out["workflow_version_name"] = data["workflowVersionName"]
-    if "workflowName" in data:
+    if data.get("workflowName") is not None:
         out["workflow_name"] = data["workflowName"]
     return out

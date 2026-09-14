@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> WorkflowList:
 
     out: WorkflowList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_omics.types.workflow_list_item.deserialize_json(item))
     return out

@@ -26,7 +26,7 @@ def serialize_json(value: Model) -> dict:
 
 
 def deserialize_json(data: dict) -> Model:
-    if "smithy" in data:
+    if data.get("smithy") is not None:
         return {"smithy": data["smithy"]}
     else:
         raise DeserializationError("Model: no recognized variant key")

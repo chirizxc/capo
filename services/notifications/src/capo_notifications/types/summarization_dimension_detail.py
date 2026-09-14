@@ -22,11 +22,11 @@ def serialize_json(value: SummarizationDimensionDetail) -> dict:
 
 def deserialize_json(data: dict) -> SummarizationDimensionDetail:
     out: SummarizationDimensionDetail = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SummarizationDimensionDetail.name required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("SummarizationDimensionDetail.value required")

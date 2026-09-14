@@ -56,7 +56,7 @@ def serialize_json(value: HeatMapAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> HeatMapAggregatedFieldWells:
     out: HeatMapAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "Rows" in data:
+    if data.get("Rows") is not None:
         import capo_quicksight.types.heat_map_dimension_field_list
 
         out["rows"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> HeatMapAggregatedFieldWells:
                 data["Rows"]
             )
         )
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_quicksight.types.heat_map_dimension_field_list
 
         out["columns"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> HeatMapAggregatedFieldWells:
                 data["Columns"]
             )
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.heat_map_measure_field_list
 
         out["values"] = (

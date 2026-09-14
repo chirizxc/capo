@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> DocumentThumbnailUrlMap:
     for key, value in data.items():
         import capo_workdocs.types.document_thumbnail_type
 
+        if value is None:
+            continue
         out[capo_workdocs.types.document_thumbnail_type.deserialize_json(key)] = value
     return out

@@ -33,10 +33,10 @@ def serialize_aws_json_1_0(value: SetDefaultMessageFeedbackEnabledResult) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> SetDefaultMessageFeedbackEnabledResult:
     out: SetDefaultMessageFeedbackEnabledResult = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetArn" in data:
+    if data.get("ConfigurationSetArn") is not None:
         out["configuration_set_arn"] = data["ConfigurationSetArn"]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "MessageFeedbackEnabled" in data:
+    if data.get("MessageFeedbackEnabled") is not None:
         out["message_feedback_enabled"] = data["MessageFeedbackEnabled"]
     return out

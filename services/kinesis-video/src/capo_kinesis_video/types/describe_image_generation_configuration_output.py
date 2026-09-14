@@ -31,7 +31,7 @@ def serialize_json(value: DescribeImageGenerationConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeImageGenerationConfigurationOutput:
     out: DescribeImageGenerationConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "ImageGenerationConfiguration" in data:
+    if data.get("ImageGenerationConfiguration") is not None:
         import capo_kinesis_video.types.image_generation_configuration
 
         out["image_generation_configuration"] = (

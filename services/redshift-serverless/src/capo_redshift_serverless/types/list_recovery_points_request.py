@@ -30,6 +30,10 @@ class ListRecoveryPointsRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListRecoveryPointsRequest) -> dict:
     out: dict = {}
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
     if "start_time" in value:
         import capo_redshift_serverless.types._prelude.timestamp
 
@@ -55,7 +59,11 @@ def serialize_aws_json_1_1(value: ListRecoveryPointsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRecoveryPointsRequest:
     out: ListRecoveryPointsRequest = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("startTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["start_time"] = (
@@ -63,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListRecoveryPointsRequest:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["end_time"] = (
@@ -71,8 +79,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListRecoveryPointsRequest:
                 data["endTime"]
             )
         )
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "namespaceArn" in data:
+    if data.get("namespaceArn") is not None:
         out["namespace_arn"] = data["namespaceArn"]
     return out

@@ -38,9 +38,9 @@ def serialize_json(value: CompositionThumbnailConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CompositionThumbnailConfiguration:
     out: CompositionThumbnailConfiguration = {}  # type: ignore[typeddict-item]
-    if "targetIntervalSeconds" in data:
+    if data.get("targetIntervalSeconds") is not None:
         out["target_interval_seconds"] = data["targetIntervalSeconds"]
-    if "storage" in data:
+    if data.get("storage") is not None:
         import capo_ivs_realtime.types.thumbnail_storage_type_list
 
         out["storage"] = (

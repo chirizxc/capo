@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: GetDeploymentOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetDeploymentOutput:
     out: GetDeploymentOutput = {}  # type: ignore[typeddict-item]
-    if "deployment" in data:
+    if data.get("deployment") is not None:
         import capo_proton.types.deployment
 
         out["deployment"] = capo_proton.types.deployment.deserialize_aws_json_1_0(

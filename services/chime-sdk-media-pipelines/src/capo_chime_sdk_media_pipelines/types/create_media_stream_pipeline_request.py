@@ -56,7 +56,7 @@ def serialize_json(value: CreateMediaStreamPipelineRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMediaStreamPipelineRequest:
     out: CreateMediaStreamPipelineRequest = {}  # type: ignore[typeddict-item]
-    if "Sources" in data:
+    if data.get("Sources") is not None:
         import capo_chime_sdk_media_pipelines.types.media_stream_source_list
 
         out["sources"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> CreateMediaStreamPipelineRequest:
         )
     else:
         raise DeserializationError("CreateMediaStreamPipelineRequest.sources required")
-    if "Sinks" in data:
+    if data.get("Sinks") is not None:
         import capo_chime_sdk_media_pipelines.types.media_stream_sink_list
 
         out["sinks"] = (
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> CreateMediaStreamPipelineRequest:
         )
     else:
         raise DeserializationError("CreateMediaStreamPipelineRequest.sinks required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_media_pipelines.types.tag_list
 
         out["tags"] = capo_chime_sdk_media_pipelines.types.tag_list.deserialize_json(

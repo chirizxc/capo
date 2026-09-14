@@ -27,8 +27,8 @@ def serialize_json(value: CreateComputeEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateComputeEnvironmentResponse:
     out: CreateComputeEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "computeEnvironmentName" in data:
+    if data.get("computeEnvironmentName") is not None:
         out["compute_environment_name"] = data["computeEnvironmentName"]
-    if "computeEnvironmentArn" in data:
+    if data.get("computeEnvironmentArn") is not None:
         out["compute_environment_arn"] = data["computeEnvironmentArn"]
     return out

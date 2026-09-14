@@ -24,7 +24,7 @@ def serialize_json(value: DisconnectRecoveryInstanceRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisconnectRecoveryInstanceRequest:
     out: DisconnectRecoveryInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "recoveryInstanceID" in data:
+    if data.get("recoveryInstanceID") is not None:
         out["recovery_instance_id"] = data["recoveryInstanceID"]
     else:
         raise DeserializationError(

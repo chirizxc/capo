@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: AssociateAdminAccountRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateAdminAccountRequest:
     out: AssociateAdminAccountRequest = {}  # type: ignore[typeddict-item]
-    if "AdminAccount" in data:
+    if data.get("AdminAccount") is not None:
         out["admin_account"] = data["AdminAccount"]
     else:
         raise DeserializationError(

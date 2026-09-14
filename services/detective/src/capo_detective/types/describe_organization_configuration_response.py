@@ -22,7 +22,7 @@ def serialize_json(value: DescribeOrganizationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOrganizationConfigurationResponse:
     out: DescribeOrganizationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "AutoEnable" in data:
+    if data.get("AutoEnable") is not None:
         out["auto_enable"] = data["AutoEnable"]
     else:
         out["auto_enable"] = False

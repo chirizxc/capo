@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AggregationResponseList:
 
     out: AggregationResponseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.aggregation_response.deserialize_json(item))
     return out

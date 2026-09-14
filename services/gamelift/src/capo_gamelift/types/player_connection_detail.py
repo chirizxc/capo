@@ -50,9 +50,9 @@ def serialize_aws_json_1_1(value: PlayerConnectionDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PlayerConnectionDetail:
     out: PlayerConnectionDetail = {}  # type: ignore[typeddict-item]
-    if "PlayerId" in data:
+    if data.get("PlayerId") is not None:
         out["player_id"] = data["PlayerId"]
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_gamelift.types.player_connection_endpoint_list
 
         out["endpoints"] = (
@@ -60,9 +60,9 @@ def deserialize_aws_json_1_1(data: dict) -> PlayerConnectionDetail:
                 data["Endpoints"]
             )
         )
-    if "PlayerGatewayToken" in data:
+    if data.get("PlayerGatewayToken") is not None:
         out["player_gateway_token"] = data["PlayerGatewayToken"]
-    if "Expiration" in data:
+    if data.get("Expiration") is not None:
         import capo_gamelift.types.timestamp
 
         out["expiration"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(

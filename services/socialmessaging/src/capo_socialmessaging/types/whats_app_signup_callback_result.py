@@ -38,9 +38,9 @@ def serialize_json(value: WhatsAppSignupCallbackResult) -> dict:
 
 def deserialize_json(data: dict) -> WhatsAppSignupCallbackResult:
     out: WhatsAppSignupCallbackResult = {}  # type: ignore[typeddict-item]
-    if "associateInProgressToken" in data:
+    if data.get("associateInProgressToken") is not None:
         out["associate_in_progress_token"] = data["associateInProgressToken"]
-    if "linkedAccountsWithIncompleteSetup" in data:
+    if data.get("linkedAccountsWithIncompleteSetup") is not None:
         import capo_socialmessaging.types.linked_account_with_incomplete_setup
 
         out["linked_accounts_with_incomplete_setup"] = (

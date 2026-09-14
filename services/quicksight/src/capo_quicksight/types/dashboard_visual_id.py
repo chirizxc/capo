@@ -36,15 +36,15 @@ def serialize_json(value: DashboardVisualId) -> dict:
 
 def deserialize_json(data: dict) -> DashboardVisualId:
     out: DashboardVisualId = {}  # type: ignore[typeddict-item]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
     else:
         raise DeserializationError("DashboardVisualId.dashboard_id required")
-    if "SheetId" in data:
+    if data.get("SheetId") is not None:
         out["sheet_id"] = data["SheetId"]
     else:
         raise DeserializationError("DashboardVisualId.sheet_id required")
-    if "VisualId" in data:
+    if data.get("VisualId") is not None:
         out["visual_id"] = data["VisualId"]
     else:
         raise DeserializationError("DashboardVisualId.visual_id required")

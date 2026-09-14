@@ -31,8 +31,8 @@ def serialize_json(value: ActionReviewPayloadFieldAllowedValue) -> dict:
 
 def deserialize_json(data: dict) -> ActionReviewPayloadFieldAllowedValue:
     out: ActionReviewPayloadFieldAllowedValue = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "displayValue" in data:
+    if data.get("displayValue") is not None:
         out["display_value"] = data["displayValue"]
     return out

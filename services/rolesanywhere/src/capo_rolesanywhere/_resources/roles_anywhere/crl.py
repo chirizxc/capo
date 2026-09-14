@@ -79,20 +79,22 @@ class Crl:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.import_crl_request.ImportCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["crl_data"] = crl_data
+        input_: capo_rolesanywhere.types.import_crl_request.ImportCrlRequest = {
+            "name": name,
+            "crl_data": crl_data,
+            "trust_anchor_arn": trust_anchor_arn,
+        }
         if enabled is not None:
             input_["enabled"] = enabled
         if tags is not None:
             input_["tags"] = tags
-        input_["trust_anchor_arn"] = trust_anchor_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -126,14 +128,16 @@ class Crl:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["crl_id"] = crl_id
+        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {
+            "crl_id": crl_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -173,8 +177,9 @@ class Crl:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.update_crl_request.UpdateCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["crl_id"] = crl_id
+        input_: capo_rolesanywhere.types.update_crl_request.UpdateCrlRequest = {
+            "crl_id": crl_id
+        }
         if name is not None:
             input_["name"] = name
         if crl_data is not None:
@@ -185,6 +190,7 @@ class Crl:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -219,14 +225,16 @@ class Crl:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["crl_id"] = crl_id
+        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {
+            "crl_id": crl_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -263,7 +271,7 @@ class Crl:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.list_request.ListRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rolesanywhere.types.list_request.ListRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -274,6 +282,7 @@ class Crl:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_crl(
@@ -308,14 +317,16 @@ class Crl:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["crl_id"] = crl_id
+        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {
+            "crl_id": crl_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_crl(
@@ -350,14 +361,16 @@ class Crl:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["crl_id"] = crl_id
+        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {
+            "crl_id": crl_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -406,20 +419,22 @@ class AsyncCrl:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.import_crl_request.ImportCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["crl_data"] = crl_data
+        input_: capo_rolesanywhere.types.import_crl_request.ImportCrlRequest = {
+            "name": name,
+            "crl_data": crl_data,
+            "trust_anchor_arn": trust_anchor_arn,
+        }
         if enabled is not None:
             input_["enabled"] = enabled
         if tags is not None:
             input_["tags"] = tags
-        input_["trust_anchor_arn"] = trust_anchor_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -454,14 +469,16 @@ class AsyncCrl:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["crl_id"] = crl_id
+        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {
+            "crl_id": crl_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -502,8 +519,9 @@ class AsyncCrl:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.update_crl_request.UpdateCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["crl_id"] = crl_id
+        input_: capo_rolesanywhere.types.update_crl_request.UpdateCrlRequest = {
+            "crl_id": crl_id
+        }
         if name is not None:
             input_["name"] = name
         if crl_data is not None:
@@ -514,6 +532,7 @@ class AsyncCrl:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -549,14 +568,16 @@ class AsyncCrl:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["crl_id"] = crl_id
+        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {
+            "crl_id": crl_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -594,7 +615,7 @@ class AsyncCrl:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.list_request.ListRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rolesanywhere.types.list_request.ListRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -605,6 +626,7 @@ class AsyncCrl:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_crl(
@@ -640,14 +662,16 @@ class AsyncCrl:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["crl_id"] = crl_id
+        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {
+            "crl_id": crl_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_crl(
@@ -683,12 +707,14 @@ class AsyncCrl:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {}  # type: ignore[typeddict-item]
-        input_["crl_id"] = crl_id
+        input_: capo_rolesanywhere.types.scalar_crl_request.ScalarCrlRequest = {
+            "crl_id": crl_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

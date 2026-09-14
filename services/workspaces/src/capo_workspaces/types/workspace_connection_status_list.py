@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> WorkspaceConnectionStatusList:
 
     out: WorkspaceConnectionStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.workspace_connection_status.deserialize_aws_json_1_1(
                 item

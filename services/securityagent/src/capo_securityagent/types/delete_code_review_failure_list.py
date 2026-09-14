@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DeleteCodeReviewFailureList:
 
     out: DeleteCodeReviewFailureList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityagent.types.delete_code_review_failure.deserialize_json(item)
         )

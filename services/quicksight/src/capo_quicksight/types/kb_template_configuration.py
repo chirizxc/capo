@@ -23,6 +23,6 @@ def serialize_json(value: KbTemplateConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KbTemplateConfiguration:
     out: KbTemplateConfiguration = {}  # type: ignore[typeddict-item]
-    if "template" in data:
+    if data.get("template") is not None:
         out["template"] = data["template"]
     return out

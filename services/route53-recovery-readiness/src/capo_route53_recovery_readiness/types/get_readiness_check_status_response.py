@@ -60,7 +60,7 @@ def serialize_json(value: GetReadinessCheckStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetReadinessCheckStatusResponse:
     out: GetReadinessCheckStatusResponse = {}  # type: ignore[typeddict-item]
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_route53_recovery_readiness.types.__list_of_message
 
         out["messages"] = (
@@ -68,9 +68,9 @@ def deserialize_json(data: dict) -> GetReadinessCheckStatusResponse:
                 data["messages"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "readiness" in data:
+    if data.get("readiness") is not None:
         import capo_route53_recovery_readiness.types.readiness
 
         out["readiness"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> GetReadinessCheckStatusResponse:
                 data["readiness"]
             )
         )
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_route53_recovery_readiness.types.__list_of_resource_result
 
         out["resources"] = (

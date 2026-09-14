@@ -36,19 +36,19 @@ def serialize_aws_json_1_1(value: UpdatePullRequestApprovalStateInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePullRequestApprovalStateInput:
     out: UpdatePullRequestApprovalStateInput = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
     else:
         raise DeserializationError(
             "UpdatePullRequestApprovalStateInput.pull_request_id required"
         )
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
     else:
         raise DeserializationError(
             "UpdatePullRequestApprovalStateInput.revision_id required"
         )
-    if "approvalState" in data:
+    if data.get("approvalState") is not None:
         import capo_codecommit.types.approval_state
 
         out["approval_state"] = (

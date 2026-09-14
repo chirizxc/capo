@@ -129,7 +129,7 @@ def serialize_aws_json_1_1(value: SavingsPlansPurchaseRecommendationDetail) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendationDetail:
     out: SavingsPlansPurchaseRecommendationDetail = {}  # type: ignore[typeddict-item]
-    if "SavingsPlansDetails" in data:
+    if data.get("SavingsPlansDetails") is not None:
         import capo_cost_explorer.types.savings_plans_details
 
         out["savings_plans_details"] = (
@@ -137,44 +137,44 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendationDe
                 data["SavingsPlansDetails"]
             )
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "UpfrontCost" in data:
+    if data.get("UpfrontCost") is not None:
         out["upfront_cost"] = data["UpfrontCost"]
-    if "EstimatedROI" in data:
+    if data.get("EstimatedROI") is not None:
         out["estimated_roi"] = data["EstimatedROI"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "EstimatedSPCost" in data:
+    if data.get("EstimatedSPCost") is not None:
         out["estimated_sp_cost"] = data["EstimatedSPCost"]
-    if "EstimatedOnDemandCost" in data:
+    if data.get("EstimatedOnDemandCost") is not None:
         out["estimated_on_demand_cost"] = data["EstimatedOnDemandCost"]
-    if "EstimatedOnDemandCostWithCurrentCommitment" in data:
+    if data.get("EstimatedOnDemandCostWithCurrentCommitment") is not None:
         out["estimated_on_demand_cost_with_current_commitment"] = data[
             "EstimatedOnDemandCostWithCurrentCommitment"
         ]
-    if "EstimatedSavingsAmount" in data:
+    if data.get("EstimatedSavingsAmount") is not None:
         out["estimated_savings_amount"] = data["EstimatedSavingsAmount"]
-    if "EstimatedSavingsPercentage" in data:
+    if data.get("EstimatedSavingsPercentage") is not None:
         out["estimated_savings_percentage"] = data["EstimatedSavingsPercentage"]
-    if "HourlyCommitmentToPurchase" in data:
+    if data.get("HourlyCommitmentToPurchase") is not None:
         out["hourly_commitment_to_purchase"] = data["HourlyCommitmentToPurchase"]
-    if "EstimatedAverageUtilization" in data:
+    if data.get("EstimatedAverageUtilization") is not None:
         out["estimated_average_utilization"] = data["EstimatedAverageUtilization"]
-    if "EstimatedMonthlySavingsAmount" in data:
+    if data.get("EstimatedMonthlySavingsAmount") is not None:
         out["estimated_monthly_savings_amount"] = data["EstimatedMonthlySavingsAmount"]
-    if "CurrentMinimumHourlyOnDemandSpend" in data:
+    if data.get("CurrentMinimumHourlyOnDemandSpend") is not None:
         out["current_minimum_hourly_on_demand_spend"] = data[
             "CurrentMinimumHourlyOnDemandSpend"
         ]
-    if "CurrentMaximumHourlyOnDemandSpend" in data:
+    if data.get("CurrentMaximumHourlyOnDemandSpend") is not None:
         out["current_maximum_hourly_on_demand_spend"] = data[
             "CurrentMaximumHourlyOnDemandSpend"
         ]
-    if "CurrentAverageHourlyOnDemandSpend" in data:
+    if data.get("CurrentAverageHourlyOnDemandSpend") is not None:
         out["current_average_hourly_on_demand_spend"] = data[
             "CurrentAverageHourlyOnDemandSpend"
         ]
-    if "RecommendationDetailId" in data:
+    if data.get("RecommendationDetailId") is not None:
         out["recommendation_detail_id"] = data["RecommendationDetailId"]
     return out

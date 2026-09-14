@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: WorkflowGraph) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkflowGraph:
     out: WorkflowGraph = {}  # type: ignore[typeddict-item]
-    if "Nodes" in data:
+    if data.get("Nodes") is not None:
         import capo_glue.types.node_list
 
         out["nodes"] = capo_glue.types.node_list.deserialize_aws_json_1_1(data["Nodes"])
-    if "Edges" in data:
+    if data.get("Edges") is not None:
         import capo_glue.types.edge_list
 
         out["edges"] = capo_glue.types.edge_list.deserialize_aws_json_1_1(data["Edges"])

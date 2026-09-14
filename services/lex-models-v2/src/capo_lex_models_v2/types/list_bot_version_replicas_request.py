@@ -47,11 +47,11 @@ def serialize_json(value: ListBotVersionReplicasRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListBotVersionReplicasRequest:
     out: ListBotVersionReplicasRequest = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_lex_models_v2.types.bot_version_replica_sort_by
 
         out["sort_by"] = (

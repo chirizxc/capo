@@ -42,9 +42,9 @@ def serialize_json(value: UpdateNodeInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNodeInput:
     out: UpdateNodeInput = {}  # type: ignore[typeddict-item]
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
-    if "LogPublishingConfiguration" in data:
+    if data.get("LogPublishingConfiguration") is not None:
         import capo_managedblockchain.types.node_log_publishing_configuration
 
         out["log_publishing_configuration"] = (

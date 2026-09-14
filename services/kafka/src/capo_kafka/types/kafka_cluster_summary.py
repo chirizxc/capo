@@ -47,7 +47,7 @@ def serialize_json(value: KafkaClusterSummary) -> dict:
 
 def deserialize_json(data: dict) -> KafkaClusterSummary:
     out: KafkaClusterSummary = {}  # type: ignore[typeddict-item]
-    if "amazonMskCluster" in data:
+    if data.get("amazonMskCluster") is not None:
         import capo_kafka.types.amazon_msk_cluster
 
         out["amazon_msk_cluster"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> KafkaClusterSummary:
                 data["amazonMskCluster"]
             )
         )
-    if "apacheKafkaCluster" in data:
+    if data.get("apacheKafkaCluster") is not None:
         import capo_kafka.types.apache_kafka_cluster
 
         out["apache_kafka_cluster"] = (
@@ -63,6 +63,6 @@ def deserialize_json(data: dict) -> KafkaClusterSummary:
                 data["apacheKafkaCluster"]
             )
         )
-    if "kafkaClusterAlias" in data:
+    if data.get("kafkaClusterAlias") is not None:
         out["kafka_cluster_alias"] = data["kafkaClusterAlias"]
     return out

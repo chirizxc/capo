@@ -86,39 +86,39 @@ def serialize_json(value: AssessmentFrameworkMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentFrameworkMetadata:
     out: AssessmentFrameworkMetadata = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_auditmanager.types.framework_type
 
         out["type"] = capo_auditmanager.types.framework_type.deserialize_json(
             data["type"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "logo" in data:
+    if data.get("logo") is not None:
         out["logo"] = data["logo"]
-    if "complianceType" in data:
+    if data.get("complianceType") is not None:
         out["compliance_type"] = data["complianceType"]
-    if "controlsCount" in data:
+    if data.get("controlsCount") is not None:
         out["controls_count"] = data["controlsCount"]
     else:
         out["controls_count"] = 0
-    if "controlSetsCount" in data:
+    if data.get("controlSetsCount") is not None:
         out["control_sets_count"] = data["controlSetsCount"]
     else:
         out["control_sets_count"] = 0
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_auditmanager.types.timestamp
 
         out["created_at"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_auditmanager.types.timestamp
 
         out["last_updated_at"] = capo_auditmanager.types.timestamp.deserialize_json(

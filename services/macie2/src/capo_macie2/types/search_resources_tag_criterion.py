@@ -44,7 +44,7 @@ def serialize_json(value: SearchResourcesTagCriterion) -> dict:
 
 def deserialize_json(data: dict) -> SearchResourcesTagCriterion:
     out: SearchResourcesTagCriterion = {}  # type: ignore[typeddict-item]
-    if "comparator" in data:
+    if data.get("comparator") is not None:
         import capo_macie2.types.search_resources_comparator
 
         out["comparator"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> SearchResourcesTagCriterion:
                 data["comparator"]
             )
         )
-    if "tagValues" in data:
+    if data.get("tagValues") is not None:
         import capo_macie2.types.__list_of_search_resources_tag_criterion_pair
 
         out["tag_values"] = (

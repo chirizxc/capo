@@ -90,13 +90,13 @@ def serialize_aws_json_1_1(value: DatasetImportJob) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetImportJob:
     out: DatasetImportJob = {}  # type: ignore[typeddict-item]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "datasetImportJobArn" in data:
+    if data.get("datasetImportJobArn") is not None:
         out["dataset_import_job_arn"] = data["datasetImportJobArn"]
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_personalize.types.data_source
 
         out["data_source"] = (
@@ -104,11 +104,11 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetImportJob:
                 data["dataSource"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetImportJob:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -124,9 +124,9 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetImportJob:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "importMode" in data:
+    if data.get("importMode") is not None:
         import capo_personalize.types.import_mode
 
         out["import_mode"] = (
@@ -134,6 +134,6 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetImportJob:
                 data["importMode"]
             )
         )
-    if "publishAttributionMetricsToS3" in data:
+    if data.get("publishAttributionMetricsToS3") is not None:
         out["publish_attribution_metrics_to_s3"] = data["publishAttributionMetricsToS3"]
     return out

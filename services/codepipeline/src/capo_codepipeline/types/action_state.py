@@ -58,9 +58,9 @@ def serialize_aws_json_1_1(value: ActionState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionState:
     out: ActionState = {}  # type: ignore[typeddict-item]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
-    if "currentRevision" in data:
+    if data.get("currentRevision") is not None:
         import capo_codepipeline.types.action_revision
 
         out["current_revision"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionState:
                 data["currentRevision"]
             )
         )
-    if "latestExecution" in data:
+    if data.get("latestExecution") is not None:
         import capo_codepipeline.types.action_execution
 
         out["latest_execution"] = (
@@ -76,8 +76,8 @@ def deserialize_aws_json_1_1(data: dict) -> ActionState:
                 data["latestExecution"]
             )
         )
-    if "entityUrl" in data:
+    if data.get("entityUrl") is not None:
         out["entity_url"] = data["entityUrl"]
-    if "revisionUrl" in data:
+    if data.get("revisionUrl") is not None:
         out["revision_url"] = data["revisionUrl"]
     return out

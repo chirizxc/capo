@@ -149,11 +149,11 @@ def serialize_aws_json_1_1(value: S3CsvSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3CsvSource:
     out: S3CsvSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3CsvSource.name required")
-    if "Paths" in data:
+    if data.get("Paths") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["paths"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3CsvSource:
         )
     else:
         raise DeserializationError("S3CsvSource.paths required")
-    if "CompressionType" in data:
+    if data.get("CompressionType") is not None:
         import capo_glue.types.compression_type
 
         out["compression_type"] = (
@@ -171,7 +171,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3CsvSource:
                 data["CompressionType"]
             )
         )
-    if "Exclusions" in data:
+    if data.get("Exclusions") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["exclusions"] = (
@@ -179,17 +179,17 @@ def deserialize_aws_json_1_1(data: dict) -> S3CsvSource:
                 data["Exclusions"]
             )
         )
-    if "GroupSize" in data:
+    if data.get("GroupSize") is not None:
         out["group_size"] = data["GroupSize"]
-    if "GroupFiles" in data:
+    if data.get("GroupFiles") is not None:
         out["group_files"] = data["GroupFiles"]
-    if "Recurse" in data:
+    if data.get("Recurse") is not None:
         out["recurse"] = data["Recurse"]
-    if "MaxBand" in data:
+    if data.get("MaxBand") is not None:
         out["max_band"] = data["MaxBand"]
-    if "MaxFilesInBand" in data:
+    if data.get("MaxFilesInBand") is not None:
         out["max_files_in_band"] = data["MaxFilesInBand"]
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.s3_direct_source_additional_options
 
         out["additional_options"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3CsvSource:
                 data["AdditionalOptions"]
             )
         )
-    if "Separator" in data:
+    if data.get("Separator") is not None:
         import capo_glue.types.separator
 
         out["separator"] = capo_glue.types.separator.deserialize_aws_json_1_1(
@@ -205,9 +205,9 @@ def deserialize_aws_json_1_1(data: dict) -> S3CsvSource:
         )
     else:
         raise DeserializationError("S3CsvSource.separator required")
-    if "Escaper" in data:
+    if data.get("Escaper") is not None:
         out["escaper"] = data["Escaper"]
-    if "QuoteChar" in data:
+    if data.get("QuoteChar") is not None:
         import capo_glue.types.quote_char
 
         out["quote_char"] = capo_glue.types.quote_char.deserialize_aws_json_1_1(
@@ -215,19 +215,19 @@ def deserialize_aws_json_1_1(data: dict) -> S3CsvSource:
         )
     else:
         raise DeserializationError("S3CsvSource.quote_char required")
-    if "Multiline" in data:
+    if data.get("Multiline") is not None:
         out["multiline"] = data["Multiline"]
-    if "WithHeader" in data:
+    if data.get("WithHeader") is not None:
         out["with_header"] = data["WithHeader"]
-    if "WriteHeader" in data:
+    if data.get("WriteHeader") is not None:
         out["write_header"] = data["WriteHeader"]
-    if "SkipFirst" in data:
+    if data.get("SkipFirst") is not None:
         out["skip_first"] = data["SkipFirst"]
-    if "OptimizePerformance" in data:
+    if data.get("OptimizePerformance") is not None:
         out["optimize_performance"] = data["OptimizePerformance"]
     else:
         out["optimize_performance"] = False
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

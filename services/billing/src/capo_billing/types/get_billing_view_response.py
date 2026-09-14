@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: GetBillingViewResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetBillingViewResponse:
     out: GetBillingViewResponse = {}  # type: ignore[typeddict-item]
-    if "billingView" in data:
+    if data.get("billingView") is not None:
         import capo_billing.types.billing_view_element
 
         out["billing_view"] = (

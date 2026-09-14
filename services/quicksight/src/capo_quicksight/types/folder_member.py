@@ -34,9 +34,9 @@ def serialize_json(value: FolderMember) -> dict:
 
 def deserialize_json(data: dict) -> FolderMember:
     out: FolderMember = {}  # type: ignore[typeddict-item]
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
-    if "MemberType" in data:
+    if data.get("MemberType") is not None:
         import capo_quicksight.types.member_type
 
         out["member_type"] = capo_quicksight.types.member_type.deserialize_json(

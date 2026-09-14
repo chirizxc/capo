@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DailyVolumes:
 
     out: DailyVolumes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.daily_volume.deserialize_json(item))
     return out

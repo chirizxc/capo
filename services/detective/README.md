@@ -13,10 +13,25 @@ from capo_detective import AsyncDetectiveClient
 
 
 async def main():
-    async with AsyncDetectiveClient() as s3:
+    async with AsyncDetectiveClient() as detective:
         # Example: call the accept_invitation operation
-        response = await s3.accept_invitation()
+        response = await detective.accept_invitation()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_detective import AsyncDetectiveClient
+
+
+async def main():
+    async with AsyncDetectiveClient() as detective:
+        # Example: paginate over list_datasource_packages
+        async for item in detective.iter_list_datasource_packages():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_detective.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncDetectiveClient() as s3:
+    async with AsyncDetectiveClient() as detective:
         try:
-            await s3.accept_invitation()
+            await detective.accept_invitation()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_detective import AsyncDetectiveClient
 
 
 async def main():
-    async with AsyncDetectiveClient() as s3:
+    async with AsyncDetectiveClient() as detective:
         # Default: 3 attempts for every operation
-        response = await s3.accept_invitation()
+        response = await detective.accept_invitation()
 
         # Override per operation
-        response = await s3.accept_invitation(config_overrides={"retry_max_attempts": 5})
+        response = await detective.accept_invitation(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_invitation(config_overrides={"retry_max_attempts": 1})
+        response = await detective.accept_invitation(config_overrides={"retry_max_attempts": 1})
 ```

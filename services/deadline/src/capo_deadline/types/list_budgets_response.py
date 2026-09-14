@@ -33,7 +33,7 @@ def serialize_json(value: ListBudgetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListBudgetsResponse:
     out: ListBudgetsResponse = {}  # type: ignore[typeddict-item]
-    if "budgets" in data:
+    if data.get("budgets") is not None:
         import capo_deadline.types.budget_summaries
 
         out["budgets"] = capo_deadline.types.budget_summaries.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListBudgetsResponse:
         )
     else:
         raise DeserializationError("ListBudgetsResponse.budgets required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

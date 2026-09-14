@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CategoricalParameters:
 
     out: CategoricalParameters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.categorical_parameter.deserialize_aws_json_1_1(item)
         )

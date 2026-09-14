@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: OptimizationJobModelSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OptimizationJobModelSource:
     out: OptimizationJobModelSource = {}  # type: ignore[typeddict-item]
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_sagemaker.types.optimization_job_model_source_s3
 
         out["s3"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> OptimizationJobModelSource:
                 data["S3"]
             )
         )
-    if "SageMakerModel" in data:
+    if data.get("SageMakerModel") is not None:
         import capo_sagemaker.types.optimization_sage_maker_model
 
         out["sage_maker_model"] = (

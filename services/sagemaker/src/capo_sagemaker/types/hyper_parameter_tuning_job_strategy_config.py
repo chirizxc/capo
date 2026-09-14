@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: HyperParameterTuningJobStrategyConfig) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobStrategyConfig:
     out: HyperParameterTuningJobStrategyConfig = {}  # type: ignore[typeddict-item]
-    if "HyperbandStrategyConfig" in data:
+    if data.get("HyperbandStrategyConfig") is not None:
         import capo_sagemaker.types.hyperband_strategy_config
 
         out["hyperband_strategy_config"] = (

@@ -54,19 +54,19 @@ def serialize_json(value: QueueMember) -> dict:
 
 def deserialize_json(data: dict) -> QueueMember:
     out: QueueMember = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("QueueMember.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("QueueMember.queue_id required")
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
     else:
         raise DeserializationError("QueueMember.principal_id required")
-    if "principalType" in data:
+    if data.get("principalType") is not None:
         import capo_deadline.types.deadline_principal_type
 
         out["principal_type"] = (
@@ -76,11 +76,11 @@ def deserialize_json(data: dict) -> QueueMember:
         )
     else:
         raise DeserializationError("QueueMember.principal_type required")
-    if "identityStoreId" in data:
+    if data.get("identityStoreId") is not None:
         out["identity_store_id"] = data["identityStoreId"]
     else:
         raise DeserializationError("QueueMember.identity_store_id required")
-    if "membershipLevel" in data:
+    if data.get("membershipLevel") is not None:
         import capo_deadline.types.membership_level
 
         out["membership_level"] = capo_deadline.types.membership_level.deserialize_json(

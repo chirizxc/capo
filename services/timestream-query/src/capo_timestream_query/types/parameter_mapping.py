@@ -29,11 +29,11 @@ def serialize_aws_json_1_0(value: ParameterMapping) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ParameterMapping:
     out: ParameterMapping = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ParameterMapping.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_timestream_query.types.type
 
         out["type"] = capo_timestream_query.types.type.deserialize_aws_json_1_0(

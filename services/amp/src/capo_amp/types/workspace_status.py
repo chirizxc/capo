@@ -24,7 +24,7 @@ def serialize_json(value: WorkspaceStatus) -> dict:
 
 def deserialize_json(data: dict) -> WorkspaceStatus:
     out: WorkspaceStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
     else:
         raise DeserializationError("WorkspaceStatus.status_code required")

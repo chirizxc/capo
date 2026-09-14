@@ -22,14 +22,22 @@ def serialize_json(value: DataColor) -> dict:
     if "color" in value:
         out["Color"] = value["color"]
     if "data_value" in value:
-        out["DataValue"] = value["data_value"]
+        out["DataValue"] = (
+            "NaN"
+            if value["data_value"] != value["data_value"]
+            else "Infinity"
+            if value["data_value"] == float("inf")
+            else "-Infinity"
+            if value["data_value"] == float("-inf")
+            else value["data_value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> DataColor:
     out: DataColor = {}  # type: ignore[typeddict-item]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
-    if "DataValue" in data:
-        out["data_value"] = data["DataValue"]
+    if data.get("DataValue") is not None:
+        out["data_value"] = float(data["DataValue"])
     return out

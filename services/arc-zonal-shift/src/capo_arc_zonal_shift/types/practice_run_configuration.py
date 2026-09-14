@@ -75,7 +75,7 @@ def serialize_json(value: PracticeRunConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PracticeRunConfiguration:
     out: PracticeRunConfiguration = {}  # type: ignore[typeddict-item]
-    if "blockingAlarms" in data:
+    if data.get("blockingAlarms") is not None:
         import capo_arc_zonal_shift.types.blocking_alarms
 
         out["blocking_alarms"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> PracticeRunConfiguration:
                 data["blockingAlarms"]
             )
         )
-    if "outcomeAlarms" in data:
+    if data.get("outcomeAlarms") is not None:
         import capo_arc_zonal_shift.types.outcome_alarms
 
         out["outcome_alarms"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> PracticeRunConfiguration:
         )
     else:
         raise DeserializationError("PracticeRunConfiguration.outcome_alarms required")
-    if "blockedWindows" in data:
+    if data.get("blockedWindows") is not None:
         import capo_arc_zonal_shift.types.blocked_windows
 
         out["blocked_windows"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> PracticeRunConfiguration:
                 data["blockedWindows"]
             )
         )
-    if "allowedWindows" in data:
+    if data.get("allowedWindows") is not None:
         import capo_arc_zonal_shift.types.allowed_windows
 
         out["allowed_windows"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> PracticeRunConfiguration:
                 data["allowedWindows"]
             )
         )
-    if "blockedDates" in data:
+    if data.get("blockedDates") is not None:
         import capo_arc_zonal_shift.types.blocked_dates
 
         out["blocked_dates"] = (

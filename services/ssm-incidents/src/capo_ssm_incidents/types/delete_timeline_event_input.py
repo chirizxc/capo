@@ -28,13 +28,13 @@ def serialize_json(value: DeleteTimelineEventInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteTimelineEventInput:
     out: DeleteTimelineEventInput = {}  # type: ignore[typeddict-item]
-    if "incidentRecordArn" in data:
+    if data.get("incidentRecordArn") is not None:
         out["incident_record_arn"] = data["incidentRecordArn"]
     else:
         raise DeserializationError(
             "DeleteTimelineEventInput.incident_record_arn required"
         )
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("DeleteTimelineEventInput.event_id required")

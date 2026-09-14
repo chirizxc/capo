@@ -53,7 +53,7 @@ def serialize_json(value: MetricGraph) -> dict:
 
 def deserialize_json(data: dict) -> MetricGraph:
     out: MetricGraph = {}  # type: ignore[typeddict-item]
-    if "MetricDataQueries" in data:
+    if data.get("MetricDataQueries") is not None:
         import capo_application_signals.types.metric_data_queries
 
         out["metric_data_queries"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> MetricGraph:
                 data["MetricDataQueries"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["start_time"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> MetricGraph:
                 data["StartTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["end_time"] = (

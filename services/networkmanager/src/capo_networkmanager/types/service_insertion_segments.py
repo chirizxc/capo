@@ -43,7 +43,7 @@ def serialize_json(value: ServiceInsertionSegments) -> dict:
 
 def deserialize_json(data: dict) -> ServiceInsertionSegments:
     out: ServiceInsertionSegments = {}  # type: ignore[typeddict-item]
-    if "SendVia" in data:
+    if data.get("SendVia") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["send_via"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> ServiceInsertionSegments:
                 data["SendVia"]
             )
         )
-    if "SendTo" in data:
+    if data.get("SendTo") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["send_to"] = (

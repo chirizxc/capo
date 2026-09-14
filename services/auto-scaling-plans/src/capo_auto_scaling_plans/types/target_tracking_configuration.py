@@ -58,7 +58,15 @@ def serialize_aws_json_1_1(value: TargetTrackingConfiguration) -> dict:
                 value["customized_scaling_metric_specification"]
             )
         )
-    out["TargetValue"] = value["target_value"]
+    out["TargetValue"] = (
+        "NaN"
+        if value["target_value"] != value["target_value"]
+        else "Infinity"
+        if value["target_value"] == float("inf")
+        else "-Infinity"
+        if value["target_value"] == float("-inf")
+        else value["target_value"]
+    )
     if "disable_scale_in" in value:
         out["DisableScaleIn"] = value["disable_scale_in"]
     if "scale_out_cooldown" in value:
@@ -72,7 +80,7 @@ def serialize_aws_json_1_1(value: TargetTrackingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetTrackingConfiguration:
     out: TargetTrackingConfiguration = {}  # type: ignore[typeddict-item]
-    if "PredefinedScalingMetricSpecification" in data:
+    if data.get("PredefinedScalingMetricSpecification") is not None:
         import capo_auto_scaling_plans.types.predefined_scaling_metric_specification
 
         out["predefined_scaling_metric_specification"] = (
@@ -80,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetTrackingConfiguration:
                 data["PredefinedScalingMetricSpecification"]
             )
         )
-    if "CustomizedScalingMetricSpecification" in data:
+    if data.get("CustomizedScalingMetricSpecification") is not None:
         import capo_auto_scaling_plans.types.customized_scaling_metric_specification
 
         out["customized_scaling_metric_specification"] = (
@@ -88,16 +96,16 @@ def deserialize_aws_json_1_1(data: dict) -> TargetTrackingConfiguration:
                 data["CustomizedScalingMetricSpecification"]
             )
         )
-    if "TargetValue" in data:
-        out["target_value"] = data["TargetValue"]
+    if data.get("TargetValue") is not None:
+        out["target_value"] = float(data["TargetValue"])
     else:
         raise DeserializationError("TargetTrackingConfiguration.target_value required")
-    if "DisableScaleIn" in data:
+    if data.get("DisableScaleIn") is not None:
         out["disable_scale_in"] = data["DisableScaleIn"]
-    if "ScaleOutCooldown" in data:
+    if data.get("ScaleOutCooldown") is not None:
         out["scale_out_cooldown"] = data["ScaleOutCooldown"]
-    if "ScaleInCooldown" in data:
+    if data.get("ScaleInCooldown") is not None:
         out["scale_in_cooldown"] = data["ScaleInCooldown"]
-    if "EstimatedInstanceWarmup" in data:
+    if data.get("EstimatedInstanceWarmup") is not None:
         out["estimated_instance_warmup"] = data["EstimatedInstanceWarmup"]
     return out

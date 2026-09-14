@@ -27,7 +27,15 @@ def serialize_json(value: FieldValueUnion) -> dict:
     out: dict = {}
     out["BooleanValue"] = value.get("boolean_value", False)
     if "double_value" in value:
-        out["DoubleValue"] = value["double_value"]
+        out["DoubleValue"] = (
+            "NaN"
+            if value["double_value"] != value["double_value"]
+            else "Infinity"
+            if value["double_value"] == float("inf")
+            else "-Infinity"
+            if value["double_value"] == float("-inf")
+            else value["double_value"]
+        )
     if "empty_value" in value:
         import capo_connect.types.empty_field_value
 
@@ -41,18 +49,18 @@ def serialize_json(value: FieldValueUnion) -> dict:
 
 def deserialize_json(data: dict) -> FieldValueUnion:
     out: FieldValueUnion = {}  # type: ignore[typeddict-item]
-    if "BooleanValue" in data:
+    if data.get("BooleanValue") is not None:
         out["boolean_value"] = data["BooleanValue"]
     else:
         out["boolean_value"] = False
-    if "DoubleValue" in data:
-        out["double_value"] = data["DoubleValue"]
-    if "EmptyValue" in data:
+    if data.get("DoubleValue") is not None:
+        out["double_value"] = float(data["DoubleValue"])
+    if data.get("EmptyValue") is not None:
         import capo_connect.types.empty_field_value
 
         out["empty_value"] = capo_connect.types.empty_field_value.deserialize_json(
             data["EmptyValue"]
         )
-    if "StringValue" in data:
+    if data.get("StringValue") is not None:
         out["string_value"] = data["StringValue"]
     return out

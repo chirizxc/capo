@@ -42,9 +42,9 @@ def serialize_json(value: UpdateTemplateGroupAccessControlEntryRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTemplateGroupAccessControlEntryRequest:
     out: UpdateTemplateGroupAccessControlEntryRequest = {}  # type: ignore[typeddict-item]
-    if "GroupDisplayName" in data:
+    if data.get("GroupDisplayName") is not None:
         out["group_display_name"] = data["GroupDisplayName"]
-    if "AccessRights" in data:
+    if data.get("AccessRights") is not None:
         import capo_pca_connector_ad.types.access_rights
 
         out["access_rights"] = (

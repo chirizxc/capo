@@ -30,8 +30,8 @@ def serialize_json(value: DeleteContainerRecipeResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteContainerRecipeResponse:
     out: DeleteContainerRecipeResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "containerRecipeArn" in data:
+    if data.get("containerRecipeArn") is not None:
         out["container_recipe_arn"] = data["containerRecipeArn"]
     return out

@@ -127,27 +127,27 @@ def serialize_json(value: NetworkMigrationMapperSegment) -> dict:
 
 def deserialize_json(data: dict) -> NetworkMigrationMapperSegment:
     out: NetworkMigrationMapperSegment = {}  # type: ignore[typeddict-item]
-    if "jobID" in data:
+    if data.get("jobID") is not None:
         out["job_id"] = data["jobID"]
-    if "networkMigrationExecutionID" in data:
+    if data.get("networkMigrationExecutionID") is not None:
         out["network_migration_execution_id"] = data["networkMigrationExecutionID"]
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
-    if "segmentID" in data:
+    if data.get("segmentID") is not None:
         out["segment_id"] = data["segmentID"]
-    if "segmentType" in data:
+    if data.get("segmentType") is not None:
         out["segment_type"] = data["segmentType"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "logicalID" in data:
+    if data.get("logicalID") is not None:
         out["logical_id"] = data["logicalID"]
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         import capo_mgn.types.checksum
 
         out["checksum"] = capo_mgn.types.checksum.deserialize_json(data["checksum"])
-    if "outputS3Configuration" in data:
+    if data.get("outputS3Configuration") is not None:
         import capo_mgn.types.s3_configuration
 
         out["output_s3_configuration"] = (
@@ -155,27 +155,27 @@ def deserialize_json(data: dict) -> NetworkMigrationMapperSegment:
                 data["outputS3Configuration"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["created_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["updated_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "scopeTags" in data:
+    if data.get("scopeTags") is not None:
         import capo_mgn.types.scope_tags_map
 
         out["scope_tags"] = capo_mgn.types.scope_tags_map.deserialize_json(
             data["scopeTags"]
         )
-    if "targetAccount" in data:
+    if data.get("targetAccount") is not None:
         out["target_account"] = data["targetAccount"]
-    if "referencedSegments" in data:
+    if data.get("referencedSegments") is not None:
         import capo_mgn.types.referenced_segments_list
 
         out["referenced_segments"] = (

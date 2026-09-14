@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PipeList:
 
     out: PipeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pipes.types.pipe.deserialize_json(item))
     return out

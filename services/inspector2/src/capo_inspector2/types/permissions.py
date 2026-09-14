@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Permissions:
 
     out: Permissions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.permission.deserialize_json(item))
     return out

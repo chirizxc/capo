@@ -72,8 +72,9 @@ class TableBucketReplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_table_bucket_replication_request.DeleteTableBucketReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.delete_table_bucket_replication_request.DeleteTableBucketReplicationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
         if version_token is not None:
             input_["version_token"] = version_token
 
@@ -82,6 +83,7 @@ class TableBucketReplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_table_bucket_replication(
@@ -121,14 +123,16 @@ class TableBucketReplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_bucket_replication_request.GetTableBucketReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.get_table_bucket_replication_request.GetTableBucketReplicationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_table_bucket_replication(
@@ -174,17 +178,19 @@ class TableBucketReplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_bucket_replication_request.PutTableBucketReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.put_table_bucket_replication_request.PutTableBucketReplicationRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "configuration": configuration,
+        }
         if version_token is not None:
             input_["version_token"] = version_token
-        input_["configuration"] = configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -232,8 +238,9 @@ class AsyncTableBucketReplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_table_bucket_replication_request.DeleteTableBucketReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.delete_table_bucket_replication_request.DeleteTableBucketReplicationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
         if version_token is not None:
             input_["version_token"] = version_token
 
@@ -242,6 +249,7 @@ class AsyncTableBucketReplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_bucket_replication(
@@ -282,14 +290,16 @@ class AsyncTableBucketReplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_bucket_replication_request.GetTableBucketReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.get_table_bucket_replication_request.GetTableBucketReplicationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_table_bucket_replication(
@@ -336,15 +346,17 @@ class AsyncTableBucketReplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_bucket_replication_request.PutTableBucketReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.put_table_bucket_replication_request.PutTableBucketReplicationRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "configuration": configuration,
+        }
         if version_token is not None:
             input_["version_token"] = version_token
-        input_["configuration"] = configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

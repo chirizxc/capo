@@ -30,8 +30,8 @@ def serialize_json(value: AwsDynamoDbTableStreamSpecification) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableStreamSpecification:
     out: AwsDynamoDbTableStreamSpecification = {}  # type: ignore[typeddict-item]
-    if "StreamEnabled" in data:
+    if data.get("StreamEnabled") is not None:
         out["stream_enabled"] = data["StreamEnabled"]
-    if "StreamViewType" in data:
+    if data.get("StreamViewType") is not None:
         out["stream_view_type"] = data["StreamViewType"]
     return out

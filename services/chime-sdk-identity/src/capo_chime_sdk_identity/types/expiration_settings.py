@@ -36,11 +36,11 @@ def serialize_json(value: ExpirationSettings) -> dict:
 
 def deserialize_json(data: dict) -> ExpirationSettings:
     out: ExpirationSettings = {}  # type: ignore[typeddict-item]
-    if "ExpirationDays" in data:
+    if data.get("ExpirationDays") is not None:
         out["expiration_days"] = data["ExpirationDays"]
     else:
         raise DeserializationError("ExpirationSettings.expiration_days required")
-    if "ExpirationCriterion" in data:
+    if data.get("ExpirationCriterion") is not None:
         import capo_chime_sdk_identity.types.expiration_criterion
 
         out["expiration_criterion"] = (

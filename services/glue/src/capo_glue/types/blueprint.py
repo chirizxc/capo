@@ -94,17 +94,17 @@ def serialize_aws_json_1_1(value: Blueprint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Blueprint:
     out: Blueprint = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedOn" in data:
+    if data.get("CreatedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["created_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["CreatedOn"]
         )
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["last_modified_on"] = (
@@ -112,21 +112,21 @@ def deserialize_aws_json_1_1(data: dict) -> Blueprint:
                 data["LastModifiedOn"]
             )
         )
-    if "ParameterSpec" in data:
+    if data.get("ParameterSpec") is not None:
         out["parameter_spec"] = data["ParameterSpec"]
-    if "BlueprintLocation" in data:
+    if data.get("BlueprintLocation") is not None:
         out["blueprint_location"] = data["BlueprintLocation"]
-    if "BlueprintServiceLocation" in data:
+    if data.get("BlueprintServiceLocation") is not None:
         out["blueprint_service_location"] = data["BlueprintServiceLocation"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.blueprint_status
 
         out["status"] = capo_glue.types.blueprint_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "LastActiveDefinition" in data:
+    if data.get("LastActiveDefinition") is not None:
         import capo_glue.types.last_active_definition
 
         out["last_active_definition"] = (

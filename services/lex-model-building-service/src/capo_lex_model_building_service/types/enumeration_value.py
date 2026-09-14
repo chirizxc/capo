@@ -37,11 +37,11 @@ def serialize_json(value: EnumerationValue) -> dict:
 
 def deserialize_json(data: dict) -> EnumerationValue:
     out: EnumerationValue = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("EnumerationValue.value required")
-    if "synonyms" in data:
+    if data.get("synonyms") is not None:
         import capo_lex_model_building_service.types.synonym_list
 
         out["synonyms"] = (

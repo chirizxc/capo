@@ -31,7 +31,7 @@ def serialize_json(value: JobActionOptions) -> dict:
 
 def deserialize_json(data: dict) -> JobActionOptions:
     out: JobActionOptions = {}  # type: ignore[typeddict-item]
-    if "ValidateAddress" in data:
+    if data.get("ValidateAddress") is not None:
         import capo_location.types.validate_address_action_options
 
         out["validate_address"] = (

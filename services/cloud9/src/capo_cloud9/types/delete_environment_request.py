@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteEnvironmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteEnvironmentRequest:
     out: DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("DeleteEnvironmentRequest.environment_id required")

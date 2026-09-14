@@ -57,7 +57,7 @@ def serialize_json(value: SyncConfig) -> dict:
 
 def deserialize_json(data: dict) -> SyncConfig:
     out: SyncConfig = {}  # type: ignore[typeddict-item]
-    if "conflictHandler" in data:
+    if data.get("conflictHandler") is not None:
         import capo_appsync.types.conflict_handler_type
 
         out["conflict_handler"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> SyncConfig:
                 data["conflictHandler"]
             )
         )
-    if "conflictDetection" in data:
+    if data.get("conflictDetection") is not None:
         import capo_appsync.types.conflict_detection_type
 
         out["conflict_detection"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> SyncConfig:
                 data["conflictDetection"]
             )
         )
-    if "lambdaConflictHandlerConfig" in data:
+    if data.get("lambdaConflictHandlerConfig") is not None:
         import capo_appsync.types.lambda_conflict_handler_config
 
         out["lambda_conflict_handler_config"] = (

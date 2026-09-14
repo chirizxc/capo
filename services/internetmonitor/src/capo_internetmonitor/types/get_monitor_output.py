@@ -71,14 +71,14 @@ def serialize_json(value: GetMonitorOutput) -> dict:
         value["resources"]
     )
     out["Status"] = value["status"]
-    import capo_internetmonitor.types._prelude.timestamp
+    import capo_internetmonitor._protocol.serialize
 
-    out["CreatedAt"] = capo_internetmonitor.types._prelude.timestamp.serialize_json(
+    out["CreatedAt"] = capo_internetmonitor._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
-    import capo_internetmonitor.types._prelude.timestamp
+    import capo_internetmonitor._protocol.serialize
 
-    out["ModifiedAt"] = capo_internetmonitor.types._prelude.timestamp.serialize_json(
+    out["ModifiedAt"] = capo_internetmonitor._protocol.serialize.fmt_date_time(
         value["modified_at"]
     )
     if "processing_status" in value:
@@ -114,15 +114,15 @@ def serialize_json(value: GetMonitorOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetMonitorOutput:
     out: GetMonitorOutput = {}  # type: ignore[typeddict-item]
-    if "MonitorName" in data:
+    if data.get("MonitorName") is not None:
         out["monitor_name"] = data["MonitorName"]
     else:
         raise DeserializationError("GetMonitorOutput.monitor_name required")
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
     else:
         raise DeserializationError("GetMonitorOutput.monitor_arn required")
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_internetmonitor.types.set_of_ar_ns
 
         out["resources"] = capo_internetmonitor.types.set_of_ar_ns.deserialize_json(
@@ -130,41 +130,37 @@ def deserialize_json(data: dict) -> GetMonitorOutput:
         )
     else:
         raise DeserializationError("GetMonitorOutput.resources required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("GetMonitorOutput.status required")
-    if "CreatedAt" in data:
-        import capo_internetmonitor.types._prelude.timestamp
+    if data.get("CreatedAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_internetmonitor.types._prelude.timestamp.deserialize_json(
-                data["CreatedAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["CreatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetMonitorOutput.created_at required")
-    if "ModifiedAt" in data:
-        import capo_internetmonitor.types._prelude.timestamp
+    if data.get("ModifiedAt") is not None:
+        import datetime
 
-        out["modified_at"] = (
-            capo_internetmonitor.types._prelude.timestamp.deserialize_json(
-                data["ModifiedAt"]
-            )
+        out["modified_at"] = datetime.datetime.fromisoformat(
+            data["ModifiedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetMonitorOutput.modified_at required")
-    if "ProcessingStatus" in data:
+    if data.get("ProcessingStatus") is not None:
         out["processing_status"] = data["ProcessingStatus"]
-    if "ProcessingStatusInfo" in data:
+    if data.get("ProcessingStatusInfo") is not None:
         out["processing_status_info"] = data["ProcessingStatusInfo"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_internetmonitor.types.tag_map
 
         out["tags"] = capo_internetmonitor.types.tag_map.deserialize_json(data["Tags"])
-    if "MaxCityNetworksToMonitor" in data:
+    if data.get("MaxCityNetworksToMonitor") is not None:
         out["max_city_networks_to_monitor"] = data["MaxCityNetworksToMonitor"]
-    if "InternetMeasurementsLogDelivery" in data:
+    if data.get("InternetMeasurementsLogDelivery") is not None:
         import capo_internetmonitor.types.internet_measurements_log_delivery
 
         out["internet_measurements_log_delivery"] = (
@@ -172,9 +168,9 @@ def deserialize_json(data: dict) -> GetMonitorOutput:
                 data["InternetMeasurementsLogDelivery"]
             )
         )
-    if "TrafficPercentageToMonitor" in data:
+    if data.get("TrafficPercentageToMonitor") is not None:
         out["traffic_percentage_to_monitor"] = data["TrafficPercentageToMonitor"]
-    if "HealthEventsConfig" in data:
+    if data.get("HealthEventsConfig") is not None:
         import capo_internetmonitor.types.health_events_config
 
         out["health_events_config"] = (

@@ -143,7 +143,7 @@ def serialize_aws_json_1_1(value: ProvisionedProductPlanDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductPlanDetails:
     out: ProvisionedProductPlanDetails = {}  # type: ignore[typeddict-item]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_service_catalog.types.created_time
 
         out["created_time"] = (
@@ -151,19 +151,19 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductPlanDetails:
                 data["CreatedTime"]
             )
         )
-    if "PathId" in data:
+    if data.get("PathId") is not None:
         out["path_id"] = data["PathId"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "PlanName" in data:
+    if data.get("PlanName") is not None:
         out["plan_name"] = data["PlanName"]
-    if "PlanId" in data:
+    if data.get("PlanId") is not None:
         out["plan_id"] = data["PlanId"]
-    if "ProvisionProductId" in data:
+    if data.get("ProvisionProductId") is not None:
         out["provision_product_id"] = data["ProvisionProductId"]
-    if "ProvisionProductName" in data:
+    if data.get("ProvisionProductName") is not None:
         out["provision_product_name"] = data["ProvisionProductName"]
-    if "PlanType" in data:
+    if data.get("PlanType") is not None:
         import capo_service_catalog.types.provisioned_product_plan_type
 
         out["plan_type"] = (
@@ -171,9 +171,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductPlanDetails:
                 data["PlanType"]
             )
         )
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_catalog.types.provisioned_product_plan_status
 
         out["status"] = (
@@ -181,7 +181,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductPlanDetails:
                 data["Status"]
             )
         )
-    if "UpdatedTime" in data:
+    if data.get("UpdatedTime") is not None:
         import capo_service_catalog.types.updated_time
 
         out["updated_time"] = (
@@ -189,7 +189,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductPlanDetails:
                 data["UpdatedTime"]
             )
         )
-    if "NotificationArns" in data:
+    if data.get("NotificationArns") is not None:
         import capo_service_catalog.types.notification_arns
 
         out["notification_arns"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductPlanDetails:
                 data["NotificationArns"]
             )
         )
-    if "ProvisioningParameters" in data:
+    if data.get("ProvisioningParameters") is not None:
         import capo_service_catalog.types.update_provisioning_parameters
 
         out["provisioning_parameters"] = (
@@ -205,12 +205,12 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductPlanDetails:
                 data["ProvisioningParameters"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_service_catalog.types.tags
 
         out["tags"] = capo_service_catalog.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

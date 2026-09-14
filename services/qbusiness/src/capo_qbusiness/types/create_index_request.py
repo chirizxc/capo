@@ -64,21 +64,21 @@ def serialize_json(value: CreateIndexRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIndexRequest:
     out: CreateIndexRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateIndexRequest.display_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.index_type
 
         out["type"] = capo_qbusiness.types.index_type.deserialize_json(data["type"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qbusiness.types.tags
 
         out["tags"] = capo_qbusiness.types.tags.deserialize_json(data["tags"])
-    if "capacityConfiguration" in data:
+    if data.get("capacityConfiguration") is not None:
         import capo_qbusiness.types.index_capacity_configuration
 
         out["capacity_configuration"] = (
@@ -86,6 +86,6 @@ def deserialize_json(data: dict) -> CreateIndexRequest:
                 data["capacityConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

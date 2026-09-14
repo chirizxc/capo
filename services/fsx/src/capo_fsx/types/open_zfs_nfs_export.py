@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: OpenZFSNfsExport) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenZFSNfsExport:
     out: OpenZFSNfsExport = {}  # type: ignore[typeddict-item]
-    if "ClientConfigurations" in data:
+    if data.get("ClientConfigurations") is not None:
         import capo_fsx.types.open_zfs_client_configurations
 
         out["client_configurations"] = (

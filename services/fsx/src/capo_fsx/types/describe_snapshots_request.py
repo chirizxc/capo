@@ -49,22 +49,22 @@ def serialize_aws_json_1_1(value: DescribeSnapshotsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSnapshotsRequest:
     out: DescribeSnapshotsRequest = {}  # type: ignore[typeddict-item]
-    if "SnapshotIds" in data:
+    if data.get("SnapshotIds") is not None:
         import capo_fsx.types.snapshot_ids
 
         out["snapshot_ids"] = capo_fsx.types.snapshot_ids.deserialize_aws_json_1_1(
             data["SnapshotIds"]
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_fsx.types.snapshot_filters
 
         out["filters"] = capo_fsx.types.snapshot_filters.deserialize_aws_json_1_1(
             data["Filters"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "IncludeShared" in data:
+    if data.get("IncludeShared") is not None:
         out["include_shared"] = data["IncludeShared"]
     return out

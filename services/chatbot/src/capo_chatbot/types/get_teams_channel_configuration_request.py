@@ -26,7 +26,7 @@ def serialize_json(value: GetTeamsChannelConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetTeamsChannelConfigurationRequest:
     out: GetTeamsChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
     else:
         raise DeserializationError(

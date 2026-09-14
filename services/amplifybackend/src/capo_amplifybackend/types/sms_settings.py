@@ -23,6 +23,6 @@ def serialize_json(value: SmsSettings) -> dict:
 
 def deserialize_json(data: dict) -> SmsSettings:
     out: SmsSettings = {}  # type: ignore[typeddict-item]
-    if "smsMessage" in data:
+    if data.get("smsMessage") is not None:
         out["sms_message"] = data["smsMessage"]
     return out

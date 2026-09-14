@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> SavingsPlansToAdd:
 
     out: SavingsPlansToAdd = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.savings_plans.deserialize_aws_json_1_1(item)
         )

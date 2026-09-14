@@ -13,9 +13,9 @@ from capo_data_pipeline import AsyncDataPipelineClient
 
 
 async def main():
-    async with AsyncDataPipelineClient() as s3:
+    async with AsyncDataPipelineClient() as data_pipeline:
         # Example: call the activate_pipeline operation
-        response = await s3.activate_pipeline()
+        response = await data_pipeline.activate_pipeline()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_data_pipeline import AsyncDataPipelineClient
 
 
 async def main():
-    async with AsyncDataPipelineClient() as s3:
+    async with AsyncDataPipelineClient() as data_pipeline:
         # Example: paginate over describe_objects
-        async for item in s3.iter_describe_objects():
+        async for item in data_pipeline.iter_describe_objects():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_data_pipeline.error import InternalServiceError
 
 
 async def main():
-    async with AsyncDataPipelineClient() as s3:
+    async with AsyncDataPipelineClient() as data_pipeline:
         try:
-            await s3.activate_pipeline()
+            await data_pipeline.activate_pipeline()
         except InternalServiceError as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_data_pipeline import AsyncDataPipelineClient
 
 
 async def main():
-    async with AsyncDataPipelineClient() as s3:
+    async with AsyncDataPipelineClient() as data_pipeline:
         # Default: 3 attempts for every operation
-        response = await s3.activate_pipeline()
+        response = await data_pipeline.activate_pipeline()
 
         # Override per operation
-        response = await s3.activate_pipeline(config_overrides={"retry_max_attempts": 5})
+        response = await data_pipeline.activate_pipeline(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.activate_pipeline(config_overrides={"retry_max_attempts": 1})
+        response = await data_pipeline.activate_pipeline(config_overrides={"retry_max_attempts": 1})
 ```

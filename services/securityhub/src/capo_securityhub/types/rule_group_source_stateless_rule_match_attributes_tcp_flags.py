@@ -39,13 +39,13 @@ def serialize_json(value: RuleGroupSourceStatelessRuleMatchAttributesTcpFlags) -
 
 def deserialize_json(data: dict) -> RuleGroupSourceStatelessRuleMatchAttributesTcpFlags:
     out: RuleGroupSourceStatelessRuleMatchAttributesTcpFlags = {}  # type: ignore[typeddict-item]
-    if "Flags" in data:
+    if data.get("Flags") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["flags"] = capo_securityhub.types.non_empty_string_list.deserialize_json(
             data["Flags"]
         )
-    if "Masks" in data:
+    if data.get("Masks") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["masks"] = capo_securityhub.types.non_empty_string_list.deserialize_json(

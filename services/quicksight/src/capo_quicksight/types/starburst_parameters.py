@@ -76,19 +76,19 @@ def serialize_json(value: StarburstParameters) -> dict:
 
 def deserialize_json(data: dict) -> StarburstParameters:
     out: StarburstParameters = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("StarburstParameters.host required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("StarburstParameters.port required")
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("StarburstParameters.catalog required")
-    if "ProductType" in data:
+    if data.get("ProductType") is not None:
         import capo_quicksight.types.starburst_product_type
 
         out["product_type"] = (
@@ -96,9 +96,9 @@ def deserialize_json(data: dict) -> StarburstParameters:
                 data["ProductType"]
             )
         )
-    if "DatabaseAccessControlRole" in data:
+    if data.get("DatabaseAccessControlRole") is not None:
         out["database_access_control_role"] = data["DatabaseAccessControlRole"]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_quicksight.types.authentication_type
 
         out["authentication_type"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> StarburstParameters:
                 data["AuthenticationType"]
             )
         )
-    if "OAuthParameters" in data:
+    if data.get("OAuthParameters") is not None:
         import capo_quicksight.types.o_auth_parameters
 
         out["o_auth_parameters"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: EnvironmentPropertyDescriptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnvironmentPropertyDescriptions:
     out: EnvironmentPropertyDescriptions = {}  # type: ignore[typeddict-item]
-    if "PropertyGroupDescriptions" in data:
+    if data.get("PropertyGroupDescriptions") is not None:
         import capo_kinesis_analytics_v2.types.property_groups
 
         out["property_group_descriptions"] = (

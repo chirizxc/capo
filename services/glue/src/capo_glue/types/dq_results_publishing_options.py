@@ -45,12 +45,12 @@ def serialize_aws_json_1_1(value: DQResultsPublishingOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DQResultsPublishingOptions:
     out: DQResultsPublishingOptions = {}  # type: ignore[typeddict-item]
-    if "EvaluationContext" in data:
+    if data.get("EvaluationContext") is not None:
         out["evaluation_context"] = data["EvaluationContext"]
-    if "ResultsS3Prefix" in data:
+    if data.get("ResultsS3Prefix") is not None:
         out["results_s3_prefix"] = data["ResultsS3Prefix"]
-    if "CloudWatchMetricsEnabled" in data:
+    if data.get("CloudWatchMetricsEnabled") is not None:
         out["cloud_watch_metrics_enabled"] = data["CloudWatchMetricsEnabled"]
-    if "ResultsPublishingEnabled" in data:
+    if data.get("ResultsPublishingEnabled") is not None:
         out["results_publishing_enabled"] = data["ResultsPublishingEnabled"]
     return out

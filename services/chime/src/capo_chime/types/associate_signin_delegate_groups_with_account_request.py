@@ -35,7 +35,7 @@ def serialize_json(value: AssociateSigninDelegateGroupsWithAccountRequest) -> di
 
 def deserialize_json(data: dict) -> AssociateSigninDelegateGroupsWithAccountRequest:
     out: AssociateSigninDelegateGroupsWithAccountRequest = {}  # type: ignore[typeddict-item]
-    if "SigninDelegateGroups" in data:
+    if data.get("SigninDelegateGroups") is not None:
         import capo_chime.types.signin_delegate_group_list
 
         out["signin_delegate_groups"] = (

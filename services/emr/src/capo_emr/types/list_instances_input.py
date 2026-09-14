@@ -75,11 +75,11 @@ def serialize_aws_json_1_1(value: ListInstancesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListInstancesInput:
     out: ListInstancesInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "InstanceGroupId" in data:
+    if data.get("InstanceGroupId") is not None:
         out["instance_group_id"] = data["InstanceGroupId"]
-    if "InstanceGroupTypes" in data:
+    if data.get("InstanceGroupTypes") is not None:
         import capo_emr.types.instance_group_type_list
 
         out["instance_group_types"] = (
@@ -87,9 +87,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListInstancesInput:
                 data["InstanceGroupTypes"]
             )
         )
-    if "InstanceFleetId" in data:
+    if data.get("InstanceFleetId") is not None:
         out["instance_fleet_id"] = data["InstanceFleetId"]
-    if "InstanceFleetType" in data:
+    if data.get("InstanceFleetType") is not None:
         import capo_emr.types.instance_fleet_type
 
         out["instance_fleet_type"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListInstancesInput:
                 data["InstanceFleetType"]
             )
         )
-    if "InstanceStates" in data:
+    if data.get("InstanceStates") is not None:
         import capo_emr.types.instance_state_list
 
         out["instance_states"] = (
@@ -105,6 +105,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListInstancesInput:
                 data["InstanceStates"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

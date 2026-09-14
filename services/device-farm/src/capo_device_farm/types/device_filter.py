@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: DeviceFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceFilter:
     out: DeviceFilter = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         import capo_device_farm.types.device_filter_attribute
 
         out["attribute"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceFilter:
         )
     else:
         raise DeserializationError("DeviceFilter.attribute required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_device_farm.types.rule_operator
 
         out["operator"] = capo_device_farm.types.rule_operator.deserialize_aws_json_1_1(
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceFilter:
         )
     else:
         raise DeserializationError("DeviceFilter.operator required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_device_farm.types.device_filter_values
 
         out["values"] = (

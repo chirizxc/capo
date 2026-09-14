@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: DescribeServicesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeServicesRequest:
     out: DescribeServicesRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
-    if "FormatVersion" in data:
+    if data.get("FormatVersion") is not None:
         out["format_version"] = data["FormatVersion"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

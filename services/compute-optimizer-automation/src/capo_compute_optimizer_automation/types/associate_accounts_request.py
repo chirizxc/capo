@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: AssociateAccountsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateAccountsRequest:
     out: AssociateAccountsRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_compute_optimizer_automation.types.account_id_list
 
         out["account_ids"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> AssociateAccountsRequest:
         )
     else:
         raise DeserializationError("AssociateAccountsRequest.account_ids required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

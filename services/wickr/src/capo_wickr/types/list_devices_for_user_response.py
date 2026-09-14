@@ -31,9 +31,9 @@ def serialize_json(value: ListDevicesForUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDevicesForUserResponse:
     out: ListDevicesForUserResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "devices" in data:
+    if data.get("devices") is not None:
         import capo_wickr.types.devices
 
         out["devices"] = capo_wickr.types.devices.deserialize_json(data["devices"])

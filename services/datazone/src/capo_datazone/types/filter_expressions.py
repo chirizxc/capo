@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FilterExpressions:
 
     out: FilterExpressions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.filter_expression.deserialize_json(item))
     return out

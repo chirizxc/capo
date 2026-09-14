@@ -32,12 +32,12 @@ def serialize_json(value: FontSize) -> dict:
 
 def deserialize_json(data: dict) -> FontSize:
     out: FontSize = {}  # type: ignore[typeddict-item]
-    if "Relative" in data:
+    if data.get("Relative") is not None:
         import capo_quicksight.types.relative_font_size
 
         out["relative"] = capo_quicksight.types.relative_font_size.deserialize_json(
             data["Relative"]
         )
-    if "Absolute" in data:
+    if data.get("Absolute") is not None:
         out["absolute"] = data["Absolute"]
     return out

@@ -32,7 +32,7 @@ def serialize_json(value: ChatParticipantRoleConfig) -> dict:
 
 def deserialize_json(data: dict) -> ChatParticipantRoleConfig:
     out: ChatParticipantRoleConfig = {}  # type: ignore[typeddict-item]
-    if "ParticipantTimerConfigList" in data:
+    if data.get("ParticipantTimerConfigList") is not None:
         import capo_connect.types.participant_timer_config_list
 
         out["participant_timer_config_list"] = (

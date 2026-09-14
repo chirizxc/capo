@@ -58,21 +58,21 @@ def serialize_aws_json_1_1(value: StartReplicationMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartReplicationMessage:
     out: StartReplicationMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationConfigArn" in data:
+    if data.get("ReplicationConfigArn") is not None:
         out["replication_config_arn"] = data["ReplicationConfigArn"]
     else:
         raise DeserializationError(
             "StartReplicationMessage.replication_config_arn required"
         )
-    if "StartReplicationType" in data:
+    if data.get("StartReplicationType") is not None:
         out["start_replication_type"] = data["StartReplicationType"]
     else:
         raise DeserializationError(
             "StartReplicationMessage.start_replication_type required"
         )
-    if "PremigrationAssessmentSettings" in data:
+    if data.get("PremigrationAssessmentSettings") is not None:
         out["premigration_assessment_settings"] = data["PremigrationAssessmentSettings"]
-    if "CdcStartTime" in data:
+    if data.get("CdcStartTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["cdc_start_time"] = (
@@ -80,8 +80,8 @@ def deserialize_aws_json_1_1(data: dict) -> StartReplicationMessage:
                 data["CdcStartTime"]
             )
         )
-    if "CdcStartPosition" in data:
+    if data.get("CdcStartPosition") is not None:
         out["cdc_start_position"] = data["CdcStartPosition"]
-    if "CdcStopPosition" in data:
+    if data.get("CdcStopPosition") is not None:
         out["cdc_stop_position"] = data["CdcStopPosition"]
     return out

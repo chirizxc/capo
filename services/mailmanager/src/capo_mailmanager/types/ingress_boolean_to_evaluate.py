@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: IngressBooleanToEvaluate) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> IngressBooleanToEvaluate:
-    if "Analysis" in data:
+    if data.get("Analysis") is not None:
         import capo_mailmanager.types.ingress_analysis
 
         return {
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_0(data: dict) -> IngressBooleanToEvaluate:
                 data["Analysis"]
             )
         }
-    elif "IsInAddressList" in data:
+    elif data.get("IsInAddressList") is not None:
         import capo_mailmanager.types.ingress_is_in_address_list
 
         return {

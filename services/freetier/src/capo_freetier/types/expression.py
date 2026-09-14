@@ -51,23 +51,23 @@ def serialize_aws_json_1_0(value: Expression) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Expression:
     out: Expression = {}  # type: ignore[typeddict-item]
-    if "Or" in data:
+    if data.get("Or") is not None:
         import capo_freetier.types.expressions
 
         out["or"] = capo_freetier.types.expressions.deserialize_aws_json_1_0(data["Or"])
-    if "And" in data:
+    if data.get("And") is not None:
         import capo_freetier.types.expressions
 
         out["and"] = capo_freetier.types.expressions.deserialize_aws_json_1_0(
             data["And"]
         )
-    if "Not" in data:
+    if data.get("Not") is not None:
         import capo_freetier.types.expression
 
         out["not"] = capo_freetier.types.expression.deserialize_aws_json_1_0(
             data["Not"]
         )
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_freetier.types.dimension_values
 
         out["dimensions"] = (

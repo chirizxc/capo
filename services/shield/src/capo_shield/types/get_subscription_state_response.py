@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: GetSubscriptionStateResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSubscriptionStateResponse:
     out: GetSubscriptionStateResponse = {}  # type: ignore[typeddict-item]
-    if "SubscriptionState" in data:
+    if data.get("SubscriptionState") is not None:
         import capo_shield.types.subscription_state
 
         out["subscription_state"] = (

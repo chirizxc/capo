@@ -24,7 +24,7 @@ def serialize_json(value: DeleteStageRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteStageRequest:
     out: DeleteStageRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteStageRequest.arn required")

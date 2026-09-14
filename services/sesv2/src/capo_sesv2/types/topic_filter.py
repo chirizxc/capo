@@ -29,9 +29,9 @@ def serialize_json(value: TopicFilter) -> dict:
 
 def deserialize_json(data: dict) -> TopicFilter:
     out: TopicFilter = {}  # type: ignore[typeddict-item]
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
-    if "UseDefaultIfPreferenceUnavailable" in data:
+    if data.get("UseDefaultIfPreferenceUnavailable") is not None:
         out["use_default_if_preference_unavailable"] = data[
             "UseDefaultIfPreferenceUnavailable"
         ]

@@ -44,7 +44,7 @@ def serialize_json(value: EffectiveDeploymentStatusDetails) -> dict:
 
 def deserialize_json(data: dict) -> EffectiveDeploymentStatusDetails:
     out: EffectiveDeploymentStatusDetails = {}  # type: ignore[typeddict-item]
-    if "errorStack" in data:
+    if data.get("errorStack") is not None:
         import capo_greengrassv2.types.effective_deployment_error_stack
 
         out["error_stack"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> EffectiveDeploymentStatusDetails:
                 data["errorStack"]
             )
         )
-    if "errorTypes" in data:
+    if data.get("errorTypes") is not None:
         import capo_greengrassv2.types.effective_deployment_error_type_list
 
         out["error_types"] = (

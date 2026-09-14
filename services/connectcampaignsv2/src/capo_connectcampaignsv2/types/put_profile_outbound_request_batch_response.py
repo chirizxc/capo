@@ -42,7 +42,7 @@ def serialize_json(value: PutProfileOutboundRequestBatchResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutProfileOutboundRequestBatchResponse:
     out: PutProfileOutboundRequestBatchResponse = {}  # type: ignore[typeddict-item]
-    if "successfulRequests" in data:
+    if data.get("successfulRequests") is not None:
         import capo_connectcampaignsv2.types.successful_profile_outbound_request_list
 
         out["successful_requests"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> PutProfileOutboundRequestBatchResponse:
                 data["successfulRequests"]
             )
         )
-    if "failedRequests" in data:
+    if data.get("failedRequests") is not None:
         import capo_connectcampaignsv2.types.failed_profile_outbound_request_list
 
         out["failed_requests"] = (

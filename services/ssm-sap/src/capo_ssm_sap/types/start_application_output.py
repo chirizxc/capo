@@ -23,6 +23,6 @@ def serialize_json(value: StartApplicationOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartApplicationOutput:
     out: StartApplicationOutput = {}  # type: ignore[typeddict-item]
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     return out

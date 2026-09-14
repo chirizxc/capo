@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsRedshiftClusterClusterParameterStatusList
 
     out: AwsRedshiftClusterClusterParameterStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_redshift_cluster_cluster_parameter_status.deserialize_json(
                 item

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ParameterDefinitions) -> dict:
 def deserialize_json(data: dict) -> ParameterDefinitions:
     out: ParameterDefinitions = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_securityhub.types.parameter_definition
 
         out[key] = capo_securityhub.types.parameter_definition.deserialize_json(value)

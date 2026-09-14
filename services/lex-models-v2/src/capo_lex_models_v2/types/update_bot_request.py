@@ -79,17 +79,17 @@ def serialize_json(value: UpdateBotRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBotRequest:
     out: UpdateBotRequest = {}  # type: ignore[typeddict-item]
-    if "botName" in data:
+    if data.get("botName") is not None:
         out["bot_name"] = data["botName"]
     else:
         raise DeserializationError("UpdateBotRequest.bot_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("UpdateBotRequest.role_arn required")
-    if "dataPrivacy" in data:
+    if data.get("dataPrivacy") is not None:
         import capo_lex_models_v2.types.data_privacy
 
         out["data_privacy"] = capo_lex_models_v2.types.data_privacy.deserialize_json(
@@ -97,25 +97,25 @@ def deserialize_json(data: dict) -> UpdateBotRequest:
         )
     else:
         raise DeserializationError("UpdateBotRequest.data_privacy required")
-    if "idleSessionTTLInSeconds" in data:
+    if data.get("idleSessionTTLInSeconds") is not None:
         out["idle_session_ttl_in_seconds"] = data["idleSessionTTLInSeconds"]
     else:
         raise DeserializationError(
             "UpdateBotRequest.idle_session_ttl_in_seconds required"
         )
-    if "botType" in data:
+    if data.get("botType") is not None:
         import capo_lex_models_v2.types.bot_type
 
         out["bot_type"] = capo_lex_models_v2.types.bot_type.deserialize_json(
             data["botType"]
         )
-    if "botMembers" in data:
+    if data.get("botMembers") is not None:
         import capo_lex_models_v2.types.bot_members
 
         out["bot_members"] = capo_lex_models_v2.types.bot_members.deserialize_json(
             data["botMembers"]
         )
-    if "errorLogSettings" in data:
+    if data.get("errorLogSettings") is not None:
         import capo_lex_models_v2.types.error_log_settings
 
         out["error_log_settings"] = (

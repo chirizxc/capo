@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DatasetEntityRecognizerEntityList) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetEntityRecognizerEntityList:
     out: DatasetEntityRecognizerEntityList = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("DatasetEntityRecognizerEntityList.s3_uri required")

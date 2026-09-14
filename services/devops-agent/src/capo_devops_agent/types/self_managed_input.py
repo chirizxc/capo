@@ -33,12 +33,12 @@ def serialize_json(value: SelfManagedInput) -> dict:
 
 def deserialize_json(data: dict) -> SelfManagedInput:
     out: SelfManagedInput = {}  # type: ignore[typeddict-item]
-    if "resourceConfigurationId" in data:
+    if data.get("resourceConfigurationId") is not None:
         out["resource_configuration_id"] = data["resourceConfigurationId"]
     else:
         raise DeserializationError(
             "SelfManagedInput.resource_configuration_id required"
         )
-    if "certificate" in data:
+    if data.get("certificate") is not None:
         out["certificate"] = data["certificate"]
     return out

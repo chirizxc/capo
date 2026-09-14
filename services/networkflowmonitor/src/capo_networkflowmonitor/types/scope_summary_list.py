@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ScopeSummaryList:
 
     out: ScopeSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_networkflowmonitor.types.scope_summary.deserialize_json(item))
     return out

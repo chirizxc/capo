@@ -28,8 +28,8 @@ def serialize_json(value: FileSystemPolicyDescription) -> dict:
 
 def deserialize_json(data: dict) -> FileSystemPolicyDescription:
     out: FileSystemPolicyDescription = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     return out

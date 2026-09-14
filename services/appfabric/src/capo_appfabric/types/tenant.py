@@ -28,11 +28,11 @@ def serialize_json(value: Tenant) -> dict:
 
 def deserialize_json(data: dict) -> Tenant:
     out: Tenant = {}  # type: ignore[typeddict-item]
-    if "tenantIdentifier" in data:
+    if data.get("tenantIdentifier") is not None:
         out["tenant_identifier"] = data["tenantIdentifier"]
     else:
         raise DeserializationError("Tenant.tenant_identifier required")
-    if "tenantDisplayName" in data:
+    if data.get("tenantDisplayName") is not None:
         out["tenant_display_name"] = data["tenantDisplayName"]
     else:
         raise DeserializationError("Tenant.tenant_display_name required")

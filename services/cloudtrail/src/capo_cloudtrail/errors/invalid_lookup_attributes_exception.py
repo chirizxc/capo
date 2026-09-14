@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidLookupAttributesException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidLookupAttributesException_:
     out: InvalidLookupAttributesException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,20 @@ class InvalidLookupAttributesException(ServiceError):
 
     code: str | None = "InvalidLookupAttributesException"
 
-    def __init__(self, data: InvalidLookupAttributesException_):
+    def __init__(
+        self, data: InvalidLookupAttributesException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidLookupAttributesException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidLookupAttributesException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidLookupAttributesException":
+        return cls(deserialize_aws_json_1_1(data), message)

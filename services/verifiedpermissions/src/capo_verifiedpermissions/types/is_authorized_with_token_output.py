@@ -63,7 +63,7 @@ def serialize_aws_json_1_0(value: IsAuthorizedWithTokenOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IsAuthorizedWithTokenOutput:
     out: IsAuthorizedWithTokenOutput = {}  # type: ignore[typeddict-item]
-    if "decision" in data:
+    if data.get("decision") is not None:
         import capo_verifiedpermissions.types.decision
 
         out["decision"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_0(data: dict) -> IsAuthorizedWithTokenOutput:
         )
     else:
         raise DeserializationError("IsAuthorizedWithTokenOutput.decision required")
-    if "determiningPolicies" in data:
+    if data.get("determiningPolicies") is not None:
         import capo_verifiedpermissions.types.determining_policy_list
 
         out["determining_policies"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_0(data: dict) -> IsAuthorizedWithTokenOutput:
         raise DeserializationError(
             "IsAuthorizedWithTokenOutput.determining_policies required"
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_verifiedpermissions.types.evaluation_error_list
 
         out["errors"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> IsAuthorizedWithTokenOutput:
         )
     else:
         raise DeserializationError("IsAuthorizedWithTokenOutput.errors required")
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["principal"] = (

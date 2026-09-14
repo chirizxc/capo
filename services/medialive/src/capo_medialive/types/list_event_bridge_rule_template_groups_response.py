@@ -37,7 +37,7 @@ def serialize_json(value: ListEventBridgeRuleTemplateGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEventBridgeRuleTemplateGroupsResponse:
     out: ListEventBridgeRuleTemplateGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "eventBridgeRuleTemplateGroups" in data:
+    if data.get("eventBridgeRuleTemplateGroups") is not None:
         import capo_medialive.types.__list_of_event_bridge_rule_template_group_summary
 
         out["event_bridge_rule_template_groups"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListEventBridgeRuleTemplateGroupsResponse:
                 data["eventBridgeRuleTemplateGroups"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

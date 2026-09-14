@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> PortOverrides:
 
     out: PortOverrides = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_global_accelerator.types.port_override.deserialize_aws_json_1_1(item)
         )

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfForceIncludeRenditionSize:
 
     out: __listOfForceIncludeRenditionSize = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.force_include_rendition_size.deserialize_json(item)
         )

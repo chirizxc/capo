@@ -19,7 +19,7 @@ def serialize_json(value: ProtectedQueryS3Output) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedQueryS3Output:
     out: ProtectedQueryS3Output = {}  # type: ignore[typeddict-item]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("ProtectedQueryS3Output.location required")

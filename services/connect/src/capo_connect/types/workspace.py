@@ -80,35 +80,35 @@ def serialize_json(value: Workspace) -> dict:
 
 def deserialize_json(data: dict) -> Workspace:
     out: Workspace = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_connect.types.visibility
 
         out["visibility"] = capo_connect.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("Workspace.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Workspace.name required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("Workspace.arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Theme" in data:
+    if data.get("Theme") is not None:
         import capo_connect.types.workspace_theme
 
         out["theme"] = capo_connect.types.workspace_theme.deserialize_json(
             data["Theme"]
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -116,9 +116,9 @@ def deserialize_json(data: dict) -> Workspace:
         )
     else:
         raise DeserializationError("Workspace.last_modified_time required")
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

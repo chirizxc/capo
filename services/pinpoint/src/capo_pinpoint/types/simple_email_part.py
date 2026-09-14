@@ -27,8 +27,8 @@ def serialize_json(value: SimpleEmailPart) -> dict:
 
 def deserialize_json(data: dict) -> SimpleEmailPart:
     out: SimpleEmailPart = {}  # type: ignore[typeddict-item]
-    if "Charset" in data:
+    if data.get("Charset") is not None:
         out["charset"] = data["Charset"]
-    if "Data" in data:
+    if data.get("Data") is not None:
         out["data"] = data["Data"]
     return out

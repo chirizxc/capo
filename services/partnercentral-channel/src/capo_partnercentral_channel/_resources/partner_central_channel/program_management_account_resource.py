@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_partnercentral_channel._services._pipeline import (
@@ -103,13 +104,15 @@ class ProgramManagementAccountResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.create_program_management_account_request.CreateProgramManagementAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["program"] = program
-        input_["display_name"] = display_name
-        input_["account_id"] = account_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_partnercentral_channel.types.create_program_management_account_request.CreateProgramManagementAccountRequest = {
+            "catalog": catalog,
+            "program": program,
+            "display_name": display_name,
+            "account_id": account_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -118,6 +121,7 @@ class ProgramManagementAccountResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -171,9 +175,10 @@ class ProgramManagementAccountResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.update_program_management_account_request.UpdateProgramManagementAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_channel.types.update_program_management_account_request.UpdateProgramManagementAccountRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
         if display_name is not None:
@@ -184,6 +189,7 @@ class ProgramManagementAccountResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -233,17 +239,20 @@ class ProgramManagementAccountResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.delete_program_management_account_request.DeleteProgramManagementAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_partnercentral_channel.types.delete_program_management_account_request.DeleteProgramManagementAccountRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -312,8 +321,9 @@ class ProgramManagementAccountResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.list_program_management_accounts_request.ListProgramManagementAccountsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_channel.types.list_program_management_accounts_request.ListProgramManagementAccountsRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if display_names is not None:
@@ -334,6 +344,7 @@ class ProgramManagementAccountResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -396,13 +407,15 @@ class AsyncProgramManagementAccountResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.create_program_management_account_request.CreateProgramManagementAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["program"] = program
-        input_["display_name"] = display_name
-        input_["account_id"] = account_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_partnercentral_channel.types.create_program_management_account_request.CreateProgramManagementAccountRequest = {
+            "catalog": catalog,
+            "program": program,
+            "display_name": display_name,
+            "account_id": account_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -411,6 +424,7 @@ class AsyncProgramManagementAccountResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -465,9 +479,10 @@ class AsyncProgramManagementAccountResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.update_program_management_account_request.UpdateProgramManagementAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_channel.types.update_program_management_account_request.UpdateProgramManagementAccountRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
         if display_name is not None:
@@ -478,6 +493,7 @@ class AsyncProgramManagementAccountResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -528,17 +544,20 @@ class AsyncProgramManagementAccountResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.delete_program_management_account_request.DeleteProgramManagementAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_partnercentral_channel.types.delete_program_management_account_request.DeleteProgramManagementAccountRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -608,8 +627,9 @@ class AsyncProgramManagementAccountResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_channel.types.list_program_management_accounts_request.ListProgramManagementAccountsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_channel.types.list_program_management_accounts_request.ListProgramManagementAccountsRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if display_names is not None:
@@ -630,4 +650,5 @@ class AsyncProgramManagementAccountResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

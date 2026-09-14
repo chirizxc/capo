@@ -65,11 +65,11 @@ def serialize_aws_json_1_1(value: TunnelSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TunnelSummary:
     out: TunnelSummary = {}  # type: ignore[typeddict-item]
-    if "tunnelId" in data:
+    if data.get("tunnelId") is not None:
         out["tunnel_id"] = data["tunnelId"]
-    if "tunnelArn" in data:
+    if data.get("tunnelArn") is not None:
         out["tunnel_arn"] = data["tunnelArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotsecuretunneling.types.tunnel_status
 
         out["status"] = (
@@ -77,9 +77,9 @@ def deserialize_aws_json_1_1(data: dict) -> TunnelSummary:
                 data["status"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotsecuretunneling.types.date_type
 
         out["created_at"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> TunnelSummary:
                 data["createdAt"]
             )
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iotsecuretunneling.types.date_type
 
         out["last_updated_at"] = (

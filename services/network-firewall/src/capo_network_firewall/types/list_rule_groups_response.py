@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ListRuleGroupsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRuleGroupsResponse:
     out: ListRuleGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RuleGroups" in data:
+    if data.get("RuleGroups") is not None:
         import capo_network_firewall.types.rule_groups
 
         out["rule_groups"] = (

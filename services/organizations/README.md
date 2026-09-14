@@ -13,9 +13,9 @@ from capo_organizations import AsyncOrganizationsClient
 
 
 async def main():
-    async with AsyncOrganizationsClient() as s3:
+    async with AsyncOrganizationsClient() as organizations:
         # Example: call the accept_handshake operation
-        response = await s3.accept_handshake()
+        response = await organizations.accept_handshake()
         print(response["handshake"])
 ```
 
@@ -28,9 +28,9 @@ from capo_organizations import AsyncOrganizationsClient
 
 
 async def main():
-    async with AsyncOrganizationsClient() as s3:
-        # Example: paginate over list_accounts_with_invalid_effective_policy
-        async for item in s3.iter_list_accounts_with_invalid_effective_policy():
+    async with AsyncOrganizationsClient() as organizations:
+        # Example: paginate over list_accounts
+        async for item in organizations.iter_list_accounts():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_organizations.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncOrganizationsClient() as s3:
+    async with AsyncOrganizationsClient() as organizations:
         try:
-            await s3.accept_handshake()
+            await organizations.accept_handshake()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_organizations import AsyncOrganizationsClient
 
 
 async def main():
-    async with AsyncOrganizationsClient() as s3:
+    async with AsyncOrganizationsClient() as organizations:
         # Default: 3 attempts for every operation
-        response = await s3.accept_handshake()
+        response = await organizations.accept_handshake()
 
         # Override per operation
-        response = await s3.accept_handshake(config_overrides={"retry_max_attempts": 5})
+        response = await organizations.accept_handshake(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_handshake(config_overrides={"retry_max_attempts": 1})
+        response = await organizations.accept_handshake(config_overrides={"retry_max_attempts": 1})
 ```

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EvaluationFormItemsList:
 
     out: EvaluationFormItemsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.evaluation_form_item.deserialize_json(item))
     return out

@@ -82,17 +82,17 @@ def serialize_aws_json_1_1(value: JDBCConnectorOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JDBCConnectorOptions:
     out: JDBCConnectorOptions = {}  # type: ignore[typeddict-item]
-    if "FilterPredicate" in data:
+    if data.get("FilterPredicate") is not None:
         out["filter_predicate"] = data["FilterPredicate"]
-    if "PartitionColumn" in data:
+    if data.get("PartitionColumn") is not None:
         out["partition_column"] = data["PartitionColumn"]
-    if "LowerBound" in data:
+    if data.get("LowerBound") is not None:
         out["lower_bound"] = data["LowerBound"]
-    if "UpperBound" in data:
+    if data.get("UpperBound") is not None:
         out["upper_bound"] = data["UpperBound"]
-    if "NumPartitions" in data:
+    if data.get("NumPartitions") is not None:
         out["num_partitions"] = data["NumPartitions"]
-    if "JobBookmarkKeys" in data:
+    if data.get("JobBookmarkKeys") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["job_bookmark_keys"] = (
@@ -100,9 +100,9 @@ def deserialize_aws_json_1_1(data: dict) -> JDBCConnectorOptions:
                 data["JobBookmarkKeys"]
             )
         )
-    if "JobBookmarkKeysSortOrder" in data:
+    if data.get("JobBookmarkKeysSortOrder") is not None:
         out["job_bookmark_keys_sort_order"] = data["JobBookmarkKeysSortOrder"]
-    if "DataTypeMapping" in data:
+    if data.get("DataTypeMapping") is not None:
         import capo_glue.types.jdbc_data_type_mapping
 
         out["data_type_mapping"] = (

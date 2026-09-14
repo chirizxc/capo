@@ -113,43 +113,43 @@ def serialize_json(value: AIPromptData) -> dict:
 
 def deserialize_json(data: dict) -> AIPromptData:
     out: AIPromptData = {}  # type: ignore[typeddict-item]
-    if "assistantId" in data:
+    if data.get("assistantId") is not None:
         out["assistant_id"] = data["assistantId"]
     else:
         raise DeserializationError("AIPromptData.assistant_id required")
-    if "assistantArn" in data:
+    if data.get("assistantArn") is not None:
         out["assistant_arn"] = data["assistantArn"]
     else:
         raise DeserializationError("AIPromptData.assistant_arn required")
-    if "aiPromptId" in data:
+    if data.get("aiPromptId") is not None:
         out["ai_prompt_id"] = data["aiPromptId"]
     else:
         raise DeserializationError("AIPromptData.ai_prompt_id required")
-    if "aiPromptArn" in data:
+    if data.get("aiPromptArn") is not None:
         out["ai_prompt_arn"] = data["aiPromptArn"]
     else:
         raise DeserializationError("AIPromptData.ai_prompt_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AIPromptData.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("AIPromptData.type required")
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         out["template_type"] = data["templateType"]
     else:
         raise DeserializationError("AIPromptData.template_type required")
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("AIPromptData.model_id required")
-    if "apiFormat" in data:
+    if data.get("apiFormat") is not None:
         out["api_format"] = data["apiFormat"]
     else:
         raise DeserializationError("AIPromptData.api_format required")
-    if "templateConfiguration" in data:
+    if data.get("templateConfiguration") is not None:
         import capo_qconnect.types.ai_prompt_template_configuration
 
         out["template_configuration"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> AIPromptData:
         )
     else:
         raise DeserializationError("AIPromptData.template_configuration required")
-    if "inferenceConfiguration" in data:
+    if data.get("inferenceConfiguration") is not None:
         import capo_qconnect.types.ai_prompt_inference_configuration
 
         out["inference_configuration"] = (
@@ -167,24 +167,24 @@ def deserialize_json(data: dict) -> AIPromptData:
                 data["inferenceConfiguration"]
             )
         )
-    if "modifiedTime" in data:
+    if data.get("modifiedTime") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["modified_time"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
             data["modifiedTime"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "visibilityStatus" in data:
+    if data.get("visibilityStatus") is not None:
         out["visibility_status"] = data["visibilityStatus"]
     else:
         raise DeserializationError("AIPromptData.visibility_status required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])
-    if "origin" in data:
+    if data.get("origin") is not None:
         out["origin"] = data["origin"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

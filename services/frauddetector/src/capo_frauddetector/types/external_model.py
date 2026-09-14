@@ -93,9 +93,9 @@ def serialize_aws_json_1_1(value: ExternalModel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExternalModel:
     out: ExternalModel = {}  # type: ignore[typeddict-item]
-    if "modelEndpoint" in data:
+    if data.get("modelEndpoint") is not None:
         out["model_endpoint"] = data["modelEndpoint"]
-    if "modelSource" in data:
+    if data.get("modelSource") is not None:
         import capo_frauddetector.types.model_source
 
         out["model_source"] = (
@@ -103,9 +103,9 @@ def deserialize_aws_json_1_1(data: dict) -> ExternalModel:
                 data["modelSource"]
             )
         )
-    if "invokeModelEndpointRoleArn" in data:
+    if data.get("invokeModelEndpointRoleArn") is not None:
         out["invoke_model_endpoint_role_arn"] = data["invokeModelEndpointRoleArn"]
-    if "inputConfiguration" in data:
+    if data.get("inputConfiguration") is not None:
         import capo_frauddetector.types.model_input_configuration
 
         out["input_configuration"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExternalModel:
                 data["inputConfiguration"]
             )
         )
-    if "outputConfiguration" in data:
+    if data.get("outputConfiguration") is not None:
         import capo_frauddetector.types.model_output_configuration
 
         out["output_configuration"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExternalModel:
                 data["outputConfiguration"]
             )
         )
-    if "modelEndpointStatus" in data:
+    if data.get("modelEndpointStatus") is not None:
         import capo_frauddetector.types.model_endpoint_status
 
         out["model_endpoint_status"] = (
@@ -129,10 +129,10 @@ def deserialize_aws_json_1_1(data: dict) -> ExternalModel:
                 data["modelEndpointStatus"]
             )
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         out["last_updated_time"] = data["lastUpdatedTime"]
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         out["created_time"] = data["createdTime"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

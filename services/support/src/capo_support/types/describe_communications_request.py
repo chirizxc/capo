@@ -44,16 +44,16 @@ def serialize_aws_json_1_1(value: DescribeCommunicationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCommunicationsRequest:
     out: DescribeCommunicationsRequest = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
     else:
         raise DeserializationError("DescribeCommunicationsRequest.case_id required")
-    if "beforeTime" in data:
+    if data.get("beforeTime") is not None:
         out["before_time"] = data["beforeTime"]
-    if "afterTime" in data:
+    if data.get("afterTime") is not None:
         out["after_time"] = data["afterTime"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

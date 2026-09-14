@@ -48,15 +48,15 @@ def serialize_aws_json_1_1(value: ConfirmDeviceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfirmDeviceRequest:
     out: ConfirmDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError("ConfirmDeviceRequest.access_token required")
-    if "DeviceKey" in data:
+    if data.get("DeviceKey") is not None:
         out["device_key"] = data["DeviceKey"]
     else:
         raise DeserializationError("ConfirmDeviceRequest.device_key required")
-    if "DeviceSecretVerifierConfig" in data:
+    if data.get("DeviceSecretVerifierConfig") is not None:
         import capo_cognito_identity_provider.types.device_secret_verifier_config_type
 
         out["device_secret_verifier_config"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_1(data: dict) -> ConfirmDeviceRequest:
                 data["DeviceSecretVerifierConfig"]
             )
         )
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
     return out

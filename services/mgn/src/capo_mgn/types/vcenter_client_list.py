@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> VcenterClientList:
 
     out: VcenterClientList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.vcenter_client.deserialize_json(item))
     return out

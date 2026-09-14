@@ -40,10 +40,10 @@ def serialize_json(value: UpdateApiMappingRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApiMappingRequest:
     out: UpdateApiMappingRequest = {}  # type: ignore[typeddict-item]
-    if "apiId" in data:
+    if data.get("apiId") is not None:
         out["api_id"] = data["apiId"]
-    if "apiMappingKey" in data:
+    if data.get("apiMappingKey") is not None:
         out["api_mapping_key"] = data["apiMappingKey"]
-    if "stage" in data:
+    if data.get("stage") is not None:
         out["stage"] = data["stage"]
     return out

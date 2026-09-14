@@ -22,8 +22,8 @@ def serialize_json(value: ShredderSettings) -> dict:
 
 def deserialize_json(data: dict) -> ShredderSettings:
     out: ShredderSettings = {}  # type: ignore[typeddict-item]
-    if "canProcessManually" in data:
+    if data.get("canProcessManually") is not None:
         out["can_process_manually"] = data["canProcessManually"]
-    if "intensity" in data:
+    if data.get("intensity") is not None:
         out["intensity"] = data["intensity"]
     return out

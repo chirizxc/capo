@@ -56,7 +56,7 @@ def serialize_json(value: QueryLoggingConfigurationMetadata) -> dict:
 
 def deserialize_json(data: dict) -> QueryLoggingConfigurationMetadata:
     out: QueryLoggingConfigurationMetadata = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.query_logging_configuration_status
 
         out["status"] = (
@@ -66,13 +66,13 @@ def deserialize_json(data: dict) -> QueryLoggingConfigurationMetadata:
         )
     else:
         raise DeserializationError("QueryLoggingConfigurationMetadata.status required")
-    if "workspace" in data:
+    if data.get("workspace") is not None:
         out["workspace"] = data["workspace"]
     else:
         raise DeserializationError(
             "QueryLoggingConfigurationMetadata.workspace required"
         )
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_amp.types.logging_destinations
 
         out["destinations"] = capo_amp.types.logging_destinations.deserialize_json(
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> QueryLoggingConfigurationMetadata:
         raise DeserializationError(
             "QueryLoggingConfigurationMetadata.destinations required"
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["created_at"] = capo_amp.types._prelude.timestamp.deserialize_json(
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> QueryLoggingConfigurationMetadata:
         raise DeserializationError(
             "QueryLoggingConfigurationMetadata.created_at required"
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["modified_at"] = capo_amp.types._prelude.timestamp.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DescribeBatchLoadTaskRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeBatchLoadTaskRequest:
     out: DescribeBatchLoadTaskRequest = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
     else:
         raise DeserializationError("DescribeBatchLoadTaskRequest.task_id required")

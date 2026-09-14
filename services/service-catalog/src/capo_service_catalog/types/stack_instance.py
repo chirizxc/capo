@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: StackInstance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StackInstance:
     out: StackInstance = {}  # type: ignore[typeddict-item]
-    if "Account" in data:
+    if data.get("Account") is not None:
         out["account"] = data["Account"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "StackInstanceStatus" in data:
+    if data.get("StackInstanceStatus") is not None:
         import capo_service_catalog.types.stack_instance_status
 
         out["stack_instance_status"] = (

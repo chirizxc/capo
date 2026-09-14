@@ -128,29 +128,29 @@ def serialize_json(value: DescribeChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeChannelResponse:
     out: DescribeChannelResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
-    if "ChannelState" in data:
+    if data.get("ChannelState") is not None:
         import capo_mediatailor.types.channel_state
 
         out["channel_state"] = capo_mediatailor.types.channel_state.deserialize_json(
             data["ChannelState"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["creation_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(
             data["CreationTime"]
         )
-    if "FillerSlate" in data:
+    if data.get("FillerSlate") is not None:
         import capo_mediatailor.types.slate_source
 
         out["filler_slate"] = capo_mediatailor.types.slate_source.deserialize_json(
             data["FillerSlate"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["last_modified_time"] = (
@@ -158,23 +158,23 @@ def deserialize_json(data: dict) -> DescribeChannelResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_mediatailor.types.response_outputs
 
         out["outputs"] = capo_mediatailor.types.response_outputs.deserialize_json(
             data["Outputs"]
         )
-    if "PlaybackMode" in data:
+    if data.get("PlaybackMode") is not None:
         out["playback_mode"] = data["PlaybackMode"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(
             data["tags"]
         )
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         out["tier"] = data["Tier"]
-    if "LogConfiguration" in data:
+    if data.get("LogConfiguration") is not None:
         import capo_mediatailor.types.log_configuration_for_channel
 
         out["log_configuration"] = (
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> DescribeChannelResponse:
         )
     else:
         raise DeserializationError("DescribeChannelResponse.log_configuration required")
-    if "TimeShiftConfiguration" in data:
+    if data.get("TimeShiftConfiguration") is not None:
         import capo_mediatailor.types.time_shift_configuration
 
         out["time_shift_configuration"] = (
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> DescribeChannelResponse:
                 data["TimeShiftConfiguration"]
             )
         )
-    if "Audiences" in data:
+    if data.get("Audiences") is not None:
         import capo_mediatailor.types.audiences
 
         out["audiences"] = capo_mediatailor.types.audiences.deserialize_json(

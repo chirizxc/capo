@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: RemediationActionWithOrder) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemediationActionWithOrder:
     out: RemediationActionWithOrder = {}  # type: ignore[typeddict-item]
-    if "RemediationAction" in data:
+    if data.get("RemediationAction") is not None:
         import capo_fms.types.remediation_action
 
         out["remediation_action"] = (
@@ -43,7 +43,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationActionWithOrder:
                 data["RemediationAction"]
             )
         )
-    if "Order" in data:
+    if data.get("Order") is not None:
         out["order"] = data["Order"]
     else:
         out["order"] = 0

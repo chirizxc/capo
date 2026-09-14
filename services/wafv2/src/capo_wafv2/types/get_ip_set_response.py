@@ -30,10 +30,10 @@ def serialize_aws_json_1_1(value: GetIPSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetIPSetResponse:
     out: GetIPSetResponse = {}  # type: ignore[typeddict-item]
-    if "IPSet" in data:
+    if data.get("IPSet") is not None:
         import capo_wafv2.types.ip_set
 
         out["ip_set"] = capo_wafv2.types.ip_set.deserialize_aws_json_1_1(data["IPSet"])
-    if "LockToken" in data:
+    if data.get("LockToken") is not None:
         out["lock_token"] = data["LockToken"]
     return out

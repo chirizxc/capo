@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: GetEntityRecordsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEntityRecordsResponse:
     out: GetEntityRecordsResponse = {}  # type: ignore[typeddict-item]
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_glue.types.records
 
         out["records"] = capo_glue.types.records.deserialize_aws_json_1_1(
             data["Records"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

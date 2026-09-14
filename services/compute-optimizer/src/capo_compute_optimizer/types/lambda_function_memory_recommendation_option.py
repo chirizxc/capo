@@ -65,15 +65,15 @@ def serialize_aws_json_1_0(value: LambdaFunctionMemoryRecommendationOption) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionMemoryRecommendationOption:
     out: LambdaFunctionMemoryRecommendationOption = {}  # type: ignore[typeddict-item]
-    if "rank" in data:
+    if data.get("rank") is not None:
         out["rank"] = data["rank"]
     else:
         out["rank"] = 0
-    if "memorySize" in data:
+    if data.get("memorySize") is not None:
         out["memory_size"] = data["memorySize"]
     else:
         out["memory_size"] = 0
-    if "projectedUtilizationMetrics" in data:
+    if data.get("projectedUtilizationMetrics") is not None:
         import capo_compute_optimizer.types.lambda_function_memory_projected_metrics
 
         out["projected_utilization_metrics"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionMemoryRecommendationOp
                 data["projectedUtilizationMetrics"]
             )
         )
-    if "savingsOpportunity" in data:
+    if data.get("savingsOpportunity") is not None:
         import capo_compute_optimizer.types.savings_opportunity
 
         out["savings_opportunity"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionMemoryRecommendationOp
                 data["savingsOpportunity"]
             )
         )
-    if "savingsOpportunityAfterDiscounts" in data:
+    if data.get("savingsOpportunityAfterDiscounts") is not None:
         import capo_compute_optimizer.types.lambda_savings_opportunity_after_discounts
 
         out["savings_opportunity_after_discounts"] = (

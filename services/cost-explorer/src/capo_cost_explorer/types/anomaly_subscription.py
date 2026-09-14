@@ -58,7 +58,15 @@ def serialize_aws_json_1_1(value: AnomalySubscription) -> dict:
         value["subscribers"]
     )
     if "threshold" in value:
-        out["Threshold"] = value["threshold"]
+        out["Threshold"] = (
+            "NaN"
+            if value["threshold"] != value["threshold"]
+            else "Infinity"
+            if value["threshold"] == float("inf")
+            else "-Infinity"
+            if value["threshold"] == float("-inf")
+            else value["threshold"]
+        )
     import capo_cost_explorer.types.anomaly_subscription_frequency
 
     out["Frequency"] = (
@@ -80,11 +88,11 @@ def serialize_aws_json_1_1(value: AnomalySubscription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnomalySubscription:
     out: AnomalySubscription = {}  # type: ignore[typeddict-item]
-    if "SubscriptionArn" in data:
+    if data.get("SubscriptionArn") is not None:
         out["subscription_arn"] = data["SubscriptionArn"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "MonitorArnList" in data:
+    if data.get("MonitorArnList") is not None:
         import capo_cost_explorer.types.monitor_arn_list
 
         out["monitor_arn_list"] = (
@@ -94,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> AnomalySubscription:
         )
     else:
         raise DeserializationError("AnomalySubscription.monitor_arn_list required")
-    if "Subscribers" in data:
+    if data.get("Subscribers") is not None:
         import capo_cost_explorer.types.subscribers
 
         out["subscribers"] = (
@@ -104,9 +112,9 @@ def deserialize_aws_json_1_1(data: dict) -> AnomalySubscription:
         )
     else:
         raise DeserializationError("AnomalySubscription.subscribers required")
-    if "Threshold" in data:
-        out["threshold"] = data["Threshold"]
-    if "Frequency" in data:
+    if data.get("Threshold") is not None:
+        out["threshold"] = float(data["Threshold"])
+    if data.get("Frequency") is not None:
         import capo_cost_explorer.types.anomaly_subscription_frequency
 
         out["frequency"] = (
@@ -116,11 +124,11 @@ def deserialize_aws_json_1_1(data: dict) -> AnomalySubscription:
         )
     else:
         raise DeserializationError("AnomalySubscription.frequency required")
-    if "SubscriptionName" in data:
+    if data.get("SubscriptionName") is not None:
         out["subscription_name"] = data["SubscriptionName"]
     else:
         raise DeserializationError("AnomalySubscription.subscription_name required")
-    if "ThresholdExpression" in data:
+    if data.get("ThresholdExpression") is not None:
         import capo_cost_explorer.types.expression
 
         out["threshold_expression"] = (

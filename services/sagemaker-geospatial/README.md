@@ -13,9 +13,9 @@ from capo_sagemaker_geospatial import AsyncSageMakerGeospatialClient
 
 
 async def main():
-    async with AsyncSageMakerGeospatialClient() as s3:
+    async with AsyncSageMakerGeospatialClient() as sage_maker_geospatial:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await sage_maker_geospatial.list_tags_for_resource()
         print(response["tags"])
 ```
 
@@ -29,9 +29,9 @@ from capo_sagemaker_geospatial.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSageMakerGeospatialClient() as s3:
+    async with AsyncSageMakerGeospatialClient() as sage_maker_geospatial:
         try:
-            await s3.list_tags_for_resource()
+            await sage_maker_geospatial.list_tags_for_resource()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_sagemaker_geospatial import AsyncSageMakerGeospatialClient
 
 
 async def main():
-    async with AsyncSageMakerGeospatialClient() as s3:
+    async with AsyncSageMakerGeospatialClient() as sage_maker_geospatial:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await sage_maker_geospatial.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await sage_maker_geospatial.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await sage_maker_geospatial.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

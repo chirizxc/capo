@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CreateComputerResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateComputerResult:
     out: CreateComputerResult = {}  # type: ignore[typeddict-item]
-    if "Computer" in data:
+    if data.get("Computer") is not None:
         import capo_directory_service.types.computer
 
         out["computer"] = (

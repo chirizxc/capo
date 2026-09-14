@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AccountAssociationListDefinition:
 
     out: AccountAssociationListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.account_association_item.deserialize_json(
                 item

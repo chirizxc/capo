@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: UpdateMailboxQuotaRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMailboxQuotaRequest:
     out: UpdateMailboxQuotaRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError("UpdateMailboxQuotaRequest.organization_id required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("UpdateMailboxQuotaRequest.user_id required")
-    if "MailboxQuota" in data:
+    if data.get("MailboxQuota") is not None:
         out["mailbox_quota"] = data["MailboxQuota"]
     else:
         raise DeserializationError("UpdateMailboxQuotaRequest.mailbox_quota required")

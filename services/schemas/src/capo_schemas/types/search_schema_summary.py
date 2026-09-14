@@ -44,13 +44,13 @@ def serialize_json(value: SearchSchemaSummary) -> dict:
 
 def deserialize_json(data: dict) -> SearchSchemaSummary:
     out: SearchSchemaSummary = {}  # type: ignore[typeddict-item]
-    if "RegistryName" in data:
+    if data.get("RegistryName") is not None:
         out["registry_name"] = data["RegistryName"]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "SchemaVersions" in data:
+    if data.get("SchemaVersions") is not None:
         import capo_schemas.types.__list_of_search_schema_version_summary
 
         out["schema_versions"] = (

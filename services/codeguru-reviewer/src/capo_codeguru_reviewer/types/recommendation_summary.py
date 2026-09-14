@@ -77,17 +77,17 @@ def serialize_json(value: RecommendationSummary) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationSummary:
     out: RecommendationSummary = {}  # type: ignore[typeddict-item]
-    if "FilePath" in data:
+    if data.get("FilePath") is not None:
         out["file_path"] = data["FilePath"]
-    if "RecommendationId" in data:
+    if data.get("RecommendationId") is not None:
         out["recommendation_id"] = data["RecommendationId"]
-    if "StartLine" in data:
+    if data.get("StartLine") is not None:
         out["start_line"] = data["StartLine"]
-    if "EndLine" in data:
+    if data.get("EndLine") is not None:
         out["end_line"] = data["EndLine"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RecommendationCategory" in data:
+    if data.get("RecommendationCategory") is not None:
         import capo_codeguru_reviewer.types.recommendation_category
 
         out["recommendation_category"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> RecommendationSummary:
                 data["RecommendationCategory"]
             )
         )
-    if "RuleMetadata" in data:
+    if data.get("RuleMetadata") is not None:
         import capo_codeguru_reviewer.types.rule_metadata
 
         out["rule_metadata"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> RecommendationSummary:
                 data["RuleMetadata"]
             )
         )
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_codeguru_reviewer.types.severity
 
         out["severity"] = capo_codeguru_reviewer.types.severity.deserialize_json(

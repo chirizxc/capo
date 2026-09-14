@@ -48,13 +48,13 @@ def serialize_json(value: ParticipatingServer) -> dict:
 
 def deserialize_json(data: dict) -> ParticipatingServer:
     out: ParticipatingServer = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
-    if "recoveryInstanceID" in data:
+    if data.get("recoveryInstanceID") is not None:
         out["recovery_instance_id"] = data["recoveryInstanceID"]
-    if "launchStatus" in data:
+    if data.get("launchStatus") is not None:
         out["launch_status"] = data["launchStatus"]
-    if "launchActionsStatus" in data:
+    if data.get("launchActionsStatus") is not None:
         import capo_drs.types.launch_actions_status
 
         out["launch_actions_status"] = (

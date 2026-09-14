@@ -30,15 +30,15 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("Resource.value required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("Resource.type required")

@@ -37,7 +37,7 @@ def serialize_json(value: TimeRangeFilterInput) -> dict:
 
 def deserialize_json(data: dict) -> TimeRangeFilterInput:
     out: TimeRangeFilterInput = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker_geospatial.types._prelude.timestamp
 
         out["start_time"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> TimeRangeFilterInput:
         )
     else:
         raise DeserializationError("TimeRangeFilterInput.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker_geospatial.types._prelude.timestamp
 
         out["end_time"] = (

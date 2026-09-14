@@ -46,21 +46,21 @@ def serialize_aws_json_1_1(value: CatalogSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CatalogSource:
     out: CatalogSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CatalogSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("CatalogSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("CatalogSource.table required")
-    if "PartitionPredicate" in data:
+    if data.get("PartitionPredicate") is not None:
         out["partition_predicate"] = data["PartitionPredicate"]
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

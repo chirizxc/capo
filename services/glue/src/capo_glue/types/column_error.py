@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ColumnError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnError:
     out: ColumnError = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_glue.types.error_detail
 
         out["error"] = capo_glue.types.error_detail.deserialize_aws_json_1_1(

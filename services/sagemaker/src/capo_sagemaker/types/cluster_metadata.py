@@ -39,9 +39,9 @@ def serialize_aws_json_1_1(value: ClusterMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterMetadata:
     out: ClusterMetadata = {}  # type: ignore[typeddict-item]
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
-    if "EksRoleAccessEntries" in data:
+    if data.get("EksRoleAccessEntries") is not None:
         import capo_sagemaker.types.eks_role_access_entries
 
         out["eks_role_access_entries"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterMetadata:
                 data["EksRoleAccessEntries"]
             )
         )
-    if "SlrAccessEntry" in data:
+    if data.get("SlrAccessEntry") is not None:
         out["slr_access_entry"] = data["SlrAccessEntry"]
     return out

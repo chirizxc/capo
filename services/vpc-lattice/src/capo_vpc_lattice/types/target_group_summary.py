@@ -98,42 +98,42 @@ def serialize_json(value: TargetGroupSummary) -> dict:
 
 def deserialize_json(data: dict) -> TargetGroupSummary:
     out: TargetGroupSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         out["ip_address_type"] = data["ipAddressType"]
-    if "vpcIdentifier" in data:
+    if data.get("vpcIdentifier") is not None:
         out["vpc_identifier"] = data["vpcIdentifier"]
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "serviceArns" in data:
+    if data.get("serviceArns") is not None:
         import capo_vpc_lattice.types.service_arn_list
 
         out["service_arns"] = capo_vpc_lattice.types.service_arn_list.deserialize_json(
             data["serviceArns"]
         )
-    if "lambdaEventStructureVersion" in data:
+    if data.get("lambdaEventStructureVersion") is not None:
         out["lambda_event_structure_version"] = data["lambdaEventStructureVersion"]
     return out

@@ -27,7 +27,7 @@ def serialize_json(value: DescribeQuickConnectResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeQuickConnectResponse:
     out: DescribeQuickConnectResponse = {}  # type: ignore[typeddict-item]
-    if "QuickConnect" in data:
+    if data.get("QuickConnect") is not None:
         import capo_connect.types.quick_connect
 
         out["quick_connect"] = capo_connect.types.quick_connect.deserialize_json(

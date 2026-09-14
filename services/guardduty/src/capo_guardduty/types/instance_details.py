@@ -97,9 +97,9 @@ def serialize_json(value: InstanceDetails) -> dict:
 
 def deserialize_json(data: dict) -> InstanceDetails:
     out: InstanceDetails = {}  # type: ignore[typeddict-item]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "iamInstanceProfile" in data:
+    if data.get("iamInstanceProfile") is not None:
         import capo_guardduty.types.iam_instance_profile
 
         out["iam_instance_profile"] = (
@@ -107,21 +107,21 @@ def deserialize_json(data: dict) -> InstanceDetails:
                 data["iamInstanceProfile"]
             )
         )
-    if "imageDescription" in data:
+    if data.get("imageDescription") is not None:
         out["image_description"] = data["imageDescription"]
-    if "imageId" in data:
+    if data.get("imageId") is not None:
         out["image_id"] = data["imageId"]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
-    if "instanceState" in data:
+    if data.get("instanceState") is not None:
         out["instance_state"] = data["instanceState"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "outpostArn" in data:
+    if data.get("outpostArn") is not None:
         out["outpost_arn"] = data["outpostArn"]
-    if "launchTime" in data:
+    if data.get("launchTime") is not None:
         out["launch_time"] = data["launchTime"]
-    if "networkInterfaces" in data:
+    if data.get("networkInterfaces") is not None:
         import capo_guardduty.types.network_interfaces
 
         out["network_interfaces"] = (
@@ -129,15 +129,15 @@ def deserialize_json(data: dict) -> InstanceDetails:
                 data["networkInterfaces"]
             )
         )
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
-    if "productCodes" in data:
+    if data.get("productCodes") is not None:
         import capo_guardduty.types.product_codes
 
         out["product_codes"] = capo_guardduty.types.product_codes.deserialize_json(
             data["productCodes"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tags
 
         out["tags"] = capo_guardduty.types.tags.deserialize_json(data["tags"])

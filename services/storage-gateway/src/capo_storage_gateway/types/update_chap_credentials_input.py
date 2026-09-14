@@ -40,20 +40,20 @@ def serialize_aws_json_1_1(value: UpdateChapCredentialsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateChapCredentialsInput:
     out: UpdateChapCredentialsInput = {}  # type: ignore[typeddict-item]
-    if "TargetARN" in data:
+    if data.get("TargetARN") is not None:
         out["target_arn"] = data["TargetARN"]
     else:
         raise DeserializationError("UpdateChapCredentialsInput.target_arn required")
-    if "SecretToAuthenticateInitiator" in data:
+    if data.get("SecretToAuthenticateInitiator") is not None:
         out["secret_to_authenticate_initiator"] = data["SecretToAuthenticateInitiator"]
     else:
         raise DeserializationError(
             "UpdateChapCredentialsInput.secret_to_authenticate_initiator required"
         )
-    if "InitiatorName" in data:
+    if data.get("InitiatorName") is not None:
         out["initiator_name"] = data["InitiatorName"]
     else:
         raise DeserializationError("UpdateChapCredentialsInput.initiator_name required")
-    if "SecretToAuthenticateTarget" in data:
+    if data.get("SecretToAuthenticateTarget") is not None:
         out["secret_to_authenticate_target"] = data["SecretToAuthenticateTarget"]
     return out

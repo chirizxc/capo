@@ -56,20 +56,20 @@ def serialize_json(value: NodeFromTemplateJob) -> dict:
 
 def deserialize_json(data: dict) -> NodeFromTemplateJob:
     out: NodeFromTemplateJob = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "TemplateType" in data:
+    if data.get("TemplateType") is not None:
         out["template_type"] = data["TemplateType"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.created_time
 
         out["created_time"] = capo_panorama.types.created_time.deserialize_json(
             data["CreatedTime"]
         )
-    if "NodeName" in data:
+    if data.get("NodeName") is not None:
         out["node_name"] = data["NodeName"]
     return out

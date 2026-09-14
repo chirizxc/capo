@@ -23,6 +23,6 @@ def serialize_json(value: TlsContext) -> dict:
 
 def deserialize_json(data: dict) -> TlsContext:
     out: TlsContext = {}  # type: ignore[typeddict-item]
-    if "serverName" in data:
+    if data.get("serverName") is not None:
         out["server_name"] = data["serverName"]
     return out

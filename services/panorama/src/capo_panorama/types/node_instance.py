@@ -57,21 +57,21 @@ def serialize_json(value: NodeInstance) -> dict:
 
 def deserialize_json(data: dict) -> NodeInstance:
     out: NodeInstance = {}  # type: ignore[typeddict-item]
-    if "NodeInstanceId" in data:
+    if data.get("NodeInstanceId") is not None:
         out["node_instance_id"] = data["NodeInstanceId"]
     else:
         raise DeserializationError("NodeInstance.node_instance_id required")
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
-    if "PackageVersion" in data:
+    if data.get("PackageVersion") is not None:
         out["package_version"] = data["PackageVersion"]
-    if "PackagePatchVersion" in data:
+    if data.get("PackagePatchVersion") is not None:
         out["package_patch_version"] = data["PackagePatchVersion"]
-    if "NodeName" in data:
+    if data.get("NodeName") is not None:
         out["node_name"] = data["NodeName"]
-    if "CurrentStatus" in data:
+    if data.get("CurrentStatus") is not None:
         out["current_status"] = data["CurrentStatus"]
     else:
         raise DeserializationError("NodeInstance.current_status required")

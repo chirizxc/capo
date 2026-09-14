@@ -59,22 +59,22 @@ def serialize_json(value: RunCacheListItem) -> dict:
 
 def deserialize_json(data: dict) -> RunCacheListItem:
     out: RunCacheListItem = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "cacheBehavior" in data:
+    if data.get("cacheBehavior") is not None:
         out["cache_behavior"] = data["cacheBehavior"]
-    if "cacheS3Uri" in data:
+    if data.get("cacheS3Uri") is not None:
         out["cache_s3_uri"] = data["cacheS3Uri"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.run_cache_timestamp
 
         out["creation_time"] = capo_omics.types.run_cache_timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

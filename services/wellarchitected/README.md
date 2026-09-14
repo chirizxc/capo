@@ -13,10 +13,25 @@ from capo_wellarchitected import AsyncWellArchitectedClient
 
 
 async def main():
-    async with AsyncWellArchitectedClient() as s3:
+    async with AsyncWellArchitectedClient() as well_architected:
         # Example: call the associate_lenses operation
-        response = await s3.associate_lenses()
+        response = await well_architected.associate_lenses()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_wellarchitected import AsyncWellArchitectedClient
+
+
+async def main():
+    async with AsyncWellArchitectedClient() as well_architected:
+        # Example: paginate over get_consolidated_report
+        async for item in well_architected.iter_get_consolidated_report():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_wellarchitected.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncWellArchitectedClient() as s3:
+    async with AsyncWellArchitectedClient() as well_architected:
         try:
-            await s3.associate_lenses()
+            await well_architected.associate_lenses()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_wellarchitected import AsyncWellArchitectedClient
 
 
 async def main():
-    async with AsyncWellArchitectedClient() as s3:
+    async with AsyncWellArchitectedClient() as well_architected:
         # Default: 3 attempts for every operation
-        response = await s3.associate_lenses()
+        response = await well_architected.associate_lenses()
 
         # Override per operation
-        response = await s3.associate_lenses(config_overrides={"retry_max_attempts": 5})
+        response = await well_architected.associate_lenses(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_lenses(config_overrides={"retry_max_attempts": 1})
+        response = await well_architected.associate_lenses(config_overrides={"retry_max_attempts": 1})
 ```

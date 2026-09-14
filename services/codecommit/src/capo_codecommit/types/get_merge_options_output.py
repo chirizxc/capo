@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: GetMergeOptionsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMergeOptionsOutput:
     out: GetMergeOptionsOutput = {}  # type: ignore[typeddict-item]
-    if "mergeOptions" in data:
+    if data.get("mergeOptions") is not None:
         import capo_codecommit.types.merge_options
 
         out["merge_options"] = (
@@ -48,17 +48,17 @@ def deserialize_aws_json_1_1(data: dict) -> GetMergeOptionsOutput:
         )
     else:
         raise DeserializationError("GetMergeOptionsOutput.merge_options required")
-    if "sourceCommitId" in data:
+    if data.get("sourceCommitId") is not None:
         out["source_commit_id"] = data["sourceCommitId"]
     else:
         raise DeserializationError("GetMergeOptionsOutput.source_commit_id required")
-    if "destinationCommitId" in data:
+    if data.get("destinationCommitId") is not None:
         out["destination_commit_id"] = data["destinationCommitId"]
     else:
         raise DeserializationError(
             "GetMergeOptionsOutput.destination_commit_id required"
         )
-    if "baseCommitId" in data:
+    if data.get("baseCommitId") is not None:
         out["base_commit_id"] = data["baseCommitId"]
     else:
         raise DeserializationError("GetMergeOptionsOutput.base_commit_id required")

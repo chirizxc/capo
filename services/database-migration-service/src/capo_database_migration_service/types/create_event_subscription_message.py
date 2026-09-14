@@ -75,21 +75,21 @@ def serialize_aws_json_1_1(value: CreateEventSubscriptionMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEventSubscriptionMessage:
     out: CreateEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
-    if "SubscriptionName" in data:
+    if data.get("SubscriptionName") is not None:
         out["subscription_name"] = data["SubscriptionName"]
     else:
         raise DeserializationError(
             "CreateEventSubscriptionMessage.subscription_name required"
         )
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
     else:
         raise DeserializationError(
             "CreateEventSubscriptionMessage.sns_topic_arn required"
         )
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
-    if "EventCategories" in data:
+    if data.get("EventCategories") is not None:
         import capo_database_migration_service.types.event_categories_list
 
         out["event_categories"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEventSubscriptionMessage:
                 data["EventCategories"]
             )
         )
-    if "SourceIds" in data:
+    if data.get("SourceIds") is not None:
         import capo_database_migration_service.types.source_ids_list
 
         out["source_ids"] = (
@@ -105,9 +105,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEventSubscriptionMessage:
                 data["SourceIds"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (

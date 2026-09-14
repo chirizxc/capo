@@ -24,7 +24,7 @@ def serialize_json(value: DeleteProjectResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteProjectResponse:
     out: DeleteProjectResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DeleteProjectResponse.name required")

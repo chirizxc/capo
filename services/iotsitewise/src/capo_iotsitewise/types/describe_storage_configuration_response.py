@@ -114,7 +114,7 @@ def serialize_json(value: DescribeStorageConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeStorageConfigurationResponse:
     out: DescribeStorageConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         import capo_iotsitewise.types.storage_type
 
         out["storage_type"] = capo_iotsitewise.types.storage_type.deserialize_json(
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> DescribeStorageConfigurationResponse:
         raise DeserializationError(
             "DescribeStorageConfigurationResponse.storage_type required"
         )
-    if "multiLayerStorage" in data:
+    if data.get("multiLayerStorage") is not None:
         import capo_iotsitewise.types.multi_layer_storage
 
         out["multi_layer_storage"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> DescribeStorageConfigurationResponse:
                 data["multiLayerStorage"]
             )
         )
-    if "disassociatedDataStorage" in data:
+    if data.get("disassociatedDataStorage") is not None:
         import capo_iotsitewise.types.disassociated_data_storage_state
 
         out["disassociated_data_storage"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> DescribeStorageConfigurationResponse:
                 data["disassociatedDataStorage"]
             )
         )
-    if "retentionPeriod" in data:
+    if data.get("retentionPeriod") is not None:
         import capo_iotsitewise.types.retention_period
 
         out["retention_period"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> DescribeStorageConfigurationResponse:
                 data["retentionPeriod"]
             )
         )
-    if "configurationStatus" in data:
+    if data.get("configurationStatus") is not None:
         import capo_iotsitewise.types.configuration_status
 
         out["configuration_status"] = (
@@ -160,19 +160,19 @@ def deserialize_json(data: dict) -> DescribeStorageConfigurationResponse:
         raise DeserializationError(
             "DescribeStorageConfigurationResponse.configuration_status required"
         )
-    if "lastUpdateDate" in data:
+    if data.get("lastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["last_update_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
             data["lastUpdateDate"]
         )
-    if "warmTier" in data:
+    if data.get("warmTier") is not None:
         import capo_iotsitewise.types.warm_tier_state
 
         out["warm_tier"] = capo_iotsitewise.types.warm_tier_state.deserialize_json(
             data["warmTier"]
         )
-    if "warmTierRetentionPeriod" in data:
+    if data.get("warmTierRetentionPeriod") is not None:
         import capo_iotsitewise.types.warm_tier_retention_period
 
         out["warm_tier_retention_period"] = (
@@ -180,6 +180,6 @@ def deserialize_json(data: dict) -> DescribeStorageConfigurationResponse:
                 data["warmTierRetentionPeriod"]
             )
         )
-    if "disallowIngestNullNaN" in data:
+    if data.get("disallowIngestNullNaN") is not None:
         out["disallow_ingest_null_na_n"] = data["disallowIngestNullNaN"]
     return out

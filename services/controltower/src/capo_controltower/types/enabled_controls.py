@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> EnabledControls:
 
     out: EnabledControls = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_controltower.types.enabled_control_summary.deserialize_json(item)
         )

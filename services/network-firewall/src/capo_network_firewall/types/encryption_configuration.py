@@ -33,9 +33,9 @@ def serialize_aws_json_1_0(value: EncryptionConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EncryptionConfiguration:
     out: EncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "KeyId" in data:
+    if data.get("KeyId") is not None:
         out["key_id"] = data["KeyId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_network_firewall.types.encryption_type
 
         out["type"] = (

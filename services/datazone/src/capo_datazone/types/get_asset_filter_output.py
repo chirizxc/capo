@@ -92,31 +92,31 @@ def serialize_json(value: GetAssetFilterOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetAssetFilterOutput:
     out: GetAssetFilterOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetAssetFilterOutput.id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("GetAssetFilterOutput.domain_id required")
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
     else:
         raise DeserializationError("GetAssetFilterOutput.asset_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetAssetFilterOutput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.filter_status
 
         out["status"] = capo_datazone.types.filter_status.deserialize_json(
             data["status"]
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_datazone.types.asset_filter_configuration
 
         out["configuration"] = (
@@ -126,15 +126,15 @@ def deserialize_json(data: dict) -> GetAssetFilterOutput:
         )
     else:
         raise DeserializationError("GetAssetFilterOutput.configuration required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "effectiveColumnNames" in data:
+    if data.get("effectiveColumnNames") is not None:
         import capo_datazone.types.column_name_list
 
         out["effective_column_names"] = (
@@ -142,6 +142,6 @@ def deserialize_json(data: dict) -> GetAssetFilterOutput:
                 data["effectiveColumnNames"]
             )
         )
-    if "effectiveRowFilter" in data:
+    if data.get("effectiveRowFilter") is not None:
         out["effective_row_filter"] = data["effectiveRowFilter"]
     return out

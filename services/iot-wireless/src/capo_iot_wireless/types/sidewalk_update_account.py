@@ -25,6 +25,6 @@ def serialize_json(value: SidewalkUpdateAccount) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkUpdateAccount:
     out: SidewalkUpdateAccount = {}  # type: ignore[typeddict-item]
-    if "AppServerPrivateKey" in data:
+    if data.get("AppServerPrivateKey") is not None:
         out["app_server_private_key"] = data["AppServerPrivateKey"]
     return out

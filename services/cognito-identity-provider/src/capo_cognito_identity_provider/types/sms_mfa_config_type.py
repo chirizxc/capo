@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: SmsMfaConfigType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SmsMfaConfigType:
     out: SmsMfaConfigType = {}  # type: ignore[typeddict-item]
-    if "SmsAuthenticationMessage" in data:
+    if data.get("SmsAuthenticationMessage") is not None:
         out["sms_authentication_message"] = data["SmsAuthenticationMessage"]
-    if "SmsConfiguration" in data:
+    if data.get("SmsConfiguration") is not None:
         import capo_cognito_identity_provider.types.sms_configuration_type
 
         out["sms_configuration"] = (

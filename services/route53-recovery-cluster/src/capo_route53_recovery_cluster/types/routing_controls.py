@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> RoutingControls:
 
     out: RoutingControls = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53_recovery_cluster.types.routing_control.deserialize_aws_json_1_0(
                 item

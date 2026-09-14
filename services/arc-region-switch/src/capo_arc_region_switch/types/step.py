@@ -50,13 +50,13 @@ def serialize_aws_json_1_0(value: Step) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Step:
     out: Step = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Step.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "executionBlockConfiguration" in data:
+    if data.get("executionBlockConfiguration") is not None:
         import capo_arc_region_switch.types.execution_block_configuration
 
         out["execution_block_configuration"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_0(data: dict) -> Step:
         )
     else:
         raise DeserializationError("Step.execution_block_configuration required")
-    if "executionBlockType" in data:
+    if data.get("executionBlockType") is not None:
         import capo_arc_region_switch.types.execution_block_type
 
         out["execution_block_type"] = (

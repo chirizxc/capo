@@ -38,11 +38,11 @@ def serialize_json(value: PutVectorBucketPolicyInput) -> dict:
 
 def deserialize_json(data: dict) -> PutVectorBucketPolicyInput:
     out: PutVectorBucketPolicyInput = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
-    if "vectorBucketArn" in data:
+    if data.get("vectorBucketArn") is not None:
         out["vector_bucket_arn"] = data["vectorBucketArn"]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     else:
         raise DeserializationError("PutVectorBucketPolicyInput.policy required")

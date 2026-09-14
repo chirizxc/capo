@@ -33,13 +33,13 @@ def serialize_json(value: S3BucketLogDestination) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketLogDestination:
     out: S3BucketLogDestination = {}  # type: ignore[typeddict-item]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "s3BucketArn" in data:
+    if data.get("s3BucketArn") is not None:
         out["s3_bucket_arn"] = data["s3BucketArn"]
     else:
         raise DeserializationError("S3BucketLogDestination.s3_bucket_arn required")
-    if "logPrefix" in data:
+    if data.get("logPrefix") is not None:
         out["log_prefix"] = data["logPrefix"]
     else:
         raise DeserializationError("S3BucketLogDestination.log_prefix required")

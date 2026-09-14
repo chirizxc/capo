@@ -36,13 +36,13 @@ def serialize_json(value: VisualSubtitleLabelOptions) -> dict:
 
 def deserialize_json(data: dict) -> VisualSubtitleLabelOptions:
     out: VisualSubtitleLabelOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "FormatText" in data:
+    if data.get("FormatText") is not None:
         import capo_quicksight.types.long_format_text
 
         out["format_text"] = capo_quicksight.types.long_format_text.deserialize_json(

@@ -90,15 +90,15 @@ def serialize_aws_json_1_1(value: S3DestinationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DestinationUpdate:
     out: S3DestinationUpdate = {}  # type: ignore[typeddict-item]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "BucketARN" in data:
+    if data.get("BucketARN") is not None:
         out["bucket_arn"] = data["BucketARN"]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "ErrorOutputPrefix" in data:
+    if data.get("ErrorOutputPrefix") is not None:
         out["error_output_prefix"] = data["ErrorOutputPrefix"]
-    if "BufferingHints" in data:
+    if data.get("BufferingHints") is not None:
         import capo_firehose.types.buffering_hints
 
         out["buffering_hints"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DestinationUpdate:
                 data["BufferingHints"]
             )
         )
-    if "CompressionFormat" in data:
+    if data.get("CompressionFormat") is not None:
         import capo_firehose.types.compression_format
 
         out["compression_format"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DestinationUpdate:
                 data["CompressionFormat"]
             )
         )
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_firehose.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DestinationUpdate:
                 data["EncryptionConfiguration"]
             )
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_firehose.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (

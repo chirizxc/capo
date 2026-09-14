@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListDeployActionExecutionTargetsOutput) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ListDeployActionExecutionTargetsOutput:
     out: ListDeployActionExecutionTargetsOutput = {}  # type: ignore[typeddict-item]
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_codepipeline.types.deploy_action_execution_target_list
 
         out["targets"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListDeployActionExecutionTargetsOutp
                 data["targets"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EventConfigurationsList:
 
     out: EventConfigurationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.event_configuration_item.deserialize_json(item)
         )

@@ -46,12 +46,12 @@ def serialize_aws_json_1_1(value: TrainingProgressInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingProgressInfo:
     out: TrainingProgressInfo = {}  # type: ignore[typeddict-item]
-    if "TotalStepCountPerEpoch" in data:
+    if data.get("TotalStepCountPerEpoch") is not None:
         out["total_step_count_per_epoch"] = data["TotalStepCountPerEpoch"]
-    if "CurrentStep" in data:
+    if data.get("CurrentStep") is not None:
         out["current_step"] = data["CurrentStep"]
-    if "CurrentEpoch" in data:
+    if data.get("CurrentEpoch") is not None:
         out["current_epoch"] = data["CurrentEpoch"]
-    if "MaxEpoch" in data:
+    if data.get("MaxEpoch") is not None:
         out["max_epoch"] = data["MaxEpoch"]
     return out

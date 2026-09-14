@@ -36,7 +36,7 @@ def serialize_json(value: SetVaultNotificationsInput) -> dict:
 
 def deserialize_json(data: dict) -> SetVaultNotificationsInput:
     out: SetVaultNotificationsInput = {}  # type: ignore[typeddict-item]
-    if "vaultNotificationConfig" in data:
+    if data.get("vaultNotificationConfig") is not None:
         import capo_glacier.types.vault_notification_config
 
         out["vault_notification_config"] = (

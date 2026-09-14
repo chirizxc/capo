@@ -22,7 +22,7 @@ def serialize_json(value: AdBreakOpportunity) -> dict:
 
 def deserialize_json(data: dict) -> AdBreakOpportunity:
     out: AdBreakOpportunity = {}  # type: ignore[typeddict-item]
-    if "OffsetMillis" in data:
+    if data.get("OffsetMillis") is not None:
         out["offset_millis"] = data["OffsetMillis"]
     else:
         out["offset_millis"] = 0

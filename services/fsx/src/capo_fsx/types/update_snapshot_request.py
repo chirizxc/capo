@@ -34,10 +34,10 @@ def serialize_aws_json_1_1(value: UpdateSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSnapshotRequest:
     out: UpdateSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
     return out

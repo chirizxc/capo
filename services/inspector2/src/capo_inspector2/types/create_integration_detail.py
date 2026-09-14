@@ -32,7 +32,7 @@ def serialize_json(value: CreateIntegrationDetail) -> dict:
 
 
 def deserialize_json(data: dict) -> CreateIntegrationDetail:
-    if "gitlabSelfManaged" in data:
+    if data.get("gitlabSelfManaged") is not None:
         import capo_inspector2.types.create_git_lab_self_managed_integration_detail
 
         return {

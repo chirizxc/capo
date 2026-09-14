@@ -24,7 +24,7 @@ def serialize_json(value: EngineNotSupportedException_) -> dict:
 
 def deserialize_json(data: dict) -> EngineNotSupportedException_:
     out: EngineNotSupportedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class EngineNotSupportedException(ServiceError):
 
     code: str | None = "EngineNotSupportedException"
 
-    def __init__(self, data: EngineNotSupportedException_):
+    def __init__(self, data: EngineNotSupportedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EngineNotSupportedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "EngineNotSupportedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "EngineNotSupportedException":
+        return cls(deserialize_json(data), message)

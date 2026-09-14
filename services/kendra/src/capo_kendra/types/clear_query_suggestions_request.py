@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ClearQuerySuggestionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClearQuerySuggestionsRequest:
     out: ClearQuerySuggestionsRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("ClearQuerySuggestionsRequest.index_id required")

@@ -73,9 +73,9 @@ def serialize_aws_json_1_1(value: CreateThemeForStackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateThemeForStackRequest:
     out: CreateThemeForStackRequest = {}  # type: ignore[typeddict-item]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "FooterLinks" in data:
+    if data.get("FooterLinks") is not None:
         import capo_appstream.types.theme_footer_links
 
         out["footer_links"] = (
@@ -83,9 +83,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateThemeForStackRequest:
                 data["FooterLinks"]
             )
         )
-    if "TitleText" in data:
+    if data.get("TitleText") is not None:
         out["title_text"] = data["TitleText"]
-    if "ThemeStyling" in data:
+    if data.get("ThemeStyling") is not None:
         import capo_appstream.types.theme_styling
 
         out["theme_styling"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateThemeForStackRequest:
                 data["ThemeStyling"]
             )
         )
-    if "OrganizationLogoS3Location" in data:
+    if data.get("OrganizationLogoS3Location") is not None:
         import capo_appstream.types.s3_location
 
         out["organization_logo_s3_location"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateThemeForStackRequest:
                 data["OrganizationLogoS3Location"]
             )
         )
-    if "FaviconS3Location" in data:
+    if data.get("FaviconS3Location") is not None:
         import capo_appstream.types.s3_location
 
         out["favicon_s3_location"] = (

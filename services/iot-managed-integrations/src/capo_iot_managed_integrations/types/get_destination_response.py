@@ -94,11 +94,11 @@ def serialize_json(value: GetDestinationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDestinationResponse:
     out: GetDestinationResponse = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DeliveryDestinationArn" in data:
+    if data.get("DeliveryDestinationArn") is not None:
         out["delivery_destination_arn"] = data["DeliveryDestinationArn"]
-    if "DeliveryDestinationType" in data:
+    if data.get("DeliveryDestinationType") is not None:
         import capo_iot_managed_integrations.types.delivery_destination_type
 
         out["delivery_destination_type"] = (
@@ -106,11 +106,11 @@ def deserialize_json(data: dict) -> GetDestinationResponse:
                 data["DeliveryDestinationType"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_iot_managed_integrations.types.destination_created_at
 
         out["created_at"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> GetDestinationResponse:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_iot_managed_integrations.types.destination_updated_at
 
         out["updated_at"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> GetDestinationResponse:
                 data["UpdatedAt"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(

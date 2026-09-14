@@ -16,4 +16,4 @@ def serialize_json(value: ControlArnFilterList) -> list:
 
 
 def deserialize_json(data: list) -> ControlArnFilterList:
-    return list(data)
+    return [item for item in data if item is not None]

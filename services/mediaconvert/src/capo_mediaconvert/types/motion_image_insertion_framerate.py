@@ -32,8 +32,8 @@ def serialize_json(value: MotionImageInsertionFramerate) -> dict:
 
 def deserialize_json(data: dict) -> MotionImageInsertionFramerate:
     out: MotionImageInsertionFramerate = {}  # type: ignore[typeddict-item]
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
     return out

@@ -23,24 +23,56 @@ class MetricDataPoint(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: MetricDataPoint) -> dict:
     out: dict = {}
     if "fpr" in value:
-        out["fpr"] = value["fpr"]
+        out["fpr"] = (
+            "NaN"
+            if value["fpr"] != value["fpr"]
+            else "Infinity"
+            if value["fpr"] == float("inf")
+            else "-Infinity"
+            if value["fpr"] == float("-inf")
+            else value["fpr"]
+        )
     if "precision" in value:
-        out["precision"] = value["precision"]
+        out["precision"] = (
+            "NaN"
+            if value["precision"] != value["precision"]
+            else "Infinity"
+            if value["precision"] == float("inf")
+            else "-Infinity"
+            if value["precision"] == float("-inf")
+            else value["precision"]
+        )
     if "tpr" in value:
-        out["tpr"] = value["tpr"]
+        out["tpr"] = (
+            "NaN"
+            if value["tpr"] != value["tpr"]
+            else "Infinity"
+            if value["tpr"] == float("inf")
+            else "-Infinity"
+            if value["tpr"] == float("-inf")
+            else value["tpr"]
+        )
     if "threshold" in value:
-        out["threshold"] = value["threshold"]
+        out["threshold"] = (
+            "NaN"
+            if value["threshold"] != value["threshold"]
+            else "Infinity"
+            if value["threshold"] == float("inf")
+            else "-Infinity"
+            if value["threshold"] == float("-inf")
+            else value["threshold"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> MetricDataPoint:
     out: MetricDataPoint = {}  # type: ignore[typeddict-item]
-    if "fpr" in data:
-        out["fpr"] = data["fpr"]
-    if "precision" in data:
-        out["precision"] = data["precision"]
-    if "tpr" in data:
-        out["tpr"] = data["tpr"]
-    if "threshold" in data:
-        out["threshold"] = data["threshold"]
+    if data.get("fpr") is not None:
+        out["fpr"] = float(data["fpr"])
+    if data.get("precision") is not None:
+        out["precision"] = float(data["precision"])
+    if data.get("tpr") is not None:
+        out["tpr"] = float(data["tpr"])
+    if data.get("threshold") is not None:
+        out["threshold"] = float(data["threshold"])
     return out

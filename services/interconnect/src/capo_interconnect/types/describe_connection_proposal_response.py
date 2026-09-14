@@ -40,19 +40,19 @@ def serialize_aws_json_1_0(value: DescribeConnectionProposalResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeConnectionProposalResponse:
     out: DescribeConnectionProposalResponse = {}  # type: ignore[typeddict-item]
-    if "bandwidth" in data:
+    if data.get("bandwidth") is not None:
         out["bandwidth"] = data["bandwidth"]
     else:
         raise DeserializationError(
             "DescribeConnectionProposalResponse.bandwidth required"
         )
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError(
             "DescribeConnectionProposalResponse.environment_id required"
         )
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_interconnect.types.provider
 
         out["provider"] = capo_interconnect.types.provider.deserialize_aws_json_1_0(
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeConnectionProposalResponse:
         raise DeserializationError(
             "DescribeConnectionProposalResponse.provider required"
         )
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError(

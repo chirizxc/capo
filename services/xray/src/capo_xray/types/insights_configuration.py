@@ -29,8 +29,8 @@ def serialize_json(value: InsightsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InsightsConfiguration:
     out: InsightsConfiguration = {}  # type: ignore[typeddict-item]
-    if "InsightsEnabled" in data:
+    if data.get("InsightsEnabled") is not None:
         out["insights_enabled"] = data["InsightsEnabled"]
-    if "NotificationsEnabled" in data:
+    if data.get("NotificationsEnabled") is not None:
         out["notifications_enabled"] = data["NotificationsEnabled"]
     return out

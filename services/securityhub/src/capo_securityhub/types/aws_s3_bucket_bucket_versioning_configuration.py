@@ -28,8 +28,8 @@ def serialize_json(value: AwsS3BucketBucketVersioningConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketBucketVersioningConfiguration:
     out: AwsS3BucketBucketVersioningConfiguration = {}  # type: ignore[typeddict-item]
-    if "IsMfaDeleteEnabled" in data:
+    if data.get("IsMfaDeleteEnabled") is not None:
         out["is_mfa_delete_enabled"] = data["IsMfaDeleteEnabled"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

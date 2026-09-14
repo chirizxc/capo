@@ -55,17 +55,17 @@ def serialize_aws_json_1_0(value: ListInferenceSchedulersRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListInferenceSchedulersRequest:
     out: ListInferenceSchedulersRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "InferenceSchedulerNameBeginsWith" in data:
+    if data.get("InferenceSchedulerNameBeginsWith") is not None:
         out["inference_scheduler_name_begins_with"] = data[
             "InferenceSchedulerNameBeginsWith"
         ]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.inference_scheduler_status
 
         out["status"] = (

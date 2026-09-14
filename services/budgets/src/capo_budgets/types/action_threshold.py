@@ -21,7 +21,16 @@ class ActionThreshold(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ActionThreshold) -> dict:
     out: dict = {}
-    out["ActionThresholdValue"] = value.get("action_threshold_value", 0)
+    out["ActionThresholdValue"] = (
+        "NaN"
+        if value.get("action_threshold_value", 0)
+        != value.get("action_threshold_value", 0)
+        else "Infinity"
+        if value.get("action_threshold_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("action_threshold_value", 0) == float("-inf")
+        else value.get("action_threshold_value", 0)
+    )
     import capo_budgets.types.threshold_type
 
     out["ActionThresholdType"] = (
@@ -34,11 +43,11 @@ def serialize_aws_json_1_1(value: ActionThreshold) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionThreshold:
     out: ActionThreshold = {}  # type: ignore[typeddict-item]
-    if "ActionThresholdValue" in data:
-        out["action_threshold_value"] = data["ActionThresholdValue"]
+    if data.get("ActionThresholdValue") is not None:
+        out["action_threshold_value"] = float(data["ActionThresholdValue"])
     else:
         out["action_threshold_value"] = 0
-    if "ActionThresholdType" in data:
+    if data.get("ActionThresholdType") is not None:
         import capo_budgets.types.threshold_type
 
         out["action_threshold_type"] = (

@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: Relationship) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Relationship:
     out: Relationship = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_textract.types.relationship_type
 
         out["type"] = capo_textract.types.relationship_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Ids" in data:
+    if data.get("Ids") is not None:
         import capo_textract.types.id_list
 
         out["ids"] = capo_textract.types.id_list.deserialize_aws_json_1_1(data["Ids"])

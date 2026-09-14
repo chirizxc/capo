@@ -107,15 +107,15 @@ def serialize_aws_json_1_1(value: AdminCreateUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminCreateUserRequest:
     out: AdminCreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("AdminCreateUserRequest.user_pool_id required")
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("AdminCreateUserRequest.username required")
-    if "UserAttributes" in data:
+    if data.get("UserAttributes") is not None:
         import capo_cognito_identity_provider.types.attribute_list_type
 
         out["user_attributes"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminCreateUserRequest:
                 data["UserAttributes"]
             )
         )
-    if "ValidationData" in data:
+    if data.get("ValidationData") is not None:
         import capo_cognito_identity_provider.types.attribute_list_type
 
         out["validation_data"] = (
@@ -131,13 +131,13 @@ def deserialize_aws_json_1_1(data: dict) -> AdminCreateUserRequest:
                 data["ValidationData"]
             )
         )
-    if "TemporaryPassword" in data:
+    if data.get("TemporaryPassword") is not None:
         out["temporary_password"] = data["TemporaryPassword"]
-    if "ForceAliasCreation" in data:
+    if data.get("ForceAliasCreation") is not None:
         out["force_alias_creation"] = data["ForceAliasCreation"]
     else:
         out["force_alias_creation"] = False
-    if "MessageAction" in data:
+    if data.get("MessageAction") is not None:
         import capo_cognito_identity_provider.types.message_action_type
 
         out["message_action"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminCreateUserRequest:
                 data["MessageAction"]
             )
         )
-    if "DesiredDeliveryMediums" in data:
+    if data.get("DesiredDeliveryMediums") is not None:
         import capo_cognito_identity_provider.types.delivery_medium_list_type
 
         out["desired_delivery_mediums"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminCreateUserRequest:
                 data["DesiredDeliveryMediums"]
             )
         )
-    if "ClientMetadata" in data:
+    if data.get("ClientMetadata") is not None:
         import capo_cognito_identity_provider.types.client_metadata_type
 
         out["client_metadata"] = (

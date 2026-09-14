@@ -54,9 +54,9 @@ def serialize_json(value: PositionConfigurationItem) -> dict:
 
 def deserialize_json(data: dict) -> PositionConfigurationItem:
     out: PositionConfigurationItem = {}  # type: ignore[typeddict-item]
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_iot_wireless.types.position_resource_type
 
         out["resource_type"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> PositionConfigurationItem:
                 data["ResourceType"]
             )
         )
-    if "Solvers" in data:
+    if data.get("Solvers") is not None:
         import capo_iot_wireless.types.position_solver_details
 
         out["solvers"] = (
@@ -72,6 +72,6 @@ def deserialize_json(data: dict) -> PositionConfigurationItem:
                 data["Solvers"]
             )
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
     return out

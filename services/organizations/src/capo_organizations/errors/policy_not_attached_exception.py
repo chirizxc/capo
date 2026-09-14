@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: PolicyNotAttachedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PolicyNotAttachedException_:
     out: PolicyNotAttachedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class PolicyNotAttachedException(ServiceError):
 
     code: str | None = "PolicyNotAttachedException"
 
-    def __init__(self, data: PolicyNotAttachedException_):
+    def __init__(self, data: PolicyNotAttachedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PolicyNotAttachedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "PolicyNotAttachedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "PolicyNotAttachedException":
+        return cls(deserialize_aws_json_1_1(data), message)

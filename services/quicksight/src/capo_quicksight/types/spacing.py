@@ -35,12 +35,12 @@ def serialize_json(value: Spacing) -> dict:
 
 def deserialize_json(data: dict) -> Spacing:
     out: Spacing = {}  # type: ignore[typeddict-item]
-    if "Top" in data:
+    if data.get("Top") is not None:
         out["top"] = data["Top"]
-    if "Bottom" in data:
+    if data.get("Bottom") is not None:
         out["bottom"] = data["Bottom"]
-    if "Left" in data:
+    if data.get("Left") is not None:
         out["left"] = data["Left"]
-    if "Right" in data:
+    if data.get("Right") is not None:
         out["right"] = data["Right"]
     return out

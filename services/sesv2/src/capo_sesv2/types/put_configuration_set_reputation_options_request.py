@@ -27,7 +27,7 @@ def serialize_json(value: PutConfigurationSetReputationOptionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutConfigurationSetReputationOptionsRequest:
     out: PutConfigurationSetReputationOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "ReputationMetricsEnabled" in data:
+    if data.get("ReputationMetricsEnabled") is not None:
         out["reputation_metrics_enabled"] = data["ReputationMetricsEnabled"]
     else:
         out["reputation_metrics_enabled"] = False

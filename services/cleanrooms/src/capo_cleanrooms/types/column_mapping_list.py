@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ColumnMappingList:
 
     out: ColumnMappingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.synthetic_data_column_properties.deserialize_json(
                 item

@@ -67,11 +67,11 @@ def serialize_aws_json_1_1(value: DiscoverInputSchemaRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiscoverInputSchemaRequest:
     out: DiscoverInputSchemaRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "InputStartingPositionConfiguration" in data:
+    if data.get("InputStartingPositionConfiguration") is not None:
         import capo_kinesis_analytics.types.input_starting_position_configuration
 
         out["input_starting_position_configuration"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInputSchemaRequest:
                 data["InputStartingPositionConfiguration"]
             )
         )
-    if "S3Configuration" in data:
+    if data.get("S3Configuration") is not None:
         import capo_kinesis_analytics.types.s3_configuration
 
         out["s3_configuration"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInputSchemaRequest:
                 data["S3Configuration"]
             )
         )
-    if "InputProcessingConfiguration" in data:
+    if data.get("InputProcessingConfiguration") is not None:
         import capo_kinesis_analytics.types.input_processing_configuration
 
         out["input_processing_configuration"] = (

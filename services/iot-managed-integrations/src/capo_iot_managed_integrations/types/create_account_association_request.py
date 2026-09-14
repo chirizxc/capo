@@ -67,25 +67,25 @@ def serialize_json(value: CreateAccountAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccountAssociationRequest:
     out: CreateAccountAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ConnectorDestinationId" in data:
+    if data.get("ConnectorDestinationId") is not None:
         out["connector_destination_id"] = data["ConnectorDestinationId"]
     else:
         raise DeserializationError(
             "CreateAccountAssociationRequest.connector_destination_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(
             data["Tags"]
         )
-    if "GeneralAuthorization" in data:
+    if data.get("GeneralAuthorization") is not None:
         import capo_iot_managed_integrations.types.general_authorization_name
 
         out["general_authorization"] = (

@@ -46,17 +46,17 @@ def serialize_aws_json_1_1(value: GetConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetConnectionRequest:
     out: GetConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetConnectionRequest.name required")
-    if "HidePassword" in data:
+    if data.get("HidePassword") is not None:
         out["hide_password"] = data["HidePassword"]
     else:
         out["hide_password"] = False
-    if "ApplyOverrideForComputeEnvironment" in data:
+    if data.get("ApplyOverrideForComputeEnvironment") is not None:
         import capo_glue.types.compute_environment
 
         out["apply_override_for_compute_environment"] = (

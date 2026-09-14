@@ -31,7 +31,7 @@ def serialize_json(value: PresenterOnlyConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PresenterOnlyConfiguration:
     out: PresenterOnlyConfiguration = {}  # type: ignore[typeddict-item]
-    if "PresenterPosition" in data:
+    if data.get("PresenterPosition") is not None:
         import capo_chime_sdk_media_pipelines.types.presenter_position
 
         out["presenter_position"] = (

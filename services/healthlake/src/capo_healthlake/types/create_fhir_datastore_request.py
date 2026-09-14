@@ -90,9 +90,9 @@ def serialize_aws_json_1_0(value: CreateFHIRDatastoreRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateFHIRDatastoreRequest:
     out: CreateFHIRDatastoreRequest = {}  # type: ignore[typeddict-item]
-    if "DatastoreName" in data:
+    if data.get("DatastoreName") is not None:
         out["datastore_name"] = data["DatastoreName"]
-    if "DatastoreTypeVersion" in data:
+    if data.get("DatastoreTypeVersion") is not None:
         import capo_healthlake.types.fhir_version
 
         out["datastore_type_version"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateFHIRDatastoreRequest:
         raise DeserializationError(
             "CreateFHIRDatastoreRequest.datastore_type_version required"
         )
-    if "SseConfiguration" in data:
+    if data.get("SseConfiguration") is not None:
         import capo_healthlake.types.sse_configuration
 
         out["sse_configuration"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateFHIRDatastoreRequest:
                 data["SseConfiguration"]
             )
         )
-    if "PreloadDataConfig" in data:
+    if data.get("PreloadDataConfig") is not None:
         import capo_healthlake.types.preload_data_config
 
         out["preload_data_config"] = (
@@ -120,15 +120,15 @@ def deserialize_aws_json_1_0(data: dict) -> CreateFHIRDatastoreRequest:
                 data["PreloadDataConfig"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_healthlake.types.tag_list
 
         out["tags"] = capo_healthlake.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "IdentityProviderConfiguration" in data:
+    if data.get("IdentityProviderConfiguration") is not None:
         import capo_healthlake.types.identity_provider_configuration
 
         out["identity_provider_configuration"] = (

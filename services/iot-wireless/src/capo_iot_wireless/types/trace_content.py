@@ -50,7 +50,7 @@ def serialize_json(value: TraceContent) -> dict:
 
 def deserialize_json(data: dict) -> TraceContent:
     out: TraceContent = {}  # type: ignore[typeddict-item]
-    if "WirelessDeviceFrameInfo" in data:
+    if data.get("WirelessDeviceFrameInfo") is not None:
         import capo_iot_wireless.types.wireless_device_frame_info
 
         out["wireless_device_frame_info"] = (
@@ -58,13 +58,13 @@ def deserialize_json(data: dict) -> TraceContent:
                 data["WirelessDeviceFrameInfo"]
             )
         )
-    if "LogLevel" in data:
+    if data.get("LogLevel") is not None:
         import capo_iot_wireless.types.log_level
 
         out["log_level"] = capo_iot_wireless.types.log_level.deserialize_json(
             data["LogLevel"]
         )
-    if "MulticastFrameInfo" in data:
+    if data.get("MulticastFrameInfo") is not None:
         import capo_iot_wireless.types.multicast_frame_info
 
         out["multicast_frame_info"] = (

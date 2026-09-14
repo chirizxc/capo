@@ -31,7 +31,7 @@ def serialize_json(value: ListGroupCertificateAuthoritiesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListGroupCertificateAuthoritiesResponse:
     out: ListGroupCertificateAuthoritiesResponse = {}  # type: ignore[typeddict-item]
-    if "GroupCertificateAuthorities" in data:
+    if data.get("GroupCertificateAuthorities") is not None:
         import capo_greengrass.types.__list_of_group_certificate_authority_properties
 
         out["group_certificate_authorities"] = (

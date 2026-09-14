@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> InstanceHealthSummaryList:
 
     out: InstanceHealthSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.instance_health_summary.deserialize_aws_json_1_1(item)
         )

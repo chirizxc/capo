@@ -45,7 +45,7 @@ def serialize_json(value: Message) -> dict:
 
 
 def deserialize_json(data: dict) -> Message:
-    if "userMessage" in data:
+    if data.get("userMessage") is not None:
         import capo_devops_agent.types.user_message
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> Message:
                 data["userMessage"]
             )
         }
-    elif "assistantMessage" in data:
+    elif data.get("assistantMessage") is not None:
         import capo_devops_agent.types.assistant_message
 
         return {

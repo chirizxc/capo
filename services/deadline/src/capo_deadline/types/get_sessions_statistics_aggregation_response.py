@@ -49,13 +49,13 @@ def serialize_json(value: GetSessionsStatisticsAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSessionsStatisticsAggregationResponse:
     out: GetSessionsStatisticsAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "statistics" in data:
+    if data.get("statistics") is not None:
         import capo_deadline.types.statistics_list
 
         out["statistics"] = capo_deadline.types.statistics_list.deserialize_json(
             data["statistics"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.sessions_statistics_aggregation_status
 
         out["status"] = (
@@ -67,8 +67,8 @@ def deserialize_json(data: dict) -> GetSessionsStatisticsAggregationResponse:
         raise DeserializationError(
             "GetSessionsStatisticsAggregationResponse.status required"
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

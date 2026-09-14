@@ -60,11 +60,11 @@ def serialize_json(value: FastLaunchConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FastLaunchConfiguration:
     out: FastLaunchConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "snapshotConfiguration" in data:
+    if data.get("snapshotConfiguration") is not None:
         import capo_imagebuilder.types.fast_launch_snapshot_configuration
 
         out["snapshot_configuration"] = (
@@ -72,9 +72,9 @@ def deserialize_json(data: dict) -> FastLaunchConfiguration:
                 data["snapshotConfiguration"]
             )
         )
-    if "maxParallelLaunches" in data:
+    if data.get("maxParallelLaunches") is not None:
         out["max_parallel_launches"] = data["maxParallelLaunches"]
-    if "launchTemplate" in data:
+    if data.get("launchTemplate") is not None:
         import capo_imagebuilder.types.fast_launch_launch_template_specification
 
         out["launch_template"] = (
@@ -82,6 +82,6 @@ def deserialize_json(data: dict) -> FastLaunchConfiguration:
                 data["launchTemplate"]
             )
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     return out

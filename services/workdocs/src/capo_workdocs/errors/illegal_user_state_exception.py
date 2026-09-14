@@ -24,7 +24,7 @@ def serialize_json(value: IllegalUserStateException_) -> dict:
 
 def deserialize_json(data: dict) -> IllegalUserStateException_:
     out: IllegalUserStateException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class IllegalUserStateException(ServiceError):
 
     code: str | None = "IllegalUserStateException"
 
-    def __init__(self, data: IllegalUserStateException_):
+    def __init__(self, data: IllegalUserStateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IllegalUserStateException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "IllegalUserStateException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "IllegalUserStateException":
+        return cls(deserialize_json(data), message)

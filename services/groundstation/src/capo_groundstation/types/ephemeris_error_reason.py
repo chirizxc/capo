@@ -32,7 +32,7 @@ def serialize_json(value: EphemerisErrorReason) -> dict:
 
 def deserialize_json(data: dict) -> EphemerisErrorReason:
     out: EphemerisErrorReason = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_groundstation.types.ephemeris_error_code
 
         out["error_code"] = (
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> EphemerisErrorReason:
         )
     else:
         raise DeserializationError("EphemerisErrorReason.error_code required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError("EphemerisErrorReason.error_message required")

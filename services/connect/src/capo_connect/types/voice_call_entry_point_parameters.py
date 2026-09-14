@@ -32,10 +32,10 @@ def serialize_json(value: VoiceCallEntryPointParameters) -> dict:
 
 def deserialize_json(data: dict) -> VoiceCallEntryPointParameters:
     out: VoiceCallEntryPointParameters = {}  # type: ignore[typeddict-item]
-    if "SourcePhoneNumber" in data:
+    if data.get("SourcePhoneNumber") is not None:
         out["source_phone_number"] = data["SourcePhoneNumber"]
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
-    if "FlowId" in data:
+    if data.get("FlowId") is not None:
         out["flow_id"] = data["FlowId"]
     return out

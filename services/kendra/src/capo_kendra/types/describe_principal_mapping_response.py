@@ -46,13 +46,13 @@ def serialize_aws_json_1_1(value: DescribePrincipalMappingResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePrincipalMappingResponse:
     out: DescribePrincipalMappingResponse = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
-    if "GroupOrderingIdSummaries" in data:
+    if data.get("GroupOrderingIdSummaries") is not None:
         import capo_kendra.types.group_ordering_id_summaries
 
         out["group_ordering_id_summaries"] = (

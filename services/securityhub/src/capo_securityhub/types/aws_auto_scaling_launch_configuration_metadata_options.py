@@ -32,10 +32,10 @@ def serialize_json(value: AwsAutoScalingLaunchConfigurationMetadataOptions) -> d
 
 def deserialize_json(data: dict) -> AwsAutoScalingLaunchConfigurationMetadataOptions:
     out: AwsAutoScalingLaunchConfigurationMetadataOptions = {}  # type: ignore[typeddict-item]
-    if "HttpEndpoint" in data:
+    if data.get("HttpEndpoint") is not None:
         out["http_endpoint"] = data["HttpEndpoint"]
-    if "HttpPutResponseHopLimit" in data:
+    if data.get("HttpPutResponseHopLimit") is not None:
         out["http_put_response_hop_limit"] = data["HttpPutResponseHopLimit"]
-    if "HttpTokens" in data:
+    if data.get("HttpTokens") is not None:
         out["http_tokens"] = data["HttpTokens"]
     return out

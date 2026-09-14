@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: OrganizationalUnitNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationalUnitNotFoundException_:
     out: OrganizationalUnitNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class OrganizationalUnitNotFoundException(ServiceError):
 
     code: str | None = "OrganizationalUnitNotFoundException"
 
-    def __init__(self, data: OrganizationalUnitNotFoundException_):
+    def __init__(
+        self, data: OrganizationalUnitNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OrganizationalUnitNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "OrganizationalUnitNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "OrganizationalUnitNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

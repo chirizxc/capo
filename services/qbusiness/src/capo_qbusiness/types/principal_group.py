@@ -42,9 +42,9 @@ def serialize_json(value: PrincipalGroup) -> dict:
 
 def deserialize_json(data: dict) -> PrincipalGroup:
     out: PrincipalGroup = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "access" in data:
+    if data.get("access") is not None:
         import capo_qbusiness.types.read_access_type
 
         out["access"] = capo_qbusiness.types.read_access_type.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> PrincipalGroup:
         )
     else:
         raise DeserializationError("PrincipalGroup.access required")
-    if "membershipType" in data:
+    if data.get("membershipType") is not None:
         import capo_qbusiness.types.membership_type
 
         out["membership_type"] = capo_qbusiness.types.membership_type.deserialize_json(

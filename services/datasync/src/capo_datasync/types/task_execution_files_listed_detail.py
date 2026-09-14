@@ -25,11 +25,11 @@ def serialize_aws_json_1_1(value: TaskExecutionFilesListedDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskExecutionFilesListedDetail:
     out: TaskExecutionFilesListedDetail = {}  # type: ignore[typeddict-item]
-    if "AtSource" in data:
+    if data.get("AtSource") is not None:
         out["at_source"] = data["AtSource"]
     else:
         out["at_source"] = 0
-    if "AtDestinationForDelete" in data:
+    if data.get("AtDestinationForDelete") is not None:
         out["at_destination_for_delete"] = data["AtDestinationForDelete"]
     else:
         out["at_destination_for_delete"] = 0

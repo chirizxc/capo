@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ExportLabelsTaskRunProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportLabelsTaskRunProperties:
     out: ExportLabelsTaskRunProperties = {}  # type: ignore[typeddict-item]
-    if "OutputS3Path" in data:
+    if data.get("OutputS3Path") is not None:
         out["output_s3_path"] = data["OutputS3Path"]
     return out

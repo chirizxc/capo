@@ -90,23 +90,23 @@ def serialize_aws_json_1_0(value: CreateVolumeRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateVolumeRequest:
     out: CreateVolumeRequest = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
     else:
         raise DeserializationError("CreateVolumeRequest.availability_zone required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "Iops" in data:
+    if data.get("Iops") is not None:
         out["iops"] = data["Iops"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "SizeInGB" in data:
+    if data.get("SizeInGB") is not None:
         out["size_in_gb"] = data["SizeInGB"]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
-    if "TagSpecifications" in data:
+    if data.get("TagSpecifications") is not None:
         import capo_workspaces_instances.types.tag_specifications
 
         out["tag_specifications"] = (
@@ -114,9 +114,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateVolumeRequest:
                 data["TagSpecifications"]
             )
         )
-    if "Throughput" in data:
+    if data.get("Throughput") is not None:
         out["throughput"] = data["Throughput"]
-    if "VolumeType" in data:
+    if data.get("VolumeType") is not None:
         import capo_workspaces_instances.types.volume_type_enum
 
         out["volume_type"] = (

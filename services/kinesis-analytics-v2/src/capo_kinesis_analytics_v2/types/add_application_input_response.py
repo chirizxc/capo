@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: AddApplicationInputResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddApplicationInputResponse:
     out: AddApplicationInputResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationARN" in data:
+    if data.get("ApplicationARN") is not None:
         out["application_arn"] = data["ApplicationARN"]
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
-    if "InputDescriptions" in data:
+    if data.get("InputDescriptions") is not None:
         import capo_kinesis_analytics_v2.types.input_descriptions
 
         out["input_descriptions"] = (

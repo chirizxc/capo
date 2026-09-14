@@ -26,11 +26,11 @@ def serialize_aws_json_1_1(value: ActionTypeArtifactDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionTypeArtifactDetails:
     out: ActionTypeArtifactDetails = {}  # type: ignore[typeddict-item]
-    if "minimumCount" in data:
+    if data.get("minimumCount") is not None:
         out["minimum_count"] = data["minimumCount"]
     else:
         out["minimum_count"] = 0
-    if "maximumCount" in data:
+    if data.get("maximumCount") is not None:
         out["maximum_count"] = data["maximumCount"]
     else:
         out["maximum_count"] = 0

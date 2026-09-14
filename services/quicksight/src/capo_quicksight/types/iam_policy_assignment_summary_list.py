@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IAMPolicyAssignmentSummaryList:
 
     out: IAMPolicyAssignmentSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.iam_policy_assignment_summary.deserialize_json(item)
         )

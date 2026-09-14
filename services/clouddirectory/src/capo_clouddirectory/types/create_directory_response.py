@@ -36,19 +36,19 @@ def serialize_json(value: CreateDirectoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDirectoryResponse:
     out: CreateDirectoryResponse = {}  # type: ignore[typeddict-item]
-    if "DirectoryArn" in data:
+    if data.get("DirectoryArn") is not None:
         out["directory_arn"] = data["DirectoryArn"]
     else:
         raise DeserializationError("CreateDirectoryResponse.directory_arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDirectoryResponse.name required")
-    if "ObjectIdentifier" in data:
+    if data.get("ObjectIdentifier") is not None:
         out["object_identifier"] = data["ObjectIdentifier"]
     else:
         raise DeserializationError("CreateDirectoryResponse.object_identifier required")
-    if "AppliedSchemaArn" in data:
+    if data.get("AppliedSchemaArn") is not None:
         out["applied_schema_arn"] = data["AppliedSchemaArn"]
     else:
         raise DeserializationError(

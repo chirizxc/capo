@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> DimensionKeyDescriptionList:
 
     out: DimensionKeyDescriptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pi.types.dimension_key_description.deserialize_aws_json_1_1(item)
         )

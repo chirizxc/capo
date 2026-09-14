@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: PutInsightSelectorsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutInsightSelectorsRequest:
     out: PutInsightSelectorsRequest = {}  # type: ignore[typeddict-item]
-    if "TrailName" in data:
+    if data.get("TrailName") is not None:
         out["trail_name"] = data["TrailName"]
-    if "InsightSelectors" in data:
+    if data.get("InsightSelectors") is not None:
         import capo_cloudtrail.types.insight_selectors
 
         out["insight_selectors"] = (
@@ -62,8 +62,8 @@ def deserialize_aws_json_1_1(data: dict) -> PutInsightSelectorsRequest:
         raise DeserializationError(
             "PutInsightSelectorsRequest.insight_selectors required"
         )
-    if "EventDataStore" in data:
+    if data.get("EventDataStore") is not None:
         out["event_data_store"] = data["EventDataStore"]
-    if "InsightsDestination" in data:
+    if data.get("InsightsDestination") is not None:
         out["insights_destination"] = data["InsightsDestination"]
     return out

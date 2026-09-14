@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> __listOfInputWhitelistRuleCidr:
 
     out: __listOfInputWhitelistRuleCidr = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.input_whitelist_rule_cidr.deserialize_json(item)
         )

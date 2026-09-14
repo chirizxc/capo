@@ -50,11 +50,11 @@ def serialize_json(value: MailFromAttributes) -> dict:
 
 def deserialize_json(data: dict) -> MailFromAttributes:
     out: MailFromAttributes = {}  # type: ignore[typeddict-item]
-    if "MailFromDomain" in data:
+    if data.get("MailFromDomain") is not None:
         out["mail_from_domain"] = data["MailFromDomain"]
     else:
         raise DeserializationError("MailFromAttributes.mail_from_domain required")
-    if "MailFromDomainStatus" in data:
+    if data.get("MailFromDomainStatus") is not None:
         import capo_pinpoint_email.types.mail_from_domain_status
 
         out["mail_from_domain_status"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> MailFromAttributes:
         raise DeserializationError(
             "MailFromAttributes.mail_from_domain_status required"
         )
-    if "BehaviorOnMxFailure" in data:
+    if data.get("BehaviorOnMxFailure") is not None:
         import capo_pinpoint_email.types.behavior_on_mx_failure
 
         out["behavior_on_mx_failure"] = (

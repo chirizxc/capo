@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CrlDetails:
 
     out: CrlDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rolesanywhere.types.crl_detail.deserialize_json(item))
     return out

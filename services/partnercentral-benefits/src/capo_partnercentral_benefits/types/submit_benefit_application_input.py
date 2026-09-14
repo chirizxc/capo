@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: SubmitBenefitApplicationInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SubmitBenefitApplicationInput:
     out: SubmitBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("SubmitBenefitApplicationInput.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("SubmitBenefitApplicationInput.identifier required")

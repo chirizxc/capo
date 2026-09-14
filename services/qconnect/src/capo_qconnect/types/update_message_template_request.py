@@ -68,7 +68,7 @@ def serialize_json(value: UpdateMessageTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMessageTemplateRequest:
     out: UpdateMessageTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_qconnect.types.message_template_content_provider
 
         out["content"] = (
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> UpdateMessageTemplateRequest:
                 data["content"]
             )
         )
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
-    if "sourceConfiguration" in data:
+    if data.get("sourceConfiguration") is not None:
         import capo_qconnect.types.message_template_source_configuration
 
         out["source_configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> UpdateMessageTemplateRequest:
                 data["sourceConfiguration"]
             )
         )
-    if "defaultAttributes" in data:
+    if data.get("defaultAttributes") is not None:
         import capo_qconnect.types.message_template_attributes
 
         out["default_attributes"] = (

@@ -54,11 +54,11 @@ def serialize_json(value: DkimSigningAttributes) -> dict:
 
 def deserialize_json(data: dict) -> DkimSigningAttributes:
     out: DkimSigningAttributes = {}  # type: ignore[typeddict-item]
-    if "DomainSigningSelector" in data:
+    if data.get("DomainSigningSelector") is not None:
         out["domain_signing_selector"] = data["DomainSigningSelector"]
-    if "DomainSigningPrivateKey" in data:
+    if data.get("DomainSigningPrivateKey") is not None:
         out["domain_signing_private_key"] = data["DomainSigningPrivateKey"]
-    if "NextSigningKeyLength" in data:
+    if data.get("NextSigningKeyLength") is not None:
         import capo_sesv2.types.dkim_signing_key_length
 
         out["next_signing_key_length"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> DkimSigningAttributes:
                 data["NextSigningKeyLength"]
             )
         )
-    if "DomainSigningAttributesOrigin" in data:
+    if data.get("DomainSigningAttributesOrigin") is not None:
         import capo_sesv2.types.dkim_signing_attributes_origin
 
         out["domain_signing_attributes_origin"] = (

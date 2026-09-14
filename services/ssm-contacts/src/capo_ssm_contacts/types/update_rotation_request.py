@@ -61,11 +61,11 @@ def serialize_aws_json_1_1(value: UpdateRotationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRotationRequest:
     out: UpdateRotationRequest = {}  # type: ignore[typeddict-item]
-    if "RotationId" in data:
+    if data.get("RotationId") is not None:
         out["rotation_id"] = data["RotationId"]
     else:
         raise DeserializationError("UpdateRotationRequest.rotation_id required")
-    if "ContactIds" in data:
+    if data.get("ContactIds") is not None:
         import capo_ssm_contacts.types.rotation_contacts_arn_list
 
         out["contact_ids"] = (
@@ -73,15 +73,15 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateRotationRequest:
                 data["ContactIds"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["start_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "TimeZoneId" in data:
+    if data.get("TimeZoneId") is not None:
         out["time_zone_id"] = data["TimeZoneId"]
-    if "Recurrence" in data:
+    if data.get("Recurrence") is not None:
         import capo_ssm_contacts.types.recurrence_settings
 
         out["recurrence"] = (

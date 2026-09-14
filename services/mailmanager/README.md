@@ -13,9 +13,9 @@ from capo_mailmanager import AsyncMailManagerClient
 
 
 async def main():
-    async with AsyncMailManagerClient() as s3:
+    async with AsyncMailManagerClient() as mail_manager:
         # Example: call the create_address_list_import_job operation
-        response = await s3.create_address_list_import_job()
+        response = await mail_manager.create_address_list_import_job()
         print(response["job_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_mailmanager import AsyncMailManagerClient
 
 
 async def main():
-    async with AsyncMailManagerClient() as s3:
+    async with AsyncMailManagerClient() as mail_manager:
         # Example: paginate over list_address_list_import_jobs
-        async for item in s3.iter_list_address_list_import_jobs():
+        async for item in mail_manager.iter_list_address_list_import_jobs():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_mailmanager.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncMailManagerClient() as s3:
+    async with AsyncMailManagerClient() as mail_manager:
         try:
-            await s3.create_address_list_import_job()
+            await mail_manager.create_address_list_import_job()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_mailmanager import AsyncMailManagerClient
 
 
 async def main():
-    async with AsyncMailManagerClient() as s3:
+    async with AsyncMailManagerClient() as mail_manager:
         # Default: 3 attempts for every operation
-        response = await s3.create_address_list_import_job()
+        response = await mail_manager.create_address_list_import_job()
 
         # Override per operation
-        response = await s3.create_address_list_import_job(config_overrides={"retry_max_attempts": 5})
+        response = await mail_manager.create_address_list_import_job(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_address_list_import_job(config_overrides={"retry_max_attempts": 1})
+        response = await mail_manager.create_address_list_import_job(config_overrides={"retry_max_attempts": 1})
 ```

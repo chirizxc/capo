@@ -28,8 +28,11 @@ def serialize_aws_json_1_1(input_to_serialize: TargetFilters) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> TargetFilters:
     out: TargetFilters = {}
     for key, value in data.items():
-        import capo_codedeploy.types.filter_value_list
         import capo_codedeploy.types.target_filter_name
+
+        if value is None:
+            continue
+        import capo_codedeploy.types.filter_value_list
 
         out[capo_codedeploy.types.target_filter_name.deserialize_aws_json_1_1(key)] = (
             capo_codedeploy.types.filter_value_list.deserialize_aws_json_1_1(value)

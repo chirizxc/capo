@@ -88,21 +88,21 @@ def serialize_aws_json_1_0(value: GetTrafficPolicyResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetTrafficPolicyResponse:
     out: GetTrafficPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "TrafficPolicyName" in data:
+    if data.get("TrafficPolicyName") is not None:
         out["traffic_policy_name"] = data["TrafficPolicyName"]
     else:
         raise DeserializationError(
             "GetTrafficPolicyResponse.traffic_policy_name required"
         )
-    if "TrafficPolicyId" in data:
+    if data.get("TrafficPolicyId") is not None:
         out["traffic_policy_id"] = data["TrafficPolicyId"]
     else:
         raise DeserializationError(
             "GetTrafficPolicyResponse.traffic_policy_id required"
         )
-    if "TrafficPolicyArn" in data:
+    if data.get("TrafficPolicyArn") is not None:
         out["traffic_policy_arn"] = data["TrafficPolicyArn"]
-    if "PolicyStatements" in data:
+    if data.get("PolicyStatements") is not None:
         import capo_mailmanager.types.policy_statement_list
 
         out["policy_statements"] = (
@@ -110,9 +110,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetTrafficPolicyResponse:
                 data["PolicyStatements"]
             )
         )
-    if "MaxMessageSizeBytes" in data:
+    if data.get("MaxMessageSizeBytes") is not None:
         out["max_message_size_bytes"] = data["MaxMessageSizeBytes"]
-    if "DefaultAction" in data:
+    if data.get("DefaultAction") is not None:
         import capo_mailmanager.types.accept_action
 
         out["default_action"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetTrafficPolicyResponse:
                 data["DefaultAction"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetTrafficPolicyResponse:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["last_updated_timestamp"] = (

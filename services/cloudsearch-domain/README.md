@@ -13,9 +13,9 @@ from capo_cloudsearch_domain import AsyncCloudSearchDomainClient
 
 
 async def main():
-    async with AsyncCloudSearchDomainClient() as s3:
+    async with AsyncCloudSearchDomainClient() as cloud_search_domain:
         # Example: call the search operation
-        response = await s3.search()
+        response = await cloud_search_domain.search()
         print(response["status"])
 ```
 
@@ -28,16 +28,16 @@ from capo_cloudsearch_domain import AsyncCloudSearchDomainClient
 
 
 async def main():
-    async with AsyncCloudSearchDomainClient() as s3:
+    async with AsyncCloudSearchDomainClient() as cloud_search_domain:
         # Example: call upload_documents with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.upload_documents(documents=chunks())
+        response = await cloud_search_domain.upload_documents(documents=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.upload_documents(documents=b'Hello, World!')
+        response = await cloud_search_domain.upload_documents(documents=b'Hello, World!')
         print(response)
 ```
 
@@ -51,9 +51,9 @@ from capo_cloudsearch_domain.error import SearchException
 
 
 async def main():
-    async with AsyncCloudSearchDomainClient() as s3:
+    async with AsyncCloudSearchDomainClient() as cloud_search_domain:
         try:
-            await s3.search()
+            await cloud_search_domain.search()
         except SearchException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -70,13 +70,13 @@ from capo_cloudsearch_domain import AsyncCloudSearchDomainClient
 
 
 async def main():
-    async with AsyncCloudSearchDomainClient() as s3:
+    async with AsyncCloudSearchDomainClient() as cloud_search_domain:
         # Default: 3 attempts for every operation
-        response = await s3.search()
+        response = await cloud_search_domain.search()
 
         # Override per operation
-        response = await s3.search(config_overrides={"retry_max_attempts": 5})
+        response = await cloud_search_domain.search(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.search(config_overrides={"retry_max_attempts": 1})
+        response = await cloud_search_domain.search(config_overrides={"retry_max_attempts": 1})
 ```

@@ -34,7 +34,7 @@ def serialize_json(value: AssociateAwsAccountWithPartnerAccountResponse) -> dict
 
 def deserialize_json(data: dict) -> AssociateAwsAccountWithPartnerAccountResponse:
     out: AssociateAwsAccountWithPartnerAccountResponse = {}  # type: ignore[typeddict-item]
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_account_info
 
         out["sidewalk"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> AssociateAwsAccountWithPartnerAccountRespons
                 data["Sidewalk"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

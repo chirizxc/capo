@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DestinationFlowConfigList:
 
     out: DestinationFlowConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appflow.types.destination_flow_config.deserialize_json(item))
     return out

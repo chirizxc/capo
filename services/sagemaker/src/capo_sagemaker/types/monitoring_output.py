@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: MonitoringOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringOutput:
     out: MonitoringOutput = {}  # type: ignore[typeddict-item]
-    if "S3Output" in data:
+    if data.get("S3Output") is not None:
         import capo_sagemaker.types.monitoring_s3_output
 
         out["s3_output"] = (

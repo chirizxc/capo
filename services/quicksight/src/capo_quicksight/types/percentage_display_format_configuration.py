@@ -80,11 +80,11 @@ def serialize_json(value: PercentageDisplayFormatConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PercentageDisplayFormatConfiguration:
     out: PercentageDisplayFormatConfiguration = {}  # type: ignore[typeddict-item]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "Suffix" in data:
+    if data.get("Suffix") is not None:
         out["suffix"] = data["Suffix"]
-    if "SeparatorConfiguration" in data:
+    if data.get("SeparatorConfiguration") is not None:
         import capo_quicksight.types.numeric_separator_configuration
 
         out["separator_configuration"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> PercentageDisplayFormatConfiguration:
                 data["SeparatorConfiguration"]
             )
         )
-    if "DecimalPlacesConfiguration" in data:
+    if data.get("DecimalPlacesConfiguration") is not None:
         import capo_quicksight.types.decimal_places_configuration
 
         out["decimal_places_configuration"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> PercentageDisplayFormatConfiguration:
                 data["DecimalPlacesConfiguration"]
             )
         )
-    if "NegativeValueConfiguration" in data:
+    if data.get("NegativeValueConfiguration") is not None:
         import capo_quicksight.types.negative_value_configuration
 
         out["negative_value_configuration"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> PercentageDisplayFormatConfiguration:
                 data["NegativeValueConfiguration"]
             )
         )
-    if "NullValueFormatConfiguration" in data:
+    if data.get("NullValueFormatConfiguration") is not None:
         import capo_quicksight.types.null_value_format_configuration
 
         out["null_value_format_configuration"] = (

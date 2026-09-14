@@ -72,11 +72,11 @@ def serialize_aws_json_1_1(value: DataProvider) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataProvider:
     out: DataProvider = {}  # type: ignore[typeddict-item]
-    if "DataProviderName" in data:
+    if data.get("DataProviderName") is not None:
         out["data_provider_name"] = data["DataProviderName"]
-    if "DataProviderArn" in data:
+    if data.get("DataProviderArn") is not None:
         out["data_provider_arn"] = data["DataProviderArn"]
-    if "DataProviderCreationTime" in data:
+    if data.get("DataProviderCreationTime") is not None:
         import capo_database_migration_service.types.iso8601_date_time
 
         out["data_provider_creation_time"] = (
@@ -84,13 +84,13 @@ def deserialize_aws_json_1_1(data: dict) -> DataProvider:
                 data["DataProviderCreationTime"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "Virtual" in data:
+    if data.get("Virtual") is not None:
         out["virtual"] = data["Virtual"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_database_migration_service.types.data_provider_settings
 
         out["settings"] = (

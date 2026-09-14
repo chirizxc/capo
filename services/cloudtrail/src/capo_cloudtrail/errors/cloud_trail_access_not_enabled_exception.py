@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: CloudTrailAccessNotEnabledException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CloudTrailAccessNotEnabledException_:
     out: CloudTrailAccessNotEnabledException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,20 @@ class CloudTrailAccessNotEnabledException(ServiceError):
 
     code: str | None = "CloudTrailAccessNotEnabledException"
 
-    def __init__(self, data: CloudTrailAccessNotEnabledException_):
+    def __init__(
+        self, data: CloudTrailAccessNotEnabledException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CloudTrailAccessNotEnabledException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "CloudTrailAccessNotEnabledException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "CloudTrailAccessNotEnabledException":
+        return cls(deserialize_aws_json_1_1(data), message)

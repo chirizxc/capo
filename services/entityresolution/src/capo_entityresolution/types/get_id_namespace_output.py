@@ -95,17 +95,17 @@ def serialize_json(value: GetIdNamespaceOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetIdNamespaceOutput:
     out: GetIdNamespaceOutput = {}  # type: ignore[typeddict-item]
-    if "idNamespaceName" in data:
+    if data.get("idNamespaceName") is not None:
         out["id_namespace_name"] = data["idNamespaceName"]
     else:
         raise DeserializationError("GetIdNamespaceOutput.id_namespace_name required")
-    if "idNamespaceArn" in data:
+    if data.get("idNamespaceArn") is not None:
         out["id_namespace_arn"] = data["idNamespaceArn"]
     else:
         raise DeserializationError("GetIdNamespaceOutput.id_namespace_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "inputSourceConfig" in data:
+    if data.get("inputSourceConfig") is not None:
         import capo_entityresolution.types.id_namespace_input_source_config
 
         out["input_source_config"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> GetIdNamespaceOutput:
                 data["inputSourceConfig"]
             )
         )
-    if "idMappingWorkflowProperties" in data:
+    if data.get("idMappingWorkflowProperties") is not None:
         import capo_entityresolution.types.id_namespace_id_mapping_workflow_properties_list
 
         out["id_mapping_workflow_properties"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> GetIdNamespaceOutput:
                 data["idMappingWorkflowProperties"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_entityresolution.types.id_namespace_type
 
         out["type"] = capo_entityresolution.types.id_namespace_type.deserialize_json(
@@ -129,9 +129,9 @@ def deserialize_json(data: dict) -> GetIdNamespaceOutput:
         )
     else:
         raise DeserializationError("GetIdNamespaceOutput.type required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["created_at"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> GetIdNamespaceOutput:
         )
     else:
         raise DeserializationError("GetIdNamespaceOutput.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> GetIdNamespaceOutput:
         )
     else:
         raise DeserializationError("GetIdNamespaceOutput.updated_at required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_entityresolution.types.tag_map
 
         out["tags"] = capo_entityresolution.types.tag_map.deserialize_json(data["tags"])

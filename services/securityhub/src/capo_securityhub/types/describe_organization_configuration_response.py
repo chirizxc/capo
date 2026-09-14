@@ -52,11 +52,11 @@ def serialize_json(value: DescribeOrganizationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOrganizationConfigurationResponse:
     out: DescribeOrganizationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "AutoEnable" in data:
+    if data.get("AutoEnable") is not None:
         out["auto_enable"] = data["AutoEnable"]
-    if "MemberAccountLimitReached" in data:
+    if data.get("MemberAccountLimitReached") is not None:
         out["member_account_limit_reached"] = data["MemberAccountLimitReached"]
-    if "AutoEnableStandards" in data:
+    if data.get("AutoEnableStandards") is not None:
         import capo_securityhub.types.auto_enable_standards
 
         out["auto_enable_standards"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> DescribeOrganizationConfigurationResponse:
                 data["AutoEnableStandards"]
             )
         )
-    if "OrganizationConfiguration" in data:
+    if data.get("OrganizationConfiguration") is not None:
         import capo_securityhub.types.organization_configuration
 
         out["organization_configuration"] = (

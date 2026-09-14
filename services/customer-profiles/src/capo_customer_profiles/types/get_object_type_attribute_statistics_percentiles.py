@@ -26,42 +26,82 @@ class GetObjectTypeAttributeStatisticsPercentiles(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GetObjectTypeAttributeStatisticsPercentiles) -> dict:
     out: dict = {}
-    out["P5"] = value["p5"]
-    out["P25"] = value["p25"]
-    out["P50"] = value["p50"]
-    out["P75"] = value["p75"]
-    out["P95"] = value["p95"]
+    out["P5"] = (
+        "NaN"
+        if value["p5"] != value["p5"]
+        else "Infinity"
+        if value["p5"] == float("inf")
+        else "-Infinity"
+        if value["p5"] == float("-inf")
+        else value["p5"]
+    )
+    out["P25"] = (
+        "NaN"
+        if value["p25"] != value["p25"]
+        else "Infinity"
+        if value["p25"] == float("inf")
+        else "-Infinity"
+        if value["p25"] == float("-inf")
+        else value["p25"]
+    )
+    out["P50"] = (
+        "NaN"
+        if value["p50"] != value["p50"]
+        else "Infinity"
+        if value["p50"] == float("inf")
+        else "-Infinity"
+        if value["p50"] == float("-inf")
+        else value["p50"]
+    )
+    out["P75"] = (
+        "NaN"
+        if value["p75"] != value["p75"]
+        else "Infinity"
+        if value["p75"] == float("inf")
+        else "-Infinity"
+        if value["p75"] == float("-inf")
+        else value["p75"]
+    )
+    out["P95"] = (
+        "NaN"
+        if value["p95"] != value["p95"]
+        else "Infinity"
+        if value["p95"] == float("inf")
+        else "-Infinity"
+        if value["p95"] == float("-inf")
+        else value["p95"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> GetObjectTypeAttributeStatisticsPercentiles:
     out: GetObjectTypeAttributeStatisticsPercentiles = {}  # type: ignore[typeddict-item]
-    if "P5" in data:
-        out["p5"] = data["P5"]
+    if data.get("P5") is not None:
+        out["p5"] = float(data["P5"])
     else:
         raise DeserializationError(
             "GetObjectTypeAttributeStatisticsPercentiles.p5 required"
         )
-    if "P25" in data:
-        out["p25"] = data["P25"]
+    if data.get("P25") is not None:
+        out["p25"] = float(data["P25"])
     else:
         raise DeserializationError(
             "GetObjectTypeAttributeStatisticsPercentiles.p25 required"
         )
-    if "P50" in data:
-        out["p50"] = data["P50"]
+    if data.get("P50") is not None:
+        out["p50"] = float(data["P50"])
     else:
         raise DeserializationError(
             "GetObjectTypeAttributeStatisticsPercentiles.p50 required"
         )
-    if "P75" in data:
-        out["p75"] = data["P75"]
+    if data.get("P75") is not None:
+        out["p75"] = float(data["P75"])
     else:
         raise DeserializationError(
             "GetObjectTypeAttributeStatisticsPercentiles.p75 required"
         )
-    if "P95" in data:
-        out["p95"] = data["P95"]
+    if data.get("P95") is not None:
+        out["p95"] = float(data["P95"])
     else:
         raise DeserializationError(
             "GetObjectTypeAttributeStatisticsPercentiles.p95 required"

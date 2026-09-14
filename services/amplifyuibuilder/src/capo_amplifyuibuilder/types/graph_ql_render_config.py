@@ -31,25 +31,25 @@ def serialize_json(value: GraphQLRenderConfig) -> dict:
 
 def deserialize_json(data: dict) -> GraphQLRenderConfig:
     out: GraphQLRenderConfig = {}  # type: ignore[typeddict-item]
-    if "typesFilePath" in data:
+    if data.get("typesFilePath") is not None:
         out["types_file_path"] = data["typesFilePath"]
     else:
         raise DeserializationError("GraphQLRenderConfig.types_file_path required")
-    if "queriesFilePath" in data:
+    if data.get("queriesFilePath") is not None:
         out["queries_file_path"] = data["queriesFilePath"]
     else:
         raise DeserializationError("GraphQLRenderConfig.queries_file_path required")
-    if "mutationsFilePath" in data:
+    if data.get("mutationsFilePath") is not None:
         out["mutations_file_path"] = data["mutationsFilePath"]
     else:
         raise DeserializationError("GraphQLRenderConfig.mutations_file_path required")
-    if "subscriptionsFilePath" in data:
+    if data.get("subscriptionsFilePath") is not None:
         out["subscriptions_file_path"] = data["subscriptionsFilePath"]
     else:
         raise DeserializationError(
             "GraphQLRenderConfig.subscriptions_file_path required"
         )
-    if "fragmentsFilePath" in data:
+    if data.get("fragmentsFilePath") is not None:
         out["fragments_file_path"] = data["fragmentsFilePath"]
     else:
         raise DeserializationError("GraphQLRenderConfig.fragments_file_path required")

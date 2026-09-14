@@ -35,9 +35,9 @@ def serialize_json(value: LoggingFormat) -> dict:
 
 
 def deserialize_json(data: dict) -> LoggingFormat:
-    if "text" in data:
+    if data.get("text") is not None:
         return {"text": data["text"]}
-    elif "json" in data:
+    elif data.get("json") is not None:
         import capo_app_mesh.types.json_format
 
         return {"json": capo_app_mesh.types.json_format.deserialize_json(data["json"])}

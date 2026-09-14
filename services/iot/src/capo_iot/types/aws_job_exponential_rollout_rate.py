@@ -31,7 +31,15 @@ class AwsJobExponentialRolloutRate(TypedDict, closed=True):
 def serialize_json(value: AwsJobExponentialRolloutRate) -> dict:
     out: dict = {}
     out["baseRatePerMinute"] = value["base_rate_per_minute"]
-    out["incrementFactor"] = value.get("increment_factor", 0)
+    out["incrementFactor"] = (
+        "NaN"
+        if value.get("increment_factor", 0) != value.get("increment_factor", 0)
+        else "Infinity"
+        if value.get("increment_factor", 0) == float("inf")
+        else "-Infinity"
+        if value.get("increment_factor", 0) == float("-inf")
+        else value.get("increment_factor", 0)
+    )
     import capo_iot.types.aws_job_rate_increase_criteria
 
     out["rateIncreaseCriteria"] = (
@@ -44,17 +52,17 @@ def serialize_json(value: AwsJobExponentialRolloutRate) -> dict:
 
 def deserialize_json(data: dict) -> AwsJobExponentialRolloutRate:
     out: AwsJobExponentialRolloutRate = {}  # type: ignore[typeddict-item]
-    if "baseRatePerMinute" in data:
+    if data.get("baseRatePerMinute") is not None:
         out["base_rate_per_minute"] = data["baseRatePerMinute"]
     else:
         raise DeserializationError(
             "AwsJobExponentialRolloutRate.base_rate_per_minute required"
         )
-    if "incrementFactor" in data:
-        out["increment_factor"] = data["incrementFactor"]
+    if data.get("incrementFactor") is not None:
+        out["increment_factor"] = float(data["incrementFactor"])
     else:
         out["increment_factor"] = 0
-    if "rateIncreaseCriteria" in data:
+    if data.get("rateIncreaseCriteria") is not None:
         import capo_iot.types.aws_job_rate_increase_criteria
 
         out["rate_increase_criteria"] = (

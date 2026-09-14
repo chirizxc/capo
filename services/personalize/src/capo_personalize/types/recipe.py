@@ -68,19 +68,19 @@ def serialize_aws_json_1_1(value: Recipe) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Recipe:
     out: Recipe = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "recipeArn" in data:
+    if data.get("recipeArn") is not None:
         out["recipe_arn"] = data["recipeArn"]
-    if "algorithmArn" in data:
+    if data.get("algorithmArn") is not None:
         out["algorithm_arn"] = data["algorithmArn"]
-    if "featureTransformationArn" in data:
+    if data.get("featureTransformationArn") is not None:
         out["feature_transformation_arn"] = data["featureTransformationArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -88,9 +88,9 @@ def deserialize_aws_json_1_1(data: dict) -> Recipe:
                 data["creationDateTime"]
             )
         )
-    if "recipeType" in data:
+    if data.get("recipeType") is not None:
         out["recipe_type"] = data["recipeType"]
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (

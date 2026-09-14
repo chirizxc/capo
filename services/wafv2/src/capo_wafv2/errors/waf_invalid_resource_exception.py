@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: WAFInvalidResourceException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WAFInvalidResourceException_:
     out: WAFInvalidResourceException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class WAFInvalidResourceException(ServiceError):
 
     code: str | None = "WAFInvalidResourceException"
 
-    def __init__(self, data: WAFInvalidResourceException_):
+    def __init__(self, data: WAFInvalidResourceException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="WAFInvalidResourceException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "WAFInvalidResourceException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "WAFInvalidResourceException":
+        return cls(deserialize_aws_json_1_1(data), message)

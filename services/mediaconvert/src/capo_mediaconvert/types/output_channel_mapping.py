@@ -44,7 +44,7 @@ def serialize_json(value: OutputChannelMapping) -> dict:
 
 def deserialize_json(data: dict) -> OutputChannelMapping:
     out: OutputChannelMapping = {}  # type: ignore[typeddict-item]
-    if "inputChannels" in data:
+    if data.get("inputChannels") is not None:
         import capo_mediaconvert.types.__list_of__integer_min_negative60_max6
 
         out["input_channels"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> OutputChannelMapping:
                 data["inputChannels"]
             )
         )
-    if "inputChannelsFineTune" in data:
+    if data.get("inputChannelsFineTune") is not None:
         import capo_mediaconvert.types.__list_of__double_min_negative60_max6
 
         out["input_channels_fine_tune"] = (

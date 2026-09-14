@@ -16,4 +16,4 @@ def serialize_json(value: DeploymentFilterValues) -> list:
 
 
 def deserialize_json(data: list) -> DeploymentFilterValues:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -40,11 +40,11 @@ def serialize_json(value: CisSessionMessage) -> dict:
 
 def deserialize_json(data: dict) -> CisSessionMessage:
     out: CisSessionMessage = {}  # type: ignore[typeddict-item]
-    if "ruleId" in data:
+    if data.get("ruleId") is not None:
         out["rule_id"] = data["ruleId"]
     else:
         raise DeserializationError("CisSessionMessage.rule_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_inspector2.types.cis_rule_status
 
         out["status"] = capo_inspector2.types.cis_rule_status.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CisSessionMessage:
         )
     else:
         raise DeserializationError("CisSessionMessage.status required")
-    if "cisRuleDetails" in data:
+    if data.get("cisRuleDetails") is not None:
         import capo_inspector2.types.cis_rule_details
 
         out["cis_rule_details"] = (

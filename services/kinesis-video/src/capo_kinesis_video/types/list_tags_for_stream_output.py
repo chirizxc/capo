@@ -32,9 +32,9 @@ def serialize_json(value: ListTagsForStreamOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForStreamOutput:
     out: ListTagsForStreamOutput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis_video.types.resource_tags
 
         out["tags"] = capo_kinesis_video.types.resource_tags.deserialize_json(

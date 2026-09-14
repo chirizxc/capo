@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AddonPodIdentityConfigurationList:
 
     out: AddonPodIdentityConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_eks.types.addon_pod_identity_configuration.deserialize_json(item)
         )

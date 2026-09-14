@@ -34,13 +34,13 @@ def serialize_json(value: GetAssessmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAssessmentResponse:
     out: GetAssessmentResponse = {}  # type: ignore[typeddict-item]
-    if "assessment" in data:
+    if data.get("assessment") is not None:
         import capo_auditmanager.types.assessment
 
         out["assessment"] = capo_auditmanager.types.assessment.deserialize_json(
             data["assessment"]
         )
-    if "userRole" in data:
+    if data.get("userRole") is not None:
         import capo_auditmanager.types.role
 
         out["user_role"] = capo_auditmanager.types.role.deserialize_json(

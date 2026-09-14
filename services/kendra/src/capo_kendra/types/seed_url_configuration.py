@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: SeedUrlConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SeedUrlConfiguration:
     out: SeedUrlConfiguration = {}  # type: ignore[typeddict-item]
-    if "SeedUrls" in data:
+    if data.get("SeedUrls") is not None:
         import capo_kendra.types.seed_url_list
 
         out["seed_urls"] = capo_kendra.types.seed_url_list.deserialize_aws_json_1_1(
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> SeedUrlConfiguration:
         )
     else:
         raise DeserializationError("SeedUrlConfiguration.seed_urls required")
-    if "WebCrawlerMode" in data:
+    if data.get("WebCrawlerMode") is not None:
         import capo_kendra.types.web_crawler_mode
 
         out["web_crawler_mode"] = (

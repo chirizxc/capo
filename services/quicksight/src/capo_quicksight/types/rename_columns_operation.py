@@ -44,11 +44,11 @@ def serialize_json(value: RenameColumnsOperation) -> dict:
 
 def deserialize_json(data: dict) -> RenameColumnsOperation:
     out: RenameColumnsOperation = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("RenameColumnsOperation.alias required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.transform_operation_source
 
         out["source"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> RenameColumnsOperation:
         )
     else:
         raise DeserializationError("RenameColumnsOperation.source required")
-    if "RenameColumnOperations" in data:
+    if data.get("RenameColumnOperations") is not None:
         import capo_quicksight.types.rename_column_operation_list
 
         out["rename_column_operations"] = (

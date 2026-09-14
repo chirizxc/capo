@@ -49,11 +49,11 @@ def serialize_aws_json_1_1(value: MergeHunk) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MergeHunk:
     out: MergeHunk = {}  # type: ignore[typeddict-item]
-    if "isConflict" in data:
+    if data.get("isConflict") is not None:
         out["is_conflict"] = data["isConflict"]
     else:
         out["is_conflict"] = False
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_codecommit.types.merge_hunk_detail
 
         out["source"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> MergeHunk:
                 data["source"]
             )
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_codecommit.types.merge_hunk_detail
 
         out["destination"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> MergeHunk:
                 data["destination"]
             )
         )
-    if "base" in data:
+    if data.get("base") is not None:
         import capo_codecommit.types.merge_hunk_detail
 
         out["base"] = capo_codecommit.types.merge_hunk_detail.deserialize_aws_json_1_1(

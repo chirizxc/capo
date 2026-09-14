@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: TableRow) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableRow:
     out: TableRow = {}  # type: ignore[typeddict-item]
-    if "Cells" in data:
+    if data.get("Cells") is not None:
         import capo_kendra.types.table_cell_list
 
         out["cells"] = capo_kendra.types.table_cell_list.deserialize_aws_json_1_1(

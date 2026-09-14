@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: HibernationOptionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> HibernationOptionsRequest:
     out: HibernationOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "Configured" in data:
+    if data.get("Configured") is not None:
         out["configured"] = data["Configured"]
     return out

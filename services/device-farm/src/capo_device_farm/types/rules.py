@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Rules:
 
     out: Rules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_device_farm.types.rule.deserialize_aws_json_1_1(item))
     return out

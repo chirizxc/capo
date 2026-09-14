@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ApplicationLayerAutomaticResponseConfiguration:
     out: ApplicationLayerAutomaticResponseConfiguration = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_shield.types.application_layer_automatic_response_status
 
         out["status"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "ApplicationLayerAutomaticResponseConfiguration.status required"
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_shield.types.response_action
 
         out["action"] = capo_shield.types.response_action.deserialize_aws_json_1_1(

@@ -60,23 +60,23 @@ def serialize_aws_json_1_1(value: CreateHsmRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHsmRequest:
     out: CreateHsmRequest = {}  # type: ignore[typeddict-item]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
     else:
         raise DeserializationError("CreateHsmRequest.subnet_id required")
-    if "SshKey" in data:
+    if data.get("SshKey") is not None:
         out["ssh_key"] = data["SshKey"]
     else:
         raise DeserializationError("CreateHsmRequest.ssh_key required")
-    if "EniIp" in data:
+    if data.get("EniIp") is not None:
         out["eni_ip"] = data["EniIp"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("CreateHsmRequest.iam_role_arn required")
-    if "ExternalId" in data:
+    if data.get("ExternalId") is not None:
         out["external_id"] = data["ExternalId"]
-    if "SubscriptionType" in data:
+    if data.get("SubscriptionType") is not None:
         import capo_cloudhsm.types.subscription_type
 
         out["subscription_type"] = (
@@ -86,8 +86,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHsmRequest:
         )
     else:
         raise DeserializationError("CreateHsmRequest.subscription_type required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "SyslogIp" in data:
+    if data.get("SyslogIp") is not None:
         out["syslog_ip"] = data["SyslogIp"]
     return out

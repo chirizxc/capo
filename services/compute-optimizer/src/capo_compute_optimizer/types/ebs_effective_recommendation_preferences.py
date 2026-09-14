@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: EBSEffectiveRecommendationPreferences) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> EBSEffectiveRecommendationPreferences:
     out: EBSEffectiveRecommendationPreferences = {}  # type: ignore[typeddict-item]
-    if "savingsEstimationMode" in data:
+    if data.get("savingsEstimationMode") is not None:
         import capo_compute_optimizer.types.ebs_savings_estimation_mode
 
         out["savings_estimation_mode"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> EBSEffectiveRecommendationPreference
                 data["savingsEstimationMode"]
             )
         )
-    if "lookBackPeriod" in data:
+    if data.get("lookBackPeriod") is not None:
         import capo_compute_optimizer.types.look_back_period_preference
 
         out["look_back_period"] = (

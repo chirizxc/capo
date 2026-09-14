@@ -34,9 +34,9 @@ def serialize_json(value: ListEphemeridesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEphemeridesResponse:
     out: ListEphemeridesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "ephemerides" in data:
+    if data.get("ephemerides") is not None:
         import capo_groundstation.types.ephemerides_list
 
         out["ephemerides"] = capo_groundstation.types.ephemerides_list.deserialize_json(

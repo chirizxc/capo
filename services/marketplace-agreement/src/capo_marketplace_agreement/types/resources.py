@@ -25,6 +25,8 @@ def deserialize_aws_json_1_0(data: list) -> Resources:
 
     out: Resources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_agreement.types.resource.deserialize_aws_json_1_0(item)
         )

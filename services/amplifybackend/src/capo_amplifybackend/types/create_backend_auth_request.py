@@ -42,9 +42,9 @@ def serialize_json(value: CreateBackendAuthRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackendAuthRequest:
     out: CreateBackendAuthRequest = {}  # type: ignore[typeddict-item]
-    if "backendEnvironmentName" in data:
+    if data.get("backendEnvironmentName") is not None:
         out["backend_environment_name"] = data["backendEnvironmentName"]
-    if "resourceConfig" in data:
+    if data.get("resourceConfig") is not None:
         import capo_amplifybackend.types.create_backend_auth_resource_config
 
         out["resource_config"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> CreateBackendAuthRequest:
                 data["resourceConfig"]
             )
         )
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     return out

@@ -58,15 +58,15 @@ def serialize_aws_json_1_1(value: SubResourceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SubResourceSummary:
     out: SubResourceSummary = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_shield.types.sub_resource_type
 
         out["type"] = capo_shield.types.sub_resource_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "AttackVectors" in data:
+    if data.get("AttackVectors") is not None:
         import capo_shield.types.summarized_attack_vector_list
 
         out["attack_vectors"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> SubResourceSummary:
                 data["AttackVectors"]
             )
         )
-    if "Counters" in data:
+    if data.get("Counters") is not None:
         import capo_shield.types.summarized_counter_list
 
         out["counters"] = (

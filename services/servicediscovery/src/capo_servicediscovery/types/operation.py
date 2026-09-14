@@ -94,11 +94,11 @@ def serialize_aws_json_1_1(value: Operation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Operation:
     out: Operation = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "OwnerAccount" in data:
+    if data.get("OwnerAccount") is not None:
         out["owner_account"] = data["OwnerAccount"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_servicediscovery.types.operation_type
 
         out["type"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> Operation:
                 data["Type"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_servicediscovery.types.operation_status
 
         out["status"] = (
@@ -114,11 +114,11 @@ def deserialize_aws_json_1_1(data: dict) -> Operation:
                 data["Status"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_servicediscovery.types.timestamp
 
         out["create_date"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> Operation:
                 data["CreateDate"]
             )
         )
-    if "UpdateDate" in data:
+    if data.get("UpdateDate") is not None:
         import capo_servicediscovery.types.timestamp
 
         out["update_date"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> Operation:
                 data["UpdateDate"]
             )
         )
-    if "Targets" in data:
+    if data.get("Targets") is not None:
         import capo_servicediscovery.types.operation_targets_map
 
         out["targets"] = (

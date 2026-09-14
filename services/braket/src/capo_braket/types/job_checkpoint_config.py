@@ -29,9 +29,9 @@ def serialize_json(value: JobCheckpointConfig) -> dict:
 
 def deserialize_json(data: dict) -> JobCheckpointConfig:
     out: JobCheckpointConfig = {}  # type: ignore[typeddict-item]
-    if "localPath" in data:
+    if data.get("localPath") is not None:
         out["local_path"] = data["localPath"]
-    if "s3Uri" in data:
+    if data.get("s3Uri") is not None:
         out["s3_uri"] = data["s3Uri"]
     else:
         raise DeserializationError("JobCheckpointConfig.s3_uri required")

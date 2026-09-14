@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DescribeProfileResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProfileResponse:
     out: DescribeProfileResponse = {}  # type: ignore[typeddict-item]
-    if "Profile" in data:
+    if data.get("Profile") is not None:
         import capo_transfer.types.described_profile
 
         out["profile"] = capo_transfer.types.described_profile.deserialize_aws_json_1_1(

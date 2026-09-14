@@ -37,12 +37,12 @@ def serialize_json(value: AwsCodeBuildProjectSource) -> dict:
 
 def deserialize_json(data: dict) -> AwsCodeBuildProjectSource:
     out: AwsCodeBuildProjectSource = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "GitCloneDepth" in data:
+    if data.get("GitCloneDepth") is not None:
         out["git_clone_depth"] = data["GitCloneDepth"]
-    if "InsecureSsl" in data:
+    if data.get("InsecureSsl") is not None:
         out["insecure_ssl"] = data["InsecureSsl"]
     return out

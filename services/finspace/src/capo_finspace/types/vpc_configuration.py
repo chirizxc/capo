@@ -54,9 +54,9 @@ def serialize_json(value: VpcConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VpcConfiguration:
     out: VpcConfiguration = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_finspace.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -64,13 +64,13 @@ def deserialize_json(data: dict) -> VpcConfiguration:
                 data["securityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_finspace.types.subnet_id_list
 
         out["subnet_ids"] = capo_finspace.types.subnet_id_list.deserialize_json(
             data["subnetIds"]
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_finspace.types.ip_address_type
 
         out["ip_address_type"] = capo_finspace.types.ip_address_type.deserialize_json(

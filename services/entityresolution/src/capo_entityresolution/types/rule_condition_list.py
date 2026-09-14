@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RuleConditionList:
 
     out: RuleConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_entityresolution.types.rule_condition.deserialize_json(item))
     return out

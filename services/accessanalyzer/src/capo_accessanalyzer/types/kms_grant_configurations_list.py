@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> KmsGrantConfigurationsList:
 
     out: KmsGrantConfigurationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_accessanalyzer.types.kms_grant_configuration.deserialize_json(item)
         )

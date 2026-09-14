@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UserHierarchyGroupList:
 
     out: UserHierarchyGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.hierarchy_group.deserialize_json(item))
     return out

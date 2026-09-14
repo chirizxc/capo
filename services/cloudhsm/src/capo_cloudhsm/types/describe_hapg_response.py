@@ -93,11 +93,11 @@ def serialize_aws_json_1_1(value: DescribeHapgResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHapgResponse:
     out: DescribeHapgResponse = {}  # type: ignore[typeddict-item]
-    if "HapgArn" in data:
+    if data.get("HapgArn") is not None:
         out["hapg_arn"] = data["HapgArn"]
-    if "HapgSerial" in data:
+    if data.get("HapgSerial") is not None:
         out["hapg_serial"] = data["HapgSerial"]
-    if "HsmsLastActionFailed" in data:
+    if data.get("HsmsLastActionFailed") is not None:
         import capo_cloudhsm.types.hsm_list
 
         out["hsms_last_action_failed"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHapgResponse:
                 data["HsmsLastActionFailed"]
             )
         )
-    if "HsmsPendingDeletion" in data:
+    if data.get("HsmsPendingDeletion") is not None:
         import capo_cloudhsm.types.hsm_list
 
         out["hsms_pending_deletion"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHapgResponse:
                 data["HsmsPendingDeletion"]
             )
         )
-    if "HsmsPendingRegistration" in data:
+    if data.get("HsmsPendingRegistration") is not None:
         import capo_cloudhsm.types.hsm_list
 
         out["hsms_pending_registration"] = (
@@ -121,11 +121,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHapgResponse:
                 data["HsmsPendingRegistration"]
             )
         )
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "LastModifiedTimestamp" in data:
+    if data.get("LastModifiedTimestamp") is not None:
         out["last_modified_timestamp"] = data["LastModifiedTimestamp"]
-    if "PartitionSerialList" in data:
+    if data.get("PartitionSerialList") is not None:
         import capo_cloudhsm.types.partition_serial_list
 
         out["partition_serial_list"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHapgResponse:
                 data["PartitionSerialList"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_cloudhsm.types.cloud_hsm_object_state
 
         out["state"] = (

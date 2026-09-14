@@ -73,9 +73,9 @@ def serialize_json(value: SuiteDefinitionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SuiteDefinitionConfiguration:
     out: SuiteDefinitionConfiguration = {}  # type: ignore[typeddict-item]
-    if "suiteDefinitionName" in data:
+    if data.get("suiteDefinitionName") is not None:
         out["suite_definition_name"] = data["suiteDefinitionName"]
-    if "devices" in data:
+    if data.get("devices") is not None:
         import capo_iotdeviceadvisor.types.device_under_test_list
 
         out["devices"] = (
@@ -83,15 +83,15 @@ def deserialize_json(data: dict) -> SuiteDefinitionConfiguration:
                 data["devices"]
             )
         )
-    if "intendedForQualification" in data:
+    if data.get("intendedForQualification") is not None:
         out["intended_for_qualification"] = data["intendedForQualification"]
-    if "isLongDurationTest" in data:
+    if data.get("isLongDurationTest") is not None:
         out["is_long_duration_test"] = data["isLongDurationTest"]
-    if "rootGroup" in data:
+    if data.get("rootGroup") is not None:
         out["root_group"] = data["rootGroup"]
-    if "devicePermissionRoleArn" in data:
+    if data.get("devicePermissionRoleArn") is not None:
         out["device_permission_role_arn"] = data["devicePermissionRoleArn"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_iotdeviceadvisor.types.protocol
 
         out["protocol"] = capo_iotdeviceadvisor.types.protocol.deserialize_json(

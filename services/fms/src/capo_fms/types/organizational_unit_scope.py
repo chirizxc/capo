@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: OrganizationalUnitScope) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationalUnitScope:
     out: OrganizationalUnitScope = {}  # type: ignore[typeddict-item]
-    if "OrganizationalUnits" in data:
+    if data.get("OrganizationalUnits") is not None:
         import capo_fms.types.organizational_unit_id_list
 
         out["organizational_units"] = (
@@ -50,11 +50,11 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationalUnitScope:
                 data["OrganizationalUnits"]
             )
         )
-    if "AllOrganizationalUnitsEnabled" in data:
+    if data.get("AllOrganizationalUnitsEnabled") is not None:
         out["all_organizational_units_enabled"] = data["AllOrganizationalUnitsEnabled"]
     else:
         out["all_organizational_units_enabled"] = False
-    if "ExcludeSpecifiedOrganizationalUnits" in data:
+    if data.get("ExcludeSpecifiedOrganizationalUnits") is not None:
         out["exclude_specified_organizational_units"] = data[
             "ExcludeSpecifiedOrganizationalUnits"
         ]

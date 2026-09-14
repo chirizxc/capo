@@ -36,7 +36,7 @@ def serialize_json(value: NameCriteria) -> dict:
 
 def deserialize_json(data: dict) -> NameCriteria:
     out: NameCriteria = {}  # type: ignore[typeddict-item]
-    if "SearchText" in data:
+    if data.get("SearchText") is not None:
         import capo_connect.types.search_text_list
 
         out["search_text"] = capo_connect.types.search_text_list.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> NameCriteria:
         )
     else:
         raise DeserializationError("NameCriteria.search_text required")
-    if "MatchType" in data:
+    if data.get("MatchType") is not None:
         import capo_connect.types.search_contacts_match_type
 
         out["match_type"] = (

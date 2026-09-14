@@ -30,8 +30,8 @@ def serialize_json(value: RecoveryInstanceDataReplicationError) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryInstanceDataReplicationError:
     out: RecoveryInstanceDataReplicationError = {}  # type: ignore[typeddict-item]
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
-    if "rawError" in data:
+    if data.get("rawError") is not None:
         out["raw_error"] = data["rawError"]
     return out

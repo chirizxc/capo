@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DetectLabelsSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectLabelsSettings:
     out: DetectLabelsSettings = {}  # type: ignore[typeddict-item]
-    if "GeneralLabels" in data:
+    if data.get("GeneralLabels") is not None:
         import capo_rekognition.types.general_labels_settings
 
         out["general_labels"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectLabelsSettings:
                 data["GeneralLabels"]
             )
         )
-    if "ImageProperties" in data:
+    if data.get("ImageProperties") is not None:
         import capo_rekognition.types.detect_labels_image_properties_settings
 
         out["image_properties"] = (

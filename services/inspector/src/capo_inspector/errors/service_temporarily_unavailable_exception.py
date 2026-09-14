@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: ServiceTemporarilyUnavailableException_) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceTemporarilyUnavailableException_:
     out: ServiceTemporarilyUnavailableException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
             "ServiceTemporarilyUnavailableException_.message required"
         )
-    if "canRetry" in data:
+    if data.get("canRetry") is not None:
         out["can_retry"] = data["canRetry"]
     else:
         raise DeserializationError(
@@ -48,15 +48,20 @@ class ServiceTemporarilyUnavailableException(ServiceError):
 
     code: str | None = "ServiceTemporarilyUnavailableException"
 
-    def __init__(self, data: ServiceTemporarilyUnavailableException_):
+    def __init__(
+        self, data: ServiceTemporarilyUnavailableException_, message: str | None = None
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceTemporarilyUnavailableException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ServiceTemporarilyUnavailableException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceTemporarilyUnavailableException":
+        return cls(deserialize_aws_json_1_1(data), message)

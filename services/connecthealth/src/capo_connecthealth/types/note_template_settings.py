@@ -47,7 +47,7 @@ def serialize_json(value: NoteTemplateSettings) -> dict:
 
 
 def deserialize_json(data: dict) -> NoteTemplateSettings:
-    if "managedTemplate" in data:
+    if data.get("managedTemplate") is not None:
         import capo_connecthealth.types.managed_template
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> NoteTemplateSettings:
                 data["managedTemplate"]
             )
         }
-    elif "customTemplate" in data:
+    elif data.get("customTemplate") is not None:
         import capo_connecthealth.types.custom_template
 
         return {

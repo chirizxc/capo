@@ -37,11 +37,11 @@ def serialize_aws_json_1_0(value: IngressPointPasswordConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngressPointPasswordConfiguration:
     out: IngressPointPasswordConfiguration = {}  # type: ignore[typeddict-item]
-    if "SmtpPasswordVersion" in data:
+    if data.get("SmtpPasswordVersion") is not None:
         out["smtp_password_version"] = data["SmtpPasswordVersion"]
-    if "PreviousSmtpPasswordVersion" in data:
+    if data.get("PreviousSmtpPasswordVersion") is not None:
         out["previous_smtp_password_version"] = data["PreviousSmtpPasswordVersion"]
-    if "PreviousSmtpPasswordExpiryTimestamp" in data:
+    if data.get("PreviousSmtpPasswordExpiryTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["previous_smtp_password_expiry_timestamp"] = (

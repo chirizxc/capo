@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: BatchDetectSentimentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDetectSentimentRequest:
     out: BatchDetectSentimentRequest = {}  # type: ignore[typeddict-item]
-    if "TextList" in data:
+    if data.get("TextList") is not None:
         import capo_comprehend.types.customer_input_string_list
 
         out["text_list"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDetectSentimentRequest:
         )
     else:
         raise DeserializationError("BatchDetectSentimentRequest.text_list required")
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.language_code
 
         out["language_code"] = (

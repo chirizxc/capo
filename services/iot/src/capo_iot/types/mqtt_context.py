@@ -35,14 +35,14 @@ def serialize_json(value: MqttContext) -> dict:
 
 def deserialize_json(data: dict) -> MqttContext:
     out: MqttContext = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "password" in data:
+    if data.get("password") is not None:
         import capo_iot.types.mqtt_password
 
         out["password"] = capo_iot.types.mqtt_password.deserialize_json(
             data["password"]
         )
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     return out

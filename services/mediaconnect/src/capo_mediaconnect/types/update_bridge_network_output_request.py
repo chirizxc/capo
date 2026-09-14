@@ -43,18 +43,18 @@ def serialize_json(value: UpdateBridgeNetworkOutputRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBridgeNetworkOutputRequest:
     out: UpdateBridgeNetworkOutputRequest = {}  # type: ignore[typeddict-item]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "networkName" in data:
+    if data.get("networkName") is not None:
         out["network_name"] = data["networkName"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_mediaconnect.types.protocol
 
         out["protocol"] = capo_mediaconnect.types.protocol.deserialize_json(
             data["protocol"]
         )
-    if "ttl" in data:
+    if data.get("ttl") is not None:
         out["ttl"] = data["ttl"]
     return out

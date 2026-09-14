@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RecommendationResourceExclusionList:
 
     out: RecommendationResourceExclusionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_trustedadvisor.types.recommendation_resource_exclusion.deserialize_json(
                 item

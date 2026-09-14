@@ -39,11 +39,11 @@ def serialize_json(value: MemberDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> MemberDetails:
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_datazone.types.user_details
 
         return {"user": capo_datazone.types.user_details.deserialize_json(data["user"])}
-    elif "group" in data:
+    elif data.get("group") is not None:
         import capo_datazone.types.group_details
 
         return {

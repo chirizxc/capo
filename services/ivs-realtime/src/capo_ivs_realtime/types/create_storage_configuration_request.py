@@ -42,9 +42,9 @@ def serialize_json(value: CreateStorageConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateStorageConfigurationRequest:
     out: CreateStorageConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_ivs_realtime.types.s3_storage_configuration
 
         out["s3"] = capo_ivs_realtime.types.s3_storage_configuration.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CreateStorageConfigurationRequest:
         )
     else:
         raise DeserializationError("CreateStorageConfigurationRequest.s3 required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs_realtime.types.tags
 
         out["tags"] = capo_ivs_realtime.types.tags.deserialize_json(data["tags"])

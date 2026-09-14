@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: LicenseRuleStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LicenseRuleStatement:
     out: LicenseRuleStatement = {}  # type: ignore[typeddict-item]
-    if "AndRuleStatement" in data:
+    if data.get("AndRuleStatement") is not None:
         import capo_license_manager.types.and_rule_statement
 
         out["and_rule_statement"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseRuleStatement:
                 data["AndRuleStatement"]
             )
         )
-    if "OrRuleStatement" in data:
+    if data.get("OrRuleStatement") is not None:
         import capo_license_manager.types.or_rule_statement
 
         out["or_rule_statement"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseRuleStatement:
                 data["OrRuleStatement"]
             )
         )
-    if "MatchingRuleStatement" in data:
+    if data.get("MatchingRuleStatement") is not None:
         import capo_license_manager.types.matching_rule_statement
 
         out["matching_rule_statement"] = (

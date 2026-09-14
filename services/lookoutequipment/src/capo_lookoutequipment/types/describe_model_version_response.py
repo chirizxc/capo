@@ -334,15 +334,15 @@ def serialize_aws_json_1_0(value: DescribeModelVersionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
     out: DescribeModelVersionResponse = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "ModelVersionArn" in data:
+    if data.get("ModelVersionArn") is not None:
         out["model_version_arn"] = data["ModelVersionArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.model_version_status
 
         out["status"] = (
@@ -350,7 +350,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["Status"]
             )
         )
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_lookoutequipment.types.model_version_source_type
 
         out["source_type"] = (
@@ -358,13 +358,13 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["SourceType"]
             )
         )
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
-    if "LabelsInputConfiguration" in data:
+    if data.get("LabelsInputConfiguration") is not None:
         import capo_lookoutequipment.types.labels_input_configuration
 
         out["labels_input_configuration"] = (
@@ -372,7 +372,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["LabelsInputConfiguration"]
             )
         )
-    if "TrainingDataStartTime" in data:
+    if data.get("TrainingDataStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["training_data_start_time"] = (
@@ -380,7 +380,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["TrainingDataStartTime"]
             )
         )
-    if "TrainingDataEndTime" in data:
+    if data.get("TrainingDataEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["training_data_end_time"] = (
@@ -388,7 +388,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["TrainingDataEndTime"]
             )
         )
-    if "EvaluationDataStartTime" in data:
+    if data.get("EvaluationDataStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["evaluation_data_start_time"] = (
@@ -396,7 +396,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["EvaluationDataStartTime"]
             )
         )
-    if "EvaluationDataEndTime" in data:
+    if data.get("EvaluationDataEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["evaluation_data_end_time"] = (
@@ -404,9 +404,9 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["EvaluationDataEndTime"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "DataPreProcessingConfiguration" in data:
+    if data.get("DataPreProcessingConfiguration") is not None:
         import capo_lookoutequipment.types.data_pre_processing_configuration
 
         out["data_pre_processing_configuration"] = (
@@ -414,7 +414,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["DataPreProcessingConfiguration"]
             )
         )
-    if "TrainingExecutionStartTime" in data:
+    if data.get("TrainingExecutionStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["training_execution_start_time"] = (
@@ -422,7 +422,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["TrainingExecutionStartTime"]
             )
         )
-    if "TrainingExecutionEndTime" in data:
+    if data.get("TrainingExecutionEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["training_execution_end_time"] = (
@@ -430,11 +430,11 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["TrainingExecutionEndTime"]
             )
         )
-    if "FailedReason" in data:
+    if data.get("FailedReason") is not None:
         out["failed_reason"] = data["FailedReason"]
-    if "ModelMetrics" in data:
+    if data.get("ModelMetrics") is not None:
         out["model_metrics"] = data["ModelMetrics"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["last_updated_time"] = (
@@ -442,7 +442,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["LastUpdatedTime"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at"] = (
@@ -450,13 +450,13 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["CreatedAt"]
             )
         )
-    if "ServerSideKmsKeyId" in data:
+    if data.get("ServerSideKmsKeyId") is not None:
         out["server_side_kms_key_id"] = data["ServerSideKmsKeyId"]
-    if "OffCondition" in data:
+    if data.get("OffCondition") is not None:
         out["off_condition"] = data["OffCondition"]
-    if "SourceModelVersionArn" in data:
+    if data.get("SourceModelVersionArn") is not None:
         out["source_model_version_arn"] = data["SourceModelVersionArn"]
-    if "ImportJobStartTime" in data:
+    if data.get("ImportJobStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["import_job_start_time"] = (
@@ -464,7 +464,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["ImportJobStartTime"]
             )
         )
-    if "ImportJobEndTime" in data:
+    if data.get("ImportJobEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["import_job_end_time"] = (
@@ -472,13 +472,13 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["ImportJobEndTime"]
             )
         )
-    if "ImportedDataSizeInBytes" in data:
+    if data.get("ImportedDataSizeInBytes") is not None:
         out["imported_data_size_in_bytes"] = data["ImportedDataSizeInBytes"]
-    if "PriorModelMetrics" in data:
+    if data.get("PriorModelMetrics") is not None:
         out["prior_model_metrics"] = data["PriorModelMetrics"]
-    if "RetrainingAvailableDataInDays" in data:
+    if data.get("RetrainingAvailableDataInDays") is not None:
         out["retraining_available_data_in_days"] = data["RetrainingAvailableDataInDays"]
-    if "AutoPromotionResult" in data:
+    if data.get("AutoPromotionResult") is not None:
         import capo_lookoutequipment.types.auto_promotion_result
 
         out["auto_promotion_result"] = (
@@ -486,9 +486,9 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["AutoPromotionResult"]
             )
         )
-    if "AutoPromotionResultReason" in data:
+    if data.get("AutoPromotionResultReason") is not None:
         out["auto_promotion_result_reason"] = data["AutoPromotionResultReason"]
-    if "ModelDiagnosticsOutputConfiguration" in data:
+    if data.get("ModelDiagnosticsOutputConfiguration") is not None:
         import capo_lookoutequipment.types.model_diagnostics_output_configuration
 
         out["model_diagnostics_output_configuration"] = (
@@ -496,7 +496,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["ModelDiagnosticsOutputConfiguration"]
             )
         )
-    if "ModelDiagnosticsResultsObject" in data:
+    if data.get("ModelDiagnosticsResultsObject") is not None:
         import capo_lookoutequipment.types.s3_object
 
         out["model_diagnostics_results_object"] = (
@@ -504,7 +504,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelVersionResponse:
                 data["ModelDiagnosticsResultsObject"]
             )
         )
-    if "ModelQuality" in data:
+    if data.get("ModelQuality") is not None:
         import capo_lookoutequipment.types.model_quality
 
         out["model_quality"] = (

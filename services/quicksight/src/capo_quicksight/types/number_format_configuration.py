@@ -31,7 +31,7 @@ def serialize_json(value: NumberFormatConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NumberFormatConfiguration:
     out: NumberFormatConfiguration = {}  # type: ignore[typeddict-item]
-    if "FormatConfiguration" in data:
+    if data.get("FormatConfiguration") is not None:
         import capo_quicksight.types.numeric_format_configuration
 
         out["format_configuration"] = (

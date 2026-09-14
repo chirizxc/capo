@@ -37,9 +37,9 @@ def serialize_json(value: TypedLinkAttributeRange) -> dict:
 
 def deserialize_json(data: dict) -> TypedLinkAttributeRange:
     out: TypedLinkAttributeRange = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
-    if "Range" in data:
+    if data.get("Range") is not None:
         import capo_clouddirectory.types.typed_attribute_value_range
 
         out["range"] = (

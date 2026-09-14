@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: Serializer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Serializer:
     out: Serializer = {}  # type: ignore[typeddict-item]
-    if "ParquetSerDe" in data:
+    if data.get("ParquetSerDe") is not None:
         import capo_firehose.types.parquet_ser_de
 
         out["parquet_ser_de"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> Serializer:
                 data["ParquetSerDe"]
             )
         )
-    if "OrcSerDe" in data:
+    if data.get("OrcSerDe") is not None:
         import capo_firehose.types.orc_ser_de
 
         out["orc_ser_de"] = capo_firehose.types.orc_ser_de.deserialize_aws_json_1_1(

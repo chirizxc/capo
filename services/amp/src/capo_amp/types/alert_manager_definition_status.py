@@ -28,10 +28,10 @@ def serialize_json(value: AlertManagerDefinitionStatus) -> dict:
 
 def deserialize_json(data: dict) -> AlertManagerDefinitionStatus:
     out: AlertManagerDefinitionStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
     else:
         raise DeserializationError("AlertManagerDefinitionStatus.status_code required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

@@ -124,49 +124,49 @@ def serialize_json(value: StartOutboundVoiceContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartOutboundVoiceContactRequest:
     out: StartOutboundVoiceContactRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "References" in data:
+    if data.get("References") is not None:
         import capo_connect.types.contact_references
 
         out["references"] = capo_connect.types.contact_references.deserialize_json(
             data["References"]
         )
-    if "RelatedContactId" in data:
+    if data.get("RelatedContactId") is not None:
         out["related_contact_id"] = data["RelatedContactId"]
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
     else:
         raise DeserializationError(
             "StartOutboundVoiceContactRequest.destination_phone_number required"
         )
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
     else:
         raise DeserializationError(
             "StartOutboundVoiceContactRequest.contact_flow_id required"
         )
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "StartOutboundVoiceContactRequest.instance_id required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "SourcePhoneNumber" in data:
+    if data.get("SourcePhoneNumber") is not None:
         out["source_phone_number"] = data["SourcePhoneNumber"]
-    if "QueueId" in data:
+    if data.get("QueueId") is not None:
         out["queue_id"] = data["QueueId"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes
 
         out["attributes"] = capo_connect.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "AnswerMachineDetectionConfig" in data:
+    if data.get("AnswerMachineDetectionConfig") is not None:
         import capo_connect.types.answer_machine_detection_config
 
         out["answer_machine_detection_config"] = (
@@ -174,15 +174,15 @@ def deserialize_json(data: dict) -> StartOutboundVoiceContactRequest:
                 data["AnswerMachineDetectionConfig"]
             )
         )
-    if "CampaignId" in data:
+    if data.get("CampaignId") is not None:
         out["campaign_id"] = data["CampaignId"]
-    if "TrafficType" in data:
+    if data.get("TrafficType") is not None:
         import capo_connect.types.traffic_type
 
         out["traffic_type"] = capo_connect.types.traffic_type.deserialize_json(
             data["TrafficType"]
         )
-    if "OutboundStrategy" in data:
+    if data.get("OutboundStrategy") is not None:
         import capo_connect.types.outbound_strategy
 
         out["outbound_strategy"] = (
@@ -190,6 +190,6 @@ def deserialize_json(data: dict) -> StartOutboundVoiceContactRequest:
                 data["OutboundStrategy"]
             )
         )
-    if "RingTimeoutInSeconds" in data:
+    if data.get("RingTimeoutInSeconds") is not None:
         out["ring_timeout_in_seconds"] = data["RingTimeoutInSeconds"]
     return out

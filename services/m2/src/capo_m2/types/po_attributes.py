@@ -35,13 +35,13 @@ def serialize_json(value: PoAttributes) -> dict:
 
 def deserialize_json(data: dict) -> PoAttributes:
     out: PoAttributes = {}  # type: ignore[typeddict-item]
-    if "format" in data:
+    if data.get("format") is not None:
         out["format"] = data["format"]
     else:
         raise DeserializationError("PoAttributes.format required")
-    if "encoding" in data:
+    if data.get("encoding") is not None:
         out["encoding"] = data["encoding"]
-    if "memberFileExtensions" in data:
+    if data.get("memberFileExtensions") is not None:
         import capo_m2.types.string20_list
 
         out["member_file_extensions"] = capo_m2.types.string20_list.deserialize_json(

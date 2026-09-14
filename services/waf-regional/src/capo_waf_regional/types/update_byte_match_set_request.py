@@ -38,17 +38,17 @@ def serialize_aws_json_1_1(value: UpdateByteMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateByteMatchSetRequest:
     out: UpdateByteMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "ByteMatchSetId" in data:
+    if data.get("ByteMatchSetId") is not None:
         out["byte_match_set_id"] = data["ByteMatchSetId"]
     else:
         raise DeserializationError(
             "UpdateByteMatchSetRequest.byte_match_set_id required"
         )
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("UpdateByteMatchSetRequest.change_token required")
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_waf_regional.types.byte_match_set_updates
 
         out["updates"] = (

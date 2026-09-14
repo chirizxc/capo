@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: TensorBoardAppSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TensorBoardAppSettings:
     out: TensorBoardAppSettings = {}  # type: ignore[typeddict-item]
-    if "DefaultResourceSpec" in data:
+    if data.get("DefaultResourceSpec") is not None:
         import capo_sagemaker.types.resource_spec
 
         out["default_resource_spec"] = (

@@ -28,13 +28,13 @@ def serialize_aws_json_1_0(value: RegisterComputeNodeGroupInstanceRequest) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> RegisterComputeNodeGroupInstanceRequest:
     out: RegisterComputeNodeGroupInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError(
             "RegisterComputeNodeGroupInstanceRequest.cluster_identifier required"
         )
-    if "bootstrapId" in data:
+    if data.get("bootstrapId") is not None:
         out["bootstrap_id"] = data["bootstrapId"]
     else:
         raise DeserializationError(

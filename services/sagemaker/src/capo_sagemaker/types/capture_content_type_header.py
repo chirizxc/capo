@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: CaptureContentTypeHeader) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CaptureContentTypeHeader:
     out: CaptureContentTypeHeader = {}  # type: ignore[typeddict-item]
-    if "CsvContentTypes" in data:
+    if data.get("CsvContentTypes") is not None:
         import capo_sagemaker.types.csv_content_types
 
         out["csv_content_types"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> CaptureContentTypeHeader:
                 data["CsvContentTypes"]
             )
         )
-    if "JsonContentTypes" in data:
+    if data.get("JsonContentTypes") is not None:
         import capo_sagemaker.types.json_content_types
 
         out["json_content_types"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeClusterNodeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClusterNodeResponse:
     out: DescribeClusterNodeResponse = {}  # type: ignore[typeddict-item]
-    if "NodeDetails" in data:
+    if data.get("NodeDetails") is not None:
         import capo_sagemaker.types.cluster_node_details
 
         out["node_details"] = (

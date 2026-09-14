@@ -50,7 +50,7 @@ def serialize_json(value: UpdateKeysRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKeysRequest:
     out: UpdateKeysRequest = {}  # type: ignore[typeddict-item]
-    if "Puts" in data:
+    if data.get("Puts") is not None:
         import capo_cloudfront_keyvaluestore.types.put_key_requests_list
 
         out["puts"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> UpdateKeysRequest:
                 data["Puts"]
             )
         )
-    if "Deletes" in data:
+    if data.get("Deletes") is not None:
         import capo_cloudfront_keyvaluestore.types.delete_key_requests_list
 
         out["deletes"] = (

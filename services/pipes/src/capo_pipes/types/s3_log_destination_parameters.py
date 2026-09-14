@@ -36,16 +36,16 @@ def serialize_json(value: S3LogDestinationParameters) -> dict:
 
 def deserialize_json(data: dict) -> S3LogDestinationParameters:
     out: S3LogDestinationParameters = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
     else:
         raise DeserializationError("S3LogDestinationParameters.bucket_name required")
-    if "BucketOwner" in data:
+    if data.get("BucketOwner") is not None:
         out["bucket_owner"] = data["BucketOwner"]
     else:
         raise DeserializationError("S3LogDestinationParameters.bucket_owner required")
-    if "OutputFormat" in data:
+    if data.get("OutputFormat") is not None:
         out["output_format"] = data["OutputFormat"]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
     return out

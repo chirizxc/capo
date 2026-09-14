@@ -37,14 +37,14 @@ def serialize_json(value: FindingTypeStatistics) -> dict:
 
 def deserialize_json(data: dict) -> FindingTypeStatistics:
     out: FindingTypeStatistics = {}  # type: ignore[typeddict-item]
-    if "findingType" in data:
+    if data.get("findingType") is not None:
         out["finding_type"] = data["findingType"]
-    if "lastGeneratedAt" in data:
+    if data.get("lastGeneratedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["last_generated_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["lastGeneratedAt"]
         )
-    if "totalFindings" in data:
+    if data.get("totalFindings") is not None:
         out["total_findings"] = data["totalFindings"]
     return out

@@ -38,21 +38,21 @@ def serialize_json(value: VerifyPinDataOutput) -> dict:
 
 def deserialize_json(data: dict) -> VerifyPinDataOutput:
     out: VerifyPinDataOutput = {}  # type: ignore[typeddict-item]
-    if "VerificationKeyArn" in data:
+    if data.get("VerificationKeyArn") is not None:
         out["verification_key_arn"] = data["VerificationKeyArn"]
     else:
         raise DeserializationError("VerifyPinDataOutput.verification_key_arn required")
-    if "VerificationKeyCheckValue" in data:
+    if data.get("VerificationKeyCheckValue") is not None:
         out["verification_key_check_value"] = data["VerificationKeyCheckValue"]
     else:
         raise DeserializationError(
             "VerifyPinDataOutput.verification_key_check_value required"
         )
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
     else:
         raise DeserializationError("VerifyPinDataOutput.encryption_key_arn required")
-    if "EncryptionKeyCheckValue" in data:
+    if data.get("EncryptionKeyCheckValue") is not None:
         out["encryption_key_check_value"] = data["EncryptionKeyCheckValue"]
     else:
         raise DeserializationError(

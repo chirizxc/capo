@@ -104,11 +104,11 @@ def serialize_aws_json_1_1(value: MigrationProject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MigrationProject:
     out: MigrationProject = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectName" in data:
+    if data.get("MigrationProjectName") is not None:
         out["migration_project_name"] = data["MigrationProjectName"]
-    if "MigrationProjectArn" in data:
+    if data.get("MigrationProjectArn") is not None:
         out["migration_project_arn"] = data["MigrationProjectArn"]
-    if "MigrationProjectCreationTime" in data:
+    if data.get("MigrationProjectCreationTime") is not None:
         import capo_database_migration_service.types.iso8601_date_time
 
         out["migration_project_creation_time"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> MigrationProject:
                 data["MigrationProjectCreationTime"]
             )
         )
-    if "SourceDataProviderDescriptors" in data:
+    if data.get("SourceDataProviderDescriptors") is not None:
         import capo_database_migration_service.types.data_provider_descriptor_list
 
         out["source_data_provider_descriptors"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> MigrationProject:
                 data["SourceDataProviderDescriptors"]
             )
         )
-    if "TargetDataProviderDescriptors" in data:
+    if data.get("TargetDataProviderDescriptors") is not None:
         import capo_database_migration_service.types.data_provider_descriptor_list
 
         out["target_data_provider_descriptors"] = (
@@ -132,15 +132,15 @@ def deserialize_aws_json_1_1(data: dict) -> MigrationProject:
                 data["TargetDataProviderDescriptors"]
             )
         )
-    if "InstanceProfileArn" in data:
+    if data.get("InstanceProfileArn") is not None:
         out["instance_profile_arn"] = data["InstanceProfileArn"]
-    if "InstanceProfileName" in data:
+    if data.get("InstanceProfileName") is not None:
         out["instance_profile_name"] = data["InstanceProfileName"]
-    if "TransformationRules" in data:
+    if data.get("TransformationRules") is not None:
         out["transformation_rules"] = data["TransformationRules"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SchemaConversionApplicationAttributes" in data:
+    if data.get("SchemaConversionApplicationAttributes") is not None:
         import capo_database_migration_service.types.sc_application_attributes
 
         out["schema_conversion_application_attributes"] = (

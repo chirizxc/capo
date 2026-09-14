@@ -39,11 +39,11 @@ def serialize_json(value: CreatePrivateConnectionInput) -> dict:
 
 def deserialize_json(data: dict) -> CreatePrivateConnectionInput:
     out: CreatePrivateConnectionInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreatePrivateConnectionInput.name required")
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_devops_agent.types.private_connection_mode
 
         out["mode"] = capo_devops_agent.types.private_connection_mode.deserialize_json(
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> CreatePrivateConnectionInput:
         )
     else:
         raise DeserializationError("CreatePrivateConnectionInput.mode required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_devops_agent.types.tags
 
         out["tags"] = capo_devops_agent.types.tags.deserialize_json(data["tags"])

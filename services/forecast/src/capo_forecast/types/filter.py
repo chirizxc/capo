@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: Filter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("Filter.key required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("Filter.value required")
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_forecast.types.filter_condition_string
 
         out["condition"] = (

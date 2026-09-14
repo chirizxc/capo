@@ -27,11 +27,11 @@ def serialize_json(value: RemovePermissionResponse) -> dict:
 
 def deserialize_json(data: dict) -> RemovePermissionResponse:
     out: RemovePermissionResponse = {}  # type: ignore[typeddict-item]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     else:
         raise DeserializationError("RemovePermissionResponse.policy required")
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
     else:
         raise DeserializationError("RemovePermissionResponse.revision_id required")

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ProvisioningProfileListDefinition:
 
     out: ProvisioningProfileListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.provisioning_profile_summary.deserialize_json(
                 item

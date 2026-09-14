@@ -87,9 +87,9 @@ def serialize_aws_json_1_1(value: QueryResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryResult:
     out: QueryResult = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
-    if "ResultItems" in data:
+    if data.get("ResultItems") is not None:
         import capo_kendra.types.query_result_item_list
 
         out["result_items"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryResult:
                 data["ResultItems"]
             )
         )
-    if "FacetResults" in data:
+    if data.get("FacetResults") is not None:
         import capo_kendra.types.facet_result_list
 
         out["facet_results"] = (
@@ -105,15 +105,15 @@ def deserialize_aws_json_1_1(data: dict) -> QueryResult:
                 data["FacetResults"]
             )
         )
-    if "TotalNumberOfResults" in data:
+    if data.get("TotalNumberOfResults") is not None:
         out["total_number_of_results"] = data["TotalNumberOfResults"]
-    if "Warnings" in data:
+    if data.get("Warnings") is not None:
         import capo_kendra.types.warning_list
 
         out["warnings"] = capo_kendra.types.warning_list.deserialize_aws_json_1_1(
             data["Warnings"]
         )
-    if "SpellCorrectedQueries" in data:
+    if data.get("SpellCorrectedQueries") is not None:
         import capo_kendra.types.spell_corrected_query_list
 
         out["spell_corrected_queries"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryResult:
                 data["SpellCorrectedQueries"]
             )
         )
-    if "FeaturedResultsItems" in data:
+    if data.get("FeaturedResultsItems") is not None:
         import capo_kendra.types.featured_results_item_list
 
         out["featured_results_items"] = (

@@ -33,15 +33,15 @@ def serialize_aws_json_1_0(value: DeleteEnvironmentHostRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteEnvironmentHostRequest:
     out: DeleteEnvironmentHostRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError(
             "DeleteEnvironmentHostRequest.environment_id required"
         )
-    if "hostName" in data:
+    if data.get("hostName") is not None:
         out["host_name"] = data["hostName"]
     else:
         raise DeserializationError("DeleteEnvironmentHostRequest.host_name required")

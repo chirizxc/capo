@@ -48,15 +48,15 @@ def serialize_json(value: CreateJobTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobTemplateRequest:
     out: CreateJobTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateJobTemplateRequest.name required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateJobTemplateRequest.client_token required")
-    if "jobTemplateData" in data:
+    if data.get("jobTemplateData") is not None:
         import capo_emr_containers.types.job_template_data
 
         out["job_template_data"] = (
@@ -68,10 +68,10 @@ def deserialize_json(data: dict) -> CreateJobTemplateRequest:
         raise DeserializationError(
             "CreateJobTemplateRequest.job_template_data required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_containers.types.tag_map
 
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

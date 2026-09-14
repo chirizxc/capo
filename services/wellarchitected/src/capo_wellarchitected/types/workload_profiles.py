@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> WorkloadProfiles:
 
     out: WorkloadProfiles = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wellarchitected.types.workload_profile.deserialize_json(item))
     return out

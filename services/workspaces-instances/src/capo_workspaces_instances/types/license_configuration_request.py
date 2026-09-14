@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: LicenseConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LicenseConfigurationRequest:
     out: LicenseConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseConfigurationArn" in data:
+    if data.get("LicenseConfigurationArn") is not None:
         out["license_configuration_arn"] = data["LicenseConfigurationArn"]
     return out

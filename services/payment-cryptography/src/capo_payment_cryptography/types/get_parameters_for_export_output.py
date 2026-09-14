@@ -51,29 +51,29 @@ def serialize_aws_json_1_0(value: GetParametersForExportOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetParametersForExportOutput:
     out: GetParametersForExportOutput = {}  # type: ignore[typeddict-item]
-    if "SigningKeyCertificate" in data:
+    if data.get("SigningKeyCertificate") is not None:
         out["signing_key_certificate"] = data["SigningKeyCertificate"]
     else:
         raise DeserializationError(
             "GetParametersForExportOutput.signing_key_certificate required"
         )
-    if "SigningKeyCertificateChain" in data:
+    if data.get("SigningKeyCertificateChain") is not None:
         out["signing_key_certificate_chain"] = data["SigningKeyCertificateChain"]
     else:
         raise DeserializationError(
             "GetParametersForExportOutput.signing_key_certificate_chain required"
         )
-    if "SigningKeyAlgorithm" in data:
+    if data.get("SigningKeyAlgorithm") is not None:
         out["signing_key_algorithm"] = data["SigningKeyAlgorithm"]
     else:
         raise DeserializationError(
             "GetParametersForExportOutput.signing_key_algorithm required"
         )
-    if "ExportToken" in data:
+    if data.get("ExportToken") is not None:
         out["export_token"] = data["ExportToken"]
     else:
         raise DeserializationError("GetParametersForExportOutput.export_token required")
-    if "ParametersValidUntilTimestamp" in data:
+    if data.get("ParametersValidUntilTimestamp") is not None:
         import capo_payment_cryptography.types.timestamp
 
         out["parameters_valid_until_timestamp"] = (

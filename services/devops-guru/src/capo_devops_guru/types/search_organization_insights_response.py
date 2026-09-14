@@ -49,7 +49,7 @@ def serialize_json(value: SearchOrganizationInsightsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchOrganizationInsightsResponse:
     out: SearchOrganizationInsightsResponse = {}  # type: ignore[typeddict-item]
-    if "ProactiveInsights" in data:
+    if data.get("ProactiveInsights") is not None:
         import capo_devops_guru.types.proactive_insights
 
         out["proactive_insights"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> SearchOrganizationInsightsResponse:
                 data["ProactiveInsights"]
             )
         )
-    if "ReactiveInsights" in data:
+    if data.get("ReactiveInsights") is not None:
         import capo_devops_guru.types.reactive_insights
 
         out["reactive_insights"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> SearchOrganizationInsightsResponse:
                 data["ReactiveInsights"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResourceStringFilterList:
 
     out: ResourceStringFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.resource_string_filter.deserialize_json(item))
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: DeleteSlackWorkspaceAuthorizationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSlackWorkspaceAuthorizationRequest:
     out: DeleteSlackWorkspaceAuthorizationRequest = {}  # type: ignore[typeddict-item]
-    if "SlackTeamId" in data:
+    if data.get("SlackTeamId") is not None:
         out["slack_team_id"] = data["SlackTeamId"]
     else:
         raise DeserializationError(

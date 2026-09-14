@@ -35,12 +35,12 @@ def serialize_json(value: TargetFailure) -> dict:
 
 def deserialize_json(data: dict) -> TargetFailure:
     out: TargetFailure = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
     return out

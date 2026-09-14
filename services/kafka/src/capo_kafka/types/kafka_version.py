@@ -30,9 +30,9 @@ def serialize_json(value: KafkaVersion) -> dict:
 
 def deserialize_json(data: dict) -> KafkaVersion:
     out: KafkaVersion = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_kafka.types.kafka_version_status
 
         out["status"] = capo_kafka.types.kafka_version_status.deserialize_json(

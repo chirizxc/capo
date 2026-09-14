@@ -94,7 +94,7 @@ def serialize_aws_json_1_1(value: S3DataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DataSource:
     out: S3DataSource = {}  # type: ignore[typeddict-item]
-    if "S3DataType" in data:
+    if data.get("S3DataType") is not None:
         import capo_sagemaker.types.s3_data_type
 
         out["s3_data_type"] = (
@@ -102,9 +102,9 @@ def deserialize_aws_json_1_1(data: dict) -> S3DataSource:
                 data["S3DataType"]
             )
         )
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "S3DataDistributionType" in data:
+    if data.get("S3DataDistributionType") is not None:
         import capo_sagemaker.types.s3_data_distribution
 
         out["s3_data_distribution_type"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DataSource:
                 data["S3DataDistributionType"]
             )
         )
-    if "AttributeNames" in data:
+    if data.get("AttributeNames") is not None:
         import capo_sagemaker.types.attribute_names
 
         out["attribute_names"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DataSource:
                 data["AttributeNames"]
             )
         )
-    if "InstanceGroupNames" in data:
+    if data.get("InstanceGroupNames") is not None:
         import capo_sagemaker.types.instance_group_names
 
         out["instance_group_names"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DataSource:
                 data["InstanceGroupNames"]
             )
         )
-    if "ModelAccessConfig" in data:
+    if data.get("ModelAccessConfig") is not None:
         import capo_sagemaker.types.model_access_config
 
         out["model_access_config"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DataSource:
                 data["ModelAccessConfig"]
             )
         )
-    if "HubAccessConfig" in data:
+    if data.get("HubAccessConfig") is not None:
         import capo_sagemaker.types.hub_access_config
 
         out["hub_access_config"] = (

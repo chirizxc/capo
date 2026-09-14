@@ -55,7 +55,7 @@ def serialize_aws_json_1_0(value: ListInvoiceSummariesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListInvoiceSummariesRequest:
     out: ListInvoiceSummariesRequest = {}  # type: ignore[typeddict-item]
-    if "Selector" in data:
+    if data.get("Selector") is not None:
         import capo_invoicing.types.invoice_summaries_selector
 
         out["selector"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListInvoiceSummariesRequest:
         )
     else:
         raise DeserializationError("ListInvoiceSummariesRequest.selector required")
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_invoicing.types.invoice_summaries_filter
 
         out["filter"] = (
@@ -73,8 +73,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListInvoiceSummariesRequest:
                 data["Filter"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

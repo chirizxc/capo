@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: Ec2Config) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Ec2Config:
     out: Ec2Config = {}  # type: ignore[typeddict-item]
-    if "SubnetArn" in data:
+    if data.get("SubnetArn") is not None:
         out["subnet_arn"] = data["SubnetArn"]
     else:
         raise DeserializationError("Ec2Config.subnet_arn required")
-    if "SecurityGroupArns" in data:
+    if data.get("SecurityGroupArns") is not None:
         import capo_datasync.types.ec2_security_group_arn_list
 
         out["security_group_arns"] = (

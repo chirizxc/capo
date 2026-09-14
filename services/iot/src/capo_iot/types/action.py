@@ -212,51 +212,51 @@ def serialize_json(value: Action) -> dict:
 
 def deserialize_json(data: dict) -> Action:
     out: Action = {}  # type: ignore[typeddict-item]
-    if "dynamoDB" in data:
+    if data.get("dynamoDB") is not None:
         import capo_iot.types.dynamo_db_action
 
         out["dynamo_db"] = capo_iot.types.dynamo_db_action.deserialize_json(
             data["dynamoDB"]
         )
-    if "dynamoDBv2" in data:
+    if data.get("dynamoDBv2") is not None:
         import capo_iot.types.dynamo_d_bv2_action
 
         out["dynamo_d_bv2"] = capo_iot.types.dynamo_d_bv2_action.deserialize_json(
             data["dynamoDBv2"]
         )
-    if "lambda" in data:
+    if data.get("lambda") is not None:
         import capo_iot.types.lambda_action
 
         out["lambda"] = capo_iot.types.lambda_action.deserialize_json(data["lambda"])
-    if "sns" in data:
+    if data.get("sns") is not None:
         import capo_iot.types.sns_action
 
         out["sns"] = capo_iot.types.sns_action.deserialize_json(data["sns"])
-    if "sqs" in data:
+    if data.get("sqs") is not None:
         import capo_iot.types.sqs_action
 
         out["sqs"] = capo_iot.types.sqs_action.deserialize_json(data["sqs"])
-    if "kinesis" in data:
+    if data.get("kinesis") is not None:
         import capo_iot.types.kinesis_action
 
         out["kinesis"] = capo_iot.types.kinesis_action.deserialize_json(data["kinesis"])
-    if "republish" in data:
+    if data.get("republish") is not None:
         import capo_iot.types.republish_action
 
         out["republish"] = capo_iot.types.republish_action.deserialize_json(
             data["republish"]
         )
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_iot.types.s3_action
 
         out["s3"] = capo_iot.types.s3_action.deserialize_json(data["s3"])
-    if "firehose" in data:
+    if data.get("firehose") is not None:
         import capo_iot.types.firehose_action
 
         out["firehose"] = capo_iot.types.firehose_action.deserialize_json(
             data["firehose"]
         )
-    if "cloudwatchMetric" in data:
+    if data.get("cloudwatchMetric") is not None:
         import capo_iot.types.cloudwatch_metric_action
 
         out["cloudwatch_metric"] = (
@@ -264,7 +264,7 @@ def deserialize_json(data: dict) -> Action:
                 data["cloudwatchMetric"]
             )
         )
-    if "cloudwatchAlarm" in data:
+    if data.get("cloudwatchAlarm") is not None:
         import capo_iot.types.cloudwatch_alarm_action
 
         out["cloudwatch_alarm"] = (
@@ -272,69 +272,69 @@ def deserialize_json(data: dict) -> Action:
                 data["cloudwatchAlarm"]
             )
         )
-    if "cloudwatchLogs" in data:
+    if data.get("cloudwatchLogs") is not None:
         import capo_iot.types.cloudwatch_logs_action
 
         out["cloudwatch_logs"] = capo_iot.types.cloudwatch_logs_action.deserialize_json(
             data["cloudwatchLogs"]
         )
-    if "elasticsearch" in data:
+    if data.get("elasticsearch") is not None:
         import capo_iot.types.elasticsearch_action
 
         out["elasticsearch"] = capo_iot.types.elasticsearch_action.deserialize_json(
             data["elasticsearch"]
         )
-    if "salesforce" in data:
+    if data.get("salesforce") is not None:
         import capo_iot.types.salesforce_action
 
         out["salesforce"] = capo_iot.types.salesforce_action.deserialize_json(
             data["salesforce"]
         )
-    if "iotAnalytics" in data:
+    if data.get("iotAnalytics") is not None:
         import capo_iot.types.iot_analytics_action
 
         out["iot_analytics"] = capo_iot.types.iot_analytics_action.deserialize_json(
             data["iotAnalytics"]
         )
-    if "iotEvents" in data:
+    if data.get("iotEvents") is not None:
         import capo_iot.types.iot_events_action
 
         out["iot_events"] = capo_iot.types.iot_events_action.deserialize_json(
             data["iotEvents"]
         )
-    if "iotSiteWise" in data:
+    if data.get("iotSiteWise") is not None:
         import capo_iot.types.iot_site_wise_action
 
         out["iot_site_wise"] = capo_iot.types.iot_site_wise_action.deserialize_json(
             data["iotSiteWise"]
         )
-    if "stepFunctions" in data:
+    if data.get("stepFunctions") is not None:
         import capo_iot.types.step_functions_action
 
         out["step_functions"] = capo_iot.types.step_functions_action.deserialize_json(
             data["stepFunctions"]
         )
-    if "timestream" in data:
+    if data.get("timestream") is not None:
         import capo_iot.types.timestream_action
 
         out["timestream"] = capo_iot.types.timestream_action.deserialize_json(
             data["timestream"]
         )
-    if "http" in data:
+    if data.get("http") is not None:
         import capo_iot.types.http_action
 
         out["http"] = capo_iot.types.http_action.deserialize_json(data["http"])
-    if "kafka" in data:
+    if data.get("kafka") is not None:
         import capo_iot.types.kafka_action
 
         out["kafka"] = capo_iot.types.kafka_action.deserialize_json(data["kafka"])
-    if "openSearch" in data:
+    if data.get("openSearch") is not None:
         import capo_iot.types.open_search_action
 
         out["open_search"] = capo_iot.types.open_search_action.deserialize_json(
             data["openSearch"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_iot.types.location_action
 
         out["location"] = capo_iot.types.location_action.deserialize_json(

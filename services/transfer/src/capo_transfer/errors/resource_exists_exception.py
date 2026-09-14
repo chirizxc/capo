@@ -29,15 +29,15 @@ def serialize_aws_json_1_1(value: ResourceExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceExistsException_:
     out: ResourceExistsException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("ResourceExistsException_.message required")
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         out["resource"] = data["Resource"]
     else:
         raise DeserializationError("ResourceExistsException_.resource required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError("ResourceExistsException_.resource_type required")
@@ -49,15 +49,18 @@ class ResourceExistsException(ServiceError):
 
     code: str | None = "ResourceExistsException"
 
-    def __init__(self, data: ResourceExistsException_):
+    def __init__(self, data: ResourceExistsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceExistsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ResourceExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

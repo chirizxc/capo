@@ -28,8 +28,8 @@ def serialize_json(value: StartSigningJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartSigningJobResponse:
     out: StartSigningJobResponse = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobOwner" in data:
+    if data.get("jobOwner") is not None:
         out["job_owner"] = data["jobOwner"]
     return out

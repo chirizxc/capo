@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: HPOConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HPOConfig:
     out: HPOConfig = {}  # type: ignore[typeddict-item]
-    if "hpoObjective" in data:
+    if data.get("hpoObjective") is not None:
         import capo_personalize.types.hpo_objective
 
         out["hpo_objective"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> HPOConfig:
                 data["hpoObjective"]
             )
         )
-    if "hpoResourceConfig" in data:
+    if data.get("hpoResourceConfig") is not None:
         import capo_personalize.types.hpo_resource_config
 
         out["hpo_resource_config"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> HPOConfig:
                 data["hpoResourceConfig"]
             )
         )
-    if "algorithmHyperParameterRanges" in data:
+    if data.get("algorithmHyperParameterRanges") is not None:
         import capo_personalize.types.hyper_parameter_ranges
 
         out["algorithm_hyper_parameter_ranges"] = (

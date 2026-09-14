@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateEntityRecognizerResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEntityRecognizerResponse:
     out: CreateEntityRecognizerResponse = {}  # type: ignore[typeddict-item]
-    if "EntityRecognizerArn" in data:
+    if data.get("EntityRecognizerArn") is not None:
         out["entity_recognizer_arn"] = data["EntityRecognizerArn"]
     return out

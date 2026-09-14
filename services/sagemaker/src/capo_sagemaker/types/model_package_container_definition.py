@@ -138,15 +138,15 @@ def serialize_aws_json_1_1(value: ModelPackageContainerDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelPackageContainerDefinition:
     out: ModelPackageContainerDefinition = {}  # type: ignore[typeddict-item]
-    if "ContainerHostname" in data:
+    if data.get("ContainerHostname") is not None:
         out["container_hostname"] = data["ContainerHostname"]
-    if "Image" in data:
+    if data.get("Image") is not None:
         out["image"] = data["Image"]
-    if "ImageDigest" in data:
+    if data.get("ImageDigest") is not None:
         out["image_digest"] = data["ImageDigest"]
-    if "ModelDataUrl" in data:
+    if data.get("ModelDataUrl") is not None:
         out["model_data_url"] = data["ModelDataUrl"]
-    if "ModelDataSource" in data:
+    if data.get("ModelDataSource") is not None:
         import capo_sagemaker.types.model_data_source
 
         out["model_data_source"] = (
@@ -154,9 +154,9 @@ def deserialize_aws_json_1_1(data: dict) -> ModelPackageContainerDefinition:
                 data["ModelDataSource"]
             )
         )
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.environment_map
 
         out["environment"] = (
@@ -164,19 +164,19 @@ def deserialize_aws_json_1_1(data: dict) -> ModelPackageContainerDefinition:
                 data["Environment"]
             )
         )
-    if "ModelInput" in data:
+    if data.get("ModelInput") is not None:
         import capo_sagemaker.types.model_input
 
         out["model_input"] = capo_sagemaker.types.model_input.deserialize_aws_json_1_1(
             data["ModelInput"]
         )
-    if "Framework" in data:
+    if data.get("Framework") is not None:
         out["framework"] = data["Framework"]
-    if "FrameworkVersion" in data:
+    if data.get("FrameworkVersion") is not None:
         out["framework_version"] = data["FrameworkVersion"]
-    if "NearestModelName" in data:
+    if data.get("NearestModelName") is not None:
         out["nearest_model_name"] = data["NearestModelName"]
-    if "AdditionalModelDataSources" in data:
+    if data.get("AdditionalModelDataSources") is not None:
         import capo_sagemaker.types.additional_model_data_sources
 
         out["additional_model_data_sources"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelPackageContainerDefinition:
                 data["AdditionalModelDataSources"]
             )
         )
-    if "AdditionalS3DataSource" in data:
+    if data.get("AdditionalS3DataSource") is not None:
         import capo_sagemaker.types.additional_s3_data_source
 
         out["additional_s3_data_source"] = (
@@ -192,11 +192,11 @@ def deserialize_aws_json_1_1(data: dict) -> ModelPackageContainerDefinition:
                 data["AdditionalS3DataSource"]
             )
         )
-    if "ModelDataETag" in data:
+    if data.get("ModelDataETag") is not None:
         out["model_data_e_tag"] = data["ModelDataETag"]
-    if "IsCheckpoint" in data:
+    if data.get("IsCheckpoint") is not None:
         out["is_checkpoint"] = data["IsCheckpoint"]
-    if "BaseModel" in data:
+    if data.get("BaseModel") is not None:
         import capo_sagemaker.types.base_model
 
         out["base_model"] = capo_sagemaker.types.base_model.deserialize_aws_json_1_1(

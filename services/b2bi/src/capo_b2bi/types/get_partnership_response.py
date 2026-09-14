@@ -96,25 +96,25 @@ def serialize_aws_json_1_0(value: GetPartnershipResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPartnershipResponse:
     out: GetPartnershipResponse = {}  # type: ignore[typeddict-item]
-    if "profileId" in data:
+    if data.get("profileId") is not None:
         out["profile_id"] = data["profileId"]
     else:
         raise DeserializationError("GetPartnershipResponse.profile_id required")
-    if "partnershipId" in data:
+    if data.get("partnershipId") is not None:
         out["partnership_id"] = data["partnershipId"]
     else:
         raise DeserializationError("GetPartnershipResponse.partnership_id required")
-    if "partnershipArn" in data:
+    if data.get("partnershipArn") is not None:
         out["partnership_arn"] = data["partnershipArn"]
     else:
         raise DeserializationError("GetPartnershipResponse.partnership_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "phone" in data:
+    if data.get("phone") is not None:
         out["phone"] = data["phone"]
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_b2bi.types.partnership_capabilities
 
         out["capabilities"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPartnershipResponse:
                 data["capabilities"]
             )
         )
-    if "capabilityOptions" in data:
+    if data.get("capabilityOptions") is not None:
         import capo_b2bi.types.capability_options
 
         out["capability_options"] = (
@@ -130,9 +130,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetPartnershipResponse:
                 data["capabilityOptions"]
             )
         )
-    if "tradingPartnerId" in data:
+    if data.get("tradingPartnerId") is not None:
         out["trading_partner_id"] = data["tradingPartnerId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_b2bi.types.created_date
 
         out["created_at"] = capo_b2bi.types.created_date.deserialize_aws_json_1_0(
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPartnershipResponse:
         )
     else:
         raise DeserializationError("GetPartnershipResponse.created_at required")
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_b2bi.types.modified_date
 
         out["modified_at"] = capo_b2bi.types.modified_date.deserialize_aws_json_1_0(

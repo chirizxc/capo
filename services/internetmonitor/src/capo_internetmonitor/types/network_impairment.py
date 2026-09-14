@@ -41,7 +41,7 @@ def serialize_json(value: NetworkImpairment) -> dict:
 
 def deserialize_json(data: dict) -> NetworkImpairment:
     out: NetworkImpairment = {}  # type: ignore[typeddict-item]
-    if "Networks" in data:
+    if data.get("Networks") is not None:
         import capo_internetmonitor.types.network_list
 
         out["networks"] = capo_internetmonitor.types.network_list.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> NetworkImpairment:
         )
     else:
         raise DeserializationError("NetworkImpairment.networks required")
-    if "AsPath" in data:
+    if data.get("AsPath") is not None:
         import capo_internetmonitor.types.network_list
 
         out["as_path"] = capo_internetmonitor.types.network_list.deserialize_json(
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> NetworkImpairment:
         )
     else:
         raise DeserializationError("NetworkImpairment.as_path required")
-    if "NetworkEventType" in data:
+    if data.get("NetworkEventType") is not None:
         out["network_event_type"] = data["NetworkEventType"]
     else:
         raise DeserializationError("NetworkImpairment.network_event_type required")

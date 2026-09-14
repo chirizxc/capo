@@ -26,10 +26,10 @@ def serialize_json(value: NdiDiscoveryServerConfig) -> dict:
 
 def deserialize_json(data: dict) -> NdiDiscoveryServerConfig:
     out: NdiDiscoveryServerConfig = {}  # type: ignore[typeddict-item]
-    if "discoveryServerAddress" in data:
+    if data.get("discoveryServerAddress") is not None:
         out["discovery_server_address"] = data["discoveryServerAddress"]
-    if "discoveryServerPort" in data:
+    if data.get("discoveryServerPort") is not None:
         out["discovery_server_port"] = data["discoveryServerPort"]
-    if "vpcInterfaceAdapter" in data:
+    if data.get("vpcInterfaceAdapter") is not None:
         out["vpc_interface_adapter"] = data["vpcInterfaceAdapter"]
     return out

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeLDAPSSettingsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLDAPSSettingsResult:
     out: DescribeLDAPSSettingsResult = {}  # type: ignore[typeddict-item]
-    if "LDAPSSettingsInfo" in data:
+    if data.get("LDAPSSettingsInfo") is not None:
         import capo_directory_service.types.ldaps_settings_info
 
         out["ldaps_settings_info"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLDAPSSettingsResult:
                 data["LDAPSSettingsInfo"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

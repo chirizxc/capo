@@ -37,17 +37,17 @@ def serialize_json(value: GlueTableReference) -> dict:
 
 def deserialize_json(data: dict) -> GlueTableReference:
     out: GlueTableReference = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         import capo_cleanrooms.types.commercial_region
 
         out["region"] = capo_cleanrooms.types.commercial_region.deserialize_json(
             data["region"]
         )
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("GlueTableReference.table_name required")
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError("GlueTableReference.database_name required")

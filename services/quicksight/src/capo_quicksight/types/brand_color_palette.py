@@ -77,43 +77,43 @@ def serialize_json(value: BrandColorPalette) -> dict:
 
 def deserialize_json(data: dict) -> BrandColorPalette:
     out: BrandColorPalette = {}  # type: ignore[typeddict-item]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         import capo_quicksight.types.palette
 
         out["primary"] = capo_quicksight.types.palette.deserialize_json(data["Primary"])
-    if "Secondary" in data:
+    if data.get("Secondary") is not None:
         import capo_quicksight.types.palette
 
         out["secondary"] = capo_quicksight.types.palette.deserialize_json(
             data["Secondary"]
         )
-    if "Accent" in data:
+    if data.get("Accent") is not None:
         import capo_quicksight.types.palette
 
         out["accent"] = capo_quicksight.types.palette.deserialize_json(data["Accent"])
-    if "Measure" in data:
+    if data.get("Measure") is not None:
         import capo_quicksight.types.palette
 
         out["measure"] = capo_quicksight.types.palette.deserialize_json(data["Measure"])
-    if "Dimension" in data:
+    if data.get("Dimension") is not None:
         import capo_quicksight.types.palette
 
         out["dimension"] = capo_quicksight.types.palette.deserialize_json(
             data["Dimension"]
         )
-    if "Success" in data:
+    if data.get("Success") is not None:
         import capo_quicksight.types.palette
 
         out["success"] = capo_quicksight.types.palette.deserialize_json(data["Success"])
-    if "Info" in data:
+    if data.get("Info") is not None:
         import capo_quicksight.types.palette
 
         out["info"] = capo_quicksight.types.palette.deserialize_json(data["Info"])
-    if "Warning" in data:
+    if data.get("Warning") is not None:
         import capo_quicksight.types.palette
 
         out["warning"] = capo_quicksight.types.palette.deserialize_json(data["Warning"])
-    if "Danger" in data:
+    if data.get("Danger") is not None:
         import capo_quicksight.types.palette
 
         out["danger"] = capo_quicksight.types.palette.deserialize_json(data["Danger"])

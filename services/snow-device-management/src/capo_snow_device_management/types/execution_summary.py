@@ -44,12 +44,12 @@ def serialize_json(value: ExecutionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionSummary:
     out: ExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
-    if "managedDeviceId" in data:
+    if data.get("managedDeviceId") is not None:
         out["managed_device_id"] = data["managedDeviceId"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     return out

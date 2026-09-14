@@ -88,9 +88,9 @@ def serialize_aws_json_1_1(value: BatchImport) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchImport:
     out: BatchImport = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_frauddetector.types.async_job_status
 
         out["status"] = (
@@ -98,26 +98,26 @@ def deserialize_aws_json_1_1(data: dict) -> BatchImport:
                 data["status"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
-    if "completionTime" in data:
+    if data.get("completionTime") is not None:
         out["completion_time"] = data["completionTime"]
-    if "inputPath" in data:
+    if data.get("inputPath") is not None:
         out["input_path"] = data["inputPath"]
-    if "outputPath" in data:
+    if data.get("outputPath") is not None:
         out["output_path"] = data["outputPath"]
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
-    if "iamRoleArn" in data:
+    if data.get("iamRoleArn") is not None:
         out["iam_role_arn"] = data["iamRoleArn"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "processedRecordsCount" in data:
+    if data.get("processedRecordsCount") is not None:
         out["processed_records_count"] = data["processedRecordsCount"]
-    if "failedRecordsCount" in data:
+    if data.get("failedRecordsCount") is not None:
         out["failed_records_count"] = data["failedRecordsCount"]
-    if "totalRecordsCount" in data:
+    if data.get("totalRecordsCount") is not None:
         out["total_records_count"] = data["totalRecordsCount"]
     return out

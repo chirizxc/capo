@@ -49,20 +49,20 @@ def serialize_json(value: DefaultButtonConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DefaultButtonConfiguration:
     out: DefaultButtonConfiguration = {}  # type: ignore[typeddict-item]
-    if "BackgroundColor" in data:
+    if data.get("BackgroundColor") is not None:
         out["background_color"] = data["BackgroundColor"]
-    if "BorderRadius" in data:
+    if data.get("BorderRadius") is not None:
         out["border_radius"] = data["BorderRadius"]
-    if "ButtonAction" in data:
+    if data.get("ButtonAction") is not None:
         import capo_pinpoint.types.button_action
 
         out["button_action"] = capo_pinpoint.types.button_action.deserialize_json(
             data["ButtonAction"]
         )
-    if "Link" in data:
+    if data.get("Link") is not None:
         out["link"] = data["Link"]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "TextColor" in data:
+    if data.get("TextColor") is not None:
         out["text_color"] = data["TextColor"]
     return out

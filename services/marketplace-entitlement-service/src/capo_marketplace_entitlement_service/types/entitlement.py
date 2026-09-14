@@ -75,15 +75,15 @@ def serialize_aws_json_1_1(value: Entitlement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Entitlement:
     out: Entitlement = {}  # type: ignore[typeddict-item]
-    if "ProductCode" in data:
+    if data.get("ProductCode") is not None:
         out["product_code"] = data["ProductCode"]
-    if "Dimension" in data:
+    if data.get("Dimension") is not None:
         out["dimension"] = data["Dimension"]
-    if "CustomerIdentifier" in data:
+    if data.get("CustomerIdentifier") is not None:
         out["customer_identifier"] = data["CustomerIdentifier"]
-    if "CustomerAWSAccountId" in data:
+    if data.get("CustomerAWSAccountId") is not None:
         out["customer_aws_account_id"] = data["CustomerAWSAccountId"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_marketplace_entitlement_service.types.entitlement_value
 
         out["value"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> Entitlement:
                 data["Value"]
             )
         )
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         import capo_marketplace_entitlement_service.types.timestamp
 
         out["expiration_date"] = (
@@ -99,6 +99,6 @@ def deserialize_aws_json_1_1(data: dict) -> Entitlement:
                 data["ExpirationDate"]
             )
         )
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     return out

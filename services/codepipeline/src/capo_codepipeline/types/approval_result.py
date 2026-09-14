@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: ApprovalResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApprovalResult:
     out: ApprovalResult = {}  # type: ignore[typeddict-item]
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
     else:
         raise DeserializationError("ApprovalResult.summary required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codepipeline.types.approval_status
 
         out["status"] = (

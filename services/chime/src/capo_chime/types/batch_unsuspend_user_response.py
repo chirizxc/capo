@@ -27,7 +27,7 @@ def serialize_json(value: BatchUnsuspendUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchUnsuspendUserResponse:
     out: BatchUnsuspendUserResponse = {}  # type: ignore[typeddict-item]
-    if "UserErrors" in data:
+    if data.get("UserErrors") is not None:
         import capo_chime.types.user_error_list
 
         out["user_errors"] = capo_chime.types.user_error_list.deserialize_json(

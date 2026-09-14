@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ProtectedJobReceiverConfigurations:
 
     out: ProtectedJobReceiverConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.protected_job_receiver_configuration.deserialize_json(
                 item

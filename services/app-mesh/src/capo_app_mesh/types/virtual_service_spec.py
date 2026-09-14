@@ -29,7 +29,7 @@ def serialize_json(value: VirtualServiceSpec) -> dict:
 
 def deserialize_json(data: dict) -> VirtualServiceSpec:
     out: VirtualServiceSpec = {}  # type: ignore[typeddict-item]
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_app_mesh.types.virtual_service_provider
 
         out["provider"] = capo_app_mesh.types.virtual_service_provider.deserialize_json(

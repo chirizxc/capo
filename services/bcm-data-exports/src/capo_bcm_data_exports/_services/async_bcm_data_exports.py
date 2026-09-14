@@ -184,15 +184,17 @@ class AsyncBCMDataExportsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.get_execution_request.GetExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["export_arn"] = export_arn
-        input_["execution_id"] = execution_id
+        input_: capo_bcm_data_exports.types.get_execution_request.GetExecutionRequest = {
+            "export_arn": export_arn,
+            "execution_id": execution_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table(
@@ -233,8 +235,9 @@ class AsyncBCMDataExportsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.get_table_request.GetTableRequest = {}  # type: ignore[typeddict-item]
-        input_["table_name"] = table_name
+        input_: capo_bcm_data_exports.types.get_table_request.GetTableRequest = {
+            "table_name": table_name
+        }
         if table_properties is not None:
             input_["table_properties"] = table_properties
 
@@ -243,6 +246,7 @@ class AsyncBCMDataExportsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_executions(
@@ -288,8 +292,9 @@ class AsyncBCMDataExportsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.list_executions_request.ListExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["export_arn"] = export_arn
+        input_: capo_bcm_data_exports.types.list_executions_request.ListExecutionsRequest = {
+            "export_arn": export_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -300,6 +305,7 @@ class AsyncBCMDataExportsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_executions(
@@ -369,7 +375,7 @@ class AsyncBCMDataExportsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.list_tables_request.ListTablesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_data_exports.types.list_tables_request.ListTablesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -380,6 +386,7 @@ class AsyncBCMDataExportsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_tables(
@@ -451,8 +458,9 @@ class AsyncBCMDataExportsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_bcm_data_exports.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -463,6 +471,7 @@ class AsyncBCMDataExportsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -503,15 +512,17 @@ class AsyncBCMDataExportsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tags"] = resource_tags
+        input_: capo_bcm_data_exports.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tags": resource_tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -552,15 +563,17 @@ class AsyncBCMDataExportsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tag_keys"] = resource_tag_keys
+        input_: capo_bcm_data_exports.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tag_keys": resource_tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

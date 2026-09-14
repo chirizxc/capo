@@ -43,12 +43,12 @@ def serialize_json(value: AwsBackupRecoveryPointCreatedByDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsBackupRecoveryPointCreatedByDetails:
     out: AwsBackupRecoveryPointCreatedByDetails = {}  # type: ignore[typeddict-item]
-    if "BackupPlanArn" in data:
+    if data.get("BackupPlanArn") is not None:
         out["backup_plan_arn"] = data["BackupPlanArn"]
-    if "BackupPlanId" in data:
+    if data.get("BackupPlanId") is not None:
         out["backup_plan_id"] = data["BackupPlanId"]
-    if "BackupPlanVersion" in data:
+    if data.get("BackupPlanVersion") is not None:
         out["backup_plan_version"] = data["BackupPlanVersion"]
-    if "BackupRuleId" in data:
+    if data.get("BackupRuleId") is not None:
         out["backup_rule_id"] = data["BackupRuleId"]
     return out

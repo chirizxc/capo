@@ -43,9 +43,9 @@ def serialize_json(value: UpdateContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContactRequest:
     out: UpdateContactRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "trackingOverrides" in data:
+    if data.get("trackingOverrides") is not None:
         import capo_groundstation.types.tracking_overrides
 
         out["tracking_overrides"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> UpdateContactRequest:
                 data["trackingOverrides"]
             )
         )
-    if "satelliteArn" in data:
+    if data.get("satelliteArn") is not None:
         out["satellite_arn"] = data["satelliteArn"]
     return out

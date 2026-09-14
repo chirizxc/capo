@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DeleteIdentitiesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteIdentitiesInput:
     out: DeleteIdentitiesInput = {}  # type: ignore[typeddict-item]
-    if "IdentityIdsToDelete" in data:
+    if data.get("IdentityIdsToDelete") is not None:
         import capo_cognito_identity.types.identity_id_list
 
         out["identity_ids_to_delete"] = (

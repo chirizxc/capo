@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import TypedDict
 
+from capo_transcribe.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_transcribe.types.transcription_job_name
 
@@ -18,9 +20,16 @@ class DeleteMedicalTranscriptionJobRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: DeleteMedicalTranscriptionJobRequest) -> dict:
     out: dict = {}
+    out["MedicalTranscriptionJobName"] = value["medical_transcription_job_name"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteMedicalTranscriptionJobRequest:
     out: DeleteMedicalTranscriptionJobRequest = {}  # type: ignore[typeddict-item]
+    if data.get("MedicalTranscriptionJobName") is not None:
+        out["medical_transcription_job_name"] = data["MedicalTranscriptionJobName"]
+    else:
+        raise DeserializationError(
+            "DeleteMedicalTranscriptionJobRequest.medical_transcription_job_name required"
+        )
     return out

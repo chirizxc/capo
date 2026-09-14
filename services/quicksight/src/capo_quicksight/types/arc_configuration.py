@@ -22,7 +22,15 @@ class ArcConfiguration(TypedDict, closed=True):
 def serialize_json(value: ArcConfiguration) -> dict:
     out: dict = {}
     if "arc_angle" in value:
-        out["ArcAngle"] = value["arc_angle"]
+        out["ArcAngle"] = (
+            "NaN"
+            if value["arc_angle"] != value["arc_angle"]
+            else "Infinity"
+            if value["arc_angle"] == float("inf")
+            else "-Infinity"
+            if value["arc_angle"] == float("-inf")
+            else value["arc_angle"]
+        )
     if "arc_thickness" in value:
         import capo_quicksight.types.arc_thickness_options
 
@@ -36,9 +44,9 @@ def serialize_json(value: ArcConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ArcConfiguration:
     out: ArcConfiguration = {}  # type: ignore[typeddict-item]
-    if "ArcAngle" in data:
-        out["arc_angle"] = data["ArcAngle"]
-    if "ArcThickness" in data:
+    if data.get("ArcAngle") is not None:
+        out["arc_angle"] = float(data["ArcAngle"])
+    if data.get("ArcThickness") is not None:
         import capo_quicksight.types.arc_thickness_options
 
         out["arc_thickness"] = (

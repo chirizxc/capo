@@ -133,29 +133,29 @@ def serialize_aws_json_1_1(value: DescribeAppResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAppResponse:
     out: DescribeAppResponse = {}  # type: ignore[typeddict-item]
-    if "AppArn" in data:
+    if data.get("AppArn") is not None:
         out["app_arn"] = data["AppArn"]
-    if "AppType" in data:
+    if data.get("AppType") is not None:
         import capo_sagemaker.types.app_type
 
         out["app_type"] = capo_sagemaker.types.app_type.deserialize_aws_json_1_1(
             data["AppType"]
         )
-    if "AppName" in data:
+    if data.get("AppName") is not None:
         out["app_name"] = data["AppName"]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "UserProfileName" in data:
+    if data.get("UserProfileName") is not None:
         out["user_profile_name"] = data["UserProfileName"]
-    if "SpaceName" in data:
+    if data.get("SpaceName") is not None:
         out["space_name"] = data["SpaceName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.app_status
 
         out["status"] = capo_sagemaker.types.app_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "EffectiveTrustedIdentityPropagationStatus" in data:
+    if data.get("EffectiveTrustedIdentityPropagationStatus") is not None:
         import capo_sagemaker.types.feature_status
 
         out["effective_trusted_identity_propagation_status"] = (
@@ -163,9 +163,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAppResponse:
                 data["EffectiveTrustedIdentityPropagationStatus"]
             )
         )
-    if "RecoveryMode" in data:
+    if data.get("RecoveryMode") is not None:
         out["recovery_mode"] = data["RecoveryMode"]
-    if "LastHealthCheckTimestamp" in data:
+    if data.get("LastHealthCheckTimestamp") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_health_check_timestamp"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAppResponse:
                 data["LastHealthCheckTimestamp"]
             )
         )
-    if "LastUserActivityTimestamp" in data:
+    if data.get("LastUserActivityTimestamp") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_user_activity_timestamp"] = (
@@ -181,15 +181,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAppResponse:
                 data["LastUserActivityTimestamp"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ResourceSpec" in data:
+    if data.get("ResourceSpec") is not None:
         import capo_sagemaker.types.resource_spec
 
         out["resource_spec"] = (
@@ -197,6 +197,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAppResponse:
                 data["ResourceSpec"]
             )
         )
-    if "BuiltInLifecycleConfigArn" in data:
+    if data.get("BuiltInLifecycleConfigArn") is not None:
         out["built_in_lifecycle_config_arn"] = data["BuiltInLifecycleConfigArn"]
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> EntitlementList:
 
     out: EntitlementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_entitlement_service.types.entitlement.deserialize_aws_json_1_1(
                 item

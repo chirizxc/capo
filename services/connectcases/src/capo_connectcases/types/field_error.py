@@ -31,14 +31,14 @@ def serialize_json(value: FieldError) -> dict:
 
 def deserialize_json(data: dict) -> FieldError:
     out: FieldError = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("FieldError.id required")
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     else:
         raise DeserializationError("FieldError.error_code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

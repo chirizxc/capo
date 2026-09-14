@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> DevEndpointList:
 
     out: DevEndpointList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.dev_endpoint.deserialize_aws_json_1_1(item))
     return out

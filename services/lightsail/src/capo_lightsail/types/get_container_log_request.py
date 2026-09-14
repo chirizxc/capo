@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_lightsail.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_lightsail.types.container_service_name
     import capo_lightsail.types.iso_date
@@ -28,9 +30,51 @@ class GetContainerLogRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: GetContainerLogRequest) -> dict:
     out: dict = {}
+    out["serviceName"] = value["service_name"]
+    out["containerName"] = value["container_name"]
+    if "start_time" in value:
+        import capo_lightsail.types.iso_date
+
+        out["startTime"] = capo_lightsail.types.iso_date.serialize_aws_json_1_1(
+            value["start_time"]
+        )
+    if "end_time" in value:
+        import capo_lightsail.types.iso_date
+
+        out["endTime"] = capo_lightsail.types.iso_date.serialize_aws_json_1_1(
+            value["end_time"]
+        )
+    if "filter_pattern" in value:
+        out["filterPattern"] = value["filter_pattern"]
+    if "page_token" in value:
+        out["pageToken"] = value["page_token"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> GetContainerLogRequest:
     out: GetContainerLogRequest = {}  # type: ignore[typeddict-item]
+    if data.get("serviceName") is not None:
+        out["service_name"] = data["serviceName"]
+    else:
+        raise DeserializationError("GetContainerLogRequest.service_name required")
+    if data.get("containerName") is not None:
+        out["container_name"] = data["containerName"]
+    else:
+        raise DeserializationError("GetContainerLogRequest.container_name required")
+    if data.get("startTime") is not None:
+        import capo_lightsail.types.iso_date
+
+        out["start_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
+            data["startTime"]
+        )
+    if data.get("endTime") is not None:
+        import capo_lightsail.types.iso_date
+
+        out["end_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
+            data["endTime"]
+        )
+    if data.get("filterPattern") is not None:
+        out["filter_pattern"] = data["filterPattern"]
+    if data.get("pageToken") is not None:
+        out["page_token"] = data["pageToken"]
     return out

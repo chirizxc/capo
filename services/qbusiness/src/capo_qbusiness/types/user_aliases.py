@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> UserAliases:
 
     out: UserAliases = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.user_alias.deserialize_json(item))
     return out

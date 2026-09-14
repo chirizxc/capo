@@ -31,11 +31,11 @@ def serialize_json(value: ValidateSecurityProfileBehaviorsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ValidateSecurityProfileBehaviorsResponse:
     out: ValidateSecurityProfileBehaviorsResponse = {}  # type: ignore[typeddict-item]
-    if "valid" in data:
+    if data.get("valid") is not None:
         out["valid"] = data["valid"]
     else:
         out["valid"] = False
-    if "validationErrors" in data:
+    if data.get("validationErrors") is not None:
         import capo_iot.types.validation_errors
 
         out["validation_errors"] = capo_iot.types.validation_errors.deserialize_json(

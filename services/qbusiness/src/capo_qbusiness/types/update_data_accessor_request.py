@@ -58,7 +58,7 @@ def serialize_json(value: UpdateDataAccessorRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataAccessorRequest:
     out: UpdateDataAccessorRequest = {}  # type: ignore[typeddict-item]
-    if "actionConfigurations" in data:
+    if data.get("actionConfigurations") is not None:
         import capo_qbusiness.types.action_configuration_list
 
         out["action_configurations"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> UpdateDataAccessorRequest:
         raise DeserializationError(
             "UpdateDataAccessorRequest.action_configurations required"
         )
-    if "authenticationDetail" in data:
+    if data.get("authenticationDetail") is not None:
         import capo_qbusiness.types.data_accessor_authentication_detail
 
         out["authentication_detail"] = (
@@ -78,6 +78,6 @@ def deserialize_json(data: dict) -> UpdateDataAccessorRequest:
                 data["authenticationDetail"]
             )
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     return out

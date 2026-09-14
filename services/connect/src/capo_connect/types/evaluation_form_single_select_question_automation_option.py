@@ -38,7 +38,7 @@ def serialize_json(value: EvaluationFormSingleSelectQuestionAutomationOption) ->
 
 
 def deserialize_json(data: dict) -> EvaluationFormSingleSelectQuestionAutomationOption:
-    if "RuleCategory" in data:
+    if data.get("RuleCategory") is not None:
         import capo_connect.types.single_select_question_rule_category_automation
 
         return {

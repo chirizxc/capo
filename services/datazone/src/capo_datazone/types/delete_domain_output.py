@@ -26,7 +26,7 @@ def serialize_json(value: DeleteDomainOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDomainOutput:
     out: DeleteDomainOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.domain_status
 
         out["status"] = capo_datazone.types.domain_status.deserialize_json(

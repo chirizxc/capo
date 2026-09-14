@@ -32,12 +32,12 @@ def serialize_json(value: ListDomainLayoutsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDomainLayoutsResponse:
     out: ListDomainLayoutsResponse = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_customer_profiles.types.layout_list
 
         out["items"] = capo_customer_profiles.types.layout_list.deserialize_json(
             data["Items"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

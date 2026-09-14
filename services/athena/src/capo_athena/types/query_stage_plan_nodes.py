@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> QueryStagePlanNodes:
 
     out: QueryStagePlanNodes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_athena.types.query_stage_plan_node.deserialize_aws_json_1_1(item)
         )

@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: CreateSecurityConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSecurityConfigurationResponse:
     out: CreateSecurityConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_glue.types.timestamp_value
 
         out["created_timestamp"] = (

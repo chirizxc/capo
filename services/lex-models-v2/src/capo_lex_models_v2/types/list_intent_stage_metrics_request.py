@@ -95,7 +95,7 @@ def serialize_json(value: ListIntentStageMetricsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListIntentStageMetricsRequest:
     out: ListIntentStageMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "startDateTime" in data:
+    if data.get("startDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["start_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> ListIntentStageMetricsRequest:
         raise DeserializationError(
             "ListIntentStageMetricsRequest.start_date_time required"
         )
-    if "endDateTime" in data:
+    if data.get("endDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["end_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> ListIntentStageMetricsRequest:
         raise DeserializationError(
             "ListIntentStageMetricsRequest.end_date_time required"
         )
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_lex_models_v2.types.analytics_intent_stage_metrics
 
         out["metrics"] = (
@@ -125,13 +125,13 @@ def deserialize_json(data: dict) -> ListIntentStageMetricsRequest:
         )
     else:
         raise DeserializationError("ListIntentStageMetricsRequest.metrics required")
-    if "binBy" in data:
+    if data.get("binBy") is not None:
         import capo_lex_models_v2.types.analytics_bin_by_list
 
         out["bin_by"] = capo_lex_models_v2.types.analytics_bin_by_list.deserialize_json(
             data["binBy"]
         )
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         import capo_lex_models_v2.types.analytics_intent_stage_group_by_list
 
         out["group_by"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> ListIntentStageMetricsRequest:
                 data["groupBy"]
             )
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_lex_models_v2.types.analytics_intent_stage_filters
 
         out["filters"] = (
@@ -147,8 +147,8 @@ def deserialize_json(data: dict) -> ListIntentStageMetricsRequest:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

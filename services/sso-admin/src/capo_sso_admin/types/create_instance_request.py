@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: CreateInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateInstanceRequest:
     out: CreateInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sso_admin.types.tag_list
 
         out["tags"] = capo_sso_admin.types.tag_list.deserialize_aws_json_1_1(

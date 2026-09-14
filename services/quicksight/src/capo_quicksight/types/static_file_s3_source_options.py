@@ -30,15 +30,15 @@ def serialize_json(value: StaticFileS3SourceOptions) -> dict:
 
 def deserialize_json(data: dict) -> StaticFileS3SourceOptions:
     out: StaticFileS3SourceOptions = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
     else:
         raise DeserializationError("StaticFileS3SourceOptions.bucket_name required")
-    if "ObjectKey" in data:
+    if data.get("ObjectKey") is not None:
         out["object_key"] = data["ObjectKey"]
     else:
         raise DeserializationError("StaticFileS3SourceOptions.object_key required")
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("StaticFileS3SourceOptions.region required")

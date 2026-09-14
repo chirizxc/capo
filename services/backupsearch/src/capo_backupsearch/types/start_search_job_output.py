@@ -38,9 +38,9 @@ def serialize_json(value: StartSearchJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartSearchJobOutput:
     out: StartSearchJobOutput = {}  # type: ignore[typeddict-item]
-    if "SearchJobArn" in data:
+    if data.get("SearchJobArn") is not None:
         out["search_job_arn"] = data["SearchJobArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> StartSearchJobOutput:
                 data["CreationTime"]
             )
         )
-    if "SearchJobIdentifier" in data:
+    if data.get("SearchJobIdentifier") is not None:
         out["search_job_identifier"] = data["SearchJobIdentifier"]
     return out

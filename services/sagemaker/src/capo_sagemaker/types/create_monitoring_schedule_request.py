@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: CreateMonitoringScheduleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMonitoringScheduleRequest:
     out: CreateMonitoringScheduleRequest = {}  # type: ignore[typeddict-item]
-    if "MonitoringScheduleName" in data:
+    if data.get("MonitoringScheduleName") is not None:
         out["monitoring_schedule_name"] = data["MonitoringScheduleName"]
-    if "MonitoringScheduleConfig" in data:
+    if data.get("MonitoringScheduleConfig") is not None:
         import capo_sagemaker.types.monitoring_schedule_config
 
         out["monitoring_schedule_config"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMonitoringScheduleRequest:
                 data["MonitoringScheduleConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

@@ -36,9 +36,9 @@ def serialize_json(value: NodeOverrides) -> dict:
 
 def deserialize_json(data: dict) -> NodeOverrides:
     out: NodeOverrides = {}  # type: ignore[typeddict-item]
-    if "numNodes" in data:
+    if data.get("numNodes") is not None:
         out["num_nodes"] = data["numNodes"]
-    if "nodePropertyOverrides" in data:
+    if data.get("nodePropertyOverrides") is not None:
         import capo_batch.types.node_property_overrides
 
         out["node_property_overrides"] = (

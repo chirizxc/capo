@@ -70,15 +70,15 @@ def serialize_aws_json_1_1(value: Alias) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Alias:
     out: Alias = {}  # type: ignore[typeddict-item]
-    if "AliasId" in data:
+    if data.get("AliasId") is not None:
         out["alias_id"] = data["AliasId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AliasArn" in data:
+    if data.get("AliasArn") is not None:
         out["alias_arn"] = data["AliasArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoutingStrategy" in data:
+    if data.get("RoutingStrategy") is not None:
         import capo_gamelift.types.routing_strategy
 
         out["routing_strategy"] = (
@@ -86,13 +86,13 @@ def deserialize_aws_json_1_1(data: dict) -> Alias:
                 data["RoutingStrategy"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["last_updated_time"] = (

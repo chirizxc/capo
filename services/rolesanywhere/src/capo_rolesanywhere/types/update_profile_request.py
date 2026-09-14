@@ -60,17 +60,17 @@ def serialize_json(value: UpdateProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProfileRequest:
     out: UpdateProfileRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "sessionPolicy" in data:
+    if data.get("sessionPolicy") is not None:
         out["session_policy"] = data["sessionPolicy"]
-    if "roleArns" in data:
+    if data.get("roleArns") is not None:
         import capo_rolesanywhere.types.role_arn_list
 
         out["role_arns"] = capo_rolesanywhere.types.role_arn_list.deserialize_json(
             data["roleArns"]
         )
-    if "managedPolicyArns" in data:
+    if data.get("managedPolicyArns") is not None:
         import capo_rolesanywhere.types.managed_policy_list
 
         out["managed_policy_arns"] = (
@@ -78,8 +78,8 @@ def deserialize_json(data: dict) -> UpdateProfileRequest:
                 data["managedPolicyArns"]
             )
         )
-    if "durationSeconds" in data:
+    if data.get("durationSeconds") is not None:
         out["duration_seconds"] = data["durationSeconds"]
-    if "acceptRoleSessionName" in data:
+    if data.get("acceptRoleSessionName") is not None:
         out["accept_role_session_name"] = data["acceptRoleSessionName"]
     return out

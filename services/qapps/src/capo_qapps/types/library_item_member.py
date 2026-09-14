@@ -80,19 +80,19 @@ def serialize_json(value: LibraryItemMember) -> dict:
 
 def deserialize_json(data: dict) -> LibraryItemMember:
     out: LibraryItemMember = {}  # type: ignore[typeddict-item]
-    if "libraryItemId" in data:
+    if data.get("libraryItemId") is not None:
         out["library_item_id"] = data["libraryItemId"]
     else:
         raise DeserializationError("LibraryItemMember.library_item_id required")
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("LibraryItemMember.app_id required")
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError("LibraryItemMember.app_version required")
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_qapps.types.category_list
 
         out["categories"] = capo_qapps.types.category_list.deserialize_json(
@@ -100,11 +100,11 @@ def deserialize_json(data: dict) -> LibraryItemMember:
         )
     else:
         raise DeserializationError("LibraryItemMember.categories required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("LibraryItemMember.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qapps.types.q_apps_timestamp
 
         out["created_at"] = capo_qapps.types.q_apps_timestamp.deserialize_json(
@@ -112,26 +112,26 @@ def deserialize_json(data: dict) -> LibraryItemMember:
         )
     else:
         raise DeserializationError("LibraryItemMember.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("LibraryItemMember.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qapps.types.q_apps_timestamp
 
         out["updated_at"] = capo_qapps.types.q_apps_timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "ratingCount" in data:
+    if data.get("ratingCount") is not None:
         out["rating_count"] = data["ratingCount"]
     else:
         raise DeserializationError("LibraryItemMember.rating_count required")
-    if "isRatedByUser" in data:
+    if data.get("isRatedByUser") is not None:
         out["is_rated_by_user"] = data["isRatedByUser"]
-    if "userCount" in data:
+    if data.get("userCount") is not None:
         out["user_count"] = data["userCount"]
-    if "isVerified" in data:
+    if data.get("isVerified") is not None:
         out["is_verified"] = data["isVerified"]
     return out

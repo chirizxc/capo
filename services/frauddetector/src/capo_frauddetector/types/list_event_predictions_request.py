@@ -88,7 +88,7 @@ def serialize_aws_json_1_1(value: ListEventPredictionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEventPredictionsRequest:
     out: ListEventPredictionsRequest = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         import capo_frauddetector.types.filter_condition
 
         out["event_id"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListEventPredictionsRequest:
                 data["eventId"]
             )
         )
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_frauddetector.types.filter_condition
 
         out["event_type"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListEventPredictionsRequest:
                 data["eventType"]
             )
         )
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         import capo_frauddetector.types.filter_condition
 
         out["detector_id"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListEventPredictionsRequest:
                 data["detectorId"]
             )
         )
-    if "detectorVersionId" in data:
+    if data.get("detectorVersionId") is not None:
         import capo_frauddetector.types.filter_condition
 
         out["detector_version_id"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListEventPredictionsRequest:
                 data["detectorVersionId"]
             )
         )
-    if "predictionTimeRange" in data:
+    if data.get("predictionTimeRange") is not None:
         import capo_frauddetector.types.prediction_time_range
 
         out["prediction_time_range"] = (
@@ -128,8 +128,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListEventPredictionsRequest:
                 data["predictionTimeRange"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

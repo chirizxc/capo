@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeSubscribedWorkteamResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSubscribedWorkteamResponse:
     out: DescribeSubscribedWorkteamResponse = {}  # type: ignore[typeddict-item]
-    if "SubscribedWorkteam" in data:
+    if data.get("SubscribedWorkteam") is not None:
         import capo_sagemaker.types.subscribed_workteam
 
         out["subscribed_workteam"] = (

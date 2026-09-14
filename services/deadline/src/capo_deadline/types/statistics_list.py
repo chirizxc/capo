@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> StatisticsList:
 
     out: StatisticsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.statistics.deserialize_json(item))
     return out

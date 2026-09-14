@@ -61,7 +61,7 @@ def serialize_aws_json_1_0(value: PolicyFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PolicyFilter:
     out: PolicyFilter = {}  # type: ignore[typeddict-item]
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_verifiedpermissions.types.entity_reference
 
         out["principal"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyFilter:
                 data["principal"]
             )
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_verifiedpermissions.types.entity_reference
 
         out["resource"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyFilter:
                 data["resource"]
             )
         )
-    if "policyType" in data:
+    if data.get("policyType") is not None:
         import capo_verifiedpermissions.types.policy_type
 
         out["policy_type"] = (
@@ -85,6 +85,6 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyFilter:
                 data["policyType"]
             )
         )
-    if "policyTemplateId" in data:
+    if data.get("policyTemplateId") is not None:
         out["policy_template_id"] = data["policyTemplateId"]
     return out

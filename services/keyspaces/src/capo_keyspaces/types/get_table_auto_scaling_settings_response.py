@@ -58,25 +58,25 @@ def serialize_aws_json_1_0(value: GetTableAutoScalingSettingsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetTableAutoScalingSettingsResponse:
     out: GetTableAutoScalingSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError(
             "GetTableAutoScalingSettingsResponse.keyspace_name required"
         )
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError(
             "GetTableAutoScalingSettingsResponse.table_name required"
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
             "GetTableAutoScalingSettingsResponse.resource_arn required"
         )
-    if "autoScalingSpecification" in data:
+    if data.get("autoScalingSpecification") is not None:
         import capo_keyspaces.types.auto_scaling_specification
 
         out["auto_scaling_specification"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetTableAutoScalingSettingsResponse:
                 data["autoScalingSpecification"]
             )
         )
-    if "replicaSpecifications" in data:
+    if data.get("replicaSpecifications") is not None:
         import capo_keyspaces.types.replica_auto_scaling_specification_list
 
         out["replica_specifications"] = (

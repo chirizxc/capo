@@ -40,7 +40,7 @@ def serialize_json(value: CookieSynchronizationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CookieSynchronizationConfiguration:
     out: CookieSynchronizationConfiguration = {}  # type: ignore[typeddict-item]
-    if "allowlist" in data:
+    if data.get("allowlist") is not None:
         import capo_workspaces_web.types.cookie_specifications
 
         out["allowlist"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CookieSynchronizationConfiguration:
         raise DeserializationError(
             "CookieSynchronizationConfiguration.allowlist required"
         )
-    if "blocklist" in data:
+    if data.get("blocklist") is not None:
         import capo_workspaces_web.types.cookie_specifications
 
         out["blocklist"] = (

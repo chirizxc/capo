@@ -211,9 +211,9 @@ def serialize_aws_json_1_1(value: GetDomainDetailResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
     out: GetDomainDetailResponse = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "Nameservers" in data:
+    if data.get("Nameservers") is not None:
         import capo_route_53_domains.types.nameserver_list
 
         out["nameservers"] = (
@@ -221,9 +221,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
                 data["Nameservers"]
             )
         )
-    if "AutoRenew" in data:
+    if data.get("AutoRenew") is not None:
         out["auto_renew"] = data["AutoRenew"]
-    if "AdminContact" in data:
+    if data.get("AdminContact") is not None:
         import capo_route_53_domains.types.contact_detail
 
         out["admin_contact"] = (
@@ -231,7 +231,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
                 data["AdminContact"]
             )
         )
-    if "RegistrantContact" in data:
+    if data.get("RegistrantContact") is not None:
         import capo_route_53_domains.types.contact_detail
 
         out["registrant_contact"] = (
@@ -239,7 +239,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
                 data["RegistrantContact"]
             )
         )
-    if "TechContact" in data:
+    if data.get("TechContact") is not None:
         import capo_route_53_domains.types.contact_detail
 
         out["tech_contact"] = (
@@ -247,25 +247,25 @@ def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
                 data["TechContact"]
             )
         )
-    if "AdminPrivacy" in data:
+    if data.get("AdminPrivacy") is not None:
         out["admin_privacy"] = data["AdminPrivacy"]
-    if "RegistrantPrivacy" in data:
+    if data.get("RegistrantPrivacy") is not None:
         out["registrant_privacy"] = data["RegistrantPrivacy"]
-    if "TechPrivacy" in data:
+    if data.get("TechPrivacy") is not None:
         out["tech_privacy"] = data["TechPrivacy"]
-    if "RegistrarName" in data:
+    if data.get("RegistrarName") is not None:
         out["registrar_name"] = data["RegistrarName"]
-    if "WhoIsServer" in data:
+    if data.get("WhoIsServer") is not None:
         out["who_is_server"] = data["WhoIsServer"]
-    if "RegistrarUrl" in data:
+    if data.get("RegistrarUrl") is not None:
         out["registrar_url"] = data["RegistrarUrl"]
-    if "AbuseContactEmail" in data:
+    if data.get("AbuseContactEmail") is not None:
         out["abuse_contact_email"] = data["AbuseContactEmail"]
-    if "AbuseContactPhone" in data:
+    if data.get("AbuseContactPhone") is not None:
         out["abuse_contact_phone"] = data["AbuseContactPhone"]
-    if "RegistryDomainId" in data:
+    if data.get("RegistryDomainId") is not None:
         out["registry_domain_id"] = data["RegistryDomainId"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_route_53_domains.types.timestamp
 
         out["creation_date"] = (
@@ -273,7 +273,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
                 data["CreationDate"]
             )
         )
-    if "UpdatedDate" in data:
+    if data.get("UpdatedDate") is not None:
         import capo_route_53_domains.types.timestamp
 
         out["updated_date"] = (
@@ -281,7 +281,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
                 data["UpdatedDate"]
             )
         )
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         import capo_route_53_domains.types.timestamp
 
         out["expiration_date"] = (
@@ -289,11 +289,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
                 data["ExpirationDate"]
             )
         )
-    if "Reseller" in data:
+    if data.get("Reseller") is not None:
         out["reseller"] = data["Reseller"]
-    if "DnsSec" in data:
+    if data.get("DnsSec") is not None:
         out["dns_sec"] = data["DnsSec"]
-    if "StatusList" in data:
+    if data.get("StatusList") is not None:
         import capo_route_53_domains.types.domain_status_list
 
         out["status_list"] = (
@@ -301,7 +301,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
                 data["StatusList"]
             )
         )
-    if "DnssecKeys" in data:
+    if data.get("DnssecKeys") is not None:
         import capo_route_53_domains.types.dnssec_key_list
 
         out["dnssec_keys"] = (
@@ -309,7 +309,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
                 data["DnssecKeys"]
             )
         )
-    if "BillingContact" in data:
+    if data.get("BillingContact") is not None:
         import capo_route_53_domains.types.contact_detail
 
         out["billing_contact"] = (
@@ -317,6 +317,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetDomainDetailResponse:
                 data["BillingContact"]
             )
         )
-    if "BillingPrivacy" in data:
+    if data.get("BillingPrivacy") is not None:
         out["billing_privacy"] = data["BillingPrivacy"]
     return out

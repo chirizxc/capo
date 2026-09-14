@@ -71,29 +71,29 @@ def serialize_json(value: ShareDetails) -> dict:
 
 def deserialize_json(data: dict) -> ShareDetails:
     out: ShareDetails = {}  # type: ignore[typeddict-item]
-    if "shareId" in data:
+    if data.get("shareId") is not None:
         out["share_id"] = data["shareId"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "principalSubscriber" in data:
+    if data.get("principalSubscriber") is not None:
         out["principal_subscriber"] = data["principalSubscriber"]
-    if "ownerId" in data:
+    if data.get("ownerId") is not None:
         out["owner_id"] = data["ownerId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "shareName" in data:
+    if data.get("shareName") is not None:
         out["share_name"] = data["shareName"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.creation_time
 
         out["creation_time"] = capo_omics.types.creation_time.deserialize_json(
             data["creationTime"]
         )
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_omics.types.update_time
 
         out["update_time"] = capo_omics.types.update_time.deserialize_json(

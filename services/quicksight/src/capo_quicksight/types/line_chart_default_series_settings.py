@@ -62,13 +62,13 @@ def serialize_json(value: LineChartDefaultSeriesSettings) -> dict:
 
 def deserialize_json(data: dict) -> LineChartDefaultSeriesSettings:
     out: LineChartDefaultSeriesSettings = {}  # type: ignore[typeddict-item]
-    if "AxisBinding" in data:
+    if data.get("AxisBinding") is not None:
         import capo_quicksight.types.axis_binding
 
         out["axis_binding"] = capo_quicksight.types.axis_binding.deserialize_json(
             data["AxisBinding"]
         )
-    if "LineStyleSettings" in data:
+    if data.get("LineStyleSettings") is not None:
         import capo_quicksight.types.line_chart_line_style_settings
 
         out["line_style_settings"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> LineChartDefaultSeriesSettings:
                 data["LineStyleSettings"]
             )
         )
-    if "MarkerStyleSettings" in data:
+    if data.get("MarkerStyleSettings") is not None:
         import capo_quicksight.types.line_chart_marker_style_settings
 
         out["marker_style_settings"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> LineChartDefaultSeriesSettings:
                 data["MarkerStyleSettings"]
             )
         )
-    if "DecalSettings" in data:
+    if data.get("DecalSettings") is not None:
         import capo_quicksight.types.decal_settings
 
         out["decal_settings"] = capo_quicksight.types.decal_settings.deserialize_json(

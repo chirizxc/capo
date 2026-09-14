@@ -104,23 +104,23 @@ def serialize_json(value: ViolationEvent) -> dict:
 
 def deserialize_json(data: dict) -> ViolationEvent:
     out: ViolationEvent = {}  # type: ignore[typeddict-item]
-    if "violationId" in data:
+    if data.get("violationId") is not None:
         out["violation_id"] = data["violationId"]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "securityProfileName" in data:
+    if data.get("securityProfileName") is not None:
         out["security_profile_name"] = data["securityProfileName"]
-    if "behavior" in data:
+    if data.get("behavior") is not None:
         import capo_iot.types.behavior
 
         out["behavior"] = capo_iot.types.behavior.deserialize_json(data["behavior"])
-    if "metricValue" in data:
+    if data.get("metricValue") is not None:
         import capo_iot.types.metric_value
 
         out["metric_value"] = capo_iot.types.metric_value.deserialize_json(
             data["metricValue"]
         )
-    if "violationEventAdditionalInfo" in data:
+    if data.get("violationEventAdditionalInfo") is not None:
         import capo_iot.types.violation_event_additional_info
 
         out["violation_event_additional_info"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> ViolationEvent:
                 data["violationEventAdditionalInfo"]
             )
         )
-    if "violationEventType" in data:
+    if data.get("violationEventType") is not None:
         import capo_iot.types.violation_event_type
 
         out["violation_event_type"] = (
@@ -136,15 +136,15 @@ def deserialize_json(data: dict) -> ViolationEvent:
                 data["violationEventType"]
             )
         )
-    if "verificationState" in data:
+    if data.get("verificationState") is not None:
         import capo_iot.types.verification_state
 
         out["verification_state"] = capo_iot.types.verification_state.deserialize_json(
             data["verificationState"]
         )
-    if "verificationStateDescription" in data:
+    if data.get("verificationStateDescription") is not None:
         out["verification_state_description"] = data["verificationStateDescription"]
-    if "violationEventTime" in data:
+    if data.get("violationEventTime") is not None:
         import capo_iot.types.timestamp
 
         out["violation_event_time"] = capo_iot.types.timestamp.deserialize_json(

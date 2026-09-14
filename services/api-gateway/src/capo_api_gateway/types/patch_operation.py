@@ -38,14 +38,14 @@ def serialize_json(value: PatchOperation) -> dict:
 
 def deserialize_json(data: dict) -> PatchOperation:
     out: PatchOperation = {}  # type: ignore[typeddict-item]
-    if "op" in data:
+    if data.get("op") is not None:
         import capo_api_gateway.types.op
 
         out["op"] = capo_api_gateway.types.op.deserialize_json(data["op"])
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "from" in data:
+    if data.get("from") is not None:
         out["from"] = data["from"]
     return out

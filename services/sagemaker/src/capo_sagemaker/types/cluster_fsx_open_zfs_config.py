@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: ClusterFsxOpenZfsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterFsxOpenZfsConfig:
     out: ClusterFsxOpenZfsConfig = {}  # type: ignore[typeddict-item]
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
     else:
         raise DeserializationError("ClusterFsxOpenZfsConfig.dns_name required")
-    if "MountPath" in data:
+    if data.get("MountPath") is not None:
         out["mount_path"] = data["MountPath"]
     return out

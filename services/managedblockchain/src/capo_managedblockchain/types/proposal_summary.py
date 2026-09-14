@@ -76,27 +76,27 @@ def serialize_json(value: ProposalSummary) -> dict:
 
 def deserialize_json(data: dict) -> ProposalSummary:
     out: ProposalSummary = {}  # type: ignore[typeddict-item]
-    if "ProposalId" in data:
+    if data.get("ProposalId") is not None:
         out["proposal_id"] = data["ProposalId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ProposedByMemberId" in data:
+    if data.get("ProposedByMemberId") is not None:
         out["proposed_by_member_id"] = data["ProposedByMemberId"]
-    if "ProposedByMemberName" in data:
+    if data.get("ProposedByMemberName") is not None:
         out["proposed_by_member_name"] = data["ProposedByMemberName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_managedblockchain.types.proposal_status
 
         out["status"] = capo_managedblockchain.types.proposal_status.deserialize_json(
             data["Status"]
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["creation_date"] = capo_managedblockchain.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["expiration_date"] = (
@@ -104,6 +104,6 @@ def deserialize_json(data: dict) -> ProposalSummary:
                 data["ExpirationDate"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

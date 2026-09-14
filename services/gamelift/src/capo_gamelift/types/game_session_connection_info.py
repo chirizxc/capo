@@ -64,15 +64,15 @@ def serialize_aws_json_1_1(value: GameSessionConnectionInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GameSessionConnectionInfo:
     out: GameSessionConnectionInfo = {}  # type: ignore[typeddict-item]
-    if "GameSessionArn" in data:
+    if data.get("GameSessionArn") is not None:
         out["game_session_arn"] = data["GameSessionArn"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "MatchedPlayerSessions" in data:
+    if data.get("MatchedPlayerSessions") is not None:
         import capo_gamelift.types.matched_player_session_list
 
         out["matched_player_sessions"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> GameSessionConnectionInfo:
                 data["MatchedPlayerSessions"]
             )
         )
-    if "PlayerGatewayStatus" in data:
+    if data.get("PlayerGatewayStatus") is not None:
         import capo_gamelift.types.player_gateway_status
 
         out["player_gateway_status"] = (

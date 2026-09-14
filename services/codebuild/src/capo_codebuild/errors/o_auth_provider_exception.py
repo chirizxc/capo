@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: OAuthProviderException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OAuthProviderException_:
     out: OAuthProviderException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class OAuthProviderException(ServiceError):
 
     code: str | None = "OAuthProviderException"
 
-    def __init__(self, data: OAuthProviderException_):
+    def __init__(self, data: OAuthProviderException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OAuthProviderException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "OAuthProviderException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "OAuthProviderException":
+        return cls(deserialize_aws_json_1_1(data), message)

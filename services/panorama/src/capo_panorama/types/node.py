@@ -75,41 +75,41 @@ def serialize_json(value: Node) -> dict:
 
 def deserialize_json(data: dict) -> Node:
     out: Node = {}  # type: ignore[typeddict-item]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
     else:
         raise DeserializationError("Node.node_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Node.name required")
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
     else:
         raise DeserializationError("Node.category required")
-    if "OwnerAccount" in data:
+    if data.get("OwnerAccount") is not None:
         out["owner_account"] = data["OwnerAccount"]
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
     else:
         raise DeserializationError("Node.package_name required")
-    if "PackageId" in data:
+    if data.get("PackageId") is not None:
         out["package_id"] = data["PackageId"]
     else:
         raise DeserializationError("Node.package_id required")
-    if "PackageArn" in data:
+    if data.get("PackageArn") is not None:
         out["package_arn"] = data["PackageArn"]
-    if "PackageVersion" in data:
+    if data.get("PackageVersion") is not None:
         out["package_version"] = data["PackageVersion"]
     else:
         raise DeserializationError("Node.package_version required")
-    if "PatchVersion" in data:
+    if data.get("PatchVersion") is not None:
         out["patch_version"] = data["PatchVersion"]
     else:
         raise DeserializationError("Node.patch_version required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.time_stamp
 
         out["created_time"] = capo_panorama.types.time_stamp.deserialize_json(

@@ -34,19 +34,19 @@ def serialize_aws_json_1_0(value: CurrentPerformanceRiskRatings) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CurrentPerformanceRiskRatings:
     out: CurrentPerformanceRiskRatings = {}  # type: ignore[typeddict-item]
-    if "high" in data:
+    if data.get("high") is not None:
         out["high"] = data["high"]
     else:
         out["high"] = 0
-    if "medium" in data:
+    if data.get("medium") is not None:
         out["medium"] = data["medium"]
     else:
         out["medium"] = 0
-    if "low" in data:
+    if data.get("low") is not None:
         out["low"] = data["low"]
     else:
         out["low"] = 0
-    if "veryLow" in data:
+    if data.get("veryLow") is not None:
         out["very_low"] = data["veryLow"]
     else:
         out["very_low"] = 0

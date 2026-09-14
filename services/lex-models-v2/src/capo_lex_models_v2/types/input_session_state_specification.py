@@ -49,7 +49,7 @@ def serialize_json(value: InputSessionStateSpecification) -> dict:
 
 def deserialize_json(data: dict) -> InputSessionStateSpecification:
     out: InputSessionStateSpecification = {}  # type: ignore[typeddict-item]
-    if "sessionAttributes" in data:
+    if data.get("sessionAttributes") is not None:
         import capo_lex_models_v2.types.string_map
 
         out["session_attributes"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> InputSessionStateSpecification:
                 data["sessionAttributes"]
             )
         )
-    if "activeContexts" in data:
+    if data.get("activeContexts") is not None:
         import capo_lex_models_v2.types.active_context_list
 
         out["active_contexts"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> InputSessionStateSpecification:
                 data["activeContexts"]
             )
         )
-    if "runtimeHints" in data:
+    if data.get("runtimeHints") is not None:
         import capo_lex_models_v2.types.runtime_hints
 
         out["runtime_hints"] = capo_lex_models_v2.types.runtime_hints.deserialize_json(

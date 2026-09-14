@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateEdgeDeploymentPlanResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEdgeDeploymentPlanResponse:
     out: CreateEdgeDeploymentPlanResponse = {}  # type: ignore[typeddict-item]
-    if "EdgeDeploymentPlanArn" in data:
+    if data.get("EdgeDeploymentPlanArn") is not None:
         out["edge_deployment_plan_arn"] = data["EdgeDeploymentPlanArn"]
     return out

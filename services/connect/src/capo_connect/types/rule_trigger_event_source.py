@@ -35,7 +35,7 @@ def serialize_json(value: RuleTriggerEventSource) -> dict:
 
 def deserialize_json(data: dict) -> RuleTriggerEventSource:
     out: RuleTriggerEventSource = {}  # type: ignore[typeddict-item]
-    if "EventSourceName" in data:
+    if data.get("EventSourceName") is not None:
         import capo_connect.types.event_source_name
 
         out["event_source_name"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> RuleTriggerEventSource:
         )
     else:
         raise DeserializationError("RuleTriggerEventSource.event_source_name required")
-    if "IntegrationAssociationId" in data:
+    if data.get("IntegrationAssociationId") is not None:
         out["integration_association_id"] = data["IntegrationAssociationId"]
     return out

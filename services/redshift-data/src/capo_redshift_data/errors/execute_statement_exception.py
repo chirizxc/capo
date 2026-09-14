@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: ExecuteStatementException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecuteStatementException_:
     out: ExecuteStatementException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("ExecuteStatementException_.message required")
-    if "StatementId" in data:
+    if data.get("StatementId") is not None:
         out["statement_id"] = data["StatementId"]
     else:
         raise DeserializationError("ExecuteStatementException_.statement_id required")
@@ -43,15 +43,18 @@ class ExecuteStatementException(ServiceError):
 
     code: str | None = "ExecuteStatementException"
 
-    def __init__(self, data: ExecuteStatementException_):
+    def __init__(self, data: ExecuteStatementException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="ExecuteStatementException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ExecuteStatementException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ExecuteStatementException":
+        return cls(deserialize_aws_json_1_1(data), message)

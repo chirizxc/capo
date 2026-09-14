@@ -46,7 +46,7 @@ def serialize_json(value: CreateTieringConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateTieringConfigurationInput:
     out: CreateTieringConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "TieringConfiguration" in data:
+    if data.get("TieringConfiguration") is not None:
         import capo_backup.types.tiering_configuration_input_for_create
 
         out["tiering_configuration"] = (
@@ -58,12 +58,12 @@ def deserialize_json(data: dict) -> CreateTieringConfigurationInput:
         raise DeserializationError(
             "CreateTieringConfigurationInput.tiering_configuration required"
         )
-    if "TieringConfigurationTags" in data:
+    if data.get("TieringConfigurationTags") is not None:
         import capo_backup.types.tags
 
         out["tiering_configuration_tags"] = capo_backup.types.tags.deserialize_json(
             data["TieringConfigurationTags"]
         )
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
     return out

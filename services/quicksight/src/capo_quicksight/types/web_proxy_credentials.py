@@ -28,11 +28,11 @@ def serialize_json(value: WebProxyCredentials) -> dict:
 
 def deserialize_json(data: dict) -> WebProxyCredentials:
     out: WebProxyCredentials = {}  # type: ignore[typeddict-item]
-    if "WebProxyUsername" in data:
+    if data.get("WebProxyUsername") is not None:
         out["web_proxy_username"] = data["WebProxyUsername"]
     else:
         raise DeserializationError("WebProxyCredentials.web_proxy_username required")
-    if "WebProxyPassword" in data:
+    if data.get("WebProxyPassword") is not None:
         out["web_proxy_password"] = data["WebProxyPassword"]
     else:
         raise DeserializationError("WebProxyCredentials.web_proxy_password required")

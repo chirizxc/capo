@@ -41,7 +41,7 @@ def serialize_json(value: AggregatedValue) -> dict:
 
 def deserialize_json(data: dict) -> AggregatedValue:
     out: AggregatedValue = {}  # type: ignore[typeddict-item]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["timestamp"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -49,13 +49,13 @@ def deserialize_json(data: dict) -> AggregatedValue:
         )
     else:
         raise DeserializationError("AggregatedValue.timestamp required")
-    if "quality" in data:
+    if data.get("quality") is not None:
         import capo_iotsitewise.types.quality
 
         out["quality"] = capo_iotsitewise.types.quality.deserialize_json(
             data["quality"]
         )
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iotsitewise.types.aggregates
 
         out["value"] = capo_iotsitewise.types.aggregates.deserialize_json(data["value"])

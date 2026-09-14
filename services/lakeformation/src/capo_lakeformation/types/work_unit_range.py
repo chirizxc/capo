@@ -33,15 +33,15 @@ def serialize_json(value: WorkUnitRange) -> dict:
 
 def deserialize_json(data: dict) -> WorkUnitRange:
     out: WorkUnitRange = {}  # type: ignore[typeddict-item]
-    if "WorkUnitIdMax" in data:
+    if data.get("WorkUnitIdMax") is not None:
         out["work_unit_id_max"] = data["WorkUnitIdMax"]
     else:
         out["work_unit_id_max"] = 0
-    if "WorkUnitIdMin" in data:
+    if data.get("WorkUnitIdMin") is not None:
         out["work_unit_id_min"] = data["WorkUnitIdMin"]
     else:
         out["work_unit_id_min"] = 0
-    if "WorkUnitToken" in data:
+    if data.get("WorkUnitToken") is not None:
         out["work_unit_token"] = data["WorkUnitToken"]
     else:
         raise DeserializationError("WorkUnitRange.work_unit_token required")

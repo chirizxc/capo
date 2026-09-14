@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: IPSetSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IPSetSummary:
     out: IPSetSummary = {}  # type: ignore[typeddict-item]
-    if "IPSetId" in data:
+    if data.get("IPSetId") is not None:
         out["ip_set_id"] = data["IPSetId"]
     else:
         raise DeserializationError("IPSetSummary.ip_set_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("IPSetSummary.name required")

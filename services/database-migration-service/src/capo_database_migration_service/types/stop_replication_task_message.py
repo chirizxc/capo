@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StopReplicationTaskMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopReplicationTaskMessage:
     out: StopReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
     else:
         raise DeserializationError(

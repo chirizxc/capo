@@ -29,6 +29,6 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CreateLicenseConversionTaskForResourceResponse:
     out: CreateLicenseConversionTaskForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "LicenseConversionTaskId" in data:
+    if data.get("LicenseConversionTaskId") is not None:
         out["license_conversion_task_id"] = data["LicenseConversionTaskId"]
     return out

@@ -28,11 +28,11 @@ def serialize_json(value: ErrorReportLocation) -> dict:
 
 def deserialize_json(data: dict) -> ErrorReportLocation:
     out: ErrorReportLocation = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError("ErrorReportLocation.bucket required")
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     else:
         raise DeserializationError("ErrorReportLocation.prefix required")

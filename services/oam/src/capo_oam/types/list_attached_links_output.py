@@ -32,7 +32,7 @@ def serialize_json(value: ListAttachedLinksOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListAttachedLinksOutput:
     out: ListAttachedLinksOutput = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_oam.types.list_attached_links_items
 
         out["items"] = capo_oam.types.list_attached_links_items.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> ListAttachedLinksOutput:
         )
     else:
         raise DeserializationError("ListAttachedLinksOutput.items required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

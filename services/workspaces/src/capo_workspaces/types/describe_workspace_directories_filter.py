@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceDirectoriesFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceDirectoriesFilter:
     out: DescribeWorkspaceDirectoriesFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_workspaces.types.describe_workspace_directories_filter_name
 
         out["name"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceDirectoriesFilter:
         )
     else:
         raise DeserializationError("DescribeWorkspaceDirectoriesFilter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_workspaces.types.describe_workspace_directories_filter_values
 
         out["values"] = (

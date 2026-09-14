@@ -27,7 +27,7 @@ def serialize_json(value: EventChannelDetails) -> dict:
 
 def deserialize_json(data: dict) -> EventChannelDetails:
     out: EventChannelDetails = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_devops_agent.types.event_channel_type
 
         out["type"] = capo_devops_agent.types.event_channel_type.deserialize_json(

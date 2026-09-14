@@ -34,9 +34,9 @@ def serialize_json(value: CreateFolderRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFolderRequest:
     out: CreateFolderRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ParentFolderId" in data:
+    if data.get("ParentFolderId") is not None:
         out["parent_folder_id"] = data["ParentFolderId"]
     else:
         raise DeserializationError("CreateFolderRequest.parent_folder_id required")

@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: TaxDocuments) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaxDocuments:
     out: TaxDocuments = {}  # type: ignore[typeddict-item]
-    if "IND" in data:
+    if data.get("IND") is not None:
         import capo_snowball.types.ind_tax_documents
 
         out["ind"] = capo_snowball.types.ind_tax_documents.deserialize_aws_json_1_1(

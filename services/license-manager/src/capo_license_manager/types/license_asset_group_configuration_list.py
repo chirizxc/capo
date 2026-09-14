@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> LicenseAssetGroupConfigurationList:
 
     out: LicenseAssetGroupConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager.types.license_asset_group_configuration.deserialize_aws_json_1_1(
                 item

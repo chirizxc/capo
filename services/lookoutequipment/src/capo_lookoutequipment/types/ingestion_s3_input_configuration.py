@@ -34,12 +34,12 @@ def serialize_aws_json_1_0(value: IngestionS3InputConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngestionS3InputConfiguration:
     out: IngestionS3InputConfiguration = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
     else:
         raise DeserializationError("IngestionS3InputConfiguration.bucket required")
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "KeyPattern" in data:
+    if data.get("KeyPattern") is not None:
         out["key_pattern"] = data["KeyPattern"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TopicSearchFilterList:
 
     out: TopicSearchFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.topic_search_filter.deserialize_json(item))
     return out

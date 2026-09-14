@@ -63,13 +63,13 @@ def serialize_aws_json_1_1(value: InstanceFleetModifyConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceFleetModifyConfig:
     out: InstanceFleetModifyConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceFleetId" in data:
+    if data.get("InstanceFleetId") is not None:
         out["instance_fleet_id"] = data["InstanceFleetId"]
-    if "TargetOnDemandCapacity" in data:
+    if data.get("TargetOnDemandCapacity") is not None:
         out["target_on_demand_capacity"] = data["TargetOnDemandCapacity"]
-    if "TargetSpotCapacity" in data:
+    if data.get("TargetSpotCapacity") is not None:
         out["target_spot_capacity"] = data["TargetSpotCapacity"]
-    if "ResizeSpecifications" in data:
+    if data.get("ResizeSpecifications") is not None:
         import capo_emr.types.instance_fleet_resizing_specifications
 
         out["resize_specifications"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleetModifyConfig:
                 data["ResizeSpecifications"]
             )
         )
-    if "InstanceTypeConfigs" in data:
+    if data.get("InstanceTypeConfigs") is not None:
         import capo_emr.types.instance_type_config_list
 
         out["instance_type_configs"] = (
@@ -85,6 +85,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleetModifyConfig:
                 data["InstanceTypeConfigs"]
             )
         )
-    if "Context" in data:
+    if data.get("Context") is not None:
         out["context"] = data["Context"]
     return out

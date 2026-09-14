@@ -30,12 +30,12 @@ def serialize_json(value: ListRoutesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListRoutesOutput:
     out: ListRoutesOutput = {}  # type: ignore[typeddict-item]
-    if "routes" in data:
+    if data.get("routes") is not None:
         import capo_app_mesh.types.route_list
 
         out["routes"] = capo_app_mesh.types.route_list.deserialize_json(data["routes"])
     else:
         raise DeserializationError("ListRoutesOutput.routes required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

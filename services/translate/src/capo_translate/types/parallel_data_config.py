@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: ParallelDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParallelDataConfig:
     out: ParallelDataConfig = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_translate.types.parallel_data_format
 
         out["format"] = (

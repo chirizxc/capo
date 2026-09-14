@@ -14,4 +14,4 @@ def serialize_json(value: resourceArnListMaxLimit100) -> list:
 
 
 def deserialize_json(data: list) -> resourceArnListMaxLimit100:
-    return list(data)
+    return [item for item in data if item is not None]

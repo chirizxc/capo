@@ -32,19 +32,19 @@ def serialize_aws_json_1_1(value: GetMobileDeviceAccessOverrideRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMobileDeviceAccessOverrideRequest:
     out: GetMobileDeviceAccessOverrideRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "GetMobileDeviceAccessOverrideRequest.organization_id required"
         )
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError(
             "GetMobileDeviceAccessOverrideRequest.user_id required"
         )
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError(

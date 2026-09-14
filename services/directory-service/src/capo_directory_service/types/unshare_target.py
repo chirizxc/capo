@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UnshareTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnshareTarget:
     out: UnshareTarget = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UnshareTarget.id required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_directory_service.types.target_type
 
         out["type"] = capo_directory_service.types.target_type.deserialize_aws_json_1_1(

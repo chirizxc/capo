@@ -109,15 +109,15 @@ def serialize_json(value: NotificationEventSchema) -> dict:
             )
         )
     if "start_time" in value:
-        import capo_notifications.types._prelude.timestamp
+        import capo_notifications._protocol.serialize
 
-        out["startTime"] = capo_notifications.types._prelude.timestamp.serialize_json(
+        out["startTime"] = capo_notifications._protocol.serialize.fmt_date_time(
             value["start_time"]
         )
     if "end_time" in value:
-        import capo_notifications.types._prelude.timestamp
+        import capo_notifications._protocol.serialize
 
-        out["endTime"] = capo_notifications.types._prelude.timestamp.serialize_json(
+        out["endTime"] = capo_notifications._protocol.serialize.fmt_date_time(
             value["end_time"]
         )
     import capo_notifications.types.text_parts
@@ -135,15 +135,15 @@ def serialize_json(value: NotificationEventSchema) -> dict:
 
 def deserialize_json(data: dict) -> NotificationEventSchema:
     out: NotificationEventSchema = {}  # type: ignore[typeddict-item]
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     else:
         raise DeserializationError("NotificationEventSchema.schema_version required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("NotificationEventSchema.id required")
-    if "sourceEventMetadata" in data:
+    if data.get("sourceEventMetadata") is not None:
         import capo_notifications.types.source_event_metadata
 
         out["source_event_metadata"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> NotificationEventSchema:
         raise DeserializationError(
             "NotificationEventSchema.source_event_metadata required"
         )
-    if "messageComponents" in data:
+    if data.get("messageComponents") is not None:
         import capo_notifications.types.message_components
 
         out["message_components"] = (
@@ -167,23 +167,23 @@ def deserialize_json(data: dict) -> NotificationEventSchema:
         raise DeserializationError(
             "NotificationEventSchema.message_components required"
         )
-    if "sourceEventDetailUrl" in data:
+    if data.get("sourceEventDetailUrl") is not None:
         out["source_event_detail_url"] = data["sourceEventDetailUrl"]
-    if "sourceEventDetailUrlDisplayText" in data:
+    if data.get("sourceEventDetailUrlDisplayText") is not None:
         out["source_event_detail_url_display_text"] = data[
             "sourceEventDetailUrlDisplayText"
         ]
-    if "notificationType" in data:
+    if data.get("notificationType") is not None:
         out["notification_type"] = data["notificationType"]
     else:
         raise DeserializationError("NotificationEventSchema.notification_type required")
-    if "eventStatus" in data:
+    if data.get("eventStatus") is not None:
         out["event_status"] = data["eventStatus"]
-    if "aggregationEventType" in data:
+    if data.get("aggregationEventType") is not None:
         out["aggregation_event_type"] = data["aggregationEventType"]
-    if "aggregateNotificationEventArn" in data:
+    if data.get("aggregateNotificationEventArn") is not None:
         out["aggregate_notification_event_arn"] = data["aggregateNotificationEventArn"]
-    if "aggregationSummary" in data:
+    if data.get("aggregationSummary") is not None:
         import capo_notifications.types.aggregation_summary
 
         out["aggregation_summary"] = (
@@ -191,21 +191,19 @@ def deserialize_json(data: dict) -> NotificationEventSchema:
                 data["aggregationSummary"]
             )
         )
-    if "startTime" in data:
-        import capo_notifications.types._prelude.timestamp
+    if data.get("startTime") is not None:
+        import datetime
 
-        out["start_time"] = (
-            capo_notifications.types._prelude.timestamp.deserialize_json(
-                data["startTime"]
-            )
+        out["start_time"] = datetime.datetime.fromisoformat(
+            data["startTime"].replace("Z", "+00:00")
         )
-    if "endTime" in data:
-        import capo_notifications.types._prelude.timestamp
+    if data.get("endTime") is not None:
+        import datetime
 
-        out["end_time"] = capo_notifications.types._prelude.timestamp.deserialize_json(
-            data["endTime"]
+        out["end_time"] = datetime.datetime.fromisoformat(
+            data["endTime"].replace("Z", "+00:00")
         )
-    if "textParts" in data:
+    if data.get("textParts") is not None:
         import capo_notifications.types.text_parts
 
         out["text_parts"] = capo_notifications.types.text_parts.deserialize_json(
@@ -213,12 +211,12 @@ def deserialize_json(data: dict) -> NotificationEventSchema:
         )
     else:
         raise DeserializationError("NotificationEventSchema.text_parts required")
-    if "media" in data:
+    if data.get("media") is not None:
         import capo_notifications.types.media
 
         out["media"] = capo_notifications.types.media.deserialize_json(data["media"])
     else:
         raise DeserializationError("NotificationEventSchema.media required")
-    if "organizationalUnitId" in data:
+    if data.get("organizationalUnitId") is not None:
         out["organizational_unit_id"] = data["organizationalUnitId"]
     return out

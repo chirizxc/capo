@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: UpdateRepositoryNameInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRepositoryNameInput:
     out: UpdateRepositoryNameInput = {}  # type: ignore[typeddict-item]
-    if "oldName" in data:
+    if data.get("oldName") is not None:
         out["old_name"] = data["oldName"]
     else:
         raise DeserializationError("UpdateRepositoryNameInput.old_name required")
-    if "newName" in data:
+    if data.get("newName") is not None:
         out["new_name"] = data["newName"]
     else:
         raise DeserializationError("UpdateRepositoryNameInput.new_name required")

@@ -50,21 +50,21 @@ def serialize_json(value: EcsTask) -> dict:
 
 def deserialize_json(data: dict) -> EcsTask:
     out: EcsTask = {}  # type: ignore[typeddict-item]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["created_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "taskDefinitionArn" in data:
+    if data.get("taskDefinitionArn") is not None:
         out["task_definition_arn"] = data["taskDefinitionArn"]
-    if "launchType" in data:
+    if data.get("launchType") is not None:
         import capo_guardduty.types.ecs_launch_type
 
         out["launch_type"] = capo_guardduty.types.ecs_launch_type.deserialize_json(
             data["launchType"]
         )
-    if "containerUids" in data:
+    if data.get("containerUids") is not None:
         import capo_guardduty.types.container_uids
 
         out["container_uids"] = capo_guardduty.types.container_uids.deserialize_json(

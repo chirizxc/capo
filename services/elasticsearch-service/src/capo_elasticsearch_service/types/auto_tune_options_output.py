@@ -32,7 +32,7 @@ def serialize_json(value: AutoTuneOptionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> AutoTuneOptionsOutput:
     out: AutoTuneOptionsOutput = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_elasticsearch_service.types.auto_tune_state
 
         out["state"] = (
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> AutoTuneOptionsOutput:
                 data["State"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

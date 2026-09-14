@@ -36,13 +36,13 @@ def serialize_aws_json_1_0(value: ArcRoutingControlState) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ArcRoutingControlState:
     out: ArcRoutingControlState = {}  # type: ignore[typeddict-item]
-    if "routingControlArn" in data:
+    if data.get("routingControlArn") is not None:
         out["routing_control_arn"] = data["routingControlArn"]
     else:
         raise DeserializationError(
             "ArcRoutingControlState.routing_control_arn required"
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_arc_region_switch.types.routing_control_state_change
 
         out["state"] = (

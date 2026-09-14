@@ -56,31 +56,31 @@ def serialize_json(value: AddonVersionInfo) -> dict:
 
 def deserialize_json(data: dict) -> AddonVersionInfo:
     out: AddonVersionInfo = {}  # type: ignore[typeddict-item]
-    if "addonVersion" in data:
+    if data.get("addonVersion") is not None:
         out["addon_version"] = data["addonVersion"]
-    if "architecture" in data:
+    if data.get("architecture") is not None:
         import capo_eks.types.string_list
 
         out["architecture"] = capo_eks.types.string_list.deserialize_json(
             data["architecture"]
         )
-    if "computeTypes" in data:
+    if data.get("computeTypes") is not None:
         import capo_eks.types.string_list
 
         out["compute_types"] = capo_eks.types.string_list.deserialize_json(
             data["computeTypes"]
         )
-    if "compatibilities" in data:
+    if data.get("compatibilities") is not None:
         import capo_eks.types.compatibilities
 
         out["compatibilities"] = capo_eks.types.compatibilities.deserialize_json(
             data["compatibilities"]
         )
-    if "requiresConfiguration" in data:
+    if data.get("requiresConfiguration") is not None:
         out["requires_configuration"] = data["requiresConfiguration"]
     else:
         out["requires_configuration"] = False
-    if "requiresIamPermissions" in data:
+    if data.get("requiresIamPermissions") is not None:
         out["requires_iam_permissions"] = data["requiresIamPermissions"]
     else:
         out["requires_iam_permissions"] = False

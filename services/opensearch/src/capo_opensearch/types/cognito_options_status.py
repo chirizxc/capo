@@ -34,7 +34,7 @@ def serialize_json(value: CognitoOptionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> CognitoOptionsStatus:
     out: CognitoOptionsStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_opensearch.types.cognito_options
 
         out["options"] = capo_opensearch.types.cognito_options.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> CognitoOptionsStatus:
         )
     else:
         raise DeserializationError("CognitoOptionsStatus.options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.option_status
 
         out["status"] = capo_opensearch.types.option_status.deserialize_json(

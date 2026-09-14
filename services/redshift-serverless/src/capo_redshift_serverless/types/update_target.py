@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: UpdateTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTarget:
     out: UpdateTarget = {}  # type: ignore[typeddict-item]
-    if "trackName" in data:
+    if data.get("trackName") is not None:
         out["track_name"] = data["trackName"]
-    if "workgroupVersion" in data:
+    if data.get("workgroupVersion") is not None:
         out["workgroup_version"] = data["workgroupVersion"]
     return out

@@ -38,7 +38,7 @@ def serialize_json(value: KxDataviewSegmentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KxDataviewSegmentConfiguration:
     out: KxDataviewSegmentConfiguration = {}  # type: ignore[typeddict-item]
-    if "dbPaths" in data:
+    if data.get("dbPaths") is not None:
         import capo_finspace.types.segment_configuration_db_path_list
 
         out["db_paths"] = (
@@ -48,13 +48,13 @@ def deserialize_json(data: dict) -> KxDataviewSegmentConfiguration:
         )
     else:
         raise DeserializationError("KxDataviewSegmentConfiguration.db_paths required")
-    if "volumeName" in data:
+    if data.get("volumeName") is not None:
         out["volume_name"] = data["volumeName"]
     else:
         raise DeserializationError(
             "KxDataviewSegmentConfiguration.volume_name required"
         )
-    if "onDemand" in data:
+    if data.get("onDemand") is not None:
         out["on_demand"] = data["onDemand"]
     else:
         out["on_demand"] = False

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ChannelsList:
 
     out: ChannelsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_repostspace.types.channel_data.deserialize_json(item))
     return out

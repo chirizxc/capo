@@ -28,11 +28,11 @@ def serialize_json(value: TestSetIntentDiscrepancyItem) -> dict:
 
 def deserialize_json(data: dict) -> TestSetIntentDiscrepancyItem:
     out: TestSetIntentDiscrepancyItem = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
     else:
         raise DeserializationError("TestSetIntentDiscrepancyItem.intent_name required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError(

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchDeleteDetectorErrorEntries:
 
     out: BatchDeleteDetectorErrorEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_events_data.types.batch_delete_detector_error_entry.deserialize_json(
                 item

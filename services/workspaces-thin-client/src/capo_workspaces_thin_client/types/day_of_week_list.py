@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DayOfWeekList:
 
     out: DayOfWeekList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workspaces_thin_client.types.day_of_week.deserialize_json(item))
     return out

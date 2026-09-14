@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: CopySnapshotAndUpdateVolumeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopySnapshotAndUpdateVolumeResponse:
     out: CopySnapshotAndUpdateVolumeResponse = {}  # type: ignore[typeddict-item]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.volume_lifecycle
 
         out["lifecycle"] = capo_fsx.types.volume_lifecycle.deserialize_aws_json_1_1(
             data["Lifecycle"]
         )
-    if "AdministrativeActions" in data:
+    if data.get("AdministrativeActions") is not None:
         import capo_fsx.types.administrative_actions
 
         out["administrative_actions"] = (

@@ -28,8 +28,8 @@ def serialize_json(value: AntipatternSeveritySummary) -> dict:
 
 def deserialize_json(data: dict) -> AntipatternSeveritySummary:
     out: AntipatternSeveritySummary = {}  # type: ignore[typeddict-item]
-    if "severity" in data:
+    if data.get("severity") is not None:
         out["severity"] = data["severity"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     return out

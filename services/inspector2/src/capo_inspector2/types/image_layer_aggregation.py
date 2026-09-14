@@ -59,26 +59,26 @@ def serialize_json(value: ImageLayerAggregation) -> dict:
 
 def deserialize_json(data: dict) -> ImageLayerAggregation:
     out: ImageLayerAggregation = {}  # type: ignore[typeddict-item]
-    if "repositories" in data:
+    if data.get("repositories") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["repositories"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["repositories"]
         )
-    if "resourceIds" in data:
+    if data.get("resourceIds") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["resource_ids"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["resourceIds"]
         )
-    if "layerHashes" in data:
+    if data.get("layerHashes") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["layer_hashes"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["layerHashes"]
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
     return out

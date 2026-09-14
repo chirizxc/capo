@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: DescribeSubnetGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSubnetGroupsRequest:
     out: DescribeSubnetGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "SubnetGroupNames" in data:
+    if data.get("SubnetGroupNames") is not None:
         import capo_dax.types.subnet_group_name_list
 
         out["subnet_group_names"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeSubnetGroupsRequest:
                 data["SubnetGroupNames"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -68,7 +68,7 @@ def serialize_aws_json_1_1(value: StreamingProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamingProperties:
     out: StreamingProperties = {}  # type: ignore[typeddict-item]
-    if "StreamingExperiencePreferredProtocol" in data:
+    if data.get("StreamingExperiencePreferredProtocol") is not None:
         import capo_workspaces.types.streaming_experience_preferred_protocol_enum
 
         out["streaming_experience_preferred_protocol"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> StreamingProperties:
                 data["StreamingExperiencePreferredProtocol"]
             )
         )
-    if "UserSettings" in data:
+    if data.get("UserSettings") is not None:
         import capo_workspaces.types.user_settings
 
         out["user_settings"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> StreamingProperties:
                 data["UserSettings"]
             )
         )
-    if "StorageConnectors" in data:
+    if data.get("StorageConnectors") is not None:
         import capo_workspaces.types.storage_connectors
 
         out["storage_connectors"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> StreamingProperties:
                 data["StorageConnectors"]
             )
         )
-    if "GlobalAccelerator" in data:
+    if data.get("GlobalAccelerator") is not None:
         import capo_workspaces.types.global_accelerator_for_directory
 
         out["global_accelerator"] = (

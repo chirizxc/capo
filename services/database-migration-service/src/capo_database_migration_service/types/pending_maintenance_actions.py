@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> PendingMaintenanceActions:
 
     out: PendingMaintenanceActions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_database_migration_service.types.resource_pending_maintenance_actions.deserialize_aws_json_1_1(
                 item

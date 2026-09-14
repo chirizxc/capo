@@ -40,13 +40,13 @@ def serialize_json(value: BatchPutAttributesMetadataOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutAttributesMetadataOutput:
     out: BatchPutAttributesMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_datazone.types.attributes_errors
 
         out["errors"] = capo_datazone.types.attributes_errors.deserialize_json(
             data["errors"]
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_datazone.types.batch_put_attribute_items
 
         out["attributes"] = (

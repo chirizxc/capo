@@ -20,4 +20,4 @@ def serialize_json(
 def deserialize_json(
     data: list,
 ) -> __listOf__stringMin36Max36Pattern09aFAF809aFAF409aFAF409aFAF409aFAF12:
-    return list(data)
+    return [item for item in data if item is not None]

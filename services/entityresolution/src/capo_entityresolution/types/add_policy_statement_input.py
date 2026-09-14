@@ -61,7 +61,7 @@ def serialize_json(value: AddPolicyStatementInput) -> dict:
 
 def deserialize_json(data: dict) -> AddPolicyStatementInput:
     out: AddPolicyStatementInput = {}  # type: ignore[typeddict-item]
-    if "effect" in data:
+    if data.get("effect") is not None:
         import capo_entityresolution.types.statement_effect
 
         out["effect"] = capo_entityresolution.types.statement_effect.deserialize_json(
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> AddPolicyStatementInput:
         )
     else:
         raise DeserializationError("AddPolicyStatementInput.effect required")
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_entityresolution.types.statement_action_list
 
         out["action"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> AddPolicyStatementInput:
         )
     else:
         raise DeserializationError("AddPolicyStatementInput.action required")
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_entityresolution.types.statement_principal_list
 
         out["principal"] = (
@@ -89,6 +89,6 @@ def deserialize_json(data: dict) -> AddPolicyStatementInput:
         )
     else:
         raise DeserializationError("AddPolicyStatementInput.principal required")
-    if "condition" in data:
+    if data.get("condition") is not None:
         out["condition"] = data["condition"]
     return out

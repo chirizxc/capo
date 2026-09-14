@@ -45,16 +45,16 @@ def serialize_json(value: AwsS3ObjectDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3ObjectDetails:
     out: AwsS3ObjectDetails = {}  # type: ignore[typeddict-item]
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         out["last_modified"] = data["LastModified"]
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "ServerSideEncryption" in data:
+    if data.get("ServerSideEncryption") is not None:
         out["server_side_encryption"] = data["ServerSideEncryption"]
-    if "SSEKMSKeyId" in data:
+    if data.get("SSEKMSKeyId") is not None:
         out["ssekms_key_id"] = data["SSEKMSKeyId"]
     return out

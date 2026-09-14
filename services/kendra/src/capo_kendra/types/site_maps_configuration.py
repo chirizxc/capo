@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: SiteMapsConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SiteMapsConfiguration:
     out: SiteMapsConfiguration = {}  # type: ignore[typeddict-item]
-    if "SiteMaps" in data:
+    if data.get("SiteMaps") is not None:
         import capo_kendra.types.site_maps_list
 
         out["site_maps"] = capo_kendra.types.site_maps_list.deserialize_aws_json_1_1(

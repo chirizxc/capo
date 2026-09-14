@@ -29,7 +29,7 @@ def serialize_json(value: ExportStreamSessionFilesInput) -> dict:
 
 def deserialize_json(data: dict) -> ExportStreamSessionFilesInput:
     out: ExportStreamSessionFilesInput = {}  # type: ignore[typeddict-item]
-    if "OutputUri" in data:
+    if data.get("OutputUri") is not None:
         out["output_uri"] = data["OutputUri"]
     else:
         raise DeserializationError("ExportStreamSessionFilesInput.output_uri required")

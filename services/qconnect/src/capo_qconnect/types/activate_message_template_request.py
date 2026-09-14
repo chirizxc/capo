@@ -30,7 +30,7 @@ def serialize_json(value: ActivateMessageTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> ActivateMessageTemplateRequest:
     out: ActivateMessageTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "versionNumber" in data:
+    if data.get("versionNumber") is not None:
         out["version_number"] = data["versionNumber"]
     else:
         raise DeserializationError(

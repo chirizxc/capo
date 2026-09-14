@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ProtectedQuerySummaryList:
 
     out: ProtectedQuerySummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.protected_query_summary.deserialize_json(item))
     return out

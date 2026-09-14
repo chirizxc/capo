@@ -43,7 +43,7 @@ def serialize_json(value: ListActsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListActsRequest:
     out: ListActsRequest = {}  # type: ignore[typeddict-item]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_nova_act.types.sort_order
 
         out["sort_order"] = capo_nova_act.types.sort_order.deserialize_json(

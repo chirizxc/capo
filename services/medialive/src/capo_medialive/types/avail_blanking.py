@@ -38,7 +38,7 @@ def serialize_json(value: AvailBlanking) -> dict:
 
 def deserialize_json(data: dict) -> AvailBlanking:
     out: AvailBlanking = {}  # type: ignore[typeddict-item]
-    if "availBlankingImage" in data:
+    if data.get("availBlankingImage") is not None:
         import capo_medialive.types.input_location
 
         out["avail_blanking_image"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> AvailBlanking:
                 data["availBlankingImage"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.avail_blanking_state
 
         out["state"] = capo_medialive.types.avail_blanking_state.deserialize_json(

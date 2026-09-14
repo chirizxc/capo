@@ -38,13 +38,13 @@ def serialize_aws_json_1_0(value: UpdateRuleSetRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateRuleSetRequest:
     out: UpdateRuleSetRequest = {}  # type: ignore[typeddict-item]
-    if "RuleSetId" in data:
+    if data.get("RuleSetId") is not None:
         out["rule_set_id"] = data["RuleSetId"]
     else:
         raise DeserializationError("UpdateRuleSetRequest.rule_set_id required")
-    if "RuleSetName" in data:
+    if data.get("RuleSetName") is not None:
         out["rule_set_name"] = data["RuleSetName"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_mailmanager.types.rules
 
         out["rules"] = capo_mailmanager.types.rules.deserialize_aws_json_1_0(

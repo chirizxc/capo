@@ -62,14 +62,14 @@ def serialize_json(value: ListedRouterNetworkInterface) -> dict:
         )
     )
     out["regionName"] = value["region_name"]
-    import capo_mediaconnect.types._prelude.timestamp
+    import capo_mediaconnect._protocol.serialize
 
-    out["createdAt"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_mediaconnect._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
-    import capo_mediaconnect.types._prelude.timestamp
+    import capo_mediaconnect._protocol.serialize
 
-    out["updatedAt"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
+    out["updatedAt"] = capo_mediaconnect._protocol.serialize.fmt_date_time(
         value["updated_at"]
     )
     return out
@@ -77,19 +77,19 @@ def serialize_json(value: ListedRouterNetworkInterface) -> dict:
 
 def deserialize_json(data: dict) -> ListedRouterNetworkInterface:
     out: ListedRouterNetworkInterface = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ListedRouterNetworkInterface.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ListedRouterNetworkInterface.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ListedRouterNetworkInterface.id required")
-    if "networkInterfaceType" in data:
+    if data.get("networkInterfaceType") is not None:
         import capo_mediaconnect.types.router_network_interface_type
 
         out["network_interface_type"] = (
@@ -101,19 +101,19 @@ def deserialize_json(data: dict) -> ListedRouterNetworkInterface:
         raise DeserializationError(
             "ListedRouterNetworkInterface.network_interface_type required"
         )
-    if "associatedOutputCount" in data:
+    if data.get("associatedOutputCount") is not None:
         out["associated_output_count"] = data["associatedOutputCount"]
     else:
         raise DeserializationError(
             "ListedRouterNetworkInterface.associated_output_count required"
         )
-    if "associatedInputCount" in data:
+    if data.get("associatedInputCount") is not None:
         out["associated_input_count"] = data["associatedInputCount"]
     else:
         raise DeserializationError(
             "ListedRouterNetworkInterface.associated_input_count required"
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_mediaconnect.types.router_network_interface_state
 
         out["state"] = (
@@ -123,23 +123,23 @@ def deserialize_json(data: dict) -> ListedRouterNetworkInterface:
         )
     else:
         raise DeserializationError("ListedRouterNetworkInterface.state required")
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         out["region_name"] = data["regionName"]
     else:
         raise DeserializationError("ListedRouterNetworkInterface.region_name required")
-    if "createdAt" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ListedRouterNetworkInterface.created_at required")
-    if "updatedAt" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ListedRouterNetworkInterface.updated_at required")

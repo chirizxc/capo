@@ -14,6 +14,9 @@ StackSetARNList: TypeAlias = list["capo_cloudformation.types.stack_set_arn.Stack
 def serialize_query(
     value: StackSetARNList, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.member.{n}", str(item)))
 
@@ -28,6 +31,9 @@ def deserialize_query(el: Element) -> StackSetARNList:
 def serialize_query_flat(
     value: StackSetARNList, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.{n}", str(item)))
 

@@ -28,8 +28,8 @@ def serialize_json(value: NetworkMigrationAnalysisResultSource) -> dict:
 
 def deserialize_json(data: dict) -> NetworkMigrationAnalysisResultSource:
     out: NetworkMigrationAnalysisResultSource = {}  # type: ignore[typeddict-item]
-    if "vpcID" in data:
+    if data.get("vpcID") is not None:
         out["vpc_id"] = data["vpcID"]
-    if "subnetID" in data:
+    if data.get("subnetID") is not None:
         out["subnet_id"] = data["subnetID"]
     return out

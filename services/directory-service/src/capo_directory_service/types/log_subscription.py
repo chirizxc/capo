@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: LogSubscription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LogSubscription:
     out: LogSubscription = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "LogGroupName" in data:
+    if data.get("LogGroupName") is not None:
         out["log_group_name"] = data["LogGroupName"]
-    if "SubscriptionCreatedDateTime" in data:
+    if data.get("SubscriptionCreatedDateTime") is not None:
         import capo_directory_service.types.subscription_created_date_time
 
         out["subscription_created_date_time"] = (

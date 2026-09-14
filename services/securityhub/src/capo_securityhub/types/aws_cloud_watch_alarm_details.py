@@ -148,7 +148,15 @@ def serialize_json(value: AwsCloudWatchAlarmDetails) -> dict:
     if "statistic" in value:
         out["Statistic"] = value["statistic"]
     if "threshold" in value:
-        out["Threshold"] = value["threshold"]
+        out["Threshold"] = (
+            "NaN"
+            if value["threshold"] != value["threshold"]
+            else "Infinity"
+            if value["threshold"] == float("inf")
+            else "-Infinity"
+            if value["threshold"] == float("-inf")
+            else value["threshold"]
+        )
     if "threshold_metric_id" in value:
         out["ThresholdMetricId"] = value["threshold_metric_id"]
     if "treat_missing_data" in value:
@@ -160,9 +168,9 @@ def serialize_json(value: AwsCloudWatchAlarmDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudWatchAlarmDetails:
     out: AwsCloudWatchAlarmDetails = {}  # type: ignore[typeddict-item]
-    if "ActionsEnabled" in data:
+    if data.get("ActionsEnabled") is not None:
         out["actions_enabled"] = data["ActionsEnabled"]
-    if "AlarmActions" in data:
+    if data.get("AlarmActions") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["alarm_actions"] = (
@@ -170,21 +178,21 @@ def deserialize_json(data: dict) -> AwsCloudWatchAlarmDetails:
                 data["AlarmActions"]
             )
         )
-    if "AlarmArn" in data:
+    if data.get("AlarmArn") is not None:
         out["alarm_arn"] = data["AlarmArn"]
-    if "AlarmConfigurationUpdatedTimestamp" in data:
+    if data.get("AlarmConfigurationUpdatedTimestamp") is not None:
         out["alarm_configuration_updated_timestamp"] = data[
             "AlarmConfigurationUpdatedTimestamp"
         ]
-    if "AlarmDescription" in data:
+    if data.get("AlarmDescription") is not None:
         out["alarm_description"] = data["AlarmDescription"]
-    if "AlarmName" in data:
+    if data.get("AlarmName") is not None:
         out["alarm_name"] = data["AlarmName"]
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         out["comparison_operator"] = data["ComparisonOperator"]
-    if "DatapointsToAlarm" in data:
+    if data.get("DatapointsToAlarm") is not None:
         out["datapoints_to_alarm"] = data["DatapointsToAlarm"]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_securityhub.types.aws_cloud_watch_alarm_dimensions_list
 
         out["dimensions"] = (
@@ -192,15 +200,15 @@ def deserialize_json(data: dict) -> AwsCloudWatchAlarmDetails:
                 data["Dimensions"]
             )
         )
-    if "EvaluateLowSampleCountPercentile" in data:
+    if data.get("EvaluateLowSampleCountPercentile") is not None:
         out["evaluate_low_sample_count_percentile"] = data[
             "EvaluateLowSampleCountPercentile"
         ]
-    if "EvaluationPeriods" in data:
+    if data.get("EvaluationPeriods") is not None:
         out["evaluation_periods"] = data["EvaluationPeriods"]
-    if "ExtendedStatistic" in data:
+    if data.get("ExtendedStatistic") is not None:
         out["extended_statistic"] = data["ExtendedStatistic"]
-    if "InsufficientDataActions" in data:
+    if data.get("InsufficientDataActions") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["insufficient_data_actions"] = (
@@ -208,11 +216,11 @@ def deserialize_json(data: dict) -> AwsCloudWatchAlarmDetails:
                 data["InsufficientDataActions"]
             )
         )
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "OkActions" in data:
+    if data.get("OkActions") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["ok_actions"] = (
@@ -220,16 +228,16 @@ def deserialize_json(data: dict) -> AwsCloudWatchAlarmDetails:
                 data["OkActions"]
             )
         )
-    if "Period" in data:
+    if data.get("Period") is not None:
         out["period"] = data["Period"]
-    if "Statistic" in data:
+    if data.get("Statistic") is not None:
         out["statistic"] = data["Statistic"]
-    if "Threshold" in data:
-        out["threshold"] = data["Threshold"]
-    if "ThresholdMetricId" in data:
+    if data.get("Threshold") is not None:
+        out["threshold"] = float(data["Threshold"])
+    if data.get("ThresholdMetricId") is not None:
         out["threshold_metric_id"] = data["ThresholdMetricId"]
-    if "TreatMissingData" in data:
+    if data.get("TreatMissingData") is not None:
         out["treat_missing_data"] = data["TreatMissingData"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     return out

@@ -35,12 +35,12 @@ def serialize_json(value: AwsRdsDbDomainMembership) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbDomainMembership:
     out: AwsRdsDbDomainMembership = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Fqdn" in data:
+    if data.get("Fqdn") is not None:
         out["fqdn"] = data["Fqdn"]
-    if "IamRoleName" in data:
+    if data.get("IamRoleName") is not None:
         out["iam_role_name"] = data["IamRoleName"]
     return out

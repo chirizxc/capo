@@ -31,7 +31,7 @@ def serialize_json(value: CreateSipMediaApplicationCallResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSipMediaApplicationCallResponse:
     out: CreateSipMediaApplicationCallResponse = {}  # type: ignore[typeddict-item]
-    if "SipMediaApplicationCall" in data:
+    if data.get("SipMediaApplicationCall") is not None:
         import capo_chime_sdk_voice.types.sip_media_application_call
 
         out["sip_media_application_call"] = (

@@ -36,7 +36,7 @@ def serialize_json(value: ListInstanceTypeDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListInstanceTypeDetailsResponse:
     out: ListInstanceTypeDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "InstanceTypeDetails" in data:
+    if data.get("InstanceTypeDetails") is not None:
         import capo_opensearch.types.instance_type_details_list
 
         out["instance_type_details"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListInstanceTypeDetailsResponse:
                 data["InstanceTypeDetails"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

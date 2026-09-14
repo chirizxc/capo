@@ -83,39 +83,39 @@ def serialize_json(value: ExecuteStatementRequest) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteStatementRequest:
     out: ExecuteStatementRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("ExecuteStatementRequest.resource_arn required")
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError("ExecuteStatementRequest.secret_arn required")
-    if "sql" in data:
+    if data.get("sql") is not None:
         out["sql"] = data["sql"]
     else:
         raise DeserializationError("ExecuteStatementRequest.sql required")
-    if "database" in data:
+    if data.get("database") is not None:
         out["database"] = data["database"]
-    if "schema" in data:
+    if data.get("schema") is not None:
         out["schema"] = data["schema"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_rds_data.types.sql_parameters_list
 
         out["parameters"] = capo_rds_data.types.sql_parameters_list.deserialize_json(
             data["parameters"]
         )
-    if "transactionId" in data:
+    if data.get("transactionId") is not None:
         out["transaction_id"] = data["transactionId"]
-    if "includeResultMetadata" in data:
+    if data.get("includeResultMetadata") is not None:
         out["include_result_metadata"] = data["includeResultMetadata"]
     else:
         out["include_result_metadata"] = False
-    if "continueAfterTimeout" in data:
+    if data.get("continueAfterTimeout") is not None:
         out["continue_after_timeout"] = data["continueAfterTimeout"]
     else:
         out["continue_after_timeout"] = False
-    if "resultSetOptions" in data:
+    if data.get("resultSetOptions") is not None:
         import capo_rds_data.types.result_set_options
 
         out["result_set_options"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> ExecuteStatementRequest:
                 data["resultSetOptions"]
             )
         )
-    if "formatRecordsAs" in data:
+    if data.get("formatRecordsAs") is not None:
         import capo_rds_data.types.records_format_type
 
         out["format_records_as"] = (

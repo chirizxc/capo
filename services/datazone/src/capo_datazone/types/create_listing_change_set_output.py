@@ -34,17 +34,17 @@ def serialize_json(value: CreateListingChangeSetOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateListingChangeSetOutput:
     out: CreateListingChangeSetOutput = {}  # type: ignore[typeddict-item]
-    if "listingId" in data:
+    if data.get("listingId") is not None:
         out["listing_id"] = data["listingId"]
     else:
         raise DeserializationError("CreateListingChangeSetOutput.listing_id required")
-    if "listingRevision" in data:
+    if data.get("listingRevision") is not None:
         out["listing_revision"] = data["listingRevision"]
     else:
         raise DeserializationError(
             "CreateListingChangeSetOutput.listing_revision required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.listing_status
 
         out["status"] = capo_datazone.types.listing_status.deserialize_json(

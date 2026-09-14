@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Apps:
 
     out: Apps = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplify.types.app.deserialize_json(item))
     return out

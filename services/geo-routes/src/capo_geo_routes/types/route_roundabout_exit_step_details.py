@@ -38,7 +38,15 @@ def serialize_json(value: RouteRoundaboutExitStepDetails) -> dict:
     )
     if "relative_exit" in value:
         out["RelativeExit"] = value["relative_exit"]
-    out["RoundaboutAngle"] = value.get("roundabout_angle", 0)
+    out["RoundaboutAngle"] = (
+        "NaN"
+        if value.get("roundabout_angle", 0) != value.get("roundabout_angle", 0)
+        else "Infinity"
+        if value.get("roundabout_angle", 0) == float("inf")
+        else "-Infinity"
+        if value.get("roundabout_angle", 0) == float("-inf")
+        else value.get("roundabout_angle", 0)
+    )
     if "steering_direction" in value:
         import capo_geo_routes.types.route_steering_direction
 
@@ -52,7 +60,7 @@ def serialize_json(value: RouteRoundaboutExitStepDetails) -> dict:
 
 def deserialize_json(data: dict) -> RouteRoundaboutExitStepDetails:
     out: RouteRoundaboutExitStepDetails = {}  # type: ignore[typeddict-item]
-    if "Intersection" in data:
+    if data.get("Intersection") is not None:
         import capo_geo_routes.types.localized_string_list
 
         out["intersection"] = (
@@ -64,13 +72,13 @@ def deserialize_json(data: dict) -> RouteRoundaboutExitStepDetails:
         raise DeserializationError(
             "RouteRoundaboutExitStepDetails.intersection required"
         )
-    if "RelativeExit" in data:
+    if data.get("RelativeExit") is not None:
         out["relative_exit"] = data["RelativeExit"]
-    if "RoundaboutAngle" in data:
-        out["roundabout_angle"] = data["RoundaboutAngle"]
+    if data.get("RoundaboutAngle") is not None:
+        out["roundabout_angle"] = float(data["RoundaboutAngle"])
     else:
         out["roundabout_angle"] = 0
-    if "SteeringDirection" in data:
+    if data.get("SteeringDirection") is not None:
         import capo_geo_routes.types.route_steering_direction
 
         out["steering_direction"] = (

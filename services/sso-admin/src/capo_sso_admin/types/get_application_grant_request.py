@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: GetApplicationGrantRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetApplicationGrantRequest:
     out: GetApplicationGrantRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     else:
         raise DeserializationError(
             "GetApplicationGrantRequest.application_arn required"
         )
-    if "GrantType" in data:
+    if data.get("GrantType") is not None:
         import capo_sso_admin.types.grant_type
 
         out["grant_type"] = capo_sso_admin.types.grant_type.deserialize_aws_json_1_1(

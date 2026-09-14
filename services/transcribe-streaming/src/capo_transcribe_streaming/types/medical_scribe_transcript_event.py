@@ -33,7 +33,7 @@ def serialize_json(value: MedicalScribeTranscriptEvent) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeTranscriptEvent:
     out: MedicalScribeTranscriptEvent = {}  # type: ignore[typeddict-item]
-    if "TranscriptSegment" in data:
+    if data.get("TranscriptSegment") is not None:
         import capo_transcribe_streaming.types.medical_scribe_transcript_segment
 
         out["transcript_segment"] = (

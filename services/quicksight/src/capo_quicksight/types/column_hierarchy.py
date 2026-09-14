@@ -57,7 +57,7 @@ def serialize_json(value: ColumnHierarchy) -> dict:
 
 def deserialize_json(data: dict) -> ColumnHierarchy:
     out: ColumnHierarchy = {}  # type: ignore[typeddict-item]
-    if "ExplicitHierarchy" in data:
+    if data.get("ExplicitHierarchy") is not None:
         import capo_quicksight.types.explicit_hierarchy
 
         out["explicit_hierarchy"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ColumnHierarchy:
                 data["ExplicitHierarchy"]
             )
         )
-    if "DateTimeHierarchy" in data:
+    if data.get("DateTimeHierarchy") is not None:
         import capo_quicksight.types.date_time_hierarchy
 
         out["date_time_hierarchy"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ColumnHierarchy:
                 data["DateTimeHierarchy"]
             )
         )
-    if "PredefinedHierarchy" in data:
+    if data.get("PredefinedHierarchy") is not None:
         import capo_quicksight.types.predefined_hierarchy
 
         out["predefined_hierarchy"] = (

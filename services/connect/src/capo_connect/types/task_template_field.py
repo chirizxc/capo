@@ -59,7 +59,7 @@ def serialize_json(value: TaskTemplateField) -> dict:
 
 def deserialize_json(data: dict) -> TaskTemplateField:
     out: TaskTemplateField = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         import capo_connect.types.task_template_field_identifier
 
         out["id"] = capo_connect.types.task_template_field_identifier.deserialize_json(
@@ -67,15 +67,15 @@ def deserialize_json(data: dict) -> TaskTemplateField:
         )
     else:
         raise DeserializationError("TaskTemplateField.id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.task_template_field_type
 
         out["type"] = capo_connect.types.task_template_field_type.deserialize_json(
             data["Type"]
         )
-    if "SingleSelectOptions" in data:
+    if data.get("SingleSelectOptions") is not None:
         import capo_connect.types.single_select_options
 
         out["single_select_options"] = (

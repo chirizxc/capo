@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: SendTestEventNotificationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SendTestEventNotificationRequest:
     out: SendTestEventNotificationRequest = {}  # type: ignore[typeddict-item]
-    if "Notification" in data:
+    if data.get("Notification") is not None:
         import capo_mturk.types.notification_specification
 
         out["notification"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> SendTestEventNotificationRequest:
         raise DeserializationError(
             "SendTestEventNotificationRequest.notification required"
         )
-    if "TestEventType" in data:
+    if data.get("TestEventType") is not None:
         import capo_mturk.types.event_type
 
         out["test_event_type"] = capo_mturk.types.event_type.deserialize_aws_json_1_1(

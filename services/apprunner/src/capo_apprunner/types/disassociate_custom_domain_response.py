@@ -46,19 +46,19 @@ def serialize_aws_json_1_0(value: DisassociateCustomDomainResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateCustomDomainResponse:
     out: DisassociateCustomDomainResponse = {}  # type: ignore[typeddict-item]
-    if "DNSTarget" in data:
+    if data.get("DNSTarget") is not None:
         out["dns_target"] = data["DNSTarget"]
     else:
         raise DeserializationError(
             "DisassociateCustomDomainResponse.dns_target required"
         )
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
     else:
         raise DeserializationError(
             "DisassociateCustomDomainResponse.service_arn required"
         )
-    if "CustomDomain" in data:
+    if data.get("CustomDomain") is not None:
         import capo_apprunner.types.custom_domain
 
         out["custom_domain"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> DisassociateCustomDomainResponse:
         raise DeserializationError(
             "DisassociateCustomDomainResponse.custom_domain required"
         )
-    if "VpcDNSTargets" in data:
+    if data.get("VpcDNSTargets") is not None:
         import capo_apprunner.types.vpc_dns_target_list
 
         out["vpc_dns_targets"] = (

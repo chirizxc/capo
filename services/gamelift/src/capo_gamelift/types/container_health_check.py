@@ -59,7 +59,7 @@ def serialize_aws_json_1_1(value: ContainerHealthCheck) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerHealthCheck:
     out: ContainerHealthCheck = {}  # type: ignore[typeddict-item]
-    if "Command" in data:
+    if data.get("Command") is not None:
         import capo_gamelift.types.container_command_string_list
 
         out["command"] = (
@@ -67,12 +67,12 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerHealthCheck:
                 data["Command"]
             )
         )
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "Retries" in data:
+    if data.get("Retries") is not None:
         out["retries"] = data["Retries"]
-    if "StartPeriod" in data:
+    if data.get("StartPeriod") is not None:
         out["start_period"] = data["StartPeriod"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
     return out

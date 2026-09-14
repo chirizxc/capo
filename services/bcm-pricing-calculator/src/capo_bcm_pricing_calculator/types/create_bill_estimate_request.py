@@ -31,6 +31,8 @@ def serialize_aws_json_1_0(value: CreateBillEstimateRequest) -> dict:
     out: dict = {}
     out["billScenarioId"] = value["bill_scenario_id"]
     out["name"] = value["name"]
+    if "client_token" in value:
+        out["clientToken"] = value["client_token"]
     if "tags" in value:
         import capo_bcm_pricing_calculator.types.tags
 
@@ -42,17 +44,19 @@ def serialize_aws_json_1_0(value: CreateBillEstimateRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateBillEstimateRequest:
     out: CreateBillEstimateRequest = {}  # type: ignore[typeddict-item]
-    if "billScenarioId" in data:
+    if data.get("billScenarioId") is not None:
         out["bill_scenario_id"] = data["billScenarioId"]
     else:
         raise DeserializationError(
             "CreateBillEstimateRequest.bill_scenario_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateBillEstimateRequest.name required")
-    if "tags" in data:
+    if data.get("clientToken") is not None:
+        out["client_token"] = data["clientToken"]
+    if data.get("tags") is not None:
         import capo_bcm_pricing_calculator.types.tags
 
         out["tags"] = capo_bcm_pricing_calculator.types.tags.deserialize_aws_json_1_0(

@@ -84,13 +84,13 @@ def serialize_aws_json_1_0(value: EngagementSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EngagementSummary:
     out: EngagementSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["created_at"] = (
@@ -98,11 +98,11 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementSummary:
                 data["CreatedAt"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "MemberCount" in data:
+    if data.get("MemberCount") is not None:
         out["member_count"] = data["MemberCount"]
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["modified_at"] = (
@@ -110,9 +110,9 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementSummary:
                 data["ModifiedAt"]
             )
         )
-    if "ModifiedBy" in data:
+    if data.get("ModifiedBy") is not None:
         out["modified_by"] = data["ModifiedBy"]
-    if "ContextTypes" in data:
+    if data.get("ContextTypes") is not None:
         import capo_partnercentral_selling.types.engagement_context_type_list
 
         out["context_types"] = (

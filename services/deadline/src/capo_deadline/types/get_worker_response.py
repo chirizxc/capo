@@ -84,19 +84,19 @@ def serialize_json(value: GetWorkerResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkerResponse:
     out: GetWorkerResponse = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("GetWorkerResponse.farm_id required")
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
     else:
         raise DeserializationError("GetWorkerResponse.fleet_id required")
-    if "workerId" in data:
+    if data.get("workerId") is not None:
         out["worker_id"] = data["workerId"]
     else:
         raise DeserializationError("GetWorkerResponse.worker_id required")
-    if "hostProperties" in data:
+    if data.get("hostProperties") is not None:
         import capo_deadline.types.host_properties_response
 
         out["host_properties"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> GetWorkerResponse:
                 data["hostProperties"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.worker_status
 
         out["status"] = capo_deadline.types.worker_status.deserialize_json(
@@ -112,11 +112,11 @@ def deserialize_json(data: dict) -> GetWorkerResponse:
         )
     else:
         raise DeserializationError("GetWorkerResponse.status required")
-    if "log" in data:
+    if data.get("log") is not None:
         import capo_deadline.types.log_configuration
 
         out["log"] = capo_deadline.types.log_configuration.deserialize_json(data["log"])
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -124,16 +124,16 @@ def deserialize_json(data: dict) -> GetWorkerResponse:
         )
     else:
         raise DeserializationError("GetWorkerResponse.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("GetWorkerResponse.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
     return out

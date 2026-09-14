@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: PutContactPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutContactPolicyRequest:
     out: PutContactPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
     else:
         raise DeserializationError("PutContactPolicyRequest.contact_arn required")
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     else:
         raise DeserializationError("PutContactPolicyRequest.policy required")

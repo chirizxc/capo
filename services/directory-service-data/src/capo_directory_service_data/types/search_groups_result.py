@@ -44,16 +44,16 @@ def serialize_json(value: SearchGroupsResult) -> dict:
 
 def deserialize_json(data: dict) -> SearchGroupsResult:
     out: SearchGroupsResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "Realm" in data:
+    if data.get("Realm") is not None:
         out["realm"] = data["Realm"]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_directory_service_data.types.group_list
 
         out["groups"] = capo_directory_service_data.types.group_list.deserialize_json(
             data["Groups"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

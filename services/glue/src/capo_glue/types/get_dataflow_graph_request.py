@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetDataflowGraphRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataflowGraphRequest:
     out: GetDataflowGraphRequest = {}  # type: ignore[typeddict-item]
-    if "PythonScript" in data:
+    if data.get("PythonScript") is not None:
         out["python_script"] = data["PythonScript"]
     return out

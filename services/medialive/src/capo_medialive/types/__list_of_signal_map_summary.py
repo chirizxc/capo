@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfSignalMapSummary:
 
     out: __listOfSignalMapSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.signal_map_summary.deserialize_json(item))
     return out

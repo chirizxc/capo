@@ -53,15 +53,15 @@ def serialize_json(value: UpdateSpaceInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSpaceInput:
     out: UpdateSpaceInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tier" in data:
+    if data.get("tier") is not None:
         import capo_repostspace.types.tier_level
 
         out["tier"] = capo_repostspace.types.tier_level.deserialize_json(data["tier"])
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "supportedEmailDomains" in data:
+    if data.get("supportedEmailDomains") is not None:
         import capo_repostspace.types.supported_email_domains_parameters
 
         out["supported_email_domains"] = (

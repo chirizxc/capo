@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListStackInstancesForProvisionedProductOutput:
     out: ListStackInstancesForProvisionedProductOutput = {}  # type: ignore[typeddict-item]
-    if "StackInstances" in data:
+    if data.get("StackInstances") is not None:
         import capo_service_catalog.types.stack_instances
 
         out["stack_instances"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["StackInstances"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

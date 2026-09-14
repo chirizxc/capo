@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: ExecutionResults) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionResults:
     out: ExecutionResults = {}  # type: ignore[typeddict-item]
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_transfer.types.execution_step_results
 
         out["steps"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExecutionResults:
                 data["Steps"]
             )
         )
-    if "OnExceptionSteps" in data:
+    if data.get("OnExceptionSteps") is not None:
         import capo_transfer.types.execution_step_results
 
         out["on_exception_steps"] = (

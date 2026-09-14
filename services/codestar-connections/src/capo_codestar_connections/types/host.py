@@ -71,11 +71,11 @@ def serialize_aws_json_1_0(value: Host) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Host:
     out: Host = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "HostArn" in data:
+    if data.get("HostArn") is not None:
         out["host_arn"] = data["HostArn"]
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_codestar_connections.types.provider_type
 
         out["provider_type"] = (
@@ -83,9 +83,9 @@ def deserialize_aws_json_1_0(data: dict) -> Host:
                 data["ProviderType"]
             )
         )
-    if "ProviderEndpoint" in data:
+    if data.get("ProviderEndpoint") is not None:
         out["provider_endpoint"] = data["ProviderEndpoint"]
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_codestar_connections.types.vpc_configuration
 
         out["vpc_configuration"] = (
@@ -93,8 +93,8 @@ def deserialize_aws_json_1_0(data: dict) -> Host:
                 data["VpcConfiguration"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

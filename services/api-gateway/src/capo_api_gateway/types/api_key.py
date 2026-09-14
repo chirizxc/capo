@@ -80,39 +80,39 @@ def serialize_json(value: ApiKey) -> dict:
 
 def deserialize_json(data: dict) -> ApiKey:
     out: ApiKey = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "customerId" in data:
+    if data.get("customerId") is not None:
         out["customer_id"] = data["customerId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_api_gateway.types.timestamp
 
         out["created_date"] = capo_api_gateway.types.timestamp.deserialize_json(
             data["createdDate"]
         )
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_api_gateway.types.timestamp
 
         out["last_updated_date"] = capo_api_gateway.types.timestamp.deserialize_json(
             data["lastUpdatedDate"]
         )
-    if "stageKeys" in data:
+    if data.get("stageKeys") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["stage_keys"] = capo_api_gateway.types.list_of_string.deserialize_json(
             data["stageKeys"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

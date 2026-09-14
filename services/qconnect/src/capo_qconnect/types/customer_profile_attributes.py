@@ -370,121 +370,121 @@ def serialize_json(value: CustomerProfileAttributes) -> dict:
 
 def deserialize_json(data: dict) -> CustomerProfileAttributes:
     out: CustomerProfileAttributes = {}  # type: ignore[typeddict-item]
-    if "profileId" in data:
+    if data.get("profileId") is not None:
         out["profile_id"] = data["profileId"]
-    if "profileARN" in data:
+    if data.get("profileARN") is not None:
         out["profile_arn"] = data["profileARN"]
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
-    if "middleName" in data:
+    if data.get("middleName") is not None:
         out["middle_name"] = data["middleName"]
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
-    if "accountNumber" in data:
+    if data.get("accountNumber") is not None:
         out["account_number"] = data["accountNumber"]
-    if "emailAddress" in data:
+    if data.get("emailAddress") is not None:
         out["email_address"] = data["emailAddress"]
-    if "phoneNumber" in data:
+    if data.get("phoneNumber") is not None:
         out["phone_number"] = data["phoneNumber"]
-    if "additionalInformation" in data:
+    if data.get("additionalInformation") is not None:
         out["additional_information"] = data["additionalInformation"]
-    if "partyType" in data:
+    if data.get("partyType") is not None:
         out["party_type"] = data["partyType"]
-    if "businessName" in data:
+    if data.get("businessName") is not None:
         out["business_name"] = data["businessName"]
-    if "birthDate" in data:
+    if data.get("birthDate") is not None:
         out["birth_date"] = data["birthDate"]
-    if "gender" in data:
+    if data.get("gender") is not None:
         out["gender"] = data["gender"]
-    if "mobilePhoneNumber" in data:
+    if data.get("mobilePhoneNumber") is not None:
         out["mobile_phone_number"] = data["mobilePhoneNumber"]
-    if "homePhoneNumber" in data:
+    if data.get("homePhoneNumber") is not None:
         out["home_phone_number"] = data["homePhoneNumber"]
-    if "businessPhoneNumber" in data:
+    if data.get("businessPhoneNumber") is not None:
         out["business_phone_number"] = data["businessPhoneNumber"]
-    if "businessEmailAddress" in data:
+    if data.get("businessEmailAddress") is not None:
         out["business_email_address"] = data["businessEmailAddress"]
-    if "address1" in data:
+    if data.get("address1") is not None:
         out["address1"] = data["address1"]
-    if "address2" in data:
+    if data.get("address2") is not None:
         out["address2"] = data["address2"]
-    if "address3" in data:
+    if data.get("address3") is not None:
         out["address3"] = data["address3"]
-    if "address4" in data:
+    if data.get("address4") is not None:
         out["address4"] = data["address4"]
-    if "city" in data:
+    if data.get("city") is not None:
         out["city"] = data["city"]
-    if "county" in data:
+    if data.get("county") is not None:
         out["county"] = data["county"]
-    if "country" in data:
+    if data.get("country") is not None:
         out["country"] = data["country"]
-    if "postalCode" in data:
+    if data.get("postalCode") is not None:
         out["postal_code"] = data["postalCode"]
-    if "province" in data:
+    if data.get("province") is not None:
         out["province"] = data["province"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "shippingAddress1" in data:
+    if data.get("shippingAddress1") is not None:
         out["shipping_address1"] = data["shippingAddress1"]
-    if "shippingAddress2" in data:
+    if data.get("shippingAddress2") is not None:
         out["shipping_address2"] = data["shippingAddress2"]
-    if "shippingAddress3" in data:
+    if data.get("shippingAddress3") is not None:
         out["shipping_address3"] = data["shippingAddress3"]
-    if "shippingAddress4" in data:
+    if data.get("shippingAddress4") is not None:
         out["shipping_address4"] = data["shippingAddress4"]
-    if "shippingCity" in data:
+    if data.get("shippingCity") is not None:
         out["shipping_city"] = data["shippingCity"]
-    if "shippingCounty" in data:
+    if data.get("shippingCounty") is not None:
         out["shipping_county"] = data["shippingCounty"]
-    if "shippingCountry" in data:
+    if data.get("shippingCountry") is not None:
         out["shipping_country"] = data["shippingCountry"]
-    if "shippingPostalCode" in data:
+    if data.get("shippingPostalCode") is not None:
         out["shipping_postal_code"] = data["shippingPostalCode"]
-    if "shippingProvince" in data:
+    if data.get("shippingProvince") is not None:
         out["shipping_province"] = data["shippingProvince"]
-    if "shippingState" in data:
+    if data.get("shippingState") is not None:
         out["shipping_state"] = data["shippingState"]
-    if "mailingAddress1" in data:
+    if data.get("mailingAddress1") is not None:
         out["mailing_address1"] = data["mailingAddress1"]
-    if "mailingAddress2" in data:
+    if data.get("mailingAddress2") is not None:
         out["mailing_address2"] = data["mailingAddress2"]
-    if "mailingAddress3" in data:
+    if data.get("mailingAddress3") is not None:
         out["mailing_address3"] = data["mailingAddress3"]
-    if "mailingAddress4" in data:
+    if data.get("mailingAddress4") is not None:
         out["mailing_address4"] = data["mailingAddress4"]
-    if "mailingCity" in data:
+    if data.get("mailingCity") is not None:
         out["mailing_city"] = data["mailingCity"]
-    if "mailingCounty" in data:
+    if data.get("mailingCounty") is not None:
         out["mailing_county"] = data["mailingCounty"]
-    if "mailingCountry" in data:
+    if data.get("mailingCountry") is not None:
         out["mailing_country"] = data["mailingCountry"]
-    if "mailingPostalCode" in data:
+    if data.get("mailingPostalCode") is not None:
         out["mailing_postal_code"] = data["mailingPostalCode"]
-    if "mailingProvince" in data:
+    if data.get("mailingProvince") is not None:
         out["mailing_province"] = data["mailingProvince"]
-    if "mailingState" in data:
+    if data.get("mailingState") is not None:
         out["mailing_state"] = data["mailingState"]
-    if "billingAddress1" in data:
+    if data.get("billingAddress1") is not None:
         out["billing_address1"] = data["billingAddress1"]
-    if "billingAddress2" in data:
+    if data.get("billingAddress2") is not None:
         out["billing_address2"] = data["billingAddress2"]
-    if "billingAddress3" in data:
+    if data.get("billingAddress3") is not None:
         out["billing_address3"] = data["billingAddress3"]
-    if "billingAddress4" in data:
+    if data.get("billingAddress4") is not None:
         out["billing_address4"] = data["billingAddress4"]
-    if "billingCity" in data:
+    if data.get("billingCity") is not None:
         out["billing_city"] = data["billingCity"]
-    if "billingCounty" in data:
+    if data.get("billingCounty") is not None:
         out["billing_county"] = data["billingCounty"]
-    if "billingCountry" in data:
+    if data.get("billingCountry") is not None:
         out["billing_country"] = data["billingCountry"]
-    if "billingPostalCode" in data:
+    if data.get("billingPostalCode") is not None:
         out["billing_postal_code"] = data["billingPostalCode"]
-    if "billingProvince" in data:
+    if data.get("billingProvince") is not None:
         out["billing_province"] = data["billingProvince"]
-    if "billingState" in data:
+    if data.get("billingState") is not None:
         out["billing_state"] = data["billingState"]
-    if "custom" in data:
+    if data.get("custom") is not None:
         import capo_qconnect.types.custom_attributes
 
         out["custom"] = capo_qconnect.types.custom_attributes.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CoreNetworkPolicyErrorList:
 
     out: CoreNetworkPolicyErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmanager.types.core_network_policy_error.deserialize_json(item)
         )

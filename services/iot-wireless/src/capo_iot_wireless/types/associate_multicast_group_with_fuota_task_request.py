@@ -25,7 +25,7 @@ def serialize_json(value: AssociateMulticastGroupWithFuotaTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateMulticastGroupWithFuotaTaskRequest:
     out: AssociateMulticastGroupWithFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-    if "MulticastGroupId" in data:
+    if data.get("MulticastGroupId") is not None:
         out["multicast_group_id"] = data["MulticastGroupId"]
     else:
         raise DeserializationError(

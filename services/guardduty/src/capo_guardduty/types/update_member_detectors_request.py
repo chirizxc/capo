@@ -56,13 +56,13 @@ def serialize_json(value: UpdateMemberDetectorsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMemberDetectorsRequest:
     out: UpdateMemberDetectorsRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_guardduty.types.account_ids
 
         out["account_ids"] = capo_guardduty.types.account_ids.deserialize_json(
             data["accountIds"]
         )
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_guardduty.types.data_source_configurations
 
         out["data_sources"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> UpdateMemberDetectorsRequest:
                 data["dataSources"]
             )
         )
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_guardduty.types.member_features_configurations
 
         out["features"] = (

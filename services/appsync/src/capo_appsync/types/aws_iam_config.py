@@ -27,8 +27,8 @@ def serialize_json(value: AwsIamConfig) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamConfig:
     out: AwsIamConfig = {}  # type: ignore[typeddict-item]
-    if "signingRegion" in data:
+    if data.get("signingRegion") is not None:
         out["signing_region"] = data["signingRegion"]
-    if "signingServiceName" in data:
+    if data.get("signingServiceName") is not None:
         out["signing_service_name"] = data["signingServiceName"]
     return out

@@ -48,7 +48,7 @@ def serialize_json(value: AuthenticationDescription) -> dict:
 
 def deserialize_json(data: dict) -> AuthenticationDescription:
     out: AuthenticationDescription = {}  # type: ignore[typeddict-item]
-    if "providers" in data:
+    if data.get("providers") is not None:
         import capo_grafana.types.authentication_providers
 
         out["providers"] = capo_grafana.types.authentication_providers.deserialize_json(
@@ -56,13 +56,13 @@ def deserialize_json(data: dict) -> AuthenticationDescription:
         )
     else:
         raise DeserializationError("AuthenticationDescription.providers required")
-    if "saml" in data:
+    if data.get("saml") is not None:
         import capo_grafana.types.saml_authentication
 
         out["saml"] = capo_grafana.types.saml_authentication.deserialize_json(
             data["saml"]
         )
-    if "awsSso" in data:
+    if data.get("awsSso") is not None:
         import capo_grafana.types.aws_sso_authentication
 
         out["aws_sso"] = capo_grafana.types.aws_sso_authentication.deserialize_json(

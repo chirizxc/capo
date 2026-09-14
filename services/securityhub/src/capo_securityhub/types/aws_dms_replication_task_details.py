@@ -93,30 +93,30 @@ def serialize_json(value: AwsDmsReplicationTaskDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsDmsReplicationTaskDetails:
     out: AwsDmsReplicationTaskDetails = {}  # type: ignore[typeddict-item]
-    if "CdcStartPosition" in data:
+    if data.get("CdcStartPosition") is not None:
         out["cdc_start_position"] = data["CdcStartPosition"]
-    if "CdcStartTime" in data:
+    if data.get("CdcStartTime") is not None:
         out["cdc_start_time"] = data["CdcStartTime"]
-    if "CdcStopPosition" in data:
+    if data.get("CdcStopPosition") is not None:
         out["cdc_stop_position"] = data["CdcStopPosition"]
-    if "MigrationType" in data:
+    if data.get("MigrationType") is not None:
         out["migration_type"] = data["MigrationType"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
-    if "ReplicationTaskIdentifier" in data:
+    if data.get("ReplicationTaskIdentifier") is not None:
         out["replication_task_identifier"] = data["ReplicationTaskIdentifier"]
-    if "ReplicationTaskSettings" in data:
+    if data.get("ReplicationTaskSettings") is not None:
         out["replication_task_settings"] = data["ReplicationTaskSettings"]
-    if "SourceEndpointArn" in data:
+    if data.get("SourceEndpointArn") is not None:
         out["source_endpoint_arn"] = data["SourceEndpointArn"]
-    if "TableMappings" in data:
+    if data.get("TableMappings") is not None:
         out["table_mappings"] = data["TableMappings"]
-    if "TargetEndpointArn" in data:
+    if data.get("TargetEndpointArn") is not None:
         out["target_endpoint_arn"] = data["TargetEndpointArn"]
-    if "TaskData" in data:
+    if data.get("TaskData") is not None:
         out["task_data"] = data["TaskData"]
     return out

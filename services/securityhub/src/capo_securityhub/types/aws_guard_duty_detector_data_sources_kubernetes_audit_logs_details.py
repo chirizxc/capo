@@ -27,6 +27,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails:
     out: AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

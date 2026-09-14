@@ -51,13 +51,13 @@ def serialize_aws_json_1_0(value: SignalFetchInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SignalFetchInformation:
     out: SignalFetchInformation = {}  # type: ignore[typeddict-item]
-    if "fullyQualifiedName" in data:
+    if data.get("fullyQualifiedName") is not None:
         out["fully_qualified_name"] = data["fullyQualifiedName"]
     else:
         raise DeserializationError(
             "SignalFetchInformation.fully_qualified_name required"
         )
-    if "signalFetchConfig" in data:
+    if data.get("signalFetchConfig") is not None:
         import capo_iotfleetwise.types.signal_fetch_config
 
         out["signal_fetch_config"] = (
@@ -69,9 +69,9 @@ def deserialize_aws_json_1_0(data: dict) -> SignalFetchInformation:
         raise DeserializationError(
             "SignalFetchInformation.signal_fetch_config required"
         )
-    if "conditionLanguageVersion" in data:
+    if data.get("conditionLanguageVersion") is not None:
         out["condition_language_version"] = data["conditionLanguageVersion"]
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_iotfleetwise.types.event_expression_list
 
         out["actions"] = (

@@ -32,11 +32,11 @@ def serialize_json(value: AddStreamGroupLocationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> AddStreamGroupLocationsOutput:
     out: AddStreamGroupLocationsOutput = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("AddStreamGroupLocationsOutput.identifier required")
-    if "Locations" in data:
+    if data.get("Locations") is not None:
         import capo_gameliftstreams.types.location_states
 
         out["locations"] = capo_gameliftstreams.types.location_states.deserialize_json(

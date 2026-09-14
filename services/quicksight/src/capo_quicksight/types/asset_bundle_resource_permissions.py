@@ -38,7 +38,7 @@ def serialize_json(value: AssetBundleResourcePermissions) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleResourcePermissions:
     out: AssetBundleResourcePermissions = {}  # type: ignore[typeddict-item]
-    if "Principals" in data:
+    if data.get("Principals") is not None:
         import capo_quicksight.types.asset_bundle_principal_list
 
         out["principals"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> AssetBundleResourcePermissions:
         )
     else:
         raise DeserializationError("AssetBundleResourcePermissions.principals required")
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_quicksight.types.action_list
 
         out["actions"] = capo_quicksight.types.action_list.deserialize_json(

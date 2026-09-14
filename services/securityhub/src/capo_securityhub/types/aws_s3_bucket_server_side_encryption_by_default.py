@@ -29,8 +29,8 @@ def serialize_json(value: AwsS3BucketServerSideEncryptionByDefault) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketServerSideEncryptionByDefault:
     out: AwsS3BucketServerSideEncryptionByDefault = {}  # type: ignore[typeddict-item]
-    if "SSEAlgorithm" in data:
+    if data.get("SSEAlgorithm") is not None:
         out["sse_algorithm"] = data["SSEAlgorithm"]
-    if "KMSMasterKeyID" in data:
+    if data.get("KMSMasterKeyID") is not None:
         out["kms_master_key_id"] = data["KMSMasterKeyID"]
     return out

@@ -63,15 +63,20 @@ class InvalidFirehoseDestinationException(ServiceError):
 
     code: str | None = "InvalidFirehoseDestinationException"
 
-    def __init__(self, data: InvalidFirehoseDestinationException_):
+    def __init__(
+        self, data: InvalidFirehoseDestinationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidFirehoseDestinationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidFirehoseDestinationException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidFirehoseDestinationException":
+        return cls(deserialize_query(el), message)

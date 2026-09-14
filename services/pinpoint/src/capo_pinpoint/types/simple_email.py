@@ -54,25 +54,25 @@ def serialize_json(value: SimpleEmail) -> dict:
 
 def deserialize_json(data: dict) -> SimpleEmail:
     out: SimpleEmail = {}  # type: ignore[typeddict-item]
-    if "HtmlPart" in data:
+    if data.get("HtmlPart") is not None:
         import capo_pinpoint.types.simple_email_part
 
         out["html_part"] = capo_pinpoint.types.simple_email_part.deserialize_json(
             data["HtmlPart"]
         )
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         import capo_pinpoint.types.simple_email_part
 
         out["subject"] = capo_pinpoint.types.simple_email_part.deserialize_json(
             data["Subject"]
         )
-    if "TextPart" in data:
+    if data.get("TextPart") is not None:
         import capo_pinpoint.types.simple_email_part
 
         out["text_part"] = capo_pinpoint.types.simple_email_part.deserialize_json(
             data["TextPart"]
         )
-    if "Headers" in data:
+    if data.get("Headers") is not None:
         import capo_pinpoint.types.list_of_message_header
 
         out["headers"] = capo_pinpoint.types.list_of_message_header.deserialize_json(

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeTableResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTableResponse:
     out: DescribeTableResponse = {}  # type: ignore[typeddict-item]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "ColumnList" in data:
+    if data.get("ColumnList") is not None:
         import capo_redshift_data.types.column_list
 
         out["column_list"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTableResponse:
                 data["ColumnList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

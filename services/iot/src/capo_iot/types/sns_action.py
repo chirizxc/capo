@@ -36,15 +36,15 @@ def serialize_json(value: SnsAction) -> dict:
 
 def deserialize_json(data: dict) -> SnsAction:
     out: SnsAction = {}  # type: ignore[typeddict-item]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
     else:
         raise DeserializationError("SnsAction.target_arn required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("SnsAction.role_arn required")
-    if "messageFormat" in data:
+    if data.get("messageFormat") is not None:
         import capo_iot.types.message_format
 
         out["message_format"] = capo_iot.types.message_format.deserialize_json(

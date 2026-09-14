@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AssessmentRunNotificationList:
 
     out: AssessmentRunNotificationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector.types.assessment_run_notification.deserialize_aws_json_1_1(
                 item

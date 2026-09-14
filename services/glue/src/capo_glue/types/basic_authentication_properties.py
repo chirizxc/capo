@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: BasicAuthenticationProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BasicAuthenticationProperties:
     out: BasicAuthenticationProperties = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         import capo_glue.types.connector_property
 
         out["username"] = capo_glue.types.connector_property.deserialize_aws_json_1_1(
             data["Username"]
         )
-    if "Password" in data:
+    if data.get("Password") is not None:
         import capo_glue.types.connector_property
 
         out["password"] = capo_glue.types.connector_property.deserialize_aws_json_1_1(

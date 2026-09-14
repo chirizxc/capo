@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> TrainedModelInferenceJobList:
 
     out: TrainedModelInferenceJobList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.trained_model_inference_job_summary.deserialize_json(
                 item

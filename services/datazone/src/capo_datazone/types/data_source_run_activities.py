@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataSourceRunActivities:
 
     out: DataSourceRunActivities = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.data_source_run_activity.deserialize_json(item))
     return out

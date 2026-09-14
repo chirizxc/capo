@@ -30,7 +30,7 @@ def serialize_json(value: Smpte2110ReceiverGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> Smpte2110ReceiverGroupSettings:
     out: Smpte2110ReceiverGroupSettings = {}  # type: ignore[typeddict-item]
-    if "smpte2110ReceiverGroups" in data:
+    if data.get("smpte2110ReceiverGroups") is not None:
         import capo_medialive.types.__list_of_smpte2110_receiver_group
 
         out["smpte2110_receiver_groups"] = (

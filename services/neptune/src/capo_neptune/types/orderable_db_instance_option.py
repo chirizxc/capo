@@ -158,9 +158,35 @@ def serialize_query(
             )
         )
     if "min_iops_per_gib" in value:
-        pairs.append((f"{key_prefix}MinIopsPerGib", str(value["min_iops_per_gib"])))
+        pairs.append(
+            (
+                f"{key_prefix}MinIopsPerGib",
+                (
+                    "NaN"
+                    if value["min_iops_per_gib"] != value["min_iops_per_gib"]
+                    else "Infinity"
+                    if value["min_iops_per_gib"] == float("inf")
+                    else "-Infinity"
+                    if value["min_iops_per_gib"] == float("-inf")
+                    else str(value["min_iops_per_gib"])
+                ),
+            )
+        )
     if "max_iops_per_gib" in value:
-        pairs.append((f"{key_prefix}MaxIopsPerGib", str(value["max_iops_per_gib"])))
+        pairs.append(
+            (
+                f"{key_prefix}MaxIopsPerGib",
+                (
+                    "NaN"
+                    if value["max_iops_per_gib"] != value["max_iops_per_gib"]
+                    else "Infinity"
+                    if value["max_iops_per_gib"] == float("inf")
+                    else "-Infinity"
+                    if value["max_iops_per_gib"] == float("-inf")
+                    else str(value["max_iops_per_gib"])
+                ),
+            )
+        )
     if "supports_global_databases" in value:
         pairs.append(
             (

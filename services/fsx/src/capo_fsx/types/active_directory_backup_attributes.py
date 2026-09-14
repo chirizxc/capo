@@ -34,10 +34,10 @@ def serialize_aws_json_1_1(value: ActiveDirectoryBackupAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActiveDirectoryBackupAttributes:
     out: ActiveDirectoryBackupAttributes = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "ActiveDirectoryId" in data:
+    if data.get("ActiveDirectoryId") is not None:
         out["active_directory_id"] = data["ActiveDirectoryId"]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     return out

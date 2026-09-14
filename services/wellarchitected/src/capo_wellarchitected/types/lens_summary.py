@@ -79,37 +79,37 @@ def serialize_json(value: LensSummary) -> dict:
 
 def deserialize_json(data: dict) -> LensSummary:
     out: LensSummary = {}  # type: ignore[typeddict-item]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "LensName" in data:
+    if data.get("LensName") is not None:
         out["lens_name"] = data["LensName"]
-    if "LensType" in data:
+    if data.get("LensType") is not None:
         import capo_wellarchitected.types.lens_type
 
         out["lens_type"] = capo_wellarchitected.types.lens_type.deserialize_json(
             data["LensType"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["created_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "LensVersion" in data:
+    if data.get("LensVersion") is not None:
         out["lens_version"] = data["LensVersion"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "LensStatus" in data:
+    if data.get("LensStatus") is not None:
         import capo_wellarchitected.types.lens_status
 
         out["lens_status"] = capo_wellarchitected.types.lens_status.deserialize_json(

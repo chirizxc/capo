@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> DataSourceSyncJobHistoryList:
 
     out: DataSourceSyncJobHistoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.data_source_sync_job.deserialize_aws_json_1_1(item)
         )

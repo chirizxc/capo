@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ComputeQuotaSummaryList:
 
     out: ComputeQuotaSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.compute_quota_summary.deserialize_aws_json_1_1(item)
         )

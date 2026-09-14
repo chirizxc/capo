@@ -57,7 +57,15 @@ def serialize_json(value: AppMonitorConfiguration) -> dict:
         out["FavoritePages"] = capo_rum.types.favorite_pages.serialize_json(
             value["favorite_pages"]
         )
-    out["SessionSampleRate"] = value.get("session_sample_rate", 0)
+    out["SessionSampleRate"] = (
+        "NaN"
+        if value.get("session_sample_rate", 0) != value.get("session_sample_rate", 0)
+        else "Infinity"
+        if value.get("session_sample_rate", 0) == float("inf")
+        else "-Infinity"
+        if value.get("session_sample_rate", 0) == float("-inf")
+        else value.get("session_sample_rate", 0)
+    )
     if "guest_role_arn" in value:
         out["GuestRoleArn"] = value["guest_role_arn"]
     if "allow_cookies" in value:
@@ -75,40 +83,40 @@ def serialize_json(value: AppMonitorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AppMonitorConfiguration:
     out: AppMonitorConfiguration = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
-    if "ExcludedPages" in data:
+    if data.get("ExcludedPages") is not None:
         import capo_rum.types.pages
 
         out["excluded_pages"] = capo_rum.types.pages.deserialize_json(
             data["ExcludedPages"]
         )
-    if "IncludedPages" in data:
+    if data.get("IncludedPages") is not None:
         import capo_rum.types.pages
 
         out["included_pages"] = capo_rum.types.pages.deserialize_json(
             data["IncludedPages"]
         )
-    if "FavoritePages" in data:
+    if data.get("FavoritePages") is not None:
         import capo_rum.types.favorite_pages
 
         out["favorite_pages"] = capo_rum.types.favorite_pages.deserialize_json(
             data["FavoritePages"]
         )
-    if "SessionSampleRate" in data:
-        out["session_sample_rate"] = data["SessionSampleRate"]
+    if data.get("SessionSampleRate") is not None:
+        out["session_sample_rate"] = float(data["SessionSampleRate"])
     else:
         out["session_sample_rate"] = 0
-    if "GuestRoleArn" in data:
+    if data.get("GuestRoleArn") is not None:
         out["guest_role_arn"] = data["GuestRoleArn"]
-    if "AllowCookies" in data:
+    if data.get("AllowCookies") is not None:
         out["allow_cookies"] = data["AllowCookies"]
-    if "Telemetries" in data:
+    if data.get("Telemetries") is not None:
         import capo_rum.types.telemetries
 
         out["telemetries"] = capo_rum.types.telemetries.deserialize_json(
             data["Telemetries"]
         )
-    if "EnableXRay" in data:
+    if data.get("EnableXRay") is not None:
         out["enable_x_ray"] = data["EnableXRay"]
     return out

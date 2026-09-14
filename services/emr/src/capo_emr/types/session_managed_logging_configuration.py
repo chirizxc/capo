@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: SessionManagedLoggingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionManagedLoggingConfiguration:
     out: SessionManagedLoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
     return out

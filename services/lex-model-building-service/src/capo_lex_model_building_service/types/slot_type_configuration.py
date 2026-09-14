@@ -31,7 +31,7 @@ def serialize_json(value: SlotTypeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SlotTypeConfiguration:
     out: SlotTypeConfiguration = {}  # type: ignore[typeddict-item]
-    if "regexConfiguration" in data:
+    if data.get("regexConfiguration") is not None:
         import capo_lex_model_building_service.types.slot_type_regex_configuration
 
         out["regex_configuration"] = (

@@ -28,8 +28,8 @@ def serialize_json(value: ConnectorOAuthRequest) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorOAuthRequest:
     out: ConnectorOAuthRequest = {}  # type: ignore[typeddict-item]
-    if "authCode" in data:
+    if data.get("authCode") is not None:
         out["auth_code"] = data["authCode"]
-    if "redirectUri" in data:
+    if data.get("redirectUri") is not None:
         out["redirect_uri"] = data["redirectUri"]
     return out

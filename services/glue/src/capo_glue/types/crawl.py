@@ -59,28 +59,28 @@ def serialize_aws_json_1_1(value: Crawl) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Crawl:
     out: Crawl = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_glue.types.crawl_state
 
         out["state"] = capo_glue.types.crawl_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["started_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["StartedOn"]
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["completed_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "LogGroup" in data:
+    if data.get("LogGroup") is not None:
         out["log_group"] = data["LogGroup"]
-    if "LogStream" in data:
+    if data.get("LogStream") is not None:
         out["log_stream"] = data["LogStream"]
     return out

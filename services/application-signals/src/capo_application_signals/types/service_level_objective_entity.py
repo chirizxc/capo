@@ -22,8 +22,8 @@ def serialize_json(value: ServiceLevelObjectiveEntity) -> dict:
 
 def deserialize_json(data: dict) -> ServiceLevelObjectiveEntity:
     out: ServiceLevelObjectiveEntity = {}  # type: ignore[typeddict-item]
-    if "SloName" in data:
+    if data.get("SloName") is not None:
         out["slo_name"] = data["SloName"]
-    if "SloArn" in data:
+    if data.get("SloArn") is not None:
         out["slo_arn"] = data["SloArn"]
     return out

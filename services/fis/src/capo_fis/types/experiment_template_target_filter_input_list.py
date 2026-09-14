@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ExperimentTemplateTargetFilterInputList:
 
     out: ExperimentTemplateTargetFilterInputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fis.types.experiment_template_target_input_filter.deserialize_json(
                 item

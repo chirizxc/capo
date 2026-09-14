@@ -27,7 +27,7 @@ def serialize_json(value: StartExperimentExperimentOptionsInput) -> dict:
 
 def deserialize_json(data: dict) -> StartExperimentExperimentOptionsInput:
     out: StartExperimentExperimentOptionsInput = {}  # type: ignore[typeddict-item]
-    if "actionsMode" in data:
+    if data.get("actionsMode") is not None:
         import capo_fis.types.actions_mode
 
         out["actions_mode"] = capo_fis.types.actions_mode.deserialize_json(

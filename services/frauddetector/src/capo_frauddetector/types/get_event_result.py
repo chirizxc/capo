@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetEventResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEventResult:
     out: GetEventResult = {}  # type: ignore[typeddict-item]
-    if "event" in data:
+    if data.get("event") is not None:
         import capo_frauddetector.types.event
 
         out["event"] = capo_frauddetector.types.event.deserialize_aws_json_1_1(

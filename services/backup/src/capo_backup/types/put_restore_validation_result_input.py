@@ -40,7 +40,7 @@ def serialize_json(value: PutRestoreValidationResultInput) -> dict:
 
 def deserialize_json(data: dict) -> PutRestoreValidationResultInput:
     out: PutRestoreValidationResultInput = {}  # type: ignore[typeddict-item]
-    if "ValidationStatus" in data:
+    if data.get("ValidationStatus") is not None:
         import capo_backup.types.restore_validation_status
 
         out["validation_status"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> PutRestoreValidationResultInput:
         raise DeserializationError(
             "PutRestoreValidationResultInput.validation_status required"
         )
-    if "ValidationStatusMessage" in data:
+    if data.get("ValidationStatusMessage") is not None:
         out["validation_status_message"] = data["ValidationStatusMessage"]
     return out

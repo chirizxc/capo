@@ -28,11 +28,11 @@ def serialize_json(value: FacetAttributeReference) -> dict:
 
 def deserialize_json(data: dict) -> FacetAttributeReference:
     out: FacetAttributeReference = {}  # type: ignore[typeddict-item]
-    if "TargetFacetName" in data:
+    if data.get("TargetFacetName") is not None:
         out["target_facet_name"] = data["TargetFacetName"]
     else:
         raise DeserializationError("FacetAttributeReference.target_facet_name required")
-    if "TargetAttributeName" in data:
+    if data.get("TargetAttributeName") is not None:
         out["target_attribute_name"] = data["TargetAttributeName"]
     else:
         raise DeserializationError(

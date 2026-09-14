@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> UserProfileList:
 
     out: UserProfileList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.user_profile_details.deserialize_aws_json_1_1(item)
         )

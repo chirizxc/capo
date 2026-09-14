@@ -103,17 +103,17 @@ def serialize_json(value: GetJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetJobResponse:
     out: GetJobResponse = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError("GetJobResponse.action required")
-    if "ActionOptions" in data:
+    if data.get("ActionOptions") is not None:
         import capo_location.types.job_action_options
 
         out["action_options"] = capo_location.types.job_action_options.deserialize_json(
             data["ActionOptions"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_location.types.timestamp
 
         out["created_at"] = capo_location.types.timestamp.deserialize_json(
@@ -121,21 +121,21 @@ def deserialize_json(data: dict) -> GetJobResponse:
         )
     else:
         raise DeserializationError("GetJobResponse.created_at required")
-    if "EndedAt" in data:
+    if data.get("EndedAt") is not None:
         import capo_location.types.timestamp
 
         out["ended_at"] = capo_location.types.timestamp.deserialize_json(
             data["EndedAt"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_location.types.job_error
 
         out["error"] = capo_location.types.job_error.deserialize_json(data["Error"])
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     else:
         raise DeserializationError("GetJobResponse.execution_role_arn required")
-    if "InputOptions" in data:
+    if data.get("InputOptions") is not None:
         import capo_location.types.job_input_options
 
         out["input_options"] = capo_location.types.job_input_options.deserialize_json(
@@ -143,17 +143,17 @@ def deserialize_json(data: dict) -> GetJobResponse:
         )
     else:
         raise DeserializationError("GetJobResponse.input_options required")
-    if "JobArn" in data:
+    if data.get("JobArn") is not None:
         out["job_arn"] = data["JobArn"]
     else:
         raise DeserializationError("GetJobResponse.job_arn required")
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("GetJobResponse.job_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OutputOptions" in data:
+    if data.get("OutputOptions") is not None:
         import capo_location.types.job_output_options
 
         out["output_options"] = capo_location.types.job_output_options.deserialize_json(
@@ -161,11 +161,11 @@ def deserialize_json(data: dict) -> GetJobResponse:
         )
     else:
         raise DeserializationError("GetJobResponse.output_options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("GetJobResponse.status required")
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_location.types.timestamp
 
         out["updated_at"] = capo_location.types.timestamp.deserialize_json(
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> GetJobResponse:
         )
     else:
         raise DeserializationError("GetJobResponse.updated_at required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])

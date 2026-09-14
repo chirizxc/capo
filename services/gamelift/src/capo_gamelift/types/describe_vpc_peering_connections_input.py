@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DescribeVpcPeeringConnectionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeVpcPeeringConnectionsInput:
     out: DescribeVpcPeeringConnectionsInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
     return out

@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GroupExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GroupExistsException_:
     out: GroupExistsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,18 @@ class GroupExistsException(ServiceError):
 
     code: str | None = "GroupExistsException"
 
-    def __init__(self, data: GroupExistsException_):
+    def __init__(self, data: GroupExistsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="GroupExistsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "GroupExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "GroupExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

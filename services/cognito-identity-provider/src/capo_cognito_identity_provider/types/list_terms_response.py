@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: ListTermsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTermsResponse:
     out: ListTermsResponse = {}  # type: ignore[typeddict-item]
-    if "Terms" in data:
+    if data.get("Terms") is not None:
         import capo_cognito_identity_provider.types.terms_description_list_type
 
         out["terms"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListTermsResponse:
         )
     else:
         raise DeserializationError("ListTermsResponse.terms required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

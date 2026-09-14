@@ -44,9 +44,9 @@ def serialize_aws_json_1_0(value: PutEncryptionConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutEncryptionConfigurationResponse:
     out: PutEncryptionConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "encryptionStatus" in data:
+    if data.get("encryptionStatus") is not None:
         import capo_iotfleetwise.types.encryption_status
 
         out["encryption_status"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_0(data: dict) -> PutEncryptionConfigurationResponse:
         raise DeserializationError(
             "PutEncryptionConfigurationResponse.encryption_status required"
         )
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_iotfleetwise.types.encryption_type
 
         out["encryption_type"] = (

@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: UpdateHubContentReferenceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateHubContentReferenceRequest:
     out: UpdateHubContentReferenceRequest = {}  # type: ignore[typeddict-item]
-    if "HubName" in data:
+    if data.get("HubName") is not None:
         out["hub_name"] = data["HubName"]
-    if "HubContentName" in data:
+    if data.get("HubContentName") is not None:
         out["hub_content_name"] = data["HubContentName"]
-    if "HubContentType" in data:
+    if data.get("HubContentType") is not None:
         import capo_sagemaker.types.hub_content_type
 
         out["hub_content_type"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateHubContentReferenceRequest:
                 data["HubContentType"]
             )
         )
-    if "MinVersion" in data:
+    if data.get("MinVersion") is not None:
         out["min_version"] = data["MinVersion"]
     return out

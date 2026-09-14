@@ -67,21 +67,21 @@ def serialize_json(value: NetworkEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> NetworkEndpoint:
     out: NetworkEndpoint = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "ip" in data:
+    if data.get("ip") is not None:
         out["ip"] = data["ip"]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_guardduty.types.network_geo_location
 
         out["location"] = capo_guardduty.types.network_geo_location.deserialize_json(
             data["location"]
         )
-    if "autonomousSystem" in data:
+    if data.get("autonomousSystem") is not None:
         import capo_guardduty.types.autonomous_system
 
         out["autonomous_system"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> NetworkEndpoint:
                 data["autonomousSystem"]
             )
         )
-    if "connection" in data:
+    if data.get("connection") is not None:
         import capo_guardduty.types.network_connection
 
         out["connection"] = capo_guardduty.types.network_connection.deserialize_json(

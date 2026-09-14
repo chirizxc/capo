@@ -179,7 +179,7 @@ class KinesisVideoSignalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video_signaling.types.get_ice_server_config_request.GetIceServerConfigRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video_signaling.types.get_ice_server_config_request.GetIceServerConfigRequest = {}
         if channel_arn is not None:
             input_["channel_arn"] = channel_arn
         if client_id is not None:
@@ -194,6 +194,7 @@ class KinesisVideoSignalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_alexa_offer_to_master(
@@ -240,7 +241,7 @@ class KinesisVideoSignalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video_signaling.types.send_alexa_offer_to_master_request.SendAlexaOfferToMasterRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video_signaling.types.send_alexa_offer_to_master_request.SendAlexaOfferToMasterRequest = {}
         if channel_arn is not None:
             input_["channel_arn"] = channel_arn
         if sender_client_id is not None:
@@ -253,6 +254,7 @@ class KinesisVideoSignalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

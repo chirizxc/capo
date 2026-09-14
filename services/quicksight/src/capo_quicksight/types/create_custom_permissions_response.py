@@ -32,12 +32,12 @@ def serialize_json(value: CreateCustomPermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCustomPermissionsResponse:
     out: CreateCustomPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         out["status"] = 0
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

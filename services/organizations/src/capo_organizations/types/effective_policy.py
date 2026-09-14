@@ -52,9 +52,9 @@ def serialize_aws_json_1_1(value: EffectivePolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EffectivePolicy:
     out: EffectivePolicy = {}  # type: ignore[typeddict-item]
-    if "PolicyContent" in data:
+    if data.get("PolicyContent") is not None:
         out["policy_content"] = data["PolicyContent"]
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["last_updated_timestamp"] = (
@@ -62,9 +62,9 @@ def deserialize_aws_json_1_1(data: dict) -> EffectivePolicy:
                 data["LastUpdatedTimestamp"]
             )
         )
-    if "TargetId" in data:
+    if data.get("TargetId") is not None:
         out["target_id"] = data["TargetId"]
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_organizations.types.effective_policy_type
 
         out["policy_type"] = (

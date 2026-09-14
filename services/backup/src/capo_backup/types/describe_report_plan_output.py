@@ -27,7 +27,7 @@ def serialize_json(value: DescribeReportPlanOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeReportPlanOutput:
     out: DescribeReportPlanOutput = {}  # type: ignore[typeddict-item]
-    if "ReportPlan" in data:
+    if data.get("ReportPlan") is not None:
         import capo_backup.types.report_plan
 
         out["report_plan"] = capo_backup.types.report_plan.deserialize_json(

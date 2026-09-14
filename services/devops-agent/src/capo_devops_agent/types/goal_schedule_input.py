@@ -28,7 +28,7 @@ def serialize_json(value: GoalScheduleInput) -> dict:
 
 def deserialize_json(data: dict) -> GoalScheduleInput:
     out: GoalScheduleInput = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_devops_agent.types.scheduler_state
 
         out["state"] = capo_devops_agent.types.scheduler_state.deserialize_json(

@@ -56,17 +56,17 @@ def serialize_json(value: ZendeskDestinationProperties) -> dict:
 
 def deserialize_json(data: dict) -> ZendeskDestinationProperties:
     out: ZendeskDestinationProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("ZendeskDestinationProperties.object required")
-    if "idFieldNames" in data:
+    if data.get("idFieldNames") is not None:
         import capo_appflow.types.id_field_name_list
 
         out["id_field_names"] = capo_appflow.types.id_field_name_list.deserialize_json(
             data["idFieldNames"]
         )
-    if "errorHandlingConfig" in data:
+    if data.get("errorHandlingConfig") is not None:
         import capo_appflow.types.error_handling_config
 
         out["error_handling_config"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ZendeskDestinationProperties:
                 data["errorHandlingConfig"]
             )
         )
-    if "writeOperationType" in data:
+    if data.get("writeOperationType") is not None:
         import capo_appflow.types.write_operation_type
 
         out["write_operation_type"] = (

@@ -75,7 +75,7 @@ def serialize_json(value: GetSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSessionResponse:
     out: GetSessionResponse = {}  # type: ignore[typeddict-item]
-    if "recentIntentSummaryView" in data:
+    if data.get("recentIntentSummaryView") is not None:
         import capo_lex_runtime_service.types.intent_summary_list
 
         out["recent_intent_summary_view"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> GetSessionResponse:
                 data["recentIntentSummaryView"]
             )
         )
-    if "sessionAttributes" in data:
+    if data.get("sessionAttributes") is not None:
         import capo_lex_runtime_service.types.string_map
 
         out["session_attributes"] = (
@@ -91,9 +91,9 @@ def deserialize_json(data: dict) -> GetSessionResponse:
                 data["sessionAttributes"]
             )
         )
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "dialogAction" in data:
+    if data.get("dialogAction") is not None:
         import capo_lex_runtime_service.types.dialog_action
 
         out["dialog_action"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> GetSessionResponse:
                 data["dialogAction"]
             )
         )
-    if "activeContexts" in data:
+    if data.get("activeContexts") is not None:
         import capo_lex_runtime_service.types.active_contexts_list
 
         out["active_contexts"] = (

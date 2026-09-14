@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListCampaignsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListCampaignsResponse:
     out: ListCampaignsResponse = {}  # type: ignore[typeddict-item]
-    if "campaignSummaries" in data:
+    if data.get("campaignSummaries") is not None:
         import capo_iotfleetwise.types.campaign_summaries
 
         out["campaign_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListCampaignsResponse:
                 data["campaignSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

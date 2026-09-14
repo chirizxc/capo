@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CisTargetResourceAggregationList:
 
     out: CisTargetResourceAggregationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.cis_target_resource_aggregation.deserialize_json(item)
         )

@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: ListScheduledQueriesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListScheduledQueriesRequest:
     out: ListScheduledQueriesRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

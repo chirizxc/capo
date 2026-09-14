@@ -79,13 +79,13 @@ def serialize_aws_json_1_1(value: ExpenseField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExpenseField:
     out: ExpenseField = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_textract.types.expense_type
 
         out["type"] = capo_textract.types.expense_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "LabelDetection" in data:
+    if data.get("LabelDetection") is not None:
         import capo_textract.types.expense_detection
 
         out["label_detection"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExpenseField:
                 data["LabelDetection"]
             )
         )
-    if "ValueDetection" in data:
+    if data.get("ValueDetection") is not None:
         import capo_textract.types.expense_detection
 
         out["value_detection"] = (
@@ -101,15 +101,15 @@ def deserialize_aws_json_1_1(data: dict) -> ExpenseField:
                 data["ValueDetection"]
             )
         )
-    if "PageNumber" in data:
+    if data.get("PageNumber") is not None:
         out["page_number"] = data["PageNumber"]
-    if "Currency" in data:
+    if data.get("Currency") is not None:
         import capo_textract.types.expense_currency
 
         out["currency"] = capo_textract.types.expense_currency.deserialize_aws_json_1_1(
             data["Currency"]
         )
-    if "GroupProperties" in data:
+    if data.get("GroupProperties") is not None:
         import capo_textract.types.expense_group_property_list
 
         out["group_properties"] = (

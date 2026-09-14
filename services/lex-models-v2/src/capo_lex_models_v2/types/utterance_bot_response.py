@@ -48,9 +48,9 @@ def serialize_json(value: UtteranceBotResponse) -> dict:
 
 def deserialize_json(data: dict) -> UtteranceBotResponse:
     out: UtteranceBotResponse = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         import capo_lex_models_v2.types.utterance_content_type
 
         out["content_type"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> UtteranceBotResponse:
                 data["contentType"]
             )
         )
-    if "imageResponseCard" in data:
+    if data.get("imageResponseCard") is not None:
         import capo_lex_models_v2.types.image_response_card
 
         out["image_response_card"] = (

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> TargetGroupInfoList:
 
     out: TargetGroupInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codedeploy.types.target_group_info.deserialize_aws_json_1_1(item)
         )

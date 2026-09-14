@@ -59,7 +59,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails:
     out: AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails = {}  # type: ignore[typeddict-item]
-    if "Operands" in data:
+    if data.get("Operands") is not None:
         import capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_rules_filter_predicate_operands_list
 
         out["operands"] = (
@@ -67,9 +67,9 @@ def deserialize_json(
                 data["Operands"]
             )
         )
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "Tag" in data:
+    if data.get("Tag") is not None:
         import capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_rules_filter_predicate_tag_details
 
         out["tag"] = (
@@ -77,6 +77,6 @@ def deserialize_json(
                 data["Tag"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

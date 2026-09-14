@@ -36,13 +36,13 @@ def serialize_json(value: NetworkPathComponentDetails) -> dict:
 
 def deserialize_json(data: dict) -> NetworkPathComponentDetails:
     out: NetworkPathComponentDetails = {}  # type: ignore[typeddict-item]
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_securityhub.types.string_list
 
         out["address"] = capo_securityhub.types.string_list.deserialize_json(
             data["Address"]
         )
-    if "PortRanges" in data:
+    if data.get("PortRanges") is not None:
         import capo_securityhub.types.port_range_list
 
         out["port_ranges"] = capo_securityhub.types.port_range_list.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IdNamespaceList:
 
     out: IdNamespaceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.id_namespace_summary.deserialize_json(item)
         )

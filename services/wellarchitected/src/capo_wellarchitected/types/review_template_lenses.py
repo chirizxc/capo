@@ -16,4 +16,4 @@ def serialize_json(value: ReviewTemplateLenses) -> list:
 
 
 def deserialize_json(data: list) -> ReviewTemplateLenses:
-    return list(data)
+    return [item for item in data if item is not None]

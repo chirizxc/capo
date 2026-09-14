@@ -35,14 +35,14 @@ def serialize_json(value: ResponsePlanSummary) -> dict:
 
 def deserialize_json(data: dict) -> ResponsePlanSummary:
     out: ResponsePlanSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ResponsePlanSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ResponsePlanSummary.name required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     return out

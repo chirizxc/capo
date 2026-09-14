@@ -40,12 +40,12 @@ def serialize_json(value: DescribeMappedResourceConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeMappedResourceConfigurationInput:
     out: DescribeMappedResourceConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

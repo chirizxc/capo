@@ -59,11 +59,11 @@ def serialize_aws_json_1_1(value: FilterSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FilterSummary:
     out: FilterSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> FilterSummary:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -79,10 +79,10 @@ def deserialize_aws_json_1_1(data: dict) -> FilterSummary:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

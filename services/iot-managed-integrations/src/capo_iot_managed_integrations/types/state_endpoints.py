@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> StateEndpoints:
 
     out: StateEndpoints = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.state_endpoint.deserialize_json(item)
         )

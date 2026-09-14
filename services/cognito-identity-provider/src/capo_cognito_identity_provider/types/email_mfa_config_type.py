@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: EmailMfaConfigType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EmailMfaConfigType:
     out: EmailMfaConfigType = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
     return out

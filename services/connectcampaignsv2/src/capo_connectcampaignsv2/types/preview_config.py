@@ -25,7 +25,15 @@ class PreviewConfig(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: PreviewConfig) -> dict:
     out: dict = {}
-    out["bandwidthAllocation"] = value["bandwidth_allocation"]
+    out["bandwidthAllocation"] = (
+        "NaN"
+        if value["bandwidth_allocation"] != value["bandwidth_allocation"]
+        else "Infinity"
+        if value["bandwidth_allocation"] == float("inf")
+        else "-Infinity"
+        if value["bandwidth_allocation"] == float("-inf")
+        else value["bandwidth_allocation"]
+    )
     import capo_connectcampaignsv2.types.timeout_config
 
     out["timeoutConfig"] = capo_connectcampaignsv2.types.timeout_config.serialize_json(
@@ -44,11 +52,11 @@ def serialize_json(value: PreviewConfig) -> dict:
 
 def deserialize_json(data: dict) -> PreviewConfig:
     out: PreviewConfig = {}  # type: ignore[typeddict-item]
-    if "bandwidthAllocation" in data:
-        out["bandwidth_allocation"] = data["bandwidthAllocation"]
+    if data.get("bandwidthAllocation") is not None:
+        out["bandwidth_allocation"] = float(data["bandwidthAllocation"])
     else:
         raise DeserializationError("PreviewConfig.bandwidth_allocation required")
-    if "timeoutConfig" in data:
+    if data.get("timeoutConfig") is not None:
         import capo_connectcampaignsv2.types.timeout_config
 
         out["timeout_config"] = (
@@ -58,7 +66,7 @@ def deserialize_json(data: dict) -> PreviewConfig:
         )
     else:
         raise DeserializationError("PreviewConfig.timeout_config required")
-    if "agentActions" in data:
+    if data.get("agentActions") is not None:
         import capo_connectcampaignsv2.types.agent_actions
 
         out["agent_actions"] = (

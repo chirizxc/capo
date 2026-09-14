@@ -25,7 +25,7 @@ def serialize_json(value: CreateGraphRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateGraphRequest:
     out: CreateGraphRequest = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_detective.types.tag_map
 
         out["tags"] = capo_detective.types.tag_map.deserialize_json(data["Tags"])

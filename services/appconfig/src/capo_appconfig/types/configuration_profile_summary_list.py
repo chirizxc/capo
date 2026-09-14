@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ConfigurationProfileSummaryList:
 
     out: ConfigurationProfileSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appconfig.types.configuration_profile_summary.deserialize_json(item)
         )

@@ -425,7 +425,7 @@ def serialize_json(value: AwsRdsDbInstanceDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
     out: AwsRdsDbInstanceDetails = {}  # type: ignore[typeddict-item]
-    if "AssociatedRoles" in data:
+    if data.get("AssociatedRoles") is not None:
         import capo_securityhub.types.aws_rds_db_instance_associated_roles
 
         out["associated_roles"] = (
@@ -433,23 +433,23 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["AssociatedRoles"]
             )
         )
-    if "CACertificateIdentifier" in data:
+    if data.get("CACertificateIdentifier") is not None:
         out["ca_certificate_identifier"] = data["CACertificateIdentifier"]
-    if "DBClusterIdentifier" in data:
+    if data.get("DBClusterIdentifier") is not None:
         out["db_cluster_identifier"] = data["DBClusterIdentifier"]
-    if "DBInstanceIdentifier" in data:
+    if data.get("DBInstanceIdentifier") is not None:
         out["db_instance_identifier"] = data["DBInstanceIdentifier"]
-    if "DBInstanceClass" in data:
+    if data.get("DBInstanceClass") is not None:
         out["db_instance_class"] = data["DBInstanceClass"]
-    if "DbInstancePort" in data:
+    if data.get("DbInstancePort") is not None:
         out["db_instance_port"] = data["DbInstancePort"]
-    if "DbiResourceId" in data:
+    if data.get("DbiResourceId") is not None:
         out["dbi_resource_id"] = data["DbiResourceId"]
-    if "DBName" in data:
+    if data.get("DBName") is not None:
         out["db_name"] = data["DBName"]
-    if "DeletionProtection" in data:
+    if data.get("DeletionProtection") is not None:
         out["deletion_protection"] = data["DeletionProtection"]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         import capo_securityhub.types.aws_rds_db_instance_endpoint
 
         out["endpoint"] = (
@@ -457,25 +457,25 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["Endpoint"]
             )
         )
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "IAMDatabaseAuthenticationEnabled" in data:
+    if data.get("IAMDatabaseAuthenticationEnabled") is not None:
         out["iam_database_authentication_enabled"] = data[
             "IAMDatabaseAuthenticationEnabled"
         ]
-    if "InstanceCreateTime" in data:
+    if data.get("InstanceCreateTime") is not None:
         out["instance_create_time"] = data["InstanceCreateTime"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "PubliclyAccessible" in data:
+    if data.get("PubliclyAccessible") is not None:
         out["publicly_accessible"] = data["PubliclyAccessible"]
-    if "StorageEncrypted" in data:
+    if data.get("StorageEncrypted") is not None:
         out["storage_encrypted"] = data["StorageEncrypted"]
-    if "TdeCredentialArn" in data:
+    if data.get("TdeCredentialArn") is not None:
         out["tde_credential_arn"] = data["TdeCredentialArn"]
-    if "VpcSecurityGroups" in data:
+    if data.get("VpcSecurityGroups") is not None:
         import capo_securityhub.types.aws_rds_db_instance_vpc_security_groups
 
         out["vpc_security_groups"] = (
@@ -483,27 +483,27 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["VpcSecurityGroups"]
             )
         )
-    if "MultiAz" in data:
+    if data.get("MultiAz") is not None:
         out["multi_az"] = data["MultiAz"]
-    if "EnhancedMonitoringResourceArn" in data:
+    if data.get("EnhancedMonitoringResourceArn") is not None:
         out["enhanced_monitoring_resource_arn"] = data["EnhancedMonitoringResourceArn"]
-    if "DbInstanceStatus" in data:
+    if data.get("DbInstanceStatus") is not None:
         out["db_instance_status"] = data["DbInstanceStatus"]
-    if "MasterUsername" in data:
+    if data.get("MasterUsername") is not None:
         out["master_username"] = data["MasterUsername"]
-    if "AllocatedStorage" in data:
+    if data.get("AllocatedStorage") is not None:
         out["allocated_storage"] = data["AllocatedStorage"]
-    if "PreferredBackupWindow" in data:
+    if data.get("PreferredBackupWindow") is not None:
         out["preferred_backup_window"] = data["PreferredBackupWindow"]
-    if "BackupRetentionPeriod" in data:
+    if data.get("BackupRetentionPeriod") is not None:
         out["backup_retention_period"] = data["BackupRetentionPeriod"]
-    if "DbSecurityGroups" in data:
+    if data.get("DbSecurityGroups") is not None:
         import capo_securityhub.types.string_list
 
         out["db_security_groups"] = capo_securityhub.types.string_list.deserialize_json(
             data["DbSecurityGroups"]
         )
-    if "DbParameterGroups" in data:
+    if data.get("DbParameterGroups") is not None:
         import capo_securityhub.types.aws_rds_db_parameter_groups
 
         out["db_parameter_groups"] = (
@@ -511,9 +511,9 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["DbParameterGroups"]
             )
         )
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "DbSubnetGroup" in data:
+    if data.get("DbSubnetGroup") is not None:
         import capo_securityhub.types.aws_rds_db_subnet_group
 
         out["db_subnet_group"] = (
@@ -521,9 +521,9 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["DbSubnetGroup"]
             )
         )
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "PendingModifiedValues" in data:
+    if data.get("PendingModifiedValues") is not None:
         import capo_securityhub.types.aws_rds_db_pending_modified_values
 
         out["pending_modified_values"] = (
@@ -531,15 +531,15 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["PendingModifiedValues"]
             )
         )
-    if "LatestRestorableTime" in data:
+    if data.get("LatestRestorableTime") is not None:
         out["latest_restorable_time"] = data["LatestRestorableTime"]
-    if "AutoMinorVersionUpgrade" in data:
+    if data.get("AutoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["AutoMinorVersionUpgrade"]
-    if "ReadReplicaSourceDBInstanceIdentifier" in data:
+    if data.get("ReadReplicaSourceDBInstanceIdentifier") is not None:
         out["read_replica_source_db_instance_identifier"] = data[
             "ReadReplicaSourceDBInstanceIdentifier"
         ]
-    if "ReadReplicaDBInstanceIdentifiers" in data:
+    if data.get("ReadReplicaDBInstanceIdentifiers") is not None:
         import capo_securityhub.types.string_list
 
         out["read_replica_db_instance_identifiers"] = (
@@ -547,7 +547,7 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["ReadReplicaDBInstanceIdentifiers"]
             )
         )
-    if "ReadReplicaDBClusterIdentifiers" in data:
+    if data.get("ReadReplicaDBClusterIdentifiers") is not None:
         import capo_securityhub.types.string_list
 
         out["read_replica_db_cluster_identifiers"] = (
@@ -555,11 +555,11 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["ReadReplicaDBClusterIdentifiers"]
             )
         )
-    if "LicenseModel" in data:
+    if data.get("LicenseModel") is not None:
         out["license_model"] = data["LicenseModel"]
-    if "Iops" in data:
+    if data.get("Iops") is not None:
         out["iops"] = data["Iops"]
-    if "OptionGroupMemberships" in data:
+    if data.get("OptionGroupMemberships") is not None:
         import capo_securityhub.types.aws_rds_db_option_group_memberships
 
         out["option_group_memberships"] = (
@@ -567,11 +567,11 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["OptionGroupMemberships"]
             )
         )
-    if "CharacterSetName" in data:
+    if data.get("CharacterSetName") is not None:
         out["character_set_name"] = data["CharacterSetName"]
-    if "SecondaryAvailabilityZone" in data:
+    if data.get("SecondaryAvailabilityZone") is not None:
         out["secondary_availability_zone"] = data["SecondaryAvailabilityZone"]
-    if "StatusInfos" in data:
+    if data.get("StatusInfos") is not None:
         import capo_securityhub.types.aws_rds_db_status_infos
 
         out["status_infos"] = (
@@ -579,9 +579,9 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["StatusInfos"]
             )
         )
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         out["storage_type"] = data["StorageType"]
-    if "DomainMemberships" in data:
+    if data.get("DomainMemberships") is not None:
         import capo_securityhub.types.aws_rds_db_domain_memberships
 
         out["domain_memberships"] = (
@@ -589,25 +589,25 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["DomainMemberships"]
             )
         )
-    if "CopyTagsToSnapshot" in data:
+    if data.get("CopyTagsToSnapshot") is not None:
         out["copy_tags_to_snapshot"] = data["CopyTagsToSnapshot"]
-    if "MonitoringInterval" in data:
+    if data.get("MonitoringInterval") is not None:
         out["monitoring_interval"] = data["MonitoringInterval"]
-    if "MonitoringRoleArn" in data:
+    if data.get("MonitoringRoleArn") is not None:
         out["monitoring_role_arn"] = data["MonitoringRoleArn"]
-    if "PromotionTier" in data:
+    if data.get("PromotionTier") is not None:
         out["promotion_tier"] = data["PromotionTier"]
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
-    if "PerformanceInsightsEnabled" in data:
+    if data.get("PerformanceInsightsEnabled") is not None:
         out["performance_insights_enabled"] = data["PerformanceInsightsEnabled"]
-    if "PerformanceInsightsKmsKeyId" in data:
+    if data.get("PerformanceInsightsKmsKeyId") is not None:
         out["performance_insights_kms_key_id"] = data["PerformanceInsightsKmsKeyId"]
-    if "PerformanceInsightsRetentionPeriod" in data:
+    if data.get("PerformanceInsightsRetentionPeriod") is not None:
         out["performance_insights_retention_period"] = data[
             "PerformanceInsightsRetentionPeriod"
         ]
-    if "EnabledCloudWatchLogsExports" in data:
+    if data.get("EnabledCloudWatchLogsExports") is not None:
         import capo_securityhub.types.string_list
 
         out["enabled_cloud_watch_logs_exports"] = (
@@ -615,7 +615,7 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["EnabledCloudWatchLogsExports"]
             )
         )
-    if "ProcessorFeatures" in data:
+    if data.get("ProcessorFeatures") is not None:
         import capo_securityhub.types.aws_rds_db_processor_features
 
         out["processor_features"] = (
@@ -623,7 +623,7 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["ProcessorFeatures"]
             )
         )
-    if "ListenerEndpoint" in data:
+    if data.get("ListenerEndpoint") is not None:
         import capo_securityhub.types.aws_rds_db_instance_endpoint
 
         out["listener_endpoint"] = (
@@ -631,6 +631,6 @@ def deserialize_json(data: dict) -> AwsRdsDbInstanceDetails:
                 data["ListenerEndpoint"]
             )
         )
-    if "MaxAllocatedStorage" in data:
+    if data.get("MaxAllocatedStorage") is not None:
         out["max_allocated_storage"] = data["MaxAllocatedStorage"]
     return out

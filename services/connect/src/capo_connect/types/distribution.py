@@ -28,11 +28,11 @@ def serialize_json(value: Distribution) -> dict:
 
 def deserialize_json(data: dict) -> Distribution:
     out: Distribution = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("Distribution.region required")
-    if "Percentage" in data:
+    if data.get("Percentage") is not None:
         out["percentage"] = data["Percentage"]
     else:
         out["percentage"] = 0

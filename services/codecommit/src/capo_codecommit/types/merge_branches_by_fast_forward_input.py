@@ -36,24 +36,24 @@ def serialize_aws_json_1_1(value: MergeBranchesByFastForwardInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MergeBranchesByFastForwardInput:
     out: MergeBranchesByFastForwardInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "MergeBranchesByFastForwardInput.repository_name required"
         )
-    if "sourceCommitSpecifier" in data:
+    if data.get("sourceCommitSpecifier") is not None:
         out["source_commit_specifier"] = data["sourceCommitSpecifier"]
     else:
         raise DeserializationError(
             "MergeBranchesByFastForwardInput.source_commit_specifier required"
         )
-    if "destinationCommitSpecifier" in data:
+    if data.get("destinationCommitSpecifier") is not None:
         out["destination_commit_specifier"] = data["destinationCommitSpecifier"]
     else:
         raise DeserializationError(
             "MergeBranchesByFastForwardInput.destination_commit_specifier required"
         )
-    if "targetBranch" in data:
+    if data.get("targetBranch") is not None:
         out["target_branch"] = data["targetBranch"]
     return out

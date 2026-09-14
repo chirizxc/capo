@@ -105,13 +105,13 @@ def serialize_json(value: Ingestion) -> dict:
 
 def deserialize_json(data: dict) -> Ingestion:
     out: Ingestion = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("Ingestion.arn required")
-    if "IngestionId" in data:
+    if data.get("IngestionId") is not None:
         out["ingestion_id"] = data["IngestionId"]
-    if "IngestionStatus" in data:
+    if data.get("IngestionStatus") is not None:
         import capo_quicksight.types.ingestion_status
 
         out["ingestion_status"] = (
@@ -121,25 +121,25 @@ def deserialize_json(data: dict) -> Ingestion:
         )
     else:
         raise DeserializationError("Ingestion.ingestion_status required")
-    if "ErrorInfo" in data:
+    if data.get("ErrorInfo") is not None:
         import capo_quicksight.types.error_info
 
         out["error_info"] = capo_quicksight.types.error_info.deserialize_json(
             data["ErrorInfo"]
         )
-    if "RowInfo" in data:
+    if data.get("RowInfo") is not None:
         import capo_quicksight.types.row_info
 
         out["row_info"] = capo_quicksight.types.row_info.deserialize_json(
             data["RowInfo"]
         )
-    if "QueueInfo" in data:
+    if data.get("QueueInfo") is not None:
         import capo_quicksight.types.queue_info
 
         out["queue_info"] = capo_quicksight.types.queue_info.deserialize_json(
             data["QueueInfo"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
@@ -147,11 +147,11 @@ def deserialize_json(data: dict) -> Ingestion:
         )
     else:
         raise DeserializationError("Ingestion.created_time required")
-    if "IngestionTimeInSeconds" in data:
+    if data.get("IngestionTimeInSeconds") is not None:
         out["ingestion_time_in_seconds"] = data["IngestionTimeInSeconds"]
-    if "IngestionSizeInBytes" in data:
+    if data.get("IngestionSizeInBytes") is not None:
         out["ingestion_size_in_bytes"] = data["IngestionSizeInBytes"]
-    if "RequestSource" in data:
+    if data.get("RequestSource") is not None:
         import capo_quicksight.types.ingestion_request_source
 
         out["request_source"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> Ingestion:
                 data["RequestSource"]
             )
         )
-    if "RequestType" in data:
+    if data.get("RequestType") is not None:
         import capo_quicksight.types.ingestion_request_type
 
         out["request_type"] = (

@@ -39,11 +39,11 @@ def serialize_json(value: ViewContent) -> dict:
 
 def deserialize_json(data: dict) -> ViewContent:
     out: ViewContent = {}  # type: ignore[typeddict-item]
-    if "InputSchema" in data:
+    if data.get("InputSchema") is not None:
         out["input_schema"] = data["InputSchema"]
-    if "Template" in data:
+    if data.get("Template") is not None:
         out["template"] = data["Template"]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_connectparticipant.types.view_actions
 
         out["actions"] = capo_connectparticipant.types.view_actions.deserialize_json(

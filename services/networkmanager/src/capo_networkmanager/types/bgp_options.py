@@ -23,6 +23,6 @@ def serialize_json(value: BgpOptions) -> dict:
 
 def deserialize_json(data: dict) -> BgpOptions:
     out: BgpOptions = {}  # type: ignore[typeddict-item]
-    if "PeerAsn" in data:
+    if data.get("PeerAsn") is not None:
         out["peer_asn"] = data["PeerAsn"]
     return out

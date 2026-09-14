@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> TablePropertyDescriptionList:
 
     out: TablePropertyDescriptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_data_exports.types.table_property_description.deserialize_aws_json_1_1(
                 item

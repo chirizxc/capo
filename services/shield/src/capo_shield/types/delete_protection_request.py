@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteProtectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteProtectionRequest:
     out: DeleteProtectionRequest = {}  # type: ignore[typeddict-item]
-    if "ProtectionId" in data:
+    if data.get("ProtectionId") is not None:
         out["protection_id"] = data["ProtectionId"]
     else:
         raise DeserializationError("DeleteProtectionRequest.protection_id required")

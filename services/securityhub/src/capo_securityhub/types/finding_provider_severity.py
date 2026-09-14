@@ -32,12 +32,12 @@ def serialize_json(value: FindingProviderSeverity) -> dict:
 
 def deserialize_json(data: dict) -> FindingProviderSeverity:
     out: FindingProviderSeverity = {}  # type: ignore[typeddict-item]
-    if "Label" in data:
+    if data.get("Label") is not None:
         import capo_securityhub.types.severity_label
 
         out["label"] = capo_securityhub.types.severity_label.deserialize_json(
             data["Label"]
         )
-    if "Original" in data:
+    if data.get("Original") is not None:
         out["original"] = data["Original"]
     return out

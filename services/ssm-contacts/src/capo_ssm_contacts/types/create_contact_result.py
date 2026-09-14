@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateContactResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContactResult:
     out: CreateContactResult = {}  # type: ignore[typeddict-item]
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
     else:
         raise DeserializationError("CreateContactResult.contact_arn required")

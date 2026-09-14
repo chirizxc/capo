@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: DescribeApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationRequest:
     out: DescribeApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError(
             "DescribeApplicationRequest.application_name required"
         )
-    if "IncludeAdditionalDetails" in data:
+    if data.get("IncludeAdditionalDetails") is not None:
         out["include_additional_details"] = data["IncludeAdditionalDetails"]
     return out

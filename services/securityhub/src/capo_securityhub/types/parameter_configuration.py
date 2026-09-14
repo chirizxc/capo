@@ -38,7 +38,7 @@ def serialize_json(value: ParameterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ParameterConfiguration:
     out: ParameterConfiguration = {}  # type: ignore[typeddict-item]
-    if "ValueType" in data:
+    if data.get("ValueType") is not None:
         import capo_securityhub.types.parameter_value_type
 
         out["value_type"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> ParameterConfiguration:
                 data["ValueType"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_securityhub.types.parameter_value
 
         out["value"] = capo_securityhub.types.parameter_value.deserialize_json(

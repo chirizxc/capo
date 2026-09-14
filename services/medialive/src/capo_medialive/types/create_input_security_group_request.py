@@ -38,11 +38,11 @@ def serialize_json(value: CreateInputSecurityGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateInputSecurityGroupRequest:
     out: CreateInputSecurityGroupRequest = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])
-    if "whitelistRules" in data:
+    if data.get("whitelistRules") is not None:
         import capo_medialive.types.__list_of_input_whitelist_rule_cidr
 
         out["whitelist_rules"] = (

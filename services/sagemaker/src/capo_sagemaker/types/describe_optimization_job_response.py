@@ -206,9 +206,9 @@ def serialize_aws_json_1_1(value: DescribeOptimizationJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
     out: DescribeOptimizationJobResponse = {}  # type: ignore[typeddict-item]
-    if "OptimizationJobArn" in data:
+    if data.get("OptimizationJobArn") is not None:
         out["optimization_job_arn"] = data["OptimizationJobArn"]
-    if "OptimizationJobStatus" in data:
+    if data.get("OptimizationJobStatus") is not None:
         import capo_sagemaker.types.optimization_job_status
 
         out["optimization_job_status"] = (
@@ -216,7 +216,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["OptimizationJobStatus"]
             )
         )
-    if "OptimizationStartTime" in data:
+    if data.get("OptimizationStartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["optimization_start_time"] = (
@@ -224,7 +224,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["OptimizationStartTime"]
             )
         )
-    if "OptimizationEndTime" in data:
+    if data.get("OptimizationEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["optimization_end_time"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["OptimizationEndTime"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -240,7 +240,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -248,11 +248,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "OptimizationJobName" in data:
+    if data.get("OptimizationJobName") is not None:
         out["optimization_job_name"] = data["OptimizationJobName"]
-    if "ModelSource" in data:
+    if data.get("ModelSource") is not None:
         import capo_sagemaker.types.optimization_job_model_source
 
         out["model_source"] = (
@@ -260,7 +260,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["ModelSource"]
             )
         )
-    if "OptimizationEnvironment" in data:
+    if data.get("OptimizationEnvironment") is not None:
         import capo_sagemaker.types.optimization_job_environment_variables
 
         out["optimization_environment"] = (
@@ -268,7 +268,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["OptimizationEnvironment"]
             )
         )
-    if "DeploymentInstanceType" in data:
+    if data.get("DeploymentInstanceType") is not None:
         import capo_sagemaker.types.optimization_job_deployment_instance_type
 
         out["deployment_instance_type"] = (
@@ -276,9 +276,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["DeploymentInstanceType"]
             )
         )
-    if "MaxInstanceCount" in data:
+    if data.get("MaxInstanceCount") is not None:
         out["max_instance_count"] = data["MaxInstanceCount"]
-    if "OptimizationConfigs" in data:
+    if data.get("OptimizationConfigs") is not None:
         import capo_sagemaker.types.optimization_configs
 
         out["optimization_configs"] = (
@@ -286,7 +286,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["OptimizationConfigs"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.optimization_job_output_config
 
         out["output_config"] = (
@@ -294,7 +294,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["OutputConfig"]
             )
         )
-    if "OptimizationOutput" in data:
+    if data.get("OptimizationOutput") is not None:
         import capo_sagemaker.types.optimization_output
 
         out["optimization_output"] = (
@@ -302,9 +302,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["OptimizationOutput"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "StoppingCondition" in data:
+    if data.get("StoppingCondition") is not None:
         import capo_sagemaker.types.stopping_condition
 
         out["stopping_condition"] = (
@@ -312,7 +312,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeOptimizationJobResponse:
                 data["StoppingCondition"]
             )
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.optimization_vpc_config
 
         out["vpc_config"] = (

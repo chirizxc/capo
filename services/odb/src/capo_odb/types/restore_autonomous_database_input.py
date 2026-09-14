@@ -23,27 +23,25 @@ class RestoreAutonomousDatabaseInput(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: RestoreAutonomousDatabaseInput) -> dict:
     out: dict = {}
     out["autonomousDatabaseId"] = value["autonomous_database_id"]
-    import capo_odb.types._prelude.timestamp
+    import capo_odb._protocol.serialize
 
-    out["timestamp"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-        value["timestamp"]
-    )
+    out["timestamp"] = capo_odb._protocol.serialize.fmt_date_time(value["timestamp"])
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> RestoreAutonomousDatabaseInput:
     out: RestoreAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
     else:
         raise DeserializationError(
             "RestoreAutonomousDatabaseInput.autonomous_database_id required"
         )
-    if "timestamp" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timestamp") is not None:
+        import datetime
 
-        out["timestamp"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["timestamp"]
+        out["timestamp"] = datetime.datetime.fromisoformat(
+            data["timestamp"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("RestoreAutonomousDatabaseInput.timestamp required")

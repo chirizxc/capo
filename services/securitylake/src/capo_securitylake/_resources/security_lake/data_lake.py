@@ -106,14 +106,16 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_aws_log_source_request.CreateAwsLogSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["sources"] = sources
+        input_: capo_securitylake.types.create_aws_log_source_request.CreateAwsLogSourceRequest = {
+            "sources": sources
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_custom_log_source(
@@ -162,19 +164,21 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_custom_log_source_request.CreateCustomLogSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_name"] = source_name
+        input_: capo_securitylake.types.create_custom_log_source_request.CreateCustomLogSourceRequest = {
+            "source_name": source_name,
+            "configuration": configuration,
+        }
         if source_version is not None:
             input_["source_version"] = source_version
         if event_classes is not None:
             input_["event_classes"] = event_classes
-        input_["configuration"] = configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_lake(
@@ -217,9 +221,10 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_data_lake_request.CreateDataLakeRequest = {}  # type: ignore[typeddict-item]
-        input_["configurations"] = configurations
-        input_["meta_store_manager_role_arn"] = meta_store_manager_role_arn
+        input_: capo_securitylake.types.create_data_lake_request.CreateDataLakeRequest = {
+            "configurations": configurations,
+            "meta_store_manager_role_arn": meta_store_manager_role_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -228,6 +233,7 @@ class DataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_lake_organization_configuration(
@@ -268,7 +274,7 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_data_lake_organization_configuration_request.CreateDataLakeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.create_data_lake_organization_configuration_request.CreateDataLakeOrganizationConfigurationRequest = {}
         if auto_enable_new_account is not None:
             input_["auto_enable_new_account"] = auto_enable_new_account
 
@@ -277,6 +283,7 @@ class DataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_aws_log_source(
@@ -315,14 +322,16 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_aws_log_source_request.DeleteAwsLogSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["sources"] = sources
+        input_: capo_securitylake.types.delete_aws_log_source_request.DeleteAwsLogSourceRequest = {
+            "sources": sources
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_custom_log_source(
@@ -365,8 +374,9 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_custom_log_source_request.DeleteCustomLogSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_name"] = source_name
+        input_: capo_securitylake.types.delete_custom_log_source_request.DeleteCustomLogSourceRequest = {
+            "source_name": source_name
+        }
         if source_version is not None:
             input_["source_version"] = source_version
 
@@ -375,6 +385,7 @@ class DataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_data_lake(
@@ -413,14 +424,16 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_data_lake_request.DeleteDataLakeRequest = {}  # type: ignore[typeddict-item]
-        input_["regions"] = regions
+        input_: capo_securitylake.types.delete_data_lake_request.DeleteDataLakeRequest = {
+            "regions": regions
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_data_lake_organization_configuration(
@@ -461,7 +474,7 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_data_lake_organization_configuration_request.DeleteDataLakeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.delete_data_lake_organization_configuration_request.DeleteDataLakeOrganizationConfigurationRequest = {}
         if auto_enable_new_account is not None:
             input_["auto_enable_new_account"] = auto_enable_new_account
 
@@ -470,6 +483,7 @@ class DataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_lake_organization_configuration(
@@ -502,13 +516,14 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.get_data_lake_organization_configuration_request.GetDataLakeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.get_data_lake_organization_configuration_request.GetDataLakeOrganizationConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_lake_sources(
@@ -551,7 +566,7 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.get_data_lake_sources_request.GetDataLakeSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.get_data_lake_sources_request.GetDataLakeSourcesRequest = {}
         if accounts is not None:
             input_["accounts"] = accounts
         if max_results is not None:
@@ -564,6 +579,7 @@ class DataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_data_lakes(
@@ -602,7 +618,7 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.list_data_lakes_request.ListDataLakesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.list_data_lakes_request.ListDataLakesRequest = {}
         if regions is not None:
             input_["regions"] = regions
 
@@ -611,6 +627,7 @@ class DataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_log_sources(
@@ -659,7 +676,7 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.list_log_sources_request.ListLogSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.list_log_sources_request.ListLogSourcesRequest = {}
         if accounts is not None:
             input_["accounts"] = accounts
         if regions is not None:
@@ -676,6 +693,7 @@ class DataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_data_lake(
@@ -718,8 +736,9 @@ class DataLake:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.update_data_lake_request.UpdateDataLakeRequest = {}  # type: ignore[typeddict-item]
-        input_["configurations"] = configurations
+        input_: capo_securitylake.types.update_data_lake_request.UpdateDataLakeRequest = {
+            "configurations": configurations
+        }
         if meta_store_manager_role_arn is not None:
             input_["meta_store_manager_role_arn"] = meta_store_manager_role_arn
 
@@ -728,6 +747,7 @@ class DataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -772,14 +792,16 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_aws_log_source_request.CreateAwsLogSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["sources"] = sources
+        input_: capo_securitylake.types.create_aws_log_source_request.CreateAwsLogSourceRequest = {
+            "sources": sources
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_custom_log_source(
@@ -829,19 +851,21 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_custom_log_source_request.CreateCustomLogSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_name"] = source_name
+        input_: capo_securitylake.types.create_custom_log_source_request.CreateCustomLogSourceRequest = {
+            "source_name": source_name,
+            "configuration": configuration,
+        }
         if source_version is not None:
             input_["source_version"] = source_version
         if event_classes is not None:
             input_["event_classes"] = event_classes
-        input_["configuration"] = configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_lake(
@@ -885,9 +909,10 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_data_lake_request.CreateDataLakeRequest = {}  # type: ignore[typeddict-item]
-        input_["configurations"] = configurations
-        input_["meta_store_manager_role_arn"] = meta_store_manager_role_arn
+        input_: capo_securitylake.types.create_data_lake_request.CreateDataLakeRequest = {
+            "configurations": configurations,
+            "meta_store_manager_role_arn": meta_store_manager_role_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -896,6 +921,7 @@ class AsyncDataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_lake_organization_configuration(
@@ -937,7 +963,7 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_data_lake_organization_configuration_request.CreateDataLakeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.create_data_lake_organization_configuration_request.CreateDataLakeOrganizationConfigurationRequest = {}
         if auto_enable_new_account is not None:
             input_["auto_enable_new_account"] = auto_enable_new_account
 
@@ -946,6 +972,7 @@ class AsyncDataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_aws_log_source(
@@ -985,14 +1012,16 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_aws_log_source_request.DeleteAwsLogSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["sources"] = sources
+        input_: capo_securitylake.types.delete_aws_log_source_request.DeleteAwsLogSourceRequest = {
+            "sources": sources
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_custom_log_source(
@@ -1036,8 +1065,9 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_custom_log_source_request.DeleteCustomLogSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_name"] = source_name
+        input_: capo_securitylake.types.delete_custom_log_source_request.DeleteCustomLogSourceRequest = {
+            "source_name": source_name
+        }
         if source_version is not None:
             input_["source_version"] = source_version
 
@@ -1046,6 +1076,7 @@ class AsyncDataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_lake(
@@ -1085,14 +1116,16 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_data_lake_request.DeleteDataLakeRequest = {}  # type: ignore[typeddict-item]
-        input_["regions"] = regions
+        input_: capo_securitylake.types.delete_data_lake_request.DeleteDataLakeRequest = {
+            "regions": regions
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_lake_organization_configuration(
@@ -1134,7 +1167,7 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_data_lake_organization_configuration_request.DeleteDataLakeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.delete_data_lake_organization_configuration_request.DeleteDataLakeOrganizationConfigurationRequest = {}
         if auto_enable_new_account is not None:
             input_["auto_enable_new_account"] = auto_enable_new_account
 
@@ -1143,6 +1176,7 @@ class AsyncDataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_lake_organization_configuration(
@@ -1176,13 +1210,14 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.get_data_lake_organization_configuration_request.GetDataLakeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.get_data_lake_organization_configuration_request.GetDataLakeOrganizationConfigurationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_lake_sources(
@@ -1226,7 +1261,7 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.get_data_lake_sources_request.GetDataLakeSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.get_data_lake_sources_request.GetDataLakeSourcesRequest = {}
         if accounts is not None:
             input_["accounts"] = accounts
         if max_results is not None:
@@ -1239,6 +1274,7 @@ class AsyncDataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_data_lakes(
@@ -1278,7 +1314,7 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.list_data_lakes_request.ListDataLakesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.list_data_lakes_request.ListDataLakesRequest = {}
         if regions is not None:
             input_["regions"] = regions
 
@@ -1287,6 +1323,7 @@ class AsyncDataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_log_sources(
@@ -1336,7 +1373,7 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.list_log_sources_request.ListLogSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.list_log_sources_request.ListLogSourcesRequest = {}
         if accounts is not None:
             input_["accounts"] = accounts
         if regions is not None:
@@ -1353,6 +1390,7 @@ class AsyncDataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_data_lake(
@@ -1396,8 +1434,9 @@ class AsyncDataLake:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.update_data_lake_request.UpdateDataLakeRequest = {}  # type: ignore[typeddict-item]
-        input_["configurations"] = configurations
+        input_: capo_securitylake.types.update_data_lake_request.UpdateDataLakeRequest = {
+            "configurations": configurations
+        }
         if meta_store_manager_role_arn is not None:
             input_["meta_store_manager_role_arn"] = meta_store_manager_role_arn
 
@@ -1406,4 +1445,5 @@ class AsyncDataLake:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

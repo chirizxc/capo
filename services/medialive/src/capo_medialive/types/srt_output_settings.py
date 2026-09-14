@@ -65,9 +65,9 @@ def serialize_json(value: SrtOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> SrtOutputSettings:
     out: SrtOutputSettings = {}  # type: ignore[typeddict-item]
-    if "bufferMsec" in data:
+    if data.get("bufferMsec") is not None:
         out["buffer_msec"] = data["bufferMsec"]
-    if "containerSettings" in data:
+    if data.get("containerSettings") is not None:
         import capo_medialive.types.udp_container_settings
 
         out["container_settings"] = (
@@ -75,13 +75,13 @@ def deserialize_json(data: dict) -> SrtOutputSettings:
                 data["containerSettings"]
             )
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(
             data["destination"]
         )
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_medialive.types.srt_encryption_type
 
         out["encryption_type"] = (
@@ -89,6 +89,6 @@ def deserialize_json(data: dict) -> SrtOutputSettings:
                 data["encryptionType"]
             )
         )
-    if "latency" in data:
+    if data.get("latency") is not None:
         out["latency"] = data["latency"]
     return out

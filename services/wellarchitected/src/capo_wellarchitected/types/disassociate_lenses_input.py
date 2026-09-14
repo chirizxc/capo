@@ -28,7 +28,7 @@ def serialize_json(value: DisassociateLensesInput) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateLensesInput:
     out: DisassociateLensesInput = {}  # type: ignore[typeddict-item]
-    if "LensAliases" in data:
+    if data.get("LensAliases") is not None:
         import capo_wellarchitected.types.lens_aliases
 
         out["lens_aliases"] = capo_wellarchitected.types.lens_aliases.deserialize_json(

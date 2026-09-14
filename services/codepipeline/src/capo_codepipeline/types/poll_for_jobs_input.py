@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: PollForJobsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PollForJobsInput:
     out: PollForJobsInput = {}  # type: ignore[typeddict-item]
-    if "actionTypeId" in data:
+    if data.get("actionTypeId") is not None:
         import capo_codepipeline.types.action_type_id
 
         out["action_type_id"] = (
@@ -54,9 +54,9 @@ def deserialize_aws_json_1_1(data: dict) -> PollForJobsInput:
         )
     else:
         raise DeserializationError("PollForJobsInput.action_type_id required")
-    if "maxBatchSize" in data:
+    if data.get("maxBatchSize") is not None:
         out["max_batch_size"] = data["maxBatchSize"]
-    if "queryParam" in data:
+    if data.get("queryParam") is not None:
         import capo_codepipeline.types.query_param_map
 
         out["query_param"] = (

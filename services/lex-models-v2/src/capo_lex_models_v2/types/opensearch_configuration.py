@@ -58,19 +58,19 @@ def serialize_json(value: OpensearchConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OpensearchConfiguration:
     out: OpensearchConfiguration = {}  # type: ignore[typeddict-item]
-    if "domainEndpoint" in data:
+    if data.get("domainEndpoint") is not None:
         out["domain_endpoint"] = data["domainEndpoint"]
     else:
         raise DeserializationError("OpensearchConfiguration.domain_endpoint required")
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
     else:
         raise DeserializationError("OpensearchConfiguration.index_name required")
-    if "exactResponse" in data:
+    if data.get("exactResponse") is not None:
         out["exact_response"] = data["exactResponse"]
     else:
         out["exact_response"] = False
-    if "exactResponseFields" in data:
+    if data.get("exactResponseFields") is not None:
         import capo_lex_models_v2.types.exact_response_fields
 
         out["exact_response_fields"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> OpensearchConfiguration:
                 data["exactResponseFields"]
             )
         )
-    if "includeFields" in data:
+    if data.get("includeFields") is not None:
         import capo_lex_models_v2.types.os_include_fields
 
         out["include_fields"] = (

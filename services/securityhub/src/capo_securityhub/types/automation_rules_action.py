@@ -44,7 +44,7 @@ def serialize_json(value: AutomationRulesAction) -> dict:
 
 def deserialize_json(data: dict) -> AutomationRulesAction:
     out: AutomationRulesAction = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_securityhub.types.automation_rules_action_type
 
         out["type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AutomationRulesAction:
                 data["Type"]
             )
         )
-    if "FindingFieldsUpdate" in data:
+    if data.get("FindingFieldsUpdate") is not None:
         import capo_securityhub.types.automation_rules_finding_fields_update
 
         out["finding_fields_update"] = (

@@ -40,13 +40,13 @@ def serialize_json(value: AxisScale) -> dict:
 
 def deserialize_json(data: dict) -> AxisScale:
     out: AxisScale = {}  # type: ignore[typeddict-item]
-    if "Linear" in data:
+    if data.get("Linear") is not None:
         import capo_quicksight.types.axis_linear_scale
 
         out["linear"] = capo_quicksight.types.axis_linear_scale.deserialize_json(
             data["Linear"]
         )
-    if "Logarithmic" in data:
+    if data.get("Logarithmic") is not None:
         import capo_quicksight.types.axis_logarithmic_scale
 
         out["logarithmic"] = (

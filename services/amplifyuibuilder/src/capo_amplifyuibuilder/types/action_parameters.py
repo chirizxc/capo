@@ -102,45 +102,45 @@ def serialize_json(value: ActionParameters) -> dict:
 
 def deserialize_json(data: dict) -> ActionParameters:
     out: ActionParameters = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_amplifyuibuilder.types.component_property
 
         out["type"] = capo_amplifyuibuilder.types.component_property.deserialize_json(
             data["type"]
         )
-    if "url" in data:
+    if data.get("url") is not None:
         import capo_amplifyuibuilder.types.component_property
 
         out["url"] = capo_amplifyuibuilder.types.component_property.deserialize_json(
             data["url"]
         )
-    if "anchor" in data:
+    if data.get("anchor") is not None:
         import capo_amplifyuibuilder.types.component_property
 
         out["anchor"] = capo_amplifyuibuilder.types.component_property.deserialize_json(
             data["anchor"]
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_amplifyuibuilder.types.component_property
 
         out["target"] = capo_amplifyuibuilder.types.component_property.deserialize_json(
             data["target"]
         )
-    if "global" in data:
+    if data.get("global") is not None:
         import capo_amplifyuibuilder.types.component_property
 
         out["global"] = capo_amplifyuibuilder.types.component_property.deserialize_json(
             data["global"]
         )
-    if "model" in data:
+    if data.get("model") is not None:
         out["model"] = data["model"]
-    if "id" in data:
+    if data.get("id") is not None:
         import capo_amplifyuibuilder.types.component_property
 
         out["id"] = capo_amplifyuibuilder.types.component_property.deserialize_json(
             data["id"]
         )
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_amplifyuibuilder.types.component_properties
 
         out["fields"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> ActionParameters:
                 data["fields"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_amplifyuibuilder.types.mutation_action_set_state_parameter
 
         out["state"] = (

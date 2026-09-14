@@ -16,4 +16,4 @@ def serialize_json(value: ExperimentTemplateTargetFilterValues) -> list:
 
 
 def deserialize_json(data: list) -> ExperimentTemplateTargetFilterValues:
-    return list(data)
+    return [item for item in data if item is not None]

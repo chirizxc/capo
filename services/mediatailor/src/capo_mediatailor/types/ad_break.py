@@ -79,23 +79,23 @@ def serialize_json(value: AdBreak) -> dict:
 
 def deserialize_json(data: dict) -> AdBreak:
     out: AdBreak = {}  # type: ignore[typeddict-item]
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         import capo_mediatailor.types.message_type
 
         out["message_type"] = capo_mediatailor.types.message_type.deserialize_json(
             data["MessageType"]
         )
-    if "OffsetMillis" in data:
+    if data.get("OffsetMillis") is not None:
         out["offset_millis"] = data["OffsetMillis"]
     else:
         out["offset_millis"] = 0
-    if "Slate" in data:
+    if data.get("Slate") is not None:
         import capo_mediatailor.types.slate_source
 
         out["slate"] = capo_mediatailor.types.slate_source.deserialize_json(
             data["Slate"]
         )
-    if "SpliceInsertMessage" in data:
+    if data.get("SpliceInsertMessage") is not None:
         import capo_mediatailor.types.splice_insert_message
 
         out["splice_insert_message"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> AdBreak:
                 data["SpliceInsertMessage"]
             )
         )
-    if "TimeSignalMessage" in data:
+    if data.get("TimeSignalMessage") is not None:
         import capo_mediatailor.types.time_signal_message
 
         out["time_signal_message"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> AdBreak:
                 data["TimeSignalMessage"]
             )
         )
-    if "AdBreakMetadata" in data:
+    if data.get("AdBreakMetadata") is not None:
         import capo_mediatailor.types.ad_break_metadata_list
 
         out["ad_break_metadata"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteParameterGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteParameterGroupRequest:
     out: DeleteParameterGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
     else:
         raise DeserializationError(

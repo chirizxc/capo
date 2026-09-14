@@ -26,7 +26,7 @@ def serialize_json(value: SuggestedMessageDataDetails) -> dict:
 
 def deserialize_json(data: dict) -> SuggestedMessageDataDetails:
     out: SuggestedMessageDataDetails = {}  # type: ignore[typeddict-item]
-    if "messageText" in data:
+    if data.get("messageText") is not None:
         out["message_text"] = data["messageText"]
     else:
         raise DeserializationError("SuggestedMessageDataDetails.message_text required")

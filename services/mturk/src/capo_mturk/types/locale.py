@@ -28,10 +28,10 @@ def serialize_aws_json_1_1(value: Locale) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Locale:
     out: Locale = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
     else:
         raise DeserializationError("Locale.country required")
-    if "Subdivision" in data:
+    if data.get("Subdivision") is not None:
         out["subdivision"] = data["Subdivision"]
     return out

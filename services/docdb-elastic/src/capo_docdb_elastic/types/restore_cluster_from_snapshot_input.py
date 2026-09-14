@@ -65,13 +65,13 @@ def serialize_json(value: RestoreClusterFromSnapshotInput) -> dict:
 
 def deserialize_json(data: dict) -> RestoreClusterFromSnapshotInput:
     out: RestoreClusterFromSnapshotInput = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
     else:
         raise DeserializationError(
             "RestoreClusterFromSnapshotInput.cluster_name required"
         )
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_docdb_elastic.types.string_list
 
         out["vpc_security_group_ids"] = (
@@ -79,20 +79,20 @@ def deserialize_json(data: dict) -> RestoreClusterFromSnapshotInput:
                 data["vpcSecurityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_docdb_elastic.types.string_list
 
         out["subnet_ids"] = capo_docdb_elastic.types.string_list.deserialize_json(
             data["subnetIds"]
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_docdb_elastic.types.tag_map
 
         out["tags"] = capo_docdb_elastic.types.tag_map.deserialize_json(data["tags"])
-    if "shardCapacity" in data:
+    if data.get("shardCapacity") is not None:
         out["shard_capacity"] = data["shardCapacity"]
-    if "shardInstanceCount" in data:
+    if data.get("shardInstanceCount") is not None:
         out["shard_instance_count"] = data["shardInstanceCount"]
     return out

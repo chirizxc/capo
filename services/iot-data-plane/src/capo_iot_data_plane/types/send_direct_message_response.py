@@ -28,8 +28,8 @@ def serialize_json(value: SendDirectMessageResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendDirectMessageResponse:
     out: SendDirectMessageResponse = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "traceId" in data:
+    if data.get("traceId") is not None:
         out["trace_id"] = data["traceId"]
     return out

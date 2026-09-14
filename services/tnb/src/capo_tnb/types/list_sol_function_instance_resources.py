@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ListSolFunctionInstanceResources:
 
     out: ListSolFunctionInstanceResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_tnb.types.list_sol_function_instance_info.deserialize_json(item)
         )

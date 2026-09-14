@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: BatchGetApplicationRevisionsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetApplicationRevisionsOutput:
     out: BatchGetApplicationRevisionsOutput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "revisions" in data:
+    if data.get("revisions") is not None:
         import capo_codedeploy.types.revision_info_list
 
         out["revisions"] = (

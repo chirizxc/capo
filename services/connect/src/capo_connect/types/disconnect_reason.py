@@ -23,6 +23,6 @@ def serialize_json(value: DisconnectReason) -> dict:
 
 def deserialize_json(data: dict) -> DisconnectReason:
     out: DisconnectReason = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     return out

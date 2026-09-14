@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfRouterDestinationSettings:
 
     out: __listOfRouterDestinationSettings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.router_destination_settings.deserialize_json(item)
         )

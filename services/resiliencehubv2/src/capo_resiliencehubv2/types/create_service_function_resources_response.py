@@ -36,11 +36,11 @@ def serialize_json(value: CreateServiceFunctionResourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateServiceFunctionResourcesResponse:
     out: CreateServiceFunctionResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
-    if "serviceFunctionId" in data:
+    if data.get("serviceFunctionId") is not None:
         out["service_function_id"] = data["serviceFunctionId"]
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_resiliencehubv2.types.resource_list
 
         out["resources"] = capo_resiliencehubv2.types.resource_list.deserialize_json(

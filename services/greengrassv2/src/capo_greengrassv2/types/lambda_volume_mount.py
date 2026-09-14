@@ -47,15 +47,15 @@ def serialize_json(value: LambdaVolumeMount) -> dict:
 
 def deserialize_json(data: dict) -> LambdaVolumeMount:
     out: LambdaVolumeMount = {}  # type: ignore[typeddict-item]
-    if "sourcePath" in data:
+    if data.get("sourcePath") is not None:
         out["source_path"] = data["sourcePath"]
     else:
         raise DeserializationError("LambdaVolumeMount.source_path required")
-    if "destinationPath" in data:
+    if data.get("destinationPath") is not None:
         out["destination_path"] = data["destinationPath"]
     else:
         raise DeserializationError("LambdaVolumeMount.destination_path required")
-    if "permission" in data:
+    if data.get("permission") is not None:
         import capo_greengrassv2.types.lambda_filesystem_permission
 
         out["permission"] = (
@@ -63,6 +63,6 @@ def deserialize_json(data: dict) -> LambdaVolumeMount:
                 data["permission"]
             )
         )
-    if "addGroupOwner" in data:
+    if data.get("addGroupOwner") is not None:
         out["add_group_owner"] = data["addGroupOwner"]
     return out

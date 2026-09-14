@@ -49,9 +49,9 @@ def serialize_json(value: CoreNetworkSegment) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkSegment:
     out: CoreNetworkSegment = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "EdgeLocations" in data:
+    if data.get("EdgeLocations") is not None:
         import capo_networkmanager.types.external_region_code_list
 
         out["edge_locations"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> CoreNetworkSegment:
                 data["EdgeLocations"]
             )
         )
-    if "SharedSegments" in data:
+    if data.get("SharedSegments") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["shared_segments"] = (

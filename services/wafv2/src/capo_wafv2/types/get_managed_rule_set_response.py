@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: GetManagedRuleSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetManagedRuleSetResponse:
     out: GetManagedRuleSetResponse = {}  # type: ignore[typeddict-item]
-    if "ManagedRuleSet" in data:
+    if data.get("ManagedRuleSet") is not None:
         import capo_wafv2.types.managed_rule_set
 
         out["managed_rule_set"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetManagedRuleSetResponse:
                 data["ManagedRuleSet"]
             )
         )
-    if "LockToken" in data:
+    if data.get("LockToken") is not None:
         out["lock_token"] = data["LockToken"]
     return out

@@ -38,13 +38,13 @@ def serialize_json(value: HyperPodPropertiesOutput) -> dict:
 
 def deserialize_json(data: dict) -> HyperPodPropertiesOutput:
     out: HyperPodPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
     else:
         raise DeserializationError("HyperPodPropertiesOutput.cluster_name required")
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
-    if "orchestrator" in data:
+    if data.get("orchestrator") is not None:
         import capo_datazone.types.hyper_pod_orchestrator
 
         out["orchestrator"] = (

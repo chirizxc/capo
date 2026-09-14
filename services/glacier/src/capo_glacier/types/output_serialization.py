@@ -25,7 +25,7 @@ def serialize_json(value: OutputSerialization) -> dict:
 
 def deserialize_json(data: dict) -> OutputSerialization:
     out: OutputSerialization = {}  # type: ignore[typeddict-item]
-    if "csv" in data:
+    if data.get("csv") is not None:
         import capo_glacier.types.csv_output
 
         out["csv"] = capo_glacier.types.csv_output.deserialize_json(data["csv"])

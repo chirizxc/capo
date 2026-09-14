@@ -29,9 +29,9 @@ def serialize_json(value: ConnectionCredentials) -> dict:
     if "session_token" in value:
         out["sessionToken"] = value["session_token"]
     if "expiration" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["expiration"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["expiration"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["expiration"]
         )
     return out
@@ -39,16 +39,16 @@ def serialize_json(value: ConnectionCredentials) -> dict:
 
 def deserialize_json(data: dict) -> ConnectionCredentials:
     out: ConnectionCredentials = {}  # type: ignore[typeddict-item]
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
-    if "secretAccessKey" in data:
+    if data.get("secretAccessKey") is not None:
         out["secret_access_key"] = data["secretAccessKey"]
-    if "sessionToken" in data:
+    if data.get("sessionToken") is not None:
         out["session_token"] = data["sessionToken"]
-    if "expiration" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("expiration") is not None:
+        import datetime
 
-        out["expiration"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["expiration"]
+        out["expiration"] = datetime.datetime.fromisoformat(
+            data["expiration"].replace("Z", "+00:00")
         )
     return out

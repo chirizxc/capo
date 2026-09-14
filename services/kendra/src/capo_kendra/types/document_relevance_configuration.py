@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: DocumentRelevanceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentRelevanceConfiguration:
     out: DocumentRelevanceConfiguration = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DocumentRelevanceConfiguration.name required")
-    if "Relevance" in data:
+    if data.get("Relevance") is not None:
         import capo_kendra.types.relevance
 
         out["relevance"] = capo_kendra.types.relevance.deserialize_aws_json_1_1(

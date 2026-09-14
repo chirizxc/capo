@@ -37,7 +37,7 @@ def serialize_json(value: ListPlaybackRestrictionPoliciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPlaybackRestrictionPoliciesResponse:
     out: ListPlaybackRestrictionPoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "playbackRestrictionPolicies" in data:
+    if data.get("playbackRestrictionPolicies") is not None:
         import capo_ivs.types.playback_restriction_policy_list
 
         out["playback_restriction_policies"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListPlaybackRestrictionPoliciesResponse:
         raise DeserializationError(
             "ListPlaybackRestrictionPoliciesResponse.playback_restriction_policies required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

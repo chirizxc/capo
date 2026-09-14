@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_backup._auth._signers
 import capo_backup._auth._sigv4
+import capo_backup._protocol.eventstream
 import capo_backup.errors.invalid_parameter_value_exception
 import capo_backup.errors.service_unavailable_exception
 import capo_backup.types.list_scan_jobs_input
@@ -31,11 +32,11 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "InvalidParameterValueException":
             raise capo_backup.errors.invalid_parameter_value_exception.InvalidParameterValueException.from_json(
-                data
+                data, message
             )
         case "ServiceUnavailableException":
             raise capo_backup.errors.service_unavailable_exception.ServiceUnavailableException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -68,19 +69,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_backup._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_backup._auth._sigv4.build_sigv4_auth_scheme(
-                "backup", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_backup._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_backup._auth._sigv4.build_sigv4_auth_scheme(
+                "backup", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_backup._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -96,37 +104,81 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_backup._protocol.serialize
+    import capo_backup.types.malware_scanner
+    import capo_backup.types.scan_resource_type
+    import capo_backup.types.scan_result_status
+    import capo_backup.types.scan_state
+
     url = endpoint.url.rstrip("/") + "/scan/jobs"
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     if "by_account_id" in input_:
-        params["ByAccountId"] = str(input_["by_account_id"])
+        params.append(("ByAccountId", input_["by_account_id"]))
     if "by_backup_vault_name" in input_:
-        params["ByBackupVaultName"] = str(input_["by_backup_vault_name"])
+        params.append(("ByBackupVaultName", input_["by_backup_vault_name"]))
     if "by_complete_after" in input_:
-        params["ByCompleteAfter"] = str(input_["by_complete_after"])
+        params.append(
+            (
+                "ByCompleteAfter",
+                capo_backup._protocol.serialize.fmt_date_time(
+                    input_["by_complete_after"]
+                ),
+            )
+        )
     if "by_complete_before" in input_:
-        params["ByCompleteBefore"] = str(input_["by_complete_before"])
+        params.append(
+            (
+                "ByCompleteBefore",
+                capo_backup._protocol.serialize.fmt_date_time(
+                    input_["by_complete_before"]
+                ),
+            )
+        )
     if "by_malware_scanner" in input_:
-        params["ByMalwareScanner"] = str(input_["by_malware_scanner"])
+        params.append(
+            (
+                "ByMalwareScanner",
+                capo_backup.types.malware_scanner.serialize_json(
+                    input_["by_malware_scanner"]
+                ),
+            )
+        )
     if "by_recovery_point_arn" in input_:
-        params["ByRecoveryPointArn"] = str(input_["by_recovery_point_arn"])
+        params.append(("ByRecoveryPointArn", input_["by_recovery_point_arn"]))
     if "by_resource_arn" in input_:
-        params["ByResourceArn"] = str(input_["by_resource_arn"])
+        params.append(("ByResourceArn", input_["by_resource_arn"]))
     if "by_resource_type" in input_:
-        params["ByResourceType"] = str(input_["by_resource_type"])
+        params.append(
+            (
+                "ByResourceType",
+                capo_backup.types.scan_resource_type.serialize_json(
+                    input_["by_resource_type"]
+                ),
+            )
+        )
     if "by_scan_result_status" in input_:
-        params["ByScanResultStatus"] = str(input_["by_scan_result_status"])
+        params.append(
+            (
+                "ByScanResultStatus",
+                capo_backup.types.scan_result_status.serialize_json(
+                    input_["by_scan_result_status"]
+                ),
+            )
+        )
     if "by_state" in input_:
-        params["ByState"] = str(input_["by_state"])
+        params.append(
+            ("ByState", capo_backup.types.scan_state.serialize_json(input_["by_state"]))
+        )
     if "max_results" in input_:
-        params["MaxResults"] = str(input_["max_results"])
+        params.append(("MaxResults", str(input_["max_results"])))
     if "next_token" in input_:
-        params["NextToken"] = str(input_["next_token"])
+        params.append(("NextToken", input_["next_token"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "GET", headers=headers, body=body, context={"signer": signer}
     )
@@ -138,7 +190,7 @@ def list_scan_jobs(
 ) -> tuple[capo_backup.types.list_scan_jobs_output.ListScanJobsOutput, zapros.Response]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -153,7 +205,7 @@ async def async_list_scan_jobs(
 ) -> tuple[capo_backup.types.list_scan_jobs_output.ListScanJobsOutput, zapros.Response]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

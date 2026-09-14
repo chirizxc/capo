@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: AccountSetupInProgressException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountSetupInProgressException_:
     out: AccountSetupInProgressException_ = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "docs" in data:
+    if data.get("docs") is not None:
         out["docs"] = data["docs"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "tip" in data:
+    if data.get("tip") is not None:
         out["tip"] = data["tip"]
     return out
 
@@ -49,15 +49,20 @@ class AccountSetupInProgressException(ServiceError):
 
     code: str | None = "AccountSetupInProgressException"
 
-    def __init__(self, data: AccountSetupInProgressException_):
+    def __init__(
+        self, data: AccountSetupInProgressException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AccountSetupInProgressException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "AccountSetupInProgressException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "AccountSetupInProgressException":
+        return cls(deserialize_aws_json_1_1(data), message)

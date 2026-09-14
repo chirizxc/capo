@@ -72,15 +72,15 @@ def serialize_json(value: CreateSegmentDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSegmentDefinitionRequest:
     out: CreateSegmentDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError(
             "CreateSegmentDefinitionRequest.display_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SegmentGroups" in data:
+    if data.get("SegmentGroups") is not None:
         import capo_customer_profiles.types.segment_group
 
         out["segment_groups"] = (
@@ -88,9 +88,9 @@ def deserialize_json(data: dict) -> CreateSegmentDefinitionRequest:
                 data["SegmentGroups"]
             )
         )
-    if "SegmentSqlQuery" in data:
+    if data.get("SegmentSqlQuery") is not None:
         out["segment_sql_query"] = data["SegmentSqlQuery"]
-    if "SegmentSort" in data:
+    if data.get("SegmentSort") is not None:
         import capo_customer_profiles.types.segment_sort
 
         out["segment_sort"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> CreateSegmentDefinitionRequest:
                 data["SegmentSort"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

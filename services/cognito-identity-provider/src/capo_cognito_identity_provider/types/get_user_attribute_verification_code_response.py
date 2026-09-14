@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetUserAttributeVerificationCodeResponse) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> GetUserAttributeVerificationCodeResponse:
     out: GetUserAttributeVerificationCodeResponse = {}  # type: ignore[typeddict-item]
-    if "CodeDeliveryDetails" in data:
+    if data.get("CodeDeliveryDetails") is not None:
         import capo_cognito_identity_provider.types.code_delivery_details_type
 
         out["code_delivery_details"] = (

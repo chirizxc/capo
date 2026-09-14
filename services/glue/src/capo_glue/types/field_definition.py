@@ -31,11 +31,11 @@ def serialize_aws_json_1_1(value: FieldDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FieldDefinition:
     out: FieldDefinition = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("FieldDefinition.name required")
-    if "FieldDataType" in data:
+    if data.get("FieldDataType") is not None:
         import capo_glue.types.field_data_type
 
         out["field_data_type"] = (

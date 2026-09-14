@@ -53,13 +53,13 @@ def serialize_json(value: DescribeTopicRefreshScheduleResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTopicRefreshScheduleResponse:
     out: DescribeTopicRefreshScheduleResponse = {}  # type: ignore[typeddict-item]
-    if "TopicId" in data:
+    if data.get("TopicId") is not None:
         out["topic_id"] = data["TopicId"]
-    if "TopicArn" in data:
+    if data.get("TopicArn") is not None:
         out["topic_arn"] = data["TopicArn"]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "RefreshSchedule" in data:
+    if data.get("RefreshSchedule") is not None:
         import capo_quicksight.types.topic_refresh_schedule
 
         out["refresh_schedule"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> DescribeTopicRefreshScheduleResponse:
                 data["RefreshSchedule"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

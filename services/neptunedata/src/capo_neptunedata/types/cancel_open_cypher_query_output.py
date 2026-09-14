@@ -22,8 +22,8 @@ def serialize_json(value: CancelOpenCypherQueryOutput) -> dict:
 
 def deserialize_json(data: dict) -> CancelOpenCypherQueryOutput:
     out: CancelOpenCypherQueryOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "payload" in data:
+    if data.get("payload") is not None:
         out["payload"] = data["payload"]
     return out

@@ -31,13 +31,13 @@ def serialize_json(value: AttributePayload) -> dict:
 
 def deserialize_json(data: dict) -> AttributePayload:
     out: AttributePayload = {}  # type: ignore[typeddict-item]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iot.types.attributes
 
         out["attributes"] = capo_iot.types.attributes.deserialize_json(
             data["attributes"]
         )
-    if "merge" in data:
+    if data.get("merge") is not None:
         out["merge"] = data["merge"]
     else:
         out["merge"] = False

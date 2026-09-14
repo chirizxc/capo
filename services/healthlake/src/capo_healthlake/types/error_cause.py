@@ -34,9 +34,9 @@ def serialize_aws_json_1_0(value: ErrorCause) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ErrorCause:
     out: ErrorCause = {}  # type: ignore[typeddict-item]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ErrorCategory" in data:
+    if data.get("ErrorCategory") is not None:
         import capo_healthlake.types.error_category
 
         out["error_category"] = (

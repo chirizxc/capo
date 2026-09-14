@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ScheduledOperationDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduledOperationDetails:
     out: ScheduledOperationDetails = {}  # type: ignore[typeddict-item]
-    if "dayOfWeek" in data:
+    if data.get("dayOfWeek") is not None:
         import capo_odb.types.day_of_week
 
         out["day_of_week"] = capo_odb.types.day_of_week.deserialize_aws_json_1_0(
@@ -44,8 +44,8 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduledOperationDetails:
         )
     else:
         raise DeserializationError("ScheduledOperationDetails.day_of_week required")
-    if "scheduledStartTime" in data:
+    if data.get("scheduledStartTime") is not None:
         out["scheduled_start_time"] = data["scheduledStartTime"]
-    if "scheduledStopTime" in data:
+    if data.get("scheduledStopTime") is not None:
         out["scheduled_stop_time"] = data["scheduledStopTime"]
     return out

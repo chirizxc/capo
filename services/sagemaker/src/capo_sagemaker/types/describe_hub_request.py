@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DescribeHubRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHubRequest:
     out: DescribeHubRequest = {}  # type: ignore[typeddict-item]
-    if "HubName" in data:
+    if data.get("HubName") is not None:
         out["hub_name"] = data["HubName"]
     return out

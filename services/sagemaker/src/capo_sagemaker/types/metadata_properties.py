@@ -43,12 +43,12 @@ def serialize_aws_json_1_1(value: MetadataProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetadataProperties:
     out: MetadataProperties = {}  # type: ignore[typeddict-item]
-    if "CommitId" in data:
+    if data.get("CommitId") is not None:
         out["commit_id"] = data["CommitId"]
-    if "Repository" in data:
+    if data.get("Repository") is not None:
         out["repository"] = data["Repository"]
-    if "GeneratedBy" in data:
+    if data.get("GeneratedBy") is not None:
         out["generated_by"] = data["GeneratedBy"]
-    if "ProjectId" in data:
+    if data.get("ProjectId") is not None:
         out["project_id"] = data["ProjectId"]
     return out

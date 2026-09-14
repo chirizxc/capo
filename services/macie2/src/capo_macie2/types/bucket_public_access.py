@@ -44,7 +44,7 @@ def serialize_json(value: BucketPublicAccess) -> dict:
 
 def deserialize_json(data: dict) -> BucketPublicAccess:
     out: BucketPublicAccess = {}  # type: ignore[typeddict-item]
-    if "effectivePermission" in data:
+    if data.get("effectivePermission") is not None:
         import capo_macie2.types.effective_permission
 
         out["effective_permission"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BucketPublicAccess:
                 data["effectivePermission"]
             )
         )
-    if "permissionConfiguration" in data:
+    if data.get("permissionConfiguration") is not None:
         import capo_macie2.types.bucket_permission_configuration
 
         out["permission_configuration"] = (

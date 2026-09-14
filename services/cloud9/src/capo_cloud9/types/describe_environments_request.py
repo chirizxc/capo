@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DescribeEnvironmentsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEnvironmentsRequest:
     out: DescribeEnvironmentsRequest = {}  # type: ignore[typeddict-item]
-    if "environmentIds" in data:
+    if data.get("environmentIds") is not None:
         import capo_cloud9.types.bounded_environment_id_list
 
         out["environment_ids"] = (

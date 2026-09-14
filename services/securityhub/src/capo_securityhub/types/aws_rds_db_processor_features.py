@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsRdsDbProcessorFeatures:
 
     out: AwsRdsDbProcessorFeatures = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_rds_db_processor_feature.deserialize_json(item)
         )

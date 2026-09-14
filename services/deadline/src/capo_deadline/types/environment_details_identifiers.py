@@ -28,11 +28,11 @@ def serialize_json(value: EnvironmentDetailsIdentifiers) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentDetailsIdentifiers:
     out: EnvironmentDetailsIdentifiers = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("EnvironmentDetailsIdentifiers.job_id required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError(

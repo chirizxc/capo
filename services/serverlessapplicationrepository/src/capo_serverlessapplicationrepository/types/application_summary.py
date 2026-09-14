@@ -70,17 +70,17 @@ def serialize_json(value: ApplicationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationSummary:
     out: ApplicationSummary = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "author" in data:
+    if data.get("author") is not None:
         out["author"] = data["author"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         out["creation_time"] = data["creationTime"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "homePageUrl" in data:
+    if data.get("homePageUrl") is not None:
         out["home_page_url"] = data["homePageUrl"]
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["labels"] = (
@@ -88,8 +88,8 @@ def deserialize_json(data: dict) -> ApplicationSummary:
                 data["labels"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "spdxLicenseId" in data:
+    if data.get("spdxLicenseId") is not None:
         out["spdx_license_id"] = data["spdxLicenseId"]
     return out

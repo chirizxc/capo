@@ -82,9 +82,9 @@ def serialize_json(value: MultiplexSummary) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexSummary:
     out: MultiplexSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "availabilityZones" in data:
+    if data.get("availabilityZones") is not None:
         import capo_medialive.types.__list_of__string
 
         out["availability_zones"] = (
@@ -92,9 +92,9 @@ def deserialize_json(data: dict) -> MultiplexSummary:
                 data["availabilityZones"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "multiplexSettings" in data:
+    if data.get("multiplexSettings") is not None:
         import capo_medialive.types.multiplex_settings_summary
 
         out["multiplex_settings"] = (
@@ -102,19 +102,19 @@ def deserialize_json(data: dict) -> MultiplexSummary:
                 data["multiplexSettings"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "pipelinesRunningCount" in data:
+    if data.get("pipelinesRunningCount") is not None:
         out["pipelines_running_count"] = data["pipelinesRunningCount"]
-    if "programCount" in data:
+    if data.get("programCount") is not None:
         out["program_count"] = data["programCount"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.multiplex_state
 
         out["state"] = capo_medialive.types.multiplex_state.deserialize_json(
             data["state"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])

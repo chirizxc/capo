@@ -27,9 +27,9 @@ def serialize_aws_json_1_0(value: ActivityTaskStartedEventAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActivityTaskStartedEventAttributes:
     out: ActivityTaskStartedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "identity" in data:
+    if data.get("identity") is not None:
         out["identity"] = data["identity"]
-    if "scheduledEventId" in data:
+    if data.get("scheduledEventId") is not None:
         out["scheduled_event_id"] = data["scheduledEventId"]
     else:
         out["scheduled_event_id"] = 0

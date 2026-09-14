@@ -70,11 +70,11 @@ def serialize_json(value: ListPermissionAssociationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListPermissionAssociationsRequest:
     out: ListPermissionAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "permissionArn" in data:
+    if data.get("permissionArn") is not None:
         out["permission_arn"] = data["permissionArn"]
-    if "permissionVersion" in data:
+    if data.get("permissionVersion") is not None:
         out["permission_version"] = data["permissionVersion"]
-    if "associationStatus" in data:
+    if data.get("associationStatus") is not None:
         import capo_ram.types.resource_share_association_status
 
         out["association_status"] = (
@@ -82,18 +82,18 @@ def deserialize_json(data: dict) -> ListPermissionAssociationsRequest:
                 data["associationStatus"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "featureSet" in data:
+    if data.get("featureSet") is not None:
         import capo_ram.types.permission_feature_set
 
         out["feature_set"] = capo_ram.types.permission_feature_set.deserialize_json(
             data["featureSet"]
         )
-    if "defaultVersion" in data:
+    if data.get("defaultVersion") is not None:
         out["default_version"] = data["defaultVersion"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

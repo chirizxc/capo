@@ -37,10 +37,10 @@ def serialize_aws_json_1_0(value: SupportTerm) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SupportTerm:
     out: SupportTerm = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "refundPolicy" in data:
+    if data.get("refundPolicy") is not None:
         out["refund_policy"] = data["refundPolicy"]
     return out

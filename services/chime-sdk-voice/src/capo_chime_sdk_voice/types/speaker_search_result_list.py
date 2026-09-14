@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SpeakerSearchResultList:
 
     out: SpeakerSearchResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_voice.types.speaker_search_result.deserialize_json(item)
         )

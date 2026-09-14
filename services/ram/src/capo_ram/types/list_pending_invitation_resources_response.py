@@ -32,12 +32,12 @@ def serialize_json(value: ListPendingInvitationResourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPendingInvitationResourcesResponse:
     out: ListPendingInvitationResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_ram.types.resource_list
 
         out["resources"] = capo_ram.types.resource_list.deserialize_json(
             data["resources"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

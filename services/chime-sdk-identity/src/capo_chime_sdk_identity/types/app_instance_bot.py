@@ -71,11 +71,11 @@ def serialize_json(value: AppInstanceBot) -> dict:
 
 def deserialize_json(data: dict) -> AppInstanceBot:
     out: AppInstanceBot = {}  # type: ignore[typeddict-item]
-    if "AppInstanceBotArn" in data:
+    if data.get("AppInstanceBotArn") is not None:
         out["app_instance_bot_arn"] = data["AppInstanceBotArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_chime_sdk_identity.types.configuration
 
         out["configuration"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> AppInstanceBot:
                 data["Configuration"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_identity.types.timestamp
 
         out["created_timestamp"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> AppInstanceBot:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_chime_sdk_identity.types.timestamp
 
         out["last_updated_timestamp"] = (
@@ -99,6 +99,6 @@ def deserialize_json(data: dict) -> AppInstanceBot:
                 data["LastUpdatedTimestamp"]
             )
         )
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
     return out

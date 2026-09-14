@@ -37,11 +37,11 @@ def serialize_json(value: EventSubscription) -> dict:
 
 def deserialize_json(data: dict) -> EventSubscription:
     out: EventSubscription = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("EventSubscription.name required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_resiliencehub.types.event_type
 
         out["event_type"] = capo_resiliencehub.types.event_type.deserialize_json(
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> EventSubscription:
         )
     else:
         raise DeserializationError("EventSubscription.event_type required")
-    if "snsTopicArn" in data:
+    if data.get("snsTopicArn") is not None:
         out["sns_topic_arn"] = data["snsTopicArn"]
     return out

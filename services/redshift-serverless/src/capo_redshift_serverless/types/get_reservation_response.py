@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: GetReservationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetReservationResponse:
     out: GetReservationResponse = {}  # type: ignore[typeddict-item]
-    if "reservation" in data:
+    if data.get("reservation") is not None:
         import capo_redshift_serverless.types.reservation
 
         out["reservation"] = (

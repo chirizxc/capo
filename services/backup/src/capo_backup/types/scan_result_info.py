@@ -28,7 +28,7 @@ def serialize_json(value: ScanResultInfo) -> dict:
 
 def deserialize_json(data: dict) -> ScanResultInfo:
     out: ScanResultInfo = {}  # type: ignore[typeddict-item]
-    if "ScanResultStatus" in data:
+    if data.get("ScanResultStatus") is not None:
         import capo_backup.types.scan_result_status
 
         out["scan_result_status"] = (

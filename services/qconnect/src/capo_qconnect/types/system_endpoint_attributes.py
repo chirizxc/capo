@@ -25,6 +25,6 @@ def serialize_json(value: SystemEndpointAttributes) -> dict:
 
 def deserialize_json(data: dict) -> SystemEndpointAttributes:
     out: SystemEndpointAttributes = {}  # type: ignore[typeddict-item]
-    if "address" in data:
+    if data.get("address") is not None:
         out["address"] = data["address"]
     return out

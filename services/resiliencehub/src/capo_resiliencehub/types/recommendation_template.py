@@ -121,7 +121,7 @@ def serialize_json(value: RecommendationTemplate) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationTemplate:
     out: RecommendationTemplate = {}  # type: ignore[typeddict-item]
-    if "templatesLocation" in data:
+    if data.get("templatesLocation") is not None:
         import capo_resiliencehub.types.s3_location
 
         out["templates_location"] = (
@@ -129,13 +129,13 @@ def deserialize_json(data: dict) -> RecommendationTemplate:
                 data["templatesLocation"]
             )
         )
-    if "assessmentArn" in data:
+    if data.get("assessmentArn") is not None:
         out["assessment_arn"] = data["assessmentArn"]
     else:
         raise DeserializationError("RecommendationTemplate.assessment_arn required")
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
-    if "recommendationIds" in data:
+    if data.get("recommendationIds") is not None:
         import capo_resiliencehub.types.recommendation_id_list
 
         out["recommendation_ids"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> RecommendationTemplate:
                 data["recommendationIds"]
             )
         )
-    if "recommendationTypes" in data:
+    if data.get("recommendationTypes") is not None:
         import capo_resiliencehub.types.render_recommendation_type_list
 
         out["recommendation_types"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> RecommendationTemplate:
         raise DeserializationError(
             "RecommendationTemplate.recommendation_types required"
         )
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_resiliencehub.types.template_format
 
         out["format"] = capo_resiliencehub.types.template_format.deserialize_json(
@@ -163,15 +163,15 @@ def deserialize_json(data: dict) -> RecommendationTemplate:
         )
     else:
         raise DeserializationError("RecommendationTemplate.format required")
-    if "recommendationTemplateArn" in data:
+    if data.get("recommendationTemplateArn") is not None:
         out["recommendation_template_arn"] = data["recommendationTemplateArn"]
     else:
         raise DeserializationError(
             "RecommendationTemplate.recommendation_template_arn required"
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehub.types.recommendation_template_status
 
         out["status"] = (
@@ -181,26 +181,26 @@ def deserialize_json(data: dict) -> RecommendationTemplate:
         )
     else:
         raise DeserializationError("RecommendationTemplate.status required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RecommendationTemplate.name required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_resiliencehub.types.time_stamp
 
         out["start_time"] = capo_resiliencehub.types.time_stamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_resiliencehub.types.time_stamp
 
         out["end_time"] = capo_resiliencehub.types.time_stamp.deserialize_json(
             data["endTime"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehub.types.tag_map
 
         out["tags"] = capo_resiliencehub.types.tag_map.deserialize_json(data["tags"])
-    if "needsReplacements" in data:
+    if data.get("needsReplacements") is not None:
         out["needs_replacements"] = data["needsReplacements"]
     return out

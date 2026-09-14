@@ -13,9 +13,9 @@ from capo_migration_hub import AsyncMigrationHubClient
 
 
 async def main():
-    async with AsyncMigrationHubClient() as s3:
+    async with AsyncMigrationHubClient() as migration_hub:
         # Example: call the associate_created_artifact operation
-        response = await s3.associate_created_artifact()
+        response = await migration_hub.associate_created_artifact()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_migration_hub import AsyncMigrationHubClient
 
 
 async def main():
-    async with AsyncMigrationHubClient() as s3:
+    async with AsyncMigrationHubClient() as migration_hub:
         # Example: paginate over list_application_states
-        async for item in s3.iter_list_application_states():
+        async for item in migration_hub.iter_list_application_states():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_migration_hub.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncMigrationHubClient() as s3:
+    async with AsyncMigrationHubClient() as migration_hub:
         try:
-            await s3.associate_created_artifact()
+            await migration_hub.associate_created_artifact()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_migration_hub import AsyncMigrationHubClient
 
 
 async def main():
-    async with AsyncMigrationHubClient() as s3:
+    async with AsyncMigrationHubClient() as migration_hub:
         # Default: 3 attempts for every operation
-        response = await s3.associate_created_artifact()
+        response = await migration_hub.associate_created_artifact()
 
         # Override per operation
-        response = await s3.associate_created_artifact(config_overrides={"retry_max_attempts": 5})
+        response = await migration_hub.associate_created_artifact(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_created_artifact(config_overrides={"retry_max_attempts": 1})
+        response = await migration_hub.associate_created_artifact(config_overrides={"retry_max_attempts": 1})
 ```

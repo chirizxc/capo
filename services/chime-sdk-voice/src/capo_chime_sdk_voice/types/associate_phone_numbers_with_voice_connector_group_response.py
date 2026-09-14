@@ -33,7 +33,7 @@ def deserialize_json(
     data: dict,
 ) -> AssociatePhoneNumbersWithVoiceConnectorGroupResponse:
     out: AssociatePhoneNumbersWithVoiceConnectorGroupResponse = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberErrors" in data:
+    if data.get("PhoneNumberErrors") is not None:
         import capo_chime_sdk_voice.types.phone_number_error_list
 
         out["phone_number_errors"] = (

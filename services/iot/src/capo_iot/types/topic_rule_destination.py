@@ -83,29 +83,29 @@ def serialize_json(value: TopicRuleDestination) -> dict:
 
 def deserialize_json(data: dict) -> TopicRuleDestination:
     out: TopicRuleDestination = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.topic_rule_destination_status
 
         out["status"] = capo_iot.types.topic_rule_destination_status.deserialize_json(
             data["status"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iot.types.created_at_date
 
         out["created_at"] = capo_iot.types.created_at_date.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iot.types.last_updated_at_date
 
         out["last_updated_at"] = capo_iot.types.last_updated_at_date.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "httpUrlProperties" in data:
+    if data.get("httpUrlProperties") is not None:
         import capo_iot.types.http_url_destination_properties
 
         out["http_url_properties"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> TopicRuleDestination:
                 data["httpUrlProperties"]
             )
         )
-    if "vpcProperties" in data:
+    if data.get("vpcProperties") is not None:
         import capo_iot.types.vpc_destination_properties
 
         out["vpc_properties"] = (

@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: DescribeJobResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeJobResult:
     out: DescribeJobResult = {}  # type: ignore[typeddict-item]
-    if "JobMetadata" in data:
+    if data.get("JobMetadata") is not None:
         import capo_snowball.types.job_metadata
 
         out["job_metadata"] = capo_snowball.types.job_metadata.deserialize_aws_json_1_1(
             data["JobMetadata"]
         )
-    if "SubJobMetadata" in data:
+    if data.get("SubJobMetadata") is not None:
         import capo_snowball.types.job_metadata_list
 
         out["sub_job_metadata"] = (

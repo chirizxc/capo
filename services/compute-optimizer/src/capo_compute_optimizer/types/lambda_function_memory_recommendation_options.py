@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> LambdaFunctionMemoryRecommendationOp
 
     out: LambdaFunctionMemoryRecommendationOptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer.types.lambda_function_memory_recommendation_option.deserialize_aws_json_1_0(
                 item

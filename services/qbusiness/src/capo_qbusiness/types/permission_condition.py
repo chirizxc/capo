@@ -50,7 +50,7 @@ def serialize_json(value: PermissionCondition) -> dict:
 
 def deserialize_json(data: dict) -> PermissionCondition:
     out: PermissionCondition = {}  # type: ignore[typeddict-item]
-    if "conditionOperator" in data:
+    if data.get("conditionOperator") is not None:
         import capo_qbusiness.types.permission_condition_operator
 
         out["condition_operator"] = (
@@ -60,11 +60,11 @@ def deserialize_json(data: dict) -> PermissionCondition:
         )
     else:
         raise DeserializationError("PermissionCondition.condition_operator required")
-    if "conditionKey" in data:
+    if data.get("conditionKey") is not None:
         out["condition_key"] = data["conditionKey"]
     else:
         raise DeserializationError("PermissionCondition.condition_key required")
-    if "conditionValues" in data:
+    if data.get("conditionValues") is not None:
         import capo_qbusiness.types.permission_condition_values
 
         out["condition_values"] = (

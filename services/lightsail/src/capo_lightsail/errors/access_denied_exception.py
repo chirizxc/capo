@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: AccessDeniedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessDeniedException_:
     out: AccessDeniedException_ = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "docs" in data:
+    if data.get("docs") is not None:
         out["docs"] = data["docs"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "tip" in data:
+    if data.get("tip") is not None:
         out["tip"] = data["tip"]
     return out
 
@@ -49,15 +49,18 @@ class AccessDeniedException(ServiceError):
 
     code: str | None = "AccessDeniedException"
 
-    def __init__(self, data: AccessDeniedException_):
+    def __init__(self, data: AccessDeniedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AccessDeniedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "AccessDeniedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "AccessDeniedException":
+        return cls(deserialize_aws_json_1_1(data), message)

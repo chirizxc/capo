@@ -52,11 +52,11 @@ def serialize_aws_json_1_1(value: MetricInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricInfo:
     out: MetricInfo = {}  # type: ignore[typeddict-item]
-    if "MetricNamespace" in data:
+    if data.get("MetricNamespace") is not None:
         out["metric_namespace"] = data["MetricNamespace"]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "MetricDimensions" in data:
+    if data.get("MetricDimensions") is not None:
         import capo_service_quotas.types.metric_dimensions_map_definition
 
         out["metric_dimensions"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_1(data: dict) -> MetricInfo:
                 data["MetricDimensions"]
             )
         )
-    if "MetricStatisticRecommendation" in data:
+    if data.get("MetricStatisticRecommendation") is not None:
         out["metric_statistic_recommendation"] = data["MetricStatisticRecommendation"]
     return out

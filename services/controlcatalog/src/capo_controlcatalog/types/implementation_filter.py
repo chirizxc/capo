@@ -44,7 +44,7 @@ def serialize_json(value: ImplementationFilter) -> dict:
 
 def deserialize_json(data: dict) -> ImplementationFilter:
     out: ImplementationFilter = {}  # type: ignore[typeddict-item]
-    if "Types" in data:
+    if data.get("Types") is not None:
         import capo_controlcatalog.types.implementation_type_filter_list
 
         out["types"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ImplementationFilter:
                 data["Types"]
             )
         )
-    if "Identifiers" in data:
+    if data.get("Identifiers") is not None:
         import capo_controlcatalog.types.implementation_identifier_filter_list
 
         out["identifiers"] = (

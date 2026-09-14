@@ -95,11 +95,11 @@ def serialize_json(value: CmafEncryptionSettings) -> dict:
 
 def deserialize_json(data: dict) -> CmafEncryptionSettings:
     out: CmafEncryptionSettings = {}  # type: ignore[typeddict-item]
-    if "clearLeadSegments" in data:
+    if data.get("clearLeadSegments") is not None:
         out["clear_lead_segments"] = data["clearLeadSegments"]
-    if "constantInitializationVector" in data:
+    if data.get("constantInitializationVector") is not None:
         out["constant_initialization_vector"] = data["constantInitializationVector"]
-    if "encryptionMethod" in data:
+    if data.get("encryptionMethod") is not None:
         import capo_mediaconvert.types.cmaf_encryption_type
 
         out["encryption_method"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> CmafEncryptionSettings:
                 data["encryptionMethod"]
             )
         )
-    if "initializationVectorInManifest" in data:
+    if data.get("initializationVectorInManifest") is not None:
         import capo_mediaconvert.types.cmaf_initialization_vector_in_manifest
 
         out["initialization_vector_in_manifest"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> CmafEncryptionSettings:
                 data["initializationVectorInManifest"]
             )
         )
-    if "spekeKeyProvider" in data:
+    if data.get("spekeKeyProvider") is not None:
         import capo_mediaconvert.types.speke_key_provider_cmaf
 
         out["speke_key_provider"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> CmafEncryptionSettings:
                 data["spekeKeyProvider"]
             )
         )
-    if "staticKeyProvider" in data:
+    if data.get("staticKeyProvider") is not None:
         import capo_mediaconvert.types.static_key_provider
 
         out["static_key_provider"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> CmafEncryptionSettings:
                 data["staticKeyProvider"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_mediaconvert.types.cmaf_key_provider_type
 
         out["type"] = capo_mediaconvert.types.cmaf_key_provider_type.deserialize_json(

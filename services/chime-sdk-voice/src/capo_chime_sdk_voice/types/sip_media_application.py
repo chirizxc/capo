@@ -81,13 +81,13 @@ def serialize_json(value: SipMediaApplication) -> dict:
 
 def deserialize_json(data: dict) -> SipMediaApplication:
     out: SipMediaApplication = {}  # type: ignore[typeddict-item]
-    if "SipMediaApplicationId" in data:
+    if data.get("SipMediaApplicationId") is not None:
         out["sip_media_application_id"] = data["SipMediaApplicationId"]
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_chime_sdk_voice.types.sip_media_application_endpoint_list
 
         out["endpoints"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> SipMediaApplication:
                 data["Endpoints"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> SipMediaApplication:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["updated_timestamp"] = (
@@ -111,6 +111,6 @@ def deserialize_json(data: dict) -> SipMediaApplication:
                 data["UpdatedTimestamp"]
             )
         )
-    if "SipMediaApplicationArn" in data:
+    if data.get("SipMediaApplicationArn") is not None:
         out["sip_media_application_arn"] = data["SipMediaApplicationArn"]
     return out

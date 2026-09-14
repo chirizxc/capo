@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DocumentsMetadataConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentsMetadataConfiguration:
     out: DocumentsMetadataConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3Prefix" in data:
+    if data.get("S3Prefix") is not None:
         out["s3_prefix"] = data["S3Prefix"]
     return out

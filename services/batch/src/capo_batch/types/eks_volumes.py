@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> EksVolumes:
 
     out: EksVolumes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.eks_volume.deserialize_json(item))
     return out

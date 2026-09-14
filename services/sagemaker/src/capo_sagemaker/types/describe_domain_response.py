@@ -225,27 +225,27 @@ def serialize_aws_json_1_1(value: DescribeDomainResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDomainResponse:
     out: DescribeDomainResponse = {}  # type: ignore[typeddict-item]
-    if "DomainArn" in data:
+    if data.get("DomainArn") is not None:
         out["domain_arn"] = data["DomainArn"]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "HomeEfsFileSystemId" in data:
+    if data.get("HomeEfsFileSystemId") is not None:
         out["home_efs_file_system_id"] = data["HomeEfsFileSystemId"]
-    if "SingleSignOnManagedApplicationInstanceId" in data:
+    if data.get("SingleSignOnManagedApplicationInstanceId") is not None:
         out["single_sign_on_managed_application_instance_id"] = data[
             "SingleSignOnManagedApplicationInstanceId"
         ]
-    if "SingleSignOnApplicationArn" in data:
+    if data.get("SingleSignOnApplicationArn") is not None:
         out["single_sign_on_application_arn"] = data["SingleSignOnApplicationArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.domain_status
 
         out["status"] = capo_sagemaker.types.domain_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -253,7 +253,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDomainResponse:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -261,19 +261,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDomainResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "SecurityGroupIdForDomainBoundary" in data:
+    if data.get("SecurityGroupIdForDomainBoundary") is not None:
         out["security_group_id_for_domain_boundary"] = data[
             "SecurityGroupIdForDomainBoundary"
         ]
-    if "AuthMode" in data:
+    if data.get("AuthMode") is not None:
         import capo_sagemaker.types.auth_mode
 
         out["auth_mode"] = capo_sagemaker.types.auth_mode.deserialize_aws_json_1_1(
             data["AuthMode"]
         )
-    if "DefaultUserSettings" in data:
+    if data.get("DefaultUserSettings") is not None:
         import capo_sagemaker.types.user_settings
 
         out["default_user_settings"] = (
@@ -281,7 +281,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDomainResponse:
                 data["DefaultUserSettings"]
             )
         )
-    if "DomainSettings" in data:
+    if data.get("DomainSettings") is not None:
         import capo_sagemaker.types.domain_settings
 
         out["domain_settings"] = (
@@ -289,7 +289,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDomainResponse:
                 data["DomainSettings"]
             )
         )
-    if "AppNetworkAccessType" in data:
+    if data.get("AppNetworkAccessType") is not None:
         import capo_sagemaker.types.app_network_access_type
 
         out["app_network_access_type"] = (
@@ -297,21 +297,21 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDomainResponse:
                 data["AppNetworkAccessType"]
             )
         )
-    if "HomeEfsFileSystemKmsKeyId" in data:
+    if data.get("HomeEfsFileSystemKmsKeyId") is not None:
         out["home_efs_file_system_kms_key_id"] = data["HomeEfsFileSystemKmsKeyId"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_sagemaker.types.subnets
 
         out["subnet_ids"] = capo_sagemaker.types.subnets.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "AppSecurityGroupManagement" in data:
+    if data.get("AppSecurityGroupManagement") is not None:
         import capo_sagemaker.types.app_security_group_management
 
         out["app_security_group_management"] = (
@@ -319,7 +319,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDomainResponse:
                 data["AppSecurityGroupManagement"]
             )
         )
-    if "HomeEfsFileSystemCreation" in data:
+    if data.get("HomeEfsFileSystemCreation") is not None:
         import capo_sagemaker.types.home_efs_file_system_creation
 
         out["home_efs_file_system_creation"] = (
@@ -327,7 +327,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDomainResponse:
                 data["HomeEfsFileSystemCreation"]
             )
         )
-    if "TagPropagation" in data:
+    if data.get("TagPropagation") is not None:
         import capo_sagemaker.types.tag_propagation
 
         out["tag_propagation"] = (
@@ -335,7 +335,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDomainResponse:
                 data["TagPropagation"]
             )
         )
-    if "DefaultSpaceSettings" in data:
+    if data.get("DefaultSpaceSettings") is not None:
         import capo_sagemaker.types.default_space_settings
 
         out["default_space_settings"] = (

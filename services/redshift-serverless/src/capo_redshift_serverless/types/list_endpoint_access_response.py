@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: ListEndpointAccessResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEndpointAccessResponse:
     out: ListEndpointAccessResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_redshift_serverless.types.endpoint_access_list
 
         out["endpoints"] = (

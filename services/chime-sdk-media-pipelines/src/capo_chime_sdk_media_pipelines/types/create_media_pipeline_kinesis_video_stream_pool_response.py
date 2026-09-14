@@ -31,7 +31,7 @@ def serialize_json(value: CreateMediaPipelineKinesisVideoStreamPoolResponse) -> 
 
 def deserialize_json(data: dict) -> CreateMediaPipelineKinesisVideoStreamPoolResponse:
     out: CreateMediaPipelineKinesisVideoStreamPoolResponse = {}  # type: ignore[typeddict-item]
-    if "KinesisVideoStreamPoolConfiguration" in data:
+    if data.get("KinesisVideoStreamPoolConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_pool_configuration
 
         out["kinesis_video_stream_pool_configuration"] = (

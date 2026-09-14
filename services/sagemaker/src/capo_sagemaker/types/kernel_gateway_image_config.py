@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: KernelGatewayImageConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KernelGatewayImageConfig:
     out: KernelGatewayImageConfig = {}  # type: ignore[typeddict-item]
-    if "KernelSpecs" in data:
+    if data.get("KernelSpecs") is not None:
         import capo_sagemaker.types.kernel_specs
 
         out["kernel_specs"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> KernelGatewayImageConfig:
                 data["KernelSpecs"]
             )
         )
-    if "FileSystemConfig" in data:
+    if data.get("FileSystemConfig") is not None:
         import capo_sagemaker.types.file_system_config
 
         out["file_system_config"] = (

@@ -22,8 +22,8 @@ def serialize_aws_json_1_0(value: KeyspacesMetadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KeyspacesMetadata:
     out: KeyspacesMetadata = {}  # type: ignore[typeddict-item]
-    if "expirationTime" in data:
+    if data.get("expirationTime") is not None:
         out["expiration_time"] = data["expirationTime"]
-    if "writeTime" in data:
+    if data.get("writeTime") is not None:
         out["write_time"] = data["writeTime"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ServiceNetworkList:
 
     out: ServiceNetworkList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_vpc_lattice.types.service_network_summary.deserialize_json(item)
         )

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListSchemaExtensionsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSchemaExtensionsResult:
     out: ListSchemaExtensionsResult = {}  # type: ignore[typeddict-item]
-    if "SchemaExtensionsInfo" in data:
+    if data.get("SchemaExtensionsInfo") is not None:
         import capo_directory_service.types.schema_extensions_info
 
         out["schema_extensions_info"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListSchemaExtensionsResult:
                 data["SchemaExtensionsInfo"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

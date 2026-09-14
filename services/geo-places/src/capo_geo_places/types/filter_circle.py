@@ -30,13 +30,13 @@ def serialize_json(value: FilterCircle) -> dict:
 
 def deserialize_json(data: dict) -> FilterCircle:
     out: FilterCircle = {}  # type: ignore[typeddict-item]
-    if "Center" in data:
+    if data.get("Center") is not None:
         import capo_geo_places.types.position
 
         out["center"] = capo_geo_places.types.position.deserialize_json(data["Center"])
     else:
         raise DeserializationError("FilterCircle.center required")
-    if "Radius" in data:
+    if data.get("Radius") is not None:
         out["radius"] = data["Radius"]
     else:
         raise DeserializationError("FilterCircle.radius required")

@@ -43,7 +43,7 @@ def serialize_json(value: FieldToMatch) -> dict:
 
 def deserialize_json(data: dict) -> FieldToMatch:
     out: FieldToMatch = {}  # type: ignore[typeddict-item]
-    if "SingleHeader" in data:
+    if data.get("SingleHeader") is not None:
         import capo_observabilityadmin.types.single_header
 
         out["single_header"] = (
@@ -51,10 +51,10 @@ def deserialize_json(data: dict) -> FieldToMatch:
                 data["SingleHeader"]
             )
         )
-    if "UriPath" in data:
+    if data.get("UriPath") is not None:
         out["uri_path"] = data["UriPath"]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
-    if "Method" in data:
+    if data.get("Method") is not None:
         out["method"] = data["Method"]
     return out

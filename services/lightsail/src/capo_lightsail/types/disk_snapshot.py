@@ -110,19 +110,19 @@ def serialize_aws_json_1_1(value: DiskSnapshot) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiskSnapshot:
     out: DiskSnapshot = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> DiskSnapshot:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -138,15 +138,15 @@ def deserialize_aws_json_1_1(data: dict) -> DiskSnapshot:
                 data["resourceType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "sizeInGb" in data:
+    if data.get("sizeInGb") is not None:
         out["size_in_gb"] = data["sizeInGb"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.disk_snapshot_state
 
         out["state"] = (
@@ -154,16 +154,16 @@ def deserialize_aws_json_1_1(data: dict) -> DiskSnapshot:
                 data["state"]
             )
         )
-    if "progress" in data:
+    if data.get("progress") is not None:
         out["progress"] = data["progress"]
-    if "fromDiskName" in data:
+    if data.get("fromDiskName") is not None:
         out["from_disk_name"] = data["fromDiskName"]
-    if "fromDiskArn" in data:
+    if data.get("fromDiskArn") is not None:
         out["from_disk_arn"] = data["fromDiskArn"]
-    if "fromInstanceName" in data:
+    if data.get("fromInstanceName") is not None:
         out["from_instance_name"] = data["fromInstanceName"]
-    if "fromInstanceArn" in data:
+    if data.get("fromInstanceArn") is not None:
         out["from_instance_arn"] = data["fromInstanceArn"]
-    if "isFromAutoSnapshot" in data:
+    if data.get("isFromAutoSnapshot") is not None:
         out["is_from_auto_snapshot"] = data["isFromAutoSnapshot"]
     return out

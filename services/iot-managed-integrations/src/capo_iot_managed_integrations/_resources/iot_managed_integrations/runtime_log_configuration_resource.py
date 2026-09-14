@@ -69,14 +69,16 @@ class RuntimeLogConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_runtime_log_configuration_request.GetRuntimeLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
+        input_: capo_iot_managed_integrations.types.get_runtime_log_configuration_request.GetRuntimeLogConfigurationRequest = {
+            "managed_thing_id": managed_thing_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_runtime_log_configuration(
@@ -114,15 +116,17 @@ class RuntimeLogConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.put_runtime_log_configuration_request.PutRuntimeLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
-        input_["runtime_log_configurations"] = runtime_log_configurations
+        input_: capo_iot_managed_integrations.types.put_runtime_log_configuration_request.PutRuntimeLogConfigurationRequest = {
+            "managed_thing_id": managed_thing_id,
+            "runtime_log_configurations": runtime_log_configurations,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_runtime_log_configuration(
@@ -158,14 +162,16 @@ class RuntimeLogConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.reset_runtime_log_configuration_request.ResetRuntimeLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
+        input_: capo_iot_managed_integrations.types.reset_runtime_log_configuration_request.ResetRuntimeLogConfigurationRequest = {
+            "managed_thing_id": managed_thing_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -209,14 +215,16 @@ class AsyncRuntimeLogConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_runtime_log_configuration_request.GetRuntimeLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
+        input_: capo_iot_managed_integrations.types.get_runtime_log_configuration_request.GetRuntimeLogConfigurationRequest = {
+            "managed_thing_id": managed_thing_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_runtime_log_configuration(
@@ -255,15 +263,17 @@ class AsyncRuntimeLogConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.put_runtime_log_configuration_request.PutRuntimeLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
-        input_["runtime_log_configurations"] = runtime_log_configurations
+        input_: capo_iot_managed_integrations.types.put_runtime_log_configuration_request.PutRuntimeLogConfigurationRequest = {
+            "managed_thing_id": managed_thing_id,
+            "runtime_log_configurations": runtime_log_configurations,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_runtime_log_configuration(
@@ -300,12 +310,14 @@ class AsyncRuntimeLogConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.reset_runtime_log_configuration_request.ResetRuntimeLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
+        input_: capo_iot_managed_integrations.types.reset_runtime_log_configuration_request.ResetRuntimeLogConfigurationRequest = {
+            "managed_thing_id": managed_thing_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

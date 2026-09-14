@@ -51,7 +51,7 @@ def serialize_json(value: CalculatedAttributeDimension) -> dict:
 
 def deserialize_json(data: dict) -> CalculatedAttributeDimension:
     out: CalculatedAttributeDimension = {}  # type: ignore[typeddict-item]
-    if "DimensionType" in data:
+    if data.get("DimensionType") is not None:
         import capo_customer_profiles.types.attribute_dimension_type
 
         out["dimension_type"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> CalculatedAttributeDimension:
         raise DeserializationError(
             "CalculatedAttributeDimension.dimension_type required"
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_customer_profiles.types.values
 
         out["values"] = capo_customer_profiles.types.values.deserialize_json(
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> CalculatedAttributeDimension:
         )
     else:
         raise DeserializationError("CalculatedAttributeDimension.values required")
-    if "ConditionOverrides" in data:
+    if data.get("ConditionOverrides") is not None:
         import capo_customer_profiles.types.condition_overrides
 
         out["condition_overrides"] = (

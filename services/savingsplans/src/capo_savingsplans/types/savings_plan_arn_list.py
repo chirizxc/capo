@@ -16,4 +16,4 @@ def serialize_json(value: SavingsPlanArnList) -> list:
 
 
 def deserialize_json(data: list) -> SavingsPlanArnList:
-    return list(data)
+    return [item for item in data if item is not None]

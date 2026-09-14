@@ -143,9 +143,9 @@ def serialize_aws_json_1_1(value: AutoMLCandidate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidate:
     out: AutoMLCandidate = {}  # type: ignore[typeddict-item]
-    if "CandidateName" in data:
+    if data.get("CandidateName") is not None:
         out["candidate_name"] = data["CandidateName"]
-    if "FinalAutoMLJobObjectiveMetric" in data:
+    if data.get("FinalAutoMLJobObjectiveMetric") is not None:
         import capo_sagemaker.types.final_auto_ml_job_objective_metric
 
         out["final_auto_ml_job_objective_metric"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidate:
                 data["FinalAutoMLJobObjectiveMetric"]
             )
         )
-    if "ObjectiveStatus" in data:
+    if data.get("ObjectiveStatus") is not None:
         import capo_sagemaker.types.objective_status
 
         out["objective_status"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidate:
                 data["ObjectiveStatus"]
             )
         )
-    if "CandidateSteps" in data:
+    if data.get("CandidateSteps") is not None:
         import capo_sagemaker.types.candidate_steps
 
         out["candidate_steps"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidate:
                 data["CandidateSteps"]
             )
         )
-    if "CandidateStatus" in data:
+    if data.get("CandidateStatus") is not None:
         import capo_sagemaker.types.candidate_status
 
         out["candidate_status"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidate:
                 data["CandidateStatus"]
             )
         )
-    if "InferenceContainers" in data:
+    if data.get("InferenceContainers") is not None:
         import capo_sagemaker.types.auto_ml_container_definitions
 
         out["inference_containers"] = (
@@ -185,19 +185,19 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidate:
                 data["InferenceContainers"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -205,9 +205,9 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidate:
                 data["LastModifiedTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "CandidateProperties" in data:
+    if data.get("CandidateProperties") is not None:
         import capo_sagemaker.types.candidate_properties
 
         out["candidate_properties"] = (
@@ -215,7 +215,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLCandidate:
                 data["CandidateProperties"]
             )
         )
-    if "InferenceContainerDefinitions" in data:
+    if data.get("InferenceContainerDefinitions") is not None:
         import capo_sagemaker.types.auto_ml_inference_container_definitions
 
         out["inference_container_definitions"] = (

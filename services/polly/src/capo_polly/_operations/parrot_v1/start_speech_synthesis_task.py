@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_polly._auth._signers
 import capo_polly._auth._sigv4
+import capo_polly._protocol.eventstream
 import capo_polly.errors.engine_not_supported_exception
 import capo_polly.errors.invalid_s3_bucket_exception
 import capo_polly.errors.invalid_s3_key_exception
@@ -44,51 +45,51 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "EngineNotSupportedException":
             raise capo_polly.errors.engine_not_supported_exception.EngineNotSupportedException.from_json(
-                data
+                data, message
             )
         case "InvalidS3BucketException":
             raise capo_polly.errors.invalid_s3_bucket_exception.InvalidS3BucketException.from_json(
-                data
+                data, message
             )
         case "InvalidS3KeyException":
             raise capo_polly.errors.invalid_s3_key_exception.InvalidS3KeyException.from_json(
-                data
+                data, message
             )
         case "InvalidSampleRateException":
             raise capo_polly.errors.invalid_sample_rate_exception.InvalidSampleRateException.from_json(
-                data
+                data, message
             )
         case "InvalidSnsTopicArnException":
             raise capo_polly.errors.invalid_sns_topic_arn_exception.InvalidSnsTopicArnException.from_json(
-                data
+                data, message
             )
         case "InvalidSsmlException":
             raise capo_polly.errors.invalid_ssml_exception.InvalidSsmlException.from_json(
-                data
+                data, message
             )
         case "LanguageNotSupportedException":
             raise capo_polly.errors.language_not_supported_exception.LanguageNotSupportedException.from_json(
-                data
+                data, message
             )
         case "LexiconNotFoundException":
             raise capo_polly.errors.lexicon_not_found_exception.LexiconNotFoundException.from_json(
-                data
+                data, message
             )
         case "MarksNotSupportedForFormatException":
             raise capo_polly.errors.marks_not_supported_for_format_exception.MarksNotSupportedForFormatException.from_json(
-                data
+                data, message
             )
         case "ServiceFailureException":
             raise capo_polly.errors.service_failure_exception.ServiceFailureException.from_json(
-                data
+                data, message
             )
         case "SsmlMarksNotSupportedForTextTypeException":
             raise capo_polly.errors.ssml_marks_not_supported_for_text_type_exception.SsmlMarksNotSupportedForTextTypeException.from_json(
-                data
+                data, message
             )
         case "TextLengthExceededException":
             raise capo_polly.errors.text_length_exceeded_exception.TextLengthExceededException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -117,17 +118,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_polly._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_polly._auth._sigv4.build_sigv4_auth_scheme("polly", options.region)
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_polly._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_polly._auth._sigv4.build_sigv4_auth_scheme(
+                "polly", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_polly._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -144,15 +154,17 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/v1/synthesisTasks"
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = json.dumps(
-        capo_polly.types.start_speech_synthesis_task_input.serialize_json(input_)
+        capo_polly.types.start_speech_synthesis_task_input.serialize_json(input_),
+        allow_nan=False,
     ).encode()
     headers["content-type"] = "application/json"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -167,7 +179,7 @@ def start_speech_synthesis_task(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -185,7 +197,7 @@ async def async_start_speech_synthesis_task(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

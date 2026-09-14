@@ -117,21 +117,21 @@ def serialize_aws_json_1_1(value: Report) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Report:
     out: Report = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.report_type
 
         out["type"] = capo_codebuild.types.report_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "reportGroupArn" in data:
+    if data.get("reportGroupArn") is not None:
         out["report_group_arn"] = data["reportGroupArn"]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codebuild.types.report_status_type
 
         out["status"] = (
@@ -139,19 +139,19 @@ def deserialize_aws_json_1_1(data: dict) -> Report:
                 data["status"]
             )
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_codebuild.types.timestamp
 
         out["created"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "expired" in data:
+    if data.get("expired") is not None:
         import capo_codebuild.types.timestamp
 
         out["expired"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["expired"]
         )
-    if "exportConfig" in data:
+    if data.get("exportConfig") is not None:
         import capo_codebuild.types.report_export_config
 
         out["export_config"] = (
@@ -159,9 +159,9 @@ def deserialize_aws_json_1_1(data: dict) -> Report:
                 data["exportConfig"]
             )
         )
-    if "truncated" in data:
+    if data.get("truncated") is not None:
         out["truncated"] = data["truncated"]
-    if "testSummary" in data:
+    if data.get("testSummary") is not None:
         import capo_codebuild.types.test_report_summary
 
         out["test_summary"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> Report:
                 data["testSummary"]
             )
         )
-    if "codeCoverageSummary" in data:
+    if data.get("codeCoverageSummary") is not None:
         import capo_codebuild.types.code_coverage_report_summary
 
         out["code_coverage_summary"] = (

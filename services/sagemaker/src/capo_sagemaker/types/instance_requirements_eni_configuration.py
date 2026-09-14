@@ -33,9 +33,9 @@ def serialize_aws_json_1_1(value: InstanceRequirementsEniConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceRequirementsEniConfiguration:
     out: InstanceRequirementsEniConfiguration = {}  # type: ignore[typeddict-item]
-    if "CustomerEni" in data:
+    if data.get("CustomerEni") is not None:
         out["customer_eni"] = data["CustomerEni"]
-    if "AdditionalEnis" in data:
+    if data.get("AdditionalEnis") is not None:
         import capo_sagemaker.types.additional_enis
 
         out["additional_enis"] = (

@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: Warning) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Warning:
     out: Warning = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_kendra.types.warning_code
 
         out["code"] = capo_kendra.types.warning_code.deserialize_aws_json_1_1(

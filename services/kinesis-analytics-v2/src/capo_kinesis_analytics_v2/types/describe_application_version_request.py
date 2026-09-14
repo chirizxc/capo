@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: DescribeApplicationVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationVersionRequest:
     out: DescribeApplicationVersionRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError(
             "DescribeApplicationVersionRequest.application_name required"
         )
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
     else:
         raise DeserializationError(

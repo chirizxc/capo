@@ -64,9 +64,9 @@ def serialize_aws_json_1_1(value: Mapping) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Mapping:
     out: Mapping = {}  # type: ignore[typeddict-item]
-    if "ToKey" in data:
+    if data.get("ToKey") is not None:
         out["to_key"] = data["ToKey"]
-    if "FromPath" in data:
+    if data.get("FromPath") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["from_path"] = (
@@ -74,13 +74,13 @@ def deserialize_aws_json_1_1(data: dict) -> Mapping:
                 data["FromPath"]
             )
         )
-    if "FromType" in data:
+    if data.get("FromType") is not None:
         out["from_type"] = data["FromType"]
-    if "ToType" in data:
+    if data.get("ToType") is not None:
         out["to_type"] = data["ToType"]
-    if "Dropped" in data:
+    if data.get("Dropped") is not None:
         out["dropped"] = data["Dropped"]
-    if "Children" in data:
+    if data.get("Children") is not None:
         import capo_glue.types.mappings
 
         out["children"] = capo_glue.types.mappings.deserialize_aws_json_1_1(

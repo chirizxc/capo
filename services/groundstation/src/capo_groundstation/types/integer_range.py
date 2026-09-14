@@ -22,11 +22,11 @@ def serialize_json(value: IntegerRange) -> dict:
 
 def deserialize_json(data: dict) -> IntegerRange:
     out: IntegerRange = {}  # type: ignore[typeddict-item]
-    if "minimum" in data:
+    if data.get("minimum") is not None:
         out["minimum"] = data["minimum"]
     else:
         raise DeserializationError("IntegerRange.minimum required")
-    if "maximum" in data:
+    if data.get("maximum") is not None:
         out["maximum"] = data["maximum"]
     else:
         raise DeserializationError("IntegerRange.maximum required")

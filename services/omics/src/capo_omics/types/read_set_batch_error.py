@@ -30,15 +30,15 @@ def serialize_json(value: ReadSetBatchError) -> dict:
 
 def deserialize_json(data: dict) -> ReadSetBatchError:
     out: ReadSetBatchError = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ReadSetBatchError.id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("ReadSetBatchError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ReadSetBatchError.message required")

@@ -93,17 +93,17 @@ def serialize_json(value: AwsWafv2WebAclDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafv2WebAclDetails:
     out: AwsWafv2WebAclDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ManagedbyFirewallManager" in data:
+    if data.get("ManagedbyFirewallManager") is not None:
         out["managedby_firewall_manager"] = data["ManagedbyFirewallManager"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         out["capacity"] = data["Capacity"]
-    if "CaptchaConfig" in data:
+    if data.get("CaptchaConfig") is not None:
         import capo_securityhub.types.aws_wafv2_web_acl_captcha_config_details
 
         out["captcha_config"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> AwsWafv2WebAclDetails:
                 data["CaptchaConfig"]
             )
         )
-    if "DefaultAction" in data:
+    if data.get("DefaultAction") is not None:
         import capo_securityhub.types.aws_wafv2_web_acl_action_details
 
         out["default_action"] = (
@@ -119,15 +119,15 @@ def deserialize_json(data: dict) -> AwsWafv2WebAclDetails:
                 data["DefaultAction"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_securityhub.types.aws_wafv2_rules_list
 
         out["rules"] = capo_securityhub.types.aws_wafv2_rules_list.deserialize_json(
             data["Rules"]
         )
-    if "VisibilityConfig" in data:
+    if data.get("VisibilityConfig") is not None:
         import capo_securityhub.types.aws_wafv2_visibility_config_details
 
         out["visibility_config"] = (

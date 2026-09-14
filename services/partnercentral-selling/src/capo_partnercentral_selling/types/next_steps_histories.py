@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> NextStepsHistories:
 
     out: NextStepsHistories = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_selling.types.next_steps_history.deserialize_aws_json_1_0(
                 item

@@ -29,11 +29,11 @@ def serialize_json(value: NotInExpression) -> dict:
 
 def deserialize_json(data: dict) -> NotInExpression:
     out: NotInExpression = {}  # type: ignore[typeddict-item]
-    if "columnName" in data:
+    if data.get("columnName") is not None:
         out["column_name"] = data["columnName"]
     else:
         raise DeserializationError("NotInExpression.column_name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_datazone.types.string_list
 
         out["values"] = capo_datazone.types.string_list.deserialize_json(data["values"])

@@ -16,14 +16,22 @@ class AttackVolumeStatistics(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: AttackVolumeStatistics) -> dict:
     out: dict = {}
-    out["Max"] = value.get("max", 0)
+    out["Max"] = (
+        "NaN"
+        if value.get("max", 0) != value.get("max", 0)
+        else "Infinity"
+        if value.get("max", 0) == float("inf")
+        else "-Infinity"
+        if value.get("max", 0) == float("-inf")
+        else value.get("max", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> AttackVolumeStatistics:
     out: AttackVolumeStatistics = {}  # type: ignore[typeddict-item]
-    if "Max" in data:
-        out["max"] = data["Max"]
+    if data.get("Max") is not None:
+        out["max"] = float(data["Max"])
     else:
         out["max"] = 0
     return out

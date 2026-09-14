@@ -31,7 +31,7 @@ def serialize_json(value: BatchUpdateCategoryInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateCategoryInput:
     out: BatchUpdateCategoryInput = {}  # type: ignore[typeddict-item]
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_qapps.types.category_list_input
 
         out["categories"] = capo_qapps.types.category_list_input.deserialize_json(

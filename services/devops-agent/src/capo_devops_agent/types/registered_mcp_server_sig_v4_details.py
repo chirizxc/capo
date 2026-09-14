@@ -56,31 +56,31 @@ def serialize_json(value: RegisteredMCPServerSigV4Details) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredMCPServerSigV4Details:
     out: RegisteredMCPServerSigV4Details = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RegisteredMCPServerSigV4Details.name required")
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError("RegisteredMCPServerSigV4Details.endpoint required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("RegisteredMCPServerSigV4Details.region required")
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
     else:
         raise DeserializationError("RegisteredMCPServerSigV4Details.service required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         out["role_arn"] = ""
-    if "mcpRoleArn" in data:
+    if data.get("mcpRoleArn") is not None:
         out["mcp_role_arn"] = data["mcpRoleArn"]
-    if "customHeaders" in data:
+    if data.get("customHeaders") is not None:
         import capo_devops_agent.types.custom_headers
 
         out["custom_headers"] = capo_devops_agent.types.custom_headers.deserialize_json(

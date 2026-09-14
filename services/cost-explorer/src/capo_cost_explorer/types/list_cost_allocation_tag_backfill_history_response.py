@@ -38,7 +38,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListCostAllocationTagBackfillHistoryResponse:
     out: ListCostAllocationTagBackfillHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "BackfillRequests" in data:
+    if data.get("BackfillRequests") is not None:
         import capo_cost_explorer.types.cost_allocation_tag_backfill_request_list
 
         out["backfill_requests"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(
                 data["BackfillRequests"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

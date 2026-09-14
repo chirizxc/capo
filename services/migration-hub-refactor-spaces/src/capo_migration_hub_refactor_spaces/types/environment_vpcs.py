@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> EnvironmentVpcs:
 
     out: EnvironmentVpcs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migration_hub_refactor_spaces.types.environment_vpc.deserialize_json(
                 item

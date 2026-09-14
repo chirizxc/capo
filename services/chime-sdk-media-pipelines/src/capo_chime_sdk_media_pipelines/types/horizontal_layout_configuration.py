@@ -54,7 +54,7 @@ def serialize_json(value: HorizontalLayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HorizontalLayoutConfiguration:
     out: HorizontalLayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "TileOrder" in data:
+    if data.get("TileOrder") is not None:
         import capo_chime_sdk_media_pipelines.types.tile_order
 
         out["tile_order"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> HorizontalLayoutConfiguration:
                 data["TileOrder"]
             )
         )
-    if "TilePosition" in data:
+    if data.get("TilePosition") is not None:
         import capo_chime_sdk_media_pipelines.types.horizontal_tile_position
 
         out["tile_position"] = (
@@ -70,8 +70,8 @@ def deserialize_json(data: dict) -> HorizontalLayoutConfiguration:
                 data["TilePosition"]
             )
         )
-    if "TileCount" in data:
+    if data.get("TileCount") is not None:
         out["tile_count"] = data["TileCount"]
-    if "TileAspectRatio" in data:
+    if data.get("TileAspectRatio") is not None:
         out["tile_aspect_ratio"] = data["TileAspectRatio"]
     return out

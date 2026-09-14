@@ -84,17 +84,17 @@ def serialize_json(value: IntentSummary) -> dict:
 
 def deserialize_json(data: dict) -> IntentSummary:
     out: IntentSummary = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
-    if "checkpointLabel" in data:
+    if data.get("checkpointLabel") is not None:
         out["checkpoint_label"] = data["checkpointLabel"]
-    if "slots" in data:
+    if data.get("slots") is not None:
         import capo_lex_runtime_service.types.string_map
 
         out["slots"] = capo_lex_runtime_service.types.string_map.deserialize_json(
             data["slots"]
         )
-    if "confirmationStatus" in data:
+    if data.get("confirmationStatus") is not None:
         import capo_lex_runtime_service.types.confirmation_status
 
         out["confirmation_status"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> IntentSummary:
                 data["confirmationStatus"]
             )
         )
-    if "dialogActionType" in data:
+    if data.get("dialogActionType") is not None:
         import capo_lex_runtime_service.types.dialog_action_type
 
         out["dialog_action_type"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> IntentSummary:
         )
     else:
         raise DeserializationError("IntentSummary.dialog_action_type required")
-    if "fulfillmentState" in data:
+    if data.get("fulfillmentState") is not None:
         import capo_lex_runtime_service.types.fulfillment_state
 
         out["fulfillment_state"] = (
@@ -120,6 +120,6 @@ def deserialize_json(data: dict) -> IntentSummary:
                 data["fulfillmentState"]
             )
         )
-    if "slotToElicit" in data:
+    if data.get("slotToElicit") is not None:
         out["slot_to_elicit"] = data["slotToElicit"]
     return out

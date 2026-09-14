@@ -35,9 +35,9 @@ def serialize_json(value: APISchema) -> dict:
 
 
 def deserialize_json(data: dict) -> APISchema:
-    if "payload" in data:
+    if data.get("payload") is not None:
         return {"payload": data["payload"]}
-    elif "s3" in data:
+    elif data.get("s3") is not None:
         import capo_qbusiness.types.s3
 
         return {"s3": capo_qbusiness.types.s3.deserialize_json(data["s3"])}

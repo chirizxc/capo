@@ -29,7 +29,7 @@ def serialize_json(value: KubernetesDataSourceFreeTrial) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesDataSourceFreeTrial:
     out: KubernetesDataSourceFreeTrial = {}  # type: ignore[typeddict-item]
-    if "auditLogs" in data:
+    if data.get("auditLogs") is not None:
         import capo_guardduty.types.data_source_free_trial
 
         out["audit_logs"] = (

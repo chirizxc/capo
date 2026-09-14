@@ -30,11 +30,11 @@ def serialize_json(value: DynamoDBv2Action) -> dict:
 
 def deserialize_json(data: dict) -> DynamoDBv2Action:
     out: DynamoDBv2Action = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("DynamoDBv2Action.role_arn required")
-    if "putItem" in data:
+    if data.get("putItem") is not None:
         import capo_iot.types.put_item_input
 
         out["put_item"] = capo_iot.types.put_item_input.deserialize_json(

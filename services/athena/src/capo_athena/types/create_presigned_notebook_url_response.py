@@ -32,19 +32,19 @@ def serialize_aws_json_1_1(value: CreatePresignedNotebookUrlResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePresignedNotebookUrlResponse:
     out: CreatePresignedNotebookUrlResponse = {}  # type: ignore[typeddict-item]
-    if "NotebookUrl" in data:
+    if data.get("NotebookUrl") is not None:
         out["notebook_url"] = data["NotebookUrl"]
     else:
         raise DeserializationError(
             "CreatePresignedNotebookUrlResponse.notebook_url required"
         )
-    if "AuthToken" in data:
+    if data.get("AuthToken") is not None:
         out["auth_token"] = data["AuthToken"]
     else:
         raise DeserializationError(
             "CreatePresignedNotebookUrlResponse.auth_token required"
         )
-    if "AuthTokenExpirationTime" in data:
+    if data.get("AuthTokenExpirationTime") is not None:
         out["auth_token_expiration_time"] = data["AuthTokenExpirationTime"]
     else:
         raise DeserializationError(

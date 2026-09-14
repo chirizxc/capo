@@ -51,11 +51,11 @@ def serialize_json(value: Metric) -> dict:
 
 def deserialize_json(data: dict) -> Metric:
     out: Metric = {}  # type: ignore[typeddict-item]
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
     else:
         out["expression"] = ""
-    if "variables" in data:
+    if data.get("variables") is not None:
         import capo_iotsitewise.types.expression_variables
 
         out["variables"] = capo_iotsitewise.types.expression_variables.deserialize_json(
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> Metric:
         )
     else:
         out["variables"] = []
-    if "window" in data:
+    if data.get("window") is not None:
         import capo_iotsitewise.types.metric_window
 
         out["window"] = capo_iotsitewise.types.metric_window.deserialize_json(
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> Metric:
         )
     else:
         raise DeserializationError("Metric.window required")
-    if "processingConfig" in data:
+    if data.get("processingConfig") is not None:
         import capo_iotsitewise.types.metric_processing_config
 
         out["processing_config"] = (

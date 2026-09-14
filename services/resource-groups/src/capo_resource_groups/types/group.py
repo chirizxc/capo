@@ -61,23 +61,23 @@ def serialize_json(value: Group) -> dict:
 
 def deserialize_json(data: dict) -> Group:
     out: Group = {}  # type: ignore[typeddict-item]
-    if "GroupArn" in data:
+    if data.get("GroupArn") is not None:
         out["group_arn"] = data["GroupArn"]
     else:
         raise DeserializationError("Group.group_arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Group.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Criticality" in data:
+    if data.get("Criticality") is not None:
         out["criticality"] = data["Criticality"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "ApplicationTag" in data:
+    if data.get("ApplicationTag") is not None:
         import capo_resource_groups.types.application_tag
 
         out["application_tag"] = (

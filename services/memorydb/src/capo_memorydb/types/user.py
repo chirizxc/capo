@@ -59,21 +59,21 @@ def serialize_aws_json_1_1(value: User) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> User:
     out: User = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "AccessString" in data:
+    if data.get("AccessString") is not None:
         out["access_string"] = data["AccessString"]
-    if "ACLNames" in data:
+    if data.get("ACLNames") is not None:
         import capo_memorydb.types.acl_name_list
 
         out["acl_names"] = capo_memorydb.types.acl_name_list.deserialize_aws_json_1_1(
             data["ACLNames"]
         )
-    if "MinimumEngineVersion" in data:
+    if data.get("MinimumEngineVersion") is not None:
         out["minimum_engine_version"] = data["MinimumEngineVersion"]
-    if "Authentication" in data:
+    if data.get("Authentication") is not None:
         import capo_memorydb.types.authentication
 
         out["authentication"] = (
@@ -81,6 +81,6 @@ def deserialize_aws_json_1_1(data: dict) -> User:
                 data["Authentication"]
             )
         )
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     return out

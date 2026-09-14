@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: AccountSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AccountSummary:
     out: AccountSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("AccountSummary.name required")

@@ -62,7 +62,7 @@ def serialize_json(value: PluginVisualFieldWell) -> dict:
 
 def deserialize_json(data: dict) -> PluginVisualFieldWell:
     out: PluginVisualFieldWell = {}  # type: ignore[typeddict-item]
-    if "AxisName" in data:
+    if data.get("AxisName") is not None:
         import capo_quicksight.types.plugin_visual_axis_name
 
         out["axis_name"] = (
@@ -70,19 +70,19 @@ def deserialize_json(data: dict) -> PluginVisualFieldWell:
                 data["AxisName"]
             )
         )
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["dimensions"] = capo_quicksight.types.dimension_field_list.deserialize_json(
             data["Dimensions"]
         )
-    if "Measures" in data:
+    if data.get("Measures") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["measures"] = capo_quicksight.types.measure_field_list.deserialize_json(
             data["Measures"]
         )
-    if "Unaggregated" in data:
+    if data.get("Unaggregated") is not None:
         import capo_quicksight.types.unaggregated_field_list
 
         out["unaggregated"] = (

@@ -42,7 +42,7 @@ def serialize_json(value: GetRemainingFreeTrialDaysResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRemainingFreeTrialDaysResponse:
     out: GetRemainingFreeTrialDaysResponse = {}  # type: ignore[typeddict-item]
-    if "accounts" in data:
+    if data.get("accounts") is not None:
         import capo_guardduty.types.account_free_trial_infos
 
         out["accounts"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> GetRemainingFreeTrialDaysResponse:
                 data["accounts"]
             )
         )
-    if "unprocessedAccounts" in data:
+    if data.get("unprocessedAccounts") is not None:
         import capo_guardduty.types.unprocessed_accounts
 
         out["unprocessed_accounts"] = (

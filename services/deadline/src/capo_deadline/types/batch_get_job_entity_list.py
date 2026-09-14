@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> BatchGetJobEntityList:
 
     out: BatchGetJobEntityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.job_entity.deserialize_json(item))
     return out

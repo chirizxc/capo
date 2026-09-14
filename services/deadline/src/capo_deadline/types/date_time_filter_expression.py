@@ -30,19 +30,21 @@ def serialize_json(value: DateTimeFilterExpression) -> dict:
     out["operator"] = capo_deadline.types.comparison_operator.serialize_json(
         value["operator"]
     )
-    import capo_deadline.types.timestamp
+    import capo_deadline._protocol.serialize
 
-    out["dateTime"] = capo_deadline.types.timestamp.serialize_json(value["date_time"])
+    out["dateTime"] = capo_deadline._protocol.serialize.fmt_date_time(
+        value["date_time"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> DateTimeFilterExpression:
     out: DateTimeFilterExpression = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DateTimeFilterExpression.name required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_deadline.types.comparison_operator
 
         out["operator"] = capo_deadline.types.comparison_operator.deserialize_json(
@@ -50,11 +52,11 @@ def deserialize_json(data: dict) -> DateTimeFilterExpression:
         )
     else:
         raise DeserializationError("DateTimeFilterExpression.operator required")
-    if "dateTime" in data:
-        import capo_deadline.types.timestamp
+    if data.get("dateTime") is not None:
+        import datetime
 
-        out["date_time"] = capo_deadline.types.timestamp.deserialize_json(
-            data["dateTime"]
+        out["date_time"] = datetime.datetime.fromisoformat(
+            data["dateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("DateTimeFilterExpression.date_time required")

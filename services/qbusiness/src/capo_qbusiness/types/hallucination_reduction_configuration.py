@@ -31,7 +31,7 @@ def serialize_json(value: HallucinationReductionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HallucinationReductionConfiguration:
     out: HallucinationReductionConfiguration = {}  # type: ignore[typeddict-item]
-    if "hallucinationReductionControl" in data:
+    if data.get("hallucinationReductionControl") is not None:
         import capo_qbusiness.types.hallucination_reduction_control
 
         out["hallucination_reduction_control"] = (

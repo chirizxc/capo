@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: GetComponentOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetComponentOutput:
     out: GetComponentOutput = {}  # type: ignore[typeddict-item]
-    if "component" in data:
+    if data.get("component") is not None:
         import capo_proton.types.component
 
         out["component"] = capo_proton.types.component.deserialize_aws_json_1_0(

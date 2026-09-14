@@ -24,7 +24,7 @@ def serialize_json(value: StartElasticsearchServiceSoftwareUpdateRequest) -> dic
 
 def deserialize_json(data: dict) -> StartElasticsearchServiceSoftwareUpdateRequest:
     out: StartElasticsearchServiceSoftwareUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(

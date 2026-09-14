@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ParsedInputRecords:
 
     out: ParsedInputRecords = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kinesis_analytics_v2.types.parsed_input_record.deserialize_aws_json_1_1(
                 item

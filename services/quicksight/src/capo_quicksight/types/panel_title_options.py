@@ -52,13 +52,13 @@ def serialize_json(value: PanelTitleOptions) -> dict:
 
 def deserialize_json(data: dict) -> PanelTitleOptions:
     out: PanelTitleOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "FontConfiguration" in data:
+    if data.get("FontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["font_configuration"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> PanelTitleOptions:
                 data["FontConfiguration"]
             )
         )
-    if "HorizontalTextAlignment" in data:
+    if data.get("HorizontalTextAlignment") is not None:
         import capo_quicksight.types.horizontal_text_alignment
 
         out["horizontal_text_alignment"] = (

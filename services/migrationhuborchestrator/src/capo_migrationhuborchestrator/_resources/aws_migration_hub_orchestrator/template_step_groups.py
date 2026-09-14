@@ -76,18 +76,20 @@ class TemplateStepGroups:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.list_template_step_groups_request.ListTemplateStepGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migrationhuborchestrator.types.list_template_step_groups_request.ListTemplateStepGroupsRequest = {
+            "template_id": template_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["template_id"] = template_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -138,16 +140,18 @@ class AsyncTemplateStepGroups:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.list_template_step_groups_request.ListTemplateStepGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migrationhuborchestrator.types.list_template_step_groups_request.ListTemplateStepGroupsRequest = {
+            "template_id": template_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["template_id"] = template_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

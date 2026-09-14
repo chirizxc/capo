@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: CreateModelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateModelRequest:
     out: CreateModelRequest = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("CreateModelRequest.model_id required")
-    if "modelType" in data:
+    if data.get("modelType") is not None:
         import capo_frauddetector.types.model_type_enum
 
         out["model_type"] = (
@@ -64,13 +64,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelRequest:
         )
     else:
         raise DeserializationError("CreateModelRequest.model_type required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
     else:
         raise DeserializationError("CreateModelRequest.event_type_name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_frauddetector.types.tag_list
 
         out["tags"] = capo_frauddetector.types.tag_list.deserialize_aws_json_1_1(

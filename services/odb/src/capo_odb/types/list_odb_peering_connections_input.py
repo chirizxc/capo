@@ -20,6 +20,10 @@ class ListOdbPeeringConnectionsInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListOdbPeeringConnectionsInput) -> dict:
     out: dict = {}
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
     if "odb_network_id" in value:
         out["odbNetworkId"] = value["odb_network_id"]
     return out
@@ -27,6 +31,10 @@ def serialize_aws_json_1_0(value: ListOdbPeeringConnectionsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListOdbPeeringConnectionsInput:
     out: ListOdbPeeringConnectionsInput = {}  # type: ignore[typeddict-item]
-    if "odbNetworkId" in data:
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("odbNetworkId") is not None:
         out["odb_network_id"] = data["odbNetworkId"]
     return out

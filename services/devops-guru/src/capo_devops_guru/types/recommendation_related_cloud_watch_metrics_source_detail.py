@@ -32,8 +32,8 @@ def serialize_json(value: RecommendationRelatedCloudWatchMetricsSourceDetail) ->
 
 def deserialize_json(data: dict) -> RecommendationRelatedCloudWatchMetricsSourceDetail:
     out: RecommendationRelatedCloudWatchMetricsSourceDetail = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
     return out

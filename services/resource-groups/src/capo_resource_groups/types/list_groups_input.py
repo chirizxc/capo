@@ -33,7 +33,7 @@ def serialize_json(value: ListGroupsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListGroupsInput:
     out: ListGroupsInput = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_resource_groups.types.group_filter_list
 
         out["filters"] = capo_resource_groups.types.group_filter_list.deserialize_json(

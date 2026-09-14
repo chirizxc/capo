@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StartCommandExecutionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartCommandExecutionOutput:
     out: StartCommandExecutionOutput = {}  # type: ignore[typeddict-item]
-    if "commandExecution" in data:
+    if data.get("commandExecution") is not None:
         import capo_codebuild.types.command_execution
 
         out["command_execution"] = (

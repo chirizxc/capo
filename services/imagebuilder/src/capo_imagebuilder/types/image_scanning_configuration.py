@@ -38,9 +38,9 @@ def serialize_json(value: ImageScanningConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ImageScanningConfiguration:
     out: ImageScanningConfiguration = {}  # type: ignore[typeddict-item]
-    if "imageScanningEnabled" in data:
+    if data.get("imageScanningEnabled") is not None:
         out["image_scanning_enabled"] = data["imageScanningEnabled"]
-    if "ecrConfiguration" in data:
+    if data.get("ecrConfiguration") is not None:
         import capo_imagebuilder.types.ecr_configuration
 
         out["ecr_configuration"] = (

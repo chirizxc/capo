@@ -98,17 +98,17 @@ def serialize_json(value: Order) -> dict:
 
 def deserialize_json(data: dict) -> Order:
     out: Order = {}  # type: ignore[typeddict-item]
-    if "OutpostId" in data:
+    if data.get("OutpostId") is not None:
         out["outpost_id"] = data["OutpostId"]
-    if "OrderId" in data:
+    if data.get("OrderId") is not None:
         out["order_id"] = data["OrderId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_outposts.types.order_status
 
         out["status"] = capo_outposts.types.order_status.deserialize_json(
             data["Status"]
         )
-    if "LineItems" in data:
+    if data.get("LineItems") is not None:
         import capo_outposts.types.line_item_list_definition
 
         out["line_items"] = (
@@ -116,13 +116,13 @@ def deserialize_json(data: dict) -> Order:
                 data["LineItems"]
             )
         )
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_outposts.types.payment_option
 
         out["payment_option"] = capo_outposts.types.payment_option.deserialize_json(
             data["PaymentOption"]
         )
-    if "OrderSubmissionDate" in data:
+    if data.get("OrderSubmissionDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["order_submission_date"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> Order:
                 data["OrderSubmissionDate"]
             )
         )
-    if "OrderFulfilledDate" in data:
+    if data.get("OrderFulfilledDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["order_fulfilled_date"] = (
@@ -138,13 +138,13 @@ def deserialize_json(data: dict) -> Order:
                 data["OrderFulfilledDate"]
             )
         )
-    if "PaymentTerm" in data:
+    if data.get("PaymentTerm") is not None:
         import capo_outposts.types.payment_term
 
         out["payment_term"] = capo_outposts.types.payment_term.deserialize_json(
             data["PaymentTerm"]
         )
-    if "OrderType" in data:
+    if data.get("OrderType") is not None:
         import capo_outposts.types.order_type
 
         out["order_type"] = capo_outposts.types.order_type.deserialize_json(

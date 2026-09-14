@@ -51,11 +51,35 @@ def serialize_aws_json_1_1(value: QuotaUtilizationInfo) -> dict:
     if "namespace" in value:
         out["Namespace"] = value["namespace"]
     if "utilization" in value:
-        out["Utilization"] = value["utilization"]
+        out["Utilization"] = (
+            "NaN"
+            if value["utilization"] != value["utilization"]
+            else "Infinity"
+            if value["utilization"] == float("inf")
+            else "-Infinity"
+            if value["utilization"] == float("-inf")
+            else value["utilization"]
+        )
     if "default_value" in value:
-        out["DefaultValue"] = value["default_value"]
+        out["DefaultValue"] = (
+            "NaN"
+            if value["default_value"] != value["default_value"]
+            else "Infinity"
+            if value["default_value"] == float("inf")
+            else "-Infinity"
+            if value["default_value"] == float("-inf")
+            else value["default_value"]
+        )
     if "applied_value" in value:
-        out["AppliedValue"] = value["applied_value"]
+        out["AppliedValue"] = (
+            "NaN"
+            if value["applied_value"] != value["applied_value"]
+            else "Infinity"
+            if value["applied_value"] == float("inf")
+            else "-Infinity"
+            if value["applied_value"] == float("-inf")
+            else value["applied_value"]
+        )
     if "service_name" in value:
         out["ServiceName"] = value["service_name"]
     out["Adjustable"] = value.get("adjustable", False)
@@ -64,23 +88,23 @@ def serialize_aws_json_1_1(value: QuotaUtilizationInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QuotaUtilizationInfo:
     out: QuotaUtilizationInfo = {}  # type: ignore[typeddict-item]
-    if "QuotaCode" in data:
+    if data.get("QuotaCode") is not None:
         out["quota_code"] = data["QuotaCode"]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
-    if "QuotaName" in data:
+    if data.get("QuotaName") is not None:
         out["quota_name"] = data["QuotaName"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "Utilization" in data:
-        out["utilization"] = data["Utilization"]
-    if "DefaultValue" in data:
-        out["default_value"] = data["DefaultValue"]
-    if "AppliedValue" in data:
-        out["applied_value"] = data["AppliedValue"]
-    if "ServiceName" in data:
+    if data.get("Utilization") is not None:
+        out["utilization"] = float(data["Utilization"])
+    if data.get("DefaultValue") is not None:
+        out["default_value"] = float(data["DefaultValue"])
+    if data.get("AppliedValue") is not None:
+        out["applied_value"] = float(data["AppliedValue"])
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "Adjustable" in data:
+    if data.get("Adjustable") is not None:
         out["adjustable"] = data["Adjustable"]
     else:
         out["adjustable"] = False

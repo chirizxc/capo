@@ -83,21 +83,21 @@ def serialize_json(value: Filters) -> dict:
 
 def deserialize_json(data: dict) -> Filters:
     out: Filters = {}  # type: ignore[typeddict-item]
-    if "Queues" in data:
+    if data.get("Queues") is not None:
         import capo_connect.types.queues
 
         out["queues"] = capo_connect.types.queues.deserialize_json(data["Queues"])
-    if "Channels" in data:
+    if data.get("Channels") is not None:
         import capo_connect.types.channels
 
         out["channels"] = capo_connect.types.channels.deserialize_json(data["Channels"])
-    if "RoutingProfiles" in data:
+    if data.get("RoutingProfiles") is not None:
         import capo_connect.types.routing_profiles
 
         out["routing_profiles"] = capo_connect.types.routing_profiles.deserialize_json(
             data["RoutingProfiles"]
         )
-    if "RoutingStepExpressions" in data:
+    if data.get("RoutingStepExpressions") is not None:
         import capo_connect.types.routing_expressions
 
         out["routing_step_expressions"] = (
@@ -105,17 +105,17 @@ def deserialize_json(data: dict) -> Filters:
                 data["RoutingStepExpressions"]
             )
         )
-    if "AgentStatuses" in data:
+    if data.get("AgentStatuses") is not None:
         import capo_connect.types.agent_statuses
 
         out["agent_statuses"] = capo_connect.types.agent_statuses.deserialize_json(
             data["AgentStatuses"]
         )
-    if "Subtypes" in data:
+    if data.get("Subtypes") is not None:
         import capo_connect.types.subtypes
 
         out["subtypes"] = capo_connect.types.subtypes.deserialize_json(data["Subtypes"])
-    if "ValidationTestTypes" in data:
+    if data.get("ValidationTestTypes") is not None:
         import capo_connect.types.validation_test_types
 
         out["validation_test_types"] = (

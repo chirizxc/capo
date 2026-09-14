@@ -31,7 +31,7 @@ def serialize_json(value: DescribeGatewayInstanceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeGatewayInstanceResponse:
     out: DescribeGatewayInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "gatewayInstance" in data:
+    if data.get("gatewayInstance") is not None:
         import capo_mediaconnect.types.gateway_instance
 
         out["gateway_instance"] = (

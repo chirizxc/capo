@@ -34,7 +34,7 @@ def serialize_json(value: UpdateUsagePlanRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUsagePlanRequest:
     out: UpdateUsagePlanRequest = {}  # type: ignore[typeddict-item]
-    if "patchOperations" in data:
+    if data.get("patchOperations") is not None:
         import capo_api_gateway.types.list_of_patch_operation
 
         out["patch_operations"] = (

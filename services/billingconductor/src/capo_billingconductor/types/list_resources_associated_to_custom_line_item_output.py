@@ -43,9 +43,9 @@ def serialize_json(value: ListResourcesAssociatedToCustomLineItemOutput) -> dict
 
 def deserialize_json(data: dict) -> ListResourcesAssociatedToCustomLineItemOutput:
     out: ListResourcesAssociatedToCustomLineItemOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AssociatedResources" in data:
+    if data.get("AssociatedResources") is not None:
         import capo_billingconductor.types.list_resources_associated_to_custom_line_item_response_list
 
         out["associated_resources"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> ListResourcesAssociatedToCustomLineItemOutpu
                 data["AssociatedResources"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

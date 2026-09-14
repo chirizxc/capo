@@ -163,7 +163,7 @@ def serialize_json(value: AmazonTranscribeProcessorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AmazonTranscribeProcessorConfiguration:
     out: AmazonTranscribeProcessorConfiguration = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_chime_sdk_media_pipelines.types.call_analytics_language_code
 
         out["language_code"] = (
@@ -171,11 +171,11 @@ def deserialize_json(data: dict) -> AmazonTranscribeProcessorConfiguration:
                 data["LanguageCode"]
             )
         )
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
-    if "VocabularyFilterName" in data:
+    if data.get("VocabularyFilterName") is not None:
         out["vocabulary_filter_name"] = data["VocabularyFilterName"]
-    if "VocabularyFilterMethod" in data:
+    if data.get("VocabularyFilterMethod") is not None:
         import capo_chime_sdk_media_pipelines.types.vocabulary_filter_method
 
         out["vocabulary_filter_method"] = (
@@ -183,17 +183,17 @@ def deserialize_json(data: dict) -> AmazonTranscribeProcessorConfiguration:
                 data["VocabularyFilterMethod"]
             )
         )
-    if "ShowSpeakerLabel" in data:
+    if data.get("ShowSpeakerLabel") is not None:
         out["show_speaker_label"] = data["ShowSpeakerLabel"]
     else:
         out["show_speaker_label"] = False
-    if "EnablePartialResultsStabilization" in data:
+    if data.get("EnablePartialResultsStabilization") is not None:
         out["enable_partial_results_stabilization"] = data[
             "EnablePartialResultsStabilization"
         ]
     else:
         out["enable_partial_results_stabilization"] = False
-    if "PartialResultsStability" in data:
+    if data.get("PartialResultsStability") is not None:
         import capo_chime_sdk_media_pipelines.types.partial_results_stability
 
         out["partial_results_stability"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> AmazonTranscribeProcessorConfiguration:
                 data["PartialResultsStability"]
             )
         )
-    if "ContentIdentificationType" in data:
+    if data.get("ContentIdentificationType") is not None:
         import capo_chime_sdk_media_pipelines.types.content_type
 
         out["content_identification_type"] = (
@@ -209,7 +209,7 @@ def deserialize_json(data: dict) -> AmazonTranscribeProcessorConfiguration:
                 data["ContentIdentificationType"]
             )
         )
-    if "ContentRedactionType" in data:
+    if data.get("ContentRedactionType") is not None:
         import capo_chime_sdk_media_pipelines.types.content_type
 
         out["content_redaction_type"] = (
@@ -217,25 +217,25 @@ def deserialize_json(data: dict) -> AmazonTranscribeProcessorConfiguration:
                 data["ContentRedactionType"]
             )
         )
-    if "PiiEntityTypes" in data:
+    if data.get("PiiEntityTypes") is not None:
         out["pii_entity_types"] = data["PiiEntityTypes"]
-    if "LanguageModelName" in data:
+    if data.get("LanguageModelName") is not None:
         out["language_model_name"] = data["LanguageModelName"]
-    if "FilterPartialResults" in data:
+    if data.get("FilterPartialResults") is not None:
         out["filter_partial_results"] = data["FilterPartialResults"]
     else:
         out["filter_partial_results"] = False
-    if "IdentifyLanguage" in data:
+    if data.get("IdentifyLanguage") is not None:
         out["identify_language"] = data["IdentifyLanguage"]
     else:
         out["identify_language"] = False
-    if "IdentifyMultipleLanguages" in data:
+    if data.get("IdentifyMultipleLanguages") is not None:
         out["identify_multiple_languages"] = data["IdentifyMultipleLanguages"]
     else:
         out["identify_multiple_languages"] = False
-    if "LanguageOptions" in data:
+    if data.get("LanguageOptions") is not None:
         out["language_options"] = data["LanguageOptions"]
-    if "PreferredLanguage" in data:
+    if data.get("PreferredLanguage") is not None:
         import capo_chime_sdk_media_pipelines.types.call_analytics_language_code
 
         out["preferred_language"] = (
@@ -243,8 +243,8 @@ def deserialize_json(data: dict) -> AmazonTranscribeProcessorConfiguration:
                 data["PreferredLanguage"]
             )
         )
-    if "VocabularyNames" in data:
+    if data.get("VocabularyNames") is not None:
         out["vocabulary_names"] = data["VocabularyNames"]
-    if "VocabularyFilterNames" in data:
+    if data.get("VocabularyFilterNames") is not None:
         out["vocabulary_filter_names"] = data["VocabularyFilterNames"]
     return out

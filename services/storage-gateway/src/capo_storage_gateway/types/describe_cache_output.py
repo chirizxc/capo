@@ -39,41 +39,76 @@ def serialize_aws_json_1_1(value: DescribeCacheOutput) -> dict:
             value["disk_ids"]
         )
     out["CacheAllocatedInBytes"] = value.get("cache_allocated_in_bytes", 0)
-    out["CacheUsedPercentage"] = value.get("cache_used_percentage", 0)
-    out["CacheDirtyPercentage"] = value.get("cache_dirty_percentage", 0)
-    out["CacheHitPercentage"] = value.get("cache_hit_percentage", 0)
-    out["CacheMissPercentage"] = value.get("cache_miss_percentage", 0)
+    out["CacheUsedPercentage"] = (
+        "NaN"
+        if value.get("cache_used_percentage", 0)
+        != value.get("cache_used_percentage", 0)
+        else "Infinity"
+        if value.get("cache_used_percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("cache_used_percentage", 0) == float("-inf")
+        else value.get("cache_used_percentage", 0)
+    )
+    out["CacheDirtyPercentage"] = (
+        "NaN"
+        if value.get("cache_dirty_percentage", 0)
+        != value.get("cache_dirty_percentage", 0)
+        else "Infinity"
+        if value.get("cache_dirty_percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("cache_dirty_percentage", 0) == float("-inf")
+        else value.get("cache_dirty_percentage", 0)
+    )
+    out["CacheHitPercentage"] = (
+        "NaN"
+        if value.get("cache_hit_percentage", 0) != value.get("cache_hit_percentage", 0)
+        else "Infinity"
+        if value.get("cache_hit_percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("cache_hit_percentage", 0) == float("-inf")
+        else value.get("cache_hit_percentage", 0)
+    )
+    out["CacheMissPercentage"] = (
+        "NaN"
+        if value.get("cache_miss_percentage", 0)
+        != value.get("cache_miss_percentage", 0)
+        else "Infinity"
+        if value.get("cache_miss_percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("cache_miss_percentage", 0) == float("-inf")
+        else value.get("cache_miss_percentage", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCacheOutput:
     out: DescribeCacheOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "DiskIds" in data:
+    if data.get("DiskIds") is not None:
         import capo_storage_gateway.types.disk_ids
 
         out["disk_ids"] = capo_storage_gateway.types.disk_ids.deserialize_aws_json_1_1(
             data["DiskIds"]
         )
-    if "CacheAllocatedInBytes" in data:
+    if data.get("CacheAllocatedInBytes") is not None:
         out["cache_allocated_in_bytes"] = data["CacheAllocatedInBytes"]
     else:
         out["cache_allocated_in_bytes"] = 0
-    if "CacheUsedPercentage" in data:
-        out["cache_used_percentage"] = data["CacheUsedPercentage"]
+    if data.get("CacheUsedPercentage") is not None:
+        out["cache_used_percentage"] = float(data["CacheUsedPercentage"])
     else:
         out["cache_used_percentage"] = 0
-    if "CacheDirtyPercentage" in data:
-        out["cache_dirty_percentage"] = data["CacheDirtyPercentage"]
+    if data.get("CacheDirtyPercentage") is not None:
+        out["cache_dirty_percentage"] = float(data["CacheDirtyPercentage"])
     else:
         out["cache_dirty_percentage"] = 0
-    if "CacheHitPercentage" in data:
-        out["cache_hit_percentage"] = data["CacheHitPercentage"]
+    if data.get("CacheHitPercentage") is not None:
+        out["cache_hit_percentage"] = float(data["CacheHitPercentage"])
     else:
         out["cache_hit_percentage"] = 0
-    if "CacheMissPercentage" in data:
-        out["cache_miss_percentage"] = data["CacheMissPercentage"]
+    if data.get("CacheMissPercentage") is not None:
+        out["cache_miss_percentage"] = float(data["CacheMissPercentage"])
     else:
         out["cache_miss_percentage"] = 0
     return out

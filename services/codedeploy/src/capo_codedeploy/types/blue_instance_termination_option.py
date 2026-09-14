@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: BlueInstanceTerminationOption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BlueInstanceTerminationOption:
     out: BlueInstanceTerminationOption = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_codedeploy.types.instance_action
 
         out["action"] = capo_codedeploy.types.instance_action.deserialize_aws_json_1_1(
             data["action"]
         )
-    if "terminationWaitTimeInMinutes" in data:
+    if data.get("terminationWaitTimeInMinutes") is not None:
         out["termination_wait_time_in_minutes"] = data["terminationWaitTimeInMinutes"]
     else:
         out["termination_wait_time_in_minutes"] = 0

@@ -36,7 +36,7 @@ def serialize_json(value: PushSync) -> dict:
 
 def deserialize_json(data: dict) -> PushSync:
     out: PushSync = {}  # type: ignore[typeddict-item]
-    if "ApplicationArns" in data:
+    if data.get("ApplicationArns") is not None:
         import capo_cognito_sync.types.application_arn_list
 
         out["application_arns"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> PushSync:
                 data["ApplicationArns"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

@@ -38,17 +38,25 @@ def serialize_aws_json_1_1(value: Spigot) -> dict:
     if "topk" in value:
         out["Topk"] = value["topk"]
     if "prob" in value:
-        out["Prob"] = value["prob"]
+        out["Prob"] = (
+            "NaN"
+            if value["prob"] != value["prob"]
+            else "Infinity"
+            if value["prob"] == float("inf")
+            else "-Infinity"
+            if value["prob"] == float("-inf")
+            else value["prob"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> Spigot:
     out: Spigot = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Spigot.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -56,12 +64,12 @@ def deserialize_aws_json_1_1(data: dict) -> Spigot:
         )
     else:
         raise DeserializationError("Spigot.inputs required")
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     else:
         raise DeserializationError("Spigot.path required")
-    if "Topk" in data:
+    if data.get("Topk") is not None:
         out["topk"] = data["Topk"]
-    if "Prob" in data:
-        out["prob"] = data["Prob"]
+    if data.get("Prob") is not None:
+        out["prob"] = float(data["Prob"])
     return out

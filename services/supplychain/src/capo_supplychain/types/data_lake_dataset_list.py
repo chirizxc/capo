@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataLakeDatasetList:
 
     out: DataLakeDatasetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_supplychain.types.data_lake_dataset.deserialize_json(item))
     return out

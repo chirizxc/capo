@@ -58,9 +58,9 @@ def serialize_aws_json_1_1(value: LicenseConfigurationUsage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LicenseConfigurationUsage:
     out: LicenseConfigurationUsage = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_license_manager.types.resource_type
 
         out["resource_type"] = (
@@ -68,11 +68,11 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseConfigurationUsage:
                 data["ResourceType"]
             )
         )
-    if "ResourceStatus" in data:
+    if data.get("ResourceStatus") is not None:
         out["resource_status"] = data["ResourceStatus"]
-    if "ResourceOwnerId" in data:
+    if data.get("ResourceOwnerId") is not None:
         out["resource_owner_id"] = data["ResourceOwnerId"]
-    if "AssociationTime" in data:
+    if data.get("AssociationTime") is not None:
         import capo_license_manager.types.date_time
 
         out["association_time"] = (
@@ -80,6 +80,6 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseConfigurationUsage:
                 data["AssociationTime"]
             )
         )
-    if "ConsumedLicenses" in data:
+    if data.get("ConsumedLicenses") is not None:
         out["consumed_licenses"] = data["ConsumedLicenses"]
     return out

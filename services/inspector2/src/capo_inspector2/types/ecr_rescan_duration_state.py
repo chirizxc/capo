@@ -57,18 +57,18 @@ def serialize_json(value: EcrRescanDurationState) -> dict:
 
 def deserialize_json(data: dict) -> EcrRescanDurationState:
     out: EcrRescanDurationState = {}  # type: ignore[typeddict-item]
-    if "rescanDuration" in data:
+    if data.get("rescanDuration") is not None:
         out["rescan_duration"] = data["rescanDuration"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["updated_at"] = capo_inspector2.types.date_time_timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "pullDateRescanDuration" in data:
+    if data.get("pullDateRescanDuration") is not None:
         out["pull_date_rescan_duration"] = data["pullDateRescanDuration"]
-    if "pullDateRescanMode" in data:
+    if data.get("pullDateRescanMode") is not None:
         out["pull_date_rescan_mode"] = data["pullDateRescanMode"]
     return out

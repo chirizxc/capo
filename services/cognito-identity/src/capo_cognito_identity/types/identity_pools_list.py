@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> IdentityPoolsList:
 
     out: IdentityPoolsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cognito_identity.types.identity_pool_short_description.deserialize_aws_json_1_1(
                 item

@@ -31,14 +31,14 @@ def serialize_aws_json_1_0(value: KubernetesScalingResource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KubernetesScalingResource:
     out: KubernetesScalingResource = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     else:
         raise DeserializationError("KubernetesScalingResource.namespace required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("KubernetesScalingResource.name required")
-    if "hpaName" in data:
+    if data.get("hpaName") is not None:
         out["hpa_name"] = data["hpaName"]
     return out

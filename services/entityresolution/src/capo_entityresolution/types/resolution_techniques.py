@@ -67,7 +67,7 @@ def serialize_json(value: ResolutionTechniques) -> dict:
 
 def deserialize_json(data: dict) -> ResolutionTechniques:
     out: ResolutionTechniques = {}  # type: ignore[typeddict-item]
-    if "resolutionType" in data:
+    if data.get("resolutionType") is not None:
         import capo_entityresolution.types.resolution_type
 
         out["resolution_type"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> ResolutionTechniques:
         )
     else:
         raise DeserializationError("ResolutionTechniques.resolution_type required")
-    if "ruleBasedProperties" in data:
+    if data.get("ruleBasedProperties") is not None:
         import capo_entityresolution.types.rule_based_properties
 
         out["rule_based_properties"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> ResolutionTechniques:
                 data["ruleBasedProperties"]
             )
         )
-    if "ruleConditionProperties" in data:
+    if data.get("ruleConditionProperties") is not None:
         import capo_entityresolution.types.rule_condition_properties
 
         out["rule_condition_properties"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> ResolutionTechniques:
                 data["ruleConditionProperties"]
             )
         )
-    if "providerProperties" in data:
+    if data.get("providerProperties") is not None:
         import capo_entityresolution.types.provider_properties
 
         out["provider_properties"] = (

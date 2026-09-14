@@ -36,15 +36,15 @@ def serialize_json(value: DeleteDomainOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDomainOutput:
     out: DeleteDomainOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("DeleteDomainOutput.domain_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteDomainOutput.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_connecthealth.types.domain_status
 
         out["status"] = capo_connecthealth.types.domain_status.deserialize_json(

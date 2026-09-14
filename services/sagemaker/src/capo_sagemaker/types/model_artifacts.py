@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ModelArtifacts) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelArtifacts:
     out: ModelArtifacts = {}  # type: ignore[typeddict-item]
-    if "S3ModelArtifacts" in data:
+    if data.get("S3ModelArtifacts") is not None:
         out["s3_model_artifacts"] = data["S3ModelArtifacts"]
     return out

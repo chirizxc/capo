@@ -19,7 +19,7 @@ def serialize_json(value: RedshiftCredentialConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftCredentialConfiguration:
     out: RedshiftCredentialConfiguration = {}  # type: ignore[typeddict-item]
-    if "secretManagerArn" in data:
+    if data.get("secretManagerArn") is not None:
         out["secret_manager_arn"] = data["secretManagerArn"]
     else:
         raise DeserializationError(

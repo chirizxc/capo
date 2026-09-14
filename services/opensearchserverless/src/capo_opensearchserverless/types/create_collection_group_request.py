@@ -68,25 +68,25 @@ def serialize_aws_json_1_0(value: CreateCollectionGroupRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCollectionGroupRequest:
     out: CreateCollectionGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateCollectionGroupRequest.name required")
-    if "standbyReplicas" in data:
+    if data.get("standbyReplicas") is not None:
         out["standby_replicas"] = data["standbyReplicas"]
     else:
         raise DeserializationError(
             "CreateCollectionGroupRequest.standby_replicas required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_opensearchserverless.types.tags
 
         out["tags"] = capo_opensearchserverless.types.tags.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "capacityLimits" in data:
+    if data.get("capacityLimits") is not None:
         import capo_opensearchserverless.types.collection_group_capacity_limits
 
         out["capacity_limits"] = (
@@ -94,8 +94,8 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCollectionGroupRequest:
                 data["capacityLimits"]
             )
         )
-    if "generation" in data:
+    if data.get("generation") is not None:
         out["generation"] = data["generation"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

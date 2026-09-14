@@ -31,10 +31,10 @@ def serialize_json(value: VerifyOTPMessageRequestParameters) -> dict:
 
 def deserialize_json(data: dict) -> VerifyOTPMessageRequestParameters:
     out: VerifyOTPMessageRequestParameters = {}  # type: ignore[typeddict-item]
-    if "DestinationIdentity" in data:
+    if data.get("DestinationIdentity") is not None:
         out["destination_identity"] = data["DestinationIdentity"]
-    if "Otp" in data:
+    if data.get("Otp") is not None:
         out["otp"] = data["Otp"]
-    if "ReferenceId" in data:
+    if data.get("ReferenceId") is not None:
         out["reference_id"] = data["ReferenceId"]
     return out

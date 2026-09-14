@@ -28,11 +28,11 @@ def serialize_json(value: AssociateToConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateToConfigurationRequest:
     out: AssociateToConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         out["resource"] = data["Resource"]
     else:
         raise DeserializationError("AssociateToConfigurationRequest.resource required")
-    if "ChatConfiguration" in data:
+    if data.get("ChatConfiguration") is not None:
         out["chat_configuration"] = data["ChatConfiguration"]
     else:
         raise DeserializationError(

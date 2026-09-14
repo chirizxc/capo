@@ -51,32 +51,32 @@ def serialize_json(value: VolumeSummary) -> dict:
 
 def deserialize_json(data: dict) -> VolumeSummary:
     out: VolumeSummary = {}  # type: ignore[typeddict-item]
-    if "volumeId" in data:
+    if data.get("volumeId") is not None:
         out["volume_id"] = data["volumeId"]
     else:
         raise DeserializationError("VolumeSummary.volume_id required")
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("VolumeSummary.farm_id required")
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
     else:
         raise DeserializationError("VolumeSummary.fleet_id required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_deadline.types.volume_state
 
         out["state"] = capo_deadline.types.volume_state.deserialize_json(data["state"])
     else:
         raise DeserializationError("VolumeSummary.state required")
-    if "sizeGiB" in data:
+    if data.get("sizeGiB") is not None:
         out["size_gi_b"] = data["sizeGiB"]
     else:
         raise DeserializationError("VolumeSummary.size_gi_b required")
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
     else:
         raise DeserializationError("VolumeSummary.availability_zone_id required")
-    if "attachedWorkerId" in data:
+    if data.get("attachedWorkerId") is not None:
         out["attached_worker_id"] = data["attachedWorkerId"]
     return out

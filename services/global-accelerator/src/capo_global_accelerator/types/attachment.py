@@ -73,11 +73,11 @@ def serialize_aws_json_1_1(value: Attachment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Attachment:
     out: Attachment = {}  # type: ignore[typeddict-item]
-    if "AttachmentArn" in data:
+    if data.get("AttachmentArn") is not None:
         out["attachment_arn"] = data["AttachmentArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Principals" in data:
+    if data.get("Principals") is not None:
         import capo_global_accelerator.types.principals
 
         out["principals"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> Attachment:
                 data["Principals"]
             )
         )
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_global_accelerator.types.resources
 
         out["resources"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> Attachment:
                 data["Resources"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_global_accelerator.types.timestamp
 
         out["last_modified_time"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> Attachment:
                 data["LastModifiedTime"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_global_accelerator.types.timestamp
 
         out["created_time"] = (

@@ -49,19 +49,19 @@ def serialize_json(value: CreateMeetingWithAttendeesResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMeetingWithAttendeesResponse:
     out: CreateMeetingWithAttendeesResponse = {}  # type: ignore[typeddict-item]
-    if "Meeting" in data:
+    if data.get("Meeting") is not None:
         import capo_chime_sdk_meetings.types.meeting
 
         out["meeting"] = capo_chime_sdk_meetings.types.meeting.deserialize_json(
             data["Meeting"]
         )
-    if "Attendees" in data:
+    if data.get("Attendees") is not None:
         import capo_chime_sdk_meetings.types.attendee_list
 
         out["attendees"] = capo_chime_sdk_meetings.types.attendee_list.deserialize_json(
             data["Attendees"]
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_chime_sdk_meetings.types.batch_create_attendee_error_list
 
         out["errors"] = (

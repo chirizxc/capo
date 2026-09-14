@@ -36,10 +36,10 @@ def serialize_json(value: NoteTakingAIAgentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NoteTakingAIAgentConfiguration:
     out: NoteTakingAIAgentConfiguration = {}  # type: ignore[typeddict-item]
-    if "noteTakingAIPromptId" in data:
+    if data.get("noteTakingAIPromptId") is not None:
         out["note_taking_ai_prompt_id"] = data["noteTakingAIPromptId"]
-    if "noteTakingAIGuardrailId" in data:
+    if data.get("noteTakingAIGuardrailId") is not None:
         out["note_taking_ai_guardrail_id"] = data["noteTakingAIGuardrailId"]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
     return out

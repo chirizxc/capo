@@ -160,27 +160,27 @@ def serialize_json(value: JobRun) -> dict:
 
 def deserialize_json(data: dict) -> JobRun:
     out: JobRun = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "virtualClusterId" in data:
+    if data.get("virtualClusterId") is not None:
         out["virtual_cluster_id"] = data["virtualClusterId"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_emr_containers.types.job_run_state
 
         out["state"] = capo_emr_containers.types.job_run_state.deserialize_json(
             data["state"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
-    if "configurationOverrides" in data:
+    if data.get("configurationOverrides") is not None:
         import capo_emr_containers.types.configuration_overrides
 
         out["configuration_overrides"] = (
@@ -188,29 +188,29 @@ def deserialize_json(data: dict) -> JobRun:
                 data["configurationOverrides"]
             )
         )
-    if "jobDriver" in data:
+    if data.get("jobDriver") is not None:
         import capo_emr_containers.types.job_driver
 
         out["job_driver"] = capo_emr_containers.types.job_driver.deserialize_json(
             data["jobDriver"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_emr_containers.types.date
 
         out["created_at"] = capo_emr_containers.types.date.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "finishedAt" in data:
+    if data.get("finishedAt") is not None:
         import capo_emr_containers.types.date
 
         out["finished_at"] = capo_emr_containers.types.date.deserialize_json(
             data["finishedAt"]
         )
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         import capo_emr_containers.types.failure_reason
 
         out["failure_reason"] = (
@@ -218,11 +218,11 @@ def deserialize_json(data: dict) -> JobRun:
                 data["failureReason"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_containers.types.tag_map
 
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])
-    if "retryPolicyConfiguration" in data:
+    if data.get("retryPolicyConfiguration") is not None:
         import capo_emr_containers.types.retry_policy_configuration
 
         out["retry_policy_configuration"] = (
@@ -230,7 +230,7 @@ def deserialize_json(data: dict) -> JobRun:
                 data["retryPolicyConfiguration"]
             )
         )
-    if "retryPolicyExecution" in data:
+    if data.get("retryPolicyExecution") is not None:
         import capo_emr_containers.types.retry_policy_execution
 
         out["retry_policy_execution"] = (

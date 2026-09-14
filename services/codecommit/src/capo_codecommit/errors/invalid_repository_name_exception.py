@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidRepositoryNameException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidRepositoryNameException_:
     out: InvalidRepositoryNameException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class InvalidRepositoryNameException(ServiceError):
 
     code: str | None = "InvalidRepositoryNameException"
 
-    def __init__(self, data: InvalidRepositoryNameException_):
+    def __init__(
+        self, data: InvalidRepositoryNameException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidRepositoryNameException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidRepositoryNameException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidRepositoryNameException":
+        return cls(deserialize_aws_json_1_1(data), message)

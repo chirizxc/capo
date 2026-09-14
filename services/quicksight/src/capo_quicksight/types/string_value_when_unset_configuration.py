@@ -36,7 +36,7 @@ def serialize_json(value: StringValueWhenUnsetConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> StringValueWhenUnsetConfiguration:
     out: StringValueWhenUnsetConfiguration = {}  # type: ignore[typeddict-item]
-    if "ValueWhenUnsetOption" in data:
+    if data.get("ValueWhenUnsetOption") is not None:
         import capo_quicksight.types.value_when_unset_option
 
         out["value_when_unset_option"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> StringValueWhenUnsetConfiguration:
                 data["ValueWhenUnsetOption"]
             )
         )
-    if "CustomValue" in data:
+    if data.get("CustomValue") is not None:
         out["custom_value"] = data["CustomValue"]
     return out

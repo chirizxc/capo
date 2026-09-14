@@ -33,7 +33,7 @@ def serialize_json(value: GetPropertyValueHistoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPropertyValueHistoryResponse:
     out: GetPropertyValueHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "propertyValues" in data:
+    if data.get("propertyValues") is not None:
         import capo_iottwinmaker.types.property_value_list
 
         out["property_values"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> GetPropertyValueHistoryResponse:
         raise DeserializationError(
             "GetPropertyValueHistoryResponse.property_values required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: CallAnalyticsSkippedFeature) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsSkippedFeature:
     out: CallAnalyticsSkippedFeature = {}  # type: ignore[typeddict-item]
-    if "Feature" in data:
+    if data.get("Feature") is not None:
         import capo_transcribe.types.call_analytics_feature
 
         out["feature"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsSkippedFeature:
                 data["Feature"]
             )
         )
-    if "ReasonCode" in data:
+    if data.get("ReasonCode") is not None:
         import capo_transcribe.types.call_analytics_skipped_reason_code
 
         out["reason_code"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsSkippedFeature:
                 data["ReasonCode"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

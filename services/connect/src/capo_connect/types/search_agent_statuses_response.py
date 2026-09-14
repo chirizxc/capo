@@ -39,14 +39,14 @@ def serialize_json(value: SearchAgentStatusesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchAgentStatusesResponse:
     out: SearchAgentStatusesResponse = {}  # type: ignore[typeddict-item]
-    if "AgentStatuses" in data:
+    if data.get("AgentStatuses") is not None:
         import capo_connect.types.agent_status_list
 
         out["agent_statuses"] = capo_connect.types.agent_status_list.deserialize_json(
             data["AgentStatuses"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ApproximateTotalCount" in data:
+    if data.get("ApproximateTotalCount") is not None:
         out["approximate_total_count"] = data["ApproximateTotalCount"]
     return out

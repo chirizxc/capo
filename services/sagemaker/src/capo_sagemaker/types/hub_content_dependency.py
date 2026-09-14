@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: HubContentDependency) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HubContentDependency:
     out: HubContentDependency = {}  # type: ignore[typeddict-item]
-    if "DependencyOriginPath" in data:
+    if data.get("DependencyOriginPath") is not None:
         out["dependency_origin_path"] = data["DependencyOriginPath"]
-    if "DependencyCopyPath" in data:
+    if data.get("DependencyCopyPath") is not None:
         out["dependency_copy_path"] = data["DependencyCopyPath"]
     return out

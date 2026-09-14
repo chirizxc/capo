@@ -63,7 +63,15 @@ def serialize_json(value: LteObj) -> dict:
     if "rsrp" in value:
         out["Rsrp"] = value["rsrp"]
     if "rsrq" in value:
-        out["Rsrq"] = value["rsrq"]
+        out["Rsrq"] = (
+            "NaN"
+            if value["rsrq"] != value["rsrq"]
+            else "Infinity"
+            if value["rsrq"] == float("inf")
+            else "-Infinity"
+            if value["rsrq"] == float("-inf")
+            else value["rsrq"]
+        )
     out["NrCapable"] = value.get("nr_capable", False)
     if "lte_nmr" in value:
         import capo_iot_wireless.types.lte_nmr_list
@@ -76,37 +84,37 @@ def serialize_json(value: LteObj) -> dict:
 
 def deserialize_json(data: dict) -> LteObj:
     out: LteObj = {}  # type: ignore[typeddict-item]
-    if "Mcc" in data:
+    if data.get("Mcc") is not None:
         out["mcc"] = data["Mcc"]
     else:
         raise DeserializationError("LteObj.mcc required")
-    if "Mnc" in data:
+    if data.get("Mnc") is not None:
         out["mnc"] = data["Mnc"]
     else:
         raise DeserializationError("LteObj.mnc required")
-    if "EutranCid" in data:
+    if data.get("EutranCid") is not None:
         out["eutran_cid"] = data["EutranCid"]
     else:
         raise DeserializationError("LteObj.eutran_cid required")
-    if "Tac" in data:
+    if data.get("Tac") is not None:
         out["tac"] = data["Tac"]
-    if "LteLocalId" in data:
+    if data.get("LteLocalId") is not None:
         import capo_iot_wireless.types.lte_local_id
 
         out["lte_local_id"] = capo_iot_wireless.types.lte_local_id.deserialize_json(
             data["LteLocalId"]
         )
-    if "LteTimingAdvance" in data:
+    if data.get("LteTimingAdvance") is not None:
         out["lte_timing_advance"] = data["LteTimingAdvance"]
-    if "Rsrp" in data:
+    if data.get("Rsrp") is not None:
         out["rsrp"] = data["Rsrp"]
-    if "Rsrq" in data:
-        out["rsrq"] = data["Rsrq"]
-    if "NrCapable" in data:
+    if data.get("Rsrq") is not None:
+        out["rsrq"] = float(data["Rsrq"])
+    if data.get("NrCapable") is not None:
         out["nr_capable"] = data["NrCapable"]
     else:
         out["nr_capable"] = False
-    if "LteNmr" in data:
+    if data.get("LteNmr") is not None:
         import capo_iot_wireless.types.lte_nmr_list
 
         out["lte_nmr"] = capo_iot_wireless.types.lte_nmr_list.deserialize_json(

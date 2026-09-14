@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ResourceKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceKey:
     out: ResourceKey = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_config_service.types.resource_type
 
         out["resource_type"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceKey:
         )
     else:
         raise DeserializationError("ResourceKey.resource_type required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("ResourceKey.resource_id required")

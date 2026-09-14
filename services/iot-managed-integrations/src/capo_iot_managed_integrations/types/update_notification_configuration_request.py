@@ -29,7 +29,7 @@ def serialize_json(value: UpdateNotificationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNotificationConfigurationRequest:
     out: UpdateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
     else:
         raise DeserializationError(

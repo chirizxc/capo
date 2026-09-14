@@ -149,13 +149,13 @@ def serialize_json(value: CreateApplicationOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationOutput:
     out: CreateApplicationOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("CreateApplicationOutput.arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RuntimeEnvironment" in data:
+    if data.get("RuntimeEnvironment") is not None:
         import capo_gameliftstreams.types.runtime_environment
 
         out["runtime_environment"] = (
@@ -163,9 +163,9 @@ def deserialize_json(data: dict) -> CreateApplicationOutput:
                 data["RuntimeEnvironment"]
             )
         )
-    if "ExecutablePath" in data:
+    if data.get("ExecutablePath") is not None:
         out["executable_path"] = data["ExecutablePath"]
-    if "ApplicationLogPaths" in data:
+    if data.get("ApplicationLogPaths") is not None:
         import capo_gameliftstreams.types.file_paths
 
         out["application_log_paths"] = (
@@ -173,19 +173,19 @@ def deserialize_json(data: dict) -> CreateApplicationOutput:
                 data["ApplicationLogPaths"]
             )
         )
-    if "ApplicationLogOutputUri" in data:
+    if data.get("ApplicationLogOutputUri") is not None:
         out["application_log_output_uri"] = data["ApplicationLogOutputUri"]
-    if "ApplicationSourceUri" in data:
+    if data.get("ApplicationSourceUri") is not None:
         out["application_source_uri"] = data["ApplicationSourceUri"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gameliftstreams.types.application_status
 
         out["status"] = capo_gameliftstreams.types.application_status.deserialize_json(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_gameliftstreams.types.application_status_reason
 
         out["status_reason"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> CreateApplicationOutput:
                 data["StatusReason"]
             )
         )
-    if "ReplicationStatuses" in data:
+    if data.get("ReplicationStatuses") is not None:
         import capo_gameliftstreams.types.replication_statuses
 
         out["replication_statuses"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> CreateApplicationOutput:
                 data["ReplicationStatuses"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["created_at"] = (
@@ -209,7 +209,7 @@ def deserialize_json(data: dict) -> CreateApplicationOutput:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["last_updated_at"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> CreateApplicationOutput:
                 data["LastUpdatedAt"]
             )
         )
-    if "AssociatedStreamGroups" in data:
+    if data.get("AssociatedStreamGroups") is not None:
         import capo_gameliftstreams.types.arn_list
 
         out["associated_stream_groups"] = (

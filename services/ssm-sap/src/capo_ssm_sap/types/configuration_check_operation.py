@@ -91,19 +91,19 @@ def serialize_json(value: ConfigurationCheckOperation) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationCheckOperation:
     out: ConfigurationCheckOperation = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_ssm_sap.types.operation_status
 
         out["status"] = capo_ssm_sap.types.operation_status.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "ConfigurationCheckId" in data:
+    if data.get("ConfigurationCheckId") is not None:
         import capo_ssm_sap.types.configuration_check_type
 
         out["configuration_check_id"] = (
@@ -111,23 +111,23 @@ def deserialize_json(data: dict) -> ConfigurationCheckOperation:
                 data["ConfigurationCheckId"]
             )
         )
-    if "ConfigurationCheckName" in data:
+    if data.get("ConfigurationCheckName") is not None:
         out["configuration_check_name"] = data["ConfigurationCheckName"]
-    if "ConfigurationCheckDescription" in data:
+    if data.get("ConfigurationCheckDescription") is not None:
         out["configuration_check_description"] = data["ConfigurationCheckDescription"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_sap.types._prelude.timestamp
 
         out["start_time"] = capo_ssm_sap.types._prelude.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_ssm_sap.types._prelude.timestamp
 
         out["end_time"] = capo_ssm_sap.types._prelude.timestamp.deserialize_json(
             data["EndTime"]
         )
-    if "RuleStatusCounts" in data:
+    if data.get("RuleStatusCounts") is not None:
         import capo_ssm_sap.types.rule_status_counts
 
         out["rule_status_counts"] = (

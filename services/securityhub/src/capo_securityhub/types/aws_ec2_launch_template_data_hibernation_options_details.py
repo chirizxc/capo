@@ -23,6 +23,6 @@ def serialize_json(value: AwsEc2LaunchTemplateDataHibernationOptionsDetails) -> 
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataHibernationOptionsDetails:
     out: AwsEc2LaunchTemplateDataHibernationOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "Configured" in data:
+    if data.get("Configured") is not None:
         out["configured"] = data["Configured"]
     return out

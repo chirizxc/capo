@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: UpdateBillingViewResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateBillingViewResponse:
     out: UpdateBillingViewResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateBillingViewResponse.arn required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_billing.types._prelude.timestamp
 
         out["updated_at"] = (

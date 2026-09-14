@@ -13,9 +13,9 @@ from capo_workspaces import AsyncWorkSpacesClient
 
 
 async def main():
-    async with AsyncWorkSpacesClient() as s3:
+    async with AsyncWorkSpacesClient() as work_spaces:
         # Example: call the accept_account_link_invitation operation
-        response = await s3.accept_account_link_invitation()
+        response = await work_spaces.accept_account_link_invitation()
         print(response["account_link"])
 ```
 
@@ -28,9 +28,9 @@ from capo_workspaces import AsyncWorkSpacesClient
 
 
 async def main():
-    async with AsyncWorkSpacesClient() as s3:
-        # Example: paginate over describe_workspace_bundles
-        async for item in s3.iter_describe_workspace_bundles():
+    async with AsyncWorkSpacesClient() as work_spaces:
+        # Example: paginate over describe_application_associations
+        async for item in work_spaces.iter_describe_application_associations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_workspaces.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncWorkSpacesClient() as s3:
+    async with AsyncWorkSpacesClient() as work_spaces:
         try:
-            await s3.accept_account_link_invitation()
+            await work_spaces.accept_account_link_invitation()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_workspaces import AsyncWorkSpacesClient
 
 
 async def main():
-    async with AsyncWorkSpacesClient() as s3:
+    async with AsyncWorkSpacesClient() as work_spaces:
         # Default: 3 attempts for every operation
-        response = await s3.accept_account_link_invitation()
+        response = await work_spaces.accept_account_link_invitation()
 
         # Override per operation
-        response = await s3.accept_account_link_invitation(config_overrides={"retry_max_attempts": 5})
+        response = await work_spaces.accept_account_link_invitation(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_account_link_invitation(config_overrides={"retry_max_attempts": 1})
+        response = await work_spaces.accept_account_link_invitation(config_overrides={"retry_max_attempts": 1})
 ```

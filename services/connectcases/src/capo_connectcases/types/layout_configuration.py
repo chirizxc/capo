@@ -23,6 +23,6 @@ def serialize_json(value: LayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LayoutConfiguration:
     out: LayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "defaultLayout" in data:
+    if data.get("defaultLayout") is not None:
         out["default_layout"] = data["defaultLayout"]
     return out

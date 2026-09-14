@@ -38,7 +38,7 @@ def serialize_json(value: GenerateMatchIdOutput) -> dict:
 
 def deserialize_json(data: dict) -> GenerateMatchIdOutput:
     out: GenerateMatchIdOutput = {}  # type: ignore[typeddict-item]
-    if "matchGroups" in data:
+    if data.get("matchGroups") is not None:
         import capo_entityresolution.types.match_groups_list
 
         out["match_groups"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> GenerateMatchIdOutput:
         )
     else:
         raise DeserializationError("GenerateMatchIdOutput.match_groups required")
-    if "failedRecords" in data:
+    if data.get("failedRecords") is not None:
         import capo_entityresolution.types.failed_records_list
 
         out["failed_records"] = (

@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: InferenceExperimentDataStorageConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceExperimentDataStorageConfig:
     out: InferenceExperimentDataStorageConfig = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
-    if "KmsKey" in data:
+    if data.get("KmsKey") is not None:
         out["kms_key"] = data["KmsKey"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_sagemaker.types.capture_content_type_header
 
         out["content_type"] = (

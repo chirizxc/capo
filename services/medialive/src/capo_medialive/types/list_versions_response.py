@@ -31,7 +31,7 @@ def serialize_json(value: ListVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListVersionsResponse:
     out: ListVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "versions" in data:
+    if data.get("versions") is not None:
         import capo_medialive.types.__list_of_channel_engine_version_response
 
         out["versions"] = (

@@ -30,11 +30,11 @@ def serialize_json(value: Payload) -> dict:
 
 def deserialize_json(data: dict) -> Payload:
     out: Payload = {}  # type: ignore[typeddict-item]
-    if "contentExpression" in data:
+    if data.get("contentExpression") is not None:
         out["content_expression"] = data["contentExpression"]
     else:
         raise DeserializationError("Payload.content_expression required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iot_events.types.payload_type
 
         out["type"] = capo_iot_events.types.payload_type.deserialize_json(data["type"])

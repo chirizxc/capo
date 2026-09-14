@@ -32,12 +32,12 @@ def serialize_json(value: TopicSingularFilterConstant) -> dict:
 
 def deserialize_json(data: dict) -> TopicSingularFilterConstant:
     out: TopicSingularFilterConstant = {}  # type: ignore[typeddict-item]
-    if "ConstantType" in data:
+    if data.get("ConstantType") is not None:
         import capo_quicksight.types.constant_type
 
         out["constant_type"] = capo_quicksight.types.constant_type.deserialize_json(
             data["ConstantType"]
         )
-    if "SingularConstant" in data:
+    if data.get("SingularConstant") is not None:
         out["singular_constant"] = data["SingularConstant"]
     return out

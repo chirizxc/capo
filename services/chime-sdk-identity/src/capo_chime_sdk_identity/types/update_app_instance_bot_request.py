@@ -44,15 +44,15 @@ def serialize_json(value: UpdateAppInstanceBotRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAppInstanceBotRequest:
     out: UpdateAppInstanceBotRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateAppInstanceBotRequest.name required")
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
     else:
         raise DeserializationError("UpdateAppInstanceBotRequest.metadata required")
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_chime_sdk_identity.types.configuration
 
         out["configuration"] = (

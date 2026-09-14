@@ -79,17 +79,17 @@ def serialize_json(value: PipeTargetBatchJobParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetBatchJobParameters:
     out: PipeTargetBatchJobParameters = {}  # type: ignore[typeddict-item]
-    if "JobDefinition" in data:
+    if data.get("JobDefinition") is not None:
         out["job_definition"] = data["JobDefinition"]
     else:
         raise DeserializationError(
             "PipeTargetBatchJobParameters.job_definition required"
         )
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
     else:
         raise DeserializationError("PipeTargetBatchJobParameters.job_name required")
-    if "ArrayProperties" in data:
+    if data.get("ArrayProperties") is not None:
         import capo_pipes.types.batch_array_properties
 
         out["array_properties"] = (
@@ -97,13 +97,13 @@ def deserialize_json(data: dict) -> PipeTargetBatchJobParameters:
                 data["ArrayProperties"]
             )
         )
-    if "RetryStrategy" in data:
+    if data.get("RetryStrategy") is not None:
         import capo_pipes.types.batch_retry_strategy
 
         out["retry_strategy"] = capo_pipes.types.batch_retry_strategy.deserialize_json(
             data["RetryStrategy"]
         )
-    if "ContainerOverrides" in data:
+    if data.get("ContainerOverrides") is not None:
         import capo_pipes.types.batch_container_overrides
 
         out["container_overrides"] = (
@@ -111,13 +111,13 @@ def deserialize_json(data: dict) -> PipeTargetBatchJobParameters:
                 data["ContainerOverrides"]
             )
         )
-    if "DependsOn" in data:
+    if data.get("DependsOn") is not None:
         import capo_pipes.types.batch_depends_on
 
         out["depends_on"] = capo_pipes.types.batch_depends_on.deserialize_json(
             data["DependsOn"]
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_pipes.types.batch_parameters_map
 
         out["parameters"] = capo_pipes.types.batch_parameters_map.deserialize_json(

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ThumbnailStorageTypeList:
 
     out: ThumbnailStorageTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs_realtime.types.thumbnail_storage_type.deserialize_json(item)
         )

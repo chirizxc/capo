@@ -71,9 +71,9 @@ def serialize_aws_json_1_1(value: StopInferenceExperimentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopInferenceExperimentRequest:
     out: StopInferenceExperimentRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ModelVariantActions" in data:
+    if data.get("ModelVariantActions") is not None:
         import capo_sagemaker.types.model_variant_action_map
 
         out["model_variant_actions"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> StopInferenceExperimentRequest:
                 data["ModelVariantActions"]
             )
         )
-    if "DesiredModelVariants" in data:
+    if data.get("DesiredModelVariants") is not None:
         import capo_sagemaker.types.model_variant_config_list
 
         out["desired_model_variants"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> StopInferenceExperimentRequest:
                 data["DesiredModelVariants"]
             )
         )
-    if "DesiredState" in data:
+    if data.get("DesiredState") is not None:
         import capo_sagemaker.types.inference_experiment_stop_desired_state
 
         out["desired_state"] = (
@@ -97,6 +97,6 @@ def deserialize_aws_json_1_1(data: dict) -> StopInferenceExperimentRequest:
                 data["DesiredState"]
             )
         )
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     return out

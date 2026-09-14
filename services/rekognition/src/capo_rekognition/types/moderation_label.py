@@ -25,7 +25,15 @@ class ModerationLabel(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: ModerationLabel) -> dict:
     out: dict = {}
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "name" in value:
         out["Name"] = value["name"]
     if "parent_name" in value:
@@ -37,12 +45,12 @@ def serialize_aws_json_1_1(value: ModerationLabel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModerationLabel:
     out: ModerationLabel = {}  # type: ignore[typeddict-item]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "Name" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ParentName" in data:
+    if data.get("ParentName") is not None:
         out["parent_name"] = data["ParentName"]
-    if "TaxonomyLevel" in data:
+    if data.get("TaxonomyLevel") is not None:
         out["taxonomy_level"] = data["TaxonomyLevel"]
     return out

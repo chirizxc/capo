@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: PutWebhookOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutWebhookOutput:
     out: PutWebhookOutput = {}  # type: ignore[typeddict-item]
-    if "webhook" in data:
+    if data.get("webhook") is not None:
         import capo_codepipeline.types.list_webhook_item
 
         out["webhook"] = (

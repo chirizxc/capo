@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AIBenchmarkNetworkConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIBenchmarkNetworkConfig:
     out: AIBenchmarkNetworkConfig = {}  # type: ignore[typeddict-item]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["vpc_config"] = capo_sagemaker.types.vpc_config.deserialize_aws_json_1_1(

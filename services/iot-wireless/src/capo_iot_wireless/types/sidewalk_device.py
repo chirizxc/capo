@@ -98,13 +98,13 @@ def serialize_json(value: SidewalkDevice) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkDevice:
     out: SidewalkDevice = {}  # type: ignore[typeddict-item]
-    if "AmazonId" in data:
+    if data.get("AmazonId") is not None:
         out["amazon_id"] = data["AmazonId"]
-    if "SidewalkId" in data:
+    if data.get("SidewalkId") is not None:
         out["sidewalk_id"] = data["SidewalkId"]
-    if "SidewalkManufacturingSn" in data:
+    if data.get("SidewalkManufacturingSn") is not None:
         out["sidewalk_manufacturing_sn"] = data["SidewalkManufacturingSn"]
-    if "DeviceCertificates" in data:
+    if data.get("DeviceCertificates") is not None:
         import capo_iot_wireless.types.device_certificate_list
 
         out["device_certificates"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> SidewalkDevice:
                 data["DeviceCertificates"]
             )
         )
-    if "PrivateKeys" in data:
+    if data.get("PrivateKeys") is not None:
         import capo_iot_wireless.types.private_keys_list
 
         out["private_keys"] = (
@@ -120,11 +120,11 @@ def deserialize_json(data: dict) -> SidewalkDevice:
                 data["PrivateKeys"]
             )
         )
-    if "DeviceProfileId" in data:
+    if data.get("DeviceProfileId") is not None:
         out["device_profile_id"] = data["DeviceProfileId"]
-    if "CertificateId" in data:
+    if data.get("CertificateId") is not None:
         out["certificate_id"] = data["CertificateId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_wireless.types.wireless_device_sidewalk_status
 
         out["status"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> SidewalkDevice:
                 data["Status"]
             )
         )
-    if "Positioning" in data:
+    if data.get("Positioning") is not None:
         import capo_iot_wireless.types.sidewalk_positioning
 
         out["positioning"] = (

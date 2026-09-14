@@ -13,9 +13,9 @@ from capo_medical_imaging import AsyncMedicalImagingClient
 
 
 async def main():
-    async with AsyncMedicalImagingClient() as s3:
+    async with AsyncMedicalImagingClient() as medical_imaging:
         # Example: call the copy_image_set operation
-        response = await s3.copy_image_set()
+        response = await medical_imaging.copy_image_set()
         print(response["datastore_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_medical_imaging import AsyncMedicalImagingClient
 
 
 async def main():
-    async with AsyncMedicalImagingClient() as s3:
+    async with AsyncMedicalImagingClient() as medical_imaging:
         # Example: paginate over list_dicom_import_jobs
-        async for item in s3.iter_list_dicom_import_jobs():
+        async for item in medical_imaging.iter_list_dicom_import_jobs():
             print(item)
 ```
 
@@ -43,9 +43,9 @@ from capo_medical_imaging import AsyncMedicalImagingClient
 
 
 async def main():
-    async with AsyncMedicalImagingClient() as s3:
+    async with AsyncMedicalImagingClient() as medical_imaging:
         # Example: call get_image_frame and read the streaming response
-        async with s3.get_image_frame() as response:
+        async with medical_imaging.get_image_frame() as response:
             async for chunk in response["image_frame_blob"]:
                 print(chunk)
 ```
@@ -60,9 +60,9 @@ from capo_medical_imaging.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncMedicalImagingClient() as s3:
+    async with AsyncMedicalImagingClient() as medical_imaging:
         try:
-            await s3.copy_image_set()
+            await medical_imaging.copy_image_set()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -79,13 +79,13 @@ from capo_medical_imaging import AsyncMedicalImagingClient
 
 
 async def main():
-    async with AsyncMedicalImagingClient() as s3:
+    async with AsyncMedicalImagingClient() as medical_imaging:
         # Default: 3 attempts for every operation
-        response = await s3.copy_image_set()
+        response = await medical_imaging.copy_image_set()
 
         # Override per operation
-        response = await s3.copy_image_set(config_overrides={"retry_max_attempts": 5})
+        response = await medical_imaging.copy_image_set(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.copy_image_set(config_overrides={"retry_max_attempts": 1})
+        response = await medical_imaging.copy_image_set(config_overrides={"retry_max_attempts": 1})
 ```

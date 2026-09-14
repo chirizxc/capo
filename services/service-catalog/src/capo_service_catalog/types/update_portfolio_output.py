@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: UpdatePortfolioOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePortfolioOutput:
     out: UpdatePortfolioOutput = {}  # type: ignore[typeddict-item]
-    if "PortfolioDetail" in data:
+    if data.get("PortfolioDetail") is not None:
         import capo_service_catalog.types.portfolio_detail
 
         out["portfolio_detail"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdatePortfolioOutput:
                 data["PortfolioDetail"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_service_catalog.types.tags
 
         out["tags"] = capo_service_catalog.types.tags.deserialize_aws_json_1_1(

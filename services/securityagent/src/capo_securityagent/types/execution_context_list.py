@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ExecutionContextList:
 
     out: ExecutionContextList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityagent.types.execution_context.deserialize_json(item))
     return out

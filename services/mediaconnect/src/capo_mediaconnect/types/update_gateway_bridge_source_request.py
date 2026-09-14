@@ -35,9 +35,9 @@ def serialize_json(value: UpdateGatewayBridgeSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGatewayBridgeSourceRequest:
     out: UpdateGatewayBridgeSourceRequest = {}  # type: ignore[typeddict-item]
-    if "bridgeArn" in data:
+    if data.get("bridgeArn") is not None:
         out["bridge_arn"] = data["bridgeArn"]
-    if "vpcInterfaceAttachment" in data:
+    if data.get("vpcInterfaceAttachment") is not None:
         import capo_mediaconnect.types.vpc_interface_attachment
 
         out["vpc_interface_attachment"] = (

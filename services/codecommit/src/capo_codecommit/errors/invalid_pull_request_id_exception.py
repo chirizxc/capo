@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidPullRequestIdException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidPullRequestIdException_:
     out: InvalidPullRequestIdException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class InvalidPullRequestIdException(ServiceError):
 
     code: str | None = "InvalidPullRequestIdException"
 
-    def __init__(self, data: InvalidPullRequestIdException_):
+    def __init__(
+        self, data: InvalidPullRequestIdException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidPullRequestIdException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidPullRequestIdException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidPullRequestIdException":
+        return cls(deserialize_aws_json_1_1(data), message)

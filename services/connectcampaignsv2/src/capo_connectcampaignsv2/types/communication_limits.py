@@ -34,7 +34,7 @@ def serialize_json(value: CommunicationLimits) -> dict:
 
 
 def deserialize_json(data: dict) -> CommunicationLimits:
-    if "communicationLimitsList" in data:
+    if data.get("communicationLimitsList") is not None:
         import capo_connectcampaignsv2.types.communication_limit_list
 
         return {

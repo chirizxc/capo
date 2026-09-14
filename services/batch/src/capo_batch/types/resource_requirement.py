@@ -30,9 +30,9 @@ def serialize_json(value: ResourceRequirement) -> dict:
 
 def deserialize_json(data: dict) -> ResourceRequirement:
     out: ResourceRequirement = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_batch.types.resource_type
 
         out["type"] = capo_batch.types.resource_type.deserialize_json(data["type"])

@@ -25,6 +25,6 @@ def serialize_json(value: DynamodbTableConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DynamodbTableConfiguration:
     out: DynamodbTableConfiguration = {}  # type: ignore[typeddict-item]
-    if "tablePolicy" in data:
+    if data.get("tablePolicy") is not None:
         out["table_policy"] = data["tablePolicy"]
     return out

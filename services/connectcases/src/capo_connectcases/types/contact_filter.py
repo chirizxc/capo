@@ -32,12 +32,12 @@ def serialize_json(value: ContactFilter) -> dict:
 
 def deserialize_json(data: dict) -> ContactFilter:
     out: ContactFilter = {}  # type: ignore[typeddict-item]
-    if "channel" in data:
+    if data.get("channel") is not None:
         import capo_connectcases.types.channel_list
 
         out["channel"] = capo_connectcases.types.channel_list.deserialize_json(
             data["channel"]
         )
-    if "contactArn" in data:
+    if data.get("contactArn") is not None:
         out["contact_arn"] = data["contactArn"]
     return out

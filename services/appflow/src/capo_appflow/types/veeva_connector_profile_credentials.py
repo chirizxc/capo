@@ -28,11 +28,11 @@ def serialize_json(value: VeevaConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> VeevaConnectorProfileCredentials:
     out: VeevaConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     else:
         raise DeserializationError("VeevaConnectorProfileCredentials.username required")
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
     else:
         raise DeserializationError("VeevaConnectorProfileCredentials.password required")

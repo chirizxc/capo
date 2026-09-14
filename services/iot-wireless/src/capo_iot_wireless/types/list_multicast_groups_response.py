@@ -35,9 +35,9 @@ def serialize_json(value: ListMulticastGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMulticastGroupsResponse:
     out: ListMulticastGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MulticastGroupList" in data:
+    if data.get("MulticastGroupList") is not None:
         import capo_iot_wireless.types.multicast_group_list
 
         out["multicast_group_list"] = (

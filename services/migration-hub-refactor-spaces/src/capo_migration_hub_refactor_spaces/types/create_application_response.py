@@ -125,23 +125,23 @@ def serialize_json(value: CreateApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationResponse:
     out: CreateApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "CreatedByAccountId" in data:
+    if data.get("CreatedByAccountId") is not None:
         out["created_by_account_id"] = data["CreatedByAccountId"]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "EnvironmentId" in data:
+    if data.get("EnvironmentId") is not None:
         out["environment_id"] = data["EnvironmentId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "ProxyType" in data:
+    if data.get("ProxyType") is not None:
         out["proxy_type"] = data["ProxyType"]
-    if "ApiGatewayProxy" in data:
+    if data.get("ApiGatewayProxy") is not None:
         import capo_migration_hub_refactor_spaces.types.api_gateway_proxy_input
 
         out["api_gateway_proxy"] = (
@@ -149,15 +149,15 @@ def deserialize_json(data: dict) -> CreateApplicationResponse:
                 data["ApiGatewayProxy"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_migration_hub_refactor_spaces.types.tag_map
 
         out["tags"] = capo_migration_hub_refactor_spaces.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["last_updated_time"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> CreateApplicationResponse:
                 data["LastUpdatedTime"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["created_time"] = (

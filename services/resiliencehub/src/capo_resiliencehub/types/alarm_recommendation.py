@@ -91,29 +91,29 @@ def serialize_json(value: AlarmRecommendation) -> dict:
 
 def deserialize_json(data: dict) -> AlarmRecommendation:
     out: AlarmRecommendation = {}  # type: ignore[typeddict-item]
-    if "recommendationId" in data:
+    if data.get("recommendationId") is not None:
         out["recommendation_id"] = data["recommendationId"]
     else:
         raise DeserializationError("AlarmRecommendation.recommendation_id required")
-    if "referenceId" in data:
+    if data.get("referenceId") is not None:
         out["reference_id"] = data["referenceId"]
     else:
         raise DeserializationError("AlarmRecommendation.reference_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AlarmRecommendation.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_resiliencehub.types.alarm_type
 
         out["type"] = capo_resiliencehub.types.alarm_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("AlarmRecommendation.type required")
-    if "appComponentName" in data:
+    if data.get("appComponentName") is not None:
         out["app_component_name"] = data["appComponentName"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_resiliencehub.types.recommendation_item_list
 
         out["items"] = (
@@ -121,9 +121,9 @@ def deserialize_json(data: dict) -> AlarmRecommendation:
                 data["items"]
             )
         )
-    if "prerequisite" in data:
+    if data.get("prerequisite") is not None:
         out["prerequisite"] = data["prerequisite"]
-    if "appComponentNames" in data:
+    if data.get("appComponentNames") is not None:
         import capo_resiliencehub.types.app_component_name_list
 
         out["app_component_names"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> AlarmRecommendation:
                 data["appComponentNames"]
             )
         )
-    if "recommendationStatus" in data:
+    if data.get("recommendationStatus") is not None:
         import capo_resiliencehub.types.recommendation_status
 
         out["recommendation_status"] = (

@@ -89,7 +89,7 @@ def serialize_aws_json_1_1(value: GetReservationCoverageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetReservationCoverageRequest:
     out: GetReservationCoverageRequest = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationCoverageRequest:
         )
     else:
         raise DeserializationError("GetReservationCoverageRequest.time_period required")
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_cost_explorer.types.group_definitions
 
         out["group_by"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationCoverageRequest:
                 data["GroupBy"]
             )
         )
-    if "Granularity" in data:
+    if data.get("Granularity") is not None:
         import capo_cost_explorer.types.granularity
 
         out["granularity"] = (
@@ -115,21 +115,21 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationCoverageRequest:
                 data["Granularity"]
             )
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_cost_explorer.types.expression
 
         out["filter"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_cost_explorer.types.metric_names
 
         out["metrics"] = capo_cost_explorer.types.metric_names.deserialize_aws_json_1_1(
             data["Metrics"]
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_cost_explorer.types.sort_definition
 
         out["sort_by"] = (
@@ -137,6 +137,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationCoverageRequest:
                 data["SortBy"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

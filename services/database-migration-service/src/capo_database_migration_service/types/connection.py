@@ -51,16 +51,16 @@ def serialize_aws_json_1_1(value: Connection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Connection:
     out: Connection = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "LastFailureMessage" in data:
+    if data.get("LastFailureMessage") is not None:
         out["last_failure_message"] = data["LastFailureMessage"]
-    if "EndpointIdentifier" in data:
+    if data.get("EndpointIdentifier") is not None:
         out["endpoint_identifier"] = data["EndpointIdentifier"]
-    if "ReplicationInstanceIdentifier" in data:
+    if data.get("ReplicationInstanceIdentifier") is not None:
         out["replication_instance_identifier"] = data["ReplicationInstanceIdentifier"]
     return out

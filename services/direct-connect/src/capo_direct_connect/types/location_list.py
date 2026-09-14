@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> LocationList:
 
     out: LocationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_direct_connect.types.location.deserialize_aws_json_1_1(item))
     return out

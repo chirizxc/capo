@@ -55,19 +55,19 @@ def serialize_aws_json_1_1(value: CreateTokenRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTokenRequest:
     out: CreateTokenRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     else:
         raise DeserializationError("CreateTokenRequest.license_arn required")
-    if "RoleArns" in data:
+    if data.get("RoleArns") is not None:
         import capo_license_manager.types.arn_list
 
         out["role_arns"] = capo_license_manager.types.arn_list.deserialize_aws_json_1_1(
             data["RoleArns"]
         )
-    if "ExpirationInDays" in data:
+    if data.get("ExpirationInDays") is not None:
         out["expiration_in_days"] = data["ExpirationInDays"]
-    if "TokenProperties" in data:
+    if data.get("TokenProperties") is not None:
         import capo_license_manager.types.max_size3_string_list
 
         out["token_properties"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTokenRequest:
                 data["TokenProperties"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateTokenRequest.client_token required")

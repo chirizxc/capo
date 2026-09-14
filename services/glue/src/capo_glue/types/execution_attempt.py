@@ -46,20 +46,20 @@ def serialize_aws_json_1_1(value: ExecutionAttempt) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionAttempt:
     out: ExecutionAttempt = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.execution_status
 
         out["status"] = capo_glue.types.execution_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ColumnStatisticsTaskRunId" in data:
+    if data.get("ColumnStatisticsTaskRunId") is not None:
         out["column_statistics_task_run_id"] = data["ColumnStatisticsTaskRunId"]
-    if "ExecutionTimestamp" in data:
+    if data.get("ExecutionTimestamp") is not None:
         import capo_glue.types.timestamp
 
         out["execution_timestamp"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["ExecutionTimestamp"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

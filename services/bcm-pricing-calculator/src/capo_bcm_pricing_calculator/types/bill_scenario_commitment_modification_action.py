@@ -88,7 +88,7 @@ def serialize_aws_json_1_0(value: BillScenarioCommitmentModificationAction) -> d
 
 
 def deserialize_aws_json_1_0(data: dict) -> BillScenarioCommitmentModificationAction:
-    if "addReservedInstanceAction" in data:
+    if data.get("addReservedInstanceAction") is not None:
         import capo_bcm_pricing_calculator.types.add_reserved_instance_action
 
         return {
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillScenarioCommitmentModificationAc
                 data["addReservedInstanceAction"]
             )
         }
-    elif "addSavingsPlanAction" in data:
+    elif data.get("addSavingsPlanAction") is not None:
         import capo_bcm_pricing_calculator.types.add_savings_plan_action
 
         return {
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillScenarioCommitmentModificationAc
                 data["addSavingsPlanAction"]
             )
         }
-    elif "negateReservedInstanceAction" in data:
+    elif data.get("negateReservedInstanceAction") is not None:
         import capo_bcm_pricing_calculator.types.negate_reserved_instance_action
 
         return {
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillScenarioCommitmentModificationAc
                 data["negateReservedInstanceAction"]
             )
         }
-    elif "negateSavingsPlanAction" in data:
+    elif data.get("negateSavingsPlanAction") is not None:
         import capo_bcm_pricing_calculator.types.negate_savings_plan_action
 
         return {

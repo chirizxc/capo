@@ -58,7 +58,7 @@ def serialize_json(value: IntentClosingSetting) -> dict:
 
 def deserialize_json(data: dict) -> IntentClosingSetting:
     out: IntentClosingSetting = {}  # type: ignore[typeddict-item]
-    if "closingResponse" in data:
+    if data.get("closingResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["closing_response"] = (
@@ -66,15 +66,15 @@ def deserialize_json(data: dict) -> IntentClosingSetting:
                 data["closingResponse"]
             )
         )
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
-    if "nextStep" in data:
+    if data.get("nextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["next_step"] = capo_lex_models_v2.types.dialog_state.deserialize_json(
             data["nextStep"]
         )
-    if "conditional" in data:
+    if data.get("conditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["conditional"] = (

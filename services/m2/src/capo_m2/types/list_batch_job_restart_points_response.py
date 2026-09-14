@@ -27,7 +27,7 @@ def serialize_json(value: ListBatchJobRestartPointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListBatchJobRestartPointsResponse:
     out: ListBatchJobRestartPointsResponse = {}  # type: ignore[typeddict-item]
-    if "batchJobSteps" in data:
+    if data.get("batchJobSteps") is not None:
         import capo_m2.types.batch_job_step_list
 
         out["batch_job_steps"] = capo_m2.types.batch_job_step_list.deserialize_json(

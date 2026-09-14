@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: TaxExemptionDetailsMap) -> dict:
 def deserialize_json(data: dict) -> TaxExemptionDetailsMap:
     out: TaxExemptionDetailsMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_taxsettings.types.tax_exemption_details
 
         out[key] = capo_taxsettings.types.tax_exemption_details.deserialize_json(value)

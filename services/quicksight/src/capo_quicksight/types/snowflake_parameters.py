@@ -63,19 +63,19 @@ def serialize_json(value: SnowflakeParameters) -> dict:
 
 def deserialize_json(data: dict) -> SnowflakeParameters:
     out: SnowflakeParameters = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("SnowflakeParameters.host required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("SnowflakeParameters.database required")
-    if "Warehouse" in data:
+    if data.get("Warehouse") is not None:
         out["warehouse"] = data["Warehouse"]
     else:
         raise DeserializationError("SnowflakeParameters.warehouse required")
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_quicksight.types.authentication_type
 
         out["authentication_type"] = (
@@ -83,9 +83,9 @@ def deserialize_json(data: dict) -> SnowflakeParameters:
                 data["AuthenticationType"]
             )
         )
-    if "DatabaseAccessControlRole" in data:
+    if data.get("DatabaseAccessControlRole") is not None:
         out["database_access_control_role"] = data["DatabaseAccessControlRole"]
-    if "OAuthParameters" in data:
+    if data.get("OAuthParameters") is not None:
         import capo_quicksight.types.o_auth_parameters
 
         out["o_auth_parameters"] = (

@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: EksResourceScalingUngraceful) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EksResourceScalingUngraceful:
     out: EksResourceScalingUngraceful = {}  # type: ignore[typeddict-item]
-    if "minimumSuccessPercentage" in data:
+    if data.get("minimumSuccessPercentage") is not None:
         out["minimum_success_percentage"] = data["minimumSuccessPercentage"]
     else:
         raise DeserializationError(

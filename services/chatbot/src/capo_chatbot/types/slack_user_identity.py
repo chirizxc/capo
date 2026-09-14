@@ -45,22 +45,22 @@ def serialize_json(value: SlackUserIdentity) -> dict:
 
 def deserialize_json(data: dict) -> SlackUserIdentity:
     out: SlackUserIdentity = {}  # type: ignore[typeddict-item]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("SlackUserIdentity.iam_role_arn required")
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
     else:
         raise DeserializationError("SlackUserIdentity.chat_configuration_arn required")
-    if "SlackTeamId" in data:
+    if data.get("SlackTeamId") is not None:
         out["slack_team_id"] = data["SlackTeamId"]
     else:
         raise DeserializationError("SlackUserIdentity.slack_team_id required")
-    if "SlackUserId" in data:
+    if data.get("SlackUserId") is not None:
         out["slack_user_id"] = data["SlackUserId"]
     else:
         raise DeserializationError("SlackUserIdentity.slack_user_id required")
-    if "AwsUserIdentity" in data:
+    if data.get("AwsUserIdentity") is not None:
         out["aws_user_identity"] = data["AwsUserIdentity"]
     return out

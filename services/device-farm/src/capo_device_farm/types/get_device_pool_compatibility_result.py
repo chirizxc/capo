@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: GetDevicePoolCompatibilityResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDevicePoolCompatibilityResult:
     out: GetDevicePoolCompatibilityResult = {}  # type: ignore[typeddict-item]
-    if "compatibleDevices" in data:
+    if data.get("compatibleDevices") is not None:
         import capo_device_farm.types.device_pool_compatibility_results
 
         out["compatible_devices"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDevicePoolCompatibilityResult:
                 data["compatibleDevices"]
             )
         )
-    if "incompatibleDevices" in data:
+    if data.get("incompatibleDevices") is not None:
         import capo_device_farm.types.device_pool_compatibility_results
 
         out["incompatible_devices"] = (

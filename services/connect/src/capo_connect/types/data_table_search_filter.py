@@ -30,7 +30,7 @@ def serialize_json(value: DataTableSearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> DataTableSearchFilter:
     out: DataTableSearchFilter = {}  # type: ignore[typeddict-item]
-    if "AttributeFilter" in data:
+    if data.get("AttributeFilter") is not None:
         import capo_connect.types.control_plane_attribute_filter
 
         out["attribute_filter"] = (

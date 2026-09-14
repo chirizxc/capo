@@ -50,7 +50,7 @@ def serialize_json(value: AssociateRoutingProfileQueuesRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateRoutingProfileQueuesRequest:
     out: AssociateRoutingProfileQueuesRequest = {}  # type: ignore[typeddict-item]
-    if "QueueConfigs" in data:
+    if data.get("QueueConfigs") is not None:
         import capo_connect.types.routing_profile_queue_config_list
 
         out["queue_configs"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> AssociateRoutingProfileQueuesRequest:
                 data["QueueConfigs"]
             )
         )
-    if "ManualAssignmentQueueConfigs" in data:
+    if data.get("ManualAssignmentQueueConfigs") is not None:
         import capo_connect.types.routing_profile_manual_assignment_queue_config_list
 
         out["manual_assignment_queue_configs"] = (

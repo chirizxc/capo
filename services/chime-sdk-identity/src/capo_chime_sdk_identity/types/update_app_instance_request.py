@@ -31,11 +31,11 @@ def serialize_json(value: UpdateAppInstanceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAppInstanceRequest:
     out: UpdateAppInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateAppInstanceRequest.name required")
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
     else:
         raise DeserializationError("UpdateAppInstanceRequest.metadata required")

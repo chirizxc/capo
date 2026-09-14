@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DescribeStreamConsumerOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeStreamConsumerOutput:
     out: DescribeStreamConsumerOutput = {}  # type: ignore[typeddict-item]
-    if "ConsumerDescription" in data:
+    if data.get("ConsumerDescription") is not None:
         import capo_kinesis.types.consumer_description
 
         out["consumer_description"] = (

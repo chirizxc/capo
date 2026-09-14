@@ -35,7 +35,7 @@ def serialize_json(value: EncodingConfig) -> dict:
 
 def deserialize_json(data: dict) -> EncodingConfig:
     out: EncodingConfig = {}  # type: ignore[typeddict-item]
-    if "encodingProfile" in data:
+    if data.get("encodingProfile") is not None:
         import capo_mediaconnect.types.encoding_profile
 
         out["encoding_profile"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> EncodingConfig:
                 data["encodingProfile"]
             )
         )
-    if "videoMaxBitrate" in data:
+    if data.get("videoMaxBitrate") is not None:
         out["video_max_bitrate"] = data["videoMaxBitrate"]
     return out

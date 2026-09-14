@@ -32,9 +32,9 @@ def serialize_json(value: DocumentText) -> dict:
 
 def deserialize_json(data: dict) -> DocumentText:
     out: DocumentText = {}  # type: ignore[typeddict-item]
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
-    if "highlights" in data:
+    if data.get("highlights") is not None:
         import capo_qconnect.types.highlights
 
         out["highlights"] = capo_qconnect.types.highlights.deserialize_json(

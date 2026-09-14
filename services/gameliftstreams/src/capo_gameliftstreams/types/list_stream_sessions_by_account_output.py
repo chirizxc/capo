@@ -36,7 +36,7 @@ def serialize_json(value: ListStreamSessionsByAccountOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListStreamSessionsByAccountOutput:
     out: ListStreamSessionsByAccountOutput = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_gameliftstreams.types.stream_session_summary_list
 
         out["items"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListStreamSessionsByAccountOutput:
                 data["Items"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

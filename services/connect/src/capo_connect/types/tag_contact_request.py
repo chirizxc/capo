@@ -34,15 +34,15 @@ def serialize_json(value: TagContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> TagContactRequest:
     out: TagContactRequest = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("TagContactRequest.contact_id required")
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("TagContactRequest.instance_id required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.contact_tag_map
 
         out["tags"] = capo_connect.types.contact_tag_map.deserialize_json(data["Tags"])

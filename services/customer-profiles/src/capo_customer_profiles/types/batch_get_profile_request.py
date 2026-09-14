@@ -35,7 +35,7 @@ def serialize_json(value: BatchGetProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetProfileRequest:
     out: BatchGetProfileRequest = {}  # type: ignore[typeddict-item]
-    if "ProfileIds" in data:
+    if data.get("ProfileIds") is not None:
         import capo_customer_profiles.types.batch_get_profile_id_list
 
         out["profile_ids"] = (

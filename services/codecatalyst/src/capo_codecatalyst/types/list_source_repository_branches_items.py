@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListSourceRepositoryBranchesItems:
 
     out: ListSourceRepositoryBranchesItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecatalyst.types.list_source_repository_branches_item.deserialize_json(
                 item

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ColumnTypeList:
 
     out: ColumnTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanroomsml.types.column_type.deserialize_json(item))
     return out

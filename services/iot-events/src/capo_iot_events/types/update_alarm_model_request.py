@@ -86,15 +86,15 @@ def serialize_json(value: UpdateAlarmModelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAlarmModelRequest:
     out: UpdateAlarmModelRequest = {}  # type: ignore[typeddict-item]
-    if "alarmModelDescription" in data:
+    if data.get("alarmModelDescription") is not None:
         out["alarm_model_description"] = data["alarmModelDescription"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("UpdateAlarmModelRequest.role_arn required")
-    if "severity" in data:
+    if data.get("severity") is not None:
         out["severity"] = data["severity"]
-    if "alarmRule" in data:
+    if data.get("alarmRule") is not None:
         import capo_iot_events.types.alarm_rule
 
         out["alarm_rule"] = capo_iot_events.types.alarm_rule.deserialize_json(
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> UpdateAlarmModelRequest:
         )
     else:
         raise DeserializationError("UpdateAlarmModelRequest.alarm_rule required")
-    if "alarmNotification" in data:
+    if data.get("alarmNotification") is not None:
         import capo_iot_events.types.alarm_notification
 
         out["alarm_notification"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> UpdateAlarmModelRequest:
                 data["alarmNotification"]
             )
         )
-    if "alarmEventActions" in data:
+    if data.get("alarmEventActions") is not None:
         import capo_iot_events.types.alarm_event_actions
 
         out["alarm_event_actions"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> UpdateAlarmModelRequest:
                 data["alarmEventActions"]
             )
         )
-    if "alarmCapabilities" in data:
+    if data.get("alarmCapabilities") is not None:
         import capo_iot_events.types.alarm_capabilities
 
         out["alarm_capabilities"] = (

@@ -27,8 +27,8 @@ def serialize_json(value: NoteUpdate) -> dict:
 
 def deserialize_json(data: dict) -> NoteUpdate:
     out: NoteUpdate = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "UpdatedBy" in data:
+    if data.get("UpdatedBy") is not None:
         out["updated_by"] = data["UpdatedBy"]
     return out

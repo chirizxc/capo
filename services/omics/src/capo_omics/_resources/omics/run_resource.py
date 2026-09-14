@@ -148,14 +148,17 @@ class RunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_run_request.StartRunRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.start_run_request.StartRunRequest = {
+            "role_arn": role_arn,
+            "output_uri": output_uri,
+            "request_id": request_id,
+        }
         if workflow_id is not None:
             input_["workflow_id"] = workflow_id
         if workflow_type is not None:
             input_["workflow_type"] = workflow_type
         if run_id is not None:
             input_["run_id"] = run_id
-        input_["role_arn"] = role_arn
         if name is not None:
             input_["name"] = name
         if cache_id is not None:
@@ -170,12 +173,10 @@ class RunResource:
             input_["parameters"] = parameters
         if storage_capacity is not None:
             input_["storage_capacity"] = storage_capacity
-        input_["output_uri"] = output_uri
         if log_level is not None:
             input_["log_level"] = log_level
         if tags is not None:
             input_["tags"] = tags
-        input_["request_id"] = request_id
         if retention_mode is not None:
             input_["retention_mode"] = retention_mode
         if storage_type is not None:
@@ -196,6 +197,7 @@ class RunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -234,8 +236,7 @@ class RunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_run_request.GetRunRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_run_request.GetRunRequest = {"id": id}
         if export is not None:
             input_["export"] = export
 
@@ -244,6 +245,7 @@ class RunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -280,14 +282,14 @@ class RunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_run_request.DeleteRunRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_run_request.DeleteRunRequest = {"id": id}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -334,7 +336,7 @@ class RunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_runs_request.ListRunsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_runs_request.ListRunsRequest = {}
         if name is not None:
             input_["name"] = name
         if run_group_id is not None:
@@ -353,6 +355,7 @@ class RunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_run(
@@ -389,14 +392,14 @@ class RunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.cancel_run_request.CancelRunRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.cancel_run_request.CancelRunRequest = {"id": id}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -499,14 +502,17 @@ class AsyncRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_run_request.StartRunRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.start_run_request.StartRunRequest = {
+            "role_arn": role_arn,
+            "output_uri": output_uri,
+            "request_id": request_id,
+        }
         if workflow_id is not None:
             input_["workflow_id"] = workflow_id
         if workflow_type is not None:
             input_["workflow_type"] = workflow_type
         if run_id is not None:
             input_["run_id"] = run_id
-        input_["role_arn"] = role_arn
         if name is not None:
             input_["name"] = name
         if cache_id is not None:
@@ -521,12 +527,10 @@ class AsyncRunResource:
             input_["parameters"] = parameters
         if storage_capacity is not None:
             input_["storage_capacity"] = storage_capacity
-        input_["output_uri"] = output_uri
         if log_level is not None:
             input_["log_level"] = log_level
         if tags is not None:
             input_["tags"] = tags
-        input_["request_id"] = request_id
         if retention_mode is not None:
             input_["retention_mode"] = retention_mode
         if storage_type is not None:
@@ -547,6 +551,7 @@ class AsyncRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -588,8 +593,7 @@ class AsyncRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_run_request.GetRunRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_run_request.GetRunRequest = {"id": id}
         if export is not None:
             input_["export"] = export
 
@@ -598,6 +602,7 @@ class AsyncRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -637,14 +642,14 @@ class AsyncRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_run_request.DeleteRunRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_run_request.DeleteRunRequest = {"id": id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -696,7 +701,7 @@ class AsyncRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_runs_request.ListRunsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_runs_request.ListRunsRequest = {}
         if name is not None:
             input_["name"] = name
         if run_group_id is not None:
@@ -715,6 +720,7 @@ class AsyncRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_run(
@@ -754,12 +760,12 @@ class AsyncRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.cancel_run_request.CancelRunRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.cancel_run_request.CancelRunRequest = {"id": id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

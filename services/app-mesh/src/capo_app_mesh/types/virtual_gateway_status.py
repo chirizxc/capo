@@ -24,7 +24,7 @@ def serialize_json(value: VirtualGatewayStatus) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayStatus:
     out: VirtualGatewayStatus = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("VirtualGatewayStatus.status required")

@@ -38,7 +38,7 @@ def serialize_json(value: RecordingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RecordingConfiguration:
     out: RecordingConfiguration = {}  # type: ignore[typeddict-item]
-    if "hlsConfiguration" in data:
+    if data.get("hlsConfiguration") is not None:
         import capo_ivs_realtime.types.composition_recording_hls_configuration
 
         out["hls_configuration"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> RecordingConfiguration:
                 data["hlsConfiguration"]
             )
         )
-    if "format" in data:
+    if data.get("format") is not None:
         out["format"] = data["format"]
     return out

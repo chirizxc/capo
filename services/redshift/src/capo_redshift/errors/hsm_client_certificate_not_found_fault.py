@@ -37,15 +37,20 @@ class HsmClientCertificateNotFoundFault(ServiceError):
 
     code: str | None = "HsmClientCertificateNotFoundFault"
 
-    def __init__(self, data: HsmClientCertificateNotFoundFault_):
+    def __init__(
+        self, data: HsmClientCertificateNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="HsmClientCertificateNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "HsmClientCertificateNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "HsmClientCertificateNotFoundFault":
+        return cls(deserialize_query(el), message)

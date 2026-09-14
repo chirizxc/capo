@@ -172,37 +172,37 @@ def serialize_json(value: DescribeDeviceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDeviceResponse:
     out: DescribeDeviceResponse = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "DeviceConnectionStatus" in data:
+    if data.get("DeviceConnectionStatus") is not None:
         out["device_connection_status"] = data["DeviceConnectionStatus"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.created_time
 
         out["created_time"] = capo_panorama.types.created_time.deserialize_json(
             data["CreatedTime"]
         )
-    if "ProvisioningStatus" in data:
+    if data.get("ProvisioningStatus") is not None:
         out["provisioning_status"] = data["ProvisioningStatus"]
-    if "LatestSoftware" in data:
+    if data.get("LatestSoftware") is not None:
         out["latest_software"] = data["LatestSoftware"]
-    if "CurrentSoftware" in data:
+    if data.get("CurrentSoftware") is not None:
         out["current_software"] = data["CurrentSoftware"]
-    if "SerialNumber" in data:
+    if data.get("SerialNumber") is not None:
         out["serial_number"] = data["SerialNumber"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_panorama.types.tag_map
 
         out["tags"] = capo_panorama.types.tag_map.deserialize_json(data["Tags"])
-    if "NetworkingConfiguration" in data:
+    if data.get("NetworkingConfiguration") is not None:
         import capo_panorama.types.network_payload
 
         out["networking_configuration"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> DescribeDeviceResponse:
                 data["NetworkingConfiguration"]
             )
         )
-    if "CurrentNetworkingStatus" in data:
+    if data.get("CurrentNetworkingStatus") is not None:
         import capo_panorama.types.network_status
 
         out["current_networking_status"] = (
@@ -218,7 +218,7 @@ def deserialize_json(data: dict) -> DescribeDeviceResponse:
                 data["CurrentNetworkingStatus"]
             )
         )
-    if "LeaseExpirationTime" in data:
+    if data.get("LeaseExpirationTime") is not None:
         import capo_panorama.types.lease_expiration_time
 
         out["lease_expiration_time"] = (
@@ -226,7 +226,7 @@ def deserialize_json(data: dict) -> DescribeDeviceResponse:
                 data["LeaseExpirationTime"]
             )
         )
-    if "AlternateSoftwares" in data:
+    if data.get("AlternateSoftwares") is not None:
         import capo_panorama.types.alternate_softwares
 
         out["alternate_softwares"] = (
@@ -234,11 +234,11 @@ def deserialize_json(data: dict) -> DescribeDeviceResponse:
                 data["AlternateSoftwares"]
             )
         )
-    if "LatestAlternateSoftware" in data:
+    if data.get("LatestAlternateSoftware") is not None:
         out["latest_alternate_software"] = data["LatestAlternateSoftware"]
-    if "Brand" in data:
+    if data.get("Brand") is not None:
         out["brand"] = data["Brand"]
-    if "LatestDeviceJob" in data:
+    if data.get("LatestDeviceJob") is not None:
         import capo_panorama.types.latest_device_job
 
         out["latest_device_job"] = (
@@ -246,6 +246,6 @@ def deserialize_json(data: dict) -> DescribeDeviceResponse:
                 data["LatestDeviceJob"]
             )
         )
-    if "DeviceAggregatedStatus" in data:
+    if data.get("DeviceAggregatedStatus") is not None:
         out["device_aggregated_status"] = data["DeviceAggregatedStatus"]
     return out

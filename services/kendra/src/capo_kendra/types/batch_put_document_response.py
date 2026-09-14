@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: BatchPutDocumentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchPutDocumentResponse:
     out: BatchPutDocumentResponse = {}  # type: ignore[typeddict-item]
-    if "FailedDocuments" in data:
+    if data.get("FailedDocuments") is not None:
         import capo_kendra.types.batch_put_document_response_failed_documents
 
         out["failed_documents"] = (

@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: AnalyzeIDRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnalyzeIDRequest:
     out: AnalyzeIDRequest = {}  # type: ignore[typeddict-item]
-    if "DocumentPages" in data:
+    if data.get("DocumentPages") is not None:
         import capo_textract.types.document_pages
 
         out["document_pages"] = (

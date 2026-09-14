@@ -44,18 +44,18 @@ def serialize_json(value: JourneySMSMessage) -> dict:
 
 def deserialize_json(data: dict) -> JourneySMSMessage:
     out: JourneySMSMessage = {}  # type: ignore[typeddict-item]
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         import capo_pinpoint.types.message_type
 
         out["message_type"] = capo_pinpoint.types.message_type.deserialize_json(
             data["MessageType"]
         )
-    if "OriginationNumber" in data:
+    if data.get("OriginationNumber") is not None:
         out["origination_number"] = data["OriginationNumber"]
-    if "SenderId" in data:
+    if data.get("SenderId") is not None:
         out["sender_id"] = data["SenderId"]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
     return out

@@ -57,11 +57,11 @@ def serialize_json(value: AwsS3BucketWebsiteConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketWebsiteConfiguration:
     out: AwsS3BucketWebsiteConfiguration = {}  # type: ignore[typeddict-item]
-    if "ErrorDocument" in data:
+    if data.get("ErrorDocument") is not None:
         out["error_document"] = data["ErrorDocument"]
-    if "IndexDocumentSuffix" in data:
+    if data.get("IndexDocumentSuffix") is not None:
         out["index_document_suffix"] = data["IndexDocumentSuffix"]
-    if "RedirectAllRequestsTo" in data:
+    if data.get("RedirectAllRequestsTo") is not None:
         import capo_securityhub.types.aws_s3_bucket_website_configuration_redirect_to
 
         out["redirect_all_requests_to"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> AwsS3BucketWebsiteConfiguration:
                 data["RedirectAllRequestsTo"]
             )
         )
-    if "RoutingRules" in data:
+    if data.get("RoutingRules") is not None:
         import capo_securityhub.types.aws_s3_bucket_website_configuration_routing_rules
 
         out["routing_rules"] = (

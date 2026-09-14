@@ -13,14 +13,22 @@ class ConsumedUsages(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ConsumedUsages) -> dict:
     out: dict = {}
-    out["approximateDollarUsage"] = value["approximate_dollar_usage"]
+    out["approximateDollarUsage"] = (
+        "NaN"
+        if value["approximate_dollar_usage"] != value["approximate_dollar_usage"]
+        else "Infinity"
+        if value["approximate_dollar_usage"] == float("inf")
+        else "-Infinity"
+        if value["approximate_dollar_usage"] == float("-inf")
+        else value["approximate_dollar_usage"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> ConsumedUsages:
     out: ConsumedUsages = {}  # type: ignore[typeddict-item]
-    if "approximateDollarUsage" in data:
-        out["approximate_dollar_usage"] = data["approximateDollarUsage"]
+    if data.get("approximateDollarUsage") is not None:
+        out["approximate_dollar_usage"] = float(data["approximateDollarUsage"])
     else:
         raise DeserializationError("ConsumedUsages.approximate_dollar_usage required")
     return out

@@ -85,36 +85,36 @@ def serialize_json(value: EmailChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> EmailChannelResponse:
     out: EmailChannelResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "ConfigurationSet" in data:
+    if data.get("ConfigurationSet") is not None:
         out["configuration_set"] = data["ConfigurationSet"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "FromAddress" in data:
+    if data.get("FromAddress") is not None:
         out["from_address"] = data["FromAddress"]
-    if "HasCredential" in data:
+    if data.get("HasCredential") is not None:
         out["has_credential"] = data["HasCredential"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Identity" in data:
+    if data.get("Identity") is not None:
         out["identity"] = data["Identity"]
-    if "IsArchived" in data:
+    if data.get("IsArchived") is not None:
         out["is_archived"] = data["IsArchived"]
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "MessagesPerSecond" in data:
+    if data.get("MessagesPerSecond") is not None:
         out["messages_per_second"] = data["MessagesPerSecond"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         out["platform"] = data["Platform"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "OrchestrationSendingRoleArn" in data:
+    if data.get("OrchestrationSendingRoleArn") is not None:
         out["orchestration_sending_role_arn"] = data["OrchestrationSendingRoleArn"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

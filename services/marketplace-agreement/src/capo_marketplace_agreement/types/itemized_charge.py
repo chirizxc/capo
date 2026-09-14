@@ -46,14 +46,14 @@ def serialize_aws_json_1_0(value: ItemizedCharge) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ItemizedCharge:
     out: ItemizedCharge = {}  # type: ignore[typeddict-item]
-    if "dimensionKey" in data:
+    if data.get("dimensionKey") is not None:
         out["dimension_key"] = data["dimensionKey"]
-    if "newQuantity" in data:
+    if data.get("newQuantity") is not None:
         out["new_quantity"] = data["newQuantity"]
-    if "oldQuantity" in data:
+    if data.get("oldQuantity") is not None:
         out["old_quantity"] = data["oldQuantity"]
-    if "chargeReference" in data:
+    if data.get("chargeReference") is not None:
         out["charge_reference"] = data["chargeReference"]
-    if "incrementalChargeAmount" in data:
+    if data.get("incrementalChargeAmount") is not None:
         out["incremental_charge_amount"] = data["incrementalChargeAmount"]
     return out

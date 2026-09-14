@@ -77,11 +77,11 @@ def serialize_aws_json_1_0(value: CreateWorkflowResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateWorkflowResponse:
     out: CreateWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "WorkflowArn" in data:
+    if data.get("WorkflowArn") is not None:
         out["workflow_arn"] = data["WorkflowArn"]
     else:
         raise DeserializationError("CreateWorkflowResponse.workflow_arn required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["created_at"] = (
@@ -89,9 +89,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateWorkflowResponse:
                 data["CreatedAt"]
             )
         )
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
-    if "WorkflowStatus" in data:
+    if data.get("WorkflowStatus") is not None:
         import capo_mwaa_serverless.types.workflow_status
 
         out["workflow_status"] = (
@@ -99,11 +99,11 @@ def deserialize_aws_json_1_0(data: dict) -> CreateWorkflowResponse:
                 data["WorkflowStatus"]
             )
         )
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
-    if "IsLatestVersion" in data:
+    if data.get("IsLatestVersion") is not None:
         out["is_latest_version"] = data["IsLatestVersion"]
-    if "Warnings" in data:
+    if data.get("Warnings") is not None:
         import capo_mwaa_serverless.types.warning_messages
 
         out["warnings"] = (

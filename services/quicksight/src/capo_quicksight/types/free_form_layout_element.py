@@ -131,11 +131,11 @@ def serialize_json(value: FreeFormLayoutElement) -> dict:
 
 def deserialize_json(data: dict) -> FreeFormLayoutElement:
     out: FreeFormLayoutElement = {}  # type: ignore[typeddict-item]
-    if "ElementId" in data:
+    if data.get("ElementId") is not None:
         out["element_id"] = data["ElementId"]
     else:
         raise DeserializationError("FreeFormLayoutElement.element_id required")
-    if "ElementType" in data:
+    if data.get("ElementType") is not None:
         import capo_quicksight.types.layout_element_type
 
         out["element_type"] = (
@@ -145,29 +145,29 @@ def deserialize_json(data: dict) -> FreeFormLayoutElement:
         )
     else:
         raise DeserializationError("FreeFormLayoutElement.element_type required")
-    if "XAxisLocation" in data:
+    if data.get("XAxisLocation") is not None:
         out["x_axis_location"] = data["XAxisLocation"]
     else:
         raise DeserializationError("FreeFormLayoutElement.x_axis_location required")
-    if "YAxisLocation" in data:
+    if data.get("YAxisLocation") is not None:
         out["y_axis_location"] = data["YAxisLocation"]
     else:
         raise DeserializationError("FreeFormLayoutElement.y_axis_location required")
-    if "Width" in data:
+    if data.get("Width") is not None:
         out["width"] = data["Width"]
     else:
         raise DeserializationError("FreeFormLayoutElement.width required")
-    if "Height" in data:
+    if data.get("Height") is not None:
         out["height"] = data["Height"]
     else:
         raise DeserializationError("FreeFormLayoutElement.height required")
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "RenderingRules" in data:
+    if data.get("RenderingRules") is not None:
         import capo_quicksight.types.sheet_element_rendering_rule_list
 
         out["rendering_rules"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> FreeFormLayoutElement:
                 data["RenderingRules"]
             )
         )
-    if "BorderStyle" in data:
+    if data.get("BorderStyle") is not None:
         import capo_quicksight.types.free_form_layout_element_border_style
 
         out["border_style"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> FreeFormLayoutElement:
                 data["BorderStyle"]
             )
         )
-    if "SelectedBorderStyle" in data:
+    if data.get("SelectedBorderStyle") is not None:
         import capo_quicksight.types.free_form_layout_element_border_style
 
         out["selected_border_style"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> FreeFormLayoutElement:
                 data["SelectedBorderStyle"]
             )
         )
-    if "BackgroundStyle" in data:
+    if data.get("BackgroundStyle") is not None:
         import capo_quicksight.types.free_form_layout_element_background_style
 
         out["background_style"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> FreeFormLayoutElement:
                 data["BackgroundStyle"]
             )
         )
-    if "LoadingAnimation" in data:
+    if data.get("LoadingAnimation") is not None:
         import capo_quicksight.types.loading_animation
 
         out["loading_animation"] = (
@@ -207,8 +207,8 @@ def deserialize_json(data: dict) -> FreeFormLayoutElement:
                 data["LoadingAnimation"]
             )
         )
-    if "BorderRadius" in data:
+    if data.get("BorderRadius") is not None:
         out["border_radius"] = data["BorderRadius"]
-    if "Padding" in data:
+    if data.get("Padding") is not None:
         out["padding"] = data["Padding"]
     return out

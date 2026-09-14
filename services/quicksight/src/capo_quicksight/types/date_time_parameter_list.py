@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DateTimeParameterList:
 
     out: DateTimeParameterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.date_time_parameter.deserialize_json(item))
     return out

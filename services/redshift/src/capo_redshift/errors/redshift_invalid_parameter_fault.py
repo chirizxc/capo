@@ -37,15 +37,20 @@ class RedshiftInvalidParameterFault(ServiceError):
 
     code: str | None = "RedshiftInvalidParameterFault"
 
-    def __init__(self, data: RedshiftInvalidParameterFault_):
+    def __init__(
+        self, data: RedshiftInvalidParameterFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RedshiftInvalidParameterFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "RedshiftInvalidParameterFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "RedshiftInvalidParameterFault":
+        return cls(deserialize_query(el), message)

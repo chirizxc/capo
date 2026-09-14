@@ -154,11 +154,11 @@ def serialize_aws_json_1_1(value: DestinationDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DestinationDescription:
     out: DestinationDescription = {}  # type: ignore[typeddict-item]
-    if "DestinationId" in data:
+    if data.get("DestinationId") is not None:
         out["destination_id"] = data["DestinationId"]
     else:
         raise DeserializationError("DestinationDescription.destination_id required")
-    if "S3DestinationDescription" in data:
+    if data.get("S3DestinationDescription") is not None:
         import capo_firehose.types.s3_destination_description
 
         out["s3_destination_description"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationDescription:
                 data["S3DestinationDescription"]
             )
         )
-    if "ExtendedS3DestinationDescription" in data:
+    if data.get("ExtendedS3DestinationDescription") is not None:
         import capo_firehose.types.extended_s3_destination_description
 
         out["extended_s3_destination_description"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationDescription:
                 data["ExtendedS3DestinationDescription"]
             )
         )
-    if "RedshiftDestinationDescription" in data:
+    if data.get("RedshiftDestinationDescription") is not None:
         import capo_firehose.types.redshift_destination_description
 
         out["redshift_destination_description"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationDescription:
                 data["RedshiftDestinationDescription"]
             )
         )
-    if "ElasticsearchDestinationDescription" in data:
+    if data.get("ElasticsearchDestinationDescription") is not None:
         import capo_firehose.types.elasticsearch_destination_description
 
         out["elasticsearch_destination_description"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationDescription:
                 data["ElasticsearchDestinationDescription"]
             )
         )
-    if "AmazonopensearchserviceDestinationDescription" in data:
+    if data.get("AmazonopensearchserviceDestinationDescription") is not None:
         import capo_firehose.types.amazonopensearchservice_destination_description
 
         out["amazonopensearchservice_destination_description"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationDescription:
                 data["AmazonopensearchserviceDestinationDescription"]
             )
         )
-    if "SplunkDestinationDescription" in data:
+    if data.get("SplunkDestinationDescription") is not None:
         import capo_firehose.types.splunk_destination_description
 
         out["splunk_destination_description"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationDescription:
                 data["SplunkDestinationDescription"]
             )
         )
-    if "HttpEndpointDestinationDescription" in data:
+    if data.get("HttpEndpointDestinationDescription") is not None:
         import capo_firehose.types.http_endpoint_destination_description
 
         out["http_endpoint_destination_description"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationDescription:
                 data["HttpEndpointDestinationDescription"]
             )
         )
-    if "SnowflakeDestinationDescription" in data:
+    if data.get("SnowflakeDestinationDescription") is not None:
         import capo_firehose.types.snowflake_destination_description
 
         out["snowflake_destination_description"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationDescription:
                 data["SnowflakeDestinationDescription"]
             )
         )
-    if "AmazonOpenSearchServerlessDestinationDescription" in data:
+    if data.get("AmazonOpenSearchServerlessDestinationDescription") is not None:
         import capo_firehose.types.amazon_open_search_serverless_destination_description
 
         out["amazon_open_search_serverless_destination_description"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationDescription:
                 data["AmazonOpenSearchServerlessDestinationDescription"]
             )
         )
-    if "IcebergDestinationDescription" in data:
+    if data.get("IcebergDestinationDescription") is not None:
         import capo_firehose.types.iceberg_destination_description
 
         out["iceberg_destination_description"] = (

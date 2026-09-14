@@ -107,15 +107,15 @@ def serialize_json(value: UpdateAuthorizerRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAuthorizerRequest:
     out: UpdateAuthorizerRequest = {}  # type: ignore[typeddict-item]
-    if "authorizerCredentialsArn" in data:
+    if data.get("authorizerCredentialsArn") is not None:
         out["authorizer_credentials_arn"] = data["authorizerCredentialsArn"]
-    if "authorizerPayloadFormatVersion" in data:
+    if data.get("authorizerPayloadFormatVersion") is not None:
         out["authorizer_payload_format_version"] = data[
             "authorizerPayloadFormatVersion"
         ]
-    if "authorizerResultTtlInSeconds" in data:
+    if data.get("authorizerResultTtlInSeconds") is not None:
         out["authorizer_result_ttl_in_seconds"] = data["authorizerResultTtlInSeconds"]
-    if "authorizerType" in data:
+    if data.get("authorizerType") is not None:
         import capo_apigatewayv2.types.authorizer_type
 
         out["authorizer_type"] = (
@@ -123,11 +123,11 @@ def deserialize_json(data: dict) -> UpdateAuthorizerRequest:
                 data["authorizerType"]
             )
         )
-    if "authorizerUri" in data:
+    if data.get("authorizerUri") is not None:
         out["authorizer_uri"] = data["authorizerUri"]
-    if "enableSimpleResponses" in data:
+    if data.get("enableSimpleResponses") is not None:
         out["enable_simple_responses"] = data["enableSimpleResponses"]
-    if "identitySource" in data:
+    if data.get("identitySource") is not None:
         import capo_apigatewayv2.types.identity_source_list
 
         out["identity_source"] = (
@@ -135,9 +135,9 @@ def deserialize_json(data: dict) -> UpdateAuthorizerRequest:
                 data["identitySource"]
             )
         )
-    if "identityValidationExpression" in data:
+    if data.get("identityValidationExpression") is not None:
         out["identity_validation_expression"] = data["identityValidationExpression"]
-    if "jwtConfiguration" in data:
+    if data.get("jwtConfiguration") is not None:
         import capo_apigatewayv2.types.jwt_configuration
 
         out["jwt_configuration"] = (
@@ -145,6 +145,6 @@ def deserialize_json(data: dict) -> UpdateAuthorizerRequest:
                 data["jwtConfiguration"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

@@ -226,18 +226,20 @@ class AsyncPartnerCentralSellingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_engagement_context_request.CreateEngagementContextRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["engagement_identifier"] = engagement_identifier
-        input_["client_token"] = client_token
-        input_["type"] = type
-        input_["payload"] = payload
+        input_: capo_partnercentral_selling.types.create_engagement_context_request.CreateEngagementContextRequest = {
+            "catalog": catalog,
+            "engagement_identifier": engagement_identifier,
+            "client_token": client_token,
+            "type": type,
+            "payload": payload,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_selling_system_settings(
@@ -276,14 +278,16 @@ class AsyncPartnerCentralSellingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_selling_system_settings_request.GetSellingSystemSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.get_selling_system_settings_request.GetSellingSystemSettingsRequest = {
+            "catalog": catalog
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -322,14 +326,16 @@ class AsyncPartnerCentralSellingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_partnercentral_selling.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_selling_system_settings(
@@ -372,8 +378,9 @@ class AsyncPartnerCentralSellingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.put_selling_system_settings_request.PutSellingSystemSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.put_selling_system_settings_request.PutSellingSystemSettingsRequest = {
+            "catalog": catalog
+        }
         if resource_snapshot_job_role_identifier is not None:
             input_["resource_snapshot_job_role_identifier"] = (
                 resource_snapshot_job_role_identifier
@@ -384,6 +391,7 @@ class AsyncPartnerCentralSellingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -425,15 +433,17 @@ class AsyncPartnerCentralSellingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_partnercentral_selling.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -475,15 +485,17 @@ class AsyncPartnerCentralSellingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_partnercentral_selling.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_engagement_context(
@@ -534,19 +546,21 @@ class AsyncPartnerCentralSellingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.update_engagement_context_request.UpdateEngagementContextRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["engagement_identifier"] = engagement_identifier
-        input_["context_identifier"] = context_identifier
-        input_["engagement_last_modified_at"] = engagement_last_modified_at
-        input_["type"] = type
-        input_["payload"] = payload
+        input_: capo_partnercentral_selling.types.update_engagement_context_request.UpdateEngagementContextRequest = {
+            "catalog": catalog,
+            "engagement_identifier": engagement_identifier,
+            "context_identifier": context_identifier,
+            "engagement_last_modified_at": engagement_last_modified_at,
+            "type": type,
+            "payload": payload,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

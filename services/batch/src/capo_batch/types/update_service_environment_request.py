@@ -43,15 +43,15 @@ def serialize_json(value: UpdateServiceEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceEnvironmentRequest:
     out: UpdateServiceEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "serviceEnvironment" in data:
+    if data.get("serviceEnvironment") is not None:
         out["service_environment"] = data["serviceEnvironment"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_batch.types.service_environment_state
 
         out["state"] = capo_batch.types.service_environment_state.deserialize_json(
             data["state"]
         )
-    if "capacityLimits" in data:
+    if data.get("capacityLimits") is not None:
         import capo_batch.types.capacity_limits
 
         out["capacity_limits"] = capo_batch.types.capacity_limits.deserialize_json(

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CloudFormationHealths:
 
     out: CloudFormationHealths = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.cloud_formation_health.deserialize_json(item))
     return out

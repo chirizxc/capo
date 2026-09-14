@@ -56,9 +56,9 @@ def serialize_json(value: MatchingResponse) -> dict:
 
 def deserialize_json(data: dict) -> MatchingResponse:
     out: MatchingResponse = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "JobSchedule" in data:
+    if data.get("JobSchedule") is not None:
         import capo_customer_profiles.types.job_schedule
 
         out["job_schedule"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> MatchingResponse:
                 data["JobSchedule"]
             )
         )
-    if "AutoMerging" in data:
+    if data.get("AutoMerging") is not None:
         import capo_customer_profiles.types.auto_merging
 
         out["auto_merging"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> MatchingResponse:
                 data["AutoMerging"]
             )
         )
-    if "ExportingConfig" in data:
+    if data.get("ExportingConfig") is not None:
         import capo_customer_profiles.types.exporting_config
 
         out["exporting_config"] = (

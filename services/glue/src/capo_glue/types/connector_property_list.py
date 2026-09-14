@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> ConnectorPropertyList:
 
     out: ConnectorPropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.connector_property.deserialize_aws_json_1_1(item))
     return out

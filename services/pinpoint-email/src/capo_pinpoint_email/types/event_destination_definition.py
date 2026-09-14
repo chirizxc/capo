@@ -87,11 +87,11 @@ def serialize_json(value: EventDestinationDefinition) -> dict:
 
 def deserialize_json(data: dict) -> EventDestinationDefinition:
     out: EventDestinationDefinition = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         out["enabled"] = False
-    if "MatchingEventTypes" in data:
+    if data.get("MatchingEventTypes") is not None:
         import capo_pinpoint_email.types.event_types
 
         out["matching_event_types"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> EventDestinationDefinition:
                 data["MatchingEventTypes"]
             )
         )
-    if "KinesisFirehoseDestination" in data:
+    if data.get("KinesisFirehoseDestination") is not None:
         import capo_pinpoint_email.types.kinesis_firehose_destination
 
         out["kinesis_firehose_destination"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> EventDestinationDefinition:
                 data["KinesisFirehoseDestination"]
             )
         )
-    if "CloudWatchDestination" in data:
+    if data.get("CloudWatchDestination") is not None:
         import capo_pinpoint_email.types.cloud_watch_destination
 
         out["cloud_watch_destination"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> EventDestinationDefinition:
                 data["CloudWatchDestination"]
             )
         )
-    if "SnsDestination" in data:
+    if data.get("SnsDestination") is not None:
         import capo_pinpoint_email.types.sns_destination
 
         out["sns_destination"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> EventDestinationDefinition:
                 data["SnsDestination"]
             )
         )
-    if "PinpointDestination" in data:
+    if data.get("PinpointDestination") is not None:
         import capo_pinpoint_email.types.pinpoint_destination
 
         out["pinpoint_destination"] = (

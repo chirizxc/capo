@@ -77,7 +77,7 @@ def serialize_aws_json_1_1(value: DescribeScheduledActionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeScheduledActionsRequest:
     out: DescribeScheduledActionsRequest = {}  # type: ignore[typeddict-item]
-    if "ScheduledActionNames" in data:
+    if data.get("ScheduledActionNames") is not None:
         import capo_application_auto_scaling.types.resource_ids_max_len1600
 
         out["scheduled_action_names"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeScheduledActionsRequest:
                 data["ScheduledActionNames"]
             )
         )
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_application_auto_scaling.types.service_namespace
 
         out["service_namespace"] = (
@@ -97,9 +97,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeScheduledActionsRequest:
         raise DeserializationError(
             "DescribeScheduledActionsRequest.service_namespace required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_application_auto_scaling.types.scalable_dimension
 
         out["scalable_dimension"] = (
@@ -107,8 +107,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeScheduledActionsRequest:
                 data["ScalableDimension"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

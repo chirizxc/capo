@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> TagDeliveryStreamInputTagList:
 
     out: TagDeliveryStreamInputTagList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_firehose.types.tag.deserialize_aws_json_1_1(item))
     return out

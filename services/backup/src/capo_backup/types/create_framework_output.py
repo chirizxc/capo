@@ -28,8 +28,8 @@ def serialize_json(value: CreateFrameworkOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateFrameworkOutput:
     out: CreateFrameworkOutput = {}  # type: ignore[typeddict-item]
-    if "FrameworkName" in data:
+    if data.get("FrameworkName") is not None:
         out["framework_name"] = data["FrameworkName"]
-    if "FrameworkArn" in data:
+    if data.get("FrameworkArn") is not None:
         out["framework_arn"] = data["FrameworkArn"]
     return out

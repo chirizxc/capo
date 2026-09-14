@@ -75,13 +75,13 @@ def serialize_json(value: DescribeBotAnalyzerRecommendationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBotAnalyzerRecommendationResponse:
     out: DescribeBotAnalyzerRecommendationResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "botAnalyzerStatus" in data:
+    if data.get("botAnalyzerStatus") is not None:
         import capo_lex_models_v2.types.bot_analyzer_status
 
         out["bot_analyzer_status"] = (
@@ -89,13 +89,13 @@ def deserialize_json(data: dict) -> DescribeBotAnalyzerRecommendationResponse:
                 data["botAnalyzerStatus"]
             )
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "botAnalyzerRecommendationList" in data:
+    if data.get("botAnalyzerRecommendationList") is not None:
         import capo_lex_models_v2.types.bot_analyzer_recommendation_list
 
         out["bot_analyzer_recommendation_list"] = (
@@ -103,6 +103,6 @@ def deserialize_json(data: dict) -> DescribeBotAnalyzerRecommendationResponse:
                 data["botAnalyzerRecommendationList"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -41,15 +41,15 @@ def serialize_aws_json_1_1(value: PermissionSetProvisioningStatusMetadata) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> PermissionSetProvisioningStatusMetadata:
     out: PermissionSetProvisioningStatusMetadata = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sso_admin.types.status_values
 
         out["status"] = capo_sso_admin.types.status_values.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_sso_admin.types.date
 
         out["created_date"] = capo_sso_admin.types.date.deserialize_aws_json_1_1(

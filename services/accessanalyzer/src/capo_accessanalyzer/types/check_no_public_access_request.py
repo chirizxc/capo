@@ -30,13 +30,13 @@ def serialize_json(value: CheckNoPublicAccessRequest) -> dict:
 
 def deserialize_json(data: dict) -> CheckNoPublicAccessRequest:
     out: CheckNoPublicAccessRequest = {}  # type: ignore[typeddict-item]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
     else:
         raise DeserializationError(
             "CheckNoPublicAccessRequest.policy_document required"
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("CheckNoPublicAccessRequest.resource_type required")

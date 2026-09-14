@@ -30,9 +30,9 @@ def serialize_json(value: SecurityControlParameter) -> dict:
 
 def deserialize_json(data: dict) -> SecurityControlParameter:
     out: SecurityControlParameter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_securityhub.types.type_list
 
         out["value"] = capo_securityhub.types.type_list.deserialize_json(data["Value"])

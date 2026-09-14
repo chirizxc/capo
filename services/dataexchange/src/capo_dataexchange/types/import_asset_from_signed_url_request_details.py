@@ -35,25 +35,25 @@ def serialize_json(value: ImportAssetFromSignedUrlRequestDetails) -> dict:
 
 def deserialize_json(data: dict) -> ImportAssetFromSignedUrlRequestDetails:
     out: ImportAssetFromSignedUrlRequestDetails = {}  # type: ignore[typeddict-item]
-    if "AssetName" in data:
+    if data.get("AssetName") is not None:
         out["asset_name"] = data["AssetName"]
     else:
         raise DeserializationError(
             "ImportAssetFromSignedUrlRequestDetails.asset_name required"
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "ImportAssetFromSignedUrlRequestDetails.data_set_id required"
         )
-    if "Md5Hash" in data:
+    if data.get("Md5Hash") is not None:
         out["md5_hash"] = data["Md5Hash"]
     else:
         raise DeserializationError(
             "ImportAssetFromSignedUrlRequestDetails.md5_hash required"
         )
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError(

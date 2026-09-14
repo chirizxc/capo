@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: DeploymentReadyOption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentReadyOption:
     out: DeploymentReadyOption = {}  # type: ignore[typeddict-item]
-    if "actionOnTimeout" in data:
+    if data.get("actionOnTimeout") is not None:
         import capo_codedeploy.types.deployment_ready_action
 
         out["action_on_timeout"] = (
@@ -43,7 +43,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentReadyOption:
                 data["actionOnTimeout"]
             )
         )
-    if "waitTimeInMinutes" in data:
+    if data.get("waitTimeInMinutes") is not None:
         out["wait_time_in_minutes"] = data["waitTimeInMinutes"]
     else:
         out["wait_time_in_minutes"] = 0

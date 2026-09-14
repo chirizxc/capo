@@ -159,7 +159,7 @@ def serialize_json(value: PivotTableOptions) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableOptions:
     out: PivotTableOptions = {}  # type: ignore[typeddict-item]
-    if "MetricPlacement" in data:
+    if data.get("MetricPlacement") is not None:
         import capo_quicksight.types.pivot_table_metric_placement
 
         out["metric_placement"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["MetricPlacement"]
             )
         )
-    if "SingleMetricVisibility" in data:
+    if data.get("SingleMetricVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["single_metric_visibility"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["SingleMetricVisibility"]
             )
         )
-    if "ColumnNamesVisibility" in data:
+    if data.get("ColumnNamesVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["column_names_visibility"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["ColumnNamesVisibility"]
             )
         )
-    if "ToggleButtonsVisibility" in data:
+    if data.get("ToggleButtonsVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["toggle_buttons_visibility"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["ToggleButtonsVisibility"]
             )
         )
-    if "ColumnHeaderStyle" in data:
+    if data.get("ColumnHeaderStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["column_header_style"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["ColumnHeaderStyle"]
             )
         )
-    if "RowHeaderStyle" in data:
+    if data.get("RowHeaderStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["row_header_style"] = (
@@ -207,13 +207,13 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["RowHeaderStyle"]
             )
         )
-    if "CellStyle" in data:
+    if data.get("CellStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["cell_style"] = capo_quicksight.types.table_cell_style.deserialize_json(
             data["CellStyle"]
         )
-    if "RowFieldNamesStyle" in data:
+    if data.get("RowFieldNamesStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["row_field_names_style"] = (
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["RowFieldNamesStyle"]
             )
         )
-    if "RowAlternateColorOptions" in data:
+    if data.get("RowAlternateColorOptions") is not None:
         import capo_quicksight.types.row_alternate_color_options
 
         out["row_alternate_color_options"] = (
@@ -229,7 +229,7 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["RowAlternateColorOptions"]
             )
         )
-    if "CollapsedRowDimensionsVisibility" in data:
+    if data.get("CollapsedRowDimensionsVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["collapsed_row_dimensions_visibility"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["CollapsedRowDimensionsVisibility"]
             )
         )
-    if "RowsLayout" in data:
+    if data.get("RowsLayout") is not None:
         import capo_quicksight.types.pivot_table_rows_layout
 
         out["rows_layout"] = (
@@ -245,7 +245,7 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["RowsLayout"]
             )
         )
-    if "RowsLabelOptions" in data:
+    if data.get("RowsLabelOptions") is not None:
         import capo_quicksight.types.pivot_table_rows_label_options
 
         out["rows_label_options"] = (
@@ -253,6 +253,6 @@ def deserialize_json(data: dict) -> PivotTableOptions:
                 data["RowsLabelOptions"]
             )
         )
-    if "DefaultCellWidth" in data:
+    if data.get("DefaultCellWidth") is not None:
         out["default_cell_width"] = data["DefaultCellWidth"]
     return out

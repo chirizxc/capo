@@ -18,6 +18,6 @@ def serialize_json(value: Licensing) -> dict:
 
 def deserialize_json(data: dict) -> Licensing:
     out: Licensing = {}  # type: ignore[typeddict-item]
-    if "osByol" in data:
+    if data.get("osByol") is not None:
         out["os_byol"] = data["osByol"]
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeletePortfolioShareOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeletePortfolioShareOutput:
     out: DeletePortfolioShareOutput = {}  # type: ignore[typeddict-item]
-    if "PortfolioShareToken" in data:
+    if data.get("PortfolioShareToken") is not None:
         out["portfolio_share_token"] = data["PortfolioShareToken"]
     return out

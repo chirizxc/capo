@@ -41,13 +41,13 @@ def serialize_json(value: ThreatDetectedByName) -> dict:
 
 def deserialize_json(data: dict) -> ThreatDetectedByName:
     out: ThreatDetectedByName = {}  # type: ignore[typeddict-item]
-    if "itemCount" in data:
+    if data.get("itemCount") is not None:
         out["item_count"] = data["itemCount"]
-    if "uniqueThreatNameCount" in data:
+    if data.get("uniqueThreatNameCount") is not None:
         out["unique_threat_name_count"] = data["uniqueThreatNameCount"]
-    if "shortened" in data:
+    if data.get("shortened") is not None:
         out["shortened"] = data["shortened"]
-    if "threatNames" in data:
+    if data.get("threatNames") is not None:
         import capo_guardduty.types.scan_threat_names
 
         out["threat_names"] = capo_guardduty.types.scan_threat_names.deserialize_json(

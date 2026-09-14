@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> IntentSummaryList:
 
     out: IntentSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_runtime_service.types.intent_summary.deserialize_json(item))
     return out

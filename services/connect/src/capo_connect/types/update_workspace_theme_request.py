@@ -31,7 +31,7 @@ def serialize_json(value: UpdateWorkspaceThemeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkspaceThemeRequest:
     out: UpdateWorkspaceThemeRequest = {}  # type: ignore[typeddict-item]
-    if "Theme" in data:
+    if data.get("Theme") is not None:
         import capo_connect.types.workspace_theme
 
         out["theme"] = capo_connect.types.workspace_theme.deserialize_json(

@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: NodeTypeSpecificValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NodeTypeSpecificValue:
     out: NodeTypeSpecificValue = {}  # type: ignore[typeddict-item]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

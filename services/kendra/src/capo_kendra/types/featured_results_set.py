@@ -83,13 +83,13 @@ def serialize_aws_json_1_1(value: FeaturedResultsSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FeaturedResultsSet:
     out: FeaturedResultsSet = {}  # type: ignore[typeddict-item]
-    if "FeaturedResultsSetId" in data:
+    if data.get("FeaturedResultsSetId") is not None:
         out["featured_results_set_id"] = data["FeaturedResultsSetId"]
-    if "FeaturedResultsSetName" in data:
+    if data.get("FeaturedResultsSetName") is not None:
         out["featured_results_set_name"] = data["FeaturedResultsSetName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.featured_results_set_status
 
         out["status"] = (
@@ -97,13 +97,13 @@ def deserialize_aws_json_1_1(data: dict) -> FeaturedResultsSet:
                 data["Status"]
             )
         )
-    if "QueryTexts" in data:
+    if data.get("QueryTexts") is not None:
         import capo_kendra.types.query_text_list
 
         out["query_texts"] = capo_kendra.types.query_text_list.deserialize_aws_json_1_1(
             data["QueryTexts"]
         )
-    if "FeaturedDocuments" in data:
+    if data.get("FeaturedDocuments") is not None:
         import capo_kendra.types.featured_document_list
 
         out["featured_documents"] = (
@@ -111,8 +111,8 @@ def deserialize_aws_json_1_1(data: dict) -> FeaturedResultsSet:
                 data["FeaturedDocuments"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         out["last_updated_timestamp"] = data["LastUpdatedTimestamp"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         out["creation_timestamp"] = data["CreationTimestamp"]
     return out

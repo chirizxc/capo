@@ -38,11 +38,11 @@ def serialize_json(value: UpdateConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConfigRequest:
     out: UpdateConfigRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateConfigRequest.name required")
-    if "configData" in data:
+    if data.get("configData") is not None:
         import capo_groundstation.types.config_type_data
 
         out["config_data"] = capo_groundstation.types.config_type_data.deserialize_json(

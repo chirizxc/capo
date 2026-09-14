@@ -32,7 +32,7 @@ def serialize_json(value: SuppressionListDestination) -> dict:
 
 def deserialize_json(data: dict) -> SuppressionListDestination:
     out: SuppressionListDestination = {}  # type: ignore[typeddict-item]
-    if "SuppressionListImportAction" in data:
+    if data.get("SuppressionListImportAction") is not None:
         import capo_sesv2.types.suppression_list_import_action
 
         out["suppression_list_import_action"] = (

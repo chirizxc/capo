@@ -30,7 +30,7 @@ def serialize_json(value: MotionGraphicsSettings) -> dict:
 
 def deserialize_json(data: dict) -> MotionGraphicsSettings:
     out: MotionGraphicsSettings = {}  # type: ignore[typeddict-item]
-    if "htmlMotionGraphicsSettings" in data:
+    if data.get("htmlMotionGraphicsSettings") is not None:
         import capo_medialive.types.html_motion_graphics_settings
 
         out["html_motion_graphics_settings"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidEndpointRegionException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidEndpointRegionException_:
     out: InvalidEndpointRegionException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class InvalidEndpointRegionException(ServiceError):
 
     code: str | None = "InvalidEndpointRegionException"
 
-    def __init__(self, data: InvalidEndpointRegionException_):
+    def __init__(
+        self, data: InvalidEndpointRegionException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidEndpointRegionException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidEndpointRegionException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidEndpointRegionException":
+        return cls(deserialize_aws_json_1_1(data), message)

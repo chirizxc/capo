@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_nova_act._auth._signers
@@ -87,20 +88,23 @@ class WorkflowDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.create_workflow_definition_request.CreateWorkflowDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_nova_act.types.create_workflow_definition_request.CreateWorkflowDefinitionRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if export_config is not None:
             input_["export_config"] = export_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -138,14 +142,16 @@ class WorkflowDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.get_workflow_definition_request.GetWorkflowDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
+        input_: capo_nova_act.types.get_workflow_definition_request.GetWorkflowDefinitionRequest = {
+            "workflow_definition_name": workflow_definition_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -184,14 +190,16 @@ class WorkflowDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.delete_workflow_definition_request.DeleteWorkflowDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
+        input_: capo_nova_act.types.delete_workflow_definition_request.DeleteWorkflowDefinitionRequest = {
+            "workflow_definition_name": workflow_definition_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -232,7 +240,7 @@ class WorkflowDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.list_workflow_definitions_request.ListWorkflowDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_nova_act.types.list_workflow_definitions_request.ListWorkflowDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -245,6 +253,7 @@ class WorkflowDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -299,20 +308,23 @@ class AsyncWorkflowDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.create_workflow_definition_request.CreateWorkflowDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_nova_act.types.create_workflow_definition_request.CreateWorkflowDefinitionRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if export_config is not None:
             input_["export_config"] = export_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -351,14 +363,16 @@ class AsyncWorkflowDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.get_workflow_definition_request.GetWorkflowDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
+        input_: capo_nova_act.types.get_workflow_definition_request.GetWorkflowDefinitionRequest = {
+            "workflow_definition_name": workflow_definition_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -398,14 +412,16 @@ class AsyncWorkflowDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.delete_workflow_definition_request.DeleteWorkflowDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
+        input_: capo_nova_act.types.delete_workflow_definition_request.DeleteWorkflowDefinitionRequest = {
+            "workflow_definition_name": workflow_definition_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -447,7 +463,7 @@ class AsyncWorkflowDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.list_workflow_definitions_request.ListWorkflowDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_nova_act.types.list_workflow_definitions_request.ListWorkflowDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -460,4 +476,5 @@ class AsyncWorkflowDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

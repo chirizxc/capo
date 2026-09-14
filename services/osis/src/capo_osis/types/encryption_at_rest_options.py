@@ -24,7 +24,7 @@ def serialize_json(value: EncryptionAtRestOptions) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionAtRestOptions:
     out: EncryptionAtRestOptions = {}  # type: ignore[typeddict-item]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     else:
         raise DeserializationError("EncryptionAtRestOptions.kms_key_arn required")

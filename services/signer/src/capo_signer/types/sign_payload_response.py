@@ -42,15 +42,15 @@ def serialize_json(value: SignPayloadResponse) -> dict:
 
 def deserialize_json(data: dict) -> SignPayloadResponse:
     out: SignPayloadResponse = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobOwner" in data:
+    if data.get("jobOwner") is not None:
         out["job_owner"] = data["jobOwner"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_signer.types.metadata
 
         out["metadata"] = capo_signer.types.metadata.deserialize_json(data["metadata"])
-    if "signature" in data:
+    if data.get("signature") is not None:
         import capo_signer.types.blob
 
         out["signature"] = capo_signer.types.blob.deserialize_json(data["signature"])

@@ -37,10 +37,10 @@ def serialize_aws_json_1_0(value: VmwareTag) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VmwareTag:
     out: VmwareTag = {}  # type: ignore[typeddict-item]
-    if "VmwareCategory" in data:
+    if data.get("VmwareCategory") is not None:
         out["vmware_category"] = data["VmwareCategory"]
-    if "VmwareTagName" in data:
+    if data.get("VmwareTagName") is not None:
         out["vmware_tag_name"] = data["VmwareTagName"]
-    if "VmwareTagDescription" in data:
+    if data.get("VmwareTagDescription") is not None:
         out["vmware_tag_description"] = data["VmwareTagDescription"]
     return out

@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: HPOResourceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HPOResourceConfig:
     out: HPOResourceConfig = {}  # type: ignore[typeddict-item]
-    if "maxNumberOfTrainingJobs" in data:
+    if data.get("maxNumberOfTrainingJobs") is not None:
         out["max_number_of_training_jobs"] = data["maxNumberOfTrainingJobs"]
-    if "maxParallelTrainingJobs" in data:
+    if data.get("maxParallelTrainingJobs") is not None:
         out["max_parallel_training_jobs"] = data["maxParallelTrainingJobs"]
     return out

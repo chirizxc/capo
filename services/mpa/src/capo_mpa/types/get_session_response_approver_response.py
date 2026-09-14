@@ -51,19 +51,19 @@ def serialize_json(value: GetSessionResponseApproverResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSessionResponseApproverResponse:
     out: GetSessionResponseApproverResponse = {}  # type: ignore[typeddict-item]
-    if "ApproverId" in data:
+    if data.get("ApproverId") is not None:
         out["approver_id"] = data["ApproverId"]
-    if "IdentitySourceArn" in data:
+    if data.get("IdentitySourceArn") is not None:
         out["identity_source_arn"] = data["IdentitySourceArn"]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
-    if "Response" in data:
+    if data.get("Response") is not None:
         import capo_mpa.types.session_response
 
         out["response"] = capo_mpa.types.session_response.deserialize_json(
             data["Response"]
         )
-    if "ResponseTime" in data:
+    if data.get("ResponseTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["response_time"] = capo_mpa.types.iso_timestamp.deserialize_json(

@@ -46,25 +46,25 @@ def serialize_json(value: DeleteStreamOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteStreamOutput:
     out: DeleteStreamOutput = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError("DeleteStreamOutput.cluster_identifier required")
-    if "streamIdentifier" in data:
+    if data.get("streamIdentifier") is not None:
         out["stream_identifier"] = data["streamIdentifier"]
     else:
         raise DeserializationError("DeleteStreamOutput.stream_identifier required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteStreamOutput.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_dsql.types.stream_status
 
         out["status"] = capo_dsql.types.stream_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("DeleteStreamOutput.status required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_dsql.types.stream_creation_time
 
         out["creation_time"] = capo_dsql.types.stream_creation_time.deserialize_json(

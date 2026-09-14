@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: TableToReload) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableToReload:
     out: TableToReload = {}  # type: ignore[typeddict-item]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
     else:
         raise DeserializationError("TableToReload.schema_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("TableToReload.table_name required")

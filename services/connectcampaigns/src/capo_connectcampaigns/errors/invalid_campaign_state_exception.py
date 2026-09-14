@@ -29,11 +29,11 @@ def serialize_json(value: InvalidCampaignStateException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidCampaignStateException_:
     out: InvalidCampaignStateException_ = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("InvalidCampaignStateException_.state required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("InvalidCampaignStateException_.message required")
@@ -45,15 +45,20 @@ class InvalidCampaignStateException(ServiceError):
 
     code: str | None = "InvalidCampaignStateException"
 
-    def __init__(self, data: InvalidCampaignStateException_):
+    def __init__(
+        self, data: InvalidCampaignStateException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidCampaignStateException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidCampaignStateException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidCampaignStateException":
+        return cls(deserialize_json(data), message)

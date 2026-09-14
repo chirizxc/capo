@@ -63,15 +63,15 @@ def serialize_json(value: UpdateCustomLineItemInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCustomLineItemInput:
     out: UpdateCustomLineItemInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UpdateCustomLineItemInput.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ChargeDetails" in data:
+    if data.get("ChargeDetails") is not None:
         import capo_billingconductor.types.update_custom_line_item_charge_details
 
         out["charge_details"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> UpdateCustomLineItemInput:
                 data["ChargeDetails"]
             )
         )
-    if "BillingPeriodRange" in data:
+    if data.get("BillingPeriodRange") is not None:
         import capo_billingconductor.types.custom_line_item_billing_period_range
 
         out["billing_period_range"] = (

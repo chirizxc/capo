@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: AssignTapePoolInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssignTapePoolInput:
     out: AssignTapePoolInput = {}  # type: ignore[typeddict-item]
-    if "TapeARN" in data:
+    if data.get("TapeARN") is not None:
         out["tape_arn"] = data["TapeARN"]
     else:
         raise DeserializationError("AssignTapePoolInput.tape_arn required")
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
     else:
         raise DeserializationError("AssignTapePoolInput.pool_id required")
-    if "BypassGovernanceRetention" in data:
+    if data.get("BypassGovernanceRetention") is not None:
         out["bypass_governance_retention"] = data["BypassGovernanceRetention"]
     else:
         out["bypass_governance_retention"] = False

@@ -77,29 +77,29 @@ def serialize_json(value: AssociatedContactSummary) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedContactSummary:
     out: AssociatedContactSummary = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
-    if "InitiationTimestamp" in data:
+    if data.get("InitiationTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["initiation_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["InitiationTimestamp"]
         )
-    if "DisconnectTimestamp" in data:
+    if data.get("DisconnectTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["disconnect_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["DisconnectTimestamp"]
         )
-    if "InitialContactId" in data:
+    if data.get("InitialContactId") is not None:
         out["initial_contact_id"] = data["InitialContactId"]
-    if "PreviousContactId" in data:
+    if data.get("PreviousContactId") is not None:
         out["previous_contact_id"] = data["PreviousContactId"]
-    if "RelatedContactId" in data:
+    if data.get("RelatedContactId") is not None:
         out["related_contact_id"] = data["RelatedContactId"]
-    if "InitiationMethod" in data:
+    if data.get("InitiationMethod") is not None:
         import capo_connect.types.contact_initiation_method
 
         out["initiation_method"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> AssociatedContactSummary:
                 data["InitiationMethod"]
             )
         )
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])

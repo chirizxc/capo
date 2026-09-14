@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> IpFilterList:
 
     out: IpFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.ip_filter.deserialize_json(item))
     return out

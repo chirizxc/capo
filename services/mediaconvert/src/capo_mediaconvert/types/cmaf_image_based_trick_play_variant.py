@@ -54,7 +54,15 @@ def serialize_json(value: CmafImageBasedTrickPlayVariant) -> dict:
     if "thumbnail_height" in value:
         out["thumbnailHeight"] = value["thumbnail_height"]
     if "thumbnail_interval" in value:
-        out["thumbnailInterval"] = value["thumbnail_interval"]
+        out["thumbnailInterval"] = (
+            "NaN"
+            if value["thumbnail_interval"] != value["thumbnail_interval"]
+            else "Infinity"
+            if value["thumbnail_interval"] == float("inf")
+            else "-Infinity"
+            if value["thumbnail_interval"] == float("-inf")
+            else value["thumbnail_interval"]
+        )
     if "thumbnail_width" in value:
         out["thumbnailWidth"] = value["thumbnail_width"]
     if "tile_height" in value:
@@ -66,7 +74,7 @@ def serialize_json(value: CmafImageBasedTrickPlayVariant) -> dict:
 
 def deserialize_json(data: dict) -> CmafImageBasedTrickPlayVariant:
     out: CmafImageBasedTrickPlayVariant = {}  # type: ignore[typeddict-item]
-    if "intervalCadence" in data:
+    if data.get("intervalCadence") is not None:
         import capo_mediaconvert.types.cmaf_interval_cadence
 
         out["interval_cadence"] = (
@@ -74,14 +82,14 @@ def deserialize_json(data: dict) -> CmafImageBasedTrickPlayVariant:
                 data["intervalCadence"]
             )
         )
-    if "thumbnailHeight" in data:
+    if data.get("thumbnailHeight") is not None:
         out["thumbnail_height"] = data["thumbnailHeight"]
-    if "thumbnailInterval" in data:
-        out["thumbnail_interval"] = data["thumbnailInterval"]
-    if "thumbnailWidth" in data:
+    if data.get("thumbnailInterval") is not None:
+        out["thumbnail_interval"] = float(data["thumbnailInterval"])
+    if data.get("thumbnailWidth") is not None:
         out["thumbnail_width"] = data["thumbnailWidth"]
-    if "tileHeight" in data:
+    if data.get("tileHeight") is not None:
         out["tile_height"] = data["tileHeight"]
-    if "tileWidth" in data:
+    if data.get("tileWidth") is not None:
         out["tile_width"] = data["tileWidth"]
     return out

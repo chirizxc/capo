@@ -139,7 +139,7 @@ def serialize_json(value: TransformStep) -> dict:
 
 def deserialize_json(data: dict) -> TransformStep:
     out: TransformStep = {}  # type: ignore[typeddict-item]
-    if "ImportTableStep" in data:
+    if data.get("ImportTableStep") is not None:
         import capo_quicksight.types.import_table_operation
 
         out["import_table_step"] = (
@@ -147,19 +147,19 @@ def deserialize_json(data: dict) -> TransformStep:
                 data["ImportTableStep"]
             )
         )
-    if "ProjectStep" in data:
+    if data.get("ProjectStep") is not None:
         import capo_quicksight.types.project_operation
 
         out["project_step"] = capo_quicksight.types.project_operation.deserialize_json(
             data["ProjectStep"]
         )
-    if "FiltersStep" in data:
+    if data.get("FiltersStep") is not None:
         import capo_quicksight.types.filters_operation
 
         out["filters_step"] = capo_quicksight.types.filters_operation.deserialize_json(
             data["FiltersStep"]
         )
-    if "CreateColumnsStep" in data:
+    if data.get("CreateColumnsStep") is not None:
         import capo_quicksight.types.create_columns_operation
 
         out["create_columns_step"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> TransformStep:
                 data["CreateColumnsStep"]
             )
         )
-    if "RenameColumnsStep" in data:
+    if data.get("RenameColumnsStep") is not None:
         import capo_quicksight.types.rename_columns_operation
 
         out["rename_columns_step"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> TransformStep:
                 data["RenameColumnsStep"]
             )
         )
-    if "CastColumnTypesStep" in data:
+    if data.get("CastColumnTypesStep") is not None:
         import capo_quicksight.types.cast_column_types_operation
 
         out["cast_column_types_step"] = (
@@ -183,13 +183,13 @@ def deserialize_json(data: dict) -> TransformStep:
                 data["CastColumnTypesStep"]
             )
         )
-    if "JoinStep" in data:
+    if data.get("JoinStep") is not None:
         import capo_quicksight.types.join_operation
 
         out["join_step"] = capo_quicksight.types.join_operation.deserialize_json(
             data["JoinStep"]
         )
-    if "AggregateStep" in data:
+    if data.get("AggregateStep") is not None:
         import capo_quicksight.types.aggregate_operation
 
         out["aggregate_step"] = (
@@ -197,19 +197,19 @@ def deserialize_json(data: dict) -> TransformStep:
                 data["AggregateStep"]
             )
         )
-    if "PivotStep" in data:
+    if data.get("PivotStep") is not None:
         import capo_quicksight.types.pivot_operation
 
         out["pivot_step"] = capo_quicksight.types.pivot_operation.deserialize_json(
             data["PivotStep"]
         )
-    if "UnpivotStep" in data:
+    if data.get("UnpivotStep") is not None:
         import capo_quicksight.types.unpivot_operation
 
         out["unpivot_step"] = capo_quicksight.types.unpivot_operation.deserialize_json(
             data["UnpivotStep"]
         )
-    if "AppendStep" in data:
+    if data.get("AppendStep") is not None:
         import capo_quicksight.types.append_operation
 
         out["append_step"] = capo_quicksight.types.append_operation.deserialize_json(

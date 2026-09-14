@@ -65,13 +65,13 @@ def serialize_json(value: UpdatePipeSourceSelfManagedKafkaParameters) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePipeSourceSelfManagedKafkaParameters:
     out: UpdatePipeSourceSelfManagedKafkaParameters = {}  # type: ignore[typeddict-item]
-    if "BatchSize" in data:
+    if data.get("BatchSize") is not None:
         out["batch_size"] = data["BatchSize"]
-    if "MaximumBatchingWindowInSeconds" in data:
+    if data.get("MaximumBatchingWindowInSeconds") is not None:
         out["maximum_batching_window_in_seconds"] = data[
             "MaximumBatchingWindowInSeconds"
         ]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_pipes.types.self_managed_kafka_access_configuration_credentials
 
         out["credentials"] = (
@@ -79,9 +79,9 @@ def deserialize_json(data: dict) -> UpdatePipeSourceSelfManagedKafkaParameters:
                 data["Credentials"]
             )
         )
-    if "ServerRootCaCertificate" in data:
+    if data.get("ServerRootCaCertificate") is not None:
         out["server_root_ca_certificate"] = data["ServerRootCaCertificate"]
-    if "Vpc" in data:
+    if data.get("Vpc") is not None:
         import capo_pipes.types.self_managed_kafka_access_configuration_vpc
 
         out["vpc"] = (

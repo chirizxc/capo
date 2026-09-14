@@ -50,7 +50,7 @@ def serialize_json(value: UpdateFlowPermissionsInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFlowPermissionsInput:
     out: UpdateFlowPermissionsInput = {}  # type: ignore[typeddict-item]
-    if "GrantPermissions" in data:
+    if data.get("GrantPermissions") is not None:
         import capo_quicksight.types.update_flow_permissions_input_grant_permissions_list
 
         out["grant_permissions"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> UpdateFlowPermissionsInput:
                 data["GrantPermissions"]
             )
         )
-    if "RevokePermissions" in data:
+    if data.get("RevokePermissions") is not None:
         import capo_quicksight.types.update_flow_permissions_input_revoke_permissions_list
 
         out["revoke_permissions"] = (

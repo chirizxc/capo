@@ -36,13 +36,13 @@ def serialize_json(value: GetExternalDataViewAccessDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetExternalDataViewAccessDetailsResponse:
     out: GetExternalDataViewAccessDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "credentials" in data:
+    if data.get("credentials") is not None:
         import capo_finspace_data.types.aws_credentials
 
         out["credentials"] = capo_finspace_data.types.aws_credentials.deserialize_json(
             data["credentials"]
         )
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         import capo_finspace_data.types.s3_location
 
         out["s3_location"] = capo_finspace_data.types.s3_location.deserialize_json(

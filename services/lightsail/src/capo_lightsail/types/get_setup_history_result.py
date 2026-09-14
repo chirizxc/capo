@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: GetSetupHistoryResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSetupHistoryResult:
     out: GetSetupHistoryResult = {}  # type: ignore[typeddict-item]
-    if "setupHistory" in data:
+    if data.get("setupHistory") is not None:
         import capo_lightsail.types.setup_history_list
 
         out["setup_history"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetSetupHistoryResult:
                 data["setupHistory"]
             )
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

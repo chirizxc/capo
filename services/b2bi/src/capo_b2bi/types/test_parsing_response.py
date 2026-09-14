@@ -49,11 +49,11 @@ def serialize_aws_json_1_0(value: TestParsingResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TestParsingResponse:
     out: TestParsingResponse = {}  # type: ignore[typeddict-item]
-    if "parsedFileContent" in data:
+    if data.get("parsedFileContent") is not None:
         out["parsed_file_content"] = data["parsedFileContent"]
     else:
         raise DeserializationError("TestParsingResponse.parsed_file_content required")
-    if "parsedSplitFileContents" in data:
+    if data.get("parsedSplitFileContents") is not None:
         import capo_b2bi.types.parsed_split_file_contents_list
 
         out["parsed_split_file_contents"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> TestParsingResponse:
                 data["parsedSplitFileContents"]
             )
         )
-    if "validationMessages" in data:
+    if data.get("validationMessages") is not None:
         import capo_b2bi.types.validation_messages
 
         out["validation_messages"] = (

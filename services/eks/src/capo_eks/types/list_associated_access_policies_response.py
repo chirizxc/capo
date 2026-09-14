@@ -44,13 +44,13 @@ def serialize_json(value: ListAssociatedAccessPoliciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAssociatedAccessPoliciesResponse:
     out: ListAssociatedAccessPoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "principalArn" in data:
+    if data.get("principalArn") is not None:
         out["principal_arn"] = data["principalArn"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "associatedAccessPolicies" in data:
+    if data.get("associatedAccessPolicies") is not None:
         import capo_eks.types.associated_access_policies_list
 
         out["associated_access_policies"] = (

@@ -35,7 +35,7 @@ def serialize_json(value: NotificationResource) -> dict:
 
 def deserialize_json(data: dict) -> NotificationResource:
     out: NotificationResource = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.notification_resource_type
 
         out["type"] = capo_datazone.types.notification_resource_type.deserialize_json(
@@ -43,10 +43,10 @@ def deserialize_json(data: dict) -> NotificationResource:
         )
     else:
         raise DeserializationError("NotificationResource.type required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("NotificationResource.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

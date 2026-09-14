@@ -69,19 +69,19 @@ def serialize_json(value: AgentDetails) -> dict:
 
 def deserialize_json(data: dict) -> AgentDetails:
     out: AgentDetails = {}  # type: ignore[typeddict-item]
-    if "agentVersion" in data:
+    if data.get("agentVersion") is not None:
         out["agent_version"] = data["agentVersion"]
     else:
         raise DeserializationError("AgentDetails.agent_version required")
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError("AgentDetails.instance_id required")
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     else:
         raise DeserializationError("AgentDetails.instance_type required")
-    if "reservedCpuCores" in data:
+    if data.get("reservedCpuCores") is not None:
         import capo_groundstation.types.agent_cpu_cores_list
 
         out["reserved_cpu_cores"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> AgentDetails:
                 data["reservedCpuCores"]
             )
         )
-    if "agentCpuCores" in data:
+    if data.get("agentCpuCores") is not None:
         import capo_groundstation.types.agent_cpu_cores_list
 
         out["agent_cpu_cores"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> AgentDetails:
                 data["agentCpuCores"]
             )
         )
-    if "componentVersions" in data:
+    if data.get("componentVersions") is not None:
         import capo_groundstation.types.component_version_list
 
         out["component_versions"] = (

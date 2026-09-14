@@ -31,7 +31,7 @@ def serialize_json(value: DissociatePackagesResponse) -> dict:
 
 def deserialize_json(data: dict) -> DissociatePackagesResponse:
     out: DissociatePackagesResponse = {}  # type: ignore[typeddict-item]
-    if "DomainPackageDetailsList" in data:
+    if data.get("DomainPackageDetailsList") is not None:
         import capo_opensearch.types.domain_package_details_list
 
         out["domain_package_details_list"] = (

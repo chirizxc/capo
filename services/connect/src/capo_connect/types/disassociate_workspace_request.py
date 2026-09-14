@@ -36,7 +36,7 @@ def serialize_json(value: DisassociateWorkspaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateWorkspaceRequest:
     out: DisassociateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArns" in data:
+    if data.get("ResourceArns") is not None:
         import capo_connect.types.workspace_resource_arn_list
 
         out["resource_arns"] = (

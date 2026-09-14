@@ -199,27 +199,27 @@ def serialize_aws_json_1_1(value: RedshiftSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedshiftSettings:
     out: RedshiftSettings = {}  # type: ignore[typeddict-item]
-    if "AcceptAnyDate" in data:
+    if data.get("AcceptAnyDate") is not None:
         out["accept_any_date"] = data["AcceptAnyDate"]
-    if "AfterConnectScript" in data:
+    if data.get("AfterConnectScript") is not None:
         out["after_connect_script"] = data["AfterConnectScript"]
-    if "BucketFolder" in data:
+    if data.get("BucketFolder") is not None:
         out["bucket_folder"] = data["BucketFolder"]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
-    if "CaseSensitiveNames" in data:
+    if data.get("CaseSensitiveNames") is not None:
         out["case_sensitive_names"] = data["CaseSensitiveNames"]
-    if "CompUpdate" in data:
+    if data.get("CompUpdate") is not None:
         out["comp_update"] = data["CompUpdate"]
-    if "ConnectionTimeout" in data:
+    if data.get("ConnectionTimeout") is not None:
         out["connection_timeout"] = data["ConnectionTimeout"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "DateFormat" in data:
+    if data.get("DateFormat") is not None:
         out["date_format"] = data["DateFormat"]
-    if "EmptyAsNull" in data:
+    if data.get("EmptyAsNull") is not None:
         out["empty_as_null"] = data["EmptyAsNull"]
-    if "EncryptionMode" in data:
+    if data.get("EncryptionMode") is not None:
         import capo_database_migration_service.types.encryption_mode_value
 
         out["encryption_mode"] = (
@@ -227,44 +227,44 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftSettings:
                 data["EncryptionMode"]
             )
         )
-    if "ExplicitIds" in data:
+    if data.get("ExplicitIds") is not None:
         out["explicit_ids"] = data["ExplicitIds"]
-    if "FileTransferUploadStreams" in data:
+    if data.get("FileTransferUploadStreams") is not None:
         out["file_transfer_upload_streams"] = data["FileTransferUploadStreams"]
-    if "LoadTimeout" in data:
+    if data.get("LoadTimeout") is not None:
         out["load_timeout"] = data["LoadTimeout"]
-    if "MaxFileSize" in data:
+    if data.get("MaxFileSize") is not None:
         out["max_file_size"] = data["MaxFileSize"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "RemoveQuotes" in data:
+    if data.get("RemoveQuotes") is not None:
         out["remove_quotes"] = data["RemoveQuotes"]
-    if "ReplaceInvalidChars" in data:
+    if data.get("ReplaceInvalidChars") is not None:
         out["replace_invalid_chars"] = data["ReplaceInvalidChars"]
-    if "ReplaceChars" in data:
+    if data.get("ReplaceChars") is not None:
         out["replace_chars"] = data["ReplaceChars"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "ServerSideEncryptionKmsKeyId" in data:
+    if data.get("ServerSideEncryptionKmsKeyId") is not None:
         out["server_side_encryption_kms_key_id"] = data["ServerSideEncryptionKmsKeyId"]
-    if "TimeFormat" in data:
+    if data.get("TimeFormat") is not None:
         out["time_format"] = data["TimeFormat"]
-    if "TrimBlanks" in data:
+    if data.get("TrimBlanks") is not None:
         out["trim_blanks"] = data["TrimBlanks"]
-    if "TruncateColumns" in data:
+    if data.get("TruncateColumns") is not None:
         out["truncate_columns"] = data["TruncateColumns"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "WriteBufferSize" in data:
+    if data.get("WriteBufferSize") is not None:
         out["write_buffer_size"] = data["WriteBufferSize"]
-    if "SecretsManagerAccessRoleArn" in data:
+    if data.get("SecretsManagerAccessRoleArn") is not None:
         out["secrets_manager_access_role_arn"] = data["SecretsManagerAccessRoleArn"]
-    if "SecretsManagerSecretId" in data:
+    if data.get("SecretsManagerSecretId") is not None:
         out["secrets_manager_secret_id"] = data["SecretsManagerSecretId"]
-    if "MapBooleanAsBoolean" in data:
+    if data.get("MapBooleanAsBoolean") is not None:
         out["map_boolean_as_boolean"] = data["MapBooleanAsBoolean"]
     return out

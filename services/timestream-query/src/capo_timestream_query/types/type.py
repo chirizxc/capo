@@ -65,7 +65,7 @@ def serialize_aws_json_1_0(value: Type) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Type:
     out: Type = {}  # type: ignore[typeddict-item]
-    if "ScalarType" in data:
+    if data.get("ScalarType") is not None:
         import capo_timestream_query.types.scalar_type
 
         out["scalar_type"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_0(data: dict) -> Type:
                 data["ScalarType"]
             )
         )
-    if "ArrayColumnInfo" in data:
+    if data.get("ArrayColumnInfo") is not None:
         import capo_timestream_query.types.column_info
 
         out["array_column_info"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_0(data: dict) -> Type:
                 data["ArrayColumnInfo"]
             )
         )
-    if "TimeSeriesMeasureValueColumnInfo" in data:
+    if data.get("TimeSeriesMeasureValueColumnInfo") is not None:
         import capo_timestream_query.types.column_info
 
         out["time_series_measure_value_column_info"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> Type:
                 data["TimeSeriesMeasureValueColumnInfo"]
             )
         )
-    if "RowColumnInfo" in data:
+    if data.get("RowColumnInfo") is not None:
         import capo_timestream_query.types.column_info_list
 
         out["row_column_info"] = (

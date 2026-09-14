@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AwsRdsDbStatusInfos:
 
     out: AwsRdsDbStatusInfos = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.aws_rds_db_status_info.deserialize_json(item))
     return out

@@ -93,15 +93,15 @@ def serialize_aws_json_1_0(value: LicenseConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LicenseConfiguration:
     out: LicenseConfiguration = {}  # type: ignore[typeddict-item]
-    if "numberOfCores" in data:
+    if data.get("numberOfCores") is not None:
         out["number_of_cores"] = data["numberOfCores"]
     else:
         out["number_of_cores"] = 0
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "operatingSystem" in data:
+    if data.get("operatingSystem") is not None:
         out["operating_system"] = data["operatingSystem"]
-    if "licenseEdition" in data:
+    if data.get("licenseEdition") is not None:
         import capo_compute_optimizer.types.license_edition
 
         out["license_edition"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> LicenseConfiguration:
                 data["licenseEdition"]
             )
         )
-    if "licenseName" in data:
+    if data.get("licenseName") is not None:
         import capo_compute_optimizer.types.license_name
 
         out["license_name"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> LicenseConfiguration:
                 data["licenseName"]
             )
         )
-    if "licenseModel" in data:
+    if data.get("licenseModel") is not None:
         import capo_compute_optimizer.types.license_model
 
         out["license_model"] = (
@@ -125,9 +125,9 @@ def deserialize_aws_json_1_0(data: dict) -> LicenseConfiguration:
                 data["licenseModel"]
             )
         )
-    if "licenseVersion" in data:
+    if data.get("licenseVersion") is not None:
         out["license_version"] = data["licenseVersion"]
-    if "metricsSource" in data:
+    if data.get("metricsSource") is not None:
         import capo_compute_optimizer.types.metrics_source
 
         out["metrics_source"] = (

@@ -37,7 +37,7 @@ def serialize_json(value: BackupCreationTimeFilter) -> dict:
 
 def deserialize_json(data: dict) -> BackupCreationTimeFilter:
     out: BackupCreationTimeFilter = {}  # type: ignore[typeddict-item]
-    if "CreatedAfter" in data:
+    if data.get("CreatedAfter") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["created_after"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> BackupCreationTimeFilter:
                 data["CreatedAfter"]
             )
         )
-    if "CreatedBefore" in data:
+    if data.get("CreatedBefore") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["created_before"] = (

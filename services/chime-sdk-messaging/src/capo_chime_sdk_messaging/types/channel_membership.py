@@ -83,13 +83,13 @@ def serialize_json(value: ChannelMembership) -> dict:
 
 def deserialize_json(data: dict) -> ChannelMembership:
     out: ChannelMembership = {}  # type: ignore[typeddict-item]
-    if "InvitedBy" in data:
+    if data.get("InvitedBy") is not None:
         import capo_chime_sdk_messaging.types.identity
 
         out["invited_by"] = capo_chime_sdk_messaging.types.identity.deserialize_json(
             data["InvitedBy"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_messaging.types.channel_membership_type
 
         out["type"] = (
@@ -97,15 +97,15 @@ def deserialize_json(data: dict) -> ChannelMembership:
                 data["Type"]
             )
         )
-    if "Member" in data:
+    if data.get("Member") is not None:
         import capo_chime_sdk_messaging.types.identity
 
         out["member"] = capo_chime_sdk_messaging.types.identity.deserialize_json(
             data["Member"]
         )
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["created_timestamp"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> ChannelMembership:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["last_updated_timestamp"] = (
@@ -121,6 +121,6 @@ def deserialize_json(data: dict) -> ChannelMembership:
                 data["LastUpdatedTimestamp"]
             )
         )
-    if "SubChannelId" in data:
+    if data.get("SubChannelId") is not None:
         out["sub_channel_id"] = data["SubChannelId"]
     return out

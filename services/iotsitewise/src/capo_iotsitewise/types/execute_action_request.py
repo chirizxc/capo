@@ -54,7 +54,7 @@ def serialize_json(value: ExecuteActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteActionRequest:
     out: ExecuteActionRequest = {}  # type: ignore[typeddict-item]
-    if "targetResource" in data:
+    if data.get("targetResource") is not None:
         import capo_iotsitewise.types.target_resource
 
         out["target_resource"] = (
@@ -64,11 +64,11 @@ def deserialize_json(data: dict) -> ExecuteActionRequest:
         )
     else:
         raise DeserializationError("ExecuteActionRequest.target_resource required")
-    if "actionDefinitionId" in data:
+    if data.get("actionDefinitionId") is not None:
         out["action_definition_id"] = data["actionDefinitionId"]
     else:
         raise DeserializationError("ExecuteActionRequest.action_definition_id required")
-    if "actionPayload" in data:
+    if data.get("actionPayload") is not None:
         import capo_iotsitewise.types.action_payload
 
         out["action_payload"] = capo_iotsitewise.types.action_payload.deserialize_json(
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> ExecuteActionRequest:
         )
     else:
         raise DeserializationError("ExecuteActionRequest.action_payload required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "resolveTo" in data:
+    if data.get("resolveTo") is not None:
         import capo_iotsitewise.types.resolve_to
 
         out["resolve_to"] = capo_iotsitewise.types.resolve_to.deserialize_json(

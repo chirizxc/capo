@@ -42,7 +42,7 @@ def serialize_json(value: ParticipatingGateways) -> dict:
 
 def deserialize_json(data: dict) -> ParticipatingGateways:
     out: ParticipatingGateways = {}  # type: ignore[typeddict-item]
-    if "DownlinkMode" in data:
+    if data.get("DownlinkMode") is not None:
         import capo_iot_wireless.types.downlink_mode
 
         out["downlink_mode"] = capo_iot_wireless.types.downlink_mode.deserialize_json(
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> ParticipatingGateways:
         )
     else:
         raise DeserializationError("ParticipatingGateways.downlink_mode required")
-    if "GatewayList" in data:
+    if data.get("GatewayList") is not None:
         import capo_iot_wireless.types.gateway_list
 
         out["gateway_list"] = capo_iot_wireless.types.gateway_list.deserialize_json(
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> ParticipatingGateways:
         )
     else:
         raise DeserializationError("ParticipatingGateways.gateway_list required")
-    if "TransmissionInterval" in data:
+    if data.get("TransmissionInterval") is not None:
         out["transmission_interval"] = data["TransmissionInterval"]
     else:
         raise DeserializationError(

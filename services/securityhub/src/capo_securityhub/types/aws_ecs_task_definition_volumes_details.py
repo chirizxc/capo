@@ -62,7 +62,7 @@ def serialize_json(value: AwsEcsTaskDefinitionVolumesDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsTaskDefinitionVolumesDetails:
     out: AwsEcsTaskDefinitionVolumesDetails = {}  # type: ignore[typeddict-item]
-    if "DockerVolumeConfiguration" in data:
+    if data.get("DockerVolumeConfiguration") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_volumes_docker_volume_configuration_details
 
         out["docker_volume_configuration"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionVolumesDetails:
                 data["DockerVolumeConfiguration"]
             )
         )
-    if "EfsVolumeConfiguration" in data:
+    if data.get("EfsVolumeConfiguration") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_volumes_efs_volume_configuration_details
 
         out["efs_volume_configuration"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionVolumesDetails:
                 data["EfsVolumeConfiguration"]
             )
         )
-    if "Host" in data:
+    if data.get("Host") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_volumes_host_details
 
         out["host"] = (
@@ -86,6 +86,6 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionVolumesDetails:
                 data["Host"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

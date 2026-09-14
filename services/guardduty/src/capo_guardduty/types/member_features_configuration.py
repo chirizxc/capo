@@ -47,17 +47,17 @@ def serialize_json(value: MemberFeaturesConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MemberFeaturesConfiguration:
     out: MemberFeaturesConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_guardduty.types.org_feature
 
         out["name"] = capo_guardduty.types.org_feature.deserialize_json(data["name"])
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.feature_status
 
         out["status"] = capo_guardduty.types.feature_status.deserialize_json(
             data["status"]
         )
-    if "additionalConfiguration" in data:
+    if data.get("additionalConfiguration") is not None:
         import capo_guardduty.types.member_additional_configurations
 
         out["additional_configuration"] = (

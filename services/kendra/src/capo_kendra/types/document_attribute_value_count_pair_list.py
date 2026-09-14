@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DocumentAttributeValueCountPairList:
 
     out: DocumentAttributeValueCountPairList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.document_attribute_value_count_pair.deserialize_aws_json_1_1(
                 item

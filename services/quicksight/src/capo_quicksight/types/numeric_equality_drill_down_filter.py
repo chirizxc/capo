@@ -26,13 +26,21 @@ def serialize_json(value: NumericEqualityDrillDownFilter) -> dict:
     out["Column"] = capo_quicksight.types.column_identifier.serialize_json(
         value["column"]
     )
-    out["Value"] = value.get("value", 0)
+    out["Value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> NumericEqualityDrillDownFilter:
     out: NumericEqualityDrillDownFilter = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -40,8 +48,8 @@ def deserialize_json(data: dict) -> NumericEqualityDrillDownFilter:
         )
     else:
         raise DeserializationError("NumericEqualityDrillDownFilter.column required")
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         out["value"] = 0
     return out

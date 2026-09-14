@@ -36,31 +36,31 @@ def serialize_json(value: ParsedQuerySecondaryAddressComponent) -> dict:
 
 def deserialize_json(data: dict) -> ParsedQuerySecondaryAddressComponent:
     out: ParsedQuerySecondaryAddressComponent = {}  # type: ignore[typeddict-item]
-    if "StartIndex" in data:
+    if data.get("StartIndex") is not None:
         out["start_index"] = data["StartIndex"]
     else:
         raise DeserializationError(
             "ParsedQuerySecondaryAddressComponent.start_index required"
         )
-    if "EndIndex" in data:
+    if data.get("EndIndex") is not None:
         out["end_index"] = data["EndIndex"]
     else:
         raise DeserializationError(
             "ParsedQuerySecondaryAddressComponent.end_index required"
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError(
             "ParsedQuerySecondaryAddressComponent.value required"
         )
-    if "Number" in data:
+    if data.get("Number") is not None:
         out["number"] = data["Number"]
     else:
         raise DeserializationError(
             "ParsedQuerySecondaryAddressComponent.number required"
         )
-    if "Designator" in data:
+    if data.get("Designator") is not None:
         out["designator"] = data["Designator"]
     else:
         raise DeserializationError(

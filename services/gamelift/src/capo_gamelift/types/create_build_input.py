@@ -65,11 +65,11 @@ def serialize_aws_json_1_1(value: CreateBuildInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateBuildInput:
     out: CreateBuildInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "StorageLocation" in data:
+    if data.get("StorageLocation") is not None:
         import capo_gamelift.types.s3_location
 
         out["storage_location"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateBuildInput:
                 data["StorageLocation"]
             )
         )
-    if "OperatingSystem" in data:
+    if data.get("OperatingSystem") is not None:
         import capo_gamelift.types.operating_system
 
         out["operating_system"] = (
@@ -85,12 +85,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateBuildInput:
                 data["OperatingSystem"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_gamelift.types.tag_list
 
         out["tags"] = capo_gamelift.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ServerSdkVersion" in data:
+    if data.get("ServerSdkVersion") is not None:
         out["server_sdk_version"] = data["ServerSdkVersion"]
     return out

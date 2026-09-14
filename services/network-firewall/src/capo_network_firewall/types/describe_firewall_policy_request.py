@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: DescribeFirewallPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeFirewallPolicyRequest:
     out: DescribeFirewallPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallPolicyName" in data:
+    if data.get("FirewallPolicyName") is not None:
         out["firewall_policy_name"] = data["FirewallPolicyName"]
-    if "FirewallPolicyArn" in data:
+    if data.get("FirewallPolicyArn") is not None:
         out["firewall_policy_arn"] = data["FirewallPolicyArn"]
     return out

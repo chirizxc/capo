@@ -35,13 +35,13 @@ def serialize_json(value: ProtectedJobParameters) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedJobParameters:
     out: ProtectedJobParameters = {}  # type: ignore[typeddict-item]
-    if "analysisTemplateArn" in data:
+    if data.get("analysisTemplateArn") is not None:
         out["analysis_template_arn"] = data["analysisTemplateArn"]
     else:
         raise DeserializationError(
             "ProtectedJobParameters.analysis_template_arn required"
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_cleanrooms.types.job_parameter_map
 
         out["parameters"] = capo_cleanrooms.types.job_parameter_map.deserialize_json(

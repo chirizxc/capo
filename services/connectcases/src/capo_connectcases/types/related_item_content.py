@@ -98,7 +98,7 @@ def serialize_json(value: RelatedItemContent) -> dict:
 
 
 def deserialize_json(data: dict) -> RelatedItemContent:
-    if "contact" in data:
+    if data.get("contact") is not None:
         import capo_connectcases.types.contact_content
 
         return {
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> RelatedItemContent:
                 data["contact"]
             )
         }
-    elif "comment" in data:
+    elif data.get("comment") is not None:
         import capo_connectcases.types.comment_content
 
         return {
@@ -114,19 +114,19 @@ def deserialize_json(data: dict) -> RelatedItemContent:
                 data["comment"]
             )
         }
-    elif "file" in data:
+    elif data.get("file") is not None:
         import capo_connectcases.types.file_content
 
         return {
             "file": capo_connectcases.types.file_content.deserialize_json(data["file"])
         }
-    elif "sla" in data:
+    elif data.get("sla") is not None:
         import capo_connectcases.types.sla_content
 
         return {
             "sla": capo_connectcases.types.sla_content.deserialize_json(data["sla"])
         }
-    elif "connectCase" in data:
+    elif data.get("connectCase") is not None:
         import capo_connectcases.types.connect_case_content
 
         return {
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> RelatedItemContent:
                 data["connectCase"]
             )
         }
-    elif "custom" in data:
+    elif data.get("custom") is not None:
         import capo_connectcases.types.custom_content
 
         return {

@@ -47,7 +47,7 @@ def serialize_json(value: Dimension) -> dict:
 
 
 def deserialize_json(data: dict) -> Dimension:
-    if "ProfileAttributes" in data:
+    if data.get("ProfileAttributes") is not None:
         import capo_customer_profiles.types.profile_attributes
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> Dimension:
                 data["ProfileAttributes"]
             )
         }
-    elif "CalculatedAttributes" in data:
+    elif data.get("CalculatedAttributes") is not None:
         import capo_customer_profiles.types.calculated_custom_attributes
 
         return {

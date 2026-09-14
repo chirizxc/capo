@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: S3DataRepositoryConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DataRepositoryConfiguration:
     out: S3DataRepositoryConfiguration = {}  # type: ignore[typeddict-item]
-    if "AutoImportPolicy" in data:
+    if data.get("AutoImportPolicy") is not None:
         import capo_fsx.types.auto_import_policy
 
         out["auto_import_policy"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DataRepositoryConfiguration:
                 data["AutoImportPolicy"]
             )
         )
-    if "AutoExportPolicy" in data:
+    if data.get("AutoExportPolicy") is not None:
         import capo_fsx.types.auto_export_policy
 
         out["auto_export_policy"] = (

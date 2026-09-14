@@ -39,14 +39,14 @@ def serialize_json(value: MetadataTransferJobStatus) -> dict:
 
 def deserialize_json(data: dict) -> MetadataTransferJobStatus:
     out: MetadataTransferJobStatus = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_iottwinmaker.types.error_details
 
         out["error"] = capo_iottwinmaker.types.error_details.deserialize_json(
             data["error"]
         )
-    if "queuedPosition" in data:
+    if data.get("queuedPosition") is not None:
         out["queued_position"] = data["queuedPosition"]
     return out

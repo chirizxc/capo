@@ -142,17 +142,17 @@ def serialize_json(value: CreateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateApplicationRequest.name required")
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
     else:
         raise DeserializationError("CreateApplicationRequest.namespace required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ApplicationSourceConfig" in data:
+    if data.get("ApplicationSourceConfig") is not None:
         import capo_appintegrations.types.application_source_config
 
         out["application_source_config"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
         raise DeserializationError(
             "CreateApplicationRequest.application_source_config required"
         )
-    if "Subscriptions" in data:
+    if data.get("Subscriptions") is not None:
         import capo_appintegrations.types.subscription_list
 
         out["subscriptions"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["Subscriptions"]
             )
         )
-    if "Publications" in data:
+    if data.get("Publications") is not None:
         import capo_appintegrations.types.publication_list
 
         out["publications"] = (
@@ -180,13 +180,13 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["Publications"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appintegrations.types.tag_map
 
         out["tags"] = capo_appintegrations.types.tag_map.deserialize_json(data["Tags"])
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_appintegrations.types.permission_list
 
         out["permissions"] = (
@@ -194,13 +194,13 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["Permissions"]
             )
         )
-    if "IsService" in data:
+    if data.get("IsService") is not None:
         out["is_service"] = data["IsService"]
     else:
         out["is_service"] = False
-    if "InitializationTimeout" in data:
+    if data.get("InitializationTimeout") is not None:
         out["initialization_timeout"] = data["InitializationTimeout"]
-    if "ApplicationConfig" in data:
+    if data.get("ApplicationConfig") is not None:
         import capo_appintegrations.types.application_config
 
         out["application_config"] = (
@@ -208,7 +208,7 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["ApplicationConfig"]
             )
         )
-    if "IframeConfig" in data:
+    if data.get("IframeConfig") is not None:
         import capo_appintegrations.types.iframe_config
 
         out["iframe_config"] = (
@@ -216,7 +216,7 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["IframeConfig"]
             )
         )
-    if "ApplicationType" in data:
+    if data.get("ApplicationType") is not None:
         import capo_appintegrations.types.application_type
 
         out["application_type"] = (

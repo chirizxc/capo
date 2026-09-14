@@ -36,7 +36,7 @@ def serialize_json(value: ListAutomationRulesV2Response) -> dict:
 
 def deserialize_json(data: dict) -> ListAutomationRulesV2Response:
     out: ListAutomationRulesV2Response = {}  # type: ignore[typeddict-item]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_securityhub.types.automation_rules_metadata_list_v2
 
         out["rules"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAutomationRulesV2Response:
                 data["Rules"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

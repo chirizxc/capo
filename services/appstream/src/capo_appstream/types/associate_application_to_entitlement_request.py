@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: AssociateApplicationToEntitlementRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateApplicationToEntitlementRequest:
     out: AssociateApplicationToEntitlementRequest = {}  # type: ignore[typeddict-item]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "EntitlementName" in data:
+    if data.get("EntitlementName") is not None:
         out["entitlement_name"] = data["EntitlementName"]
-    if "ApplicationIdentifier" in data:
+    if data.get("ApplicationIdentifier") is not None:
         out["application_identifier"] = data["ApplicationIdentifier"]
     return out

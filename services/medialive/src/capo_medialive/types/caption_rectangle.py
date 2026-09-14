@@ -27,24 +27,56 @@ class CaptionRectangle(TypedDict, closed=True):
 def serialize_json(value: CaptionRectangle) -> dict:
     out: dict = {}
     if "height" in value:
-        out["height"] = value["height"]
+        out["height"] = (
+            "NaN"
+            if value["height"] != value["height"]
+            else "Infinity"
+            if value["height"] == float("inf")
+            else "-Infinity"
+            if value["height"] == float("-inf")
+            else value["height"]
+        )
     if "left_offset" in value:
-        out["leftOffset"] = value["left_offset"]
+        out["leftOffset"] = (
+            "NaN"
+            if value["left_offset"] != value["left_offset"]
+            else "Infinity"
+            if value["left_offset"] == float("inf")
+            else "-Infinity"
+            if value["left_offset"] == float("-inf")
+            else value["left_offset"]
+        )
     if "top_offset" in value:
-        out["topOffset"] = value["top_offset"]
+        out["topOffset"] = (
+            "NaN"
+            if value["top_offset"] != value["top_offset"]
+            else "Infinity"
+            if value["top_offset"] == float("inf")
+            else "-Infinity"
+            if value["top_offset"] == float("-inf")
+            else value["top_offset"]
+        )
     if "width" in value:
-        out["width"] = value["width"]
+        out["width"] = (
+            "NaN"
+            if value["width"] != value["width"]
+            else "Infinity"
+            if value["width"] == float("inf")
+            else "-Infinity"
+            if value["width"] == float("-inf")
+            else value["width"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> CaptionRectangle:
     out: CaptionRectangle = {}  # type: ignore[typeddict-item]
-    if "height" in data:
-        out["height"] = data["height"]
-    if "leftOffset" in data:
-        out["left_offset"] = data["leftOffset"]
-    if "topOffset" in data:
-        out["top_offset"] = data["topOffset"]
-    if "width" in data:
-        out["width"] = data["width"]
+    if data.get("height") is not None:
+        out["height"] = float(data["height"])
+    if data.get("leftOffset") is not None:
+        out["left_offset"] = float(data["leftOffset"])
+    if data.get("topOffset") is not None:
+        out["top_offset"] = float(data["topOffset"])
+    if data.get("width") is not None:
+        out["width"] = float(data["width"])
     return out

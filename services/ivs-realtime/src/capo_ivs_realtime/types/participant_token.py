@@ -85,13 +85,13 @@ def serialize_json(value: ParticipantToken) -> dict:
 
 def deserialize_json(data: dict) -> ParticipantToken:
     out: ParticipantToken = {}  # type: ignore[typeddict-item]
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_ivs_realtime.types.participant_token_attributes
 
         out["attributes"] = (
@@ -99,9 +99,9 @@ def deserialize_json(data: dict) -> ParticipantToken:
                 data["attributes"]
             )
         )
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_ivs_realtime.types.participant_token_capabilities
 
         out["capabilities"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> ParticipantToken:
                 data["capabilities"]
             )
         )
-    if "expirationTime" in data:
+    if data.get("expirationTime") is not None:
         import capo_ivs_realtime.types.participant_token_expiration_time
 
         out["expiration_time"] = (

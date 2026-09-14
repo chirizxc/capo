@@ -48,23 +48,23 @@ def serialize_json(value: CreateAttributeGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAttributeGroupRequest:
     out: CreateAttributeGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAttributeGroupRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         out["attributes"] = data["attributes"]
     else:
         raise DeserializationError("CreateAttributeGroupRequest.attributes required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_service_catalog_appregistry.types.tags
 
         out["tags"] = capo_service_catalog_appregistry.types.tags.deserialize_json(
             data["tags"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateAttributeGroupRequest.client_token required")

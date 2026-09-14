@@ -25,6 +25,6 @@ def serialize_json(value: DynamodbStreamConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DynamodbStreamConfiguration:
     out: DynamodbStreamConfiguration = {}  # type: ignore[typeddict-item]
-    if "streamPolicy" in data:
+    if data.get("streamPolicy") is not None:
         out["stream_policy"] = data["streamPolicy"]
     return out

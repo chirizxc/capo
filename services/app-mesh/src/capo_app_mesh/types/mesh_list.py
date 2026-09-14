@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MeshList:
 
     out: MeshList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_app_mesh.types.mesh_ref.deserialize_json(item))
     return out

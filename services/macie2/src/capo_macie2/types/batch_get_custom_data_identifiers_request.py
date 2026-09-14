@@ -25,7 +25,7 @@ def serialize_json(value: BatchGetCustomDataIdentifiersRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCustomDataIdentifiersRequest:
     out: BatchGetCustomDataIdentifiersRequest = {}  # type: ignore[typeddict-item]
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_macie2.types.__list_of__string
 
         out["ids"] = capo_macie2.types.__list_of__string.deserialize_json(data["ids"])

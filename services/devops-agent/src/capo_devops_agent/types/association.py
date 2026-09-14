@@ -37,14 +37,14 @@ class Association(TypedDict, closed=True):
 def serialize_json(value: Association) -> dict:
     out: dict = {}
     out["agentSpaceId"] = value["agent_space_id"]
-    import capo_devops_agent.types._prelude.timestamp
+    import capo_devops_agent._protocol.serialize
 
-    out["createdAt"] = capo_devops_agent.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_devops_agent._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
-    import capo_devops_agent.types._prelude.timestamp
+    import capo_devops_agent._protocol.serialize
 
-    out["updatedAt"] = capo_devops_agent.types._prelude.timestamp.serialize_json(
+    out["updatedAt"] = capo_devops_agent._protocol.serialize.fmt_date_time(
         value["updated_at"]
     )
     if "status" in value:
@@ -65,41 +65,41 @@ def serialize_json(value: Association) -> dict:
 
 def deserialize_json(data: dict) -> Association:
     out: Association = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("Association.agent_space_id required")
-    if "createdAt" in data:
-        import capo_devops_agent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("Association.created_at required")
-    if "updatedAt" in data:
-        import capo_devops_agent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("Association.updated_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_devops_agent.types.validation_status
 
         out["status"] = capo_devops_agent.types.validation_status.deserialize_json(
             data["status"]
         )
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
     else:
         raise DeserializationError("Association.association_id required")
-    if "serviceId" in data:
+    if data.get("serviceId") is not None:
         out["service_id"] = data["serviceId"]
     else:
         raise DeserializationError("Association.service_id required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_devops_agent.types.service_configuration
 
         out["configuration"] = (

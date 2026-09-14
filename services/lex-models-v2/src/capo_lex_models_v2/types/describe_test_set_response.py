@@ -91,29 +91,29 @@ def serialize_json(value: DescribeTestSetResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTestSetResponse:
     out: DescribeTestSetResponse = {}  # type: ignore[typeddict-item]
-    if "testSetId" in data:
+    if data.get("testSetId") is not None:
         out["test_set_id"] = data["testSetId"]
-    if "testSetName" in data:
+    if data.get("testSetName") is not None:
         out["test_set_name"] = data["testSetName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "modality" in data:
+    if data.get("modality") is not None:
         import capo_lex_models_v2.types.test_set_modality
 
         out["modality"] = capo_lex_models_v2.types.test_set_modality.deserialize_json(
             data["modality"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lex_models_v2.types.test_set_status
 
         out["status"] = capo_lex_models_v2.types.test_set_status.deserialize_json(
             data["status"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "numTurns" in data:
+    if data.get("numTurns") is not None:
         out["num_turns"] = data["numTurns"]
-    if "storageLocation" in data:
+    if data.get("storageLocation") is not None:
         import capo_lex_models_v2.types.test_set_storage_location
 
         out["storage_location"] = (
@@ -121,13 +121,13 @@ def deserialize_json(data: dict) -> DescribeTestSetResponse:
                 data["storageLocation"]
             )
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (

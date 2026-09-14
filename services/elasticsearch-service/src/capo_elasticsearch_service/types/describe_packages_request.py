@@ -40,7 +40,7 @@ def serialize_json(value: DescribePackagesRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribePackagesRequest:
     out: DescribePackagesRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_elasticsearch_service.types.describe_packages_filter_list
 
         out["filters"] = (
@@ -48,10 +48,10 @@ def deserialize_json(data: dict) -> DescribePackagesRequest:
                 data["Filters"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

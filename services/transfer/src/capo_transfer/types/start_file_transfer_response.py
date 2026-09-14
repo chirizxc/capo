@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartFileTransferResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartFileTransferResponse:
     out: StartFileTransferResponse = {}  # type: ignore[typeddict-item]
-    if "TransferId" in data:
+    if data.get("TransferId") is not None:
         out["transfer_id"] = data["TransferId"]
     else:
         raise DeserializationError("StartFileTransferResponse.transfer_id required")

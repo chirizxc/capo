@@ -41,7 +41,7 @@ def serialize_json(value: BatchRunSettings) -> dict:
 
 
 def deserialize_json(data: dict) -> BatchRunSettings:
-    if "inlineSettings" in data:
+    if data.get("inlineSettings") is not None:
         import capo_omics.types.inline_settings
 
         return {
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> BatchRunSettings:
                 data["inlineSettings"]
             )
         }
-    elif "s3UriSettings" in data:
+    elif data.get("s3UriSettings") is not None:
         return {"s3UriSettings": data["s3UriSettings"]}
     else:
         raise DeserializationError("BatchRunSettings: no recognized variant key")

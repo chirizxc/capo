@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: Media) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Media:
     out: Media = {}  # type: ignore[typeddict-item]
-    if "MediaFileUri" in data:
+    if data.get("MediaFileUri") is not None:
         out["media_file_uri"] = data["MediaFileUri"]
-    if "RedactedMediaFileUri" in data:
+    if data.get("RedactedMediaFileUri") is not None:
         out["redacted_media_file_uri"] = data["RedactedMediaFileUri"]
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: MediaAnalysisModelVersions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MediaAnalysisModelVersions:
     out: MediaAnalysisModelVersions = {}  # type: ignore[typeddict-item]
-    if "Moderation" in data:
+    if data.get("Moderation") is not None:
         out["moderation"] = data["Moderation"]
     return out

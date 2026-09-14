@@ -55,22 +55,22 @@ def serialize_json(value: ImportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportJobRequest:
     out: ImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "DefineSegment" in data:
+    if data.get("DefineSegment") is not None:
         out["define_segment"] = data["DefineSegment"]
-    if "ExternalId" in data:
+    if data.get("ExternalId") is not None:
         out["external_id"] = data["ExternalId"]
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_pinpoint.types.format
 
         out["format"] = capo_pinpoint.types.format.deserialize_json(data["Format"])
-    if "RegisterEndpoints" in data:
+    if data.get("RegisterEndpoints") is not None:
         out["register_endpoints"] = data["RegisterEndpoints"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "S3Url" in data:
+    if data.get("S3Url") is not None:
         out["s3_url"] = data["S3Url"]
-    if "SegmentId" in data:
+    if data.get("SegmentId") is not None:
         out["segment_id"] = data["SegmentId"]
-    if "SegmentName" in data:
+    if data.get("SegmentName") is not None:
         out["segment_name"] = data["SegmentName"]
     return out

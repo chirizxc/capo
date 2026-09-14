@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> FarmSummaries:
 
     out: FarmSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.farm_summary.deserialize_json(item))
     return out

@@ -162,47 +162,47 @@ def serialize_json(value: PackageDetails) -> dict:
 
 def deserialize_json(data: dict) -> PackageDetails:
     out: PackageDetails = {}  # type: ignore[typeddict-item]
-    if "PackageID" in data:
+    if data.get("PackageID") is not None:
         out["package_id"] = data["PackageID"]
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
-    if "PackageType" in data:
+    if data.get("PackageType") is not None:
         import capo_opensearch.types.package_type
 
         out["package_type"] = capo_opensearch.types.package_type.deserialize_json(
             data["PackageType"]
         )
-    if "PackageDescription" in data:
+    if data.get("PackageDescription") is not None:
         out["package_description"] = data["PackageDescription"]
-    if "PackageStatus" in data:
+    if data.get("PackageStatus") is not None:
         import capo_opensearch.types.package_status
 
         out["package_status"] = capo_opensearch.types.package_status.deserialize_json(
             data["PackageStatus"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_opensearch.types.created_at
 
         out["created_at"] = capo_opensearch.types.created_at.deserialize_json(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_opensearch.types.last_updated
 
         out["last_updated_at"] = capo_opensearch.types.last_updated.deserialize_json(
             data["LastUpdatedAt"]
         )
-    if "AvailablePackageVersion" in data:
+    if data.get("AvailablePackageVersion") is not None:
         out["available_package_version"] = data["AvailablePackageVersion"]
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_opensearch.types.error_details
 
         out["error_details"] = capo_opensearch.types.error_details.deserialize_json(
             data["ErrorDetails"]
         )
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "AvailablePluginProperties" in data:
+    if data.get("AvailablePluginProperties") is not None:
         import capo_opensearch.types.plugin_properties
 
         out["available_plugin_properties"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> PackageDetails:
                 data["AvailablePluginProperties"]
             )
         )
-    if "AvailablePackageConfiguration" in data:
+    if data.get("AvailablePackageConfiguration") is not None:
         import capo_opensearch.types.package_configuration
 
         out["available_package_configuration"] = (
@@ -218,7 +218,7 @@ def deserialize_json(data: dict) -> PackageDetails:
                 data["AvailablePackageConfiguration"]
             )
         )
-    if "AllowListedUserList" in data:
+    if data.get("AllowListedUserList") is not None:
         import capo_opensearch.types.package_user_list
 
         out["allow_listed_user_list"] = (
@@ -226,9 +226,9 @@ def deserialize_json(data: dict) -> PackageDetails:
                 data["AllowListedUserList"]
             )
         )
-    if "PackageOwner" in data:
+    if data.get("PackageOwner") is not None:
         out["package_owner"] = data["PackageOwner"]
-    if "PackageVendingOptions" in data:
+    if data.get("PackageVendingOptions") is not None:
         import capo_opensearch.types.package_vending_options
 
         out["package_vending_options"] = (
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> PackageDetails:
                 data["PackageVendingOptions"]
             )
         )
-    if "PackageEncryptionOptions" in data:
+    if data.get("PackageEncryptionOptions") is not None:
         import capo_opensearch.types.package_encryption_options
 
         out["package_encryption_options"] = (

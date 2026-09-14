@@ -21,7 +21,15 @@ class MatchScoreDetails(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: MatchScoreDetails) -> dict:
     out: dict = {}
-    out["Overall"] = value.get("overall", 0)
+    out["Overall"] = (
+        "NaN"
+        if value.get("overall", 0) != value.get("overall", 0)
+        else "Infinity"
+        if value.get("overall", 0) == float("inf")
+        else "-Infinity"
+        if value.get("overall", 0) == float("-inf")
+        else value.get("overall", 0)
+    )
     if "components" in value:
         import capo_geo_places.types.component_match_scores
 
@@ -33,11 +41,11 @@ def serialize_json(value: MatchScoreDetails) -> dict:
 
 def deserialize_json(data: dict) -> MatchScoreDetails:
     out: MatchScoreDetails = {}  # type: ignore[typeddict-item]
-    if "Overall" in data:
-        out["overall"] = data["Overall"]
+    if data.get("Overall") is not None:
+        out["overall"] = float(data["Overall"])
     else:
         out["overall"] = 0
-    if "Components" in data:
+    if data.get("Components") is not None:
         import capo_geo_places.types.component_match_scores
 
         out["components"] = (

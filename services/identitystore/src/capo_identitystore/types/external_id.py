@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: ExternalId) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExternalId:
     out: ExternalId = {}  # type: ignore[typeddict-item]
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         out["issuer"] = data["Issuer"]
     else:
         raise DeserializationError("ExternalId.issuer required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("ExternalId.id required")

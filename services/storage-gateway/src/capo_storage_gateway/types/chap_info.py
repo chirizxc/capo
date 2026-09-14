@@ -41,12 +41,12 @@ def serialize_aws_json_1_1(value: ChapInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ChapInfo:
     out: ChapInfo = {}  # type: ignore[typeddict-item]
-    if "TargetARN" in data:
+    if data.get("TargetARN") is not None:
         out["target_arn"] = data["TargetARN"]
-    if "SecretToAuthenticateInitiator" in data:
+    if data.get("SecretToAuthenticateInitiator") is not None:
         out["secret_to_authenticate_initiator"] = data["SecretToAuthenticateInitiator"]
-    if "InitiatorName" in data:
+    if data.get("InitiatorName") is not None:
         out["initiator_name"] = data["InitiatorName"]
-    if "SecretToAuthenticateTarget" in data:
+    if data.get("SecretToAuthenticateTarget") is not None:
         out["secret_to_authenticate_target"] = data["SecretToAuthenticateTarget"]
     return out

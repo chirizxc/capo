@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: GetPlanRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPlanRequest:
     out: GetPlanRequest = {}  # type: ignore[typeddict-item]
-    if "Mapping" in data:
+    if data.get("Mapping") is not None:
         import capo_glue.types.mapping_list
 
         out["mapping"] = capo_glue.types.mapping_list.deserialize_aws_json_1_1(
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetPlanRequest:
         )
     else:
         raise DeserializationError("GetPlanRequest.mapping required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_glue.types.catalog_entry
 
         out["source"] = capo_glue.types.catalog_entry.deserialize_aws_json_1_1(
@@ -92,25 +92,25 @@ def deserialize_aws_json_1_1(data: dict) -> GetPlanRequest:
         )
     else:
         raise DeserializationError("GetPlanRequest.source required")
-    if "Sinks" in data:
+    if data.get("Sinks") is not None:
         import capo_glue.types.catalog_entries
 
         out["sinks"] = capo_glue.types.catalog_entries.deserialize_aws_json_1_1(
             data["Sinks"]
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         import capo_glue.types.location
 
         out["location"] = capo_glue.types.location.deserialize_aws_json_1_1(
             data["Location"]
         )
-    if "Language" in data:
+    if data.get("Language") is not None:
         import capo_glue.types.language
 
         out["language"] = capo_glue.types.language.deserialize_aws_json_1_1(
             data["Language"]
         )
-    if "AdditionalPlanOptionsMap" in data:
+    if data.get("AdditionalPlanOptionsMap") is not None:
         import capo_glue.types.additional_plan_options_map
 
         out["additional_plan_options_map"] = (

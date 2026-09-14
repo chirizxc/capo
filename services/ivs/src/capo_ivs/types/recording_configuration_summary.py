@@ -54,13 +54,13 @@ def serialize_json(value: RecordingConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> RecordingConfigurationSummary:
     out: RecordingConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("RecordingConfigurationSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "destinationConfiguration" in data:
+    if data.get("destinationConfiguration") is not None:
         import capo_ivs.types.destination_configuration
 
         out["destination_configuration"] = (
@@ -72,11 +72,11 @@ def deserialize_json(data: dict) -> RecordingConfigurationSummary:
         raise DeserializationError(
             "RecordingConfigurationSummary.destination_configuration required"
         )
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("RecordingConfigurationSummary.state required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])

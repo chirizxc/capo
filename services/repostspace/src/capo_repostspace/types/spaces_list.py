@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SpacesList:
 
     out: SpacesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_repostspace.types.space_data.deserialize_json(item))
     return out

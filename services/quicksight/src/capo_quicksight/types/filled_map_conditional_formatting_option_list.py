@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> FilledMapConditionalFormattingOptionList:
 
     out: FilledMapConditionalFormattingOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.filled_map_conditional_formatting_option.deserialize_json(
                 item

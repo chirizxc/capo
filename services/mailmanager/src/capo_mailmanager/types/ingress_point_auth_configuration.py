@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: IngressPointAuthConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngressPointAuthConfiguration:
     out: IngressPointAuthConfiguration = {}  # type: ignore[typeddict-item]
-    if "IngressPointPasswordConfiguration" in data:
+    if data.get("IngressPointPasswordConfiguration") is not None:
         import capo_mailmanager.types.ingress_point_password_configuration
 
         out["ingress_point_password_configuration"] = (
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_0(data: dict) -> IngressPointAuthConfiguration:
                 data["IngressPointPasswordConfiguration"]
             )
         )
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "TlsAuthConfiguration" in data:
+    if data.get("TlsAuthConfiguration") is not None:
         import capo_mailmanager.types.tls_auth_configuration
 
         out["tls_auth_configuration"] = (

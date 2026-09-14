@@ -65,13 +65,13 @@ def serialize_aws_json_1_1(value: CreateMLModelInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMLModelInput:
     out: CreateMLModelInput = {}  # type: ignore[typeddict-item]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
     else:
         raise DeserializationError("CreateMLModelInput.ml_model_id required")
-    if "MLModelName" in data:
+    if data.get("MLModelName") is not None:
         out["ml_model_name"] = data["MLModelName"]
-    if "MLModelType" in data:
+    if data.get("MLModelType") is not None:
         import capo_machine_learning.types.ml_model_type
 
         out["ml_model_type"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMLModelInput:
         )
     else:
         raise DeserializationError("CreateMLModelInput.ml_model_type required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_machine_learning.types.training_parameters
 
         out["parameters"] = (
@@ -89,14 +89,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMLModelInput:
                 data["Parameters"]
             )
         )
-    if "TrainingDataSourceId" in data:
+    if data.get("TrainingDataSourceId") is not None:
         out["training_data_source_id"] = data["TrainingDataSourceId"]
     else:
         raise DeserializationError(
             "CreateMLModelInput.training_data_source_id required"
         )
-    if "Recipe" in data:
+    if data.get("Recipe") is not None:
         out["recipe"] = data["Recipe"]
-    if "RecipeUri" in data:
+    if data.get("RecipeUri") is not None:
         out["recipe_uri"] = data["RecipeUri"]
     return out

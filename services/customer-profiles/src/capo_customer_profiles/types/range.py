@@ -52,24 +52,24 @@ def serialize_json(value: Range) -> dict:
 
 def deserialize_json(data: dict) -> Range:
     out: Range = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         out["value"] = 0
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_customer_profiles.types.unit
 
         out["unit"] = capo_customer_profiles.types.unit.deserialize_json(data["Unit"])
     else:
         out["unit"] = "DAYS"
-    if "ValueRange" in data:
+    if data.get("ValueRange") is not None:
         import capo_customer_profiles.types.value_range
 
         out["value_range"] = capo_customer_profiles.types.value_range.deserialize_json(
             data["ValueRange"]
         )
-    if "TimestampSource" in data:
+    if data.get("TimestampSource") is not None:
         out["timestamp_source"] = data["TimestampSource"]
-    if "TimestampFormat" in data:
+    if data.get("TimestampFormat") is not None:
         out["timestamp_format"] = data["TimestampFormat"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SuccessfulRequestList:
 
     out: SuccessfulRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connectcampaignsv2.types.successful_request.deserialize_json(item)
         )

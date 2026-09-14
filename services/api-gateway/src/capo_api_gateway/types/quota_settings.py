@@ -34,15 +34,15 @@ def serialize_json(value: QuotaSettings) -> dict:
 
 def deserialize_json(data: dict) -> QuotaSettings:
     out: QuotaSettings = {}  # type: ignore[typeddict-item]
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     else:
         out["limit"] = 0
-    if "offset" in data:
+    if data.get("offset") is not None:
         out["offset"] = data["offset"]
     else:
         out["offset"] = 0
-    if "period" in data:
+    if data.get("period") is not None:
         import capo_api_gateway.types.quota_period_type
 
         out["period"] = capo_api_gateway.types.quota_period_type.deserialize_json(

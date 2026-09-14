@@ -42,7 +42,7 @@ def serialize_json(value: GeocodeParsedQuery) -> dict:
 
 def deserialize_json(data: dict) -> GeocodeParsedQuery:
     out: GeocodeParsedQuery = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["title"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQuery:
                 data["Title"]
             )
         )
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_geo_places.types.geocode_parsed_query_address_components
 
         out["address"] = (

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListQueryExecutionsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListQueryExecutionsOutput:
     out: ListQueryExecutionsOutput = {}  # type: ignore[typeddict-item]
-    if "QueryExecutionIds" in data:
+    if data.get("QueryExecutionIds") is not None:
         import capo_athena.types.query_execution_id_list
 
         out["query_execution_ids"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListQueryExecutionsOutput:
                 data["QueryExecutionIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

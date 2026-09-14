@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PublicKeyList:
 
     out: PublicKeyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ivs_realtime.types.public_key_summary.deserialize_json(item))
     return out

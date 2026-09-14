@@ -957,18 +957,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_create_partition_request.BatchCreatePartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.batch_create_partition_request.BatchCreatePartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partition_input_list": partition_input_list,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partition_input_list"] = partition_input_list
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_connection(
@@ -1010,16 +1012,18 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_delete_connection_request.BatchDeleteConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.batch_delete_connection_request.BatchDeleteConnectionRequest = {
+            "connection_name_list": connection_name_list
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["connection_name_list"] = connection_name_list
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_partition(
@@ -1065,18 +1069,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_delete_partition_request.BatchDeletePartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.batch_delete_partition_request.BatchDeletePartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partitions_to_delete": partitions_to_delete,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partitions_to_delete"] = partitions_to_delete
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_table(
@@ -1126,11 +1132,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_delete_table_request.BatchDeleteTableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.batch_delete_table_request.BatchDeleteTableRequest = {
+            "database_name": database_name,
+            "tables_to_delete": tables_to_delete,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["tables_to_delete"] = tables_to_delete
         if transaction_id is not None:
             input_["transaction_id"] = transaction_id
 
@@ -1139,6 +1146,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_table_version(
@@ -1184,18 +1192,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_delete_table_version_request.BatchDeleteTableVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.batch_delete_table_version_request.BatchDeleteTableVersionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "version_ids": version_ids,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["version_ids"] = version_ids
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_blueprints(
@@ -1240,8 +1250,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_get_blueprints_request.BatchGetBlueprintsRequest = {}  # type: ignore[typeddict-item]
-        input_["names"] = names
+        input_: capo_glue.types.batch_get_blueprints_request.BatchGetBlueprintsRequest = {
+            "names": names
+        }
         if include_blueprint is not None:
             input_["include_blueprint"] = include_blueprint
         if include_parameter_spec is not None:
@@ -1252,6 +1263,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_crawlers(
@@ -1287,14 +1299,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_get_crawlers_request.BatchGetCrawlersRequest = {}  # type: ignore[typeddict-item]
-        input_["crawler_names"] = crawler_names
+        input_: capo_glue.types.batch_get_crawlers_request.BatchGetCrawlersRequest = {
+            "crawler_names": crawler_names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_custom_entity_types(
@@ -1331,14 +1345,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_get_custom_entity_types_request.BatchGetCustomEntityTypesRequest = {}  # type: ignore[typeddict-item]
-        input_["names"] = names
+        input_: capo_glue.types.batch_get_custom_entity_types_request.BatchGetCustomEntityTypesRequest = {
+            "names": names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_data_quality_result(
@@ -1375,14 +1391,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_get_data_quality_result_request.BatchGetDataQualityResultRequest = {}  # type: ignore[typeddict-item]
-        input_["result_ids"] = result_ids
+        input_: capo_glue.types.batch_get_data_quality_result_request.BatchGetDataQualityResultRequest = {
+            "result_ids": result_ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_dev_endpoints(
@@ -1422,14 +1440,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_get_dev_endpoints_request.BatchGetDevEndpointsRequest = {}  # type: ignore[typeddict-item]
-        input_["dev_endpoint_names"] = dev_endpoint_names
+        input_: capo_glue.types.batch_get_dev_endpoints_request.BatchGetDevEndpointsRequest = {
+            "dev_endpoint_names": dev_endpoint_names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_jobs(
@@ -1466,14 +1486,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_get_jobs_request.BatchGetJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["job_names"] = job_names
+        input_: capo_glue.types.batch_get_jobs_request.BatchGetJobsRequest = {
+            "job_names": job_names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_partition(
@@ -1527,12 +1549,13 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_get_partition_request.BatchGetPartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.batch_get_partition_request.BatchGetPartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partitions_to_get": partitions_to_get,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partitions_to_get"] = partitions_to_get
         if audit_context is not None:
             input_["audit_context"] = audit_context
         if query_session_context is not None:
@@ -1543,6 +1566,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_table_optimizer(
@@ -1581,14 +1605,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_get_table_optimizer_request.BatchGetTableOptimizerRequest = {}  # type: ignore[typeddict-item]
-        input_["entries"] = entries
+        input_: capo_glue.types.batch_get_table_optimizer_request.BatchGetTableOptimizerRequest = {
+            "entries": entries
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_triggers(
@@ -1625,14 +1651,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_get_triggers_request.BatchGetTriggersRequest = {}  # type: ignore[typeddict-item]
-        input_["trigger_names"] = trigger_names
+        input_: capo_glue.types.batch_get_triggers_request.BatchGetTriggersRequest = {
+            "trigger_names": trigger_names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_workflows(
@@ -1673,8 +1701,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_get_workflows_request.BatchGetWorkflowsRequest = {}  # type: ignore[typeddict-item]
-        input_["names"] = names
+        input_: capo_glue.types.batch_get_workflows_request.BatchGetWorkflowsRequest = {
+            "names": names
+        }
         if include_graph is not None:
             input_["include_graph"] = include_graph
 
@@ -1683,6 +1712,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_put_data_quality_statistic_annotation(
@@ -1722,8 +1752,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_put_data_quality_statistic_annotation_request.BatchPutDataQualityStatisticAnnotationRequest = {}  # type: ignore[typeddict-item]
-        input_["inclusion_annotations"] = inclusion_annotations
+        input_: capo_glue.types.batch_put_data_quality_statistic_annotation_request.BatchPutDataQualityStatisticAnnotationRequest = {
+            "inclusion_annotations": inclusion_annotations
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -1732,6 +1763,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_stop_job_run(
@@ -1770,15 +1802,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_stop_job_run_request.BatchStopJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
-        input_["job_run_ids"] = job_run_ids
+        input_: capo_glue.types.batch_stop_job_run_request.BatchStopJobRunRequest = {
+            "job_name": job_name,
+            "job_run_ids": job_run_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_partition(
@@ -1825,18 +1859,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.batch_update_partition_request.BatchUpdatePartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.batch_update_partition_request.BatchUpdatePartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "entries": entries,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["entries"] = entries
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_data_quality_rule_recommendation_run(
@@ -1874,14 +1910,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.cancel_data_quality_rule_recommendation_run_request.CancelDataQualityRuleRecommendationRunRequest = {}  # type: ignore[typeddict-item]
-        input_["run_id"] = run_id
+        input_: capo_glue.types.cancel_data_quality_rule_recommendation_run_request.CancelDataQualityRuleRecommendationRunRequest = {
+            "run_id": run_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_data_quality_ruleset_evaluation_run(
@@ -1919,14 +1957,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.cancel_data_quality_ruleset_evaluation_run_request.CancelDataQualityRulesetEvaluationRunRequest = {}  # type: ignore[typeddict-item]
-        input_["run_id"] = run_id
+        input_: capo_glue.types.cancel_data_quality_ruleset_evaluation_run_request.CancelDataQualityRulesetEvaluationRunRequest = {
+            "run_id": run_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_ml_task_run(
@@ -1966,15 +2006,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.cancel_ml_task_run_request.CancelMLTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["transform_id"] = transform_id
-        input_["task_run_id"] = task_run_id
+        input_: capo_glue.types.cancel_ml_task_run_request.CancelMLTaskRunRequest = {
+            "transform_id": transform_id,
+            "task_run_id": task_run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_statement(
@@ -2020,9 +2062,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.cancel_statement_request.CancelStatementRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
-        input_["id"] = id
+        input_: capo_glue.types.cancel_statement_request.CancelStatementRequest = {
+            "session_id": session_id,
+            "id": id,
+        }
         if request_origin is not None:
             input_["request_origin"] = request_origin
 
@@ -2031,6 +2074,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def check_schema_version_validity(
@@ -2069,15 +2113,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.check_schema_version_validity_input.CheckSchemaVersionValidityInput = {}  # type: ignore[typeddict-item]
-        input_["data_format"] = data_format
-        input_["schema_definition"] = schema_definition
+        input_: capo_glue.types.check_schema_version_validity_input.CheckSchemaVersionValidityInput = {
+            "data_format": data_format,
+            "schema_definition": schema_definition,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_blueprint(
@@ -2124,11 +2170,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_blueprint_request.CreateBlueprintRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.create_blueprint_request.CreateBlueprintRequest = {
+            "name": name,
+            "blueprint_location": blueprint_location,
+        }
         if description is not None:
             input_["description"] = description
-        input_["blueprint_location"] = blueprint_location
         if tags is not None:
             input_["tags"] = tags
 
@@ -2137,6 +2184,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_catalog(
@@ -2185,9 +2233,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_catalog_request.CreateCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["catalog_input"] = catalog_input
+        input_: capo_glue.types.create_catalog_request.CreateCatalogRequest = {
+            "name": name,
+            "catalog_input": catalog_input,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -2196,6 +2245,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_classifier(
@@ -2246,7 +2296,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_classifier_request.CreateClassifierRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.create_classifier_request.CreateClassifierRequest = {}
         if grok_classifier is not None:
             input_["grok_classifier"] = grok_classifier
         if xml_classifier is not None:
@@ -2261,6 +2311,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_column_statistics_task_settings(
@@ -2323,10 +2374,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_column_statistics_task_settings_request.CreateColumnStatisticsTaskSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["role"] = role
+        input_: capo_glue.types.create_column_statistics_task_settings_request.CreateColumnStatisticsTaskSettingsRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "role": role,
+        }
         if schedule is not None:
             input_["schedule"] = schedule
         if column_name_list is not None:
@@ -2345,6 +2397,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_connection(
@@ -2389,10 +2442,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_connection_request.CreateConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.create_connection_request.CreateConnectionRequest = {
+            "connection_input": connection_input
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["connection_input"] = connection_input
         if tags is not None:
             input_["tags"] = tags
 
@@ -2401,6 +2455,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_crawler(
@@ -2480,14 +2535,15 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_crawler_request.CreateCrawlerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["role"] = role
+        input_: capo_glue.types.create_crawler_request.CreateCrawlerRequest = {
+            "name": name,
+            "role": role,
+            "targets": targets,
+        }
         if database_name is not None:
             input_["database_name"] = database_name
         if description is not None:
             input_["description"] = description
-        input_["targets"] = targets
         if schedule is not None:
             input_["schedule"] = schedule
         if classifiers is not None:
@@ -2514,6 +2570,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_custom_entity_type(
@@ -2560,9 +2617,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_custom_entity_type_request.CreateCustomEntityTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["regex_string"] = regex_string
+        input_: capo_glue.types.create_custom_entity_type_request.CreateCustomEntityTypeRequest = {
+            "name": name,
+            "regex_string": regex_string,
+        }
         if context_words is not None:
             input_["context_words"] = context_words
         if tags is not None:
@@ -2573,6 +2631,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_database(
@@ -2622,10 +2681,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_database_request.CreateDatabaseRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.create_database_request.CreateDatabaseRequest = {
+            "database_input": database_input
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_input"] = database_input
         if tags is not None:
             input_["tags"] = tags
 
@@ -2634,6 +2694,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_quality_ruleset(
@@ -2690,11 +2751,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_data_quality_ruleset_request.CreateDataQualityRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.create_data_quality_ruleset_request.CreateDataQualityRulesetRequest = {
+            "name": name,
+            "ruleset": ruleset,
+        }
         if description is not None:
             input_["description"] = description
-        input_["ruleset"] = ruleset
         if tags is not None:
             input_["tags"] = tags
         if target_table is not None:
@@ -2711,6 +2773,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_dev_endpoint(
@@ -2790,9 +2853,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_dev_endpoint_request.CreateDevEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_name"] = endpoint_name
-        input_["role_arn"] = role_arn
+        input_: capo_glue.types.create_dev_endpoint_request.CreateDevEndpointRequest = {
+            "endpoint_name": endpoint_name,
+            "role_arn": role_arn,
+        }
         if security_group_ids is not None:
             input_["security_group_ids"] = security_group_ids
         if subnet_id is not None:
@@ -2825,6 +2889,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_glue_identity_center_configuration(
@@ -2872,8 +2937,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_glue_identity_center_configuration_request.CreateGlueIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
+        input_: capo_glue.types.create_glue_identity_center_configuration_request.CreateGlueIdentityCenterConfigurationRequest = {
+            "instance_arn": instance_arn
+        }
         if scopes is not None:
             input_["scopes"] = scopes
         if user_background_sessions_enabled is not None:
@@ -2886,6 +2952,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_integration(
@@ -2955,10 +3022,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_integration_request.CreateIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["integration_name"] = integration_name
-        input_["source_arn"] = source_arn
-        input_["target_arn"] = target_arn
+        input_: capo_glue.types.create_integration_request.CreateIntegrationRequest = {
+            "integration_name": integration_name,
+            "source_arn": source_arn,
+            "target_arn": target_arn,
+        }
         if description is not None:
             input_["description"] = description
         if data_filter is not None:
@@ -2977,6 +3045,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_integration_resource_property(
@@ -3030,8 +3099,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_integration_resource_property_request.CreateIntegrationResourcePropertyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_glue.types.create_integration_resource_property_request.CreateIntegrationResourcePropertyRequest = {
+            "resource_arn": resource_arn
+        }
         if source_processing_properties is not None:
             input_["source_processing_properties"] = source_processing_properties
         if target_processing_properties is not None:
@@ -3044,6 +3114,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_integration_table_properties(
@@ -3094,9 +3165,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_integration_table_properties_request.CreateIntegrationTablePropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["table_name"] = table_name
+        input_: capo_glue.types.create_integration_table_properties_request.CreateIntegrationTablePropertiesRequest = {
+            "resource_arn": resource_arn,
+            "table_name": table_name,
+        }
         if source_table_config is not None:
             input_["source_table_config"] = source_table_config
         if target_table_config is not None:
@@ -3107,6 +3179,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_job(
@@ -3223,8 +3296,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_job_request.CreateJobRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.create_job_request.CreateJobRequest = {
+            "name": name,
+            "role": role,
+            "command": command,
+        }
         if job_mode is not None:
             input_["job_mode"] = job_mode
         if job_run_queuing_enabled is not None:
@@ -3233,10 +3309,8 @@ class AsyncGlueClient:
             input_["description"] = description
         if log_uri is not None:
             input_["log_uri"] = log_uri
-        input_["role"] = role
         if execution_property is not None:
             input_["execution_property"] = execution_property
-        input_["command"] = command
         if default_arguments is not None:
             input_["default_arguments"] = default_arguments
         if non_overridable_arguments is not None:
@@ -3277,6 +3351,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_ml_transform(
@@ -3351,13 +3426,14 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_ml_transform_request.CreateMLTransformRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.create_ml_transform_request.CreateMLTransformRequest = {
+            "name": name,
+            "input_record_tables": input_record_tables,
+            "parameters": parameters,
+            "role": role,
+        }
         if description is not None:
             input_["description"] = description
-        input_["input_record_tables"] = input_record_tables
-        input_["parameters"] = parameters
-        input_["role"] = role
         if glue_version is not None:
             input_["glue_version"] = glue_version
         if max_capacity is not None:
@@ -3380,6 +3456,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_partition(
@@ -3428,18 +3505,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_partition_request.CreatePartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.create_partition_request.CreatePartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partition_input": partition_input,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partition_input"] = partition_input
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_partition_index(
@@ -3488,18 +3567,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_partition_index_request.CreatePartitionIndexRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.create_partition_index_request.CreatePartitionIndexRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partition_index": partition_index,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partition_index"] = partition_index
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_registry(
@@ -3545,8 +3626,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_registry_input.CreateRegistryInput = {}  # type: ignore[typeddict-item]
-        input_["registry_name"] = registry_name
+        input_: capo_glue.types.create_registry_input.CreateRegistryInput = {
+            "registry_name": registry_name
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -3557,6 +3639,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_schema(
@@ -3613,11 +3696,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_schema_input.CreateSchemaInput = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.create_schema_input.CreateSchemaInput = {
+            "schema_name": schema_name,
+            "data_format": data_format,
+        }
         if registry_id is not None:
             input_["registry_id"] = registry_id
-        input_["schema_name"] = schema_name
-        input_["data_format"] = data_format
         if compatibility is not None:
             input_["compatibility"] = compatibility
         if description is not None:
@@ -3632,6 +3716,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_script(
@@ -3672,7 +3757,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_script_request.CreateScriptRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.create_script_request.CreateScriptRequest = {}
         if dag_nodes is not None:
             input_["dag_nodes"] = dag_nodes
         if dag_edges is not None:
@@ -3685,6 +3770,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_security_configuration(
@@ -3725,15 +3811,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_security_configuration_request.CreateSecurityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["encryption_configuration"] = encryption_configuration
+        input_: capo_glue.types.create_security_configuration_request.CreateSecurityConfigurationRequest = {
+            "name": name,
+            "encryption_configuration": encryption_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_session(
@@ -3820,12 +3908,13 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_session_request.CreateSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_glue.types.create_session_request.CreateSessionRequest = {
+            "id": id,
+            "role": role,
+            "command": command,
+        }
         if description is not None:
             input_["description"] = description
-        input_["role"] = role
-        input_["command"] = command
         if timeout is not None:
             input_["timeout"] = timeout
         if idle_timeout is not None:
@@ -3856,6 +3945,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_table(
@@ -3920,10 +4010,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_table_request.CreateTableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.create_table_request.CreateTableRequest = {
+            "database_name": database_name
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
         if name is not None:
             input_["name"] = name
         if table_input is not None:
@@ -3940,6 +4031,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_table_optimizer(
@@ -3988,18 +4080,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_table_optimizer_request.CreateTableOptimizerRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["type"] = type
-        input_["table_optimizer_configuration"] = table_optimizer_configuration
+        input_: capo_glue.types.create_table_optimizer_request.CreateTableOptimizerRequest = {
+            "catalog_id": catalog_id,
+            "database_name": database_name,
+            "table_name": table_name,
+            "type": type,
+            "table_optimizer_configuration": table_optimizer_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_trigger(
@@ -4065,16 +4159,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_trigger_request.CreateTriggerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.create_trigger_request.CreateTriggerRequest = {
+            "name": name,
+            "type": type,
+            "actions": actions,
+        }
         if workflow_name is not None:
             input_["workflow_name"] = workflow_name
-        input_["type"] = type
         if schedule is not None:
             input_["schedule"] = schedule
         if predicate is not None:
             input_["predicate"] = predicate
-        input_["actions"] = actions
         if description is not None:
             input_["description"] = description
         if start_on_creation is not None:
@@ -4089,6 +4184,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_usage_profile(
@@ -4136,11 +4232,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_usage_profile_request.CreateUsageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.create_usage_profile_request.CreateUsageProfileRequest = {
+            "name": name,
+            "configuration": configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["configuration"] = configuration
         if tags is not None:
             input_["tags"] = tags
 
@@ -4149,6 +4246,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user_defined_function(
@@ -4195,17 +4293,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_user_defined_function_request.CreateUserDefinedFunctionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.create_user_defined_function_request.CreateUserDefinedFunctionRequest = {
+            "database_name": database_name,
+            "function_input": function_input,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["function_input"] = function_input
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_workflow(
@@ -4259,8 +4359,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.create_workflow_request.CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.create_workflow_request.CreateWorkflowRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if default_run_properties is not None:
@@ -4275,6 +4376,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_blueprint(
@@ -4311,14 +4413,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_blueprint_request.DeleteBlueprintRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.delete_blueprint_request.DeleteBlueprintRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_catalog(
@@ -4360,14 +4464,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_catalog_request.DeleteCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
+        input_: capo_glue.types.delete_catalog_request.DeleteCatalogRequest = {
+            "catalog_id": catalog_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_classifier(
@@ -4403,14 +4509,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_classifier_request.DeleteClassifierRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.delete_classifier_request.DeleteClassifierRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_column_statistics_for_partition(
@@ -4459,19 +4567,21 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_column_statistics_for_partition_request.DeleteColumnStatisticsForPartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_column_statistics_for_partition_request.DeleteColumnStatisticsForPartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partition_values": partition_values,
+            "column_name": column_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partition_values"] = partition_values
-        input_["column_name"] = column_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_column_statistics_for_table(
@@ -4518,18 +4628,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_column_statistics_for_table_request.DeleteColumnStatisticsForTableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_column_statistics_for_table_request.DeleteColumnStatisticsForTableRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "column_name": column_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["column_name"] = column_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_column_statistics_task_settings(
@@ -4568,15 +4680,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_column_statistics_task_settings_request.DeleteColumnStatisticsTaskSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_glue.types.delete_column_statistics_task_settings_request.DeleteColumnStatisticsTaskSettingsRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connection(
@@ -4616,16 +4730,18 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_connection_request.DeleteConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_connection_request.DeleteConnectionRequest = {
+            "connection_name": connection_name
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["connection_name"] = connection_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connection_type(
@@ -4665,14 +4781,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_connection_type_request.DeleteConnectionTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_type"] = connection_type
+        input_: capo_glue.types.delete_connection_type_request.DeleteConnectionTypeRequest = {
+            "connection_type": connection_type
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_crawler(
@@ -4710,14 +4828,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_crawler_request.DeleteCrawlerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.delete_crawler_request.DeleteCrawlerRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_custom_entity_type(
@@ -4756,14 +4876,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_custom_entity_type_request.DeleteCustomEntityTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.delete_custom_entity_type_request.DeleteCustomEntityTypeRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_database(
@@ -4808,16 +4930,18 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_database_request.DeleteDatabaseRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_database_request.DeleteDatabaseRequest = {
+            "name": name
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["name"] = name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_quality_ruleset(
@@ -4855,14 +4979,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_data_quality_ruleset_request.DeleteDataQualityRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.delete_data_quality_ruleset_request.DeleteDataQualityRulesetRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_dev_endpoint(
@@ -4900,14 +5026,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_dev_endpoint_request.DeleteDevEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_name"] = endpoint_name
+        input_: capo_glue.types.delete_dev_endpoint_request.DeleteDevEndpointRequest = {
+            "endpoint_name": endpoint_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_glue_identity_center_configuration(
@@ -4941,13 +5069,14 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_glue_identity_center_configuration_request.DeleteGlueIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_glue_identity_center_configuration_request.DeleteGlueIdentityCenterConfigurationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_integration(
@@ -4992,14 +5121,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_integration_request.DeleteIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["integration_identifier"] = integration_identifier
+        input_: capo_glue.types.delete_integration_request.DeleteIntegrationRequest = {
+            "integration_identifier": integration_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_integration_resource_property(
@@ -5040,14 +5171,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_integration_resource_property_request.DeleteIntegrationResourcePropertyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_glue.types.delete_integration_resource_property_request.DeleteIntegrationResourcePropertyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_integration_table_properties(
@@ -5090,15 +5223,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_integration_table_properties_request.DeleteIntegrationTablePropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["table_name"] = table_name
+        input_: capo_glue.types.delete_integration_table_properties_request.DeleteIntegrationTablePropertiesRequest = {
+            "resource_arn": resource_arn,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_job(
@@ -5135,14 +5270,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_job_request.DeleteJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
+        input_: capo_glue.types.delete_job_request.DeleteJobRequest = {
+            "job_name": job_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_ml_transform(
@@ -5180,14 +5317,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_ml_transform_request.DeleteMLTransformRequest = {}  # type: ignore[typeddict-item]
-        input_["transform_id"] = transform_id
+        input_: capo_glue.types.delete_ml_transform_request.DeleteMLTransformRequest = {
+            "transform_id": transform_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_partition(
@@ -5233,18 +5372,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_partition_request.DeletePartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_partition_request.DeletePartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partition_values": partition_values,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partition_values"] = partition_values
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_partition_index(
@@ -5292,18 +5433,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_partition_index_request.DeletePartitionIndexRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_partition_index_request.DeletePartitionIndexRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "index_name": index_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["index_name"] = index_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_registry(
@@ -5341,14 +5484,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_registry_input.DeleteRegistryInput = {}  # type: ignore[typeddict-item]
-        input_["registry_id"] = registry_id
+        input_: capo_glue.types.delete_registry_input.DeleteRegistryInput = {
+            "registry_id": registry_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -5393,7 +5538,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}
         if policy_hash_condition is not None:
             input_["policy_hash_condition"] = policy_hash_condition
         if resource_arn is not None:
@@ -5404,6 +5549,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_schema(
@@ -5441,14 +5587,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_schema_input.DeleteSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["schema_id"] = schema_id
+        input_: capo_glue.types.delete_schema_input.DeleteSchemaInput = {
+            "schema_id": schema_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_schema_versions(
@@ -5488,15 +5636,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_schema_versions_input.DeleteSchemaVersionsInput = {}  # type: ignore[typeddict-item]
-        input_["schema_id"] = schema_id
-        input_["versions"] = versions
+        input_: capo_glue.types.delete_schema_versions_input.DeleteSchemaVersionsInput = {
+            "schema_id": schema_id,
+            "versions": versions,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_security_configuration(
@@ -5534,14 +5684,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_security_configuration_request.DeleteSecurityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.delete_security_configuration_request.DeleteSecurityConfigurationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_session(
@@ -5585,8 +5737,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_session_request.DeleteSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_glue.types.delete_session_request.DeleteSessionRequest = {"id": id}
         if request_origin is not None:
             input_["request_origin"] = request_origin
 
@@ -5595,6 +5746,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_table(
@@ -5646,11 +5798,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_table_request.DeleteTableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_table_request.DeleteTableRequest = {
+            "database_name": database_name,
+            "name": name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["name"] = name
         if transaction_id is not None:
             input_["transaction_id"] = transaction_id
 
@@ -5659,6 +5812,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_table_optimizer(
@@ -5703,17 +5857,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_table_optimizer_request.DeleteTableOptimizerRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["type"] = type
+        input_: capo_glue.types.delete_table_optimizer_request.DeleteTableOptimizerRequest = {
+            "catalog_id": catalog_id,
+            "database_name": database_name,
+            "table_name": table_name,
+            "type": type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_table_version(
@@ -5759,18 +5915,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_table_version_request.DeleteTableVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_table_version_request.DeleteTableVersionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "version_id": version_id,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["version_id"] = version_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_trigger(
@@ -5808,14 +5966,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_trigger_request.DeleteTriggerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.delete_trigger_request.DeleteTriggerRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_usage_profile(
@@ -5853,14 +6013,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_usage_profile_request.DeleteUsageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.delete_usage_profile_request.DeleteUsageProfileRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_user_defined_function(
@@ -5904,17 +6066,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_user_defined_function_request.DeleteUserDefinedFunctionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.delete_user_defined_function_request.DeleteUserDefinedFunctionRequest = {
+            "database_name": database_name,
+            "function_name": function_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["function_name"] = function_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workflow(
@@ -5952,14 +6116,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.delete_workflow_request.DeleteWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.delete_workflow_request.DeleteWorkflowRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_connection_type(
@@ -5997,14 +6163,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.describe_connection_type_request.DescribeConnectionTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_type"] = connection_type
+        input_: capo_glue.types.describe_connection_type_request.DescribeConnectionTypeRequest = {
+            "connection_type": connection_type
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_entity(
@@ -6057,11 +6225,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.describe_entity_request.DescribeEntityRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_name"] = connection_name
+        input_: capo_glue.types.describe_entity_request.DescribeEntityRequest = {
+            "connection_name": connection_name,
+            "entity_name": entity_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["entity_name"] = entity_name
         if next_token is not None:
             input_["next_token"] = next_token
         if data_store_api_version is not None:
@@ -6072,6 +6241,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_entity(
@@ -6153,7 +6323,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.describe_inbound_integrations_request.DescribeInboundIntegrationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.describe_inbound_integrations_request.DescribeInboundIntegrationsRequest = {}
         if integration_arn is not None:
             input_["integration_arn"] = integration_arn
         if marker is not None:
@@ -6168,6 +6338,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_integrations(
@@ -6218,7 +6389,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.describe_integrations_request.DescribeIntegrationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.describe_integrations_request.DescribeIntegrationsRequest = {}
         if integration_identifier is not None:
             input_["integration_identifier"] = integration_identifier
         if marker is not None:
@@ -6233,6 +6404,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_blueprint(
@@ -6278,8 +6450,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_blueprint_request.GetBlueprintRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.get_blueprint_request.GetBlueprintRequest = {
+            "name": name
+        }
         if include_blueprint is not None:
             input_["include_blueprint"] = include_blueprint
         if include_parameter_spec is not None:
@@ -6290,6 +6463,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_blueprint_run(
@@ -6328,15 +6502,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_blueprint_run_request.GetBlueprintRunRequest = {}  # type: ignore[typeddict-item]
-        input_["blueprint_name"] = blueprint_name
-        input_["run_id"] = run_id
+        input_: capo_glue.types.get_blueprint_run_request.GetBlueprintRunRequest = {
+            "blueprint_name": blueprint_name,
+            "run_id": run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_blueprint_runs(
@@ -6378,8 +6554,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_blueprint_runs_request.GetBlueprintRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["blueprint_name"] = blueprint_name
+        input_: capo_glue.types.get_blueprint_runs_request.GetBlueprintRunsRequest = {
+            "blueprint_name": blueprint_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -6390,7 +6567,29 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_blueprint_runs(
+        self,
+        blueprint_name: "capo_glue.types.name_string.NameString",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        next_token: Optional["capo_glue.types.generic_string.GenericString"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_blueprint_runs_response.GetBlueprintRunsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_blueprint_runs(
+                blueprint_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_catalog(
         self,
@@ -6431,14 +6630,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_catalog_request.GetCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
+        input_: capo_glue.types.get_catalog_request.GetCatalogRequest = {
+            "catalog_id": catalog_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_catalog_import_status(
@@ -6476,7 +6677,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_catalog_import_status_request.GetCatalogImportStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_catalog_import_status_request.GetCatalogImportStatusRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
 
@@ -6485,6 +6686,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_catalogs(
@@ -6542,7 +6744,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_catalogs_request.GetCatalogsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_catalogs_request.GetCatalogsRequest = {}
         if parent_catalog_id is not None:
             input_["parent_catalog_id"] = parent_catalog_id
         if next_token is not None:
@@ -6561,6 +6763,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_classifier(
@@ -6596,14 +6799,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_classifier_request.GetClassifierRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.get_classifier_request.GetClassifierRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_classifiers(
@@ -6640,7 +6845,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_classifiers_request.GetClassifiersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_classifiers_request.GetClassifiersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -6651,7 +6856,29 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_classifiers(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> (
+        "AsyncIterator[capo_glue.types.get_classifiers_response.GetClassifiersResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = await self.get_classifiers(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_column_statistics_for_partition(
         self,
@@ -6699,19 +6926,21 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_column_statistics_for_partition_request.GetColumnStatisticsForPartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_column_statistics_for_partition_request.GetColumnStatisticsForPartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partition_values": partition_values,
+            "column_names": column_names,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partition_values"] = partition_values
-        input_["column_names"] = column_names
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_column_statistics_for_table(
@@ -6758,18 +6987,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_column_statistics_for_table_request.GetColumnStatisticsForTableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_column_statistics_for_table_request.GetColumnStatisticsForTableRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "column_names": column_names,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["column_names"] = column_names
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_column_statistics_task_run(
@@ -6806,14 +7037,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_column_statistics_task_run_request.GetColumnStatisticsTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["column_statistics_task_run_id"] = column_statistics_task_run_id
+        input_: capo_glue.types.get_column_statistics_task_run_request.GetColumnStatisticsTaskRunRequest = {
+            "column_statistics_task_run_id": column_statistics_task_run_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_column_statistics_task_runs(
@@ -6854,9 +7087,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_column_statistics_task_runs_request.GetColumnStatisticsTaskRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_glue.types.get_column_statistics_task_runs_request.GetColumnStatisticsTaskRunsRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -6867,7 +7101,31 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_column_statistics_task_runs(
+        self,
+        database_name: "capo_glue.types.database_name.DatabaseName",
+        table_name: "capo_glue.types.name_string.NameString",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_column_statistics_task_runs_response.GetColumnStatisticsTaskRunsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_column_statistics_task_runs(
+                database_name,
+                table_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_column_statistics_task_settings(
         self,
@@ -6905,15 +7163,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_column_statistics_task_settings_request.GetColumnStatisticsTaskSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_glue.types.get_column_statistics_task_settings_request.GetColumnStatisticsTaskSettingsRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_connection(
@@ -6961,10 +7221,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_connection_request.GetConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_connection_request.GetConnectionRequest = {
+            "name": name
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["name"] = name
         if hide_password is not None:
             input_["hide_password"] = hide_password
         if apply_override_for_compute_environment is not None:
@@ -6977,6 +7238,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_connections(
@@ -7026,7 +7288,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_connections_request.GetConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_connections_request.GetConnectionsRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
         if filter is not None:
@@ -7043,7 +7305,39 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_connections(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        catalog_id: Optional[
+            "capo_glue.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        filter: Optional[
+            "capo_glue.types.get_connections_filter.GetConnectionsFilter"
+        ] = None,
+        hide_password: Optional["capo_glue.types.boolean.Boolean"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+    ) -> (
+        "AsyncIterator[capo_glue.types.get_connections_response.GetConnectionsResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = await self.get_connections(
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                filter=filter,
+                hide_password=hide_password,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_crawler(
         self,
@@ -7078,14 +7372,14 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_crawler_request.GetCrawlerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.get_crawler_request.GetCrawlerRequest = {"name": name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_crawler_metrics(
@@ -7126,7 +7420,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_crawler_metrics_request.GetCrawlerMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_crawler_metrics_request.GetCrawlerMetricsRequest = {}
         if crawler_name_list is not None:
             input_["crawler_name_list"] = crawler_name_list
         if max_results is not None:
@@ -7139,7 +7433,31 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_crawler_metrics(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        crawler_name_list: Optional[
+            "capo_glue.types.crawler_name_list.CrawlerNameList"
+        ] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_crawler_metrics_response.GetCrawlerMetricsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_crawler_metrics(
+                config_overrides=config_overrides,
+                crawler_name_list=crawler_name_list,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_crawlers(
         self,
@@ -7175,7 +7493,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_crawlers_request.GetCrawlersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_crawlers_request.GetCrawlersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -7186,7 +7504,27 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_crawlers(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_crawlers_response.GetCrawlersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_crawlers(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_custom_entity_type(
         self,
@@ -7224,14 +7562,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_custom_entity_type_request.GetCustomEntityTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.get_custom_entity_type_request.GetCustomEntityTypeRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_dashboard_url(
@@ -7276,9 +7616,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_dashboard_url_request.GetDashboardUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["resource_type"] = resource_type
+        input_: capo_glue.types.get_dashboard_url_request.GetDashboardUrlRequest = {
+            "resource_id": resource_id,
+            "resource_type": resource_type,
+        }
         if request_origin is not None:
             input_["request_origin"] = request_origin
 
@@ -7287,6 +7628,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_database(
@@ -7331,16 +7673,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_database_request.GetDatabaseRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_database_request.GetDatabaseRequest = {"name": name}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["name"] = name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_databases(
@@ -7397,7 +7739,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_databases_request.GetDatabasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_databases_request.GetDatabasesRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
         if next_token is not None:
@@ -7414,7 +7756,41 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_databases(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        catalog_id: Optional[
+            "capo_glue.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_glue.types.catalog_getter_page_size.CatalogGetterPageSize"
+        ] = None,
+        resource_share_type: Optional[
+            "capo_glue.types.resource_share_type.ResourceShareType"
+        ] = None,
+        attributes_to_get: Optional[
+            "capo_glue.types.database_attributes_list.DatabaseAttributesList"
+        ] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_databases_response.GetDatabasesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_databases(
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                next_token=_token,
+                max_results=max_results,
+                resource_share_type=resource_share_type,
+                attributes_to_get=attributes_to_get,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_data_catalog_encryption_settings(
         self,
@@ -7452,7 +7828,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_data_catalog_encryption_settings_request.GetDataCatalogEncryptionSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_data_catalog_encryption_settings_request.GetDataCatalogEncryptionSettingsRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
 
@@ -7461,6 +7837,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_dataflow_graph(
@@ -7497,7 +7874,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_dataflow_graph_request.GetDataflowGraphRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_dataflow_graph_request.GetDataflowGraphRequest = {}
         if python_script is not None:
             input_["python_script"] = python_script
 
@@ -7506,6 +7883,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_quality_model(
@@ -7545,16 +7923,18 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_data_quality_model_request.GetDataQualityModelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_data_quality_model_request.GetDataQualityModelRequest = {
+            "profile_id": profile_id
+        }
         if statistic_id is not None:
             input_["statistic_id"] = statistic_id
-        input_["profile_id"] = profile_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_quality_model_result(
@@ -7594,15 +7974,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_data_quality_model_result_request.GetDataQualityModelResultRequest = {}  # type: ignore[typeddict-item]
-        input_["statistic_id"] = statistic_id
-        input_["profile_id"] = profile_id
+        input_: capo_glue.types.get_data_quality_model_result_request.GetDataQualityModelResultRequest = {
+            "statistic_id": statistic_id,
+            "profile_id": profile_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_quality_result(
@@ -7642,14 +8024,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_data_quality_result_request.GetDataQualityResultRequest = {}  # type: ignore[typeddict-item]
-        input_["result_id"] = result_id
+        input_: capo_glue.types.get_data_quality_result_request.GetDataQualityResultRequest = {
+            "result_id": result_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_quality_rule_recommendation_run(
@@ -7687,14 +8071,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_data_quality_rule_recommendation_run_request.GetDataQualityRuleRecommendationRunRequest = {}  # type: ignore[typeddict-item]
-        input_["run_id"] = run_id
+        input_: capo_glue.types.get_data_quality_rule_recommendation_run_request.GetDataQualityRuleRecommendationRunRequest = {
+            "run_id": run_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_quality_ruleset(
@@ -7732,14 +8118,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_data_quality_ruleset_request.GetDataQualityRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.get_data_quality_ruleset_request.GetDataQualityRulesetRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_quality_ruleset_evaluation_run(
@@ -7777,14 +8165,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_data_quality_ruleset_evaluation_run_request.GetDataQualityRulesetEvaluationRunRequest = {}  # type: ignore[typeddict-item]
-        input_["run_id"] = run_id
+        input_: capo_glue.types.get_data_quality_ruleset_evaluation_run_request.GetDataQualityRulesetEvaluationRunRequest = {
+            "run_id": run_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_dev_endpoint(
@@ -7822,14 +8212,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_dev_endpoint_request.GetDevEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_name"] = endpoint_name
+        input_: capo_glue.types.get_dev_endpoint_request.GetDevEndpointRequest = {
+            "endpoint_name": endpoint_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_dev_endpoints(
@@ -7869,7 +8261,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_dev_endpoints_request.GetDevEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_dev_endpoints_request.GetDevEndpointsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -7880,7 +8272,27 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_dev_endpoints(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.generic_string.GenericString"] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_dev_endpoints_response.GetDevEndpointsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_dev_endpoints(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_entity_records(
         self,
@@ -7948,12 +8360,14 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_entity_records_request.GetEntityRecordsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_entity_records_request.GetEntityRecordsRequest = {
+            "entity_name": entity_name,
+            "limit": limit,
+        }
         if connection_name is not None:
             input_["connection_name"] = connection_name
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["entity_name"] = entity_name
         if next_token is not None:
             input_["next_token"] = next_token
         if data_store_api_version is not None:
@@ -7962,7 +8376,6 @@ class AsyncGlueClient:
             input_["connection_options"] = connection_options
         if filter_predicate is not None:
             input_["filter_predicate"] = filter_predicate
-        input_["limit"] = limit
         if order_by is not None:
             input_["order_by"] = order_by
         if selected_fields is not None:
@@ -7973,6 +8386,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_glue_identity_center_configuration(
@@ -8006,13 +8420,14 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_glue_identity_center_configuration_request.GetGlueIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_glue_identity_center_configuration_request.GetGlueIdentityCenterConfigurationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_integration_resource_property(
@@ -8053,14 +8468,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_integration_resource_property_request.GetIntegrationResourcePropertyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_glue.types.get_integration_resource_property_request.GetIntegrationResourcePropertyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_integration_table_properties(
@@ -8103,15 +8520,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_integration_table_properties_request.GetIntegrationTablePropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["table_name"] = table_name
+        input_: capo_glue.types.get_integration_table_properties_request.GetIntegrationTablePropertiesRequest = {
+            "resource_arn": resource_arn,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_job(
@@ -8147,14 +8566,14 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_job_request.GetJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
+        input_: capo_glue.types.get_job_request.GetJobRequest = {"job_name": job_name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_job_bookmark(
@@ -8195,8 +8614,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_job_bookmark_request.GetJobBookmarkRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
+        input_: capo_glue.types.get_job_bookmark_request.GetJobBookmarkRequest = {
+            "job_name": job_name
+        }
         if run_id is not None:
             input_["run_id"] = run_id
 
@@ -8205,6 +8625,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_job_run(
@@ -8248,9 +8669,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_job_run_request.GetJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
-        input_["run_id"] = run_id
+        input_: capo_glue.types.get_job_run_request.GetJobRunRequest = {
+            "job_name": job_name,
+            "run_id": run_id,
+        }
         if predecessors_included is not None:
             input_["predecessors_included"] = predecessors_included
 
@@ -8259,6 +8681,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_job_runs(
@@ -8302,8 +8725,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_job_runs_request.GetJobRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
+        input_: capo_glue.types.get_job_runs_request.GetJobRunsRequest = {
+            "job_name": job_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -8314,6 +8738,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_job_runs(
@@ -8378,7 +8803,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_jobs_request.GetJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_jobs_request.GetJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -8389,6 +8814,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_jobs(
@@ -8451,8 +8877,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_mapping_request.GetMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["source"] = source
+        input_: capo_glue.types.get_mapping_request.GetMappingRequest = {
+            "source": source
+        }
         if sinks is not None:
             input_["sinks"] = sinks
         if location is not None:
@@ -8463,6 +8890,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_materialized_view_refresh_task_run(
@@ -8502,17 +8930,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_materialized_view_refresh_task_run_request.GetMaterializedViewRefreshTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
-        input_["materialized_view_refresh_task_run_id"] = (
-            materialized_view_refresh_task_run_id
-        )
+        input_: capo_glue.types.get_materialized_view_refresh_task_run_request.GetMaterializedViewRefreshTaskRunRequest = {
+            "catalog_id": catalog_id,
+            "materialized_view_refresh_task_run_id": materialized_view_refresh_task_run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_ml_task_run(
@@ -8552,15 +8980,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_ml_task_run_request.GetMLTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["transform_id"] = transform_id
-        input_["task_run_id"] = task_run_id
+        input_: capo_glue.types.get_ml_task_run_request.GetMLTaskRunRequest = {
+            "transform_id": transform_id,
+            "task_run_id": task_run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_ml_task_runs(
@@ -8610,8 +9040,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_ml_task_runs_request.GetMLTaskRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["transform_id"] = transform_id
+        input_: capo_glue.types.get_ml_task_runs_request.GetMLTaskRunsRequest = {
+            "transform_id": transform_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -8626,7 +9057,39 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_ml_task_runs(
+        self,
+        transform_id: "capo_glue.types.hash_string.HashString",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        next_token: Optional["capo_glue.types.pagination_token.PaginationToken"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        filter: Optional[
+            "capo_glue.types.task_run_filter_criteria.TaskRunFilterCriteria"
+        ] = None,
+        sort: Optional[
+            "capo_glue.types.task_run_sort_criteria.TaskRunSortCriteria"
+        ] = None,
+    ) -> (
+        "AsyncIterator[capo_glue.types.get_ml_task_runs_response.GetMLTaskRunsResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = await self.get_ml_task_runs(
+                transform_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filter=filter,
+                sort=sort,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_ml_transform(
         self,
@@ -8663,14 +9126,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_ml_transform_request.GetMLTransformRequest = {}  # type: ignore[typeddict-item]
-        input_["transform_id"] = transform_id
+        input_: capo_glue.types.get_ml_transform_request.GetMLTransformRequest = {
+            "transform_id": transform_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_ml_transforms(
@@ -8718,7 +9183,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_ml_transforms_request.GetMLTransformsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_ml_transforms_request.GetMLTransformsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -8733,7 +9198,35 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_ml_transforms(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        next_token: Optional["capo_glue.types.pagination_token.PaginationToken"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        filter: Optional[
+            "capo_glue.types.transform_filter_criteria.TransformFilterCriteria"
+        ] = None,
+        sort: Optional[
+            "capo_glue.types.transform_sort_criteria.TransformSortCriteria"
+        ] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_ml_transforms_response.GetMLTransformsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_ml_transforms(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filter=filter,
+                sort=sort,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_partition(
         self,
@@ -8782,12 +9275,13 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_partition_request.GetPartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_partition_request.GetPartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partition_values": partition_values,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partition_values"] = partition_values
         if audit_context is not None:
             input_["audit_context"] = audit_context
 
@@ -8796,6 +9290,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_partition_indexes(
@@ -8842,11 +9337,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_partition_indexes_request.GetPartitionIndexesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_partition_indexes_request.GetPartitionIndexesRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -8855,6 +9351,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_partition_indexes(
@@ -8949,11 +9446,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_partitions_request.GetPartitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_partitions_request.GetPartitionsRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
         if expression is not None:
             input_["expression"] = expression
         if next_token is not None:
@@ -8976,7 +9474,51 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_partitions(
+        self,
+        database_name: "capo_glue.types.name_string.NameString",
+        table_name: "capo_glue.types.name_string.NameString",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        catalog_id: Optional[
+            "capo_glue.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        expression: Optional["capo_glue.types.predicate_string.PredicateString"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+        segment: Optional["capo_glue.types.segment.Segment"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        exclude_column_schema: Optional[
+            "capo_glue.types.boolean_nullable.BooleanNullable"
+        ] = None,
+        transaction_id: Optional[
+            "capo_glue.types.transaction_id_string.TransactionIdString"
+        ] = None,
+        query_as_of_time: Optional["capo_glue.types.timestamp.Timestamp"] = None,
+        audit_context: Optional["capo_glue.types.audit_context.AuditContext"] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_partitions_response.GetPartitionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_partitions(
+                database_name,
+                table_name,
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                expression=expression,
+                next_token=_token,
+                segment=segment,
+                max_results=max_results,
+                exclude_column_schema=exclude_column_schema,
+                transaction_id=transaction_id,
+                query_as_of_time=query_as_of_time,
+                audit_context=audit_context,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_plan(
         self,
@@ -9024,9 +9566,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_plan_request.GetPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["mapping"] = mapping
-        input_["source"] = source
+        input_: capo_glue.types.get_plan_request.GetPlanRequest = {
+            "mapping": mapping,
+            "source": source,
+        }
         if sinks is not None:
             input_["sinks"] = sinks
         if location is not None:
@@ -9041,6 +9584,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_registry(
@@ -9078,14 +9622,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_registry_input.GetRegistryInput = {}  # type: ignore[typeddict-item]
-        input_["registry_id"] = registry_id
+        input_: capo_glue.types.get_registry_input.GetRegistryInput = {
+            "registry_id": registry_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_policies(
@@ -9125,7 +9671,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_resource_policies_request.GetResourcePoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_resource_policies_request.GetResourcePoliciesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -9136,6 +9682,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_resource_policies(
@@ -9196,7 +9743,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_resource_policy_request.GetResourcePolicyRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -9205,6 +9752,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_schema(
@@ -9242,14 +9790,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_schema_input.GetSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["schema_id"] = schema_id
+        input_: capo_glue.types.get_schema_input.GetSchemaInput = {
+            "schema_id": schema_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_schema_by_definition(
@@ -9289,15 +9839,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_schema_by_definition_input.GetSchemaByDefinitionInput = {}  # type: ignore[typeddict-item]
-        input_["schema_id"] = schema_id
-        input_["schema_definition"] = schema_definition
+        input_: capo_glue.types.get_schema_by_definition_input.GetSchemaByDefinitionInput = {
+            "schema_id": schema_id,
+            "schema_definition": schema_definition,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_schema_version(
@@ -9343,7 +9895,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_schema_version_input.GetSchemaVersionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_schema_version_input.GetSchemaVersionInput = {}
         if schema_id is not None:
             input_["schema_id"] = schema_id
         if schema_version_id is not None:
@@ -9356,6 +9908,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_schema_versions_diff(
@@ -9399,17 +9952,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_schema_versions_diff_input.GetSchemaVersionsDiffInput = {}  # type: ignore[typeddict-item]
-        input_["schema_id"] = schema_id
-        input_["first_schema_version_number"] = first_schema_version_number
-        input_["second_schema_version_number"] = second_schema_version_number
-        input_["schema_diff_type"] = schema_diff_type
+        input_: capo_glue.types.get_schema_versions_diff_input.GetSchemaVersionsDiffInput = {
+            "schema_id": schema_id,
+            "first_schema_version_number": first_schema_version_number,
+            "second_schema_version_number": second_schema_version_number,
+            "schema_diff_type": schema_diff_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_security_configuration(
@@ -9447,14 +10002,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_security_configuration_request.GetSecurityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.get_security_configuration_request.GetSecurityConfigurationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_security_configurations(
@@ -9494,7 +10051,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_security_configurations_request.GetSecurityConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_security_configurations_request.GetSecurityConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -9505,6 +10062,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_security_configurations(
@@ -9568,8 +10126,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_session_request.GetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_glue.types.get_session_request.GetSessionRequest = {"id": id}
         if request_origin is not None:
             input_["request_origin"] = request_origin
 
@@ -9578,6 +10135,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_session_endpoint(
@@ -9618,14 +10176,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_session_endpoint_request.GetSessionEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_glue.types.get_session_endpoint_request.GetSessionEndpointRequest = {
+            "session_id": session_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_statement(
@@ -9671,9 +10231,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_statement_request.GetStatementRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
-        input_["id"] = id
+        input_: capo_glue.types.get_statement_request.GetStatementRequest = {
+            "session_id": session_id,
+            "id": id,
+        }
         if request_origin is not None:
             input_["request_origin"] = request_origin
 
@@ -9682,6 +10243,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table(
@@ -9741,11 +10303,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_table_request.GetTableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_table_request.GetTableRequest = {
+            "database_name": database_name,
+            "name": name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["name"] = name
         if transaction_id is not None:
             input_["transaction_id"] = transaction_id
         if query_as_of_time is not None:
@@ -9760,6 +10323,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_optimizer(
@@ -9804,17 +10368,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_table_optimizer_request.GetTableOptimizerRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["type"] = type
+        input_: capo_glue.types.get_table_optimizer_request.GetTableOptimizerRequest = {
+            "catalog_id": catalog_id,
+            "database_name": database_name,
+            "table_name": table_name,
+            "type": type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_tables(
@@ -9883,10 +10449,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_tables_request.GetTablesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_tables_request.GetTablesRequest = {
+            "database_name": database_name
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
         if expression is not None:
             input_["expression"] = expression
         if next_token is not None:
@@ -9909,7 +10476,53 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_tables(
+        self,
+        database_name: "capo_glue.types.name_string.NameString",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        catalog_id: Optional[
+            "capo_glue.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        expression: Optional["capo_glue.types.filter_string.FilterString"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_glue.types.catalog_getter_page_size.CatalogGetterPageSize"
+        ] = None,
+        transaction_id: Optional[
+            "capo_glue.types.transaction_id_string.TransactionIdString"
+        ] = None,
+        query_as_of_time: Optional["capo_glue.types.timestamp.Timestamp"] = None,
+        audit_context: Optional["capo_glue.types.audit_context.AuditContext"] = None,
+        include_status_details: Optional[
+            "capo_glue.types.boolean_nullable.BooleanNullable"
+        ] = None,
+        attributes_to_get: Optional[
+            "capo_glue.types.table_attributes_list.TableAttributesList"
+        ] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_tables_response.GetTablesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_tables(
+                database_name,
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                expression=expression,
+                next_token=_token,
+                max_results=max_results,
+                transaction_id=transaction_id,
+                query_as_of_time=query_as_of_time,
+                audit_context=audit_context,
+                include_status_details=include_status_details,
+                attributes_to_get=attributes_to_get,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_table_version(
         self,
@@ -9956,11 +10569,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_table_version_request.GetTableVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_table_version_request.GetTableVersionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
         if version_id is not None:
             input_["version_id"] = version_id
         if audit_context is not None:
@@ -9971,6 +10585,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_versions(
@@ -10022,11 +10637,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_table_versions_request.GetTableVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_table_versions_request.GetTableVersionsRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -10039,7 +10655,39 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_table_versions(
+        self,
+        database_name: "capo_glue.types.name_string.NameString",
+        table_name: "capo_glue.types.name_string.NameString",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        catalog_id: Optional[
+            "capo_glue.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_glue.types.catalog_getter_page_size.CatalogGetterPageSize"
+        ] = None,
+        audit_context: Optional["capo_glue.types.audit_context.AuditContext"] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_table_versions_response.GetTableVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_table_versions(
+                database_name,
+                table_name,
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                next_token=_token,
+                max_results=max_results,
+                audit_context=audit_context,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_tags(
         self,
@@ -10076,14 +10724,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_tags_request.GetTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_glue.types.get_tags_request.GetTagsRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_trigger(
@@ -10121,14 +10771,14 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_trigger_request.GetTriggerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.get_trigger_request.GetTriggerRequest = {"name": name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_triggers(
@@ -10172,7 +10822,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_triggers_request.GetTriggersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_triggers_request.GetTriggersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if dependent_job_name is not None:
@@ -10185,6 +10835,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_triggers(
@@ -10267,16 +10918,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_unfiltered_partition_metadata_request.GetUnfilteredPartitionMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_unfiltered_partition_metadata_request.GetUnfilteredPartitionMetadataRequest = {
+            "catalog_id": catalog_id,
+            "database_name": database_name,
+            "table_name": table_name,
+            "partition_values": partition_values,
+            "supported_permission_types": supported_permission_types,
+        }
         if region is not None:
             input_["region"] = region
-        input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partition_values"] = partition_values
         if audit_context is not None:
             input_["audit_context"] = audit_context
-        input_["supported_permission_types"] = supported_permission_types
         if query_session_context is not None:
             input_["query_session_context"] = query_session_context
 
@@ -10285,6 +10937,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_unfiltered_partitions_metadata(
@@ -10348,17 +11001,18 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_unfiltered_partitions_metadata_request.GetUnfilteredPartitionsMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_unfiltered_partitions_metadata_request.GetUnfilteredPartitionsMetadataRequest = {
+            "catalog_id": catalog_id,
+            "database_name": database_name,
+            "table_name": table_name,
+            "supported_permission_types": supported_permission_types,
+        }
         if region is not None:
             input_["region"] = region
-        input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
         if expression is not None:
             input_["expression"] = expression
         if audit_context is not None:
             input_["audit_context"] = audit_context
-        input_["supported_permission_types"] = supported_permission_types
         if next_token is not None:
             input_["next_token"] = next_token
         if segment is not None:
@@ -10373,7 +11027,47 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_unfiltered_partitions_metadata(
+        self,
+        catalog_id: "capo_glue.types.catalog_id_string.CatalogIdString",
+        database_name: "capo_glue.types.name_string.NameString",
+        table_name: "capo_glue.types.name_string.NameString",
+        supported_permission_types: "capo_glue.types.permission_type_list.PermissionTypeList",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        region: Optional["capo_glue.types.value_string.ValueString"] = None,
+        expression: Optional["capo_glue.types.predicate_string.PredicateString"] = None,
+        audit_context: Optional["capo_glue.types.audit_context.AuditContext"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+        segment: Optional["capo_glue.types.segment.Segment"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        query_session_context: Optional[
+            "capo_glue.types.query_session_context.QuerySessionContext"
+        ] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_unfiltered_partitions_metadata_response.GetUnfilteredPartitionsMetadataResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_unfiltered_partitions_metadata(
+                catalog_id,
+                database_name,
+                table_name,
+                supported_permission_types,
+                config_overrides=config_overrides,
+                region=region,
+                expression=expression,
+                audit_context=audit_context,
+                next_token=_token,
+                segment=segment,
+                max_results=max_results,
+                query_session_context=query_session_context,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_unfiltered_table_metadata(
         self,
@@ -10438,15 +11132,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_unfiltered_table_metadata_request.GetUnfilteredTableMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_unfiltered_table_metadata_request.GetUnfilteredTableMetadataRequest = {
+            "catalog_id": catalog_id,
+            "database_name": database_name,
+            "name": name,
+            "supported_permission_types": supported_permission_types,
+        }
         if region is not None:
             input_["region"] = region
-        input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["name"] = name
         if audit_context is not None:
             input_["audit_context"] = audit_context
-        input_["supported_permission_types"] = supported_permission_types
         if parent_resource_arn is not None:
             input_["parent_resource_arn"] = parent_resource_arn
         if root_resource_arn is not None:
@@ -10463,6 +11158,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_usage_profile(
@@ -10501,14 +11197,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_usage_profile_request.GetUsageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.get_usage_profile_request.GetUsageProfileRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_user_defined_function(
@@ -10553,17 +11251,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_user_defined_function_request.GetUserDefinedFunctionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_user_defined_function_request.GetUserDefinedFunctionRequest = {
+            "database_name": database_name,
+            "function_name": function_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["function_name"] = function_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_user_defined_functions(
@@ -10616,12 +11316,13 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_user_defined_functions_request.GetUserDefinedFunctionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.get_user_defined_functions_request.GetUserDefinedFunctionsRequest = {
+            "pattern": pattern
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
         if database_name is not None:
             input_["database_name"] = database_name
-        input_["pattern"] = pattern
         if function_type is not None:
             input_["function_type"] = function_type
         if next_token is not None:
@@ -10634,7 +11335,39 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_user_defined_functions(
+        self,
+        pattern: "capo_glue.types.name_string.NameString",
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        catalog_id: Optional[
+            "capo_glue.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        database_name: Optional["capo_glue.types.name_string.NameString"] = None,
+        function_type: Optional["capo_glue.types.function_type.FunctionType"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_glue.types.catalog_getter_page_size.CatalogGetterPageSize"
+        ] = None,
+    ) -> "AsyncIterator[capo_glue.types.get_user_defined_functions_response.GetUserDefinedFunctionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_user_defined_functions(
+                pattern,
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                database_name=database_name,
+                function_type=function_type,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_workflow(
         self,
@@ -10675,8 +11408,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_workflow_request.GetWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.get_workflow_request.GetWorkflowRequest = {"name": name}
         if include_graph is not None:
             input_["include_graph"] = include_graph
 
@@ -10685,6 +11417,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_workflow_run(
@@ -10728,9 +11461,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_workflow_run_request.GetWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["run_id"] = run_id
+        input_: capo_glue.types.get_workflow_run_request.GetWorkflowRunRequest = {
+            "name": name,
+            "run_id": run_id,
+        }
         if include_graph is not None:
             input_["include_graph"] = include_graph
 
@@ -10739,6 +11473,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_workflow_run_properties(
@@ -10778,15 +11513,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_workflow_run_properties_request.GetWorkflowRunPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["run_id"] = run_id
+        input_: capo_glue.types.get_workflow_run_properties_request.GetWorkflowRunPropertiesRequest = {
+            "name": name,
+            "run_id": run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_workflow_runs(
@@ -10832,8 +11569,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.get_workflow_runs_request.GetWorkflowRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.get_workflow_runs_request.GetWorkflowRunsRequest = {
+            "name": name
+        }
         if include_graph is not None:
             input_["include_graph"] = include_graph
         if next_token is not None:
@@ -10846,6 +11584,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_workflow_runs(
@@ -10910,7 +11649,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.import_catalog_to_glue_request.ImportCatalogToGlueRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.import_catalog_to_glue_request.ImportCatalogToGlueRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
 
@@ -10919,6 +11658,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_blueprints(
@@ -10961,7 +11701,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_blueprints_request.ListBlueprintsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_blueprints_request.ListBlueprintsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -10974,6 +11714,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_blueprints(
@@ -11035,7 +11776,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_column_statistics_task_runs_request.ListColumnStatisticsTaskRunsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_column_statistics_task_runs_request.ListColumnStatisticsTaskRunsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -11046,7 +11787,27 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_column_statistics_task_runs(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_glue.types.list_column_statistics_task_runs_response.ListColumnStatisticsTaskRunsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_column_statistics_task_runs(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_connection_types(
         self,
@@ -11083,7 +11844,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_connection_types_request.ListConnectionTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_connection_types_request.ListConnectionTypesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -11094,6 +11855,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_connection_types(
@@ -11153,7 +11915,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_crawlers_request.ListCrawlersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_crawlers_request.ListCrawlersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -11166,7 +11928,29 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_crawlers(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+        tags: Optional["capo_glue.types.tags_map.TagsMap"] = None,
+    ) -> "AsyncIterator[capo_glue.types.list_crawlers_response.ListCrawlersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_crawlers(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                tags=tags,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_crawls(
         self,
@@ -11208,8 +11992,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_crawls_request.ListCrawlsRequest = {}  # type: ignore[typeddict-item]
-        input_["crawler_name"] = crawler_name
+        input_: capo_glue.types.list_crawls_request.ListCrawlsRequest = {
+            "crawler_name": crawler_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if filters is not None:
@@ -11222,6 +12007,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_custom_entity_types(
@@ -11262,7 +12048,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_custom_entity_types_request.ListCustomEntityTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_custom_entity_types_request.ListCustomEntityTypesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -11275,7 +12061,29 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_custom_entity_types(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        next_token: Optional["capo_glue.types.pagination_token.PaginationToken"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        tags: Optional["capo_glue.types.tags_map.TagsMap"] = None,
+    ) -> "AsyncIterator[capo_glue.types.list_custom_entity_types_response.ListCustomEntityTypesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_custom_entity_types(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                tags=tags,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_data_quality_results(
         self,
@@ -11317,7 +12125,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_data_quality_results_request.ListDataQualityResultsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_data_quality_results_request.ListDataQualityResultsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -11330,7 +12138,31 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_data_quality_results(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        filter: Optional[
+            "capo_glue.types.data_quality_result_filter_criteria.DataQualityResultFilterCriteria"
+        ] = None,
+        next_token: Optional["capo_glue.types.pagination_token.PaginationToken"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+    ) -> "AsyncIterator[capo_glue.types.list_data_quality_results_response.ListDataQualityResultsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_data_quality_results(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_data_quality_rule_recommendation_runs(
         self,
@@ -11372,7 +12204,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_data_quality_rule_recommendation_runs_request.ListDataQualityRuleRecommendationRunsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_data_quality_rule_recommendation_runs_request.ListDataQualityRuleRecommendationRunsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -11385,7 +12217,31 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_data_quality_rule_recommendation_runs(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        filter: Optional[
+            "capo_glue.types.data_quality_rule_recommendation_run_filter.DataQualityRuleRecommendationRunFilter"
+        ] = None,
+        next_token: Optional["capo_glue.types.pagination_token.PaginationToken"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+    ) -> "AsyncIterator[capo_glue.types.list_data_quality_rule_recommendation_runs_response.ListDataQualityRuleRecommendationRunsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_data_quality_rule_recommendation_runs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_data_quality_ruleset_evaluation_runs(
         self,
@@ -11427,7 +12283,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_data_quality_ruleset_evaluation_runs_request.ListDataQualityRulesetEvaluationRunsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_data_quality_ruleset_evaluation_runs_request.ListDataQualityRulesetEvaluationRunsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -11440,7 +12296,31 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_data_quality_ruleset_evaluation_runs(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        filter: Optional[
+            "capo_glue.types.data_quality_ruleset_evaluation_run_filter.DataQualityRulesetEvaluationRunFilter"
+        ] = None,
+        next_token: Optional["capo_glue.types.pagination_token.PaginationToken"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+    ) -> "AsyncIterator[capo_glue.types.list_data_quality_ruleset_evaluation_runs_response.ListDataQualityRulesetEvaluationRunsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_data_quality_ruleset_evaluation_runs(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_data_quality_rulesets(
         self,
@@ -11485,7 +12365,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_data_quality_rulesets_request.ListDataQualityRulesetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_data_quality_rulesets_request.ListDataQualityRulesetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -11500,7 +12380,33 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_data_quality_rulesets(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        next_token: Optional["capo_glue.types.pagination_token.PaginationToken"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        filter: Optional[
+            "capo_glue.types.data_quality_ruleset_filter_criteria.DataQualityRulesetFilterCriteria"
+        ] = None,
+        tags: Optional["capo_glue.types.tags_map.TagsMap"] = None,
+    ) -> "AsyncIterator[capo_glue.types.list_data_quality_rulesets_response.ListDataQualityRulesetsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_data_quality_rulesets(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filter=filter,
+                tags=tags,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_data_quality_statistic_annotations(
         self,
@@ -11545,7 +12451,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_data_quality_statistic_annotations_request.ListDataQualityStatisticAnnotationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_data_quality_statistic_annotations_request.ListDataQualityStatisticAnnotationsRequest = {}
         if statistic_id is not None:
             input_["statistic_id"] = statistic_id
         if profile_id is not None:
@@ -11562,6 +12468,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_data_quality_statistics(
@@ -11608,7 +12515,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_data_quality_statistics_request.ListDataQualityStatisticsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_data_quality_statistics_request.ListDataQualityStatisticsRequest = {}
         if statistic_id is not None:
             input_["statistic_id"] = statistic_id
         if profile_id is not None:
@@ -11625,6 +12532,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_dev_endpoints(
@@ -11666,7 +12574,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_dev_endpoints_request.ListDevEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_dev_endpoints_request.ListDevEndpointsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -11679,7 +12587,29 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_dev_endpoints(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        next_token: Optional["capo_glue.types.generic_string.GenericString"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        tags: Optional["capo_glue.types.tags_map.TagsMap"] = None,
+    ) -> "AsyncIterator[capo_glue.types.list_dev_endpoints_response.ListDevEndpointsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_dev_endpoints(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                tags=tags,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_entities(
         self,
@@ -11731,7 +12661,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_entities_request.ListEntitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_entities_request.ListEntitiesRequest = {}
         if connection_name is not None:
             input_["connection_name"] = connection_name
         if catalog_id is not None:
@@ -11748,6 +12678,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_entities(
@@ -11827,7 +12758,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_integration_resource_properties_request.ListIntegrationResourcePropertiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_integration_resource_properties_request.ListIntegrationResourcePropertiesRequest = {}
         if marker is not None:
             input_["marker"] = marker
         if filters is not None:
@@ -11840,6 +12771,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_jobs(
@@ -11881,7 +12813,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_jobs_request.ListJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -11894,6 +12826,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_jobs(
@@ -11961,8 +12894,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_materialized_view_refresh_task_runs_request.ListMaterializedViewRefreshTaskRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
+        input_: capo_glue.types.list_materialized_view_refresh_task_runs_request.ListMaterializedViewRefreshTaskRunsRequest = {
+            "catalog_id": catalog_id
+        }
         if database_name is not None:
             input_["database_name"] = database_name
         if table_name is not None:
@@ -11977,6 +12911,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_materialized_view_refresh_task_runs(
@@ -12053,7 +12988,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_ml_transforms_request.ListMLTransformsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_ml_transforms_request.ListMLTransformsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12070,7 +13005,37 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_ml_transforms(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        next_token: Optional["capo_glue.types.pagination_token.PaginationToken"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        filter: Optional[
+            "capo_glue.types.transform_filter_criteria.TransformFilterCriteria"
+        ] = None,
+        sort: Optional[
+            "capo_glue.types.transform_sort_criteria.TransformSortCriteria"
+        ] = None,
+        tags: Optional["capo_glue.types.tags_map.TagsMap"] = None,
+    ) -> "AsyncIterator[capo_glue.types.list_ml_transforms_response.ListMLTransformsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_ml_transforms(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filter=filter,
+                sort=sort,
+                tags=tags,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_registries(
         self,
@@ -12112,7 +13077,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_registries_input.ListRegistriesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_registries_input.ListRegistriesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -12123,6 +13088,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_registries(
@@ -12193,7 +13159,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_schemas_input.ListSchemasInput = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_schemas_input.ListSchemasInput = {}
         if registry_id is not None:
             input_["registry_id"] = registry_id
         if max_results is not None:
@@ -12206,6 +13172,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_schemas(
@@ -12278,8 +13245,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_schema_versions_input.ListSchemaVersionsInput = {}  # type: ignore[typeddict-item]
-        input_["schema_id"] = schema_id
+        input_: capo_glue.types.list_schema_versions_input.ListSchemaVersionsInput = {
+            "schema_id": schema_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -12290,6 +13258,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_schema_versions(
@@ -12366,7 +13335,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_sessions_request.ListSessionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_sessions_request.ListSessionsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12381,7 +13350,35 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_sessions(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        next_token: Optional[
+            "capo_glue.types.orchestration_token.OrchestrationToken"
+        ] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        tags: Optional["capo_glue.types.tags_map.TagsMap"] = None,
+        request_origin: Optional[
+            "capo_glue.types.orchestration_name_string.OrchestrationNameString"
+        ] = None,
+    ) -> "AsyncIterator[capo_glue.types.list_sessions_response.ListSessionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_sessions(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                tags=tags,
+                request_origin=request_origin,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_statements(
         self,
@@ -12428,8 +13425,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_statements_request.ListStatementsRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_glue.types.list_statements_request.ListStatementsRequest = {
+            "session_id": session_id
+        }
         if request_origin is not None:
             input_["request_origin"] = request_origin
         if next_token is not None:
@@ -12440,6 +13438,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_table_optimizer_runs(
@@ -12493,11 +13492,12 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_table_optimizer_runs_request.ListTableOptimizerRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["type"] = type
+        input_: capo_glue.types.list_table_optimizer_runs_request.ListTableOptimizerRunsRequest = {
+            "catalog_id": catalog_id,
+            "database_name": database_name,
+            "table_name": table_name,
+            "type": type,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -12508,6 +13508,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_table_optimizer_runs(
@@ -12586,7 +13587,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_triggers_request.ListTriggersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_triggers_request.ListTriggersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if dependent_job_name is not None:
@@ -12601,6 +13602,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_triggers(
@@ -12671,7 +13673,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_usage_profiles_request.ListUsageProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_usage_profiles_request.ListUsageProfilesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12682,6 +13684,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_usage_profiles(
@@ -12749,7 +13752,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.list_workflows_request.ListWorkflowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.list_workflows_request.ListWorkflowsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12760,6 +13763,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_workflows(
@@ -12839,8 +13843,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.modify_integration_request.ModifyIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["integration_identifier"] = integration_identifier
+        input_: capo_glue.types.modify_integration_request.ModifyIntegrationRequest = {
+            "integration_identifier": integration_identifier
+        }
         if description is not None:
             input_["description"] = description
         if data_filter is not None:
@@ -12855,6 +13860,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_data_catalog_encryption_settings(
@@ -12895,16 +13901,18 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.put_data_catalog_encryption_settings_request.PutDataCatalogEncryptionSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.put_data_catalog_encryption_settings_request.PutDataCatalogEncryptionSettingsRequest = {
+            "data_catalog_encryption_settings": data_catalog_encryption_settings
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["data_catalog_encryption_settings"] = data_catalog_encryption_settings
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_data_quality_profile_annotation(
@@ -12943,15 +13951,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.put_data_quality_profile_annotation_request.PutDataQualityProfileAnnotationRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["inclusion_annotation"] = inclusion_annotation
+        input_: capo_glue.types.put_data_quality_profile_annotation_request.PutDataQualityProfileAnnotationRequest = {
+            "profile_id": profile_id,
+            "inclusion_annotation": inclusion_annotation,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_policy(
@@ -13006,8 +14016,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_in_json"] = policy_in_json
+        input_: capo_glue.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "policy_in_json": policy_in_json
+        }
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if policy_hash_condition is not None:
@@ -13022,6 +14033,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_schema_version_metadata(
@@ -13070,20 +14082,22 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.put_schema_version_metadata_input.PutSchemaVersionMetadataInput = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.put_schema_version_metadata_input.PutSchemaVersionMetadataInput = {
+            "metadata_key_value": metadata_key_value
+        }
         if schema_id is not None:
             input_["schema_id"] = schema_id
         if schema_version_number is not None:
             input_["schema_version_number"] = schema_version_number
         if schema_version_id is not None:
             input_["schema_version_id"] = schema_version_id
-        input_["metadata_key_value"] = metadata_key_value
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_workflow_run_properties(
@@ -13128,16 +14142,18 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.put_workflow_run_properties_request.PutWorkflowRunPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["run_id"] = run_id
-        input_["run_properties"] = run_properties
+        input_: capo_glue.types.put_workflow_run_properties_request.PutWorkflowRunPropertiesRequest = {
+            "name": name,
+            "run_id": run_id,
+            "run_properties": run_properties,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def query_schema_version_metadata(
@@ -13192,7 +14208,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.query_schema_version_metadata_input.QuerySchemaVersionMetadataInput = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.query_schema_version_metadata_input.QuerySchemaVersionMetadataInput = {}
         if schema_id is not None:
             input_["schema_id"] = schema_id
         if schema_version_number is not None:
@@ -13211,6 +14227,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_connection_type(
@@ -13262,16 +14279,15 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.register_connection_type_request.RegisterConnectionTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_type"] = connection_type
-        input_["integration_type"] = integration_type
+        input_: capo_glue.types.register_connection_type_request.RegisterConnectionTypeRequest = {
+            "connection_type": connection_type,
+            "integration_type": integration_type,
+            "connection_properties": connection_properties,
+            "connector_authentication_configuration": connector_authentication_configuration,
+            "rest_configuration": rest_configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["connection_properties"] = connection_properties
-        input_["connector_authentication_configuration"] = (
-            connector_authentication_configuration
-        )
-        input_["rest_configuration"] = rest_configuration
         if tags is not None:
             input_["tags"] = tags
 
@@ -13280,6 +14296,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_schema_version(
@@ -13323,15 +14340,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.register_schema_version_input.RegisterSchemaVersionInput = {}  # type: ignore[typeddict-item]
-        input_["schema_id"] = schema_id
-        input_["schema_definition"] = schema_definition
+        input_: capo_glue.types.register_schema_version_input.RegisterSchemaVersionInput = {
+            "schema_id": schema_id,
+            "schema_definition": schema_definition,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_schema_version_metadata(
@@ -13378,20 +14397,22 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.remove_schema_version_metadata_input.RemoveSchemaVersionMetadataInput = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.remove_schema_version_metadata_input.RemoveSchemaVersionMetadataInput = {
+            "metadata_key_value": metadata_key_value
+        }
         if schema_id is not None:
             input_["schema_id"] = schema_id
         if schema_version_number is not None:
             input_["schema_version_number"] = schema_version_number
         if schema_version_id is not None:
             input_["schema_version_id"] = schema_version_id
-        input_["metadata_key_value"] = metadata_key_value
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_job_bookmark(
@@ -13431,8 +14452,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.reset_job_bookmark_request.ResetJobBookmarkRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
+        input_: capo_glue.types.reset_job_bookmark_request.ResetJobBookmarkRequest = {
+            "job_name": job_name
+        }
         if run_id is not None:
             input_["run_id"] = run_id
 
@@ -13441,6 +14463,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resume_workflow_run(
@@ -13484,16 +14507,18 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.resume_workflow_run_request.ResumeWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["run_id"] = run_id
-        input_["node_ids"] = node_ids
+        input_: capo_glue.types.resume_workflow_run_request.ResumeWorkflowRunRequest = {
+            "name": name,
+            "run_id": run_id,
+            "node_ids": node_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def run_statement(
@@ -13543,9 +14568,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.run_statement_request.RunStatementRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
-        input_["code"] = code
+        input_: capo_glue.types.run_statement_request.RunStatementRequest = {
+            "session_id": session_id,
+            "code": code,
+        }
         if request_origin is not None:
             input_["request_origin"] = request_origin
 
@@ -13554,6 +14580,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_tables(
@@ -13612,7 +14639,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.search_tables_request.SearchTablesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.search_tables_request.SearchTablesRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
         if next_token is not None:
@@ -13635,7 +14662,47 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_search_tables(
+        self,
+        *,
+        config_overrides: Optional[AsyncGlueClientConfig] = None,
+        catalog_id: Optional[
+            "capo_glue.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        next_token: Optional["capo_glue.types.token.Token"] = None,
+        filters: Optional[
+            "capo_glue.types.search_property_predicates.SearchPropertyPredicates"
+        ] = None,
+        search_text: Optional["capo_glue.types.value_string.ValueString"] = None,
+        sort_criteria: Optional["capo_glue.types.sort_criteria.SortCriteria"] = None,
+        max_results: Optional["capo_glue.types.page_size.PageSize"] = None,
+        resource_share_type: Optional[
+            "capo_glue.types.resource_share_type.ResourceShareType"
+        ] = None,
+        include_status_details: Optional[
+            "capo_glue.types.boolean_nullable.BooleanNullable"
+        ] = None,
+    ) -> "AsyncIterator[capo_glue.types.search_tables_response.SearchTablesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.search_tables(
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                next_token=_token,
+                filters=filters,
+                search_text=search_text,
+                sort_criteria=sort_criteria,
+                max_results=max_results,
+                resource_share_type=resource_share_type,
+                include_status_details=include_status_details,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def start_blueprint_run(
         self,
@@ -13680,17 +14747,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_blueprint_run_request.StartBlueprintRunRequest = {}  # type: ignore[typeddict-item]
-        input_["blueprint_name"] = blueprint_name
+        input_: capo_glue.types.start_blueprint_run_request.StartBlueprintRunRequest = {
+            "blueprint_name": blueprint_name,
+            "role_arn": role_arn,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
-        input_["role_arn"] = role_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_column_statistics_task_run(
@@ -13748,12 +14817,13 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_column_statistics_task_run_request.StartColumnStatisticsTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_glue.types.start_column_statistics_task_run_request.StartColumnStatisticsTaskRunRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "role": role,
+        }
         if column_name_list is not None:
             input_["column_name_list"] = column_name_list
-        input_["role"] = role
         if sample_size is not None:
             input_["sample_size"] = sample_size
         if catalog_id is not None:
@@ -13766,6 +14836,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_column_statistics_task_run_schedule(
@@ -13805,15 +14876,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_column_statistics_task_run_schedule_request.StartColumnStatisticsTaskRunScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_glue.types.start_column_statistics_task_run_schedule_request.StartColumnStatisticsTaskRunScheduleRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_crawler(
@@ -13850,14 +14923,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_crawler_request.StartCrawlerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.start_crawler_request.StartCrawlerRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_crawler_schedule(
@@ -13896,14 +14971,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_crawler_schedule_request.StartCrawlerScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["crawler_name"] = crawler_name
+        input_: capo_glue.types.start_crawler_schedule_request.StartCrawlerScheduleRequest = {
+            "crawler_name": crawler_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_data_quality_rule_recommendation_run(
@@ -13957,9 +15034,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_data_quality_rule_recommendation_run_request.StartDataQualityRuleRecommendationRunRequest = {}  # type: ignore[typeddict-item]
-        input_["data_source"] = data_source
-        input_["role"] = role
+        input_: capo_glue.types.start_data_quality_rule_recommendation_run_request.StartDataQualityRuleRecommendationRunRequest = {
+            "data_source": data_source,
+            "role": role,
+        }
         if number_of_workers is not None:
             input_["number_of_workers"] = number_of_workers
         if timeout is not None:
@@ -13978,6 +15056,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_data_quality_ruleset_evaluation_run(
@@ -14036,9 +15115,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_data_quality_ruleset_evaluation_run_request.StartDataQualityRulesetEvaluationRunRequest = {}  # type: ignore[typeddict-item]
-        input_["data_source"] = data_source
-        input_["role"] = role
+        input_: capo_glue.types.start_data_quality_ruleset_evaluation_run_request.StartDataQualityRulesetEvaluationRunRequest = {
+            "data_source": data_source,
+            "role": role,
+            "ruleset_names": ruleset_names,
+        }
         if number_of_workers is not None:
             input_["number_of_workers"] = number_of_workers
         if timeout is not None:
@@ -14047,7 +15128,6 @@ class AsyncGlueClient:
             input_["client_token"] = client_token
         if additional_run_options is not None:
             input_["additional_run_options"] = additional_run_options
-        input_["ruleset_names"] = ruleset_names
         if additional_data_sources is not None:
             input_["additional_data_sources"] = additional_data_sources
 
@@ -14056,6 +15136,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_export_labels_task_run(
@@ -14095,15 +15176,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_export_labels_task_run_request.StartExportLabelsTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["transform_id"] = transform_id
-        input_["output_s3_path"] = output_s3_path
+        input_: capo_glue.types.start_export_labels_task_run_request.StartExportLabelsTaskRunRequest = {
+            "transform_id": transform_id,
+            "output_s3_path": output_s3_path,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_import_labels_task_run(
@@ -14148,9 +15231,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_import_labels_task_run_request.StartImportLabelsTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["transform_id"] = transform_id
-        input_["input_s3_path"] = input_s3_path
+        input_: capo_glue.types.start_import_labels_task_run_request.StartImportLabelsTaskRunRequest = {
+            "transform_id": transform_id,
+            "input_s3_path": input_s3_path,
+        }
         if replace_all_labels is not None:
             input_["replace_all_labels"] = replace_all_labels
 
@@ -14159,6 +15243,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_job_run(
@@ -14236,8 +15321,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_job_run_request.StartJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
+        input_: capo_glue.types.start_job_run_request.StartJobRunRequest = {
+            "job_name": job_name
+        }
         if job_run_queuing_enabled is not None:
             input_["job_run_queuing_enabled"] = job_run_queuing_enabled
         if job_run_id is not None:
@@ -14268,6 +15354,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_materialized_view_refresh_task_run(
@@ -14315,10 +15402,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_materialized_view_refresh_task_run_request.StartMaterializedViewRefreshTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_glue.types.start_materialized_view_refresh_task_run_request.StartMaterializedViewRefreshTaskRunRequest = {
+            "catalog_id": catalog_id,
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if full_refresh is not None:
             input_["full_refresh"] = full_refresh
 
@@ -14327,6 +15415,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_ml_evaluation_task_run(
@@ -14366,14 +15455,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_ml_evaluation_task_run_request.StartMLEvaluationTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["transform_id"] = transform_id
+        input_: capo_glue.types.start_ml_evaluation_task_run_request.StartMLEvaluationTaskRunRequest = {
+            "transform_id": transform_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_ml_labeling_set_generation_task_run(
@@ -14414,15 +15505,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_ml_labeling_set_generation_task_run_request.StartMLLabelingSetGenerationTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["transform_id"] = transform_id
-        input_["output_s3_path"] = output_s3_path
+        input_: capo_glue.types.start_ml_labeling_set_generation_task_run_request.StartMLLabelingSetGenerationTaskRunRequest = {
+            "transform_id": transform_id,
+            "output_s3_path": output_s3_path,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_trigger(
@@ -14462,14 +15555,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_trigger_request.StartTriggerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.start_trigger_request.StartTriggerRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_workflow_run(
@@ -14513,8 +15608,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.start_workflow_run_request.StartWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.start_workflow_run_request.StartWorkflowRunRequest = {
+            "name": name
+        }
         if run_properties is not None:
             input_["run_properties"] = run_properties
 
@@ -14523,6 +15619,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_column_statistics_task_run(
@@ -14562,15 +15659,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.stop_column_statistics_task_run_request.StopColumnStatisticsTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_glue.types.stop_column_statistics_task_run_request.StopColumnStatisticsTaskRunRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_column_statistics_task_run_schedule(
@@ -14609,15 +15708,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.stop_column_statistics_task_run_schedule_request.StopColumnStatisticsTaskRunScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_glue.types.stop_column_statistics_task_run_schedule_request.StopColumnStatisticsTaskRunScheduleRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_crawler(
@@ -14655,14 +15756,14 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.stop_crawler_request.StopCrawlerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.stop_crawler_request.StopCrawlerRequest = {"name": name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_crawler_schedule(
@@ -14700,14 +15801,16 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.stop_crawler_schedule_request.StopCrawlerScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["crawler_name"] = crawler_name
+        input_: capo_glue.types.stop_crawler_schedule_request.StopCrawlerScheduleRequest = {
+            "crawler_name": crawler_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_materialized_view_refresh_task_run(
@@ -14750,16 +15853,18 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.stop_materialized_view_refresh_task_run_request.StopMaterializedViewRefreshTaskRunRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_glue.types.stop_materialized_view_refresh_task_run_request.StopMaterializedViewRefreshTaskRunRequest = {
+            "catalog_id": catalog_id,
+            "database_name": database_name,
+            "table_name": table_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_session(
@@ -14803,8 +15908,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.stop_session_request.StopSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_glue.types.stop_session_request.StopSessionRequest = {"id": id}
         if request_origin is not None:
             input_["request_origin"] = request_origin
 
@@ -14813,6 +15917,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_trigger(
@@ -14851,14 +15956,14 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.stop_trigger_request.StopTriggerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.stop_trigger_request.StopTriggerRequest = {"name": name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_workflow_run(
@@ -14899,15 +16004,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.stop_workflow_run_request.StopWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["run_id"] = run_id
+        input_: capo_glue.types.stop_workflow_run_request.StopWorkflowRunRequest = {
+            "name": name,
+            "run_id": run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -14947,15 +16054,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags_to_add"] = tags_to_add
+        input_: capo_glue.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags_to_add": tags_to_add,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def test_connection(
@@ -15006,7 +16115,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.test_connection_request.TestConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.test_connection_request.TestConnectionRequest = {}
         if connection_name is not None:
             input_["connection_name"] = connection_name
         if catalog_id is not None:
@@ -15019,6 +16128,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -15058,15 +16168,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags_to_remove"] = tags_to_remove
+        input_: capo_glue.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags_to_remove": tags_to_remove,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_blueprint(
@@ -15112,17 +16224,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_blueprint_request.UpdateBlueprintRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.update_blueprint_request.UpdateBlueprintRequest = {
+            "name": name,
+            "blueprint_location": blueprint_location,
+        }
         if description is not None:
             input_["description"] = description
-        input_["blueprint_location"] = blueprint_location
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_catalog(
@@ -15166,15 +16280,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_catalog_request.UpdateCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
-        input_["catalog_input"] = catalog_input
+        input_: capo_glue.types.update_catalog_request.UpdateCatalogRequest = {
+            "catalog_id": catalog_id,
+            "catalog_input": catalog_input,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_classifier(
@@ -15226,7 +16342,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_classifier_request.UpdateClassifierRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_classifier_request.UpdateClassifierRequest = {}
         if grok_classifier is not None:
             input_["grok_classifier"] = grok_classifier
         if xml_classifier is not None:
@@ -15241,6 +16357,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_column_statistics_for_partition(
@@ -15289,19 +16406,21 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_column_statistics_for_partition_request.UpdateColumnStatisticsForPartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_column_statistics_for_partition_request.UpdateColumnStatisticsForPartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partition_values": partition_values,
+            "column_statistics_list": column_statistics_list,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partition_values"] = partition_values
-        input_["column_statistics_list"] = column_statistics_list
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_column_statistics_for_table(
@@ -15348,18 +16467,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_column_statistics_for_table_request.UpdateColumnStatisticsForTableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_column_statistics_for_table_request.UpdateColumnStatisticsForTableRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "column_statistics_list": column_statistics_list,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["column_statistics_list"] = column_statistics_list
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_column_statistics_task_settings(
@@ -15418,9 +16539,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_column_statistics_task_settings_request.UpdateColumnStatisticsTaskSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_glue.types.update_column_statistics_task_settings_request.UpdateColumnStatisticsTaskSettingsRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if role is not None:
             input_["role"] = role
         if schedule is not None:
@@ -15439,6 +16561,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_connection(
@@ -15482,17 +16605,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_connection_request.UpdateConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_connection_request.UpdateConnectionRequest = {
+            "name": name,
+            "connection_input": connection_input,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["name"] = name
-        input_["connection_input"] = connection_input
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_crawler(
@@ -15571,8 +16696,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_crawler_request.UpdateCrawlerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.update_crawler_request.UpdateCrawlerRequest = {
+            "name": name
+        }
         if role is not None:
             input_["role"] = role
         if database_name is not None:
@@ -15605,6 +16731,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_crawler_schedule(
@@ -15647,8 +16774,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_crawler_schedule_request.UpdateCrawlerScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["crawler_name"] = crawler_name
+        input_: capo_glue.types.update_crawler_schedule_request.UpdateCrawlerScheduleRequest = {
+            "crawler_name": crawler_name
+        }
         if schedule is not None:
             input_["schedule"] = schedule
 
@@ -15657,6 +16785,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_database(
@@ -15705,17 +16834,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_database_request.UpdateDatabaseRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_database_request.UpdateDatabaseRequest = {
+            "name": name,
+            "database_input": database_input,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["name"] = name
-        input_["database_input"] = database_input
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_data_quality_ruleset(
@@ -15764,8 +16895,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_data_quality_ruleset_request.UpdateDataQualityRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.update_data_quality_ruleset_request.UpdateDataQualityRulesetRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if ruleset is not None:
@@ -15776,6 +16908,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_dev_endpoint(
@@ -15836,8 +16969,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_dev_endpoint_request.UpdateDevEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_name"] = endpoint_name
+        input_: capo_glue.types.update_dev_endpoint_request.UpdateDevEndpointRequest = {
+            "endpoint_name": endpoint_name
+        }
         if public_key is not None:
             input_["public_key"] = public_key
         if add_public_keys is not None:
@@ -15858,6 +16992,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_glue_identity_center_configuration(
@@ -15903,7 +17038,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_glue_identity_center_configuration_request.UpdateGlueIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_glue_identity_center_configuration_request.UpdateGlueIdentityCenterConfigurationRequest = {}
         if scopes is not None:
             input_["scopes"] = scopes
         if user_background_sessions_enabled is not None:
@@ -15916,6 +17051,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_integration_resource_property(
@@ -15964,8 +17100,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_integration_resource_property_request.UpdateIntegrationResourcePropertyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_glue.types.update_integration_resource_property_request.UpdateIntegrationResourcePropertyRequest = {
+            "resource_arn": resource_arn
+        }
         if source_processing_properties is not None:
             input_["source_processing_properties"] = source_processing_properties
         if target_processing_properties is not None:
@@ -15976,6 +17113,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_integration_table_properties(
@@ -16026,9 +17164,10 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_integration_table_properties_request.UpdateIntegrationTablePropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["table_name"] = table_name
+        input_: capo_glue.types.update_integration_table_properties_request.UpdateIntegrationTablePropertiesRequest = {
+            "resource_arn": resource_arn,
+            "table_name": table_name,
+        }
         if source_table_config is not None:
             input_["source_table_config"] = source_table_config
         if target_table_config is not None:
@@ -16039,6 +17178,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_job(
@@ -16079,15 +17219,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_job_request.UpdateJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
-        input_["job_update"] = job_update
+        input_: capo_glue.types.update_job_request.UpdateJobRequest = {
+            "job_name": job_name,
+            "job_update": job_update,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_job_from_source_control(
@@ -16150,7 +17292,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_job_from_source_control_request.UpdateJobFromSourceControlRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_job_from_source_control_request.UpdateJobFromSourceControlRequest = {}
         if job_name is not None:
             input_["job_name"] = job_name
         if provider is not None:
@@ -16175,6 +17317,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_ml_transform(
@@ -16243,8 +17386,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_ml_transform_request.UpdateMLTransformRequest = {}  # type: ignore[typeddict-item]
-        input_["transform_id"] = transform_id
+        input_: capo_glue.types.update_ml_transform_request.UpdateMLTransformRequest = {
+            "transform_id": transform_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -16271,6 +17415,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_partition(
@@ -16319,19 +17464,21 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_partition_request.UpdatePartitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_partition_request.UpdatePartitionRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "partition_value_list": partition_value_list,
+            "partition_input": partition_input,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["partition_value_list"] = partition_value_list
-        input_["partition_input"] = partition_input
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_registry(
@@ -16372,15 +17519,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_registry_input.UpdateRegistryInput = {}  # type: ignore[typeddict-item]
-        input_["registry_id"] = registry_id
-        input_["description"] = description
+        input_: capo_glue.types.update_registry_input.UpdateRegistryInput = {
+            "registry_id": registry_id,
+            "description": description,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_schema(
@@ -16429,8 +17578,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_schema_input.UpdateSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["schema_id"] = schema_id
+        input_: capo_glue.types.update_schema_input.UpdateSchemaInput = {
+            "schema_id": schema_id
+        }
         if schema_version_number is not None:
             input_["schema_version_number"] = schema_version_number
         if compatibility is not None:
@@ -16443,6 +17593,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_source_control_from_job(
@@ -16505,7 +17656,7 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_source_control_from_job_request.UpdateSourceControlFromJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_source_control_from_job_request.UpdateSourceControlFromJobRequest = {}
         if job_name is not None:
             input_["job_name"] = job_name
         if provider is not None:
@@ -16530,6 +17681,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_table(
@@ -16602,10 +17754,11 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_table_request.UpdateTableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_table_request.UpdateTableRequest = {
+            "database_name": database_name
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
         if name is not None:
             input_["name"] = name
         if table_input is not None:
@@ -16628,6 +17781,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_table_optimizer(
@@ -16676,18 +17830,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_table_optimizer_request.UpdateTableOptimizerRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["type"] = type
-        input_["table_optimizer_configuration"] = table_optimizer_configuration
+        input_: capo_glue.types.update_table_optimizer_request.UpdateTableOptimizerRequest = {
+            "catalog_id": catalog_id,
+            "database_name": database_name,
+            "table_name": table_name,
+            "type": type,
+            "table_optimizer_configuration": table_optimizer_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_trigger(
@@ -16728,15 +17884,17 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_trigger_request.UpdateTriggerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["trigger_update"] = trigger_update
+        input_: capo_glue.types.update_trigger_request.UpdateTriggerRequest = {
+            "name": name,
+            "trigger_update": trigger_update,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_usage_profile(
@@ -16782,17 +17940,19 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_usage_profile_request.UpdateUsageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.update_usage_profile_request.UpdateUsageProfileRequest = {
+            "name": name,
+            "configuration": configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["configuration"] = configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_defined_function(
@@ -16839,18 +17999,20 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_user_defined_function_request.UpdateUserDefinedFunctionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_glue.types.update_user_defined_function_request.UpdateUserDefinedFunctionRequest = {
+            "database_name": database_name,
+            "function_name": function_name,
+            "function_input": function_input,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["function_name"] = function_name
-        input_["function_input"] = function_input
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_workflow(
@@ -16901,8 +18063,9 @@ class AsyncGlueClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_glue.types.update_workflow_request.UpdateWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_glue.types.update_workflow_request.UpdateWorkflowRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if default_run_properties is not None:
@@ -16915,6 +18078,7 @@ class AsyncGlueClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

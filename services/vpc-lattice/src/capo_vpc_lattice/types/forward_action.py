@@ -32,7 +32,7 @@ def serialize_json(value: ForwardAction) -> dict:
 
 def deserialize_json(data: dict) -> ForwardAction:
     out: ForwardAction = {}  # type: ignore[typeddict-item]
-    if "targetGroups" in data:
+    if data.get("targetGroups") is not None:
         import capo_vpc_lattice.types.weighted_target_group_list
 
         out["target_groups"] = (

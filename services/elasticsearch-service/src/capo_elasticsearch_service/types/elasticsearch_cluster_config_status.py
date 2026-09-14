@@ -38,7 +38,7 @@ def serialize_json(value: ElasticsearchClusterConfigStatus) -> dict:
 
 def deserialize_json(data: dict) -> ElasticsearchClusterConfigStatus:
     out: ElasticsearchClusterConfigStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_elasticsearch_service.types.elasticsearch_cluster_config
 
         out["options"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ElasticsearchClusterConfigStatus:
         )
     else:
         raise DeserializationError("ElasticsearchClusterConfigStatus.options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_elasticsearch_service.types.option_status
 
         out["status"] = capo_elasticsearch_service.types.option_status.deserialize_json(

@@ -30,7 +30,7 @@ def serialize_json(value: RefreshConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RefreshConfiguration:
     out: RefreshConfiguration = {}  # type: ignore[typeddict-item]
-    if "IncrementalRefresh" in data:
+    if data.get("IncrementalRefresh") is not None:
         import capo_quicksight.types.incremental_refresh
 
         out["incremental_refresh"] = (

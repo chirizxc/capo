@@ -56,11 +56,11 @@ def serialize_aws_json_1_1(value: UpdateContextRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateContextRequest:
     out: UpdateContextRequest = {}  # type: ignore[typeddict-item]
-    if "ContextName" in data:
+    if data.get("ContextName") is not None:
         out["context_name"] = data["ContextName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker.types.lineage_entity_parameters
 
         out["properties"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateContextRequest:
                 data["Properties"]
             )
         )
-    if "PropertiesToRemove" in data:
+    if data.get("PropertiesToRemove") is not None:
         import capo_sagemaker.types.list_lineage_entity_parameter_key
 
         out["properties_to_remove"] = (

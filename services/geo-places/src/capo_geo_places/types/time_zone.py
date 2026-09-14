@@ -32,13 +32,13 @@ def serialize_json(value: TimeZone) -> dict:
 
 def deserialize_json(data: dict) -> TimeZone:
     out: TimeZone = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("TimeZone.name required")
-    if "Offset" in data:
+    if data.get("Offset") is not None:
         out["offset"] = data["Offset"]
-    if "OffsetSeconds" in data:
+    if data.get("OffsetSeconds") is not None:
         out["offset_seconds"] = data["OffsetSeconds"]
     else:
         out["offset_seconds"] = 0

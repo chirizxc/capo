@@ -54,25 +54,25 @@ def serialize_json(value: UsageCriteria) -> dict:
 
 def deserialize_json(data: dict) -> UsageCriteria:
     out: UsageCriteria = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_guardduty.types.account_ids
 
         out["account_ids"] = capo_guardduty.types.account_ids.deserialize_json(
             data["accountIds"]
         )
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_guardduty.types.data_source_list
 
         out["data_sources"] = capo_guardduty.types.data_source_list.deserialize_json(
             data["dataSources"]
         )
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_guardduty.types.resource_list
 
         out["resources"] = capo_guardduty.types.resource_list.deserialize_json(
             data["resources"]
         )
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_guardduty.types.usage_feature_list
 
         out["features"] = capo_guardduty.types.usage_feature_list.deserialize_json(

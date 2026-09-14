@@ -77,17 +77,17 @@ def serialize_aws_json_1_1(value: CrlConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CrlConfiguration:
     out: CrlConfiguration = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("CrlConfiguration.enabled required")
-    if "ExpirationInDays" in data:
+    if data.get("ExpirationInDays") is not None:
         out["expiration_in_days"] = data["ExpirationInDays"]
-    if "CustomCname" in data:
+    if data.get("CustomCname") is not None:
         out["custom_cname"] = data["CustomCname"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "S3ObjectAcl" in data:
+    if data.get("S3ObjectAcl") is not None:
         import capo_acm_pca.types.s3_object_acl
 
         out["s3_object_acl"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> CrlConfiguration:
                 data["S3ObjectAcl"]
             )
         )
-    if "CrlDistributionPointExtensionConfiguration" in data:
+    if data.get("CrlDistributionPointExtensionConfiguration") is not None:
         import capo_acm_pca.types.crl_distribution_point_extension_configuration
 
         out["crl_distribution_point_extension_configuration"] = (
@@ -103,12 +103,12 @@ def deserialize_aws_json_1_1(data: dict) -> CrlConfiguration:
                 data["CrlDistributionPointExtensionConfiguration"]
             )
         )
-    if "CrlType" in data:
+    if data.get("CrlType") is not None:
         import capo_acm_pca.types.crl_type
 
         out["crl_type"] = capo_acm_pca.types.crl_type.deserialize_aws_json_1_1(
             data["CrlType"]
         )
-    if "CustomPath" in data:
+    if data.get("CustomPath") is not None:
         out["custom_path"] = data["CustomPath"]
     return out

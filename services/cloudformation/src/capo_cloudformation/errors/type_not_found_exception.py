@@ -38,15 +38,18 @@ class TypeNotFoundException(ServiceError):
 
     code: str | None = "TypeNotFoundException"
 
-    def __init__(self, data: TypeNotFoundException_):
+    def __init__(self, data: TypeNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TypeNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TypeNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TypeNotFoundException":
+        return cls(deserialize_query(el), message)

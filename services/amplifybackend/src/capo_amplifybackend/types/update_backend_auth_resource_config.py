@@ -64,7 +64,7 @@ def serialize_json(value: UpdateBackendAuthResourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBackendAuthResourceConfig:
     out: UpdateBackendAuthResourceConfig = {}  # type: ignore[typeddict-item]
-    if "authResources" in data:
+    if data.get("authResources") is not None:
         import capo_amplifybackend.types.auth_resources
 
         out["auth_resources"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> UpdateBackendAuthResourceConfig:
                 data["authResources"]
             )
         )
-    if "identityPoolConfigs" in data:
+    if data.get("identityPoolConfigs") is not None:
         import capo_amplifybackend.types.update_backend_auth_identity_pool_config
 
         out["identity_pool_configs"] = (
@@ -80,13 +80,13 @@ def deserialize_json(data: dict) -> UpdateBackendAuthResourceConfig:
                 data["identityPoolConfigs"]
             )
         )
-    if "service" in data:
+    if data.get("service") is not None:
         import capo_amplifybackend.types.service
 
         out["service"] = capo_amplifybackend.types.service.deserialize_json(
             data["service"]
         )
-    if "userPoolConfigs" in data:
+    if data.get("userPoolConfigs") is not None:
         import capo_amplifybackend.types.update_backend_auth_user_pool_config
 
         out["user_pool_configs"] = (

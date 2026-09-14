@@ -42,11 +42,11 @@ def serialize_json(value: GetResourcePolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetResourcePolicyResponse:
     out: GetResourcePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("GetResourcePolicyResponse.resource_arn required")
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_mpa.types.policy_type
 
         out["policy_type"] = capo_mpa.types.policy_type.deserialize_json(
@@ -54,13 +54,13 @@ def deserialize_json(data: dict) -> GetResourcePolicyResponse:
         )
     else:
         raise DeserializationError("GetResourcePolicyResponse.policy_type required")
-    if "PolicyVersionArn" in data:
+    if data.get("PolicyVersionArn") is not None:
         out["policy_version_arn"] = data["PolicyVersionArn"]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
     else:
         raise DeserializationError("GetResourcePolicyResponse.policy_name required")
-    if "PolicyDocument" in data:
+    if data.get("PolicyDocument") is not None:
         out["policy_document"] = data["PolicyDocument"]
     else:
         raise DeserializationError("GetResourcePolicyResponse.policy_document required")

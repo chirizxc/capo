@@ -116,13 +116,13 @@ def serialize_json(value: AppInstanceUserEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> AppInstanceUserEndpoint:
     out: AppInstanceUserEndpoint = {}  # type: ignore[typeddict-item]
-    if "AppInstanceUserArn" in data:
+    if data.get("AppInstanceUserArn") is not None:
         out["app_instance_user_arn"] = data["AppInstanceUserArn"]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_identity.types.app_instance_user_endpoint_type
 
         out["type"] = (
@@ -130,9 +130,9 @@ def deserialize_json(data: dict) -> AppInstanceUserEndpoint:
                 data["Type"]
             )
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "EndpointAttributes" in data:
+    if data.get("EndpointAttributes") is not None:
         import capo_chime_sdk_identity.types.endpoint_attributes
 
         out["endpoint_attributes"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> AppInstanceUserEndpoint:
                 data["EndpointAttributes"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_identity.types.timestamp
 
         out["created_timestamp"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> AppInstanceUserEndpoint:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_chime_sdk_identity.types.timestamp
 
         out["last_updated_timestamp"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> AppInstanceUserEndpoint:
                 data["LastUpdatedTimestamp"]
             )
         )
-    if "AllowMessages" in data:
+    if data.get("AllowMessages") is not None:
         import capo_chime_sdk_identity.types.allow_messages
 
         out["allow_messages"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> AppInstanceUserEndpoint:
                 data["AllowMessages"]
             )
         )
-    if "EndpointState" in data:
+    if data.get("EndpointState") is not None:
         import capo_chime_sdk_identity.types.endpoint_state
 
         out["endpoint_state"] = (

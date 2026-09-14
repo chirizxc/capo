@@ -102,17 +102,17 @@ def serialize_json(value: MediaInsightsPipelineConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MediaInsightsPipelineConfiguration:
     out: MediaInsightsPipelineConfiguration = {}  # type: ignore[typeddict-item]
-    if "MediaInsightsPipelineConfigurationName" in data:
+    if data.get("MediaInsightsPipelineConfigurationName") is not None:
         out["media_insights_pipeline_configuration_name"] = data[
             "MediaInsightsPipelineConfigurationName"
         ]
-    if "MediaInsightsPipelineConfigurationArn" in data:
+    if data.get("MediaInsightsPipelineConfigurationArn") is not None:
         out["media_insights_pipeline_configuration_arn"] = data[
             "MediaInsightsPipelineConfigurationArn"
         ]
-    if "ResourceAccessRoleArn" in data:
+    if data.get("ResourceAccessRoleArn") is not None:
         out["resource_access_role_arn"] = data["ResourceAccessRoleArn"]
-    if "RealTimeAlertConfiguration" in data:
+    if data.get("RealTimeAlertConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.real_time_alert_configuration
 
         out["real_time_alert_configuration"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfiguration:
                 data["RealTimeAlertConfiguration"]
             )
         )
-    if "Elements" in data:
+    if data.get("Elements") is not None:
         import capo_chime_sdk_media_pipelines.types.media_insights_pipeline_configuration_elements
 
         out["elements"] = (
@@ -128,11 +128,11 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfiguration:
                 data["Elements"]
             )
         )
-    if "MediaInsightsPipelineConfigurationId" in data:
+    if data.get("MediaInsightsPipelineConfigurationId") is not None:
         out["media_insights_pipeline_configuration_id"] = data[
             "MediaInsightsPipelineConfigurationId"
         ]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfiguration:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["updated_timestamp"] = (

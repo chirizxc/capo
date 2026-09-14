@@ -24,7 +24,7 @@ def serialize_json(value: InvalidParameterCombinationException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidParameterCombinationException_:
     out: InvalidParameterCombinationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class InvalidParameterCombinationException(ServiceError):
 
     code: str | None = "InvalidParameterCombinationException"
 
-    def __init__(self, data: InvalidParameterCombinationException_):
+    def __init__(
+        self, data: InvalidParameterCombinationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidParameterCombinationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidParameterCombinationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidParameterCombinationException":
+        return cls(deserialize_json(data), message)

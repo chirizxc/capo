@@ -38,20 +38,20 @@ def serialize_aws_json_1_1(value: CreateSnapshotCopyConfigurationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSnapshotCopyConfigurationRequest:
     out: CreateSnapshotCopyConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError(
             "CreateSnapshotCopyConfigurationRequest.namespace_name required"
         )
-    if "destinationRegion" in data:
+    if data.get("destinationRegion") is not None:
         out["destination_region"] = data["destinationRegion"]
     else:
         raise DeserializationError(
             "CreateSnapshotCopyConfigurationRequest.destination_region required"
         )
-    if "snapshotRetentionPeriod" in data:
+    if data.get("snapshotRetentionPeriod") is not None:
         out["snapshot_retention_period"] = data["snapshotRetentionPeriod"]
-    if "destinationKmsKeyId" in data:
+    if data.get("destinationKmsKeyId") is not None:
         out["destination_kms_key_id"] = data["destinationKmsKeyId"]
     return out

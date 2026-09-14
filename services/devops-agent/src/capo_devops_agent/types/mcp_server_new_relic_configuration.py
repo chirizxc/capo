@@ -22,11 +22,11 @@ def serialize_json(value: MCPServerNewRelicConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MCPServerNewRelicConfiguration:
     out: MCPServerNewRelicConfiguration = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("MCPServerNewRelicConfiguration.account_id required")
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError("MCPServerNewRelicConfiguration.endpoint required")

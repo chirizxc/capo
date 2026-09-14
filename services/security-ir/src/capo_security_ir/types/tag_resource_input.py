@@ -29,7 +29,7 @@ def serialize_json(value: TagResourceInput) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceInput:
     out: TagResourceInput = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_security_ir.types.tag_map
 
         out["tags"] = capo_security_ir.types.tag_map.deserialize_json(data["tags"])

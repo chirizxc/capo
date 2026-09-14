@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DescribeJobFlowsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeJobFlowsOutput:
     out: DescribeJobFlowsOutput = {}  # type: ignore[typeddict-item]
-    if "JobFlows" in data:
+    if data.get("JobFlows") is not None:
         import capo_emr.types.job_flow_detail_list
 
         out["job_flows"] = capo_emr.types.job_flow_detail_list.deserialize_aws_json_1_1(

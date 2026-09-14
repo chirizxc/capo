@@ -43,9 +43,9 @@ def serialize_json(value: ReplicationStatusSummary) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationStatusSummary:
     out: ReplicationStatusSummary = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "ReplicationStatus" in data:
+    if data.get("ReplicationStatus") is not None:
         import capo_connect.types.instance_replication_status
 
         out["replication_status"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> ReplicationStatusSummary:
                 data["ReplicationStatus"]
             )
         )
-    if "ReplicationStatusReason" in data:
+    if data.get("ReplicationStatusReason") is not None:
         out["replication_status_reason"] = data["ReplicationStatusReason"]
     return out

@@ -34,9 +34,9 @@ def serialize_json(value: UpdateRebalancingRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRebalancingRequest:
     out: UpdateRebalancingRequest = {}  # type: ignore[typeddict-item]
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "rebalancing" in data:
+    if data.get("rebalancing") is not None:
         import capo_kafka.types.rebalancing
 
         out["rebalancing"] = capo_kafka.types.rebalancing.deserialize_json(

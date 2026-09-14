@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: DescribeGameSessionQueuesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeGameSessionQueuesInput:
     out: DescribeGameSessionQueuesInput = {}  # type: ignore[typeddict-item]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_gamelift.types.game_session_queue_name_or_arn_list
 
         out["names"] = (
@@ -51,8 +51,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeGameSessionQueuesInput:
                 data["Names"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

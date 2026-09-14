@@ -64,26 +64,26 @@ def serialize_aws_json_1_1(value: TestCase) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestCase:
     out: TestCase = {}  # type: ignore[typeddict-item]
-    if "reportArn" in data:
+    if data.get("reportArn") is not None:
         out["report_arn"] = data["reportArn"]
-    if "testRawDataPath" in data:
+    if data.get("testRawDataPath") is not None:
         out["test_raw_data_path"] = data["testRawDataPath"]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "durationInNanoSeconds" in data:
+    if data.get("durationInNanoSeconds") is not None:
         out["duration_in_nano_seconds"] = data["durationInNanoSeconds"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "expired" in data:
+    if data.get("expired") is not None:
         import capo_codebuild.types.timestamp
 
         out["expired"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["expired"]
         )
-    if "testSuiteName" in data:
+    if data.get("testSuiteName") is not None:
         out["test_suite_name"] = data["testSuiteName"]
     return out

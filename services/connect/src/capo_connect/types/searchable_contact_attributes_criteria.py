@@ -34,11 +34,11 @@ def serialize_json(value: SearchableContactAttributesCriteria) -> dict:
 
 def deserialize_json(data: dict) -> SearchableContactAttributesCriteria:
     out: SearchableContactAttributesCriteria = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("SearchableContactAttributesCriteria.key required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.searchable_contact_attribute_value_list
 
         out["values"] = (

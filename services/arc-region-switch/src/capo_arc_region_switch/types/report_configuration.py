@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: ReportConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReportConfiguration:
     out: ReportConfiguration = {}  # type: ignore[typeddict-item]
-    if "reportOutput" in data:
+    if data.get("reportOutput") is not None:
         import capo_arc_region_switch.types.report_output_list
 
         out["report_output"] = (

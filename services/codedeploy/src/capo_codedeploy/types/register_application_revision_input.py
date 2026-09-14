@@ -37,15 +37,15 @@ def serialize_aws_json_1_1(value: RegisterApplicationRevisionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterApplicationRevisionInput:
     out: RegisterApplicationRevisionInput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
     else:
         raise DeserializationError(
             "RegisterApplicationRevisionInput.application_name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         import capo_codedeploy.types.revision_location
 
         out["revision"] = (

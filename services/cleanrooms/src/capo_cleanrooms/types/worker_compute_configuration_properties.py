@@ -36,7 +36,7 @@ def serialize_json(value: WorkerComputeConfigurationProperties) -> dict:
 
 
 def deserialize_json(data: dict) -> WorkerComputeConfigurationProperties:
-    if "spark" in data:
+    if data.get("spark") is not None:
         import capo_cleanrooms.types.spark_properties
 
         return {

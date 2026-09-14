@@ -33,14 +33,14 @@ def serialize_json(value: DeletePolicyStatementOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeletePolicyStatementOutput:
     out: DeletePolicyStatementOutput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeletePolicyStatementOutput.arn required")
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
     else:
         raise DeserializationError("DeletePolicyStatementOutput.token required")
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: ScraperStatus) -> dict:
 
 def deserialize_json(data: dict) -> ScraperStatus:
     out: ScraperStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
     else:
         raise DeserializationError("ScraperStatus.status_code required")

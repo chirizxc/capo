@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AccessControls:
 
     out: AccessControls = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.access_control.deserialize_json(item))
     return out

@@ -105,11 +105,11 @@ def serialize_json(value: CreateAssetModelRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetModelRequest:
     out: CreateAssetModelRequest = {}  # type: ignore[typeddict-item]
-    if "assetModelName" in data:
+    if data.get("assetModelName") is not None:
         out["asset_model_name"] = data["assetModelName"]
     else:
         raise DeserializationError("CreateAssetModelRequest.asset_model_name required")
-    if "assetModelType" in data:
+    if data.get("assetModelType") is not None:
         import capo_iotsitewise.types.asset_model_type
 
         out["asset_model_type"] = (
@@ -117,13 +117,13 @@ def deserialize_json(data: dict) -> CreateAssetModelRequest:
                 data["assetModelType"]
             )
         )
-    if "assetModelId" in data:
+    if data.get("assetModelId") is not None:
         out["asset_model_id"] = data["assetModelId"]
-    if "assetModelExternalId" in data:
+    if data.get("assetModelExternalId") is not None:
         out["asset_model_external_id"] = data["assetModelExternalId"]
-    if "assetModelDescription" in data:
+    if data.get("assetModelDescription") is not None:
         out["asset_model_description"] = data["assetModelDescription"]
-    if "assetModelProperties" in data:
+    if data.get("assetModelProperties") is not None:
         import capo_iotsitewise.types.asset_model_property_definitions
 
         out["asset_model_properties"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> CreateAssetModelRequest:
                 data["assetModelProperties"]
             )
         )
-    if "assetModelHierarchies" in data:
+    if data.get("assetModelHierarchies") is not None:
         import capo_iotsitewise.types.asset_model_hierarchy_definitions
 
         out["asset_model_hierarchies"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> CreateAssetModelRequest:
                 data["assetModelHierarchies"]
             )
         )
-    if "assetModelCompositeModels" in data:
+    if data.get("assetModelCompositeModels") is not None:
         import capo_iotsitewise.types.asset_model_composite_model_definitions
 
         out["asset_model_composite_models"] = (
@@ -147,9 +147,9 @@ def deserialize_json(data: dict) -> CreateAssetModelRequest:
                 data["assetModelCompositeModels"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotsitewise.types.tag_map
 
         out["tags"] = capo_iotsitewise.types.tag_map.deserialize_json(data["tags"])

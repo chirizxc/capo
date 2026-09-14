@@ -32,7 +32,7 @@ def serialize_json(value: RetryCriteria) -> dict:
 
 def deserialize_json(data: dict) -> RetryCriteria:
     out: RetryCriteria = {}  # type: ignore[typeddict-item]
-    if "failureType" in data:
+    if data.get("failureType") is not None:
         import capo_iot.types.retryable_failure_type
 
         out["failure_type"] = capo_iot.types.retryable_failure_type.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> RetryCriteria:
         )
     else:
         raise DeserializationError("RetryCriteria.failure_type required")
-    if "numberOfRetries" in data:
+    if data.get("numberOfRetries") is not None:
         out["number_of_retries"] = data["numberOfRetries"]
     else:
         raise DeserializationError("RetryCriteria.number_of_retries required")

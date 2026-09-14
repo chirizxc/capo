@@ -30,12 +30,12 @@ def serialize_json(value: ServiceAchievabilityUpdatedMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ServiceAchievabilityUpdatedMetadata:
     out: ServiceAchievabilityUpdatedMetadata = {}  # type: ignore[typeddict-item]
-    if "assessmentId" in data:
+    if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
-    if "availabilitySlo" in data:
+    if data.get("availabilitySlo") is not None:
         out["availability_slo"] = data["availabilitySlo"]
-    if "multiAzRtoRpo" in data:
+    if data.get("multiAzRtoRpo") is not None:
         out["multi_az_rto_rpo"] = data["multiAzRtoRpo"]
-    if "multiRegionRtoRpo" in data:
+    if data.get("multiRegionRtoRpo") is not None:
         out["multi_region_rto_rpo"] = data["multiRegionRtoRpo"]
     return out

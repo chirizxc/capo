@@ -22,8 +22,8 @@ def serialize_aws_json_1_1(value: ResourcePolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourcePolicy:
     out: ResourcePolicy = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     return out

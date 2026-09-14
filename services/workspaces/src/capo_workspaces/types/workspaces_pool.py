@@ -122,15 +122,15 @@ def serialize_aws_json_1_1(value: WorkspacesPool) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspacesPool:
     out: WorkspacesPool = {}  # type: ignore[typeddict-item]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
     else:
         raise DeserializationError("WorkspacesPool.pool_id required")
-    if "PoolArn" in data:
+    if data.get("PoolArn") is not None:
         out["pool_arn"] = data["PoolArn"]
     else:
         raise DeserializationError("WorkspacesPool.pool_arn required")
-    if "CapacityStatus" in data:
+    if data.get("CapacityStatus") is not None:
         import capo_workspaces.types.capacity_status
 
         out["capacity_status"] = (
@@ -140,13 +140,13 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspacesPool:
         )
     else:
         raise DeserializationError("WorkspacesPool.capacity_status required")
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
     else:
         raise DeserializationError("WorkspacesPool.pool_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.workspaces_pool_state
 
         out["state"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspacesPool:
         )
     else:
         raise DeserializationError("WorkspacesPool.state required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_workspaces.types.timestamp
 
         out["created_at"] = capo_workspaces.types.timestamp.deserialize_aws_json_1_1(
@@ -164,15 +164,15 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspacesPool:
         )
     else:
         raise DeserializationError("WorkspacesPool.created_at required")
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
     else:
         raise DeserializationError("WorkspacesPool.bundle_id required")
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("WorkspacesPool.directory_id required")
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_workspaces.types.workspaces_pool_errors
 
         out["errors"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspacesPool:
                 data["Errors"]
             )
         )
-    if "ApplicationSettings" in data:
+    if data.get("ApplicationSettings") is not None:
         import capo_workspaces.types.application_settings_response
 
         out["application_settings"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspacesPool:
                 data["ApplicationSettings"]
             )
         )
-    if "TimeoutSettings" in data:
+    if data.get("TimeoutSettings") is not None:
         import capo_workspaces.types.timeout_settings
 
         out["timeout_settings"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspacesPool:
                 data["TimeoutSettings"]
             )
         )
-    if "RunningMode" in data:
+    if data.get("RunningMode") is not None:
         import capo_workspaces.types.pools_running_mode
 
         out["running_mode"] = (

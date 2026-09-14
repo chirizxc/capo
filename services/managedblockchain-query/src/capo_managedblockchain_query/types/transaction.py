@@ -102,19 +102,19 @@ def serialize_json(value: Transaction) -> dict:
 
 def deserialize_json(data: dict) -> Transaction:
     out: Transaction = {}  # type: ignore[typeddict-item]
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
     else:
         raise DeserializationError("Transaction.network required")
-    if "blockHash" in data:
+    if data.get("blockHash") is not None:
         out["block_hash"] = data["blockHash"]
-    if "transactionHash" in data:
+    if data.get("transactionHash") is not None:
         out["transaction_hash"] = data["transactionHash"]
     else:
         raise DeserializationError("Transaction.transaction_hash required")
-    if "blockNumber" in data:
+    if data.get("blockNumber") is not None:
         out["block_number"] = data["blockNumber"]
-    if "transactionTimestamp" in data:
+    if data.get("transactionTimestamp") is not None:
         import capo_managedblockchain_query.types._prelude.timestamp
 
         out["transaction_timestamp"] = (
@@ -124,40 +124,40 @@ def deserialize_json(data: dict) -> Transaction:
         )
     else:
         raise DeserializationError("Transaction.transaction_timestamp required")
-    if "transactionIndex" in data:
+    if data.get("transactionIndex") is not None:
         out["transaction_index"] = data["transactionIndex"]
     else:
         raise DeserializationError("Transaction.transaction_index required")
-    if "numberOfTransactions" in data:
+    if data.get("numberOfTransactions") is not None:
         out["number_of_transactions"] = data["numberOfTransactions"]
     else:
         raise DeserializationError("Transaction.number_of_transactions required")
-    if "to" in data:
+    if data.get("to") is not None:
         out["to"] = data["to"]
     else:
         raise DeserializationError("Transaction.to required")
-    if "from" in data:
+    if data.get("from") is not None:
         out["from"] = data["from"]
-    if "contractAddress" in data:
+    if data.get("contractAddress") is not None:
         out["contract_address"] = data["contractAddress"]
-    if "gasUsed" in data:
+    if data.get("gasUsed") is not None:
         out["gas_used"] = data["gasUsed"]
-    if "cumulativeGasUsed" in data:
+    if data.get("cumulativeGasUsed") is not None:
         out["cumulative_gas_used"] = data["cumulativeGasUsed"]
-    if "effectiveGasPrice" in data:
+    if data.get("effectiveGasPrice") is not None:
         out["effective_gas_price"] = data["effectiveGasPrice"]
-    if "signatureV" in data:
+    if data.get("signatureV") is not None:
         out["signature_v"] = data["signatureV"]
-    if "signatureR" in data:
+    if data.get("signatureR") is not None:
         out["signature_r"] = data["signatureR"]
-    if "signatureS" in data:
+    if data.get("signatureS") is not None:
         out["signature_s"] = data["signatureS"]
-    if "transactionFee" in data:
+    if data.get("transactionFee") is not None:
         out["transaction_fee"] = data["transactionFee"]
-    if "transactionId" in data:
+    if data.get("transactionId") is not None:
         out["transaction_id"] = data["transactionId"]
-    if "confirmationStatus" in data:
+    if data.get("confirmationStatus") is not None:
         out["confirmation_status"] = data["confirmationStatus"]
-    if "executionStatus" in data:
+    if data.get("executionStatus") is not None:
         out["execution_status"] = data["executionStatus"]
     return out

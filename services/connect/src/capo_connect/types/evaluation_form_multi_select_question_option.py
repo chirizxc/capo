@@ -28,13 +28,13 @@ def serialize_json(value: EvaluationFormMultiSelectQuestionOption) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormMultiSelectQuestionOption:
     out: EvaluationFormMultiSelectQuestionOption = {}  # type: ignore[typeddict-item]
-    if "RefId" in data:
+    if data.get("RefId") is not None:
         out["ref_id"] = data["RefId"]
     else:
         raise DeserializationError(
             "EvaluationFormMultiSelectQuestionOption.ref_id required"
         )
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError(

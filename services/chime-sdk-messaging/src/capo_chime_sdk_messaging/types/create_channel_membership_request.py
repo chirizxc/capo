@@ -43,11 +43,11 @@ def serialize_json(value: CreateChannelMembershipRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelMembershipRequest:
     out: CreateChannelMembershipRequest = {}  # type: ignore[typeddict-item]
-    if "MemberArn" in data:
+    if data.get("MemberArn") is not None:
         out["member_arn"] = data["MemberArn"]
     else:
         raise DeserializationError("CreateChannelMembershipRequest.member_arn required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_messaging.types.channel_membership_type
 
         out["type"] = (
@@ -57,6 +57,6 @@ def deserialize_json(data: dict) -> CreateChannelMembershipRequest:
         )
     else:
         raise DeserializationError("CreateChannelMembershipRequest.type required")
-    if "SubChannelId" in data:
+    if data.get("SubChannelId") is not None:
         out["sub_channel_id"] = data["SubChannelId"]
     return out

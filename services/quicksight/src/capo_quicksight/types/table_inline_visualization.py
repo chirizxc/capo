@@ -38,13 +38,13 @@ def serialize_json(value: TableInlineVisualization) -> dict:
 
 def deserialize_json(data: dict) -> TableInlineVisualization:
     out: TableInlineVisualization = {}  # type: ignore[typeddict-item]
-    if "DataBars" in data:
+    if data.get("DataBars") is not None:
         import capo_quicksight.types.data_bars_options
 
         out["data_bars"] = capo_quicksight.types.data_bars_options.deserialize_json(
             data["DataBars"]
         )
-    if "Sparklines" in data:
+    if data.get("Sparklines") is not None:
         import capo_quicksight.types.sparklines_options
 
         out["sparklines"] = capo_quicksight.types.sparklines_options.deserialize_json(

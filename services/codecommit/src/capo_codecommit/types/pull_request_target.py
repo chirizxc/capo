@@ -58,19 +58,19 @@ def serialize_aws_json_1_1(value: PullRequestTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PullRequestTarget:
     out: PullRequestTarget = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "sourceReference" in data:
+    if data.get("sourceReference") is not None:
         out["source_reference"] = data["sourceReference"]
-    if "destinationReference" in data:
+    if data.get("destinationReference") is not None:
         out["destination_reference"] = data["destinationReference"]
-    if "destinationCommit" in data:
+    if data.get("destinationCommit") is not None:
         out["destination_commit"] = data["destinationCommit"]
-    if "sourceCommit" in data:
+    if data.get("sourceCommit") is not None:
         out["source_commit"] = data["sourceCommit"]
-    if "mergeBase" in data:
+    if data.get("mergeBase") is not None:
         out["merge_base"] = data["mergeBase"]
-    if "mergeMetadata" in data:
+    if data.get("mergeMetadata") is not None:
         import capo_codecommit.types.merge_metadata
 
         out["merge_metadata"] = (

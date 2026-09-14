@@ -92,31 +92,31 @@ def serialize_json(value: CreateClusterInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateClusterInput:
     out: CreateClusterInput = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
     else:
         raise DeserializationError("CreateClusterInput.cluster_name required")
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
     else:
         raise DeserializationError("CreateClusterInput.auth_type required")
-    if "adminUserName" in data:
+    if data.get("adminUserName") is not None:
         out["admin_user_name"] = data["adminUserName"]
     else:
         raise DeserializationError("CreateClusterInput.admin_user_name required")
-    if "adminUserPassword" in data:
+    if data.get("adminUserPassword") is not None:
         out["admin_user_password"] = data["adminUserPassword"]
     else:
         raise DeserializationError("CreateClusterInput.admin_user_password required")
-    if "shardCapacity" in data:
+    if data.get("shardCapacity") is not None:
         out["shard_capacity"] = data["shardCapacity"]
     else:
         raise DeserializationError("CreateClusterInput.shard_capacity required")
-    if "shardCount" in data:
+    if data.get("shardCount") is not None:
         out["shard_count"] = data["shardCount"]
     else:
         raise DeserializationError("CreateClusterInput.shard_count required")
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_docdb_elastic.types.string_list
 
         out["vpc_security_group_ids"] = (
@@ -124,26 +124,26 @@ def deserialize_json(data: dict) -> CreateClusterInput:
                 data["vpcSecurityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_docdb_elastic.types.string_list
 
         out["subnet_ids"] = capo_docdb_elastic.types.string_list.deserialize_json(
             data["subnetIds"]
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "preferredMaintenanceWindow" in data:
+    if data.get("preferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["preferredMaintenanceWindow"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_docdb_elastic.types.tag_map
 
         out["tags"] = capo_docdb_elastic.types.tag_map.deserialize_json(data["tags"])
-    if "backupRetentionPeriod" in data:
+    if data.get("backupRetentionPeriod") is not None:
         out["backup_retention_period"] = data["backupRetentionPeriod"]
-    if "preferredBackupWindow" in data:
+    if data.get("preferredBackupWindow") is not None:
         out["preferred_backup_window"] = data["preferredBackupWindow"]
-    if "shardInstanceCount" in data:
+    if data.get("shardInstanceCount") is not None:
         out["shard_instance_count"] = data["shardInstanceCount"]
     return out

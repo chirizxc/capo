@@ -57,7 +57,7 @@ def serialize_json(value: PushConfig) -> dict:
 
 def deserialize_json(data: dict) -> PushConfig:
     out: PushConfig = {}  # type: ignore[typeddict-item]
-    if "AbortConfig" in data:
+    if data.get("AbortConfig") is not None:
         import capo_iot_managed_integrations.types.ota_task_abort_config
 
         out["abort_config"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> PushConfig:
                 data["AbortConfig"]
             )
         )
-    if "RolloutConfig" in data:
+    if data.get("RolloutConfig") is not None:
         import capo_iot_managed_integrations.types.ota_task_execution_rollout_config
 
         out["rollout_config"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> PushConfig:
                 data["RolloutConfig"]
             )
         )
-    if "TimeoutConfig" in data:
+    if data.get("TimeoutConfig") is not None:
         import capo_iot_managed_integrations.types.ota_task_timeout_config
 
         out["timeout_config"] = (

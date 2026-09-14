@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NetworkInfoList:
 
     out: NetworkInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_migrationhubstrategy.types.network_info.deserialize_json(item))
     return out

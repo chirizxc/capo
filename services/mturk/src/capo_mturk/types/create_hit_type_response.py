@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateHITTypeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHITTypeResponse:
     out: CreateHITTypeResponse = {}  # type: ignore[typeddict-item]
-    if "HITTypeId" in data:
+    if data.get("HITTypeId") is not None:
         out["hit_type_id"] = data["HITTypeId"]
     return out

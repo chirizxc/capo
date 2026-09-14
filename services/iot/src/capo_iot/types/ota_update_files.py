@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> OTAUpdateFiles:
 
     out: OTAUpdateFiles = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.ota_update_file.deserialize_json(item))
     return out

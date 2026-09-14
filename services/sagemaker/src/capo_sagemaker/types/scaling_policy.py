@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ScalingPolicy) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingPolicy:
-    if "TargetTracking" in data:
+    if data.get("TargetTracking") is not None:
         import capo_sagemaker.types.target_tracking_scaling_policy_configuration
 
         return {

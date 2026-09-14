@@ -58,24 +58,24 @@ def serialize_json(value: UploadSettings) -> dict:
 
 def deserialize_json(data: dict) -> UploadSettings:
     out: UploadSettings = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_quicksight.types.file_format
 
         out["format"] = capo_quicksight.types.file_format.deserialize_json(
             data["Format"]
         )
-    if "StartFromRow" in data:
+    if data.get("StartFromRow") is not None:
         out["start_from_row"] = data["StartFromRow"]
-    if "ContainsHeader" in data:
+    if data.get("ContainsHeader") is not None:
         out["contains_header"] = data["ContainsHeader"]
-    if "TextQualifier" in data:
+    if data.get("TextQualifier") is not None:
         import capo_quicksight.types.text_qualifier
 
         out["text_qualifier"] = capo_quicksight.types.text_qualifier.deserialize_json(
             data["TextQualifier"]
         )
-    if "Delimiter" in data:
+    if data.get("Delimiter") is not None:
         out["delimiter"] = data["Delimiter"]
-    if "CustomCellAddressRange" in data:
+    if data.get("CustomCellAddressRange") is not None:
         out["custom_cell_address_range"] = data["CustomCellAddressRange"]
     return out

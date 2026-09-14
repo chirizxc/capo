@@ -45,15 +45,15 @@ def serialize_json(value: TextEvent) -> dict:
 
 def deserialize_json(data: dict) -> TextEvent:
     out: TextEvent = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("TextEvent.text required")
-    if "TextType" in data:
+    if data.get("TextType") is not None:
         import capo_polly.types.text_type
 
         out["text_type"] = capo_polly.types.text_type.deserialize_json(data["TextType"])
-    if "FlushStreamConfiguration" in data:
+    if data.get("FlushStreamConfiguration") is not None:
         import capo_polly.types.flush_stream_configuration
 
         out["flush_stream_configuration"] = (

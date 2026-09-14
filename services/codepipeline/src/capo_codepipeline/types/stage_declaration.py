@@ -86,11 +86,11 @@ def serialize_aws_json_1_1(value: StageDeclaration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StageDeclaration:
     out: StageDeclaration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StageDeclaration.name required")
-    if "blockers" in data:
+    if data.get("blockers") is not None:
         import capo_codepipeline.types.stage_blocker_declaration_list
 
         out["blockers"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageDeclaration:
                 data["blockers"]
             )
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_codepipeline.types.stage_action_declaration_list
 
         out["actions"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageDeclaration:
         )
     else:
         raise DeserializationError("StageDeclaration.actions required")
-    if "onFailure" in data:
+    if data.get("onFailure") is not None:
         import capo_codepipeline.types.failure_conditions
 
         out["on_failure"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageDeclaration:
                 data["onFailure"]
             )
         )
-    if "onSuccess" in data:
+    if data.get("onSuccess") is not None:
         import capo_codepipeline.types.success_conditions
 
         out["on_success"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageDeclaration:
                 data["onSuccess"]
             )
         )
-    if "beforeEntry" in data:
+    if data.get("beforeEntry") is not None:
         import capo_codepipeline.types.before_entry_conditions
 
         out["before_entry"] = (

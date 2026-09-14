@@ -120,7 +120,7 @@ def serialize_aws_json_1_0(value: RegistrationVersionStatusHistory) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionStatusHistory:
     out: RegistrationVersionStatusHistory = {}  # type: ignore[typeddict-item]
-    if "DraftTimestamp" in data:
+    if data.get("DraftTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["draft_timestamp"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionStatusHistory:
         raise DeserializationError(
             "RegistrationVersionStatusHistory.draft_timestamp required"
         )
-    if "SubmittedTimestamp" in data:
+    if data.get("SubmittedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["submitted_timestamp"] = (
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionStatusHistory:
                 data["SubmittedTimestamp"]
             )
         )
-    if "AwsReviewingTimestamp" in data:
+    if data.get("AwsReviewingTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["aws_reviewing_timestamp"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionStatusHistory:
                 data["AwsReviewingTimestamp"]
             )
         )
-    if "ReviewingTimestamp" in data:
+    if data.get("ReviewingTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["reviewing_timestamp"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionStatusHistory:
                 data["ReviewingTimestamp"]
             )
         )
-    if "RequiresAuthenticationTimestamp" in data:
+    if data.get("RequiresAuthenticationTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["requires_authentication_timestamp"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionStatusHistory:
                 data["RequiresAuthenticationTimestamp"]
             )
         )
-    if "ApprovedTimestamp" in data:
+    if data.get("ApprovedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["approved_timestamp"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionStatusHistory:
                 data["ApprovedTimestamp"]
             )
         )
-    if "DiscardedTimestamp" in data:
+    if data.get("DiscardedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["discarded_timestamp"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionStatusHistory:
                 data["DiscardedTimestamp"]
             )
         )
-    if "DeniedTimestamp" in data:
+    if data.get("DeniedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["denied_timestamp"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionStatusHistory:
                 data["DeniedTimestamp"]
             )
         )
-    if "RevokedTimestamp" in data:
+    if data.get("RevokedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["revoked_timestamp"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionStatusHistory:
                 data["RevokedTimestamp"]
             )
         )
-    if "ArchivedTimestamp" in data:
+    if data.get("ArchivedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["archived_timestamp"] = (

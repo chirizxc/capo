@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AssociatedTranscriptFilters:
 
     out: AssociatedTranscriptFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.associated_transcript_filter.deserialize_json(item)
         )

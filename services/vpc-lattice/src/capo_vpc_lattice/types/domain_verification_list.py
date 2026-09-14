@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DomainVerificationList:
 
     out: DomainVerificationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_vpc_lattice.types.domain_verification_summary.deserialize_json(item)
         )

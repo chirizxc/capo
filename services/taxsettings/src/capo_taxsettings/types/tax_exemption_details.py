@@ -44,16 +44,16 @@ def serialize_json(value: TaxExemptionDetails) -> dict:
 
 def deserialize_json(data: dict) -> TaxExemptionDetails:
     out: TaxExemptionDetails = {}  # type: ignore[typeddict-item]
-    if "taxExemptions" in data:
+    if data.get("taxExemptions") is not None:
         import capo_taxsettings.types.tax_exemptions
 
         out["tax_exemptions"] = capo_taxsettings.types.tax_exemptions.deserialize_json(
             data["taxExemptions"]
         )
-    if "heritageObtainedDetails" in data:
+    if data.get("heritageObtainedDetails") is not None:
         out["heritage_obtained_details"] = data["heritageObtainedDetails"]
-    if "heritageObtainedParentEntity" in data:
+    if data.get("heritageObtainedParentEntity") is not None:
         out["heritage_obtained_parent_entity"] = data["heritageObtainedParentEntity"]
-    if "heritageObtainedReason" in data:
+    if data.get("heritageObtainedReason") is not None:
         out["heritage_obtained_reason"] = data["heritageObtainedReason"]
     return out

@@ -69,13 +69,13 @@ def serialize_aws_json_1_1(value: SchemaConversionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SchemaConversionRequest:
     out: SchemaConversionRequest = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "RequestIdentifier" in data:
+    if data.get("RequestIdentifier") is not None:
         out["request_identifier"] = data["RequestIdentifier"]
-    if "MigrationProjectArn" in data:
+    if data.get("MigrationProjectArn") is not None:
         out["migration_project_arn"] = data["MigrationProjectArn"]
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_database_migration_service.types.error_details
 
         out["error"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> SchemaConversionRequest:
                 data["Error"]
             )
         )
-    if "ExportSqlDetails" in data:
+    if data.get("ExportSqlDetails") is not None:
         import capo_database_migration_service.types.export_sql_details
 
         out["export_sql_details"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> SchemaConversionRequest:
                 data["ExportSqlDetails"]
             )
         )
-    if "Progress" in data:
+    if data.get("Progress") is not None:
         import capo_database_migration_service.types.progress
 
         out["progress"] = (

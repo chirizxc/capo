@@ -34,13 +34,13 @@ def serialize_json(value: AcceptResourceGroupingRecommendationsResponse) -> dict
 
 def deserialize_json(data: dict) -> AcceptResourceGroupingRecommendationsResponse:
     out: AcceptResourceGroupingRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "AcceptResourceGroupingRecommendationsResponse.app_arn required"
         )
-    if "failedEntries" in data:
+    if data.get("failedEntries") is not None:
         import capo_resiliencehub.types.failed_grouping_recommendation_entries
 
         out["failed_entries"] = (

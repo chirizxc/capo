@@ -40,14 +40,14 @@ def serialize_json(value: IdentificationHints) -> dict:
 
 def deserialize_json(data: dict) -> IdentificationHints:
     out: IdentificationHints = {}  # type: ignore[typeddict-item]
-    if "fqdn" in data:
+    if data.get("fqdn") is not None:
         out["fqdn"] = data["fqdn"]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "vmWareUuid" in data:
+    if data.get("vmWareUuid") is not None:
         out["vm_ware_uuid"] = data["vmWareUuid"]
-    if "awsInstanceID" in data:
+    if data.get("awsInstanceID") is not None:
         out["aws_instance_id"] = data["awsInstanceID"]
-    if "vmPath" in data:
+    if data.get("vmPath") is not None:
         out["vm_path"] = data["vmPath"]
     return out

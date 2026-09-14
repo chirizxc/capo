@@ -169,7 +169,15 @@ def serialize_aws_json_1_1(value: Job) -> dict:
     if "timeout" in value:
         out["Timeout"] = value["timeout"]
     if "max_capacity" in value:
-        out["MaxCapacity"] = value["max_capacity"]
+        out["MaxCapacity"] = (
+            "NaN"
+            if value["max_capacity"] != value["max_capacity"]
+            else "Infinity"
+            if value["max_capacity"] == float("inf")
+            else "-Infinity"
+            if value["max_capacity"] == float("-inf")
+            else value["max_capacity"]
+        )
     if "worker_type" in value:
         import capo_glue.types.worker_type
 
@@ -221,29 +229,29 @@ def serialize_aws_json_1_1(value: Job) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Job:
     out: Job = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "JobMode" in data:
+    if data.get("JobMode") is not None:
         import capo_glue.types.job_mode
 
         out["job_mode"] = capo_glue.types.job_mode.deserialize_aws_json_1_1(
             data["JobMode"]
         )
-    if "JobRunQueuingEnabled" in data:
+    if data.get("JobRunQueuingEnabled") is not None:
         out["job_run_queuing_enabled"] = data["JobRunQueuingEnabled"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LogUri" in data:
+    if data.get("LogUri") is not None:
         out["log_uri"] = data["LogUri"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "CreatedOn" in data:
+    if data.get("CreatedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["created_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["CreatedOn"]
         )
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["last_modified_on"] = (
@@ -251,7 +259,7 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["LastModifiedOn"]
             )
         )
-    if "ExecutionProperty" in data:
+    if data.get("ExecutionProperty") is not None:
         import capo_glue.types.execution_property
 
         out["execution_property"] = (
@@ -259,19 +267,19 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["ExecutionProperty"]
             )
         )
-    if "Command" in data:
+    if data.get("Command") is not None:
         import capo_glue.types.job_command
 
         out["command"] = capo_glue.types.job_command.deserialize_aws_json_1_1(
             data["Command"]
         )
-    if "DefaultArguments" in data:
+    if data.get("DefaultArguments") is not None:
         import capo_glue.types.generic_map
 
         out["default_arguments"] = capo_glue.types.generic_map.deserialize_aws_json_1_1(
             data["DefaultArguments"]
         )
-    if "NonOverridableArguments" in data:
+    if data.get("NonOverridableArguments") is not None:
         import capo_glue.types.generic_map
 
         out["non_overridable_arguments"] = (
@@ -279,35 +287,35 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["NonOverridableArguments"]
             )
         )
-    if "Connections" in data:
+    if data.get("Connections") is not None:
         import capo_glue.types.connections_list
 
         out["connections"] = capo_glue.types.connections_list.deserialize_aws_json_1_1(
             data["Connections"]
         )
-    if "MaxRetries" in data:
+    if data.get("MaxRetries") is not None:
         out["max_retries"] = data["MaxRetries"]
     else:
         out["max_retries"] = 0
-    if "AllocatedCapacity" in data:
+    if data.get("AllocatedCapacity") is not None:
         out["allocated_capacity"] = data["AllocatedCapacity"]
     else:
         out["allocated_capacity"] = 0
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "MaxCapacity" in data:
-        out["max_capacity"] = data["MaxCapacity"]
-    if "WorkerType" in data:
+    if data.get("MaxCapacity") is not None:
+        out["max_capacity"] = float(data["MaxCapacity"])
+    if data.get("WorkerType") is not None:
         import capo_glue.types.worker_type
 
         out["worker_type"] = capo_glue.types.worker_type.deserialize_aws_json_1_1(
             data["WorkerType"]
         )
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "NotificationProperty" in data:
+    if data.get("NotificationProperty") is not None:
         import capo_glue.types.notification_property
 
         out["notification_property"] = (
@@ -315,9 +323,9 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["NotificationProperty"]
             )
         )
-    if "GlueVersion" in data:
+    if data.get("GlueVersion") is not None:
         out["glue_version"] = data["GlueVersion"]
-    if "CodeGenConfigurationNodes" in data:
+    if data.get("CodeGenConfigurationNodes") is not None:
         import capo_glue.types.code_gen_configuration_nodes
 
         out["code_gen_configuration_nodes"] = (
@@ -325,7 +333,7 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["CodeGenConfigurationNodes"]
             )
         )
-    if "ExecutionClass" in data:
+    if data.get("ExecutionClass") is not None:
         import capo_glue.types.execution_class
 
         out["execution_class"] = (
@@ -333,7 +341,7 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["ExecutionClass"]
             )
         )
-    if "SourceControlDetails" in data:
+    if data.get("SourceControlDetails") is not None:
         import capo_glue.types.source_control_details
 
         out["source_control_details"] = (
@@ -341,8 +349,8 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["SourceControlDetails"]
             )
         )
-    if "MaintenanceWindow" in data:
+    if data.get("MaintenanceWindow") is not None:
         out["maintenance_window"] = data["MaintenanceWindow"]
-    if "ProfileName" in data:
+    if data.get("ProfileName") is not None:
         out["profile_name"] = data["ProfileName"]
     return out

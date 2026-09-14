@@ -80,25 +80,25 @@ def serialize_aws_json_1_0(value: CreateRcsAgentResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRcsAgentResult:
     out: CreateRcsAgentResult = {}  # type: ignore[typeddict-item]
-    if "RcsAgentArn" in data:
+    if data.get("RcsAgentArn") is not None:
         out["rcs_agent_arn"] = data["RcsAgentArn"]
     else:
         raise DeserializationError("CreateRcsAgentResult.rcs_agent_arn required")
-    if "RcsAgentId" in data:
+    if data.get("RcsAgentId") is not None:
         out["rcs_agent_id"] = data["RcsAgentId"]
     else:
         raise DeserializationError("CreateRcsAgentResult.rcs_agent_id required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("CreateRcsAgentResult.status required")
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     else:
         out["deletion_protection_enabled"] = False
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -108,19 +108,19 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRcsAgentResult:
         )
     else:
         raise DeserializationError("CreateRcsAgentResult.created_timestamp required")
-    if "SelfManagedOptOutsEnabled" in data:
+    if data.get("SelfManagedOptOutsEnabled") is not None:
         out["self_managed_opt_outs_enabled"] = data["SelfManagedOptOutsEnabled"]
     else:
         out["self_managed_opt_outs_enabled"] = False
-    if "TwoWayChannelArn" in data:
+    if data.get("TwoWayChannelArn") is not None:
         out["two_way_channel_arn"] = data["TwoWayChannelArn"]
-    if "TwoWayChannelRole" in data:
+    if data.get("TwoWayChannelRole") is not None:
         out["two_way_channel_role"] = data["TwoWayChannelRole"]
-    if "TwoWayEnabled" in data:
+    if data.get("TwoWayEnabled") is not None:
         out["two_way_enabled"] = data["TwoWayEnabled"]
     else:
         out["two_way_enabled"] = False
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (

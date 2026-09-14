@@ -49,19 +49,19 @@ def serialize_json(value: SendWorkflowStepActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendWorkflowStepActionRequest:
     out: SendWorkflowStepActionRequest = {}  # type: ignore[typeddict-item]
-    if "stepExecutionId" in data:
+    if data.get("stepExecutionId") is not None:
         out["step_execution_id"] = data["stepExecutionId"]
     else:
         raise DeserializationError(
             "SendWorkflowStepActionRequest.step_execution_id required"
         )
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
     else:
         raise DeserializationError(
             "SendWorkflowStepActionRequest.image_build_version_arn required"
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_imagebuilder.types.workflow_step_action_type
 
         out["action"] = (
@@ -71,9 +71,9 @@ def deserialize_json(data: dict) -> SendWorkflowStepActionRequest:
         )
     else:
         raise DeserializationError("SendWorkflowStepActionRequest.action required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(

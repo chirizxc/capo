@@ -34,7 +34,7 @@ def serialize_json(value: ClusterOperationStep) -> dict:
 
 def deserialize_json(data: dict) -> ClusterOperationStep:
     out: ClusterOperationStep = {}  # type: ignore[typeddict-item]
-    if "stepInfo" in data:
+    if data.get("stepInfo") is not None:
         import capo_kafka.types.cluster_operation_step_info
 
         out["step_info"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ClusterOperationStep:
                 data["stepInfo"]
             )
         )
-    if "stepName" in data:
+    if data.get("stepName") is not None:
         out["step_name"] = data["stepName"]
     return out

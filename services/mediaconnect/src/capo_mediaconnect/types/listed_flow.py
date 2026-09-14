@@ -59,25 +59,25 @@ def serialize_json(value: ListedFlow) -> dict:
 
 def deserialize_json(data: dict) -> ListedFlow:
     out: ListedFlow = {}  # type: ignore[typeddict-item]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "sourceType" in data:
+    if data.get("sourceType") is not None:
         import capo_mediaconnect.types.source_type
 
         out["source_type"] = capo_mediaconnect.types.source_type.deserialize_json(
             data["sourceType"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_mediaconnect.types.status
 
         out["status"] = capo_mediaconnect.types.status.deserialize_json(data["status"])
-    if "maintenance" in data:
+    if data.get("maintenance") is not None:
         import capo_mediaconnect.types.maintenance
 
         out["maintenance"] = capo_mediaconnect.types.maintenance.deserialize_json(

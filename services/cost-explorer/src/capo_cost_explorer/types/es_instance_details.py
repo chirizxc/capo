@@ -38,17 +38,17 @@ def serialize_aws_json_1_1(value: ESInstanceDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ESInstanceDetails:
     out: ESInstanceDetails = {}  # type: ignore[typeddict-item]
-    if "InstanceClass" in data:
+    if data.get("InstanceClass") is not None:
         out["instance_class"] = data["InstanceClass"]
-    if "InstanceSize" in data:
+    if data.get("InstanceSize") is not None:
         out["instance_size"] = data["InstanceSize"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "CurrentGeneration" in data:
+    if data.get("CurrentGeneration") is not None:
         out["current_generation"] = data["CurrentGeneration"]
     else:
         out["current_generation"] = False
-    if "SizeFlexEligible" in data:
+    if data.get("SizeFlexEligible") is not None:
         out["size_flex_eligible"] = data["SizeFlexEligible"]
     else:
         out["size_flex_eligible"] = False

@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: NullValueField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NullValueField:
     out: NullValueField = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("NullValueField.value required")
-    if "Datatype" in data:
+    if data.get("Datatype") is not None:
         import capo_glue.types.datatype
 
         out["datatype"] = capo_glue.types.datatype.deserialize_aws_json_1_1(

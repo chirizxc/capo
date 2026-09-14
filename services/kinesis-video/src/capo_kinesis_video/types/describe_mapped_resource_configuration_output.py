@@ -36,7 +36,7 @@ def serialize_json(value: DescribeMappedResourceConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeMappedResourceConfigurationOutput:
     out: DescribeMappedResourceConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "MappedResourceConfigurationList" in data:
+    if data.get("MappedResourceConfigurationList") is not None:
         import capo_kinesis_video.types.mapped_resource_configuration_list
 
         out["mapped_resource_configuration_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DescribeMappedResourceConfigurationOutput:
                 data["MappedResourceConfigurationList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

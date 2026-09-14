@@ -57,7 +57,7 @@ def serialize_json(value: LineageSqlQueryRunDetails) -> dict:
 
 def deserialize_json(data: dict) -> LineageSqlQueryRunDetails:
     out: LineageSqlQueryRunDetails = {}  # type: ignore[typeddict-item]
-    if "queryStartTime" in data:
+    if data.get("queryStartTime") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["query_start_time"] = (
@@ -65,17 +65,17 @@ def deserialize_json(data: dict) -> LineageSqlQueryRunDetails:
                 data["queryStartTime"]
             )
         )
-    if "queryEndTime" in data:
+    if data.get("queryEndTime") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["query_end_time"] = capo_datazone.types._prelude.timestamp.deserialize_json(
             data["queryEndTime"]
         )
-    if "totalQueriesProcessed" in data:
+    if data.get("totalQueriesProcessed") is not None:
         out["total_queries_processed"] = data["totalQueriesProcessed"]
-    if "numQueriesFailed" in data:
+    if data.get("numQueriesFailed") is not None:
         out["num_queries_failed"] = data["numQueriesFailed"]
-    if "errorMessages" in data:
+    if data.get("errorMessages") is not None:
         import capo_datazone.types.failed_query_processing_error_messages
 
         out["error_messages"] = (

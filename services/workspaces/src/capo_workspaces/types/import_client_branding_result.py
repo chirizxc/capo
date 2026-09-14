@@ -92,7 +92,7 @@ def serialize_aws_json_1_1(value: ImportClientBrandingResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingResult:
     out: ImportClientBrandingResult = {}  # type: ignore[typeddict-item]
-    if "DeviceTypeWindows" in data:
+    if data.get("DeviceTypeWindows") is not None:
         import capo_workspaces.types.default_client_branding_attributes
 
         out["device_type_windows"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingResult:
                 data["DeviceTypeWindows"]
             )
         )
-    if "DeviceTypeOsx" in data:
+    if data.get("DeviceTypeOsx") is not None:
         import capo_workspaces.types.default_client_branding_attributes
 
         out["device_type_osx"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingResult:
                 data["DeviceTypeOsx"]
             )
         )
-    if "DeviceTypeAndroid" in data:
+    if data.get("DeviceTypeAndroid") is not None:
         import capo_workspaces.types.default_client_branding_attributes
 
         out["device_type_android"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingResult:
                 data["DeviceTypeAndroid"]
             )
         )
-    if "DeviceTypeIos" in data:
+    if data.get("DeviceTypeIos") is not None:
         import capo_workspaces.types.ios_client_branding_attributes
 
         out["device_type_ios"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingResult:
                 data["DeviceTypeIos"]
             )
         )
-    if "DeviceTypeLinux" in data:
+    if data.get("DeviceTypeLinux") is not None:
         import capo_workspaces.types.default_client_branding_attributes
 
         out["device_type_linux"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingResult:
                 data["DeviceTypeLinux"]
             )
         )
-    if "DeviceTypeWeb" in data:
+    if data.get("DeviceTypeWeb") is not None:
         import capo_workspaces.types.default_client_branding_attributes
 
         out["device_type_web"] = (

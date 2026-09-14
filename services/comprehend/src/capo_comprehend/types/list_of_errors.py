@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> ListOfErrors:
 
     out: ListOfErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.errors_list_item.deserialize_aws_json_1_1(item)
         )

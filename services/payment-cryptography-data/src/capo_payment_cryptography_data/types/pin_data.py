@@ -36,9 +36,9 @@ def serialize_json(value: PinData) -> dict:
 
 
 def deserialize_json(data: dict) -> PinData:
-    if "PinOffset" in data:
+    if data.get("PinOffset") is not None:
         return {"PinOffset": data["PinOffset"]}
-    elif "VerificationValue" in data:
+    elif data.get("VerificationValue") is not None:
         return {"VerificationValue": data["VerificationValue"]}
     else:
         raise DeserializationError("PinData: no recognized variant key")

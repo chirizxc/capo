@@ -71,11 +71,11 @@ def serialize_json(value: DescribeOrganizationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOrganizationConfigurationResponse:
     out: DescribeOrganizationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "autoEnable" in data:
+    if data.get("autoEnable") is not None:
         out["auto_enable"] = data["autoEnable"]
-    if "memberAccountLimitReached" in data:
+    if data.get("memberAccountLimitReached") is not None:
         out["member_account_limit_reached"] = data["memberAccountLimitReached"]
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_guardduty.types.organization_data_source_configurations_result
 
         out["data_sources"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> DescribeOrganizationConfigurationResponse:
                 data["dataSources"]
             )
         )
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_guardduty.types.organization_features_configurations_results
 
         out["features"] = (
@@ -91,9 +91,9 @@ def deserialize_json(data: dict) -> DescribeOrganizationConfigurationResponse:
                 data["features"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "autoEnableOrganizationMembers" in data:
+    if data.get("autoEnableOrganizationMembers") is not None:
         import capo_guardduty.types.auto_enable_members
 
         out["auto_enable_organization_members"] = (

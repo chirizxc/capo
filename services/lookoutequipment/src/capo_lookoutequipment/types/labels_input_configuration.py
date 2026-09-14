@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: LabelsInputConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LabelsInputConfiguration:
     out: LabelsInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3InputConfiguration" in data:
+    if data.get("S3InputConfiguration") is not None:
         import capo_lookoutequipment.types.labels_s3_input_configuration
 
         out["s3_input_configuration"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(data: dict) -> LabelsInputConfiguration:
                 data["S3InputConfiguration"]
             )
         )
-    if "LabelGroupName" in data:
+    if data.get("LabelGroupName") is not None:
         out["label_group_name"] = data["LabelGroupName"]
     return out

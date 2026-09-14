@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> QuickConnectSummaryList:
 
     out: QuickConnectSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.quick_connect_summary.deserialize_json(item))
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfCmafAdditionalManifest:
 
     out: __listOfCmafAdditionalManifest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.cmaf_additional_manifest.deserialize_json(item)
         )

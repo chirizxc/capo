@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> EndpointAccessList:
 
     out: EndpointAccessList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_redshift_serverless.types.endpoint_access.deserialize_aws_json_1_1(
                 item

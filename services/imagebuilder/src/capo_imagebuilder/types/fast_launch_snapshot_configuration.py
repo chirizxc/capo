@@ -25,6 +25,6 @@ def serialize_json(value: FastLaunchSnapshotConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FastLaunchSnapshotConfiguration:
     out: FastLaunchSnapshotConfiguration = {}  # type: ignore[typeddict-item]
-    if "targetResourceCount" in data:
+    if data.get("targetResourceCount") is not None:
         out["target_resource_count"] = data["targetResourceCount"]
     return out

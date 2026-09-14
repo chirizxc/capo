@@ -25,6 +25,6 @@ def serialize_json(value: DefaultRouteInput) -> dict:
 
 def deserialize_json(data: dict) -> DefaultRouteInput:
     out: DefaultRouteInput = {}  # type: ignore[typeddict-item]
-    if "ActivationState" in data:
+    if data.get("ActivationState") is not None:
         out["activation_state"] = data["ActivationState"]
     return out

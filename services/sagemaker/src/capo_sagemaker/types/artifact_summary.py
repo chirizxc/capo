@@ -61,25 +61,25 @@ def serialize_aws_json_1_1(value: ArtifactSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ArtifactSummary:
     out: ArtifactSummary = {}  # type: ignore[typeddict-item]
-    if "ArtifactArn" in data:
+    if data.get("ArtifactArn") is not None:
         out["artifact_arn"] = data["ArtifactArn"]
-    if "ArtifactName" in data:
+    if data.get("ArtifactName") is not None:
         out["artifact_name"] = data["ArtifactName"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_sagemaker.types.artifact_source
 
         out["source"] = capo_sagemaker.types.artifact_source.deserialize_aws_json_1_1(
             data["Source"]
         )
-    if "ArtifactType" in data:
+    if data.get("ArtifactType") is not None:
         out["artifact_type"] = data["ArtifactType"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

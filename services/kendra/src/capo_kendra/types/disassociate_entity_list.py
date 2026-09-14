@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> DisassociateEntityList:
 
     out: DisassociateEntityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.entity_configuration.deserialize_aws_json_1_1(item)
         )

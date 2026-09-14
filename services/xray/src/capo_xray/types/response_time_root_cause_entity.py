@@ -25,7 +25,15 @@ def serialize_json(value: ResponseTimeRootCauseEntity) -> dict:
     if "name" in value:
         out["Name"] = value["name"]
     if "coverage" in value:
-        out["Coverage"] = value["coverage"]
+        out["Coverage"] = (
+            "NaN"
+            if value["coverage"] != value["coverage"]
+            else "Infinity"
+            if value["coverage"] == float("inf")
+            else "-Infinity"
+            if value["coverage"] == float("-inf")
+            else value["coverage"]
+        )
     if "remote" in value:
         out["Remote"] = value["remote"]
     return out
@@ -33,10 +41,10 @@ def serialize_json(value: ResponseTimeRootCauseEntity) -> dict:
 
 def deserialize_json(data: dict) -> ResponseTimeRootCauseEntity:
     out: ResponseTimeRootCauseEntity = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Coverage" in data:
-        out["coverage"] = data["Coverage"]
-    if "Remote" in data:
+    if data.get("Coverage") is not None:
+        out["coverage"] = float(data["Coverage"])
+    if data.get("Remote") is not None:
         out["remote"] = data["Remote"]
     return out

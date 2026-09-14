@@ -49,7 +49,7 @@ def serialize_json(value: GetPropertyValueResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPropertyValueResponse:
     out: GetPropertyValueResponse = {}  # type: ignore[typeddict-item]
-    if "propertyValues" in data:
+    if data.get("propertyValues") is not None:
         import capo_iottwinmaker.types.property_latest_value_map
 
         out["property_values"] = (
@@ -57,9 +57,9 @@ def deserialize_json(data: dict) -> GetPropertyValueResponse:
                 data["propertyValues"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "tabularPropertyValues" in data:
+    if data.get("tabularPropertyValues") is not None:
         import capo_iottwinmaker.types.tabular_property_values
 
         out["tabular_property_values"] = (

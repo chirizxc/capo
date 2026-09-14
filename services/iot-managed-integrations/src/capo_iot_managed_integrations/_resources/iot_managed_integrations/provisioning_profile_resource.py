@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_iot_managed_integrations._auth._signers
@@ -101,16 +102,18 @@ class ProvisioningProfileResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_provisioning_profile_request.CreateProvisioningProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["provisioning_type"] = provisioning_type
+        input_: capo_iot_managed_integrations.types.create_provisioning_profile_request.CreateProvisioningProfileRequest = {
+            "provisioning_type": provisioning_type
+        }
         if ca_certificate is not None:
             input_["ca_certificate"] = ca_certificate
         if claim_certificate is not None:
             input_["claim_certificate"] = claim_certificate
         if name is not None:
             input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -119,6 +122,7 @@ class ProvisioningProfileResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -158,14 +162,16 @@ class ProvisioningProfileResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_provisioning_profile_request.GetProvisioningProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_provisioning_profile_request.GetProvisioningProfileRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -204,14 +210,16 @@ class ProvisioningProfileResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_provisioning_profile_request.DeleteProvisioningProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.delete_provisioning_profile_request.DeleteProvisioningProfileRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -256,7 +264,7 @@ class ProvisioningProfileResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_provisioning_profiles_request.ListProvisioningProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_provisioning_profiles_request.ListProvisioningProfilesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -267,6 +275,7 @@ class ProvisioningProfileResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -331,16 +340,18 @@ class AsyncProvisioningProfileResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_provisioning_profile_request.CreateProvisioningProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["provisioning_type"] = provisioning_type
+        input_: capo_iot_managed_integrations.types.create_provisioning_profile_request.CreateProvisioningProfileRequest = {
+            "provisioning_type": provisioning_type
+        }
         if ca_certificate is not None:
             input_["ca_certificate"] = ca_certificate
         if claim_certificate is not None:
             input_["claim_certificate"] = claim_certificate
         if name is not None:
             input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -349,6 +360,7 @@ class AsyncProvisioningProfileResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -389,14 +401,16 @@ class AsyncProvisioningProfileResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_provisioning_profile_request.GetProvisioningProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_provisioning_profile_request.GetProvisioningProfileRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -436,14 +450,16 @@ class AsyncProvisioningProfileResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_provisioning_profile_request.DeleteProvisioningProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.delete_provisioning_profile_request.DeleteProvisioningProfileRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -489,7 +505,7 @@ class AsyncProvisioningProfileResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_provisioning_profiles_request.ListProvisioningProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_provisioning_profiles_request.ListProvisioningProfilesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -500,4 +516,5 @@ class AsyncProvisioningProfileResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

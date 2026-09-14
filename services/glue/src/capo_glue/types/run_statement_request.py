@@ -35,14 +35,14 @@ def serialize_aws_json_1_1(value: RunStatementRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RunStatementRequest:
     out: RunStatementRequest = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     else:
         raise DeserializationError("RunStatementRequest.session_id required")
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     else:
         raise DeserializationError("RunStatementRequest.code required")
-    if "RequestOrigin" in data:
+    if data.get("RequestOrigin") is not None:
         out["request_origin"] = data["RequestOrigin"]
     return out

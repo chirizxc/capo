@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: ComputeNodeGroupConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ComputeNodeGroupConfiguration:
     out: ComputeNodeGroupConfiguration = {}  # type: ignore[typeddict-item]
-    if "computeNodeGroupId" in data:
+    if data.get("computeNodeGroupId") is not None:
         out["compute_node_group_id"] = data["computeNodeGroupId"]
     return out

@@ -64,13 +64,13 @@ def serialize_json(value: ListAuditFindingsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListAuditFindingsInput:
     out: ListAuditFindingsInput = {}  # type: ignore[typeddict-item]
-    if "Auditors" in data:
+    if data.get("Auditors") is not None:
         import capo_application_signals.types.auditors
 
         out["auditors"] = capo_application_signals.types.auditors.deserialize_json(
             data["Auditors"]
         )
-    if "AuditTargets" in data:
+    if data.get("AuditTargets") is not None:
         import capo_application_signals.types.audit_targets
 
         out["audit_targets"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> ListAuditFindingsInput:
         )
     else:
         raise DeserializationError("ListAuditFindingsInput.audit_targets required")
-    if "DetailLevel" in data:
+    if data.get("DetailLevel") is not None:
         import capo_application_signals.types.detail_level
 
         out["detail_level"] = (
@@ -88,8 +88,8 @@ def deserialize_json(data: dict) -> ListAuditFindingsInput:
                 data["DetailLevel"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

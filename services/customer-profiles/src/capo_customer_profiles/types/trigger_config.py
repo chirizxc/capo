@@ -41,7 +41,7 @@ def serialize_json(value: TriggerConfig) -> dict:
 
 def deserialize_json(data: dict) -> TriggerConfig:
     out: TriggerConfig = {}  # type: ignore[typeddict-item]
-    if "TriggerType" in data:
+    if data.get("TriggerType") is not None:
         import capo_customer_profiles.types.trigger_type
 
         out["trigger_type"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> TriggerConfig:
         )
     else:
         raise DeserializationError("TriggerConfig.trigger_type required")
-    if "TriggerProperties" in data:
+    if data.get("TriggerProperties") is not None:
         import capo_customer_profiles.types.trigger_properties
 
         out["trigger_properties"] = (

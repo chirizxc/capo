@@ -35,11 +35,11 @@ def serialize_json(value: AnalysisParameter) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisParameter:
     out: AnalysisParameter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AnalysisParameter.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanrooms.types.parameter_type
 
         out["type"] = capo_cleanrooms.types.parameter_type.deserialize_json(
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> AnalysisParameter:
         )
     else:
         raise DeserializationError("AnalysisParameter.type required")
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
     return out

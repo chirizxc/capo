@@ -27,8 +27,8 @@ def serialize_json(value: BelgiumAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> BelgiumAdditionalInfo:
     out: BelgiumAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "peppolId" in data:
+    if data.get("peppolId") is not None:
         out["peppol_id"] = data["peppolId"]
-    if "isMercuriusBoxEnabled" in data:
+    if data.get("isMercuriusBoxEnabled") is not None:
         out["is_mercurius_box_enabled"] = data["isMercuriusBoxEnabled"]
     return out

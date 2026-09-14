@@ -33,7 +33,7 @@ def serialize_json(value: TrustStore) -> dict:
 
 def deserialize_json(data: dict) -> TrustStore:
     out: TrustStore = {}  # type: ignore[typeddict-item]
-    if "associatedPortalArns" in data:
+    if data.get("associatedPortalArns") is not None:
         import capo_workspaces_web.types.arn_list
 
         out["associated_portal_arns"] = (
@@ -41,7 +41,7 @@ def deserialize_json(data: dict) -> TrustStore:
                 data["associatedPortalArns"]
             )
         )
-    if "trustStoreArn" in data:
+    if data.get("trustStoreArn") is not None:
         out["trust_store_arn"] = data["trustStoreArn"]
     else:
         raise DeserializationError("TrustStore.trust_store_arn required")

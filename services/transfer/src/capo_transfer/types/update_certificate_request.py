@@ -46,22 +46,22 @@ def serialize_aws_json_1_1(value: UpdateCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCertificateRequest:
     out: UpdateCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateId" in data:
+    if data.get("CertificateId") is not None:
         out["certificate_id"] = data["CertificateId"]
     else:
         raise DeserializationError("UpdateCertificateRequest.certificate_id required")
-    if "ActiveDate" in data:
+    if data.get("ActiveDate") is not None:
         import capo_transfer.types.cert_date
 
         out["active_date"] = capo_transfer.types.cert_date.deserialize_aws_json_1_1(
             data["ActiveDate"]
         )
-    if "InactiveDate" in data:
+    if data.get("InactiveDate") is not None:
         import capo_transfer.types.cert_date
 
         out["inactive_date"] = capo_transfer.types.cert_date.deserialize_aws_json_1_1(
             data["InactiveDate"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

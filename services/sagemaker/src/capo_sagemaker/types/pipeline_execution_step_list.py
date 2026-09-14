@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> PipelineExecutionStepList:
 
     out: PipelineExecutionStepList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.pipeline_execution_step.deserialize_aws_json_1_1(item)
         )

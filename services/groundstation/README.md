@@ -13,9 +13,9 @@ from capo_groundstation import AsyncGroundStationClient
 
 
 async def main():
-    async with AsyncGroundStationClient() as s3:
+    async with AsyncGroundStationClient() as ground_station:
         # Example: call the get_agent_task_response_url operation
-        response = await s3.get_agent_task_response_url()
+        response = await ground_station.get_agent_task_response_url()
         print(response["agent_id"])
 ```
 
@@ -29,9 +29,9 @@ from capo_groundstation.error import DependencyException
 
 
 async def main():
-    async with AsyncGroundStationClient() as s3:
+    async with AsyncGroundStationClient() as ground_station:
         try:
-            await s3.get_agent_task_response_url()
+            await ground_station.get_agent_task_response_url()
         except DependencyException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_groundstation import AsyncGroundStationClient
 
 
 async def main():
-    async with AsyncGroundStationClient() as s3:
+    async with AsyncGroundStationClient() as ground_station:
         # Default: 3 attempts for every operation
-        response = await s3.get_agent_task_response_url()
+        response = await ground_station.get_agent_task_response_url()
 
         # Override per operation
-        response = await s3.get_agent_task_response_url(config_overrides={"retry_max_attempts": 5})
+        response = await ground_station.get_agent_task_response_url(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_agent_task_response_url(config_overrides={"retry_max_attempts": 1})
+        response = await ground_station.get_agent_task_response_url(config_overrides={"retry_max_attempts": 1})
 ```

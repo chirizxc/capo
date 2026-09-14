@@ -99,27 +99,27 @@ def serialize_json(value: Evidence) -> dict:
 
 def deserialize_json(data: dict) -> Evidence:
     out: Evidence = {}  # type: ignore[typeddict-item]
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         out["data_source"] = data["dataSource"]
-    if "evidenceAwsAccountId" in data:
+    if data.get("evidenceAwsAccountId") is not None:
         out["evidence_aws_account_id"] = data["evidenceAwsAccountId"]
-    if "time" in data:
+    if data.get("time") is not None:
         import capo_auditmanager.types.timestamp
 
         out["time"] = capo_auditmanager.types.timestamp.deserialize_json(data["time"])
-    if "eventSource" in data:
+    if data.get("eventSource") is not None:
         out["event_source"] = data["eventSource"]
-    if "eventName" in data:
+    if data.get("eventName") is not None:
         out["event_name"] = data["eventName"]
-    if "evidenceByType" in data:
+    if data.get("evidenceByType") is not None:
         out["evidence_by_type"] = data["evidenceByType"]
-    if "resourcesIncluded" in data:
+    if data.get("resourcesIncluded") is not None:
         import capo_auditmanager.types.resources
 
         out["resources_included"] = capo_auditmanager.types.resources.deserialize_json(
             data["resourcesIncluded"]
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_auditmanager.types.evidence_attributes
 
         out["attributes"] = (
@@ -127,18 +127,18 @@ def deserialize_json(data: dict) -> Evidence:
                 data["attributes"]
             )
         )
-    if "iamId" in data:
+    if data.get("iamId") is not None:
         out["iam_id"] = data["iamId"]
-    if "complianceCheck" in data:
+    if data.get("complianceCheck") is not None:
         out["compliance_check"] = data["complianceCheck"]
-    if "awsOrganization" in data:
+    if data.get("awsOrganization") is not None:
         out["aws_organization"] = data["awsOrganization"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "evidenceFolderId" in data:
+    if data.get("evidenceFolderId") is not None:
         out["evidence_folder_id"] = data["evidenceFolderId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "assessmentReportSelection" in data:
+    if data.get("assessmentReportSelection") is not None:
         out["assessment_report_selection"] = data["assessmentReportSelection"]
     return out

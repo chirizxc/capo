@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: ScopeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScopeConfiguration:
     out: ScopeConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ScopeConfiguration.name required")
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_codebuild.types.webhook_scope_type
 
         out["scope"] = capo_codebuild.types.webhook_scope_type.deserialize_aws_json_1_1(

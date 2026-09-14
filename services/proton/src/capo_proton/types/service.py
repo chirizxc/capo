@@ -89,21 +89,21 @@ def serialize_aws_json_1_0(value: Service) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Service:
     out: Service = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Service.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Service.arn required")
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("Service.template_name required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
         )
     else:
         raise DeserializationError("Service.created_at required")
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_modified_at"] = (
@@ -123,26 +123,26 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
         )
     else:
         raise DeserializationError("Service.last_modified_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("Service.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "spec" in data:
+    if data.get("spec") is not None:
         out["spec"] = data["spec"]
     else:
         raise DeserializationError("Service.spec required")
-    if "pipeline" in data:
+    if data.get("pipeline") is not None:
         import capo_proton.types.service_pipeline
 
         out["pipeline"] = capo_proton.types.service_pipeline.deserialize_aws_json_1_0(
             data["pipeline"]
         )
-    if "repositoryConnectionArn" in data:
+    if data.get("repositoryConnectionArn") is not None:
         out["repository_connection_arn"] = data["repositoryConnectionArn"]
-    if "repositoryId" in data:
+    if data.get("repositoryId") is not None:
         out["repository_id"] = data["repositoryId"]
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     return out

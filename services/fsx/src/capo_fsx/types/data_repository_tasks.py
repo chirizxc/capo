@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> DataRepositoryTasks:
 
     out: DataRepositoryTasks = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fsx.types.data_repository_task.deserialize_aws_json_1_1(item))
     return out

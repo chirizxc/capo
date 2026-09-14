@@ -36,9 +36,9 @@ def serialize_json(value: RouteVehicleNoticeDetail) -> dict:
 
 def deserialize_json(data: dict) -> RouteVehicleNoticeDetail:
     out: RouteVehicleNoticeDetail = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "ViolatedConstraints" in data:
+    if data.get("ViolatedConstraints") is not None:
         import capo_geo_routes.types.route_violated_constraints
 
         out["violated_constraints"] = (

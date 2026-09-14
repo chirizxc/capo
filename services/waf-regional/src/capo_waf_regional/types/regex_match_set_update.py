@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: RegexMatchSetUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegexMatchSetUpdate:
     out: RegexMatchSetUpdate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf_regional.types.change_action
 
         out["action"] = capo_waf_regional.types.change_action.deserialize_aws_json_1_1(
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegexMatchSetUpdate:
         )
     else:
         raise DeserializationError("RegexMatchSetUpdate.action required")
-    if "RegexMatchTuple" in data:
+    if data.get("RegexMatchTuple") is not None:
         import capo_waf_regional.types.regex_match_tuple
 
         out["regex_match_tuple"] = (

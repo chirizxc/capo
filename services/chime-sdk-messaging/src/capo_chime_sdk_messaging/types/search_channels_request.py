@@ -37,7 +37,7 @@ def serialize_json(value: SearchChannelsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchChannelsRequest:
     out: SearchChannelsRequest = {}  # type: ignore[typeddict-item]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_chime_sdk_messaging.types.search_fields
 
         out["fields"] = capo_chime_sdk_messaging.types.search_fields.deserialize_json(

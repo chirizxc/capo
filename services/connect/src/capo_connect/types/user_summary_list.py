@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> UserSummaryList:
 
     out: UserSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.user_summary.deserialize_json(item))
     return out

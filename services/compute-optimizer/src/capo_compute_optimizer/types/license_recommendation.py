@@ -62,7 +62,16 @@ def serialize_aws_json_1_0(value: LicenseRecommendation) -> dict:
                 value["current_license_configuration"]
             )
         )
-    out["lookbackPeriodInDays"] = value.get("lookback_period_in_days", 0)
+    out["lookbackPeriodInDays"] = (
+        "NaN"
+        if value.get("lookback_period_in_days", 0)
+        != value.get("lookback_period_in_days", 0)
+        else "Infinity"
+        if value.get("lookback_period_in_days", 0) == float("inf")
+        else "-Infinity"
+        if value.get("lookback_period_in_days", 0) == float("-inf")
+        else value.get("lookback_period_in_days", 0)
+    )
     if "last_refresh_timestamp" in value:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
@@ -106,11 +115,11 @@ def serialize_aws_json_1_0(value: LicenseRecommendation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LicenseRecommendation:
     out: LicenseRecommendation = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "currentLicenseConfiguration" in data:
+    if data.get("currentLicenseConfiguration") is not None:
         import capo_compute_optimizer.types.license_configuration
 
         out["current_license_configuration"] = (
@@ -118,11 +127,11 @@ def deserialize_aws_json_1_0(data: dict) -> LicenseRecommendation:
                 data["currentLicenseConfiguration"]
             )
         )
-    if "lookbackPeriodInDays" in data:
-        out["lookback_period_in_days"] = data["lookbackPeriodInDays"]
+    if data.get("lookbackPeriodInDays") is not None:
+        out["lookback_period_in_days"] = float(data["lookbackPeriodInDays"])
     else:
         out["lookback_period_in_days"] = 0
-    if "lastRefreshTimestamp" in data:
+    if data.get("lastRefreshTimestamp") is not None:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
         out["last_refresh_timestamp"] = (
@@ -130,7 +139,7 @@ def deserialize_aws_json_1_0(data: dict) -> LicenseRecommendation:
                 data["lastRefreshTimestamp"]
             )
         )
-    if "finding" in data:
+    if data.get("finding") is not None:
         import capo_compute_optimizer.types.license_finding
 
         out["finding"] = (
@@ -138,7 +147,7 @@ def deserialize_aws_json_1_0(data: dict) -> LicenseRecommendation:
                 data["finding"]
             )
         )
-    if "findingReasonCodes" in data:
+    if data.get("findingReasonCodes") is not None:
         import capo_compute_optimizer.types.license_finding_reason_codes
 
         out["finding_reason_codes"] = (
@@ -146,7 +155,7 @@ def deserialize_aws_json_1_0(data: dict) -> LicenseRecommendation:
                 data["findingReasonCodes"]
             )
         )
-    if "licenseRecommendationOptions" in data:
+    if data.get("licenseRecommendationOptions") is not None:
         import capo_compute_optimizer.types.license_recommendation_options
 
         out["license_recommendation_options"] = (
@@ -154,7 +163,7 @@ def deserialize_aws_json_1_0(data: dict) -> LicenseRecommendation:
                 data["licenseRecommendationOptions"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_compute_optimizer.types.tags
 
         out["tags"] = capo_compute_optimizer.types.tags.deserialize_aws_json_1_0(

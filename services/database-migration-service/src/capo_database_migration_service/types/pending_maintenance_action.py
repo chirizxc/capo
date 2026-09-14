@@ -68,9 +68,9 @@ def serialize_aws_json_1_1(value: PendingMaintenanceAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PendingMaintenanceAction:
     out: PendingMaintenanceAction = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
-    if "AutoAppliedAfterDate" in data:
+    if data.get("AutoAppliedAfterDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["auto_applied_after_date"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> PendingMaintenanceAction:
                 data["AutoAppliedAfterDate"]
             )
         )
-    if "ForcedApplyDate" in data:
+    if data.get("ForcedApplyDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["forced_apply_date"] = (
@@ -86,9 +86,9 @@ def deserialize_aws_json_1_1(data: dict) -> PendingMaintenanceAction:
                 data["ForcedApplyDate"]
             )
         )
-    if "OptInStatus" in data:
+    if data.get("OptInStatus") is not None:
         out["opt_in_status"] = data["OptInStatus"]
-    if "CurrentApplyDate" in data:
+    if data.get("CurrentApplyDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["current_apply_date"] = (
@@ -96,6 +96,6 @@ def deserialize_aws_json_1_1(data: dict) -> PendingMaintenanceAction:
                 data["CurrentApplyDate"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

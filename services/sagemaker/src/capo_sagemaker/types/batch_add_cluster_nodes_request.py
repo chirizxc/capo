@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: BatchAddClusterNodesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchAddClusterNodesRequest:
     out: BatchAddClusterNodesRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError("BatchAddClusterNodesRequest.cluster_name required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "NodesToAdd" in data:
+    if data.get("NodesToAdd") is not None:
         import capo_sagemaker.types.add_cluster_node_specification_list
 
         out["nodes_to_add"] = (

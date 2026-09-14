@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BackupVaultList:
 
     out: BackupVaultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.backup_vault_list_member.deserialize_json(item))
     return out

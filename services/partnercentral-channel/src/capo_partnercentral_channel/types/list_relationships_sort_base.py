@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: ListRelationshipsSortBase) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRelationshipsSortBase:
     out: ListRelationshipsSortBase = {}  # type: ignore[typeddict-item]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_partnercentral_channel.types.sort_order
 
         out["sort_order"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListRelationshipsSortBase:
         )
     else:
         raise DeserializationError("ListRelationshipsSortBase.sort_order required")
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_partnercentral_channel.types.list_relationships_sort_name
 
         out["sort_by"] = (

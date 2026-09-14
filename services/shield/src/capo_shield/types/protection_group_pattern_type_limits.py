@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: ProtectionGroupPatternTypeLimits) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProtectionGroupPatternTypeLimits:
     out: ProtectionGroupPatternTypeLimits = {}  # type: ignore[typeddict-item]
-    if "ArbitraryPatternLimits" in data:
+    if data.get("ArbitraryPatternLimits") is not None:
         import capo_shield.types.protection_group_arbitrary_pattern_limits
 
         out["arbitrary_pattern_limits"] = (

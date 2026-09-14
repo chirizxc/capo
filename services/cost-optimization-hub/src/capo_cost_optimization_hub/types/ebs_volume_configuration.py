@@ -48,7 +48,7 @@ def serialize_aws_json_1_0(value: EbsVolumeConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EbsVolumeConfiguration:
     out: EbsVolumeConfiguration = {}  # type: ignore[typeddict-item]
-    if "storage" in data:
+    if data.get("storage") is not None:
         import capo_cost_optimization_hub.types.storage_configuration
 
         out["storage"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_0(data: dict) -> EbsVolumeConfiguration:
                 data["storage"]
             )
         )
-    if "performance" in data:
+    if data.get("performance") is not None:
         import capo_cost_optimization_hub.types.block_storage_performance_configuration
 
         out["performance"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_0(data: dict) -> EbsVolumeConfiguration:
                 data["performance"]
             )
         )
-    if "attachmentState" in data:
+    if data.get("attachmentState") is not None:
         out["attachment_state"] = data["attachmentState"]
     return out

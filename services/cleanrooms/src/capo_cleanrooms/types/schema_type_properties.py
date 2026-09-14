@@ -32,7 +32,7 @@ def serialize_json(value: SchemaTypeProperties) -> dict:
 
 
 def deserialize_json(data: dict) -> SchemaTypeProperties:
-    if "idMappingTable" in data:
+    if data.get("idMappingTable") is not None:
         import capo_cleanrooms.types.id_mapping_table_schema_type_properties
 
         return {

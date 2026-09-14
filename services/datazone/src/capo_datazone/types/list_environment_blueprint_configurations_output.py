@@ -36,7 +36,7 @@ def serialize_json(value: ListEnvironmentBlueprintConfigurationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListEnvironmentBlueprintConfigurationsOutput:
     out: ListEnvironmentBlueprintConfigurationsOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.environment_blueprint_configurations
 
         out["items"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListEnvironmentBlueprintConfigurationsOutput
                 data["items"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

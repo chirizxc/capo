@@ -94,17 +94,17 @@ def serialize_json(value: DescribePackageImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribePackageImportJobResponse:
     out: DescribePackageImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("DescribePackageImportJobResponse.job_id required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         out["job_type"] = data["JobType"]
     else:
         raise DeserializationError("DescribePackageImportJobResponse.job_type required")
-    if "InputConfig" in data:
+    if data.get("InputConfig") is not None:
         import capo_panorama.types.package_import_job_input_config
 
         out["input_config"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> DescribePackageImportJobResponse:
         raise DeserializationError(
             "DescribePackageImportJobResponse.input_config required"
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_panorama.types.package_import_job_output_config
 
         out["output_config"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> DescribePackageImportJobResponse:
         raise DeserializationError(
             "DescribePackageImportJobResponse.output_config required"
         )
-    if "Output" in data:
+    if data.get("Output") is not None:
         import capo_panorama.types.package_import_job_output
 
         out["output"] = capo_panorama.types.package_import_job_output.deserialize_json(
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> DescribePackageImportJobResponse:
         )
     else:
         raise DeserializationError("DescribePackageImportJobResponse.output required")
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.created_time
 
         out["created_time"] = capo_panorama.types.created_time.deserialize_json(
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> DescribePackageImportJobResponse:
         raise DeserializationError(
             "DescribePackageImportJobResponse.created_time required"
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_panorama.types.last_updated_time
 
         out["last_updated_time"] = (
@@ -158,17 +158,17 @@ def deserialize_json(data: dict) -> DescribePackageImportJobResponse:
         raise DeserializationError(
             "DescribePackageImportJobResponse.last_updated_time required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("DescribePackageImportJobResponse.status required")
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     else:
         raise DeserializationError(
             "DescribePackageImportJobResponse.status_message required"
         )
-    if "JobTags" in data:
+    if data.get("JobTags") is not None:
         import capo_panorama.types.job_tags_list
 
         out["job_tags"] = capo_panorama.types.job_tags_list.deserialize_json(

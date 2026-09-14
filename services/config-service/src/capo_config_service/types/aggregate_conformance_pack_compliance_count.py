@@ -29,11 +29,11 @@ def serialize_aws_json_1_1(value: AggregateConformancePackComplianceCount) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> AggregateConformancePackComplianceCount:
     out: AggregateConformancePackComplianceCount = {}  # type: ignore[typeddict-item]
-    if "CompliantConformancePackCount" in data:
+    if data.get("CompliantConformancePackCount") is not None:
         out["compliant_conformance_pack_count"] = data["CompliantConformancePackCount"]
     else:
         out["compliant_conformance_pack_count"] = 0
-    if "NonCompliantConformancePackCount" in data:
+    if data.get("NonCompliantConformancePackCount") is not None:
         out["non_compliant_conformance_pack_count"] = data[
             "NonCompliantConformancePackCount"
         ]

@@ -31,10 +31,10 @@ def serialize_json(value: AcceptChoice) -> dict:
 
 def deserialize_json(data: dict) -> AcceptChoice:
     out: AcceptChoice = {}  # type: ignore[typeddict-item]
-    if "predictionTarget" in data:
+    if data.get("predictionTarget") is not None:
         out["prediction_target"] = data["predictionTarget"]
-    if "predictionChoice" in data:
+    if data.get("predictionChoice") is not None:
         out["prediction_choice"] = data["predictionChoice"]
-    if "editedValue" in data:
+    if data.get("editedValue") is not None:
         out["edited_value"] = data["editedValue"]
     return out

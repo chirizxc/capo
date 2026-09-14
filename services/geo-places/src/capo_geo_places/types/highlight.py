@@ -31,10 +31,10 @@ def serialize_json(value: Highlight) -> dict:
 
 def deserialize_json(data: dict) -> Highlight:
     out: Highlight = {}  # type: ignore[typeddict-item]
-    if "StartIndex" in data:
+    if data.get("StartIndex") is not None:
         out["start_index"] = data["StartIndex"]
-    if "EndIndex" in data:
+    if data.get("EndIndex") is not None:
         out["end_index"] = data["EndIndex"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

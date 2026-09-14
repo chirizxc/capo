@@ -28,7 +28,7 @@ def serialize_json(value: RecordingDestinations) -> dict:
 
 def deserialize_json(data: dict) -> RecordingDestinations:
     out: RecordingDestinations = {}  # type: ignore[typeddict-item]
-    if "S3Buckets" in data:
+    if data.get("S3Buckets") is not None:
         import capo_ssm_guiconnect.types.s3_buckets
 
         out["s3_buckets"] = capo_ssm_guiconnect.types.s3_buckets.deserialize_json(

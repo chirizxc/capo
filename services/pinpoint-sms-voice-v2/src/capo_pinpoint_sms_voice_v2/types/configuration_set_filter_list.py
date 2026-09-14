@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ConfigurationSetFilterList:
 
     out: ConfigurationSetFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pinpoint_sms_voice_v2.types.configuration_set_filter.deserialize_aws_json_1_0(
                 item

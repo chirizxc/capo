@@ -67,11 +67,11 @@ def serialize_aws_json_1_1(value: DeleteFileSystemRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFileSystemRequest:
     out: DeleteFileSystemRequest = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "WindowsConfiguration" in data:
+    if data.get("WindowsConfiguration") is not None:
         import capo_fsx.types.delete_file_system_windows_configuration
 
         out["windows_configuration"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteFileSystemRequest:
                 data["WindowsConfiguration"]
             )
         )
-    if "LustreConfiguration" in data:
+    if data.get("LustreConfiguration") is not None:
         import capo_fsx.types.delete_file_system_lustre_configuration
 
         out["lustre_configuration"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteFileSystemRequest:
                 data["LustreConfiguration"]
             )
         )
-    if "OpenZFSConfiguration" in data:
+    if data.get("OpenZFSConfiguration") is not None:
         import capo_fsx.types.delete_file_system_open_zfs_configuration
 
         out["open_zfs_configuration"] = (

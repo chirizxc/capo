@@ -35,9 +35,9 @@ def serialize_json(value: ListTemplateStepGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTemplateStepGroupsResponse:
     out: ListTemplateStepGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "templateStepGroupSummary" in data:
+    if data.get("templateStepGroupSummary") is not None:
         import capo_migrationhuborchestrator.types.template_step_group_summary_list
 
         out["template_step_group_summary"] = (

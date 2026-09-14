@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EffectiveOverrideHoursList:
 
     out: EffectiveOverrideHoursList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.effective_override_hours.deserialize_json(item))
     return out

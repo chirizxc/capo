@@ -52,17 +52,17 @@ def serialize_json(value: StartRunBatchRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartRunBatchRequest:
     out: StartRunBatchRequest = {}  # type: ignore[typeddict-item]
-    if "batchName" in data:
+    if data.get("batchName") is not None:
         out["batch_name"] = data["batchName"]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("StartRunBatchRequest.request_id required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "defaultRunSetting" in data:
+    if data.get("defaultRunSetting") is not None:
         import capo_omics.types.default_run_setting
 
         out["default_run_setting"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> StartRunBatchRequest:
         )
     else:
         raise DeserializationError("StartRunBatchRequest.default_run_setting required")
-    if "batchRunSettings" in data:
+    if data.get("batchRunSettings") is not None:
         import capo_omics.types.batch_run_settings
 
         out["batch_run_settings"] = (

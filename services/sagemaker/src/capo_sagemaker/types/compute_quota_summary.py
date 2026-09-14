@@ -116,15 +116,15 @@ def serialize_aws_json_1_1(value: ComputeQuotaSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaSummary:
     out: ComputeQuotaSummary = {}  # type: ignore[typeddict-item]
-    if "ComputeQuotaArn" in data:
+    if data.get("ComputeQuotaArn") is not None:
         out["compute_quota_arn"] = data["ComputeQuotaArn"]
-    if "ComputeQuotaId" in data:
+    if data.get("ComputeQuotaId") is not None:
         out["compute_quota_id"] = data["ComputeQuotaId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ComputeQuotaVersion" in data:
+    if data.get("ComputeQuotaVersion") is not None:
         out["compute_quota_version"] = data["ComputeQuotaVersion"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.scheduler_resource_status
 
         out["status"] = (
@@ -132,9 +132,9 @@ def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaSummary:
                 data["Status"]
             )
         )
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "ComputeQuotaConfig" in data:
+    if data.get("ComputeQuotaConfig") is not None:
         import capo_sagemaker.types.compute_quota_config
 
         out["compute_quota_config"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaSummary:
                 data["ComputeQuotaConfig"]
             )
         )
-    if "ComputeQuotaTarget" in data:
+    if data.get("ComputeQuotaTarget") is not None:
         import capo_sagemaker.types.compute_quota_target
 
         out["compute_quota_target"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaSummary:
                 data["ComputeQuotaTarget"]
             )
         )
-    if "ActivationState" in data:
+    if data.get("ActivationState") is not None:
         import capo_sagemaker.types.activation_state
 
         out["activation_state"] = (
@@ -158,13 +158,13 @@ def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaSummary:
                 data["ActivationState"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

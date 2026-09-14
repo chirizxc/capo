@@ -42,15 +42,15 @@ def serialize_json(value: CreateProvisioningClaimResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateProvisioningClaimResponse:
     out: CreateProvisioningClaimResponse = {}  # type: ignore[typeddict-item]
-    if "certificateId" in data:
+    if data.get("certificateId") is not None:
         out["certificate_id"] = data["certificateId"]
-    if "certificatePem" in data:
+    if data.get("certificatePem") is not None:
         out["certificate_pem"] = data["certificatePem"]
-    if "keyPair" in data:
+    if data.get("keyPair") is not None:
         import capo_iot.types.key_pair
 
         out["key_pair"] = capo_iot.types.key_pair.deserialize_json(data["keyPair"])
-    if "expiration" in data:
+    if data.get("expiration") is not None:
         import capo_iot.types.date_type
 
         out["expiration"] = capo_iot.types.date_type.deserialize_json(

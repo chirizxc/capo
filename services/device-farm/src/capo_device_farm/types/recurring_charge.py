@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: RecurringCharge) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecurringCharge:
     out: RecurringCharge = {}  # type: ignore[typeddict-item]
-    if "cost" in data:
+    if data.get("cost") is not None:
         import capo_device_farm.types.monetary_amount
 
         out["cost"] = capo_device_farm.types.monetary_amount.deserialize_aws_json_1_1(
             data["cost"]
         )
-    if "frequency" in data:
+    if data.get("frequency") is not None:
         import capo_device_farm.types.recurring_charge_frequency
 
         out["frequency"] = (

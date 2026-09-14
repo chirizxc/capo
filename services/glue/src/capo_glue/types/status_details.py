@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: StatusDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StatusDetails:
     out: StatusDetails = {}  # type: ignore[typeddict-item]
-    if "RequestedChange" in data:
+    if data.get("RequestedChange") is not None:
         import capo_glue.types.table
 
         out["requested_change"] = capo_glue.types.table.deserialize_aws_json_1_1(
             data["RequestedChange"]
         )
-    if "ViewValidations" in data:
+    if data.get("ViewValidations") is not None:
         import capo_glue.types.view_validation_list
 
         out["view_validations"] = (

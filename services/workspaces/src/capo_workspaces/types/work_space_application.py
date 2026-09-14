@@ -103,17 +103,17 @@ def serialize_aws_json_1_1(value: WorkSpaceApplication) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkSpaceApplication:
     out: WorkSpaceApplication = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "Created" in data:
+    if data.get("Created") is not None:
         import capo_workspaces.types.timestamp
 
         out["created"] = capo_workspaces.types.timestamp.deserialize_aws_json_1_1(
             data["Created"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LicenseType" in data:
+    if data.get("LicenseType") is not None:
         import capo_workspaces.types.work_space_application_license_type
 
         out["license_type"] = (
@@ -121,11 +121,11 @@ def deserialize_aws_json_1_1(data: dict) -> WorkSpaceApplication:
                 data["LicenseType"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.work_space_application_state
 
         out["state"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkSpaceApplication:
                 data["State"]
             )
         )
-    if "SupportedComputeTypeNames" in data:
+    if data.get("SupportedComputeTypeNames") is not None:
         import capo_workspaces.types.compute_list
 
         out["supported_compute_type_names"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkSpaceApplication:
                 data["SupportedComputeTypeNames"]
             )
         )
-    if "SupportedOperatingSystemNames" in data:
+    if data.get("SupportedOperatingSystemNames") is not None:
         import capo_workspaces.types.operating_system_name_list
 
         out["supported_operating_system_names"] = (

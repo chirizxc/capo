@@ -40,13 +40,13 @@ def serialize_aws_json_1_0(value: UpdateSyncBlockerOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateSyncBlockerOutput:
     out: UpdateSyncBlockerOutput = {}  # type: ignore[typeddict-item]
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     else:
         raise DeserializationError("UpdateSyncBlockerOutput.resource_name required")
-    if "ParentResourceName" in data:
+    if data.get("ParentResourceName") is not None:
         out["parent_resource_name"] = data["ParentResourceName"]
-    if "SyncBlocker" in data:
+    if data.get("SyncBlocker") is not None:
         import capo_codestar_connections.types.sync_blocker
 
         out["sync_blocker"] = (

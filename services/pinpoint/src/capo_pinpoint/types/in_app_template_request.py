@@ -58,7 +58,7 @@ def serialize_json(value: InAppTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> InAppTemplateRequest:
     out: InAppTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_pinpoint.types.list_of_in_app_message_content
 
         out["content"] = (
@@ -66,20 +66,20 @@ def deserialize_json(data: dict) -> InAppTemplateRequest:
                 data["Content"]
             )
         )
-    if "CustomConfig" in data:
+    if data.get("CustomConfig") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["custom_config"] = capo_pinpoint.types.map_of__string.deserialize_json(
             data["CustomConfig"]
         )
-    if "Layout" in data:
+    if data.get("Layout") is not None:
         import capo_pinpoint.types.layout
 
         out["layout"] = capo_pinpoint.types.layout.deserialize_json(data["Layout"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "TemplateDescription" in data:
+    if data.get("TemplateDescription") is not None:
         out["template_description"] = data["TemplateDescription"]
     return out

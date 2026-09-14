@@ -48,11 +48,11 @@ def serialize_aws_json_1_0(value: UpdateLoggingConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateLoggingConfigurationRequest:
     out: UpdateLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "FirewallName" in data:
+    if data.get("FirewallName") is not None:
         out["firewall_name"] = data["FirewallName"]
-    if "LoggingConfiguration" in data:
+    if data.get("LoggingConfiguration") is not None:
         import capo_network_firewall.types.logging_configuration
 
         out["logging_configuration"] = (
@@ -60,6 +60,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateLoggingConfigurationRequest:
                 data["LoggingConfiguration"]
             )
         )
-    if "EnableMonitoringDashboard" in data:
+    if data.get("EnableMonitoringDashboard") is not None:
         out["enable_monitoring_dashboard"] = data["EnableMonitoringDashboard"]
     return out

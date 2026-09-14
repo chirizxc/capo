@@ -21,14 +21,25 @@ def serialize_aws_json_1_0(value: CloudAutonomousVmClusterResourceDetails) -> di
     if "cloud_autonomous_vm_cluster_id" in value:
         out["cloudAutonomousVmClusterId"] = value["cloud_autonomous_vm_cluster_id"]
     if "unallocated_adb_storage_in_t_bs" in value:
-        out["unallocatedAdbStorageInTBs"] = value["unallocated_adb_storage_in_t_bs"]
+        out["unallocatedAdbStorageInTBs"] = (
+            "NaN"
+            if value["unallocated_adb_storage_in_t_bs"]
+            != value["unallocated_adb_storage_in_t_bs"]
+            else "Infinity"
+            if value["unallocated_adb_storage_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["unallocated_adb_storage_in_t_bs"] == float("-inf")
+            else value["unallocated_adb_storage_in_t_bs"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> CloudAutonomousVmClusterResourceDetails:
     out: CloudAutonomousVmClusterResourceDetails = {}  # type: ignore[typeddict-item]
-    if "cloudAutonomousVmClusterId" in data:
+    if data.get("cloudAutonomousVmClusterId") is not None:
         out["cloud_autonomous_vm_cluster_id"] = data["cloudAutonomousVmClusterId"]
-    if "unallocatedAdbStorageInTBs" in data:
-        out["unallocated_adb_storage_in_t_bs"] = data["unallocatedAdbStorageInTBs"]
+    if data.get("unallocatedAdbStorageInTBs") is not None:
+        out["unallocated_adb_storage_in_t_bs"] = float(
+            data["unallocatedAdbStorageInTBs"]
+        )
     return out

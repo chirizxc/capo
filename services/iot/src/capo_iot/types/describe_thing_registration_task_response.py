@@ -88,43 +88,43 @@ def serialize_json(value: DescribeThingRegistrationTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeThingRegistrationTaskResponse:
     out: DescribeThingRegistrationTaskResponse = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.creation_date
 
         out["creation_date"] = capo_iot.types.creation_date.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.last_modified_date
 
         out["last_modified_date"] = capo_iot.types.last_modified_date.deserialize_json(
             data["lastModifiedDate"]
         )
-    if "templateBody" in data:
+    if data.get("templateBody") is not None:
         out["template_body"] = data["templateBody"]
-    if "inputFileBucket" in data:
+    if data.get("inputFileBucket") is not None:
         out["input_file_bucket"] = data["inputFileBucket"]
-    if "inputFileKey" in data:
+    if data.get("inputFileKey") is not None:
         out["input_file_key"] = data["inputFileKey"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.status
 
         out["status"] = capo_iot.types.status.deserialize_json(data["status"])
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "successCount" in data:
+    if data.get("successCount") is not None:
         out["success_count"] = data["successCount"]
     else:
         out["success_count"] = 0
-    if "failureCount" in data:
+    if data.get("failureCount") is not None:
         out["failure_count"] = data["failureCount"]
     else:
         out["failure_count"] = 0
-    if "percentageProgress" in data:
+    if data.get("percentageProgress") is not None:
         out["percentage_progress"] = data["percentageProgress"]
     else:
         out["percentage_progress"] = 0

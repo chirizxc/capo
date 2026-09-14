@@ -42,17 +42,17 @@ def serialize_aws_json_1_1(value: CreateComponentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateComponentRequest:
     out: CreateComponentRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
     else:
         raise DeserializationError(
             "CreateComponentRequest.resource_group_name required"
         )
-    if "ComponentName" in data:
+    if data.get("ComponentName") is not None:
         out["component_name"] = data["ComponentName"]
     else:
         raise DeserializationError("CreateComponentRequest.component_name required")
-    if "ResourceList" in data:
+    if data.get("ResourceList") is not None:
         import capo_application_insights.types.resource_list
 
         out["resource_list"] = (

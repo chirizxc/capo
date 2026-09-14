@@ -25,7 +25,7 @@ def serialize_json(value: AgentFirst) -> dict:
 
 def deserialize_json(data: dict) -> AgentFirst:
     out: AgentFirst = {}  # type: ignore[typeddict-item]
-    if "Preview" in data:
+    if data.get("Preview") is not None:
         import capo_connect.types.preview
 
         out["preview"] = capo_connect.types.preview.deserialize_json(data["Preview"])

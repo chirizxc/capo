@@ -48,16 +48,16 @@ def serialize_aws_json_1_1(value: StoredQuery) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StoredQuery:
     out: StoredQuery = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
-    if "QueryArn" in data:
+    if data.get("QueryArn") is not None:
         out["query_arn"] = data["QueryArn"]
-    if "QueryName" in data:
+    if data.get("QueryName") is not None:
         out["query_name"] = data["QueryName"]
     else:
         raise DeserializationError("StoredQuery.query_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     return out

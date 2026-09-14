@@ -43,7 +43,7 @@ def serialize_json(value: DICOMUpdates) -> dict:
 
 def deserialize_json(data: dict) -> DICOMUpdates:
     out: DICOMUpdates = {}  # type: ignore[typeddict-item]
-    if "removableAttributes" in data:
+    if data.get("removableAttributes") is not None:
         import capo_medical_imaging.types.dicom_attribute
 
         out["removable_attributes"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> DICOMUpdates:
                 data["removableAttributes"]
             )
         )
-    if "updatableAttributes" in data:
+    if data.get("updatableAttributes") is not None:
         import capo_medical_imaging.types.dicom_attribute
 
         out["updatable_attributes"] = (

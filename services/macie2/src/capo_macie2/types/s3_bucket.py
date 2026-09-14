@@ -89,7 +89,7 @@ def serialize_json(value: S3Bucket) -> dict:
 
 def deserialize_json(data: dict) -> S3Bucket:
     out: S3Bucket = {}  # type: ignore[typeddict-item]
-    if "allowsUnencryptedObjectUploads" in data:
+    if data.get("allowsUnencryptedObjectUploads") is not None:
         import capo_macie2.types.allows_unencrypted_object_uploads
 
         out["allows_unencrypted_object_uploads"] = (
@@ -97,15 +97,15 @@ def deserialize_json(data: dict) -> S3Bucket:
                 data["allowsUnencryptedObjectUploads"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["created_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["createdAt"]
         )
-    if "defaultServerSideEncryption" in data:
+    if data.get("defaultServerSideEncryption") is not None:
         import capo_macie2.types.server_side_encryption
 
         out["default_server_side_encryption"] = (
@@ -113,19 +113,19 @@ def deserialize_json(data: dict) -> S3Bucket:
                 data["defaultServerSideEncryption"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         import capo_macie2.types.s3_bucket_owner
 
         out["owner"] = capo_macie2.types.s3_bucket_owner.deserialize_json(data["owner"])
-    if "publicAccess" in data:
+    if data.get("publicAccess") is not None:
         import capo_macie2.types.bucket_public_access
 
         out["public_access"] = capo_macie2.types.bucket_public_access.deserialize_json(
             data["publicAccess"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_macie2.types.key_value_pair_list
 
         out["tags"] = capo_macie2.types.key_value_pair_list.deserialize_json(

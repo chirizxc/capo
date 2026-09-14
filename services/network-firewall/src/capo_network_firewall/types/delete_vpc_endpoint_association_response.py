@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: DeleteVpcEndpointAssociationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteVpcEndpointAssociationResponse:
     out: DeleteVpcEndpointAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointAssociation" in data:
+    if data.get("VpcEndpointAssociation") is not None:
         import capo_network_firewall.types.vpc_endpoint_association
 
         out["vpc_endpoint_association"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteVpcEndpointAssociationResponse
                 data["VpcEndpointAssociation"]
             )
         )
-    if "VpcEndpointAssociationStatus" in data:
+    if data.get("VpcEndpointAssociationStatus") is not None:
         import capo_network_firewall.types.vpc_endpoint_association_status
 
         out["vpc_endpoint_association_status"] = (

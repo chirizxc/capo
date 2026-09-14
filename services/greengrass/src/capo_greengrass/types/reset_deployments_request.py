@@ -28,6 +28,6 @@ def serialize_json(value: ResetDeploymentsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ResetDeploymentsRequest:
     out: ResetDeploymentsRequest = {}  # type: ignore[typeddict-item]
-    if "Force" in data:
+    if data.get("Force") is not None:
         out["force"] = data["Force"]
     return out

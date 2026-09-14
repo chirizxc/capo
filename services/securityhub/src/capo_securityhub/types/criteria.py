@@ -34,7 +34,7 @@ def serialize_json(value: Criteria) -> dict:
 
 
 def deserialize_json(data: dict) -> Criteria:
-    if "OcsfFindingCriteria" in data:
+    if data.get("OcsfFindingCriteria") is not None:
         import capo_securityhub.types.ocsf_finding_filters
 
         return {

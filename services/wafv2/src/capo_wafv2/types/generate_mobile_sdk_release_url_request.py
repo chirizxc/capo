@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GenerateMobileSdkReleaseUrlRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GenerateMobileSdkReleaseUrlRequest:
     out: GenerateMobileSdkReleaseUrlRequest = {}  # type: ignore[typeddict-item]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_wafv2.types.platform
 
         out["platform"] = capo_wafv2.types.platform.deserialize_aws_json_1_1(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> GenerateMobileSdkReleaseUrlRequest:
         raise DeserializationError(
             "GenerateMobileSdkReleaseUrlRequest.platform required"
         )
-    if "ReleaseVersion" in data:
+    if data.get("ReleaseVersion") is not None:
         out["release_version"] = data["ReleaseVersion"]
     else:
         raise DeserializationError(

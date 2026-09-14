@@ -36,13 +36,13 @@ def serialize_json(value: CoverageSortCriteria) -> dict:
 
 def deserialize_json(data: dict) -> CoverageSortCriteria:
     out: CoverageSortCriteria = {}  # type: ignore[typeddict-item]
-    if "attributeName" in data:
+    if data.get("attributeName") is not None:
         import capo_guardduty.types.coverage_sort_key
 
         out["attribute_name"] = capo_guardduty.types.coverage_sort_key.deserialize_json(
             data["attributeName"]
         )
-    if "orderBy" in data:
+    if data.get("orderBy") is not None:
         import capo_guardduty.types.order_by
 
         out["order_by"] = capo_guardduty.types.order_by.deserialize_json(

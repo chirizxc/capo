@@ -28,8 +28,8 @@ def serialize_aws_json_1_0(value: DataModelS3Configuration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DataModelS3Configuration:
     out: DataModelS3Configuration = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
-    if "ObjectKey" in data:
+    if data.get("ObjectKey") is not None:
         out["object_key"] = data["ObjectKey"]
     return out

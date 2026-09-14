@@ -27,8 +27,8 @@ def serialize_json(value: Bumper) -> dict:
 
 def deserialize_json(data: dict) -> Bumper:
     out: Bumper = {}  # type: ignore[typeddict-item]
-    if "EndUrl" in data:
+    if data.get("EndUrl") is not None:
         out["end_url"] = data["EndUrl"]
-    if "StartUrl" in data:
+    if data.get("StartUrl") is not None:
         out["start_url"] = data["StartUrl"]
     return out

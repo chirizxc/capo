@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: ResponseResourceMetricKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponseResourceMetricKey:
     out: ResponseResourceMetricKey = {}  # type: ignore[typeddict-item]
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         out["metric"] = data["Metric"]
     else:
         raise DeserializationError("ResponseResourceMetricKey.metric required")
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pi.types.dimension_map
 
         out["dimensions"] = capo_pi.types.dimension_map.deserialize_aws_json_1_1(

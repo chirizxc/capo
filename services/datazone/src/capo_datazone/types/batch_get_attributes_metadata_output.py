@@ -41,7 +41,7 @@ def serialize_json(value: BatchGetAttributesMetadataOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAttributesMetadataOutput:
     out: BatchGetAttributesMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_datazone.types.batch_get_attribute_items
 
         out["attributes"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> BatchGetAttributesMetadataOutput:
                 data["attributes"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_datazone.types.attributes_errors
 
         out["errors"] = capo_datazone.types.attributes_errors.deserialize_json(

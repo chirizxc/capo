@@ -18,6 +18,6 @@ def serialize_json(value: UserInteractionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> UserInteractionConfiguration:
     out: UserInteractionConfiguration = {}  # type: ignore[typeddict-item]
-    if "isUserConfirmationRequired" in data:
+    if data.get("isUserConfirmationRequired") is not None:
         out["is_user_confirmation_required"] = data["isUserConfirmationRequired"]
     return out

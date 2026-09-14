@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: LambdaSavingsEstimationMode) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaSavingsEstimationMode:
     out: LambdaSavingsEstimationMode = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_compute_optimizer.types.lambda_savings_estimation_mode_source
 
         out["source"] = (

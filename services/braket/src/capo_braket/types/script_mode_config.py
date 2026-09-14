@@ -32,14 +32,14 @@ def serialize_json(value: ScriptModeConfig) -> dict:
 
 def deserialize_json(data: dict) -> ScriptModeConfig:
     out: ScriptModeConfig = {}  # type: ignore[typeddict-item]
-    if "entryPoint" in data:
+    if data.get("entryPoint") is not None:
         out["entry_point"] = data["entryPoint"]
     else:
         raise DeserializationError("ScriptModeConfig.entry_point required")
-    if "s3Uri" in data:
+    if data.get("s3Uri") is not None:
         out["s3_uri"] = data["s3Uri"]
     else:
         raise DeserializationError("ScriptModeConfig.s3_uri required")
-    if "compressionType" in data:
+    if data.get("compressionType") is not None:
         out["compression_type"] = data["compressionType"]
     return out

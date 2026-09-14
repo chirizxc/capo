@@ -52,11 +52,11 @@ def serialize_json(value: PostTimeSeriesDataPointsOutput) -> dict:
 
 def deserialize_json(data: dict) -> PostTimeSeriesDataPointsOutput:
     out: PostTimeSeriesDataPointsOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "entityType" in data:
+    if data.get("entityType") is not None:
         import capo_datazone.types.time_series_entity_type
 
         out["entity_type"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> PostTimeSeriesDataPointsOutput:
                 data["entityType"]
             )
         )
-    if "forms" in data:
+    if data.get("forms") is not None:
         import capo_datazone.types.time_series_data_point_form_output_list
 
         out["forms"] = (

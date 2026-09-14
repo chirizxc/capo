@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceImagePermissionsResult) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceImagePermissionsResult:
     out: DescribeWorkspaceImagePermissionsResult = {}  # type: ignore[typeddict-item]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "ImagePermissions" in data:
+    if data.get("ImagePermissions") is not None:
         import capo_workspaces.types.image_permissions
 
         out["image_permissions"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceImagePermissionsRes
                 data["ImagePermissions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

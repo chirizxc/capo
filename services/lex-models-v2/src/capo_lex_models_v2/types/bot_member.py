@@ -40,23 +40,23 @@ def serialize_json(value: BotMember) -> dict:
 
 def deserialize_json(data: dict) -> BotMember:
     out: BotMember = {}  # type: ignore[typeddict-item]
-    if "botMemberId" in data:
+    if data.get("botMemberId") is not None:
         out["bot_member_id"] = data["botMemberId"]
     else:
         raise DeserializationError("BotMember.bot_member_id required")
-    if "botMemberName" in data:
+    if data.get("botMemberName") is not None:
         out["bot_member_name"] = data["botMemberName"]
     else:
         raise DeserializationError("BotMember.bot_member_name required")
-    if "botMemberAliasId" in data:
+    if data.get("botMemberAliasId") is not None:
         out["bot_member_alias_id"] = data["botMemberAliasId"]
     else:
         raise DeserializationError("BotMember.bot_member_alias_id required")
-    if "botMemberAliasName" in data:
+    if data.get("botMemberAliasName") is not None:
         out["bot_member_alias_name"] = data["botMemberAliasName"]
     else:
         raise DeserializationError("BotMember.bot_member_alias_name required")
-    if "botMemberVersion" in data:
+    if data.get("botMemberVersion") is not None:
         out["bot_member_version"] = data["botMemberVersion"]
     else:
         raise DeserializationError("BotMember.bot_member_version required")

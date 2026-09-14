@@ -36,7 +36,7 @@ def serialize_json(value: CreateDocumentationPartRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDocumentationPartRequest:
     out: CreateDocumentationPartRequest = {}  # type: ignore[typeddict-item]
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_api_gateway.types.documentation_part_location
 
         out["location"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> CreateDocumentationPartRequest:
         )
     else:
         raise DeserializationError("CreateDocumentationPartRequest.location required")
-    if "properties" in data:
+    if data.get("properties") is not None:
         out["properties"] = data["properties"]
     else:
         raise DeserializationError("CreateDocumentationPartRequest.properties required")

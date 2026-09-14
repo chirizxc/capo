@@ -40,14 +40,14 @@ def serialize_json(value: CreateWorkspaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkspaceRequest:
     out: CreateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

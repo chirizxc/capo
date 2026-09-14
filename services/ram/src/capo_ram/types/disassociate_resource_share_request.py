@@ -59,27 +59,27 @@ def serialize_json(value: DisassociateResourceShareRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateResourceShareRequest:
     out: DisassociateResourceShareRequest = {}  # type: ignore[typeddict-item]
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
     else:
         raise DeserializationError(
             "DisassociateResourceShareRequest.resource_share_arn required"
         )
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_ram.types.resource_arn_list
 
         out["resource_arns"] = capo_ram.types.resource_arn_list.deserialize_json(
             data["resourceArns"]
         )
-    if "principals" in data:
+    if data.get("principals") is not None:
         import capo_ram.types.principal_arn_or_id_list
 
         out["principals"] = capo_ram.types.principal_arn_or_id_list.deserialize_json(
             data["principals"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_ram.types.source_arn_or_account_list
 
         out["sources"] = capo_ram.types.source_arn_or_account_list.deserialize_json(

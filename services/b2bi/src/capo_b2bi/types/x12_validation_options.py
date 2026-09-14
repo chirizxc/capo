@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: X12ValidationOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12ValidationOptions:
     out: X12ValidationOptions = {}  # type: ignore[typeddict-item]
-    if "validationRules" in data:
+    if data.get("validationRules") is not None:
         import capo_b2bi.types.x12_validation_rules
 
         out["validation_rules"] = (

@@ -30,8 +30,8 @@ def serialize_json(value: ParticipantTokenCredentials) -> dict:
 
 def deserialize_json(data: dict) -> ParticipantTokenCredentials:
     out: ParticipantTokenCredentials = {}  # type: ignore[typeddict-item]
-    if "ParticipantToken" in data:
+    if data.get("ParticipantToken") is not None:
         out["participant_token"] = data["ParticipantToken"]
-    if "Expiry" in data:
+    if data.get("Expiry") is not None:
         out["expiry"] = data["Expiry"]
     return out

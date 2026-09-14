@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: GetExecutionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetExecutionResponse:
     out: GetExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "ExecutionId" in data:
+    if data.get("ExecutionId") is not None:
         out["execution_id"] = data["ExecutionId"]
-    if "Export" in data:
+    if data.get("Export") is not None:
         import capo_bcm_data_exports.types.export
 
         out["export"] = capo_bcm_data_exports.types.export.deserialize_aws_json_1_1(
             data["Export"]
         )
-    if "ExecutionStatus" in data:
+    if data.get("ExecutionStatus") is not None:
         import capo_bcm_data_exports.types.execution_status
 
         out["execution_status"] = (

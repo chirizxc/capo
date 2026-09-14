@@ -69,7 +69,7 @@ def serialize_json(value: AwsEc2VpcPeeringConnectionDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VpcPeeringConnectionDetails:
     out: AwsEc2VpcPeeringConnectionDetails = {}  # type: ignore[typeddict-item]
-    if "AccepterVpcInfo" in data:
+    if data.get("AccepterVpcInfo") is not None:
         import capo_securityhub.types.aws_ec2_vpc_peering_connection_vpc_info_details
 
         out["accepter_vpc_info"] = (
@@ -77,9 +77,9 @@ def deserialize_json(data: dict) -> AwsEc2VpcPeeringConnectionDetails:
                 data["AccepterVpcInfo"]
             )
         )
-    if "ExpirationTime" in data:
+    if data.get("ExpirationTime") is not None:
         out["expiration_time"] = data["ExpirationTime"]
-    if "RequesterVpcInfo" in data:
+    if data.get("RequesterVpcInfo") is not None:
         import capo_securityhub.types.aws_ec2_vpc_peering_connection_vpc_info_details
 
         out["requester_vpc_info"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> AwsEc2VpcPeeringConnectionDetails:
                 data["RequesterVpcInfo"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_securityhub.types.aws_ec2_vpc_peering_connection_status_details
 
         out["status"] = (
@@ -95,6 +95,6 @@ def deserialize_json(data: dict) -> AwsEc2VpcPeeringConnectionDetails:
                 data["Status"]
             )
         )
-    if "VpcPeeringConnectionId" in data:
+    if data.get("VpcPeeringConnectionId") is not None:
         out["vpc_peering_connection_id"] = data["VpcPeeringConnectionId"]
     return out

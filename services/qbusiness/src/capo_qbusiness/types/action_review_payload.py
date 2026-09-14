@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: ActionReviewPayload) -> dict:
 def deserialize_json(data: dict) -> ActionReviewPayload:
     out: ActionReviewPayload = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_qbusiness.types.action_review_payload_field
 
         out[key] = capo_qbusiness.types.action_review_payload_field.deserialize_json(

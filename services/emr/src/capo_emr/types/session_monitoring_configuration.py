@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: SessionMonitoringConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionMonitoringConfiguration:
     out: SessionMonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "CloudWatchLoggingConfiguration" in data:
+    if data.get("CloudWatchLoggingConfiguration") is not None:
         import capo_emr.types.session_cloud_watch_logging_configuration
 
         out["cloud_watch_logging_configuration"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> SessionMonitoringConfiguration:
                 data["CloudWatchLoggingConfiguration"]
             )
         )
-    if "ManagedLoggingConfiguration" in data:
+    if data.get("ManagedLoggingConfiguration") is not None:
         import capo_emr.types.session_managed_logging_configuration
 
         out["managed_logging_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> SessionMonitoringConfiguration:
                 data["ManagedLoggingConfiguration"]
             )
         )
-    if "S3LoggingConfiguration" in data:
+    if data.get("S3LoggingConfiguration") is not None:
         import capo_emr.types.session_s3_logging_configuration
 
         out["s3_logging_configuration"] = (

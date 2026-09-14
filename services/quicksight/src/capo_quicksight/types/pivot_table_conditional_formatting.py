@@ -31,7 +31,7 @@ def serialize_json(value: PivotTableConditionalFormatting) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableConditionalFormatting:
     out: PivotTableConditionalFormatting = {}  # type: ignore[typeddict-item]
-    if "ConditionalFormattingOptions" in data:
+    if data.get("ConditionalFormattingOptions") is not None:
         import capo_quicksight.types.pivot_table_conditional_formatting_option_list
 
         out["conditional_formatting_options"] = (

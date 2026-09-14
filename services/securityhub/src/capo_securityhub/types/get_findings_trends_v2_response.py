@@ -43,18 +43,18 @@ def serialize_json(value: GetFindingsTrendsV2Response) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsTrendsV2Response:
     out: GetFindingsTrendsV2Response = {}  # type: ignore[typeddict-item]
-    if "Granularity" in data:
+    if data.get("Granularity") is not None:
         import capo_securityhub.types.granularity_field
 
         out["granularity"] = capo_securityhub.types.granularity_field.deserialize_json(
             data["Granularity"]
         )
-    if "TrendsMetrics" in data:
+    if data.get("TrendsMetrics") is not None:
         import capo_securityhub.types.trends_metrics
 
         out["trends_metrics"] = capo_securityhub.types.trends_metrics.deserialize_json(
             data["TrendsMetrics"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

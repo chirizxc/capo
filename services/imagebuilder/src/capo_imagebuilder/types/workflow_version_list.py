@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> WorkflowVersionList:
 
     out: WorkflowVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_imagebuilder.types.workflow_version.deserialize_json(item))
     return out

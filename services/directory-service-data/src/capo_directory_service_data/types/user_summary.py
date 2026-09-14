@@ -41,19 +41,19 @@ def serialize_json(value: UserSummary) -> dict:
 
 def deserialize_json(data: dict) -> UserSummary:
     out: UserSummary = {}  # type: ignore[typeddict-item]
-    if "SID" in data:
+    if data.get("SID") is not None:
         out["sid"] = data["SID"]
     else:
         raise DeserializationError("UserSummary.sid required")
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
     else:
         raise DeserializationError("UserSummary.sam_account_name required")
-    if "GivenName" in data:
+    if data.get("GivenName") is not None:
         out["given_name"] = data["GivenName"]
-    if "Surname" in data:
+    if data.get("Surname") is not None:
         out["surname"] = data["Surname"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("UserSummary.enabled required")

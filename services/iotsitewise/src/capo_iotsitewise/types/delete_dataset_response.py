@@ -28,7 +28,7 @@ def serialize_json(value: DeleteDatasetResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDatasetResponse:
     out: DeleteDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "datasetStatus" in data:
+    if data.get("datasetStatus") is not None:
         import capo_iotsitewise.types.dataset_status
 
         out["dataset_status"] = capo_iotsitewise.types.dataset_status.deserialize_json(

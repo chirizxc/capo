@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RecommendedStepList:
 
     out: RecommendedStepList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_accessanalyzer.types.recommended_step.deserialize_json(item))
     return out

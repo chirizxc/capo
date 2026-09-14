@@ -127,27 +127,27 @@ def serialize_json(value: ImageRecipe) -> dict:
 
 def deserialize_json(data: dict) -> ImageRecipe:
     out: ImageRecipe = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_imagebuilder.types.image_type
 
         out["type"] = capo_imagebuilder.types.image_type.deserialize_json(data["type"])
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_imagebuilder.types.platform
 
         out["platform"] = capo_imagebuilder.types.platform.deserialize_json(
             data["platform"]
         )
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_imagebuilder.types.component_configuration_list
 
         out["components"] = (
@@ -155,9 +155,9 @@ def deserialize_json(data: dict) -> ImageRecipe:
                 data["components"]
             )
         )
-    if "parentImage" in data:
+    if data.get("parentImage") is not None:
         out["parent_image"] = data["parentImage"]
-    if "blockDeviceMappings" in data:
+    if data.get("blockDeviceMappings") is not None:
         import capo_imagebuilder.types.instance_block_device_mappings
 
         out["block_device_mappings"] = (
@@ -165,15 +165,15 @@ def deserialize_json(data: dict) -> ImageRecipe:
                 data["blockDeviceMappings"]
             )
         )
-    if "dateCreated" in data:
+    if data.get("dateCreated") is not None:
         out["date_created"] = data["dateCreated"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "workingDirectory" in data:
+    if data.get("workingDirectory") is not None:
         out["working_directory"] = data["workingDirectory"]
-    if "additionalInstanceConfiguration" in data:
+    if data.get("additionalInstanceConfiguration") is not None:
         import capo_imagebuilder.types.additional_instance_configuration
 
         out["additional_instance_configuration"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> ImageRecipe:
                 data["additionalInstanceConfiguration"]
             )
         )
-    if "amiTags" in data:
+    if data.get("amiTags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["ami_tags"] = capo_imagebuilder.types.tag_map.deserialize_json(

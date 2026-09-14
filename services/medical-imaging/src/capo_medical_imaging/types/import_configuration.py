@@ -34,7 +34,7 @@ def serialize_json(value: ImportConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ImportConfiguration:
-    if "dicomJsonMetadataImportConfiguration" in data:
+    if data.get("dicomJsonMetadataImportConfiguration") is not None:
         import capo_medical_imaging.types.dicom_json_metadata_import_configuration
 
         return {

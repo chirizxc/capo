@@ -37,12 +37,12 @@ def serialize_json(value: SourceNetworkData) -> dict:
 
 def deserialize_json(data: dict) -> SourceNetworkData:
     out: SourceNetworkData = {}  # type: ignore[typeddict-item]
-    if "sourceNetworkID" in data:
+    if data.get("sourceNetworkID") is not None:
         out["source_network_id"] = data["sourceNetworkID"]
-    if "sourceVpc" in data:
+    if data.get("sourceVpc") is not None:
         out["source_vpc"] = data["sourceVpc"]
-    if "targetVpc" in data:
+    if data.get("targetVpc") is not None:
         out["target_vpc"] = data["targetVpc"]
-    if "stackName" in data:
+    if data.get("stackName") is not None:
         out["stack_name"] = data["stackName"]
     return out

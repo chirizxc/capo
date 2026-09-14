@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: ListActionTypesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListActionTypesInput:
     out: ListActionTypesInput = {}  # type: ignore[typeddict-item]
-    if "actionOwnerFilter" in data:
+    if data.get("actionOwnerFilter") is not None:
         import capo_codepipeline.types.action_owner
 
         out["action_owner_filter"] = (
@@ -47,8 +47,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListActionTypesInput:
                 data["actionOwnerFilter"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "regionFilter" in data:
+    if data.get("regionFilter") is not None:
         out["region_filter"] = data["regionFilter"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetUserAuthFactorsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUserAuthFactorsRequest:
     out: GetUserAuthFactorsRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError("GetUserAuthFactorsRequest.access_token required")

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PackageDetailsList:
 
     out: PackageDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.package_details.deserialize_json(item))
     return out

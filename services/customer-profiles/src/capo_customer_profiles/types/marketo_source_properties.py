@@ -24,7 +24,7 @@ def serialize_json(value: MarketoSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> MarketoSourceProperties:
     out: MarketoSourceProperties = {}  # type: ignore[typeddict-item]
-    if "Object" in data:
+    if data.get("Object") is not None:
         out["object"] = data["Object"]
     else:
         raise DeserializationError("MarketoSourceProperties.object required")

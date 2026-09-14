@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: BatchGetDocumentStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetDocumentStatusRequest:
     out: BatchGetDocumentStatusRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("BatchGetDocumentStatusRequest.index_id required")
-    if "DocumentInfoList" in data:
+    if data.get("DocumentInfoList") is not None:
         import capo_kendra.types.document_info_list
 
         out["document_info_list"] = (

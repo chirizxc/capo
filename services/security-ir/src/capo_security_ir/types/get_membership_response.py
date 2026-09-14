@@ -133,23 +133,23 @@ def serialize_json(value: GetMembershipResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMembershipResponse:
     out: GetMembershipResponse = {}  # type: ignore[typeddict-item]
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("GetMembershipResponse.membership_id required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "region" in data:
+    if data.get("region") is not None:
         import capo_security_ir.types.aws_region
 
         out["region"] = capo_security_ir.types.aws_region.deserialize_json(
             data["region"]
         )
-    if "membershipName" in data:
+    if data.get("membershipName") is not None:
         out["membership_name"] = data["membershipName"]
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
-    if "membershipStatus" in data:
+    if data.get("membershipStatus") is not None:
         import capo_security_ir.types.membership_status
 
         out["membership_status"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> GetMembershipResponse:
                 data["membershipStatus"]
             )
         )
-    if "membershipActivationTimestamp" in data:
+    if data.get("membershipActivationTimestamp") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["membership_activation_timestamp"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> GetMembershipResponse:
                 data["membershipActivationTimestamp"]
             )
         )
-    if "membershipDeactivationTimestamp" in data:
+    if data.get("membershipDeactivationTimestamp") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["membership_deactivation_timestamp"] = (
@@ -173,15 +173,15 @@ def deserialize_json(data: dict) -> GetMembershipResponse:
                 data["membershipDeactivationTimestamp"]
             )
         )
-    if "customerType" in data:
+    if data.get("customerType") is not None:
         import capo_security_ir.types.customer_type
 
         out["customer_type"] = capo_security_ir.types.customer_type.deserialize_json(
             data["customerType"]
         )
-    if "numberOfAccountsCovered" in data:
+    if data.get("numberOfAccountsCovered") is not None:
         out["number_of_accounts_covered"] = data["numberOfAccountsCovered"]
-    if "incidentResponseTeam" in data:
+    if data.get("incidentResponseTeam") is not None:
         import capo_security_ir.types.incident_response_team
 
         out["incident_response_team"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> GetMembershipResponse:
                 data["incidentResponseTeam"]
             )
         )
-    if "optInFeatures" in data:
+    if data.get("optInFeatures") is not None:
         import capo_security_ir.types.opt_in_features
 
         out["opt_in_features"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> GetMembershipResponse:
                 data["optInFeatures"]
             )
         )
-    if "membershipAccountsConfigurations" in data:
+    if data.get("membershipAccountsConfigurations") is not None:
         import capo_security_ir.types.membership_accounts_configurations
 
         out["membership_accounts_configurations"] = (

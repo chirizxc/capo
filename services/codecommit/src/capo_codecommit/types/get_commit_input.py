@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: GetCommitInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCommitInput:
     out: GetCommitInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("GetCommitInput.repository_name required")
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
     else:
         raise DeserializationError("GetCommitInput.commit_id required")

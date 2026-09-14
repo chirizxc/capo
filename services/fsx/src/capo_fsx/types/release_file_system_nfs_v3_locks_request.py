@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: ReleaseFileSystemNfsV3LocksRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReleaseFileSystemNfsV3LocksRequest:
     out: ReleaseFileSystemNfsV3LocksRequest = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

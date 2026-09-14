@@ -34,12 +34,12 @@ def serialize_aws_json_1_0(value: ListTagsForResourceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTagsForResourceInput:
     out: ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("ListTagsForResourceInput.resource_arn required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

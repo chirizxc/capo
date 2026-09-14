@@ -92,33 +92,33 @@ def serialize_json(value: WorkloadSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkloadSummary:
     out: WorkloadSummary = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "WorkloadArn" in data:
+    if data.get("WorkloadArn") is not None:
         out["workload_arn"] = data["WorkloadArn"]
-    if "WorkloadName" in data:
+    if data.get("WorkloadName") is not None:
         out["workload_name"] = data["WorkloadName"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "Lenses" in data:
+    if data.get("Lenses") is not None:
         import capo_wellarchitected.types.workload_lenses
 
         out["lenses"] = capo_wellarchitected.types.workload_lenses.deserialize_json(
             data["Lenses"]
         )
-    if "RiskCounts" in data:
+    if data.get("RiskCounts") is not None:
         import capo_wellarchitected.types.risk_counts
 
         out["risk_counts"] = capo_wellarchitected.types.risk_counts.deserialize_json(
             data["RiskCounts"]
         )
-    if "ImprovementStatus" in data:
+    if data.get("ImprovementStatus") is not None:
         import capo_wellarchitected.types.workload_improvement_status
 
         out["improvement_status"] = (
@@ -126,13 +126,13 @@ def deserialize_json(data: dict) -> WorkloadSummary:
                 data["ImprovementStatus"]
             )
         )
-    if "Profiles" in data:
+    if data.get("Profiles") is not None:
         import capo_wellarchitected.types.workload_profiles
 
         out["profiles"] = capo_wellarchitected.types.workload_profiles.deserialize_json(
             data["Profiles"]
         )
-    if "PrioritizedRiskCounts" in data:
+    if data.get("PrioritizedRiskCounts") is not None:
         import capo_wellarchitected.types.risk_counts
 
         out["prioritized_risk_counts"] = (

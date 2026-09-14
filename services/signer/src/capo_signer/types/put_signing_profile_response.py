@@ -33,10 +33,10 @@ def serialize_json(value: PutSigningProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutSigningProfileResponse:
     out: PutSigningProfileResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "profileVersion" in data:
+    if data.get("profileVersion") is not None:
         out["profile_version"] = data["profileVersion"]
-    if "profileVersionArn" in data:
+    if data.get("profileVersionArn") is not None:
         out["profile_version_arn"] = data["profileVersionArn"]
     return out

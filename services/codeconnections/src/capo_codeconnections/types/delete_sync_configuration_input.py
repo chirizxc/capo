@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: DeleteSyncConfigurationInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteSyncConfigurationInput:
     out: DeleteSyncConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "SyncType" in data:
+    if data.get("SyncType") is not None:
         import capo_codeconnections.types.sync_configuration_type
 
         out["sync_type"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteSyncConfigurationInput:
         )
     else:
         raise DeserializationError("DeleteSyncConfigurationInput.sync_type required")
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     else:
         raise DeserializationError(

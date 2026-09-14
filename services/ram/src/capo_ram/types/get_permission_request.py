@@ -29,10 +29,10 @@ def serialize_json(value: GetPermissionRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetPermissionRequest:
     out: GetPermissionRequest = {}  # type: ignore[typeddict-item]
-    if "permissionArn" in data:
+    if data.get("permissionArn") is not None:
         out["permission_arn"] = data["permissionArn"]
     else:
         raise DeserializationError("GetPermissionRequest.permission_arn required")
-    if "permissionVersion" in data:
+    if data.get("permissionVersion") is not None:
         out["permission_version"] = data["permissionVersion"]
     return out

@@ -54,17 +54,17 @@ def serialize_aws_json_1_1(value: DecreaseReplicationFactorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DecreaseReplicationFactorRequest:
     out: DecreaseReplicationFactorRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError(
             "DecreaseReplicationFactorRequest.cluster_name required"
         )
-    if "NewReplicationFactor" in data:
+    if data.get("NewReplicationFactor") is not None:
         out["new_replication_factor"] = data["NewReplicationFactor"]
     else:
         out["new_replication_factor"] = 0
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_dax.types.availability_zone_list
 
         out["availability_zones"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> DecreaseReplicationFactorRequest:
                 data["AvailabilityZones"]
             )
         )
-    if "NodeIdsToRemove" in data:
+    if data.get("NodeIdsToRemove") is not None:
         import capo_dax.types.node_identifier_list
 
         out["node_ids_to_remove"] = (

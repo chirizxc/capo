@@ -115,9 +115,9 @@ def serialize_aws_json_1_1(value: OrganizationCustomPolicyRuleMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationCustomPolicyRuleMetadata:
     out: OrganizationCustomPolicyRuleMetadata = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OrganizationConfigRuleTriggerTypes" in data:
+    if data.get("OrganizationConfigRuleTriggerTypes") is not None:
         import capo_config_service.types.organization_config_rule_trigger_type_no_s_ns
 
         out["organization_config_rule_trigger_types"] = (
@@ -125,9 +125,9 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationCustomPolicyRuleMetadata
                 data["OrganizationConfigRuleTriggerTypes"]
             )
         )
-    if "InputParameters" in data:
+    if data.get("InputParameters") is not None:
         out["input_parameters"] = data["InputParameters"]
-    if "MaximumExecutionFrequency" in data:
+    if data.get("MaximumExecutionFrequency") is not None:
         import capo_config_service.types.maximum_execution_frequency
 
         out["maximum_execution_frequency"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationCustomPolicyRuleMetadata
                 data["MaximumExecutionFrequency"]
             )
         )
-    if "ResourceTypesScope" in data:
+    if data.get("ResourceTypesScope") is not None:
         import capo_config_service.types.resource_types_scope
 
         out["resource_types_scope"] = (
@@ -143,25 +143,25 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationCustomPolicyRuleMetadata
                 data["ResourceTypesScope"]
             )
         )
-    if "ResourceIdScope" in data:
+    if data.get("ResourceIdScope") is not None:
         out["resource_id_scope"] = data["ResourceIdScope"]
-    if "TagKeyScope" in data:
+    if data.get("TagKeyScope") is not None:
         out["tag_key_scope"] = data["TagKeyScope"]
-    if "TagValueScope" in data:
+    if data.get("TagValueScope") is not None:
         out["tag_value_scope"] = data["TagValueScope"]
-    if "PolicyRuntime" in data:
+    if data.get("PolicyRuntime") is not None:
         out["policy_runtime"] = data["PolicyRuntime"]
     else:
         raise DeserializationError(
             "OrganizationCustomPolicyRuleMetadata.policy_runtime required"
         )
-    if "PolicyText" in data:
+    if data.get("PolicyText") is not None:
         out["policy_text"] = data["PolicyText"]
     else:
         raise DeserializationError(
             "OrganizationCustomPolicyRuleMetadata.policy_text required"
         )
-    if "DebugLogDeliveryAccounts" in data:
+    if data.get("DebugLogDeliveryAccounts") is not None:
         import capo_config_service.types.debug_log_delivery_accounts
 
         out["debug_log_delivery_accounts"] = (

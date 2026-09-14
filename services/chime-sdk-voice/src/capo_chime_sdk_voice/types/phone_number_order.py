@@ -112,9 +112,9 @@ def serialize_json(value: PhoneNumberOrder) -> dict:
 
 def deserialize_json(data: dict) -> PhoneNumberOrder:
     out: PhoneNumberOrder = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberOrderId" in data:
+    if data.get("PhoneNumberOrderId") is not None:
         out["phone_number_order_id"] = data["PhoneNumberOrderId"]
-    if "ProductType" in data:
+    if data.get("ProductType") is not None:
         import capo_chime_sdk_voice.types.phone_number_product_type
 
         out["product_type"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> PhoneNumberOrder:
                 data["ProductType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime_sdk_voice.types.phone_number_order_status
 
         out["status"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> PhoneNumberOrder:
                 data["Status"]
             )
         )
-    if "OrderType" in data:
+    if data.get("OrderType") is not None:
         import capo_chime_sdk_voice.types.phone_number_order_type
 
         out["order_type"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> PhoneNumberOrder:
                 data["OrderType"]
             )
         )
-    if "OrderedPhoneNumbers" in data:
+    if data.get("OrderedPhoneNumbers") is not None:
         import capo_chime_sdk_voice.types.ordered_phone_number_list
 
         out["ordered_phone_numbers"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> PhoneNumberOrder:
                 data["OrderedPhoneNumbers"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> PhoneNumberOrder:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["updated_timestamp"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> PhoneNumberOrder:
                 data["UpdatedTimestamp"]
             )
         )
-    if "FocDate" in data:
+    if data.get("FocDate") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["foc_date"] = capo_chime_sdk_voice.types.iso8601_timestamp.deserialize_json(

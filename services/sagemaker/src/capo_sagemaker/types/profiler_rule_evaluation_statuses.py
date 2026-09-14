@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ProfilerRuleEvaluationStatuses:
 
     out: ProfilerRuleEvaluationStatuses = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.profiler_rule_evaluation_status.deserialize_aws_json_1_1(
                 item

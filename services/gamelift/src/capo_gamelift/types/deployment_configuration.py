@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: DeploymentConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentConfiguration:
     out: DeploymentConfiguration = {}  # type: ignore[typeddict-item]
-    if "ProtectionStrategy" in data:
+    if data.get("ProtectionStrategy") is not None:
         import capo_gamelift.types.deployment_protection_strategy
 
         out["protection_strategy"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentConfiguration:
                 data["ProtectionStrategy"]
             )
         )
-    if "MinimumHealthyPercentage" in data:
+    if data.get("MinimumHealthyPercentage") is not None:
         out["minimum_healthy_percentage"] = data["MinimumHealthyPercentage"]
-    if "ImpairmentStrategy" in data:
+    if data.get("ImpairmentStrategy") is not None:
         import capo_gamelift.types.deployment_impairment_strategy
 
         out["impairment_strategy"] = (

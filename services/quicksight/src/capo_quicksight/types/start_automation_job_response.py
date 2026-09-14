@@ -35,14 +35,14 @@ def serialize_json(value: StartAutomationJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartAutomationJobResponse:
     out: StartAutomationJobResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("StartAutomationJobResponse.arn required")
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("StartAutomationJobResponse.job_id required")
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

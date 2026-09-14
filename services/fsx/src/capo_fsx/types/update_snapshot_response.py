@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UpdateSnapshotResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSnapshotResponse:
     out: UpdateSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "Snapshot" in data:
+    if data.get("Snapshot") is not None:
         import capo_fsx.types.snapshot
 
         out["snapshot"] = capo_fsx.types.snapshot.deserialize_aws_json_1_1(

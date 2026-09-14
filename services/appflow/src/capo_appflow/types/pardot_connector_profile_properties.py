@@ -32,12 +32,12 @@ def serialize_json(value: PardotConnectorProfileProperties) -> dict:
 
 def deserialize_json(data: dict) -> PardotConnectorProfileProperties:
     out: PardotConnectorProfileProperties = {}  # type: ignore[typeddict-item]
-    if "instanceUrl" in data:
+    if data.get("instanceUrl") is not None:
         out["instance_url"] = data["instanceUrl"]
-    if "isSandboxEnvironment" in data:
+    if data.get("isSandboxEnvironment") is not None:
         out["is_sandbox_environment"] = data["isSandboxEnvironment"]
     else:
         out["is_sandbox_environment"] = False
-    if "businessUnitId" in data:
+    if data.get("businessUnitId") is not None:
         out["business_unit_id"] = data["businessUnitId"]
     return out

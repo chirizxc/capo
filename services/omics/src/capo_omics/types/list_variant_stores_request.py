@@ -40,11 +40,11 @@ def serialize_json(value: ListVariantStoresRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListVariantStoresRequest:
     out: ListVariantStoresRequest = {}  # type: ignore[typeddict-item]
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_omics.types.id_list
 
         out["ids"] = capo_omics.types.id_list.deserialize_json(data["ids"])
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_omics.types.list_variant_stores_filter
 
         out["filter"] = capo_omics.types.list_variant_stores_filter.deserialize_json(

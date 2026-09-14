@@ -24,7 +24,7 @@ def serialize_json(value: SlackSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> SlackSourceProperties:
     out: SlackSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("SlackSourceProperties.object required")

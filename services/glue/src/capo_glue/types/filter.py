@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: Filter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Filter.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.inputs required")
-    if "LogicalOperator" in data:
+    if data.get("LogicalOperator") is not None:
         import capo_glue.types.filter_logical_operator
 
         out["logical_operator"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.logical_operator required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_glue.types.filter_expressions
 
         out["filters"] = capo_glue.types.filter_expressions.deserialize_aws_json_1_1(

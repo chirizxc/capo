@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DataLakeDatasetPrimaryKeyFieldList:
 
     out: DataLakeDatasetPrimaryKeyFieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_supplychain.types.data_lake_dataset_primary_key_field.deserialize_json(
                 item

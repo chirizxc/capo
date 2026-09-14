@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PendingResourceList:
 
     out: PendingResourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resource_groups.types.pending_resource.deserialize_json(item))
     return out

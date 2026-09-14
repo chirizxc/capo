@@ -82,19 +82,19 @@ def serialize_json(value: RepositoryDescription) -> dict:
 
 def deserialize_json(data: dict) -> RepositoryDescription:
     out: RepositoryDescription = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "administratorAccount" in data:
+    if data.get("administratorAccount") is not None:
         out["administrator_account"] = data["administratorAccount"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "domainOwner" in data:
+    if data.get("domainOwner") is not None:
         out["domain_owner"] = data["domainOwner"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "upstreams" in data:
+    if data.get("upstreams") is not None:
         import capo_codeartifact.types.upstream_repository_info_list
 
         out["upstreams"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> RepositoryDescription:
                 data["upstreams"]
             )
         )
-    if "externalConnections" in data:
+    if data.get("externalConnections") is not None:
         import capo_codeartifact.types.repository_external_connection_info_list
 
         out["external_connections"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> RepositoryDescription:
                 data["externalConnections"]
             )
         )
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_codeartifact.types.timestamp
 
         out["created_time"] = capo_codeartifact.types.timestamp.deserialize_json(

@@ -27,8 +27,8 @@ def serialize_json(value: RuntimePlatform) -> dict:
 
 def deserialize_json(data: dict) -> RuntimePlatform:
     out: RuntimePlatform = {}  # type: ignore[typeddict-item]
-    if "operatingSystemFamily" in data:
+    if data.get("operatingSystemFamily") is not None:
         out["operating_system_family"] = data["operatingSystemFamily"]
-    if "cpuArchitecture" in data:
+    if data.get("cpuArchitecture") is not None:
         out["cpu_architecture"] = data["cpuArchitecture"]
     return out

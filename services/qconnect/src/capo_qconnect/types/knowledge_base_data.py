@@ -74,13 +74,9 @@ def serialize_json(value: KnowledgeBaseData) -> dict:
     out["knowledgeBaseType"] = value["knowledge_base_type"]
     out["status"] = value["status"]
     if "last_content_modification_time" in value:
-        import capo_qconnect.types._prelude.timestamp
-
-        out["lastContentModificationTime"] = (
-            capo_qconnect.types._prelude.timestamp.serialize_json(
-                value["last_content_modification_time"]
-            )
-        )
+        out["lastContentModificationTime"] = value[
+            "last_content_modification_time"
+        ].timestamp()
     if "vector_ingestion_configuration" in value:
         import capo_qconnect.types.vector_ingestion_configuration
 
@@ -134,35 +130,33 @@ def serialize_json(value: KnowledgeBaseData) -> dict:
 
 def deserialize_json(data: dict) -> KnowledgeBaseData:
     out: KnowledgeBaseData = {}  # type: ignore[typeddict-item]
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
     else:
         raise DeserializationError("KnowledgeBaseData.knowledge_base_id required")
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError("KnowledgeBaseData.knowledge_base_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("KnowledgeBaseData.name required")
-    if "knowledgeBaseType" in data:
+    if data.get("knowledgeBaseType") is not None:
         out["knowledge_base_type"] = data["knowledgeBaseType"]
     else:
         raise DeserializationError("KnowledgeBaseData.knowledge_base_type required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("KnowledgeBaseData.status required")
-    if "lastContentModificationTime" in data:
-        import capo_qconnect.types._prelude.timestamp
+    if data.get("lastContentModificationTime") is not None:
+        import datetime
 
-        out["last_content_modification_time"] = (
-            capo_qconnect.types._prelude.timestamp.deserialize_json(
-                data["lastContentModificationTime"]
-            )
+        out["last_content_modification_time"] = datetime.datetime.fromtimestamp(
+            float(data["lastContentModificationTime"]), tz=datetime.timezone.utc
         )
-    if "vectorIngestionConfiguration" in data:
+    if data.get("vectorIngestionConfiguration") is not None:
         import capo_qconnect.types.vector_ingestion_configuration
 
         out["vector_ingestion_configuration"] = (
@@ -170,7 +164,7 @@ def deserialize_json(data: dict) -> KnowledgeBaseData:
                 data["vectorIngestionConfiguration"]
             )
         )
-    if "sourceConfiguration" in data:
+    if data.get("sourceConfiguration") is not None:
         import capo_qconnect.types.source_configuration
 
         out["source_configuration"] = (
@@ -178,7 +172,7 @@ def deserialize_json(data: dict) -> KnowledgeBaseData:
                 data["sourceConfiguration"]
             )
         )
-    if "renderingConfiguration" in data:
+    if data.get("renderingConfiguration") is not None:
         import capo_qconnect.types.rendering_configuration
 
         out["rendering_configuration"] = (
@@ -186,7 +180,7 @@ def deserialize_json(data: dict) -> KnowledgeBaseData:
                 data["renderingConfiguration"]
             )
         )
-    if "serverSideEncryptionConfiguration" in data:
+    if data.get("serverSideEncryptionConfiguration") is not None:
         import capo_qconnect.types.server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (
@@ -194,15 +188,15 @@ def deserialize_json(data: dict) -> KnowledgeBaseData:
                 data["serverSideEncryptionConfiguration"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])
-    if "ingestionStatus" in data:
+    if data.get("ingestionStatus") is not None:
         out["ingestion_status"] = data["ingestionStatus"]
-    if "ingestionFailureReasons" in data:
+    if data.get("ingestionFailureReasons") is not None:
         import capo_qconnect.types.failure_reason
 
         out["ingestion_failure_reasons"] = (

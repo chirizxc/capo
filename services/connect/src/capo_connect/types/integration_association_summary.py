@@ -69,25 +69,25 @@ def serialize_json(value: IntegrationAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> IntegrationAssociationSummary:
     out: IntegrationAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "IntegrationAssociationId" in data:
+    if data.get("IntegrationAssociationId") is not None:
         out["integration_association_id"] = data["IntegrationAssociationId"]
-    if "IntegrationAssociationArn" in data:
+    if data.get("IntegrationAssociationArn") is not None:
         out["integration_association_arn"] = data["IntegrationAssociationArn"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "IntegrationType" in data:
+    if data.get("IntegrationType") is not None:
         import capo_connect.types.integration_type
 
         out["integration_type"] = capo_connect.types.integration_type.deserialize_json(
             data["IntegrationType"]
         )
-    if "IntegrationArn" in data:
+    if data.get("IntegrationArn") is not None:
         out["integration_arn"] = data["IntegrationArn"]
-    if "SourceApplicationUrl" in data:
+    if data.get("SourceApplicationUrl") is not None:
         out["source_application_url"] = data["SourceApplicationUrl"]
-    if "SourceApplicationName" in data:
+    if data.get("SourceApplicationName") is not None:
         out["source_application_name"] = data["SourceApplicationName"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_connect.types.source_type
 
         out["source_type"] = capo_connect.types.source_type.deserialize_json(

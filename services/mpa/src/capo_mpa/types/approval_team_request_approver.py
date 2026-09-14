@@ -28,13 +28,13 @@ def serialize_json(value: ApprovalTeamRequestApprover) -> dict:
 
 def deserialize_json(data: dict) -> ApprovalTeamRequestApprover:
     out: ApprovalTeamRequestApprover = {}  # type: ignore[typeddict-item]
-    if "PrimaryIdentityId" in data:
+    if data.get("PrimaryIdentityId") is not None:
         out["primary_identity_id"] = data["PrimaryIdentityId"]
     else:
         raise DeserializationError(
             "ApprovalTeamRequestApprover.primary_identity_id required"
         )
-    if "PrimaryIdentitySourceArn" in data:
+    if data.get("PrimaryIdentitySourceArn") is not None:
         out["primary_identity_source_arn"] = data["PrimaryIdentitySourceArn"]
     else:
         raise DeserializationError(

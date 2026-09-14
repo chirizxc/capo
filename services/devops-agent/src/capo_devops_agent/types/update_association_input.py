@@ -34,7 +34,7 @@ def serialize_json(value: UpdateAssociationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssociationInput:
     out: UpdateAssociationInput = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_devops_agent.types.service_configuration
 
         out["configuration"] = (

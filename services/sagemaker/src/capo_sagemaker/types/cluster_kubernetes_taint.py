@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: ClusterKubernetesTaint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterKubernetesTaint:
     out: ClusterKubernetesTaint = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("ClusterKubernetesTaint.key required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_sagemaker.types.cluster_kubernetes_taint_effect
 
         out["effect"] = (

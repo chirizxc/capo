@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ProjectCache) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectCache:
     out: ProjectCache = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.cache_type
 
         out["type"] = capo_codebuild.types.cache_type.deserialize_aws_json_1_1(
@@ -52,9 +52,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectCache:
         )
     else:
         raise DeserializationError("ProjectCache.type required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "modes" in data:
+    if data.get("modes") is not None:
         import capo_codebuild.types.project_cache_modes
 
         out["modes"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectCache:
                 data["modes"]
             )
         )
-    if "cacheNamespace" in data:
+    if data.get("cacheNamespace") is not None:
         out["cache_namespace"] = data["cacheNamespace"]
     return out

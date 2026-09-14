@@ -27,7 +27,7 @@ def serialize_json(value: RemoteSourceCodeAnalysisServerInfo) -> dict:
 
 def deserialize_json(data: dict) -> RemoteSourceCodeAnalysisServerInfo:
     out: RemoteSourceCodeAnalysisServerInfo = {}  # type: ignore[typeddict-item]
-    if "remoteSourceCodeAnalysisServerConfigurationTimestamp" in data:
+    if data.get("remoteSourceCodeAnalysisServerConfigurationTimestamp") is not None:
         out["remote_source_code_analysis_server_configuration_timestamp"] = data[
             "remoteSourceCodeAnalysisServerConfigurationTimestamp"
         ]

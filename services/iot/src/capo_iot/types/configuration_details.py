@@ -39,7 +39,7 @@ def serialize_json(value: ConfigurationDetails) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationDetails:
     out: ConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "configurationStatus" in data:
+    if data.get("configurationStatus") is not None:
         import capo_iot.types.configuration_status
 
         out["configuration_status"] = (
@@ -47,8 +47,8 @@ def deserialize_json(data: dict) -> ConfigurationDetails:
                 data["configurationStatus"]
             )
         )
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

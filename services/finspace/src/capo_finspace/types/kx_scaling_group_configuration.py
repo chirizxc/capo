@@ -35,30 +35,38 @@ def serialize_json(value: KxScalingGroupConfiguration) -> dict:
     out["memoryReservation"] = value["memory_reservation"]
     out["nodeCount"] = value["node_count"]
     if "cpu" in value:
-        out["cpu"] = value["cpu"]
+        out["cpu"] = (
+            "NaN"
+            if value["cpu"] != value["cpu"]
+            else "Infinity"
+            if value["cpu"] == float("inf")
+            else "-Infinity"
+            if value["cpu"] == float("-inf")
+            else value["cpu"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> KxScalingGroupConfiguration:
     out: KxScalingGroupConfiguration = {}  # type: ignore[typeddict-item]
-    if "scalingGroupName" in data:
+    if data.get("scalingGroupName") is not None:
         out["scaling_group_name"] = data["scalingGroupName"]
     else:
         raise DeserializationError(
             "KxScalingGroupConfiguration.scaling_group_name required"
         )
-    if "memoryLimit" in data:
+    if data.get("memoryLimit") is not None:
         out["memory_limit"] = data["memoryLimit"]
-    if "memoryReservation" in data:
+    if data.get("memoryReservation") is not None:
         out["memory_reservation"] = data["memoryReservation"]
     else:
         raise DeserializationError(
             "KxScalingGroupConfiguration.memory_reservation required"
         )
-    if "nodeCount" in data:
+    if data.get("nodeCount") is not None:
         out["node_count"] = data["nodeCount"]
     else:
         raise DeserializationError("KxScalingGroupConfiguration.node_count required")
-    if "cpu" in data:
-        out["cpu"] = data["cpu"]
+    if data.get("cpu") is not None:
+        out["cpu"] = float(data["cpu"])
     return out

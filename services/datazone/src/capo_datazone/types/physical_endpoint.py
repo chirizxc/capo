@@ -78,15 +78,15 @@ def serialize_json(value: PhysicalEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> PhysicalEndpoint:
     out: PhysicalEndpoint = {}  # type: ignore[typeddict-item]
-    if "awsLocation" in data:
+    if data.get("awsLocation") is not None:
         import capo_datazone.types.aws_location
 
         out["aws_location"] = capo_datazone.types.aws_location.deserialize_json(
             data["awsLocation"]
         )
-    if "glueConnectionName" in data:
+    if data.get("glueConnectionName") is not None:
         out["glue_connection_name"] = data["glueConnectionName"]
-    if "glueConnectionNames" in data:
+    if data.get("glueConnectionNames") is not None:
         import capo_datazone.types.glue_connection_names
 
         out["glue_connection_names"] = (
@@ -94,26 +94,26 @@ def deserialize_json(data: dict) -> PhysicalEndpoint:
                 data["glueConnectionNames"]
             )
         )
-    if "glueConnection" in data:
+    if data.get("glueConnection") is not None:
         import capo_datazone.types.glue_connection
 
         out["glue_connection"] = capo_datazone.types.glue_connection.deserialize_json(
             data["glueConnection"]
         )
-    if "enableTrustedIdentityPropagation" in data:
+    if data.get("enableTrustedIdentityPropagation") is not None:
         out["enable_trusted_identity_propagation"] = data[
             "enableTrustedIdentityPropagation"
         ]
-    if "host" in data:
+    if data.get("host") is not None:
         out["host"] = data["host"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_datazone.types.protocol
 
         out["protocol"] = capo_datazone.types.protocol.deserialize_json(
             data["protocol"]
         )
-    if "stage" in data:
+    if data.get("stage") is not None:
         out["stage"] = data["stage"]
     return out

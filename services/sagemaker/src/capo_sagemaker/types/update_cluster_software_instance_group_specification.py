@@ -29,6 +29,6 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> UpdateClusterSoftwareInstanceGroupSpecification:
     out: UpdateClusterSoftwareInstanceGroupSpecification = {}  # type: ignore[typeddict-item]
-    if "InstanceGroupName" in data:
+    if data.get("InstanceGroupName") is not None:
         out["instance_group_name"] = data["InstanceGroupName"]
     return out

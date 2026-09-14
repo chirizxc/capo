@@ -30,7 +30,7 @@ def serialize_json(value: GetConfigurationSetEventDestinationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConfigurationSetEventDestinationsResponse:
     out: GetConfigurationSetEventDestinationsResponse = {}  # type: ignore[typeddict-item]
-    if "EventDestinations" in data:
+    if data.get("EventDestinations") is not None:
         import capo_pinpoint_sms_voice.types.event_destinations
 
         out["event_destinations"] = (

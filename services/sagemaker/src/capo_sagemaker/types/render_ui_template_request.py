@@ -48,20 +48,20 @@ def serialize_aws_json_1_1(value: RenderUiTemplateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenderUiTemplateRequest:
     out: RenderUiTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "UiTemplate" in data:
+    if data.get("UiTemplate") is not None:
         import capo_sagemaker.types.ui_template
 
         out["ui_template"] = capo_sagemaker.types.ui_template.deserialize_aws_json_1_1(
             data["UiTemplate"]
         )
-    if "Task" in data:
+    if data.get("Task") is not None:
         import capo_sagemaker.types.renderable_task
 
         out["task"] = capo_sagemaker.types.renderable_task.deserialize_aws_json_1_1(
             data["Task"]
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "HumanTaskUiArn" in data:
+    if data.get("HumanTaskUiArn") is not None:
         out["human_task_ui_arn"] = data["HumanTaskUiArn"]
     return out

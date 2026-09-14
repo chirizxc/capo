@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: EntityConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityConfiguration:
     out: EntityConfiguration = {}  # type: ignore[typeddict-item]
-    if "SourceConfiguration" in data:
+    if data.get("SourceConfiguration") is not None:
         import capo_glue.types.source_configuration
 
         out["source_configuration"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityConfiguration:
                 data["SourceConfiguration"]
             )
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_glue.types.field_definition_map
 
         out["schema"] = capo_glue.types.field_definition_map.deserialize_aws_json_1_1(

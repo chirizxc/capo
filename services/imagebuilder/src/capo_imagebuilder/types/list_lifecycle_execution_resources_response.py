@@ -56,9 +56,9 @@ def serialize_json(value: ListLifecycleExecutionResourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLifecycleExecutionResourcesResponse:
     out: ListLifecycleExecutionResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "lifecycleExecutionId" in data:
+    if data.get("lifecycleExecutionId") is not None:
         out["lifecycle_execution_id"] = data["lifecycleExecutionId"]
-    if "lifecycleExecutionState" in data:
+    if data.get("lifecycleExecutionState") is not None:
         import capo_imagebuilder.types.lifecycle_execution_state
 
         out["lifecycle_execution_state"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> ListLifecycleExecutionResourcesResponse:
                 data["lifecycleExecutionState"]
             )
         )
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_imagebuilder.types.lifecycle_execution_resource_list
 
         out["resources"] = (
@@ -74,6 +74,6 @@ def deserialize_json(data: dict) -> ListLifecycleExecutionResourcesResponse:
                 data["resources"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

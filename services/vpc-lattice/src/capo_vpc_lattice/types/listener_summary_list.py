@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListenerSummaryList:
 
     out: ListenerSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_vpc_lattice.types.listener_summary.deserialize_json(item))
     return out

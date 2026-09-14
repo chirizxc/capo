@@ -225,16 +225,18 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.add_attachments_to_set_request.AddAttachmentsToSetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_support.types.add_attachments_to_set_request.AddAttachmentsToSetRequest = {
+            "attachments": attachments
+        }
         if attachment_set_id is not None:
             input_["attachment_set_id"] = attachment_set_id
-        input_["attachments"] = attachments
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_communication_to_case(
@@ -281,10 +283,11 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.add_communication_to_case_request.AddCommunicationToCaseRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_support.types.add_communication_to_case_request.AddCommunicationToCaseRequest = {
+            "communication_body": communication_body
+        }
         if case_id is not None:
             input_["case_id"] = case_id
-        input_["communication_body"] = communication_body
         if cc_email_addresses is not None:
             input_["cc_email_addresses"] = cc_email_addresses
         if attachment_set_id is not None:
@@ -295,6 +298,7 @@ class SupportClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_case(
@@ -351,15 +355,16 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.create_case_request.CreateCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["subject"] = subject
+        input_: capo_support.types.create_case_request.CreateCaseRequest = {
+            "subject": subject,
+            "communication_body": communication_body,
+        }
         if service_code is not None:
             input_["service_code"] = service_code
         if severity_code is not None:
             input_["severity_code"] = severity_code
         if category_code is not None:
             input_["category_code"] = category_code
-        input_["communication_body"] = communication_body
         if cc_email_addresses is not None:
             input_["cc_email_addresses"] = cc_email_addresses
         if language is not None:
@@ -374,6 +379,7 @@ class SupportClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_attachment(
@@ -409,14 +415,16 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_attachment_request.DescribeAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_support.types.describe_attachment_request.DescribeAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_cases(
@@ -471,7 +479,7 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_cases_request.DescribeCasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_support.types.describe_cases_request.DescribeCasesRequest = {}
         if case_id_list is not None:
             input_["case_id_list"] = case_id_list
         if display_id is not None:
@@ -496,6 +504,7 @@ class SupportClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_cases(
@@ -577,8 +586,9 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_communications_request.DescribeCommunicationsRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
+        input_: capo_support.types.describe_communications_request.DescribeCommunicationsRequest = {
+            "case_id": case_id
+        }
         if before_time is not None:
             input_["before_time"] = before_time
         if after_time is not None:
@@ -593,6 +603,7 @@ class SupportClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_communications(
@@ -660,17 +671,19 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_create_case_options_request.DescribeCreateCaseOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["issue_type"] = issue_type
-        input_["service_code"] = service_code
-        input_["language"] = language
-        input_["category_code"] = category_code
+        input_: capo_support.types.describe_create_case_options_request.DescribeCreateCaseOptionsRequest = {
+            "issue_type": issue_type,
+            "service_code": service_code,
+            "language": language,
+            "category_code": category_code,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_services(
@@ -708,7 +721,7 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_services_request.DescribeServicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_support.types.describe_services_request.DescribeServicesRequest = {}
         if service_code_list is not None:
             input_["service_code_list"] = service_code_list
         if language is not None:
@@ -719,6 +732,7 @@ class SupportClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_severity_levels(
@@ -752,7 +766,7 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_severity_levels_request.DescribeSeverityLevelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_support.types.describe_severity_levels_request.DescribeSeverityLevelsRequest = {}
         if language is not None:
             input_["language"] = language
 
@@ -761,6 +775,7 @@ class SupportClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_supported_languages(
@@ -799,16 +814,18 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_supported_languages_request.DescribeSupportedLanguagesRequest = {}  # type: ignore[typeddict-item]
-        input_["issue_type"] = issue_type
-        input_["service_code"] = service_code
-        input_["category_code"] = category_code
+        input_: capo_support.types.describe_supported_languages_request.DescribeSupportedLanguagesRequest = {
+            "issue_type": issue_type,
+            "service_code": service_code,
+            "category_code": category_code,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_trusted_advisor_check_refresh_statuses(
@@ -843,14 +860,16 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_trusted_advisor_check_refresh_statuses_request.DescribeTrustedAdvisorCheckRefreshStatusesRequest = {}  # type: ignore[typeddict-item]
-        input_["check_ids"] = check_ids
+        input_: capo_support.types.describe_trusted_advisor_check_refresh_statuses_request.DescribeTrustedAdvisorCheckRefreshStatusesRequest = {
+            "check_ids": check_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_trusted_advisor_check_result(
@@ -887,8 +906,9 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_trusted_advisor_check_result_request.DescribeTrustedAdvisorCheckResultRequest = {}  # type: ignore[typeddict-item]
-        input_["check_id"] = check_id
+        input_: capo_support.types.describe_trusted_advisor_check_result_request.DescribeTrustedAdvisorCheckResultRequest = {
+            "check_id": check_id
+        }
         if language is not None:
             input_["language"] = language
 
@@ -897,6 +917,7 @@ class SupportClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_trusted_advisor_checks(
@@ -931,14 +952,16 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_trusted_advisor_checks_request.DescribeTrustedAdvisorChecksRequest = {}  # type: ignore[typeddict-item]
-        input_["language"] = language
+        input_: capo_support.types.describe_trusted_advisor_checks_request.DescribeTrustedAdvisorChecksRequest = {
+            "language": language
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_trusted_advisor_check_summaries(
@@ -973,14 +996,16 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.describe_trusted_advisor_check_summaries_request.DescribeTrustedAdvisorCheckSummariesRequest = {}  # type: ignore[typeddict-item]
-        input_["check_ids"] = check_ids
+        input_: capo_support.types.describe_trusted_advisor_check_summaries_request.DescribeTrustedAdvisorCheckSummariesRequest = {
+            "check_ids": check_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def refresh_trusted_advisor_check(
@@ -1014,14 +1039,16 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.refresh_trusted_advisor_check_request.RefreshTrustedAdvisorCheckRequest = {}  # type: ignore[typeddict-item]
-        input_["check_id"] = check_id
+        input_: capo_support.types.refresh_trusted_advisor_check_request.RefreshTrustedAdvisorCheckRequest = {
+            "check_id": check_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def resolve_case(
@@ -1056,7 +1083,7 @@ class SupportClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_support.types.resolve_case_request.ResolveCaseRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_support.types.resolve_case_request.ResolveCaseRequest = {}
         if case_id is not None:
             input_["case_id"] = case_id
 
@@ -1065,6 +1092,7 @@ class SupportClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

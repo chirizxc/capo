@@ -28,7 +28,7 @@ def serialize_json(value: GetQueryStatusMonitorTopContributorsOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetQueryStatusMonitorTopContributorsOutput:
     out: GetQueryStatusMonitorTopContributorsOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_networkflowmonitor.types.query_status
 
         out["status"] = capo_networkflowmonitor.types.query_status.deserialize_json(

@@ -30,9 +30,9 @@ def serialize_json(value: RouteTollPaymentSite) -> dict:
 
 def deserialize_json(data: dict) -> RouteTollPaymentSite:
     out: RouteTollPaymentSite = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_routes.types.position23
 
         out["position"] = capo_geo_routes.types.position23.deserialize_json(

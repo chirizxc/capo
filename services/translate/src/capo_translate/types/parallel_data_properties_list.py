@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ParallelDataPropertiesList:
 
     out: ParallelDataPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_translate.types.parallel_data_properties.deserialize_aws_json_1_1(item)
         )

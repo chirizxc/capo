@@ -34,13 +34,13 @@ def serialize_json(value: GetApplicationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationOutput:
     out: GetApplicationOutput = {}  # type: ignore[typeddict-item]
-    if "Application" in data:
+    if data.get("Application") is not None:
         import capo_ssm_sap.types.application
 
         out["application"] = capo_ssm_sap.types.application.deserialize_json(
             data["Application"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_sap.types.tag_map
 
         out["tags"] = capo_ssm_sap.types.tag_map.deserialize_json(data["Tags"])

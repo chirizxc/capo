@@ -44,7 +44,7 @@ def serialize_json(value: FeatureActivations) -> dict:
 
 def deserialize_json(data: dict) -> FeatureActivations:
     out: FeatureActivations = {}  # type: ignore[typeddict-item]
-    if "inputPrepareScheduleActions" in data:
+    if data.get("inputPrepareScheduleActions") is not None:
         import capo_medialive.types.feature_activations_input_prepare_schedule_actions
 
         out["input_prepare_schedule_actions"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> FeatureActivations:
                 data["inputPrepareScheduleActions"]
             )
         )
-    if "outputStaticImageOverlayScheduleActions" in data:
+    if data.get("outputStaticImageOverlayScheduleActions") is not None:
         import capo_medialive.types.feature_activations_output_static_image_overlay_schedule_actions
 
         out["output_static_image_overlay_schedule_actions"] = (

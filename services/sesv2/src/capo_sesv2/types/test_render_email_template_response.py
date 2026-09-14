@@ -24,7 +24,7 @@ def serialize_json(value: TestRenderEmailTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> TestRenderEmailTemplateResponse:
     out: TestRenderEmailTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "RenderedTemplate" in data:
+    if data.get("RenderedTemplate") is not None:
         out["rendered_template"] = data["RenderedTemplate"]
     else:
         raise DeserializationError(

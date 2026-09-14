@@ -31,7 +31,7 @@ def serialize_json(value: ComputationModelConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ComputationModelConfiguration:
     out: ComputationModelConfiguration = {}  # type: ignore[typeddict-item]
-    if "anomalyDetection" in data:
+    if data.get("anomalyDetection") is not None:
         import capo_iotsitewise.types.computation_model_anomaly_detection_configuration
 
         out["anomaly_detection"] = (

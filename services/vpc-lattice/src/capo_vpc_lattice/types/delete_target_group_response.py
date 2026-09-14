@@ -33,10 +33,10 @@ def serialize_json(value: DeleteTargetGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteTargetGroupResponse:
     out: DeleteTargetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

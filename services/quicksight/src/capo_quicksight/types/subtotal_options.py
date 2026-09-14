@@ -104,15 +104,15 @@ def serialize_json(value: SubtotalOptions) -> dict:
 
 def deserialize_json(data: dict) -> SubtotalOptions:
     out: SubtotalOptions = {}  # type: ignore[typeddict-item]
-    if "TotalsVisibility" in data:
+    if data.get("TotalsVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["totals_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["TotalsVisibility"]
         )
-    if "CustomLabel" in data:
+    if data.get("CustomLabel") is not None:
         out["custom_label"] = data["CustomLabel"]
-    if "FieldLevel" in data:
+    if data.get("FieldLevel") is not None:
         import capo_quicksight.types.pivot_table_subtotal_level
 
         out["field_level"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> SubtotalOptions:
                 data["FieldLevel"]
             )
         )
-    if "FieldLevelOptions" in data:
+    if data.get("FieldLevelOptions") is not None:
         import capo_quicksight.types.pivot_table_field_subtotal_options_list
 
         out["field_level_options"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> SubtotalOptions:
                 data["FieldLevelOptions"]
             )
         )
-    if "TotalCellStyle" in data:
+    if data.get("TotalCellStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["total_cell_style"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> SubtotalOptions:
                 data["TotalCellStyle"]
             )
         )
-    if "ValueCellStyle" in data:
+    if data.get("ValueCellStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["value_cell_style"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> SubtotalOptions:
                 data["ValueCellStyle"]
             )
         )
-    if "MetricHeaderCellStyle" in data:
+    if data.get("MetricHeaderCellStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["metric_header_cell_style"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> SubtotalOptions:
                 data["MetricHeaderCellStyle"]
             )
         )
-    if "StyleTargets" in data:
+    if data.get("StyleTargets") is not None:
         import capo_quicksight.types.table_style_target_list
 
         out["style_targets"] = (

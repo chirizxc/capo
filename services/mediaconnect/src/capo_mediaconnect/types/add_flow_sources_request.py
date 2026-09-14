@@ -34,7 +34,7 @@ def serialize_json(value: AddFlowSourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddFlowSourcesRequest:
     out: AddFlowSourcesRequest = {}  # type: ignore[typeddict-item]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_mediaconnect.types.__list_of_set_source_request
 
         out["sources"] = (

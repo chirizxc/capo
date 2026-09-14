@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: ReplicationInstanceTaskLog) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationInstanceTaskLog:
     out: ReplicationInstanceTaskLog = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskName" in data:
+    if data.get("ReplicationTaskName") is not None:
         out["replication_task_name"] = data["ReplicationTaskName"]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
-    if "ReplicationInstanceTaskLogSize" in data:
+    if data.get("ReplicationInstanceTaskLogSize") is not None:
         out["replication_instance_task_log_size"] = data[
             "ReplicationInstanceTaskLogSize"
         ]

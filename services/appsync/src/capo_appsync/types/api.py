@@ -76,35 +76,35 @@ def serialize_json(value: Api) -> dict:
 
 def deserialize_json(data: dict) -> Api:
     out: Api = {}  # type: ignore[typeddict-item]
-    if "apiId" in data:
+    if data.get("apiId") is not None:
         out["api_id"] = data["apiId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "ownerContact" in data:
+    if data.get("ownerContact") is not None:
         out["owner_contact"] = data["ownerContact"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appsync.types.tag_map
 
         out["tags"] = capo_appsync.types.tag_map.deserialize_json(data["tags"])
-    if "dns" in data:
+    if data.get("dns") is not None:
         import capo_appsync.types.map_of_string_to_string
 
         out["dns"] = capo_appsync.types.map_of_string_to_string.deserialize_json(
             data["dns"]
         )
-    if "apiArn" in data:
+    if data.get("apiArn") is not None:
         out["api_arn"] = data["apiArn"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_appsync.types.timestamp
 
         out["created"] = capo_appsync.types.timestamp.deserialize_json(data["created"])
-    if "xrayEnabled" in data:
+    if data.get("xrayEnabled") is not None:
         out["xray_enabled"] = data["xrayEnabled"]
     else:
         out["xray_enabled"] = False
-    if "wafWebAclArn" in data:
+    if data.get("wafWebAclArn") is not None:
         out["waf_web_acl_arn"] = data["wafWebAclArn"]
-    if "eventConfig" in data:
+    if data.get("eventConfig") is not None:
         import capo_appsync.types.event_config
 
         out["event_config"] = capo_appsync.types.event_config.deserialize_json(

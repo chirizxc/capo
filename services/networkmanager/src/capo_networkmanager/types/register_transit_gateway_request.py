@@ -29,7 +29,7 @@ def serialize_json(value: RegisterTransitGatewayRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterTransitGatewayRequest:
     out: RegisterTransitGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "TransitGatewayArn" in data:
+    if data.get("TransitGatewayArn") is not None:
         out["transit_gateway_arn"] = data["TransitGatewayArn"]
     else:
         raise DeserializationError(

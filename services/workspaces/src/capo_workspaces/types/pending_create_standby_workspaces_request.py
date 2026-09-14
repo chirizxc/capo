@@ -42,16 +42,16 @@ def serialize_aws_json_1_1(value: PendingCreateStandbyWorkspacesRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> PendingCreateStandbyWorkspacesRequest:
     out: PendingCreateStandbyWorkspacesRequest = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.workspace_state
 
         out["state"] = capo_workspaces.types.workspace_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
     return out

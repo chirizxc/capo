@@ -75,11 +75,11 @@ def serialize_json(value: SuiteDefinitionInformation) -> dict:
 
 def deserialize_json(data: dict) -> SuiteDefinitionInformation:
     out: SuiteDefinitionInformation = {}  # type: ignore[typeddict-item]
-    if "suiteDefinitionId" in data:
+    if data.get("suiteDefinitionId") is not None:
         out["suite_definition_id"] = data["suiteDefinitionId"]
-    if "suiteDefinitionName" in data:
+    if data.get("suiteDefinitionName") is not None:
         out["suite_definition_name"] = data["suiteDefinitionName"]
-    if "defaultDevices" in data:
+    if data.get("defaultDevices") is not None:
         import capo_iotdeviceadvisor.types.device_under_test_list
 
         out["default_devices"] = (
@@ -87,17 +87,17 @@ def deserialize_json(data: dict) -> SuiteDefinitionInformation:
                 data["defaultDevices"]
             )
         )
-    if "intendedForQualification" in data:
+    if data.get("intendedForQualification") is not None:
         out["intended_for_qualification"] = data["intendedForQualification"]
-    if "isLongDurationTest" in data:
+    if data.get("isLongDurationTest") is not None:
         out["is_long_duration_test"] = data["isLongDurationTest"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_iotdeviceadvisor.types.protocol
 
         out["protocol"] = capo_iotdeviceadvisor.types.protocol.deserialize_json(
             data["protocol"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["created_at"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(

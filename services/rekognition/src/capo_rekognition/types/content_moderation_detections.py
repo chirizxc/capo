@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ContentModerationDetections:
 
     out: ContentModerationDetections = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.content_moderation_detection.deserialize_aws_json_1_1(
                 item

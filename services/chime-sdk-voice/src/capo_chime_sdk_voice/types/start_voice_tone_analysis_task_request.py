@@ -44,13 +44,13 @@ def serialize_json(value: StartVoiceToneAnalysisTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartVoiceToneAnalysisTaskRequest:
     out: StartVoiceToneAnalysisTaskRequest = {}  # type: ignore[typeddict-item]
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
     else:
         raise DeserializationError(
             "StartVoiceToneAnalysisTaskRequest.transaction_id required"
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_chime_sdk_voice.types.language_code
 
         out["language_code"] = (
@@ -62,6 +62,6 @@ def deserialize_json(data: dict) -> StartVoiceToneAnalysisTaskRequest:
         raise DeserializationError(
             "StartVoiceToneAnalysisTaskRequest.language_code required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

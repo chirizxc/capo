@@ -68,21 +68,21 @@ def serialize_json(value: AccountDetails) -> dict:
 
 def deserialize_json(data: dict) -> AccountDetails:
     out: AccountDetails = {}  # type: ignore[typeddict-item]
-    if "MailType" in data:
+    if data.get("MailType") is not None:
         import capo_sesv2.types.mail_type
 
         out["mail_type"] = capo_sesv2.types.mail_type.deserialize_json(data["MailType"])
-    if "WebsiteURL" in data:
+    if data.get("WebsiteURL") is not None:
         out["website_url"] = data["WebsiteURL"]
-    if "ContactLanguage" in data:
+    if data.get("ContactLanguage") is not None:
         import capo_sesv2.types.contact_language
 
         out["contact_language"] = capo_sesv2.types.contact_language.deserialize_json(
             data["ContactLanguage"]
         )
-    if "UseCaseDescription" in data:
+    if data.get("UseCaseDescription") is not None:
         out["use_case_description"] = data["UseCaseDescription"]
-    if "AdditionalContactEmailAddresses" in data:
+    if data.get("AdditionalContactEmailAddresses") is not None:
         import capo_sesv2.types.additional_contact_email_addresses
 
         out["additional_contact_email_addresses"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> AccountDetails:
                 data["AdditionalContactEmailAddresses"]
             )
         )
-    if "ReviewDetails" in data:
+    if data.get("ReviewDetails") is not None:
         import capo_sesv2.types.review_details
 
         out["review_details"] = capo_sesv2.types.review_details.deserialize_json(

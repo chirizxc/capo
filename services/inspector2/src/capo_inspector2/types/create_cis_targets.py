@@ -40,7 +40,7 @@ def serialize_json(value: CreateCisTargets) -> dict:
 
 def deserialize_json(data: dict) -> CreateCisTargets:
     out: CreateCisTargets = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_inspector2.types.target_account_list
 
         out["account_ids"] = capo_inspector2.types.target_account_list.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> CreateCisTargets:
         )
     else:
         raise DeserializationError("CreateCisTargets.account_ids required")
-    if "targetResourceTags" in data:
+    if data.get("targetResourceTags") is not None:
         import capo_inspector2.types.target_resource_tags
 
         out["target_resource_tags"] = (

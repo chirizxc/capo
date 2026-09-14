@@ -111,7 +111,15 @@ def serialize_json(value: RadarChartConfiguration) -> dict:
             )
         )
     if "start_angle" in value:
-        out["StartAngle"] = value["start_angle"]
+        out["StartAngle"] = (
+            "NaN"
+            if value["start_angle"] != value["start_angle"]
+            else "Infinity"
+            if value["start_angle"] == float("inf")
+            else "-Infinity"
+            if value["start_angle"] == float("-inf")
+            else value["start_angle"]
+        )
     if "visual_palette" in value:
         import capo_quicksight.types.visual_palette
 
@@ -185,7 +193,7 @@ def serialize_json(value: RadarChartConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RadarChartConfiguration:
     out: RadarChartConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.radar_chart_field_wells
 
         out["field_wells"] = (
@@ -193,7 +201,7 @@ def deserialize_json(data: dict) -> RadarChartConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.radar_chart_sort_configuration
 
         out["sort_configuration"] = (
@@ -201,13 +209,13 @@ def deserialize_json(data: dict) -> RadarChartConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "Shape" in data:
+    if data.get("Shape") is not None:
         import capo_quicksight.types.radar_chart_shape
 
         out["shape"] = capo_quicksight.types.radar_chart_shape.deserialize_json(
             data["Shape"]
         )
-    if "BaseSeriesSettings" in data:
+    if data.get("BaseSeriesSettings") is not None:
         import capo_quicksight.types.radar_chart_series_settings
 
         out["base_series_settings"] = (
@@ -215,15 +223,15 @@ def deserialize_json(data: dict) -> RadarChartConfiguration:
                 data["BaseSeriesSettings"]
             )
         )
-    if "StartAngle" in data:
-        out["start_angle"] = data["StartAngle"]
-    if "VisualPalette" in data:
+    if data.get("StartAngle") is not None:
+        out["start_angle"] = float(data["StartAngle"])
+    if data.get("VisualPalette") is not None:
         import capo_quicksight.types.visual_palette
 
         out["visual_palette"] = capo_quicksight.types.visual_palette.deserialize_json(
             data["VisualPalette"]
         )
-    if "AlternateBandColorsVisibility" in data:
+    if data.get("AlternateBandColorsVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["alternate_band_colors_visibility"] = (
@@ -231,11 +239,11 @@ def deserialize_json(data: dict) -> RadarChartConfiguration:
                 data["AlternateBandColorsVisibility"]
             )
         )
-    if "AlternateBandEvenColor" in data:
+    if data.get("AlternateBandEvenColor") is not None:
         out["alternate_band_even_color"] = data["AlternateBandEvenColor"]
-    if "AlternateBandOddColor" in data:
+    if data.get("AlternateBandOddColor") is not None:
         out["alternate_band_odd_color"] = data["AlternateBandOddColor"]
-    if "CategoryAxis" in data:
+    if data.get("CategoryAxis") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["category_axis"] = (
@@ -243,7 +251,7 @@ def deserialize_json(data: dict) -> RadarChartConfiguration:
                 data["CategoryAxis"]
             )
         )
-    if "CategoryLabelOptions" in data:
+    if data.get("CategoryLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["category_label_options"] = (
@@ -251,13 +259,13 @@ def deserialize_json(data: dict) -> RadarChartConfiguration:
                 data["CategoryLabelOptions"]
             )
         )
-    if "ColorAxis" in data:
+    if data.get("ColorAxis") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["color_axis"] = capo_quicksight.types.axis_display_options.deserialize_json(
             data["ColorAxis"]
         )
-    if "ColorLabelOptions" in data:
+    if data.get("ColorLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["color_label_options"] = (
@@ -265,13 +273,13 @@ def deserialize_json(data: dict) -> RadarChartConfiguration:
                 data["ColorLabelOptions"]
             )
         )
-    if "Legend" in data:
+    if data.get("Legend") is not None:
         import capo_quicksight.types.legend_options
 
         out["legend"] = capo_quicksight.types.legend_options.deserialize_json(
             data["Legend"]
         )
-    if "AxesRangeScale" in data:
+    if data.get("AxesRangeScale") is not None:
         import capo_quicksight.types.radar_chart_axes_range_scale
 
         out["axes_range_scale"] = (
@@ -279,7 +287,7 @@ def deserialize_json(data: dict) -> RadarChartConfiguration:
                 data["AxesRangeScale"]
             )
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

@@ -32,11 +32,11 @@ def serialize_json(value: UpdateIndexingRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIndexingRuleRequest:
     out: UpdateIndexingRuleRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateIndexingRuleRequest.name required")
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_xray.types.indexing_rule_value_update
 
         out["rule"] = capo_xray.types.indexing_rule_value_update.deserialize_json(

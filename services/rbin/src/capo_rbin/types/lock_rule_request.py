@@ -31,7 +31,7 @@ def serialize_json(value: LockRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> LockRuleRequest:
     out: LockRuleRequest = {}  # type: ignore[typeddict-item]
-    if "LockConfiguration" in data:
+    if data.get("LockConfiguration") is not None:
         import capo_rbin.types.lock_configuration
 
         out["lock_configuration"] = capo_rbin.types.lock_configuration.deserialize_json(

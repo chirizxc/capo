@@ -51,9 +51,9 @@ def serialize_aws_json_1_1(value: HandshakeResource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HandshakeResource:
     out: HandshakeResource = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_organizations.types.handshake_resource_type
 
         out["type"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> HandshakeResource:
                 data["Type"]
             )
         )
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_organizations.types.handshake_resources
 
         out["resources"] = (

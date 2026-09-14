@@ -57,7 +57,7 @@ def serialize_json(value: TopicRelativeDateFilter) -> dict:
 
 def deserialize_json(data: dict) -> TopicRelativeDateFilter:
     out: TopicRelativeDateFilter = {}  # type: ignore[typeddict-item]
-    if "TimeGranularity" in data:
+    if data.get("TimeGranularity") is not None:
         import capo_quicksight.types.topic_time_granularity
 
         out["time_granularity"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> TopicRelativeDateFilter:
                 data["TimeGranularity"]
             )
         )
-    if "RelativeDateFilterFunction" in data:
+    if data.get("RelativeDateFilterFunction") is not None:
         import capo_quicksight.types.topic_relative_date_filter_function
 
         out["relative_date_filter_function"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> TopicRelativeDateFilter:
                 data["RelativeDateFilterFunction"]
             )
         )
-    if "Constant" in data:
+    if data.get("Constant") is not None:
         import capo_quicksight.types.topic_singular_filter_constant
 
         out["constant"] = (

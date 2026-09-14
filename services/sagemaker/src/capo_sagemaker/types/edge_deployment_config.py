@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: EdgeDeploymentConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdgeDeploymentConfig:
     out: EdgeDeploymentConfig = {}  # type: ignore[typeddict-item]
-    if "FailureHandlingPolicy" in data:
+    if data.get("FailureHandlingPolicy") is not None:
         import capo_sagemaker.types.failure_handling_policy
 
         out["failure_handling_policy"] = (

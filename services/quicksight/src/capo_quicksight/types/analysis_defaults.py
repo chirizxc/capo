@@ -30,7 +30,7 @@ def serialize_json(value: AnalysisDefaults) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisDefaults:
     out: AnalysisDefaults = {}  # type: ignore[typeddict-item]
-    if "DefaultNewSheetConfiguration" in data:
+    if data.get("DefaultNewSheetConfiguration") is not None:
         import capo_quicksight.types.default_new_sheet_configuration
 
         out["default_new_sheet_configuration"] = (

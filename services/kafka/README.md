@@ -13,9 +13,9 @@ from capo_kafka import AsyncKafkaClient
 
 
 async def main():
-    async with AsyncKafkaClient() as s3:
+    async with AsyncKafkaClient() as kafka:
         # Example: call the batch_associate_scram_secret operation
-        response = await s3.batch_associate_scram_secret()
+        response = await kafka.batch_associate_scram_secret()
         print(response["cluster_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_kafka import AsyncKafkaClient
 
 
 async def main():
-    async with AsyncKafkaClient() as s3:
+    async with AsyncKafkaClient() as kafka:
         # Example: paginate over describe_topic_partitions
-        async for item in s3.iter_describe_topic_partitions():
+        async for item in kafka.iter_describe_topic_partitions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_kafka.error import BadRequestException
 
 
 async def main():
-    async with AsyncKafkaClient() as s3:
+    async with AsyncKafkaClient() as kafka:
         try:
-            await s3.batch_associate_scram_secret()
+            await kafka.batch_associate_scram_secret()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_kafka import AsyncKafkaClient
 
 
 async def main():
-    async with AsyncKafkaClient() as s3:
+    async with AsyncKafkaClient() as kafka:
         # Default: 3 attempts for every operation
-        response = await s3.batch_associate_scram_secret()
+        response = await kafka.batch_associate_scram_secret()
 
         # Override per operation
-        response = await s3.batch_associate_scram_secret(config_overrides={"retry_max_attempts": 5})
+        response = await kafka.batch_associate_scram_secret(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_associate_scram_secret(config_overrides={"retry_max_attempts": 1})
+        response = await kafka.batch_associate_scram_secret(config_overrides={"retry_max_attempts": 1})
 ```

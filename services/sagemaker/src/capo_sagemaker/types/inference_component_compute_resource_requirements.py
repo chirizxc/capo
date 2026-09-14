@@ -35,11 +35,27 @@ def serialize_aws_json_1_1(
 ) -> dict:
     out: dict = {}
     if "number_of_cpu_cores_required" in value:
-        out["NumberOfCpuCoresRequired"] = value["number_of_cpu_cores_required"]
+        out["NumberOfCpuCoresRequired"] = (
+            "NaN"
+            if value["number_of_cpu_cores_required"]
+            != value["number_of_cpu_cores_required"]
+            else "Infinity"
+            if value["number_of_cpu_cores_required"] == float("inf")
+            else "-Infinity"
+            if value["number_of_cpu_cores_required"] == float("-inf")
+            else value["number_of_cpu_cores_required"]
+        )
     if "number_of_accelerator_devices_required" in value:
-        out["NumberOfAcceleratorDevicesRequired"] = value[
-            "number_of_accelerator_devices_required"
-        ]
+        out["NumberOfAcceleratorDevicesRequired"] = (
+            "NaN"
+            if value["number_of_accelerator_devices_required"]
+            != value["number_of_accelerator_devices_required"]
+            else "Infinity"
+            if value["number_of_accelerator_devices_required"] == float("inf")
+            else "-Infinity"
+            if value["number_of_accelerator_devices_required"] == float("-inf")
+            else value["number_of_accelerator_devices_required"]
+        )
     if "min_memory_required_in_mb" in value:
         out["MinMemoryRequiredInMb"] = value["min_memory_required_in_mb"]
     if "max_memory_required_in_mb" in value:
@@ -51,14 +67,14 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> InferenceComponentComputeResourceRequirements:
     out: InferenceComponentComputeResourceRequirements = {}  # type: ignore[typeddict-item]
-    if "NumberOfCpuCoresRequired" in data:
-        out["number_of_cpu_cores_required"] = data["NumberOfCpuCoresRequired"]
-    if "NumberOfAcceleratorDevicesRequired" in data:
-        out["number_of_accelerator_devices_required"] = data[
-            "NumberOfAcceleratorDevicesRequired"
-        ]
-    if "MinMemoryRequiredInMb" in data:
+    if data.get("NumberOfCpuCoresRequired") is not None:
+        out["number_of_cpu_cores_required"] = float(data["NumberOfCpuCoresRequired"])
+    if data.get("NumberOfAcceleratorDevicesRequired") is not None:
+        out["number_of_accelerator_devices_required"] = float(
+            data["NumberOfAcceleratorDevicesRequired"]
+        )
+    if data.get("MinMemoryRequiredInMb") is not None:
         out["min_memory_required_in_mb"] = data["MinMemoryRequiredInMb"]
-    if "MaxMemoryRequiredInMb" in data:
+    if data.get("MaxMemoryRequiredInMb") is not None:
         out["max_memory_required_in_mb"] = data["MaxMemoryRequiredInMb"]
     return out

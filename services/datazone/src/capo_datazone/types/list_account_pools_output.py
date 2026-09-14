@@ -34,12 +34,12 @@ def serialize_json(value: ListAccountPoolsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListAccountPoolsOutput:
     out: ListAccountPoolsOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.account_pool_summaries
 
         out["items"] = capo_datazone.types.account_pool_summaries.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

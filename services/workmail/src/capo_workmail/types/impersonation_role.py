@@ -62,11 +62,11 @@ def serialize_aws_json_1_1(value: ImpersonationRole) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImpersonationRole:
     out: ImpersonationRole = {}  # type: ignore[typeddict-item]
-    if "ImpersonationRoleId" in data:
+    if data.get("ImpersonationRoleId") is not None:
         out["impersonation_role_id"] = data["ImpersonationRoleId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workmail.types.impersonation_role_type
 
         out["type"] = (
@@ -74,13 +74,13 @@ def deserialize_aws_json_1_1(data: dict) -> ImpersonationRole:
                 data["Type"]
             )
         )
-    if "DateCreated" in data:
+    if data.get("DateCreated") is not None:
         import capo_workmail.types.timestamp
 
         out["date_created"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DateCreated"]
         )
-    if "DateModified" in data:
+    if data.get("DateModified") is not None:
         import capo_workmail.types.timestamp
 
         out["date_modified"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(

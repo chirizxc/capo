@@ -37,7 +37,7 @@ def serialize_json(value: ListSupplementalTaxRegistrationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSupplementalTaxRegistrationsResponse:
     out: ListSupplementalTaxRegistrationsResponse = {}  # type: ignore[typeddict-item]
-    if "taxRegistrations" in data:
+    if data.get("taxRegistrations") is not None:
         import capo_taxsettings.types.supplemental_tax_registration_list
 
         out["tax_registrations"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListSupplementalTaxRegistrationsResponse:
         raise DeserializationError(
             "ListSupplementalTaxRegistrationsResponse.tax_registrations required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

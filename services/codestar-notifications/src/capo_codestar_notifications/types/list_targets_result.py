@@ -32,7 +32,7 @@ def serialize_json(value: ListTargetsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListTargetsResult:
     out: ListTargetsResult = {}  # type: ignore[typeddict-item]
-    if "Targets" in data:
+    if data.get("Targets") is not None:
         import capo_codestar_notifications.types.targets_batch
 
         out["targets"] = (
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> ListTargetsResult:
                 data["Targets"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

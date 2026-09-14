@@ -32,9 +32,9 @@ def serialize_json(value: DeleteVpcConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteVpcConnectionResponse:
     out: DeleteVpcConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "vpcConnectionArn" in data:
+    if data.get("vpcConnectionArn") is not None:
         out["vpc_connection_arn"] = data["vpcConnectionArn"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_kafka.types.vpc_connection_state
 
         out["state"] = capo_kafka.types.vpc_connection_state.deserialize_json(

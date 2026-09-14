@@ -23,6 +23,6 @@ def serialize_json(value: UpdateDeviceMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDeviceMetadataResponse:
     out: UpdateDeviceMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     return out

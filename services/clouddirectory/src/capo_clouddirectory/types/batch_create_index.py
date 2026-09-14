@@ -61,7 +61,7 @@ def serialize_json(value: BatchCreateIndex) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateIndex:
     out: BatchCreateIndex = {}  # type: ignore[typeddict-item]
-    if "OrderedIndexedAttributeList" in data:
+    if data.get("OrderedIndexedAttributeList") is not None:
         import capo_clouddirectory.types.attribute_key_list
 
         out["ordered_indexed_attribute_list"] = (
@@ -73,11 +73,11 @@ def deserialize_json(data: dict) -> BatchCreateIndex:
         raise DeserializationError(
             "BatchCreateIndex.ordered_indexed_attribute_list required"
         )
-    if "IsUnique" in data:
+    if data.get("IsUnique") is not None:
         out["is_unique"] = data["IsUnique"]
     else:
         out["is_unique"] = False
-    if "ParentReference" in data:
+    if data.get("ParentReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["parent_reference"] = (
@@ -85,8 +85,8 @@ def deserialize_json(data: dict) -> BatchCreateIndex:
                 data["ParentReference"]
             )
         )
-    if "LinkName" in data:
+    if data.get("LinkName") is not None:
         out["link_name"] = data["LinkName"]
-    if "BatchReferenceName" in data:
+    if data.get("BatchReferenceName") is not None:
         out["batch_reference_name"] = data["BatchReferenceName"]
     return out

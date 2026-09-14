@@ -42,12 +42,12 @@ def serialize_json(value: StrategyOption) -> dict:
 
 def deserialize_json(data: dict) -> StrategyOption:
     out: StrategyOption = {}  # type: ignore[typeddict-item]
-    if "strategy" in data:
+    if data.get("strategy") is not None:
         out["strategy"] = data["strategy"]
-    if "toolName" in data:
+    if data.get("toolName") is not None:
         out["tool_name"] = data["toolName"]
-    if "targetDestination" in data:
+    if data.get("targetDestination") is not None:
         out["target_destination"] = data["targetDestination"]
-    if "isPreferred" in data:
+    if data.get("isPreferred") is not None:
         out["is_preferred"] = data["isPreferred"]
     return out

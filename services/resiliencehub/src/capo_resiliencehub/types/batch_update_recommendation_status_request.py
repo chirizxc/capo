@@ -34,13 +34,13 @@ def serialize_json(value: BatchUpdateRecommendationStatusRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateRecommendationStatusRequest:
     out: BatchUpdateRecommendationStatusRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "BatchUpdateRecommendationStatusRequest.app_arn required"
         )
-    if "requestEntries" in data:
+    if data.get("requestEntries") is not None:
         import capo_resiliencehub.types.update_recommendation_status_request_entries
 
         out["request_entries"] = (

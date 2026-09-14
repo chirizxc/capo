@@ -37,9 +37,9 @@ def serialize_aws_json_1_0(value: ListRepositorySyncDefinitionsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRepositorySyncDefinitionsOutput:
     out: ListRepositorySyncDefinitionsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "syncDefinitions" in data:
+    if data.get("syncDefinitions") is not None:
         import capo_proton.types.repository_sync_definition_list
 
         out["sync_definitions"] = (

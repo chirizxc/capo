@@ -27,7 +27,7 @@ def serialize_json(value: DeleteIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteIntegrationRequest:
     out: DeleteIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
     else:
         raise DeserializationError("DeleteIntegrationRequest.uri required")

@@ -36,13 +36,13 @@ def serialize_json(value: TestSetTurnResult) -> dict:
 
 def deserialize_json(data: dict) -> TestSetTurnResult:
     out: TestSetTurnResult = {}  # type: ignore[typeddict-item]
-    if "agent" in data:
+    if data.get("agent") is not None:
         import capo_lex_models_v2.types.agent_turn_result
 
         out["agent"] = capo_lex_models_v2.types.agent_turn_result.deserialize_json(
             data["agent"]
         )
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_lex_models_v2.types.user_turn_result
 
         out["user"] = capo_lex_models_v2.types.user_turn_result.deserialize_json(

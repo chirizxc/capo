@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ResponderErrorMaskingLoggingTypes:
 
     out: ResponderErrorMaskingLoggingTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rtbfabric.types.responder_error_masking_logging_type.deserialize_json(
                 item

@@ -67,15 +67,15 @@ def serialize_aws_json_1_1(value: SetupHistory) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetupHistory:
     out: SetupHistory = {}  # type: ignore[typeddict-item]
-    if "operationId" in data:
+    if data.get("operationId") is not None:
         out["operation_id"] = data["operationId"]
-    if "request" in data:
+    if data.get("request") is not None:
         import capo_lightsail.types.setup_request
 
         out["request"] = capo_lightsail.types.setup_request.deserialize_aws_json_1_1(
             data["request"]
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_lightsail.types.setup_history_resource
 
         out["resource"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetupHistory:
                 data["resource"]
             )
         )
-    if "executionDetails" in data:
+    if data.get("executionDetails") is not None:
         import capo_lightsail.types.setup_execution_details_list
 
         out["execution_details"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetupHistory:
                 data["executionDetails"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lightsail.types.setup_status
 
         out["status"] = capo_lightsail.types.setup_status.deserialize_aws_json_1_1(

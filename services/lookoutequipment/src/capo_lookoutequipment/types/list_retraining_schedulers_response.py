@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListRetrainingSchedulersResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRetrainingSchedulersResponse:
     out: ListRetrainingSchedulersResponse = {}  # type: ignore[typeddict-item]
-    if "RetrainingSchedulerSummaries" in data:
+    if data.get("RetrainingSchedulerSummaries") is not None:
         import capo_lookoutequipment.types.retraining_scheduler_summaries
 
         out["retraining_scheduler_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRetrainingSchedulersResponse:
                 data["RetrainingSchedulerSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

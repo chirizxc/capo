@@ -51,21 +51,21 @@ def serialize_aws_json_1_1(value: UpdateThesaurusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateThesaurusRequest:
     out: UpdateThesaurusRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateThesaurusRequest.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("UpdateThesaurusRequest.index_id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "SourceS3Path" in data:
+    if data.get("SourceS3Path") is not None:
         import capo_kendra.types.s3_path
 
         out["source_s3_path"] = capo_kendra.types.s3_path.deserialize_aws_json_1_1(

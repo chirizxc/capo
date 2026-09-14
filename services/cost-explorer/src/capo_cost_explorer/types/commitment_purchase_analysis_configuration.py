@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CommitmentPurchaseAnalysisConfiguration) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CommitmentPurchaseAnalysisConfiguration:
     out: CommitmentPurchaseAnalysisConfiguration = {}  # type: ignore[typeddict-item]
-    if "SavingsPlansPurchaseAnalysisConfiguration" in data:
+    if data.get("SavingsPlansPurchaseAnalysisConfiguration") is not None:
         import capo_cost_explorer.types.savings_plans_purchase_analysis_configuration
 
         out["savings_plans_purchase_analysis_configuration"] = (

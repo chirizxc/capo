@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEcsServiceCapacityProviderStrategyList:
 
     out: AwsEcsServiceCapacityProviderStrategyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ecs_service_capacity_provider_strategy_details.deserialize_json(
                 item

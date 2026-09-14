@@ -145,12 +145,14 @@ class CampaignResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_campaign_request.CreateCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.create_campaign_request.CreateCampaignRequest = {
+            "name": name,
+            "signal_catalog_arn": signal_catalog_arn,
+            "target_arn": target_arn,
+            "collection_scheme": collection_scheme,
+        }
         if description is not None:
             input_["description"] = description
-        input_["signal_catalog_arn"] = signal_catalog_arn
-        input_["target_arn"] = target_arn
         if start_time is not None:
             input_["start_time"] = start_time
         if expiry_time is not None:
@@ -169,7 +171,6 @@ class CampaignResource:
             input_["priority"] = priority
         if signals_to_collect is not None:
             input_["signals_to_collect"] = signals_to_collect
-        input_["collection_scheme"] = collection_scheme
         if data_extra_dimensions is not None:
             input_["data_extra_dimensions"] = data_extra_dimensions
         if tags is not None:
@@ -186,6 +187,7 @@ class CampaignResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -223,14 +225,16 @@ class CampaignResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_campaign_request.GetCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.get_campaign_request.GetCampaignRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -277,19 +281,21 @@ class CampaignResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_campaign_request.UpdateCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.update_campaign_request.UpdateCampaignRequest = {
+            "name": name,
+            "action": action,
+        }
         if description is not None:
             input_["description"] = description
         if data_extra_dimensions is not None:
             input_["data_extra_dimensions"] = data_extra_dimensions
-        input_["action"] = action
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -327,14 +333,16 @@ class CampaignResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_campaign_request.DeleteCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.delete_campaign_request.DeleteCampaignRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -379,7 +387,7 @@ class CampaignResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_campaigns_request.ListCampaignsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_campaigns_request.ListCampaignsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -394,6 +402,7 @@ class CampaignResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -489,12 +498,14 @@ class AsyncCampaignResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_campaign_request.CreateCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.create_campaign_request.CreateCampaignRequest = {
+            "name": name,
+            "signal_catalog_arn": signal_catalog_arn,
+            "target_arn": target_arn,
+            "collection_scheme": collection_scheme,
+        }
         if description is not None:
             input_["description"] = description
-        input_["signal_catalog_arn"] = signal_catalog_arn
-        input_["target_arn"] = target_arn
         if start_time is not None:
             input_["start_time"] = start_time
         if expiry_time is not None:
@@ -513,7 +524,6 @@ class AsyncCampaignResource:
             input_["priority"] = priority
         if signals_to_collect is not None:
             input_["signals_to_collect"] = signals_to_collect
-        input_["collection_scheme"] = collection_scheme
         if data_extra_dimensions is not None:
             input_["data_extra_dimensions"] = data_extra_dimensions
         if tags is not None:
@@ -530,6 +540,7 @@ class AsyncCampaignResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -568,14 +579,16 @@ class AsyncCampaignResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_campaign_request.GetCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.get_campaign_request.GetCampaignRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -623,19 +636,21 @@ class AsyncCampaignResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_campaign_request.UpdateCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.update_campaign_request.UpdateCampaignRequest = {
+            "name": name,
+            "action": action,
+        }
         if description is not None:
             input_["description"] = description
         if data_extra_dimensions is not None:
             input_["data_extra_dimensions"] = data_extra_dimensions
-        input_["action"] = action
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -674,14 +689,16 @@ class AsyncCampaignResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_campaign_request.DeleteCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.delete_campaign_request.DeleteCampaignRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -727,7 +744,7 @@ class AsyncCampaignResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_campaigns_request.ListCampaignsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_campaigns_request.ListCampaignsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -742,4 +759,5 @@ class AsyncCampaignResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

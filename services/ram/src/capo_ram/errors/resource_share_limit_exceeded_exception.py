@@ -23,7 +23,7 @@ def serialize_json(value: ResourceShareLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> ResourceShareLimitExceededException_:
     out: ResourceShareLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
@@ -37,15 +37,20 @@ class ResourceShareLimitExceededException(ServiceError):
 
     code: str | None = "ResourceShareLimitExceededException"
 
-    def __init__(self, data: ResourceShareLimitExceededException_):
+    def __init__(
+        self, data: ResourceShareLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceShareLimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceShareLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceShareLimitExceededException":
+        return cls(deserialize_json(data), message)

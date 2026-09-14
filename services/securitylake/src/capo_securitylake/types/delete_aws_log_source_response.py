@@ -27,7 +27,7 @@ def serialize_json(value: DeleteAwsLogSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAwsLogSourceResponse:
     out: DeleteAwsLogSourceResponse = {}  # type: ignore[typeddict-item]
-    if "failed" in data:
+    if data.get("failed") is not None:
         import capo_securitylake.types.account_list
 
         out["failed"] = capo_securitylake.types.account_list.deserialize_json(

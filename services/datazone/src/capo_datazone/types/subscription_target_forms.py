@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SubscriptionTargetForms:
 
     out: SubscriptionTargetForms = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.subscription_target_form.deserialize_json(item))
     return out

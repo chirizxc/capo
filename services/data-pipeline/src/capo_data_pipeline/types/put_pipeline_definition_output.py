@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: PutPipelineDefinitionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutPipelineDefinitionOutput:
     out: PutPipelineDefinitionOutput = {}  # type: ignore[typeddict-item]
-    if "validationErrors" in data:
+    if data.get("validationErrors") is not None:
         import capo_data_pipeline.types.validation_errors
 
         out["validation_errors"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutPipelineDefinitionOutput:
                 data["validationErrors"]
             )
         )
-    if "validationWarnings" in data:
+    if data.get("validationWarnings") is not None:
         import capo_data_pipeline.types.validation_warnings
 
         out["validation_warnings"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutPipelineDefinitionOutput:
                 data["validationWarnings"]
             )
         )
-    if "errored" in data:
+    if data.get("errored") is not None:
         out["errored"] = data["errored"]
     else:
         out["errored"] = False

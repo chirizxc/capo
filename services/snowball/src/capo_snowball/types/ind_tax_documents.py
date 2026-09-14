@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: INDTaxDocuments) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> INDTaxDocuments:
     out: INDTaxDocuments = {}  # type: ignore[typeddict-item]
-    if "GSTIN" in data:
+    if data.get("GSTIN") is not None:
         out["gstin"] = data["GSTIN"]
     return out

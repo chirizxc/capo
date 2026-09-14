@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: DescribeUpdateDirectoryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUpdateDirectoryRequest:
     out: DescribeUpdateDirectoryRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError(
             "DescribeUpdateDirectoryRequest.directory_id required"
         )
-    if "UpdateType" in data:
+    if data.get("UpdateType") is not None:
         import capo_directory_service.types.update_type
 
         out["update_type"] = (
@@ -60,8 +60,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUpdateDirectoryRequest:
         raise DeserializationError(
             "DescribeUpdateDirectoryRequest.update_type required"
         )
-    if "RegionName" in data:
+    if data.get("RegionName") is not None:
         out["region_name"] = data["RegionName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> GroupIdentifiers:
 
     out: GroupIdentifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workmail.types.group_identifier.deserialize_aws_json_1_1(item))
     return out

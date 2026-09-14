@@ -36,7 +36,7 @@ def serialize_json(value: AnalysisSourceTemplate) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisSourceTemplate:
     out: AnalysisSourceTemplate = {}  # type: ignore[typeddict-item]
-    if "DataSetReferences" in data:
+    if data.get("DataSetReferences") is not None:
         import capo_quicksight.types.data_set_reference_list
 
         out["data_set_references"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> AnalysisSourceTemplate:
         raise DeserializationError(
             "AnalysisSourceTemplate.data_set_references required"
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("AnalysisSourceTemplate.arn required")

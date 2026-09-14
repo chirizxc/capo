@@ -44,7 +44,7 @@ def serialize_json(value: RouteRentalSummary) -> dict:
 
 def deserialize_json(data: dict) -> RouteRentalSummary:
     out: RouteRentalSummary = {}  # type: ignore[typeddict-item]
-    if "Overview" in data:
+    if data.get("Overview") is not None:
         import capo_geo_routes.types.route_rental_overview_summary
 
         out["overview"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> RouteRentalSummary:
                 data["Overview"]
             )
         )
-    if "TravelOnly" in data:
+    if data.get("TravelOnly") is not None:
         import capo_geo_routes.types.route_rental_travel_only_summary
 
         out["travel_only"] = (

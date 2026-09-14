@@ -31,7 +31,7 @@ def serialize_json(value: GetFindingsPublicationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsPublicationConfigurationResponse:
     out: GetFindingsPublicationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "securityHubConfiguration" in data:
+    if data.get("securityHubConfiguration") is not None:
         import capo_macie2.types.security_hub_configuration
 
         out["security_hub_configuration"] = (

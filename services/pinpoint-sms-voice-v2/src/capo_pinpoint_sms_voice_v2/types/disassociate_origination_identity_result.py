@@ -41,14 +41,14 @@ def serialize_aws_json_1_0(value: DisassociateOriginationIdentityResult) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateOriginationIdentityResult:
     out: DisassociateOriginationIdentityResult = {}  # type: ignore[typeddict-item]
-    if "PoolArn" in data:
+    if data.get("PoolArn") is not None:
         out["pool_arn"] = data["PoolArn"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "OriginationIdentityArn" in data:
+    if data.get("OriginationIdentityArn") is not None:
         out["origination_identity_arn"] = data["OriginationIdentityArn"]
-    if "OriginationIdentity" in data:
+    if data.get("OriginationIdentity") is not None:
         out["origination_identity"] = data["OriginationIdentity"]
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
     return out

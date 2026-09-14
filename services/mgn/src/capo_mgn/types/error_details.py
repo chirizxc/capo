@@ -36,12 +36,12 @@ def serialize_json(value: ErrorDetails) -> dict:
 
 def deserialize_json(data: dict) -> ErrorDetails:
     out: ErrorDetails = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     return out

@@ -50,9 +50,9 @@ def serialize_json(value: ListRoutingProfileManualAssignmentQueuesResponse) -> d
 
 def deserialize_json(data: dict) -> ListRoutingProfileManualAssignmentQueuesResponse:
     out: ListRoutingProfileManualAssignmentQueuesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RoutingProfileManualAssignmentQueueConfigSummaryList" in data:
+    if data.get("RoutingProfileManualAssignmentQueueConfigSummaryList") is not None:
         import capo_connect.types.routing_profile_manual_assignment_queue_config_summary_list
 
         out["routing_profile_manual_assignment_queue_config_summary_list"] = (
@@ -60,12 +60,12 @@ def deserialize_json(data: dict) -> ListRoutingProfileManualAssignmentQueuesResp
                 data["RoutingProfileManualAssignmentQueueConfigSummaryList"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

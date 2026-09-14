@@ -112,23 +112,23 @@ def serialize_json(value: UpdateSubscriptionRequestOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSubscriptionRequestOutput:
     out: UpdateSubscriptionRequestOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateSubscriptionRequestOutput.id required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError(
             "UpdateSubscriptionRequestOutput.created_by required"
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("UpdateSubscriptionRequestOutput.domain_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.subscription_request_status
 
         out["status"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> UpdateSubscriptionRequestOutput:
         )
     else:
         raise DeserializationError("UpdateSubscriptionRequestOutput.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> UpdateSubscriptionRequestOutput:
         raise DeserializationError(
             "UpdateSubscriptionRequestOutput.created_at required"
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(
@@ -158,13 +158,13 @@ def deserialize_json(data: dict) -> UpdateSubscriptionRequestOutput:
         raise DeserializationError(
             "UpdateSubscriptionRequestOutput.updated_at required"
         )
-    if "requestReason" in data:
+    if data.get("requestReason") is not None:
         out["request_reason"] = data["requestReason"]
     else:
         raise DeserializationError(
             "UpdateSubscriptionRequestOutput.request_reason required"
         )
-    if "subscribedPrincipals" in data:
+    if data.get("subscribedPrincipals") is not None:
         import capo_datazone.types.subscribed_principals
 
         out["subscribed_principals"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> UpdateSubscriptionRequestOutput:
         raise DeserializationError(
             "UpdateSubscriptionRequestOutput.subscribed_principals required"
         )
-    if "subscribedListings" in data:
+    if data.get("subscribedListings") is not None:
         import capo_datazone.types.subscribed_listings
 
         out["subscribed_listings"] = (
@@ -188,13 +188,13 @@ def deserialize_json(data: dict) -> UpdateSubscriptionRequestOutput:
         raise DeserializationError(
             "UpdateSubscriptionRequestOutput.subscribed_listings required"
         )
-    if "reviewerId" in data:
+    if data.get("reviewerId") is not None:
         out["reviewer_id"] = data["reviewerId"]
-    if "decisionComment" in data:
+    if data.get("decisionComment") is not None:
         out["decision_comment"] = data["decisionComment"]
-    if "existingSubscriptionId" in data:
+    if data.get("existingSubscriptionId") is not None:
         out["existing_subscription_id"] = data["existingSubscriptionId"]
-    if "metadataForms" in data:
+    if data.get("metadataForms") is not None:
         import capo_datazone.types.metadata_forms
 
         out["metadata_forms"] = capo_datazone.types.metadata_forms.deserialize_json(

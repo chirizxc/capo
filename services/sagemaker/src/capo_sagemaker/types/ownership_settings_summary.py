@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: OwnershipSettingsSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OwnershipSettingsSummary:
     out: OwnershipSettingsSummary = {}  # type: ignore[typeddict-item]
-    if "OwnerUserProfileName" in data:
+    if data.get("OwnerUserProfileName") is not None:
         out["owner_user_profile_name"] = data["OwnerUserProfileName"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: ObjectNotDetachedException_) -> dict:
 
 def deserialize_json(data: dict) -> ObjectNotDetachedException_:
     out: ObjectNotDetachedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class ObjectNotDetachedException(ServiceError):
 
     code: str | None = "ObjectNotDetachedException"
 
-    def __init__(self, data: ObjectNotDetachedException_):
+    def __init__(self, data: ObjectNotDetachedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ObjectNotDetachedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ObjectNotDetachedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ObjectNotDetachedException":
+        return cls(deserialize_json(data), message)

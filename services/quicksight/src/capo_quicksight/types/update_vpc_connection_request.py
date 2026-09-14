@@ -65,11 +65,11 @@ def serialize_json(value: UpdateVPCConnectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVPCConnectionRequest:
     out: UpdateVPCConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateVPCConnectionRequest.name required")
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_quicksight.types.subnet_id_list
 
         out["subnet_ids"] = capo_quicksight.types.subnet_id_list.deserialize_json(
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> UpdateVPCConnectionRequest:
         )
     else:
         raise DeserializationError("UpdateVPCConnectionRequest.subnet_ids required")
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_quicksight.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -89,13 +89,13 @@ def deserialize_json(data: dict) -> UpdateVPCConnectionRequest:
         raise DeserializationError(
             "UpdateVPCConnectionRequest.security_group_ids required"
         )
-    if "DnsResolvers" in data:
+    if data.get("DnsResolvers") is not None:
         import capo_quicksight.types.dns_resolver_list
 
         out["dns_resolvers"] = capo_quicksight.types.dns_resolver_list.deserialize_json(
             data["DnsResolvers"]
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("UpdateVPCConnectionRequest.role_arn required")

@@ -32,7 +32,7 @@ def serialize_json(value: MLMemberAbilities) -> dict:
 
 def deserialize_json(data: dict) -> MLMemberAbilities:
     out: MLMemberAbilities = {}  # type: ignore[typeddict-item]
-    if "customMLMemberAbilities" in data:
+    if data.get("customMLMemberAbilities") is not None:
         import capo_cleanrooms.types.custom_ml_member_abilities
 
         out["custom_ml_member_abilities"] = (

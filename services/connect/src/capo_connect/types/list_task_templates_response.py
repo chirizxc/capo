@@ -34,12 +34,12 @@ def serialize_json(value: ListTaskTemplatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTaskTemplatesResponse:
     out: ListTaskTemplatesResponse = {}  # type: ignore[typeddict-item]
-    if "TaskTemplates" in data:
+    if data.get("TaskTemplates") is not None:
         import capo_connect.types.task_template_list
 
         out["task_templates"] = capo_connect.types.task_template_list.deserialize_json(
             data["TaskTemplates"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

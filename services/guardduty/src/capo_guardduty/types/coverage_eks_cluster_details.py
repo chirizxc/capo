@@ -50,19 +50,19 @@ def serialize_json(value: CoverageEksClusterDetails) -> dict:
 
 def deserialize_json(data: dict) -> CoverageEksClusterDetails:
     out: CoverageEksClusterDetails = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "coveredNodes" in data:
+    if data.get("coveredNodes") is not None:
         out["covered_nodes"] = data["coveredNodes"]
-    if "compatibleNodes" in data:
+    if data.get("compatibleNodes") is not None:
         out["compatible_nodes"] = data["compatibleNodes"]
-    if "addonDetails" in data:
+    if data.get("addonDetails") is not None:
         import capo_guardduty.types.addon_details
 
         out["addon_details"] = capo_guardduty.types.addon_details.deserialize_json(
             data["addonDetails"]
         )
-    if "managementType" in data:
+    if data.get("managementType") is not None:
         import capo_guardduty.types.management_type
 
         out["management_type"] = capo_guardduty.types.management_type.deserialize_json(

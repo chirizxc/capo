@@ -30,13 +30,13 @@ def serialize_aws_json_1_0(value: DeleteAutoScalingConfigurationRequest) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteAutoScalingConfigurationRequest:
     out: DeleteAutoScalingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "AutoScalingConfigurationArn" in data:
+    if data.get("AutoScalingConfigurationArn") is not None:
         out["auto_scaling_configuration_arn"] = data["AutoScalingConfigurationArn"]
     else:
         raise DeserializationError(
             "DeleteAutoScalingConfigurationRequest.auto_scaling_configuration_arn required"
         )
-    if "DeleteAllRevisions" in data:
+    if data.get("DeleteAllRevisions") is not None:
         out["delete_all_revisions"] = data["DeleteAllRevisions"]
     else:
         out["delete_all_revisions"] = False

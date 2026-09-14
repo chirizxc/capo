@@ -78,15 +78,15 @@ def serialize_aws_json_1_1(value: OneDriveConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OneDriveConfiguration:
     out: OneDriveConfiguration = {}  # type: ignore[typeddict-item]
-    if "TenantDomain" in data:
+    if data.get("TenantDomain") is not None:
         out["tenant_domain"] = data["TenantDomain"]
     else:
         raise DeserializationError("OneDriveConfiguration.tenant_domain required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("OneDriveConfiguration.secret_arn required")
-    if "OneDriveUsers" in data:
+    if data.get("OneDriveUsers") is not None:
         import capo_kendra.types.one_drive_users
 
         out["one_drive_users"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> OneDriveConfiguration:
         )
     else:
         raise DeserializationError("OneDriveConfiguration.one_drive_users required")
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> OneDriveConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> OneDriveConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> OneDriveConfiguration:
                 data["FieldMappings"]
             )
         )
-    if "DisableLocalGroups" in data:
+    if data.get("DisableLocalGroups") is not None:
         out["disable_local_groups"] = data["DisableLocalGroups"]
     else:
         out["disable_local_groups"] = False

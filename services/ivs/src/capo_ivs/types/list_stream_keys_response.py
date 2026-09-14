@@ -33,7 +33,7 @@ def serialize_json(value: ListStreamKeysResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListStreamKeysResponse:
     out: ListStreamKeysResponse = {}  # type: ignore[typeddict-item]
-    if "streamKeys" in data:
+    if data.get("streamKeys") is not None:
         import capo_ivs.types.stream_key_list
 
         out["stream_keys"] = capo_ivs.types.stream_key_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListStreamKeysResponse:
         )
     else:
         raise DeserializationError("ListStreamKeysResponse.stream_keys required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

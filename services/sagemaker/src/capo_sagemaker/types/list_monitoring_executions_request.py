@@ -154,11 +154,11 @@ def serialize_aws_json_1_1(value: ListMonitoringExecutionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMonitoringExecutionsRequest:
     out: ListMonitoringExecutionsRequest = {}  # type: ignore[typeddict-item]
-    if "MonitoringScheduleName" in data:
+    if data.get("MonitoringScheduleName") is not None:
         out["monitoring_schedule_name"] = data["MonitoringScheduleName"]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.monitoring_execution_sort_key
 
         out["sort_by"] = (
@@ -166,17 +166,17 @@ def deserialize_aws_json_1_1(data: dict) -> ListMonitoringExecutionsRequest:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ScheduledTimeBefore" in data:
+    if data.get("ScheduledTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["scheduled_time_before"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListMonitoringExecutionsRequest:
                 data["ScheduledTimeBefore"]
             )
         )
-    if "ScheduledTimeAfter" in data:
+    if data.get("ScheduledTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["scheduled_time_after"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListMonitoringExecutionsRequest:
                 data["ScheduledTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListMonitoringExecutionsRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListMonitoringExecutionsRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "LastModifiedTimeBefore" in data:
+    if data.get("LastModifiedTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time_before"] = (
@@ -216,7 +216,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListMonitoringExecutionsRequest:
                 data["LastModifiedTimeBefore"]
             )
         )
-    if "LastModifiedTimeAfter" in data:
+    if data.get("LastModifiedTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time_after"] = (
@@ -224,7 +224,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListMonitoringExecutionsRequest:
                 data["LastModifiedTimeAfter"]
             )
         )
-    if "StatusEquals" in data:
+    if data.get("StatusEquals") is not None:
         import capo_sagemaker.types.execution_status
 
         out["status_equals"] = (
@@ -232,9 +232,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListMonitoringExecutionsRequest:
                 data["StatusEquals"]
             )
         )
-    if "MonitoringJobDefinitionName" in data:
+    if data.get("MonitoringJobDefinitionName") is not None:
         out["monitoring_job_definition_name"] = data["MonitoringJobDefinitionName"]
-    if "MonitoringTypeEquals" in data:
+    if data.get("MonitoringTypeEquals") is not None:
         import capo_sagemaker.types.monitoring_type
 
         out["monitoring_type_equals"] = (

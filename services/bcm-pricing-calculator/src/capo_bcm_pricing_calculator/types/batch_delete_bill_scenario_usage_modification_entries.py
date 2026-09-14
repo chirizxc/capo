@@ -20,4 +20,4 @@ def serialize_aws_json_1_0(
 def deserialize_aws_json_1_0(
     data: list,
 ) -> BatchDeleteBillScenarioUsageModificationEntries:
-    return list(data)
+    return [item for item in data if item is not None]

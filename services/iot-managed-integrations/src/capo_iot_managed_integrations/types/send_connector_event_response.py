@@ -24,7 +24,7 @@ def serialize_json(value: SendConnectorEventResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendConnectorEventResponse:
     out: SendConnectorEventResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
     else:
         raise DeserializationError("SendConnectorEventResponse.connector_id required")

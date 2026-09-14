@@ -44,9 +44,9 @@ def serialize_json(value: UpdateFrameworkInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFrameworkInput:
     out: UpdateFrameworkInput = {}  # type: ignore[typeddict-item]
-    if "FrameworkDescription" in data:
+    if data.get("FrameworkDescription") is not None:
         out["framework_description"] = data["FrameworkDescription"]
-    if "FrameworkControls" in data:
+    if data.get("FrameworkControls") is not None:
         import capo_backup.types.framework_controls
 
         out["framework_controls"] = (
@@ -54,6 +54,6 @@ def deserialize_json(data: dict) -> UpdateFrameworkInput:
                 data["FrameworkControls"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

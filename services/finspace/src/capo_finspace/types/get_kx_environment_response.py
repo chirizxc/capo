@@ -147,41 +147,41 @@ def serialize_json(value: GetKxEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetKxEnvironmentResponse:
     out: GetKxEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.environment_status
 
         out["status"] = capo_finspace.types.environment_status.deserialize_json(
             data["status"]
         )
-    if "tgwStatus" in data:
+    if data.get("tgwStatus") is not None:
         import capo_finspace.types.tgw_status
 
         out["tgw_status"] = capo_finspace.types.tgw_status.deserialize_json(
             data["tgwStatus"]
         )
-    if "dnsStatus" in data:
+    if data.get("dnsStatus") is not None:
         import capo_finspace.types.dns_status
 
         out["dns_status"] = capo_finspace.types.dns_status.deserialize_json(
             data["dnsStatus"]
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "environmentArn" in data:
+    if data.get("environmentArn") is not None:
         out["environment_arn"] = data["environmentArn"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "dedicatedServiceAccountId" in data:
+    if data.get("dedicatedServiceAccountId") is not None:
         out["dedicated_service_account_id"] = data["dedicatedServiceAccountId"]
-    if "transitGatewayConfiguration" in data:
+    if data.get("transitGatewayConfiguration") is not None:
         import capo_finspace.types.transit_gateway_configuration
 
         out["transit_gateway_configuration"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> GetKxEnvironmentResponse:
                 data["transitGatewayConfiguration"]
             )
         )
-    if "customDNSConfiguration" in data:
+    if data.get("customDNSConfiguration") is not None:
         import capo_finspace.types.custom_dns_configuration
 
         out["custom_dns_configuration"] = (
@@ -197,19 +197,19 @@ def deserialize_json(data: dict) -> GetKxEnvironmentResponse:
                 data["customDNSConfiguration"]
             )
         )
-    if "creationTimestamp" in data:
+    if data.get("creationTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["creation_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["creationTimestamp"]
         )
-    if "updateTimestamp" in data:
+    if data.get("updateTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["update_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["updateTimestamp"]
         )
-    if "availabilityZoneIds" in data:
+    if data.get("availabilityZoneIds") is not None:
         import capo_finspace.types.availability_zone_ids
 
         out["availability_zone_ids"] = (
@@ -217,6 +217,6 @@ def deserialize_json(data: dict) -> GetKxEnvironmentResponse:
                 data["availabilityZoneIds"]
             )
         )
-    if "certificateAuthorityArn" in data:
+    if data.get("certificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["certificateAuthorityArn"]
     return out

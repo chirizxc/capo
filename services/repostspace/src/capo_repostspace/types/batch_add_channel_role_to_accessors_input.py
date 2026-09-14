@@ -42,7 +42,7 @@ def serialize_json(value: BatchAddChannelRoleToAccessorsInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchAddChannelRoleToAccessorsInput:
     out: BatchAddChannelRoleToAccessorsInput = {}  # type: ignore[typeddict-item]
-    if "accessorIds" in data:
+    if data.get("accessorIds") is not None:
         import capo_repostspace.types.accessor_id_list
 
         out["accessor_ids"] = capo_repostspace.types.accessor_id_list.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchAddChannelRoleToAccessorsInput:
         raise DeserializationError(
             "BatchAddChannelRoleToAccessorsInput.accessor_ids required"
         )
-    if "channelRole" in data:
+    if data.get("channelRole") is not None:
         import capo_repostspace.types.channel_role
 
         out["channel_role"] = capo_repostspace.types.channel_role.deserialize_json(

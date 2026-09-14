@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: X12Details) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12Details:
     out: X12Details = {}  # type: ignore[typeddict-item]
-    if "transactionSet" in data:
+    if data.get("transactionSet") is not None:
         import capo_b2bi.types.x12_transaction_set
 
         out["transaction_set"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_0(data: dict) -> X12Details:
                 data["transactionSet"]
             )
         )
-    if "version" in data:
+    if data.get("version") is not None:
         import capo_b2bi.types.x12_version
 
         out["version"] = capo_b2bi.types.x12_version.deserialize_aws_json_1_0(

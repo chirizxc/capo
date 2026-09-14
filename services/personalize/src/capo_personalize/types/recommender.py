@@ -98,15 +98,15 @@ def serialize_aws_json_1_1(value: Recommender) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Recommender:
     out: Recommender = {}  # type: ignore[typeddict-item]
-    if "recommenderArn" in data:
+    if data.get("recommenderArn") is not None:
         out["recommender_arn"] = data["recommenderArn"]
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "recipeArn" in data:
+    if data.get("recipeArn") is not None:
         out["recipe_arn"] = data["recipeArn"]
-    if "recommenderConfig" in data:
+    if data.get("recommenderConfig") is not None:
         import capo_personalize.types.recommender_config
 
         out["recommender_config"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> Recommender:
                 data["recommenderConfig"]
             )
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> Recommender:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -130,11 +130,11 @@ def deserialize_aws_json_1_1(data: dict) -> Recommender:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "latestRecommenderUpdate" in data:
+    if data.get("latestRecommenderUpdate") is not None:
         import capo_personalize.types.recommender_update_summary
 
         out["latest_recommender_update"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> Recommender:
                 data["latestRecommenderUpdate"]
             )
         )
-    if "modelMetrics" in data:
+    if data.get("modelMetrics") is not None:
         import capo_personalize.types.metrics
 
         out["model_metrics"] = capo_personalize.types.metrics.deserialize_aws_json_1_1(

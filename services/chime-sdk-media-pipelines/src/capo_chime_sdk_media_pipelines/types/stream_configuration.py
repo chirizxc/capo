@@ -41,13 +41,13 @@ def serialize_json(value: StreamConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> StreamConfiguration:
     out: StreamConfiguration = {}  # type: ignore[typeddict-item]
-    if "StreamArn" in data:
+    if data.get("StreamArn") is not None:
         out["stream_arn"] = data["StreamArn"]
     else:
         raise DeserializationError("StreamConfiguration.stream_arn required")
-    if "FragmentNumber" in data:
+    if data.get("FragmentNumber") is not None:
         out["fragment_number"] = data["FragmentNumber"]
-    if "StreamChannelDefinition" in data:
+    if data.get("StreamChannelDefinition") is not None:
         import capo_chime_sdk_media_pipelines.types.stream_channel_definition
 
         out["stream_channel_definition"] = (

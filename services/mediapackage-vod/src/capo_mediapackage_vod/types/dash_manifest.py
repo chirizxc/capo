@@ -77,7 +77,7 @@ def serialize_json(value: DashManifest) -> dict:
 
 def deserialize_json(data: dict) -> DashManifest:
     out: DashManifest = {}  # type: ignore[typeddict-item]
-    if "manifestLayout" in data:
+    if data.get("manifestLayout") is not None:
         import capo_mediapackage_vod.types.manifest_layout
 
         out["manifest_layout"] = (
@@ -85,17 +85,17 @@ def deserialize_json(data: dict) -> DashManifest:
                 data["manifestLayout"]
             )
         )
-    if "manifestName" in data:
+    if data.get("manifestName") is not None:
         out["manifest_name"] = data["manifestName"]
-    if "minBufferTimeSeconds" in data:
+    if data.get("minBufferTimeSeconds") is not None:
         out["min_buffer_time_seconds"] = data["minBufferTimeSeconds"]
-    if "profile" in data:
+    if data.get("profile") is not None:
         import capo_mediapackage_vod.types.profile
 
         out["profile"] = capo_mediapackage_vod.types.profile.deserialize_json(
             data["profile"]
         )
-    if "scteMarkersSource" in data:
+    if data.get("scteMarkersSource") is not None:
         import capo_mediapackage_vod.types.scte_markers_source
 
         out["scte_markers_source"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> DashManifest:
                 data["scteMarkersSource"]
             )
         )
-    if "streamSelection" in data:
+    if data.get("streamSelection") is not None:
         import capo_mediapackage_vod.types.stream_selection
 
         out["stream_selection"] = (

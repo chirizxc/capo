@@ -41,19 +41,19 @@ def serialize_aws_json_1_1(value: CreatePermissionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePermissionRequest:
     out: CreatePermissionRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "CreatePermissionRequest.certificate_authority_arn required"
         )
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         out["principal"] = data["Principal"]
     else:
         raise DeserializationError("CreatePermissionRequest.principal required")
-    if "SourceAccount" in data:
+    if data.get("SourceAccount") is not None:
         out["source_account"] = data["SourceAccount"]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_acm_pca.types.action_list
 
         out["actions"] = capo_acm_pca.types.action_list.deserialize_aws_json_1_1(

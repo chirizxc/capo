@@ -110,21 +110,21 @@ def serialize_json(value: ParameterListControl) -> dict:
 
 def deserialize_json(data: dict) -> ParameterListControl:
     out: ParameterListControl = {}  # type: ignore[typeddict-item]
-    if "ParameterControlId" in data:
+    if data.get("ParameterControlId") is not None:
         out["parameter_control_id"] = data["ParameterControlId"]
     else:
         raise DeserializationError("ParameterListControl.parameter_control_id required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         out["title"] = ""
-    if "SourceParameterName" in data:
+    if data.get("SourceParameterName") is not None:
         out["source_parameter_name"] = data["SourceParameterName"]
     else:
         raise DeserializationError(
             "ParameterListControl.source_parameter_name required"
         )
-    if "DisplayOptions" in data:
+    if data.get("DisplayOptions") is not None:
         import capo_quicksight.types.list_control_display_options
 
         out["display_options"] = (
@@ -132,13 +132,13 @@ def deserialize_json(data: dict) -> ParameterListControl:
                 data["DisplayOptions"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.sheet_control_list_type
 
         out["type"] = capo_quicksight.types.sheet_control_list_type.deserialize_json(
             data["Type"]
         )
-    if "SelectableValues" in data:
+    if data.get("SelectableValues") is not None:
         import capo_quicksight.types.parameter_selectable_values
 
         out["selectable_values"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> ParameterListControl:
                 data["SelectableValues"]
             )
         )
-    if "CascadingControlConfiguration" in data:
+    if data.get("CascadingControlConfiguration") is not None:
         import capo_quicksight.types.cascading_control_configuration
 
         out["cascading_control_configuration"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> ParameterListControl:
                 data["CascadingControlConfiguration"]
             )
         )
-    if "ControlSortConfigurations" in data:
+    if data.get("ControlSortConfigurations") is not None:
         import capo_quicksight.types.control_sort_configuration_list
 
         out["control_sort_configurations"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> ParameterListControl:
                 data["ControlSortConfigurations"]
             )
         )
-    if "ControlTitleFormatText" in data:
+    if data.get("ControlTitleFormatText") is not None:
         import capo_quicksight.types.control_title_format_text
 
         out["control_title_format_text"] = (

@@ -50,17 +50,17 @@ def serialize_json(value: LambdaContainerParams) -> dict:
 
 def deserialize_json(data: dict) -> LambdaContainerParams:
     out: LambdaContainerParams = {}  # type: ignore[typeddict-item]
-    if "memorySizeInKB" in data:
+    if data.get("memorySizeInKB") is not None:
         out["memory_size_in_kb"] = data["memorySizeInKB"]
-    if "mountROSysfs" in data:
+    if data.get("mountROSysfs") is not None:
         out["mount_ro_sysfs"] = data["mountROSysfs"]
-    if "volumes" in data:
+    if data.get("volumes") is not None:
         import capo_greengrassv2.types.lambda_volume_list
 
         out["volumes"] = capo_greengrassv2.types.lambda_volume_list.deserialize_json(
             data["volumes"]
         )
-    if "devices" in data:
+    if data.get("devices") is not None:
         import capo_greengrassv2.types.lambda_device_list
 
         out["devices"] = capo_greengrassv2.types.lambda_device_list.deserialize_json(

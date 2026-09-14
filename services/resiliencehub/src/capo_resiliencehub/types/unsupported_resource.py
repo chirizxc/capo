@@ -54,7 +54,7 @@ def serialize_json(value: UnsupportedResource) -> dict:
 
 def deserialize_json(data: dict) -> UnsupportedResource:
     out: UnsupportedResource = {}  # type: ignore[typeddict-item]
-    if "logicalResourceId" in data:
+    if data.get("logicalResourceId") is not None:
         import capo_resiliencehub.types.logical_resource_id
 
         out["logical_resource_id"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UnsupportedResource:
         )
     else:
         raise DeserializationError("UnsupportedResource.logical_resource_id required")
-    if "physicalResourceId" in data:
+    if data.get("physicalResourceId") is not None:
         import capo_resiliencehub.types.physical_resource_id
 
         out["physical_resource_id"] = (
@@ -74,10 +74,10 @@ def deserialize_json(data: dict) -> UnsupportedResource:
         )
     else:
         raise DeserializationError("UnsupportedResource.physical_resource_id required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("UnsupportedResource.resource_type required")
-    if "unsupportedResourceStatus" in data:
+    if data.get("unsupportedResourceStatus") is not None:
         out["unsupported_resource_status"] = data["unsupportedResourceStatus"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SubSlotTypeList:
 
     out: SubSlotTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.sub_slot_type_composition.deserialize_json(item)
         )

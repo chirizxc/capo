@@ -77,11 +77,11 @@ def serialize_json(value: AdvancedSecurityOptionsInput) -> dict:
 
 def deserialize_json(data: dict) -> AdvancedSecurityOptionsInput:
     out: AdvancedSecurityOptionsInput = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "InternalUserDatabaseEnabled" in data:
+    if data.get("InternalUserDatabaseEnabled") is not None:
         out["internal_user_database_enabled"] = data["InternalUserDatabaseEnabled"]
-    if "MasterUserOptions" in data:
+    if data.get("MasterUserOptions") is not None:
         import capo_opensearch.types.master_user_options
 
         out["master_user_options"] = (
@@ -89,19 +89,19 @@ def deserialize_json(data: dict) -> AdvancedSecurityOptionsInput:
                 data["MasterUserOptions"]
             )
         )
-    if "SAMLOptions" in data:
+    if data.get("SAMLOptions") is not None:
         import capo_opensearch.types.saml_options_input
 
         out["saml_options"] = capo_opensearch.types.saml_options_input.deserialize_json(
             data["SAMLOptions"]
         )
-    if "JWTOptions" in data:
+    if data.get("JWTOptions") is not None:
         import capo_opensearch.types.jwt_options_input
 
         out["jwt_options"] = capo_opensearch.types.jwt_options_input.deserialize_json(
             data["JWTOptions"]
         )
-    if "IAMFederationOptions" in data:
+    if data.get("IAMFederationOptions") is not None:
         import capo_opensearch.types.iam_federation_options_input
 
         out["iam_federation_options"] = (
@@ -109,6 +109,6 @@ def deserialize_json(data: dict) -> AdvancedSecurityOptionsInput:
                 data["IAMFederationOptions"]
             )
         )
-    if "AnonymousAuthEnabled" in data:
+    if data.get("AnonymousAuthEnabled") is not None:
         out["anonymous_auth_enabled"] = data["AnonymousAuthEnabled"]
     return out

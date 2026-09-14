@@ -62,13 +62,13 @@ def serialize_json(value: DeploymentResult) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentResult:
     out: DeploymentResult = {}  # type: ignore[typeddict-item]
-    if "DeploymentName" in data:
+    if data.get("DeploymentName") is not None:
         out["deployment_name"] = data["DeploymentName"]
-    if "DeploymentStatus" in data:
+    if data.get("DeploymentStatus") is not None:
         out["deployment_status"] = data["DeploymentStatus"]
-    if "DeploymentStatusMessage" in data:
+    if data.get("DeploymentStatusMessage") is not None:
         out["deployment_status_message"] = data["DeploymentStatusMessage"]
-    if "DeploymentStartTime" in data:
+    if data.get("DeploymentStartTime") is not None:
         import capo_sagemaker_edge.types.timestamp
 
         out["deployment_start_time"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> DeploymentResult:
                 data["DeploymentStartTime"]
             )
         )
-    if "DeploymentEndTime" in data:
+    if data.get("DeploymentEndTime") is not None:
         import capo_sagemaker_edge.types.timestamp
 
         out["deployment_end_time"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> DeploymentResult:
                 data["DeploymentEndTime"]
             )
         )
-    if "DeploymentModels" in data:
+    if data.get("DeploymentModels") is not None:
         import capo_sagemaker_edge.types.deployment_models
 
         out["deployment_models"] = (

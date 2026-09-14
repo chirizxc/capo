@@ -32,12 +32,12 @@ def serialize_json(value: CustomDataIdentifiers) -> dict:
 
 def deserialize_json(data: dict) -> CustomDataIdentifiers:
     out: CustomDataIdentifiers = {}  # type: ignore[typeddict-item]
-    if "detections" in data:
+    if data.get("detections") is not None:
         import capo_macie2.types.custom_detections
 
         out["detections"] = capo_macie2.types.custom_detections.deserialize_json(
             data["detections"]
         )
-    if "totalCount" in data:
+    if data.get("totalCount") is not None:
         out["total_count"] = data["totalCount"]
     return out

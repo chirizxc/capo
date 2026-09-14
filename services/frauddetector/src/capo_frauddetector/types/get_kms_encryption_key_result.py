@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetKMSEncryptionKeyResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetKMSEncryptionKeyResult:
     out: GetKMSEncryptionKeyResult = {}  # type: ignore[typeddict-item]
-    if "kmsKey" in data:
+    if data.get("kmsKey") is not None:
         import capo_frauddetector.types.kms_key
 
         out["kms_key"] = capo_frauddetector.types.kms_key.deserialize_aws_json_1_1(

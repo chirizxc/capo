@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_proton._services._pipeline import (
@@ -92,15 +93,17 @@ class EnvironmentTemplateVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_environment_template_version_input.CreateEnvironmentTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["template_name"] = template_name
+        input_: capo_proton.types.create_environment_template_version_input.CreateEnvironmentTemplateVersionInput = {
+            "template_name": template_name,
+            "source": source,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if major_version is not None:
             input_["major_version"] = major_version
-        input_["source"] = source
         if tags is not None:
             input_["tags"] = tags
 
@@ -109,6 +112,7 @@ class EnvironmentTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -150,16 +154,18 @@ class EnvironmentTemplateVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_environment_template_version_input.GetEnvironmentTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.get_environment_template_version_input.GetEnvironmentTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -208,10 +214,11 @@ class EnvironmentTemplateVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_environment_template_version_input.UpdateEnvironmentTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.update_environment_template_version_input.UpdateEnvironmentTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
@@ -222,6 +229,7 @@ class EnvironmentTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -264,16 +272,18 @@ class EnvironmentTemplateVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_environment_template_version_input.DeleteEnvironmentTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.delete_environment_template_version_input.DeleteEnvironmentTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -321,12 +331,13 @@ class EnvironmentTemplateVersionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_environment_template_versions_input.ListEnvironmentTemplateVersionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_environment_template_versions_input.ListEnvironmentTemplateVersionsInput = {
+            "template_name": template_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["template_name"] = template_name
         if major_version is not None:
             input_["major_version"] = major_version
 
@@ -335,6 +346,7 @@ class EnvironmentTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -392,15 +404,17 @@ class AsyncEnvironmentTemplateVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_environment_template_version_input.CreateEnvironmentTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["template_name"] = template_name
+        input_: capo_proton.types.create_environment_template_version_input.CreateEnvironmentTemplateVersionInput = {
+            "template_name": template_name,
+            "source": source,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if major_version is not None:
             input_["major_version"] = major_version
-        input_["source"] = source
         if tags is not None:
             input_["tags"] = tags
 
@@ -409,6 +423,7 @@ class AsyncEnvironmentTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -451,16 +466,18 @@ class AsyncEnvironmentTemplateVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_environment_template_version_input.GetEnvironmentTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.get_environment_template_version_input.GetEnvironmentTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -510,10 +527,11 @@ class AsyncEnvironmentTemplateVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_environment_template_version_input.UpdateEnvironmentTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.update_environment_template_version_input.UpdateEnvironmentTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
@@ -524,6 +542,7 @@ class AsyncEnvironmentTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -567,16 +586,18 @@ class AsyncEnvironmentTemplateVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_environment_template_version_input.DeleteEnvironmentTemplateVersionInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["major_version"] = major_version
-        input_["minor_version"] = minor_version
+        input_: capo_proton.types.delete_environment_template_version_input.DeleteEnvironmentTemplateVersionInput = {
+            "template_name": template_name,
+            "major_version": major_version,
+            "minor_version": minor_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -625,12 +646,13 @@ class AsyncEnvironmentTemplateVersionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_environment_template_versions_input.ListEnvironmentTemplateVersionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_environment_template_versions_input.ListEnvironmentTemplateVersionsInput = {
+            "template_name": template_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["template_name"] = template_name
         if major_version is not None:
             input_["major_version"] = major_version
 
@@ -639,4 +661,5 @@ class AsyncEnvironmentTemplateVersionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

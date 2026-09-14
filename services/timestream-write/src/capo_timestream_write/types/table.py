@@ -97,13 +97,13 @@ def serialize_aws_json_1_0(value: Table) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Table:
     out: Table = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "TableStatus" in data:
+    if data.get("TableStatus") is not None:
         import capo_timestream_write.types.table_status
 
         out["table_status"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_0(data: dict) -> Table:
                 data["TableStatus"]
             )
         )
-    if "RetentionProperties" in data:
+    if data.get("RetentionProperties") is not None:
         import capo_timestream_write.types.retention_properties
 
         out["retention_properties"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_0(data: dict) -> Table:
                 data["RetentionProperties"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_timestream_write.types.date
 
         out["creation_time"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_0(data: dict) -> Table:
                 data["CreationTime"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_timestream_write.types.date
 
         out["last_updated_time"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> Table:
                 data["LastUpdatedTime"]
             )
         )
-    if "MagneticStoreWriteProperties" in data:
+    if data.get("MagneticStoreWriteProperties") is not None:
         import capo_timestream_write.types.magnetic_store_write_properties
 
         out["magnetic_store_write_properties"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(data: dict) -> Table:
                 data["MagneticStoreWriteProperties"]
             )
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_timestream_write.types.schema
 
         out["schema"] = capo_timestream_write.types.schema.deserialize_aws_json_1_0(

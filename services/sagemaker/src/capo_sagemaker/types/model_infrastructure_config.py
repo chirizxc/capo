@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ModelInfrastructureConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelInfrastructureConfig:
     out: ModelInfrastructureConfig = {}  # type: ignore[typeddict-item]
-    if "InfrastructureType" in data:
+    if data.get("InfrastructureType") is not None:
         import capo_sagemaker.types.model_infrastructure_type
 
         out["infrastructure_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelInfrastructureConfig:
                 data["InfrastructureType"]
             )
         )
-    if "RealTimeInferenceConfig" in data:
+    if data.get("RealTimeInferenceConfig") is not None:
         import capo_sagemaker.types.real_time_inference_config
 
         out["real_time_inference_config"] = (

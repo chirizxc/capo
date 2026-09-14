@@ -209,16 +209,18 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.configure_logs_request.ConfigureLogsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage_vod.types.configure_logs_request.ConfigureLogsRequest = {
+            "id": id
+        }
         if egress_access_logs is not None:
             input_["egress_access_logs"] = egress_access_logs
-        input_["id"] = id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_asset(
@@ -270,7 +272,7 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.create_asset_request.CreateAssetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage_vod.types.create_asset_request.CreateAssetRequest = {}
         if id is not None:
             input_["id"] = id
         if packaging_group_id is not None:
@@ -289,6 +291,7 @@ class MediaPackageVodClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_packaging_configuration(
@@ -344,7 +347,7 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.create_packaging_configuration_request.CreatePackagingConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage_vod.types.create_packaging_configuration_request.CreatePackagingConfigurationRequest = {}
         if cmaf_package is not None:
             input_["cmaf_package"] = cmaf_package
         if dash_package is not None:
@@ -365,6 +368,7 @@ class MediaPackageVodClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_packaging_group(
@@ -410,7 +414,7 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.create_packaging_group_request.CreatePackagingGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage_vod.types.create_packaging_group_request.CreatePackagingGroupRequest = {}
         if authorization is not None:
             input_["authorization"] = authorization
         if egress_access_logs is not None:
@@ -425,6 +429,7 @@ class MediaPackageVodClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_asset(
@@ -463,14 +468,16 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.delete_asset_request.DeleteAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage_vod.types.delete_asset_request.DeleteAssetRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_packaging_configuration(
@@ -509,14 +516,16 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.delete_packaging_configuration_request.DeletePackagingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage_vod.types.delete_packaging_configuration_request.DeletePackagingConfigurationRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_packaging_group(
@@ -555,14 +564,16 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.delete_packaging_group_request.DeletePackagingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage_vod.types.delete_packaging_group_request.DeletePackagingGroupRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_asset(
@@ -601,14 +612,16 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.describe_asset_request.DescribeAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage_vod.types.describe_asset_request.DescribeAssetRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_packaging_configuration(
@@ -647,14 +660,16 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.describe_packaging_configuration_request.DescribePackagingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage_vod.types.describe_packaging_configuration_request.DescribePackagingConfigurationRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_packaging_group(
@@ -693,14 +708,16 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.describe_packaging_group_request.DescribePackagingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage_vod.types.describe_packaging_group_request.DescribePackagingGroupRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_assets(
@@ -747,7 +764,7 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.list_assets_request.ListAssetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage_vod.types.list_assets_request.ListAssetsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -760,6 +777,7 @@ class MediaPackageVodClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_assets(
@@ -833,7 +851,7 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.list_packaging_configurations_request.ListPackagingConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage_vod.types.list_packaging_configurations_request.ListPackagingConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -846,6 +864,7 @@ class MediaPackageVodClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_packaging_configurations(
@@ -915,7 +934,7 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.list_packaging_groups_request.ListPackagingGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage_vod.types.list_packaging_groups_request.ListPackagingGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -926,6 +945,7 @@ class MediaPackageVodClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_packaging_groups(
@@ -981,14 +1001,16 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mediapackage_vod.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1023,8 +1045,9 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mediapackage_vod.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1033,6 +1056,7 @@ class MediaPackageVodClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1067,8 +1091,9 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mediapackage_vod.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -1077,6 +1102,7 @@ class MediaPackageVodClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_packaging_group(
@@ -1118,16 +1144,18 @@ class MediaPackageVodClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage_vod.types.update_packaging_group_request.UpdatePackagingGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage_vod.types.update_packaging_group_request.UpdatePackagingGroupRequest = {
+            "id": id
+        }
         if authorization is not None:
             input_["authorization"] = authorization
-        input_["id"] = id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

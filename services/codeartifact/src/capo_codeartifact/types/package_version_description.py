@@ -107,47 +107,47 @@ def serialize_json(value: PackageVersionDescription) -> dict:
 
 def deserialize_json(data: dict) -> PackageVersionDescription:
     out: PackageVersionDescription = {}  # type: ignore[typeddict-item]
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_codeartifact.types.package_format
 
         out["format"] = capo_codeartifact.types.package_format.deserialize_json(
             data["format"]
         )
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "packageName" in data:
+    if data.get("packageName") is not None:
         out["package_name"] = data["packageName"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
-    if "homePage" in data:
+    if data.get("homePage") is not None:
         out["home_page"] = data["homePage"]
-    if "sourceCodeRepository" in data:
+    if data.get("sourceCodeRepository") is not None:
         out["source_code_repository"] = data["sourceCodeRepository"]
-    if "publishedTime" in data:
+    if data.get("publishedTime") is not None:
         import capo_codeartifact.types.timestamp
 
         out["published_time"] = capo_codeartifact.types.timestamp.deserialize_json(
             data["publishedTime"]
         )
-    if "licenses" in data:
+    if data.get("licenses") is not None:
         import capo_codeartifact.types.license_info_list
 
         out["licenses"] = capo_codeartifact.types.license_info_list.deserialize_json(
             data["licenses"]
         )
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codeartifact.types.package_version_status
 
         out["status"] = capo_codeartifact.types.package_version_status.deserialize_json(
             data["status"]
         )
-    if "origin" in data:
+    if data.get("origin") is not None:
         import capo_codeartifact.types.package_version_origin
 
         out["origin"] = capo_codeartifact.types.package_version_origin.deserialize_json(

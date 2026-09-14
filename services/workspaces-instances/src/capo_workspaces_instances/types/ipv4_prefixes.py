@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> Ipv4Prefixes:
 
     out: Ipv4Prefixes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_instances.types.ipv4_prefix_specification_request.deserialize_aws_json_1_0(
                 item

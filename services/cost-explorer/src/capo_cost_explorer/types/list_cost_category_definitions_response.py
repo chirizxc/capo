@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListCostCategoryDefinitionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCostCategoryDefinitionsResponse:
     out: ListCostCategoryDefinitionsResponse = {}  # type: ignore[typeddict-item]
-    if "CostCategoryReferences" in data:
+    if data.get("CostCategoryReferences") is not None:
         import capo_cost_explorer.types.cost_category_references_list
 
         out["cost_category_references"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListCostCategoryDefinitionsResponse:
                 data["CostCategoryReferences"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

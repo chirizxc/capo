@@ -38,7 +38,7 @@ def serialize_json(value: ListInputRoutingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListInputRoutingsRequest:
     out: ListInputRoutingsRequest = {}  # type: ignore[typeddict-item]
-    if "inputIdentifier" in data:
+    if data.get("inputIdentifier") is not None:
         import capo_iot_events.types.input_identifier
 
         out["input_identifier"] = (
@@ -48,8 +48,8 @@ def deserialize_json(data: dict) -> ListInputRoutingsRequest:
         )
     else:
         raise DeserializationError("ListInputRoutingsRequest.input_identifier required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

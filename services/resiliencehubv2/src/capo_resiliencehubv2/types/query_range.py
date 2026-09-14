@@ -52,7 +52,7 @@ def serialize_json(value: QueryRange) -> dict:
 
 def deserialize_json(data: dict) -> QueryRange:
     out: QueryRange = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["start_time"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> QueryRange:
         )
     else:
         raise DeserializationError("QueryRange.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["end_time"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> QueryRange:
         )
     else:
         raise DeserializationError("QueryRange.end_time required")
-    if "granularity" in data:
+    if data.get("granularity") is not None:
         import capo_resiliencehubv2.types.query_granularity
 
         out["granularity"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> QueryRange:
         )
     else:
         raise DeserializationError("QueryRange.granularity required")
-    if "dataPoints" in data:
+    if data.get("dataPoints") is not None:
         import capo_resiliencehubv2.types.query_data_point_list
 
         out["data_points"] = (

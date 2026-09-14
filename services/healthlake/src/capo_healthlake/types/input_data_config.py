@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: InputDataConfig) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> InputDataConfig:
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         return {"S3Uri": data["S3Uri"]}
     else:
         raise DeserializationError("InputDataConfig: no recognized variant key")

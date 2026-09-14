@@ -26,7 +26,7 @@ def serialize_json(value: RawMessage) -> dict:
 
 def deserialize_json(data: dict) -> RawMessage:
     out: RawMessage = {}  # type: ignore[typeddict-item]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_sesv2.types.raw_message_data
 
         out["data"] = capo_sesv2.types.raw_message_data.deserialize_json(data["Data"])

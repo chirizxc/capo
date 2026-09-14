@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetAutomationRuleRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAutomationRuleRequest:
     out: GetAutomationRuleRequest = {}  # type: ignore[typeddict-item]
-    if "ruleArn" in data:
+    if data.get("ruleArn") is not None:
         out["rule_arn"] = data["ruleArn"]
     else:
         raise DeserializationError("GetAutomationRuleRequest.rule_arn required")

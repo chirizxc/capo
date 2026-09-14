@@ -63,7 +63,15 @@ def serialize_json(value: WaypointOptimizationWaypoint) -> dict:
         out["Before"] = capo_geo_routes.types.before_waypoints_list.serialize_json(
             value["before"]
         )
-    out["Heading"] = value.get("heading", 0)
+    out["Heading"] = (
+        "NaN"
+        if value.get("heading", 0) != value.get("heading", 0)
+        else "Infinity"
+        if value.get("heading", 0) == float("inf")
+        else "-Infinity"
+        if value.get("heading", 0) == float("-inf")
+        else value.get("heading", 0)
+    )
     if "id" in value:
         out["Id"] = value["id"]
     import capo_geo_routes.types.position
@@ -83,7 +91,7 @@ def serialize_json(value: WaypointOptimizationWaypoint) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationWaypoint:
     out: WaypointOptimizationWaypoint = {}  # type: ignore[typeddict-item]
-    if "AccessHours" in data:
+    if data.get("AccessHours") is not None:
         import capo_geo_routes.types.waypoint_optimization_access_hours
 
         out["access_hours"] = (
@@ -91,21 +99,21 @@ def deserialize_json(data: dict) -> WaypointOptimizationWaypoint:
                 data["AccessHours"]
             )
         )
-    if "AppointmentTime" in data:
+    if data.get("AppointmentTime") is not None:
         out["appointment_time"] = data["AppointmentTime"]
-    if "Before" in data:
+    if data.get("Before") is not None:
         import capo_geo_routes.types.before_waypoints_list
 
         out["before"] = capo_geo_routes.types.before_waypoints_list.deserialize_json(
             data["Before"]
         )
-    if "Heading" in data:
-        out["heading"] = data["Heading"]
+    if data.get("Heading") is not None:
+        out["heading"] = float(data["Heading"])
     else:
         out["heading"] = 0
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_routes.types.position
 
         out["position"] = capo_geo_routes.types.position.deserialize_json(
@@ -113,11 +121,11 @@ def deserialize_json(data: dict) -> WaypointOptimizationWaypoint:
         )
     else:
         raise DeserializationError("WaypointOptimizationWaypoint.position required")
-    if "ServiceDuration" in data:
+    if data.get("ServiceDuration") is not None:
         out["service_duration"] = data["ServiceDuration"]
     else:
         out["service_duration"] = 0
-    if "SideOfStreet" in data:
+    if data.get("SideOfStreet") is not None:
         import capo_geo_routes.types.waypoint_optimization_side_of_street_options
 
         out["side_of_street"] = (

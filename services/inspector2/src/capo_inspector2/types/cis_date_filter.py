@@ -39,7 +39,7 @@ def serialize_json(value: CisDateFilter) -> dict:
 
 def deserialize_json(data: dict) -> CisDateFilter:
     out: CisDateFilter = {}  # type: ignore[typeddict-item]
-    if "earliestScanStartTime" in data:
+    if data.get("earliestScanStartTime") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["earliest_scan_start_time"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> CisDateFilter:
                 data["earliestScanStartTime"]
             )
         )
-    if "latestScanStartTime" in data:
+    if data.get("latestScanStartTime") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["latest_scan_start_time"] = (

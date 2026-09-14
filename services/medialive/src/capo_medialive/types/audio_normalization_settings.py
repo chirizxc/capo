@@ -55,7 +55,15 @@ def serialize_json(value: AudioNormalizationSettings) -> dict:
             )
         )
     if "target_lkfs" in value:
-        out["targetLkfs"] = value["target_lkfs"]
+        out["targetLkfs"] = (
+            "NaN"
+            if value["target_lkfs"] != value["target_lkfs"]
+            else "Infinity"
+            if value["target_lkfs"] == float("inf")
+            else "-Infinity"
+            if value["target_lkfs"] == float("-inf")
+            else value["target_lkfs"]
+        )
     if "peak_calculation" in value:
         import capo_medialive.types.audio_normalization_peak_calculation
 
@@ -65,13 +73,21 @@ def serialize_json(value: AudioNormalizationSettings) -> dict:
             )
         )
     if "peak_limiter_threshold" in value:
-        out["peakLimiterThreshold"] = value["peak_limiter_threshold"]
+        out["peakLimiterThreshold"] = (
+            "NaN"
+            if value["peak_limiter_threshold"] != value["peak_limiter_threshold"]
+            else "Infinity"
+            if value["peak_limiter_threshold"] == float("inf")
+            else "-Infinity"
+            if value["peak_limiter_threshold"] == float("-inf")
+            else value["peak_limiter_threshold"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AudioNormalizationSettings:
     out: AudioNormalizationSettings = {}  # type: ignore[typeddict-item]
-    if "algorithm" in data:
+    if data.get("algorithm") is not None:
         import capo_medialive.types.audio_normalization_algorithm
 
         out["algorithm"] = (
@@ -79,7 +95,7 @@ def deserialize_json(data: dict) -> AudioNormalizationSettings:
                 data["algorithm"]
             )
         )
-    if "algorithmControl" in data:
+    if data.get("algorithmControl") is not None:
         import capo_medialive.types.audio_normalization_algorithm_control
 
         out["algorithm_control"] = (
@@ -87,9 +103,9 @@ def deserialize_json(data: dict) -> AudioNormalizationSettings:
                 data["algorithmControl"]
             )
         )
-    if "targetLkfs" in data:
-        out["target_lkfs"] = data["targetLkfs"]
-    if "peakCalculation" in data:
+    if data.get("targetLkfs") is not None:
+        out["target_lkfs"] = float(data["targetLkfs"])
+    if data.get("peakCalculation") is not None:
         import capo_medialive.types.audio_normalization_peak_calculation
 
         out["peak_calculation"] = (
@@ -97,6 +113,6 @@ def deserialize_json(data: dict) -> AudioNormalizationSettings:
                 data["peakCalculation"]
             )
         )
-    if "peakLimiterThreshold" in data:
-        out["peak_limiter_threshold"] = data["peakLimiterThreshold"]
+    if data.get("peakLimiterThreshold") is not None:
+        out["peak_limiter_threshold"] = float(data["peakLimiterThreshold"])
     return out

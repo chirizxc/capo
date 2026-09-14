@@ -42,7 +42,7 @@ def serialize_json(value: BatchPutAssetPropertyError) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutAssetPropertyError:
     out: BatchPutAssetPropertyError = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_iotsitewise.types.batch_put_asset_property_value_error_code
 
         out["error_code"] = (
@@ -52,11 +52,11 @@ def deserialize_json(data: dict) -> BatchPutAssetPropertyError:
         )
     else:
         raise DeserializationError("BatchPutAssetPropertyError.error_code required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError("BatchPutAssetPropertyError.error_message required")
-    if "timestamps" in data:
+    if data.get("timestamps") is not None:
         import capo_iotsitewise.types.timestamps
 
         out["timestamps"] = capo_iotsitewise.types.timestamps.deserialize_json(

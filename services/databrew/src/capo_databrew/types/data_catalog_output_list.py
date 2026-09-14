@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataCatalogOutputList:
 
     out: DataCatalogOutputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_databrew.types.data_catalog_output.deserialize_json(item))
     return out

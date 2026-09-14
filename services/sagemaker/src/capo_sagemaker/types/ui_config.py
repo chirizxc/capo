@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: UiConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UiConfig:
     out: UiConfig = {}  # type: ignore[typeddict-item]
-    if "UiTemplateS3Uri" in data:
+    if data.get("UiTemplateS3Uri") is not None:
         out["ui_template_s3_uri"] = data["UiTemplateS3Uri"]
-    if "HumanTaskUiArn" in data:
+    if data.get("HumanTaskUiArn") is not None:
         out["human_task_ui_arn"] = data["HumanTaskUiArn"]
     return out

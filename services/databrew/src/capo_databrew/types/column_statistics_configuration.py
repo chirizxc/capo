@@ -39,13 +39,13 @@ def serialize_json(value: ColumnStatisticsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ColumnStatisticsConfiguration:
     out: ColumnStatisticsConfiguration = {}  # type: ignore[typeddict-item]
-    if "Selectors" in data:
+    if data.get("Selectors") is not None:
         import capo_databrew.types.column_selector_list
 
         out["selectors"] = capo_databrew.types.column_selector_list.deserialize_json(
             data["Selectors"]
         )
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_databrew.types.statistics_configuration
 
         out["statistics"] = (

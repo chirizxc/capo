@@ -54,17 +54,17 @@ def serialize_aws_json_1_1(value: DomainEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainEntry:
     out: DomainEntry = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "target" in data:
+    if data.get("target") is not None:
         out["target"] = data["target"]
-    if "isAlias" in data:
+    if data.get("isAlias") is not None:
         out["is_alias"] = data["isAlias"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_lightsail.types.domain_entry_options
 
         out["options"] = (

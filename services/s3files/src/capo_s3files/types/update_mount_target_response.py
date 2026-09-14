@@ -89,42 +89,42 @@ def serialize_json(value: UpdateMountTargetResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMountTargetResponse:
     out: UpdateMountTargetResponse = {}  # type: ignore[typeddict-item]
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "ownerId" in data:
+    if data.get("ownerId") is not None:
         out["owner_id"] = data["ownerId"]
     else:
         raise DeserializationError("UpdateMountTargetResponse.owner_id required")
-    if "mountTargetId" in data:
+    if data.get("mountTargetId") is not None:
         out["mount_target_id"] = data["mountTargetId"]
     else:
         raise DeserializationError("UpdateMountTargetResponse.mount_target_id required")
-    if "fileSystemId" in data:
+    if data.get("fileSystemId") is not None:
         out["file_system_id"] = data["fileSystemId"]
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
     else:
         raise DeserializationError("UpdateMountTargetResponse.subnet_id required")
-    if "ipv4Address" in data:
+    if data.get("ipv4Address") is not None:
         out["ipv4_address"] = data["ipv4Address"]
-    if "ipv6Address" in data:
+    if data.get("ipv6Address") is not None:
         out["ipv6_address"] = data["ipv6Address"]
-    if "networkInterfaceId" in data:
+    if data.get("networkInterfaceId") is not None:
         out["network_interface_id"] = data["networkInterfaceId"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_s3files.types.security_groups
 
         out["security_groups"] = capo_s3files.types.security_groups.deserialize_json(
             data["securityGroups"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_s3files.types.life_cycle_state
 
         out["status"] = capo_s3files.types.life_cycle_state.deserialize_json(
             data["status"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

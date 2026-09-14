@@ -24,7 +24,7 @@ def serialize_json(value: GetTenantRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetTenantRequest:
     out: GetTenantRequest = {}  # type: ignore[typeddict-item]
-    if "TenantName" in data:
+    if data.get("TenantName") is not None:
         out["tenant_name"] = data["TenantName"]
     else:
         raise DeserializationError("GetTenantRequest.tenant_name required")

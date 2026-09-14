@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ArtifactDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ArtifactDetail:
     out: ArtifactDetail = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "s3location" in data:
+    if data.get("s3location") is not None:
         import capo_codepipeline.types.s3_location
 
         out["s3location"] = (

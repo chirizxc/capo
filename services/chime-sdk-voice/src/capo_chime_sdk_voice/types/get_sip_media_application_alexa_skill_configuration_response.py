@@ -35,7 +35,7 @@ def deserialize_json(
     data: dict,
 ) -> GetSipMediaApplicationAlexaSkillConfigurationResponse:
     out: GetSipMediaApplicationAlexaSkillConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "SipMediaApplicationAlexaSkillConfiguration" in data:
+    if data.get("SipMediaApplicationAlexaSkillConfiguration") is not None:
         import capo_chime_sdk_voice.types.sip_media_application_alexa_skill_configuration
 
         out["sip_media_application_alexa_skill_configuration"] = (

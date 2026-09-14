@@ -52,13 +52,13 @@ def serialize_json(value: PutFeedbackRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutFeedbackRequest:
     out: PutFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "messageCopiedAt" in data:
+    if data.get("messageCopiedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["message_copied_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["messageCopiedAt"]
         )
-    if "messageUsefulness" in data:
+    if data.get("messageUsefulness") is not None:
         import capo_qbusiness.types.message_usefulness_feedback
 
         out["message_usefulness"] = (

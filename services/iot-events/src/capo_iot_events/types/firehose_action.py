@@ -38,13 +38,13 @@ def serialize_json(value: FirehoseAction) -> dict:
 
 def deserialize_json(data: dict) -> FirehoseAction:
     out: FirehoseAction = {}  # type: ignore[typeddict-item]
-    if "deliveryStreamName" in data:
+    if data.get("deliveryStreamName") is not None:
         out["delivery_stream_name"] = data["deliveryStreamName"]
     else:
         raise DeserializationError("FirehoseAction.delivery_stream_name required")
-    if "separator" in data:
+    if data.get("separator") is not None:
         out["separator"] = data["separator"]
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot_events.types.payload
 
         out["payload"] = capo_iot_events.types.payload.deserialize_json(data["payload"])

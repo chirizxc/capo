@@ -66,7 +66,7 @@ def serialize_json(value: ApiConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ApiConfiguration:
-    if "graphQLConfig" in data:
+    if data.get("graphQLConfig") is not None:
         import capo_amplifyuibuilder.types.graph_ql_render_config
 
         return {
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ApiConfiguration:
                 data["graphQLConfig"]
             )
         }
-    elif "dataStoreConfig" in data:
+    elif data.get("dataStoreConfig") is not None:
         import capo_amplifyuibuilder.types.data_store_render_config
 
         return {
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> ApiConfiguration:
                 data["dataStoreConfig"]
             )
         }
-    elif "noApiConfig" in data:
+    elif data.get("noApiConfig") is not None:
         import capo_amplifyuibuilder.types.no_api_render_config
 
         return {

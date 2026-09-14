@@ -41,7 +41,7 @@ def serialize_json(value: Prompt) -> dict:
 
 def deserialize_json(data: dict) -> Prompt:
     out: Prompt = {}  # type: ignore[typeddict-item]
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_lex_model_building_service.types.message_list
 
         out["messages"] = (
@@ -51,10 +51,10 @@ def deserialize_json(data: dict) -> Prompt:
         )
     else:
         raise DeserializationError("Prompt.messages required")
-    if "maxAttempts" in data:
+    if data.get("maxAttempts") is not None:
         out["max_attempts"] = data["maxAttempts"]
     else:
         raise DeserializationError("Prompt.max_attempts required")
-    if "responseCard" in data:
+    if data.get("responseCard") is not None:
         out["response_card"] = data["responseCard"]
     return out

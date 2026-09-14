@@ -58,34 +58,34 @@ def serialize_aws_json_1_1(value: GrokClassifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GrokClassifier:
     out: GrokClassifier = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GrokClassifier.name required")
-    if "Classification" in data:
+    if data.get("Classification") is not None:
         out["classification"] = data["Classification"]
     else:
         raise DeserializationError("GrokClassifier.classification required")
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_glue.types.timestamp
 
         out["creation_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_glue.types.timestamp
 
         out["last_updated"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastUpdated"]
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         out["version"] = 0
-    if "GrokPattern" in data:
+    if data.get("GrokPattern") is not None:
         out["grok_pattern"] = data["GrokPattern"]
     else:
         raise DeserializationError("GrokClassifier.grok_pattern required")
-    if "CustomPatterns" in data:
+    if data.get("CustomPatterns") is not None:
         out["custom_patterns"] = data["CustomPatterns"]
     return out

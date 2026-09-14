@@ -23,6 +23,6 @@ def serialize_json(value: AwsElbLoadBalancerInstance) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerInstance:
     out: AwsElbLoadBalancerInstance = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     return out

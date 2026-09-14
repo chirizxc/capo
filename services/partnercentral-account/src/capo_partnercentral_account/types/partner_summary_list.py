@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> PartnerSummaryList:
 
     out: PartnerSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_account.types.partner_summary.deserialize_aws_json_1_0(
                 item

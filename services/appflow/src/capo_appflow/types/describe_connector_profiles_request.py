@@ -55,7 +55,7 @@ def serialize_json(value: DescribeConnectorProfilesRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeConnectorProfilesRequest:
     out: DescribeConnectorProfilesRequest = {}  # type: ignore[typeddict-item]
-    if "connectorProfileNames" in data:
+    if data.get("connectorProfileNames") is not None:
         import capo_appflow.types.connector_profile_name_list
 
         out["connector_profile_names"] = (
@@ -63,16 +63,16 @@ def deserialize_json(data: dict) -> DescribeConnectorProfilesRequest:
                 data["connectorProfileNames"]
             )
         )
-    if "connectorType" in data:
+    if data.get("connectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["connector_type"] = capo_appflow.types.connector_type.deserialize_json(
             data["connectorType"]
         )
-    if "connectorLabel" in data:
+    if data.get("connectorLabel") is not None:
         out["connector_label"] = data["connectorLabel"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -53,11 +53,11 @@ def serialize_json(value: AggregateOperation) -> dict:
 
 def deserialize_json(data: dict) -> AggregateOperation:
     out: AggregateOperation = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("AggregateOperation.alias required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.transform_operation_source
 
         out["source"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> AggregateOperation:
         )
     else:
         raise DeserializationError("AggregateOperation.source required")
-    if "GroupByColumnNames" in data:
+    if data.get("GroupByColumnNames") is not None:
         import capo_quicksight.types.group_by_column_name_list
 
         out["group_by_column_names"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> AggregateOperation:
                 data["GroupByColumnNames"]
             )
         )
-    if "Aggregations" in data:
+    if data.get("Aggregations") is not None:
         import capo_quicksight.types.aggregation_list
 
         out["aggregations"] = capo_quicksight.types.aggregation_list.deserialize_json(

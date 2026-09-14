@@ -57,9 +57,9 @@ def serialize_aws_json_1_1(value: ListNotebookExecutionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListNotebookExecutionsInput:
     out: ListNotebookExecutionsInput = {}  # type: ignore[typeddict-item]
-    if "EditorId" in data:
+    if data.get("EditorId") is not None:
         out["editor_id"] = data["EditorId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_emr.types.notebook_execution_status
 
         out["status"] = (
@@ -67,16 +67,16 @@ def deserialize_aws_json_1_1(data: dict) -> ListNotebookExecutionsInput:
                 data["Status"]
             )
         )
-    if "From" in data:
+    if data.get("From") is not None:
         import capo_emr.types.date
 
         out["from"] = capo_emr.types.date.deserialize_aws_json_1_1(data["From"])
-    if "To" in data:
+    if data.get("To") is not None:
         import capo_emr.types.date
 
         out["to"] = capo_emr.types.date.deserialize_aws_json_1_1(data["To"])
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "ExecutionEngineId" in data:
+    if data.get("ExecutionEngineId") is not None:
         out["execution_engine_id"] = data["ExecutionEngineId"]
     return out

@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: PhaseContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PhaseContext:
     out: PhaseContext = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

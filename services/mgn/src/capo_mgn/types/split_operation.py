@@ -27,7 +27,7 @@ def serialize_json(value: SplitOperation) -> dict:
 
 def deserialize_json(data: dict) -> SplitOperation:
     out: SplitOperation = {}  # type: ignore[typeddict-item]
-    if "splitConstructs" in data:
+    if data.get("splitConstructs") is not None:
         import capo_mgn.types.split_constructs
 
         out["split_constructs"] = capo_mgn.types.split_constructs.deserialize_json(

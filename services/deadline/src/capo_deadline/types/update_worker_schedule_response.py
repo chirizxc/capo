@@ -57,7 +57,7 @@ def serialize_json(value: UpdateWorkerScheduleResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkerScheduleResponse:
     out: UpdateWorkerScheduleResponse = {}  # type: ignore[typeddict-item]
-    if "assignedSessions" in data:
+    if data.get("assignedSessions") is not None:
         import capo_deadline.types.assigned_sessions
 
         out["assigned_sessions"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> UpdateWorkerScheduleResponse:
         raise DeserializationError(
             "UpdateWorkerScheduleResponse.assigned_sessions required"
         )
-    if "cancelSessionActions" in data:
+    if data.get("cancelSessionActions") is not None:
         import capo_deadline.types.cancel_session_actions
 
         out["cancel_session_actions"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> UpdateWorkerScheduleResponse:
         raise DeserializationError(
             "UpdateWorkerScheduleResponse.cancel_session_actions required"
         )
-    if "desiredWorkerStatus" in data:
+    if data.get("desiredWorkerStatus") is not None:
         import capo_deadline.types.desired_worker_status
 
         out["desired_worker_status"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> UpdateWorkerScheduleResponse:
                 data["desiredWorkerStatus"]
             )
         )
-    if "updateIntervalSeconds" in data:
+    if data.get("updateIntervalSeconds") is not None:
         out["update_interval_seconds"] = data["updateIntervalSeconds"]
     else:
         raise DeserializationError(

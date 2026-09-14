@@ -117,19 +117,19 @@ def serialize_aws_json_1_1(value: CreatePartnerAppRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePartnerAppRequest:
     out: CreatePartnerAppRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.partner_app_type
 
         out["type"] = capo_sagemaker.types.partner_app_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "MaintenanceConfig" in data:
+    if data.get("MaintenanceConfig") is not None:
         import capo_sagemaker.types.partner_app_maintenance_config
 
         out["maintenance_config"] = (
@@ -137,9 +137,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePartnerAppRequest:
                 data["MaintenanceConfig"]
             )
         )
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         out["tier"] = data["Tier"]
-    if "ApplicationConfig" in data:
+    if data.get("ApplicationConfig") is not None:
         import capo_sagemaker.types.partner_app_config
 
         out["application_config"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePartnerAppRequest:
                 data["ApplicationConfig"]
             )
         )
-    if "AuthType" in data:
+    if data.get("AuthType") is not None:
         import capo_sagemaker.types.partner_app_auth_type
 
         out["auth_type"] = (
@@ -155,13 +155,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePartnerAppRequest:
                 data["AuthType"]
             )
         )
-    if "EnableIamSessionBasedIdentity" in data:
+    if data.get("EnableIamSessionBasedIdentity") is not None:
         out["enable_iam_session_based_identity"] = data["EnableIamSessionBasedIdentity"]
-    if "EnableAutoMinorVersionUpgrade" in data:
+    if data.get("EnableAutoMinorVersionUpgrade") is not None:
         out["enable_auto_minor_version_upgrade"] = data["EnableAutoMinorVersionUpgrade"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

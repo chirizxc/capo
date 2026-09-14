@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListSolNetworkInstanceResources:
 
     out: ListSolNetworkInstanceResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_tnb.types.list_sol_network_instance_info.deserialize_json(item))
     return out

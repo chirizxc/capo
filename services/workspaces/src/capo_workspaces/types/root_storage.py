@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RootStorage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RootStorage:
     out: RootStorage = {}  # type: ignore[typeddict-item]
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         out["capacity"] = data["Capacity"]
     else:
         raise DeserializationError("RootStorage.capacity required")

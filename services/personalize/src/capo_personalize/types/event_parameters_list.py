@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> EventParametersList:
 
     out: EventParametersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_personalize.types.event_parameters.deserialize_aws_json_1_1(item)
         )

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: GetDeleteEventsByEventTypeStatusResult) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> GetDeleteEventsByEventTypeStatusResult:
     out: GetDeleteEventsByEventTypeStatusResult = {}  # type: ignore[typeddict-item]
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
-    if "eventsDeletionStatus" in data:
+    if data.get("eventsDeletionStatus") is not None:
         import capo_frauddetector.types.async_job_status
 
         out["events_deletion_status"] = (

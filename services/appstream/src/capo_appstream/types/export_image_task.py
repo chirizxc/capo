@@ -87,21 +87,21 @@ def serialize_aws_json_1_1(value: ExportImageTask) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportImageTask:
     out: ExportImageTask = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
-    if "ImageArn" in data:
+    if data.get("ImageArn") is not None:
         out["image_arn"] = data["ImageArn"]
-    if "AmiName" in data:
+    if data.get("AmiName") is not None:
         out["ami_name"] = data["AmiName"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_appstream.types.timestamp
 
         out["created_date"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedDate"]
         )
-    if "AmiDescription" in data:
+    if data.get("AmiDescription") is not None:
         out["ami_description"] = data["AmiDescription"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_appstream.types.export_image_task_state
 
         out["state"] = (
@@ -109,15 +109,15 @@ def deserialize_aws_json_1_1(data: dict) -> ExportImageTask:
                 data["State"]
             )
         )
-    if "AmiId" in data:
+    if data.get("AmiId") is not None:
         out["ami_id"] = data["AmiId"]
-    if "TagSpecifications" in data:
+    if data.get("TagSpecifications") is not None:
         import capo_appstream.types.tags
 
         out["tag_specifications"] = capo_appstream.types.tags.deserialize_aws_json_1_1(
             data["TagSpecifications"]
         )
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_appstream.types.error_details_list
 
         out["error_details"] = (

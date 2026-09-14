@@ -36,10 +36,10 @@ def serialize_aws_json_1_1(value: DnssecSigningAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DnssecSigningAttributes:
     out: DnssecSigningAttributes = {}  # type: ignore[typeddict-item]
-    if "Algorithm" in data:
+    if data.get("Algorithm") is not None:
         out["algorithm"] = data["Algorithm"]
-    if "Flags" in data:
+    if data.get("Flags") is not None:
         out["flags"] = data["Flags"]
-    if "PublicKey" in data:
+    if data.get("PublicKey") is not None:
         out["public_key"] = data["PublicKey"]
     return out

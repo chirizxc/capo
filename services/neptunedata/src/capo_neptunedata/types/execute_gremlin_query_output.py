@@ -43,9 +43,9 @@ def serialize_json(value: ExecuteGremlinQueryOutput) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteGremlinQueryOutput:
     out: ExecuteGremlinQueryOutput = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_neptunedata.types.gremlin_query_status_attributes
 
         out["status"] = (
@@ -53,8 +53,8 @@ def deserialize_json(data: dict) -> ExecuteGremlinQueryOutput:
                 data["status"]
             )
         )
-    if "result" in data:
+    if data.get("result") is not None:
         out["result"] = data["result"]
-    if "meta" in data:
+    if data.get("meta") is not None:
         out["meta"] = data["meta"]
     return out

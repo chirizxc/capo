@@ -43,18 +43,18 @@ def serialize_json(value: EbsSnapshotConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EbsSnapshotConfiguration:
     out: EbsSnapshotConfiguration = {}  # type: ignore[typeddict-item]
-    if "userIds" in data:
+    if data.get("userIds") is not None:
         import capo_accessanalyzer.types.ebs_user_id_list
 
         out["user_ids"] = capo_accessanalyzer.types.ebs_user_id_list.deserialize_json(
             data["userIds"]
         )
-    if "groups" in data:
+    if data.get("groups") is not None:
         import capo_accessanalyzer.types.ebs_group_list
 
         out["groups"] = capo_accessanalyzer.types.ebs_group_list.deserialize_json(
             data["groups"]
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

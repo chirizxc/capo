@@ -45,25 +45,25 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> StartEngagementByAcceptingInvitationTaskRequest:
     out: StartEngagementByAcceptingInvitationTaskRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError(
             "StartEngagementByAcceptingInvitationTaskRequest.catalog required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(
             "StartEngagementByAcceptingInvitationTaskRequest.client_token required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "StartEngagementByAcceptingInvitationTaskRequest.identifier required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_partnercentral_selling.types.tag_list
 
         out["tags"] = (

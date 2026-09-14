@@ -120,37 +120,37 @@ def serialize_aws_json_1_1(value: Field) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Field:
     out: Field = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FieldType" in data:
+    if data.get("FieldType") is not None:
         import capo_glue.types.field_data_type
 
         out["field_type"] = capo_glue.types.field_data_type.deserialize_aws_json_1_1(
             data["FieldType"]
         )
-    if "IsPrimaryKey" in data:
+    if data.get("IsPrimaryKey") is not None:
         out["is_primary_key"] = data["IsPrimaryKey"]
-    if "IsNullable" in data:
+    if data.get("IsNullable") is not None:
         out["is_nullable"] = data["IsNullable"]
-    if "IsRetrievable" in data:
+    if data.get("IsRetrievable") is not None:
         out["is_retrievable"] = data["IsRetrievable"]
-    if "IsFilterable" in data:
+    if data.get("IsFilterable") is not None:
         out["is_filterable"] = data["IsFilterable"]
-    if "IsPartitionable" in data:
+    if data.get("IsPartitionable") is not None:
         out["is_partitionable"] = data["IsPartitionable"]
-    if "IsCreateable" in data:
+    if data.get("IsCreateable") is not None:
         out["is_createable"] = data["IsCreateable"]
-    if "IsUpdateable" in data:
+    if data.get("IsUpdateable") is not None:
         out["is_updateable"] = data["IsUpdateable"]
-    if "IsUpsertable" in data:
+    if data.get("IsUpsertable") is not None:
         out["is_upsertable"] = data["IsUpsertable"]
-    if "IsDefaultOnCreate" in data:
+    if data.get("IsDefaultOnCreate") is not None:
         out["is_default_on_create"] = data["IsDefaultOnCreate"]
-    if "SupportedValues" in data:
+    if data.get("SupportedValues") is not None:
         import capo_glue.types.list_of_string
 
         out["supported_values"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> Field:
                 data["SupportedValues"]
             )
         )
-    if "SupportedFilterOperators" in data:
+    if data.get("SupportedFilterOperators") is not None:
         import capo_glue.types.field_filter_operators_list
 
         out["supported_filter_operators"] = (
@@ -166,11 +166,11 @@ def deserialize_aws_json_1_1(data: dict) -> Field:
                 data["SupportedFilterOperators"]
             )
         )
-    if "ParentField" in data:
+    if data.get("ParentField") is not None:
         out["parent_field"] = data["ParentField"]
-    if "NativeDataType" in data:
+    if data.get("NativeDataType") is not None:
         out["native_data_type"] = data["NativeDataType"]
-    if "CustomProperties" in data:
+    if data.get("CustomProperties") is not None:
         import capo_glue.types.custom_properties
 
         out["custom_properties"] = (

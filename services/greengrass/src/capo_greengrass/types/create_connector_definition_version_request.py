@@ -34,7 +34,7 @@ def serialize_json(value: CreateConnectorDefinitionVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorDefinitionVersionRequest:
     out: CreateConnectorDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
-    if "Connectors" in data:
+    if data.get("Connectors") is not None:
         import capo_greengrass.types.__list_of_connector
 
         out["connectors"] = capo_greengrass.types.__list_of_connector.deserialize_json(

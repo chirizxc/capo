@@ -27,7 +27,7 @@ def serialize_json(value: DataUpdateRequestDetails) -> dict:
 
 def deserialize_json(data: dict) -> DataUpdateRequestDetails:
     out: DataUpdateRequestDetails = {}  # type: ignore[typeddict-item]
-    if "DataUpdatedAt" in data:
+    if data.get("DataUpdatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["data_updated_at"] = capo_dataexchange.types.timestamp.deserialize_json(

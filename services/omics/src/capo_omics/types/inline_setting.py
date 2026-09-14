@@ -60,24 +60,24 @@ def serialize_json(value: InlineSetting) -> dict:
 
 def deserialize_json(data: dict) -> InlineSetting:
     out: InlineSetting = {}  # type: ignore[typeddict-item]
-    if "runSettingId" in data:
+    if data.get("runSettingId") is not None:
         out["run_setting_id"] = data["runSettingId"]
     else:
         raise DeserializationError("InlineSetting.run_setting_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "outputUri" in data:
+    if data.get("outputUri") is not None:
         out["output_uri"] = data["outputUri"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         out["parameters"] = data["parameters"]
-    if "outputBucketOwnerId" in data:
+    if data.get("outputBucketOwnerId") is not None:
         out["output_bucket_owner_id"] = data["outputBucketOwnerId"]
-    if "runTags" in data:
+    if data.get("runTags") is not None:
         import capo_omics.types.tag_map
 
         out["run_tags"] = capo_omics.types.tag_map.deserialize_json(data["runTags"])
-    if "engineSettings" in data:
+    if data.get("engineSettings") is not None:
         out["engine_settings"] = data["engineSettings"]
     return out

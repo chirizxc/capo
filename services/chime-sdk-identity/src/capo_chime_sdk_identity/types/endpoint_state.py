@@ -41,7 +41,7 @@ def serialize_json(value: EndpointState) -> dict:
 
 def deserialize_json(data: dict) -> EndpointState:
     out: EndpointState = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime_sdk_identity.types.endpoint_status
 
         out["status"] = capo_chime_sdk_identity.types.endpoint_status.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> EndpointState:
         )
     else:
         raise DeserializationError("EndpointState.status required")
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_chime_sdk_identity.types.endpoint_status_reason
 
         out["status_reason"] = (

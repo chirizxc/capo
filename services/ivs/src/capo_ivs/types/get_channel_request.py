@@ -24,7 +24,7 @@ def serialize_json(value: GetChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetChannelRequest:
     out: GetChannelRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetChannelRequest.arn required")

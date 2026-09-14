@@ -45,19 +45,19 @@ def serialize_json(value: UpdateAccountCustomizationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountCustomizationsOutput:
     out: UpdateAccountCustomizationsOutput = {}  # type: ignore[typeddict-item]
-    if "accountColor" in data:
+    if data.get("accountColor") is not None:
         import capo_uxc.types.account_color
 
         out["account_color"] = capo_uxc.types.account_color.deserialize_json(
             data["accountColor"]
         )
-    if "visibleServices" in data:
+    if data.get("visibleServices") is not None:
         import capo_uxc.types.service_list
 
         out["visible_services"] = capo_uxc.types.service_list.deserialize_json(
             data["visibleServices"]
         )
-    if "visibleRegions" in data:
+    if data.get("visibleRegions") is not None:
         import capo_uxc.types.regions_list
 
         out["visible_regions"] = capo_uxc.types.regions_list.deserialize_json(

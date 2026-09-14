@@ -178,25 +178,25 @@ def serialize_json(value: GeocodeResultItem) -> dict:
 
 def deserialize_json(data: dict) -> GeocodeResultItem:
     out: GeocodeResultItem = {}  # type: ignore[typeddict-item]
-    if "PlaceId" in data:
+    if data.get("PlaceId") is not None:
         out["place_id"] = data["PlaceId"]
     else:
         raise DeserializationError("GeocodeResultItem.place_id required")
-    if "PlaceType" in data:
+    if data.get("PlaceType") is not None:
         out["place_type"] = data["PlaceType"]
     else:
         raise DeserializationError("GeocodeResultItem.place_type required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("GeocodeResultItem.title required")
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_geo_places.types.address
 
         out["address"] = capo_geo_places.types.address.deserialize_json(data["Address"])
-    if "AddressNumberCorrected" in data:
+    if data.get("AddressNumberCorrected") is not None:
         out["address_number_corrected"] = data["AddressNumberCorrected"]
-    if "PostalCodeDetails" in data:
+    if data.get("PostalCodeDetails") is not None:
         import capo_geo_places.types.postal_code_details_list
 
         out["postal_code_details"] = (
@@ -204,49 +204,49 @@ def deserialize_json(data: dict) -> GeocodeResultItem:
                 data["PostalCodeDetails"]
             )
         )
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_places.types.position
 
         out["position"] = capo_geo_places.types.position.deserialize_json(
             data["Position"]
         )
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "MapView" in data:
+    if data.get("MapView") is not None:
         import capo_geo_places.types.bounding_box
 
         out["map_view"] = capo_geo_places.types.bounding_box.deserialize_json(
             data["MapView"]
         )
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_geo_places.types.category_list
 
         out["categories"] = capo_geo_places.types.category_list.deserialize_json(
             data["Categories"]
         )
-    if "FoodTypes" in data:
+    if data.get("FoodTypes") is not None:
         import capo_geo_places.types.food_type_list
 
         out["food_types"] = capo_geo_places.types.food_type_list.deserialize_json(
             data["FoodTypes"]
         )
-    if "AccessPoints" in data:
+    if data.get("AccessPoints") is not None:
         import capo_geo_places.types.access_point_list
 
         out["access_points"] = capo_geo_places.types.access_point_list.deserialize_json(
             data["AccessPoints"]
         )
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         import capo_geo_places.types.time_zone
 
         out["time_zone"] = capo_geo_places.types.time_zone.deserialize_json(
             data["TimeZone"]
         )
-    if "PoliticalView" in data:
+    if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
-    if "MatchScores" in data:
+    if data.get("MatchScores") is not None:
         import capo_geo_places.types.match_score_details
 
         out["match_scores"] = (
@@ -254,7 +254,7 @@ def deserialize_json(data: dict) -> GeocodeResultItem:
                 data["MatchScores"]
             )
         )
-    if "ParsedQuery" in data:
+    if data.get("ParsedQuery") is not None:
         import capo_geo_places.types.geocode_parsed_query
 
         out["parsed_query"] = (
@@ -262,19 +262,19 @@ def deserialize_json(data: dict) -> GeocodeResultItem:
                 data["ParsedQuery"]
             )
         )
-    if "Intersections" in data:
+    if data.get("Intersections") is not None:
         import capo_geo_places.types.intersection_list
 
         out["intersections"] = capo_geo_places.types.intersection_list.deserialize_json(
             data["Intersections"]
         )
-    if "MainAddress" in data:
+    if data.get("MainAddress") is not None:
         import capo_geo_places.types.related_place
 
         out["main_address"] = capo_geo_places.types.related_place.deserialize_json(
             data["MainAddress"]
         )
-    if "SecondaryAddresses" in data:
+    if data.get("SecondaryAddresses") is not None:
         import capo_geo_places.types.related_place_list
 
         out["secondary_addresses"] = (

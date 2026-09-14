@@ -79,7 +79,7 @@ def serialize_json(value: TestInvokeAuthorizerRequest) -> dict:
 
 def deserialize_json(data: dict) -> TestInvokeAuthorizerRequest:
     out: TestInvokeAuthorizerRequest = {}  # type: ignore[typeddict-item]
-    if "headers" in data:
+    if data.get("headers") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["headers"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> TestInvokeAuthorizerRequest:
                 data["headers"]
             )
         )
-    if "multiValueHeaders" in data:
+    if data.get("multiValueHeaders") is not None:
         import capo_api_gateway.types.map_of_string_to_list
 
         out["multi_value_headers"] = (
@@ -95,11 +95,11 @@ def deserialize_json(data: dict) -> TestInvokeAuthorizerRequest:
                 data["multiValueHeaders"]
             )
         )
-    if "pathWithQueryString" in data:
+    if data.get("pathWithQueryString") is not None:
         out["path_with_query_string"] = data["pathWithQueryString"]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
-    if "stageVariables" in data:
+    if data.get("stageVariables") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["stage_variables"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> TestInvokeAuthorizerRequest:
                 data["stageVariables"]
             )
         )
-    if "additionalContext" in data:
+    if data.get("additionalContext") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["additional_context"] = (

@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: OpenXJsonSerDe) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenXJsonSerDe:
     out: OpenXJsonSerDe = {}  # type: ignore[typeddict-item]
-    if "ConvertDotsInJsonKeysToUnderscores" in data:
+    if data.get("ConvertDotsInJsonKeysToUnderscores") is not None:
         out["convert_dots_in_json_keys_to_underscores"] = data[
             "ConvertDotsInJsonKeysToUnderscores"
         ]
-    if "CaseInsensitive" in data:
+    if data.get("CaseInsensitive") is not None:
         out["case_insensitive"] = data["CaseInsensitive"]
-    if "ColumnToJsonKeyMappings" in data:
+    if data.get("ColumnToJsonKeyMappings") is not None:
         import capo_firehose.types.column_to_json_key_mappings
 
         out["column_to_json_key_mappings"] = (

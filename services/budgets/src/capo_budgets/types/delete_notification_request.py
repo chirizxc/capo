@@ -36,15 +36,15 @@ def serialize_aws_json_1_1(value: DeleteNotificationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteNotificationRequest:
     out: DeleteNotificationRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("DeleteNotificationRequest.account_id required")
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
     else:
         raise DeserializationError("DeleteNotificationRequest.budget_name required")
-    if "Notification" in data:
+    if data.get("Notification") is not None:
         import capo_budgets.types.notification
 
         out["notification"] = capo_budgets.types.notification.deserialize_aws_json_1_1(

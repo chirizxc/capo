@@ -40,13 +40,13 @@ def serialize_json(value: FormFactorConfig) -> dict:
 
 def deserialize_json(data: dict) -> FormFactorConfig:
     out: FormFactorConfig = {}  # type: ignore[typeddict-item]
-    if "FormFactor" in data:
+    if data.get("FormFactor") is not None:
         import capo_outposts.types.form_factor
 
         out["form_factor"] = capo_outposts.types.form_factor.deserialize_json(
             data["FormFactor"]
         )
-    if "OutpostGeneration" in data:
+    if data.get("OutpostGeneration") is not None:
         import capo_outposts.types.outpost_generation
 
         out["outpost_generation"] = (

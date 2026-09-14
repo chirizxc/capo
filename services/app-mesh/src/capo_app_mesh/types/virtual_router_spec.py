@@ -29,7 +29,7 @@ def serialize_json(value: VirtualRouterSpec) -> dict:
 
 def deserialize_json(data: dict) -> VirtualRouterSpec:
     out: VirtualRouterSpec = {}  # type: ignore[typeddict-item]
-    if "listeners" in data:
+    if data.get("listeners") is not None:
         import capo_app_mesh.types.virtual_router_listeners
 
         out["listeners"] = (

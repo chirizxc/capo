@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ModelMetadataSearchExpression) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelMetadataSearchExpression:
     out: ModelMetadataSearchExpression = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_sagemaker.types.model_metadata_filters
 
         out["filters"] = (

@@ -228,7 +228,15 @@ def serialize_json(value: Mpeg2Settings) -> dict:
     if "gop_closed_cadence" in value:
         out["gopClosedCadence"] = value["gop_closed_cadence"]
     if "gop_size" in value:
-        out["gopSize"] = value["gop_size"]
+        out["gopSize"] = (
+            "NaN"
+            if value["gop_size"] != value["gop_size"]
+            else "Infinity"
+            if value["gop_size"] == float("inf")
+            else "-Infinity"
+            if value["gop_size"] == float("-inf")
+            else value["gop_size"]
+        )
     if "gop_size_units" in value:
         import capo_mediaconvert.types.mpeg2_gop_size_units
 
@@ -360,7 +368,7 @@ def serialize_json(value: Mpeg2Settings) -> dict:
 
 def deserialize_json(data: dict) -> Mpeg2Settings:
     out: Mpeg2Settings = {}  # type: ignore[typeddict-item]
-    if "adaptiveQuantization" in data:
+    if data.get("adaptiveQuantization") is not None:
         import capo_mediaconvert.types.mpeg2_adaptive_quantization
 
         out["adaptive_quantization"] = (
@@ -368,15 +376,15 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["adaptiveQuantization"]
             )
         )
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "codecLevel" in data:
+    if data.get("codecLevel") is not None:
         import capo_mediaconvert.types.mpeg2_codec_level
 
         out["codec_level"] = capo_mediaconvert.types.mpeg2_codec_level.deserialize_json(
             data["codecLevel"]
         )
-    if "codecProfile" in data:
+    if data.get("codecProfile") is not None:
         import capo_mediaconvert.types.mpeg2_codec_profile
 
         out["codec_profile"] = (
@@ -384,7 +392,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["codecProfile"]
             )
         )
-    if "dynamicSubGop" in data:
+    if data.get("dynamicSubGop") is not None:
         import capo_mediaconvert.types.mpeg2_dynamic_sub_gop
 
         out["dynamic_sub_gop"] = (
@@ -392,7 +400,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["dynamicSubGop"]
             )
         )
-    if "framerateControl" in data:
+    if data.get("framerateControl") is not None:
         import capo_mediaconvert.types.mpeg2_framerate_control
 
         out["framerate_control"] = (
@@ -400,7 +408,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["framerateControl"]
             )
         )
-    if "framerateConversionAlgorithm" in data:
+    if data.get("framerateConversionAlgorithm") is not None:
         import capo_mediaconvert.types.mpeg2_framerate_conversion_algorithm
 
         out["framerate_conversion_algorithm"] = (
@@ -408,15 +416,15 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["framerateConversionAlgorithm"]
             )
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "gopClosedCadence" in data:
+    if data.get("gopClosedCadence") is not None:
         out["gop_closed_cadence"] = data["gopClosedCadence"]
-    if "gopSize" in data:
-        out["gop_size"] = data["gopSize"]
-    if "gopSizeUnits" in data:
+    if data.get("gopSize") is not None:
+        out["gop_size"] = float(data["gopSize"])
+    if data.get("gopSizeUnits") is not None:
         import capo_mediaconvert.types.mpeg2_gop_size_units
 
         out["gop_size_units"] = (
@@ -424,15 +432,15 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["gopSizeUnits"]
             )
         )
-    if "hrdBufferFinalFillPercentage" in data:
+    if data.get("hrdBufferFinalFillPercentage") is not None:
         out["hrd_buffer_final_fill_percentage"] = data["hrdBufferFinalFillPercentage"]
-    if "hrdBufferInitialFillPercentage" in data:
+    if data.get("hrdBufferInitialFillPercentage") is not None:
         out["hrd_buffer_initial_fill_percentage"] = data[
             "hrdBufferInitialFillPercentage"
         ]
-    if "hrdBufferSize" in data:
+    if data.get("hrdBufferSize") is not None:
         out["hrd_buffer_size"] = data["hrdBufferSize"]
-    if "interlaceMode" in data:
+    if data.get("interlaceMode") is not None:
         import capo_mediaconvert.types.mpeg2_interlace_mode
 
         out["interlace_mode"] = (
@@ -440,7 +448,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["interlaceMode"]
             )
         )
-    if "intraDcPrecision" in data:
+    if data.get("intraDcPrecision") is not None:
         import capo_mediaconvert.types.mpeg2_intra_dc_precision
 
         out["intra_dc_precision"] = (
@@ -448,25 +456,25 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["intraDcPrecision"]
             )
         )
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
-    if "minIInterval" in data:
+    if data.get("minIInterval") is not None:
         out["min_i_interval"] = data["minIInterval"]
-    if "numberBFramesBetweenReferenceFrames" in data:
+    if data.get("numberBFramesBetweenReferenceFrames") is not None:
         out["number_b_frames_between_reference_frames"] = data[
             "numberBFramesBetweenReferenceFrames"
         ]
-    if "parControl" in data:
+    if data.get("parControl") is not None:
         import capo_mediaconvert.types.mpeg2_par_control
 
         out["par_control"] = capo_mediaconvert.types.mpeg2_par_control.deserialize_json(
             data["parControl"]
         )
-    if "parDenominator" in data:
+    if data.get("parDenominator") is not None:
         out["par_denominator"] = data["parDenominator"]
-    if "parNumerator" in data:
+    if data.get("parNumerator") is not None:
         out["par_numerator"] = data["parNumerator"]
-    if "perFrameMetrics" in data:
+    if data.get("perFrameMetrics") is not None:
         import capo_mediaconvert.types.__list_of_frame_metric_type
 
         out["per_frame_metrics"] = (
@@ -474,7 +482,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["perFrameMetrics"]
             )
         )
-    if "qualityTuningLevel" in data:
+    if data.get("qualityTuningLevel") is not None:
         import capo_mediaconvert.types.mpeg2_quality_tuning_level
 
         out["quality_tuning_level"] = (
@@ -482,7 +490,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["qualityTuningLevel"]
             )
         )
-    if "rateControlMode" in data:
+    if data.get("rateControlMode") is not None:
         import capo_mediaconvert.types.mpeg2_rate_control_mode
 
         out["rate_control_mode"] = (
@@ -490,7 +498,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["rateControlMode"]
             )
         )
-    if "scanTypeConversionMode" in data:
+    if data.get("scanTypeConversionMode") is not None:
         import capo_mediaconvert.types.mpeg2_scan_type_conversion_mode
 
         out["scan_type_conversion_mode"] = (
@@ -498,7 +506,7 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["scanTypeConversionMode"]
             )
         )
-    if "sceneChangeDetect" in data:
+    if data.get("sceneChangeDetect") is not None:
         import capo_mediaconvert.types.mpeg2_scene_change_detect
 
         out["scene_change_detect"] = (
@@ -506,15 +514,15 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["sceneChangeDetect"]
             )
         )
-    if "slowPal" in data:
+    if data.get("slowPal") is not None:
         import capo_mediaconvert.types.mpeg2_slow_pal
 
         out["slow_pal"] = capo_mediaconvert.types.mpeg2_slow_pal.deserialize_json(
             data["slowPal"]
         )
-    if "softness" in data:
+    if data.get("softness") is not None:
         out["softness"] = data["softness"]
-    if "spatialAdaptiveQuantization" in data:
+    if data.get("spatialAdaptiveQuantization") is not None:
         import capo_mediaconvert.types.mpeg2_spatial_adaptive_quantization
 
         out["spatial_adaptive_quantization"] = (
@@ -522,19 +530,19 @@ def deserialize_json(data: dict) -> Mpeg2Settings:
                 data["spatialAdaptiveQuantization"]
             )
         )
-    if "syntax" in data:
+    if data.get("syntax") is not None:
         import capo_mediaconvert.types.mpeg2_syntax
 
         out["syntax"] = capo_mediaconvert.types.mpeg2_syntax.deserialize_json(
             data["syntax"]
         )
-    if "telecine" in data:
+    if data.get("telecine") is not None:
         import capo_mediaconvert.types.mpeg2_telecine
 
         out["telecine"] = capo_mediaconvert.types.mpeg2_telecine.deserialize_json(
             data["telecine"]
         )
-    if "temporalAdaptiveQuantization" in data:
+    if data.get("temporalAdaptiveQuantization") is not None:
         import capo_mediaconvert.types.mpeg2_temporal_adaptive_quantization
 
         out["temporal_adaptive_quantization"] = (

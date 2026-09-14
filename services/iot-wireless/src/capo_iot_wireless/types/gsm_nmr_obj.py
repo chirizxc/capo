@@ -44,17 +44,17 @@ def serialize_json(value: GsmNmrObj) -> dict:
 
 def deserialize_json(data: dict) -> GsmNmrObj:
     out: GsmNmrObj = {}  # type: ignore[typeddict-item]
-    if "Bsic" in data:
+    if data.get("Bsic") is not None:
         out["bsic"] = data["Bsic"]
     else:
         raise DeserializationError("GsmNmrObj.bsic required")
-    if "Bcch" in data:
+    if data.get("Bcch") is not None:
         out["bcch"] = data["Bcch"]
     else:
         raise DeserializationError("GsmNmrObj.bcch required")
-    if "RxLevel" in data:
+    if data.get("RxLevel") is not None:
         out["rx_level"] = data["RxLevel"]
-    if "GlobalIdentity" in data:
+    if data.get("GlobalIdentity") is not None:
         import capo_iot_wireless.types.global_identity
 
         out["global_identity"] = (

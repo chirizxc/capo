@@ -30,8 +30,8 @@ def serialize_json(value: ErrorInfo) -> dict:
 
 def deserialize_json(data: dict) -> ErrorInfo:
     out: ErrorInfo = {}  # type: ignore[typeddict-item]
-    if "putFailuresCount" in data:
+    if data.get("putFailuresCount") is not None:
         out["put_failures_count"] = data["putFailuresCount"]
-    if "executionMessage" in data:
+    if data.get("executionMessage") is not None:
         out["execution_message"] = data["executionMessage"]
     return out

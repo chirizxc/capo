@@ -24,7 +24,7 @@ def serialize_json(value: KendraIndexConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KendraIndexConfiguration:
     out: KendraIndexConfiguration = {}  # type: ignore[typeddict-item]
-    if "indexId" in data:
+    if data.get("indexId") is not None:
         out["index_id"] = data["indexId"]
     else:
         raise DeserializationError("KendraIndexConfiguration.index_id required")

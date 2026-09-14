@@ -39,15 +39,20 @@ class EndpointAuthorizationNotFoundFault(ServiceError):
 
     code: str | None = "EndpointAuthorizationNotFoundFault"
 
-    def __init__(self, data: EndpointAuthorizationNotFoundFault_):
+    def __init__(
+        self, data: EndpointAuthorizationNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EndpointAuthorizationNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "EndpointAuthorizationNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "EndpointAuthorizationNotFoundFault":
+        return cls(deserialize_query(el), message)

@@ -75,7 +75,7 @@ def serialize_json(value: TableSideBorderOptions) -> dict:
 
 def deserialize_json(data: dict) -> TableSideBorderOptions:
     out: TableSideBorderOptions = {}  # type: ignore[typeddict-item]
-    if "InnerVertical" in data:
+    if data.get("InnerVertical") is not None:
         import capo_quicksight.types.table_border_options
 
         out["inner_vertical"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> TableSideBorderOptions:
                 data["InnerVertical"]
             )
         )
-    if "InnerHorizontal" in data:
+    if data.get("InnerHorizontal") is not None:
         import capo_quicksight.types.table_border_options
 
         out["inner_horizontal"] = (
@@ -91,25 +91,25 @@ def deserialize_json(data: dict) -> TableSideBorderOptions:
                 data["InnerHorizontal"]
             )
         )
-    if "Left" in data:
+    if data.get("Left") is not None:
         import capo_quicksight.types.table_border_options
 
         out["left"] = capo_quicksight.types.table_border_options.deserialize_json(
             data["Left"]
         )
-    if "Right" in data:
+    if data.get("Right") is not None:
         import capo_quicksight.types.table_border_options
 
         out["right"] = capo_quicksight.types.table_border_options.deserialize_json(
             data["Right"]
         )
-    if "Top" in data:
+    if data.get("Top") is not None:
         import capo_quicksight.types.table_border_options
 
         out["top"] = capo_quicksight.types.table_border_options.deserialize_json(
             data["Top"]
         )
-    if "Bottom" in data:
+    if data.get("Bottom") is not None:
         import capo_quicksight.types.table_border_options
 
         out["bottom"] = capo_quicksight.types.table_border_options.deserialize_json(

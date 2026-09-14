@@ -49,19 +49,19 @@ def serialize_aws_json_1_1(value: PutRetentionPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRetentionPolicyRequest:
     out: PutRetentionPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError("PutRetentionPolicyRequest.organization_id required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PutRetentionPolicyRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FolderConfigurations" in data:
+    if data.get("FolderConfigurations") is not None:
         import capo_workmail.types.folder_configurations
 
         out["folder_configurations"] = (

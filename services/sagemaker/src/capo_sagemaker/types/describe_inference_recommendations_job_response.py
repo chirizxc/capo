@@ -158,11 +158,11 @@ def serialize_aws_json_1_1(value: DescribeInferenceRecommendationsJobResponse) -
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceRecommendationsJobResponse:
     out: DescribeInferenceRecommendationsJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobDescription" in data:
+    if data.get("JobDescription") is not None:
         out["job_description"] = data["JobDescription"]
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         import capo_sagemaker.types.recommendation_job_type
 
         out["job_type"] = (
@@ -170,11 +170,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceRecommendationsJobR
                 data["JobType"]
             )
         )
-    if "JobArn" in data:
+    if data.get("JobArn") is not None:
         out["job_arn"] = data["JobArn"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.recommendation_job_status
 
         out["status"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceRecommendationsJobR
                 data["Status"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceRecommendationsJobR
                 data["CreationTime"]
             )
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["completion_time"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceRecommendationsJobR
                 data["CompletionTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -206,9 +206,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceRecommendationsJobR
                 data["LastModifiedTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "InputConfig" in data:
+    if data.get("InputConfig") is not None:
         import capo_sagemaker.types.recommendation_job_input_config
 
         out["input_config"] = (
@@ -216,7 +216,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceRecommendationsJobR
                 data["InputConfig"]
             )
         )
-    if "StoppingConditions" in data:
+    if data.get("StoppingConditions") is not None:
         import capo_sagemaker.types.recommendation_job_stopping_conditions
 
         out["stopping_conditions"] = (
@@ -224,7 +224,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceRecommendationsJobR
                 data["StoppingConditions"]
             )
         )
-    if "InferenceRecommendations" in data:
+    if data.get("InferenceRecommendations") is not None:
         import capo_sagemaker.types.inference_recommendations
 
         out["inference_recommendations"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeInferenceRecommendationsJobR
                 data["InferenceRecommendations"]
             )
         )
-    if "EndpointPerformances" in data:
+    if data.get("EndpointPerformances") is not None:
         import capo_sagemaker.types.endpoint_performances
 
         out["endpoint_performances"] = (

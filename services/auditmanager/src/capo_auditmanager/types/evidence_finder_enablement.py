@@ -56,9 +56,9 @@ def serialize_json(value: EvidenceFinderEnablement) -> dict:
 
 def deserialize_json(data: dict) -> EvidenceFinderEnablement:
     out: EvidenceFinderEnablement = {}  # type: ignore[typeddict-item]
-    if "eventDataStoreArn" in data:
+    if data.get("eventDataStoreArn") is not None:
         out["event_data_store_arn"] = data["eventDataStoreArn"]
-    if "enablementStatus" in data:
+    if data.get("enablementStatus") is not None:
         import capo_auditmanager.types.evidence_finder_enablement_status
 
         out["enablement_status"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> EvidenceFinderEnablement:
                 data["enablementStatus"]
             )
         )
-    if "backfillStatus" in data:
+    if data.get("backfillStatus") is not None:
         import capo_auditmanager.types.evidence_finder_backfill_status
 
         out["backfill_status"] = (
@@ -74,6 +74,6 @@ def deserialize_json(data: dict) -> EvidenceFinderEnablement:
                 data["backfillStatus"]
             )
         )
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
     return out

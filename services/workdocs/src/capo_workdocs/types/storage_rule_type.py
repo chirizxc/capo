@@ -34,9 +34,9 @@ def serialize_json(value: StorageRuleType) -> dict:
 
 def deserialize_json(data: dict) -> StorageRuleType:
     out: StorageRuleType = {}  # type: ignore[typeddict-item]
-    if "StorageAllocatedInBytes" in data:
+    if data.get("StorageAllocatedInBytes") is not None:
         out["storage_allocated_in_bytes"] = data["StorageAllocatedInBytes"]
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         import capo_workdocs.types.storage_type
 
         out["storage_type"] = capo_workdocs.types.storage_type.deserialize_json(

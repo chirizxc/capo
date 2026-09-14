@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: TableExcerpt) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableExcerpt:
     out: TableExcerpt = {}  # type: ignore[typeddict-item]
-    if "Rows" in data:
+    if data.get("Rows") is not None:
         import capo_kendra.types.table_row_list
 
         out["rows"] = capo_kendra.types.table_row_list.deserialize_aws_json_1_1(
             data["Rows"]
         )
-    if "TotalNumberOfRows" in data:
+    if data.get("TotalNumberOfRows") is not None:
         out["total_number_of_rows"] = data["TotalNumberOfRows"]
     return out

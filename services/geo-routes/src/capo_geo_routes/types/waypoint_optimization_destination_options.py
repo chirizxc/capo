@@ -47,7 +47,15 @@ def serialize_json(value: WaypointOptimizationDestinationOptions) -> dict:
         )
     if "appointment_time" in value:
         out["AppointmentTime"] = value["appointment_time"]
-    out["Heading"] = value.get("heading", 0)
+    out["Heading"] = (
+        "NaN"
+        if value.get("heading", 0) != value.get("heading", 0)
+        else "Infinity"
+        if value.get("heading", 0) == float("inf")
+        else "-Infinity"
+        if value.get("heading", 0) == float("-inf")
+        else value.get("heading", 0)
+    )
     if "id" in value:
         out["Id"] = value["id"]
     out["ServiceDuration"] = value.get("service_duration", 0)
@@ -64,7 +72,7 @@ def serialize_json(value: WaypointOptimizationDestinationOptions) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationDestinationOptions:
     out: WaypointOptimizationDestinationOptions = {}  # type: ignore[typeddict-item]
-    if "AccessHours" in data:
+    if data.get("AccessHours") is not None:
         import capo_geo_routes.types.waypoint_optimization_access_hours
 
         out["access_hours"] = (
@@ -72,19 +80,19 @@ def deserialize_json(data: dict) -> WaypointOptimizationDestinationOptions:
                 data["AccessHours"]
             )
         )
-    if "AppointmentTime" in data:
+    if data.get("AppointmentTime") is not None:
         out["appointment_time"] = data["AppointmentTime"]
-    if "Heading" in data:
-        out["heading"] = data["Heading"]
+    if data.get("Heading") is not None:
+        out["heading"] = float(data["Heading"])
     else:
         out["heading"] = 0
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ServiceDuration" in data:
+    if data.get("ServiceDuration") is not None:
         out["service_duration"] = data["ServiceDuration"]
     else:
         out["service_duration"] = 0
-    if "SideOfStreet" in data:
+    if data.get("SideOfStreet") is not None:
         import capo_geo_routes.types.waypoint_optimization_side_of_street_options
 
         out["side_of_street"] = (

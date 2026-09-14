@@ -38,9 +38,9 @@ def serialize_json(value: GetArtifactOutput) -> dict:
         value["artifact"]
     )
     out["fileName"] = value["file_name"]
-    import capo_securityagent.types._prelude.timestamp
+    import capo_securityagent._protocol.serialize
 
-    out["updatedAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+    out["updatedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
         value["updated_at"]
     )
     return out
@@ -48,15 +48,15 @@ def serialize_json(value: GetArtifactOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetArtifactOutput:
     out: GetArtifactOutput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("GetArtifactOutput.agent_space_id required")
-    if "artifactId" in data:
+    if data.get("artifactId") is not None:
         out["artifact_id"] = data["artifactId"]
     else:
         raise DeserializationError("GetArtifactOutput.artifact_id required")
-    if "artifact" in data:
+    if data.get("artifact") is not None:
         import capo_securityagent.types.artifact
 
         out["artifact"] = capo_securityagent.types.artifact.deserialize_json(
@@ -64,17 +64,15 @@ def deserialize_json(data: dict) -> GetArtifactOutput:
         )
     else:
         raise DeserializationError("GetArtifactOutput.artifact required")
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     else:
         raise DeserializationError("GetArtifactOutput.file_name required")
-    if "updatedAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetArtifactOutput.updated_at required")

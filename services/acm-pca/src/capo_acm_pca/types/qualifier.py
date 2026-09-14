@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: Qualifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Qualifier:
     out: Qualifier = {}  # type: ignore[typeddict-item]
-    if "CpsUri" in data:
+    if data.get("CpsUri") is not None:
         out["cps_uri"] = data["CpsUri"]
     else:
         raise DeserializationError("Qualifier.cps_uri required")

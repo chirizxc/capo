@@ -59,13 +59,13 @@ def serialize_aws_json_1_1(value: BatchSegmentJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchSegmentJobSummary:
     out: BatchSegmentJobSummary = {}  # type: ignore[typeddict-item]
-    if "batchSegmentJobArn" in data:
+    if data.get("batchSegmentJobArn") is not None:
         out["batch_segment_job_arn"] = data["batchSegmentJobArn"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchSegmentJobSummary:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -81,8 +81,8 @@ def deserialize_aws_json_1_1(data: dict) -> BatchSegmentJobSummary:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "solutionVersionArn" in data:
+    if data.get("solutionVersionArn") is not None:
         out["solution_version_arn"] = data["solutionVersionArn"]
     return out

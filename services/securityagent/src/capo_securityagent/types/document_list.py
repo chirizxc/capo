@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DocumentList:
 
     out: DocumentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityagent.types.document_info.deserialize_json(item))
     return out

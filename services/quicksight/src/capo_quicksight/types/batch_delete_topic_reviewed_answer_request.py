@@ -33,7 +33,7 @@ def serialize_json(value: BatchDeleteTopicReviewedAnswerRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteTopicReviewedAnswerRequest:
     out: BatchDeleteTopicReviewedAnswerRequest = {}  # type: ignore[typeddict-item]
-    if "AnswerIds" in data:
+    if data.get("AnswerIds") is not None:
         import capo_quicksight.types.answer_ids
 
         out["answer_ids"] = capo_quicksight.types.answer_ids.deserialize_json(

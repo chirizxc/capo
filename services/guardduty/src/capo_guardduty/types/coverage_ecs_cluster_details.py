@@ -45,15 +45,15 @@ def serialize_json(value: CoverageEcsClusterDetails) -> dict:
 
 def deserialize_json(data: dict) -> CoverageEcsClusterDetails:
     out: CoverageEcsClusterDetails = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "fargateDetails" in data:
+    if data.get("fargateDetails") is not None:
         import capo_guardduty.types.fargate_details
 
         out["fargate_details"] = capo_guardduty.types.fargate_details.deserialize_json(
             data["fargateDetails"]
         )
-    if "containerInstanceDetails" in data:
+    if data.get("containerInstanceDetails") is not None:
         import capo_guardduty.types.container_instance_details
 
         out["container_instance_details"] = (

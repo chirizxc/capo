@@ -73,7 +73,7 @@ def serialize_aws_json_1_1(value: ActionType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionType:
     out: ActionType = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         import capo_codepipeline.types.action_type_id
 
         out["id"] = capo_codepipeline.types.action_type_id.deserialize_aws_json_1_1(
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionType:
         )
     else:
         raise DeserializationError("ActionType.id required")
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_codepipeline.types.action_type_settings
 
         out["settings"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionType:
                 data["settings"]
             )
         )
-    if "actionConfigurationProperties" in data:
+    if data.get("actionConfigurationProperties") is not None:
         import capo_codepipeline.types.action_configuration_property_list
 
         out["action_configuration_properties"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionType:
                 data["actionConfigurationProperties"]
             )
         )
-    if "inputArtifactDetails" in data:
+    if data.get("inputArtifactDetails") is not None:
         import capo_codepipeline.types.artifact_details
 
         out["input_artifact_details"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionType:
         )
     else:
         raise DeserializationError("ActionType.input_artifact_details required")
-    if "outputArtifactDetails" in data:
+    if data.get("outputArtifactDetails") is not None:
         import capo_codepipeline.types.artifact_details
 
         out["output_artifact_details"] = (

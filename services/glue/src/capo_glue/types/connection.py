@@ -175,11 +175,11 @@ def serialize_aws_json_1_1(value: Connection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Connection:
     out: Connection = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         import capo_glue.types.connection_type
 
         out["connection_type"] = (
@@ -187,13 +187,13 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["ConnectionType"]
             )
         )
-    if "MatchCriteria" in data:
+    if data.get("MatchCriteria") is not None:
         import capo_glue.types.match_criteria
 
         out["match_criteria"] = capo_glue.types.match_criteria.deserialize_aws_json_1_1(
             data["MatchCriteria"]
         )
-    if "ConnectionProperties" in data:
+    if data.get("ConnectionProperties") is not None:
         import capo_glue.types.connection_properties
 
         out["connection_properties"] = (
@@ -201,13 +201,13 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["ConnectionProperties"]
             )
         )
-    if "SparkProperties" in data:
+    if data.get("SparkProperties") is not None:
         import capo_glue.types.property_map
 
         out["spark_properties"] = capo_glue.types.property_map.deserialize_aws_json_1_1(
             data["SparkProperties"]
         )
-    if "AthenaProperties" in data:
+    if data.get("AthenaProperties") is not None:
         import capo_glue.types.property_map
 
         out["athena_properties"] = (
@@ -215,7 +215,7 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["AthenaProperties"]
             )
         )
-    if "PythonProperties" in data:
+    if data.get("PythonProperties") is not None:
         import capo_glue.types.property_map
 
         out["python_properties"] = (
@@ -223,7 +223,7 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["PythonProperties"]
             )
         )
-    if "PhysicalConnectionRequirements" in data:
+    if data.get("PhysicalConnectionRequirements") is not None:
         import capo_glue.types.physical_connection_requirements
 
         out["physical_connection_requirements"] = (
@@ -231,29 +231,29 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["PhysicalConnectionRequirements"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_glue.types.timestamp
 
         out["creation_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_glue.types.timestamp
 
         out["last_updated_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastUpdatedTime"]
         )
-    if "LastUpdatedBy" in data:
+    if data.get("LastUpdatedBy") is not None:
         out["last_updated_by"] = data["LastUpdatedBy"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.connection_status
 
         out["status"] = capo_glue.types.connection_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "LastConnectionValidationTime" in data:
+    if data.get("LastConnectionValidationTime") is not None:
         import capo_glue.types.timestamp
 
         out["last_connection_validation_time"] = (
@@ -261,7 +261,7 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["LastConnectionValidationTime"]
             )
         )
-    if "AuthenticationConfiguration" in data:
+    if data.get("AuthenticationConfiguration") is not None:
         import capo_glue.types.authentication_configuration
 
         out["authentication_configuration"] = (
@@ -269,9 +269,9 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["AuthenticationConfiguration"]
             )
         )
-    if "ConnectionSchemaVersion" in data:
+    if data.get("ConnectionSchemaVersion") is not None:
         out["connection_schema_version"] = data["ConnectionSchemaVersion"]
-    if "CompatibleComputeEnvironments" in data:
+    if data.get("CompatibleComputeEnvironments") is not None:
         import capo_glue.types.compute_environment_list
 
         out["compatible_compute_environments"] = (

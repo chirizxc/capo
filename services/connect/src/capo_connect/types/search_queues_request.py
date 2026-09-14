@@ -56,21 +56,21 @@ def serialize_json(value: SearchQueuesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchQueuesRequest:
     out: SearchQueuesRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("SearchQueuesRequest.instance_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "SearchFilter" in data:
+    if data.get("SearchFilter") is not None:
         import capo_connect.types.queue_search_filter
 
         out["search_filter"] = capo_connect.types.queue_search_filter.deserialize_json(
             data["SearchFilter"]
         )
-    if "SearchCriteria" in data:
+    if data.get("SearchCriteria") is not None:
         import capo_connect.types.queue_search_criteria
 
         out["search_criteria"] = (

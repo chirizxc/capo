@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DisassociateSoftwareFromImageBuilderRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateSoftwareFromImageBuilderRequest:
     out: DisassociateSoftwareFromImageBuilderRequest = {}  # type: ignore[typeddict-item]
-    if "ImageBuilderName" in data:
+    if data.get("ImageBuilderName") is not None:
         out["image_builder_name"] = data["ImageBuilderName"]
-    if "SoftwareNames" in data:
+    if data.get("SoftwareNames") is not None:
         import capo_appstream.types.string_list
 
         out["software_names"] = (

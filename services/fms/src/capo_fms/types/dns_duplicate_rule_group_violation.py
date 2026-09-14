@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DnsDuplicateRuleGroupViolation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DnsDuplicateRuleGroupViolation:
     out: DnsDuplicateRuleGroupViolation = {}  # type: ignore[typeddict-item]
-    if "ViolationTarget" in data:
+    if data.get("ViolationTarget") is not None:
         out["violation_target"] = data["ViolationTarget"]
-    if "ViolationTargetDescription" in data:
+    if data.get("ViolationTargetDescription") is not None:
         out["violation_target_description"] = data["ViolationTargetDescription"]
     return out

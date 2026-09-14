@@ -68,7 +68,7 @@ def serialize_aws_json_1_0(value: ConsumableDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConsumableDetails:
     out: ConsumableDetails = {}  # type: ignore[typeddict-item]
-    if "AllocatedAmount" in data:
+    if data.get("AllocatedAmount") is not None:
         import capo_partnercentral_benefits.types.monetary_value
 
         out["allocated_amount"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConsumableDetails:
                 data["AllocatedAmount"]
             )
         )
-    if "RemainingAmount" in data:
+    if data.get("RemainingAmount") is not None:
         import capo_partnercentral_benefits.types.monetary_value
 
         out["remaining_amount"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConsumableDetails:
                 data["RemainingAmount"]
             )
         )
-    if "UtilizedAmount" in data:
+    if data.get("UtilizedAmount") is not None:
         import capo_partnercentral_benefits.types.monetary_value
 
         out["utilized_amount"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConsumableDetails:
                 data["UtilizedAmount"]
             )
         )
-    if "IssuanceDetails" in data:
+    if data.get("IssuanceDetails") is not None:
         import capo_partnercentral_benefits.types.issuance_detail
 
         out["issuance_details"] = (

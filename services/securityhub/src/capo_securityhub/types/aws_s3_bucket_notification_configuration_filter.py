@@ -31,7 +31,7 @@ def serialize_json(value: AwsS3BucketNotificationConfigurationFilter) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketNotificationConfigurationFilter:
     out: AwsS3BucketNotificationConfigurationFilter = {}  # type: ignore[typeddict-item]
-    if "S3KeyFilter" in data:
+    if data.get("S3KeyFilter") is not None:
         import capo_securityhub.types.aws_s3_bucket_notification_configuration_s3_key_filter
 
         out["s3_key_filter"] = (

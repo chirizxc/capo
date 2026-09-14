@@ -34,10 +34,10 @@ def serialize_json(value: CreateAttendeeError) -> dict:
 
 def deserialize_json(data: dict) -> CreateAttendeeError:
     out: CreateAttendeeError = {}  # type: ignore[typeddict-item]
-    if "ExternalUserId" in data:
+    if data.get("ExternalUserId") is not None:
         out["external_user_id"] = data["ExternalUserId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

@@ -48,18 +48,18 @@ def serialize_aws_json_1_1(value: AllowDenyList) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AllowDenyList:
     out: AllowDenyList = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AllowDenyList.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "variableType" in data:
+    if data.get("variableType") is not None:
         out["variable_type"] = data["variableType"]
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         out["created_time"] = data["createdTime"]
-    if "updatedTime" in data:
+    if data.get("updatedTime") is not None:
         out["updated_time"] = data["updatedTime"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

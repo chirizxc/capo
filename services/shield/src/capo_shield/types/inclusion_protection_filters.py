@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: InclusionProtectionFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InclusionProtectionFilters:
     out: InclusionProtectionFilters = {}  # type: ignore[typeddict-item]
-    if "ResourceArns" in data:
+    if data.get("ResourceArns") is not None:
         import capo_shield.types.resource_arn_filters
 
         out["resource_arns"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> InclusionProtectionFilters:
                 data["ResourceArns"]
             )
         )
-    if "ProtectionNames" in data:
+    if data.get("ProtectionNames") is not None:
         import capo_shield.types.protection_name_filters
 
         out["protection_names"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> InclusionProtectionFilters:
                 data["ProtectionNames"]
             )
         )
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_shield.types.protected_resource_type_filters
 
         out["resource_types"] = (

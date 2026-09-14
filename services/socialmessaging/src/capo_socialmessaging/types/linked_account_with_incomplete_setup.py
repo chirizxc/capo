@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: LinkedAccountWithIncompleteSetup) -> dict
 def deserialize_json(data: dict) -> LinkedAccountWithIncompleteSetup:
     out: LinkedAccountWithIncompleteSetup = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_socialmessaging.types.linked_whats_app_business_account_id_meta_data
 
         out[key] = (

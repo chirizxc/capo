@@ -28,7 +28,7 @@ def serialize_json(value: OutputConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> OutputConfigInput:
     out: OutputConfigInput = {}  # type: ignore[typeddict-item]
-    if "S3Data" in data:
+    if data.get("S3Data") is not None:
         import capo_sagemaker_geospatial.types.export_s3_data_input
 
         out["s3_data"] = (

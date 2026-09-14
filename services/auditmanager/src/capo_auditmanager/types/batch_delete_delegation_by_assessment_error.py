@@ -33,10 +33,10 @@ def serialize_json(value: BatchDeleteDelegationByAssessmentError) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteDelegationByAssessmentError:
     out: BatchDeleteDelegationByAssessmentError = {}  # type: ignore[typeddict-item]
-    if "delegationId" in data:
+    if data.get("delegationId") is not None:
         out["delegation_id"] = data["delegationId"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

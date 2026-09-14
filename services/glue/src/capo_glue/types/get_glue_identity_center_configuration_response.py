@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: GetGlueIdentityCenterConfigurationResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> GetGlueIdentityCenterConfigurationResponse:
     out: GetGlueIdentityCenterConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
-    if "Scopes" in data:
+    if data.get("Scopes") is not None:
         import capo_glue.types.orchestration_string_list
 
         out["scopes"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetGlueIdentityCenterConfigurationRe
                 data["Scopes"]
             )
         )
-    if "UserBackgroundSessionsEnabled" in data:
+    if data.get("UserBackgroundSessionsEnabled") is not None:
         out["user_background_sessions_enabled"] = data["UserBackgroundSessionsEnabled"]
     return out

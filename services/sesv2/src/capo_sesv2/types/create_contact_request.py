@@ -47,11 +47,11 @@ def serialize_json(value: CreateContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateContactRequest:
     out: CreateContactRequest = {}  # type: ignore[typeddict-item]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
     else:
         raise DeserializationError("CreateContactRequest.email_address required")
-    if "TopicPreferences" in data:
+    if data.get("TopicPreferences") is not None:
         import capo_sesv2.types.topic_preference_list
 
         out["topic_preferences"] = (
@@ -59,10 +59,10 @@ def deserialize_json(data: dict) -> CreateContactRequest:
                 data["TopicPreferences"]
             )
         )
-    if "UnsubscribeAll" in data:
+    if data.get("UnsubscribeAll") is not None:
         out["unsubscribe_all"] = data["UnsubscribeAll"]
     else:
         out["unsubscribe_all"] = False
-    if "AttributesData" in data:
+    if data.get("AttributesData") is not None:
         out["attributes_data"] = data["AttributesData"]
     return out

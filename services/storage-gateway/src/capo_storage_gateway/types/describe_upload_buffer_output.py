@@ -40,19 +40,19 @@ def serialize_aws_json_1_1(value: DescribeUploadBufferOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUploadBufferOutput:
     out: DescribeUploadBufferOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "DiskIds" in data:
+    if data.get("DiskIds") is not None:
         import capo_storage_gateway.types.disk_ids
 
         out["disk_ids"] = capo_storage_gateway.types.disk_ids.deserialize_aws_json_1_1(
             data["DiskIds"]
         )
-    if "UploadBufferUsedInBytes" in data:
+    if data.get("UploadBufferUsedInBytes") is not None:
         out["upload_buffer_used_in_bytes"] = data["UploadBufferUsedInBytes"]
     else:
         out["upload_buffer_used_in_bytes"] = 0
-    if "UploadBufferAllocatedInBytes" in data:
+    if data.get("UploadBufferAllocatedInBytes") is not None:
         out["upload_buffer_allocated_in_bytes"] = data["UploadBufferAllocatedInBytes"]
     else:
         out["upload_buffer_allocated_in_bytes"] = 0

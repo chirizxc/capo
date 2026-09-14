@@ -108,7 +108,7 @@ def serialize_json(value: CreateStageRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateStageRequest:
     out: CreateStageRequest = {}  # type: ignore[typeddict-item]
-    if "accessLogSettings" in data:
+    if data.get("accessLogSettings") is not None:
         import capo_apigatewayv2.types.access_log_settings
 
         out["access_log_settings"] = (
@@ -116,11 +116,11 @@ def deserialize_json(data: dict) -> CreateStageRequest:
                 data["accessLogSettings"]
             )
         )
-    if "autoDeploy" in data:
+    if data.get("autoDeploy") is not None:
         out["auto_deploy"] = data["autoDeploy"]
-    if "clientCertificateId" in data:
+    if data.get("clientCertificateId") is not None:
         out["client_certificate_id"] = data["clientCertificateId"]
-    if "defaultRouteSettings" in data:
+    if data.get("defaultRouteSettings") is not None:
         import capo_apigatewayv2.types.route_settings
 
         out["default_route_settings"] = (
@@ -128,11 +128,11 @@ def deserialize_json(data: dict) -> CreateStageRequest:
                 data["defaultRouteSettings"]
             )
         )
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "routeSettings" in data:
+    if data.get("routeSettings") is not None:
         import capo_apigatewayv2.types.route_settings_map
 
         out["route_settings"] = (
@@ -140,9 +140,9 @@ def deserialize_json(data: dict) -> CreateStageRequest:
                 data["routeSettings"]
             )
         )
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
-    if "stageVariables" in data:
+    if data.get("stageVariables") is not None:
         import capo_apigatewayv2.types.stage_variables_map
 
         out["stage_variables"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> CreateStageRequest:
                 data["stageVariables"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])

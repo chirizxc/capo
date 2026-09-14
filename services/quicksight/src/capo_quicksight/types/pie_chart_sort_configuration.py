@@ -68,7 +68,7 @@ def serialize_json(value: PieChartSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PieChartSortConfiguration:
     out: PieChartSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "CategorySort" in data:
+    if data.get("CategorySort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["category_sort"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> PieChartSortConfiguration:
                 data["CategorySort"]
             )
         )
-    if "CategoryItemsLimit" in data:
+    if data.get("CategoryItemsLimit") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["category_items_limit"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> PieChartSortConfiguration:
                 data["CategoryItemsLimit"]
             )
         )
-    if "SmallMultiplesSort" in data:
+    if data.get("SmallMultiplesSort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["small_multiples_sort"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> PieChartSortConfiguration:
                 data["SmallMultiplesSort"]
             )
         )
-    if "SmallMultiplesLimitConfiguration" in data:
+    if data.get("SmallMultiplesLimitConfiguration") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["small_multiples_limit_configuration"] = (

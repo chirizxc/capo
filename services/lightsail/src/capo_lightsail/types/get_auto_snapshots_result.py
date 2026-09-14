@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: GetAutoSnapshotsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAutoSnapshotsResult:
     out: GetAutoSnapshotsResult = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAutoSnapshotsResult:
                 data["resourceType"]
             )
         )
-    if "autoSnapshots" in data:
+    if data.get("autoSnapshots") is not None:
         import capo_lightsail.types.auto_snapshot_details_list
 
         out["auto_snapshots"] = (

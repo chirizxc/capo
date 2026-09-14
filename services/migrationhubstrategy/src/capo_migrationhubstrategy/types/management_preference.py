@@ -66,7 +66,7 @@ def serialize_json(value: ManagementPreference) -> dict:
 
 
 def deserialize_json(data: dict) -> ManagementPreference:
-    if "awsManagedResources" in data:
+    if data.get("awsManagedResources") is not None:
         import capo_migrationhubstrategy.types.aws_managed_resources
 
         return {
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ManagementPreference:
                 data["awsManagedResources"]
             )
         }
-    elif "selfManageResources" in data:
+    elif data.get("selfManageResources") is not None:
         import capo_migrationhubstrategy.types.self_manage_resources
 
         return {
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> ManagementPreference:
                 data["selfManageResources"]
             )
         }
-    elif "noPreference" in data:
+    elif data.get("noPreference") is not None:
         import capo_migrationhubstrategy.types.no_management_preference
 
         return {

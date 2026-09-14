@@ -35,13 +35,13 @@ def serialize_json(value: StartActiveApprovalTeamDeletionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartActiveApprovalTeamDeletionResponse:
     out: StartActiveApprovalTeamDeletionResponse = {}  # type: ignore[typeddict-item]
-    if "DeletionCompletionTime" in data:
+    if data.get("DeletionCompletionTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["deletion_completion_time"] = capo_mpa.types.iso_timestamp.deserialize_json(
             data["DeletionCompletionTime"]
         )
-    if "DeletionStartTime" in data:
+    if data.get("DeletionStartTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["deletion_start_time"] = capo_mpa.types.iso_timestamp.deserialize_json(

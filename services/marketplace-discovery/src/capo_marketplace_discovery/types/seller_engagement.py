@@ -46,7 +46,7 @@ def serialize_json(value: SellerEngagement) -> dict:
 
 def deserialize_json(data: dict) -> SellerEngagement:
     out: SellerEngagement = {}  # type: ignore[typeddict-item]
-    if "engagementType" in data:
+    if data.get("engagementType") is not None:
         import capo_marketplace_discovery.types.seller_engagement_type
 
         out["engagement_type"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> SellerEngagement:
         )
     else:
         raise DeserializationError("SellerEngagement.engagement_type required")
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         import capo_marketplace_discovery.types.seller_engagement_content_type
 
         out["content_type"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> SellerEngagement:
         )
     else:
         raise DeserializationError("SellerEngagement.content_type required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("SellerEngagement.value required")

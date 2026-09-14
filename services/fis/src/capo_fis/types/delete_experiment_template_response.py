@@ -29,7 +29,7 @@ def serialize_json(value: DeleteExperimentTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteExperimentTemplateResponse:
     out: DeleteExperimentTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "experimentTemplate" in data:
+    if data.get("experimentTemplate") is not None:
         import capo_fis.types.experiment_template
 
         out["experiment_template"] = (

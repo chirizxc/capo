@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: PreviewAgentsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PreviewAgentsRequest:
     out: PreviewAgentsRequest = {}  # type: ignore[typeddict-item]
-    if "previewAgentsArn" in data:
+    if data.get("previewAgentsArn") is not None:
         out["preview_agents_arn"] = data["previewAgentsArn"]
     else:
         raise DeserializationError("PreviewAgentsRequest.preview_agents_arn required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

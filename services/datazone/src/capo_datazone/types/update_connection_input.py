@@ -58,21 +58,21 @@ def serialize_json(value: UpdateConnectionInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectionInput:
     out: UpdateConnectionInput = {}  # type: ignore[typeddict-item]
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_datazone.types.configurations
 
         out["configurations"] = capo_datazone.types.configurations.deserialize_json(
             data["configurations"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "awsLocation" in data:
+    if data.get("awsLocation") is not None:
         import capo_datazone.types.aws_location
 
         out["aws_location"] = capo_datazone.types.aws_location.deserialize_json(
             data["awsLocation"]
         )
-    if "props" in data:
+    if data.get("props") is not None:
         import capo_datazone.types.connection_properties_patch
 
         out["props"] = capo_datazone.types.connection_properties_patch.deserialize_json(

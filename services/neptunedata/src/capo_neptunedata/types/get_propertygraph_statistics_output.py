@@ -29,11 +29,11 @@ def serialize_json(value: GetPropertygraphStatisticsOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetPropertygraphStatisticsOutput:
     out: GetPropertygraphStatisticsOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetPropertygraphStatisticsOutput.status required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_neptunedata.types.statistics
 
         out["payload"] = capo_neptunedata.types.statistics.deserialize_json(

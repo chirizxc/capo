@@ -13,9 +13,9 @@ from capo_migration_hub_refactor_spaces import AsyncMigrationHubRefactorSpacesCl
 
 
 async def main():
-    async with AsyncMigrationHubRefactorSpacesClient() as s3:
+    async with AsyncMigrationHubRefactorSpacesClient() as migration_hub_refactor_spaces:
         # Example: call the create_application operation
-        response = await s3.create_application()
+        response = await migration_hub_refactor_spaces.create_application()
         print(response["name"])
 ```
 
@@ -28,9 +28,9 @@ from capo_migration_hub_refactor_spaces import AsyncMigrationHubRefactorSpacesCl
 
 
 async def main():
-    async with AsyncMigrationHubRefactorSpacesClient() as s3:
+    async with AsyncMigrationHubRefactorSpacesClient() as migration_hub_refactor_spaces:
         # Example: paginate over list_applications
-        async for item in s3.iter_list_applications():
+        async for item in migration_hub_refactor_spaces.iter_list_applications():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_migration_hub_refactor_spaces.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncMigrationHubRefactorSpacesClient() as s3:
+    async with AsyncMigrationHubRefactorSpacesClient() as migration_hub_refactor_spaces:
         try:
-            await s3.create_application()
+            await migration_hub_refactor_spaces.create_application()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_migration_hub_refactor_spaces import AsyncMigrationHubRefactorSpacesCl
 
 
 async def main():
-    async with AsyncMigrationHubRefactorSpacesClient() as s3:
+    async with AsyncMigrationHubRefactorSpacesClient() as migration_hub_refactor_spaces:
         # Default: 3 attempts for every operation
-        response = await s3.create_application()
+        response = await migration_hub_refactor_spaces.create_application()
 
         # Override per operation
-        response = await s3.create_application(config_overrides={"retry_max_attempts": 5})
+        response = await migration_hub_refactor_spaces.create_application(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_application(config_overrides={"retry_max_attempts": 1})
+        response = await migration_hub_refactor_spaces.create_application(config_overrides={"retry_max_attempts": 1})
 ```

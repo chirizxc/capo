@@ -28,11 +28,11 @@ def serialize_json(value: TerminateSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> TerminateSessionResponse:
     out: TerminateSessionResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("TerminateSessionResponse.application_id required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("TerminateSessionResponse.session_id required")

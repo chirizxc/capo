@@ -35,10 +35,10 @@ def serialize_json(value: LoRaWANGatewayVersion) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANGatewayVersion:
     out: LoRaWANGatewayVersion = {}  # type: ignore[typeddict-item]
-    if "PackageVersion" in data:
+    if data.get("PackageVersion") is not None:
         out["package_version"] = data["PackageVersion"]
-    if "Model" in data:
+    if data.get("Model") is not None:
         out["model"] = data["Model"]
-    if "Station" in data:
+    if data.get("Station") is not None:
         out["station"] = data["Station"]
     return out

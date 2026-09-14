@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AttributesErrors:
 
     out: AttributesErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.attribute_error.deserialize_json(item))
     return out

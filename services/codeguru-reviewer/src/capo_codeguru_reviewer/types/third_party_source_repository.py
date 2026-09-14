@@ -32,15 +32,15 @@ def serialize_json(value: ThirdPartySourceRepository) -> dict:
 
 def deserialize_json(data: dict) -> ThirdPartySourceRepository:
     out: ThirdPartySourceRepository = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ThirdPartySourceRepository.name required")
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
     else:
         raise DeserializationError("ThirdPartySourceRepository.connection_arn required")
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
     else:
         raise DeserializationError("ThirdPartySourceRepository.owner required")

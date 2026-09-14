@@ -22,7 +22,7 @@ def serialize_json(value: DataPrivacy) -> dict:
 
 def deserialize_json(data: dict) -> DataPrivacy:
     out: DataPrivacy = {}  # type: ignore[typeddict-item]
-    if "childDirected" in data:
+    if data.get("childDirected") is not None:
         out["child_directed"] = data["childDirected"]
     else:
         out["child_directed"] = False

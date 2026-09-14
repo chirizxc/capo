@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteStoredQueryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteStoredQueryRequest:
     out: DeleteStoredQueryRequest = {}  # type: ignore[typeddict-item]
-    if "QueryName" in data:
+    if data.get("QueryName") is not None:
         out["query_name"] = data["QueryName"]
     else:
         raise DeserializationError("DeleteStoredQueryRequest.query_name required")

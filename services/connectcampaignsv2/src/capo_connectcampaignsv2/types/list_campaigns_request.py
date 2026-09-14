@@ -36,11 +36,11 @@ def serialize_json(value: ListCampaignsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListCampaignsRequest:
     out: ListCampaignsRequest = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_connectcampaignsv2.types.campaign_filters
 
         out["filters"] = (

@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: ListRecoveryPointsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRecoveryPointsResponse:
     out: ListRecoveryPointsResponse = {}  # type: ignore[typeddict-item]
-    if "recoveryPoints" in data:
+    if data.get("recoveryPoints") is not None:
         import capo_redshift_serverless.types.recovery_point_list
 
         out["recovery_points"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListRecoveryPointsResponse:
                 data["recoveryPoints"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

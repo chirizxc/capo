@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: GetDeploymentGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDeploymentGroupInput:
     out: GetDeploymentGroupInput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
     else:
         raise DeserializationError("GetDeploymentGroupInput.application_name required")
-    if "deploymentGroupName" in data:
+    if data.get("deploymentGroupName") is not None:
         out["deployment_group_name"] = data["deploymentGroupName"]
     else:
         raise DeserializationError(

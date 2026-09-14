@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: RightsizingRecommendationMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RightsizingRecommendationMetadata:
     out: RightsizingRecommendationMetadata = {}  # type: ignore[typeddict-item]
-    if "RecommendationId" in data:
+    if data.get("RecommendationId") is not None:
         out["recommendation_id"] = data["RecommendationId"]
-    if "GenerationTimestamp" in data:
+    if data.get("GenerationTimestamp") is not None:
         out["generation_timestamp"] = data["GenerationTimestamp"]
-    if "LookbackPeriodInDays" in data:
+    if data.get("LookbackPeriodInDays") is not None:
         import capo_cost_explorer.types.lookback_period_in_days
 
         out["lookback_period_in_days"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> RightsizingRecommendationMetadata:
                 data["LookbackPeriodInDays"]
             )
         )
-    if "AdditionalMetadata" in data:
+    if data.get("AdditionalMetadata") is not None:
         out["additional_metadata"] = data["AdditionalMetadata"]
     return out

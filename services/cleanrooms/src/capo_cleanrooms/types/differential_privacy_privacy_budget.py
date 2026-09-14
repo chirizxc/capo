@@ -34,7 +34,7 @@ def serialize_json(value: DifferentialPrivacyPrivacyBudget) -> dict:
 
 def deserialize_json(data: dict) -> DifferentialPrivacyPrivacyBudget:
     out: DifferentialPrivacyPrivacyBudget = {}  # type: ignore[typeddict-item]
-    if "aggregations" in data:
+    if data.get("aggregations") is not None:
         import capo_cleanrooms.types.differential_privacy_privacy_budget_aggregation_list
 
         out["aggregations"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> DifferentialPrivacyPrivacyBudget:
         raise DeserializationError(
             "DifferentialPrivacyPrivacyBudget.aggregations required"
         )
-    if "epsilon" in data:
+    if data.get("epsilon") is not None:
         out["epsilon"] = data["epsilon"]
     else:
         raise DeserializationError("DifferentialPrivacyPrivacyBudget.epsilon required")

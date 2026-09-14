@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_workspaces_web._auth._signers
@@ -86,18 +87,21 @@ class UserAccessLoggingSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_user_access_logging_settings_request.CreateUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["kinesis_stream_arn"] = kinesis_stream_arn
+        input_: capo_workspaces_web.types.create_user_access_logging_settings_request.CreateUserAccessLoggingSettingsRequest = {
+            "kinesis_stream_arn": kinesis_stream_arn
+        }
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -135,14 +139,16 @@ class UserAccessLoggingSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_user_access_logging_settings_request.GetUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_access_logging_settings_arn"] = user_access_logging_settings_arn
+        input_: capo_workspaces_web.types.get_user_access_logging_settings_request.GetUserAccessLoggingSettingsRequest = {
+            "user_access_logging_settings_arn": user_access_logging_settings_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -188,18 +194,21 @@ class UserAccessLoggingSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_user_access_logging_settings_request.UpdateUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_access_logging_settings_arn"] = user_access_logging_settings_arn
+        input_: capo_workspaces_web.types.update_user_access_logging_settings_request.UpdateUserAccessLoggingSettingsRequest = {
+            "user_access_logging_settings_arn": user_access_logging_settings_arn
+        }
         if kinesis_stream_arn is not None:
             input_["kinesis_stream_arn"] = kinesis_stream_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -237,14 +246,16 @@ class UserAccessLoggingSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_user_access_logging_settings_request.DeleteUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_access_logging_settings_arn"] = user_access_logging_settings_arn
+        input_: capo_workspaces_web.types.delete_user_access_logging_settings_request.DeleteUserAccessLoggingSettingsRequest = {
+            "user_access_logging_settings_arn": user_access_logging_settings_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -287,7 +298,7 @@ class UserAccessLoggingSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_user_access_logging_settings_request.ListUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_user_access_logging_settings_request.ListUserAccessLoggingSettingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -298,6 +309,7 @@ class UserAccessLoggingSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -348,18 +360,21 @@ class AsyncUserAccessLoggingSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_user_access_logging_settings_request.CreateUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["kinesis_stream_arn"] = kinesis_stream_arn
+        input_: capo_workspaces_web.types.create_user_access_logging_settings_request.CreateUserAccessLoggingSettingsRequest = {
+            "kinesis_stream_arn": kinesis_stream_arn
+        }
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -398,14 +413,16 @@ class AsyncUserAccessLoggingSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_user_access_logging_settings_request.GetUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_access_logging_settings_arn"] = user_access_logging_settings_arn
+        input_: capo_workspaces_web.types.get_user_access_logging_settings_request.GetUserAccessLoggingSettingsRequest = {
+            "user_access_logging_settings_arn": user_access_logging_settings_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -452,18 +469,21 @@ class AsyncUserAccessLoggingSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_user_access_logging_settings_request.UpdateUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_access_logging_settings_arn"] = user_access_logging_settings_arn
+        input_: capo_workspaces_web.types.update_user_access_logging_settings_request.UpdateUserAccessLoggingSettingsRequest = {
+            "user_access_logging_settings_arn": user_access_logging_settings_arn
+        }
         if kinesis_stream_arn is not None:
             input_["kinesis_stream_arn"] = kinesis_stream_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -502,14 +522,16 @@ class AsyncUserAccessLoggingSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_user_access_logging_settings_request.DeleteUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_access_logging_settings_arn"] = user_access_logging_settings_arn
+        input_: capo_workspaces_web.types.delete_user_access_logging_settings_request.DeleteUserAccessLoggingSettingsRequest = {
+            "user_access_logging_settings_arn": user_access_logging_settings_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -553,7 +575,7 @@ class AsyncUserAccessLoggingSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_user_access_logging_settings_request.ListUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_user_access_logging_settings_request.ListUserAccessLoggingSettingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -564,4 +586,5 @@ class AsyncUserAccessLoggingSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

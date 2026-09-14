@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> QualificationList:
 
     out: QualificationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mturk.types.qualification.deserialize_aws_json_1_1(item))
     return out

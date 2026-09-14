@@ -61,23 +61,23 @@ def serialize_aws_json_1_0(value: VpcEndpointAssociation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VpcEndpointAssociation:
     out: VpcEndpointAssociation = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointAssociationId" in data:
+    if data.get("VpcEndpointAssociationId") is not None:
         out["vpc_endpoint_association_id"] = data["VpcEndpointAssociationId"]
-    if "VpcEndpointAssociationArn" in data:
+    if data.get("VpcEndpointAssociationArn") is not None:
         out["vpc_endpoint_association_arn"] = data["VpcEndpointAssociationArn"]
     else:
         raise DeserializationError(
             "VpcEndpointAssociation.vpc_endpoint_association_arn required"
         )
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
     else:
         raise DeserializationError("VpcEndpointAssociation.firewall_arn required")
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     else:
         raise DeserializationError("VpcEndpointAssociation.vpc_id required")
-    if "SubnetMapping" in data:
+    if data.get("SubnetMapping") is not None:
         import capo_network_firewall.types.subnet_mapping
 
         out["subnet_mapping"] = (
@@ -87,9 +87,9 @@ def deserialize_aws_json_1_0(data: dict) -> VpcEndpointAssociation:
         )
     else:
         raise DeserializationError("VpcEndpointAssociation.subnet_mapping required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(

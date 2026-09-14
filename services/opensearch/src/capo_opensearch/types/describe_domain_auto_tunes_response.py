@@ -32,12 +32,12 @@ def serialize_json(value: DescribeDomainAutoTunesResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDomainAutoTunesResponse:
     out: DescribeDomainAutoTunesResponse = {}  # type: ignore[typeddict-item]
-    if "AutoTunes" in data:
+    if data.get("AutoTunes") is not None:
         import capo_opensearch.types.auto_tune_list
 
         out["auto_tunes"] = capo_opensearch.types.auto_tune_list.deserialize_json(
             data["AutoTunes"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

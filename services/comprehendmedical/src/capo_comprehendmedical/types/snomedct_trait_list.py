@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> SNOMEDCTTraitList:
 
     out: SNOMEDCTTraitList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehendmedical.types.snomedct_trait.deserialize_aws_json_1_1(item)
         )

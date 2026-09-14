@@ -24,7 +24,7 @@ def serialize_json(value: InvalidDeviceException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidDeviceException_:
     out: InvalidDeviceException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidDeviceException(ServiceError):
 
     code: str | None = "InvalidDeviceException"
 
-    def __init__(self, data: InvalidDeviceException_):
+    def __init__(self, data: InvalidDeviceException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidDeviceException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidDeviceException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidDeviceException":
+        return cls(deserialize_json(data), message)

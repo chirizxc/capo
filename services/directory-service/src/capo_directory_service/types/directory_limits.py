@@ -76,37 +76,37 @@ def serialize_aws_json_1_1(value: DirectoryLimits) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectoryLimits:
     out: DirectoryLimits = {}  # type: ignore[typeddict-item]
-    if "CloudOnlyDirectoriesLimit" in data:
+    if data.get("CloudOnlyDirectoriesLimit") is not None:
         out["cloud_only_directories_limit"] = data["CloudOnlyDirectoriesLimit"]
-    if "CloudOnlyDirectoriesCurrentCount" in data:
+    if data.get("CloudOnlyDirectoriesCurrentCount") is not None:
         out["cloud_only_directories_current_count"] = data[
             "CloudOnlyDirectoriesCurrentCount"
         ]
-    if "CloudOnlyDirectoriesLimitReached" in data:
+    if data.get("CloudOnlyDirectoriesLimitReached") is not None:
         out["cloud_only_directories_limit_reached"] = data[
             "CloudOnlyDirectoriesLimitReached"
         ]
     else:
         out["cloud_only_directories_limit_reached"] = False
-    if "CloudOnlyMicrosoftADLimit" in data:
+    if data.get("CloudOnlyMicrosoftADLimit") is not None:
         out["cloud_only_microsoft_ad_limit"] = data["CloudOnlyMicrosoftADLimit"]
-    if "CloudOnlyMicrosoftADCurrentCount" in data:
+    if data.get("CloudOnlyMicrosoftADCurrentCount") is not None:
         out["cloud_only_microsoft_ad_current_count"] = data[
             "CloudOnlyMicrosoftADCurrentCount"
         ]
-    if "CloudOnlyMicrosoftADLimitReached" in data:
+    if data.get("CloudOnlyMicrosoftADLimitReached") is not None:
         out["cloud_only_microsoft_ad_limit_reached"] = data[
             "CloudOnlyMicrosoftADLimitReached"
         ]
     else:
         out["cloud_only_microsoft_ad_limit_reached"] = False
-    if "ConnectedDirectoriesLimit" in data:
+    if data.get("ConnectedDirectoriesLimit") is not None:
         out["connected_directories_limit"] = data["ConnectedDirectoriesLimit"]
-    if "ConnectedDirectoriesCurrentCount" in data:
+    if data.get("ConnectedDirectoriesCurrentCount") is not None:
         out["connected_directories_current_count"] = data[
             "ConnectedDirectoriesCurrentCount"
         ]
-    if "ConnectedDirectoriesLimitReached" in data:
+    if data.get("ConnectedDirectoriesLimitReached") is not None:
         out["connected_directories_limit_reached"] = data[
             "ConnectedDirectoriesLimitReached"
         ]

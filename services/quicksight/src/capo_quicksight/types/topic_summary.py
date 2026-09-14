@@ -46,13 +46,13 @@ def serialize_json(value: TopicSummary) -> dict:
 
 def deserialize_json(data: dict) -> TopicSummary:
     out: TopicSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "TopicId" in data:
+    if data.get("TopicId") is not None:
         out["topic_id"] = data["TopicId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "UserExperienceVersion" in data:
+    if data.get("UserExperienceVersion") is not None:
         import capo_quicksight.types.topic_user_experience_version
 
         out["user_experience_version"] = (

@@ -43,7 +43,7 @@ def deserialize_json(
     data: dict,
 ) -> PurchaseReservedElasticsearchInstanceOfferingRequest:
     out: PurchaseReservedElasticsearchInstanceOfferingRequest = {}  # type: ignore[typeddict-item]
-    if "ReservedElasticsearchInstanceOfferingId" in data:
+    if data.get("ReservedElasticsearchInstanceOfferingId") is not None:
         out["reserved_elasticsearch_instance_offering_id"] = data[
             "ReservedElasticsearchInstanceOfferingId"
         ]
@@ -51,12 +51,12 @@ def deserialize_json(
         raise DeserializationError(
             "PurchaseReservedElasticsearchInstanceOfferingRequest.reserved_elasticsearch_instance_offering_id required"
         )
-    if "ReservationName" in data:
+    if data.get("ReservationName") is not None:
         out["reservation_name"] = data["ReservationName"]
     else:
         raise DeserializationError(
             "PurchaseReservedElasticsearchInstanceOfferingRequest.reservation_name required"
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
     return out

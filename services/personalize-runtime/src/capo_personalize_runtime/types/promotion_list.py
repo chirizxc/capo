@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PromotionList:
 
     out: PromotionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_personalize_runtime.types.promotion.deserialize_json(item))
     return out

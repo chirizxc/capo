@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: IntegrationError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IntegrationError:
     out: IntegrationError = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

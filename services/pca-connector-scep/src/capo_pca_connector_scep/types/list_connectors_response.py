@@ -34,7 +34,7 @@ def serialize_json(value: ListConnectorsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListConnectorsResponse:
     out: ListConnectorsResponse = {}  # type: ignore[typeddict-item]
-    if "Connectors" in data:
+    if data.get("Connectors") is not None:
         import capo_pca_connector_scep.types.connector_list
 
         out["connectors"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListConnectorsResponse:
                 data["Connectors"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

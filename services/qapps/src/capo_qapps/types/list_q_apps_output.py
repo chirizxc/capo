@@ -30,12 +30,12 @@ def serialize_json(value: ListQAppsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListQAppsOutput:
     out: ListQAppsOutput = {}  # type: ignore[typeddict-item]
-    if "apps" in data:
+    if data.get("apps") is not None:
         import capo_qapps.types.user_apps_list
 
         out["apps"] = capo_qapps.types.user_apps_list.deserialize_json(data["apps"])
     else:
         raise DeserializationError("ListQAppsOutput.apps required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -61,11 +61,11 @@ def serialize_aws_json_1_1(value: CreateNotebookInstanceLifecycleConfigInput) ->
 
 def deserialize_aws_json_1_1(data: dict) -> CreateNotebookInstanceLifecycleConfigInput:
     out: CreateNotebookInstanceLifecycleConfigInput = {}  # type: ignore[typeddict-item]
-    if "NotebookInstanceLifecycleConfigName" in data:
+    if data.get("NotebookInstanceLifecycleConfigName") is not None:
         out["notebook_instance_lifecycle_config_name"] = data[
             "NotebookInstanceLifecycleConfigName"
         ]
-    if "OnCreate" in data:
+    if data.get("OnCreate") is not None:
         import capo_sagemaker.types.notebook_instance_lifecycle_config_list
 
         out["on_create"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNotebookInstanceLifecycleConfi
                 data["OnCreate"]
             )
         )
-    if "OnStart" in data:
+    if data.get("OnStart") is not None:
         import capo_sagemaker.types.notebook_instance_lifecycle_config_list
 
         out["on_start"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNotebookInstanceLifecycleConfi
                 data["OnStart"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

@@ -42,13 +42,13 @@ def serialize_json(value: SsmParameterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SsmParameterConfiguration:
     out: SsmParameterConfiguration = {}  # type: ignore[typeddict-item]
-    if "amiAccountId" in data:
+    if data.get("amiAccountId") is not None:
         out["ami_account_id"] = data["amiAccountId"]
-    if "parameterName" in data:
+    if data.get("parameterName") is not None:
         out["parameter_name"] = data["parameterName"]
     else:
         raise DeserializationError("SsmParameterConfiguration.parameter_name required")
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_imagebuilder.types.ssm_parameter_data_type
 
         out["data_type"] = (

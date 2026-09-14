@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: ActiveDirectoryConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActiveDirectoryConfig:
     out: ActiveDirectoryConfig = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("ActiveDirectoryConfig.domain_name required")
-    if "ServiceAccountSecretArn" in data:
+    if data.get("ServiceAccountSecretArn") is not None:
         out["service_account_secret_arn"] = data["ServiceAccountSecretArn"]
     else:
         raise DeserializationError(

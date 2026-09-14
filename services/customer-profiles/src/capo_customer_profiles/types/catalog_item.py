@@ -106,39 +106,39 @@ def serialize_json(value: CatalogItem) -> dict:
 
 def deserialize_json(data: dict) -> CatalogItem:
     out: CatalogItem = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AdditionalInformation" in data:
+    if data.get("AdditionalInformation") is not None:
         out["additional_information"] = data["AdditionalInformation"]
-    if "ImageLink" in data:
+    if data.get("ImageLink") is not None:
         out["image_link"] = data["ImageLink"]
-    if "Link" in data:
+    if data.get("Link") is not None:
         out["link"] = data["Link"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["updated_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "Price" in data:
+    if data.get("Price") is not None:
         out["price"] = data["Price"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_customer_profiles.types.attributes
 
         out["attributes"] = capo_customer_profiles.types.attributes.deserialize_json(

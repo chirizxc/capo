@@ -35,14 +35,14 @@ def serialize_json(value: KendraConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KendraConfiguration:
     out: KendraConfiguration = {}  # type: ignore[typeddict-item]
-    if "kendraIndex" in data:
+    if data.get("kendraIndex") is not None:
         out["kendra_index"] = data["kendraIndex"]
     else:
         raise DeserializationError("KendraConfiguration.kendra_index required")
-    if "queryFilterStringEnabled" in data:
+    if data.get("queryFilterStringEnabled") is not None:
         out["query_filter_string_enabled"] = data["queryFilterStringEnabled"]
     else:
         out["query_filter_string_enabled"] = False
-    if "queryFilterString" in data:
+    if data.get("queryFilterString") is not None:
         out["query_filter_string"] = data["queryFilterString"]
     return out

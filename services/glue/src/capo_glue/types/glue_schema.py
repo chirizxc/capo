@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GlueSchema) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GlueSchema:
     out: GlueSchema = {}  # type: ignore[typeddict-item]
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_glue.types.glue_studio_schema_column_list
 
         out["columns"] = (

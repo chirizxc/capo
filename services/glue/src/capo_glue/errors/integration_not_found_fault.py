@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: IntegrationNotFoundFault_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IntegrationNotFoundFault_:
     out: IntegrationNotFoundFault_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -37,15 +37,18 @@ class IntegrationNotFoundFault(ServiceError):
 
     code: str | None = "IntegrationNotFoundFault"
 
-    def __init__(self, data: IntegrationNotFoundFault_):
+    def __init__(self, data: IntegrationNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IntegrationNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "IntegrationNotFoundFault":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "IntegrationNotFoundFault":
+        return cls(deserialize_aws_json_1_1(data), message)

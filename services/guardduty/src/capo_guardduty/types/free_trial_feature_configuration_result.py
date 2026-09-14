@@ -34,12 +34,12 @@ def serialize_json(value: FreeTrialFeatureConfigurationResult) -> dict:
 
 def deserialize_json(data: dict) -> FreeTrialFeatureConfigurationResult:
     out: FreeTrialFeatureConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_guardduty.types.free_trial_feature_result
 
         out["name"] = capo_guardduty.types.free_trial_feature_result.deserialize_json(
             data["name"]
         )
-    if "freeTrialDaysRemaining" in data:
+    if data.get("freeTrialDaysRemaining") is not None:
         out["free_trial_days_remaining"] = data["freeTrialDaysRemaining"]
     return out

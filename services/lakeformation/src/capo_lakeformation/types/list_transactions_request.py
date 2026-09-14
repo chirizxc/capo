@@ -48,9 +48,9 @@ def serialize_json(value: ListTransactionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListTransactionsRequest:
     out: ListTransactionsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "StatusFilter" in data:
+    if data.get("StatusFilter") is not None:
         import capo_lakeformation.types.transaction_status_filter
 
         out["status_filter"] = (
@@ -58,8 +58,8 @@ def deserialize_json(data: dict) -> ListTransactionsRequest:
                 data["StatusFilter"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

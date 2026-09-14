@@ -85,11 +85,11 @@ def serialize_aws_json_1_1(value: FleetCapacity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FleetCapacity:
     out: FleetCapacity = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_gamelift.types.ec2_instance_type
 
         out["instance_type"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetCapacity:
                 data["InstanceType"]
             )
         )
-    if "InstanceCounts" in data:
+    if data.get("InstanceCounts") is not None:
         import capo_gamelift.types.ec2_instance_counts
 
         out["instance_counts"] = (
@@ -105,9 +105,9 @@ def deserialize_aws_json_1_1(data: dict) -> FleetCapacity:
                 data["InstanceCounts"]
             )
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "GameServerContainerGroupCounts" in data:
+    if data.get("GameServerContainerGroupCounts") is not None:
         import capo_gamelift.types.game_server_container_group_counts
 
         out["game_server_container_group_counts"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetCapacity:
                 data["GameServerContainerGroupCounts"]
             )
         )
-    if "ManagedCapacityConfiguration" in data:
+    if data.get("ManagedCapacityConfiguration") is not None:
         import capo_gamelift.types.managed_capacity_configuration
 
         out["managed_capacity_configuration"] = (

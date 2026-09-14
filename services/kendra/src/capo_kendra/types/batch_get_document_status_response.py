@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: BatchGetDocumentStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetDocumentStatusResponse:
     out: BatchGetDocumentStatusResponse = {}  # type: ignore[typeddict-item]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_kendra.types.batch_get_document_status_response_errors
 
         out["errors"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetDocumentStatusResponse:
                 data["Errors"]
             )
         )
-    if "DocumentStatusList" in data:
+    if data.get("DocumentStatusList") is not None:
         import capo_kendra.types.document_status_list
 
         out["document_status_list"] = (

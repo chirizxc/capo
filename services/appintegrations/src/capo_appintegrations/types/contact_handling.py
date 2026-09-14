@@ -29,7 +29,7 @@ def serialize_json(value: ContactHandling) -> dict:
 
 def deserialize_json(data: dict) -> ContactHandling:
     out: ContactHandling = {}  # type: ignore[typeddict-item]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_appintegrations.types.contact_handling_scope
 
         out["scope"] = (

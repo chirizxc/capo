@@ -106,9 +106,9 @@ def serialize_json(value: RuleBasedMatchingResponse) -> dict:
 
 def deserialize_json(data: dict) -> RuleBasedMatchingResponse:
     out: RuleBasedMatchingResponse = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "MatchingRules" in data:
+    if data.get("MatchingRules") is not None:
         import capo_customer_profiles.types.matching_rules
 
         out["matching_rules"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> RuleBasedMatchingResponse:
                 data["MatchingRules"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.rule_based_matching_status
 
         out["status"] = (
@@ -124,15 +124,15 @@ def deserialize_json(data: dict) -> RuleBasedMatchingResponse:
                 data["Status"]
             )
         )
-    if "MaxAllowedRuleLevelForMerging" in data:
+    if data.get("MaxAllowedRuleLevelForMerging") is not None:
         out["max_allowed_rule_level_for_merging"] = data[
             "MaxAllowedRuleLevelForMerging"
         ]
-    if "MaxAllowedRuleLevelForMatching" in data:
+    if data.get("MaxAllowedRuleLevelForMatching") is not None:
         out["max_allowed_rule_level_for_matching"] = data[
             "MaxAllowedRuleLevelForMatching"
         ]
-    if "AttributeTypesSelector" in data:
+    if data.get("AttributeTypesSelector") is not None:
         import capo_customer_profiles.types.attribute_types_selector
 
         out["attribute_types_selector"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> RuleBasedMatchingResponse:
                 data["AttributeTypesSelector"]
             )
         )
-    if "ConflictResolution" in data:
+    if data.get("ConflictResolution") is not None:
         import capo_customer_profiles.types.conflict_resolution
 
         out["conflict_resolution"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> RuleBasedMatchingResponse:
                 data["ConflictResolution"]
             )
         )
-    if "ExportingConfig" in data:
+    if data.get("ExportingConfig") is not None:
         import capo_customer_profiles.types.exporting_config
 
         out["exporting_config"] = (

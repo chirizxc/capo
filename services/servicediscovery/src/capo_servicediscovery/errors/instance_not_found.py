@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InstanceNotFound_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceNotFound_:
     out: InstanceNotFound_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InstanceNotFound(ServiceError):
 
     code: str | None = "InstanceNotFound"
 
-    def __init__(self, data: InstanceNotFound_):
+    def __init__(self, data: InstanceNotFound_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InstanceNotFound",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InstanceNotFound":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InstanceNotFound":
+        return cls(deserialize_aws_json_1_1(data), message)

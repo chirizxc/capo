@@ -61,7 +61,7 @@ def serialize_json(value: GetUsageStatisticsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetUsageStatisticsRequest:
     out: GetUsageStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "filterBy" in data:
+    if data.get("filterBy") is not None:
         import capo_macie2.types.__list_of_usage_statistics_filter
 
         out["filter_by"] = (
@@ -69,17 +69,17 @@ def deserialize_json(data: dict) -> GetUsageStatisticsRequest:
                 data["filterBy"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_macie2.types.usage_statistics_sort_by
 
         out["sort_by"] = capo_macie2.types.usage_statistics_sort_by.deserialize_json(
             data["sortBy"]
         )
-    if "timeRange" in data:
+    if data.get("timeRange") is not None:
         import capo_macie2.types.time_range
 
         out["time_range"] = capo_macie2.types.time_range.deserialize_json(

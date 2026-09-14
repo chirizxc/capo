@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListEventDataStoresResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEventDataStoresResponse:
     out: ListEventDataStoresResponse = {}  # type: ignore[typeddict-item]
-    if "EventDataStores" in data:
+    if data.get("EventDataStores") is not None:
         import capo_cloudtrail.types.event_data_stores
 
         out["event_data_stores"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListEventDataStoresResponse:
                 data["EventDataStores"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

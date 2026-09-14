@@ -31,10 +31,10 @@ def serialize_aws_json_1_0(value: DisassociateMpaTeamInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateMpaTeamInput:
     out: DisassociateMpaTeamInput = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError("DisassociateMpaTeamInput.action required")
-    if "RequesterComment" in data:
+    if data.get("RequesterComment") is not None:
         out["requester_comment"] = data["RequesterComment"]
     return out

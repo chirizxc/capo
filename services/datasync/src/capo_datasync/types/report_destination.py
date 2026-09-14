@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: ReportDestination) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportDestination:
     out: ReportDestination = {}  # type: ignore[typeddict-item]
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_datasync.types.report_destination_s3
 
         out["s3"] = capo_datasync.types.report_destination_s3.deserialize_aws_json_1_1(

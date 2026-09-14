@@ -52,13 +52,13 @@ def serialize_json(value: ConditionalFormattingCustomIconCondition) -> dict:
 
 def deserialize_json(data: dict) -> ConditionalFormattingCustomIconCondition:
     out: ConditionalFormattingCustomIconCondition = {}  # type: ignore[typeddict-item]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError(
             "ConditionalFormattingCustomIconCondition.expression required"
         )
-    if "IconOptions" in data:
+    if data.get("IconOptions") is not None:
         import capo_quicksight.types.conditional_formatting_custom_icon_options
 
         out["icon_options"] = (
@@ -70,9 +70,9 @@ def deserialize_json(data: dict) -> ConditionalFormattingCustomIconCondition:
         raise DeserializationError(
             "ConditionalFormattingCustomIconCondition.icon_options required"
         )
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
-    if "DisplayConfiguration" in data:
+    if data.get("DisplayConfiguration") is not None:
         import capo_quicksight.types.conditional_formatting_icon_display_configuration
 
         out["display_configuration"] = (

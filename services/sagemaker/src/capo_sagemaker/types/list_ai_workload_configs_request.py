@@ -76,13 +76,13 @@ def serialize_aws_json_1_1(value: ListAIWorkloadConfigsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAIWorkloadConfigsRequest:
     out: ListAIWorkloadConfigsRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListAIWorkloadConfigsRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListAIWorkloadConfigsRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.list_ai_workload_configs_sort_by
 
         out["sort_by"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListAIWorkloadConfigsRequest:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(

@@ -117,25 +117,25 @@ def serialize_aws_json_1_1(value: ServiceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceSummary:
     out: ServiceSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ResourceOwner" in data:
+    if data.get("ResourceOwner") is not None:
         out["resource_owner"] = data["ResourceOwner"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_servicediscovery.types.service_type
 
         out["type"] = capo_servicediscovery.types.service_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "DnsConfig" in data:
+    if data.get("DnsConfig") is not None:
         import capo_servicediscovery.types.dns_config
 
         out["dns_config"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceSummary:
                 data["DnsConfig"]
             )
         )
-    if "HealthCheckConfig" in data:
+    if data.get("HealthCheckConfig") is not None:
         import capo_servicediscovery.types.health_check_config
 
         out["health_check_config"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceSummary:
                 data["HealthCheckConfig"]
             )
         )
-    if "HealthCheckCustomConfig" in data:
+    if data.get("HealthCheckCustomConfig") is not None:
         import capo_servicediscovery.types.health_check_custom_config
 
         out["health_check_custom_config"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceSummary:
                 data["HealthCheckCustomConfig"]
             )
         )
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_servicediscovery.types.timestamp
 
         out["create_date"] = (
@@ -167,6 +167,6 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceSummary:
                 data["CreateDate"]
             )
         )
-    if "CreatedByAccount" in data:
+    if data.get("CreatedByAccount") is not None:
         out["created_by_account"] = data["CreatedByAccount"]
     return out

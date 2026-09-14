@@ -29,10 +29,10 @@ def serialize_json(value: GetStreamSessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetStreamSessionRequest:
     out: GetStreamSessionRequest = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
     else:
         raise DeserializationError("GetStreamSessionRequest.channel_arn required")
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
     return out

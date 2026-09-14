@@ -31,7 +31,7 @@ def serialize_json(value: UpdateDeploymentOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDeploymentOutput:
     out: UpdateDeploymentOutput = {}  # type: ignore[typeddict-item]
-    if "deployment" in data:
+    if data.get("deployment") is not None:
         import capo_launch_wizard.types.deployment_data_summary
 
         out["deployment"] = (

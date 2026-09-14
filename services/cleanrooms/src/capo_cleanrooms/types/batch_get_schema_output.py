@@ -34,7 +34,7 @@ def serialize_json(value: BatchGetSchemaOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSchemaOutput:
     out: BatchGetSchemaOutput = {}  # type: ignore[typeddict-item]
-    if "schemas" in data:
+    if data.get("schemas") is not None:
         import capo_cleanrooms.types.schema_list
 
         out["schemas"] = capo_cleanrooms.types.schema_list.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> BatchGetSchemaOutput:
         )
     else:
         raise DeserializationError("BatchGetSchemaOutput.schemas required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_cleanrooms.types.batch_get_schema_error_list
 
         out["errors"] = (

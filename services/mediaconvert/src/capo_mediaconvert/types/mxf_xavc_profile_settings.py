@@ -38,7 +38,7 @@ def serialize_json(value: MxfXavcProfileSettings) -> dict:
 
 def deserialize_json(data: dict) -> MxfXavcProfileSettings:
     out: MxfXavcProfileSettings = {}  # type: ignore[typeddict-item]
-    if "durationMode" in data:
+    if data.get("durationMode") is not None:
         import capo_mediaconvert.types.mxf_xavc_duration_mode
 
         out["duration_mode"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> MxfXavcProfileSettings:
                 data["durationMode"]
             )
         )
-    if "maxAncDataSize" in data:
+    if data.get("maxAncDataSize") is not None:
         out["max_anc_data_size"] = data["maxAncDataSize"]
     return out

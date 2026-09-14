@@ -13,9 +13,9 @@ from capo_batch import AsyncBatchClient
 
 
 async def main():
-    async with AsyncBatchClient() as s3:
+    async with AsyncBatchClient() as batch:
         # Example: call the cancel_job operation
-        response = await s3.cancel_job()
+        response = await batch.cancel_job()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_batch import AsyncBatchClient
 
 
 async def main():
-    async with AsyncBatchClient() as s3:
+    async with AsyncBatchClient() as batch:
         # Example: paginate over describe_compute_environments
-        async for item in s3.iter_describe_compute_environments():
+        async for item in batch.iter_describe_compute_environments():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_batch.error import ClientException
 
 
 async def main():
-    async with AsyncBatchClient() as s3:
+    async with AsyncBatchClient() as batch:
         try:
-            await s3.cancel_job()
+            await batch.cancel_job()
         except ClientException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_batch import AsyncBatchClient
 
 
 async def main():
-    async with AsyncBatchClient() as s3:
+    async with AsyncBatchClient() as batch:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_job()
+        response = await batch.cancel_job()
 
         # Override per operation
-        response = await s3.cancel_job(config_overrides={"retry_max_attempts": 5})
+        response = await batch.cancel_job(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_job(config_overrides={"retry_max_attempts": 1})
+        response = await batch.cancel_job(config_overrides={"retry_max_attempts": 1})
 ```

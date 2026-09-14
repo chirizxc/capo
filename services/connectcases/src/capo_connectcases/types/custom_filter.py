@@ -29,7 +29,7 @@ def serialize_json(value: CustomFilter) -> dict:
 
 def deserialize_json(data: dict) -> CustomFilter:
     out: CustomFilter = {}  # type: ignore[typeddict-item]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_connectcases.types.custom_fields_filter
 
         out["fields"] = capo_connectcases.types.custom_fields_filter.deserialize_json(

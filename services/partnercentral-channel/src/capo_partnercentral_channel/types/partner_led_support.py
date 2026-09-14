@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: PartnerLedSupport) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PartnerLedSupport:
     out: PartnerLedSupport = {}  # type: ignore[typeddict-item]
-    if "coverage" in data:
+    if data.get("coverage") is not None:
         import capo_partnercentral_channel.types.coverage
 
         out["coverage"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> PartnerLedSupport:
         )
     else:
         raise DeserializationError("PartnerLedSupport.coverage required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_partnercentral_channel.types.provider
 
         out["provider"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> PartnerLedSupport:
                 data["provider"]
             )
         )
-    if "tamLocation" in data:
+    if data.get("tamLocation") is not None:
         out["tam_location"] = data["tamLocation"]
     else:
         raise DeserializationError("PartnerLedSupport.tam_location required")

@@ -68,27 +68,27 @@ def serialize_aws_json_1_1(value: UpdateProvisioningArtifactInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProvisioningArtifactInput:
     out: UpdateProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
     else:
         raise DeserializationError(
             "UpdateProvisioningArtifactInput.product_id required"
         )
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
     else:
         raise DeserializationError(
             "UpdateProvisioningArtifactInput.provisioning_artifact_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Active" in data:
+    if data.get("Active") is not None:
         out["active"] = data["Active"]
-    if "Guidance" in data:
+    if data.get("Guidance") is not None:
         import capo_service_catalog.types.provisioning_artifact_guidance
 
         out["guidance"] = (

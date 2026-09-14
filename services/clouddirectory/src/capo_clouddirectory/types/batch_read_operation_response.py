@@ -44,7 +44,7 @@ def serialize_json(value: BatchReadOperationResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchReadOperationResponse:
     out: BatchReadOperationResponse = {}  # type: ignore[typeddict-item]
-    if "SuccessfulResponse" in data:
+    if data.get("SuccessfulResponse") is not None:
         import capo_clouddirectory.types.batch_read_successful_response
 
         out["successful_response"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchReadOperationResponse:
                 data["SuccessfulResponse"]
             )
         )
-    if "ExceptionResponse" in data:
+    if data.get("ExceptionResponse") is not None:
         import capo_clouddirectory.types.batch_read_exception
 
         out["exception_response"] = (

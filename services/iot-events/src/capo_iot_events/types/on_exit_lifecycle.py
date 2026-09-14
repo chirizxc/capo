@@ -25,7 +25,7 @@ def serialize_json(value: OnExitLifecycle) -> dict:
 
 def deserialize_json(data: dict) -> OnExitLifecycle:
     out: OnExitLifecycle = {}  # type: ignore[typeddict-item]
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_iot_events.types.events
 
         out["events"] = capo_iot_events.types.events.deserialize_json(data["events"])

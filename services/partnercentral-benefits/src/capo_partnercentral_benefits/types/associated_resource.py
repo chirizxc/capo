@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: AssociatedResource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociatedResource:
     out: AssociatedResource = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_partnercentral_benefits.types.resource_type
 
         out["resource_type"] = (
@@ -48,8 +48,8 @@ def deserialize_aws_json_1_0(data: dict) -> AssociatedResource:
                 data["ResourceType"]
             )
         )
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     return out

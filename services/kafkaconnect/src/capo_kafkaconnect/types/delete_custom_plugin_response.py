@@ -30,8 +30,8 @@ def serialize_json(value: DeleteCustomPluginResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteCustomPluginResponse:
     out: DeleteCustomPluginResponse = {}  # type: ignore[typeddict-item]
-    if "customPluginArn" in data:
+    if data.get("customPluginArn") is not None:
         out["custom_plugin_arn"] = data["customPluginArn"]
-    if "customPluginState" in data:
+    if data.get("customPluginState") is not None:
         out["custom_plugin_state"] = data["customPluginState"]
     return out

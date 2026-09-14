@@ -83,36 +83,36 @@ def serialize_json(value: UIColorPalette) -> dict:
 
 def deserialize_json(data: dict) -> UIColorPalette:
     out: UIColorPalette = {}  # type: ignore[typeddict-item]
-    if "PrimaryForeground" in data:
+    if data.get("PrimaryForeground") is not None:
         out["primary_foreground"] = data["PrimaryForeground"]
-    if "PrimaryBackground" in data:
+    if data.get("PrimaryBackground") is not None:
         out["primary_background"] = data["PrimaryBackground"]
-    if "SecondaryForeground" in data:
+    if data.get("SecondaryForeground") is not None:
         out["secondary_foreground"] = data["SecondaryForeground"]
-    if "SecondaryBackground" in data:
+    if data.get("SecondaryBackground") is not None:
         out["secondary_background"] = data["SecondaryBackground"]
-    if "Accent" in data:
+    if data.get("Accent") is not None:
         out["accent"] = data["Accent"]
-    if "AccentForeground" in data:
+    if data.get("AccentForeground") is not None:
         out["accent_foreground"] = data["AccentForeground"]
-    if "Danger" in data:
+    if data.get("Danger") is not None:
         out["danger"] = data["Danger"]
-    if "DangerForeground" in data:
+    if data.get("DangerForeground") is not None:
         out["danger_foreground"] = data["DangerForeground"]
-    if "Warning" in data:
+    if data.get("Warning") is not None:
         out["warning"] = data["Warning"]
-    if "WarningForeground" in data:
+    if data.get("WarningForeground") is not None:
         out["warning_foreground"] = data["WarningForeground"]
-    if "Success" in data:
+    if data.get("Success") is not None:
         out["success"] = data["Success"]
-    if "SuccessForeground" in data:
+    if data.get("SuccessForeground") is not None:
         out["success_foreground"] = data["SuccessForeground"]
-    if "Dimension" in data:
+    if data.get("Dimension") is not None:
         out["dimension"] = data["Dimension"]
-    if "DimensionForeground" in data:
+    if data.get("DimensionForeground") is not None:
         out["dimension_foreground"] = data["DimensionForeground"]
-    if "Measure" in data:
+    if data.get("Measure") is not None:
         out["measure"] = data["Measure"]
-    if "MeasureForeground" in data:
+    if data.get("MeasureForeground") is not None:
         out["measure_foreground"] = data["MeasureForeground"]
     return out

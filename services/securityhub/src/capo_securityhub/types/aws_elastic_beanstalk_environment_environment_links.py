@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsElasticBeanstalkEnvironmentEnvironmentLin
 
     out: AwsElasticBeanstalkEnvironmentEnvironmentLinks = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_elastic_beanstalk_environment_environment_link.deserialize_json(
                 item

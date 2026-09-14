@@ -24,7 +24,7 @@ def serialize_json(value: AccountSuspendedException_) -> dict:
 
 def deserialize_json(data: dict) -> AccountSuspendedException_:
     out: AccountSuspendedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class AccountSuspendedException(ServiceError):
 
     code: str | None = "AccountSuspendedException"
 
-    def __init__(self, data: AccountSuspendedException_):
+    def __init__(self, data: AccountSuspendedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AccountSuspendedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "AccountSuspendedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "AccountSuspendedException":
+        return cls(deserialize_json(data), message)

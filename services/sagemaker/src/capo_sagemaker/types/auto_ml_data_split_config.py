@@ -19,12 +19,20 @@ class AutoMLDataSplitConfig(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: AutoMLDataSplitConfig) -> dict:
     out: dict = {}
     if "validation_fraction" in value:
-        out["ValidationFraction"] = value["validation_fraction"]
+        out["ValidationFraction"] = (
+            "NaN"
+            if value["validation_fraction"] != value["validation_fraction"]
+            else "Infinity"
+            if value["validation_fraction"] == float("inf")
+            else "-Infinity"
+            if value["validation_fraction"] == float("-inf")
+            else value["validation_fraction"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLDataSplitConfig:
     out: AutoMLDataSplitConfig = {}  # type: ignore[typeddict-item]
-    if "ValidationFraction" in data:
-        out["validation_fraction"] = data["ValidationFraction"]
+    if data.get("ValidationFraction") is not None:
+        out["validation_fraction"] = float(data["ValidationFraction"])
     return out

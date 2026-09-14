@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: WindowsAuditLogConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WindowsAuditLogConfiguration:
     out: WindowsAuditLogConfiguration = {}  # type: ignore[typeddict-item]
-    if "FileAccessAuditLogLevel" in data:
+    if data.get("FileAccessAuditLogLevel") is not None:
         import capo_fsx.types.windows_access_audit_log_level
 
         out["file_access_audit_log_level"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> WindowsAuditLogConfiguration:
                 data["FileAccessAuditLogLevel"]
             )
         )
-    if "FileShareAccessAuditLogLevel" in data:
+    if data.get("FileShareAccessAuditLogLevel") is not None:
         import capo_fsx.types.windows_access_audit_log_level
 
         out["file_share_access_audit_log_level"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_1(data: dict) -> WindowsAuditLogConfiguration:
                 data["FileShareAccessAuditLogLevel"]
             )
         )
-    if "AuditLogDestination" in data:
+    if data.get("AuditLogDestination") is not None:
         out["audit_log_destination"] = data["AuditLogDestination"]
     return out

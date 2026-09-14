@@ -30,7 +30,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeInstanceAccessControlAttributeConfigurationRequest:
     out: DescribeInstanceAccessControlAttributeConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(

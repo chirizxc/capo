@@ -74,7 +74,7 @@ def serialize_aws_json_1_0(value: GetEC2InstanceRecommendationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetEC2InstanceRecommendationsRequest:
     out: GetEC2InstanceRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "instanceArns" in data:
+    if data.get("instanceArns") is not None:
         import capo_compute_optimizer.types.instance_arns
 
         out["instance_arns"] = (
@@ -82,17 +82,17 @@ def deserialize_aws_json_1_0(data: dict) -> GetEC2InstanceRecommendationsRequest
                 data["instanceArns"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_compute_optimizer.types.filters
 
         out["filters"] = capo_compute_optimizer.types.filters.deserialize_aws_json_1_0(
             data["filters"]
         )
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_compute_optimizer.types.account_ids
 
         out["account_ids"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetEC2InstanceRecommendationsRequest
                 data["accountIds"]
             )
         )
-    if "recommendationPreferences" in data:
+    if data.get("recommendationPreferences") is not None:
         import capo_compute_optimizer.types.recommendation_preferences
 
         out["recommendation_preferences"] = (

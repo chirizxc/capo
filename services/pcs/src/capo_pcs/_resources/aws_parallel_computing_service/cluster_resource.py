@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_pcs._services._pipeline import (
@@ -94,15 +95,17 @@ class ClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.create_cluster_request.CreateClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["scheduler"] = scheduler
-        input_["size"] = size
-        input_["networking"] = networking
+        input_: capo_pcs.types.create_cluster_request.CreateClusterRequest = {
+            "cluster_name": cluster_name,
+            "scheduler": scheduler,
+            "size": size,
+            "networking": networking,
+        }
         if slurm_configuration is not None:
             input_["slurm_configuration"] = slurm_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -111,6 +114,7 @@ class ClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -155,10 +159,12 @@ class ClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.update_cluster_request.UpdateClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pcs.types.update_cluster_request.UpdateClusterRequest = {
+            "cluster_identifier": cluster_identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if slurm_configuration is not None:
             input_["slurm_configuration"] = slurm_configuration
 
@@ -167,6 +173,7 @@ class ClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_cluster(
@@ -207,16 +214,19 @@ class ClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.delete_cluster_request.DeleteClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pcs.types.delete_cluster_request.DeleteClusterRequest = {
+            "cluster_identifier": cluster_identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cluster(
@@ -255,14 +265,16 @@ class ClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.get_cluster_request.GetClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
+        input_: capo_pcs.types.get_cluster_request.GetClusterRequest = {
+            "cluster_identifier": cluster_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_compute_node_group_instance(
@@ -299,15 +311,17 @@ class ClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.register_compute_node_group_instance_request.RegisterComputeNodeGroupInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        input_["bootstrap_id"] = bootstrap_id
+        input_: capo_pcs.types.register_compute_node_group_instance_request.RegisterComputeNodeGroupInstanceRequest = {
+            "cluster_identifier": cluster_identifier,
+            "bootstrap_id": bootstrap_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_clusters(
@@ -348,7 +362,7 @@ class ClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.list_clusters_request.ListClustersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pcs.types.list_clusters_request.ListClustersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -359,6 +373,7 @@ class ClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -417,15 +432,17 @@ class AsyncClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.create_cluster_request.CreateClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["scheduler"] = scheduler
-        input_["size"] = size
-        input_["networking"] = networking
+        input_: capo_pcs.types.create_cluster_request.CreateClusterRequest = {
+            "cluster_name": cluster_name,
+            "scheduler": scheduler,
+            "size": size,
+            "networking": networking,
+        }
         if slurm_configuration is not None:
             input_["slurm_configuration"] = slurm_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -434,6 +451,7 @@ class AsyncClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -479,10 +497,12 @@ class AsyncClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.update_cluster_request.UpdateClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pcs.types.update_cluster_request.UpdateClusterRequest = {
+            "cluster_identifier": cluster_identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if slurm_configuration is not None:
             input_["slurm_configuration"] = slurm_configuration
 
@@ -491,6 +511,7 @@ class AsyncClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster(
@@ -532,16 +553,19 @@ class AsyncClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.delete_cluster_request.DeleteClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pcs.types.delete_cluster_request.DeleteClusterRequest = {
+            "cluster_identifier": cluster_identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cluster(
@@ -581,14 +605,16 @@ class AsyncClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.get_cluster_request.GetClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
+        input_: capo_pcs.types.get_cluster_request.GetClusterRequest = {
+            "cluster_identifier": cluster_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_compute_node_group_instance(
@@ -626,15 +652,17 @@ class AsyncClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.register_compute_node_group_instance_request.RegisterComputeNodeGroupInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        input_["bootstrap_id"] = bootstrap_id
+        input_: capo_pcs.types.register_compute_node_group_instance_request.RegisterComputeNodeGroupInstanceRequest = {
+            "cluster_identifier": cluster_identifier,
+            "bootstrap_id": bootstrap_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_clusters(
@@ -676,7 +704,7 @@ class AsyncClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pcs.types.list_clusters_request.ListClustersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pcs.types.list_clusters_request.ListClustersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -687,4 +715,5 @@ class AsyncClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListEventTypesFilters:
 
     out: ListEventTypesFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codestar_notifications.types.list_event_types_filter.deserialize_json(
                 item

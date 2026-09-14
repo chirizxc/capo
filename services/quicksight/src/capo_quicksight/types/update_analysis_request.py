@@ -83,17 +83,17 @@ def serialize_json(value: UpdateAnalysisRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAnalysisRequest:
     out: UpdateAnalysisRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateAnalysisRequest.name required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_quicksight.types.parameters
 
         out["parameters"] = capo_quicksight.types.parameters.deserialize_json(
             data["Parameters"]
         )
-    if "SourceEntity" in data:
+    if data.get("SourceEntity") is not None:
         import capo_quicksight.types.analysis_source_entity
 
         out["source_entity"] = (
@@ -101,15 +101,15 @@ def deserialize_json(data: dict) -> UpdateAnalysisRequest:
                 data["SourceEntity"]
             )
         )
-    if "ThemeArn" in data:
+    if data.get("ThemeArn") is not None:
         out["theme_arn"] = data["ThemeArn"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_quicksight.types.analysis_definition
 
         out["definition"] = capo_quicksight.types.analysis_definition.deserialize_json(
             data["Definition"]
         )
-    if "ValidationStrategy" in data:
+    if data.get("ValidationStrategy") is not None:
         import capo_quicksight.types.validation_strategy
 
         out["validation_strategy"] = (

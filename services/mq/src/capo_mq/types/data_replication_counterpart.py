@@ -27,8 +27,8 @@ def serialize_json(value: DataReplicationCounterpart) -> dict:
 
 def deserialize_json(data: dict) -> DataReplicationCounterpart:
     out: DataReplicationCounterpart = {}  # type: ignore[typeddict-item]
-    if "brokerId" in data:
+    if data.get("brokerId") is not None:
         out["broker_id"] = data["brokerId"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     return out

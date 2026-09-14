@@ -41,13 +41,13 @@ def serialize_json(value: BatchCreateUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateUserResponse:
     out: BatchCreateUserResponse = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "successful" in data:
+    if data.get("successful") is not None:
         import capo_wickr.types.users
 
         out["successful"] = capo_wickr.types.users.deserialize_json(data["successful"])
-    if "failed" in data:
+    if data.get("failed") is not None:
         import capo_wickr.types.batch_user_error_response_items
 
         out["failed"] = (

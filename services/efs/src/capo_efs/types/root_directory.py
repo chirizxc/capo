@@ -32,9 +32,9 @@ def serialize_json(value: RootDirectory) -> dict:
 
 def deserialize_json(data: dict) -> RootDirectory:
     out: RootDirectory = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "CreationInfo" in data:
+    if data.get("CreationInfo") is not None:
         import capo_efs.types.creation_info
 
         out["creation_info"] = capo_efs.types.creation_info.deserialize_json(

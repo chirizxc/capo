@@ -69,17 +69,17 @@ def serialize_aws_json_1_1(value: WorkGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkGroup:
     out: WorkGroup = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("WorkGroup.name required")
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_athena.types.work_group_state
 
         out["state"] = capo_athena.types.work_group_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_athena.types.work_group_configuration
 
         out["configuration"] = (
@@ -87,14 +87,14 @@ def deserialize_aws_json_1_1(data: dict) -> WorkGroup:
                 data["Configuration"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_athena.types.date
 
         out["creation_time"] = capo_athena.types.date.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "IdentityCenterApplicationArn" in data:
+    if data.get("IdentityCenterApplicationArn") is not None:
         out["identity_center_application_arn"] = data["IdentityCenterApplicationArn"]
     return out

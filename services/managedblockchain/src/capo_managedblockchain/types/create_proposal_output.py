@@ -25,6 +25,6 @@ def serialize_json(value: CreateProposalOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateProposalOutput:
     out: CreateProposalOutput = {}  # type: ignore[typeddict-item]
-    if "ProposalId" in data:
+    if data.get("ProposalId") is not None:
         out["proposal_id"] = data["ProposalId"]
     return out

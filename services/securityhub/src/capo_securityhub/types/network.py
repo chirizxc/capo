@@ -84,36 +84,36 @@ def serialize_json(value: Network) -> dict:
 
 def deserialize_json(data: dict) -> Network:
     out: Network = {}  # type: ignore[typeddict-item]
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         import capo_securityhub.types.network_direction
 
         out["direction"] = capo_securityhub.types.network_direction.deserialize_json(
             data["Direction"]
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
-    if "OpenPortRange" in data:
+    if data.get("OpenPortRange") is not None:
         import capo_securityhub.types.port_range
 
         out["open_port_range"] = capo_securityhub.types.port_range.deserialize_json(
             data["OpenPortRange"]
         )
-    if "SourceIpV4" in data:
+    if data.get("SourceIpV4") is not None:
         out["source_ip_v4"] = data["SourceIpV4"]
-    if "SourceIpV6" in data:
+    if data.get("SourceIpV6") is not None:
         out["source_ip_v6"] = data["SourceIpV6"]
-    if "SourcePort" in data:
+    if data.get("SourcePort") is not None:
         out["source_port"] = data["SourcePort"]
-    if "SourceDomain" in data:
+    if data.get("SourceDomain") is not None:
         out["source_domain"] = data["SourceDomain"]
-    if "SourceMac" in data:
+    if data.get("SourceMac") is not None:
         out["source_mac"] = data["SourceMac"]
-    if "DestinationIpV4" in data:
+    if data.get("DestinationIpV4") is not None:
         out["destination_ip_v4"] = data["DestinationIpV4"]
-    if "DestinationIpV6" in data:
+    if data.get("DestinationIpV6") is not None:
         out["destination_ip_v6"] = data["DestinationIpV6"]
-    if "DestinationPort" in data:
+    if data.get("DestinationPort") is not None:
         out["destination_port"] = data["DestinationPort"]
-    if "DestinationDomain" in data:
+    if data.get("DestinationDomain") is not None:
         out["destination_domain"] = data["DestinationDomain"]
     return out

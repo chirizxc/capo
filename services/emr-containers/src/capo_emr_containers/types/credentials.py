@@ -26,7 +26,7 @@ def serialize_json(value: Credentials) -> dict:
 
 
 def deserialize_json(data: dict) -> Credentials:
-    if "token" in data:
+    if data.get("token") is not None:
         return {"token": data["token"]}
     else:
         raise DeserializationError("Credentials: no recognized variant key")

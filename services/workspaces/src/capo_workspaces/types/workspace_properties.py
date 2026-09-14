@@ -94,7 +94,7 @@ def serialize_aws_json_1_1(value: WorkspaceProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspaceProperties:
     out: WorkspaceProperties = {}  # type: ignore[typeddict-item]
-    if "RunningMode" in data:
+    if data.get("RunningMode") is not None:
         import capo_workspaces.types.running_mode
 
         out["running_mode"] = (
@@ -102,15 +102,15 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceProperties:
                 data["RunningMode"]
             )
         )
-    if "RunningModeAutoStopTimeoutInMinutes" in data:
+    if data.get("RunningModeAutoStopTimeoutInMinutes") is not None:
         out["running_mode_auto_stop_timeout_in_minutes"] = data[
             "RunningModeAutoStopTimeoutInMinutes"
         ]
-    if "RootVolumeSizeGib" in data:
+    if data.get("RootVolumeSizeGib") is not None:
         out["root_volume_size_gib"] = data["RootVolumeSizeGib"]
-    if "UserVolumeSizeGib" in data:
+    if data.get("UserVolumeSizeGib") is not None:
         out["user_volume_size_gib"] = data["UserVolumeSizeGib"]
-    if "ComputeTypeName" in data:
+    if data.get("ComputeTypeName") is not None:
         import capo_workspaces.types.compute
 
         out["compute_type_name"] = (
@@ -118,13 +118,13 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceProperties:
                 data["ComputeTypeName"]
             )
         )
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_workspaces.types.protocol_list
 
         out["protocols"] = capo_workspaces.types.protocol_list.deserialize_aws_json_1_1(
             data["Protocols"]
         )
-    if "OperatingSystemName" in data:
+    if data.get("OperatingSystemName") is not None:
         import capo_workspaces.types.operating_system_name
 
         out["operating_system_name"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceProperties:
                 data["OperatingSystemName"]
             )
         )
-    if "GlobalAccelerator" in data:
+    if data.get("GlobalAccelerator") is not None:
         import capo_workspaces.types.global_accelerator_for_work_space
 
         out["global_accelerator"] = (

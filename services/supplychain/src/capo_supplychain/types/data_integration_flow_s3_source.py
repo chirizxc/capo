@@ -28,11 +28,11 @@ def serialize_json(value: DataIntegrationFlowS3Source) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowS3Source:
     out: DataIntegrationFlowS3Source = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("DataIntegrationFlowS3Source.bucket_name required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("DataIntegrationFlowS3Source.key required")

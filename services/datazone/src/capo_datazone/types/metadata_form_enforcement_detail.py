@@ -31,7 +31,7 @@ def serialize_json(value: MetadataFormEnforcementDetail) -> dict:
 
 def deserialize_json(data: dict) -> MetadataFormEnforcementDetail:
     out: MetadataFormEnforcementDetail = {}  # type: ignore[typeddict-item]
-    if "requiredMetadataForms" in data:
+    if data.get("requiredMetadataForms") is not None:
         import capo_datazone.types.required_metadata_form_list
 
         out["required_metadata_forms"] = (

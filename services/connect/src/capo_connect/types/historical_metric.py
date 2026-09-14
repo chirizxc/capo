@@ -52,25 +52,25 @@ def serialize_json(value: HistoricalMetric) -> dict:
 
 def deserialize_json(data: dict) -> HistoricalMetric:
     out: HistoricalMetric = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_connect.types.historical_metric_name
 
         out["name"] = capo_connect.types.historical_metric_name.deserialize_json(
             data["Name"]
         )
-    if "Threshold" in data:
+    if data.get("Threshold") is not None:
         import capo_connect.types.threshold
 
         out["threshold"] = capo_connect.types.threshold.deserialize_json(
             data["Threshold"]
         )
-    if "Statistic" in data:
+    if data.get("Statistic") is not None:
         import capo_connect.types.statistic
 
         out["statistic"] = capo_connect.types.statistic.deserialize_json(
             data["Statistic"]
         )
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_connect.types.unit
 
         out["unit"] = capo_connect.types.unit.deserialize_json(data["Unit"])

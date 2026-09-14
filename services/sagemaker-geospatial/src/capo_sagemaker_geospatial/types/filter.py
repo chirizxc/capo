@@ -22,24 +22,40 @@ def serialize_json(value: Filter) -> dict:
     out["Name"] = value["name"]
     out["Type"] = value["type"]
     if "minimum" in value:
-        out["Minimum"] = value["minimum"]
+        out["Minimum"] = (
+            "NaN"
+            if value["minimum"] != value["minimum"]
+            else "Infinity"
+            if value["minimum"] == float("inf")
+            else "-Infinity"
+            if value["minimum"] == float("-inf")
+            else value["minimum"]
+        )
     if "maximum" in value:
-        out["Maximum"] = value["maximum"]
+        out["Maximum"] = (
+            "NaN"
+            if value["maximum"] != value["maximum"]
+            else "Infinity"
+            if value["maximum"] == float("inf")
+            else "-Infinity"
+            if value["maximum"] == float("-inf")
+            else value["maximum"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Filter.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("Filter.type required")
-    if "Minimum" in data:
-        out["minimum"] = data["Minimum"]
-    if "Maximum" in data:
-        out["maximum"] = data["Maximum"]
+    if data.get("Minimum") is not None:
+        out["minimum"] = float(data["Minimum"])
+    if data.get("Maximum") is not None:
+        out["maximum"] = float(data["Maximum"])
     return out

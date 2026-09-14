@@ -41,13 +41,13 @@ def serialize_json(value: S3SourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> S3SourceProperties:
     out: S3SourceProperties = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("S3SourceProperties.bucket_name required")
-    if "bucketPrefix" in data:
+    if data.get("bucketPrefix") is not None:
         out["bucket_prefix"] = data["bucketPrefix"]
-    if "s3InputFormatConfig" in data:
+    if data.get("s3InputFormatConfig") is not None:
         import capo_appflow.types.s3_input_format_config
 
         out["s3_input_format_config"] = (

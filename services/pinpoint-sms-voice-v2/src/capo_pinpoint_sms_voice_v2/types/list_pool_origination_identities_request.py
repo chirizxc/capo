@@ -47,13 +47,13 @@ def serialize_aws_json_1_0(value: ListPoolOriginationIdentitiesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListPoolOriginationIdentitiesRequest:
     out: ListPoolOriginationIdentitiesRequest = {}  # type: ignore[typeddict-item]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
     else:
         raise DeserializationError(
             "ListPoolOriginationIdentitiesRequest.pool_id required"
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_pinpoint_sms_voice_v2.types.pool_origination_identities_filter_list
 
         out["filters"] = (
@@ -61,8 +61,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListPoolOriginationIdentitiesRequest
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

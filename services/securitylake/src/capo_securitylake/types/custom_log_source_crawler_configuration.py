@@ -24,7 +24,7 @@ def serialize_json(value: CustomLogSourceCrawlerConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomLogSourceCrawlerConfiguration:
     out: CustomLogSourceCrawlerConfiguration = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(

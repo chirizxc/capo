@@ -29,7 +29,7 @@ def serialize_json(value: ListConnectorsRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListConnectorsRequestFilters:
     out: ListConnectorsRequestFilters = {}  # type: ignore[typeddict-item]
-    if "connectorIDs" in data:
+    if data.get("connectorIDs") is not None:
         import capo_mgn.types.connector_i_ds_filter
 
         out["connector_i_ds"] = capo_mgn.types.connector_i_ds_filter.deserialize_json(

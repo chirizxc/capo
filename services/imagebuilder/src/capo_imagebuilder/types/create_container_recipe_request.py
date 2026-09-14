@@ -132,7 +132,7 @@ def serialize_json(value: CreateContainerRecipeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateContainerRecipeRequest:
     out: CreateContainerRecipeRequest = {}  # type: ignore[typeddict-item]
-    if "containerType" in data:
+    if data.get("containerType") is not None:
         import capo_imagebuilder.types.container_type
 
         out["container_type"] = capo_imagebuilder.types.container_type.deserialize_json(
@@ -142,19 +142,19 @@ def deserialize_json(data: dict) -> CreateContainerRecipeRequest:
         raise DeserializationError(
             "CreateContainerRecipeRequest.container_type required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateContainerRecipeRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
     else:
         raise DeserializationError(
             "CreateContainerRecipeRequest.semantic_version required"
         )
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_imagebuilder.types.component_configuration_list
 
         out["components"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> CreateContainerRecipeRequest:
                 data["components"]
             )
         )
-    if "instanceConfiguration" in data:
+    if data.get("instanceConfiguration") is not None:
         import capo_imagebuilder.types.instance_configuration
 
         out["instance_configuration"] = (
@@ -170,29 +170,29 @@ def deserialize_json(data: dict) -> CreateContainerRecipeRequest:
                 data["instanceConfiguration"]
             )
         )
-    if "dockerfileTemplateData" in data:
+    if data.get("dockerfileTemplateData") is not None:
         out["dockerfile_template_data"] = data["dockerfileTemplateData"]
-    if "dockerfileTemplateUri" in data:
+    if data.get("dockerfileTemplateUri") is not None:
         out["dockerfile_template_uri"] = data["dockerfileTemplateUri"]
-    if "platformOverride" in data:
+    if data.get("platformOverride") is not None:
         import capo_imagebuilder.types.platform
 
         out["platform_override"] = capo_imagebuilder.types.platform.deserialize_json(
             data["platformOverride"]
         )
-    if "imageOsVersionOverride" in data:
+    if data.get("imageOsVersionOverride") is not None:
         out["image_os_version_override"] = data["imageOsVersionOverride"]
-    if "parentImage" in data:
+    if data.get("parentImage") is not None:
         out["parent_image"] = data["parentImage"]
     else:
         raise DeserializationError("CreateContainerRecipeRequest.parent_image required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "workingDirectory" in data:
+    if data.get("workingDirectory") is not None:
         out["working_directory"] = data["workingDirectory"]
-    if "targetRepository" in data:
+    if data.get("targetRepository") is not None:
         import capo_imagebuilder.types.target_container_repository
 
         out["target_repository"] = (
@@ -204,9 +204,9 @@ def deserialize_json(data: dict) -> CreateContainerRecipeRequest:
         raise DeserializationError(
             "CreateContainerRecipeRequest.target_repository required"
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateContainerRecipeRequest.client_token required")

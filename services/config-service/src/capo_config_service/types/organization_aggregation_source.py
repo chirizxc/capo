@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: OrganizationAggregationSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationAggregationSource:
     out: OrganizationAggregationSource = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("OrganizationAggregationSource.role_arn required")
-    if "AwsRegions" in data:
+    if data.get("AwsRegions") is not None:
         import capo_config_service.types.aggregator_region_list
 
         out["aws_regions"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationAggregationSource:
                 data["AwsRegions"]
             )
         )
-    if "AllAwsRegions" in data:
+    if data.get("AllAwsRegions") is not None:
         out["all_aws_regions"] = data["AllAwsRegions"]
     else:
         out["all_aws_regions"] = False

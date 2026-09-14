@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SecurityProfileIdentifiers:
 
     out: SecurityProfileIdentifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.security_profile_identifier.deserialize_json(item))
     return out

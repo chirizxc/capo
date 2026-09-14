@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListJobSchemaVersionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListJobSchemaVersionsResponse:
     out: ListJobSchemaVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "JobConfigSchemas" in data:
+    if data.get("JobConfigSchemas") is not None:
         import capo_sagemaker.types.job_config_schemas
 
         out["job_config_schemas"] = (

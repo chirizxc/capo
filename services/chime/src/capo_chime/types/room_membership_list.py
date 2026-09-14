@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RoomMembershipList:
 
     out: RoomMembershipList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime.types.room_membership.deserialize_json(item))
     return out

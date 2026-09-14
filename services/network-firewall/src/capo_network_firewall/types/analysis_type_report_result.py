@@ -76,9 +76,9 @@ def serialize_aws_json_1_0(value: AnalysisTypeReportResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AnalysisTypeReportResult:
     out: AnalysisTypeReportResult = {}  # type: ignore[typeddict-item]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
-    if "FirstAccessed" in data:
+    if data.get("FirstAccessed") is not None:
         import capo_network_firewall.types.first_accessed
 
         out["first_accessed"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> AnalysisTypeReportResult:
                 data["FirstAccessed"]
             )
         )
-    if "LastAccessed" in data:
+    if data.get("LastAccessed") is not None:
         import capo_network_firewall.types.last_accessed
 
         out["last_accessed"] = (
@@ -94,15 +94,15 @@ def deserialize_aws_json_1_0(data: dict) -> AnalysisTypeReportResult:
                 data["LastAccessed"]
             )
         )
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "Hits" in data:
+    if data.get("Hits") is not None:
         import capo_network_firewall.types.hits
 
         out["hits"] = capo_network_firewall.types.hits.deserialize_aws_json_1_0(
             data["Hits"]
         )
-    if "UniqueSources" in data:
+    if data.get("UniqueSources") is not None:
         import capo_network_firewall.types.unique_sources
 
         out["unique_sources"] = (

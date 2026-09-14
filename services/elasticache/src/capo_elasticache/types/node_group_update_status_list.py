@@ -18,6 +18,9 @@ def serialize_query(
 ) -> None:
     import capo_elasticache.types.node_group_update_status
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_elasticache.types.node_group_update_status.serialize_query(
             item, pairs, f"{prefix}.NodeGroupUpdateStatus.{n}"
@@ -40,6 +43,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_elasticache.types.node_group_update_status
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_elasticache.types.node_group_update_status.serialize_query(
             item, pairs, f"{prefix}.{n}"

@@ -30,8 +30,8 @@ def serialize_json(value: CompositeComponentTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> CompositeComponentTypeResponse:
     out: CompositeComponentTypeResponse = {}  # type: ignore[typeddict-item]
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
-    if "isInherited" in data:
+    if data.get("isInherited") is not None:
         out["is_inherited"] = data["isInherited"]
     return out

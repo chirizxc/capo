@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ListRegionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRegionsResponse:
     out: ListRegionsResponse = {}  # type: ignore[typeddict-item]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_sso_admin.types.region_metadata_list
 
         out["regions"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListRegionsResponse:
                 data["Regions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

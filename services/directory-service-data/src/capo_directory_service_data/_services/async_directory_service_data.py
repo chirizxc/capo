@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.directoryservicedata#DirectoryServiceData``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -236,20 +237,23 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.add_group_member_request.AddGroupMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["group_name"] = group_name
-        input_["member_name"] = member_name
+        input_: capo_directory_service_data.types.add_group_member_request.AddGroupMemberRequest = {
+            "directory_id": directory_id,
+            "group_name": group_name,
+            "member_name": member_name,
+        }
         if member_realm is not None:
             input_["member_realm"] = member_realm
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_group(
@@ -313,23 +317,26 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.create_group_request.CreateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["sam_account_name"] = sam_account_name
+        input_: capo_directory_service_data.types.create_group_request.CreateGroupRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
         if group_type is not None:
             input_["group_type"] = group_type
         if group_scope is not None:
             input_["group_scope"] = group_scope
         if other_attributes is not None:
             input_["other_attributes"] = other_attributes
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user(
@@ -395,9 +402,10 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["sam_account_name"] = sam_account_name
+        input_: capo_directory_service_data.types.create_user_request.CreateUserRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
         if email_address is not None:
             input_["email_address"] = email_address
         if given_name is not None:
@@ -406,14 +414,16 @@ class AsyncDirectoryServiceDataClient:
             input_["surname"] = surname
         if other_attributes is not None:
             input_["other_attributes"] = other_attributes
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_group(
@@ -466,17 +476,20 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.delete_group_request.DeleteGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["sam_account_name"] = sam_account_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_directory_service_data.types.delete_group_request.DeleteGroupRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_user(
@@ -529,17 +542,20 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["sam_account_name"] = sam_account_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_directory_service_data.types.delete_user_request.DeleteUserRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_group(
@@ -593,11 +609,12 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.describe_group_request.DescribeGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
+        input_: capo_directory_service_data.types.describe_group_request.DescribeGroupRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
         if realm is not None:
             input_["realm"] = realm
-        input_["sam_account_name"] = sam_account_name
         if other_attributes is not None:
             input_["other_attributes"] = other_attributes
 
@@ -606,6 +623,7 @@ class AsyncDirectoryServiceDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_user(
@@ -659,9 +677,10 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.describe_user_request.DescribeUserRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["sam_account_name"] = sam_account_name
+        input_: capo_directory_service_data.types.describe_user_request.DescribeUserRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
         if other_attributes is not None:
             input_["other_attributes"] = other_attributes
         if realm is not None:
@@ -672,6 +691,7 @@ class AsyncDirectoryServiceDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_user(
@@ -724,17 +744,20 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.disable_user_request.DisableUserRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["sam_account_name"] = sam_account_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_directory_service_data.types.disable_user_request.DisableUserRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_group_members(
@@ -794,13 +817,14 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.list_group_members_request.ListGroupMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
+        input_: capo_directory_service_data.types.list_group_members_request.ListGroupMembersRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
         if realm is not None:
             input_["realm"] = realm
         if member_realm is not None:
             input_["member_realm"] = member_realm
-        input_["sam_account_name"] = sam_account_name
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -811,6 +835,7 @@ class AsyncDirectoryServiceDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_group_members(
@@ -898,8 +923,9 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.list_groups_request.ListGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
+        input_: capo_directory_service_data.types.list_groups_request.ListGroupsRequest = {
+            "directory_id": directory_id
+        }
         if realm is not None:
             input_["realm"] = realm
         if next_token is not None:
@@ -912,6 +938,7 @@ class AsyncDirectoryServiceDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_groups(
@@ -1000,13 +1027,14 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.list_groups_for_member_request.ListGroupsForMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
+        input_: capo_directory_service_data.types.list_groups_for_member_request.ListGroupsForMemberRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
         if realm is not None:
             input_["realm"] = realm
         if member_realm is not None:
             input_["member_realm"] = member_realm
-        input_["sam_account_name"] = sam_account_name
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1017,6 +1045,7 @@ class AsyncDirectoryServiceDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_groups_for_member(
@@ -1104,8 +1133,9 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
+        input_: capo_directory_service_data.types.list_users_request.ListUsersRequest = {
+            "directory_id": directory_id
+        }
         if realm is not None:
             input_["realm"] = realm
         if next_token is not None:
@@ -1118,6 +1148,7 @@ class AsyncDirectoryServiceDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_users(
@@ -1203,20 +1234,23 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.remove_group_member_request.RemoveGroupMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["group_name"] = group_name
-        input_["member_name"] = member_name
+        input_: capo_directory_service_data.types.remove_group_member_request.RemoveGroupMemberRequest = {
+            "directory_id": directory_id,
+            "group_name": group_name,
+            "member_name": member_name,
+        }
         if member_realm is not None:
             input_["member_realm"] = member_realm
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_groups(
@@ -1275,10 +1309,11 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.search_groups_request.SearchGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["search_string"] = search_string
-        input_["search_attributes"] = search_attributes
+        input_: capo_directory_service_data.types.search_groups_request.SearchGroupsRequest = {
+            "directory_id": directory_id,
+            "search_string": search_string,
+            "search_attributes": search_attributes,
+        }
         if realm is not None:
             input_["realm"] = realm
         if next_token is not None:
@@ -1291,6 +1326,7 @@ class AsyncDirectoryServiceDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_groups(
@@ -1382,12 +1418,13 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.search_users_request.SearchUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
+        input_: capo_directory_service_data.types.search_users_request.SearchUsersRequest = {
+            "directory_id": directory_id,
+            "search_string": search_string,
+            "search_attributes": search_attributes,
+        }
         if realm is not None:
             input_["realm"] = realm
-        input_["search_string"] = search_string
-        input_["search_attributes"] = search_attributes
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1398,6 +1435,7 @@ class AsyncDirectoryServiceDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_users(
@@ -1499,9 +1537,10 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.update_group_request.UpdateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["sam_account_name"] = sam_account_name
+        input_: capo_directory_service_data.types.update_group_request.UpdateGroupRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
         if group_type is not None:
             input_["group_type"] = group_type
         if group_scope is not None:
@@ -1510,14 +1549,16 @@ class AsyncDirectoryServiceDataClient:
             input_["other_attributes"] = other_attributes
         if update_type is not None:
             input_["update_type"] = update_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user(
@@ -1588,9 +1629,10 @@ class AsyncDirectoryServiceDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_directory_service_data.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["sam_account_name"] = sam_account_name
+        input_: capo_directory_service_data.types.update_user_request.UpdateUserRequest = {
+            "directory_id": directory_id,
+            "sam_account_name": sam_account_name,
+        }
         if email_address is not None:
             input_["email_address"] = email_address
         if given_name is not None:
@@ -1601,14 +1643,16 @@ class AsyncDirectoryServiceDataClient:
             input_["other_attributes"] = other_attributes
         if update_type is not None:
             input_["update_type"] = update_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

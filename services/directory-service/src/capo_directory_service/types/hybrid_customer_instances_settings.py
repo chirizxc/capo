@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: HybridCustomerInstancesSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HybridCustomerInstancesSettings:
     out: HybridCustomerInstancesSettings = {}  # type: ignore[typeddict-item]
-    if "CustomerDnsIps" in data:
+    if data.get("CustomerDnsIps") is not None:
         import capo_directory_service.types.customer_dns_ips
 
         out["customer_dns_ips"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> HybridCustomerInstancesSettings:
         raise DeserializationError(
             "HybridCustomerInstancesSettings.customer_dns_ips required"
         )
-    if "InstanceIds" in data:
+    if data.get("InstanceIds") is not None:
         import capo_directory_service.types.assessment_instance_ids
 
         out["instance_ids"] = (

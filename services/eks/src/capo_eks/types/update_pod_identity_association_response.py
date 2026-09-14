@@ -29,7 +29,7 @@ def serialize_json(value: UpdatePodIdentityAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePodIdentityAssociationResponse:
     out: UpdatePodIdentityAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "association" in data:
+    if data.get("association") is not None:
         import capo_eks.types.pod_identity_association
 
         out["association"] = capo_eks.types.pod_identity_association.deserialize_json(

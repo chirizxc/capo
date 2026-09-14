@@ -46,13 +46,13 @@ def serialize_aws_json_1_1(value: ZonalConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ZonalConfig:
     out: ZonalConfig = {}  # type: ignore[typeddict-item]
-    if "firstZoneMonitorDurationInSeconds" in data:
+    if data.get("firstZoneMonitorDurationInSeconds") is not None:
         out["first_zone_monitor_duration_in_seconds"] = data[
             "firstZoneMonitorDurationInSeconds"
         ]
-    if "monitorDurationInSeconds" in data:
+    if data.get("monitorDurationInSeconds") is not None:
         out["monitor_duration_in_seconds"] = data["monitorDurationInSeconds"]
-    if "minimumHealthyHostsPerZone" in data:
+    if data.get("minimumHealthyHostsPerZone") is not None:
         import capo_codedeploy.types.minimum_healthy_hosts_per_zone
 
         out["minimum_healthy_hosts_per_zone"] = (

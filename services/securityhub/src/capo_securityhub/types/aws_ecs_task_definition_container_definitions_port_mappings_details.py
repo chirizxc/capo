@@ -38,10 +38,10 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails = {}  # type: ignore[typeddict-item]
-    if "ContainerPort" in data:
+    if data.get("ContainerPort") is not None:
         out["container_port"] = data["ContainerPort"]
-    if "HostPort" in data:
+    if data.get("HostPort") is not None:
         out["host_port"] = data["HostPort"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
     return out

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListManagedRuleSetsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListManagedRuleSetsResponse:
     out: ListManagedRuleSetsResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "ManagedRuleSets" in data:
+    if data.get("ManagedRuleSets") is not None:
         import capo_wafv2.types.managed_rule_set_summaries
 
         out["managed_rule_sets"] = (

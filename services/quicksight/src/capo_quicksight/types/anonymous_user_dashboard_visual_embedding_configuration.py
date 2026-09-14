@@ -32,7 +32,7 @@ def serialize_json(value: AnonymousUserDashboardVisualEmbeddingConfiguration) ->
 
 def deserialize_json(data: dict) -> AnonymousUserDashboardVisualEmbeddingConfiguration:
     out: AnonymousUserDashboardVisualEmbeddingConfiguration = {}  # type: ignore[typeddict-item]
-    if "InitialDashboardVisualId" in data:
+    if data.get("InitialDashboardVisualId") is not None:
         import capo_quicksight.types.dashboard_visual_id
 
         out["initial_dashboard_visual_id"] = (

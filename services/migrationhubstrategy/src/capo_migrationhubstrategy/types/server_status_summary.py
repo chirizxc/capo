@@ -30,8 +30,8 @@ def serialize_json(value: ServerStatusSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServerStatusSummary:
     out: ServerStatusSummary = {}  # type: ignore[typeddict-item]
-    if "runTimeAssessmentStatus" in data:
+    if data.get("runTimeAssessmentStatus") is not None:
         out["run_time_assessment_status"] = data["runTimeAssessmentStatus"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     return out

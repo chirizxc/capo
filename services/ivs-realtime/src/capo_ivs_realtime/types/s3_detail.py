@@ -24,7 +24,7 @@ def serialize_json(value: S3Detail) -> dict:
 
 def deserialize_json(data: dict) -> S3Detail:
     out: S3Detail = {}  # type: ignore[typeddict-item]
-    if "recordingPrefix" in data:
+    if data.get("recordingPrefix") is not None:
         out["recording_prefix"] = data["recordingPrefix"]
     else:
         raise DeserializationError("S3Detail.recording_prefix required")

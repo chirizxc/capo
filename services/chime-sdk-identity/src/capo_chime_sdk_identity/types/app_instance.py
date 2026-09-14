@@ -58,11 +58,11 @@ def serialize_json(value: AppInstance) -> dict:
 
 def deserialize_json(data: dict) -> AppInstance:
     out: AppInstance = {}  # type: ignore[typeddict-item]
-    if "AppInstanceArn" in data:
+    if data.get("AppInstanceArn") is not None:
         out["app_instance_arn"] = data["AppInstanceArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_identity.types.timestamp
 
         out["created_timestamp"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> AppInstance:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_chime_sdk_identity.types.timestamp
 
         out["last_updated_timestamp"] = (
@@ -78,6 +78,6 @@ def deserialize_json(data: dict) -> AppInstance:
                 data["LastUpdatedTimestamp"]
             )
         )
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
     return out

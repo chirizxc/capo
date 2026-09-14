@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: RelevanceFeedback) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelevanceFeedback:
     out: RelevanceFeedback = {}  # type: ignore[typeddict-item]
-    if "ResultId" in data:
+    if data.get("ResultId") is not None:
         out["result_id"] = data["ResultId"]
     else:
         raise DeserializationError("RelevanceFeedback.result_id required")
-    if "RelevanceValue" in data:
+    if data.get("RelevanceValue") is not None:
         import capo_kendra.types.relevance_type
 
         out["relevance_value"] = (

@@ -104,9 +104,9 @@ def serialize_aws_json_1_1(value: GetImportResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetImportResponse:
     out: GetImportResponse = {}  # type: ignore[typeddict-item]
-    if "ImportId" in data:
+    if data.get("ImportId") is not None:
         out["import_id"] = data["ImportId"]
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_cloudtrail.types.import_destinations
 
         out["destinations"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetImportResponse:
                 data["Destinations"]
             )
         )
-    if "ImportSource" in data:
+    if data.get("ImportSource") is not None:
         import capo_cloudtrail.types.import_source
 
         out["import_source"] = (
@@ -122,19 +122,19 @@ def deserialize_aws_json_1_1(data: dict) -> GetImportResponse:
                 data["ImportSource"]
             )
         )
-    if "StartEventTime" in data:
+    if data.get("StartEventTime") is not None:
         import capo_cloudtrail.types.date
 
         out["start_event_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["StartEventTime"]
         )
-    if "EndEventTime" in data:
+    if data.get("EndEventTime") is not None:
         import capo_cloudtrail.types.date
 
         out["end_event_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["EndEventTime"]
         )
-    if "ImportStatus" in data:
+    if data.get("ImportStatus") is not None:
         import capo_cloudtrail.types.import_status
 
         out["import_status"] = (
@@ -142,19 +142,19 @@ def deserialize_aws_json_1_1(data: dict) -> GetImportResponse:
                 data["ImportStatus"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_cloudtrail.types.date
 
         out["created_timestamp"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["CreatedTimestamp"]
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_cloudtrail.types.date
 
         out["updated_timestamp"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["UpdatedTimestamp"]
         )
-    if "ImportStatistics" in data:
+    if data.get("ImportStatistics") is not None:
         import capo_cloudtrail.types.import_statistics
 
         out["import_statistics"] = (

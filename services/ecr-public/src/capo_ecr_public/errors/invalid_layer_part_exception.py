@@ -44,15 +44,15 @@ def serialize_aws_json_1_1(value: InvalidLayerPartException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidLayerPartException_:
     out: InvalidLayerPartException_ = {}  # type: ignore[typeddict-item]
-    if "registryId" in data:
+    if data.get("registryId") is not None:
         out["registry_id"] = data["registryId"]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "uploadId" in data:
+    if data.get("uploadId") is not None:
         out["upload_id"] = data["uploadId"]
-    if "lastValidByteReceived" in data:
+    if data.get("lastValidByteReceived") is not None:
         out["last_valid_byte_received"] = data["lastValidByteReceived"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -62,15 +62,18 @@ class InvalidLayerPartException(ServiceError):
 
     code: str | None = "InvalidLayerPartException"
 
-    def __init__(self, data: InvalidLayerPartException_):
+    def __init__(self, data: InvalidLayerPartException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidLayerPartException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidLayerPartException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidLayerPartException":
+        return cls(deserialize_aws_json_1_1(data), message)

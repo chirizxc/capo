@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: ApprovalRuleEventMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApprovalRuleEventMetadata:
     out: ApprovalRuleEventMetadata = {}  # type: ignore[typeddict-item]
-    if "approvalRuleName" in data:
+    if data.get("approvalRuleName") is not None:
         out["approval_rule_name"] = data["approvalRuleName"]
-    if "approvalRuleId" in data:
+    if data.get("approvalRuleId") is not None:
         out["approval_rule_id"] = data["approvalRuleId"]
-    if "approvalRuleContent" in data:
+    if data.get("approvalRuleContent") is not None:
         out["approval_rule_content"] = data["approvalRuleContent"]
     return out

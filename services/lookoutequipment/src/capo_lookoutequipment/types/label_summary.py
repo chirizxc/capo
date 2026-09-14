@@ -81,13 +81,13 @@ def serialize_aws_json_1_0(value: LabelSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LabelSummary:
     out: LabelSummary = {}  # type: ignore[typeddict-item]
-    if "LabelGroupName" in data:
+    if data.get("LabelGroupName") is not None:
         out["label_group_name"] = data["LabelGroupName"]
-    if "LabelId" in data:
+    if data.get("LabelId") is not None:
         out["label_id"] = data["LabelId"]
-    if "LabelGroupArn" in data:
+    if data.get("LabelGroupArn") is not None:
         out["label_group_arn"] = data["LabelGroupArn"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["start_time"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> LabelSummary:
                 data["StartTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["end_time"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_0(data: dict) -> LabelSummary:
                 data["EndTime"]
             )
         )
-    if "Rating" in data:
+    if data.get("Rating") is not None:
         import capo_lookoutequipment.types.label_rating
 
         out["rating"] = (
@@ -111,11 +111,11 @@ def deserialize_aws_json_1_0(data: dict) -> LabelSummary:
                 data["Rating"]
             )
         )
-    if "FaultCode" in data:
+    if data.get("FaultCode") is not None:
         out["fault_code"] = data["FaultCode"]
-    if "Equipment" in data:
+    if data.get("Equipment") is not None:
         out["equipment"] = data["Equipment"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at"] = (

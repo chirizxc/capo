@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: OnDeviceServiceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OnDeviceServiceConfiguration:
     out: OnDeviceServiceConfiguration = {}  # type: ignore[typeddict-item]
-    if "NFSOnDeviceService" in data:
+    if data.get("NFSOnDeviceService") is not None:
         import capo_snowball.types.nfs_on_device_service_configuration
 
         out["nfs_on_device_service"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> OnDeviceServiceConfiguration:
                 data["NFSOnDeviceService"]
             )
         )
-    if "TGWOnDeviceService" in data:
+    if data.get("TGWOnDeviceService") is not None:
         import capo_snowball.types.tgw_on_device_service_configuration
 
         out["tgw_on_device_service"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> OnDeviceServiceConfiguration:
                 data["TGWOnDeviceService"]
             )
         )
-    if "EKSOnDeviceService" in data:
+    if data.get("EKSOnDeviceService") is not None:
         import capo_snowball.types.eks_on_device_service_configuration
 
         out["eks_on_device_service"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> OnDeviceServiceConfiguration:
                 data["EKSOnDeviceService"]
             )
         )
-    if "S3OnDeviceService" in data:
+    if data.get("S3OnDeviceService") is not None:
         import capo_snowball.types.s3_on_device_service_configuration
 
         out["s3_on_device_service"] = (

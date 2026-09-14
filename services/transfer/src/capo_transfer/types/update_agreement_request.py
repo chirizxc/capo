@@ -102,17 +102,17 @@ def serialize_aws_json_1_1(value: UpdateAgreementRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAgreementRequest:
     out: UpdateAgreementRequest = {}  # type: ignore[typeddict-item]
-    if "AgreementId" in data:
+    if data.get("AgreementId") is not None:
         out["agreement_id"] = data["AgreementId"]
     else:
         raise DeserializationError("UpdateAgreementRequest.agreement_id required")
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("UpdateAgreementRequest.server_id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_transfer.types.agreement_status_type
 
         out["status"] = (
@@ -120,15 +120,15 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateAgreementRequest:
                 data["Status"]
             )
         )
-    if "LocalProfileId" in data:
+    if data.get("LocalProfileId") is not None:
         out["local_profile_id"] = data["LocalProfileId"]
-    if "PartnerProfileId" in data:
+    if data.get("PartnerProfileId") is not None:
         out["partner_profile_id"] = data["PartnerProfileId"]
-    if "BaseDirectory" in data:
+    if data.get("BaseDirectory") is not None:
         out["base_directory"] = data["BaseDirectory"]
-    if "AccessRole" in data:
+    if data.get("AccessRole") is not None:
         out["access_role"] = data["AccessRole"]
-    if "PreserveFilename" in data:
+    if data.get("PreserveFilename") is not None:
         import capo_transfer.types.preserve_filename_type
 
         out["preserve_filename"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateAgreementRequest:
                 data["PreserveFilename"]
             )
         )
-    if "EnforceMessageSigning" in data:
+    if data.get("EnforceMessageSigning") is not None:
         import capo_transfer.types.enforce_message_signing_type
 
         out["enforce_message_signing"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateAgreementRequest:
                 data["EnforceMessageSigning"]
             )
         )
-    if "CustomDirectories" in data:
+    if data.get("CustomDirectories") is not None:
         import capo_transfer.types.custom_directories_type
 
         out["custom_directories"] = (

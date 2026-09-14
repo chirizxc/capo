@@ -34,12 +34,12 @@ def serialize_json(value: ListItemsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListItemsResponse:
     out: ListItemsResponse = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_mediastore_data.types.item_list
 
         out["items"] = capo_mediastore_data.types.item_list.deserialize_json(
             data["Items"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

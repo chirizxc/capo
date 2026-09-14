@@ -130,13 +130,13 @@ def serialize_json(value: UpdateManagedThingRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateManagedThingRequest:
     out: UpdateManagedThingRequest = {}  # type: ignore[typeddict-item]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "CredentialLockerId" in data:
+    if data.get("CredentialLockerId") is not None:
         out["credential_locker_id"] = data["CredentialLockerId"]
-    if "SerialNumber" in data:
+    if data.get("SerialNumber") is not None:
         out["serial_number"] = data["SerialNumber"]
-    if "WiFiSimpleSetupConfiguration" in data:
+    if data.get("WiFiSimpleSetupConfiguration") is not None:
         import capo_iot_managed_integrations.types.wi_fi_simple_setup_configuration
 
         out["wi_fi_simple_setup_configuration"] = (
@@ -144,13 +144,13 @@ def deserialize_json(data: dict) -> UpdateManagedThingRequest:
                 data["WiFiSimpleSetupConfiguration"]
             )
         )
-    if "Brand" in data:
+    if data.get("Brand") is not None:
         out["brand"] = data["Brand"]
-    if "Model" in data:
+    if data.get("Model") is not None:
         out["model"] = data["Model"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CapabilityReport" in data:
+    if data.get("CapabilityReport") is not None:
         import capo_iot_managed_integrations.types.capability_report
 
         out["capability_report"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> UpdateManagedThingRequest:
                 data["CapabilityReport"]
             )
         )
-    if "CapabilitySchemas" in data:
+    if data.get("CapabilitySchemas") is not None:
         import capo_iot_managed_integrations.types.capability_schemas
 
         out["capability_schemas"] = (
@@ -166,11 +166,11 @@ def deserialize_json(data: dict) -> UpdateManagedThingRequest:
                 data["CapabilitySchemas"]
             )
         )
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         out["capabilities"] = data["Capabilities"]
-    if "Classification" in data:
+    if data.get("Classification") is not None:
         out["classification"] = data["Classification"]
-    if "HubNetworkMode" in data:
+    if data.get("HubNetworkMode") is not None:
         import capo_iot_managed_integrations.types.hub_network_mode
 
         out["hub_network_mode"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> UpdateManagedThingRequest:
                 data["HubNetworkMode"]
             )
         )
-    if "MetaData" in data:
+    if data.get("MetaData") is not None:
         import capo_iot_managed_integrations.types.meta_data
 
         out["meta_data"] = (

@@ -23,24 +23,56 @@ class Stats(TypedDict, closed=True):
 def serialize_json(value: Stats) -> dict:
     out: dict = {}
     if "min" in value:
-        out["min"] = value["min"]
+        out["min"] = (
+            "NaN"
+            if value["min"] != value["min"]
+            else "Infinity"
+            if value["min"] == float("inf")
+            else "-Infinity"
+            if value["min"] == float("-inf")
+            else value["min"]
+        )
     if "max" in value:
-        out["max"] = value["max"]
+        out["max"] = (
+            "NaN"
+            if value["max"] != value["max"]
+            else "Infinity"
+            if value["max"] == float("inf")
+            else "-Infinity"
+            if value["max"] == float("-inf")
+            else value["max"]
+        )
     if "avg" in value:
-        out["avg"] = value["avg"]
+        out["avg"] = (
+            "NaN"
+            if value["avg"] != value["avg"]
+            else "Infinity"
+            if value["avg"] == float("inf")
+            else "-Infinity"
+            if value["avg"] == float("-inf")
+            else value["avg"]
+        )
     if "sum" in value:
-        out["sum"] = value["sum"]
+        out["sum"] = (
+            "NaN"
+            if value["sum"] != value["sum"]
+            else "Infinity"
+            if value["sum"] == float("inf")
+            else "-Infinity"
+            if value["sum"] == float("-inf")
+            else value["sum"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Stats:
     out: Stats = {}  # type: ignore[typeddict-item]
-    if "min" in data:
-        out["min"] = data["min"]
-    if "max" in data:
-        out["max"] = data["max"]
-    if "avg" in data:
-        out["avg"] = data["avg"]
-    if "sum" in data:
-        out["sum"] = data["sum"]
+    if data.get("min") is not None:
+        out["min"] = float(data["min"])
+    if data.get("max") is not None:
+        out["max"] = float(data["max"])
+    if data.get("avg") is not None:
+        out["avg"] = float(data["avg"])
+    if data.get("sum") is not None:
+        out["sum"] = float(data["sum"])
     return out

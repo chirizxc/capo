@@ -40,13 +40,13 @@ def serialize_json(value: UniqueValuesComputation) -> dict:
 
 def deserialize_json(data: dict) -> UniqueValuesComputation:
     out: UniqueValuesComputation = {}  # type: ignore[typeddict-item]
-    if "ComputationId" in data:
+    if data.get("ComputationId") is not None:
         out["computation_id"] = data["ComputationId"]
     else:
         raise DeserializationError("UniqueValuesComputation.computation_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_quicksight.types.dimension_field
 
         out["category"] = capo_quicksight.types.dimension_field.deserialize_json(

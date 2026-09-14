@@ -61,11 +61,11 @@ def serialize_json(value: FilterGroup) -> dict:
 
 def deserialize_json(data: dict) -> FilterGroup:
     out: FilterGroup = {}  # type: ignore[typeddict-item]
-    if "FilterGroupId" in data:
+    if data.get("FilterGroupId") is not None:
         out["filter_group_id"] = data["FilterGroupId"]
     else:
         raise DeserializationError("FilterGroup.filter_group_id required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_quicksight.types.filter_list
 
         out["filters"] = capo_quicksight.types.filter_list.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> FilterGroup:
         )
     else:
         raise DeserializationError("FilterGroup.filters required")
-    if "ScopeConfiguration" in data:
+    if data.get("ScopeConfiguration") is not None:
         import capo_quicksight.types.filter_scope_configuration
 
         out["scope_configuration"] = (
@@ -83,13 +83,13 @@ def deserialize_json(data: dict) -> FilterGroup:
         )
     else:
         raise DeserializationError("FilterGroup.scope_configuration required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.widget_status
 
         out["status"] = capo_quicksight.types.widget_status.deserialize_json(
             data["Status"]
         )
-    if "CrossDataset" in data:
+    if data.get("CrossDataset") is not None:
         import capo_quicksight.types.cross_dataset_types
 
         out["cross_dataset"] = (

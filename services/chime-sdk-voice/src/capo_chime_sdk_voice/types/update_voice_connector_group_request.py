@@ -43,11 +43,11 @@ def serialize_json(value: UpdateVoiceConnectorGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVoiceConnectorGroupRequest:
     out: UpdateVoiceConnectorGroupRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateVoiceConnectorGroupRequest.name required")
-    if "VoiceConnectorItems" in data:
+    if data.get("VoiceConnectorItems") is not None:
         import capo_chime_sdk_voice.types.voice_connector_item_list
 
         out["voice_connector_items"] = (

@@ -25,6 +25,8 @@ def serialize_aws_json_1_0(input_to_serialize: IPSets) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> IPSets:
     out: IPSets = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_network_firewall.types.ip_set
 
         out[key] = capo_network_firewall.types.ip_set.deserialize_aws_json_1_0(value)

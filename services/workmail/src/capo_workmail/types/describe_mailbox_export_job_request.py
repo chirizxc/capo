@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DescribeMailboxExportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMailboxExportJobRequest:
     out: DescribeMailboxExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("DescribeMailboxExportJobRequest.job_id required")
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(

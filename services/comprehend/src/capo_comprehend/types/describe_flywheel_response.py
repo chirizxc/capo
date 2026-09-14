@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeFlywheelResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFlywheelResponse:
     out: DescribeFlywheelResponse = {}  # type: ignore[typeddict-item]
-    if "FlywheelProperties" in data:
+    if data.get("FlywheelProperties") is not None:
         import capo_comprehend.types.flywheel_properties
 
         out["flywheel_properties"] = (

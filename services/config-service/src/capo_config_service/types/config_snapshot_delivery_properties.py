@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ConfigSnapshotDeliveryProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigSnapshotDeliveryProperties:
     out: ConfigSnapshotDeliveryProperties = {}  # type: ignore[typeddict-item]
-    if "deliveryFrequency" in data:
+    if data.get("deliveryFrequency") is not None:
         import capo_config_service.types.maximum_execution_frequency
 
         out["delivery_frequency"] = (

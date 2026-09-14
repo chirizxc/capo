@@ -108,7 +108,7 @@ def serialize_json(value: GridViewConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GridViewConfiguration:
     out: GridViewConfiguration = {}  # type: ignore[typeddict-item]
-    if "ContentShareLayout" in data:
+    if data.get("ContentShareLayout") is not None:
         import capo_chime_sdk_media_pipelines.types.content_share_layout_option
 
         out["content_share_layout"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> GridViewConfiguration:
         raise DeserializationError(
             "GridViewConfiguration.content_share_layout required"
         )
-    if "PresenterOnlyConfiguration" in data:
+    if data.get("PresenterOnlyConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.presenter_only_configuration
 
         out["presenter_only_configuration"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> GridViewConfiguration:
                 data["PresenterOnlyConfiguration"]
             )
         )
-    if "ActiveSpeakerOnlyConfiguration" in data:
+    if data.get("ActiveSpeakerOnlyConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.active_speaker_only_configuration
 
         out["active_speaker_only_configuration"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> GridViewConfiguration:
                 data["ActiveSpeakerOnlyConfiguration"]
             )
         )
-    if "HorizontalLayoutConfiguration" in data:
+    if data.get("HorizontalLayoutConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.horizontal_layout_configuration
 
         out["horizontal_layout_configuration"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> GridViewConfiguration:
                 data["HorizontalLayoutConfiguration"]
             )
         )
-    if "VerticalLayoutConfiguration" in data:
+    if data.get("VerticalLayoutConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.vertical_layout_configuration
 
         out["vertical_layout_configuration"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> GridViewConfiguration:
                 data["VerticalLayoutConfiguration"]
             )
         )
-    if "VideoAttribute" in data:
+    if data.get("VideoAttribute") is not None:
         import capo_chime_sdk_media_pipelines.types.video_attribute
 
         out["video_attribute"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> GridViewConfiguration:
                 data["VideoAttribute"]
             )
         )
-    if "CanvasOrientation" in data:
+    if data.get("CanvasOrientation") is not None:
         import capo_chime_sdk_media_pipelines.types.canvas_orientation
 
         out["canvas_orientation"] = (

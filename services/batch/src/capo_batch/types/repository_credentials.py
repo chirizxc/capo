@@ -23,6 +23,6 @@ def serialize_json(value: RepositoryCredentials) -> dict:
 
 def deserialize_json(data: dict) -> RepositoryCredentials:
     out: RepositoryCredentials = {}  # type: ignore[typeddict-item]
-    if "credentialsParameter" in data:
+    if data.get("credentialsParameter") is not None:
         out["credentials_parameter"] = data["credentialsParameter"]
     return out

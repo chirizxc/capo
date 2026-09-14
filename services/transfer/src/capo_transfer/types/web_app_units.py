@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: WebAppUnits) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> WebAppUnits:
-    if "Provisioned" in data:
+    if data.get("Provisioned") is not None:
         return {"Provisioned": data["Provisioned"]}
     else:
         raise DeserializationError("WebAppUnits: no recognized variant key")

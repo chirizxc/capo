@@ -53,24 +53,24 @@ def serialize_aws_json_1_1(value: Node) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Node:
     out: Node = {}  # type: ignore[typeddict-item]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         import capo_dax.types.endpoint
 
         out["endpoint"] = capo_dax.types.endpoint.deserialize_aws_json_1_1(
             data["Endpoint"]
         )
-    if "NodeCreateTime" in data:
+    if data.get("NodeCreateTime") is not None:
         import capo_dax.types.t_stamp
 
         out["node_create_time"] = capo_dax.types.t_stamp.deserialize_aws_json_1_1(
             data["NodeCreateTime"]
         )
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "NodeStatus" in data:
+    if data.get("NodeStatus") is not None:
         out["node_status"] = data["NodeStatus"]
-    if "ParameterGroupStatus" in data:
+    if data.get("ParameterGroupStatus") is not None:
         out["parameter_group_status"] = data["ParameterGroupStatus"]
     return out

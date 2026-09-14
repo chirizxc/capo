@@ -27,8 +27,8 @@ def serialize_json(value: RootCauseException) -> dict:
 
 def deserialize_json(data: dict) -> RootCauseException:
     out: RootCauseException = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

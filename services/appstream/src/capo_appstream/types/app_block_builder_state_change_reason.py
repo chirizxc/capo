@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: AppBlockBuilderStateChangeReason) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AppBlockBuilderStateChangeReason:
     out: AppBlockBuilderStateChangeReason = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_appstream.types.app_block_builder_state_change_reason_code
 
         out["code"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> AppBlockBuilderStateChangeReason:
                 data["Code"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

@@ -38,9 +38,9 @@ def serialize_json(value: TeletextDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> TeletextDestinationSettings:
     out: TeletextDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "pageNumber" in data:
+    if data.get("pageNumber") is not None:
         out["page_number"] = data["pageNumber"]
-    if "pageTypes" in data:
+    if data.get("pageTypes") is not None:
         import capo_mediaconvert.types.__list_of_teletext_page_type
 
         out["page_types"] = (

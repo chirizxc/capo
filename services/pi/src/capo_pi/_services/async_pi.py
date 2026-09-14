@@ -219,10 +219,11 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.create_performance_analysis_report_request.CreatePerformanceAnalysisReportRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
-        input_["start_time"] = start_time
+        input_: capo_pi.types.create_performance_analysis_report_request.CreatePerformanceAnalysisReportRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+            "start_time": start_time,
+        }
         if end_time is not None:
             input_["end_time"] = end_time
         if tags is not None:
@@ -233,6 +234,7 @@ class AsyncPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_performance_analysis_report(
@@ -273,16 +275,18 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.delete_performance_analysis_report_request.DeletePerformanceAnalysisReportRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
-        input_["analysis_report_id"] = analysis_report_id
+        input_: capo_pi.types.delete_performance_analysis_report_request.DeletePerformanceAnalysisReportRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+            "analysis_report_id": analysis_report_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_dimension_keys(
@@ -345,15 +349,16 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.describe_dimension_keys_request.DescribeDimensionKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["metric"] = metric
+        input_: capo_pi.types.describe_dimension_keys_request.DescribeDimensionKeysRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+            "start_time": start_time,
+            "end_time": end_time,
+            "metric": metric,
+            "group_by": group_by,
+        }
         if period_in_seconds is not None:
             input_["period_in_seconds"] = period_in_seconds
-        input_["group_by"] = group_by
         if additional_metrics is not None:
             input_["additional_metrics"] = additional_metrics
         if partition_by is not None:
@@ -370,7 +375,51 @@ class AsyncPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_dimension_keys(
+        self,
+        service_type: "capo_pi.types.service_type.ServiceType",
+        identifier: "capo_pi.types.identifier_string.IdentifierString",
+        start_time: "capo_pi.types.iso_timestamp.ISOTimestamp",
+        end_time: "capo_pi.types.iso_timestamp.ISOTimestamp",
+        metric: "capo_pi.types.request_string.RequestString",
+        group_by: "capo_pi.types.dimension_group.DimensionGroup",
+        *,
+        config_overrides: Optional[AsyncPIClientConfig] = None,
+        period_in_seconds: Optional["capo_pi.types.integer.Integer"] = None,
+        additional_metrics: Optional[
+            "capo_pi.types.additional_metrics_list.AdditionalMetricsList"
+        ] = None,
+        partition_by: Optional["capo_pi.types.dimension_group.DimensionGroup"] = None,
+        filter: Optional[
+            "capo_pi.types.metric_query_filter_map.MetricQueryFilterMap"
+        ] = None,
+        max_results: Optional["capo_pi.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_pi.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_pi.types.describe_dimension_keys_response.DescribeDimensionKeysResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_dimension_keys(
+                service_type,
+                identifier,
+                start_time,
+                end_time,
+                metric,
+                group_by,
+                config_overrides=config_overrides,
+                period_in_seconds=period_in_seconds,
+                additional_metrics=additional_metrics,
+                partition_by=partition_by,
+                filter=filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_dimension_key_details(
         self,
@@ -416,11 +465,12 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.get_dimension_key_details_request.GetDimensionKeyDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
-        input_["group"] = group
-        input_["group_identifier"] = group_identifier
+        input_: capo_pi.types.get_dimension_key_details_request.GetDimensionKeyDetailsRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+            "group": group,
+            "group_identifier": group_identifier,
+        }
         if requested_dimensions is not None:
             input_["requested_dimensions"] = requested_dimensions
 
@@ -429,6 +479,7 @@ class AsyncPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_performance_analysis_report(
@@ -475,10 +526,11 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.get_performance_analysis_report_request.GetPerformanceAnalysisReportRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
-        input_["analysis_report_id"] = analysis_report_id
+        input_: capo_pi.types.get_performance_analysis_report_request.GetPerformanceAnalysisReportRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+            "analysis_report_id": analysis_report_id,
+        }
         if text_format is not None:
             input_["text_format"] = text_format
         if accept_language is not None:
@@ -489,6 +541,7 @@ class AsyncPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_metadata(
@@ -527,15 +580,17 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.get_resource_metadata_request.GetResourceMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
+        input_: capo_pi.types.get_resource_metadata_request.GetResourceMetadataRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_metrics(
@@ -590,12 +645,13 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.get_resource_metrics_request.GetResourceMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
-        input_["metric_queries"] = metric_queries
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_pi.types.get_resource_metrics_request.GetResourceMetricsRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+            "metric_queries": metric_queries,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if period_in_seconds is not None:
             input_["period_in_seconds"] = period_in_seconds
         if max_results is not None:
@@ -610,7 +666,43 @@ class AsyncPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_resource_metrics(
+        self,
+        service_type: "capo_pi.types.service_type.ServiceType",
+        identifier: "capo_pi.types.identifier_string.IdentifierString",
+        metric_queries: "capo_pi.types.metric_query_list.MetricQueryList",
+        start_time: "capo_pi.types.iso_timestamp.ISOTimestamp",
+        end_time: "capo_pi.types.iso_timestamp.ISOTimestamp",
+        *,
+        config_overrides: Optional[AsyncPIClientConfig] = None,
+        period_in_seconds: Optional["capo_pi.types.integer.Integer"] = None,
+        max_results: Optional["capo_pi.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_pi.types.next_token.NextToken"] = None,
+        period_alignment: Optional[
+            "capo_pi.types.period_alignment.PeriodAlignment"
+        ] = None,
+    ) -> "AsyncIterator[capo_pi.types.get_resource_metrics_response.GetResourceMetricsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_resource_metrics(
+                service_type,
+                identifier,
+                metric_queries,
+                start_time,
+                end_time,
+                config_overrides=config_overrides,
+                period_in_seconds=period_in_seconds,
+                max_results=max_results,
+                next_token=_token,
+                period_alignment=period_alignment,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_available_resource_dimensions(
         self,
@@ -658,10 +750,11 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.list_available_resource_dimensions_request.ListAvailableResourceDimensionsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
-        input_["metrics"] = metrics
+        input_: capo_pi.types.list_available_resource_dimensions_request.ListAvailableResourceDimensionsRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+            "metrics": metrics,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -674,7 +767,37 @@ class AsyncPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_available_resource_dimensions(
+        self,
+        service_type: "capo_pi.types.service_type.ServiceType",
+        identifier: "capo_pi.types.identifier_string.IdentifierString",
+        metrics: "capo_pi.types.dimensions_metric_list.DimensionsMetricList",
+        *,
+        config_overrides: Optional[AsyncPIClientConfig] = None,
+        max_results: Optional["capo_pi.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_pi.types.next_token.NextToken"] = None,
+        authorized_actions: Optional[
+            "capo_pi.types.authorized_actions_list.AuthorizedActionsList"
+        ] = None,
+    ) -> "AsyncIterator[capo_pi.types.list_available_resource_dimensions_response.ListAvailableResourceDimensionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_available_resource_dimensions(
+                service_type,
+                identifier,
+                metrics,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                authorized_actions=authorized_actions,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_available_resource_metrics(
         self,
@@ -718,10 +841,11 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.list_available_resource_metrics_request.ListAvailableResourceMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
-        input_["metric_types"] = metric_types
+        input_: capo_pi.types.list_available_resource_metrics_request.ListAvailableResourceMetricsRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+            "metric_types": metric_types,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -732,7 +856,33 @@ class AsyncPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_available_resource_metrics(
+        self,
+        service_type: "capo_pi.types.service_type.ServiceType",
+        identifier: "capo_pi.types.identifier_string.IdentifierString",
+        metric_types: "capo_pi.types.metric_type_list.MetricTypeList",
+        *,
+        config_overrides: Optional[AsyncPIClientConfig] = None,
+        next_token: Optional["capo_pi.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_pi.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_pi.types.list_available_resource_metrics_response.ListAvailableResourceMetricsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_available_resource_metrics(
+                service_type,
+                identifier,
+                metric_types,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_performance_analysis_report_recommendations(
         self,
@@ -780,10 +930,11 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.list_performance_analysis_report_recommendations_request.ListPerformanceAnalysisReportRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
-        input_["analysis_report_id"] = analysis_report_id
+        input_: capo_pi.types.list_performance_analysis_report_recommendations_request.ListPerformanceAnalysisReportRecommendationsRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+            "analysis_report_id": analysis_report_id,
+        }
         if recommendation_ids is not None:
             input_["recommendation_ids"] = recommendation_ids
         if max_results is not None:
@@ -796,6 +947,7 @@ class AsyncPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_performance_analysis_report_recommendations(
@@ -871,9 +1023,10 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.list_performance_analysis_reports_request.ListPerformanceAnalysisReportsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["identifier"] = identifier
+        input_: capo_pi.types.list_performance_analysis_reports_request.ListPerformanceAnalysisReportsRequest = {
+            "service_type": service_type,
+            "identifier": identifier,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -886,7 +1039,33 @@ class AsyncPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_performance_analysis_reports(
+        self,
+        service_type: "capo_pi.types.service_type.ServiceType",
+        identifier: "capo_pi.types.identifier_string.IdentifierString",
+        *,
+        config_overrides: Optional[AsyncPIClientConfig] = None,
+        next_token: Optional["capo_pi.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_pi.types.max_results.MaxResults"] = None,
+        list_tags: Optional["capo_pi.types.boolean.Boolean"] = None,
+    ) -> "AsyncIterator[capo_pi.types.list_performance_analysis_reports_response.ListPerformanceAnalysisReportsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_performance_analysis_reports(
+                service_type,
+                identifier,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                list_tags=list_tags,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -924,15 +1103,17 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["resource_arn"] = resource_arn
+        input_: capo_pi.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "service_type": service_type,
+            "resource_arn": resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -973,16 +1154,18 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_pi.types.tag_resource_request.TagResourceRequest = {
+            "service_type": service_type,
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1023,16 +1206,18 @@ class AsyncPIClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pi.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_type"] = service_type
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_pi.types.untag_resource_request.UntagResourceRequest = {
+            "service_type": service_type,
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

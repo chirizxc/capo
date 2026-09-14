@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateEventBusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEventBusResponse:
     out: CreateEventBusResponse = {}  # type: ignore[typeddict-item]
-    if "EventBusArn" in data:
+    if data.get("EventBusArn") is not None:
         out["event_bus_arn"] = data["EventBusArn"]
     return out

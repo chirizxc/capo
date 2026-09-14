@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: Classification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Classification:
     out: Classification = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_athena.types.parameters_map
 
         out["properties"] = capo_athena.types.parameters_map.deserialize_aws_json_1_1(

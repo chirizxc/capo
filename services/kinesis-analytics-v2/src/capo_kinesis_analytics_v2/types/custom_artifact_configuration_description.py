@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: CustomArtifactConfigurationDescription) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> CustomArtifactConfigurationDescription:
     out: CustomArtifactConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "ArtifactType" in data:
+    if data.get("ArtifactType") is not None:
         import capo_kinesis_analytics_v2.types.artifact_type
 
         out["artifact_type"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> CustomArtifactConfigurationDescripti
                 data["ArtifactType"]
             )
         )
-    if "S3ContentLocationDescription" in data:
+    if data.get("S3ContentLocationDescription") is not None:
         import capo_kinesis_analytics_v2.types.s3_content_location
 
         out["s3_content_location_description"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> CustomArtifactConfigurationDescripti
                 data["S3ContentLocationDescription"]
             )
         )
-    if "MavenReferenceDescription" in data:
+    if data.get("MavenReferenceDescription") is not None:
         import capo_kinesis_analytics_v2.types.maven_reference
 
         out["maven_reference_description"] = (

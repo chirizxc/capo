@@ -119,23 +119,23 @@ def serialize_aws_json_1_1(value: Volume) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Volume:
     out: Volume = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_fsx.types.creation_time
 
         out["creation_time"] = capo_fsx.types.creation_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.volume_lifecycle
 
         out["lifecycle"] = capo_fsx.types.volume_lifecycle.deserialize_aws_json_1_1(
             data["Lifecycle"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OntapConfiguration" in data:
+    if data.get("OntapConfiguration") is not None:
         import capo_fsx.types.ontap_volume_configuration
 
         out["ontap_configuration"] = (
@@ -143,21 +143,21 @@ def deserialize_aws_json_1_1(data: dict) -> Volume:
                 data["OntapConfiguration"]
             )
         )
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "VolumeType" in data:
+    if data.get("VolumeType") is not None:
         import capo_fsx.types.volume_type
 
         out["volume_type"] = capo_fsx.types.volume_type.deserialize_aws_json_1_1(
             data["VolumeType"]
         )
-    if "LifecycleTransitionReason" in data:
+    if data.get("LifecycleTransitionReason") is not None:
         import capo_fsx.types.lifecycle_transition_reason
 
         out["lifecycle_transition_reason"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> Volume:
                 data["LifecycleTransitionReason"]
             )
         )
-    if "AdministrativeActions" in data:
+    if data.get("AdministrativeActions") is not None:
         import capo_fsx.types.administrative_actions
 
         out["administrative_actions"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> Volume:
                 data["AdministrativeActions"]
             )
         )
-    if "OpenZFSConfiguration" in data:
+    if data.get("OpenZFSConfiguration") is not None:
         import capo_fsx.types.open_zfs_volume_configuration
 
         out["open_zfs_configuration"] = (

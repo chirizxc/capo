@@ -30,8 +30,8 @@ def serialize_json(value: ActiveIAMPolicyAssignment) -> dict:
 
 def deserialize_json(data: dict) -> ActiveIAMPolicyAssignment:
     out: ActiveIAMPolicyAssignment = {}  # type: ignore[typeddict-item]
-    if "AssignmentName" in data:
+    if data.get("AssignmentName") is not None:
         out["assignment_name"] = data["AssignmentName"]
-    if "PolicyArn" in data:
+    if data.get("PolicyArn") is not None:
         out["policy_arn"] = data["PolicyArn"]
     return out

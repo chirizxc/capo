@@ -74,9 +74,9 @@ def serialize_json(value: RecoveryInstanceProperties) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryInstanceProperties:
     out: RecoveryInstanceProperties = {}  # type: ignore[typeddict-item]
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         out["last_updated_date_time"] = data["lastUpdatedDateTime"]
-    if "identificationHints" in data:
+    if data.get("identificationHints") is not None:
         import capo_drs.types.identification_hints
 
         out["identification_hints"] = (
@@ -84,27 +84,27 @@ def deserialize_json(data: dict) -> RecoveryInstanceProperties:
                 data["identificationHints"]
             )
         )
-    if "networkInterfaces" in data:
+    if data.get("networkInterfaces") is not None:
         import capo_drs.types.network_interfaces
 
         out["network_interfaces"] = capo_drs.types.network_interfaces.deserialize_json(
             data["networkInterfaces"]
         )
-    if "disks" in data:
+    if data.get("disks") is not None:
         import capo_drs.types.recovery_instance_disks
 
         out["disks"] = capo_drs.types.recovery_instance_disks.deserialize_json(
             data["disks"]
         )
-    if "cpus" in data:
+    if data.get("cpus") is not None:
         import capo_drs.types.cpus
 
         out["cpus"] = capo_drs.types.cpus.deserialize_json(data["cpus"])
-    if "ramBytes" in data:
+    if data.get("ramBytes") is not None:
         out["ram_bytes"] = data["ramBytes"]
     else:
         out["ram_bytes"] = 0
-    if "os" in data:
+    if data.get("os") is not None:
         import capo_drs.types.os
 
         out["os"] = capo_drs.types.os.deserialize_json(data["os"])

@@ -69,23 +69,23 @@ def serialize_aws_json_1_0(value: GetPartnerResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPartnerResponse:
     out: GetPartnerResponse = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("GetPartnerResponse.catalog required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("GetPartnerResponse.arn required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("GetPartnerResponse.id required")
-    if "LegalName" in data:
+    if data.get("LegalName") is not None:
         out["legal_name"] = data["LegalName"]
     else:
         raise DeserializationError("GetPartnerResponse.legal_name required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["created_at"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPartnerResponse:
         )
     else:
         raise DeserializationError("GetPartnerResponse.created_at required")
-    if "Profile" in data:
+    if data.get("Profile") is not None:
         import capo_partnercentral_account.types.partner_profile
 
         out["profile"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPartnerResponse:
         )
     else:
         raise DeserializationError("GetPartnerResponse.profile required")
-    if "AwsTrainingCertificationEmailDomains" in data:
+    if data.get("AwsTrainingCertificationEmailDomains") is not None:
         import capo_partnercentral_account.types.partner_domain_list
 
         out["aws_training_certification_email_domains"] = (

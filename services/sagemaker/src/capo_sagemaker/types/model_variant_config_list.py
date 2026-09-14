@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ModelVariantConfigList:
 
     out: ModelVariantConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.model_variant_config.deserialize_aws_json_1_1(item)
         )

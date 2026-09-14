@@ -109,47 +109,47 @@ def serialize_json(value: StartTaskContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartTaskContactRequest:
     out: StartTaskContactRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("StartTaskContactRequest.instance_id required")
-    if "PreviousContactId" in data:
+    if data.get("PreviousContactId") is not None:
         out["previous_contact_id"] = data["PreviousContactId"]
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes
 
         out["attributes"] = capo_connect.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("StartTaskContactRequest.name required")
-    if "References" in data:
+    if data.get("References") is not None:
         import capo_connect.types.contact_references
 
         out["references"] = capo_connect.types.contact_references.deserialize_json(
             data["References"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ScheduledTime" in data:
+    if data.get("ScheduledTime") is not None:
         import capo_connect.types.timestamp
 
         out["scheduled_time"] = capo_connect.types.timestamp.deserialize_json(
             data["ScheduledTime"]
         )
-    if "TaskTemplateId" in data:
+    if data.get("TaskTemplateId") is not None:
         out["task_template_id"] = data["TaskTemplateId"]
-    if "QuickConnectId" in data:
+    if data.get("QuickConnectId") is not None:
         out["quick_connect_id"] = data["QuickConnectId"]
-    if "RelatedContactId" in data:
+    if data.get("RelatedContactId") is not None:
         out["related_contact_id"] = data["RelatedContactId"]
-    if "SegmentAttributes" in data:
+    if data.get("SegmentAttributes") is not None:
         import capo_connect.types.segment_attributes
 
         out["segment_attributes"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> StartTaskContactRequest:
                 data["SegmentAttributes"]
             )
         )
-    if "Attachments" in data:
+    if data.get("Attachments") is not None:
         import capo_connect.types.task_attachments
 
         out["attachments"] = capo_connect.types.task_attachments.deserialize_json(

@@ -41,7 +41,7 @@ def serialize_json(value: PutPermissionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutPermissionRequest:
     out: PutPermissionRequest = {}  # type: ignore[typeddict-item]
-    if "principals" in data:
+    if data.get("principals") is not None:
         import capo_codeguruprofiler.types.principals
 
         out["principals"] = capo_codeguruprofiler.types.principals.deserialize_json(
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> PutPermissionRequest:
         )
     else:
         raise DeserializationError("PutPermissionRequest.principals required")
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
     return out

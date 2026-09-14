@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: Document) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Document:
     out: Document = {}  # type: ignore[typeddict-item]
-    if "Bytes" in data:
+    if data.get("Bytes") is not None:
         import capo_textract.types.image_blob
 
         out["bytes"] = capo_textract.types.image_blob.deserialize_aws_json_1_1(
             data["Bytes"]
         )
-    if "S3Object" in data:
+    if data.get("S3Object") is not None:
         import capo_textract.types.s3_object
 
         out["s3_object"] = capo_textract.types.s3_object.deserialize_aws_json_1_1(

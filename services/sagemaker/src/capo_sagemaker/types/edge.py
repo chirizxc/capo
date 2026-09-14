@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: Edge) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Edge:
     out: Edge = {}  # type: ignore[typeddict-item]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
-    if "DestinationArn" in data:
+    if data.get("DestinationArn") is not None:
         out["destination_arn"] = data["DestinationArn"]
-    if "AssociationType" in data:
+    if data.get("AssociationType") is not None:
         import capo_sagemaker.types.association_edge_type
 
         out["association_type"] = (

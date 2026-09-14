@@ -25,7 +25,7 @@ def serialize_json(value: AssetConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AssetConfiguration:
     out: AssetConfiguration = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_dataexchange.types.list_of_tag
 
         out["tags"] = capo_dataexchange.types.list_of_tag.deserialize_json(data["Tags"])

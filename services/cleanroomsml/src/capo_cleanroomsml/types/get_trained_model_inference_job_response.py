@@ -96,14 +96,14 @@ class GetTrainedModelInferenceJobResponse(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GetTrainedModelInferenceJobResponse) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     out["trainedModelInferenceJobArn"] = value["trained_model_inference_job_arn"]
@@ -201,45 +201,41 @@ def serialize_json(value: GetTrainedModelInferenceJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTrainedModelInferenceJobResponse:
     out: GetTrainedModelInferenceJobResponse = {}  # type: ignore[typeddict-item]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "GetTrainedModelInferenceJobResponse.create_time required"
         )
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "GetTrainedModelInferenceJobResponse.update_time required"
         )
-    if "trainedModelInferenceJobArn" in data:
+    if data.get("trainedModelInferenceJobArn") is not None:
         out["trained_model_inference_job_arn"] = data["trainedModelInferenceJobArn"]
     else:
         raise DeserializationError(
             "GetTrainedModelInferenceJobResponse.trained_model_inference_job_arn required"
         )
-    if "configuredModelAlgorithmAssociationArn" in data:
+    if data.get("configuredModelAlgorithmAssociationArn") is not None:
         out["configured_model_algorithm_association_arn"] = data[
             "configuredModelAlgorithmAssociationArn"
         ]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetTrainedModelInferenceJobResponse.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanroomsml.types.trained_model_inference_job_status
 
         out["status"] = (
@@ -251,15 +247,15 @@ def deserialize_json(data: dict) -> GetTrainedModelInferenceJobResponse:
         raise DeserializationError(
             "GetTrainedModelInferenceJobResponse.status required"
         )
-    if "trainedModelArn" in data:
+    if data.get("trainedModelArn") is not None:
         out["trained_model_arn"] = data["trainedModelArn"]
     else:
         raise DeserializationError(
             "GetTrainedModelInferenceJobResponse.trained_model_arn required"
         )
-    if "trainedModelVersionIdentifier" in data:
+    if data.get("trainedModelVersionIdentifier") is not None:
         out["trained_model_version_identifier"] = data["trainedModelVersionIdentifier"]
-    if "resourceConfig" in data:
+    if data.get("resourceConfig") is not None:
         import capo_cleanroomsml.types.inference_resource_config
 
         out["resource_config"] = (
@@ -271,7 +267,7 @@ def deserialize_json(data: dict) -> GetTrainedModelInferenceJobResponse:
         raise DeserializationError(
             "GetTrainedModelInferenceJobResponse.resource_config required"
         )
-    if "outputConfiguration" in data:
+    if data.get("outputConfiguration") is not None:
         import capo_cleanroomsml.types.inference_output_configuration
 
         out["output_configuration"] = (
@@ -283,13 +279,13 @@ def deserialize_json(data: dict) -> GetTrainedModelInferenceJobResponse:
         raise DeserializationError(
             "GetTrainedModelInferenceJobResponse.output_configuration required"
         )
-    if "membershipIdentifier" in data:
+    if data.get("membershipIdentifier") is not None:
         out["membership_identifier"] = data["membershipIdentifier"]
     else:
         raise DeserializationError(
             "GetTrainedModelInferenceJobResponse.membership_identifier required"
         )
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_cleanroomsml.types.model_inference_data_source
 
         out["data_source"] = (
@@ -301,7 +297,7 @@ def deserialize_json(data: dict) -> GetTrainedModelInferenceJobResponse:
         raise DeserializationError(
             "GetTrainedModelInferenceJobResponse.data_source required"
         )
-    if "containerExecutionParameters" in data:
+    if data.get("containerExecutionParameters") is not None:
         import capo_cleanroomsml.types.inference_container_execution_parameters
 
         out["container_execution_parameters"] = (
@@ -309,17 +305,17 @@ def deserialize_json(data: dict) -> GetTrainedModelInferenceJobResponse:
                 data["containerExecutionParameters"]
             )
         )
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         import capo_cleanroomsml.types.status_details
 
         out["status_details"] = capo_cleanroomsml.types.status_details.deserialize_json(
             data["statusDetails"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "inferenceContainerImageDigest" in data:
+    if data.get("inferenceContainerImageDigest") is not None:
         out["inference_container_image_digest"] = data["inferenceContainerImageDigest"]
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_cleanroomsml.types.inference_environment_map
 
         out["environment"] = (
@@ -327,29 +323,29 @@ def deserialize_json(data: dict) -> GetTrainedModelInferenceJobResponse:
                 data["environment"]
             )
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "metricsStatus" in data:
+    if data.get("metricsStatus") is not None:
         import capo_cleanroomsml.types.metrics_status
 
         out["metrics_status"] = capo_cleanroomsml.types.metrics_status.deserialize_json(
             data["metricsStatus"]
         )
-    if "metricsStatusDetails" in data:
+    if data.get("metricsStatusDetails") is not None:
         out["metrics_status_details"] = data["metricsStatusDetails"]
-    if "logsStatus" in data:
+    if data.get("logsStatus") is not None:
         import capo_cleanroomsml.types.logs_status
 
         out["logs_status"] = capo_cleanroomsml.types.logs_status.deserialize_json(
             data["logsStatus"]
         )
-    if "logsStatusDetails" in data:
+    if data.get("logsStatusDetails") is not None:
         out["logs_status_details"] = data["logsStatusDetails"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "mlModelInferencePayerAccountId" in data:
+    if data.get("mlModelInferencePayerAccountId") is not None:
         out["ml_model_inference_payer_account_id"] = data[
             "mlModelInferencePayerAccountId"
         ]

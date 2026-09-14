@@ -51,19 +51,19 @@ def serialize_json(value: ThousandSeparatorOptions) -> dict:
 
 def deserialize_json(data: dict) -> ThousandSeparatorOptions:
     out: ThousandSeparatorOptions = {}  # type: ignore[typeddict-item]
-    if "Symbol" in data:
+    if data.get("Symbol") is not None:
         import capo_quicksight.types.numeric_separator_symbol
 
         out["symbol"] = capo_quicksight.types.numeric_separator_symbol.deserialize_json(
             data["Symbol"]
         )
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "GroupingStyle" in data:
+    if data.get("GroupingStyle") is not None:
         import capo_quicksight.types.digit_grouping_style
 
         out["grouping_style"] = (

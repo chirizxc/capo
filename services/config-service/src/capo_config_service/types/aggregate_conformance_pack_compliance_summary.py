@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: AggregateConformancePackComplianceSummary) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> AggregateConformancePackComplianceSummary:
     out: AggregateConformancePackComplianceSummary = {}  # type: ignore[typeddict-item]
-    if "ComplianceSummary" in data:
+    if data.get("ComplianceSummary") is not None:
         import capo_config_service.types.aggregate_conformance_pack_compliance_count
 
         out["compliance_summary"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> AggregateConformancePackComplianceSu
                 data["ComplianceSummary"]
             )
         )
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     return out

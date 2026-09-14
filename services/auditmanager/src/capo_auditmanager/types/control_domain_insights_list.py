@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ControlDomainInsightsList:
 
     out: ControlDomainInsightsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auditmanager.types.control_domain_insights.deserialize_json(item)
         )

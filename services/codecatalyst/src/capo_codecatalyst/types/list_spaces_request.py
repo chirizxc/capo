@@ -18,6 +18,6 @@ def serialize_json(value: ListSpacesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListSpacesRequest:
     out: ListSpacesRequest = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

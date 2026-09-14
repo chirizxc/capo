@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: DescribeScheduledQueryRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeScheduledQueryRequest:
     out: DescribeScheduledQueryRequest = {}  # type: ignore[typeddict-item]
-    if "ScheduledQueryArn" in data:
+    if data.get("ScheduledQueryArn") is not None:
         out["scheduled_query_arn"] = data["ScheduledQueryArn"]
     else:
         raise DeserializationError(

@@ -26,10 +26,10 @@ def serialize_json(value: FailedToUpdateAssociation) -> dict:
 
 def deserialize_json(data: dict) -> FailedToUpdateAssociation:
     out: FailedToUpdateAssociation = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     return out

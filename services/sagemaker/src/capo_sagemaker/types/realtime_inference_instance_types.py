@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> RealtimeInferenceInstanceTypes:
 
     out: RealtimeInferenceInstanceTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.production_variant_instance_type.deserialize_aws_json_1_1(
                 item

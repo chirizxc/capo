@@ -23,10 +23,10 @@ def serialize_json(value: ResourceProperty) -> dict:
     if "name" in value:
         out["Name"] = value["name"]
     if "last_reported_at" in value:
-        import capo_resource_explorer_2.types._prelude.timestamp
+        import capo_resource_explorer_2._protocol.serialize
 
         out["LastReportedAt"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.serialize_json(
+            capo_resource_explorer_2._protocol.serialize.fmt_date_time(
                 value["last_reported_at"]
             )
         )
@@ -37,16 +37,14 @@ def serialize_json(value: ResourceProperty) -> dict:
 
 def deserialize_json(data: dict) -> ResourceProperty:
     out: ResourceProperty = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LastReportedAt" in data:
-        import capo_resource_explorer_2.types._prelude.timestamp
+    if data.get("LastReportedAt") is not None:
+        import datetime
 
-        out["last_reported_at"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.deserialize_json(
-                data["LastReportedAt"]
-            )
+        out["last_reported_at"] = datetime.datetime.fromisoformat(
+            data["LastReportedAt"].replace("Z", "+00:00")
         )
-    if "Data" in data:
+    if data.get("Data") is not None:
         out["data"] = data["Data"]
     return out

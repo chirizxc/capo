@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CommonAttributeOrConditionList:
 
     out: CommonAttributeOrConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.common_attribute_and_condition.deserialize_json(item)
         )

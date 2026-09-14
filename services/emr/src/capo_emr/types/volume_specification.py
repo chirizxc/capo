@@ -37,12 +37,12 @@ def serialize_aws_json_1_1(value: VolumeSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VolumeSpecification:
     out: VolumeSpecification = {}  # type: ignore[typeddict-item]
-    if "VolumeType" in data:
+    if data.get("VolumeType") is not None:
         out["volume_type"] = data["VolumeType"]
-    if "Iops" in data:
+    if data.get("Iops") is not None:
         out["iops"] = data["Iops"]
-    if "SizeInGB" in data:
+    if data.get("SizeInGB") is not None:
         out["size_in_gb"] = data["SizeInGB"]
-    if "Throughput" in data:
+    if data.get("Throughput") is not None:
         out["throughput"] = data["Throughput"]
     return out

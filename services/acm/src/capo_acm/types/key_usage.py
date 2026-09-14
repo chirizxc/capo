@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: KeyUsage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KeyUsage:
     out: KeyUsage = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_acm.types.key_usage_name
 
         out["name"] = capo_acm.types.key_usage_name.deserialize_aws_json_1_1(

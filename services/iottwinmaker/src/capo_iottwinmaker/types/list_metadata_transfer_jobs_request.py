@@ -51,19 +51,19 @@ def serialize_json(value: ListMetadataTransferJobsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListMetadataTransferJobsRequest:
     out: ListMetadataTransferJobsRequest = {}  # type: ignore[typeddict-item]
-    if "sourceType" in data:
+    if data.get("sourceType") is not None:
         out["source_type"] = data["sourceType"]
     else:
         raise DeserializationError(
             "ListMetadataTransferJobsRequest.source_type required"
         )
-    if "destinationType" in data:
+    if data.get("destinationType") is not None:
         out["destination_type"] = data["destinationType"]
     else:
         raise DeserializationError(
             "ListMetadataTransferJobsRequest.destination_type required"
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_iottwinmaker.types.list_metadata_transfer_jobs_filters
 
         out["filters"] = (
@@ -71,8 +71,8 @@ def deserialize_json(data: dict) -> ListMetadataTransferJobsRequest:
                 data["filters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

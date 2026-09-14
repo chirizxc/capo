@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfResourceProfileArtifact:
 
     out: __listOfResourceProfileArtifact = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.resource_profile_artifact.deserialize_json(item))
     return out

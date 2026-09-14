@@ -81,24 +81,24 @@ def serialize_json(value: PresetWatermark) -> dict:
 
 def deserialize_json(data: dict) -> PresetWatermark:
     out: PresetWatermark = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "MaxWidth" in data:
+    if data.get("MaxWidth") is not None:
         out["max_width"] = data["MaxWidth"]
-    if "MaxHeight" in data:
+    if data.get("MaxHeight") is not None:
         out["max_height"] = data["MaxHeight"]
-    if "SizingPolicy" in data:
+    if data.get("SizingPolicy") is not None:
         out["sizing_policy"] = data["SizingPolicy"]
-    if "HorizontalAlign" in data:
+    if data.get("HorizontalAlign") is not None:
         out["horizontal_align"] = data["HorizontalAlign"]
-    if "HorizontalOffset" in data:
+    if data.get("HorizontalOffset") is not None:
         out["horizontal_offset"] = data["HorizontalOffset"]
-    if "VerticalAlign" in data:
+    if data.get("VerticalAlign") is not None:
         out["vertical_align"] = data["VerticalAlign"]
-    if "VerticalOffset" in data:
+    if data.get("VerticalOffset") is not None:
         out["vertical_offset"] = data["VerticalOffset"]
-    if "Opacity" in data:
+    if data.get("Opacity") is not None:
         out["opacity"] = data["Opacity"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
     return out

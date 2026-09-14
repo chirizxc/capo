@@ -42,7 +42,7 @@ def serialize_json(value: AlarmCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> AlarmCapabilities:
     out: AlarmCapabilities = {}  # type: ignore[typeddict-item]
-    if "initializationConfiguration" in data:
+    if data.get("initializationConfiguration") is not None:
         import capo_iot_events.types.initialization_configuration
 
         out["initialization_configuration"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> AlarmCapabilities:
                 data["initializationConfiguration"]
             )
         )
-    if "acknowledgeFlow" in data:
+    if data.get("acknowledgeFlow") is not None:
         import capo_iot_events.types.acknowledge_flow
 
         out["acknowledge_flow"] = (

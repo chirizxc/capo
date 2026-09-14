@@ -39,12 +39,12 @@ def serialize_json(value: RecoveryPointMember) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryPointMember:
     out: RecoveryPointMember = {}  # type: ignore[typeddict-item]
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
     return out

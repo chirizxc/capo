@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DeleteDocumentClassifierRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDocumentClassifierRequest:
     out: DeleteDocumentClassifierRequest = {}  # type: ignore[typeddict-item]
-    if "DocumentClassifierArn" in data:
+    if data.get("DocumentClassifierArn") is not None:
         out["document_classifier_arn"] = data["DocumentClassifierArn"]
     else:
         raise DeserializationError(

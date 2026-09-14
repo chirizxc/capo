@@ -60,23 +60,23 @@ def serialize_json(value: LifecyclePolicyDetailExclusionRulesAmis) -> dict:
 
 def deserialize_json(data: dict) -> LifecyclePolicyDetailExclusionRulesAmis:
     out: LifecyclePolicyDetailExclusionRulesAmis = {}  # type: ignore[typeddict-item]
-    if "isPublic" in data:
+    if data.get("isPublic") is not None:
         out["is_public"] = data["isPublic"]
     else:
         out["is_public"] = False
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_imagebuilder.types.string_list
 
         out["regions"] = capo_imagebuilder.types.string_list.deserialize_json(
             data["regions"]
         )
-    if "sharedAccounts" in data:
+    if data.get("sharedAccounts") is not None:
         import capo_imagebuilder.types.account_list
 
         out["shared_accounts"] = capo_imagebuilder.types.account_list.deserialize_json(
             data["sharedAccounts"]
         )
-    if "lastLaunched" in data:
+    if data.get("lastLaunched") is not None:
         import capo_imagebuilder.types.lifecycle_policy_detail_exclusion_rules_amis_last_launched
 
         out["last_launched"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> LifecyclePolicyDetailExclusionRulesAmis:
                 data["lastLaunched"]
             )
         )
-    if "tagMap" in data:
+    if data.get("tagMap") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tag_map"] = capo_imagebuilder.types.tag_map.deserialize_json(

@@ -67,13 +67,13 @@ def serialize_json(value: FunctionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FunctionConfiguration:
     out: FunctionConfiguration = {}  # type: ignore[typeddict-item]
-    if "EncodingType" in data:
+    if data.get("EncodingType") is not None:
         import capo_greengrass.types.encoding_type
 
         out["encoding_type"] = capo_greengrass.types.encoding_type.deserialize_json(
             data["EncodingType"]
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_greengrass.types.function_configuration_environment
 
         out["environment"] = (
@@ -81,16 +81,16 @@ def deserialize_json(data: dict) -> FunctionConfiguration:
                 data["Environment"]
             )
         )
-    if "ExecArgs" in data:
+    if data.get("ExecArgs") is not None:
         out["exec_args"] = data["ExecArgs"]
-    if "Executable" in data:
+    if data.get("Executable") is not None:
         out["executable"] = data["Executable"]
-    if "MemorySize" in data:
+    if data.get("MemorySize") is not None:
         out["memory_size"] = data["MemorySize"]
-    if "Pinned" in data:
+    if data.get("Pinned") is not None:
         out["pinned"] = data["Pinned"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "FunctionRuntimeOverride" in data:
+    if data.get("FunctionRuntimeOverride") is not None:
         out["function_runtime_override"] = data["FunctionRuntimeOverride"]
     return out

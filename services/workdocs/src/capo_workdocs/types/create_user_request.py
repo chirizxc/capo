@@ -66,29 +66,29 @@ def serialize_json(value: CreateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserRequest:
     out: CreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("CreateUserRequest.username required")
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "GivenName" in data:
+    if data.get("GivenName") is not None:
         out["given_name"] = data["GivenName"]
     else:
         raise DeserializationError("CreateUserRequest.given_name required")
-    if "Surname" in data:
+    if data.get("Surname") is not None:
         out["surname"] = data["Surname"]
     else:
         raise DeserializationError("CreateUserRequest.surname required")
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError("CreateUserRequest.password required")
-    if "TimeZoneId" in data:
+    if data.get("TimeZoneId") is not None:
         out["time_zone_id"] = data["TimeZoneId"]
-    if "StorageRule" in data:
+    if data.get("StorageRule") is not None:
         import capo_workdocs.types.storage_rule_type
 
         out["storage_rule"] = capo_workdocs.types.storage_rule_type.deserialize_json(

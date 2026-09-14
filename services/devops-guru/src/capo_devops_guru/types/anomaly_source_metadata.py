@@ -37,10 +37,10 @@ def serialize_json(value: AnomalySourceMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AnomalySourceMetadata:
     out: AnomalySourceMetadata = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "SourceResourceName" in data:
+    if data.get("SourceResourceName") is not None:
         out["source_resource_name"] = data["SourceResourceName"]
-    if "SourceResourceType" in data:
+    if data.get("SourceResourceType") is not None:
         out["source_resource_type"] = data["SourceResourceType"]
     return out

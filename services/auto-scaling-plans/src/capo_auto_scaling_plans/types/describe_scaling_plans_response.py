@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeScalingPlansResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeScalingPlansResponse:
     out: DescribeScalingPlansResponse = {}  # type: ignore[typeddict-item]
-    if "ScalingPlans" in data:
+    if data.get("ScalingPlans") is not None:
         import capo_auto_scaling_plans.types.scaling_plans
 
         out["scaling_plans"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeScalingPlansResponse:
                 data["ScalingPlans"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

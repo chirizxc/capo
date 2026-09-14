@@ -35,13 +35,13 @@ def serialize_json(value: CustomerVoiceActivity) -> dict:
 
 def deserialize_json(data: dict) -> CustomerVoiceActivity:
     out: CustomerVoiceActivity = {}  # type: ignore[typeddict-item]
-    if "GreetingStartTimestamp" in data:
+    if data.get("GreetingStartTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["greeting_start_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["GreetingStartTimestamp"]
         )
-    if "GreetingEndTimestamp" in data:
+    if data.get("GreetingEndTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["greeting_end_timestamp"] = capo_connect.types.timestamp.deserialize_json(

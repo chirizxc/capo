@@ -135,11 +135,11 @@ def serialize_aws_json_1_1(value: DescribeAIBenchmarkJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAIBenchmarkJobResponse:
     out: DescribeAIBenchmarkJobResponse = {}  # type: ignore[typeddict-item]
-    if "AIBenchmarkJobName" in data:
+    if data.get("AIBenchmarkJobName") is not None:
         out["ai_benchmark_job_name"] = data["AIBenchmarkJobName"]
-    if "AIBenchmarkJobArn" in data:
+    if data.get("AIBenchmarkJobArn") is not None:
         out["ai_benchmark_job_arn"] = data["AIBenchmarkJobArn"]
-    if "AIBenchmarkJobStatus" in data:
+    if data.get("AIBenchmarkJobStatus") is not None:
         import capo_sagemaker.types.ai_benchmark_job_status
 
         out["ai_benchmark_job_status"] = (
@@ -147,9 +147,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIBenchmarkJobResponse:
                 data["AIBenchmarkJobStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "BenchmarkTarget" in data:
+    if data.get("BenchmarkTarget") is not None:
         import capo_sagemaker.types.ai_benchmark_target
 
         out["benchmark_target"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIBenchmarkJobResponse:
                 data["BenchmarkTarget"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.ai_benchmark_output_result
 
         out["output_config"] = (
@@ -165,11 +165,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIBenchmarkJobResponse:
                 data["OutputConfig"]
             )
         )
-    if "AIWorkloadConfigIdentifier" in data:
+    if data.get("AIWorkloadConfigIdentifier") is not None:
         out["ai_workload_config_identifier"] = data["AIWorkloadConfigIdentifier"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "NetworkConfig" in data:
+    if data.get("NetworkConfig") is not None:
         import capo_sagemaker.types.ai_benchmark_network_config
 
         out["network_config"] = (
@@ -177,25 +177,25 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIBenchmarkJobResponse:
                 data["NetworkConfig"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

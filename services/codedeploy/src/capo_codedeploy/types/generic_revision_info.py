@@ -61,9 +61,9 @@ def serialize_aws_json_1_1(value: GenericRevisionInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GenericRevisionInfo:
     out: GenericRevisionInfo = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "deploymentGroups" in data:
+    if data.get("deploymentGroups") is not None:
         import capo_codedeploy.types.deployment_groups_list
 
         out["deployment_groups"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> GenericRevisionInfo:
                 data["deploymentGroups"]
             )
         )
-    if "firstUsedTime" in data:
+    if data.get("firstUsedTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["first_used_time"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> GenericRevisionInfo:
                 data["firstUsedTime"]
             )
         )
-    if "lastUsedTime" in data:
+    if data.get("lastUsedTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["last_used_time"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> GenericRevisionInfo:
                 data["lastUsedTime"]
             )
         )
-    if "registerTime" in data:
+    if data.get("registerTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["register_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(

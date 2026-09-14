@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DocumentLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentLocation:
     out: DocumentLocation = {}  # type: ignore[typeddict-item]
-    if "S3Object" in data:
+    if data.get("S3Object") is not None:
         import capo_textract.types.s3_object
 
         out["s3_object"] = capo_textract.types.s3_object.deserialize_aws_json_1_1(

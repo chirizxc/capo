@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ConsolidatedReportMetrics:
 
     out: ConsolidatedReportMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.consolidated_report_metric.deserialize_json(item)
         )

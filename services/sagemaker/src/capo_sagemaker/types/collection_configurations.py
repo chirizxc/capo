@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CollectionConfigurations:
 
     out: CollectionConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.collection_configuration.deserialize_aws_json_1_1(item)
         )

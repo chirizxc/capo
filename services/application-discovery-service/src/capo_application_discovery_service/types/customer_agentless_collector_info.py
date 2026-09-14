@@ -56,31 +56,31 @@ def serialize_aws_json_1_1(value: CustomerAgentlessCollectorInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomerAgentlessCollectorInfo:
     out: CustomerAgentlessCollectorInfo = {}  # type: ignore[typeddict-item]
-    if "activeAgentlessCollectors" in data:
+    if data.get("activeAgentlessCollectors") is not None:
         out["active_agentless_collectors"] = data["activeAgentlessCollectors"]
     else:
         out["active_agentless_collectors"] = 0
-    if "healthyAgentlessCollectors" in data:
+    if data.get("healthyAgentlessCollectors") is not None:
         out["healthy_agentless_collectors"] = data["healthyAgentlessCollectors"]
     else:
         out["healthy_agentless_collectors"] = 0
-    if "denyListedAgentlessCollectors" in data:
+    if data.get("denyListedAgentlessCollectors") is not None:
         out["deny_listed_agentless_collectors"] = data["denyListedAgentlessCollectors"]
     else:
         out["deny_listed_agentless_collectors"] = 0
-    if "shutdownAgentlessCollectors" in data:
+    if data.get("shutdownAgentlessCollectors") is not None:
         out["shutdown_agentless_collectors"] = data["shutdownAgentlessCollectors"]
     else:
         out["shutdown_agentless_collectors"] = 0
-    if "unhealthyAgentlessCollectors" in data:
+    if data.get("unhealthyAgentlessCollectors") is not None:
         out["unhealthy_agentless_collectors"] = data["unhealthyAgentlessCollectors"]
     else:
         out["unhealthy_agentless_collectors"] = 0
-    if "totalAgentlessCollectors" in data:
+    if data.get("totalAgentlessCollectors") is not None:
         out["total_agentless_collectors"] = data["totalAgentlessCollectors"]
     else:
         out["total_agentless_collectors"] = 0
-    if "unknownAgentlessCollectors" in data:
+    if data.get("unknownAgentlessCollectors") is not None:
         out["unknown_agentless_collectors"] = data["unknownAgentlessCollectors"]
     else:
         out["unknown_agentless_collectors"] = 0

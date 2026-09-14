@@ -46,19 +46,19 @@ def serialize_aws_json_1_0(value: GetProfileVisibilityResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetProfileVisibilityResponse:
     out: GetProfileVisibilityResponse = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("GetProfileVisibilityResponse.catalog required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("GetProfileVisibilityResponse.arn required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("GetProfileVisibilityResponse.id required")
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_partnercentral_account.types.profile_visibility
 
         out["visibility"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetProfileVisibilityResponse:
         )
     else:
         raise DeserializationError("GetProfileVisibilityResponse.visibility required")
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError("GetProfileVisibilityResponse.profile_id required")

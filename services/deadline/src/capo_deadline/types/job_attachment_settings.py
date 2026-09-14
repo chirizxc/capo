@@ -28,11 +28,11 @@ def serialize_json(value: JobAttachmentSettings) -> dict:
 
 def deserialize_json(data: dict) -> JobAttachmentSettings:
     out: JobAttachmentSettings = {}  # type: ignore[typeddict-item]
-    if "s3BucketName" in data:
+    if data.get("s3BucketName") is not None:
         out["s3_bucket_name"] = data["s3BucketName"]
     else:
         raise DeserializationError("JobAttachmentSettings.s3_bucket_name required")
-    if "rootPrefix" in data:
+    if data.get("rootPrefix") is not None:
         out["root_prefix"] = data["rootPrefix"]
     else:
         raise DeserializationError("JobAttachmentSettings.root_prefix required")

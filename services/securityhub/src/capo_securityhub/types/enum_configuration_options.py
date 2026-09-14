@@ -32,9 +32,9 @@ def serialize_json(value: EnumConfigurationOptions) -> dict:
 
 def deserialize_json(data: dict) -> EnumConfigurationOptions:
     out: EnumConfigurationOptions = {}  # type: ignore[typeddict-item]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "AllowedValues" in data:
+    if data.get("AllowedValues") is not None:
         import capo_securityhub.types.string_list
 
         out["allowed_values"] = capo_securityhub.types.string_list.deserialize_json(

@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: GeoMatchConstraint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GeoMatchConstraint:
     out: GeoMatchConstraint = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_waf_regional.types.geo_match_constraint_type
 
         out["type"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> GeoMatchConstraint:
         )
     else:
         raise DeserializationError("GeoMatchConstraint.type required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_waf_regional.types.geo_match_constraint_value
 
         out["value"] = (

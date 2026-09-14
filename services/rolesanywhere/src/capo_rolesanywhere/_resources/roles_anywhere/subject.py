@@ -66,14 +66,16 @@ class Subject:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_subject_request.ScalarSubjectRequest = {}  # type: ignore[typeddict-item]
-        input_["subject_id"] = subject_id
+        input_: capo_rolesanywhere.types.scalar_subject_request.ScalarSubjectRequest = {
+            "subject_id": subject_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -110,7 +112,7 @@ class Subject:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.list_request.ListRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rolesanywhere.types.list_request.ListRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -121,6 +123,7 @@ class Subject:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -161,14 +164,16 @@ class AsyncSubject:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_subject_request.ScalarSubjectRequest = {}  # type: ignore[typeddict-item]
-        input_["subject_id"] = subject_id
+        input_: capo_rolesanywhere.types.scalar_subject_request.ScalarSubjectRequest = {
+            "subject_id": subject_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -206,7 +211,7 @@ class AsyncSubject:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.list_request.ListRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rolesanywhere.types.list_request.ListRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -217,4 +222,5 @@ class AsyncSubject:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

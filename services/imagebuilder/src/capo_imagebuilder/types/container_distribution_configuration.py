@@ -46,15 +46,15 @@ def serialize_json(value: ContainerDistributionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ContainerDistributionConfiguration:
     out: ContainerDistributionConfiguration = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "containerTags" in data:
+    if data.get("containerTags") is not None:
         import capo_imagebuilder.types.string_list
 
         out["container_tags"] = capo_imagebuilder.types.string_list.deserialize_json(
             data["containerTags"]
         )
-    if "targetRepository" in data:
+    if data.get("targetRepository") is not None:
         import capo_imagebuilder.types.target_container_repository
 
         out["target_repository"] = (

@@ -50,15 +50,15 @@ def serialize_json(value: MultiplexSettings) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexSettings:
     out: MultiplexSettings = {}  # type: ignore[typeddict-item]
-    if "maximumVideoBufferDelayMilliseconds" in data:
+    if data.get("maximumVideoBufferDelayMilliseconds") is not None:
         out["maximum_video_buffer_delay_milliseconds"] = data[
             "maximumVideoBufferDelayMilliseconds"
         ]
-    if "transportStreamBitrate" in data:
+    if data.get("transportStreamBitrate") is not None:
         out["transport_stream_bitrate"] = data["transportStreamBitrate"]
-    if "transportStreamId" in data:
+    if data.get("transportStreamId") is not None:
         out["transport_stream_id"] = data["transportStreamId"]
-    if "transportStreamReservedBitrate" in data:
+    if data.get("transportStreamReservedBitrate") is not None:
         out["transport_stream_reserved_bitrate"] = data[
             "transportStreamReservedBitrate"
         ]

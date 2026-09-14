@@ -34,9 +34,9 @@ def serialize_json(value: DataTransferApi) -> dict:
 
 def deserialize_json(data: dict) -> DataTransferApi:
     out: DataTransferApi = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_appflow.types.data_transfer_api_type
 
         out["type"] = capo_appflow.types.data_transfer_api_type.deserialize_json(

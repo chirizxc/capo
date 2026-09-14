@@ -68,11 +68,11 @@ def serialize_json(value: CreateDataAccessorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataAccessorRequest:
     out: CreateDataAccessorRequest = {}  # type: ignore[typeddict-item]
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
     else:
         raise DeserializationError("CreateDataAccessorRequest.principal required")
-    if "actionConfigurations" in data:
+    if data.get("actionConfigurations") is not None:
         import capo_qbusiness.types.action_configuration_list
 
         out["action_configurations"] = (
@@ -84,13 +84,13 @@ def deserialize_json(data: dict) -> CreateDataAccessorRequest:
         raise DeserializationError(
             "CreateDataAccessorRequest.action_configurations required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateDataAccessorRequest.display_name required")
-    if "authenticationDetail" in data:
+    if data.get("authenticationDetail") is not None:
         import capo_qbusiness.types.data_accessor_authentication_detail
 
         out["authentication_detail"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> CreateDataAccessorRequest:
                 data["authenticationDetail"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qbusiness.types.tags
 
         out["tags"] = capo_qbusiness.types.tags.deserialize_json(data["tags"])

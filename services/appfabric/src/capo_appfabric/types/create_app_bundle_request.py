@@ -37,11 +37,11 @@ def serialize_json(value: CreateAppBundleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAppBundleRequest:
     out: CreateAppBundleRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "customerManagedKeyIdentifier" in data:
+    if data.get("customerManagedKeyIdentifier") is not None:
         out["customer_managed_key_identifier"] = data["customerManagedKeyIdentifier"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appfabric.types.tag_list
 
         out["tags"] = capo_appfabric.types.tag_list.deserialize_json(data["tags"])

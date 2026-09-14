@@ -90,15 +90,15 @@ def serialize_json(value: PutEnvironmentBlueprintConfigurationOutput) -> dict:
             "allow_user_provided_configurations"
         ]
     if "created_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["createdAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["updatedAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     if "resource_configurations" in value:
@@ -122,27 +122,27 @@ def serialize_json(value: PutEnvironmentBlueprintConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> PutEnvironmentBlueprintConfigurationOutput:
     out: PutEnvironmentBlueprintConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError(
             "PutEnvironmentBlueprintConfigurationOutput.domain_id required"
         )
-    if "environmentBlueprintId" in data:
+    if data.get("environmentBlueprintId") is not None:
         out["environment_blueprint_id"] = data["environmentBlueprintId"]
     else:
         raise DeserializationError(
             "PutEnvironmentBlueprintConfigurationOutput.environment_blueprint_id required"
         )
-    if "provisioningRoleArn" in data:
+    if data.get("provisioningRoleArn") is not None:
         out["provisioning_role_arn"] = data["provisioningRoleArn"]
-    if "environmentRolePermissionBoundary" in data:
+    if data.get("environmentRolePermissionBoundary") is not None:
         out["environment_role_permission_boundary"] = data[
             "environmentRolePermissionBoundary"
         ]
-    if "manageAccessRoleArn" in data:
+    if data.get("manageAccessRoleArn") is not None:
         out["manage_access_role_arn"] = data["manageAccessRoleArn"]
-    if "enabledRegions" in data:
+    if data.get("enabledRegions") is not None:
         import capo_datazone.types.enabled_region_list
 
         out["enabled_regions"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> PutEnvironmentBlueprintConfigurationOutput:
                 data["enabledRegions"]
             )
         )
-    if "regionalParameters" in data:
+    if data.get("regionalParameters") is not None:
         import capo_datazone.types.regional_parameter_map
 
         out["regional_parameters"] = (
@@ -158,23 +158,23 @@ def deserialize_json(data: dict) -> PutEnvironmentBlueprintConfigurationOutput:
                 data["regionalParameters"]
             )
         )
-    if "allowUserProvidedConfigurations" in data:
+    if data.get("allowUserProvidedConfigurations") is not None:
         out["allow_user_provided_configurations"] = data[
             "allowUserProvidedConfigurations"
         ]
-    if "createdAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
-    if "resourceConfigurations" in data:
+    if data.get("resourceConfigurations") is not None:
         import capo_datazone.types.resource_configurations
 
         out["resource_configurations"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> PutEnvironmentBlueprintConfigurationOutput:
                 data["resourceConfigurations"]
             )
         )
-    if "provisioningConfigurations" in data:
+    if data.get("provisioningConfigurations") is not None:
         import capo_datazone.types.provisioning_configuration_list
 
         out["provisioning_configurations"] = (

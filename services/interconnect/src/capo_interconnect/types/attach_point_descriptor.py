@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: AttachPointDescriptor) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AttachPointDescriptor:
     out: AttachPointDescriptor = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_interconnect.types.attach_point_type
 
         out["type"] = (
@@ -44,11 +44,11 @@ def deserialize_aws_json_1_0(data: dict) -> AttachPointDescriptor:
         )
     else:
         raise DeserializationError("AttachPointDescriptor.type required")
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("AttachPointDescriptor.identifier required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AttachPointDescriptor.name required")

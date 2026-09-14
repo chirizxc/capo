@@ -44,7 +44,7 @@ def serialize_json(value: ObjectAttributeUpdate) -> dict:
 
 def deserialize_json(data: dict) -> ObjectAttributeUpdate:
     out: ObjectAttributeUpdate = {}  # type: ignore[typeddict-item]
-    if "ObjectAttributeKey" in data:
+    if data.get("ObjectAttributeKey") is not None:
         import capo_clouddirectory.types.attribute_key
 
         out["object_attribute_key"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ObjectAttributeUpdate:
                 data["ObjectAttributeKey"]
             )
         )
-    if "ObjectAttributeAction" in data:
+    if data.get("ObjectAttributeAction") is not None:
         import capo_clouddirectory.types.object_attribute_action
 
         out["object_attribute_action"] = (

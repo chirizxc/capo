@@ -69,15 +69,15 @@ def serialize_aws_json_1_1(value: IpAddressResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IpAddressResponse:
     out: IpAddressResponse = {}  # type: ignore[typeddict-item]
-    if "IpId" in data:
+    if data.get("IpId") is not None:
         out["ip_id"] = data["IpId"]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "Ip" in data:
+    if data.get("Ip") is not None:
         out["ip"] = data["Ip"]
-    if "Ipv6" in data:
+    if data.get("Ipv6") is not None:
         out["ipv6"] = data["Ipv6"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53resolver.types.ip_address_status
 
         out["status"] = (
@@ -85,10 +85,10 @@ def deserialize_aws_json_1_1(data: dict) -> IpAddressResponse:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "ModificationTime" in data:
+    if data.get("ModificationTime") is not None:
         out["modification_time"] = data["ModificationTime"]
     return out

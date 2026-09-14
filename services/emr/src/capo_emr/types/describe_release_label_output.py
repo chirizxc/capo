@@ -51,9 +51,9 @@ def serialize_aws_json_1_1(value: DescribeReleaseLabelOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReleaseLabelOutput:
     out: DescribeReleaseLabelOutput = {}  # type: ignore[typeddict-item]
-    if "ReleaseLabel" in data:
+    if data.get("ReleaseLabel") is not None:
         out["release_label"] = data["ReleaseLabel"]
-    if "Applications" in data:
+    if data.get("Applications") is not None:
         import capo_emr.types.simplified_application_list
 
         out["applications"] = (
@@ -61,9 +61,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeReleaseLabelOutput:
                 data["Applications"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "AvailableOSReleases" in data:
+    if data.get("AvailableOSReleases") is not None:
         import capo_emr.types.os_release_list
 
         out["available_os_releases"] = (

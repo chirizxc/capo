@@ -32,11 +32,11 @@ def serialize_json(value: UntagResourceInput) -> dict:
 
 def deserialize_json(data: dict) -> UntagResourceInput:
     out: UntagResourceInput = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("UntagResourceInput.resource_arn required")
-    if "tagKeys" in data:
+    if data.get("tagKeys") is not None:
         import capo_socialmessaging.types.string_list
 
         out["tag_keys"] = capo_socialmessaging.types.string_list.deserialize_json(

@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: CommandExecutionParameterMap) -> dict:
 def deserialize_json(data: dict) -> CommandExecutionParameterMap:
     out: CommandExecutionParameterMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iot_jobs_data_plane.types.command_parameter_value
 
         out[key] = (

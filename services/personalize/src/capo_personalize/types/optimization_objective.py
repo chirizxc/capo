@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: OptimizationObjective) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OptimizationObjective:
     out: OptimizationObjective = {}  # type: ignore[typeddict-item]
-    if "itemAttribute" in data:
+    if data.get("itemAttribute") is not None:
         out["item_attribute"] = data["itemAttribute"]
-    if "objectiveSensitivity" in data:
+    if data.get("objectiveSensitivity") is not None:
         import capo_personalize.types.objective_sensitivity
 
         out["objective_sensitivity"] = (

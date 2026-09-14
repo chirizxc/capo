@@ -32,11 +32,11 @@ def serialize_json(value: GetDatabaseOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetDatabaseOutput:
     out: GetDatabaseOutput = {}  # type: ignore[typeddict-item]
-    if "Database" in data:
+    if data.get("Database") is not None:
         import capo_ssm_sap.types.database
 
         out["database"] = capo_ssm_sap.types.database.deserialize_json(data["Database"])
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_sap.types.tag_map
 
         out["tags"] = capo_ssm_sap.types.tag_map.deserialize_json(data["Tags"])

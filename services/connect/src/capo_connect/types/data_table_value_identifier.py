@@ -35,13 +35,13 @@ def serialize_json(value: DataTableValueIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> DataTableValueIdentifier:
     out: DataTableValueIdentifier = {}  # type: ignore[typeddict-item]
-    if "PrimaryValues" in data:
+    if data.get("PrimaryValues") is not None:
         import capo_connect.types.primary_values_set
 
         out["primary_values"] = capo_connect.types.primary_values_set.deserialize_json(
             data["PrimaryValues"]
         )
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError("DataTableValueIdentifier.attribute_name required")

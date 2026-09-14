@@ -53,7 +53,15 @@ def serialize_json(value: Finding) -> dict:
     if "arn" in value:
         out["arn"] = value["arn"]
     if "confidence" in value:
-        out["confidence"] = value["confidence"]
+        out["confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "created_at" in value:
         out["createdAt"] = value["created_at"]
     if "description" in value:
@@ -77,7 +85,15 @@ def serialize_json(value: Finding) -> dict:
 
         out["service"] = capo_guardduty.types.service.serialize_json(value["service"])
     if "severity" in value:
-        out["severity"] = value["severity"]
+        out["severity"] = (
+            "NaN"
+            if value["severity"] != value["severity"]
+            else "Infinity"
+            if value["severity"] == float("inf")
+            else "-Infinity"
+            if value["severity"] == float("-inf")
+            else value["severity"]
+        )
     if "title" in value:
         out["title"] = value["title"]
     if "type" in value:
@@ -91,42 +107,42 @@ def serialize_json(value: Finding) -> dict:
 
 def deserialize_json(data: dict) -> Finding:
     out: Finding = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "confidence" in data:
-        out["confidence"] = data["confidence"]
-    if "createdAt" in data:
+    if data.get("confidence") is not None:
+        out["confidence"] = float(data["confidence"])
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "partition" in data:
+    if data.get("partition") is not None:
         out["partition"] = data["partition"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_guardduty.types.resource
 
         out["resource"] = capo_guardduty.types.resource.deserialize_json(
             data["resource"]
         )
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
-    if "service" in data:
+    if data.get("service") is not None:
         import capo_guardduty.types.service
 
         out["service"] = capo_guardduty.types.service.deserialize_json(data["service"])
-    if "severity" in data:
-        out["severity"] = data["severity"]
-    if "title" in data:
+    if data.get("severity") is not None:
+        out["severity"] = float(data["severity"])
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         out["updated_at"] = data["updatedAt"]
-    if "associatedAttackSequenceArn" in data:
+    if data.get("associatedAttackSequenceArn") is not None:
         out["associated_attack_sequence_arn"] = data["associatedAttackSequenceArn"]
     return out

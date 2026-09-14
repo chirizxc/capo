@@ -36,9 +36,9 @@ def serialize_json(value: ListConnectorsV2Response) -> dict:
 
 def deserialize_json(data: dict) -> ListConnectorsV2Response:
     out: ListConnectorsV2Response = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Connectors" in data:
+    if data.get("Connectors") is not None:
         import capo_securityhub.types.connector_summary_list
 
         out["connectors"] = (

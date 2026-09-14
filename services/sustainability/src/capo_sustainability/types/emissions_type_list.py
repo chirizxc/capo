@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EmissionsTypeList:
 
     out: EmissionsTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sustainability.types.emissions_type.deserialize_json(item))
     return out

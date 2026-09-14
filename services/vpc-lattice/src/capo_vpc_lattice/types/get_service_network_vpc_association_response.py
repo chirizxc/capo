@@ -122,29 +122,29 @@ def serialize_json(value: GetServiceNetworkVpcAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceNetworkVpcAssociationResponse:
     out: GetServiceNetworkVpcAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "serviceNetworkId" in data:
+    if data.get("serviceNetworkId") is not None:
         out["service_network_id"] = data["serviceNetworkId"]
-    if "serviceNetworkName" in data:
+    if data.get("serviceNetworkName") is not None:
         out["service_network_name"] = data["serviceNetworkName"]
-    if "serviceNetworkArn" in data:
+    if data.get("serviceNetworkArn") is not None:
         out["service_network_arn"] = data["serviceNetworkArn"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_vpc_lattice.types.security_group_list
 
         out["security_group_ids"] = (
@@ -152,19 +152,19 @@ def deserialize_json(data: dict) -> GetServiceNetworkVpcAssociationResponse:
                 data["securityGroupIds"]
             )
         )
-    if "privateDnsEnabled" in data:
+    if data.get("privateDnsEnabled") is not None:
         out["private_dns_enabled"] = data["privateDnsEnabled"]
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "dnsOptions" in data:
+    if data.get("dnsOptions") is not None:
         import capo_vpc_lattice.types.dns_options
 
         out["dns_options"] = capo_vpc_lattice.types.dns_options.deserialize_json(

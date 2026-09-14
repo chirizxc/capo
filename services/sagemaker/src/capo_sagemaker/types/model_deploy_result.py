@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ModelDeployResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelDeployResult:
     out: ModelDeployResult = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
     return out

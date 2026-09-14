@@ -40,12 +40,12 @@ def serialize_json(value: SourceCloudProperties) -> dict:
 
 def deserialize_json(data: dict) -> SourceCloudProperties:
     out: SourceCloudProperties = {}  # type: ignore[typeddict-item]
-    if "originAccountID" in data:
+    if data.get("originAccountID") is not None:
         out["origin_account_id"] = data["originAccountID"]
-    if "originRegion" in data:
+    if data.get("originRegion") is not None:
         out["origin_region"] = data["originRegion"]
-    if "originAvailabilityZone" in data:
+    if data.get("originAvailabilityZone") is not None:
         out["origin_availability_zone"] = data["originAvailabilityZone"]
-    if "sourceOutpostArn" in data:
+    if data.get("sourceOutpostArn") is not None:
         out["source_outpost_arn"] = data["sourceOutpostArn"]
     return out

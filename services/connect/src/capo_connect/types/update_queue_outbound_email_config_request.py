@@ -38,7 +38,7 @@ def serialize_json(value: UpdateQueueOutboundEmailConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQueueOutboundEmailConfigRequest:
     out: UpdateQueueOutboundEmailConfigRequest = {}  # type: ignore[typeddict-item]
-    if "OutboundEmailConfig" in data:
+    if data.get("OutboundEmailConfig") is not None:
         import capo_connect.types.outbound_email_config
 
         out["outbound_email_config"] = (

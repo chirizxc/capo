@@ -34,14 +34,14 @@ def serialize_json(value: PasswordRequirements) -> dict:
 
 def deserialize_json(data: dict) -> PasswordRequirements:
     out: PasswordRequirements = {}  # type: ignore[typeddict-item]
-    if "lowercase" in data:
+    if data.get("lowercase") is not None:
         out["lowercase"] = data["lowercase"]
-    if "minLength" in data:
+    if data.get("minLength") is not None:
         out["min_length"] = data["minLength"]
-    if "numbers" in data:
+    if data.get("numbers") is not None:
         out["numbers"] = data["numbers"]
-    if "symbols" in data:
+    if data.get("symbols") is not None:
         out["symbols"] = data["symbols"]
-    if "uppercase" in data:
+    if data.get("uppercase") is not None:
         out["uppercase"] = data["uppercase"]
     return out

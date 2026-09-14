@@ -69,30 +69,30 @@ def serialize_aws_json_1_1(value: UpdateRelationalDatabaseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRelationalDatabaseRequest:
     out: UpdateRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "UpdateRelationalDatabaseRequest.relational_database_name required"
         )
-    if "masterUserPassword" in data:
+    if data.get("masterUserPassword") is not None:
         out["master_user_password"] = data["masterUserPassword"]
-    if "rotateMasterUserPassword" in data:
+    if data.get("rotateMasterUserPassword") is not None:
         out["rotate_master_user_password"] = data["rotateMasterUserPassword"]
-    if "preferredBackupWindow" in data:
+    if data.get("preferredBackupWindow") is not None:
         out["preferred_backup_window"] = data["preferredBackupWindow"]
-    if "preferredMaintenanceWindow" in data:
+    if data.get("preferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["preferredMaintenanceWindow"]
-    if "enableBackupRetention" in data:
+    if data.get("enableBackupRetention") is not None:
         out["enable_backup_retention"] = data["enableBackupRetention"]
-    if "disableBackupRetention" in data:
+    if data.get("disableBackupRetention") is not None:
         out["disable_backup_retention"] = data["disableBackupRetention"]
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "applyImmediately" in data:
+    if data.get("applyImmediately") is not None:
         out["apply_immediately"] = data["applyImmediately"]
-    if "caCertificateIdentifier" in data:
+    if data.get("caCertificateIdentifier") is not None:
         out["ca_certificate_identifier"] = data["caCertificateIdentifier"]
-    if "relationalDatabaseBlueprintId" in data:
+    if data.get("relationalDatabaseBlueprintId") is not None:
         out["relational_database_blueprint_id"] = data["relationalDatabaseBlueprintId"]
     return out

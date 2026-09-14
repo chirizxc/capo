@@ -44,14 +44,14 @@ def serialize_json(value: PutConfigurationSetDeliveryOptionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutConfigurationSetDeliveryOptionsRequest:
     out: PutConfigurationSetDeliveryOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "TlsPolicy" in data:
+    if data.get("TlsPolicy") is not None:
         import capo_sesv2.types.tls_policy
 
         out["tls_policy"] = capo_sesv2.types.tls_policy.deserialize_json(
             data["TlsPolicy"]
         )
-    if "SendingPoolName" in data:
+    if data.get("SendingPoolName") is not None:
         out["sending_pool_name"] = data["SendingPoolName"]
-    if "MaxDeliverySeconds" in data:
+    if data.get("MaxDeliverySeconds") is not None:
         out["max_delivery_seconds"] = data["MaxDeliverySeconds"]
     return out

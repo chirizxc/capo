@@ -37,15 +37,15 @@ def serialize_json(value: ExecuteOpenCypherExplainQueryInput) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteOpenCypherExplainQueryInput:
     out: ExecuteOpenCypherExplainQueryInput = {}  # type: ignore[typeddict-item]
-    if "query" in data:
+    if data.get("query") is not None:
         out["open_cypher_query"] = data["query"]
     else:
         raise DeserializationError(
             "ExecuteOpenCypherExplainQueryInput.open_cypher_query required"
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         out["parameters"] = data["parameters"]
-    if "explain" in data:
+    if data.get("explain") is not None:
         import capo_neptunedata.types.open_cypher_explain_mode
 
         out["explain_mode"] = (

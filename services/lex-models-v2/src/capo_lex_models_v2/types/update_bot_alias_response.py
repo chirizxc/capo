@@ -111,15 +111,15 @@ def serialize_json(value: UpdateBotAliasResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBotAliasResponse:
     out: UpdateBotAliasResponse = {}  # type: ignore[typeddict-item]
-    if "botAliasId" in data:
+    if data.get("botAliasId") is not None:
         out["bot_alias_id"] = data["botAliasId"]
-    if "botAliasName" in data:
+    if data.get("botAliasName") is not None:
         out["bot_alias_name"] = data["botAliasName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "botAliasLocaleSettings" in data:
+    if data.get("botAliasLocaleSettings") is not None:
         import capo_lex_models_v2.types.bot_alias_locale_settings_map
 
         out["bot_alias_locale_settings"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> UpdateBotAliasResponse:
                 data["botAliasLocaleSettings"]
             )
         )
-    if "conversationLogSettings" in data:
+    if data.get("conversationLogSettings") is not None:
         import capo_lex_models_v2.types.conversation_log_settings
 
         out["conversation_log_settings"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> UpdateBotAliasResponse:
                 data["conversationLogSettings"]
             )
         )
-    if "sentimentAnalysisSettings" in data:
+    if data.get("sentimentAnalysisSettings") is not None:
         import capo_lex_models_v2.types.sentiment_analysis_settings
 
         out["sentiment_analysis_settings"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> UpdateBotAliasResponse:
                 data["sentimentAnalysisSettings"]
             )
         )
-    if "botAliasStatus" in data:
+    if data.get("botAliasStatus") is not None:
         import capo_lex_models_v2.types.bot_alias_status
 
         out["bot_alias_status"] = (
@@ -151,15 +151,15 @@ def deserialize_json(data: dict) -> UpdateBotAliasResponse:
                 data["botAliasStatus"]
             )
         )
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (

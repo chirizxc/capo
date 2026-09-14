@@ -47,17 +47,17 @@ def serialize_json(value: SchedulingConfig) -> dict:
 
 def deserialize_json(data: dict) -> SchedulingConfig:
     out: SchedulingConfig = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         out["end_time"] = data["endTime"]
-    if "endBehavior" in data:
+    if data.get("endBehavior") is not None:
         import capo_iot.types.job_end_behavior
 
         out["end_behavior"] = capo_iot.types.job_end_behavior.deserialize_json(
             data["endBehavior"]
         )
-    if "maintenanceWindows" in data:
+    if data.get("maintenanceWindows") is not None:
         import capo_iot.types.maintenance_windows
 
         out["maintenance_windows"] = (

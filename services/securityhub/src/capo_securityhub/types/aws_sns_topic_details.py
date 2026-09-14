@@ -94,9 +94,9 @@ def serialize_json(value: AwsSnsTopicDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsSnsTopicDetails:
     out: AwsSnsTopicDetails = {}  # type: ignore[typeddict-item]
-    if "KmsMasterKeyId" in data:
+    if data.get("KmsMasterKeyId") is not None:
         out["kms_master_key_id"] = data["KmsMasterKeyId"]
-    if "Subscription" in data:
+    if data.get("Subscription") is not None:
         import capo_securityhub.types.aws_sns_topic_subscription_list
 
         out["subscription"] = (
@@ -104,28 +104,28 @@ def deserialize_json(data: dict) -> AwsSnsTopicDetails:
                 data["Subscription"]
             )
         )
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "SqsSuccessFeedbackRoleArn" in data:
+    if data.get("SqsSuccessFeedbackRoleArn") is not None:
         out["sqs_success_feedback_role_arn"] = data["SqsSuccessFeedbackRoleArn"]
-    if "SqsFailureFeedbackRoleArn" in data:
+    if data.get("SqsFailureFeedbackRoleArn") is not None:
         out["sqs_failure_feedback_role_arn"] = data["SqsFailureFeedbackRoleArn"]
-    if "ApplicationSuccessFeedbackRoleArn" in data:
+    if data.get("ApplicationSuccessFeedbackRoleArn") is not None:
         out["application_success_feedback_role_arn"] = data[
             "ApplicationSuccessFeedbackRoleArn"
         ]
-    if "FirehoseSuccessFeedbackRoleArn" in data:
+    if data.get("FirehoseSuccessFeedbackRoleArn") is not None:
         out["firehose_success_feedback_role_arn"] = data[
             "FirehoseSuccessFeedbackRoleArn"
         ]
-    if "FirehoseFailureFeedbackRoleArn" in data:
+    if data.get("FirehoseFailureFeedbackRoleArn") is not None:
         out["firehose_failure_feedback_role_arn"] = data[
             "FirehoseFailureFeedbackRoleArn"
         ]
-    if "HttpSuccessFeedbackRoleArn" in data:
+    if data.get("HttpSuccessFeedbackRoleArn") is not None:
         out["http_success_feedback_role_arn"] = data["HttpSuccessFeedbackRoleArn"]
-    if "HttpFailureFeedbackRoleArn" in data:
+    if data.get("HttpFailureFeedbackRoleArn") is not None:
         out["http_failure_feedback_role_arn"] = data["HttpFailureFeedbackRoleArn"]
     return out

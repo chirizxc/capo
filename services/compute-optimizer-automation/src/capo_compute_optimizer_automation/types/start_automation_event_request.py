@@ -31,12 +31,12 @@ def serialize_aws_json_1_0(value: StartAutomationEventRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartAutomationEventRequest:
     out: StartAutomationEventRequest = {}  # type: ignore[typeddict-item]
-    if "recommendedActionId" in data:
+    if data.get("recommendedActionId") is not None:
         out["recommended_action_id"] = data["recommendedActionId"]
     else:
         raise DeserializationError(
             "StartAutomationEventRequest.recommended_action_id required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

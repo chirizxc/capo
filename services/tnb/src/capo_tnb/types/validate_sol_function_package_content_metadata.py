@@ -26,7 +26,7 @@ def serialize_json(value: ValidateSolFunctionPackageContentMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ValidateSolFunctionPackageContentMetadata:
     out: ValidateSolFunctionPackageContentMetadata = {}  # type: ignore[typeddict-item]
-    if "vnfd" in data:
+    if data.get("vnfd") is not None:
         import capo_tnb.types.function_artifact_meta
 
         out["vnfd"] = capo_tnb.types.function_artifact_meta.deserialize_json(

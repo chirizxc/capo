@@ -30,7 +30,7 @@ def serialize_json(value: CreateOAuth2TokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateOAuth2TokenResponse:
     out: CreateOAuth2TokenResponse = {}  # type: ignore[typeddict-item]
-    if "tokenOutput" in data:
+    if data.get("tokenOutput") is not None:
         import capo_signin.types.create_o_auth2_token_response_body
 
         out["token_output"] = (

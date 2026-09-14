@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: dict) -> DetailsMap:
     for key, value in data.items():
         import capo_machine_learning.types.details_attributes
 
+        if value is None:
+            continue
         out[
             capo_machine_learning.types.details_attributes.deserialize_aws_json_1_1(key)
         ] = value

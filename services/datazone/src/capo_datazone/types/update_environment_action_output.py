@@ -47,25 +47,25 @@ def serialize_json(value: UpdateEnvironmentActionOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentActionOutput:
     out: UpdateEnvironmentActionOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("UpdateEnvironmentActionOutput.domain_id required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError(
             "UpdateEnvironmentActionOutput.environment_id required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateEnvironmentActionOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateEnvironmentActionOutput.name required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_datazone.types.action_parameters
 
         out["parameters"] = capo_datazone.types.action_parameters.deserialize_json(
@@ -73,6 +73,6 @@ def deserialize_json(data: dict) -> UpdateEnvironmentActionOutput:
         )
     else:
         raise DeserializationError("UpdateEnvironmentActionOutput.parameters required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

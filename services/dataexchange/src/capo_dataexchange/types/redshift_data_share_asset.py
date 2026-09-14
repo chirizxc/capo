@@ -24,7 +24,7 @@ def serialize_json(value: RedshiftDataShareAsset) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftDataShareAsset:
     out: RedshiftDataShareAsset = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("RedshiftDataShareAsset.arn required")

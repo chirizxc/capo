@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: DeleteHypervisorOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteHypervisorOutput:
     out: DeleteHypervisorOutput = {}  # type: ignore[typeddict-item]
-    if "HypervisorArn" in data:
+    if data.get("HypervisorArn") is not None:
         out["hypervisor_arn"] = data["HypervisorArn"]
     return out

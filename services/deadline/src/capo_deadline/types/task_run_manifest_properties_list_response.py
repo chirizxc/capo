@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> TaskRunManifestPropertiesListResponse:
 
     out: TaskRunManifestPropertiesListResponse = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_deadline.types.task_run_manifest_properties_response.deserialize_json(
                 item

@@ -34,11 +34,11 @@ def serialize_json(value: FargateDetails) -> dict:
 
 def deserialize_json(data: dict) -> FargateDetails:
     out: FargateDetails = {}  # type: ignore[typeddict-item]
-    if "issues" in data:
+    if data.get("issues") is not None:
         import capo_guardduty.types.issues
 
         out["issues"] = capo_guardduty.types.issues.deserialize_json(data["issues"])
-    if "managementType" in data:
+    if data.get("managementType") is not None:
         import capo_guardduty.types.management_type
 
         out["management_type"] = capo_guardduty.types.management_type.deserialize_json(

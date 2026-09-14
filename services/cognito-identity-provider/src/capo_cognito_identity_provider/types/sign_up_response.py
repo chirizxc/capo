@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: SignUpResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SignUpResponse:
     out: SignUpResponse = {}  # type: ignore[typeddict-item]
-    if "UserConfirmed" in data:
+    if data.get("UserConfirmed") is not None:
         out["user_confirmed"] = data["UserConfirmed"]
     else:
         out["user_confirmed"] = False
-    if "CodeDeliveryDetails" in data:
+    if data.get("CodeDeliveryDetails") is not None:
         import capo_cognito_identity_provider.types.code_delivery_details_type
 
         out["code_delivery_details"] = (
@@ -60,10 +60,10 @@ def deserialize_aws_json_1_1(data: dict) -> SignUpResponse:
                 data["CodeDeliveryDetails"]
             )
         )
-    if "UserSub" in data:
+    if data.get("UserSub") is not None:
         out["user_sub"] = data["UserSub"]
     else:
         raise DeserializationError("SignUpResponse.user_sub required")
-    if "Session" in data:
+    if data.get("Session") is not None:
         out["session"] = data["Session"]
     return out

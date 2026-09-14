@@ -27,7 +27,7 @@ def serialize_json(value: StartSpeechSynthesisTaskOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartSpeechSynthesisTaskOutput:
     out: StartSpeechSynthesisTaskOutput = {}  # type: ignore[typeddict-item]
-    if "SynthesisTask" in data:
+    if data.get("SynthesisTask") is not None:
         import capo_polly.types.synthesis_task
 
         out["synthesis_task"] = capo_polly.types.synthesis_task.deserialize_json(

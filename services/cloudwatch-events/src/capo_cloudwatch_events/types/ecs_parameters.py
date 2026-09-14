@@ -135,13 +135,13 @@ def serialize_aws_json_1_1(value: EcsParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EcsParameters:
     out: EcsParameters = {}  # type: ignore[typeddict-item]
-    if "TaskDefinitionArn" in data:
+    if data.get("TaskDefinitionArn") is not None:
         out["task_definition_arn"] = data["TaskDefinitionArn"]
     else:
         raise DeserializationError("EcsParameters.task_definition_arn required")
-    if "TaskCount" in data:
+    if data.get("TaskCount") is not None:
         out["task_count"] = data["TaskCount"]
-    if "LaunchType" in data:
+    if data.get("LaunchType") is not None:
         import capo_cloudwatch_events.types.launch_type
 
         out["launch_type"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> EcsParameters:
                 data["LaunchType"]
             )
         )
-    if "NetworkConfiguration" in data:
+    if data.get("NetworkConfiguration") is not None:
         import capo_cloudwatch_events.types.network_configuration
 
         out["network_configuration"] = (
@@ -157,11 +157,11 @@ def deserialize_aws_json_1_1(data: dict) -> EcsParameters:
                 data["NetworkConfiguration"]
             )
         )
-    if "PlatformVersion" in data:
+    if data.get("PlatformVersion") is not None:
         out["platform_version"] = data["PlatformVersion"]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
-    if "CapacityProviderStrategy" in data:
+    if data.get("CapacityProviderStrategy") is not None:
         import capo_cloudwatch_events.types.capacity_provider_strategy
 
         out["capacity_provider_strategy"] = (
@@ -169,15 +169,15 @@ def deserialize_aws_json_1_1(data: dict) -> EcsParameters:
                 data["CapacityProviderStrategy"]
             )
         )
-    if "EnableECSManagedTags" in data:
+    if data.get("EnableECSManagedTags") is not None:
         out["enable_ecs_managed_tags"] = data["EnableECSManagedTags"]
     else:
         out["enable_ecs_managed_tags"] = False
-    if "EnableExecuteCommand" in data:
+    if data.get("EnableExecuteCommand") is not None:
         out["enable_execute_command"] = data["EnableExecuteCommand"]
     else:
         out["enable_execute_command"] = False
-    if "PlacementConstraints" in data:
+    if data.get("PlacementConstraints") is not None:
         import capo_cloudwatch_events.types.placement_constraints
 
         out["placement_constraints"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> EcsParameters:
                 data["PlacementConstraints"]
             )
         )
-    if "PlacementStrategy" in data:
+    if data.get("PlacementStrategy") is not None:
         import capo_cloudwatch_events.types.placement_strategies
 
         out["placement_strategy"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> EcsParameters:
                 data["PlacementStrategy"]
             )
         )
-    if "PropagateTags" in data:
+    if data.get("PropagateTags") is not None:
         import capo_cloudwatch_events.types.propagate_tags
 
         out["propagate_tags"] = (
@@ -201,9 +201,9 @@ def deserialize_aws_json_1_1(data: dict) -> EcsParameters:
                 data["PropagateTags"]
             )
         )
-    if "ReferenceId" in data:
+    if data.get("ReferenceId") is not None:
         out["reference_id"] = data["ReferenceId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_cloudwatch_events.types.tag_list
 
         out["tags"] = capo_cloudwatch_events.types.tag_list.deserialize_aws_json_1_1(

@@ -54,9 +54,9 @@ def serialize_aws_json_1_0(value: AmountBreakdown) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AmountBreakdown:
     out: AmountBreakdown = {}  # type: ignore[typeddict-item]
-    if "SubTotalAmount" in data:
+    if data.get("SubTotalAmount") is not None:
         out["sub_total_amount"] = data["SubTotalAmount"]
-    if "Discounts" in data:
+    if data.get("Discounts") is not None:
         import capo_invoicing.types.discounts_breakdown
 
         out["discounts"] = (
@@ -64,13 +64,13 @@ def deserialize_aws_json_1_0(data: dict) -> AmountBreakdown:
                 data["Discounts"]
             )
         )
-    if "Taxes" in data:
+    if data.get("Taxes") is not None:
         import capo_invoicing.types.taxes_breakdown
 
         out["taxes"] = capo_invoicing.types.taxes_breakdown.deserialize_aws_json_1_0(
             data["Taxes"]
         )
-    if "Fees" in data:
+    if data.get("Fees") is not None:
         import capo_invoicing.types.fees_breakdown
 
         out["fees"] = capo_invoicing.types.fees_breakdown.deserialize_aws_json_1_0(

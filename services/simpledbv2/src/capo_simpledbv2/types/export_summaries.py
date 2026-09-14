@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ExportSummaries:
 
     out: ExportSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_simpledbv2.types.export_summary.deserialize_json(item))
     return out

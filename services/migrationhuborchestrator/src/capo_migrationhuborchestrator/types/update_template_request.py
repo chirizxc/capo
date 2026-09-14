@@ -36,10 +36,10 @@ def serialize_json(value: UpdateTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTemplateRequest:
     out: UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
-    if "templateDescription" in data:
+    if data.get("templateDescription") is not None:
         out["template_description"] = data["templateDescription"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

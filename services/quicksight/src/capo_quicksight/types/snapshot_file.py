@@ -40,7 +40,7 @@ def serialize_json(value: SnapshotFile) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotFile:
     out: SnapshotFile = {}  # type: ignore[typeddict-item]
-    if "SheetSelections" in data:
+    if data.get("SheetSelections") is not None:
         import capo_quicksight.types.snapshot_file_sheet_selection_list
 
         out["sheet_selections"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> SnapshotFile:
         )
     else:
         raise DeserializationError("SnapshotFile.sheet_selections required")
-    if "FormatType" in data:
+    if data.get("FormatType") is not None:
         import capo_quicksight.types.snapshot_file_format_type
 
         out["format_type"] = (

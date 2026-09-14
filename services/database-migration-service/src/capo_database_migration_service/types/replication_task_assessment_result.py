@@ -69,11 +69,11 @@ def serialize_aws_json_1_1(value: ReplicationTaskAssessmentResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationTaskAssessmentResult:
     out: ReplicationTaskAssessmentResult = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskIdentifier" in data:
+    if data.get("ReplicationTaskIdentifier") is not None:
         out["replication_task_identifier"] = data["ReplicationTaskIdentifier"]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
-    if "ReplicationTaskLastAssessmentDate" in data:
+    if data.get("ReplicationTaskLastAssessmentDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["replication_task_last_assessment_date"] = (
@@ -81,12 +81,12 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationTaskAssessmentResult:
                 data["ReplicationTaskLastAssessmentDate"]
             )
         )
-    if "AssessmentStatus" in data:
+    if data.get("AssessmentStatus") is not None:
         out["assessment_status"] = data["AssessmentStatus"]
-    if "AssessmentResultsFile" in data:
+    if data.get("AssessmentResultsFile") is not None:
         out["assessment_results_file"] = data["AssessmentResultsFile"]
-    if "AssessmentResults" in data:
+    if data.get("AssessmentResults") is not None:
         out["assessment_results"] = data["AssessmentResults"]
-    if "S3ObjectUrl" in data:
+    if data.get("S3ObjectUrl") is not None:
         out["s3_object_url"] = data["S3ObjectUrl"]
     return out

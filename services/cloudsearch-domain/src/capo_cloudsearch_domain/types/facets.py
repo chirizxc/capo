@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: Facets) -> dict:
 def deserialize_json(data: dict) -> Facets:
     out: Facets = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_cloudsearch_domain.types.bucket_info
 
         out[key] = capo_cloudsearch_domain.types.bucket_info.deserialize_json(value)

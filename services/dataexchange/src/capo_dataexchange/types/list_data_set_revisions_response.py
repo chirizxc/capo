@@ -36,9 +36,9 @@ def serialize_json(value: ListDataSetRevisionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDataSetRevisionsResponse:
     out: ListDataSetRevisionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Revisions" in data:
+    if data.get("Revisions") is not None:
         import capo_dataexchange.types.list_of_revision_entry
 
         out["revisions"] = (

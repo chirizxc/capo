@@ -45,18 +45,18 @@ def serialize_aws_json_1_0(value: CdcSpecification) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CdcSpecification:
     out: CdcSpecification = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("CdcSpecification.status required")
-    if "viewType" in data:
+    if data.get("viewType") is not None:
         out["view_type"] = data["viewType"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_keyspaces.types.tag_list
 
         out["tags"] = capo_keyspaces.types.tag_list.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "propagateTags" in data:
+    if data.get("propagateTags") is not None:
         out["propagate_tags"] = data["propagateTags"]
     return out

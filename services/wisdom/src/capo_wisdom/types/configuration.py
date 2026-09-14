@@ -32,7 +32,7 @@ def serialize_json(value: Configuration) -> dict:
 
 
 def deserialize_json(data: dict) -> Configuration:
-    if "connectConfiguration" in data:
+    if data.get("connectConfiguration") is not None:
         import capo_wisdom.types.connect_configuration
 
         return {

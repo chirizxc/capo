@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> LifecyclePolicyErrorDetails:
 
     out: LifecyclePolicyErrorDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_opensearchserverless.types.lifecycle_policy_error_detail.deserialize_aws_json_1_0(
                 item

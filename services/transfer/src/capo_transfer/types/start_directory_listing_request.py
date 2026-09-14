@@ -36,19 +36,19 @@ def serialize_aws_json_1_1(value: StartDirectoryListingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartDirectoryListingRequest:
     out: StartDirectoryListingRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
     else:
         raise DeserializationError("StartDirectoryListingRequest.connector_id required")
-    if "RemoteDirectoryPath" in data:
+    if data.get("RemoteDirectoryPath") is not None:
         out["remote_directory_path"] = data["RemoteDirectoryPath"]
     else:
         raise DeserializationError(
             "StartDirectoryListingRequest.remote_directory_path required"
         )
-    if "MaxItems" in data:
+    if data.get("MaxItems") is not None:
         out["max_items"] = data["MaxItems"]
-    if "OutputDirectoryPath" in data:
+    if data.get("OutputDirectoryPath") is not None:
         out["output_directory_path"] = data["OutputDirectoryPath"]
     else:
         raise DeserializationError(

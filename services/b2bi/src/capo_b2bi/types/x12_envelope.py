@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: X12Envelope) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12Envelope:
     out: X12Envelope = {}  # type: ignore[typeddict-item]
-    if "common" in data:
+    if data.get("common") is not None:
         import capo_b2bi.types.x12_outbound_edi_headers
 
         out["common"] = (
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_0(data: dict) -> X12Envelope:
                 data["common"]
             )
         )
-    if "wrapOptions" in data:
+    if data.get("wrapOptions") is not None:
         import capo_b2bi.types.wrap_options
 
         out["wrap_options"] = capo_b2bi.types.wrap_options.deserialize_aws_json_1_0(

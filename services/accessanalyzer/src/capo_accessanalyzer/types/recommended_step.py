@@ -32,7 +32,7 @@ def serialize_json(value: RecommendedStep) -> dict:
 
 
 def deserialize_json(data: dict) -> RecommendedStep:
-    if "unusedPermissionsRecommendedStep" in data:
+    if data.get("unusedPermissionsRecommendedStep") is not None:
         import capo_accessanalyzer.types.unused_permissions_recommended_step
 
         return {

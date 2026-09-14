@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AnalysisTypes:
 
     out: AnalysisTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeguru_reviewer.types.analysis_type.deserialize_json(item))
     return out

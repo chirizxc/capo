@@ -46,7 +46,7 @@ def serialize_json(value: AwsLambdaFunctionVpcConfig) -> dict:
 
 def deserialize_json(data: dict) -> AwsLambdaFunctionVpcConfig:
     out: AwsLambdaFunctionVpcConfig = {}  # type: ignore[typeddict-item]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["security_group_ids"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> AwsLambdaFunctionVpcConfig:
                 data["SecurityGroupIds"]
             )
         )
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["subnet_ids"] = (
@@ -62,6 +62,6 @@ def deserialize_json(data: dict) -> AwsLambdaFunctionVpcConfig:
                 data["SubnetIds"]
             )
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

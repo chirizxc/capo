@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: BatchDataCaptureConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDataCaptureConfig:
     out: BatchDataCaptureConfig = {}  # type: ignore[typeddict-item]
-    if "DestinationS3Uri" in data:
+    if data.get("DestinationS3Uri") is not None:
         out["destination_s3_uri"] = data["DestinationS3Uri"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "GenerateInferenceId" in data:
+    if data.get("GenerateInferenceId") is not None:
         out["generate_inference_id"] = data["GenerateInferenceId"]
     return out

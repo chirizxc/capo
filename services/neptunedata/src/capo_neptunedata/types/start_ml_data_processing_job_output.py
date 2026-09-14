@@ -26,10 +26,10 @@ def serialize_json(value: StartMLDataProcessingJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartMLDataProcessingJobOutput:
     out: StartMLDataProcessingJobOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "creationTimeInMillis" in data:
+    if data.get("creationTimeInMillis") is not None:
         out["creation_time_in_millis"] = data["creationTimeInMillis"]
     return out

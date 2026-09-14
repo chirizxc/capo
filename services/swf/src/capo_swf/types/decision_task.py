@@ -60,15 +60,15 @@ def serialize_aws_json_1_0(value: DecisionTask) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DecisionTask:
     out: DecisionTask = {}  # type: ignore[typeddict-item]
-    if "taskToken" in data:
+    if data.get("taskToken") is not None:
         out["task_token"] = data["taskToken"]
     else:
         raise DeserializationError("DecisionTask.task_token required")
-    if "startedEventId" in data:
+    if data.get("startedEventId") is not None:
         out["started_event_id"] = data["startedEventId"]
     else:
         out["started_event_id"] = 0
-    if "workflowExecution" in data:
+    if data.get("workflowExecution") is not None:
         import capo_swf.types.workflow_execution
 
         out["workflow_execution"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> DecisionTask:
         )
     else:
         raise DeserializationError("DecisionTask.workflow_execution required")
-    if "workflowType" in data:
+    if data.get("workflowType") is not None:
         import capo_swf.types.workflow_type
 
         out["workflow_type"] = capo_swf.types.workflow_type.deserialize_aws_json_1_0(
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> DecisionTask:
         )
     else:
         raise DeserializationError("DecisionTask.workflow_type required")
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_swf.types.history_event_list
 
         out["events"] = capo_swf.types.history_event_list.deserialize_aws_json_1_0(
@@ -94,9 +94,9 @@ def deserialize_aws_json_1_0(data: dict) -> DecisionTask:
         )
     else:
         raise DeserializationError("DecisionTask.events required")
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
-    if "previousStartedEventId" in data:
+    if data.get("previousStartedEventId") is not None:
         out["previous_started_event_id"] = data["previousStartedEventId"]
     else:
         out["previous_started_event_id"] = 0

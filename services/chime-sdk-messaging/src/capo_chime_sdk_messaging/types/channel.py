@@ -129,17 +129,17 @@ def serialize_json(value: Channel) -> dict:
 
 def deserialize_json(data: dict) -> Channel:
     out: Channel = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_chime_sdk_messaging.types.channel_mode
 
         out["mode"] = capo_chime_sdk_messaging.types.channel_mode.deserialize_json(
             data["Mode"]
         )
-    if "Privacy" in data:
+    if data.get("Privacy") is not None:
         import capo_chime_sdk_messaging.types.channel_privacy
 
         out["privacy"] = (
@@ -147,15 +147,15 @@ def deserialize_json(data: dict) -> Channel:
                 data["Privacy"]
             )
         )
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_chime_sdk_messaging.types.identity
 
         out["created_by"] = capo_chime_sdk_messaging.types.identity.deserialize_json(
             data["CreatedBy"]
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["created_timestamp"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> Channel:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastMessageTimestamp" in data:
+    if data.get("LastMessageTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["last_message_timestamp"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> Channel:
                 data["LastMessageTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["last_updated_timestamp"] = (
@@ -179,9 +179,9 @@ def deserialize_json(data: dict) -> Channel:
                 data["LastUpdatedTimestamp"]
             )
         )
-    if "ChannelFlowArn" in data:
+    if data.get("ChannelFlowArn") is not None:
         out["channel_flow_arn"] = data["ChannelFlowArn"]
-    if "ElasticChannelConfiguration" in data:
+    if data.get("ElasticChannelConfiguration") is not None:
         import capo_chime_sdk_messaging.types.elastic_channel_configuration
 
         out["elastic_channel_configuration"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> Channel:
                 data["ElasticChannelConfiguration"]
             )
         )
-    if "ExpirationSettings" in data:
+    if data.get("ExpirationSettings") is not None:
         import capo_chime_sdk_messaging.types.expiration_settings
 
         out["expiration_settings"] = (

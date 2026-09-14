@@ -59,22 +59,22 @@ def serialize_aws_json_1_1(value: EC2ResourceDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2ResourceDetails:
     out: EC2ResourceDetails = {}  # type: ignore[typeddict-item]
-    if "HourlyOnDemandRate" in data:
+    if data.get("HourlyOnDemandRate") is not None:
         out["hourly_on_demand_rate"] = data["HourlyOnDemandRate"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         out["platform"] = data["Platform"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "Sku" in data:
+    if data.get("Sku") is not None:
         out["sku"] = data["Sku"]
-    if "Memory" in data:
+    if data.get("Memory") is not None:
         out["memory"] = data["Memory"]
-    if "NetworkPerformance" in data:
+    if data.get("NetworkPerformance") is not None:
         out["network_performance"] = data["NetworkPerformance"]
-    if "Storage" in data:
+    if data.get("Storage") is not None:
         out["storage"] = data["Storage"]
-    if "Vcpu" in data:
+    if data.get("Vcpu") is not None:
         out["vcpu"] = data["Vcpu"]
     return out

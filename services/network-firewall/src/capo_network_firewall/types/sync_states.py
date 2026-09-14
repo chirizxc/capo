@@ -25,6 +25,8 @@ def serialize_aws_json_1_0(input_to_serialize: SyncStates) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> SyncStates:
     out: SyncStates = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_network_firewall.types.sync_state
 
         out[key] = capo_network_firewall.types.sync_state.deserialize_aws_json_1_0(

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: S3Encryption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3Encryption:
     out: S3Encryption = {}  # type: ignore[typeddict-item]
-    if "S3EncryptionMode" in data:
+    if data.get("S3EncryptionMode") is not None:
         import capo_glue.types.s3_encryption_mode
 
         out["s3_encryption_mode"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> S3Encryption:
                 data["S3EncryptionMode"]
             )
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

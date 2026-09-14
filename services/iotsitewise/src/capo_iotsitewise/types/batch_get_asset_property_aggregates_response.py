@@ -55,7 +55,7 @@ def serialize_json(value: BatchGetAssetPropertyAggregatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAssetPropertyAggregatesResponse:
     out: BatchGetAssetPropertyAggregatesResponse = {}  # type: ignore[typeddict-item]
-    if "errorEntries" in data:
+    if data.get("errorEntries") is not None:
         import capo_iotsitewise.types.batch_get_asset_property_aggregates_error_entries
 
         out["error_entries"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> BatchGetAssetPropertyAggregatesResponse:
         raise DeserializationError(
             "BatchGetAssetPropertyAggregatesResponse.error_entries required"
         )
-    if "successEntries" in data:
+    if data.get("successEntries") is not None:
         import capo_iotsitewise.types.batch_get_asset_property_aggregates_success_entries
 
         out["success_entries"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> BatchGetAssetPropertyAggregatesResponse:
         raise DeserializationError(
             "BatchGetAssetPropertyAggregatesResponse.success_entries required"
         )
-    if "skippedEntries" in data:
+    if data.get("skippedEntries") is not None:
         import capo_iotsitewise.types.batch_get_asset_property_aggregates_skipped_entries
 
         out["skipped_entries"] = (
@@ -91,6 +91,6 @@ def deserialize_json(data: dict) -> BatchGetAssetPropertyAggregatesResponse:
         raise DeserializationError(
             "BatchGetAssetPropertyAggregatesResponse.skipped_entries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: LineItemFields) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LineItemFields:
     out: LineItemFields = {}  # type: ignore[typeddict-item]
-    if "LineItemExpenseFields" in data:
+    if data.get("LineItemExpenseFields") is not None:
         import capo_textract.types.expense_field_list
 
         out["line_item_expense_fields"] = (

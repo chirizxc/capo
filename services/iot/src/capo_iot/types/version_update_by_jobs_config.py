@@ -28,8 +28,8 @@ def serialize_json(value: VersionUpdateByJobsConfig) -> dict:
 
 def deserialize_json(data: dict) -> VersionUpdateByJobsConfig:
     out: VersionUpdateByJobsConfig = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

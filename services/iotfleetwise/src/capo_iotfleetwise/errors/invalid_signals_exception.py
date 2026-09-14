@@ -37,9 +37,9 @@ def serialize_aws_json_1_0(value: InvalidSignalsException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvalidSignalsException_:
     out: InvalidSignalsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "invalidSignals" in data:
+    if data.get("invalidSignals") is not None:
         import capo_iotfleetwise.types.invalid_signals
 
         out["invalid_signals"] = (
@@ -55,15 +55,18 @@ class InvalidSignalsException(ServiceError):
 
     code: str | None = "InvalidSignalsException"
 
-    def __init__(self, data: InvalidSignalsException_):
+    def __init__(self, data: InvalidSignalsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSignalsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "InvalidSignalsException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidSignalsException":
+        return cls(deserialize_aws_json_1_0(data), message)

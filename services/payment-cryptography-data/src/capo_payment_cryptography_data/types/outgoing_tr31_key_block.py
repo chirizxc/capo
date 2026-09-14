@@ -24,7 +24,7 @@ def serialize_json(value: OutgoingTr31KeyBlock) -> dict:
 
 def deserialize_json(data: dict) -> OutgoingTr31KeyBlock:
     out: OutgoingTr31KeyBlock = {}  # type: ignore[typeddict-item]
-    if "WrappingKeyIdentifier" in data:
+    if data.get("WrappingKeyIdentifier") is not None:
         out["wrapping_key_identifier"] = data["WrappingKeyIdentifier"]
     else:
         raise DeserializationError(

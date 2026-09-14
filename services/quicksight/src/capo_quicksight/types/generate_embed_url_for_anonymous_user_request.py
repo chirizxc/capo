@@ -70,21 +70,21 @@ def serialize_json(value: GenerateEmbedUrlForAnonymousUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> GenerateEmbedUrlForAnonymousUserRequest:
     out: GenerateEmbedUrlForAnonymousUserRequest = {}  # type: ignore[typeddict-item]
-    if "SessionLifetimeInMinutes" in data:
+    if data.get("SessionLifetimeInMinutes") is not None:
         out["session_lifetime_in_minutes"] = data["SessionLifetimeInMinutes"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
     else:
         raise DeserializationError(
             "GenerateEmbedUrlForAnonymousUserRequest.namespace required"
         )
-    if "SessionTags" in data:
+    if data.get("SessionTags") is not None:
         import capo_quicksight.types.session_tag_list
 
         out["session_tags"] = capo_quicksight.types.session_tag_list.deserialize_json(
             data["SessionTags"]
         )
-    if "AuthorizedResourceArns" in data:
+    if data.get("AuthorizedResourceArns") is not None:
         import capo_quicksight.types.arn_list
 
         out["authorized_resource_arns"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> GenerateEmbedUrlForAnonymousUserRequest:
         raise DeserializationError(
             "GenerateEmbedUrlForAnonymousUserRequest.authorized_resource_arns required"
         )
-    if "ExperienceConfiguration" in data:
+    if data.get("ExperienceConfiguration") is not None:
         import capo_quicksight.types.anonymous_user_embedding_experience_configuration
 
         out["experience_configuration"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> GenerateEmbedUrlForAnonymousUserRequest:
         raise DeserializationError(
             "GenerateEmbedUrlForAnonymousUserRequest.experience_configuration required"
         )
-    if "AllowedDomains" in data:
+    if data.get("AllowedDomains") is not None:
         import capo_quicksight.types.string_list
 
         out["allowed_domains"] = capo_quicksight.types.string_list.deserialize_json(

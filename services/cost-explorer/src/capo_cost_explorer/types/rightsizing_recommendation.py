@@ -88,9 +88,9 @@ def serialize_aws_json_1_1(value: RightsizingRecommendation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RightsizingRecommendation:
     out: RightsizingRecommendation = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "CurrentInstance" in data:
+    if data.get("CurrentInstance") is not None:
         import capo_cost_explorer.types.current_instance
 
         out["current_instance"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> RightsizingRecommendation:
                 data["CurrentInstance"]
             )
         )
-    if "RightsizingType" in data:
+    if data.get("RightsizingType") is not None:
         import capo_cost_explorer.types.rightsizing_type
 
         out["rightsizing_type"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> RightsizingRecommendation:
                 data["RightsizingType"]
             )
         )
-    if "ModifyRecommendationDetail" in data:
+    if data.get("ModifyRecommendationDetail") is not None:
         import capo_cost_explorer.types.modify_recommendation_detail
 
         out["modify_recommendation_detail"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> RightsizingRecommendation:
                 data["ModifyRecommendationDetail"]
             )
         )
-    if "TerminateRecommendationDetail" in data:
+    if data.get("TerminateRecommendationDetail") is not None:
         import capo_cost_explorer.types.terminate_recommendation_detail
 
         out["terminate_recommendation_detail"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> RightsizingRecommendation:
                 data["TerminateRecommendationDetail"]
             )
         )
-    if "FindingReasonCodes" in data:
+    if data.get("FindingReasonCodes") is not None:
         import capo_cost_explorer.types.finding_reason_codes
 
         out["finding_reason_codes"] = (

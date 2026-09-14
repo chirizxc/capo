@@ -59,7 +59,7 @@ def serialize_json(value: CreateTaskInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateTaskInput:
     out: CreateTaskInput = {}  # type: ignore[typeddict-item]
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_snow_device_management.types.target_list
 
         out["targets"] = capo_snow_device_management.types.target_list.deserialize_json(
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> CreateTaskInput:
         )
     else:
         raise DeserializationError("CreateTaskInput.targets required")
-    if "command" in data:
+    if data.get("command") is not None:
         import capo_snow_device_management.types.command
 
         out["command"] = capo_snow_device_management.types.command.deserialize_json(
@@ -75,14 +75,14 @@ def deserialize_json(data: dict) -> CreateTaskInput:
         )
     else:
         raise DeserializationError("CreateTaskInput.command required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_snow_device_management.types.tag_map
 
         out["tags"] = capo_snow_device_management.types.tag_map.deserialize_json(
             data["tags"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

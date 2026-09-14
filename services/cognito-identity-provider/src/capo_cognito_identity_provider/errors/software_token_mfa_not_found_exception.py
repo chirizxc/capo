@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: SoftwareTokenMFANotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SoftwareTokenMFANotFoundException_:
     out: SoftwareTokenMFANotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,20 @@ class SoftwareTokenMFANotFoundException(ServiceError):
 
     code: str | None = "SoftwareTokenMFANotFoundException"
 
-    def __init__(self, data: SoftwareTokenMFANotFoundException_):
+    def __init__(
+        self, data: SoftwareTokenMFANotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SoftwareTokenMFANotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "SoftwareTokenMFANotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "SoftwareTokenMFANotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

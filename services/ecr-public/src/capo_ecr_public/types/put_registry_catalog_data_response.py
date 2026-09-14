@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: PutRegistryCatalogDataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRegistryCatalogDataResponse:
     out: PutRegistryCatalogDataResponse = {}  # type: ignore[typeddict-item]
-    if "registryCatalogData" in data:
+    if data.get("registryCatalogData") is not None:
         import capo_ecr_public.types.registry_catalog_data
 
         out["registry_catalog_data"] = (

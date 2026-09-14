@@ -25,6 +25,6 @@ def serialize_json(value: GeneralAuthorizationName) -> dict:
 
 def deserialize_json(data: dict) -> GeneralAuthorizationName:
     out: GeneralAuthorizationName = {}  # type: ignore[typeddict-item]
-    if "AuthMaterialName" in data:
+    if data.get("AuthMaterialName") is not None:
         out["auth_material_name"] = data["AuthMaterialName"]
     return out

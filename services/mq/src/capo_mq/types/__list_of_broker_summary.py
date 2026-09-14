@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfBrokerSummary:
 
     out: __listOfBrokerSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mq.types.broker_summary.deserialize_json(item))
     return out

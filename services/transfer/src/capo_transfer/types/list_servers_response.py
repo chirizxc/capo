@@ -33,9 +33,9 @@ def serialize_aws_json_1_1(value: ListServersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListServersResponse:
     out: ListServersResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Servers" in data:
+    if data.get("Servers") is not None:
         import capo_transfer.types.listed_servers
 
         out["servers"] = capo_transfer.types.listed_servers.deserialize_aws_json_1_1(

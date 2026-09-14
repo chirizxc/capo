@@ -93,11 +93,11 @@ def serialize_json(value: SendMessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageRequest:
     out: SendMessageRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("SendMessageRequest.type required")
-    if "message" in data:
+    if data.get("message") is not None:
         import capo_qconnect.types.message_input
 
         out["message"] = capo_qconnect.types.message_input.deserialize_json(
@@ -105,9 +105,9 @@ def deserialize_json(data: dict) -> SendMessageRequest:
         )
     else:
         raise DeserializationError("SendMessageRequest.message required")
-    if "aiAgentId" in data:
+    if data.get("aiAgentId") is not None:
         out["ai_agent_id"] = data["aiAgentId"]
-    if "conversationContext" in data:
+    if data.get("conversationContext") is not None:
         import capo_qconnect.types.conversation_context
 
         out["conversation_context"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> SendMessageRequest:
                 data["conversationContext"]
             )
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_qconnect.types.message_configuration
 
         out["configuration"] = (
@@ -123,16 +123,16 @@ def deserialize_json(data: dict) -> SendMessageRequest:
                 data["configuration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "orchestratorUseCase" in data:
+    if data.get("orchestratorUseCase") is not None:
         out["orchestrator_use_case"] = data["orchestratorUseCase"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_qconnect.types.message_metadata
 
         out["metadata"] = capo_qconnect.types.message_metadata.deserialize_json(
             data["metadata"]
         )
-    if "originRequestId" in data:
+    if data.get("originRequestId") is not None:
         out["origin_request_id"] = data["originRequestId"]
     return out

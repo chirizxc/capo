@@ -28,9 +28,9 @@ def serialize_json(value: TableMaintenanceJobStatusValue) -> dict:
 
     out["status"] = capo_s3tables.types.job_status.serialize_json(value["status"])
     if "last_run_timestamp" in value:
-        import capo_s3tables.types._prelude.timestamp
+        import capo_s3tables._protocol.serialize
 
-        out["lastRunTimestamp"] = capo_s3tables.types._prelude.timestamp.serialize_json(
+        out["lastRunTimestamp"] = capo_s3tables._protocol.serialize.fmt_date_time(
             value["last_run_timestamp"]
         )
     if "failure_message" in value:
@@ -40,20 +40,18 @@ def serialize_json(value: TableMaintenanceJobStatusValue) -> dict:
 
 def deserialize_json(data: dict) -> TableMaintenanceJobStatusValue:
     out: TableMaintenanceJobStatusValue = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_s3tables.types.job_status
 
         out["status"] = capo_s3tables.types.job_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("TableMaintenanceJobStatusValue.status required")
-    if "lastRunTimestamp" in data:
-        import capo_s3tables.types._prelude.timestamp
+    if data.get("lastRunTimestamp") is not None:
+        import datetime
 
-        out["last_run_timestamp"] = (
-            capo_s3tables.types._prelude.timestamp.deserialize_json(
-                data["lastRunTimestamp"]
-            )
+        out["last_run_timestamp"] = datetime.datetime.fromisoformat(
+            data["lastRunTimestamp"].replace("Z", "+00:00")
         )
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
     return out

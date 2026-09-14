@@ -50,13 +50,13 @@ def serialize_aws_json_1_0(value: CreateDbParameterGroupInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateDbParameterGroupInput:
     out: CreateDbParameterGroupInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDbParameterGroupInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_timestream_influxdb.types.parameters
 
         out["parameters"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbParameterGroupInput:
                 data["parameters"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_timestream_influxdb.types.request_tag_map
 
         out["tags"] = (

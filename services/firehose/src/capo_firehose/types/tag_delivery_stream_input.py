@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: TagDeliveryStreamInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagDeliveryStreamInput:
     out: TagDeliveryStreamInput = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamName" in data:
+    if data.get("DeliveryStreamName") is not None:
         out["delivery_stream_name"] = data["DeliveryStreamName"]
     else:
         raise DeserializationError(
             "TagDeliveryStreamInput.delivery_stream_name required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_firehose.types.tag_delivery_stream_input_tag_list
 
         out["tags"] = (

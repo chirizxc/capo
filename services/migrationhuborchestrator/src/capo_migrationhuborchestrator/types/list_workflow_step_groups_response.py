@@ -35,9 +35,9 @@ def serialize_json(value: ListWorkflowStepGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkflowStepGroupsResponse:
     out: ListWorkflowStepGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "workflowStepGroupsSummary" in data:
+    if data.get("workflowStepGroupsSummary") is not None:
         import capo_migrationhuborchestrator.types.workflow_step_groups_summary_list
 
         out["workflow_step_groups_summary"] = (

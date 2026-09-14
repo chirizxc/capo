@@ -42,15 +42,20 @@ class TooManyConfigurationTemplatesException(ServiceError):
 
     code: str | None = "TooManyConfigurationTemplatesException"
 
-    def __init__(self, data: TooManyConfigurationTemplatesException_):
+    def __init__(
+        self, data: TooManyConfigurationTemplatesException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyConfigurationTemplatesException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TooManyConfigurationTemplatesException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TooManyConfigurationTemplatesException":
+        return cls(deserialize_query(el), message)

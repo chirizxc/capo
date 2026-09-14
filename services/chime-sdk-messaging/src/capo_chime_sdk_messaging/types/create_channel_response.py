@@ -23,6 +23,6 @@ def serialize_json(value: CreateChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelResponse:
     out: CreateChannelResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
     return out

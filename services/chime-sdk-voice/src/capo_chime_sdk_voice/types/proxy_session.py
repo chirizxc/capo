@@ -150,13 +150,13 @@ def serialize_json(value: ProxySession) -> dict:
 
 def deserialize_json(data: dict) -> ProxySession:
     out: ProxySession = {}  # type: ignore[typeddict-item]
-    if "VoiceConnectorId" in data:
+    if data.get("VoiceConnectorId") is not None:
         out["voice_connector_id"] = data["VoiceConnectorId"]
-    if "ProxySessionId" in data:
+    if data.get("ProxySessionId") is not None:
         out["proxy_session_id"] = data["ProxySessionId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime_sdk_voice.types.proxy_session_status
 
         out["status"] = (
@@ -164,9 +164,9 @@ def deserialize_json(data: dict) -> ProxySession:
                 data["Status"]
             )
         )
-    if "ExpiryMinutes" in data:
+    if data.get("ExpiryMinutes") is not None:
         out["expiry_minutes"] = data["ExpiryMinutes"]
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_chime_sdk_voice.types.capability_list
 
         out["capabilities"] = (
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> ProxySession:
                 data["Capabilities"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> ProxySession:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["updated_timestamp"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> ProxySession:
                 data["UpdatedTimestamp"]
             )
         )
-    if "EndedTimestamp" in data:
+    if data.get("EndedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["ended_timestamp"] = (
@@ -198,13 +198,13 @@ def deserialize_json(data: dict) -> ProxySession:
                 data["EndedTimestamp"]
             )
         )
-    if "Participants" in data:
+    if data.get("Participants") is not None:
         import capo_chime_sdk_voice.types.participants
 
         out["participants"] = capo_chime_sdk_voice.types.participants.deserialize_json(
             data["Participants"]
         )
-    if "NumberSelectionBehavior" in data:
+    if data.get("NumberSelectionBehavior") is not None:
         import capo_chime_sdk_voice.types.number_selection_behavior
 
         out["number_selection_behavior"] = (
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> ProxySession:
                 data["NumberSelectionBehavior"]
             )
         )
-    if "GeoMatchLevel" in data:
+    if data.get("GeoMatchLevel") is not None:
         import capo_chime_sdk_voice.types.geo_match_level
 
         out["geo_match_level"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> ProxySession:
                 data["GeoMatchLevel"]
             )
         )
-    if "GeoMatchParams" in data:
+    if data.get("GeoMatchParams") is not None:
         import capo_chime_sdk_voice.types.geo_match_params
 
         out["geo_match_params"] = (

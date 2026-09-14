@@ -71,15 +71,15 @@ def serialize_json(value: NodeInfo) -> dict:
 
 def deserialize_json(data: dict) -> NodeInfo:
     out: NodeInfo = {}  # type: ignore[typeddict-item]
-    if "addedToClusterTime" in data:
+    if data.get("addedToClusterTime") is not None:
         out["added_to_cluster_time"] = data["addedToClusterTime"]
-    if "brokerNodeInfo" in data:
+    if data.get("brokerNodeInfo") is not None:
         import capo_kafka.types.broker_node_info
 
         out["broker_node_info"] = capo_kafka.types.broker_node_info.deserialize_json(
             data["brokerNodeInfo"]
         )
-    if "controllerNodeInfo" in data:
+    if data.get("controllerNodeInfo") is not None:
         import capo_kafka.types.controller_node_info
 
         out["controller_node_info"] = (
@@ -87,15 +87,15 @@ def deserialize_json(data: dict) -> NodeInfo:
                 data["controllerNodeInfo"]
             )
         )
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "nodeARN" in data:
+    if data.get("nodeARN") is not None:
         out["node_arn"] = data["nodeARN"]
-    if "nodeType" in data:
+    if data.get("nodeType") is not None:
         import capo_kafka.types.node_type
 
         out["node_type"] = capo_kafka.types.node_type.deserialize_json(data["nodeType"])
-    if "zookeeperNodeInfo" in data:
+    if data.get("zookeeperNodeInfo") is not None:
         import capo_kafka.types.zookeeper_node_info
 
         out["zookeeper_node_info"] = (

@@ -30,7 +30,7 @@ def serialize_json(value: MemberMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> MemberMetadata:
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_securityagent.types.user_metadata
 
         return {

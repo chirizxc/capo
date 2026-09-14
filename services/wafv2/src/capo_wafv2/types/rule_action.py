@@ -63,31 +63,31 @@ def serialize_aws_json_1_1(value: RuleAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleAction:
     out: RuleAction = {}  # type: ignore[typeddict-item]
-    if "Block" in data:
+    if data.get("Block") is not None:
         import capo_wafv2.types.block_action
 
         out["block"] = capo_wafv2.types.block_action.deserialize_aws_json_1_1(
             data["Block"]
         )
-    if "Allow" in data:
+    if data.get("Allow") is not None:
         import capo_wafv2.types.allow_action
 
         out["allow"] = capo_wafv2.types.allow_action.deserialize_aws_json_1_1(
             data["Allow"]
         )
-    if "Count" in data:
+    if data.get("Count") is not None:
         import capo_wafv2.types.count_action
 
         out["count"] = capo_wafv2.types.count_action.deserialize_aws_json_1_1(
             data["Count"]
         )
-    if "Captcha" in data:
+    if data.get("Captcha") is not None:
         import capo_wafv2.types.captcha_action
 
         out["captcha"] = capo_wafv2.types.captcha_action.deserialize_aws_json_1_1(
             data["Captcha"]
         )
-    if "Challenge" in data:
+    if data.get("Challenge") is not None:
         import capo_wafv2.types.challenge_action
 
         out["challenge"] = capo_wafv2.types.challenge_action.deserialize_aws_json_1_1(

@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: UsageAllocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UsageAllocation:
     out: UsageAllocation = {}  # type: ignore[typeddict-item]
-    if "AllocatedUsageQuantity" in data:
+    if data.get("AllocatedUsageQuantity") is not None:
         out["allocated_usage_quantity"] = data["AllocatedUsageQuantity"]
     else:
         raise DeserializationError("UsageAllocation.allocated_usage_quantity required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_marketplace_metering.types.tag_list
 
         out["tags"] = capo_marketplace_metering.types.tag_list.deserialize_aws_json_1_1(

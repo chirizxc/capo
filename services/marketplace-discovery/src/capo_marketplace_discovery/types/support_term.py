@@ -36,11 +36,11 @@ def serialize_json(value: SupportTerm) -> dict:
 
 def deserialize_json(data: dict) -> SupportTerm:
     out: SupportTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("SupportTerm.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.term_type
 
         out["type"] = capo_marketplace_discovery.types.term_type.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> SupportTerm:
         )
     else:
         raise DeserializationError("SupportTerm.type required")
-    if "refundPolicy" in data:
+    if data.get("refundPolicy") is not None:
         out["refund_policy"] = data["refundPolicy"]
     else:
         raise DeserializationError("SupportTerm.refund_policy required")

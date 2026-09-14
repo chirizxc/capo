@@ -51,11 +51,11 @@ def serialize_json(value: GetOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetOutput:
     out: GetOutput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetOutput.name required")
-    if "outputConfig" in data:
+    if data.get("outputConfig") is not None:
         import capo_elementalinference.types.output_config
 
         out["output_config"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> GetOutput:
         )
     else:
         raise DeserializationError("GetOutput.output_config required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_elementalinference.types.output_status
 
         out["status"] = capo_elementalinference.types.output_status.deserialize_json(
@@ -73,8 +73,8 @@ def deserialize_json(data: dict) -> GetOutput:
         )
     else:
         raise DeserializationError("GetOutput.status required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "fromAssociation" in data:
+    if data.get("fromAssociation") is not None:
         out["from_association"] = data["fromAssociation"]
     return out

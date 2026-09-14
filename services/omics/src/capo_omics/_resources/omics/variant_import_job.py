@@ -90,10 +90,11 @@ class VariantImportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_variant_import_request.StartVariantImportRequest = {}  # type: ignore[typeddict-item]
-        input_["destination_name"] = destination_name
-        input_["role_arn"] = role_arn
-        input_["items"] = items
+        input_: capo_omics.types.start_variant_import_request.StartVariantImportRequest = {
+            "destination_name": destination_name,
+            "role_arn": role_arn,
+            "items": items,
+        }
         if run_left_normalization is not None:
             input_["run_left_normalization"] = run_left_normalization
         if annotation_fields is not None:
@@ -104,6 +105,7 @@ class VariantImportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -141,14 +143,16 @@ class VariantImportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_variant_import_request.GetVariantImportRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_omics.types.get_variant_import_request.GetVariantImportRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -186,14 +190,16 @@ class VariantImportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.cancel_variant_import_request.CancelVariantImportRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_omics.types.cancel_variant_import_request.CancelVariantImportRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -239,7 +245,7 @@ class VariantImportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_variant_import_jobs_request.ListVariantImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_variant_import_jobs_request.ListVariantImportJobsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if ids is not None:
@@ -254,6 +260,7 @@ class VariantImportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -310,10 +317,11 @@ class AsyncVariantImportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_variant_import_request.StartVariantImportRequest = {}  # type: ignore[typeddict-item]
-        input_["destination_name"] = destination_name
-        input_["role_arn"] = role_arn
-        input_["items"] = items
+        input_: capo_omics.types.start_variant_import_request.StartVariantImportRequest = {
+            "destination_name": destination_name,
+            "role_arn": role_arn,
+            "items": items,
+        }
         if run_left_normalization is not None:
             input_["run_left_normalization"] = run_left_normalization
         if annotation_fields is not None:
@@ -324,6 +332,7 @@ class AsyncVariantImportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -362,14 +371,16 @@ class AsyncVariantImportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_variant_import_request.GetVariantImportRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_omics.types.get_variant_import_request.GetVariantImportRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -408,14 +419,16 @@ class AsyncVariantImportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.cancel_variant_import_request.CancelVariantImportRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_omics.types.cancel_variant_import_request.CancelVariantImportRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -462,7 +475,7 @@ class AsyncVariantImportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_variant_import_jobs_request.ListVariantImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_variant_import_jobs_request.ListVariantImportJobsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if ids is not None:
@@ -477,4 +490,5 @@ class AsyncVariantImportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

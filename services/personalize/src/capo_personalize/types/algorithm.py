@@ -108,11 +108,11 @@ def serialize_aws_json_1_1(value: Algorithm) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Algorithm:
     out: Algorithm = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "algorithmArn" in data:
+    if data.get("algorithmArn") is not None:
         out["algorithm_arn"] = data["algorithmArn"]
-    if "algorithmImage" in data:
+    if data.get("algorithmImage") is not None:
         import capo_personalize.types.algorithm_image
 
         out["algorithm_image"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> Algorithm:
                 data["algorithmImage"]
             )
         )
-    if "defaultHyperParameters" in data:
+    if data.get("defaultHyperParameters") is not None:
         import capo_personalize.types.hyper_parameters
 
         out["default_hyper_parameters"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> Algorithm:
                 data["defaultHyperParameters"]
             )
         )
-    if "defaultHyperParameterRanges" in data:
+    if data.get("defaultHyperParameterRanges") is not None:
         import capo_personalize.types.default_hyper_parameter_ranges
 
         out["default_hyper_parameter_ranges"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> Algorithm:
                 data["defaultHyperParameterRanges"]
             )
         )
-    if "defaultResourceConfig" in data:
+    if data.get("defaultResourceConfig") is not None:
         import capo_personalize.types.resource_config
 
         out["default_resource_config"] = (
@@ -144,11 +144,11 @@ def deserialize_aws_json_1_1(data: dict) -> Algorithm:
                 data["defaultResourceConfig"]
             )
         )
-    if "trainingInputMode" in data:
+    if data.get("trainingInputMode") is not None:
         out["training_input_mode"] = data["trainingInputMode"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> Algorithm:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (

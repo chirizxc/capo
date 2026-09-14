@@ -43,11 +43,11 @@ def serialize_json(value: StartDeploymentRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDeploymentRequest:
     out: StartDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "sourceUrl" in data:
+    if data.get("sourceUrl") is not None:
         out["source_url"] = data["sourceUrl"]
-    if "sourceUrlType" in data:
+    if data.get("sourceUrlType") is not None:
         import capo_amplify.types.source_url_type
 
         out["source_url_type"] = capo_amplify.types.source_url_type.deserialize_json(

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: HyperParameterTuningJobObjective) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobObjective:
     out: HyperParameterTuningJobObjective = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_objective_type
 
         out["type"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobObjective:
                 data["Type"]
             )
         )
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
     return out

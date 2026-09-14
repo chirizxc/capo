@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: LabelingJobS3DataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelingJobS3DataSource:
     out: LabelingJobS3DataSource = {}  # type: ignore[typeddict-item]
-    if "ManifestS3Uri" in data:
+    if data.get("ManifestS3Uri") is not None:
         out["manifest_s3_uri"] = data["ManifestS3Uri"]
     return out

@@ -18,6 +18,6 @@ def serialize_json(value: DeleteMLEndpointOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteMLEndpointOutput:
     out: DeleteMLEndpointOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

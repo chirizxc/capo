@@ -38,7 +38,7 @@ def serialize_json(value: ListFragmentsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListFragmentsOutput:
     out: ListFragmentsOutput = {}  # type: ignore[typeddict-item]
-    if "Fragments" in data:
+    if data.get("Fragments") is not None:
         import capo_kinesis_video_archived_media.types.fragment_list
 
         out["fragments"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListFragmentsOutput:
                 data["Fragments"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

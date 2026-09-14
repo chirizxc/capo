@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AccessLogSubscriptionList:
 
     out: AccessLogSubscriptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_vpc_lattice.types.access_log_subscription_summary.deserialize_json(
                 item

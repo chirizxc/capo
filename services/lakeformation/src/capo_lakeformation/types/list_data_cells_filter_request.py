@@ -37,14 +37,14 @@ def serialize_json(value: ListDataCellsFilterRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListDataCellsFilterRequest:
     out: ListDataCellsFilterRequest = {}  # type: ignore[typeddict-item]
-    if "Table" in data:
+    if data.get("Table") is not None:
         import capo_lakeformation.types.table_resource
 
         out["table"] = capo_lakeformation.types.table_resource.deserialize_json(
             data["Table"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

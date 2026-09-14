@@ -160,57 +160,57 @@ def serialize_aws_json_1_1(value: SavingsPlansPurchaseAnalysisDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseAnalysisDetails:
     out: SavingsPlansPurchaseAnalysisDetails = {}  # type: ignore[typeddict-item]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "LookbackPeriodInHours" in data:
+    if data.get("LookbackPeriodInHours") is not None:
         out["lookback_period_in_hours"] = data["LookbackPeriodInHours"]
-    if "CurrentAverageCoverage" in data:
+    if data.get("CurrentAverageCoverage") is not None:
         out["current_average_coverage"] = data["CurrentAverageCoverage"]
-    if "CurrentAverageHourlyOnDemandSpend" in data:
+    if data.get("CurrentAverageHourlyOnDemandSpend") is not None:
         out["current_average_hourly_on_demand_spend"] = data[
             "CurrentAverageHourlyOnDemandSpend"
         ]
-    if "CurrentMaximumHourlyOnDemandSpend" in data:
+    if data.get("CurrentMaximumHourlyOnDemandSpend") is not None:
         out["current_maximum_hourly_on_demand_spend"] = data[
             "CurrentMaximumHourlyOnDemandSpend"
         ]
-    if "CurrentMinimumHourlyOnDemandSpend" in data:
+    if data.get("CurrentMinimumHourlyOnDemandSpend") is not None:
         out["current_minimum_hourly_on_demand_spend"] = data[
             "CurrentMinimumHourlyOnDemandSpend"
         ]
-    if "CurrentOnDemandSpend" in data:
+    if data.get("CurrentOnDemandSpend") is not None:
         out["current_on_demand_spend"] = data["CurrentOnDemandSpend"]
-    if "ExistingHourlyCommitment" in data:
+    if data.get("ExistingHourlyCommitment") is not None:
         out["existing_hourly_commitment"] = data["ExistingHourlyCommitment"]
-    if "HourlyCommitmentToPurchase" in data:
+    if data.get("HourlyCommitmentToPurchase") is not None:
         out["hourly_commitment_to_purchase"] = data["HourlyCommitmentToPurchase"]
-    if "EstimatedAverageCoverage" in data:
+    if data.get("EstimatedAverageCoverage") is not None:
         out["estimated_average_coverage"] = data["EstimatedAverageCoverage"]
-    if "EstimatedAverageUtilization" in data:
+    if data.get("EstimatedAverageUtilization") is not None:
         out["estimated_average_utilization"] = data["EstimatedAverageUtilization"]
-    if "EstimatedMonthlySavingsAmount" in data:
+    if data.get("EstimatedMonthlySavingsAmount") is not None:
         out["estimated_monthly_savings_amount"] = data["EstimatedMonthlySavingsAmount"]
-    if "EstimatedOnDemandCost" in data:
+    if data.get("EstimatedOnDemandCost") is not None:
         out["estimated_on_demand_cost"] = data["EstimatedOnDemandCost"]
-    if "EstimatedOnDemandCostWithCurrentCommitment" in data:
+    if data.get("EstimatedOnDemandCostWithCurrentCommitment") is not None:
         out["estimated_on_demand_cost_with_current_commitment"] = data[
             "EstimatedOnDemandCostWithCurrentCommitment"
         ]
-    if "EstimatedROI" in data:
+    if data.get("EstimatedROI") is not None:
         out["estimated_roi"] = data["EstimatedROI"]
-    if "EstimatedSavingsAmount" in data:
+    if data.get("EstimatedSavingsAmount") is not None:
         out["estimated_savings_amount"] = data["EstimatedSavingsAmount"]
-    if "EstimatedSavingsPercentage" in data:
+    if data.get("EstimatedSavingsPercentage") is not None:
         out["estimated_savings_percentage"] = data["EstimatedSavingsPercentage"]
-    if "EstimatedCommitmentCost" in data:
+    if data.get("EstimatedCommitmentCost") is not None:
         out["estimated_commitment_cost"] = data["EstimatedCommitmentCost"]
-    if "LatestUsageTimestamp" in data:
+    if data.get("LatestUsageTimestamp") is not None:
         out["latest_usage_timestamp"] = data["LatestUsageTimestamp"]
-    if "UpfrontCost" in data:
+    if data.get("UpfrontCost") is not None:
         out["upfront_cost"] = data["UpfrontCost"]
-    if "AdditionalMetadata" in data:
+    if data.get("AdditionalMetadata") is not None:
         out["additional_metadata"] = data["AdditionalMetadata"]
-    if "MetricsOverLookbackPeriod" in data:
+    if data.get("MetricsOverLookbackPeriod") is not None:
         import capo_cost_explorer.types.metrics_over_lookback_period
 
         out["metrics_over_lookback_period"] = (

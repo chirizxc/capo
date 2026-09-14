@@ -34,14 +34,14 @@ def serialize_aws_json_1_1(value: ListResolverEndpointIpAddressesRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ListResolverEndpointIpAddressesRequest:
     out: ListResolverEndpointIpAddressesRequest = {}  # type: ignore[typeddict-item]
-    if "ResolverEndpointId" in data:
+    if data.get("ResolverEndpointId") is not None:
         out["resolver_endpoint_id"] = data["ResolverEndpointId"]
     else:
         raise DeserializationError(
             "ListResolverEndpointIpAddressesRequest.resolver_endpoint_id required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

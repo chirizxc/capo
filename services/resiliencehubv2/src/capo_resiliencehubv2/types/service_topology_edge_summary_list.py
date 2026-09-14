@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ServiceTopologyEdgeSummaryList:
 
     out: ServiceTopologyEdgeSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehubv2.types.service_topology_edge_summary.deserialize_json(
                 item

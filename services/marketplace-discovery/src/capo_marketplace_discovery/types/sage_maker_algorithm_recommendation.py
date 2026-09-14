@@ -30,7 +30,7 @@ def serialize_json(value: SageMakerAlgorithmRecommendation) -> dict:
 
 def deserialize_json(data: dict) -> SageMakerAlgorithmRecommendation:
     out: SageMakerAlgorithmRecommendation = {}  # type: ignore[typeddict-item]
-    if "recommendedBatchTransformInstanceType" in data:
+    if data.get("recommendedBatchTransformInstanceType") is not None:
         out["recommended_batch_transform_instance_type"] = data[
             "recommendedBatchTransformInstanceType"
         ]
@@ -38,11 +38,11 @@ def deserialize_json(data: dict) -> SageMakerAlgorithmRecommendation:
         raise DeserializationError(
             "SageMakerAlgorithmRecommendation.recommended_batch_transform_instance_type required"
         )
-    if "recommendedRealtimeInferenceInstanceType" in data:
+    if data.get("recommendedRealtimeInferenceInstanceType") is not None:
         out["recommended_realtime_inference_instance_type"] = data[
             "recommendedRealtimeInferenceInstanceType"
         ]
-    if "recommendedTrainingInstanceType" in data:
+    if data.get("recommendedTrainingInstanceType") is not None:
         out["recommended_training_instance_type"] = data[
             "recommendedTrainingInstanceType"
         ]

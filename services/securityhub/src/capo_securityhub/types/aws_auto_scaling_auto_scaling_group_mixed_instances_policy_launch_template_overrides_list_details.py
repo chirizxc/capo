@@ -37,8 +37,8 @@ def deserialize_json(
     AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateOverridesListDetails
 ):
     out: AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateOverridesListDetails = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "WeightedCapacity" in data:
+    if data.get("WeightedCapacity") is not None:
         out["weighted_capacity"] = data["WeightedCapacity"]
     return out

@@ -38,10 +38,10 @@ def deserialize_json(
     data: dict,
 ) -> AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails:
     out: AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails = {}  # type: ignore[typeddict-item]
-    if "Days" in data:
+    if data.get("Days") is not None:
         out["days"] = data["Days"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         out["mode"] = data["Mode"]
-    if "Years" in data:
+    if data.get("Years") is not None:
         out["years"] = data["Years"]
     return out

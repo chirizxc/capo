@@ -39,21 +39,21 @@ def serialize_json(value: CreateSourceNetworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSourceNetworkRequest:
     out: CreateSourceNetworkRequest = {}  # type: ignore[typeddict-item]
-    if "vpcID" in data:
+    if data.get("vpcID") is not None:
         out["vpc_id"] = data["vpcID"]
     else:
         raise DeserializationError("CreateSourceNetworkRequest.vpc_id required")
-    if "originAccountID" in data:
+    if data.get("originAccountID") is not None:
         out["origin_account_id"] = data["originAccountID"]
     else:
         raise DeserializationError(
             "CreateSourceNetworkRequest.origin_account_id required"
         )
-    if "originRegion" in data:
+    if data.get("originRegion") is not None:
         out["origin_region"] = data["originRegion"]
     else:
         raise DeserializationError("CreateSourceNetworkRequest.origin_region required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])

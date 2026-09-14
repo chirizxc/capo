@@ -46,13 +46,13 @@ def serialize_json(value: UpdateSpaceResourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSpaceResourcesResponse:
     out: UpdateSpaceResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "spaceId" in data:
+    if data.get("spaceId") is not None:
         out["space_id"] = data["spaceId"]
     else:
         raise DeserializationError("UpdateSpaceResourcesResponse.space_id required")
-    if "spaceArn" in data:
+    if data.get("spaceArn") is not None:
         out["space_arn"] = data["spaceArn"]
-    if "FailedResourceOperations" in data:
+    if data.get("FailedResourceOperations") is not None:
         import capo_quicksight.types.failed_space_resource_operations
 
         out["failed_resource_operations"] = (
@@ -60,6 +60,6 @@ def deserialize_json(data: dict) -> UpdateSpaceResourcesResponse:
                 data["FailedResourceOperations"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

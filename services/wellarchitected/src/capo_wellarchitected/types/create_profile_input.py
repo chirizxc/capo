@@ -56,11 +56,11 @@ def serialize_json(value: CreateProfileInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateProfileInput:
     out: CreateProfileInput = {}  # type: ignore[typeddict-item]
-    if "ProfileName" in data:
+    if data.get("ProfileName") is not None:
         out["profile_name"] = data["ProfileName"]
-    if "ProfileDescription" in data:
+    if data.get("ProfileDescription") is not None:
         out["profile_description"] = data["ProfileDescription"]
-    if "ProfileQuestions" in data:
+    if data.get("ProfileQuestions") is not None:
         import capo_wellarchitected.types.profile_question_updates
 
         out["profile_questions"] = (
@@ -68,9 +68,9 @@ def deserialize_json(data: dict) -> CreateProfileInput:
                 data["ProfileQuestions"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wellarchitected.types.tag_map
 
         out["tags"] = capo_wellarchitected.types.tag_map.deserialize_json(data["Tags"])

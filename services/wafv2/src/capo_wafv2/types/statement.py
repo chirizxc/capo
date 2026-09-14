@@ -214,7 +214,7 @@ def serialize_aws_json_1_1(value: Statement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Statement:
     out: Statement = {}  # type: ignore[typeddict-item]
-    if "ByteMatchStatement" in data:
+    if data.get("ByteMatchStatement") is not None:
         import capo_wafv2.types.byte_match_statement
 
         out["byte_match_statement"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["ByteMatchStatement"]
             )
         )
-    if "SqliMatchStatement" in data:
+    if data.get("SqliMatchStatement") is not None:
         import capo_wafv2.types.sqli_match_statement
 
         out["sqli_match_statement"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["SqliMatchStatement"]
             )
         )
-    if "XssMatchStatement" in data:
+    if data.get("XssMatchStatement") is not None:
         import capo_wafv2.types.xss_match_statement
 
         out["xss_match_statement"] = (
@@ -238,7 +238,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["XssMatchStatement"]
             )
         )
-    if "SizeConstraintStatement" in data:
+    if data.get("SizeConstraintStatement") is not None:
         import capo_wafv2.types.size_constraint_statement
 
         out["size_constraint_statement"] = (
@@ -246,7 +246,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["SizeConstraintStatement"]
             )
         )
-    if "GeoMatchStatement" in data:
+    if data.get("GeoMatchStatement") is not None:
         import capo_wafv2.types.geo_match_statement
 
         out["geo_match_statement"] = (
@@ -254,7 +254,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["GeoMatchStatement"]
             )
         )
-    if "RuleGroupReferenceStatement" in data:
+    if data.get("RuleGroupReferenceStatement") is not None:
         import capo_wafv2.types.rule_group_reference_statement
 
         out["rule_group_reference_statement"] = (
@@ -262,7 +262,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["RuleGroupReferenceStatement"]
             )
         )
-    if "IPSetReferenceStatement" in data:
+    if data.get("IPSetReferenceStatement") is not None:
         import capo_wafv2.types.ip_set_reference_statement
 
         out["ip_set_reference_statement"] = (
@@ -270,7 +270,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["IPSetReferenceStatement"]
             )
         )
-    if "RegexPatternSetReferenceStatement" in data:
+    if data.get("RegexPatternSetReferenceStatement") is not None:
         import capo_wafv2.types.regex_pattern_set_reference_statement
 
         out["regex_pattern_set_reference_statement"] = (
@@ -278,7 +278,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["RegexPatternSetReferenceStatement"]
             )
         )
-    if "RateBasedStatement" in data:
+    if data.get("RateBasedStatement") is not None:
         import capo_wafv2.types.rate_based_statement
 
         out["rate_based_statement"] = (
@@ -286,25 +286,25 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["RateBasedStatement"]
             )
         )
-    if "AndStatement" in data:
+    if data.get("AndStatement") is not None:
         import capo_wafv2.types.and_statement
 
         out["and_statement"] = capo_wafv2.types.and_statement.deserialize_aws_json_1_1(
             data["AndStatement"]
         )
-    if "OrStatement" in data:
+    if data.get("OrStatement") is not None:
         import capo_wafv2.types.or_statement
 
         out["or_statement"] = capo_wafv2.types.or_statement.deserialize_aws_json_1_1(
             data["OrStatement"]
         )
-    if "NotStatement" in data:
+    if data.get("NotStatement") is not None:
         import capo_wafv2.types.not_statement
 
         out["not_statement"] = capo_wafv2.types.not_statement.deserialize_aws_json_1_1(
             data["NotStatement"]
         )
-    if "ManagedRuleGroupStatement" in data:
+    if data.get("ManagedRuleGroupStatement") is not None:
         import capo_wafv2.types.managed_rule_group_statement
 
         out["managed_rule_group_statement"] = (
@@ -312,7 +312,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["ManagedRuleGroupStatement"]
             )
         )
-    if "LabelMatchStatement" in data:
+    if data.get("LabelMatchStatement") is not None:
         import capo_wafv2.types.label_match_statement
 
         out["label_match_statement"] = (
@@ -320,7 +320,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["LabelMatchStatement"]
             )
         )
-    if "RegexMatchStatement" in data:
+    if data.get("RegexMatchStatement") is not None:
         import capo_wafv2.types.regex_match_statement
 
         out["regex_match_statement"] = (
@@ -328,7 +328,7 @@ def deserialize_aws_json_1_1(data: dict) -> Statement:
                 data["RegexMatchStatement"]
             )
         )
-    if "AsnMatchStatement" in data:
+    if data.get("AsnMatchStatement") is not None:
         import capo_wafv2.types.asn_match_statement
 
         out["asn_match_statement"] = (

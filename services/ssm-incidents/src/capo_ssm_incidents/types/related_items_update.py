@@ -47,7 +47,7 @@ def serialize_json(value: RelatedItemsUpdate) -> dict:
 
 
 def deserialize_json(data: dict) -> RelatedItemsUpdate:
-    if "itemToAdd" in data:
+    if data.get("itemToAdd") is not None:
         import capo_ssm_incidents.types.related_item
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> RelatedItemsUpdate:
                 data["itemToAdd"]
             )
         }
-    elif "itemToRemove" in data:
+    elif data.get("itemToRemove") is not None:
         import capo_ssm_incidents.types.item_identifier
 
         return {

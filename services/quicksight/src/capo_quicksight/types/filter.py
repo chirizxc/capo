@@ -110,13 +110,13 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "CategoryFilter" in data:
+    if data.get("CategoryFilter") is not None:
         import capo_quicksight.types.category_filter
 
         out["category_filter"] = capo_quicksight.types.category_filter.deserialize_json(
             data["CategoryFilter"]
         )
-    if "NumericRangeFilter" in data:
+    if data.get("NumericRangeFilter") is not None:
         import capo_quicksight.types.numeric_range_filter
 
         out["numeric_range_filter"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> Filter:
                 data["NumericRangeFilter"]
             )
         )
-    if "NumericEqualityFilter" in data:
+    if data.get("NumericEqualityFilter") is not None:
         import capo_quicksight.types.numeric_equality_filter
 
         out["numeric_equality_filter"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> Filter:
                 data["NumericEqualityFilter"]
             )
         )
-    if "TimeEqualityFilter" in data:
+    if data.get("TimeEqualityFilter") is not None:
         import capo_quicksight.types.time_equality_filter
 
         out["time_equality_filter"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> Filter:
                 data["TimeEqualityFilter"]
             )
         )
-    if "TimeRangeFilter" in data:
+    if data.get("TimeRangeFilter") is not None:
         import capo_quicksight.types.time_range_filter
 
         out["time_range_filter"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> Filter:
                 data["TimeRangeFilter"]
             )
         )
-    if "RelativeDatesFilter" in data:
+    if data.get("RelativeDatesFilter") is not None:
         import capo_quicksight.types.relative_dates_filter
 
         out["relative_dates_filter"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> Filter:
                 data["RelativeDatesFilter"]
             )
         )
-    if "TopBottomFilter" in data:
+    if data.get("TopBottomFilter") is not None:
         import capo_quicksight.types.top_bottom_filter
 
         out["top_bottom_filter"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> Filter:
                 data["TopBottomFilter"]
             )
         )
-    if "NestedFilter" in data:
+    if data.get("NestedFilter") is not None:
         import capo_quicksight.types.nested_filter
 
         out["nested_filter"] = capo_quicksight.types.nested_filter.deserialize_json(

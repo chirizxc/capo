@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: RegisterDelegatedAdministratorRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterDelegatedAdministratorRequest:
     out: RegisterDelegatedAdministratorRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError(
             "RegisterDelegatedAdministratorRequest.account_id required"
         )
-    if "ServicePrincipal" in data:
+    if data.get("ServicePrincipal") is not None:
         out["service_principal"] = data["ServicePrincipal"]
     else:
         raise DeserializationError(

@@ -94,13 +94,14 @@ class AudienceModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_audience_model_request.CreateAudienceModelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.create_audience_model_request.CreateAudienceModelRequest = {
+            "name": name,
+            "training_dataset_arn": training_dataset_arn,
+        }
         if training_data_start_time is not None:
             input_["training_data_start_time"] = training_data_start_time
         if training_data_end_time is not None:
             input_["training_data_end_time"] = training_data_end_time
-        input_["name"] = name
-        input_["training_dataset_arn"] = training_dataset_arn
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
         if tags is not None:
@@ -113,6 +114,7 @@ class AudienceModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -148,14 +150,16 @@ class AudienceModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_audience_model_request.GetAudienceModelRequest = {}  # type: ignore[typeddict-item]
-        input_["audience_model_arn"] = audience_model_arn
+        input_: capo_cleanroomsml.types.get_audience_model_request.GetAudienceModelRequest = {
+            "audience_model_arn": audience_model_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -190,14 +194,16 @@ class AudienceModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_audience_model_request.DeleteAudienceModelRequest = {}  # type: ignore[typeddict-item]
-        input_["audience_model_arn"] = audience_model_arn
+        input_: capo_cleanroomsml.types.delete_audience_model_request.DeleteAudienceModelRequest = {
+            "audience_model_arn": audience_model_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -234,7 +240,7 @@ class AudienceModel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_audience_models_request.ListAudienceModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_audience_models_request.ListAudienceModelsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -245,6 +251,7 @@ class AudienceModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -302,13 +309,14 @@ class AsyncAudienceModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_audience_model_request.CreateAudienceModelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.create_audience_model_request.CreateAudienceModelRequest = {
+            "name": name,
+            "training_dataset_arn": training_dataset_arn,
+        }
         if training_data_start_time is not None:
             input_["training_data_start_time"] = training_data_start_time
         if training_data_end_time is not None:
             input_["training_data_end_time"] = training_data_end_time
-        input_["name"] = name
-        input_["training_dataset_arn"] = training_dataset_arn
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
         if tags is not None:
@@ -321,6 +329,7 @@ class AsyncAudienceModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -357,14 +366,16 @@ class AsyncAudienceModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_audience_model_request.GetAudienceModelRequest = {}  # type: ignore[typeddict-item]
-        input_["audience_model_arn"] = audience_model_arn
+        input_: capo_cleanroomsml.types.get_audience_model_request.GetAudienceModelRequest = {
+            "audience_model_arn": audience_model_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -400,14 +411,16 @@ class AsyncAudienceModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_audience_model_request.DeleteAudienceModelRequest = {}  # type: ignore[typeddict-item]
-        input_["audience_model_arn"] = audience_model_arn
+        input_: capo_cleanroomsml.types.delete_audience_model_request.DeleteAudienceModelRequest = {
+            "audience_model_arn": audience_model_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -445,7 +458,7 @@ class AsyncAudienceModel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_audience_models_request.ListAudienceModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_audience_models_request.ListAudienceModelsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -456,4 +469,5 @@ class AsyncAudienceModel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

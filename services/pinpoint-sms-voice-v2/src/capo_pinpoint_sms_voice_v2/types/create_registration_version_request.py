@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: CreateRegistrationVersionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRegistrationVersionRequest:
     out: CreateRegistrationVersionRequest = {}  # type: ignore[typeddict-item]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(

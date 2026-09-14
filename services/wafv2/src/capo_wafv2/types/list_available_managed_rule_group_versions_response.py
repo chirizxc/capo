@@ -47,9 +47,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListAvailableManagedRuleGroupVersionsResponse:
     out: ListAvailableManagedRuleGroupVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "Versions" in data:
+    if data.get("Versions") is not None:
         import capo_wafv2.types.managed_rule_group_versions
 
         out["versions"] = (
@@ -57,6 +57,6 @@ def deserialize_aws_json_1_1(
                 data["Versions"]
             )
         )
-    if "CurrentDefaultVersion" in data:
+    if data.get("CurrentDefaultVersion") is not None:
         out["current_default_version"] = data["CurrentDefaultVersion"]
     return out

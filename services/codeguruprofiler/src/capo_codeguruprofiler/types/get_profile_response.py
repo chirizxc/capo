@@ -32,7 +32,7 @@ def serialize_json(value: GetProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetProfileResponse:
     out: GetProfileResponse = {}  # type: ignore[typeddict-item]
-    if "profile" in data:
+    if data.get("profile") is not None:
         import capo_codeguruprofiler.types.aggregated_profile
 
         out["profile"] = (

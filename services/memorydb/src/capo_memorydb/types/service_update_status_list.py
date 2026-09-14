@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ServiceUpdateStatusList:
 
     out: ServiceUpdateStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_memorydb.types.service_update_status.deserialize_aws_json_1_1(item)
         )

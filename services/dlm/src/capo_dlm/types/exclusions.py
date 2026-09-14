@@ -47,9 +47,9 @@ def serialize_json(value: Exclusions) -> dict:
 
 def deserialize_json(data: dict) -> Exclusions:
     out: Exclusions = {}  # type: ignore[typeddict-item]
-    if "ExcludeBootVolumes" in data:
+    if data.get("ExcludeBootVolumes") is not None:
         out["exclude_boot_volumes"] = data["ExcludeBootVolumes"]
-    if "ExcludeVolumeTypes" in data:
+    if data.get("ExcludeVolumeTypes") is not None:
         import capo_dlm.types.exclude_volume_types_list
 
         out["exclude_volume_types"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> Exclusions:
                 data["ExcludeVolumeTypes"]
             )
         )
-    if "ExcludeTags" in data:
+    if data.get("ExcludeTags") is not None:
         import capo_dlm.types.exclude_tags_list
 
         out["exclude_tags"] = capo_dlm.types.exclude_tags_list.deserialize_json(

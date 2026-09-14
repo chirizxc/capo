@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: UpdateResolverConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateResolverConfigRequest:
     out: UpdateResolverConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("UpdateResolverConfigRequest.resource_id required")
-    if "AutodefinedReverseFlag" in data:
+    if data.get("AutodefinedReverseFlag") is not None:
         import capo_route53resolver.types.autodefined_reverse_flag
 
         out["autodefined_reverse_flag"] = (

@@ -46,12 +46,12 @@ def serialize_json(value: EventTypeSummary) -> dict:
 
 def deserialize_json(data: dict) -> EventTypeSummary:
     out: EventTypeSummary = {}  # type: ignore[typeddict-item]
-    if "EventTypeId" in data:
+    if data.get("EventTypeId") is not None:
         out["event_type_id"] = data["EventTypeId"]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "EventTypeName" in data:
+    if data.get("EventTypeName") is not None:
         out["event_type_name"] = data["EventTypeName"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     return out

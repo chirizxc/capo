@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ExtraParam) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExtraParam:
     out: ExtraParam = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_route_53_domains.types.extra_param_name
 
         out["name"] = (
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtraParam:
         )
     else:
         raise DeserializationError("ExtraParam.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("ExtraParam.value required")

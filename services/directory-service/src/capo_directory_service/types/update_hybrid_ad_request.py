@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: UpdateHybridADRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateHybridADRequest:
     out: UpdateHybridADRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("UpdateHybridADRequest.directory_id required")
-    if "HybridAdministratorAccountUpdate" in data:
+    if data.get("HybridAdministratorAccountUpdate") is not None:
         import capo_directory_service.types.hybrid_administrator_account_update
 
         out["hybrid_administrator_account_update"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateHybridADRequest:
                 data["HybridAdministratorAccountUpdate"]
             )
         )
-    if "SelfManagedInstancesSettings" in data:
+    if data.get("SelfManagedInstancesSettings") is not None:
         import capo_directory_service.types.hybrid_customer_instances_settings
 
         out["self_managed_instances_settings"] = (

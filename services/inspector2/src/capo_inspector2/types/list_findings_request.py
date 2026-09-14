@@ -48,17 +48,17 @@ def serialize_json(value: ListFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListFindingsRequest:
     out: ListFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.filter_criteria
 
         out["filter_criteria"] = capo_inspector2.types.filter_criteria.deserialize_json(
             data["filterCriteria"]
         )
-    if "sortCriteria" in data:
+    if data.get("sortCriteria") is not None:
         import capo_inspector2.types.sort_criteria
 
         out["sort_criteria"] = capo_inspector2.types.sort_criteria.deserialize_json(

@@ -31,12 +31,12 @@ def serialize_json(value: PendingMaintenance) -> dict:
 
 def deserialize_json(data: dict) -> PendingMaintenance:
     out: PendingMaintenance = {}  # type: ignore[typeddict-item]
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_m2.types.maintenance_schedule
 
         out["schedule"] = capo_m2.types.maintenance_schedule.deserialize_json(
             data["schedule"]
         )
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
     return out

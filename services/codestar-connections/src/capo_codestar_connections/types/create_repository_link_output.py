@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: CreateRepositoryLinkOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRepositoryLinkOutput:
     out: CreateRepositoryLinkOutput = {}  # type: ignore[typeddict-item]
-    if "RepositoryLinkInfo" in data:
+    if data.get("RepositoryLinkInfo") is not None:
         import capo_codestar_connections.types.repository_link_info
 
         out["repository_link_info"] = (

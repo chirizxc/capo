@@ -37,15 +37,18 @@ class InvalidPolicyException(ServiceError):
 
     code: str | None = "InvalidPolicyException"
 
-    def __init__(self, data: InvalidPolicyException_):
+    def __init__(self, data: InvalidPolicyException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidPolicyException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidPolicyException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidPolicyException":
+        return cls(deserialize_query(el), message)

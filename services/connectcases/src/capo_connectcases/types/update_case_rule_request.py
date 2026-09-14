@@ -45,11 +45,11 @@ def serialize_json(value: UpdateCaseRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCaseRuleRequest:
     out: UpdateCaseRuleRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "rule" in data:
+    if data.get("rule") is not None:
         import capo_connectcases.types.case_rule_details
 
         out["rule"] = capo_connectcases.types.case_rule_details.deserialize_json(

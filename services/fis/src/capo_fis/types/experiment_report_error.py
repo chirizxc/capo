@@ -25,6 +25,6 @@ def serialize_json(value: ExperimentReportError) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentReportError:
     out: ExperimentReportError = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     return out

@@ -33,16 +33,16 @@ def serialize_json(value: DeleteAppVersionAppComponentRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAppVersionAppComponentRequest:
     out: DeleteAppVersionAppComponentRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "DeleteAppVersionAppComponentRequest.app_arn required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeleteAppVersionAppComponentRequest.id required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

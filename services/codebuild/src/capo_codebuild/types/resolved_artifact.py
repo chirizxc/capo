@@ -36,14 +36,14 @@ def serialize_aws_json_1_1(value: ResolvedArtifact) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolvedArtifact:
     out: ResolvedArtifact = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.artifacts_type
 
         out["type"] = capo_codebuild.types.artifacts_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     return out

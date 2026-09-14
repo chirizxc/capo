@@ -47,21 +47,21 @@ def serialize_aws_json_1_0(value: ApprovePlanExecutionStepRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ApprovePlanExecutionStepRequest:
     out: ApprovePlanExecutionStepRequest = {}  # type: ignore[typeddict-item]
-    if "planArn" in data:
+    if data.get("planArn") is not None:
         out["plan_arn"] = data["planArn"]
     else:
         raise DeserializationError("ApprovePlanExecutionStepRequest.plan_arn required")
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError(
             "ApprovePlanExecutionStepRequest.execution_id required"
         )
-    if "stepName" in data:
+    if data.get("stepName") is not None:
         out["step_name"] = data["stepName"]
     else:
         raise DeserializationError("ApprovePlanExecutionStepRequest.step_name required")
-    if "approval" in data:
+    if data.get("approval") is not None:
         import capo_arc_region_switch.types.approval
 
         out["approval"] = (
@@ -71,6 +71,6 @@ def deserialize_aws_json_1_0(data: dict) -> ApprovePlanExecutionStepRequest:
         )
     else:
         raise DeserializationError("ApprovePlanExecutionStepRequest.approval required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

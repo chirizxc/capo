@@ -49,7 +49,7 @@ def serialize_json(value: UpdateKeyRegistrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKeyRegistrationResponse:
     out: UpdateKeyRegistrationResponse = {}  # type: ignore[typeddict-item]
-    if "FailedKeyRegistration" in data:
+    if data.get("FailedKeyRegistration") is not None:
         import capo_quicksight.types.failed_key_registration_entries
 
         out["failed_key_registration"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> UpdateKeyRegistrationResponse:
                 data["FailedKeyRegistration"]
             )
         )
-    if "SuccessfulKeyRegistration" in data:
+    if data.get("SuccessfulKeyRegistration") is not None:
         import capo_quicksight.types.successful_key_registration_entries
 
         out["successful_key_registration"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> UpdateKeyRegistrationResponse:
                 data["SuccessfulKeyRegistration"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

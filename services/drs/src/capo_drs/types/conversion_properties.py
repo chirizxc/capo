@@ -72,7 +72,7 @@ def serialize_json(value: ConversionProperties) -> dict:
 
 def deserialize_json(data: dict) -> ConversionProperties:
     out: ConversionProperties = {}  # type: ignore[typeddict-item]
-    if "volumeToConversionMap" in data:
+    if data.get("volumeToConversionMap") is not None:
         import capo_drs.types.volume_to_conversion_map
 
         out["volume_to_conversion_map"] = (
@@ -80,13 +80,13 @@ def deserialize_json(data: dict) -> ConversionProperties:
                 data["volumeToConversionMap"]
             )
         )
-    if "rootVolumeName" in data:
+    if data.get("rootVolumeName") is not None:
         out["root_volume_name"] = data["rootVolumeName"]
-    if "forceUefi" in data:
+    if data.get("forceUefi") is not None:
         out["force_uefi"] = data["forceUefi"]
-    if "dataTimestamp" in data:
+    if data.get("dataTimestamp") is not None:
         out["data_timestamp"] = data["dataTimestamp"]
-    if "volumeToVolumeSize" in data:
+    if data.get("volumeToVolumeSize") is not None:
         import capo_drs.types.volume_to_size_map
 
         out["volume_to_volume_size"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> ConversionProperties:
                 data["volumeToVolumeSize"]
             )
         )
-    if "volumeToProductCodes" in data:
+    if data.get("volumeToProductCodes") is not None:
         import capo_drs.types.volume_to_product_codes
 
         out["volume_to_product_codes"] = (

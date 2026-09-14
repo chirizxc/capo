@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: Filter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Behavior" in data:
+    if data.get("Behavior") is not None:
         import capo_wafv2.types.filter_behavior
 
         out["behavior"] = capo_wafv2.types.filter_behavior.deserialize_aws_json_1_1(
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.behavior required")
-    if "Requirement" in data:
+    if data.get("Requirement") is not None:
         import capo_wafv2.types.filter_requirement
 
         out["requirement"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.requirement required")
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_wafv2.types.conditions
 
         out["conditions"] = capo_wafv2.types.conditions.deserialize_aws_json_1_1(

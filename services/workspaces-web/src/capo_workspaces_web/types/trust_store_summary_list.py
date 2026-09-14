@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TrustStoreSummaryList:
 
     out: TrustStoreSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workspaces_web.types.trust_store_summary.deserialize_json(item))
     return out

@@ -53,13 +53,13 @@ def serialize_json(value: QAResult) -> dict:
 
 def deserialize_json(data: dict) -> QAResult:
     out: QAResult = {}  # type: ignore[typeddict-item]
-    if "ResultType" in data:
+    if data.get("ResultType") is not None:
         import capo_quicksight.types.qa_result_type
 
         out["result_type"] = capo_quicksight.types.qa_result_type.deserialize_json(
             data["ResultType"]
         )
-    if "DashboardVisual" in data:
+    if data.get("DashboardVisual") is not None:
         import capo_quicksight.types.dashboard_visual_result
 
         out["dashboard_visual"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> QAResult:
                 data["DashboardVisual"]
             )
         )
-    if "GeneratedAnswer" in data:
+    if data.get("GeneratedAnswer") is not None:
         import capo_quicksight.types.generated_answer_result
 
         out["generated_answer"] = (

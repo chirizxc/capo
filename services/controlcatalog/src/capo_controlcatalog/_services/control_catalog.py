@@ -192,7 +192,7 @@ class ControlCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_controlcatalog.types.list_control_mappings_request.ListControlMappingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_controlcatalog.types.list_control_mappings_request.ListControlMappingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -205,6 +205,7 @@ class ControlCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_control_mappings(

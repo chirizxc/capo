@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AssetBundleExportJobWarningList:
 
     out: AssetBundleExportJobWarningList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.asset_bundle_export_job_warning.deserialize_json(item)
         )

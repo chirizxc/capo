@@ -25,6 +25,6 @@ def serialize_json(value: AwsCloudFrontDistributionOriginS3OriginConfig) -> dict
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionOriginS3OriginConfig:
     out: AwsCloudFrontDistributionOriginS3OriginConfig = {}  # type: ignore[typeddict-item]
-    if "OriginAccessIdentity" in data:
+    if data.get("OriginAccessIdentity") is not None:
         out["origin_access_identity"] = data["OriginAccessIdentity"]
     return out

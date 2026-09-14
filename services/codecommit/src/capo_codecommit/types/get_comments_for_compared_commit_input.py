@@ -42,22 +42,22 @@ def serialize_aws_json_1_1(value: GetCommentsForComparedCommitInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCommentsForComparedCommitInput:
     out: GetCommentsForComparedCommitInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "GetCommentsForComparedCommitInput.repository_name required"
         )
-    if "beforeCommitId" in data:
+    if data.get("beforeCommitId") is not None:
         out["before_commit_id"] = data["beforeCommitId"]
-    if "afterCommitId" in data:
+    if data.get("afterCommitId") is not None:
         out["after_commit_id"] = data["afterCommitId"]
     else:
         raise DeserializationError(
             "GetCommentsForComparedCommitInput.after_commit_id required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

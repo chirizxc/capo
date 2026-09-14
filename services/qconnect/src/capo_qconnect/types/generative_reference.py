@@ -28,8 +28,8 @@ def serialize_json(value: GenerativeReference) -> dict:
 
 def deserialize_json(data: dict) -> GenerativeReference:
     out: GenerativeReference = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
-    if "generationId" in data:
+    if data.get("generationId") is not None:
         out["generation_id"] = data["generationId"]
     return out

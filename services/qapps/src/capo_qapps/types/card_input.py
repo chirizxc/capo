@@ -90,7 +90,7 @@ def serialize_json(value: CardInput) -> dict:
 
 
 def deserialize_json(data: dict) -> CardInput:
-    if "textInput" in data:
+    if data.get("textInput") is not None:
         import capo_qapps.types.text_input_card_input
 
         return {
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> CardInput:
                 data["textInput"]
             )
         }
-    elif "qQuery" in data:
+    elif data.get("qQuery") is not None:
         import capo_qapps.types.q_query_card_input
 
         return {
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> CardInput:
                 data["qQuery"]
             )
         }
-    elif "qPlugin" in data:
+    elif data.get("qPlugin") is not None:
         import capo_qapps.types.q_plugin_card_input
 
         return {
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> CardInput:
                 data["qPlugin"]
             )
         }
-    elif "fileUpload" in data:
+    elif data.get("fileUpload") is not None:
         import capo_qapps.types.file_upload_card_input
 
         return {
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> CardInput:
                 data["fileUpload"]
             )
         }
-    elif "formInput" in data:
+    elif data.get("formInput") is not None:
         import capo_qapps.types.form_input_card_input
 
         return {

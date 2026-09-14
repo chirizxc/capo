@@ -73,13 +73,13 @@ def serialize_aws_json_1_1(value: CreateSystemInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSystemInstanceRequest:
     out: CreateSystemInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotthingsgraph.types.tag_list
 
         out["tags"] = capo_iotthingsgraph.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_iotthingsgraph.types.definition_document
 
         out["definition"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSystemInstanceRequest:
         )
     else:
         raise DeserializationError("CreateSystemInstanceRequest.definition required")
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_iotthingsgraph.types.deployment_target
 
         out["target"] = (
@@ -99,11 +99,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSystemInstanceRequest:
         )
     else:
         raise DeserializationError("CreateSystemInstanceRequest.target required")
-    if "greengrassGroupName" in data:
+    if data.get("greengrassGroupName") is not None:
         out["greengrass_group_name"] = data["greengrassGroupName"]
-    if "s3BucketName" in data:
+    if data.get("s3BucketName") is not None:
         out["s3_bucket_name"] = data["s3BucketName"]
-    if "metricsConfiguration" in data:
+    if data.get("metricsConfiguration") is not None:
         import capo_iotthingsgraph.types.metrics_configuration
 
         out["metrics_configuration"] = (
@@ -111,6 +111,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSystemInstanceRequest:
                 data["metricsConfiguration"]
             )
         )
-    if "flowActionsRoleArn" in data:
+    if data.get("flowActionsRoleArn") is not None:
         out["flow_actions_role_arn"] = data["flowActionsRoleArn"]
     return out

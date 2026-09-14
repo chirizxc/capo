@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: UpdatePullRequestTitleInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePullRequestTitleInput:
     out: UpdatePullRequestTitleInput = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
     else:
         raise DeserializationError(
             "UpdatePullRequestTitleInput.pull_request_id required"
         )
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("UpdatePullRequestTitleInput.title required")

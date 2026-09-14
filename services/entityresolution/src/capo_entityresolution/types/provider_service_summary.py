@@ -47,29 +47,29 @@ def serialize_json(value: ProviderServiceSummary) -> dict:
 
 def deserialize_json(data: dict) -> ProviderServiceSummary:
     out: ProviderServiceSummary = {}  # type: ignore[typeddict-item]
-    if "providerServiceArn" in data:
+    if data.get("providerServiceArn") is not None:
         out["provider_service_arn"] = data["providerServiceArn"]
     else:
         raise DeserializationError(
             "ProviderServiceSummary.provider_service_arn required"
         )
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
     else:
         raise DeserializationError("ProviderServiceSummary.provider_name required")
-    if "providerServiceDisplayName" in data:
+    if data.get("providerServiceDisplayName") is not None:
         out["provider_service_display_name"] = data["providerServiceDisplayName"]
     else:
         raise DeserializationError(
             "ProviderServiceSummary.provider_service_display_name required"
         )
-    if "providerServiceName" in data:
+    if data.get("providerServiceName") is not None:
         out["provider_service_name"] = data["providerServiceName"]
     else:
         raise DeserializationError(
             "ProviderServiceSummary.provider_service_name required"
         )
-    if "providerServiceType" in data:
+    if data.get("providerServiceType") is not None:
         import capo_entityresolution.types.service_type
 
         out["provider_service_type"] = (

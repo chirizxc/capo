@@ -36,9 +36,9 @@ def serialize_json(value: ListPackagingConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPackagingConfigurationsResponse:
     out: ListPackagingConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "packagingConfigurations" in data:
+    if data.get("packagingConfigurations") is not None:
         import capo_mediapackage_vod.types.__list_of_packaging_configuration
 
         out["packaging_configurations"] = (

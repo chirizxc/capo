@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: StartDeliveryStreamEncryptionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartDeliveryStreamEncryptionInput:
     out: StartDeliveryStreamEncryptionInput = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamName" in data:
+    if data.get("DeliveryStreamName") is not None:
         out["delivery_stream_name"] = data["DeliveryStreamName"]
     else:
         raise DeserializationError(
             "StartDeliveryStreamEncryptionInput.delivery_stream_name required"
         )
-    if "DeliveryStreamEncryptionConfigurationInput" in data:
+    if data.get("DeliveryStreamEncryptionConfigurationInput") is not None:
         import capo_firehose.types.delivery_stream_encryption_configuration_input
 
         out["delivery_stream_encryption_configuration_input"] = (

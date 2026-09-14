@@ -28,9 +28,9 @@ def serialize_aws_json_1_1(value: InvalidSourceException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidSourceException_:
     out: InvalidSourceException_ = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -40,15 +40,18 @@ class InvalidSourceException(ServiceError):
 
     code: str | None = "InvalidSourceException"
 
-    def __init__(self, data: InvalidSourceException_):
+    def __init__(self, data: InvalidSourceException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSourceException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidSourceException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidSourceException":
+        return cls(deserialize_aws_json_1_1(data), message)

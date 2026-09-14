@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ConfiguredModelAlgorithmList:
 
     out: ConfiguredModelAlgorithmList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.configured_model_algorithm_summary.deserialize_json(
                 item

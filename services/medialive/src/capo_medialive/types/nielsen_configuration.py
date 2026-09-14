@@ -36,9 +36,9 @@ def serialize_json(value: NielsenConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NielsenConfiguration:
     out: NielsenConfiguration = {}  # type: ignore[typeddict-item]
-    if "distributorId" in data:
+    if data.get("distributorId") is not None:
         out["distributor_id"] = data["distributorId"]
-    if "nielsenPcmToId3Tagging" in data:
+    if data.get("nielsenPcmToId3Tagging") is not None:
         import capo_medialive.types.nielsen_pcm_to_id3_tagging_state
 
         out["nielsen_pcm_to_id3_tagging"] = (

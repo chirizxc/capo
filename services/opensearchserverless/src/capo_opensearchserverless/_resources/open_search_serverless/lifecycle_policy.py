@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_opensearchserverless._services._pipeline import (
@@ -90,22 +91,25 @@ class LifecyclePolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_lifecycle_policy_request.UpdateLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
-        input_["policy_version"] = policy_version
+        input_: capo_opensearchserverless.types.update_lifecycle_policy_request.UpdateLifecyclePolicyRequest = {
+            "type": type,
+            "name": name,
+            "policy_version": policy_version,
+        }
         if description is not None:
             input_["description"] = description
         if policy is not None:
             input_["policy"] = policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -148,17 +152,20 @@ class LifecyclePolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_lifecycle_policy_request.DeleteLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_lifecycle_policy_request.DeleteLifecyclePolicyRequest = {
+            "type": type,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -201,8 +208,9 @@ class LifecyclePolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_lifecycle_policies_request.ListLifecyclePoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_opensearchserverless.types.list_lifecycle_policies_request.ListLifecyclePoliciesRequest = {
+            "type": type
+        }
         if resources is not None:
             input_["resources"] = resources
         if next_token is not None:
@@ -215,6 +223,7 @@ class LifecyclePolicy:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -274,22 +283,25 @@ class AsyncLifecyclePolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_lifecycle_policy_request.UpdateLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
-        input_["policy_version"] = policy_version
+        input_: capo_opensearchserverless.types.update_lifecycle_policy_request.UpdateLifecyclePolicyRequest = {
+            "type": type,
+            "name": name,
+            "policy_version": policy_version,
+        }
         if description is not None:
             input_["description"] = description
         if policy is not None:
             input_["policy"] = policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -333,17 +345,20 @@ class AsyncLifecyclePolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_lifecycle_policy_request.DeleteLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_lifecycle_policy_request.DeleteLifecyclePolicyRequest = {
+            "type": type,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -387,8 +402,9 @@ class AsyncLifecyclePolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_lifecycle_policies_request.ListLifecyclePoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_opensearchserverless.types.list_lifecycle_policies_request.ListLifecyclePoliciesRequest = {
+            "type": type
+        }
         if resources is not None:
             input_["resources"] = resources
         if next_token is not None:
@@ -401,4 +417,5 @@ class AsyncLifecyclePolicy:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

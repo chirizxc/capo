@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeExclusionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeExclusionsResponse:
     out: DescribeExclusionsResponse = {}  # type: ignore[typeddict-item]
-    if "exclusions" in data:
+    if data.get("exclusions") is not None:
         import capo_inspector.types.exclusion_map
 
         out["exclusions"] = capo_inspector.types.exclusion_map.deserialize_aws_json_1_1(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeExclusionsResponse:
         )
     else:
         raise DeserializationError("DescribeExclusionsResponse.exclusions required")
-    if "failedItems" in data:
+    if data.get("failedItems") is not None:
         import capo_inspector.types.failed_items
 
         out["failed_items"] = (

@@ -27,11 +27,11 @@ def serialize_aws_json_1_0(value: CarrierStatusInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CarrierStatusInformation:
     out: CarrierStatusInformation = {}  # type: ignore[typeddict-item]
-    if "CarrierName" in data:
+    if data.get("CarrierName") is not None:
         out["carrier_name"] = data["CarrierName"]
     else:
         raise DeserializationError("CarrierStatusInformation.carrier_name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("CarrierStatusInformation.status required")

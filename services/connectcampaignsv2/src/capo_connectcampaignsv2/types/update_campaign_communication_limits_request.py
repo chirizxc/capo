@@ -31,7 +31,7 @@ def serialize_json(value: UpdateCampaignCommunicationLimitsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCampaignCommunicationLimitsRequest:
     out: UpdateCampaignCommunicationLimitsRequest = {}  # type: ignore[typeddict-item]
-    if "communicationLimitsOverride" in data:
+    if data.get("communicationLimitsOverride") is not None:
         import capo_connectcampaignsv2.types.communication_limits_config
 
         out["communication_limits_override"] = (

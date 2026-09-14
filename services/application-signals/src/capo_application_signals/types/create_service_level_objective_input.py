@@ -93,13 +93,13 @@ def serialize_json(value: CreateServiceLevelObjectiveInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateServiceLevelObjectiveInput:
     out: CreateServiceLevelObjectiveInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateServiceLevelObjectiveInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SliConfig" in data:
+    if data.get("SliConfig") is not None:
         import capo_application_signals.types.service_level_indicator_config
 
         out["sli_config"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> CreateServiceLevelObjectiveInput:
                 data["SliConfig"]
             )
         )
-    if "RequestBasedSliConfig" in data:
+    if data.get("RequestBasedSliConfig") is not None:
         import capo_application_signals.types.request_based_service_level_indicator_config
 
         out["request_based_sli_config"] = (
@@ -115,17 +115,17 @@ def deserialize_json(data: dict) -> CreateServiceLevelObjectiveInput:
                 data["RequestBasedSliConfig"]
             )
         )
-    if "Goal" in data:
+    if data.get("Goal") is not None:
         import capo_application_signals.types.goal
 
         out["goal"] = capo_application_signals.types.goal.deserialize_json(data["Goal"])
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_application_signals.types.tag_list
 
         out["tags"] = capo_application_signals.types.tag_list.deserialize_json(
             data["Tags"]
         )
-    if "BurnRateConfigurations" in data:
+    if data.get("BurnRateConfigurations") is not None:
         import capo_application_signals.types.burn_rate_configurations
 
         out["burn_rate_configurations"] = (
@@ -133,10 +133,10 @@ def deserialize_json(data: dict) -> CreateServiceLevelObjectiveInput:
                 data["BurnRateConfigurations"]
             )
         )
-    if "CreateRecommendedSlo" in data:
+    if data.get("CreateRecommendedSlo") is not None:
         out["create_recommended_slo"] = data["CreateRecommendedSlo"]
     else:
         out["create_recommended_slo"] = False
-    if "AutoInvestigationEnabled" in data:
+    if data.get("AutoInvestigationEnabled") is not None:
         out["auto_investigation_enabled"] = data["AutoInvestigationEnabled"]
     return out

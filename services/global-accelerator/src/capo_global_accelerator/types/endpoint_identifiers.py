@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> EndpointIdentifiers:
 
     out: EndpointIdentifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_global_accelerator.types.endpoint_identifier.deserialize_aws_json_1_1(
                 item

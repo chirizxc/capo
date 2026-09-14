@@ -41,9 +41,9 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ListServicePipelineProvisionedResourcesOutput:
     out: ListServicePipelineProvisionedResourcesOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "provisionedResources" in data:
+    if data.get("provisionedResources") is not None:
         import capo_proton.types.provisioned_resource_list
 
         out["provisioned_resources"] = (

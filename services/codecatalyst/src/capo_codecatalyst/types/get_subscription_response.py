@@ -32,10 +32,10 @@ def serialize_json(value: GetSubscriptionResponse) -> dict:
     if "pending_subscription_type" in value:
         out["pendingSubscriptionType"] = value["pending_subscription_type"]
     if "pending_subscription_start_time" in value:
-        import capo_codecatalyst.types.timestamp
+        import capo_codecatalyst._protocol.serialize
 
         out["pendingSubscriptionStartTime"] = (
-            capo_codecatalyst.types.timestamp.serialize_json(
+            capo_codecatalyst._protocol.serialize.fmt_date_time(
                 value["pending_subscription_start_time"]
             )
         )
@@ -44,18 +44,16 @@ def serialize_json(value: GetSubscriptionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSubscriptionResponse:
     out: GetSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "subscriptionType" in data:
+    if data.get("subscriptionType") is not None:
         out["subscription_type"] = data["subscriptionType"]
-    if "awsAccountName" in data:
+    if data.get("awsAccountName") is not None:
         out["aws_account_name"] = data["awsAccountName"]
-    if "pendingSubscriptionType" in data:
+    if data.get("pendingSubscriptionType") is not None:
         out["pending_subscription_type"] = data["pendingSubscriptionType"]
-    if "pendingSubscriptionStartTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("pendingSubscriptionStartTime") is not None:
+        import datetime
 
-        out["pending_subscription_start_time"] = (
-            capo_codecatalyst.types.timestamp.deserialize_json(
-                data["pendingSubscriptionStartTime"]
-            )
+        out["pending_subscription_start_time"] = datetime.datetime.fromisoformat(
+            data["pendingSubscriptionStartTime"].replace("Z", "+00:00")
         )
     return out

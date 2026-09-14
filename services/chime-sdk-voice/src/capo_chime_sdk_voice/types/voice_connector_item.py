@@ -28,11 +28,11 @@ def serialize_json(value: VoiceConnectorItem) -> dict:
 
 def deserialize_json(data: dict) -> VoiceConnectorItem:
     out: VoiceConnectorItem = {}  # type: ignore[typeddict-item]
-    if "VoiceConnectorId" in data:
+    if data.get("VoiceConnectorId") is not None:
         out["voice_connector_id"] = data["VoiceConnectorId"]
     else:
         raise DeserializationError("VoiceConnectorItem.voice_connector_id required")
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         raise DeserializationError("VoiceConnectorItem.priority required")

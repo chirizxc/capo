@@ -164,39 +164,39 @@ def serialize_json(value: CreateAssetOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetOutput:
     out: CreateAssetOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateAssetOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAssetOutput.name required")
-    if "typeIdentifier" in data:
+    if data.get("typeIdentifier") is not None:
         out["type_identifier"] = data["typeIdentifier"]
     else:
         raise DeserializationError("CreateAssetOutput.type_identifier required")
-    if "typeRevision" in data:
+    if data.get("typeRevision") is not None:
         out["type_revision"] = data["typeRevision"]
     else:
         raise DeserializationError("CreateAssetOutput.type_revision required")
-    if "externalIdentifier" in data:
+    if data.get("externalIdentifier") is not None:
         out["external_identifier"] = data["externalIdentifier"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         raise DeserializationError("CreateAssetOutput.revision required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "firstRevisionCreatedAt" in data:
+    if data.get("firstRevisionCreatedAt") is not None:
         import capo_datazone.types.created_at
 
         out["first_revision_created_at"] = (
@@ -204,15 +204,15 @@ def deserialize_json(data: dict) -> CreateAssetOutput:
                 data["firstRevisionCreatedAt"]
             )
         )
-    if "firstRevisionCreatedBy" in data:
+    if data.get("firstRevisionCreatedBy") is not None:
         out["first_revision_created_by"] = data["firstRevisionCreatedBy"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "governedGlossaryTerms" in data:
+    if data.get("governedGlossaryTerms") is not None:
         import capo_datazone.types.governed_glossary_terms
 
         out["governed_glossary_terms"] = (
@@ -220,21 +220,21 @@ def deserialize_json(data: dict) -> CreateAssetOutput:
                 data["governedGlossaryTerms"]
             )
         )
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
     else:
         raise DeserializationError("CreateAssetOutput.owning_project_id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("CreateAssetOutput.domain_id required")
-    if "listing" in data:
+    if data.get("listing") is not None:
         import capo_datazone.types.asset_listing_details
 
         out["listing"] = capo_datazone.types.asset_listing_details.deserialize_json(
             data["listing"]
         )
-    if "formsOutput" in data:
+    if data.get("formsOutput") is not None:
         import capo_datazone.types.form_output_list
 
         out["forms_output"] = capo_datazone.types.form_output_list.deserialize_json(
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> CreateAssetOutput:
         )
     else:
         raise DeserializationError("CreateAssetOutput.forms_output required")
-    if "readOnlyFormsOutput" in data:
+    if data.get("readOnlyFormsOutput") is not None:
         import capo_datazone.types.form_output_list
 
         out["read_only_forms_output"] = (
@@ -250,7 +250,7 @@ def deserialize_json(data: dict) -> CreateAssetOutput:
                 data["readOnlyFormsOutput"]
             )
         )
-    if "latestTimeSeriesDataPointFormsOutput" in data:
+    if data.get("latestTimeSeriesDataPointFormsOutput") is not None:
         import capo_datazone.types.time_series_data_point_summary_form_output_list
 
         out["latest_time_series_data_point_forms_output"] = (
@@ -258,7 +258,7 @@ def deserialize_json(data: dict) -> CreateAssetOutput:
                 data["latestTimeSeriesDataPointFormsOutput"]
             )
         )
-    if "predictionConfiguration" in data:
+    if data.get("predictionConfiguration") is not None:
         import capo_datazone.types.prediction_configuration
 
         out["prediction_configuration"] = (

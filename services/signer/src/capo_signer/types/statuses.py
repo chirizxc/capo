@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> Statuses:
 
     out: Statuses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_signer.types.signing_profile_status.deserialize_json(item))
     return out

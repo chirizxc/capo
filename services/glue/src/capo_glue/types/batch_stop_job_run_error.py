@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: BatchStopJobRunError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchStopJobRunError:
     out: BatchStopJobRunError = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobRunId" in data:
+    if data.get("JobRunId") is not None:
         out["job_run_id"] = data["JobRunId"]
-    if "ErrorDetail" in data:
+    if data.get("ErrorDetail") is not None:
         import capo_glue.types.error_detail
 
         out["error_detail"] = capo_glue.types.error_detail.deserialize_aws_json_1_1(

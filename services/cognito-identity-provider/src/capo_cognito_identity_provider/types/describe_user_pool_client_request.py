@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: DescribeUserPoolClientRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUserPoolClientRequest:
     out: DescribeUserPoolClientRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "DescribeUserPoolClientRequest.user_pool_id required"
         )
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError("DescribeUserPoolClientRequest.client_id required")

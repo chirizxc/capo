@@ -76,7 +76,7 @@ def serialize_json(value: VideoDescription) -> dict:
 
 def deserialize_json(data: dict) -> VideoDescription:
     out: VideoDescription = {}  # type: ignore[typeddict-item]
-    if "codecSettings" in data:
+    if data.get("codecSettings") is not None:
         import capo_medialive.types.video_codec_settings
 
         out["codec_settings"] = (
@@ -84,11 +84,11 @@ def deserialize_json(data: dict) -> VideoDescription:
                 data["codecSettings"]
             )
         )
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "respondToAfd" in data:
+    if data.get("respondToAfd") is not None:
         import capo_medialive.types.video_description_respond_to_afd
 
         out["respond_to_afd"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> VideoDescription:
                 data["respondToAfd"]
             )
         )
-    if "scalingBehavior" in data:
+    if data.get("scalingBehavior") is not None:
         import capo_medialive.types.video_description_scaling_behavior
 
         out["scaling_behavior"] = (
@@ -104,8 +104,8 @@ def deserialize_json(data: dict) -> VideoDescription:
                 data["scalingBehavior"]
             )
         )
-    if "sharpness" in data:
+    if data.get("sharpness") is not None:
         out["sharpness"] = data["sharpness"]
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     return out

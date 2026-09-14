@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FindingStatisticTypes:
 
     out: FindingStatisticTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.finding_statistic_type.deserialize_json(item))
     return out

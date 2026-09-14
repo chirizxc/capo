@@ -22,8 +22,8 @@ def serialize_json(value: GatewayNetwork) -> dict:
 
 def deserialize_json(data: dict) -> GatewayNetwork:
     out: GatewayNetwork = {}  # type: ignore[typeddict-item]
-    if "cidrBlock" in data:
+    if data.get("cidrBlock") is not None:
         out["cidr_block"] = data["cidrBlock"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

@@ -85,19 +85,19 @@ def serialize_json(value: HlsManifestCreateOrUpdateParameters) -> dict:
 
 def deserialize_json(data: dict) -> HlsManifestCreateOrUpdateParameters:
     out: HlsManifestCreateOrUpdateParameters = {}  # type: ignore[typeddict-item]
-    if "adMarkers" in data:
+    if data.get("adMarkers") is not None:
         import capo_mediapackage.types.ad_markers
 
         out["ad_markers"] = capo_mediapackage.types.ad_markers.deserialize_json(
             data["adMarkers"]
         )
-    if "adTriggers" in data:
+    if data.get("adTriggers") is not None:
         import capo_mediapackage.types.ad_triggers
 
         out["ad_triggers"] = capo_mediapackage.types.ad_triggers.deserialize_json(
             data["adTriggers"]
         )
-    if "adsOnDeliveryRestrictions" in data:
+    if data.get("adsOnDeliveryRestrictions") is not None:
         import capo_mediapackage.types.ads_on_delivery_restrictions
 
         out["ads_on_delivery_restrictions"] = (
@@ -105,21 +105,21 @@ def deserialize_json(data: dict) -> HlsManifestCreateOrUpdateParameters:
                 data["adsOnDeliveryRestrictions"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "includeIframeOnlyStream" in data:
+    if data.get("includeIframeOnlyStream") is not None:
         out["include_iframe_only_stream"] = data["includeIframeOnlyStream"]
-    if "manifestName" in data:
+    if data.get("manifestName") is not None:
         out["manifest_name"] = data["manifestName"]
-    if "playlistType" in data:
+    if data.get("playlistType") is not None:
         import capo_mediapackage.types.playlist_type
 
         out["playlist_type"] = capo_mediapackage.types.playlist_type.deserialize_json(
             data["playlistType"]
         )
-    if "playlistWindowSeconds" in data:
+    if data.get("playlistWindowSeconds") is not None:
         out["playlist_window_seconds"] = data["playlistWindowSeconds"]
-    if "programDateTimeIntervalSeconds" in data:
+    if data.get("programDateTimeIntervalSeconds") is not None:
         out["program_date_time_interval_seconds"] = data[
             "programDateTimeIntervalSeconds"
         ]

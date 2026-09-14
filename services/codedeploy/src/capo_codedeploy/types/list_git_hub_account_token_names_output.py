@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListGitHubAccountTokenNamesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListGitHubAccountTokenNamesOutput:
     out: ListGitHubAccountTokenNamesOutput = {}  # type: ignore[typeddict-item]
-    if "tokenNameList" in data:
+    if data.get("tokenNameList") is not None:
         import capo_codedeploy.types.git_hub_account_token_name_list
 
         out["token_name_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListGitHubAccountTokenNamesOutput:
                 data["tokenNameList"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

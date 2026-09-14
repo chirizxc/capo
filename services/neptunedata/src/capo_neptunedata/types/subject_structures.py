@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SubjectStructures:
 
     out: SubjectStructures = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_neptunedata.types.subject_structure.deserialize_json(item))
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: DomainDetails) -> dict:
 
 def deserialize_json(data: dict) -> DomainDetails:
     out: DomainDetails = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     return out

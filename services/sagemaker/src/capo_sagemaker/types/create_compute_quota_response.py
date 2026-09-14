@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: CreateComputeQuotaResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateComputeQuotaResponse:
     out: CreateComputeQuotaResponse = {}  # type: ignore[typeddict-item]
-    if "ComputeQuotaArn" in data:
+    if data.get("ComputeQuotaArn") is not None:
         out["compute_quota_arn"] = data["ComputeQuotaArn"]
-    if "ComputeQuotaId" in data:
+    if data.get("ComputeQuotaId") is not None:
         out["compute_quota_id"] = data["ComputeQuotaId"]
     return out

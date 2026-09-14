@@ -25,6 +25,6 @@ def serialize_json(value: AssociateWirelessGatewayWithCertificateResponse) -> di
 
 def deserialize_json(data: dict) -> AssociateWirelessGatewayWithCertificateResponse:
     out: AssociateWirelessGatewayWithCertificateResponse = {}  # type: ignore[typeddict-item]
-    if "IotCertificateId" in data:
+    if data.get("IotCertificateId") is not None:
         out["iot_certificate_id"] = data["IotCertificateId"]
     return out

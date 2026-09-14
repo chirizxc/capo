@@ -53,7 +53,7 @@ def serialize_json(value: GeospatialLayerDefinition) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialLayerDefinition:
     out: GeospatialLayerDefinition = {}  # type: ignore[typeddict-item]
-    if "PointLayer" in data:
+    if data.get("PointLayer") is not None:
         import capo_quicksight.types.geospatial_point_layer
 
         out["point_layer"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> GeospatialLayerDefinition:
                 data["PointLayer"]
             )
         )
-    if "LineLayer" in data:
+    if data.get("LineLayer") is not None:
         import capo_quicksight.types.geospatial_line_layer
 
         out["line_layer"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> GeospatialLayerDefinition:
                 data["LineLayer"]
             )
         )
-    if "PolygonLayer" in data:
+    if data.get("PolygonLayer") is not None:
         import capo_quicksight.types.geospatial_polygon_layer
 
         out["polygon_layer"] = (

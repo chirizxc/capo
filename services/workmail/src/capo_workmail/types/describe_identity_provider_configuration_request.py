@@ -26,7 +26,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeIdentityProviderConfigurationRequest:
     out: DescribeIdentityProviderConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(

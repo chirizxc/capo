@@ -35,10 +35,10 @@ def serialize_json(value: GetBackupVaultAccessPolicyOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetBackupVaultAccessPolicyOutput:
     out: GetBackupVaultAccessPolicyOutput = {}  # type: ignore[typeddict-item]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     return out

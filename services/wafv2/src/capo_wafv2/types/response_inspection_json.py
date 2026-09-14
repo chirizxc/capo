@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: ResponseInspectionJson) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponseInspectionJson:
     out: ResponseInspectionJson = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("ResponseInspectionJson.identifier required")
-    if "SuccessValues" in data:
+    if data.get("SuccessValues") is not None:
         import capo_wafv2.types.response_inspection_json_success_values
 
         out["success_values"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponseInspectionJson:
         )
     else:
         raise DeserializationError("ResponseInspectionJson.success_values required")
-    if "FailureValues" in data:
+    if data.get("FailureValues") is not None:
         import capo_wafv2.types.response_inspection_json_failure_values
 
         out["failure_values"] = (

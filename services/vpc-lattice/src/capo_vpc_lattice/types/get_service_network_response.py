@@ -72,34 +72,34 @@ def serialize_json(value: GetServiceNetworkResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceNetworkResponse:
     out: GetServiceNetworkResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
-    if "sharingConfig" in data:
+    if data.get("sharingConfig") is not None:
         import capo_vpc_lattice.types.sharing_config
 
         out["sharing_config"] = capo_vpc_lattice.types.sharing_config.deserialize_json(
             data["sharingConfig"]
         )
-    if "numberOfAssociatedVPCs" in data:
+    if data.get("numberOfAssociatedVPCs") is not None:
         out["number_of_associated_vp_cs"] = data["numberOfAssociatedVPCs"]
-    if "numberOfAssociatedServices" in data:
+    if data.get("numberOfAssociatedServices") is not None:
         out["number_of_associated_services"] = data["numberOfAssociatedServices"]
     return out

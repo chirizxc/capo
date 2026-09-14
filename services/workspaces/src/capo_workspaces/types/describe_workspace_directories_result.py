@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceDirectoriesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceDirectoriesResult:
     out: DescribeWorkspaceDirectoriesResult = {}  # type: ignore[typeddict-item]
-    if "Directories" in data:
+    if data.get("Directories") is not None:
         import capo_workspaces.types.directory_list
 
         out["directories"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceDirectoriesResult:
                 data["Directories"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

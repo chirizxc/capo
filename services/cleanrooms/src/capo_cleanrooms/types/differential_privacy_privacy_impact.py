@@ -30,7 +30,7 @@ def serialize_json(value: DifferentialPrivacyPrivacyImpact) -> dict:
 
 def deserialize_json(data: dict) -> DifferentialPrivacyPrivacyImpact:
     out: DifferentialPrivacyPrivacyImpact = {}  # type: ignore[typeddict-item]
-    if "aggregations" in data:
+    if data.get("aggregations") is not None:
         import capo_cleanrooms.types.differential_privacy_preview_aggregation_list
 
         out["aggregations"] = (

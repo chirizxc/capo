@@ -96,7 +96,7 @@ def serialize_aws_json_1_1(value: DocumentClassifierInputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentClassifierInputDataConfig:
     out: DocumentClassifierInputDataConfig = {}  # type: ignore[typeddict-item]
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_comprehend.types.document_classifier_data_format
 
         out["data_format"] = (
@@ -104,13 +104,13 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentClassifierInputDataConfig:
                 data["DataFormat"]
             )
         )
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "TestS3Uri" in data:
+    if data.get("TestS3Uri") is not None:
         out["test_s3_uri"] = data["TestS3Uri"]
-    if "LabelDelimiter" in data:
+    if data.get("LabelDelimiter") is not None:
         out["label_delimiter"] = data["LabelDelimiter"]
-    if "AugmentedManifests" in data:
+    if data.get("AugmentedManifests") is not None:
         import capo_comprehend.types.document_classifier_augmented_manifests_list
 
         out["augmented_manifests"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentClassifierInputDataConfig:
                 data["AugmentedManifests"]
             )
         )
-    if "DocumentType" in data:
+    if data.get("DocumentType") is not None:
         import capo_comprehend.types.document_classifier_document_type_format
 
         out["document_type"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentClassifierInputDataConfig:
                 data["DocumentType"]
             )
         )
-    if "Documents" in data:
+    if data.get("Documents") is not None:
         import capo_comprehend.types.document_classifier_documents
 
         out["documents"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentClassifierInputDataConfig:
                 data["Documents"]
             )
         )
-    if "DocumentReaderConfig" in data:
+    if data.get("DocumentReaderConfig") is not None:
         import capo_comprehend.types.document_reader_config
 
         out["document_reader_config"] = (

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: EnvironmentConfigDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnvironmentConfigDetails:
     out: EnvironmentConfigDetails = {}  # type: ignore[typeddict-item]
-    if "FSxLustreConfig" in data:
+    if data.get("FSxLustreConfig") is not None:
         import capo_sagemaker.types.f_sx_lustre_config
 
         out["f_sx_lustre_config"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> EnvironmentConfigDetails:
                 data["FSxLustreConfig"]
             )
         )
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
     return out

@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: Condition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Condition:
     out: Condition = {}  # type: ignore[typeddict-item]
-    if "LogicalOperator" in data:
+    if data.get("LogicalOperator") is not None:
         import capo_glue.types.logical_operator
 
         out["logical_operator"] = (
@@ -64,17 +64,17 @@ def deserialize_aws_json_1_1(data: dict) -> Condition:
                 data["LogicalOperator"]
             )
         )
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_glue.types.job_run_state
 
         out["state"] = capo_glue.types.job_run_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "CrawlerName" in data:
+    if data.get("CrawlerName") is not None:
         out["crawler_name"] = data["CrawlerName"]
-    if "CrawlState" in data:
+    if data.get("CrawlState") is not None:
         import capo_glue.types.crawl_state
 
         out["crawl_state"] = capo_glue.types.crawl_state.deserialize_aws_json_1_1(

@@ -28,6 +28,6 @@ def serialize_json(value: PutEmailIdentityConfigurationSetAttributesRequest) -> 
 
 def deserialize_json(data: dict) -> PutEmailIdentityConfigurationSetAttributesRequest:
     out: PutEmailIdentityConfigurationSetAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     return out

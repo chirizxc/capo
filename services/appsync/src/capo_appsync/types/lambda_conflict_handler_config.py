@@ -23,6 +23,6 @@ def serialize_json(value: LambdaConflictHandlerConfig) -> dict:
 
 def deserialize_json(data: dict) -> LambdaConflictHandlerConfig:
     out: LambdaConflictHandlerConfig = {}  # type: ignore[typeddict-item]
-    if "lambdaConflictHandlerArn" in data:
+    if data.get("lambdaConflictHandlerArn") is not None:
         out["lambda_conflict_handler_arn"] = data["lambdaConflictHandlerArn"]
     return out

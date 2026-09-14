@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> OutputParameterList:
 
     out: OutputParameterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker.types.output_parameter.deserialize_aws_json_1_1(item))
     return out

@@ -54,7 +54,15 @@ def serialize_json(value: AwsApiGatewayMethodSettings) -> dict:
     if "throttling_burst_limit" in value:
         out["ThrottlingBurstLimit"] = value["throttling_burst_limit"]
     if "throttling_rate_limit" in value:
-        out["ThrottlingRateLimit"] = value["throttling_rate_limit"]
+        out["ThrottlingRateLimit"] = (
+            "NaN"
+            if value["throttling_rate_limit"] != value["throttling_rate_limit"]
+            else "Infinity"
+            if value["throttling_rate_limit"] == float("inf")
+            else "-Infinity"
+            if value["throttling_rate_limit"] == float("-inf")
+            else value["throttling_rate_limit"]
+        )
     if "caching_enabled" in value:
         out["CachingEnabled"] = value["caching_enabled"]
     if "cache_ttl_in_seconds" in value:
@@ -78,32 +86,32 @@ def serialize_json(value: AwsApiGatewayMethodSettings) -> dict:
 
 def deserialize_json(data: dict) -> AwsApiGatewayMethodSettings:
     out: AwsApiGatewayMethodSettings = {}  # type: ignore[typeddict-item]
-    if "MetricsEnabled" in data:
+    if data.get("MetricsEnabled") is not None:
         out["metrics_enabled"] = data["MetricsEnabled"]
-    if "LoggingLevel" in data:
+    if data.get("LoggingLevel") is not None:
         out["logging_level"] = data["LoggingLevel"]
-    if "DataTraceEnabled" in data:
+    if data.get("DataTraceEnabled") is not None:
         out["data_trace_enabled"] = data["DataTraceEnabled"]
-    if "ThrottlingBurstLimit" in data:
+    if data.get("ThrottlingBurstLimit") is not None:
         out["throttling_burst_limit"] = data["ThrottlingBurstLimit"]
-    if "ThrottlingRateLimit" in data:
-        out["throttling_rate_limit"] = data["ThrottlingRateLimit"]
-    if "CachingEnabled" in data:
+    if data.get("ThrottlingRateLimit") is not None:
+        out["throttling_rate_limit"] = float(data["ThrottlingRateLimit"])
+    if data.get("CachingEnabled") is not None:
         out["caching_enabled"] = data["CachingEnabled"]
-    if "CacheTtlInSeconds" in data:
+    if data.get("CacheTtlInSeconds") is not None:
         out["cache_ttl_in_seconds"] = data["CacheTtlInSeconds"]
-    if "CacheDataEncrypted" in data:
+    if data.get("CacheDataEncrypted") is not None:
         out["cache_data_encrypted"] = data["CacheDataEncrypted"]
-    if "RequireAuthorizationForCacheControl" in data:
+    if data.get("RequireAuthorizationForCacheControl") is not None:
         out["require_authorization_for_cache_control"] = data[
             "RequireAuthorizationForCacheControl"
         ]
-    if "UnauthorizedCacheControlHeaderStrategy" in data:
+    if data.get("UnauthorizedCacheControlHeaderStrategy") is not None:
         out["unauthorized_cache_control_header_strategy"] = data[
             "UnauthorizedCacheControlHeaderStrategy"
         ]
-    if "HttpMethod" in data:
+    if data.get("HttpMethod") is not None:
         out["http_method"] = data["HttpMethod"]
-    if "ResourcePath" in data:
+    if data.get("ResourcePath") is not None:
         out["resource_path"] = data["ResourcePath"]
     return out

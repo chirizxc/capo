@@ -28,11 +28,11 @@ def serialize_json(value: MemberFabricConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MemberFabricConfiguration:
     out: MemberFabricConfiguration = {}  # type: ignore[typeddict-item]
-    if "AdminUsername" in data:
+    if data.get("AdminUsername") is not None:
         out["admin_username"] = data["AdminUsername"]
     else:
         raise DeserializationError("MemberFabricConfiguration.admin_username required")
-    if "AdminPassword" in data:
+    if data.get("AdminPassword") is not None:
         out["admin_password"] = data["AdminPassword"]
     else:
         raise DeserializationError("MemberFabricConfiguration.admin_password required")

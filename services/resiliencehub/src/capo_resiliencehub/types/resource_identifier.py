@@ -36,7 +36,7 @@ def serialize_json(value: ResourceIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> ResourceIdentifier:
     out: ResourceIdentifier = {}  # type: ignore[typeddict-item]
-    if "logicalResourceId" in data:
+    if data.get("logicalResourceId") is not None:
         import capo_resiliencehub.types.logical_resource_id
 
         out["logical_resource_id"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ResourceIdentifier:
                 data["logicalResourceId"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     return out

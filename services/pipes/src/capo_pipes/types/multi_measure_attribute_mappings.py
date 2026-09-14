@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MultiMeasureAttributeMappings:
 
     out: MultiMeasureAttributeMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pipes.types.multi_measure_attribute_mapping.deserialize_json(item)
         )

@@ -42,7 +42,7 @@ def serialize_json(value: CriteriaForJob) -> dict:
 
 def deserialize_json(data: dict) -> CriteriaForJob:
     out: CriteriaForJob = {}  # type: ignore[typeddict-item]
-    if "simpleCriterion" in data:
+    if data.get("simpleCriterion") is not None:
         import capo_macie2.types.simple_criterion_for_job
 
         out["simple_criterion"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> CriteriaForJob:
                 data["simpleCriterion"]
             )
         )
-    if "tagCriterion" in data:
+    if data.get("tagCriterion") is not None:
         import capo_macie2.types.tag_criterion_for_job
 
         out["tag_criterion"] = capo_macie2.types.tag_criterion_for_job.deserialize_json(

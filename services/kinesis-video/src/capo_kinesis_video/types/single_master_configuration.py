@@ -25,6 +25,6 @@ def serialize_json(value: SingleMasterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SingleMasterConfiguration:
     out: SingleMasterConfiguration = {}  # type: ignore[typeddict-item]
-    if "MessageTtlSeconds" in data:
+    if data.get("MessageTtlSeconds") is not None:
         out["message_ttl_seconds"] = data["MessageTtlSeconds"]
     return out

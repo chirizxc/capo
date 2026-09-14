@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: UploadEntityDefinitionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UploadEntityDefinitionsRequest:
     out: UploadEntityDefinitionsRequest = {}  # type: ignore[typeddict-item]
-    if "document" in data:
+    if data.get("document") is not None:
         import capo_iotthingsgraph.types.definition_document
 
         out["document"] = (
@@ -49,11 +49,11 @@ def deserialize_aws_json_1_1(data: dict) -> UploadEntityDefinitionsRequest:
                 data["document"]
             )
         )
-    if "syncWithPublicNamespace" in data:
+    if data.get("syncWithPublicNamespace") is not None:
         out["sync_with_public_namespace"] = data["syncWithPublicNamespace"]
     else:
         out["sync_with_public_namespace"] = False
-    if "deprecateExistingEntities" in data:
+    if data.get("deprecateExistingEntities") is not None:
         out["deprecate_existing_entities"] = data["deprecateExistingEntities"]
     else:
         out["deprecate_existing_entities"] = False

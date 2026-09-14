@@ -35,7 +35,7 @@ def serialize_json(value: Batch) -> dict:
 
 def deserialize_json(data: dict) -> Batch:
     out: Batch = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["start_time"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> Batch:
         )
     else:
         raise DeserializationError("Batch.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["end_time"] = capo_customer_profiles.types.timestamp.deserialize_json(

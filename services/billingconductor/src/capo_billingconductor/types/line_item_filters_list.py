@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LineItemFiltersList:
 
     out: LineItemFiltersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_billingconductor.types.line_item_filter.deserialize_json(item))
     return out

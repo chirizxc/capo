@@ -35,10 +35,10 @@ def serialize_json(value: StringConfigurationOptions) -> dict:
 
 def deserialize_json(data: dict) -> StringConfigurationOptions:
     out: StringConfigurationOptions = {}  # type: ignore[typeddict-item]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "Re2Expression" in data:
+    if data.get("Re2Expression") is not None:
         out["re2_expression"] = data["Re2Expression"]
-    if "ExpressionDescription" in data:
+    if data.get("ExpressionDescription") is not None:
         out["expression_description"] = data["ExpressionDescription"]
     return out

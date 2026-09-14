@@ -38,7 +38,7 @@ def serialize_json(value: NodeToNodeEncryptionOptionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> NodeToNodeEncryptionOptionsStatus:
     out: NodeToNodeEncryptionOptionsStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_elasticsearch_service.types.node_to_node_encryption_options
 
         out["options"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> NodeToNodeEncryptionOptionsStatus:
         )
     else:
         raise DeserializationError("NodeToNodeEncryptionOptionsStatus.options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_elasticsearch_service.types.option_status
 
         out["status"] = capo_elasticsearch_service.types.option_status.deserialize_json(

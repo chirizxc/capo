@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: RetryOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetryOptions:
     out: RetryOptions = {}  # type: ignore[typeddict-item]
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
     return out

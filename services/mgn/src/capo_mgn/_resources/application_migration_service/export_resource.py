@@ -77,9 +77,10 @@ class ExportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_export_request.StartExportRequest = {}  # type: ignore[typeddict-item]
-        input_["s3_bucket"] = s3_bucket
-        input_["s3_key"] = s3_key
+        input_: capo_mgn.types.start_export_request.StartExportRequest = {
+            "s3_bucket": s3_bucket,
+            "s3_key": s3_key,
+        }
         if s3_bucket_owner is not None:
             input_["s3_bucket_owner"] = s3_bucket_owner
         if tags is not None:
@@ -90,6 +91,7 @@ class ExportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -128,7 +130,7 @@ class ExportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_exports_request.ListExportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_exports_request.ListExportsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -141,6 +143,7 @@ class ExportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_export_errors(
@@ -179,8 +182,9 @@ class ExportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_export_errors_request.ListExportErrorsRequest = {}  # type: ignore[typeddict-item]
-        input_["export_id"] = export_id
+        input_: capo_mgn.types.list_export_errors_request.ListExportErrorsRequest = {
+            "export_id": export_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -191,6 +195,7 @@ class ExportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -238,9 +243,10 @@ class AsyncExportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_export_request.StartExportRequest = {}  # type: ignore[typeddict-item]
-        input_["s3_bucket"] = s3_bucket
-        input_["s3_key"] = s3_key
+        input_: capo_mgn.types.start_export_request.StartExportRequest = {
+            "s3_bucket": s3_bucket,
+            "s3_key": s3_key,
+        }
         if s3_bucket_owner is not None:
             input_["s3_bucket_owner"] = s3_bucket_owner
         if tags is not None:
@@ -251,6 +257,7 @@ class AsyncExportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -290,7 +297,7 @@ class AsyncExportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_exports_request.ListExportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_exports_request.ListExportsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -303,6 +310,7 @@ class AsyncExportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_export_errors(
@@ -342,8 +350,9 @@ class AsyncExportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_export_errors_request.ListExportErrorsRequest = {}  # type: ignore[typeddict-item]
-        input_["export_id"] = export_id
+        input_: capo_mgn.types.list_export_errors_request.ListExportErrorsRequest = {
+            "export_id": export_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -354,4 +363,5 @@ class AsyncExportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

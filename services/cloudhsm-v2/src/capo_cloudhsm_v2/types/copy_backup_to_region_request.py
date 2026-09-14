@@ -37,17 +37,17 @@ def serialize_aws_json_1_1(value: CopyBackupToRegionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyBackupToRegionRequest:
     out: CopyBackupToRegionRequest = {}  # type: ignore[typeddict-item]
-    if "DestinationRegion" in data:
+    if data.get("DestinationRegion") is not None:
         out["destination_region"] = data["DestinationRegion"]
     else:
         raise DeserializationError(
             "CopyBackupToRegionRequest.destination_region required"
         )
-    if "BackupId" in data:
+    if data.get("BackupId") is not None:
         out["backup_id"] = data["BackupId"]
     else:
         raise DeserializationError("CopyBackupToRegionRequest.backup_id required")
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_cloudhsm_v2.types.tag_list
 
         out["tag_list"] = capo_cloudhsm_v2.types.tag_list.deserialize_aws_json_1_1(

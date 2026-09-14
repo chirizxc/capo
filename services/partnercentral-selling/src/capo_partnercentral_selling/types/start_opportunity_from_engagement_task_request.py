@@ -47,31 +47,31 @@ def serialize_aws_json_1_0(value: StartOpportunityFromEngagementTaskRequest) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> StartOpportunityFromEngagementTaskRequest:
     out: StartOpportunityFromEngagementTaskRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError(
             "StartOpportunityFromEngagementTaskRequest.catalog required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(
             "StartOpportunityFromEngagementTaskRequest.client_token required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "StartOpportunityFromEngagementTaskRequest.identifier required"
         )
-    if "ContextIdentifier" in data:
+    if data.get("ContextIdentifier") is not None:
         out["context_identifier"] = data["ContextIdentifier"]
     else:
         raise DeserializationError(
             "StartOpportunityFromEngagementTaskRequest.context_identifier required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_partnercentral_selling.types.tag_list
 
         out["tags"] = (

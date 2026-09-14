@@ -34,12 +34,12 @@ def serialize_json(value: ErrorRootCause) -> dict:
 
 def deserialize_json(data: dict) -> ErrorRootCause:
     out: ErrorRootCause = {}  # type: ignore[typeddict-item]
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_xray.types.error_root_cause_services
 
         out["services"] = capo_xray.types.error_root_cause_services.deserialize_json(
             data["Services"]
         )
-    if "ClientImpacting" in data:
+    if data.get("ClientImpacting") is not None:
         out["client_impacting"] = data["ClientImpacting"]
     return out

@@ -92,21 +92,21 @@ def serialize_aws_json_1_1(value: ConflictMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConflictMetadata:
     out: ConflictMetadata = {}  # type: ignore[typeddict-item]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
-    if "fileSizes" in data:
+    if data.get("fileSizes") is not None:
         import capo_codecommit.types.file_sizes
 
         out["file_sizes"] = capo_codecommit.types.file_sizes.deserialize_aws_json_1_1(
             data["fileSizes"]
         )
-    if "fileModes" in data:
+    if data.get("fileModes") is not None:
         import capo_codecommit.types.file_modes
 
         out["file_modes"] = capo_codecommit.types.file_modes.deserialize_aws_json_1_1(
             data["fileModes"]
         )
-    if "objectTypes" in data:
+    if data.get("objectTypes") is not None:
         import capo_codecommit.types.object_types
 
         out["object_types"] = (
@@ -114,11 +114,11 @@ def deserialize_aws_json_1_1(data: dict) -> ConflictMetadata:
                 data["objectTypes"]
             )
         )
-    if "numberOfConflicts" in data:
+    if data.get("numberOfConflicts") is not None:
         out["number_of_conflicts"] = data["numberOfConflicts"]
     else:
         out["number_of_conflicts"] = 0
-    if "isBinaryFile" in data:
+    if data.get("isBinaryFile") is not None:
         import capo_codecommit.types.is_binary_file
 
         out["is_binary_file"] = (
@@ -126,19 +126,19 @@ def deserialize_aws_json_1_1(data: dict) -> ConflictMetadata:
                 data["isBinaryFile"]
             )
         )
-    if "contentConflict" in data:
+    if data.get("contentConflict") is not None:
         out["content_conflict"] = data["contentConflict"]
     else:
         out["content_conflict"] = False
-    if "fileModeConflict" in data:
+    if data.get("fileModeConflict") is not None:
         out["file_mode_conflict"] = data["fileModeConflict"]
     else:
         out["file_mode_conflict"] = False
-    if "objectTypeConflict" in data:
+    if data.get("objectTypeConflict") is not None:
         out["object_type_conflict"] = data["objectTypeConflict"]
     else:
         out["object_type_conflict"] = False
-    if "mergeOperations" in data:
+    if data.get("mergeOperations") is not None:
         import capo_codecommit.types.merge_operations
 
         out["merge_operations"] = (

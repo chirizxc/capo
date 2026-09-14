@@ -34,15 +34,15 @@ def serialize_json(value: TranslatePinDataOutput) -> dict:
 
 def deserialize_json(data: dict) -> TranslatePinDataOutput:
     out: TranslatePinDataOutput = {}  # type: ignore[typeddict-item]
-    if "PinBlock" in data:
+    if data.get("PinBlock") is not None:
         out["pin_block"] = data["PinBlock"]
     else:
         raise DeserializationError("TranslatePinDataOutput.pin_block required")
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
     else:
         raise DeserializationError("TranslatePinDataOutput.key_arn required")
-    if "KeyCheckValue" in data:
+    if data.get("KeyCheckValue") is not None:
         out["key_check_value"] = data["KeyCheckValue"]
     else:
         raise DeserializationError("TranslatePinDataOutput.key_check_value required")

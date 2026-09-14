@@ -27,8 +27,8 @@ def serialize_json(value: RecoveryPointDetails) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryPointDetails:
     out: RecoveryPointDetails = {}  # type: ignore[typeddict-item]
-    if "recoveryPointArn" in data:
+    if data.get("recoveryPointArn") is not None:
         out["recovery_point_arn"] = data["recoveryPointArn"]
-    if "backupVaultName" in data:
+    if data.get("backupVaultName") is not None:
         out["backup_vault_name"] = data["backupVaultName"]
     return out

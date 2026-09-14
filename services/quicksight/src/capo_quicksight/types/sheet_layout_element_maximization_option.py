@@ -31,7 +31,7 @@ def serialize_json(value: SheetLayoutElementMaximizationOption) -> dict:
 
 def deserialize_json(data: dict) -> SheetLayoutElementMaximizationOption:
     out: SheetLayoutElementMaximizationOption = {}  # type: ignore[typeddict-item]
-    if "AvailabilityStatus" in data:
+    if data.get("AvailabilityStatus") is not None:
         import capo_quicksight.types.dashboard_behavior
 
         out["availability_status"] = (

@@ -38,7 +38,7 @@ def serialize_json(value: ResourceSelection) -> dict:
 
 def deserialize_json(data: dict) -> ResourceSelection:
     out: ResourceSelection = {}  # type: ignore[typeddict-item]
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_backup.types.resource_arns
 
         out["resources"] = capo_backup.types.resource_arns.deserialize_json(
@@ -46,13 +46,13 @@ def deserialize_json(data: dict) -> ResourceSelection:
         )
     else:
         raise DeserializationError("ResourceSelection.resources required")
-    if "TieringDownSettingsInDays" in data:
+    if data.get("TieringDownSettingsInDays") is not None:
         out["tiering_down_settings_in_days"] = data["TieringDownSettingsInDays"]
     else:
         raise DeserializationError(
             "ResourceSelection.tiering_down_settings_in_days required"
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError("ResourceSelection.resource_type required")

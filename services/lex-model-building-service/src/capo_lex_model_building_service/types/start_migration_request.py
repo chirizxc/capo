@@ -48,23 +48,23 @@ def serialize_json(value: StartMigrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartMigrationRequest:
     out: StartMigrationRequest = {}  # type: ignore[typeddict-item]
-    if "v1BotName" in data:
+    if data.get("v1BotName") is not None:
         out["v1_bot_name"] = data["v1BotName"]
     else:
         raise DeserializationError("StartMigrationRequest.v1_bot_name required")
-    if "v1BotVersion" in data:
+    if data.get("v1BotVersion") is not None:
         out["v1_bot_version"] = data["v1BotVersion"]
     else:
         raise DeserializationError("StartMigrationRequest.v1_bot_version required")
-    if "v2BotName" in data:
+    if data.get("v2BotName") is not None:
         out["v2_bot_name"] = data["v2BotName"]
     else:
         raise DeserializationError("StartMigrationRequest.v2_bot_name required")
-    if "v2BotRole" in data:
+    if data.get("v2BotRole") is not None:
         out["v2_bot_role"] = data["v2BotRole"]
     else:
         raise DeserializationError("StartMigrationRequest.v2_bot_role required")
-    if "migrationStrategy" in data:
+    if data.get("migrationStrategy") is not None:
         import capo_lex_model_building_service.types.migration_strategy
 
         out["migration_strategy"] = (

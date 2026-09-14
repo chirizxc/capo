@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListManagedPoliciesInPermissionSetResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ListManagedPoliciesInPermissionSetResponse:
     out: ListManagedPoliciesInPermissionSetResponse = {}  # type: ignore[typeddict-item]
-    if "AttachedManagedPolicies" in data:
+    if data.get("AttachedManagedPolicies") is not None:
         import capo_sso_admin.types.attached_managed_policy_list
 
         out["attached_managed_policies"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListManagedPoliciesInPermissionSetRe
                 data["AttachedManagedPolicies"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -38,11 +38,11 @@ def serialize_json(value: CreateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserRequest:
     out: CreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "UserType" in data:
+    if data.get("UserType") is not None:
         import capo_chime.types.user_type
 
         out["user_type"] = capo_chime.types.user_type.deserialize_json(data["UserType"])

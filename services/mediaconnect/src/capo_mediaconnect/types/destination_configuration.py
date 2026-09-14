@@ -39,16 +39,16 @@ def serialize_json(value: DestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DestinationConfiguration:
     out: DestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "destinationIp" in data:
+    if data.get("destinationIp") is not None:
         out["destination_ip"] = data["destinationIp"]
-    if "destinationPort" in data:
+    if data.get("destinationPort") is not None:
         out["destination_port"] = data["destinationPort"]
-    if "interface" in data:
+    if data.get("interface") is not None:
         import capo_mediaconnect.types.interface
 
         out["interface"] = capo_mediaconnect.types.interface.deserialize_json(
             data["interface"]
         )
-    if "outboundIp" in data:
+    if data.get("outboundIp") is not None:
         out["outbound_ip"] = data["outboundIp"]
     return out

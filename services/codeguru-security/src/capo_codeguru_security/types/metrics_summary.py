@@ -80,13 +80,13 @@ def serialize_json(value: MetricsSummary) -> dict:
 
 def deserialize_json(data: dict) -> MetricsSummary:
     out: MetricsSummary = {}  # type: ignore[typeddict-item]
-    if "date" in data:
+    if data.get("date") is not None:
         import capo_codeguru_security.types._prelude.timestamp
 
         out["date"] = capo_codeguru_security.types._prelude.timestamp.deserialize_json(
             data["date"]
         )
-    if "openFindings" in data:
+    if data.get("openFindings") is not None:
         import capo_codeguru_security.types.finding_metrics_value_per_severity
 
         out["open_findings"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> MetricsSummary:
                 data["openFindings"]
             )
         )
-    if "categoriesWithMostFindings" in data:
+    if data.get("categoriesWithMostFindings") is not None:
         import capo_codeguru_security.types.categories_with_most_findings
 
         out["categories_with_most_findings"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> MetricsSummary:
                 data["categoriesWithMostFindings"]
             )
         )
-    if "scansWithMostOpenFindings" in data:
+    if data.get("scansWithMostOpenFindings") is not None:
         import capo_codeguru_security.types.scans_with_most_open_findings
 
         out["scans_with_most_open_findings"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> MetricsSummary:
                 data["scansWithMostOpenFindings"]
             )
         )
-    if "scansWithMostOpenCriticalFindings" in data:
+    if data.get("scansWithMostOpenCriticalFindings") is not None:
         import capo_codeguru_security.types.scans_with_most_open_critical_findings
 
         out["scans_with_most_open_critical_findings"] = (

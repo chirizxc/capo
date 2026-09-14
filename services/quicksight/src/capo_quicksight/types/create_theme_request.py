@@ -72,17 +72,17 @@ def serialize_json(value: CreateThemeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateThemeRequest:
     out: CreateThemeRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateThemeRequest.name required")
-    if "BaseThemeId" in data:
+    if data.get("BaseThemeId") is not None:
         out["base_theme_id"] = data["BaseThemeId"]
     else:
         raise DeserializationError("CreateThemeRequest.base_theme_id required")
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_quicksight.types.theme_configuration
 
         out["configuration"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> CreateThemeRequest:
         )
     else:
         raise DeserializationError("CreateThemeRequest.configuration required")
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> CreateThemeRequest:
                 data["Permissions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

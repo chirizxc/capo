@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ListBatchLoadTasksResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListBatchLoadTasksResponse:
     out: ListBatchLoadTasksResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "BatchLoadTasks" in data:
+    if data.get("BatchLoadTasks") is not None:
         import capo_timestream_write.types.batch_load_task_list
 
         out["batch_load_tasks"] = (

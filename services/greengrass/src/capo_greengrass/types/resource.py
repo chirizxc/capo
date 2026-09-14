@@ -40,11 +40,11 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ResourceDataContainer" in data:
+    if data.get("ResourceDataContainer") is not None:
         import capo_greengrass.types.resource_data_container
 
         out["resource_data_container"] = (

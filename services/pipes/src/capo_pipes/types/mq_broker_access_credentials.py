@@ -26,7 +26,7 @@ def serialize_json(value: MQBrokerAccessCredentials) -> dict:
 
 
 def deserialize_json(data: dict) -> MQBrokerAccessCredentials:
-    if "BasicAuth" in data:
+    if data.get("BasicAuth") is not None:
         return {"BasicAuth": data["BasicAuth"]}
     else:
         raise DeserializationError(

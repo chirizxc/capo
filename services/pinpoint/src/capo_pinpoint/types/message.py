@@ -72,30 +72,30 @@ def serialize_json(value: Message) -> dict:
 
 def deserialize_json(data: dict) -> Message:
     out: Message = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_pinpoint.types.action
 
         out["action"] = capo_pinpoint.types.action.deserialize_json(data["Action"])
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "ImageIconUrl" in data:
+    if data.get("ImageIconUrl") is not None:
         out["image_icon_url"] = data["ImageIconUrl"]
-    if "ImageSmallIconUrl" in data:
+    if data.get("ImageSmallIconUrl") is not None:
         out["image_small_icon_url"] = data["ImageSmallIconUrl"]
-    if "ImageUrl" in data:
+    if data.get("ImageUrl") is not None:
         out["image_url"] = data["ImageUrl"]
-    if "JsonBody" in data:
+    if data.get("JsonBody") is not None:
         out["json_body"] = data["JsonBody"]
-    if "MediaUrl" in data:
+    if data.get("MediaUrl") is not None:
         out["media_url"] = data["MediaUrl"]
-    if "RawContent" in data:
+    if data.get("RawContent") is not None:
         out["raw_content"] = data["RawContent"]
-    if "SilentPush" in data:
+    if data.get("SilentPush") is not None:
         out["silent_push"] = data["SilentPush"]
-    if "TimeToLive" in data:
+    if data.get("TimeToLive") is not None:
         out["time_to_live"] = data["TimeToLive"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

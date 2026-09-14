@@ -54,21 +54,21 @@ def serialize_aws_json_1_0(value: CreateProfileRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateProfileRequest:
     out: CreateProfileRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateProfileRequest.name required")
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "phone" in data:
+    if data.get("phone") is not None:
         out["phone"] = data["phone"]
     else:
         raise DeserializationError("CreateProfileRequest.phone required")
-    if "businessName" in data:
+    if data.get("businessName") is not None:
         out["business_name"] = data["businessName"]
     else:
         raise DeserializationError("CreateProfileRequest.business_name required")
-    if "logging" in data:
+    if data.get("logging") is not None:
         import capo_b2bi.types.logging
 
         out["logging"] = capo_b2bi.types.logging.deserialize_aws_json_1_0(
@@ -76,9 +76,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProfileRequest:
         )
     else:
         raise DeserializationError("CreateProfileRequest.logging required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_b2bi.types.tag_list
 
         out["tags"] = capo_b2bi.types.tag_list.deserialize_aws_json_1_0(data["tags"])

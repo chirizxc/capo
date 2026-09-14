@@ -49,18 +49,18 @@ def serialize_json(value: UpdateDomainInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDomainInput:
     out: UpdateDomainInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "singleSignOn" in data:
+    if data.get("singleSignOn") is not None:
         import capo_datazone.types.single_sign_on
 
         out["single_sign_on"] = capo_datazone.types.single_sign_on.deserialize_json(
             data["singleSignOn"]
         )
-    if "domainExecutionRole" in data:
+    if data.get("domainExecutionRole") is not None:
         out["domain_execution_role"] = data["domainExecutionRole"]
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

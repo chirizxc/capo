@@ -50,16 +50,16 @@ def serialize_json(value: UpdateGlossaryInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGlossaryInput:
     out: UpdateGlossaryInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.glossary_status
 
         out["status"] = capo_datazone.types.glossary_status.deserialize_json(
             data["status"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

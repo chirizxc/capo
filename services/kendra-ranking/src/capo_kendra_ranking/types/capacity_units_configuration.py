@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: CapacityUnitsConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CapacityUnitsConfiguration:
     out: CapacityUnitsConfiguration = {}  # type: ignore[typeddict-item]
-    if "RescoreCapacityUnits" in data:
+    if data.get("RescoreCapacityUnits") is not None:
         out["rescore_capacity_units"] = data["RescoreCapacityUnits"]
     else:
         raise DeserializationError(

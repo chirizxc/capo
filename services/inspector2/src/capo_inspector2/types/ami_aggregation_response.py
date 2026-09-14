@@ -42,18 +42,18 @@ def serialize_json(value: AmiAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> AmiAggregationResponse:
     out: AmiAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "ami" in data:
+    if data.get("ami") is not None:
         out["ami"] = data["ami"]
     else:
         raise DeserializationError("AmiAggregationResponse.ami required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(
             data["severityCounts"]
         )
-    if "affectedInstances" in data:
+    if data.get("affectedInstances") is not None:
         out["affected_instances"] = data["affectedInstances"]
     return out

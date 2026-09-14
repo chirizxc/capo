@@ -61,21 +61,21 @@ def serialize_json(value: StartJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartJobRequest:
     out: StartJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobType" in data:
+    if data.get("jobType") is not None:
         import capo_amplify.types.job_type
 
         out["job_type"] = capo_amplify.types.job_type.deserialize_json(data["jobType"])
     else:
         raise DeserializationError("StartJobRequest.job_type required")
-    if "jobReason" in data:
+    if data.get("jobReason") is not None:
         out["job_reason"] = data["jobReason"]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
-    if "commitMessage" in data:
+    if data.get("commitMessage") is not None:
         out["commit_message"] = data["commitMessage"]
-    if "commitTime" in data:
+    if data.get("commitTime") is not None:
         import capo_amplify.types.commit_time
 
         out["commit_time"] = capo_amplify.types.commit_time.deserialize_json(

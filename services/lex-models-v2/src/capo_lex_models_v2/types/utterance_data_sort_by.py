@@ -38,7 +38,7 @@ def serialize_json(value: UtteranceDataSortBy) -> dict:
 
 def deserialize_json(data: dict) -> UtteranceDataSortBy:
     out: UtteranceDataSortBy = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lex_models_v2.types.analytics_utterance_sort_by_name
 
         out["name"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> UtteranceDataSortBy:
         )
     else:
         raise DeserializationError("UtteranceDataSortBy.name required")
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_lex_models_v2.types.analytics_sort_order
 
         out["order"] = capo_lex_models_v2.types.analytics_sort_order.deserialize_json(

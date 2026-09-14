@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfMsSmoothAdditionalManifest:
 
     out: __listOfMsSmoothAdditionalManifest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.ms_smooth_additional_manifest.deserialize_json(item)
         )

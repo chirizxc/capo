@@ -27,7 +27,7 @@ def serialize_json(value: ThumbnailConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ThumbnailConfiguration:
     out: ThumbnailConfiguration = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.thumbnail_state
 
         out["state"] = capo_medialive.types.thumbnail_state.deserialize_json(

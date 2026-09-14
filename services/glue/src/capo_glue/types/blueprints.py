@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Blueprints:
 
     out: Blueprints = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.blueprint.deserialize_aws_json_1_1(item))
     return out

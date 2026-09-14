@@ -44,7 +44,7 @@ def serialize_json(value: TcpRoute) -> dict:
 
 def deserialize_json(data: dict) -> TcpRoute:
     out: TcpRoute = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_app_mesh.types.tcp_route_action
 
         out["action"] = capo_app_mesh.types.tcp_route_action.deserialize_json(
@@ -52,13 +52,13 @@ def deserialize_json(data: dict) -> TcpRoute:
         )
     else:
         raise DeserializationError("TcpRoute.action required")
-    if "timeout" in data:
+    if data.get("timeout") is not None:
         import capo_app_mesh.types.tcp_timeout
 
         out["timeout"] = capo_app_mesh.types.tcp_timeout.deserialize_json(
             data["timeout"]
         )
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_app_mesh.types.tcp_route_match
 
         out["match"] = capo_app_mesh.types.tcp_route_match.deserialize_json(

@@ -40,13 +40,13 @@ def serialize_json(value: NetworkConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NetworkConfiguration:
     out: NetworkConfiguration = {}  # type: ignore[typeddict-item]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_emr_serverless.types.subnet_ids
 
         out["subnet_ids"] = capo_emr_serverless.types.subnet_ids.deserialize_json(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_emr_serverless.types.security_group_ids
 
         out["security_group_ids"] = (

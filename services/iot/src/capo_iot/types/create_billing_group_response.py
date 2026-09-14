@@ -35,10 +35,10 @@ def serialize_json(value: CreateBillingGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateBillingGroupResponse:
     out: CreateBillingGroupResponse = {}  # type: ignore[typeddict-item]
-    if "billingGroupName" in data:
+    if data.get("billingGroupName") is not None:
         out["billing_group_name"] = data["billingGroupName"]
-    if "billingGroupArn" in data:
+    if data.get("billingGroupArn") is not None:
         out["billing_group_arn"] = data["billingGroupArn"]
-    if "billingGroupId" in data:
+    if data.get("billingGroupId") is not None:
         out["billing_group_id"] = data["billingGroupId"]
     return out

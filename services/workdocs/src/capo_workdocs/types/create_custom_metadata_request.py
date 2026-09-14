@@ -41,7 +41,7 @@ def serialize_json(value: CreateCustomMetadataRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCustomMetadataRequest:
     out: CreateCustomMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "CustomMetadata" in data:
+    if data.get("CustomMetadata") is not None:
         import capo_workdocs.types.custom_metadata_map
 
         out["custom_metadata"] = (

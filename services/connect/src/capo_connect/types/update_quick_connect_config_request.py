@@ -34,7 +34,7 @@ def serialize_json(value: UpdateQuickConnectConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQuickConnectConfigRequest:
     out: UpdateQuickConnectConfigRequest = {}  # type: ignore[typeddict-item]
-    if "QuickConnectConfig" in data:
+    if data.get("QuickConnectConfig") is not None:
         import capo_connect.types.quick_connect_config
 
         out["quick_connect_config"] = (

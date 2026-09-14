@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: GetReservationUtilizationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetReservationUtilizationResponse:
     out: GetReservationUtilizationResponse = {}  # type: ignore[typeddict-item]
-    if "UtilizationsByTime" in data:
+    if data.get("UtilizationsByTime") is not None:
         import capo_cost_explorer.types.utilizations_by_time
 
         out["utilizations_by_time"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationUtilizationResponse:
         raise DeserializationError(
             "GetReservationUtilizationResponse.utilizations_by_time required"
         )
-    if "Total" in data:
+    if data.get("Total") is not None:
         import capo_cost_explorer.types.reservation_aggregates
 
         out["total"] = (
@@ -72,6 +72,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationUtilizationResponse:
                 data["Total"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

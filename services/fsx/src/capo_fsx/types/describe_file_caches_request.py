@@ -35,14 +35,14 @@ def serialize_aws_json_1_1(value: DescribeFileCachesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFileCachesRequest:
     out: DescribeFileCachesRequest = {}  # type: ignore[typeddict-item]
-    if "FileCacheIds" in data:
+    if data.get("FileCacheIds") is not None:
         import capo_fsx.types.file_cache_ids
 
         out["file_cache_ids"] = capo_fsx.types.file_cache_ids.deserialize_aws_json_1_1(
             data["FileCacheIds"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

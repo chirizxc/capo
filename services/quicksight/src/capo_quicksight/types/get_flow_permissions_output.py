@@ -43,15 +43,15 @@ def serialize_json(value: GetFlowPermissionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetFlowPermissionsOutput:
     out: GetFlowPermissionsOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("GetFlowPermissionsOutput.arn required")
-    if "FlowId" in data:
+    if data.get("FlowId") is not None:
         out["flow_id"] = data["FlowId"]
     else:
         raise DeserializationError("GetFlowPermissionsOutput.flow_id required")
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.permissions_list
 
         out["permissions"] = capo_quicksight.types.permissions_list.deserialize_json(
@@ -59,6 +59,6 @@ def deserialize_json(data: dict) -> GetFlowPermissionsOutput:
         )
     else:
         raise DeserializationError("GetFlowPermissionsOutput.permissions required")
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

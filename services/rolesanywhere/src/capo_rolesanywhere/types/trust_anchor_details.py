@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TrustAnchorDetails:
 
     out: TrustAnchorDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rolesanywhere.types.trust_anchor_detail.deserialize_json(item))
     return out

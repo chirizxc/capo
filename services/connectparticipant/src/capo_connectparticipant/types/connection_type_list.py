@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ConnectionTypeList:
 
     out: ConnectionTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectparticipant.types.connection_type.deserialize_json(item))
     return out

@@ -71,32 +71,32 @@ def serialize_json(value: CreateConfigurationProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationProfileRequest:
     out: CreateConfigurationProfileRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateConfigurationProfileRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
     else:
         raise DeserializationError(
             "CreateConfigurationProfileRequest.location_uri required"
         )
-    if "RetrievalRoleArn" in data:
+    if data.get("RetrievalRoleArn") is not None:
         out["retrieval_role_arn"] = data["RetrievalRoleArn"]
-    if "Validators" in data:
+    if data.get("Validators") is not None:
         import capo_appconfig.types.validator_list
 
         out["validators"] = capo_appconfig.types.validator_list.deserialize_json(
             data["Validators"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appconfig.types.tag_map
 
         out["tags"] = capo_appconfig.types.tag_map.deserialize_json(data["Tags"])
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "KmsKeyIdentifier" in data:
+    if data.get("KmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["KmsKeyIdentifier"]
     return out

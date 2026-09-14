@@ -90,13 +90,13 @@ def serialize_aws_json_1_1(value: ConfigurationEvent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigurationEvent:
     out: ConfigurationEvent = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "MonitoredResourceARN" in data:
+    if data.get("MonitoredResourceARN") is not None:
         out["monitored_resource_arn"] = data["MonitoredResourceARN"]
-    if "EventStatus" in data:
+    if data.get("EventStatus") is not None:
         import capo_application_insights.types.configuration_event_status
 
         out["event_status"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationEvent:
                 data["EventStatus"]
             )
         )
-    if "EventResourceType" in data:
+    if data.get("EventResourceType") is not None:
         import capo_application_insights.types.configuration_event_resource_type
 
         out["event_resource_type"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationEvent:
                 data["EventResourceType"]
             )
         )
-    if "EventTime" in data:
+    if data.get("EventTime") is not None:
         import capo_application_insights.types.configuration_event_time
 
         out["event_time"] = (
@@ -120,8 +120,8 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationEvent:
                 data["EventTime"]
             )
         )
-    if "EventDetail" in data:
+    if data.get("EventDetail") is not None:
         out["event_detail"] = data["EventDetail"]
-    if "EventResourceName" in data:
+    if data.get("EventResourceName") is not None:
         out["event_resource_name"] = data["EventResourceName"]
     return out

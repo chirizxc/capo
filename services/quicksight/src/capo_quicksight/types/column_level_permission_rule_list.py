@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ColumnLevelPermissionRuleList:
 
     out: ColumnLevelPermissionRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.column_level_permission_rule.deserialize_json(item)
         )

@@ -31,7 +31,7 @@ def serialize_json(value: DescribeContactFlowModuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeContactFlowModuleResponse:
     out: DescribeContactFlowModuleResponse = {}  # type: ignore[typeddict-item]
-    if "ContactFlowModule" in data:
+    if data.get("ContactFlowModule") is not None:
         import capo_connect.types.contact_flow_module
 
         out["contact_flow_module"] = (

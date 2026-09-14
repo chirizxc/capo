@@ -22,9 +22,29 @@ class ListEnvironmentsRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListEnvironmentsRequest) -> dict:
     out: dict = {}
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
+    if "state" in value:
+        import capo_evs.types.environment_state_list
+
+        out["state"] = capo_evs.types.environment_state_list.serialize_aws_json_1_0(
+            value["state"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentsRequest:
     out: ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("state") is not None:
+        import capo_evs.types.environment_state_list
+
+        out["state"] = capo_evs.types.environment_state_list.deserialize_aws_json_1_0(
+            data["state"]
+        )
     return out

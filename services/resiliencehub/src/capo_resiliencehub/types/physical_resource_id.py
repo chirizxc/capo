@@ -42,11 +42,11 @@ def serialize_json(value: PhysicalResourceId) -> dict:
 
 def deserialize_json(data: dict) -> PhysicalResourceId:
     out: PhysicalResourceId = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("PhysicalResourceId.identifier required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_resiliencehub.types.physical_identifier_type
 
         out["type"] = (
@@ -56,8 +56,8 @@ def deserialize_json(data: dict) -> PhysicalResourceId:
         )
     else:
         raise DeserializationError("PhysicalResourceId.type required")
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         out["aws_region"] = data["awsRegion"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
     return out

@@ -32,8 +32,8 @@ def serialize_json(value: ImageTestsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ImageTestsConfiguration:
     out: ImageTestsConfiguration = {}  # type: ignore[typeddict-item]
-    if "imageTestsEnabled" in data:
+    if data.get("imageTestsEnabled") is not None:
         out["image_tests_enabled"] = data["imageTestsEnabled"]
-    if "timeoutMinutes" in data:
+    if data.get("timeoutMinutes") is not None:
         out["timeout_minutes"] = data["timeoutMinutes"]
     return out

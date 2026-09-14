@@ -71,11 +71,11 @@ def serialize_json(value: RecommendationReportDetails) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationReportDetails:
     out: RecommendationReportDetails = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_migrationhubstrategy.types.recommendation_report_time_stamp
 
         out["start_time"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> RecommendationReportDetails:
                 data["startTime"]
             )
         )
-    if "completionTime" in data:
+    if data.get("completionTime") is not None:
         import capo_migrationhubstrategy.types.recommendation_report_time_stamp
 
         out["completion_time"] = (
@@ -91,9 +91,9 @@ def deserialize_json(data: dict) -> RecommendationReportDetails:
                 data["completionTime"]
             )
         )
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
-    if "s3Keys" in data:
+    if data.get("s3Keys") is not None:
         import capo_migrationhubstrategy.types.s3_keys
 
         out["s3_keys"] = capo_migrationhubstrategy.types.s3_keys.deserialize_json(

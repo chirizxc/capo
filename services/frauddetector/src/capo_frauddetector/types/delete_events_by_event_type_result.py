@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: DeleteEventsByEventTypeResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteEventsByEventTypeResult:
     out: DeleteEventsByEventTypeResult = {}  # type: ignore[typeddict-item]
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
-    if "eventsDeletionStatus" in data:
+    if data.get("eventsDeletionStatus") is not None:
         out["events_deletion_status"] = data["eventsDeletionStatus"]
     return out

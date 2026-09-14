@@ -43,15 +43,15 @@ def serialize_json(value: ScheduledPlanExecutionMember) -> dict:
 
 def deserialize_json(data: dict) -> ScheduledPlanExecutionMember:
     out: ScheduledPlanExecutionMember = {}  # type: ignore[typeddict-item]
-    if "ExecutionTime" in data:
+    if data.get("ExecutionTime") is not None:
         import capo_backup.types.timestamp
 
         out["execution_time"] = capo_backup.types.timestamp.deserialize_json(
             data["ExecutionTime"]
         )
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
-    if "RuleExecutionType" in data:
+    if data.get("RuleExecutionType") is not None:
         import capo_backup.types.rule_execution_type
 
         out["rule_execution_type"] = (

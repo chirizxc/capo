@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: HealthStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HealthStatus:
     out: HealthStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_budgets.types.health_status_value
 
         out["status"] = capo_budgets.types.health_status_value.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_budgets.types.health_status_reason
 
         out["status_reason"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> HealthStatus:
                 data["StatusReason"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_budgets.types.generic_timestamp
 
         out["last_updated_time"] = (

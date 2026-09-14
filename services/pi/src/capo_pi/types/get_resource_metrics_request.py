@@ -79,7 +79,7 @@ def serialize_aws_json_1_1(value: GetResourceMetricsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourceMetricsRequest:
     out: GetResourceMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
@@ -87,11 +87,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceMetricsRequest:
         )
     else:
         raise DeserializationError("GetResourceMetricsRequest.service_type required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("GetResourceMetricsRequest.identifier required")
-    if "MetricQueries" in data:
+    if data.get("MetricQueries") is not None:
         import capo_pi.types.metric_query_list
 
         out["metric_queries"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceMetricsRequest:
         )
     else:
         raise DeserializationError("GetResourceMetricsRequest.metric_queries required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["start_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceMetricsRequest:
         )
     else:
         raise DeserializationError("GetResourceMetricsRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["end_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
@@ -117,13 +117,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceMetricsRequest:
         )
     else:
         raise DeserializationError("GetResourceMetricsRequest.end_time required")
-    if "PeriodInSeconds" in data:
+    if data.get("PeriodInSeconds") is not None:
         out["period_in_seconds"] = data["PeriodInSeconds"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PeriodAlignment" in data:
+    if data.get("PeriodAlignment") is not None:
         import capo_pi.types.period_alignment
 
         out["period_alignment"] = (

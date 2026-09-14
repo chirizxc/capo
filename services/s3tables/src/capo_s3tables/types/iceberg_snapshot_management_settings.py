@@ -31,8 +31,8 @@ def serialize_json(value: IcebergSnapshotManagementSettings) -> dict:
 
 def deserialize_json(data: dict) -> IcebergSnapshotManagementSettings:
     out: IcebergSnapshotManagementSettings = {}  # type: ignore[typeddict-item]
-    if "minSnapshotsToKeep" in data:
+    if data.get("minSnapshotsToKeep") is not None:
         out["min_snapshots_to_keep"] = data["minSnapshotsToKeep"]
-    if "maxSnapshotAgeHours" in data:
+    if data.get("maxSnapshotAgeHours") is not None:
         out["max_snapshot_age_hours"] = data["maxSnapshotAgeHours"]
     return out

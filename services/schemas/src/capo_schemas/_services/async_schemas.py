@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.schemas#schemas``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -243,7 +244,7 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.create_discoverer_request.CreateDiscovererRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.create_discoverer_request.CreateDiscovererRequest = {}
         if description is not None:
             input_["description"] = description
         if source_arn is not None:
@@ -258,6 +259,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_registry(
@@ -303,10 +305,11 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.create_registry_request.CreateRegistryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.create_registry_request.CreateRegistryRequest = {
+            "registry_name": registry_name
+        }
         if description is not None:
             input_["description"] = description
-        input_["registry_name"] = registry_name
         if tags is not None:
             input_["tags"] = tags
 
@@ -315,6 +318,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_schema(
@@ -366,13 +370,14 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.create_schema_request.CreateSchemaRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.create_schema_request.CreateSchemaRequest = {
+            "registry_name": registry_name,
+            "schema_name": schema_name,
+        }
         if content is not None:
             input_["content"] = content
         if description is not None:
             input_["description"] = description
-        input_["registry_name"] = registry_name
-        input_["schema_name"] = schema_name
         if tags is not None:
             input_["tags"] = tags
         if type is not None:
@@ -383,6 +388,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_discoverer(
@@ -420,14 +426,16 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.delete_discoverer_request.DeleteDiscovererRequest = {}  # type: ignore[typeddict-item]
-        input_["discoverer_id"] = discoverer_id
+        input_: capo_schemas.types.delete_discoverer_request.DeleteDiscovererRequest = {
+            "discoverer_id": discoverer_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_registry(
@@ -465,14 +473,16 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.delete_registry_request.DeleteRegistryRequest = {}  # type: ignore[typeddict-item]
-        input_["registry_name"] = registry_name
+        input_: capo_schemas.types.delete_registry_request.DeleteRegistryRequest = {
+            "registry_name": registry_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -510,7 +520,7 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}
         if registry_name is not None:
             input_["registry_name"] = registry_name
 
@@ -519,6 +529,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_schema(
@@ -558,15 +569,17 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.delete_schema_request.DeleteSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["registry_name"] = registry_name
-        input_["schema_name"] = schema_name
+        input_: capo_schemas.types.delete_schema_request.DeleteSchemaRequest = {
+            "registry_name": registry_name,
+            "schema_name": schema_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_schema_version(
@@ -608,16 +621,18 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.delete_schema_version_request.DeleteSchemaVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["registry_name"] = registry_name
-        input_["schema_name"] = schema_name
-        input_["schema_version"] = schema_version
+        input_: capo_schemas.types.delete_schema_version_request.DeleteSchemaVersionRequest = {
+            "registry_name": registry_name,
+            "schema_name": schema_name,
+            "schema_version": schema_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_code_binding(
@@ -665,10 +680,11 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.describe_code_binding_request.DescribeCodeBindingRequest = {}  # type: ignore[typeddict-item]
-        input_["language"] = language
-        input_["registry_name"] = registry_name
-        input_["schema_name"] = schema_name
+        input_: capo_schemas.types.describe_code_binding_request.DescribeCodeBindingRequest = {
+            "language": language,
+            "registry_name": registry_name,
+            "schema_name": schema_name,
+        }
         if schema_version is not None:
             input_["schema_version"] = schema_version
 
@@ -677,6 +693,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_discoverer(
@@ -716,14 +733,16 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.describe_discoverer_request.DescribeDiscovererRequest = {}  # type: ignore[typeddict-item]
-        input_["discoverer_id"] = discoverer_id
+        input_: capo_schemas.types.describe_discoverer_request.DescribeDiscovererRequest = {
+            "discoverer_id": discoverer_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_registry(
@@ -763,14 +782,16 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.describe_registry_request.DescribeRegistryRequest = {}  # type: ignore[typeddict-item]
-        input_["registry_name"] = registry_name
+        input_: capo_schemas.types.describe_registry_request.DescribeRegistryRequest = {
+            "registry_name": registry_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_schema(
@@ -814,9 +835,10 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.describe_schema_request.DescribeSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["registry_name"] = registry_name
-        input_["schema_name"] = schema_name
+        input_: capo_schemas.types.describe_schema_request.DescribeSchemaRequest = {
+            "registry_name": registry_name,
+            "schema_name": schema_name,
+        }
         if schema_version is not None:
             input_["schema_version"] = schema_version
 
@@ -825,6 +847,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_schema(
@@ -870,9 +893,10 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.export_schema_request.ExportSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["registry_name"] = registry_name
-        input_["schema_name"] = schema_name
+        input_: capo_schemas.types.export_schema_request.ExportSchemaRequest = {
+            "registry_name": registry_name,
+            "schema_name": schema_name,
+        }
         if schema_version is not None:
             input_["schema_version"] = schema_version
         if type is not None:
@@ -883,6 +907,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_code_binding_source(
@@ -928,10 +953,11 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.get_code_binding_source_request.GetCodeBindingSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["language"] = language
-        input_["registry_name"] = registry_name
-        input_["schema_name"] = schema_name
+        input_: capo_schemas.types.get_code_binding_source_request.GetCodeBindingSourceRequest = {
+            "language": language,
+            "registry_name": registry_name,
+            "schema_name": schema_name,
+        }
         if schema_version is not None:
             input_["schema_version"] = schema_version
 
@@ -940,6 +966,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_discovered_schema(
@@ -984,7 +1011,7 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.get_discovered_schema_request.GetDiscoveredSchemaRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.get_discovered_schema_request.GetDiscoveredSchemaRequest = {}
         if events is not None:
             input_["events"] = events
         if type is not None:
@@ -995,6 +1022,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_policy(
@@ -1034,7 +1062,7 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.get_resource_policy_request.GetResourcePolicyRequest = {}
         if registry_name is not None:
             input_["registry_name"] = registry_name
 
@@ -1043,6 +1071,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_discoverers(
@@ -1086,7 +1115,7 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.list_discoverers_request.ListDiscoverersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.list_discoverers_request.ListDiscoverersRequest = {}
         if discoverer_id_prefix is not None:
             input_["discoverer_id_prefix"] = discoverer_id_prefix
         if limit is not None:
@@ -1101,6 +1130,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_discoverers(
@@ -1169,7 +1199,7 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.list_registries_request.ListRegistriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.list_registries_request.ListRegistriesRequest = {}
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -1184,6 +1214,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_registries(
@@ -1252,12 +1283,13 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.list_schemas_request.ListSchemasRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.list_schemas_request.ListSchemasRequest = {
+            "registry_name": registry_name
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["registry_name"] = registry_name
         if schema_name_prefix is not None:
             input_["schema_name_prefix"] = schema_name_prefix
 
@@ -1266,6 +1298,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_schemas(
@@ -1335,19 +1368,21 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.list_schema_versions_request.ListSchemaVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.list_schema_versions_request.ListSchemaVersionsRequest = {
+            "registry_name": registry_name,
+            "schema_name": schema_name,
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["registry_name"] = registry_name
-        input_["schema_name"] = schema_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_schema_versions(
@@ -1414,14 +1449,16 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_schemas.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_code_binding(
@@ -1468,10 +1505,11 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.put_code_binding_request.PutCodeBindingRequest = {}  # type: ignore[typeddict-item]
-        input_["language"] = language
-        input_["registry_name"] = registry_name
-        input_["schema_name"] = schema_name
+        input_: capo_schemas.types.put_code_binding_request.PutCodeBindingRequest = {
+            "language": language,
+            "registry_name": registry_name,
+            "schema_name": schema_name,
+        }
         if schema_version is not None:
             input_["schema_version"] = schema_version
 
@@ -1480,6 +1518,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_policy(
@@ -1526,7 +1565,7 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.put_resource_policy_request.PutResourcePolicyRequest = {}
         if policy is not None:
             input_["policy"] = policy
         if registry_name is not None:
@@ -1539,6 +1578,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_schemas(
@@ -1582,20 +1622,22 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.search_schemas_request.SearchSchemasRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.search_schemas_request.SearchSchemasRequest = {
+            "registry_name": registry_name
+        }
         if keywords is not None:
             input_["keywords"] = keywords
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["registry_name"] = registry_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_schemas(
@@ -1660,14 +1702,16 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.start_discoverer_request.StartDiscovererRequest = {}  # type: ignore[typeddict-item]
-        input_["discoverer_id"] = discoverer_id
+        input_: capo_schemas.types.start_discoverer_request.StartDiscovererRequest = {
+            "discoverer_id": discoverer_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_discoverer(
@@ -1707,14 +1751,16 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.stop_discoverer_request.StopDiscovererRequest = {}  # type: ignore[typeddict-item]
-        input_["discoverer_id"] = discoverer_id
+        input_: capo_schemas.types.stop_discoverer_request.StopDiscovererRequest = {
+            "discoverer_id": discoverer_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1752,8 +1798,9 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_schemas.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1762,6 +1809,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1801,8 +1849,9 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_schemas.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -1811,6 +1860,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_discoverer(
@@ -1856,10 +1906,11 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.update_discoverer_request.UpdateDiscovererRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.update_discoverer_request.UpdateDiscovererRequest = {
+            "discoverer_id": discoverer_id
+        }
         if description is not None:
             input_["description"] = description
-        input_["discoverer_id"] = discoverer_id
         if cross_account is not None:
             input_["cross_account"] = cross_account
 
@@ -1868,6 +1919,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_registry(
@@ -1911,16 +1963,18 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.update_registry_request.UpdateRegistryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_schemas.types.update_registry_request.UpdateRegistryRequest = {
+            "registry_name": registry_name
+        }
         if description is not None:
             input_["description"] = description
-        input_["registry_name"] = registry_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_schema(
@@ -1975,15 +2029,17 @@ class AsyncschemasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_schemas.types.update_schema_request.UpdateSchemaRequest = {}  # type: ignore[typeddict-item]
-        if client_token_id is not None:
-            input_["client_token_id"] = client_token_id
+        input_: capo_schemas.types.update_schema_request.UpdateSchemaRequest = {
+            "registry_name": registry_name,
+            "schema_name": schema_name,
+        }
+        if client_token_id is None:
+            client_token_id = str(uuid.uuid4())
+        input_["client_token_id"] = client_token_id
         if content is not None:
             input_["content"] = content
         if description is not None:
             input_["description"] = description
-        input_["registry_name"] = registry_name
-        input_["schema_name"] = schema_name
         if type is not None:
             input_["type"] = type
 
@@ -1992,6 +2048,7 @@ class AsyncschemasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -23,6 +23,6 @@ def serialize_json(value: NetworkEthereumAttributes) -> dict:
 
 def deserialize_json(data: dict) -> NetworkEthereumAttributes:
     out: NetworkEthereumAttributes = {}  # type: ignore[typeddict-item]
-    if "ChainId" in data:
+    if data.get("ChainId") is not None:
         out["chain_id"] = data["ChainId"]
     return out

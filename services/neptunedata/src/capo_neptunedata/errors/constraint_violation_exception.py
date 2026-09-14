@@ -25,17 +25,17 @@ def serialize_json(value: ConstraintViolationException_) -> dict:
 
 def deserialize_json(data: dict) -> ConstraintViolationException_:
     out: ConstraintViolationException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError(
             "ConstraintViolationException_.detailed_message required"
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("ConstraintViolationException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("ConstraintViolationException_.code required")
@@ -47,15 +47,18 @@ class ConstraintViolationException(ServiceError):
 
     code: str | None = "ConstraintViolationException"
 
-    def __init__(self, data: ConstraintViolationException_):
+    def __init__(self, data: ConstraintViolationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=True,
             code="ConstraintViolationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConstraintViolationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ConstraintViolationException":
+        return cls(deserialize_json(data), message)

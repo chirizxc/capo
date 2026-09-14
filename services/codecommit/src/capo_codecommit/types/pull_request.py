@@ -113,13 +113,13 @@ def serialize_aws_json_1_1(value: PullRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PullRequest:
     out: PullRequest = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "lastActivityDate" in data:
+    if data.get("lastActivityDate") is not None:
         import capo_codecommit.types.last_modified_date
 
         out["last_activity_date"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequest:
                 data["lastActivityDate"]
             )
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_codecommit.types.creation_date
 
         out["creation_date"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequest:
                 data["creationDate"]
             )
         )
-    if "pullRequestStatus" in data:
+    if data.get("pullRequestStatus") is not None:
         import capo_codecommit.types.pull_request_status_enum
 
         out["pull_request_status"] = (
@@ -143,9 +143,9 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequest:
                 data["pullRequestStatus"]
             )
         )
-    if "authorArn" in data:
+    if data.get("authorArn") is not None:
         out["author_arn"] = data["authorArn"]
-    if "pullRequestTargets" in data:
+    if data.get("pullRequestTargets") is not None:
         import capo_codecommit.types.pull_request_target_list
 
         out["pull_request_targets"] = (
@@ -153,11 +153,11 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequest:
                 data["pullRequestTargets"]
             )
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "approvalRules" in data:
+    if data.get("approvalRules") is not None:
         import capo_codecommit.types.approval_rules_list
 
         out["approval_rules"] = (

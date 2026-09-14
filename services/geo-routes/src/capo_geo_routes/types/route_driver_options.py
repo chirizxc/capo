@@ -31,7 +31,7 @@ def serialize_json(value: RouteDriverOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteDriverOptions:
     out: RouteDriverOptions = {}  # type: ignore[typeddict-item]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_geo_routes.types.route_driver_schedule_interval_list
 
         out["schedule"] = (

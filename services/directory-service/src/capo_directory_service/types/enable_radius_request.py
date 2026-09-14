@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: EnableRadiusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnableRadiusRequest:
     out: EnableRadiusRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("EnableRadiusRequest.directory_id required")
-    if "RadiusSettings" in data:
+    if data.get("RadiusSettings") is not None:
         import capo_directory_service.types.radius_settings
 
         out["radius_settings"] = (

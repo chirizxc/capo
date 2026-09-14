@@ -60,9 +60,9 @@ def serialize_aws_json_1_1(value: CreateEdgeDeploymentPlanRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEdgeDeploymentPlanRequest:
     out: CreateEdgeDeploymentPlanRequest = {}  # type: ignore[typeddict-item]
-    if "EdgeDeploymentPlanName" in data:
+    if data.get("EdgeDeploymentPlanName") is not None:
         out["edge_deployment_plan_name"] = data["EdgeDeploymentPlanName"]
-    if "ModelConfigs" in data:
+    if data.get("ModelConfigs") is not None:
         import capo_sagemaker.types.edge_deployment_model_configs
 
         out["model_configs"] = (
@@ -70,15 +70,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEdgeDeploymentPlanRequest:
                 data["ModelConfigs"]
             )
         )
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "Stages" in data:
+    if data.get("Stages") is not None:
         import capo_sagemaker.types.deployment_stages
 
         out["stages"] = capo_sagemaker.types.deployment_stages.deserialize_aws_json_1_1(
             data["Stages"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

@@ -40,13 +40,13 @@ def serialize_json(value: DisableRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisableRequest:
     out: DisableRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_inspector2.types.account_id_set
 
         out["account_ids"] = capo_inspector2.types.account_id_set.deserialize_json(
             data["accountIds"]
         )
-    if "resourceTypes" in data:
+    if data.get("resourceTypes") is not None:
         import capo_inspector2.types.disable_resource_type_list
 
         out["resource_types"] = (

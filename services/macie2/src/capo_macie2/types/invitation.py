@@ -49,17 +49,17 @@ def serialize_json(value: Invitation) -> dict:
 
 def deserialize_json(data: dict) -> Invitation:
     out: Invitation = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "invitationId" in data:
+    if data.get("invitationId") is not None:
         out["invitation_id"] = data["invitationId"]
-    if "invitedAt" in data:
+    if data.get("invitedAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["invited_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["invitedAt"]
         )
-    if "relationshipStatus" in data:
+    if data.get("relationshipStatus") is not None:
         import capo_macie2.types.relationship_status
 
         out["relationship_status"] = (

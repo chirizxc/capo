@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: SerDeInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SerDeInfo:
     out: SerDeInfo = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SerializationLibrary" in data:
+    if data.get("SerializationLibrary") is not None:
         out["serialization_library"] = data["SerializationLibrary"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.parameters_map
 
         out["parameters"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(

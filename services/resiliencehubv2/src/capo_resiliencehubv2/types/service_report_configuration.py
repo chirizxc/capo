@@ -30,7 +30,7 @@ def serialize_json(value: ServiceReportConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ServiceReportConfiguration:
     out: ServiceReportConfiguration = {}  # type: ignore[typeddict-item]
-    if "reportOutputs" in data:
+    if data.get("reportOutputs") is not None:
         import capo_resiliencehubv2.types.report_output_configuration_list
 
         out["report_outputs"] = (

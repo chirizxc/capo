@@ -13,9 +13,9 @@ from capo_dynamodb_streams import AsyncDynamoDBStreamsClient
 
 
 async def main():
-    async with AsyncDynamoDBStreamsClient() as s3:
+    async with AsyncDynamoDBStreamsClient() as dynamo_db_streams:
         # Example: call the describe_stream operation
-        response = await s3.describe_stream()
+        response = await dynamo_db_streams.describe_stream()
         print(response["stream_description"])
 ```
 
@@ -29,9 +29,9 @@ from capo_dynamodb_streams.error import InternalServerError
 
 
 async def main():
-    async with AsyncDynamoDBStreamsClient() as s3:
+    async with AsyncDynamoDBStreamsClient() as dynamo_db_streams:
         try:
-            await s3.describe_stream()
+            await dynamo_db_streams.describe_stream()
         except InternalServerError as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_dynamodb_streams import AsyncDynamoDBStreamsClient
 
 
 async def main():
-    async with AsyncDynamoDBStreamsClient() as s3:
+    async with AsyncDynamoDBStreamsClient() as dynamo_db_streams:
         # Default: 3 attempts for every operation
-        response = await s3.describe_stream()
+        response = await dynamo_db_streams.describe_stream()
 
         # Override per operation
-        response = await s3.describe_stream(config_overrides={"retry_max_attempts": 5})
+        response = await dynamo_db_streams.describe_stream(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.describe_stream(config_overrides={"retry_max_attempts": 1})
+        response = await dynamo_db_streams.describe_stream(config_overrides={"retry_max_attempts": 1})
 ```

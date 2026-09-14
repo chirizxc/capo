@@ -87,37 +87,37 @@ def serialize_json(value: PipelineSummary) -> dict:
 
 def deserialize_json(data: dict) -> PipelineSummary:
     out: PipelineSummary = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_osis.types.pipeline_status
 
         out["status"] = capo_osis.types.pipeline_status.deserialize_json(data["Status"])
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_osis.types.pipeline_status_reason
 
         out["status_reason"] = capo_osis.types.pipeline_status_reason.deserialize_json(
             data["StatusReason"]
         )
-    if "PipelineName" in data:
+    if data.get("PipelineName") is not None:
         out["pipeline_name"] = data["PipelineName"]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
-    if "MinUnits" in data:
+    if data.get("MinUnits") is not None:
         out["min_units"] = data["MinUnits"]
-    if "MaxUnits" in data:
+    if data.get("MaxUnits") is not None:
         out["max_units"] = data["MaxUnits"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_osis.types.timestamp
 
         out["created_at"] = capo_osis.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_osis.types.timestamp
 
         out["last_updated_at"] = capo_osis.types.timestamp.deserialize_json(
             data["LastUpdatedAt"]
         )
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_osis.types.pipeline_destination_list
 
         out["destinations"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> PipelineSummary:
                 data["Destinations"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_osis.types.tag_list
 
         out["tags"] = capo_osis.types.tag_list.deserialize_json(data["Tags"])

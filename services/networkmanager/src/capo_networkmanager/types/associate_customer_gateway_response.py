@@ -31,7 +31,7 @@ def serialize_json(value: AssociateCustomerGatewayResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateCustomerGatewayResponse:
     out: AssociateCustomerGatewayResponse = {}  # type: ignore[typeddict-item]
-    if "CustomerGatewayAssociation" in data:
+    if data.get("CustomerGatewayAssociation") is not None:
         import capo_networkmanager.types.customer_gateway_association
 
         out["customer_gateway_association"] = (

@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: CreateEnvironmentHostResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentHostResponse:
     out: CreateEnvironmentHostResponse = {}  # type: ignore[typeddict-item]
-    if "environmentSummary" in data:
+    if data.get("environmentSummary") is not None:
         import capo_evs.types.environment_summary
 
         out["environment_summary"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentHostResponse:
                 data["environmentSummary"]
             )
         )
-    if "host" in data:
+    if data.get("host") is not None:
         import capo_evs.types.host
 
         out["host"] = capo_evs.types.host.deserialize_aws_json_1_0(data["host"])

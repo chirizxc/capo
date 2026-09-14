@@ -61,21 +61,21 @@ def serialize_json(value: CommentMetadata) -> dict:
 
 def deserialize_json(data: dict) -> CommentMetadata:
     out: CommentMetadata = {}  # type: ignore[typeddict-item]
-    if "CommentId" in data:
+    if data.get("CommentId") is not None:
         out["comment_id"] = data["CommentId"]
-    if "Contributor" in data:
+    if data.get("Contributor") is not None:
         import capo_workdocs.types.user
 
         out["contributor"] = capo_workdocs.types.user.deserialize_json(
             data["Contributor"]
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["created_timestamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "CommentStatus" in data:
+    if data.get("CommentStatus") is not None:
         import capo_workdocs.types.comment_status_type
 
         out["comment_status"] = (
@@ -83,8 +83,8 @@ def deserialize_json(data: dict) -> CommentMetadata:
                 data["CommentStatus"]
             )
         )
-    if "RecipientId" in data:
+    if data.get("RecipientId") is not None:
         out["recipient_id"] = data["RecipientId"]
-    if "ContributorId" in data:
+    if data.get("ContributorId") is not None:
         out["contributor_id"] = data["ContributorId"]
     return out

@@ -23,7 +23,7 @@ def serialize_json(value: LambdaIntegrationIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> LambdaIntegrationIdentifier:
     out: LambdaIntegrationIdentifier = {}  # type: ignore[typeddict-item]
-    if "functionArn" in data:
+    if data.get("functionArn") is not None:
         out["function_arn"] = data["functionArn"]
     else:
         raise DeserializationError("LambdaIntegrationIdentifier.function_arn required")

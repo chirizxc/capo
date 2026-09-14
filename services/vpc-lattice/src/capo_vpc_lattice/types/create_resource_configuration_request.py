@@ -112,11 +112,11 @@ def serialize_json(value: CreateResourceConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateResourceConfigurationRequest:
     out: CreateResourceConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateResourceConfigurationRequest.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_vpc_lattice.types.resource_configuration_type
 
         out["type"] = (
@@ -126,21 +126,21 @@ def deserialize_json(data: dict) -> CreateResourceConfigurationRequest:
         )
     else:
         raise DeserializationError("CreateResourceConfigurationRequest.type required")
-    if "portRanges" in data:
+    if data.get("portRanges") is not None:
         import capo_vpc_lattice.types.port_range_list
 
         out["port_ranges"] = capo_vpc_lattice.types.port_range_list.deserialize_json(
             data["portRanges"]
         )
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
-    if "resourceGatewayIdentifier" in data:
+    if data.get("resourceGatewayIdentifier") is not None:
         out["resource_gateway_identifier"] = data["resourceGatewayIdentifier"]
-    if "resourceConfigurationGroupIdentifier" in data:
+    if data.get("resourceConfigurationGroupIdentifier") is not None:
         out["resource_configuration_group_identifier"] = data[
             "resourceConfigurationGroupIdentifier"
         ]
-    if "resourceConfigurationDefinition" in data:
+    if data.get("resourceConfigurationDefinition") is not None:
         import capo_vpc_lattice.types.resource_configuration_definition
 
         out["resource_configuration_definition"] = (
@@ -148,19 +148,19 @@ def deserialize_json(data: dict) -> CreateResourceConfigurationRequest:
                 data["resourceConfigurationDefinition"]
             )
         )
-    if "allowAssociationToShareableServiceNetwork" in data:
+    if data.get("allowAssociationToShareableServiceNetwork") is not None:
         out["allow_association_to_shareable_service_network"] = data[
             "allowAssociationToShareableServiceNetwork"
         ]
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "groupDomain" in data:
+    if data.get("groupDomain") is not None:
         out["group_domain"] = data["groupDomain"]
-    if "domainVerificationIdentifier" in data:
+    if data.get("domainVerificationIdentifier") is not None:
         out["domain_verification_identifier"] = data["domainVerificationIdentifier"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])

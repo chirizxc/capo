@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TagCollectionFilters:
 
     out: TagCollectionFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.tag_collection_filter.deserialize_json(item))
     return out

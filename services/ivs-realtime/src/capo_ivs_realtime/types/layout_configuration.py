@@ -36,13 +36,13 @@ def serialize_json(value: LayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LayoutConfiguration:
     out: LayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "grid" in data:
+    if data.get("grid") is not None:
         import capo_ivs_realtime.types.grid_configuration
 
         out["grid"] = capo_ivs_realtime.types.grid_configuration.deserialize_json(
             data["grid"]
         )
-    if "pip" in data:
+    if data.get("pip") is not None:
         import capo_ivs_realtime.types.pip_configuration
 
         out["pip"] = capo_ivs_realtime.types.pip_configuration.deserialize_json(

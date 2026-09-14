@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PostLaunchActionsLaunchStatusList:
 
     out: PostLaunchActionsLaunchStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.job_post_launch_actions_launch_status.deserialize_json(item)
         )

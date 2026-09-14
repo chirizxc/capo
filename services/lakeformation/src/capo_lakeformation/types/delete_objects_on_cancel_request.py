@@ -46,25 +46,25 @@ def serialize_json(value: DeleteObjectsOnCancelRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteObjectsOnCancelRequest:
     out: DeleteObjectsOnCancelRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "DeleteObjectsOnCancelRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("DeleteObjectsOnCancelRequest.table_name required")
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
     else:
         raise DeserializationError(
             "DeleteObjectsOnCancelRequest.transaction_id required"
         )
-    if "Objects" in data:
+    if data.get("Objects") is not None:
         import capo_lakeformation.types.virtual_object_list
 
         out["objects"] = capo_lakeformation.types.virtual_object_list.deserialize_json(

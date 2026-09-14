@@ -117,11 +117,11 @@ def serialize_json(value: AwsAppSyncGraphQlApiDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAppSyncGraphQlApiDetails:
     out: AwsAppSyncGraphQlApiDetails = {}  # type: ignore[typeddict-item]
-    if "ApiId" in data:
+    if data.get("ApiId") is not None:
         out["api_id"] = data["ApiId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "OpenIdConnectConfig" in data:
+    if data.get("OpenIdConnectConfig") is not None:
         import capo_securityhub.types.aws_app_sync_graph_ql_api_open_id_connect_config_details
 
         out["open_id_connect_config"] = (
@@ -129,9 +129,9 @@ def deserialize_json(data: dict) -> AwsAppSyncGraphQlApiDetails:
                 data["OpenIdConnectConfig"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LambdaAuthorizerConfig" in data:
+    if data.get("LambdaAuthorizerConfig") is not None:
         import capo_securityhub.types.aws_app_sync_graph_ql_api_lambda_authorizer_config_details
 
         out["lambda_authorizer_config"] = (
@@ -139,11 +139,11 @@ def deserialize_json(data: dict) -> AwsAppSyncGraphQlApiDetails:
                 data["LambdaAuthorizerConfig"]
             )
         )
-    if "XrayEnabled" in data:
+    if data.get("XrayEnabled") is not None:
         out["xray_enabled"] = data["XrayEnabled"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "UserPoolConfig" in data:
+    if data.get("UserPoolConfig") is not None:
         import capo_securityhub.types.aws_app_sync_graph_ql_api_user_pool_config_details
 
         out["user_pool_config"] = (
@@ -151,9 +151,9 @@ def deserialize_json(data: dict) -> AwsAppSyncGraphQlApiDetails:
                 data["UserPoolConfig"]
             )
         )
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         out["authentication_type"] = data["AuthenticationType"]
-    if "LogConfig" in data:
+    if data.get("LogConfig") is not None:
         import capo_securityhub.types.aws_app_sync_graph_ql_api_log_config_details
 
         out["log_config"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> AwsAppSyncGraphQlApiDetails:
                 data["LogConfig"]
             )
         )
-    if "AdditionalAuthenticationProviders" in data:
+    if data.get("AdditionalAuthenticationProviders") is not None:
         import capo_securityhub.types.aws_app_sync_graph_ql_api_additional_authentication_providers_list
 
         out["additional_authentication_providers"] = (
@@ -169,6 +169,6 @@ def deserialize_json(data: dict) -> AwsAppSyncGraphQlApiDetails:
                 data["AdditionalAuthenticationProviders"]
             )
         )
-    if "WafWebAclArn" in data:
+    if data.get("WafWebAclArn") is not None:
         out["waf_web_acl_arn"] = data["WafWebAclArn"]
     return out

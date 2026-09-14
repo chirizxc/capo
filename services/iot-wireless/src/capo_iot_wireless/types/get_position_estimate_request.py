@@ -76,7 +76,7 @@ def serialize_json(value: GetPositionEstimateRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetPositionEstimateRequest:
     out: GetPositionEstimateRequest = {}  # type: ignore[typeddict-item]
-    if "WiFiAccessPoints" in data:
+    if data.get("WiFiAccessPoints") is not None:
         import capo_iot_wireless.types.wi_fi_access_points
 
         out["wi_fi_access_points"] = (
@@ -84,27 +84,27 @@ def deserialize_json(data: dict) -> GetPositionEstimateRequest:
                 data["WiFiAccessPoints"]
             )
         )
-    if "CellTowers" in data:
+    if data.get("CellTowers") is not None:
         import capo_iot_wireless.types.cell_towers
 
         out["cell_towers"] = capo_iot_wireless.types.cell_towers.deserialize_json(
             data["CellTowers"]
         )
-    if "Ip" in data:
+    if data.get("Ip") is not None:
         import capo_iot_wireless.types.ip
 
         out["ip"] = capo_iot_wireless.types.ip.deserialize_json(data["Ip"])
-    if "Gnss" in data:
+    if data.get("Gnss") is not None:
         import capo_iot_wireless.types.gnss
 
         out["gnss"] = capo_iot_wireless.types.gnss.deserialize_json(data["Gnss"])
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_iot_wireless.types.creation_date
 
         out["timestamp"] = capo_iot_wireless.types.creation_date.deserialize_json(
             data["Timestamp"]
         )
-    if "AdvancedConfiguration" in data:
+    if data.get("AdvancedConfiguration") is not None:
         import capo_iot_wireless.types.advanced_configuration
 
         out["advanced_configuration"] = (

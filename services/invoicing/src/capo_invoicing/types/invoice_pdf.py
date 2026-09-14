@@ -56,11 +56,11 @@ def serialize_aws_json_1_0(value: InvoicePDF) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvoicePDF:
     out: InvoicePDF = {}  # type: ignore[typeddict-item]
-    if "InvoiceId" in data:
+    if data.get("InvoiceId") is not None:
         out["invoice_id"] = data["InvoiceId"]
-    if "DocumentUrl" in data:
+    if data.get("DocumentUrl") is not None:
         out["document_url"] = data["DocumentUrl"]
-    if "DocumentUrlExpirationDate" in data:
+    if data.get("DocumentUrlExpirationDate") is not None:
         import capo_invoicing.types._prelude.timestamp
 
         out["document_url_expiration_date"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoicePDF:
                 data["DocumentUrlExpirationDate"]
             )
         )
-    if "SupplementalDocuments" in data:
+    if data.get("SupplementalDocuments") is not None:
         import capo_invoicing.types.supplemental_documents
 
         out["supplemental_documents"] = (

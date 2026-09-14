@@ -42,13 +42,13 @@ def serialize_json(value: ProfileSummary) -> dict:
 
 def deserialize_json(data: dict) -> ProfileSummary:
     out: ProfileSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ShareStatus" in data:
+    if data.get("ShareStatus") is not None:
         import capo_route53profiles.types.share_status
 
         out["share_status"] = capo_route53profiles.types.share_status.deserialize_json(

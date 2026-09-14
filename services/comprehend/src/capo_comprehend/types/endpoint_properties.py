@@ -102,31 +102,31 @@ def serialize_aws_json_1_1(value: EndpointProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointProperties:
     out: EndpointProperties = {}  # type: ignore[typeddict-item]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_comprehend.types.endpoint_status
 
         out["status"] = capo_comprehend.types.endpoint_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "DesiredModelArn" in data:
+    if data.get("DesiredModelArn") is not None:
         out["desired_model_arn"] = data["DesiredModelArn"]
-    if "DesiredInferenceUnits" in data:
+    if data.get("DesiredInferenceUnits") is not None:
         out["desired_inference_units"] = data["DesiredInferenceUnits"]
-    if "CurrentInferenceUnits" in data:
+    if data.get("CurrentInferenceUnits") is not None:
         out["current_inference_units"] = data["CurrentInferenceUnits"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["last_modified_time"] = (
@@ -134,10 +134,10 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointProperties:
                 data["LastModifiedTime"]
             )
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "DesiredDataAccessRoleArn" in data:
+    if data.get("DesiredDataAccessRoleArn") is not None:
         out["desired_data_access_role_arn"] = data["DesiredDataAccessRoleArn"]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
     return out

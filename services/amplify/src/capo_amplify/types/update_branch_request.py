@@ -144,21 +144,21 @@ def serialize_json(value: UpdateBranchRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBranchRequest:
     out: UpdateBranchRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "framework" in data:
+    if data.get("framework") is not None:
         out["framework"] = data["framework"]
-    if "stage" in data:
+    if data.get("stage") is not None:
         import capo_amplify.types.stage
 
         out["stage"] = capo_amplify.types.stage.deserialize_json(data["stage"])
-    if "enableNotification" in data:
+    if data.get("enableNotification") is not None:
         out["enable_notification"] = data["enableNotification"]
-    if "enableAutoBuild" in data:
+    if data.get("enableAutoBuild") is not None:
         out["enable_auto_build"] = data["enableAutoBuild"]
-    if "enableSkewProtection" in data:
+    if data.get("enableSkewProtection") is not None:
         out["enable_skew_protection"] = data["enableSkewProtection"]
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_amplify.types.environment_variables
 
         out["environment_variables"] = (
@@ -166,28 +166,28 @@ def deserialize_json(data: dict) -> UpdateBranchRequest:
                 data["environmentVariables"]
             )
         )
-    if "basicAuthCredentials" in data:
+    if data.get("basicAuthCredentials") is not None:
         out["basic_auth_credentials"] = data["basicAuthCredentials"]
-    if "enableBasicAuth" in data:
+    if data.get("enableBasicAuth") is not None:
         out["enable_basic_auth"] = data["enableBasicAuth"]
-    if "enablePerformanceMode" in data:
+    if data.get("enablePerformanceMode") is not None:
         out["enable_performance_mode"] = data["enablePerformanceMode"]
-    if "buildSpec" in data:
+    if data.get("buildSpec") is not None:
         out["build_spec"] = data["buildSpec"]
-    if "ttl" in data:
+    if data.get("ttl") is not None:
         out["ttl"] = data["ttl"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "enablePullRequestPreview" in data:
+    if data.get("enablePullRequestPreview") is not None:
         out["enable_pull_request_preview"] = data["enablePullRequestPreview"]
-    if "pullRequestEnvironmentName" in data:
+    if data.get("pullRequestEnvironmentName") is not None:
         out["pull_request_environment_name"] = data["pullRequestEnvironmentName"]
-    if "backendEnvironmentArn" in data:
+    if data.get("backendEnvironmentArn") is not None:
         out["backend_environment_arn"] = data["backendEnvironmentArn"]
-    if "backend" in data:
+    if data.get("backend") is not None:
         import capo_amplify.types.backend
 
         out["backend"] = capo_amplify.types.backend.deserialize_json(data["backend"])
-    if "computeRoleArn" in data:
+    if data.get("computeRoleArn") is not None:
         out["compute_role_arn"] = data["computeRoleArn"]
     return out

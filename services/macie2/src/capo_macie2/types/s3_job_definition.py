@@ -51,7 +51,7 @@ def serialize_json(value: S3JobDefinition) -> dict:
 
 def deserialize_json(data: dict) -> S3JobDefinition:
     out: S3JobDefinition = {}  # type: ignore[typeddict-item]
-    if "bucketCriteria" in data:
+    if data.get("bucketCriteria") is not None:
         import capo_macie2.types.s3_bucket_criteria_for_job
 
         out["bucket_criteria"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> S3JobDefinition:
                 data["bucketCriteria"]
             )
         )
-    if "bucketDefinitions" in data:
+    if data.get("bucketDefinitions") is not None:
         import capo_macie2.types.__list_of_s3_bucket_definition_for_job
 
         out["bucket_definitions"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> S3JobDefinition:
                 data["bucketDefinitions"]
             )
         )
-    if "scoping" in data:
+    if data.get("scoping") is not None:
         import capo_macie2.types.scoping
 
         out["scoping"] = capo_macie2.types.scoping.deserialize_json(data["scoping"])

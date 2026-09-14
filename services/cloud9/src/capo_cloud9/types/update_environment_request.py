@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: UpdateEnvironmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEnvironmentRequest:
     out: UpdateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("UpdateEnvironmentRequest.environment_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "managedCredentialsAction" in data:
+    if data.get("managedCredentialsAction") is not None:
         import capo_cloud9.types.managed_credentials_action
 
         out["managed_credentials_action"] = (

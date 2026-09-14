@@ -97,9 +97,9 @@ def serialize_json(value: CreateTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTemplateRequest:
     out: CreateTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> CreateTemplateRequest:
                 data["Permissions"]
             )
         )
-    if "SourceEntity" in data:
+    if data.get("SourceEntity") is not None:
         import capo_quicksight.types.template_source_entity
 
         out["source_entity"] = (
@@ -115,13 +115,13 @@ def deserialize_json(data: dict) -> CreateTemplateRequest:
                 data["SourceEntity"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_quicksight.types.template_version_definition
 
         out["definition"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> CreateTemplateRequest:
                 data["Definition"]
             )
         )
-    if "ValidationStrategy" in data:
+    if data.get("ValidationStrategy") is not None:
         import capo_quicksight.types.validation_strategy
 
         out["validation_strategy"] = (

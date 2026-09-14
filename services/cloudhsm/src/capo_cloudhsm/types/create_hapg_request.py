@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateHapgRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHapgRequest:
     out: CreateHapgRequest = {}  # type: ignore[typeddict-item]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
     else:
         raise DeserializationError("CreateHapgRequest.label required")

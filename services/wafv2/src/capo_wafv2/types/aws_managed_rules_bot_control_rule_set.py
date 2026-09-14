@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: AWSManagedRulesBotControlRuleSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AWSManagedRulesBotControlRuleSet:
     out: AWSManagedRulesBotControlRuleSet = {}  # type: ignore[typeddict-item]
-    if "InspectionLevel" in data:
+    if data.get("InspectionLevel") is not None:
         import capo_wafv2.types.inspection_level
 
         out["inspection_level"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> AWSManagedRulesBotControlRuleSet:
         raise DeserializationError(
             "AWSManagedRulesBotControlRuleSet.inspection_level required"
         )
-    if "EnableMachineLearning" in data:
+    if data.get("EnableMachineLearning") is not None:
         out["enable_machine_learning"] = data["EnableMachineLearning"]
     else:
         out["enable_machine_learning"] = True

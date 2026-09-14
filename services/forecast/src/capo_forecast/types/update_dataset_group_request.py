@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: UpdateDatasetGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDatasetGroupRequest:
     out: UpdateDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetGroupArn" in data:
+    if data.get("DatasetGroupArn") is not None:
         out["dataset_group_arn"] = data["DatasetGroupArn"]
     else:
         raise DeserializationError(
             "UpdateDatasetGroupRequest.dataset_group_arn required"
         )
-    if "DatasetArns" in data:
+    if data.get("DatasetArns") is not None:
         import capo_forecast.types.arn_list
 
         out["dataset_arns"] = capo_forecast.types.arn_list.deserialize_aws_json_1_1(

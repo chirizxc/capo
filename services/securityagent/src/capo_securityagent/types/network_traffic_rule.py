@@ -48,7 +48,7 @@ def serialize_json(value: NetworkTrafficRule) -> dict:
 
 def deserialize_json(data: dict) -> NetworkTrafficRule:
     out: NetworkTrafficRule = {}  # type: ignore[typeddict-item]
-    if "effect" in data:
+    if data.get("effect") is not None:
         import capo_securityagent.types.network_traffic_rule_effect
 
         out["effect"] = (
@@ -56,9 +56,9 @@ def deserialize_json(data: dict) -> NetworkTrafficRule:
                 data["effect"]
             )
         )
-    if "pattern" in data:
+    if data.get("pattern") is not None:
         out["pattern"] = data["pattern"]
-    if "networkTrafficRuleType" in data:
+    if data.get("networkTrafficRuleType") is not None:
         import capo_securityagent.types.network_traffic_rule_type
 
         out["network_traffic_rule_type"] = (

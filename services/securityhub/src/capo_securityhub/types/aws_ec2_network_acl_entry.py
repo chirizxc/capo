@@ -65,28 +65,28 @@ def serialize_json(value: AwsEc2NetworkAclEntry) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2NetworkAclEntry:
     out: AwsEc2NetworkAclEntry = {}  # type: ignore[typeddict-item]
-    if "CidrBlock" in data:
+    if data.get("CidrBlock") is not None:
         out["cidr_block"] = data["CidrBlock"]
-    if "Egress" in data:
+    if data.get("Egress") is not None:
         out["egress"] = data["Egress"]
-    if "IcmpTypeCode" in data:
+    if data.get("IcmpTypeCode") is not None:
         import capo_securityhub.types.icmp_type_code
 
         out["icmp_type_code"] = capo_securityhub.types.icmp_type_code.deserialize_json(
             data["IcmpTypeCode"]
         )
-    if "Ipv6CidrBlock" in data:
+    if data.get("Ipv6CidrBlock") is not None:
         out["ipv6_cidr_block"] = data["Ipv6CidrBlock"]
-    if "PortRange" in data:
+    if data.get("PortRange") is not None:
         import capo_securityhub.types.port_range_from_to
 
         out["port_range"] = capo_securityhub.types.port_range_from_to.deserialize_json(
             data["PortRange"]
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
-    if "RuleAction" in data:
+    if data.get("RuleAction") is not None:
         out["rule_action"] = data["RuleAction"]
-    if "RuleNumber" in data:
+    if data.get("RuleNumber") is not None:
         out["rule_number"] = data["RuleNumber"]
     return out

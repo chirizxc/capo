@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: DeleteTapeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteTapeInput:
     out: DeleteTapeInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("DeleteTapeInput.gateway_arn required")
-    if "TapeARN" in data:
+    if data.get("TapeARN") is not None:
         out["tape_arn"] = data["TapeARN"]
     else:
         raise DeserializationError("DeleteTapeInput.tape_arn required")
-    if "BypassGovernanceRetention" in data:
+    if data.get("BypassGovernanceRetention") is not None:
         out["bypass_governance_retention"] = data["BypassGovernanceRetention"]
     else:
         out["bypass_governance_retention"] = False

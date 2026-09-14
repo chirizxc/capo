@@ -28,10 +28,10 @@ def serialize_json(value: RouteRentalAgency) -> dict:
 
 def deserialize_json(data: dict) -> RouteRentalAgency:
     out: RouteRentalAgency = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RouteRentalAgency.name required")
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

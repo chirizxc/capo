@@ -38,7 +38,7 @@ def serialize_json(value: PostAgentProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> PostAgentProfileRequest:
     out: PostAgentProfileRequest = {}  # type: ignore[typeddict-item]
-    if "agentProfile" in data:
+    if data.get("agentProfile") is not None:
         import capo_codeguruprofiler.types.agent_profile
 
         out["agent_profile"] = (

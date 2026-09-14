@@ -40,13 +40,13 @@ def serialize_aws_json_1_0(value: DeleteEnvironmentConnectorResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteEnvironmentConnectorResponse:
     out: DeleteEnvironmentConnectorResponse = {}  # type: ignore[typeddict-item]
-    if "connector" in data:
+    if data.get("connector") is not None:
         import capo_evs.types.connector
 
         out["connector"] = capo_evs.types.connector.deserialize_aws_json_1_0(
             data["connector"]
         )
-    if "environmentSummary" in data:
+    if data.get("environmentSummary") is not None:
         import capo_evs.types.environment_summary
 
         out["environment_summary"] = (

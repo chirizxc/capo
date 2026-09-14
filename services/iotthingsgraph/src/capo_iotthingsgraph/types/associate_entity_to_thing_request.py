@@ -33,14 +33,14 @@ def serialize_aws_json_1_1(value: AssociateEntityToThingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateEntityToThingRequest:
     out: AssociateEntityToThingRequest = {}  # type: ignore[typeddict-item]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
     else:
         raise DeserializationError("AssociateEntityToThingRequest.thing_name required")
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
     else:
         raise DeserializationError("AssociateEntityToThingRequest.entity_id required")
-    if "namespaceVersion" in data:
+    if data.get("namespaceVersion") is not None:
         out["namespace_version"] = data["namespaceVersion"]
     return out

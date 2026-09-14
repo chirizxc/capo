@@ -29,7 +29,7 @@ def serialize_json(value: S3DestinationAccessControl) -> dict:
 
 def deserialize_json(data: dict) -> S3DestinationAccessControl:
     out: S3DestinationAccessControl = {}  # type: ignore[typeddict-item]
-    if "cannedAcl" in data:
+    if data.get("cannedAcl") is not None:
         import capo_mediaconvert.types.s3_object_canned_acl
 
         out["canned_acl"] = (

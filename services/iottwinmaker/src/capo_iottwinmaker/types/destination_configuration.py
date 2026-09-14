@@ -50,11 +50,11 @@ def serialize_json(value: DestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DestinationConfiguration:
     out: DestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("DestinationConfiguration.type required")
-    if "s3Configuration" in data:
+    if data.get("s3Configuration") is not None:
         import capo_iottwinmaker.types.s3_destination_configuration
 
         out["s3_configuration"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> DestinationConfiguration:
                 data["s3Configuration"]
             )
         )
-    if "iotTwinMakerConfiguration" in data:
+    if data.get("iotTwinMakerConfiguration") is not None:
         import capo_iottwinmaker.types.iot_twin_maker_destination_configuration
 
         out["iot_twin_maker_configuration"] = (

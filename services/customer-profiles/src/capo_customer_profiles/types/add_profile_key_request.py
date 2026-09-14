@@ -38,15 +38,15 @@ def serialize_json(value: AddProfileKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddProfileKeyRequest:
     out: AddProfileKeyRequest = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError("AddProfileKeyRequest.profile_id required")
-    if "KeyName" in data:
+    if data.get("KeyName") is not None:
         out["key_name"] = data["KeyName"]
     else:
         raise DeserializationError("AddProfileKeyRequest.key_name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_customer_profiles.types.request_value_list
 
         out["values"] = (

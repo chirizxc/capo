@@ -28,11 +28,11 @@ def serialize_json(value: ClusterSummary) -> dict:
 
 def deserialize_json(data: dict) -> ClusterSummary:
     out: ClusterSummary = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("ClusterSummary.identifier required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ClusterSummary.arn required")

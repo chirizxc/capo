@@ -108,33 +108,33 @@ def serialize_aws_json_1_1(value: Application) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Application:
     out: Application = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "IconURL" in data:
+    if data.get("IconURL") is not None:
         out["icon_url"] = data["IconURL"]
-    if "LaunchPath" in data:
+    if data.get("LaunchPath") is not None:
         out["launch_path"] = data["LaunchPath"]
-    if "LaunchParameters" in data:
+    if data.get("LaunchParameters") is not None:
         out["launch_parameters"] = data["LaunchParameters"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_appstream.types.metadata
 
         out["metadata"] = capo_appstream.types.metadata.deserialize_aws_json_1_1(
             data["Metadata"]
         )
-    if "WorkingDirectory" in data:
+    if data.get("WorkingDirectory") is not None:
         out["working_directory"] = data["WorkingDirectory"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AppBlockArn" in data:
+    if data.get("AppBlockArn") is not None:
         out["app_block_arn"] = data["AppBlockArn"]
-    if "IconS3Location" in data:
+    if data.get("IconS3Location") is not None:
         import capo_appstream.types.s3_location
 
         out["icon_s3_location"] = (
@@ -142,13 +142,13 @@ def deserialize_aws_json_1_1(data: dict) -> Application:
                 data["IconS3Location"]
             )
         )
-    if "Platforms" in data:
+    if data.get("Platforms") is not None:
         import capo_appstream.types.platforms
 
         out["platforms"] = capo_appstream.types.platforms.deserialize_aws_json_1_1(
             data["Platforms"]
         )
-    if "InstanceFamilies" in data:
+    if data.get("InstanceFamilies") is not None:
         import capo_appstream.types.string_list
 
         out["instance_families"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> Application:
                 data["InstanceFamilies"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_appstream.types.timestamp
 
         out["created_time"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(

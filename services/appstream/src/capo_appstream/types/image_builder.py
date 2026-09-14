@@ -190,33 +190,33 @@ def serialize_aws_json_1_1(value: ImageBuilder) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImageBuilder:
     out: ImageBuilder = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ImageArn" in data:
+    if data.get("ImageArn") is not None:
         out["image_arn"] = data["ImageArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_appstream.types.vpc_config
 
         out["vpc_config"] = capo_appstream.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_appstream.types.platform_type
 
         out["platform"] = capo_appstream.types.platform_type.deserialize_aws_json_1_1(
             data["Platform"]
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_appstream.types.image_builder_state
 
         out["state"] = (
@@ -224,7 +224,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImageBuilder:
                 data["State"]
             )
         )
-    if "StateChangeReason" in data:
+    if data.get("StateChangeReason") is not None:
         import capo_appstream.types.image_builder_state_change_reason
 
         out["state_change_reason"] = (
@@ -232,15 +232,15 @@ def deserialize_aws_json_1_1(data: dict) -> ImageBuilder:
                 data["StateChangeReason"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_appstream.types.timestamp
 
         out["created_time"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedTime"]
         )
-    if "EnableDefaultInternetAccess" in data:
+    if data.get("EnableDefaultInternetAccess") is not None:
         out["enable_default_internet_access"] = data["EnableDefaultInternetAccess"]
-    if "DomainJoinInfo" in data:
+    if data.get("DomainJoinInfo") is not None:
         import capo_appstream.types.domain_join_info
 
         out["domain_join_info"] = (
@@ -248,7 +248,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImageBuilder:
                 data["DomainJoinInfo"]
             )
         )
-    if "NetworkAccessConfiguration" in data:
+    if data.get("NetworkAccessConfiguration") is not None:
         import capo_appstream.types.network_access_configuration
 
         out["network_access_configuration"] = (
@@ -256,7 +256,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImageBuilder:
                 data["NetworkAccessConfiguration"]
             )
         )
-    if "ImageBuilderErrors" in data:
+    if data.get("ImageBuilderErrors") is not None:
         import capo_appstream.types.resource_errors
 
         out["image_builder_errors"] = (
@@ -264,9 +264,9 @@ def deserialize_aws_json_1_1(data: dict) -> ImageBuilder:
                 data["ImageBuilderErrors"]
             )
         )
-    if "AppstreamAgentVersion" in data:
+    if data.get("AppstreamAgentVersion") is not None:
         out["appstream_agent_version"] = data["AppstreamAgentVersion"]
-    if "AccessEndpoints" in data:
+    if data.get("AccessEndpoints") is not None:
         import capo_appstream.types.access_endpoint_list
 
         out["access_endpoints"] = (
@@ -274,7 +274,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImageBuilder:
                 data["AccessEndpoints"]
             )
         )
-    if "RootVolumeConfig" in data:
+    if data.get("RootVolumeConfig") is not None:
         import capo_appstream.types.volume_config
 
         out["root_volume_config"] = (
@@ -282,7 +282,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImageBuilder:
                 data["RootVolumeConfig"]
             )
         )
-    if "LatestAppstreamAgentVersion" in data:
+    if data.get("LatestAppstreamAgentVersion") is not None:
         import capo_appstream.types.latest_appstream_agent_version
 
         out["latest_appstream_agent_version"] = (
@@ -290,6 +290,6 @@ def deserialize_aws_json_1_1(data: dict) -> ImageBuilder:
                 data["LatestAppstreamAgentVersion"]
             )
         )
-    if "DisableIMDSV1" in data:
+    if data.get("DisableIMDSV1") is not None:
         out["disable_imdsv1"] = data["DisableIMDSV1"]
     return out

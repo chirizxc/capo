@@ -107,7 +107,7 @@ def serialize_aws_json_1_1(value: GetSegmentDetectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSegmentDetectionResponse:
     out: GetSegmentDetectionResponse = {}  # type: ignore[typeddict-item]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_rekognition.types.video_job_status
 
         out["job_status"] = (
@@ -115,9 +115,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetSegmentDetectionResponse:
                 data["JobStatus"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "VideoMetadata" in data:
+    if data.get("VideoMetadata") is not None:
         import capo_rekognition.types.video_metadata_list
 
         out["video_metadata"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSegmentDetectionResponse:
                 data["VideoMetadata"]
             )
         )
-    if "AudioMetadata" in data:
+    if data.get("AudioMetadata") is not None:
         import capo_rekognition.types.audio_metadata_list
 
         out["audio_metadata"] = (
@@ -133,9 +133,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetSegmentDetectionResponse:
                 data["AudioMetadata"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Segments" in data:
+    if data.get("Segments") is not None:
         import capo_rekognition.types.segment_detections
 
         out["segments"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSegmentDetectionResponse:
                 data["Segments"]
             )
         )
-    if "SelectedSegmentTypes" in data:
+    if data.get("SelectedSegmentTypes") is not None:
         import capo_rekognition.types.segment_types_info
 
         out["selected_segment_types"] = (
@@ -151,14 +151,14 @@ def deserialize_aws_json_1_1(data: dict) -> GetSegmentDetectionResponse:
                 data["SelectedSegmentTypes"]
             )
         )
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_rekognition.types.video
 
         out["video"] = capo_rekognition.types.video.deserialize_aws_json_1_1(
             data["Video"]
         )
-    if "JobTag" in data:
+    if data.get("JobTag") is not None:
         out["job_tag"] = data["JobTag"]
     return out

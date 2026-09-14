@@ -36,7 +36,7 @@ def serialize_json(value: ListInputDevicesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListInputDevicesResponse:
     out: ListInputDevicesResponse = {}  # type: ignore[typeddict-item]
-    if "inputDevices" in data:
+    if data.get("inputDevices") is not None:
         import capo_medialive.types.__list_of_input_device_summary
 
         out["input_devices"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListInputDevicesResponse:
                 data["inputDevices"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

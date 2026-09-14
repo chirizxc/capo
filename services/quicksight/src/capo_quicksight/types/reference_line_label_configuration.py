@@ -88,7 +88,7 @@ def serialize_json(value: ReferenceLineLabelConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ReferenceLineLabelConfiguration:
     out: ReferenceLineLabelConfiguration = {}  # type: ignore[typeddict-item]
-    if "ValueLabelConfiguration" in data:
+    if data.get("ValueLabelConfiguration") is not None:
         import capo_quicksight.types.reference_line_value_label_configuration
 
         out["value_label_configuration"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> ReferenceLineLabelConfiguration:
                 data["ValueLabelConfiguration"]
             )
         )
-    if "CustomLabelConfiguration" in data:
+    if data.get("CustomLabelConfiguration") is not None:
         import capo_quicksight.types.reference_line_custom_label_configuration
 
         out["custom_label_configuration"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> ReferenceLineLabelConfiguration:
                 data["CustomLabelConfiguration"]
             )
         )
-    if "FontConfiguration" in data:
+    if data.get("FontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["font_configuration"] = (
@@ -112,9 +112,9 @@ def deserialize_json(data: dict) -> ReferenceLineLabelConfiguration:
                 data["FontConfiguration"]
             )
         )
-    if "FontColor" in data:
+    if data.get("FontColor") is not None:
         out["font_color"] = data["FontColor"]
-    if "HorizontalPosition" in data:
+    if data.get("HorizontalPosition") is not None:
         import capo_quicksight.types.reference_line_label_horizontal_position
 
         out["horizontal_position"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> ReferenceLineLabelConfiguration:
                 data["HorizontalPosition"]
             )
         )
-    if "VerticalPosition" in data:
+    if data.get("VerticalPosition") is not None:
         import capo_quicksight.types.reference_line_label_vertical_position
 
         out["vertical_position"] = (

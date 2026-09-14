@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AuditFindings:
 
     out: AuditFindings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_application_signals.types.audit_finding.deserialize_json(item))
     return out

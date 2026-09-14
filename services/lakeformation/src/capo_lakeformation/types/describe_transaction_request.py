@@ -24,7 +24,7 @@ def serialize_json(value: DescribeTransactionRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTransactionRequest:
     out: DescribeTransactionRequest = {}  # type: ignore[typeddict-item]
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
     else:
         raise DeserializationError("DescribeTransactionRequest.transaction_id required")

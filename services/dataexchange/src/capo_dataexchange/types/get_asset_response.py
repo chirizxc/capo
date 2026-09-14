@@ -85,39 +85,39 @@ def serialize_json(value: GetAssetResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAssetResponse:
     out: GetAssetResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AssetDetails" in data:
+    if data.get("AssetDetails") is not None:
         import capo_dataexchange.types.asset_details
 
         out["asset_details"] = capo_dataexchange.types.asset_details.deserialize_json(
             data["AssetDetails"]
         )
-    if "AssetType" in data:
+    if data.get("AssetType") is not None:
         out["asset_type"] = data["AssetType"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["created_at"] = capo_dataexchange.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_dataexchange.types.map_of__string
 
         out["tags"] = capo_dataexchange.types.map_of__string.deserialize_json(
             data["Tags"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["updated_at"] = capo_dataexchange.types.timestamp.deserialize_json(

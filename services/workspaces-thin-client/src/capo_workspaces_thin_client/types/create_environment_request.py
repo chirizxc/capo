@@ -118,15 +118,15 @@ def serialize_json(value: CreateEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentRequest:
     out: CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "desktopArn" in data:
+    if data.get("desktopArn") is not None:
         out["desktop_arn"] = data["desktopArn"]
     else:
         raise DeserializationError("CreateEnvironmentRequest.desktop_arn required")
-    if "desktopEndpoint" in data:
+    if data.get("desktopEndpoint") is not None:
         out["desktop_endpoint"] = data["desktopEndpoint"]
-    if "softwareSetUpdateSchedule" in data:
+    if data.get("softwareSetUpdateSchedule") is not None:
         import capo_workspaces_thin_client.types.software_set_update_schedule
 
         out["software_set_update_schedule"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> CreateEnvironmentRequest:
                 data["softwareSetUpdateSchedule"]
             )
         )
-    if "maintenanceWindow" in data:
+    if data.get("maintenanceWindow") is not None:
         import capo_workspaces_thin_client.types.maintenance_window
 
         out["maintenance_window"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> CreateEnvironmentRequest:
                 data["maintenanceWindow"]
             )
         )
-    if "softwareSetUpdateMode" in data:
+    if data.get("softwareSetUpdateMode") is not None:
         import capo_workspaces_thin_client.types.software_set_update_mode
 
         out["software_set_update_mode"] = (
@@ -150,19 +150,19 @@ def deserialize_json(data: dict) -> CreateEnvironmentRequest:
                 data["softwareSetUpdateMode"]
             )
         )
-    if "desiredSoftwareSetId" in data:
+    if data.get("desiredSoftwareSetId") is not None:
         out["desired_software_set_id"] = data["desiredSoftwareSetId"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_workspaces_thin_client.types.tags_map
 
         out["tags"] = capo_workspaces_thin_client.types.tags_map.deserialize_json(
             data["tags"]
         )
-    if "deviceCreationTags" in data:
+    if data.get("deviceCreationTags") is not None:
         import capo_workspaces_thin_client.types.device_creation_tags_map
 
         out["device_creation_tags"] = (

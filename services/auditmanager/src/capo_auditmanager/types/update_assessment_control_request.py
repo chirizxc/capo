@@ -42,12 +42,12 @@ def serialize_json(value: UpdateAssessmentControlRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssessmentControlRequest:
     out: UpdateAssessmentControlRequest = {}  # type: ignore[typeddict-item]
-    if "controlStatus" in data:
+    if data.get("controlStatus") is not None:
         import capo_auditmanager.types.control_status
 
         out["control_status"] = capo_auditmanager.types.control_status.deserialize_json(
             data["controlStatus"]
         )
-    if "commentBody" in data:
+    if data.get("commentBody") is not None:
         out["comment_body"] = data["commentBody"]
     return out

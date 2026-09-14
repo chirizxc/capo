@@ -40,7 +40,7 @@ def serialize_json(value: WorkerConfigurationRevisionSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkerConfigurationRevisionSummary:
     out: WorkerConfigurationRevisionSummary = {}  # type: ignore[typeddict-item]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafkaconnect.types.__timestamp_iso8601
 
         out["creation_time"] = (
@@ -48,9 +48,9 @@ def deserialize_json(data: dict) -> WorkerConfigurationRevisionSummary:
                 data["creationTime"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         out["revision"] = 0

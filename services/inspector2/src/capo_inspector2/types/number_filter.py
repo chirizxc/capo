@@ -14,16 +14,32 @@ class NumberFilter(TypedDict, closed=True):
 def serialize_json(value: NumberFilter) -> dict:
     out: dict = {}
     if "upper_inclusive" in value:
-        out["upperInclusive"] = value["upper_inclusive"]
+        out["upperInclusive"] = (
+            "NaN"
+            if value["upper_inclusive"] != value["upper_inclusive"]
+            else "Infinity"
+            if value["upper_inclusive"] == float("inf")
+            else "-Infinity"
+            if value["upper_inclusive"] == float("-inf")
+            else value["upper_inclusive"]
+        )
     if "lower_inclusive" in value:
-        out["lowerInclusive"] = value["lower_inclusive"]
+        out["lowerInclusive"] = (
+            "NaN"
+            if value["lower_inclusive"] != value["lower_inclusive"]
+            else "Infinity"
+            if value["lower_inclusive"] == float("inf")
+            else "-Infinity"
+            if value["lower_inclusive"] == float("-inf")
+            else value["lower_inclusive"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> NumberFilter:
     out: NumberFilter = {}  # type: ignore[typeddict-item]
-    if "upperInclusive" in data:
-        out["upper_inclusive"] = data["upperInclusive"]
-    if "lowerInclusive" in data:
-        out["lower_inclusive"] = data["lowerInclusive"]
+    if data.get("upperInclusive") is not None:
+        out["upper_inclusive"] = float(data["upperInclusive"])
+    if data.get("lowerInclusive") is not None:
+        out["lower_inclusive"] = float(data["lowerInclusive"])
     return out

@@ -57,11 +57,11 @@ def serialize_aws_json_1_1(value: UpdateListenerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateListenerRequest:
     out: UpdateListenerRequest = {}  # type: ignore[typeddict-item]
-    if "ListenerArn" in data:
+    if data.get("ListenerArn") is not None:
         out["listener_arn"] = data["ListenerArn"]
     else:
         raise DeserializationError("UpdateListenerRequest.listener_arn required")
-    if "PortRanges" in data:
+    if data.get("PortRanges") is not None:
         import capo_global_accelerator.types.port_ranges
 
         out["port_ranges"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateListenerRequest:
                 data["PortRanges"]
             )
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_global_accelerator.types.protocol
 
         out["protocol"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateListenerRequest:
                 data["Protocol"]
             )
         )
-    if "ClientAffinity" in data:
+    if data.get("ClientAffinity") is not None:
         import capo_global_accelerator.types.client_affinity
 
         out["client_affinity"] = (

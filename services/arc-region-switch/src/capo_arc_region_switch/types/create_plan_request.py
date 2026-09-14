@@ -114,9 +114,9 @@ def serialize_aws_json_1_0(value: CreatePlanRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreatePlanRequest:
     out: CreatePlanRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "workflows" in data:
+    if data.get("workflows") is not None:
         import capo_arc_region_switch.types.workflow_list
 
         out["workflows"] = (
@@ -126,13 +126,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePlanRequest:
         )
     else:
         raise DeserializationError("CreatePlanRequest.workflows required")
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
     else:
         raise DeserializationError("CreatePlanRequest.execution_role required")
-    if "recoveryTimeObjectiveMinutes" in data:
+    if data.get("recoveryTimeObjectiveMinutes") is not None:
         out["recovery_time_objective_minutes"] = data["recoveryTimeObjectiveMinutes"]
-    if "associatedAlarms" in data:
+    if data.get("associatedAlarms") is not None:
         import capo_arc_region_switch.types.associated_alarm_map
 
         out["associated_alarms"] = (
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePlanRequest:
                 data["associatedAlarms"]
             )
         )
-    if "triggers" in data:
+    if data.get("triggers") is not None:
         import capo_arc_region_switch.types.trigger_list
 
         out["triggers"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePlanRequest:
                 data["triggers"]
             )
         )
-    if "reportConfiguration" in data:
+    if data.get("reportConfiguration") is not None:
         import capo_arc_region_switch.types.report_configuration
 
         out["report_configuration"] = (
@@ -156,11 +156,11 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePlanRequest:
                 data["reportConfiguration"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreatePlanRequest.name required")
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_arc_region_switch.types.region_list
 
         out["regions"] = (
@@ -170,7 +170,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePlanRequest:
         )
     else:
         raise DeserializationError("CreatePlanRequest.regions required")
-    if "recoveryApproach" in data:
+    if data.get("recoveryApproach") is not None:
         import capo_arc_region_switch.types.recovery_approach
 
         out["recovery_approach"] = (
@@ -180,9 +180,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePlanRequest:
         )
     else:
         raise DeserializationError("CreatePlanRequest.recovery_approach required")
-    if "primaryRegion" in data:
+    if data.get("primaryRegion") is not None:
         out["primary_region"] = data["primaryRegion"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_arc_region_switch.types.tags
 
         out["tags"] = capo_arc_region_switch.types.tags.deserialize_aws_json_1_0(

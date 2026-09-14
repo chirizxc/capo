@@ -36,7 +36,7 @@ def serialize_json(value: FindingHistoryUpdateSource) -> dict:
 
 def deserialize_json(data: dict) -> FindingHistoryUpdateSource:
     out: FindingHistoryUpdateSource = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_securityhub.types.finding_history_update_source_type
 
         out["type"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> FindingHistoryUpdateSource:
                 data["Type"]
             )
         )
-    if "Identity" in data:
+    if data.get("Identity") is not None:
         out["identity"] = data["Identity"]
     return out

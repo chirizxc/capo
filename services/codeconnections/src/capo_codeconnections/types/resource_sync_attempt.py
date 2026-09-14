@@ -67,7 +67,7 @@ def serialize_aws_json_1_0(value: ResourceSyncAttempt) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceSyncAttempt:
     out: ResourceSyncAttempt = {}  # type: ignore[typeddict-item]
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_codeconnections.types.resource_sync_event_list
 
         out["events"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceSyncAttempt:
         )
     else:
         raise DeserializationError("ResourceSyncAttempt.events required")
-    if "InitialRevision" in data:
+    if data.get("InitialRevision") is not None:
         import capo_codeconnections.types.revision
 
         out["initial_revision"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceSyncAttempt:
         )
     else:
         raise DeserializationError("ResourceSyncAttempt.initial_revision required")
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_codeconnections.types.timestamp
 
         out["started_at"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceSyncAttempt:
         )
     else:
         raise DeserializationError("ResourceSyncAttempt.started_at required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_codeconnections.types.resource_sync_status
 
         out["status"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceSyncAttempt:
         )
     else:
         raise DeserializationError("ResourceSyncAttempt.status required")
-    if "TargetRevision" in data:
+    if data.get("TargetRevision") is not None:
         import capo_codeconnections.types.revision
 
         out["target_revision"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceSyncAttempt:
         )
     else:
         raise DeserializationError("ResourceSyncAttempt.target_revision required")
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
     else:
         raise DeserializationError("ResourceSyncAttempt.target required")

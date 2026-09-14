@@ -32,12 +32,12 @@ def serialize_json(value: CreateAIGuardrailVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAIGuardrailVersionResponse:
     out: CreateAIGuardrailVersionResponse = {}  # type: ignore[typeddict-item]
-    if "aiGuardrail" in data:
+    if data.get("aiGuardrail") is not None:
         import capo_qconnect.types.ai_guardrail_data
 
         out["ai_guardrail"] = capo_qconnect.types.ai_guardrail_data.deserialize_json(
             data["aiGuardrail"]
         )
-    if "versionNumber" in data:
+    if data.get("versionNumber") is not None:
         out["version_number"] = data["versionNumber"]
     return out

@@ -215,19 +215,19 @@ def serialize_json(value: GetDashManifestConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GetDashManifestConfiguration:
     out: GetDashManifestConfiguration = {}  # type: ignore[typeddict-item]
-    if "ManifestName" in data:
+    if data.get("ManifestName") is not None:
         out["manifest_name"] = data["ManifestName"]
     else:
         raise DeserializationError(
             "GetDashManifestConfiguration.manifest_name required"
         )
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("GetDashManifestConfiguration.url required")
-    if "ManifestWindowSeconds" in data:
+    if data.get("ManifestWindowSeconds") is not None:
         out["manifest_window_seconds"] = data["ManifestWindowSeconds"]
-    if "FilterConfiguration" in data:
+    if data.get("FilterConfiguration") is not None:
         import capo_mediapackagev2.types.filter_configuration
 
         out["filter_configuration"] = (
@@ -235,15 +235,15 @@ def deserialize_json(data: dict) -> GetDashManifestConfiguration:
                 data["FilterConfiguration"]
             )
         )
-    if "MinUpdatePeriodSeconds" in data:
+    if data.get("MinUpdatePeriodSeconds") is not None:
         out["min_update_period_seconds"] = data["MinUpdatePeriodSeconds"]
-    if "MinBufferTimeSeconds" in data:
+    if data.get("MinBufferTimeSeconds") is not None:
         out["min_buffer_time_seconds"] = data["MinBufferTimeSeconds"]
-    if "SuggestedPresentationDelaySeconds" in data:
+    if data.get("SuggestedPresentationDelaySeconds") is not None:
         out["suggested_presentation_delay_seconds"] = data[
             "SuggestedPresentationDelaySeconds"
         ]
-    if "SegmentTemplateFormat" in data:
+    if data.get("SegmentTemplateFormat") is not None:
         import capo_mediapackagev2.types.dash_segment_template_format
 
         out["segment_template_format"] = (
@@ -251,7 +251,7 @@ def deserialize_json(data: dict) -> GetDashManifestConfiguration:
                 data["SegmentTemplateFormat"]
             )
         )
-    if "PeriodTriggers" in data:
+    if data.get("PeriodTriggers") is not None:
         import capo_mediapackagev2.types.dash_period_triggers
 
         out["period_triggers"] = (
@@ -259,13 +259,13 @@ def deserialize_json(data: dict) -> GetDashManifestConfiguration:
                 data["PeriodTriggers"]
             )
         )
-    if "ScteDash" in data:
+    if data.get("ScteDash") is not None:
         import capo_mediapackagev2.types.scte_dash
 
         out["scte_dash"] = capo_mediapackagev2.types.scte_dash.deserialize_json(
             data["ScteDash"]
         )
-    if "DrmSignaling" in data:
+    if data.get("DrmSignaling") is not None:
         import capo_mediapackagev2.types.dash_drm_signaling
 
         out["drm_signaling"] = (
@@ -273,25 +273,25 @@ def deserialize_json(data: dict) -> GetDashManifestConfiguration:
                 data["DrmSignaling"]
             )
         )
-    if "UtcTiming" in data:
+    if data.get("UtcTiming") is not None:
         import capo_mediapackagev2.types.dash_utc_timing
 
         out["utc_timing"] = capo_mediapackagev2.types.dash_utc_timing.deserialize_json(
             data["UtcTiming"]
         )
-    if "Profiles" in data:
+    if data.get("Profiles") is not None:
         import capo_mediapackagev2.types.dash_profiles
 
         out["profiles"] = capo_mediapackagev2.types.dash_profiles.deserialize_json(
             data["Profiles"]
         )
-    if "BaseUrls" in data:
+    if data.get("BaseUrls") is not None:
         import capo_mediapackagev2.types.dash_base_urls
 
         out["base_urls"] = capo_mediapackagev2.types.dash_base_urls.deserialize_json(
             data["BaseUrls"]
         )
-    if "ProgramInformation" in data:
+    if data.get("ProgramInformation") is not None:
         import capo_mediapackagev2.types.dash_program_information
 
         out["program_information"] = (
@@ -299,7 +299,7 @@ def deserialize_json(data: dict) -> GetDashManifestConfiguration:
                 data["ProgramInformation"]
             )
         )
-    if "DvbSettings" in data:
+    if data.get("DvbSettings") is not None:
         import capo_mediapackagev2.types.dash_dvb_settings
 
         out["dvb_settings"] = (
@@ -307,7 +307,7 @@ def deserialize_json(data: dict) -> GetDashManifestConfiguration:
                 data["DvbSettings"]
             )
         )
-    if "Compactness" in data:
+    if data.get("Compactness") is not None:
         import capo_mediapackagev2.types.dash_compactness
 
         out["compactness"] = (
@@ -315,7 +315,7 @@ def deserialize_json(data: dict) -> GetDashManifestConfiguration:
                 data["Compactness"]
             )
         )
-    if "AudioTimelinePattern" in data:
+    if data.get("AudioTimelinePattern") is not None:
         import capo_mediapackagev2.types.dash_audio_timeline_pattern
 
         out["audio_timeline_pattern"] = (
@@ -323,7 +323,7 @@ def deserialize_json(data: dict) -> GetDashManifestConfiguration:
                 data["AudioTimelinePattern"]
             )
         )
-    if "SubtitleConfiguration" in data:
+    if data.get("SubtitleConfiguration") is not None:
         import capo_mediapackagev2.types.dash_subtitle_configuration
 
         out["subtitle_configuration"] = (
@@ -331,13 +331,13 @@ def deserialize_json(data: dict) -> GetDashManifestConfiguration:
                 data["SubtitleConfiguration"]
             )
         )
-    if "UriPathType" in data:
+    if data.get("UriPathType") is not None:
         import capo_mediapackagev2.types.uri_path_type
 
         out["uri_path_type"] = capo_mediapackagev2.types.uri_path_type.deserialize_json(
             data["UriPathType"]
         )
-    if "AvailabilityStartTimeConfiguration" in data:
+    if data.get("AvailabilityStartTimeConfiguration") is not None:
         import capo_mediapackagev2.types.dash_availability_start_time_configuration
 
         out["availability_start_time_configuration"] = (

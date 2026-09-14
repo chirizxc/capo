@@ -51,7 +51,7 @@ def serialize_aws_json_1_0(value: ExportKeyInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportKeyInput:
     out: ExportKeyInput = {}  # type: ignore[typeddict-item]
-    if "KeyMaterial" in data:
+    if data.get("KeyMaterial") is not None:
         import capo_payment_cryptography.types.export_key_material
 
         out["key_material"] = (
@@ -61,11 +61,11 @@ def deserialize_aws_json_1_0(data: dict) -> ExportKeyInput:
         )
     else:
         raise DeserializationError("ExportKeyInput.key_material required")
-    if "ExportKeyIdentifier" in data:
+    if data.get("ExportKeyIdentifier") is not None:
         out["export_key_identifier"] = data["ExportKeyIdentifier"]
     else:
         raise DeserializationError("ExportKeyInput.export_key_identifier required")
-    if "ExportAttributes" in data:
+    if data.get("ExportAttributes") is not None:
         import capo_payment_cryptography.types.export_attributes
 
         out["export_attributes"] = (

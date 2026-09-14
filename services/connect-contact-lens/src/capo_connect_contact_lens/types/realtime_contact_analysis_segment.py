@@ -49,19 +49,19 @@ def serialize_json(value: RealtimeContactAnalysisSegment) -> dict:
 
 def deserialize_json(data: dict) -> RealtimeContactAnalysisSegment:
     out: RealtimeContactAnalysisSegment = {}  # type: ignore[typeddict-item]
-    if "Transcript" in data:
+    if data.get("Transcript") is not None:
         import capo_connect_contact_lens.types.transcript
 
         out["transcript"] = capo_connect_contact_lens.types.transcript.deserialize_json(
             data["Transcript"]
         )
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_connect_contact_lens.types.categories
 
         out["categories"] = capo_connect_contact_lens.types.categories.deserialize_json(
             data["Categories"]
         )
-    if "PostContactSummary" in data:
+    if data.get("PostContactSummary") is not None:
         import capo_connect_contact_lens.types.post_contact_summary
 
         out["post_contact_summary"] = (

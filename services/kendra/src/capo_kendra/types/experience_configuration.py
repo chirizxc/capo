@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ExperienceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExperienceConfiguration:
     out: ExperienceConfiguration = {}  # type: ignore[typeddict-item]
-    if "ContentSourceConfiguration" in data:
+    if data.get("ContentSourceConfiguration") is not None:
         import capo_kendra.types.content_source_configuration
 
         out["content_source_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExperienceConfiguration:
                 data["ContentSourceConfiguration"]
             )
         )
-    if "UserIdentityConfiguration" in data:
+    if data.get("UserIdentityConfiguration") is not None:
         import capo_kendra.types.user_identity_configuration
 
         out["user_identity_configuration"] = (

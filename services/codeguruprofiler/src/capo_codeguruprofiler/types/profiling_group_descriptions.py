@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ProfilingGroupDescriptions:
 
     out: ProfilingGroupDescriptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguruprofiler.types.profiling_group_description.deserialize_json(
                 item

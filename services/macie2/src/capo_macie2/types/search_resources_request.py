@@ -54,7 +54,7 @@ def serialize_json(value: SearchResourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchResourcesRequest:
     out: SearchResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "bucketCriteria" in data:
+    if data.get("bucketCriteria") is not None:
         import capo_macie2.types.search_resources_bucket_criteria
 
         out["bucket_criteria"] = (
@@ -62,11 +62,11 @@ def deserialize_json(data: dict) -> SearchResourcesRequest:
                 data["bucketCriteria"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sortCriteria" in data:
+    if data.get("sortCriteria") is not None:
         import capo_macie2.types.search_resources_sort_criteria
 
         out["sort_criteria"] = (

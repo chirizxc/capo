@@ -64,17 +64,17 @@ def serialize_json(value: CreatePredefinedAttributeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePredefinedAttributeRequest:
     out: CreatePredefinedAttributeRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreatePredefinedAttributeRequest.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.predefined_attribute_values
 
         out["values"] = capo_connect.types.predefined_attribute_values.deserialize_json(
             data["Values"]
         )
-    if "Purposes" in data:
+    if data.get("Purposes") is not None:
         import capo_connect.types.predefined_attribute_purpose_name_list
 
         out["purposes"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> CreatePredefinedAttributeRequest:
                 data["Purposes"]
             )
         )
-    if "AttributeConfiguration" in data:
+    if data.get("AttributeConfiguration") is not None:
         import capo_connect.types.input_predefined_attribute_configuration
 
         out["attribute_configuration"] = (

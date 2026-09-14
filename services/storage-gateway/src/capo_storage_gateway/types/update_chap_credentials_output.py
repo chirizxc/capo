@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: UpdateChapCredentialsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateChapCredentialsOutput:
     out: UpdateChapCredentialsOutput = {}  # type: ignore[typeddict-item]
-    if "TargetARN" in data:
+    if data.get("TargetARN") is not None:
         out["target_arn"] = data["TargetARN"]
-    if "InitiatorName" in data:
+    if data.get("InitiatorName") is not None:
         out["initiator_name"] = data["InitiatorName"]
     return out

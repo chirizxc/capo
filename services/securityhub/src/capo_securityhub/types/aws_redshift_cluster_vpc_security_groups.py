@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsRedshiftClusterVpcSecurityGroups:
 
     out: AwsRedshiftClusterVpcSecurityGroups = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_redshift_cluster_vpc_security_group.deserialize_json(
                 item

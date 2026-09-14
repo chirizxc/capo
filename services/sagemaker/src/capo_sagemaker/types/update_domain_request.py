@@ -126,9 +126,9 @@ def serialize_aws_json_1_1(value: UpdateDomainRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDomainRequest:
     out: UpdateDomainRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "DefaultUserSettings" in data:
+    if data.get("DefaultUserSettings") is not None:
         import capo_sagemaker.types.user_settings
 
         out["default_user_settings"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDomainRequest:
                 data["DefaultUserSettings"]
             )
         )
-    if "DomainSettingsForUpdate" in data:
+    if data.get("DomainSettingsForUpdate") is not None:
         import capo_sagemaker.types.domain_settings_for_update
 
         out["domain_settings_for_update"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDomainRequest:
                 data["DomainSettingsForUpdate"]
             )
         )
-    if "AppSecurityGroupManagement" in data:
+    if data.get("AppSecurityGroupManagement") is not None:
         import capo_sagemaker.types.app_security_group_management
 
         out["app_security_group_management"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDomainRequest:
                 data["AppSecurityGroupManagement"]
             )
         )
-    if "DefaultSpaceSettings" in data:
+    if data.get("DefaultSpaceSettings") is not None:
         import capo_sagemaker.types.default_space_settings
 
         out["default_space_settings"] = (
@@ -160,13 +160,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDomainRequest:
                 data["DefaultSpaceSettings"]
             )
         )
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_sagemaker.types.subnets
 
         out["subnet_ids"] = capo_sagemaker.types.subnets.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "AppNetworkAccessType" in data:
+    if data.get("AppNetworkAccessType") is not None:
         import capo_sagemaker.types.app_network_access_type
 
         out["app_network_access_type"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDomainRequest:
                 data["AppNetworkAccessType"]
             )
         )
-    if "TagPropagation" in data:
+    if data.get("TagPropagation") is not None:
         import capo_sagemaker.types.tag_propagation
 
         out["tag_propagation"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDomainRequest:
                 data["TagPropagation"]
             )
         )
-    if "HomeEfsFileSystemCreation" in data:
+    if data.get("HomeEfsFileSystemCreation") is not None:
         import capo_sagemaker.types.home_efs_file_system_creation
 
         out["home_efs_file_system_creation"] = (
@@ -190,6 +190,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDomainRequest:
                 data["HomeEfsFileSystemCreation"]
             )
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

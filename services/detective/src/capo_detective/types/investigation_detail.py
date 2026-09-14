@@ -71,31 +71,31 @@ def serialize_json(value: InvestigationDetail) -> dict:
 
 def deserialize_json(data: dict) -> InvestigationDetail:
     out: InvestigationDetail = {}  # type: ignore[typeddict-item]
-    if "InvestigationId" in data:
+    if data.get("InvestigationId") is not None:
         out["investigation_id"] = data["InvestigationId"]
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_detective.types.severity
 
         out["severity"] = capo_detective.types.severity.deserialize_json(
             data["Severity"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_detective.types.status
 
         out["status"] = capo_detective.types.status.deserialize_json(data["Status"])
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_detective.types.state
 
         out["state"] = capo_detective.types.state.deserialize_json(data["State"])
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_detective.types.timestamp
 
         out["created_time"] = capo_detective.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "EntityArn" in data:
+    if data.get("EntityArn") is not None:
         out["entity_arn"] = data["EntityArn"]
-    if "EntityType" in data:
+    if data.get("EntityType") is not None:
         import capo_detective.types.entity_type
 
         out["entity_type"] = capo_detective.types.entity_type.deserialize_json(

@@ -40,13 +40,13 @@ def serialize_aws_json_1_0(value: ListPolicyStoreAliasesInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListPolicyStoreAliasesInput:
     out: ListPolicyStoreAliasesInput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 5
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_verifiedpermissions.types.policy_store_alias_filter
 
         out["filter"] = (

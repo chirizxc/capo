@@ -36,12 +36,12 @@ def serialize_json(value: TaskTemplateDefaultFieldValue) -> dict:
 
 def deserialize_json(data: dict) -> TaskTemplateDefaultFieldValue:
     out: TaskTemplateDefaultFieldValue = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         import capo_connect.types.task_template_field_identifier
 
         out["id"] = capo_connect.types.task_template_field_identifier.deserialize_json(
             data["Id"]
         )
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
     return out

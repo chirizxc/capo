@@ -101,13 +101,13 @@ def serialize_json(value: DescribeExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeExecutionResponse:
     out: DescribeExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("DescribeExecutionResponse.execution_id required")
-    if "actionType" in data:
+    if data.get("actionType") is not None:
         out["action_type"] = data["actionType"]
-    if "targetResource" in data:
+    if data.get("targetResource") is not None:
         import capo_iotsitewise.types.target_resource
 
         out["target_resource"] = (
@@ -117,19 +117,19 @@ def deserialize_json(data: dict) -> DescribeExecutionResponse:
         )
     else:
         raise DeserializationError("DescribeExecutionResponse.target_resource required")
-    if "targetResourceVersion" in data:
+    if data.get("targetResourceVersion") is not None:
         out["target_resource_version"] = data["targetResourceVersion"]
     else:
         raise DeserializationError(
             "DescribeExecutionResponse.target_resource_version required"
         )
-    if "resolveTo" in data:
+    if data.get("resolveTo") is not None:
         import capo_iotsitewise.types.resolve_to
 
         out["resolve_to"] = capo_iotsitewise.types.resolve_to.deserialize_json(
             data["resolveTo"]
         )
-    if "executionStartTime" in data:
+    if data.get("executionStartTime") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["execution_start_time"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -139,13 +139,13 @@ def deserialize_json(data: dict) -> DescribeExecutionResponse:
         raise DeserializationError(
             "DescribeExecutionResponse.execution_start_time required"
         )
-    if "executionEndTime" in data:
+    if data.get("executionEndTime") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["execution_end_time"] = capo_iotsitewise.types.timestamp.deserialize_json(
             data["executionEndTime"]
         )
-    if "executionStatus" in data:
+    if data.get("executionStatus") is not None:
         import capo_iotsitewise.types.execution_status
 
         out["execution_status"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> DescribeExecutionResponse:
         raise DeserializationError(
             "DescribeExecutionResponse.execution_status required"
         )
-    if "executionResult" in data:
+    if data.get("executionResult") is not None:
         import capo_iotsitewise.types.execution_result
 
         out["execution_result"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> DescribeExecutionResponse:
                 data["executionResult"]
             )
         )
-    if "executionDetails" in data:
+    if data.get("executionDetails") is not None:
         import capo_iotsitewise.types.execution_details
 
         out["execution_details"] = (
@@ -173,6 +173,6 @@ def deserialize_json(data: dict) -> DescribeExecutionResponse:
                 data["executionDetails"]
             )
         )
-    if "executionEntityVersion" in data:
+    if data.get("executionEntityVersion") is not None:
         out["execution_entity_version"] = data["executionEntityVersion"]
     return out

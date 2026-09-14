@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.elasticsearchservice#AmazonElasticsearchService2015``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_elasticsearch_service._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_elasticsearch_service._auth._zapros_handler import AuthMiddleware
+from capo_elasticsearch_service._pagination import resolve_path as _resolve_path
 from capo_elasticsearch_service._services._aws_config import aaws_config
 from capo_elasticsearch_service._services._pipeline import (
     AsyncInterceptor,
@@ -301,16 +303,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.accept_inbound_cross_cluster_search_connection_request.AcceptInboundCrossClusterSearchConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["cross_cluster_search_connection_id"] = (
-            cross_cluster_search_connection_id
-        )
+        input_: capo_elasticsearch_service.types.accept_inbound_cross_cluster_search_connection_request.AcceptInboundCrossClusterSearchConnectionRequest = {
+            "cross_cluster_search_connection_id": cross_cluster_search_connection_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_tags(
@@ -348,15 +350,17 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.add_tags_request.AddTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_list"] = tag_list
+        input_: capo_elasticsearch_service.types.add_tags_request.AddTagsRequest = {
+            "arn": arn,
+            "tag_list": tag_list,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_package(
@@ -398,15 +402,17 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.associate_package_request.AssociatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.associate_package_request.AssociatePackageRequest = {
+            "package_id": package_id,
+            "domain_name": domain_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def authorize_vpc_endpoint_access(
@@ -448,15 +454,17 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.authorize_vpc_endpoint_access_request.AuthorizeVpcEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["account"] = account
+        input_: capo_elasticsearch_service.types.authorize_vpc_endpoint_access_request.AuthorizeVpcEndpointAccessRequest = {
+            "domain_name": domain_name,
+            "account": account,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_domain_config_change(
@@ -497,8 +505,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.cancel_domain_config_change_request.CancelDomainConfigChangeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.cancel_domain_config_change_request.CancelDomainConfigChangeRequest = {
+            "domain_name": domain_name
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -507,6 +516,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_elasticsearch_service_software_update(
@@ -544,14 +554,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.cancel_elasticsearch_service_software_update_request.CancelElasticsearchServiceSoftwareUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.cancel_elasticsearch_service_software_update_request.CancelElasticsearchServiceSoftwareUpdateRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_elasticsearch_domain(
@@ -658,8 +670,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.create_elasticsearch_domain_request.CreateElasticsearchDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.create_elasticsearch_domain_request.CreateElasticsearchDomainRequest = {
+            "domain_name": domain_name
+        }
         if elasticsearch_version is not None:
             input_["elasticsearch_version"] = elasticsearch_version
         if elasticsearch_cluster_config is not None:
@@ -702,6 +715,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_outbound_cross_cluster_search_connection(
@@ -743,16 +757,18 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.create_outbound_cross_cluster_search_connection_request.CreateOutboundCrossClusterSearchConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["source_domain_info"] = source_domain_info
-        input_["destination_domain_info"] = destination_domain_info
-        input_["connection_alias"] = connection_alias
+        input_: capo_elasticsearch_service.types.create_outbound_cross_cluster_search_connection_request.CreateOutboundCrossClusterSearchConnectionRequest = {
+            "source_domain_info": source_domain_info,
+            "destination_domain_info": destination_domain_info,
+            "connection_alias": connection_alias,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_package(
@@ -803,18 +819,20 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.create_package_request.CreatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
-        input_["package_type"] = package_type
+        input_: capo_elasticsearch_service.types.create_package_request.CreatePackageRequest = {
+            "package_name": package_name,
+            "package_type": package_type,
+            "package_source": package_source,
+        }
         if package_description is not None:
             input_["package_description"] = package_description
-        input_["package_source"] = package_source
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_vpc_endpoint(
@@ -860,9 +878,10 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.create_vpc_endpoint_request.CreateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_arn"] = domain_arn
-        input_["vpc_options"] = vpc_options
+        input_: capo_elasticsearch_service.types.create_vpc_endpoint_request.CreateVpcEndpointRequest = {
+            "domain_arn": domain_arn,
+            "vpc_options": vpc_options,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -871,6 +890,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_elasticsearch_domain(
@@ -908,14 +928,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.delete_elasticsearch_domain_request.DeleteElasticsearchDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.delete_elasticsearch_domain_request.DeleteElasticsearchDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_elasticsearch_service_role(
@@ -952,6 +974,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_inbound_cross_cluster_search_connection(
@@ -987,16 +1010,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.delete_inbound_cross_cluster_search_connection_request.DeleteInboundCrossClusterSearchConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["cross_cluster_search_connection_id"] = (
-            cross_cluster_search_connection_id
-        )
+        input_: capo_elasticsearch_service.types.delete_inbound_cross_cluster_search_connection_request.DeleteInboundCrossClusterSearchConnectionRequest = {
+            "cross_cluster_search_connection_id": cross_cluster_search_connection_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_outbound_cross_cluster_search_connection(
@@ -1032,16 +1055,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.delete_outbound_cross_cluster_search_connection_request.DeleteOutboundCrossClusterSearchConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["cross_cluster_search_connection_id"] = (
-            cross_cluster_search_connection_id
-        )
+        input_: capo_elasticsearch_service.types.delete_outbound_cross_cluster_search_connection_request.DeleteOutboundCrossClusterSearchConnectionRequest = {
+            "cross_cluster_search_connection_id": cross_cluster_search_connection_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_package(
@@ -1083,14 +1106,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.delete_package_request.DeletePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
+        input_: capo_elasticsearch_service.types.delete_package_request.DeletePackageRequest = {
+            "package_id": package_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_vpc_endpoint(
@@ -1128,14 +1153,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.delete_vpc_endpoint_request.DeleteVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_endpoint_id"] = vpc_endpoint_id
+        input_: capo_elasticsearch_service.types.delete_vpc_endpoint_request.DeleteVpcEndpointRequest = {
+            "vpc_endpoint_id": vpc_endpoint_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_domain_auto_tunes(
@@ -1181,8 +1208,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_domain_auto_tunes_request.DescribeDomainAutoTunesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.describe_domain_auto_tunes_request.DescribeDomainAutoTunesRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1193,7 +1221,33 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_domain_auto_tunes(
+        self,
+        domain_name: "capo_elasticsearch_service.types.domain_name.DomainName",
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.describe_domain_auto_tunes_response.DescribeDomainAutoTunesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_domain_auto_tunes(
+                domain_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_domain_change_progress(
         self,
@@ -1232,8 +1286,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_domain_change_progress_request.DescribeDomainChangeProgressRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.describe_domain_change_progress_request.DescribeDomainChangeProgressRequest = {
+            "domain_name": domain_name
+        }
         if change_id is not None:
             input_["change_id"] = change_id
 
@@ -1242,6 +1297,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_elasticsearch_domain(
@@ -1279,14 +1335,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_elasticsearch_domain_request.DescribeElasticsearchDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.describe_elasticsearch_domain_request.DescribeElasticsearchDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_elasticsearch_domain_config(
@@ -1324,14 +1382,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_elasticsearch_domain_config_request.DescribeElasticsearchDomainConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.describe_elasticsearch_domain_config_request.DescribeElasticsearchDomainConfigRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_elasticsearch_domains(
@@ -1368,14 +1428,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_elasticsearch_domains_request.DescribeElasticsearchDomainsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_names"] = domain_names
+        input_: capo_elasticsearch_service.types.describe_elasticsearch_domains_request.DescribeElasticsearchDomainsRequest = {
+            "domain_names": domain_names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_elasticsearch_instance_type_limits(
@@ -1421,17 +1483,19 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_elasticsearch_instance_type_limits_request.DescribeElasticsearchInstanceTypeLimitsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticsearch_service.types.describe_elasticsearch_instance_type_limits_request.DescribeElasticsearchInstanceTypeLimitsRequest = {
+            "instance_type": instance_type,
+            "elasticsearch_version": elasticsearch_version,
+        }
         if domain_name is not None:
             input_["domain_name"] = domain_name
-        input_["instance_type"] = instance_type
-        input_["elasticsearch_version"] = elasticsearch_version
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_inbound_cross_cluster_search_connections(
@@ -1477,7 +1541,7 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_inbound_cross_cluster_search_connections_request.DescribeInboundCrossClusterSearchConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticsearch_service.types.describe_inbound_cross_cluster_search_connections_request.DescribeInboundCrossClusterSearchConnectionsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1490,7 +1554,35 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_inbound_cross_cluster_search_connections(
+        self,
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        filters: Optional[
+            "capo_elasticsearch_service.types.filter_list.FilterList"
+        ] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.describe_inbound_cross_cluster_search_connections_response.DescribeInboundCrossClusterSearchConnectionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_inbound_cross_cluster_search_connections(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_outbound_cross_cluster_search_connections(
         self,
@@ -1535,7 +1627,7 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_outbound_cross_cluster_search_connections_request.DescribeOutboundCrossClusterSearchConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticsearch_service.types.describe_outbound_cross_cluster_search_connections_request.DescribeOutboundCrossClusterSearchConnectionsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1548,7 +1640,35 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_outbound_cross_cluster_search_connections(
+        self,
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        filters: Optional[
+            "capo_elasticsearch_service.types.filter_list.FilterList"
+        ] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.describe_outbound_cross_cluster_search_connections_response.DescribeOutboundCrossClusterSearchConnectionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_outbound_cross_cluster_search_connections(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_packages(
         self,
@@ -1596,7 +1716,7 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_packages_request.DescribePackagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticsearch_service.types.describe_packages_request.DescribePackagesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1609,7 +1729,35 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_packages(
+        self,
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        filters: Optional[
+            "capo_elasticsearch_service.types.describe_packages_filter_list.DescribePackagesFilterList"
+        ] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.describe_packages_response.DescribePackagesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_packages(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_reserved_elasticsearch_instance_offerings(
         self,
@@ -1656,7 +1804,7 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_reserved_elasticsearch_instance_offerings_request.DescribeReservedElasticsearchInstanceOfferingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticsearch_service.types.describe_reserved_elasticsearch_instance_offerings_request.DescribeReservedElasticsearchInstanceOfferingsRequest = {}
         if reserved_elasticsearch_instance_offering_id is not None:
             input_["reserved_elasticsearch_instance_offering_id"] = (
                 reserved_elasticsearch_instance_offering_id
@@ -1671,7 +1819,35 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_reserved_elasticsearch_instance_offerings(
+        self,
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        reserved_elasticsearch_instance_offering_id: Optional[
+            "capo_elasticsearch_service.types.guid.GUID"
+        ] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.describe_reserved_elasticsearch_instance_offerings_response.DescribeReservedElasticsearchInstanceOfferingsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_reserved_elasticsearch_instance_offerings(
+                config_overrides=config_overrides,
+                reserved_elasticsearch_instance_offering_id=reserved_elasticsearch_instance_offering_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_reserved_elasticsearch_instances(
         self,
@@ -1718,7 +1894,7 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_reserved_elasticsearch_instances_request.DescribeReservedElasticsearchInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticsearch_service.types.describe_reserved_elasticsearch_instances_request.DescribeReservedElasticsearchInstancesRequest = {}
         if reserved_elasticsearch_instance_id is not None:
             input_["reserved_elasticsearch_instance_id"] = (
                 reserved_elasticsearch_instance_id
@@ -1733,7 +1909,35 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_reserved_elasticsearch_instances(
+        self,
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        reserved_elasticsearch_instance_id: Optional[
+            "capo_elasticsearch_service.types.guid.GUID"
+        ] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.describe_reserved_elasticsearch_instances_response.DescribeReservedElasticsearchInstancesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_reserved_elasticsearch_instances(
+                config_overrides=config_overrides,
+                reserved_elasticsearch_instance_id=reserved_elasticsearch_instance_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_vpc_endpoints(
         self,
@@ -1770,14 +1974,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.describe_vpc_endpoints_request.DescribeVpcEndpointsRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_endpoint_ids"] = vpc_endpoint_ids
+        input_: capo_elasticsearch_service.types.describe_vpc_endpoints_request.DescribeVpcEndpointsRequest = {
+            "vpc_endpoint_ids": vpc_endpoint_ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def dissociate_package(
@@ -1819,15 +2025,17 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.dissociate_package_request.DissociatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.dissociate_package_request.DissociatePackageRequest = {
+            "package_id": package_id,
+            "domain_name": domain_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_compatible_elasticsearch_versions(
@@ -1865,7 +2073,7 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.get_compatible_elasticsearch_versions_request.GetCompatibleElasticsearchVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticsearch_service.types.get_compatible_elasticsearch_versions_request.GetCompatibleElasticsearchVersionsRequest = {}
         if domain_name is not None:
             input_["domain_name"] = domain_name
 
@@ -1874,6 +2082,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_package_version_history(
@@ -1920,8 +2129,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.get_package_version_history_request.GetPackageVersionHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
+        input_: capo_elasticsearch_service.types.get_package_version_history_request.GetPackageVersionHistoryRequest = {
+            "package_id": package_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1932,7 +2142,33 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_package_version_history(
+        self,
+        package_id: "capo_elasticsearch_service.types.package_id.PackageID",
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.get_package_version_history_response.GetPackageVersionHistoryResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_package_version_history(
+                package_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_upgrade_history(
         self,
@@ -1973,8 +2209,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.get_upgrade_history_request.GetUpgradeHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.get_upgrade_history_request.GetUpgradeHistoryRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1985,7 +2222,33 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_upgrade_history(
+        self,
+        domain_name: "capo_elasticsearch_service.types.domain_name.DomainName",
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.get_upgrade_history_response.GetUpgradeHistoryResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_upgrade_history(
+                domain_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_upgrade_status(
         self,
@@ -2020,14 +2283,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.get_upgrade_status_request.GetUpgradeStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.get_upgrade_status_request.GetUpgradeStatusRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_domain_names(
@@ -2065,7 +2330,7 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.list_domain_names_request.ListDomainNamesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticsearch_service.types.list_domain_names_request.ListDomainNamesRequest = {}
         if engine_type is not None:
             input_["engine_type"] = engine_type
 
@@ -2074,6 +2339,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_domains_for_package(
@@ -2120,8 +2386,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.list_domains_for_package_request.ListDomainsForPackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
+        input_: capo_elasticsearch_service.types.list_domains_for_package_request.ListDomainsForPackageRequest = {
+            "package_id": package_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2132,7 +2399,33 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_domains_for_package(
+        self,
+        package_id: "capo_elasticsearch_service.types.package_id.PackageID",
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.list_domains_for_package_response.ListDomainsForPackageResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_domains_for_package(
+                package_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_elasticsearch_instance_types(
         self,
@@ -2181,8 +2474,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.list_elasticsearch_instance_types_request.ListElasticsearchInstanceTypesRequest = {}  # type: ignore[typeddict-item]
-        input_["elasticsearch_version"] = elasticsearch_version
+        input_: capo_elasticsearch_service.types.list_elasticsearch_instance_types_request.ListElasticsearchInstanceTypesRequest = {
+            "elasticsearch_version": elasticsearch_version
+        }
         if domain_name is not None:
             input_["domain_name"] = domain_name
         if max_results is not None:
@@ -2195,7 +2489,37 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_elasticsearch_instance_types(
+        self,
+        elasticsearch_version: "capo_elasticsearch_service.types.elasticsearch_version_string.ElasticsearchVersionString",
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        domain_name: Optional[
+            "capo_elasticsearch_service.types.domain_name.DomainName"
+        ] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.list_elasticsearch_instance_types_response.ListElasticsearchInstanceTypesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_elasticsearch_instance_types(
+                elasticsearch_version,
+                config_overrides=config_overrides,
+                domain_name=domain_name,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_elasticsearch_versions(
         self,
@@ -2237,7 +2561,7 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.list_elasticsearch_versions_request.ListElasticsearchVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticsearch_service.types.list_elasticsearch_versions_request.ListElasticsearchVersionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2248,7 +2572,31 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_elasticsearch_versions(
+        self,
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.list_elasticsearch_versions_response.ListElasticsearchVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_elasticsearch_versions(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_packages_for_domain(
         self,
@@ -2294,8 +2642,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.list_packages_for_domain_request.ListPackagesForDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.list_packages_for_domain_request.ListPackagesForDomainRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2306,7 +2655,33 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_packages_for_domain(
+        self,
+        domain_name: "capo_elasticsearch_service.types.domain_name.DomainName",
+        *,
+        config_overrides: Optional[AsyncElasticsearchServiceClientConfig] = None,
+        max_results: Optional[
+            "capo_elasticsearch_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_elasticsearch_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_elasticsearch_service.types.list_packages_for_domain_response.ListPackagesForDomainResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_packages_for_domain(
+                domain_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags(
         self,
@@ -2343,14 +2718,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.list_tags_request.ListTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_elasticsearch_service.types.list_tags_request.ListTagsRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_vpc_endpoint_access(
@@ -2392,8 +2769,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.list_vpc_endpoint_access_request.ListVpcEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.list_vpc_endpoint_access_request.ListVpcEndpointAccessRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2402,6 +2780,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_vpc_endpoints(
@@ -2440,7 +2819,7 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.list_vpc_endpoints_request.ListVpcEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elasticsearch_service.types.list_vpc_endpoints_request.ListVpcEndpointsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2449,6 +2828,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_vpc_endpoints_for_domain(
@@ -2490,8 +2870,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.list_vpc_endpoints_for_domain_request.ListVpcEndpointsForDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.list_vpc_endpoints_for_domain_request.ListVpcEndpointsForDomainRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2500,6 +2881,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def purchase_reserved_elasticsearch_instance_offering(
@@ -2545,11 +2927,10 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.purchase_reserved_elasticsearch_instance_offering_request.PurchaseReservedElasticsearchInstanceOfferingRequest = {}  # type: ignore[typeddict-item]
-        input_["reserved_elasticsearch_instance_offering_id"] = (
-            reserved_elasticsearch_instance_offering_id
-        )
-        input_["reservation_name"] = reservation_name
+        input_: capo_elasticsearch_service.types.purchase_reserved_elasticsearch_instance_offering_request.PurchaseReservedElasticsearchInstanceOfferingRequest = {
+            "reserved_elasticsearch_instance_offering_id": reserved_elasticsearch_instance_offering_id,
+            "reservation_name": reservation_name,
+        }
         if instance_count is not None:
             input_["instance_count"] = instance_count
 
@@ -2558,6 +2939,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_inbound_cross_cluster_search_connection(
@@ -2593,16 +2975,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.reject_inbound_cross_cluster_search_connection_request.RejectInboundCrossClusterSearchConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["cross_cluster_search_connection_id"] = (
-            cross_cluster_search_connection_id
-        )
+        input_: capo_elasticsearch_service.types.reject_inbound_cross_cluster_search_connection_request.RejectInboundCrossClusterSearchConnectionRequest = {
+            "cross_cluster_search_connection_id": cross_cluster_search_connection_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_tags(
@@ -2639,15 +3021,17 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.remove_tags_request.RemoveTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_elasticsearch_service.types.remove_tags_request.RemoveTagsRequest = {
+            "arn": arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def revoke_vpc_endpoint_access(
@@ -2688,15 +3072,17 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.revoke_vpc_endpoint_access_request.RevokeVpcEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["account"] = account
+        input_: capo_elasticsearch_service.types.revoke_vpc_endpoint_access_request.RevokeVpcEndpointAccessRequest = {
+            "domain_name": domain_name,
+            "account": account,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_elasticsearch_service_software_update(
@@ -2734,14 +3120,16 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.start_elasticsearch_service_software_update_request.StartElasticsearchServiceSoftwareUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.start_elasticsearch_service_software_update_request.StartElasticsearchServiceSoftwareUpdateRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_elasticsearch_domain_config(
@@ -2843,8 +3231,9 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.update_elasticsearch_domain_config_request.UpdateElasticsearchDomainConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_elasticsearch_service.types.update_elasticsearch_domain_config_request.UpdateElasticsearchDomainConfigRequest = {
+            "domain_name": domain_name
+        }
         if elasticsearch_cluster_config is not None:
             input_["elasticsearch_cluster_config"] = elasticsearch_cluster_config
         if ebs_options is not None:
@@ -2885,6 +3274,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_package(
@@ -2935,9 +3325,10 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.update_package_request.UpdatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
-        input_["package_source"] = package_source
+        input_: capo_elasticsearch_service.types.update_package_request.UpdatePackageRequest = {
+            "package_id": package_id,
+            "package_source": package_source,
+        }
         if package_description is not None:
             input_["package_description"] = package_description
         if commit_message is not None:
@@ -2948,6 +3339,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_vpc_endpoint(
@@ -2989,15 +3381,17 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.update_vpc_endpoint_request.UpdateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_endpoint_id"] = vpc_endpoint_id
-        input_["vpc_options"] = vpc_options
+        input_: capo_elasticsearch_service.types.update_vpc_endpoint_request.UpdateVpcEndpointRequest = {
+            "vpc_endpoint_id": vpc_endpoint_id,
+            "vpc_options": vpc_options,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def upgrade_elasticsearch_domain(
@@ -3042,9 +3436,10 @@ class AsyncElasticsearchServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elasticsearch_service.types.upgrade_elasticsearch_domain_request.UpgradeElasticsearchDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["target_version"] = target_version
+        input_: capo_elasticsearch_service.types.upgrade_elasticsearch_domain_request.UpgradeElasticsearchDomainRequest = {
+            "domain_name": domain_name,
+            "target_version": target_version,
+        }
         if perform_check_only is not None:
             input_["perform_check_only"] = perform_check_only
 
@@ -3053,6 +3448,7 @@ class AsyncElasticsearchServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

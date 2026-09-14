@@ -37,7 +37,7 @@ def serialize_json(value: MedicalScribeEncryptionSettings) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeEncryptionSettings:
     out: MedicalScribeEncryptionSettings = {}  # type: ignore[typeddict-item]
-    if "KmsEncryptionContext" in data:
+    if data.get("KmsEncryptionContext") is not None:
         import capo_transcribe_streaming.types.kms_encryption_context_map
 
         out["kms_encryption_context"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> MedicalScribeEncryptionSettings:
                 data["KmsEncryptionContext"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     else:
         raise DeserializationError(

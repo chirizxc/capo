@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: Parent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Parent:
     out: Parent = {}  # type: ignore[typeddict-item]
-    if "TrialName" in data:
+    if data.get("TrialName") is not None:
         out["trial_name"] = data["TrialName"]
-    if "ExperimentName" in data:
+    if data.get("ExperimentName") is not None:
         out["experiment_name"] = data["ExperimentName"]
     return out

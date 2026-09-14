@@ -60,22 +60,22 @@ def serialize_json(value: AwsCodeBuildProjectArtifactsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCodeBuildProjectArtifactsDetails:
     out: AwsCodeBuildProjectArtifactsDetails = {}  # type: ignore[typeddict-item]
-    if "ArtifactIdentifier" in data:
+    if data.get("ArtifactIdentifier") is not None:
         out["artifact_identifier"] = data["ArtifactIdentifier"]
-    if "EncryptionDisabled" in data:
+    if data.get("EncryptionDisabled") is not None:
         out["encryption_disabled"] = data["EncryptionDisabled"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "NamespaceType" in data:
+    if data.get("NamespaceType") is not None:
         out["namespace_type"] = data["NamespaceType"]
-    if "OverrideArtifactName" in data:
+    if data.get("OverrideArtifactName") is not None:
         out["override_artifact_name"] = data["OverrideArtifactName"]
-    if "Packaging" in data:
+    if data.get("Packaging") is not None:
         out["packaging"] = data["Packaging"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

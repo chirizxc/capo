@@ -192,15 +192,17 @@ class AmplifyUIBuilderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.exchange_code_for_token_request.ExchangeCodeForTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
-        input_["request"] = request
+        input_: capo_amplifyuibuilder.types.exchange_code_for_token_request.ExchangeCodeForTokenRequest = {
+            "provider": provider,
+            "request": request,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_metadata(
@@ -237,15 +239,17 @@ class AmplifyUIBuilderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.get_metadata_request.GetMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.get_metadata_request.GetMetadataRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -283,14 +287,16 @@ class AmplifyUIBuilderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_amplifyuibuilder.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_metadata_flag(
@@ -329,17 +335,19 @@ class AmplifyUIBuilderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.put_metadata_flag_request.PutMetadataFlagRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["feature_name"] = feature_name
-        input_["body"] = body
+        input_: capo_amplifyuibuilder.types.put_metadata_flag_request.PutMetadataFlagRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "feature_name": feature_name,
+            "body": body,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def refresh_token(
@@ -375,15 +383,17 @@ class AmplifyUIBuilderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.refresh_token_request.RefreshTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
-        input_["refresh_token_body"] = refresh_token_body
+        input_: capo_amplifyuibuilder.types.refresh_token_request.RefreshTokenRequest = {
+            "provider": provider,
+            "refresh_token_body": refresh_token_body,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -423,15 +433,17 @@ class AmplifyUIBuilderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_amplifyuibuilder.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -471,15 +483,17 @@ class AmplifyUIBuilderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_amplifyuibuilder.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

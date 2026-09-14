@@ -145,23 +145,23 @@ def serialize_aws_json_1_1(value: DescribeMlflowAppResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowAppResponse:
     out: DescribeMlflowAppResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ArtifactStoreUri" in data:
+    if data.get("ArtifactStoreUri") is not None:
         out["artifact_store_uri"] = data["ArtifactStoreUri"]
-    if "MlflowVersion" in data:
+    if data.get("MlflowVersion") is not None:
         out["mlflow_version"] = data["MlflowVersion"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.mlflow_app_status
 
         out["status"] = capo_sagemaker.types.mlflow_app_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ModelRegistrationMode" in data:
+    if data.get("ModelRegistrationMode") is not None:
         import capo_sagemaker.types.model_registration_mode
 
         out["model_registration_mode"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowAppResponse:
                 data["ModelRegistrationMode"]
             )
         )
-    if "AccountDefaultStatus" in data:
+    if data.get("AccountDefaultStatus") is not None:
         import capo_sagemaker.types.account_default_status
 
         out["account_default_status"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowAppResponse:
                 data["AccountDefaultStatus"]
             )
         )
-    if "DefaultDomainIdList" in data:
+    if data.get("DefaultDomainIdList") is not None:
         import capo_sagemaker.types.default_domain_id_list
 
         out["default_domain_id_list"] = (
@@ -185,19 +185,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowAppResponse:
                 data["DefaultDomainIdList"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -205,7 +205,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowAppResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["last_modified_by"] = (
@@ -213,9 +213,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMlflowAppResponse:
                 data["LastModifiedBy"]
             )
         )
-    if "WeeklyMaintenanceWindowStart" in data:
+    if data.get("WeeklyMaintenanceWindowStart") is not None:
         out["weekly_maintenance_window_start"] = data["WeeklyMaintenanceWindowStart"]
-    if "MaintenanceStatus" in data:
+    if data.get("MaintenanceStatus") is not None:
         import capo_sagemaker.types.maintenance_status
 
         out["maintenance_status"] = (

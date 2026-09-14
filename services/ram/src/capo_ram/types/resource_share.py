@@ -97,45 +97,45 @@ def serialize_json(value: ResourceShare) -> dict:
 
 def deserialize_json(data: dict) -> ResourceShare:
     out: ResourceShare = {}  # type: ignore[typeddict-item]
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "owningAccountId" in data:
+    if data.get("owningAccountId") is not None:
         out["owning_account_id"] = data["owningAccountId"]
-    if "allowExternalPrincipals" in data:
+    if data.get("allowExternalPrincipals") is not None:
         out["allow_external_principals"] = data["allowExternalPrincipals"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_ram.types.resource_share_status
 
         out["status"] = capo_ram.types.resource_share_status.deserialize_json(
             data["status"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ram.types.tag_list
 
         out["tags"] = capo_ram.types.tag_list.deserialize_json(data["tags"])
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_ram.types.date_time
 
         out["creation_time"] = capo_ram.types.date_time.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_ram.types.date_time
 
         out["last_updated_time"] = capo_ram.types.date_time.deserialize_json(
             data["lastUpdatedTime"]
         )
-    if "featureSet" in data:
+    if data.get("featureSet") is not None:
         import capo_ram.types.resource_share_feature_set
 
         out["feature_set"] = capo_ram.types.resource_share_feature_set.deserialize_json(
             data["featureSet"]
         )
-    if "resourceShareConfiguration" in data:
+    if data.get("resourceShareConfiguration") is not None:
         import capo_ram.types.resource_share_configuration
 
         out["resource_share_configuration"] = (

@@ -31,8 +31,8 @@ def serialize_json(value: AwsIamPermissionsBoundary) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamPermissionsBoundary:
     out: AwsIamPermissionsBoundary = {}  # type: ignore[typeddict-item]
-    if "PermissionsBoundaryArn" in data:
+    if data.get("PermissionsBoundaryArn") is not None:
         out["permissions_boundary_arn"] = data["PermissionsBoundaryArn"]
-    if "PermissionsBoundaryType" in data:
+    if data.get("PermissionsBoundaryType") is not None:
         out["permissions_boundary_type"] = data["PermissionsBoundaryType"]
     return out

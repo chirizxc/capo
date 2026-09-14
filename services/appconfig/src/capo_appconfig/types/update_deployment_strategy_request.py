@@ -43,7 +43,15 @@ def serialize_json(value: UpdateDeploymentStrategyRequest) -> dict:
     if "final_bake_time_in_minutes" in value:
         out["FinalBakeTimeInMinutes"] = value["final_bake_time_in_minutes"]
     if "growth_factor" in value:
-        out["GrowthFactor"] = value["growth_factor"]
+        out["GrowthFactor"] = (
+            "NaN"
+            if value["growth_factor"] != value["growth_factor"]
+            else "Infinity"
+            if value["growth_factor"] == float("inf")
+            else "-Infinity"
+            if value["growth_factor"] == float("-inf")
+            else value["growth_factor"]
+        )
     if "growth_type" in value:
         import capo_appconfig.types.growth_type
 
@@ -55,15 +63,15 @@ def serialize_json(value: UpdateDeploymentStrategyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDeploymentStrategyRequest:
     out: UpdateDeploymentStrategyRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DeploymentDurationInMinutes" in data:
+    if data.get("DeploymentDurationInMinutes") is not None:
         out["deployment_duration_in_minutes"] = data["DeploymentDurationInMinutes"]
-    if "FinalBakeTimeInMinutes" in data:
+    if data.get("FinalBakeTimeInMinutes") is not None:
         out["final_bake_time_in_minutes"] = data["FinalBakeTimeInMinutes"]
-    if "GrowthFactor" in data:
-        out["growth_factor"] = data["GrowthFactor"]
-    if "GrowthType" in data:
+    if data.get("GrowthFactor") is not None:
+        out["growth_factor"] = float(data["GrowthFactor"])
+    if data.get("GrowthType") is not None:
         import capo_appconfig.types.growth_type
 
         out["growth_type"] = capo_appconfig.types.growth_type.deserialize_json(

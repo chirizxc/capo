@@ -40,13 +40,13 @@ def serialize_json(value: BatchDisassociateAssessmentReportEvidenceResponse) -> 
 
 def deserialize_json(data: dict) -> BatchDisassociateAssessmentReportEvidenceResponse:
     out: BatchDisassociateAssessmentReportEvidenceResponse = {}  # type: ignore[typeddict-item]
-    if "evidenceIds" in data:
+    if data.get("evidenceIds") is not None:
         import capo_auditmanager.types.evidence_ids
 
         out["evidence_ids"] = capo_auditmanager.types.evidence_ids.deserialize_json(
             data["evidenceIds"]
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_auditmanager.types.assessment_report_evidence_errors
 
         out["errors"] = (

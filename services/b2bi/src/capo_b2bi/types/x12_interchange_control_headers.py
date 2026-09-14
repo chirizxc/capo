@@ -60,18 +60,18 @@ def serialize_aws_json_1_0(value: X12InterchangeControlHeaders) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12InterchangeControlHeaders:
     out: X12InterchangeControlHeaders = {}  # type: ignore[typeddict-item]
-    if "senderIdQualifier" in data:
+    if data.get("senderIdQualifier") is not None:
         out["sender_id_qualifier"] = data["senderIdQualifier"]
-    if "senderId" in data:
+    if data.get("senderId") is not None:
         out["sender_id"] = data["senderId"]
-    if "receiverIdQualifier" in data:
+    if data.get("receiverIdQualifier") is not None:
         out["receiver_id_qualifier"] = data["receiverIdQualifier"]
-    if "receiverId" in data:
+    if data.get("receiverId") is not None:
         out["receiver_id"] = data["receiverId"]
-    if "repetitionSeparator" in data:
+    if data.get("repetitionSeparator") is not None:
         out["repetition_separator"] = data["repetitionSeparator"]
-    if "acknowledgmentRequestedCode" in data:
+    if data.get("acknowledgmentRequestedCode") is not None:
         out["acknowledgment_requested_code"] = data["acknowledgmentRequestedCode"]
-    if "usageIndicatorCode" in data:
+    if data.get("usageIndicatorCode") is not None:
         out["usage_indicator_code"] = data["usageIndicatorCode"]
     return out

@@ -71,19 +71,19 @@ def serialize_json(value: PipelineDetail) -> dict:
 
 def deserialize_json(data: dict) -> PipelineDetail:
     out: PipelineDetail = {}  # type: ignore[typeddict-item]
-    if "activeInputAttachmentName" in data:
+    if data.get("activeInputAttachmentName") is not None:
         out["active_input_attachment_name"] = data["activeInputAttachmentName"]
-    if "activeInputSwitchActionName" in data:
+    if data.get("activeInputSwitchActionName") is not None:
         out["active_input_switch_action_name"] = data["activeInputSwitchActionName"]
-    if "activeMotionGraphicsActionName" in data:
+    if data.get("activeMotionGraphicsActionName") is not None:
         out["active_motion_graphics_action_name"] = data[
             "activeMotionGraphicsActionName"
         ]
-    if "activeMotionGraphicsUri" in data:
+    if data.get("activeMotionGraphicsUri") is not None:
         out["active_motion_graphics_uri"] = data["activeMotionGraphicsUri"]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
-    if "channelEngineVersion" in data:
+    if data.get("channelEngineVersion") is not None:
         import capo_medialive.types.channel_engine_version_response
 
         out["channel_engine_version"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> PipelineDetail:
                 data["channelEngineVersion"]
             )
         )
-    if "mediaConnectRouterOutputConnectionMap" in data:
+    if data.get("mediaConnectRouterOutputConnectionMap") is not None:
         import capo_medialive.types.media_connect_router_output_connections
 
         out["media_connect_router_output_connection_map"] = (

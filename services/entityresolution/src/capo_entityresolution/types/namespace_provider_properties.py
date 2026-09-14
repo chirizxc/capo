@@ -30,12 +30,12 @@ def serialize_json(value: NamespaceProviderProperties) -> dict:
 
 def deserialize_json(data: dict) -> NamespaceProviderProperties:
     out: NamespaceProviderProperties = {}  # type: ignore[typeddict-item]
-    if "providerServiceArn" in data:
+    if data.get("providerServiceArn") is not None:
         out["provider_service_arn"] = data["providerServiceArn"]
     else:
         raise DeserializationError(
             "NamespaceProviderProperties.provider_service_arn required"
         )
-    if "providerConfiguration" in data:
+    if data.get("providerConfiguration") is not None:
         out["provider_configuration"] = data["providerConfiguration"]
     return out

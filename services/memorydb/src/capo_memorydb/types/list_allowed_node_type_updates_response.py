@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: ListAllowedNodeTypeUpdatesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAllowedNodeTypeUpdatesResponse:
     out: ListAllowedNodeTypeUpdatesResponse = {}  # type: ignore[typeddict-item]
-    if "ScaleUpNodeTypes" in data:
+    if data.get("ScaleUpNodeTypes") is not None:
         import capo_memorydb.types.node_type_list
 
         out["scale_up_node_types"] = (
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListAllowedNodeTypeUpdatesResponse:
                 data["ScaleUpNodeTypes"]
             )
         )
-    if "ScaleDownNodeTypes" in data:
+    if data.get("ScaleDownNodeTypes") is not None:
         import capo_memorydb.types.node_type_list
 
         out["scale_down_node_types"] = (

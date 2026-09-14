@@ -31,7 +31,7 @@ def serialize_json(value: UpdateVoiceProfileDomainResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVoiceProfileDomainResponse:
     out: UpdateVoiceProfileDomainResponse = {}  # type: ignore[typeddict-item]
-    if "VoiceProfileDomain" in data:
+    if data.get("VoiceProfileDomain") is not None:
         import capo_chime_sdk_voice.types.voice_profile_domain
 
         out["voice_profile_domain"] = (

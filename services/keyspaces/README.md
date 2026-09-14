@@ -13,9 +13,9 @@ from capo_keyspaces import AsyncKeyspacesClient
 
 
 async def main():
-    async with AsyncKeyspacesClient() as s3:
+    async with AsyncKeyspacesClient() as keyspaces:
         # Example: call the create_keyspace operation
-        response = await s3.create_keyspace()
+        response = await keyspaces.create_keyspace()
         print(response["resource_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_keyspaces import AsyncKeyspacesClient
 
 
 async def main():
-    async with AsyncKeyspacesClient() as s3:
+    async with AsyncKeyspacesClient() as keyspaces:
         # Example: paginate over list_keyspaces
-        async for item in s3.iter_list_keyspaces():
+        async for item in keyspaces.iter_list_keyspaces():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_keyspaces.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncKeyspacesClient() as s3:
+    async with AsyncKeyspacesClient() as keyspaces:
         try:
-            await s3.create_keyspace()
+            await keyspaces.create_keyspace()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_keyspaces import AsyncKeyspacesClient
 
 
 async def main():
-    async with AsyncKeyspacesClient() as s3:
+    async with AsyncKeyspacesClient() as keyspaces:
         # Default: 3 attempts for every operation
-        response = await s3.create_keyspace()
+        response = await keyspaces.create_keyspace()
 
         # Override per operation
-        response = await s3.create_keyspace(config_overrides={"retry_max_attempts": 5})
+        response = await keyspaces.create_keyspace(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_keyspace(config_overrides={"retry_max_attempts": 1})
+        response = await keyspaces.create_keyspace(config_overrides={"retry_max_attempts": 1})
 ```

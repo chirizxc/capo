@@ -37,11 +37,11 @@ def serialize_json(value: IotTwinMakerSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IotTwinMakerSourceConfiguration:
     out: IotTwinMakerSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "workspace" in data:
+    if data.get("workspace") is not None:
         out["workspace"] = data["workspace"]
     else:
         raise DeserializationError("IotTwinMakerSourceConfiguration.workspace required")
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_iottwinmaker.types.iot_twin_maker_source_configuration_filters
 
         out["filters"] = (

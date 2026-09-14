@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: AdditionalDataset) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdditionalDataset:
     out: AdditionalDataset = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("AdditionalDataset.name required")
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_forecast.types.configuration
 
         out["configuration"] = (

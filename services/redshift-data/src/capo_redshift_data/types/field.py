@@ -57,7 +57,17 @@ def serialize_aws_json_1_1(value: Field) -> dict:
     elif "longValue" in value:
         return {"longValue": value["longValue"]}
     elif "doubleValue" in value:
-        return {"doubleValue": value["doubleValue"]}
+        return {
+            "doubleValue": (
+                "NaN"
+                if value["doubleValue"] != value["doubleValue"]
+                else "Infinity"
+                if value["doubleValue"] == float("inf")
+                else "-Infinity"
+                if value["doubleValue"] == float("-inf")
+                else value["doubleValue"]
+            )
+        }
     elif "stringValue" in value:
         return {"stringValue": value["stringValue"]}
     elif "blobValue" in value:
@@ -73,17 +83,17 @@ def serialize_aws_json_1_1(value: Field) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> Field:
-    if "isNull" in data:
+    if data.get("isNull") is not None:
         return {"isNull": data["isNull"]}
-    elif "booleanValue" in data:
+    elif data.get("booleanValue") is not None:
         return {"booleanValue": data["booleanValue"]}
-    elif "longValue" in data:
+    elif data.get("longValue") is not None:
         return {"longValue": data["longValue"]}
-    elif "doubleValue" in data:
-        return {"doubleValue": data["doubleValue"]}
-    elif "stringValue" in data:
+    elif data.get("doubleValue") is not None:
+        return {"doubleValue": float(data["doubleValue"])}
+    elif data.get("stringValue") is not None:
         return {"stringValue": data["stringValue"]}
-    elif "blobValue" in data:
+    elif data.get("blobValue") is not None:
         import capo_redshift_data.types.blob
 
         return {

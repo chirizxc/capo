@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FindingsListV2:
 
     out: FindingsListV2 = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_accessanalyzer.types.finding_summary_v2.deserialize_json(item))
     return out

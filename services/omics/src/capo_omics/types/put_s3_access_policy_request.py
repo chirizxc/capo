@@ -27,7 +27,7 @@ def serialize_json(value: PutS3AccessPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutS3AccessPolicyRequest:
     out: PutS3AccessPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "s3AccessPolicy" in data:
+    if data.get("s3AccessPolicy") is not None:
         out["s3_access_policy"] = data["s3AccessPolicy"]
     else:
         raise DeserializationError("PutS3AccessPolicyRequest.s3_access_policy required")

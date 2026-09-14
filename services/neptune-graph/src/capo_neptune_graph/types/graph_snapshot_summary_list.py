@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> GraphSnapshotSummaryList:
 
     out: GraphSnapshotSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_neptune_graph.types.graph_snapshot_summary.deserialize_json(item)
         )

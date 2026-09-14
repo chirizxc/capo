@@ -31,14 +31,14 @@ def serialize_json(value: CreateShareRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateShareRequest:
     out: CreateShareRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("CreateShareRequest.resource_arn required")
-    if "principalSubscriber" in data:
+    if data.get("principalSubscriber") is not None:
         out["principal_subscriber"] = data["principalSubscriber"]
     else:
         raise DeserializationError("CreateShareRequest.principal_subscriber required")
-    if "shareName" in data:
+    if data.get("shareName") is not None:
         out["share_name"] = data["shareName"]
     return out

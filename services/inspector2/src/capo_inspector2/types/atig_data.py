@@ -50,23 +50,23 @@ def serialize_json(value: AtigData) -> dict:
 
 def deserialize_json(data: dict) -> AtigData:
     out: AtigData = {}  # type: ignore[typeddict-item]
-    if "firstSeen" in data:
+    if data.get("firstSeen") is not None:
         import capo_inspector2.types.first_seen
 
         out["first_seen"] = capo_inspector2.types.first_seen.deserialize_json(
             data["firstSeen"]
         )
-    if "lastSeen" in data:
+    if data.get("lastSeen") is not None:
         import capo_inspector2.types.last_seen
 
         out["last_seen"] = capo_inspector2.types.last_seen.deserialize_json(
             data["lastSeen"]
         )
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_inspector2.types.targets
 
         out["targets"] = capo_inspector2.types.targets.deserialize_json(data["targets"])
-    if "ttps" in data:
+    if data.get("ttps") is not None:
         import capo_inspector2.types.ttps
 
         out["ttps"] = capo_inspector2.types.ttps.deserialize_json(data["ttps"])

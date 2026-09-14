@@ -27,8 +27,8 @@ def serialize_json(value: NegativeFormat) -> dict:
 
 def deserialize_json(data: dict) -> NegativeFormat:
     out: NegativeFormat = {}  # type: ignore[typeddict-item]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "Suffix" in data:
+    if data.get("Suffix") is not None:
         out["suffix"] = data["Suffix"]
     return out

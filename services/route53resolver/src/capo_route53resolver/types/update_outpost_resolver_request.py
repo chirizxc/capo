@@ -45,14 +45,14 @@ def serialize_aws_json_1_1(value: UpdateOutpostResolverRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateOutpostResolverRequest:
     out: UpdateOutpostResolverRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateOutpostResolverRequest.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "PreferredInstanceType" in data:
+    if data.get("PreferredInstanceType") is not None:
         out["preferred_instance_type"] = data["PreferredInstanceType"]
     return out

@@ -28,13 +28,13 @@ def serialize_json(value: CreateDataIntegrationFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataIntegrationFlowResponse:
     out: CreateDataIntegrationFlowResponse = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError(
             "CreateDataIntegrationFlowResponse.instance_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDataIntegrationFlowResponse.name required")

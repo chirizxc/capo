@@ -32,7 +32,7 @@ def serialize_json(value: ListComponentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListComponentsResponse:
     out: ListComponentsResponse = {}  # type: ignore[typeddict-item]
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_amplifyuibuilder.types.component_summary_list
 
         out["entities"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListComponentsResponse:
         )
     else:
         raise DeserializationError("ListComponentsResponse.entities required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

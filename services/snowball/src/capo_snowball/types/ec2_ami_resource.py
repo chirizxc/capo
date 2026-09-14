@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: Ec2AmiResource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Ec2AmiResource:
     out: Ec2AmiResource = {}  # type: ignore[typeddict-item]
-    if "AmiId" in data:
+    if data.get("AmiId") is not None:
         out["ami_id"] = data["AmiId"]
     else:
         raise DeserializationError("Ec2AmiResource.ami_id required")
-    if "SnowballAmiId" in data:
+    if data.get("SnowballAmiId") is not None:
         out["snowball_ami_id"] = data["SnowballAmiId"]
     return out

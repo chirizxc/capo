@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: EngineWorkflowResourceIdentifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EngineWorkflowResourceIdentifier:
     out: EngineWorkflowResourceIdentifier = {}  # type: ignore[typeddict-item]
-    if "UniqueTag" in data:
+    if data.get("UniqueTag") is not None:
         import capo_service_catalog.types.unique_tag_resource_identifier
 
         out["unique_tag"] = (

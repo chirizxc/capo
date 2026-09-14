@@ -36,14 +36,14 @@ def serialize_json(value: LogEventConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogEventConfiguration:
     out: LogEventConfiguration = {}  # type: ignore[typeddict-item]
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
     else:
         raise DeserializationError("LogEventConfiguration.event_type required")
-    if "logLevel" in data:
+    if data.get("logLevel") is not None:
         import capo_iot.types.log_level
 
         out["log_level"] = capo_iot.types.log_level.deserialize_json(data["logLevel"])
-    if "logDestination" in data:
+    if data.get("logDestination") is not None:
         out["log_destination"] = data["logDestination"]
     return out

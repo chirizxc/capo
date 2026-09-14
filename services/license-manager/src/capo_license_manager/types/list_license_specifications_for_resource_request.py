@@ -33,14 +33,14 @@ def serialize_aws_json_1_1(value: ListLicenseSpecificationsForResourceRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> ListLicenseSpecificationsForResourceRequest:
     out: ListLicenseSpecificationsForResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "ListLicenseSpecificationsForResourceRequest.resource_arn required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

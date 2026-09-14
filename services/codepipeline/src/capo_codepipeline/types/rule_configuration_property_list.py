@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> RuleConfigurationPropertyList:
 
     out: RuleConfigurationPropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codepipeline.types.rule_configuration_property.deserialize_aws_json_1_1(
                 item

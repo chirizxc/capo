@@ -31,7 +31,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ExecuteProvisionedProductServiceActionOutput:
     out: ExecuteProvisionedProductServiceActionOutput = {}  # type: ignore[typeddict-item]
-    if "RecordDetail" in data:
+    if data.get("RecordDetail") is not None:
         import capo_service_catalog.types.record_detail
 
         out["record_detail"] = (

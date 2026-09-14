@@ -37,7 +37,7 @@ def serialize_json(value: AuthMaterial) -> dict:
 
 def deserialize_json(data: dict) -> AuthMaterial:
     out: AuthMaterial = {}  # type: ignore[typeddict-item]
-    if "SecretsManager" in data:
+    if data.get("SecretsManager") is not None:
         import capo_iot_managed_integrations.types.secrets_manager
 
         out["secrets_manager"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> AuthMaterial:
         )
     else:
         raise DeserializationError("AuthMaterial.secrets_manager required")
-    if "AuthMaterialName" in data:
+    if data.get("AuthMaterialName") is not None:
         out["auth_material_name"] = data["AuthMaterialName"]
     else:
         raise DeserializationError("AuthMaterial.auth_material_name required")

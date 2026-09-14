@@ -52,22 +52,22 @@ def serialize_aws_json_1_1(value: DescribeFleetEventsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFleetEventsInput:
     out: DescribeFleetEventsInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["start_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["end_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

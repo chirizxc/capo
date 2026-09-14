@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: FilterConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FilterConfiguration:
     out: FilterConfiguration = {}  # type: ignore[typeddict-item]
-    if "AllowedLocations" in data:
+    if data.get("AllowedLocations") is not None:
         import capo_gamelift.types.location_list
 
         out["allowed_locations"] = (

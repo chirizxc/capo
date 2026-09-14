@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: ListContainerFleetsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListContainerFleetsInput:
     out: ListContainerFleetsInput = {}  # type: ignore[typeddict-item]
-    if "ContainerGroupDefinitionName" in data:
+    if data.get("ContainerGroupDefinitionName") is not None:
         out["container_group_definition_name"] = data["ContainerGroupDefinitionName"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

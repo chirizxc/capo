@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsSupportedServiceList:
 
     out: AwsSupportedServiceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.aws_supported_service.deserialize_json(
                 item

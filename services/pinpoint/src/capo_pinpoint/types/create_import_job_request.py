@@ -31,7 +31,7 @@ def serialize_json(value: CreateImportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateImportJobRequest:
     out: CreateImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "ImportJobRequest" in data:
+    if data.get("ImportJobRequest") is not None:
         import capo_pinpoint.types.import_job_request
 
         out["import_job_request"] = (

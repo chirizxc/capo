@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Ides:
 
     out: Ides = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codecatalyst.types.ide.deserialize_json(item))
     return out

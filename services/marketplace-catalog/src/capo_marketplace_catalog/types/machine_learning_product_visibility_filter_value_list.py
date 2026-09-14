@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MachineLearningProductVisibilityFilterValueL
 
     out: MachineLearningProductVisibilityFilterValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_catalog.types.machine_learning_product_visibility_string.deserialize_json(
                 item

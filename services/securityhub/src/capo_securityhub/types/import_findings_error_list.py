@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ImportFindingsErrorList:
 
     out: ImportFindingsErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.import_findings_error.deserialize_json(item))
     return out

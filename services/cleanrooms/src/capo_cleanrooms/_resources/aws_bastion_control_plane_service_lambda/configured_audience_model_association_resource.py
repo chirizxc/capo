@@ -96,13 +96,12 @@ class ConfiguredAudienceModelAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_configured_audience_model_association_input.CreateConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_audience_model_arn"] = configured_audience_model_arn
-        input_["configured_audience_model_association_name"] = (
-            configured_audience_model_association_name
-        )
-        input_["manage_resource_policies"] = manage_resource_policies
+        input_: capo_cleanrooms.types.create_configured_audience_model_association_input.CreateConfiguredAudienceModelAssociationInput = {
+            "membership_identifier": membership_identifier,
+            "configured_audience_model_arn": configured_audience_model_arn,
+            "configured_audience_model_association_name": configured_audience_model_association_name,
+            "manage_resource_policies": manage_resource_policies,
+        }
         if tags is not None:
             input_["tags"] = tags
         if description is not None:
@@ -113,6 +112,7 @@ class ConfiguredAudienceModelAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -152,17 +152,17 @@ class ConfiguredAudienceModelAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_configured_audience_model_association_input.GetConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_association_identifier"] = (
-            configured_audience_model_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.get_configured_audience_model_association_input.GetConfiguredAudienceModelAssociationInput = {
+            "configured_audience_model_association_identifier": configured_audience_model_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -210,11 +210,10 @@ class ConfiguredAudienceModelAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_configured_audience_model_association_input.UpdateConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_association_identifier"] = (
-            configured_audience_model_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.update_configured_audience_model_association_input.UpdateConfiguredAudienceModelAssociationInput = {
+            "configured_audience_model_association_identifier": configured_audience_model_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if name is not None:
@@ -225,6 +224,7 @@ class ConfiguredAudienceModelAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -264,17 +264,17 @@ class ConfiguredAudienceModelAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_configured_audience_model_association_input.DeleteConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_association_identifier"] = (
-            configured_audience_model_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.delete_configured_audience_model_association_input.DeleteConfiguredAudienceModelAssociationInput = {
+            "configured_audience_model_association_identifier": configured_audience_model_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -318,8 +318,9 @@ class ConfiguredAudienceModelAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_configured_audience_model_associations_input.ListConfiguredAudienceModelAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_configured_audience_model_associations_input.ListConfiguredAudienceModelAssociationsInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -330,6 +331,7 @@ class ConfiguredAudienceModelAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -387,13 +389,12 @@ class AsyncConfiguredAudienceModelAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_configured_audience_model_association_input.CreateConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_audience_model_arn"] = configured_audience_model_arn
-        input_["configured_audience_model_association_name"] = (
-            configured_audience_model_association_name
-        )
-        input_["manage_resource_policies"] = manage_resource_policies
+        input_: capo_cleanrooms.types.create_configured_audience_model_association_input.CreateConfiguredAudienceModelAssociationInput = {
+            "membership_identifier": membership_identifier,
+            "configured_audience_model_arn": configured_audience_model_arn,
+            "configured_audience_model_association_name": configured_audience_model_association_name,
+            "manage_resource_policies": manage_resource_policies,
+        }
         if tags is not None:
             input_["tags"] = tags
         if description is not None:
@@ -404,6 +405,7 @@ class AsyncConfiguredAudienceModelAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -444,17 +446,17 @@ class AsyncConfiguredAudienceModelAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_configured_audience_model_association_input.GetConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_association_identifier"] = (
-            configured_audience_model_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.get_configured_audience_model_association_input.GetConfiguredAudienceModelAssociationInput = {
+            "configured_audience_model_association_identifier": configured_audience_model_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -503,11 +505,10 @@ class AsyncConfiguredAudienceModelAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_configured_audience_model_association_input.UpdateConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_association_identifier"] = (
-            configured_audience_model_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.update_configured_audience_model_association_input.UpdateConfiguredAudienceModelAssociationInput = {
+            "configured_audience_model_association_identifier": configured_audience_model_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if name is not None:
@@ -518,6 +519,7 @@ class AsyncConfiguredAudienceModelAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -558,17 +560,17 @@ class AsyncConfiguredAudienceModelAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_configured_audience_model_association_input.DeleteConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_association_identifier"] = (
-            configured_audience_model_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.delete_configured_audience_model_association_input.DeleteConfiguredAudienceModelAssociationInput = {
+            "configured_audience_model_association_identifier": configured_audience_model_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -613,8 +615,9 @@ class AsyncConfiguredAudienceModelAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_configured_audience_model_associations_input.ListConfiguredAudienceModelAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_configured_audience_model_associations_input.ListConfiguredAudienceModelAssociationsInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -625,4 +628,5 @@ class AsyncConfiguredAudienceModelAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

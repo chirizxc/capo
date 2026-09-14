@@ -36,7 +36,7 @@ def serialize_json(value: UpdateAssociationOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssociationOutput:
     out: UpdateAssociationOutput = {}  # type: ignore[typeddict-item]
-    if "association" in data:
+    if data.get("association") is not None:
         import capo_devops_agent.types.association
 
         out["association"] = capo_devops_agent.types.association.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> UpdateAssociationOutput:
         )
     else:
         raise DeserializationError("UpdateAssociationOutput.association required")
-    if "webhook" in data:
+    if data.get("webhook") is not None:
         import capo_devops_agent.types.generic_webhook
 
         out["webhook"] = capo_devops_agent.types.generic_webhook.deserialize_json(

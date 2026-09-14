@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ServiceLevelObjectiveBudgetReports:
 
     out: ServiceLevelObjectiveBudgetReports = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_signals.types.service_level_objective_budget_report.deserialize_json(
                 item

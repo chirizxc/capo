@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DocumentDetailList:
 
     out: DocumentDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.document_details.deserialize_json(item))
     return out

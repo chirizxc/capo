@@ -40,17 +40,17 @@ def serialize_aws_json_1_1(value: PurchaseReservedNodesOfferingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PurchaseReservedNodesOfferingRequest:
     out: PurchaseReservedNodesOfferingRequest = {}  # type: ignore[typeddict-item]
-    if "ReservedNodesOfferingId" in data:
+    if data.get("ReservedNodesOfferingId") is not None:
         out["reserved_nodes_offering_id"] = data["ReservedNodesOfferingId"]
     else:
         raise DeserializationError(
             "PurchaseReservedNodesOfferingRequest.reserved_nodes_offering_id required"
         )
-    if "ReservationId" in data:
+    if data.get("ReservationId") is not None:
         out["reservation_id"] = data["ReservationId"]
-    if "NodeCount" in data:
+    if data.get("NodeCount") is not None:
         out["node_count"] = data["NodeCount"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_memorydb.types.tag_list
 
         out["tags"] = capo_memorydb.types.tag_list.deserialize_aws_json_1_1(

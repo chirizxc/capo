@@ -41,7 +41,7 @@ def serialize_json(value: ContainerProvider) -> dict:
 
 def deserialize_json(data: dict) -> ContainerProvider:
     out: ContainerProvider = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_emr_containers.types.container_provider_type
 
         out["type"] = (
@@ -51,11 +51,11 @@ def deserialize_json(data: dict) -> ContainerProvider:
         )
     else:
         raise DeserializationError("ContainerProvider.type required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ContainerProvider.id required")
-    if "info" in data:
+    if data.get("info") is not None:
         import capo_emr_containers.types.container_info
 
         out["info"] = capo_emr_containers.types.container_info.deserialize_json(

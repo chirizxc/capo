@@ -31,11 +31,11 @@ def serialize_json(value: CreateStreamKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateStreamKeyRequest:
     out: CreateStreamKeyRequest = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
     else:
         raise DeserializationError("CreateStreamKeyRequest.channel_arn required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])

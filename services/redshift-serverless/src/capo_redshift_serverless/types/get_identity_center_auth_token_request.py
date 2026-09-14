@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetIdentityCenterAuthTokenRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetIdentityCenterAuthTokenRequest:
     out: GetIdentityCenterAuthTokenRequest = {}  # type: ignore[typeddict-item]
-    if "workgroupNames" in data:
+    if data.get("workgroupNames") is not None:
         import capo_redshift_serverless.types.workgroup_name_list
 
         out["workgroup_names"] = (

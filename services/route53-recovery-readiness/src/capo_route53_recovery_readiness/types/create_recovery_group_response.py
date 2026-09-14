@@ -54,7 +54,7 @@ def serialize_json(value: CreateRecoveryGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRecoveryGroupResponse:
     out: CreateRecoveryGroupResponse = {}  # type: ignore[typeddict-item]
-    if "cells" in data:
+    if data.get("cells") is not None:
         import capo_route53_recovery_readiness.types.__list_of__string
 
         out["cells"] = (
@@ -62,11 +62,11 @@ def deserialize_json(data: dict) -> CreateRecoveryGroupResponse:
                 data["cells"]
             )
         )
-    if "recoveryGroupArn" in data:
+    if data.get("recoveryGroupArn") is not None:
         out["recovery_group_arn"] = data["recoveryGroupArn"]
-    if "recoveryGroupName" in data:
+    if data.get("recoveryGroupName") is not None:
         out["recovery_group_name"] = data["recoveryGroupName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53_recovery_readiness.types.tags
 
         out["tags"] = capo_route53_recovery_readiness.types.tags.deserialize_json(

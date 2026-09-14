@@ -52,22 +52,22 @@ def serialize_json(value: SegmentImportResource) -> dict:
 
 def deserialize_json(data: dict) -> SegmentImportResource:
     out: SegmentImportResource = {}  # type: ignore[typeddict-item]
-    if "ChannelCounts" in data:
+    if data.get("ChannelCounts") is not None:
         import capo_pinpoint.types.map_of__integer
 
         out["channel_counts"] = capo_pinpoint.types.map_of__integer.deserialize_json(
             data["ChannelCounts"]
         )
-    if "ExternalId" in data:
+    if data.get("ExternalId") is not None:
         out["external_id"] = data["ExternalId"]
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_pinpoint.types.format
 
         out["format"] = capo_pinpoint.types.format.deserialize_json(data["Format"])
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "S3Url" in data:
+    if data.get("S3Url") is not None:
         out["s3_url"] = data["S3Url"]
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
     return out

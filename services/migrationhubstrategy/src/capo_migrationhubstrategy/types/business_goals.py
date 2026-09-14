@@ -47,16 +47,16 @@ def serialize_json(value: BusinessGoals) -> dict:
 
 def deserialize_json(data: dict) -> BusinessGoals:
     out: BusinessGoals = {}  # type: ignore[typeddict-item]
-    if "speedOfMigration" in data:
+    if data.get("speedOfMigration") is not None:
         out["speed_of_migration"] = data["speedOfMigration"]
-    if "reduceOperationalOverheadWithManagedServices" in data:
+    if data.get("reduceOperationalOverheadWithManagedServices") is not None:
         out["reduce_operational_overhead_with_managed_services"] = data[
             "reduceOperationalOverheadWithManagedServices"
         ]
-    if "modernizeInfrastructureWithCloudNativeTechnologies" in data:
+    if data.get("modernizeInfrastructureWithCloudNativeTechnologies") is not None:
         out["modernize_infrastructure_with_cloud_native_technologies"] = data[
             "modernizeInfrastructureWithCloudNativeTechnologies"
         ]
-    if "licenseCostReduction" in data:
+    if data.get("licenseCostReduction") is not None:
         out["license_cost_reduction"] = data["licenseCostReduction"]
     return out

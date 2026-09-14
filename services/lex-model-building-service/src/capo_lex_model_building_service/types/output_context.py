@@ -34,15 +34,15 @@ def serialize_json(value: OutputContext) -> dict:
 
 def deserialize_json(data: dict) -> OutputContext:
     out: OutputContext = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("OutputContext.name required")
-    if "timeToLiveInSeconds" in data:
+    if data.get("timeToLiveInSeconds") is not None:
         out["time_to_live_in_seconds"] = data["timeToLiveInSeconds"]
     else:
         raise DeserializationError("OutputContext.time_to_live_in_seconds required")
-    if "turnsToLive" in data:
+    if data.get("turnsToLive") is not None:
         out["turns_to_live"] = data["turnsToLive"]
     else:
         raise DeserializationError("OutputContext.turns_to_live required")

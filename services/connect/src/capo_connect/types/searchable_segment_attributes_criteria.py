@@ -34,11 +34,11 @@ def serialize_json(value: SearchableSegmentAttributesCriteria) -> dict:
 
 def deserialize_json(data: dict) -> SearchableSegmentAttributesCriteria:
     out: SearchableSegmentAttributesCriteria = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("SearchableSegmentAttributesCriteria.key required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.searchable_segment_attribute_value_list
 
         out["values"] = (

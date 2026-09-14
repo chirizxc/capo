@@ -26,10 +26,10 @@ def serialize_aws_json_1_0(value: DbIormConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DbIormConfig:
     out: DbIormConfig = {}  # type: ignore[typeddict-item]
-    if "dbName" in data:
+    if data.get("dbName") is not None:
         out["db_name"] = data["dbName"]
-    if "flashCacheLimit" in data:
+    if data.get("flashCacheLimit") is not None:
         out["flash_cache_limit"] = data["flashCacheLimit"]
-    if "share" in data:
+    if data.get("share") is not None:
         out["share"] = data["share"]
     return out

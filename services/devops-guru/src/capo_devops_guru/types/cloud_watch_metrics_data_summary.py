@@ -44,7 +44,7 @@ def serialize_json(value: CloudWatchMetricsDataSummary) -> dict:
 
 def deserialize_json(data: dict) -> CloudWatchMetricsDataSummary:
     out: CloudWatchMetricsDataSummary = {}  # type: ignore[typeddict-item]
-    if "TimestampMetricValuePairList" in data:
+    if data.get("TimestampMetricValuePairList") is not None:
         import capo_devops_guru.types.timestamp_metric_value_pair_list
 
         out["timestamp_metric_value_pair_list"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CloudWatchMetricsDataSummary:
                 data["TimestampMetricValuePairList"]
             )
         )
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_devops_guru.types.cloud_watch_metric_data_status_code
 
         out["status_code"] = (

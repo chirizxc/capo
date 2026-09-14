@@ -57,26 +57,26 @@ def serialize_json(value: PolicyGrantMember) -> dict:
 
 def deserialize_json(data: dict) -> PolicyGrantMember:
     out: PolicyGrantMember = {}  # type: ignore[typeddict-item]
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_datazone.types.policy_grant_principal
 
         out["principal"] = capo_datazone.types.policy_grant_principal.deserialize_json(
             data["principal"]
         )
-    if "detail" in data:
+    if data.get("detail") is not None:
         import capo_datazone.types.policy_grant_detail
 
         out["detail"] = capo_datazone.types.policy_grant_detail.deserialize_json(
             data["detail"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "grantId" in data:
+    if data.get("grantId") is not None:
         out["grant_id"] = data["grantId"]
     return out

@@ -25,17 +25,17 @@ def serialize_json(value: LoadUrlAccessDeniedException_) -> dict:
 
 def deserialize_json(data: dict) -> LoadUrlAccessDeniedException_:
     out: LoadUrlAccessDeniedException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError(
             "LoadUrlAccessDeniedException_.detailed_message required"
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("LoadUrlAccessDeniedException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("LoadUrlAccessDeniedException_.code required")
@@ -47,15 +47,18 @@ class LoadUrlAccessDeniedException(ServiceError):
 
     code: str | None = "LoadUrlAccessDeniedException"
 
-    def __init__(self, data: LoadUrlAccessDeniedException_):
+    def __init__(self, data: LoadUrlAccessDeniedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="LoadUrlAccessDeniedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "LoadUrlAccessDeniedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "LoadUrlAccessDeniedException":
+        return cls(deserialize_json(data), message)

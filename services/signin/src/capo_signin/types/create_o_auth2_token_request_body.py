@@ -48,20 +48,20 @@ def serialize_json(value: CreateOAuth2TokenRequestBody) -> dict:
 
 def deserialize_json(data: dict) -> CreateOAuth2TokenRequestBody:
     out: CreateOAuth2TokenRequestBody = {}  # type: ignore[typeddict-item]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     else:
         raise DeserializationError("CreateOAuth2TokenRequestBody.client_id required")
-    if "grantType" in data:
+    if data.get("grantType") is not None:
         out["grant_type"] = data["grantType"]
     else:
         raise DeserializationError("CreateOAuth2TokenRequestBody.grant_type required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "redirectUri" in data:
+    if data.get("redirectUri") is not None:
         out["redirect_uri"] = data["redirectUri"]
-    if "codeVerifier" in data:
+    if data.get("codeVerifier") is not None:
         out["code_verifier"] = data["codeVerifier"]
-    if "refreshToken" in data:
+    if data.get("refreshToken") is not None:
         out["refresh_token"] = data["refreshToken"]
     return out

@@ -76,21 +76,21 @@ def serialize_json(value: DataSourceSyncJob) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceSyncJob:
     out: DataSourceSyncJob = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_qbusiness.types.timestamp
 
         out["start_time"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_qbusiness.types.timestamp
 
         out["end_time"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["endTime"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.data_source_sync_job_status
 
         out["status"] = (
@@ -98,13 +98,13 @@ def deserialize_json(data: dict) -> DataSourceSyncJob:
                 data["status"]
             )
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_qbusiness.types.error_detail
 
         out["error"] = capo_qbusiness.types.error_detail.deserialize_json(data["error"])
-    if "dataSourceErrorCode" in data:
+    if data.get("dataSourceErrorCode") is not None:
         out["data_source_error_code"] = data["dataSourceErrorCode"]
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_qbusiness.types.data_source_sync_job_metrics
 
         out["metrics"] = (

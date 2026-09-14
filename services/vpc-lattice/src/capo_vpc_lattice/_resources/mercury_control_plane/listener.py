@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_vpc_lattice._auth._signers
@@ -100,15 +101,17 @@ class Listener:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_listener_request.CreateListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["name"] = name
-        input_["protocol"] = protocol
+        input_: capo_vpc_lattice.types.create_listener_request.CreateListenerRequest = {
+            "service_identifier": service_identifier,
+            "name": name,
+            "protocol": protocol,
+            "default_action": default_action,
+        }
         if port is not None:
             input_["port"] = port
-        input_["default_action"] = default_action
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -117,6 +120,7 @@ class Listener:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -156,15 +160,17 @@ class Listener:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_listener_request.GetListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
+        input_: capo_vpc_lattice.types.get_listener_request.GetListenerRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -208,16 +214,18 @@ class Listener:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_listener_request.UpdateListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
-        input_["default_action"] = default_action
+        input_: capo_vpc_lattice.types.update_listener_request.UpdateListenerRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+            "default_action": default_action,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -258,15 +266,17 @@ class Listener:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_listener_request.DeleteListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
+        input_: capo_vpc_lattice.types.delete_listener_request.DeleteListenerRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -308,8 +318,9 @@ class Listener:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_listeners_request.ListListenersRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
+        input_: capo_vpc_lattice.types.list_listeners_request.ListListenersRequest = {
+            "service_identifier": service_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -320,6 +331,7 @@ class Listener:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -379,15 +391,17 @@ class AsyncListener:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_listener_request.CreateListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["name"] = name
-        input_["protocol"] = protocol
+        input_: capo_vpc_lattice.types.create_listener_request.CreateListenerRequest = {
+            "service_identifier": service_identifier,
+            "name": name,
+            "protocol": protocol,
+            "default_action": default_action,
+        }
         if port is not None:
             input_["port"] = port
-        input_["default_action"] = default_action
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -396,6 +410,7 @@ class AsyncListener:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -436,15 +451,17 @@ class AsyncListener:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_listener_request.GetListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
+        input_: capo_vpc_lattice.types.get_listener_request.GetListenerRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -489,16 +506,18 @@ class AsyncListener:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_listener_request.UpdateListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
-        input_["default_action"] = default_action
+        input_: capo_vpc_lattice.types.update_listener_request.UpdateListenerRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+            "default_action": default_action,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -540,15 +559,17 @@ class AsyncListener:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_listener_request.DeleteListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
+        input_: capo_vpc_lattice.types.delete_listener_request.DeleteListenerRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -591,8 +612,9 @@ class AsyncListener:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_listeners_request.ListListenersRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
+        input_: capo_vpc_lattice.types.list_listeners_request.ListListenersRequest = {
+            "service_identifier": service_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -603,4 +625,5 @@ class AsyncListener:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

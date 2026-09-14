@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: ForecastResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ForecastResult:
     out: ForecastResult = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -54,10 +54,10 @@ def deserialize_aws_json_1_1(data: dict) -> ForecastResult:
                 data["TimePeriod"]
             )
         )
-    if "MeanValue" in data:
+    if data.get("MeanValue") is not None:
         out["mean_value"] = data["MeanValue"]
-    if "PredictionIntervalLowerBound" in data:
+    if data.get("PredictionIntervalLowerBound") is not None:
         out["prediction_interval_lower_bound"] = data["PredictionIntervalLowerBound"]
-    if "PredictionIntervalUpperBound" in data:
+    if data.get("PredictionIntervalUpperBound") is not None:
         out["prediction_interval_upper_bound"] = data["PredictionIntervalUpperBound"]
     return out

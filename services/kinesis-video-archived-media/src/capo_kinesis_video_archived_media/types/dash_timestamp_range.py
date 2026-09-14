@@ -43,7 +43,7 @@ def serialize_json(value: DASHTimestampRange) -> dict:
 
 def deserialize_json(data: dict) -> DASHTimestampRange:
     out: DASHTimestampRange = {}  # type: ignore[typeddict-item]
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_kinesis_video_archived_media.types.timestamp
 
         out["start_timestamp"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> DASHTimestampRange:
                 data["StartTimestamp"]
             )
         )
-    if "EndTimestamp" in data:
+    if data.get("EndTimestamp") is not None:
         import capo_kinesis_video_archived_media.types.timestamp
 
         out["end_timestamp"] = (

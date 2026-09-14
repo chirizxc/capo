@@ -22,11 +22,11 @@ def serialize_json(value: RouterInputMessage) -> dict:
 
 def deserialize_json(data: dict) -> RouterInputMessage:
     out: RouterInputMessage = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("RouterInputMessage.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("RouterInputMessage.message required")

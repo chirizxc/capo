@@ -48,23 +48,23 @@ def serialize_json(value: SpanGuardrailAssessment) -> dict:
 
 def deserialize_json(data: dict) -> SpanGuardrailAssessment:
     out: SpanGuardrailAssessment = {}  # type: ignore[typeddict-item]
-    if "guardrailId" in data:
+    if data.get("guardrailId") is not None:
         out["guardrail_id"] = data["guardrailId"]
     else:
         raise DeserializationError("SpanGuardrailAssessment.guardrail_id required")
-    if "guardrailName" in data:
+    if data.get("guardrailName") is not None:
         out["guardrail_name"] = data["guardrailName"]
     else:
         raise DeserializationError("SpanGuardrailAssessment.guardrail_name required")
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("SpanGuardrailAssessment.source required")
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("SpanGuardrailAssessment.action required")
-    if "policies" in data:
+    if data.get("policies") is not None:
         import capo_qconnect.types.guardrail_policy_result_list
 
         out["policies"] = (

@@ -21,6 +21,7 @@ class UntagResourceRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: UntagResourceRequest) -> dict:
     out: dict = {}
+    out["resourceArn"] = value["resource_arn"]
     import capo_pcs.types.tag_keys
 
     out["tagKeys"] = capo_pcs.types.tag_keys.serialize_aws_json_1_0(value["tag_keys"])
@@ -29,7 +30,11 @@ def serialize_aws_json_1_0(value: UntagResourceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UntagResourceRequest:
     out: UntagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "tagKeys" in data:
+    if data.get("resourceArn") is not None:
+        out["resource_arn"] = data["resourceArn"]
+    else:
+        raise DeserializationError("UntagResourceRequest.resource_arn required")
+    if data.get("tagKeys") is not None:
         import capo_pcs.types.tag_keys
 
         out["tag_keys"] = capo_pcs.types.tag_keys.deserialize_aws_json_1_0(

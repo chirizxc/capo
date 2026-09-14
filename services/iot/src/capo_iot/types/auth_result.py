@@ -61,25 +61,25 @@ def serialize_json(value: AuthResult) -> dict:
 
 def deserialize_json(data: dict) -> AuthResult:
     out: AuthResult = {}  # type: ignore[typeddict-item]
-    if "authInfo" in data:
+    if data.get("authInfo") is not None:
         import capo_iot.types.auth_info
 
         out["auth_info"] = capo_iot.types.auth_info.deserialize_json(data["authInfo"])
-    if "allowed" in data:
+    if data.get("allowed") is not None:
         import capo_iot.types.allowed
 
         out["allowed"] = capo_iot.types.allowed.deserialize_json(data["allowed"])
-    if "denied" in data:
+    if data.get("denied") is not None:
         import capo_iot.types.denied
 
         out["denied"] = capo_iot.types.denied.deserialize_json(data["denied"])
-    if "authDecision" in data:
+    if data.get("authDecision") is not None:
         import capo_iot.types.auth_decision
 
         out["auth_decision"] = capo_iot.types.auth_decision.deserialize_json(
             data["authDecision"]
         )
-    if "missingContextValues" in data:
+    if data.get("missingContextValues") is not None:
         import capo_iot.types.missing_context_values
 
         out["missing_context_values"] = (

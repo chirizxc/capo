@@ -13,10 +13,25 @@ from capo_mediastore import AsyncMediaStoreClient
 
 
 async def main():
-    async with AsyncMediaStoreClient() as s3:
+    async with AsyncMediaStoreClient() as media_store:
         # Example: call the create_container operation
-        response = await s3.create_container()
+        response = await media_store.create_container()
         print(response["container"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_mediastore import AsyncMediaStoreClient
+
+
+async def main():
+    async with AsyncMediaStoreClient() as media_store:
+        # Example: paginate over list_containers
+        async for item in media_store.iter_list_containers():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_mediastore.error import ContainerInUseException
 
 
 async def main():
-    async with AsyncMediaStoreClient() as s3:
+    async with AsyncMediaStoreClient() as media_store:
         try:
-            await s3.create_container()
+            await media_store.create_container()
         except ContainerInUseException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_mediastore import AsyncMediaStoreClient
 
 
 async def main():
-    async with AsyncMediaStoreClient() as s3:
+    async with AsyncMediaStoreClient() as media_store:
         # Default: 3 attempts for every operation
-        response = await s3.create_container()
+        response = await media_store.create_container()
 
         # Override per operation
-        response = await s3.create_container(config_overrides={"retry_max_attempts": 5})
+        response = await media_store.create_container(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_container(config_overrides={"retry_max_attempts": 1})
+        response = await media_store.create_container(config_overrides={"retry_max_attempts": 1})
 ```

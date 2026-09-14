@@ -30,11 +30,11 @@ def serialize_json(value: EnableBaselineOutput) -> dict:
 
 def deserialize_json(data: dict) -> EnableBaselineOutput:
     out: EnableBaselineOutput = {}  # type: ignore[typeddict-item]
-    if "operationIdentifier" in data:
+    if data.get("operationIdentifier") is not None:
         out["operation_identifier"] = data["operationIdentifier"]
     else:
         raise DeserializationError("EnableBaselineOutput.operation_identifier required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("EnableBaselineOutput.arn required")

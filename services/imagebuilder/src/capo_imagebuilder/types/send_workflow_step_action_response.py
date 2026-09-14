@@ -37,10 +37,10 @@ def serialize_json(value: SendWorkflowStepActionResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendWorkflowStepActionResponse:
     out: SendWorkflowStepActionResponse = {}  # type: ignore[typeddict-item]
-    if "stepExecutionId" in data:
+    if data.get("stepExecutionId") is not None:
         out["step_execution_id"] = data["stepExecutionId"]
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

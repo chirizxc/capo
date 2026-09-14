@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEcsClusterClusterSettingsList:
 
     out: AwsEcsClusterClusterSettingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ecs_cluster_cluster_settings_details.deserialize_json(
                 item

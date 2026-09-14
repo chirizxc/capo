@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribePageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePageRequest:
     out: DescribePageRequest = {}  # type: ignore[typeddict-item]
-    if "PageId" in data:
+    if data.get("PageId") is not None:
         out["page_id"] = data["PageId"]
     else:
         raise DeserializationError("DescribePageRequest.page_id required")

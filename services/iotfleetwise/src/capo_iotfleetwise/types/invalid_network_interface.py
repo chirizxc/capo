@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: InvalidNetworkInterface) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvalidNetworkInterface:
     out: InvalidNetworkInterface = {}  # type: ignore[typeddict-item]
-    if "interfaceId" in data:
+    if data.get("interfaceId") is not None:
         out["interface_id"] = data["interfaceId"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         import capo_iotfleetwise.types.network_interface_failure_reason
 
         out["reason"] = (

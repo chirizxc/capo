@@ -99,18 +99,16 @@ def serialize_json(value: SpaceData) -> dict:
 
     out["tier"] = capo_repostspace.types.tier_level.serialize_json(value["tier"])
     out["storageLimit"] = value["storage_limit"]
-    import capo_repostspace.types._prelude.timestamp
+    import capo_repostspace._protocol.serialize
 
-    out["createDateTime"] = capo_repostspace.types._prelude.timestamp.serialize_json(
+    out["createDateTime"] = capo_repostspace._protocol.serialize.fmt_date_time(
         value["create_date_time"]
     )
     if "delete_date_time" in value:
-        import capo_repostspace.types._prelude.timestamp
+        import capo_repostspace._protocol.serialize
 
-        out["deleteDateTime"] = (
-            capo_repostspace.types._prelude.timestamp.serialize_json(
-                value["delete_date_time"]
-            )
+        out["deleteDateTime"] = capo_repostspace._protocol.serialize.fmt_date_time(
+            value["delete_date_time"]
         )
     if "user_kms_key" in value:
         out["userKMSKey"] = value["user_kms_key"]
@@ -131,25 +129,25 @@ def serialize_json(value: SpaceData) -> dict:
 
 def deserialize_json(data: dict) -> SpaceData:
     out: SpaceData = {}  # type: ignore[typeddict-item]
-    if "spaceId" in data:
+    if data.get("spaceId") is not None:
         out["space_id"] = data["spaceId"]
     else:
         raise DeserializationError("SpaceData.space_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("SpaceData.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SpaceData.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("SpaceData.status required")
-    if "configurationStatus" in data:
+    if data.get("configurationStatus") is not None:
         import capo_repostspace.types.configuration_status
 
         out["configuration_status"] = (
@@ -159,7 +157,7 @@ def deserialize_json(data: dict) -> SpaceData:
         )
     else:
         raise DeserializationError("SpaceData.configuration_status required")
-    if "vanityDomainStatus" in data:
+    if data.get("vanityDomainStatus") is not None:
         import capo_repostspace.types.vanity_domain_status
 
         out["vanity_domain_status"] = (
@@ -169,49 +167,45 @@ def deserialize_json(data: dict) -> SpaceData:
         )
     else:
         raise DeserializationError("SpaceData.vanity_domain_status required")
-    if "vanityDomain" in data:
+    if data.get("vanityDomain") is not None:
         out["vanity_domain"] = data["vanityDomain"]
     else:
         raise DeserializationError("SpaceData.vanity_domain required")
-    if "randomDomain" in data:
+    if data.get("randomDomain") is not None:
         out["random_domain"] = data["randomDomain"]
     else:
         raise DeserializationError("SpaceData.random_domain required")
-    if "tier" in data:
+    if data.get("tier") is not None:
         import capo_repostspace.types.tier_level
 
         out["tier"] = capo_repostspace.types.tier_level.deserialize_json(data["tier"])
     else:
         raise DeserializationError("SpaceData.tier required")
-    if "storageLimit" in data:
+    if data.get("storageLimit") is not None:
         out["storage_limit"] = data["storageLimit"]
     else:
         raise DeserializationError("SpaceData.storage_limit required")
-    if "createDateTime" in data:
-        import capo_repostspace.types._prelude.timestamp
+    if data.get("createDateTime") is not None:
+        import datetime
 
-        out["create_date_time"] = (
-            capo_repostspace.types._prelude.timestamp.deserialize_json(
-                data["createDateTime"]
-            )
+        out["create_date_time"] = datetime.datetime.fromisoformat(
+            data["createDateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("SpaceData.create_date_time required")
-    if "deleteDateTime" in data:
-        import capo_repostspace.types._prelude.timestamp
+    if data.get("deleteDateTime") is not None:
+        import datetime
 
-        out["delete_date_time"] = (
-            capo_repostspace.types._prelude.timestamp.deserialize_json(
-                data["deleteDateTime"]
-            )
+        out["delete_date_time"] = datetime.datetime.fromisoformat(
+            data["deleteDateTime"].replace("Z", "+00:00")
         )
-    if "userKMSKey" in data:
+    if data.get("userKMSKey") is not None:
         out["user_kms_key"] = data["userKMSKey"]
-    if "userCount" in data:
+    if data.get("userCount") is not None:
         out["user_count"] = data["userCount"]
-    if "contentSize" in data:
+    if data.get("contentSize") is not None:
         out["content_size"] = data["contentSize"]
-    if "supportedEmailDomains" in data:
+    if data.get("supportedEmailDomains") is not None:
         import capo_repostspace.types.supported_email_domains_status
 
         out["supported_email_domains"] = (

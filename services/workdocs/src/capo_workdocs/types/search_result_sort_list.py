@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SearchResultSortList:
 
     out: SearchResultSortList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workdocs.types.search_sort_result.deserialize_json(item))
     return out

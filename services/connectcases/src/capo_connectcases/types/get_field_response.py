@@ -89,43 +89,43 @@ def serialize_json(value: GetFieldResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFieldResponse:
     out: GetFieldResponse = {}  # type: ignore[typeddict-item]
-    if "fieldId" in data:
+    if data.get("fieldId") is not None:
         out["field_id"] = data["fieldId"]
     else:
         raise DeserializationError("GetFieldResponse.field_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetFieldResponse.name required")
-    if "fieldArn" in data:
+    if data.get("fieldArn") is not None:
         out["field_arn"] = data["fieldArn"]
     else:
         raise DeserializationError("GetFieldResponse.field_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("GetFieldResponse.type required")
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     else:
         raise DeserializationError("GetFieldResponse.namespace required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcases.types.tags
 
         out["tags"] = capo_connectcases.types.tags.deserialize_json(data["tags"])
-    if "deleted" in data:
+    if data.get("deleted") is not None:
         out["deleted"] = data["deleted"]
     else:
         out["deleted"] = False
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_connectcases.types.created_time
 
         out["created_time"] = capo_connectcases.types.created_time.deserialize_json(
             data["createdTime"]
         )
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_connectcases.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> GetFieldResponse:
                 data["lastModifiedTime"]
             )
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_connectcases.types.field_attributes
 
         out["attributes"] = capo_connectcases.types.field_attributes.deserialize_json(

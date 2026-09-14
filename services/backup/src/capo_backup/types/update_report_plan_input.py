@@ -55,9 +55,9 @@ def serialize_json(value: UpdateReportPlanInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReportPlanInput:
     out: UpdateReportPlanInput = {}  # type: ignore[typeddict-item]
-    if "ReportPlanDescription" in data:
+    if data.get("ReportPlanDescription") is not None:
         out["report_plan_description"] = data["ReportPlanDescription"]
-    if "ReportDeliveryChannel" in data:
+    if data.get("ReportDeliveryChannel") is not None:
         import capo_backup.types.report_delivery_channel
 
         out["report_delivery_channel"] = (
@@ -65,12 +65,12 @@ def deserialize_json(data: dict) -> UpdateReportPlanInput:
                 data["ReportDeliveryChannel"]
             )
         )
-    if "ReportSetting" in data:
+    if data.get("ReportSetting") is not None:
         import capo_backup.types.report_setting
 
         out["report_setting"] = capo_backup.types.report_setting.deserialize_json(
             data["ReportSetting"]
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

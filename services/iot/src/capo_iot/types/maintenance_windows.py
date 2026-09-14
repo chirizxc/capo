@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MaintenanceWindows:
 
     out: MaintenanceWindows = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.maintenance_window.deserialize_json(item))
     return out

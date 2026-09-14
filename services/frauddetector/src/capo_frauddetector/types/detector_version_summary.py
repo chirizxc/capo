@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: DetectorVersionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectorVersionSummary:
     out: DetectorVersionSummary = {}  # type: ignore[typeddict-item]
-    if "detectorVersionId" in data:
+    if data.get("detectorVersionId") is not None:
         out["detector_version_id"] = data["detectorVersionId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_frauddetector.types.detector_version_status
 
         out["status"] = (
@@ -58,8 +58,8 @@ def deserialize_aws_json_1_1(data: dict) -> DetectorVersionSummary:
                 data["status"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         out["last_updated_time"] = data["lastUpdatedTime"]
     return out

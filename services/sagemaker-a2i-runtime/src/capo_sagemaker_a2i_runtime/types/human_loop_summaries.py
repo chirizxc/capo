@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> HumanLoopSummaries:
 
     out: HumanLoopSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_a2i_runtime.types.human_loop_summary.deserialize_json(item)
         )

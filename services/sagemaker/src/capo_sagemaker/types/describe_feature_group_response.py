@@ -184,15 +184,15 @@ def serialize_aws_json_1_1(value: DescribeFeatureGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureGroupResponse:
     out: DescribeFeatureGroupResponse = {}  # type: ignore[typeddict-item]
-    if "FeatureGroupArn" in data:
+    if data.get("FeatureGroupArn") is not None:
         out["feature_group_arn"] = data["FeatureGroupArn"]
-    if "FeatureGroupName" in data:
+    if data.get("FeatureGroupName") is not None:
         out["feature_group_name"] = data["FeatureGroupName"]
-    if "RecordIdentifierFeatureName" in data:
+    if data.get("RecordIdentifierFeatureName") is not None:
         out["record_identifier_feature_name"] = data["RecordIdentifierFeatureName"]
-    if "EventTimeFeatureName" in data:
+    if data.get("EventTimeFeatureName") is not None:
         out["event_time_feature_name"] = data["EventTimeFeatureName"]
-    if "FeatureDefinitions" in data:
+    if data.get("FeatureDefinitions") is not None:
         import capo_sagemaker.types.feature_definitions
 
         out["feature_definitions"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureGroupResponse:
                 data["FeatureDefinitions"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureGroupResponse:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -216,7 +216,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureGroupResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "OnlineStoreConfig" in data:
+    if data.get("OnlineStoreConfig") is not None:
         import capo_sagemaker.types.online_store_config
 
         out["online_store_config"] = (
@@ -224,7 +224,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureGroupResponse:
                 data["OnlineStoreConfig"]
             )
         )
-    if "OfflineStoreConfig" in data:
+    if data.get("OfflineStoreConfig") is not None:
         import capo_sagemaker.types.offline_store_config
 
         out["offline_store_config"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureGroupResponse:
                 data["OfflineStoreConfig"]
             )
         )
-    if "ThroughputConfig" in data:
+    if data.get("ThroughputConfig") is not None:
         import capo_sagemaker.types.throughput_config_description
 
         out["throughput_config"] = (
@@ -240,9 +240,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureGroupResponse:
                 data["ThroughputConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "FeatureGroupStatus" in data:
+    if data.get("FeatureGroupStatus") is not None:
         import capo_sagemaker.types.feature_group_status
 
         out["feature_group_status"] = (
@@ -250,7 +250,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureGroupResponse:
                 data["FeatureGroupStatus"]
             )
         )
-    if "OfflineStoreStatus" in data:
+    if data.get("OfflineStoreStatus") is not None:
         import capo_sagemaker.types.offline_store_status
 
         out["offline_store_status"] = (
@@ -258,7 +258,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureGroupResponse:
                 data["OfflineStoreStatus"]
             )
         )
-    if "LastUpdateStatus" in data:
+    if data.get("LastUpdateStatus") is not None:
         import capo_sagemaker.types.last_update_status
 
         out["last_update_status"] = (
@@ -266,12 +266,12 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureGroupResponse:
                 data["LastUpdateStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "OnlineStoreTotalSizeBytes" in data:
+    if data.get("OnlineStoreTotalSizeBytes") is not None:
         out["online_store_total_size_bytes"] = data["OnlineStoreTotalSizeBytes"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteCustomRoutingListenerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteCustomRoutingListenerRequest:
     out: DeleteCustomRoutingListenerRequest = {}  # type: ignore[typeddict-item]
-    if "ListenerArn" in data:
+    if data.get("ListenerArn") is not None:
         out["listener_arn"] = data["ListenerArn"]
     else:
         raise DeserializationError(

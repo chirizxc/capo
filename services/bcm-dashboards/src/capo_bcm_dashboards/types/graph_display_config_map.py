@@ -27,6 +27,8 @@ def serialize_aws_json_1_0(input_to_serialize: GraphDisplayConfigMap) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> GraphDisplayConfigMap:
     out: GraphDisplayConfigMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_bcm_dashboards.types.graph_display_config
 
         out[key] = (

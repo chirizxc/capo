@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ProductionVariantCapacityReservationConfig) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ProductionVariantCapacityReservationConfig:
     out: ProductionVariantCapacityReservationConfig = {}  # type: ignore[typeddict-item]
-    if "CapacityReservationPreference" in data:
+    if data.get("CapacityReservationPreference") is not None:
         import capo_sagemaker.types.capacity_reservation_preference
 
         out["capacity_reservation_preference"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariantCapacityReservation
                 data["CapacityReservationPreference"]
             )
         )
-    if "MlReservationArn" in data:
+    if data.get("MlReservationArn") is not None:
         out["ml_reservation_arn"] = data["MlReservationArn"]
     return out

@@ -34,7 +34,7 @@ def serialize_json(value: SnapshotOptionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotOptionsStatus:
     out: SnapshotOptionsStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_opensearch.types.snapshot_options
 
         out["options"] = capo_opensearch.types.snapshot_options.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> SnapshotOptionsStatus:
         )
     else:
         raise DeserializationError("SnapshotOptionsStatus.options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.option_status
 
         out["status"] = capo_opensearch.types.option_status.deserialize_json(

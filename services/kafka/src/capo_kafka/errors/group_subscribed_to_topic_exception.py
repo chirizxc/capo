@@ -29,9 +29,9 @@ def serialize_json(value: GroupSubscribedToTopicException_) -> dict:
 
 def deserialize_json(data: dict) -> GroupSubscribedToTopicException_:
     out: GroupSubscribedToTopicException_ = {}  # type: ignore[typeddict-item]
-    if "invalidParameter" in data:
+    if data.get("invalidParameter") is not None:
         out["invalid_parameter"] = data["invalidParameter"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -41,15 +41,20 @@ class GroupSubscribedToTopicException(ServiceError):
 
     code: str | None = "GroupSubscribedToTopicException"
 
-    def __init__(self, data: GroupSubscribedToTopicException_):
+    def __init__(
+        self, data: GroupSubscribedToTopicException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="GroupSubscribedToTopicException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "GroupSubscribedToTopicException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "GroupSubscribedToTopicException":
+        return cls(deserialize_json(data), message)

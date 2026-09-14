@@ -85,13 +85,13 @@ def serialize_aws_json_1_0(value: ListConnectionInvitationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListConnectionInvitationsRequest:
     out: ListConnectionInvitationsRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListConnectionInvitationsRequest.catalog required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         import capo_partnercentral_account.types.connection_type
 
         out["connection_type"] = (
@@ -99,11 +99,11 @@ def deserialize_aws_json_1_0(data: dict) -> ListConnectionInvitationsRequest:
                 data["ConnectionType"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 20
-    if "OtherParticipantIdentifiers" in data:
+    if data.get("OtherParticipantIdentifiers") is not None:
         import capo_partnercentral_account.types.participant_identifier_list
 
         out["other_participant_identifiers"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListConnectionInvitationsRequest:
                 data["OtherParticipantIdentifiers"]
             )
         )
-    if "ParticipantType" in data:
+    if data.get("ParticipantType") is not None:
         import capo_partnercentral_account.types.participant_type
 
         out["participant_type"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListConnectionInvitationsRequest:
                 data["ParticipantType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_account.types.invitation_status
 
         out["status"] = (

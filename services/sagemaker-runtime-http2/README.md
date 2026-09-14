@@ -13,9 +13,9 @@ from capo_sagemaker_runtime_http2 import AsyncSageMakerRuntimeHTTP2Client
 
 
 async def main():
-    async with AsyncSageMakerRuntimeHTTP2Client() as s3:
+    async with AsyncSageMakerRuntimeHTTP2Client() as sage_maker_runtime_http2:
         # Example: call the invoke_endpoint_with_bidirectional_stream operation
-        response = await s3.invoke_endpoint_with_bidirectional_stream()
+        response = await sage_maker_runtime_http2.invoke_endpoint_with_bidirectional_stream()
         print(response["body"])
 ```
 
@@ -28,16 +28,16 @@ from capo_sagemaker_runtime_http2 import AsyncSageMakerRuntimeHTTP2Client
 
 
 async def main():
-    async with AsyncSageMakerRuntimeHTTP2Client() as s3:
+    async with AsyncSageMakerRuntimeHTTP2Client() as sage_maker_runtime_http2:
         # Example: call invoke_endpoint_with_bidirectional_stream with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.invoke_endpoint_with_bidirectional_stream(body=chunks())
+        response = await sage_maker_runtime_http2.invoke_endpoint_with_bidirectional_stream(body=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.invoke_endpoint_with_bidirectional_stream(body=b'Hello, World!')
+        response = await sage_maker_runtime_http2.invoke_endpoint_with_bidirectional_stream(body=b'Hello, World!')
         print(response)
 ```
 
@@ -51,9 +51,9 @@ from capo_sagemaker_runtime_http2.error import InputValidationError
 
 
 async def main():
-    async with AsyncSageMakerRuntimeHTTP2Client() as s3:
+    async with AsyncSageMakerRuntimeHTTP2Client() as sage_maker_runtime_http2:
         try:
-            await s3.invoke_endpoint_with_bidirectional_stream()
+            await sage_maker_runtime_http2.invoke_endpoint_with_bidirectional_stream()
         except InputValidationError as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -70,13 +70,13 @@ from capo_sagemaker_runtime_http2 import AsyncSageMakerRuntimeHTTP2Client
 
 
 async def main():
-    async with AsyncSageMakerRuntimeHTTP2Client() as s3:
+    async with AsyncSageMakerRuntimeHTTP2Client() as sage_maker_runtime_http2:
         # Default: 3 attempts for every operation
-        response = await s3.invoke_endpoint_with_bidirectional_stream()
+        response = await sage_maker_runtime_http2.invoke_endpoint_with_bidirectional_stream()
 
         # Override per operation
-        response = await s3.invoke_endpoint_with_bidirectional_stream(config_overrides={"retry_max_attempts": 5})
+        response = await sage_maker_runtime_http2.invoke_endpoint_with_bidirectional_stream(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.invoke_endpoint_with_bidirectional_stream(config_overrides={"retry_max_attempts": 1})
+        response = await sage_maker_runtime_http2.invoke_endpoint_with_bidirectional_stream(config_overrides={"retry_max_attempts": 1})
 ```

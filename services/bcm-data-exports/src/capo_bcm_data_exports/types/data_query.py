@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: DataQuery) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataQuery:
     out: DataQuery = {}  # type: ignore[typeddict-item]
-    if "QueryStatement" in data:
+    if data.get("QueryStatement") is not None:
         out["query_statement"] = data["QueryStatement"]
     else:
         raise DeserializationError("DataQuery.query_statement required")
-    if "TableConfigurations" in data:
+    if data.get("TableConfigurations") is not None:
         import capo_bcm_data_exports.types.table_configurations
 
         out["table_configurations"] = (

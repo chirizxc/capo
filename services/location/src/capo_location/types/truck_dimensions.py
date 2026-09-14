@@ -24,11 +24,35 @@ class TruckDimensions(TypedDict, closed=True):
 def serialize_json(value: TruckDimensions) -> dict:
     out: dict = {}
     if "length" in value:
-        out["Length"] = value["length"]
+        out["Length"] = (
+            "NaN"
+            if value["length"] != value["length"]
+            else "Infinity"
+            if value["length"] == float("inf")
+            else "-Infinity"
+            if value["length"] == float("-inf")
+            else value["length"]
+        )
     if "height" in value:
-        out["Height"] = value["height"]
+        out["Height"] = (
+            "NaN"
+            if value["height"] != value["height"]
+            else "Infinity"
+            if value["height"] == float("inf")
+            else "-Infinity"
+            if value["height"] == float("-inf")
+            else value["height"]
+        )
     if "width" in value:
-        out["Width"] = value["width"]
+        out["Width"] = (
+            "NaN"
+            if value["width"] != value["width"]
+            else "Infinity"
+            if value["width"] == float("inf")
+            else "-Infinity"
+            if value["width"] == float("-inf")
+            else value["width"]
+        )
     if "unit" in value:
         out["Unit"] = value["unit"]
     return out
@@ -36,12 +60,12 @@ def serialize_json(value: TruckDimensions) -> dict:
 
 def deserialize_json(data: dict) -> TruckDimensions:
     out: TruckDimensions = {}  # type: ignore[typeddict-item]
-    if "Length" in data:
-        out["length"] = data["Length"]
-    if "Height" in data:
-        out["height"] = data["Height"]
-    if "Width" in data:
-        out["width"] = data["Width"]
-    if "Unit" in data:
+    if data.get("Length") is not None:
+        out["length"] = float(data["Length"])
+    if data.get("Height") is not None:
+        out["height"] = float(data["Height"])
+    if data.get("Width") is not None:
+        out["width"] = float(data["Width"])
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     return out

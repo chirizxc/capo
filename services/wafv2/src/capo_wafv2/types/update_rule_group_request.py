@@ -71,27 +71,27 @@ def serialize_aws_json_1_1(value: UpdateRuleGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRuleGroupRequest:
     out: UpdateRuleGroupRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateRuleGroupRequest.name required")
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("UpdateRuleGroupRequest.scope required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateRuleGroupRequest.id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_wafv2.types.rules
 
         out["rules"] = capo_wafv2.types.rules.deserialize_aws_json_1_1(data["Rules"])
-    if "VisibilityConfig" in data:
+    if data.get("VisibilityConfig") is not None:
         import capo_wafv2.types.visibility_config
 
         out["visibility_config"] = (
@@ -101,11 +101,11 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateRuleGroupRequest:
         )
     else:
         raise DeserializationError("UpdateRuleGroupRequest.visibility_config required")
-    if "LockToken" in data:
+    if data.get("LockToken") is not None:
         out["lock_token"] = data["LockToken"]
     else:
         raise DeserializationError("UpdateRuleGroupRequest.lock_token required")
-    if "CustomResponseBodies" in data:
+    if data.get("CustomResponseBodies") is not None:
         import capo_wafv2.types.custom_response_bodies
 
         out["custom_response_bodies"] = (

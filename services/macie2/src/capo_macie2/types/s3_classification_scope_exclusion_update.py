@@ -42,7 +42,7 @@ def serialize_json(value: S3ClassificationScopeExclusionUpdate) -> dict:
 
 def deserialize_json(data: dict) -> S3ClassificationScopeExclusionUpdate:
     out: S3ClassificationScopeExclusionUpdate = {}  # type: ignore[typeddict-item]
-    if "bucketNames" in data:
+    if data.get("bucketNames") is not None:
         import capo_macie2.types.__list_of_s3_bucket_name
 
         out["bucket_names"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> S3ClassificationScopeExclusionUpdate:
                 data["bucketNames"]
             )
         )
-    if "operation" in data:
+    if data.get("operation") is not None:
         import capo_macie2.types.classification_scope_update_operation
 
         out["operation"] = (

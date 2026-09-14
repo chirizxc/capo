@@ -52,11 +52,11 @@ def serialize_json(value: DataLakeSource) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeSource:
     out: DataLakeSource = {}  # type: ignore[typeddict-item]
-    if "account" in data:
+    if data.get("account") is not None:
         out["account"] = data["account"]
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         out["source_name"] = data["sourceName"]
-    if "eventClasses" in data:
+    if data.get("eventClasses") is not None:
         import capo_securitylake.types.ocsf_event_class_list
 
         out["event_classes"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> DataLakeSource:
                 data["eventClasses"]
             )
         )
-    if "sourceStatuses" in data:
+    if data.get("sourceStatuses") is not None:
         import capo_securitylake.types.data_lake_source_status_list
 
         out["source_statuses"] = (

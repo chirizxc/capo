@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetPlanRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPlanRequest:
     out: GetPlanRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetPlanRequest.arn required")

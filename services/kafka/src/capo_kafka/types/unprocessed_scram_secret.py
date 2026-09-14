@@ -31,10 +31,10 @@ def serialize_json(value: UnprocessedScramSecret) -> dict:
 
 def deserialize_json(data: dict) -> UnprocessedScramSecret:
     out: UnprocessedScramSecret = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     return out

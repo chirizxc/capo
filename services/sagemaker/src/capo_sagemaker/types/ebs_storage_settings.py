@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: EbsStorageSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EbsStorageSettings:
     out: EbsStorageSettings = {}  # type: ignore[typeddict-item]
-    if "EbsVolumeSizeInGb" in data:
+    if data.get("EbsVolumeSizeInGb") is not None:
         out["ebs_volume_size_in_gb"] = data["EbsVolumeSizeInGb"]
     return out

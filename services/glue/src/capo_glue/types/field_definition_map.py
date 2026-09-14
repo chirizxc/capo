@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: FieldDefinitionMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> FieldDefinitionMap:
     out: FieldDefinitionMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_glue.types.field_definition
 
         out[key] = capo_glue.types.field_definition.deserialize_aws_json_1_1(value)

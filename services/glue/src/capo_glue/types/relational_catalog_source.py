@@ -31,15 +31,15 @@ def serialize_aws_json_1_1(value: RelationalCatalogSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelationalCatalogSource:
     out: RelationalCatalogSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RelationalCatalogSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("RelationalCatalogSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("RelationalCatalogSource.table required")

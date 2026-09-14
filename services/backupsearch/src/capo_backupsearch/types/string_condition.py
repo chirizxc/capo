@@ -33,11 +33,11 @@ def serialize_json(value: StringCondition) -> dict:
 
 def deserialize_json(data: dict) -> StringCondition:
     out: StringCondition = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("StringCondition.value required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_backupsearch.types.string_condition_operator
 
         out["operator"] = (

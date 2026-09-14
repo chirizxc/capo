@@ -91,25 +91,25 @@ def serialize_json(value: SignalMapSummary) -> dict:
 
 def deserialize_json(data: dict) -> SignalMapSummary:
     out: SignalMapSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["created_at"] = capo_medialive.types.__timestamp_iso8601.deserialize_json(
             data["createdAt"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["modified_at"] = capo_medialive.types.__timestamp_iso8601.deserialize_json(
             data["modifiedAt"]
         )
-    if "monitorDeploymentStatus" in data:
+    if data.get("monitorDeploymentStatus") is not None:
         import capo_medialive.types.signal_map_monitor_deployment_status
 
         out["monitor_deployment_status"] = (
@@ -117,15 +117,15 @@ def deserialize_json(data: dict) -> SignalMapSummary:
                 data["monitorDeploymentStatus"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_medialive.types.signal_map_status
 
         out["status"] = capo_medialive.types.signal_map_status.deserialize_json(
             data["status"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tag_map
 
         out["tags"] = capo_medialive.types.tag_map.deserialize_json(data["tags"])

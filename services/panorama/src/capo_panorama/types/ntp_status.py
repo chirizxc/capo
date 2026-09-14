@@ -35,10 +35,10 @@ def serialize_json(value: NtpStatus) -> dict:
 
 def deserialize_json(data: dict) -> NtpStatus:
     out: NtpStatus = {}  # type: ignore[typeddict-item]
-    if "ConnectionStatus" in data:
+    if data.get("ConnectionStatus") is not None:
         out["connection_status"] = data["ConnectionStatus"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "NtpServerName" in data:
+    if data.get("NtpServerName") is not None:
         out["ntp_server_name"] = data["NtpServerName"]
     return out

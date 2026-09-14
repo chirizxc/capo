@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeHapgRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHapgRequest:
     out: DescribeHapgRequest = {}  # type: ignore[typeddict-item]
-    if "HapgArn" in data:
+    if data.get("HapgArn") is not None:
         out["hapg_arn"] = data["HapgArn"]
     else:
         raise DeserializationError("DescribeHapgRequest.hapg_arn required")

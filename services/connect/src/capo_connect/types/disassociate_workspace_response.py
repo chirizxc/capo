@@ -44,7 +44,7 @@ def serialize_json(value: DisassociateWorkspaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateWorkspaceResponse:
     out: DisassociateWorkspaceResponse = {}  # type: ignore[typeddict-item]
-    if "SuccessfulList" in data:
+    if data.get("SuccessfulList") is not None:
         import capo_connect.types.successful_batch_association_summary_list
 
         out["successful_list"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DisassociateWorkspaceResponse:
                 data["SuccessfulList"]
             )
         )
-    if "FailedList" in data:
+    if data.get("FailedList") is not None:
         import capo_connect.types.failed_batch_association_summary_list
 
         out["failed_list"] = (

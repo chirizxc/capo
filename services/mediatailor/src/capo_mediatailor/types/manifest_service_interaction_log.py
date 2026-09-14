@@ -44,7 +44,7 @@ def serialize_json(value: ManifestServiceInteractionLog) -> dict:
 
 def deserialize_json(data: dict) -> ManifestServiceInteractionLog:
     out: ManifestServiceInteractionLog = {}  # type: ignore[typeddict-item]
-    if "PublishOptInEventTypes" in data:
+    if data.get("PublishOptInEventTypes") is not None:
         import capo_mediatailor.types.__manifest_service_publish_opt_in_event_types_list
 
         out["publish_opt_in_event_types"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ManifestServiceInteractionLog:
                 data["PublishOptInEventTypes"]
             )
         )
-    if "ExcludeEventTypes" in data:
+    if data.get("ExcludeEventTypes") is not None:
         import capo_mediatailor.types.__manifest_service_exclude_event_types_list
 
         out["exclude_event_types"] = (

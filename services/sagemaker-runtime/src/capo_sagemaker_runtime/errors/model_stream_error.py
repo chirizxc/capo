@@ -30,9 +30,9 @@ def serialize_json(value: ModelStreamError_) -> dict:
 
 def deserialize_json(data: dict) -> ModelStreamError_:
     out: ModelStreamError_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     return out
 
@@ -42,18 +42,19 @@ class ModelStreamError(ServiceError):
 
     code: str | None = "ModelStreamError"
 
-    def __init__(self, data: ModelStreamError_):
+    def __init__(self, data: ModelStreamError_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ModelStreamError",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ModelStreamError":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ModelStreamError":
+        return cls(deserialize_json(data), message)
 
 
 def serialize_event_json(value: ModelStreamError_) -> bytes:

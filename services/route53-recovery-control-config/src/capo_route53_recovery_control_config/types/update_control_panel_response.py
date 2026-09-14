@@ -31,7 +31,7 @@ def serialize_json(value: UpdateControlPanelResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateControlPanelResponse:
     out: UpdateControlPanelResponse = {}  # type: ignore[typeddict-item]
-    if "ControlPanel" in data:
+    if data.get("ControlPanel") is not None:
         import capo_route53_recovery_control_config.types.control_panel
 
         out["control_panel"] = (

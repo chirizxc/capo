@@ -46,12 +46,12 @@ def serialize_json(value: UpdateTrustedEntitySetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTrustedEntitySetRequest:
     out: UpdateTrustedEntitySetRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "expectedBucketOwner" in data:
+    if data.get("expectedBucketOwner") is not None:
         out["expected_bucket_owner"] = data["expectedBucketOwner"]
-    if "activate" in data:
+    if data.get("activate") is not None:
         out["activate"] = data["activate"]
     return out

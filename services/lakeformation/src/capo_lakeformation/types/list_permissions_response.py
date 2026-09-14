@@ -36,7 +36,7 @@ def serialize_json(value: ListPermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPermissionsResponse:
     out: ListPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "PrincipalResourcePermissions" in data:
+    if data.get("PrincipalResourcePermissions") is not None:
         import capo_lakeformation.types.principal_resource_permissions_list
 
         out["principal_resource_permissions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListPermissionsResponse:
                 data["PrincipalResourcePermissions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -45,9 +45,9 @@ def serialize_json(value: CreateThingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateThingGroupRequest:
     out: CreateThingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "parentGroupName" in data:
+    if data.get("parentGroupName") is not None:
         out["parent_group_name"] = data["parentGroupName"]
-    if "thingGroupProperties" in data:
+    if data.get("thingGroupProperties") is not None:
         import capo_iot.types.thing_group_properties
 
         out["thing_group_properties"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> CreateThingGroupRequest:
                 data["thingGroupProperties"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

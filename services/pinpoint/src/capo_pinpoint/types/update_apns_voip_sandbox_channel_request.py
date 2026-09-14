@@ -33,7 +33,7 @@ def serialize_json(value: UpdateApnsVoipSandboxChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApnsVoipSandboxChannelRequest:
     out: UpdateApnsVoipSandboxChannelRequest = {}  # type: ignore[typeddict-item]
-    if "APNSVoipSandboxChannelRequest" in data:
+    if data.get("APNSVoipSandboxChannelRequest") is not None:
         import capo_pinpoint.types.apns_voip_sandbox_channel_request
 
         out["apns_voip_sandbox_channel_request"] = (

@@ -13,9 +13,9 @@ from capo_emr_containers import AsyncEMRcontainersClient
 
 
 async def main():
-    async with AsyncEMRcontainersClient() as s3:
+    async with AsyncEMRcontainersClient() as em_rcontainers:
         # Example: call the cancel_job_run operation
-        response = await s3.cancel_job_run()
+        response = await em_rcontainers.cancel_job_run()
         print(response["id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_emr_containers import AsyncEMRcontainersClient
 
 
 async def main():
-    async with AsyncEMRcontainersClient() as s3:
+    async with AsyncEMRcontainersClient() as em_rcontainers:
         # Example: paginate over list_job_runs
-        async for item in s3.iter_list_job_runs():
+        async for item in em_rcontainers.iter_list_job_runs():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_emr_containers.error import InternalServerException
 
 
 async def main():
-    async with AsyncEMRcontainersClient() as s3:
+    async with AsyncEMRcontainersClient() as em_rcontainers:
         try:
-            await s3.cancel_job_run()
+            await em_rcontainers.cancel_job_run()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_emr_containers import AsyncEMRcontainersClient
 
 
 async def main():
-    async with AsyncEMRcontainersClient() as s3:
+    async with AsyncEMRcontainersClient() as em_rcontainers:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_job_run()
+        response = await em_rcontainers.cancel_job_run()
 
         # Override per operation
-        response = await s3.cancel_job_run(config_overrides={"retry_max_attempts": 5})
+        response = await em_rcontainers.cancel_job_run(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_job_run(config_overrides={"retry_max_attempts": 1})
+        response = await em_rcontainers.cancel_job_run(config_overrides={"retry_max_attempts": 1})
 ```

@@ -30,7 +30,7 @@ def serialize_json(value: DifferentialPrivacyParameters) -> dict:
 
 def deserialize_json(data: dict) -> DifferentialPrivacyParameters:
     out: DifferentialPrivacyParameters = {}  # type: ignore[typeddict-item]
-    if "sensitivityParameters" in data:
+    if data.get("sensitivityParameters") is not None:
         import capo_cleanrooms.types.differential_privacy_sensitivity_parameters_list
 
         out["sensitivity_parameters"] = (

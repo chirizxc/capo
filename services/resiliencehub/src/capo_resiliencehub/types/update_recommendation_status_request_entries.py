@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> UpdateRecommendationStatusRequestEntries:
 
     out: UpdateRecommendationStatusRequestEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehub.types.update_recommendation_status_request_entry.deserialize_json(
                 item

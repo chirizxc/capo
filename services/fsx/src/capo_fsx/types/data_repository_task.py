@@ -156,9 +156,9 @@ def serialize_aws_json_1_1(value: DataRepositoryTask) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataRepositoryTask:
     out: DataRepositoryTask = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.data_repository_task_lifecycle
 
         out["lifecycle"] = (
@@ -166,39 +166,39 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryTask:
                 data["Lifecycle"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_fsx.types.data_repository_task_type
 
         out["type"] = capo_fsx.types.data_repository_task_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_fsx.types.creation_time
 
         out["creation_time"] = capo_fsx.types.creation_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_fsx.types.start_time
 
         out["start_time"] = capo_fsx.types.start_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_fsx.types.end_time
 
         out["end_time"] = capo_fsx.types.end_time.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "Paths" in data:
+    if data.get("Paths") is not None:
         import capo_fsx.types.data_repository_task_paths
 
         out["paths"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryTask:
                 data["Paths"]
             )
         )
-    if "FailureDetails" in data:
+    if data.get("FailureDetails") is not None:
         import capo_fsx.types.data_repository_task_failure_details
 
         out["failure_details"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryTask:
                 data["FailureDetails"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_fsx.types.data_repository_task_status
 
         out["status"] = (
@@ -222,17 +222,17 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryTask:
                 data["Status"]
             )
         )
-    if "Report" in data:
+    if data.get("Report") is not None:
         import capo_fsx.types.completion_report
 
         out["report"] = capo_fsx.types.completion_report.deserialize_aws_json_1_1(
             data["Report"]
         )
-    if "CapacityToRelease" in data:
+    if data.get("CapacityToRelease") is not None:
         out["capacity_to_release"] = data["CapacityToRelease"]
-    if "FileCacheId" in data:
+    if data.get("FileCacheId") is not None:
         out["file_cache_id"] = data["FileCacheId"]
-    if "ReleaseConfiguration" in data:
+    if data.get("ReleaseConfiguration") is not None:
         import capo_fsx.types.release_configuration
 
         out["release_configuration"] = (

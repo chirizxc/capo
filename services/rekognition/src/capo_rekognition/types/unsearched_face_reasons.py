@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> UnsearchedFaceReasons:
 
     out: UnsearchedFaceReasons = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.unsearched_face_reason.deserialize_aws_json_1_1(item)
         )

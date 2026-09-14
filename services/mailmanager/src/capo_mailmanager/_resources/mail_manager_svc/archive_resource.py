@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_mailmanager._services._pipeline import (
@@ -92,10 +93,12 @@ class ArchiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_archive_request.CreateArchiveRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["archive_name"] = archive_name
+        input_: capo_mailmanager.types.create_archive_request.CreateArchiveRequest = {
+            "archive_name": archive_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if retention is not None:
             input_["retention"] = retention
         if kms_key_arn is not None:
@@ -108,6 +111,7 @@ class ArchiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -144,14 +148,16 @@ class ArchiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_archive_request.GetArchiveRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_id"] = archive_id
+        input_: capo_mailmanager.types.get_archive_request.GetArchiveRequest = {
+            "archive_id": archive_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -198,8 +204,9 @@ class ArchiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.update_archive_request.UpdateArchiveRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_id"] = archive_id
+        input_: capo_mailmanager.types.update_archive_request.UpdateArchiveRequest = {
+            "archive_id": archive_id
+        }
         if archive_name is not None:
             input_["archive_name"] = archive_name
         if retention is not None:
@@ -210,6 +217,7 @@ class ArchiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -246,14 +254,16 @@ class ArchiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_archive_request.DeleteArchiveRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_id"] = archive_id
+        input_: capo_mailmanager.types.delete_archive_request.DeleteArchiveRequest = {
+            "archive_id": archive_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -293,7 +303,7 @@ class ArchiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_archives_request.ListArchivesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_archives_request.ListArchivesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -304,6 +314,7 @@ class ArchiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -359,10 +370,12 @@ class AsyncArchiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_archive_request.CreateArchiveRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["archive_name"] = archive_name
+        input_: capo_mailmanager.types.create_archive_request.CreateArchiveRequest = {
+            "archive_name": archive_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if retention is not None:
             input_["retention"] = retention
         if kms_key_arn is not None:
@@ -375,6 +388,7 @@ class AsyncArchiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -412,14 +426,16 @@ class AsyncArchiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_archive_request.GetArchiveRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_id"] = archive_id
+        input_: capo_mailmanager.types.get_archive_request.GetArchiveRequest = {
+            "archive_id": archive_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -467,8 +483,9 @@ class AsyncArchiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.update_archive_request.UpdateArchiveRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_id"] = archive_id
+        input_: capo_mailmanager.types.update_archive_request.UpdateArchiveRequest = {
+            "archive_id": archive_id
+        }
         if archive_name is not None:
             input_["archive_name"] = archive_name
         if retention is not None:
@@ -479,6 +496,7 @@ class AsyncArchiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -516,14 +534,16 @@ class AsyncArchiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_archive_request.DeleteArchiveRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_id"] = archive_id
+        input_: capo_mailmanager.types.delete_archive_request.DeleteArchiveRequest = {
+            "archive_id": archive_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -564,7 +584,7 @@ class AsyncArchiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_archives_request.ListArchivesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_archives_request.ListArchivesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -575,4 +595,5 @@ class AsyncArchiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

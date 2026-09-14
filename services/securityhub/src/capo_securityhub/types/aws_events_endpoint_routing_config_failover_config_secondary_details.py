@@ -29,6 +29,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails:
     out: AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails = {}  # type: ignore[typeddict-item]
-    if "Route" in data:
+    if data.get("Route") is not None:
         out["route"] = data["Route"]
     return out

@@ -112,17 +112,17 @@ def serialize_aws_json_1_1(value: GetAdapterVersionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAdapterVersionResponse:
     out: GetAdapterVersionResponse = {}  # type: ignore[typeddict-item]
-    if "AdapterId" in data:
+    if data.get("AdapterId") is not None:
         out["adapter_id"] = data["AdapterId"]
-    if "AdapterVersion" in data:
+    if data.get("AdapterVersion") is not None:
         out["adapter_version"] = data["AdapterVersion"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_textract.types.date_time
 
         out["creation_time"] = capo_textract.types.date_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FeatureTypes" in data:
+    if data.get("FeatureTypes") is not None:
         import capo_textract.types.feature_types
 
         out["feature_types"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAdapterVersionResponse:
                 data["FeatureTypes"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_textract.types.adapter_version_status
 
         out["status"] = (
@@ -138,9 +138,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetAdapterVersionResponse:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "DatasetConfig" in data:
+    if data.get("DatasetConfig") is not None:
         import capo_textract.types.adapter_version_dataset_config
 
         out["dataset_config"] = (
@@ -148,9 +148,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetAdapterVersionResponse:
                 data["DatasetConfig"]
             )
         )
-    if "KMSKeyId" in data:
+    if data.get("KMSKeyId") is not None:
         out["kms_key_id"] = data["KMSKeyId"]
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_textract.types.output_config
 
         out["output_config"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAdapterVersionResponse:
                 data["OutputConfig"]
             )
         )
-    if "EvaluationMetrics" in data:
+    if data.get("EvaluationMetrics") is not None:
         import capo_textract.types.adapter_version_evaluation_metrics
 
         out["evaluation_metrics"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAdapterVersionResponse:
                 data["EvaluationMetrics"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_textract.types.tag_map
 
         out["tags"] = capo_textract.types.tag_map.deserialize_aws_json_1_1(data["Tags"])

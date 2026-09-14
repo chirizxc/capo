@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> TaskSummaryList:
 
     out: TaskSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_snow_device_management.types.task_summary.deserialize_json(item)
         )

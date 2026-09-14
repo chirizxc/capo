@@ -28,11 +28,11 @@ def serialize_json(value: DeleteIngestConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteIngestConfigurationRequest:
     out: DeleteIngestConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteIngestConfigurationRequest.arn required")
-    if "force" in data:
+    if data.get("force") is not None:
         out["force"] = data["force"]
     else:
         out["force"] = False

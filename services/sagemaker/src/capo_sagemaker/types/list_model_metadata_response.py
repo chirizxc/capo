@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListModelMetadataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListModelMetadataResponse:
     out: ListModelMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "ModelMetadataSummaries" in data:
+    if data.get("ModelMetadataSummaries") is not None:
         import capo_sagemaker.types.model_metadata_summaries
 
         out["model_metadata_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelMetadataResponse:
                 data["ModelMetadataSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -32,11 +32,11 @@ def serialize_json(value: AdditionalSearchKey) -> dict:
 
 def deserialize_json(data: dict) -> AdditionalSearchKey:
     out: AdditionalSearchKey = {}  # type: ignore[typeddict-item]
-    if "KeyName" in data:
+    if data.get("KeyName") is not None:
         out["key_name"] = data["KeyName"]
     else:
         raise DeserializationError("AdditionalSearchKey.key_name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_customer_profiles.types.request_value_list
 
         out["values"] = (

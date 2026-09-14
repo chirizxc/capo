@@ -57,7 +57,7 @@ def serialize_json(value: GetUsageStatisticsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetUsageStatisticsRequest:
     out: GetUsageStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "usageStatisticsType" in data:
+    if data.get("usageStatisticsType") is not None:
         import capo_guardduty.types.usage_statistic_type
 
         out["usage_statistic_type"] = (
@@ -65,16 +65,16 @@ def deserialize_json(data: dict) -> GetUsageStatisticsRequest:
                 data["usageStatisticsType"]
             )
         )
-    if "usageCriteria" in data:
+    if data.get("usageCriteria") is not None:
         import capo_guardduty.types.usage_criteria
 
         out["usage_criteria"] = capo_guardduty.types.usage_criteria.deserialize_json(
             data["usageCriteria"]
         )
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

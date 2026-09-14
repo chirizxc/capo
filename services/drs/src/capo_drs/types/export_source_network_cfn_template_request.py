@@ -24,7 +24,7 @@ def serialize_json(value: ExportSourceNetworkCfnTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> ExportSourceNetworkCfnTemplateRequest:
     out: ExportSourceNetworkCfnTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "sourceNetworkID" in data:
+    if data.get("sourceNetworkID") is not None:
         out["source_network_id"] = data["sourceNetworkID"]
     else:
         raise DeserializationError(

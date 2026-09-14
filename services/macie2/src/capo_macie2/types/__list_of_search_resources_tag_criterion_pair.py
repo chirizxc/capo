@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfSearchResourcesTagCriterionPair:
 
     out: __listOfSearchResourcesTagCriterionPair = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_macie2.types.search_resources_tag_criterion_pair.deserialize_json(item)
         )

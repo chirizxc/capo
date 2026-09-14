@@ -33,10 +33,10 @@ def serialize_json(value: ComputePlatform) -> dict:
 
 def deserialize_json(data: dict) -> ComputePlatform:
     out: ComputePlatform = {}  # type: ignore[typeddict-item]
-    if "vendor" in data:
+    if data.get("vendor") is not None:
         out["vendor"] = data["vendor"]
-    if "product" in data:
+    if data.get("product") is not None:
         out["product"] = data["product"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

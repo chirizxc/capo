@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ObjectiveResourceFilterList:
 
     out: ObjectiveResourceFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_controlcatalog.types.objective_resource_filter.deserialize_json(item)
         )

@@ -70,8 +70,9 @@ class ComponentOutputResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_component_outputs_input.ListComponentOutputsInput = {}  # type: ignore[typeddict-item]
-        input_["component_name"] = component_name
+        input_: capo_proton.types.list_component_outputs_input.ListComponentOutputsInput = {
+            "component_name": component_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if deployment_id is not None:
@@ -82,6 +83,7 @@ class ComponentOutputResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -131,8 +133,9 @@ class AsyncComponentOutputResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_component_outputs_input.ListComponentOutputsInput = {}  # type: ignore[typeddict-item]
-        input_["component_name"] = component_name
+        input_: capo_proton.types.list_component_outputs_input.ListComponentOutputsInput = {
+            "component_name": component_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if deployment_id is not None:
@@ -143,4 +146,5 @@ class AsyncComponentOutputResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

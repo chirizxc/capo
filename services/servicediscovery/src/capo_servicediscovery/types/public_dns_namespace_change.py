@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: PublicDnsNamespaceChange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PublicDnsNamespaceChange:
     out: PublicDnsNamespaceChange = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_servicediscovery.types.public_dns_namespace_properties_change
 
         out["properties"] = (

@@ -39,14 +39,14 @@ def serialize_json(value: BorderSettings) -> dict:
 
 def deserialize_json(data: dict) -> BorderSettings:
     out: BorderSettings = {}  # type: ignore[typeddict-item]
-    if "BorderVisibility" in data:
+    if data.get("BorderVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["border_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["BorderVisibility"]
         )
-    if "BorderWidth" in data:
+    if data.get("BorderWidth") is not None:
         out["border_width"] = data["BorderWidth"]
-    if "BorderColor" in data:
+    if data.get("BorderColor") is not None:
         out["border_color"] = data["BorderColor"]
     return out

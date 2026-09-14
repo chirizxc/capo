@@ -26,6 +26,6 @@ def serialize_json(value: GetThingConnectivityDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetThingConnectivityDataRequest:
     out: GetThingConnectivityDataRequest = {}  # type: ignore[typeddict-item]
-    if "includeSocketInformation" in data:
+    if data.get("includeSocketInformation") is not None:
         out["include_socket_information"] = data["includeSocketInformation"]
     return out

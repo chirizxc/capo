@@ -40,12 +40,12 @@ def serialize_json(value: UpdateLinkRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLinkRequest:
     out: UpdateLinkRequest = {}  # type: ignore[typeddict-item]
-    if "logSettings" in data:
+    if data.get("logSettings") is not None:
         import capo_rtbfabric.types.link_log_settings
 
         out["log_settings"] = capo_rtbfabric.types.link_log_settings.deserialize_json(
             data["logSettings"]
         )
-    if "timeoutInMillis" in data:
+    if data.get("timeoutInMillis") is not None:
         out["timeout_in_millis"] = data["timeoutInMillis"]
     return out

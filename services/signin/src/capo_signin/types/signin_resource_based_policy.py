@@ -31,9 +31,9 @@ def serialize_json(value: SigninResourceBasedPolicy) -> dict:
 
 def deserialize_json(data: dict) -> SigninResourceBasedPolicy:
     out: SigninResourceBasedPolicy = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Statement" in data:
+    if data.get("Statement") is not None:
         import capo_signin.types.policy_statements
 
         out["statement"] = capo_signin.types.policy_statements.deserialize_json(

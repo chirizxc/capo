@@ -30,12 +30,12 @@ def serialize_json(value: ListMatchingJobsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListMatchingJobsOutput:
     out: ListMatchingJobsOutput = {}  # type: ignore[typeddict-item]
-    if "jobs" in data:
+    if data.get("jobs") is not None:
         import capo_entityresolution.types.job_list
 
         out["jobs"] = capo_entityresolution.types.job_list.deserialize_json(
             data["jobs"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

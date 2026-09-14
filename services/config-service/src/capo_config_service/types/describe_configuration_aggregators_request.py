@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: DescribeConfigurationAggregatorsRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConfigurationAggregatorsRequest:
     out: DescribeConfigurationAggregatorsRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationAggregatorNames" in data:
+    if data.get("ConfigurationAggregatorNames") is not None:
         import capo_config_service.types.configuration_aggregator_name_list
 
         out["configuration_aggregator_names"] = (
@@ -48,9 +48,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeConfigurationAggregatorsRequ
                 data["ConfigurationAggregatorNames"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0

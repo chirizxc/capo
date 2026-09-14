@@ -51,7 +51,7 @@ def serialize_json(value: CapacitySummary) -> dict:
 
 def deserialize_json(data: dict) -> CapacitySummary:
     out: CapacitySummary = {}  # type: ignore[typeddict-item]
-    if "ExistingCapacities" in data:
+    if data.get("ExistingCapacities") is not None:
         import capo_outposts.types.quote_capacity_list
 
         out["existing_capacities"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> CapacitySummary:
                 data["ExistingCapacities"]
             )
         )
-    if "FinalCapacities" in data:
+    if data.get("FinalCapacities") is not None:
         import capo_outposts.types.quote_capacity_list
 
         out["final_capacities"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> CapacitySummary:
                 data["FinalCapacities"]
             )
         )
-    if "CapacityChange" in data:
+    if data.get("CapacityChange") is not None:
         import capo_outposts.types.quote_capacity_list
 
         out["capacity_change"] = (

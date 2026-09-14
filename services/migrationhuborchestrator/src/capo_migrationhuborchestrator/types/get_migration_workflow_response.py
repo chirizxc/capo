@@ -155,25 +155,25 @@ def serialize_json(value: GetMigrationWorkflowResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMigrationWorkflowResponse:
     out: GetMigrationWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
-    if "adsApplicationConfigurationId" in data:
+    if data.get("adsApplicationConfigurationId") is not None:
         out["ads_application_configuration_id"] = data["adsApplicationConfigurationId"]
-    if "adsApplicationName" in data:
+    if data.get("adsApplicationName") is not None:
         out["ads_application_name"] = data["adsApplicationName"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> GetMigrationWorkflowResponse:
                 data["creationTime"]
             )
         )
-    if "lastStartTime" in data:
+    if data.get("lastStartTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["last_start_time"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> GetMigrationWorkflowResponse:
                 data["lastStartTime"]
             )
         )
-    if "lastStopTime" in data:
+    if data.get("lastStopTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["last_stop_time"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> GetMigrationWorkflowResponse:
                 data["lastStopTime"]
             )
         )
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["last_modified_time"] = (
@@ -205,7 +205,7 @@ def deserialize_json(data: dict) -> GetMigrationWorkflowResponse:
                 data["lastModifiedTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["end_time"] = (
@@ -213,17 +213,17 @@ def deserialize_json(data: dict) -> GetMigrationWorkflowResponse:
                 data["endTime"]
             )
         )
-    if "tools" in data:
+    if data.get("tools") is not None:
         import capo_migrationhuborchestrator.types.tools_list
 
         out["tools"] = capo_migrationhuborchestrator.types.tools_list.deserialize_json(
             data["tools"]
         )
-    if "totalSteps" in data:
+    if data.get("totalSteps") is not None:
         out["total_steps"] = data["totalSteps"]
-    if "completedSteps" in data:
+    if data.get("completedSteps") is not None:
         out["completed_steps"] = data["completedSteps"]
-    if "workflowInputs" in data:
+    if data.get("workflowInputs") is not None:
         import capo_migrationhuborchestrator.types.step_input_parameters
 
         out["workflow_inputs"] = (
@@ -231,12 +231,12 @@ def deserialize_json(data: dict) -> GetMigrationWorkflowResponse:
                 data["workflowInputs"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_migrationhuborchestrator.types.string_map
 
         out["tags"] = capo_migrationhuborchestrator.types.string_map.deserialize_json(
             data["tags"]
         )
-    if "workflowBucket" in data:
+    if data.get("workflowBucket") is not None:
         out["workflow_bucket"] = data["workflowBucket"]
     return out

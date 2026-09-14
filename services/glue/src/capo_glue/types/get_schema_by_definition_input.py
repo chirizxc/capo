@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetSchemaByDefinitionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSchemaByDefinitionInput:
     out: GetSchemaByDefinitionInput = {}  # type: ignore[typeddict-item]
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         import capo_glue.types.schema_id
 
         out["schema_id"] = capo_glue.types.schema_id.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSchemaByDefinitionInput:
         )
     else:
         raise DeserializationError("GetSchemaByDefinitionInput.schema_id required")
-    if "SchemaDefinition" in data:
+    if data.get("SchemaDefinition") is not None:
         out["schema_definition"] = data["SchemaDefinition"]
     else:
         raise DeserializationError(

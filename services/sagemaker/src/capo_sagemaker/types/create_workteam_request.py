@@ -81,11 +81,11 @@ def serialize_aws_json_1_1(value: CreateWorkteamRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkteamRequest:
     out: CreateWorkteamRequest = {}  # type: ignore[typeddict-item]
-    if "WorkteamName" in data:
+    if data.get("WorkteamName") is not None:
         out["workteam_name"] = data["WorkteamName"]
-    if "WorkforceName" in data:
+    if data.get("WorkforceName") is not None:
         out["workforce_name"] = data["WorkforceName"]
-    if "MemberDefinitions" in data:
+    if data.get("MemberDefinitions") is not None:
         import capo_sagemaker.types.member_definitions
 
         out["member_definitions"] = (
@@ -93,9 +93,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkteamRequest:
                 data["MemberDefinitions"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "NotificationConfiguration" in data:
+    if data.get("NotificationConfiguration") is not None:
         import capo_sagemaker.types.notification_configuration
 
         out["notification_configuration"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkteamRequest:
                 data["NotificationConfiguration"]
             )
         )
-    if "WorkerAccessConfiguration" in data:
+    if data.get("WorkerAccessConfiguration") is not None:
         import capo_sagemaker.types.worker_access_configuration
 
         out["worker_access_configuration"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkteamRequest:
                 data["WorkerAccessConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

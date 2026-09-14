@@ -43,15 +43,15 @@ def serialize_json(value: ListOrganizationAdminAccountsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListOrganizationAdminAccountsResponse:
     out: ListOrganizationAdminAccountsResponse = {}  # type: ignore[typeddict-item]
-    if "AdminAccounts" in data:
+    if data.get("AdminAccounts") is not None:
         import capo_securityhub.types.admin_accounts
 
         out["admin_accounts"] = capo_securityhub.types.admin_accounts.deserialize_json(
             data["AdminAccounts"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Feature" in data:
+    if data.get("Feature") is not None:
         import capo_securityhub.types.security_hub_feature
 
         out["feature"] = capo_securityhub.types.security_hub_feature.deserialize_json(

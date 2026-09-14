@@ -47,16 +47,16 @@ def serialize_json(value: DvbSdtSettings) -> dict:
 
 def deserialize_json(data: dict) -> DvbSdtSettings:
     out: DvbSdtSettings = {}  # type: ignore[typeddict-item]
-    if "outputSdt" in data:
+    if data.get("outputSdt") is not None:
         import capo_mediaconvert.types.output_sdt
 
         out["output_sdt"] = capo_mediaconvert.types.output_sdt.deserialize_json(
             data["outputSdt"]
         )
-    if "sdtInterval" in data:
+    if data.get("sdtInterval") is not None:
         out["sdt_interval"] = data["sdtInterval"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "serviceProviderName" in data:
+    if data.get("serviceProviderName") is not None:
         out["service_provider_name"] = data["serviceProviderName"]
     return out

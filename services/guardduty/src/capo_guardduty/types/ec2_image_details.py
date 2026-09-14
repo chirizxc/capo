@@ -23,6 +23,6 @@ def serialize_json(value: Ec2ImageDetails) -> dict:
 
 def deserialize_json(data: dict) -> Ec2ImageDetails:
     out: Ec2ImageDetails = {}  # type: ignore[typeddict-item]
-    if "imageArn" in data:
+    if data.get("imageArn") is not None:
         out["image_arn"] = data["imageArn"]
     return out

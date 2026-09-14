@@ -53,13 +53,13 @@ def serialize_json(value: UpdateAIAgentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAIAgentRequest:
     out: UpdateAIAgentRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "visibilityStatus" in data:
+    if data.get("visibilityStatus") is not None:
         out["visibility_status"] = data["visibilityStatus"]
     else:
         raise DeserializationError("UpdateAIAgentRequest.visibility_status required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_qconnect.types.ai_agent_configuration
 
         out["configuration"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> UpdateAIAgentRequest:
                 data["configuration"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

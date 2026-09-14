@@ -32,9 +32,9 @@ def serialize_json(value: GetImagePipelineResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetImagePipelineResponse:
     out: GetImagePipelineResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "imagePipeline" in data:
+    if data.get("imagePipeline") is not None:
         import capo_imagebuilder.types.image_pipeline
 
         out["image_pipeline"] = capo_imagebuilder.types.image_pipeline.deserialize_json(

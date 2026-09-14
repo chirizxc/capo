@@ -50,7 +50,7 @@ def serialize_json(value: RefreshFrequency) -> dict:
 
 def deserialize_json(data: dict) -> RefreshFrequency:
     out: RefreshFrequency = {}  # type: ignore[typeddict-item]
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         import capo_quicksight.types.refresh_interval
 
         out["interval"] = capo_quicksight.types.refresh_interval.deserialize_json(
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> RefreshFrequency:
         )
     else:
         raise DeserializationError("RefreshFrequency.interval required")
-    if "RefreshOnDay" in data:
+    if data.get("RefreshOnDay") is not None:
         import capo_quicksight.types.schedule_refresh_on_entity
 
         out["refresh_on_day"] = (
@@ -66,8 +66,8 @@ def deserialize_json(data: dict) -> RefreshFrequency:
                 data["RefreshOnDay"]
             )
         )
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
-    if "TimeOfTheDay" in data:
+    if data.get("TimeOfTheDay") is not None:
         out["time_of_the_day"] = data["TimeOfTheDay"]
     return out

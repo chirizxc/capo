@@ -33,13 +33,13 @@ def serialize_json(value: UsageFeatureResult) -> dict:
 
 def deserialize_json(data: dict) -> UsageFeatureResult:
     out: UsageFeatureResult = {}  # type: ignore[typeddict-item]
-    if "feature" in data:
+    if data.get("feature") is not None:
         import capo_guardduty.types.usage_feature
 
         out["feature"] = capo_guardduty.types.usage_feature.deserialize_json(
             data["feature"]
         )
-    if "total" in data:
+    if data.get("total") is not None:
         import capo_guardduty.types.total
 
         out["total"] = capo_guardduty.types.total.deserialize_json(data["total"])

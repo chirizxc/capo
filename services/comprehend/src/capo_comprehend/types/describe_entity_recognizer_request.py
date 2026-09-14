@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DescribeEntityRecognizerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEntityRecognizerRequest:
     out: DescribeEntityRecognizerRequest = {}  # type: ignore[typeddict-item]
-    if "EntityRecognizerArn" in data:
+    if data.get("EntityRecognizerArn") is not None:
         out["entity_recognizer_arn"] = data["EntityRecognizerArn"]
     else:
         raise DeserializationError(

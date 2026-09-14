@@ -92,15 +92,15 @@ def serialize_aws_json_1_1(value: CreateLocationFsxWindowsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLocationFsxWindowsRequest:
     out: CreateLocationFsxWindowsRequest = {}  # type: ignore[typeddict-item]
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
-    if "FsxFilesystemArn" in data:
+    if data.get("FsxFilesystemArn") is not None:
         out["fsx_filesystem_arn"] = data["FsxFilesystemArn"]
     else:
         raise DeserializationError(
             "CreateLocationFsxWindowsRequest.fsx_filesystem_arn required"
         )
-    if "SecurityGroupArns" in data:
+    if data.get("SecurityGroupArns") is not None:
         import capo_datasync.types.ec2_security_group_arn_list
 
         out["security_group_arns"] = (
@@ -112,21 +112,21 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationFsxWindowsRequest:
         raise DeserializationError(
             "CreateLocationFsxWindowsRequest.security_group_arns required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_datasync.types.input_tag_list
 
         out["tags"] = capo_datasync.types.input_tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "User" in data:
+    if data.get("User") is not None:
         out["user"] = data["User"]
     else:
         raise DeserializationError("CreateLocationFsxWindowsRequest.user required")
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "CmkSecretConfig" in data:
+    if data.get("CmkSecretConfig") is not None:
         import capo_datasync.types.cmk_secret_config
 
         out["cmk_secret_config"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationFsxWindowsRequest:
                 data["CmkSecretConfig"]
             )
         )
-    if "CustomSecretConfig" in data:
+    if data.get("CustomSecretConfig") is not None:
         import capo_datasync.types.custom_secret_config
 
         out["custom_secret_config"] = (

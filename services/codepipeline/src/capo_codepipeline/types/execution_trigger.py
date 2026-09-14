@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ExecutionTrigger) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionTrigger:
     out: ExecutionTrigger = {}  # type: ignore[typeddict-item]
-    if "triggerType" in data:
+    if data.get("triggerType") is not None:
         import capo_codepipeline.types.trigger_type
 
         out["trigger_type"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> ExecutionTrigger:
                 data["triggerType"]
             )
         )
-    if "triggerDetail" in data:
+    if data.get("triggerDetail") is not None:
         out["trigger_detail"] = data["triggerDetail"]
     return out

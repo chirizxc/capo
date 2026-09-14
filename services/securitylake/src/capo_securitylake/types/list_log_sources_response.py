@@ -32,12 +32,12 @@ def serialize_json(value: ListLogSourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLogSourcesResponse:
     out: ListLogSourcesResponse = {}  # type: ignore[typeddict-item]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_securitylake.types.log_source_list
 
         out["sources"] = capo_securitylake.types.log_source_list.deserialize_json(
             data["sources"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

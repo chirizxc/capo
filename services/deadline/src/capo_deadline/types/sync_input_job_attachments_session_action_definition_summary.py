@@ -27,6 +27,6 @@ def deserialize_json(
     data: dict,
 ) -> SyncInputJobAttachmentsSessionActionDefinitionSummary:
     out: SyncInputJobAttachmentsSessionActionDefinitionSummary = {}  # type: ignore[typeddict-item]
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
     return out

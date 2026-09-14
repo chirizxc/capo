@@ -35,7 +35,7 @@ def serialize_json(value: ListAppComponentRecommendationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAppComponentRecommendationsResponse:
     out: ListAppComponentRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "componentRecommendations" in data:
+    if data.get("componentRecommendations") is not None:
         import capo_resiliencehub.types.component_recommendation_list
 
         out["component_recommendations"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListAppComponentRecommendationsResponse:
         raise DeserializationError(
             "ListAppComponentRecommendationsResponse.component_recommendations required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

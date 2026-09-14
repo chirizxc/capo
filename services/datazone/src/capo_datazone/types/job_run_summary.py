@@ -93,47 +93,47 @@ def serialize_json(value: JobRunSummary) -> dict:
 
 def deserialize_json(data: dict) -> JobRunSummary:
     out: JobRunSummary = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobType" in data:
+    if data.get("jobType") is not None:
         import capo_datazone.types.job_type
 
         out["job_type"] = capo_datazone.types.job_type.deserialize_json(data["jobType"])
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
-    if "runMode" in data:
+    if data.get("runMode") is not None:
         import capo_datazone.types.job_run_mode
 
         out["run_mode"] = capo_datazone.types.job_run_mode.deserialize_json(
             data["runMode"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.job_run_status
 
         out["status"] = capo_datazone.types.job_run_status.deserialize_json(
             data["status"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_datazone.types.job_run_error
 
         out["error"] = capo_datazone.types.job_run_error.deserialize_json(data["error"])
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["created_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["start_time"] = capo_datazone.types._prelude.timestamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["end_time"] = capo_datazone.types._prelude.timestamp.deserialize_json(

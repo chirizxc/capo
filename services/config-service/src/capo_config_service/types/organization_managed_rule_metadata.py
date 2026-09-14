@@ -86,17 +86,17 @@ def serialize_aws_json_1_1(value: OrganizationManagedRuleMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationManagedRuleMetadata:
     out: OrganizationManagedRuleMetadata = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RuleIdentifier" in data:
+    if data.get("RuleIdentifier") is not None:
         out["rule_identifier"] = data["RuleIdentifier"]
     else:
         raise DeserializationError(
             "OrganizationManagedRuleMetadata.rule_identifier required"
         )
-    if "InputParameters" in data:
+    if data.get("InputParameters") is not None:
         out["input_parameters"] = data["InputParameters"]
-    if "MaximumExecutionFrequency" in data:
+    if data.get("MaximumExecutionFrequency") is not None:
         import capo_config_service.types.maximum_execution_frequency
 
         out["maximum_execution_frequency"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationManagedRuleMetadata:
                 data["MaximumExecutionFrequency"]
             )
         )
-    if "ResourceTypesScope" in data:
+    if data.get("ResourceTypesScope") is not None:
         import capo_config_service.types.resource_types_scope
 
         out["resource_types_scope"] = (
@@ -112,10 +112,10 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationManagedRuleMetadata:
                 data["ResourceTypesScope"]
             )
         )
-    if "ResourceIdScope" in data:
+    if data.get("ResourceIdScope") is not None:
         out["resource_id_scope"] = data["ResourceIdScope"]
-    if "TagKeyScope" in data:
+    if data.get("TagKeyScope") is not None:
         out["tag_key_scope"] = data["TagKeyScope"]
-    if "TagValueScope" in data:
+    if data.get("TagValueScope") is not None:
         out["tag_value_scope"] = data["TagValueScope"]
     return out

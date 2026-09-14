@@ -31,15 +31,15 @@ def serialize_aws_json_1_1(value: MicrosoftSQLServerCatalogSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MicrosoftSQLServerCatalogSource:
     out: MicrosoftSQLServerCatalogSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("MicrosoftSQLServerCatalogSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("MicrosoftSQLServerCatalogSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("MicrosoftSQLServerCatalogSource.table required")

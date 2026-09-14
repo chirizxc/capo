@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> JobRuns:
 
     out: JobRuns = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_emr_serverless.types.job_run_summary.deserialize_json(item))
     return out

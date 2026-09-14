@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DicomMetadataMappings:
 
     out: DicomMetadataMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medical_imaging.types.dicom_metadata_mapping.deserialize_json(item)
         )

@@ -27,11 +27,11 @@ def serialize_json(value: IpAddressInUse_) -> dict:
 
 def deserialize_json(data: dict) -> IpAddressInUse_:
     out: IpAddressInUse_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError("IpAddressInUse_.error_code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,16 @@ class IpAddressInUse(ServiceError):
 
     code: str | None = "IpAddressInUse"
 
-    def __init__(self, data: IpAddressInUse_):
+    def __init__(self, data: IpAddressInUse_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IpAddressInUse",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "IpAddressInUse":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "IpAddressInUse":
+        return cls(deserialize_json(data), message)

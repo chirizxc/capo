@@ -60,26 +60,26 @@ def serialize_json(value: LifecyclePolicySummary) -> dict:
 
 def deserialize_json(data: dict) -> LifecyclePolicySummary:
     out: LifecyclePolicySummary = {}  # type: ignore[typeddict-item]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_dlm.types.gettable_policy_state_values
 
         out["state"] = capo_dlm.types.gettable_policy_state_values.deserialize_json(
             data["State"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_dlm.types.tag_map
 
         out["tags"] = capo_dlm.types.tag_map.deserialize_json(data["Tags"])
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_dlm.types.policy_type_values
 
         out["policy_type"] = capo_dlm.types.policy_type_values.deserialize_json(
             data["PolicyType"]
         )
-    if "DefaultPolicy" in data:
+    if data.get("DefaultPolicy") is not None:
         out["default_policy"] = data["DefaultPolicy"]
     return out

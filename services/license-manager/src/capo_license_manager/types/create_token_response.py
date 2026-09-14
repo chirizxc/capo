@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: CreateTokenResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTokenResponse:
     out: CreateTokenResponse = {}  # type: ignore[typeddict-item]
-    if "TokenId" in data:
+    if data.get("TokenId") is not None:
         out["token_id"] = data["TokenId"]
-    if "TokenType" in data:
+    if data.get("TokenType") is not None:
         import capo_license_manager.types.token_type
 
         out["token_type"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTokenResponse:
                 data["TokenType"]
             )
         )
-    if "Token" in data:
+    if data.get("Token") is not None:
         out["token"] = data["Token"]
     return out

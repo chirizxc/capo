@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> InputUpdates:
 
     out: InputUpdates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kinesis_analytics_v2.types.input_update.deserialize_aws_json_1_1(item)
         )

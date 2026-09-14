@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: UsernameField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UsernameField:
     out: UsernameField = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("UsernameField.identifier required")

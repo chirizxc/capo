@@ -121,7 +121,7 @@ def serialize_json(value: CardGenerationAttributes) -> dict:
 
 
 def deserialize_json(data: dict) -> CardGenerationAttributes:
-    if "AmexCardSecurityCodeVersion1" in data:
+    if data.get("AmexCardSecurityCodeVersion1") is not None:
         import capo_payment_cryptography_data.types.amex_card_security_code_version1
 
         return {
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> CardGenerationAttributes:
                 data["AmexCardSecurityCodeVersion1"]
             )
         }
-    elif "AmexCardSecurityCodeVersion2" in data:
+    elif data.get("AmexCardSecurityCodeVersion2") is not None:
         import capo_payment_cryptography_data.types.amex_card_security_code_version2
 
         return {
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> CardGenerationAttributes:
                 data["AmexCardSecurityCodeVersion2"]
             )
         }
-    elif "CardVerificationValue1" in data:
+    elif data.get("CardVerificationValue1") is not None:
         import capo_payment_cryptography_data.types.card_verification_value1
 
         return {
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> CardGenerationAttributes:
                 data["CardVerificationValue1"]
             )
         }
-    elif "CardVerificationValue2" in data:
+    elif data.get("CardVerificationValue2") is not None:
         import capo_payment_cryptography_data.types.card_verification_value2
 
         return {
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> CardGenerationAttributes:
                 data["CardVerificationValue2"]
             )
         }
-    elif "CardHolderVerificationValue" in data:
+    elif data.get("CardHolderVerificationValue") is not None:
         import capo_payment_cryptography_data.types.card_holder_verification_value
 
         return {
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> CardGenerationAttributes:
                 data["CardHolderVerificationValue"]
             )
         }
-    elif "DynamicCardVerificationCode" in data:
+    elif data.get("DynamicCardVerificationCode") is not None:
         import capo_payment_cryptography_data.types.dynamic_card_verification_code
 
         return {
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> CardGenerationAttributes:
                 data["DynamicCardVerificationCode"]
             )
         }
-    elif "DynamicCardVerificationValue" in data:
+    elif data.get("DynamicCardVerificationValue") is not None:
         import capo_payment_cryptography_data.types.dynamic_card_verification_value
 
         return {

@@ -23,16 +23,32 @@ class Range(TypedDict, closed=True):
 def serialize_json(value: Range) -> dict:
     out: dict = {}
     if "min_proficiency_level" in value:
-        out["MinProficiencyLevel"] = value["min_proficiency_level"]
+        out["MinProficiencyLevel"] = (
+            "NaN"
+            if value["min_proficiency_level"] != value["min_proficiency_level"]
+            else "Infinity"
+            if value["min_proficiency_level"] == float("inf")
+            else "-Infinity"
+            if value["min_proficiency_level"] == float("-inf")
+            else value["min_proficiency_level"]
+        )
     if "max_proficiency_level" in value:
-        out["MaxProficiencyLevel"] = value["max_proficiency_level"]
+        out["MaxProficiencyLevel"] = (
+            "NaN"
+            if value["max_proficiency_level"] != value["max_proficiency_level"]
+            else "Infinity"
+            if value["max_proficiency_level"] == float("inf")
+            else "-Infinity"
+            if value["max_proficiency_level"] == float("-inf")
+            else value["max_proficiency_level"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Range:
     out: Range = {}  # type: ignore[typeddict-item]
-    if "MinProficiencyLevel" in data:
-        out["min_proficiency_level"] = data["MinProficiencyLevel"]
-    if "MaxProficiencyLevel" in data:
-        out["max_proficiency_level"] = data["MaxProficiencyLevel"]
+    if data.get("MinProficiencyLevel") is not None:
+        out["min_proficiency_level"] = float(data["MinProficiencyLevel"])
+    if data.get("MaxProficiencyLevel") is not None:
+        out["max_proficiency_level"] = float(data["MaxProficiencyLevel"])
     return out

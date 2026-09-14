@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: S3ContentBaseLocationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ContentBaseLocationUpdate:
     out: S3ContentBaseLocationUpdate = {}  # type: ignore[typeddict-item]
-    if "BucketARNUpdate" in data:
+    if data.get("BucketARNUpdate") is not None:
         out["bucket_arn_update"] = data["BucketARNUpdate"]
-    if "BasePathUpdate" in data:
+    if data.get("BasePathUpdate") is not None:
         out["base_path_update"] = data["BasePathUpdate"]
     return out

@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: DeleteFileSystemOpenZFSConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFileSystemOpenZFSConfiguration:
     out: DeleteFileSystemOpenZFSConfiguration = {}  # type: ignore[typeddict-item]
-    if "SkipFinalBackup" in data:
+    if data.get("SkipFinalBackup") is not None:
         out["skip_final_backup"] = data["SkipFinalBackup"]
-    if "FinalBackupTags" in data:
+    if data.get("FinalBackupTags") is not None:
         import capo_fsx.types.tags
 
         out["final_backup_tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(
             data["FinalBackupTags"]
         )
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_fsx.types.delete_file_system_open_zfs_options
 
         out["options"] = (

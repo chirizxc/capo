@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> InferenceComponentSpecificationSumma
 
     out: InferenceComponentSpecificationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.inference_component_specification_summary.deserialize_aws_json_1_1(
                 item

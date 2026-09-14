@@ -25,6 +25,6 @@ def serialize_json(value: CancelLifecycleExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CancelLifecycleExecutionResponse:
     out: CancelLifecycleExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "lifecycleExecutionId" in data:
+    if data.get("lifecycleExecutionId") is not None:
         out["lifecycle_execution_id"] = data["lifecycleExecutionId"]
     return out

@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: SnowflakeTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnowflakeTarget:
     out: SnowflakeTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SnowflakeTarget.name required")
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_glue.types.snowflake_node_data
 
         out["data"] = capo_glue.types.snowflake_node_data.deserialize_aws_json_1_1(
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnowflakeTarget:
         )
     else:
         raise DeserializationError("SnowflakeTarget.data required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(

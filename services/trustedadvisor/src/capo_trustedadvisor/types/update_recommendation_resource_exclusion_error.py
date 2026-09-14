@@ -33,10 +33,10 @@ def serialize_json(value: UpdateRecommendationResourceExclusionError) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecommendationResourceExclusionError:
     out: UpdateRecommendationResourceExclusionError = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

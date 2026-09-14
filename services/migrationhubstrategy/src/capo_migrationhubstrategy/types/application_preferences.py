@@ -31,7 +31,7 @@ def serialize_json(value: ApplicationPreferences) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationPreferences:
     out: ApplicationPreferences = {}  # type: ignore[typeddict-item]
-    if "managementPreference" in data:
+    if data.get("managementPreference") is not None:
         import capo_migrationhubstrategy.types.management_preference
 
         out["management_preference"] = (

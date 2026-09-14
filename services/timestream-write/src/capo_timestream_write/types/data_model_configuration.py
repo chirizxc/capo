@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: DataModelConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DataModelConfiguration:
     out: DataModelConfiguration = {}  # type: ignore[typeddict-item]
-    if "DataModel" in data:
+    if data.get("DataModel") is not None:
         import capo_timestream_write.types.data_model
 
         out["data_model"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataModelConfiguration:
                 data["DataModel"]
             )
         )
-    if "DataModelS3Configuration" in data:
+    if data.get("DataModelS3Configuration") is not None:
         import capo_timestream_write.types.data_model_s3_configuration
 
         out["data_model_s3_configuration"] = (

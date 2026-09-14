@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: StartInferenceSchedulerRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartInferenceSchedulerRequest:
     out: StartInferenceSchedulerRequest = {}  # type: ignore[typeddict-item]
-    if "InferenceSchedulerName" in data:
+    if data.get("InferenceSchedulerName") is not None:
         out["inference_scheduler_name"] = data["InferenceSchedulerName"]
     else:
         raise DeserializationError(

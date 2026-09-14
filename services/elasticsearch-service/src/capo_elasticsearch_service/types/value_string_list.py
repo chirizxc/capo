@@ -16,4 +16,4 @@ def serialize_json(value: ValueStringList) -> list:
 
 
 def deserialize_json(data: list) -> ValueStringList:
-    return list(data)
+    return [item for item in data if item is not None]

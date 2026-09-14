@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TieringConfigurationsList:
 
     out: TieringConfigurationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_backup.types.tiering_configurations_list_member.deserialize_json(item)
         )

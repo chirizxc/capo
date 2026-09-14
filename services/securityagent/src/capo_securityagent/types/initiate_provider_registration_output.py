@@ -28,13 +28,13 @@ def serialize_json(value: InitiateProviderRegistrationOutput) -> dict:
 
 def deserialize_json(data: dict) -> InitiateProviderRegistrationOutput:
     out: InitiateProviderRegistrationOutput = {}  # type: ignore[typeddict-item]
-    if "redirectTo" in data:
+    if data.get("redirectTo") is not None:
         out["redirect_to"] = data["redirectTo"]
     else:
         raise DeserializationError(
             "InitiateProviderRegistrationOutput.redirect_to required"
         )
-    if "csrfState" in data:
+    if data.get("csrfState") is not None:
         out["csrf_state"] = data["csrfState"]
     else:
         raise DeserializationError(

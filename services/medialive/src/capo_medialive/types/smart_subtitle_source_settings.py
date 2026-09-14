@@ -36,7 +36,7 @@ def serialize_json(value: SmartSubtitleSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> SmartSubtitleSourceSettings:
     out: SmartSubtitleSourceSettings = {}  # type: ignore[typeddict-item]
-    if "captionSynchronizationMode" in data:
+    if data.get("captionSynchronizationMode") is not None:
         import capo_medialive.types.caption_synchronization_mode
 
         out["caption_synchronization_mode"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> SmartSubtitleSourceSettings:
                 data["captionSynchronizationMode"]
             )
         )
-    if "inferenceFeedOutput" in data:
+    if data.get("inferenceFeedOutput") is not None:
         out["inference_feed_output"] = data["inferenceFeedOutput"]
     return out

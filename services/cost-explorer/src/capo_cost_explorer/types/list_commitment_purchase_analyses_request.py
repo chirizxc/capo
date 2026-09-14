@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: ListCommitmentPurchaseAnalysesRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ListCommitmentPurchaseAnalysesRequest:
     out: ListCommitmentPurchaseAnalysesRequest = {}  # type: ignore[typeddict-item]
-    if "AnalysisStatus" in data:
+    if data.get("AnalysisStatus") is not None:
         import capo_cost_explorer.types.analysis_status
 
         out["analysis_status"] = (
@@ -61,13 +61,13 @@ def deserialize_aws_json_1_1(data: dict) -> ListCommitmentPurchaseAnalysesReques
                 data["AnalysisStatus"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "AnalysisIds" in data:
+    if data.get("AnalysisIds") is not None:
         import capo_cost_explorer.types.analysis_ids
 
         out["analysis_ids"] = (

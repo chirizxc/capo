@@ -27,16 +27,24 @@ def serialize_aws_json_1_1(value: DynamoDBTarget) -> dict:
     if "scan_all" in value:
         out["scanAll"] = value["scan_all"]
     if "scan_rate" in value:
-        out["scanRate"] = value["scan_rate"]
+        out["scanRate"] = (
+            "NaN"
+            if value["scan_rate"] != value["scan_rate"]
+            else "Infinity"
+            if value["scan_rate"] == float("inf")
+            else "-Infinity"
+            if value["scan_rate"] == float("-inf")
+            else value["scan_rate"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DynamoDBTarget:
     out: DynamoDBTarget = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "scanAll" in data:
+    if data.get("scanAll") is not None:
         out["scan_all"] = data["scanAll"]
-    if "scanRate" in data:
-        out["scan_rate"] = data["scanRate"]
+    if data.get("scanRate") is not None:
+        out["scan_rate"] = float(data["scanRate"])
     return out

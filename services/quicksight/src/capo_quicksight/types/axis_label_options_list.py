@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AxisLabelOptionsList:
 
     out: AxisLabelOptionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.axis_label_options.deserialize_json(item))
     return out

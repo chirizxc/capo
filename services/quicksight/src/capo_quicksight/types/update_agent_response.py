@@ -89,15 +89,15 @@ def serialize_json(value: UpdateAgentResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAgentResponse:
     out: UpdateAgentResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UpdateAgentResponse.arn required")
-    if "AgentId" in data:
+    if data.get("AgentId") is not None:
         out["agent_id"] = data["AgentId"]
     else:
         raise DeserializationError("UpdateAgentResponse.agent_id required")
-    if "AgentStatus" in data:
+    if data.get("AgentStatus") is not None:
         import capo_quicksight.types.agent_status
 
         out["agent_status"] = capo_quicksight.types.agent_status.deserialize_json(
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> UpdateAgentResponse:
         )
     else:
         raise DeserializationError("UpdateAgentResponse.agent_status required")
-    if "FailedToAddSpaces" in data:
+    if data.get("FailedToAddSpaces") is not None:
         import capo_quicksight.types.failed_to_update_association_list
 
         out["failed_to_add_spaces"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> UpdateAgentResponse:
                 data["FailedToAddSpaces"]
             )
         )
-    if "FailedToRemoveSpaces" in data:
+    if data.get("FailedToRemoveSpaces") is not None:
         import capo_quicksight.types.failed_to_update_association_list
 
         out["failed_to_remove_spaces"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> UpdateAgentResponse:
                 data["FailedToRemoveSpaces"]
             )
         )
-    if "FailedToAddActionConnectors" in data:
+    if data.get("FailedToAddActionConnectors") is not None:
         import capo_quicksight.types.failed_to_update_association_list
 
         out["failed_to_add_action_connectors"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> UpdateAgentResponse:
                 data["FailedToAddActionConnectors"]
             )
         )
-    if "FailedToRemoveActionConnectors" in data:
+    if data.get("FailedToRemoveActionConnectors") is not None:
         import capo_quicksight.types.failed_to_update_association_list
 
         out["failed_to_remove_action_connectors"] = (
@@ -137,6 +137,6 @@ def deserialize_json(data: dict) -> UpdateAgentResponse:
                 data["FailedToRemoveActionConnectors"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

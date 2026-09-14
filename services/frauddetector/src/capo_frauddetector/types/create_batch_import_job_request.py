@@ -47,29 +47,29 @@ def serialize_aws_json_1_1(value: CreateBatchImportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateBatchImportJobRequest:
     out: CreateBatchImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("CreateBatchImportJobRequest.job_id required")
-    if "inputPath" in data:
+    if data.get("inputPath") is not None:
         out["input_path"] = data["inputPath"]
     else:
         raise DeserializationError("CreateBatchImportJobRequest.input_path required")
-    if "outputPath" in data:
+    if data.get("outputPath") is not None:
         out["output_path"] = data["outputPath"]
     else:
         raise DeserializationError("CreateBatchImportJobRequest.output_path required")
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
     else:
         raise DeserializationError(
             "CreateBatchImportJobRequest.event_type_name required"
         )
-    if "iamRoleArn" in data:
+    if data.get("iamRoleArn") is not None:
         out["iam_role_arn"] = data["iamRoleArn"]
     else:
         raise DeserializationError("CreateBatchImportJobRequest.iam_role_arn required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_frauddetector.types.tag_list
 
         out["tags"] = capo_frauddetector.types.tag_list.deserialize_aws_json_1_1(

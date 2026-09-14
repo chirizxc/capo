@@ -13,9 +13,9 @@ from capo_cloudtrail_data import AsyncCloudTrailDataClient
 
 
 async def main():
-    async with AsyncCloudTrailDataClient() as s3:
+    async with AsyncCloudTrailDataClient() as cloud_trail_data:
         # Example: call the put_audit_events operation
-        response = await s3.put_audit_events()
+        response = await cloud_trail_data.put_audit_events()
         print(response["successful"])
 ```
 
@@ -29,9 +29,9 @@ from capo_cloudtrail_data.error import ChannelInsufficientPermission
 
 
 async def main():
-    async with AsyncCloudTrailDataClient() as s3:
+    async with AsyncCloudTrailDataClient() as cloud_trail_data:
         try:
-            await s3.put_audit_events()
+            await cloud_trail_data.put_audit_events()
         except ChannelInsufficientPermission as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_cloudtrail_data import AsyncCloudTrailDataClient
 
 
 async def main():
-    async with AsyncCloudTrailDataClient() as s3:
+    async with AsyncCloudTrailDataClient() as cloud_trail_data:
         # Default: 3 attempts for every operation
-        response = await s3.put_audit_events()
+        response = await cloud_trail_data.put_audit_events()
 
         # Override per operation
-        response = await s3.put_audit_events(config_overrides={"retry_max_attempts": 5})
+        response = await cloud_trail_data.put_audit_events(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.put_audit_events(config_overrides={"retry_max_attempts": 1})
+        response = await cloud_trail_data.put_audit_events(config_overrides={"retry_max_attempts": 1})
 ```

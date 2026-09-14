@@ -182,7 +182,7 @@ class AsyncPersonalizeRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize_runtime.types.get_action_recommendations_request.GetActionRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize_runtime.types.get_action_recommendations_request.GetActionRecommendationsRequest = {}
         if campaign_arn is not None:
             input_["campaign_arn"] = campaign_arn
         if user_id is not None:
@@ -199,6 +199,7 @@ class AsyncPersonalizeRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_personalized_ranking(
@@ -250,10 +251,11 @@ class AsyncPersonalizeRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize_runtime.types.get_personalized_ranking_request.GetPersonalizedRankingRequest = {}  # type: ignore[typeddict-item]
-        input_["campaign_arn"] = campaign_arn
-        input_["input_list"] = input_list
-        input_["user_id"] = user_id
+        input_: capo_personalize_runtime.types.get_personalized_ranking_request.GetPersonalizedRankingRequest = {
+            "campaign_arn": campaign_arn,
+            "input_list": input_list,
+            "user_id": user_id,
+        }
         if context is not None:
             input_["context"] = context
         if filter_arn is not None:
@@ -268,6 +270,7 @@ class AsyncPersonalizeRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_recommendations(
@@ -329,7 +332,7 @@ class AsyncPersonalizeRuntimeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize_runtime.types.get_recommendations_request.GetRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize_runtime.types.get_recommendations_request.GetRecommendationsRequest = {}
         if campaign_arn is not None:
             input_["campaign_arn"] = campaign_arn
         if item_id is not None:
@@ -356,6 +359,7 @@ class AsyncPersonalizeRuntimeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

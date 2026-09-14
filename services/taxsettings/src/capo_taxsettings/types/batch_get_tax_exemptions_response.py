@@ -40,7 +40,7 @@ def serialize_json(value: BatchGetTaxExemptionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetTaxExemptionsResponse:
     out: BatchGetTaxExemptionsResponse = {}  # type: ignore[typeddict-item]
-    if "taxExemptionDetailsMap" in data:
+    if data.get("taxExemptionDetailsMap") is not None:
         import capo_taxsettings.types.tax_exemption_details_map
 
         out["tax_exemption_details_map"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> BatchGetTaxExemptionsResponse:
                 data["taxExemptionDetailsMap"]
             )
         )
-    if "failedAccounts" in data:
+    if data.get("failedAccounts") is not None:
         import capo_taxsettings.types.account_ids
 
         out["failed_accounts"] = capo_taxsettings.types.account_ids.deserialize_json(

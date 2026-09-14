@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: TransferDomainToAnotherAwsAccountResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> TransferDomainToAnotherAwsAccountResponse:
     out: TransferDomainToAnotherAwsAccountResponse = {}  # type: ignore[typeddict-item]
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     return out

@@ -96,15 +96,15 @@ def serialize_aws_json_1_1(value: FeaturedResultsItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FeaturedResultsItem:
     out: FeaturedResultsItem = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kendra.types.query_result_type
 
         out["type"] = capo_kendra.types.query_result_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "AdditionalAttributes" in data:
+    if data.get("AdditionalAttributes") is not None:
         import capo_kendra.types.additional_result_attribute_list
 
         out["additional_attributes"] = (
@@ -112,9 +112,9 @@ def deserialize_aws_json_1_1(data: dict) -> FeaturedResultsItem:
                 data["AdditionalAttributes"]
             )
         )
-    if "DocumentId" in data:
+    if data.get("DocumentId") is not None:
         out["document_id"] = data["DocumentId"]
-    if "DocumentTitle" in data:
+    if data.get("DocumentTitle") is not None:
         import capo_kendra.types.text_with_highlights
 
         out["document_title"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> FeaturedResultsItem:
                 data["DocumentTitle"]
             )
         )
-    if "DocumentExcerpt" in data:
+    if data.get("DocumentExcerpt") is not None:
         import capo_kendra.types.text_with_highlights
 
         out["document_excerpt"] = (
@@ -130,9 +130,9 @@ def deserialize_aws_json_1_1(data: dict) -> FeaturedResultsItem:
                 data["DocumentExcerpt"]
             )
         )
-    if "DocumentURI" in data:
+    if data.get("DocumentURI") is not None:
         out["document_uri"] = data["DocumentURI"]
-    if "DocumentAttributes" in data:
+    if data.get("DocumentAttributes") is not None:
         import capo_kendra.types.document_attribute_list
 
         out["document_attributes"] = (
@@ -140,6 +140,6 @@ def deserialize_aws_json_1_1(data: dict) -> FeaturedResultsItem:
                 data["DocumentAttributes"]
             )
         )
-    if "FeedbackToken" in data:
+    if data.get("FeedbackToken") is not None:
         out["feedback_token"] = data["FeedbackToken"]
     return out

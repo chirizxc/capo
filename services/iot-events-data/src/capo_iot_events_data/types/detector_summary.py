@@ -65,13 +65,13 @@ def serialize_json(value: DetectorSummary) -> dict:
 
 def deserialize_json(data: dict) -> DetectorSummary:
     out: DetectorSummary = {}  # type: ignore[typeddict-item]
-    if "detectorModelName" in data:
+    if data.get("detectorModelName") is not None:
         out["detector_model_name"] = data["detectorModelName"]
-    if "keyValue" in data:
+    if data.get("keyValue") is not None:
         out["key_value"] = data["keyValue"]
-    if "detectorModelVersion" in data:
+    if data.get("detectorModelVersion") is not None:
         out["detector_model_version"] = data["detectorModelVersion"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_iot_events_data.types.detector_state_summary
 
         out["state"] = (
@@ -79,13 +79,13 @@ def deserialize_json(data: dict) -> DetectorSummary:
                 data["state"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iot_events_data.types.timestamp
 
         out["creation_time"] = capo_iot_events_data.types.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdateTime" in data:
+    if data.get("lastUpdateTime") is not None:
         import capo_iot_events_data.types.timestamp
 
         out["last_update_time"] = capo_iot_events_data.types.timestamp.deserialize_json(

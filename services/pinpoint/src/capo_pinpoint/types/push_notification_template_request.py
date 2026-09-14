@@ -101,7 +101,7 @@ def serialize_json(value: PushNotificationTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> PushNotificationTemplateRequest:
     out: PushNotificationTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "ADM" in data:
+    if data.get("ADM") is not None:
         import capo_pinpoint.types.android_push_notification_template
 
         out["adm"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> PushNotificationTemplateRequest:
                 data["ADM"]
             )
         )
-    if "APNS" in data:
+    if data.get("APNS") is not None:
         import capo_pinpoint.types.apns_push_notification_template
 
         out["apns"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> PushNotificationTemplateRequest:
                 data["APNS"]
             )
         )
-    if "Baidu" in data:
+    if data.get("Baidu") is not None:
         import capo_pinpoint.types.android_push_notification_template
 
         out["baidu"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> PushNotificationTemplateRequest:
                 data["Baidu"]
             )
         )
-    if "Default" in data:
+    if data.get("Default") is not None:
         import capo_pinpoint.types.default_push_notification_template
 
         out["default"] = (
@@ -133,9 +133,9 @@ def deserialize_json(data: dict) -> PushNotificationTemplateRequest:
                 data["Default"]
             )
         )
-    if "DefaultSubstitutions" in data:
+    if data.get("DefaultSubstitutions") is not None:
         out["default_substitutions"] = data["DefaultSubstitutions"]
-    if "GCM" in data:
+    if data.get("GCM") is not None:
         import capo_pinpoint.types.android_push_notification_template
 
         out["gcm"] = (
@@ -143,12 +143,12 @@ def deserialize_json(data: dict) -> PushNotificationTemplateRequest:
                 data["GCM"]
             )
         )
-    if "RecommenderId" in data:
+    if data.get("RecommenderId") is not None:
         out["recommender_id"] = data["RecommenderId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "TemplateDescription" in data:
+    if data.get("TemplateDescription") is not None:
         out["template_description"] = data["TemplateDescription"]
     return out

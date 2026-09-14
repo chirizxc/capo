@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LoginAttributes:
 
     out: LoginAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.login_attribute.deserialize_json(item))
     return out

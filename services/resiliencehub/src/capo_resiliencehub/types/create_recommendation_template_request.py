@@ -79,7 +79,7 @@ def serialize_json(value: CreateRecommendationTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRecommendationTemplateRequest:
     out: CreateRecommendationTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "recommendationIds" in data:
+    if data.get("recommendationIds") is not None:
         import capo_resiliencehub.types.recommendation_id_list
 
         out["recommendation_ids"] = (
@@ -87,13 +87,13 @@ def deserialize_json(data: dict) -> CreateRecommendationTemplateRequest:
                 data["recommendationIds"]
             )
         )
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_resiliencehub.types.template_format
 
         out["format"] = capo_resiliencehub.types.template_format.deserialize_json(
             data["format"]
         )
-    if "recommendationTypes" in data:
+    if data.get("recommendationTypes") is not None:
         import capo_resiliencehub.types.render_recommendation_type_list
 
         out["recommendation_types"] = (
@@ -101,22 +101,22 @@ def deserialize_json(data: dict) -> CreateRecommendationTemplateRequest:
                 data["recommendationTypes"]
             )
         )
-    if "assessmentArn" in data:
+    if data.get("assessmentArn") is not None:
         out["assessment_arn"] = data["assessmentArn"]
     else:
         raise DeserializationError(
             "CreateRecommendationTemplateRequest.assessment_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateRecommendationTemplateRequest.name required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehub.types.tag_map
 
         out["tags"] = capo_resiliencehub.types.tag_map.deserialize_json(data["tags"])
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     return out

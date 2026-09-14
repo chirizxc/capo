@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteParameterGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteParameterGroupResponse:
     out: DeleteParameterGroupResponse = {}  # type: ignore[typeddict-item]
-    if "DeletionMessage" in data:
+    if data.get("DeletionMessage") is not None:
         out["deletion_message"] = data["DeletionMessage"]
     return out

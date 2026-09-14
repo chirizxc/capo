@@ -13,9 +13,9 @@ from capo_identitystore import AsyncidentitystoreClient
 
 
 async def main():
-    async with AsyncidentitystoreClient() as s3:
+    async with AsyncidentitystoreClient() as identitystore:
         # Example: call the get_group_id operation
-        response = await s3.get_group_id()
+        response = await identitystore.get_group_id()
         print(response["group_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_identitystore import AsyncidentitystoreClient
 
 
 async def main():
-    async with AsyncidentitystoreClient() as s3:
+    async with AsyncidentitystoreClient() as identitystore:
         # Example: paginate over list_group_memberships_for_member
-        async for item in s3.iter_list_group_memberships_for_member():
+        async for item in identitystore.iter_list_group_memberships_for_member():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_identitystore.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncidentitystoreClient() as s3:
+    async with AsyncidentitystoreClient() as identitystore:
         try:
-            await s3.get_group_id()
+            await identitystore.get_group_id()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_identitystore import AsyncidentitystoreClient
 
 
 async def main():
-    async with AsyncidentitystoreClient() as s3:
+    async with AsyncidentitystoreClient() as identitystore:
         # Default: 3 attempts for every operation
-        response = await s3.get_group_id()
+        response = await identitystore.get_group_id()
 
         # Override per operation
-        response = await s3.get_group_id(config_overrides={"retry_max_attempts": 5})
+        response = await identitystore.get_group_id(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_group_id(config_overrides={"retry_max_attempts": 1})
+        response = await identitystore.get_group_id(config_overrides={"retry_max_attempts": 1})
 ```

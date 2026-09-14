@@ -56,15 +56,15 @@ def serialize_aws_json_1_1(value: ResolverRuleAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolverRuleAssociation:
     out: ResolverRuleAssociation = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ResolverRuleId" in data:
+    if data.get("ResolverRuleId") is not None:
         out["resolver_rule_id"] = data["ResolverRuleId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "VPCId" in data:
+    if data.get("VPCId") is not None:
         out["vpc_id"] = data["VPCId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53resolver.types.resolver_rule_association_status
 
         out["status"] = (
@@ -72,6 +72,6 @@ def deserialize_aws_json_1_1(data: dict) -> ResolverRuleAssociation:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

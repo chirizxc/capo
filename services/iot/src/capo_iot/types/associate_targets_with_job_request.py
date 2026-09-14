@@ -37,12 +37,12 @@ def serialize_json(value: AssociateTargetsWithJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateTargetsWithJobRequest:
     out: AssociateTargetsWithJobRequest = {}  # type: ignore[typeddict-item]
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_iot.types.job_targets
 
         out["targets"] = capo_iot.types.job_targets.deserialize_json(data["targets"])
     else:
         raise DeserializationError("AssociateTargetsWithJobRequest.targets required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

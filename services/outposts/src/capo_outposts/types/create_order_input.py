@@ -54,11 +54,11 @@ def serialize_json(value: CreateOrderInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateOrderInput:
     out: CreateOrderInput = {}  # type: ignore[typeddict-item]
-    if "OutpostIdentifier" in data:
+    if data.get("OutpostIdentifier") is not None:
         out["outpost_identifier"] = data["OutpostIdentifier"]
     else:
         raise DeserializationError("CreateOrderInput.outpost_identifier required")
-    if "LineItems" in data:
+    if data.get("LineItems") is not None:
         import capo_outposts.types.line_item_request_list_definition
 
         out["line_items"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> CreateOrderInput:
                 data["LineItems"]
             )
         )
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_outposts.types.payment_option
 
         out["payment_option"] = capo_outposts.types.payment_option.deserialize_json(
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> CreateOrderInput:
         )
     else:
         raise DeserializationError("CreateOrderInput.payment_option required")
-    if "PaymentTerm" in data:
+    if data.get("PaymentTerm") is not None:
         import capo_outposts.types.payment_term
 
         out["payment_term"] = capo_outposts.types.payment_term.deserialize_json(

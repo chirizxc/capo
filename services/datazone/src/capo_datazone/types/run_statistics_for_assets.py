@@ -34,14 +34,14 @@ def serialize_json(value: RunStatisticsForAssets) -> dict:
 
 def deserialize_json(data: dict) -> RunStatisticsForAssets:
     out: RunStatisticsForAssets = {}  # type: ignore[typeddict-item]
-    if "added" in data:
+    if data.get("added") is not None:
         out["added"] = data["added"]
-    if "updated" in data:
+    if data.get("updated") is not None:
         out["updated"] = data["updated"]
-    if "unchanged" in data:
+    if data.get("unchanged") is not None:
         out["unchanged"] = data["unchanged"]
-    if "skipped" in data:
+    if data.get("skipped") is not None:
         out["skipped"] = data["skipped"]
-    if "failed" in data:
+    if data.get("failed") is not None:
         out["failed"] = data["failed"]
     return out

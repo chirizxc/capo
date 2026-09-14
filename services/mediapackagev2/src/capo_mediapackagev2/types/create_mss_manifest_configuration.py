@@ -53,15 +53,15 @@ def serialize_json(value: CreateMssManifestConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CreateMssManifestConfiguration:
     out: CreateMssManifestConfiguration = {}  # type: ignore[typeddict-item]
-    if "ManifestName" in data:
+    if data.get("ManifestName") is not None:
         out["manifest_name"] = data["ManifestName"]
     else:
         raise DeserializationError(
             "CreateMssManifestConfiguration.manifest_name required"
         )
-    if "ManifestWindowSeconds" in data:
+    if data.get("ManifestWindowSeconds") is not None:
         out["manifest_window_seconds"] = data["ManifestWindowSeconds"]
-    if "FilterConfiguration" in data:
+    if data.get("FilterConfiguration") is not None:
         import capo_mediapackagev2.types.filter_configuration
 
         out["filter_configuration"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> CreateMssManifestConfiguration:
                 data["FilterConfiguration"]
             )
         )
-    if "ManifestLayout" in data:
+    if data.get("ManifestLayout") is not None:
         import capo_mediapackagev2.types.mss_manifest_layout
 
         out["manifest_layout"] = (

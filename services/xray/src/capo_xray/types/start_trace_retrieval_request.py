@@ -39,7 +39,7 @@ def serialize_json(value: StartTraceRetrievalRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartTraceRetrievalRequest:
     out: StartTraceRetrievalRequest = {}  # type: ignore[typeddict-item]
-    if "TraceIds" in data:
+    if data.get("TraceIds") is not None:
         import capo_xray.types.trace_id_list_for_retrieval
 
         out["trace_ids"] = capo_xray.types.trace_id_list_for_retrieval.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> StartTraceRetrievalRequest:
         )
     else:
         raise DeserializationError("StartTraceRetrievalRequest.trace_ids required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> StartTraceRetrievalRequest:
         )
     else:
         raise DeserializationError("StartTraceRetrievalRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])

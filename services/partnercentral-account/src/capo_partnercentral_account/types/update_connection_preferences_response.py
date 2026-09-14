@@ -65,17 +65,17 @@ def serialize_aws_json_1_0(value: UpdateConnectionPreferencesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateConnectionPreferencesResponse:
     out: UpdateConnectionPreferencesResponse = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError(
             "UpdateConnectionPreferencesResponse.catalog required"
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UpdateConnectionPreferencesResponse.arn required")
-    if "AccessType" in data:
+    if data.get("AccessType") is not None:
         import capo_partnercentral_account.types.access_type
 
         out["access_type"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateConnectionPreferencesResponse:
         raise DeserializationError(
             "UpdateConnectionPreferencesResponse.access_type required"
         )
-    if "ExcludedParticipantIds" in data:
+    if data.get("ExcludedParticipantIds") is not None:
         import capo_partnercentral_account.types.participant_identifier_list
 
         out["excluded_participant_ids"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateConnectionPreferencesResponse:
                 data["ExcludedParticipantIds"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["updated_at"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateConnectionPreferencesResponse:
         raise DeserializationError(
             "UpdateConnectionPreferencesResponse.updated_at required"
         )
-    if "Revision" in data:
+    if data.get("Revision") is not None:
         out["revision"] = data["Revision"]
     else:
         raise DeserializationError(

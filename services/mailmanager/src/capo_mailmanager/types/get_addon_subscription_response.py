@@ -42,11 +42,11 @@ def serialize_aws_json_1_0(value: GetAddonSubscriptionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAddonSubscriptionResponse:
     out: GetAddonSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "AddonName" in data:
+    if data.get("AddonName") is not None:
         out["addon_name"] = data["AddonName"]
-    if "AddonSubscriptionArn" in data:
+    if data.get("AddonSubscriptionArn") is not None:
         out["addon_subscription_arn"] = data["AddonSubscriptionArn"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["created_timestamp"] = (

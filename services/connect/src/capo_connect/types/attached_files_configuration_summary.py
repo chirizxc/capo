@@ -51,13 +51,13 @@ def serialize_json(value: AttachedFilesConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> AttachedFilesConfigurationSummary:
     out: AttachedFilesConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "AttachedFilesConfigurationSummary.instance_id required"
         )
-    if "AttachmentScope" in data:
+    if data.get("AttachmentScope") is not None:
         import capo_connect.types.attachment_scope
 
         out["attachment_scope"] = capo_connect.types.attachment_scope.deserialize_json(
@@ -67,9 +67,9 @@ def deserialize_json(data: dict) -> AttachedFilesConfigurationSummary:
         raise DeserializationError(
             "AttachedFilesConfigurationSummary.attachment_scope required"
         )
-    if "MaximumSizeLimitInBytes" in data:
+    if data.get("MaximumSizeLimitInBytes") is not None:
         out["maximum_size_limit_in_bytes"] = data["MaximumSizeLimitInBytes"]
-    if "ExtensionConfiguration" in data:
+    if data.get("ExtensionConfiguration") is not None:
         import capo_connect.types.extension_configuration
 
         out["extension_configuration"] = (

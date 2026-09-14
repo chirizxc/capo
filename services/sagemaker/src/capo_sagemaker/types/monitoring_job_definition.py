@@ -125,7 +125,7 @@ def serialize_aws_json_1_1(value: MonitoringJobDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringJobDefinition:
     out: MonitoringJobDefinition = {}  # type: ignore[typeddict-item]
-    if "BaselineConfig" in data:
+    if data.get("BaselineConfig") is not None:
         import capo_sagemaker.types.monitoring_baseline_config
 
         out["baseline_config"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringJobDefinition:
                 data["BaselineConfig"]
             )
         )
-    if "MonitoringInputs" in data:
+    if data.get("MonitoringInputs") is not None:
         import capo_sagemaker.types.monitoring_inputs
 
         out["monitoring_inputs"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringJobDefinition:
                 data["MonitoringInputs"]
             )
         )
-    if "MonitoringOutputConfig" in data:
+    if data.get("MonitoringOutputConfig") is not None:
         import capo_sagemaker.types.monitoring_output_config
 
         out["monitoring_output_config"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringJobDefinition:
                 data["MonitoringOutputConfig"]
             )
         )
-    if "MonitoringResources" in data:
+    if data.get("MonitoringResources") is not None:
         import capo_sagemaker.types.monitoring_resources
 
         out["monitoring_resources"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringJobDefinition:
                 data["MonitoringResources"]
             )
         )
-    if "MonitoringAppSpecification" in data:
+    if data.get("MonitoringAppSpecification") is not None:
         import capo_sagemaker.types.monitoring_app_specification
 
         out["monitoring_app_specification"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringJobDefinition:
                 data["MonitoringAppSpecification"]
             )
         )
-    if "StoppingCondition" in data:
+    if data.get("StoppingCondition") is not None:
         import capo_sagemaker.types.monitoring_stopping_condition
 
         out["stopping_condition"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringJobDefinition:
                 data["StoppingCondition"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.monitoring_environment_map
 
         out["environment"] = (
@@ -181,7 +181,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringJobDefinition:
                 data["Environment"]
             )
         )
-    if "NetworkConfig" in data:
+    if data.get("NetworkConfig") is not None:
         import capo_sagemaker.types.network_config
 
         out["network_config"] = (
@@ -189,6 +189,6 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringJobDefinition:
                 data["NetworkConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

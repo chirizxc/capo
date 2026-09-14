@@ -22,8 +22,8 @@ def serialize_json(value: DnsEntry) -> dict:
 
 def deserialize_json(data: dict) -> DnsEntry:
     out: DnsEntry = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "hostedZoneId" in data:
+    if data.get("hostedZoneId") is not None:
         out["hosted_zone_id"] = data["hostedZoneId"]
     return out

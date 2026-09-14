@@ -47,15 +47,15 @@ def serialize_aws_json_1_0(value: PutAllianceLeadContactRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutAllianceLeadContactRequest:
     out: PutAllianceLeadContactRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("PutAllianceLeadContactRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("PutAllianceLeadContactRequest.identifier required")
-    if "AllianceLeadContact" in data:
+    if data.get("AllianceLeadContact") is not None:
         import capo_partnercentral_account.types.alliance_lead_contact
 
         out["alliance_lead_contact"] = (
@@ -67,6 +67,6 @@ def deserialize_aws_json_1_0(data: dict) -> PutAllianceLeadContactRequest:
         raise DeserializationError(
             "PutAllianceLeadContactRequest.alliance_lead_contact required"
         )
-    if "EmailVerificationCode" in data:
+    if data.get("EmailVerificationCode") is not None:
         out["email_verification_code"] = data["EmailVerificationCode"]
     return out

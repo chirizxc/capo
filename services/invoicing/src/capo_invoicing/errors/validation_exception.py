@@ -57,11 +57,11 @@ def serialize_aws_json_1_0(value: ValidationException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ValidationException_:
     out: ValidationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         import capo_invoicing.types.validation_exception_reason
 
         out["reason"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> ValidationException_:
                 data["reason"]
             )
         )
-    if "fieldList" in data:
+    if data.get("fieldList") is not None:
         import capo_invoicing.types.validation_exception_field_list
 
         out["field_list"] = (
@@ -85,15 +85,18 @@ class ValidationException(ServiceError):
 
     code: str | None = "ValidationException"
 
-    def __init__(self, data: ValidationException_):
+    def __init__(self, data: ValidationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ValidationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "ValidationException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "ValidationException":
+        return cls(deserialize_aws_json_1_0(data), message)

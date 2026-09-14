@@ -46,7 +46,7 @@ def serialize_aws_json_1_0(value: UpdateFirewallAnalysisSettingsResponse) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateFirewallAnalysisSettingsResponse:
     out: UpdateFirewallAnalysisSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "EnabledAnalysisTypes" in data:
+    if data.get("EnabledAnalysisTypes") is not None:
         import capo_network_firewall.types.enabled_analysis_types
 
         out["enabled_analysis_types"] = (
@@ -54,10 +54,10 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateFirewallAnalysisSettingsRespon
                 data["EnabledAnalysisTypes"]
             )
         )
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "FirewallName" in data:
+    if data.get("FirewallName") is not None:
         out["firewall_name"] = data["FirewallName"]
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     return out

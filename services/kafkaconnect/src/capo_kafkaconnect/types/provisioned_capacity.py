@@ -26,11 +26,11 @@ def serialize_json(value: ProvisionedCapacity) -> dict:
 
 def deserialize_json(data: dict) -> ProvisionedCapacity:
     out: ProvisionedCapacity = {}  # type: ignore[typeddict-item]
-    if "mcuCount" in data:
+    if data.get("mcuCount") is not None:
         out["mcu_count"] = data["mcuCount"]
     else:
         out["mcu_count"] = 0
-    if "workerCount" in data:
+    if data.get("workerCount") is not None:
         out["worker_count"] = data["workerCount"]
     else:
         out["worker_count"] = 0

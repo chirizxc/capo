@@ -56,7 +56,7 @@ def serialize_json(value: SlotValueSelectionSetting) -> dict:
 
 def deserialize_json(data: dict) -> SlotValueSelectionSetting:
     out: SlotValueSelectionSetting = {}  # type: ignore[typeddict-item]
-    if "resolutionStrategy" in data:
+    if data.get("resolutionStrategy") is not None:
         import capo_lex_models_v2.types.slot_value_resolution_strategy
 
         out["resolution_strategy"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> SlotValueSelectionSetting:
         raise DeserializationError(
             "SlotValueSelectionSetting.resolution_strategy required"
         )
-    if "regexFilter" in data:
+    if data.get("regexFilter") is not None:
         import capo_lex_models_v2.types.slot_value_regex_filter
 
         out["regex_filter"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> SlotValueSelectionSetting:
                 data["regexFilter"]
             )
         )
-    if "advancedRecognitionSetting" in data:
+    if data.get("advancedRecognitionSetting") is not None:
         import capo_lex_models_v2.types.advanced_recognition_setting
 
         out["advanced_recognition_setting"] = (

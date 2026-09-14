@@ -79,7 +79,7 @@ def serialize_aws_json_1_1(value: StartDominantLanguageDetectionJobRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> StartDominantLanguageDetectionJobRequest:
     out: StartDominantLanguageDetectionJobRequest = {}  # type: ignore[typeddict-item]
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_comprehend.types.input_data_config
 
         out["input_data_config"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartDominantLanguageDetectionJobReq
         raise DeserializationError(
             "StartDominantLanguageDetectionJobRequest.input_data_config required"
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_comprehend.types.output_data_config
 
         out["output_data_config"] = (
@@ -103,25 +103,25 @@ def deserialize_aws_json_1_1(data: dict) -> StartDominantLanguageDetectionJobReq
         raise DeserializationError(
             "StartDominantLanguageDetectionJobRequest.output_data_config required"
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     else:
         raise DeserializationError(
             "StartDominantLanguageDetectionJobRequest.data_access_role_arn required"
         )
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_comprehend.types.vpc_config
 
         out["vpc_config"] = capo_comprehend.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_comprehend.types.tag_list
 
         out["tags"] = capo_comprehend.types.tag_list.deserialize_aws_json_1_1(

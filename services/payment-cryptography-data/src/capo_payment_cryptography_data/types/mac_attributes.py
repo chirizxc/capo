@@ -97,7 +97,7 @@ def serialize_json(value: MacAttributes) -> dict:
 
 
 def deserialize_json(data: dict) -> MacAttributes:
-    if "Algorithm" in data:
+    if data.get("Algorithm") is not None:
         import capo_payment_cryptography_data.types.mac_algorithm
 
         return {
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> MacAttributes:
                 data["Algorithm"]
             )
         }
-    elif "EmvMac" in data:
+    elif data.get("EmvMac") is not None:
         import capo_payment_cryptography_data.types.mac_algorithm_emv
 
         return {
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> MacAttributes:
                 data["EmvMac"]
             )
         }
-    elif "DukptIso9797Algorithm1" in data:
+    elif data.get("DukptIso9797Algorithm1") is not None:
         import capo_payment_cryptography_data.types.mac_algorithm_dukpt
 
         return {
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> MacAttributes:
                 data["DukptIso9797Algorithm1"]
             )
         }
-    elif "DukptIso9797Algorithm3" in data:
+    elif data.get("DukptIso9797Algorithm3") is not None:
         import capo_payment_cryptography_data.types.mac_algorithm_dukpt
 
         return {
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> MacAttributes:
                 data["DukptIso9797Algorithm3"]
             )
         }
-    elif "DukptCmac" in data:
+    elif data.get("DukptCmac") is not None:
         import capo_payment_cryptography_data.types.mac_algorithm_dukpt
 
         return {

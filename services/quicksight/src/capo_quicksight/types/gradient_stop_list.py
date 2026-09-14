@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> GradientStopList:
 
     out: GradientStopList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.gradient_stop.deserialize_json(item))
     return out

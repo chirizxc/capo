@@ -56,9 +56,9 @@ def serialize_aws_json_1_1(value: ListedExecution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListedExecution:
     out: ListedExecution = {}  # type: ignore[typeddict-item]
-    if "ExecutionId" in data:
+    if data.get("ExecutionId") is not None:
         out["execution_id"] = data["ExecutionId"]
-    if "InitialFileLocation" in data:
+    if data.get("InitialFileLocation") is not None:
         import capo_transfer.types.file_location
 
         out["initial_file_location"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListedExecution:
                 data["InitialFileLocation"]
             )
         )
-    if "ServiceMetadata" in data:
+    if data.get("ServiceMetadata") is not None:
         import capo_transfer.types.service_metadata
 
         out["service_metadata"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListedExecution:
                 data["ServiceMetadata"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_transfer.types.execution_status
 
         out["status"] = capo_transfer.types.execution_status.deserialize_aws_json_1_1(

@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: PreviewAgentsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PreviewAgentsResponse:
     out: PreviewAgentsResponse = {}  # type: ignore[typeddict-item]
-    if "agentPreviews" in data:
+    if data.get("agentPreviews") is not None:
         import capo_inspector.types.agent_preview_list
 
         out["agent_previews"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_1(data: dict) -> PreviewAgentsResponse:
         )
     else:
         raise DeserializationError("PreviewAgentsResponse.agent_previews required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

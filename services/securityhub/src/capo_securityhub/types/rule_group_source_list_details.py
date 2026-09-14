@@ -48,9 +48,9 @@ def serialize_json(value: RuleGroupSourceListDetails) -> dict:
 
 def deserialize_json(data: dict) -> RuleGroupSourceListDetails:
     out: RuleGroupSourceListDetails = {}  # type: ignore[typeddict-item]
-    if "GeneratedRulesType" in data:
+    if data.get("GeneratedRulesType") is not None:
         out["generated_rules_type"] = data["GeneratedRulesType"]
-    if "TargetTypes" in data:
+    if data.get("TargetTypes") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["target_types"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> RuleGroupSourceListDetails:
                 data["TargetTypes"]
             )
         )
-    if "Targets" in data:
+    if data.get("Targets") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["targets"] = capo_securityhub.types.non_empty_string_list.deserialize_json(

@@ -120,11 +120,11 @@ def serialize_aws_json_1_1(value: CreateTrialComponentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTrialComponentRequest:
     out: CreateTrialComponentRequest = {}  # type: ignore[typeddict-item]
-    if "TrialComponentName" in data:
+    if data.get("TrialComponentName") is not None:
         out["trial_component_name"] = data["TrialComponentName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.trial_component_status
 
         out["status"] = (
@@ -132,19 +132,19 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrialComponentRequest:
                 data["Status"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_sagemaker.types.trial_component_parameters
 
         out["parameters"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrialComponentRequest:
                 data["Parameters"]
             )
         )
-    if "InputArtifacts" in data:
+    if data.get("InputArtifacts") is not None:
         import capo_sagemaker.types.trial_component_artifacts
 
         out["input_artifacts"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrialComponentRequest:
                 data["InputArtifacts"]
             )
         )
-    if "OutputArtifacts" in data:
+    if data.get("OutputArtifacts") is not None:
         import capo_sagemaker.types.trial_component_artifacts
 
         out["output_artifacts"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrialComponentRequest:
                 data["OutputArtifacts"]
             )
         )
-    if "MetadataProperties" in data:
+    if data.get("MetadataProperties") is not None:
         import capo_sagemaker.types.metadata_properties
 
         out["metadata_properties"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrialComponentRequest:
                 data["MetadataProperties"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

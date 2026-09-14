@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: SpaceCodeEditorAppSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SpaceCodeEditorAppSettings:
     out: SpaceCodeEditorAppSettings = {}  # type: ignore[typeddict-item]
-    if "DefaultResourceSpec" in data:
+    if data.get("DefaultResourceSpec") is not None:
         import capo_sagemaker.types.resource_spec
 
         out["default_resource_spec"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> SpaceCodeEditorAppSettings:
                 data["DefaultResourceSpec"]
             )
         )
-    if "AppLifecycleManagement" in data:
+    if data.get("AppLifecycleManagement") is not None:
         import capo_sagemaker.types.space_app_lifecycle_management
 
         out["app_lifecycle_management"] = (

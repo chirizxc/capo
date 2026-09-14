@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> FacetList:
 
     out: FacetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kendra.types.facet.deserialize_aws_json_1_1(item))
     return out

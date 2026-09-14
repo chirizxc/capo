@@ -37,11 +37,11 @@ def serialize_json(value: ElicitSubSlot) -> dict:
 
 def deserialize_json(data: dict) -> ElicitSubSlot:
     out: ElicitSubSlot = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ElicitSubSlot.name required")
-    if "subSlotToElicit" in data:
+    if data.get("subSlotToElicit") is not None:
         import capo_lex_runtime_v2.types.elicit_sub_slot
 
         out["sub_slot_to_elicit"] = (

@@ -39,15 +39,22 @@ class ServerlessCacheQuotaForCustomerExceededFault(ServiceError):
 
     code: str | None = "ServerlessCacheQuotaForCustomerExceededFault"
 
-    def __init__(self, data: ServerlessCacheQuotaForCustomerExceededFault_):
+    def __init__(
+        self,
+        data: ServerlessCacheQuotaForCustomerExceededFault_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServerlessCacheQuotaForCustomerExceededFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ServerlessCacheQuotaForCustomerExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ServerlessCacheQuotaForCustomerExceededFault":
+        return cls(deserialize_query(el), message)

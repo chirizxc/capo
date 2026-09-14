@@ -44,21 +44,21 @@ def serialize_aws_json_1_1(value: UpdateUserDefinedFunctionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateUserDefinedFunctionRequest:
     out: UpdateUserDefinedFunctionRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "UpdateUserDefinedFunctionRequest.database_name required"
         )
-    if "FunctionName" in data:
+    if data.get("FunctionName") is not None:
         out["function_name"] = data["FunctionName"]
     else:
         raise DeserializationError(
             "UpdateUserDefinedFunctionRequest.function_name required"
         )
-    if "FunctionInput" in data:
+    if data.get("FunctionInput") is not None:
         import capo_glue.types.user_defined_function_input
 
         out["function_input"] = (

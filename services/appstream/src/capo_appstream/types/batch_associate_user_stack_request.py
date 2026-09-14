@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: BatchAssociateUserStackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchAssociateUserStackRequest:
     out: BatchAssociateUserStackRequest = {}  # type: ignore[typeddict-item]
-    if "UserStackAssociations" in data:
+    if data.get("UserStackAssociations") is not None:
         import capo_appstream.types.user_stack_association_list
 
         out["user_stack_associations"] = (

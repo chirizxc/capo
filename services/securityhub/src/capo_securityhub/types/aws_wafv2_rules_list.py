@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AwsWafv2RulesList:
 
     out: AwsWafv2RulesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_wafv2_rules_details.deserialize_json(item)
         )

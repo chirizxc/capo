@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: TimeSeriesTransformations) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeSeriesTransformations:
     out: TimeSeriesTransformations = {}  # type: ignore[typeddict-item]
-    if "Filling" in data:
+    if data.get("Filling") is not None:
         import capo_sagemaker.types.filling_transformations
 
         out["filling"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> TimeSeriesTransformations:
                 data["Filling"]
             )
         )
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_sagemaker.types.aggregation_transformations
 
         out["aggregation"] = (

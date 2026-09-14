@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: ModifySamlPropertiesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifySamlPropertiesRequest:
     out: ModifySamlPropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("ModifySamlPropertiesRequest.resource_id required")
-    if "SamlProperties" in data:
+    if data.get("SamlProperties") is not None:
         import capo_workspaces.types.saml_properties
 
         out["saml_properties"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModifySamlPropertiesRequest:
                 data["SamlProperties"]
             )
         )
-    if "PropertiesToDelete" in data:
+    if data.get("PropertiesToDelete") is not None:
         import capo_workspaces.types.deletable_saml_properties_list
 
         out["properties_to_delete"] = (

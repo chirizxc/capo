@@ -53,25 +53,25 @@ def serialize_json(value: VerificationInfo) -> dict:
 
 def deserialize_json(data: dict) -> VerificationInfo:
     out: VerificationInfo = {}  # type: ignore[typeddict-item]
-    if "LastCheckedTimestamp" in data:
+    if data.get("LastCheckedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["last_checked_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["LastCheckedTimestamp"]
         )
-    if "LastSuccessTimestamp" in data:
+    if data.get("LastSuccessTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["last_success_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["LastSuccessTimestamp"]
         )
-    if "ErrorType" in data:
+    if data.get("ErrorType") is not None:
         import capo_sesv2.types.verification_error
 
         out["error_type"] = capo_sesv2.types.verification_error.deserialize_json(
             data["ErrorType"]
         )
-    if "SOARecord" in data:
+    if data.get("SOARecord") is not None:
         import capo_sesv2.types.soa_record
 
         out["soa_record"] = capo_sesv2.types.soa_record.deserialize_json(

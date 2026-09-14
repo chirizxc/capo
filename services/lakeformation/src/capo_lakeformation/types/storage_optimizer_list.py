@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> StorageOptimizerList:
 
     out: StorageOptimizerList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lakeformation.types.storage_optimizer.deserialize_json(item))
     return out

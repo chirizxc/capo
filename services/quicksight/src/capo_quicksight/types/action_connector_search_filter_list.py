@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ActionConnectorSearchFilterList:
 
     out: ActionConnectorSearchFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.action_connector_search_filter.deserialize_json(item)
         )

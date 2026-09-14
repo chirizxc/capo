@@ -68,15 +68,15 @@ def serialize_aws_json_1_1(value: DataCaptureConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataCaptureConfig:
     out: DataCaptureConfig = {}  # type: ignore[typeddict-item]
-    if "EnableCapture" in data:
+    if data.get("EnableCapture") is not None:
         out["enable_capture"] = data["EnableCapture"]
-    if "InitialSamplingPercentage" in data:
+    if data.get("InitialSamplingPercentage") is not None:
         out["initial_sampling_percentage"] = data["InitialSamplingPercentage"]
-    if "DestinationS3Uri" in data:
+    if data.get("DestinationS3Uri") is not None:
         out["destination_s3_uri"] = data["DestinationS3Uri"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "CaptureOptions" in data:
+    if data.get("CaptureOptions") is not None:
         import capo_sagemaker.types.capture_option_list
 
         out["capture_options"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataCaptureConfig:
                 data["CaptureOptions"]
             )
         )
-    if "CaptureContentTypeHeader" in data:
+    if data.get("CaptureContentTypeHeader") is not None:
         import capo_sagemaker.types.capture_content_type_header
 
         out["capture_content_type_header"] = (

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: MapOfChannelResponse) -> dict:
 def deserialize_json(data: dict) -> MapOfChannelResponse:
     out: MapOfChannelResponse = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_pinpoint.types.channel_response
 
         out[key] = capo_pinpoint.types.channel_response.deserialize_json(value)

@@ -53,13 +53,13 @@ def serialize_json(value: UpdateClusterInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClusterInput:
     out: UpdateClusterInput = {}  # type: ignore[typeddict-item]
-    if "deletionProtectionEnabled" in data:
+    if data.get("deletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["deletionProtectionEnabled"]
-    if "kmsEncryptionKey" in data:
+    if data.get("kmsEncryptionKey") is not None:
         out["kms_encryption_key"] = data["kmsEncryptionKey"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "multiRegionProperties" in data:
+    if data.get("multiRegionProperties") is not None:
         import capo_dsql.types.multi_region_properties
 
         out["multi_region_properties"] = (

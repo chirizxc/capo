@@ -28,10 +28,10 @@ def serialize_json(value: SseConfig) -> dict:
 
 def deserialize_json(data: dict) -> SseConfig:
     out: SseConfig = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("SseConfig.type required")
-    if "keyArn" in data:
+    if data.get("keyArn") is not None:
         out["key_arn"] = data["keyArn"]
     return out

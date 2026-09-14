@@ -32,12 +32,12 @@ def serialize_json(value: CommandPayload) -> dict:
 
 def deserialize_json(data: dict) -> CommandPayload:
     out: CommandPayload = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_iot.types.command_payload_blob
 
         out["content"] = capo_iot.types.command_payload_blob.deserialize_json(
             data["content"]
         )
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
     return out

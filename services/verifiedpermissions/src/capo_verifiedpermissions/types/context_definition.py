@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: ContextDefinition) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ContextDefinition:
-    if "contextMap" in data:
+    if data.get("contextMap") is not None:
         import capo_verifiedpermissions.types.context_map
 
         return {
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_0(data: dict) -> ContextDefinition:
                 data["contextMap"]
             )
         }
-    elif "cedarJson" in data:
+    elif data.get("cedarJson") is not None:
         return {"cedarJson": data["cedarJson"]}
     else:
         raise DeserializationError("ContextDefinition: no recognized variant key")

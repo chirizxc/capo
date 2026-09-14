@@ -62,19 +62,19 @@ def serialize_json(value: SearchOrganizationInsightsFilters) -> dict:
 
 def deserialize_json(data: dict) -> SearchOrganizationInsightsFilters:
     out: SearchOrganizationInsightsFilters = {}  # type: ignore[typeddict-item]
-    if "Severities" in data:
+    if data.get("Severities") is not None:
         import capo_devops_guru.types.insight_severities
 
         out["severities"] = capo_devops_guru.types.insight_severities.deserialize_json(
             data["Severities"]
         )
-    if "Statuses" in data:
+    if data.get("Statuses") is not None:
         import capo_devops_guru.types.insight_statuses
 
         out["statuses"] = capo_devops_guru.types.insight_statuses.deserialize_json(
             data["Statuses"]
         )
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.resource_collection
 
         out["resource_collection"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> SearchOrganizationInsightsFilters:
                 data["ResourceCollection"]
             )
         )
-    if "ServiceCollection" in data:
+    if data.get("ServiceCollection") is not None:
         import capo_devops_guru.types.service_collection
 
         out["service_collection"] = (

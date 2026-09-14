@@ -36,12 +36,12 @@ def serialize_json(value: UpdatePricingPlanInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePricingPlanInput:
     out: UpdatePricingPlanInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UpdatePricingPlanInput.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

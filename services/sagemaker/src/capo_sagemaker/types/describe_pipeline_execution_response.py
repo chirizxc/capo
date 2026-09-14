@@ -156,13 +156,13 @@ def serialize_aws_json_1_1(value: DescribePipelineExecutionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePipelineExecutionResponse:
     out: DescribePipelineExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
-    if "PipelineExecutionArn" in data:
+    if data.get("PipelineExecutionArn") is not None:
         out["pipeline_execution_arn"] = data["PipelineExecutionArn"]
-    if "PipelineExecutionDisplayName" in data:
+    if data.get("PipelineExecutionDisplayName") is not None:
         out["pipeline_execution_display_name"] = data["PipelineExecutionDisplayName"]
-    if "PipelineExecutionStatus" in data:
+    if data.get("PipelineExecutionStatus") is not None:
         import capo_sagemaker.types.pipeline_execution_status
 
         out["pipeline_execution_status"] = (
@@ -170,9 +170,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePipelineExecutionResponse:
                 data["PipelineExecutionStatus"]
             )
         )
-    if "PipelineExecutionDescription" in data:
+    if data.get("PipelineExecutionDescription") is not None:
         out["pipeline_execution_description"] = data["PipelineExecutionDescription"]
-    if "PipelineExperimentConfig" in data:
+    if data.get("PipelineExperimentConfig") is not None:
         import capo_sagemaker.types.pipeline_experiment_config
 
         out["pipeline_experiment_config"] = (
@@ -180,15 +180,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePipelineExecutionResponse:
                 data["PipelineExperimentConfig"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -196,13 +196,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePipelineExecutionResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["last_modified_by"] = (
@@ -210,7 +210,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePipelineExecutionResponse:
                 data["LastModifiedBy"]
             )
         )
-    if "ParallelismConfiguration" in data:
+    if data.get("ParallelismConfiguration") is not None:
         import capo_sagemaker.types.parallelism_configuration
 
         out["parallelism_configuration"] = (
@@ -218,7 +218,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePipelineExecutionResponse:
                 data["ParallelismConfiguration"]
             )
         )
-    if "SelectiveExecutionConfig" in data:
+    if data.get("SelectiveExecutionConfig") is not None:
         import capo_sagemaker.types.selective_execution_config
 
         out["selective_execution_config"] = (
@@ -226,9 +226,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePipelineExecutionResponse:
                 data["SelectiveExecutionConfig"]
             )
         )
-    if "PipelineVersionId" in data:
+    if data.get("PipelineVersionId") is not None:
         out["pipeline_version_id"] = data["PipelineVersionId"]
-    if "MLflowConfig" in data:
+    if data.get("MLflowConfig") is not None:
         import capo_sagemaker.types.m_lflow_configuration
 
         out["m_lflow_config"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ParticipantReplicaList:
 
     out: ParticipantReplicaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ivs_realtime.types.participant_replica.deserialize_json(item))
     return out

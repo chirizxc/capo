@@ -24,7 +24,7 @@ def serialize_json(value: CaseRuleIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> CaseRuleIdentifier:
     out: CaseRuleIdentifier = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CaseRuleIdentifier.id required")

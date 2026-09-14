@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: Comment) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Comment:
     out: Comment = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("Comment.message required")

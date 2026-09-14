@@ -54,15 +54,15 @@ def serialize_aws_json_1_1(value: RateBasedRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RateBasedRule:
     out: RateBasedRule = {}  # type: ignore[typeddict-item]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     else:
         raise DeserializationError("RateBasedRule.rule_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "MatchPredicates" in data:
+    if data.get("MatchPredicates") is not None:
         import capo_waf_regional.types.predicates
 
         out["match_predicates"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedRule:
         )
     else:
         raise DeserializationError("RateBasedRule.match_predicates required")
-    if "RateKey" in data:
+    if data.get("RateKey") is not None:
         import capo_waf_regional.types.rate_key
 
         out["rate_key"] = capo_waf_regional.types.rate_key.deserialize_aws_json_1_1(
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedRule:
         )
     else:
         raise DeserializationError("RateBasedRule.rate_key required")
-    if "RateLimit" in data:
+    if data.get("RateLimit") is not None:
         out["rate_limit"] = data["RateLimit"]
     else:
         raise DeserializationError("RateBasedRule.rate_limit required")

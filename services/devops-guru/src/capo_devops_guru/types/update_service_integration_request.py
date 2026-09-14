@@ -30,7 +30,7 @@ def serialize_json(value: UpdateServiceIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceIntegrationRequest:
     out: UpdateServiceIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceIntegration" in data:
+    if data.get("ServiceIntegration") is not None:
         import capo_devops_guru.types.update_service_integration_config
 
         out["service_integration"] = (

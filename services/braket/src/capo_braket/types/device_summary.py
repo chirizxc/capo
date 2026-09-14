@@ -38,23 +38,23 @@ def serialize_json(value: DeviceSummary) -> dict:
 
 def deserialize_json(data: dict) -> DeviceSummary:
     out: DeviceSummary = {}  # type: ignore[typeddict-item]
-    if "deviceArn" in data:
+    if data.get("deviceArn") is not None:
         out["device_arn"] = data["deviceArn"]
     else:
         raise DeserializationError("DeviceSummary.device_arn required")
-    if "deviceName" in data:
+    if data.get("deviceName") is not None:
         out["device_name"] = data["deviceName"]
     else:
         raise DeserializationError("DeviceSummary.device_name required")
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
     else:
         raise DeserializationError("DeviceSummary.provider_name required")
-    if "deviceType" in data:
+    if data.get("deviceType") is not None:
         out["device_type"] = data["deviceType"]
     else:
         raise DeserializationError("DeviceSummary.device_type required")
-    if "deviceStatus" in data:
+    if data.get("deviceStatus") is not None:
         out["device_status"] = data["deviceStatus"]
     else:
         raise DeserializationError("DeviceSummary.device_status required")

@@ -34,14 +34,14 @@ def serialize_json(value: RuleStatusCounts) -> dict:
 
 def deserialize_json(data: dict) -> RuleStatusCounts:
     out: RuleStatusCounts = {}  # type: ignore[typeddict-item]
-    if "Failed" in data:
+    if data.get("Failed") is not None:
         out["failed"] = data["Failed"]
-    if "Warning" in data:
+    if data.get("Warning") is not None:
         out["warning"] = data["Warning"]
-    if "Info" in data:
+    if data.get("Info") is not None:
         out["info"] = data["Info"]
-    if "Passed" in data:
+    if data.get("Passed") is not None:
         out["passed"] = data["Passed"]
-    if "Unknown" in data:
+    if data.get("Unknown") is not None:
         out["unknown"] = data["Unknown"]
     return out

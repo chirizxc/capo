@@ -24,7 +24,7 @@ def serialize_json(value: StartJobRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartJobRunResponse:
     out: StartJobRunResponse = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     else:
         raise DeserializationError("StartJobRunResponse.run_id required")

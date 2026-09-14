@@ -40,11 +40,11 @@ def serialize_json(value: LegalTerm) -> dict:
 
 def deserialize_json(data: dict) -> LegalTerm:
     out: LegalTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("LegalTerm.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.term_type
 
         out["type"] = capo_marketplace_discovery.types.term_type.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> LegalTerm:
         )
     else:
         raise DeserializationError("LegalTerm.type required")
-    if "documents" in data:
+    if data.get("documents") is not None:
         import capo_marketplace_discovery.types.document_list
 
         out["documents"] = (

@@ -52,22 +52,22 @@ def serialize_json(value: CreateRestoreAccessBackupVaultInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateRestoreAccessBackupVaultInput:
     out: CreateRestoreAccessBackupVaultInput = {}  # type: ignore[typeddict-item]
-    if "SourceBackupVaultArn" in data:
+    if data.get("SourceBackupVaultArn") is not None:
         out["source_backup_vault_arn"] = data["SourceBackupVaultArn"]
     else:
         raise DeserializationError(
             "CreateRestoreAccessBackupVaultInput.source_backup_vault_arn required"
         )
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
-    if "BackupVaultTags" in data:
+    if data.get("BackupVaultTags") is not None:
         import capo_backup.types.tags
 
         out["backup_vault_tags"] = capo_backup.types.tags.deserialize_json(
             data["BackupVaultTags"]
         )
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "RequesterComment" in data:
+    if data.get("RequesterComment") is not None:
         out["requester_comment"] = data["RequesterComment"]
     return out

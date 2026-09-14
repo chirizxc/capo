@@ -38,7 +38,7 @@ def serialize_json(value: GetObjectTypeAttributeStatisticsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetObjectTypeAttributeStatisticsResponse:
     out: GetObjectTypeAttributeStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_customer_profiles.types.get_object_type_attribute_statistics_stats
 
         out["statistics"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> GetObjectTypeAttributeStatisticsResponse:
         raise DeserializationError(
             "GetObjectTypeAttributeStatisticsResponse.statistics required"
         )
-    if "CalculatedAt" in data:
+    if data.get("CalculatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["calculated_at"] = capo_customer_profiles.types.timestamp.deserialize_json(

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_workspaces_web._auth._signers
@@ -115,9 +116,10 @@ class SessionLoggerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_session_logger_request.CreateSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["event_filter"] = event_filter
-        input_["log_configuration"] = log_configuration
+        input_: capo_workspaces_web.types.create_session_logger_request.CreateSessionLoggerRequest = {
+            "event_filter": event_filter,
+            "log_configuration": log_configuration,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if customer_managed_key is not None:
@@ -126,14 +128,16 @@ class SessionLoggerResource:
             input_["additional_encryption_context"] = additional_encryption_context
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -183,14 +187,16 @@ class SessionLoggerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_session_logger_request.GetSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["session_logger_arn"] = session_logger_arn
+        input_: capo_workspaces_web.types.get_session_logger_request.GetSessionLoggerRequest = {
+            "session_logger_arn": session_logger_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -250,8 +256,9 @@ class SessionLoggerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_session_logger_request.UpdateSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["session_logger_arn"] = session_logger_arn
+        input_: capo_workspaces_web.types.update_session_logger_request.UpdateSessionLoggerRequest = {
+            "session_logger_arn": session_logger_arn
+        }
         if event_filter is not None:
             input_["event_filter"] = event_filter
         if log_configuration is not None:
@@ -264,6 +271,7 @@ class SessionLoggerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -307,14 +315,16 @@ class SessionLoggerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_session_logger_request.DeleteSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["session_logger_arn"] = session_logger_arn
+        input_: capo_workspaces_web.types.delete_session_logger_request.DeleteSessionLoggerRequest = {
+            "session_logger_arn": session_logger_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -367,7 +377,7 @@ class SessionLoggerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_session_loggers_request.ListSessionLoggersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_session_loggers_request.ListSessionLoggersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -378,6 +388,7 @@ class SessionLoggerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -452,9 +463,10 @@ class AsyncSessionLoggerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_session_logger_request.CreateSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["event_filter"] = event_filter
-        input_["log_configuration"] = log_configuration
+        input_: capo_workspaces_web.types.create_session_logger_request.CreateSessionLoggerRequest = {
+            "event_filter": event_filter,
+            "log_configuration": log_configuration,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if customer_managed_key is not None:
@@ -463,14 +475,16 @@ class AsyncSessionLoggerResource:
             input_["additional_encryption_context"] = additional_encryption_context
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -521,14 +535,16 @@ class AsyncSessionLoggerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_session_logger_request.GetSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["session_logger_arn"] = session_logger_arn
+        input_: capo_workspaces_web.types.get_session_logger_request.GetSessionLoggerRequest = {
+            "session_logger_arn": session_logger_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -589,8 +605,9 @@ class AsyncSessionLoggerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_session_logger_request.UpdateSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["session_logger_arn"] = session_logger_arn
+        input_: capo_workspaces_web.types.update_session_logger_request.UpdateSessionLoggerRequest = {
+            "session_logger_arn": session_logger_arn
+        }
         if event_filter is not None:
             input_["event_filter"] = event_filter
         if log_configuration is not None:
@@ -603,6 +620,7 @@ class AsyncSessionLoggerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -647,14 +665,16 @@ class AsyncSessionLoggerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_session_logger_request.DeleteSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["session_logger_arn"] = session_logger_arn
+        input_: capo_workspaces_web.types.delete_session_logger_request.DeleteSessionLoggerRequest = {
+            "session_logger_arn": session_logger_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -708,7 +728,7 @@ class AsyncSessionLoggerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_session_loggers_request.ListSessionLoggersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_session_loggers_request.ListSessionLoggersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -719,4 +739,5 @@ class AsyncSessionLoggerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

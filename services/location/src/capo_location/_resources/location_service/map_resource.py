@@ -99,9 +99,10 @@ class MapResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_map_request.CreateMapRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
-        input_["configuration"] = configuration
+        input_: capo_location.types.create_map_request.CreateMapRequest = {
+            "map_name": map_name,
+            "configuration": configuration,
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -114,6 +115,7 @@ class MapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -151,14 +153,16 @@ class MapResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_map_request.DescribeMapRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
+        input_: capo_location.types.describe_map_request.DescribeMapRequest = {
+            "map_name": map_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -206,8 +210,9 @@ class MapResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_map_request.UpdateMapRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
+        input_: capo_location.types.update_map_request.UpdateMapRequest = {
+            "map_name": map_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -220,6 +225,7 @@ class MapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -257,14 +263,16 @@ class MapResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_map_request.DeleteMapRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
+        input_: capo_location.types.delete_map_request.DeleteMapRequest = {
+            "map_name": map_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -303,7 +311,7 @@ class MapResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_maps_request.ListMapsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_maps_request.ListMapsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -314,6 +322,7 @@ class MapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_map_glyphs(
@@ -357,10 +366,11 @@ class MapResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_map_glyphs_request.GetMapGlyphsRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
-        input_["font_stack"] = font_stack
-        input_["font_unicode_range"] = font_unicode_range
+        input_: capo_location.types.get_map_glyphs_request.GetMapGlyphsRequest = {
+            "map_name": map_name,
+            "font_stack": font_stack,
+            "font_unicode_range": font_unicode_range,
+        }
         if key is not None:
             input_["key"] = key
 
@@ -369,6 +379,7 @@ class MapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_map_sprites(
@@ -410,9 +421,10 @@ class MapResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_map_sprites_request.GetMapSpritesRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
-        input_["file_name"] = file_name
+        input_: capo_location.types.get_map_sprites_request.GetMapSpritesRequest = {
+            "map_name": map_name,
+            "file_name": file_name,
+        }
         if key is not None:
             input_["key"] = key
 
@@ -421,6 +433,7 @@ class MapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_map_style_descriptor(
@@ -460,8 +473,9 @@ class MapResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_map_style_descriptor_request.GetMapStyleDescriptorRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
+        input_: capo_location.types.get_map_style_descriptor_request.GetMapStyleDescriptorRequest = {
+            "map_name": map_name
+        }
         if key is not None:
             input_["key"] = key
 
@@ -470,6 +484,7 @@ class MapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_map_tile(
@@ -515,11 +530,12 @@ class MapResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_map_tile_request.GetMapTileRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
-        input_["z"] = z
-        input_["x"] = x
-        input_["y"] = y
+        input_: capo_location.types.get_map_tile_request.GetMapTileRequest = {
+            "map_name": map_name,
+            "z": z,
+            "x": x,
+            "y": y,
+        }
         if key is not None:
             input_["key"] = key
 
@@ -528,6 +544,7 @@ class MapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -582,9 +599,10 @@ class AsyncMapResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_map_request.CreateMapRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
-        input_["configuration"] = configuration
+        input_: capo_location.types.create_map_request.CreateMapRequest = {
+            "map_name": map_name,
+            "configuration": configuration,
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -597,6 +615,7 @@ class AsyncMapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -635,14 +654,16 @@ class AsyncMapResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_map_request.DescribeMapRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
+        input_: capo_location.types.describe_map_request.DescribeMapRequest = {
+            "map_name": map_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -691,8 +712,9 @@ class AsyncMapResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_map_request.UpdateMapRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
+        input_: capo_location.types.update_map_request.UpdateMapRequest = {
+            "map_name": map_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -705,6 +727,7 @@ class AsyncMapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -743,14 +766,16 @@ class AsyncMapResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_map_request.DeleteMapRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
+        input_: capo_location.types.delete_map_request.DeleteMapRequest = {
+            "map_name": map_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -790,7 +815,7 @@ class AsyncMapResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_maps_request.ListMapsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_maps_request.ListMapsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -801,6 +826,7 @@ class AsyncMapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_map_glyphs(
@@ -845,10 +871,11 @@ class AsyncMapResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_map_glyphs_request.GetMapGlyphsRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
-        input_["font_stack"] = font_stack
-        input_["font_unicode_range"] = font_unicode_range
+        input_: capo_location.types.get_map_glyphs_request.GetMapGlyphsRequest = {
+            "map_name": map_name,
+            "font_stack": font_stack,
+            "font_unicode_range": font_unicode_range,
+        }
         if key is not None:
             input_["key"] = key
 
@@ -857,6 +884,7 @@ class AsyncMapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_map_sprites(
@@ -899,9 +927,10 @@ class AsyncMapResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_map_sprites_request.GetMapSpritesRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
-        input_["file_name"] = file_name
+        input_: capo_location.types.get_map_sprites_request.GetMapSpritesRequest = {
+            "map_name": map_name,
+            "file_name": file_name,
+        }
         if key is not None:
             input_["key"] = key
 
@@ -910,6 +939,7 @@ class AsyncMapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_map_style_descriptor(
@@ -950,8 +980,9 @@ class AsyncMapResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_map_style_descriptor_request.GetMapStyleDescriptorRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
+        input_: capo_location.types.get_map_style_descriptor_request.GetMapStyleDescriptorRequest = {
+            "map_name": map_name
+        }
         if key is not None:
             input_["key"] = key
 
@@ -960,6 +991,7 @@ class AsyncMapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_map_tile(
@@ -1006,11 +1038,12 @@ class AsyncMapResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_map_tile_request.GetMapTileRequest = {}  # type: ignore[typeddict-item]
-        input_["map_name"] = map_name
-        input_["z"] = z
-        input_["x"] = x
-        input_["y"] = y
+        input_: capo_location.types.get_map_tile_request.GetMapTileRequest = {
+            "map_name": map_name,
+            "z": z,
+            "x": x,
+            "y": y,
+        }
         if key is not None:
             input_["key"] = key
 
@@ -1019,4 +1052,5 @@ class AsyncMapResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

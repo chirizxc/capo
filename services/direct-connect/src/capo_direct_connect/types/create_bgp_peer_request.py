@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: CreateBGPPeerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateBGPPeerRequest:
     out: CreateBGPPeerRequest = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
-    if "newBGPPeer" in data:
+    if data.get("newBGPPeer") is not None:
         import capo_direct_connect.types.new_bgp_peer
 
         out["new_bgp_peer"] = (

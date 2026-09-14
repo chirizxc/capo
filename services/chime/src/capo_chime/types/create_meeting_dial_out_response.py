@@ -23,6 +23,6 @@ def serialize_json(value: CreateMeetingDialOutResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMeetingDialOutResponse:
     out: CreateMeetingDialOutResponse = {}  # type: ignore[typeddict-item]
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
     return out

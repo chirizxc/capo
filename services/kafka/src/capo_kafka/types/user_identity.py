@@ -30,10 +30,10 @@ def serialize_json(value: UserIdentity) -> dict:
 
 def deserialize_json(data: dict) -> UserIdentity:
     out: UserIdentity = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_kafka.types.user_identity_type
 
         out["type"] = capo_kafka.types.user_identity_type.deserialize_json(data["type"])
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
     return out

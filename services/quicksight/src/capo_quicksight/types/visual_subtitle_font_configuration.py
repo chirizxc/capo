@@ -52,7 +52,7 @@ def serialize_json(value: VisualSubtitleFontConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VisualSubtitleFontConfiguration:
     out: VisualSubtitleFontConfiguration = {}  # type: ignore[typeddict-item]
-    if "FontConfiguration" in data:
+    if data.get("FontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["font_configuration"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> VisualSubtitleFontConfiguration:
                 data["FontConfiguration"]
             )
         )
-    if "TextAlignment" in data:
+    if data.get("TextAlignment") is not None:
         import capo_quicksight.types.horizontal_text_alignment
 
         out["text_alignment"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> VisualSubtitleFontConfiguration:
                 data["TextAlignment"]
             )
         )
-    if "TextTransform" in data:
+    if data.get("TextTransform") is not None:
         import capo_quicksight.types.text_transform
 
         out["text_transform"] = capo_quicksight.types.text_transform.deserialize_json(

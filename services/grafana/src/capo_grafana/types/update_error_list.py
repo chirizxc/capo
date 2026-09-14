@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> UpdateErrorList:
 
     out: UpdateErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_grafana.types.update_error.deserialize_json(item))
     return out

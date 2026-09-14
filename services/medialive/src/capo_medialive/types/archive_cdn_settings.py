@@ -30,7 +30,7 @@ def serialize_json(value: ArchiveCdnSettings) -> dict:
 
 def deserialize_json(data: dict) -> ArchiveCdnSettings:
     out: ArchiveCdnSettings = {}  # type: ignore[typeddict-item]
-    if "archiveS3Settings" in data:
+    if data.get("archiveS3Settings") is not None:
         import capo_medialive.types.archive_s3_settings
 
         out["archive_s3_settings"] = (

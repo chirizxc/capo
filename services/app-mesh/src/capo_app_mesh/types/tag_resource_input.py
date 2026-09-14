@@ -29,7 +29,7 @@ def serialize_json(value: TagResourceInput) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceInput:
     out: TagResourceInput = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_app_mesh.types.tag_list
 
         out["tags"] = capo_app_mesh.types.tag_list.deserialize_json(data["tags"])

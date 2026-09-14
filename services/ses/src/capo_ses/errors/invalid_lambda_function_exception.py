@@ -45,15 +45,20 @@ class InvalidLambdaFunctionException(ServiceError):
 
     code: str | None = "InvalidLambdaFunctionException"
 
-    def __init__(self, data: InvalidLambdaFunctionException_):
+    def __init__(
+        self, data: InvalidLambdaFunctionException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidLambdaFunctionException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidLambdaFunctionException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidLambdaFunctionException":
+        return cls(deserialize_query(el), message)

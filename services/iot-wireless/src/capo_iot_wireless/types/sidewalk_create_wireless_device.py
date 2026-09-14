@@ -45,9 +45,9 @@ def serialize_json(value: SidewalkCreateWirelessDevice) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkCreateWirelessDevice:
     out: SidewalkCreateWirelessDevice = {}  # type: ignore[typeddict-item]
-    if "DeviceProfileId" in data:
+    if data.get("DeviceProfileId") is not None:
         out["device_profile_id"] = data["DeviceProfileId"]
-    if "Positioning" in data:
+    if data.get("Positioning") is not None:
         import capo_iot_wireless.types.sidewalk_positioning
 
         out["positioning"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> SidewalkCreateWirelessDevice:
                 data["Positioning"]
             )
         )
-    if "SidewalkManufacturingSn" in data:
+    if data.get("SidewalkManufacturingSn") is not None:
         out["sidewalk_manufacturing_sn"] = data["SidewalkManufacturingSn"]
     return out

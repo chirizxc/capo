@@ -114,11 +114,11 @@ def serialize_aws_json_1_1(value: ListCompilationJobsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCompilationJobsRequest:
     out: ListCompilationJobsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time_after"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListCompilationJobsRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time_before"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListCompilationJobsRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "LastModifiedTimeAfter" in data:
+    if data.get("LastModifiedTimeAfter") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time_after"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListCompilationJobsRequest:
                 data["LastModifiedTimeAfter"]
             )
         )
-    if "LastModifiedTimeBefore" in data:
+    if data.get("LastModifiedTimeBefore") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time_before"] = (
@@ -150,9 +150,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListCompilationJobsRequest:
                 data["LastModifiedTimeBefore"]
             )
         )
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "StatusEquals" in data:
+    if data.get("StatusEquals") is not None:
         import capo_sagemaker.types.compilation_job_status
 
         out["status_equals"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListCompilationJobsRequest:
                 data["StatusEquals"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.list_compilation_jobs_sort_by
 
         out["sort_by"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListCompilationJobsRequest:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(

@@ -25,6 +25,6 @@ def serialize_json(value: CreateIndexResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateIndexResponse:
     out: CreateIndexResponse = {}  # type: ignore[typeddict-item]
-    if "ObjectIdentifier" in data:
+    if data.get("ObjectIdentifier") is not None:
         out["object_identifier"] = data["ObjectIdentifier"]
     return out

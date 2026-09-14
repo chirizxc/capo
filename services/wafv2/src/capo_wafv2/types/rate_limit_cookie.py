@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: RateLimitCookie) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RateLimitCookie:
     out: RateLimitCookie = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RateLimitCookie.name required")
-    if "TextTransformations" in data:
+    if data.get("TextTransformations") is not None:
         import capo_wafv2.types.text_transformations
 
         out["text_transformations"] = (

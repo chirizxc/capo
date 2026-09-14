@@ -99,15 +99,15 @@ def serialize_aws_json_1_1(value: DescribeUserProfileResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUserProfileResponse:
     out: DescribeUserProfileResponse = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "UserProfileArn" in data:
+    if data.get("UserProfileArn") is not None:
         out["user_profile_arn"] = data["UserProfileArn"]
-    if "UserProfileName" in data:
+    if data.get("UserProfileName") is not None:
         out["user_profile_name"] = data["UserProfileName"]
-    if "HomeEfsFileSystemUid" in data:
+    if data.get("HomeEfsFileSystemUid") is not None:
         out["home_efs_file_system_uid"] = data["HomeEfsFileSystemUid"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.user_profile_status
 
         out["status"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUserProfileResponse:
                 data["Status"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUserProfileResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -131,13 +131,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUserProfileResponse:
                 data["CreationTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "SingleSignOnUserIdentifier" in data:
+    if data.get("SingleSignOnUserIdentifier") is not None:
         out["single_sign_on_user_identifier"] = data["SingleSignOnUserIdentifier"]
-    if "SingleSignOnUserValue" in data:
+    if data.get("SingleSignOnUserValue") is not None:
         out["single_sign_on_user_value"] = data["SingleSignOnUserValue"]
-    if "UserSettings" in data:
+    if data.get("UserSettings") is not None:
         import capo_sagemaker.types.user_settings
 
         out["user_settings"] = (

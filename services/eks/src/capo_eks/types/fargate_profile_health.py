@@ -29,7 +29,7 @@ def serialize_json(value: FargateProfileHealth) -> dict:
 
 def deserialize_json(data: dict) -> FargateProfileHealth:
     out: FargateProfileHealth = {}  # type: ignore[typeddict-item]
-    if "issues" in data:
+    if data.get("issues") is not None:
         import capo_eks.types.fargate_profile_issue_list
 
         out["issues"] = capo_eks.types.fargate_profile_issue_list.deserialize_json(

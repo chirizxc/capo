@@ -36,15 +36,15 @@ def serialize_json(value: TLEData) -> dict:
 
 def deserialize_json(data: dict) -> TLEData:
     out: TLEData = {}  # type: ignore[typeddict-item]
-    if "tleLine1" in data:
+    if data.get("tleLine1") is not None:
         out["tle_line1"] = data["tleLine1"]
     else:
         raise DeserializationError("TLEData.tle_line1 required")
-    if "tleLine2" in data:
+    if data.get("tleLine2") is not None:
         out["tle_line2"] = data["tleLine2"]
     else:
         raise DeserializationError("TLEData.tle_line2 required")
-    if "validTimeRange" in data:
+    if data.get("validTimeRange") is not None:
         import capo_groundstation.types.time_range
 
         out["valid_time_range"] = capo_groundstation.types.time_range.deserialize_json(

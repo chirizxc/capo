@@ -47,7 +47,7 @@ def serialize_aws_json_1_0(value: DeliverToQBusinessAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeliverToQBusinessAction:
     out: DeliverToQBusinessAction = {}  # type: ignore[typeddict-item]
-    if "ActionFailurePolicy" in data:
+    if data.get("ActionFailurePolicy") is not None:
         import capo_mailmanager.types.action_failure_policy
 
         out["action_failure_policy"] = (
@@ -55,15 +55,15 @@ def deserialize_aws_json_1_0(data: dict) -> DeliverToQBusinessAction:
                 data["ActionFailurePolicy"]
             )
         )
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError("DeliverToQBusinessAction.application_id required")
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("DeliverToQBusinessAction.index_id required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("DeliverToQBusinessAction.role_arn required")

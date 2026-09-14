@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteFirewallManagerRuleGroupsRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFirewallManagerRuleGroupsRequest:
     out: DeleteFirewallManagerRuleGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "WebACLArn" in data:
+    if data.get("WebACLArn") is not None:
         out["web_acl_arn"] = data["WebACLArn"]
     else:
         raise DeserializationError(
             "DeleteFirewallManagerRuleGroupsRequest.web_acl_arn required"
         )
-    if "WebACLLockToken" in data:
+    if data.get("WebACLLockToken") is not None:
         out["web_acl_lock_token"] = data["WebACLLockToken"]
     else:
         raise DeserializationError(

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ServiceNameAndResourceTypeList:
 
     out: ServiceNameAndResourceTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ram.types.service_name_and_resource_type.deserialize_json(item))
     return out

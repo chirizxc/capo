@@ -51,18 +51,18 @@ def serialize_json(value: AwsEc2NetworkInterfaceAttachment) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2NetworkInterfaceAttachment:
     out: AwsEc2NetworkInterfaceAttachment = {}  # type: ignore[typeddict-item]
-    if "AttachTime" in data:
+    if data.get("AttachTime") is not None:
         out["attach_time"] = data["AttachTime"]
-    if "AttachmentId" in data:
+    if data.get("AttachmentId") is not None:
         out["attachment_id"] = data["AttachmentId"]
-    if "DeleteOnTermination" in data:
+    if data.get("DeleteOnTermination") is not None:
         out["delete_on_termination"] = data["DeleteOnTermination"]
-    if "DeviceIndex" in data:
+    if data.get("DeviceIndex") is not None:
         out["device_index"] = data["DeviceIndex"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "InstanceOwnerId" in data:
+    if data.get("InstanceOwnerId") is not None:
         out["instance_owner_id"] = data["InstanceOwnerId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

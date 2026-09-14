@@ -60,13 +60,13 @@ def serialize_aws_json_1_0(value: CreateRescoreExecutionPlanRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRescoreExecutionPlanRequest:
     out: CreateRescoreExecutionPlanRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateRescoreExecutionPlanRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CapacityUnits" in data:
+    if data.get("CapacityUnits") is not None:
         import capo_kendra_ranking.types.capacity_units_configuration
 
         out["capacity_units"] = (
@@ -74,12 +74,12 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRescoreExecutionPlanRequest:
                 data["CapacityUnits"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kendra_ranking.types.tag_list
 
         out["tags"] = capo_kendra_ranking.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

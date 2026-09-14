@@ -42,19 +42,19 @@ def serialize_json(value: DescribeVaultOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeVaultOutput:
     out: DescribeVaultOutput = {}  # type: ignore[typeddict-item]
-    if "VaultARN" in data:
+    if data.get("VaultARN") is not None:
         out["vault_arn"] = data["VaultARN"]
-    if "VaultName" in data:
+    if data.get("VaultName") is not None:
         out["vault_name"] = data["VaultName"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "LastInventoryDate" in data:
+    if data.get("LastInventoryDate") is not None:
         out["last_inventory_date"] = data["LastInventoryDate"]
-    if "NumberOfArchives" in data:
+    if data.get("NumberOfArchives") is not None:
         out["number_of_archives"] = data["NumberOfArchives"]
     else:
         out["number_of_archives"] = 0
-    if "SizeInBytes" in data:
+    if data.get("SizeInBytes") is not None:
         out["size_in_bytes"] = data["SizeInBytes"]
     else:
         out["size_in_bytes"] = 0

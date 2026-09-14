@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListTaskPropertiesOverride:
 
     out: ListTaskPropertiesOverride = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.task_properties_override.deserialize_json(item))
     return out

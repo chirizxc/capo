@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ConversationLevelTestResultItemList:
 
     out: ConversationLevelTestResultItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.conversation_level_test_result_item.deserialize_json(
                 item

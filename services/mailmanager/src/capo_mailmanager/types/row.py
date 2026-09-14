@@ -110,9 +110,9 @@ def serialize_aws_json_1_0(value: Row) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Row:
     out: Row = {}  # type: ignore[typeddict-item]
-    if "ArchivedMessageId" in data:
+    if data.get("ArchivedMessageId") is not None:
         out["archived_message_id"] = data["ArchivedMessageId"]
-    if "ReceivedTimestamp" in data:
+    if data.get("ReceivedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["received_timestamp"] = (
@@ -120,21 +120,21 @@ def deserialize_aws_json_1_0(data: dict) -> Row:
                 data["ReceivedTimestamp"]
             )
         )
-    if "Date" in data:
+    if data.get("Date") is not None:
         out["date"] = data["Date"]
-    if "To" in data:
+    if data.get("To") is not None:
         out["to"] = data["To"]
-    if "From" in data:
+    if data.get("From") is not None:
         out["from"] = data["From"]
-    if "Cc" in data:
+    if data.get("Cc") is not None:
         out["cc"] = data["Cc"]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
-    if "HasAttachments" in data:
+    if data.get("HasAttachments") is not None:
         out["has_attachments"] = data["HasAttachments"]
-    if "ReceivedHeaders" in data:
+    if data.get("ReceivedHeaders") is not None:
         import capo_mailmanager.types.email_received_headers_list
 
         out["received_headers"] = (
@@ -142,26 +142,26 @@ def deserialize_aws_json_1_0(data: dict) -> Row:
                 data["ReceivedHeaders"]
             )
         )
-    if "InReplyTo" in data:
+    if data.get("InReplyTo") is not None:
         out["in_reply_to"] = data["InReplyTo"]
-    if "XMailer" in data:
+    if data.get("XMailer") is not None:
         out["x_mailer"] = data["XMailer"]
-    if "XOriginalMailer" in data:
+    if data.get("XOriginalMailer") is not None:
         out["x_original_mailer"] = data["XOriginalMailer"]
-    if "XPriority" in data:
+    if data.get("XPriority") is not None:
         out["x_priority"] = data["XPriority"]
-    if "IngressPointId" in data:
+    if data.get("IngressPointId") is not None:
         out["ingress_point_id"] = data["IngressPointId"]
-    if "SenderHostname" in data:
+    if data.get("SenderHostname") is not None:
         out["sender_hostname"] = data["SenderHostname"]
-    if "SenderIpAddress" in data:
+    if data.get("SenderIpAddress") is not None:
         out["sender_ip_address"] = data["SenderIpAddress"]
-    if "Envelope" in data:
+    if data.get("Envelope") is not None:
         import capo_mailmanager.types.envelope
 
         out["envelope"] = capo_mailmanager.types.envelope.deserialize_aws_json_1_0(
             data["Envelope"]
         )
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
     return out

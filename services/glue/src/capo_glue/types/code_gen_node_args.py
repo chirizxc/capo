@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> CodeGenNodeArgs:
 
     out: CodeGenNodeArgs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.code_gen_node_arg.deserialize_aws_json_1_1(item))
     return out

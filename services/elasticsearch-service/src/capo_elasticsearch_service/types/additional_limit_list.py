@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AdditionalLimitList:
 
     out: AdditionalLimitList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.additional_limit.deserialize_json(item)
         )

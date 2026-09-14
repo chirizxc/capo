@@ -29,10 +29,10 @@ def serialize_json(value: DeleteStreamInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteStreamInput:
     out: DeleteStreamInput = {}  # type: ignore[typeddict-item]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
     else:
         raise DeserializationError("DeleteStreamInput.stream_arn required")
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         out["current_version"] = data["CurrentVersion"]
     return out

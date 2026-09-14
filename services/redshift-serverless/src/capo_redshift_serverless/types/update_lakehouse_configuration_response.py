@@ -37,12 +37,12 @@ def serialize_aws_json_1_1(value: UpdateLakehouseConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLakehouseConfigurationResponse:
     out: UpdateLakehouseConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "lakehouseIdcApplicationArn" in data:
+    if data.get("lakehouseIdcApplicationArn") is not None:
         out["lakehouse_idc_application_arn"] = data["lakehouseIdcApplicationArn"]
-    if "lakehouseRegistrationStatus" in data:
+    if data.get("lakehouseRegistrationStatus") is not None:
         out["lakehouse_registration_status"] = data["lakehouseRegistrationStatus"]
-    if "catalogArn" in data:
+    if data.get("catalogArn") is not None:
         out["catalog_arn"] = data["catalogArn"]
     return out

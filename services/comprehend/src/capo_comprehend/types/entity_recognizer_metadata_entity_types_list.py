@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> EntityRecognizerMetadataEntityTypesL
 
     out: EntityRecognizerMetadataEntityTypesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.entity_recognizer_metadata_entity_types_list_item.deserialize_aws_json_1_1(
                 item

@@ -105,17 +105,17 @@ def serialize_aws_json_1_1(value: SpaceDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SpaceDetails:
     out: SpaceDetails = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "SpaceName" in data:
+    if data.get("SpaceName") is not None:
         out["space_name"] = data["SpaceName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.space_status
 
         out["status"] = capo_sagemaker.types.space_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> SpaceDetails:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> SpaceDetails:
                 data["LastModifiedTime"]
             )
         )
-    if "SpaceSettingsSummary" in data:
+    if data.get("SpaceSettingsSummary") is not None:
         import capo_sagemaker.types.space_settings_summary
 
         out["space_settings_summary"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> SpaceDetails:
                 data["SpaceSettingsSummary"]
             )
         )
-    if "SpaceSharingSettingsSummary" in data:
+    if data.get("SpaceSharingSettingsSummary") is not None:
         import capo_sagemaker.types.space_sharing_settings_summary
 
         out["space_sharing_settings_summary"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> SpaceDetails:
                 data["SpaceSharingSettingsSummary"]
             )
         )
-    if "OwnershipSettingsSummary" in data:
+    if data.get("OwnershipSettingsSummary") is not None:
         import capo_sagemaker.types.ownership_settings_summary
 
         out["ownership_settings_summary"] = (
@@ -155,6 +155,6 @@ def deserialize_aws_json_1_1(data: dict) -> SpaceDetails:
                 data["OwnershipSettingsSummary"]
             )
         )
-    if "SpaceDisplayName" in data:
+    if data.get("SpaceDisplayName") is not None:
         out["space_display_name"] = data["SpaceDisplayName"]
     return out

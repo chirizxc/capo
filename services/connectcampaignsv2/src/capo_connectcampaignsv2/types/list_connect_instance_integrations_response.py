@@ -34,9 +34,9 @@ def serialize_json(value: ListConnectInstanceIntegrationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListConnectInstanceIntegrationsResponse:
     out: ListConnectInstanceIntegrationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "integrationSummaryList" in data:
+    if data.get("integrationSummaryList") is not None:
         import capo_connectcampaignsv2.types.integration_summary_list
 
         out["integration_summary_list"] = (

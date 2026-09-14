@@ -84,9 +84,9 @@ def serialize_json(value: UpdateInvestigationGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateInvestigationGroupRequest:
     out: UpdateInvestigationGroupRequest = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_aiops.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> UpdateInvestigationGroupRequest:
                 data["encryptionConfiguration"]
             )
         )
-    if "tagKeyBoundaries" in data:
+    if data.get("tagKeyBoundaries") is not None:
         import capo_aiops.types.tag_key_boundaries
 
         out["tag_key_boundaries"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> UpdateInvestigationGroupRequest:
                 data["tagKeyBoundaries"]
             )
         )
-    if "chatbotNotificationChannel" in data:
+    if data.get("chatbotNotificationChannel") is not None:
         import capo_aiops.types.chatbot_notification_channel
 
         out["chatbot_notification_channel"] = (
@@ -110,11 +110,11 @@ def deserialize_json(data: dict) -> UpdateInvestigationGroupRequest:
                 data["chatbotNotificationChannel"]
             )
         )
-    if "isCloudTrailEventHistoryEnabled" in data:
+    if data.get("isCloudTrailEventHistoryEnabled") is not None:
         out["is_cloud_trail_event_history_enabled"] = data[
             "isCloudTrailEventHistoryEnabled"
         ]
-    if "crossAccountConfigurations" in data:
+    if data.get("crossAccountConfigurations") is not None:
         import capo_aiops.types.cross_account_configurations
 
         out["cross_account_configurations"] = (

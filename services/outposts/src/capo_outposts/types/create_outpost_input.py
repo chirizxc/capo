@@ -65,25 +65,25 @@ def serialize_json(value: CreateOutpostInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateOutpostInput:
     out: CreateOutpostInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateOutpostInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SiteId" in data:
+    if data.get("SiteId") is not None:
         out["site_id"] = data["SiteId"]
     else:
         raise DeserializationError("CreateOutpostInput.site_id required")
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "AvailabilityZoneId" in data:
+    if data.get("AvailabilityZoneId") is not None:
         out["availability_zone_id"] = data["AvailabilityZoneId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_outposts.types.tag_map
 
         out["tags"] = capo_outposts.types.tag_map.deserialize_json(data["Tags"])
-    if "SupportedHardwareType" in data:
+    if data.get("SupportedHardwareType") is not None:
         import capo_outposts.types.supported_hardware_type
 
         out["supported_hardware_type"] = (

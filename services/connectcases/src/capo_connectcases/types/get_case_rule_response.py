@@ -80,19 +80,19 @@ def serialize_json(value: GetCaseRuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCaseRuleResponse:
     out: GetCaseRuleResponse = {}  # type: ignore[typeddict-item]
-    if "caseRuleId" in data:
+    if data.get("caseRuleId") is not None:
         out["case_rule_id"] = data["caseRuleId"]
     else:
         raise DeserializationError("GetCaseRuleResponse.case_rule_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetCaseRuleResponse.name required")
-    if "caseRuleArn" in data:
+    if data.get("caseRuleArn") is not None:
         out["case_rule_arn"] = data["caseRuleArn"]
     else:
         raise DeserializationError("GetCaseRuleResponse.case_rule_arn required")
-    if "rule" in data:
+    if data.get("rule") is not None:
         import capo_connectcases.types.case_rule_details
 
         out["rule"] = capo_connectcases.types.case_rule_details.deserialize_json(
@@ -100,19 +100,19 @@ def deserialize_json(data: dict) -> GetCaseRuleResponse:
         )
     else:
         raise DeserializationError("GetCaseRuleResponse.rule required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "deleted" in data:
+    if data.get("deleted") is not None:
         out["deleted"] = data["deleted"]
     else:
         out["deleted"] = False
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_connectcases.types.created_time
 
         out["created_time"] = capo_connectcases.types.created_time.deserialize_json(
             data["createdTime"]
         )
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_connectcases.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> GetCaseRuleResponse:
                 data["lastModifiedTime"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcases.types.tags
 
         out["tags"] = capo_connectcases.types.tags.deserialize_json(data["tags"])

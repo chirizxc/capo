@@ -24,7 +24,7 @@ def serialize_json(value: RetryConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> RetryConfigInput:
     out: RetryConfigInput = {}  # type: ignore[typeddict-item]
-    if "MaxRetries" in data:
+    if data.get("MaxRetries") is not None:
         out["max_retries"] = data["MaxRetries"]
     else:
         raise DeserializationError("RetryConfigInput.max_retries required")

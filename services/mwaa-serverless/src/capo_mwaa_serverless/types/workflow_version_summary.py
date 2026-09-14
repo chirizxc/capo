@@ -89,17 +89,17 @@ def serialize_aws_json_1_0(value: WorkflowVersionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowVersionSummary:
     out: WorkflowVersionSummary = {}  # type: ignore[typeddict-item]
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
     else:
         raise DeserializationError("WorkflowVersionSummary.workflow_version required")
-    if "WorkflowArn" in data:
+    if data.get("WorkflowArn") is not None:
         out["workflow_arn"] = data["WorkflowArn"]
     else:
         raise DeserializationError("WorkflowVersionSummary.workflow_arn required")
-    if "IsLatestVersion" in data:
+    if data.get("IsLatestVersion") is not None:
         out["is_latest_version"] = data["IsLatestVersion"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["created_at"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowVersionSummary:
                 data["CreatedAt"]
             )
         )
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["modified_at"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowVersionSummary:
                 data["ModifiedAt"]
             )
         )
-    if "DefinitionS3Location" in data:
+    if data.get("DefinitionS3Location") is not None:
         import capo_mwaa_serverless.types.definition_s3_location
 
         out["definition_s3_location"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowVersionSummary:
                 data["DefinitionS3Location"]
             )
         )
-    if "ScheduleConfiguration" in data:
+    if data.get("ScheduleConfiguration") is not None:
         import capo_mwaa_serverless.types.schedule_configuration
 
         out["schedule_configuration"] = (
@@ -131,6 +131,6 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowVersionSummary:
                 data["ScheduleConfiguration"]
             )
         )
-    if "TriggerMode" in data:
+    if data.get("TriggerMode") is not None:
         out["trigger_mode"] = data["TriggerMode"]
     return out

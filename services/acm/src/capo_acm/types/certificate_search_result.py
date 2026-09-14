@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: CertificateSearchResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateSearchResult:
     out: CertificateSearchResult = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "X509Attributes" in data:
+    if data.get("X509Attributes") is not None:
         import capo_acm.types.x509_attributes
 
         out["x509_attributes"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateSearchResult:
                 data["X509Attributes"]
             )
         )
-    if "CertificateMetadata" in data:
+    if data.get("CertificateMetadata") is not None:
         import capo_acm.types.certificate_metadata
 
         out["certificate_metadata"] = (

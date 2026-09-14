@@ -37,11 +37,11 @@ def serialize_json(value: AccountInfo) -> dict:
 
 def deserialize_json(data: dict) -> AccountInfo:
     out: AccountInfo = {}  # type: ignore[typeddict-item]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
     else:
         raise DeserializationError("AccountInfo.aws_account_id required")
-    if "supportedRegions" in data:
+    if data.get("supportedRegions") is not None:
         import capo_datazone.types.aws_region_list
 
         out["supported_regions"] = capo_datazone.types.aws_region_list.deserialize_json(
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> AccountInfo:
         )
     else:
         raise DeserializationError("AccountInfo.supported_regions required")
-    if "awsAccountName" in data:
+    if data.get("awsAccountName") is not None:
         out["aws_account_name"] = data["awsAccountName"]
     return out

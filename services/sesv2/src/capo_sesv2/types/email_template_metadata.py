@@ -32,9 +32,9 @@ def serialize_json(value: EmailTemplateMetadata) -> dict:
 
 def deserialize_json(data: dict) -> EmailTemplateMetadata:
     out: EmailTemplateMetadata = {}  # type: ignore[typeddict-item]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["created_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(

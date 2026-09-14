@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: ForbiddenException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ForbiddenException_:
     out: ForbiddenException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -29,15 +29,18 @@ class ForbiddenException(ServiceError):
 
     code: str | None = "ForbiddenException"
 
-    def __init__(self, data: ForbiddenException_):
+    def __init__(self, data: ForbiddenException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ForbiddenException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "ForbiddenException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "ForbiddenException":
+        return cls(deserialize_aws_json_1_0(data), message)

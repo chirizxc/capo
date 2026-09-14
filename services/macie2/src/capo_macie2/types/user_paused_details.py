@@ -48,17 +48,17 @@ def serialize_json(value: UserPausedDetails) -> dict:
 
 def deserialize_json(data: dict) -> UserPausedDetails:
     out: UserPausedDetails = {}  # type: ignore[typeddict-item]
-    if "jobExpiresAt" in data:
+    if data.get("jobExpiresAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["job_expires_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["jobExpiresAt"]
         )
-    if "jobImminentExpirationHealthEventArn" in data:
+    if data.get("jobImminentExpirationHealthEventArn") is not None:
         out["job_imminent_expiration_health_event_arn"] = data[
             "jobImminentExpirationHealthEventArn"
         ]
-    if "jobPausedAt" in data:
+    if data.get("jobPausedAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["job_paused_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(

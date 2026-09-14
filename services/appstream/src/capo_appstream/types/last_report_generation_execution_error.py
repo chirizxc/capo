@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: LastReportGenerationExecutionError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LastReportGenerationExecutionError:
     out: LastReportGenerationExecutionError = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_appstream.types.usage_report_execution_error_code
 
         out["error_code"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> LastReportGenerationExecutionError:
                 data["ErrorCode"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

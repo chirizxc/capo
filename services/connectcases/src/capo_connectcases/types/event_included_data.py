@@ -44,7 +44,7 @@ def serialize_json(value: EventIncludedData) -> dict:
 
 def deserialize_json(data: dict) -> EventIncludedData:
     out: EventIncludedData = {}  # type: ignore[typeddict-item]
-    if "caseData" in data:
+    if data.get("caseData") is not None:
         import capo_connectcases.types.case_event_included_data
 
         out["case_data"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> EventIncludedData:
                 data["caseData"]
             )
         )
-    if "relatedItemData" in data:
+    if data.get("relatedItemData") is not None:
         import capo_connectcases.types.related_item_event_included_data
 
         out["related_item_data"] = (

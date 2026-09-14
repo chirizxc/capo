@@ -48,19 +48,19 @@ def serialize_json(value: CreateConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorRequest:
     out: CreateConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateConnectorRequest.name required")
-    if "ssmInstanceID" in data:
+    if data.get("ssmInstanceID") is not None:
         out["ssm_instance_id"] = data["ssmInstanceID"]
     else:
         raise DeserializationError("CreateConnectorRequest.ssm_instance_id required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])
-    if "ssmCommandConfig" in data:
+    if data.get("ssmCommandConfig") is not None:
         import capo_mgn.types.connector_ssm_command_config
 
         out["ssm_command_config"] = (

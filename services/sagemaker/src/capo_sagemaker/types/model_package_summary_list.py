@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ModelPackageSummaryList:
 
     out: ModelPackageSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.model_package_summary.deserialize_aws_json_1_1(item)
         )

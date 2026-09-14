@@ -66,14 +66,16 @@ class Configuration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.describe_workspace_configuration_request.DescribeWorkspaceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.describe_workspace_configuration_request.DescribeWorkspaceConfigurationRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_workspace_configuration(
@@ -118,9 +120,10 @@ class Configuration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.update_workspace_configuration_request.UpdateWorkspaceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration"] = configuration
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.update_workspace_configuration_request.UpdateWorkspaceConfigurationRequest = {
+            "configuration": configuration,
+            "workspace_id": workspace_id,
+        }
         if grafana_version is not None:
             input_["grafana_version"] = grafana_version
 
@@ -129,6 +132,7 @@ class Configuration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -171,14 +175,16 @@ class AsyncConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.describe_workspace_configuration_request.DescribeWorkspaceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.describe_workspace_configuration_request.DescribeWorkspaceConfigurationRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_workspace_configuration(
@@ -224,9 +230,10 @@ class AsyncConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.update_workspace_configuration_request.UpdateWorkspaceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration"] = configuration
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.update_workspace_configuration_request.UpdateWorkspaceConfigurationRequest = {
+            "configuration": configuration,
+            "workspace_id": workspace_id,
+        }
         if grafana_version is not None:
             input_["grafana_version"] = grafana_version
 
@@ -235,4 +242,5 @@ class AsyncConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

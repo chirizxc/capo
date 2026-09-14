@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: ExportAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportAttributes:
     out: ExportAttributes = {}  # type: ignore[typeddict-item]
-    if "ExportDukptInitialKey" in data:
+    if data.get("ExportDukptInitialKey") is not None:
         import capo_payment_cryptography.types.export_dukpt_initial_key
 
         out["export_dukpt_initial_key"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(data: dict) -> ExportAttributes:
                 data["ExportDukptInitialKey"]
             )
         )
-    if "KeyCheckValueAlgorithm" in data:
+    if data.get("KeyCheckValueAlgorithm") is not None:
         out["key_check_value_algorithm"] = data["KeyCheckValueAlgorithm"]
     return out

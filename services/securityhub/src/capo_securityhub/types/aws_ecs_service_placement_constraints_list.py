@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEcsServicePlacementConstraintsList:
 
     out: AwsEcsServicePlacementConstraintsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ecs_service_placement_constraints_details.deserialize_json(
                 item

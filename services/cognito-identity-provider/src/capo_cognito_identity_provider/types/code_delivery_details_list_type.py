@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> CodeDeliveryDetailsListType:
 
     out: CodeDeliveryDetailsListType = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cognito_identity_provider.types.code_delivery_details_type.deserialize_aws_json_1_1(
                 item

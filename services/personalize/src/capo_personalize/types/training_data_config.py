@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: TrainingDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingDataConfig:
     out: TrainingDataConfig = {}  # type: ignore[typeddict-item]
-    if "excludedDatasetColumns" in data:
+    if data.get("excludedDatasetColumns") is not None:
         import capo_personalize.types.excluded_dataset_columns
 
         out["excluded_dataset_columns"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingDataConfig:
                 data["excludedDatasetColumns"]
             )
         )
-    if "includedDatasetColumns" in data:
+    if data.get("includedDatasetColumns") is not None:
         import capo_personalize.types.included_dataset_columns
 
         out["included_dataset_columns"] = (

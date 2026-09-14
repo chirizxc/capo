@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DescribeServerResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeServerResponse:
     out: DescribeServerResponse = {}  # type: ignore[typeddict-item]
-    if "Server" in data:
+    if data.get("Server") is not None:
         import capo_transfer.types.described_server
 
         out["server"] = capo_transfer.types.described_server.deserialize_aws_json_1_1(

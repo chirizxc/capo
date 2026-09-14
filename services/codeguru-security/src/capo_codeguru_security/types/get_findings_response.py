@@ -32,12 +32,12 @@ def serialize_json(value: GetFindingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsResponse:
     out: GetFindingsResponse = {}  # type: ignore[typeddict-item]
-    if "findings" in data:
+    if data.get("findings") is not None:
         import capo_codeguru_security.types.findings
 
         out["findings"] = capo_codeguru_security.types.findings.deserialize_json(
             data["findings"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

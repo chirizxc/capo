@@ -30,7 +30,7 @@ def serialize_json(value: UpdateRoutingProfileDefaultOutboundQueueRequest) -> di
 
 def deserialize_json(data: dict) -> UpdateRoutingProfileDefaultOutboundQueueRequest:
     out: UpdateRoutingProfileDefaultOutboundQueueRequest = {}  # type: ignore[typeddict-item]
-    if "DefaultOutboundQueueId" in data:
+    if data.get("DefaultOutboundQueueId") is not None:
         out["default_outbound_queue_id"] = data["DefaultOutboundQueueId"]
     else:
         raise DeserializationError(

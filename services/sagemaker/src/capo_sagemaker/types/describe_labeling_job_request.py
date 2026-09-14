@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeLabelingJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLabelingJobRequest:
     out: DescribeLabelingJobRequest = {}  # type: ignore[typeddict-item]
-    if "LabelingJobName" in data:
+    if data.get("LabelingJobName") is not None:
         out["labeling_job_name"] = data["LabelingJobName"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ManagedFirewallDomainLists:
 
     out: ManagedFirewallDomainLists = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53globalresolver.types.managed_firewall_domain_lists_item.deserialize_json(
                 item

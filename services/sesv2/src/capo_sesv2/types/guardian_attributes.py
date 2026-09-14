@@ -29,7 +29,7 @@ def serialize_json(value: GuardianAttributes) -> dict:
 
 def deserialize_json(data: dict) -> GuardianAttributes:
     out: GuardianAttributes = {}  # type: ignore[typeddict-item]
-    if "OptimizedSharedDelivery" in data:
+    if data.get("OptimizedSharedDelivery") is not None:
         import capo_sesv2.types.feature_status
 
         out["optimized_shared_delivery"] = (

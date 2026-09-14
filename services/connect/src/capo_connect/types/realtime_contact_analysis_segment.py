@@ -104,7 +104,7 @@ def serialize_json(value: RealtimeContactAnalysisSegment) -> dict:
 
 
 def deserialize_json(data: dict) -> RealtimeContactAnalysisSegment:
-    if "Transcript" in data:
+    if data.get("Transcript") is not None:
         import capo_connect.types.real_time_contact_analysis_segment_transcript
 
         return {
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> RealtimeContactAnalysisSegment:
                 data["Transcript"]
             )
         }
-    elif "Categories" in data:
+    elif data.get("Categories") is not None:
         import capo_connect.types.real_time_contact_analysis_segment_categories
 
         return {
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> RealtimeContactAnalysisSegment:
                 data["Categories"]
             )
         }
-    elif "Issues" in data:
+    elif data.get("Issues") is not None:
         import capo_connect.types.real_time_contact_analysis_segment_issues
 
         return {
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> RealtimeContactAnalysisSegment:
                 data["Issues"]
             )
         }
-    elif "Event" in data:
+    elif data.get("Event") is not None:
         import capo_connect.types.real_time_contact_analysis_segment_event
 
         return {
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> RealtimeContactAnalysisSegment:
                 data["Event"]
             )
         }
-    elif "Attachments" in data:
+    elif data.get("Attachments") is not None:
         import capo_connect.types.real_time_contact_analysis_segment_attachments
 
         return {
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> RealtimeContactAnalysisSegment:
                 data["Attachments"]
             )
         }
-    elif "PostContactSummary" in data:
+    elif data.get("PostContactSummary") is not None:
         import capo_connect.types.real_time_contact_analysis_segment_post_contact_summary
 
         return {

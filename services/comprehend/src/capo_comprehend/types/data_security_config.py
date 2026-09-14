@@ -39,13 +39,13 @@ def serialize_aws_json_1_1(value: DataSecurityConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSecurityConfig:
     out: DataSecurityConfig = {}  # type: ignore[typeddict-item]
-    if "ModelKmsKeyId" in data:
+    if data.get("ModelKmsKeyId") is not None:
         out["model_kms_key_id"] = data["ModelKmsKeyId"]
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "DataLakeKmsKeyId" in data:
+    if data.get("DataLakeKmsKeyId") is not None:
         out["data_lake_kms_key_id"] = data["DataLakeKmsKeyId"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_comprehend.types.vpc_config
 
         out["vpc_config"] = capo_comprehend.types.vpc_config.deserialize_aws_json_1_1(

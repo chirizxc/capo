@@ -14,4 +14,4 @@ def serialize_json(value: PrincipalArnOrIdList) -> list:
 
 
 def deserialize_json(data: list) -> PrincipalArnOrIdList:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: OpenIdConnectAccessTokenConfiguration) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> OpenIdConnectAccessTokenConfiguration:
     out: OpenIdConnectAccessTokenConfiguration = {}  # type: ignore[typeddict-item]
-    if "principalIdClaim" in data:
+    if data.get("principalIdClaim") is not None:
         out["principal_id_claim"] = data["principalIdClaim"]
     else:
         out["principal_id_claim"] = "sub"
-    if "audiences" in data:
+    if data.get("audiences") is not None:
         import capo_verifiedpermissions.types.audiences
 
         out["audiences"] = (

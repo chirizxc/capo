@@ -49,11 +49,11 @@ def serialize_json(value: UpdateAssetFilterInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssetFilterInput:
     out: UpdateAssetFilterInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_datazone.types.asset_filter_configuration
 
         out["configuration"] = (

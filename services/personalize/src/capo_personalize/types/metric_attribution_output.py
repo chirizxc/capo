@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: MetricAttributionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricAttributionOutput:
     out: MetricAttributionOutput = {}  # type: ignore[typeddict-item]
-    if "s3DataDestination" in data:
+    if data.get("s3DataDestination") is not None:
         import capo_personalize.types.s3_data_config
 
         out["s3_data_destination"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> MetricAttributionOutput:
                 data["s3DataDestination"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("MetricAttributionOutput.role_arn required")

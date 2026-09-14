@@ -45,13 +45,13 @@ def serialize_json(value: AuditMitigationActionsTaskMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AuditMitigationActionsTaskMetadata:
     out: AuditMitigationActionsTaskMetadata = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_iot.types.timestamp
 
         out["start_time"] = capo_iot.types.timestamp.deserialize_json(data["startTime"])
-    if "taskStatus" in data:
+    if data.get("taskStatus") is not None:
         import capo_iot.types.audit_mitigation_actions_task_status
 
         out["task_status"] = (

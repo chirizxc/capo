@@ -36,15 +36,15 @@ def serialize_json(value: SendMessageContentBlockStartEvent) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageContentBlockStartEvent:
     out: SendMessageContentBlockStartEvent = {}  # type: ignore[typeddict-item]
-    if "index" in data:
+    if data.get("index") is not None:
         out["index"] = data["index"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "parentId" in data:
+    if data.get("parentId") is not None:
         out["parent_id"] = data["parentId"]
-    if "sequenceNumber" in data:
+    if data.get("sequenceNumber") is not None:
         out["sequence_number"] = data["sequenceNumber"]
     return out
 

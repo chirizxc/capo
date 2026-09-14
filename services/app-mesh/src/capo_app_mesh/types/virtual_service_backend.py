@@ -33,13 +33,13 @@ def serialize_json(value: VirtualServiceBackend) -> dict:
 
 def deserialize_json(data: dict) -> VirtualServiceBackend:
     out: VirtualServiceBackend = {}  # type: ignore[typeddict-item]
-    if "virtualServiceName" in data:
+    if data.get("virtualServiceName") is not None:
         out["virtual_service_name"] = data["virtualServiceName"]
     else:
         raise DeserializationError(
             "VirtualServiceBackend.virtual_service_name required"
         )
-    if "clientPolicy" in data:
+    if data.get("clientPolicy") is not None:
         import capo_app_mesh.types.client_policy
 
         out["client_policy"] = capo_app_mesh.types.client_policy.deserialize_json(

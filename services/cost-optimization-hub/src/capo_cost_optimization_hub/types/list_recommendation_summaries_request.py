@@ -53,7 +53,7 @@ def serialize_aws_json_1_0(value: ListRecommendationSummariesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRecommendationSummariesRequest:
     out: ListRecommendationSummariesRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_cost_optimization_hub.types.filter
 
         out["filter"] = (
@@ -61,15 +61,15 @@ def deserialize_aws_json_1_0(data: dict) -> ListRecommendationSummariesRequest:
                 data["filter"]
             )
         )
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         out["group_by"] = data["groupBy"]
     else:
         raise DeserializationError(
             "ListRecommendationSummariesRequest.group_by required"
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_cost_optimization_hub.types.summary_metrics_list
 
         out["metrics"] = (
@@ -77,6 +77,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRecommendationSummariesRequest:
                 data["metrics"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

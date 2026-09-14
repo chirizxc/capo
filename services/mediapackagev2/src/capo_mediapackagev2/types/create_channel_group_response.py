@@ -64,21 +64,21 @@ def serialize_json(value: CreateChannelGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelGroupResponse:
     out: CreateChannelGroupResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelGroupName" in data:
+    if data.get("ChannelGroupName") is not None:
         out["channel_group_name"] = data["ChannelGroupName"]
     else:
         raise DeserializationError(
             "CreateChannelGroupResponse.channel_group_name required"
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("CreateChannelGroupResponse.arn required")
-    if "EgressDomain" in data:
+    if data.get("EgressDomain") is not None:
         out["egress_domain"] = data["EgressDomain"]
     else:
         raise DeserializationError("CreateChannelGroupResponse.egress_domain required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> CreateChannelGroupResponse:
         )
     else:
         raise DeserializationError("CreateChannelGroupResponse.created_at required")
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["modified_at"] = (
@@ -98,11 +98,11 @@ def deserialize_json(data: dict) -> CreateChannelGroupResponse:
         )
     else:
         raise DeserializationError("CreateChannelGroupResponse.modified_at required")
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mediapackagev2.types.tag_map
 
         out["tags"] = capo_mediapackagev2.types.tag_map.deserialize_json(data["Tags"])

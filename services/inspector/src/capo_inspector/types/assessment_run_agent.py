@@ -70,15 +70,15 @@ def serialize_aws_json_1_1(value: AssessmentRunAgent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentRunAgent:
     out: AssessmentRunAgent = {}  # type: ignore[typeddict-item]
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
     else:
         raise DeserializationError("AssessmentRunAgent.agent_id required")
-    if "assessmentRunArn" in data:
+    if data.get("assessmentRunArn") is not None:
         out["assessment_run_arn"] = data["assessmentRunArn"]
     else:
         raise DeserializationError("AssessmentRunAgent.assessment_run_arn required")
-    if "agentHealth" in data:
+    if data.get("agentHealth") is not None:
         import capo_inspector.types.agent_health
 
         out["agent_health"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentRunAgent:
         )
     else:
         raise DeserializationError("AssessmentRunAgent.agent_health required")
-    if "agentHealthCode" in data:
+    if data.get("agentHealthCode") is not None:
         import capo_inspector.types.agent_health_code
 
         out["agent_health_code"] = (
@@ -98,11 +98,11 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentRunAgent:
         )
     else:
         raise DeserializationError("AssessmentRunAgent.agent_health_code required")
-    if "agentHealthDetails" in data:
+    if data.get("agentHealthDetails") is not None:
         out["agent_health_details"] = data["agentHealthDetails"]
-    if "autoScalingGroup" in data:
+    if data.get("autoScalingGroup") is not None:
         out["auto_scaling_group"] = data["autoScalingGroup"]
-    if "telemetryMetadata" in data:
+    if data.get("telemetryMetadata") is not None:
         import capo_inspector.types.telemetry_metadata_list
 
         out["telemetry_metadata"] = (

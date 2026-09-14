@@ -31,12 +31,12 @@ def serialize_json(value: ChannelDestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ChannelDestinationConfiguration:
     out: ChannelDestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
     else:
         raise DeserializationError(
             "ChannelDestinationConfiguration.channel_arn required"
         )
-    if "encoderConfigurationArn" in data:
+    if data.get("encoderConfigurationArn") is not None:
         out["encoder_configuration_arn"] = data["encoderConfigurationArn"]
     return out

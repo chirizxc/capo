@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: ListOnPremisesInstancesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListOnPremisesInstancesInput:
     out: ListOnPremisesInstancesInput = {}  # type: ignore[typeddict-item]
-    if "registrationStatus" in data:
+    if data.get("registrationStatus") is not None:
         import capo_codedeploy.types.registration_status
 
         out["registration_status"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListOnPremisesInstancesInput:
                 data["registrationStatus"]
             )
         )
-    if "tagFilters" in data:
+    if data.get("tagFilters") is not None:
         import capo_codedeploy.types.tag_filter_list
 
         out["tag_filters"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListOnPremisesInstancesInput:
                 data["tagFilters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

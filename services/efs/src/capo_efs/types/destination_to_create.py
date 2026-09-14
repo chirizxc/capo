@@ -45,14 +45,14 @@ def serialize_json(value: DestinationToCreate) -> dict:
 
 def deserialize_json(data: dict) -> DestinationToCreate:
     out: DestinationToCreate = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "AvailabilityZoneName" in data:
+    if data.get("AvailabilityZoneName") is not None:
         out["availability_zone_name"] = data["AvailabilityZoneName"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

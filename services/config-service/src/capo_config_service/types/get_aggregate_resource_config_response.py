@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetAggregateResourceConfigResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAggregateResourceConfigResponse:
     out: GetAggregateResourceConfigResponse = {}  # type: ignore[typeddict-item]
-    if "ConfigurationItem" in data:
+    if data.get("ConfigurationItem") is not None:
         import capo_config_service.types.configuration_item
 
         out["configuration_item"] = (

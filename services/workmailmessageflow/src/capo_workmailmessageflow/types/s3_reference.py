@@ -35,14 +35,14 @@ def serialize_json(value: S3Reference) -> dict:
 
 def deserialize_json(data: dict) -> S3Reference:
     out: S3Reference = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError("S3Reference.bucket required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("S3Reference.key required")
-    if "objectVersion" in data:
+    if data.get("objectVersion") is not None:
         out["object_version"] = data["objectVersion"]
     return out

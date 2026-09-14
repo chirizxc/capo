@@ -36,13 +36,13 @@ def serialize_json(value: Scope) -> dict:
 
 def deserialize_json(data: dict) -> Scope:
     out: Scope = {}  # type: ignore[typeddict-item]
-    if "awsAccounts" in data:
+    if data.get("awsAccounts") is not None:
         import capo_auditmanager.types.aws_accounts
 
         out["aws_accounts"] = capo_auditmanager.types.aws_accounts.deserialize_json(
             data["awsAccounts"]
         )
-    if "awsServices" in data:
+    if data.get("awsServices") is not None:
         import capo_auditmanager.types.aws_services
 
         out["aws_services"] = capo_auditmanager.types.aws_services.deserialize_json(

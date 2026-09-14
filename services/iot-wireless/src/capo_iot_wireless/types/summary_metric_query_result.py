@@ -123,9 +123,9 @@ def serialize_json(value: SummaryMetricQueryResult) -> dict:
 
 def deserialize_json(data: dict) -> SummaryMetricQueryResult:
     out: SummaryMetricQueryResult = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
-    if "QueryStatus" in data:
+    if data.get("QueryStatus") is not None:
         import capo_iot_wireless.types.metric_query_status
 
         out["query_status"] = (
@@ -133,21 +133,21 @@ def deserialize_json(data: dict) -> SummaryMetricQueryResult:
                 data["QueryStatus"]
             )
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         import capo_iot_wireless.types.metric_name
 
         out["metric_name"] = capo_iot_wireless.types.metric_name.deserialize_json(
             data["MetricName"]
         )
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_iot_wireless.types.dimensions
 
         out["dimensions"] = capo_iot_wireless.types.dimensions.deserialize_json(
             data["Dimensions"]
         )
-    if "AggregationPeriod" in data:
+    if data.get("AggregationPeriod") is not None:
         import capo_iot_wireless.types.aggregation_period
 
         out["aggregation_period"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> SummaryMetricQueryResult:
                 data["AggregationPeriod"]
             )
         )
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_iot_wireless.types.metric_query_start_timestamp
 
         out["start_timestamp"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> SummaryMetricQueryResult:
                 data["StartTimestamp"]
             )
         )
-    if "EndTimestamp" in data:
+    if data.get("EndTimestamp") is not None:
         import capo_iot_wireless.types.metric_query_end_timestamp
 
         out["end_timestamp"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> SummaryMetricQueryResult:
                 data["EndTimestamp"]
             )
         )
-    if "Timestamps" in data:
+    if data.get("Timestamps") is not None:
         import capo_iot_wireless.types.metric_query_timestamps
 
         out["timestamps"] = (
@@ -179,12 +179,12 @@ def deserialize_json(data: dict) -> SummaryMetricQueryResult:
                 data["Timestamps"]
             )
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_iot_wireless.types.metric_query_values
 
         out["values"] = capo_iot_wireless.types.metric_query_values.deserialize_json(
             data["Values"]
         )
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     return out

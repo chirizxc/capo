@@ -38,7 +38,7 @@ def serialize_json(value: BatchAssociateAnalyticsDataSetResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchAssociateAnalyticsDataSetResponse:
     out: BatchAssociateAnalyticsDataSetResponse = {}  # type: ignore[typeddict-item]
-    if "Created" in data:
+    if data.get("Created") is not None:
         import capo_connect.types.analytics_data_association_results
 
         out["created"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> BatchAssociateAnalyticsDataSetResponse:
                 data["Created"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_connect.types.error_results
 
         out["errors"] = capo_connect.types.error_results.deserialize_json(

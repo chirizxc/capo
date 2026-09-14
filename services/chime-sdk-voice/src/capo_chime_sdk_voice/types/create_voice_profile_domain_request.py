@@ -55,13 +55,13 @@ def serialize_json(value: CreateVoiceProfileDomainRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVoiceProfileDomainRequest:
     out: CreateVoiceProfileDomainRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateVoiceProfileDomainRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ServerSideEncryptionConfiguration" in data:
+    if data.get("ServerSideEncryptionConfiguration") is not None:
         import capo_chime_sdk_voice.types.server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (
@@ -73,9 +73,9 @@ def deserialize_json(data: dict) -> CreateVoiceProfileDomainRequest:
         raise DeserializationError(
             "CreateVoiceProfileDomainRequest.server_side_encryption_configuration required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_voice.types.tag_list
 
         out["tags"] = capo_chime_sdk_voice.types.tag_list.deserialize_json(data["Tags"])

@@ -34,11 +34,11 @@ def serialize_json(value: GeneratorDetails) -> dict:
 
 def deserialize_json(data: dict) -> GeneratorDetails:
     out: GeneratorDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_securityhub.types.type_list
 
         out["labels"] = capo_securityhub.types.type_list.deserialize_json(

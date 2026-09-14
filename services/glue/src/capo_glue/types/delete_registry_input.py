@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DeleteRegistryInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteRegistryInput:
     out: DeleteRegistryInput = {}  # type: ignore[typeddict-item]
-    if "RegistryId" in data:
+    if data.get("RegistryId") is not None:
         import capo_glue.types.registry_id
 
         out["registry_id"] = capo_glue.types.registry_id.deserialize_aws_json_1_1(

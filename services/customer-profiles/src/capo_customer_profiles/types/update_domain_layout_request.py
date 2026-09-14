@@ -55,20 +55,20 @@ def serialize_json(value: UpdateDomainLayoutRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDomainLayoutRequest:
     out: UpdateDomainLayoutRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
     else:
         out["is_default"] = False
-    if "LayoutType" in data:
+    if data.get("LayoutType") is not None:
         import capo_customer_profiles.types.layout_type
 
         out["layout_type"] = capo_customer_profiles.types.layout_type.deserialize_json(
             data["LayoutType"]
         )
-    if "Layout" in data:
+    if data.get("Layout") is not None:
         out["layout"] = data["Layout"]
     return out

@@ -33,10 +33,10 @@ def serialize_json(value: ChoiceImprovementPlan) -> dict:
 
 def deserialize_json(data: dict) -> ChoiceImprovementPlan:
     out: ChoiceImprovementPlan = {}  # type: ignore[typeddict-item]
-    if "ChoiceId" in data:
+    if data.get("ChoiceId") is not None:
         out["choice_id"] = data["ChoiceId"]
-    if "DisplayText" in data:
+    if data.get("DisplayText") is not None:
         out["display_text"] = data["DisplayText"]
-    if "ImprovementPlanUrl" in data:
+    if data.get("ImprovementPlanUrl") is not None:
         out["improvement_plan_url"] = data["ImprovementPlanUrl"]
     return out

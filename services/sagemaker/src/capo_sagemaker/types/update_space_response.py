@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateSpaceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSpaceResponse:
     out: UpdateSpaceResponse = {}  # type: ignore[typeddict-item]
-    if "SpaceArn" in data:
+    if data.get("SpaceArn") is not None:
         out["space_arn"] = data["SpaceArn"]
     return out

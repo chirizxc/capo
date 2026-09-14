@@ -36,7 +36,7 @@ def serialize_json(value: MetadataGenerationRunTarget) -> dict:
 
 def deserialize_json(data: dict) -> MetadataGenerationRunTarget:
     out: MetadataGenerationRunTarget = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.metadata_generation_target_type
 
         out["type"] = (
@@ -46,10 +46,10 @@ def deserialize_json(data: dict) -> MetadataGenerationRunTarget:
         )
     else:
         raise DeserializationError("MetadataGenerationRunTarget.type required")
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("MetadataGenerationRunTarget.identifier required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     return out

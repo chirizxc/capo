@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ListCrossAccountResourcesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCrossAccountResourcesResponse:
     out: ListCrossAccountResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "CrossAccountResources" in data:
+    if data.get("CrossAccountResources") is not None:
         import capo_global_accelerator.types.cross_account_resources
 
         out["cross_account_resources"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListCrossAccountResourcesResponse:
                 data["CrossAccountResources"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

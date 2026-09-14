@@ -31,7 +31,7 @@ def serialize_json(value: DescribeRoleAliasResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRoleAliasResponse:
     out: DescribeRoleAliasResponse = {}  # type: ignore[typeddict-item]
-    if "roleAliasDescription" in data:
+    if data.get("roleAliasDescription") is not None:
         import capo_iot.types.role_alias_description
 
         out["role_alias_description"] = (

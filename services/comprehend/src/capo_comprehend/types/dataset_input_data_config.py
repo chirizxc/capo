@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: DatasetInputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetInputDataConfig:
     out: DatasetInputDataConfig = {}  # type: ignore[typeddict-item]
-    if "AugmentedManifests" in data:
+    if data.get("AugmentedManifests") is not None:
         import capo_comprehend.types.dataset_augmented_manifests_list
 
         out["augmented_manifests"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetInputDataConfig:
                 data["AugmentedManifests"]
             )
         )
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_comprehend.types.dataset_data_format
 
         out["data_format"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetInputDataConfig:
                 data["DataFormat"]
             )
         )
-    if "DocumentClassifierInputDataConfig" in data:
+    if data.get("DocumentClassifierInputDataConfig") is not None:
         import capo_comprehend.types.dataset_document_classifier_input_data_config
 
         out["document_classifier_input_data_config"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetInputDataConfig:
                 data["DocumentClassifierInputDataConfig"]
             )
         )
-    if "EntityRecognizerInputDataConfig" in data:
+    if data.get("EntityRecognizerInputDataConfig") is not None:
         import capo_comprehend.types.dataset_entity_recognizer_input_data_config
 
         out["entity_recognizer_input_data_config"] = (

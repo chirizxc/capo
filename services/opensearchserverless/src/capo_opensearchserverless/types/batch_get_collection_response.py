@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: BatchGetCollectionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetCollectionResponse:
     out: BatchGetCollectionResponse = {}  # type: ignore[typeddict-item]
-    if "collectionDetails" in data:
+    if data.get("collectionDetails") is not None:
         import capo_opensearchserverless.types.collection_details
 
         out["collection_details"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchGetCollectionResponse:
                 data["collectionDetails"]
             )
         )
-    if "collectionErrorDetails" in data:
+    if data.get("collectionErrorDetails") is not None:
         import capo_opensearchserverless.types.collection_error_details
 
         out["collection_error_details"] = (

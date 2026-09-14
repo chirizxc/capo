@@ -68,25 +68,25 @@ def serialize_json(value: CreateContactFlowModuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateContactFlowModuleRequest:
     out: CreateContactFlowModuleRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateContactFlowModuleRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("CreateContactFlowModuleRequest.content required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         out["settings"] = data["Settings"]
-    if "ExternalInvocationConfiguration" in data:
+    if data.get("ExternalInvocationConfiguration") is not None:
         import capo_connect.types.external_invocation_configuration
 
         out["external_invocation_configuration"] = (

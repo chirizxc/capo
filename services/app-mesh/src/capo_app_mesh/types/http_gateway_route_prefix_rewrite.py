@@ -32,8 +32,8 @@ def serialize_json(value: HttpGatewayRoutePrefixRewrite) -> dict:
 
 def deserialize_json(data: dict) -> HttpGatewayRoutePrefixRewrite:
     out: HttpGatewayRoutePrefixRewrite = {}  # type: ignore[typeddict-item]
-    if "defaultPrefix" in data:
+    if data.get("defaultPrefix") is not None:
         out["default_prefix"] = data["defaultPrefix"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

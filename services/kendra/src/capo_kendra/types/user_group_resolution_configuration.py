@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: UserGroupResolutionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserGroupResolutionConfiguration:
     out: UserGroupResolutionConfiguration = {}  # type: ignore[typeddict-item]
-    if "UserGroupResolutionMode" in data:
+    if data.get("UserGroupResolutionMode") is not None:
         import capo_kendra.types.user_group_resolution_mode
 
         out["user_group_resolution_mode"] = (

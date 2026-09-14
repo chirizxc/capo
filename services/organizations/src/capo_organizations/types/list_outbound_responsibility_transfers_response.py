@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListOutboundResponsibilityTransfersResponse) -
 
 def deserialize_aws_json_1_1(data: dict) -> ListOutboundResponsibilityTransfersResponse:
     out: ListOutboundResponsibilityTransfersResponse = {}  # type: ignore[typeddict-item]
-    if "ResponsibilityTransfers" in data:
+    if data.get("ResponsibilityTransfers") is not None:
         import capo_organizations.types.responsibility_transfers
 
         out["responsibility_transfers"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListOutboundResponsibilityTransfersR
                 data["ResponsibilityTransfers"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

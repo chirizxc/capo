@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CapacityAssignment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CapacityAssignment:
     out: CapacityAssignment = {}  # type: ignore[typeddict-item]
-    if "WorkGroupNames" in data:
+    if data.get("WorkGroupNames") is not None:
         import capo_athena.types.work_group_names_list
 
         out["work_group_names"] = (

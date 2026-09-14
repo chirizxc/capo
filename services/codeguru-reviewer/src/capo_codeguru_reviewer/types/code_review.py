@@ -154,15 +154,15 @@ def serialize_json(value: CodeReview) -> dict:
 
 def deserialize_json(data: dict) -> CodeReview:
     out: CodeReview = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CodeReviewArn" in data:
+    if data.get("CodeReviewArn") is not None:
         out["code_review_arn"] = data["CodeReviewArn"]
-    if "RepositoryName" in data:
+    if data.get("RepositoryName") is not None:
         out["repository_name"] = data["RepositoryName"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_codeguru_reviewer.types.provider_type
 
         out["provider_type"] = (
@@ -170,15 +170,15 @@ def deserialize_json(data: dict) -> CodeReview:
                 data["ProviderType"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_codeguru_reviewer.types.job_state
 
         out["state"] = capo_codeguru_reviewer.types.job_state.deserialize_json(
             data["State"]
         )
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
-    if "CreatedTimeStamp" in data:
+    if data.get("CreatedTimeStamp") is not None:
         import capo_codeguru_reviewer.types.time_stamp
 
         out["created_time_stamp"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> CodeReview:
                 data["CreatedTimeStamp"]
             )
         )
-    if "LastUpdatedTimeStamp" in data:
+    if data.get("LastUpdatedTimeStamp") is not None:
         import capo_codeguru_reviewer.types.time_stamp
 
         out["last_updated_time_stamp"] = (
@@ -194,13 +194,13 @@ def deserialize_json(data: dict) -> CodeReview:
                 data["LastUpdatedTimeStamp"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_codeguru_reviewer.types.type
 
         out["type"] = capo_codeguru_reviewer.types.type.deserialize_json(data["Type"])
-    if "PullRequestId" in data:
+    if data.get("PullRequestId") is not None:
         out["pull_request_id"] = data["PullRequestId"]
-    if "SourceCodeType" in data:
+    if data.get("SourceCodeType") is not None:
         import capo_codeguru_reviewer.types.source_code_type
 
         out["source_code_type"] = (
@@ -208,15 +208,15 @@ def deserialize_json(data: dict) -> CodeReview:
                 data["SourceCodeType"]
             )
         )
-    if "AssociationArn" in data:
+    if data.get("AssociationArn") is not None:
         out["association_arn"] = data["AssociationArn"]
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_codeguru_reviewer.types.metrics
 
         out["metrics"] = capo_codeguru_reviewer.types.metrics.deserialize_json(
             data["Metrics"]
         )
-    if "AnalysisTypes" in data:
+    if data.get("AnalysisTypes") is not None:
         import capo_codeguru_reviewer.types.analysis_types
 
         out["analysis_types"] = (
@@ -224,7 +224,7 @@ def deserialize_json(data: dict) -> CodeReview:
                 data["AnalysisTypes"]
             )
         )
-    if "ConfigFileState" in data:
+    if data.get("ConfigFileState") is not None:
         import capo_codeguru_reviewer.types.config_file_state
 
         out["config_file_state"] = (

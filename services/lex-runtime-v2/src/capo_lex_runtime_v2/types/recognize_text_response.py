@@ -76,19 +76,19 @@ def serialize_json(value: RecognizeTextResponse) -> dict:
 
 def deserialize_json(data: dict) -> RecognizeTextResponse:
     out: RecognizeTextResponse = {}  # type: ignore[typeddict-item]
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_lex_runtime_v2.types.messages
 
         out["messages"] = capo_lex_runtime_v2.types.messages.deserialize_json(
             data["messages"]
         )
-    if "sessionState" in data:
+    if data.get("sessionState") is not None:
         import capo_lex_runtime_v2.types.session_state
 
         out["session_state"] = capo_lex_runtime_v2.types.session_state.deserialize_json(
             data["sessionState"]
         )
-    if "interpretations" in data:
+    if data.get("interpretations") is not None:
         import capo_lex_runtime_v2.types.interpretations
 
         out["interpretations"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> RecognizeTextResponse:
                 data["interpretations"]
             )
         )
-    if "requestAttributes" in data:
+    if data.get("requestAttributes") is not None:
         import capo_lex_runtime_v2.types.string_map
 
         out["request_attributes"] = (
@@ -104,9 +104,9 @@ def deserialize_json(data: dict) -> RecognizeTextResponse:
                 data["requestAttributes"]
             )
         )
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "recognizedBotMember" in data:
+    if data.get("recognizedBotMember") is not None:
         import capo_lex_runtime_v2.types.recognized_bot_member
 
         out["recognized_bot_member"] = (

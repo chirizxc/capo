@@ -24,7 +24,7 @@ def serialize_json(value: CreateFleetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateFleetResponse:
     out: CreateFleetResponse = {}  # type: ignore[typeddict-item]
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
     else:
         raise DeserializationError("CreateFleetResponse.fleet_id required")

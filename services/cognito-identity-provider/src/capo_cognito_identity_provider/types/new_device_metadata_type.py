@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: NewDeviceMetadataType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NewDeviceMetadataType:
     out: NewDeviceMetadataType = {}  # type: ignore[typeddict-item]
-    if "DeviceKey" in data:
+    if data.get("DeviceKey") is not None:
         out["device_key"] = data["DeviceKey"]
-    if "DeviceGroupKey" in data:
+    if data.get("DeviceGroupKey") is not None:
         out["device_group_key"] = data["DeviceGroupKey"]
     return out

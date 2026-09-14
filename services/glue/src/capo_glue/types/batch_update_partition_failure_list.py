@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchUpdatePartitionFailureList:
 
     out: BatchUpdatePartitionFailureList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.batch_update_partition_failure_entry.deserialize_aws_json_1_1(
                 item

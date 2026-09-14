@@ -39,17 +39,17 @@ def serialize_json(value: GuardrailRegexConfig) -> dict:
 
 def deserialize_json(data: dict) -> GuardrailRegexConfig:
     out: GuardrailRegexConfig = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GuardrailRegexConfig.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "pattern" in data:
+    if data.get("pattern") is not None:
         out["pattern"] = data["pattern"]
     else:
         raise DeserializationError("GuardrailRegexConfig.pattern required")
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("GuardrailRegexConfig.action required")

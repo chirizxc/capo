@@ -36,13 +36,13 @@ def serialize_json(value: ExecuteCommandSessionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteCommandSessionConfiguration:
     out: ExecuteCommandSessionConfiguration = {}  # type: ignore[typeddict-item]
-    if "command" in data:
+    if data.get("command") is not None:
         out["command"] = data["command"]
     else:
         raise DeserializationError(
             "ExecuteCommandSessionConfiguration.command required"
         )
-    if "arguments" in data:
+    if data.get("arguments") is not None:
         import capo_codecatalyst.types.execute_command_session_configuration_arguments
 
         out["arguments"] = (

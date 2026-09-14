@@ -44,19 +44,19 @@ def serialize_aws_json_1_1(value: BudgetedAndActualAmounts) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BudgetedAndActualAmounts:
     out: BudgetedAndActualAmounts = {}  # type: ignore[typeddict-item]
-    if "BudgetedAmount" in data:
+    if data.get("BudgetedAmount") is not None:
         import capo_budgets.types.spend
 
         out["budgeted_amount"] = capo_budgets.types.spend.deserialize_aws_json_1_1(
             data["BudgetedAmount"]
         )
-    if "ActualAmount" in data:
+    if data.get("ActualAmount") is not None:
         import capo_budgets.types.spend
 
         out["actual_amount"] = capo_budgets.types.spend.deserialize_aws_json_1_1(
             data["ActualAmount"]
         )
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_budgets.types.time_period
 
         out["time_period"] = capo_budgets.types.time_period.deserialize_aws_json_1_1(

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ListBillEstimatesFilters:
 
     out: ListBillEstimatesFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_pricing_calculator.types.list_bill_estimates_filter.deserialize_aws_json_1_0(
                 item

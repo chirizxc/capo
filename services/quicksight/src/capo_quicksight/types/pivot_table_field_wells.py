@@ -31,7 +31,7 @@ def serialize_json(value: PivotTableFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableFieldWells:
     out: PivotTableFieldWells = {}  # type: ignore[typeddict-item]
-    if "PivotTableAggregatedFieldWells" in data:
+    if data.get("PivotTableAggregatedFieldWells") is not None:
         import capo_quicksight.types.pivot_table_aggregated_field_wells
 
         out["pivot_table_aggregated_field_wells"] = (

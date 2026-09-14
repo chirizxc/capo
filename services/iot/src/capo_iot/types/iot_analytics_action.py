@@ -37,12 +37,12 @@ def serialize_json(value: IotAnalyticsAction) -> dict:
 
 def deserialize_json(data: dict) -> IotAnalyticsAction:
     out: IotAnalyticsAction = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
-    if "channelName" in data:
+    if data.get("channelName") is not None:
         out["channel_name"] = data["channelName"]
-    if "batchMode" in data:
+    if data.get("batchMode") is not None:
         out["batch_mode"] = data["batchMode"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

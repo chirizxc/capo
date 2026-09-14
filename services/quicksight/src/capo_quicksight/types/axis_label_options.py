@@ -49,7 +49,7 @@ def serialize_json(value: AxisLabelOptions) -> dict:
 
 def deserialize_json(data: dict) -> AxisLabelOptions:
     out: AxisLabelOptions = {}  # type: ignore[typeddict-item]
-    if "FontConfiguration" in data:
+    if data.get("FontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["font_configuration"] = (
@@ -57,9 +57,9 @@ def deserialize_json(data: dict) -> AxisLabelOptions:
                 data["FontConfiguration"]
             )
         )
-    if "CustomLabel" in data:
+    if data.get("CustomLabel") is not None:
         out["custom_label"] = data["CustomLabel"]
-    if "ApplyTo" in data:
+    if data.get("ApplyTo") is not None:
         import capo_quicksight.types.axis_label_reference_options
 
         out["apply_to"] = (

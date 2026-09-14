@@ -43,15 +43,15 @@ def serialize_aws_json_1_1(value: ProductionVariantStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProductionVariantStatus:
     out: ProductionVariantStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.variant_status
 
         out["status"] = capo_sagemaker.types.variant_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteGatewayInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteGatewayInput:
     out: DeleteGatewayInput = {}  # type: ignore[typeddict-item]
-    if "GatewayArn" in data:
+    if data.get("GatewayArn") is not None:
         out["gateway_arn"] = data["GatewayArn"]
     else:
         raise DeserializationError("DeleteGatewayInput.gateway_arn required")

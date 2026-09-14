@@ -23,6 +23,6 @@ def serialize_json(value: Location) -> dict:
 
 def deserialize_json(data: dict) -> Location:
     out: Location = {}  # type: ignore[typeddict-item]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
     return out

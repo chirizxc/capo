@@ -43,12 +43,12 @@ def serialize_json(value: LatestVersionReferences) -> dict:
 
 def deserialize_json(data: dict) -> LatestVersionReferences:
     out: LatestVersionReferences = {}  # type: ignore[typeddict-item]
-    if "latestVersionArn" in data:
+    if data.get("latestVersionArn") is not None:
         out["latest_version_arn"] = data["latestVersionArn"]
-    if "latestMajorVersionArn" in data:
+    if data.get("latestMajorVersionArn") is not None:
         out["latest_major_version_arn"] = data["latestMajorVersionArn"]
-    if "latestMinorVersionArn" in data:
+    if data.get("latestMinorVersionArn") is not None:
         out["latest_minor_version_arn"] = data["latestMinorVersionArn"]
-    if "latestPatchVersionArn" in data:
+    if data.get("latestPatchVersionArn") is not None:
         out["latest_patch_version_arn"] = data["latestPatchVersionArn"]
     return out

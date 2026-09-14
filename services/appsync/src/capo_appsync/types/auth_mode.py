@@ -28,7 +28,7 @@ def serialize_json(value: AuthMode) -> dict:
 
 def deserialize_json(data: dict) -> AuthMode:
     out: AuthMode = {}  # type: ignore[typeddict-item]
-    if "authType" in data:
+    if data.get("authType") is not None:
         import capo_appsync.types.authentication_type
 
         out["auth_type"] = capo_appsync.types.authentication_type.deserialize_json(

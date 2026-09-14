@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfConnector:
 
     out: __listOfConnector = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrass.types.connector.deserialize_json(item))
     return out

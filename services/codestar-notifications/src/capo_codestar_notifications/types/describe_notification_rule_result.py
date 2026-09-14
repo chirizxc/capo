@@ -126,13 +126,13 @@ def serialize_json(value: DescribeNotificationRuleResult) -> dict:
 
 def deserialize_json(data: dict) -> DescribeNotificationRuleResult:
     out: DescribeNotificationRuleResult = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DescribeNotificationRuleResult.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "EventTypes" in data:
+    if data.get("EventTypes") is not None:
         import capo_codestar_notifications.types.event_type_batch
 
         out["event_types"] = (
@@ -140,9 +140,9 @@ def deserialize_json(data: dict) -> DescribeNotificationRuleResult:
                 data["EventTypes"]
             )
         )
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         out["resource"] = data["Resource"]
-    if "Targets" in data:
+    if data.get("Targets") is not None:
         import capo_codestar_notifications.types.targets_batch
 
         out["targets"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> DescribeNotificationRuleResult:
                 data["Targets"]
             )
         )
-    if "DetailType" in data:
+    if data.get("DetailType") is not None:
         import capo_codestar_notifications.types.detail_type
 
         out["detail_type"] = (
@@ -158,9 +158,9 @@ def deserialize_json(data: dict) -> DescribeNotificationRuleResult:
                 data["DetailType"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_codestar_notifications.types.notification_rule_status
 
         out["status"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> DescribeNotificationRuleResult:
                 data["Status"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_codestar_notifications.types.created_timestamp
 
         out["created_timestamp"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> DescribeNotificationRuleResult:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastModifiedTimestamp" in data:
+    if data.get("LastModifiedTimestamp") is not None:
         import capo_codestar_notifications.types.last_modified_timestamp
 
         out["last_modified_timestamp"] = (
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> DescribeNotificationRuleResult:
                 data["LastModifiedTimestamp"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_codestar_notifications.types.tags
 
         out["tags"] = capo_codestar_notifications.types.tags.deserialize_json(

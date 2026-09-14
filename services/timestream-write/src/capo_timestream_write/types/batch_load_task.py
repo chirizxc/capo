@@ -74,9 +74,9 @@ def serialize_aws_json_1_0(value: BatchLoadTask) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchLoadTask:
     out: BatchLoadTask = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
-    if "TaskStatus" in data:
+    if data.get("TaskStatus") is not None:
         import capo_timestream_write.types.batch_load_status
 
         out["task_status"] = (
@@ -84,11 +84,11 @@ def deserialize_aws_json_1_0(data: dict) -> BatchLoadTask:
                 data["TaskStatus"]
             )
         )
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_timestream_write.types.date
 
         out["creation_time"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchLoadTask:
                 data["CreationTime"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_timestream_write.types.date
 
         out["last_updated_time"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchLoadTask:
                 data["LastUpdatedTime"]
             )
         )
-    if "ResumableUntil" in data:
+    if data.get("ResumableUntil") is not None:
         import capo_timestream_write.types.date
 
         out["resumable_until"] = (

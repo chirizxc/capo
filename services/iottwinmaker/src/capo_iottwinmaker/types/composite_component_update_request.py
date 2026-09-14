@@ -56,11 +56,11 @@ def serialize_json(value: CompositeComponentUpdateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CompositeComponentUpdateRequest:
     out: CompositeComponentUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "updateType" in data:
+    if data.get("updateType") is not None:
         out["update_type"] = data["updateType"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "propertyUpdates" in data:
+    if data.get("propertyUpdates") is not None:
         import capo_iottwinmaker.types.property_requests
 
         out["property_updates"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> CompositeComponentUpdateRequest:
                 data["propertyUpdates"]
             )
         )
-    if "propertyGroupUpdates" in data:
+    if data.get("propertyGroupUpdates") is not None:
         import capo_iottwinmaker.types.component_property_group_requests
 
         out["property_group_updates"] = (

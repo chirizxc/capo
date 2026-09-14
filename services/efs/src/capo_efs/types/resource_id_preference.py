@@ -34,13 +34,13 @@ def serialize_json(value: ResourceIdPreference) -> dict:
 
 def deserialize_json(data: dict) -> ResourceIdPreference:
     out: ResourceIdPreference = {}  # type: ignore[typeddict-item]
-    if "ResourceIdType" in data:
+    if data.get("ResourceIdType") is not None:
         import capo_efs.types.resource_id_type
 
         out["resource_id_type"] = capo_efs.types.resource_id_type.deserialize_json(
             data["ResourceIdType"]
         )
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_efs.types.resources
 
         out["resources"] = capo_efs.types.resources.deserialize_json(data["Resources"])

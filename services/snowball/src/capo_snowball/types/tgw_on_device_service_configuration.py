@@ -31,11 +31,11 @@ def serialize_aws_json_1_1(value: TGWOnDeviceServiceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TGWOnDeviceServiceConfiguration:
     out: TGWOnDeviceServiceConfiguration = {}  # type: ignore[typeddict-item]
-    if "StorageLimit" in data:
+    if data.get("StorageLimit") is not None:
         out["storage_limit"] = data["StorageLimit"]
     else:
         out["storage_limit"] = 0
-    if "StorageUnit" in data:
+    if data.get("StorageUnit") is not None:
         import capo_snowball.types.storage_unit
 
         out["storage_unit"] = capo_snowball.types.storage_unit.deserialize_aws_json_1_1(

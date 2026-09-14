@@ -29,7 +29,7 @@ def serialize_json(value: ScoreAttributes) -> dict:
 
 def deserialize_json(data: dict) -> ScoreAttributes:
     out: ScoreAttributes = {}  # type: ignore[typeddict-item]
-    if "scoreConfidence" in data:
+    if data.get("scoreConfidence") is not None:
         import capo_qbusiness.types.score_confidence
 
         out["score_confidence"] = (

@@ -22,7 +22,7 @@ def serialize_json(value: LifecycleExecutionResourcesImpactedSummary) -> dict:
 
 def deserialize_json(data: dict) -> LifecycleExecutionResourcesImpactedSummary:
     out: LifecycleExecutionResourcesImpactedSummary = {}  # type: ignore[typeddict-item]
-    if "hasImpactedResources" in data:
+    if data.get("hasImpactedResources") is not None:
         out["has_impacted_resources"] = data["hasImpactedResources"]
     else:
         out["has_impacted_resources"] = False

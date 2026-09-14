@@ -72,16 +72,18 @@ class ApplicationAuthenticationMethodResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.put_application_authentication_method_request.PutApplicationAuthenticationMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["authentication_method_type"] = authentication_method_type
-        input_["authentication_method"] = authentication_method
+        input_: capo_sso_admin.types.put_application_authentication_method_request.PutApplicationAuthenticationMethodRequest = {
+            "application_arn": application_arn,
+            "authentication_method_type": authentication_method_type,
+            "authentication_method": authentication_method,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -121,15 +123,17 @@ class ApplicationAuthenticationMethodResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.get_application_authentication_method_request.GetApplicationAuthenticationMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["authentication_method_type"] = authentication_method_type
+        input_: capo_sso_admin.types.get_application_authentication_method_request.GetApplicationAuthenticationMethodRequest = {
+            "application_arn": application_arn,
+            "authentication_method_type": authentication_method_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -168,15 +172,17 @@ class ApplicationAuthenticationMethodResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_application_authentication_method_request.DeleteApplicationAuthenticationMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["authentication_method_type"] = authentication_method_type
+        input_: capo_sso_admin.types.delete_application_authentication_method_request.DeleteApplicationAuthenticationMethodRequest = {
+            "application_arn": application_arn,
+            "authentication_method_type": authentication_method_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -216,8 +222,9 @@ class ApplicationAuthenticationMethodResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_application_authentication_methods_request.ListApplicationAuthenticationMethodsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.list_application_authentication_methods_request.ListApplicationAuthenticationMethodsRequest = {
+            "application_arn": application_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -226,6 +233,7 @@ class ApplicationAuthenticationMethodResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -272,16 +280,18 @@ class AsyncApplicationAuthenticationMethodResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.put_application_authentication_method_request.PutApplicationAuthenticationMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["authentication_method_type"] = authentication_method_type
-        input_["authentication_method"] = authentication_method
+        input_: capo_sso_admin.types.put_application_authentication_method_request.PutApplicationAuthenticationMethodRequest = {
+            "application_arn": application_arn,
+            "authentication_method_type": authentication_method_type,
+            "authentication_method": authentication_method,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -322,15 +332,17 @@ class AsyncApplicationAuthenticationMethodResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.get_application_authentication_method_request.GetApplicationAuthenticationMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["authentication_method_type"] = authentication_method_type
+        input_: capo_sso_admin.types.get_application_authentication_method_request.GetApplicationAuthenticationMethodRequest = {
+            "application_arn": application_arn,
+            "authentication_method_type": authentication_method_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -370,15 +382,17 @@ class AsyncApplicationAuthenticationMethodResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_application_authentication_method_request.DeleteApplicationAuthenticationMethodRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["authentication_method_type"] = authentication_method_type
+        input_: capo_sso_admin.types.delete_application_authentication_method_request.DeleteApplicationAuthenticationMethodRequest = {
+            "application_arn": application_arn,
+            "authentication_method_type": authentication_method_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -419,8 +433,9 @@ class AsyncApplicationAuthenticationMethodResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_application_authentication_methods_request.ListApplicationAuthenticationMethodsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.list_application_authentication_methods_request.ListApplicationAuthenticationMethodsRequest = {
+            "application_arn": application_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -429,4 +444,5 @@ class AsyncApplicationAuthenticationMethodResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

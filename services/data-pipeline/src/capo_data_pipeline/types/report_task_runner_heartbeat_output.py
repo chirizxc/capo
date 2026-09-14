@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: ReportTaskRunnerHeartbeatOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportTaskRunnerHeartbeatOutput:
     out: ReportTaskRunnerHeartbeatOutput = {}  # type: ignore[typeddict-item]
-    if "terminate" in data:
+    if data.get("terminate") is not None:
         out["terminate"] = data["terminate"]
     else:
         out["terminate"] = False

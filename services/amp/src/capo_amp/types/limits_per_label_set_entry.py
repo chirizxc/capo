@@ -18,6 +18,6 @@ def serialize_json(value: LimitsPerLabelSetEntry) -> dict:
 
 def deserialize_json(data: dict) -> LimitsPerLabelSetEntry:
     out: LimitsPerLabelSetEntry = {}  # type: ignore[typeddict-item]
-    if "maxSeries" in data:
+    if data.get("maxSeries") is not None:
         out["max_series"] = data["maxSeries"]
     return out

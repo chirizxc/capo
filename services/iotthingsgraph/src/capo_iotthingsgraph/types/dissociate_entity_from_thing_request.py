@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: DissociateEntityFromThingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DissociateEntityFromThingRequest:
     out: DissociateEntityFromThingRequest = {}  # type: ignore[typeddict-item]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
     else:
         raise DeserializationError(
             "DissociateEntityFromThingRequest.thing_name required"
         )
-    if "entityType" in data:
+    if data.get("entityType") is not None:
         import capo_iotthingsgraph.types.entity_type
 
         out["entity_type"] = (

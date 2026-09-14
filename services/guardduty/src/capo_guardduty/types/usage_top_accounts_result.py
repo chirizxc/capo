@@ -40,13 +40,13 @@ def serialize_json(value: UsageTopAccountsResult) -> dict:
 
 def deserialize_json(data: dict) -> UsageTopAccountsResult:
     out: UsageTopAccountsResult = {}  # type: ignore[typeddict-item]
-    if "feature" in data:
+    if data.get("feature") is not None:
         import capo_guardduty.types.usage_feature
 
         out["feature"] = capo_guardduty.types.usage_feature.deserialize_json(
             data["feature"]
         )
-    if "accounts" in data:
+    if data.get("accounts") is not None:
         import capo_guardduty.types.usage_top_accounts_by_feature_list
 
         out["accounts"] = (

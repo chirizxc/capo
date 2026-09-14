@@ -57,19 +57,19 @@ def serialize_json(value: AutoScalingDescription) -> dict:
 
 def deserialize_json(data: dict) -> AutoScalingDescription:
     out: AutoScalingDescription = {}  # type: ignore[typeddict-item]
-    if "maxWorkerCount" in data:
+    if data.get("maxWorkerCount") is not None:
         out["max_worker_count"] = data["maxWorkerCount"]
     else:
         out["max_worker_count"] = 0
-    if "mcuCount" in data:
+    if data.get("mcuCount") is not None:
         out["mcu_count"] = data["mcuCount"]
     else:
         out["mcu_count"] = 0
-    if "minWorkerCount" in data:
+    if data.get("minWorkerCount") is not None:
         out["min_worker_count"] = data["minWorkerCount"]
     else:
         out["min_worker_count"] = 0
-    if "scaleInPolicy" in data:
+    if data.get("scaleInPolicy") is not None:
         import capo_kafkaconnect.types.scale_in_policy_description
 
         out["scale_in_policy"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> AutoScalingDescription:
                 data["scaleInPolicy"]
             )
         )
-    if "scaleOutPolicy" in data:
+    if data.get("scaleOutPolicy") is not None:
         import capo_kafkaconnect.types.scale_out_policy_description
 
         out["scale_out_policy"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> AutoScalingDescription:
                 data["scaleOutPolicy"]
             )
         )
-    if "maxAutoscalingTaskCount" in data:
+    if data.get("maxAutoscalingTaskCount") is not None:
         out["max_autoscaling_task_count"] = data["maxAutoscalingTaskCount"]
     else:
         out["max_autoscaling_task_count"] = 0

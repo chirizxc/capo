@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RecommendationRelatedCloudWatchMetricsSource
 
     out: RecommendationRelatedCloudWatchMetricsSourceDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.recommendation_related_cloud_watch_metrics_source_detail.deserialize_json(
                 item

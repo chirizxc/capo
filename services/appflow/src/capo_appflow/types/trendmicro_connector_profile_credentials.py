@@ -24,7 +24,7 @@ def serialize_json(value: TrendmicroConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> TrendmicroConnectorProfileCredentials:
     out: TrendmicroConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "apiSecretKey" in data:
+    if data.get("apiSecretKey") is not None:
         out["api_secret_key"] = data["apiSecretKey"]
     else:
         raise DeserializationError(

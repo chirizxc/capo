@@ -29,14 +29,16 @@ class ListEventLogsRequest(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ListEventLogsRequest) -> dict:
     out: dict = {}
-    import capo_codecatalyst.types.timestamp
+    import capo_codecatalyst._protocol.serialize
 
-    out["startTime"] = capo_codecatalyst.types.timestamp.serialize_json(
+    out["startTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
         value["start_time"]
     )
-    import capo_codecatalyst.types.timestamp
+    import capo_codecatalyst._protocol.serialize
 
-    out["endTime"] = capo_codecatalyst.types.timestamp.serialize_json(value["end_time"])
+    out["endTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
+        value["end_time"]
+    )
     if "event_name" in value:
         out["eventName"] = value["event_name"]
     if "next_token" in value:
@@ -48,26 +50,26 @@ def serialize_json(value: ListEventLogsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListEventLogsRequest:
     out: ListEventLogsRequest = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("startTime") is not None:
+        import datetime
 
-        out["start_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["startTime"]
+        out["start_time"] = datetime.datetime.fromisoformat(
+            data["startTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ListEventLogsRequest.start_time required")
-    if "endTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("endTime") is not None:
+        import datetime
 
-        out["end_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["endTime"]
+        out["end_time"] = datetime.datetime.fromisoformat(
+            data["endTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ListEventLogsRequest.end_time required")
-    if "eventName" in data:
+    if data.get("eventName") is not None:
         out["event_name"] = data["eventName"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.servicediscovery#Route53AutoNaming_v20170314``."""
 
+import uuid
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_servicediscovery._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_servicediscovery._auth._zapros_handler import AuthMiddleware
+from capo_servicediscovery._pagination import resolve_path as _resolve_path
 from capo_servicediscovery._services._aws_config import aws_config
 from capo_servicediscovery._services._pipeline import (
     Interceptor,
@@ -268,10 +271,12 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.create_http_namespace_request.CreateHttpNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
+        input_: capo_servicediscovery.types.create_http_namespace_request.CreateHttpNamespaceRequest = {
+            "name": name
+        }
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -282,6 +287,7 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_private_dns_namespace(
@@ -341,13 +347,15 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.create_private_dns_namespace_request.CreatePrivateDnsNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
+        input_: capo_servicediscovery.types.create_private_dns_namespace_request.CreatePrivateDnsNamespaceRequest = {
+            "name": name,
+            "vpc": vpc,
+        }
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
         if description is not None:
             input_["description"] = description
-        input_["vpc"] = vpc
         if tags is not None:
             input_["tags"] = tags
         if properties is not None:
@@ -358,6 +366,7 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_public_dns_namespace(
@@ -415,10 +424,12 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.create_public_dns_namespace_request.CreatePublicDnsNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
+        input_: capo_servicediscovery.types.create_public_dns_namespace_request.CreatePublicDnsNamespaceRequest = {
+            "name": name
+        }
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -431,6 +442,7 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_service(
@@ -504,12 +516,14 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.create_service_request.CreateServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_servicediscovery.types.create_service_request.CreateServiceRequest = {
+            "name": name
+        }
         if namespace_id is not None:
             input_["namespace_id"] = namespace_id
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
         if description is not None:
             input_["description"] = description
         if dns_config is not None:
@@ -528,6 +542,7 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_namespace(
@@ -576,14 +591,16 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.delete_namespace_request.DeleteNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_servicediscovery.types.delete_namespace_request.DeleteNamespaceRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_service(
@@ -629,14 +646,16 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.delete_service_request.DeleteServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_servicediscovery.types.delete_service_request.DeleteServiceRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_service_attributes(
@@ -683,15 +702,17 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.delete_service_attributes_request.DeleteServiceAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
-        input_["attributes"] = attributes
+        input_: capo_servicediscovery.types.delete_service_attributes_request.DeleteServiceAttributesRequest = {
+            "service_id": service_id,
+            "attributes": attributes,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_instance(
@@ -741,15 +762,17 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.deregister_instance_request.DeregisterInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
-        input_["instance_id"] = instance_id
+        input_: capo_servicediscovery.types.deregister_instance_request.DeregisterInstanceRequest = {
+            "service_id": service_id,
+            "instance_id": instance_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def discover_instances(
@@ -818,9 +841,10 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.discover_instances_request.DiscoverInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
-        input_["service_name"] = service_name
+        input_: capo_servicediscovery.types.discover_instances_request.DiscoverInstancesRequest = {
+            "namespace_name": namespace_name,
+            "service_name": service_name,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if query_parameters is not None:
@@ -837,6 +861,7 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def discover_instances_revision(
@@ -889,9 +914,10 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.discover_instances_revision_request.DiscoverInstancesRevisionRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
-        input_["service_name"] = service_name
+        input_: capo_servicediscovery.types.discover_instances_revision_request.DiscoverInstancesRevisionRequest = {
+            "namespace_name": namespace_name,
+            "service_name": service_name,
+        }
         if owner_account is not None:
             input_["owner_account"] = owner_account
 
@@ -900,6 +926,7 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance(
@@ -947,15 +974,17 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.get_instance_request.GetInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
-        input_["instance_id"] = instance_id
+        input_: capo_servicediscovery.types.get_instance_request.GetInstanceRequest = {
+            "service_id": service_id,
+            "instance_id": instance_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instances_health_status(
@@ -1011,8 +1040,9 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.get_instances_health_status_request.GetInstancesHealthStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
+        input_: capo_servicediscovery.types.get_instances_health_status_request.GetInstancesHealthStatusRequest = {
+            "service_id": service_id
+        }
         if instances is not None:
             input_["instances"] = instances
         if max_results is not None:
@@ -1025,7 +1055,35 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_instances_health_status(
+        self,
+        service_id: "capo_servicediscovery.types.arn.Arn",
+        *,
+        config_overrides: Optional[ServiceDiscoveryClientConfig] = None,
+        instances: Optional[
+            "capo_servicediscovery.types.instance_id_list.InstanceIdList"
+        ] = None,
+        max_results: Optional[
+            "capo_servicediscovery.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_servicediscovery.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_servicediscovery.types.get_instances_health_status_response.GetInstancesHealthStatusResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_instances_health_status(
+                service_id,
+                config_overrides=config_overrides,
+                instances=instances,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_namespace(
         self,
@@ -1059,14 +1117,16 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.get_namespace_request.GetNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_servicediscovery.types.get_namespace_request.GetNamespaceRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_operation(
@@ -1111,8 +1171,9 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.get_operation_request.GetOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["operation_id"] = operation_id
+        input_: capo_servicediscovery.types.get_operation_request.GetOperationRequest = {
+            "operation_id": operation_id
+        }
         if owner_account is not None:
             input_["owner_account"] = owner_account
 
@@ -1121,6 +1182,7 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_service(
@@ -1161,14 +1223,16 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.get_service_request.GetServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_servicediscovery.types.get_service_request.GetServiceRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_service_attributes(
@@ -1213,14 +1277,16 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.get_service_attributes_request.GetServiceAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
+        input_: capo_servicediscovery.types.get_service_attributes_request.GetServiceAttributesRequest = {
+            "service_id": service_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_instances(
@@ -1271,8 +1337,9 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.list_instances_request.ListInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
+        input_: capo_servicediscovery.types.list_instances_request.ListInstancesRequest = {
+            "service_id": service_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1283,7 +1350,31 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_instances(
+        self,
+        service_id: "capo_servicediscovery.types.arn.Arn",
+        *,
+        config_overrides: Optional[ServiceDiscoveryClientConfig] = None,
+        next_token: Optional["capo_servicediscovery.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_servicediscovery.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_servicediscovery.types.list_instances_response.ListInstancesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_instances(
+                service_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_namespaces(
         self,
@@ -1334,7 +1425,7 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.list_namespaces_request.ListNamespacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_servicediscovery.types.list_namespaces_request.ListNamespacesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1347,7 +1438,33 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_namespaces(
+        self,
+        *,
+        config_overrides: Optional[ServiceDiscoveryClientConfig] = None,
+        next_token: Optional["capo_servicediscovery.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_servicediscovery.types.max_results.MaxResults"
+        ] = None,
+        filters: Optional[
+            "capo_servicediscovery.types.namespace_filters.NamespaceFilters"
+        ] = None,
+    ) -> "Iterator[capo_servicediscovery.types.list_namespaces_response.ListNamespacesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_namespaces(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filters=filters,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_operations(
         self,
@@ -1394,7 +1511,7 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.list_operations_request.ListOperationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_servicediscovery.types.list_operations_request.ListOperationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1407,7 +1524,33 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_operations(
+        self,
+        *,
+        config_overrides: Optional[ServiceDiscoveryClientConfig] = None,
+        next_token: Optional["capo_servicediscovery.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_servicediscovery.types.max_results.MaxResults"
+        ] = None,
+        filters: Optional[
+            "capo_servicediscovery.types.operation_filters.OperationFilters"
+        ] = None,
+    ) -> "Iterator[capo_servicediscovery.types.list_operations_response.ListOperationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_operations(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filters=filters,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_services(
         self,
@@ -1454,7 +1597,7 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.list_services_request.ListServicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_servicediscovery.types.list_services_request.ListServicesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1467,7 +1610,33 @@ class ServiceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_services(
+        self,
+        *,
+        config_overrides: Optional[ServiceDiscoveryClientConfig] = None,
+        next_token: Optional["capo_servicediscovery.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_servicediscovery.types.max_results.MaxResults"
+        ] = None,
+        filters: Optional[
+            "capo_servicediscovery.types.service_filters.ServiceFilters"
+        ] = None,
+    ) -> "Iterator[capo_servicediscovery.types.list_services_response.ListServicesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_services(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filters=filters,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -1507,14 +1676,16 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_servicediscovery.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_instance(
@@ -1570,18 +1741,21 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.register_instance_request.RegisterInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
-        input_["instance_id"] = instance_id
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
-        input_["attributes"] = attributes
+        input_: capo_servicediscovery.types.register_instance_request.RegisterInstanceRequest = {
+            "service_id": service_id,
+            "instance_id": instance_id,
+            "attributes": attributes,
+        }
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1625,15 +1799,17 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_servicediscovery.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1676,15 +1852,17 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_servicediscovery.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_http_namespace(
@@ -1737,17 +1915,20 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.update_http_namespace_request.UpdateHttpNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if updater_request_id is not None:
-            input_["updater_request_id"] = updater_request_id
-        input_["namespace"] = namespace
+        input_: capo_servicediscovery.types.update_http_namespace_request.UpdateHttpNamespaceRequest = {
+            "id": id,
+            "namespace": namespace,
+        }
+        if updater_request_id is None:
+            updater_request_id = str(uuid.uuid4())
+        input_["updater_request_id"] = updater_request_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_instance_custom_health_status(
@@ -1796,16 +1977,18 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.update_instance_custom_health_status_request.UpdateInstanceCustomHealthStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
-        input_["instance_id"] = instance_id
-        input_["status"] = status
+        input_: capo_servicediscovery.types.update_instance_custom_health_status_request.UpdateInstanceCustomHealthStatusRequest = {
+            "service_id": service_id,
+            "instance_id": instance_id,
+            "status": status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_private_dns_namespace(
@@ -1858,17 +2041,20 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.update_private_dns_namespace_request.UpdatePrivateDnsNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if updater_request_id is not None:
-            input_["updater_request_id"] = updater_request_id
-        input_["namespace"] = namespace
+        input_: capo_servicediscovery.types.update_private_dns_namespace_request.UpdatePrivateDnsNamespaceRequest = {
+            "id": id,
+            "namespace": namespace,
+        }
+        if updater_request_id is None:
+            updater_request_id = str(uuid.uuid4())
+        input_["updater_request_id"] = updater_request_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_public_dns_namespace(
@@ -1921,17 +2107,20 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.update_public_dns_namespace_request.UpdatePublicDnsNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if updater_request_id is not None:
-            input_["updater_request_id"] = updater_request_id
-        input_["namespace"] = namespace
+        input_: capo_servicediscovery.types.update_public_dns_namespace_request.UpdatePublicDnsNamespaceRequest = {
+            "id": id,
+            "namespace": namespace,
+        }
+        if updater_request_id is None:
+            updater_request_id = str(uuid.uuid4())
+        input_["updater_request_id"] = updater_request_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service(
@@ -1979,15 +2168,17 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.update_service_request.UpdateServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["service"] = service
+        input_: capo_servicediscovery.types.update_service_request.UpdateServiceRequest = {
+            "id": id,
+            "service": service,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service_attributes(
@@ -2035,15 +2226,17 @@ class ServiceDiscoveryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_servicediscovery.types.update_service_attributes_request.UpdateServiceAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
-        input_["attributes"] = attributes
+        input_: capo_servicediscovery.types.update_service_attributes_request.UpdateServiceAttributesRequest = {
+            "service_id": service_id,
+            "attributes": attributes,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

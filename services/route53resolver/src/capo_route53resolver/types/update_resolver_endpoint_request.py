@@ -94,15 +94,15 @@ def serialize_aws_json_1_1(value: UpdateResolverEndpointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateResolverEndpointRequest:
     out: UpdateResolverEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "ResolverEndpointId" in data:
+    if data.get("ResolverEndpointId") is not None:
         out["resolver_endpoint_id"] = data["ResolverEndpointId"]
     else:
         raise DeserializationError(
             "UpdateResolverEndpointRequest.resolver_endpoint_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ResolverEndpointType" in data:
+    if data.get("ResolverEndpointType") is not None:
         import capo_route53resolver.types.resolver_endpoint_type
 
         out["resolver_endpoint_type"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateResolverEndpointRequest:
                 data["ResolverEndpointType"]
             )
         )
-    if "UpdateIpAddresses" in data:
+    if data.get("UpdateIpAddresses") is not None:
         import capo_route53resolver.types.update_ip_addresses
 
         out["update_ip_addresses"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateResolverEndpointRequest:
                 data["UpdateIpAddresses"]
             )
         )
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_route53resolver.types.protocol_list
 
         out["protocols"] = (
@@ -126,14 +126,14 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateResolverEndpointRequest:
                 data["Protocols"]
             )
         )
-    if "RniEnhancedMetricsEnabled" in data:
+    if data.get("RniEnhancedMetricsEnabled") is not None:
         out["rni_enhanced_metrics_enabled"] = data["RniEnhancedMetricsEnabled"]
-    if "TargetNameServerMetricsEnabled" in data:
+    if data.get("TargetNameServerMetricsEnabled") is not None:
         out["target_name_server_metrics_enabled"] = data[
             "TargetNameServerMetricsEnabled"
         ]
-    if "Dns64Enabled" in data:
+    if data.get("Dns64Enabled") is not None:
         out["dns64_enabled"] = data["Dns64Enabled"]
-    if "Ipv6InternetAccessEnabled" in data:
+    if data.get("Ipv6InternetAccessEnabled") is not None:
         out["ipv6_internet_access_enabled"] = data["Ipv6InternetAccessEnabled"]
     return out

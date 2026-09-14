@@ -86,9 +86,9 @@ def serialize_json(value: GetDetectorResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDetectorResponse:
     out: GetDetectorResponse = {}  # type: ignore[typeddict-item]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "findingPublishingFrequency" in data:
+    if data.get("findingPublishingFrequency") is not None:
         import capo_guardduty.types.finding_publishing_frequency
 
         out["finding_publishing_frequency"] = (
@@ -96,17 +96,17 @@ def deserialize_json(data: dict) -> GetDetectorResponse:
                 data["findingPublishingFrequency"]
             )
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.detector_status
 
         out["status"] = capo_guardduty.types.detector_status.deserialize_json(
             data["status"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         out["updated_at"] = data["updatedAt"]
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_guardduty.types.data_source_configurations_result
 
         out["data_sources"] = (
@@ -114,11 +114,11 @@ def deserialize_json(data: dict) -> GetDetectorResponse:
                 data["dataSources"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tag_map
 
         out["tags"] = capo_guardduty.types.tag_map.deserialize_json(data["tags"])
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_guardduty.types.detector_feature_configurations_results
 
         out["features"] = (

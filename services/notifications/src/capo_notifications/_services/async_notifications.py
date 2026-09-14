@@ -233,10 +233,9 @@ class AsyncNotificationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_notifications.types.list_managed_notification_channel_associations_request.ListManagedNotificationChannelAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_notification_configuration_arn"] = (
-            managed_notification_configuration_arn
-        )
+        input_: capo_notifications.types.list_managed_notification_channel_associations_request.ListManagedNotificationChannelAssociationsRequest = {
+            "managed_notification_configuration_arn": managed_notification_configuration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -247,6 +246,7 @@ class AsyncNotificationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_managed_notification_channel_associations(
@@ -324,8 +324,9 @@ class AsyncNotificationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_notifications.types.list_member_accounts_request.ListMemberAccountsRequest = {}  # type: ignore[typeddict-item]
-        input_["notification_configuration_arn"] = notification_configuration_arn
+        input_: capo_notifications.types.list_member_accounts_request.ListMemberAccountsRequest = {
+            "notification_configuration_arn": notification_configuration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -342,6 +343,7 @@ class AsyncNotificationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_member_accounts(
@@ -415,14 +417,16 @@ class AsyncNotificationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_notifications.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -463,15 +467,17 @@ class AsyncNotificationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_notifications.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tags"] = tags
+        input_: capo_notifications.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -512,15 +518,17 @@ class AsyncNotificationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_notifications.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_notifications.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

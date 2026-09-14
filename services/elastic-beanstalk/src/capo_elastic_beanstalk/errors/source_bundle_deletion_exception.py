@@ -40,15 +40,20 @@ class SourceBundleDeletionException(ServiceError):
 
     code: str | None = "SourceBundleDeletionException"
 
-    def __init__(self, data: SourceBundleDeletionException_):
+    def __init__(
+        self, data: SourceBundleDeletionException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SourceBundleDeletionException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SourceBundleDeletionException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SourceBundleDeletionException":
+        return cls(deserialize_query(el), message)

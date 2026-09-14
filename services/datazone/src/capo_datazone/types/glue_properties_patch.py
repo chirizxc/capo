@@ -31,7 +31,7 @@ def serialize_json(value: GluePropertiesPatch) -> dict:
 
 def deserialize_json(data: dict) -> GluePropertiesPatch:
     out: GluePropertiesPatch = {}  # type: ignore[typeddict-item]
-    if "glueConnectionInput" in data:
+    if data.get("glueConnectionInput") is not None:
         import capo_datazone.types.glue_connection_patch
 
         out["glue_connection_input"] = (

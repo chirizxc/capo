@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: MemoryDbReservedInstances) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MemoryDbReservedInstances:
     out: MemoryDbReservedInstances = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_cost_optimization_hub.types.memory_db_reserved_instances_configuration
 
         out["configuration"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> MemoryDbReservedInstances:
                 data["configuration"]
             )
         )
-    if "costCalculation" in data:
+    if data.get("costCalculation") is not None:
         import capo_cost_optimization_hub.types.reserved_instances_cost_calculation
 
         out["cost_calculation"] = (

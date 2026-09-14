@@ -23,6 +23,6 @@ def serialize_json(value: MulticastInputSettings) -> dict:
 
 def deserialize_json(data: dict) -> MulticastInputSettings:
     out: MulticastInputSettings = {}  # type: ignore[typeddict-item]
-    if "sourceIpAddress" in data:
+    if data.get("sourceIpAddress") is not None:
         out["source_ip_address"] = data["sourceIpAddress"]
     return out

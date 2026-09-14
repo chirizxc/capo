@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfSegmentDeliveryConfiguration:
 
     out: __listOfSegmentDeliveryConfiguration = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediatailor.types.segment_delivery_configuration.deserialize_json(item)
         )

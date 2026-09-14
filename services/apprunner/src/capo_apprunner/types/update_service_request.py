@@ -95,11 +95,11 @@ def serialize_aws_json_1_0(value: UpdateServiceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateServiceRequest:
     out: UpdateServiceRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
     else:
         raise DeserializationError("UpdateServiceRequest.service_arn required")
-    if "SourceConfiguration" in data:
+    if data.get("SourceConfiguration") is not None:
         import capo_apprunner.types.source_configuration
 
         out["source_configuration"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateServiceRequest:
                 data["SourceConfiguration"]
             )
         )
-    if "InstanceConfiguration" in data:
+    if data.get("InstanceConfiguration") is not None:
         import capo_apprunner.types.instance_configuration
 
         out["instance_configuration"] = (
@@ -115,9 +115,9 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateServiceRequest:
                 data["InstanceConfiguration"]
             )
         )
-    if "AutoScalingConfigurationArn" in data:
+    if data.get("AutoScalingConfigurationArn") is not None:
         out["auto_scaling_configuration_arn"] = data["AutoScalingConfigurationArn"]
-    if "HealthCheckConfiguration" in data:
+    if data.get("HealthCheckConfiguration") is not None:
         import capo_apprunner.types.health_check_configuration
 
         out["health_check_configuration"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateServiceRequest:
                 data["HealthCheckConfiguration"]
             )
         )
-    if "NetworkConfiguration" in data:
+    if data.get("NetworkConfiguration") is not None:
         import capo_apprunner.types.network_configuration
 
         out["network_configuration"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateServiceRequest:
                 data["NetworkConfiguration"]
             )
         )
-    if "ObservabilityConfiguration" in data:
+    if data.get("ObservabilityConfiguration") is not None:
         import capo_apprunner.types.service_observability_configuration
 
         out["observability_configuration"] = (

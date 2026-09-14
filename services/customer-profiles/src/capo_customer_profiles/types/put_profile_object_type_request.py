@@ -95,41 +95,41 @@ def serialize_json(value: PutProfileObjectTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutProfileObjectTypeRequest:
     out: PutProfileObjectTypeRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("PutProfileObjectTypeRequest.description required")
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
-    if "ExpirationDays" in data:
+    if data.get("ExpirationDays") is not None:
         out["expiration_days"] = data["ExpirationDays"]
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         out["encryption_key"] = data["EncryptionKey"]
-    if "AllowProfileCreation" in data:
+    if data.get("AllowProfileCreation") is not None:
         out["allow_profile_creation"] = data["AllowProfileCreation"]
     else:
         out["allow_profile_creation"] = False
-    if "SourceLastUpdatedTimestampFormat" in data:
+    if data.get("SourceLastUpdatedTimestampFormat") is not None:
         out["source_last_updated_timestamp_format"] = data[
             "SourceLastUpdatedTimestampFormat"
         ]
-    if "MaxProfileObjectCount" in data:
+    if data.get("MaxProfileObjectCount") is not None:
         out["max_profile_object_count"] = data["MaxProfileObjectCount"]
-    if "SourcePriority" in data:
+    if data.get("SourcePriority") is not None:
         out["source_priority"] = data["SourcePriority"]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_customer_profiles.types.field_map
 
         out["fields"] = capo_customer_profiles.types.field_map.deserialize_json(
             data["Fields"]
         )
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_customer_profiles.types.key_map
 
         out["keys"] = capo_customer_profiles.types.key_map.deserialize_json(
             data["Keys"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

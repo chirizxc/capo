@@ -62,13 +62,13 @@ def serialize_aws_json_1_1(value: SearchExpression) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchExpression:
     out: SearchExpression = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_sagemaker.types.filter_list
 
         out["filters"] = capo_sagemaker.types.filter_list.deserialize_aws_json_1_1(
             data["Filters"]
         )
-    if "NestedFilters" in data:
+    if data.get("NestedFilters") is not None:
         import capo_sagemaker.types.nested_filters_list
 
         out["nested_filters"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchExpression:
                 data["NestedFilters"]
             )
         )
-    if "SubExpressions" in data:
+    if data.get("SubExpressions") is not None:
         import capo_sagemaker.types.search_expression_list
 
         out["sub_expressions"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchExpression:
                 data["SubExpressions"]
             )
         )
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_sagemaker.types.boolean_operator
 
         out["operator"] = (

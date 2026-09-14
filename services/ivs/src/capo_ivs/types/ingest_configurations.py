@@ -40,7 +40,7 @@ def serialize_json(value: IngestConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> IngestConfigurations:
     out: IngestConfigurations = {}  # type: ignore[typeddict-item]
-    if "videoConfigurations" in data:
+    if data.get("videoConfigurations") is not None:
         import capo_ivs.types.video_configuration_list
 
         out["video_configurations"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> IngestConfigurations:
         )
     else:
         raise DeserializationError("IngestConfigurations.video_configurations required")
-    if "audioConfigurations" in data:
+    if data.get("audioConfigurations") is not None:
         import capo_ivs.types.audio_configuration_list
 
         out["audio_configurations"] = (

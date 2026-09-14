@@ -39,7 +39,7 @@ def serialize_json(value: CompleteAttachmentUploadRequest) -> dict:
 
 def deserialize_json(data: dict) -> CompleteAttachmentUploadRequest:
     out: CompleteAttachmentUploadRequest = {}  # type: ignore[typeddict-item]
-    if "AttachmentIds" in data:
+    if data.get("AttachmentIds") is not None:
         import capo_connectparticipant.types.attachment_id_list
 
         out["attachment_ids"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> CompleteAttachmentUploadRequest:
         raise DeserializationError(
             "CompleteAttachmentUploadRequest.attachment_ids required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(

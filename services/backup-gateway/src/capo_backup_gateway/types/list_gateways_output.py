@@ -32,12 +32,12 @@ def serialize_aws_json_1_0(value: ListGatewaysOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListGatewaysOutput:
     out: ListGatewaysOutput = {}  # type: ignore[typeddict-item]
-    if "Gateways" in data:
+    if data.get("Gateways") is not None:
         import capo_backup_gateway.types.gateways
 
         out["gateways"] = capo_backup_gateway.types.gateways.deserialize_aws_json_1_0(
             data["Gateways"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

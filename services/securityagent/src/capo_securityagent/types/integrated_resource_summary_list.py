@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IntegratedResourceSummaryList:
 
     out: IntegratedResourceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityagent.types.integrated_resource_summary.deserialize_json(item)
         )

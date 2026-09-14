@@ -66,7 +66,7 @@ def serialize_json(value: ReferenceLineDataConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ReferenceLineDataConfiguration:
     out: ReferenceLineDataConfiguration = {}  # type: ignore[typeddict-item]
-    if "StaticConfiguration" in data:
+    if data.get("StaticConfiguration") is not None:
         import capo_quicksight.types.reference_line_static_data_configuration
 
         out["static_configuration"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ReferenceLineDataConfiguration:
                 data["StaticConfiguration"]
             )
         )
-    if "DynamicConfiguration" in data:
+    if data.get("DynamicConfiguration") is not None:
         import capo_quicksight.types.reference_line_dynamic_data_configuration
 
         out["dynamic_configuration"] = (
@@ -82,13 +82,13 @@ def deserialize_json(data: dict) -> ReferenceLineDataConfiguration:
                 data["DynamicConfiguration"]
             )
         )
-    if "AxisBinding" in data:
+    if data.get("AxisBinding") is not None:
         import capo_quicksight.types.axis_binding
 
         out["axis_binding"] = capo_quicksight.types.axis_binding.deserialize_json(
             data["AxisBinding"]
         )
-    if "SeriesType" in data:
+    if data.get("SeriesType") is not None:
         import capo_quicksight.types.reference_line_series_type
 
         out["series_type"] = (

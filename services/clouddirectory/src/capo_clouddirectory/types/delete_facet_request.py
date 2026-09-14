@@ -27,7 +27,7 @@ def serialize_json(value: DeleteFacetRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteFacetRequest:
     out: DeleteFacetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DeleteFacetRequest.name required")

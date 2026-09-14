@@ -106,13 +106,13 @@ def serialize_json(value: StartAssetBundleImportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAssetBundleImportJobRequest:
     out: StartAssetBundleImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "AssetBundleImportJobId" in data:
+    if data.get("AssetBundleImportJobId") is not None:
         out["asset_bundle_import_job_id"] = data["AssetBundleImportJobId"]
     else:
         raise DeserializationError(
             "StartAssetBundleImportJobRequest.asset_bundle_import_job_id required"
         )
-    if "AssetBundleImportSource" in data:
+    if data.get("AssetBundleImportSource") is not None:
         import capo_quicksight.types.asset_bundle_import_source
 
         out["asset_bundle_import_source"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> StartAssetBundleImportJobRequest:
         raise DeserializationError(
             "StartAssetBundleImportJobRequest.asset_bundle_import_source required"
         )
-    if "OverrideParameters" in data:
+    if data.get("OverrideParameters") is not None:
         import capo_quicksight.types.asset_bundle_import_job_override_parameters
 
         out["override_parameters"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> StartAssetBundleImportJobRequest:
                 data["OverrideParameters"]
             )
         )
-    if "FailureAction" in data:
+    if data.get("FailureAction") is not None:
         import capo_quicksight.types.asset_bundle_import_failure_action
 
         out["failure_action"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> StartAssetBundleImportJobRequest:
                 data["FailureAction"]
             )
         )
-    if "OverridePermissions" in data:
+    if data.get("OverridePermissions") is not None:
         import capo_quicksight.types.asset_bundle_import_job_override_permissions
 
         out["override_permissions"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> StartAssetBundleImportJobRequest:
                 data["OverridePermissions"]
             )
         )
-    if "OverrideTags" in data:
+    if data.get("OverrideTags") is not None:
         import capo_quicksight.types.asset_bundle_import_job_override_tags
 
         out["override_tags"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> StartAssetBundleImportJobRequest:
                 data["OverrideTags"]
             )
         )
-    if "OverrideValidationStrategy" in data:
+    if data.get("OverrideValidationStrategy") is not None:
         import capo_quicksight.types.asset_bundle_import_job_override_validation_strategy
 
         out["override_validation_strategy"] = (

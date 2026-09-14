@@ -59,18 +59,18 @@ def serialize_aws_json_1_1(value: SearchGameSessionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchGameSessionsInput:
     out: SearchGameSessionsInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "AliasId" in data:
+    if data.get("AliasId") is not None:
         out["alias_id"] = data["AliasId"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "FilterExpression" in data:
+    if data.get("FilterExpression") is not None:
         out["filter_expression"] = data["FilterExpression"]
-    if "SortExpression" in data:
+    if data.get("SortExpression") is not None:
         out["sort_expression"] = data["SortExpression"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

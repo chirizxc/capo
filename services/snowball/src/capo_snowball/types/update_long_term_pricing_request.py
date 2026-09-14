@@ -36,14 +36,14 @@ def serialize_aws_json_1_1(value: UpdateLongTermPricingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLongTermPricingRequest:
     out: UpdateLongTermPricingRequest = {}  # type: ignore[typeddict-item]
-    if "LongTermPricingId" in data:
+    if data.get("LongTermPricingId") is not None:
         out["long_term_pricing_id"] = data["LongTermPricingId"]
     else:
         raise DeserializationError(
             "UpdateLongTermPricingRequest.long_term_pricing_id required"
         )
-    if "ReplacementJob" in data:
+    if data.get("ReplacementJob") is not None:
         out["replacement_job"] = data["ReplacementJob"]
-    if "IsLongTermPricingAutoRenew" in data:
+    if data.get("IsLongTermPricingAutoRenew") is not None:
         out["is_long_term_pricing_auto_renew"] = data["IsLongTermPricingAutoRenew"]
     return out

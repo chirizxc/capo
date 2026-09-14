@@ -48,15 +48,15 @@ def serialize_aws_json_1_1(value: EncryptionConfigurationDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EncryptionConfigurationDetails:
     out: EncryptionConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "KeyType" in data:
+    if data.get("KeyType") is not None:
         import capo_sso_admin.types.kms_key_type
 
         out["key_type"] = capo_sso_admin.types.kms_key_type.deserialize_aws_json_1_1(
             data["KeyType"]
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "EncryptionStatus" in data:
+    if data.get("EncryptionStatus") is not None:
         import capo_sso_admin.types.kms_key_status
 
         out["encryption_status"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_1(data: dict) -> EncryptionConfigurationDetails:
                 data["EncryptionStatus"]
             )
         )
-    if "EncryptionStatusReason" in data:
+    if data.get("EncryptionStatusReason") is not None:
         out["encryption_status_reason"] = data["EncryptionStatusReason"]
     return out

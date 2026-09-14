@@ -61,17 +61,17 @@ def serialize_aws_json_1_1(value: ClusterSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterSummary:
     out: ClusterSummary = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "ClusterStatus" in data:
+    if data.get("ClusterStatus") is not None:
         import capo_sagemaker.types.cluster_status
 
         out["cluster_status"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterSummary:
                 data["ClusterStatus"]
             )
         )
-    if "TrainingPlanArns" in data:
+    if data.get("TrainingPlanArns") is not None:
         import capo_sagemaker.types.training_plan_arns
 
         out["training_plan_arns"] = (

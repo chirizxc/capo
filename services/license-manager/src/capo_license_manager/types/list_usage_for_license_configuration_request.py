@@ -42,17 +42,17 @@ def serialize_aws_json_1_1(value: ListUsageForLicenseConfigurationRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ListUsageForLicenseConfigurationRequest:
     out: ListUsageForLicenseConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseConfigurationArn" in data:
+    if data.get("LicenseConfigurationArn") is not None:
         out["license_configuration_arn"] = data["LicenseConfigurationArn"]
     else:
         raise DeserializationError(
             "ListUsageForLicenseConfigurationRequest.license_configuration_arn required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_license_manager.types.filters
 
         out["filters"] = capo_license_manager.types.filters.deserialize_aws_json_1_1(

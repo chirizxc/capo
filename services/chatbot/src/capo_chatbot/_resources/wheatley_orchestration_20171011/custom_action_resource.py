@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_chatbot._auth._signers
@@ -101,23 +102,26 @@ class CustomActionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_chatbot.types.create_custom_action_request.CreateCustomActionRequest = {}  # type: ignore[typeddict-item]
-        input_["definition"] = definition
+        input_: capo_chatbot.types.create_custom_action_request.CreateCustomActionRequest = {
+            "definition": definition,
+            "action_name": action_name,
+        }
         if alias_name is not None:
             input_["alias_name"] = alias_name
         if attachments is not None:
             input_["attachments"] = attachments
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["action_name"] = action_name
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -159,14 +163,16 @@ class CustomActionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_chatbot.types.get_custom_action_request.GetCustomActionRequest = {}  # type: ignore[typeddict-item]
-        input_["custom_action_arn"] = custom_action_arn
+        input_: capo_chatbot.types.get_custom_action_request.GetCustomActionRequest = {
+            "custom_action_arn": custom_action_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -219,9 +225,10 @@ class CustomActionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_chatbot.types.update_custom_action_request.UpdateCustomActionRequest = {}  # type: ignore[typeddict-item]
-        input_["custom_action_arn"] = custom_action_arn
-        input_["definition"] = definition
+        input_: capo_chatbot.types.update_custom_action_request.UpdateCustomActionRequest = {
+            "custom_action_arn": custom_action_arn,
+            "definition": definition,
+        }
         if alias_name is not None:
             input_["alias_name"] = alias_name
         if attachments is not None:
@@ -232,6 +239,7 @@ class CustomActionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -273,14 +281,16 @@ class CustomActionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_chatbot.types.delete_custom_action_request.DeleteCustomActionRequest = {}  # type: ignore[typeddict-item]
-        input_["custom_action_arn"] = custom_action_arn
+        input_: capo_chatbot.types.delete_custom_action_request.DeleteCustomActionRequest = {
+            "custom_action_arn": custom_action_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -323,7 +333,7 @@ class CustomActionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_chatbot.types.list_custom_actions_request.ListCustomActionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.list_custom_actions_request.ListCustomActionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -334,6 +344,7 @@ class CustomActionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -401,23 +412,26 @@ class AsyncCustomActionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_chatbot.types.create_custom_action_request.CreateCustomActionRequest = {}  # type: ignore[typeddict-item]
-        input_["definition"] = definition
+        input_: capo_chatbot.types.create_custom_action_request.CreateCustomActionRequest = {
+            "definition": definition,
+            "action_name": action_name,
+        }
         if alias_name is not None:
             input_["alias_name"] = alias_name
         if attachments is not None:
             input_["attachments"] = attachments
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["action_name"] = action_name
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -460,14 +474,16 @@ class AsyncCustomActionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_chatbot.types.get_custom_action_request.GetCustomActionRequest = {}  # type: ignore[typeddict-item]
-        input_["custom_action_arn"] = custom_action_arn
+        input_: capo_chatbot.types.get_custom_action_request.GetCustomActionRequest = {
+            "custom_action_arn": custom_action_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -521,9 +537,10 @@ class AsyncCustomActionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_chatbot.types.update_custom_action_request.UpdateCustomActionRequest = {}  # type: ignore[typeddict-item]
-        input_["custom_action_arn"] = custom_action_arn
-        input_["definition"] = definition
+        input_: capo_chatbot.types.update_custom_action_request.UpdateCustomActionRequest = {
+            "custom_action_arn": custom_action_arn,
+            "definition": definition,
+        }
         if alias_name is not None:
             input_["alias_name"] = alias_name
         if attachments is not None:
@@ -534,6 +551,7 @@ class AsyncCustomActionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -576,14 +594,16 @@ class AsyncCustomActionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_chatbot.types.delete_custom_action_request.DeleteCustomActionRequest = {}  # type: ignore[typeddict-item]
-        input_["custom_action_arn"] = custom_action_arn
+        input_: capo_chatbot.types.delete_custom_action_request.DeleteCustomActionRequest = {
+            "custom_action_arn": custom_action_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -627,7 +647,7 @@ class AsyncCustomActionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_chatbot.types.list_custom_actions_request.ListCustomActionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.list_custom_actions_request.ListCustomActionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -638,4 +658,5 @@ class AsyncCustomActionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -38,9 +38,9 @@ def serialize_json(value: ListTaxExemptionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTaxExemptionsResponse:
     out: ListTaxExemptionsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "taxExemptionDetailsMap" in data:
+    if data.get("taxExemptionDetailsMap") is not None:
         import capo_taxsettings.types.tax_exemption_details_map
 
         out["tax_exemption_details_map"] = (

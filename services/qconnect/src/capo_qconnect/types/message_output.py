@@ -43,21 +43,21 @@ def serialize_json(value: MessageOutput) -> dict:
 
 def deserialize_json(data: dict) -> MessageOutput:
     out: MessageOutput = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_qconnect.types.message_data
 
         out["value"] = capo_qconnect.types.message_data.deserialize_json(data["value"])
     else:
         raise DeserializationError("MessageOutput.value required")
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
     else:
         raise DeserializationError("MessageOutput.message_id required")
-    if "participant" in data:
+    if data.get("participant") is not None:
         out["participant"] = data["participant"]
     else:
         raise DeserializationError("MessageOutput.participant required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["timestamp"] = capo_qconnect.types._prelude.timestamp.deserialize_json(

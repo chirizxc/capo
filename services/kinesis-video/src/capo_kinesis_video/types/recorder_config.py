@@ -43,7 +43,7 @@ def serialize_json(value: RecorderConfig) -> dict:
 
 def deserialize_json(data: dict) -> RecorderConfig:
     out: RecorderConfig = {}  # type: ignore[typeddict-item]
-    if "MediaSourceConfig" in data:
+    if data.get("MediaSourceConfig") is not None:
         import capo_kinesis_video.types.media_source_config
 
         out["media_source_config"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> RecorderConfig:
         )
     else:
         raise DeserializationError("RecorderConfig.media_source_config required")
-    if "ScheduleConfig" in data:
+    if data.get("ScheduleConfig") is not None:
         import capo_kinesis_video.types.schedule_config
 
         out["schedule_config"] = (

@@ -37,7 +37,7 @@ def serialize_json(value: ListBatchJobExecutionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListBatchJobExecutionsResponse:
     out: ListBatchJobExecutionsResponse = {}  # type: ignore[typeddict-item]
-    if "batchJobExecutions" in data:
+    if data.get("batchJobExecutions") is not None:
         import capo_m2.types.batch_job_execution_summary_list
 
         out["batch_job_executions"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListBatchJobExecutionsResponse:
         raise DeserializationError(
             "ListBatchJobExecutionsResponse.batch_job_executions required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -49,15 +49,15 @@ def serialize_json(value: VirtualServiceData) -> dict:
 
 def deserialize_json(data: dict) -> VirtualServiceData:
     out: VirtualServiceData = {}  # type: ignore[typeddict-item]
-    if "meshName" in data:
+    if data.get("meshName") is not None:
         out["mesh_name"] = data["meshName"]
     else:
         raise DeserializationError("VirtualServiceData.mesh_name required")
-    if "virtualServiceName" in data:
+    if data.get("virtualServiceName") is not None:
         out["virtual_service_name"] = data["virtualServiceName"]
     else:
         raise DeserializationError("VirtualServiceData.virtual_service_name required")
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.virtual_service_spec
 
         out["spec"] = capo_app_mesh.types.virtual_service_spec.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> VirtualServiceData:
         )
     else:
         raise DeserializationError("VirtualServiceData.spec required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_app_mesh.types.resource_metadata
 
         out["metadata"] = capo_app_mesh.types.resource_metadata.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> VirtualServiceData:
         )
     else:
         raise DeserializationError("VirtualServiceData.metadata required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_app_mesh.types.virtual_service_status
 
         out["status"] = capo_app_mesh.types.virtual_service_status.deserialize_json(

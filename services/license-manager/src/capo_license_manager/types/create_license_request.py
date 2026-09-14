@@ -100,19 +100,19 @@ def serialize_aws_json_1_1(value: CreateLicenseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLicenseRequest:
     out: CreateLicenseRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseName" in data:
+    if data.get("LicenseName") is not None:
         out["license_name"] = data["LicenseName"]
     else:
         raise DeserializationError("CreateLicenseRequest.license_name required")
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         out["product_name"] = data["ProductName"]
     else:
         raise DeserializationError("CreateLicenseRequest.product_name required")
-    if "ProductSKU" in data:
+    if data.get("ProductSKU") is not None:
         out["product_sku"] = data["ProductSKU"]
     else:
         raise DeserializationError("CreateLicenseRequest.product_sku required")
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         import capo_license_manager.types.issuer
 
         out["issuer"] = capo_license_manager.types.issuer.deserialize_aws_json_1_1(
@@ -120,11 +120,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseRequest:
         )
     else:
         raise DeserializationError("CreateLicenseRequest.issuer required")
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
     else:
         raise DeserializationError("CreateLicenseRequest.home_region required")
-    if "Validity" in data:
+    if data.get("Validity") is not None:
         import capo_license_manager.types.datetime_range
 
         out["validity"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseRequest:
         )
     else:
         raise DeserializationError("CreateLicenseRequest.validity required")
-    if "Entitlements" in data:
+    if data.get("Entitlements") is not None:
         import capo_license_manager.types.entitlement_list
 
         out["entitlements"] = (
@@ -144,11 +144,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseRequest:
         )
     else:
         raise DeserializationError("CreateLicenseRequest.entitlements required")
-    if "Beneficiary" in data:
+    if data.get("Beneficiary") is not None:
         out["beneficiary"] = data["Beneficiary"]
     else:
         raise DeserializationError("CreateLicenseRequest.beneficiary required")
-    if "ConsumptionConfiguration" in data:
+    if data.get("ConsumptionConfiguration") is not None:
         import capo_license_manager.types.consumption_configuration
 
         out["consumption_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseRequest:
         raise DeserializationError(
             "CreateLicenseRequest.consumption_configuration required"
         )
-    if "LicenseMetadata" in data:
+    if data.get("LicenseMetadata") is not None:
         import capo_license_manager.types.metadata_list
 
         out["license_metadata"] = (
@@ -168,11 +168,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseRequest:
                 data["LicenseMetadata"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateLicenseRequest.client_token required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_license_manager.types.tag_list
 
         out["tags"] = capo_license_manager.types.tag_list.deserialize_aws_json_1_1(

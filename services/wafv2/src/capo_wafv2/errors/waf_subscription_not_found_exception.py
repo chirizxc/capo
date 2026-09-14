@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: WAFSubscriptionNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WAFSubscriptionNotFoundException_:
     out: WAFSubscriptionNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class WAFSubscriptionNotFoundException(ServiceError):
 
     code: str | None = "WAFSubscriptionNotFoundException"
 
-    def __init__(self, data: WAFSubscriptionNotFoundException_):
+    def __init__(
+        self, data: WAFSubscriptionNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="WAFSubscriptionNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "WAFSubscriptionNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "WAFSubscriptionNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

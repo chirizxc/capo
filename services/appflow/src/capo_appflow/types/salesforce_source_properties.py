@@ -44,19 +44,19 @@ def serialize_json(value: SalesforceSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> SalesforceSourceProperties:
     out: SalesforceSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("SalesforceSourceProperties.object required")
-    if "enableDynamicFieldUpdate" in data:
+    if data.get("enableDynamicFieldUpdate") is not None:
         out["enable_dynamic_field_update"] = data["enableDynamicFieldUpdate"]
     else:
         out["enable_dynamic_field_update"] = False
-    if "includeDeletedRecords" in data:
+    if data.get("includeDeletedRecords") is not None:
         out["include_deleted_records"] = data["includeDeletedRecords"]
     else:
         out["include_deleted_records"] = False
-    if "dataTransferApi" in data:
+    if data.get("dataTransferApi") is not None:
         import capo_appflow.types.salesforce_data_transfer_api
 
         out["data_transfer_api"] = (

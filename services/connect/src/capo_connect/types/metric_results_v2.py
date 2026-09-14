@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MetricResultsV2:
 
     out: MetricResultsV2 = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.metric_result_v2.deserialize_json(item))
     return out

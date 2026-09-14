@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: Secret) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Secret:
     out: Secret = {}  # type: ignore[typeddict-item]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     return out

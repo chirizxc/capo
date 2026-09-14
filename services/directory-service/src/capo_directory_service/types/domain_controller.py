@@ -101,21 +101,21 @@ def serialize_aws_json_1_1(value: DomainController) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainController:
     out: DomainController = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "DomainControllerId" in data:
+    if data.get("DomainControllerId") is not None:
         out["domain_controller_id"] = data["DomainControllerId"]
-    if "DnsIpAddr" in data:
+    if data.get("DnsIpAddr") is not None:
         out["dns_ip_addr"] = data["DnsIpAddr"]
-    if "DnsIpv6Addr" in data:
+    if data.get("DnsIpv6Addr") is not None:
         out["dns_ipv6_addr"] = data["DnsIpv6Addr"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_directory_service.types.domain_controller_status
 
         out["status"] = (
@@ -123,9 +123,9 @@ def deserialize_aws_json_1_1(data: dict) -> DomainController:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "LaunchTime" in data:
+    if data.get("LaunchTime") is not None:
         import capo_directory_service.types.launch_time
 
         out["launch_time"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainController:
                 data["LaunchTime"]
             )
         )
-    if "StatusLastUpdatedDateTime" in data:
+    if data.get("StatusLastUpdatedDateTime") is not None:
         import capo_directory_service.types.last_updated_date_time
 
         out["status_last_updated_date_time"] = (

@@ -51,28 +51,28 @@ def serialize_json(value: CreateFormTypeInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateFormTypeInput:
     out: CreateFormTypeInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateFormTypeInput.name required")
-    if "model" in data:
+    if data.get("model") is not None:
         import capo_datazone.types.model
 
         out["model"] = capo_datazone.types.model.deserialize_json(data["model"])
     else:
         raise DeserializationError("CreateFormTypeInput.model required")
-    if "owningProjectIdentifier" in data:
+    if data.get("owningProjectIdentifier") is not None:
         out["owning_project_identifier"] = data["owningProjectIdentifier"]
     else:
         raise DeserializationError(
             "CreateFormTypeInput.owning_project_identifier required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.form_type_status
 
         out["status"] = capo_datazone.types.form_type_status.deserialize_json(
             data["status"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

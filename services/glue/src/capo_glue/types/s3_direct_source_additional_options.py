@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: S3DirectSourceAdditionalOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DirectSourceAdditionalOptions:
     out: S3DirectSourceAdditionalOptions = {}  # type: ignore[typeddict-item]
-    if "BoundedSize" in data:
+    if data.get("BoundedSize") is not None:
         out["bounded_size"] = data["BoundedSize"]
-    if "BoundedFiles" in data:
+    if data.get("BoundedFiles") is not None:
         out["bounded_files"] = data["BoundedFiles"]
-    if "EnableSamplePath" in data:
+    if data.get("EnableSamplePath") is not None:
         out["enable_sample_path"] = data["EnableSamplePath"]
-    if "SamplePath" in data:
+    if data.get("SamplePath") is not None:
         out["sample_path"] = data["SamplePath"]
     return out

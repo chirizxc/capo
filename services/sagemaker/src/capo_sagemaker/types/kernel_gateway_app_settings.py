@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: KernelGatewayAppSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KernelGatewayAppSettings:
     out: KernelGatewayAppSettings = {}  # type: ignore[typeddict-item]
-    if "DefaultResourceSpec" in data:
+    if data.get("DefaultResourceSpec") is not None:
         import capo_sagemaker.types.resource_spec
 
         out["default_resource_spec"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> KernelGatewayAppSettings:
                 data["DefaultResourceSpec"]
             )
         )
-    if "CustomImages" in data:
+    if data.get("CustomImages") is not None:
         import capo_sagemaker.types.custom_images
 
         out["custom_images"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> KernelGatewayAppSettings:
                 data["CustomImages"]
             )
         )
-    if "LifecycleConfigArns" in data:
+    if data.get("LifecycleConfigArns") is not None:
         import capo_sagemaker.types.lifecycle_config_arns
 
         out["lifecycle_config_arns"] = (

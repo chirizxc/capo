@@ -59,9 +59,9 @@ def serialize_json(value: ActionRemoteIpDetails) -> dict:
 
 def deserialize_json(data: dict) -> ActionRemoteIpDetails:
     out: ActionRemoteIpDetails = {}  # type: ignore[typeddict-item]
-    if "IpAddressV4" in data:
+    if data.get("IpAddressV4") is not None:
         out["ip_address_v4"] = data["IpAddressV4"]
-    if "Organization" in data:
+    if data.get("Organization") is not None:
         import capo_securityhub.types.ip_organization_details
 
         out["organization"] = (
@@ -69,17 +69,17 @@ def deserialize_json(data: dict) -> ActionRemoteIpDetails:
                 data["Organization"]
             )
         )
-    if "Country" in data:
+    if data.get("Country") is not None:
         import capo_securityhub.types.country
 
         out["country"] = capo_securityhub.types.country.deserialize_json(
             data["Country"]
         )
-    if "City" in data:
+    if data.get("City") is not None:
         import capo_securityhub.types.city
 
         out["city"] = capo_securityhub.types.city.deserialize_json(data["City"])
-    if "GeoLocation" in data:
+    if data.get("GeoLocation") is not None:
         import capo_securityhub.types.geo_location
 
         out["geo_location"] = capo_securityhub.types.geo_location.deserialize_json(

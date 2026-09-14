@@ -36,13 +36,13 @@ def serialize_json(value: DataIntegrationEventDatasetTargetConfiguration) -> dic
 
 def deserialize_json(data: dict) -> DataIntegrationEventDatasetTargetConfiguration:
     out: DataIntegrationEventDatasetTargetConfiguration = {}  # type: ignore[typeddict-item]
-    if "datasetIdentifier" in data:
+    if data.get("datasetIdentifier") is not None:
         out["dataset_identifier"] = data["datasetIdentifier"]
     else:
         raise DeserializationError(
             "DataIntegrationEventDatasetTargetConfiguration.dataset_identifier required"
         )
-    if "operationType" in data:
+    if data.get("operationType") is not None:
         import capo_supplychain.types.data_integration_event_dataset_operation_type
 
         out["operation_type"] = (

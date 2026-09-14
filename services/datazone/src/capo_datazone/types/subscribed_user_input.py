@@ -23,6 +23,6 @@ def serialize_json(value: SubscribedUserInput) -> dict:
 
 def deserialize_json(data: dict) -> SubscribedUserInput:
     out: SubscribedUserInput = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     return out

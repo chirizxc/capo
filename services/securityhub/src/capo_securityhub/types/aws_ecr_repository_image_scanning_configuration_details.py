@@ -23,6 +23,6 @@ def serialize_json(value: AwsEcrRepositoryImageScanningConfigurationDetails) -> 
 
 def deserialize_json(data: dict) -> AwsEcrRepositoryImageScanningConfigurationDetails:
     out: AwsEcrRepositoryImageScanningConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "ScanOnPush" in data:
+    if data.get("ScanOnPush") is not None:
         out["scan_on_push"] = data["ScanOnPush"]
     return out

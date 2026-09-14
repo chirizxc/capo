@@ -47,15 +47,15 @@ def serialize_json(value: TelephonyOutboundConfig) -> dict:
 
 def deserialize_json(data: dict) -> TelephonyOutboundConfig:
     out: TelephonyOutboundConfig = {}  # type: ignore[typeddict-item]
-    if "connectContactFlowId" in data:
+    if data.get("connectContactFlowId") is not None:
         out["connect_contact_flow_id"] = data["connectContactFlowId"]
     else:
         raise DeserializationError(
             "TelephonyOutboundConfig.connect_contact_flow_id required"
         )
-    if "connectSourcePhoneNumber" in data:
+    if data.get("connectSourcePhoneNumber") is not None:
         out["connect_source_phone_number"] = data["connectSourcePhoneNumber"]
-    if "answerMachineDetectionConfig" in data:
+    if data.get("answerMachineDetectionConfig") is not None:
         import capo_connectcampaignsv2.types.answer_machine_detection_config
 
         out["answer_machine_detection_config"] = (
@@ -63,6 +63,6 @@ def deserialize_json(data: dict) -> TelephonyOutboundConfig:
                 data["answerMachineDetectionConfig"]
             )
         )
-    if "ringTimeout" in data:
+    if data.get("ringTimeout") is not None:
         out["ring_timeout"] = data["ringTimeout"]
     return out

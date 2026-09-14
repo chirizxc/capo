@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> EngagementInvitationsPayloadType:
 
     out: EngagementInvitationsPayloadType = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_selling.types.engagement_invitation_payload_type.deserialize_aws_json_1_0(
                 item

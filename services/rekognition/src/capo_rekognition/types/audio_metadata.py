@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: AudioMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AudioMetadata:
     out: AudioMetadata = {}  # type: ignore[typeddict-item]
-    if "Codec" in data:
+    if data.get("Codec") is not None:
         out["codec"] = data["Codec"]
-    if "DurationMillis" in data:
+    if data.get("DurationMillis") is not None:
         out["duration_millis"] = data["DurationMillis"]
-    if "SampleRate" in data:
+    if data.get("SampleRate") is not None:
         out["sample_rate"] = data["SampleRate"]
-    if "NumberOfChannels" in data:
+    if data.get("NumberOfChannels") is not None:
         out["number_of_channels"] = data["NumberOfChannels"]
     return out

@@ -138,7 +138,15 @@ def serialize_aws_json_1_1(value: MLModel) -> dict:
             )
         )
     if "score_threshold" in value:
-        out["ScoreThreshold"] = value["score_threshold"]
+        out["ScoreThreshold"] = (
+            "NaN"
+            if value["score_threshold"] != value["score_threshold"]
+            else "Infinity"
+            if value["score_threshold"] == float("inf")
+            else "-Infinity"
+            if value["score_threshold"] == float("-inf")
+            else value["score_threshold"]
+        )
     if "score_threshold_last_updated_at" in value:
         import capo_machine_learning.types.epoch_time
 
@@ -172,13 +180,13 @@ def serialize_aws_json_1_1(value: MLModel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MLModel:
     out: MLModel = {}  # type: ignore[typeddict-item]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
-    if "TrainingDataSourceId" in data:
+    if data.get("TrainingDataSourceId") is not None:
         out["training_data_source_id"] = data["TrainingDataSourceId"]
-    if "CreatedByIamUser" in data:
+    if data.get("CreatedByIamUser") is not None:
         out["created_by_iam_user"] = data["CreatedByIamUser"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["created_at"] = (
@@ -186,7 +194,7 @@ def deserialize_aws_json_1_1(data: dict) -> MLModel:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["last_updated_at"] = (
@@ -194,9 +202,9 @@ def deserialize_aws_json_1_1(data: dict) -> MLModel:
                 data["LastUpdatedAt"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_machine_learning.types.entity_status
 
         out["status"] = (
@@ -204,9 +212,9 @@ def deserialize_aws_json_1_1(data: dict) -> MLModel:
                 data["Status"]
             )
         )
-    if "SizeInBytes" in data:
+    if data.get("SizeInBytes") is not None:
         out["size_in_bytes"] = data["SizeInBytes"]
-    if "EndpointInfo" in data:
+    if data.get("EndpointInfo") is not None:
         import capo_machine_learning.types.realtime_endpoint_info
 
         out["endpoint_info"] = (
@@ -214,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> MLModel:
                 data["EndpointInfo"]
             )
         )
-    if "TrainingParameters" in data:
+    if data.get("TrainingParameters") is not None:
         import capo_machine_learning.types.training_parameters
 
         out["training_parameters"] = (
@@ -222,9 +230,9 @@ def deserialize_aws_json_1_1(data: dict) -> MLModel:
                 data["TrainingParameters"]
             )
         )
-    if "InputDataLocationS3" in data:
+    if data.get("InputDataLocationS3") is not None:
         out["input_data_location_s3"] = data["InputDataLocationS3"]
-    if "Algorithm" in data:
+    if data.get("Algorithm") is not None:
         import capo_machine_learning.types.algorithm
 
         out["algorithm"] = (
@@ -232,7 +240,7 @@ def deserialize_aws_json_1_1(data: dict) -> MLModel:
                 data["Algorithm"]
             )
         )
-    if "MLModelType" in data:
+    if data.get("MLModelType") is not None:
         import capo_machine_learning.types.ml_model_type
 
         out["ml_model_type"] = (
@@ -240,9 +248,9 @@ def deserialize_aws_json_1_1(data: dict) -> MLModel:
                 data["MLModelType"]
             )
         )
-    if "ScoreThreshold" in data:
-        out["score_threshold"] = data["ScoreThreshold"]
-    if "ScoreThresholdLastUpdatedAt" in data:
+    if data.get("ScoreThreshold") is not None:
+        out["score_threshold"] = float(data["ScoreThreshold"])
+    if data.get("ScoreThresholdLastUpdatedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["score_threshold_last_updated_at"] = (
@@ -250,11 +258,11 @@ def deserialize_aws_json_1_1(data: dict) -> MLModel:
                 data["ScoreThresholdLastUpdatedAt"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ComputeTime" in data:
+    if data.get("ComputeTime") is not None:
         out["compute_time"] = data["ComputeTime"]
-    if "FinishedAt" in data:
+    if data.get("FinishedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["finished_at"] = (
@@ -262,7 +270,7 @@ def deserialize_aws_json_1_1(data: dict) -> MLModel:
                 data["FinishedAt"]
             )
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["started_at"] = (

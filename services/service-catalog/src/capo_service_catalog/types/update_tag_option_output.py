@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateTagOptionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTagOptionOutput:
     out: UpdateTagOptionOutput = {}  # type: ignore[typeddict-item]
-    if "TagOptionDetail" in data:
+    if data.get("TagOptionDetail") is not None:
         import capo_service_catalog.types.tag_option_detail
 
         out["tag_option_detail"] = (

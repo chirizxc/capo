@@ -43,13 +43,13 @@ def serialize_aws_json_1_0(value: UpdateWorkloadEstimateRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateWorkloadEstimateRequest:
     out: UpdateWorkloadEstimateRequest = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("UpdateWorkloadEstimateRequest.identifier required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["expires_at"] = (

@@ -132,21 +132,21 @@ def serialize_json(value: ReactiveAnomaly) -> dict:
 
 def deserialize_json(data: dict) -> ReactiveAnomaly:
     out: ReactiveAnomaly = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_devops_guru.types.anomaly_severity
 
         out["severity"] = capo_devops_guru.types.anomaly_severity.deserialize_json(
             data["Severity"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_devops_guru.types.anomaly_status
 
         out["status"] = capo_devops_guru.types.anomaly_status.deserialize_json(
             data["Status"]
         )
-    if "AnomalyTimeRange" in data:
+    if data.get("AnomalyTimeRange") is not None:
         import capo_devops_guru.types.anomaly_time_range
 
         out["anomaly_time_range"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> ReactiveAnomaly:
                 data["AnomalyTimeRange"]
             )
         )
-    if "AnomalyReportedTimeRange" in data:
+    if data.get("AnomalyReportedTimeRange") is not None:
         import capo_devops_guru.types.anomaly_reported_time_range
 
         out["anomaly_reported_time_range"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> ReactiveAnomaly:
                 data["AnomalyReportedTimeRange"]
             )
         )
-    if "SourceDetails" in data:
+    if data.get("SourceDetails") is not None:
         import capo_devops_guru.types.anomaly_source_details
 
         out["source_details"] = (
@@ -170,9 +170,9 @@ def deserialize_json(data: dict) -> ReactiveAnomaly:
                 data["SourceDetails"]
             )
         )
-    if "AssociatedInsightId" in data:
+    if data.get("AssociatedInsightId") is not None:
         out["associated_insight_id"] = data["AssociatedInsightId"]
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.resource_collection
 
         out["resource_collection"] = (
@@ -180,17 +180,17 @@ def deserialize_json(data: dict) -> ReactiveAnomaly:
                 data["ResourceCollection"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_devops_guru.types.anomaly_type
 
         out["type"] = capo_devops_guru.types.anomaly_type.deserialize_json(data["Type"])
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CausalAnomalyId" in data:
+    if data.get("CausalAnomalyId") is not None:
         out["causal_anomaly_id"] = data["CausalAnomalyId"]
-    if "AnomalyResources" in data:
+    if data.get("AnomalyResources") is not None:
         import capo_devops_guru.types.anomaly_resources
 
         out["anomaly_resources"] = (

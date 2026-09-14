@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: CloudFormationStackRecordSourceInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CloudFormationStackRecordSourceInfo:
     out: CloudFormationStackRecordSourceInfo = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.cloud_formation_stack_record_source_type
 
         out["resource_type"] = (
@@ -48,8 +48,8 @@ def deserialize_aws_json_1_1(data: dict) -> CloudFormationStackRecordSourceInfo:
                 data["resourceType"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

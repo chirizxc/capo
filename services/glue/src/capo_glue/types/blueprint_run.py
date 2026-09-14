@@ -82,36 +82,36 @@ def serialize_aws_json_1_1(value: BlueprintRun) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BlueprintRun:
     out: BlueprintRun = {}  # type: ignore[typeddict-item]
-    if "BlueprintName" in data:
+    if data.get("BlueprintName") is not None:
         out["blueprint_name"] = data["BlueprintName"]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "WorkflowName" in data:
+    if data.get("WorkflowName") is not None:
         out["workflow_name"] = data["WorkflowName"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_glue.types.blueprint_run_state
 
         out["state"] = capo_glue.types.blueprint_run_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["started_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["StartedOn"]
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["completed_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "RollbackErrorMessage" in data:
+    if data.get("RollbackErrorMessage") is not None:
         out["rollback_error_message"] = data["RollbackErrorMessage"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         out["parameters"] = data["Parameters"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

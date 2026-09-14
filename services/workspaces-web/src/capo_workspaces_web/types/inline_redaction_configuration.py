@@ -64,7 +64,7 @@ def serialize_json(value: InlineRedactionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InlineRedactionConfiguration:
     out: InlineRedactionConfiguration = {}  # type: ignore[typeddict-item]
-    if "inlineRedactionPatterns" in data:
+    if data.get("inlineRedactionPatterns") is not None:
         import capo_workspaces_web.types.inline_redaction_patterns
 
         out["inline_redaction_patterns"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> InlineRedactionConfiguration:
         raise DeserializationError(
             "InlineRedactionConfiguration.inline_redaction_patterns required"
         )
-    if "globalEnforcedUrls" in data:
+    if data.get("globalEnforcedUrls") is not None:
         import capo_workspaces_web.types.global_inline_redaction_urls
 
         out["global_enforced_urls"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> InlineRedactionConfiguration:
                 data["globalEnforcedUrls"]
             )
         )
-    if "globalExemptUrls" in data:
+    if data.get("globalExemptUrls") is not None:
         import capo_workspaces_web.types.global_inline_redaction_urls
 
         out["global_exempt_urls"] = (
@@ -92,6 +92,6 @@ def deserialize_json(data: dict) -> InlineRedactionConfiguration:
                 data["globalExemptUrls"]
             )
         )
-    if "globalConfidenceLevel" in data:
+    if data.get("globalConfidenceLevel") is not None:
         out["global_confidence_level"] = data["globalConfidenceLevel"]
     return out

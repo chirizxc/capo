@@ -79,7 +79,7 @@ def serialize_json(value: TaxExemption) -> dict:
 
 def deserialize_json(data: dict) -> TaxExemption:
     out: TaxExemption = {}  # type: ignore[typeddict-item]
-    if "authority" in data:
+    if data.get("authority") is not None:
         import capo_taxsettings.types.authority
 
         out["authority"] = capo_taxsettings.types.authority.deserialize_json(
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> TaxExemption:
         )
     else:
         raise DeserializationError("TaxExemption.authority required")
-    if "taxExemptionType" in data:
+    if data.get("taxExemptionType") is not None:
         import capo_taxsettings.types.tax_exemption_type
 
         out["tax_exemption_type"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> TaxExemption:
         )
     else:
         raise DeserializationError("TaxExemption.tax_exemption_type required")
-    if "effectiveDate" in data:
+    if data.get("effectiveDate") is not None:
         import capo_taxsettings.types._prelude.timestamp
 
         out["effective_date"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> TaxExemption:
                 data["effectiveDate"]
             )
         )
-    if "expirationDate" in data:
+    if data.get("expirationDate") is not None:
         import capo_taxsettings.types._prelude.timestamp
 
         out["expiration_date"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> TaxExemption:
                 data["expirationDate"]
             )
         )
-    if "systemEffectiveDate" in data:
+    if data.get("systemEffectiveDate") is not None:
         import capo_taxsettings.types._prelude.timestamp
 
         out["system_effective_date"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> TaxExemption:
                 data["systemEffectiveDate"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_taxsettings.types.entity_exemption_account_status
 
         out["status"] = (

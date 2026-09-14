@@ -95,11 +95,11 @@ def serialize_aws_json_1_0(value: ServicePipeline) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServicePipeline:
     out: ServicePipeline = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ServicePipeline.arn required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> ServicePipeline:
         )
     else:
         raise DeserializationError("ServicePipeline.created_at required")
-    if "lastDeploymentAttemptedAt" in data:
+    if data.get("lastDeploymentAttemptedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_deployment_attempted_at"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> ServicePipeline:
         raise DeserializationError(
             "ServicePipeline.last_deployment_attempted_at required"
         )
-    if "lastDeploymentSucceededAt" in data:
+    if data.get("lastDeploymentSucceededAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_deployment_succeeded_at"] = (
@@ -133,28 +133,28 @@ def deserialize_aws_json_1_0(data: dict) -> ServicePipeline:
         raise DeserializationError(
             "ServicePipeline.last_deployment_succeeded_at required"
         )
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("ServicePipeline.template_name required")
-    if "templateMajorVersion" in data:
+    if data.get("templateMajorVersion") is not None:
         out["template_major_version"] = data["templateMajorVersion"]
     else:
         raise DeserializationError("ServicePipeline.template_major_version required")
-    if "templateMinorVersion" in data:
+    if data.get("templateMinorVersion") is not None:
         out["template_minor_version"] = data["templateMinorVersion"]
     else:
         raise DeserializationError("ServicePipeline.template_minor_version required")
-    if "deploymentStatus" in data:
+    if data.get("deploymentStatus") is not None:
         out["deployment_status"] = data["deploymentStatus"]
     else:
         raise DeserializationError("ServicePipeline.deployment_status required")
-    if "deploymentStatusMessage" in data:
+    if data.get("deploymentStatusMessage") is not None:
         out["deployment_status_message"] = data["deploymentStatusMessage"]
-    if "spec" in data:
+    if data.get("spec") is not None:
         out["spec"] = data["spec"]
-    if "lastAttemptedDeploymentId" in data:
+    if data.get("lastAttemptedDeploymentId") is not None:
         out["last_attempted_deployment_id"] = data["lastAttemptedDeploymentId"]
-    if "lastSucceededDeploymentId" in data:
+    if data.get("lastSucceededDeploymentId") is not None:
         out["last_succeeded_deployment_id"] = data["lastSucceededDeploymentId"]
     return out

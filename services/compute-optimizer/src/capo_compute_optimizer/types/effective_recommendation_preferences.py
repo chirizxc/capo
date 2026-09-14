@@ -122,7 +122,7 @@ def serialize_aws_json_1_0(value: EffectiveRecommendationPreferences) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EffectiveRecommendationPreferences:
     out: EffectiveRecommendationPreferences = {}  # type: ignore[typeddict-item]
-    if "cpuVendorArchitectures" in data:
+    if data.get("cpuVendorArchitectures") is not None:
         import capo_compute_optimizer.types.cpu_vendor_architectures
 
         out["cpu_vendor_architectures"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_0(data: dict) -> EffectiveRecommendationPreferences:
                 data["cpuVendorArchitectures"]
             )
         )
-    if "enhancedInfrastructureMetrics" in data:
+    if data.get("enhancedInfrastructureMetrics") is not None:
         import capo_compute_optimizer.types.enhanced_infrastructure_metrics
 
         out["enhanced_infrastructure_metrics"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_0(data: dict) -> EffectiveRecommendationPreferences:
                 data["enhancedInfrastructureMetrics"]
             )
         )
-    if "inferredWorkloadTypes" in data:
+    if data.get("inferredWorkloadTypes") is not None:
         import capo_compute_optimizer.types.inferred_workload_types_preference
 
         out["inferred_workload_types"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_0(data: dict) -> EffectiveRecommendationPreferences:
                 data["inferredWorkloadTypes"]
             )
         )
-    if "externalMetricsPreference" in data:
+    if data.get("externalMetricsPreference") is not None:
         import capo_compute_optimizer.types.external_metrics_preference
 
         out["external_metrics_preference"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> EffectiveRecommendationPreferences:
                 data["externalMetricsPreference"]
             )
         )
-    if "lookBackPeriod" in data:
+    if data.get("lookBackPeriod") is not None:
         import capo_compute_optimizer.types.look_back_period_preference
 
         out["look_back_period"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_0(data: dict) -> EffectiveRecommendationPreferences:
                 data["lookBackPeriod"]
             )
         )
-    if "utilizationPreferences" in data:
+    if data.get("utilizationPreferences") is not None:
         import capo_compute_optimizer.types.utilization_preferences
 
         out["utilization_preferences"] = (
@@ -170,7 +170,7 @@ def deserialize_aws_json_1_0(data: dict) -> EffectiveRecommendationPreferences:
                 data["utilizationPreferences"]
             )
         )
-    if "preferredResources" in data:
+    if data.get("preferredResources") is not None:
         import capo_compute_optimizer.types.effective_preferred_resources
 
         out["preferred_resources"] = (
@@ -178,7 +178,7 @@ def deserialize_aws_json_1_0(data: dict) -> EffectiveRecommendationPreferences:
                 data["preferredResources"]
             )
         )
-    if "savingsEstimationMode" in data:
+    if data.get("savingsEstimationMode") is not None:
         import capo_compute_optimizer.types.instance_savings_estimation_mode
 
         out["savings_estimation_mode"] = (

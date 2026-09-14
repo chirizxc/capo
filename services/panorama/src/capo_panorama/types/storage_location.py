@@ -37,23 +37,23 @@ def serialize_json(value: StorageLocation) -> dict:
 
 def deserialize_json(data: dict) -> StorageLocation:
     out: StorageLocation = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
     else:
         raise DeserializationError("StorageLocation.bucket required")
-    if "RepoPrefixLocation" in data:
+    if data.get("RepoPrefixLocation") is not None:
         out["repo_prefix_location"] = data["RepoPrefixLocation"]
     else:
         raise DeserializationError("StorageLocation.repo_prefix_location required")
-    if "GeneratedPrefixLocation" in data:
+    if data.get("GeneratedPrefixLocation") is not None:
         out["generated_prefix_location"] = data["GeneratedPrefixLocation"]
     else:
         raise DeserializationError("StorageLocation.generated_prefix_location required")
-    if "BinaryPrefixLocation" in data:
+    if data.get("BinaryPrefixLocation") is not None:
         out["binary_prefix_location"] = data["BinaryPrefixLocation"]
     else:
         raise DeserializationError("StorageLocation.binary_prefix_location required")
-    if "ManifestPrefixLocation" in data:
+    if data.get("ManifestPrefixLocation") is not None:
         out["manifest_prefix_location"] = data["ManifestPrefixLocation"]
     else:
         raise DeserializationError("StorageLocation.manifest_prefix_location required")

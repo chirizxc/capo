@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: PriorityConfigurationOverride) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PriorityConfigurationOverride:
     out: PriorityConfigurationOverride = {}  # type: ignore[typeddict-item]
-    if "PlacementFallbackStrategy" in data:
+    if data.get("PlacementFallbackStrategy") is not None:
         import capo_gamelift.types.placement_fallback_strategy
 
         out["placement_fallback_strategy"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> PriorityConfigurationOverride:
                 data["PlacementFallbackStrategy"]
             )
         )
-    if "LocationOrder" in data:
+    if data.get("LocationOrder") is not None:
         import capo_gamelift.types.location_order_override_list
 
         out["location_order"] = (

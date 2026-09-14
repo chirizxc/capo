@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ForecastedEventsList:
 
     out: ForecastedEventsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_location.types.forecasted_event.deserialize_json(item))
     return out

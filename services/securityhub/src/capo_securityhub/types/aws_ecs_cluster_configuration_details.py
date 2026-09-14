@@ -31,7 +31,7 @@ def serialize_json(value: AwsEcsClusterConfigurationDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsClusterConfigurationDetails:
     out: AwsEcsClusterConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "ExecuteCommandConfiguration" in data:
+    if data.get("ExecuteCommandConfiguration") is not None:
         import capo_securityhub.types.aws_ecs_cluster_configuration_execute_command_configuration_details
 
         out["execute_command_configuration"] = (

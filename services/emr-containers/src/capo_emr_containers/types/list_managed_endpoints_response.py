@@ -32,12 +32,12 @@ def serialize_json(value: ListManagedEndpointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListManagedEndpointsResponse:
     out: ListManagedEndpointsResponse = {}  # type: ignore[typeddict-item]
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_emr_containers.types.endpoints
 
         out["endpoints"] = capo_emr_containers.types.endpoints.deserialize_json(
             data["endpoints"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: PutVoiceConnectorStreamingConfigurationResponse) -> di
 
 def deserialize_json(data: dict) -> PutVoiceConnectorStreamingConfigurationResponse:
     out: PutVoiceConnectorStreamingConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "StreamingConfiguration" in data:
+    if data.get("StreamingConfiguration") is not None:
         import capo_chime_sdk_voice.types.streaming_configuration
 
         out["streaming_configuration"] = (

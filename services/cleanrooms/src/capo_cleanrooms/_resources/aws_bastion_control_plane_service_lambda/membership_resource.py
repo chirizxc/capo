@@ -150,9 +150,10 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_membership_input.CreateMembershipInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["query_log_status"] = query_log_status
+        input_: capo_cleanrooms.types.create_membership_input.CreateMembershipInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "query_log_status": query_log_status,
+        }
         if job_log_status is not None:
             input_["job_log_status"] = job_log_status
         if tags is not None:
@@ -173,6 +174,7 @@ class MembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -210,14 +212,16 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_membership_input.GetMembershipInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.get_membership_input.GetMembershipInput = {
+            "membership_identifier": membership_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -276,8 +280,9 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_membership_input.UpdateMembershipInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.update_membership_input.UpdateMembershipInput = {
+            "membership_identifier": membership_identifier
+        }
         if query_log_status is not None:
             input_["query_log_status"] = query_log_status
         if job_log_status is not None:
@@ -298,6 +303,7 @@ class MembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -336,14 +342,16 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_membership_input.DeleteMembershipInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.delete_membership_input.DeleteMembershipInput = {
+            "membership_identifier": membership_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -388,7 +396,7 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_memberships_input.ListMembershipsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanrooms.types.list_memberships_input.ListMembershipsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -401,6 +409,7 @@ class MembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_protected_job(
@@ -440,15 +449,17 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_protected_job_input.GetProtectedJobInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["protected_job_identifier"] = protected_job_identifier
+        input_: capo_cleanrooms.types.get_protected_job_input.GetProtectedJobInput = {
+            "membership_identifier": membership_identifier,
+            "protected_job_identifier": protected_job_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_protected_query(
@@ -488,15 +499,17 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_protected_query_input.GetProtectedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["protected_query_identifier"] = protected_query_identifier
+        input_: capo_cleanrooms.types.get_protected_query_input.GetProtectedQueryInput = {
+            "membership_identifier": membership_identifier,
+            "protected_query_identifier": protected_query_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_privacy_budgets(
@@ -546,9 +559,10 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_privacy_budgets_input.ListPrivacyBudgetsInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["privacy_budget_type"] = privacy_budget_type
+        input_: capo_cleanrooms.types.list_privacy_budgets_input.ListPrivacyBudgetsInput = {
+            "membership_identifier": membership_identifier,
+            "privacy_budget_type": privacy_budget_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -561,6 +575,7 @@ class MembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_protected_jobs(
@@ -608,8 +623,9 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_protected_jobs_input.ListProtectedJobsInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_protected_jobs_input.ListProtectedJobsInput = {
+            "membership_identifier": membership_identifier
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -622,6 +638,7 @@ class MembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_protected_queries(
@@ -671,8 +688,9 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_protected_queries_input.ListProtectedQueriesInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_protected_queries_input.ListProtectedQueriesInput = {
+            "membership_identifier": membership_identifier
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -685,6 +703,7 @@ class MembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def preview_privacy_impact(
@@ -726,15 +745,17 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.preview_privacy_impact_input.PreviewPrivacyImpactInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["parameters"] = parameters
+        input_: capo_cleanrooms.types.preview_privacy_impact_input.PreviewPrivacyImpactInput = {
+            "membership_identifier": membership_identifier,
+            "parameters": parameters,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_protected_job(
@@ -789,10 +810,11 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.start_protected_job_input.StartProtectedJobInput = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["membership_identifier"] = membership_identifier
-        input_["job_parameters"] = job_parameters
+        input_: capo_cleanrooms.types.start_protected_job_input.StartProtectedJobInput = {
+            "type": type,
+            "membership_identifier": membership_identifier,
+            "job_parameters": job_parameters,
+        }
         if result_configuration is not None:
             input_["result_configuration"] = result_configuration
         if compute_configuration is not None:
@@ -805,6 +827,7 @@ class MembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_protected_query(
@@ -859,10 +882,11 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.start_protected_query_input.StartProtectedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["membership_identifier"] = membership_identifier
-        input_["sql_parameters"] = sql_parameters
+        input_: capo_cleanrooms.types.start_protected_query_input.StartProtectedQueryInput = {
+            "type": type,
+            "membership_identifier": membership_identifier,
+            "sql_parameters": sql_parameters,
+        }
         if result_configuration is not None:
             input_["result_configuration"] = result_configuration
         if compute_configuration is not None:
@@ -875,6 +899,7 @@ class MembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_protected_job(
@@ -917,16 +942,18 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_protected_job_input.UpdateProtectedJobInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["protected_job_identifier"] = protected_job_identifier
-        input_["target_status"] = target_status
+        input_: capo_cleanrooms.types.update_protected_job_input.UpdateProtectedJobInput = {
+            "membership_identifier": membership_identifier,
+            "protected_job_identifier": protected_job_identifier,
+            "target_status": target_status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_protected_query(
@@ -971,16 +998,18 @@ class MembershipResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_protected_query_input.UpdateProtectedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["protected_query_identifier"] = protected_query_identifier
-        input_["target_status"] = target_status
+        input_: capo_cleanrooms.types.update_protected_query_input.UpdateProtectedQueryInput = {
+            "membership_identifier": membership_identifier,
+            "protected_query_identifier": protected_query_identifier,
+            "target_status": target_status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1048,9 +1077,10 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_membership_input.CreateMembershipInput = {}  # type: ignore[typeddict-item]
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["query_log_status"] = query_log_status
+        input_: capo_cleanrooms.types.create_membership_input.CreateMembershipInput = {
+            "collaboration_identifier": collaboration_identifier,
+            "query_log_status": query_log_status,
+        }
         if job_log_status is not None:
             input_["job_log_status"] = job_log_status
         if tags is not None:
@@ -1071,6 +1101,7 @@ class AsyncMembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1109,14 +1140,16 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_membership_input.GetMembershipInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.get_membership_input.GetMembershipInput = {
+            "membership_identifier": membership_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1176,8 +1209,9 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_membership_input.UpdateMembershipInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.update_membership_input.UpdateMembershipInput = {
+            "membership_identifier": membership_identifier
+        }
         if query_log_status is not None:
             input_["query_log_status"] = query_log_status
         if job_log_status is not None:
@@ -1198,6 +1232,7 @@ class AsyncMembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1237,14 +1272,16 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_membership_input.DeleteMembershipInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.delete_membership_input.DeleteMembershipInput = {
+            "membership_identifier": membership_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1290,7 +1327,7 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_memberships_input.ListMembershipsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanrooms.types.list_memberships_input.ListMembershipsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1303,6 +1340,7 @@ class AsyncMembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_protected_job(
@@ -1343,15 +1381,17 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_protected_job_input.GetProtectedJobInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["protected_job_identifier"] = protected_job_identifier
+        input_: capo_cleanrooms.types.get_protected_job_input.GetProtectedJobInput = {
+            "membership_identifier": membership_identifier,
+            "protected_job_identifier": protected_job_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_protected_query(
@@ -1392,15 +1432,17 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_protected_query_input.GetProtectedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["protected_query_identifier"] = protected_query_identifier
+        input_: capo_cleanrooms.types.get_protected_query_input.GetProtectedQueryInput = {
+            "membership_identifier": membership_identifier,
+            "protected_query_identifier": protected_query_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_privacy_budgets(
@@ -1451,9 +1493,10 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_privacy_budgets_input.ListPrivacyBudgetsInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["privacy_budget_type"] = privacy_budget_type
+        input_: capo_cleanrooms.types.list_privacy_budgets_input.ListPrivacyBudgetsInput = {
+            "membership_identifier": membership_identifier,
+            "privacy_budget_type": privacy_budget_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1466,6 +1509,7 @@ class AsyncMembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_protected_jobs(
@@ -1514,8 +1558,9 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_protected_jobs_input.ListProtectedJobsInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_protected_jobs_input.ListProtectedJobsInput = {
+            "membership_identifier": membership_identifier
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -1528,6 +1573,7 @@ class AsyncMembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_protected_queries(
@@ -1578,8 +1624,9 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_protected_queries_input.ListProtectedQueriesInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_protected_queries_input.ListProtectedQueriesInput = {
+            "membership_identifier": membership_identifier
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -1592,6 +1639,7 @@ class AsyncMembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def preview_privacy_impact(
@@ -1634,15 +1682,17 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.preview_privacy_impact_input.PreviewPrivacyImpactInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["parameters"] = parameters
+        input_: capo_cleanrooms.types.preview_privacy_impact_input.PreviewPrivacyImpactInput = {
+            "membership_identifier": membership_identifier,
+            "parameters": parameters,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_protected_job(
@@ -1698,10 +1748,11 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.start_protected_job_input.StartProtectedJobInput = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["membership_identifier"] = membership_identifier
-        input_["job_parameters"] = job_parameters
+        input_: capo_cleanrooms.types.start_protected_job_input.StartProtectedJobInput = {
+            "type": type,
+            "membership_identifier": membership_identifier,
+            "job_parameters": job_parameters,
+        }
         if result_configuration is not None:
             input_["result_configuration"] = result_configuration
         if compute_configuration is not None:
@@ -1714,6 +1765,7 @@ class AsyncMembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_protected_query(
@@ -1769,10 +1821,11 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.start_protected_query_input.StartProtectedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["membership_identifier"] = membership_identifier
-        input_["sql_parameters"] = sql_parameters
+        input_: capo_cleanrooms.types.start_protected_query_input.StartProtectedQueryInput = {
+            "type": type,
+            "membership_identifier": membership_identifier,
+            "sql_parameters": sql_parameters,
+        }
         if result_configuration is not None:
             input_["result_configuration"] = result_configuration
         if compute_configuration is not None:
@@ -1785,6 +1838,7 @@ class AsyncMembershipResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_protected_job(
@@ -1828,16 +1882,18 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_protected_job_input.UpdateProtectedJobInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["protected_job_identifier"] = protected_job_identifier
-        input_["target_status"] = target_status
+        input_: capo_cleanrooms.types.update_protected_job_input.UpdateProtectedJobInput = {
+            "membership_identifier": membership_identifier,
+            "protected_job_identifier": protected_job_identifier,
+            "target_status": target_status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_protected_query(
@@ -1883,14 +1939,16 @@ class AsyncMembershipResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_protected_query_input.UpdateProtectedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["protected_query_identifier"] = protected_query_identifier
-        input_["target_status"] = target_status
+        input_: capo_cleanrooms.types.update_protected_query_input.UpdateProtectedQueryInput = {
+            "membership_identifier": membership_identifier,
+            "protected_query_identifier": protected_query_identifier,
+            "target_status": target_status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

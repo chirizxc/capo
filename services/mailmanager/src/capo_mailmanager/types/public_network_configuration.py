@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: PublicNetworkConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PublicNetworkConfiguration:
     out: PublicNetworkConfiguration = {}  # type: ignore[typeddict-item]
-    if "IpType" in data:
+    if data.get("IpType") is not None:
         import capo_mailmanager.types.ip_type
 
         out["ip_type"] = capo_mailmanager.types.ip_type.deserialize_aws_json_1_0(

@@ -46,15 +46,15 @@ def serialize_json(value: AssignedSession) -> dict:
 
 def deserialize_json(data: dict) -> AssignedSession:
     out: AssignedSession = {}  # type: ignore[typeddict-item]
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("AssignedSession.queue_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("AssignedSession.job_id required")
-    if "sessionActions" in data:
+    if data.get("sessionActions") is not None:
         import capo_deadline.types.assigned_session_actions
 
         out["session_actions"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> AssignedSession:
         )
     else:
         raise DeserializationError("AssignedSession.session_actions required")
-    if "logConfiguration" in data:
+    if data.get("logConfiguration") is not None:
         import capo_deadline.types.log_configuration
 
         out["log_configuration"] = (

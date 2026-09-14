@@ -63,15 +63,20 @@ class EventDestinationDoesNotExistException(ServiceError):
 
     code: str | None = "EventDestinationDoesNotExistException"
 
-    def __init__(self, data: EventDestinationDoesNotExistException_):
+    def __init__(
+        self, data: EventDestinationDoesNotExistException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EventDestinationDoesNotExistException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "EventDestinationDoesNotExistException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "EventDestinationDoesNotExistException":
+        return cls(deserialize_query(el), message)

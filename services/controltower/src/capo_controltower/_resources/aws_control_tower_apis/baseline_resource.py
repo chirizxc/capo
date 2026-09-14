@@ -70,14 +70,16 @@ class BaselineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_baseline_input.GetBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["baseline_identifier"] = baseline_identifier
+        input_: capo_controltower.types.get_baseline_input.GetBaselineInput = {
+            "baseline_identifier": baseline_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -118,7 +120,7 @@ class BaselineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_baselines_input.ListBaselinesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_baselines_input.ListBaselinesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -129,6 +131,7 @@ class BaselineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -172,14 +175,16 @@ class AsyncBaselineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_baseline_input.GetBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["baseline_identifier"] = baseline_identifier
+        input_: capo_controltower.types.get_baseline_input.GetBaselineInput = {
+            "baseline_identifier": baseline_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -221,7 +226,7 @@ class AsyncBaselineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_baselines_input.ListBaselinesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_baselines_input.ListBaselinesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -232,4 +237,5 @@ class AsyncBaselineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

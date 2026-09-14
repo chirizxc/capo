@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: Fields) -> dict:
 def deserialize_json(data: dict) -> Fields:
     out: Fields = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_cloudsearch_domain.types.field_value
 
         out[key] = capo_cloudsearch_domain.types.field_value.deserialize_json(value)

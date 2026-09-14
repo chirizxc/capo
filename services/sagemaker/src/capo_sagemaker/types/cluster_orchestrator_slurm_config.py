@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ClusterOrchestratorSlurmConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterOrchestratorSlurmConfig:
     out: ClusterOrchestratorSlurmConfig = {}  # type: ignore[typeddict-item]
-    if "SlurmConfigStrategy" in data:
+    if data.get("SlurmConfigStrategy") is not None:
         import capo_sagemaker.types.cluster_slurm_config_strategy
 
         out["slurm_config_strategy"] = (

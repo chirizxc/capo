@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: CancelDataRepositoryTaskResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelDataRepositoryTaskResponse:
     out: CancelDataRepositoryTaskResponse = {}  # type: ignore[typeddict-item]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.data_repository_task_lifecycle
 
         out["lifecycle"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> CancelDataRepositoryTaskResponse:
                 data["Lifecycle"]
             )
         )
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
     return out

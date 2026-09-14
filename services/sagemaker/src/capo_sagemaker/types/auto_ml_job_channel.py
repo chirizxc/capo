@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: AutoMLJobChannel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLJobChannel:
     out: AutoMLJobChannel = {}  # type: ignore[typeddict-item]
-    if "ChannelType" in data:
+    if data.get("ChannelType") is not None:
         import capo_sagemaker.types.auto_ml_channel_type
 
         out["channel_type"] = (
@@ -70,9 +70,9 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLJobChannel:
                 data["ChannelType"]
             )
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "CompressionType" in data:
+    if data.get("CompressionType") is not None:
         import capo_sagemaker.types.compression_type
 
         out["compression_type"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLJobChannel:
                 data["CompressionType"]
             )
         )
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_sagemaker.types.auto_ml_data_source
 
         out["data_source"] = (

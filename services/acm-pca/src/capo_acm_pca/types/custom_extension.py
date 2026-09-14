@@ -35,14 +35,14 @@ def serialize_aws_json_1_1(value: CustomExtension) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomExtension:
     out: CustomExtension = {}  # type: ignore[typeddict-item]
-    if "ObjectIdentifier" in data:
+    if data.get("ObjectIdentifier") is not None:
         out["object_identifier"] = data["ObjectIdentifier"]
     else:
         raise DeserializationError("CustomExtension.object_identifier required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("CustomExtension.value required")
-    if "Critical" in data:
+    if data.get("Critical") is not None:
         out["critical"] = data["Critical"]
     return out

@@ -79,21 +79,21 @@ def serialize_aws_json_1_1(value: UpdateFeaturedResultsSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFeaturedResultsSetRequest:
     out: UpdateFeaturedResultsSetRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("UpdateFeaturedResultsSetRequest.index_id required")
-    if "FeaturedResultsSetId" in data:
+    if data.get("FeaturedResultsSetId") is not None:
         out["featured_results_set_id"] = data["FeaturedResultsSetId"]
     else:
         raise DeserializationError(
             "UpdateFeaturedResultsSetRequest.featured_results_set_id required"
         )
-    if "FeaturedResultsSetName" in data:
+    if data.get("FeaturedResultsSetName") is not None:
         out["featured_results_set_name"] = data["FeaturedResultsSetName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.featured_results_set_status
 
         out["status"] = (
@@ -101,13 +101,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFeaturedResultsSetRequest:
                 data["Status"]
             )
         )
-    if "QueryTexts" in data:
+    if data.get("QueryTexts") is not None:
         import capo_kendra.types.query_text_list
 
         out["query_texts"] = capo_kendra.types.query_text_list.deserialize_aws_json_1_1(
             data["QueryTexts"]
         )
-    if "FeaturedDocuments" in data:
+    if data.get("FeaturedDocuments") is not None:
         import capo_kendra.types.featured_document_list
 
         out["featured_documents"] = (

@@ -99,11 +99,11 @@ def serialize_aws_json_1_1(value: Ec2InstanceAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Ec2InstanceAttributes:
     out: Ec2InstanceAttributes = {}  # type: ignore[typeddict-item]
-    if "Ec2KeyName" in data:
+    if data.get("Ec2KeyName") is not None:
         out["ec2_key_name"] = data["Ec2KeyName"]
-    if "Ec2SubnetId" in data:
+    if data.get("Ec2SubnetId") is not None:
         out["ec2_subnet_id"] = data["Ec2SubnetId"]
-    if "RequestedEc2SubnetIds" in data:
+    if data.get("RequestedEc2SubnetIds") is not None:
         import capo_emr.types.xml_string_max_len256_list
 
         out["requested_ec2_subnet_ids"] = (
@@ -111,9 +111,9 @@ def deserialize_aws_json_1_1(data: dict) -> Ec2InstanceAttributes:
                 data["RequestedEc2SubnetIds"]
             )
         )
-    if "Ec2AvailabilityZone" in data:
+    if data.get("Ec2AvailabilityZone") is not None:
         out["ec2_availability_zone"] = data["Ec2AvailabilityZone"]
-    if "RequestedEc2AvailabilityZones" in data:
+    if data.get("RequestedEc2AvailabilityZones") is not None:
         import capo_emr.types.xml_string_max_len256_list
 
         out["requested_ec2_availability_zones"] = (
@@ -121,15 +121,15 @@ def deserialize_aws_json_1_1(data: dict) -> Ec2InstanceAttributes:
                 data["RequestedEc2AvailabilityZones"]
             )
         )
-    if "IamInstanceProfile" in data:
+    if data.get("IamInstanceProfile") is not None:
         out["iam_instance_profile"] = data["IamInstanceProfile"]
-    if "EmrManagedMasterSecurityGroup" in data:
+    if data.get("EmrManagedMasterSecurityGroup") is not None:
         out["emr_managed_master_security_group"] = data["EmrManagedMasterSecurityGroup"]
-    if "EmrManagedSlaveSecurityGroup" in data:
+    if data.get("EmrManagedSlaveSecurityGroup") is not None:
         out["emr_managed_slave_security_group"] = data["EmrManagedSlaveSecurityGroup"]
-    if "ServiceAccessSecurityGroup" in data:
+    if data.get("ServiceAccessSecurityGroup") is not None:
         out["service_access_security_group"] = data["ServiceAccessSecurityGroup"]
-    if "AdditionalMasterSecurityGroups" in data:
+    if data.get("AdditionalMasterSecurityGroups") is not None:
         import capo_emr.types.string_list
 
         out["additional_master_security_groups"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> Ec2InstanceAttributes:
                 data["AdditionalMasterSecurityGroups"]
             )
         )
-    if "AdditionalSlaveSecurityGroups" in data:
+    if data.get("AdditionalSlaveSecurityGroups") is not None:
         import capo_emr.types.string_list
 
         out["additional_slave_security_groups"] = (

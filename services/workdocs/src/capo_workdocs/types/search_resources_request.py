@@ -89,9 +89,9 @@ def serialize_json(value: SearchResourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchResourcesRequest:
     out: SearchResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "QueryText" in data:
+    if data.get("QueryText") is not None:
         out["query_text"] = data["QueryText"]
-    if "QueryScopes" in data:
+    if data.get("QueryScopes") is not None:
         import capo_workdocs.types.search_query_scope_type_list
 
         out["query_scopes"] = (
@@ -99,9 +99,9 @@ def deserialize_json(data: dict) -> SearchResourcesRequest:
                 data["QueryScopes"]
             )
         )
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
-    if "AdditionalResponseFields" in data:
+    if data.get("AdditionalResponseFields") is not None:
         import capo_workdocs.types.additional_response_fields_list
 
         out["additional_response_fields"] = (
@@ -109,18 +109,18 @@ def deserialize_json(data: dict) -> SearchResourcesRequest:
                 data["AdditionalResponseFields"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_workdocs.types.filters
 
         out["filters"] = capo_workdocs.types.filters.deserialize_json(data["Filters"])
-    if "OrderBy" in data:
+    if data.get("OrderBy") is not None:
         import capo_workdocs.types.search_result_sort_list
 
         out["order_by"] = capo_workdocs.types.search_result_sort_list.deserialize_json(
             data["OrderBy"]
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

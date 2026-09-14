@@ -72,15 +72,15 @@ def serialize_aws_json_1_1(value: NotifyConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotifyConfigurationType:
     out: NotifyConfigurationType = {}  # type: ignore[typeddict-item]
-    if "From" in data:
+    if data.get("From") is not None:
         out["from"] = data["From"]
-    if "ReplyTo" in data:
+    if data.get("ReplyTo") is not None:
         out["reply_to"] = data["ReplyTo"]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
     else:
         raise DeserializationError("NotifyConfigurationType.source_arn required")
-    if "BlockEmail" in data:
+    if data.get("BlockEmail") is not None:
         import capo_cognito_identity_provider.types.notify_email_type
 
         out["block_email"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotifyConfigurationType:
                 data["BlockEmail"]
             )
         )
-    if "NoActionEmail" in data:
+    if data.get("NoActionEmail") is not None:
         import capo_cognito_identity_provider.types.notify_email_type
 
         out["no_action_email"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotifyConfigurationType:
                 data["NoActionEmail"]
             )
         )
-    if "MfaEmail" in data:
+    if data.get("MfaEmail") is not None:
         import capo_cognito_identity_provider.types.notify_email_type
 
         out["mfa_email"] = (

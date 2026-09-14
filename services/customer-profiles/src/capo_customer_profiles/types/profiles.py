@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> Profiles:
 
     out: Profiles = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.profile_query_result.deserialize_json(item)
         )

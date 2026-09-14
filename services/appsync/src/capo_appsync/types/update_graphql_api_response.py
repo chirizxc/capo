@@ -27,7 +27,7 @@ def serialize_json(value: UpdateGraphqlApiResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGraphqlApiResponse:
     out: UpdateGraphqlApiResponse = {}  # type: ignore[typeddict-item]
-    if "graphqlApi" in data:
+    if data.get("graphqlApi") is not None:
         import capo_appsync.types.graphql_api
 
         out["graphql_api"] = capo_appsync.types.graphql_api.deserialize_json(

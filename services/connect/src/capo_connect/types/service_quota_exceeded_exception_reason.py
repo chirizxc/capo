@@ -38,7 +38,7 @@ def serialize_json(value: ServiceQuotaExceededExceptionReason) -> dict:
 
 
 def deserialize_json(data: dict) -> ServiceQuotaExceededExceptionReason:
-    if "AttachedFileServiceQuotaExceededExceptionReason" in data:
+    if data.get("AttachedFileServiceQuotaExceededExceptionReason") is not None:
         import capo_connect.types.attached_file_service_quota_exceeded_exception_reason
 
         return {

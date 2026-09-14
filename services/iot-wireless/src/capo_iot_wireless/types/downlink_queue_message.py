@@ -47,13 +47,13 @@ def serialize_json(value: DownlinkQueueMessage) -> dict:
 
 def deserialize_json(data: dict) -> DownlinkQueueMessage:
     out: DownlinkQueueMessage = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
-    if "TransmitMode" in data:
+    if data.get("TransmitMode") is not None:
         out["transmit_mode"] = data["TransmitMode"]
-    if "ReceivedAt" in data:
+    if data.get("ReceivedAt") is not None:
         out["received_at"] = data["ReceivedAt"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_send_data_to_device
 
         out["lo_ra_wan"] = (

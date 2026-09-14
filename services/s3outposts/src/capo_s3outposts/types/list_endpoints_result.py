@@ -32,12 +32,12 @@ def serialize_json(value: ListEndpointsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListEndpointsResult:
     out: ListEndpointsResult = {}  # type: ignore[typeddict-item]
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_s3outposts.types.endpoints
 
         out["endpoints"] = capo_s3outposts.types.endpoints.deserialize_json(
             data["Endpoints"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

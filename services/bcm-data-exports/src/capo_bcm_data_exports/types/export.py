@@ -62,15 +62,15 @@ def serialize_aws_json_1_1(value: Export) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Export:
     out: Export = {}  # type: ignore[typeddict-item]
-    if "ExportArn" in data:
+    if data.get("ExportArn") is not None:
         out["export_arn"] = data["ExportArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Export.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DataQuery" in data:
+    if data.get("DataQuery") is not None:
         import capo_bcm_data_exports.types.data_query
 
         out["data_query"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> Export:
         )
     else:
         raise DeserializationError("Export.data_query required")
-    if "DestinationConfigurations" in data:
+    if data.get("DestinationConfigurations") is not None:
         import capo_bcm_data_exports.types.destination_configurations
 
         out["destination_configurations"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> Export:
         )
     else:
         raise DeserializationError("Export.destination_configurations required")
-    if "RefreshCadence" in data:
+    if data.get("RefreshCadence") is not None:
         import capo_bcm_data_exports.types.refresh_cadence
 
         out["refresh_cadence"] = (

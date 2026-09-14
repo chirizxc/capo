@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: S3ReferenceDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ReferenceDataSource:
     out: S3ReferenceDataSource = {}  # type: ignore[typeddict-item]
-    if "BucketARN" in data:
+    if data.get("BucketARN") is not None:
         out["bucket_arn"] = data["BucketARN"]
     else:
         raise DeserializationError("S3ReferenceDataSource.bucket_arn required")
-    if "FileKey" in data:
+    if data.get("FileKey") is not None:
         out["file_key"] = data["FileKey"]
     else:
         raise DeserializationError("S3ReferenceDataSource.file_key required")
-    if "ReferenceRoleARN" in data:
+    if data.get("ReferenceRoleARN") is not None:
         out["reference_role_arn"] = data["ReferenceRoleARN"]
     else:
         raise DeserializationError("S3ReferenceDataSource.reference_role_arn required")

@@ -31,7 +31,7 @@ def serialize_json(value: PipeTargetSageMakerPipelineParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetSageMakerPipelineParameters:
     out: PipeTargetSageMakerPipelineParameters = {}  # type: ignore[typeddict-item]
-    if "PipelineParameterList" in data:
+    if data.get("PipelineParameterList") is not None:
         import capo_pipes.types.sage_maker_pipeline_parameter_list
 
         out["pipeline_parameter_list"] = (

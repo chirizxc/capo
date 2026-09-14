@@ -49,42 +49,82 @@ def serialize_aws_json_1_1(value: TrialComponentMetricSummary) -> dict:
             value["time_stamp"]
         )
     if "max" in value:
-        out["Max"] = value["max"]
+        out["Max"] = (
+            "NaN"
+            if value["max"] != value["max"]
+            else "Infinity"
+            if value["max"] == float("inf")
+            else "-Infinity"
+            if value["max"] == float("-inf")
+            else value["max"]
+        )
     if "min" in value:
-        out["Min"] = value["min"]
+        out["Min"] = (
+            "NaN"
+            if value["min"] != value["min"]
+            else "Infinity"
+            if value["min"] == float("inf")
+            else "-Infinity"
+            if value["min"] == float("-inf")
+            else value["min"]
+        )
     if "last" in value:
-        out["Last"] = value["last"]
+        out["Last"] = (
+            "NaN"
+            if value["last"] != value["last"]
+            else "Infinity"
+            if value["last"] == float("inf")
+            else "-Infinity"
+            if value["last"] == float("-inf")
+            else value["last"]
+        )
     if "count" in value:
         out["Count"] = value["count"]
     if "avg" in value:
-        out["Avg"] = value["avg"]
+        out["Avg"] = (
+            "NaN"
+            if value["avg"] != value["avg"]
+            else "Infinity"
+            if value["avg"] == float("inf")
+            else "-Infinity"
+            if value["avg"] == float("-inf")
+            else value["avg"]
+        )
     if "std_dev" in value:
-        out["StdDev"] = value["std_dev"]
+        out["StdDev"] = (
+            "NaN"
+            if value["std_dev"] != value["std_dev"]
+            else "Infinity"
+            if value["std_dev"] == float("inf")
+            else "-Infinity"
+            if value["std_dev"] == float("-inf")
+            else value["std_dev"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> TrialComponentMetricSummary:
     out: TrialComponentMetricSummary = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
-    if "TimeStamp" in data:
+    if data.get("TimeStamp") is not None:
         import capo_sagemaker.types.timestamp
 
         out["time_stamp"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["TimeStamp"]
         )
-    if "Max" in data:
-        out["max"] = data["Max"]
-    if "Min" in data:
-        out["min"] = data["Min"]
-    if "Last" in data:
-        out["last"] = data["Last"]
-    if "Count" in data:
+    if data.get("Max") is not None:
+        out["max"] = float(data["Max"])
+    if data.get("Min") is not None:
+        out["min"] = float(data["Min"])
+    if data.get("Last") is not None:
+        out["last"] = float(data["Last"])
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "Avg" in data:
-        out["avg"] = data["Avg"]
-    if "StdDev" in data:
-        out["std_dev"] = data["StdDev"]
+    if data.get("Avg") is not None:
+        out["avg"] = float(data["Avg"])
+    if data.get("StdDev") is not None:
+        out["std_dev"] = float(data["StdDev"])
     return out

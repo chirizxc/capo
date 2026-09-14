@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribePortfolioSharesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePortfolioSharesOutput:
     out: DescribePortfolioSharesOutput = {}  # type: ignore[typeddict-item]
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "PortfolioShareDetails" in data:
+    if data.get("PortfolioShareDetails") is not None:
         import capo_service_catalog.types.portfolio_share_details
 
         out["portfolio_share_details"] = (

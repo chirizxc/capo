@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetBucketAccessKeysResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBucketAccessKeysResult:
     out: GetBucketAccessKeysResult = {}  # type: ignore[typeddict-item]
-    if "accessKeys" in data:
+    if data.get("accessKeys") is not None:
         import capo_lightsail.types.access_key_list
 
         out["access_keys"] = (

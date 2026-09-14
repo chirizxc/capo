@@ -53,13 +53,13 @@ def serialize_json(value: CreateFrameworkInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateFrameworkInput:
     out: CreateFrameworkInput = {}  # type: ignore[typeddict-item]
-    if "FrameworkName" in data:
+    if data.get("FrameworkName") is not None:
         out["framework_name"] = data["FrameworkName"]
     else:
         raise DeserializationError("CreateFrameworkInput.framework_name required")
-    if "FrameworkDescription" in data:
+    if data.get("FrameworkDescription") is not None:
         out["framework_description"] = data["FrameworkDescription"]
-    if "FrameworkControls" in data:
+    if data.get("FrameworkControls") is not None:
         import capo_backup.types.framework_controls
 
         out["framework_controls"] = (
@@ -69,9 +69,9 @@ def deserialize_json(data: dict) -> CreateFrameworkInput:
         )
     else:
         raise DeserializationError("CreateFrameworkInput.framework_controls required")
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "FrameworkTags" in data:
+    if data.get("FrameworkTags") is not None:
         import capo_backup.types.string_map
 
         out["framework_tags"] = capo_backup.types.string_map.deserialize_json(

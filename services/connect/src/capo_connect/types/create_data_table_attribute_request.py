@@ -62,11 +62,11 @@ def serialize_json(value: CreateDataTableAttributeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataTableAttributeRequest:
     out: CreateDataTableAttributeRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDataTableAttributeRequest.name required")
-    if "ValueType" in data:
+    if data.get("ValueType") is not None:
         import capo_connect.types.data_table_attribute_value_type
 
         out["value_type"] = (
@@ -78,13 +78,13 @@ def deserialize_json(data: dict) -> CreateDataTableAttributeRequest:
         raise DeserializationError(
             "CreateDataTableAttributeRequest.value_type required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         out["primary"] = data["Primary"]
     else:
         out["primary"] = False
-    if "Validation" in data:
+    if data.get("Validation") is not None:
         import capo_connect.types.validation
 
         out["validation"] = capo_connect.types.validation.deserialize_json(

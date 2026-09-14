@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AwsIamPolicyVersionList:
 
     out: AwsIamPolicyVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.aws_iam_policy_version.deserialize_json(item))
     return out

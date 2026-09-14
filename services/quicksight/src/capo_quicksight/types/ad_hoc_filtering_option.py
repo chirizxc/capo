@@ -31,7 +31,7 @@ def serialize_json(value: AdHocFilteringOption) -> dict:
 
 def deserialize_json(data: dict) -> AdHocFilteringOption:
     out: AdHocFilteringOption = {}  # type: ignore[typeddict-item]
-    if "AvailabilityStatus" in data:
+    if data.get("AvailabilityStatus") is not None:
         import capo_quicksight.types.dashboard_behavior
 
         out["availability_status"] = (

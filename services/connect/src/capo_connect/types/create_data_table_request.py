@@ -59,17 +59,17 @@ def serialize_json(value: CreateDataTableRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataTableRequest:
     out: CreateDataTableRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDataTableRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
     else:
         raise DeserializationError("CreateDataTableRequest.time_zone required")
-    if "ValueLockLevel" in data:
+    if data.get("ValueLockLevel") is not None:
         import capo_connect.types.data_table_lock_level
 
         out["value_lock_level"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> CreateDataTableRequest:
         )
     else:
         raise DeserializationError("CreateDataTableRequest.value_lock_level required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.data_table_status
 
         out["status"] = capo_connect.types.data_table_status.deserialize_json(
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> CreateDataTableRequest:
         )
     else:
         raise DeserializationError("CreateDataTableRequest.status required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

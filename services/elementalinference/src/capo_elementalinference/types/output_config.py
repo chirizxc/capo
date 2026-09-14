@@ -60,7 +60,7 @@ def serialize_json(value: OutputConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> OutputConfig:
-    if "cropping" in data:
+    if data.get("cropping") is not None:
         import capo_elementalinference.types.cropping_config
 
         return {
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> OutputConfig:
                 data["cropping"]
             )
         }
-    elif "clipping" in data:
+    elif data.get("clipping") is not None:
         import capo_elementalinference.types.clipping_config
 
         return {
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> OutputConfig:
                 data["clipping"]
             )
         }
-    elif "subtitling" in data:
+    elif data.get("subtitling") is not None:
         import capo_elementalinference.types.subtitling_config
 
         return {

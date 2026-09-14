@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: ResourceUnavailableException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceUnavailableException_:
     out: ResourceUnavailableException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     return out
 
@@ -42,15 +42,18 @@ class ResourceUnavailableException(ServiceError):
 
     code: str | None = "ResourceUnavailableException"
 
-    def __init__(self, data: ResourceUnavailableException_):
+    def __init__(self, data: ResourceUnavailableException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceUnavailableException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ResourceUnavailableException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceUnavailableException":
+        return cls(deserialize_aws_json_1_1(data), message)

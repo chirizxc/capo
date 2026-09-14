@@ -44,7 +44,7 @@ def serialize_json(value: ImportDestination) -> dict:
 
 def deserialize_json(data: dict) -> ImportDestination:
     out: ImportDestination = {}  # type: ignore[typeddict-item]
-    if "SuppressionListDestination" in data:
+    if data.get("SuppressionListDestination") is not None:
         import capo_sesv2.types.suppression_list_destination
 
         out["suppression_list_destination"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ImportDestination:
                 data["SuppressionListDestination"]
             )
         )
-    if "ContactListDestination" in data:
+    if data.get("ContactListDestination") is not None:
         import capo_sesv2.types.contact_list_destination
 
         out["contact_list_destination"] = (

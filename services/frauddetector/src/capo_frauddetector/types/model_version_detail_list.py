@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> modelVersionDetailList:
 
     out: modelVersionDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_frauddetector.types.model_version_detail.deserialize_aws_json_1_1(item)
         )

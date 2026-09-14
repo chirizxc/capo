@@ -38,9 +38,9 @@ def serialize_json(value: DefaultTextAreaControlOptions) -> dict:
 
 def deserialize_json(data: dict) -> DefaultTextAreaControlOptions:
     out: DefaultTextAreaControlOptions = {}  # type: ignore[typeddict-item]
-    if "Delimiter" in data:
+    if data.get("Delimiter") is not None:
         out["delimiter"] = data["Delimiter"]
-    if "DisplayOptions" in data:
+    if data.get("DisplayOptions") is not None:
         import capo_quicksight.types.text_area_control_display_options
 
         out["display_options"] = (

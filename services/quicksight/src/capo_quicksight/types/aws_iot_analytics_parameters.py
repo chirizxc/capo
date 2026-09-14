@@ -24,7 +24,7 @@ def serialize_json(value: AwsIotAnalyticsParameters) -> dict:
 
 def deserialize_json(data: dict) -> AwsIotAnalyticsParameters:
     out: AwsIotAnalyticsParameters = {}  # type: ignore[typeddict-item]
-    if "DataSetName" in data:
+    if data.get("DataSetName") is not None:
         out["data_set_name"] = data["DataSetName"]
     else:
         raise DeserializationError("AwsIotAnalyticsParameters.data_set_name required")

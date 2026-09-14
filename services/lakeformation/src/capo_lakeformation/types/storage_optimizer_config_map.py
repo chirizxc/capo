@@ -29,6 +29,9 @@ def deserialize_json(data: dict) -> StorageOptimizerConfigMap:
     out: StorageOptimizerConfigMap = {}
     for key, value in data.items():
         import capo_lakeformation.types.optimizer_type
+
+        if value is None:
+            continue
         import capo_lakeformation.types.storage_optimizer_config
 
         out[capo_lakeformation.types.optimizer_type.deserialize_json(key)] = (

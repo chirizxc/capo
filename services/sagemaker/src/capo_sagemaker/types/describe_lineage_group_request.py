@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeLineageGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLineageGroupRequest:
     out: DescribeLineageGroupRequest = {}  # type: ignore[typeddict-item]
-    if "LineageGroupName" in data:
+    if data.get("LineageGroupName") is not None:
         out["lineage_group_name"] = data["LineageGroupName"]
     return out

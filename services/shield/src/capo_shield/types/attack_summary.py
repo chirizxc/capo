@@ -57,23 +57,23 @@ def serialize_aws_json_1_1(value: AttackSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttackSummary:
     out: AttackSummary = {}  # type: ignore[typeddict-item]
-    if "AttackId" in data:
+    if data.get("AttackId") is not None:
         out["attack_id"] = data["AttackId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_shield.types.attack_timestamp
 
         out["start_time"] = capo_shield.types.attack_timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_shield.types.attack_timestamp
 
         out["end_time"] = capo_shield.types.attack_timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "AttackVectors" in data:
+    if data.get("AttackVectors") is not None:
         import capo_shield.types.attack_vector_description_list
 
         out["attack_vectors"] = (

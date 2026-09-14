@@ -19,12 +19,12 @@ class GetIdentityCenterAuthTokenResponse(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: GetIdentityCenterAuthTokenResponse) -> dict:
     out: dict = {}
     if "token" in value:
-        out["Token"] = value["token"]
+        out["token"] = value["token"]
     if "expiration_time" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
-        out["ExpirationTime"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
+        out["expirationTime"] = (
+            capo_redshift_serverless._protocol.serialize.fmt_date_time(
                 value["expiration_time"]
             )
         )
@@ -33,14 +33,12 @@ def serialize_aws_json_1_1(value: GetIdentityCenterAuthTokenResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetIdentityCenterAuthTokenResponse:
     out: GetIdentityCenterAuthTokenResponse = {}  # type: ignore[typeddict-item]
-    if "Token" in data:
-        out["token"] = data["Token"]
-    if "ExpirationTime" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("token") is not None:
+        out["token"] = data["token"]
+    if data.get("expirationTime") is not None:
+        import datetime
 
-        out["expiration_time"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["ExpirationTime"]
-            )
+        out["expiration_time"] = datetime.datetime.fromisoformat(
+            data["expirationTime"].replace("Z", "+00:00")
         )
     return out

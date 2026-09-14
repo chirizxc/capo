@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RecordMatchingModelList:
 
     out: RecordMatchingModelList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.record_matching_model.deserialize_json(item)
         )

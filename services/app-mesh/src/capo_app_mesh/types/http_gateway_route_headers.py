@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> HttpGatewayRouteHeaders:
 
     out: HttpGatewayRouteHeaders = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_app_mesh.types.http_gateway_route_header.deserialize_json(item))
     return out

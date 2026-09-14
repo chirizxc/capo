@@ -30,8 +30,8 @@ def serialize_json(value: ServerSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServerSummary:
     out: ServerSummary = {}  # type: ignore[typeddict-item]
-    if "ServerOsType" in data:
+    if data.get("ServerOsType") is not None:
         out["server_os_type"] = data["ServerOsType"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     return out

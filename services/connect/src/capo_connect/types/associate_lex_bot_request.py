@@ -34,12 +34,12 @@ def serialize_json(value: AssociateLexBotRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateLexBotRequest:
     out: AssociateLexBotRequest = {}  # type: ignore[typeddict-item]
-    if "LexBot" in data:
+    if data.get("LexBot") is not None:
         import capo_connect.types.lex_bot
 
         out["lex_bot"] = capo_connect.types.lex_bot.deserialize_json(data["LexBot"])
     else:
         raise DeserializationError("AssociateLexBotRequest.lex_bot required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

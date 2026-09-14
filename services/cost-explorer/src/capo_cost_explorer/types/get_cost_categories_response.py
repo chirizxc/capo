@@ -60,9 +60,9 @@ def serialize_aws_json_1_1(value: GetCostCategoriesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCostCategoriesResponse:
     out: GetCostCategoriesResponse = {}  # type: ignore[typeddict-item]
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "CostCategoryNames" in data:
+    if data.get("CostCategoryNames") is not None:
         import capo_cost_explorer.types.cost_category_names_list
 
         out["cost_category_names"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostCategoriesResponse:
                 data["CostCategoryNames"]
             )
         )
-    if "CostCategoryValues" in data:
+    if data.get("CostCategoryValues") is not None:
         import capo_cost_explorer.types.cost_category_values_list
 
         out["cost_category_values"] = (
@@ -78,11 +78,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostCategoriesResponse:
                 data["CostCategoryValues"]
             )
         )
-    if "ReturnSize" in data:
+    if data.get("ReturnSize") is not None:
         out["return_size"] = data["ReturnSize"]
     else:
         raise DeserializationError("GetCostCategoriesResponse.return_size required")
-    if "TotalSize" in data:
+    if data.get("TotalSize") is not None:
         out["total_size"] = data["TotalSize"]
     else:
         raise DeserializationError("GetCostCategoriesResponse.total_size required")

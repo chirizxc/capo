@@ -59,39 +59,39 @@ def serialize_json(value: UpdateAnnotationStoreVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAnnotationStoreVersionResponse:
     out: UpdateAnnotationStoreVersionResponse = {}  # type: ignore[typeddict-item]
-    if "storeId" in data:
+    if data.get("storeId") is not None:
         out["store_id"] = data["storeId"]
     else:
         raise DeserializationError(
             "UpdateAnnotationStoreVersionResponse.store_id required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateAnnotationStoreVersionResponse.id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError(
             "UpdateAnnotationStoreVersionResponse.status required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateAnnotationStoreVersionResponse.name required")
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
     else:
         raise DeserializationError(
             "UpdateAnnotationStoreVersionResponse.version_name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError(
             "UpdateAnnotationStoreVersionResponse.description required"
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.creation_time
 
         out["creation_time"] = capo_omics.types.creation_time.deserialize_json(
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> UpdateAnnotationStoreVersionResponse:
         raise DeserializationError(
             "UpdateAnnotationStoreVersionResponse.creation_time required"
         )
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_omics.types.update_time
 
         out["update_time"] = capo_omics.types.update_time.deserialize_json(

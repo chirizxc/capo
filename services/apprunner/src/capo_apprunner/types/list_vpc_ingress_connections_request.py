@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: ListVpcIngressConnectionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListVpcIngressConnectionsRequest:
     out: ListVpcIngressConnectionsRequest = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_apprunner.types.list_vpc_ingress_connections_filter
 
         out["filter"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListVpcIngressConnectionsRequest:
                 data["Filter"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

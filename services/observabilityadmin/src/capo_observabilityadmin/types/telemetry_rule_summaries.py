@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TelemetryRuleSummaries:
 
     out: TelemetryRuleSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_observabilityadmin.types.telemetry_rule_summary.deserialize_json(item)
         )

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> EventTypeActionabilityList:
 
     out: EventTypeActionabilityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_health.types.event_type_actionability.deserialize_aws_json_1_1(item)
         )

@@ -73,35 +73,35 @@ def serialize_aws_json_1_0(value: OperationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OperationSummary:
     out: OperationSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_apprunner.types.operation_type
 
         out["type"] = capo_apprunner.types.operation_type.deserialize_aws_json_1_0(
             data["Type"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_apprunner.types.operation_status
 
         out["status"] = capo_apprunner.types.operation_status.deserialize_aws_json_1_0(
             data["Status"]
         )
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["started_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
             data["StartedAt"]
         )
-    if "EndedAt" in data:
+    if data.get("EndedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["ended_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
             data["EndedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["updated_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(

@@ -34,9 +34,9 @@ def serialize_json(value: UpdateRevisionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRevisionRequest:
     out: UpdateRevisionRequest = {}  # type: ignore[typeddict-item]
-    if "Comment" in data:
+    if data.get("Comment") is not None:
         out["comment"] = data["Comment"]
-    if "Finalized" in data:
+    if data.get("Finalized") is not None:
         out["finalized"] = data["Finalized"]
     else:
         out["finalized"] = False

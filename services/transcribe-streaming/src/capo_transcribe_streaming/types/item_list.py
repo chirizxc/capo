@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ItemList:
 
     out: ItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_transcribe_streaming.types.item.deserialize_json(item))
     return out

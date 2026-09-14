@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: IllegalBlueprintStateException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IllegalBlueprintStateException_:
     out: IllegalBlueprintStateException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,20 @@ class IllegalBlueprintStateException(ServiceError):
 
     code: str | None = "IllegalBlueprintStateException"
 
-    def __init__(self, data: IllegalBlueprintStateException_):
+    def __init__(
+        self, data: IllegalBlueprintStateException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IllegalBlueprintStateException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "IllegalBlueprintStateException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "IllegalBlueprintStateException":
+        return cls(deserialize_aws_json_1_1(data), message)

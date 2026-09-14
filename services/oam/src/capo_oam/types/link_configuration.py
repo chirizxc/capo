@@ -42,7 +42,7 @@ def serialize_json(value: LinkConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LinkConfiguration:
     out: LinkConfiguration = {}  # type: ignore[typeddict-item]
-    if "LogGroupConfiguration" in data:
+    if data.get("LogGroupConfiguration") is not None:
         import capo_oam.types.log_group_configuration
 
         out["log_group_configuration"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> LinkConfiguration:
                 data["LogGroupConfiguration"]
             )
         )
-    if "MetricConfiguration" in data:
+    if data.get("MetricConfiguration") is not None:
         import capo_oam.types.metric_configuration
 
         out["metric_configuration"] = (

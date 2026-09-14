@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListIpRoutesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListIpRoutesResult:
     out: ListIpRoutesResult = {}  # type: ignore[typeddict-item]
-    if "IpRoutesInfo" in data:
+    if data.get("IpRoutesInfo") is not None:
         import capo_directory_service.types.ip_routes_info
 
         out["ip_routes_info"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListIpRoutesResult:
                 data["IpRoutesInfo"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

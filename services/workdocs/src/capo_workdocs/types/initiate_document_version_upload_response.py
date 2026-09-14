@@ -36,13 +36,13 @@ def serialize_json(value: InitiateDocumentVersionUploadResponse) -> dict:
 
 def deserialize_json(data: dict) -> InitiateDocumentVersionUploadResponse:
     out: InitiateDocumentVersionUploadResponse = {}  # type: ignore[typeddict-item]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_workdocs.types.document_metadata
 
         out["metadata"] = capo_workdocs.types.document_metadata.deserialize_json(
             data["Metadata"]
         )
-    if "UploadMetadata" in data:
+    if data.get("UploadMetadata") is not None:
         import capo_workdocs.types.upload_metadata
 
         out["upload_metadata"] = capo_workdocs.types.upload_metadata.deserialize_json(

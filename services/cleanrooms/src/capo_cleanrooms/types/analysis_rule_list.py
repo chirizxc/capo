@@ -65,7 +65,7 @@ def serialize_json(value: AnalysisRuleList) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisRuleList:
     out: AnalysisRuleList = {}  # type: ignore[typeddict-item]
-    if "joinColumns" in data:
+    if data.get("joinColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["join_columns"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> AnalysisRuleList:
         )
     else:
         raise DeserializationError("AnalysisRuleList.join_columns required")
-    if "allowedJoinOperators" in data:
+    if data.get("allowedJoinOperators") is not None:
         import capo_cleanrooms.types.join_operators_list
 
         out["allowed_join_operators"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> AnalysisRuleList:
                 data["allowedJoinOperators"]
             )
         )
-    if "listColumns" in data:
+    if data.get("listColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["list_columns"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> AnalysisRuleList:
         )
     else:
         raise DeserializationError("AnalysisRuleList.list_columns required")
-    if "additionalAnalyses" in data:
+    if data.get("additionalAnalyses") is not None:
         import capo_cleanrooms.types.additional_analyses
 
         out["additional_analyses"] = (

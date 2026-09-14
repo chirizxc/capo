@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: DescribeAccountAttributesResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeAccountAttributesResult:
     out: DescribeAccountAttributesResult = {}  # type: ignore[typeddict-item]
-    if "AccountAttributes" in data:
+    if data.get("AccountAttributes") is not None:
         import capo_pinpoint_sms_voice_v2.types.account_attribute_list
 
         out["account_attributes"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAccountAttributesResult:
                 data["AccountAttributes"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

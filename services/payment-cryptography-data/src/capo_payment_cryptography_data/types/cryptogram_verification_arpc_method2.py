@@ -33,12 +33,12 @@ def serialize_json(value: CryptogramVerificationArpcMethod2) -> dict:
 
 def deserialize_json(data: dict) -> CryptogramVerificationArpcMethod2:
     out: CryptogramVerificationArpcMethod2 = {}  # type: ignore[typeddict-item]
-    if "CardStatusUpdate" in data:
+    if data.get("CardStatusUpdate") is not None:
         out["card_status_update"] = data["CardStatusUpdate"]
     else:
         raise DeserializationError(
             "CryptogramVerificationArpcMethod2.card_status_update required"
         )
-    if "ProprietaryAuthenticationData" in data:
+    if data.get("ProprietaryAuthenticationData") is not None:
         out["proprietary_authentication_data"] = data["ProprietaryAuthenticationData"]
     return out

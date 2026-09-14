@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PrincipalResourcePermissionsList:
 
     out: PrincipalResourcePermissionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lakeformation.types.principal_resource_permissions.deserialize_json(
                 item

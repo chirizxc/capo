@@ -29,7 +29,7 @@ def serialize_json(value: UpdateTraceSegmentDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTraceSegmentDestinationRequest:
     out: UpdateTraceSegmentDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_xray.types.trace_segment_destination
 
         out["destination"] = capo_xray.types.trace_segment_destination.deserialize_json(

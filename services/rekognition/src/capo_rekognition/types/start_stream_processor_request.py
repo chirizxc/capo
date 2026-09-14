@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: StartStreamProcessorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartStreamProcessorRequest:
     out: StartStreamProcessorRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("StartStreamProcessorRequest.name required")
-    if "StartSelector" in data:
+    if data.get("StartSelector") is not None:
         import capo_rekognition.types.stream_processing_start_selector
 
         out["start_selector"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartStreamProcessorRequest:
                 data["StartSelector"]
             )
         )
-    if "StopSelector" in data:
+    if data.get("StopSelector") is not None:
         import capo_rekognition.types.stream_processing_stop_selector
 
         out["stop_selector"] = (

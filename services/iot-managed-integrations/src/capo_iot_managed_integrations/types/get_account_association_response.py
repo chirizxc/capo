@@ -97,13 +97,13 @@ def serialize_json(value: GetAccountAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAccountAssociationResponse:
     out: GetAccountAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "AccountAssociationId" in data:
+    if data.get("AccountAssociationId") is not None:
         out["account_association_id"] = data["AccountAssociationId"]
     else:
         raise DeserializationError(
             "GetAccountAssociationResponse.account_association_id required"
         )
-    if "AssociationState" in data:
+    if data.get("AssociationState") is not None:
         import capo_iot_managed_integrations.types.association_state
 
         out["association_state"] = (
@@ -115,27 +115,27 @@ def deserialize_json(data: dict) -> GetAccountAssociationResponse:
         raise DeserializationError(
             "GetAccountAssociationResponse.association_state required"
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ConnectorDestinationId" in data:
+    if data.get("ConnectorDestinationId") is not None:
         out["connector_destination_id"] = data["ConnectorDestinationId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "OAuthAuthorizationUrl" in data:
+    if data.get("OAuthAuthorizationUrl") is not None:
         out["o_auth_authorization_url"] = data["OAuthAuthorizationUrl"]
     else:
         out["o_auth_authorization_url"] = ""
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(
             data["Tags"]
         )
-    if "GeneralAuthorization" in data:
+    if data.get("GeneralAuthorization") is not None:
         import capo_iot_managed_integrations.types.general_authorization_name
 
         out["general_authorization"] = (

@@ -34,13 +34,13 @@ def serialize_json(value: MediaCapturePipelineSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MediaCapturePipelineSourceConfiguration:
     out: MediaCapturePipelineSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "MediaPipelineArn" in data:
+    if data.get("MediaPipelineArn") is not None:
         out["media_pipeline_arn"] = data["MediaPipelineArn"]
     else:
         raise DeserializationError(
             "MediaCapturePipelineSourceConfiguration.media_pipeline_arn required"
         )
-    if "ChimeSdkMeetingConfiguration" in data:
+    if data.get("ChimeSdkMeetingConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.chime_sdk_meeting_concatenation_configuration
 
         out["chime_sdk_meeting_configuration"] = (

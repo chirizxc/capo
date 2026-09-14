@@ -40,11 +40,11 @@ def serialize_aws_json_1_0(value: ObservabilityConfigurationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ObservabilityConfigurationSummary:
     out: ObservabilityConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "ObservabilityConfigurationArn" in data:
+    if data.get("ObservabilityConfigurationArn") is not None:
         out["observability_configuration_arn"] = data["ObservabilityConfigurationArn"]
-    if "ObservabilityConfigurationName" in data:
+    if data.get("ObservabilityConfigurationName") is not None:
         out["observability_configuration_name"] = data["ObservabilityConfigurationName"]
-    if "ObservabilityConfigurationRevision" in data:
+    if data.get("ObservabilityConfigurationRevision") is not None:
         out["observability_configuration_revision"] = data[
             "ObservabilityConfigurationRevision"
         ]

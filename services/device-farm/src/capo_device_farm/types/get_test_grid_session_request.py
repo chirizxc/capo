@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: GetTestGridSessionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTestGridSessionRequest:
     out: GetTestGridSessionRequest = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "sessionArn" in data:
+    if data.get("sessionArn") is not None:
         out["session_arn"] = data["sessionArn"]
     return out

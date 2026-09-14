@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> WirelessGatewayEventLogOptionList:
 
     out: WirelessGatewayEventLogOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.wireless_gateway_event_log_option.deserialize_json(
                 item

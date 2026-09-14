@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteLicenseAssetGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteLicenseAssetGroupRequest:
     out: DeleteLicenseAssetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseAssetGroupArn" in data:
+    if data.get("LicenseAssetGroupArn") is not None:
         out["license_asset_group_arn"] = data["LicenseAssetGroupArn"]
     else:
         raise DeserializationError(

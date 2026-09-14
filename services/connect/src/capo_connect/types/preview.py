@@ -40,7 +40,7 @@ def serialize_json(value: Preview) -> dict:
 
 def deserialize_json(data: dict) -> Preview:
     out: Preview = {}  # type: ignore[typeddict-item]
-    if "PostAcceptTimeoutConfig" in data:
+    if data.get("PostAcceptTimeoutConfig") is not None:
         import capo_connect.types.post_accept_timeout_config
 
         out["post_accept_timeout_config"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> Preview:
         )
     else:
         raise DeserializationError("Preview.post_accept_timeout_config required")
-    if "AllowedUserActions" in data:
+    if data.get("AllowedUserActions") is not None:
         import capo_connect.types.allowed_user_actions
 
         out["allowed_user_actions"] = (

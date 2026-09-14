@@ -33,6 +33,8 @@ def deserialize_aws_json_1_1(
 
     out: LoadBalancerTlsCertificateDomainValidationRecordList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.load_balancer_tls_certificate_domain_validation_record.deserialize_aws_json_1_1(
                 item

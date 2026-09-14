@@ -11,6 +11,7 @@ from typing_extensions import Never
 
 import capo_sagemaker_geospatial._auth._signers
 import capo_sagemaker_geospatial._auth._sigv4
+import capo_sagemaker_geospatial._protocol.eventstream
 import capo_sagemaker_geospatial.errors.access_denied_exception
 import capo_sagemaker_geospatial.errors.internal_server_exception
 import capo_sagemaker_geospatial.errors.resource_not_found_exception
@@ -38,23 +39,23 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_sagemaker_geospatial.errors.access_denied_exception.AccessDeniedException.from_json(
-                data
+                data, message
             )
         case "InternalServerException":
             raise capo_sagemaker_geospatial.errors.internal_server_exception.InternalServerException.from_json(
-                data
+                data, message
             )
         case "ResourceNotFoundException":
             raise capo_sagemaker_geospatial.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
-                data
+                data, message
             )
         case "ThrottlingException":
             raise capo_sagemaker_geospatial.errors.throttling_exception.ThrottlingException.from_json(
-                data
+                data, message
             )
         case "ValidationException":
             raise capo_sagemaker_geospatial.errors.validation_exception.ValidationException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -63,7 +64,7 @@ def handle_error(response: zapros.Response) -> Never:
 def handle_response(
     response: zapros.Response,
 ) -> capo_sagemaker_geospatial.types.get_tile_output.GetTileOutput:
-    _iter = cast(Any, response.iter_bytes())
+    _iter = cast(Any, response.iter_raw())
     out: capo_sagemaker_geospatial.types.get_tile_output.GetTileOutput = {
         "binary_file": _iter
     }  # type: ignore[reportAssignmentType]
@@ -73,7 +74,7 @@ def handle_response(
 async def async_handle_response(
     response: zapros.Response,
 ) -> capo_sagemaker_geospatial.types.get_tile_output.GetTileOutput:
-    _iter = cast(Any, response.async_iter_bytes())
+    _iter = cast(Any, response.async_iter_raw())
     out: capo_sagemaker_geospatial.types.get_tile_output.GetTileOutput = {
         "binary_file": _iter
     }  # type: ignore[reportAssignmentType]
@@ -85,19 +86,28 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_sagemaker_geospatial._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_sagemaker_geospatial._auth._sigv4.build_sigv4_auth_scheme(
-                "sagemaker-geospatial", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_sagemaker_geospatial._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = (
+                capo_sagemaker_geospatial._auth._sigv4.build_sigv4_auth_scheme(
+                    "sagemaker-geospatial", options.region, endpoint_scheme
+                )
             )
+            if sigv4_config is not None:
+                return capo_sagemaker_geospatial._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -117,30 +127,31 @@ def build_request(
     url = url.replace("{x}", quote(str(input_["x"]), safe=""))
     url = url.replace("{y}", quote(str(input_["y"]), safe=""))
     url = url.replace("{z}", quote(str(input_["z"]), safe=""))
-    params: dict[str, str] = {}
-    if "image_assets" in input_:
-        params["ImageAssets"] = str(input_["image_assets"])
+    params: list[tuple[str, str]] = []
+    for item in input_["image_assets"]:
+        params.append(("ImageAssets", item))
     if "target" in input_:
-        params["Target"] = str(input_["target"])
+        params.append(("Target", input_["target"]))
     if "arn" in input_:
-        params["Arn"] = str(input_["arn"])
+        params.append(("Arn", input_["arn"]))
     if "image_mask" in input_:
-        params["ImageMask"] = str(input_["image_mask"])
+        params.append(("ImageMask", "true" if input_["image_mask"] else "false"))
     if "output_format" in input_:
-        params["OutputFormat"] = str(input_["output_format"])
+        params.append(("OutputFormat", input_["output_format"]))
     if "time_range_filter" in input_:
-        params["TimeRangeFilter"] = str(input_["time_range_filter"])
+        params.append(("TimeRangeFilter", input_["time_range_filter"]))
     if "property_filters" in input_:
-        params["PropertyFilters"] = str(input_["property_filters"])
+        params.append(("PropertyFilters", input_["property_filters"]))
     if "output_data_type" in input_:
-        params["OutputDataType"] = str(input_["output_data_type"])
+        params.append(("OutputDataType", input_["output_data_type"]))
     if "execution_role_arn" in input_:
-        params["ExecutionRoleArn"] = str(input_["execution_role_arn"])
+        params.append(("ExecutionRoleArn", input_["execution_role_arn"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "GET", headers=headers, body=body, context={"signer": signer}
     )
@@ -154,7 +165,7 @@ def get_tile(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -171,7 +182,7 @@ async def async_get_tile(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

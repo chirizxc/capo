@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: NetworkConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NetworkConfiguration:
     out: NetworkConfiguration = {}  # type: ignore[typeddict-item]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_mwaa_serverless.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_0(data: dict) -> NetworkConfiguration:
                 data["SecurityGroupIds"]
             )
         )
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_mwaa_serverless.types.subnet_ids
 
         out["subnet_ids"] = (

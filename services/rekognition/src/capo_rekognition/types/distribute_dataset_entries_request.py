@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DistributeDatasetEntriesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DistributeDatasetEntriesRequest:
     out: DistributeDatasetEntriesRequest = {}  # type: ignore[typeddict-item]
-    if "Datasets" in data:
+    if data.get("Datasets") is not None:
         import capo_rekognition.types.distribute_dataset_metadata_list
 
         out["datasets"] = (

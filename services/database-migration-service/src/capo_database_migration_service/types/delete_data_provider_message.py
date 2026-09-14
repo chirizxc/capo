@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteDataProviderMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDataProviderMessage:
     out: DeleteDataProviderMessage = {}  # type: ignore[typeddict-item]
-    if "DataProviderIdentifier" in data:
+    if data.get("DataProviderIdentifier") is not None:
         out["data_provider_identifier"] = data["DataProviderIdentifier"]
     else:
         raise DeserializationError(

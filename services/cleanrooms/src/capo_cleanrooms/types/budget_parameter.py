@@ -39,7 +39,7 @@ def serialize_json(value: BudgetParameter) -> dict:
 
 def deserialize_json(data: dict) -> BudgetParameter:
     out: BudgetParameter = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanrooms.types.access_budget_type
 
         out["type"] = capo_cleanrooms.types.access_budget_type.deserialize_json(
@@ -47,11 +47,11 @@ def deserialize_json(data: dict) -> BudgetParameter:
         )
     else:
         raise DeserializationError("BudgetParameter.type required")
-    if "budget" in data:
+    if data.get("budget") is not None:
         out["budget"] = data["budget"]
     else:
         raise DeserializationError("BudgetParameter.budget required")
-    if "autoRefresh" in data:
+    if data.get("autoRefresh") is not None:
         import capo_cleanrooms.types.auto_refresh_mode
 
         out["auto_refresh"] = capo_cleanrooms.types.auto_refresh_mode.deserialize_json(

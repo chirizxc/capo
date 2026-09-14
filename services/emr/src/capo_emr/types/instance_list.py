@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> InstanceList:
 
     out: InstanceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_emr.types.instance.deserialize_aws_json_1_1(item))
     return out

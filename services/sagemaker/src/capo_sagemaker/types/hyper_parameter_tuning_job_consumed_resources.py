@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: HyperParameterTuningJobConsumedResources) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobConsumedResources:
     out: HyperParameterTuningJobConsumedResources = {}  # type: ignore[typeddict-item]
-    if "RuntimeInSeconds" in data:
+    if data.get("RuntimeInSeconds") is not None:
         out["runtime_in_seconds"] = data["RuntimeInSeconds"]
     return out

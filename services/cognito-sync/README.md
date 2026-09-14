@@ -13,9 +13,9 @@ from capo_cognito_sync import AsyncCognitoSyncClient
 
 
 async def main():
-    async with AsyncCognitoSyncClient() as s3:
+    async with AsyncCognitoSyncClient() as cognito_sync:
         # Example: call the bulk_publish operation
-        response = await s3.bulk_publish()
+        response = await cognito_sync.bulk_publish()
         print(response["identity_pool_id"])
 ```
 
@@ -29,9 +29,9 @@ from capo_cognito_sync.error import AlreadyStreamedException
 
 
 async def main():
-    async with AsyncCognitoSyncClient() as s3:
+    async with AsyncCognitoSyncClient() as cognito_sync:
         try:
-            await s3.bulk_publish()
+            await cognito_sync.bulk_publish()
         except AlreadyStreamedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_cognito_sync import AsyncCognitoSyncClient
 
 
 async def main():
-    async with AsyncCognitoSyncClient() as s3:
+    async with AsyncCognitoSyncClient() as cognito_sync:
         # Default: 3 attempts for every operation
-        response = await s3.bulk_publish()
+        response = await cognito_sync.bulk_publish()
 
         # Override per operation
-        response = await s3.bulk_publish(config_overrides={"retry_max_attempts": 5})
+        response = await cognito_sync.bulk_publish(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.bulk_publish(config_overrides={"retry_max_attempts": 1})
+        response = await cognito_sync.bulk_publish(config_overrides={"retry_max_attempts": 1})
 ```

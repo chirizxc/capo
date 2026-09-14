@@ -83,15 +83,32 @@ def serialize_json(value: AudioNormalizationSettings) -> dict:
             )
         )
     if "target_lkfs" in value:
-        out["targetLkfs"] = value["target_lkfs"]
+        out["targetLkfs"] = (
+            "NaN"
+            if value["target_lkfs"] != value["target_lkfs"]
+            else "Infinity"
+            if value["target_lkfs"] == float("inf")
+            else "-Infinity"
+            if value["target_lkfs"] == float("-inf")
+            else value["target_lkfs"]
+        )
     if "true_peak_limiter_threshold" in value:
-        out["truePeakLimiterThreshold"] = value["true_peak_limiter_threshold"]
+        out["truePeakLimiterThreshold"] = (
+            "NaN"
+            if value["true_peak_limiter_threshold"]
+            != value["true_peak_limiter_threshold"]
+            else "Infinity"
+            if value["true_peak_limiter_threshold"] == float("inf")
+            else "-Infinity"
+            if value["true_peak_limiter_threshold"] == float("-inf")
+            else value["true_peak_limiter_threshold"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AudioNormalizationSettings:
     out: AudioNormalizationSettings = {}  # type: ignore[typeddict-item]
-    if "algorithm" in data:
+    if data.get("algorithm") is not None:
         import capo_mediaconvert.types.audio_normalization_algorithm
 
         out["algorithm"] = (
@@ -99,7 +116,7 @@ def deserialize_json(data: dict) -> AudioNormalizationSettings:
                 data["algorithm"]
             )
         )
-    if "algorithmControl" in data:
+    if data.get("algorithmControl") is not None:
         import capo_mediaconvert.types.audio_normalization_algorithm_control
 
         out["algorithm_control"] = (
@@ -107,9 +124,9 @@ def deserialize_json(data: dict) -> AudioNormalizationSettings:
                 data["algorithmControl"]
             )
         )
-    if "correctionGateLevel" in data:
+    if data.get("correctionGateLevel") is not None:
         out["correction_gate_level"] = data["correctionGateLevel"]
-    if "loudnessLogging" in data:
+    if data.get("loudnessLogging") is not None:
         import capo_mediaconvert.types.audio_normalization_loudness_logging
 
         out["loudness_logging"] = (
@@ -117,7 +134,7 @@ def deserialize_json(data: dict) -> AudioNormalizationSettings:
                 data["loudnessLogging"]
             )
         )
-    if "peakCalculation" in data:
+    if data.get("peakCalculation") is not None:
         import capo_mediaconvert.types.audio_normalization_peak_calculation
 
         out["peak_calculation"] = (
@@ -125,8 +142,8 @@ def deserialize_json(data: dict) -> AudioNormalizationSettings:
                 data["peakCalculation"]
             )
         )
-    if "targetLkfs" in data:
-        out["target_lkfs"] = data["targetLkfs"]
-    if "truePeakLimiterThreshold" in data:
-        out["true_peak_limiter_threshold"] = data["truePeakLimiterThreshold"]
+    if data.get("targetLkfs") is not None:
+        out["target_lkfs"] = float(data["targetLkfs"])
+    if data.get("truePeakLimiterThreshold") is not None:
+        out["true_peak_limiter_threshold"] = float(data["truePeakLimiterThreshold"])
     return out

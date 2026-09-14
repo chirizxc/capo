@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: DatasetAugmentedManifestsListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetAugmentedManifestsListItem:
     out: DatasetAugmentedManifestsListItem = {}  # type: ignore[typeddict-item]
-    if "AttributeNames" in data:
+    if data.get("AttributeNames") is not None:
         import capo_comprehend.types.attribute_names_list
 
         out["attribute_names"] = (
@@ -67,15 +67,15 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetAugmentedManifestsListItem:
         raise DeserializationError(
             "DatasetAugmentedManifestsListItem.attribute_names required"
         )
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("DatasetAugmentedManifestsListItem.s3_uri required")
-    if "AnnotationDataS3Uri" in data:
+    if data.get("AnnotationDataS3Uri") is not None:
         out["annotation_data_s3_uri"] = data["AnnotationDataS3Uri"]
-    if "SourceDocumentsS3Uri" in data:
+    if data.get("SourceDocumentsS3Uri") is not None:
         out["source_documents_s3_uri"] = data["SourceDocumentsS3Uri"]
-    if "DocumentType" in data:
+    if data.get("DocumentType") is not None:
         import capo_comprehend.types.augmented_manifests_document_type_format
 
         out["document_type"] = (

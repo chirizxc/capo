@@ -116,50 +116,50 @@ def serialize_json(value: AssessmentFrameworkShareRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentFrameworkShareRequest:
     out: AssessmentFrameworkShareRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "frameworkId" in data:
+    if data.get("frameworkId") is not None:
         out["framework_id"] = data["frameworkId"]
-    if "frameworkName" in data:
+    if data.get("frameworkName") is not None:
         out["framework_name"] = data["frameworkName"]
-    if "frameworkDescription" in data:
+    if data.get("frameworkDescription") is not None:
         out["framework_description"] = data["frameworkDescription"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_auditmanager.types.share_request_status
 
         out["status"] = capo_auditmanager.types.share_request_status.deserialize_json(
             data["status"]
         )
-    if "sourceAccount" in data:
+    if data.get("sourceAccount") is not None:
         out["source_account"] = data["sourceAccount"]
-    if "destinationAccount" in data:
+    if data.get("destinationAccount") is not None:
         out["destination_account"] = data["destinationAccount"]
-    if "destinationRegion" in data:
+    if data.get("destinationRegion") is not None:
         out["destination_region"] = data["destinationRegion"]
-    if "expirationTime" in data:
+    if data.get("expirationTime") is not None:
         import capo_auditmanager.types.timestamp
 
         out["expiration_time"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["expirationTime"]
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_auditmanager.types.timestamp
 
         out["creation_time"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_auditmanager.types.timestamp
 
         out["last_updated"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["lastUpdated"]
         )
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "standardControlsCount" in data:
+    if data.get("standardControlsCount") is not None:
         out["standard_controls_count"] = data["standardControlsCount"]
-    if "customControlsCount" in data:
+    if data.get("customControlsCount") is not None:
         out["custom_controls_count"] = data["customControlsCount"]
-    if "complianceType" in data:
+    if data.get("complianceType") is not None:
         out["compliance_type"] = data["complianceType"]
     return out

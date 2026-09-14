@@ -29,8 +29,8 @@ def serialize_json(value: AwsRedshiftClusterVpcSecurityGroup) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterVpcSecurityGroup:
     out: AwsRedshiftClusterVpcSecurityGroup = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "VpcSecurityGroupId" in data:
+    if data.get("VpcSecurityGroupId") is not None:
         out["vpc_security_group_id"] = data["VpcSecurityGroupId"]
     return out

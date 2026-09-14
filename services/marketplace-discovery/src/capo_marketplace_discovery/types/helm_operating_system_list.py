@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> HelmOperatingSystemList:
 
     out: HelmOperatingSystemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.helm_operating_system.deserialize_json(
                 item

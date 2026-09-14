@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: ListFindingsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFindingsRequest:
     out: ListFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentRunArns" in data:
+    if data.get("assessmentRunArns") is not None:
         import capo_inspector.types.list_parent_arn_list
 
         out["assessment_run_arns"] = (
@@ -58,14 +58,14 @@ def deserialize_aws_json_1_1(data: dict) -> ListFindingsRequest:
                 data["assessmentRunArns"]
             )
         )
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_inspector.types.finding_filter
 
         out["filter"] = capo_inspector.types.finding_filter.deserialize_aws_json_1_1(
             data["filter"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

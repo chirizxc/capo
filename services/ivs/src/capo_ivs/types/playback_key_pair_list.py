@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PlaybackKeyPairList:
 
     out: PlaybackKeyPairList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ivs.types.playback_key_pair_summary.deserialize_json(item))
     return out

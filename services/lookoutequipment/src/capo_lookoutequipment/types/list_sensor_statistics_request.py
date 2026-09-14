@@ -41,14 +41,14 @@ def serialize_aws_json_1_0(value: ListSensorStatisticsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSensorStatisticsRequest:
     out: ListSensorStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
     else:
         raise DeserializationError("ListSensorStatisticsRequest.dataset_name required")
-    if "IngestionJobId" in data:
+    if data.get("IngestionJobId") is not None:
         out["ingestion_job_id"] = data["IngestionJobId"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

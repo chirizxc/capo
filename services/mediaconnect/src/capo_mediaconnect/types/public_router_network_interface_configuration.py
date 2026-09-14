@@ -32,7 +32,7 @@ def serialize_json(value: PublicRouterNetworkInterfaceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PublicRouterNetworkInterfaceConfiguration:
     out: PublicRouterNetworkInterfaceConfiguration = {}  # type: ignore[typeddict-item]
-    if "allowRules" in data:
+    if data.get("allowRules") is not None:
         import capo_mediaconnect.types.network_interface_rule_list
 
         out["allow_rules"] = (

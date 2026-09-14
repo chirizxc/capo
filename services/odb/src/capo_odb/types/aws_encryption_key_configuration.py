@@ -37,9 +37,9 @@ def serialize_aws_json_1_0(value: AwsEncryptionKeyConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsEncryptionKeyConfiguration:
     out: AwsEncryptionKeyConfiguration = {}  # type: ignore[typeddict-item]
-    if "iamRoleArn" in data:
+    if data.get("iamRoleArn") is not None:
         out["iam_role_arn"] = data["iamRoleArn"]
-    if "externalIdType" in data:
+    if data.get("externalIdType") is not None:
         import capo_odb.types.external_id_type
 
         out["external_id_type"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> AwsEncryptionKeyConfiguration:
                 data["externalIdType"]
             )
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

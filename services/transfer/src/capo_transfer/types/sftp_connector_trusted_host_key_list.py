@@ -16,4 +16,4 @@ def serialize_aws_json_1_1(value: SftpConnectorTrustedHostKeyList) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> SftpConnectorTrustedHostKeyList:
-    return list(data)
+    return [item for item in data if item is not None]

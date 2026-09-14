@@ -87,20 +87,22 @@ class ConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_configuration_request.CreateConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.create_configuration_request.CreateConfigurationRequest = {
+            "name": name,
+            "run_configurations": run_configurations,
+            "request_id": request_id,
+        }
         if description is not None:
             input_["description"] = description
-        input_["run_configurations"] = run_configurations
         if tags is not None:
             input_["tags"] = tags
-        input_["request_id"] = request_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -141,14 +143,16 @@ class ConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_configuration_request.GetConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.get_configuration_request.GetConfigurationRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -187,14 +191,16 @@ class ConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_configuration_request.DeleteConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.delete_configuration_request.DeleteConfigurationRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -239,7 +245,7 @@ class ConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_configurations_request.ListConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_configurations_request.ListConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if starting_token is not None:
@@ -250,6 +256,7 @@ class ConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -306,20 +313,22 @@ class AsyncConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_configuration_request.CreateConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.create_configuration_request.CreateConfigurationRequest = {
+            "name": name,
+            "run_configurations": run_configurations,
+            "request_id": request_id,
+        }
         if description is not None:
             input_["description"] = description
-        input_["run_configurations"] = run_configurations
         if tags is not None:
             input_["tags"] = tags
-        input_["request_id"] = request_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -361,14 +370,16 @@ class AsyncConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_configuration_request.GetConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.get_configuration_request.GetConfigurationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -408,14 +419,16 @@ class AsyncConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_configuration_request.DeleteConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.delete_configuration_request.DeleteConfigurationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -461,7 +474,7 @@ class AsyncConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_configurations_request.ListConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_configurations_request.ListConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if starting_token is not None:
@@ -472,4 +485,5 @@ class AsyncConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

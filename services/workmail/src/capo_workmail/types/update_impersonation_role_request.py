@@ -57,23 +57,23 @@ def serialize_aws_json_1_1(value: UpdateImpersonationRoleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateImpersonationRoleRequest:
     out: UpdateImpersonationRoleRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "UpdateImpersonationRoleRequest.organization_id required"
         )
-    if "ImpersonationRoleId" in data:
+    if data.get("ImpersonationRoleId") is not None:
         out["impersonation_role_id"] = data["ImpersonationRoleId"]
     else:
         raise DeserializationError(
             "UpdateImpersonationRoleRequest.impersonation_role_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateImpersonationRoleRequest.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workmail.types.impersonation_role_type
 
         out["type"] = (
@@ -83,9 +83,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateImpersonationRoleRequest:
         )
     else:
         raise DeserializationError("UpdateImpersonationRoleRequest.type required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_workmail.types.impersonation_rule_list
 
         out["rules"] = (

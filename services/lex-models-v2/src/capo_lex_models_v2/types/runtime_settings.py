@@ -44,7 +44,7 @@ def serialize_json(value: RuntimeSettings) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeSettings:
     out: RuntimeSettings = {}  # type: ignore[typeddict-item]
-    if "slotResolutionImprovement" in data:
+    if data.get("slotResolutionImprovement") is not None:
         import capo_lex_models_v2.types.slot_resolution_improvement_specification
 
         out["slot_resolution_improvement"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> RuntimeSettings:
                 data["slotResolutionImprovement"]
             )
         )
-    if "nluImprovement" in data:
+    if data.get("nluImprovement") is not None:
         import capo_lex_models_v2.types.nlu_improvement_specification
 
         out["nlu_improvement"] = (

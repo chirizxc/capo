@@ -64,13 +64,13 @@ def serialize_aws_json_1_0(value: GetEC2RecommendationProjectedMetricsRequest) -
 
 def deserialize_aws_json_1_0(data: dict) -> GetEC2RecommendationProjectedMetricsRequest:
     out: GetEC2RecommendationProjectedMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "instanceArn" in data:
+    if data.get("instanceArn") is not None:
         out["instance_arn"] = data["instanceArn"]
     else:
         raise DeserializationError(
             "GetEC2RecommendationProjectedMetricsRequest.instance_arn required"
         )
-    if "stat" in data:
+    if data.get("stat") is not None:
         import capo_compute_optimizer.types.metric_statistic
 
         out["stat"] = (
@@ -82,11 +82,11 @@ def deserialize_aws_json_1_0(data: dict) -> GetEC2RecommendationProjectedMetrics
         raise DeserializationError(
             "GetEC2RecommendationProjectedMetricsRequest.stat required"
         )
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
     else:
         out["period"] = 0
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_compute_optimizer.types.timestamp
 
         out["start_time"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetEC2RecommendationProjectedMetrics
         raise DeserializationError(
             "GetEC2RecommendationProjectedMetricsRequest.start_time required"
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_compute_optimizer.types.timestamp
 
         out["end_time"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetEC2RecommendationProjectedMetrics
         raise DeserializationError(
             "GetEC2RecommendationProjectedMetricsRequest.end_time required"
         )
-    if "recommendationPreferences" in data:
+    if data.get("recommendationPreferences") is not None:
         import capo_compute_optimizer.types.recommendation_preferences
 
         out["recommendation_preferences"] = (

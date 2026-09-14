@@ -86,7 +86,7 @@ def serialize_aws_json_1_1(value: RadiusSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RadiusSettings:
     out: RadiusSettings = {}  # type: ignore[typeddict-item]
-    if "RadiusServers" in data:
+    if data.get("RadiusServers") is not None:
         import capo_directory_service.types.servers
 
         out["radius_servers"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> RadiusSettings:
                 data["RadiusServers"]
             )
         )
-    if "RadiusServersIpv6" in data:
+    if data.get("RadiusServersIpv6") is not None:
         import capo_directory_service.types.servers
 
         out["radius_servers_ipv6"] = (
@@ -102,17 +102,17 @@ def deserialize_aws_json_1_1(data: dict) -> RadiusSettings:
                 data["RadiusServersIpv6"]
             )
         )
-    if "RadiusPort" in data:
+    if data.get("RadiusPort") is not None:
         out["radius_port"] = data["RadiusPort"]
-    if "RadiusTimeout" in data:
+    if data.get("RadiusTimeout") is not None:
         out["radius_timeout"] = data["RadiusTimeout"]
-    if "RadiusRetries" in data:
+    if data.get("RadiusRetries") is not None:
         out["radius_retries"] = data["RadiusRetries"]
     else:
         out["radius_retries"] = 0
-    if "SharedSecret" in data:
+    if data.get("SharedSecret") is not None:
         out["shared_secret"] = data["SharedSecret"]
-    if "AuthenticationProtocol" in data:
+    if data.get("AuthenticationProtocol") is not None:
         import capo_directory_service.types.radius_authentication_protocol
 
         out["authentication_protocol"] = (
@@ -120,9 +120,9 @@ def deserialize_aws_json_1_1(data: dict) -> RadiusSettings:
                 data["AuthenticationProtocol"]
             )
         )
-    if "DisplayLabel" in data:
+    if data.get("DisplayLabel") is not None:
         out["display_label"] = data["DisplayLabel"]
-    if "UseSameUsername" in data:
+    if data.get("UseSameUsername") is not None:
         out["use_same_username"] = data["UseSameUsername"]
     else:
         out["use_same_username"] = False

@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ResponseExtractionMapping) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponseExtractionMapping:
     out: ResponseExtractionMapping = {}  # type: ignore[typeddict-item]
-    if "ContentPath" in data:
+    if data.get("ContentPath") is not None:
         out["content_path"] = data["ContentPath"]
-    if "HeaderKey" in data:
+    if data.get("HeaderKey") is not None:
         out["header_key"] = data["HeaderKey"]
     return out

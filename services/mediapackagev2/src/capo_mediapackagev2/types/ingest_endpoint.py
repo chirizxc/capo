@@ -22,8 +22,8 @@ def serialize_json(value: IngestEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> IngestEndpoint:
     out: IngestEndpoint = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

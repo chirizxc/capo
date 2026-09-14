@@ -22,11 +22,11 @@ def serialize_json(value: RecommendationError) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationError:
     out: RecommendationError = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("RecommendationError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("RecommendationError.message required")

@@ -36,15 +36,15 @@ def serialize_json(value: IdentityInfo) -> dict:
 
 def deserialize_json(data: dict) -> IdentityInfo:
     out: IdentityInfo = {}  # type: ignore[typeddict-item]
-    if "IdentityType" in data:
+    if data.get("IdentityType") is not None:
         import capo_pinpoint_email.types.identity_type
 
         out["identity_type"] = capo_pinpoint_email.types.identity_type.deserialize_json(
             data["IdentityType"]
         )
-    if "IdentityName" in data:
+    if data.get("IdentityName") is not None:
         out["identity_name"] = data["IdentityName"]
-    if "SendingEnabled" in data:
+    if data.get("SendingEnabled") is not None:
         out["sending_enabled"] = data["SendingEnabled"]
     else:
         out["sending_enabled"] = False

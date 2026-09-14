@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_mailmanager._services._pipeline import (
@@ -84,10 +85,12 @@ class AddressListResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_address_list_request.CreateAddressListRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["address_list_name"] = address_list_name
+        input_: capo_mailmanager.types.create_address_list_request.CreateAddressListRequest = {
+            "address_list_name": address_list_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -96,6 +99,7 @@ class AddressListResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -132,14 +136,16 @@ class AddressListResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_address_list_request.GetAddressListRequest = {}  # type: ignore[typeddict-item]
-        input_["address_list_id"] = address_list_id
+        input_: capo_mailmanager.types.get_address_list_request.GetAddressListRequest = {
+            "address_list_id": address_list_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -178,14 +184,16 @@ class AddressListResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_address_list_request.DeleteAddressListRequest = {}  # type: ignore[typeddict-item]
-        input_["address_list_id"] = address_list_id
+        input_: capo_mailmanager.types.delete_address_list_request.DeleteAddressListRequest = {
+            "address_list_id": address_list_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -225,7 +233,7 @@ class AddressListResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_address_lists_request.ListAddressListsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_address_lists_request.ListAddressListsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -236,6 +244,7 @@ class AddressListResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -287,10 +296,12 @@ class AsyncAddressListResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_address_list_request.CreateAddressListRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["address_list_name"] = address_list_name
+        input_: capo_mailmanager.types.create_address_list_request.CreateAddressListRequest = {
+            "address_list_name": address_list_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -299,6 +310,7 @@ class AsyncAddressListResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -336,14 +348,16 @@ class AsyncAddressListResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_address_list_request.GetAddressListRequest = {}  # type: ignore[typeddict-item]
-        input_["address_list_id"] = address_list_id
+        input_: capo_mailmanager.types.get_address_list_request.GetAddressListRequest = {
+            "address_list_id": address_list_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -383,14 +397,16 @@ class AsyncAddressListResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_address_list_request.DeleteAddressListRequest = {}  # type: ignore[typeddict-item]
-        input_["address_list_id"] = address_list_id
+        input_: capo_mailmanager.types.delete_address_list_request.DeleteAddressListRequest = {
+            "address_list_id": address_list_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -431,7 +447,7 @@ class AsyncAddressListResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_address_lists_request.ListAddressListsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_address_lists_request.ListAddressListsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -442,4 +458,5 @@ class AsyncAddressListResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

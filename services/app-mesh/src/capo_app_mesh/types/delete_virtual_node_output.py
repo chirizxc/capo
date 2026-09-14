@@ -28,7 +28,7 @@ def serialize_json(value: DeleteVirtualNodeOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteVirtualNodeOutput:
     out: DeleteVirtualNodeOutput = {}  # type: ignore[typeddict-item]
-    if "virtualNode" in data:
+    if data.get("virtualNode") is not None:
         import capo_app_mesh.types.virtual_node_data
 
         out["virtual_node"] = capo_app_mesh.types.virtual_node_data.deserialize_json(

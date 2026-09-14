@@ -41,16 +41,16 @@ def serialize_json(value: CreateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserRequest:
     out: CreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError("CreateUserRequest.user_id required")
-    if "userAliases" in data:
+    if data.get("userAliases") is not None:
         import capo_qbusiness.types.user_aliases
 
         out["user_aliases"] = capo_qbusiness.types.user_aliases.deserialize_json(
             data["userAliases"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

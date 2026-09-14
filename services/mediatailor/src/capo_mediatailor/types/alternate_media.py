@@ -57,26 +57,26 @@ def serialize_json(value: AlternateMedia) -> dict:
 
 def deserialize_json(data: dict) -> AlternateMedia:
     out: AlternateMedia = {}  # type: ignore[typeddict-item]
-    if "SourceLocationName" in data:
+    if data.get("SourceLocationName") is not None:
         out["source_location_name"] = data["SourceLocationName"]
-    if "LiveSourceName" in data:
+    if data.get("LiveSourceName") is not None:
         out["live_source_name"] = data["LiveSourceName"]
-    if "VodSourceName" in data:
+    if data.get("VodSourceName") is not None:
         out["vod_source_name"] = data["VodSourceName"]
-    if "ClipRange" in data:
+    if data.get("ClipRange") is not None:
         import capo_mediatailor.types.clip_range
 
         out["clip_range"] = capo_mediatailor.types.clip_range.deserialize_json(
             data["ClipRange"]
         )
-    if "ScheduledStartTimeMillis" in data:
+    if data.get("ScheduledStartTimeMillis") is not None:
         out["scheduled_start_time_millis"] = data["ScheduledStartTimeMillis"]
-    if "AdBreaks" in data:
+    if data.get("AdBreaks") is not None:
         import capo_mediatailor.types.__list_of_ad_break
 
         out["ad_breaks"] = capo_mediatailor.types.__list_of_ad_break.deserialize_json(
             data["AdBreaks"]
         )
-    if "DurationMillis" in data:
+    if data.get("DurationMillis") is not None:
         out["duration_millis"] = data["DurationMillis"]
     return out

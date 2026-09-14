@@ -70,9 +70,9 @@ def deserialize_json(
     data: dict,
 ) -> AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails:
     out: AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails = {}  # type: ignore[typeddict-item]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         out["authentication_type"] = data["AuthenticationType"]
-    if "LambdaAuthorizerConfig" in data:
+    if data.get("LambdaAuthorizerConfig") is not None:
         import capo_securityhub.types.aws_app_sync_graph_ql_api_lambda_authorizer_config_details
 
         out["lambda_authorizer_config"] = (
@@ -80,7 +80,7 @@ def deserialize_json(
                 data["LambdaAuthorizerConfig"]
             )
         )
-    if "OpenIdConnectConfig" in data:
+    if data.get("OpenIdConnectConfig") is not None:
         import capo_securityhub.types.aws_app_sync_graph_ql_api_open_id_connect_config_details
 
         out["open_id_connect_config"] = (
@@ -88,7 +88,7 @@ def deserialize_json(
                 data["OpenIdConnectConfig"]
             )
         )
-    if "UserPoolConfig" in data:
+    if data.get("UserPoolConfig") is not None:
         import capo_securityhub.types.aws_app_sync_graph_ql_api_user_pool_config_details
 
         out["user_pool_config"] = (

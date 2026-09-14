@@ -42,7 +42,7 @@ def serialize_json(value: PutRetentionSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutRetentionSettingsResponse:
     out: PutRetentionSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "RetentionSettings" in data:
+    if data.get("RetentionSettings") is not None:
         import capo_chime.types.retention_settings
 
         out["retention_settings"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> PutRetentionSettingsResponse:
                 data["RetentionSettings"]
             )
         )
-    if "InitiateDeletionTimestamp" in data:
+    if data.get("InitiateDeletionTimestamp") is not None:
         import capo_chime.types.iso8601_timestamp
 
         out["initiate_deletion_timestamp"] = (

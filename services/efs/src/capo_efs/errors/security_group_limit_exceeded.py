@@ -27,11 +27,11 @@ def serialize_json(value: SecurityGroupLimitExceeded_) -> dict:
 
 def deserialize_json(data: dict) -> SecurityGroupLimitExceeded_:
     out: SecurityGroupLimitExceeded_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError("SecurityGroupLimitExceeded_.error_code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,18 @@ class SecurityGroupLimitExceeded(ServiceError):
 
     code: str | None = "SecurityGroupLimitExceeded"
 
-    def __init__(self, data: SecurityGroupLimitExceeded_):
+    def __init__(self, data: SecurityGroupLimitExceeded_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SecurityGroupLimitExceeded",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "SecurityGroupLimitExceeded":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "SecurityGroupLimitExceeded":
+        return cls(deserialize_json(data), message)

@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: PersonalAccessTokenConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PersonalAccessTokenConfiguration:
     out: PersonalAccessTokenConfiguration = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_workmail.types.personal_access_token_configuration_status
 
         out["status"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> PersonalAccessTokenConfiguration:
         )
     else:
         raise DeserializationError("PersonalAccessTokenConfiguration.status required")
-    if "LifetimeInDays" in data:
+    if data.get("LifetimeInDays") is not None:
         out["lifetime_in_days"] = data["LifetimeInDays"]
     return out

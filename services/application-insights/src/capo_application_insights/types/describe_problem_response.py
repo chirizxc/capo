@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: DescribeProblemResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProblemResponse:
     out: DescribeProblemResponse = {}  # type: ignore[typeddict-item]
-    if "Problem" in data:
+    if data.get("Problem") is not None:
         import capo_application_insights.types.problem
 
         out["problem"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProblemResponse:
                 data["Problem"]
             )
         )
-    if "SNSNotificationArn" in data:
+    if data.get("SNSNotificationArn") is not None:
         out["sns_notification_arn"] = data["SNSNotificationArn"]
     return out

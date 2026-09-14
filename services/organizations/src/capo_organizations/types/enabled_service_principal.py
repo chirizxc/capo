@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: EnabledServicePrincipal) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnabledServicePrincipal:
     out: EnabledServicePrincipal = {}  # type: ignore[typeddict-item]
-    if "ServicePrincipal" in data:
+    if data.get("ServicePrincipal") is not None:
         out["service_principal"] = data["ServicePrincipal"]
-    if "DateEnabled" in data:
+    if data.get("DateEnabled") is not None:
         import capo_organizations.types.timestamp
 
         out["date_enabled"] = (

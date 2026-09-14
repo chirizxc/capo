@@ -35,13 +35,13 @@ def serialize_json(value: AccessRights) -> dict:
 
 def deserialize_json(data: dict) -> AccessRights:
     out: AccessRights = {}  # type: ignore[typeddict-item]
-    if "Enroll" in data:
+    if data.get("Enroll") is not None:
         import capo_pca_connector_ad.types.access_right
 
         out["enroll"] = capo_pca_connector_ad.types.access_right.deserialize_json(
             data["Enroll"]
         )
-    if "AutoEnroll" in data:
+    if data.get("AutoEnroll") is not None:
         import capo_pca_connector_ad.types.access_right
 
         out["auto_enroll"] = capo_pca_connector_ad.types.access_right.deserialize_json(

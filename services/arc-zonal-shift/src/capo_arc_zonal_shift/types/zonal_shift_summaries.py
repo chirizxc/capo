@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ZonalShiftSummaries:
 
     out: ZonalShiftSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_arc_zonal_shift.types.zonal_shift_summary.deserialize_json(item)
         )

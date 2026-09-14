@@ -16,4 +16,4 @@ def serialize_json(value: DataSourceIntrospectionModelFieldTypeValues) -> list:
 
 
 def deserialize_json(data: list) -> DataSourceIntrospectionModelFieldTypeValues:
-    return list(data)
+    return [item for item in data if item is not None]

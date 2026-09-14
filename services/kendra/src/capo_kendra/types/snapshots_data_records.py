@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> SnapshotsDataRecords:
 
     out: SnapshotsDataRecords = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.snapshots_data_record.deserialize_aws_json_1_1(item)
         )

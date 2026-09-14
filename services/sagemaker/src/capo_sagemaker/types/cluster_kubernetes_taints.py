@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ClusterKubernetesTaints:
 
     out: ClusterKubernetesTaints = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.cluster_kubernetes_taint.deserialize_aws_json_1_1(item)
         )

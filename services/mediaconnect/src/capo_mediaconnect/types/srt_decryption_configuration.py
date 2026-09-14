@@ -30,7 +30,7 @@ def serialize_json(value: SrtDecryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SrtDecryptionConfiguration:
     out: SrtDecryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         import capo_mediaconnect.types.secrets_manager_encryption_key_configuration
 
         out["encryption_key"] = (

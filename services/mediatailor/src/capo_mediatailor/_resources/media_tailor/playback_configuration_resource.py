@@ -146,7 +146,9 @@ class PlaybackConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.put_playback_configuration_request.PutPlaybackConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.put_playback_configuration_request.PutPlaybackConfigurationRequest = {
+            "name": name
+        }
         if ad_decision_server_url is not None:
             input_["ad_decision_server_url"] = ad_decision_server_url
         if avail_suppression is not None:
@@ -165,7 +167,6 @@ class PlaybackConfigurationResource:
             input_["live_pre_roll_configuration"] = live_pre_roll_configuration
         if manifest_processing_rules is not None:
             input_["manifest_processing_rules"] = manifest_processing_rules
-        input_["name"] = name
         if personalization_threshold_seconds is not None:
             input_["personalization_threshold_seconds"] = (
                 personalization_threshold_seconds
@@ -192,6 +193,7 @@ class PlaybackConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -224,14 +226,16 @@ class PlaybackConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.get_playback_configuration_request.GetPlaybackConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mediatailor.types.get_playback_configuration_request.GetPlaybackConfigurationRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -264,14 +268,16 @@ class PlaybackConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_playback_configuration_request.DeletePlaybackConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mediatailor.types.delete_playback_configuration_request.DeletePlaybackConfigurationRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -306,7 +312,7 @@ class PlaybackConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_playback_configurations_request.ListPlaybackConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_playback_configurations_request.ListPlaybackConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -317,6 +323,7 @@ class PlaybackConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -419,7 +426,9 @@ class AsyncPlaybackConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.put_playback_configuration_request.PutPlaybackConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.put_playback_configuration_request.PutPlaybackConfigurationRequest = {
+            "name": name
+        }
         if ad_decision_server_url is not None:
             input_["ad_decision_server_url"] = ad_decision_server_url
         if avail_suppression is not None:
@@ -438,7 +447,6 @@ class AsyncPlaybackConfigurationResource:
             input_["live_pre_roll_configuration"] = live_pre_roll_configuration
         if manifest_processing_rules is not None:
             input_["manifest_processing_rules"] = manifest_processing_rules
-        input_["name"] = name
         if personalization_threshold_seconds is not None:
             input_["personalization_threshold_seconds"] = (
                 personalization_threshold_seconds
@@ -465,6 +473,7 @@ class AsyncPlaybackConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -498,14 +507,16 @@ class AsyncPlaybackConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.get_playback_configuration_request.GetPlaybackConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mediatailor.types.get_playback_configuration_request.GetPlaybackConfigurationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -539,14 +550,16 @@ class AsyncPlaybackConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_playback_configuration_request.DeletePlaybackConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mediatailor.types.delete_playback_configuration_request.DeletePlaybackConfigurationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -582,7 +595,7 @@ class AsyncPlaybackConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_playback_configurations_request.ListPlaybackConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_playback_configurations_request.ListPlaybackConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -593,4 +606,5 @@ class AsyncPlaybackConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

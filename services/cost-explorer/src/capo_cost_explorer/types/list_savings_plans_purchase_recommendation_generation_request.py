@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListSavingsPlansPurchaseRecommendationGenerationRequest:
     out: ListSavingsPlansPurchaseRecommendationGenerationRequest = {}  # type: ignore[typeddict-item]
-    if "GenerationStatus" in data:
+    if data.get("GenerationStatus") is not None:
         import capo_cost_explorer.types.generation_status
 
         out["generation_status"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(
                 data["GenerationStatus"]
             )
         )
-    if "RecommendationIds" in data:
+    if data.get("RecommendationIds") is not None:
         import capo_cost_explorer.types.recommendation_id_list
 
         out["recommendation_ids"] = (
@@ -77,10 +77,10 @@ def deserialize_aws_json_1_1(
                 data["RecommendationIds"]
             )
         )
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: RollbackStageOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RollbackStageOutput:
     out: RollbackStageOutput = {}  # type: ignore[typeddict-item]
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
     else:
         raise DeserializationError("RollbackStageOutput.pipeline_execution_id required")

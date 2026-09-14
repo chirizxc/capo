@@ -24,7 +24,7 @@ def serialize_json(value: FilterByComponentType) -> dict:
 
 def deserialize_json(data: dict) -> FilterByComponentType:
     out: FilterByComponentType = {}  # type: ignore[typeddict-item]
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
     else:
         raise DeserializationError("FilterByComponentType.component_type_id required")

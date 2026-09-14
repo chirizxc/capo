@@ -55,15 +55,15 @@ def serialize_json(value: StartCommandExecutionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartCommandExecutionRequest:
     out: StartCommandExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
     else:
         raise DeserializationError("StartCommandExecutionRequest.target_arn required")
-    if "commandArn" in data:
+    if data.get("commandArn") is not None:
         out["command_arn"] = data["commandArn"]
     else:
         raise DeserializationError("StartCommandExecutionRequest.command_arn required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_iot_jobs_data_plane.types.command_execution_parameter_map
 
         out["parameters"] = (
@@ -71,8 +71,8 @@ def deserialize_json(data: dict) -> StartCommandExecutionRequest:
                 data["parameters"]
             )
         )
-    if "executionTimeoutSeconds" in data:
+    if data.get("executionTimeoutSeconds") is not None:
         out["execution_timeout_seconds"] = data["executionTimeoutSeconds"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

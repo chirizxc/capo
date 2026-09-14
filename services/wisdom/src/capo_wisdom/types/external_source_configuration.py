@@ -32,11 +32,11 @@ def serialize_json(value: ExternalSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ExternalSourceConfiguration:
     out: ExternalSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("ExternalSourceConfiguration.source required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_wisdom.types.configuration
 
         out["configuration"] = capo_wisdom.types.configuration.deserialize_json(

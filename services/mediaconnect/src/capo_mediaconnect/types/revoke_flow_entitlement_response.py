@@ -22,8 +22,8 @@ def serialize_json(value: RevokeFlowEntitlementResponse) -> dict:
 
 def deserialize_json(data: dict) -> RevokeFlowEntitlementResponse:
     out: RevokeFlowEntitlementResponse = {}  # type: ignore[typeddict-item]
-    if "entitlementArn" in data:
+    if data.get("entitlementArn") is not None:
         out["entitlement_arn"] = data["entitlementArn"]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
     return out

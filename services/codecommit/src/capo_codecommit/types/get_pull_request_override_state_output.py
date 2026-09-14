@@ -27,10 +27,10 @@ def serialize_aws_json_1_1(value: GetPullRequestOverrideStateOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPullRequestOverrideStateOutput:
     out: GetPullRequestOverrideStateOutput = {}  # type: ignore[typeddict-item]
-    if "overridden" in data:
+    if data.get("overridden") is not None:
         out["overridden"] = data["overridden"]
     else:
         out["overridden"] = False
-    if "overrider" in data:
+    if data.get("overrider") is not None:
         out["overrider"] = data["overrider"]
     return out

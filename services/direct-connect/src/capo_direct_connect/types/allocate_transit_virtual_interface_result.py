@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AllocateTransitVirtualInterfaceResult) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> AllocateTransitVirtualInterfaceResult:
     out: AllocateTransitVirtualInterfaceResult = {}  # type: ignore[typeddict-item]
-    if "virtualInterface" in data:
+    if data.get("virtualInterface") is not None:
         import capo_direct_connect.types.virtual_interface
 
         out["virtual_interface"] = (

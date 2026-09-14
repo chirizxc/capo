@@ -120,23 +120,23 @@ def serialize_json(value: AwsElasticBeanstalkEnvironmentDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsElasticBeanstalkEnvironmentDetails:
     out: AwsElasticBeanstalkEnvironmentDetails = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
-    if "Cname" in data:
+    if data.get("Cname") is not None:
         out["cname"] = data["Cname"]
-    if "DateCreated" in data:
+    if data.get("DateCreated") is not None:
         out["date_created"] = data["DateCreated"]
-    if "DateUpdated" in data:
+    if data.get("DateUpdated") is not None:
         out["date_updated"] = data["DateUpdated"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EndpointUrl" in data:
+    if data.get("EndpointUrl") is not None:
         out["endpoint_url"] = data["EndpointUrl"]
-    if "EnvironmentArn" in data:
+    if data.get("EnvironmentArn") is not None:
         out["environment_arn"] = data["EnvironmentArn"]
-    if "EnvironmentId" in data:
+    if data.get("EnvironmentId") is not None:
         out["environment_id"] = data["EnvironmentId"]
-    if "EnvironmentLinks" in data:
+    if data.get("EnvironmentLinks") is not None:
         import capo_securityhub.types.aws_elastic_beanstalk_environment_environment_links
 
         out["environment_links"] = (
@@ -144,9 +144,9 @@ def deserialize_json(data: dict) -> AwsElasticBeanstalkEnvironmentDetails:
                 data["EnvironmentLinks"]
             )
         )
-    if "EnvironmentName" in data:
+    if data.get("EnvironmentName") is not None:
         out["environment_name"] = data["EnvironmentName"]
-    if "OptionSettings" in data:
+    if data.get("OptionSettings") is not None:
         import capo_securityhub.types.aws_elastic_beanstalk_environment_option_settings
 
         out["option_settings"] = (
@@ -154,13 +154,13 @@ def deserialize_json(data: dict) -> AwsElasticBeanstalkEnvironmentDetails:
                 data["OptionSettings"]
             )
         )
-    if "PlatformArn" in data:
+    if data.get("PlatformArn") is not None:
         out["platform_arn"] = data["PlatformArn"]
-    if "SolutionStackName" in data:
+    if data.get("SolutionStackName") is not None:
         out["solution_stack_name"] = data["SolutionStackName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         import capo_securityhub.types.aws_elastic_beanstalk_environment_tier
 
         out["tier"] = (
@@ -168,6 +168,6 @@ def deserialize_json(data: dict) -> AwsElasticBeanstalkEnvironmentDetails:
                 data["Tier"]
             )
         )
-    if "VersionLabel" in data:
+    if data.get("VersionLabel") is not None:
         out["version_label"] = data["VersionLabel"]
     return out

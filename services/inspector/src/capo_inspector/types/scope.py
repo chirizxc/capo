@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: Scope) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Scope:
     out: Scope = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         import capo_inspector.types.scope_type
 
         out["key"] = capo_inspector.types.scope_type.deserialize_aws_json_1_1(
             data["key"]
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

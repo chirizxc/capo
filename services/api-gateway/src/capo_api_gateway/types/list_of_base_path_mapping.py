@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfBasePathMapping:
 
     out: ListOfBasePathMapping = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_api_gateway.types.base_path_mapping.deserialize_json(item))
     return out

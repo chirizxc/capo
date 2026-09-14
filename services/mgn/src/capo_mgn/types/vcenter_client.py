@@ -63,25 +63,25 @@ def serialize_json(value: VcenterClient) -> dict:
 
 def deserialize_json(data: dict) -> VcenterClient:
     out: VcenterClient = {}  # type: ignore[typeddict-item]
-    if "vcenterClientID" in data:
+    if data.get("vcenterClientID") is not None:
         out["vcenter_client_id"] = data["vcenterClientID"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "vcenterUUID" in data:
+    if data.get("vcenterUUID") is not None:
         out["vcenter_uuid"] = data["vcenterUUID"]
-    if "datacenterName" in data:
+    if data.get("datacenterName") is not None:
         out["datacenter_name"] = data["datacenterName"]
-    if "lastSeenDatetime" in data:
+    if data.get("lastSeenDatetime") is not None:
         out["last_seen_datetime"] = data["lastSeenDatetime"]
-    if "sourceServerTags" in data:
+    if data.get("sourceServerTags") is not None:
         import capo_mgn.types.tags_map
 
         out["source_server_tags"] = capo_mgn.types.tags_map.deserialize_json(
             data["sourceServerTags"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])

@@ -28,12 +28,12 @@ def serialize_json(value: QueryLoggingConfigurationStatus) -> dict:
 
 def deserialize_json(data: dict) -> QueryLoggingConfigurationStatus:
     out: QueryLoggingConfigurationStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
     else:
         raise DeserializationError(
             "QueryLoggingConfigurationStatus.status_code required"
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

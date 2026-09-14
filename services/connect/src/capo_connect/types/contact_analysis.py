@@ -27,7 +27,7 @@ def serialize_json(value: ContactAnalysis) -> dict:
 
 def deserialize_json(data: dict) -> ContactAnalysis:
     out: ContactAnalysis = {}  # type: ignore[typeddict-item]
-    if "Transcript" in data:
+    if data.get("Transcript") is not None:
         import capo_connect.types.transcript
 
         out["transcript"] = capo_connect.types.transcript.deserialize_json(

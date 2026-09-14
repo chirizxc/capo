@@ -46,13 +46,13 @@ def serialize_json(value: StartContactMediaProcessingRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartContactMediaProcessingRequest:
     out: StartContactMediaProcessingRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
-    if "ProcessorArn" in data:
+    if data.get("ProcessorArn") is not None:
         out["processor_arn"] = data["ProcessorArn"]
-    if "FailureMode" in data:
+    if data.get("FailureMode") is not None:
         import capo_connect.types.contact_media_processing_failure_mode
 
         out["failure_mode"] = (

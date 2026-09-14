@@ -24,7 +24,7 @@ def serialize_json(value: SessionSummary) -> dict:
 
 def deserialize_json(data: dict) -> SessionSummary:
     out: SessionSummary = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("SessionSummary.session_id required")

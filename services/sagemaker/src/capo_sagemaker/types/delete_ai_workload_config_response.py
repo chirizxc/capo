@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DeleteAIWorkloadConfigResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteAIWorkloadConfigResponse:
     out: DeleteAIWorkloadConfigResponse = {}  # type: ignore[typeddict-item]
-    if "AIWorkloadConfigArn" in data:
+    if data.get("AIWorkloadConfigArn") is not None:
         out["ai_workload_config_arn"] = data["AIWorkloadConfigArn"]
     return out

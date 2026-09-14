@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: IamPolicyConstraints) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IamPolicyConstraints:
     out: IamPolicyConstraints = {}  # type: ignore[typeddict-item]
-    if "SourceIp" in data:
+    if data.get("SourceIp") is not None:
         import capo_sagemaker.types.enabled_or_disabled
 
         out["source_ip"] = (
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> IamPolicyConstraints:
                 data["SourceIp"]
             )
         )
-    if "VpcSourceIp" in data:
+    if data.get("VpcSourceIp") is not None:
         import capo_sagemaker.types.enabled_or_disabled
 
         out["vpc_source_ip"] = (

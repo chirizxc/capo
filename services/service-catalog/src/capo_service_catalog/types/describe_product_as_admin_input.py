@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: DescribeProductAsAdminInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProductAsAdminInput:
     out: DescribeProductAsAdminInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SourcePortfolioId" in data:
+    if data.get("SourcePortfolioId") is not None:
         out["source_portfolio_id"] = data["SourcePortfolioId"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetProcurementPortalPreferenceRequest) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> GetProcurementPortalPreferenceRequest:
     out: GetProcurementPortalPreferenceRequest = {}  # type: ignore[typeddict-item]
-    if "ProcurementPortalPreferenceArn" in data:
+    if data.get("ProcurementPortalPreferenceArn") is not None:
         out["procurement_portal_preference_arn"] = data[
             "ProcurementPortalPreferenceArn"
         ]

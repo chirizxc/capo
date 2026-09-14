@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> VariantImportItemDetails:
 
     out: VariantImportItemDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_omics.types.variant_import_item_detail.deserialize_json(item))
     return out

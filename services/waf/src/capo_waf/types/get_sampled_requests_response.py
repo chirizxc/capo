@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: GetSampledRequestsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSampledRequestsResponse:
     out: GetSampledRequestsResponse = {}  # type: ignore[typeddict-item]
-    if "SampledRequests" in data:
+    if data.get("SampledRequests") is not None:
         import capo_waf.types.sampled_http_requests
 
         out["sampled_requests"] = (
@@ -52,11 +52,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetSampledRequestsResponse:
                 data["SampledRequests"]
             )
         )
-    if "PopulationSize" in data:
+    if data.get("PopulationSize") is not None:
         out["population_size"] = data["PopulationSize"]
     else:
         out["population_size"] = 0
-    if "TimeWindow" in data:
+    if data.get("TimeWindow") is not None:
         import capo_waf.types.time_window
 
         out["time_window"] = capo_waf.types.time_window.deserialize_aws_json_1_1(

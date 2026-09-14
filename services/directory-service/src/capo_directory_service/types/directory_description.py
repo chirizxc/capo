@@ -300,13 +300,13 @@ def serialize_aws_json_1_1(value: DirectoryDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
     out: DirectoryDescription = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ShortName" in data:
+    if data.get("ShortName") is not None:
         out["short_name"] = data["ShortName"]
-    if "Size" in data:
+    if data.get("Size") is not None:
         import capo_directory_service.types.directory_size
 
         out["size"] = (
@@ -314,7 +314,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["Size"]
             )
         )
-    if "Edition" in data:
+    if data.get("Edition") is not None:
         import capo_directory_service.types.directory_edition
 
         out["edition"] = (
@@ -322,13 +322,13 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["Edition"]
             )
         )
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
-    if "AccessUrl" in data:
+    if data.get("AccessUrl") is not None:
         out["access_url"] = data["AccessUrl"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DnsIpAddrs" in data:
+    if data.get("DnsIpAddrs") is not None:
         import capo_directory_service.types.dns_ip_addrs
 
         out["dns_ip_addrs"] = (
@@ -336,7 +336,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["DnsIpAddrs"]
             )
         )
-    if "DnsIpv6Addrs" in data:
+    if data.get("DnsIpv6Addrs") is not None:
         import capo_directory_service.types.dns_ipv6_addrs
 
         out["dns_ipv6_addrs"] = (
@@ -344,7 +344,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["DnsIpv6Addrs"]
             )
         )
-    if "Stage" in data:
+    if data.get("Stage") is not None:
         import capo_directory_service.types.directory_stage
 
         out["stage"] = (
@@ -352,7 +352,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["Stage"]
             )
         )
-    if "ShareStatus" in data:
+    if data.get("ShareStatus") is not None:
         import capo_directory_service.types.share_status
 
         out["share_status"] = (
@@ -360,7 +360,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["ShareStatus"]
             )
         )
-    if "ShareMethod" in data:
+    if data.get("ShareMethod") is not None:
         import capo_directory_service.types.share_method
 
         out["share_method"] = (
@@ -368,9 +368,9 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["ShareMethod"]
             )
         )
-    if "ShareNotes" in data:
+    if data.get("ShareNotes") is not None:
         out["share_notes"] = data["ShareNotes"]
-    if "LaunchTime" in data:
+    if data.get("LaunchTime") is not None:
         import capo_directory_service.types.launch_time
 
         out["launch_time"] = (
@@ -378,7 +378,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["LaunchTime"]
             )
         )
-    if "StageLastUpdatedDateTime" in data:
+    if data.get("StageLastUpdatedDateTime") is not None:
         import capo_directory_service.types.last_updated_date_time
 
         out["stage_last_updated_date_time"] = (
@@ -386,7 +386,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["StageLastUpdatedDateTime"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_directory_service.types.directory_type
 
         out["type"] = (
@@ -394,7 +394,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["Type"]
             )
         )
-    if "VpcSettings" in data:
+    if data.get("VpcSettings") is not None:
         import capo_directory_service.types.directory_vpc_settings_description
 
         out["vpc_settings"] = (
@@ -402,7 +402,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["VpcSettings"]
             )
         )
-    if "ConnectSettings" in data:
+    if data.get("ConnectSettings") is not None:
         import capo_directory_service.types.directory_connect_settings_description
 
         out["connect_settings"] = (
@@ -410,7 +410,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["ConnectSettings"]
             )
         )
-    if "RadiusSettings" in data:
+    if data.get("RadiusSettings") is not None:
         import capo_directory_service.types.radius_settings
 
         out["radius_settings"] = (
@@ -418,7 +418,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["RadiusSettings"]
             )
         )
-    if "RadiusStatus" in data:
+    if data.get("RadiusStatus") is not None:
         import capo_directory_service.types.radius_status
 
         out["radius_status"] = (
@@ -426,17 +426,17 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["RadiusStatus"]
             )
         )
-    if "StageReason" in data:
+    if data.get("StageReason") is not None:
         out["stage_reason"] = data["StageReason"]
-    if "SsoEnabled" in data:
+    if data.get("SsoEnabled") is not None:
         out["sso_enabled"] = data["SsoEnabled"]
     else:
         out["sso_enabled"] = False
-    if "DesiredNumberOfDomainControllers" in data:
+    if data.get("DesiredNumberOfDomainControllers") is not None:
         out["desired_number_of_domain_controllers"] = data[
             "DesiredNumberOfDomainControllers"
         ]
-    if "OwnerDirectoryDescription" in data:
+    if data.get("OwnerDirectoryDescription") is not None:
         import capo_directory_service.types.owner_directory_description
 
         out["owner_directory_description"] = (
@@ -444,7 +444,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["OwnerDirectoryDescription"]
             )
         )
-    if "RegionsInfo" in data:
+    if data.get("RegionsInfo") is not None:
         import capo_directory_service.types.regions_info
 
         out["regions_info"] = (
@@ -452,7 +452,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["RegionsInfo"]
             )
         )
-    if "OsVersion" in data:
+    if data.get("OsVersion") is not None:
         import capo_directory_service.types.os_version
 
         out["os_version"] = (
@@ -460,7 +460,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["OsVersion"]
             )
         )
-    if "HybridSettings" in data:
+    if data.get("HybridSettings") is not None:
         import capo_directory_service.types.hybrid_settings_description
 
         out["hybrid_settings"] = (
@@ -468,7 +468,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryDescription:
                 data["HybridSettings"]
             )
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_directory_service.types.network_type
 
         out["network_type"] = (

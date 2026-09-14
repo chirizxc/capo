@@ -101,10 +101,11 @@ class SessionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.start_session_request.StartSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["client_token"] = client_token
-        input_["execution_role_arn"] = execution_role_arn
+        input_: capo_emr_serverless.types.start_session_request.StartSessionRequest = {
+            "application_id": application_id,
+            "client_token": client_token,
+            "execution_role_arn": execution_role_arn,
+        }
         if configuration_overrides is not None:
             input_["configuration_overrides"] = configuration_overrides
         if tags is not None:
@@ -119,6 +120,7 @@ class SessionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -156,15 +158,17 @@ class SessionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_session_request.GetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["session_id"] = session_id
+        input_: capo_emr_serverless.types.get_session_request.GetSessionRequest = {
+            "application_id": application_id,
+            "session_id": session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -204,15 +208,17 @@ class SessionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.terminate_session_request.TerminateSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["session_id"] = session_id
+        input_: capo_emr_serverless.types.terminate_session_request.TerminateSessionRequest = {
+            "application_id": application_id,
+            "session_id": session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -260,8 +266,9 @@ class SessionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.list_sessions_request.ListSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.list_sessions_request.ListSessionsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -278,6 +285,7 @@ class SessionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_session_endpoint(
@@ -315,15 +323,17 @@ class SessionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_session_endpoint_request.GetSessionEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["session_id"] = session_id
+        input_: capo_emr_serverless.types.get_session_endpoint_request.GetSessionEndpointRequest = {
+            "application_id": application_id,
+            "session_id": session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -383,10 +393,11 @@ class AsyncSessionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.start_session_request.StartSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["client_token"] = client_token
-        input_["execution_role_arn"] = execution_role_arn
+        input_: capo_emr_serverless.types.start_session_request.StartSessionRequest = {
+            "application_id": application_id,
+            "client_token": client_token,
+            "execution_role_arn": execution_role_arn,
+        }
         if configuration_overrides is not None:
             input_["configuration_overrides"] = configuration_overrides
         if tags is not None:
@@ -401,6 +412,7 @@ class AsyncSessionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -439,15 +451,17 @@ class AsyncSessionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_session_request.GetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["session_id"] = session_id
+        input_: capo_emr_serverless.types.get_session_request.GetSessionRequest = {
+            "application_id": application_id,
+            "session_id": session_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -488,15 +502,17 @@ class AsyncSessionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.terminate_session_request.TerminateSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["session_id"] = session_id
+        input_: capo_emr_serverless.types.terminate_session_request.TerminateSessionRequest = {
+            "application_id": application_id,
+            "session_id": session_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -545,8 +561,9 @@ class AsyncSessionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.list_sessions_request.ListSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.list_sessions_request.ListSessionsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -563,6 +580,7 @@ class AsyncSessionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_session_endpoint(
@@ -601,13 +619,15 @@ class AsyncSessionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_session_endpoint_request.GetSessionEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["session_id"] = session_id
+        input_: capo_emr_serverless.types.get_session_endpoint_request.GetSessionEndpointRequest = {
+            "application_id": application_id,
+            "session_id": session_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

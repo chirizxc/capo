@@ -28,7 +28,7 @@ def serialize_json(value: TableLFTagPolicy) -> dict:
 
 def deserialize_json(data: dict) -> TableLFTagPolicy:
     out: TableLFTagPolicy = {}  # type: ignore[typeddict-item]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         import capo_dataexchange.types.list_of_lf_tags
 
         out["expression"] = capo_dataexchange.types.list_of_lf_tags.deserialize_json(

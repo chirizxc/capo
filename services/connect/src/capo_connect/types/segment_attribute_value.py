@@ -62,9 +62,9 @@ def serialize_json(value: SegmentAttributeValue) -> dict:
 
 def deserialize_json(data: dict) -> SegmentAttributeValue:
     out: SegmentAttributeValue = {}  # type: ignore[typeddict-item]
-    if "ValueString" in data:
+    if data.get("ValueString") is not None:
         out["value_string"] = data["ValueString"]
-    if "ValueMap" in data:
+    if data.get("ValueMap") is not None:
         import capo_connect.types.segment_attribute_value_map
 
         out["value_map"] = (
@@ -72,9 +72,9 @@ def deserialize_json(data: dict) -> SegmentAttributeValue:
                 data["ValueMap"]
             )
         )
-    if "ValueInteger" in data:
+    if data.get("ValueInteger") is not None:
         out["value_integer"] = data["ValueInteger"]
-    if "ValueList" in data:
+    if data.get("ValueList") is not None:
         import capo_connect.types.segment_attribute_value_list
 
         out["value_list"] = (
@@ -82,6 +82,6 @@ def deserialize_json(data: dict) -> SegmentAttributeValue:
                 data["ValueList"]
             )
         )
-    if "ValueArn" in data:
+    if data.get("ValueArn") is not None:
         out["value_arn"] = data["ValueArn"]
     return out

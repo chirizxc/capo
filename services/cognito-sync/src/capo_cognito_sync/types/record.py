@@ -55,21 +55,21 @@ def serialize_json(value: Record) -> dict:
 
 def deserialize_json(data: dict) -> Record:
     out: Record = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "SyncCount" in data:
+    if data.get("SyncCount") is not None:
         out["sync_count"] = data["SyncCount"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_sync.types.date
 
         out["last_modified_date"] = capo_cognito_sync.types.date.deserialize_json(
             data["LastModifiedDate"]
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "DeviceLastModifiedDate" in data:
+    if data.get("DeviceLastModifiedDate") is not None:
         import capo_cognito_sync.types.date
 
         out["device_last_modified_date"] = (

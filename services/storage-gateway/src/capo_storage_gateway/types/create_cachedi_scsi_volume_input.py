@@ -70,37 +70,37 @@ def serialize_aws_json_1_1(value: CreateCachediSCSIVolumeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCachediSCSIVolumeInput:
     out: CreateCachediSCSIVolumeInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("CreateCachediSCSIVolumeInput.gateway_arn required")
-    if "VolumeSizeInBytes" in data:
+    if data.get("VolumeSizeInBytes") is not None:
         out["volume_size_in_bytes"] = data["VolumeSizeInBytes"]
     else:
         out["volume_size_in_bytes"] = 0
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
-    if "TargetName" in data:
+    if data.get("TargetName") is not None:
         out["target_name"] = data["TargetName"]
     else:
         raise DeserializationError("CreateCachediSCSIVolumeInput.target_name required")
-    if "SourceVolumeARN" in data:
+    if data.get("SourceVolumeARN") is not None:
         out["source_volume_arn"] = data["SourceVolumeARN"]
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
     else:
         raise DeserializationError(
             "CreateCachediSCSIVolumeInput.network_interface_id required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateCachediSCSIVolumeInput.client_token required")
-    if "KMSEncrypted" in data:
+    if data.get("KMSEncrypted") is not None:
         out["kms_encrypted"] = data["KMSEncrypted"]
-    if "KMSKey" in data:
+    if data.get("KMSKey") is not None:
         out["kms_key"] = data["KMSKey"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(

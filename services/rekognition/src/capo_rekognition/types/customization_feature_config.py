@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CustomizationFeatureConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomizationFeatureConfig:
     out: CustomizationFeatureConfig = {}  # type: ignore[typeddict-item]
-    if "ContentModeration" in data:
+    if data.get("ContentModeration") is not None:
         import capo_rekognition.types.customization_feature_content_moderation_config
 
         out["content_moderation"] = (

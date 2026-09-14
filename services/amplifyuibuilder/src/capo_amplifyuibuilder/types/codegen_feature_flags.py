@@ -22,8 +22,8 @@ def serialize_json(value: CodegenFeatureFlags) -> dict:
 
 def deserialize_json(data: dict) -> CodegenFeatureFlags:
     out: CodegenFeatureFlags = {}  # type: ignore[typeddict-item]
-    if "isRelationshipSupported" in data:
+    if data.get("isRelationshipSupported") is not None:
         out["is_relationship_supported"] = data["isRelationshipSupported"]
-    if "isNonModelSupported" in data:
+    if data.get("isNonModelSupported") is not None:
         out["is_non_model_supported"] = data["isNonModelSupported"]
     return out

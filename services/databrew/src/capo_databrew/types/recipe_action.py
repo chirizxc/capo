@@ -33,11 +33,11 @@ def serialize_json(value: RecipeAction) -> dict:
 
 def deserialize_json(data: dict) -> RecipeAction:
     out: RecipeAction = {}  # type: ignore[typeddict-item]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
     else:
         raise DeserializationError("RecipeAction.operation required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_databrew.types.parameter_map
 
         out["parameters"] = capo_databrew.types.parameter_map.deserialize_json(

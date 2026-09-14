@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: DockerServerStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DockerServerStatus:
     out: DockerServerStatus = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

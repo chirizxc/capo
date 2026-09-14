@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetTestGridSessionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTestGridSessionResult:
     out: GetTestGridSessionResult = {}  # type: ignore[typeddict-item]
-    if "testGridSession" in data:
+    if data.get("testGridSession") is not None:
         import capo_device_farm.types.test_grid_session
 
         out["test_grid_session"] = (

@@ -38,7 +38,7 @@ def serialize_json(value: GetPricingPlanResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPricingPlanResponse:
     out: GetPricingPlanResponse = {}  # type: ignore[typeddict-item]
-    if "currentPricingPlan" in data:
+    if data.get("currentPricingPlan") is not None:
         import capo_iottwinmaker.types.pricing_plan
 
         out["current_pricing_plan"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> GetPricingPlanResponse:
         raise DeserializationError(
             "GetPricingPlanResponse.current_pricing_plan required"
         )
-    if "pendingPricingPlan" in data:
+    if data.get("pendingPricingPlan") is not None:
         import capo_iottwinmaker.types.pricing_plan
 
         out["pending_pricing_plan"] = (

@@ -31,17 +31,17 @@ def serialize_json(value: AnalyzedResourceSummary) -> dict:
 
 def deserialize_json(data: dict) -> AnalyzedResourceSummary:
     out: AnalyzedResourceSummary = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("AnalyzedResourceSummary.resource_arn required")
-    if "resourceOwnerAccount" in data:
+    if data.get("resourceOwnerAccount") is not None:
         out["resource_owner_account"] = data["resourceOwnerAccount"]
     else:
         raise DeserializationError(
             "AnalyzedResourceSummary.resource_owner_account required"
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("AnalyzedResourceSummary.resource_type required")

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchCreateChannelMembershipErrors:
 
     out: BatchCreateChannelMembershipErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_messaging.types.batch_create_channel_membership_error.deserialize_json(
                 item

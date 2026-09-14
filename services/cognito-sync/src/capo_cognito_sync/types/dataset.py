@@ -59,26 +59,26 @@ def serialize_json(value: Dataset) -> dict:
 
 def deserialize_json(data: dict) -> Dataset:
     out: Dataset = {}  # type: ignore[typeddict-item]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_sync.types.date
 
         out["creation_date"] = capo_cognito_sync.types.date.deserialize_json(
             data["CreationDate"]
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_sync.types.date
 
         out["last_modified_date"] = capo_cognito_sync.types.date.deserialize_json(
             data["LastModifiedDate"]
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "DataStorage" in data:
+    if data.get("DataStorage") is not None:
         out["data_storage"] = data["DataStorage"]
-    if "NumRecords" in data:
+    if data.get("NumRecords") is not None:
         out["num_records"] = data["NumRecords"]
     return out

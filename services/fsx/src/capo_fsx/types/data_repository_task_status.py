@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: DataRepositoryTaskStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataRepositoryTaskStatus:
     out: DataRepositoryTaskStatus = {}  # type: ignore[typeddict-item]
-    if "TotalCount" in data:
+    if data.get("TotalCount") is not None:
         out["total_count"] = data["TotalCount"]
-    if "SucceededCount" in data:
+    if data.get("SucceededCount") is not None:
         out["succeeded_count"] = data["SucceededCount"]
-    if "FailedCount" in data:
+    if data.get("FailedCount") is not None:
         out["failed_count"] = data["FailedCount"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_fsx.types.last_updated_time
 
         out["last_updated_time"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryTaskStatus:
                 data["LastUpdatedTime"]
             )
         )
-    if "ReleasedCapacity" in data:
+    if data.get("ReleasedCapacity") is not None:
         out["released_capacity"] = data["ReleasedCapacity"]
     return out

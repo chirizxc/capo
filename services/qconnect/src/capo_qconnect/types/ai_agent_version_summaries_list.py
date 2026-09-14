@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AIAgentVersionSummariesList:
 
     out: AIAgentVersionSummariesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.ai_agent_version_summary.deserialize_json(item))
     return out

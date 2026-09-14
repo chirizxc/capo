@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetPartitionIndexesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPartitionIndexesResponse:
     out: GetPartitionIndexesResponse = {}  # type: ignore[typeddict-item]
-    if "PartitionIndexDescriptorList" in data:
+    if data.get("PartitionIndexDescriptorList") is not None:
         import capo_glue.types.partition_index_descriptor_list
 
         out["partition_index_descriptor_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetPartitionIndexesResponse:
                 data["PartitionIndexDescriptorList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

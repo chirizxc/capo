@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: DataProtection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataProtection:
     out: DataProtection = {}  # type: ignore[typeddict-item]
-    if "Field" in data:
+    if data.get("Field") is not None:
         import capo_wafv2.types.field_to_protect
 
         out["field"] = capo_wafv2.types.field_to_protect.deserialize_aws_json_1_1(
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProtection:
         )
     else:
         raise DeserializationError("DataProtection.field required")
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_wafv2.types.data_protection_action
 
         out["action"] = (
@@ -61,11 +61,11 @@ def deserialize_aws_json_1_1(data: dict) -> DataProtection:
         )
     else:
         raise DeserializationError("DataProtection.action required")
-    if "ExcludeRuleMatchDetails" in data:
+    if data.get("ExcludeRuleMatchDetails") is not None:
         out["exclude_rule_match_details"] = data["ExcludeRuleMatchDetails"]
     else:
         out["exclude_rule_match_details"] = False
-    if "ExcludeRateBasedDetails" in data:
+    if data.get("ExcludeRateBasedDetails") is not None:
         out["exclude_rate_based_details"] = data["ExcludeRateBasedDetails"]
     else:
         out["exclude_rate_based_details"] = False

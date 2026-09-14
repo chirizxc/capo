@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> DisassociatedFacesList:
 
     out: DisassociatedFacesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.disassociated_face.deserialize_aws_json_1_1(item)
         )

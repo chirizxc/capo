@@ -62,9 +62,9 @@ def serialize_json(value: CreateInstanceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateInstanceRequest:
     out: CreateInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "IdentityManagementType" in data:
+    if data.get("IdentityManagementType") is not None:
         import capo_connect.types.directory_type
 
         out["identity_management_type"] = (
@@ -76,23 +76,23 @@ def deserialize_json(data: dict) -> CreateInstanceRequest:
         raise DeserializationError(
             "CreateInstanceRequest.identity_management_type required"
         )
-    if "InstanceAlias" in data:
+    if data.get("InstanceAlias") is not None:
         out["instance_alias"] = data["InstanceAlias"]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "InboundCallsEnabled" in data:
+    if data.get("InboundCallsEnabled") is not None:
         out["inbound_calls_enabled"] = data["InboundCallsEnabled"]
     else:
         raise DeserializationError(
             "CreateInstanceRequest.inbound_calls_enabled required"
         )
-    if "OutboundCallsEnabled" in data:
+    if data.get("OutboundCallsEnabled") is not None:
         out["outbound_calls_enabled"] = data["OutboundCallsEnabled"]
     else:
         raise DeserializationError(
             "CreateInstanceRequest.outbound_calls_enabled required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

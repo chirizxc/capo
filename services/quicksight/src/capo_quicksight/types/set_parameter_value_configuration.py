@@ -33,13 +33,13 @@ def serialize_json(value: SetParameterValueConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SetParameterValueConfiguration:
     out: SetParameterValueConfiguration = {}  # type: ignore[typeddict-item]
-    if "DestinationParameterName" in data:
+    if data.get("DestinationParameterName") is not None:
         out["destination_parameter_name"] = data["DestinationParameterName"]
     else:
         raise DeserializationError(
             "SetParameterValueConfiguration.destination_parameter_name required"
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_quicksight.types.destination_parameter_value_configuration
 
         out["value"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DisassociateWorkspaceApplicationResult) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateWorkspaceApplicationResult:
     out: DisassociateWorkspaceApplicationResult = {}  # type: ignore[typeddict-item]
-    if "Association" in data:
+    if data.get("Association") is not None:
         import capo_workspaces.types.workspace_resource_association
 
         out["association"] = (

@@ -65,7 +65,7 @@ def serialize_json(value: UpdateReviewTemplateAnswerInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReviewTemplateAnswerInput:
     out: UpdateReviewTemplateAnswerInput = {}  # type: ignore[typeddict-item]
-    if "SelectedChoices" in data:
+    if data.get("SelectedChoices") is not None:
         import capo_wellarchitected.types.selected_choices
 
         out["selected_choices"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> UpdateReviewTemplateAnswerInput:
                 data["SelectedChoices"]
             )
         )
-    if "ChoiceUpdates" in data:
+    if data.get("ChoiceUpdates") is not None:
         import capo_wellarchitected.types.choice_updates
 
         out["choice_updates"] = (
@@ -81,11 +81,11 @@ def deserialize_json(data: dict) -> UpdateReviewTemplateAnswerInput:
                 data["ChoiceUpdates"]
             )
         )
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "IsApplicable" in data:
+    if data.get("IsApplicable") is not None:
         out["is_applicable"] = data["IsApplicable"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_wellarchitected.types.answer_reason
 
         out["reason"] = capo_wellarchitected.types.answer_reason.deserialize_json(

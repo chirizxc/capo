@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: GetInvoicePDFResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetInvoicePDFResponse:
     out: GetInvoicePDFResponse = {}  # type: ignore[typeddict-item]
-    if "InvoicePDF" in data:
+    if data.get("InvoicePDF") is not None:
         import capo_invoicing.types.invoice_pdf
 
         out["invoice_pdf"] = capo_invoicing.types.invoice_pdf.deserialize_aws_json_1_0(

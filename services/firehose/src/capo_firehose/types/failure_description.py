@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: FailureDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailureDescription:
     out: FailureDescription = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_firehose.types.delivery_stream_failure_type
 
         out["type"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> FailureDescription:
         )
     else:
         raise DeserializationError("FailureDescription.type required")
-    if "Details" in data:
+    if data.get("Details") is not None:
         out["details"] = data["Details"]
     else:
         raise DeserializationError("FailureDescription.details required")

@@ -31,13 +31,13 @@ def serialize_aws_json_1_1(value: UpdateTaskExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTaskExecutionRequest:
     out: UpdateTaskExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "TaskExecutionArn" in data:
+    if data.get("TaskExecutionArn") is not None:
         out["task_execution_arn"] = data["TaskExecutionArn"]
     else:
         raise DeserializationError(
             "UpdateTaskExecutionRequest.task_execution_arn required"
         )
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_datasync.types.options
 
         out["options"] = capo_datasync.types.options.deserialize_aws_json_1_1(

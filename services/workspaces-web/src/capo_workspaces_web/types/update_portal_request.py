@@ -52,14 +52,14 @@ def serialize_json(value: UpdatePortalRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePortalRequest:
     out: UpdatePortalRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         out["authentication_type"] = data["authenticationType"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "maxConcurrentSessions" in data:
+    if data.get("maxConcurrentSessions") is not None:
         out["max_concurrent_sessions"] = data["maxConcurrentSessions"]
-    if "portalCustomDomain" in data:
+    if data.get("portalCustomDomain") is not None:
         out["portal_custom_domain"] = data["portalCustomDomain"]
     return out

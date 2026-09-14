@@ -77,17 +77,17 @@ def serialize_json(value: CreateConnectorDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorDestinationRequest:
     out: CreateConnectorDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CloudConnectorId" in data:
+    if data.get("CloudConnectorId") is not None:
         out["cloud_connector_id"] = data["CloudConnectorId"]
     else:
         raise DeserializationError(
             "CreateConnectorDestinationRequest.cloud_connector_id required"
         )
-    if "AuthType" in data:
+    if data.get("AuthType") is not None:
         import capo_iot_managed_integrations.types.auth_type
 
         out["auth_type"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> CreateConnectorDestinationRequest:
                 data["AuthType"]
             )
         )
-    if "AuthConfig" in data:
+    if data.get("AuthConfig") is not None:
         import capo_iot_managed_integrations.types.auth_config
 
         out["auth_config"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> CreateConnectorDestinationRequest:
         raise DeserializationError(
             "CreateConnectorDestinationRequest.auth_config required"
         )
-    if "SecretsManager" in data:
+    if data.get("SecretsManager") is not None:
         import capo_iot_managed_integrations.types.secrets_manager
 
         out["secrets_manager"] = (
@@ -115,6 +115,6 @@ def deserialize_json(data: dict) -> CreateConnectorDestinationRequest:
                 data["SecretsManager"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

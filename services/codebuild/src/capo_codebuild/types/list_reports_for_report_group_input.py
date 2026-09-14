@@ -51,15 +51,15 @@ def serialize_aws_json_1_1(value: ListReportsForReportGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListReportsForReportGroupInput:
     out: ListReportsForReportGroupInput = {}  # type: ignore[typeddict-item]
-    if "reportGroupArn" in data:
+    if data.get("reportGroupArn") is not None:
         out["report_group_arn"] = data["reportGroupArn"]
     else:
         raise DeserializationError(
             "ListReportsForReportGroupInput.report_group_arn required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_codebuild.types.sort_order_type
 
         out["sort_order"] = (
@@ -67,9 +67,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListReportsForReportGroupInput:
                 data["sortOrder"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_codebuild.types.report_filter
 
         out["filter"] = capo_codebuild.types.report_filter.deserialize_aws_json_1_1(

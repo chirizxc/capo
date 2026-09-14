@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: IngestedEventsTimeWindow) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IngestedEventsTimeWindow:
     out: IngestedEventsTimeWindow = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
     else:
         raise DeserializationError("IngestedEventsTimeWindow.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         out["end_time"] = data["endTime"]
     else:
         raise DeserializationError("IngestedEventsTimeWindow.end_time required")

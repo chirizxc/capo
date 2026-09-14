@@ -37,18 +37,18 @@ def serialize_aws_json_1_0(value: RejectAgreementPaymentRequestInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RejectAgreementPaymentRequestInput:
     out: RejectAgreementPaymentRequestInput = {}  # type: ignore[typeddict-item]
-    if "paymentRequestId" in data:
+    if data.get("paymentRequestId") is not None:
         out["payment_request_id"] = data["paymentRequestId"]
     else:
         raise DeserializationError(
             "RejectAgreementPaymentRequestInput.payment_request_id required"
         )
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError(
             "RejectAgreementPaymentRequestInput.agreement_id required"
         )
-    if "rejectionReason" in data:
+    if data.get("rejectionReason") is not None:
         out["rejection_reason"] = data["rejectionReason"]
     return out

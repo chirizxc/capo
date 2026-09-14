@@ -43,12 +43,12 @@ def serialize_json(value: SeverityCounts) -> dict:
 
 def deserialize_json(data: dict) -> SeverityCounts:
     out: SeverityCounts = {}  # type: ignore[typeddict-item]
-    if "all" in data:
+    if data.get("all") is not None:
         out["all"] = data["all"]
-    if "critical" in data:
+    if data.get("critical") is not None:
         out["critical"] = data["critical"]
-    if "high" in data:
+    if data.get("high") is not None:
         out["high"] = data["high"]
-    if "medium" in data:
+    if data.get("medium") is not None:
         out["medium"] = data["medium"]
     return out

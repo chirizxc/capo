@@ -89,13 +89,13 @@ def serialize_json(value: CreateEventTriggerResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateEventTriggerResponse:
     out: CreateEventTriggerResponse = {}  # type: ignore[typeddict-item]
-    if "EventTriggerName" in data:
+    if data.get("EventTriggerName") is not None:
         out["event_trigger_name"] = data["EventTriggerName"]
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EventTriggerConditions" in data:
+    if data.get("EventTriggerConditions") is not None:
         import capo_customer_profiles.types.event_trigger_conditions
 
         out["event_trigger_conditions"] = (
@@ -103,9 +103,9 @@ def deserialize_json(data: dict) -> CreateEventTriggerResponse:
                 data["EventTriggerConditions"]
             )
         )
-    if "SegmentFilter" in data:
+    if data.get("SegmentFilter") is not None:
         out["segment_filter"] = data["SegmentFilter"]
-    if "EventTriggerLimits" in data:
+    if data.get("EventTriggerLimits") is not None:
         import capo_customer_profiles.types.event_trigger_limits
 
         out["event_trigger_limits"] = (
@@ -113,13 +113,13 @@ def deserialize_json(data: dict) -> CreateEventTriggerResponse:
                 data["EventTriggerLimits"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> CreateEventTriggerResponse:
                 data["LastUpdatedAt"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: MapOfAddressConfiguration) -> dict:
 def deserialize_json(data: dict) -> MapOfAddressConfiguration:
     out: MapOfAddressConfiguration = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_pinpoint.types.address_configuration
 
         out[key] = capo_pinpoint.types.address_configuration.deserialize_json(value)

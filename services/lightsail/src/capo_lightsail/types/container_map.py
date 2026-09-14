@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: ContainerMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ContainerMap:
     out: ContainerMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_lightsail.types.container
 
         out[key] = capo_lightsail.types.container.deserialize_aws_json_1_1(value)

@@ -46,19 +46,19 @@ def serialize_json(value: UsageByAccount) -> dict:
 
 def deserialize_json(data: dict) -> UsageByAccount:
     out: UsageByAccount = {}  # type: ignore[typeddict-item]
-    if "currency" in data:
+    if data.get("currency") is not None:
         import capo_macie2.types.currency
 
         out["currency"] = capo_macie2.types.currency.deserialize_json(data["currency"])
-    if "estimatedCost" in data:
+    if data.get("estimatedCost") is not None:
         out["estimated_cost"] = data["estimatedCost"]
-    if "serviceLimit" in data:
+    if data.get("serviceLimit") is not None:
         import capo_macie2.types.service_limit
 
         out["service_limit"] = capo_macie2.types.service_limit.deserialize_json(
             data["serviceLimit"]
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_macie2.types.usage_type
 
         out["type"] = capo_macie2.types.usage_type.deserialize_json(data["type"])

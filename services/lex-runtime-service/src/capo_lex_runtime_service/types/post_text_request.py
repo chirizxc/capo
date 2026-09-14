@@ -71,7 +71,7 @@ def serialize_json(value: PostTextRequest) -> dict:
 
 def deserialize_json(data: dict) -> PostTextRequest:
     out: PostTextRequest = {}  # type: ignore[typeddict-item]
-    if "sessionAttributes" in data:
+    if data.get("sessionAttributes") is not None:
         import capo_lex_runtime_service.types.string_map
 
         out["session_attributes"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> PostTextRequest:
                 data["sessionAttributes"]
             )
         )
-    if "requestAttributes" in data:
+    if data.get("requestAttributes") is not None:
         import capo_lex_runtime_service.types.string_map
 
         out["request_attributes"] = (
@@ -87,11 +87,11 @@ def deserialize_json(data: dict) -> PostTextRequest:
                 data["requestAttributes"]
             )
         )
-    if "inputText" in data:
+    if data.get("inputText") is not None:
         out["input_text"] = data["inputText"]
     else:
         raise DeserializationError("PostTextRequest.input_text required")
-    if "activeContexts" in data:
+    if data.get("activeContexts") is not None:
         import capo_lex_runtime_service.types.active_contexts_list
 
         out["active_contexts"] = (

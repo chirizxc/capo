@@ -26,10 +26,10 @@ def serialize_aws_json_1_0(value: EC2InstanceError) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EC2InstanceError:
     out: EC2InstanceError = {}  # type: ignore[typeddict-item]
-    if "EC2ErrorCode" in data:
+    if data.get("EC2ErrorCode") is not None:
         out["ec2_error_code"] = data["EC2ErrorCode"]
-    if "EC2ExceptionType" in data:
+    if data.get("EC2ExceptionType") is not None:
         out["ec2_exception_type"] = data["EC2ExceptionType"]
-    if "EC2ErrorMessage" in data:
+    if data.get("EC2ErrorMessage") is not None:
         out["ec2_error_message"] = data["EC2ErrorMessage"]
     return out

@@ -25,6 +25,6 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> StartDataQualityRulesetEvaluationRunResponse:
     out: StartDataQualityRulesetEvaluationRunResponse = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     return out

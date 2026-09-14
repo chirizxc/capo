@@ -32,7 +32,7 @@ def serialize_json(value: SnowflakeTableSchema) -> dict:
 
 
 def deserialize_json(data: dict) -> SnowflakeTableSchema:
-    if "v1" in data:
+    if data.get("v1") is not None:
         import capo_cleanrooms.types.snowflake_table_schema_list
 
         return {

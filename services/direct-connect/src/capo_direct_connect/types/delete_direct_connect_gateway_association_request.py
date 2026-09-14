@@ -41,10 +41,10 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DeleteDirectConnectGatewayAssociationRequest:
     out: DeleteDirectConnectGatewayAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
-    if "virtualGatewayId" in data:
+    if data.get("virtualGatewayId") is not None:
         out["virtual_gateway_id"] = data["virtualGatewayId"]
     return out

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DeleteFeatureGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFeatureGroupRequest:
     out: DeleteFeatureGroupRequest = {}  # type: ignore[typeddict-item]
-    if "FeatureGroupName" in data:
+    if data.get("FeatureGroupName") is not None:
         out["feature_group_name"] = data["FeatureGroupName"]
     return out

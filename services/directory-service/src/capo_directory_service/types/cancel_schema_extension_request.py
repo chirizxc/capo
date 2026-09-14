@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: CancelSchemaExtensionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelSchemaExtensionRequest:
     out: CancelSchemaExtensionRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("CancelSchemaExtensionRequest.directory_id required")
-    if "SchemaExtensionId" in data:
+    if data.get("SchemaExtensionId") is not None:
         out["schema_extension_id"] = data["SchemaExtensionId"]
     else:
         raise DeserializationError(

@@ -34,14 +34,14 @@ def serialize_json(value: KeyUsageFlags) -> dict:
 
 def deserialize_json(data: dict) -> KeyUsageFlags:
     out: KeyUsageFlags = {}  # type: ignore[typeddict-item]
-    if "DigitalSignature" in data:
+    if data.get("DigitalSignature") is not None:
         out["digital_signature"] = data["DigitalSignature"]
-    if "NonRepudiation" in data:
+    if data.get("NonRepudiation") is not None:
         out["non_repudiation"] = data["NonRepudiation"]
-    if "KeyEncipherment" in data:
+    if data.get("KeyEncipherment") is not None:
         out["key_encipherment"] = data["KeyEncipherment"]
-    if "DataEncipherment" in data:
+    if data.get("DataEncipherment") is not None:
         out["data_encipherment"] = data["DataEncipherment"]
-    if "KeyAgreement" in data:
+    if data.get("KeyAgreement") is not None:
         out["key_agreement"] = data["KeyAgreement"]
     return out

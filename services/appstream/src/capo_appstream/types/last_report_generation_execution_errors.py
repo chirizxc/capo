@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> LastReportGenerationExecutionErrors:
 
     out: LastReportGenerationExecutionErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appstream.types.last_report_generation_execution_error.deserialize_aws_json_1_1(
                 item

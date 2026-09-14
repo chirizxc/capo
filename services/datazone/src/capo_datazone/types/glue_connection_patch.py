@@ -48,9 +48,9 @@ def serialize_json(value: GlueConnectionPatch) -> dict:
 
 def deserialize_json(data: dict) -> GlueConnectionPatch:
     out: GlueConnectionPatch = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "connectionProperties" in data:
+    if data.get("connectionProperties") is not None:
         import capo_datazone.types.connection_properties
 
         out["connection_properties"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> GlueConnectionPatch:
                 data["connectionProperties"]
             )
         )
-    if "authenticationConfiguration" in data:
+    if data.get("authenticationConfiguration") is not None:
         import capo_datazone.types.authentication_configuration_patch
 
         out["authentication_configuration"] = (

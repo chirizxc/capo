@@ -83,12 +83,13 @@ class TemplateSyncConfigResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_template_sync_config_input.CreateTemplateSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
-        input_["repository_provider"] = repository_provider
-        input_["repository_name"] = repository_name
-        input_["branch"] = branch
+        input_: capo_proton.types.create_template_sync_config_input.CreateTemplateSyncConfigInput = {
+            "template_name": template_name,
+            "template_type": template_type,
+            "repository_provider": repository_provider,
+            "repository_name": repository_name,
+            "branch": branch,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
 
@@ -97,6 +98,7 @@ class TemplateSyncConfigResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -138,15 +140,17 @@ class TemplateSyncConfigResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_template_sync_config_input.GetTemplateSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
+        input_: capo_proton.types.get_template_sync_config_input.GetTemplateSyncConfigInput = {
+            "template_name": template_name,
+            "template_type": template_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -195,12 +199,13 @@ class TemplateSyncConfigResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_template_sync_config_input.UpdateTemplateSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
-        input_["repository_provider"] = repository_provider
-        input_["repository_name"] = repository_name
-        input_["branch"] = branch
+        input_: capo_proton.types.update_template_sync_config_input.UpdateTemplateSyncConfigInput = {
+            "template_name": template_name,
+            "template_type": template_type,
+            "repository_provider": repository_provider,
+            "repository_name": repository_name,
+            "branch": branch,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
 
@@ -209,6 +214,7 @@ class TemplateSyncConfigResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -249,15 +255,17 @@ class TemplateSyncConfigResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_template_sync_config_input.DeleteTemplateSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
+        input_: capo_proton.types.delete_template_sync_config_input.DeleteTemplateSyncConfigInput = {
+            "template_name": template_name,
+            "template_type": template_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -312,12 +320,13 @@ class AsyncTemplateSyncConfigResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_template_sync_config_input.CreateTemplateSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
-        input_["repository_provider"] = repository_provider
-        input_["repository_name"] = repository_name
-        input_["branch"] = branch
+        input_: capo_proton.types.create_template_sync_config_input.CreateTemplateSyncConfigInput = {
+            "template_name": template_name,
+            "template_type": template_type,
+            "repository_provider": repository_provider,
+            "repository_name": repository_name,
+            "branch": branch,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
 
@@ -326,6 +335,7 @@ class AsyncTemplateSyncConfigResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -368,15 +378,17 @@ class AsyncTemplateSyncConfigResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_template_sync_config_input.GetTemplateSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
+        input_: capo_proton.types.get_template_sync_config_input.GetTemplateSyncConfigInput = {
+            "template_name": template_name,
+            "template_type": template_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -426,12 +438,13 @@ class AsyncTemplateSyncConfigResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_template_sync_config_input.UpdateTemplateSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
-        input_["repository_provider"] = repository_provider
-        input_["repository_name"] = repository_name
-        input_["branch"] = branch
+        input_: capo_proton.types.update_template_sync_config_input.UpdateTemplateSyncConfigInput = {
+            "template_name": template_name,
+            "template_type": template_type,
+            "repository_provider": repository_provider,
+            "repository_name": repository_name,
+            "branch": branch,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
 
@@ -440,6 +453,7 @@ class AsyncTemplateSyncConfigResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -481,13 +495,15 @@ class AsyncTemplateSyncConfigResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_template_sync_config_input.DeleteTemplateSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
+        input_: capo_proton.types.delete_template_sync_config_input.DeleteTemplateSyncConfigInput = {
+            "template_name": template_name,
+            "template_type": template_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

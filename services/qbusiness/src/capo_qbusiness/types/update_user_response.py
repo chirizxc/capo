@@ -43,13 +43,13 @@ def serialize_json(value: UpdateUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserResponse:
     out: UpdateUserResponse = {}  # type: ignore[typeddict-item]
-    if "userAliasesAdded" in data:
+    if data.get("userAliasesAdded") is not None:
         import capo_qbusiness.types.user_aliases
 
         out["user_aliases_added"] = capo_qbusiness.types.user_aliases.deserialize_json(
             data["userAliasesAdded"]
         )
-    if "userAliasesUpdated" in data:
+    if data.get("userAliasesUpdated") is not None:
         import capo_qbusiness.types.user_aliases
 
         out["user_aliases_updated"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> UpdateUserResponse:
                 data["userAliasesUpdated"]
             )
         )
-    if "userAliasesDeleted" in data:
+    if data.get("userAliasesDeleted") is not None:
         import capo_qbusiness.types.user_aliases
 
         out["user_aliases_deleted"] = (

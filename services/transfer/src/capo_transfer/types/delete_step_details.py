@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DeleteStepDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteStepDetails:
     out: DeleteStepDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SourceFileLocation" in data:
+    if data.get("SourceFileLocation") is not None:
         out["source_file_location"] = data["SourceFileLocation"]
     return out

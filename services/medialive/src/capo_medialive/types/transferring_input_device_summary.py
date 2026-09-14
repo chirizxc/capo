@@ -44,13 +44,13 @@ def serialize_json(value: TransferringInputDeviceSummary) -> dict:
 
 def deserialize_json(data: dict) -> TransferringInputDeviceSummary:
     out: TransferringInputDeviceSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "targetCustomerId" in data:
+    if data.get("targetCustomerId") is not None:
         out["target_customer_id"] = data["targetCustomerId"]
-    if "transferType" in data:
+    if data.get("transferType") is not None:
         import capo_medialive.types.input_device_transfer_type
 
         out["transfer_type"] = (

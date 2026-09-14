@@ -58,20 +58,20 @@ def serialize_json(value: AvailabilityZoneInfo) -> dict:
 
 def deserialize_json(data: dict) -> AvailabilityZoneInfo:
     out: AvailabilityZoneInfo = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZoneName" in data:
+    if data.get("AvailabilityZoneName") is not None:
         out["availability_zone_name"] = data["AvailabilityZoneName"]
-    if "ZoneStatus" in data:
+    if data.get("ZoneStatus") is not None:
         import capo_opensearch.types.zone_status
 
         out["zone_status"] = capo_opensearch.types.zone_status.deserialize_json(
             data["ZoneStatus"]
         )
-    if "ConfiguredDataNodeCount" in data:
+    if data.get("ConfiguredDataNodeCount") is not None:
         out["configured_data_node_count"] = data["ConfiguredDataNodeCount"]
-    if "AvailableDataNodeCount" in data:
+    if data.get("AvailableDataNodeCount") is not None:
         out["available_data_node_count"] = data["AvailableDataNodeCount"]
-    if "TotalShards" in data:
+    if data.get("TotalShards") is not None:
         out["total_shards"] = data["TotalShards"]
-    if "TotalUnAssignedShards" in data:
+    if data.get("TotalUnAssignedShards") is not None:
         out["total_un_assigned_shards"] = data["TotalUnAssignedShards"]
     return out

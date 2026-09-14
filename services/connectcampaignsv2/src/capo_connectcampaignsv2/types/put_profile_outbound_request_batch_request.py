@@ -31,7 +31,7 @@ def serialize_json(value: PutProfileOutboundRequestBatchRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutProfileOutboundRequestBatchRequest:
     out: PutProfileOutboundRequestBatchRequest = {}  # type: ignore[typeddict-item]
-    if "profileOutboundRequests" in data:
+    if data.get("profileOutboundRequests") is not None:
         import capo_connectcampaignsv2.types.profile_outbound_request_list
 
         out["profile_outbound_requests"] = (

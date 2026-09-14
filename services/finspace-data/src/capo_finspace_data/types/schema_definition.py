@@ -40,13 +40,13 @@ def serialize_json(value: SchemaDefinition) -> dict:
 
 def deserialize_json(data: dict) -> SchemaDefinition:
     out: SchemaDefinition = {}  # type: ignore[typeddict-item]
-    if "columns" in data:
+    if data.get("columns") is not None:
         import capo_finspace_data.types.column_list
 
         out["columns"] = capo_finspace_data.types.column_list.deserialize_json(
             data["columns"]
         )
-    if "primaryKeyColumns" in data:
+    if data.get("primaryKeyColumns") is not None:
         import capo_finspace_data.types.column_name_list
 
         out["primary_key_columns"] = (

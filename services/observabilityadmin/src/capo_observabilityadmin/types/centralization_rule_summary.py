@@ -75,25 +75,25 @@ def serialize_json(value: CentralizationRuleSummary) -> dict:
 
 def deserialize_json(data: dict) -> CentralizationRuleSummary:
     out: CentralizationRuleSummary = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
-    if "CreatorAccountId" in data:
+    if data.get("CreatorAccountId") is not None:
         out["creator_account_id"] = data["CreatorAccountId"]
-    if "CreatedTimeStamp" in data:
+    if data.get("CreatedTimeStamp") is not None:
         out["created_time_stamp"] = data["CreatedTimeStamp"]
-    if "CreatedRegion" in data:
+    if data.get("CreatedRegion") is not None:
         out["created_region"] = data["CreatedRegion"]
-    if "LastUpdateTimeStamp" in data:
+    if data.get("LastUpdateTimeStamp") is not None:
         out["last_update_time_stamp"] = data["LastUpdateTimeStamp"]
-    if "RuleHealth" in data:
+    if data.get("RuleHealth") is not None:
         import capo_observabilityadmin.types.rule_health
 
         out["rule_health"] = capo_observabilityadmin.types.rule_health.deserialize_json(
             data["RuleHealth"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         import capo_observabilityadmin.types.centralization_failure_reason
 
         out["failure_reason"] = (
@@ -101,8 +101,8 @@ def deserialize_json(data: dict) -> CentralizationRuleSummary:
                 data["FailureReason"]
             )
         )
-    if "DestinationAccountId" in data:
+    if data.get("DestinationAccountId") is not None:
         out["destination_account_id"] = data["DestinationAccountId"]
-    if "DestinationRegion" in data:
+    if data.get("DestinationRegion") is not None:
         out["destination_region"] = data["DestinationRegion"]
     return out

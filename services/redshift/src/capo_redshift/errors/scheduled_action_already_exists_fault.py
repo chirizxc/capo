@@ -37,15 +37,20 @@ class ScheduledActionAlreadyExistsFault(ServiceError):
 
     code: str | None = "ScheduledActionAlreadyExistsFault"
 
-    def __init__(self, data: ScheduledActionAlreadyExistsFault_):
+    def __init__(
+        self, data: ScheduledActionAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ScheduledActionAlreadyExistsFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ScheduledActionAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ScheduledActionAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

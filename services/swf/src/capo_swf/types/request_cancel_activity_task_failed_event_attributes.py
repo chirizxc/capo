@@ -44,13 +44,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> RequestCancelActivityTaskFailedEventAttributes:
     out: RequestCancelActivityTaskFailedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "activityId" in data:
+    if data.get("activityId") is not None:
         out["activity_id"] = data["activityId"]
     else:
         raise DeserializationError(
             "RequestCancelActivityTaskFailedEventAttributes.activity_id required"
         )
-    if "cause" in data:
+    if data.get("cause") is not None:
         import capo_swf.types.request_cancel_activity_task_failed_cause
 
         out["cause"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "RequestCancelActivityTaskFailedEventAttributes.cause required"
         )
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0

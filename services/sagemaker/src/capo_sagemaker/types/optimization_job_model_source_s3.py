@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: OptimizationJobModelSourceS3) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OptimizationJobModelSourceS3:
     out: OptimizationJobModelSourceS3 = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "ModelAccessConfig" in data:
+    if data.get("ModelAccessConfig") is not None:
         import capo_sagemaker.types.optimization_model_access_config
 
         out["model_access_config"] = (

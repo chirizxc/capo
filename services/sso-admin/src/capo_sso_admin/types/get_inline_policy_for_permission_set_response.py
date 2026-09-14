@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: GetInlinePolicyForPermissionSetResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetInlinePolicyForPermissionSetResponse:
     out: GetInlinePolicyForPermissionSetResponse = {}  # type: ignore[typeddict-item]
-    if "InlinePolicy" in data:
+    if data.get("InlinePolicy") is not None:
         out["inline_policy"] = data["InlinePolicy"]
     return out

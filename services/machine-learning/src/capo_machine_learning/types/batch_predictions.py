@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchPredictions:
 
     out: BatchPredictions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_machine_learning.types.batch_prediction.deserialize_aws_json_1_1(item)
         )

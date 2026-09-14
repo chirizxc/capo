@@ -27,7 +27,7 @@ def serialize_json(value: Transcript) -> dict:
 
 def deserialize_json(data: dict) -> Transcript:
     out: Transcript = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_transcribe_streaming.types.result_list
 
         out["results"] = capo_transcribe_streaming.types.result_list.deserialize_json(

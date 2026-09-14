@@ -166,11 +166,11 @@ def serialize_json(value: TaskContainerProperties) -> dict:
 
 def deserialize_json(data: dict) -> TaskContainerProperties:
     out: TaskContainerProperties = {}  # type: ignore[typeddict-item]
-    if "command" in data:
+    if data.get("command") is not None:
         import capo_batch.types.string_list
 
         out["command"] = capo_batch.types.string_list.deserialize_json(data["command"])
-    if "dependsOn" in data:
+    if data.get("dependsOn") is not None:
         import capo_batch.types.task_container_dependency_list
 
         out["depends_on"] = (
@@ -178,15 +178,15 @@ def deserialize_json(data: dict) -> TaskContainerProperties:
                 data["dependsOn"]
             )
         )
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_batch.types.environment_variables
 
         out["environment"] = capo_batch.types.environment_variables.deserialize_json(
             data["environment"]
         )
-    if "essential" in data:
+    if data.get("essential") is not None:
         out["essential"] = data["essential"]
-    if "firelensConfiguration" in data:
+    if data.get("firelensConfiguration") is not None:
         import capo_batch.types.firelens_configuration
 
         out["firelens_configuration"] = (
@@ -194,33 +194,33 @@ def deserialize_json(data: dict) -> TaskContainerProperties:
                 data["firelensConfiguration"]
             )
         )
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
-    if "linuxParameters" in data:
+    if data.get("linuxParameters") is not None:
         import capo_batch.types.linux_parameters
 
         out["linux_parameters"] = capo_batch.types.linux_parameters.deserialize_json(
             data["linuxParameters"]
         )
-    if "logConfiguration" in data:
+    if data.get("logConfiguration") is not None:
         import capo_batch.types.log_configuration
 
         out["log_configuration"] = capo_batch.types.log_configuration.deserialize_json(
             data["logConfiguration"]
         )
-    if "mountPoints" in data:
+    if data.get("mountPoints") is not None:
         import capo_batch.types.mount_points
 
         out["mount_points"] = capo_batch.types.mount_points.deserialize_json(
             data["mountPoints"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "privileged" in data:
+    if data.get("privileged") is not None:
         out["privileged"] = data["privileged"]
-    if "readonlyRootFilesystem" in data:
+    if data.get("readonlyRootFilesystem") is not None:
         out["readonly_root_filesystem"] = data["readonlyRootFilesystem"]
-    if "repositoryCredentials" in data:
+    if data.get("repositoryCredentials") is not None:
         import capo_batch.types.repository_credentials
 
         out["repository_credentials"] = (
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> TaskContainerProperties:
                 data["repositoryCredentials"]
             )
         )
-    if "resourceRequirements" in data:
+    if data.get("resourceRequirements") is not None:
         import capo_batch.types.resource_requirements
 
         out["resource_requirements"] = (
@@ -236,18 +236,18 @@ def deserialize_json(data: dict) -> TaskContainerProperties:
                 data["resourceRequirements"]
             )
         )
-    if "secrets" in data:
+    if data.get("secrets") is not None:
         import capo_batch.types.secret_list
 
         out["secrets"] = capo_batch.types.secret_list.deserialize_json(data["secrets"])
-    if "ulimits" in data:
+    if data.get("ulimits") is not None:
         import capo_batch.types.ulimits
 
         out["ulimits"] = capo_batch.types.ulimits.deserialize_json(data["ulimits"])
-    if "user" in data:
+    if data.get("user") is not None:
         out["user"] = data["user"]
-    if "startTimeout" in data:
+    if data.get("startTimeout") is not None:
         out["start_timeout"] = data["startTimeout"]
-    if "stopTimeout" in data:
+    if data.get("stopTimeout") is not None:
         out["stop_timeout"] = data["stopTimeout"]
     return out

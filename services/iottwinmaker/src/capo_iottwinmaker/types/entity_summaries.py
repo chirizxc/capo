@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EntitySummaries:
 
     out: EntitySummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iottwinmaker.types.entity_summary.deserialize_json(item))
     return out

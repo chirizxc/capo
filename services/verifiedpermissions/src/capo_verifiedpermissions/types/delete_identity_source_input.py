@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: DeleteIdentitySourceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteIdentitySourceInput:
     out: DeleteIdentitySourceInput = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("DeleteIdentitySourceInput.policy_store_id required")
-    if "identitySourceId" in data:
+    if data.get("identitySourceId") is not None:
         out["identity_source_id"] = data["identitySourceId"]
     else:
         raise DeserializationError(

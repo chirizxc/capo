@@ -31,11 +31,11 @@ def serialize_aws_json_1_1(value: VideoTooLargeException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VideoTooLargeException_:
     out: VideoTooLargeException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Logref" in data:
+    if data.get("Logref") is not None:
         out["logref"] = data["Logref"]
     return out
 
@@ -45,15 +45,18 @@ class VideoTooLargeException(ServiceError):
 
     code: str | None = "VideoTooLargeException"
 
-    def __init__(self, data: VideoTooLargeException_):
+    def __init__(self, data: VideoTooLargeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="VideoTooLargeException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "VideoTooLargeException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "VideoTooLargeException":
+        return cls(deserialize_aws_json_1_1(data), message)

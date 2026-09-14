@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> Models:
 
     out: Models = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_neptunedata.types.ml_config_definition.deserialize_json(item))
     return out

@@ -69,19 +69,19 @@ def serialize_aws_json_1_1(value: WorkDocsConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkDocsConfiguration:
     out: WorkDocsConfiguration = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError("WorkDocsConfiguration.organization_id required")
-    if "CrawlComments" in data:
+    if data.get("CrawlComments") is not None:
         out["crawl_comments"] = data["CrawlComments"]
     else:
         out["crawl_comments"] = False
-    if "UseChangeLog" in data:
+    if data.get("UseChangeLog") is not None:
         out["use_change_log"] = data["UseChangeLog"]
     else:
         out["use_change_log"] = False
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkDocsConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkDocsConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (

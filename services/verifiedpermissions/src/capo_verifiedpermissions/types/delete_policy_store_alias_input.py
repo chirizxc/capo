@@ -37,11 +37,11 @@ def serialize_aws_json_1_0(value: DeletePolicyStoreAliasInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeletePolicyStoreAliasInput:
     out: DeletePolicyStoreAliasInput = {}  # type: ignore[typeddict-item]
-    if "aliasName" in data:
+    if data.get("aliasName") is not None:
         out["alias_name"] = data["aliasName"]
     else:
         raise DeserializationError("DeletePolicyStoreAliasInput.alias_name required")
-    if "deletionMode" in data:
+    if data.get("deletionMode") is not None:
         import capo_verifiedpermissions.types.deletion_mode
 
         out["deletion_mode"] = (

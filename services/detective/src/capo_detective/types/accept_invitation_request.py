@@ -24,7 +24,7 @@ def serialize_json(value: AcceptInvitationRequest) -> dict:
 
 def deserialize_json(data: dict) -> AcceptInvitationRequest:
     out: AcceptInvitationRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError("AcceptInvitationRequest.graph_arn required")

@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: GetServiceSyncBlockerSummaryOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetServiceSyncBlockerSummaryOutput:
     out: GetServiceSyncBlockerSummaryOutput = {}  # type: ignore[typeddict-item]
-    if "serviceSyncBlockerSummary" in data:
+    if data.get("serviceSyncBlockerSummary") is not None:
         import capo_proton.types.service_sync_blocker_summary
 
         out["service_sync_blocker_summary"] = (

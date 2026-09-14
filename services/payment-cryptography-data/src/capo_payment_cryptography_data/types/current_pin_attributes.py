@@ -28,13 +28,13 @@ def serialize_json(value: CurrentPinAttributes) -> dict:
 
 def deserialize_json(data: dict) -> CurrentPinAttributes:
     out: CurrentPinAttributes = {}  # type: ignore[typeddict-item]
-    if "CurrentPinPekIdentifier" in data:
+    if data.get("CurrentPinPekIdentifier") is not None:
         out["current_pin_pek_identifier"] = data["CurrentPinPekIdentifier"]
     else:
         raise DeserializationError(
             "CurrentPinAttributes.current_pin_pek_identifier required"
         )
-    if "CurrentEncryptedPinBlock" in data:
+    if data.get("CurrentEncryptedPinBlock") is not None:
         out["current_encrypted_pin_block"] = data["CurrentEncryptedPinBlock"]
     else:
         raise DeserializationError(

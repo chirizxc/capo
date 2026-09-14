@@ -76,11 +76,11 @@ def serialize_aws_json_1_1(value: CustomizedMetricSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomizedMetricSpecification:
     out: CustomizedMetricSpecification = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_application_auto_scaling.types.metric_dimensions
 
         out["dimensions"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> CustomizedMetricSpecification:
                 data["Dimensions"]
             )
         )
-    if "Statistic" in data:
+    if data.get("Statistic") is not None:
         import capo_application_auto_scaling.types.metric_statistic
 
         out["statistic"] = (
@@ -96,9 +96,9 @@ def deserialize_aws_json_1_1(data: dict) -> CustomizedMetricSpecification:
                 data["Statistic"]
             )
         )
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_application_auto_scaling.types.target_tracking_metric_data_queries
 
         out["metrics"] = (

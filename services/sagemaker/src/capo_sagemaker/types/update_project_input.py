@@ -67,11 +67,11 @@ def serialize_aws_json_1_1(value: UpdateProjectInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProjectInput:
     out: UpdateProjectInput = {}  # type: ignore[typeddict-item]
-    if "ProjectName" in data:
+    if data.get("ProjectName") is not None:
         out["project_name"] = data["ProjectName"]
-    if "ProjectDescription" in data:
+    if data.get("ProjectDescription") is not None:
         out["project_description"] = data["ProjectDescription"]
-    if "ServiceCatalogProvisioningUpdateDetails" in data:
+    if data.get("ServiceCatalogProvisioningUpdateDetails") is not None:
         import capo_sagemaker.types.service_catalog_provisioning_update_details
 
         out["service_catalog_provisioning_update_details"] = (
@@ -79,13 +79,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProjectInput:
                 data["ServiceCatalogProvisioningUpdateDetails"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "TemplateProvidersToUpdate" in data:
+    if data.get("TemplateProvidersToUpdate") is not None:
         import capo_sagemaker.types.update_template_provider_list
 
         out["template_providers_to_update"] = (

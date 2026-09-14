@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetInstanceSnapshotResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstanceSnapshotResult:
     out: GetInstanceSnapshotResult = {}  # type: ignore[typeddict-item]
-    if "instanceSnapshot" in data:
+    if data.get("instanceSnapshot") is not None:
         import capo_lightsail.types.instance_snapshot
 
         out["instance_snapshot"] = (

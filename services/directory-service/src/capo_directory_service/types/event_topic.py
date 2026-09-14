@@ -57,13 +57,13 @@ def serialize_aws_json_1_1(value: EventTopic) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventTopic:
     out: EventTopic = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
-    if "TopicArn" in data:
+    if data.get("TopicArn") is not None:
         out["topic_arn"] = data["TopicArn"]
-    if "CreatedDateTime" in data:
+    if data.get("CreatedDateTime") is not None:
         import capo_directory_service.types.created_date_time
 
         out["created_date_time"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventTopic:
                 data["CreatedDateTime"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_directory_service.types.topic_status
 
         out["status"] = (

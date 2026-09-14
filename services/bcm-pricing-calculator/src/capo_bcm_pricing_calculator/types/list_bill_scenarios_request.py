@@ -68,7 +68,7 @@ def serialize_aws_json_1_0(value: ListBillScenariosRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListBillScenariosRequest:
     out: ListBillScenariosRequest = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_bcm_pricing_calculator.types.list_bill_scenarios_filters
 
         out["filters"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListBillScenariosRequest:
                 data["filters"]
             )
         )
-    if "createdAtFilter" in data:
+    if data.get("createdAtFilter") is not None:
         import capo_bcm_pricing_calculator.types.filter_timestamp
 
         out["created_at_filter"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListBillScenariosRequest:
                 data["createdAtFilter"]
             )
         )
-    if "expiresAtFilter" in data:
+    if data.get("expiresAtFilter") is not None:
         import capo_bcm_pricing_calculator.types.filter_timestamp
 
         out["expires_at_filter"] = (
@@ -92,8 +92,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListBillScenariosRequest:
                 data["expiresAtFilter"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

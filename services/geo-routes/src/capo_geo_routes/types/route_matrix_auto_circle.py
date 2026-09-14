@@ -25,11 +25,11 @@ def serialize_json(value: RouteMatrixAutoCircle) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixAutoCircle:
     out: RouteMatrixAutoCircle = {}  # type: ignore[typeddict-item]
-    if "Margin" in data:
+    if data.get("Margin") is not None:
         out["margin"] = data["Margin"]
     else:
         out["margin"] = 0
-    if "MaxRadius" in data:
+    if data.get("MaxRadius") is not None:
         out["max_radius"] = data["MaxRadius"]
     else:
         out["max_radius"] = 0

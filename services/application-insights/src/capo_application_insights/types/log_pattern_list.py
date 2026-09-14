@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> LogPatternList:
 
     out: LogPatternList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_insights.types.log_pattern.deserialize_aws_json_1_1(item)
         )

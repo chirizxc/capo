@@ -26,7 +26,7 @@ def serialize_json(value: InitializationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InitializationConfiguration:
     out: InitializationConfiguration = {}  # type: ignore[typeddict-item]
-    if "disabledOnInitialization" in data:
+    if data.get("disabledOnInitialization") is not None:
         out["disabled_on_initialization"] = data["disabledOnInitialization"]
     else:
         raise DeserializationError(

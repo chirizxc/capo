@@ -27,10 +27,10 @@ def serialize_json(value: DeleteFolderMembershipResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteFolderMembershipResponse:
     out: DeleteFolderMembershipResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         out["status"] = 0
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

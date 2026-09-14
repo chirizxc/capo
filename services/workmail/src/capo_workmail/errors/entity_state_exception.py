@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: EntityStateException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityStateException_:
     out: EntityStateException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class EntityStateException(ServiceError):
 
     code: str | None = "EntityStateException"
 
-    def __init__(self, data: EntityStateException_):
+    def __init__(self, data: EntityStateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EntityStateException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "EntityStateException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "EntityStateException":
+        return cls(deserialize_aws_json_1_1(data), message)

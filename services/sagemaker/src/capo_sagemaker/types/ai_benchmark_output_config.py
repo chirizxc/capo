@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: AIBenchmarkOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIBenchmarkOutputConfig:
     out: AIBenchmarkOutputConfig = {}  # type: ignore[typeddict-item]
-    if "S3OutputLocation" in data:
+    if data.get("S3OutputLocation") is not None:
         out["s3_output_location"] = data["S3OutputLocation"]
-    if "MlflowConfig" in data:
+    if data.get("MlflowConfig") is not None:
         import capo_sagemaker.types.ai_mlflow_config
 
         out["mlflow_config"] = (

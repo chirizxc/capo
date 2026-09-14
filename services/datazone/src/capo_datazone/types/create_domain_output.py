@@ -93,46 +93,46 @@ def serialize_json(value: CreateDomainOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainOutput:
     out: CreateDomainOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateDomainOutput.id required")
-    if "rootDomainUnitId" in data:
+    if data.get("rootDomainUnitId") is not None:
         out["root_domain_unit_id"] = data["rootDomainUnitId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "singleSignOn" in data:
+    if data.get("singleSignOn") is not None:
         import capo_datazone.types.single_sign_on
 
         out["single_sign_on"] = capo_datazone.types.single_sign_on.deserialize_json(
             data["singleSignOn"]
         )
-    if "domainExecutionRole" in data:
+    if data.get("domainExecutionRole") is not None:
         out["domain_execution_role"] = data["domainExecutionRole"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "kmsKeyIdentifier" in data:
+    if data.get("kmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["kmsKeyIdentifier"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.domain_status
 
         out["status"] = capo_datazone.types.domain_status.deserialize_json(
             data["status"]
         )
-    if "portalUrl" in data:
+    if data.get("portalUrl") is not None:
         out["portal_url"] = data["portalUrl"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_datazone.types.tags
 
         out["tags"] = capo_datazone.types.tags.deserialize_json(data["tags"])
-    if "domainVersion" in data:
+    if data.get("domainVersion") is not None:
         import capo_datazone.types.domain_version
 
         out["domain_version"] = capo_datazone.types.domain_version.deserialize_json(
             data["domainVersion"]
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
     return out

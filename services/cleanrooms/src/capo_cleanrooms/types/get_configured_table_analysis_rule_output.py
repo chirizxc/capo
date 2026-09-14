@@ -30,7 +30,7 @@ def serialize_json(value: GetConfiguredTableAnalysisRuleOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetConfiguredTableAnalysisRuleOutput:
     out: GetConfiguredTableAnalysisRuleOutput = {}  # type: ignore[typeddict-item]
-    if "analysisRule" in data:
+    if data.get("analysisRule") is not None:
         import capo_cleanrooms.types.configured_table_analysis_rule
 
         out["analysis_rule"] = (

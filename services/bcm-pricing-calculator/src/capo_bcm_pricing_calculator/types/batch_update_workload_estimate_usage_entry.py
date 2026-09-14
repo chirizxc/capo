@@ -27,18 +27,26 @@ def serialize_aws_json_1_0(value: BatchUpdateWorkloadEstimateUsageEntry) -> dict
     if "group" in value:
         out["group"] = value["group"]
     if "amount" in value:
-        out["amount"] = value["amount"]
+        out["amount"] = (
+            "NaN"
+            if value["amount"] != value["amount"]
+            else "Infinity"
+            if value["amount"] == float("inf")
+            else "-Infinity"
+            if value["amount"] == float("-inf")
+            else value["amount"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> BatchUpdateWorkloadEstimateUsageEntry:
     out: BatchUpdateWorkloadEstimateUsageEntry = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("BatchUpdateWorkloadEstimateUsageEntry.id required")
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
-    if "amount" in data:
-        out["amount"] = data["amount"]
+    if data.get("amount") is not None:
+        out["amount"] = float(data["amount"])
     return out

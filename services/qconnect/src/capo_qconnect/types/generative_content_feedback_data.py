@@ -24,7 +24,7 @@ def serialize_json(value: GenerativeContentFeedbackData) -> dict:
 
 def deserialize_json(data: dict) -> GenerativeContentFeedbackData:
     out: GenerativeContentFeedbackData = {}  # type: ignore[typeddict-item]
-    if "relevance" in data:
+    if data.get("relevance") is not None:
         out["relevance"] = data["relevance"]
     else:
         raise DeserializationError("GenerativeContentFeedbackData.relevance required")

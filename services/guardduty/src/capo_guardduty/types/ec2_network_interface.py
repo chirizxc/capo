@@ -62,13 +62,13 @@ def serialize_json(value: Ec2NetworkInterface) -> dict:
 
 def deserialize_json(data: dict) -> Ec2NetworkInterface:
     out: Ec2NetworkInterface = {}  # type: ignore[typeddict-item]
-    if "ipv6Addresses" in data:
+    if data.get("ipv6Addresses") is not None:
         import capo_guardduty.types.ipv6_addresses
 
         out["ipv6_addresses"] = capo_guardduty.types.ipv6_addresses.deserialize_json(
             data["ipv6Addresses"]
         )
-    if "privateIpAddresses" in data:
+    if data.get("privateIpAddresses") is not None:
         import capo_guardduty.types.private_ip_addresses
 
         out["private_ip_addresses"] = (
@@ -76,16 +76,16 @@ def deserialize_json(data: dict) -> Ec2NetworkInterface:
                 data["privateIpAddresses"]
             )
         )
-    if "publicIp" in data:
+    if data.get("publicIp") is not None:
         out["public_ip"] = data["publicIp"]
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_guardduty.types.security_groups
 
         out["security_groups"] = capo_guardduty.types.security_groups.deserialize_json(
             data["securityGroups"]
         )
-    if "subNetId" in data:
+    if data.get("subNetId") is not None:
         out["sub_net_id"] = data["subNetId"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     return out

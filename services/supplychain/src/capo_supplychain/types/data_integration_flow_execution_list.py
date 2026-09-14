@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DataIntegrationFlowExecutionList:
 
     out: DataIntegrationFlowExecutionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_supplychain.types.data_integration_flow_execution.deserialize_json(
                 item

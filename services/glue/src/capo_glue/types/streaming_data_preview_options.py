@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: StreamingDataPreviewOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamingDataPreviewOptions:
     out: StreamingDataPreviewOptions = {}  # type: ignore[typeddict-item]
-    if "PollingTime" in data:
+    if data.get("PollingTime") is not None:
         out["polling_time"] = data["PollingTime"]
-    if "RecordPollingLimit" in data:
+    if data.get("RecordPollingLimit") is not None:
         out["record_polling_limit"] = data["RecordPollingLimit"]
     return out

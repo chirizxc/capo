@@ -50,17 +50,17 @@ def serialize_aws_json_1_1(value: QualificationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QualificationRequest:
     out: QualificationRequest = {}  # type: ignore[typeddict-item]
-    if "QualificationRequestId" in data:
+    if data.get("QualificationRequestId") is not None:
         out["qualification_request_id"] = data["QualificationRequestId"]
-    if "QualificationTypeId" in data:
+    if data.get("QualificationTypeId") is not None:
         out["qualification_type_id"] = data["QualificationTypeId"]
-    if "WorkerId" in data:
+    if data.get("WorkerId") is not None:
         out["worker_id"] = data["WorkerId"]
-    if "Test" in data:
+    if data.get("Test") is not None:
         out["test"] = data["Test"]
-    if "Answer" in data:
+    if data.get("Answer") is not None:
         out["answer"] = data["Answer"]
-    if "SubmitTime" in data:
+    if data.get("SubmitTime") is not None:
         import capo_mturk.types.timestamp
 
         out["submit_time"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(

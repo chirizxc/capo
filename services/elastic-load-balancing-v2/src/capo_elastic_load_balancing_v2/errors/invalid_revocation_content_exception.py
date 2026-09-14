@@ -39,15 +39,20 @@ class InvalidRevocationContentException(ServiceError):
 
     code: str | None = "InvalidRevocationContentException"
 
-    def __init__(self, data: InvalidRevocationContentException_):
+    def __init__(
+        self, data: InvalidRevocationContentException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidRevocationContentException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidRevocationContentException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidRevocationContentException":
+        return cls(deserialize_query(el), message)

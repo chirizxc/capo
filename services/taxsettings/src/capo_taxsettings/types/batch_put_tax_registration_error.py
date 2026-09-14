@@ -33,14 +33,14 @@ def serialize_json(value: BatchPutTaxRegistrationError) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutTaxRegistrationError:
     out: BatchPutTaxRegistrationError = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("BatchPutTaxRegistrationError.account_id required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("BatchPutTaxRegistrationError.message required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     return out

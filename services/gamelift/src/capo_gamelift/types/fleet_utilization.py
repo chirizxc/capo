@@ -60,18 +60,18 @@ def serialize_aws_json_1_1(value: FleetUtilization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FleetUtilization:
     out: FleetUtilization = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
-    if "ActiveServerProcessCount" in data:
+    if data.get("ActiveServerProcessCount") is not None:
         out["active_server_process_count"] = data["ActiveServerProcessCount"]
-    if "ActiveGameSessionCount" in data:
+    if data.get("ActiveGameSessionCount") is not None:
         out["active_game_session_count"] = data["ActiveGameSessionCount"]
-    if "CurrentPlayerSessionCount" in data:
+    if data.get("CurrentPlayerSessionCount") is not None:
         out["current_player_session_count"] = data["CurrentPlayerSessionCount"]
-    if "MaximumPlayerSessionCount" in data:
+    if data.get("MaximumPlayerSessionCount") is not None:
         out["maximum_player_session_count"] = data["MaximumPlayerSessionCount"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     return out

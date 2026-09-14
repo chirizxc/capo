@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListPiiEntitiesDetectionJobsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPiiEntitiesDetectionJobsResponse:
     out: ListPiiEntitiesDetectionJobsResponse = {}  # type: ignore[typeddict-item]
-    if "PiiEntitiesDetectionJobPropertiesList" in data:
+    if data.get("PiiEntitiesDetectionJobPropertiesList") is not None:
         import capo_comprehend.types.pii_entities_detection_job_properties_list
 
         out["pii_entities_detection_job_properties_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListPiiEntitiesDetectionJobsResponse
                 data["PiiEntitiesDetectionJobPropertiesList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

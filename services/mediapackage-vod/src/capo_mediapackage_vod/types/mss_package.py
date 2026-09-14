@@ -46,13 +46,13 @@ def serialize_json(value: MssPackage) -> dict:
 
 def deserialize_json(data: dict) -> MssPackage:
     out: MssPackage = {}  # type: ignore[typeddict-item]
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediapackage_vod.types.mss_encryption
 
         out["encryption"] = capo_mediapackage_vod.types.mss_encryption.deserialize_json(
             data["encryption"]
         )
-    if "mssManifests" in data:
+    if data.get("mssManifests") is not None:
         import capo_mediapackage_vod.types.__list_of_mss_manifest
 
         out["mss_manifests"] = (
@@ -60,6 +60,6 @@ def deserialize_json(data: dict) -> MssPackage:
                 data["mssManifests"]
             )
         )
-    if "segmentDurationSeconds" in data:
+    if data.get("segmentDurationSeconds") is not None:
         out["segment_duration_seconds"] = data["segmentDurationSeconds"]
     return out

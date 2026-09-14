@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: DisassociateEntitiesFromExperienceRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateEntitiesFromExperienceRequest:
     out: DisassociateEntitiesFromExperienceRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError(
             "DisassociateEntitiesFromExperienceRequest.id required"
         )
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError(
             "DisassociateEntitiesFromExperienceRequest.index_id required"
         )
-    if "EntityList" in data:
+    if data.get("EntityList") is not None:
         import capo_kendra.types.disassociate_entity_list
 
         out["entity_list"] = (

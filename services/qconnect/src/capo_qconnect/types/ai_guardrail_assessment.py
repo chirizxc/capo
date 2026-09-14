@@ -19,7 +19,7 @@ def serialize_json(value: AIGuardrailAssessment) -> dict:
 
 def deserialize_json(data: dict) -> AIGuardrailAssessment:
     out: AIGuardrailAssessment = {}  # type: ignore[typeddict-item]
-    if "blocked" in data:
+    if data.get("blocked") is not None:
         out["blocked"] = data["blocked"]
     else:
         raise DeserializationError("AIGuardrailAssessment.blocked required")

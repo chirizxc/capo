@@ -85,17 +85,17 @@ def serialize_json(value: DescribeThingGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeThingGroupResponse:
     out: DescribeThingGroupResponse = {}  # type: ignore[typeddict-item]
-    if "thingGroupName" in data:
+    if data.get("thingGroupName") is not None:
         out["thing_group_name"] = data["thingGroupName"]
-    if "thingGroupId" in data:
+    if data.get("thingGroupId") is not None:
         out["thing_group_id"] = data["thingGroupId"]
-    if "thingGroupArn" in data:
+    if data.get("thingGroupArn") is not None:
         out["thing_group_arn"] = data["thingGroupArn"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         out["version"] = 0
-    if "thingGroupProperties" in data:
+    if data.get("thingGroupProperties") is not None:
         import capo_iot.types.thing_group_properties
 
         out["thing_group_properties"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> DescribeThingGroupResponse:
                 data["thingGroupProperties"]
             )
         )
-    if "thingGroupMetadata" in data:
+    if data.get("thingGroupMetadata") is not None:
         import capo_iot.types.thing_group_metadata
 
         out["thing_group_metadata"] = (
@@ -111,13 +111,13 @@ def deserialize_json(data: dict) -> DescribeThingGroupResponse:
                 data["thingGroupMetadata"]
             )
         )
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
-    if "queryVersion" in data:
+    if data.get("queryVersion") is not None:
         out["query_version"] = data["queryVersion"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.dynamic_group_status
 
         out["status"] = capo_iot.types.dynamic_group_status.deserialize_json(

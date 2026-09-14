@@ -44,7 +44,7 @@ def serialize_json(value: CoverageStatistics) -> dict:
 
 def deserialize_json(data: dict) -> CoverageStatistics:
     out: CoverageStatistics = {}  # type: ignore[typeddict-item]
-    if "countByResourceType" in data:
+    if data.get("countByResourceType") is not None:
         import capo_guardduty.types.count_by_resource_type
 
         out["count_by_resource_type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CoverageStatistics:
                 data["countByResourceType"]
             )
         )
-    if "countByCoverageStatus" in data:
+    if data.get("countByCoverageStatus") is not None:
         import capo_guardduty.types.count_by_coverage_status
 
         out["count_by_coverage_status"] = (

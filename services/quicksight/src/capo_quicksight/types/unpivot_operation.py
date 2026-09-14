@@ -58,11 +58,11 @@ def serialize_json(value: UnpivotOperation) -> dict:
 
 def deserialize_json(data: dict) -> UnpivotOperation:
     out: UnpivotOperation = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("UnpivotOperation.alias required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.transform_operation_source
 
         out["source"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> UnpivotOperation:
         )
     else:
         raise DeserializationError("UnpivotOperation.source required")
-    if "ColumnsToUnpivot" in data:
+    if data.get("ColumnsToUnpivot") is not None:
         import capo_quicksight.types.column_to_unpivot_list
 
         out["columns_to_unpivot"] = (
@@ -82,25 +82,25 @@ def deserialize_json(data: dict) -> UnpivotOperation:
         )
     else:
         raise DeserializationError("UnpivotOperation.columns_to_unpivot required")
-    if "UnpivotedLabelColumnName" in data:
+    if data.get("UnpivotedLabelColumnName") is not None:
         out["unpivoted_label_column_name"] = data["UnpivotedLabelColumnName"]
     else:
         raise DeserializationError(
             "UnpivotOperation.unpivoted_label_column_name required"
         )
-    if "UnpivotedLabelColumnId" in data:
+    if data.get("UnpivotedLabelColumnId") is not None:
         out["unpivoted_label_column_id"] = data["UnpivotedLabelColumnId"]
     else:
         raise DeserializationError(
             "UnpivotOperation.unpivoted_label_column_id required"
         )
-    if "UnpivotedValueColumnName" in data:
+    if data.get("UnpivotedValueColumnName") is not None:
         out["unpivoted_value_column_name"] = data["UnpivotedValueColumnName"]
     else:
         raise DeserializationError(
             "UnpivotOperation.unpivoted_value_column_name required"
         )
-    if "UnpivotedValueColumnId" in data:
+    if data.get("UnpivotedValueColumnId") is not None:
         out["unpivoted_value_column_id"] = data["UnpivotedValueColumnId"]
     else:
         raise DeserializationError(

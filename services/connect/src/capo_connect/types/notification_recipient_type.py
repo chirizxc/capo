@@ -36,13 +36,13 @@ def serialize_json(value: NotificationRecipientType) -> dict:
 
 def deserialize_json(data: dict) -> NotificationRecipientType:
     out: NotificationRecipientType = {}  # type: ignore[typeddict-item]
-    if "UserTags" in data:
+    if data.get("UserTags") is not None:
         import capo_connect.types.user_tag_map
 
         out["user_tags"] = capo_connect.types.user_tag_map.deserialize_json(
             data["UserTags"]
         )
-    if "UserIds" in data:
+    if data.get("UserIds") is not None:
         import capo_connect.types.user_id_list
 
         out["user_ids"] = capo_connect.types.user_id_list.deserialize_json(

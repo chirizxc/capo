@@ -32,11 +32,11 @@ def serialize_json(value: ComponentVersion) -> dict:
 
 def deserialize_json(data: dict) -> ComponentVersion:
     out: ComponentVersion = {}  # type: ignore[typeddict-item]
-    if "componentType" in data:
+    if data.get("componentType") is not None:
         out["component_type"] = data["componentType"]
     else:
         raise DeserializationError("ComponentVersion.component_type required")
-    if "versions" in data:
+    if data.get("versions") is not None:
         import capo_groundstation.types.version_string_list
 
         out["versions"] = capo_groundstation.types.version_string_list.deserialize_json(

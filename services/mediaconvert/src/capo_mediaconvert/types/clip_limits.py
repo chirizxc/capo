@@ -46,12 +46,12 @@ def serialize_json(value: ClipLimits) -> dict:
 
 def deserialize_json(data: dict) -> ClipLimits:
     out: ClipLimits = {}  # type: ignore[typeddict-item]
-    if "maximumRGBTolerance" in data:
+    if data.get("maximumRGBTolerance") is not None:
         out["maximum_rgb_tolerance"] = data["maximumRGBTolerance"]
-    if "maximumYUV" in data:
+    if data.get("maximumYUV") is not None:
         out["maximum_yuv"] = data["maximumYUV"]
-    if "minimumRGBTolerance" in data:
+    if data.get("minimumRGBTolerance") is not None:
         out["minimum_rgb_tolerance"] = data["minimumRGBTolerance"]
-    if "minimumYUV" in data:
+    if data.get("minimumYUV") is not None:
         out["minimum_yuv"] = data["minimumYUV"]
     return out

@@ -30,7 +30,7 @@ def serialize_json(value: GetAppsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAppsResponse:
     out: GetAppsResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationsResponse" in data:
+    if data.get("ApplicationsResponse") is not None:
         import capo_pinpoint.types.applications_response
 
         out["applications_response"] = (

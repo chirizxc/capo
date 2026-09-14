@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: EdgeModel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdgeModel:
     out: EdgeModel = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "LatestSampleTime" in data:
+    if data.get("LatestSampleTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["latest_sample_time"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> EdgeModel:
                 data["LatestSampleTime"]
             )
         )
-    if "LatestInference" in data:
+    if data.get("LatestInference") is not None:
         import capo_sagemaker.types.timestamp
 
         out["latest_inference"] = (

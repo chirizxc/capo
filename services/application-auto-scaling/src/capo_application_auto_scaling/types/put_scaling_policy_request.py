@@ -104,11 +104,11 @@ def serialize_aws_json_1_1(value: PutScalingPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutScalingPolicyRequest:
     out: PutScalingPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
     else:
         raise DeserializationError("PutScalingPolicyRequest.policy_name required")
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_application_auto_scaling.types.service_namespace
 
         out["service_namespace"] = (
@@ -118,11 +118,11 @@ def deserialize_aws_json_1_1(data: dict) -> PutScalingPolicyRequest:
         )
     else:
         raise DeserializationError("PutScalingPolicyRequest.service_namespace required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("PutScalingPolicyRequest.resource_id required")
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_application_auto_scaling.types.scalable_dimension
 
         out["scalable_dimension"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutScalingPolicyRequest:
         raise DeserializationError(
             "PutScalingPolicyRequest.scalable_dimension required"
         )
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_application_auto_scaling.types.policy_type
 
         out["policy_type"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutScalingPolicyRequest:
                 data["PolicyType"]
             )
         )
-    if "StepScalingPolicyConfiguration" in data:
+    if data.get("StepScalingPolicyConfiguration") is not None:
         import capo_application_auto_scaling.types.step_scaling_policy_configuration
 
         out["step_scaling_policy_configuration"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutScalingPolicyRequest:
                 data["StepScalingPolicyConfiguration"]
             )
         )
-    if "TargetTrackingScalingPolicyConfiguration" in data:
+    if data.get("TargetTrackingScalingPolicyConfiguration") is not None:
         import capo_application_auto_scaling.types.target_tracking_scaling_policy_configuration
 
         out["target_tracking_scaling_policy_configuration"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutScalingPolicyRequest:
                 data["TargetTrackingScalingPolicyConfiguration"]
             )
         )
-    if "PredictiveScalingPolicyConfiguration" in data:
+    if data.get("PredictiveScalingPolicyConfiguration") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_policy_configuration
 
         out["predictive_scaling_policy_configuration"] = (

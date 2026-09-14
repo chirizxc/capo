@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ByteMatchSetUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ByteMatchSetUpdate:
     out: ByteMatchSetUpdate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf.types.change_action
 
         out["action"] = capo_waf.types.change_action.deserialize_aws_json_1_1(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> ByteMatchSetUpdate:
         )
     else:
         raise DeserializationError("ByteMatchSetUpdate.action required")
-    if "ByteMatchTuple" in data:
+    if data.get("ByteMatchTuple") is not None:
         import capo_waf.types.byte_match_tuple
 
         out["byte_match_tuple"] = (

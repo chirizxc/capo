@@ -88,21 +88,21 @@ def serialize_aws_json_1_1(value: CostCategory) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostCategory:
     out: CostCategory = {}  # type: ignore[typeddict-item]
-    if "CostCategoryArn" in data:
+    if data.get("CostCategoryArn") is not None:
         out["cost_category_arn"] = data["CostCategoryArn"]
     else:
         raise DeserializationError("CostCategory.cost_category_arn required")
-    if "EffectiveStart" in data:
+    if data.get("EffectiveStart") is not None:
         out["effective_start"] = data["EffectiveStart"]
     else:
         raise DeserializationError("CostCategory.effective_start required")
-    if "EffectiveEnd" in data:
+    if data.get("EffectiveEnd") is not None:
         out["effective_end"] = data["EffectiveEnd"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CostCategory.name required")
-    if "RuleVersion" in data:
+    if data.get("RuleVersion") is not None:
         import capo_cost_explorer.types.cost_category_rule_version
 
         out["rule_version"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostCategory:
         )
     else:
         raise DeserializationError("CostCategory.rule_version required")
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_cost_explorer.types.cost_category_rules_list
 
         out["rules"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostCategory:
         )
     else:
         raise DeserializationError("CostCategory.rules required")
-    if "SplitChargeRules" in data:
+    if data.get("SplitChargeRules") is not None:
         import capo_cost_explorer.types.cost_category_split_charge_rules_list
 
         out["split_charge_rules"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostCategory:
                 data["SplitChargeRules"]
             )
         )
-    if "ProcessingStatus" in data:
+    if data.get("ProcessingStatus") is not None:
         import capo_cost_explorer.types.cost_category_processing_status_list
 
         out["processing_status"] = (
@@ -138,6 +138,6 @@ def deserialize_aws_json_1_1(data: dict) -> CostCategory:
                 data["ProcessingStatus"]
             )
         )
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
     return out

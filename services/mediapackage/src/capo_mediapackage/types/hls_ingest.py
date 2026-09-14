@@ -31,7 +31,7 @@ def serialize_json(value: HlsIngest) -> dict:
 
 def deserialize_json(data: dict) -> HlsIngest:
     out: HlsIngest = {}  # type: ignore[typeddict-item]
-    if "ingestEndpoints" in data:
+    if data.get("ingestEndpoints") is not None:
         import capo_mediapackage.types.__list_of_ingest_endpoint
 
         out["ingest_endpoints"] = (

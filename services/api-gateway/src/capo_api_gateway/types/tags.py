@@ -29,7 +29,7 @@ def serialize_json(value: Tags) -> dict:
 
 def deserialize_json(data: dict) -> Tags:
     out: Tags = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

@@ -58,15 +58,15 @@ def serialize_aws_json_1_1(value: SalesforceChatterFeedConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SalesforceChatterFeedConfiguration:
     out: SalesforceChatterFeedConfiguration = {}  # type: ignore[typeddict-item]
-    if "DocumentDataFieldName" in data:
+    if data.get("DocumentDataFieldName") is not None:
         out["document_data_field_name"] = data["DocumentDataFieldName"]
     else:
         raise DeserializationError(
             "SalesforceChatterFeedConfiguration.document_data_field_name required"
         )
-    if "DocumentTitleFieldName" in data:
+    if data.get("DocumentTitleFieldName") is not None:
         out["document_title_field_name"] = data["DocumentTitleFieldName"]
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> SalesforceChatterFeedConfiguration:
                 data["FieldMappings"]
             )
         )
-    if "IncludeFilterTypes" in data:
+    if data.get("IncludeFilterTypes") is not None:
         import capo_kendra.types.salesforce_chatter_feed_include_filter_types
 
         out["include_filter_types"] = (

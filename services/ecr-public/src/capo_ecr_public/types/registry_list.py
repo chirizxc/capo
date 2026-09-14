@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> RegistryList:
 
     out: RegistryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ecr_public.types.registry.deserialize_aws_json_1_1(item))
     return out

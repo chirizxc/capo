@@ -152,13 +152,13 @@ def serialize_json(value: DashPackage) -> dict:
 
 def deserialize_json(data: dict) -> DashPackage:
     out: DashPackage = {}  # type: ignore[typeddict-item]
-    if "adTriggers" in data:
+    if data.get("adTriggers") is not None:
         import capo_mediapackage.types.ad_triggers
 
         out["ad_triggers"] = capo_mediapackage.types.ad_triggers.deserialize_json(
             data["adTriggers"]
         )
-    if "adsOnDeliveryRestrictions" in data:
+    if data.get("adsOnDeliveryRestrictions") is not None:
         import capo_mediapackage.types.ads_on_delivery_restrictions
 
         out["ads_on_delivery_restrictions"] = (
@@ -166,15 +166,15 @@ def deserialize_json(data: dict) -> DashPackage:
                 data["adsOnDeliveryRestrictions"]
             )
         )
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediapackage.types.dash_encryption
 
         out["encryption"] = capo_mediapackage.types.dash_encryption.deserialize_json(
             data["encryption"]
         )
-    if "includeIframeOnlyStream" in data:
+    if data.get("includeIframeOnlyStream") is not None:
         out["include_iframe_only_stream"] = data["includeIframeOnlyStream"]
-    if "manifestLayout" in data:
+    if data.get("manifestLayout") is not None:
         import capo_mediapackage.types.manifest_layout
 
         out["manifest_layout"] = (
@@ -182,13 +182,13 @@ def deserialize_json(data: dict) -> DashPackage:
                 data["manifestLayout"]
             )
         )
-    if "manifestWindowSeconds" in data:
+    if data.get("manifestWindowSeconds") is not None:
         out["manifest_window_seconds"] = data["manifestWindowSeconds"]
-    if "minBufferTimeSeconds" in data:
+    if data.get("minBufferTimeSeconds") is not None:
         out["min_buffer_time_seconds"] = data["minBufferTimeSeconds"]
-    if "minUpdatePeriodSeconds" in data:
+    if data.get("minUpdatePeriodSeconds") is not None:
         out["min_update_period_seconds"] = data["minUpdatePeriodSeconds"]
-    if "periodTriggers" in data:
+    if data.get("periodTriggers") is not None:
         import capo_mediapackage.types.__list_of__period_triggers_element
 
         out["period_triggers"] = (
@@ -196,15 +196,15 @@ def deserialize_json(data: dict) -> DashPackage:
                 data["periodTriggers"]
             )
         )
-    if "profile" in data:
+    if data.get("profile") is not None:
         import capo_mediapackage.types.profile
 
         out["profile"] = capo_mediapackage.types.profile.deserialize_json(
             data["profile"]
         )
-    if "segmentDurationSeconds" in data:
+    if data.get("segmentDurationSeconds") is not None:
         out["segment_duration_seconds"] = data["segmentDurationSeconds"]
-    if "segmentTemplateFormat" in data:
+    if data.get("segmentTemplateFormat") is not None:
         import capo_mediapackage.types.segment_template_format
 
         out["segment_template_format"] = (
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> DashPackage:
                 data["segmentTemplateFormat"]
             )
         )
-    if "streamSelection" in data:
+    if data.get("streamSelection") is not None:
         import capo_mediapackage.types.stream_selection
 
         out["stream_selection"] = (
@@ -220,16 +220,16 @@ def deserialize_json(data: dict) -> DashPackage:
                 data["streamSelection"]
             )
         )
-    if "suggestedPresentationDelaySeconds" in data:
+    if data.get("suggestedPresentationDelaySeconds") is not None:
         out["suggested_presentation_delay_seconds"] = data[
             "suggestedPresentationDelaySeconds"
         ]
-    if "utcTiming" in data:
+    if data.get("utcTiming") is not None:
         import capo_mediapackage.types.utc_timing
 
         out["utc_timing"] = capo_mediapackage.types.utc_timing.deserialize_json(
             data["utcTiming"]
         )
-    if "utcTimingUri" in data:
+    if data.get("utcTimingUri") is not None:
         out["utc_timing_uri"] = data["utcTimingUri"]
     return out

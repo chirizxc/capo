@@ -111,25 +111,25 @@ def serialize_json(value: GetMissionProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMissionProfileResponse:
     out: GetMissionProfileResponse = {}  # type: ignore[typeddict-item]
-    if "missionProfileId" in data:
+    if data.get("missionProfileId") is not None:
         out["mission_profile_id"] = data["missionProfileId"]
-    if "missionProfileArn" in data:
+    if data.get("missionProfileArn") is not None:
         out["mission_profile_arn"] = data["missionProfileArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "contactPrePassDurationSeconds" in data:
+    if data.get("contactPrePassDurationSeconds") is not None:
         out["contact_pre_pass_duration_seconds"] = data["contactPrePassDurationSeconds"]
-    if "contactPostPassDurationSeconds" in data:
+    if data.get("contactPostPassDurationSeconds") is not None:
         out["contact_post_pass_duration_seconds"] = data[
             "contactPostPassDurationSeconds"
         ]
-    if "minimumViableContactDurationSeconds" in data:
+    if data.get("minimumViableContactDurationSeconds") is not None:
         out["minimum_viable_contact_duration_seconds"] = data[
             "minimumViableContactDurationSeconds"
         ]
-    if "dataflowEdges" in data:
+    if data.get("dataflowEdges") is not None:
         import capo_groundstation.types.dataflow_edge_list
 
         out["dataflow_edges"] = (
@@ -137,20 +137,20 @@ def deserialize_json(data: dict) -> GetMissionProfileResponse:
                 data["dataflowEdges"]
             )
         )
-    if "trackingConfigArn" in data:
+    if data.get("trackingConfigArn") is not None:
         out["tracking_config_arn"] = data["trackingConfigArn"]
-    if "telemetrySinkConfigArn" in data:
+    if data.get("telemetrySinkConfigArn") is not None:
         out["telemetry_sink_config_arn"] = data["telemetrySinkConfigArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_groundstation.types.tags_map
 
         out["tags"] = capo_groundstation.types.tags_map.deserialize_json(data["tags"])
-    if "streamsKmsKey" in data:
+    if data.get("streamsKmsKey") is not None:
         import capo_groundstation.types.kms_key
 
         out["streams_kms_key"] = capo_groundstation.types.kms_key.deserialize_json(
             data["streamsKmsKey"]
         )
-    if "streamsKmsRole" in data:
+    if data.get("streamsKmsRole") is not None:
         out["streams_kms_role"] = data["streamsKmsRole"]
     return out

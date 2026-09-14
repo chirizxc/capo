@@ -30,8 +30,8 @@ def serialize_json(value: InsightResultValue) -> dict:
 
 def deserialize_json(data: dict) -> InsightResultValue:
     out: InsightResultValue = {}  # type: ignore[typeddict-item]
-    if "GroupByAttributeValue" in data:
+    if data.get("GroupByAttributeValue") is not None:
         out["group_by_attribute_value"] = data["GroupByAttributeValue"]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchStartViewerSessionRevocationErrors:
 
     out: BatchStartViewerSessionRevocationErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs.types.batch_start_viewer_session_revocation_error.deserialize_json(
                 item

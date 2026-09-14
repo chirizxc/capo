@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: RedshiftDatabase) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedshiftDatabase:
     out: RedshiftDatabase = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("RedshiftDatabase.database_name required")
-    if "ClusterIdentifier" in data:
+    if data.get("ClusterIdentifier") is not None:
         out["cluster_identifier"] = data["ClusterIdentifier"]
     else:
         raise DeserializationError("RedshiftDatabase.cluster_identifier required")

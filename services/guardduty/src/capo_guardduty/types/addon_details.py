@@ -27,8 +27,8 @@ def serialize_json(value: AddonDetails) -> dict:
 
 def deserialize_json(data: dict) -> AddonDetails:
     out: AddonDetails = {}  # type: ignore[typeddict-item]
-    if "addonVersion" in data:
+    if data.get("addonVersion") is not None:
         out["addon_version"] = data["addonVersion"]
-    if "addonStatus" in data:
+    if data.get("addonStatus") is not None:
         out["addon_status"] = data["addonStatus"]
     return out

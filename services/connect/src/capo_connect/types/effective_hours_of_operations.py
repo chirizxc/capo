@@ -36,9 +36,9 @@ def serialize_json(value: EffectiveHoursOfOperations) -> dict:
 
 def deserialize_json(data: dict) -> EffectiveHoursOfOperations:
     out: EffectiveHoursOfOperations = {}  # type: ignore[typeddict-item]
-    if "Date" in data:
+    if data.get("Date") is not None:
         out["date"] = data["Date"]
-    if "OperationalHours" in data:
+    if data.get("OperationalHours") is not None:
         import capo_connect.types.operational_hours
 
         out["operational_hours"] = (

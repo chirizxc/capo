@@ -36,7 +36,7 @@ def serialize_json(value: Condition) -> dict:
 
 def deserialize_json(data: dict) -> Condition:
     out: Condition = {}  # type: ignore[typeddict-item]
-    if "ConditionType" in data:
+    if data.get("ConditionType") is not None:
         import capo_backup.types.condition_type
 
         out["condition_type"] = capo_backup.types.condition_type.deserialize_json(
@@ -44,11 +44,11 @@ def deserialize_json(data: dict) -> Condition:
         )
     else:
         raise DeserializationError("Condition.condition_type required")
-    if "ConditionKey" in data:
+    if data.get("ConditionKey") is not None:
         out["condition_key"] = data["ConditionKey"]
     else:
         raise DeserializationError("Condition.condition_key required")
-    if "ConditionValue" in data:
+    if data.get("ConditionValue") is not None:
         out["condition_value"] = data["ConditionValue"]
     else:
         raise DeserializationError("Condition.condition_value required")

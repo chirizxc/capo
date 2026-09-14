@@ -142,19 +142,19 @@ def serialize_aws_json_1_0(value: Firewall) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Firewall:
     out: Firewall = {}  # type: ignore[typeddict-item]
-    if "FirewallName" in data:
+    if data.get("FirewallName") is not None:
         out["firewall_name"] = data["FirewallName"]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "FirewallPolicyArn" in data:
+    if data.get("FirewallPolicyArn") is not None:
         out["firewall_policy_arn"] = data["FirewallPolicyArn"]
     else:
         raise DeserializationError("Firewall.firewall_policy_arn required")
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     else:
         raise DeserializationError("Firewall.vpc_id required")
-    if "SubnetMappings" in data:
+    if data.get("SubnetMappings") is not None:
         import capo_network_firewall.types.subnet_mappings
 
         out["subnet_mappings"] = (
@@ -164,33 +164,33 @@ def deserialize_aws_json_1_0(data: dict) -> Firewall:
         )
     else:
         raise DeserializationError("Firewall.subnet_mappings required")
-    if "DeleteProtection" in data:
+    if data.get("DeleteProtection") is not None:
         out["delete_protection"] = data["DeleteProtection"]
     else:
         out["delete_protection"] = False
-    if "SubnetChangeProtection" in data:
+    if data.get("SubnetChangeProtection") is not None:
         out["subnet_change_protection"] = data["SubnetChangeProtection"]
     else:
         out["subnet_change_protection"] = False
-    if "FirewallPolicyChangeProtection" in data:
+    if data.get("FirewallPolicyChangeProtection") is not None:
         out["firewall_policy_change_protection"] = data[
             "FirewallPolicyChangeProtection"
         ]
     else:
         out["firewall_policy_change_protection"] = False
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FirewallId" in data:
+    if data.get("FirewallId") is not None:
         out["firewall_id"] = data["FirewallId"]
     else:
         raise DeserializationError("Firewall.firewall_id required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_network_firewall.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -198,9 +198,9 @@ def deserialize_aws_json_1_0(data: dict) -> Firewall:
                 data["EncryptionConfiguration"]
             )
         )
-    if "NumberOfAssociations" in data:
+    if data.get("NumberOfAssociations") is not None:
         out["number_of_associations"] = data["NumberOfAssociations"]
-    if "EnabledAnalysisTypes" in data:
+    if data.get("EnabledAnalysisTypes") is not None:
         import capo_network_firewall.types.enabled_analysis_types
 
         out["enabled_analysis_types"] = (
@@ -208,11 +208,11 @@ def deserialize_aws_json_1_0(data: dict) -> Firewall:
                 data["EnabledAnalysisTypes"]
             )
         )
-    if "TransitGatewayId" in data:
+    if data.get("TransitGatewayId") is not None:
         out["transit_gateway_id"] = data["TransitGatewayId"]
-    if "TransitGatewayOwnerAccountId" in data:
+    if data.get("TransitGatewayOwnerAccountId") is not None:
         out["transit_gateway_owner_account_id"] = data["TransitGatewayOwnerAccountId"]
-    if "AvailabilityZoneMappings" in data:
+    if data.get("AvailabilityZoneMappings") is not None:
         import capo_network_firewall.types.availability_zone_mappings
 
         out["availability_zone_mappings"] = (
@@ -220,7 +220,7 @@ def deserialize_aws_json_1_0(data: dict) -> Firewall:
                 data["AvailabilityZoneMappings"]
             )
         )
-    if "AvailabilityZoneChangeProtection" in data:
+    if data.get("AvailabilityZoneChangeProtection") is not None:
         out["availability_zone_change_protection"] = data[
             "AvailabilityZoneChangeProtection"
         ]

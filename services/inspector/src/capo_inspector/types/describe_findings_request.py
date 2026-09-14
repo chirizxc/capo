@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: DescribeFindingsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFindingsRequest:
     out: DescribeFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "findingArns" in data:
+    if data.get("findingArns") is not None:
         import capo_inspector.types.batch_describe_arn_list
 
         out["finding_arns"] = (
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFindingsRequest:
         )
     else:
         raise DeserializationError("DescribeFindingsRequest.finding_arns required")
-    if "locale" in data:
+    if data.get("locale") is not None:
         import capo_inspector.types.locale
 
         out["locale"] = capo_inspector.types.locale.deserialize_aws_json_1_1(

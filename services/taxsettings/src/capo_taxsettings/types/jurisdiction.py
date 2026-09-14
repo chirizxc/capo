@@ -29,9 +29,9 @@ def serialize_json(value: Jurisdiction) -> dict:
 
 def deserialize_json(data: dict) -> Jurisdiction:
     out: Jurisdiction = {}  # type: ignore[typeddict-item]
-    if "stateOrRegion" in data:
+    if data.get("stateOrRegion") is not None:
         out["state_or_region"] = data["stateOrRegion"]
-    if "countryCode" in data:
+    if data.get("countryCode") is not None:
         out["country_code"] = data["countryCode"]
     else:
         raise DeserializationError("Jurisdiction.country_code required")

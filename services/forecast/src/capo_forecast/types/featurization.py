@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: Featurization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Featurization:
     out: Featurization = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError("Featurization.attribute_name required")
-    if "FeaturizationPipeline" in data:
+    if data.get("FeaturizationPipeline") is not None:
         import capo_forecast.types.featurization_pipeline
 
         out["featurization_pipeline"] = (

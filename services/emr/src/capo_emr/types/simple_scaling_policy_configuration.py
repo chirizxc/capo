@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: SimpleScalingPolicyConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SimpleScalingPolicyConfiguration:
     out: SimpleScalingPolicyConfiguration = {}  # type: ignore[typeddict-item]
-    if "AdjustmentType" in data:
+    if data.get("AdjustmentType") is not None:
         import capo_emr.types.adjustment_type
 
         out["adjustment_type"] = (
@@ -44,8 +44,8 @@ def deserialize_aws_json_1_1(data: dict) -> SimpleScalingPolicyConfiguration:
                 data["AdjustmentType"]
             )
         )
-    if "ScalingAdjustment" in data:
+    if data.get("ScalingAdjustment") is not None:
         out["scaling_adjustment"] = data["ScalingAdjustment"]
-    if "CoolDown" in data:
+    if data.get("CoolDown") is not None:
         out["cool_down"] = data["CoolDown"]
     return out

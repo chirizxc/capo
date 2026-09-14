@@ -26,10 +26,10 @@ def serialize_aws_json_1_0(value: MessageBody) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MessageBody:
     out: MessageBody = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "Html" in data:
+    if data.get("Html") is not None:
         out["html"] = data["Html"]
-    if "MessageMalformed" in data:
+    if data.get("MessageMalformed") is not None:
         out["message_malformed"] = data["MessageMalformed"]
     return out

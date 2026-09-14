@@ -26,16 +26,24 @@ def serialize_aws_json_1_1(value: VariableImpactExplanation) -> dict:
     if "relative_impact" in value:
         out["relativeImpact"] = value["relative_impact"]
     if "log_odds_impact" in value:
-        out["logOddsImpact"] = value["log_odds_impact"]
+        out["logOddsImpact"] = (
+            "NaN"
+            if value["log_odds_impact"] != value["log_odds_impact"]
+            else "Infinity"
+            if value["log_odds_impact"] == float("inf")
+            else "-Infinity"
+            if value["log_odds_impact"] == float("-inf")
+            else value["log_odds_impact"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> VariableImpactExplanation:
     out: VariableImpactExplanation = {}  # type: ignore[typeddict-item]
-    if "eventVariableName" in data:
+    if data.get("eventVariableName") is not None:
         out["event_variable_name"] = data["eventVariableName"]
-    if "relativeImpact" in data:
+    if data.get("relativeImpact") is not None:
         out["relative_impact"] = data["relativeImpact"]
-    if "logOddsImpact" in data:
-        out["log_odds_impact"] = data["logOddsImpact"]
+    if data.get("logOddsImpact") is not None:
+        out["log_odds_impact"] = float(data["logOddsImpact"])
     return out

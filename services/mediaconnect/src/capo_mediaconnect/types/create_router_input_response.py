@@ -28,7 +28,7 @@ def serialize_json(value: CreateRouterInputResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRouterInputResponse:
     out: CreateRouterInputResponse = {}  # type: ignore[typeddict-item]
-    if "routerInput" in data:
+    if data.get("routerInput") is not None:
         import capo_mediaconnect.types.router_input
 
         out["router_input"] = capo_mediaconnect.types.router_input.deserialize_json(

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> LogSettingsRequestList:
 
     out: LogSettingsRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_model_building_service.types.log_settings_request.deserialize_json(
                 item

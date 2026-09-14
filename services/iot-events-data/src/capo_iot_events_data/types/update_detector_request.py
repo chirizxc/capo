@@ -45,17 +45,17 @@ def serialize_json(value: UpdateDetectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDetectorRequest:
     out: UpdateDetectorRequest = {}  # type: ignore[typeddict-item]
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
     else:
         raise DeserializationError("UpdateDetectorRequest.message_id required")
-    if "detectorModelName" in data:
+    if data.get("detectorModelName") is not None:
         out["detector_model_name"] = data["detectorModelName"]
     else:
         raise DeserializationError("UpdateDetectorRequest.detector_model_name required")
-    if "keyValue" in data:
+    if data.get("keyValue") is not None:
         out["key_value"] = data["keyValue"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_iot_events_data.types.detector_state_definition
 
         out["state"] = (

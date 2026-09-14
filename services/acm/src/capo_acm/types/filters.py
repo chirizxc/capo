@@ -69,7 +69,7 @@ def serialize_aws_json_1_1(value: Filters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Filters:
     out: Filters = {}  # type: ignore[typeddict-item]
-    if "extendedKeyUsage" in data:
+    if data.get("extendedKeyUsage") is not None:
         import capo_acm.types.extended_key_usage_filter_list
 
         out["extended_key_usage"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> Filters:
                 data["extendedKeyUsage"]
             )
         )
-    if "keyUsage" in data:
+    if data.get("keyUsage") is not None:
         import capo_acm.types.key_usage_filter_list
 
         out["key_usage"] = (
@@ -85,13 +85,13 @@ def deserialize_aws_json_1_1(data: dict) -> Filters:
                 data["keyUsage"]
             )
         )
-    if "keyTypes" in data:
+    if data.get("keyTypes") is not None:
         import capo_acm.types.key_algorithm_list
 
         out["key_types"] = capo_acm.types.key_algorithm_list.deserialize_aws_json_1_1(
             data["keyTypes"]
         )
-    if "exportOption" in data:
+    if data.get("exportOption") is not None:
         import capo_acm.types.certificate_export
 
         out["export_option"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> Filters:
                 data["exportOption"]
             )
         )
-    if "managedBy" in data:
+    if data.get("managedBy") is not None:
         import capo_acm.types.certificate_managed_by
 
         out["managed_by"] = (

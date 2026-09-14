@@ -42,19 +42,19 @@ def serialize_aws_json_1_1(value: StartMetadataModelExportAsScriptMessage) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> StartMetadataModelExportAsScriptMessage:
     out: StartMetadataModelExportAsScriptMessage = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(
             "StartMetadataModelExportAsScriptMessage.migration_project_identifier required"
         )
-    if "SelectionRules" in data:
+    if data.get("SelectionRules") is not None:
         out["selection_rules"] = data["SelectionRules"]
     else:
         raise DeserializationError(
             "StartMetadataModelExportAsScriptMessage.selection_rules required"
         )
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         import capo_database_migration_service.types.origin_type_value
 
         out["origin"] = (
@@ -66,6 +66,6 @@ def deserialize_aws_json_1_1(data: dict) -> StartMetadataModelExportAsScriptMess
         raise DeserializationError(
             "StartMetadataModelExportAsScriptMessage.origin required"
         )
-    if "FileName" in data:
+    if data.get("FileName") is not None:
         out["file_name"] = data["FileName"]
     return out

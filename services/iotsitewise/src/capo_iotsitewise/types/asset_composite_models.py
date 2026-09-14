@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssetCompositeModels:
 
     out: AssetCompositeModels = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotsitewise.types.asset_composite_model.deserialize_json(item))
     return out

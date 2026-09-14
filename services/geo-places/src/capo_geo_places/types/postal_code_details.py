@@ -55,19 +55,19 @@ def serialize_json(value: PostalCodeDetails) -> dict:
 
 def deserialize_json(data: dict) -> PostalCodeDetails:
     out: PostalCodeDetails = {}  # type: ignore[typeddict-item]
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
-    if "PostalAuthority" in data:
+    if data.get("PostalAuthority") is not None:
         out["postal_authority"] = data["PostalAuthority"]
-    if "PostalCodeType" in data:
+    if data.get("PostalCodeType") is not None:
         out["postal_code_type"] = data["PostalCodeType"]
-    if "UspsZip" in data:
+    if data.get("UspsZip") is not None:
         import capo_geo_places.types.usps_zip
 
         out["usps_zip"] = capo_geo_places.types.usps_zip.deserialize_json(
             data["UspsZip"]
         )
-    if "UspsZipPlus4" in data:
+    if data.get("UspsZipPlus4") is not None:
         import capo_geo_places.types.usps_zip_plus4
 
         out["usps_zip_plus4"] = capo_geo_places.types.usps_zip_plus4.deserialize_json(

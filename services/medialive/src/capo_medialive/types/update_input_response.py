@@ -24,7 +24,7 @@ def serialize_json(value: UpdateInputResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateInputResponse:
     out: UpdateInputResponse = {}  # type: ignore[typeddict-item]
-    if "input" in data:
+    if data.get("input") is not None:
         import capo_medialive.types.input
 
         out["input"] = capo_medialive.types.input.deserialize_json(data["input"])

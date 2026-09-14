@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: SqliMatchStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SqliMatchStatement:
     out: SqliMatchStatement = {}  # type: ignore[typeddict-item]
-    if "FieldToMatch" in data:
+    if data.get("FieldToMatch") is not None:
         import capo_wafv2.types.field_to_match
 
         out["field_to_match"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> SqliMatchStatement:
         )
     else:
         raise DeserializationError("SqliMatchStatement.field_to_match required")
-    if "TextTransformations" in data:
+    if data.get("TextTransformations") is not None:
         import capo_wafv2.types.text_transformations
 
         out["text_transformations"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> SqliMatchStatement:
         )
     else:
         raise DeserializationError("SqliMatchStatement.text_transformations required")
-    if "SensitivityLevel" in data:
+    if data.get("SensitivityLevel") is not None:
         import capo_wafv2.types.sensitivity_level
 
         out["sensitivity_level"] = (

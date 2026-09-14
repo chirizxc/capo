@@ -37,7 +37,7 @@ def serialize_json(value: SearchContentRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchContentRequest:
     out: SearchContentRequest = {}  # type: ignore[typeddict-item]
-    if "searchExpression" in data:
+    if data.get("searchExpression") is not None:
         import capo_wisdom.types.search_expression
 
         out["search_expression"] = capo_wisdom.types.search_expression.deserialize_json(

@@ -27,7 +27,7 @@ def serialize_json(value: Row) -> dict:
 
 def deserialize_json(data: dict) -> Row:
     out: Row = {}  # type: ignore[typeddict-item]
-    if "rowData" in data:
+    if data.get("rowData") is not None:
         import capo_iottwinmaker.types.row_data
 
         out["row_data"] = capo_iottwinmaker.types.row_data.deserialize_json(

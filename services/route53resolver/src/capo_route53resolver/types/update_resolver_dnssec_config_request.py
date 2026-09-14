@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: UpdateResolverDnssecConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateResolverDnssecConfigRequest:
     out: UpdateResolverDnssecConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(
             "UpdateResolverDnssecConfigRequest.resource_id required"
         )
-    if "Validation" in data:
+    if data.get("Validation") is not None:
         import capo_route53resolver.types.validation
 
         out["validation"] = (

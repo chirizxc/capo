@@ -24,7 +24,7 @@ def serialize_json(value: IntentInputData) -> dict:
 
 def deserialize_json(data: dict) -> IntentInputData:
     out: IntentInputData = {}  # type: ignore[typeddict-item]
-    if "intentId" in data:
+    if data.get("intentId") is not None:
         out["intent_id"] = data["intentId"]
     else:
         raise DeserializationError("IntentInputData.intent_id required")

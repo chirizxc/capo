@@ -46,13 +46,13 @@ def serialize_json(value: CreateInputRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateInputRequest:
     out: CreateInputRequest = {}  # type: ignore[typeddict-item]
-    if "inputName" in data:
+    if data.get("inputName") is not None:
         out["input_name"] = data["inputName"]
     else:
         raise DeserializationError("CreateInputRequest.input_name required")
-    if "inputDescription" in data:
+    if data.get("inputDescription") is not None:
         out["input_description"] = data["inputDescription"]
-    if "inputDefinition" in data:
+    if data.get("inputDefinition") is not None:
         import capo_iot_events.types.input_definition
 
         out["input_definition"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> CreateInputRequest:
         )
     else:
         raise DeserializationError("CreateInputRequest.input_definition required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot_events.types.tags
 
         out["tags"] = capo_iot_events.types.tags.deserialize_json(data["tags"])

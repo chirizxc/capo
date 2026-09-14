@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> VolumeSummaries:
 
     out: VolumeSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.volume_summary.deserialize_json(item))
     return out

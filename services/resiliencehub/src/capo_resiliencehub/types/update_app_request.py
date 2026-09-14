@@ -81,17 +81,17 @@ def serialize_json(value: UpdateAppRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAppRequest:
     out: UpdateAppRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("UpdateAppRequest.app_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "clearResiliencyPolicyArn" in data:
+    if data.get("clearResiliencyPolicyArn") is not None:
         out["clear_resiliency_policy_arn"] = data["clearResiliencyPolicyArn"]
-    if "assessmentSchedule" in data:
+    if data.get("assessmentSchedule") is not None:
         import capo_resiliencehub.types.app_assessment_schedule_type
 
         out["assessment_schedule"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> UpdateAppRequest:
                 data["assessmentSchedule"]
             )
         )
-    if "permissionModel" in data:
+    if data.get("permissionModel") is not None:
         import capo_resiliencehub.types.permission_model
 
         out["permission_model"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> UpdateAppRequest:
                 data["permissionModel"]
             )
         )
-    if "eventSubscriptions" in data:
+    if data.get("eventSubscriptions") is not None:
         import capo_resiliencehub.types.event_subscription_list
 
         out["event_subscriptions"] = (

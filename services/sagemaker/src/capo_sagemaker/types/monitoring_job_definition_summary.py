@@ -46,16 +46,16 @@ def serialize_aws_json_1_1(value: MonitoringJobDefinitionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringJobDefinitionSummary:
     out: MonitoringJobDefinitionSummary = {}  # type: ignore[typeddict-item]
-    if "MonitoringJobDefinitionName" in data:
+    if data.get("MonitoringJobDefinitionName") is not None:
         out["monitoring_job_definition_name"] = data["MonitoringJobDefinitionName"]
-    if "MonitoringJobDefinitionArn" in data:
+    if data.get("MonitoringJobDefinitionArn") is not None:
         out["monitoring_job_definition_arn"] = data["MonitoringJobDefinitionArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
     return out

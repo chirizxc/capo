@@ -30,10 +30,10 @@ def serialize_json(value: SseAwsKeyManagementParams) -> dict:
 
 def deserialize_json(data: dict) -> SseAwsKeyManagementParams:
     out: SseAwsKeyManagementParams = {}  # type: ignore[typeddict-item]
-    if "AwsKmsKeyId" in data:
+    if data.get("AwsKmsKeyId") is not None:
         out["aws_kms_key_id"] = data["AwsKmsKeyId"]
     else:
         raise DeserializationError("SseAwsKeyManagementParams.aws_kms_key_id required")
-    if "AwsKmsEncryptionContext" in data:
+    if data.get("AwsKmsEncryptionContext") is not None:
         out["aws_kms_encryption_context"] = data["AwsKmsEncryptionContext"]
     return out

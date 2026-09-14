@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CrossRegionDataGuardConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CrossRegionDataGuardConfiguration:
     out: CrossRegionDataGuardConfiguration = {}  # type: ignore[typeddict-item]
-    if "sourceAutonomousDatabaseArn" in data:
+    if data.get("sourceAutonomousDatabaseArn") is not None:
         out["source_autonomous_database_arn"] = data["sourceAutonomousDatabaseArn"]
     else:
         raise DeserializationError(

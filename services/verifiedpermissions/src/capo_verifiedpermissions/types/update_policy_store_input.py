@@ -56,11 +56,11 @@ def serialize_aws_json_1_0(value: UpdatePolicyStoreInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdatePolicyStoreInput:
     out: UpdatePolicyStoreInput = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("UpdatePolicyStoreInput.policy_store_id required")
-    if "validationSettings" in data:
+    if data.get("validationSettings") is not None:
         import capo_verifiedpermissions.types.validation_settings
 
         out["validation_settings"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePolicyStoreInput:
         raise DeserializationError(
             "UpdatePolicyStoreInput.validation_settings required"
         )
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         import capo_verifiedpermissions.types.deletion_protection
 
         out["deletion_protection"] = (
@@ -80,6 +80,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePolicyStoreInput:
                 data["deletionProtection"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

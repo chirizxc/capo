@@ -45,7 +45,7 @@ def serialize_json(value: UserProfileDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> UserProfileDetails:
-    if "iam" in data:
+    if data.get("iam") is not None:
         import capo_datazone.types.iam_user_profile_details
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> UserProfileDetails:
                 data["iam"]
             )
         }
-    elif "sso" in data:
+    elif data.get("sso") is not None:
         import capo_datazone.types.sso_user_profile_details
 
         return {

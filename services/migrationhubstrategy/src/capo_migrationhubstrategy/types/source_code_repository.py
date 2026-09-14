@@ -35,12 +35,12 @@ def serialize_json(value: SourceCodeRepository) -> dict:
 
 def deserialize_json(data: dict) -> SourceCodeRepository:
     out: SourceCodeRepository = {}  # type: ignore[typeddict-item]
-    if "repository" in data:
+    if data.get("repository") is not None:
         out["repository"] = data["repository"]
-    if "branch" in data:
+    if data.get("branch") is not None:
         out["branch"] = data["branch"]
-    if "versionControlType" in data:
+    if data.get("versionControlType") is not None:
         out["version_control_type"] = data["versionControlType"]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ReportDefinitionList:
 
     out: ReportDefinitionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_applicationcostprofiler.types.report_definition.deserialize_json(item)
         )

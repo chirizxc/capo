@@ -77,13 +77,13 @@ def serialize_json(value: AccountFindingsMetric) -> dict:
 
 def deserialize_json(data: dict) -> AccountFindingsMetric:
     out: AccountFindingsMetric = {}  # type: ignore[typeddict-item]
-    if "date" in data:
+    if data.get("date") is not None:
         import capo_codeguru_security.types._prelude.timestamp
 
         out["date"] = capo_codeguru_security.types._prelude.timestamp.deserialize_json(
             data["date"]
         )
-    if "newFindings" in data:
+    if data.get("newFindings") is not None:
         import capo_codeguru_security.types.finding_metrics_value_per_severity
 
         out["new_findings"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> AccountFindingsMetric:
                 data["newFindings"]
             )
         )
-    if "closedFindings" in data:
+    if data.get("closedFindings") is not None:
         import capo_codeguru_security.types.finding_metrics_value_per_severity
 
         out["closed_findings"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> AccountFindingsMetric:
                 data["closedFindings"]
             )
         )
-    if "openFindings" in data:
+    if data.get("openFindings") is not None:
         import capo_codeguru_security.types.finding_metrics_value_per_severity
 
         out["open_findings"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> AccountFindingsMetric:
                 data["openFindings"]
             )
         )
-    if "meanTimeToClose" in data:
+    if data.get("meanTimeToClose") is not None:
         import capo_codeguru_security.types.finding_metrics_value_per_severity
 
         out["mean_time_to_close"] = (

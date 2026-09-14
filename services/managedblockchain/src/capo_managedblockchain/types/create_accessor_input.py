@@ -54,11 +54,11 @@ def serialize_json(value: CreateAccessorInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessorInput:
     out: CreateAccessorInput = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     else:
         raise DeserializationError("CreateAccessorInput.client_request_token required")
-    if "AccessorType" in data:
+    if data.get("AccessorType") is not None:
         import capo_managedblockchain.types.accessor_type
 
         out["accessor_type"] = (
@@ -68,13 +68,13 @@ def deserialize_json(data: dict) -> CreateAccessorInput:
         )
     else:
         raise DeserializationError("CreateAccessorInput.accessor_type required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_managedblockchain.types.input_tag_map
 
         out["tags"] = capo_managedblockchain.types.input_tag_map.deserialize_json(
             data["Tags"]
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_managedblockchain.types.accessor_network_type
 
         out["network_type"] = (

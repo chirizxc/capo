@@ -28,8 +28,8 @@ def serialize_json(value: ListTagSyncTasksFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListTagSyncTasksFilter:
     out: ListTagSyncTasksFilter = {}  # type: ignore[typeddict-item]
-    if "GroupArn" in data:
+    if data.get("GroupArn") is not None:
         out["group_arn"] = data["GroupArn"]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     return out

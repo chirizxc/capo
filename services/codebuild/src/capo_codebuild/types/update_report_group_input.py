@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: UpdateReportGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateReportGroupInput:
     out: UpdateReportGroupInput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateReportGroupInput.arn required")
-    if "exportConfig" in data:
+    if data.get("exportConfig") is not None:
         import capo_codebuild.types.report_export_config
 
         out["export_config"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateReportGroupInput:
                 data["exportConfig"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codebuild.types.tag_list
 
         out["tags"] = capo_codebuild.types.tag_list.deserialize_aws_json_1_1(

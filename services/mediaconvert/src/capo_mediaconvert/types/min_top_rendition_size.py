@@ -31,8 +31,8 @@ def serialize_json(value: MinTopRenditionSize) -> dict:
 
 def deserialize_json(data: dict) -> MinTopRenditionSize:
     out: MinTopRenditionSize = {}  # type: ignore[typeddict-item]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     return out

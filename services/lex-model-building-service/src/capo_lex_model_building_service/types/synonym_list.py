@@ -14,4 +14,4 @@ def serialize_json(value: SynonymList) -> list:
 
 
 def deserialize_json(data: list) -> SynonymList:
-    return list(data)
+    return [item for item in data if item is not None]

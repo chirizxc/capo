@@ -103,7 +103,7 @@ def serialize_aws_json_1_1(value: ReservationPurchaseRecommendation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendation:
     out: ReservationPurchaseRecommendation = {}  # type: ignore[typeddict-item]
-    if "AccountScope" in data:
+    if data.get("AccountScope") is not None:
         import capo_cost_explorer.types.account_scope
 
         out["account_scope"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendation:
                 data["AccountScope"]
             )
         )
-    if "LookbackPeriodInDays" in data:
+    if data.get("LookbackPeriodInDays") is not None:
         import capo_cost_explorer.types.lookback_period_in_days
 
         out["lookback_period_in_days"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendation:
                 data["LookbackPeriodInDays"]
             )
         )
-    if "TermInYears" in data:
+    if data.get("TermInYears") is not None:
         import capo_cost_explorer.types.term_in_years
 
         out["term_in_years"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendation:
                 data["TermInYears"]
             )
         )
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_cost_explorer.types.payment_option
 
         out["payment_option"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendation:
                 data["PaymentOption"]
             )
         )
-    if "ServiceSpecification" in data:
+    if data.get("ServiceSpecification") is not None:
         import capo_cost_explorer.types.service_specification
 
         out["service_specification"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendation:
                 data["ServiceSpecification"]
             )
         )
-    if "RecommendationDetails" in data:
+    if data.get("RecommendationDetails") is not None:
         import capo_cost_explorer.types.reservation_purchase_recommendation_details
 
         out["recommendation_details"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendation:
                 data["RecommendationDetails"]
             )
         )
-    if "RecommendationSummary" in data:
+    if data.get("RecommendationSummary") is not None:
         import capo_cost_explorer.types.reservation_purchase_recommendation_summary
 
         out["recommendation_summary"] = (

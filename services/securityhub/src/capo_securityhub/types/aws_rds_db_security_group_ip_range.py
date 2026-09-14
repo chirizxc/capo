@@ -27,8 +27,8 @@ def serialize_json(value: AwsRdsDbSecurityGroupIpRange) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbSecurityGroupIpRange:
     out: AwsRdsDbSecurityGroupIpRange = {}  # type: ignore[typeddict-item]
-    if "CidrIp" in data:
+    if data.get("CidrIp") is not None:
         out["cidr_ip"] = data["CidrIp"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

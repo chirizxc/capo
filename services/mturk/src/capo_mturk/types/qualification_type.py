@@ -89,21 +89,21 @@ def serialize_aws_json_1_1(value: QualificationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QualificationType:
     out: QualificationType = {}  # type: ignore[typeddict-item]
-    if "QualificationTypeId" in data:
+    if data.get("QualificationTypeId") is not None:
         out["qualification_type_id"] = data["QualificationTypeId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mturk.types.timestamp
 
         out["creation_time"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Keywords" in data:
+    if data.get("Keywords") is not None:
         out["keywords"] = data["Keywords"]
-    if "QualificationTypeStatus" in data:
+    if data.get("QualificationTypeStatus") is not None:
         import capo_mturk.types.qualification_type_status
 
         out["qualification_type_status"] = (
@@ -111,18 +111,18 @@ def deserialize_aws_json_1_1(data: dict) -> QualificationType:
                 data["QualificationTypeStatus"]
             )
         )
-    if "Test" in data:
+    if data.get("Test") is not None:
         out["test"] = data["Test"]
-    if "TestDurationInSeconds" in data:
+    if data.get("TestDurationInSeconds") is not None:
         out["test_duration_in_seconds"] = data["TestDurationInSeconds"]
-    if "AnswerKey" in data:
+    if data.get("AnswerKey") is not None:
         out["answer_key"] = data["AnswerKey"]
-    if "RetryDelayInSeconds" in data:
+    if data.get("RetryDelayInSeconds") is not None:
         out["retry_delay_in_seconds"] = data["RetryDelayInSeconds"]
-    if "IsRequestable" in data:
+    if data.get("IsRequestable") is not None:
         out["is_requestable"] = data["IsRequestable"]
-    if "AutoGranted" in data:
+    if data.get("AutoGranted") is not None:
         out["auto_granted"] = data["AutoGranted"]
-    if "AutoGrantedValue" in data:
+    if data.get("AutoGrantedValue") is not None:
         out["auto_granted_value"] = data["AutoGrantedValue"]
     return out

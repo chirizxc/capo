@@ -78,7 +78,15 @@ def serialize_json(value: KantarWatermarkSettings) -> dict:
     if "credentials_secret_name" in value:
         out["credentialsSecretName"] = value["credentials_secret_name"]
     if "file_offset" in value:
-        out["fileOffset"] = value["file_offset"]
+        out["fileOffset"] = (
+            "NaN"
+            if value["file_offset"] != value["file_offset"]
+            else "Infinity"
+            if value["file_offset"] == float("inf")
+            else "-Infinity"
+            if value["file_offset"] == float("-inf")
+            else value["file_offset"]
+        )
     if "kantar_license_id" in value:
         out["kantarLicenseId"] = value["kantar_license_id"]
     if "kantar_server_url" in value:
@@ -102,30 +110,30 @@ def serialize_json(value: KantarWatermarkSettings) -> dict:
 
 def deserialize_json(data: dict) -> KantarWatermarkSettings:
     out: KantarWatermarkSettings = {}  # type: ignore[typeddict-item]
-    if "channelName" in data:
+    if data.get("channelName") is not None:
         out["channel_name"] = data["channelName"]
-    if "contentReference" in data:
+    if data.get("contentReference") is not None:
         out["content_reference"] = data["contentReference"]
-    if "credentialsSecretName" in data:
+    if data.get("credentialsSecretName") is not None:
         out["credentials_secret_name"] = data["credentialsSecretName"]
-    if "fileOffset" in data:
-        out["file_offset"] = data["fileOffset"]
-    if "kantarLicenseId" in data:
+    if data.get("fileOffset") is not None:
+        out["file_offset"] = float(data["fileOffset"])
+    if data.get("kantarLicenseId") is not None:
         out["kantar_license_id"] = data["kantarLicenseId"]
-    if "kantarServerUrl" in data:
+    if data.get("kantarServerUrl") is not None:
         out["kantar_server_url"] = data["kantarServerUrl"]
-    if "logDestination" in data:
+    if data.get("logDestination") is not None:
         out["log_destination"] = data["logDestination"]
-    if "metadata3" in data:
+    if data.get("metadata3") is not None:
         out["metadata3"] = data["metadata3"]
-    if "metadata4" in data:
+    if data.get("metadata4") is not None:
         out["metadata4"] = data["metadata4"]
-    if "metadata5" in data:
+    if data.get("metadata5") is not None:
         out["metadata5"] = data["metadata5"]
-    if "metadata6" in data:
+    if data.get("metadata6") is not None:
         out["metadata6"] = data["metadata6"]
-    if "metadata7" in data:
+    if data.get("metadata7") is not None:
         out["metadata7"] = data["metadata7"]
-    if "metadata8" in data:
+    if data.get("metadata8") is not None:
         out["metadata8"] = data["metadata8"]
     return out

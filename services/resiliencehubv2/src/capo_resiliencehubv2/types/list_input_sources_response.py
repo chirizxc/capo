@@ -36,7 +36,7 @@ def serialize_json(value: ListInputSourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListInputSourcesResponse:
     out: ListInputSourcesResponse = {}  # type: ignore[typeddict-item]
-    if "inputSourceSummaries" in data:
+    if data.get("inputSourceSummaries") is not None:
         import capo_resiliencehubv2.types.input_source_summary_list
 
         out["input_source_summaries"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> ListInputSourcesResponse:
         raise DeserializationError(
             "ListInputSourcesResponse.input_source_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

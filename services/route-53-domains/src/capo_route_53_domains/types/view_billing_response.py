@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ViewBillingResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ViewBillingResponse:
     out: ViewBillingResponse = {}  # type: ignore[typeddict-item]
-    if "NextPageMarker" in data:
+    if data.get("NextPageMarker") is not None:
         out["next_page_marker"] = data["NextPageMarker"]
-    if "BillingRecords" in data:
+    if data.get("BillingRecords") is not None:
         import capo_route_53_domains.types.billing_records
 
         out["billing_records"] = (

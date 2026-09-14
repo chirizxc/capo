@@ -75,15 +75,17 @@ class ManagedThingAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.deregister_account_association_request.DeregisterAccountAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
-        input_["account_association_id"] = account_association_id
+        input_: capo_iot_managed_integrations.types.deregister_account_association_request.DeregisterAccountAssociationRequest = {
+            "managed_thing_id": managed_thing_id,
+            "account_association_id": account_association_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_managed_thing_account_associations(
@@ -134,7 +136,7 @@ class ManagedThingAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_managed_thing_account_associations_request.ListManagedThingAccountAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_managed_thing_account_associations_request.ListManagedThingAccountAssociationsRequest = {}
         if managed_thing_id is not None:
             input_["managed_thing_id"] = managed_thing_id
         if account_association_id is not None:
@@ -149,6 +151,7 @@ class ManagedThingAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_account_association(
@@ -191,16 +194,18 @@ class ManagedThingAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.register_account_association_request.RegisterAccountAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
-        input_["account_association_id"] = account_association_id
-        input_["device_discovery_id"] = device_discovery_id
+        input_: capo_iot_managed_integrations.types.register_account_association_request.RegisterAccountAssociationRequest = {
+            "managed_thing_id": managed_thing_id,
+            "account_association_id": account_association_id,
+            "device_discovery_id": device_discovery_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -245,15 +250,17 @@ class AsyncManagedThingAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.deregister_account_association_request.DeregisterAccountAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
-        input_["account_association_id"] = account_association_id
+        input_: capo_iot_managed_integrations.types.deregister_account_association_request.DeregisterAccountAssociationRequest = {
+            "managed_thing_id": managed_thing_id,
+            "account_association_id": account_association_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_managed_thing_account_associations(
@@ -305,7 +312,7 @@ class AsyncManagedThingAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_managed_thing_account_associations_request.ListManagedThingAccountAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_managed_thing_account_associations_request.ListManagedThingAccountAssociationsRequest = {}
         if managed_thing_id is not None:
             input_["managed_thing_id"] = managed_thing_id
         if account_association_id is not None:
@@ -320,6 +327,7 @@ class AsyncManagedThingAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_account_association(
@@ -363,14 +371,16 @@ class AsyncManagedThingAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.register_account_association_request.RegisterAccountAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
-        input_["account_association_id"] = account_association_id
-        input_["device_discovery_id"] = device_discovery_id
+        input_: capo_iot_managed_integrations.types.register_account_association_request.RegisterAccountAssociationRequest = {
+            "managed_thing_id": managed_thing_id,
+            "account_association_id": account_association_id,
+            "device_discovery_id": device_discovery_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

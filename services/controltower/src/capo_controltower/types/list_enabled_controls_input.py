@@ -48,19 +48,19 @@ def serialize_json(value: ListEnabledControlsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListEnabledControlsInput:
     out: ListEnabledControlsInput = {}  # type: ignore[typeddict-item]
-    if "targetIdentifier" in data:
+    if data.get("targetIdentifier") is not None:
         out["target_identifier"] = data["targetIdentifier"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_controltower.types.enabled_control_filter
 
         out["filter"] = capo_controltower.types.enabled_control_filter.deserialize_json(
             data["filter"]
         )
-    if "includeChildren" in data:
+    if data.get("includeChildren") is not None:
         out["include_children"] = data["includeChildren"]
     else:
         out["include_children"] = False

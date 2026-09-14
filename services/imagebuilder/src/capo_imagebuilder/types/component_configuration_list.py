@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ComponentConfigurationList:
 
     out: ComponentConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.component_configuration.deserialize_json(item)
         )

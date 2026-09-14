@@ -78,31 +78,31 @@ def serialize_aws_json_1_0(value: UpdateBenefitApplicationInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateBenefitApplicationInput:
     out: UpdateBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("UpdateBenefitApplicationInput.catalog required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(
             "UpdateBenefitApplicationInput.client_token required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("UpdateBenefitApplicationInput.identifier required")
-    if "Revision" in data:
+    if data.get("Revision") is not None:
         out["revision"] = data["Revision"]
     else:
         raise DeserializationError("UpdateBenefitApplicationInput.revision required")
-    if "BenefitApplicationDetails" in data:
+    if data.get("BenefitApplicationDetails") is not None:
         out["benefit_application_details"] = data["BenefitApplicationDetails"]
-    if "PartnerContacts" in data:
+    if data.get("PartnerContacts") is not None:
         import capo_partnercentral_benefits.types.contacts
 
         out["partner_contacts"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBenefitApplicationInput:
                 data["PartnerContacts"]
             )
         )
-    if "FileDetails" in data:
+    if data.get("FileDetails") is not None:
         import capo_partnercentral_benefits.types.file_input_details
 
         out["file_details"] = (

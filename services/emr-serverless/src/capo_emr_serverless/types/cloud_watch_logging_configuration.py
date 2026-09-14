@@ -51,17 +51,17 @@ def serialize_json(value: CloudWatchLoggingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CloudWatchLoggingConfiguration:
     out: CloudWatchLoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("CloudWatchLoggingConfiguration.enabled required")
-    if "logGroupName" in data:
+    if data.get("logGroupName") is not None:
         out["log_group_name"] = data["logGroupName"]
-    if "logStreamNamePrefix" in data:
+    if data.get("logStreamNamePrefix") is not None:
         out["log_stream_name_prefix"] = data["logStreamNamePrefix"]
-    if "encryptionKeyArn" in data:
+    if data.get("encryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["encryptionKeyArn"]
-    if "logTypes" in data:
+    if data.get("logTypes") is not None:
         import capo_emr_serverless.types.log_type_map
 
         out["log_types"] = capo_emr_serverless.types.log_type_map.deserialize_json(

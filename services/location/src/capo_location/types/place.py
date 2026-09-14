@@ -114,9 +114,9 @@ def serialize_json(value: Place) -> dict:
 
 def deserialize_json(data: dict) -> Place:
     out: Place = {}  # type: ignore[typeddict-item]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_location.types.place_geometry
 
         out["geometry"] = capo_location.types.place_geometry.deserialize_json(
@@ -124,41 +124,41 @@ def deserialize_json(data: dict) -> Place:
         )
     else:
         raise DeserializationError("Place.geometry required")
-    if "AddressNumber" in data:
+    if data.get("AddressNumber") is not None:
         out["address_number"] = data["AddressNumber"]
-    if "Street" in data:
+    if data.get("Street") is not None:
         out["street"] = data["Street"]
-    if "Neighborhood" in data:
+    if data.get("Neighborhood") is not None:
         out["neighborhood"] = data["Neighborhood"]
-    if "Municipality" in data:
+    if data.get("Municipality") is not None:
         out["municipality"] = data["Municipality"]
-    if "SubRegion" in data:
+    if data.get("SubRegion") is not None:
         out["sub_region"] = data["SubRegion"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
-    if "Interpolated" in data:
+    if data.get("Interpolated") is not None:
         out["interpolated"] = data["Interpolated"]
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         import capo_location.types.time_zone
 
         out["time_zone"] = capo_location.types.time_zone.deserialize_json(
             data["TimeZone"]
         )
-    if "UnitType" in data:
+    if data.get("UnitType") is not None:
         out["unit_type"] = data["UnitType"]
-    if "UnitNumber" in data:
+    if data.get("UnitNumber") is not None:
         out["unit_number"] = data["UnitNumber"]
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_location.types.place_category_list
 
         out["categories"] = capo_location.types.place_category_list.deserialize_json(
             data["Categories"]
         )
-    if "SupplementalCategories" in data:
+    if data.get("SupplementalCategories") is not None:
         import capo_location.types.place_supplemental_category_list
 
         out["supplemental_categories"] = (
@@ -166,6 +166,6 @@ def deserialize_json(data: dict) -> Place:
                 data["SupplementalCategories"]
             )
         )
-    if "SubMunicipality" in data:
+    if data.get("SubMunicipality") is not None:
         out["sub_municipality"] = data["SubMunicipality"]
     return out

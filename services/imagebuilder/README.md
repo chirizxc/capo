@@ -13,9 +13,9 @@ from capo_imagebuilder import AsyncimagebuilderClient
 
 
 async def main():
-    async with AsyncimagebuilderClient() as s3:
+    async with AsyncimagebuilderClient() as imagebuilder:
         # Example: call the cancel_image_creation operation
-        response = await s3.cancel_image_creation()
+        response = await imagebuilder.cancel_image_creation()
         print(response["request_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_imagebuilder import AsyncimagebuilderClient
 
 
 async def main():
-    async with AsyncimagebuilderClient() as s3:
+    async with AsyncimagebuilderClient() as imagebuilder:
         # Example: paginate over list_component_build_versions
-        async for item in s3.iter_list_component_build_versions():
+        async for item in imagebuilder.iter_list_component_build_versions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_imagebuilder.error import CallRateLimitExceededException
 
 
 async def main():
-    async with AsyncimagebuilderClient() as s3:
+    async with AsyncimagebuilderClient() as imagebuilder:
         try:
-            await s3.cancel_image_creation()
+            await imagebuilder.cancel_image_creation()
         except CallRateLimitExceededException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_imagebuilder import AsyncimagebuilderClient
 
 
 async def main():
-    async with AsyncimagebuilderClient() as s3:
+    async with AsyncimagebuilderClient() as imagebuilder:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_image_creation()
+        response = await imagebuilder.cancel_image_creation()
 
         # Override per operation
-        response = await s3.cancel_image_creation(config_overrides={"retry_max_attempts": 5})
+        response = await imagebuilder.cancel_image_creation(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_image_creation(config_overrides={"retry_max_attempts": 1})
+        response = await imagebuilder.cancel_image_creation(config_overrides={"retry_max_attempts": 1})
 ```

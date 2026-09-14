@@ -35,7 +35,15 @@ def serialize_json(value: CvssScoreDetails) -> dict:
     if "cvss_source" in value:
         out["cvssSource"] = value["cvss_source"]
     out["version"] = value["version"]
-    out["score"] = value["score"]
+    out["score"] = (
+        "NaN"
+        if value["score"] != value["score"]
+        else "Infinity"
+        if value["score"] == float("inf")
+        else "-Infinity"
+        if value["score"] == float("-inf")
+        else value["score"]
+    )
     out["scoringVector"] = value["scoring_vector"]
     if "adjustments" in value:
         import capo_inspector2.types.cvss_score_adjustment_list
@@ -50,25 +58,25 @@ def serialize_json(value: CvssScoreDetails) -> dict:
 
 def deserialize_json(data: dict) -> CvssScoreDetails:
     out: CvssScoreDetails = {}  # type: ignore[typeddict-item]
-    if "scoreSource" in data:
+    if data.get("scoreSource") is not None:
         out["score_source"] = data["scoreSource"]
     else:
         raise DeserializationError("CvssScoreDetails.score_source required")
-    if "cvssSource" in data:
+    if data.get("cvssSource") is not None:
         out["cvss_source"] = data["cvssSource"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("CvssScoreDetails.version required")
-    if "score" in data:
-        out["score"] = data["score"]
+    if data.get("score") is not None:
+        out["score"] = float(data["score"])
     else:
         raise DeserializationError("CvssScoreDetails.score required")
-    if "scoringVector" in data:
+    if data.get("scoringVector") is not None:
         out["scoring_vector"] = data["scoringVector"]
     else:
         raise DeserializationError("CvssScoreDetails.scoring_vector required")
-    if "adjustments" in data:
+    if data.get("adjustments") is not None:
         import capo_inspector2.types.cvss_score_adjustment_list
 
         out["adjustments"] = (

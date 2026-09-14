@@ -45,7 +45,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsStepFunctionStateMachineLoggingConfigurationDetails:
     out: AwsStepFunctionStateMachineLoggingConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_securityhub.types.aws_step_function_state_machine_logging_configuration_destinations_list
 
         out["destinations"] = (
@@ -53,8 +53,8 @@ def deserialize_json(
                 data["Destinations"]
             )
         )
-    if "IncludeExecutionData" in data:
+    if data.get("IncludeExecutionData") is not None:
         out["include_execution_data"] = data["IncludeExecutionData"]
-    if "Level" in data:
+    if data.get("Level") is not None:
         out["level"] = data["Level"]
     return out

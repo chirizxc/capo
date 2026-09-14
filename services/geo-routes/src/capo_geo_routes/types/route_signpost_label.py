@@ -36,13 +36,13 @@ def serialize_json(value: RouteSignpostLabel) -> dict:
 
 def deserialize_json(data: dict) -> RouteSignpostLabel:
     out: RouteSignpostLabel = {}  # type: ignore[typeddict-item]
-    if "RouteNumber" in data:
+    if data.get("RouteNumber") is not None:
         import capo_geo_routes.types.route_number
 
         out["route_number"] = capo_geo_routes.types.route_number.deserialize_json(
             data["RouteNumber"]
         )
-    if "Text" in data:
+    if data.get("Text") is not None:
         import capo_geo_routes.types.localized_string
 
         out["text"] = capo_geo_routes.types.localized_string.deserialize_json(

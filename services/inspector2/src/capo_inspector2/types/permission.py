@@ -28,11 +28,11 @@ def serialize_json(value: Permission) -> dict:
 
 def deserialize_json(data: dict) -> Permission:
     out: Permission = {}  # type: ignore[typeddict-item]
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
     else:
         raise DeserializationError("Permission.service required")
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
     else:
         raise DeserializationError("Permission.operation required")

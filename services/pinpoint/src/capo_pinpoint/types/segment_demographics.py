@@ -63,33 +63,33 @@ def serialize_json(value: SegmentDemographics) -> dict:
 
 def deserialize_json(data: dict) -> SegmentDemographics:
     out: SegmentDemographics = {}  # type: ignore[typeddict-item]
-    if "AppVersion" in data:
+    if data.get("AppVersion") is not None:
         import capo_pinpoint.types.set_dimension
 
         out["app_version"] = capo_pinpoint.types.set_dimension.deserialize_json(
             data["AppVersion"]
         )
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_pinpoint.types.set_dimension
 
         out["channel"] = capo_pinpoint.types.set_dimension.deserialize_json(
             data["Channel"]
         )
-    if "DeviceType" in data:
+    if data.get("DeviceType") is not None:
         import capo_pinpoint.types.set_dimension
 
         out["device_type"] = capo_pinpoint.types.set_dimension.deserialize_json(
             data["DeviceType"]
         )
-    if "Make" in data:
+    if data.get("Make") is not None:
         import capo_pinpoint.types.set_dimension
 
         out["make"] = capo_pinpoint.types.set_dimension.deserialize_json(data["Make"])
-    if "Model" in data:
+    if data.get("Model") is not None:
         import capo_pinpoint.types.set_dimension
 
         out["model"] = capo_pinpoint.types.set_dimension.deserialize_json(data["Model"])
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_pinpoint.types.set_dimension
 
         out["platform"] = capo_pinpoint.types.set_dimension.deserialize_json(

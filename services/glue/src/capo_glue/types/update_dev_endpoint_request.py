@@ -82,13 +82,13 @@ def serialize_aws_json_1_1(value: UpdateDevEndpointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDevEndpointRequest:
     out: UpdateDevEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
     else:
         raise DeserializationError("UpdateDevEndpointRequest.endpoint_name required")
-    if "PublicKey" in data:
+    if data.get("PublicKey") is not None:
         out["public_key"] = data["PublicKey"]
-    if "AddPublicKeys" in data:
+    if data.get("AddPublicKeys") is not None:
         import capo_glue.types.public_keys_list
 
         out["add_public_keys"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDevEndpointRequest:
                 data["AddPublicKeys"]
             )
         )
-    if "DeletePublicKeys" in data:
+    if data.get("DeletePublicKeys") is not None:
         import capo_glue.types.public_keys_list
 
         out["delete_public_keys"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDevEndpointRequest:
                 data["DeletePublicKeys"]
             )
         )
-    if "CustomLibraries" in data:
+    if data.get("CustomLibraries") is not None:
         import capo_glue.types.dev_endpoint_custom_libraries
 
         out["custom_libraries"] = (
@@ -112,17 +112,17 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDevEndpointRequest:
                 data["CustomLibraries"]
             )
         )
-    if "UpdateEtlLibraries" in data:
+    if data.get("UpdateEtlLibraries") is not None:
         out["update_etl_libraries"] = data["UpdateEtlLibraries"]
     else:
         out["update_etl_libraries"] = False
-    if "DeleteArguments" in data:
+    if data.get("DeleteArguments") is not None:
         import capo_glue.types.string_list
 
         out["delete_arguments"] = capo_glue.types.string_list.deserialize_aws_json_1_1(
             data["DeleteArguments"]
         )
-    if "AddArguments" in data:
+    if data.get("AddArguments") is not None:
         import capo_glue.types.map_value
 
         out["add_arguments"] = capo_glue.types.map_value.deserialize_aws_json_1_1(

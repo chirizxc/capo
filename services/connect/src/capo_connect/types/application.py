@@ -43,9 +43,9 @@ def serialize_json(value: Application) -> dict:
 
 def deserialize_json(data: dict) -> Application:
     out: Application = {}  # type: ignore[typeddict-item]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "ApplicationPermissions" in data:
+    if data.get("ApplicationPermissions") is not None:
         import capo_connect.types.application_permissions
 
         out["application_permissions"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> Application:
                 data["ApplicationPermissions"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.application_type
 
         out["type"] = capo_connect.types.application_type.deserialize_json(data["Type"])

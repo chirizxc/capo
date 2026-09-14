@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AnnotationConsolidationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnnotationConsolidationConfig:
     out: AnnotationConsolidationConfig = {}  # type: ignore[typeddict-item]
-    if "AnnotationConsolidationLambdaArn" in data:
+    if data.get("AnnotationConsolidationLambdaArn") is not None:
         out["annotation_consolidation_lambda_arn"] = data[
             "AnnotationConsolidationLambdaArn"
         ]

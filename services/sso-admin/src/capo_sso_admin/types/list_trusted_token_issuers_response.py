@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListTrustedTokenIssuersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTrustedTokenIssuersResponse:
     out: ListTrustedTokenIssuersResponse = {}  # type: ignore[typeddict-item]
-    if "TrustedTokenIssuers" in data:
+    if data.get("TrustedTokenIssuers") is not None:
         import capo_sso_admin.types.trusted_token_issuer_list
 
         out["trusted_token_issuers"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListTrustedTokenIssuersResponse:
                 data["TrustedTokenIssuers"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

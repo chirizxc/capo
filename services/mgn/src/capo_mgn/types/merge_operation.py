@@ -27,7 +27,7 @@ def serialize_json(value: MergeOperation) -> dict:
 
 def deserialize_json(data: dict) -> MergeOperation:
     out: MergeOperation = {}  # type: ignore[typeddict-item]
-    if "mergeConstructs" in data:
+    if data.get("mergeConstructs") is not None:
         import capo_mgn.types.merge_constructs
 
         out["merge_constructs"] = capo_mgn.types.merge_constructs.deserialize_json(

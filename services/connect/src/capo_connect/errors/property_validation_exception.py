@@ -35,11 +35,11 @@ def serialize_json(value: PropertyValidationException_) -> dict:
 
 def deserialize_json(data: dict) -> PropertyValidationException_:
     out: PropertyValidationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("PropertyValidationException_.message required")
-    if "PropertyList" in data:
+    if data.get("PropertyList") is not None:
         import capo_connect.types.property_validation_exception_property_list
 
         out["property_list"] = (
@@ -55,15 +55,18 @@ class PropertyValidationException(ServiceError):
 
     code: str | None = "PropertyValidationException"
 
-    def __init__(self, data: PropertyValidationException_):
+    def __init__(self, data: PropertyValidationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PropertyValidationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "PropertyValidationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "PropertyValidationException":
+        return cls(deserialize_json(data), message)

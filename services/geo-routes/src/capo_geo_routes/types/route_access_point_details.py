@@ -31,7 +31,7 @@ def serialize_json(value: RouteAccessPointDetails) -> dict:
 
 def deserialize_json(data: dict) -> RouteAccessPointDetails:
     out: RouteAccessPointDetails = {}  # type: ignore[typeddict-item]
-    if "Accessibility" in data:
+    if data.get("Accessibility") is not None:
         import capo_geo_routes.types.route_accessibility_availability_details
 
         out["accessibility"] = (

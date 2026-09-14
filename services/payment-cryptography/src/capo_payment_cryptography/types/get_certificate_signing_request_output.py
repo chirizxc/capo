@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetCertificateSigningRequestOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetCertificateSigningRequestOutput:
     out: GetCertificateSigningRequestOutput = {}  # type: ignore[typeddict-item]
-    if "CertificateSigningRequest" in data:
+    if data.get("CertificateSigningRequest") is not None:
         out["certificate_signing_request"] = data["CertificateSigningRequest"]
     else:
         raise DeserializationError(

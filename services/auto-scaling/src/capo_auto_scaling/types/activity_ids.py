@@ -14,6 +14,9 @@ ActivityIds: TypeAlias = list["capo_auto_scaling.types.xml_string.XmlString"]
 def serialize_query(
     value: ActivityIds, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.member.{n}", str(item)))
 
@@ -28,6 +31,9 @@ def deserialize_query(el: Element) -> ActivityIds:
 def serialize_query_flat(
     value: ActivityIds, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.{n}", str(item)))
 

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StopICD10CMInferenceJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopICD10CMInferenceJobRequest:
     out: StopICD10CMInferenceJobRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("StopICD10CMInferenceJobRequest.job_id required")

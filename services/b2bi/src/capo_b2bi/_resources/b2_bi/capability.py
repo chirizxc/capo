@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_b2bi._services._pipeline import (
@@ -92,14 +93,16 @@ class Capability:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.create_capability_request.CreateCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
-        input_["configuration"] = configuration
+        input_: capo_b2bi.types.create_capability_request.CreateCapabilityRequest = {
+            "name": name,
+            "type": type,
+            "configuration": configuration,
+        }
         if instructions_documents is not None:
             input_["instructions_documents"] = instructions_documents
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -108,6 +111,7 @@ class Capability:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -150,14 +154,16 @@ class Capability:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.get_capability_request.GetCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["capability_id"] = capability_id
+        input_: capo_b2bi.types.get_capability_request.GetCapabilityRequest = {
+            "capability_id": capability_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -212,8 +218,9 @@ class Capability:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.update_capability_request.UpdateCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["capability_id"] = capability_id
+        input_: capo_b2bi.types.update_capability_request.UpdateCapabilityRequest = {
+            "capability_id": capability_id
+        }
         if name is not None:
             input_["name"] = name
         if configuration is not None:
@@ -226,6 +233,7 @@ class Capability:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -267,14 +275,16 @@ class Capability:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.delete_capability_request.DeleteCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["capability_id"] = capability_id
+        input_: capo_b2bi.types.delete_capability_request.DeleteCapabilityRequest = {
+            "capability_id": capability_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -318,7 +328,7 @@ class Capability:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.list_capabilities_request.ListCapabilitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_b2bi.types.list_capabilities_request.ListCapabilitiesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -329,6 +339,7 @@ class Capability:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -391,14 +402,16 @@ class AsyncCapability:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.create_capability_request.CreateCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
-        input_["configuration"] = configuration
+        input_: capo_b2bi.types.create_capability_request.CreateCapabilityRequest = {
+            "name": name,
+            "type": type,
+            "configuration": configuration,
+        }
         if instructions_documents is not None:
             input_["instructions_documents"] = instructions_documents
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -407,6 +420,7 @@ class AsyncCapability:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -450,14 +464,16 @@ class AsyncCapability:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.get_capability_request.GetCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["capability_id"] = capability_id
+        input_: capo_b2bi.types.get_capability_request.GetCapabilityRequest = {
+            "capability_id": capability_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -513,8 +529,9 @@ class AsyncCapability:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.update_capability_request.UpdateCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["capability_id"] = capability_id
+        input_: capo_b2bi.types.update_capability_request.UpdateCapabilityRequest = {
+            "capability_id": capability_id
+        }
         if name is not None:
             input_["name"] = name
         if configuration is not None:
@@ -527,6 +544,7 @@ class AsyncCapability:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -569,14 +587,16 @@ class AsyncCapability:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.delete_capability_request.DeleteCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["capability_id"] = capability_id
+        input_: capo_b2bi.types.delete_capability_request.DeleteCapabilityRequest = {
+            "capability_id": capability_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -621,7 +641,7 @@ class AsyncCapability:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.list_capabilities_request.ListCapabilitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_b2bi.types.list_capabilities_request.ListCapabilitiesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -632,4 +652,5 @@ class AsyncCapability:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

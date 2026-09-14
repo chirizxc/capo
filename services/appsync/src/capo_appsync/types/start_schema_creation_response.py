@@ -25,7 +25,7 @@ def serialize_json(value: StartSchemaCreationResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartSchemaCreationResponse:
     out: StartSchemaCreationResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_appsync.types.schema_status
 
         out["status"] = capo_appsync.types.schema_status.deserialize_json(

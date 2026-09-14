@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: SavingsPlansDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansDetails:
     out: SavingsPlansDetails = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "InstanceFamily" in data:
+    if data.get("InstanceFamily") is not None:
         out["instance_family"] = data["InstanceFamily"]
-    if "OfferingId" in data:
+    if data.get("OfferingId") is not None:
         out["offering_id"] = data["OfferingId"]
     return out

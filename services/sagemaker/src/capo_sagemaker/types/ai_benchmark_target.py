@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: AIBenchmarkTarget) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> AIBenchmarkTarget:
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         import capo_sagemaker.types.ai_benchmark_endpoint
 
         return {

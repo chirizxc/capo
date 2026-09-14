@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: UpdateWorkspacesPoolResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWorkspacesPoolResult:
     out: UpdateWorkspacesPoolResult = {}  # type: ignore[typeddict-item]
-    if "WorkspacesPool" in data:
+    if data.get("WorkspacesPool") is not None:
         import capo_workspaces.types.workspaces_pool
 
         out["workspaces_pool"] = (

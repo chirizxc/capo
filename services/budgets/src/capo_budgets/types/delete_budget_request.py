@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteBudgetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteBudgetRequest:
     out: DeleteBudgetRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("DeleteBudgetRequest.account_id required")
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
     else:
         raise DeserializationError("DeleteBudgetRequest.budget_name required")

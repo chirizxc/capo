@@ -35,9 +35,25 @@ def serialize_aws_json_1_1(value: FindMatchesParameters) -> dict:
     if "primary_key_column_name" in value:
         out["PrimaryKeyColumnName"] = value["primary_key_column_name"]
     if "precision_recall_tradeoff" in value:
-        out["PrecisionRecallTradeoff"] = value["precision_recall_tradeoff"]
+        out["PrecisionRecallTradeoff"] = (
+            "NaN"
+            if value["precision_recall_tradeoff"] != value["precision_recall_tradeoff"]
+            else "Infinity"
+            if value["precision_recall_tradeoff"] == float("inf")
+            else "-Infinity"
+            if value["precision_recall_tradeoff"] == float("-inf")
+            else value["precision_recall_tradeoff"]
+        )
     if "accuracy_cost_tradeoff" in value:
-        out["AccuracyCostTradeoff"] = value["accuracy_cost_tradeoff"]
+        out["AccuracyCostTradeoff"] = (
+            "NaN"
+            if value["accuracy_cost_tradeoff"] != value["accuracy_cost_tradeoff"]
+            else "Infinity"
+            if value["accuracy_cost_tradeoff"] == float("inf")
+            else "-Infinity"
+            if value["accuracy_cost_tradeoff"] == float("-inf")
+            else value["accuracy_cost_tradeoff"]
+        )
     if "enforce_provided_labels" in value:
         out["EnforceProvidedLabels"] = value["enforce_provided_labels"]
     return out
@@ -45,12 +61,12 @@ def serialize_aws_json_1_1(value: FindMatchesParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FindMatchesParameters:
     out: FindMatchesParameters = {}  # type: ignore[typeddict-item]
-    if "PrimaryKeyColumnName" in data:
+    if data.get("PrimaryKeyColumnName") is not None:
         out["primary_key_column_name"] = data["PrimaryKeyColumnName"]
-    if "PrecisionRecallTradeoff" in data:
-        out["precision_recall_tradeoff"] = data["PrecisionRecallTradeoff"]
-    if "AccuracyCostTradeoff" in data:
-        out["accuracy_cost_tradeoff"] = data["AccuracyCostTradeoff"]
-    if "EnforceProvidedLabels" in data:
+    if data.get("PrecisionRecallTradeoff") is not None:
+        out["precision_recall_tradeoff"] = float(data["PrecisionRecallTradeoff"])
+    if data.get("AccuracyCostTradeoff") is not None:
+        out["accuracy_cost_tradeoff"] = float(data["AccuracyCostTradeoff"])
+    if data.get("EnforceProvidedLabels") is not None:
         out["enforce_provided_labels"] = data["EnforceProvidedLabels"]
     return out

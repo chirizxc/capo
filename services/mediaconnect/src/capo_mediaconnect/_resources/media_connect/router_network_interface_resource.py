@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_mediaconnect._auth._signers
@@ -91,21 +92,24 @@ class RouterNetworkInterfaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.create_router_network_interface_request.CreateRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["configuration"] = configuration
+        input_: capo_mediaconnect.types.create_router_network_interface_request.CreateRouterNetworkInterfaceRequest = {
+            "name": name,
+            "configuration": configuration,
+        }
         if region_name is not None:
             input_["region_name"] = region_name
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -145,14 +149,16 @@ class RouterNetworkInterfaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.get_router_network_interface_request.GetRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mediaconnect.types.get_router_network_interface_request.GetRouterNetworkInterfaceRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -197,8 +203,9 @@ class RouterNetworkInterfaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_router_network_interface_request.UpdateRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mediaconnect.types.update_router_network_interface_request.UpdateRouterNetworkInterfaceRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if configuration is not None:
@@ -209,6 +216,7 @@ class RouterNetworkInterfaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -248,14 +256,16 @@ class RouterNetworkInterfaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.delete_router_network_interface_request.DeleteRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mediaconnect.types.delete_router_network_interface_request.DeleteRouterNetworkInterfaceRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -299,7 +309,7 @@ class RouterNetworkInterfaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.list_router_network_interfaces_request.ListRouterNetworkInterfacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.list_router_network_interfaces_request.ListRouterNetworkInterfacesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -312,6 +322,7 @@ class RouterNetworkInterfaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_router_network_interface(
@@ -349,14 +360,16 @@ class RouterNetworkInterfaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.batch_get_router_network_interface_request.BatchGetRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["arns"] = arns
+        input_: capo_mediaconnect.types.batch_get_router_network_interface_request.BatchGetRouterNetworkInterfaceRequest = {
+            "arns": arns
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -410,21 +423,24 @@ class AsyncRouterNetworkInterfaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.create_router_network_interface_request.CreateRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["configuration"] = configuration
+        input_: capo_mediaconnect.types.create_router_network_interface_request.CreateRouterNetworkInterfaceRequest = {
+            "name": name,
+            "configuration": configuration,
+        }
         if region_name is not None:
             input_["region_name"] = region_name
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -465,14 +481,16 @@ class AsyncRouterNetworkInterfaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.get_router_network_interface_request.GetRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mediaconnect.types.get_router_network_interface_request.GetRouterNetworkInterfaceRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -518,8 +536,9 @@ class AsyncRouterNetworkInterfaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_router_network_interface_request.UpdateRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mediaconnect.types.update_router_network_interface_request.UpdateRouterNetworkInterfaceRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if configuration is not None:
@@ -530,6 +549,7 @@ class AsyncRouterNetworkInterfaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -570,14 +590,16 @@ class AsyncRouterNetworkInterfaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.delete_router_network_interface_request.DeleteRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mediaconnect.types.delete_router_network_interface_request.DeleteRouterNetworkInterfaceRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -622,7 +644,7 @@ class AsyncRouterNetworkInterfaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.list_router_network_interfaces_request.ListRouterNetworkInterfacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.list_router_network_interfaces_request.ListRouterNetworkInterfacesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -635,6 +657,7 @@ class AsyncRouterNetworkInterfaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_router_network_interface(
@@ -673,12 +696,14 @@ class AsyncRouterNetworkInterfaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.batch_get_router_network_interface_request.BatchGetRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["arns"] = arns
+        input_: capo_mediaconnect.types.batch_get_router_network_interface_request.BatchGetRouterNetworkInterfaceRequest = {
+            "arns": arns
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

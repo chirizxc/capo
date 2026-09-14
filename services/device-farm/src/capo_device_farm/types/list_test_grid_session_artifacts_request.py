@@ -47,13 +47,13 @@ def serialize_aws_json_1_1(value: ListTestGridSessionArtifactsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionArtifactsRequest:
     out: ListTestGridSessionArtifactsRequest = {}  # type: ignore[typeddict-item]
-    if "sessionArn" in data:
+    if data.get("sessionArn") is not None:
         out["session_arn"] = data["sessionArn"]
     else:
         raise DeserializationError(
             "ListTestGridSessionArtifactsRequest.session_arn required"
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.test_grid_session_artifact_category
 
         out["type"] = (
@@ -61,8 +61,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionArtifactsRequest:
                 data["type"]
             )
         )
-    if "maxResult" in data:
+    if data.get("maxResult") is not None:
         out["max_result"] = data["maxResult"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

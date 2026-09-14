@@ -32,8 +32,11 @@ def serialize_aws_json_1_1(input_to_serialize: GetEntitlementFilters) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> GetEntitlementFilters:
     out: GetEntitlementFilters = {}
     for key, value in data.items():
-        import capo_marketplace_entitlement_service.types.filter_value_list
         import capo_marketplace_entitlement_service.types.get_entitlement_filter_name
+
+        if value is None:
+            continue
+        import capo_marketplace_entitlement_service.types.filter_value_list
 
         out[
             capo_marketplace_entitlement_service.types.get_entitlement_filter_name.deserialize_aws_json_1_1(

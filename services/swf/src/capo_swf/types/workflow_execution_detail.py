@@ -70,7 +70,7 @@ def serialize_aws_json_1_0(value: WorkflowExecutionDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionDetail:
     out: WorkflowExecutionDetail = {}  # type: ignore[typeddict-item]
-    if "executionInfo" in data:
+    if data.get("executionInfo") is not None:
         import capo_swf.types.workflow_execution_info
 
         out["execution_info"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionDetail:
         )
     else:
         raise DeserializationError("WorkflowExecutionDetail.execution_info required")
-    if "executionConfiguration" in data:
+    if data.get("executionConfiguration") is not None:
         import capo_swf.types.workflow_execution_configuration
 
         out["execution_configuration"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionDetail:
         raise DeserializationError(
             "WorkflowExecutionDetail.execution_configuration required"
         )
-    if "openCounts" in data:
+    if data.get("openCounts") is not None:
         import capo_swf.types.workflow_execution_open_counts
 
         out["open_counts"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionDetail:
         )
     else:
         raise DeserializationError("WorkflowExecutionDetail.open_counts required")
-    if "latestActivityTaskTimestamp" in data:
+    if data.get("latestActivityTaskTimestamp") is not None:
         import capo_swf.types.timestamp
 
         out["latest_activity_task_timestamp"] = (
@@ -110,6 +110,6 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionDetail:
                 data["latestActivityTaskTimestamp"]
             )
         )
-    if "latestExecutionContext" in data:
+    if data.get("latestExecutionContext") is not None:
         out["latest_execution_context"] = data["latestExecutionContext"]
     return out

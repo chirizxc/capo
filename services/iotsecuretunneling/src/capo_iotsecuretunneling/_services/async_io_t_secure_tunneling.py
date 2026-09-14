@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.iotsecuretunneling#IoTSecuredTunneling``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_iotsecuretunneling._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_iotsecuretunneling._auth._zapros_handler import AuthMiddleware
+from capo_iotsecuretunneling._pagination import resolve_path as _resolve_path
 from capo_iotsecuretunneling._services._aws_config import aaws_config
 from capo_iotsecuretunneling._services._pipeline import (
     AsyncInterceptor,
@@ -184,8 +186,9 @@ class AsyncIoTSecureTunnelingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsecuretunneling.types.close_tunnel_request.CloseTunnelRequest = {}  # type: ignore[typeddict-item]
-        input_["tunnel_id"] = tunnel_id
+        input_: capo_iotsecuretunneling.types.close_tunnel_request.CloseTunnelRequest = {
+            "tunnel_id": tunnel_id
+        }
         if delete is not None:
             input_["delete"] = delete
 
@@ -194,6 +197,7 @@ class AsyncIoTSecureTunnelingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_tunnel(
@@ -230,14 +234,16 @@ class AsyncIoTSecureTunnelingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsecuretunneling.types.describe_tunnel_request.DescribeTunnelRequest = {}  # type: ignore[typeddict-item]
-        input_["tunnel_id"] = tunnel_id
+        input_: capo_iotsecuretunneling.types.describe_tunnel_request.DescribeTunnelRequest = {
+            "tunnel_id": tunnel_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -272,14 +278,16 @@ class AsyncIoTSecureTunnelingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsecuretunneling.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_iotsecuretunneling.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tunnels(
@@ -323,7 +331,7 @@ class AsyncIoTSecureTunnelingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsecuretunneling.types.list_tunnels_request.ListTunnelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsecuretunneling.types.list_tunnels_request.ListTunnelsRequest = {}
         if thing_name is not None:
             input_["thing_name"] = thing_name
         if max_results is not None:
@@ -336,7 +344,35 @@ class AsyncIoTSecureTunnelingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_tunnels(
+        self,
+        *,
+        config_overrides: Optional[AsyncIoTSecureTunnelingClientConfig] = None,
+        thing_name: Optional[
+            "capo_iotsecuretunneling.types.thing_name.ThingName"
+        ] = None,
+        max_results: Optional[
+            "capo_iotsecuretunneling.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_iotsecuretunneling.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_iotsecuretunneling.types.list_tunnels_response.ListTunnelsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_tunnels(
+                config_overrides=config_overrides,
+                thing_name=thing_name,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def open_tunnel(
         self,
@@ -382,7 +418,7 @@ class AsyncIoTSecureTunnelingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsecuretunneling.types.open_tunnel_request.OpenTunnelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsecuretunneling.types.open_tunnel_request.OpenTunnelRequest = {}
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -397,6 +433,7 @@ class AsyncIoTSecureTunnelingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def rotate_tunnel_access_token(
@@ -436,9 +473,10 @@ class AsyncIoTSecureTunnelingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsecuretunneling.types.rotate_tunnel_access_token_request.RotateTunnelAccessTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["tunnel_id"] = tunnel_id
-        input_["client_mode"] = client_mode
+        input_: capo_iotsecuretunneling.types.rotate_tunnel_access_token_request.RotateTunnelAccessTokenRequest = {
+            "tunnel_id": tunnel_id,
+            "client_mode": client_mode,
+        }
         if destination_config is not None:
             input_["destination_config"] = destination_config
 
@@ -447,6 +485,7 @@ class AsyncIoTSecureTunnelingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -483,15 +522,17 @@ class AsyncIoTSecureTunnelingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsecuretunneling.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_iotsecuretunneling.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -528,15 +569,17 @@ class AsyncIoTSecureTunnelingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsecuretunneling.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_iotsecuretunneling.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

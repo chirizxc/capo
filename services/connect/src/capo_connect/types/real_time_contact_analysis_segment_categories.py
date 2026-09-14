@@ -30,7 +30,7 @@ def serialize_json(value: RealTimeContactAnalysisSegmentCategories) -> dict:
 
 def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentCategories:
     out: RealTimeContactAnalysisSegmentCategories = {}  # type: ignore[typeddict-item]
-    if "MatchedDetails" in data:
+    if data.get("MatchedDetails") is not None:
         import capo_connect.types.real_time_contact_analysis_matched_details
 
         out["matched_details"] = (

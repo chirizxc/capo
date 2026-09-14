@@ -51,20 +51,20 @@ def serialize_json(value: BatchListItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchListItem:
     out: BatchListItem = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_omics.types.batch_timestamp
 
         out["created_at"] = capo_omics.types.batch_timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "totalRuns" in data:
+    if data.get("totalRuns") is not None:
         out["total_runs"] = data["totalRuns"]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     return out

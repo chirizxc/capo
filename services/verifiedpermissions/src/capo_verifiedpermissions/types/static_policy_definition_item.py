@@ -25,6 +25,6 @@ def serialize_aws_json_1_0(value: StaticPolicyDefinitionItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StaticPolicyDefinitionItem:
     out: StaticPolicyDefinitionItem = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

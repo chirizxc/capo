@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListGroupsOlderThanOrderingIdResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ListGroupsOlderThanOrderingIdResponse:
     out: ListGroupsOlderThanOrderingIdResponse = {}  # type: ignore[typeddict-item]
-    if "GroupsSummaries" in data:
+    if data.get("GroupsSummaries") is not None:
         import capo_kendra.types.list_of_group_summaries
 
         out["groups_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListGroupsOlderThanOrderingIdRespons
                 data["GroupsSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

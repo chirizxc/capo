@@ -22,14 +22,22 @@ def serialize_json(value: AxisLinearScale) -> dict:
     if "step_count" in value:
         out["StepCount"] = value["step_count"]
     if "step_size" in value:
-        out["StepSize"] = value["step_size"]
+        out["StepSize"] = (
+            "NaN"
+            if value["step_size"] != value["step_size"]
+            else "Infinity"
+            if value["step_size"] == float("inf")
+            else "-Infinity"
+            if value["step_size"] == float("-inf")
+            else value["step_size"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AxisLinearScale:
     out: AxisLinearScale = {}  # type: ignore[typeddict-item]
-    if "StepCount" in data:
+    if data.get("StepCount") is not None:
         out["step_count"] = data["StepCount"]
-    if "StepSize" in data:
-        out["step_size"] = data["StepSize"]
+    if data.get("StepSize") is not None:
+        out["step_size"] = float(data["StepSize"])
     return out

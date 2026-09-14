@@ -53,9 +53,9 @@ def serialize_json(value: GetDataSourceIntrospectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataSourceIntrospectionResponse:
     out: GetDataSourceIntrospectionResponse = {}  # type: ignore[typeddict-item]
-    if "introspectionId" in data:
+    if data.get("introspectionId") is not None:
         out["introspection_id"] = data["introspectionId"]
-    if "introspectionStatus" in data:
+    if data.get("introspectionStatus") is not None:
         import capo_appsync.types.data_source_introspection_status
 
         out["introspection_status"] = (
@@ -63,9 +63,9 @@ def deserialize_json(data: dict) -> GetDataSourceIntrospectionResponse:
                 data["introspectionStatus"]
             )
         )
-    if "introspectionStatusDetail" in data:
+    if data.get("introspectionStatusDetail") is not None:
         out["introspection_status_detail"] = data["introspectionStatusDetail"]
-    if "introspectionResult" in data:
+    if data.get("introspectionResult") is not None:
         import capo_appsync.types.data_source_introspection_result
 
         out["introspection_result"] = (

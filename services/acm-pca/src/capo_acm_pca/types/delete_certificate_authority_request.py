@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: DeleteCertificateAuthorityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteCertificateAuthorityRequest:
     out: DeleteCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "DeleteCertificateAuthorityRequest.certificate_authority_arn required"
         )
-    if "PermanentDeletionTimeInDays" in data:
+    if data.get("PermanentDeletionTimeInDays") is not None:
         out["permanent_deletion_time_in_days"] = data["PermanentDeletionTimeInDays"]
     return out

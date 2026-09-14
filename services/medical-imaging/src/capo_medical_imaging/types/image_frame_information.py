@@ -24,7 +24,7 @@ def serialize_json(value: ImageFrameInformation) -> dict:
 
 def deserialize_json(data: dict) -> ImageFrameInformation:
     out: ImageFrameInformation = {}  # type: ignore[typeddict-item]
-    if "imageFrameId" in data:
+    if data.get("imageFrameId") is not None:
         out["image_frame_id"] = data["imageFrameId"]
     else:
         raise DeserializationError("ImageFrameInformation.image_frame_id required")

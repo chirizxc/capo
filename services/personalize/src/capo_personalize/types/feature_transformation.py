@@ -63,11 +63,11 @@ def serialize_aws_json_1_1(value: FeatureTransformation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FeatureTransformation:
     out: FeatureTransformation = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "featureTransformationArn" in data:
+    if data.get("featureTransformationArn") is not None:
         out["feature_transformation_arn"] = data["featureTransformationArn"]
-    if "defaultParameters" in data:
+    if data.get("defaultParameters") is not None:
         import capo_personalize.types.featurization_parameters
 
         out["default_parameters"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> FeatureTransformation:
                 data["defaultParameters"]
             )
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> FeatureTransformation:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -91,6 +91,6 @@ def deserialize_aws_json_1_1(data: dict) -> FeatureTransformation:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

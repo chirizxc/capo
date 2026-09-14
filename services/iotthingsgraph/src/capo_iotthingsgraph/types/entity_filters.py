@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> EntityFilters:
 
     out: EntityFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotthingsgraph.types.entity_filter.deserialize_aws_json_1_1(item)
         )

@@ -37,15 +37,18 @@ class TokenAlreadyExistsException(ServiceError):
 
     code: str | None = "TokenAlreadyExistsException"
 
-    def __init__(self, data: TokenAlreadyExistsException_):
+    def __init__(self, data: TokenAlreadyExistsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TokenAlreadyExistsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TokenAlreadyExistsException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TokenAlreadyExistsException":
+        return cls(deserialize_query(el), message)

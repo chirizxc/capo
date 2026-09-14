@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: ReportOverrides) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportOverrides:
     out: ReportOverrides = {}  # type: ignore[typeddict-item]
-    if "Transferred" in data:
+    if data.get("Transferred") is not None:
         import capo_datasync.types.report_override
 
         out["transferred"] = (
@@ -59,19 +59,19 @@ def deserialize_aws_json_1_1(data: dict) -> ReportOverrides:
                 data["Transferred"]
             )
         )
-    if "Verified" in data:
+    if data.get("Verified") is not None:
         import capo_datasync.types.report_override
 
         out["verified"] = capo_datasync.types.report_override.deserialize_aws_json_1_1(
             data["Verified"]
         )
-    if "Deleted" in data:
+    if data.get("Deleted") is not None:
         import capo_datasync.types.report_override
 
         out["deleted"] = capo_datasync.types.report_override.deserialize_aws_json_1_1(
             data["Deleted"]
         )
-    if "Skipped" in data:
+    if data.get("Skipped") is not None:
         import capo_datasync.types.report_override
 
         out["skipped"] = capo_datasync.types.report_override.deserialize_aws_json_1_1(

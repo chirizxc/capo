@@ -28,7 +28,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DeleteServiceLinkedConfigurationRecorderRequest:
     out: DeleteServiceLinkedConfigurationRecorderRequest = {}  # type: ignore[typeddict-item]
-    if "ServicePrincipal" in data:
+    if data.get("ServicePrincipal") is not None:
         out["service_principal"] = data["ServicePrincipal"]
     else:
         raise DeserializationError(

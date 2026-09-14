@@ -93,29 +93,29 @@ def serialize_json(value: CreateRoomResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRoomResponse:
     out: CreateRoomResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_ivschat.types.time
 
         out["create_time"] = capo_ivschat.types.time.deserialize_json(
             data["createTime"]
         )
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_ivschat.types.time
 
         out["update_time"] = capo_ivschat.types.time.deserialize_json(
             data["updateTime"]
         )
-    if "maximumMessageRatePerSecond" in data:
+    if data.get("maximumMessageRatePerSecond") is not None:
         out["maximum_message_rate_per_second"] = data["maximumMessageRatePerSecond"]
-    if "maximumMessageLength" in data:
+    if data.get("maximumMessageLength") is not None:
         out["maximum_message_length"] = data["maximumMessageLength"]
-    if "messageReviewHandler" in data:
+    if data.get("messageReviewHandler") is not None:
         import capo_ivschat.types.message_review_handler
 
         out["message_review_handler"] = (
@@ -123,11 +123,11 @@ def deserialize_json(data: dict) -> CreateRoomResponse:
                 data["messageReviewHandler"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivschat.types.tags
 
         out["tags"] = capo_ivschat.types.tags.deserialize_json(data["tags"])
-    if "loggingConfigurationIdentifiers" in data:
+    if data.get("loggingConfigurationIdentifiers") is not None:
         import capo_ivschat.types.logging_configuration_identifier_list
 
         out["logging_configuration_identifiers"] = (

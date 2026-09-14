@@ -31,7 +31,7 @@ def serialize_json(value: OutputGroupDetail) -> dict:
 
 def deserialize_json(data: dict) -> OutputGroupDetail:
     out: OutputGroupDetail = {}  # type: ignore[typeddict-item]
-    if "outputDetails" in data:
+    if data.get("outputDetails") is not None:
         import capo_mediaconvert.types.__list_of_output_detail
 
         out["output_details"] = (

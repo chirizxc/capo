@@ -42,15 +42,15 @@ def serialize_json(value: BatchCreateRumMetricDefinitionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateRumMetricDefinitionsRequest:
     out: BatchCreateRumMetricDefinitionsRequest = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
     else:
         raise DeserializationError(
             "BatchCreateRumMetricDefinitionsRequest.destination required"
         )
-    if "DestinationArn" in data:
+    if data.get("DestinationArn") is not None:
         out["destination_arn"] = data["DestinationArn"]
-    if "MetricDefinitions" in data:
+    if data.get("MetricDefinitions") is not None:
         import capo_rum.types.metric_definitions_request
 
         out["metric_definitions"] = (

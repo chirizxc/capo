@@ -31,11 +31,11 @@ def serialize_json(value: UserReference) -> dict:
 
 def deserialize_json(data: dict) -> UserReference:
     out: UserReference = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError("UserReference.user_id required")
-    if "userType" in data:
+    if data.get("userType") is not None:
         import capo_devops_agent.types.user_type
 
         out["user_type"] = capo_devops_agent.types.user_type.deserialize_json(

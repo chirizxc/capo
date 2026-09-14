@@ -55,7 +55,7 @@ def serialize_json(value: FreeFormLayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FreeFormLayoutConfiguration:
     out: FreeFormLayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "Elements" in data:
+    if data.get("Elements") is not None:
         import capo_quicksight.types.free_from_layout_element_list
 
         out["elements"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> FreeFormLayoutConfiguration:
         )
     else:
         raise DeserializationError("FreeFormLayoutConfiguration.elements required")
-    if "CanvasSizeOptions" in data:
+    if data.get("CanvasSizeOptions") is not None:
         import capo_quicksight.types.free_form_layout_canvas_size_options
 
         out["canvas_size_options"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> FreeFormLayoutConfiguration:
                 data["CanvasSizeOptions"]
             )
         )
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_quicksight.types.sheet_layout_group_list
 
         out["groups"] = capo_quicksight.types.sheet_layout_group_list.deserialize_json(

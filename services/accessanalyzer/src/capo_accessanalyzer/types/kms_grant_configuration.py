@@ -60,7 +60,7 @@ def serialize_json(value: KmsGrantConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KmsGrantConfiguration:
     out: KmsGrantConfiguration = {}  # type: ignore[typeddict-item]
-    if "operations" in data:
+    if data.get("operations") is not None:
         import capo_accessanalyzer.types.kms_grant_operations_list
 
         out["operations"] = (
@@ -70,13 +70,13 @@ def deserialize_json(data: dict) -> KmsGrantConfiguration:
         )
     else:
         raise DeserializationError("KmsGrantConfiguration.operations required")
-    if "granteePrincipal" in data:
+    if data.get("granteePrincipal") is not None:
         out["grantee_principal"] = data["granteePrincipal"]
     else:
         raise DeserializationError("KmsGrantConfiguration.grantee_principal required")
-    if "retiringPrincipal" in data:
+    if data.get("retiringPrincipal") is not None:
         out["retiring_principal"] = data["retiringPrincipal"]
-    if "constraints" in data:
+    if data.get("constraints") is not None:
         import capo_accessanalyzer.types.kms_grant_constraints
 
         out["constraints"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> KmsGrantConfiguration:
                 data["constraints"]
             )
         )
-    if "issuingAccount" in data:
+    if data.get("issuingAccount") is not None:
         out["issuing_account"] = data["issuingAccount"]
     else:
         raise DeserializationError("KmsGrantConfiguration.issuing_account required")

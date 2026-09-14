@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ViewSearchConditionList:
 
     out: ViewSearchConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.view_search_criteria.deserialize_json(item))
     return out

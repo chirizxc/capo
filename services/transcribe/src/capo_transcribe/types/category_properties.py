@@ -67,21 +67,21 @@ def serialize_aws_json_1_1(value: CategoryProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CategoryProperties:
     out: CategoryProperties = {}  # type: ignore[typeddict-item]
-    if "CategoryName" in data:
+    if data.get("CategoryName") is not None:
         out["category_name"] = data["CategoryName"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_transcribe.types.rule_list
 
         out["rules"] = capo_transcribe.types.rule_list.deserialize_aws_json_1_1(
             data["Rules"]
         )
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_transcribe.types.date_time
 
         out["create_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_transcribe.types.date_time
 
         out["last_update_time"] = (
@@ -89,13 +89,13 @@ def deserialize_aws_json_1_1(data: dict) -> CategoryProperties:
                 data["LastUpdateTime"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "InputType" in data:
+    if data.get("InputType") is not None:
         import capo_transcribe.types.input_type
 
         out["input_type"] = capo_transcribe.types.input_type.deserialize_aws_json_1_1(

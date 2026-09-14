@@ -43,13 +43,13 @@ def serialize_json(value: EnableSecurityHubRequest) -> dict:
 
 def deserialize_json(data: dict) -> EnableSecurityHubRequest:
     out: EnableSecurityHubRequest = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_securityhub.types.tag_map
 
         out["tags"] = capo_securityhub.types.tag_map.deserialize_json(data["Tags"])
-    if "EnableDefaultStandards" in data:
+    if data.get("EnableDefaultStandards") is not None:
         out["enable_default_standards"] = data["EnableDefaultStandards"]
-    if "ControlFindingGenerator" in data:
+    if data.get("ControlFindingGenerator") is not None:
         import capo_securityhub.types.control_finding_generator
 
         out["control_finding_generator"] = (

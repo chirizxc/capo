@@ -27,7 +27,7 @@ def serialize_json(value: ListPricingPlansFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListPricingPlansFilter:
     out: ListPricingPlansFilter = {}  # type: ignore[typeddict-item]
-    if "Arns" in data:
+    if data.get("Arns") is not None:
         import capo_billingconductor.types.pricing_plan_arns
 
         out["arns"] = capo_billingconductor.types.pricing_plan_arns.deserialize_json(

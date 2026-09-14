@@ -36,12 +36,12 @@ def serialize_json(value: S3FilesVolumeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3FilesVolumeConfiguration:
     out: S3FilesVolumeConfiguration = {}  # type: ignore[typeddict-item]
-    if "fileSystemArn" in data:
+    if data.get("fileSystemArn") is not None:
         out["file_system_arn"] = data["fileSystemArn"]
-    if "rootDirectory" in data:
+    if data.get("rootDirectory") is not None:
         out["root_directory"] = data["rootDirectory"]
-    if "transitEncryptionPort" in data:
+    if data.get("transitEncryptionPort") is not None:
         out["transit_encryption_port"] = data["transitEncryptionPort"]
-    if "accessPointArn" in data:
+    if data.get("accessPointArn") is not None:
         out["access_point_arn"] = data["accessPointArn"]
     return out

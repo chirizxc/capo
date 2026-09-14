@@ -90,7 +90,7 @@ def serialize_json(value: OutboundConnection) -> dict:
 
 def deserialize_json(data: dict) -> OutboundConnection:
     out: OutboundConnection = {}  # type: ignore[typeddict-item]
-    if "LocalDomainInfo" in data:
+    if data.get("LocalDomainInfo") is not None:
         import capo_opensearch.types.domain_information_container
 
         out["local_domain_info"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> OutboundConnection:
                 data["LocalDomainInfo"]
             )
         )
-    if "RemoteDomainInfo" in data:
+    if data.get("RemoteDomainInfo") is not None:
         import capo_opensearch.types.domain_information_container
 
         out["remote_domain_info"] = (
@@ -106,11 +106,11 @@ def deserialize_json(data: dict) -> OutboundConnection:
                 data["RemoteDomainInfo"]
             )
         )
-    if "ConnectionId" in data:
+    if data.get("ConnectionId") is not None:
         out["connection_id"] = data["ConnectionId"]
-    if "ConnectionAlias" in data:
+    if data.get("ConnectionAlias") is not None:
         out["connection_alias"] = data["ConnectionAlias"]
-    if "ConnectionStatus" in data:
+    if data.get("ConnectionStatus") is not None:
         import capo_opensearch.types.outbound_connection_status
 
         out["connection_status"] = (
@@ -118,13 +118,13 @@ def deserialize_json(data: dict) -> OutboundConnection:
                 data["ConnectionStatus"]
             )
         )
-    if "ConnectionMode" in data:
+    if data.get("ConnectionMode") is not None:
         import capo_opensearch.types.connection_mode
 
         out["connection_mode"] = capo_opensearch.types.connection_mode.deserialize_json(
             data["ConnectionMode"]
         )
-    if "ConnectionProperties" in data:
+    if data.get("ConnectionProperties") is not None:
         import capo_opensearch.types.connection_properties
 
         out["connection_properties"] = (

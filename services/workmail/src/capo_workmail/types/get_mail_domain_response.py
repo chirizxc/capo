@@ -59,21 +59,21 @@ def serialize_aws_json_1_1(value: GetMailDomainResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMailDomainResponse:
     out: GetMailDomainResponse = {}  # type: ignore[typeddict-item]
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_workmail.types.dns_records
 
         out["records"] = capo_workmail.types.dns_records.deserialize_aws_json_1_1(
             data["Records"]
         )
-    if "IsTestDomain" in data:
+    if data.get("IsTestDomain") is not None:
         out["is_test_domain"] = data["IsTestDomain"]
     else:
         out["is_test_domain"] = False
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
     else:
         out["is_default"] = False
-    if "OwnershipVerificationStatus" in data:
+    if data.get("OwnershipVerificationStatus") is not None:
         import capo_workmail.types.dns_record_verification_status
 
         out["ownership_verification_status"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMailDomainResponse:
                 data["OwnershipVerificationStatus"]
             )
         )
-    if "DkimVerificationStatus" in data:
+    if data.get("DkimVerificationStatus") is not None:
         import capo_workmail.types.dns_record_verification_status
 
         out["dkim_verification_status"] = (

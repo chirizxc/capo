@@ -122,19 +122,19 @@ def serialize_json(value: CreateImageRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateImageRequest:
     out: CreateImageRequest = {}  # type: ignore[typeddict-item]
-    if "imageRecipeArn" in data:
+    if data.get("imageRecipeArn") is not None:
         out["image_recipe_arn"] = data["imageRecipeArn"]
-    if "containerRecipeArn" in data:
+    if data.get("containerRecipeArn") is not None:
         out["container_recipe_arn"] = data["containerRecipeArn"]
-    if "distributionConfigurationArn" in data:
+    if data.get("distributionConfigurationArn") is not None:
         out["distribution_configuration_arn"] = data["distributionConfigurationArn"]
-    if "infrastructureConfigurationArn" in data:
+    if data.get("infrastructureConfigurationArn") is not None:
         out["infrastructure_configuration_arn"] = data["infrastructureConfigurationArn"]
     else:
         raise DeserializationError(
             "CreateImageRequest.infrastructure_configuration_arn required"
         )
-    if "imageTestsConfiguration" in data:
+    if data.get("imageTestsConfiguration") is not None:
         import capo_imagebuilder.types.image_tests_configuration
 
         out["image_tests_configuration"] = (
@@ -142,17 +142,17 @@ def deserialize_json(data: dict) -> CreateImageRequest:
                 data["imageTestsConfiguration"]
             )
         )
-    if "enhancedImageMetadataEnabled" in data:
+    if data.get("enhancedImageMetadataEnabled") is not None:
         out["enhanced_image_metadata_enabled"] = data["enhancedImageMetadataEnabled"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateImageRequest.client_token required")
-    if "imageScanningConfiguration" in data:
+    if data.get("imageScanningConfiguration") is not None:
         import capo_imagebuilder.types.image_scanning_configuration
 
         out["image_scanning_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> CreateImageRequest:
                 data["imageScanningConfiguration"]
             )
         )
-    if "workflows" in data:
+    if data.get("workflows") is not None:
         import capo_imagebuilder.types.workflow_configuration_list
 
         out["workflows"] = (
@@ -168,9 +168,9 @@ def deserialize_json(data: dict) -> CreateImageRequest:
                 data["workflows"]
             )
         )
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
-    if "loggingConfiguration" in data:
+    if data.get("loggingConfiguration") is not None:
         import capo_imagebuilder.types.image_logging_configuration
 
         out["logging_configuration"] = (

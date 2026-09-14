@@ -49,7 +49,7 @@ def serialize_json(value: UpdateDataTablePrimaryValuesRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataTablePrimaryValuesRequest:
     out: UpdateDataTablePrimaryValuesRequest = {}  # type: ignore[typeddict-item]
-    if "PrimaryValues" in data:
+    if data.get("PrimaryValues") is not None:
         import capo_connect.types.primary_values_set
 
         out["primary_values"] = capo_connect.types.primary_values_set.deserialize_json(
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> UpdateDataTablePrimaryValuesRequest:
         raise DeserializationError(
             "UpdateDataTablePrimaryValuesRequest.primary_values required"
         )
-    if "NewPrimaryValues" in data:
+    if data.get("NewPrimaryValues") is not None:
         import capo_connect.types.primary_values_set
 
         out["new_primary_values"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> UpdateDataTablePrimaryValuesRequest:
         raise DeserializationError(
             "UpdateDataTablePrimaryValuesRequest.new_primary_values required"
         )
-    if "LockVersion" in data:
+    if data.get("LockVersion") is not None:
         import capo_connect.types.data_table_lock_version
 
         out["lock_version"] = (

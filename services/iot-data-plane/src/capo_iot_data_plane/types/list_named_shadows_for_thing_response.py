@@ -36,15 +36,15 @@ def serialize_json(value: ListNamedShadowsForThingResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListNamedShadowsForThingResponse:
     out: ListNamedShadowsForThingResponse = {}  # type: ignore[typeddict-item]
-    if "results" in data:
+    if data.get("results") is not None:
         import capo_iot_data_plane.types.named_shadow_list
 
         out["results"] = capo_iot_data_plane.types.named_shadow_list.deserialize_json(
             data["results"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         out["timestamp"] = data["timestamp"]
     else:
         out["timestamp"] = 0

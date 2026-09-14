@@ -40,17 +40,17 @@ def serialize_aws_json_1_1(value: CreatePartitionIndexRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePartitionIndexRequest:
     out: CreatePartitionIndexRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("CreatePartitionIndexRequest.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("CreatePartitionIndexRequest.table_name required")
-    if "PartitionIndex" in data:
+    if data.get("PartitionIndex") is not None:
         import capo_glue.types.partition_index
 
         out["partition_index"] = (

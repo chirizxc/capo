@@ -63,7 +63,7 @@ def serialize_json(value: Task) -> dict:
 
 def deserialize_json(data: dict) -> Task:
     out: Task = {}  # type: ignore[typeddict-item]
-    if "sourceFields" in data:
+    if data.get("sourceFields") is not None:
         import capo_appflow.types.source_fields
 
         out["source_fields"] = capo_appflow.types.source_fields.deserialize_json(
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> Task:
         )
     else:
         raise DeserializationError("Task.source_fields required")
-    if "connectorOperator" in data:
+    if data.get("connectorOperator") is not None:
         import capo_appflow.types.connector_operator
 
         out["connector_operator"] = (
@@ -79,9 +79,9 @@ def deserialize_json(data: dict) -> Task:
                 data["connectorOperator"]
             )
         )
-    if "destinationField" in data:
+    if data.get("destinationField") is not None:
         out["destination_field"] = data["destinationField"]
-    if "taskType" in data:
+    if data.get("taskType") is not None:
         import capo_appflow.types.task_type
 
         out["task_type"] = capo_appflow.types.task_type.deserialize_json(
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> Task:
         )
     else:
         raise DeserializationError("Task.task_type required")
-    if "taskProperties" in data:
+    if data.get("taskProperties") is not None:
         import capo_appflow.types.task_properties_map
 
         out["task_properties"] = (

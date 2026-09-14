@@ -32,11 +32,11 @@ def serialize_json(value: PutActionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutActionsRequest:
     out: PutActionsRequest = {}  # type: ignore[typeddict-item]
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
     else:
         raise DeserializationError("PutActionsRequest.dataset_arn required")
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_personalize_events.types.action_list
 
         out["actions"] = capo_personalize_events.types.action_list.deserialize_json(

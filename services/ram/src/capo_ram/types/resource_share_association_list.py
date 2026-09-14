@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResourceShareAssociationList:
 
     out: ResourceShareAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ram.types.resource_share_association.deserialize_json(item))
     return out

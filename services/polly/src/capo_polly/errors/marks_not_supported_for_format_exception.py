@@ -24,7 +24,7 @@ def serialize_json(value: MarksNotSupportedForFormatException_) -> dict:
 
 def deserialize_json(data: dict) -> MarksNotSupportedForFormatException_:
     out: MarksNotSupportedForFormatException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class MarksNotSupportedForFormatException(ServiceError):
 
     code: str | None = "MarksNotSupportedForFormatException"
 
-    def __init__(self, data: MarksNotSupportedForFormatException_):
+    def __init__(
+        self, data: MarksNotSupportedForFormatException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MarksNotSupportedForFormatException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "MarksNotSupportedForFormatException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "MarksNotSupportedForFormatException":
+        return cls(deserialize_json(data), message)

@@ -31,7 +31,7 @@ def serialize_json(value: MsSmoothEncryptionSettings) -> dict:
 
 def deserialize_json(data: dict) -> MsSmoothEncryptionSettings:
     out: MsSmoothEncryptionSettings = {}  # type: ignore[typeddict-item]
-    if "spekeKeyProvider" in data:
+    if data.get("spekeKeyProvider") is not None:
         import capo_mediaconvert.types.speke_key_provider
 
         out["speke_key_provider"] = (

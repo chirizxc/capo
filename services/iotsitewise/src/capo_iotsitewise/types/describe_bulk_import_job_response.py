@@ -95,15 +95,15 @@ def serialize_json(value: DescribeBulkImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBulkImportJobResponse:
     out: DescribeBulkImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("DescribeBulkImportJobResponse.job_id required")
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("DescribeBulkImportJobResponse.job_name required")
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         import capo_iotsitewise.types.job_status
 
         out["job_status"] = capo_iotsitewise.types.job_status.deserialize_json(
@@ -111,19 +111,19 @@ def deserialize_json(data: dict) -> DescribeBulkImportJobResponse:
         )
     else:
         raise DeserializationError("DescribeBulkImportJobResponse.job_status required")
-    if "jobRoleArn" in data:
+    if data.get("jobRoleArn") is not None:
         out["job_role_arn"] = data["jobRoleArn"]
     else:
         raise DeserializationError(
             "DescribeBulkImportJobResponse.job_role_arn required"
         )
-    if "files" in data:
+    if data.get("files") is not None:
         import capo_iotsitewise.types.files
 
         out["files"] = capo_iotsitewise.types.files.deserialize_json(data["files"])
     else:
         raise DeserializationError("DescribeBulkImportJobResponse.files required")
-    if "errorReportLocation" in data:
+    if data.get("errorReportLocation") is not None:
         import capo_iotsitewise.types.error_report_location
 
         out["error_report_location"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> DescribeBulkImportJobResponse:
         raise DeserializationError(
             "DescribeBulkImportJobResponse.error_report_location required"
         )
-    if "jobConfiguration" in data:
+    if data.get("jobConfiguration") is not None:
         import capo_iotsitewise.types.job_configuration
 
         out["job_configuration"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> DescribeBulkImportJobResponse:
         raise DeserializationError(
             "DescribeBulkImportJobResponse.job_configuration required"
         )
-    if "jobCreationDate" in data:
+    if data.get("jobCreationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["job_creation_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> DescribeBulkImportJobResponse:
         raise DeserializationError(
             "DescribeBulkImportJobResponse.job_creation_date required"
         )
-    if "jobLastUpdateDate" in data:
+    if data.get("jobLastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["job_last_update_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -167,8 +167,8 @@ def deserialize_json(data: dict) -> DescribeBulkImportJobResponse:
         raise DeserializationError(
             "DescribeBulkImportJobResponse.job_last_update_date required"
         )
-    if "adaptiveIngestion" in data:
+    if data.get("adaptiveIngestion") is not None:
         out["adaptive_ingestion"] = data["adaptiveIngestion"]
-    if "deleteFilesAfterImport" in data:
+    if data.get("deleteFilesAfterImport") is not None:
         out["delete_files_after_import"] = data["deleteFilesAfterImport"]
     return out

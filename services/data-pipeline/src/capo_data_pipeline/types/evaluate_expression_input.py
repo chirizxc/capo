@@ -31,15 +31,15 @@ def serialize_aws_json_1_1(value: EvaluateExpressionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluateExpressionInput:
     out: EvaluateExpressionInput = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
     else:
         raise DeserializationError("EvaluateExpressionInput.pipeline_id required")
-    if "objectId" in data:
+    if data.get("objectId") is not None:
         out["object_id"] = data["objectId"]
     else:
         raise DeserializationError("EvaluateExpressionInput.object_id required")
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
     else:
         raise DeserializationError("EvaluateExpressionInput.expression required")

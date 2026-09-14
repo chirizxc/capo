@@ -35,13 +35,13 @@ def serialize_json(value: CustomAuthCredentials) -> dict:
 
 def deserialize_json(data: dict) -> CustomAuthCredentials:
     out: CustomAuthCredentials = {}  # type: ignore[typeddict-item]
-    if "customAuthenticationType" in data:
+    if data.get("customAuthenticationType") is not None:
         out["custom_authentication_type"] = data["customAuthenticationType"]
     else:
         raise DeserializationError(
             "CustomAuthCredentials.custom_authentication_type required"
         )
-    if "credentialsMap" in data:
+    if data.get("credentialsMap") is not None:
         import capo_appflow.types.credentials_map
 
         out["credentials_map"] = capo_appflow.types.credentials_map.deserialize_json(

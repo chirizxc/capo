@@ -15,19 +15,35 @@ class LinkApplicationLogSampling(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: LinkApplicationLogSampling) -> dict:
     out: dict = {}
-    out["errorLog"] = value["error_log"]
-    out["filterLog"] = value["filter_log"]
+    out["errorLog"] = (
+        "NaN"
+        if value["error_log"] != value["error_log"]
+        else "Infinity"
+        if value["error_log"] == float("inf")
+        else "-Infinity"
+        if value["error_log"] == float("-inf")
+        else value["error_log"]
+    )
+    out["filterLog"] = (
+        "NaN"
+        if value["filter_log"] != value["filter_log"]
+        else "Infinity"
+        if value["filter_log"] == float("inf")
+        else "-Infinity"
+        if value["filter_log"] == float("-inf")
+        else value["filter_log"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> LinkApplicationLogSampling:
     out: LinkApplicationLogSampling = {}  # type: ignore[typeddict-item]
-    if "errorLog" in data:
-        out["error_log"] = data["errorLog"]
+    if data.get("errorLog") is not None:
+        out["error_log"] = float(data["errorLog"])
     else:
         raise DeserializationError("LinkApplicationLogSampling.error_log required")
-    if "filterLog" in data:
-        out["filter_log"] = data["filterLog"]
+    if data.get("filterLog") is not None:
+        out["filter_log"] = float(data["filterLog"])
     else:
         raise DeserializationError("LinkApplicationLogSampling.filter_log required")
     return out

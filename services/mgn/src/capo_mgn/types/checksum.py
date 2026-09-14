@@ -30,8 +30,8 @@ def serialize_json(value: Checksum) -> dict:
 
 def deserialize_json(data: dict) -> Checksum:
     out: Checksum = {}  # type: ignore[typeddict-item]
-    if "encryptionAlgorithm" in data:
+    if data.get("encryptionAlgorithm") is not None:
         out["encryption_algorithm"] = data["encryptionAlgorithm"]
-    if "hash" in data:
+    if data.get("hash") is not None:
         out["hash"] = data["hash"]
     return out

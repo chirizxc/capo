@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: PutAutoTerminationPolicyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutAutoTerminationPolicyInput:
     out: PutAutoTerminationPolicyInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "AutoTerminationPolicy" in data:
+    if data.get("AutoTerminationPolicy") is not None:
         import capo_emr.types.auto_termination_policy
 
         out["auto_termination_policy"] = (

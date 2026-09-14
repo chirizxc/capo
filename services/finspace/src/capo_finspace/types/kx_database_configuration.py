@@ -60,11 +60,11 @@ def serialize_json(value: KxDatabaseConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KxDatabaseConfiguration:
     out: KxDatabaseConfiguration = {}  # type: ignore[typeddict-item]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError("KxDatabaseConfiguration.database_name required")
-    if "cacheConfigurations" in data:
+    if data.get("cacheConfigurations") is not None:
         import capo_finspace.types.kx_database_cache_configurations
 
         out["cache_configurations"] = (
@@ -72,11 +72,11 @@ def deserialize_json(data: dict) -> KxDatabaseConfiguration:
                 data["cacheConfigurations"]
             )
         )
-    if "changesetId" in data:
+    if data.get("changesetId") is not None:
         out["changeset_id"] = data["changesetId"]
-    if "dataviewName" in data:
+    if data.get("dataviewName") is not None:
         out["dataview_name"] = data["dataviewName"]
-    if "dataviewConfiguration" in data:
+    if data.get("dataviewConfiguration") is not None:
         import capo_finspace.types.kx_dataview_configuration
 
         out["dataview_configuration"] = (

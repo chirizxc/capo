@@ -28,7 +28,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeCustomRoutingAcceleratorAttributesRequest:
     out: DescribeCustomRoutingAcceleratorAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "AcceleratorArn" in data:
+    if data.get("AcceleratorArn") is not None:
         out["accelerator_arn"] = data["AcceleratorArn"]
     else:
         raise DeserializationError(

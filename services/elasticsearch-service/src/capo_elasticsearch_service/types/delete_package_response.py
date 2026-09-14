@@ -31,7 +31,7 @@ def serialize_json(value: DeletePackageResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeletePackageResponse:
     out: DeletePackageResponse = {}  # type: ignore[typeddict-item]
-    if "PackageDetails" in data:
+    if data.get("PackageDetails") is not None:
         import capo_elasticsearch_service.types.package_details
 
         out["package_details"] = (

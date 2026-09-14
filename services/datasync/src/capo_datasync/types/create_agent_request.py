@@ -67,21 +67,21 @@ def serialize_aws_json_1_1(value: CreateAgentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAgentRequest:
     out: CreateAgentRequest = {}  # type: ignore[typeddict-item]
-    if "ActivationKey" in data:
+    if data.get("ActivationKey") is not None:
         out["activation_key"] = data["ActivationKey"]
     else:
         raise DeserializationError("CreateAgentRequest.activation_key required")
-    if "AgentName" in data:
+    if data.get("AgentName") is not None:
         out["agent_name"] = data["AgentName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_datasync.types.input_tag_list
 
         out["tags"] = capo_datasync.types.input_tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "SubnetArns" in data:
+    if data.get("SubnetArns") is not None:
         import capo_datasync.types.pl_subnet_arn_list
 
         out["subnet_arns"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAgentRequest:
                 data["SubnetArns"]
             )
         )
-    if "SecurityGroupArns" in data:
+    if data.get("SecurityGroupArns") is not None:
         import capo_datasync.types.pl_security_group_arn_list
 
         out["security_group_arns"] = (

@@ -19,7 +19,15 @@ class RouteSpanSpeedLimitDetails(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: RouteSpanSpeedLimitDetails) -> dict:
     out: dict = {}
-    out["MaxSpeed"] = value.get("max_speed", 0)
+    out["MaxSpeed"] = (
+        "NaN"
+        if value.get("max_speed", 0) != value.get("max_speed", 0)
+        else "Infinity"
+        if value.get("max_speed", 0) == float("inf")
+        else "-Infinity"
+        if value.get("max_speed", 0) == float("-inf")
+        else value.get("max_speed", 0)
+    )
     if "unlimited" in value:
         out["Unlimited"] = value["unlimited"]
     return out
@@ -27,10 +35,10 @@ def serialize_json(value: RouteSpanSpeedLimitDetails) -> dict:
 
 def deserialize_json(data: dict) -> RouteSpanSpeedLimitDetails:
     out: RouteSpanSpeedLimitDetails = {}  # type: ignore[typeddict-item]
-    if "MaxSpeed" in data:
-        out["max_speed"] = data["MaxSpeed"]
+    if data.get("MaxSpeed") is not None:
+        out["max_speed"] = float(data["MaxSpeed"])
     else:
         out["max_speed"] = 0
-    if "Unlimited" in data:
+    if data.get("Unlimited") is not None:
         out["unlimited"] = data["Unlimited"]
     return out

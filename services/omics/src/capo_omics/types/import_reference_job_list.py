@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ImportReferenceJobList:
 
     out: ImportReferenceJobList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_omics.types.import_reference_job_item.deserialize_json(item))
     return out

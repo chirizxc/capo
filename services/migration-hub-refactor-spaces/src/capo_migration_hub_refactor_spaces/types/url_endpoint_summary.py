@@ -27,8 +27,8 @@ def serialize_json(value: UrlEndpointSummary) -> dict:
 
 def deserialize_json(data: dict) -> UrlEndpointSummary:
     out: UrlEndpointSummary = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "HealthUrl" in data:
+    if data.get("HealthUrl") is not None:
         out["health_url"] = data["HealthUrl"]
     return out

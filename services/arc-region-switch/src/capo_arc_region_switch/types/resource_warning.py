@@ -72,7 +72,7 @@ def serialize_aws_json_1_0(value: ResourceWarning) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceWarning:
     out: ResourceWarning = {}  # type: ignore[typeddict-item]
-    if "workflow" in data:
+    if data.get("workflow") is not None:
         import capo_arc_region_switch.types.minimal_workflow
 
         out["workflow"] = (
@@ -80,15 +80,15 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceWarning:
                 data["workflow"]
             )
         )
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("ResourceWarning.version required")
-    if "stepName" in data:
+    if data.get("stepName") is not None:
         out["step_name"] = data["stepName"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "warningStatus" in data:
+    if data.get("warningStatus") is not None:
         import capo_arc_region_switch.types.resource_warning_status
 
         out["warning_status"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceWarning:
         )
     else:
         raise DeserializationError("ResourceWarning.warning_status required")
-    if "warningUpdatedTime" in data:
+    if data.get("warningUpdatedTime") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["warning_updated_time"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceWarning:
         )
     else:
         raise DeserializationError("ResourceWarning.warning_updated_time required")
-    if "warningMessage" in data:
+    if data.get("warningMessage") is not None:
         out["warning_message"] = data["warningMessage"]
     else:
         raise DeserializationError("ResourceWarning.warning_message required")

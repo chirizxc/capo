@@ -52,18 +52,18 @@ def serialize_json(value: UnusedPermissionsRecommendationStep) -> dict:
 
 def deserialize_json(data: dict) -> UnusedPermissionsRecommendationStep:
     out: UnusedPermissionsRecommendationStep = {}  # type: ignore[typeddict-item]
-    if "RecommendedAction" in data:
+    if data.get("RecommendedAction") is not None:
         out["recommended_action"] = data["RecommendedAction"]
-    if "ExistingPolicy" in data:
+    if data.get("ExistingPolicy") is not None:
         out["existing_policy"] = data["ExistingPolicy"]
-    if "ExistingPolicyId" in data:
+    if data.get("ExistingPolicyId") is not None:
         out["existing_policy_id"] = data["ExistingPolicyId"]
-    if "PolicyUpdatedAt" in data:
+    if data.get("PolicyUpdatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["policy_updated_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["PolicyUpdatedAt"]
         )
-    if "RecommendedPolicy" in data:
+    if data.get("RecommendedPolicy") is not None:
         out["recommended_policy"] = data["RecommendedPolicy"]
     return out

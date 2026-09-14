@@ -63,9 +63,9 @@ def serialize_json(value: PromptAttemptSpecification) -> dict:
 
 def deserialize_json(data: dict) -> PromptAttemptSpecification:
     out: PromptAttemptSpecification = {}  # type: ignore[typeddict-item]
-    if "allowInterrupt" in data:
+    if data.get("allowInterrupt") is not None:
         out["allow_interrupt"] = data["allowInterrupt"]
-    if "allowedInputTypes" in data:
+    if data.get("allowedInputTypes") is not None:
         import capo_lex_models_v2.types.allowed_input_types
 
         out["allowed_input_types"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> PromptAttemptSpecification:
         raise DeserializationError(
             "PromptAttemptSpecification.allowed_input_types required"
         )
-    if "audioAndDTMFInputSpecification" in data:
+    if data.get("audioAndDTMFInputSpecification") is not None:
         import capo_lex_models_v2.types.audio_and_dtmf_input_specification
 
         out["audio_and_dtmf_input_specification"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> PromptAttemptSpecification:
                 data["audioAndDTMFInputSpecification"]
             )
         )
-    if "textInputSpecification" in data:
+    if data.get("textInputSpecification") is not None:
         import capo_lex_models_v2.types.text_input_specification
 
         out["text_input_specification"] = (

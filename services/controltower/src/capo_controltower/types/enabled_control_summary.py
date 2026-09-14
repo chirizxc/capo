@@ -70,13 +70,13 @@ def serialize_json(value: EnabledControlSummary) -> dict:
 
 def deserialize_json(data: dict) -> EnabledControlSummary:
     out: EnabledControlSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "controlIdentifier" in data:
+    if data.get("controlIdentifier") is not None:
         out["control_identifier"] = data["controlIdentifier"]
-    if "targetIdentifier" in data:
+    if data.get("targetIdentifier") is not None:
         out["target_identifier"] = data["targetIdentifier"]
-    if "statusSummary" in data:
+    if data.get("statusSummary") is not None:
         import capo_controltower.types.enablement_status_summary
 
         out["status_summary"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> EnabledControlSummary:
                 data["statusSummary"]
             )
         )
-    if "driftStatusSummary" in data:
+    if data.get("driftStatusSummary") is not None:
         import capo_controltower.types.drift_status_summary
 
         out["drift_status_summary"] = (
@@ -92,6 +92,6 @@ def deserialize_json(data: dict) -> EnabledControlSummary:
                 data["driftStatusSummary"]
             )
         )
-    if "parentIdentifier" in data:
+    if data.get("parentIdentifier") is not None:
         out["parent_identifier"] = data["parentIdentifier"]
     return out

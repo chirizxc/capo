@@ -42,11 +42,11 @@ def serialize_aws_json_1_0(value: StartAnalysisReportRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartAnalysisReportRequest:
     out: StartAnalysisReportRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallName" in data:
+    if data.get("FirewallName") is not None:
         out["firewall_name"] = data["FirewallName"]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "AnalysisType" in data:
+    if data.get("AnalysisType") is not None:
         import capo_network_firewall.types.enabled_analysis_type
 
         out["analysis_type"] = (

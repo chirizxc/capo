@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: SourceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceConfig:
     out: SourceConfig = {}  # type: ignore[typeddict-item]
-    if "ApplyToAllRegions" in data:
+    if data.get("ApplyToAllRegions") is not None:
         out["apply_to_all_regions"] = data["ApplyToAllRegions"]
-    if "AdvancedEventSelectors" in data:
+    if data.get("AdvancedEventSelectors") is not None:
         import capo_cloudtrail.types.advanced_event_selectors
 
         out["advanced_event_selectors"] = (

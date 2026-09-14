@@ -74,23 +74,23 @@ def serialize_aws_json_1_1(value: DataQualityRulesetFilterCriteria) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityRulesetFilterCriteria:
     out: DataQualityRulesetFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedBefore" in data:
+    if data.get("CreatedBefore") is not None:
         import capo_glue.types.timestamp
 
         out["created_before"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedBefore"]
         )
-    if "CreatedAfter" in data:
+    if data.get("CreatedAfter") is not None:
         import capo_glue.types.timestamp
 
         out["created_after"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAfter"]
         )
-    if "LastModifiedBefore" in data:
+    if data.get("LastModifiedBefore") is not None:
         import capo_glue.types.timestamp
 
         out["last_modified_before"] = (
@@ -98,13 +98,13 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityRulesetFilterCriteria:
                 data["LastModifiedBefore"]
             )
         )
-    if "LastModifiedAfter" in data:
+    if data.get("LastModifiedAfter") is not None:
         import capo_glue.types.timestamp
 
         out["last_modified_after"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastModifiedAfter"]
         )
-    if "TargetTable" in data:
+    if data.get("TargetTable") is not None:
         import capo_glue.types.data_quality_target_table
 
         out["target_table"] = (

@@ -27,11 +27,11 @@ def serialize_json(value: AssetTargetNameMap) -> dict:
 
 def deserialize_json(data: dict) -> AssetTargetNameMap:
     out: AssetTargetNameMap = {}  # type: ignore[typeddict-item]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
     else:
         raise DeserializationError("AssetTargetNameMap.asset_id required")
-    if "targetName" in data:
+    if data.get("targetName") is not None:
         out["target_name"] = data["targetName"]
     else:
         raise DeserializationError("AssetTargetNameMap.target_name required")

@@ -78,17 +78,19 @@ class ServiceAccountToken:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.create_workspace_service_account_token_request.CreateWorkspaceServiceAccountTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["seconds_to_live"] = seconds_to_live
-        input_["service_account_id"] = service_account_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.create_workspace_service_account_token_request.CreateWorkspaceServiceAccountTokenRequest = {
+            "name": name,
+            "seconds_to_live": seconds_to_live,
+            "service_account_id": service_account_id,
+            "workspace_id": workspace_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_workspace_service_account_token(
@@ -131,16 +133,18 @@ class ServiceAccountToken:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.delete_workspace_service_account_token_request.DeleteWorkspaceServiceAccountTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["token_id"] = token_id
-        input_["service_account_id"] = service_account_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.delete_workspace_service_account_token_request.DeleteWorkspaceServiceAccountTokenRequest = {
+            "token_id": token_id,
+            "service_account_id": service_account_id,
+            "workspace_id": workspace_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_workspace_service_account_tokens(
@@ -187,19 +191,21 @@ class ServiceAccountToken:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.list_workspace_service_account_tokens_request.ListWorkspaceServiceAccountTokensRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_grafana.types.list_workspace_service_account_tokens_request.ListWorkspaceServiceAccountTokensRequest = {
+            "service_account_id": service_account_id,
+            "workspace_id": workspace_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["service_account_id"] = service_account_id
-        input_["workspace_id"] = workspace_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -251,17 +257,19 @@ class AsyncServiceAccountToken:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.create_workspace_service_account_token_request.CreateWorkspaceServiceAccountTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["seconds_to_live"] = seconds_to_live
-        input_["service_account_id"] = service_account_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.create_workspace_service_account_token_request.CreateWorkspaceServiceAccountTokenRequest = {
+            "name": name,
+            "seconds_to_live": seconds_to_live,
+            "service_account_id": service_account_id,
+            "workspace_id": workspace_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workspace_service_account_token(
@@ -305,16 +313,18 @@ class AsyncServiceAccountToken:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.delete_workspace_service_account_token_request.DeleteWorkspaceServiceAccountTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["token_id"] = token_id
-        input_["service_account_id"] = service_account_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.delete_workspace_service_account_token_request.DeleteWorkspaceServiceAccountTokenRequest = {
+            "token_id": token_id,
+            "service_account_id": service_account_id,
+            "workspace_id": workspace_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_workspace_service_account_tokens(
@@ -362,17 +372,19 @@ class AsyncServiceAccountToken:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.list_workspace_service_account_tokens_request.ListWorkspaceServiceAccountTokensRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_grafana.types.list_workspace_service_account_tokens_request.ListWorkspaceServiceAccountTokensRequest = {
+            "service_account_id": service_account_id,
+            "workspace_id": workspace_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["service_account_id"] = service_account_id
-        input_["workspace_id"] = workspace_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -51,9 +51,9 @@ def serialize_json(value: Captions) -> dict:
 
 def deserialize_json(data: dict) -> Captions:
     out: Captions = {}  # type: ignore[typeddict-item]
-    if "MergePolicy" in data:
+    if data.get("MergePolicy") is not None:
         out["merge_policy"] = data["MergePolicy"]
-    if "CaptionSources" in data:
+    if data.get("CaptionSources") is not None:
         import capo_elastic_transcoder.types.caption_sources
 
         out["caption_sources"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> Captions:
                 data["CaptionSources"]
             )
         )
-    if "CaptionFormats" in data:
+    if data.get("CaptionFormats") is not None:
         import capo_elastic_transcoder.types.caption_formats
 
         out["caption_formats"] = (

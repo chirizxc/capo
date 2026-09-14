@@ -67,11 +67,11 @@ def serialize_aws_json_1_1(value: GetEventConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEventConfigurationResponse:
     out: GetEventConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "TrailARN" in data:
+    if data.get("TrailARN") is not None:
         out["trail_arn"] = data["TrailARN"]
-    if "EventDataStoreArn" in data:
+    if data.get("EventDataStoreArn") is not None:
         out["event_data_store_arn"] = data["EventDataStoreArn"]
-    if "MaxEventSize" in data:
+    if data.get("MaxEventSize") is not None:
         import capo_cloudtrail.types.max_event_size
 
         out["max_event_size"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventConfigurationResponse:
                 data["MaxEventSize"]
             )
         )
-    if "ContextKeySelectors" in data:
+    if data.get("ContextKeySelectors") is not None:
         import capo_cloudtrail.types.context_key_selectors
 
         out["context_key_selectors"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventConfigurationResponse:
                 data["ContextKeySelectors"]
             )
         )
-    if "AggregationConfigurations" in data:
+    if data.get("AggregationConfigurations") is not None:
         import capo_cloudtrail.types.aggregation_configurations
 
         out["aggregation_configurations"] = (

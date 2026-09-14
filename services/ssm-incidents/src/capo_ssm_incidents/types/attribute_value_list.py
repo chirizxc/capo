@@ -47,7 +47,7 @@ def serialize_json(value: AttributeValueList) -> dict:
 
 
 def deserialize_json(data: dict) -> AttributeValueList:
-    if "stringValues" in data:
+    if data.get("stringValues") is not None:
         import capo_ssm_incidents.types.string_list
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> AttributeValueList:
                 data["stringValues"]
             )
         }
-    elif "integerValues" in data:
+    elif data.get("integerValues") is not None:
         import capo_ssm_incidents.types.integer_list
 
         return {

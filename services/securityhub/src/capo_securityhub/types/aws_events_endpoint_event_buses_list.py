@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEventsEndpointEventBusesList:
 
     out: AwsEventsEndpointEventBusesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_events_endpoint_event_buses_details.deserialize_json(
                 item

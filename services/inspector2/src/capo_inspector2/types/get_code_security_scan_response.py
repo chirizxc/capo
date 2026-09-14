@@ -73,36 +73,36 @@ def serialize_json(value: GetCodeSecurityScanResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCodeSecurityScanResponse:
     out: GetCodeSecurityScanResponse = {}  # type: ignore[typeddict-item]
-    if "scanId" in data:
+    if data.get("scanId") is not None:
         out["scan_id"] = data["scanId"]
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_inspector2.types.code_security_resource
 
         out["resource"] = capo_inspector2.types.code_security_resource.deserialize_json(
             data["resource"]
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_inspector2.types.code_scan_status
 
         out["status"] = capo_inspector2.types.code_scan_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["created_at"] = capo_inspector2.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["updated_at"] = capo_inspector2.types._prelude.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "lastCommitId" in data:
+    if data.get("lastCommitId") is not None:
         out["last_commit_id"] = data["lastCommitId"]
     return out

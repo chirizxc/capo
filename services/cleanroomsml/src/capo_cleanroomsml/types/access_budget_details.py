@@ -34,15 +34,15 @@ class AccessBudgetDetails(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: AccessBudgetDetails) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["startTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["startTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["start_time"]
     )
     if "end_time" in value:
-        import capo_cleanroomsml.types._prelude.timestamp
+        import capo_cleanroomsml._protocol.serialize
 
-        out["endTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+        out["endTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
             value["end_time"]
         )
     out["remainingBudget"] = value["remaining_budget"]
@@ -63,29 +63,29 @@ def serialize_json(value: AccessBudgetDetails) -> dict:
 
 def deserialize_json(data: dict) -> AccessBudgetDetails:
     out: AccessBudgetDetails = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("startTime") is not None:
+        import datetime
 
-        out["start_time"] = capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-            data["startTime"]
+        out["start_time"] = datetime.datetime.fromisoformat(
+            data["startTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("AccessBudgetDetails.start_time required")
-    if "endTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("endTime") is not None:
+        import datetime
 
-        out["end_time"] = capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-            data["endTime"]
+        out["end_time"] = datetime.datetime.fromisoformat(
+            data["endTime"].replace("Z", "+00:00")
         )
-    if "remainingBudget" in data:
+    if data.get("remainingBudget") is not None:
         out["remaining_budget"] = data["remainingBudget"]
     else:
         raise DeserializationError("AccessBudgetDetails.remaining_budget required")
-    if "budget" in data:
+    if data.get("budget") is not None:
         out["budget"] = data["budget"]
     else:
         raise DeserializationError("AccessBudgetDetails.budget required")
-    if "budgetType" in data:
+    if data.get("budgetType") is not None:
         import capo_cleanroomsml.types.access_budget_type
 
         out["budget_type"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> AccessBudgetDetails:
         )
     else:
         raise DeserializationError("AccessBudgetDetails.budget_type required")
-    if "autoRefresh" in data:
+    if data.get("autoRefresh") is not None:
         import capo_cleanroomsml.types.auto_refresh_mode
 
         out["auto_refresh"] = (

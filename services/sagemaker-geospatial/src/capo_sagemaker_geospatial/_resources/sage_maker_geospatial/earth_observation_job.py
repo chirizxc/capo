@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from collections.abc import AsyncGenerator, Generator
 from contextlib import asynccontextmanager, contextmanager
 from typing import TYPE_CHECKING, Optional
@@ -107,15 +108,17 @@ class EarthObservationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.start_earth_observation_job_input.StartEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_sagemaker_geospatial.types.start_earth_observation_job_input.StartEarthObservationJobInput = {
+            "name": name,
+            "input_config": input_config,
+            "job_config": job_config,
+            "execution_role_arn": execution_role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
-        input_["input_config"] = input_config
-        input_["job_config"] = job_config
-        input_["execution_role_arn"] = execution_role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -124,6 +127,7 @@ class EarthObservationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -161,14 +165,16 @@ class EarthObservationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.get_earth_observation_job_input.GetEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.get_earth_observation_job_input.GetEarthObservationJobInput = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -207,14 +213,16 @@ class EarthObservationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.delete_earth_observation_job_input.DeleteEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.delete_earth_observation_job_input.DeleteEarthObservationJobInput = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -266,7 +274,7 @@ class EarthObservationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.list_earth_observation_job_input.ListEarthObservationJobInput = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_geospatial.types.list_earth_observation_job_input.ListEarthObservationJobInput = {}
         if status_equals is not None:
             input_["status_equals"] = status_equals
         if sort_order is not None:
@@ -283,6 +291,7 @@ class EarthObservationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_earth_observation_job(
@@ -330,12 +339,14 @@ class EarthObservationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.export_earth_observation_job_input.ExportEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["execution_role_arn"] = execution_role_arn
-        input_["output_config"] = output_config
+        input_: capo_sagemaker_geospatial.types.export_earth_observation_job_input.ExportEarthObservationJobInput = {
+            "arn": arn,
+            "execution_role_arn": execution_role_arn,
+            "output_config": output_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if export_source_images is not None:
             input_["export_source_images"] = export_source_images
 
@@ -344,6 +355,7 @@ class EarthObservationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -408,13 +420,14 @@ class EarthObservationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.get_tile_input.GetTileInput = {}  # type: ignore[typeddict-item]
-        input_["x"] = x
-        input_["y"] = y
-        input_["z"] = z
-        input_["image_assets"] = image_assets
-        input_["target"] = target
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.get_tile_input.GetTileInput = {
+            "x": x,
+            "y": y,
+            "z": z,
+            "image_assets": image_assets,
+            "target": target,
+            "arn": arn,
+        }
         if image_mask is not None:
             input_["image_mask"] = image_mask
         if output_format is not None:
@@ -433,7 +446,10 @@ class EarthObservationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def stop_earth_observation_job(
         self,
@@ -471,14 +487,16 @@ class EarthObservationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.stop_earth_observation_job_input.StopEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.stop_earth_observation_job_input.StopEarthObservationJobInput = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -536,15 +554,17 @@ class AsyncEarthObservationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.start_earth_observation_job_input.StartEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_sagemaker_geospatial.types.start_earth_observation_job_input.StartEarthObservationJobInput = {
+            "name": name,
+            "input_config": input_config,
+            "job_config": job_config,
+            "execution_role_arn": execution_role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
-        input_["input_config"] = input_config
-        input_["job_config"] = job_config
-        input_["execution_role_arn"] = execution_role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -553,6 +573,7 @@ class AsyncEarthObservationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -591,14 +612,16 @@ class AsyncEarthObservationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.get_earth_observation_job_input.GetEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.get_earth_observation_job_input.GetEarthObservationJobInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -638,14 +661,16 @@ class AsyncEarthObservationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.delete_earth_observation_job_input.DeleteEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.delete_earth_observation_job_input.DeleteEarthObservationJobInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -698,7 +723,7 @@ class AsyncEarthObservationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.list_earth_observation_job_input.ListEarthObservationJobInput = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_geospatial.types.list_earth_observation_job_input.ListEarthObservationJobInput = {}
         if status_equals is not None:
             input_["status_equals"] = status_equals
         if sort_order is not None:
@@ -715,6 +740,7 @@ class AsyncEarthObservationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_earth_observation_job(
@@ -763,12 +789,14 @@ class AsyncEarthObservationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.export_earth_observation_job_input.ExportEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["execution_role_arn"] = execution_role_arn
-        input_["output_config"] = output_config
+        input_: capo_sagemaker_geospatial.types.export_earth_observation_job_input.ExportEarthObservationJobInput = {
+            "arn": arn,
+            "execution_role_arn": execution_role_arn,
+            "output_config": output_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if export_source_images is not None:
             input_["export_source_images"] = export_source_images
 
@@ -777,6 +805,7 @@ class AsyncEarthObservationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     @asynccontextmanager
@@ -844,13 +873,14 @@ class AsyncEarthObservationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.get_tile_input.GetTileInput = {}  # type: ignore[typeddict-item]
-        input_["x"] = x
-        input_["y"] = y
-        input_["z"] = z
-        input_["image_assets"] = image_assets
-        input_["target"] = target
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.get_tile_input.GetTileInput = {
+            "x": x,
+            "y": y,
+            "z": z,
+            "image_assets": image_assets,
+            "target": target,
+            "arn": arn,
+        }
         if image_mask is not None:
             input_["image_mask"] = image_mask
         if output_format is not None:
@@ -869,7 +899,10 @@ class AsyncEarthObservationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     async def stop_earth_observation_job(
         self,
@@ -908,12 +941,14 @@ class AsyncEarthObservationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.stop_earth_observation_job_input.StopEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.stop_earth_observation_job_input.StopEarthObservationJobInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

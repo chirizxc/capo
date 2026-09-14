@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: ResourceARNNotValidException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceARNNotValidException_:
     out: ResourceARNNotValidException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,18 @@ class ResourceARNNotValidException(ServiceError):
 
     code: str | None = "ResourceARNNotValidException"
 
-    def __init__(self, data: ResourceARNNotValidException_):
+    def __init__(self, data: ResourceARNNotValidException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceARNNotValidException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ResourceARNNotValidException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceARNNotValidException":
+        return cls(deserialize_aws_json_1_1(data), message)

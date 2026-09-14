@@ -75,19 +75,19 @@ def serialize_json(value: EnabledBaselineDetails) -> dict:
 
 def deserialize_json(data: dict) -> EnabledBaselineDetails:
     out: EnabledBaselineDetails = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("EnabledBaselineDetails.arn required")
-    if "baselineIdentifier" in data:
+    if data.get("baselineIdentifier") is not None:
         out["baseline_identifier"] = data["baselineIdentifier"]
     else:
         raise DeserializationError(
             "EnabledBaselineDetails.baseline_identifier required"
         )
-    if "baselineVersion" in data:
+    if data.get("baselineVersion") is not None:
         out["baseline_version"] = data["baselineVersion"]
-    if "driftStatusSummary" in data:
+    if data.get("driftStatusSummary") is not None:
         import capo_controltower.types.enabled_baseline_drift_status_summary
 
         out["drift_status_summary"] = (
@@ -95,13 +95,13 @@ def deserialize_json(data: dict) -> EnabledBaselineDetails:
                 data["driftStatusSummary"]
             )
         )
-    if "targetIdentifier" in data:
+    if data.get("targetIdentifier") is not None:
         out["target_identifier"] = data["targetIdentifier"]
     else:
         raise DeserializationError("EnabledBaselineDetails.target_identifier required")
-    if "parentIdentifier" in data:
+    if data.get("parentIdentifier") is not None:
         out["parent_identifier"] = data["parentIdentifier"]
-    if "statusSummary" in data:
+    if data.get("statusSummary") is not None:
         import capo_controltower.types.enablement_status_summary
 
         out["status_summary"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> EnabledBaselineDetails:
         )
     else:
         raise DeserializationError("EnabledBaselineDetails.status_summary required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_controltower.types.enabled_baseline_parameter_summaries
 
         out["parameters"] = (

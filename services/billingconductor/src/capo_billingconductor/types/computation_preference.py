@@ -26,7 +26,7 @@ def serialize_json(value: ComputationPreference) -> dict:
 
 def deserialize_json(data: dict) -> ComputationPreference:
     out: ComputationPreference = {}  # type: ignore[typeddict-item]
-    if "PricingPlanArn" in data:
+    if data.get("PricingPlanArn") is not None:
         out["pricing_plan_arn"] = data["PricingPlanArn"]
     else:
         raise DeserializationError("ComputationPreference.pricing_plan_arn required")

@@ -52,11 +52,11 @@ def serialize_aws_json_1_1(value: PrivateLinkConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PrivateLinkConfig:
     out: PrivateLinkConfig = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "PrivateLinkEndpoint" in data:
+    if data.get("PrivateLinkEndpoint") is not None:
         out["private_link_endpoint"] = data["PrivateLinkEndpoint"]
-    if "SubnetArns" in data:
+    if data.get("SubnetArns") is not None:
         import capo_datasync.types.pl_subnet_arn_list
 
         out["subnet_arns"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> PrivateLinkConfig:
                 data["SubnetArns"]
             )
         )
-    if "SecurityGroupArns" in data:
+    if data.get("SecurityGroupArns") is not None:
         import capo_datasync.types.pl_security_group_arn_list
 
         out["security_group_arns"] = (

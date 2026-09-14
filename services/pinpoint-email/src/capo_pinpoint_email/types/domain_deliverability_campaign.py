@@ -81,11 +81,35 @@ def serialize_json(value: DomainDeliverabilityCampaign) -> dict:
     if "spam_count" in value:
         out["SpamCount"] = value["spam_count"]
     if "read_rate" in value:
-        out["ReadRate"] = value["read_rate"]
+        out["ReadRate"] = (
+            "NaN"
+            if value["read_rate"] != value["read_rate"]
+            else "Infinity"
+            if value["read_rate"] == float("inf")
+            else "-Infinity"
+            if value["read_rate"] == float("-inf")
+            else value["read_rate"]
+        )
     if "delete_rate" in value:
-        out["DeleteRate"] = value["delete_rate"]
+        out["DeleteRate"] = (
+            "NaN"
+            if value["delete_rate"] != value["delete_rate"]
+            else "Infinity"
+            if value["delete_rate"] == float("inf")
+            else "-Infinity"
+            if value["delete_rate"] == float("-inf")
+            else value["delete_rate"]
+        )
     if "read_delete_rate" in value:
-        out["ReadDeleteRate"] = value["read_delete_rate"]
+        out["ReadDeleteRate"] = (
+            "NaN"
+            if value["read_delete_rate"] != value["read_delete_rate"]
+            else "Infinity"
+            if value["read_delete_rate"] == float("inf")
+            else "-Infinity"
+            if value["read_delete_rate"] == float("-inf")
+            else value["read_delete_rate"]
+        )
     if "projected_volume" in value:
         out["ProjectedVolume"] = value["projected_volume"]
     if "esps" in value:
@@ -97,21 +121,21 @@ def serialize_json(value: DomainDeliverabilityCampaign) -> dict:
 
 def deserialize_json(data: dict) -> DomainDeliverabilityCampaign:
     out: DomainDeliverabilityCampaign = {}  # type: ignore[typeddict-item]
-    if "CampaignId" in data:
+    if data.get("CampaignId") is not None:
         out["campaign_id"] = data["CampaignId"]
-    if "ImageUrl" in data:
+    if data.get("ImageUrl") is not None:
         out["image_url"] = data["ImageUrl"]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
-    if "FromAddress" in data:
+    if data.get("FromAddress") is not None:
         out["from_address"] = data["FromAddress"]
-    if "SendingIps" in data:
+    if data.get("SendingIps") is not None:
         import capo_pinpoint_email.types.ip_list
 
         out["sending_ips"] = capo_pinpoint_email.types.ip_list.deserialize_json(
             data["SendingIps"]
         )
-    if "FirstSeenDateTime" in data:
+    if data.get("FirstSeenDateTime") is not None:
         import capo_pinpoint_email.types.timestamp
 
         out["first_seen_date_time"] = (
@@ -119,7 +143,7 @@ def deserialize_json(data: dict) -> DomainDeliverabilityCampaign:
                 data["FirstSeenDateTime"]
             )
         )
-    if "LastSeenDateTime" in data:
+    if data.get("LastSeenDateTime") is not None:
         import capo_pinpoint_email.types.timestamp
 
         out["last_seen_date_time"] = (
@@ -127,19 +151,19 @@ def deserialize_json(data: dict) -> DomainDeliverabilityCampaign:
                 data["LastSeenDateTime"]
             )
         )
-    if "InboxCount" in data:
+    if data.get("InboxCount") is not None:
         out["inbox_count"] = data["InboxCount"]
-    if "SpamCount" in data:
+    if data.get("SpamCount") is not None:
         out["spam_count"] = data["SpamCount"]
-    if "ReadRate" in data:
-        out["read_rate"] = data["ReadRate"]
-    if "DeleteRate" in data:
-        out["delete_rate"] = data["DeleteRate"]
-    if "ReadDeleteRate" in data:
-        out["read_delete_rate"] = data["ReadDeleteRate"]
-    if "ProjectedVolume" in data:
+    if data.get("ReadRate") is not None:
+        out["read_rate"] = float(data["ReadRate"])
+    if data.get("DeleteRate") is not None:
+        out["delete_rate"] = float(data["DeleteRate"])
+    if data.get("ReadDeleteRate") is not None:
+        out["read_delete_rate"] = float(data["ReadDeleteRate"])
+    if data.get("ProjectedVolume") is not None:
         out["projected_volume"] = data["ProjectedVolume"]
-    if "Esps" in data:
+    if data.get("Esps") is not None:
         import capo_pinpoint_email.types.esps
 
         out["esps"] = capo_pinpoint_email.types.esps.deserialize_json(data["Esps"])

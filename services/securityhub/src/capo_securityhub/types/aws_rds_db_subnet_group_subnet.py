@@ -42,9 +42,9 @@ def serialize_json(value: AwsRdsDbSubnetGroupSubnet) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbSubnetGroupSubnet:
     out: AwsRdsDbSubnetGroupSubnet = {}  # type: ignore[typeddict-item]
-    if "SubnetIdentifier" in data:
+    if data.get("SubnetIdentifier") is not None:
         out["subnet_identifier"] = data["SubnetIdentifier"]
-    if "SubnetAvailabilityZone" in data:
+    if data.get("SubnetAvailabilityZone") is not None:
         import capo_securityhub.types.aws_rds_db_subnet_group_subnet_availability_zone
 
         out["subnet_availability_zone"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> AwsRdsDbSubnetGroupSubnet:
                 data["SubnetAvailabilityZone"]
             )
         )
-    if "SubnetStatus" in data:
+    if data.get("SubnetStatus") is not None:
         out["subnet_status"] = data["SubnetStatus"]
     return out

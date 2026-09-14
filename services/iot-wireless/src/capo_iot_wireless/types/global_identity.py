@@ -28,11 +28,11 @@ def serialize_json(value: GlobalIdentity) -> dict:
 
 def deserialize_json(data: dict) -> GlobalIdentity:
     out: GlobalIdentity = {}  # type: ignore[typeddict-item]
-    if "Lac" in data:
+    if data.get("Lac") is not None:
         out["lac"] = data["Lac"]
     else:
         raise DeserializationError("GlobalIdentity.lac required")
-    if "GeranCid" in data:
+    if data.get("GeranCid") is not None:
         out["geran_cid"] = data["GeranCid"]
     else:
         raise DeserializationError("GlobalIdentity.geran_cid required")

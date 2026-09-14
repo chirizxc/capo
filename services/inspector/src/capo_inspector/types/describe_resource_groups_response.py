@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeResourceGroupsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeResourceGroupsResponse:
     out: DescribeResourceGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "resourceGroups" in data:
+    if data.get("resourceGroups") is not None:
         import capo_inspector.types.resource_group_list
 
         out["resource_groups"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeResourceGroupsResponse:
         raise DeserializationError(
             "DescribeResourceGroupsResponse.resource_groups required"
         )
-    if "failedItems" in data:
+    if data.get("failedItems") is not None:
         import capo_inspector.types.failed_items
 
         out["failed_items"] = (

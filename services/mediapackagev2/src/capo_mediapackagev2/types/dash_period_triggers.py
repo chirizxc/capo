@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DashPeriodTriggers:
 
     out: DashPeriodTriggers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackagev2.types.dash_period_trigger.deserialize_json(item))
     return out

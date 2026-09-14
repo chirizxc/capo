@@ -35,10 +35,10 @@ def serialize_json(value: ModuleLoggingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ModuleLoggingConfiguration:
     out: ModuleLoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "LogLevel" in data:
+    if data.get("LogLevel") is not None:
         out["log_level"] = data["LogLevel"]
-    if "CloudWatchLogGroupArn" in data:
+    if data.get("CloudWatchLogGroupArn") is not None:
         out["cloud_watch_log_group_arn"] = data["CloudWatchLogGroupArn"]
     return out

@@ -43,14 +43,14 @@ def serialize_json(value: CreateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserRequest:
     out: CreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "consoleAccess" in data:
+    if data.get("consoleAccess") is not None:
         out["console_access"] = data["consoleAccess"]
-    if "groups" in data:
+    if data.get("groups") is not None:
         import capo_mq.types.__list_of__string
 
         out["groups"] = capo_mq.types.__list_of__string.deserialize_json(data["groups"])
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
-    if "replicationUser" in data:
+    if data.get("replicationUser") is not None:
         out["replication_user"] = data["replicationUser"]
     return out

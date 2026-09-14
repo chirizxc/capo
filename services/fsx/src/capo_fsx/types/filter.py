@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: Filter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_fsx.types.filter_name
 
         out["name"] = capo_fsx.types.filter_name.deserialize_aws_json_1_1(data["Name"])
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_fsx.types.filter_values
 
         out["values"] = capo_fsx.types.filter_values.deserialize_aws_json_1_1(

@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: QueryStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryStatistics:
     out: QueryStatistics = {}  # type: ignore[typeddict-item]
-    if "ResultsCount" in data:
+    if data.get("ResultsCount") is not None:
         out["results_count"] = data["ResultsCount"]
-    if "TotalResultsCount" in data:
+    if data.get("TotalResultsCount") is not None:
         out["total_results_count"] = data["TotalResultsCount"]
-    if "BytesScanned" in data:
+    if data.get("BytesScanned") is not None:
         out["bytes_scanned"] = data["BytesScanned"]
     return out

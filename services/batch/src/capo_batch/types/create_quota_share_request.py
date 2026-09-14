@@ -80,11 +80,11 @@ def serialize_json(value: CreateQuotaShareRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateQuotaShareRequest:
     out: CreateQuotaShareRequest = {}  # type: ignore[typeddict-item]
-    if "quotaShareName" in data:
+    if data.get("quotaShareName") is not None:
         out["quota_share_name"] = data["quotaShareName"]
-    if "jobQueue" in data:
+    if data.get("jobQueue") is not None:
         out["job_queue"] = data["jobQueue"]
-    if "capacityLimits" in data:
+    if data.get("capacityLimits") is not None:
         import capo_batch.types.quota_share_capacity_limits
 
         out["capacity_limits"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> CreateQuotaShareRequest:
                 data["capacityLimits"]
             )
         )
-    if "resourceSharingConfiguration" in data:
+    if data.get("resourceSharingConfiguration") is not None:
         import capo_batch.types.quota_share_resource_sharing_configuration
 
         out["resource_sharing_configuration"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> CreateQuotaShareRequest:
                 data["resourceSharingConfiguration"]
             )
         )
-    if "preemptionConfiguration" in data:
+    if data.get("preemptionConfiguration") is not None:
         import capo_batch.types.quota_share_preemption_configuration
 
         out["preemption_configuration"] = (
@@ -108,13 +108,13 @@ def deserialize_json(data: dict) -> CreateQuotaShareRequest:
                 data["preemptionConfiguration"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_batch.types.quota_share_state
 
         out["state"] = capo_batch.types.quota_share_state.deserialize_json(
             data["state"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])

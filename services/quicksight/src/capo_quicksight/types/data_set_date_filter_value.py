@@ -29,7 +29,7 @@ def serialize_json(value: DataSetDateFilterValue) -> dict:
 
 def deserialize_json(data: dict) -> DataSetDateFilterValue:
     out: DataSetDateFilterValue = {}  # type: ignore[typeddict-item]
-    if "StaticValue" in data:
+    if data.get("StaticValue") is not None:
         import capo_quicksight.types.sensitive_timestamp
 
         out["static_value"] = (

@@ -27,8 +27,8 @@ def serialize_json(value: BackendAuthSocialProviderConfig) -> dict:
 
 def deserialize_json(data: dict) -> BackendAuthSocialProviderConfig:
     out: BackendAuthSocialProviderConfig = {}  # type: ignore[typeddict-item]
-    if "client_id" in data:
+    if data.get("client_id") is not None:
         out["client_id"] = data["client_id"]
-    if "client_secret" in data:
+    if data.get("client_secret") is not None:
         out["client_secret"] = data["client_secret"]
     return out

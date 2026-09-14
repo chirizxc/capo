@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> InsightFieldList:
 
     out: InsightFieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.insight_field.deserialize_json(item))
     return out

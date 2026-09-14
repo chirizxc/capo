@@ -34,7 +34,7 @@ def serialize_json(value: DomainUnitGrantFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> DomainUnitGrantFilter:
-    if "allDomainUnitsGrantFilter" in data:
+    if data.get("allDomainUnitsGrantFilter") is not None:
         import capo_datazone.types.all_domain_units_grant_filter
 
         return {

@@ -23,6 +23,6 @@ def serialize_json(value: MarginStyle) -> dict:
 
 def deserialize_json(data: dict) -> MarginStyle:
     out: MarginStyle = {}  # type: ignore[typeddict-item]
-    if "Show" in data:
+    if data.get("Show") is not None:
         out["show"] = data["Show"]
     return out

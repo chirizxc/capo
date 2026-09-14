@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeSnapshotScheduleInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSnapshotScheduleInput:
     out: DescribeSnapshotScheduleInput = {}  # type: ignore[typeddict-item]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
     else:
         raise DeserializationError("DescribeSnapshotScheduleInput.volume_arn required")

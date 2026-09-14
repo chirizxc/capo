@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_iotfleetwise.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_iotfleetwise.types.description
     import capo_iotfleetwise.types.node_paths
@@ -27,6 +29,7 @@ class UpdateSignalCatalogRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: UpdateSignalCatalogRequest) -> dict:
     out: dict = {}
+    out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
     if "nodes_to_add" in value:
@@ -54,21 +57,25 @@ def serialize_aws_json_1_0(value: UpdateSignalCatalogRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateSignalCatalogRequest:
     out: UpdateSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("UpdateSignalCatalogRequest.name required")
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "nodesToAdd" in data:
+    if data.get("nodesToAdd") is not None:
         import capo_iotfleetwise.types.nodes
 
         out["nodes_to_add"] = capo_iotfleetwise.types.nodes.deserialize_aws_json_1_0(
             data["nodesToAdd"]
         )
-    if "nodesToUpdate" in data:
+    if data.get("nodesToUpdate") is not None:
         import capo_iotfleetwise.types.nodes
 
         out["nodes_to_update"] = capo_iotfleetwise.types.nodes.deserialize_aws_json_1_0(
             data["nodesToUpdate"]
         )
-    if "nodesToRemove" in data:
+    if data.get("nodesToRemove") is not None:
         import capo_iotfleetwise.types.node_paths
 
         out["nodes_to_remove"] = (

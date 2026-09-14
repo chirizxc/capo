@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: LabelingJobAlgorithmsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelingJobAlgorithmsConfig:
     out: LabelingJobAlgorithmsConfig = {}  # type: ignore[typeddict-item]
-    if "LabelingJobAlgorithmSpecificationArn" in data:
+    if data.get("LabelingJobAlgorithmSpecificationArn") is not None:
         out["labeling_job_algorithm_specification_arn"] = data[
             "LabelingJobAlgorithmSpecificationArn"
         ]
-    if "InitialActiveLearningModelArn" in data:
+    if data.get("InitialActiveLearningModelArn") is not None:
         out["initial_active_learning_model_arn"] = data["InitialActiveLearningModelArn"]
-    if "LabelingJobResourceConfig" in data:
+    if data.get("LabelingJobResourceConfig") is not None:
         import capo_sagemaker.types.labeling_job_resource_config
 
         out["labeling_job_resource_config"] = (

@@ -32,13 +32,13 @@ def serialize_json(value: ConfigureLogsForChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> ConfigureLogsForChannelRequest:
     out: ConfigureLogsForChannelRequest = {}  # type: ignore[typeddict-item]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
     else:
         raise DeserializationError(
             "ConfigureLogsForChannelRequest.channel_name required"
         )
-    if "LogTypes" in data:
+    if data.get("LogTypes") is not None:
         import capo_mediatailor.types.log_types
 
         out["log_types"] = capo_mediatailor.types.log_types.deserialize_json(

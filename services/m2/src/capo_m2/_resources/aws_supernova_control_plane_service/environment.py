@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_m2._auth._signers
@@ -123,12 +124,13 @@ class Environment:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.create_environment_request.CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["instance_type"] = instance_type
+        input_: capo_m2.types.create_environment_request.CreateEnvironmentRequest = {
+            "name": name,
+            "instance_type": instance_type,
+            "engine_type": engine_type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["engine_type"] = engine_type
         if engine_version is not None:
             input_["engine_version"] = engine_version
         if subnet_ids is not None:
@@ -147,8 +149,9 @@ class Environment:
             input_["preferred_maintenance_window"] = preferred_maintenance_window
         if network_type is not None:
             input_["network_type"] = network_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
 
@@ -157,6 +160,7 @@ class Environment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -194,14 +198,16 @@ class Environment:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_environment_request.GetEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_m2.types.get_environment_request.GetEnvironmentRequest = {
+            "environment_id": environment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -255,8 +261,9 @@ class Environment:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.update_environment_request.UpdateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_m2.types.update_environment_request.UpdateEnvironmentRequest = {
+            "environment_id": environment_id
+        }
         if desired_capacity is not None:
             input_["desired_capacity"] = desired_capacity
         if instance_type is not None:
@@ -275,6 +282,7 @@ class Environment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -312,14 +320,16 @@ class Environment:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.delete_environment_request.DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_m2.types.delete_environment_request.DeleteEnvironmentRequest = {
+            "environment_id": environment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -362,7 +372,7 @@ class Environment:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_environments_request.ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_environments_request.ListEnvironmentsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -377,6 +387,7 @@ class Environment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -457,12 +468,13 @@ class AsyncEnvironment:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.create_environment_request.CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["instance_type"] = instance_type
+        input_: capo_m2.types.create_environment_request.CreateEnvironmentRequest = {
+            "name": name,
+            "instance_type": instance_type,
+            "engine_type": engine_type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["engine_type"] = engine_type
         if engine_version is not None:
             input_["engine_version"] = engine_version
         if subnet_ids is not None:
@@ -481,8 +493,9 @@ class AsyncEnvironment:
             input_["preferred_maintenance_window"] = preferred_maintenance_window
         if network_type is not None:
             input_["network_type"] = network_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
 
@@ -491,6 +504,7 @@ class AsyncEnvironment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -529,14 +543,16 @@ class AsyncEnvironment:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_environment_request.GetEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_m2.types.get_environment_request.GetEnvironmentRequest = {
+            "environment_id": environment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -591,8 +607,9 @@ class AsyncEnvironment:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.update_environment_request.UpdateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_m2.types.update_environment_request.UpdateEnvironmentRequest = {
+            "environment_id": environment_id
+        }
         if desired_capacity is not None:
             input_["desired_capacity"] = desired_capacity
         if instance_type is not None:
@@ -611,6 +628,7 @@ class AsyncEnvironment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -649,14 +667,16 @@ class AsyncEnvironment:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.delete_environment_request.DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_m2.types.delete_environment_request.DeleteEnvironmentRequest = {
+            "environment_id": environment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -700,7 +720,7 @@ class AsyncEnvironment:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_environments_request.ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_environments_request.ListEnvironmentsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -715,4 +735,5 @@ class AsyncEnvironment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

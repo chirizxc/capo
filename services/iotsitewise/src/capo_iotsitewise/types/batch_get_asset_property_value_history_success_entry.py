@@ -36,13 +36,13 @@ def serialize_json(value: BatchGetAssetPropertyValueHistorySuccessEntry) -> dict
 
 def deserialize_json(data: dict) -> BatchGetAssetPropertyValueHistorySuccessEntry:
     out: BatchGetAssetPropertyValueHistorySuccessEntry = {}  # type: ignore[typeddict-item]
-    if "entryId" in data:
+    if data.get("entryId") is not None:
         out["entry_id"] = data["entryId"]
     else:
         raise DeserializationError(
             "BatchGetAssetPropertyValueHistorySuccessEntry.entry_id required"
         )
-    if "assetPropertyValueHistory" in data:
+    if data.get("assetPropertyValueHistory") is not None:
         import capo_iotsitewise.types.asset_property_value_history
 
         out["asset_property_value_history"] = (

@@ -43,13 +43,13 @@ def serialize_json(value: IdentityPoolUsage) -> dict:
 
 def deserialize_json(data: dict) -> IdentityPoolUsage:
     out: IdentityPoolUsage = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
-    if "SyncSessionsCount" in data:
+    if data.get("SyncSessionsCount") is not None:
         out["sync_sessions_count"] = data["SyncSessionsCount"]
-    if "DataStorage" in data:
+    if data.get("DataStorage") is not None:
         out["data_storage"] = data["DataStorage"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_sync.types.date
 
         out["last_modified_date"] = capo_cognito_sync.types.date.deserialize_json(

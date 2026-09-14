@@ -31,7 +31,7 @@ def serialize_json(value: SourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SourceConfiguration:
     out: SourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "SelectedVideoStreams" in data:
+    if data.get("SelectedVideoStreams") is not None:
         import capo_chime_sdk_media_pipelines.types.selected_video_streams
 
         out["selected_video_streams"] = (

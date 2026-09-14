@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ConfiguredAudienceModelList:
 
     out: ConfiguredAudienceModelList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.configured_audience_model_summary.deserialize_json(
                 item

@@ -52,13 +52,13 @@ def serialize_aws_json_1_0(value: ExecuteScheduledQueryRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExecuteScheduledQueryRequest:
     out: ExecuteScheduledQueryRequest = {}  # type: ignore[typeddict-item]
-    if "ScheduledQueryArn" in data:
+    if data.get("ScheduledQueryArn") is not None:
         out["scheduled_query_arn"] = data["ScheduledQueryArn"]
     else:
         raise DeserializationError(
             "ExecuteScheduledQueryRequest.scheduled_query_arn required"
         )
-    if "InvocationTime" in data:
+    if data.get("InvocationTime") is not None:
         import capo_timestream_query.types.time
 
         out["invocation_time"] = (
@@ -70,9 +70,9 @@ def deserialize_aws_json_1_0(data: dict) -> ExecuteScheduledQueryRequest:
         raise DeserializationError(
             "ExecuteScheduledQueryRequest.invocation_time required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "QueryInsights" in data:
+    if data.get("QueryInsights") is not None:
         import capo_timestream_query.types.scheduled_query_insights
 
         out["query_insights"] = (

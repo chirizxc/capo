@@ -60,7 +60,7 @@ def serialize_json(value: MacAlgorithmEmv) -> dict:
 
 def deserialize_json(data: dict) -> MacAlgorithmEmv:
     out: MacAlgorithmEmv = {}  # type: ignore[typeddict-item]
-    if "MajorKeyDerivationMode" in data:
+    if data.get("MajorKeyDerivationMode") is not None:
         import capo_payment_cryptography_data.types.major_key_derivation_mode
 
         out["major_key_derivation_mode"] = (
@@ -70,15 +70,15 @@ def deserialize_json(data: dict) -> MacAlgorithmEmv:
         )
     else:
         raise DeserializationError("MacAlgorithmEmv.major_key_derivation_mode required")
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
     else:
         raise DeserializationError("MacAlgorithmEmv.primary_account_number required")
-    if "PanSequenceNumber" in data:
+    if data.get("PanSequenceNumber") is not None:
         out["pan_sequence_number"] = data["PanSequenceNumber"]
     else:
         raise DeserializationError("MacAlgorithmEmv.pan_sequence_number required")
-    if "SessionKeyDerivationMode" in data:
+    if data.get("SessionKeyDerivationMode") is not None:
         import capo_payment_cryptography_data.types.session_key_derivation_mode
 
         out["session_key_derivation_mode"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> MacAlgorithmEmv:
         raise DeserializationError(
             "MacAlgorithmEmv.session_key_derivation_mode required"
         )
-    if "SessionKeyDerivationValue" in data:
+    if data.get("SessionKeyDerivationValue") is not None:
         import capo_payment_cryptography_data.types.session_key_derivation_value
 
         out["session_key_derivation_value"] = (

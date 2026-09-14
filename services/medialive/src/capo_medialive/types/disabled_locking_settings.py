@@ -23,6 +23,6 @@ def serialize_json(value: DisabledLockingSettings) -> dict:
 
 def deserialize_json(data: dict) -> DisabledLockingSettings:
     out: DisabledLockingSettings = {}  # type: ignore[typeddict-item]
-    if "customEpoch" in data:
+    if data.get("customEpoch") is not None:
         out["custom_epoch"] = data["customEpoch"]
     return out

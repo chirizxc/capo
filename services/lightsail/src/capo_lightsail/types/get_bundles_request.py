@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: GetBundlesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBundlesRequest:
     out: GetBundlesRequest = {}  # type: ignore[typeddict-item]
-    if "includeInactive" in data:
+    if data.get("includeInactive") is not None:
         out["include_inactive"] = data["includeInactive"]
-    if "pageToken" in data:
+    if data.get("pageToken") is not None:
         out["page_token"] = data["pageToken"]
-    if "appCategory" in data:
+    if data.get("appCategory") is not None:
         import capo_lightsail.types.app_category
 
         out["app_category"] = (

@@ -34,12 +34,12 @@ def serialize_json(value: AwsCloudFrontDistributionOriginSslProtocols) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionOriginSslProtocols:
     out: AwsCloudFrontDistributionOriginSslProtocols = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["items"] = capo_securityhub.types.non_empty_string_list.deserialize_json(
             data["Items"]
         )
-    if "Quantity" in data:
+    if data.get("Quantity") is not None:
         out["quantity"] = data["Quantity"]
     return out

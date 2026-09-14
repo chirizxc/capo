@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DecalSettingsList:
 
     out: DecalSettingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.decal_settings.deserialize_json(item))
     return out

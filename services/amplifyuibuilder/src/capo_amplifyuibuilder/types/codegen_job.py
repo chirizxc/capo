@@ -109,20 +109,16 @@ def serialize_json(value: CodegenJob) -> dict:
 
         out["tags"] = capo_amplifyuibuilder.types.tags.serialize_json(value["tags"])
     if "created_at" in value:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+        import capo_amplifyuibuilder._protocol.serialize
 
-        out["createdAt"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.serialize_json(
-                value["created_at"]
-            )
+        out["createdAt"] = capo_amplifyuibuilder._protocol.serialize.fmt_date_time(
+            value["created_at"]
         )
     if "modified_at" in value:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+        import capo_amplifyuibuilder._protocol.serialize
 
-        out["modifiedAt"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.serialize_json(
-                value["modified_at"]
-            )
+        out["modifiedAt"] = capo_amplifyuibuilder._protocol.serialize.fmt_date_time(
+            value["modified_at"]
         )
     if "dependencies" in value:
         import capo_amplifyuibuilder.types.codegen_dependencies
@@ -137,19 +133,19 @@ def serialize_json(value: CodegenJob) -> dict:
 
 def deserialize_json(data: dict) -> CodegenJob:
     out: CodegenJob = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CodegenJob.id required")
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("CodegenJob.app_id required")
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError("CodegenJob.environment_name required")
-    if "renderConfig" in data:
+    if data.get("renderConfig") is not None:
         import capo_amplifyuibuilder.types.codegen_job_render_config
 
         out["render_config"] = (
@@ -157,7 +153,7 @@ def deserialize_json(data: dict) -> CodegenJob:
                 data["renderConfig"]
             )
         )
-    if "genericDataSchema" in data:
+    if data.get("genericDataSchema") is not None:
         import capo_amplifyuibuilder.types.codegen_job_generic_data_schema
 
         out["generic_data_schema"] = (
@@ -165,9 +161,9 @@ def deserialize_json(data: dict) -> CodegenJob:
                 data["genericDataSchema"]
             )
         )
-    if "autoGenerateForms" in data:
+    if data.get("autoGenerateForms") is not None:
         out["auto_generate_forms"] = data["autoGenerateForms"]
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_amplifyuibuilder.types.codegen_feature_flags
 
         out["features"] = (
@@ -175,41 +171,37 @@ def deserialize_json(data: dict) -> CodegenJob:
                 data["features"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amplifyuibuilder.types.codegen_job_status
 
         out["status"] = capo_amplifyuibuilder.types.codegen_job_status.deserialize_json(
             data["status"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "asset" in data:
+    if data.get("asset") is not None:
         import capo_amplifyuibuilder.types.codegen_job_asset
 
         out["asset"] = capo_amplifyuibuilder.types.codegen_job_asset.deserialize_json(
             data["asset"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amplifyuibuilder.types.tags
 
         out["tags"] = capo_amplifyuibuilder.types.tags.deserialize_json(data["tags"])
-    if "createdAt" in data:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "modifiedAt" in data:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+    if data.get("modifiedAt") is not None:
+        import datetime
 
-        out["modified_at"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.deserialize_json(
-                data["modifiedAt"]
-            )
+        out["modified_at"] = datetime.datetime.fromisoformat(
+            data["modifiedAt"].replace("Z", "+00:00")
         )
-    if "dependencies" in data:
+    if data.get("dependencies") is not None:
         import capo_amplifyuibuilder.types.codegen_dependencies
 
         out["dependencies"] = (

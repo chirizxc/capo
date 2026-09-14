@@ -80,19 +80,19 @@ def serialize_json(value: CreateChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelRequest:
     out: CreateChannelRequest = {}  # type: ignore[typeddict-item]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
     else:
         raise DeserializationError("CreateChannelRequest.channel_name required")
-    if "InputType" in data:
+    if data.get("InputType") is not None:
         import capo_mediapackagev2.types.input_type
 
         out["input_type"] = capo_mediapackagev2.types.input_type.deserialize_json(
             data["InputType"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "InputSwitchConfiguration" in data:
+    if data.get("InputSwitchConfiguration") is not None:
         import capo_mediapackagev2.types.input_switch_configuration
 
         out["input_switch_configuration"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> CreateChannelRequest:
                 data["InputSwitchConfiguration"]
             )
         )
-    if "OutputHeaderConfiguration" in data:
+    if data.get("OutputHeaderConfiguration") is not None:
         import capo_mediapackagev2.types.output_header_configuration
 
         out["output_header_configuration"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> CreateChannelRequest:
                 data["OutputHeaderConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediapackagev2.types.tag_map
 
         out["tags"] = capo_mediapackagev2.types.tag_map.deserialize_json(data["tags"])

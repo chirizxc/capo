@@ -111,11 +111,11 @@ def serialize_json(value: GetHLSStreamingSessionURLInput) -> dict:
 
 def deserialize_json(data: dict) -> GetHLSStreamingSessionURLInput:
     out: GetHLSStreamingSessionURLInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "PlaybackMode" in data:
+    if data.get("PlaybackMode") is not None:
         import capo_kinesis_video_archived_media.types.hls_playback_mode
 
         out["playback_mode"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> GetHLSStreamingSessionURLInput:
                 data["PlaybackMode"]
             )
         )
-    if "HLSFragmentSelector" in data:
+    if data.get("HLSFragmentSelector") is not None:
         import capo_kinesis_video_archived_media.types.hls_fragment_selector
 
         out["hls_fragment_selector"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> GetHLSStreamingSessionURLInput:
                 data["HLSFragmentSelector"]
             )
         )
-    if "ContainerFormat" in data:
+    if data.get("ContainerFormat") is not None:
         import capo_kinesis_video_archived_media.types.container_format
 
         out["container_format"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> GetHLSStreamingSessionURLInput:
                 data["ContainerFormat"]
             )
         )
-    if "DiscontinuityMode" in data:
+    if data.get("DiscontinuityMode") is not None:
         import capo_kinesis_video_archived_media.types.hls_discontinuity_mode
 
         out["discontinuity_mode"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> GetHLSStreamingSessionURLInput:
                 data["DiscontinuityMode"]
             )
         )
-    if "DisplayFragmentTimestamp" in data:
+    if data.get("DisplayFragmentTimestamp") is not None:
         import capo_kinesis_video_archived_media.types.hls_display_fragment_timestamp
 
         out["display_fragment_timestamp"] = (
@@ -155,9 +155,9 @@ def deserialize_json(data: dict) -> GetHLSStreamingSessionURLInput:
                 data["DisplayFragmentTimestamp"]
             )
         )
-    if "Expires" in data:
+    if data.get("Expires") is not None:
         out["expires"] = data["Expires"]
-    if "MaxMediaPlaylistFragmentResults" in data:
+    if data.get("MaxMediaPlaylistFragmentResults") is not None:
         out["max_media_playlist_fragment_results"] = data[
             "MaxMediaPlaylistFragmentResults"
         ]

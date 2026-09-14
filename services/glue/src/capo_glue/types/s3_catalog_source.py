@@ -50,21 +50,21 @@ def serialize_aws_json_1_1(value: S3CatalogSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3CatalogSource:
     out: S3CatalogSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3CatalogSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("S3CatalogSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("S3CatalogSource.table required")
-    if "PartitionPredicate" in data:
+    if data.get("PartitionPredicate") is not None:
         out["partition_predicate"] = data["PartitionPredicate"]
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.s3_source_additional_options
 
         out["additional_options"] = (

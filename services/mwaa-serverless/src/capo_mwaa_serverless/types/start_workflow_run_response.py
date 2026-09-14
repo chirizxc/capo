@@ -47,9 +47,9 @@ def serialize_aws_json_1_0(value: StartWorkflowRunResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartWorkflowRunResponse:
     out: StartWorkflowRunResponse = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mwaa_serverless.types.workflow_run_status
 
         out["status"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartWorkflowRunResponse:
                 data["Status"]
             )
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["started_at"] = (

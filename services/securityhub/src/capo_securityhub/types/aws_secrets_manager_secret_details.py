@@ -67,7 +67,7 @@ def serialize_json(value: AwsSecretsManagerSecretDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsSecretsManagerSecretDetails:
     out: AwsSecretsManagerSecretDetails = {}  # type: ignore[typeddict-item]
-    if "RotationRules" in data:
+    if data.get("RotationRules") is not None:
         import capo_securityhub.types.aws_secrets_manager_secret_rotation_rules
 
         out["rotation_rules"] = (
@@ -75,20 +75,20 @@ def deserialize_json(data: dict) -> AwsSecretsManagerSecretDetails:
                 data["RotationRules"]
             )
         )
-    if "RotationOccurredWithinFrequency" in data:
+    if data.get("RotationOccurredWithinFrequency") is not None:
         out["rotation_occurred_within_frequency"] = data[
             "RotationOccurredWithinFrequency"
         ]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "RotationEnabled" in data:
+    if data.get("RotationEnabled") is not None:
         out["rotation_enabled"] = data["RotationEnabled"]
-    if "RotationLambdaArn" in data:
+    if data.get("RotationLambdaArn") is not None:
         out["rotation_lambda_arn"] = data["RotationLambdaArn"]
-    if "Deleted" in data:
+    if data.get("Deleted") is not None:
         out["deleted"] = data["Deleted"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

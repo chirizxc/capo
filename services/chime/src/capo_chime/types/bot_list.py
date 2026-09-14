@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> BotList:
 
     out: BotList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime.types.bot.deserialize_json(item))
     return out

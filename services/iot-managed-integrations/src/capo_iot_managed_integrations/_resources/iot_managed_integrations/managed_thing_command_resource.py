@@ -81,9 +81,10 @@ class ManagedThingCommandResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.send_managed_thing_command_request.SendManagedThingCommandRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
-        input_["endpoints"] = endpoints
+        input_: capo_iot_managed_integrations.types.send_managed_thing_command_request.SendManagedThingCommandRequest = {
+            "managed_thing_id": managed_thing_id,
+            "endpoints": endpoints,
+        }
         if connector_association_id is not None:
             input_["connector_association_id"] = connector_association_id
         if account_association_id is not None:
@@ -94,6 +95,7 @@ class ManagedThingCommandResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -149,9 +151,10 @@ class AsyncManagedThingCommandResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.send_managed_thing_command_request.SendManagedThingCommandRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
-        input_["endpoints"] = endpoints
+        input_: capo_iot_managed_integrations.types.send_managed_thing_command_request.SendManagedThingCommandRequest = {
+            "managed_thing_id": managed_thing_id,
+            "endpoints": endpoints,
+        }
         if connector_association_id is not None:
             input_["connector_association_id"] = connector_association_id
         if account_association_id is not None:
@@ -162,4 +165,5 @@ class AsyncManagedThingCommandResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

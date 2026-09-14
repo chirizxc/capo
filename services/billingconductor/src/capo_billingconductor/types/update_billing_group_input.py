@@ -73,13 +73,13 @@ def serialize_json(value: UpdateBillingGroupInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBillingGroupInput:
     out: UpdateBillingGroupInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UpdateBillingGroupInput.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_billingconductor.types.billing_group_status
 
         out["status"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> UpdateBillingGroupInput:
                 data["Status"]
             )
         )
-    if "ComputationPreference" in data:
+    if data.get("ComputationPreference") is not None:
         import capo_billingconductor.types.computation_preference
 
         out["computation_preference"] = (
@@ -95,9 +95,9 @@ def deserialize_json(data: dict) -> UpdateBillingGroupInput:
                 data["ComputationPreference"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AccountGrouping" in data:
+    if data.get("AccountGrouping") is not None:
         import capo_billingconductor.types.update_billing_group_account_grouping
 
         out["account_grouping"] = (

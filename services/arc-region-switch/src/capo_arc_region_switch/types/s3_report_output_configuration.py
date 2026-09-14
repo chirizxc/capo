@@ -27,8 +27,8 @@ def serialize_aws_json_1_0(value: S3ReportOutputConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> S3ReportOutputConfiguration:
     out: S3ReportOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "bucketPath" in data:
+    if data.get("bucketPath") is not None:
         out["bucket_path"] = data["bucketPath"]
-    if "bucketOwner" in data:
+    if data.get("bucketOwner") is not None:
         out["bucket_owner"] = data["bucketOwner"]
     return out

@@ -36,9 +36,9 @@ def serialize_json(value: ComponentPlatform) -> dict:
 
 def deserialize_json(data: dict) -> ComponentPlatform:
     out: ComponentPlatform = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_greengrassv2.types.platform_attributes_map
 
         out["attributes"] = (

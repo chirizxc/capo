@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> JobEntityIdentifiers:
 
     out: JobEntityIdentifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_deadline.types.job_entity_identifiers_union.deserialize_json(item)
         )

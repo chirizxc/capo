@@ -54,19 +54,19 @@ def serialize_json(value: EphemerisData) -> dict:
 
 
 def deserialize_json(data: dict) -> EphemerisData:
-    if "tle" in data:
+    if data.get("tle") is not None:
         import capo_groundstation.types.tle_ephemeris
 
         return {
             "tle": capo_groundstation.types.tle_ephemeris.deserialize_json(data["tle"])
         }
-    elif "oem" in data:
+    elif data.get("oem") is not None:
         import capo_groundstation.types.oem_ephemeris
 
         return {
             "oem": capo_groundstation.types.oem_ephemeris.deserialize_json(data["oem"])
         }
-    elif "azEl" in data:
+    elif data.get("azEl") is not None:
         import capo_groundstation.types.az_el_ephemeris
 
         return {

@@ -28,8 +28,8 @@ def serialize_json(value: CreateCustomMetricResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCustomMetricResponse:
     out: CreateCustomMetricResponse = {}  # type: ignore[typeddict-item]
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         out["metric_name"] = data["metricName"]
-    if "metricArn" in data:
+    if data.get("metricArn") is not None:
         out["metric_arn"] = data["metricArn"]
     return out

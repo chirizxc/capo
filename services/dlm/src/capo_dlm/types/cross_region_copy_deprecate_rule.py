@@ -36,9 +36,9 @@ def serialize_json(value: CrossRegionCopyDeprecateRule) -> dict:
 
 def deserialize_json(data: dict) -> CrossRegionCopyDeprecateRule:
     out: CrossRegionCopyDeprecateRule = {}  # type: ignore[typeddict-item]
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "IntervalUnit" in data:
+    if data.get("IntervalUnit") is not None:
         import capo_dlm.types.retention_interval_unit_values
 
         out["interval_unit"] = (

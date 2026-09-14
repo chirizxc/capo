@@ -28,7 +28,7 @@ def serialize_json(value: OutputResolutionResamplingInput) -> dict:
 
 def deserialize_json(data: dict) -> OutputResolutionResamplingInput:
     out: OutputResolutionResamplingInput = {}  # type: ignore[typeddict-item]
-    if "UserDefined" in data:
+    if data.get("UserDefined") is not None:
         import capo_sagemaker_geospatial.types.user_defined
 
         out["user_defined"] = (

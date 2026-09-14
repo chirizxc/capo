@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MapFilterList:
 
     out: MapFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.map_filter.deserialize_json(item))
     return out

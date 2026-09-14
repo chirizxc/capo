@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeNFSFileSharesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeNFSFileSharesOutput:
     out: DescribeNFSFileSharesOutput = {}  # type: ignore[typeddict-item]
-    if "NFSFileShareInfoList" in data:
+    if data.get("NFSFileShareInfoList") is not None:
         import capo_storage_gateway.types.nfs_file_share_info_list
 
         out["nfs_file_share_info_list"] = (

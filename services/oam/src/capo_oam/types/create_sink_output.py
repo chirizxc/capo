@@ -37,13 +37,13 @@ def serialize_json(value: CreateSinkOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSinkOutput:
     out: CreateSinkOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_oam.types.tag_map_output
 
         out["tags"] = capo_oam.types.tag_map_output.deserialize_json(data["Tags"])

@@ -33,8 +33,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails:
     out: AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

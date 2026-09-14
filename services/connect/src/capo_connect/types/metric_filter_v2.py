@@ -40,9 +40,9 @@ def serialize_json(value: MetricFilterV2) -> dict:
 
 def deserialize_json(data: dict) -> MetricFilterV2:
     out: MetricFilterV2 = {}  # type: ignore[typeddict-item]
-    if "MetricFilterKey" in data:
+    if data.get("MetricFilterKey") is not None:
         out["metric_filter_key"] = data["MetricFilterKey"]
-    if "MetricFilterValues" in data:
+    if data.get("MetricFilterValues") is not None:
         import capo_connect.types.metric_filter_value_list
 
         out["metric_filter_values"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> MetricFilterV2:
                 data["MetricFilterValues"]
             )
         )
-    if "Negate" in data:
+    if data.get("Negate") is not None:
         out["negate"] = data["Negate"]
     else:
         out["negate"] = False

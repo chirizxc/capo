@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: AccessControlAttribute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessControlAttribute:
     out: AccessControlAttribute = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("AccessControlAttribute.key required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_sso_admin.types.access_control_attribute_value
 
         out["value"] = (

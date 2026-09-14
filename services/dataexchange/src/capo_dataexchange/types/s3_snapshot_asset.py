@@ -16,14 +16,22 @@ class S3SnapshotAsset(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: S3SnapshotAsset) -> dict:
     out: dict = {}
-    out["Size"] = value.get("size", 0)
+    out["Size"] = (
+        "NaN"
+        if value.get("size", 0) != value.get("size", 0)
+        else "Infinity"
+        if value.get("size", 0) == float("inf")
+        else "-Infinity"
+        if value.get("size", 0) == float("-inf")
+        else value.get("size", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> S3SnapshotAsset:
     out: S3SnapshotAsset = {}  # type: ignore[typeddict-item]
-    if "Size" in data:
-        out["size"] = data["Size"]
+    if data.get("Size") is not None:
+        out["size"] = float(data["Size"])
     else:
         out["size"] = 0
     return out

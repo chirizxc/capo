@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: DeviceConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceConfigurationType:
     out: DeviceConfigurationType = {}  # type: ignore[typeddict-item]
-    if "ChallengeRequiredOnNewDevice" in data:
+    if data.get("ChallengeRequiredOnNewDevice") is not None:
         out["challenge_required_on_new_device"] = data["ChallengeRequiredOnNewDevice"]
     else:
         out["challenge_required_on_new_device"] = False
-    if "DeviceOnlyRememberedOnUserPrompt" in data:
+    if data.get("DeviceOnlyRememberedOnUserPrompt") is not None:
         out["device_only_remembered_on_user_prompt"] = data[
             "DeviceOnlyRememberedOnUserPrompt"
         ]

@@ -23,6 +23,6 @@ def serialize_json(value: ThreatsDetectedItemCount) -> dict:
 
 def deserialize_json(data: dict) -> ThreatsDetectedItemCount:
     out: ThreatsDetectedItemCount = {}  # type: ignore[typeddict-item]
-    if "files" in data:
+    if data.get("files") is not None:
         out["files"] = data["files"]
     return out

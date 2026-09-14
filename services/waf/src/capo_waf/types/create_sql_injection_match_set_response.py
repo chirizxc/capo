@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: CreateSqlInjectionMatchSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSqlInjectionMatchSetResponse:
     out: CreateSqlInjectionMatchSetResponse = {}  # type: ignore[typeddict-item]
-    if "SqlInjectionMatchSet" in data:
+    if data.get("SqlInjectionMatchSet") is not None:
         import capo_waf.types.sql_injection_match_set
 
         out["sql_injection_match_set"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSqlInjectionMatchSetResponse:
                 data["SqlInjectionMatchSet"]
             )
         )
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     return out

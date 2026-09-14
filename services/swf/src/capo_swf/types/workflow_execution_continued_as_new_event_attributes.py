@@ -95,21 +95,21 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> WorkflowExecutionContinuedAsNewEventAttributes:
     out: WorkflowExecutionContinuedAsNewEventAttributes = {}  # type: ignore[typeddict-item]
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0
-    if "newExecutionRunId" in data:
+    if data.get("newExecutionRunId") is not None:
         out["new_execution_run_id"] = data["newExecutionRunId"]
     else:
         raise DeserializationError(
             "WorkflowExecutionContinuedAsNewEventAttributes.new_execution_run_id required"
         )
-    if "executionStartToCloseTimeout" in data:
+    if data.get("executionStartToCloseTimeout") is not None:
         out["execution_start_to_close_timeout"] = data["executionStartToCloseTimeout"]
-    if "taskList" in data:
+    if data.get("taskList") is not None:
         import capo_swf.types.task_list
 
         out["task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
@@ -119,11 +119,11 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "WorkflowExecutionContinuedAsNewEventAttributes.task_list required"
         )
-    if "taskPriority" in data:
+    if data.get("taskPriority") is not None:
         out["task_priority"] = data["taskPriority"]
-    if "taskStartToCloseTimeout" in data:
+    if data.get("taskStartToCloseTimeout") is not None:
         out["task_start_to_close_timeout"] = data["taskStartToCloseTimeout"]
-    if "childPolicy" in data:
+    if data.get("childPolicy") is not None:
         import capo_swf.types.child_policy
 
         out["child_policy"] = capo_swf.types.child_policy.deserialize_aws_json_1_0(
@@ -133,13 +133,13 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "WorkflowExecutionContinuedAsNewEventAttributes.child_policy required"
         )
-    if "tagList" in data:
+    if data.get("tagList") is not None:
         import capo_swf.types.tag_list
 
         out["tag_list"] = capo_swf.types.tag_list.deserialize_aws_json_1_0(
             data["tagList"]
         )
-    if "workflowType" in data:
+    if data.get("workflowType") is not None:
         import capo_swf.types.workflow_type
 
         out["workflow_type"] = capo_swf.types.workflow_type.deserialize_aws_json_1_0(
@@ -149,6 +149,6 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "WorkflowExecutionContinuedAsNewEventAttributes.workflow_type required"
         )
-    if "lambdaRole" in data:
+    if data.get("lambdaRole") is not None:
         out["lambda_role"] = data["lambdaRole"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InstalledComponentList:
 
     out: InstalledComponentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrassv2.types.installed_component.deserialize_json(item))
     return out

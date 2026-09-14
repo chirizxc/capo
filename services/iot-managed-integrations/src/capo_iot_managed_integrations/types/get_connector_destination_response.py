@@ -88,15 +88,15 @@ def serialize_json(value: GetConnectorDestinationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConnectorDestinationResponse:
     out: GetConnectorDestinationResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CloudConnectorId" in data:
+    if data.get("CloudConnectorId") is not None:
         out["cloud_connector_id"] = data["CloudConnectorId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "AuthType" in data:
+    if data.get("AuthType") is not None:
         import capo_iot_managed_integrations.types.auth_type
 
         out["auth_type"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> GetConnectorDestinationResponse:
                 data["AuthType"]
             )
         )
-    if "AuthConfig" in data:
+    if data.get("AuthConfig") is not None:
         import capo_iot_managed_integrations.types.auth_config
 
         out["auth_config"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> GetConnectorDestinationResponse:
                 data["AuthConfig"]
             )
         )
-    if "SecretsManager" in data:
+    if data.get("SecretsManager") is not None:
         import capo_iot_managed_integrations.types.secrets_manager
 
         out["secrets_manager"] = (
@@ -120,6 +120,6 @@ def deserialize_json(data: dict) -> GetConnectorDestinationResponse:
                 data["SecretsManager"]
             )
         )
-    if "OAuthCompleteRedirectUrl" in data:
+    if data.get("OAuthCompleteRedirectUrl") is not None:
         out["o_auth_complete_redirect_url"] = data["OAuthCompleteRedirectUrl"]
     return out

@@ -54,26 +54,26 @@ def serialize_aws_json_1_0(value: UpdateServiceInstanceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateServiceInstanceInput:
     out: UpdateServiceInstanceInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateServiceInstanceInput.name required")
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError("UpdateServiceInstanceInput.service_name required")
-    if "deploymentType" in data:
+    if data.get("deploymentType") is not None:
         out["deployment_type"] = data["deploymentType"]
     else:
         raise DeserializationError(
             "UpdateServiceInstanceInput.deployment_type required"
         )
-    if "spec" in data:
+    if data.get("spec") is not None:
         out["spec"] = data["spec"]
-    if "templateMajorVersion" in data:
+    if data.get("templateMajorVersion") is not None:
         out["template_major_version"] = data["templateMajorVersion"]
-    if "templateMinorVersion" in data:
+    if data.get("templateMinorVersion") is not None:
         out["template_minor_version"] = data["templateMinorVersion"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

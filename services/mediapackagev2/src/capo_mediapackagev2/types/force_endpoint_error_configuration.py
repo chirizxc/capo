@@ -31,7 +31,7 @@ def serialize_json(value: ForceEndpointErrorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ForceEndpointErrorConfiguration:
     out: ForceEndpointErrorConfiguration = {}  # type: ignore[typeddict-item]
-    if "EndpointErrorConditions" in data:
+    if data.get("EndpointErrorConditions") is not None:
         import capo_mediapackagev2.types.endpoint_error_conditions
 
         out["endpoint_error_conditions"] = (

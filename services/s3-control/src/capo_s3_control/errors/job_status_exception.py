@@ -35,15 +35,16 @@ class JobStatusException(ServiceError):
 
     code: str | None = "JobStatusException"
 
-    def __init__(self, data: JobStatusException_):
+    def __init__(self, data: JobStatusException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="JobStatusException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_xml(cls, el: Element) -> "JobStatusException":
-        return cls(deserialize_xml(el))
+    def from_xml(cls, el: Element, message: str | None = None) -> "JobStatusException":
+        return cls(deserialize_xml(el), message)

@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: ListPipelineExecutionStepsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPipelineExecutionStepsRequest:
     out: ListPipelineExecutionStepsRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineExecutionArn" in data:
+    if data.get("PipelineExecutionArn") is not None:
         out["pipeline_execution_arn"] = data["PipelineExecutionArn"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(

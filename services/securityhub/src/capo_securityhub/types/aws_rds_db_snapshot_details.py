@@ -164,59 +164,59 @@ def serialize_json(value: AwsRdsDbSnapshotDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbSnapshotDetails:
     out: AwsRdsDbSnapshotDetails = {}  # type: ignore[typeddict-item]
-    if "DbSnapshotIdentifier" in data:
+    if data.get("DbSnapshotIdentifier") is not None:
         out["db_snapshot_identifier"] = data["DbSnapshotIdentifier"]
-    if "DbInstanceIdentifier" in data:
+    if data.get("DbInstanceIdentifier") is not None:
         out["db_instance_identifier"] = data["DbInstanceIdentifier"]
-    if "SnapshotCreateTime" in data:
+    if data.get("SnapshotCreateTime") is not None:
         out["snapshot_create_time"] = data["SnapshotCreateTime"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "AllocatedStorage" in data:
+    if data.get("AllocatedStorage") is not None:
         out["allocated_storage"] = data["AllocatedStorage"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "InstanceCreateTime" in data:
+    if data.get("InstanceCreateTime") is not None:
         out["instance_create_time"] = data["InstanceCreateTime"]
-    if "MasterUsername" in data:
+    if data.get("MasterUsername") is not None:
         out["master_username"] = data["MasterUsername"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "LicenseModel" in data:
+    if data.get("LicenseModel") is not None:
         out["license_model"] = data["LicenseModel"]
-    if "SnapshotType" in data:
+    if data.get("SnapshotType") is not None:
         out["snapshot_type"] = data["SnapshotType"]
-    if "Iops" in data:
+    if data.get("Iops") is not None:
         out["iops"] = data["Iops"]
-    if "OptionGroupName" in data:
+    if data.get("OptionGroupName") is not None:
         out["option_group_name"] = data["OptionGroupName"]
-    if "PercentProgress" in data:
+    if data.get("PercentProgress") is not None:
         out["percent_progress"] = data["PercentProgress"]
-    if "SourceRegion" in data:
+    if data.get("SourceRegion") is not None:
         out["source_region"] = data["SourceRegion"]
-    if "SourceDbSnapshotIdentifier" in data:
+    if data.get("SourceDbSnapshotIdentifier") is not None:
         out["source_db_snapshot_identifier"] = data["SourceDbSnapshotIdentifier"]
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         out["storage_type"] = data["StorageType"]
-    if "TdeCredentialArn" in data:
+    if data.get("TdeCredentialArn") is not None:
         out["tde_credential_arn"] = data["TdeCredentialArn"]
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
-    if "IamDatabaseAuthenticationEnabled" in data:
+    if data.get("IamDatabaseAuthenticationEnabled") is not None:
         out["iam_database_authentication_enabled"] = data[
             "IamDatabaseAuthenticationEnabled"
         ]
-    if "ProcessorFeatures" in data:
+    if data.get("ProcessorFeatures") is not None:
         import capo_securityhub.types.aws_rds_db_processor_features
 
         out["processor_features"] = (
@@ -224,6 +224,6 @@ def deserialize_json(data: dict) -> AwsRdsDbSnapshotDetails:
                 data["ProcessorFeatures"]
             )
         )
-    if "DbiResourceId" in data:
+    if data.get("DbiResourceId") is not None:
         out["dbi_resource_id"] = data["DbiResourceId"]
     return out

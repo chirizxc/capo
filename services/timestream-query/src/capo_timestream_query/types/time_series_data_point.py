@@ -32,11 +32,11 @@ def serialize_aws_json_1_0(value: TimeSeriesDataPoint) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimeSeriesDataPoint:
     out: TimeSeriesDataPoint = {}  # type: ignore[typeddict-item]
-    if "Time" in data:
+    if data.get("Time") is not None:
         out["time"] = data["Time"]
     else:
         raise DeserializationError("TimeSeriesDataPoint.time required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_timestream_query.types.datum
 
         out["value"] = capo_timestream_query.types.datum.deserialize_aws_json_1_0(

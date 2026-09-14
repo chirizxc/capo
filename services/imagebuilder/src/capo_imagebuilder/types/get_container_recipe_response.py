@@ -49,9 +49,9 @@ def serialize_json(value: GetContainerRecipeResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetContainerRecipeResponse:
     out: GetContainerRecipeResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "containerRecipe" in data:
+    if data.get("containerRecipe") is not None:
         import capo_imagebuilder.types.container_recipe
 
         out["container_recipe"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> GetContainerRecipeResponse:
                 data["containerRecipe"]
             )
         )
-    if "latestVersionReferences" in data:
+    if data.get("latestVersionReferences") is not None:
         import capo_imagebuilder.types.latest_version_references
 
         out["latest_version_references"] = (

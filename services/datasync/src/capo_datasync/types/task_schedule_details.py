@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: TaskScheduleDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskScheduleDetails:
     out: TaskScheduleDetails = {}  # type: ignore[typeddict-item]
-    if "StatusUpdateTime" in data:
+    if data.get("StatusUpdateTime") is not None:
         import capo_datasync.types.time
 
         out["status_update_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["StatusUpdateTime"]
         )
-    if "DisabledReason" in data:
+    if data.get("DisabledReason") is not None:
         out["disabled_reason"] = data["DisabledReason"]
-    if "DisabledBy" in data:
+    if data.get("DisabledBy") is not None:
         import capo_datasync.types.schedule_disabled_by
 
         out["disabled_by"] = (

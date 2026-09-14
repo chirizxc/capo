@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InstanceLimitExceededException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceLimitExceededException_:
     out: InstanceLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class InstanceLimitExceededException(ServiceError):
 
     code: str | None = "InstanceLimitExceededException"
 
-    def __init__(self, data: InstanceLimitExceededException_):
+    def __init__(
+        self, data: InstanceLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InstanceLimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InstanceLimitExceededException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InstanceLimitExceededException":
+        return cls(deserialize_aws_json_1_1(data), message)

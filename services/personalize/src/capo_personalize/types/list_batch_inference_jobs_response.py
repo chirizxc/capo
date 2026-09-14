@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListBatchInferenceJobsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBatchInferenceJobsResponse:
     out: ListBatchInferenceJobsResponse = {}  # type: ignore[typeddict-item]
-    if "batchInferenceJobs" in data:
+    if data.get("batchInferenceJobs") is not None:
         import capo_personalize.types.batch_inference_jobs
 
         out["batch_inference_jobs"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListBatchInferenceJobsResponse:
                 data["batchInferenceJobs"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

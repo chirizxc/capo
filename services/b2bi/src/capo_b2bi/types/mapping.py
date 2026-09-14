@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: Mapping) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Mapping:
     out: Mapping = {}  # type: ignore[typeddict-item]
-    if "templateLanguage" in data:
+    if data.get("templateLanguage") is not None:
         import capo_b2bi.types.mapping_template_language
 
         out["template_language"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> Mapping:
         )
     else:
         raise DeserializationError("Mapping.template_language required")
-    if "template" in data:
+    if data.get("template") is not None:
         out["template"] = data["template"]
     return out

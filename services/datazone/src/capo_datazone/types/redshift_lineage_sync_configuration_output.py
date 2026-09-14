@@ -37,11 +37,11 @@ def serialize_json(value: RedshiftLineageSyncConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftLineageSyncConfigurationOutput:
     out: RedshiftLineageSyncConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "lineageJobId" in data:
+    if data.get("lineageJobId") is not None:
         out["lineage_job_id"] = data["lineageJobId"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_datazone.types.lineage_sync_schedule
 
         out["schedule"] = capo_datazone.types.lineage_sync_schedule.deserialize_json(

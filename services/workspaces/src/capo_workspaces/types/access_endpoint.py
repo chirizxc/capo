@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: AccessEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessEndpoint:
     out: AccessEndpoint = {}  # type: ignore[typeddict-item]
-    if "AccessEndpointType" in data:
+    if data.get("AccessEndpointType") is not None:
         import capo_workspaces.types.access_endpoint_type
 
         out["access_endpoint_type"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> AccessEndpoint:
                 data["AccessEndpointType"]
             )
         )
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
     return out

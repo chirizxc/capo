@@ -29,7 +29,15 @@ def serialize_json(value: Edge) -> dict:
     if "destination_node_id" in value:
         out["DestinationNodeId"] = value["destination_node_id"]
     if "duration" in value:
-        out["Duration"] = value["duration"]
+        out["Duration"] = (
+            "NaN"
+            if value["duration"] != value["duration"]
+            else "Infinity"
+            if value["duration"] == float("inf")
+            else "-Infinity"
+            if value["duration"] == float("-inf")
+            else value["duration"]
+        )
     if "connection_type" in value:
         import capo_application_signals.types.connection_type
 
@@ -43,13 +51,13 @@ def serialize_json(value: Edge) -> dict:
 
 def deserialize_json(data: dict) -> Edge:
     out: Edge = {}  # type: ignore[typeddict-item]
-    if "SourceNodeId" in data:
+    if data.get("SourceNodeId") is not None:
         out["source_node_id"] = data["SourceNodeId"]
-    if "DestinationNodeId" in data:
+    if data.get("DestinationNodeId") is not None:
         out["destination_node_id"] = data["DestinationNodeId"]
-    if "Duration" in data:
-        out["duration"] = data["Duration"]
-    if "ConnectionType" in data:
+    if data.get("Duration") is not None:
+        out["duration"] = float(data["Duration"])
+    if data.get("ConnectionType") is not None:
         import capo_application_signals.types.connection_type
 
         out["connection_type"] = (

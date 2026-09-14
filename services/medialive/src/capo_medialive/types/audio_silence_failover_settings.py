@@ -30,8 +30,8 @@ def serialize_json(value: AudioSilenceFailoverSettings) -> dict:
 
 def deserialize_json(data: dict) -> AudioSilenceFailoverSettings:
     out: AudioSilenceFailoverSettings = {}  # type: ignore[typeddict-item]
-    if "audioSelectorName" in data:
+    if data.get("audioSelectorName") is not None:
         out["audio_selector_name"] = data["audioSelectorName"]
-    if "audioSilenceThresholdMsec" in data:
+    if data.get("audioSilenceThresholdMsec") is not None:
         out["audio_silence_threshold_msec"] = data["audioSilenceThresholdMsec"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IngestionDestinationList:
 
     out: IngestionDestinationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appfabric.types.ingestion_destination_summary.deserialize_json(item)
         )

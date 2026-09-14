@@ -51,19 +51,19 @@ def serialize_json(value: SearchForSuggestionsResult) -> dict:
 
 def deserialize_json(data: dict) -> SearchForSuggestionsResult:
     out: SearchForSuggestionsResult = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("SearchForSuggestionsResult.text required")
-    if "PlaceId" in data:
+    if data.get("PlaceId") is not None:
         out["place_id"] = data["PlaceId"]
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_location.types.place_category_list
 
         out["categories"] = capo_location.types.place_category_list.deserialize_json(
             data["Categories"]
         )
-    if "SupplementalCategories" in data:
+    if data.get("SupplementalCategories") is not None:
         import capo_location.types.place_supplemental_category_list
 
         out["supplemental_categories"] = (

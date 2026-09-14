@@ -49,9 +49,9 @@ def serialize_aws_json_1_0(value: GetIdleRecommendationsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetIdleRecommendationsResponse:
     out: GetIdleRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "idleRecommendations" in data:
+    if data.get("idleRecommendations") is not None:
         import capo_compute_optimizer.types.idle_recommendations
 
         out["idle_recommendations"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetIdleRecommendationsResponse:
                 data["idleRecommendations"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_compute_optimizer.types.idle_recommendation_errors
 
         out["errors"] = (

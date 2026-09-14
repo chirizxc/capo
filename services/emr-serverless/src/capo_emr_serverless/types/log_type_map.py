@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: LogTypeMap) -> dict:
 def deserialize_json(data: dict) -> LogTypeMap:
     out: LogTypeMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_emr_serverless.types.log_type_list
 
         out[key] = capo_emr_serverless.types.log_type_list.deserialize_json(value)

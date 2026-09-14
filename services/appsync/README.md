@@ -13,9 +13,9 @@ from capo_appsync import AsyncAppSyncClient
 
 
 async def main():
-    async with AsyncAppSyncClient() as s3:
+    async with AsyncAppSyncClient() as app_sync:
         # Example: call the associate_api operation
-        response = await s3.associate_api()
+        response = await app_sync.associate_api()
         print(response["api_association"])
 ```
 
@@ -28,9 +28,9 @@ from capo_appsync import AsyncAppSyncClient
 
 
 async def main():
-    async with AsyncAppSyncClient() as s3:
+    async with AsyncAppSyncClient() as app_sync:
         # Example: paginate over list_api_keys
-        async for item in s3.iter_list_api_keys():
+        async for item in app_sync.iter_list_api_keys():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_appsync.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncAppSyncClient() as s3:
+    async with AsyncAppSyncClient() as app_sync:
         try:
-            await s3.associate_api()
+            await app_sync.associate_api()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_appsync import AsyncAppSyncClient
 
 
 async def main():
-    async with AsyncAppSyncClient() as s3:
+    async with AsyncAppSyncClient() as app_sync:
         # Default: 3 attempts for every operation
-        response = await s3.associate_api()
+        response = await app_sync.associate_api()
 
         # Override per operation
-        response = await s3.associate_api(config_overrides={"retry_max_attempts": 5})
+        response = await app_sync.associate_api(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_api(config_overrides={"retry_max_attempts": 1})
+        response = await app_sync.associate_api(config_overrides={"retry_max_attempts": 1})
 ```

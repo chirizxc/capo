@@ -56,17 +56,17 @@ def serialize_aws_json_1_1(value: GetComputeAuthTokenOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetComputeAuthTokenOutput:
     out: GetComputeAuthTokenOutput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
-    if "ComputeName" in data:
+    if data.get("ComputeName") is not None:
         out["compute_name"] = data["ComputeName"]
-    if "ComputeArn" in data:
+    if data.get("ComputeArn") is not None:
         out["compute_arn"] = data["ComputeArn"]
-    if "AuthToken" in data:
+    if data.get("AuthToken") is not None:
         out["auth_token"] = data["AuthToken"]
-    if "ExpirationTimestamp" in data:
+    if data.get("ExpirationTimestamp") is not None:
         import capo_gamelift.types.timestamp
 
         out["expiration_timestamp"] = (

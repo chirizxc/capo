@@ -41,7 +41,7 @@ def serialize_json(value: LogicalTableSource) -> dict:
 
 def deserialize_json(data: dict) -> LogicalTableSource:
     out: LogicalTableSource = {}  # type: ignore[typeddict-item]
-    if "JoinInstruction" in data:
+    if data.get("JoinInstruction") is not None:
         import capo_quicksight.types.join_instruction
 
         out["join_instruction"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> LogicalTableSource:
                 data["JoinInstruction"]
             )
         )
-    if "PhysicalTableId" in data:
+    if data.get("PhysicalTableId") is not None:
         out["physical_table_id"] = data["PhysicalTableId"]
-    if "DataSetArn" in data:
+    if data.get("DataSetArn") is not None:
         out["data_set_arn"] = data["DataSetArn"]
     return out

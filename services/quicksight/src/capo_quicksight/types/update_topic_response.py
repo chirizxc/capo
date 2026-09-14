@@ -40,12 +40,12 @@ def serialize_json(value: UpdateTopicResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTopicResponse:
     out: UpdateTopicResponse = {}  # type: ignore[typeddict-item]
-    if "TopicId" in data:
+    if data.get("TopicId") is not None:
         out["topic_id"] = data["TopicId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "RefreshArn" in data:
+    if data.get("RefreshArn") is not None:
         out["refresh_arn"] = data["RefreshArn"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

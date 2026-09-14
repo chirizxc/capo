@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: MicrosoftEntraConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MicrosoftEntraConfig:
     out: MicrosoftEntraConfig = {}  # type: ignore[typeddict-item]
-    if "TenantId" in data:
+    if data.get("TenantId") is not None:
         out["tenant_id"] = data["TenantId"]
-    if "ApplicationConfigSecretArn" in data:
+    if data.get("ApplicationConfigSecretArn") is not None:
         out["application_config_secret_arn"] = data["ApplicationConfigSecretArn"]
     return out

@@ -40,13 +40,13 @@ def serialize_json(value: IsolineShapeGeometry) -> dict:
 
 def deserialize_json(data: dict) -> IsolineShapeGeometry:
     out: IsolineShapeGeometry = {}  # type: ignore[typeddict-item]
-    if "Polygon" in data:
+    if data.get("Polygon") is not None:
         import capo_geo_routes.types.linear_rings
 
         out["polygon"] = capo_geo_routes.types.linear_rings.deserialize_json(
             data["Polygon"]
         )
-    if "PolylinePolygon" in data:
+    if data.get("PolylinePolygon") is not None:
         import capo_geo_routes.types.polyline_ring_list
 
         out["polyline_polygon"] = (

@@ -93,7 +93,7 @@ def serialize_json(value: CreateMediaCapturePipelineRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMediaCapturePipelineRequest:
     out: CreateMediaCapturePipelineRequest = {}  # type: ignore[typeddict-item]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_source_type
 
         out["source_type"] = (
@@ -105,13 +105,13 @@ def deserialize_json(data: dict) -> CreateMediaCapturePipelineRequest:
         raise DeserializationError(
             "CreateMediaCapturePipelineRequest.source_type required"
         )
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
     else:
         raise DeserializationError(
             "CreateMediaCapturePipelineRequest.source_arn required"
         )
-    if "SinkType" in data:
+    if data.get("SinkType") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_sink_type
 
         out["sink_type"] = (
@@ -123,15 +123,15 @@ def deserialize_json(data: dict) -> CreateMediaCapturePipelineRequest:
         raise DeserializationError(
             "CreateMediaCapturePipelineRequest.sink_type required"
         )
-    if "SinkArn" in data:
+    if data.get("SinkArn") is not None:
         out["sink_arn"] = data["SinkArn"]
     else:
         raise DeserializationError(
             "CreateMediaCapturePipelineRequest.sink_arn required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "ChimeSdkMeetingConfiguration" in data:
+    if data.get("ChimeSdkMeetingConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.chime_sdk_meeting_configuration
 
         out["chime_sdk_meeting_configuration"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> CreateMediaCapturePipelineRequest:
                 data["ChimeSdkMeetingConfiguration"]
             )
         )
-    if "SseAwsKeyManagementParams" in data:
+    if data.get("SseAwsKeyManagementParams") is not None:
         import capo_chime_sdk_media_pipelines.types.sse_aws_key_management_params
 
         out["sse_aws_key_management_params"] = (
@@ -147,9 +147,9 @@ def deserialize_json(data: dict) -> CreateMediaCapturePipelineRequest:
                 data["SseAwsKeyManagementParams"]
             )
         )
-    if "SinkIamRoleArn" in data:
+    if data.get("SinkIamRoleArn") is not None:
         out["sink_iam_role_arn"] = data["SinkIamRoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_media_pipelines.types.tag_list
 
         out["tags"] = capo_chime_sdk_media_pipelines.types.tag_list.deserialize_json(

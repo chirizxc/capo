@@ -37,7 +37,7 @@ def serialize_json(value: CustomActionAttachmentCriteria) -> dict:
 
 def deserialize_json(data: dict) -> CustomActionAttachmentCriteria:
     out: CustomActionAttachmentCriteria = {}  # type: ignore[typeddict-item]
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_chatbot.types.custom_action_attachment_criteria_operator
 
         out["operator"] = (
@@ -47,12 +47,12 @@ def deserialize_json(data: dict) -> CustomActionAttachmentCriteria:
         )
     else:
         raise DeserializationError("CustomActionAttachmentCriteria.operator required")
-    if "VariableName" in data:
+    if data.get("VariableName") is not None:
         out["variable_name"] = data["VariableName"]
     else:
         raise DeserializationError(
             "CustomActionAttachmentCriteria.variable_name required"
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

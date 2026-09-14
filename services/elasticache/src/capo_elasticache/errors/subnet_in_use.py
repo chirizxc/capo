@@ -37,12 +37,16 @@ class SubnetInUse(ServiceError):
 
     code: str | None = "SubnetInUse"
 
-    def __init__(self, data: SubnetInUse_):
+    def __init__(self, data: SubnetInUse_, message: str | None = None):
         super().__init__(
-            "client", is_throttling_error=False, is_retryable=False, code="SubnetInUse"
+            "client",
+            is_throttling_error=False,
+            is_retryable=False,
+            code="SubnetInUse",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SubnetInUse":
-        return cls(deserialize_query(el))
+    def from_query(cls, el: Element, message: str | None = None) -> "SubnetInUse":
+        return cls(deserialize_query(el), message)

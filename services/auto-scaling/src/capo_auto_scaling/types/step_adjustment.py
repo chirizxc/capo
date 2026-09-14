@@ -35,14 +35,32 @@ def serialize_query(
         pairs.append(
             (
                 f"{key_prefix}MetricIntervalLowerBound",
-                str(value["metric_interval_lower_bound"]),
+                (
+                    "NaN"
+                    if value["metric_interval_lower_bound"]
+                    != value["metric_interval_lower_bound"]
+                    else "Infinity"
+                    if value["metric_interval_lower_bound"] == float("inf")
+                    else "-Infinity"
+                    if value["metric_interval_lower_bound"] == float("-inf")
+                    else str(value["metric_interval_lower_bound"])
+                ),
             )
         )
     if "metric_interval_upper_bound" in value:
         pairs.append(
             (
                 f"{key_prefix}MetricIntervalUpperBound",
-                str(value["metric_interval_upper_bound"]),
+                (
+                    "NaN"
+                    if value["metric_interval_upper_bound"]
+                    != value["metric_interval_upper_bound"]
+                    else "Infinity"
+                    if value["metric_interval_upper_bound"] == float("inf")
+                    else "-Infinity"
+                    if value["metric_interval_upper_bound"] == float("-inf")
+                    else str(value["metric_interval_upper_bound"])
+                ),
             )
         )
     if "scaling_adjustment" in value:

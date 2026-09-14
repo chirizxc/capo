@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: ConcurrentOperationException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConcurrentOperationException_:
     out: ConcurrentOperationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class ConcurrentOperationException(ServiceError):
 
     code: str | None = "ConcurrentOperationException"
 
-    def __init__(self, data: ConcurrentOperationException_):
+    def __init__(self, data: ConcurrentOperationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConcurrentOperationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "ConcurrentOperationException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "ConcurrentOperationException":
+        return cls(deserialize_aws_json_1_0(data), message)

@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListReleaseLabelsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListReleaseLabelsOutput:
     out: ListReleaseLabelsOutput = {}  # type: ignore[typeddict-item]
-    if "ReleaseLabels" in data:
+    if data.get("ReleaseLabels") is not None:
         import capo_emr.types.string_list
 
         out["release_labels"] = capo_emr.types.string_list.deserialize_aws_json_1_1(
             data["ReleaseLabels"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

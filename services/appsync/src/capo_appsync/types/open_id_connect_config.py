@@ -35,17 +35,17 @@ def serialize_json(value: OpenIDConnectConfig) -> dict:
 
 def deserialize_json(data: dict) -> OpenIDConnectConfig:
     out: OpenIDConnectConfig = {}  # type: ignore[typeddict-item]
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
     else:
         raise DeserializationError("OpenIDConnectConfig.issuer required")
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
-    if "iatTTL" in data:
+    if data.get("iatTTL") is not None:
         out["iat_ttl"] = data["iatTTL"]
     else:
         out["iat_ttl"] = 0
-    if "authTTL" in data:
+    if data.get("authTTL") is not None:
         out["auth_ttl"] = data["authTTL"]
     else:
         out["auth_ttl"] = 0

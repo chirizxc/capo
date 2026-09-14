@@ -54,27 +54,27 @@ def serialize_json(value: DatasetParameter) -> dict:
 
 def deserialize_json(data: dict) -> DatasetParameter:
     out: DatasetParameter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DatasetParameter.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_databrew.types.parameter_type
 
         out["type"] = capo_databrew.types.parameter_type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("DatasetParameter.type required")
-    if "DatetimeOptions" in data:
+    if data.get("DatetimeOptions") is not None:
         import capo_databrew.types.datetime_options
 
         out["datetime_options"] = capo_databrew.types.datetime_options.deserialize_json(
             data["DatetimeOptions"]
         )
-    if "CreateColumn" in data:
+    if data.get("CreateColumn") is not None:
         out["create_column"] = data["CreateColumn"]
     else:
         out["create_column"] = False
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_databrew.types.filter_expression
 
         out["filter"] = capo_databrew.types.filter_expression.deserialize_json(

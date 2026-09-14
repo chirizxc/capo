@@ -41,11 +41,11 @@ def serialize_json(value: UpdateLinkRoutingRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLinkRoutingRuleRequest:
     out: UpdateLinkRoutingRuleRequest = {}  # type: ignore[typeddict-item]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     else:
         raise DeserializationError("UpdateLinkRoutingRuleRequest.priority required")
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_rtbfabric.types.rule_condition
 
         out["conditions"] = capo_rtbfabric.types.rule_condition.deserialize_json(

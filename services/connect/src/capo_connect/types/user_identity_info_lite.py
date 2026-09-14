@@ -28,8 +28,8 @@ def serialize_json(value: UserIdentityInfoLite) -> dict:
 
 def deserialize_json(data: dict) -> UserIdentityInfoLite:
     out: UserIdentityInfoLite = {}  # type: ignore[typeddict-item]
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
     return out

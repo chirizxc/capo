@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PackageGroupAllowedRepositoryList:
 
     out: PackageGroupAllowedRepositoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeartifact.types.package_group_allowed_repository.deserialize_json(
                 item

@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: GetAliasOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAliasOutput:
     out: GetAliasOutput = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         import capo_payment_cryptography.types.alias
 
         out["alias"] = capo_payment_cryptography.types.alias.deserialize_aws_json_1_0(

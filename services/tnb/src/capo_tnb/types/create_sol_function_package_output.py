@@ -57,15 +57,15 @@ def serialize_json(value: CreateSolFunctionPackageOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSolFunctionPackageOutput:
     out: CreateSolFunctionPackageOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateSolFunctionPackageOutput.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateSolFunctionPackageOutput.arn required")
-    if "onboardingState" in data:
+    if data.get("onboardingState") is not None:
         import capo_tnb.types.onboarding_state
 
         out["onboarding_state"] = capo_tnb.types.onboarding_state.deserialize_json(
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> CreateSolFunctionPackageOutput:
         raise DeserializationError(
             "CreateSolFunctionPackageOutput.onboarding_state required"
         )
-    if "operationalState" in data:
+    if data.get("operationalState") is not None:
         import capo_tnb.types.operational_state
 
         out["operational_state"] = capo_tnb.types.operational_state.deserialize_json(
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> CreateSolFunctionPackageOutput:
         raise DeserializationError(
             "CreateSolFunctionPackageOutput.operational_state required"
         )
-    if "usageState" in data:
+    if data.get("usageState") is not None:
         import capo_tnb.types.usage_state
 
         out["usage_state"] = capo_tnb.types.usage_state.deserialize_json(
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> CreateSolFunctionPackageOutput:
         raise DeserializationError(
             "CreateSolFunctionPackageOutput.usage_state required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_tnb.types.tag_map
 
         out["tags"] = capo_tnb.types.tag_map.deserialize_json(data["tags"])

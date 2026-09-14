@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: Dimension) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Dimension:
     out: Dimension = {}  # type: ignore[typeddict-item]
-    if "dimensionKey" in data:
+    if data.get("dimensionKey") is not None:
         out["dimension_key"] = data["dimensionKey"]
     else:
         raise DeserializationError("Dimension.dimension_key required")
-    if "dimensionValue" in data:
+    if data.get("dimensionValue") is not None:
         out["dimension_value"] = data["dimensionValue"]
     else:
         out["dimension_value"] = 0

@@ -218,8 +218,9 @@ class billingconductorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billingconductor.types.get_billing_group_cost_report_input.GetBillingGroupCostReportInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.get_billing_group_cost_report_input.GetBillingGroupCostReportInput = {
+            "arn": arn
+        }
         if billing_period_range is not None:
             input_["billing_period_range"] = billing_period_range
         if group_by is not None:
@@ -234,6 +235,7 @@ class billingconductorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_billing_group_cost_report(
@@ -312,7 +314,7 @@ class billingconductorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_account_associations_input.ListAccountAssociationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_account_associations_input.ListAccountAssociationsInput = {}
         if billing_period is not None:
             input_["billing_period"] = billing_period
         if filters is not None:
@@ -325,6 +327,7 @@ class billingconductorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_account_associations(
@@ -401,7 +404,7 @@ class billingconductorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_billing_group_cost_reports_input.ListBillingGroupCostReportsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_billing_group_cost_reports_input.ListBillingGroupCostReportsInput = {}
         if billing_period is not None:
             input_["billing_period"] = billing_period
         if max_results is not None:
@@ -416,6 +419,7 @@ class billingconductorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_billing_group_cost_reports(
@@ -484,14 +488,16 @@ class billingconductorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_billingconductor.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -531,15 +537,17 @@ class billingconductorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billingconductor.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_billingconductor.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -579,15 +587,17 @@ class billingconductorClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billingconductor.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_billingconductor.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

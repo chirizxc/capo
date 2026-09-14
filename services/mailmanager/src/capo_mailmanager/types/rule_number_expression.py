@@ -37,13 +37,21 @@ def serialize_aws_json_1_0(value: RuleNumberExpression) -> dict:
             value["operator"]
         )
     )
-    out["Value"] = value["value"]
+    out["Value"] = (
+        "NaN"
+        if value["value"] != value["value"]
+        else "Infinity"
+        if value["value"] == float("inf")
+        else "-Infinity"
+        if value["value"] == float("-inf")
+        else value["value"]
+    )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> RuleNumberExpression:
     out: RuleNumberExpression = {}  # type: ignore[typeddict-item]
-    if "Evaluate" in data:
+    if data.get("Evaluate") is not None:
         import capo_mailmanager.types.rule_number_to_evaluate
 
         out["evaluate"] = (
@@ -53,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleNumberExpression:
         )
     else:
         raise DeserializationError("RuleNumberExpression.evaluate required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_mailmanager.types.rule_number_operator
 
         out["operator"] = (
@@ -63,8 +71,8 @@ def deserialize_aws_json_1_0(data: dict) -> RuleNumberExpression:
         )
     else:
         raise DeserializationError("RuleNumberExpression.operator required")
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         raise DeserializationError("RuleNumberExpression.value required")
     return out

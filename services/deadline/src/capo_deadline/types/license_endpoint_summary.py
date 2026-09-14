@@ -46,16 +46,16 @@ def serialize_json(value: LicenseEndpointSummary) -> dict:
 
 def deserialize_json(data: dict) -> LicenseEndpointSummary:
     out: LicenseEndpointSummary = {}  # type: ignore[typeddict-item]
-    if "licenseEndpointId" in data:
+    if data.get("licenseEndpointId") is not None:
         out["license_endpoint_id"] = data["licenseEndpointId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.license_endpoint_status
 
         out["status"] = capo_deadline.types.license_endpoint_status.deserialize_json(
             data["status"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     return out

@@ -27,8 +27,8 @@ def serialize_json(value: S3BucketOwner) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketOwner:
     out: S3BucketOwner = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

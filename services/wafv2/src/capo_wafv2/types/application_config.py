@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ApplicationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationConfig:
     out: ApplicationConfig = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_wafv2.types.application_attributes
 
         out["attributes"] = (

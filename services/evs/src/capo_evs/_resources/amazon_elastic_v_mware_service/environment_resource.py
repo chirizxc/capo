@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_evs._services._pipeline import (
@@ -151,9 +152,21 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.create_environment_request.CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_evs.types.create_environment_request.CreateEnvironmentRequest = {
+            "vpc_id": vpc_id,
+            "service_access_subnet_id": service_access_subnet_id,
+            "vcf_version": vcf_version,
+            "terms_accepted": terms_accepted,
+            "license_info": license_info,
+            "initial_vlans": initial_vlans,
+            "hosts": hosts,
+            "connectivity_info": connectivity_info,
+            "vcf_hostnames": vcf_hostnames,
+            "site_id": site_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if environment_name is not None:
             input_["environment_name"] = environment_name
         if kms_key_id is not None:
@@ -162,22 +175,13 @@ class EnvironmentResource:
             input_["tags"] = tags
         if service_access_security_groups is not None:
             input_["service_access_security_groups"] = service_access_security_groups
-        input_["vpc_id"] = vpc_id
-        input_["service_access_subnet_id"] = service_access_subnet_id
-        input_["vcf_version"] = vcf_version
-        input_["terms_accepted"] = terms_accepted
-        input_["license_info"] = license_info
-        input_["initial_vlans"] = initial_vlans
-        input_["hosts"] = hosts
-        input_["connectivity_info"] = connectivity_info
-        input_["vcf_hostnames"] = vcf_hostnames
-        input_["site_id"] = site_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -212,14 +216,16 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.get_environment_request.GetEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_evs.types.get_environment_request.GetEnvironmentRequest = {
+            "environment_id": environment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -256,16 +262,19 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.delete_environment_request.DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
+        input_: capo_evs.types.delete_environment_request.DeleteEnvironmentRequest = {
+            "environment_id": environment_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -305,7 +314,7 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.list_environments_request.ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_evs.types.list_environments_request.ListEnvironmentsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -318,6 +327,7 @@ class EnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_eip_to_vlan(
@@ -359,18 +369,21 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.associate_eip_to_vlan_request.AssociateEipToVlanRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["vlan_name"] = vlan_name
-        input_["allocation_id"] = allocation_id
+        input_: capo_evs.types.associate_eip_to_vlan_request.AssociateEipToVlanRequest = {
+            "environment_id": environment_id,
+            "vlan_name": vlan_name,
+            "allocation_id": allocation_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_entitlement(
@@ -414,19 +427,22 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.create_entitlement_request.CreateEntitlementRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["connector_id"] = connector_id
-        input_["entitlement_type"] = entitlement_type
-        input_["vm_ids"] = vm_ids
+        input_: capo_evs.types.create_entitlement_request.CreateEntitlementRequest = {
+            "environment_id": environment_id,
+            "connector_id": connector_id,
+            "entitlement_type": entitlement_type,
+            "vm_ids": vm_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_environment_connector(
@@ -470,19 +486,22 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.create_environment_connector_request.CreateEnvironmentConnectorRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["type"] = type
-        input_["appliance_fqdn"] = appliance_fqdn
-        input_["secret_identifier"] = secret_identifier
+        input_: capo_evs.types.create_environment_connector_request.CreateEnvironmentConnectorRequest = {
+            "environment_id": environment_id,
+            "type": type,
+            "appliance_fqdn": appliance_fqdn,
+            "secret_identifier": secret_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_environment_host(
@@ -525,11 +544,13 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.create_environment_host_request.CreateEnvironmentHostRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["host"] = host
+        input_: capo_evs.types.create_environment_host_request.CreateEnvironmentHostRequest = {
+            "environment_id": environment_id,
+            "host": host,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if esx_version is not None:
             input_["esx_version"] = esx_version
 
@@ -538,6 +559,7 @@ class EnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_entitlement(
@@ -581,19 +603,22 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.delete_entitlement_request.DeleteEntitlementRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["connector_id"] = connector_id
-        input_["entitlement_type"] = entitlement_type
-        input_["vm_ids"] = vm_ids
+        input_: capo_evs.types.delete_entitlement_request.DeleteEntitlementRequest = {
+            "environment_id": environment_id,
+            "connector_id": connector_id,
+            "entitlement_type": entitlement_type,
+            "vm_ids": vm_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_environment_connector(
@@ -633,17 +658,20 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.delete_environment_connector_request.DeleteEnvironmentConnectorRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["connector_id"] = connector_id
+        input_: capo_evs.types.delete_environment_connector_request.DeleteEnvironmentConnectorRequest = {
+            "environment_id": environment_id,
+            "connector_id": connector_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_environment_host(
@@ -684,17 +712,20 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.delete_environment_host_request.DeleteEnvironmentHostRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["host_name"] = host_name
+        input_: capo_evs.types.delete_environment_host_request.DeleteEnvironmentHostRequest = {
+            "environment_id": environment_id,
+            "host_name": host_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_eip_from_vlan(
@@ -736,18 +767,21 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.disassociate_eip_from_vlan_request.DisassociateEipFromVlanRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["vlan_name"] = vlan_name
-        input_["association_id"] = association_id
+        input_: capo_evs.types.disassociate_eip_from_vlan_request.DisassociateEipFromVlanRequest = {
+            "environment_id": environment_id,
+            "vlan_name": vlan_name,
+            "association_id": association_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_depot_url(
@@ -785,8 +819,9 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.get_depot_url_request.GetDepotUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_evs.types.get_depot_url_request.GetDepotUrlRequest = {
+            "environment_id": environment_id
+        }
         if rotate is not None:
             input_["rotate"] = rotate
 
@@ -795,6 +830,7 @@ class EnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_environment_connectors(
@@ -833,18 +869,20 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.list_environment_connectors_request.ListEnvironmentConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_evs.types.list_environment_connectors_request.ListEnvironmentConnectorsRequest = {
+            "environment_id": environment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["environment_id"] = environment_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_environment_hosts(
@@ -883,18 +921,20 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.list_environment_hosts_request.ListEnvironmentHostsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_evs.types.list_environment_hosts_request.ListEnvironmentHostsRequest = {
+            "environment_id": environment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["environment_id"] = environment_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_environment_vlans(
@@ -933,18 +973,20 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.list_environment_vlans_request.ListEnvironmentVlansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_evs.types.list_environment_vlans_request.ListEnvironmentVlansRequest = {
+            "environment_id": environment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["environment_id"] = environment_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_vm_entitlements(
@@ -987,20 +1029,22 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.list_vm_entitlements_request.ListVmEntitlementsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_evs.types.list_vm_entitlements_request.ListVmEntitlementsRequest = {
+            "environment_id": environment_id,
+            "connector_id": connector_id,
+            "entitlement_type": entitlement_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["environment_id"] = environment_id
-        input_["connector_id"] = connector_id
-        input_["entitlement_type"] = entitlement_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_environment_connector(
@@ -1046,11 +1090,13 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.update_environment_connector_request.UpdateEnvironmentConnectorRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["connector_id"] = connector_id
+        input_: capo_evs.types.update_environment_connector_request.UpdateEnvironmentConnectorRequest = {
+            "environment_id": environment_id,
+            "connector_id": connector_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if appliance_fqdn is not None:
             input_["appliance_fqdn"] = appliance_fqdn
         if secret_identifier is not None:
@@ -1061,6 +1107,7 @@ class EnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1132,9 +1179,21 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.create_environment_request.CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_evs.types.create_environment_request.CreateEnvironmentRequest = {
+            "vpc_id": vpc_id,
+            "service_access_subnet_id": service_access_subnet_id,
+            "vcf_version": vcf_version,
+            "terms_accepted": terms_accepted,
+            "license_info": license_info,
+            "initial_vlans": initial_vlans,
+            "hosts": hosts,
+            "connectivity_info": connectivity_info,
+            "vcf_hostnames": vcf_hostnames,
+            "site_id": site_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if environment_name is not None:
             input_["environment_name"] = environment_name
         if kms_key_id is not None:
@@ -1143,22 +1202,13 @@ class AsyncEnvironmentResource:
             input_["tags"] = tags
         if service_access_security_groups is not None:
             input_["service_access_security_groups"] = service_access_security_groups
-        input_["vpc_id"] = vpc_id
-        input_["service_access_subnet_id"] = service_access_subnet_id
-        input_["vcf_version"] = vcf_version
-        input_["terms_accepted"] = terms_accepted
-        input_["license_info"] = license_info
-        input_["initial_vlans"] = initial_vlans
-        input_["hosts"] = hosts
-        input_["connectivity_info"] = connectivity_info
-        input_["vcf_hostnames"] = vcf_hostnames
-        input_["site_id"] = site_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1194,14 +1244,16 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.get_environment_request.GetEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_evs.types.get_environment_request.GetEnvironmentRequest = {
+            "environment_id": environment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1239,16 +1291,19 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.delete_environment_request.DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
+        input_: capo_evs.types.delete_environment_request.DeleteEnvironmentRequest = {
+            "environment_id": environment_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1289,7 +1344,7 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.list_environments_request.ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_evs.types.list_environments_request.ListEnvironmentsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1302,6 +1357,7 @@ class AsyncEnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_eip_to_vlan(
@@ -1344,18 +1400,21 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.associate_eip_to_vlan_request.AssociateEipToVlanRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["vlan_name"] = vlan_name
-        input_["allocation_id"] = allocation_id
+        input_: capo_evs.types.associate_eip_to_vlan_request.AssociateEipToVlanRequest = {
+            "environment_id": environment_id,
+            "vlan_name": vlan_name,
+            "allocation_id": allocation_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_entitlement(
@@ -1400,19 +1459,22 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.create_entitlement_request.CreateEntitlementRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["connector_id"] = connector_id
-        input_["entitlement_type"] = entitlement_type
-        input_["vm_ids"] = vm_ids
+        input_: capo_evs.types.create_entitlement_request.CreateEntitlementRequest = {
+            "environment_id": environment_id,
+            "connector_id": connector_id,
+            "entitlement_type": entitlement_type,
+            "vm_ids": vm_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_environment_connector(
@@ -1457,19 +1519,22 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.create_environment_connector_request.CreateEnvironmentConnectorRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["type"] = type
-        input_["appliance_fqdn"] = appliance_fqdn
-        input_["secret_identifier"] = secret_identifier
+        input_: capo_evs.types.create_environment_connector_request.CreateEnvironmentConnectorRequest = {
+            "environment_id": environment_id,
+            "type": type,
+            "appliance_fqdn": appliance_fqdn,
+            "secret_identifier": secret_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_environment_host(
@@ -1513,11 +1578,13 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.create_environment_host_request.CreateEnvironmentHostRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["host"] = host
+        input_: capo_evs.types.create_environment_host_request.CreateEnvironmentHostRequest = {
+            "environment_id": environment_id,
+            "host": host,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if esx_version is not None:
             input_["esx_version"] = esx_version
 
@@ -1526,6 +1593,7 @@ class AsyncEnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_entitlement(
@@ -1570,19 +1638,22 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.delete_entitlement_request.DeleteEntitlementRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["connector_id"] = connector_id
-        input_["entitlement_type"] = entitlement_type
-        input_["vm_ids"] = vm_ids
+        input_: capo_evs.types.delete_entitlement_request.DeleteEntitlementRequest = {
+            "environment_id": environment_id,
+            "connector_id": connector_id,
+            "entitlement_type": entitlement_type,
+            "vm_ids": vm_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_environment_connector(
@@ -1623,17 +1694,20 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.delete_environment_connector_request.DeleteEnvironmentConnectorRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["connector_id"] = connector_id
+        input_: capo_evs.types.delete_environment_connector_request.DeleteEnvironmentConnectorRequest = {
+            "environment_id": environment_id,
+            "connector_id": connector_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_environment_host(
@@ -1675,17 +1749,20 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.delete_environment_host_request.DeleteEnvironmentHostRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["host_name"] = host_name
+        input_: capo_evs.types.delete_environment_host_request.DeleteEnvironmentHostRequest = {
+            "environment_id": environment_id,
+            "host_name": host_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_eip_from_vlan(
@@ -1728,18 +1805,21 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.disassociate_eip_from_vlan_request.DisassociateEipFromVlanRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["vlan_name"] = vlan_name
-        input_["association_id"] = association_id
+        input_: capo_evs.types.disassociate_eip_from_vlan_request.DisassociateEipFromVlanRequest = {
+            "environment_id": environment_id,
+            "vlan_name": vlan_name,
+            "association_id": association_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_depot_url(
@@ -1778,8 +1858,9 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.get_depot_url_request.GetDepotUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_evs.types.get_depot_url_request.GetDepotUrlRequest = {
+            "environment_id": environment_id
+        }
         if rotate is not None:
             input_["rotate"] = rotate
 
@@ -1788,6 +1869,7 @@ class AsyncEnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_environment_connectors(
@@ -1827,18 +1909,20 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.list_environment_connectors_request.ListEnvironmentConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_evs.types.list_environment_connectors_request.ListEnvironmentConnectorsRequest = {
+            "environment_id": environment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["environment_id"] = environment_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_environment_hosts(
@@ -1878,18 +1962,20 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.list_environment_hosts_request.ListEnvironmentHostsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_evs.types.list_environment_hosts_request.ListEnvironmentHostsRequest = {
+            "environment_id": environment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["environment_id"] = environment_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_environment_vlans(
@@ -1929,18 +2015,20 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.list_environment_vlans_request.ListEnvironmentVlansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_evs.types.list_environment_vlans_request.ListEnvironmentVlansRequest = {
+            "environment_id": environment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["environment_id"] = environment_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_vm_entitlements(
@@ -1984,20 +2072,22 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.list_vm_entitlements_request.ListVmEntitlementsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_evs.types.list_vm_entitlements_request.ListVmEntitlementsRequest = {
+            "environment_id": environment_id,
+            "connector_id": connector_id,
+            "entitlement_type": entitlement_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["environment_id"] = environment_id
-        input_["connector_id"] = connector_id
-        input_["entitlement_type"] = entitlement_type
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_environment_connector(
@@ -2044,11 +2134,13 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_evs.types.update_environment_connector_request.UpdateEnvironmentConnectorRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["environment_id"] = environment_id
-        input_["connector_id"] = connector_id
+        input_: capo_evs.types.update_environment_connector_request.UpdateEnvironmentConnectorRequest = {
+            "environment_id": environment_id,
+            "connector_id": connector_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if appliance_fqdn is not None:
             input_["appliance_fqdn"] = appliance_fqdn
         if secret_identifier is not None:
@@ -2059,4 +2151,5 @@ class AsyncEnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

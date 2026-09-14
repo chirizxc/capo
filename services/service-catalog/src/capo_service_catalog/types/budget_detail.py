@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: BudgetDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BudgetDetail:
     out: BudgetDetail = {}  # type: ignore[typeddict-item]
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
     return out

@@ -28,13 +28,13 @@ def serialize_json(value: DeleteLicenseServerEndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteLicenseServerEndpointRequest:
     out: DeleteLicenseServerEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseServerEndpointArn" in data:
+    if data.get("LicenseServerEndpointArn") is not None:
         out["license_server_endpoint_arn"] = data["LicenseServerEndpointArn"]
     else:
         raise DeserializationError(
             "DeleteLicenseServerEndpointRequest.license_server_endpoint_arn required"
         )
-    if "ServerType" in data:
+    if data.get("ServerType") is not None:
         out["server_type"] = data["ServerType"]
     else:
         raise DeserializationError(

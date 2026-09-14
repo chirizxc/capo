@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: PasswordData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PasswordData:
     out: PasswordData = {}  # type: ignore[typeddict-item]
-    if "ciphertext" in data:
+    if data.get("ciphertext") is not None:
         out["ciphertext"] = data["ciphertext"]
-    if "keyPairName" in data:
+    if data.get("keyPairName") is not None:
         out["key_pair_name"] = data["keyPairName"]
     return out

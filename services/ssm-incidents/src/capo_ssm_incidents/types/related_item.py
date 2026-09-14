@@ -37,7 +37,7 @@ def serialize_json(value: RelatedItem) -> dict:
 
 def deserialize_json(data: dict) -> RelatedItem:
     out: RelatedItem = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         import capo_ssm_incidents.types.item_identifier
 
         out["identifier"] = capo_ssm_incidents.types.item_identifier.deserialize_json(
@@ -45,8 +45,8 @@ def deserialize_json(data: dict) -> RelatedItem:
         )
     else:
         raise DeserializationError("RelatedItem.identifier required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "generatedId" in data:
+    if data.get("generatedId") is not None:
         out["generated_id"] = data["generatedId"]
     return out

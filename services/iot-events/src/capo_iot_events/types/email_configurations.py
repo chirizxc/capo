@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EmailConfigurations:
 
     out: EmailConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_events.types.email_configuration.deserialize_json(item))
     return out

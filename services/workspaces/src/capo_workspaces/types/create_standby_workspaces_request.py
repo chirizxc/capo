@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: CreateStandbyWorkspacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStandbyWorkspacesRequest:
     out: CreateStandbyWorkspacesRequest = {}  # type: ignore[typeddict-item]
-    if "PrimaryRegion" in data:
+    if data.get("PrimaryRegion") is not None:
         out["primary_region"] = data["PrimaryRegion"]
     else:
         raise DeserializationError(
             "CreateStandbyWorkspacesRequest.primary_region required"
         )
-    if "StandbyWorkspaces" in data:
+    if data.get("StandbyWorkspaces") is not None:
         import capo_workspaces.types.standby_workspaces_list
 
         out["standby_workspaces"] = (

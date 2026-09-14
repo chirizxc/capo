@@ -36,12 +36,12 @@ def serialize_json(value: LoginAttribute) -> dict:
 
 def deserialize_json(data: dict) -> LoginAttribute:
     out: LoginAttribute = {}  # type: ignore[typeddict-item]
-    if "user" in data:
+    if data.get("user") is not None:
         out["user"] = data["user"]
-    if "application" in data:
+    if data.get("application") is not None:
         out["application"] = data["application"]
-    if "failedLoginAttempts" in data:
+    if data.get("failedLoginAttempts") is not None:
         out["failed_login_attempts"] = data["failedLoginAttempts"]
-    if "successfulLoginAttempts" in data:
+    if data.get("successfulLoginAttempts") is not None:
         out["successful_login_attempts"] = data["successfulLoginAttempts"]
     return out

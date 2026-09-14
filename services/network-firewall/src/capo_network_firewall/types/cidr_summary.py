@@ -42,11 +42,11 @@ def serialize_aws_json_1_0(value: CIDRSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CIDRSummary:
     out: CIDRSummary = {}  # type: ignore[typeddict-item]
-    if "AvailableCIDRCount" in data:
+    if data.get("AvailableCIDRCount") is not None:
         out["available_cidr_count"] = data["AvailableCIDRCount"]
-    if "UtilizedCIDRCount" in data:
+    if data.get("UtilizedCIDRCount") is not None:
         out["utilized_cidr_count"] = data["UtilizedCIDRCount"]
-    if "IPSetReferences" in data:
+    if data.get("IPSetReferences") is not None:
         import capo_network_firewall.types.ip_set_metadata_map
 
         out["ip_set_references"] = (

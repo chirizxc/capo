@@ -61,19 +61,19 @@ def serialize_json(value: AutocompleteFilter) -> dict:
 
 def deserialize_json(data: dict) -> AutocompleteFilter:
     out: AutocompleteFilter = {}  # type: ignore[typeddict-item]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_geo_places.types.bounding_box
 
         out["bounding_box"] = capo_geo_places.types.bounding_box.deserialize_json(
             data["BoundingBox"]
         )
-    if "Circle" in data:
+    if data.get("Circle") is not None:
         import capo_geo_places.types.filter_circle
 
         out["circle"] = capo_geo_places.types.filter_circle.deserialize_json(
             data["Circle"]
         )
-    if "IncludeCountries" in data:
+    if data.get("IncludeCountries") is not None:
         import capo_geo_places.types.country_code_list
 
         out["include_countries"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> AutocompleteFilter:
                 data["IncludeCountries"]
             )
         )
-    if "IncludePlaceTypes" in data:
+    if data.get("IncludePlaceTypes") is not None:
         import capo_geo_places.types.autocomplete_filter_place_type_list
 
         out["include_place_types"] = (

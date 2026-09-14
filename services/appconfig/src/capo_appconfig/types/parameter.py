@@ -30,13 +30,13 @@ def serialize_json(value: Parameter) -> dict:
 
 def deserialize_json(data: dict) -> Parameter:
     out: Parameter = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Required" in data:
+    if data.get("Required") is not None:
         out["required"] = data["Required"]
     else:
         out["required"] = False
-    if "Dynamic" in data:
+    if data.get("Dynamic") is not None:
         out["dynamic"] = data["Dynamic"]
     else:
         out["dynamic"] = False

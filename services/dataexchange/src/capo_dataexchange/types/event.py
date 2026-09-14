@@ -31,7 +31,7 @@ def serialize_json(value: Event) -> dict:
 
 def deserialize_json(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "RevisionPublished" in data:
+    if data.get("RevisionPublished") is not None:
         import capo_dataexchange.types.revision_published
 
         out["revision_published"] = (

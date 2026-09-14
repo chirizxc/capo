@@ -82,35 +82,35 @@ def serialize_json(value: SearchListingsInput) -> dict:
 
 def deserialize_json(data: dict) -> SearchListingsInput:
     out: SearchListingsInput = {}  # type: ignore[typeddict-item]
-    if "searchText" in data:
+    if data.get("searchText") is not None:
         out["search_text"] = data["searchText"]
-    if "searchIn" in data:
+    if data.get("searchIn") is not None:
         import capo_datazone.types.search_in_list
 
         out["search_in"] = capo_datazone.types.search_in_list.deserialize_json(
             data["searchIn"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_datazone.types.filter_clause
 
         out["filters"] = capo_datazone.types.filter_clause.deserialize_json(
             data["filters"]
         )
-    if "aggregations" in data:
+    if data.get("aggregations") is not None:
         import capo_datazone.types.aggregation_list
 
         out["aggregations"] = capo_datazone.types.aggregation_list.deserialize_json(
             data["aggregations"]
         )
-    if "sort" in data:
+    if data.get("sort") is not None:
         import capo_datazone.types.search_sort
 
         out["sort"] = capo_datazone.types.search_sort.deserialize_json(data["sort"])
-    if "additionalAttributes" in data:
+    if data.get("additionalAttributes") is not None:
         import capo_datazone.types.search_output_additional_attributes
 
         out["additional_attributes"] = (

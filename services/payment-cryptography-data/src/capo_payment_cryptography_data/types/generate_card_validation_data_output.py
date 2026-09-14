@@ -36,17 +36,17 @@ def serialize_json(value: GenerateCardValidationDataOutput) -> dict:
 
 def deserialize_json(data: dict) -> GenerateCardValidationDataOutput:
     out: GenerateCardValidationDataOutput = {}  # type: ignore[typeddict-item]
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
     else:
         raise DeserializationError("GenerateCardValidationDataOutput.key_arn required")
-    if "KeyCheckValue" in data:
+    if data.get("KeyCheckValue") is not None:
         out["key_check_value"] = data["KeyCheckValue"]
     else:
         raise DeserializationError(
             "GenerateCardValidationDataOutput.key_check_value required"
         )
-    if "ValidationData" in data:
+    if data.get("ValidationData") is not None:
         out["validation_data"] = data["ValidationData"]
     else:
         raise DeserializationError(

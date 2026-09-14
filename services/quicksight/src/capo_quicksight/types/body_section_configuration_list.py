@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BodySectionConfigurationList:
 
     out: BodySectionConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.body_section_configuration.deserialize_json(item)
         )

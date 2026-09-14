@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PackageGroupSummaryList:
 
     out: PackageGroupSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeartifact.types.package_group_summary.deserialize_json(item))
     return out

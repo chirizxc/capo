@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: DocumentClassifierOutputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentClassifierOutputDataConfig:
     out: DocumentClassifierOutputDataConfig = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "FlywheelStatsS3Prefix" in data:
+    if data.get("FlywheelStatsS3Prefix") is not None:
         out["flywheel_stats_s3_prefix"] = data["FlywheelStatsS3Prefix"]
     return out

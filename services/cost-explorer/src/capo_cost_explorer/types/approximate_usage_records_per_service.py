@@ -25,5 +25,7 @@ def serialize_aws_json_1_1(
 def deserialize_aws_json_1_1(data: dict) -> ApproximateUsageRecordsPerService:
     out: ApproximateUsageRecordsPerService = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

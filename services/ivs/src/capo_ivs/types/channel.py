@@ -118,45 +118,45 @@ def serialize_json(value: Channel) -> dict:
 
 def deserialize_json(data: dict) -> Channel:
     out: Channel = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "latencyMode" in data:
+    if data.get("latencyMode") is not None:
         out["latency_mode"] = data["latencyMode"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_ivs.types.channel_type
 
         out["type"] = capo_ivs.types.channel_type.deserialize_json(data["type"])
-    if "recordingConfigurationArn" in data:
+    if data.get("recordingConfigurationArn") is not None:
         out["recording_configuration_arn"] = data["recordingConfigurationArn"]
-    if "ingestEndpoint" in data:
+    if data.get("ingestEndpoint") is not None:
         out["ingest_endpoint"] = data["ingestEndpoint"]
-    if "playbackUrl" in data:
+    if data.get("playbackUrl") is not None:
         out["playback_url"] = data["playbackUrl"]
-    if "authorized" in data:
+    if data.get("authorized") is not None:
         out["authorized"] = data["authorized"]
     else:
         out["authorized"] = False
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])
-    if "insecureIngest" in data:
+    if data.get("insecureIngest") is not None:
         out["insecure_ingest"] = data["insecureIngest"]
     else:
         out["insecure_ingest"] = False
-    if "preset" in data:
+    if data.get("preset") is not None:
         import capo_ivs.types.transcode_preset
 
         out["preset"] = capo_ivs.types.transcode_preset.deserialize_json(data["preset"])
-    if "srt" in data:
+    if data.get("srt") is not None:
         import capo_ivs.types.srt
 
         out["srt"] = capo_ivs.types.srt.deserialize_json(data["srt"])
-    if "playbackRestrictionPolicyArn" in data:
+    if data.get("playbackRestrictionPolicyArn") is not None:
         out["playback_restriction_policy_arn"] = data["playbackRestrictionPolicyArn"]
-    if "multitrackInputConfiguration" in data:
+    if data.get("multitrackInputConfiguration") is not None:
         import capo_ivs.types.multitrack_input_configuration
 
         out["multitrack_input_configuration"] = (
@@ -164,8 +164,8 @@ def deserialize_json(data: dict) -> Channel:
                 data["multitrackInputConfiguration"]
             )
         )
-    if "containerFormat" in data:
+    if data.get("containerFormat") is not None:
         out["container_format"] = data["containerFormat"]
-    if "adConfigurationArn" in data:
+    if data.get("adConfigurationArn") is not None:
         out["ad_configuration_arn"] = data["adConfigurationArn"]
     return out

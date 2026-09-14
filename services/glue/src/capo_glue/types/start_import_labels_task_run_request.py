@@ -32,19 +32,19 @@ def serialize_aws_json_1_1(value: StartImportLabelsTaskRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartImportLabelsTaskRunRequest:
     out: StartImportLabelsTaskRunRequest = {}  # type: ignore[typeddict-item]
-    if "TransformId" in data:
+    if data.get("TransformId") is not None:
         out["transform_id"] = data["TransformId"]
     else:
         raise DeserializationError(
             "StartImportLabelsTaskRunRequest.transform_id required"
         )
-    if "InputS3Path" in data:
+    if data.get("InputS3Path") is not None:
         out["input_s3_path"] = data["InputS3Path"]
     else:
         raise DeserializationError(
             "StartImportLabelsTaskRunRequest.input_s3_path required"
         )
-    if "ReplaceAllLabels" in data:
+    if data.get("ReplaceAllLabels") is not None:
         out["replace_all_labels"] = data["ReplaceAllLabels"]
     else:
         out["replace_all_labels"] = False

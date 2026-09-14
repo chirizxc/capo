@@ -32,7 +32,7 @@ def serialize_json(value: BadRequestDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> BadRequestDetails:
-    if "InvalidConfiguration" in data:
+    if data.get("InvalidConfiguration") is not None:
         import capo_appconfig.types.invalid_configuration_detail_list
 
         return {

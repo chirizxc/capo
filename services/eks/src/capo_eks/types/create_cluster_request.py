@@ -189,17 +189,17 @@ def serialize_json(value: CreateClusterRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateClusterRequest:
     out: CreateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateClusterRequest.name required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateClusterRequest.role_arn required")
-    if "resourcesVpcConfig" in data:
+    if data.get("resourcesVpcConfig") is not None:
         import capo_eks.types.vpc_config_request
 
         out["resources_vpc_config"] = (
@@ -209,7 +209,7 @@ def deserialize_json(data: dict) -> CreateClusterRequest:
         )
     else:
         raise DeserializationError("CreateClusterRequest.resources_vpc_config required")
-    if "kubernetesNetworkConfig" in data:
+    if data.get("kubernetesNetworkConfig") is not None:
         import capo_eks.types.kubernetes_network_config_request
 
         out["kubernetes_network_config"] = (
@@ -217,17 +217,17 @@ def deserialize_json(data: dict) -> CreateClusterRequest:
                 data["kubernetesNetworkConfig"]
             )
         )
-    if "logging" in data:
+    if data.get("logging") is not None:
         import capo_eks.types.logging
 
         out["logging"] = capo_eks.types.logging.deserialize_json(data["logging"])
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "encryptionConfig" in data:
+    if data.get("encryptionConfig") is not None:
         import capo_eks.types.encryption_config_list
 
         out["encryption_config"] = (
@@ -235,13 +235,13 @@ def deserialize_json(data: dict) -> CreateClusterRequest:
                 data["encryptionConfig"]
             )
         )
-    if "outpostConfig" in data:
+    if data.get("outpostConfig") is not None:
         import capo_eks.types.outpost_config_request
 
         out["outpost_config"] = capo_eks.types.outpost_config_request.deserialize_json(
             data["outpostConfig"]
         )
-    if "accessConfig" in data:
+    if data.get("accessConfig") is not None:
         import capo_eks.types.create_access_config_request
 
         out["access_config"] = (
@@ -249,15 +249,15 @@ def deserialize_json(data: dict) -> CreateClusterRequest:
                 data["accessConfig"]
             )
         )
-    if "bootstrapSelfManagedAddons" in data:
+    if data.get("bootstrapSelfManagedAddons") is not None:
         out["bootstrap_self_managed_addons"] = data["bootstrapSelfManagedAddons"]
-    if "upgradePolicy" in data:
+    if data.get("upgradePolicy") is not None:
         import capo_eks.types.upgrade_policy_request
 
         out["upgrade_policy"] = capo_eks.types.upgrade_policy_request.deserialize_json(
             data["upgradePolicy"]
         )
-    if "zonalShiftConfig" in data:
+    if data.get("zonalShiftConfig") is not None:
         import capo_eks.types.zonal_shift_config_request
 
         out["zonal_shift_config"] = (
@@ -265,7 +265,7 @@ def deserialize_json(data: dict) -> CreateClusterRequest:
                 data["zonalShiftConfig"]
             )
         )
-    if "remoteNetworkConfig" in data:
+    if data.get("remoteNetworkConfig") is not None:
         import capo_eks.types.remote_network_config_request
 
         out["remote_network_config"] = (
@@ -273,21 +273,21 @@ def deserialize_json(data: dict) -> CreateClusterRequest:
                 data["remoteNetworkConfig"]
             )
         )
-    if "computeConfig" in data:
+    if data.get("computeConfig") is not None:
         import capo_eks.types.compute_config_request
 
         out["compute_config"] = capo_eks.types.compute_config_request.deserialize_json(
             data["computeConfig"]
         )
-    if "storageConfig" in data:
+    if data.get("storageConfig") is not None:
         import capo_eks.types.storage_config_request
 
         out["storage_config"] = capo_eks.types.storage_config_request.deserialize_json(
             data["storageConfig"]
         )
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         out["deletion_protection"] = data["deletionProtection"]
-    if "controlPlaneScalingConfig" in data:
+    if data.get("controlPlaneScalingConfig") is not None:
         import capo_eks.types.control_plane_scaling_config
 
         out["control_plane_scaling_config"] = (

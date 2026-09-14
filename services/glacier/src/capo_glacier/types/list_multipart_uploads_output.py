@@ -32,12 +32,12 @@ def serialize_json(value: ListMultipartUploadsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListMultipartUploadsOutput:
     out: ListMultipartUploadsOutput = {}  # type: ignore[typeddict-item]
-    if "UploadsList" in data:
+    if data.get("UploadsList") is not None:
         import capo_glacier.types.uploads_list
 
         out["uploads_list"] = capo_glacier.types.uploads_list.deserialize_json(
             data["UploadsList"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

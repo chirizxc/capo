@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Comments:
 
     out: Comments = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codecommit.types.comment.deserialize_aws_json_1_1(item))
     return out

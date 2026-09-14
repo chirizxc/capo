@@ -32,9 +32,9 @@ def serialize_json(value: StartDiscovererResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartDiscovererResponse:
     out: StartDiscovererResponse = {}  # type: ignore[typeddict-item]
-    if "DiscovererId" in data:
+    if data.get("DiscovererId") is not None:
         out["discoverer_id"] = data["DiscovererId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_schemas.types.discoverer_state
 
         out["state"] = capo_schemas.types.discoverer_state.deserialize_json(

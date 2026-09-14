@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: CreateRuleGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRuleGroupResponse:
     out: CreateRuleGroupResponse = {}  # type: ignore[typeddict-item]
-    if "RuleGroup" in data:
+    if data.get("RuleGroup") is not None:
         import capo_waf_regional.types.rule_group
 
         out["rule_group"] = capo_waf_regional.types.rule_group.deserialize_aws_json_1_1(
             data["RuleGroup"]
         )
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     return out

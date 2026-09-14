@@ -24,7 +24,7 @@ def serialize_json(value: ListTagsForResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourceRequest:
     out: ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("ListTagsForResourceRequest.resource_arn required")

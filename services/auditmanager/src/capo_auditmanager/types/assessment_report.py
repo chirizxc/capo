@@ -78,21 +78,21 @@ def serialize_json(value: AssessmentReport) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentReport:
     out: AssessmentReport = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "assessmentId" in data:
+    if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
-    if "assessmentName" in data:
+    if data.get("assessmentName") is not None:
         out["assessment_name"] = data["assessmentName"]
-    if "author" in data:
+    if data.get("author") is not None:
         out["author"] = data["author"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_auditmanager.types.assessment_report_status
 
         out["status"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> AssessmentReport:
                 data["status"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_auditmanager.types.timestamp
 
         out["creation_time"] = capo_auditmanager.types.timestamp.deserialize_json(

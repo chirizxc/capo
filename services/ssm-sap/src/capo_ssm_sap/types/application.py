@@ -98,23 +98,23 @@ def serialize_json(value: Application) -> dict:
 
 def deserialize_json(data: dict) -> Application:
     out: Application = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_ssm_sap.types.application_type
 
         out["type"] = capo_ssm_sap.types.application_type.deserialize_json(data["Type"])
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AppRegistryArn" in data:
+    if data.get("AppRegistryArn") is not None:
         out["app_registry_arn"] = data["AppRegistryArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_ssm_sap.types.application_status
 
         out["status"] = capo_ssm_sap.types.application_status.deserialize_json(
             data["Status"]
         )
-    if "DiscoveryStatus" in data:
+    if data.get("DiscoveryStatus") is not None:
         import capo_ssm_sap.types.application_discovery_status
 
         out["discovery_status"] = (
@@ -122,21 +122,21 @@ def deserialize_json(data: dict) -> Application:
                 data["DiscoveryStatus"]
             )
         )
-    if "Components" in data:
+    if data.get("Components") is not None:
         import capo_ssm_sap.types.component_id_list
 
         out["components"] = capo_ssm_sap.types.component_id_list.deserialize_json(
             data["Components"]
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_ssm_sap.types._prelude.timestamp
 
         out["last_updated"] = capo_ssm_sap.types._prelude.timestamp.deserialize_json(
             data["LastUpdated"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "AssociatedApplicationArns" in data:
+    if data.get("AssociatedApplicationArns") is not None:
         import capo_ssm_sap.types.application_arn_list
 
         out["associated_application_arns"] = (

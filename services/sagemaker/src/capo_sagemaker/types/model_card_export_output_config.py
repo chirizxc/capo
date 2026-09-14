@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ModelCardExportOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelCardExportOutputConfig:
     out: ModelCardExportOutputConfig = {}  # type: ignore[typeddict-item]
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
     return out

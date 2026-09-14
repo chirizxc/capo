@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AssetPropertyPath:
 
     out: AssetPropertyPath = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.asset_property_path_segment.deserialize_json(item)
         )

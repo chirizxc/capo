@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.guardduty#GuardDutyAPIService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -395,8 +396,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.accept_administrator_invitation_request.AcceptAdministratorInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.accept_administrator_invitation_request.AcceptAdministratorInvitationRequest = {
+            "detector_id": detector_id
+        }
         if administrator_id is not None:
             input_["administrator_id"] = administrator_id
         if invitation_id is not None:
@@ -407,6 +409,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def accept_invitation(
@@ -445,8 +448,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.accept_invitation_request.AcceptInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.accept_invitation_request.AcceptInvitationRequest = {
+            "detector_id": detector_id
+        }
         if master_id is not None:
             input_["master_id"] = master_id
         if invitation_id is not None:
@@ -457,6 +461,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def archive_findings(
@@ -493,8 +498,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.archive_findings_request.ArchiveFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.archive_findings_request.ArchiveFindingsRequest = {
+            "detector_id": detector_id
+        }
         if finding_ids is not None:
             input_["finding_ids"] = finding_ids
 
@@ -503,6 +509,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_detector(
@@ -553,11 +560,12 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.create_detector_request.CreateDetectorRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.create_detector_request.CreateDetectorRequest = {}
         if enable is not None:
             input_["enable"] = enable
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if finding_publishing_frequency is not None:
             input_["finding_publishing_frequency"] = finding_publishing_frequency
         if data_sources is not None:
@@ -572,6 +580,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_filter(
@@ -624,8 +633,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.create_filter_request.CreateFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.create_filter_request.CreateFilterRequest = {
+            "detector_id": detector_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -636,8 +646,9 @@ class GuardDutyClient:
             input_["rank"] = rank
         if finding_criteria is not None:
             input_["finding_criteria"] = finding_criteria
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -646,6 +657,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_ip_set(
@@ -697,8 +709,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.create_ip_set_request.CreateIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.create_ip_set_request.CreateIPSetRequest = {
+            "detector_id": detector_id
+        }
         if name is not None:
             input_["name"] = name
         if format is not None:
@@ -707,8 +720,9 @@ class GuardDutyClient:
             input_["location"] = location
         if activate is not None:
             input_["activate"] = activate
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if expected_bucket_owner is not None:
@@ -719,6 +733,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_malware_protection_plan(
@@ -767,9 +782,10 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.create_malware_protection_plan_request.CreateMalwareProtectionPlanRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_guardduty.types.create_malware_protection_plan_request.CreateMalwareProtectionPlanRequest = {}
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if role is not None:
             input_["role"] = role
         if protected_resource is not None:
@@ -784,6 +800,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_members(
@@ -822,8 +839,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.create_members_request.CreateMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.create_members_request.CreateMembersRequest = {
+            "detector_id": detector_id
+        }
         if account_details is not None:
             input_["account_details"] = account_details
 
@@ -832,6 +850,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_publishing_destination(
@@ -878,14 +897,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.create_publishing_destination_request.CreatePublishingDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.create_publishing_destination_request.CreatePublishingDestinationRequest = {
+            "detector_id": detector_id
+        }
         if destination_type is not None:
             input_["destination_type"] = destination_type
         if destination_properties is not None:
             input_["destination_properties"] = destination_properties
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -894,6 +915,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_sample_findings(
@@ -932,8 +954,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.create_sample_findings_request.CreateSampleFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.create_sample_findings_request.CreateSampleFindingsRequest = {
+            "detector_id": detector_id
+        }
         if finding_types is not None:
             input_["finding_types"] = finding_types
 
@@ -942,6 +965,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_threat_entity_set(
@@ -994,8 +1018,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.create_threat_entity_set_request.CreateThreatEntitySetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.create_threat_entity_set_request.CreateThreatEntitySetRequest = {
+            "detector_id": detector_id
+        }
         if name is not None:
             input_["name"] = name
         if format is not None:
@@ -1006,8 +1031,9 @@ class GuardDutyClient:
             input_["expected_bucket_owner"] = expected_bucket_owner
         if activate is not None:
             input_["activate"] = activate
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1016,6 +1042,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_threat_intel_set(
@@ -1069,8 +1096,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.create_threat_intel_set_request.CreateThreatIntelSetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.create_threat_intel_set_request.CreateThreatIntelSetRequest = {
+            "detector_id": detector_id
+        }
         if name is not None:
             input_["name"] = name
         if format is not None:
@@ -1079,8 +1107,9 @@ class GuardDutyClient:
             input_["location"] = location
         if activate is not None:
             input_["activate"] = activate
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if expected_bucket_owner is not None:
@@ -1091,6 +1120,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_trusted_entity_set(
@@ -1143,8 +1173,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.create_trusted_entity_set_request.CreateTrustedEntitySetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.create_trusted_entity_set_request.CreateTrustedEntitySetRequest = {
+            "detector_id": detector_id
+        }
         if name is not None:
             input_["name"] = name
         if format is not None:
@@ -1155,8 +1186,9 @@ class GuardDutyClient:
             input_["expected_bucket_owner"] = expected_bucket_owner
         if activate is not None:
             input_["activate"] = activate
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1165,6 +1197,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def decline_invitations(
@@ -1199,7 +1232,7 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.decline_invitations_request.DeclineInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.decline_invitations_request.DeclineInvitationsRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -1208,6 +1241,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_detector(
@@ -1242,14 +1276,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.delete_detector_request.DeleteDetectorRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.delete_detector_request.DeleteDetectorRequest = {
+            "detector_id": detector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_filter(
@@ -1286,15 +1322,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.delete_filter_request.DeleteFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["filter_name"] = filter_name
+        input_: capo_guardduty.types.delete_filter_request.DeleteFilterRequest = {
+            "detector_id": detector_id,
+            "filter_name": filter_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_invitations(
@@ -1329,7 +1367,7 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.delete_invitations_request.DeleteInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.delete_invitations_request.DeleteInvitationsRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -1338,6 +1376,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_ip_set(
@@ -1374,15 +1413,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.delete_ip_set_request.DeleteIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["ip_set_id"] = ip_set_id
+        input_: capo_guardduty.types.delete_ip_set_request.DeleteIPSetRequest = {
+            "detector_id": detector_id,
+            "ip_set_id": ip_set_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_malware_protection_plan(
@@ -1417,14 +1458,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.delete_malware_protection_plan_request.DeleteMalwareProtectionPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["malware_protection_plan_id"] = malware_protection_plan_id
+        input_: capo_guardduty.types.delete_malware_protection_plan_request.DeleteMalwareProtectionPlanRequest = {
+            "malware_protection_plan_id": malware_protection_plan_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_members(
@@ -1461,8 +1504,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.delete_members_request.DeleteMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.delete_members_request.DeleteMembersRequest = {
+            "detector_id": detector_id
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -1471,6 +1515,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_publishing_destination(
@@ -1507,15 +1552,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.delete_publishing_destination_request.DeletePublishingDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["destination_id"] = destination_id
+        input_: capo_guardduty.types.delete_publishing_destination_request.DeletePublishingDestinationRequest = {
+            "detector_id": detector_id,
+            "destination_id": destination_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_threat_entity_set(
@@ -1552,15 +1599,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.delete_threat_entity_set_request.DeleteThreatEntitySetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["threat_entity_set_id"] = threat_entity_set_id
+        input_: capo_guardduty.types.delete_threat_entity_set_request.DeleteThreatEntitySetRequest = {
+            "detector_id": detector_id,
+            "threat_entity_set_id": threat_entity_set_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_threat_intel_set(
@@ -1597,15 +1646,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.delete_threat_intel_set_request.DeleteThreatIntelSetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["threat_intel_set_id"] = threat_intel_set_id
+        input_: capo_guardduty.types.delete_threat_intel_set_request.DeleteThreatIntelSetRequest = {
+            "detector_id": detector_id,
+            "threat_intel_set_id": threat_intel_set_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_trusted_entity_set(
@@ -1642,15 +1693,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.delete_trusted_entity_set_request.DeleteTrustedEntitySetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["trusted_entity_set_id"] = trusted_entity_set_id
+        input_: capo_guardduty.types.delete_trusted_entity_set_request.DeleteTrustedEntitySetRequest = {
+            "detector_id": detector_id,
+            "trusted_entity_set_id": trusted_entity_set_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_malware_scans(
@@ -1699,8 +1752,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.describe_malware_scans_request.DescribeMalwareScansRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.describe_malware_scans_request.DescribeMalwareScansRequest = {
+            "detector_id": detector_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1715,6 +1769,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_malware_scans(
@@ -1786,8 +1841,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.describe_organization_configuration_request.DescribeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.describe_organization_configuration_request.DescribeOrganizationConfigurationRequest = {
+            "detector_id": detector_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1798,7 +1854,29 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_organization_configuration(
+        self,
+        detector_id: "capo_guardduty.types.detector_id.DetectorId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        max_results: Optional["capo_guardduty.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_guardduty.types.string.String"] = None,
+    ) -> "Iterator[capo_guardduty.types.describe_organization_configuration_response.DescribeOrganizationConfigurationResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_organization_configuration(
+                detector_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_publishing_destination(
         self,
@@ -1834,15 +1912,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.describe_publishing_destination_request.DescribePublishingDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["destination_id"] = destination_id
+        input_: capo_guardduty.types.describe_publishing_destination_request.DescribePublishingDestinationRequest = {
+            "detector_id": detector_id,
+            "destination_id": destination_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_organization_admin_account(
@@ -1877,7 +1957,7 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.disable_organization_admin_account_request.DisableOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.disable_organization_admin_account_request.DisableOrganizationAdminAccountRequest = {}
         if admin_account_id is not None:
             input_["admin_account_id"] = admin_account_id
 
@@ -1886,6 +1966,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_from_administrator_account(
@@ -1920,14 +2001,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.disassociate_from_administrator_account_request.DisassociateFromAdministratorAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.disassociate_from_administrator_account_request.DisassociateFromAdministratorAccountRequest = {
+            "detector_id": detector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_from_master_account(
@@ -1962,14 +2045,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.disassociate_from_master_account_request.DisassociateFromMasterAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.disassociate_from_master_account_request.DisassociateFromMasterAccountRequest = {
+            "detector_id": detector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_members(
@@ -2008,8 +2093,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.disassociate_members_request.DisassociateMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.disassociate_members_request.DisassociateMembersRequest = {
+            "detector_id": detector_id
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -2018,6 +2104,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_organization_admin_account(
@@ -2052,7 +2139,7 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.enable_organization_admin_account_request.EnableOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.enable_organization_admin_account_request.EnableOrganizationAdminAccountRequest = {}
         if admin_account_id is not None:
             input_["admin_account_id"] = admin_account_id
 
@@ -2061,6 +2148,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_administrator_account(
@@ -2095,14 +2183,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_administrator_account_request.GetAdministratorAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.get_administrator_account_request.GetAdministratorAccountRequest = {
+            "detector_id": detector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_coverage_statistics(
@@ -2145,8 +2235,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_coverage_statistics_request.GetCoverageStatisticsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.get_coverage_statistics_request.GetCoverageStatisticsRequest = {
+            "detector_id": detector_id
+        }
         if filter_criteria is not None:
             input_["filter_criteria"] = filter_criteria
         if statistics_type is not None:
@@ -2157,6 +2248,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_detector(
@@ -2191,14 +2283,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_detector_request.GetDetectorRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.get_detector_request.GetDetectorRequest = {
+            "detector_id": detector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_filter(
@@ -2235,15 +2329,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_filter_request.GetFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["filter_name"] = filter_name
+        input_: capo_guardduty.types.get_filter_request.GetFilterRequest = {
+            "detector_id": detector_id,
+            "filter_name": filter_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_findings(
@@ -2284,8 +2380,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_findings_request.GetFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.get_findings_request.GetFindingsRequest = {
+            "detector_id": detector_id
+        }
         if finding_ids is not None:
             input_["finding_ids"] = finding_ids
         if sort_criteria is not None:
@@ -2296,6 +2393,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_findings_statistics(
@@ -2346,8 +2444,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_findings_statistics_request.GetFindingsStatisticsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.get_findings_statistics_request.GetFindingsStatisticsRequest = {
+            "detector_id": detector_id
+        }
         if finding_statistic_types is not None:
             input_["finding_statistic_types"] = finding_statistic_types
         if finding_criteria is not None:
@@ -2364,6 +2463,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_invitations_count(
@@ -2392,13 +2492,14 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_invitations_count_request.GetInvitationsCountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.get_invitations_count_request.GetInvitationsCountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ip_set(
@@ -2435,15 +2536,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_ip_set_request.GetIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["ip_set_id"] = ip_set_id
+        input_: capo_guardduty.types.get_ip_set_request.GetIPSetRequest = {
+            "detector_id": detector_id,
+            "ip_set_id": ip_set_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_malware_protection_plan(
@@ -2480,14 +2583,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_malware_protection_plan_request.GetMalwareProtectionPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["malware_protection_plan_id"] = malware_protection_plan_id
+        input_: capo_guardduty.types.get_malware_protection_plan_request.GetMalwareProtectionPlanRequest = {
+            "malware_protection_plan_id": malware_protection_plan_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_malware_scan(
@@ -2523,14 +2628,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_malware_scan_request.GetMalwareScanRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_id"] = scan_id
+        input_: capo_guardduty.types.get_malware_scan_request.GetMalwareScanRequest = {
+            "scan_id": scan_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_malware_scan_settings(
@@ -2565,14 +2672,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_malware_scan_settings_request.GetMalwareScanSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.get_malware_scan_settings_request.GetMalwareScanSettingsRequest = {
+            "detector_id": detector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_master_account(
@@ -2607,14 +2716,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_master_account_request.GetMasterAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.get_master_account_request.GetMasterAccountRequest = {
+            "detector_id": detector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_member_detectors(
@@ -2653,8 +2764,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_member_detectors_request.GetMemberDetectorsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.get_member_detectors_request.GetMemberDetectorsRequest = {
+            "detector_id": detector_id
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -2663,6 +2775,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_members(
@@ -2699,8 +2812,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_members_request.GetMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.get_members_request.GetMembersRequest = {
+            "detector_id": detector_id
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -2709,6 +2823,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_organization_statistics(
@@ -2743,6 +2858,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_remaining_free_trial_days(
@@ -2779,15 +2895,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_remaining_free_trial_days_request.GetRemainingFreeTrialDaysRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["account_ids"] = account_ids
+        input_: capo_guardduty.types.get_remaining_free_trial_days_request.GetRemainingFreeTrialDaysRequest = {
+            "detector_id": detector_id,
+            "account_ids": account_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_threat_entity_set(
@@ -2826,15 +2944,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_threat_entity_set_request.GetThreatEntitySetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["threat_entity_set_id"] = threat_entity_set_id
+        input_: capo_guardduty.types.get_threat_entity_set_request.GetThreatEntitySetRequest = {
+            "detector_id": detector_id,
+            "threat_entity_set_id": threat_entity_set_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_threat_intel_set(
@@ -2871,15 +2991,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_threat_intel_set_request.GetThreatIntelSetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["threat_intel_set_id"] = threat_intel_set_id
+        input_: capo_guardduty.types.get_threat_intel_set_request.GetThreatIntelSetRequest = {
+            "detector_id": detector_id,
+            "threat_intel_set_id": threat_intel_set_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_trusted_entity_set(
@@ -2916,15 +3038,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_trusted_entity_set_request.GetTrustedEntitySetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["trusted_entity_set_id"] = trusted_entity_set_id
+        input_: capo_guardduty.types.get_trusted_entity_set_request.GetTrustedEntitySetRequest = {
+            "detector_id": detector_id,
+            "trusted_entity_set_id": trusted_entity_set_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_usage_statistics(
@@ -2975,8 +3099,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.get_usage_statistics_request.GetUsageStatisticsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.get_usage_statistics_request.GetUsageStatisticsRequest = {
+            "detector_id": detector_id
+        }
         if usage_statistic_type is not None:
             input_["usage_statistic_type"] = usage_statistic_type
         if usage_criteria is not None:
@@ -2993,7 +3118,39 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_usage_statistics(
+        self,
+        detector_id: "capo_guardduty.types.detector_id.DetectorId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        usage_statistic_type: Optional[
+            "capo_guardduty.types.usage_statistic_type.UsageStatisticType"
+        ] = None,
+        usage_criteria: Optional[
+            "capo_guardduty.types.usage_criteria.UsageCriteria"
+        ] = None,
+        unit: Optional["capo_guardduty.types.string.String"] = None,
+        max_results: Optional["capo_guardduty.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_guardduty.types.string.String"] = None,
+    ) -> "Iterator[capo_guardduty.types.get_usage_statistics_response.GetUsageStatisticsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_usage_statistics(
+                detector_id,
+                config_overrides=config_overrides,
+                usage_statistic_type=usage_statistic_type,
+                usage_criteria=usage_criteria,
+                unit=unit,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def invite_members(
         self,
@@ -3035,8 +3192,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.invite_members_request.InviteMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.invite_members_request.InviteMembersRequest = {
+            "detector_id": detector_id
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if disable_email_notification is not None:
@@ -3049,6 +3207,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_coverage(
@@ -3095,8 +3254,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_coverage_request.ListCoverageRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.list_coverage_request.ListCoverageRequest = {
+            "detector_id": detector_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3111,6 +3271,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_coverage(
@@ -3178,7 +3339,7 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_detectors_request.ListDetectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.list_detectors_request.ListDetectorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3189,6 +3350,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_detectors(
@@ -3248,8 +3410,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_filters_request.ListFiltersRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.list_filters_request.ListFiltersRequest = {
+            "detector_id": detector_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3260,6 +3423,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_filters(
@@ -3329,8 +3493,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_findings_request.ListFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.list_findings_request.ListFindingsRequest = {
+            "detector_id": detector_id
+        }
         if finding_criteria is not None:
             input_["finding_criteria"] = finding_criteria
         if sort_criteria is not None:
@@ -3345,6 +3510,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_findings(
@@ -3412,7 +3578,7 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_invitations_request.ListInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.list_invitations_request.ListInvitationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3423,6 +3589,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_invitations(
@@ -3482,8 +3649,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_ip_sets_request.ListIPSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.list_ip_sets_request.ListIPSetsRequest = {
+            "detector_id": detector_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3494,6 +3662,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_ip_sets(
@@ -3552,7 +3721,7 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_malware_protection_plans_request.ListMalwareProtectionPlansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.list_malware_protection_plans_request.ListMalwareProtectionPlansRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3561,6 +3730,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_malware_scans(
@@ -3605,7 +3775,7 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_malware_scans_request.ListMalwareScansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.list_malware_scans_request.ListMalwareScansRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3620,6 +3790,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_malware_scans(
@@ -3689,8 +3860,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_members_request.ListMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.list_members_request.ListMembersRequest = {
+            "detector_id": detector_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3703,6 +3875,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_members(
@@ -3764,7 +3937,7 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_organization_admin_accounts_request.ListOrganizationAdminAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.list_organization_admin_accounts_request.ListOrganizationAdminAccountsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3775,6 +3948,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_organization_admin_accounts(
@@ -3834,8 +4008,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_publishing_destinations_request.ListPublishingDestinationsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.list_publishing_destinations_request.ListPublishingDestinationsRequest = {
+            "detector_id": detector_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3846,7 +4021,29 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_publishing_destinations(
+        self,
+        detector_id: "capo_guardduty.types.detector_id.DetectorId",
+        *,
+        config_overrides: Optional[GuardDutyClientConfig] = None,
+        max_results: Optional["capo_guardduty.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_guardduty.types.string.String"] = None,
+    ) -> "Iterator[capo_guardduty.types.list_publishing_destinations_response.ListPublishingDestinationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_publishing_destinations(
+                detector_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -3881,14 +4078,16 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_guardduty.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_threat_entity_sets(
@@ -3927,8 +4126,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_threat_entity_sets_request.ListThreatEntitySetsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.list_threat_entity_sets_request.ListThreatEntitySetsRequest = {
+            "detector_id": detector_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3939,6 +4139,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_threat_entity_sets(
@@ -4000,8 +4201,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_threat_intel_sets_request.ListThreatIntelSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.list_threat_intel_sets_request.ListThreatIntelSetsRequest = {
+            "detector_id": detector_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4012,6 +4214,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_threat_intel_sets(
@@ -4073,8 +4276,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.list_trusted_entity_sets_request.ListTrustedEntitySetsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.list_trusted_entity_sets_request.ListTrustedEntitySetsRequest = {
+            "detector_id": detector_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4085,6 +4289,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_trusted_entity_sets(
@@ -4145,7 +4350,7 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.send_object_malware_scan_request.SendObjectMalwareScanRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.send_object_malware_scan_request.SendObjectMalwareScanRequest = {}
         if s3_object is not None:
             input_["s3_object"] = s3_object
 
@@ -4154,6 +4359,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_malware_scan(
@@ -4195,11 +4401,12 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.start_malware_scan_request.StartMalwareScanRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_guardduty.types.start_malware_scan_request.StartMalwareScanRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if scan_configuration is not None:
             input_["scan_configuration"] = scan_configuration
 
@@ -4208,6 +4415,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_monitoring_members(
@@ -4244,8 +4452,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.start_monitoring_members_request.StartMonitoringMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.start_monitoring_members_request.StartMonitoringMembersRequest = {
+            "detector_id": detector_id
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -4254,6 +4463,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_monitoring_members(
@@ -4290,8 +4500,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.stop_monitoring_members_request.StopMonitoringMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.stop_monitoring_members_request.StopMonitoringMembersRequest = {
+            "detector_id": detector_id
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -4300,6 +4511,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -4337,15 +4549,17 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_guardduty.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def unarchive_findings(
@@ -4382,8 +4596,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.unarchive_findings_request.UnarchiveFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.unarchive_findings_request.UnarchiveFindingsRequest = {
+            "detector_id": detector_id
+        }
         if finding_ids is not None:
             input_["finding_ids"] = finding_ids
 
@@ -4392,6 +4607,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -4429,8 +4645,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_guardduty.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -4439,6 +4656,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_detector(
@@ -4487,8 +4705,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_detector_request.UpdateDetectorRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.update_detector_request.UpdateDetectorRequest = {
+            "detector_id": detector_id
+        }
         if enable is not None:
             input_["enable"] = enable
         if finding_publishing_frequency is not None:
@@ -4503,6 +4722,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_filter(
@@ -4551,9 +4771,10 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_filter_request.UpdateFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["filter_name"] = filter_name
+        input_: capo_guardduty.types.update_filter_request.UpdateFilterRequest = {
+            "detector_id": detector_id,
+            "filter_name": filter_name,
+        }
         if description is not None:
             input_["description"] = description
         if action is not None:
@@ -4568,6 +4789,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_findings_feedback(
@@ -4610,8 +4832,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_findings_feedback_request.UpdateFindingsFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.update_findings_feedback_request.UpdateFindingsFeedbackRequest = {
+            "detector_id": detector_id
+        }
         if finding_ids is not None:
             input_["finding_ids"] = finding_ids
         if feedback is not None:
@@ -4624,6 +4847,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_ip_set(
@@ -4671,9 +4895,10 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_ip_set_request.UpdateIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["ip_set_id"] = ip_set_id
+        input_: capo_guardduty.types.update_ip_set_request.UpdateIPSetRequest = {
+            "detector_id": detector_id,
+            "ip_set_id": ip_set_id,
+        }
         if name is not None:
             input_["name"] = name
         if location is not None:
@@ -4688,6 +4913,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_malware_protection_plan(
@@ -4732,8 +4958,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_malware_protection_plan_request.UpdateMalwareProtectionPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["malware_protection_plan_id"] = malware_protection_plan_id
+        input_: capo_guardduty.types.update_malware_protection_plan_request.UpdateMalwareProtectionPlanRequest = {
+            "malware_protection_plan_id": malware_protection_plan_id
+        }
         if role is not None:
             input_["role"] = role
         if actions is not None:
@@ -4746,6 +4973,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_malware_scan_settings(
@@ -4788,8 +5016,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_malware_scan_settings_request.UpdateMalwareScanSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.update_malware_scan_settings_request.UpdateMalwareScanSettingsRequest = {
+            "detector_id": detector_id
+        }
         if scan_resource_criteria is not None:
             input_["scan_resource_criteria"] = scan_resource_criteria
         if ebs_snapshot_preservation is not None:
@@ -4800,6 +5029,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_member_detectors(
@@ -4844,8 +5074,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_member_detectors_request.UpdateMemberDetectorsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.update_member_detectors_request.UpdateMemberDetectorsRequest = {
+            "detector_id": detector_id
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if data_sources is not None:
@@ -4858,6 +5089,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_organization_configuration(
@@ -4906,8 +5138,9 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_organization_configuration_request.UpdateOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
+        input_: capo_guardduty.types.update_organization_configuration_request.UpdateOrganizationConfigurationRequest = {
+            "detector_id": detector_id
+        }
         if auto_enable is not None:
             input_["auto_enable"] = auto_enable
         if data_sources is not None:
@@ -4924,6 +5157,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_publishing_destination(
@@ -4964,9 +5198,10 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_publishing_destination_request.UpdatePublishingDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["destination_id"] = destination_id
+        input_: capo_guardduty.types.update_publishing_destination_request.UpdatePublishingDestinationRequest = {
+            "detector_id": detector_id,
+            "destination_id": destination_id,
+        }
         if destination_properties is not None:
             input_["destination_properties"] = destination_properties
 
@@ -4975,6 +5210,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_threat_entity_set(
@@ -5021,9 +5257,10 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_threat_entity_set_request.UpdateThreatEntitySetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["threat_entity_set_id"] = threat_entity_set_id
+        input_: capo_guardduty.types.update_threat_entity_set_request.UpdateThreatEntitySetRequest = {
+            "detector_id": detector_id,
+            "threat_entity_set_id": threat_entity_set_id,
+        }
         if name is not None:
             input_["name"] = name
         if location is not None:
@@ -5038,6 +5275,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_threat_intel_set(
@@ -5085,9 +5323,10 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_threat_intel_set_request.UpdateThreatIntelSetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["threat_intel_set_id"] = threat_intel_set_id
+        input_: capo_guardduty.types.update_threat_intel_set_request.UpdateThreatIntelSetRequest = {
+            "detector_id": detector_id,
+            "threat_intel_set_id": threat_intel_set_id,
+        }
         if name is not None:
             input_["name"] = name
         if location is not None:
@@ -5102,6 +5341,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_trusted_entity_set(
@@ -5148,9 +5388,10 @@ class GuardDutyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_guardduty.types.update_trusted_entity_set_request.UpdateTrustedEntitySetRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_id"] = detector_id
-        input_["trusted_entity_set_id"] = trusted_entity_set_id
+        input_: capo_guardduty.types.update_trusted_entity_set_request.UpdateTrustedEntitySetRequest = {
+            "detector_id": detector_id,
+            "trusted_entity_set_id": trusted_entity_set_id,
+        }
         if name is not None:
             input_["name"] = name
         if location is not None:
@@ -5165,6 +5406,7 @@ class GuardDutyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

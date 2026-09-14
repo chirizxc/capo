@@ -30,10 +30,10 @@ def serialize_json(value: ListRulesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRulesResponse:
     out: ListRulesResponse = {}  # type: ignore[typeddict-item]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_rbin.types.rule_summary_list
 
         out["rules"] = capo_rbin.types.rule_summary_list.deserialize_json(data["Rules"])
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

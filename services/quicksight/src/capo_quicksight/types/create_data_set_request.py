@@ -219,15 +219,15 @@ def serialize_json(value: CreateDataSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataSetRequest:
     out: CreateDataSetRequest = {}  # type: ignore[typeddict-item]
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError("CreateDataSetRequest.data_set_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDataSetRequest.name required")
-    if "PhysicalTableMap" in data:
+    if data.get("PhysicalTableMap") is not None:
         import capo_quicksight.types.physical_table_map
 
         out["physical_table_map"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
         )
     else:
         raise DeserializationError("CreateDataSetRequest.physical_table_map required")
-    if "LogicalTableMap" in data:
+    if data.get("LogicalTableMap") is not None:
         import capo_quicksight.types.logical_table_map
 
         out["logical_table_map"] = (
@@ -245,7 +245,7 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
                 data["LogicalTableMap"]
             )
         )
-    if "ImportMode" in data:
+    if data.get("ImportMode") is not None:
         import capo_quicksight.types.data_set_import_mode
 
         out["import_mode"] = (
@@ -255,19 +255,19 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
         )
     else:
         raise DeserializationError("CreateDataSetRequest.import_mode required")
-    if "ColumnGroups" in data:
+    if data.get("ColumnGroups") is not None:
         import capo_quicksight.types.column_group_list
 
         out["column_groups"] = capo_quicksight.types.column_group_list.deserialize_json(
             data["ColumnGroups"]
         )
-    if "FieldFolders" in data:
+    if data.get("FieldFolders") is not None:
         import capo_quicksight.types.field_folder_map
 
         out["field_folders"] = capo_quicksight.types.field_folder_map.deserialize_json(
             data["FieldFolders"]
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (
@@ -275,7 +275,7 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
                 data["Permissions"]
             )
         )
-    if "RowLevelPermissionDataSet" in data:
+    if data.get("RowLevelPermissionDataSet") is not None:
         import capo_quicksight.types.row_level_permission_data_set
 
         out["row_level_permission_data_set"] = (
@@ -283,7 +283,7 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
                 data["RowLevelPermissionDataSet"]
             )
         )
-    if "RowLevelPermissionTagConfiguration" in data:
+    if data.get("RowLevelPermissionTagConfiguration") is not None:
         import capo_quicksight.types.row_level_permission_tag_configuration
 
         out["row_level_permission_tag_configuration"] = (
@@ -291,7 +291,7 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
                 data["RowLevelPermissionTagConfiguration"]
             )
         )
-    if "ColumnLevelPermissionRules" in data:
+    if data.get("ColumnLevelPermissionRules") is not None:
         import capo_quicksight.types.column_level_permission_rule_list
 
         out["column_level_permission_rules"] = (
@@ -299,11 +299,11 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
                 data["ColumnLevelPermissionRules"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])
-    if "DataSetUsageConfiguration" in data:
+    if data.get("DataSetUsageConfiguration") is not None:
         import capo_quicksight.types.data_set_usage_configuration
 
         out["data_set_usage_configuration"] = (
@@ -311,7 +311,7 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
                 data["DataSetUsageConfiguration"]
             )
         )
-    if "DatasetParameters" in data:
+    if data.get("DatasetParameters") is not None:
         import capo_quicksight.types.dataset_parameter_list
 
         out["dataset_parameters"] = (
@@ -319,13 +319,13 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
                 data["DatasetParameters"]
             )
         )
-    if "FolderArns" in data:
+    if data.get("FolderArns") is not None:
         import capo_quicksight.types.folder_arn_list
 
         out["folder_arns"] = capo_quicksight.types.folder_arn_list.deserialize_json(
             data["FolderArns"]
         )
-    if "PerformanceConfiguration" in data:
+    if data.get("PerformanceConfiguration") is not None:
         import capo_quicksight.types.performance_configuration
 
         out["performance_configuration"] = (
@@ -333,13 +333,13 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
                 data["PerformanceConfiguration"]
             )
         )
-    if "UseAs" in data:
+    if data.get("UseAs") is not None:
         import capo_quicksight.types.data_set_use_as
 
         out["use_as"] = capo_quicksight.types.data_set_use_as.deserialize_json(
             data["UseAs"]
         )
-    if "DataPrepConfiguration" in data:
+    if data.get("DataPrepConfiguration") is not None:
         import capo_quicksight.types.data_prep_configuration
 
         out["data_prep_configuration"] = (
@@ -347,7 +347,7 @@ def deserialize_json(data: dict) -> CreateDataSetRequest:
                 data["DataPrepConfiguration"]
             )
         )
-    if "SemanticModelConfiguration" in data:
+    if data.get("SemanticModelConfiguration") is not None:
         import capo_quicksight.types.semantic_model_configuration
 
         out["semantic_model_configuration"] = (

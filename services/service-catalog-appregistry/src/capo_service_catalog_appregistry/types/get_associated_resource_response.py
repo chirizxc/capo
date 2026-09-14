@@ -51,7 +51,7 @@ def serialize_json(value: GetAssociatedResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAssociatedResourceResponse:
     out: GetAssociatedResourceResponse = {}  # type: ignore[typeddict-item]
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_service_catalog_appregistry.types.resource
 
         out["resource"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> GetAssociatedResourceResponse:
                 data["resource"]
             )
         )
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_service_catalog_appregistry.types.options
 
         out["options"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> GetAssociatedResourceResponse:
                 data["options"]
             )
         )
-    if "applicationTagResult" in data:
+    if data.get("applicationTagResult") is not None:
         import capo_service_catalog_appregistry.types.application_tag_result
 
         out["application_tag_result"] = (

@@ -55,15 +55,15 @@ def serialize_json(value: LifeCycle) -> dict:
 
 def deserialize_json(data: dict) -> LifeCycle:
     out: LifeCycle = {}  # type: ignore[typeddict-item]
-    if "addedToServiceDateTime" in data:
+    if data.get("addedToServiceDateTime") is not None:
         out["added_to_service_date_time"] = data["addedToServiceDateTime"]
-    if "firstByteDateTime" in data:
+    if data.get("firstByteDateTime") is not None:
         out["first_byte_date_time"] = data["firstByteDateTime"]
-    if "elapsedReplicationDuration" in data:
+    if data.get("elapsedReplicationDuration") is not None:
         out["elapsed_replication_duration"] = data["elapsedReplicationDuration"]
-    if "lastSeenByServiceDateTime" in data:
+    if data.get("lastSeenByServiceDateTime") is not None:
         out["last_seen_by_service_date_time"] = data["lastSeenByServiceDateTime"]
-    if "lastLaunch" in data:
+    if data.get("lastLaunch") is not None:
         import capo_drs.types.life_cycle_last_launch
 
         out["last_launch"] = capo_drs.types.life_cycle_last_launch.deserialize_json(

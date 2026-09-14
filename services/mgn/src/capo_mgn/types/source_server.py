@@ -117,23 +117,23 @@ def serialize_json(value: SourceServer) -> dict:
 
 def deserialize_json(data: dict) -> SourceServer:
     out: SourceServer = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "isArchived" in data:
+    if data.get("isArchived") is not None:
         out["is_archived"] = data["isArchived"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])
-    if "launchedInstance" in data:
+    if data.get("launchedInstance") is not None:
         import capo_mgn.types.launched_instance
 
         out["launched_instance"] = capo_mgn.types.launched_instance.deserialize_json(
             data["launchedInstance"]
         )
-    if "dataReplicationInfo" in data:
+    if data.get("dataReplicationInfo") is not None:
         import capo_mgn.types.data_replication_info
 
         out["data_replication_info"] = (
@@ -141,29 +141,29 @@ def deserialize_json(data: dict) -> SourceServer:
                 data["dataReplicationInfo"]
             )
         )
-    if "lifeCycle" in data:
+    if data.get("lifeCycle") is not None:
         import capo_mgn.types.life_cycle
 
         out["life_cycle"] = capo_mgn.types.life_cycle.deserialize_json(
             data["lifeCycle"]
         )
-    if "sourceProperties" in data:
+    if data.get("sourceProperties") is not None:
         import capo_mgn.types.source_properties
 
         out["source_properties"] = capo_mgn.types.source_properties.deserialize_json(
             data["sourceProperties"]
         )
-    if "replicationType" in data:
+    if data.get("replicationType") is not None:
         out["replication_type"] = data["replicationType"]
-    if "vcenterClientID" in data:
+    if data.get("vcenterClientID") is not None:
         out["vcenter_client_id"] = data["vcenterClientID"]
-    if "applicationID" in data:
+    if data.get("applicationID") is not None:
         out["application_id"] = data["applicationID"]
-    if "userProvidedID" in data:
+    if data.get("userProvidedID") is not None:
         out["user_provided_id"] = data["userProvidedID"]
-    if "fqdnForActionFramework" in data:
+    if data.get("fqdnForActionFramework") is not None:
         out["fqdn_for_action_framework"] = data["fqdnForActionFramework"]
-    if "connectorAction" in data:
+    if data.get("connectorAction") is not None:
         import capo_mgn.types.source_server_connector_action
 
         out["connector_action"] = (

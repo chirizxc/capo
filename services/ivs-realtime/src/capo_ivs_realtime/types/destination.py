@@ -64,25 +64,25 @@ def serialize_json(value: Destination) -> dict:
 
 def deserialize_json(data: dict) -> Destination:
     out: Destination = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Destination.id required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("Destination.state required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["start_time"] = capo_ivs_realtime.types.time.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["end_time"] = capo_ivs_realtime.types.time.deserialize_json(data["endTime"])
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_ivs_realtime.types.destination_configuration
 
         out["configuration"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> Destination:
         )
     else:
         raise DeserializationError("Destination.configuration required")
-    if "detail" in data:
+    if data.get("detail") is not None:
         import capo_ivs_realtime.types.destination_detail
 
         out["detail"] = capo_ivs_realtime.types.destination_detail.deserialize_json(

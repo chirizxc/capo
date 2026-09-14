@@ -44,7 +44,7 @@ def serialize_json(value: TrainedModelInferenceJobsConfigurationPolicy) -> dict:
 
 def deserialize_json(data: dict) -> TrainedModelInferenceJobsConfigurationPolicy:
     out: TrainedModelInferenceJobsConfigurationPolicy = {}  # type: ignore[typeddict-item]
-    if "containerLogs" in data:
+    if data.get("containerLogs") is not None:
         import capo_cleanroomsml.types.logs_configuration_policy_list
 
         out["container_logs"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TrainedModelInferenceJobsConfigurationPolicy
                 data["containerLogs"]
             )
         )
-    if "maxOutputSize" in data:
+    if data.get("maxOutputSize") is not None:
         import capo_cleanroomsml.types.trained_model_inference_max_output_size
 
         out["max_output_size"] = (

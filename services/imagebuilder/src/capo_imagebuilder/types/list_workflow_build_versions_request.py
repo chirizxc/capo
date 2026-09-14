@@ -37,10 +37,10 @@ def serialize_json(value: ListWorkflowBuildVersionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkflowBuildVersionsRequest:
     out: ListWorkflowBuildVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "workflowVersionArn" in data:
+    if data.get("workflowVersionArn") is not None:
         out["workflow_version_arn"] = data["workflowVersionArn"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

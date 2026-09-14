@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ManagedProductDescriptors:
 
     out: ManagedProductDescriptors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wafv2.types.managed_product_descriptor.deserialize_aws_json_1_1(item)
         )

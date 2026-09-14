@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StartDocumentTextDetectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartDocumentTextDetectionResponse:
     out: StartDocumentTextDetectionResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     return out

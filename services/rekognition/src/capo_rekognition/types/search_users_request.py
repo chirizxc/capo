@@ -36,7 +36,15 @@ def serialize_aws_json_1_1(value: SearchUsersRequest) -> dict:
     if "face_id" in value:
         out["FaceId"] = value["face_id"]
     if "user_match_threshold" in value:
-        out["UserMatchThreshold"] = value["user_match_threshold"]
+        out["UserMatchThreshold"] = (
+            "NaN"
+            if value["user_match_threshold"] != value["user_match_threshold"]
+            else "Infinity"
+            if value["user_match_threshold"] == float("inf")
+            else "-Infinity"
+            if value["user_match_threshold"] == float("-inf")
+            else value["user_match_threshold"]
+        )
     if "max_users" in value:
         out["MaxUsers"] = value["max_users"]
     return out
@@ -44,16 +52,16 @@ def serialize_aws_json_1_1(value: SearchUsersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchUsersRequest:
     out: SearchUsersRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("SearchUsersRequest.collection_id required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "FaceId" in data:
+    if data.get("FaceId") is not None:
         out["face_id"] = data["FaceId"]
-    if "UserMatchThreshold" in data:
-        out["user_match_threshold"] = data["UserMatchThreshold"]
-    if "MaxUsers" in data:
+    if data.get("UserMatchThreshold") is not None:
+        out["user_match_threshold"] = float(data["UserMatchThreshold"])
+    if data.get("MaxUsers") is not None:
         out["max_users"] = data["MaxUsers"]
     return out

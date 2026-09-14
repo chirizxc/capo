@@ -87,13 +87,13 @@ def serialize_aws_json_1_1(value: ProvisioningArtifactDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvisioningArtifactDetail:
     out: ProvisioningArtifactDetail = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_service_catalog.types.provisioning_artifact_type
 
         out["type"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisioningArtifactDetail:
                 data["Type"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_service_catalog.types.creation_time
 
         out["created_time"] = (
@@ -109,9 +109,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisioningArtifactDetail:
                 data["CreatedTime"]
             )
         )
-    if "Active" in data:
+    if data.get("Active") is not None:
         out["active"] = data["Active"]
-    if "Guidance" in data:
+    if data.get("Guidance") is not None:
         import capo_service_catalog.types.provisioning_artifact_guidance
 
         out["guidance"] = (
@@ -119,6 +119,6 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisioningArtifactDetail:
                 data["Guidance"]
             )
         )
-    if "SourceRevision" in data:
+    if data.get("SourceRevision") is not None:
         out["source_revision"] = data["SourceRevision"]
     return out

@@ -33,10 +33,10 @@ def serialize_json(value: UpdateRecommendationStatusItem) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecommendationStatusItem:
     out: UpdateRecommendationStatusItem = {}  # type: ignore[typeddict-item]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "targetAccountId" in data:
+    if data.get("targetAccountId") is not None:
         out["target_account_id"] = data["targetAccountId"]
-    if "targetRegion" in data:
+    if data.get("targetRegion") is not None:
         out["target_region"] = data["targetRegion"]
     return out

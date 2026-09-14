@@ -27,7 +27,7 @@ def serialize_json(value: ServiceJobPreemptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ServiceJobPreemptionConfiguration:
     out: ServiceJobPreemptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "preemptionRetriesBeforeTermination" in data:
+    if data.get("preemptionRetriesBeforeTermination") is not None:
         out["preemption_retries_before_termination"] = data[
             "preemptionRetriesBeforeTermination"
         ]

@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: Deserializer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Deserializer:
     out: Deserializer = {}  # type: ignore[typeddict-item]
-    if "OpenXJsonSerDe" in data:
+    if data.get("OpenXJsonSerDe") is not None:
         import capo_firehose.types.open_x_json_ser_de
 
         out["open_x_json_ser_de"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> Deserializer:
                 data["OpenXJsonSerDe"]
             )
         )
-    if "HiveJsonSerDe" in data:
+    if data.get("HiveJsonSerDe") is not None:
         import capo_firehose.types.hive_json_ser_de
 
         out["hive_json_ser_de"] = (

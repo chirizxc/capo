@@ -49,19 +49,19 @@ def serialize_json(value: ClassificationDetails) -> dict:
 
 def deserialize_json(data: dict) -> ClassificationDetails:
     out: ClassificationDetails = {}  # type: ignore[typeddict-item]
-    if "detailedResultsLocation" in data:
+    if data.get("detailedResultsLocation") is not None:
         out["detailed_results_location"] = data["detailedResultsLocation"]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "originType" in data:
+    if data.get("originType") is not None:
         import capo_macie2.types.origin_type
 
         out["origin_type"] = capo_macie2.types.origin_type.deserialize_json(
             data["originType"]
         )
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_macie2.types.classification_result
 
         out["result"] = capo_macie2.types.classification_result.deserialize_json(

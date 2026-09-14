@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: StartRemediationExecutionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartRemediationExecutionResponse:
     out: StartRemediationExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
-    if "FailedItems" in data:
+    if data.get("FailedItems") is not None:
         import capo_config_service.types.resource_keys
 
         out["failed_items"] = (

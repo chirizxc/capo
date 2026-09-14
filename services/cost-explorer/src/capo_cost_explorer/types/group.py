@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: Group) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Group:
     out: Group = {}  # type: ignore[typeddict-item]
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_cost_explorer.types.keys
 
         out["keys"] = capo_cost_explorer.types.keys.deserialize_aws_json_1_1(
             data["Keys"]
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_cost_explorer.types.metrics
 
         out["metrics"] = capo_cost_explorer.types.metrics.deserialize_aws_json_1_1(

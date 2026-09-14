@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> NetworkList:
 
     out: NetworkList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_internetmonitor.types.network.deserialize_json(item))
     return out

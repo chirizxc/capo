@@ -25,7 +25,7 @@ def serialize_json(value: GetAppResult) -> dict:
 
 def deserialize_json(data: dict) -> GetAppResult:
     out: GetAppResult = {}  # type: ignore[typeddict-item]
-    if "app" in data:
+    if data.get("app") is not None:
         import capo_amplify.types.app
 
         out["app"] = capo_amplify.types.app.deserialize_json(data["app"])

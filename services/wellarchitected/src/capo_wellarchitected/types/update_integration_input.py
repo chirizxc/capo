@@ -39,9 +39,9 @@ def serialize_json(value: UpdateIntegrationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIntegrationInput:
     out: UpdateIntegrationInput = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "IntegratingService" in data:
+    if data.get("IntegratingService") is not None:
         import capo_wellarchitected.types.integrating_service
 
         out["integrating_service"] = (

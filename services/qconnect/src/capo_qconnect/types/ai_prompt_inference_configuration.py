@@ -27,9 +27,25 @@ class AIPromptInferenceConfiguration(TypedDict, closed=True):
 def serialize_json(value: AIPromptInferenceConfiguration) -> dict:
     out: dict = {}
     if "temperature" in value:
-        out["temperature"] = value["temperature"]
+        out["temperature"] = (
+            "NaN"
+            if value["temperature"] != value["temperature"]
+            else "Infinity"
+            if value["temperature"] == float("inf")
+            else "-Infinity"
+            if value["temperature"] == float("-inf")
+            else value["temperature"]
+        )
     if "top_p" in value:
-        out["topP"] = value["top_p"]
+        out["topP"] = (
+            "NaN"
+            if value["top_p"] != value["top_p"]
+            else "Infinity"
+            if value["top_p"] == float("inf")
+            else "-Infinity"
+            if value["top_p"] == float("-inf")
+            else value["top_p"]
+        )
     if "top_k" in value:
         out["topK"] = value["top_k"]
     if "max_tokens_to_sample" in value:
@@ -39,12 +55,12 @@ def serialize_json(value: AIPromptInferenceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AIPromptInferenceConfiguration:
     out: AIPromptInferenceConfiguration = {}  # type: ignore[typeddict-item]
-    if "temperature" in data:
-        out["temperature"] = data["temperature"]
-    if "topP" in data:
-        out["top_p"] = data["topP"]
-    if "topK" in data:
+    if data.get("temperature") is not None:
+        out["temperature"] = float(data["temperature"])
+    if data.get("topP") is not None:
+        out["top_p"] = float(data["topP"])
+    if data.get("topK") is not None:
         out["top_k"] = data["topK"]
-    if "maxTokensToSample" in data:
+    if data.get("maxTokensToSample") is not None:
         out["max_tokens_to_sample"] = data["maxTokensToSample"]
     return out

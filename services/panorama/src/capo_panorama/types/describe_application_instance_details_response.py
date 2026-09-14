@@ -85,19 +85,19 @@ def serialize_json(value: DescribeApplicationInstanceDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeApplicationInstanceDetailsResponse:
     out: DescribeApplicationInstanceDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DefaultRuntimeContextDevice" in data:
+    if data.get("DefaultRuntimeContextDevice") is not None:
         out["default_runtime_context_device"] = data["DefaultRuntimeContextDevice"]
-    if "ManifestPayload" in data:
+    if data.get("ManifestPayload") is not None:
         import capo_panorama.types.manifest_payload
 
         out["manifest_payload"] = capo_panorama.types.manifest_payload.deserialize_json(
             data["ManifestPayload"]
         )
-    if "ManifestOverridesPayload" in data:
+    if data.get("ManifestOverridesPayload") is not None:
         import capo_panorama.types.manifest_overrides_payload
 
         out["manifest_overrides_payload"] = (
@@ -105,16 +105,16 @@ def deserialize_json(data: dict) -> DescribeApplicationInstanceDetailsResponse:
                 data["ManifestOverridesPayload"]
             )
         )
-    if "ApplicationInstanceIdToReplace" in data:
+    if data.get("ApplicationInstanceIdToReplace") is not None:
         out["application_instance_id_to_replace"] = data[
             "ApplicationInstanceIdToReplace"
         ]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.time_stamp
 
         out["created_time"] = capo_panorama.types.time_stamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "ApplicationInstanceId" in data:
+    if data.get("ApplicationInstanceId") is not None:
         out["application_instance_id"] = data["ApplicationInstanceId"]
     return out

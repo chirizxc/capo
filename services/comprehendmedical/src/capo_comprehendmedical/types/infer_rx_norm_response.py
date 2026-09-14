@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: InferRxNormResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferRxNormResponse:
     out: InferRxNormResponse = {}  # type: ignore[typeddict-item]
-    if "Entities" in data:
+    if data.get("Entities") is not None:
         import capo_comprehendmedical.types.rx_norm_entity_list
 
         out["entities"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> InferRxNormResponse:
         )
     else:
         raise DeserializationError("InferRxNormResponse.entities required")
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
     return out

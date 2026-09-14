@@ -23,6 +23,6 @@ def serialize_json(value: AWSService) -> dict:
 
 def deserialize_json(data: dict) -> AWSService:
     out: AWSService = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     return out

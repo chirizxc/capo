@@ -24,7 +24,7 @@ def serialize_json(value: GuardrailWordConfig) -> dict:
 
 def deserialize_json(data: dict) -> GuardrailWordConfig:
     out: GuardrailWordConfig = {}  # type: ignore[typeddict-item]
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
     else:
         raise DeserializationError("GuardrailWordConfig.text required")

@@ -23,6 +23,6 @@ def serialize_json(value: ScanSbomResponse) -> dict:
 
 def deserialize_json(data: dict) -> ScanSbomResponse:
     out: ScanSbomResponse = {}  # type: ignore[typeddict-item]
-    if "sbom" in data:
+    if data.get("sbom") is not None:
         out["sbom"] = data["sbom"]
     return out

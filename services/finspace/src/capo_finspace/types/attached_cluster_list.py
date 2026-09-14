@@ -16,4 +16,4 @@ def serialize_json(value: AttachedClusterList) -> list:
 
 
 def deserialize_json(data: list) -> AttachedClusterList:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -24,6 +24,8 @@ def serialize_aws_json_1_1(input_to_serialize: ExclusionMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ExclusionMap:
     out: ExclusionMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_inspector.types.exclusion
 
         out[key] = capo_inspector.types.exclusion.deserialize_aws_json_1_1(value)

@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: MonitoringDatasetFormat) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringDatasetFormat:
     out: MonitoringDatasetFormat = {}  # type: ignore[typeddict-item]
-    if "Csv" in data:
+    if data.get("Csv") is not None:
         import capo_sagemaker.types.monitoring_csv_dataset_format
 
         out["csv"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringDatasetFormat:
                 data["Csv"]
             )
         )
-    if "Json" in data:
+    if data.get("Json") is not None:
         import capo_sagemaker.types.monitoring_json_dataset_format
 
         out["json"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringDatasetFormat:
                 data["Json"]
             )
         )
-    if "Parquet" in data:
+    if data.get("Parquet") is not None:
         import capo_sagemaker.types.monitoring_parquet_dataset_format
 
         out["parquet"] = (

@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ListADAssessmentsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListADAssessmentsResult:
     out: ListADAssessmentsResult = {}  # type: ignore[typeddict-item]
-    if "Assessments" in data:
+    if data.get("Assessments") is not None:
         import capo_directory_service.types.assessments
 
         out["assessments"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListADAssessmentsResult:
                 data["Assessments"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

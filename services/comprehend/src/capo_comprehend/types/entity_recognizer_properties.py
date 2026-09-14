@@ -165,9 +165,9 @@ def serialize_aws_json_1_1(value: EntityRecognizerProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerProperties:
     out: EntityRecognizerProperties = {}  # type: ignore[typeddict-item]
-    if "EntityRecognizerArn" in data:
+    if data.get("EntityRecognizerArn") is not None:
         out["entity_recognizer_arn"] = data["EntityRecognizerArn"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.language_code
 
         out["language_code"] = (
@@ -175,27 +175,27 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerProperties:
                 data["LanguageCode"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_comprehend.types.model_status
 
         out["status"] = capo_comprehend.types.model_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "SubmitTime" in data:
+    if data.get("SubmitTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["submit_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(
             data["SubmitTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["end_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "TrainingStartTime" in data:
+    if data.get("TrainingStartTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["training_start_time"] = (
@@ -203,7 +203,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerProperties:
                 data["TrainingStartTime"]
             )
         )
-    if "TrainingEndTime" in data:
+    if data.get("TrainingEndTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["training_end_time"] = (
@@ -211,7 +211,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerProperties:
                 data["TrainingEndTime"]
             )
         )
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_comprehend.types.entity_recognizer_input_data_config
 
         out["input_data_config"] = (
@@ -219,7 +219,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerProperties:
                 data["InputDataConfig"]
             )
         )
-    if "RecognizerMetadata" in data:
+    if data.get("RecognizerMetadata") is not None:
         import capo_comprehend.types.entity_recognizer_metadata
 
         out["recognizer_metadata"] = (
@@ -227,25 +227,25 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerProperties:
                 data["RecognizerMetadata"]
             )
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_comprehend.types.vpc_config
 
         out["vpc_config"] = capo_comprehend.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "ModelKmsKeyId" in data:
+    if data.get("ModelKmsKeyId") is not None:
         out["model_kms_key_id"] = data["ModelKmsKeyId"]
-    if "VersionName" in data:
+    if data.get("VersionName") is not None:
         out["version_name"] = data["VersionName"]
-    if "SourceModelArn" in data:
+    if data.get("SourceModelArn") is not None:
         out["source_model_arn"] = data["SourceModelArn"]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_comprehend.types.entity_recognizer_output_data_config
 
         out["output_data_config"] = (

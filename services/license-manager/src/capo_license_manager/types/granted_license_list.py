@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> GrantedLicenseList:
 
     out: GrantedLicenseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager.types.granted_license.deserialize_aws_json_1_1(item)
         )

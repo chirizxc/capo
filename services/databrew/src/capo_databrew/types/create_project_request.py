@@ -49,27 +49,27 @@ def serialize_json(value: CreateProjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProjectRequest:
     out: CreateProjectRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
     else:
         raise DeserializationError("CreateProjectRequest.dataset_name required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateProjectRequest.name required")
-    if "RecipeName" in data:
+    if data.get("RecipeName") is not None:
         out["recipe_name"] = data["RecipeName"]
     else:
         raise DeserializationError("CreateProjectRequest.recipe_name required")
-    if "Sample" in data:
+    if data.get("Sample") is not None:
         import capo_databrew.types.sample
 
         out["sample"] = capo_databrew.types.sample.deserialize_json(data["Sample"])
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateProjectRequest.role_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_databrew.types.tag_map
 
         out["tags"] = capo_databrew.types.tag_map.deserialize_json(data["Tags"])

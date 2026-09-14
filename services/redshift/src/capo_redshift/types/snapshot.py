@@ -182,28 +182,68 @@ def serialize_query(value: Snapshot, pairs: list[tuple[str, str]], prefix: str) 
         pairs.append(
             (
                 f"{key_prefix}TotalBackupSizeInMegaBytes",
-                str(value["total_backup_size_in_mega_bytes"]),
+                (
+                    "NaN"
+                    if value["total_backup_size_in_mega_bytes"]
+                    != value["total_backup_size_in_mega_bytes"]
+                    else "Infinity"
+                    if value["total_backup_size_in_mega_bytes"] == float("inf")
+                    else "-Infinity"
+                    if value["total_backup_size_in_mega_bytes"] == float("-inf")
+                    else str(value["total_backup_size_in_mega_bytes"])
+                ),
             )
         )
     if "actual_incremental_backup_size_in_mega_bytes" in value:
         pairs.append(
             (
                 f"{key_prefix}ActualIncrementalBackupSizeInMegaBytes",
-                str(value["actual_incremental_backup_size_in_mega_bytes"]),
+                (
+                    "NaN"
+                    if value["actual_incremental_backup_size_in_mega_bytes"]
+                    != value["actual_incremental_backup_size_in_mega_bytes"]
+                    else "Infinity"
+                    if value["actual_incremental_backup_size_in_mega_bytes"]
+                    == float("inf")
+                    else "-Infinity"
+                    if value["actual_incremental_backup_size_in_mega_bytes"]
+                    == float("-inf")
+                    else str(value["actual_incremental_backup_size_in_mega_bytes"])
+                ),
             )
         )
     if "backup_progress_in_mega_bytes" in value:
         pairs.append(
             (
                 f"{key_prefix}BackupProgressInMegaBytes",
-                str(value["backup_progress_in_mega_bytes"]),
+                (
+                    "NaN"
+                    if value["backup_progress_in_mega_bytes"]
+                    != value["backup_progress_in_mega_bytes"]
+                    else "Infinity"
+                    if value["backup_progress_in_mega_bytes"] == float("inf")
+                    else "-Infinity"
+                    if value["backup_progress_in_mega_bytes"] == float("-inf")
+                    else str(value["backup_progress_in_mega_bytes"])
+                ),
             )
         )
     if "current_backup_rate_in_mega_bytes_per_second" in value:
         pairs.append(
             (
                 f"{key_prefix}CurrentBackupRateInMegaBytesPerSecond",
-                str(value["current_backup_rate_in_mega_bytes_per_second"]),
+                (
+                    "NaN"
+                    if value["current_backup_rate_in_mega_bytes_per_second"]
+                    != value["current_backup_rate_in_mega_bytes_per_second"]
+                    else "Infinity"
+                    if value["current_backup_rate_in_mega_bytes_per_second"]
+                    == float("inf")
+                    else "-Infinity"
+                    if value["current_backup_rate_in_mega_bytes_per_second"]
+                    == float("-inf")
+                    else str(value["current_backup_rate_in_mega_bytes_per_second"])
+                ),
             )
         )
     if "estimated_seconds_to_completion" in value:

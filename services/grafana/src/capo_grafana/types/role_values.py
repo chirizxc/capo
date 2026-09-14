@@ -33,13 +33,13 @@ def serialize_json(value: RoleValues) -> dict:
 
 def deserialize_json(data: dict) -> RoleValues:
     out: RoleValues = {}  # type: ignore[typeddict-item]
-    if "editor" in data:
+    if data.get("editor") is not None:
         import capo_grafana.types.role_value_list
 
         out["editor"] = capo_grafana.types.role_value_list.deserialize_json(
             data["editor"]
         )
-    if "admin" in data:
+    if data.get("admin") is not None:
         import capo_grafana.types.role_value_list
 
         out["admin"] = capo_grafana.types.role_value_list.deserialize_json(

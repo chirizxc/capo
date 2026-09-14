@@ -63,9 +63,25 @@ def serialize_aws_json_1_0(value: Sensor) -> dict:
             )
         )
     if "min" in value:
-        out["min"] = value["min"]
+        out["min"] = (
+            "NaN"
+            if value["min"] != value["min"]
+            else "Infinity"
+            if value["min"] == float("inf")
+            else "-Infinity"
+            if value["min"] == float("-inf")
+            else value["min"]
+        )
     if "max" in value:
-        out["max"] = value["max"]
+        out["max"] = (
+            "NaN"
+            if value["max"] != value["max"]
+            else "Infinity"
+            if value["max"] == float("inf")
+            else "-Infinity"
+            if value["max"] == float("-inf")
+            else value["max"]
+        )
     if "deprecation_message" in value:
         out["deprecationMessage"] = value["deprecation_message"]
     if "comment" in value:
@@ -77,11 +93,11 @@ def serialize_aws_json_1_0(value: Sensor) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Sensor:
     out: Sensor = {}  # type: ignore[typeddict-item]
-    if "fullyQualifiedName" in data:
+    if data.get("fullyQualifiedName") is not None:
         out["fully_qualified_name"] = data["fullyQualifiedName"]
     else:
         raise DeserializationError("Sensor.fully_qualified_name required")
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_iotfleetwise.types.node_data_type
 
         out["data_type"] = (
@@ -91,11 +107,11 @@ def deserialize_aws_json_1_0(data: dict) -> Sensor:
         )
     else:
         raise DeserializationError("Sensor.data_type required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
-    if "allowedValues" in data:
+    if data.get("allowedValues") is not None:
         import capo_iotfleetwise.types.list_of_strings
 
         out["allowed_values"] = (
@@ -103,14 +119,14 @@ def deserialize_aws_json_1_0(data: dict) -> Sensor:
                 data["allowedValues"]
             )
         )
-    if "min" in data:
-        out["min"] = data["min"]
-    if "max" in data:
-        out["max"] = data["max"]
-    if "deprecationMessage" in data:
+    if data.get("min") is not None:
+        out["min"] = float(data["min"])
+    if data.get("max") is not None:
+        out["max"] = float(data["max"])
+    if data.get("deprecationMessage") is not None:
         out["deprecation_message"] = data["deprecationMessage"]
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "structFullyQualifiedName" in data:
+    if data.get("structFullyQualifiedName") is not None:
         out["struct_fully_qualified_name"] = data["structFullyQualifiedName"]
     return out

@@ -47,21 +47,21 @@ def serialize_aws_json_1_1(value: GetExclusionsPreviewRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetExclusionsPreviewRequest:
     out: GetExclusionsPreviewRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentTemplateArn" in data:
+    if data.get("assessmentTemplateArn") is not None:
         out["assessment_template_arn"] = data["assessmentTemplateArn"]
     else:
         raise DeserializationError(
             "GetExclusionsPreviewRequest.assessment_template_arn required"
         )
-    if "previewToken" in data:
+    if data.get("previewToken") is not None:
         out["preview_token"] = data["previewToken"]
     else:
         raise DeserializationError("GetExclusionsPreviewRequest.preview_token required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "locale" in data:
+    if data.get("locale") is not None:
         import capo_inspector.types.locale
 
         out["locale"] = capo_inspector.types.locale.deserialize_aws_json_1_1(

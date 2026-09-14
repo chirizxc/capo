@@ -25,6 +25,6 @@ def serialize_json(value: EsamSignalProcessingNotification) -> dict:
 
 def deserialize_json(data: dict) -> EsamSignalProcessingNotification:
     out: EsamSignalProcessingNotification = {}  # type: ignore[typeddict-item]
-    if "sccXml" in data:
+    if data.get("sccXml") is not None:
         out["scc_xml"] = data["sccXml"]
     return out

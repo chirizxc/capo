@@ -52,7 +52,7 @@ def serialize_json(value: FacetAttributeDefinition) -> dict:
 
 def deserialize_json(data: dict) -> FacetAttributeDefinition:
     out: FacetAttributeDefinition = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_clouddirectory.types.facet_attribute_type
 
         out["type"] = capo_clouddirectory.types.facet_attribute_type.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> FacetAttributeDefinition:
         )
     else:
         raise DeserializationError("FacetAttributeDefinition.type required")
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         import capo_clouddirectory.types.typed_attribute_value
 
         out["default_value"] = (
@@ -68,11 +68,11 @@ def deserialize_json(data: dict) -> FacetAttributeDefinition:
                 data["DefaultValue"]
             )
         )
-    if "IsImmutable" in data:
+    if data.get("IsImmutable") is not None:
         out["is_immutable"] = data["IsImmutable"]
     else:
         out["is_immutable"] = False
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_clouddirectory.types.rule_map
 
         out["rules"] = capo_clouddirectory.types.rule_map.deserialize_json(

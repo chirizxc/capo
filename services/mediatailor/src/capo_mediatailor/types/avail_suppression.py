@@ -39,13 +39,13 @@ def serialize_json(value: AvailSuppression) -> dict:
 
 def deserialize_json(data: dict) -> AvailSuppression:
     out: AvailSuppression = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_mediatailor.types.mode
 
         out["mode"] = capo_mediatailor.types.mode.deserialize_json(data["Mode"])
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "FillPolicy" in data:
+    if data.get("FillPolicy") is not None:
         import capo_mediatailor.types.fill_policy
 
         out["fill_policy"] = capo_mediatailor.types.fill_policy.deserialize_json(

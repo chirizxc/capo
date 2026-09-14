@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AIRecommendationInferenceSpecification) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendationInferenceSpecification:
     out: AIRecommendationInferenceSpecification = {}  # type: ignore[typeddict-item]
-    if "Framework" in data:
+    if data.get("Framework") is not None:
         import capo_sagemaker.types.ai_recommendation_inference_framework
 
         out["framework"] = (

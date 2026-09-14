@@ -35,7 +35,7 @@ def serialize_json(value: GetClustersForImageResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetClustersForImageResponse:
     out: GetClustersForImageResponse = {}  # type: ignore[typeddict-item]
-    if "cluster" in data:
+    if data.get("cluster") is not None:
         import capo_inspector2.types.cluster_information_list
 
         out["cluster"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> GetClustersForImageResponse:
         )
     else:
         raise DeserializationError("GetClustersForImageResponse.cluster required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

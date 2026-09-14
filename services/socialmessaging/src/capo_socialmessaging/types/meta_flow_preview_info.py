@@ -28,11 +28,11 @@ def serialize_json(value: MetaFlowPreviewInfo) -> dict:
 
 def deserialize_json(data: dict) -> MetaFlowPreviewInfo:
     out: MetaFlowPreviewInfo = {}  # type: ignore[typeddict-item]
-    if "previewUrl" in data:
+    if data.get("previewUrl") is not None:
         out["preview_url"] = data["previewUrl"]
     else:
         raise DeserializationError("MetaFlowPreviewInfo.preview_url required")
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         out["expires_at"] = data["expiresAt"]
     else:
         raise DeserializationError("MetaFlowPreviewInfo.expires_at required")

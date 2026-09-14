@@ -113,53 +113,53 @@ def serialize_json(value: Resolver) -> dict:
 
 def deserialize_json(data: dict) -> Resolver:
     out: Resolver = {}  # type: ignore[typeddict-item]
-    if "typeName" in data:
+    if data.get("typeName") is not None:
         out["type_name"] = data["typeName"]
-    if "fieldName" in data:
+    if data.get("fieldName") is not None:
         out["field_name"] = data["fieldName"]
-    if "dataSourceName" in data:
+    if data.get("dataSourceName") is not None:
         out["data_source_name"] = data["dataSourceName"]
-    if "resolverArn" in data:
+    if data.get("resolverArn") is not None:
         out["resolver_arn"] = data["resolverArn"]
-    if "requestMappingTemplate" in data:
+    if data.get("requestMappingTemplate") is not None:
         out["request_mapping_template"] = data["requestMappingTemplate"]
-    if "responseMappingTemplate" in data:
+    if data.get("responseMappingTemplate") is not None:
         out["response_mapping_template"] = data["responseMappingTemplate"]
-    if "kind" in data:
+    if data.get("kind") is not None:
         import capo_appsync.types.resolver_kind
 
         out["kind"] = capo_appsync.types.resolver_kind.deserialize_json(data["kind"])
-    if "pipelineConfig" in data:
+    if data.get("pipelineConfig") is not None:
         import capo_appsync.types.pipeline_config
 
         out["pipeline_config"] = capo_appsync.types.pipeline_config.deserialize_json(
             data["pipelineConfig"]
         )
-    if "syncConfig" in data:
+    if data.get("syncConfig") is not None:
         import capo_appsync.types.sync_config
 
         out["sync_config"] = capo_appsync.types.sync_config.deserialize_json(
             data["syncConfig"]
         )
-    if "cachingConfig" in data:
+    if data.get("cachingConfig") is not None:
         import capo_appsync.types.caching_config
 
         out["caching_config"] = capo_appsync.types.caching_config.deserialize_json(
             data["cachingConfig"]
         )
-    if "maxBatchSize" in data:
+    if data.get("maxBatchSize") is not None:
         out["max_batch_size"] = data["maxBatchSize"]
     else:
         out["max_batch_size"] = 0
-    if "runtime" in data:
+    if data.get("runtime") is not None:
         import capo_appsync.types.app_sync_runtime
 
         out["runtime"] = capo_appsync.types.app_sync_runtime.deserialize_json(
             data["runtime"]
         )
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "metricsConfig" in data:
+    if data.get("metricsConfig") is not None:
         import capo_appsync.types.resolver_level_metrics_config
 
         out["metrics_config"] = (

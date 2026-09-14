@@ -45,13 +45,13 @@ def serialize_json(value: RouteWebLink) -> dict:
 
 def deserialize_json(data: dict) -> RouteWebLink:
     out: RouteWebLink = {}  # type: ignore[typeddict-item]
-    if "AnchorText" in data:
+    if data.get("AnchorText") is not None:
         out["anchor_text"] = data["AnchorText"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("RouteWebLink.description required")
-    if "DeviceType" in data:
+    if data.get("DeviceType") is not None:
         import capo_geo_routes.types.route_web_link_device_type
 
         out["device_type"] = (
@@ -59,6 +59,6 @@ def deserialize_json(data: dict) -> RouteWebLink:
                 data["DeviceType"]
             )
         )
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

@@ -32,15 +32,15 @@ def serialize_json(value: S3Source) -> dict:
 
 def deserialize_json(data: dict) -> S3Source:
     out: S3Source = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("S3Source.bucket_name required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("S3Source.key required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("S3Source.version required")

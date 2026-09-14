@@ -34,18 +34,18 @@ def serialize_aws_json_1_0(value: GetParametersForExportInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetParametersForExportInput:
     out: GetParametersForExportInput = {}  # type: ignore[typeddict-item]
-    if "KeyMaterialType" in data:
+    if data.get("KeyMaterialType") is not None:
         out["key_material_type"] = data["KeyMaterialType"]
     else:
         raise DeserializationError(
             "GetParametersForExportInput.key_material_type required"
         )
-    if "SigningKeyAlgorithm" in data:
+    if data.get("SigningKeyAlgorithm") is not None:
         out["signing_key_algorithm"] = data["SigningKeyAlgorithm"]
     else:
         raise DeserializationError(
             "GetParametersForExportInput.signing_key_algorithm required"
         )
-    if "ReuseLastGeneratedToken" in data:
+    if data.get("ReuseLastGeneratedToken") is not None:
         out["reuse_last_generated_token"] = data["ReuseLastGeneratedToken"]
     return out

@@ -39,17 +39,17 @@ def serialize_aws_json_1_0(value: CancelProfileUpdateTaskRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelProfileUpdateTaskRequest:
     out: CancelProfileUpdateTaskRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("CancelProfileUpdateTaskRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("CancelProfileUpdateTaskRequest.identifier required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
     else:
         raise DeserializationError("CancelProfileUpdateTaskRequest.task_id required")

@@ -62,7 +62,7 @@ def serialize_json(value: Mapping) -> dict:
 
 
 def deserialize_json(data: dict) -> Mapping:
-    if "Framework" in data:
+    if data.get("Framework") is not None:
         import capo_controlcatalog.types.framework_mapping_details
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> Mapping:
                 data["Framework"]
             )
         }
-    elif "CommonControl" in data:
+    elif data.get("CommonControl") is not None:
         import capo_controlcatalog.types.common_control_mapping_details
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> Mapping:
                 data["CommonControl"]
             )
         }
-    elif "RelatedControl" in data:
+    elif data.get("RelatedControl") is not None:
         import capo_controlcatalog.types.related_control_mapping_details
 
         return {

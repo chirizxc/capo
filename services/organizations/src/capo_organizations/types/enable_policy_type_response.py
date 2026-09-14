@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: EnablePolicyTypeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnablePolicyTypeResponse:
     out: EnablePolicyTypeResponse = {}  # type: ignore[typeddict-item]
-    if "Root" in data:
+    if data.get("Root") is not None:
         import capo_organizations.types.root
 
         out["root"] = capo_organizations.types.root.deserialize_aws_json_1_1(

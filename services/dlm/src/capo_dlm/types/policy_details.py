@@ -154,13 +154,13 @@ def serialize_json(value: PolicyDetails) -> dict:
 
 def deserialize_json(data: dict) -> PolicyDetails:
     out: PolicyDetails = {}  # type: ignore[typeddict-item]
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_dlm.types.policy_type_values
 
         out["policy_type"] = capo_dlm.types.policy_type_values.deserialize_json(
             data["PolicyType"]
         )
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_dlm.types.resource_type_values_list
 
         out["resource_types"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> PolicyDetails:
                 data["ResourceTypes"]
             )
         )
-    if "ResourceLocations" in data:
+    if data.get("ResourceLocations") is not None:
         import capo_dlm.types.resource_location_list
 
         out["resource_locations"] = (
@@ -176,53 +176,53 @@ def deserialize_json(data: dict) -> PolicyDetails:
                 data["ResourceLocations"]
             )
         )
-    if "TargetTags" in data:
+    if data.get("TargetTags") is not None:
         import capo_dlm.types.target_tag_list
 
         out["target_tags"] = capo_dlm.types.target_tag_list.deserialize_json(
             data["TargetTags"]
         )
-    if "Schedules" in data:
+    if data.get("Schedules") is not None:
         import capo_dlm.types.schedule_list
 
         out["schedules"] = capo_dlm.types.schedule_list.deserialize_json(
             data["Schedules"]
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_dlm.types.parameters
 
         out["parameters"] = capo_dlm.types.parameters.deserialize_json(
             data["Parameters"]
         )
-    if "EventSource" in data:
+    if data.get("EventSource") is not None:
         import capo_dlm.types.event_source
 
         out["event_source"] = capo_dlm.types.event_source.deserialize_json(
             data["EventSource"]
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_dlm.types.action_list
 
         out["actions"] = capo_dlm.types.action_list.deserialize_json(data["Actions"])
-    if "PolicyLanguage" in data:
+    if data.get("PolicyLanguage") is not None:
         import capo_dlm.types.policy_language_values
 
         out["policy_language"] = capo_dlm.types.policy_language_values.deserialize_json(
             data["PolicyLanguage"]
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_dlm.types.resource_type_values
 
         out["resource_type"] = capo_dlm.types.resource_type_values.deserialize_json(
             data["ResourceType"]
         )
-    if "CreateInterval" in data:
+    if data.get("CreateInterval") is not None:
         out["create_interval"] = data["CreateInterval"]
-    if "RetainInterval" in data:
+    if data.get("RetainInterval") is not None:
         out["retain_interval"] = data["RetainInterval"]
-    if "CopyTags" in data:
+    if data.get("CopyTags") is not None:
         out["copy_tags"] = data["CopyTags"]
-    if "CrossRegionCopyTargets" in data:
+    if data.get("CrossRegionCopyTargets") is not None:
         import capo_dlm.types.cross_region_copy_target_list
 
         out["cross_region_copy_targets"] = (
@@ -230,9 +230,9 @@ def deserialize_json(data: dict) -> PolicyDetails:
                 data["CrossRegionCopyTargets"]
             )
         )
-    if "ExtendDeletion" in data:
+    if data.get("ExtendDeletion") is not None:
         out["extend_deletion"] = data["ExtendDeletion"]
-    if "Exclusions" in data:
+    if data.get("Exclusions") is not None:
         import capo_dlm.types.exclusions
 
         out["exclusions"] = capo_dlm.types.exclusions.deserialize_json(

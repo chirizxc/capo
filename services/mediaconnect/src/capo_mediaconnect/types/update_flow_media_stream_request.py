@@ -61,7 +61,7 @@ def serialize_json(value: UpdateFlowMediaStreamRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFlowMediaStreamRequest:
     out: UpdateFlowMediaStreamRequest = {}  # type: ignore[typeddict-item]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_mediaconnect.types.media_stream_attributes_request
 
         out["attributes"] = (
@@ -69,11 +69,11 @@ def deserialize_json(data: dict) -> UpdateFlowMediaStreamRequest:
                 data["attributes"]
             )
         )
-    if "clockRate" in data:
+    if data.get("clockRate") is not None:
         out["clock_rate"] = data["clockRate"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "mediaStreamType" in data:
+    if data.get("mediaStreamType") is not None:
         import capo_mediaconnect.types.media_stream_type
 
         out["media_stream_type"] = (
@@ -81,6 +81,6 @@ def deserialize_json(data: dict) -> UpdateFlowMediaStreamRequest:
                 data["mediaStreamType"]
             )
         )
-    if "videoFormat" in data:
+    if data.get("videoFormat") is not None:
         out["video_format"] = data["videoFormat"]
     return out

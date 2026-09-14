@@ -128,13 +128,13 @@ def serialize_aws_json_1_0(value: ChannelHandshakeSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ChannelHandshakeSummary:
     out: ChannelHandshakeSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
-    if "handshakeType" in data:
+    if data.get("handshakeType") is not None:
         import capo_partnercentral_channel.types.handshake_type
 
         out["handshake_type"] = (
@@ -142,17 +142,17 @@ def deserialize_aws_json_1_0(data: dict) -> ChannelHandshakeSummary:
                 data["handshakeType"]
             )
         )
-    if "ownerAccountId" in data:
+    if data.get("ownerAccountId") is not None:
         out["owner_account_id"] = data["ownerAccountId"]
-    if "senderAccountId" in data:
+    if data.get("senderAccountId") is not None:
         out["sender_account_id"] = data["senderAccountId"]
-    if "senderDisplayName" in data:
+    if data.get("senderDisplayName") is not None:
         out["sender_display_name"] = data["senderDisplayName"]
-    if "receiverAccountId" in data:
+    if data.get("receiverAccountId") is not None:
         out["receiver_account_id"] = data["receiverAccountId"]
-    if "associatedResourceId" in data:
+    if data.get("associatedResourceId") is not None:
         out["associated_resource_id"] = data["associatedResourceId"]
-    if "detail" in data:
+    if data.get("detail") is not None:
         import capo_partnercentral_channel.types.handshake_detail
 
         out["detail"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_0(data: dict) -> ChannelHandshakeSummary:
                 data["detail"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["created_at"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_0(data: dict) -> ChannelHandshakeSummary:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["updated_at"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_0(data: dict) -> ChannelHandshakeSummary:
                 data["updatedAt"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_partnercentral_channel.types.handshake_status
 
         out["status"] = (

@@ -41,7 +41,7 @@ def serialize_json(value: RouteAttribution) -> dict:
 
 def deserialize_json(data: dict) -> RouteAttribution:
     out: RouteAttribution = {}  # type: ignore[typeddict-item]
-    if "AttributionType" in data:
+    if data.get("AttributionType") is not None:
         import capo_geo_routes.types.route_attribution_type
 
         out["attribution_type"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> RouteAttribution:
                 data["AttributionType"]
             )
         )
-    if "WebLink" in data:
+    if data.get("WebLink") is not None:
         import capo_geo_routes.types.route_web_link
 
         out["web_link"] = capo_geo_routes.types.route_web_link.deserialize_json(

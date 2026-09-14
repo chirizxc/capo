@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DescribeTestCasesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTestCasesOutput:
     out: DescribeTestCasesOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "testCases" in data:
+    if data.get("testCases") is not None:
         import capo_codebuild.types.test_cases
 
         out["test_cases"] = capo_codebuild.types.test_cases.deserialize_aws_json_1_1(

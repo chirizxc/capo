@@ -295,13 +295,13 @@ def serialize_json(value: Visual) -> dict:
 
 def deserialize_json(data: dict) -> Visual:
     out: Visual = {}  # type: ignore[typeddict-item]
-    if "TableVisual" in data:
+    if data.get("TableVisual") is not None:
         import capo_quicksight.types.table_visual
 
         out["table_visual"] = capo_quicksight.types.table_visual.deserialize_json(
             data["TableVisual"]
         )
-    if "PivotTableVisual" in data:
+    if data.get("PivotTableVisual") is not None:
         import capo_quicksight.types.pivot_table_visual
 
         out["pivot_table_visual"] = (
@@ -309,7 +309,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["PivotTableVisual"]
             )
         )
-    if "BarChartVisual" in data:
+    if data.get("BarChartVisual") is not None:
         import capo_quicksight.types.bar_chart_visual
 
         out["bar_chart_visual"] = (
@@ -317,13 +317,13 @@ def deserialize_json(data: dict) -> Visual:
                 data["BarChartVisual"]
             )
         )
-    if "KPIVisual" in data:
+    if data.get("KPIVisual") is not None:
         import capo_quicksight.types.kpi_visual
 
         out["kpi_visual"] = capo_quicksight.types.kpi_visual.deserialize_json(
             data["KPIVisual"]
         )
-    if "PieChartVisual" in data:
+    if data.get("PieChartVisual") is not None:
         import capo_quicksight.types.pie_chart_visual
 
         out["pie_chart_visual"] = (
@@ -331,7 +331,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["PieChartVisual"]
             )
         )
-    if "GaugeChartVisual" in data:
+    if data.get("GaugeChartVisual") is not None:
         import capo_quicksight.types.gauge_chart_visual
 
         out["gauge_chart_visual"] = (
@@ -339,7 +339,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["GaugeChartVisual"]
             )
         )
-    if "LineChartVisual" in data:
+    if data.get("LineChartVisual") is not None:
         import capo_quicksight.types.line_chart_visual
 
         out["line_chart_visual"] = (
@@ -347,19 +347,19 @@ def deserialize_json(data: dict) -> Visual:
                 data["LineChartVisual"]
             )
         )
-    if "HeatMapVisual" in data:
+    if data.get("HeatMapVisual") is not None:
         import capo_quicksight.types.heat_map_visual
 
         out["heat_map_visual"] = capo_quicksight.types.heat_map_visual.deserialize_json(
             data["HeatMapVisual"]
         )
-    if "TreeMapVisual" in data:
+    if data.get("TreeMapVisual") is not None:
         import capo_quicksight.types.tree_map_visual
 
         out["tree_map_visual"] = capo_quicksight.types.tree_map_visual.deserialize_json(
             data["TreeMapVisual"]
         )
-    if "GeospatialMapVisual" in data:
+    if data.get("GeospatialMapVisual") is not None:
         import capo_quicksight.types.geospatial_map_visual
 
         out["geospatial_map_visual"] = (
@@ -367,7 +367,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["GeospatialMapVisual"]
             )
         )
-    if "FilledMapVisual" in data:
+    if data.get("FilledMapVisual") is not None:
         import capo_quicksight.types.filled_map_visual
 
         out["filled_map_visual"] = (
@@ -375,7 +375,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["FilledMapVisual"]
             )
         )
-    if "LayerMapVisual" in data:
+    if data.get("LayerMapVisual") is not None:
         import capo_quicksight.types.layer_map_visual
 
         out["layer_map_visual"] = (
@@ -383,7 +383,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["LayerMapVisual"]
             )
         )
-    if "FunnelChartVisual" in data:
+    if data.get("FunnelChartVisual") is not None:
         import capo_quicksight.types.funnel_chart_visual
 
         out["funnel_chart_visual"] = (
@@ -391,7 +391,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["FunnelChartVisual"]
             )
         )
-    if "ScatterPlotVisual" in data:
+    if data.get("ScatterPlotVisual") is not None:
         import capo_quicksight.types.scatter_plot_visual
 
         out["scatter_plot_visual"] = (
@@ -399,7 +399,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["ScatterPlotVisual"]
             )
         )
-    if "ComboChartVisual" in data:
+    if data.get("ComboChartVisual") is not None:
         import capo_quicksight.types.combo_chart_visual
 
         out["combo_chart_visual"] = (
@@ -407,13 +407,13 @@ def deserialize_json(data: dict) -> Visual:
                 data["ComboChartVisual"]
             )
         )
-    if "BoxPlotVisual" in data:
+    if data.get("BoxPlotVisual") is not None:
         import capo_quicksight.types.box_plot_visual
 
         out["box_plot_visual"] = capo_quicksight.types.box_plot_visual.deserialize_json(
             data["BoxPlotVisual"]
         )
-    if "WaterfallVisual" in data:
+    if data.get("WaterfallVisual") is not None:
         import capo_quicksight.types.waterfall_visual
 
         out["waterfall_visual"] = (
@@ -421,7 +421,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["WaterfallVisual"]
             )
         )
-    if "HistogramVisual" in data:
+    if data.get("HistogramVisual") is not None:
         import capo_quicksight.types.histogram_visual
 
         out["histogram_visual"] = (
@@ -429,7 +429,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["HistogramVisual"]
             )
         )
-    if "WordCloudVisual" in data:
+    if data.get("WordCloudVisual") is not None:
         import capo_quicksight.types.word_cloud_visual
 
         out["word_cloud_visual"] = (
@@ -437,13 +437,13 @@ def deserialize_json(data: dict) -> Visual:
                 data["WordCloudVisual"]
             )
         )
-    if "InsightVisual" in data:
+    if data.get("InsightVisual") is not None:
         import capo_quicksight.types.insight_visual
 
         out["insight_visual"] = capo_quicksight.types.insight_visual.deserialize_json(
             data["InsightVisual"]
         )
-    if "SankeyDiagramVisual" in data:
+    if data.get("SankeyDiagramVisual") is not None:
         import capo_quicksight.types.sankey_diagram_visual
 
         out["sankey_diagram_visual"] = (
@@ -451,7 +451,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["SankeyDiagramVisual"]
             )
         )
-    if "CustomContentVisual" in data:
+    if data.get("CustomContentVisual") is not None:
         import capo_quicksight.types.custom_content_visual
 
         out["custom_content_visual"] = (
@@ -459,13 +459,13 @@ def deserialize_json(data: dict) -> Visual:
                 data["CustomContentVisual"]
             )
         )
-    if "EmptyVisual" in data:
+    if data.get("EmptyVisual") is not None:
         import capo_quicksight.types.empty_visual
 
         out["empty_visual"] = capo_quicksight.types.empty_visual.deserialize_json(
             data["EmptyVisual"]
         )
-    if "RadarChartVisual" in data:
+    if data.get("RadarChartVisual") is not None:
         import capo_quicksight.types.radar_chart_visual
 
         out["radar_chart_visual"] = (
@@ -473,7 +473,7 @@ def deserialize_json(data: dict) -> Visual:
                 data["RadarChartVisual"]
             )
         )
-    if "PluginVisual" in data:
+    if data.get("PluginVisual") is not None:
         import capo_quicksight.types.plugin_visual
 
         out["plugin_visual"] = capo_quicksight.types.plugin_visual.deserialize_json(

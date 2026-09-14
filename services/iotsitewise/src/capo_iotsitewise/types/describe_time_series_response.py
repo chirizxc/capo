@@ -70,17 +70,17 @@ def serialize_json(value: DescribeTimeSeriesResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTimeSeriesResponse:
     out: DescribeTimeSeriesResponse = {}  # type: ignore[typeddict-item]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
-    if "propertyId" in data:
+    if data.get("propertyId") is not None:
         out["property_id"] = data["propertyId"]
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "timeSeriesId" in data:
+    if data.get("timeSeriesId") is not None:
         out["time_series_id"] = data["timeSeriesId"]
     else:
         raise DeserializationError("DescribeTimeSeriesResponse.time_series_id required")
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_iotsitewise.types.property_data_type
 
         out["data_type"] = capo_iotsitewise.types.property_data_type.deserialize_json(
@@ -88,9 +88,9 @@ def deserialize_json(data: dict) -> DescribeTimeSeriesResponse:
         )
     else:
         raise DeserializationError("DescribeTimeSeriesResponse.data_type required")
-    if "dataTypeSpec" in data:
+    if data.get("dataTypeSpec") is not None:
         out["data_type_spec"] = data["dataTypeSpec"]
-    if "timeSeriesCreationDate" in data:
+    if data.get("timeSeriesCreationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["time_series_creation_date"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> DescribeTimeSeriesResponse:
         raise DeserializationError(
             "DescribeTimeSeriesResponse.time_series_creation_date required"
         )
-    if "timeSeriesLastUpdateDate" in data:
+    if data.get("timeSeriesLastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["time_series_last_update_date"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> DescribeTimeSeriesResponse:
         raise DeserializationError(
             "DescribeTimeSeriesResponse.time_series_last_update_date required"
         )
-    if "timeSeriesArn" in data:
+    if data.get("timeSeriesArn") is not None:
         out["time_series_arn"] = data["timeSeriesArn"]
     else:
         raise DeserializationError(

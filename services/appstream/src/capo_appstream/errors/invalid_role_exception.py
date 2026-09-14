@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidRoleException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidRoleException_:
     out: InvalidRoleException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidRoleException(ServiceError):
 
     code: str | None = "InvalidRoleException"
 
-    def __init__(self, data: InvalidRoleException_):
+    def __init__(self, data: InvalidRoleException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidRoleException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidRoleException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidRoleException":
+        return cls(deserialize_aws_json_1_1(data), message)

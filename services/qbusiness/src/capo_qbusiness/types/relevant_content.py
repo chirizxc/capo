@@ -62,15 +62,15 @@ def serialize_json(value: RelevantContent) -> dict:
 
 def deserialize_json(data: dict) -> RelevantContent:
     out: RelevantContent = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
-    if "documentId" in data:
+    if data.get("documentId") is not None:
         out["document_id"] = data["documentId"]
-    if "documentTitle" in data:
+    if data.get("documentTitle") is not None:
         out["document_title"] = data["documentTitle"]
-    if "documentUri" in data:
+    if data.get("documentUri") is not None:
         out["document_uri"] = data["documentUri"]
-    if "documentAttributes" in data:
+    if data.get("documentAttributes") is not None:
         import capo_qbusiness.types.document_attributes
 
         out["document_attributes"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> RelevantContent:
                 data["documentAttributes"]
             )
         )
-    if "scoreAttributes" in data:
+    if data.get("scoreAttributes") is not None:
         import capo_qbusiness.types.score_attributes
 
         out["score_attributes"] = (

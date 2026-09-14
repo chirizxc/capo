@@ -36,7 +36,7 @@ def serialize_json(value: Section) -> dict:
 
 def deserialize_json(data: dict) -> Section:
     out: Section = {}  # type: ignore[typeddict-item]
-    if "productRestEndpointPageArns" in data:
+    if data.get("productRestEndpointPageArns") is not None:
         import capo_apigatewayv2.types.__list_of__string_min20_max2048
 
         out["product_rest_endpoint_page_arns"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> Section:
                 data["productRestEndpointPageArns"]
             )
         )
-    if "sectionName" in data:
+    if data.get("sectionName") is not None:
         out["section_name"] = data["sectionName"]
     return out

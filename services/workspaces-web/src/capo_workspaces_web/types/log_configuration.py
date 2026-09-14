@@ -27,7 +27,7 @@ def serialize_json(value: LogConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogConfiguration:
     out: LogConfiguration = {}  # type: ignore[typeddict-item]
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_workspaces_web.types.s3_log_configuration
 
         out["s3"] = capo_workspaces_web.types.s3_log_configuration.deserialize_json(

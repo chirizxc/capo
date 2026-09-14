@@ -31,7 +31,7 @@ def serialize_json(value: AudioWatermarkSettings) -> dict:
 
 def deserialize_json(data: dict) -> AudioWatermarkSettings:
     out: AudioWatermarkSettings = {}  # type: ignore[typeddict-item]
-    if "nielsenWatermarksSettings" in data:
+    if data.get("nielsenWatermarksSettings") is not None:
         import capo_medialive.types.nielsen_watermarks_settings
 
         out["nielsen_watermarks_settings"] = (

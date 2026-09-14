@@ -44,13 +44,13 @@ def serialize_json(value: CreateVectorBucketInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateVectorBucketInput:
     out: CreateVectorBucketInput = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
     else:
         raise DeserializationError(
             "CreateVectorBucketInput.vector_bucket_name required"
         )
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_s3vectors.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> CreateVectorBucketInput:
                 data["encryptionConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_s3vectors.types.tags_map
 
         out["tags"] = capo_s3vectors.types.tags_map.deserialize_json(data["tags"])

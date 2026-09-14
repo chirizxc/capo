@@ -42,11 +42,11 @@ def serialize_json(value: CloudRemovalConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> CloudRemovalConfigInput:
     out: CloudRemovalConfigInput = {}  # type: ignore[typeddict-item]
-    if "AlgorithmName" in data:
+    if data.get("AlgorithmName") is not None:
         out["algorithm_name"] = data["AlgorithmName"]
-    if "InterpolationValue" in data:
+    if data.get("InterpolationValue") is not None:
         out["interpolation_value"] = data["InterpolationValue"]
-    if "TargetBands" in data:
+    if data.get("TargetBands") is not None:
         import capo_sagemaker_geospatial.types.string_list_input
 
         out["target_bands"] = (

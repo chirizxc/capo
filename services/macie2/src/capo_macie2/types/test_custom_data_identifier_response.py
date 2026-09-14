@@ -23,6 +23,6 @@ def serialize_json(value: TestCustomDataIdentifierResponse) -> dict:
 
 def deserialize_json(data: dict) -> TestCustomDataIdentifierResponse:
     out: TestCustomDataIdentifierResponse = {}  # type: ignore[typeddict-item]
-    if "matchCount" in data:
+    if data.get("matchCount") is not None:
         out["match_count"] = data["matchCount"]
     return out

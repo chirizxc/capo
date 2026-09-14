@@ -32,12 +32,12 @@ def serialize_json(value: GetGroupsResult) -> dict:
 
 def deserialize_json(data: dict) -> GetGroupsResult:
     out: GetGroupsResult = {}  # type: ignore[typeddict-item]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_xray.types.group_summary_list
 
         out["groups"] = capo_xray.types.group_summary_list.deserialize_json(
             data["Groups"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

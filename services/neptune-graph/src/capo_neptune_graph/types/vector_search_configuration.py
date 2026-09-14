@@ -24,7 +24,7 @@ def serialize_json(value: VectorSearchConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VectorSearchConfiguration:
     out: VectorSearchConfiguration = {}  # type: ignore[typeddict-item]
-    if "dimension" in data:
+    if data.get("dimension") is not None:
         out["dimension"] = data["dimension"]
     else:
         raise DeserializationError("VectorSearchConfiguration.dimension required")

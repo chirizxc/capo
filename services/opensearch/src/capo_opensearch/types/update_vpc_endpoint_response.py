@@ -28,7 +28,7 @@ def serialize_json(value: UpdateVpcEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVpcEndpointResponse:
     out: UpdateVpcEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "VpcEndpoint" in data:
+    if data.get("VpcEndpoint") is not None:
         import capo_opensearch.types.vpc_endpoint
 
         out["vpc_endpoint"] = capo_opensearch.types.vpc_endpoint.deserialize_json(

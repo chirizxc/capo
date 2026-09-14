@@ -44,12 +44,12 @@ def serialize_json(value: AttributeGroupDetails) -> dict:
 
 def deserialize_json(data: dict) -> AttributeGroupDetails:
     out: AttributeGroupDetails = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     return out

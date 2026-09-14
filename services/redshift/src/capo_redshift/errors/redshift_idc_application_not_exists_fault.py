@@ -39,15 +39,20 @@ class RedshiftIdcApplicationNotExistsFault(ServiceError):
 
     code: str | None = "RedshiftIdcApplicationNotExistsFault"
 
-    def __init__(self, data: RedshiftIdcApplicationNotExistsFault_):
+    def __init__(
+        self, data: RedshiftIdcApplicationNotExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RedshiftIdcApplicationNotExistsFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "RedshiftIdcApplicationNotExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "RedshiftIdcApplicationNotExistsFault":
+        return cls(deserialize_query(el), message)

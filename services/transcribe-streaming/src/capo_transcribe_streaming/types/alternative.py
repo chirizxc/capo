@@ -41,15 +41,15 @@ def serialize_json(value: Alternative) -> dict:
 
 def deserialize_json(data: dict) -> Alternative:
     out: Alternative = {}  # type: ignore[typeddict-item]
-    if "Transcript" in data:
+    if data.get("Transcript") is not None:
         out["transcript"] = data["Transcript"]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_transcribe_streaming.types.item_list
 
         out["items"] = capo_transcribe_streaming.types.item_list.deserialize_json(
             data["Items"]
         )
-    if "Entities" in data:
+    if data.get("Entities") is not None:
         import capo_transcribe_streaming.types.entity_list
 
         out["entities"] = capo_transcribe_streaming.types.entity_list.deserialize_json(

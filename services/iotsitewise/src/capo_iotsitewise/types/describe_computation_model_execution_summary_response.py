@@ -43,19 +43,19 @@ def serialize_json(value: DescribeComputationModelExecutionSummaryResponse) -> d
 
 def deserialize_json(data: dict) -> DescribeComputationModelExecutionSummaryResponse:
     out: DescribeComputationModelExecutionSummaryResponse = {}  # type: ignore[typeddict-item]
-    if "computationModelId" in data:
+    if data.get("computationModelId") is not None:
         out["computation_model_id"] = data["computationModelId"]
     else:
         raise DeserializationError(
             "DescribeComputationModelExecutionSummaryResponse.computation_model_id required"
         )
-    if "resolveTo" in data:
+    if data.get("resolveTo") is not None:
         import capo_iotsitewise.types.resolve_to
 
         out["resolve_to"] = capo_iotsitewise.types.resolve_to.deserialize_json(
             data["resolveTo"]
         )
-    if "computationModelExecutionSummary" in data:
+    if data.get("computationModelExecutionSummary") is not None:
         import capo_iotsitewise.types.computation_model_execution_summary
 
         out["computation_model_execution_summary"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfConfigurationId:
 
     out: __listOfConfigurationId = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mq.types.configuration_id.deserialize_json(item))
     return out

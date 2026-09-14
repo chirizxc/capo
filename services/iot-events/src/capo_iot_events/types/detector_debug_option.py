@@ -29,10 +29,10 @@ def serialize_json(value: DetectorDebugOption) -> dict:
 
 def deserialize_json(data: dict) -> DetectorDebugOption:
     out: DetectorDebugOption = {}  # type: ignore[typeddict-item]
-    if "detectorModelName" in data:
+    if data.get("detectorModelName") is not None:
         out["detector_model_name"] = data["detectorModelName"]
     else:
         raise DeserializationError("DetectorDebugOption.detector_model_name required")
-    if "keyValue" in data:
+    if data.get("keyValue") is not None:
         out["key_value"] = data["keyValue"]
     return out

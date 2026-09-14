@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MissionProfileList:
 
     out: MissionProfileList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_groundstation.types.mission_profile_list_item.deserialize_json(item)
         )

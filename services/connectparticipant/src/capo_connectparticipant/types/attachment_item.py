@@ -44,13 +44,13 @@ def serialize_json(value: AttachmentItem) -> dict:
 
 def deserialize_json(data: dict) -> AttachmentItem:
     out: AttachmentItem = {}  # type: ignore[typeddict-item]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "AttachmentId" in data:
+    if data.get("AttachmentId") is not None:
         out["attachment_id"] = data["AttachmentId"]
-    if "AttachmentName" in data:
+    if data.get("AttachmentName") is not None:
         out["attachment_name"] = data["AttachmentName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connectparticipant.types.artifact_status
 
         out["status"] = capo_connectparticipant.types.artifact_status.deserialize_json(

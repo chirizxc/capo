@@ -71,7 +71,7 @@ def serialize_aws_json_1_1(value: AnalyzeDocumentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnalyzeDocumentRequest:
     out: AnalyzeDocumentRequest = {}  # type: ignore[typeddict-item]
-    if "Document" in data:
+    if data.get("Document") is not None:
         import capo_textract.types.document
 
         out["document"] = capo_textract.types.document.deserialize_aws_json_1_1(
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> AnalyzeDocumentRequest:
         )
     else:
         raise DeserializationError("AnalyzeDocumentRequest.document required")
-    if "FeatureTypes" in data:
+    if data.get("FeatureTypes") is not None:
         import capo_textract.types.feature_types
 
         out["feature_types"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> AnalyzeDocumentRequest:
         )
     else:
         raise DeserializationError("AnalyzeDocumentRequest.feature_types required")
-    if "HumanLoopConfig" in data:
+    if data.get("HumanLoopConfig") is not None:
         import capo_textract.types.human_loop_config
 
         out["human_loop_config"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> AnalyzeDocumentRequest:
                 data["HumanLoopConfig"]
             )
         )
-    if "QueriesConfig" in data:
+    if data.get("QueriesConfig") is not None:
         import capo_textract.types.queries_config
 
         out["queries_config"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> AnalyzeDocumentRequest:
                 data["QueriesConfig"]
             )
         )
-    if "AdaptersConfig" in data:
+    if data.get("AdaptersConfig") is not None:
         import capo_textract.types.adapters_config
 
         out["adapters_config"] = (

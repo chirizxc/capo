@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: DataQualityAnalyzerResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityAnalyzerResult:
     out: DataQualityAnalyzerResult = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EvaluationMessage" in data:
+    if data.get("EvaluationMessage") is not None:
         out["evaluation_message"] = data["EvaluationMessage"]
-    if "EvaluatedMetrics" in data:
+    if data.get("EvaluatedMetrics") is not None:
         import capo_glue.types.evaluated_metrics_map
 
         out["evaluated_metrics"] = (

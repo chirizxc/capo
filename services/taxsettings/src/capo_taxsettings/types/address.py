@@ -56,27 +56,27 @@ def serialize_json(value: Address) -> dict:
 
 def deserialize_json(data: dict) -> Address:
     out: Address = {}  # type: ignore[typeddict-item]
-    if "addressLine1" in data:
+    if data.get("addressLine1") is not None:
         out["address_line1"] = data["addressLine1"]
     else:
         out["address_line1"] = "Unknown"
-    if "addressLine2" in data:
+    if data.get("addressLine2") is not None:
         out["address_line2"] = data["addressLine2"]
-    if "addressLine3" in data:
+    if data.get("addressLine3") is not None:
         out["address_line3"] = data["addressLine3"]
-    if "districtOrCounty" in data:
+    if data.get("districtOrCounty") is not None:
         out["district_or_county"] = data["districtOrCounty"]
-    if "city" in data:
+    if data.get("city") is not None:
         out["city"] = data["city"]
     else:
         out["city"] = "Unknown"
-    if "stateOrRegion" in data:
+    if data.get("stateOrRegion") is not None:
         out["state_or_region"] = data["stateOrRegion"]
-    if "postalCode" in data:
+    if data.get("postalCode") is not None:
         out["postal_code"] = data["postalCode"]
     else:
         raise DeserializationError("Address.postal_code required")
-    if "countryCode" in data:
+    if data.get("countryCode") is not None:
         out["country_code"] = data["countryCode"]
     else:
         raise DeserializationError("Address.country_code required")

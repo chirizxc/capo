@@ -33,19 +33,19 @@ def serialize_json(value: ServiceAccountSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceAccountSummary:
     out: ServiceAccountSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ServiceAccountSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ServiceAccountSummary.name required")
-    if "isDisabled" in data:
+    if data.get("isDisabled") is not None:
         out["is_disabled"] = data["isDisabled"]
     else:
         raise DeserializationError("ServiceAccountSummary.is_disabled required")
-    if "grafanaRole" in data:
+    if data.get("grafanaRole") is not None:
         out["grafana_role"] = data["grafanaRole"]
     else:
         raise DeserializationError("ServiceAccountSummary.grafana_role required")

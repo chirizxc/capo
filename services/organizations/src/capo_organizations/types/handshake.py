@@ -91,11 +91,11 @@ def serialize_aws_json_1_1(value: Handshake) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Handshake:
     out: Handshake = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Parties" in data:
+    if data.get("Parties") is not None:
         import capo_organizations.types.handshake_parties
 
         out["parties"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> Handshake:
                 data["Parties"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_organizations.types.handshake_state
 
         out["state"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> Handshake:
                 data["State"]
             )
         )
-    if "RequestedTimestamp" in data:
+    if data.get("RequestedTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["requested_timestamp"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> Handshake:
                 data["RequestedTimestamp"]
             )
         )
-    if "ExpirationTimestamp" in data:
+    if data.get("ExpirationTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["expiration_timestamp"] = (
@@ -127,13 +127,13 @@ def deserialize_aws_json_1_1(data: dict) -> Handshake:
                 data["ExpirationTimestamp"]
             )
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_organizations.types.action_type
 
         out["action"] = capo_organizations.types.action_type.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_organizations.types.handshake_resources
 
         out["resources"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: UpdateExperimentTemplateExperimentOptionsInput) -> dic
 
 def deserialize_json(data: dict) -> UpdateExperimentTemplateExperimentOptionsInput:
     out: UpdateExperimentTemplateExperimentOptionsInput = {}  # type: ignore[typeddict-item]
-    if "emptyTargetResolutionMode" in data:
+    if data.get("emptyTargetResolutionMode") is not None:
         import capo_fis.types.empty_target_resolution_mode
 
         out["empty_target_resolution_mode"] = (

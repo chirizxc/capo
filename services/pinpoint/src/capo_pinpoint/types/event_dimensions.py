@@ -51,7 +51,7 @@ def serialize_json(value: EventDimensions) -> dict:
 
 def deserialize_json(data: dict) -> EventDimensions:
     out: EventDimensions = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_pinpoint.types.map_of_attribute_dimension
 
         out["attributes"] = (
@@ -59,13 +59,13 @@ def deserialize_json(data: dict) -> EventDimensions:
                 data["Attributes"]
             )
         )
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         import capo_pinpoint.types.set_dimension
 
         out["event_type"] = capo_pinpoint.types.set_dimension.deserialize_json(
             data["EventType"]
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_pinpoint.types.map_of_metric_dimension
 
         out["metrics"] = capo_pinpoint.types.map_of_metric_dimension.deserialize_json(

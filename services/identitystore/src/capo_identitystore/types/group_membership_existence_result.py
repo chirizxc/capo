@@ -36,15 +36,15 @@ def serialize_aws_json_1_1(value: GroupMembershipExistenceResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GroupMembershipExistenceResult:
     out: GroupMembershipExistenceResult = {}  # type: ignore[typeddict-item]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         import capo_identitystore.types.member_id
 
         out["member_id"] = capo_identitystore.types.member_id.deserialize_aws_json_1_1(
             data["MemberId"]
         )
-    if "MembershipExists" in data:
+    if data.get("MembershipExists") is not None:
         out["membership_exists"] = data["MembershipExists"]
     else:
         out["membership_exists"] = False

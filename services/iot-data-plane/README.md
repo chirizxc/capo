@@ -13,9 +13,9 @@ from capo_iot_data_plane import AsyncIoTDataPlaneClient
 
 
 async def main():
-    async with AsyncIoTDataPlaneClient() as s3:
+    async with AsyncIoTDataPlaneClient() as io_t_data_plane:
         # Example: call the delete_connection operation
-        response = await s3.delete_connection()
+        response = await io_t_data_plane.delete_connection()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_iot_data_plane import AsyncIoTDataPlaneClient
 
 
 async def main():
-    async with AsyncIoTDataPlaneClient() as s3:
+    async with AsyncIoTDataPlaneClient() as io_t_data_plane:
         # Example: paginate over list_retained_messages
-        async for item in s3.iter_list_retained_messages():
+        async for item in io_t_data_plane.iter_list_retained_messages():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_iot_data_plane.error import ForbiddenException
 
 
 async def main():
-    async with AsyncIoTDataPlaneClient() as s3:
+    async with AsyncIoTDataPlaneClient() as io_t_data_plane:
         try:
-            await s3.delete_connection()
+            await io_t_data_plane.delete_connection()
         except ForbiddenException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_iot_data_plane import AsyncIoTDataPlaneClient
 
 
 async def main():
-    async with AsyncIoTDataPlaneClient() as s3:
+    async with AsyncIoTDataPlaneClient() as io_t_data_plane:
         # Default: 3 attempts for every operation
-        response = await s3.delete_connection()
+        response = await io_t_data_plane.delete_connection()
 
         # Override per operation
-        response = await s3.delete_connection(config_overrides={"retry_max_attempts": 5})
+        response = await io_t_data_plane.delete_connection(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_connection(config_overrides={"retry_max_attempts": 1})
+        response = await io_t_data_plane.delete_connection(config_overrides={"retry_max_attempts": 1})
 ```

@@ -40,11 +40,11 @@ def serialize_json(value: GetAttachmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAttachmentResponse:
     out: GetAttachmentResponse = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "UrlExpiry" in data:
+    if data.get("UrlExpiry") is not None:
         out["url_expiry"] = data["UrlExpiry"]
-    if "AttachmentSizeInBytes" in data:
+    if data.get("AttachmentSizeInBytes") is not None:
         out["attachment_size_in_bytes"] = data["AttachmentSizeInBytes"]
     else:
         raise DeserializationError(

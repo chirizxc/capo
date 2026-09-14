@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ProtectionGroupPatternFilters:
 
     out: ProtectionGroupPatternFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_shield.types.protection_group_pattern.deserialize_aws_json_1_1(item)
         )

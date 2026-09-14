@@ -24,7 +24,7 @@ def serialize_json(value: CreateQueueResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateQueueResponse:
     out: CreateQueueResponse = {}  # type: ignore[typeddict-item]
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("CreateQueueResponse.queue_id required")

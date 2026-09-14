@@ -18,7 +18,7 @@ def serialize_aws_json_1_1(value: Ipv6CidrBlockNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Ipv6CidrBlockNotFoundException_:
     out: Ipv6CidrBlockNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("Ipv6CidrBlockNotFoundException_.message required")
@@ -30,15 +30,20 @@ class Ipv6CidrBlockNotFoundException(ServiceError):
 
     code: str | None = "Ipv6CidrBlockNotFoundException"
 
-    def __init__(self, data: Ipv6CidrBlockNotFoundException_):
+    def __init__(
+        self, data: Ipv6CidrBlockNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="Ipv6CidrBlockNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "Ipv6CidrBlockNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "Ipv6CidrBlockNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

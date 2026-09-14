@@ -49,7 +49,7 @@ def serialize_json(value: BucketLevelPermissions) -> dict:
 
 def deserialize_json(data: dict) -> BucketLevelPermissions:
     out: BucketLevelPermissions = {}  # type: ignore[typeddict-item]
-    if "accessControlList" in data:
+    if data.get("accessControlList") is not None:
         import capo_macie2.types.access_control_list
 
         out["access_control_list"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> BucketLevelPermissions:
                 data["accessControlList"]
             )
         )
-    if "blockPublicAccess" in data:
+    if data.get("blockPublicAccess") is not None:
         import capo_macie2.types.block_public_access
 
         out["block_public_access"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> BucketLevelPermissions:
                 data["blockPublicAccess"]
             )
         )
-    if "bucketPolicy" in data:
+    if data.get("bucketPolicy") is not None:
         import capo_macie2.types.bucket_policy
 
         out["bucket_policy"] = capo_macie2.types.bucket_policy.deserialize_json(

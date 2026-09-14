@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfMediaPackageAdditionalDestinations:
 
     out: __listOfMediaPackageAdditionalDestinations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.media_package_additional_destinations.deserialize_json(
                 item

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ComplianceDriftList:
 
     out: ComplianceDriftList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.compliance_drift.deserialize_json(item))
     return out

@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: ServiceCatalogProvisionedProductDetails) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceCatalogProvisionedProductDetails:
     out: ServiceCatalogProvisionedProductDetails = {}  # type: ignore[typeddict-item]
-    if "ProvisionedProductId" in data:
+    if data.get("ProvisionedProductId") is not None:
         out["provisioned_product_id"] = data["ProvisionedProductId"]
-    if "ProvisionedProductStatusMessage" in data:
+    if data.get("ProvisionedProductStatusMessage") is not None:
         out["provisioned_product_status_message"] = data[
             "ProvisionedProductStatusMessage"
         ]

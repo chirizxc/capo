@@ -44,7 +44,7 @@ def serialize_json(value: VoiceRecordingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VoiceRecordingConfiguration:
     out: VoiceRecordingConfiguration = {}  # type: ignore[typeddict-item]
-    if "VoiceRecordingTrack" in data:
+    if data.get("VoiceRecordingTrack") is not None:
         import capo_connect.types.voice_recording_track
 
         out["voice_recording_track"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> VoiceRecordingConfiguration:
                 data["VoiceRecordingTrack"]
             )
         )
-    if "IvrRecordingTrack" in data:
+    if data.get("IvrRecordingTrack") is not None:
         import capo_connect.types.ivr_recording_track
 
         out["ivr_recording_track"] = (

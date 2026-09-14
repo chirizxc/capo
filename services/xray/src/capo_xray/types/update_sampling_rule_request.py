@@ -28,7 +28,7 @@ def serialize_json(value: UpdateSamplingRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSamplingRuleRequest:
     out: UpdateSamplingRuleRequest = {}  # type: ignore[typeddict-item]
-    if "SamplingRuleUpdate" in data:
+    if data.get("SamplingRuleUpdate") is not None:
         import capo_xray.types.sampling_rule_update
 
         out["sampling_rule_update"] = (

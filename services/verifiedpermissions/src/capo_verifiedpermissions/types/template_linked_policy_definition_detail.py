@@ -51,13 +51,13 @@ def serialize_aws_json_1_0(value: TemplateLinkedPolicyDefinitionDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TemplateLinkedPolicyDefinitionDetail:
     out: TemplateLinkedPolicyDefinitionDetail = {}  # type: ignore[typeddict-item]
-    if "policyTemplateId" in data:
+    if data.get("policyTemplateId") is not None:
         out["policy_template_id"] = data["policyTemplateId"]
     else:
         raise DeserializationError(
             "TemplateLinkedPolicyDefinitionDetail.policy_template_id required"
         )
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["principal"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> TemplateLinkedPolicyDefinitionDetail
                 data["principal"]
             )
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["resource"] = (

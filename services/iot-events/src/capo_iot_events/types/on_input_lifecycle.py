@@ -38,11 +38,11 @@ def serialize_json(value: OnInputLifecycle) -> dict:
 
 def deserialize_json(data: dict) -> OnInputLifecycle:
     out: OnInputLifecycle = {}  # type: ignore[typeddict-item]
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_iot_events.types.events
 
         out["events"] = capo_iot_events.types.events.deserialize_json(data["events"])
-    if "transitionEvents" in data:
+    if data.get("transitionEvents") is not None:
         import capo_iot_events.types.transition_events
 
         out["transition_events"] = (

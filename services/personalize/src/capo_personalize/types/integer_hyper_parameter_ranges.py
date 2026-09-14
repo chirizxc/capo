@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> IntegerHyperParameterRanges:
 
     out: IntegerHyperParameterRanges = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_personalize.types.integer_hyper_parameter_range.deserialize_aws_json_1_1(
                 item

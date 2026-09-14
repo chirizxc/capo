@@ -79,17 +79,17 @@ def serialize_aws_json_1_1(value: UpdateDetectorVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDetectorVersionRequest:
     out: UpdateDetectorVersionRequest = {}  # type: ignore[typeddict-item]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
     else:
         raise DeserializationError("UpdateDetectorVersionRequest.detector_id required")
-    if "detectorVersionId" in data:
+    if data.get("detectorVersionId") is not None:
         out["detector_version_id"] = data["detectorVersionId"]
     else:
         raise DeserializationError(
             "UpdateDetectorVersionRequest.detector_version_id required"
         )
-    if "externalModelEndpoints" in data:
+    if data.get("externalModelEndpoints") is not None:
         import capo_frauddetector.types.list_of_strings
 
         out["external_model_endpoints"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDetectorVersionRequest:
         raise DeserializationError(
             "UpdateDetectorVersionRequest.external_model_endpoints required"
         )
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_frauddetector.types.rule_list
 
         out["rules"] = capo_frauddetector.types.rule_list.deserialize_aws_json_1_1(
@@ -109,9 +109,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDetectorVersionRequest:
         )
     else:
         raise DeserializationError("UpdateDetectorVersionRequest.rules required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "modelVersions" in data:
+    if data.get("modelVersions") is not None:
         import capo_frauddetector.types.list_of_model_versions
 
         out["model_versions"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDetectorVersionRequest:
                 data["modelVersions"]
             )
         )
-    if "ruleExecutionMode" in data:
+    if data.get("ruleExecutionMode") is not None:
         import capo_frauddetector.types.rule_execution_mode
 
         out["rule_execution_mode"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: AdvancedConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AdvancedConfiguration:
     out: AdvancedConfiguration = {}  # type: ignore[typeddict-item]
-    if "WiFiCellular" in data:
+    if data.get("WiFiCellular") is not None:
         import capo_iot_wireless.types.wi_fi_cellular
 
         out["wi_fi_cellular"] = capo_iot_wireless.types.wi_fi_cellular.deserialize_json(

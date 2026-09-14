@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DataflowEndpointGroupList:
 
     out: DataflowEndpointGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_groundstation.types.dataflow_endpoint_list_item.deserialize_json(item)
         )

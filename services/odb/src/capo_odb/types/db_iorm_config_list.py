@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> DbIormConfigList:
 
     out: DbIormConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_odb.types.db_iorm_config.deserialize_aws_json_1_0(item))
     return out

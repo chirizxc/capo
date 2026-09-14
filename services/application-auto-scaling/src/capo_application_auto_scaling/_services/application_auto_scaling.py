@@ -222,17 +222,19 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.delete_scaling_policy_request.DeleteScalingPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["service_namespace"] = service_namespace
-        input_["resource_id"] = resource_id
-        input_["scalable_dimension"] = scalable_dimension
+        input_: capo_application_auto_scaling.types.delete_scaling_policy_request.DeleteScalingPolicyRequest = {
+            "policy_name": policy_name,
+            "service_namespace": service_namespace,
+            "resource_id": resource_id,
+            "scalable_dimension": scalable_dimension,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_scheduled_action(
@@ -281,17 +283,19 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.delete_scheduled_action_request.DeleteScheduledActionRequest = {}  # type: ignore[typeddict-item]
-        input_["service_namespace"] = service_namespace
-        input_["scheduled_action_name"] = scheduled_action_name
-        input_["resource_id"] = resource_id
-        input_["scalable_dimension"] = scalable_dimension
+        input_: capo_application_auto_scaling.types.delete_scheduled_action_request.DeleteScheduledActionRequest = {
+            "service_namespace": service_namespace,
+            "scheduled_action_name": scheduled_action_name,
+            "resource_id": resource_id,
+            "scalable_dimension": scalable_dimension,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_scalable_target(
@@ -338,16 +342,18 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.deregister_scalable_target_request.DeregisterScalableTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["service_namespace"] = service_namespace
-        input_["resource_id"] = resource_id
-        input_["scalable_dimension"] = scalable_dimension
+        input_: capo_application_auto_scaling.types.deregister_scalable_target_request.DeregisterScalableTargetRequest = {
+            "service_namespace": service_namespace,
+            "resource_id": resource_id,
+            "scalable_dimension": scalable_dimension,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_scalable_targets(
@@ -406,8 +412,9 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.describe_scalable_targets_request.DescribeScalableTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_namespace"] = service_namespace
+        input_: capo_application_auto_scaling.types.describe_scalable_targets_request.DescribeScalableTargetsRequest = {
+            "service_namespace": service_namespace
+        }
         if resource_ids is not None:
             input_["resource_ids"] = resource_ids
         if scalable_dimension is not None:
@@ -422,6 +429,7 @@ class ApplicationAutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_scalable_targets(
@@ -519,8 +527,9 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.describe_scaling_activities_request.DescribeScalingActivitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_namespace"] = service_namespace
+        input_: capo_application_auto_scaling.types.describe_scaling_activities_request.DescribeScalingActivitiesRequest = {
+            "service_namespace": service_namespace
+        }
         if resource_id is not None:
             input_["resource_id"] = resource_id
         if scalable_dimension is not None:
@@ -537,6 +546,7 @@ class ApplicationAutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_scaling_activities(
@@ -641,10 +651,11 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.describe_scaling_policies_request.DescribeScalingPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_auto_scaling.types.describe_scaling_policies_request.DescribeScalingPoliciesRequest = {
+            "service_namespace": service_namespace
+        }
         if policy_names is not None:
             input_["policy_names"] = policy_names
-        input_["service_namespace"] = service_namespace
         if resource_id is not None:
             input_["resource_id"] = resource_id
         if scalable_dimension is not None:
@@ -659,6 +670,7 @@ class ApplicationAutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_scaling_policies(
@@ -760,10 +772,11 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.describe_scheduled_actions_request.DescribeScheduledActionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_auto_scaling.types.describe_scheduled_actions_request.DescribeScheduledActionsRequest = {
+            "service_namespace": service_namespace
+        }
         if scheduled_action_names is not None:
             input_["scheduled_action_names"] = scheduled_action_names
-        input_["service_namespace"] = service_namespace
         if resource_id is not None:
             input_["resource_id"] = resource_id
         if scalable_dimension is not None:
@@ -778,6 +791,7 @@ class ApplicationAutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_scheduled_actions(
@@ -863,19 +877,21 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.get_predictive_scaling_forecast_request.GetPredictiveScalingForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["service_namespace"] = service_namespace
-        input_["resource_id"] = resource_id
-        input_["scalable_dimension"] = scalable_dimension
-        input_["policy_name"] = policy_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_application_auto_scaling.types.get_predictive_scaling_forecast_request.GetPredictiveScalingForecastRequest = {
+            "service_namespace": service_namespace,
+            "resource_id": resource_id,
+            "scalable_dimension": scalable_dimension,
+            "policy_name": policy_name,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -915,14 +931,16 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_application_auto_scaling.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_scaling_policy(
@@ -989,11 +1007,12 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.put_scaling_policy_request.PutScalingPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["service_namespace"] = service_namespace
-        input_["resource_id"] = resource_id
-        input_["scalable_dimension"] = scalable_dimension
+        input_: capo_application_auto_scaling.types.put_scaling_policy_request.PutScalingPolicyRequest = {
+            "policy_name": policy_name,
+            "service_namespace": service_namespace,
+            "resource_id": resource_id,
+            "scalable_dimension": scalable_dimension,
+        }
         if policy_type is not None:
             input_["policy_type"] = policy_type
         if step_scaling_policy_configuration is not None:
@@ -1014,6 +1033,7 @@ class ApplicationAutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_scheduled_action(
@@ -1083,15 +1103,16 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.put_scheduled_action_request.PutScheduledActionRequest = {}  # type: ignore[typeddict-item]
-        input_["service_namespace"] = service_namespace
+        input_: capo_application_auto_scaling.types.put_scheduled_action_request.PutScheduledActionRequest = {
+            "service_namespace": service_namespace,
+            "scheduled_action_name": scheduled_action_name,
+            "resource_id": resource_id,
+            "scalable_dimension": scalable_dimension,
+        }
         if schedule is not None:
             input_["schedule"] = schedule
         if timezone is not None:
             input_["timezone"] = timezone
-        input_["scheduled_action_name"] = scheduled_action_name
-        input_["resource_id"] = resource_id
-        input_["scalable_dimension"] = scalable_dimension
         if start_time is not None:
             input_["start_time"] = start_time
         if end_time is not None:
@@ -1104,6 +1125,7 @@ class ApplicationAutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_scalable_target(
@@ -1168,10 +1190,11 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.register_scalable_target_request.RegisterScalableTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["service_namespace"] = service_namespace
-        input_["resource_id"] = resource_id
-        input_["scalable_dimension"] = scalable_dimension
+        input_: capo_application_auto_scaling.types.register_scalable_target_request.RegisterScalableTargetRequest = {
+            "service_namespace": service_namespace,
+            "resource_id": resource_id,
+            "scalable_dimension": scalable_dimension,
+        }
         if min_capacity is not None:
             input_["min_capacity"] = min_capacity
         if max_capacity is not None:
@@ -1188,6 +1211,7 @@ class ApplicationAutoScalingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1233,15 +1257,17 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_application_auto_scaling.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1284,15 +1310,17 @@ class ApplicationAutoScalingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_auto_scaling.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_application_auto_scaling.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

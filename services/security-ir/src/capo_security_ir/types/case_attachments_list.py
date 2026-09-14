@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CaseAttachmentsList:
 
     out: CaseAttachmentsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_security_ir.types.case_attachment_attributes.deserialize_json(item)
         )

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AppPortMappings:
 
     out: AppPortMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_simspaceweaver.types.simulation_app_port_mapping.deserialize_json(item)
         )

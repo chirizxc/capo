@@ -85,33 +85,33 @@ def serialize_json(value: ApplicationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationSummary:
     out: ApplicationSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ApplicationSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("ApplicationSummary.application_id required")
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
     else:
         raise DeserializationError("ApplicationSummary.application_arn required")
-    if "applicationVersion" in data:
+    if data.get("applicationVersion") is not None:
         out["application_version"] = data["applicationVersion"]
     else:
         raise DeserializationError("ApplicationSummary.application_version required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ApplicationSummary.status required")
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         out["engine_type"] = data["engineType"]
     else:
         raise DeserializationError("ApplicationSummary.engine_type required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_m2.types.timestamp
 
         out["creation_time"] = capo_m2.types.timestamp.deserialize_json(
@@ -119,18 +119,18 @@ def deserialize_json(data: dict) -> ApplicationSummary:
         )
     else:
         raise DeserializationError("ApplicationSummary.creation_time required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "lastStartTime" in data:
+    if data.get("lastStartTime") is not None:
         import capo_m2.types.timestamp
 
         out["last_start_time"] = capo_m2.types.timestamp.deserialize_json(
             data["lastStartTime"]
         )
-    if "versionStatus" in data:
+    if data.get("versionStatus") is not None:
         out["version_status"] = data["versionStatus"]
-    if "deploymentStatus" in data:
+    if data.get("deploymentStatus") is not None:
         out["deployment_status"] = data["deploymentStatus"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

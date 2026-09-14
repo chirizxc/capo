@@ -37,10 +37,10 @@ def serialize_json(value: Timing) -> dict:
 
 def deserialize_json(data: dict) -> Timing:
     out: Timing = {}  # type: ignore[typeddict-item]
-    if "SubmitTimeMillis" in data:
+    if data.get("SubmitTimeMillis") is not None:
         out["submit_time_millis"] = data["SubmitTimeMillis"]
-    if "StartTimeMillis" in data:
+    if data.get("StartTimeMillis") is not None:
         out["start_time_millis"] = data["StartTimeMillis"]
-    if "FinishTimeMillis" in data:
+    if data.get("FinishTimeMillis") is not None:
         out["finish_time_millis"] = data["FinishTimeMillis"]
     return out

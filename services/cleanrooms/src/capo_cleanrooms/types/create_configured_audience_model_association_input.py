@@ -54,13 +54,13 @@ def serialize_json(value: CreateConfiguredAudienceModelAssociationInput) -> dict
 
 def deserialize_json(data: dict) -> CreateConfiguredAudienceModelAssociationInput:
     out: CreateConfiguredAudienceModelAssociationInput = {}  # type: ignore[typeddict-item]
-    if "configuredAudienceModelArn" in data:
+    if data.get("configuredAudienceModelArn") is not None:
         out["configured_audience_model_arn"] = data["configuredAudienceModelArn"]
     else:
         raise DeserializationError(
             "CreateConfiguredAudienceModelAssociationInput.configured_audience_model_arn required"
         )
-    if "configuredAudienceModelAssociationName" in data:
+    if data.get("configuredAudienceModelAssociationName") is not None:
         out["configured_audience_model_association_name"] = data[
             "configuredAudienceModelAssociationName"
         ]
@@ -68,16 +68,16 @@ def deserialize_json(data: dict) -> CreateConfiguredAudienceModelAssociationInpu
         raise DeserializationError(
             "CreateConfiguredAudienceModelAssociationInput.configured_audience_model_association_name required"
         )
-    if "manageResourcePolicies" in data:
+    if data.get("manageResourcePolicies") is not None:
         out["manage_resource_policies"] = data["manageResourcePolicies"]
     else:
         raise DeserializationError(
             "CreateConfiguredAudienceModelAssociationInput.manage_resource_policies required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanrooms.types.tag_map
 
         out["tags"] = capo_cleanrooms.types.tag_map.deserialize_json(data["tags"])
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

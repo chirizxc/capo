@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: EvaluateExpressionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluateExpressionOutput:
     out: EvaluateExpressionOutput = {}  # type: ignore[typeddict-item]
-    if "evaluatedExpression" in data:
+    if data.get("evaluatedExpression") is not None:
         out["evaluated_expression"] = data["evaluatedExpression"]
     else:
         raise DeserializationError(

@@ -27,7 +27,7 @@ def serialize_json(value: DescribeInstanceTypeLimitsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeInstanceTypeLimitsResponse:
     out: DescribeInstanceTypeLimitsResponse = {}  # type: ignore[typeddict-item]
-    if "LimitsByRole" in data:
+    if data.get("LimitsByRole") is not None:
         import capo_opensearch.types.limits_by_role
 
         out["limits_by_role"] = capo_opensearch.types.limits_by_role.deserialize_json(

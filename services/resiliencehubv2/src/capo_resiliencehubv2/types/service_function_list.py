@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ServiceFunctionList:
 
     out: ServiceFunctionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehubv2.types.service_function.deserialize_json(item))
     return out

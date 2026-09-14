@@ -44,11 +44,11 @@ def serialize_json(value: SparkSubmit) -> dict:
 
 def deserialize_json(data: dict) -> SparkSubmit:
     out: SparkSubmit = {}  # type: ignore[typeddict-item]
-    if "entryPoint" in data:
+    if data.get("entryPoint") is not None:
         out["entry_point"] = data["entryPoint"]
     else:
         raise DeserializationError("SparkSubmit.entry_point required")
-    if "entryPointArguments" in data:
+    if data.get("entryPointArguments") is not None:
         import capo_emr_serverless.types.entry_point_arguments
 
         out["entry_point_arguments"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> SparkSubmit:
                 data["entryPointArguments"]
             )
         )
-    if "sparkSubmitParameters" in data:
+    if data.get("sparkSubmitParameters") is not None:
         out["spark_submit_parameters"] = data["sparkSubmitParameters"]
     return out

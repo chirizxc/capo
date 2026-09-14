@@ -44,7 +44,7 @@ def serialize_json(value: GaugeChartConditionalFormattingOption) -> dict:
 
 def deserialize_json(data: dict) -> GaugeChartConditionalFormattingOption:
     out: GaugeChartConditionalFormattingOption = {}  # type: ignore[typeddict-item]
-    if "PrimaryValue" in data:
+    if data.get("PrimaryValue") is not None:
         import capo_quicksight.types.gauge_chart_primary_value_conditional_formatting
 
         out["primary_value"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> GaugeChartConditionalFormattingOption:
                 data["PrimaryValue"]
             )
         )
-    if "Arc" in data:
+    if data.get("Arc") is not None:
         import capo_quicksight.types.gauge_chart_arc_conditional_formatting
 
         out["arc"] = (

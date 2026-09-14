@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> StartChildWorkflowExecutionFailedEventAttributes:
     out: StartChildWorkflowExecutionFailedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "workflowType" in data:
+    if data.get("workflowType") is not None:
         import capo_swf.types.workflow_type
 
         out["workflow_type"] = capo_swf.types.workflow_type.deserialize_aws_json_1_0(
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "StartChildWorkflowExecutionFailedEventAttributes.workflow_type required"
         )
-    if "cause" in data:
+    if data.get("cause") is not None:
         import capo_swf.types.start_child_workflow_execution_failed_cause
 
         out["cause"] = (
@@ -82,20 +82,20 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "StartChildWorkflowExecutionFailedEventAttributes.cause required"
         )
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     else:
         raise DeserializationError(
             "StartChildWorkflowExecutionFailedEventAttributes.workflow_id required"
         )
-    if "initiatedEventId" in data:
+    if data.get("initiatedEventId") is not None:
         out["initiated_event_id"] = data["initiatedEventId"]
     else:
         out["initiated_event_id"] = 0
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0
-    if "control" in data:
+    if data.get("control") is not None:
         out["control"] = data["control"]
     return out

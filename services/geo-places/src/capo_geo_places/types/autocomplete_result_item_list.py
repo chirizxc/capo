@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AutocompleteResultItemList:
 
     out: AutocompleteResultItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_places.types.autocomplete_result_item.deserialize_json(item)
         )

@@ -31,7 +31,7 @@ def serialize_json(value: ConnectivityFilter) -> dict:
 
 def deserialize_json(data: dict) -> ConnectivityFilter:
     out: ConnectivityFilter = {}  # type: ignore[typeddict-item]
-    if "includeSocketInformation" in data:
+    if data.get("includeSocketInformation") is not None:
         import capo_iot.types.fleet_indexing_api_list
 
         out["include_socket_information"] = (

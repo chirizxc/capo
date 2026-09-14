@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PrivacyBudgetSummaryList:
 
     out: PrivacyBudgetSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.privacy_budget_summary.deserialize_json(item))
     return out

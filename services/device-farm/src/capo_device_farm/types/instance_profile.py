@@ -55,11 +55,11 @@ def serialize_aws_json_1_1(value: InstanceProfile) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceProfile:
     out: InstanceProfile = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "packageCleanup" in data:
+    if data.get("packageCleanup") is not None:
         out["package_cleanup"] = data["packageCleanup"]
-    if "excludeAppPackagesFromCleanup" in data:
+    if data.get("excludeAppPackagesFromCleanup") is not None:
         import capo_device_farm.types.package_ids
 
         out["exclude_app_packages_from_cleanup"] = (
@@ -67,10 +67,10 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceProfile:
                 data["excludeAppPackagesFromCleanup"]
             )
         )
-    if "rebootAfterUse" in data:
+    if data.get("rebootAfterUse") is not None:
         out["reboot_after_use"] = data["rebootAfterUse"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

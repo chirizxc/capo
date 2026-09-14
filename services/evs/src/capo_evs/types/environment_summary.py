@@ -80,17 +80,17 @@ def serialize_aws_json_1_0(value: EnvironmentSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EnvironmentSummary:
     out: EnvironmentSummary = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
-    if "vcfVersion" in data:
+    if data.get("vcfVersion") is not None:
         import capo_evs.types.vcf_version
 
         out["vcf_version"] = capo_evs.types.vcf_version.deserialize_aws_json_1_0(
             data["vcfVersion"]
         )
-    if "environmentStatus" in data:
+    if data.get("environmentStatus") is not None:
         import capo_evs.types.check_result
 
         out["environment_status"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> EnvironmentSummary:
                 data["environmentStatus"]
             )
         )
-    if "environmentState" in data:
+    if data.get("environmentState") is not None:
         import capo_evs.types.environment_state
 
         out["environment_state"] = (
@@ -106,18 +106,18 @@ def deserialize_aws_json_1_0(data: dict) -> EnvironmentSummary:
                 data["environmentState"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["created_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["createdAt"]
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["modified_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["modifiedAt"]
         )
-    if "environmentArn" in data:
+    if data.get("environmentArn") is not None:
         out["environment_arn"] = data["environmentArn"]
     return out

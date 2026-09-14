@@ -49,19 +49,19 @@ def serialize_json(value: FilterAggMetrics) -> dict:
 
 def deserialize_json(data: dict) -> FilterAggMetrics:
     out: FilterAggMetrics = {}  # type: ignore[typeddict-item]
-    if "MetricOperand" in data:
+    if data.get("MetricOperand") is not None:
         import capo_quicksight.types.identifier
 
         out["metric_operand"] = capo_quicksight.types.identifier.deserialize_json(
             data["MetricOperand"]
         )
-    if "Function" in data:
+    if data.get("Function") is not None:
         import capo_quicksight.types.agg_type
 
         out["function"] = capo_quicksight.types.agg_type.deserialize_json(
             data["Function"]
         )
-    if "SortDirection" in data:
+    if data.get("SortDirection") is not None:
         import capo_quicksight.types.topic_sort_direction
 
         out["sort_direction"] = (

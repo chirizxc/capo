@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> LifecycleExecutionSnapshotResourceList:
 
     out: LifecycleExecutionSnapshotResourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.lifecycle_execution_snapshot_resource.deserialize_json(
                 item

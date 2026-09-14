@@ -36,13 +36,13 @@ def serialize_json(value: VideoMonitoringSetting) -> dict:
 
 def deserialize_json(data: dict) -> VideoMonitoringSetting:
     out: VideoMonitoringSetting = {}  # type: ignore[typeddict-item]
-    if "blackFrames" in data:
+    if data.get("blackFrames") is not None:
         import capo_mediaconnect.types.black_frames
 
         out["black_frames"] = capo_mediaconnect.types.black_frames.deserialize_json(
             data["blackFrames"]
         )
-    if "frozenFrames" in data:
+    if data.get("frozenFrames") is not None:
         import capo_mediaconnect.types.frozen_frames
 
         out["frozen_frames"] = capo_mediaconnect.types.frozen_frames.deserialize_json(

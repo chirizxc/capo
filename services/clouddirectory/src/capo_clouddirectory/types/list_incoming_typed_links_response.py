@@ -36,7 +36,7 @@ def serialize_json(value: ListIncomingTypedLinksResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIncomingTypedLinksResponse:
     out: ListIncomingTypedLinksResponse = {}  # type: ignore[typeddict-item]
-    if "LinkSpecifiers" in data:
+    if data.get("LinkSpecifiers") is not None:
         import capo_clouddirectory.types.typed_link_specifier_list
 
         out["link_specifiers"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListIncomingTypedLinksResponse:
                 data["LinkSpecifiers"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

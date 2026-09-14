@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfReplicatorSummary:
 
     out: __listOfReplicatorSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kafka.types.replicator_summary.deserialize_json(item))
     return out

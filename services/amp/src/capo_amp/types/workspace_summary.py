@@ -60,23 +60,23 @@ def serialize_json(value: WorkspaceSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkspaceSummary:
     out: WorkspaceSummary = {}  # type: ignore[typeddict-item]
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError("WorkspaceSummary.workspace_id required")
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("WorkspaceSummary.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.workspace_status
 
         out["status"] = capo_amp.types.workspace_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("WorkspaceSummary.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["created_at"] = capo_amp.types._prelude.timestamp.deserialize_json(
@@ -84,10 +84,10 @@ def deserialize_json(data: dict) -> WorkspaceSummary:
         )
     else:
         raise DeserializationError("WorkspaceSummary.created_at required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

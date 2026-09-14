@@ -109,19 +109,19 @@ def serialize_aws_json_1_1(value: GameServer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GameServer:
     out: GameServer = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "GameServerGroupArn" in data:
+    if data.get("GameServerGroupArn") is not None:
         out["game_server_group_arn"] = data["GameServerGroupArn"]
-    if "GameServerId" in data:
+    if data.get("GameServerId") is not None:
         out["game_server_id"] = data["GameServerId"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "ConnectionInfo" in data:
+    if data.get("ConnectionInfo") is not None:
         out["connection_info"] = data["ConnectionInfo"]
-    if "GameServerData" in data:
+    if data.get("GameServerData") is not None:
         out["game_server_data"] = data["GameServerData"]
-    if "ClaimStatus" in data:
+    if data.get("ClaimStatus") is not None:
         import capo_gamelift.types.game_server_claim_status
 
         out["claim_status"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> GameServer:
                 data["ClaimStatus"]
             )
         )
-    if "UtilizationStatus" in data:
+    if data.get("UtilizationStatus") is not None:
         import capo_gamelift.types.game_server_utilization_status
 
         out["utilization_status"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> GameServer:
                 data["UtilizationStatus"]
             )
         )
-    if "RegistrationTime" in data:
+    if data.get("RegistrationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["registration_time"] = (
@@ -145,13 +145,13 @@ def deserialize_aws_json_1_1(data: dict) -> GameServer:
                 data["RegistrationTime"]
             )
         )
-    if "LastClaimTime" in data:
+    if data.get("LastClaimTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["last_claim_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["LastClaimTime"]
         )
-    if "LastHealthCheckTime" in data:
+    if data.get("LastHealthCheckTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["last_health_check_time"] = (

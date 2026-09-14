@@ -99,15 +99,15 @@ def serialize_aws_json_1_0(value: ServiceInstanceSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServiceInstanceSummary:
     out: ServiceInstanceSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ServiceInstanceSummary.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ServiceInstanceSummary.arn required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> ServiceInstanceSummary:
         )
     else:
         raise DeserializationError("ServiceInstanceSummary.created_at required")
-    if "lastDeploymentAttemptedAt" in data:
+    if data.get("lastDeploymentAttemptedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_deployment_attempted_at"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(data: dict) -> ServiceInstanceSummary:
         raise DeserializationError(
             "ServiceInstanceSummary.last_deployment_attempted_at required"
         )
-    if "lastDeploymentSucceededAt" in data:
+    if data.get("lastDeploymentSucceededAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_deployment_succeeded_at"] = (
@@ -141,38 +141,38 @@ def deserialize_aws_json_1_0(data: dict) -> ServiceInstanceSummary:
         raise DeserializationError(
             "ServiceInstanceSummary.last_deployment_succeeded_at required"
         )
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError("ServiceInstanceSummary.service_name required")
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError("ServiceInstanceSummary.environment_name required")
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("ServiceInstanceSummary.template_name required")
-    if "templateMajorVersion" in data:
+    if data.get("templateMajorVersion") is not None:
         out["template_major_version"] = data["templateMajorVersion"]
     else:
         raise DeserializationError(
             "ServiceInstanceSummary.template_major_version required"
         )
-    if "templateMinorVersion" in data:
+    if data.get("templateMinorVersion") is not None:
         out["template_minor_version"] = data["templateMinorVersion"]
     else:
         raise DeserializationError(
             "ServiceInstanceSummary.template_minor_version required"
         )
-    if "deploymentStatus" in data:
+    if data.get("deploymentStatus") is not None:
         out["deployment_status"] = data["deploymentStatus"]
     else:
         raise DeserializationError("ServiceInstanceSummary.deployment_status required")
-    if "deploymentStatusMessage" in data:
+    if data.get("deploymentStatusMessage") is not None:
         out["deployment_status_message"] = data["deploymentStatusMessage"]
-    if "lastAttemptedDeploymentId" in data:
+    if data.get("lastAttemptedDeploymentId") is not None:
         out["last_attempted_deployment_id"] = data["lastAttemptedDeploymentId"]
-    if "lastSucceededDeploymentId" in data:
+    if data.get("lastSucceededDeploymentId") is not None:
         out["last_succeeded_deployment_id"] = data["lastSucceededDeploymentId"]
     return out

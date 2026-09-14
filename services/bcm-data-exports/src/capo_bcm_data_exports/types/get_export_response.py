@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: GetExportResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetExportResponse:
     out: GetExportResponse = {}  # type: ignore[typeddict-item]
-    if "Export" in data:
+    if data.get("Export") is not None:
         import capo_bcm_data_exports.types.export
 
         out["export"] = capo_bcm_data_exports.types.export.deserialize_aws_json_1_1(
             data["Export"]
         )
-    if "ExportStatus" in data:
+    if data.get("ExportStatus") is not None:
         import capo_bcm_data_exports.types.export_status
 
         out["export_status"] = (

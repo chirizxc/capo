@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: DependentService) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DependentService:
     out: DependentService = {}  # type: ignore[typeddict-item]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         import capo_snowball.types.service_name
 
         out["service_name"] = capo_snowball.types.service_name.deserialize_aws_json_1_1(
             data["ServiceName"]
         )
-    if "ServiceVersion" in data:
+    if data.get("ServiceVersion") is not None:
         import capo_snowball.types.service_version
 
         out["service_version"] = (

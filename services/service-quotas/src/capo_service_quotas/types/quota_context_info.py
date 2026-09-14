@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: QuotaContextInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QuotaContextInfo:
     out: QuotaContextInfo = {}  # type: ignore[typeddict-item]
-    if "ContextScope" in data:
+    if data.get("ContextScope") is not None:
         import capo_service_quotas.types.quota_context_scope
 
         out["context_scope"] = (
@@ -51,8 +51,8 @@ def deserialize_aws_json_1_1(data: dict) -> QuotaContextInfo:
                 data["ContextScope"]
             )
         )
-    if "ContextScopeType" in data:
+    if data.get("ContextScopeType") is not None:
         out["context_scope_type"] = data["ContextScopeType"]
-    if "ContextId" in data:
+    if data.get("ContextId") is not None:
         out["context_id"] = data["ContextId"]
     return out

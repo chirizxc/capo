@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: ListFHIRExportJobsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListFHIRExportJobsResponse:
     out: ListFHIRExportJobsResponse = {}  # type: ignore[typeddict-item]
-    if "ExportJobPropertiesList" in data:
+    if data.get("ExportJobPropertiesList") is not None:
         import capo_healthlake.types.export_job_properties_list
 
         out["export_job_properties_list"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListFHIRExportJobsResponse:
         raise DeserializationError(
             "ListFHIRExportJobsResponse.export_job_properties_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

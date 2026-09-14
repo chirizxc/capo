@@ -26,7 +26,7 @@ def serialize_json(value: ChatStreamingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ChatStreamingConfiguration:
     out: ChatStreamingConfiguration = {}  # type: ignore[typeddict-item]
-    if "StreamingEndpointArn" in data:
+    if data.get("StreamingEndpointArn") is not None:
         out["streaming_endpoint_arn"] = data["StreamingEndpointArn"]
     else:
         raise DeserializationError(

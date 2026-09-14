@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: TimePeriod) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimePeriod:
     out: TimePeriod = {}  # type: ignore[typeddict-item]
-    if "startTimeInclusive" in data:
+    if data.get("startTimeInclusive") is not None:
         import capo_compute_optimizer_automation.types._prelude.timestamp
 
         out["start_time_inclusive"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_0(data: dict) -> TimePeriod:
                 data["startTimeInclusive"]
             )
         )
-    if "endTimeExclusive" in data:
+    if data.get("endTimeExclusive") is not None:
         import capo_compute_optimizer_automation.types._prelude.timestamp
 
         out["end_time_exclusive"] = (

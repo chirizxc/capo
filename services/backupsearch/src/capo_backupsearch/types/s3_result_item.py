@@ -57,17 +57,17 @@ def serialize_json(value: S3ResultItem) -> dict:
 
 def deserialize_json(data: dict) -> S3ResultItem:
     out: S3ResultItem = {}  # type: ignore[typeddict-item]
-    if "BackupResourceArn" in data:
+    if data.get("BackupResourceArn") is not None:
         out["backup_resource_arn"] = data["BackupResourceArn"]
-    if "SourceResourceArn" in data:
+    if data.get("SourceResourceArn") is not None:
         out["source_resource_arn"] = data["SourceResourceArn"]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
-    if "ObjectKey" in data:
+    if data.get("ObjectKey") is not None:
         out["object_key"] = data["ObjectKey"]
-    if "ObjectSize" in data:
+    if data.get("ObjectSize") is not None:
         out["object_size"] = data["ObjectSize"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -75,8 +75,8 @@ def deserialize_json(data: dict) -> S3ResultItem:
                 data["CreationTime"]
             )
         )
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfVersionInformation:
 
     out: __listOfVersionInformation = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrass.types.version_information.deserialize_json(item))
     return out

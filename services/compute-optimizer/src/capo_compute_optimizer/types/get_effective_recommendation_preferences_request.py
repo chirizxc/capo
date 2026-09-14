@@ -26,7 +26,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> GetEffectiveRecommendationPreferencesRequest:
     out: GetEffectiveRecommendationPreferencesRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(

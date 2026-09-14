@@ -45,7 +45,7 @@ def serialize_json(value: MatchClause) -> dict:
 
 
 def deserialize_json(data: dict) -> MatchClause:
-    if "relationPattern" in data:
+    if data.get("relationPattern") is not None:
         import capo_datazone.types.relation_pattern
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> MatchClause:
                 data["relationPattern"]
             )
         }
-    elif "entityPattern" in data:
+    elif data.get("entityPattern") is not None:
         import capo_datazone.types.entity_pattern
 
         return {

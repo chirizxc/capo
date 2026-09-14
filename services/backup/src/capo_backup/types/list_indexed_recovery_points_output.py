@@ -36,7 +36,7 @@ def serialize_json(value: ListIndexedRecoveryPointsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListIndexedRecoveryPointsOutput:
     out: ListIndexedRecoveryPointsOutput = {}  # type: ignore[typeddict-item]
-    if "IndexedRecoveryPoints" in data:
+    if data.get("IndexedRecoveryPoints") is not None:
         import capo_backup.types.indexed_recovery_point_list
 
         out["indexed_recovery_points"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListIndexedRecoveryPointsOutput:
                 data["IndexedRecoveryPoints"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

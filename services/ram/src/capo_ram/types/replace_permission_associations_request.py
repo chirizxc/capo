@@ -36,20 +36,20 @@ def serialize_json(value: ReplacePermissionAssociationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ReplacePermissionAssociationsRequest:
     out: ReplacePermissionAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "fromPermissionArn" in data:
+    if data.get("fromPermissionArn") is not None:
         out["from_permission_arn"] = data["fromPermissionArn"]
     else:
         raise DeserializationError(
             "ReplacePermissionAssociationsRequest.from_permission_arn required"
         )
-    if "fromPermissionVersion" in data:
+    if data.get("fromPermissionVersion") is not None:
         out["from_permission_version"] = data["fromPermissionVersion"]
-    if "toPermissionArn" in data:
+    if data.get("toPermissionArn") is not None:
         out["to_permission_arn"] = data["toPermissionArn"]
     else:
         raise DeserializationError(
             "ReplacePermissionAssociationsRequest.to_permission_arn required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

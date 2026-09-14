@@ -44,7 +44,7 @@ def serialize_json(value: BuildtimeSettings) -> dict:
 
 def deserialize_json(data: dict) -> BuildtimeSettings:
     out: BuildtimeSettings = {}  # type: ignore[typeddict-item]
-    if "descriptiveBotBuilder" in data:
+    if data.get("descriptiveBotBuilder") is not None:
         import capo_lex_models_v2.types.descriptive_bot_builder_specification
 
         out["descriptive_bot_builder"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BuildtimeSettings:
                 data["descriptiveBotBuilder"]
             )
         )
-    if "sampleUtteranceGeneration" in data:
+    if data.get("sampleUtteranceGeneration") is not None:
         import capo_lex_models_v2.types.sample_utterance_generation_specification
 
         out["sample_utterance_generation"] = (

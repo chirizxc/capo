@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: PublicDnsNamespaceProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PublicDnsNamespaceProperties:
     out: PublicDnsNamespaceProperties = {}  # type: ignore[typeddict-item]
-    if "DnsProperties" in data:
+    if data.get("DnsProperties") is not None:
         import capo_servicediscovery.types.public_dns_properties_mutable
 
         out["dns_properties"] = (

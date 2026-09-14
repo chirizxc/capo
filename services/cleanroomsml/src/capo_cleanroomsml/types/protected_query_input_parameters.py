@@ -50,7 +50,7 @@ def serialize_json(value: ProtectedQueryInputParameters) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedQueryInputParameters:
     out: ProtectedQueryInputParameters = {}  # type: ignore[typeddict-item]
-    if "sqlParameters" in data:
+    if data.get("sqlParameters") is not None:
         import capo_cleanroomsml.types.protected_query_sql_parameters
 
         out["sql_parameters"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> ProtectedQueryInputParameters:
         raise DeserializationError(
             "ProtectedQueryInputParameters.sql_parameters required"
         )
-    if "computeConfiguration" in data:
+    if data.get("computeConfiguration") is not None:
         import capo_cleanroomsml.types.compute_configuration
 
         out["compute_configuration"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ProtectedQueryInputParameters:
                 data["computeConfiguration"]
             )
         )
-    if "resultFormat" in data:
+    if data.get("resultFormat") is not None:
         import capo_cleanroomsml.types.result_format
 
         out["result_format"] = capo_cleanroomsml.types.result_format.deserialize_json(

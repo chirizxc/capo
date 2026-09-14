@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ContainerDefinitionList:
 
     out: ContainerDefinitionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.container_definition.deserialize_aws_json_1_1(item)
         )

@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: ListIntegrationResourcePropertiesRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> ListIntegrationResourcePropertiesRequest:
     out: ListIntegrationResourcePropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_glue.types.integration_resource_property_filter_list
 
         out["filters"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListIntegrationResourcePropertiesReq
                 data["Filters"]
             )
         )
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
     return out

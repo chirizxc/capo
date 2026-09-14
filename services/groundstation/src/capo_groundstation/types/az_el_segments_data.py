@@ -45,7 +45,7 @@ def serialize_json(value: AzElSegmentsData) -> dict:
 
 
 def deserialize_json(data: dict) -> AzElSegmentsData:
-    if "s3Object" in data:
+    if data.get("s3Object") is not None:
         import capo_groundstation.types.s3_object
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> AzElSegmentsData:
                 data["s3Object"]
             )
         }
-    elif "azElData" in data:
+    elif data.get("azElData") is not None:
         import capo_groundstation.types.az_el_segments
 
         return {

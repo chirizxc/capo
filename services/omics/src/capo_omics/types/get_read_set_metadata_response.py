@@ -84,9 +84,9 @@ def serialize_json(value: GetReadSetMetadataResponse) -> dict:
     if "description" in value:
         out["description"] = value["description"]
     out["fileType"] = value["file_type"]
-    import capo_omics.types._prelude.timestamp
+    import capo_omics._protocol.serialize
 
-    out["creationTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+    out["creationTime"] = capo_omics._protocol.serialize.fmt_date_time(
         value["creation_time"]
     )
     if "sequence_information" in value:
@@ -118,45 +118,45 @@ def serialize_json(value: GetReadSetMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetReadSetMetadataResponse:
     out: GetReadSetMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetReadSetMetadataResponse.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetReadSetMetadataResponse.arn required")
-    if "sequenceStoreId" in data:
+    if data.get("sequenceStoreId") is not None:
         out["sequence_store_id"] = data["sequenceStoreId"]
     else:
         raise DeserializationError(
             "GetReadSetMetadataResponse.sequence_store_id required"
         )
-    if "subjectId" in data:
+    if data.get("subjectId") is not None:
         out["subject_id"] = data["subjectId"]
-    if "sampleId" in data:
+    if data.get("sampleId") is not None:
         out["sample_id"] = data["sampleId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetReadSetMetadataResponse.status required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "fileType" in data:
+    if data.get("fileType") is not None:
         out["file_type"] = data["fileType"]
     else:
         raise DeserializationError("GetReadSetMetadataResponse.file_type required")
-    if "creationTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("creationTime") is not None:
+        import datetime
 
-        out["creation_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["creationTime"]
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["creationTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetReadSetMetadataResponse.creation_time required")
-    if "sequenceInformation" in data:
+    if data.get("sequenceInformation") is not None:
         import capo_omics.types.sequence_information
 
         out["sequence_information"] = (
@@ -164,20 +164,20 @@ def deserialize_json(data: dict) -> GetReadSetMetadataResponse:
                 data["sequenceInformation"]
             )
         )
-    if "referenceArn" in data:
+    if data.get("referenceArn") is not None:
         out["reference_arn"] = data["referenceArn"]
-    if "files" in data:
+    if data.get("files") is not None:
         import capo_omics.types.read_set_files
 
         out["files"] = capo_omics.types.read_set_files.deserialize_json(data["files"])
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "creationType" in data:
+    if data.get("creationType") is not None:
         out["creation_type"] = data["creationType"]
-    if "etag" in data:
+    if data.get("etag") is not None:
         import capo_omics.types.e_tag
 
         out["etag"] = capo_omics.types.e_tag.deserialize_json(data["etag"])
-    if "creationJobId" in data:
+    if data.get("creationJobId") is not None:
         out["creation_job_id"] = data["creationJobId"]
     return out

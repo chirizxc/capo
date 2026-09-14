@@ -158,13 +158,13 @@ def serialize_aws_json_1_1(value: JobFlowInstancesConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobFlowInstancesConfig:
     out: JobFlowInstancesConfig = {}  # type: ignore[typeddict-item]
-    if "MasterInstanceType" in data:
+    if data.get("MasterInstanceType") is not None:
         out["master_instance_type"] = data["MasterInstanceType"]
-    if "SlaveInstanceType" in data:
+    if data.get("SlaveInstanceType") is not None:
         out["slave_instance_type"] = data["SlaveInstanceType"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "InstanceGroups" in data:
+    if data.get("InstanceGroups") is not None:
         import capo_emr.types.instance_group_config_list
 
         out["instance_groups"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobFlowInstancesConfig:
                 data["InstanceGroups"]
             )
         )
-    if "InstanceFleets" in data:
+    if data.get("InstanceFleets") is not None:
         import capo_emr.types.instance_fleet_config_list
 
         out["instance_fleets"] = (
@@ -180,25 +180,25 @@ def deserialize_aws_json_1_1(data: dict) -> JobFlowInstancesConfig:
                 data["InstanceFleets"]
             )
         )
-    if "Ec2KeyName" in data:
+    if data.get("Ec2KeyName") is not None:
         out["ec2_key_name"] = data["Ec2KeyName"]
-    if "Placement" in data:
+    if data.get("Placement") is not None:
         import capo_emr.types.placement_type
 
         out["placement"] = capo_emr.types.placement_type.deserialize_aws_json_1_1(
             data["Placement"]
         )
-    if "KeepJobFlowAliveWhenNoSteps" in data:
+    if data.get("KeepJobFlowAliveWhenNoSteps") is not None:
         out["keep_job_flow_alive_when_no_steps"] = data["KeepJobFlowAliveWhenNoSteps"]
-    if "TerminationProtected" in data:
+    if data.get("TerminationProtected") is not None:
         out["termination_protected"] = data["TerminationProtected"]
-    if "UnhealthyNodeReplacement" in data:
+    if data.get("UnhealthyNodeReplacement") is not None:
         out["unhealthy_node_replacement"] = data["UnhealthyNodeReplacement"]
-    if "HadoopVersion" in data:
+    if data.get("HadoopVersion") is not None:
         out["hadoop_version"] = data["HadoopVersion"]
-    if "Ec2SubnetId" in data:
+    if data.get("Ec2SubnetId") is not None:
         out["ec2_subnet_id"] = data["Ec2SubnetId"]
-    if "Ec2SubnetIds" in data:
+    if data.get("Ec2SubnetIds") is not None:
         import capo_emr.types.xml_string_max_len256_list
 
         out["ec2_subnet_ids"] = (
@@ -206,13 +206,13 @@ def deserialize_aws_json_1_1(data: dict) -> JobFlowInstancesConfig:
                 data["Ec2SubnetIds"]
             )
         )
-    if "EmrManagedMasterSecurityGroup" in data:
+    if data.get("EmrManagedMasterSecurityGroup") is not None:
         out["emr_managed_master_security_group"] = data["EmrManagedMasterSecurityGroup"]
-    if "EmrManagedSlaveSecurityGroup" in data:
+    if data.get("EmrManagedSlaveSecurityGroup") is not None:
         out["emr_managed_slave_security_group"] = data["EmrManagedSlaveSecurityGroup"]
-    if "ServiceAccessSecurityGroup" in data:
+    if data.get("ServiceAccessSecurityGroup") is not None:
         out["service_access_security_group"] = data["ServiceAccessSecurityGroup"]
-    if "AdditionalMasterSecurityGroups" in data:
+    if data.get("AdditionalMasterSecurityGroups") is not None:
         import capo_emr.types.security_groups_list
 
         out["additional_master_security_groups"] = (
@@ -220,7 +220,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobFlowInstancesConfig:
                 data["AdditionalMasterSecurityGroups"]
             )
         )
-    if "AdditionalSlaveSecurityGroups" in data:
+    if data.get("AdditionalSlaveSecurityGroups") is not None:
         import capo_emr.types.security_groups_list
 
         out["additional_slave_security_groups"] = (

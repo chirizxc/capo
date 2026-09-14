@@ -62,13 +62,13 @@ def serialize_aws_json_1_0(value: ValidityTerm) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ValidityTerm:
     out: ValidityTerm = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "agreementDuration" in data:
+    if data.get("agreementDuration") is not None:
         out["agreement_duration"] = data["agreementDuration"]
-    if "agreementStartDate" in data:
+    if data.get("agreementStartDate") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["agreement_start_date"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> ValidityTerm:
                 data["agreementStartDate"]
             )
         )
-    if "agreementEndDate" in data:
+    if data.get("agreementEndDate") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["agreement_end_date"] = (

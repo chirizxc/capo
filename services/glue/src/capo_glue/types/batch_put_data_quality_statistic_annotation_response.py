@@ -35,7 +35,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> BatchPutDataQualityStatisticAnnotationResponse:
     out: BatchPutDataQualityStatisticAnnotationResponse = {}  # type: ignore[typeddict-item]
-    if "FailedInclusionAnnotations" in data:
+    if data.get("FailedInclusionAnnotations") is not None:
         import capo_glue.types.annotation_error_list
 
         out["failed_inclusion_annotations"] = (

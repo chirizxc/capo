@@ -59,17 +59,17 @@ def serialize_json(value: OAuthConfig) -> dict:
 
 def deserialize_json(data: dict) -> OAuthConfig:
     out: OAuthConfig = {}  # type: ignore[typeddict-item]
-    if "authUrl" in data:
+    if data.get("authUrl") is not None:
         out["auth_url"] = data["authUrl"]
     else:
         raise DeserializationError("OAuthConfig.auth_url required")
-    if "tokenUrl" in data:
+    if data.get("tokenUrl") is not None:
         out["token_url"] = data["tokenUrl"]
     else:
         raise DeserializationError("OAuthConfig.token_url required")
-    if "scope" in data:
+    if data.get("scope") is not None:
         out["scope"] = data["scope"]
-    if "tokenEndpointAuthenticationScheme" in data:
+    if data.get("tokenEndpointAuthenticationScheme") is not None:
         import capo_iot_managed_integrations.types.token_endpoint_authentication_scheme
 
         out["token_endpoint_authentication_scheme"] = (
@@ -81,9 +81,9 @@ def deserialize_json(data: dict) -> OAuthConfig:
         raise DeserializationError(
             "OAuthConfig.token_endpoint_authentication_scheme required"
         )
-    if "oAuthCompleteRedirectUrl" in data:
+    if data.get("oAuthCompleteRedirectUrl") is not None:
         out["o_auth_complete_redirect_url"] = data["oAuthCompleteRedirectUrl"]
-    if "proactiveRefreshTokenRenewal" in data:
+    if data.get("proactiveRefreshTokenRenewal") is not None:
         import capo_iot_managed_integrations.types.proactive_refresh_token_renewal
 
         out["proactive_refresh_token_renewal"] = (

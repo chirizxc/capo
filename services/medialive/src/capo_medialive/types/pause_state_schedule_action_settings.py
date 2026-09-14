@@ -30,7 +30,7 @@ def serialize_json(value: PauseStateScheduleActionSettings) -> dict:
 
 def deserialize_json(data: dict) -> PauseStateScheduleActionSettings:
     out: PauseStateScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "pipelines" in data:
+    if data.get("pipelines") is not None:
         import capo_medialive.types.__list_of_pipeline_pause_state_settings
 
         out["pipelines"] = (

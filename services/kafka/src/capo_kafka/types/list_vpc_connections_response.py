@@ -36,7 +36,7 @@ def serialize_json(value: ListVpcConnectionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListVpcConnectionsResponse:
     out: ListVpcConnectionsResponse = {}  # type: ignore[typeddict-item]
-    if "vpcConnections" in data:
+    if data.get("vpcConnections") is not None:
         import capo_kafka.types.__list_of_vpc_connection
 
         out["vpc_connections"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListVpcConnectionsResponse:
                 data["vpcConnections"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -33,10 +33,10 @@ def serialize_json(value: BorderStyle) -> dict:
 
 def deserialize_json(data: dict) -> BorderStyle:
     out: BorderStyle = {}  # type: ignore[typeddict-item]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
-    if "Show" in data:
+    if data.get("Show") is not None:
         out["show"] = data["Show"]
-    if "Width" in data:
+    if data.get("Width") is not None:
         out["width"] = data["Width"]
     return out

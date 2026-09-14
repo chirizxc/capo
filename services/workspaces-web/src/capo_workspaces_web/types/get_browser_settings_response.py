@@ -31,7 +31,7 @@ def serialize_json(value: GetBrowserSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBrowserSettingsResponse:
     out: GetBrowserSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "browserSettings" in data:
+    if data.get("browserSettings") is not None:
         import capo_workspaces_web.types.browser_settings
 
         out["browser_settings"] = (

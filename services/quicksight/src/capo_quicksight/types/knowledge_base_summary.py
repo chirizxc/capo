@@ -86,19 +86,19 @@ def serialize_json(value: KnowledgeBaseSummary) -> dict:
 
 def deserialize_json(data: dict) -> KnowledgeBaseSummary:
     out: KnowledgeBaseSummary = {}  # type: ignore[typeddict-item]
-    if "KnowledgeBaseArn" in data:
+    if data.get("KnowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["KnowledgeBaseArn"]
     else:
         raise DeserializationError("KnowledgeBaseSummary.knowledge_base_arn required")
-    if "KnowledgeBaseId" in data:
+    if data.get("KnowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["KnowledgeBaseId"]
     else:
         raise DeserializationError("KnowledgeBaseSummary.knowledge_base_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("KnowledgeBaseSummary.name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.data_set_status
 
         out["status"] = capo_quicksight.types.data_set_status.deserialize_json(
@@ -106,30 +106,30 @@ def deserialize_json(data: dict) -> KnowledgeBaseSummary:
         )
     else:
         raise DeserializationError("KnowledgeBaseSummary.status required")
-    if "DataSourceArn" in data:
+    if data.get("DataSourceArn") is not None:
         out["data_source_arn"] = data["DataSourceArn"]
     else:
         raise DeserializationError("KnowledgeBaseSummary.data_source_arn required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["created_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["updated_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "KnowledgeBaseSizeBytes" in data:
+    if data.get("KnowledgeBaseSizeBytes") is not None:
         out["knowledge_base_size_bytes"] = data["KnowledgeBaseSizeBytes"]
-    if "DocumentCount" in data:
+    if data.get("DocumentCount") is not None:
         out["document_count"] = data["DocumentCount"]
-    if "PrimaryOwnerArn" in data:
+    if data.get("PrimaryOwnerArn") is not None:
         out["primary_owner_arn"] = data["PrimaryOwnerArn"]
-    if "PrimaryOwnerUsername" in data:
+    if data.get("PrimaryOwnerUsername") is not None:
         out["primary_owner_username"] = data["PrimaryOwnerUsername"]
     return out

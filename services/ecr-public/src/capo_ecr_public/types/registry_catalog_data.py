@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: RegistryCatalogData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegistryCatalogData:
     out: RegistryCatalogData = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     return out

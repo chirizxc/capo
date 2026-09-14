@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfMultiplexAlert:
 
     out: __listOfMultiplexAlert = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.multiplex_alert.deserialize_json(item))
     return out

@@ -66,21 +66,21 @@ def serialize_aws_json_1_1(value: CreateDataQualityRulesetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataQualityRulesetRequest:
     out: CreateDataQualityRulesetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDataQualityRulesetRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Ruleset" in data:
+    if data.get("Ruleset") is not None:
         out["ruleset"] = data["Ruleset"]
     else:
         raise DeserializationError("CreateDataQualityRulesetRequest.ruleset required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])
-    if "TargetTable" in data:
+    if data.get("TargetTable") is not None:
         import capo_glue.types.data_quality_target_table
 
         out["target_table"] = (
@@ -88,10 +88,10 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataQualityRulesetRequest:
                 data["TargetTable"]
             )
         )
-    if "DataQualitySecurityConfiguration" in data:
+    if data.get("DataQualitySecurityConfiguration") is not None:
         out["data_quality_security_configuration"] = data[
             "DataQualitySecurityConfiguration"
         ]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

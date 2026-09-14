@@ -36,7 +36,7 @@ def serialize_json(value: ListServiceLevelObjectivesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListServiceLevelObjectivesOutput:
     out: ListServiceLevelObjectivesOutput = {}  # type: ignore[typeddict-item]
-    if "SloSummaries" in data:
+    if data.get("SloSummaries") is not None:
         import capo_application_signals.types.service_level_objective_summaries
 
         out["slo_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListServiceLevelObjectivesOutput:
                 data["SloSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

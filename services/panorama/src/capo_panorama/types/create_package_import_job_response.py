@@ -24,7 +24,7 @@ def serialize_json(value: CreatePackageImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePackageImportJobResponse:
     out: CreatePackageImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("CreatePackageImportJobResponse.job_id required")

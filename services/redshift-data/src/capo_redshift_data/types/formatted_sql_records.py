@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> FormattedSqlRecords:
 
     out: FormattedSqlRecords = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_redshift_data.types.query_records.deserialize_aws_json_1_1(item)
         )

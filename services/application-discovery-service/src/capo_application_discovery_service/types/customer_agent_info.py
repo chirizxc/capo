@@ -40,31 +40,31 @@ def serialize_aws_json_1_1(value: CustomerAgentInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomerAgentInfo:
     out: CustomerAgentInfo = {}  # type: ignore[typeddict-item]
-    if "activeAgents" in data:
+    if data.get("activeAgents") is not None:
         out["active_agents"] = data["activeAgents"]
     else:
         out["active_agents"] = 0
-    if "healthyAgents" in data:
+    if data.get("healthyAgents") is not None:
         out["healthy_agents"] = data["healthyAgents"]
     else:
         out["healthy_agents"] = 0
-    if "blackListedAgents" in data:
+    if data.get("blackListedAgents") is not None:
         out["black_listed_agents"] = data["blackListedAgents"]
     else:
         out["black_listed_agents"] = 0
-    if "shutdownAgents" in data:
+    if data.get("shutdownAgents") is not None:
         out["shutdown_agents"] = data["shutdownAgents"]
     else:
         out["shutdown_agents"] = 0
-    if "unhealthyAgents" in data:
+    if data.get("unhealthyAgents") is not None:
         out["unhealthy_agents"] = data["unhealthyAgents"]
     else:
         out["unhealthy_agents"] = 0
-    if "totalAgents" in data:
+    if data.get("totalAgents") is not None:
         out["total_agents"] = data["totalAgents"]
     else:
         out["total_agents"] = 0
-    if "unknownAgents" in data:
+    if data.get("unknownAgents") is not None:
         out["unknown_agents"] = data["unknownAgents"]
     else:
         out["unknown_agents"] = 0

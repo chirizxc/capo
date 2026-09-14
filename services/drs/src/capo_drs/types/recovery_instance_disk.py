@@ -32,12 +32,12 @@ def serialize_json(value: RecoveryInstanceDisk) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryInstanceDisk:
     out: RecoveryInstanceDisk = {}  # type: ignore[typeddict-item]
-    if "internalDeviceName" in data:
+    if data.get("internalDeviceName") is not None:
         out["internal_device_name"] = data["internalDeviceName"]
-    if "bytes" in data:
+    if data.get("bytes") is not None:
         out["bytes"] = data["bytes"]
     else:
         out["bytes"] = 0
-    if "ebsVolumeID" in data:
+    if data.get("ebsVolumeID") is not None:
         out["ebs_volume_id"] = data["ebsVolumeID"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> InternalAccessAnalysisRuleCriteriaList:
 
     out: InternalAccessAnalysisRuleCriteriaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_accessanalyzer.types.internal_access_analysis_rule_criteria.deserialize_json(
                 item

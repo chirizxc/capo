@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: JwtBearerGrant) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JwtBearerGrant:
     out: JwtBearerGrant = {}  # type: ignore[typeddict-item]
-    if "AuthorizedTokenIssuers" in data:
+    if data.get("AuthorizedTokenIssuers") is not None:
         import capo_sso_admin.types.authorized_token_issuers
 
         out["authorized_token_issuers"] = (

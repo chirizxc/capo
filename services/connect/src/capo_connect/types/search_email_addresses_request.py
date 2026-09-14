@@ -60,15 +60,15 @@ def serialize_json(value: SearchEmailAddressesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchEmailAddressesRequest:
     out: SearchEmailAddressesRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("SearchEmailAddressesRequest.instance_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SearchCriteria" in data:
+    if data.get("SearchCriteria") is not None:
         import capo_connect.types.email_address_search_criteria
 
         out["search_criteria"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> SearchEmailAddressesRequest:
                 data["SearchCriteria"]
             )
         )
-    if "SearchFilter" in data:
+    if data.get("SearchFilter") is not None:
         import capo_connect.types.email_address_search_filter
 
         out["search_filter"] = (

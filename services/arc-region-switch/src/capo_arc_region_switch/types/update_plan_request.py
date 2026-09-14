@@ -83,13 +83,13 @@ def serialize_aws_json_1_0(value: UpdatePlanRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdatePlanRequest:
     out: UpdatePlanRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdatePlanRequest.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "workflows" in data:
+    if data.get("workflows") is not None:
         import capo_arc_region_switch.types.workflow_list
 
         out["workflows"] = (
@@ -99,13 +99,13 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePlanRequest:
         )
     else:
         raise DeserializationError("UpdatePlanRequest.workflows required")
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
     else:
         raise DeserializationError("UpdatePlanRequest.execution_role required")
-    if "recoveryTimeObjectiveMinutes" in data:
+    if data.get("recoveryTimeObjectiveMinutes") is not None:
         out["recovery_time_objective_minutes"] = data["recoveryTimeObjectiveMinutes"]
-    if "associatedAlarms" in data:
+    if data.get("associatedAlarms") is not None:
         import capo_arc_region_switch.types.associated_alarm_map
 
         out["associated_alarms"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePlanRequest:
                 data["associatedAlarms"]
             )
         )
-    if "triggers" in data:
+    if data.get("triggers") is not None:
         import capo_arc_region_switch.types.trigger_list
 
         out["triggers"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePlanRequest:
                 data["triggers"]
             )
         )
-    if "reportConfiguration" in data:
+    if data.get("reportConfiguration") is not None:
         import capo_arc_region_switch.types.report_configuration
 
         out["report_configuration"] = (

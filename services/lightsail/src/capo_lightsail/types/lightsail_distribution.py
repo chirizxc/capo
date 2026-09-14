@@ -176,19 +176,19 @@ def serialize_aws_json_1_1(value: LightsailDistribution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LightsailDistribution:
     out: LightsailDistribution = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> LightsailDistribution:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -204,7 +204,7 @@ def deserialize_aws_json_1_1(data: dict) -> LightsailDistribution:
                 data["resourceType"]
             )
         )
-    if "alternativeDomainNames" in data:
+    if data.get("alternativeDomainNames") is not None:
         import capo_lightsail.types.string_list
 
         out["alternative_domain_names"] = (
@@ -212,25 +212,25 @@ def deserialize_aws_json_1_1(data: dict) -> LightsailDistribution:
                 data["alternativeDomainNames"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "isEnabled" in data:
+    if data.get("isEnabled") is not None:
         out["is_enabled"] = data["isEnabled"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
-    if "origin" in data:
+    if data.get("origin") is not None:
         import capo_lightsail.types.origin
 
         out["origin"] = capo_lightsail.types.origin.deserialize_aws_json_1_1(
             data["origin"]
         )
-    if "originPublicDNS" in data:
+    if data.get("originPublicDNS") is not None:
         out["origin_public_dns"] = data["originPublicDNS"]
-    if "defaultCacheBehavior" in data:
+    if data.get("defaultCacheBehavior") is not None:
         import capo_lightsail.types.cache_behavior
 
         out["default_cache_behavior"] = (
@@ -238,7 +238,7 @@ def deserialize_aws_json_1_1(data: dict) -> LightsailDistribution:
                 data["defaultCacheBehavior"]
             )
         )
-    if "cacheBehaviorSettings" in data:
+    if data.get("cacheBehaviorSettings") is not None:
         import capo_lightsail.types.cache_settings
 
         out["cache_behavior_settings"] = (
@@ -246,7 +246,7 @@ def deserialize_aws_json_1_1(data: dict) -> LightsailDistribution:
                 data["cacheBehaviorSettings"]
             )
         )
-    if "cacheBehaviors" in data:
+    if data.get("cacheBehaviors") is not None:
         import capo_lightsail.types.cache_behavior_list
 
         out["cache_behaviors"] = (
@@ -254,9 +254,9 @@ def deserialize_aws_json_1_1(data: dict) -> LightsailDistribution:
                 data["cacheBehaviors"]
             )
         )
-    if "ableToUpdateBundle" in data:
+    if data.get("ableToUpdateBundle") is not None:
         out["able_to_update_bundle"] = data["ableToUpdateBundle"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_lightsail.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -264,13 +264,13 @@ def deserialize_aws_json_1_1(data: dict) -> LightsailDistribution:
                 data["ipAddressType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "viewerMinimumTlsProtocolVersion" in data:
+    if data.get("viewerMinimumTlsProtocolVersion") is not None:
         out["viewer_minimum_tls_protocol_version"] = data[
             "viewerMinimumTlsProtocolVersion"
         ]

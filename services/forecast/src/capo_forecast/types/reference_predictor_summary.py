@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: ReferencePredictorSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReferencePredictorSummary:
     out: ReferencePredictorSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_forecast.types.state
 
         out["state"] = capo_forecast.types.state.deserialize_aws_json_1_1(data["State"])

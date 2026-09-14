@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: DescribeRegionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRegionsRequest:
     out: DescribeRegionsRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("DescribeRegionsRequest.directory_id required")
-    if "RegionName" in data:
+    if data.get("RegionName") is not None:
         out["region_name"] = data["RegionName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

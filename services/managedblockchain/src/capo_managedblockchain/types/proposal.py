@@ -117,35 +117,35 @@ def serialize_json(value: Proposal) -> dict:
 
 def deserialize_json(data: dict) -> Proposal:
     out: Proposal = {}  # type: ignore[typeddict-item]
-    if "ProposalId" in data:
+    if data.get("ProposalId") is not None:
         out["proposal_id"] = data["ProposalId"]
-    if "NetworkId" in data:
+    if data.get("NetworkId") is not None:
         out["network_id"] = data["NetworkId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_managedblockchain.types.proposal_actions
 
         out["actions"] = capo_managedblockchain.types.proposal_actions.deserialize_json(
             data["Actions"]
         )
-    if "ProposedByMemberId" in data:
+    if data.get("ProposedByMemberId") is not None:
         out["proposed_by_member_id"] = data["ProposedByMemberId"]
-    if "ProposedByMemberName" in data:
+    if data.get("ProposedByMemberName") is not None:
         out["proposed_by_member_name"] = data["ProposedByMemberName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_managedblockchain.types.proposal_status
 
         out["status"] = capo_managedblockchain.types.proposal_status.deserialize_json(
             data["Status"]
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["creation_date"] = capo_managedblockchain.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["expiration_date"] = (
@@ -153,18 +153,18 @@ def deserialize_json(data: dict) -> Proposal:
                 data["ExpirationDate"]
             )
         )
-    if "YesVoteCount" in data:
+    if data.get("YesVoteCount") is not None:
         out["yes_vote_count"] = data["YesVoteCount"]
-    if "NoVoteCount" in data:
+    if data.get("NoVoteCount") is not None:
         out["no_vote_count"] = data["NoVoteCount"]
-    if "OutstandingVoteCount" in data:
+    if data.get("OutstandingVoteCount") is not None:
         out["outstanding_vote_count"] = data["OutstandingVoteCount"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_managedblockchain.types.output_tag_map
 
         out["tags"] = capo_managedblockchain.types.output_tag_map.deserialize_json(
             data["Tags"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

@@ -22,8 +22,8 @@ def serialize_json(value: RemoveFlowOutputResponse) -> dict:
 
 def deserialize_json(data: dict) -> RemoveFlowOutputResponse:
     out: RemoveFlowOutputResponse = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "outputArn" in data:
+    if data.get("outputArn") is not None:
         out["output_arn"] = data["outputArn"]
     return out

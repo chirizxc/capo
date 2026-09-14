@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: LabelingJobInputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelingJobInputConfig:
     out: LabelingJobInputConfig = {}  # type: ignore[typeddict-item]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_sagemaker.types.labeling_job_data_source
 
         out["data_source"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> LabelingJobInputConfig:
                 data["DataSource"]
             )
         )
-    if "DataAttributes" in data:
+    if data.get("DataAttributes") is not None:
         import capo_sagemaker.types.labeling_job_data_attributes
 
         out["data_attributes"] = (

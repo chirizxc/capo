@@ -36,7 +36,7 @@ def serialize_json(value: ReplacePermissionAssociationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ReplacePermissionAssociationsResponse:
     out: ReplacePermissionAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "replacePermissionAssociationsWork" in data:
+    if data.get("replacePermissionAssociationsWork") is not None:
         import capo_ram.types.replace_permission_associations_work
 
         out["replace_permission_associations_work"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ReplacePermissionAssociationsResponse:
                 data["replacePermissionAssociationsWork"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

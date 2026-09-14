@@ -36,7 +36,7 @@ def serialize_json(value: ListEventIntegrationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEventIntegrationsResponse:
     out: ListEventIntegrationsResponse = {}  # type: ignore[typeddict-item]
-    if "EventIntegrations" in data:
+    if data.get("EventIntegrations") is not None:
         import capo_appintegrations.types.event_integrations_list
 
         out["event_integrations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListEventIntegrationsResponse:
                 data["EventIntegrations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

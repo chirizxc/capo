@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateHyperParameterTuningJobResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHyperParameterTuningJobResponse:
     out: CreateHyperParameterTuningJobResponse = {}  # type: ignore[typeddict-item]
-    if "HyperParameterTuningJobArn" in data:
+    if data.get("HyperParameterTuningJobArn") is not None:
         out["hyper_parameter_tuning_job_arn"] = data["HyperParameterTuningJobArn"]
     return out

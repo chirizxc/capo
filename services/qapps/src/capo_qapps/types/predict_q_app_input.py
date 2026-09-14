@@ -32,7 +32,7 @@ def serialize_json(value: PredictQAppInput) -> dict:
 
 def deserialize_json(data: dict) -> PredictQAppInput:
     out: PredictQAppInput = {}  # type: ignore[typeddict-item]
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_qapps.types.predict_q_app_input_options
 
         out["options"] = capo_qapps.types.predict_q_app_input_options.deserialize_json(

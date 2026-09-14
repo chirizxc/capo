@@ -36,12 +36,12 @@ def serialize_json(value: ConnectivityInfo) -> dict:
 
 def deserialize_json(data: dict) -> ConnectivityInfo:
     out: ConnectivityInfo = {}  # type: ignore[typeddict-item]
-    if "HostAddress" in data:
+    if data.get("HostAddress") is not None:
         out["host_address"] = data["HostAddress"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "PortNumber" in data:
+    if data.get("PortNumber") is not None:
         out["port_number"] = data["PortNumber"]
     return out

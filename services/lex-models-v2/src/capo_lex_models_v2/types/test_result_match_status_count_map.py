@@ -29,6 +29,8 @@ def deserialize_json(data: dict) -> TestResultMatchStatusCountMap:
     for key, value in data.items():
         import capo_lex_models_v2.types.test_result_match_status
 
+        if value is None:
+            continue
         out[capo_lex_models_v2.types.test_result_match_status.deserialize_json(key)] = (
             value
         )

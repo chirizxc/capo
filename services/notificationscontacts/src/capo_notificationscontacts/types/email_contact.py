@@ -52,23 +52,23 @@ def serialize_json(value: EmailContact) -> dict:
 
 def deserialize_json(data: dict) -> EmailContact:
     out: EmailContact = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("EmailContact.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("EmailContact.name required")
-    if "address" in data:
+    if data.get("address") is not None:
         out["address"] = data["address"]
     else:
         raise DeserializationError("EmailContact.address required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("EmailContact.status required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_notificationscontacts.types.creation_time
 
         out["creation_time"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> EmailContact:
         )
     else:
         raise DeserializationError("EmailContact.creation_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_notificationscontacts.types.update_time
 
         out["update_time"] = (

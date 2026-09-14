@@ -142,7 +142,7 @@ def serialize_json(value: AudioDescription) -> dict:
 
 def deserialize_json(data: dict) -> AudioDescription:
     out: AudioDescription = {}  # type: ignore[typeddict-item]
-    if "audioChannelTaggingSettings" in data:
+    if data.get("audioChannelTaggingSettings") is not None:
         import capo_mediaconvert.types.audio_channel_tagging_settings
 
         out["audio_channel_tagging_settings"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> AudioDescription:
                 data["audioChannelTaggingSettings"]
             )
         )
-    if "audioNormalizationSettings" in data:
+    if data.get("audioNormalizationSettings") is not None:
         import capo_mediaconvert.types.audio_normalization_settings
 
         out["audio_normalization_settings"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> AudioDescription:
                 data["audioNormalizationSettings"]
             )
         )
-    if "audioPitchCorrectionSettings" in data:
+    if data.get("audioPitchCorrectionSettings") is not None:
         import capo_mediaconvert.types.audio_pitch_correction_settings
 
         out["audio_pitch_correction_settings"] = (
@@ -166,11 +166,11 @@ def deserialize_json(data: dict) -> AudioDescription:
                 data["audioPitchCorrectionSettings"]
             )
         )
-    if "audioSourceName" in data:
+    if data.get("audioSourceName") is not None:
         out["audio_source_name"] = data["audioSourceName"]
-    if "audioType" in data:
+    if data.get("audioType") is not None:
         out["audio_type"] = data["audioType"]
-    if "audioTypeControl" in data:
+    if data.get("audioTypeControl") is not None:
         import capo_mediaconvert.types.audio_type_control
 
         out["audio_type_control"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> AudioDescription:
                 data["audioTypeControl"]
             )
         )
-    if "codecSettings" in data:
+    if data.get("codecSettings") is not None:
         import capo_mediaconvert.types.audio_codec_settings
 
         out["codec_settings"] = (
@@ -186,15 +186,15 @@ def deserialize_json(data: dict) -> AudioDescription:
                 data["codecSettings"]
             )
         )
-    if "customLanguageCode" in data:
+    if data.get("customLanguageCode") is not None:
         out["custom_language_code"] = data["customLanguageCode"]
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         import capo_mediaconvert.types.language_code
 
         out["language_code"] = capo_mediaconvert.types.language_code.deserialize_json(
             data["languageCode"]
         )
-    if "languageCodeControl" in data:
+    if data.get("languageCodeControl") is not None:
         import capo_mediaconvert.types.audio_language_code_control
 
         out["language_code_control"] = (
@@ -202,12 +202,12 @@ def deserialize_json(data: dict) -> AudioDescription:
                 data["languageCodeControl"]
             )
         )
-    if "remixSettings" in data:
+    if data.get("remixSettings") is not None:
         import capo_mediaconvert.types.remix_settings
 
         out["remix_settings"] = capo_mediaconvert.types.remix_settings.deserialize_json(
             data["remixSettings"]
         )
-    if "streamName" in data:
+    if data.get("streamName") is not None:
         out["stream_name"] = data["streamName"]
     return out

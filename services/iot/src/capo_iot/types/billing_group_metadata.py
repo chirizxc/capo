@@ -27,7 +27,7 @@ def serialize_json(value: BillingGroupMetadata) -> dict:
 
 def deserialize_json(data: dict) -> BillingGroupMetadata:
     out: BillingGroupMetadata = {}  # type: ignore[typeddict-item]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.creation_date
 
         out["creation_date"] = capo_iot.types.creation_date.deserialize_json(

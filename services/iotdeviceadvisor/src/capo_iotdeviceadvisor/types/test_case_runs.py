@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TestCaseRuns:
 
     out: TestCaseRuns = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotdeviceadvisor.types.test_case_run.deserialize_json(item))
     return out

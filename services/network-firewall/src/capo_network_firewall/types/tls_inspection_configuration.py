@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: TLSInspectionConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TLSInspectionConfiguration:
     out: TLSInspectionConfiguration = {}  # type: ignore[typeddict-item]
-    if "ServerCertificateConfigurations" in data:
+    if data.get("ServerCertificateConfigurations") is not None:
         import capo_network_firewall.types.server_certificate_configurations
 
         out["server_certificate_configurations"] = (

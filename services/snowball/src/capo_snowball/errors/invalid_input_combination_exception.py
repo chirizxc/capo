@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidInputCombinationException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidInputCombinationException_:
     out: InvalidInputCombinationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class InvalidInputCombinationException(ServiceError):
 
     code: str | None = "InvalidInputCombinationException"
 
-    def __init__(self, data: InvalidInputCombinationException_):
+    def __init__(
+        self, data: InvalidInputCombinationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidInputCombinationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidInputCombinationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidInputCombinationException":
+        return cls(deserialize_aws_json_1_1(data), message)

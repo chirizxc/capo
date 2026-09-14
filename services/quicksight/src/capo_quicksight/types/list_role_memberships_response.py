@@ -39,14 +39,14 @@ def serialize_json(value: ListRoleMembershipsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRoleMembershipsResponse:
     out: ListRoleMembershipsResponse = {}  # type: ignore[typeddict-item]
-    if "MembersList" in data:
+    if data.get("MembersList") is not None:
         import capo_quicksight.types.groups_list
 
         out["members_list"] = capo_quicksight.types.groups_list.deserialize_json(
             data["MembersList"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

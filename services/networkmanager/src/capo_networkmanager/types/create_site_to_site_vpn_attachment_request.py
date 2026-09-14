@@ -47,24 +47,24 @@ def serialize_json(value: CreateSiteToSiteVpnAttachmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSiteToSiteVpnAttachmentRequest:
     out: CreateSiteToSiteVpnAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
     else:
         raise DeserializationError(
             "CreateSiteToSiteVpnAttachmentRequest.core_network_id required"
         )
-    if "VpnConnectionArn" in data:
+    if data.get("VpnConnectionArn") is not None:
         out["vpn_connection_arn"] = data["VpnConnectionArn"]
     else:
         raise DeserializationError(
             "CreateSiteToSiteVpnAttachmentRequest.vpn_connection_arn required"
         )
-    if "RoutingPolicyLabel" in data:
+    if data.get("RoutingPolicyLabel") is not None:
         out["routing_policy_label"] = data["RoutingPolicyLabel"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

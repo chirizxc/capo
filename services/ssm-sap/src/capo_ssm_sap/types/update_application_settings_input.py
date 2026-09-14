@@ -63,13 +63,13 @@ def serialize_json(value: UpdateApplicationSettingsInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationSettingsInput:
     out: UpdateApplicationSettingsInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError(
             "UpdateApplicationSettingsInput.application_id required"
         )
-    if "CredentialsToAddOrUpdate" in data:
+    if data.get("CredentialsToAddOrUpdate") is not None:
         import capo_ssm_sap.types.application_credential_list
 
         out["credentials_to_add_or_update"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> UpdateApplicationSettingsInput:
                 data["CredentialsToAddOrUpdate"]
             )
         )
-    if "CredentialsToRemove" in data:
+    if data.get("CredentialsToRemove") is not None:
         import capo_ssm_sap.types.application_credential_list
 
         out["credentials_to_remove"] = (
@@ -85,12 +85,12 @@ def deserialize_json(data: dict) -> UpdateApplicationSettingsInput:
                 data["CredentialsToRemove"]
             )
         )
-    if "Backint" in data:
+    if data.get("Backint") is not None:
         import capo_ssm_sap.types.backint_config
 
         out["backint"] = capo_ssm_sap.types.backint_config.deserialize_json(
             data["Backint"]
         )
-    if "DatabaseArn" in data:
+    if data.get("DatabaseArn") is not None:
         out["database_arn"] = data["DatabaseArn"]
     return out

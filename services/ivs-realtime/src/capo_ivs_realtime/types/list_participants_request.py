@@ -63,26 +63,26 @@ def serialize_json(value: ListParticipantsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListParticipantsRequest:
     out: ListParticipantsRequest = {}  # type: ignore[typeddict-item]
-    if "stageArn" in data:
+    if data.get("stageArn") is not None:
         out["stage_arn"] = data["stageArn"]
     else:
         raise DeserializationError("ListParticipantsRequest.stage_arn required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("ListParticipantsRequest.session_id required")
-    if "filterByUserId" in data:
+    if data.get("filterByUserId") is not None:
         out["filter_by_user_id"] = data["filterByUserId"]
-    if "filterByPublished" in data:
+    if data.get("filterByPublished") is not None:
         out["filter_by_published"] = data["filterByPublished"]
     else:
         out["filter_by_published"] = False
-    if "filterByState" in data:
+    if data.get("filterByState") is not None:
         out["filter_by_state"] = data["filterByState"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filterByRecordingState" in data:
+    if data.get("filterByRecordingState") is not None:
         out["filter_by_recording_state"] = data["filterByRecordingState"]
     return out

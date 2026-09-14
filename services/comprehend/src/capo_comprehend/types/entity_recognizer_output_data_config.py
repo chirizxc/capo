@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: EntityRecognizerOutputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerOutputDataConfig:
     out: EntityRecognizerOutputDataConfig = {}  # type: ignore[typeddict-item]
-    if "FlywheelStatsS3Prefix" in data:
+    if data.get("FlywheelStatsS3Prefix") is not None:
         out["flywheel_stats_s3_prefix"] = data["FlywheelStatsS3Prefix"]
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: X12InboundEdiOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12InboundEdiOptions:
     out: X12InboundEdiOptions = {}  # type: ignore[typeddict-item]
-    if "acknowledgmentOptions" in data:
+    if data.get("acknowledgmentOptions") is not None:
         import capo_b2bi.types.x12_acknowledgment_options
 
         out["acknowledgment_options"] = (

@@ -44,13 +44,13 @@ def serialize_json(value: UpdateQAppSessionMetadataInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQAppSessionMetadataInput:
     out: UpdateQAppSessionMetadataInput = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("UpdateQAppSessionMetadataInput.session_id required")
-    if "sessionName" in data:
+    if data.get("sessionName") is not None:
         out["session_name"] = data["sessionName"]
-    if "sharingConfiguration" in data:
+    if data.get("sharingConfiguration") is not None:
         import capo_qapps.types.session_sharing_configuration
 
         out["sharing_configuration"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UnusedAccessTypeStatisticsList:
 
     out: UnusedAccessTypeStatisticsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_accessanalyzer.types.unused_access_type_statistics.deserialize_json(
                 item

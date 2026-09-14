@@ -14,4 +14,4 @@ def serialize_json(value: NotificationEventList) -> list:
 
 
 def deserialize_json(data: list) -> NotificationEventList:
-    return list(data)
+    return [item for item in data if item is not None]

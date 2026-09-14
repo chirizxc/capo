@@ -60,19 +60,19 @@ def serialize_json(value: MeetingFeaturesConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MeetingFeaturesConfiguration:
     out: MeetingFeaturesConfiguration = {}  # type: ignore[typeddict-item]
-    if "Audio" in data:
+    if data.get("Audio") is not None:
         import capo_chime_sdk_meetings.types.audio_features
 
         out["audio"] = capo_chime_sdk_meetings.types.audio_features.deserialize_json(
             data["Audio"]
         )
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_chime_sdk_meetings.types.video_features
 
         out["video"] = capo_chime_sdk_meetings.types.video_features.deserialize_json(
             data["Video"]
         )
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_chime_sdk_meetings.types.content_features
 
         out["content"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> MeetingFeaturesConfiguration:
                 data["Content"]
             )
         )
-    if "Attendee" in data:
+    if data.get("Attendee") is not None:
         import capo_chime_sdk_meetings.types.attendee_features
 
         out["attendee"] = (

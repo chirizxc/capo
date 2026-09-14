@@ -57,11 +57,11 @@ def serialize_aws_json_1_0(value: StartArchiveSearchRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartArchiveSearchRequest:
     out: StartArchiveSearchRequest = {}  # type: ignore[typeddict-item]
-    if "ArchiveId" in data:
+    if data.get("ArchiveId") is not None:
         out["archive_id"] = data["ArchiveId"]
     else:
         raise DeserializationError("StartArchiveSearchRequest.archive_id required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_mailmanager.types.archive_filters
 
         out["filters"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartArchiveSearchRequest:
                 data["Filters"]
             )
         )
-    if "FromTimestamp" in data:
+    if data.get("FromTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["from_timestamp"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartArchiveSearchRequest:
         )
     else:
         raise DeserializationError("StartArchiveSearchRequest.from_timestamp required")
-    if "ToTimestamp" in data:
+    if data.get("ToTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["to_timestamp"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartArchiveSearchRequest:
         )
     else:
         raise DeserializationError("StartArchiveSearchRequest.to_timestamp required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         raise DeserializationError("StartArchiveSearchRequest.max_results required")

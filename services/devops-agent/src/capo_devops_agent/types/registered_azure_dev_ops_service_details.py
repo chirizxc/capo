@@ -19,7 +19,7 @@ def serialize_json(value: RegisteredAzureDevOpsServiceDetails) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredAzureDevOpsServiceDetails:
     out: RegisteredAzureDevOpsServiceDetails = {}  # type: ignore[typeddict-item]
-    if "organizationName" in data:
+    if data.get("organizationName") is not None:
         out["organization_name"] = data["organizationName"]
     else:
         raise DeserializationError(

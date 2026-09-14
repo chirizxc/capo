@@ -42,24 +42,24 @@ def serialize_aws_json_1_0(value: CreateAutonomousDatabaseWalletInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseWalletInput:
     out: CreateAutonomousDatabaseWalletInput = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
     else:
         raise DeserializationError(
             "CreateAutonomousDatabaseWalletInput.autonomous_database_id required"
         )
-    if "walletType" in data:
+    if data.get("walletType") is not None:
         import capo_odb.types.wallet_type
 
         out["wallet_type"] = capo_odb.types.wallet_type.deserialize_aws_json_1_0(
             data["walletType"]
         )
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
     else:
         raise DeserializationError(
             "CreateAutonomousDatabaseWalletInput.password required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

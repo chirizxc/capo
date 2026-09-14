@@ -34,7 +34,7 @@ def serialize_json(value: BatchDescribeDataTableValueRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDescribeDataTableValueRequest:
     out: BatchDescribeDataTableValueRequest = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.data_table_value_identifier_list
 
         out["values"] = (

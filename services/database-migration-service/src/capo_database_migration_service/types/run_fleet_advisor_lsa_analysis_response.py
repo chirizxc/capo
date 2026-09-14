@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: RunFleetAdvisorLsaAnalysisResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RunFleetAdvisorLsaAnalysisResponse:
     out: RunFleetAdvisorLsaAnalysisResponse = {}  # type: ignore[typeddict-item]
-    if "LsaAnalysisId" in data:
+    if data.get("LsaAnalysisId") is not None:
         out["lsa_analysis_id"] = data["LsaAnalysisId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

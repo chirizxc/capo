@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SensitiveTimestampList:
 
     out: SensitiveTimestampList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.sensitive_timestamp.deserialize_json(item))
     return out

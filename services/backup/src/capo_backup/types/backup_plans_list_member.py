@@ -79,35 +79,35 @@ def serialize_json(value: BackupPlansListMember) -> dict:
 
 def deserialize_json(data: dict) -> BackupPlansListMember:
     out: BackupPlansListMember = {}  # type: ignore[typeddict-item]
-    if "BackupPlanArn" in data:
+    if data.get("BackupPlanArn") is not None:
         out["backup_plan_arn"] = data["BackupPlanArn"]
-    if "BackupPlanId" in data:
+    if data.get("BackupPlanId") is not None:
         out["backup_plan_id"] = data["BackupPlanId"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "DeletionDate" in data:
+    if data.get("DeletionDate") is not None:
         import capo_backup.types.timestamp
 
         out["deletion_date"] = capo_backup.types.timestamp.deserialize_json(
             data["DeletionDate"]
         )
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "BackupPlanName" in data:
+    if data.get("BackupPlanName") is not None:
         out["backup_plan_name"] = data["BackupPlanName"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "LastExecutionDate" in data:
+    if data.get("LastExecutionDate") is not None:
         import capo_backup.types.timestamp
 
         out["last_execution_date"] = capo_backup.types.timestamp.deserialize_json(
             data["LastExecutionDate"]
         )
-    if "AdvancedBackupSettings" in data:
+    if data.get("AdvancedBackupSettings") is not None:
         import capo_backup.types.advanced_backup_settings
 
         out["advanced_backup_settings"] = (

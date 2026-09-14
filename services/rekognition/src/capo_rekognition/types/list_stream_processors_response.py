@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListStreamProcessorsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStreamProcessorsResponse:
     out: ListStreamProcessorsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "StreamProcessors" in data:
+    if data.get("StreamProcessors") is not None:
         import capo_rekognition.types.stream_processor_list
 
         out["stream_processors"] = (

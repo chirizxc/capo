@@ -30,8 +30,8 @@ def serialize_json(value: MediaResourceNeighbor) -> dict:
 
 def deserialize_json(data: dict) -> MediaResourceNeighbor:
     out: MediaResourceNeighbor = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

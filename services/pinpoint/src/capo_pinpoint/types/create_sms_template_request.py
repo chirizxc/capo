@@ -33,7 +33,7 @@ def serialize_json(value: CreateSmsTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSmsTemplateRequest:
     out: CreateSmsTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "SMSTemplateRequest" in data:
+    if data.get("SMSTemplateRequest") is not None:
         import capo_pinpoint.types.sms_template_request
 
         out["sms_template_request"] = (

@@ -179,11 +179,11 @@ def serialize_aws_json_1_1(value: DescribeAIRecommendationJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAIRecommendationJobResponse:
     out: DescribeAIRecommendationJobResponse = {}  # type: ignore[typeddict-item]
-    if "AIRecommendationJobName" in data:
+    if data.get("AIRecommendationJobName") is not None:
         out["ai_recommendation_job_name"] = data["AIRecommendationJobName"]
-    if "AIRecommendationJobArn" in data:
+    if data.get("AIRecommendationJobArn") is not None:
         out["ai_recommendation_job_arn"] = data["AIRecommendationJobArn"]
-    if "AIRecommendationJobStatus" in data:
+    if data.get("AIRecommendationJobStatus") is not None:
         import capo_sagemaker.types.ai_recommendation_job_status
 
         out["ai_recommendation_job_status"] = (
@@ -191,9 +191,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIRecommendationJobResponse:
                 data["AIRecommendationJobStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ModelSource" in data:
+    if data.get("ModelSource") is not None:
         import capo_sagemaker.types.ai_model_source
 
         out["model_source"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIRecommendationJobResponse:
                 data["ModelSource"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.ai_recommendation_output_result
 
         out["output_config"] = (
@@ -209,7 +209,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIRecommendationJobResponse:
                 data["OutputConfig"]
             )
         )
-    if "InferenceSpecification" in data:
+    if data.get("InferenceSpecification") is not None:
         import capo_sagemaker.types.ai_recommendation_inference_specification
 
         out["inference_specification"] = (
@@ -217,11 +217,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIRecommendationJobResponse:
                 data["InferenceSpecification"]
             )
         )
-    if "AIWorkloadConfigIdentifier" in data:
+    if data.get("AIWorkloadConfigIdentifier") is not None:
         out["ai_workload_config_identifier"] = data["AIWorkloadConfigIdentifier"]
-    if "OptimizeModel" in data:
+    if data.get("OptimizeModel") is not None:
         out["optimize_model"] = data["OptimizeModel"]
-    if "PerformanceTarget" in data:
+    if data.get("PerformanceTarget") is not None:
         import capo_sagemaker.types.ai_recommendation_performance_target
 
         out["performance_target"] = (
@@ -229,7 +229,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIRecommendationJobResponse:
                 data["PerformanceTarget"]
             )
         )
-    if "Recommendations" in data:
+    if data.get("Recommendations") is not None:
         import capo_sagemaker.types.ai_recommendation_list
 
         out["recommendations"] = (
@@ -237,9 +237,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIRecommendationJobResponse:
                 data["Recommendations"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ComputeSpec" in data:
+    if data.get("ComputeSpec") is not None:
         import capo_sagemaker.types.ai_recommendation_compute_spec
 
         out["compute_spec"] = (
@@ -247,25 +247,25 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIRecommendationJobResponse:
                 data["ComputeSpec"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

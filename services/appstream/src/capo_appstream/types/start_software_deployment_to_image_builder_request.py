@@ -30,8 +30,8 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> StartSoftwareDeploymentToImageBuilderRequest:
     out: StartSoftwareDeploymentToImageBuilderRequest = {}  # type: ignore[typeddict-item]
-    if "ImageBuilderName" in data:
+    if data.get("ImageBuilderName") is not None:
         out["image_builder_name"] = data["ImageBuilderName"]
-    if "RetryFailedDeployments" in data:
+    if data.get("RetryFailedDeployments") is not None:
         out["retry_failed_deployments"] = data["RetryFailedDeployments"]
     return out

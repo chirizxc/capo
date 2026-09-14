@@ -52,7 +52,7 @@ def serialize_json(value: UpdateAccessPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccessPolicyRequest:
     out: UpdateAccessPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "accessPolicyIdentity" in data:
+    if data.get("accessPolicyIdentity") is not None:
         import capo_iotsitewise.types.identity
 
         out["access_policy_identity"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UpdateAccessPolicyRequest:
         raise DeserializationError(
             "UpdateAccessPolicyRequest.access_policy_identity required"
         )
-    if "accessPolicyResource" in data:
+    if data.get("accessPolicyResource") is not None:
         import capo_iotsitewise.types.resource
 
         out["access_policy_resource"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> UpdateAccessPolicyRequest:
         raise DeserializationError(
             "UpdateAccessPolicyRequest.access_policy_resource required"
         )
-    if "accessPolicyPermission" in data:
+    if data.get("accessPolicyPermission") is not None:
         import capo_iotsitewise.types.permission
 
         out["access_policy_permission"] = (
@@ -88,6 +88,6 @@ def deserialize_json(data: dict) -> UpdateAccessPolicyRequest:
         raise DeserializationError(
             "UpdateAccessPolicyRequest.access_policy_permission required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

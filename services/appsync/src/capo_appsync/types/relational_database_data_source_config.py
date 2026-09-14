@@ -44,7 +44,7 @@ def serialize_json(value: RelationalDatabaseDataSourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> RelationalDatabaseDataSourceConfig:
     out: RelationalDatabaseDataSourceConfig = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseSourceType" in data:
+    if data.get("relationalDatabaseSourceType") is not None:
         import capo_appsync.types.relational_database_source_type
 
         out["relational_database_source_type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> RelationalDatabaseDataSourceConfig:
                 data["relationalDatabaseSourceType"]
             )
         )
-    if "rdsHttpEndpointConfig" in data:
+    if data.get("rdsHttpEndpointConfig") is not None:
         import capo_appsync.types.rds_http_endpoint_config
 
         out["rds_http_endpoint_config"] = (

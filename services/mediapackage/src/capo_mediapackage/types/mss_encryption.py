@@ -30,7 +30,7 @@ def serialize_json(value: MssEncryption) -> dict:
 
 def deserialize_json(data: dict) -> MssEncryption:
     out: MssEncryption = {}  # type: ignore[typeddict-item]
-    if "spekeKeyProvider" in data:
+    if data.get("spekeKeyProvider") is not None:
         import capo_mediapackage.types.speke_key_provider
 
         out["speke_key_provider"] = (

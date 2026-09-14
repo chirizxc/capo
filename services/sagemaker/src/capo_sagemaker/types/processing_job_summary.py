@@ -82,17 +82,17 @@ def serialize_aws_json_1_1(value: ProcessingJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProcessingJobSummary:
     out: ProcessingJobSummary = {}  # type: ignore[typeddict-item]
-    if "ProcessingJobName" in data:
+    if data.get("ProcessingJobName") is not None:
         out["processing_job_name"] = data["ProcessingJobName"]
-    if "ProcessingJobArn" in data:
+    if data.get("ProcessingJobArn") is not None:
         out["processing_job_arn"] = data["ProcessingJobArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "ProcessingEndTime" in data:
+    if data.get("ProcessingEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["processing_end_time"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessingJobSummary:
                 data["ProcessingEndTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessingJobSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "ProcessingJobStatus" in data:
+    if data.get("ProcessingJobStatus") is not None:
         import capo_sagemaker.types.processing_job_status
 
         out["processing_job_status"] = (
@@ -116,8 +116,8 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessingJobSummary:
                 data["ProcessingJobStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ExitMessage" in data:
+    if data.get("ExitMessage") is not None:
         out["exit_message"] = data["ExitMessage"]
     return out

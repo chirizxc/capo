@@ -50,7 +50,7 @@ def serialize_json(value: MergeRouterInputProtocolConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> MergeRouterInputProtocolConfiguration:
-    if "rtp" in data:
+    if data.get("rtp") is not None:
         import capo_mediaconnect.types.rtp_router_input_configuration
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> MergeRouterInputProtocolConfiguration:
                 data["rtp"]
             )
         }
-    elif "rist" in data:
+    elif data.get("rist") is not None:
         import capo_mediaconnect.types.rist_router_input_configuration
 
         return {

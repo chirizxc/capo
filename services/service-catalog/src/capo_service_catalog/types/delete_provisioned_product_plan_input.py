@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: DeleteProvisionedProductPlanInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteProvisionedProductPlanInput:
     out: DeleteProvisionedProductPlanInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "PlanId" in data:
+    if data.get("PlanId") is not None:
         out["plan_id"] = data["PlanId"]
     else:
         raise DeserializationError("DeleteProvisionedProductPlanInput.plan_id required")
-    if "IgnoreErrors" in data:
+    if data.get("IgnoreErrors") is not None:
         out["ignore_errors"] = data["IgnoreErrors"]
     else:
         out["ignore_errors"] = False

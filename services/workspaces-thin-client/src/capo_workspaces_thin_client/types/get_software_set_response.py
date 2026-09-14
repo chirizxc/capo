@@ -31,7 +31,7 @@ def serialize_json(value: GetSoftwareSetResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSoftwareSetResponse:
     out: GetSoftwareSetResponse = {}  # type: ignore[typeddict-item]
-    if "softwareSet" in data:
+    if data.get("softwareSet") is not None:
         import capo_workspaces_thin_client.types.software_set
 
         out["software_set"] = (

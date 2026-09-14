@@ -32,7 +32,7 @@ def serialize_json(value: InitiateVaultLockInput) -> dict:
 
 def deserialize_json(data: dict) -> InitiateVaultLockInput:
     out: InitiateVaultLockInput = {}  # type: ignore[typeddict-item]
-    if "policy" in data:
+    if data.get("policy") is not None:
         import capo_glacier.types.vault_lock_policy
 
         out["policy"] = capo_glacier.types.vault_lock_policy.deserialize_json(

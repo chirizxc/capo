@@ -83,15 +83,15 @@ def serialize_aws_json_1_0(value: GetStreamOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetStreamOutput:
     out: GetStreamOutput = {}  # type: ignore[typeddict-item]
-    if "streamArn" in data:
+    if data.get("streamArn") is not None:
         out["stream_arn"] = data["streamArn"]
     else:
         raise DeserializationError("GetStreamOutput.stream_arn required")
-    if "streamLabel" in data:
+    if data.get("streamLabel") is not None:
         out["stream_label"] = data["streamLabel"]
     else:
         raise DeserializationError("GetStreamOutput.stream_label required")
-    if "streamStatus" in data:
+    if data.get("streamStatus") is not None:
         import capo_keyspacesstreams.types.stream_status
 
         out["stream_status"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetStreamOutput:
         )
     else:
         raise DeserializationError("GetStreamOutput.stream_status required")
-    if "streamViewType" in data:
+    if data.get("streamViewType") is not None:
         import capo_keyspacesstreams.types.stream_view_type
 
         out["stream_view_type"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetStreamOutput:
         )
     else:
         raise DeserializationError("GetStreamOutput.stream_view_type required")
-    if "creationRequestDateTime" in data:
+    if data.get("creationRequestDateTime") is not None:
         import capo_keyspacesstreams.types.date
 
         out["creation_request_date_time"] = (
@@ -123,15 +123,15 @@ def deserialize_aws_json_1_0(data: dict) -> GetStreamOutput:
         raise DeserializationError(
             "GetStreamOutput.creation_request_date_time required"
         )
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError("GetStreamOutput.keyspace_name required")
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("GetStreamOutput.table_name required")
-    if "shards" in data:
+    if data.get("shards") is not None:
         import capo_keyspacesstreams.types.shard_description_list
 
         out["shards"] = (
@@ -139,6 +139,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetStreamOutput:
                 data["shards"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

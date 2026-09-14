@@ -262,9 +262,10 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.create_campaign_request.CreateCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaignsv2.types.create_campaign_request.CreateCampaignRequest = {
+            "name": name,
+            "connect_instance_id": connect_instance_id,
+        }
         if channel_subtype_config is not None:
             input_["channel_subtype_config"] = channel_subtype_config
         if type is not None:
@@ -289,6 +290,7 @@ class AsyncConnectCampaignsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_campaign(
@@ -321,14 +323,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.delete_campaign_request.DeleteCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaignsv2.types.delete_campaign_request.DeleteCampaignRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_campaign_channel_subtype_config(
@@ -363,15 +367,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.delete_campaign_channel_subtype_config_request.DeleteCampaignChannelSubtypeConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["channel_subtype"] = channel_subtype
+        input_: capo_connectcampaignsv2.types.delete_campaign_channel_subtype_config_request.DeleteCampaignChannelSubtypeConfigRequest = {
+            "id": id,
+            "channel_subtype": channel_subtype,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_campaign_communication_limits(
@@ -407,15 +413,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.delete_campaign_communication_limits_request.DeleteCampaignCommunicationLimitsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["config"] = config
+        input_: capo_connectcampaignsv2.types.delete_campaign_communication_limits_request.DeleteCampaignCommunicationLimitsRequest = {
+            "id": id,
+            "config": config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_campaign_communication_time(
@@ -451,15 +459,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.delete_campaign_communication_time_request.DeleteCampaignCommunicationTimeRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["config"] = config
+        input_: capo_connectcampaignsv2.types.delete_campaign_communication_time_request.DeleteCampaignCommunicationTimeRequest = {
+            "id": id,
+            "config": config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_campaign_entry_limits(
@@ -494,14 +504,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.delete_campaign_entry_limits_request.DeleteCampaignEntryLimitsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaignsv2.types.delete_campaign_entry_limits_request.DeleteCampaignEntryLimitsRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connect_instance_config(
@@ -539,8 +551,9 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.delete_connect_instance_config_request.DeleteConnectInstanceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaignsv2.types.delete_connect_instance_config_request.DeleteConnectInstanceConfigRequest = {
+            "connect_instance_id": connect_instance_id
+        }
         if campaign_deletion_policy is not None:
             input_["campaign_deletion_policy"] = campaign_deletion_policy
 
@@ -549,6 +562,7 @@ class AsyncConnectCampaignsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connect_instance_integration(
@@ -583,15 +597,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.delete_connect_instance_integration_request.DeleteConnectInstanceIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
-        input_["integration_identifier"] = integration_identifier
+        input_: capo_connectcampaignsv2.types.delete_connect_instance_integration_request.DeleteConnectInstanceIntegrationRequest = {
+            "connect_instance_id": connect_instance_id,
+            "integration_identifier": integration_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_instance_onboarding_job(
@@ -625,14 +641,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.delete_instance_onboarding_job_request.DeleteInstanceOnboardingJobRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaignsv2.types.delete_instance_onboarding_job_request.DeleteInstanceOnboardingJobRequest = {
+            "connect_instance_id": connect_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_campaign(
@@ -667,14 +685,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.describe_campaign_request.DescribeCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaignsv2.types.describe_campaign_request.DescribeCampaignRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_campaign_state(
@@ -710,14 +730,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.get_campaign_state_request.GetCampaignStateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaignsv2.types.get_campaign_state_request.GetCampaignStateRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_campaign_state_batch(
@@ -752,14 +774,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.get_campaign_state_batch_request.GetCampaignStateBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["campaign_ids"] = campaign_ids
+        input_: capo_connectcampaignsv2.types.get_campaign_state_batch_request.GetCampaignStateBatchRequest = {
+            "campaign_ids": campaign_ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_connect_instance_config(
@@ -794,14 +818,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.get_connect_instance_config_request.GetConnectInstanceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaignsv2.types.get_connect_instance_config_request.GetConnectInstanceConfigRequest = {
+            "connect_instance_id": connect_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_instance_communication_limits(
@@ -836,14 +862,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.get_instance_communication_limits_request.GetInstanceCommunicationLimitsRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaignsv2.types.get_instance_communication_limits_request.GetInstanceCommunicationLimitsRequest = {
+            "connect_instance_id": connect_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_instance_onboarding_job_status(
@@ -878,14 +906,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.get_instance_onboarding_job_status_request.GetInstanceOnboardingJobStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaignsv2.types.get_instance_onboarding_job_status_request.GetInstanceOnboardingJobStatusRequest = {
+            "connect_instance_id": connect_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_campaigns(
@@ -927,7 +957,7 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.list_campaigns_request.ListCampaignsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connectcampaignsv2.types.list_campaigns_request.ListCampaignsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -940,6 +970,7 @@ class AsyncConnectCampaignsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_campaigns(
@@ -1012,8 +1043,9 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.list_connect_instance_integrations_request.ListConnectInstanceIntegrationsRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
+        input_: capo_connectcampaignsv2.types.list_connect_instance_integrations_request.ListConnectInstanceIntegrationsRequest = {
+            "connect_instance_id": connect_instance_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1024,6 +1056,7 @@ class AsyncConnectCampaignsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_connect_instance_integrations(
@@ -1086,14 +1119,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_connectcampaignsv2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def pause_campaign(
@@ -1129,14 +1164,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.pause_campaign_request.PauseCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaignsv2.types.pause_campaign_request.PauseCampaignRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_connect_instance_integration(
@@ -1172,15 +1209,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.put_connect_instance_integration_request.PutConnectInstanceIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
-        input_["integration_config"] = integration_config
+        input_: capo_connectcampaignsv2.types.put_connect_instance_integration_request.PutConnectInstanceIntegrationRequest = {
+            "connect_instance_id": connect_instance_id,
+            "integration_config": integration_config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_instance_communication_limits(
@@ -1215,15 +1254,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.put_instance_communication_limits_request.PutInstanceCommunicationLimitsRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
-        input_["communication_limits_config"] = communication_limits_config
+        input_: capo_connectcampaignsv2.types.put_instance_communication_limits_request.PutInstanceCommunicationLimitsRequest = {
+            "connect_instance_id": connect_instance_id,
+            "communication_limits_config": communication_limits_config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_outbound_request_batch(
@@ -1262,15 +1303,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.put_outbound_request_batch_request.PutOutboundRequestBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["outbound_requests"] = outbound_requests
+        input_: capo_connectcampaignsv2.types.put_outbound_request_batch_request.PutOutboundRequestBatchRequest = {
+            "id": id,
+            "outbound_requests": outbound_requests,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_profile_outbound_request_batch(
@@ -1309,15 +1352,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.put_profile_outbound_request_batch_request.PutProfileOutboundRequestBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["profile_outbound_requests"] = profile_outbound_requests
+        input_: capo_connectcampaignsv2.types.put_profile_outbound_request_batch_request.PutProfileOutboundRequestBatchRequest = {
+            "id": id,
+            "profile_outbound_requests": profile_outbound_requests,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resume_campaign(
@@ -1353,14 +1398,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.resume_campaign_request.ResumeCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaignsv2.types.resume_campaign_request.ResumeCampaignRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_campaign(
@@ -1396,14 +1443,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.start_campaign_request.StartCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaignsv2.types.start_campaign_request.StartCampaignRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_instance_onboarding_job(
@@ -1441,15 +1490,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.start_instance_onboarding_job_request.StartInstanceOnboardingJobRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_instance_id"] = connect_instance_id
-        input_["encryption_config"] = encryption_config
+        input_: capo_connectcampaignsv2.types.start_instance_onboarding_job_request.StartInstanceOnboardingJobRequest = {
+            "connect_instance_id": connect_instance_id,
+            "encryption_config": encryption_config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_campaign(
@@ -1485,14 +1536,16 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.stop_campaign_request.StopCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connectcampaignsv2.types.stop_campaign_request.StopCampaignRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1527,15 +1580,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tags"] = tags
+        input_: capo_connectcampaignsv2.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1570,15 +1625,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_connectcampaignsv2.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_campaign_channel_subtype_config(
@@ -1613,15 +1670,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.update_campaign_channel_subtype_config_request.UpdateCampaignChannelSubtypeConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["channel_subtype_config"] = channel_subtype_config
+        input_: capo_connectcampaignsv2.types.update_campaign_channel_subtype_config_request.UpdateCampaignChannelSubtypeConfigRequest = {
+            "id": id,
+            "channel_subtype_config": channel_subtype_config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_campaign_communication_limits(
@@ -1657,15 +1716,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.update_campaign_communication_limits_request.UpdateCampaignCommunicationLimitsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["communication_limits_override"] = communication_limits_override
+        input_: capo_connectcampaignsv2.types.update_campaign_communication_limits_request.UpdateCampaignCommunicationLimitsRequest = {
+            "id": id,
+            "communication_limits_override": communication_limits_override,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_campaign_communication_time(
@@ -1701,15 +1762,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.update_campaign_communication_time_request.UpdateCampaignCommunicationTimeRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["communication_time_config"] = communication_time_config
+        input_: capo_connectcampaignsv2.types.update_campaign_communication_time_request.UpdateCampaignCommunicationTimeRequest = {
+            "id": id,
+            "communication_time_config": communication_time_config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_campaign_entry_limits(
@@ -1745,15 +1808,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.update_campaign_entry_limits_request.UpdateCampaignEntryLimitsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["entry_limits_config"] = entry_limits_config
+        input_: capo_connectcampaignsv2.types.update_campaign_entry_limits_request.UpdateCampaignEntryLimitsRequest = {
+            "id": id,
+            "entry_limits_config": entry_limits_config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_campaign_flow_association(
@@ -1789,15 +1854,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.update_campaign_flow_association_request.UpdateCampaignFlowAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["connect_campaign_flow_arn"] = connect_campaign_flow_arn
+        input_: capo_connectcampaignsv2.types.update_campaign_flow_association_request.UpdateCampaignFlowAssociationRequest = {
+            "id": id,
+            "connect_campaign_flow_arn": connect_campaign_flow_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_campaign_name(
@@ -1832,15 +1899,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.update_campaign_name_request.UpdateCampaignNameRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["name"] = name
+        input_: capo_connectcampaignsv2.types.update_campaign_name_request.UpdateCampaignNameRequest = {
+            "id": id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_campaign_schedule(
@@ -1876,15 +1945,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.update_campaign_schedule_request.UpdateCampaignScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["schedule"] = schedule
+        input_: capo_connectcampaignsv2.types.update_campaign_schedule_request.UpdateCampaignScheduleRequest = {
+            "id": id,
+            "schedule": schedule,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_campaign_source(
@@ -1920,15 +1991,17 @@ class AsyncConnectCampaignsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connectcampaignsv2.types.update_campaign_source_request.UpdateCampaignSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["source"] = source
+        input_: capo_connectcampaignsv2.types.update_campaign_source_request.UpdateCampaignSourceRequest = {
+            "id": id,
+            "source": source,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -12,6 +12,7 @@ from typing_extensions import Never
 import capo_sagemaker_runtime_http2._auth._signers
 import capo_sagemaker_runtime_http2._auth._sigv4
 import capo_sagemaker_runtime_http2._iter
+import capo_sagemaker_runtime_http2._protocol.eventstream
 import capo_sagemaker_runtime_http2.errors.input_validation_error
 import capo_sagemaker_runtime_http2.errors.internal_server_error
 import capo_sagemaker_runtime_http2.errors.internal_stream_failure
@@ -45,27 +46,27 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "InputValidationError":
             raise capo_sagemaker_runtime_http2.errors.input_validation_error.InputValidationError.from_json(
-                data
+                data, message
             )
         case "InternalServerError":
             raise capo_sagemaker_runtime_http2.errors.internal_server_error.InternalServerError.from_json(
-                data
+                data, message
             )
         case "InternalStreamFailure":
             raise capo_sagemaker_runtime_http2.errors.internal_stream_failure.InternalStreamFailure.from_json(
-                data
+                data, message
             )
         case "ModelError":
             raise capo_sagemaker_runtime_http2.errors.model_error.ModelError.from_json(
-                data
+                data, message
             )
         case "ModelStreamError":
             raise capo_sagemaker_runtime_http2.errors.model_stream_error.ModelStreamError.from_json(
-                data
+                data, message
             )
         case "ServiceUnavailableError":
             raise capo_sagemaker_runtime_http2.errors.service_unavailable_error.ServiceUnavailableError.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -83,9 +84,9 @@ def handle_response(
         "body": cast(Any, raw_stream_to_events(_iter, _message_decoder, _union_deser))
     }  # type: ignore[reportAssignmentType]
     if "X-Amzn-Invoked-Production-Variant" in response.headers:
-        out["invoked_production_variant"] = str(
-            response.headers["X-Amzn-Invoked-Production-Variant"]
-        )
+        out["invoked_production_variant"] = response.headers[
+            "X-Amzn-Invoked-Production-Variant"
+        ]
     return out
 
 
@@ -103,9 +104,9 @@ async def async_handle_response(
         )
     }  # type: ignore[reportAssignmentType]
     if "X-Amzn-Invoked-Production-Variant" in response.headers:
-        out["invoked_production_variant"] = str(
-            response.headers["X-Amzn-Invoked-Production-Variant"]
-        )
+        out["invoked_production_variant"] = response.headers[
+            "X-Amzn-Invoked-Production-Variant"
+        ]
     return out
 
 
@@ -114,19 +115,28 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_sagemaker_runtime_http2._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_sagemaker_runtime_http2._auth._sigv4.build_sigv4_auth_scheme(
-                "sagemaker", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_sagemaker_runtime_http2._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = (
+                capo_sagemaker_runtime_http2._auth._sigv4.build_sigv4_auth_scheme(
+                    "sagemaker", options.region, endpoint_scheme
+                )
             )
+            if sigv4_config is not None:
+                return capo_sagemaker_runtime_http2._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -146,19 +156,17 @@ def build_request(
         endpoint.url.rstrip("/")
         + "/endpoints/{EndpointName}/invocations-bidirectional-stream"
     )
-    url = url.replace("{EndpointName}", quote(str(input_["endpoint_name"]), safe=""))
-    params: dict[str, str] = {}
+    url = url.replace("{EndpointName}", quote(input_["endpoint_name"], safe=""))
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     if "target_variant" in input_:
-        headers["X-Amzn-SageMaker-Target-Variant"] = str(input_["target_variant"])
+        headers["X-Amzn-SageMaker-Target-Variant"] = input_["target_variant"]
     if "model_invocation_path" in input_:
-        headers["X-Amzn-SageMaker-Model-Invocation-Path"] = str(
-            input_["model_invocation_path"]
-        )
+        headers["X-Amzn-SageMaker-Model-Invocation-Path"] = input_[
+            "model_invocation_path"
+        ]
     if "model_query_string" in input_:
-        headers["X-Amzn-SageMaker-Model-Query-String"] = str(
-            input_["model_query_string"]
-        )
+        headers["X-Amzn-SageMaker-Model-Query-String"] = input_["model_query_string"]
 
     body = capo_sagemaker_runtime_http2._iter.map_sync_iterator(
         input_["body"],
@@ -168,7 +176,8 @@ def build_request(
     headers["content-type"] = "application/vnd.amazon-eventstream"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -190,19 +199,17 @@ def async_build_request(
         endpoint.url.rstrip("/")
         + "/endpoints/{EndpointName}/invocations-bidirectional-stream"
     )
-    url = url.replace("{EndpointName}", quote(str(input_["endpoint_name"]), safe=""))
-    params: dict[str, str] = {}
+    url = url.replace("{EndpointName}", quote(input_["endpoint_name"], safe=""))
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     if "target_variant" in input_:
-        headers["X-Amzn-SageMaker-Target-Variant"] = str(input_["target_variant"])
+        headers["X-Amzn-SageMaker-Target-Variant"] = input_["target_variant"]
     if "model_invocation_path" in input_:
-        headers["X-Amzn-SageMaker-Model-Invocation-Path"] = str(
-            input_["model_invocation_path"]
-        )
+        headers["X-Amzn-SageMaker-Model-Invocation-Path"] = input_[
+            "model_invocation_path"
+        ]
     if "model_query_string" in input_:
-        headers["X-Amzn-SageMaker-Model-Query-String"] = str(
-            input_["model_query_string"]
-        )
+        headers["X-Amzn-SageMaker-Model-Query-String"] = input_["model_query_string"]
 
     body = capo_sagemaker_runtime_http2._iter.map_async_iterator(
         input_["body"],
@@ -212,7 +219,8 @@ def async_build_request(
     headers["content-type"] = "application/vnd.amazon-eventstream"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -227,7 +235,7 @@ def invoke_endpoint_with_bidirectional_stream(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -247,7 +255,7 @@ async def async_invoke_endpoint_with_bidirectional_stream(
         async_build_request(options, input_)
     )
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

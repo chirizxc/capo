@@ -74,33 +74,33 @@ def serialize_json(value: ContactDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> ContactDataRequest:
     out: ContactDataRequest = {}  # type: ignore[typeddict-item]
-    if "SystemEndpoint" in data:
+    if data.get("SystemEndpoint") is not None:
         import capo_connect.types.endpoint
 
         out["system_endpoint"] = capo_connect.types.endpoint.deserialize_json(
             data["SystemEndpoint"]
         )
-    if "CustomerEndpoint" in data:
+    if data.get("CustomerEndpoint") is not None:
         import capo_connect.types.endpoint
 
         out["customer_endpoint"] = capo_connect.types.endpoint.deserialize_json(
             data["CustomerEndpoint"]
         )
-    if "RequestIdentifier" in data:
+    if data.get("RequestIdentifier") is not None:
         out["request_identifier"] = data["RequestIdentifier"]
-    if "QueueId" in data:
+    if data.get("QueueId") is not None:
         out["queue_id"] = data["QueueId"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes
 
         out["attributes"] = capo_connect.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "Campaign" in data:
+    if data.get("Campaign") is not None:
         import capo_connect.types.campaign
 
         out["campaign"] = capo_connect.types.campaign.deserialize_json(data["Campaign"])
-    if "OutboundStrategy" in data:
+    if data.get("OutboundStrategy") is not None:
         import capo_connect.types.outbound_strategy
 
         out["outbound_strategy"] = (

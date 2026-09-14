@@ -29,9 +29,9 @@ def serialize_json(value: CreateAccessTokenResponse) -> dict:
     out: dict = {}
     out["secret"] = value["secret"]
     out["name"] = value["name"]
-    import capo_codecatalyst.types.timestamp
+    import capo_codecatalyst._protocol.serialize
 
-    out["expiresTime"] = capo_codecatalyst.types.timestamp.serialize_json(
+    out["expiresTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
         value["expires_time"]
     )
     out["accessTokenId"] = value["access_token_id"]
@@ -40,23 +40,23 @@ def serialize_json(value: CreateAccessTokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessTokenResponse:
     out: CreateAccessTokenResponse = {}  # type: ignore[typeddict-item]
-    if "secret" in data:
+    if data.get("secret") is not None:
         out["secret"] = data["secret"]
     else:
         raise DeserializationError("CreateAccessTokenResponse.secret required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAccessTokenResponse.name required")
-    if "expiresTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("expiresTime") is not None:
+        import datetime
 
-        out["expires_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["expiresTime"]
+        out["expires_time"] = datetime.datetime.fromisoformat(
+            data["expiresTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("CreateAccessTokenResponse.expires_time required")
-    if "accessTokenId" in data:
+    if data.get("accessTokenId") is not None:
         out["access_token_id"] = data["accessTokenId"]
     else:
         raise DeserializationError("CreateAccessTokenResponse.access_token_id required")

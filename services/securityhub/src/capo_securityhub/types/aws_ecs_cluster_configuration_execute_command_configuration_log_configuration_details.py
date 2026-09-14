@@ -52,14 +52,14 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails:
     out: AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "CloudWatchEncryptionEnabled" in data:
+    if data.get("CloudWatchEncryptionEnabled") is not None:
         out["cloud_watch_encryption_enabled"] = data["CloudWatchEncryptionEnabled"]
-    if "CloudWatchLogGroupName" in data:
+    if data.get("CloudWatchLogGroupName") is not None:
         out["cloud_watch_log_group_name"] = data["CloudWatchLogGroupName"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "S3EncryptionEnabled" in data:
+    if data.get("S3EncryptionEnabled") is not None:
         out["s3_encryption_enabled"] = data["S3EncryptionEnabled"]
-    if "S3KeyPrefix" in data:
+    if data.get("S3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["S3KeyPrefix"]
     return out

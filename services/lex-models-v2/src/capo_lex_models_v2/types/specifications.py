@@ -34,11 +34,11 @@ def serialize_json(value: Specifications) -> dict:
 
 def deserialize_json(data: dict) -> Specifications:
     out: Specifications = {}  # type: ignore[typeddict-item]
-    if "slotTypeId" in data:
+    if data.get("slotTypeId") is not None:
         out["slot_type_id"] = data["slotTypeId"]
     else:
         raise DeserializationError("Specifications.slot_type_id required")
-    if "valueElicitationSetting" in data:
+    if data.get("valueElicitationSetting") is not None:
         import capo_lex_models_v2.types.sub_slot_value_elicitation_setting
 
         out["value_elicitation_setting"] = (

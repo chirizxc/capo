@@ -81,21 +81,21 @@ def serialize_json(value: Dataset) -> dict:
 
 def deserialize_json(data: dict) -> Dataset:
     out: Dataset = {}  # type: ignore[typeddict-item]
-    if "datasetId" in data:
+    if data.get("datasetId") is not None:
         out["dataset_id"] = data["datasetId"]
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
-    if "datasetTitle" in data:
+    if data.get("datasetTitle") is not None:
         out["dataset_title"] = data["datasetTitle"]
-    if "kind" in data:
+    if data.get("kind") is not None:
         import capo_finspace_data.types.dataset_kind
 
         out["kind"] = capo_finspace_data.types.dataset_kind.deserialize_json(
             data["kind"]
         )
-    if "datasetDescription" in data:
+    if data.get("datasetDescription") is not None:
         out["dataset_description"] = data["datasetDescription"]
-    if "ownerInfo" in data:
+    if data.get("ownerInfo") is not None:
         import capo_finspace_data.types.dataset_owner_info
 
         out["owner_info"] = (
@@ -103,15 +103,15 @@ def deserialize_json(data: dict) -> Dataset:
                 data["ownerInfo"]
             )
         )
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         out["create_time"] = data["createTime"]
     else:
         out["create_time"] = 0
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         out["last_modified_time"] = data["lastModifiedTime"]
     else:
         out["last_modified_time"] = 0
-    if "schemaDefinition" in data:
+    if data.get("schemaDefinition") is not None:
         import capo_finspace_data.types.schema_union
 
         out["schema_definition"] = (
@@ -119,6 +119,6 @@ def deserialize_json(data: dict) -> Dataset:
                 data["schemaDefinition"]
             )
         )
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
     return out

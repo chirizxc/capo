@@ -23,6 +23,6 @@ def serialize_json(value: ClusterOperationStepInfo) -> dict:
 
 def deserialize_json(data: dict) -> ClusterOperationStepInfo:
     out: ClusterOperationStepInfo = {}  # type: ignore[typeddict-item]
-    if "stepStatus" in data:
+    if data.get("stepStatus") is not None:
         out["step_status"] = data["stepStatus"]
     return out

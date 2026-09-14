@@ -72,7 +72,15 @@ def serialize_aws_json_1_1(value: CreateMLTransformRequest) -> dict:
     if "glue_version" in value:
         out["GlueVersion"] = value["glue_version"]
     if "max_capacity" in value:
-        out["MaxCapacity"] = value["max_capacity"]
+        out["MaxCapacity"] = (
+            "NaN"
+            if value["max_capacity"] != value["max_capacity"]
+            else "Infinity"
+            if value["max_capacity"] == float("inf")
+            else "-Infinity"
+            if value["max_capacity"] == float("-inf")
+            else value["max_capacity"]
+        )
     if "worker_type" in value:
         import capo_glue.types.worker_type
 
@@ -102,13 +110,13 @@ def serialize_aws_json_1_1(value: CreateMLTransformRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMLTransformRequest:
     out: CreateMLTransformRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateMLTransformRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "InputRecordTables" in data:
+    if data.get("InputRecordTables") is not None:
         import capo_glue.types.glue_tables
 
         out["input_record_tables"] = (
@@ -120,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMLTransformRequest:
         raise DeserializationError(
             "CreateMLTransformRequest.input_record_tables required"
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.transform_parameters
 
         out["parameters"] = (
@@ -130,31 +138,31 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMLTransformRequest:
         )
     else:
         raise DeserializationError("CreateMLTransformRequest.parameters required")
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError("CreateMLTransformRequest.role required")
-    if "GlueVersion" in data:
+    if data.get("GlueVersion") is not None:
         out["glue_version"] = data["GlueVersion"]
-    if "MaxCapacity" in data:
-        out["max_capacity"] = data["MaxCapacity"]
-    if "WorkerType" in data:
+    if data.get("MaxCapacity") is not None:
+        out["max_capacity"] = float(data["MaxCapacity"])
+    if data.get("WorkerType") is not None:
         import capo_glue.types.worker_type
 
         out["worker_type"] = capo_glue.types.worker_type.deserialize_aws_json_1_1(
             data["WorkerType"]
         )
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "MaxRetries" in data:
+    if data.get("MaxRetries") is not None:
         out["max_retries"] = data["MaxRetries"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])
-    if "TransformEncryption" in data:
+    if data.get("TransformEncryption") is not None:
         import capo_glue.types.transform_encryption
 
         out["transform_encryption"] = (

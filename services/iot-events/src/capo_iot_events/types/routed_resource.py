@@ -28,8 +28,8 @@ def serialize_json(value: RoutedResource) -> dict:
 
 def deserialize_json(data: dict) -> RoutedResource:
     out: RoutedResource = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

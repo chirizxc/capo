@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SellerEngagementList:
 
     out: SellerEngagementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.seller_engagement.deserialize_json(item)
         )

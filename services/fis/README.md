@@ -13,9 +13,9 @@ from capo_fis import AsyncfisClient
 
 
 async def main():
-    async with AsyncfisClient() as s3:
+    async with AsyncfisClient() as fis:
         # Example: call the create_experiment_template operation
-        response = await s3.create_experiment_template()
+        response = await fis.create_experiment_template()
         print(response["experiment_template"])
 ```
 
@@ -28,9 +28,9 @@ from capo_fis import AsyncfisClient
 
 
 async def main():
-    async with AsyncfisClient() as s3:
+    async with AsyncfisClient() as fis:
         # Example: paginate over list_actions
-        async for item in s3.iter_list_actions():
+        async for item in fis.iter_list_actions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_fis.error import ConflictException
 
 
 async def main():
-    async with AsyncfisClient() as s3:
+    async with AsyncfisClient() as fis:
         try:
-            await s3.create_experiment_template()
+            await fis.create_experiment_template()
         except ConflictException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_fis import AsyncfisClient
 
 
 async def main():
-    async with AsyncfisClient() as s3:
+    async with AsyncfisClient() as fis:
         # Default: 3 attempts for every operation
-        response = await s3.create_experiment_template()
+        response = await fis.create_experiment_template()
 
         # Override per operation
-        response = await s3.create_experiment_template(config_overrides={"retry_max_attempts": 5})
+        response = await fis.create_experiment_template(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_experiment_template(config_overrides={"retry_max_attempts": 1})
+        response = await fis.create_experiment_template(config_overrides={"retry_max_attempts": 1})
 ```

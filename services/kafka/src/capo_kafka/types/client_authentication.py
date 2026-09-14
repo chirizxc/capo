@@ -41,15 +41,15 @@ def serialize_json(value: ClientAuthentication) -> dict:
 
 def deserialize_json(data: dict) -> ClientAuthentication:
     out: ClientAuthentication = {}  # type: ignore[typeddict-item]
-    if "sasl" in data:
+    if data.get("sasl") is not None:
         import capo_kafka.types.sasl
 
         out["sasl"] = capo_kafka.types.sasl.deserialize_json(data["sasl"])
-    if "tls" in data:
+    if data.get("tls") is not None:
         import capo_kafka.types.tls
 
         out["tls"] = capo_kafka.types.tls.deserialize_json(data["tls"])
-    if "unauthenticated" in data:
+    if data.get("unauthenticated") is not None:
         import capo_kafka.types.unauthenticated
 
         out["unauthenticated"] = capo_kafka.types.unauthenticated.deserialize_json(

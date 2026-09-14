@@ -31,7 +31,7 @@ def serialize_json(value: ConnectionStatusResourceTypeEventConfiguration) -> dic
 
 def deserialize_json(data: dict) -> ConnectionStatusResourceTypeEventConfiguration:
     out: ConnectionStatusResourceTypeEventConfiguration = {}  # type: ignore[typeddict-item]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_connection_status_resource_type_event_configuration
 
         out["lo_ra_wan"] = (

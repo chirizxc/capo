@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> S3AccessPointAttachmentsFilters:
 
     out: S3AccessPointAttachmentsFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fsx.types.s3_access_point_attachments_filter.deserialize_aws_json_1_1(
                 item

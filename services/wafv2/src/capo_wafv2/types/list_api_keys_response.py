@@ -39,9 +39,9 @@ def serialize_aws_json_1_1(value: ListAPIKeysResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAPIKeysResponse:
     out: ListAPIKeysResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "APIKeySummaries" in data:
+    if data.get("APIKeySummaries") is not None:
         import capo_wafv2.types.api_key_summaries
 
         out["api_key_summaries"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListAPIKeysResponse:
                 data["APIKeySummaries"]
             )
         )
-    if "ApplicationIntegrationURL" in data:
+    if data.get("ApplicationIntegrationURL") is not None:
         out["application_integration_url"] = data["ApplicationIntegrationURL"]
     return out

@@ -39,13 +39,13 @@ def serialize_json(value: Principal) -> dict:
 
 def deserialize_json(data: dict) -> Principal:
     out: Principal = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workdocs.types.principal_type
 
         out["type"] = capo_workdocs.types.principal_type.deserialize_json(data["Type"])
-    if "Roles" in data:
+    if data.get("Roles") is not None:
         import capo_workdocs.types.permission_info_list
 
         out["roles"] = capo_workdocs.types.permission_info_list.deserialize_json(

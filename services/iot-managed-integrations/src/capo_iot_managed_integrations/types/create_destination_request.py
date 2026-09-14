@@ -65,13 +65,13 @@ def serialize_json(value: CreateDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDestinationRequest:
     out: CreateDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "DeliveryDestinationArn" in data:
+    if data.get("DeliveryDestinationArn") is not None:
         out["delivery_destination_arn"] = data["DeliveryDestinationArn"]
     else:
         raise DeserializationError(
             "CreateDestinationRequest.delivery_destination_arn required"
         )
-    if "DeliveryDestinationType" in data:
+    if data.get("DeliveryDestinationType") is not None:
         import capo_iot_managed_integrations.types.delivery_destination_type
 
         out["delivery_destination_type"] = (
@@ -83,19 +83,19 @@ def deserialize_json(data: dict) -> CreateDestinationRequest:
         raise DeserializationError(
             "CreateDestinationRequest.delivery_destination_type required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDestinationRequest.name required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateDestinationRequest.role_arn required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(

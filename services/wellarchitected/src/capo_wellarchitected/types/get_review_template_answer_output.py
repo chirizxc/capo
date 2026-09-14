@@ -40,11 +40,11 @@ def serialize_json(value: GetReviewTemplateAnswerOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetReviewTemplateAnswerOutput:
     out: GetReviewTemplateAnswerOutput = {}  # type: ignore[typeddict-item]
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "Answer" in data:
+    if data.get("Answer") is not None:
         import capo_wellarchitected.types.review_template_answer
 
         out["answer"] = (

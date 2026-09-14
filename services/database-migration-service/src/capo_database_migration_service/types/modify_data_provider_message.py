@@ -64,23 +64,23 @@ def serialize_aws_json_1_1(value: ModifyDataProviderMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyDataProviderMessage:
     out: ModifyDataProviderMessage = {}  # type: ignore[typeddict-item]
-    if "DataProviderIdentifier" in data:
+    if data.get("DataProviderIdentifier") is not None:
         out["data_provider_identifier"] = data["DataProviderIdentifier"]
     else:
         raise DeserializationError(
             "ModifyDataProviderMessage.data_provider_identifier required"
         )
-    if "DataProviderName" in data:
+    if data.get("DataProviderName") is not None:
         out["data_provider_name"] = data["DataProviderName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "Virtual" in data:
+    if data.get("Virtual") is not None:
         out["virtual"] = data["Virtual"]
-    if "ExactSettings" in data:
+    if data.get("ExactSettings") is not None:
         out["exact_settings"] = data["ExactSettings"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_database_migration_service.types.data_provider_settings
 
         out["settings"] = (

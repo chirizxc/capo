@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: ResourceTargetDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceTargetDefinition:
     out: ResourceTargetDefinition = {}  # type: ignore[typeddict-item]
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_service_catalog.types.resource_attribute
 
         out["attribute"] = (
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceTargetDefinition:
                 data["Attribute"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RequiresRecreation" in data:
+    if data.get("RequiresRecreation") is not None:
         import capo_service_catalog.types.requires_recreation
 
         out["requires_recreation"] = (

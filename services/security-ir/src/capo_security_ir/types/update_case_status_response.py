@@ -31,7 +31,7 @@ def serialize_json(value: UpdateCaseStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCaseStatusResponse:
     out: UpdateCaseStatusResponse = {}  # type: ignore[typeddict-item]
-    if "caseStatus" in data:
+    if data.get("caseStatus") is not None:
         import capo_security_ir.types.self_managed_case_status
 
         out["case_status"] = (

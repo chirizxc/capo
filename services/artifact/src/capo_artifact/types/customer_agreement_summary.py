@@ -115,19 +115,19 @@ def serialize_json(value: CustomerAgreementSummary) -> dict:
 
 def deserialize_json(data: dict) -> CustomerAgreementSummary:
     out: CustomerAgreementSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "agreementArn" in data:
+    if data.get("agreementArn") is not None:
         out["agreement_arn"] = data["agreementArn"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "organizationArn" in data:
+    if data.get("organizationArn") is not None:
         out["organization_arn"] = data["organizationArn"]
-    if "effectiveStart" in data:
+    if data.get("effectiveStart") is not None:
         import capo_artifact.types.timestamp_attribute
 
         out["effective_start"] = (
@@ -135,33 +135,33 @@ def deserialize_json(data: dict) -> CustomerAgreementSummary:
                 data["effectiveStart"]
             )
         )
-    if "effectiveEnd" in data:
+    if data.get("effectiveEnd") is not None:
         import capo_artifact.types.timestamp_attribute
 
         out["effective_end"] = capo_artifact.types.timestamp_attribute.deserialize_json(
             data["effectiveEnd"]
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_artifact.types.customer_agreement_state
 
         out["state"] = capo_artifact.types.customer_agreement_state.deserialize_json(
             data["state"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "acceptanceTerms" in data:
+    if data.get("acceptanceTerms") is not None:
         import capo_artifact.types.agreement_terms
 
         out["acceptance_terms"] = capo_artifact.types.agreement_terms.deserialize_json(
             data["acceptanceTerms"]
         )
-    if "terminateTerms" in data:
+    if data.get("terminateTerms") is not None:
         import capo_artifact.types.agreement_terms
 
         out["terminate_terms"] = capo_artifact.types.agreement_terms.deserialize_json(
             data["terminateTerms"]
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_artifact.types.agreement_type
 
         out["type"] = capo_artifact.types.agreement_type.deserialize_json(data["type"])

@@ -44,15 +44,15 @@ def serialize_json(value: AddThingToThingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddThingToThingGroupRequest:
     out: AddThingToThingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "thingGroupName" in data:
+    if data.get("thingGroupName") is not None:
         out["thing_group_name"] = data["thingGroupName"]
-    if "thingGroupArn" in data:
+    if data.get("thingGroupArn") is not None:
         out["thing_group_arn"] = data["thingGroupArn"]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "thingArn" in data:
+    if data.get("thingArn") is not None:
         out["thing_arn"] = data["thingArn"]
-    if "overrideDynamicGroups" in data:
+    if data.get("overrideDynamicGroups") is not None:
         out["override_dynamic_groups"] = data["overrideDynamicGroups"]
     else:
         out["override_dynamic_groups"] = False

@@ -56,9 +56,9 @@ def serialize_aws_json_1_1(value: RuleState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleState:
     out: RuleState = {}  # type: ignore[typeddict-item]
-    if "ruleName" in data:
+    if data.get("ruleName") is not None:
         out["rule_name"] = data["ruleName"]
-    if "currentRevision" in data:
+    if data.get("currentRevision") is not None:
         import capo_codepipeline.types.rule_revision
 
         out["current_revision"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleState:
                 data["currentRevision"]
             )
         )
-    if "latestExecution" in data:
+    if data.get("latestExecution") is not None:
         import capo_codepipeline.types.rule_execution
 
         out["latest_execution"] = (
@@ -74,8 +74,8 @@ def deserialize_aws_json_1_1(data: dict) -> RuleState:
                 data["latestExecution"]
             )
         )
-    if "entityUrl" in data:
+    if data.get("entityUrl") is not None:
         out["entity_url"] = data["entityUrl"]
-    if "revisionUrl" in data:
+    if data.get("revisionUrl") is not None:
         out["revision_url"] = data["revisionUrl"]
     return out

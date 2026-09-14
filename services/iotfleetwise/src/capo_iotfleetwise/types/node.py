@@ -104,7 +104,7 @@ def serialize_aws_json_1_0(value: Node) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> Node:
-    if "branch" in data:
+    if data.get("branch") is not None:
         import capo_iotfleetwise.types.branch
 
         return {
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> Node:
                 data["branch"]
             )
         }
-    elif "sensor" in data:
+    elif data.get("sensor") is not None:
         import capo_iotfleetwise.types.sensor
 
         return {
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> Node:
                 data["sensor"]
             )
         }
-    elif "actuator" in data:
+    elif data.get("actuator") is not None:
         import capo_iotfleetwise.types.actuator
 
         return {
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_0(data: dict) -> Node:
                 data["actuator"]
             )
         }
-    elif "attribute" in data:
+    elif data.get("attribute") is not None:
         import capo_iotfleetwise.types.attribute
 
         return {
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_0(data: dict) -> Node:
                 data["attribute"]
             )
         }
-    elif "struct" in data:
+    elif data.get("struct") is not None:
         import capo_iotfleetwise.types.custom_struct
 
         return {
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_0(data: dict) -> Node:
                 data["struct"]
             )
         }
-    elif "property" in data:
+    elif data.get("property") is not None:
         import capo_iotfleetwise.types.custom_property
 
         return {

@@ -22,8 +22,8 @@ def serialize_json(value: SupportedResourceType) -> dict:
 
 def deserialize_json(data: dict) -> SupportedResourceType:
     out: SupportedResourceType = {}  # type: ignore[typeddict-item]
-    if "Service" in data:
+    if data.get("Service") is not None:
         out["service"] = data["Service"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     return out

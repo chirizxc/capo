@@ -67,19 +67,19 @@ def serialize_json(value: RasterDataCollectionQueryOutput) -> dict:
 
 def deserialize_json(data: dict) -> RasterDataCollectionQueryOutput:
     out: RasterDataCollectionQueryOutput = {}  # type: ignore[typeddict-item]
-    if "RasterDataCollectionArn" in data:
+    if data.get("RasterDataCollectionArn") is not None:
         out["raster_data_collection_arn"] = data["RasterDataCollectionArn"]
     else:
         raise DeserializationError(
             "RasterDataCollectionQueryOutput.raster_data_collection_arn required"
         )
-    if "RasterDataCollectionName" in data:
+    if data.get("RasterDataCollectionName") is not None:
         out["raster_data_collection_name"] = data["RasterDataCollectionName"]
     else:
         raise DeserializationError(
             "RasterDataCollectionQueryOutput.raster_data_collection_name required"
         )
-    if "TimeRangeFilter" in data:
+    if data.get("TimeRangeFilter") is not None:
         import capo_sagemaker_geospatial.types.time_range_filter_output
 
         out["time_range_filter"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> RasterDataCollectionQueryOutput:
         raise DeserializationError(
             "RasterDataCollectionQueryOutput.time_range_filter required"
         )
-    if "AreaOfInterest" in data:
+    if data.get("AreaOfInterest") is not None:
         import capo_sagemaker_geospatial.types.area_of_interest
 
         out["area_of_interest"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> RasterDataCollectionQueryOutput:
                 data["AreaOfInterest"]
             )
         )
-    if "PropertyFilters" in data:
+    if data.get("PropertyFilters") is not None:
         import capo_sagemaker_geospatial.types.property_filters
 
         out["property_filters"] = (

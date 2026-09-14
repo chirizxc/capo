@@ -42,20 +42,20 @@ def serialize_json(value: GetFailbackReplicationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFailbackReplicationConfigurationResponse:
     out: GetFailbackReplicationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "recoveryInstanceID" in data:
+    if data.get("recoveryInstanceID") is not None:
         out["recovery_instance_id"] = data["recoveryInstanceID"]
     else:
         raise DeserializationError(
             "GetFailbackReplicationConfigurationResponse.recovery_instance_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "bandwidthThrottling" in data:
+    if data.get("bandwidthThrottling") is not None:
         out["bandwidth_throttling"] = data["bandwidthThrottling"]
     else:
         out["bandwidth_throttling"] = 0
-    if "usePrivateIP" in data:
+    if data.get("usePrivateIP") is not None:
         out["use_private_ip"] = data["usePrivateIP"]
-    if "internetProtocol" in data:
+    if data.get("internetProtocol") is not None:
         out["internet_protocol"] = data["internetProtocol"]
     return out

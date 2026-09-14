@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_vpc_lattice._auth._signers
@@ -114,10 +115,12 @@ class ResourceGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_resource_gateway_request.CreateResourceGatewayRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_vpc_lattice.types.create_resource_gateway_request.CreateResourceGatewayRequest = {
+            "name": name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if vpc_identifier is not None:
             input_["vpc_identifier"] = vpc_identifier
         if subnet_ids is not None:
@@ -138,6 +141,7 @@ class ResourceGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -175,14 +179,16 @@ class ResourceGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_resource_gateway_request.GetResourceGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_gateway_identifier"] = resource_gateway_identifier
+        input_: capo_vpc_lattice.types.get_resource_gateway_request.GetResourceGatewayRequest = {
+            "resource_gateway_identifier": resource_gateway_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -225,8 +231,9 @@ class ResourceGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_resource_gateway_request.UpdateResourceGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_gateway_identifier"] = resource_gateway_identifier
+        input_: capo_vpc_lattice.types.update_resource_gateway_request.UpdateResourceGatewayRequest = {
+            "resource_gateway_identifier": resource_gateway_identifier
+        }
         if security_group_ids is not None:
             input_["security_group_ids"] = security_group_ids
 
@@ -235,6 +242,7 @@ class ResourceGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -273,14 +281,16 @@ class ResourceGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_resource_gateway_request.DeleteResourceGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_gateway_identifier"] = resource_gateway_identifier
+        input_: capo_vpc_lattice.types.delete_resource_gateway_request.DeleteResourceGatewayRequest = {
+            "resource_gateway_identifier": resource_gateway_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -319,7 +329,7 @@ class ResourceGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_resource_gateways_request.ListResourceGatewaysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_resource_gateways_request.ListResourceGatewaysRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -330,6 +340,7 @@ class ResourceGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -401,10 +412,12 @@ class AsyncResourceGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_resource_gateway_request.CreateResourceGatewayRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_vpc_lattice.types.create_resource_gateway_request.CreateResourceGatewayRequest = {
+            "name": name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if vpc_identifier is not None:
             input_["vpc_identifier"] = vpc_identifier
         if subnet_ids is not None:
@@ -425,6 +438,7 @@ class AsyncResourceGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -463,14 +477,16 @@ class AsyncResourceGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_resource_gateway_request.GetResourceGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_gateway_identifier"] = resource_gateway_identifier
+        input_: capo_vpc_lattice.types.get_resource_gateway_request.GetResourceGatewayRequest = {
+            "resource_gateway_identifier": resource_gateway_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -514,8 +530,9 @@ class AsyncResourceGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_resource_gateway_request.UpdateResourceGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_gateway_identifier"] = resource_gateway_identifier
+        input_: capo_vpc_lattice.types.update_resource_gateway_request.UpdateResourceGatewayRequest = {
+            "resource_gateway_identifier": resource_gateway_identifier
+        }
         if security_group_ids is not None:
             input_["security_group_ids"] = security_group_ids
 
@@ -524,6 +541,7 @@ class AsyncResourceGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -563,14 +581,16 @@ class AsyncResourceGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_resource_gateway_request.DeleteResourceGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_gateway_identifier"] = resource_gateway_identifier
+        input_: capo_vpc_lattice.types.delete_resource_gateway_request.DeleteResourceGatewayRequest = {
+            "resource_gateway_identifier": resource_gateway_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -610,7 +630,7 @@ class AsyncResourceGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_resource_gateways_request.ListResourceGatewaysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_resource_gateways_request.ListResourceGatewaysRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -621,4 +641,5 @@ class AsyncResourceGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

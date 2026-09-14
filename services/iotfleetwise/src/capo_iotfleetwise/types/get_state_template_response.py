@@ -100,15 +100,15 @@ def serialize_aws_json_1_0(value: GetStateTemplateResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetStateTemplateResponse:
     out: GetStateTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "signalCatalogArn" in data:
+    if data.get("signalCatalogArn") is not None:
         out["signal_catalog_arn"] = data["signalCatalogArn"]
-    if "stateTemplateProperties" in data:
+    if data.get("stateTemplateProperties") is not None:
         import capo_iotfleetwise.types.state_template_properties
 
         out["state_template_properties"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetStateTemplateResponse:
                 data["stateTemplateProperties"]
             )
         )
-    if "dataExtraDimensions" in data:
+    if data.get("dataExtraDimensions") is not None:
         import capo_iotfleetwise.types.state_template_data_extra_dimension_node_path_list
 
         out["data_extra_dimensions"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetStateTemplateResponse:
                 data["dataExtraDimensions"]
             )
         )
-    if "metadataExtraDimensions" in data:
+    if data.get("metadataExtraDimensions") is not None:
         import capo_iotfleetwise.types.state_template_metadata_extra_dimension_node_path_list
 
         out["metadata_extra_dimensions"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetStateTemplateResponse:
                 data["metadataExtraDimensions"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["creation_time"] = (
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetStateTemplateResponse:
                 data["creationTime"]
             )
         )
-    if "lastModificationTime" in data:
+    if data.get("lastModificationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["last_modification_time"] = (
@@ -148,6 +148,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetStateTemplateResponse:
                 data["lastModificationTime"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

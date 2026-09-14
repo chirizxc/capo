@@ -54,15 +54,15 @@ def serialize_json(value: FileUploadCard) -> dict:
 
 def deserialize_json(data: dict) -> FileUploadCard:
     out: FileUploadCard = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("FileUploadCard.id required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("FileUploadCard.title required")
-    if "dependencies" in data:
+    if data.get("dependencies") is not None:
         import capo_qapps.types.dependency_list
 
         out["dependencies"] = capo_qapps.types.dependency_list.deserialize_json(
@@ -70,16 +70,16 @@ def deserialize_json(data: dict) -> FileUploadCard:
         )
     else:
         raise DeserializationError("FileUploadCard.dependencies required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qapps.types.card_type
 
         out["type"] = capo_qapps.types.card_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("FileUploadCard.type required")
-    if "filename" in data:
+    if data.get("filename") is not None:
         out["filename"] = data["filename"]
-    if "fileId" in data:
+    if data.get("fileId") is not None:
         out["file_id"] = data["fileId"]
-    if "allowOverride" in data:
+    if data.get("allowOverride") is not None:
         out["allow_override"] = data["allowOverride"]
     return out

@@ -25,6 +25,6 @@ def serialize_json(value: PermissionsErrorContext) -> dict:
 
 def deserialize_json(data: dict) -> PermissionsErrorContext:
     out: PermissionsErrorContext = {}  # type: ignore[typeddict-item]
-    if "MissingPermission" in data:
+    if data.get("MissingPermission") is not None:
         out["missing_permission"] = data["MissingPermission"]
     return out

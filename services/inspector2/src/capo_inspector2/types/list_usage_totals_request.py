@@ -43,11 +43,11 @@ def serialize_json(value: ListUsageTotalsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListUsageTotalsRequest:
     out: ListUsageTotalsRequest = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_inspector2.types.usage_account_id_list
 
         out["account_ids"] = (

@@ -42,7 +42,7 @@ def serialize_json(value: ChannelNotBroadcasting_) -> dict:
 
 def deserialize_json(data: dict) -> ChannelNotBroadcasting_:
     out: ChannelNotBroadcasting_ = {}  # type: ignore[typeddict-item]
-    if "exceptionMessage" in data:
+    if data.get("exceptionMessage") is not None:
         out["exception_message"] = data["exceptionMessage"]
     return out
 
@@ -52,15 +52,18 @@ class ChannelNotBroadcasting(ServiceError):
 
     code: str | None = "ChannelNotBroadcasting"
 
-    def __init__(self, data: ChannelNotBroadcasting_):
+    def __init__(self, data: ChannelNotBroadcasting_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ChannelNotBroadcasting",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ChannelNotBroadcasting":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ChannelNotBroadcasting":
+        return cls(deserialize_json(data), message)

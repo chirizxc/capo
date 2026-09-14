@@ -36,12 +36,12 @@ def serialize_json(value: ServiceMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ServiceMetadata:
     out: ServiceMetadata = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
     return out

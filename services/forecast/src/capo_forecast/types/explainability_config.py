@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ExplainabilityConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExplainabilityConfig:
     out: ExplainabilityConfig = {}  # type: ignore[typeddict-item]
-    if "TimeSeriesGranularity" in data:
+    if data.get("TimeSeriesGranularity") is not None:
         import capo_forecast.types.time_series_granularity
 
         out["time_series_granularity"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExplainabilityConfig:
         raise DeserializationError(
             "ExplainabilityConfig.time_series_granularity required"
         )
-    if "TimePointGranularity" in data:
+    if data.get("TimePointGranularity") is not None:
         import capo_forecast.types.time_point_granularity
 
         out["time_point_granularity"] = (

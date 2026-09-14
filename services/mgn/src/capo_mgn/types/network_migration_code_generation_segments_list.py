@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> NetworkMigrationCodeGenerationSegmentsList:
 
     out: NetworkMigrationCodeGenerationSegmentsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.network_migration_code_generation_segment.deserialize_json(
                 item

@@ -17,7 +17,7 @@ def serialize_aws_json_1_0(value: InitializeServiceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InitializeServiceInput:
     out: InitializeServiceInput = {}  # type: ignore[typeddict-item]
-    if "ociIdentityDomain" in data:
+    if data.get("ociIdentityDomain") is not None:
         out["oci_identity_domain"] = data["ociIdentityDomain"]
     else:
         out["oci_identity_domain"] = True

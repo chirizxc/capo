@@ -105,13 +105,13 @@ def serialize_aws_json_1_0(value: UpdateBillScenarioResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateBillScenarioResponse:
     out: UpdateBillScenarioResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateBillScenarioResponse.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "billInterval" in data:
+    if data.get("billInterval") is not None:
         import capo_bcm_pricing_calculator.types.bill_interval
 
         out["bill_interval"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillScenarioResponse:
                 data["billInterval"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_bcm_pricing_calculator.types.bill_scenario_status
 
         out["status"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillScenarioResponse:
                 data["status"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["created_at"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillScenarioResponse:
                 data["createdAt"]
             )
         )
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["expires_at"] = (
@@ -143,9 +143,9 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillScenarioResponse:
                 data["expiresAt"]
             )
         )
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
-    if "groupSharingPreference" in data:
+    if data.get("groupSharingPreference") is not None:
         import capo_bcm_pricing_calculator.types.group_sharing_preference_enum
 
         out["group_sharing_preference"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillScenarioResponse:
                 data["groupSharingPreference"]
             )
         )
-    if "costCategoryGroupSharingPreferenceArn" in data:
+    if data.get("costCategoryGroupSharingPreferenceArn") is not None:
         out["cost_category_group_sharing_preference_arn"] = data[
             "costCategoryGroupSharingPreferenceArn"
         ]

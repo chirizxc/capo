@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_iotfleetwise.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_iotfleetwise.types.description
     import capo_iotfleetwise.types.nodes
@@ -25,6 +27,7 @@ class CreateSignalCatalogRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: CreateSignalCatalogRequest) -> dict:
     out: dict = {}
+    out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
     if "nodes" in value:
@@ -44,15 +47,19 @@ def serialize_aws_json_1_0(value: CreateSignalCatalogRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateSignalCatalogRequest:
     out: CreateSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("CreateSignalCatalogRequest.name required")
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "nodes" in data:
+    if data.get("nodes") is not None:
         import capo_iotfleetwise.types.nodes
 
         out["nodes"] = capo_iotfleetwise.types.nodes.deserialize_aws_json_1_0(
             data["nodes"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotfleetwise.types.tag_list
 
         out["tags"] = capo_iotfleetwise.types.tag_list.deserialize_aws_json_1_0(

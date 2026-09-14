@@ -52,19 +52,19 @@ def serialize_aws_json_1_0(value: AddressList) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AddressList:
     out: AddressList = {}  # type: ignore[typeddict-item]
-    if "AddressListId" in data:
+    if data.get("AddressListId") is not None:
         out["address_list_id"] = data["AddressListId"]
     else:
         raise DeserializationError("AddressList.address_list_id required")
-    if "AddressListArn" in data:
+    if data.get("AddressListArn") is not None:
         out["address_list_arn"] = data["AddressListArn"]
     else:
         raise DeserializationError("AddressList.address_list_arn required")
-    if "AddressListName" in data:
+    if data.get("AddressListName") is not None:
         out["address_list_name"] = data["AddressListName"]
     else:
         raise DeserializationError("AddressList.address_list_name required")
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_0(data: dict) -> AddressList:
         )
     else:
         raise DeserializationError("AddressList.created_timestamp required")
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["last_updated_timestamp"] = (

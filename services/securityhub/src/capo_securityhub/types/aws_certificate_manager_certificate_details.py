@@ -177,13 +177,13 @@ def serialize_json(value: AwsCertificateManagerCertificateDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCertificateManagerCertificateDetails:
     out: AwsCertificateManagerCertificateDetails = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         out["created_at"] = data["CreatedAt"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "DomainValidationOptions" in data:
+    if data.get("DomainValidationOptions") is not None:
         import capo_securityhub.types.aws_certificate_manager_certificate_domain_validation_options
 
         out["domain_validation_options"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> AwsCertificateManagerCertificateDetails:
                 data["DomainValidationOptions"]
             )
         )
-    if "ExtendedKeyUsages" in data:
+    if data.get("ExtendedKeyUsages") is not None:
         import capo_securityhub.types.aws_certificate_manager_certificate_extended_key_usages
 
         out["extended_key_usages"] = (
@@ -199,23 +199,23 @@ def deserialize_json(data: dict) -> AwsCertificateManagerCertificateDetails:
                 data["ExtendedKeyUsages"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ImportedAt" in data:
+    if data.get("ImportedAt") is not None:
         out["imported_at"] = data["ImportedAt"]
-    if "InUseBy" in data:
+    if data.get("InUseBy") is not None:
         import capo_securityhub.types.string_list
 
         out["in_use_by"] = capo_securityhub.types.string_list.deserialize_json(
             data["InUseBy"]
         )
-    if "IssuedAt" in data:
+    if data.get("IssuedAt") is not None:
         out["issued_at"] = data["IssuedAt"]
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         out["issuer"] = data["Issuer"]
-    if "KeyAlgorithm" in data:
+    if data.get("KeyAlgorithm") is not None:
         out["key_algorithm"] = data["KeyAlgorithm"]
-    if "KeyUsages" in data:
+    if data.get("KeyUsages") is not None:
         import capo_securityhub.types.aws_certificate_manager_certificate_key_usages
 
         out["key_usages"] = (
@@ -223,11 +223,11 @@ def deserialize_json(data: dict) -> AwsCertificateManagerCertificateDetails:
                 data["KeyUsages"]
             )
         )
-    if "NotAfter" in data:
+    if data.get("NotAfter") is not None:
         out["not_after"] = data["NotAfter"]
-    if "NotBefore" in data:
+    if data.get("NotBefore") is not None:
         out["not_before"] = data["NotBefore"]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_securityhub.types.aws_certificate_manager_certificate_options
 
         out["options"] = (
@@ -235,9 +235,9 @@ def deserialize_json(data: dict) -> AwsCertificateManagerCertificateDetails:
                 data["Options"]
             )
         )
-    if "RenewalEligibility" in data:
+    if data.get("RenewalEligibility") is not None:
         out["renewal_eligibility"] = data["RenewalEligibility"]
-    if "RenewalSummary" in data:
+    if data.get("RenewalSummary") is not None:
         import capo_securityhub.types.aws_certificate_manager_certificate_renewal_summary
 
         out["renewal_summary"] = (
@@ -245,15 +245,15 @@ def deserialize_json(data: dict) -> AwsCertificateManagerCertificateDetails:
                 data["RenewalSummary"]
             )
         )
-    if "Serial" in data:
+    if data.get("Serial") is not None:
         out["serial"] = data["Serial"]
-    if "SignatureAlgorithm" in data:
+    if data.get("SignatureAlgorithm") is not None:
         out["signature_algorithm"] = data["SignatureAlgorithm"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
-    if "SubjectAlternativeNames" in data:
+    if data.get("SubjectAlternativeNames") is not None:
         import capo_securityhub.types.string_list
 
         out["subject_alternative_names"] = (
@@ -261,6 +261,6 @@ def deserialize_json(data: dict) -> AwsCertificateManagerCertificateDetails:
                 data["SubjectAlternativeNames"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

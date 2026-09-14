@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> TrafficDistributionGroupUserSummaryList:
 
     out: TrafficDistributionGroupUserSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.traffic_distribution_group_user_summary.deserialize_json(
                 item

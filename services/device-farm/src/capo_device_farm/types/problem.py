@@ -74,37 +74,37 @@ def serialize_aws_json_1_1(value: Problem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Problem:
     out: Problem = {}  # type: ignore[typeddict-item]
-    if "run" in data:
+    if data.get("run") is not None:
         import capo_device_farm.types.problem_detail
 
         out["run"] = capo_device_farm.types.problem_detail.deserialize_aws_json_1_1(
             data["run"]
         )
-    if "job" in data:
+    if data.get("job") is not None:
         import capo_device_farm.types.problem_detail
 
         out["job"] = capo_device_farm.types.problem_detail.deserialize_aws_json_1_1(
             data["job"]
         )
-    if "suite" in data:
+    if data.get("suite") is not None:
         import capo_device_farm.types.problem_detail
 
         out["suite"] = capo_device_farm.types.problem_detail.deserialize_aws_json_1_1(
             data["suite"]
         )
-    if "test" in data:
+    if data.get("test") is not None:
         import capo_device_farm.types.problem_detail
 
         out["test"] = capo_device_farm.types.problem_detail.deserialize_aws_json_1_1(
             data["test"]
         )
-    if "device" in data:
+    if data.get("device") is not None:
         import capo_device_farm.types.device
 
         out["device"] = capo_device_farm.types.device.deserialize_aws_json_1_1(
             data["device"]
         )
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_device_farm.types.execution_result
 
         out["result"] = (
@@ -112,6 +112,6 @@ def deserialize_aws_json_1_1(data: dict) -> Problem:
                 data["result"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

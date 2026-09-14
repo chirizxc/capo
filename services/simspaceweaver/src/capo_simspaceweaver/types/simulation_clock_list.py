@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SimulationClockList:
 
     out: SimulationClockList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_simspaceweaver.types.simulation_clock.deserialize_json(item))
     return out

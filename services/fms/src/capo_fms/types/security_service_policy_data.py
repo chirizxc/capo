@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: SecurityServicePolicyData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SecurityServicePolicyData:
     out: SecurityServicePolicyData = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_fms.types.security_service_type
 
         out["type"] = capo_fms.types.security_service_type.deserialize_aws_json_1_1(
@@ -52,9 +52,9 @@ def deserialize_aws_json_1_1(data: dict) -> SecurityServicePolicyData:
         )
     else:
         raise DeserializationError("SecurityServicePolicyData.type required")
-    if "ManagedServiceData" in data:
+    if data.get("ManagedServiceData") is not None:
         out["managed_service_data"] = data["ManagedServiceData"]
-    if "PolicyOption" in data:
+    if data.get("PolicyOption") is not None:
         import capo_fms.types.policy_option
 
         out["policy_option"] = capo_fms.types.policy_option.deserialize_aws_json_1_1(

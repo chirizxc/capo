@@ -38,11 +38,11 @@ def serialize_json(value: AccessBudget) -> dict:
 
 def deserialize_json(data: dict) -> AccessBudget:
     out: AccessBudget = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("AccessBudget.resource_arn required")
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_cleanroomsml.types.access_budget_details_list
 
         out["details"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AccessBudget:
         )
     else:
         raise DeserializationError("AccessBudget.details required")
-    if "aggregateRemainingBudget" in data:
+    if data.get("aggregateRemainingBudget") is not None:
         out["aggregate_remaining_budget"] = data["aggregateRemainingBudget"]
     else:
         raise DeserializationError("AccessBudget.aggregate_remaining_budget required")

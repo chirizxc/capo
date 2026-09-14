@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeNotebookExecutionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeNotebookExecutionInput:
     out: DescribeNotebookExecutionInput = {}  # type: ignore[typeddict-item]
-    if "NotebookExecutionId" in data:
+    if data.get("NotebookExecutionId") is not None:
         out["notebook_execution_id"] = data["NotebookExecutionId"]
     return out

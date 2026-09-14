@@ -35,7 +35,7 @@ def serialize_json(value: CreateBackupSelectionInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackupSelectionInput:
     out: CreateBackupSelectionInput = {}  # type: ignore[typeddict-item]
-    if "BackupSelection" in data:
+    if data.get("BackupSelection") is not None:
         import capo_backup.types.backup_selection
 
         out["backup_selection"] = capo_backup.types.backup_selection.deserialize_json(
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> CreateBackupSelectionInput:
         raise DeserializationError(
             "CreateBackupSelectionInput.backup_selection required"
         )
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
     return out

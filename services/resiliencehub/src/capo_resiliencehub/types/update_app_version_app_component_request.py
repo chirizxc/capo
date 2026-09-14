@@ -49,21 +49,21 @@ def serialize_json(value: UpdateAppVersionAppComponentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAppVersionAppComponentRequest:
     out: UpdateAppVersionAppComponentRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "UpdateAppVersionAppComponentRequest.app_arn required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateAppVersionAppComponentRequest.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "additionalInfo" in data:
+    if data.get("additionalInfo") is not None:
         import capo_resiliencehub.types.additional_info_map
 
         out["additional_info"] = (

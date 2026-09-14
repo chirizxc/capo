@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: ServiceLimitExceeded_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceLimitExceeded_:
     out: ServiceLimitExceeded_ = {}  # type: ignore[typeddict-item]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         import capo_fsx.types.service_limit
 
         out["limit"] = capo_fsx.types.service_limit.deserialize_aws_json_1_1(
             data["Limit"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -49,15 +49,18 @@ class ServiceLimitExceeded(ServiceError):
 
     code: str | None = "ServiceLimitExceeded"
 
-    def __init__(self, data: ServiceLimitExceeded_):
+    def __init__(self, data: ServiceLimitExceeded_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceLimitExceeded",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ServiceLimitExceeded":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceLimitExceeded":
+        return cls(deserialize_aws_json_1_1(data), message)

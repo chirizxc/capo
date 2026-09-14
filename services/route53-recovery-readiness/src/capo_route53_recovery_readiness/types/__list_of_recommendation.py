@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfRecommendation:
 
     out: __listOfRecommendation = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53_recovery_readiness.types.recommendation.deserialize_json(item)
         )

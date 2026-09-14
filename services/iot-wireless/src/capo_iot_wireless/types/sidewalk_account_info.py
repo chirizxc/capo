@@ -30,8 +30,8 @@ def serialize_json(value: SidewalkAccountInfo) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkAccountInfo:
     out: SidewalkAccountInfo = {}  # type: ignore[typeddict-item]
-    if "AmazonId" in data:
+    if data.get("AmazonId") is not None:
         out["amazon_id"] = data["AmazonId"]
-    if "AppServerPrivateKey" in data:
+    if data.get("AppServerPrivateKey") is not None:
         out["app_server_private_key"] = data["AppServerPrivateKey"]
     return out

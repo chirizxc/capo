@@ -40,15 +40,15 @@ def serialize_aws_json_1_1(value: QueryResultsS3AccessGrantsConfiguration) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> QueryResultsS3AccessGrantsConfiguration:
     out: QueryResultsS3AccessGrantsConfiguration = {}  # type: ignore[typeddict-item]
-    if "EnableS3AccessGrants" in data:
+    if data.get("EnableS3AccessGrants") is not None:
         out["enable_s3_access_grants"] = data["EnableS3AccessGrants"]
     else:
         raise DeserializationError(
             "QueryResultsS3AccessGrantsConfiguration.enable_s3_access_grants required"
         )
-    if "CreateUserLevelPrefix" in data:
+    if data.get("CreateUserLevelPrefix") is not None:
         out["create_user_level_prefix"] = data["CreateUserLevelPrefix"]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_athena.types.authentication_type
 
         out["authentication_type"] = (

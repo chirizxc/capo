@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ExportFilterPerLabelMap) -> dict:
 def deserialize_json(data: dict) -> ExportFilterPerLabelMap:
     out: ExportFilterPerLabelMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_neptune_graph.types.export_filter_element
 
         out[key] = capo_neptune_graph.types.export_filter_element.deserialize_json(

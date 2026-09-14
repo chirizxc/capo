@@ -43,20 +43,20 @@ def serialize_aws_json_1_1(value: ListAssessmentRunAgentsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAssessmentRunAgentsRequest:
     out: ListAssessmentRunAgentsRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentRunArn" in data:
+    if data.get("assessmentRunArn") is not None:
         out["assessment_run_arn"] = data["assessmentRunArn"]
     else:
         raise DeserializationError(
             "ListAssessmentRunAgentsRequest.assessment_run_arn required"
         )
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_inspector.types.agent_filter
 
         out["filter"] = capo_inspector.types.agent_filter.deserialize_aws_json_1_1(
             data["filter"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

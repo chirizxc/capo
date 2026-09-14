@@ -87,35 +87,35 @@ def serialize_json(value: Connection) -> dict:
 
 def deserialize_json(data: dict) -> Connection:
     out: Connection = {}  # type: ignore[typeddict-item]
-    if "ConnectionId" in data:
+    if data.get("ConnectionId") is not None:
         out["connection_id"] = data["ConnectionId"]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "ConnectedDeviceId" in data:
+    if data.get("ConnectedDeviceId") is not None:
         out["connected_device_id"] = data["ConnectedDeviceId"]
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
-    if "ConnectedLinkId" in data:
+    if data.get("ConnectedLinkId") is not None:
         out["connected_link_id"] = data["ConnectedLinkId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_networkmanager.types.date_time
 
         out["created_at"] = capo_networkmanager.types.date_time.deserialize_json(
             data["CreatedAt"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.connection_state
 
         out["state"] = capo_networkmanager.types.connection_state.deserialize_json(
             data["State"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])

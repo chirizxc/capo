@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: ApplicationRestoreConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationRestoreConfiguration:
     out: ApplicationRestoreConfiguration = {}  # type: ignore[typeddict-item]
-    if "ApplicationRestoreType" in data:
+    if data.get("ApplicationRestoreType") is not None:
         import capo_kinesis_analytics_v2.types.application_restore_type
 
         out["application_restore_type"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationRestoreConfiguration:
         raise DeserializationError(
             "ApplicationRestoreConfiguration.application_restore_type required"
         )
-    if "SnapshotName" in data:
+    if data.get("SnapshotName") is not None:
         out["snapshot_name"] = data["SnapshotName"]
     return out

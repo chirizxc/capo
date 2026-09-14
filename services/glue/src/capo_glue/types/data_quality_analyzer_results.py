@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> DataQualityAnalyzerResults:
 
     out: DataQualityAnalyzerResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.data_quality_analyzer_result.deserialize_aws_json_1_1(item)
         )

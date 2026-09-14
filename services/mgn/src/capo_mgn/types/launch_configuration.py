@@ -88,29 +88,29 @@ def serialize_json(value: LaunchConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LaunchConfiguration:
     out: LaunchConfiguration = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "ec2LaunchTemplateID" in data:
+    if data.get("ec2LaunchTemplateID") is not None:
         out["ec2_launch_template_id"] = data["ec2LaunchTemplateID"]
-    if "launchDisposition" in data:
+    if data.get("launchDisposition") is not None:
         out["launch_disposition"] = data["launchDisposition"]
-    if "targetInstanceTypeRightSizingMethod" in data:
+    if data.get("targetInstanceTypeRightSizingMethod") is not None:
         out["target_instance_type_right_sizing_method"] = data[
             "targetInstanceTypeRightSizingMethod"
         ]
-    if "copyPrivateIp" in data:
+    if data.get("copyPrivateIp") is not None:
         out["copy_private_ip"] = data["copyPrivateIp"]
-    if "copyTags" in data:
+    if data.get("copyTags") is not None:
         out["copy_tags"] = data["copyTags"]
-    if "licensing" in data:
+    if data.get("licensing") is not None:
         import capo_mgn.types.licensing
 
         out["licensing"] = capo_mgn.types.licensing.deserialize_json(data["licensing"])
-    if "bootMode" in data:
+    if data.get("bootMode") is not None:
         out["boot_mode"] = data["bootMode"]
-    if "postLaunchActions" in data:
+    if data.get("postLaunchActions") is not None:
         import capo_mgn.types.post_launch_actions
 
         out["post_launch_actions"] = (
@@ -118,8 +118,8 @@ def deserialize_json(data: dict) -> LaunchConfiguration:
                 data["postLaunchActions"]
             )
         )
-    if "enableMapAutoTagging" in data:
+    if data.get("enableMapAutoTagging") is not None:
         out["enable_map_auto_tagging"] = data["enableMapAutoTagging"]
-    if "mapAutoTaggingMpeID" in data:
+    if data.get("mapAutoTaggingMpeID") is not None:
         out["map_auto_tagging_mpe_id"] = data["mapAutoTaggingMpeID"]
     return out

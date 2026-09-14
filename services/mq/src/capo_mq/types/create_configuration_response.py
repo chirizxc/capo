@@ -64,9 +64,9 @@ def serialize_json(value: CreateConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationResponse:
     out: CreateConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "authenticationStrategy" in data:
+    if data.get("authenticationStrategy") is not None:
         import capo_mq.types.authentication_strategy
 
         out["authentication_strategy"] = (
@@ -74,20 +74,20 @@ def deserialize_json(data: dict) -> CreateConfigurationResponse:
                 data["authenticationStrategy"]
             )
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_mq.types.__timestamp_iso8601
 
         out["created"] = capo_mq.types.__timestamp_iso8601.deserialize_json(
             data["created"]
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "latestRevision" in data:
+    if data.get("latestRevision") is not None:
         import capo_mq.types.configuration_revision
 
         out["latest_revision"] = capo_mq.types.configuration_revision.deserialize_json(
             data["latestRevision"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

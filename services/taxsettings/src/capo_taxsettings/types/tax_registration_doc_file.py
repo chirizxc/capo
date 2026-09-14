@@ -32,11 +32,11 @@ def serialize_json(value: TaxRegistrationDocFile) -> dict:
 
 def deserialize_json(data: dict) -> TaxRegistrationDocFile:
     out: TaxRegistrationDocFile = {}  # type: ignore[typeddict-item]
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     else:
         raise DeserializationError("TaxRegistrationDocFile.file_name required")
-    if "fileContent" in data:
+    if data.get("fileContent") is not None:
         import capo_taxsettings.types.file_blob
 
         out["file_content"] = capo_taxsettings.types.file_blob.deserialize_json(

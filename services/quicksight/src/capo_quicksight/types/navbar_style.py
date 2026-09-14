@@ -35,13 +35,13 @@ def serialize_json(value: NavbarStyle) -> dict:
 
 def deserialize_json(data: dict) -> NavbarStyle:
     out: NavbarStyle = {}  # type: ignore[typeddict-item]
-    if "GlobalNavbar" in data:
+    if data.get("GlobalNavbar") is not None:
         import capo_quicksight.types.palette
 
         out["global_navbar"] = capo_quicksight.types.palette.deserialize_json(
             data["GlobalNavbar"]
         )
-    if "ContextualNavbar" in data:
+    if data.get("ContextualNavbar") is not None:
         import capo_quicksight.types.palette
 
         out["contextual_navbar"] = capo_quicksight.types.palette.deserialize_json(

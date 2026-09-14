@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SpendingLimitSummaryList:
 
     out: SpendingLimitSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_braket.types.spending_limit_summary.deserialize_json(item))
     return out

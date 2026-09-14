@@ -43,13 +43,13 @@ def serialize_json(value: ConfigurationDefinitionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationDefinitionSummary:
     out: ConfigurationDefinitionSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "TypeVersion" in data:
+    if data.get("TypeVersion") is not None:
         out["type_version"] = data["TypeVersion"]
-    if "FirstClassParameters" in data:
+    if data.get("FirstClassParameters") is not None:
         import capo_ssm_quicksetup.types.configuration_parameters_map
 
         out["first_class_parameters"] = (

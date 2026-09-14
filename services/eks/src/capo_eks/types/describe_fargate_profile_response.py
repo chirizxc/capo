@@ -27,7 +27,7 @@ def serialize_json(value: DescribeFargateProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFargateProfileResponse:
     out: DescribeFargateProfileResponse = {}  # type: ignore[typeddict-item]
-    if "fargateProfile" in data:
+    if data.get("fargateProfile") is not None:
         import capo_eks.types.fargate_profile
 
         out["fargate_profile"] = capo_eks.types.fargate_profile.deserialize_json(

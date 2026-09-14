@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StartNotebookInstanceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartNotebookInstanceInput:
     out: StartNotebookInstanceInput = {}  # type: ignore[typeddict-item]
-    if "NotebookInstanceName" in data:
+    if data.get("NotebookInstanceName") is not None:
         out["notebook_instance_name"] = data["NotebookInstanceName"]
     return out

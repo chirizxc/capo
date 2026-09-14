@@ -28,6 +28,6 @@ def serialize_json(value: UpdateOperatorAppIdpConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOperatorAppIdpConfigInput:
     out: UpdateOperatorAppIdpConfigInput = {}  # type: ignore[typeddict-item]
-    if "idpClientSecret" in data:
+    if data.get("idpClientSecret") is not None:
         out["idp_client_secret"] = data["idpClientSecret"]
     return out

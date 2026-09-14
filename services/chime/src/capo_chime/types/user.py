@@ -116,29 +116,29 @@ def serialize_json(value: User) -> dict:
 
 def deserialize_json(data: dict) -> User:
     out: User = {}  # type: ignore[typeddict-item]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("User.user_id required")
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "PrimaryEmail" in data:
+    if data.get("PrimaryEmail") is not None:
         out["primary_email"] = data["PrimaryEmail"]
-    if "PrimaryProvisionedNumber" in data:
+    if data.get("PrimaryProvisionedNumber") is not None:
         out["primary_provisioned_number"] = data["PrimaryProvisionedNumber"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "LicenseType" in data:
+    if data.get("LicenseType") is not None:
         import capo_chime.types.license
 
         out["license_type"] = capo_chime.types.license.deserialize_json(
             data["LicenseType"]
         )
-    if "UserType" in data:
+    if data.get("UserType") is not None:
         import capo_chime.types.user_type
 
         out["user_type"] = capo_chime.types.user_type.deserialize_json(data["UserType"])
-    if "UserRegistrationStatus" in data:
+    if data.get("UserRegistrationStatus") is not None:
         import capo_chime.types.registration_status
 
         out["user_registration_status"] = (
@@ -146,25 +146,25 @@ def deserialize_json(data: dict) -> User:
                 data["UserRegistrationStatus"]
             )
         )
-    if "UserInvitationStatus" in data:
+    if data.get("UserInvitationStatus") is not None:
         import capo_chime.types.invite_status
 
         out["user_invitation_status"] = capo_chime.types.invite_status.deserialize_json(
             data["UserInvitationStatus"]
         )
-    if "RegisteredOn" in data:
+    if data.get("RegisteredOn") is not None:
         import capo_chime.types.iso8601_timestamp
 
         out["registered_on"] = capo_chime.types.iso8601_timestamp.deserialize_json(
             data["RegisteredOn"]
         )
-    if "InvitedOn" in data:
+    if data.get("InvitedOn") is not None:
         import capo_chime.types.iso8601_timestamp
 
         out["invited_on"] = capo_chime.types.iso8601_timestamp.deserialize_json(
             data["InvitedOn"]
         )
-    if "AlexaForBusinessMetadata" in data:
+    if data.get("AlexaForBusinessMetadata") is not None:
         import capo_chime.types.alexa_for_business_metadata
 
         out["alexa_for_business_metadata"] = (
@@ -172,6 +172,6 @@ def deserialize_json(data: dict) -> User:
                 data["AlexaForBusinessMetadata"]
             )
         )
-    if "PersonalPIN" in data:
+    if data.get("PersonalPIN") is not None:
         out["personal_pin"] = data["PersonalPIN"]
     return out

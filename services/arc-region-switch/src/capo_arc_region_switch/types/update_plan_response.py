@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: UpdatePlanResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdatePlanResponse:
     out: UpdatePlanResponse = {}  # type: ignore[typeddict-item]
-    if "plan" in data:
+    if data.get("plan") is not None:
         import capo_arc_region_switch.types.plan
 
         out["plan"] = capo_arc_region_switch.types.plan.deserialize_aws_json_1_0(

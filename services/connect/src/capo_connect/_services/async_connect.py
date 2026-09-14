@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.connect#AmazonConnectService``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -1308,16 +1309,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.activate_evaluation_form_request.ActivateEvaluationFormRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["evaluation_form_id"] = evaluation_form_id
-        input_["evaluation_form_version"] = evaluation_form_version
+        input_: capo_connect.types.activate_evaluation_form_request.ActivateEvaluationFormRequest = {
+            "instance_id": instance_id,
+            "evaluation_form_id": evaluation_form_id,
+            "evaluation_form_version": evaluation_form_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_analytics_data_set(
@@ -1362,9 +1365,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_analytics_data_set_request.AssociateAnalyticsDataSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_set_id"] = data_set_id
+        input_: capo_connect.types.associate_analytics_data_set_request.AssociateAnalyticsDataSetRequest = {
+            "instance_id": instance_id,
+            "data_set_id": data_set_id,
+        }
         if target_account_id is not None:
             input_["target_account_id"] = target_account_id
 
@@ -1373,6 +1377,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_approved_origin(
@@ -1415,17 +1420,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_approved_origin_request.AssociateApprovedOriginRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["origin"] = origin
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.associate_approved_origin_request.AssociateApprovedOriginRequest = {
+            "instance_id": instance_id,
+            "origin": origin,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_bot(
@@ -1469,20 +1477,23 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_bot_request.AssociateBotRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.associate_bot_request.AssociateBotRequest = {
+            "instance_id": instance_id
+        }
         if lex_bot is not None:
             input_["lex_bot"] = lex_bot
         if lex_v2_bot is not None:
             input_["lex_v2_bot"] = lex_v2_bot
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_contact_with_user(
@@ -1526,16 +1537,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_contact_with_user_request.AssociateContactWithUserRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["user_id"] = user_id
+        input_: capo_connect.types.associate_contact_with_user_request.AssociateContactWithUserRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_default_vocabulary(
@@ -1578,9 +1591,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_default_vocabulary_request.AssociateDefaultVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["language_code"] = language_code
+        input_: capo_connect.types.associate_default_vocabulary_request.AssociateDefaultVocabularyRequest = {
+            "instance_id": instance_id,
+            "language_code": language_code,
+        }
         if vocabulary_id is not None:
             input_["vocabulary_id"] = vocabulary_id
 
@@ -1589,6 +1603,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_email_address_alias(
@@ -1636,18 +1651,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_email_address_alias_request.AssociateEmailAddressAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["email_address_id"] = email_address_id
-        input_["instance_id"] = instance_id
-        input_["alias_configuration"] = alias_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.associate_email_address_alias_request.AssociateEmailAddressAliasRequest = {
+            "email_address_id": email_address_id,
+            "instance_id": instance_id,
+            "alias_configuration": alias_configuration,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_flow(
@@ -1693,17 +1711,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_flow_request.AssociateFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["resource_id"] = resource_id
-        input_["flow_id"] = flow_id
-        input_["resource_type"] = resource_type
+        input_: capo_connect.types.associate_flow_request.AssociateFlowRequest = {
+            "instance_id": instance_id,
+            "resource_id": resource_id,
+            "flow_id": flow_id,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_hours_of_operations(
@@ -1746,16 +1766,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_hours_of_operations_request.AssociateHoursOfOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
-        input_["parent_hours_of_operation_configs"] = parent_hours_of_operation_configs
+        input_: capo_connect.types.associate_hours_of_operations_request.AssociateHoursOfOperationsRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+            "parent_hours_of_operation_configs": parent_hours_of_operation_configs,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_instance_storage_config(
@@ -1801,18 +1823,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_instance_storage_config_request.AssociateInstanceStorageConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["resource_type"] = resource_type
-        input_["storage_config"] = storage_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.associate_instance_storage_config_request.AssociateInstanceStorageConfigRequest = {
+            "instance_id": instance_id,
+            "resource_type": resource_type,
+            "storage_config": storage_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_lambda_function(
@@ -1855,17 +1880,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_lambda_function_request.AssociateLambdaFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["function_arn"] = function_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.associate_lambda_function_request.AssociateLambdaFunctionRequest = {
+            "instance_id": instance_id,
+            "function_arn": function_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_lex_bot(
@@ -1908,17 +1936,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_lex_bot_request.AssociateLexBotRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["lex_bot"] = lex_bot
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.associate_lex_bot_request.AssociateLexBotRequest = {
+            "instance_id": instance_id,
+            "lex_bot": lex_bot,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_phone_number_contact_flow(
@@ -1959,16 +1990,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_phone_number_contact_flow_request.AssociatePhoneNumberContactFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
-        input_["instance_id"] = instance_id
-        input_["contact_flow_id"] = contact_flow_id
+        input_: capo_connect.types.associate_phone_number_contact_flow_request.AssociatePhoneNumberContactFlowRequest = {
+            "phone_number_id": phone_number_id,
+            "instance_id": instance_id,
+            "contact_flow_id": contact_flow_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_queue_email_addresses(
@@ -2013,18 +2046,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_queue_email_addresses_request.AssociateQueueEmailAddressesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
-        input_["email_addresses_config"] = email_addresses_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.associate_queue_email_addresses_request.AssociateQueueEmailAddressesRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+            "email_addresses_config": email_addresses_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_queue_quick_connects(
@@ -2066,16 +2102,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_queue_quick_connects_request.AssociateQueueQuickConnectsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
-        input_["quick_connect_ids"] = quick_connect_ids
+        input_: capo_connect.types.associate_queue_quick_connects_request.AssociateQueueQuickConnectsRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+            "quick_connect_ids": quick_connect_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_routing_profile_queues(
@@ -2122,9 +2160,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_routing_profile_queues_request.AssociateRoutingProfileQueuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
+        input_: capo_connect.types.associate_routing_profile_queues_request.AssociateRoutingProfileQueuesRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+        }
         if queue_configs is not None:
             input_["queue_configs"] = queue_configs
         if manual_assignment_queue_configs is not None:
@@ -2135,6 +2174,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_security_key(
@@ -2179,17 +2219,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_security_key_request.AssociateSecurityKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["key"] = key
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.associate_security_key_request.AssociateSecurityKeyRequest = {
+            "instance_id": instance_id,
+            "key": key,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_security_profiles(
@@ -2234,17 +2277,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_security_profiles_request.AssociateSecurityProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["security_profiles"] = security_profiles
-        input_["entity_type"] = entity_type
-        input_["entity_arn"] = entity_arn
+        input_: capo_connect.types.associate_security_profiles_request.AssociateSecurityProfilesRequest = {
+            "instance_id": instance_id,
+            "security_profiles": security_profiles,
+            "entity_type": entity_type,
+            "entity_arn": entity_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_traffic_distribution_group_user(
@@ -2288,16 +2333,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_traffic_distribution_group_user_request.AssociateTrafficDistributionGroupUserRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_distribution_group_id"] = traffic_distribution_group_id
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.associate_traffic_distribution_group_user_request.AssociateTrafficDistributionGroupUserRequest = {
+            "traffic_distribution_group_id": traffic_distribution_group_id,
+            "user_id": user_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_user_proficiencies(
@@ -2338,16 +2385,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_user_proficiencies_request.AssociateUserProficienciesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["user_id"] = user_id
-        input_["user_proficiencies"] = user_proficiencies
+        input_: capo_connect.types.associate_user_proficiencies_request.AssociateUserProficienciesRequest = {
+            "instance_id": instance_id,
+            "user_id": user_id,
+            "user_proficiencies": user_proficiencies,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_workspace(
@@ -2392,16 +2441,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.associate_workspace_request.AssociateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
-        input_["resource_arns"] = resource_arns
+        input_: capo_connect.types.associate_workspace_request.AssociateWorkspaceRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+            "resource_arns": resource_arns,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_associate_analytics_data_set(
@@ -2446,9 +2497,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.batch_associate_analytics_data_set_request.BatchAssociateAnalyticsDataSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_set_ids"] = data_set_ids
+        input_: capo_connect.types.batch_associate_analytics_data_set_request.BatchAssociateAnalyticsDataSetRequest = {
+            "instance_id": instance_id,
+            "data_set_ids": data_set_ids,
+        }
         if target_account_id is not None:
             input_["target_account_id"] = target_account_id
 
@@ -2457,6 +2509,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_create_data_table_value(
@@ -2503,16 +2556,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.batch_create_data_table_value_request.BatchCreateDataTableValueRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["values"] = values
+        input_: capo_connect.types.batch_create_data_table_value_request.BatchCreateDataTableValueRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "values": values,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_data_table_value(
@@ -2557,16 +2612,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.batch_delete_data_table_value_request.BatchDeleteDataTableValueRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["values"] = values
+        input_: capo_connect.types.batch_delete_data_table_value_request.BatchDeleteDataTableValueRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "values": values,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_describe_data_table_value(
@@ -2610,16 +2667,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.batch_describe_data_table_value_request.BatchDescribeDataTableValueRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["values"] = values
+        input_: capo_connect.types.batch_describe_data_table_value_request.BatchDescribeDataTableValueRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "values": values,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_disassociate_analytics_data_set(
@@ -2664,9 +2723,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.batch_disassociate_analytics_data_set_request.BatchDisassociateAnalyticsDataSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_set_ids"] = data_set_ids
+        input_: capo_connect.types.batch_disassociate_analytics_data_set_request.BatchDisassociateAnalyticsDataSetRequest = {
+            "instance_id": instance_id,
+            "data_set_ids": data_set_ids,
+        }
         if target_account_id is not None:
             input_["target_account_id"] = target_account_id
 
@@ -2675,6 +2735,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_attached_file_metadata(
@@ -2717,16 +2778,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.batch_get_attached_file_metadata_request.BatchGetAttachedFileMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["file_ids"] = file_ids
-        input_["instance_id"] = instance_id
-        input_["associated_resource_arn"] = associated_resource_arn
+        input_: capo_connect.types.batch_get_attached_file_metadata_request.BatchGetAttachedFileMetadataRequest = {
+            "file_ids": file_ids,
+            "instance_id": instance_id,
+            "associated_resource_arn": associated_resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_flow_association(
@@ -2772,9 +2835,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.batch_get_flow_association_request.BatchGetFlowAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["resource_ids"] = resource_ids
+        input_: capo_connect.types.batch_get_flow_association_request.BatchGetFlowAssociationRequest = {
+            "instance_id": instance_id,
+            "resource_ids": resource_ids,
+        }
         if resource_type is not None:
             input_["resource_type"] = resource_type
 
@@ -2783,6 +2847,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_put_contact(
@@ -2826,17 +2891,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.batch_put_contact_request.BatchPutContactRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["instance_id"] = instance_id
-        input_["contact_data_request_list"] = contact_data_request_list
+        input_: capo_connect.types.batch_put_contact_request.BatchPutContactRequest = {
+            "instance_id": instance_id,
+            "contact_data_request_list": contact_data_request_list,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_data_table_value(
@@ -2881,16 +2949,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.batch_update_data_table_value_request.BatchUpdateDataTableValueRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["values"] = values
+        input_: capo_connect.types.batch_update_data_table_value_request.BatchUpdateDataTableValueRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "values": values,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def claim_phone_number(
@@ -2942,24 +3012,27 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.claim_phone_number_request.ClaimPhoneNumberRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.claim_phone_number_request.ClaimPhoneNumberRequest = {
+            "phone_number": phone_number
+        }
         if target_arn is not None:
             input_["target_arn"] = target_arn
         if instance_id is not None:
             input_["instance_id"] = instance_id
-        input_["phone_number"] = phone_number
         if phone_number_description is not None:
             input_["phone_number_description"] = phone_number_description
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def complete_attached_file_upload(
@@ -3002,16 +3075,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.complete_attached_file_upload_request.CompleteAttachedFileUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["file_id"] = file_id
-        input_["associated_resource_arn"] = associated_resource_arn
+        input_: capo_connect.types.complete_attached_file_upload_request.CompleteAttachedFileUploadRequest = {
+            "instance_id": instance_id,
+            "file_id": file_id,
+            "associated_resource_arn": associated_resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_agent_status(
@@ -3066,12 +3141,13 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_agent_status_request.CreateAgentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_agent_status_request.CreateAgentStatusRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "state": state,
+        }
         if description is not None:
             input_["description"] = description
-        input_["state"] = state
         if display_order is not None:
             input_["display_order"] = display_order
         if tags is not None:
@@ -3082,6 +3158,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_contact(
@@ -3156,18 +3233,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_contact_request.CreateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.create_contact_request.CreateContactRequest = {
+            "instance_id": instance_id,
+            "channel": channel,
+            "initiation_method": initiation_method,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if related_contact_id is not None:
             input_["related_contact_id"] = related_contact_id
         if attributes is not None:
             input_["attributes"] = attributes
         if references is not None:
             input_["references"] = references
-        input_["channel"] = channel
-        input_["initiation_method"] = initiation_method
         if expiry_duration_in_minutes is not None:
             input_["expiry_duration_in_minutes"] = expiry_duration_in_minutes
         if user_info is not None:
@@ -3188,6 +3267,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_contact_flow(
@@ -3245,13 +3325,14 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_contact_flow_request.CreateContactFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_connect.types.create_contact_flow_request.CreateContactFlowRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "type": type,
+            "content": content,
+        }
         if description is not None:
             input_["description"] = description
-        input_["content"] = content
         if status is not None:
             input_["status"] = status
         if tags is not None:
@@ -3262,6 +3343,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_contact_flow_module(
@@ -3325,16 +3407,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_contact_flow_module_request.CreateContactFlowModuleRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_contact_flow_module_request.CreateContactFlowModuleRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "content": content,
+        }
         if description is not None:
             input_["description"] = description
-        input_["content"] = content
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if settings is not None:
             input_["settings"] = settings
         if external_invocation_configuration is not None:
@@ -3347,6 +3431,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_contact_flow_module_alias(
@@ -3398,19 +3483,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_contact_flow_module_alias_request.CreateContactFlowModuleAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.create_contact_flow_module_alias_request.CreateContactFlowModuleAliasRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+            "contact_flow_module_version": contact_flow_module_version,
+            "alias_name": alias_name,
+        }
         if description is not None:
             input_["description"] = description
-        input_["contact_flow_module_id"] = contact_flow_module_id
-        input_["contact_flow_module_version"] = contact_flow_module_version
-        input_["alias_name"] = alias_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_contact_flow_module_version(
@@ -3461,11 +3548,12 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_contact_flow_module_version_request.CreateContactFlowModuleVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.create_contact_flow_module_version_request.CreateContactFlowModuleVersionRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+        }
         if description is not None:
             input_["description"] = description
-        input_["contact_flow_module_id"] = contact_flow_module_id
         if flow_module_content_sha256 is not None:
             input_["flow_module_content_sha256"] = flow_module_content_sha256
 
@@ -3474,6 +3562,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_contact_flow_version(
@@ -3534,11 +3623,12 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_contact_flow_version_request.CreateContactFlowVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.create_contact_flow_version_request.CreateContactFlowVersionRequest = {
+            "instance_id": instance_id,
+            "contact_flow_id": contact_flow_id,
+        }
         if description is not None:
             input_["description"] = description
-        input_["contact_flow_id"] = contact_flow_id
         if flow_content_sha256 is not None:
             input_["flow_content_sha256"] = flow_content_sha256
         if contact_flow_version is not None:
@@ -3553,6 +3643,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_table(
@@ -3609,14 +3700,15 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_data_table_request.CreateDataTableRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_data_table_request.CreateDataTableRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "time_zone": time_zone,
+            "value_lock_level": value_lock_level,
+            "status": status,
+        }
         if description is not None:
             input_["description"] = description
-        input_["time_zone"] = time_zone
-        input_["value_lock_level"] = value_lock_level
-        input_["status"] = status
         if tags is not None:
             input_["tags"] = tags
 
@@ -3625,6 +3717,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_table_attribute(
@@ -3681,11 +3774,12 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_data_table_attribute_request.CreateDataTableAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["name"] = name
-        input_["value_type"] = value_type
+        input_: capo_connect.types.create_data_table_attribute_request.CreateDataTableAttributeRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "name": name,
+            "value_type": value_type,
+        }
         if description is not None:
             input_["description"] = description
         if primary is not None:
@@ -3698,6 +3792,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_email_address(
@@ -3753,11 +3848,12 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_email_address_request.CreateEmailAddressRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.create_email_address_request.CreateEmailAddressRequest = {
+            "instance_id": instance_id,
+            "email_address": email_address,
+        }
         if description is not None:
             input_["description"] = description
-        input_["instance_id"] = instance_id
-        input_["email_address"] = email_address
         if display_name is not None:
             input_["display_name"] = display_name
         if tags is not None:
@@ -3770,6 +3866,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_evaluation_form(
@@ -3843,18 +3940,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_evaluation_form_request.CreateEvaluationFormRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["title"] = title
+        input_: capo_connect.types.create_evaluation_form_request.CreateEvaluationFormRequest = {
+            "instance_id": instance_id,
+            "title": title,
+            "items": items,
+        }
         if description is not None:
             input_["description"] = description
-        input_["items"] = items
         if scoring_strategy is not None:
             input_["scoring_strategy"] = scoring_strategy
         if auto_evaluation_configuration is not None:
             input_["auto_evaluation_configuration"] = auto_evaluation_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if as_draft is not None:
             input_["as_draft"] = as_draft
         if tags is not None:
@@ -3871,6 +3970,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_hours_of_operation(
@@ -3928,13 +4028,14 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_hours_of_operation_request.CreateHoursOfOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_hours_of_operation_request.CreateHoursOfOperationRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "time_zone": time_zone,
+            "config": config,
+        }
         if description is not None:
             input_["description"] = description
-        input_["time_zone"] = time_zone
-        input_["config"] = config
         if parent_hours_of_operation_configs is not None:
             input_["parent_hours_of_operation_configs"] = (
                 parent_hours_of_operation_configs
@@ -3947,6 +4048,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_hours_of_operation_override(
@@ -4007,15 +4109,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_hours_of_operation_override_request.CreateHoursOfOperationOverrideRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
-        input_["name"] = name
+        input_: capo_connect.types.create_hours_of_operation_override_request.CreateHoursOfOperationOverrideRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+            "name": name,
+            "config": config,
+            "effective_from": effective_from,
+            "effective_till": effective_till,
+        }
         if description is not None:
             input_["description"] = description
-        input_["config"] = config
-        input_["effective_from"] = effective_from
-        input_["effective_till"] = effective_till
         if recurrence_config is not None:
             input_["recurrence_config"] = recurrence_config
         if override_type is not None:
@@ -4026,6 +4129,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_instance(
@@ -4078,16 +4182,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_instance_request.CreateInstanceRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["identity_management_type"] = identity_management_type
+        input_: capo_connect.types.create_instance_request.CreateInstanceRequest = {
+            "identity_management_type": identity_management_type,
+            "inbound_calls_enabled": inbound_calls_enabled,
+            "outbound_calls_enabled": outbound_calls_enabled,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if instance_alias is not None:
             input_["instance_alias"] = instance_alias
         if directory_id is not None:
             input_["directory_id"] = directory_id
-        input_["inbound_calls_enabled"] = inbound_calls_enabled
-        input_["outbound_calls_enabled"] = outbound_calls_enabled
         if tags is not None:
             input_["tags"] = tags
 
@@ -4096,6 +4202,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_integration_association(
@@ -4148,10 +4255,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_integration_association_request.CreateIntegrationAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["integration_type"] = integration_type
-        input_["integration_arn"] = integration_arn
+        input_: capo_connect.types.create_integration_association_request.CreateIntegrationAssociationRequest = {
+            "instance_id": instance_id,
+            "integration_type": integration_type,
+            "integration_arn": integration_arn,
+        }
         if source_application_url is not None:
             input_["source_application_url"] = source_application_url
         if source_application_name is not None:
@@ -4166,6 +4274,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_notification(
@@ -4223,26 +4332,29 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_notification_request.CreateNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.create_notification_request.CreateNotificationRequest = {
+            "instance_id": instance_id,
+            "recipients": recipients,
+            "content": content,
+        }
         if expires_at is not None:
             input_["expires_at"] = expires_at
-        input_["recipients"] = recipients
         if priority is not None:
             input_["priority"] = priority
-        input_["content"] = content
         if tags is not None:
             input_["tags"] = tags
         if predefined_notification_id is not None:
             input_["predefined_notification_id"] = predefined_notification_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_participant(
@@ -4288,18 +4400,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_participant_request.CreateParticipantRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["participant_details"] = participant_details
+        input_: capo_connect.types.create_participant_request.CreateParticipantRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "participant_details": participant_details,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_persistent_contact_association(
@@ -4347,11 +4462,12 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_persistent_contact_association_request.CreatePersistentContactAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["initial_contact_id"] = initial_contact_id
-        input_["rehydration_type"] = rehydration_type
-        input_["source_contact_id"] = source_contact_id
+        input_: capo_connect.types.create_persistent_contact_association_request.CreatePersistentContactAssociationRequest = {
+            "instance_id": instance_id,
+            "initial_contact_id": initial_contact_id,
+            "rehydration_type": rehydration_type,
+            "source_contact_id": source_contact_id,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -4360,6 +4476,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_predefined_attribute(
@@ -4412,9 +4529,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_predefined_attribute_request.CreatePredefinedAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_predefined_attribute_request.CreatePredefinedAttributeRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
         if values is not None:
             input_["values"] = values
         if purposes is not None:
@@ -4427,6 +4545,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_prompt(
@@ -4476,12 +4595,13 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_prompt_request.CreatePromptRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_prompt_request.CreatePromptRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "s3_uri": s3_uri,
+        }
         if description is not None:
             input_["description"] = description
-        input_["s3_uri"] = s3_uri
         if tags is not None:
             input_["tags"] = tags
 
@@ -4490,6 +4610,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_push_notification_registration(
@@ -4539,20 +4660,23 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_push_notification_registration_request.CreatePushNotificationRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["pinpoint_app_arn"] = pinpoint_app_arn
-        input_["device_token"] = device_token
-        input_["device_type"] = device_type
-        input_["contact_configuration"] = contact_configuration
+        input_: capo_connect.types.create_push_notification_registration_request.CreatePushNotificationRegistrationRequest = {
+            "instance_id": instance_id,
+            "pinpoint_app_arn": pinpoint_app_arn,
+            "device_token": device_token,
+            "device_type": device_type,
+            "contact_configuration": contact_configuration,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_queue(
@@ -4623,16 +4747,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_queue_request.CreateQueueRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_queue_request.CreateQueueRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "hours_of_operation_id": hours_of_operation_id,
+        }
         if description is not None:
             input_["description"] = description
         if outbound_caller_config is not None:
             input_["outbound_caller_config"] = outbound_caller_config
         if outbound_email_config is not None:
             input_["outbound_email_config"] = outbound_email_config
-        input_["hours_of_operation_id"] = hours_of_operation_id
         if max_contacts is not None:
             input_["max_contacts"] = max_contacts
         if quick_connect_ids is not None:
@@ -4647,6 +4772,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_quick_connect(
@@ -4697,12 +4823,13 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_quick_connect_request.CreateQuickConnectRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_quick_connect_request.CreateQuickConnectRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "quick_connect_config": quick_connect_config,
+        }
         if description is not None:
             input_["description"] = description
-        input_["quick_connect_config"] = quick_connect_config
         if tags is not None:
             input_["tags"] = tags
 
@@ -4711,6 +4838,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_routing_profile(
@@ -4773,16 +4901,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_routing_profile_request.CreateRoutingProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
-        input_["description"] = description
-        input_["default_outbound_queue_id"] = default_outbound_queue_id
+        input_: capo_connect.types.create_routing_profile_request.CreateRoutingProfileRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "description": description,
+            "default_outbound_queue_id": default_outbound_queue_id,
+            "media_concurrencies": media_concurrencies,
+        }
         if queue_configs is not None:
             input_["queue_configs"] = queue_configs
         if manual_assignment_queue_configs is not None:
             input_["manual_assignment_queue_configs"] = manual_assignment_queue_configs
-        input_["media_concurrencies"] = media_concurrencies
         if tags is not None:
             input_["tags"] = tags
         if agent_availability_timer is not None:
@@ -4793,6 +4922,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_rule(
@@ -4845,21 +4975,24 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_rule_request.CreateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
-        input_["trigger_event_source"] = trigger_event_source
-        input_["function"] = function
-        input_["actions"] = actions
-        input_["publish_status"] = publish_status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.create_rule_request.CreateRuleRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "trigger_event_source": trigger_event_source,
+            "function": function,
+            "actions": actions,
+            "publish_status": publish_status,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_security_profile(
@@ -4938,13 +5071,14 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_security_profile_request.CreateSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_name"] = security_profile_name
+        input_: capo_connect.types.create_security_profile_request.CreateSecurityProfileRequest = {
+            "security_profile_name": security_profile_name,
+            "instance_id": instance_id,
+        }
         if description is not None:
             input_["description"] = description
         if permissions is not None:
             input_["permissions"] = permissions
-        input_["instance_id"] = instance_id
         if tags is not None:
             input_["tags"] = tags
         if allowed_access_control_tags is not None:
@@ -4971,6 +5105,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_task_template(
@@ -5040,9 +5175,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_task_template_request.CreateTaskTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_task_template_request.CreateTaskTemplateRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "fields": fields,
+        }
         if description is not None:
             input_["description"] = description
         if contact_flow_id is not None:
@@ -5055,15 +5192,16 @@ class AsyncConnectClient:
             input_["defaults"] = defaults
         if status is not None:
             input_["status"] = status
-        input_["fields"] = fields
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_test_case(
@@ -5136,12 +5274,13 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_test_case_request.CreateTestCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_test_case_request.CreateTestCaseRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "content": content,
+        }
         if description is not None:
             input_["description"] = description
-        input_["content"] = content
         if entry_point is not None:
             input_["entry_point"] = entry_point
         if initialization_data is not None:
@@ -5162,6 +5301,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_traffic_distribution_group(
@@ -5213,13 +5353,15 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_traffic_distribution_group_request.CreateTrafficDistributionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_connect.types.create_traffic_distribution_group_request.CreateTrafficDistributionGroupRequest = {
+            "name": name,
+            "instance_id": instance_id,
+        }
         if description is not None:
             input_["description"] = description
-        input_["instance_id"] = instance_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -5228,6 +5370,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_use_case(
@@ -5272,10 +5415,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_use_case_request.CreateUseCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["integration_association_id"] = integration_association_id
-        input_["use_case_type"] = use_case_type
+        input_: capo_connect.types.create_use_case_request.CreateUseCaseRequest = {
+            "instance_id": instance_id,
+            "integration_association_id": integration_association_id,
+            "use_case_type": use_case_type,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -5284,6 +5428,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user(
@@ -5370,8 +5515,12 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["username"] = username
+        input_: capo_connect.types.create_user_request.CreateUserRequest = {
+            "username": username,
+            "security_profile_ids": security_profile_ids,
+            "routing_profile_id": routing_profile_id,
+            "instance_id": instance_id,
+        }
         if password is not None:
             input_["password"] = password
         if identity_info is not None:
@@ -5380,11 +5529,8 @@ class AsyncConnectClient:
             input_["phone_config"] = phone_config
         if directory_user_id is not None:
             input_["directory_user_id"] = directory_user_id
-        input_["security_profile_ids"] = security_profile_ids
-        input_["routing_profile_id"] = routing_profile_id
         if hierarchy_group_id is not None:
             input_["hierarchy_group_id"] = hierarchy_group_id
-        input_["instance_id"] = instance_id
         if auto_accept_configs is not None:
             input_["auto_accept_configs"] = auto_accept_configs
         if after_contact_work_configs is not None:
@@ -5403,6 +5549,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user_hierarchy_group(
@@ -5451,11 +5598,12 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_user_hierarchy_group_request.CreateUserHierarchyGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_connect.types.create_user_hierarchy_group_request.CreateUserHierarchyGroupRequest = {
+            "name": name,
+            "instance_id": instance_id,
+        }
         if parent_group_id is not None:
             input_["parent_group_id"] = parent_group_id
-        input_["instance_id"] = instance_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -5464,6 +5612,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_view(
@@ -5522,15 +5671,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_view_request.CreateViewRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.create_view_request.CreateViewRequest = {
+            "instance_id": instance_id,
+            "status": status,
+            "content": content,
+            "name": name,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["status"] = status
-        input_["content"] = content
         if description is not None:
             input_["description"] = description
-        input_["name"] = name
         if tags is not None:
             input_["tags"] = tags
 
@@ -5539,6 +5689,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_view_version(
@@ -5590,9 +5741,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_view_version_request.CreateViewVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["view_id"] = view_id
+        input_: capo_connect.types.create_view_version_request.CreateViewVersionRequest = {
+            "instance_id": instance_id,
+            "view_id": view_id,
+        }
         if version_description is not None:
             input_["version_description"] = version_description
         if view_content_sha256 is not None:
@@ -5603,6 +5755,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_vocabulary(
@@ -5653,13 +5806,15 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_vocabulary_request.CreateVocabularyRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["instance_id"] = instance_id
-        input_["vocabulary_name"] = vocabulary_name
-        input_["language_code"] = language_code
-        input_["content"] = content
+        input_: capo_connect.types.create_vocabulary_request.CreateVocabularyRequest = {
+            "instance_id": instance_id,
+            "vocabulary_name": vocabulary_name,
+            "language_code": language_code,
+            "content": content,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -5668,6 +5823,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_workspace(
@@ -5722,9 +5878,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_workspace_request.CreateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.create_workspace_request.CreateWorkspaceRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if theme is not None:
@@ -5739,6 +5896,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_workspace_page(
@@ -5794,11 +5952,12 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.create_workspace_page_request.CreateWorkspacePageRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
-        input_["resource_arn"] = resource_arn
-        input_["page"] = page
+        input_: capo_connect.types.create_workspace_page_request.CreateWorkspacePageRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+            "resource_arn": resource_arn,
+            "page": page,
+        }
         if slug is not None:
             input_["slug"] = slug
         if input_data is not None:
@@ -5809,6 +5968,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deactivate_evaluation_form(
@@ -5851,16 +6011,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.deactivate_evaluation_form_request.DeactivateEvaluationFormRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["evaluation_form_id"] = evaluation_form_id
-        input_["evaluation_form_version"] = evaluation_form_version
+        input_: capo_connect.types.deactivate_evaluation_form_request.DeactivateEvaluationFormRequest = {
+            "instance_id": instance_id,
+            "evaluation_form_id": evaluation_form_id,
+            "evaluation_form_version": evaluation_form_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_attached_file(
@@ -5903,16 +6065,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_attached_file_request.DeleteAttachedFileRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["file_id"] = file_id
-        input_["associated_resource_arn"] = associated_resource_arn
+        input_: capo_connect.types.delete_attached_file_request.DeleteAttachedFileRequest = {
+            "instance_id": instance_id,
+            "file_id": file_id,
+            "associated_resource_arn": associated_resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_contact_evaluation(
@@ -5951,15 +6115,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_contact_evaluation_request.DeleteContactEvaluationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["evaluation_id"] = evaluation_id
+        input_: capo_connect.types.delete_contact_evaluation_request.DeleteContactEvaluationRequest = {
+            "instance_id": instance_id,
+            "evaluation_id": evaluation_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_contact_flow(
@@ -6001,15 +6167,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_contact_flow_request.DeleteContactFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_id"] = contact_flow_id
+        input_: capo_connect.types.delete_contact_flow_request.DeleteContactFlowRequest = {
+            "instance_id": instance_id,
+            "contact_flow_id": contact_flow_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_contact_flow_module(
@@ -6051,15 +6219,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_contact_flow_module_request.DeleteContactFlowModuleRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_module_id"] = contact_flow_module_id
+        input_: capo_connect.types.delete_contact_flow_module_request.DeleteContactFlowModuleRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_contact_flow_module_alias(
@@ -6103,16 +6273,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_contact_flow_module_alias_request.DeleteContactFlowModuleAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_module_id"] = contact_flow_module_id
-        input_["alias_id"] = alias_id
+        input_: capo_connect.types.delete_contact_flow_module_alias_request.DeleteContactFlowModuleAliasRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+            "alias_id": alias_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_contact_flow_module_version(
@@ -6156,16 +6328,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_contact_flow_module_version_request.DeleteContactFlowModuleVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_module_id"] = contact_flow_module_id
-        input_["contact_flow_module_version"] = contact_flow_module_version
+        input_: capo_connect.types.delete_contact_flow_module_version_request.DeleteContactFlowModuleVersionRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+            "contact_flow_module_version": contact_flow_module_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_contact_flow_version(
@@ -6209,16 +6383,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_contact_flow_version_request.DeleteContactFlowVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_id"] = contact_flow_id
-        input_["contact_flow_version"] = contact_flow_version
+        input_: capo_connect.types.delete_contact_flow_version_request.DeleteContactFlowVersionRequest = {
+            "instance_id": instance_id,
+            "contact_flow_id": contact_flow_id,
+            "contact_flow_version": contact_flow_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_table(
@@ -6261,15 +6437,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_data_table_request.DeleteDataTableRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
+        input_: capo_connect.types.delete_data_table_request.DeleteDataTableRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_table_attribute(
@@ -6314,16 +6492,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_data_table_attribute_request.DeleteDataTableAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["attribute_name"] = attribute_name
+        input_: capo_connect.types.delete_data_table_attribute_request.DeleteDataTableAttributeRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "attribute_name": attribute_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_email_address(
@@ -6366,15 +6546,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_email_address_request.DeleteEmailAddressRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["email_address_id"] = email_address_id
+        input_: capo_connect.types.delete_email_address_request.DeleteEmailAddressRequest = {
+            "instance_id": instance_id,
+            "email_address_id": email_address_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_evaluation_form(
@@ -6417,9 +6599,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_evaluation_form_request.DeleteEvaluationFormRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["evaluation_form_id"] = evaluation_form_id
+        input_: capo_connect.types.delete_evaluation_form_request.DeleteEvaluationFormRequest = {
+            "instance_id": instance_id,
+            "evaluation_form_id": evaluation_form_id,
+        }
         if evaluation_form_version is not None:
             input_["evaluation_form_version"] = evaluation_form_version
 
@@ -6428,6 +6611,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_hours_of_operation(
@@ -6466,15 +6650,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_hours_of_operation_request.DeleteHoursOfOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
+        input_: capo_connect.types.delete_hours_of_operation_request.DeleteHoursOfOperationRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_hours_of_operation_override(
@@ -6515,16 +6701,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_hours_of_operation_override_request.DeleteHoursOfOperationOverrideRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
-        input_["hours_of_operation_override_id"] = hours_of_operation_override_id
+        input_: capo_connect.types.delete_hours_of_operation_override_request.DeleteHoursOfOperationOverrideRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+            "hours_of_operation_override_id": hours_of_operation_override_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_instance(
@@ -6561,16 +6749,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_instance_request.DeleteInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.delete_instance_request.DeleteInstanceRequest = {
+            "instance_id": instance_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_integration_association(
@@ -6608,15 +6799,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_integration_association_request.DeleteIntegrationAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["integration_association_id"] = integration_association_id
+        input_: capo_connect.types.delete_integration_association_request.DeleteIntegrationAssociationRequest = {
+            "instance_id": instance_id,
+            "integration_association_id": integration_association_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_notification(
@@ -6658,15 +6851,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_notification_request.DeleteNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["notification_id"] = notification_id
+        input_: capo_connect.types.delete_notification_request.DeleteNotificationRequest = {
+            "instance_id": instance_id,
+            "notification_id": notification_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_predefined_attribute(
@@ -6706,15 +6901,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_predefined_attribute_request.DeletePredefinedAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.delete_predefined_attribute_request.DeletePredefinedAttributeRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_prompt(
@@ -6753,15 +6950,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_prompt_request.DeletePromptRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["prompt_id"] = prompt_id
+        input_: capo_connect.types.delete_prompt_request.DeletePromptRequest = {
+            "instance_id": instance_id,
+            "prompt_id": prompt_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_push_notification_registration(
@@ -6804,16 +7003,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_push_notification_registration_request.DeletePushNotificationRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["registration_id"] = registration_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.delete_push_notification_registration_request.DeletePushNotificationRegistrationRequest = {
+            "instance_id": instance_id,
+            "registration_id": registration_id,
+            "contact_id": contact_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_queue(
@@ -6853,15 +7054,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_queue_request.DeleteQueueRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
+        input_: capo_connect.types.delete_queue_request.DeleteQueueRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_quick_connect(
@@ -6900,15 +7103,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_quick_connect_request.DeleteQuickConnectRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["quick_connect_id"] = quick_connect_id
+        input_: capo_connect.types.delete_quick_connect_request.DeleteQuickConnectRequest = {
+            "instance_id": instance_id,
+            "quick_connect_id": quick_connect_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_routing_profile(
@@ -6948,15 +7153,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_routing_profile_request.DeleteRoutingProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
+        input_: capo_connect.types.delete_routing_profile_request.DeleteRoutingProfileRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_rule(
@@ -6995,15 +7202,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_rule_request.DeleteRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["rule_id"] = rule_id
+        input_: capo_connect.types.delete_rule_request.DeleteRuleRequest = {
+            "instance_id": instance_id,
+            "rule_id": rule_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_security_profile(
@@ -7044,15 +7253,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_security_profile_request.DeleteSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["security_profile_id"] = security_profile_id
+        input_: capo_connect.types.delete_security_profile_request.DeleteSecurityProfileRequest = {
+            "instance_id": instance_id,
+            "security_profile_id": security_profile_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_task_template(
@@ -7093,15 +7304,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_task_template_request.DeleteTaskTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["task_template_id"] = task_template_id
+        input_: capo_connect.types.delete_task_template_request.DeleteTaskTemplateRequest = {
+            "instance_id": instance_id,
+            "task_template_id": task_template_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_test_case(
@@ -7143,15 +7356,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_test_case_request.DeleteTestCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["test_case_id"] = test_case_id
+        input_: capo_connect.types.delete_test_case_request.DeleteTestCaseRequest = {
+            "instance_id": instance_id,
+            "test_case_id": test_case_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_traffic_distribution_group(
@@ -7190,14 +7405,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_traffic_distribution_group_request.DeleteTrafficDistributionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_distribution_group_id"] = traffic_distribution_group_id
+        input_: capo_connect.types.delete_traffic_distribution_group_request.DeleteTrafficDistributionGroupRequest = {
+            "traffic_distribution_group_id": traffic_distribution_group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_use_case(
@@ -7237,16 +7454,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_use_case_request.DeleteUseCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["integration_association_id"] = integration_association_id
-        input_["use_case_id"] = use_case_id
+        input_: capo_connect.types.delete_use_case_request.DeleteUseCaseRequest = {
+            "instance_id": instance_id,
+            "integration_association_id": integration_association_id,
+            "use_case_id": use_case_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_user(
@@ -7285,15 +7504,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["user_id"] = user_id
+        input_: capo_connect.types.delete_user_request.DeleteUserRequest = {
+            "instance_id": instance_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_user_hierarchy_group(
@@ -7333,15 +7554,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_user_hierarchy_group_request.DeleteUserHierarchyGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["hierarchy_group_id"] = hierarchy_group_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.delete_user_hierarchy_group_request.DeleteUserHierarchyGroupRequest = {
+            "hierarchy_group_id": hierarchy_group_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_view(
@@ -7384,15 +7607,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_view_request.DeleteViewRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["view_id"] = view_id
+        input_: capo_connect.types.delete_view_request.DeleteViewRequest = {
+            "instance_id": instance_id,
+            "view_id": view_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_view_version(
@@ -7437,16 +7662,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_view_version_request.DeleteViewVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["view_id"] = view_id
-        input_["view_version"] = view_version
+        input_: capo_connect.types.delete_view_version_request.DeleteViewVersionRequest = {
+            "instance_id": instance_id,
+            "view_id": view_id,
+            "view_version": view_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_vocabulary(
@@ -7488,15 +7715,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_vocabulary_request.DeleteVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["vocabulary_id"] = vocabulary_id
+        input_: capo_connect.types.delete_vocabulary_request.DeleteVocabularyRequest = {
+            "instance_id": instance_id,
+            "vocabulary_id": vocabulary_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workspace(
@@ -7538,15 +7767,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_workspace_request.DeleteWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_connect.types.delete_workspace_request.DeleteWorkspaceRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workspace_media(
@@ -7589,16 +7820,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_workspace_media_request.DeleteWorkspaceMediaRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
-        input_["media_type"] = media_type
+        input_: capo_connect.types.delete_workspace_media_request.DeleteWorkspaceMediaRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+            "media_type": media_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workspace_page(
@@ -7645,16 +7878,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.delete_workspace_page_request.DeleteWorkspacePageRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
-        input_["page"] = page
+        input_: capo_connect.types.delete_workspace_page_request.DeleteWorkspacePageRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+            "page": page,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_agent_status(
@@ -7697,15 +7932,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_agent_status_request.DescribeAgentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["agent_status_id"] = agent_status_id
+        input_: capo_connect.types.describe_agent_status_request.DescribeAgentStatusRequest = {
+            "instance_id": instance_id,
+            "agent_status_id": agent_status_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_attached_files_configuration(
@@ -7746,15 +7983,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_attached_files_configuration_request.DescribeAttachedFilesConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["attachment_scope"] = attachment_scope
+        input_: capo_connect.types.describe_attached_files_configuration_request.DescribeAttachedFilesConfigurationRequest = {
+            "instance_id": instance_id,
+            "attachment_scope": attachment_scope,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_authentication_profile(
@@ -7795,15 +8034,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_authentication_profile_request.DescribeAuthenticationProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["authentication_profile_id"] = authentication_profile_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.describe_authentication_profile_request.DescribeAuthenticationProfileRequest = {
+            "authentication_profile_id": authentication_profile_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_contact(
@@ -7844,15 +8085,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_contact_request.DescribeContactRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.describe_contact_request.DescribeContactRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_contact_evaluation(
@@ -7892,15 +8135,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_contact_evaluation_request.DescribeContactEvaluationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["evaluation_id"] = evaluation_id
+        input_: capo_connect.types.describe_contact_evaluation_request.DescribeContactEvaluationRequest = {
+            "instance_id": instance_id,
+            "evaluation_id": evaluation_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_contact_flow(
@@ -7944,15 +8189,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_contact_flow_request.DescribeContactFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_id"] = contact_flow_id
+        input_: capo_connect.types.describe_contact_flow_request.DescribeContactFlowRequest = {
+            "instance_id": instance_id,
+            "contact_flow_id": contact_flow_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_contact_flow_module(
@@ -7994,15 +8241,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_contact_flow_module_request.DescribeContactFlowModuleRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_module_id"] = contact_flow_module_id
+        input_: capo_connect.types.describe_contact_flow_module_request.DescribeContactFlowModuleRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_contact_flow_module_alias(
@@ -8046,16 +8295,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_contact_flow_module_alias_request.DescribeContactFlowModuleAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_module_id"] = contact_flow_module_id
-        input_["alias_id"] = alias_id
+        input_: capo_connect.types.describe_contact_flow_module_alias_request.DescribeContactFlowModuleAliasRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+            "alias_id": alias_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_data_table(
@@ -8097,15 +8348,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_data_table_request.DescribeDataTableRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
+        input_: capo_connect.types.describe_data_table_request.DescribeDataTableRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_data_table_attribute(
@@ -8149,16 +8402,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_data_table_attribute_request.DescribeDataTableAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["attribute_name"] = attribute_name
+        input_: capo_connect.types.describe_data_table_attribute_request.DescribeDataTableAttributeRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "attribute_name": attribute_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_email_address(
@@ -8200,15 +8455,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_email_address_request.DescribeEmailAddressRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["email_address_id"] = email_address_id
+        input_: capo_connect.types.describe_email_address_request.DescribeEmailAddressRequest = {
+            "instance_id": instance_id,
+            "email_address_id": email_address_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_evaluation_form(
@@ -8252,9 +8509,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_evaluation_form_request.DescribeEvaluationFormRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["evaluation_form_id"] = evaluation_form_id
+        input_: capo_connect.types.describe_evaluation_form_request.DescribeEvaluationFormRequest = {
+            "instance_id": instance_id,
+            "evaluation_form_id": evaluation_form_id,
+        }
         if evaluation_form_version is not None:
             input_["evaluation_form_version"] = evaluation_form_version
 
@@ -8263,6 +8521,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_hours_of_operation(
@@ -8303,15 +8562,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_hours_of_operation_request.DescribeHoursOfOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
+        input_: capo_connect.types.describe_hours_of_operation_request.DescribeHoursOfOperationRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_hours_of_operation_override(
@@ -8354,16 +8615,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_hours_of_operation_override_request.DescribeHoursOfOperationOverrideRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
-        input_["hours_of_operation_override_id"] = hours_of_operation_override_id
+        input_: capo_connect.types.describe_hours_of_operation_override_request.DescribeHoursOfOperationOverrideRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+            "hours_of_operation_override_id": hours_of_operation_override_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_instance(
@@ -8400,14 +8663,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_instance_request.DescribeInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.describe_instance_request.DescribeInstanceRequest = {
+            "instance_id": instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_instance_attribute(
@@ -8448,15 +8713,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_instance_attribute_request.DescribeInstanceAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["attribute_type"] = attribute_type
+        input_: capo_connect.types.describe_instance_attribute_request.DescribeInstanceAttributeRequest = {
+            "instance_id": instance_id,
+            "attribute_type": attribute_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_instance_storage_config(
@@ -8499,16 +8766,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_instance_storage_config_request.DescribeInstanceStorageConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["association_id"] = association_id
-        input_["resource_type"] = resource_type
+        input_: capo_connect.types.describe_instance_storage_config_request.DescribeInstanceStorageConfigRequest = {
+            "instance_id": instance_id,
+            "association_id": association_id,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_notification(
@@ -8552,15 +8821,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_notification_request.DescribeNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["notification_id"] = notification_id
+        input_: capo_connect.types.describe_notification_request.DescribeNotificationRequest = {
+            "instance_id": instance_id,
+            "notification_id": notification_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_phone_number(
@@ -8601,14 +8872,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_phone_number_request.DescribePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_connect.types.describe_phone_number_request.DescribePhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_predefined_attribute(
@@ -8649,15 +8922,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_predefined_attribute_request.DescribePredefinedAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.describe_predefined_attribute_request.DescribePredefinedAttributeRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_prompt(
@@ -8698,15 +8973,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_prompt_request.DescribePromptRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["prompt_id"] = prompt_id
+        input_: capo_connect.types.describe_prompt_request.DescribePromptRequest = {
+            "instance_id": instance_id,
+            "prompt_id": prompt_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_queue(
@@ -8747,15 +9024,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_queue_request.DescribeQueueRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
+        input_: capo_connect.types.describe_queue_request.DescribeQueueRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_quick_connect(
@@ -8796,15 +9075,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_quick_connect_request.DescribeQuickConnectRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["quick_connect_id"] = quick_connect_id
+        input_: capo_connect.types.describe_quick_connect_request.DescribeQuickConnectRequest = {
+            "instance_id": instance_id,
+            "quick_connect_id": quick_connect_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_routing_profile(
@@ -8845,15 +9126,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_routing_profile_request.DescribeRoutingProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
+        input_: capo_connect.types.describe_routing_profile_request.DescribeRoutingProfileRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_rule(
@@ -8894,15 +9177,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_rule_request.DescribeRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["rule_id"] = rule_id
+        input_: capo_connect.types.describe_rule_request.DescribeRuleRequest = {
+            "instance_id": instance_id,
+            "rule_id": rule_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_security_profile(
@@ -8943,15 +9228,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_security_profile_request.DescribeSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_id"] = security_profile_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.describe_security_profile_request.DescribeSecurityProfileRequest = {
+            "security_profile_id": security_profile_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_test_case(
@@ -8995,9 +9282,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_test_case_request.DescribeTestCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["test_case_id"] = test_case_id
+        input_: capo_connect.types.describe_test_case_request.DescribeTestCaseRequest = {
+            "instance_id": instance_id,
+            "test_case_id": test_case_id,
+        }
         if status is not None:
             input_["status"] = status
 
@@ -9006,6 +9294,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_traffic_distribution_group(
@@ -9044,14 +9333,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_traffic_distribution_group_request.DescribeTrafficDistributionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_distribution_group_id"] = traffic_distribution_group_id
+        input_: capo_connect.types.describe_traffic_distribution_group_request.DescribeTrafficDistributionGroupRequest = {
+            "traffic_distribution_group_id": traffic_distribution_group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_user(
@@ -9092,15 +9383,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_user_request.DescribeUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.describe_user_request.DescribeUserRequest = {
+            "user_id": user_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_user_hierarchy_group(
@@ -9141,15 +9434,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_user_hierarchy_group_request.DescribeUserHierarchyGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["hierarchy_group_id"] = hierarchy_group_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.describe_user_hierarchy_group_request.DescribeUserHierarchyGroupRequest = {
+            "hierarchy_group_id": hierarchy_group_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_user_hierarchy_structure(
@@ -9188,14 +9483,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_user_hierarchy_structure_request.DescribeUserHierarchyStructureRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.describe_user_hierarchy_structure_request.DescribeUserHierarchyStructureRequest = {
+            "instance_id": instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_view(
@@ -9237,15 +9534,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_view_request.DescribeViewRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["view_id"] = view_id
+        input_: capo_connect.types.describe_view_request.DescribeViewRequest = {
+            "instance_id": instance_id,
+            "view_id": view_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_vocabulary(
@@ -9286,15 +9585,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_vocabulary_request.DescribeVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["vocabulary_id"] = vocabulary_id
+        input_: capo_connect.types.describe_vocabulary_request.DescribeVocabularyRequest = {
+            "instance_id": instance_id,
+            "vocabulary_id": vocabulary_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_workspace(
@@ -9336,15 +9637,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.describe_workspace_request.DescribeWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_connect.types.describe_workspace_request.DescribeWorkspaceRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_analytics_data_set(
@@ -9387,9 +9690,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_analytics_data_set_request.DisassociateAnalyticsDataSetRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_set_id"] = data_set_id
+        input_: capo_connect.types.disassociate_analytics_data_set_request.DisassociateAnalyticsDataSetRequest = {
+            "instance_id": instance_id,
+            "data_set_id": data_set_id,
+        }
         if target_account_id is not None:
             input_["target_account_id"] = target_account_id
 
@@ -9398,6 +9702,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_approved_origin(
@@ -9438,17 +9743,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_approved_origin_request.DisassociateApprovedOriginRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["origin"] = origin
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.disassociate_approved_origin_request.DisassociateApprovedOriginRequest = {
+            "instance_id": instance_id,
+            "origin": origin,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_bot(
@@ -9489,20 +9797,23 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_bot_request.DisassociateBotRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.disassociate_bot_request.DisassociateBotRequest = {
+            "instance_id": instance_id
+        }
         if lex_bot is not None:
             input_["lex_bot"] = lex_bot
         if lex_v2_bot is not None:
             input_["lex_v2_bot"] = lex_v2_bot
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_email_address_alias(
@@ -9549,18 +9860,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_email_address_alias_request.DisassociateEmailAddressAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["email_address_id"] = email_address_id
-        input_["instance_id"] = instance_id
-        input_["alias_configuration"] = alias_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.disassociate_email_address_alias_request.DisassociateEmailAddressAliasRequest = {
+            "email_address_id": email_address_id,
+            "instance_id": instance_id,
+            "alias_configuration": alias_configuration,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_flow(
@@ -9604,16 +9918,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_flow_request.DisassociateFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["resource_id"] = resource_id
-        input_["resource_type"] = resource_type
+        input_: capo_connect.types.disassociate_flow_request.DisassociateFlowRequest = {
+            "instance_id": instance_id,
+            "resource_id": resource_id,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_hours_of_operations(
@@ -9655,16 +9971,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_hours_of_operations_request.DisassociateHoursOfOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
-        input_["parent_hours_of_operation_ids"] = parent_hours_of_operation_ids
+        input_: capo_connect.types.disassociate_hours_of_operations_request.DisassociateHoursOfOperationsRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+            "parent_hours_of_operation_ids": parent_hours_of_operation_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_instance_storage_config(
@@ -9707,18 +10025,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_instance_storage_config_request.DisassociateInstanceStorageConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["association_id"] = association_id
-        input_["resource_type"] = resource_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.disassociate_instance_storage_config_request.DisassociateInstanceStorageConfigRequest = {
+            "instance_id": instance_id,
+            "association_id": association_id,
+            "resource_type": resource_type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_lambda_function(
@@ -9759,17 +10080,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_lambda_function_request.DisassociateLambdaFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["function_arn"] = function_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.disassociate_lambda_function_request.DisassociateLambdaFunctionRequest = {
+            "instance_id": instance_id,
+            "function_arn": function_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_lex_bot(
@@ -9812,18 +10136,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_lex_bot_request.DisassociateLexBotRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["bot_name"] = bot_name
-        input_["lex_region"] = lex_region
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.disassociate_lex_bot_request.DisassociateLexBotRequest = {
+            "instance_id": instance_id,
+            "bot_name": bot_name,
+            "lex_region": lex_region,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_phone_number_contact_flow(
@@ -9862,15 +10189,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_phone_number_contact_flow_request.DisassociatePhoneNumberContactFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.disassociate_phone_number_contact_flow_request.DisassociatePhoneNumberContactFlowRequest = {
+            "phone_number_id": phone_number_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_queue_email_addresses(
@@ -9914,18 +10243,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_queue_email_addresses_request.DisassociateQueueEmailAddressesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
-        input_["email_addresses_id"] = email_addresses_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.disassociate_queue_email_addresses_request.DisassociateQueueEmailAddressesRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+            "email_addresses_id": email_addresses_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_queue_quick_connects(
@@ -9966,16 +10298,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_queue_quick_connects_request.DisassociateQueueQuickConnectsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
-        input_["quick_connect_ids"] = quick_connect_ids
+        input_: capo_connect.types.disassociate_queue_quick_connects_request.DisassociateQueueQuickConnectsRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+            "quick_connect_ids": quick_connect_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_routing_profile_queues(
@@ -10022,9 +10356,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_routing_profile_queues_request.DisassociateRoutingProfileQueuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
+        input_: capo_connect.types.disassociate_routing_profile_queues_request.DisassociateRoutingProfileQueuesRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+        }
         if queue_references is not None:
             input_["queue_references"] = queue_references
         if manual_assignment_queue_references is not None:
@@ -10037,6 +10372,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_security_key(
@@ -10077,17 +10413,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_security_key_request.DisassociateSecurityKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["association_id"] = association_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.disassociate_security_key_request.DisassociateSecurityKeyRequest = {
+            "instance_id": instance_id,
+            "association_id": association_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_security_profiles(
@@ -10132,17 +10471,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_security_profiles_request.DisassociateSecurityProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["security_profiles"] = security_profiles
-        input_["entity_type"] = entity_type
-        input_["entity_arn"] = entity_arn
+        input_: capo_connect.types.disassociate_security_profiles_request.DisassociateSecurityProfilesRequest = {
+            "instance_id": instance_id,
+            "security_profiles": security_profiles,
+            "entity_type": entity_type,
+            "entity_arn": entity_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_traffic_distribution_group_user(
@@ -10186,16 +10527,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_traffic_distribution_group_user_request.DisassociateTrafficDistributionGroupUserRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_distribution_group_id"] = traffic_distribution_group_id
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.disassociate_traffic_distribution_group_user_request.DisassociateTrafficDistributionGroupUserRequest = {
+            "traffic_distribution_group_id": traffic_distribution_group_id,
+            "user_id": user_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_user_proficiencies(
@@ -10236,16 +10579,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_user_proficiencies_request.DisassociateUserProficienciesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["user_id"] = user_id
-        input_["user_proficiencies"] = user_proficiencies
+        input_: capo_connect.types.disassociate_user_proficiencies_request.DisassociateUserProficienciesRequest = {
+            "instance_id": instance_id,
+            "user_id": user_id,
+            "user_proficiencies": user_proficiencies,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_workspace(
@@ -10289,16 +10634,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.disassociate_workspace_request.DisassociateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
-        input_["resource_arns"] = resource_arns
+        input_: capo_connect.types.disassociate_workspace_request.DisassociateWorkspaceRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+            "resource_arns": resource_arns,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def dismiss_user_contact(
@@ -10342,16 +10689,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.dismiss_user_contact_request.DismissUserContactRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.dismiss_user_contact_request.DismissUserContactRequest = {
+            "user_id": user_id,
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def evaluate_data_table_values(
@@ -10401,10 +10750,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.evaluate_data_table_values_request.EvaluateDataTableValuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["values"] = values
+        input_: capo_connect.types.evaluate_data_table_values_request.EvaluateDataTableValuesRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "values": values,
+        }
         if time_zone is not None:
             input_["time_zone"] = time_zone
         if next_token is not None:
@@ -10417,7 +10767,35 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_evaluate_data_table_values(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        data_table_id: "capo_connect.types.data_table_id.DataTableId",
+        values: "capo_connect.types.data_table_value_evaluation_set_list.DataTableValueEvaluationSetList",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        time_zone: Optional["capo_connect.types.time_zone.TimeZone"] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+    ) -> "AsyncIterator[capo_connect.types.evaluate_data_table_values_response.EvaluateDataTableValuesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.evaluate_data_table_values(
+                instance_id,
+                data_table_id,
+                values,
+                config_overrides=config_overrides,
+                time_zone=time_zone,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_attached_file(
         self,
@@ -10463,18 +10841,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_attached_file_request.GetAttachedFileRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["file_id"] = file_id
+        input_: capo_connect.types.get_attached_file_request.GetAttachedFileRequest = {
+            "instance_id": instance_id,
+            "file_id": file_id,
+            "associated_resource_arn": associated_resource_arn,
+        }
         if url_expiry_in_seconds is not None:
             input_["url_expiry_in_seconds"] = url_expiry_in_seconds
-        input_["associated_resource_arn"] = associated_resource_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_contact_attributes(
@@ -10513,15 +10893,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_contact_attributes_request.GetContactAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["initial_contact_id"] = initial_contact_id
+        input_: capo_connect.types.get_contact_attributes_request.GetContactAttributesRequest = {
+            "instance_id": instance_id,
+            "initial_contact_id": initial_contact_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_contact_metrics(
@@ -10565,16 +10947,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_contact_metrics_request.GetContactMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["metrics"] = metrics
+        input_: capo_connect.types.get_contact_metrics_request.GetContactMetricsRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "metrics": metrics,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_current_metric_data(
@@ -10627,12 +11011,13 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_current_metric_data_request.GetCurrentMetricDataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["filters"] = filters
+        input_: capo_connect.types.get_current_metric_data_request.GetCurrentMetricDataRequest = {
+            "instance_id": instance_id,
+            "filters": filters,
+            "current_metrics": current_metrics,
+        }
         if groupings is not None:
             input_["groupings"] = groupings
-        input_["current_metrics"] = current_metrics
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -10645,7 +11030,39 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_current_metric_data(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        filters: "capo_connect.types.filters.Filters",
+        current_metrics: "capo_connect.types.current_metrics.CurrentMetrics",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        groupings: Optional["capo_connect.types.groupings.Groupings"] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+        sort_criteria: Optional[
+            "capo_connect.types.current_metric_sort_criteria_max_one.CurrentMetricSortCriteriaMaxOne"
+        ] = None,
+    ) -> "AsyncIterator[capo_connect.types.get_current_metric_data_response.GetCurrentMetricDataResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_current_metric_data(
+                instance_id,
+                filters,
+                current_metrics,
+                config_overrides=config_overrides,
+                groupings=groupings,
+                next_token=_token,
+                max_results=max_results,
+                sort_criteria=sort_criteria,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_current_user_data(
         self,
@@ -10689,9 +11106,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_current_user_data_request.GetCurrentUserDataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["filters"] = filters
+        input_: capo_connect.types.get_current_user_data_request.GetCurrentUserDataRequest = {
+            "instance_id": instance_id,
+            "filters": filters,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -10702,7 +11120,31 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_current_user_data(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        filters: "capo_connect.types.user_data_filters.UserDataFilters",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+    ) -> "AsyncIterator[capo_connect.types.get_current_user_data_response.GetCurrentUserDataResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_current_user_data(
+                instance_id,
+                filters,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_effective_hours_of_operations(
         self,
@@ -10746,17 +11188,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_effective_hours_of_operations_request.GetEffectiveHoursOfOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
-        input_["from_date"] = from_date
-        input_["to_date"] = to_date
+        input_: capo_connect.types.get_effective_hours_of_operations_request.GetEffectiveHoursOfOperationsRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+            "from_date": from_date,
+            "to_date": to_date,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_federation_token(
@@ -10796,14 +11240,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_federation_token_request.GetFederationTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.get_federation_token_request.GetFederationTokenRequest = {
+            "instance_id": instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_flow_association(
@@ -10847,16 +11293,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_flow_association_request.GetFlowAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["resource_id"] = resource_id
-        input_["resource_type"] = resource_type
+        input_: capo_connect.types.get_flow_association_request.GetFlowAssociationRequest = {
+            "instance_id": instance_id,
+            "resource_id": resource_id,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_metric_data(
@@ -10909,14 +11357,15 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_metric_data_request.GetMetricDataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["filters"] = filters
+        input_: capo_connect.types.get_metric_data_request.GetMetricDataRequest = {
+            "instance_id": instance_id,
+            "start_time": start_time,
+            "end_time": end_time,
+            "filters": filters,
+            "historical_metrics": historical_metrics,
+        }
         if groupings is not None:
             input_["groupings"] = groupings
-        input_["historical_metrics"] = historical_metrics
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -10927,7 +11376,39 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_metric_data(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        start_time: "capo_connect.types.timestamp.Timestamp",
+        end_time: "capo_connect.types.timestamp.Timestamp",
+        filters: "capo_connect.types.filters.Filters",
+        historical_metrics: "capo_connect.types.historical_metrics.HistoricalMetrics",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        groupings: Optional["capo_connect.types.groupings.Groupings"] = None,
+        next_token: Optional["capo_connect.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+    ) -> "AsyncIterator[capo_connect.types.get_metric_data_response.GetMetricDataResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_metric_data(
+                instance_id,
+                start_time,
+                end_time,
+                filters,
+                historical_metrics,
+                config_overrides=config_overrides,
+                groupings=groupings,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_metric_data_v2(
         self,
@@ -10983,16 +11464,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_metric_data_v2_request.GetMetricDataV2Request = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_connect.types.get_metric_data_v2_request.GetMetricDataV2Request = {
+            "resource_arn": resource_arn,
+            "start_time": start_time,
+            "end_time": end_time,
+            "filters": filters,
+            "metrics": metrics,
+        }
         if interval is not None:
             input_["interval"] = interval
-        input_["filters"] = filters
         if groupings is not None:
             input_["groupings"] = groupings
-        input_["metrics"] = metrics
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -11003,7 +11485,43 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_metric_data_v2(
+        self,
+        resource_arn: "capo_connect.types.arn.ARN",
+        start_time: "capo_connect.types.timestamp.Timestamp",
+        end_time: "capo_connect.types.timestamp.Timestamp",
+        filters: "capo_connect.types.filters_v2_list.FiltersV2List",
+        metrics: "capo_connect.types.metrics_v2.MetricsV2",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        interval: Optional[
+            "capo_connect.types.interval_details.IntervalDetails"
+        ] = None,
+        groupings: Optional["capo_connect.types.groupings_v2.GroupingsV2"] = None,
+        next_token: Optional["capo_connect.types.next_token2500.NextToken2500"] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+    ) -> "AsyncIterator[capo_connect.types.get_metric_data_v2_response.GetMetricDataV2Response]":
+        _token = next_token
+        while True:
+            _response = await self.get_metric_data_v2(
+                resource_arn,
+                start_time,
+                end_time,
+                filters,
+                metrics,
+                config_overrides=config_overrides,
+                interval=interval,
+                groupings=groupings,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_prompt_file(
         self,
@@ -11043,15 +11561,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_prompt_file_request.GetPromptFileRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["prompt_id"] = prompt_id
+        input_: capo_connect.types.get_prompt_file_request.GetPromptFileRequest = {
+            "instance_id": instance_id,
+            "prompt_id": prompt_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_task_template(
@@ -11096,9 +11616,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_task_template_request.GetTaskTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["task_template_id"] = task_template_id
+        input_: capo_connect.types.get_task_template_request.GetTaskTemplateRequest = {
+            "instance_id": instance_id,
+            "task_template_id": task_template_id,
+        }
         if snapshot_version is not None:
             input_["snapshot_version"] = snapshot_version
 
@@ -11107,6 +11628,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_test_case_execution_summary(
@@ -11150,16 +11672,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_test_case_execution_summary_request.GetTestCaseExecutionSummaryRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["test_case_id"] = test_case_id
-        input_["test_case_execution_id"] = test_case_execution_id
+        input_: capo_connect.types.get_test_case_execution_summary_request.GetTestCaseExecutionSummaryRequest = {
+            "instance_id": instance_id,
+            "test_case_id": test_case_id,
+            "test_case_execution_id": test_case_execution_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_traffic_distribution(
@@ -11198,14 +11722,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.get_traffic_distribution_request.GetTrafficDistributionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connect.types.get_traffic_distribution_request.GetTrafficDistributionRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_phone_number(
@@ -11255,21 +11781,24 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.import_phone_number_request.ImportPhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["source_phone_number_arn"] = source_phone_number_arn
+        input_: capo_connect.types.import_phone_number_request.ImportPhoneNumberRequest = {
+            "instance_id": instance_id,
+            "source_phone_number_arn": source_phone_number_arn,
+        }
         if phone_number_description is not None:
             input_["phone_number_description"] = phone_number_description
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_workspace_media(
@@ -11314,17 +11843,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.import_workspace_media_request.ImportWorkspaceMediaRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
-        input_["media_type"] = media_type
-        input_["media_source"] = media_source
+        input_: capo_connect.types.import_workspace_media_request.ImportWorkspaceMediaRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+            "media_type": media_type,
+            "media_source": media_source,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_agent_statuses(
@@ -11371,8 +11902,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_agent_status_request.ListAgentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_agent_status_request.ListAgentStatusRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -11385,6 +11917,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_agent_statuses(
@@ -11456,8 +11989,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_analytics_data_associations_request.ListAnalyticsDataAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_analytics_data_associations_request.ListAnalyticsDataAssociationsRequest = {
+            "instance_id": instance_id
+        }
         if data_set_id is not None:
             input_["data_set_id"] = data_set_id
         if next_token is not None:
@@ -11470,6 +12004,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_analytics_data_lake_data_sets(
@@ -11512,8 +12047,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_analytics_data_lake_data_sets_request.ListAnalyticsDataLakeDataSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_analytics_data_lake_data_sets_request.ListAnalyticsDataLakeDataSetsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -11524,6 +12060,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_approved_origins(
@@ -11568,8 +12105,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_approved_origins_request.ListApprovedOriginsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_approved_origins_request.ListApprovedOriginsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -11580,6 +12118,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_approved_origins(
@@ -11649,9 +12188,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_associated_contacts_request.ListAssociatedContactsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.list_associated_contacts_request.ListAssociatedContactsRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -11662,6 +12202,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_attached_files_configurations(
@@ -11704,8 +12245,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_attached_files_configurations_request.ListAttachedFilesConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_attached_files_configurations_request.ListAttachedFilesConfigurationsRequest = {
+            "instance_id": instance_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -11716,6 +12258,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_attached_files_configurations(
@@ -11781,8 +12324,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_authentication_profiles_request.ListAuthenticationProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_authentication_profiles_request.ListAuthenticationProfilesRequest = {
+            "instance_id": instance_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -11793,6 +12337,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_authentication_profiles(
@@ -11859,19 +12404,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_bots_request.ListBotsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_bots_request.ListBotsRequest = {
+            "instance_id": instance_id,
+            "lex_version": lex_version,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["lex_version"] = lex_version
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_bots(
@@ -11941,9 +12488,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_child_hours_of_operations_request.ListChildHoursOfOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
+        input_: capo_connect.types.list_child_hours_of_operations_request.ListChildHoursOfOperationsRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -11954,6 +12502,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_child_hours_of_operations(
@@ -12022,9 +12571,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_contact_evaluations_request.ListContactEvaluationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.list_contact_evaluations_request.ListContactEvaluationsRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -12033,6 +12583,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_contact_evaluations(
@@ -12101,9 +12652,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_contact_flow_module_aliases_request.ListContactFlowModuleAliasesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_module_id"] = contact_flow_module_id
+        input_: capo_connect.types.list_contact_flow_module_aliases_request.ListContactFlowModuleAliasesRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12114,6 +12666,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_contact_flow_module_aliases(
@@ -12188,8 +12741,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_contact_flow_modules_request.ListContactFlowModulesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_contact_flow_modules_request.ListContactFlowModulesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12202,6 +12756,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_contact_flow_modules(
@@ -12274,9 +12829,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_contact_flow_module_versions_request.ListContactFlowModuleVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_module_id"] = contact_flow_module_id
+        input_: capo_connect.types.list_contact_flow_module_versions_request.ListContactFlowModuleVersionsRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12287,6 +12843,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_contact_flow_module_versions(
@@ -12360,8 +12917,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_contact_flows_request.ListContactFlowsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_contact_flows_request.ListContactFlowsRequest = {
+            "instance_id": instance_id
+        }
         if contact_flow_types is not None:
             input_["contact_flow_types"] = contact_flow_types
         if next_token is not None:
@@ -12374,6 +12932,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_contact_flows(
@@ -12446,9 +13005,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_contact_flow_versions_request.ListContactFlowVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_id"] = contact_flow_id
+        input_: capo_connect.types.list_contact_flow_versions_request.ListContactFlowVersionsRequest = {
+            "instance_id": instance_id,
+            "contact_flow_id": contact_flow_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12459,6 +13019,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_contact_flow_versions(
@@ -12528,10 +13089,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_contact_references_request.ListContactReferencesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["reference_types"] = reference_types
+        input_: capo_connect.types.list_contact_references_request.ListContactReferencesRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "reference_types": reference_types,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -12540,6 +13102,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_contact_references(
@@ -12612,9 +13175,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_data_table_attributes_request.ListDataTableAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
+        input_: capo_connect.types.list_data_table_attributes_request.ListDataTableAttributesRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+        }
         if attribute_ids is not None:
             input_["attribute_ids"] = attribute_ids
         if next_token is not None:
@@ -12627,6 +13191,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_table_attributes(
@@ -12705,9 +13270,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_data_table_primary_values_request.ListDataTablePrimaryValuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
+        input_: capo_connect.types.list_data_table_primary_values_request.ListDataTablePrimaryValuesRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+        }
         if record_ids is not None:
             input_["record_ids"] = record_ids
         if primary_attribute_values is not None:
@@ -12722,6 +13288,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_table_primary_values(
@@ -12796,8 +13363,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_data_tables_request.ListDataTablesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_data_tables_request.ListDataTablesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12808,6 +13376,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_tables(
@@ -12884,9 +13453,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_data_table_values_request.ListDataTableValuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
+        input_: capo_connect.types.list_data_table_values_request.ListDataTableValuesRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+        }
         if record_ids is not None:
             input_["record_ids"] = record_ids
         if primary_attribute_values is not None:
@@ -12901,6 +13471,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_table_values(
@@ -12979,8 +13550,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_default_vocabularies_request.ListDefaultVocabulariesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_default_vocabularies_request.ListDefaultVocabulariesRequest = {
+            "instance_id": instance_id
+        }
         if language_code is not None:
             input_["language_code"] = language_code
         if max_results is not None:
@@ -12993,6 +13565,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_default_vocabularies(
@@ -13068,10 +13641,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_entity_security_profiles_request.ListEntitySecurityProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["entity_type"] = entity_type
-        input_["entity_arn"] = entity_arn
+        input_: capo_connect.types.list_entity_security_profiles_request.ListEntitySecurityProfilesRequest = {
+            "instance_id": instance_id,
+            "entity_type": entity_type,
+            "entity_arn": entity_arn,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13082,6 +13656,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_entity_security_profiles(
@@ -13152,8 +13727,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_evaluation_forms_request.ListEvaluationFormsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_evaluation_forms_request.ListEvaluationFormsRequest = {
+            "instance_id": instance_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -13164,6 +13740,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_evaluation_forms(
@@ -13230,9 +13807,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_evaluation_form_versions_request.ListEvaluationFormVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["evaluation_form_id"] = evaluation_form_id
+        input_: capo_connect.types.list_evaluation_form_versions_request.ListEvaluationFormVersionsRequest = {
+            "instance_id": instance_id,
+            "evaluation_form_id": evaluation_form_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -13243,6 +13821,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_evaluation_form_versions(
@@ -13315,8 +13894,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_flow_associations_request.ListFlowAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_flow_associations_request.ListFlowAssociationsRequest = {
+            "instance_id": instance_id
+        }
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if next_token is not None:
@@ -13329,6 +13909,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_flow_associations(
@@ -13400,9 +13981,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_hours_of_operation_overrides_request.ListHoursOfOperationOverridesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
+        input_: capo_connect.types.list_hours_of_operation_overrides_request.ListHoursOfOperationOverridesRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13413,6 +13995,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_hours_of_operation_overrides(
@@ -13480,8 +14063,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_hours_of_operations_request.ListHoursOfOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_hours_of_operations_request.ListHoursOfOperationsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13492,6 +14076,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_hours_of_operations(
@@ -13557,8 +14142,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_instance_attributes_request.ListInstanceAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_instance_attributes_request.ListInstanceAttributesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13569,6 +14155,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_instance_attributes(
@@ -13629,7 +14216,7 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_instances_request.ListInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.list_instances_request.ListInstancesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13640,6 +14227,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_instances(
@@ -13705,9 +14293,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_instance_storage_configs_request.ListInstanceStorageConfigsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["resource_type"] = resource_type
+        input_: capo_connect.types.list_instance_storage_configs_request.ListInstanceStorageConfigsRequest = {
+            "instance_id": instance_id,
+            "resource_type": resource_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13718,6 +14307,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_instance_storage_configs(
@@ -13790,8 +14380,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_integration_associations_request.ListIntegrationAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_integration_associations_request.ListIntegrationAssociationsRequest = {
+            "instance_id": instance_id
+        }
         if integration_type is not None:
             input_["integration_type"] = integration_type
         if next_token is not None:
@@ -13806,6 +14397,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_integration_associations(
@@ -13879,8 +14471,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_lambda_functions_request.ListLambdaFunctionsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_lambda_functions_request.ListLambdaFunctionsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13891,6 +14484,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_lambda_functions(
@@ -13956,8 +14550,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_lex_bots_request.ListLexBotsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_lex_bots_request.ListLexBotsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13968,6 +14563,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_lex_bots(
@@ -14034,8 +14630,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_notifications_request.ListNotificationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_notifications_request.ListNotificationsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -14046,6 +14643,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_phone_numbers(
@@ -14096,8 +14694,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_phone_numbers_request.ListPhoneNumbersRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_phone_numbers_request.ListPhoneNumbersRequest = {
+            "instance_id": instance_id
+        }
         if phone_number_types is not None:
             input_["phone_number_types"] = phone_number_types
         if phone_number_country_codes is not None:
@@ -14112,6 +14711,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_phone_numbers(
@@ -14201,7 +14801,7 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_phone_numbers_v2_request.ListPhoneNumbersV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.list_phone_numbers_v2_request.ListPhoneNumbersV2Request = {}
         if target_arn is not None:
             input_["target_arn"] = target_arn
         if instance_id is not None:
@@ -14222,6 +14822,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_phone_numbers_v2(
@@ -14303,8 +14904,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_predefined_attributes_request.ListPredefinedAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_predefined_attributes_request.ListPredefinedAttributesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -14315,6 +14917,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_predefined_attributes(
@@ -14380,8 +14983,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_prompts_request.ListPromptsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_prompts_request.ListPromptsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -14392,6 +14996,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_prompts(
@@ -14460,9 +15065,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_queue_email_addresses_request.ListQueueEmailAddressesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
+        input_: capo_connect.types.list_queue_email_addresses_request.ListQueueEmailAddressesRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -14473,6 +15079,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_queue_quick_connects(
@@ -14517,9 +15124,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_queue_quick_connects_request.ListQueueQuickConnectsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
+        input_: capo_connect.types.list_queue_quick_connects_request.ListQueueQuickConnectsRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -14530,6 +15138,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_queue_quick_connects(
@@ -14599,8 +15208,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_queues_request.ListQueuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_queues_request.ListQueuesRequest = {
+            "instance_id": instance_id
+        }
         if queue_types is not None:
             input_["queue_types"] = queue_types
         if next_token is not None:
@@ -14613,6 +15223,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_queues(
@@ -14684,8 +15295,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_quick_connects_request.ListQuickConnectsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_quick_connects_request.ListQuickConnectsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -14698,6 +15310,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_quick_connects(
@@ -14776,22 +15389,53 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_realtime_contact_analysis_segments_v2_request.ListRealtimeContactAnalysisSegmentsV2Request = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.list_realtime_contact_analysis_segments_v2_request.ListRealtimeContactAnalysisSegmentsV2Request = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "output_type": output_type,
+            "segment_types": segment_types,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["output_type"] = output_type
-        input_["segment_types"] = segment_types
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_realtime_contact_analysis_segments_v2(
+        self,
+        instance_id: "capo_connect.types.instance_id.InstanceId",
+        contact_id: "capo_connect.types.contact_id.ContactId",
+        output_type: "capo_connect.types.real_time_contact_analysis_output_type.RealTimeContactAnalysisOutputType",
+        segment_types: "capo_connect.types.real_time_contact_analysis_segment_types.RealTimeContactAnalysisSegmentTypes",
+        *,
+        config_overrides: Optional[AsyncConnectClientConfig] = None,
+        max_results: Optional["capo_connect.types.max_result100.MaxResult100"] = None,
+        next_token: Optional[
+            "capo_connect.types.large_next_token.LargeNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_connect.types.list_realtime_contact_analysis_segments_v2_response.ListRealtimeContactAnalysisSegmentsV2Response]":
+        _token = next_token
+        while True:
+            _response = await self.list_realtime_contact_analysis_segments_v2(
+                instance_id,
+                contact_id,
+                output_type,
+                segment_types,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_routing_profile_manual_assignment_queues(
         self,
@@ -14835,9 +15479,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_routing_profile_manual_assignment_queues_request.ListRoutingProfileManualAssignmentQueuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
+        input_: capo_connect.types.list_routing_profile_manual_assignment_queues_request.ListRoutingProfileManualAssignmentQueuesRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -14848,6 +15493,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_routing_profile_manual_assignment_queues(
@@ -14920,9 +15566,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_routing_profile_queues_request.ListRoutingProfileQueuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
+        input_: capo_connect.types.list_routing_profile_queues_request.ListRoutingProfileQueuesRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -14933,6 +15580,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_routing_profile_queues(
@@ -15004,8 +15652,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_routing_profiles_request.ListRoutingProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_routing_profiles_request.ListRoutingProfilesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -15016,6 +15665,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_routing_profiles(
@@ -15089,8 +15739,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_rules_request.ListRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_rules_request.ListRulesRequest = {
+            "instance_id": instance_id
+        }
         if publish_status is not None:
             input_["publish_status"] = publish_status
         if event_source_name is not None:
@@ -15105,6 +15756,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_rules(
@@ -15178,8 +15830,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_security_keys_request.ListSecurityKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_security_keys_request.ListSecurityKeysRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -15190,6 +15843,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_security_keys(
@@ -15257,9 +15911,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_security_profile_applications_request.ListSecurityProfileApplicationsRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_id"] = security_profile_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_security_profile_applications_request.ListSecurityProfileApplicationsRequest = {
+            "security_profile_id": security_profile_id,
+            "instance_id": instance_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -15270,6 +15925,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_security_profile_applications(
@@ -15339,9 +15995,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_security_profile_flow_modules_request.ListSecurityProfileFlowModulesRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_id"] = security_profile_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_security_profile_flow_modules_request.ListSecurityProfileFlowModulesRequest = {
+            "security_profile_id": security_profile_id,
+            "instance_id": instance_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -15352,6 +16009,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_security_profile_flow_modules(
@@ -15421,9 +16079,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_security_profile_permissions_request.ListSecurityProfilePermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_id"] = security_profile_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_security_profile_permissions_request.ListSecurityProfilePermissionsRequest = {
+            "security_profile_id": security_profile_id,
+            "instance_id": instance_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -15434,6 +16093,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_security_profile_permissions(
@@ -15501,8 +16161,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_security_profiles_request.ListSecurityProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_security_profiles_request.ListSecurityProfilesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -15513,6 +16174,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_security_profiles(
@@ -15576,14 +16238,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_connect.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_task_templates(
@@ -15632,8 +16296,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_task_templates_request.ListTaskTemplatesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_task_templates_request.ListTaskTemplatesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -15648,6 +16313,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_task_templates(
@@ -15730,10 +16396,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_test_case_execution_records_request.ListTestCaseExecutionRecordsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["test_case_id"] = test_case_id
-        input_["test_case_execution_id"] = test_case_execution_id
+        input_: capo_connect.types.list_test_case_execution_records_request.ListTestCaseExecutionRecordsRequest = {
+            "instance_id": instance_id,
+            "test_case_id": test_case_id,
+            "test_case_execution_id": test_case_execution_id,
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -15746,6 +16413,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_test_case_executions(
@@ -15807,8 +16475,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_test_case_executions_request.ListTestCaseExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_test_case_executions_request.ListTestCaseExecutionsRequest = {
+            "instance_id": instance_id
+        }
         if test_case_id is not None:
             input_["test_case_id"] = test_case_id
         if test_case_name is not None:
@@ -15829,6 +16498,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_test_cases(
@@ -15872,8 +16542,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_test_cases_request.ListTestCasesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_test_cases_request.ListTestCasesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -15884,6 +16555,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_test_cases(
@@ -15950,7 +16622,7 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_traffic_distribution_groups_request.ListTrafficDistributionGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.list_traffic_distribution_groups_request.ListTrafficDistributionGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -15963,6 +16635,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_traffic_distribution_groups(
@@ -16032,8 +16705,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_traffic_distribution_group_users_request.ListTrafficDistributionGroupUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_distribution_group_id"] = traffic_distribution_group_id
+        input_: capo_connect.types.list_traffic_distribution_group_users_request.ListTrafficDistributionGroupUsersRequest = {
+            "traffic_distribution_group_id": traffic_distribution_group_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -16044,6 +16718,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_traffic_distribution_group_users(
@@ -16112,9 +16787,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_use_cases_request.ListUseCasesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["integration_association_id"] = integration_association_id
+        input_: capo_connect.types.list_use_cases_request.ListUseCasesRequest = {
+            "instance_id": instance_id,
+            "integration_association_id": integration_association_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -16125,6 +16801,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_use_cases(
@@ -16192,8 +16869,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_user_hierarchy_groups_request.ListUserHierarchyGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_user_hierarchy_groups_request.ListUserHierarchyGroupsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -16204,6 +16882,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_user_hierarchy_groups(
@@ -16272,19 +16951,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_user_notifications_request.ListUserNotificationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_user_notifications_request.ListUserNotificationsRequest = {
+            "instance_id": instance_id,
+            "user_id": user_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["user_id"] = user_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_user_proficiencies(
@@ -16329,9 +17010,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_user_proficiencies_request.ListUserProficienciesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["user_id"] = user_id
+        input_: capo_connect.types.list_user_proficiencies_request.ListUserProficienciesRequest = {
+            "instance_id": instance_id,
+            "user_id": user_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -16342,6 +17024,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_user_proficiencies(
@@ -16409,8 +17092,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_users_request.ListUsersRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -16421,6 +17105,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_users(
@@ -16491,8 +17176,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_views_request.ListViewsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_views_request.ListViewsRequest = {
+            "instance_id": instance_id
+        }
         if type is not None:
             input_["type"] = type
         if next_token is not None:
@@ -16505,6 +17191,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_views(
@@ -16579,9 +17266,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_view_versions_request.ListViewVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["view_id"] = view_id
+        input_: capo_connect.types.list_view_versions_request.ListViewVersionsRequest = {
+            "instance_id": instance_id,
+            "view_id": view_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -16592,6 +17280,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_view_versions(
@@ -16660,15 +17349,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_workspace_media_request.ListWorkspaceMediaRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_connect.types.list_workspace_media_request.ListWorkspaceMediaRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_workspace_pages(
@@ -16714,9 +17405,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_workspace_pages_request.ListWorkspacePagesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_connect.types.list_workspace_pages_request.ListWorkspacePagesRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -16727,6 +17419,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_workspace_pages(
@@ -16795,8 +17488,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.list_workspaces_request.ListWorkspacesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.list_workspaces_request.ListWorkspacesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -16807,6 +17501,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_workspaces(
@@ -16880,20 +17575,23 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.monitor_contact_request.MonitorContactRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["user_id"] = user_id
+        input_: capo_connect.types.monitor_contact_request.MonitorContactRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "user_id": user_id,
+        }
         if allowed_monitor_capabilities is not None:
             input_["allowed_monitor_capabilities"] = allowed_monitor_capabilities
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def pause_contact(
@@ -16941,9 +17639,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.pause_contact_request.PauseContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.pause_contact_request.PauseContactRequest = {
+            "contact_id": contact_id,
+            "instance_id": instance_id,
+        }
         if contact_flow_id is not None:
             input_["contact_flow_id"] = contact_flow_id
 
@@ -16952,6 +17651,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_user_status(
@@ -16995,16 +17695,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.put_user_status_request.PutUserStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
-        input_["agent_status_id"] = agent_status_id
+        input_: capo_connect.types.put_user_status_request.PutUserStatusRequest = {
+            "user_id": user_id,
+            "instance_id": instance_id,
+            "agent_status_id": agent_status_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def release_phone_number(
@@ -17045,16 +17747,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.release_phone_number_request.ReleasePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.release_phone_number_request.ReleasePhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def replicate_instance(
@@ -17102,18 +17807,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.replicate_instance_request.ReplicateInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["replica_region"] = replica_region
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["replica_alias"] = replica_alias
+        input_: capo_connect.types.replicate_instance_request.ReplicateInstanceRequest = {
+            "instance_id": instance_id,
+            "replica_region": replica_region,
+            "replica_alias": replica_alias,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resume_contact(
@@ -17160,9 +17868,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.resume_contact_request.ResumeContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.resume_contact_request.ResumeContactRequest = {
+            "contact_id": contact_id,
+            "instance_id": instance_id,
+        }
         if contact_flow_id is not None:
             input_["contact_flow_id"] = contact_flow_id
 
@@ -17171,6 +17880,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resume_contact_recording(
@@ -17216,10 +17926,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.resume_contact_recording_request.ResumeContactRecordingRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["initial_contact_id"] = initial_contact_id
+        input_: capo_connect.types.resume_contact_recording_request.ResumeContactRecordingRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "initial_contact_id": initial_contact_id,
+        }
         if contact_recording_type is not None:
             input_["contact_recording_type"] = contact_recording_type
 
@@ -17228,6 +17939,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_agent_statuses(
@@ -17280,8 +17992,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_agent_statuses_request.SearchAgentStatusesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_agent_statuses_request.SearchAgentStatusesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -17296,6 +18009,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_agent_statuses(
@@ -17380,13 +18094,14 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_available_phone_numbers_request.SearchAvailablePhoneNumbersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.search_available_phone_numbers_request.SearchAvailablePhoneNumbersRequest = {
+            "phone_number_country_code": phone_number_country_code,
+            "phone_number_type": phone_number_type,
+        }
         if target_arn is not None:
             input_["target_arn"] = target_arn
         if instance_id is not None:
             input_["instance_id"] = instance_id
-        input_["phone_number_country_code"] = phone_number_country_code
-        input_["phone_number_type"] = phone_number_type
         if phone_number_prefix is not None:
             input_["phone_number_prefix"] = phone_number_prefix
         if max_results is not None:
@@ -17399,6 +18114,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_available_phone_numbers(
@@ -17484,8 +18200,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_contact_evaluations_request.SearchContactEvaluationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_contact_evaluations_request.SearchContactEvaluationsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -17500,6 +18217,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_contact_flow_modules(
@@ -17550,8 +18268,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_contact_flow_modules_request.SearchContactFlowModulesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_contact_flow_modules_request.SearchContactFlowModulesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -17566,6 +18285,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_contact_flow_modules(
@@ -17647,8 +18367,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_contact_flows_request.SearchContactFlowsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_contact_flows_request.SearchContactFlowsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -17663,6 +18384,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_contact_flows(
@@ -17746,9 +18468,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_contacts_request.SearchContactsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["time_range"] = time_range
+        input_: capo_connect.types.search_contacts_request.SearchContactsRequest = {
+            "instance_id": instance_id,
+            "time_range": time_range,
+        }
         if search_criteria is not None:
             input_["search_criteria"] = search_criteria
         if max_results is not None:
@@ -17763,6 +18486,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_contacts(
@@ -17848,8 +18572,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_data_tables_request.SearchDataTablesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_data_tables_request.SearchDataTablesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -17864,6 +18589,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_data_tables(
@@ -17946,8 +18672,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_email_addresses_request.SearchEmailAddressesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_email_addresses_request.SearchEmailAddressesRequest = {
+            "instance_id": instance_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -17962,6 +18689,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_evaluation_forms(
@@ -18012,8 +18740,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_evaluation_forms_request.SearchEvaluationFormsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_evaluation_forms_request.SearchEvaluationFormsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -18028,6 +18757,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_hours_of_operation_overrides(
@@ -18077,8 +18807,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_hours_of_operation_overrides_request.SearchHoursOfOperationOverridesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_hours_of_operation_overrides_request.SearchHoursOfOperationOverridesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -18093,6 +18824,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_hours_of_operation_overrides(
@@ -18174,8 +18906,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_hours_of_operations_request.SearchHoursOfOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_hours_of_operations_request.SearchHoursOfOperationsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -18190,6 +18923,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_hours_of_operations(
@@ -18272,8 +19006,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_notifications_request.SearchNotificationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_notifications_request.SearchNotificationsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -18288,6 +19023,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_predefined_attributes(
@@ -18334,8 +19070,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_predefined_attributes_request.SearchPredefinedAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_predefined_attributes_request.SearchPredefinedAttributesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -18348,6 +19085,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_predefined_attributes(
@@ -18425,8 +19163,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_prompts_request.SearchPromptsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_prompts_request.SearchPromptsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -18441,6 +19180,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_prompts(
@@ -18522,8 +19262,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_queues_request.SearchQueuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_queues_request.SearchQueuesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -18538,6 +19279,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_queues(
@@ -18621,8 +19363,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_quick_connects_request.SearchQuickConnectsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_quick_connects_request.SearchQuickConnectsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -18637,6 +19380,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_quick_connects(
@@ -18719,8 +19463,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_resource_tags_request.SearchResourceTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_resource_tags_request.SearchResourceTagsRequest = {
+            "instance_id": instance_id
+        }
         if resource_types is not None:
             input_["resource_types"] = resource_types
         if next_token is not None:
@@ -18735,6 +19480,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_resource_tags(
@@ -18816,8 +19562,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_routing_profiles_request.SearchRoutingProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_routing_profiles_request.SearchRoutingProfilesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -18832,6 +19579,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_routing_profiles(
@@ -18913,8 +19661,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_security_profiles_request.SearchSecurityProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_security_profiles_request.SearchSecurityProfilesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -18929,6 +19678,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_security_profiles(
@@ -19011,8 +19761,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_test_cases_request.SearchTestCasesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_test_cases_request.SearchTestCasesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -19027,6 +19778,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_test_cases(
@@ -19108,8 +19860,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_user_hierarchy_groups_request.SearchUserHierarchyGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_user_hierarchy_groups_request.SearchUserHierarchyGroupsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -19124,6 +19877,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_user_hierarchy_groups(
@@ -19204,8 +19958,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_users_request.SearchUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_users_request.SearchUsersRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -19220,6 +19975,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_users(
@@ -19302,8 +20058,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_views_request.SearchViewsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_views_request.SearchViewsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -19318,6 +20075,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_views(
@@ -19402,8 +20160,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_vocabularies_request.SearchVocabulariesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_vocabularies_request.SearchVocabulariesRequest = {
+            "instance_id": instance_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -19420,6 +20179,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_vocabularies(
@@ -19506,8 +20266,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_workspace_associations_request.SearchWorkspaceAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_workspace_associations_request.SearchWorkspaceAssociationsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -19522,6 +20283,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_workspace_associations(
@@ -19604,8 +20366,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.search_workspaces_request.SearchWorkspacesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.search_workspaces_request.SearchWorkspacesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -19620,6 +20383,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_workspaces(
@@ -19699,12 +20463,13 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.send_chat_integration_event_request.SendChatIntegrationEventRequest = {}  # type: ignore[typeddict-item]
-        input_["source_id"] = source_id
-        input_["destination_id"] = destination_id
+        input_: capo_connect.types.send_chat_integration_event_request.SendChatIntegrationEventRequest = {
+            "source_id": source_id,
+            "destination_id": destination_id,
+            "event": event,
+        }
         if subtype is not None:
             input_["subtype"] = subtype
-        input_["event"] = event
         if new_session_details is not None:
             input_["new_session_details"] = new_session_details
 
@@ -19713,6 +20478,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_outbound_email(
@@ -19771,24 +20537,27 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.send_outbound_email_request.SendOutboundEmailRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["from_email_address"] = from_email_address
-        input_["destination_email_address"] = destination_email_address
+        input_: capo_connect.types.send_outbound_email_request.SendOutboundEmailRequest = {
+            "instance_id": instance_id,
+            "from_email_address": from_email_address,
+            "destination_email_address": destination_email_address,
+            "email_message": email_message,
+            "traffic_type": traffic_type,
+        }
         if additional_recipients is not None:
             input_["additional_recipients"] = additional_recipients
-        input_["email_message"] = email_message
-        input_["traffic_type"] = traffic_type
         if source_campaign is not None:
             input_["source_campaign"] = source_campaign
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_attached_file_upload(
@@ -19846,16 +20615,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_attached_file_upload_request.StartAttachedFileUploadRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["instance_id"] = instance_id
-        input_["file_name"] = file_name
-        input_["file_size_in_bytes"] = file_size_in_bytes
+        input_: capo_connect.types.start_attached_file_upload_request.StartAttachedFileUploadRequest = {
+            "instance_id": instance_id,
+            "file_name": file_name,
+            "file_size_in_bytes": file_size_in_bytes,
+            "file_use_case_type": file_use_case_type,
+            "associated_resource_arn": associated_resource_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if url_expiry_in_seconds is not None:
             input_["url_expiry_in_seconds"] = url_expiry_in_seconds
-        input_["file_use_case_type"] = file_use_case_type
-        input_["associated_resource_arn"] = associated_resource_arn
         if created_by is not None:
             input_["created_by"] = created_by
         if tags is not None:
@@ -19866,6 +20637,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_chat_contact(
@@ -19944,18 +20716,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_chat_contact_request.StartChatContactRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_id"] = contact_flow_id
+        input_: capo_connect.types.start_chat_contact_request.StartChatContactRequest = {
+            "instance_id": instance_id,
+            "contact_flow_id": contact_flow_id,
+            "participant_details": participant_details,
+        }
         if attributes is not None:
             input_["attributes"] = attributes
-        input_["participant_details"] = participant_details
         if participant_configuration is not None:
             input_["participant_configuration"] = participant_configuration
         if initial_message is not None:
             input_["initial_message"] = initial_message
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if chat_duration_in_minutes is not None:
             input_["chat_duration_in_minutes"] = chat_duration_in_minutes
         if supported_messaging_content_types is not None:
@@ -19978,6 +20752,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_contact_evaluation(
@@ -20029,14 +20804,16 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_contact_evaluation_request.StartContactEvaluationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["evaluation_form_id"] = evaluation_form_id
+        input_: capo_connect.types.start_contact_evaluation_request.StartContactEvaluationRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "evaluation_form_id": evaluation_form_id,
+        }
         if auto_evaluation_configuration is not None:
             input_["auto_evaluation_configuration"] = auto_evaluation_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -20045,6 +20822,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_contact_media_processing(
@@ -20093,7 +20871,7 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_contact_media_processing_request.StartContactMediaProcessingRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.start_contact_media_processing_request.StartContactMediaProcessingRequest = {}
         if instance_id is not None:
             input_["instance_id"] = instance_id
         if contact_id is not None:
@@ -20108,6 +20886,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_contact_recording(
@@ -20152,17 +20931,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_contact_recording_request.StartContactRecordingRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["initial_contact_id"] = initial_contact_id
-        input_["voice_recording_configuration"] = voice_recording_configuration
+        input_: capo_connect.types.start_contact_recording_request.StartContactRecordingRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "initial_contact_id": initial_contact_id,
+            "voice_recording_configuration": voice_recording_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_contact_streaming(
@@ -20207,17 +20988,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_contact_streaming_request.StartContactStreamingRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["chat_streaming_configuration"] = chat_streaming_configuration
-        input_["client_token"] = client_token
+        input_: capo_connect.types.start_contact_streaming_request.StartContactStreamingRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "chat_streaming_configuration": chat_streaming_configuration,
+            "client_token": client_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_email_contact(
@@ -20294,17 +21077,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_email_contact_request.StartEmailContactRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["from_email_address"] = from_email_address
-        input_["destination_email_address"] = destination_email_address
+        input_: capo_connect.types.start_email_contact_request.StartEmailContactRequest = {
+            "instance_id": instance_id,
+            "from_email_address": from_email_address,
+            "destination_email_address": destination_email_address,
+            "email_message": email_message,
+        }
         if description is not None:
             input_["description"] = description
         if references is not None:
             input_["references"] = references
         if name is not None:
             input_["name"] = name
-        input_["email_message"] = email_message
         if additional_recipients is not None:
             input_["additional_recipients"] = additional_recipients
         if attachments is not None:
@@ -20317,14 +21101,16 @@ class AsyncConnectClient:
             input_["attributes"] = attributes
         if segment_attributes is not None:
             input_["segment_attributes"] = segment_attributes
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_outbound_chat_contact(
@@ -20394,14 +21180,15 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_outbound_chat_contact_request.StartOutboundChatContactRequest = {}  # type: ignore[typeddict-item]
-        input_["source_endpoint"] = source_endpoint
-        input_["destination_endpoint"] = destination_endpoint
-        input_["instance_id"] = instance_id
-        input_["segment_attributes"] = segment_attributes
+        input_: capo_connect.types.start_outbound_chat_contact_request.StartOutboundChatContactRequest = {
+            "source_endpoint": source_endpoint,
+            "destination_endpoint": destination_endpoint,
+            "instance_id": instance_id,
+            "segment_attributes": segment_attributes,
+            "contact_flow_id": contact_flow_id,
+        }
         if attributes is not None:
             input_["attributes"] = attributes
-        input_["contact_flow_id"] = contact_flow_id
         if chat_duration_in_minutes is not None:
             input_["chat_duration_in_minutes"] = chat_duration_in_minutes
         if participant_details is not None:
@@ -20418,14 +21205,16 @@ class AsyncConnectClient:
             input_["supported_messaging_content_types"] = (
                 supported_messaging_content_types
             )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_outbound_email_contact(
@@ -20482,23 +21271,26 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_outbound_email_contact_request.StartOutboundEmailContactRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.start_outbound_email_contact_request.StartOutboundEmailContactRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "destination_email_address": destination_email_address,
+            "email_message": email_message,
+        }
         if from_email_address is not None:
             input_["from_email_address"] = from_email_address
-        input_["destination_email_address"] = destination_email_address
         if additional_recipients is not None:
             input_["additional_recipients"] = additional_recipients
-        input_["email_message"] = email_message
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_outbound_voice_contact(
@@ -20579,7 +21371,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_outbound_voice_contact_request.StartOutboundVoiceContactRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.start_outbound_voice_contact_request.StartOutboundVoiceContactRequest = {
+            "destination_phone_number": destination_phone_number,
+            "contact_flow_id": contact_flow_id,
+            "instance_id": instance_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -20588,11 +21384,9 @@ class AsyncConnectClient:
             input_["references"] = references
         if related_contact_id is not None:
             input_["related_contact_id"] = related_contact_id
-        input_["destination_phone_number"] = destination_phone_number
-        input_["contact_flow_id"] = contact_flow_id
-        input_["instance_id"] = instance_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if source_phone_number is not None:
             input_["source_phone_number"] = source_phone_number
         if queue_id is not None:
@@ -20615,6 +21409,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_screen_sharing(
@@ -20658,17 +21453,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_screen_sharing_request.StartScreenSharingRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.start_screen_sharing_request.StartScreenSharingRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_task_contact(
@@ -20746,21 +21544,23 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_task_contact_request.StartTaskContactRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.start_task_contact_request.StartTaskContactRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
         if previous_contact_id is not None:
             input_["previous_contact_id"] = previous_contact_id
         if contact_flow_id is not None:
             input_["contact_flow_id"] = contact_flow_id
         if attributes is not None:
             input_["attributes"] = attributes
-        input_["name"] = name
         if references is not None:
             input_["references"] = references
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if scheduled_time is not None:
             input_["scheduled_time"] = scheduled_time
         if task_template_id is not None:
@@ -20779,6 +21579,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_test_case_execution(
@@ -20823,17 +21624,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_test_case_execution_request.StartTestCaseExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["test_case_id"] = test_case_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.start_test_case_execution_request.StartTestCaseExecutionRequest = {
+            "instance_id": instance_id,
+            "test_case_id": test_case_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_web_rtc_contact(
@@ -20891,16 +21695,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.start_web_rtc_contact_request.StartWebRTCContactRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.start_web_rtc_contact_request.StartWebRTCContactRequest = {
+            "contact_flow_id": contact_flow_id,
+            "instance_id": instance_id,
+            "participant_details": participant_details,
+        }
         if attributes is not None:
             input_["attributes"] = attributes
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["contact_flow_id"] = contact_flow_id
-        input_["instance_id"] = instance_id
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if allowed_capabilities is not None:
             input_["allowed_capabilities"] = allowed_capabilities
-        input_["participant_details"] = participant_details
         if related_contact_id is not None:
             input_["related_contact_id"] = related_contact_id
         if references is not None:
@@ -20913,6 +21719,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_contact(
@@ -20958,9 +21765,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.stop_contact_request.StopContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.stop_contact_request.StopContactRequest = {
+            "contact_id": contact_id,
+            "instance_id": instance_id,
+        }
         if disconnect_reason is not None:
             input_["disconnect_reason"] = disconnect_reason
 
@@ -20969,6 +21777,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_contact_media_processing(
@@ -21010,7 +21819,7 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.stop_contact_media_processing_request.StopContactMediaProcessingRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.stop_contact_media_processing_request.StopContactMediaProcessingRequest = {}
         if instance_id is not None:
             input_["instance_id"] = instance_id
         if contact_id is not None:
@@ -21021,6 +21830,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_contact_recording(
@@ -21066,10 +21876,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.stop_contact_recording_request.StopContactRecordingRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["initial_contact_id"] = initial_contact_id
+        input_: capo_connect.types.stop_contact_recording_request.StopContactRecordingRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "initial_contact_id": initial_contact_id,
+        }
         if contact_recording_type is not None:
             input_["contact_recording_type"] = contact_recording_type
 
@@ -21078,6 +21889,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_contact_streaming(
@@ -21119,16 +21931,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.stop_contact_streaming_request.StopContactStreamingRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["streaming_id"] = streaming_id
+        input_: capo_connect.types.stop_contact_streaming_request.StopContactStreamingRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "streaming_id": streaming_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_test_case_execution(
@@ -21174,18 +21988,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.stop_test_case_execution_request.StopTestCaseExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["test_case_execution_id"] = test_case_execution_id
-        input_["test_case_id"] = test_case_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.stop_test_case_execution_request.StopTestCaseExecutionRequest = {
+            "instance_id": instance_id,
+            "test_case_execution_id": test_case_execution_id,
+            "test_case_id": test_case_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def submit_contact_evaluation(
@@ -21238,9 +22055,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.submit_contact_evaluation_request.SubmitContactEvaluationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["evaluation_id"] = evaluation_id
+        input_: capo_connect.types.submit_contact_evaluation_request.SubmitContactEvaluationRequest = {
+            "instance_id": instance_id,
+            "evaluation_id": evaluation_id,
+        }
         if answers is not None:
             input_["answers"] = answers
         if notes is not None:
@@ -21253,6 +22071,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def suspend_contact_recording(
@@ -21298,10 +22117,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.suspend_contact_recording_request.SuspendContactRecordingRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["initial_contact_id"] = initial_contact_id
+        input_: capo_connect.types.suspend_contact_recording_request.SuspendContactRecordingRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "initial_contact_id": initial_contact_id,
+        }
         if contact_recording_type is not None:
             input_["contact_recording_type"] = contact_recording_type
 
@@ -21310,6 +22130,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_contact(
@@ -21353,16 +22174,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.tag_contact_request.TagContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        input_["instance_id"] = instance_id
-        input_["tags"] = tags
+        input_: capo_connect.types.tag_contact_request.TagContactRequest = {
+            "contact_id": contact_id,
+            "instance_id": instance_id,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -21401,15 +22224,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_connect.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def transfer_contact(
@@ -21462,22 +22287,25 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.transfer_contact_request.TransferContactRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.transfer_contact_request.TransferContactRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "contact_flow_id": contact_flow_id,
+        }
         if queue_id is not None:
             input_["queue_id"] = queue_id
         if user_id is not None:
             input_["user_id"] = user_id
-        input_["contact_flow_id"] = contact_flow_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_contact(
@@ -21521,16 +22349,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.untag_contact_request.UntagContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        input_["instance_id"] = instance_id
-        input_["tag_keys"] = tag_keys
+        input_: capo_connect.types.untag_contact_request.UntagContactRequest = {
+            "contact_id": contact_id,
+            "instance_id": instance_id,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -21569,15 +22399,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_connect.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_agent_status(
@@ -21634,9 +22466,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_agent_status_request.UpdateAgentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["agent_status_id"] = agent_status_id
+        input_: capo_connect.types.update_agent_status_request.UpdateAgentStatusRequest = {
+            "instance_id": instance_id,
+            "agent_status_id": agent_status_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -21653,6 +22486,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_attached_files_configuration(
@@ -21701,9 +22535,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_attached_files_configuration_request.UpdateAttachedFilesConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["attachment_scope"] = attachment_scope
+        input_: capo_connect.types.update_attached_files_configuration_request.UpdateAttachedFilesConfigurationRequest = {
+            "instance_id": instance_id,
+            "attachment_scope": attachment_scope,
+        }
         if maximum_size_limit_in_bytes is not None:
             input_["maximum_size_limit_in_bytes"] = maximum_size_limit_in_bytes
         if extension_configuration is not None:
@@ -21714,6 +22549,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_authentication_profile(
@@ -21776,9 +22612,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_authentication_profile_request.UpdateAuthenticationProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["authentication_profile_id"] = authentication_profile_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.update_authentication_profile_request.UpdateAuthenticationProfileRequest = {
+            "authentication_profile_id": authentication_profile_id,
+            "instance_id": instance_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -21801,6 +22638,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact(
@@ -21866,9 +22704,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_request.UpdateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.update_contact_request.UpdateContactRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -21891,6 +22730,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_attributes(
@@ -21933,16 +22773,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_attributes_request.UpdateContactAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["initial_contact_id"] = initial_contact_id
-        input_["instance_id"] = instance_id
-        input_["attributes"] = attributes
+        input_: capo_connect.types.update_contact_attributes_request.UpdateContactAttributesRequest = {
+            "initial_contact_id": initial_contact_id,
+            "instance_id": instance_id,
+            "attributes": attributes,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_evaluation(
@@ -21995,9 +22837,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_evaluation_request.UpdateContactEvaluationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["evaluation_id"] = evaluation_id
+        input_: capo_connect.types.update_contact_evaluation_request.UpdateContactEvaluationRequest = {
+            "instance_id": instance_id,
+            "evaluation_id": evaluation_id,
+        }
         if answers is not None:
             input_["answers"] = answers
         if notes is not None:
@@ -22010,6 +22853,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_flow_content(
@@ -22053,16 +22897,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_flow_content_request.UpdateContactFlowContentRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_id"] = contact_flow_id
-        input_["content"] = content
+        input_: capo_connect.types.update_contact_flow_content_request.UpdateContactFlowContentRequest = {
+            "instance_id": instance_id,
+            "contact_flow_id": contact_flow_id,
+            "content": content,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_flow_metadata(
@@ -22114,9 +22960,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_flow_metadata_request.UpdateContactFlowMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_id"] = contact_flow_id
+        input_: capo_connect.types.update_contact_flow_metadata_request.UpdateContactFlowMetadataRequest = {
+            "instance_id": instance_id,
+            "contact_flow_id": contact_flow_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -22129,6 +22976,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_flow_module_alias(
@@ -22186,10 +23034,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_flow_module_alias_request.UpdateContactFlowModuleAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_module_id"] = contact_flow_module_id
-        input_["alias_id"] = alias_id
+        input_: capo_connect.types.update_contact_flow_module_alias_request.UpdateContactFlowModuleAliasRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+            "alias_id": alias_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -22202,6 +23051,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_flow_module_content(
@@ -22251,9 +23101,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_flow_module_content_request.UpdateContactFlowModuleContentRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_module_id"] = contact_flow_module_id
+        input_: capo_connect.types.update_contact_flow_module_content_request.UpdateContactFlowModuleContentRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+        }
         if content is not None:
             input_["content"] = content
         if settings is not None:
@@ -22264,6 +23115,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_flow_module_metadata(
@@ -22318,9 +23170,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_flow_module_metadata_request.UpdateContactFlowModuleMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_module_id"] = contact_flow_module_id
+        input_: capo_connect.types.update_contact_flow_module_metadata_request.UpdateContactFlowModuleMetadataRequest = {
+            "instance_id": instance_id,
+            "contact_flow_module_id": contact_flow_module_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -22333,6 +23186,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_flow_name(
@@ -22380,9 +23234,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_flow_name_request.UpdateContactFlowNameRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_flow_id"] = contact_flow_id
+        input_: capo_connect.types.update_contact_flow_name_request.UpdateContactFlowNameRequest = {
+            "instance_id": instance_id,
+            "contact_flow_id": contact_flow_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -22393,6 +23248,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_routing_data(
@@ -22447,9 +23303,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_routing_data_request.UpdateContactRoutingDataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
+        input_: capo_connect.types.update_contact_routing_data_request.UpdateContactRoutingDataRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+        }
         if queue_time_adjustment_seconds is not None:
             input_["queue_time_adjustment_seconds"] = queue_time_adjustment_seconds
         if queue_priority is not None:
@@ -22462,6 +23319,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_schedule(
@@ -22505,16 +23363,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_contact_schedule_request.UpdateContactScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["scheduled_time"] = scheduled_time
+        input_: capo_connect.types.update_contact_schedule_request.UpdateContactScheduleRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "scheduled_time": scheduled_time,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_data_table_attribute(
@@ -22573,12 +23433,13 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_data_table_attribute_request.UpdateDataTableAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["attribute_name"] = attribute_name
-        input_["name"] = name
-        input_["value_type"] = value_type
+        input_: capo_connect.types.update_data_table_attribute_request.UpdateDataTableAttributeRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "attribute_name": attribute_name,
+            "name": name,
+            "value_type": value_type,
+        }
         if description is not None:
             input_["description"] = description
         if primary is not None:
@@ -22591,6 +23452,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_data_table_metadata(
@@ -22644,20 +23506,22 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_data_table_metadata_request.UpdateDataTableMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["name"] = name
+        input_: capo_connect.types.update_data_table_metadata_request.UpdateDataTableMetadataRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "name": name,
+            "value_lock_level": value_lock_level,
+            "time_zone": time_zone,
+        }
         if description is not None:
             input_["description"] = description
-        input_["value_lock_level"] = value_lock_level
-        input_["time_zone"] = time_zone
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_data_table_primary_values(
@@ -22706,18 +23570,20 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_data_table_primary_values_request.UpdateDataTablePrimaryValuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["data_table_id"] = data_table_id
-        input_["primary_values"] = primary_values
-        input_["new_primary_values"] = new_primary_values
-        input_["lock_version"] = lock_version
+        input_: capo_connect.types.update_data_table_primary_values_request.UpdateDataTablePrimaryValuesRequest = {
+            "instance_id": instance_id,
+            "data_table_id": data_table_id,
+            "primary_values": primary_values,
+            "new_primary_values": new_primary_values,
+            "lock_version": lock_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_email_address_metadata(
@@ -22768,9 +23634,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_email_address_metadata_request.UpdateEmailAddressMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["email_address_id"] = email_address_id
+        input_: capo_connect.types.update_email_address_metadata_request.UpdateEmailAddressMetadataRequest = {
+            "instance_id": instance_id,
+            "email_address_id": email_address_id,
+        }
         if description is not None:
             input_["description"] = description
         if display_name is not None:
@@ -22783,6 +23650,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_evaluation_form(
@@ -22862,16 +23730,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_evaluation_form_request.UpdateEvaluationFormRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["evaluation_form_id"] = evaluation_form_id
-        input_["evaluation_form_version"] = evaluation_form_version
+        input_: capo_connect.types.update_evaluation_form_request.UpdateEvaluationFormRequest = {
+            "instance_id": instance_id,
+            "evaluation_form_id": evaluation_form_id,
+            "evaluation_form_version": evaluation_form_version,
+            "title": title,
+            "items": items,
+        }
         if create_new_version is not None:
             input_["create_new_version"] = create_new_version
-        input_["title"] = title
         if description is not None:
             input_["description"] = description
-        input_["items"] = items
         if scoring_strategy is not None:
             input_["scoring_strategy"] = scoring_strategy
         if auto_evaluation_configuration is not None:
@@ -22880,8 +23749,9 @@ class AsyncConnectClient:
             input_["review_configuration"] = review_configuration
         if as_draft is not None:
             input_["as_draft"] = as_draft
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if target_configuration is not None:
             input_["target_configuration"] = target_configuration
         if language_configuration is not None:
@@ -22892,6 +23762,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_hours_of_operation(
@@ -22945,9 +23816,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_hours_of_operation_request.UpdateHoursOfOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
+        input_: capo_connect.types.update_hours_of_operation_request.UpdateHoursOfOperationRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -22962,6 +23834,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_hours_of_operation_override(
@@ -23030,10 +23903,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_hours_of_operation_override_request.UpdateHoursOfOperationOverrideRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
-        input_["hours_of_operation_override_id"] = hours_of_operation_override_id
+        input_: capo_connect.types.update_hours_of_operation_override_request.UpdateHoursOfOperationOverrideRequest = {
+            "instance_id": instance_id,
+            "hours_of_operation_id": hours_of_operation_id,
+            "hours_of_operation_override_id": hours_of_operation_override_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -23054,6 +23928,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_instance_attribute(
@@ -23096,18 +23971,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_instance_attribute_request.UpdateInstanceAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["attribute_type"] = attribute_type
-        input_["value"] = value
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.update_instance_attribute_request.UpdateInstanceAttributeRequest = {
+            "instance_id": instance_id,
+            "attribute_type": attribute_type,
+            "value": value,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_instance_storage_config(
@@ -23151,19 +24029,22 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_instance_storage_config_request.UpdateInstanceStorageConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["association_id"] = association_id
-        input_["resource_type"] = resource_type
-        input_["storage_config"] = storage_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connect.types.update_instance_storage_config_request.UpdateInstanceStorageConfigRequest = {
+            "instance_id": instance_id,
+            "association_id": association_id,
+            "resource_type": resource_type,
+            "storage_config": storage_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_notification_content(
@@ -23207,16 +24088,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_notification_content_request.UpdateNotificationContentRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["notification_id"] = notification_id
-        input_["content"] = content
+        input_: capo_connect.types.update_notification_content_request.UpdateNotificationContentRequest = {
+            "instance_id": instance_id,
+            "notification_id": notification_id,
+            "content": content,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_participant_authentication(
@@ -23270,9 +24153,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_participant_authentication_request.UpdateParticipantAuthenticationRequest = {}  # type: ignore[typeddict-item]
-        input_["state"] = state
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.update_participant_authentication_request.UpdateParticipantAuthenticationRequest = {
+            "state": state,
+            "instance_id": instance_id,
+        }
         if code is not None:
             input_["code"] = code
         if error is not None:
@@ -23285,6 +24169,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_participant_role_config(
@@ -23328,16 +24213,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_participant_role_config_request.UpdateParticipantRoleConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["contact_id"] = contact_id
-        input_["channel_configuration"] = channel_configuration
+        input_: capo_connect.types.update_participant_role_config_request.UpdateParticipantRoleConfigRequest = {
+            "instance_id": instance_id,
+            "contact_id": contact_id,
+            "channel_configuration": channel_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_phone_number(
@@ -23384,20 +24271,23 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_phone_number_request.UpdatePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_connect.types.update_phone_number_request.UpdatePhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
         if target_arn is not None:
             input_["target_arn"] = target_arn
         if instance_id is not None:
             input_["instance_id"] = instance_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_phone_number_metadata(
@@ -23443,18 +24333,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_phone_number_metadata_request.UpdatePhoneNumberMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_connect.types.update_phone_number_metadata_request.UpdatePhoneNumberMetadataRequest = {
+            "phone_number_id": phone_number_id
+        }
         if phone_number_description is not None:
             input_["phone_number_description"] = phone_number_description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_predefined_attribute(
@@ -23505,9 +24398,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_predefined_attribute_request.UpdatePredefinedAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_connect.types.update_predefined_attribute_request.UpdatePredefinedAttributeRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
         if values is not None:
             input_["values"] = values
         if purposes is not None:
@@ -23520,6 +24414,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_prompt(
@@ -23570,9 +24465,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_prompt_request.UpdatePromptRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["prompt_id"] = prompt_id
+        input_: capo_connect.types.update_prompt_request.UpdatePromptRequest = {
+            "instance_id": instance_id,
+            "prompt_id": prompt_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -23585,6 +24481,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_queue_hours_of_operation(
@@ -23625,16 +24522,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_queue_hours_of_operation_request.UpdateQueueHoursOfOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
-        input_["hours_of_operation_id"] = hours_of_operation_id
+        input_: capo_connect.types.update_queue_hours_of_operation_request.UpdateQueueHoursOfOperationRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+            "hours_of_operation_id": hours_of_operation_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_queue_max_contacts(
@@ -23677,9 +24576,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_queue_max_contacts_request.UpdateQueueMaxContactsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
+        input_: capo_connect.types.update_queue_max_contacts_request.UpdateQueueMaxContactsRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+        }
         if max_contacts is not None:
             input_["max_contacts"] = max_contacts
 
@@ -23688,6 +24588,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_queue_name(
@@ -23735,9 +24636,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_queue_name_request.UpdateQueueNameRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
+        input_: capo_connect.types.update_queue_name_request.UpdateQueueNameRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -23748,6 +24650,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_queue_outbound_caller_config(
@@ -23788,16 +24691,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_queue_outbound_caller_config_request.UpdateQueueOutboundCallerConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
-        input_["outbound_caller_config"] = outbound_caller_config
+        input_: capo_connect.types.update_queue_outbound_caller_config_request.UpdateQueueOutboundCallerConfigRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+            "outbound_caller_config": outbound_caller_config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_queue_outbound_email_config(
@@ -23840,16 +24745,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_queue_outbound_email_config_request.UpdateQueueOutboundEmailConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
-        input_["outbound_email_config"] = outbound_email_config
+        input_: capo_connect.types.update_queue_outbound_email_config_request.UpdateQueueOutboundEmailConfigRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+            "outbound_email_config": outbound_email_config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_queue_status(
@@ -23890,16 +24797,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_queue_status_request.UpdateQueueStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["queue_id"] = queue_id
-        input_["status"] = status
+        input_: capo_connect.types.update_queue_status_request.UpdateQueueStatusRequest = {
+            "instance_id": instance_id,
+            "queue_id": queue_id,
+            "status": status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_quick_connect_config(
@@ -23940,16 +24849,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_quick_connect_config_request.UpdateQuickConnectConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["quick_connect_id"] = quick_connect_id
-        input_["quick_connect_config"] = quick_connect_config
+        input_: capo_connect.types.update_quick_connect_config_request.UpdateQuickConnectConfigRequest = {
+            "instance_id": instance_id,
+            "quick_connect_id": quick_connect_id,
+            "quick_connect_config": quick_connect_config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_quick_connect_name(
@@ -23994,9 +24905,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_quick_connect_name_request.UpdateQuickConnectNameRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["quick_connect_id"] = quick_connect_id
+        input_: capo_connect.types.update_quick_connect_name_request.UpdateQuickConnectNameRequest = {
+            "instance_id": instance_id,
+            "quick_connect_id": quick_connect_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -24007,6 +24919,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_routing_profile_agent_availability_timer(
@@ -24047,16 +24960,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_routing_profile_agent_availability_timer_request.UpdateRoutingProfileAgentAvailabilityTimerRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
-        input_["agent_availability_timer"] = agent_availability_timer
+        input_: capo_connect.types.update_routing_profile_agent_availability_timer_request.UpdateRoutingProfileAgentAvailabilityTimerRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+            "agent_availability_timer": agent_availability_timer,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_routing_profile_concurrency(
@@ -24097,16 +25012,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_routing_profile_concurrency_request.UpdateRoutingProfileConcurrencyRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
-        input_["media_concurrencies"] = media_concurrencies
+        input_: capo_connect.types.update_routing_profile_concurrency_request.UpdateRoutingProfileConcurrencyRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+            "media_concurrencies": media_concurrencies,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_routing_profile_default_outbound_queue(
@@ -24147,16 +25064,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_routing_profile_default_outbound_queue_request.UpdateRoutingProfileDefaultOutboundQueueRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
-        input_["default_outbound_queue_id"] = default_outbound_queue_id
+        input_: capo_connect.types.update_routing_profile_default_outbound_queue_request.UpdateRoutingProfileDefaultOutboundQueueRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+            "default_outbound_queue_id": default_outbound_queue_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_routing_profile_name(
@@ -24204,9 +25123,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_routing_profile_name_request.UpdateRoutingProfileNameRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
+        input_: capo_connect.types.update_routing_profile_name_request.UpdateRoutingProfileNameRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -24217,6 +25137,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_routing_profile_queues(
@@ -24257,16 +25178,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_routing_profile_queues_request.UpdateRoutingProfileQueuesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["routing_profile_id"] = routing_profile_id
-        input_["queue_configs"] = queue_configs
+        input_: capo_connect.types.update_routing_profile_queues_request.UpdateRoutingProfileQueuesRequest = {
+            "instance_id": instance_id,
+            "routing_profile_id": routing_profile_id,
+            "queue_configs": queue_configs,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_rule(
@@ -24314,19 +25237,21 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_rule_request.UpdateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_id"] = rule_id
-        input_["instance_id"] = instance_id
-        input_["name"] = name
-        input_["function"] = function
-        input_["actions"] = actions
-        input_["publish_status"] = publish_status
+        input_: capo_connect.types.update_rule_request.UpdateRuleRequest = {
+            "rule_id": rule_id,
+            "instance_id": instance_id,
+            "name": name,
+            "function": function,
+            "actions": actions,
+            "publish_status": publish_status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_security_profile(
@@ -24399,13 +25324,14 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_security_profile_request.UpdateSecurityProfileRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.update_security_profile_request.UpdateSecurityProfileRequest = {
+            "security_profile_id": security_profile_id,
+            "instance_id": instance_id,
+        }
         if description is not None:
             input_["description"] = description
         if permissions is not None:
             input_["permissions"] = permissions
-        input_["security_profile_id"] = security_profile_id
-        input_["instance_id"] = instance_id
         if allowed_access_control_tags is not None:
             input_["allowed_access_control_tags"] = allowed_access_control_tags
         if tag_restricted_resources is not None:
@@ -24430,6 +25356,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_task_template(
@@ -24501,9 +25428,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_task_template_request.UpdateTaskTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["task_template_id"] = task_template_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.update_task_template_request.UpdateTaskTemplateRequest = {
+            "task_template_id": task_template_id,
+            "instance_id": instance_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -24526,6 +25454,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_test_case(
@@ -24595,9 +25524,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_test_case_request.UpdateTestCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["test_case_id"] = test_case_id
+        input_: capo_connect.types.update_test_case_request.UpdateTestCaseRequest = {
+            "instance_id": instance_id,
+            "test_case_id": test_case_id,
+        }
         if content is not None:
             input_["content"] = content
         if entry_point is not None:
@@ -24620,6 +25550,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_traffic_distribution(
@@ -24669,8 +25600,9 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_traffic_distribution_request.UpdateTrafficDistributionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_connect.types.update_traffic_distribution_request.UpdateTrafficDistributionRequest = {
+            "id": id
+        }
         if telephony_config is not None:
             input_["telephony_config"] = telephony_config
         if sign_in_config is not None:
@@ -24683,6 +25615,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_config(
@@ -24742,7 +25675,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_user_config_request.UpdateUserConfigRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.update_user_config_request.UpdateUserConfigRequest = {
+            "user_id": user_id,
+            "instance_id": instance_id,
+        }
         if auto_accept_configs is not None:
             input_["auto_accept_configs"] = auto_accept_configs
         if after_contact_work_configs is not None:
@@ -24753,14 +25689,13 @@ class AsyncConnectClient:
             input_["persistent_connection_configs"] = persistent_connection_configs
         if voice_enhancement_configs is not None:
             input_["voice_enhancement_configs"] = voice_enhancement_configs
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_hierarchy(
@@ -24803,17 +25738,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_user_hierarchy_request.UpdateUserHierarchyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect.types.update_user_hierarchy_request.UpdateUserHierarchyRequest = {
+            "user_id": user_id,
+            "instance_id": instance_id,
+        }
         if hierarchy_group_id is not None:
             input_["hierarchy_group_id"] = hierarchy_group_id
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_hierarchy_group_name(
@@ -24855,16 +25792,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_user_hierarchy_group_name_request.UpdateUserHierarchyGroupNameRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["hierarchy_group_id"] = hierarchy_group_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.update_user_hierarchy_group_name_request.UpdateUserHierarchyGroupNameRequest = {
+            "name": name,
+            "hierarchy_group_id": hierarchy_group_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_hierarchy_structure(
@@ -24904,15 +25843,17 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_user_hierarchy_structure_request.UpdateUserHierarchyStructureRequest = {}  # type: ignore[typeddict-item]
-        input_["hierarchy_structure"] = hierarchy_structure
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.update_user_hierarchy_structure_request.UpdateUserHierarchyStructureRequest = {
+            "hierarchy_structure": hierarchy_structure,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_identity_info(
@@ -24953,16 +25894,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_user_identity_info_request.UpdateUserIdentityInfoRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_info"] = identity_info
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.update_user_identity_info_request.UpdateUserIdentityInfoRequest = {
+            "identity_info": identity_info,
+            "user_id": user_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_notification_status(
@@ -25014,11 +25957,12 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_user_notification_status_request.UpdateUserNotificationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["notification_id"] = notification_id
-        input_["user_id"] = user_id
-        input_["status"] = status
+        input_: capo_connect.types.update_user_notification_status_request.UpdateUserNotificationStatusRequest = {
+            "instance_id": instance_id,
+            "notification_id": notification_id,
+            "user_id": user_id,
+            "status": status,
+        }
         if last_modified_time is not None:
             input_["last_modified_time"] = last_modified_time
         if last_modified_region is not None:
@@ -25029,6 +25973,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_phone_config(
@@ -25069,16 +26014,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_user_phone_config_request.UpdateUserPhoneConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_config"] = phone_config
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.update_user_phone_config_request.UpdateUserPhoneConfigRequest = {
+            "phone_config": phone_config,
+            "user_id": user_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_proficiencies(
@@ -25119,16 +26066,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_user_proficiencies_request.UpdateUserProficienciesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["user_id"] = user_id
-        input_["user_proficiencies"] = user_proficiencies
+        input_: capo_connect.types.update_user_proficiencies_request.UpdateUserProficienciesRequest = {
+            "instance_id": instance_id,
+            "user_id": user_id,
+            "user_proficiencies": user_proficiencies,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_routing_profile(
@@ -25169,16 +26118,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_user_routing_profile_request.UpdateUserRoutingProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["routing_profile_id"] = routing_profile_id
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.update_user_routing_profile_request.UpdateUserRoutingProfileRequest = {
+            "routing_profile_id": routing_profile_id,
+            "user_id": user_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user_security_profiles(
@@ -25219,16 +26170,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_user_security_profiles_request.UpdateUserSecurityProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_ids"] = security_profile_ids
-        input_["user_id"] = user_id
-        input_["instance_id"] = instance_id
+        input_: capo_connect.types.update_user_security_profiles_request.UpdateUserSecurityProfilesRequest = {
+            "security_profile_ids": security_profile_ids,
+            "user_id": user_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_view_content(
@@ -25275,17 +26228,19 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_view_content_request.UpdateViewContentRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["view_id"] = view_id
-        input_["status"] = status
-        input_["content"] = content
+        input_: capo_connect.types.update_view_content_request.UpdateViewContentRequest = {
+            "instance_id": instance_id,
+            "view_id": view_id,
+            "status": status,
+            "content": content,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_view_metadata(
@@ -25335,9 +26290,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_view_metadata_request.UpdateViewMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["view_id"] = view_id
+        input_: capo_connect.types.update_view_metadata_request.UpdateViewMetadataRequest = {
+            "instance_id": instance_id,
+            "view_id": view_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -25348,6 +26304,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_workspace_metadata(
@@ -25398,9 +26355,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_workspace_metadata_request.UpdateWorkspaceMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_connect.types.update_workspace_metadata_request.UpdateWorkspaceMetadataRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -25413,6 +26371,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_workspace_page(
@@ -25468,10 +26427,11 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_workspace_page_request.UpdateWorkspacePageRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
-        input_["page"] = page
+        input_: capo_connect.types.update_workspace_page_request.UpdateWorkspacePageRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+            "page": page,
+        }
         if new_page is not None:
             input_["new_page"] = new_page
         if resource_arn is not None:
@@ -25486,6 +26446,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_workspace_theme(
@@ -25529,9 +26490,10 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_workspace_theme_request.UpdateWorkspaceThemeRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_connect.types.update_workspace_theme_request.UpdateWorkspaceThemeRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+        }
         if theme is not None:
             input_["theme"] = theme
 
@@ -25540,6 +26502,7 @@ class AsyncConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_workspace_visibility(
@@ -25583,16 +26546,18 @@ class AsyncConnectClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect.types.update_workspace_visibility_request.UpdateWorkspaceVisibilityRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["workspace_id"] = workspace_id
-        input_["visibility"] = visibility
+        input_: capo_connect.types.update_workspace_visibility_request.UpdateWorkspaceVisibilityRequest = {
+            "instance_id": instance_id,
+            "workspace_id": workspace_id,
+            "visibility": visibility,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

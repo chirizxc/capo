@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: DescribeServicesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeServicesResponse:
     out: DescribeServicesResponse = {}  # type: ignore[typeddict-item]
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_pricing.types.service_list
 
         out["services"] = capo_pricing.types.service_list.deserialize_aws_json_1_1(
             data["Services"]
         )
-    if "FormatVersion" in data:
+    if data.get("FormatVersion") is not None:
         out["format_version"] = data["FormatVersion"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

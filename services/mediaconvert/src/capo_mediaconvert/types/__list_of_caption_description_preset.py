@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfCaptionDescriptionPreset:
 
     out: __listOfCaptionDescriptionPreset = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.caption_description_preset.deserialize_json(item)
         )

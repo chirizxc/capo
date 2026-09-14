@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: ActivatePipelineInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActivatePipelineInput:
     out: ActivatePipelineInput = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
     else:
         raise DeserializationError("ActivatePipelineInput.pipeline_id required")
-    if "parameterValues" in data:
+    if data.get("parameterValues") is not None:
         import capo_data_pipeline.types.parameter_value_list
 
         out["parameter_values"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActivatePipelineInput:
                 data["parameterValues"]
             )
         )
-    if "startTimestamp" in data:
+    if data.get("startTimestamp") is not None:
         import capo_data_pipeline.types.timestamp
 
         out["start_timestamp"] = (

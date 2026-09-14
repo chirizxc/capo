@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: ProfileConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProfileConfiguration:
     out: ProfileConfiguration = {}  # type: ignore[typeddict-item]
-    if "SessionConfiguration" in data:
+    if data.get("SessionConfiguration") is not None:
         import capo_glue.types.configuration_map
 
         out["session_configuration"] = (
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProfileConfiguration:
                 data["SessionConfiguration"]
             )
         )
-    if "JobConfiguration" in data:
+    if data.get("JobConfiguration") is not None:
         import capo_glue.types.configuration_map
 
         out["job_configuration"] = (

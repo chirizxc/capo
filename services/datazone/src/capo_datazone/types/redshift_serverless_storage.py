@@ -19,7 +19,7 @@ def serialize_json(value: RedshiftServerlessStorage) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftServerlessStorage:
     out: RedshiftServerlessStorage = {}  # type: ignore[typeddict-item]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     else:
         raise DeserializationError("RedshiftServerlessStorage.workgroup_name required")

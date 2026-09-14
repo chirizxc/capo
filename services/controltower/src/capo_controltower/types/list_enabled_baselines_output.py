@@ -35,7 +35,7 @@ def serialize_json(value: ListEnabledBaselinesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListEnabledBaselinesOutput:
     out: ListEnabledBaselinesOutput = {}  # type: ignore[typeddict-item]
-    if "enabledBaselines" in data:
+    if data.get("enabledBaselines") is not None:
         import capo_controltower.types.enabled_baselines
 
         out["enabled_baselines"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListEnabledBaselinesOutput:
         raise DeserializationError(
             "ListEnabledBaselinesOutput.enabled_baselines required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

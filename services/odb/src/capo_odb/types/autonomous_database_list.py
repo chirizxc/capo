@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> AutonomousDatabaseList:
 
     out: AutonomousDatabaseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_odb.types.autonomous_database_summary.deserialize_aws_json_1_0(item)
         )

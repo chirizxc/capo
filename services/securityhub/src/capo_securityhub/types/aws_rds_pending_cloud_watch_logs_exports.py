@@ -35,7 +35,7 @@ def serialize_json(value: AwsRdsPendingCloudWatchLogsExports) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsPendingCloudWatchLogsExports:
     out: AwsRdsPendingCloudWatchLogsExports = {}  # type: ignore[typeddict-item]
-    if "LogTypesToEnable" in data:
+    if data.get("LogTypesToEnable") is not None:
         import capo_securityhub.types.string_list
 
         out["log_types_to_enable"] = (
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> AwsRdsPendingCloudWatchLogsExports:
                 data["LogTypesToEnable"]
             )
         )
-    if "LogTypesToDisable" in data:
+    if data.get("LogTypesToDisable") is not None:
         import capo_securityhub.types.string_list
 
         out["log_types_to_disable"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: ProbeResponse) -> dict:
 
 def deserialize_json(data: dict) -> ProbeResponse:
     out: ProbeResponse = {}  # type: ignore[typeddict-item]
-    if "probeResults" in data:
+    if data.get("probeResults") is not None:
         import capo_mediaconvert.types.__list_of_probe_result
 
         out["probe_results"] = (

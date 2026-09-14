@@ -35,9 +35,9 @@ def serialize_aws_json_1_1(value: ListContactChannelsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListContactChannelsResult:
     out: ListContactChannelsResult = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ContactChannels" in data:
+    if data.get("ContactChannels") is not None:
         import capo_ssm_contacts.types.contact_channel_list
 
         out["contact_channels"] = (

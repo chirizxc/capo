@@ -37,7 +37,7 @@ def serialize_json(value: ListAnnotationStoreVersionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAnnotationStoreVersionsRequest:
     out: ListAnnotationStoreVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_omics.types.list_annotation_store_versions_filter
 
         out["filter"] = (

@@ -38,9 +38,9 @@ def serialize_json(value: UtteranceInputSpecification) -> dict:
 
 def deserialize_json(data: dict) -> UtteranceInputSpecification:
     out: UtteranceInputSpecification = {}  # type: ignore[typeddict-item]
-    if "textInput" in data:
+    if data.get("textInput") is not None:
         out["text_input"] = data["textInput"]
-    if "audioInput" in data:
+    if data.get("audioInput") is not None:
         import capo_lex_models_v2.types.utterance_audio_input_specification
 
         out["audio_input"] = (

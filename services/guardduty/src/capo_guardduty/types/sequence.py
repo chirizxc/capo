@@ -84,37 +84,37 @@ def serialize_json(value: Sequence) -> dict:
 
 def deserialize_json(data: dict) -> Sequence:
     out: Sequence = {}  # type: ignore[typeddict-item]
-    if "uid" in data:
+    if data.get("uid") is not None:
         out["uid"] = data["uid"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "actors" in data:
+    if data.get("actors") is not None:
         import capo_guardduty.types.actors
 
         out["actors"] = capo_guardduty.types.actors.deserialize_json(data["actors"])
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_guardduty.types.resources
 
         out["resources"] = capo_guardduty.types.resources.deserialize_json(
             data["resources"]
         )
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_guardduty.types.network_endpoints
 
         out["endpoints"] = capo_guardduty.types.network_endpoints.deserialize_json(
             data["endpoints"]
         )
-    if "signals" in data:
+    if data.get("signals") is not None:
         import capo_guardduty.types.signals
 
         out["signals"] = capo_guardduty.types.signals.deserialize_json(data["signals"])
-    if "sequenceIndicators" in data:
+    if data.get("sequenceIndicators") is not None:
         import capo_guardduty.types.indicators
 
         out["sequence_indicators"] = capo_guardduty.types.indicators.deserialize_json(
             data["sequenceIndicators"]
         )
-    if "additionalSequenceTypes" in data:
+    if data.get("additionalSequenceTypes") is not None:
         import capo_guardduty.types.additional_sequence_types
 
         out["additional_sequence_types"] = (

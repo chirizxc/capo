@@ -43,7 +43,7 @@ def serialize_json(value: DisassociateSecurityProfilesRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateSecurityProfilesRequest:
     out: DisassociateSecurityProfilesRequest = {}  # type: ignore[typeddict-item]
-    if "SecurityProfiles" in data:
+    if data.get("SecurityProfiles") is not None:
         import capo_connect.types.security_profiles
 
         out["security_profiles"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> DisassociateSecurityProfilesRequest:
         raise DeserializationError(
             "DisassociateSecurityProfilesRequest.security_profiles required"
         )
-    if "EntityType" in data:
+    if data.get("EntityType") is not None:
         import capo_connect.types.entity_type
 
         out["entity_type"] = capo_connect.types.entity_type.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> DisassociateSecurityProfilesRequest:
         raise DeserializationError(
             "DisassociateSecurityProfilesRequest.entity_type required"
         )
-    if "EntityArn" in data:
+    if data.get("EntityArn") is not None:
         out["entity_arn"] = data["EntityArn"]
     else:
         raise DeserializationError(

@@ -16,4 +16,4 @@ def serialize_json(value: ChannelModeratorArns) -> list:
 
 
 def deserialize_json(data: list) -> ChannelModeratorArns:
-    return list(data)
+    return [item for item in data if item is not None]

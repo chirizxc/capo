@@ -30,10 +30,10 @@ def serialize_json(value: DescribeJobLogItemsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeJobLogItemsResponse:
     out: DescribeJobLogItemsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_drs.types.job_logs
 
         out["items"] = capo_drs.types.job_logs.deserialize_json(data["items"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

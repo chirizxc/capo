@@ -59,19 +59,19 @@ def serialize_aws_json_1_1(value: TrustedAdvisorCheckResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrustedAdvisorCheckResult:
     out: TrustedAdvisorCheckResult = {}  # type: ignore[typeddict-item]
-    if "checkId" in data:
+    if data.get("checkId") is not None:
         out["check_id"] = data["checkId"]
     else:
         raise DeserializationError("TrustedAdvisorCheckResult.check_id required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         out["timestamp"] = data["timestamp"]
     else:
         raise DeserializationError("TrustedAdvisorCheckResult.timestamp required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("TrustedAdvisorCheckResult.status required")
-    if "resourcesSummary" in data:
+    if data.get("resourcesSummary") is not None:
         import capo_support.types.trusted_advisor_resources_summary
 
         out["resources_summary"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrustedAdvisorCheckResult:
         raise DeserializationError(
             "TrustedAdvisorCheckResult.resources_summary required"
         )
-    if "categorySpecificSummary" in data:
+    if data.get("categorySpecificSummary") is not None:
         import capo_support.types.trusted_advisor_category_specific_summary
 
         out["category_specific_summary"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrustedAdvisorCheckResult:
         raise DeserializationError(
             "TrustedAdvisorCheckResult.category_specific_summary required"
         )
-    if "flaggedResources" in data:
+    if data.get("flaggedResources") is not None:
         import capo_support.types.trusted_advisor_resource_detail_list
 
         out["flagged_resources"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsLambdaFunctionLayerList:
 
     out: AwsLambdaFunctionLayerList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_lambda_function_layer.deserialize_json(item)
         )

@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: SourceDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceDescription:
     out: SourceDescription = {}  # type: ignore[typeddict-item]
-    if "DirectPutSourceDescription" in data:
+    if data.get("DirectPutSourceDescription") is not None:
         import capo_firehose.types.direct_put_source_description
 
         out["direct_put_source_description"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> SourceDescription:
                 data["DirectPutSourceDescription"]
             )
         )
-    if "KinesisStreamSourceDescription" in data:
+    if data.get("KinesisStreamSourceDescription") is not None:
         import capo_firehose.types.kinesis_stream_source_description
 
         out["kinesis_stream_source_description"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> SourceDescription:
                 data["KinesisStreamSourceDescription"]
             )
         )
-    if "MSKSourceDescription" in data:
+    if data.get("MSKSourceDescription") is not None:
         import capo_firehose.types.msk_source_description
 
         out["msk_source_description"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> SourceDescription:
                 data["MSKSourceDescription"]
             )
         )
-    if "DatabaseSourceDescription" in data:
+    if data.get("DatabaseSourceDescription") is not None:
         import capo_firehose.types.database_source_description
 
         out["database_source_description"] = (

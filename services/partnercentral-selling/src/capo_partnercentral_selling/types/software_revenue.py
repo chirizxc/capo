@@ -51,7 +51,7 @@ def serialize_aws_json_1_0(value: SoftwareRevenue) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SoftwareRevenue:
     out: SoftwareRevenue = {}  # type: ignore[typeddict-item]
-    if "DeliveryModel" in data:
+    if data.get("DeliveryModel") is not None:
         import capo_partnercentral_selling.types.revenue_model
 
         out["delivery_model"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> SoftwareRevenue:
                 data["DeliveryModel"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_partnercentral_selling.types.monetary_value
 
         out["value"] = (
@@ -67,8 +67,8 @@ def deserialize_aws_json_1_0(data: dict) -> SoftwareRevenue:
                 data["Value"]
             )
         )
-    if "EffectiveDate" in data:
+    if data.get("EffectiveDate") is not None:
         out["effective_date"] = data["EffectiveDate"]
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         out["expiration_date"] = data["ExpirationDate"]
     return out

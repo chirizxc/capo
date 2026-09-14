@@ -65,25 +65,25 @@ def serialize_json(value: ListAccessPointsDescription) -> dict:
 
 def deserialize_json(data: dict) -> ListAccessPointsDescription:
     out: ListAccessPointsDescription = {}  # type: ignore[typeddict-item]
-    if "accessPointArn" in data:
+    if data.get("accessPointArn") is not None:
         out["access_point_arn"] = data["accessPointArn"]
     else:
         raise DeserializationError(
             "ListAccessPointsDescription.access_point_arn required"
         )
-    if "accessPointId" in data:
+    if data.get("accessPointId") is not None:
         out["access_point_id"] = data["accessPointId"]
     else:
         raise DeserializationError(
             "ListAccessPointsDescription.access_point_id required"
         )
-    if "fileSystemId" in data:
+    if data.get("fileSystemId") is not None:
         out["file_system_id"] = data["fileSystemId"]
     else:
         raise DeserializationError(
             "ListAccessPointsDescription.file_system_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_s3files.types.life_cycle_state
 
         out["status"] = capo_s3files.types.life_cycle_state.deserialize_json(
@@ -91,22 +91,22 @@ def deserialize_json(data: dict) -> ListAccessPointsDescription:
         )
     else:
         raise DeserializationError("ListAccessPointsDescription.status required")
-    if "ownerId" in data:
+    if data.get("ownerId") is not None:
         out["owner_id"] = data["ownerId"]
     else:
         raise DeserializationError("ListAccessPointsDescription.owner_id required")
-    if "posixUser" in data:
+    if data.get("posixUser") is not None:
         import capo_s3files.types.posix_user
 
         out["posix_user"] = capo_s3files.types.posix_user.deserialize_json(
             data["posixUser"]
         )
-    if "rootDirectory" in data:
+    if data.get("rootDirectory") is not None:
         import capo_s3files.types.root_directory
 
         out["root_directory"] = capo_s3files.types.root_directory.deserialize_json(
             data["rootDirectory"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

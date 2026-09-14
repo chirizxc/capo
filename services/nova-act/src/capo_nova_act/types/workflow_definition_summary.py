@@ -48,19 +48,19 @@ def serialize_json(value: WorkflowDefinitionSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowDefinitionSummary:
     out: WorkflowDefinitionSummary = {}  # type: ignore[typeddict-item]
-    if "workflowDefinitionArn" in data:
+    if data.get("workflowDefinitionArn") is not None:
         out["workflow_definition_arn"] = data["workflowDefinitionArn"]
     else:
         raise DeserializationError(
             "WorkflowDefinitionSummary.workflow_definition_arn required"
         )
-    if "workflowDefinitionName" in data:
+    if data.get("workflowDefinitionName") is not None:
         out["workflow_definition_name"] = data["workflowDefinitionName"]
     else:
         raise DeserializationError(
             "WorkflowDefinitionSummary.workflow_definition_name required"
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_nova_act.types.date_timestamp
 
         out["created_at"] = capo_nova_act.types.date_timestamp.deserialize_json(
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> WorkflowDefinitionSummary:
         )
     else:
         raise DeserializationError("WorkflowDefinitionSummary.created_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_nova_act.types.workflow_definition_status
 
         out["status"] = capo_nova_act.types.workflow_definition_status.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> RelationalDatabaseList:
 
     out: RelationalDatabaseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.relational_database.deserialize_aws_json_1_1(item)
         )

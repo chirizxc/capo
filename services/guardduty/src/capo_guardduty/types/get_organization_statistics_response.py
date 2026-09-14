@@ -31,7 +31,7 @@ def serialize_json(value: GetOrganizationStatisticsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetOrganizationStatisticsResponse:
     out: GetOrganizationStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "organizationDetails" in data:
+    if data.get("organizationDetails") is not None:
         import capo_guardduty.types.organization_details
 
         out["organization_details"] = (

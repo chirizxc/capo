@@ -57,25 +57,25 @@ def serialize_json(value: TableOptions) -> dict:
 
 def deserialize_json(data: dict) -> TableOptions:
     out: TableOptions = {}  # type: ignore[typeddict-item]
-    if "Orientation" in data:
+    if data.get("Orientation") is not None:
         import capo_quicksight.types.table_orientation
 
         out["orientation"] = capo_quicksight.types.table_orientation.deserialize_json(
             data["Orientation"]
         )
-    if "HeaderStyle" in data:
+    if data.get("HeaderStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["header_style"] = capo_quicksight.types.table_cell_style.deserialize_json(
             data["HeaderStyle"]
         )
-    if "CellStyle" in data:
+    if data.get("CellStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["cell_style"] = capo_quicksight.types.table_cell_style.deserialize_json(
             data["CellStyle"]
         )
-    if "RowAlternateColorOptions" in data:
+    if data.get("RowAlternateColorOptions") is not None:
         import capo_quicksight.types.row_alternate_color_options
 
         out["row_alternate_color_options"] = (

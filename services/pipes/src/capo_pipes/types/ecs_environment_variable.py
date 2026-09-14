@@ -27,8 +27,8 @@ def serialize_json(value: EcsEnvironmentVariable) -> dict:
 
 def deserialize_json(data: dict) -> EcsEnvironmentVariable:
     out: EcsEnvironmentVariable = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

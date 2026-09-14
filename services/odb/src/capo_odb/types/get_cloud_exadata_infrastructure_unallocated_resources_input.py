@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_odb.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_odb.types.resource_id_or_arn
     import capo_odb.types.string_list
@@ -21,6 +23,7 @@ def serialize_aws_json_1_0(
     value: GetCloudExadataInfrastructureUnallocatedResourcesInput,
 ) -> dict:
     out: dict = {}
+    out["cloudExadataInfrastructureId"] = value["cloud_exadata_infrastructure_id"]
     if "db_servers" in value:
         import capo_odb.types.string_list
 
@@ -34,7 +37,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> GetCloudExadataInfrastructureUnallocatedResourcesInput:
     out: GetCloudExadataInfrastructureUnallocatedResourcesInput = {}  # type: ignore[typeddict-item]
-    if "dbServers" in data:
+    if data.get("cloudExadataInfrastructureId") is not None:
+        out["cloud_exadata_infrastructure_id"] = data["cloudExadataInfrastructureId"]
+    else:
+        raise DeserializationError(
+            "GetCloudExadataInfrastructureUnallocatedResourcesInput.cloud_exadata_infrastructure_id required"
+        )
+    if data.get("dbServers") is not None:
         import capo_odb.types.string_list
 
         out["db_servers"] = capo_odb.types.string_list.deserialize_aws_json_1_0(

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AppAssessmentSummaryList:
 
     out: AppAssessmentSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehub.types.app_assessment_summary.deserialize_json(item)
         )

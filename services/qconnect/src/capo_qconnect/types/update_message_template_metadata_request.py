@@ -46,11 +46,11 @@ def serialize_json(value: UpdateMessageTemplateMetadataRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMessageTemplateMetadataRequest:
     out: UpdateMessageTemplateMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "groupingConfiguration" in data:
+    if data.get("groupingConfiguration") is not None:
         import capo_qconnect.types.grouping_configuration
 
         out["grouping_configuration"] = (

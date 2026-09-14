@@ -31,7 +31,7 @@ def serialize_json(value: IotSiteWiseSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IotSiteWiseSourceConfiguration:
     out: IotSiteWiseSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_iottwinmaker.types.iot_site_wise_source_configuration_filters
 
         out["filters"] = (

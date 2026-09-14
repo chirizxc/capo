@@ -69,7 +69,7 @@ def serialize_json(value: VirtualGatewayListener) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayListener:
     out: VirtualGatewayListener = {}  # type: ignore[typeddict-item]
-    if "healthCheck" in data:
+    if data.get("healthCheck") is not None:
         import capo_app_mesh.types.virtual_gateway_health_check_policy
 
         out["health_check"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> VirtualGatewayListener:
                 data["healthCheck"]
             )
         )
-    if "portMapping" in data:
+    if data.get("portMapping") is not None:
         import capo_app_mesh.types.virtual_gateway_port_mapping
 
         out["port_mapping"] = (
@@ -87,13 +87,13 @@ def deserialize_json(data: dict) -> VirtualGatewayListener:
         )
     else:
         raise DeserializationError("VirtualGatewayListener.port_mapping required")
-    if "tls" in data:
+    if data.get("tls") is not None:
         import capo_app_mesh.types.virtual_gateway_listener_tls
 
         out["tls"] = capo_app_mesh.types.virtual_gateway_listener_tls.deserialize_json(
             data["tls"]
         )
-    if "connectionPool" in data:
+    if data.get("connectionPool") is not None:
         import capo_app_mesh.types.virtual_gateway_connection_pool
 
         out["connection_pool"] = (

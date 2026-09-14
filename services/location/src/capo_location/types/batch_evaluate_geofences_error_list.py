@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchEvaluateGeofencesErrorList:
 
     out: BatchEvaluateGeofencesErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_location.types.batch_evaluate_geofences_error.deserialize_json(item)
         )

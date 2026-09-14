@@ -36,22 +36,30 @@ def serialize_json(value: RawMetricData) -> dict:
     if "step" in value:
         out["Step"] = value["step"]
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> RawMetricData:
     out: RawMetricData = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_sagemaker_metrics.types.timestamp
 
         out["timestamp"] = capo_sagemaker_metrics.types.timestamp.deserialize_json(
             data["Timestamp"]
         )
-    if "Step" in data:
+    if data.get("Step") is not None:
         out["step"] = data["Step"]
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     return out

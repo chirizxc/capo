@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_odb._services._pipeline import (
@@ -113,16 +114,18 @@ class CloudAutonomousVmClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_cloud_autonomous_vm_cluster_input.CreateCloudAutonomousVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
-        input_["odb_network_id"] = odb_network_id
-        input_["display_name"] = display_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["autonomous_data_storage_size_in_t_bs"] = (
-            autonomous_data_storage_size_in_t_bs
-        )
-        input_["cpu_core_count_per_node"] = cpu_core_count_per_node
+        input_: capo_odb.types.create_cloud_autonomous_vm_cluster_input.CreateCloudAutonomousVmClusterInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id,
+            "odb_network_id": odb_network_id,
+            "display_name": display_name,
+            "autonomous_data_storage_size_in_t_bs": autonomous_data_storage_size_in_t_bs,
+            "cpu_core_count_per_node": cpu_core_count_per_node,
+            "memory_per_oracle_compute_unit_in_g_bs": memory_per_oracle_compute_unit_in_g_bs,
+            "total_container_databases": total_container_databases,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if db_servers is not None:
             input_["db_servers"] = db_servers
         if description is not None:
@@ -133,9 +136,6 @@ class CloudAutonomousVmClusterResource:
             input_["license_model"] = license_model
         if maintenance_window is not None:
             input_["maintenance_window"] = maintenance_window
-        input_["memory_per_oracle_compute_unit_in_g_bs"] = (
-            memory_per_oracle_compute_unit_in_g_bs
-        )
         if scan_listener_port_non_tls is not None:
             input_["scan_listener_port_non_tls"] = scan_listener_port_non_tls
         if scan_listener_port_tls is not None:
@@ -144,13 +144,13 @@ class CloudAutonomousVmClusterResource:
             input_["tags"] = tags
         if time_zone is not None:
             input_["time_zone"] = time_zone
-        input_["total_container_databases"] = total_container_databases
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -188,14 +188,16 @@ class CloudAutonomousVmClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_cloud_autonomous_vm_cluster_input.GetCloudAutonomousVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_autonomous_vm_cluster_id"] = cloud_autonomous_vm_cluster_id
+        input_: capo_odb.types.get_cloud_autonomous_vm_cluster_input.GetCloudAutonomousVmClusterInput = {
+            "cloud_autonomous_vm_cluster_id": cloud_autonomous_vm_cluster_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -233,14 +235,16 @@ class CloudAutonomousVmClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_cloud_autonomous_vm_cluster_input.DeleteCloudAutonomousVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_autonomous_vm_cluster_id"] = cloud_autonomous_vm_cluster_id
+        input_: capo_odb.types.delete_cloud_autonomous_vm_cluster_input.DeleteCloudAutonomousVmClusterInput = {
+            "cloud_autonomous_vm_cluster_id": cloud_autonomous_vm_cluster_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -284,7 +288,7 @@ class CloudAutonomousVmClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_cloud_autonomous_vm_clusters_input.ListCloudAutonomousVmClustersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_cloud_autonomous_vm_clusters_input.ListCloudAutonomousVmClustersInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -297,6 +301,7 @@ class CloudAutonomousVmClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_autonomous_virtual_machines(
@@ -338,18 +343,20 @@ class CloudAutonomousVmClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_autonomous_virtual_machines_input.ListAutonomousVirtualMachinesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_autonomous_virtual_machines_input.ListAutonomousVirtualMachinesInput = {
+            "cloud_autonomous_vm_cluster_id": cloud_autonomous_vm_cluster_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["cloud_autonomous_vm_cluster_id"] = cloud_autonomous_vm_cluster_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -431,16 +438,18 @@ class AsyncCloudAutonomousVmClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_cloud_autonomous_vm_cluster_input.CreateCloudAutonomousVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_exadata_infrastructure_id"] = cloud_exadata_infrastructure_id
-        input_["odb_network_id"] = odb_network_id
-        input_["display_name"] = display_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["autonomous_data_storage_size_in_t_bs"] = (
-            autonomous_data_storage_size_in_t_bs
-        )
-        input_["cpu_core_count_per_node"] = cpu_core_count_per_node
+        input_: capo_odb.types.create_cloud_autonomous_vm_cluster_input.CreateCloudAutonomousVmClusterInput = {
+            "cloud_exadata_infrastructure_id": cloud_exadata_infrastructure_id,
+            "odb_network_id": odb_network_id,
+            "display_name": display_name,
+            "autonomous_data_storage_size_in_t_bs": autonomous_data_storage_size_in_t_bs,
+            "cpu_core_count_per_node": cpu_core_count_per_node,
+            "memory_per_oracle_compute_unit_in_g_bs": memory_per_oracle_compute_unit_in_g_bs,
+            "total_container_databases": total_container_databases,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if db_servers is not None:
             input_["db_servers"] = db_servers
         if description is not None:
@@ -451,9 +460,6 @@ class AsyncCloudAutonomousVmClusterResource:
             input_["license_model"] = license_model
         if maintenance_window is not None:
             input_["maintenance_window"] = maintenance_window
-        input_["memory_per_oracle_compute_unit_in_g_bs"] = (
-            memory_per_oracle_compute_unit_in_g_bs
-        )
         if scan_listener_port_non_tls is not None:
             input_["scan_listener_port_non_tls"] = scan_listener_port_non_tls
         if scan_listener_port_tls is not None:
@@ -462,13 +468,13 @@ class AsyncCloudAutonomousVmClusterResource:
             input_["tags"] = tags
         if time_zone is not None:
             input_["time_zone"] = time_zone
-        input_["total_container_databases"] = total_container_databases
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -507,14 +513,16 @@ class AsyncCloudAutonomousVmClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_cloud_autonomous_vm_cluster_input.GetCloudAutonomousVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_autonomous_vm_cluster_id"] = cloud_autonomous_vm_cluster_id
+        input_: capo_odb.types.get_cloud_autonomous_vm_cluster_input.GetCloudAutonomousVmClusterInput = {
+            "cloud_autonomous_vm_cluster_id": cloud_autonomous_vm_cluster_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -553,14 +561,16 @@ class AsyncCloudAutonomousVmClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_cloud_autonomous_vm_cluster_input.DeleteCloudAutonomousVmClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_autonomous_vm_cluster_id"] = cloud_autonomous_vm_cluster_id
+        input_: capo_odb.types.delete_cloud_autonomous_vm_cluster_input.DeleteCloudAutonomousVmClusterInput = {
+            "cloud_autonomous_vm_cluster_id": cloud_autonomous_vm_cluster_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -605,7 +615,7 @@ class AsyncCloudAutonomousVmClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_cloud_autonomous_vm_clusters_input.ListCloudAutonomousVmClustersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_cloud_autonomous_vm_clusters_input.ListCloudAutonomousVmClustersInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -618,6 +628,7 @@ class AsyncCloudAutonomousVmClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_autonomous_virtual_machines(
@@ -660,16 +671,18 @@ class AsyncCloudAutonomousVmClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_autonomous_virtual_machines_input.ListAutonomousVirtualMachinesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_autonomous_virtual_machines_input.ListAutonomousVirtualMachinesInput = {
+            "cloud_autonomous_vm_cluster_id": cloud_autonomous_vm_cluster_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["cloud_autonomous_vm_cluster_id"] = cloud_autonomous_vm_cluster_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

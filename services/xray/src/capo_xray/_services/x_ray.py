@@ -285,8 +285,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.batch_get_traces_request.BatchGetTracesRequest = {}  # type: ignore[typeddict-item]
-        input_["trace_ids"] = trace_ids
+        input_: capo_xray.types.batch_get_traces_request.BatchGetTracesRequest = {
+            "trace_ids": trace_ids
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -295,6 +296,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_batch_get_traces(
@@ -351,14 +353,16 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.cancel_trace_retrieval_request.CancelTraceRetrievalRequest = {}  # type: ignore[typeddict-item]
-        input_["retrieval_token"] = retrieval_token
+        input_: capo_xray.types.cancel_trace_retrieval_request.CancelTraceRetrievalRequest = {
+            "retrieval_token": retrieval_token
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_group(
@@ -401,8 +405,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.create_group_request.CreateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_name"] = group_name
+        input_: capo_xray.types.create_group_request.CreateGroupRequest = {
+            "group_name": group_name
+        }
         if filter_expression is not None:
             input_["filter_expression"] = filter_expression
         if insights_configuration is not None:
@@ -415,6 +420,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_sampling_rule(
@@ -452,8 +458,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.create_sampling_rule_request.CreateSamplingRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["sampling_rule"] = sampling_rule
+        input_: capo_xray.types.create_sampling_rule_request.CreateSamplingRuleRequest = {
+            "sampling_rule": sampling_rule
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -462,6 +469,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_group(
@@ -496,7 +504,7 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.delete_group_request.DeleteGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.delete_group_request.DeleteGroupRequest = {}
         if group_name is not None:
             input_["group_name"] = group_name
         if group_arn is not None:
@@ -507,6 +515,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_policy(
@@ -546,8 +555,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
+        input_: capo_xray.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "policy_name": policy_name
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
 
@@ -556,6 +566,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_sampling_rule(
@@ -592,7 +603,7 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.delete_sampling_rule_request.DeleteSamplingRuleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.delete_sampling_rule_request.DeleteSamplingRuleRequest = {}
         if rule_name is not None:
             input_["rule_name"] = rule_name
         if rule_arn is not None:
@@ -603,6 +614,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_encryption_config(
@@ -631,13 +643,14 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_encryption_config_request.GetEncryptionConfigRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.get_encryption_config_request.GetEncryptionConfigRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_group(
@@ -670,7 +683,7 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_group_request.GetGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.get_group_request.GetGroupRequest = {}
         if group_name is not None:
             input_["group_name"] = group_name
         if group_arn is not None:
@@ -681,6 +694,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_groups(
@@ -715,7 +729,7 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_groups_request.GetGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.get_groups_request.GetGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -724,6 +738,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_groups(
@@ -779,7 +794,7 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_indexing_rules_request.GetIndexingRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.get_indexing_rules_request.GetIndexingRulesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -788,6 +803,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_insight(
@@ -820,14 +836,16 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_insight_request.GetInsightRequest = {}  # type: ignore[typeddict-item]
-        input_["insight_id"] = insight_id
+        input_: capo_xray.types.get_insight_request.GetInsightRequest = {
+            "insight_id": insight_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_insight_events(
@@ -868,8 +886,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_insight_events_request.GetInsightEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["insight_id"] = insight_id
+        input_: capo_xray.types.get_insight_events_request.GetInsightEventsRequest = {
+            "insight_id": insight_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -880,7 +899,31 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_insight_events(
+        self,
+        insight_id: "capo_xray.types.insight_id.InsightId",
+        *,
+        config_overrides: Optional[XRayClientConfig] = None,
+        max_results: Optional[
+            "capo_xray.types.get_insight_events_max_results.GetInsightEventsMaxResults"
+        ] = None,
+        next_token: Optional["capo_xray.types.token.Token"] = None,
+    ) -> "Iterator[capo_xray.types.get_insight_events_result.GetInsightEventsResult]":
+        _token = next_token
+        while True:
+            _response = self.get_insight_events(
+                insight_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_insight_impact_graph(
         self,
@@ -920,10 +963,11 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_insight_impact_graph_request.GetInsightImpactGraphRequest = {}  # type: ignore[typeddict-item]
-        input_["insight_id"] = insight_id
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_xray.types.get_insight_impact_graph_request.GetInsightImpactGraphRequest = {
+            "insight_id": insight_id,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -932,6 +976,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_insight_summaries(
@@ -980,15 +1025,16 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_insight_summaries_request.GetInsightSummariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.get_insight_summaries_request.GetInsightSummariesRequest = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if states is not None:
             input_["states"] = states
         if group_arn is not None:
             input_["group_arn"] = group_arn
         if group_name is not None:
             input_["group_name"] = group_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -999,7 +1045,39 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_insight_summaries(
+        self,
+        start_time: "capo_xray.types.timestamp.Timestamp",
+        end_time: "capo_xray.types.timestamp.Timestamp",
+        *,
+        config_overrides: Optional[XRayClientConfig] = None,
+        states: Optional["capo_xray.types.insight_state_list.InsightStateList"] = None,
+        group_arn: Optional["capo_xray.types.group_arn.GroupARN"] = None,
+        group_name: Optional["capo_xray.types.group_name.GroupName"] = None,
+        max_results: Optional[
+            "capo_xray.types.get_insight_summaries_max_results.GetInsightSummariesMaxResults"
+        ] = None,
+        next_token: Optional["capo_xray.types.token.Token"] = None,
+    ) -> "Iterator[capo_xray.types.get_insight_summaries_result.GetInsightSummariesResult]":
+        _token = next_token
+        while True:
+            _response = self.get_insight_summaries(
+                start_time,
+                end_time,
+                config_overrides=config_overrides,
+                states=states,
+                group_arn=group_arn,
+                group_name=group_name,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_retrieved_traces_graph(
         self,
@@ -1036,8 +1114,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_retrieved_traces_graph_request.GetRetrievedTracesGraphRequest = {}  # type: ignore[typeddict-item]
-        input_["retrieval_token"] = retrieval_token
+        input_: capo_xray.types.get_retrieved_traces_graph_request.GetRetrievedTracesGraphRequest = {
+            "retrieval_token": retrieval_token
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1046,6 +1125,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sampling_rules(
@@ -1080,7 +1160,7 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_sampling_rules_request.GetSamplingRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.get_sampling_rules_request.GetSamplingRulesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1089,6 +1169,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_sampling_rules(
@@ -1142,7 +1223,7 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_sampling_statistic_summaries_request.GetSamplingStatisticSummariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.get_sampling_statistic_summaries_request.GetSamplingStatisticSummariesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1151,6 +1232,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_sampling_statistic_summaries(
@@ -1210,8 +1292,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_sampling_targets_request.GetSamplingTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["sampling_statistics_documents"] = sampling_statistics_documents
+        input_: capo_xray.types.get_sampling_targets_request.GetSamplingTargetsRequest = {
+            "sampling_statistics_documents": sampling_statistics_documents
+        }
         if sampling_boost_statistics_documents is not None:
             input_["sampling_boost_statistics_documents"] = (
                 sampling_boost_statistics_documents
@@ -1222,6 +1305,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_service_graph(
@@ -1264,9 +1348,10 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_service_graph_request.GetServiceGraphRequest = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_xray.types.get_service_graph_request.GetServiceGraphRequest = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if group_name is not None:
             input_["group_name"] = group_name
         if group_arn is not None:
@@ -1279,6 +1364,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_service_graph(
@@ -1358,9 +1444,10 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_time_series_service_statistics_request.GetTimeSeriesServiceStatisticsRequest = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_xray.types.get_time_series_service_statistics_request.GetTimeSeriesServiceStatisticsRequest = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if group_name is not None:
             input_["group_name"] = group_name
         if group_arn is not None:
@@ -1379,6 +1466,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_time_series_service_statistics(
@@ -1452,8 +1540,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_trace_graph_request.GetTraceGraphRequest = {}  # type: ignore[typeddict-item]
-        input_["trace_ids"] = trace_ids
+        input_: capo_xray.types.get_trace_graph_request.GetTraceGraphRequest = {
+            "trace_ids": trace_ids
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1462,6 +1551,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_trace_graph(
@@ -1511,13 +1601,14 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_trace_segment_destination_request.GetTraceSegmentDestinationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.get_trace_segment_destination_request.GetTraceSegmentDestinationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_trace_summaries(
@@ -1570,9 +1661,10 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.get_trace_summaries_request.GetTraceSummariesRequest = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_xray.types.get_trace_summaries_request.GetTraceSummariesRequest = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if time_range_type is not None:
             input_["time_range_type"] = time_range_type
         if sampling is not None:
@@ -1589,6 +1681,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_trace_summaries(
@@ -1662,7 +1755,7 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.list_resource_policies_request.ListResourcePoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.list_resource_policies_request.ListResourcePoliciesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1671,6 +1764,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resource_policies(
@@ -1733,8 +1827,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.list_retrieved_traces_request.ListRetrievedTracesRequest = {}  # type: ignore[typeddict-item]
-        input_["retrieval_token"] = retrieval_token
+        input_: capo_xray.types.list_retrieved_traces_request.ListRetrievedTracesRequest = {
+            "retrieval_token": retrieval_token
+        }
         if trace_format is not None:
             input_["trace_format"] = trace_format
         if next_token is not None:
@@ -1745,6 +1840,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -1782,8 +1878,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_xray.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1792,6 +1889,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags_for_resource(
@@ -1849,16 +1947,18 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.put_encryption_config_request.PutEncryptionConfigRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.put_encryption_config_request.PutEncryptionConfigRequest = {
+            "type": type
+        }
         if key_id is not None:
             input_["key_id"] = key_id
-        input_["type"] = type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resource_policy(
@@ -1905,9 +2005,10 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["policy_document"] = policy_document
+        input_: capo_xray.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "policy_name": policy_name,
+            "policy_document": policy_document,
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
         if bypass_policy_lockout_check is not None:
@@ -1918,6 +2019,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_telemetry_records(
@@ -1960,8 +2062,9 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.put_telemetry_records_request.PutTelemetryRecordsRequest = {}  # type: ignore[typeddict-item]
-        input_["telemetry_records"] = telemetry_records
+        input_: capo_xray.types.put_telemetry_records_request.PutTelemetryRecordsRequest = {
+            "telemetry_records": telemetry_records
+        }
         if ec2_instance_id is not None:
             input_["ec2_instance_id"] = ec2_instance_id
         if hostname is not None:
@@ -1974,6 +2077,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_trace_segments(
@@ -2008,14 +2112,16 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.put_trace_segments_request.PutTraceSegmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["trace_segment_documents"] = trace_segment_documents
+        input_: capo_xray.types.put_trace_segments_request.PutTraceSegmentsRequest = {
+            "trace_segment_documents": trace_segment_documents
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_trace_retrieval(
@@ -2055,16 +2161,18 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.start_trace_retrieval_request.StartTraceRetrievalRequest = {}  # type: ignore[typeddict-item]
-        input_["trace_ids"] = trace_ids
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_xray.types.start_trace_retrieval_request.StartTraceRetrievalRequest = {
+            "trace_ids": trace_ids,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2103,15 +2211,17 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_xray.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2149,15 +2259,17 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_xray.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_group(
@@ -2200,7 +2312,7 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.update_group_request.UpdateGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.update_group_request.UpdateGroupRequest = {}
         if group_name is not None:
             input_["group_name"] = group_name
         if group_arn is not None:
@@ -2215,6 +2327,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_indexing_rule(
@@ -2252,15 +2365,17 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.update_indexing_rule_request.UpdateIndexingRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["rule"] = rule
+        input_: capo_xray.types.update_indexing_rule_request.UpdateIndexingRuleRequest = {
+            "name": name,
+            "rule": rule,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_sampling_rule(
@@ -2295,14 +2410,16 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.update_sampling_rule_request.UpdateSamplingRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["sampling_rule_update"] = sampling_rule_update
+        input_: capo_xray.types.update_sampling_rule_request.UpdateSamplingRuleRequest = {
+            "sampling_rule_update": sampling_rule_update
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_trace_segment_destination(
@@ -2339,7 +2456,7 @@ class XRayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_xray.types.update_trace_segment_destination_request.UpdateTraceSegmentDestinationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_xray.types.update_trace_segment_destination_request.UpdateTraceSegmentDestinationRequest = {}
         if destination is not None:
             input_["destination"] = destination
 
@@ -2348,6 +2465,7 @@ class XRayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

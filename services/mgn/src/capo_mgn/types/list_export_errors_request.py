@@ -34,12 +34,12 @@ def serialize_json(value: ListExportErrorsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListExportErrorsRequest:
     out: ListExportErrorsRequest = {}  # type: ignore[typeddict-item]
-    if "exportID" in data:
+    if data.get("exportID") is not None:
         out["export_id"] = data["exportID"]
     else:
         raise DeserializationError("ListExportErrorsRequest.export_id required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

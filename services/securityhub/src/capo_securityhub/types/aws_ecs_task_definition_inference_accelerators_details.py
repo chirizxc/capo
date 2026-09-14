@@ -27,8 +27,8 @@ def serialize_json(value: AwsEcsTaskDefinitionInferenceAcceleratorsDetails) -> d
 
 def deserialize_json(data: dict) -> AwsEcsTaskDefinitionInferenceAcceleratorsDetails:
     out: AwsEcsTaskDefinitionInferenceAcceleratorsDetails = {}  # type: ignore[typeddict-item]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "DeviceType" in data:
+    if data.get("DeviceType") is not None:
         out["device_type"] = data["DeviceType"]
     return out

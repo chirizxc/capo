@@ -42,7 +42,7 @@ def serialize_json(value: UpdateCaseRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCaseRequest:
     out: UpdateCaseRequest = {}  # type: ignore[typeddict-item]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_connectcases.types.field_value_list
 
         out["fields"] = capo_connectcases.types.field_value_list.deserialize_json(
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> UpdateCaseRequest:
         )
     else:
         raise DeserializationError("UpdateCaseRequest.fields required")
-    if "performedBy" in data:
+    if data.get("performedBy") is not None:
         import capo_connectcases.types.user_union
 
         out["performed_by"] = capo_connectcases.types.user_union.deserialize_json(

@@ -62,7 +62,7 @@ def serialize_json(value: UpdateSolNetworkInstanceInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSolNetworkInstanceInput:
     out: UpdateSolNetworkInstanceInput = {}  # type: ignore[typeddict-item]
-    if "updateType" in data:
+    if data.get("updateType") is not None:
         import capo_tnb.types.update_sol_network_type
 
         out["update_type"] = capo_tnb.types.update_sol_network_type.deserialize_json(
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> UpdateSolNetworkInstanceInput:
         )
     else:
         raise DeserializationError("UpdateSolNetworkInstanceInput.update_type required")
-    if "modifyVnfInfoData" in data:
+    if data.get("modifyVnfInfoData") is not None:
         import capo_tnb.types.update_sol_network_modify
 
         out["modify_vnf_info_data"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> UpdateSolNetworkInstanceInput:
                 data["modifyVnfInfoData"]
             )
         )
-    if "updateNs" in data:
+    if data.get("updateNs") is not None:
         import capo_tnb.types.update_sol_network_service_data
 
         out["update_ns"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> UpdateSolNetworkInstanceInput:
                 data["updateNs"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_tnb.types.tag_map
 
         out["tags"] = capo_tnb.types.tag_map.deserialize_json(data["tags"])

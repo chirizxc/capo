@@ -53,26 +53,26 @@ def serialize_json(value: VPCDerivedInfo) -> dict:
 
 def deserialize_json(data: dict) -> VPCDerivedInfo:
     out: VPCDerivedInfo = {}  # type: ignore[typeddict-item]
-    if "VPCId" in data:
+    if data.get("VPCId") is not None:
         out["vpc_id"] = data["VPCId"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_opensearch.types.string_list
 
         out["subnet_ids"] = capo_opensearch.types.string_list.deserialize_json(
             data["SubnetIds"]
         )
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_opensearch.types.string_list
 
         out["availability_zones"] = capo_opensearch.types.string_list.deserialize_json(
             data["AvailabilityZones"]
         )
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_opensearch.types.string_list
 
         out["security_group_ids"] = capo_opensearch.types.string_list.deserialize_json(
             data["SecurityGroupIds"]
         )
-    if "EgressEnabled" in data:
+    if data.get("EgressEnabled") is not None:
         out["egress_enabled"] = data["EgressEnabled"]
     return out

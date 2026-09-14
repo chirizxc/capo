@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> IpRoutesInfo:
 
     out: IpRoutesInfo = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_directory_service.types.ip_route_info.deserialize_aws_json_1_1(item)
         )

@@ -44,15 +44,15 @@ def serialize_json(value: StartDICOMImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartDICOMImportJobResponse:
     out: StartDICOMImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "datastoreId" in data:
+    if data.get("datastoreId") is not None:
         out["datastore_id"] = data["datastoreId"]
     else:
         raise DeserializationError("StartDICOMImportJobResponse.datastore_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("StartDICOMImportJobResponse.job_id required")
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         import capo_medical_imaging.types.job_status
 
         out["job_status"] = capo_medical_imaging.types.job_status.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> StartDICOMImportJobResponse:
         )
     else:
         raise DeserializationError("StartDICOMImportJobResponse.job_status required")
-    if "submittedAt" in data:
+    if data.get("submittedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["submitted_at"] = capo_medical_imaging.types.date.deserialize_json(

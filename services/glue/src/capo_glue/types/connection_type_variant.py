@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: ConnectionTypeVariant) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionTypeVariant:
     out: ConnectionTypeVariant = {}  # type: ignore[typeddict-item]
-    if "ConnectionTypeVariantName" in data:
+    if data.get("ConnectionTypeVariantName") is not None:
         out["connection_type_variant_name"] = data["ConnectionTypeVariantName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LogoUrl" in data:
+    if data.get("LogoUrl") is not None:
         out["logo_url"] = data["LogoUrl"]
     return out

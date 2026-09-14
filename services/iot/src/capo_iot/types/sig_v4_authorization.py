@@ -32,15 +32,15 @@ def serialize_json(value: SigV4Authorization) -> dict:
 
 def deserialize_json(data: dict) -> SigV4Authorization:
     out: SigV4Authorization = {}  # type: ignore[typeddict-item]
-    if "signingRegion" in data:
+    if data.get("signingRegion") is not None:
         out["signing_region"] = data["signingRegion"]
     else:
         raise DeserializationError("SigV4Authorization.signing_region required")
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError("SigV4Authorization.service_name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("SigV4Authorization.role_arn required")

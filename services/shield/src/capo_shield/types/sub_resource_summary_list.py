@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> SubResourceSummaryList:
 
     out: SubResourceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_shield.types.sub_resource_summary.deserialize_aws_json_1_1(item)
         )

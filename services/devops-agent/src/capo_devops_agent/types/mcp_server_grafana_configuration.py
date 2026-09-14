@@ -36,13 +36,13 @@ def serialize_json(value: MCPServerGrafanaConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MCPServerGrafanaConfiguration:
     out: MCPServerGrafanaConfiguration = {}  # type: ignore[typeddict-item]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError("MCPServerGrafanaConfiguration.endpoint required")
-    if "organizationId" in data:
+    if data.get("organizationId") is not None:
         out["organization_id"] = data["organizationId"]
-    if "tools" in data:
+    if data.get("tools") is not None:
         import capo_devops_agent.types.mcp_tools_list
 
         out["tools"] = capo_devops_agent.types.mcp_tools_list.deserialize_json(

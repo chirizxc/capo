@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListResourceCatalogsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListResourceCatalogsResponse:
     out: ListResourceCatalogsResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceCatalogs" in data:
+    if data.get("ResourceCatalogs") is not None:
         import capo_sagemaker.types.resource_catalog_list
 
         out["resource_catalogs"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListResourceCatalogsResponse:
                 data["ResourceCatalogs"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

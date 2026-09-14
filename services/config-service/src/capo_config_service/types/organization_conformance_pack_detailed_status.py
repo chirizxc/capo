@@ -58,19 +58,19 @@ def serialize_aws_json_1_1(value: OrganizationConformancePackDetailedStatus) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationConformancePackDetailedStatus:
     out: OrganizationConformancePackDetailedStatus = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError(
             "OrganizationConformancePackDetailedStatus.account_id required"
         )
-    if "ConformancePackName" in data:
+    if data.get("ConformancePackName") is not None:
         out["conformance_pack_name"] = data["ConformancePackName"]
     else:
         raise DeserializationError(
             "OrganizationConformancePackDetailedStatus.conformance_pack_name required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_config_service.types.organization_resource_detailed_status
 
         out["status"] = (
@@ -82,11 +82,11 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationConformancePackDetailedS
         raise DeserializationError(
             "OrganizationConformancePackDetailedStatus.status required"
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_config_service.types.date
 
         out["last_update_time"] = (

@@ -105,14 +105,13 @@ class MLInputChannel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_ml_input_channel_request.CreateMLInputChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_model_algorithm_associations"] = (
-            configured_model_algorithm_associations
-        )
-        input_["input_channel"] = input_channel
-        input_["name"] = name
-        input_["retention_in_days"] = retention_in_days
+        input_: capo_cleanroomsml.types.create_ml_input_channel_request.CreateMLInputChannelRequest = {
+            "membership_identifier": membership_identifier,
+            "configured_model_algorithm_associations": configured_model_algorithm_associations,
+            "input_channel": input_channel,
+            "name": name,
+            "retention_in_days": retention_in_days,
+        }
         if description is not None:
             input_["description"] = description
         if kms_key_arn is not None:
@@ -127,6 +126,7 @@ class MLInputChannel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -165,15 +165,17 @@ class MLInputChannel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_ml_input_channel_request.GetMLInputChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["ml_input_channel_arn"] = ml_input_channel_arn
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.get_ml_input_channel_request.GetMLInputChannelRequest = {
+            "ml_input_channel_arn": ml_input_channel_arn,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -211,15 +213,17 @@ class MLInputChannel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_ml_input_channel_data_request.DeleteMLInputChannelDataRequest = {}  # type: ignore[typeddict-item]
-        input_["ml_input_channel_arn"] = ml_input_channel_arn
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.delete_ml_input_channel_data_request.DeleteMLInputChannelDataRequest = {
+            "ml_input_channel_arn": ml_input_channel_arn,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -259,18 +263,20 @@ class MLInputChannel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_ml_input_channels_request.ListMLInputChannelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_ml_input_channels_request.ListMLInputChannelsRequest = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["membership_identifier"] = membership_identifier
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_collaboration_ml_input_channel(
@@ -309,15 +315,17 @@ class MLInputChannel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_collaboration_ml_input_channel_request.GetCollaborationMLInputChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["ml_input_channel_arn"] = ml_input_channel_arn
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanroomsml.types.get_collaboration_ml_input_channel_request.GetCollaborationMLInputChannelRequest = {
+            "ml_input_channel_arn": ml_input_channel_arn,
+            "collaboration_identifier": collaboration_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -382,14 +390,13 @@ class AsyncMLInputChannel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_ml_input_channel_request.CreateMLInputChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_model_algorithm_associations"] = (
-            configured_model_algorithm_associations
-        )
-        input_["input_channel"] = input_channel
-        input_["name"] = name
-        input_["retention_in_days"] = retention_in_days
+        input_: capo_cleanroomsml.types.create_ml_input_channel_request.CreateMLInputChannelRequest = {
+            "membership_identifier": membership_identifier,
+            "configured_model_algorithm_associations": configured_model_algorithm_associations,
+            "input_channel": input_channel,
+            "name": name,
+            "retention_in_days": retention_in_days,
+        }
         if description is not None:
             input_["description"] = description
         if kms_key_arn is not None:
@@ -404,6 +411,7 @@ class AsyncMLInputChannel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -443,15 +451,17 @@ class AsyncMLInputChannel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_ml_input_channel_request.GetMLInputChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["ml_input_channel_arn"] = ml_input_channel_arn
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.get_ml_input_channel_request.GetMLInputChannelRequest = {
+            "ml_input_channel_arn": ml_input_channel_arn,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -490,15 +500,17 @@ class AsyncMLInputChannel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_ml_input_channel_data_request.DeleteMLInputChannelDataRequest = {}  # type: ignore[typeddict-item]
-        input_["ml_input_channel_arn"] = ml_input_channel_arn
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.delete_ml_input_channel_data_request.DeleteMLInputChannelDataRequest = {
+            "ml_input_channel_arn": ml_input_channel_arn,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -539,18 +551,20 @@ class AsyncMLInputChannel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_ml_input_channels_request.ListMLInputChannelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_ml_input_channels_request.ListMLInputChannelsRequest = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["membership_identifier"] = membership_identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_collaboration_ml_input_channel(
@@ -590,13 +604,15 @@ class AsyncMLInputChannel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_collaboration_ml_input_channel_request.GetCollaborationMLInputChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["ml_input_channel_arn"] = ml_input_channel_arn
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanroomsml.types.get_collaboration_ml_input_channel_request.GetCollaborationMLInputChannelRequest = {
+            "ml_input_channel_arn": ml_input_channel_arn,
+            "collaboration_identifier": collaboration_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -110,27 +110,27 @@ def serialize_json(value: CreateLifecyclePolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateLifecyclePolicyRequest:
     out: CreateLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_dlm.types.settable_policy_state_values
 
         out["state"] = capo_dlm.types.settable_policy_state_values.deserialize_json(
             data["State"]
         )
-    if "PolicyDetails" in data:
+    if data.get("PolicyDetails") is not None:
         import capo_dlm.types.policy_details
 
         out["policy_details"] = capo_dlm.types.policy_details.deserialize_json(
             data["PolicyDetails"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_dlm.types.tag_map
 
         out["tags"] = capo_dlm.types.tag_map.deserialize_json(data["Tags"])
-    if "DefaultPolicy" in data:
+    if data.get("DefaultPolicy") is not None:
         import capo_dlm.types.default_policy_type_values
 
         out["default_policy"] = (
@@ -138,15 +138,15 @@ def deserialize_json(data: dict) -> CreateLifecyclePolicyRequest:
                 data["DefaultPolicy"]
             )
         )
-    if "CreateInterval" in data:
+    if data.get("CreateInterval") is not None:
         out["create_interval"] = data["CreateInterval"]
-    if "RetainInterval" in data:
+    if data.get("RetainInterval") is not None:
         out["retain_interval"] = data["RetainInterval"]
-    if "CopyTags" in data:
+    if data.get("CopyTags") is not None:
         out["copy_tags"] = data["CopyTags"]
-    if "ExtendDeletion" in data:
+    if data.get("ExtendDeletion") is not None:
         out["extend_deletion"] = data["ExtendDeletion"]
-    if "CrossRegionCopyTargets" in data:
+    if data.get("CrossRegionCopyTargets") is not None:
         import capo_dlm.types.cross_region_copy_target_list
 
         out["cross_region_copy_targets"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> CreateLifecyclePolicyRequest:
                 data["CrossRegionCopyTargets"]
             )
         )
-    if "Exclusions" in data:
+    if data.get("Exclusions") is not None:
         import capo_dlm.types.exclusions
 
         out["exclusions"] = capo_dlm.types.exclusions.deserialize_json(

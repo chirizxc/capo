@@ -76,35 +76,35 @@ def serialize_json(value: GetConnectorV2Response) -> dict:
 
 def deserialize_json(data: dict) -> GetConnectorV2Response:
     out: GetConnectorV2Response = {}  # type: ignore[typeddict-item]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["created_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["last_updated_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["LastUpdatedAt"]
         )
-    if "Health" in data:
+    if data.get("Health") is not None:
         import capo_securityhub.types.health_check
 
         out["health"] = capo_securityhub.types.health_check.deserialize_json(
             data["Health"]
         )
-    if "ProviderDetail" in data:
+    if data.get("ProviderDetail") is not None:
         import capo_securityhub.types.provider_detail
 
         out["provider_detail"] = (

@@ -32,11 +32,11 @@ def serialize_json(value: EmailAddressSummary) -> dict:
 
 def deserialize_json(data: dict) -> EmailAddressSummary:
     out: EmailAddressSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "IsDefaultOutboundEmail" in data:
+    if data.get("IsDefaultOutboundEmail") is not None:
         out["is_default_outbound_email"] = data["IsDefaultOutboundEmail"]
     else:
         out["is_default_outbound_email"] = False

@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: FileValidationMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileValidationMessage:
     out: FileValidationMessage = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

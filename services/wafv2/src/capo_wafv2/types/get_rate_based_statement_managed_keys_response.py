@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: GetRateBasedStatementManagedKeysResponse) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> GetRateBasedStatementManagedKeysResponse:
     out: GetRateBasedStatementManagedKeysResponse = {}  # type: ignore[typeddict-item]
-    if "ManagedKeysIPV4" in data:
+    if data.get("ManagedKeysIPV4") is not None:
         import capo_wafv2.types.rate_based_statement_managed_keys_ip_set
 
         out["managed_keys_ipv4"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetRateBasedStatementManagedKeysResp
                 data["ManagedKeysIPV4"]
             )
         )
-    if "ManagedKeysIPV6" in data:
+    if data.get("ManagedKeysIPV6") is not None:
         import capo_wafv2.types.rate_based_statement_managed_keys_ip_set
 
         out["managed_keys_ipv6"] = (

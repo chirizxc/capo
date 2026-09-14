@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: AIModelSource) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> AIModelSource:
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_sagemaker.types.ai_model_source_s3
 
         return {

@@ -36,16 +36,16 @@ def serialize_json(value: DataflowDetail) -> dict:
 
 def deserialize_json(data: dict) -> DataflowDetail:
     out: DataflowDetail = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_groundstation.types.source
 
         out["source"] = capo_groundstation.types.source.deserialize_json(data["source"])
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_groundstation.types.destination
 
         out["destination"] = capo_groundstation.types.destination.deserialize_json(
             data["destination"]
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

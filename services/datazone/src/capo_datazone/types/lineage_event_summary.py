@@ -76,11 +76,11 @@ def serialize_json(value: LineageEventSummary) -> dict:
 
 def deserialize_json(data: dict) -> LineageEventSummary:
     out: LineageEventSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "processingStatus" in data:
+    if data.get("processingStatus") is not None:
         import capo_datazone.types.lineage_event_processing_status
 
         out["processing_status"] = (
@@ -88,21 +88,21 @@ def deserialize_json(data: dict) -> LineageEventSummary:
                 data["processingStatus"]
             )
         )
-    if "eventTime" in data:
+    if data.get("eventTime") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["event_time"] = capo_datazone.types._prelude.timestamp.deserialize_json(
             data["eventTime"]
         )
-    if "eventSummary" in data:
+    if data.get("eventSummary") is not None:
         import capo_datazone.types.event_summary
 
         out["event_summary"] = capo_datazone.types.event_summary.deserialize_json(
             data["eventSummary"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(

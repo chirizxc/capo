@@ -93,15 +93,15 @@ def serialize_aws_json_1_0(value: Record) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Record:
     out: Record = {}  # type: ignore[typeddict-item]
-    if "eventVersion" in data:
+    if data.get("eventVersion") is not None:
         out["event_version"] = data["eventVersion"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_keyspacesstreams.types.date
 
         out["created_at"] = capo_keyspacesstreams.types.date.deserialize_aws_json_1_0(
             data["createdAt"]
         )
-    if "origin" in data:
+    if data.get("origin") is not None:
         import capo_keyspacesstreams.types.origin_type
 
         out["origin"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> Record:
                 data["origin"]
             )
         )
-    if "partitionKeys" in data:
+    if data.get("partitionKeys") is not None:
         import capo_keyspacesstreams.types.keyspaces_keys_map
 
         out["partition_keys"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> Record:
                 data["partitionKeys"]
             )
         )
-    if "clusteringKeys" in data:
+    if data.get("clusteringKeys") is not None:
         import capo_keyspacesstreams.types.keyspaces_keys_map
 
         out["clustering_keys"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> Record:
                 data["clusteringKeys"]
             )
         )
-    if "newImage" in data:
+    if data.get("newImage") is not None:
         import capo_keyspacesstreams.types.keyspaces_row
 
         out["new_image"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_0(data: dict) -> Record:
                 data["newImage"]
             )
         )
-    if "oldImage" in data:
+    if data.get("oldImage") is not None:
         import capo_keyspacesstreams.types.keyspaces_row
 
         out["old_image"] = (
@@ -141,6 +141,6 @@ def deserialize_aws_json_1_0(data: dict) -> Record:
                 data["oldImage"]
             )
         )
-    if "sequenceNumber" in data:
+    if data.get("sequenceNumber") is not None:
         out["sequence_number"] = data["sequenceNumber"]
     return out

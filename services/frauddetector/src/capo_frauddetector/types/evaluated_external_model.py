@@ -51,11 +51,11 @@ def serialize_aws_json_1_1(value: EvaluatedExternalModel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluatedExternalModel:
     out: EvaluatedExternalModel = {}  # type: ignore[typeddict-item]
-    if "modelEndpoint" in data:
+    if data.get("modelEndpoint") is not None:
         out["model_endpoint"] = data["modelEndpoint"]
-    if "useEventVariables" in data:
+    if data.get("useEventVariables") is not None:
         out["use_event_variables"] = data["useEventVariables"]
-    if "inputVariables" in data:
+    if data.get("inputVariables") is not None:
         import capo_frauddetector.types.map_of_strings
 
         out["input_variables"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluatedExternalModel:
                 data["inputVariables"]
             )
         )
-    if "outputVariables" in data:
+    if data.get("outputVariables") is not None:
         import capo_frauddetector.types.map_of_strings
 
         out["output_variables"] = (

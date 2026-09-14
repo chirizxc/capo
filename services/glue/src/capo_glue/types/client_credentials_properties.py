@@ -82,31 +82,31 @@ def serialize_aws_json_1_1(value: ClientCredentialsProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClientCredentialsProperties:
     out: ClientCredentialsProperties = {}  # type: ignore[typeddict-item]
-    if "TokenUrl" in data:
+    if data.get("TokenUrl") is not None:
         import capo_glue.types.connector_property
 
         out["token_url"] = capo_glue.types.connector_property.deserialize_aws_json_1_1(
             data["TokenUrl"]
         )
-    if "RequestMethod" in data:
+    if data.get("RequestMethod") is not None:
         import capo_glue.types.http_method
 
         out["request_method"] = capo_glue.types.http_method.deserialize_aws_json_1_1(
             data["RequestMethod"]
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_glue.types.content_type
 
         out["content_type"] = capo_glue.types.content_type.deserialize_aws_json_1_1(
             data["ContentType"]
         )
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         import capo_glue.types.connector_property
 
         out["client_id"] = capo_glue.types.connector_property.deserialize_aws_json_1_1(
             data["ClientId"]
         )
-    if "ClientSecret" in data:
+    if data.get("ClientSecret") is not None:
         import capo_glue.types.connector_property
 
         out["client_secret"] = (
@@ -114,13 +114,13 @@ def deserialize_aws_json_1_1(data: dict) -> ClientCredentialsProperties:
                 data["ClientSecret"]
             )
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_glue.types.connector_property
 
         out["scope"] = capo_glue.types.connector_property.deserialize_aws_json_1_1(
             data["Scope"]
         )
-    if "TokenUrlParameters" in data:
+    if data.get("TokenUrlParameters") is not None:
         import capo_glue.types.connector_property_list
 
         out["token_url_parameters"] = (

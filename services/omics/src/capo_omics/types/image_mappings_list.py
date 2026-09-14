@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ImageMappingsList:
 
     out: ImageMappingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_omics.types.image_mapping.deserialize_json(item))
     return out

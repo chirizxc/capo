@@ -32,12 +32,12 @@ def serialize_json(value: RoadSnapSnappedGeometry) -> dict:
 
 def deserialize_json(data: dict) -> RoadSnapSnappedGeometry:
     out: RoadSnapSnappedGeometry = {}  # type: ignore[typeddict-item]
-    if "LineString" in data:
+    if data.get("LineString") is not None:
         import capo_geo_routes.types.line_string
 
         out["line_string"] = capo_geo_routes.types.line_string.deserialize_json(
             data["LineString"]
         )
-    if "Polyline" in data:
+    if data.get("Polyline") is not None:
         out["polyline"] = data["Polyline"]
     return out

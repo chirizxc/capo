@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: GetApproximateUsageRecordsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetApproximateUsageRecordsRequest:
     out: GetApproximateUsageRecordsRequest = {}  # type: ignore[typeddict-item]
-    if "Granularity" in data:
+    if data.get("Granularity") is not None:
         import capo_cost_explorer.types.granularity
 
         out["granularity"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetApproximateUsageRecordsRequest:
         raise DeserializationError(
             "GetApproximateUsageRecordsRequest.granularity required"
         )
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_cost_explorer.types.usage_services
 
         out["services"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetApproximateUsageRecordsRequest:
                 data["Services"]
             )
         )
-    if "ApproximationDimension" in data:
+    if data.get("ApproximationDimension") is not None:
         import capo_cost_explorer.types.approximation_dimension
 
         out["approximation_dimension"] = (

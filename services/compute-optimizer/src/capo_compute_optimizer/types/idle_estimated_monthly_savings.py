@@ -25,13 +25,21 @@ def serialize_aws_json_1_0(value: IdleEstimatedMonthlySavings) -> dict:
         out["currency"] = capo_compute_optimizer.types.currency.serialize_aws_json_1_0(
             value["currency"]
         )
-    out["value"] = value.get("value", 0)
+    out["value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> IdleEstimatedMonthlySavings:
     out: IdleEstimatedMonthlySavings = {}  # type: ignore[typeddict-item]
-    if "currency" in data:
+    if data.get("currency") is not None:
         import capo_compute_optimizer.types.currency
 
         out["currency"] = (
@@ -39,8 +47,8 @@ def deserialize_aws_json_1_0(data: dict) -> IdleEstimatedMonthlySavings:
                 data["currency"]
             )
         )
-    if "value" in data:
-        out["value"] = data["value"]
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
     else:
         out["value"] = 0
     return out

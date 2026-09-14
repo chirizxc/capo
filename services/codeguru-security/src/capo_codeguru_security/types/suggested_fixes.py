@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SuggestedFixes:
 
     out: SuggestedFixes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeguru_security.types.suggested_fix.deserialize_json(item))
     return out

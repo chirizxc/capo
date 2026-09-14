@@ -27,7 +27,7 @@ def serialize_json(value: CreateExtendedSourceServerResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateExtendedSourceServerResponse:
     out: CreateExtendedSourceServerResponse = {}  # type: ignore[typeddict-item]
-    if "sourceServer" in data:
+    if data.get("sourceServer") is not None:
         import capo_drs.types.source_server
 
         out["source_server"] = capo_drs.types.source_server.deserialize_json(

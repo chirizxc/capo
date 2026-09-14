@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.wellarchitected#WellArchitectedApiServiceLambda``."""
 
+import uuid
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_wellarchitected._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_wellarchitected._auth._zapros_handler import AuthMiddleware
+from capo_wellarchitected._pagination import resolve_path as _resolve_path
 from capo_wellarchitected._services._aws_config import aws_config
 from capo_wellarchitected._services._pipeline import (
     Interceptor,
@@ -371,8 +374,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.associate_lenses_input.AssociateLensesInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.associate_lenses_input.AssociateLensesInput = {
+            "workload_id": workload_id
+        }
         if lens_aliases is not None:
             input_["lens_aliases"] = lens_aliases
 
@@ -381,6 +385,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_profiles(
@@ -420,8 +425,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.associate_profiles_input.AssociateProfilesInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.associate_profiles_input.AssociateProfilesInput = {
+            "workload_id": workload_id
+        }
         if profile_arns is not None:
             input_["profile_arns"] = profile_arns
 
@@ -430,6 +436,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_lens_share(
@@ -472,18 +479,21 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.create_lens_share_input.CreateLensShareInput = {}  # type: ignore[typeddict-item]
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.create_lens_share_input.CreateLensShareInput = {
+            "lens_alias": lens_alias
+        }
         if shared_with is not None:
             input_["shared_with"] = shared_with
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_lens_version(
@@ -535,20 +545,23 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.create_lens_version_input.CreateLensVersionInput = {}  # type: ignore[typeddict-item]
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.create_lens_version_input.CreateLensVersionInput = {
+            "lens_alias": lens_alias
+        }
         if lens_version is not None:
             input_["lens_version"] = lens_version
         if is_major_version is not None:
             input_["is_major_version"] = is_major_version
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_milestone(
@@ -591,18 +604,21 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.create_milestone_input.CreateMilestoneInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.create_milestone_input.CreateMilestoneInput = {
+            "workload_id": workload_id
+        }
         if milestone_name is not None:
             input_["milestone_name"] = milestone_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_profile(
@@ -656,15 +672,16 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.create_profile_input.CreateProfileInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.create_profile_input.CreateProfileInput = {}
         if profile_name is not None:
             input_["profile_name"] = profile_name
         if profile_description is not None:
             input_["profile_description"] = profile_description
         if profile_questions is not None:
             input_["profile_questions"] = profile_questions
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -673,6 +690,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_profile_share(
@@ -718,18 +736,21 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.create_profile_share_input.CreateProfileShareInput = {}  # type: ignore[typeddict-item]
-        input_["profile_arn"] = profile_arn
+        input_: capo_wellarchitected.types.create_profile_share_input.CreateProfileShareInput = {
+            "profile_arn": profile_arn
+        }
         if shared_with is not None:
             input_["shared_with"] = shared_with
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_review_template(
@@ -785,7 +806,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.create_review_template_input.CreateReviewTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.create_review_template_input.CreateReviewTemplateInput = {}
         if template_name is not None:
             input_["template_name"] = template_name
         if description is not None:
@@ -796,14 +817,16 @@ class WellArchitectedClient:
             input_["notes"] = notes
         if tags is not None:
             input_["tags"] = tags
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_template_share(
@@ -849,18 +872,21 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.create_template_share_input.CreateTemplateShareInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
+        input_: capo_wellarchitected.types.create_template_share_input.CreateTemplateShareInput = {
+            "template_arn": template_arn
+        }
         if shared_with is not None:
             input_["shared_with"] = shared_with
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_workload(
@@ -960,7 +986,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.create_workload_input.CreateWorkloadInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.create_workload_input.CreateWorkloadInput = {}
         if workload_name is not None:
             input_["workload_name"] = workload_name
         if description is not None:
@@ -987,8 +1013,9 @@ class WellArchitectedClient:
             input_["lenses"] = lenses
         if notes is not None:
             input_["notes"] = notes
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
         if discovery_config is not None:
@@ -1007,6 +1034,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_workload_share(
@@ -1052,20 +1080,23 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.create_workload_share_input.CreateWorkloadShareInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.create_workload_share_input.CreateWorkloadShareInput = {
+            "workload_id": workload_id
+        }
         if shared_with is not None:
             input_["shared_with"] = shared_with
         if permission_type is not None:
             input_["permission_type"] = permission_type
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_lens(
@@ -1108,10 +1139,12 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.delete_lens_input.DeleteLensInput = {}  # type: ignore[typeddict-item]
-        input_["lens_alias"] = lens_alias
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_wellarchitected.types.delete_lens_input.DeleteLensInput = {
+            "lens_alias": lens_alias
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if lens_status is not None:
             input_["lens_status"] = lens_status
 
@@ -1120,6 +1153,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_lens_share(
@@ -1157,17 +1191,20 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.delete_lens_share_input.DeleteLensShareInput = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
-        input_["lens_alias"] = lens_alias
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_wellarchitected.types.delete_lens_share_input.DeleteLensShareInput = {
+            "share_id": share_id,
+            "lens_alias": lens_alias,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_profile(
@@ -1207,16 +1244,19 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.delete_profile_input.DeleteProfileInput = {}  # type: ignore[typeddict-item]
-        input_["profile_arn"] = profile_arn
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_wellarchitected.types.delete_profile_input.DeleteProfileInput = {
+            "profile_arn": profile_arn
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_profile_share(
@@ -1257,17 +1297,20 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.delete_profile_share_input.DeleteProfileShareInput = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
-        input_["profile_arn"] = profile_arn
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_wellarchitected.types.delete_profile_share_input.DeleteProfileShareInput = {
+            "share_id": share_id,
+            "profile_arn": profile_arn,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_review_template(
@@ -1307,16 +1350,19 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.delete_review_template_input.DeleteReviewTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_wellarchitected.types.delete_review_template_input.DeleteReviewTemplateInput = {
+            "template_arn": template_arn
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_template_share(
@@ -1357,17 +1403,20 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.delete_template_share_input.DeleteTemplateShareInput = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
-        input_["template_arn"] = template_arn
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_wellarchitected.types.delete_template_share_input.DeleteTemplateShareInput = {
+            "share_id": share_id,
+            "template_arn": template_arn,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_workload(
@@ -1404,16 +1453,19 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.delete_workload_input.DeleteWorkloadInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_wellarchitected.types.delete_workload_input.DeleteWorkloadInput = {
+            "workload_id": workload_id
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_workload_share(
@@ -1451,17 +1503,20 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.delete_workload_share_input.DeleteWorkloadShareInput = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
-        input_["workload_id"] = workload_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_wellarchitected.types.delete_workload_share_input.DeleteWorkloadShareInput = {
+            "share_id": share_id,
+            "workload_id": workload_id,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_lenses(
@@ -1498,8 +1553,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.disassociate_lenses_input.DisassociateLensesInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.disassociate_lenses_input.DisassociateLensesInput = {
+            "workload_id": workload_id
+        }
         if lens_aliases is not None:
             input_["lens_aliases"] = lens_aliases
 
@@ -1508,6 +1564,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_profiles(
@@ -1547,8 +1604,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.disassociate_profiles_input.DisassociateProfilesInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.disassociate_profiles_input.DisassociateProfilesInput = {
+            "workload_id": workload_id
+        }
         if profile_arns is not None:
             input_["profile_arns"] = profile_arns
 
@@ -1557,6 +1615,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_lens(
@@ -1597,8 +1656,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.export_lens_input.ExportLensInput = {}  # type: ignore[typeddict-item]
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.export_lens_input.ExportLensInput = {
+            "lens_alias": lens_alias
+        }
         if lens_version is not None:
             input_["lens_version"] = lens_version
 
@@ -1607,6 +1667,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_answer(
@@ -1646,10 +1707,11 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_answer_input.GetAnswerInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        input_["lens_alias"] = lens_alias
-        input_["question_id"] = question_id
+        input_: capo_wellarchitected.types.get_answer_input.GetAnswerInput = {
+            "workload_id": workload_id,
+            "lens_alias": lens_alias,
+            "question_id": question_id,
+        }
         if milestone_number is not None:
             input_["milestone_number"] = milestone_number
 
@@ -1658,6 +1720,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_consolidated_report(
@@ -1706,7 +1769,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_consolidated_report_input.GetConsolidatedReportInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.get_consolidated_report_input.GetConsolidatedReportInput = {}
         if format is not None:
             input_["format"] = format
         if include_shared_resources is not None:
@@ -1721,7 +1784,37 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_consolidated_report(
+        self,
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        format: Optional[
+            "capo_wellarchitected.types.report_format.ReportFormat"
+        ] = None,
+        include_shared_resources: Optional[
+            "capo_wellarchitected.types.include_shared_resources.IncludeSharedResources"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.get_consolidated_report_max_results.GetConsolidatedReportMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.get_consolidated_report_output.GetConsolidatedReportOutput]":
+        _token = next_token
+        while True:
+            _response = self.get_consolidated_report(
+                config_overrides=config_overrides,
+                format=format,
+                include_shared_resources=include_shared_resources,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_global_settings(
         self, *, config_overrides: Optional[WellArchitectedClientConfig] = None
@@ -1759,6 +1852,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lens(
@@ -1799,8 +1893,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_lens_input.GetLensInput = {}  # type: ignore[typeddict-item]
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.get_lens_input.GetLensInput = {
+            "lens_alias": lens_alias
+        }
         if lens_version is not None:
             input_["lens_version"] = lens_version
 
@@ -1809,6 +1904,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lens_review(
@@ -1847,9 +1943,10 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_lens_review_input.GetLensReviewInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.get_lens_review_input.GetLensReviewInput = {
+            "workload_id": workload_id,
+            "lens_alias": lens_alias,
+        }
         if milestone_number is not None:
             input_["milestone_number"] = milestone_number
 
@@ -1858,6 +1955,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lens_review_report(
@@ -1896,9 +1994,10 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_lens_review_report_input.GetLensReviewReportInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.get_lens_review_report_input.GetLensReviewReportInput = {
+            "workload_id": workload_id,
+            "lens_alias": lens_alias,
+        }
         if milestone_number is not None:
             input_["milestone_number"] = milestone_number
 
@@ -1907,6 +2006,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lens_version_difference(
@@ -1951,8 +2051,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_lens_version_difference_input.GetLensVersionDifferenceInput = {}  # type: ignore[typeddict-item]
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.get_lens_version_difference_input.GetLensVersionDifferenceInput = {
+            "lens_alias": lens_alias
+        }
         if base_lens_version is not None:
             input_["base_lens_version"] = base_lens_version
         if target_lens_version is not None:
@@ -1963,6 +2064,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_milestone(
@@ -1998,15 +2100,17 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_milestone_input.GetMilestoneInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        input_["milestone_number"] = milestone_number
+        input_: capo_wellarchitected.types.get_milestone_input.GetMilestoneInput = {
+            "workload_id": workload_id,
+            "milestone_number": milestone_number,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_profile(
@@ -2048,8 +2152,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_profile_input.GetProfileInput = {}  # type: ignore[typeddict-item]
-        input_["profile_arn"] = profile_arn
+        input_: capo_wellarchitected.types.get_profile_input.GetProfileInput = {
+            "profile_arn": profile_arn
+        }
         if profile_version is not None:
             input_["profile_version"] = profile_version
 
@@ -2058,6 +2163,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_profile_template(
@@ -2089,13 +2195,14 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_profile_template_input.GetProfileTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.get_profile_template_input.GetProfileTemplateInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_review_template(
@@ -2135,14 +2242,16 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_review_template_input.GetReviewTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
+        input_: capo_wellarchitected.types.get_review_template_input.GetReviewTemplateInput = {
+            "template_arn": template_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_review_template_answer(
@@ -2182,16 +2291,18 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_review_template_answer_input.GetReviewTemplateAnswerInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["lens_alias"] = lens_alias
-        input_["question_id"] = question_id
+        input_: capo_wellarchitected.types.get_review_template_answer_input.GetReviewTemplateAnswerInput = {
+            "template_arn": template_arn,
+            "lens_alias": lens_alias,
+            "question_id": question_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_review_template_lens_review(
@@ -2230,15 +2341,17 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_review_template_lens_review_input.GetReviewTemplateLensReviewInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.get_review_template_lens_review_input.GetReviewTemplateLensReviewInput = {
+            "template_arn": template_arn,
+            "lens_alias": lens_alias,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_workload(
@@ -2273,14 +2386,16 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.get_workload_input.GetWorkloadInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.get_workload_input.GetWorkloadInput = {
+            "workload_id": workload_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_lens(
@@ -2326,13 +2441,14 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.import_lens_input.ImportLensInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.import_lens_input.ImportLensInput = {}
         if lens_alias is not None:
             input_["lens_alias"] = lens_alias
         if json_string is not None:
             input_["json_string"] = json_string
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -2341,6 +2457,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_answers(
@@ -2391,9 +2508,10 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_answers_input.ListAnswersInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.list_answers_input.ListAnswersInput = {
+            "workload_id": workload_id,
+            "lens_alias": lens_alias,
+        }
         if pillar_id is not None:
             input_["pillar_id"] = pillar_id
         if milestone_number is not None:
@@ -2410,7 +2528,43 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_answers(
+        self,
+        workload_id: "capo_wellarchitected.types.workload_id.WorkloadId",
+        lens_alias: "capo_wellarchitected.types.lens_alias.LensAlias",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        pillar_id: Optional["capo_wellarchitected.types.pillar_id.PillarId"] = None,
+        milestone_number: Optional[
+            "capo_wellarchitected.types.milestone_number.MilestoneNumber"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.list_answers_max_results.ListAnswersMaxResults"
+        ] = None,
+        question_priority: Optional[
+            "capo_wellarchitected.types.question_priority.QuestionPriority"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_answers_output.ListAnswersOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_answers(
+                workload_id,
+                lens_alias,
+                config_overrides=config_overrides,
+                pillar_id=pillar_id,
+                milestone_number=milestone_number,
+                next_token=_token,
+                max_results=max_results,
+                question_priority=question_priority,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_check_details(
         self,
@@ -2457,8 +2611,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_check_details_input.ListCheckDetailsInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.list_check_details_input.ListCheckDetailsInput = {
+            "workload_id": workload_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2477,7 +2632,41 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_check_details(
+        self,
+        workload_id: "capo_wellarchitected.types.workload_id.WorkloadId",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.max_results.MaxResults"
+        ] = None,
+        lens_arn: Optional["capo_wellarchitected.types.lens_arn.LensArn"] = None,
+        pillar_id: Optional["capo_wellarchitected.types.pillar_id.PillarId"] = None,
+        question_id: Optional[
+            "capo_wellarchitected.types.question_id.QuestionId"
+        ] = None,
+        choice_id: Optional["capo_wellarchitected.types.choice_id.ChoiceId"] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_check_details_output.ListCheckDetailsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_check_details(
+                workload_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                lens_arn=lens_arn,
+                pillar_id=pillar_id,
+                question_id=question_id,
+                choice_id=choice_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_check_summaries(
         self,
@@ -2524,8 +2713,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_check_summaries_input.ListCheckSummariesInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.list_check_summaries_input.ListCheckSummariesInput = {
+            "workload_id": workload_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2544,7 +2734,41 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_check_summaries(
+        self,
+        workload_id: "capo_wellarchitected.types.workload_id.WorkloadId",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.max_results.MaxResults"
+        ] = None,
+        lens_arn: Optional["capo_wellarchitected.types.lens_arn.LensArn"] = None,
+        pillar_id: Optional["capo_wellarchitected.types.pillar_id.PillarId"] = None,
+        question_id: Optional[
+            "capo_wellarchitected.types.question_id.QuestionId"
+        ] = None,
+        choice_id: Optional["capo_wellarchitected.types.choice_id.ChoiceId"] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_check_summaries_output.ListCheckSummariesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_check_summaries(
+                workload_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                lens_arn=lens_arn,
+                pillar_id=pillar_id,
+                question_id=question_id,
+                choice_id=choice_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_lenses(
         self,
@@ -2589,7 +2813,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_lenses_input.ListLensesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.list_lenses_input.ListLensesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2606,7 +2830,37 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_lenses(
+        self,
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.max_results.MaxResults"
+        ] = None,
+        lens_type: Optional["capo_wellarchitected.types.lens_type.LensType"] = None,
+        lens_status: Optional[
+            "capo_wellarchitected.types.lens_status_type.LensStatusType"
+        ] = None,
+        lens_name: Optional["capo_wellarchitected.types.lens_name.LensName"] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_lenses_output.ListLensesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_lenses(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                lens_type=lens_type,
+                lens_status=lens_status,
+                lens_name=lens_name,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_lens_review_improvements(
         self,
@@ -2656,9 +2910,10 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_lens_review_improvements_input.ListLensReviewImprovementsInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.list_lens_review_improvements_input.ListLensReviewImprovementsInput = {
+            "workload_id": workload_id,
+            "lens_alias": lens_alias,
+        }
         if pillar_id is not None:
             input_["pillar_id"] = pillar_id
         if milestone_number is not None:
@@ -2675,7 +2930,43 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_lens_review_improvements(
+        self,
+        workload_id: "capo_wellarchitected.types.workload_id.WorkloadId",
+        lens_alias: "capo_wellarchitected.types.lens_alias.LensAlias",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        pillar_id: Optional["capo_wellarchitected.types.pillar_id.PillarId"] = None,
+        milestone_number: Optional[
+            "capo_wellarchitected.types.milestone_number.MilestoneNumber"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.list_lens_review_improvements_max_results.ListLensReviewImprovementsMaxResults"
+        ] = None,
+        question_priority: Optional[
+            "capo_wellarchitected.types.question_priority.QuestionPriority"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_lens_review_improvements_output.ListLensReviewImprovementsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_lens_review_improvements(
+                workload_id,
+                lens_alias,
+                config_overrides=config_overrides,
+                pillar_id=pillar_id,
+                milestone_number=milestone_number,
+                next_token=_token,
+                max_results=max_results,
+                question_priority=question_priority,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_lens_reviews(
         self,
@@ -2716,8 +3007,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_lens_reviews_input.ListLensReviewsInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.list_lens_reviews_input.ListLensReviewsInput = {
+            "workload_id": workload_id
+        }
         if milestone_number is not None:
             input_["milestone_number"] = milestone_number
         if next_token is not None:
@@ -2730,7 +3022,35 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_lens_reviews(
+        self,
+        workload_id: "capo_wellarchitected.types.workload_id.WorkloadId",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        milestone_number: Optional[
+            "capo_wellarchitected.types.milestone_number.MilestoneNumber"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_lens_reviews_output.ListLensReviewsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_lens_reviews(
+                workload_id,
+                config_overrides=config_overrides,
+                milestone_number=milestone_number,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_lens_shares(
         self,
@@ -2776,8 +3096,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_lens_shares_input.ListLensSharesInput = {}  # type: ignore[typeddict-item]
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.list_lens_shares_input.ListLensSharesInput = {
+            "lens_alias": lens_alias
+        }
         if shared_with_prefix is not None:
             input_["shared_with_prefix"] = shared_with_prefix
         if next_token is not None:
@@ -2792,7 +3113,37 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_lens_shares(
+        self,
+        lens_alias: "capo_wellarchitected.types.lens_alias.LensAlias",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        shared_with_prefix: Optional[
+            "capo_wellarchitected.types.shared_with_prefix.SharedWithPrefix"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.list_workload_shares_max_results.ListWorkloadSharesMaxResults"
+        ] = None,
+        status: Optional["capo_wellarchitected.types.share_status.ShareStatus"] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_lens_shares_output.ListLensSharesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_lens_shares(
+                lens_alias,
+                config_overrides=config_overrides,
+                shared_with_prefix=shared_with_prefix,
+                next_token=_token,
+                max_results=max_results,
+                status=status,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_milestones(
         self,
@@ -2830,8 +3181,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_milestones_input.ListMilestonesInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.list_milestones_input.ListMilestonesInput = {
+            "workload_id": workload_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2842,7 +3194,31 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_milestones(
+        self,
+        workload_id: "capo_wellarchitected.types.workload_id.WorkloadId",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_milestones_output.ListMilestonesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_milestones(
+                workload_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_notifications(
         self,
@@ -2888,7 +3264,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_notifications_input.ListNotificationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.list_notifications_input.ListNotificationsInput = {}
         if workload_id is not None:
             input_["workload_id"] = workload_id
         if next_token is not None:
@@ -2903,7 +3279,37 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_notifications(
+        self,
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        workload_id: Optional[
+            "capo_wellarchitected.types.workload_id.WorkloadId"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.list_notifications_max_results.ListNotificationsMaxResults"
+        ] = None,
+        resource_arn: Optional[
+            "capo_wellarchitected.types.resource_arn.ResourceArn"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_notifications_output.ListNotificationsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_notifications(
+                config_overrides=config_overrides,
+                workload_id=workload_id,
+                next_token=_token,
+                max_results=max_results,
+                resource_arn=resource_arn,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_profile_notifications(
         self,
@@ -2942,7 +3348,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_profile_notifications_input.ListProfileNotificationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.list_profile_notifications_input.ListProfileNotificationsInput = {}
         if workload_id is not None:
             input_["workload_id"] = workload_id
         if next_token is not None:
@@ -2955,7 +3361,33 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_profile_notifications(
+        self,
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        workload_id: Optional[
+            "capo_wellarchitected.types.workload_id.WorkloadId"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_profile_notifications_output.ListProfileNotificationsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_profile_notifications(
+                config_overrides=config_overrides,
+                workload_id=workload_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_profiles(
         self,
@@ -3001,7 +3433,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_profiles_input.ListProfilesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.list_profiles_input.ListProfilesInput = {}
         if profile_name_prefix is not None:
             input_["profile_name_prefix"] = profile_name_prefix
         if profile_owner_type is not None:
@@ -3016,7 +3448,37 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_profiles(
+        self,
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        profile_name_prefix: Optional[
+            "capo_wellarchitected.types.profile_name_prefix.ProfileNamePrefix"
+        ] = None,
+        profile_owner_type: Optional[
+            "capo_wellarchitected.types.profile_owner_type.ProfileOwnerType"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_profiles_output.ListProfilesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_profiles(
+                config_overrides=config_overrides,
+                profile_name_prefix=profile_name_prefix,
+                profile_owner_type=profile_owner_type,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_profile_shares(
         self,
@@ -3065,8 +3527,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_profile_shares_input.ListProfileSharesInput = {}  # type: ignore[typeddict-item]
-        input_["profile_arn"] = profile_arn
+        input_: capo_wellarchitected.types.list_profile_shares_input.ListProfileSharesInput = {
+            "profile_arn": profile_arn
+        }
         if shared_with_prefix is not None:
             input_["shared_with_prefix"] = shared_with_prefix
         if next_token is not None:
@@ -3081,7 +3544,37 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_profile_shares(
+        self,
+        profile_arn: "capo_wellarchitected.types.profile_arn.ProfileArn",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        shared_with_prefix: Optional[
+            "capo_wellarchitected.types.shared_with_prefix.SharedWithPrefix"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.list_profile_shares_max_results.ListProfileSharesMaxResults"
+        ] = None,
+        status: Optional["capo_wellarchitected.types.share_status.ShareStatus"] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_profile_shares_output.ListProfileSharesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_profile_shares(
+                profile_arn,
+                config_overrides=config_overrides,
+                shared_with_prefix=shared_with_prefix,
+                next_token=_token,
+                max_results=max_results,
+                status=status,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_review_template_answers(
         self,
@@ -3125,9 +3618,10 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_review_template_answers_input.ListReviewTemplateAnswersInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.list_review_template_answers_input.ListReviewTemplateAnswersInput = {
+            "template_arn": template_arn,
+            "lens_alias": lens_alias,
+        }
         if pillar_id is not None:
             input_["pillar_id"] = pillar_id
         if next_token is not None:
@@ -3140,7 +3634,35 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_review_template_answers(
+        self,
+        template_arn: "capo_wellarchitected.types.template_arn.TemplateArn",
+        lens_alias: "capo_wellarchitected.types.lens_alias.LensAlias",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        pillar_id: Optional["capo_wellarchitected.types.pillar_id.PillarId"] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.list_review_template_answers_max_results.ListReviewTemplateAnswersMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_review_template_answers_output.ListReviewTemplateAnswersOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_review_template_answers(
+                template_arn,
+                lens_alias,
+                config_overrides=config_overrides,
+                pillar_id=pillar_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_review_templates(
         self,
@@ -3176,7 +3698,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_review_templates_input.ListReviewTemplatesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.list_review_templates_input.ListReviewTemplatesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3187,7 +3709,29 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_review_templates(
+        self,
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_review_templates_output.ListReviewTemplatesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_review_templates(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_share_invitations(
         self,
@@ -3245,7 +3789,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_share_invitations_input.ListShareInvitationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.list_share_invitations_input.ListShareInvitationsInput = {}
         if workload_name_prefix is not None:
             input_["workload_name_prefix"] = workload_name_prefix
         if lens_name_prefix is not None:
@@ -3266,7 +3810,49 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_share_invitations(
+        self,
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        workload_name_prefix: Optional[
+            "capo_wellarchitected.types.workload_name_prefix.WorkloadNamePrefix"
+        ] = None,
+        lens_name_prefix: Optional[
+            "capo_wellarchitected.types.lens_name_prefix.LensNamePrefix"
+        ] = None,
+        share_resource_type: Optional[
+            "capo_wellarchitected.types.share_resource_type.ShareResourceType"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.list_share_invitations_max_results.ListShareInvitationsMaxResults"
+        ] = None,
+        profile_name_prefix: Optional[
+            "capo_wellarchitected.types.profile_name_prefix.ProfileNamePrefix"
+        ] = None,
+        template_name_prefix: Optional[
+            "capo_wellarchitected.types.template_name_prefix.TemplateNamePrefix"
+        ] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_share_invitations_output.ListShareInvitationsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_share_invitations(
+                config_overrides=config_overrides,
+                workload_name_prefix=workload_name_prefix,
+                lens_name_prefix=lens_name_prefix,
+                share_resource_type=share_resource_type,
+                next_token=_token,
+                max_results=max_results,
+                profile_name_prefix=profile_name_prefix,
+                template_name_prefix=template_name_prefix,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -3297,14 +3883,16 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["workload_arn"] = workload_arn
+        input_: capo_wellarchitected.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "workload_arn": workload_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_template_shares(
@@ -3352,8 +3940,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_template_shares_input.ListTemplateSharesInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
+        input_: capo_wellarchitected.types.list_template_shares_input.ListTemplateSharesInput = {
+            "template_arn": template_arn
+        }
         if shared_with_prefix is not None:
             input_["shared_with_prefix"] = shared_with_prefix
         if next_token is not None:
@@ -3368,7 +3957,37 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_template_shares(
+        self,
+        template_arn: "capo_wellarchitected.types.template_arn.TemplateArn",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        shared_with_prefix: Optional[
+            "capo_wellarchitected.types.shared_with_prefix.SharedWithPrefix"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.list_template_shares_max_results.ListTemplateSharesMaxResults"
+        ] = None,
+        status: Optional["capo_wellarchitected.types.share_status.ShareStatus"] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_template_shares_output.ListTemplateSharesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_template_shares(
+                template_arn,
+                config_overrides=config_overrides,
+                shared_with_prefix=shared_with_prefix,
+                next_token=_token,
+                max_results=max_results,
+                status=status,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_workloads(
         self,
@@ -3410,7 +4029,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_workloads_input.ListWorkloadsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.list_workloads_input.ListWorkloadsInput = {}
         if workload_name_prefix is not None:
             input_["workload_name_prefix"] = workload_name_prefix
         if next_token is not None:
@@ -3423,7 +4042,35 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_workloads(
+        self,
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        workload_name_prefix: Optional[
+            "capo_wellarchitected.types.workload_name_prefix.WorkloadNamePrefix"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.list_workloads_max_results.ListWorkloadsMaxResults"
+        ] = None,
+    ) -> (
+        "Iterator[capo_wellarchitected.types.list_workloads_output.ListWorkloadsOutput]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_workloads(
+                config_overrides=config_overrides,
+                workload_name_prefix=workload_name_prefix,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_workload_shares(
         self,
@@ -3469,8 +4116,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.list_workload_shares_input.ListWorkloadSharesInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.list_workload_shares_input.ListWorkloadSharesInput = {
+            "workload_id": workload_id
+        }
         if shared_with_prefix is not None:
             input_["shared_with_prefix"] = shared_with_prefix
         if next_token is not None:
@@ -3485,7 +4133,37 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_workload_shares(
+        self,
+        workload_id: "capo_wellarchitected.types.workload_id.WorkloadId",
+        *,
+        config_overrides: Optional[WellArchitectedClientConfig] = None,
+        shared_with_prefix: Optional[
+            "capo_wellarchitected.types.shared_with_prefix.SharedWithPrefix"
+        ] = None,
+        next_token: Optional["capo_wellarchitected.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_wellarchitected.types.list_workload_shares_max_results.ListWorkloadSharesMaxResults"
+        ] = None,
+        status: Optional["capo_wellarchitected.types.share_status.ShareStatus"] = None,
+    ) -> "Iterator[capo_wellarchitected.types.list_workload_shares_output.ListWorkloadSharesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_workload_shares(
+                workload_id,
+                config_overrides=config_overrides,
+                shared_with_prefix=shared_with_prefix,
+                next_token=_token,
+                max_results=max_results,
+                status=status,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def tag_resource(
         self,
@@ -3520,8 +4198,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["workload_arn"] = workload_arn
+        input_: capo_wellarchitected.types.tag_resource_input.TagResourceInput = {
+            "workload_arn": workload_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -3530,6 +4209,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -3565,8 +4245,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["workload_arn"] = workload_arn
+        input_: capo_wellarchitected.types.untag_resource_input.UntagResourceInput = {
+            "workload_arn": workload_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -3575,6 +4256,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_answer(
@@ -3629,10 +4311,11 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_answer_input.UpdateAnswerInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        input_["lens_alias"] = lens_alias
-        input_["question_id"] = question_id
+        input_: capo_wellarchitected.types.update_answer_input.UpdateAnswerInput = {
+            "workload_id": workload_id,
+            "lens_alias": lens_alias,
+            "question_id": question_id,
+        }
         if selected_choices is not None:
             input_["selected_choices"] = selected_choices
         if choice_updates is not None:
@@ -3649,6 +4332,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_global_settings(
@@ -3694,7 +4378,7 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_global_settings_input.UpdateGlobalSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_wellarchitected.types.update_global_settings_input.UpdateGlobalSettingsInput = {}
         if organization_sharing_status is not None:
             input_["organization_sharing_status"] = organization_sharing_status
         if discovery_integration_status is not None:
@@ -3707,6 +4391,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_integration(
@@ -3749,10 +4434,12 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_integration_input.UpdateIntegrationInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_wellarchitected.types.update_integration_input.UpdateIntegrationInput = {
+            "workload_id": workload_id
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if integrating_service is not None:
             input_["integrating_service"] = integrating_service
 
@@ -3761,6 +4448,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_lens_review(
@@ -3807,9 +4495,10 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_lens_review_input.UpdateLensReviewInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.update_lens_review_input.UpdateLensReviewInput = {
+            "workload_id": workload_id,
+            "lens_alias": lens_alias,
+        }
         if lens_notes is not None:
             input_["lens_notes"] = lens_notes
         if pillar_notes is not None:
@@ -3822,6 +4511,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_profile(
@@ -3868,8 +4558,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_profile_input.UpdateProfileInput = {}  # type: ignore[typeddict-item]
-        input_["profile_arn"] = profile_arn
+        input_: capo_wellarchitected.types.update_profile_input.UpdateProfileInput = {
+            "profile_arn": profile_arn
+        }
         if profile_description is not None:
             input_["profile_description"] = profile_description
         if profile_questions is not None:
@@ -3880,6 +4571,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_review_template(
@@ -3935,8 +4627,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_review_template_input.UpdateReviewTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
+        input_: capo_wellarchitected.types.update_review_template_input.UpdateReviewTemplateInput = {
+            "template_arn": template_arn
+        }
         if template_name is not None:
             input_["template_name"] = template_name
         if description is not None:
@@ -3953,6 +4646,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_review_template_answer(
@@ -4008,10 +4702,11 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_review_template_answer_input.UpdateReviewTemplateAnswerInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["lens_alias"] = lens_alias
-        input_["question_id"] = question_id
+        input_: capo_wellarchitected.types.update_review_template_answer_input.UpdateReviewTemplateAnswerInput = {
+            "template_arn": template_arn,
+            "lens_alias": lens_alias,
+            "question_id": question_id,
+        }
         if selected_choices is not None:
             input_["selected_choices"] = selected_choices
         if choice_updates is not None:
@@ -4028,6 +4723,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_review_template_lens_review(
@@ -4071,9 +4767,10 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_review_template_lens_review_input.UpdateReviewTemplateLensReviewInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.update_review_template_lens_review_input.UpdateReviewTemplateLensReviewInput = {
+            "template_arn": template_arn,
+            "lens_alias": lens_alias,
+        }
         if lens_notes is not None:
             input_["lens_notes"] = lens_notes
         if pillar_notes is not None:
@@ -4084,6 +4781,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_share_invitation(
@@ -4125,8 +4823,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_share_invitation_input.UpdateShareInvitationInput = {}  # type: ignore[typeddict-item]
-        input_["share_invitation_id"] = share_invitation_id
+        input_: capo_wellarchitected.types.update_share_invitation_input.UpdateShareInvitationInput = {
+            "share_invitation_id": share_invitation_id
+        }
         if share_invitation_action is not None:
             input_["share_invitation_action"] = share_invitation_action
 
@@ -4135,6 +4834,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_workload(
@@ -4225,8 +4925,9 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_workload_input.UpdateWorkloadInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.update_workload_input.UpdateWorkloadInput = {
+            "workload_id": workload_id
+        }
         if workload_name is not None:
             input_["workload_name"] = workload_name
         if description is not None:
@@ -4269,6 +4970,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_workload_share(
@@ -4308,9 +5010,10 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.update_workload_share_input.UpdateWorkloadShareInput = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
-        input_["workload_id"] = workload_id
+        input_: capo_wellarchitected.types.update_workload_share_input.UpdateWorkloadShareInput = {
+            "share_id": share_id,
+            "workload_id": workload_id,
+        }
         if permission_type is not None:
             input_["permission_type"] = permission_type
 
@@ -4319,6 +5022,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upgrade_lens_review(
@@ -4360,9 +5064,10 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.upgrade_lens_review_input.UpgradeLensReviewInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.upgrade_lens_review_input.UpgradeLensReviewInput = {
+            "workload_id": workload_id,
+            "lens_alias": lens_alias,
+        }
         if milestone_name is not None:
             input_["milestone_name"] = milestone_name
         if client_request_token is not None:
@@ -4373,6 +5078,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upgrade_profile_version(
@@ -4417,19 +5123,22 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.upgrade_profile_version_input.UpgradeProfileVersionInput = {}  # type: ignore[typeddict-item]
-        input_["workload_id"] = workload_id
-        input_["profile_arn"] = profile_arn
+        input_: capo_wellarchitected.types.upgrade_profile_version_input.UpgradeProfileVersionInput = {
+            "workload_id": workload_id,
+            "profile_arn": profile_arn,
+        }
         if milestone_name is not None:
             input_["milestone_name"] = milestone_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upgrade_review_template_lens_review(
@@ -4470,9 +5179,10 @@ class WellArchitectedClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wellarchitected.types.upgrade_review_template_lens_review_input.UpgradeReviewTemplateLensReviewInput = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["lens_alias"] = lens_alias
+        input_: capo_wellarchitected.types.upgrade_review_template_lens_review_input.UpgradeReviewTemplateLensReviewInput = {
+            "template_arn": template_arn,
+            "lens_alias": lens_alias,
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
 
@@ -4481,6 +5191,7 @@ class WellArchitectedClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

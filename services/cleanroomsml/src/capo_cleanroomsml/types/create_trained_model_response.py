@@ -29,12 +29,12 @@ def serialize_json(value: CreateTrainedModelResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateTrainedModelResponse:
     out: CreateTrainedModelResponse = {}  # type: ignore[typeddict-item]
-    if "trainedModelArn" in data:
+    if data.get("trainedModelArn") is not None:
         out["trained_model_arn"] = data["trainedModelArn"]
     else:
         raise DeserializationError(
             "CreateTrainedModelResponse.trained_model_arn required"
         )
-    if "versionIdentifier" in data:
+    if data.get("versionIdentifier") is not None:
         out["version_identifier"] = data["versionIdentifier"]
     return out

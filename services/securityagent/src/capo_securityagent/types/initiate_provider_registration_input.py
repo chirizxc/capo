@@ -28,7 +28,7 @@ def serialize_json(value: InitiateProviderRegistrationInput) -> dict:
 
 def deserialize_json(data: dict) -> InitiateProviderRegistrationInput:
     out: InitiateProviderRegistrationInput = {}  # type: ignore[typeddict-item]
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_securityagent.types.provider
 
         out["provider"] = capo_securityagent.types.provider.deserialize_json(

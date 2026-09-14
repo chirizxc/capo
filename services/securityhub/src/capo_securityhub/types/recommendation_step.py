@@ -32,7 +32,7 @@ def serialize_json(value: RecommendationStep) -> dict:
 
 
 def deserialize_json(data: dict) -> RecommendationStep:
-    if "UnusedPermissions" in data:
+    if data.get("UnusedPermissions") is not None:
         import capo_securityhub.types.unused_permissions_recommendation_step
 
         return {

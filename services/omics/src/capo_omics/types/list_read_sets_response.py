@@ -31,9 +31,9 @@ def serialize_json(value: ListReadSetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReadSetsResponse:
     out: ListReadSetsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "readSets" in data:
+    if data.get("readSets") is not None:
         import capo_omics.types.read_set_list
 
         out["read_sets"] = capo_omics.types.read_set_list.deserialize_json(

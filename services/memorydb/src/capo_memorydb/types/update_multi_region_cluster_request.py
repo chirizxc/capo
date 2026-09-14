@@ -65,19 +65,19 @@ def serialize_aws_json_1_1(value: UpdateMultiRegionClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMultiRegionClusterRequest:
     out: UpdateMultiRegionClusterRequest = {}  # type: ignore[typeddict-item]
-    if "MultiRegionClusterName" in data:
+    if data.get("MultiRegionClusterName") is not None:
         out["multi_region_cluster_name"] = data["MultiRegionClusterName"]
     else:
         raise DeserializationError(
             "UpdateMultiRegionClusterRequest.multi_region_cluster_name required"
         )
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "ShardConfiguration" in data:
+    if data.get("ShardConfiguration") is not None:
         import capo_memorydb.types.shard_configuration_request
 
         out["shard_configuration"] = (
@@ -85,9 +85,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMultiRegionClusterRequest:
                 data["ShardConfiguration"]
             )
         )
-    if "MultiRegionParameterGroupName" in data:
+    if data.get("MultiRegionParameterGroupName") is not None:
         out["multi_region_parameter_group_name"] = data["MultiRegionParameterGroupName"]
-    if "UpdateStrategy" in data:
+    if data.get("UpdateStrategy") is not None:
         import capo_memorydb.types.update_strategy
 
         out["update_strategy"] = (

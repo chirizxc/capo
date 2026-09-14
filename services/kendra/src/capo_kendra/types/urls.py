@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: Urls) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Urls:
     out: Urls = {}  # type: ignore[typeddict-item]
-    if "SeedUrlConfiguration" in data:
+    if data.get("SeedUrlConfiguration") is not None:
         import capo_kendra.types.seed_url_configuration
 
         out["seed_url_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> Urls:
                 data["SeedUrlConfiguration"]
             )
         )
-    if "SiteMapsConfiguration" in data:
+    if data.get("SiteMapsConfiguration") is not None:
         import capo_kendra.types.site_maps_configuration
 
         out["site_maps_configuration"] = (

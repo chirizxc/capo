@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> OdbPeeringConnectionList:
 
     out: OdbPeeringConnectionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_odb.types.odb_peering_connection_summary.deserialize_aws_json_1_0(item)
         )

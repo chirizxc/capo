@@ -70,19 +70,19 @@ def serialize_aws_json_1_1(value: CreateQualificationTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateQualificationTypeRequest:
     out: CreateQualificationTypeRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateQualificationTypeRequest.name required")
-    if "Keywords" in data:
+    if data.get("Keywords") is not None:
         out["keywords"] = data["Keywords"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError(
             "CreateQualificationTypeRequest.description required"
         )
-    if "QualificationTypeStatus" in data:
+    if data.get("QualificationTypeStatus") is not None:
         import capo_mturk.types.qualification_type_status
 
         out["qualification_type_status"] = (
@@ -94,16 +94,16 @@ def deserialize_aws_json_1_1(data: dict) -> CreateQualificationTypeRequest:
         raise DeserializationError(
             "CreateQualificationTypeRequest.qualification_type_status required"
         )
-    if "RetryDelayInSeconds" in data:
+    if data.get("RetryDelayInSeconds") is not None:
         out["retry_delay_in_seconds"] = data["RetryDelayInSeconds"]
-    if "Test" in data:
+    if data.get("Test") is not None:
         out["test"] = data["Test"]
-    if "AnswerKey" in data:
+    if data.get("AnswerKey") is not None:
         out["answer_key"] = data["AnswerKey"]
-    if "TestDurationInSeconds" in data:
+    if data.get("TestDurationInSeconds") is not None:
         out["test_duration_in_seconds"] = data["TestDurationInSeconds"]
-    if "AutoGranted" in data:
+    if data.get("AutoGranted") is not None:
         out["auto_granted"] = data["AutoGranted"]
-    if "AutoGrantedValue" in data:
+    if data.get("AutoGrantedValue") is not None:
         out["auto_granted_value"] = data["AutoGrantedValue"]
     return out

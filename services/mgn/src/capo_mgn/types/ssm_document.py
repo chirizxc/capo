@@ -63,25 +63,25 @@ def serialize_json(value: SsmDocument) -> dict:
 
 def deserialize_json(data: dict) -> SsmDocument:
     out: SsmDocument = {}  # type: ignore[typeddict-item]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
     else:
         raise DeserializationError("SsmDocument.action_name required")
-    if "ssmDocumentName" in data:
+    if data.get("ssmDocumentName") is not None:
         out["ssm_document_name"] = data["ssmDocumentName"]
     else:
         raise DeserializationError("SsmDocument.ssm_document_name required")
-    if "timeoutSeconds" in data:
+    if data.get("timeoutSeconds") is not None:
         out["timeout_seconds"] = data["timeoutSeconds"]
-    if "mustSucceedForCutover" in data:
+    if data.get("mustSucceedForCutover") is not None:
         out["must_succeed_for_cutover"] = data["mustSucceedForCutover"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_mgn.types.ssm_document_parameters
 
         out["parameters"] = capo_mgn.types.ssm_document_parameters.deserialize_json(
             data["parameters"]
         )
-    if "externalParameters" in data:
+    if data.get("externalParameters") is not None:
         import capo_mgn.types.ssm_document_external_parameters
 
         out["external_parameters"] = (

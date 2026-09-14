@@ -97,9 +97,9 @@ def serialize_aws_json_1_0(value: ClusterSlurmConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ClusterSlurmConfiguration:
     out: ClusterSlurmConfiguration = {}  # type: ignore[typeddict-item]
-    if "scaleDownIdleTimeInSeconds" in data:
+    if data.get("scaleDownIdleTimeInSeconds") is not None:
         out["scale_down_idle_time_in_seconds"] = data["scaleDownIdleTimeInSeconds"]
-    if "slurmCustomSettings" in data:
+    if data.get("slurmCustomSettings") is not None:
         import capo_pcs.types.slurm_custom_settings
 
         out["slurm_custom_settings"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> ClusterSlurmConfiguration:
                 data["slurmCustomSettings"]
             )
         )
-    if "slurmdbdCustomSettings" in data:
+    if data.get("slurmdbdCustomSettings") is not None:
         import capo_pcs.types.slurmdbd_custom_settings
 
         out["slurmdbd_custom_settings"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_0(data: dict) -> ClusterSlurmConfiguration:
                 data["slurmdbdCustomSettings"]
             )
         )
-    if "cgroupCustomSettings" in data:
+    if data.get("cgroupCustomSettings") is not None:
         import capo_pcs.types.cgroup_custom_settings
 
         out["cgroup_custom_settings"] = (
@@ -123,25 +123,25 @@ def deserialize_aws_json_1_0(data: dict) -> ClusterSlurmConfiguration:
                 data["cgroupCustomSettings"]
             )
         )
-    if "authKey" in data:
+    if data.get("authKey") is not None:
         import capo_pcs.types.slurm_auth_key
 
         out["auth_key"] = capo_pcs.types.slurm_auth_key.deserialize_aws_json_1_0(
             data["authKey"]
         )
-    if "jwtAuth" in data:
+    if data.get("jwtAuth") is not None:
         import capo_pcs.types.jwt_auth
 
         out["jwt_auth"] = capo_pcs.types.jwt_auth.deserialize_aws_json_1_0(
             data["jwtAuth"]
         )
-    if "accounting" in data:
+    if data.get("accounting") is not None:
         import capo_pcs.types.accounting
 
         out["accounting"] = capo_pcs.types.accounting.deserialize_aws_json_1_0(
             data["accounting"]
         )
-    if "slurmRest" in data:
+    if data.get("slurmRest") is not None:
         import capo_pcs.types.slurm_rest
 
         out["slurm_rest"] = capo_pcs.types.slurm_rest.deserialize_aws_json_1_0(

@@ -120,39 +120,39 @@ def serialize_json(value: GetIndexResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetIndexResponse:
     out: GetIndexResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "indexId" in data:
+    if data.get("indexId") is not None:
         out["index_id"] = data["indexId"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "indexArn" in data:
+    if data.get("indexArn") is not None:
         out["index_arn"] = data["indexArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.index_status
 
         out["status"] = capo_qbusiness.types.index_status.deserialize_json(
             data["status"]
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.index_type
 
         out["type"] = capo_qbusiness.types.index_type.deserialize_json(data["type"])
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "capacityConfiguration" in data:
+    if data.get("capacityConfiguration") is not None:
         import capo_qbusiness.types.index_capacity_configuration
 
         out["capacity_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> GetIndexResponse:
                 data["capacityConfiguration"]
             )
         )
-    if "documentAttributeConfigurations" in data:
+    if data.get("documentAttributeConfigurations") is not None:
         import capo_qbusiness.types.document_attribute_configurations
 
         out["document_attribute_configurations"] = (
@@ -168,11 +168,11 @@ def deserialize_json(data: dict) -> GetIndexResponse:
                 data["documentAttributeConfigurations"]
             )
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_qbusiness.types.error_detail
 
         out["error"] = capo_qbusiness.types.error_detail.deserialize_json(data["error"])
-    if "indexStatistics" in data:
+    if data.get("indexStatistics") is not None:
         import capo_qbusiness.types.index_statistics
 
         out["index_statistics"] = (

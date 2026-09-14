@@ -36,7 +36,7 @@ def serialize_json(value: AIPromptTemplateConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> AIPromptTemplateConfiguration:
-    if "textFullAIPromptEditTemplateConfiguration" in data:
+    if data.get("textFullAIPromptEditTemplateConfiguration") is not None:
         import capo_qconnect.types.text_full_ai_prompt_edit_template_configuration
 
         return {

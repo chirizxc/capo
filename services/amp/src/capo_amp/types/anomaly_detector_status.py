@@ -32,7 +32,7 @@ def serialize_json(value: AnomalyDetectorStatus) -> dict:
 
 def deserialize_json(data: dict) -> AnomalyDetectorStatus:
     out: AnomalyDetectorStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         import capo_amp.types.anomaly_detector_status_code
 
         out["status_code"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> AnomalyDetectorStatus:
         )
     else:
         raise DeserializationError("AnomalyDetectorStatus.status_code required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

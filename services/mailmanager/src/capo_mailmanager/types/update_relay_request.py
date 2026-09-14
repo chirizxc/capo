@@ -52,17 +52,17 @@ def serialize_aws_json_1_0(value: UpdateRelayRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateRelayRequest:
     out: UpdateRelayRequest = {}  # type: ignore[typeddict-item]
-    if "RelayId" in data:
+    if data.get("RelayId") is not None:
         out["relay_id"] = data["RelayId"]
     else:
         raise DeserializationError("UpdateRelayRequest.relay_id required")
-    if "RelayName" in data:
+    if data.get("RelayName") is not None:
         out["relay_name"] = data["RelayName"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "ServerPort" in data:
+    if data.get("ServerPort") is not None:
         out["server_port"] = data["ServerPort"]
-    if "Authentication" in data:
+    if data.get("Authentication") is not None:
         import capo_mailmanager.types.relay_authentication
 
         out["authentication"] = (

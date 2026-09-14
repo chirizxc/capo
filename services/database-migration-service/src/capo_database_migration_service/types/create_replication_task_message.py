@@ -98,31 +98,31 @@ def serialize_aws_json_1_1(value: CreateReplicationTaskMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateReplicationTaskMessage:
     out: CreateReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskIdentifier" in data:
+    if data.get("ReplicationTaskIdentifier") is not None:
         out["replication_task_identifier"] = data["ReplicationTaskIdentifier"]
     else:
         raise DeserializationError(
             "CreateReplicationTaskMessage.replication_task_identifier required"
         )
-    if "SourceEndpointArn" in data:
+    if data.get("SourceEndpointArn") is not None:
         out["source_endpoint_arn"] = data["SourceEndpointArn"]
     else:
         raise DeserializationError(
             "CreateReplicationTaskMessage.source_endpoint_arn required"
         )
-    if "TargetEndpointArn" in data:
+    if data.get("TargetEndpointArn") is not None:
         out["target_endpoint_arn"] = data["TargetEndpointArn"]
     else:
         raise DeserializationError(
             "CreateReplicationTaskMessage.target_endpoint_arn required"
         )
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
     else:
         raise DeserializationError(
             "CreateReplicationTaskMessage.replication_instance_arn required"
         )
-    if "MigrationType" in data:
+    if data.get("MigrationType") is not None:
         import capo_database_migration_service.types.migration_type_value
 
         out["migration_type"] = (
@@ -134,15 +134,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateReplicationTaskMessage:
         raise DeserializationError(
             "CreateReplicationTaskMessage.migration_type required"
         )
-    if "TableMappings" in data:
+    if data.get("TableMappings") is not None:
         out["table_mappings"] = data["TableMappings"]
     else:
         raise DeserializationError(
             "CreateReplicationTaskMessage.table_mappings required"
         )
-    if "ReplicationTaskSettings" in data:
+    if data.get("ReplicationTaskSettings") is not None:
         out["replication_task_settings"] = data["ReplicationTaskSettings"]
-    if "CdcStartTime" in data:
+    if data.get("CdcStartTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["cdc_start_time"] = (
@@ -150,11 +150,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateReplicationTaskMessage:
                 data["CdcStartTime"]
             )
         )
-    if "CdcStartPosition" in data:
+    if data.get("CdcStartPosition") is not None:
         out["cdc_start_position"] = data["CdcStartPosition"]
-    if "CdcStopPosition" in data:
+    if data.get("CdcStopPosition") is not None:
         out["cdc_stop_position"] = data["CdcStopPosition"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (
@@ -162,8 +162,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateReplicationTaskMessage:
                 data["Tags"]
             )
         )
-    if "TaskData" in data:
+    if data.get("TaskData") is not None:
         out["task_data"] = data["TaskData"]
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
     return out

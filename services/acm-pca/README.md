@@ -13,9 +13,9 @@ from capo_acm_pca import AsyncACMPCAClient
 
 
 async def main():
-    async with AsyncACMPCAClient() as s3:
+    async with AsyncACMPCAClient() as acmpca:
         # Example: call the create_certificate_authority operation
-        response = await s3.create_certificate_authority()
+        response = await acmpca.create_certificate_authority()
         print(response["certificate_authority_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_acm_pca import AsyncACMPCAClient
 
 
 async def main():
-    async with AsyncACMPCAClient() as s3:
+    async with AsyncACMPCAClient() as acmpca:
         # Example: paginate over list_certificate_authorities
-        async for item in s3.iter_list_certificate_authorities():
+        async for item in acmpca.iter_list_certificate_authorities():
             print(item)
 ```
 
@@ -43,9 +43,9 @@ from capo_acm_pca import AsyncACMPCAClient
 
 
 async def main():
-    async with AsyncACMPCAClient() as s3:
+    async with AsyncACMPCAClient() as acmpca:
         # Example: wait for certificate_issued
-        await s3.wait_until_certificate_issued(max_wait_time=300)
+        await acmpca.wait_until_certificate_issued(max_wait_time=300)
 ```
 
 ## Error Handling
@@ -58,9 +58,9 @@ from capo_acm_pca.error import InvalidArgsException
 
 
 async def main():
-    async with AsyncACMPCAClient() as s3:
+    async with AsyncACMPCAClient() as acmpca:
         try:
-            await s3.create_certificate_authority()
+            await acmpca.create_certificate_authority()
         except InvalidArgsException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -77,13 +77,13 @@ from capo_acm_pca import AsyncACMPCAClient
 
 
 async def main():
-    async with AsyncACMPCAClient() as s3:
+    async with AsyncACMPCAClient() as acmpca:
         # Default: 3 attempts for every operation
-        response = await s3.create_certificate_authority()
+        response = await acmpca.create_certificate_authority()
 
         # Override per operation
-        response = await s3.create_certificate_authority(config_overrides={"retry_max_attempts": 5})
+        response = await acmpca.create_certificate_authority(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_certificate_authority(config_overrides={"retry_max_attempts": 1})
+        response = await acmpca.create_certificate_authority(config_overrides={"retry_max_attempts": 1})
 ```

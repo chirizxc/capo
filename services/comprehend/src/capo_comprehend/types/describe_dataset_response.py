@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeDatasetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetResponse:
     out: DescribeDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "DatasetProperties" in data:
+    if data.get("DatasetProperties") is not None:
         import capo_comprehend.types.dataset_properties
 
         out["dataset_properties"] = (

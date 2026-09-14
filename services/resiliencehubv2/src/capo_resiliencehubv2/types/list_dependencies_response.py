@@ -36,7 +36,7 @@ def serialize_json(value: ListDependenciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDependenciesResponse:
     out: ListDependenciesResponse = {}  # type: ignore[typeddict-item]
-    if "dependencySummaries" in data:
+    if data.get("dependencySummaries") is not None:
         import capo_resiliencehubv2.types.dependency_summary_list
 
         out["dependency_summaries"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> ListDependenciesResponse:
         raise DeserializationError(
             "ListDependenciesResponse.dependency_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -38,7 +38,7 @@ def serialize_json(value: Attachments) -> dict:
 
 def deserialize_json(data: dict) -> Attachments:
     out: Attachments = {}  # type: ignore[typeddict-item]
-    if "manifests" in data:
+    if data.get("manifests") is not None:
         import capo_deadline.types.manifest_properties_list
 
         out["manifests"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> Attachments:
         )
     else:
         raise DeserializationError("Attachments.manifests required")
-    if "fileSystem" in data:
+    if data.get("fileSystem") is not None:
         import capo_deadline.types.job_attachments_file_system
 
         out["file_system"] = (

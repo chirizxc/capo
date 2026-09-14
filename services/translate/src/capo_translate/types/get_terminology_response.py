@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: GetTerminologyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTerminologyResponse:
     out: GetTerminologyResponse = {}  # type: ignore[typeddict-item]
-    if "TerminologyProperties" in data:
+    if data.get("TerminologyProperties") is not None:
         import capo_translate.types.terminology_properties
 
         out["terminology_properties"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetTerminologyResponse:
                 data["TerminologyProperties"]
             )
         )
-    if "TerminologyDataLocation" in data:
+    if data.get("TerminologyDataLocation") is not None:
         import capo_translate.types.terminology_data_location
 
         out["terminology_data_location"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetTerminologyResponse:
                 data["TerminologyDataLocation"]
             )
         )
-    if "AuxiliaryDataLocation" in data:
+    if data.get("AuxiliaryDataLocation") is not None:
         import capo_translate.types.terminology_data_location
 
         out["auxiliary_data_location"] = (

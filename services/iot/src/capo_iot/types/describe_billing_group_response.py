@@ -65,17 +65,17 @@ def serialize_json(value: DescribeBillingGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBillingGroupResponse:
     out: DescribeBillingGroupResponse = {}  # type: ignore[typeddict-item]
-    if "billingGroupName" in data:
+    if data.get("billingGroupName") is not None:
         out["billing_group_name"] = data["billingGroupName"]
-    if "billingGroupId" in data:
+    if data.get("billingGroupId") is not None:
         out["billing_group_id"] = data["billingGroupId"]
-    if "billingGroupArn" in data:
+    if data.get("billingGroupArn") is not None:
         out["billing_group_arn"] = data["billingGroupArn"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         out["version"] = 0
-    if "billingGroupProperties" in data:
+    if data.get("billingGroupProperties") is not None:
         import capo_iot.types.billing_group_properties
 
         out["billing_group_properties"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> DescribeBillingGroupResponse:
                 data["billingGroupProperties"]
             )
         )
-    if "billingGroupMetadata" in data:
+    if data.get("billingGroupMetadata") is not None:
         import capo_iot.types.billing_group_metadata
 
         out["billing_group_metadata"] = (

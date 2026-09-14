@@ -41,18 +41,18 @@ def serialize_aws_json_1_1(value: UpdateDomainContactPrivacyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDomainContactPrivacyRequest:
     out: UpdateDomainContactPrivacyRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(
             "UpdateDomainContactPrivacyRequest.domain_name required"
         )
-    if "AdminPrivacy" in data:
+    if data.get("AdminPrivacy") is not None:
         out["admin_privacy"] = data["AdminPrivacy"]
-    if "RegistrantPrivacy" in data:
+    if data.get("RegistrantPrivacy") is not None:
         out["registrant_privacy"] = data["RegistrantPrivacy"]
-    if "TechPrivacy" in data:
+    if data.get("TechPrivacy") is not None:
         out["tech_privacy"] = data["TechPrivacy"]
-    if "BillingPrivacy" in data:
+    if data.get("BillingPrivacy") is not None:
         out["billing_privacy"] = data["BillingPrivacy"]
     return out

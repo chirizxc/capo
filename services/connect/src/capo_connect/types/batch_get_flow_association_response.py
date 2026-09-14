@@ -31,7 +31,7 @@ def serialize_json(value: BatchGetFlowAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFlowAssociationResponse:
     out: BatchGetFlowAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "FlowAssociationSummaryList" in data:
+    if data.get("FlowAssociationSummaryList") is not None:
         import capo_connect.types.flow_association_summary_list
 
         out["flow_association_summary_list"] = (

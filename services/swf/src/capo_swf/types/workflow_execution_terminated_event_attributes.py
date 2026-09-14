@@ -51,11 +51,11 @@ def serialize_aws_json_1_0(value: WorkflowExecutionTerminatedEventAttributes) ->
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionTerminatedEventAttributes:
     out: WorkflowExecutionTerminatedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
-    if "childPolicy" in data:
+    if data.get("childPolicy") is not None:
         import capo_swf.types.child_policy
 
         out["child_policy"] = capo_swf.types.child_policy.deserialize_aws_json_1_0(
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionTerminatedEventAttr
         raise DeserializationError(
             "WorkflowExecutionTerminatedEventAttributes.child_policy required"
         )
-    if "cause" in data:
+    if data.get("cause") is not None:
         import capo_swf.types.workflow_execution_terminated_cause
 
         out["cause"] = (

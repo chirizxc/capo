@@ -33,7 +33,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeBatchDeleteConfigurationTaskResponse:
     out: DescribeBatchDeleteConfigurationTaskResponse = {}  # type: ignore[typeddict-item]
-    if "task" in data:
+    if data.get("task") is not None:
         import capo_application_discovery_service.types.batch_delete_configuration_task
 
         out["task"] = (

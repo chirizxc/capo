@@ -37,19 +37,19 @@ def serialize_aws_json_1_1(value: PutAggregationAuthorizationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutAggregationAuthorizationRequest:
     out: PutAggregationAuthorizationRequest = {}  # type: ignore[typeddict-item]
-    if "AuthorizedAccountId" in data:
+    if data.get("AuthorizedAccountId") is not None:
         out["authorized_account_id"] = data["AuthorizedAccountId"]
     else:
         raise DeserializationError(
             "PutAggregationAuthorizationRequest.authorized_account_id required"
         )
-    if "AuthorizedAwsRegion" in data:
+    if data.get("AuthorizedAwsRegion") is not None:
         out["authorized_aws_region"] = data["AuthorizedAwsRegion"]
     else:
         raise DeserializationError(
             "PutAggregationAuthorizationRequest.authorized_aws_region required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_config_service.types.tags_list
 
         out["tags"] = capo_config_service.types.tags_list.deserialize_aws_json_1_1(

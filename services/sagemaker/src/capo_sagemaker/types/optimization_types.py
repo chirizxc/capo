@@ -16,4 +16,4 @@ def serialize_aws_json_1_1(value: OptimizationTypes) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> OptimizationTypes:
-    return list(data)
+    return [item for item in data if item is not None]

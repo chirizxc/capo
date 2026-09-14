@@ -44,7 +44,7 @@ def serialize_json(value: CreateBrandRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBrandRequest:
     out: CreateBrandRequest = {}  # type: ignore[typeddict-item]
-    if "BrandDefinition" in data:
+    if data.get("BrandDefinition") is not None:
         import capo_quicksight.types.brand_definition
 
         out["brand_definition"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CreateBrandRequest:
                 data["BrandDefinition"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

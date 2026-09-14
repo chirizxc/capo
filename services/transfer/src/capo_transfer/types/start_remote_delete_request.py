@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: StartRemoteDeleteRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartRemoteDeleteRequest:
     out: StartRemoteDeleteRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
     else:
         raise DeserializationError("StartRemoteDeleteRequest.connector_id required")
-    if "DeletePath" in data:
+    if data.get("DeletePath") is not None:
         out["delete_path"] = data["DeletePath"]
     else:
         raise DeserializationError("StartRemoteDeleteRequest.delete_path required")

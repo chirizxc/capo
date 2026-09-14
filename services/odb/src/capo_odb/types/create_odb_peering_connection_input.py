@@ -74,21 +74,21 @@ def serialize_aws_json_1_0(value: CreateOdbPeeringConnectionInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateOdbPeeringConnectionInput:
     out: CreateOdbPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-    if "odbNetworkId" in data:
+    if data.get("odbNetworkId") is not None:
         out["odb_network_id"] = data["odbNetworkId"]
     else:
         raise DeserializationError(
             "CreateOdbPeeringConnectionInput.odb_network_id required"
         )
-    if "peerNetworkId" in data:
+    if data.get("peerNetworkId") is not None:
         out["peer_network_id"] = data["peerNetworkId"]
     else:
         raise DeserializationError(
             "CreateOdbPeeringConnectionInput.peer_network_id required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "peerNetworkCidrsToBeAdded" in data:
+    if data.get("peerNetworkCidrsToBeAdded") is not None:
         import capo_odb.types.peered_cidr_list
 
         out["peer_network_cidrs_to_be_added"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateOdbPeeringConnectionInput:
                 data["peerNetworkCidrsToBeAdded"]
             )
         )
-    if "peerNetworkRouteTableIds" in data:
+    if data.get("peerNetworkRouteTableIds") is not None:
         import capo_odb.types.peer_network_route_table_id_list
 
         out["peer_network_route_table_ids"] = (
@@ -104,9 +104,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateOdbPeeringConnectionInput:
                 data["peerNetworkRouteTableIds"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_odb.types.request_tag_map
 
         out["tags"] = capo_odb.types.request_tag_map.deserialize_aws_json_1_0(

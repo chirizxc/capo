@@ -13,9 +13,9 @@ from capo_ssm_sap import AsyncSsmSapClient
 
 
 async def main():
-    async with AsyncSsmSapClient() as s3:
+    async with AsyncSsmSapClient() as ssm_sap:
         # Example: call the delete_resource_permission operation
-        response = await s3.delete_resource_permission()
+        response = await ssm_sap.delete_resource_permission()
         print(response["policy"])
 ```
 
@@ -28,9 +28,9 @@ from capo_ssm_sap import AsyncSsmSapClient
 
 
 async def main():
-    async with AsyncSsmSapClient() as s3:
+    async with AsyncSsmSapClient() as ssm_sap:
         # Example: paginate over list_applications
-        async for item in s3.iter_list_applications():
+        async for item in ssm_sap.iter_list_applications():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_ssm_sap.error import InternalServerException
 
 
 async def main():
-    async with AsyncSsmSapClient() as s3:
+    async with AsyncSsmSapClient() as ssm_sap:
         try:
-            await s3.delete_resource_permission()
+            await ssm_sap.delete_resource_permission()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_ssm_sap import AsyncSsmSapClient
 
 
 async def main():
-    async with AsyncSsmSapClient() as s3:
+    async with AsyncSsmSapClient() as ssm_sap:
         # Default: 3 attempts for every operation
-        response = await s3.delete_resource_permission()
+        response = await ssm_sap.delete_resource_permission()
 
         # Override per operation
-        response = await s3.delete_resource_permission(config_overrides={"retry_max_attempts": 5})
+        response = await ssm_sap.delete_resource_permission(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_resource_permission(config_overrides={"retry_max_attempts": 1})
+        response = await ssm_sap.delete_resource_permission(config_overrides={"retry_max_attempts": 1})
 ```

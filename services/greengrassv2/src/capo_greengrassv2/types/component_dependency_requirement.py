@@ -38,9 +38,9 @@ def serialize_json(value: ComponentDependencyRequirement) -> dict:
 
 def deserialize_json(data: dict) -> ComponentDependencyRequirement:
     out: ComponentDependencyRequirement = {}  # type: ignore[typeddict-item]
-    if "versionRequirement" in data:
+    if data.get("versionRequirement") is not None:
         out["version_requirement"] = data["versionRequirement"]
-    if "dependencyType" in data:
+    if data.get("dependencyType") is not None:
         import capo_greengrassv2.types.component_dependency_type
 
         out["dependency_type"] = (

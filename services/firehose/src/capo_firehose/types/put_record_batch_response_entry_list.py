@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> PutRecordBatchResponseEntryList:
 
     out: PutRecordBatchResponseEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_firehose.types.put_record_batch_response_entry.deserialize_aws_json_1_1(
                 item

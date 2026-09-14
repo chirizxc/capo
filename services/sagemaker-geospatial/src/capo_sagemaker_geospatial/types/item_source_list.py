@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ItemSourceList:
 
     out: ItemSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker_geospatial.types.item_source.deserialize_json(item))
     return out

@@ -43,17 +43,17 @@ def serialize_json(value: CreateConfigurationPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationPolicyRequest:
     out: CreateConfigurationPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ConfigurationPolicy" in data:
+    if data.get("ConfigurationPolicy") is not None:
         import capo_securityhub.types.policy
 
         out["configuration_policy"] = capo_securityhub.types.policy.deserialize_json(
             data["ConfigurationPolicy"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_securityhub.types.tag_map
 
         out["tags"] = capo_securityhub.types.tag_map.deserialize_json(data["Tags"])

@@ -43,14 +43,14 @@ def serialize_aws_json_1_1(value: NotScaledReason) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotScaledReason:
     out: NotScaledReason = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     else:
         raise DeserializationError("NotScaledReason.code required")
-    if "MaxCapacity" in data:
+    if data.get("MaxCapacity") is not None:
         out["max_capacity"] = data["MaxCapacity"]
-    if "MinCapacity" in data:
+    if data.get("MinCapacity") is not None:
         out["min_capacity"] = data["MinCapacity"]
-    if "CurrentCapacity" in data:
+    if data.get("CurrentCapacity") is not None:
         out["current_capacity"] = data["CurrentCapacity"]
     return out

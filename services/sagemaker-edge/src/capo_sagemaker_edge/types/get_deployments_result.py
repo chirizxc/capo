@@ -29,7 +29,7 @@ def serialize_json(value: GetDeploymentsResult) -> dict:
 
 def deserialize_json(data: dict) -> GetDeploymentsResult:
     out: GetDeploymentsResult = {}  # type: ignore[typeddict-item]
-    if "Deployments" in data:
+    if data.get("Deployments") is not None:
         import capo_sagemaker_edge.types.edge_deployments
 
         out["deployments"] = (

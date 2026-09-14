@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MitigationActionIdentifierList:
 
     out: MitigationActionIdentifierList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.mitigation_action_identifier.deserialize_json(item))
     return out

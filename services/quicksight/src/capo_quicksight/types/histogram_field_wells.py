@@ -31,7 +31,7 @@ def serialize_json(value: HistogramFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> HistogramFieldWells:
     out: HistogramFieldWells = {}  # type: ignore[typeddict-item]
-    if "HistogramAggregatedFieldWells" in data:
+    if data.get("HistogramAggregatedFieldWells") is not None:
         import capo_quicksight.types.histogram_aggregated_field_wells
 
         out["histogram_aggregated_field_wells"] = (

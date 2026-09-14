@@ -31,7 +31,15 @@ def serialize_json(value: PredictedItem) -> dict:
     if "item_id" in value:
         out["itemId"] = value["item_id"]
     if "score" in value:
-        out["score"] = value["score"]
+        out["score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     if "promotion_name" in value:
         out["promotionName"] = value["promotion_name"]
     if "metadata" in value:
@@ -51,19 +59,19 @@ def serialize_json(value: PredictedItem) -> dict:
 
 def deserialize_json(data: dict) -> PredictedItem:
     out: PredictedItem = {}  # type: ignore[typeddict-item]
-    if "itemId" in data:
+    if data.get("itemId") is not None:
         out["item_id"] = data["itemId"]
-    if "score" in data:
-        out["score"] = data["score"]
-    if "promotionName" in data:
+    if data.get("score") is not None:
+        out["score"] = float(data["score"])
+    if data.get("promotionName") is not None:
         out["promotion_name"] = data["promotionName"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_personalize_runtime.types.metadata
 
         out["metadata"] = capo_personalize_runtime.types.metadata.deserialize_json(
             data["metadata"]
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         import capo_personalize_runtime.types.reason_list
 
         out["reason"] = capo_personalize_runtime.types.reason_list.deserialize_json(

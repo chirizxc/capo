@@ -53,9 +53,9 @@ def serialize_aws_json_1_1(value: HyperParameterAlgorithmSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterAlgorithmSpecification:
     out: HyperParameterAlgorithmSpecification = {}  # type: ignore[typeddict-item]
-    if "TrainingImage" in data:
+    if data.get("TrainingImage") is not None:
         out["training_image"] = data["TrainingImage"]
-    if "TrainingInputMode" in data:
+    if data.get("TrainingInputMode") is not None:
         import capo_sagemaker.types.training_input_mode
 
         out["training_input_mode"] = (
@@ -63,9 +63,9 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterAlgorithmSpecification
                 data["TrainingInputMode"]
             )
         )
-    if "AlgorithmName" in data:
+    if data.get("AlgorithmName") is not None:
         out["algorithm_name"] = data["AlgorithmName"]
-    if "MetricDefinitions" in data:
+    if data.get("MetricDefinitions") is not None:
         import capo_sagemaker.types.metric_definition_list
 
         out["metric_definitions"] = (

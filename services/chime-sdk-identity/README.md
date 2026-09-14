@@ -13,10 +13,25 @@ from capo_chime_sdk_identity import AsyncChimeSDKIdentityClient
 
 
 async def main():
-    async with AsyncChimeSDKIdentityClient() as s3:
+    async with AsyncChimeSDKIdentityClient() as chime_sdk_identity:
         # Example: call the create_app_instance operation
-        response = await s3.create_app_instance()
+        response = await chime_sdk_identity.create_app_instance()
         print(response["app_instance_arn"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_chime_sdk_identity import AsyncChimeSDKIdentityClient
+
+
+async def main():
+    async with AsyncChimeSDKIdentityClient() as chime_sdk_identity:
+        # Example: paginate over list_app_instance_admins
+        async for item in chime_sdk_identity.iter_list_app_instance_admins():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_chime_sdk_identity.error import BadRequestException
 
 
 async def main():
-    async with AsyncChimeSDKIdentityClient() as s3:
+    async with AsyncChimeSDKIdentityClient() as chime_sdk_identity:
         try:
-            await s3.create_app_instance()
+            await chime_sdk_identity.create_app_instance()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_chime_sdk_identity import AsyncChimeSDKIdentityClient
 
 
 async def main():
-    async with AsyncChimeSDKIdentityClient() as s3:
+    async with AsyncChimeSDKIdentityClient() as chime_sdk_identity:
         # Default: 3 attempts for every operation
-        response = await s3.create_app_instance()
+        response = await chime_sdk_identity.create_app_instance()
 
         # Override per operation
-        response = await s3.create_app_instance(config_overrides={"retry_max_attempts": 5})
+        response = await chime_sdk_identity.create_app_instance(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_app_instance(config_overrides={"retry_max_attempts": 1})
+        response = await chime_sdk_identity.create_app_instance(config_overrides={"retry_max_attempts": 1})
 ```

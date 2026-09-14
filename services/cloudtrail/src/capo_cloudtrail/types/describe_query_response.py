@@ -83,11 +83,11 @@ def serialize_aws_json_1_1(value: DescribeQueryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeQueryResponse:
     out: DescribeQueryResponse = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
-    if "QueryStatus" in data:
+    if data.get("QueryStatus") is not None:
         import capo_cloudtrail.types.query_status
 
         out["query_status"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeQueryResponse:
                 data["QueryStatus"]
             )
         )
-    if "QueryStatistics" in data:
+    if data.get("QueryStatistics") is not None:
         import capo_cloudtrail.types.query_statistics_for_describe_query
 
         out["query_statistics"] = (
@@ -103,11 +103,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeQueryResponse:
                 data["QueryStatistics"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "DeliveryS3Uri" in data:
+    if data.get("DeliveryS3Uri") is not None:
         out["delivery_s3_uri"] = data["DeliveryS3Uri"]
-    if "DeliveryStatus" in data:
+    if data.get("DeliveryStatus") is not None:
         import capo_cloudtrail.types.delivery_status
 
         out["delivery_status"] = (
@@ -115,8 +115,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeQueryResponse:
                 data["DeliveryStatus"]
             )
         )
-    if "Prompt" in data:
+    if data.get("Prompt") is not None:
         out["prompt"] = data["Prompt"]
-    if "EventDataStoreOwnerAccountId" in data:
+    if data.get("EventDataStoreOwnerAccountId") is not None:
         out["event_data_store_owner_account_id"] = data["EventDataStoreOwnerAccountId"]
     return out

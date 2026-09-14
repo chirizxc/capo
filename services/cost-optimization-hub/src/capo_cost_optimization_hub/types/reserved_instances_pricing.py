@@ -18,32 +18,62 @@ class ReservedInstancesPricing(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: ReservedInstancesPricing) -> dict:
     out: dict = {}
     if "estimated_on_demand_cost" in value:
-        out["estimatedOnDemandCost"] = value["estimated_on_demand_cost"]
+        out["estimatedOnDemandCost"] = (
+            "NaN"
+            if value["estimated_on_demand_cost"] != value["estimated_on_demand_cost"]
+            else "Infinity"
+            if value["estimated_on_demand_cost"] == float("inf")
+            else "-Infinity"
+            if value["estimated_on_demand_cost"] == float("-inf")
+            else value["estimated_on_demand_cost"]
+        )
     if "monthly_reservation_eligible_cost" in value:
-        out["monthlyReservationEligibleCost"] = value[
-            "monthly_reservation_eligible_cost"
-        ]
+        out["monthlyReservationEligibleCost"] = (
+            "NaN"
+            if value["monthly_reservation_eligible_cost"]
+            != value["monthly_reservation_eligible_cost"]
+            else "Infinity"
+            if value["monthly_reservation_eligible_cost"] == float("inf")
+            else "-Infinity"
+            if value["monthly_reservation_eligible_cost"] == float("-inf")
+            else value["monthly_reservation_eligible_cost"]
+        )
     if "savings_percentage" in value:
-        out["savingsPercentage"] = value["savings_percentage"]
+        out["savingsPercentage"] = (
+            "NaN"
+            if value["savings_percentage"] != value["savings_percentage"]
+            else "Infinity"
+            if value["savings_percentage"] == float("inf")
+            else "-Infinity"
+            if value["savings_percentage"] == float("-inf")
+            else value["savings_percentage"]
+        )
     if "estimated_monthly_amortized_reservation_cost" in value:
-        out["estimatedMonthlyAmortizedReservationCost"] = value[
-            "estimated_monthly_amortized_reservation_cost"
-        ]
+        out["estimatedMonthlyAmortizedReservationCost"] = (
+            "NaN"
+            if value["estimated_monthly_amortized_reservation_cost"]
+            != value["estimated_monthly_amortized_reservation_cost"]
+            else "Infinity"
+            if value["estimated_monthly_amortized_reservation_cost"] == float("inf")
+            else "-Infinity"
+            if value["estimated_monthly_amortized_reservation_cost"] == float("-inf")
+            else value["estimated_monthly_amortized_reservation_cost"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> ReservedInstancesPricing:
     out: ReservedInstancesPricing = {}  # type: ignore[typeddict-item]
-    if "estimatedOnDemandCost" in data:
-        out["estimated_on_demand_cost"] = data["estimatedOnDemandCost"]
-    if "monthlyReservationEligibleCost" in data:
-        out["monthly_reservation_eligible_cost"] = data[
-            "monthlyReservationEligibleCost"
-        ]
-    if "savingsPercentage" in data:
-        out["savings_percentage"] = data["savingsPercentage"]
-    if "estimatedMonthlyAmortizedReservationCost" in data:
-        out["estimated_monthly_amortized_reservation_cost"] = data[
-            "estimatedMonthlyAmortizedReservationCost"
-        ]
+    if data.get("estimatedOnDemandCost") is not None:
+        out["estimated_on_demand_cost"] = float(data["estimatedOnDemandCost"])
+    if data.get("monthlyReservationEligibleCost") is not None:
+        out["monthly_reservation_eligible_cost"] = float(
+            data["monthlyReservationEligibleCost"]
+        )
+    if data.get("savingsPercentage") is not None:
+        out["savings_percentage"] = float(data["savingsPercentage"])
+    if data.get("estimatedMonthlyAmortizedReservationCost") is not None:
+        out["estimated_monthly_amortized_reservation_cost"] = float(
+            data["estimatedMonthlyAmortizedReservationCost"]
+        )
     return out

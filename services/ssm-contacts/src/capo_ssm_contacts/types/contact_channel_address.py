@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ContactChannelAddress) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContactChannelAddress:
     out: ContactChannelAddress = {}  # type: ignore[typeddict-item]
-    if "SimpleAddress" in data:
+    if data.get("SimpleAddress") is not None:
         out["simple_address"] = data["SimpleAddress"]
     return out

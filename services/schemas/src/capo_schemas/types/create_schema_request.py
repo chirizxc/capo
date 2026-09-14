@@ -51,15 +51,15 @@ def serialize_json(value: CreateSchemaRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSchemaRequest:
     out: CreateSchemaRequest = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_schemas.types.tags
 
         out["tags"] = capo_schemas.types.tags.deserialize_json(data["tags"])
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_schemas.types.type
 
         out["type"] = capo_schemas.types.type.deserialize_json(data["Type"])

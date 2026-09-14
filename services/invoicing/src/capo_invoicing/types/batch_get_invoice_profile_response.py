@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: BatchGetInvoiceProfileResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetInvoiceProfileResponse:
     out: BatchGetInvoiceProfileResponse = {}  # type: ignore[typeddict-item]
-    if "Profiles" in data:
+    if data.get("Profiles") is not None:
         import capo_invoicing.types.profile_list
 
         out["profiles"] = capo_invoicing.types.profile_list.deserialize_aws_json_1_0(

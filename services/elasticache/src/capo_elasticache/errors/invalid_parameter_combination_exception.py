@@ -42,15 +42,20 @@ class InvalidParameterCombinationException(ServiceError):
 
     code: str | None = "InvalidParameterCombinationException"
 
-    def __init__(self, data: InvalidParameterCombinationException_):
+    def __init__(
+        self, data: InvalidParameterCombinationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidParameterCombinationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidParameterCombinationException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidParameterCombinationException":
+        return cls(deserialize_query(el), message)

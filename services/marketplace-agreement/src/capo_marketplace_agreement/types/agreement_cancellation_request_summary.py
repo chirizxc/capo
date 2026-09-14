@@ -93,13 +93,13 @@ def serialize_aws_json_1_0(value: AgreementCancellationRequestSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AgreementCancellationRequestSummary:
     out: AgreementCancellationRequestSummary = {}  # type: ignore[typeddict-item]
-    if "agreementCancellationRequestId" in data:
+    if data.get("agreementCancellationRequestId") is not None:
         out["agreement_cancellation_request_id"] = data[
             "agreementCancellationRequestId"
         ]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_marketplace_agreement.types.agreement_cancellation_request_status
 
         out["status"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> AgreementCancellationRequestSummary:
                 data["status"]
             )
         )
-    if "reasonCode" in data:
+    if data.get("reasonCode") is not None:
         import capo_marketplace_agreement.types.agreement_cancellation_request_reason_code
 
         out["reason_code"] = (
@@ -115,11 +115,11 @@ def deserialize_aws_json_1_0(data: dict) -> AgreementCancellationRequestSummary:
                 data["reasonCode"]
             )
         )
-    if "agreementType" in data:
+    if data.get("agreementType") is not None:
         out["agreement_type"] = data["agreementType"]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["created_at"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_0(data: dict) -> AgreementCancellationRequestSummary:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["updated_at"] = (

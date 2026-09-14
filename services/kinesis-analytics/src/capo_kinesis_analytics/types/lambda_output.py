@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: LambdaOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LambdaOutput:
     out: LambdaOutput = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError("LambdaOutput.resource_arn required")
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError("LambdaOutput.role_arn required")

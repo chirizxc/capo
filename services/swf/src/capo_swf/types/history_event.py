@@ -746,7 +746,7 @@ def serialize_aws_json_1_0(value: HistoryEvent) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
     out: HistoryEvent = {}  # type: ignore[typeddict-item]
-    if "eventTimestamp" in data:
+    if data.get("eventTimestamp") is not None:
         import capo_swf.types.timestamp
 
         out["event_timestamp"] = capo_swf.types.timestamp.deserialize_aws_json_1_0(
@@ -754,7 +754,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
         )
     else:
         raise DeserializationError("HistoryEvent.event_timestamp required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_swf.types.event_type
 
         out["event_type"] = capo_swf.types.event_type.deserialize_aws_json_1_0(
@@ -762,11 +762,11 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
         )
     else:
         raise DeserializationError("HistoryEvent.event_type required")
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         out["event_id"] = 0
-    if "workflowExecutionStartedEventAttributes" in data:
+    if data.get("workflowExecutionStartedEventAttributes") is not None:
         import capo_swf.types.workflow_execution_started_event_attributes
 
         out["workflow_execution_started_event_attributes"] = (
@@ -774,7 +774,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["workflowExecutionStartedEventAttributes"]
             )
         )
-    if "workflowExecutionCompletedEventAttributes" in data:
+    if data.get("workflowExecutionCompletedEventAttributes") is not None:
         import capo_swf.types.workflow_execution_completed_event_attributes
 
         out["workflow_execution_completed_event_attributes"] = (
@@ -782,7 +782,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["workflowExecutionCompletedEventAttributes"]
             )
         )
-    if "completeWorkflowExecutionFailedEventAttributes" in data:
+    if data.get("completeWorkflowExecutionFailedEventAttributes") is not None:
         import capo_swf.types.complete_workflow_execution_failed_event_attributes
 
         out["complete_workflow_execution_failed_event_attributes"] = (
@@ -790,7 +790,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["completeWorkflowExecutionFailedEventAttributes"]
             )
         )
-    if "workflowExecutionFailedEventAttributes" in data:
+    if data.get("workflowExecutionFailedEventAttributes") is not None:
         import capo_swf.types.workflow_execution_failed_event_attributes
 
         out["workflow_execution_failed_event_attributes"] = (
@@ -798,7 +798,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["workflowExecutionFailedEventAttributes"]
             )
         )
-    if "failWorkflowExecutionFailedEventAttributes" in data:
+    if data.get("failWorkflowExecutionFailedEventAttributes") is not None:
         import capo_swf.types.fail_workflow_execution_failed_event_attributes
 
         out["fail_workflow_execution_failed_event_attributes"] = (
@@ -806,7 +806,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["failWorkflowExecutionFailedEventAttributes"]
             )
         )
-    if "workflowExecutionTimedOutEventAttributes" in data:
+    if data.get("workflowExecutionTimedOutEventAttributes") is not None:
         import capo_swf.types.workflow_execution_timed_out_event_attributes
 
         out["workflow_execution_timed_out_event_attributes"] = (
@@ -814,7 +814,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["workflowExecutionTimedOutEventAttributes"]
             )
         )
-    if "workflowExecutionCanceledEventAttributes" in data:
+    if data.get("workflowExecutionCanceledEventAttributes") is not None:
         import capo_swf.types.workflow_execution_canceled_event_attributes
 
         out["workflow_execution_canceled_event_attributes"] = (
@@ -822,7 +822,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["workflowExecutionCanceledEventAttributes"]
             )
         )
-    if "cancelWorkflowExecutionFailedEventAttributes" in data:
+    if data.get("cancelWorkflowExecutionFailedEventAttributes") is not None:
         import capo_swf.types.cancel_workflow_execution_failed_event_attributes
 
         out["cancel_workflow_execution_failed_event_attributes"] = (
@@ -830,7 +830,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["cancelWorkflowExecutionFailedEventAttributes"]
             )
         )
-    if "workflowExecutionContinuedAsNewEventAttributes" in data:
+    if data.get("workflowExecutionContinuedAsNewEventAttributes") is not None:
         import capo_swf.types.workflow_execution_continued_as_new_event_attributes
 
         out["workflow_execution_continued_as_new_event_attributes"] = (
@@ -838,7 +838,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["workflowExecutionContinuedAsNewEventAttributes"]
             )
         )
-    if "continueAsNewWorkflowExecutionFailedEventAttributes" in data:
+    if data.get("continueAsNewWorkflowExecutionFailedEventAttributes") is not None:
         import capo_swf.types.continue_as_new_workflow_execution_failed_event_attributes
 
         out["continue_as_new_workflow_execution_failed_event_attributes"] = (
@@ -846,7 +846,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["continueAsNewWorkflowExecutionFailedEventAttributes"]
             )
         )
-    if "workflowExecutionTerminatedEventAttributes" in data:
+    if data.get("workflowExecutionTerminatedEventAttributes") is not None:
         import capo_swf.types.workflow_execution_terminated_event_attributes
 
         out["workflow_execution_terminated_event_attributes"] = (
@@ -854,7 +854,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["workflowExecutionTerminatedEventAttributes"]
             )
         )
-    if "workflowExecutionCancelRequestedEventAttributes" in data:
+    if data.get("workflowExecutionCancelRequestedEventAttributes") is not None:
         import capo_swf.types.workflow_execution_cancel_requested_event_attributes
 
         out["workflow_execution_cancel_requested_event_attributes"] = (
@@ -862,7 +862,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["workflowExecutionCancelRequestedEventAttributes"]
             )
         )
-    if "decisionTaskScheduledEventAttributes" in data:
+    if data.get("decisionTaskScheduledEventAttributes") is not None:
         import capo_swf.types.decision_task_scheduled_event_attributes
 
         out["decision_task_scheduled_event_attributes"] = (
@@ -870,7 +870,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["decisionTaskScheduledEventAttributes"]
             )
         )
-    if "decisionTaskStartedEventAttributes" in data:
+    if data.get("decisionTaskStartedEventAttributes") is not None:
         import capo_swf.types.decision_task_started_event_attributes
 
         out["decision_task_started_event_attributes"] = (
@@ -878,7 +878,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["decisionTaskStartedEventAttributes"]
             )
         )
-    if "decisionTaskCompletedEventAttributes" in data:
+    if data.get("decisionTaskCompletedEventAttributes") is not None:
         import capo_swf.types.decision_task_completed_event_attributes
 
         out["decision_task_completed_event_attributes"] = (
@@ -886,7 +886,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["decisionTaskCompletedEventAttributes"]
             )
         )
-    if "decisionTaskTimedOutEventAttributes" in data:
+    if data.get("decisionTaskTimedOutEventAttributes") is not None:
         import capo_swf.types.decision_task_timed_out_event_attributes
 
         out["decision_task_timed_out_event_attributes"] = (
@@ -894,7 +894,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["decisionTaskTimedOutEventAttributes"]
             )
         )
-    if "activityTaskScheduledEventAttributes" in data:
+    if data.get("activityTaskScheduledEventAttributes") is not None:
         import capo_swf.types.activity_task_scheduled_event_attributes
 
         out["activity_task_scheduled_event_attributes"] = (
@@ -902,7 +902,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["activityTaskScheduledEventAttributes"]
             )
         )
-    if "activityTaskStartedEventAttributes" in data:
+    if data.get("activityTaskStartedEventAttributes") is not None:
         import capo_swf.types.activity_task_started_event_attributes
 
         out["activity_task_started_event_attributes"] = (
@@ -910,7 +910,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["activityTaskStartedEventAttributes"]
             )
         )
-    if "activityTaskCompletedEventAttributes" in data:
+    if data.get("activityTaskCompletedEventAttributes") is not None:
         import capo_swf.types.activity_task_completed_event_attributes
 
         out["activity_task_completed_event_attributes"] = (
@@ -918,7 +918,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["activityTaskCompletedEventAttributes"]
             )
         )
-    if "activityTaskFailedEventAttributes" in data:
+    if data.get("activityTaskFailedEventAttributes") is not None:
         import capo_swf.types.activity_task_failed_event_attributes
 
         out["activity_task_failed_event_attributes"] = (
@@ -926,7 +926,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["activityTaskFailedEventAttributes"]
             )
         )
-    if "activityTaskTimedOutEventAttributes" in data:
+    if data.get("activityTaskTimedOutEventAttributes") is not None:
         import capo_swf.types.activity_task_timed_out_event_attributes
 
         out["activity_task_timed_out_event_attributes"] = (
@@ -934,7 +934,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["activityTaskTimedOutEventAttributes"]
             )
         )
-    if "activityTaskCanceledEventAttributes" in data:
+    if data.get("activityTaskCanceledEventAttributes") is not None:
         import capo_swf.types.activity_task_canceled_event_attributes
 
         out["activity_task_canceled_event_attributes"] = (
@@ -942,7 +942,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["activityTaskCanceledEventAttributes"]
             )
         )
-    if "activityTaskCancelRequestedEventAttributes" in data:
+    if data.get("activityTaskCancelRequestedEventAttributes") is not None:
         import capo_swf.types.activity_task_cancel_requested_event_attributes
 
         out["activity_task_cancel_requested_event_attributes"] = (
@@ -950,7 +950,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["activityTaskCancelRequestedEventAttributes"]
             )
         )
-    if "workflowExecutionSignaledEventAttributes" in data:
+    if data.get("workflowExecutionSignaledEventAttributes") is not None:
         import capo_swf.types.workflow_execution_signaled_event_attributes
 
         out["workflow_execution_signaled_event_attributes"] = (
@@ -958,7 +958,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["workflowExecutionSignaledEventAttributes"]
             )
         )
-    if "markerRecordedEventAttributes" in data:
+    if data.get("markerRecordedEventAttributes") is not None:
         import capo_swf.types.marker_recorded_event_attributes
 
         out["marker_recorded_event_attributes"] = (
@@ -966,7 +966,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["markerRecordedEventAttributes"]
             )
         )
-    if "recordMarkerFailedEventAttributes" in data:
+    if data.get("recordMarkerFailedEventAttributes") is not None:
         import capo_swf.types.record_marker_failed_event_attributes
 
         out["record_marker_failed_event_attributes"] = (
@@ -974,7 +974,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["recordMarkerFailedEventAttributes"]
             )
         )
-    if "timerStartedEventAttributes" in data:
+    if data.get("timerStartedEventAttributes") is not None:
         import capo_swf.types.timer_started_event_attributes
 
         out["timer_started_event_attributes"] = (
@@ -982,7 +982,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["timerStartedEventAttributes"]
             )
         )
-    if "timerFiredEventAttributes" in data:
+    if data.get("timerFiredEventAttributes") is not None:
         import capo_swf.types.timer_fired_event_attributes
 
         out["timer_fired_event_attributes"] = (
@@ -990,7 +990,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["timerFiredEventAttributes"]
             )
         )
-    if "timerCanceledEventAttributes" in data:
+    if data.get("timerCanceledEventAttributes") is not None:
         import capo_swf.types.timer_canceled_event_attributes
 
         out["timer_canceled_event_attributes"] = (
@@ -998,7 +998,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["timerCanceledEventAttributes"]
             )
         )
-    if "startChildWorkflowExecutionInitiatedEventAttributes" in data:
+    if data.get("startChildWorkflowExecutionInitiatedEventAttributes") is not None:
         import capo_swf.types.start_child_workflow_execution_initiated_event_attributes
 
         out["start_child_workflow_execution_initiated_event_attributes"] = (
@@ -1006,7 +1006,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["startChildWorkflowExecutionInitiatedEventAttributes"]
             )
         )
-    if "childWorkflowExecutionStartedEventAttributes" in data:
+    if data.get("childWorkflowExecutionStartedEventAttributes") is not None:
         import capo_swf.types.child_workflow_execution_started_event_attributes
 
         out["child_workflow_execution_started_event_attributes"] = (
@@ -1014,7 +1014,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["childWorkflowExecutionStartedEventAttributes"]
             )
         )
-    if "childWorkflowExecutionCompletedEventAttributes" in data:
+    if data.get("childWorkflowExecutionCompletedEventAttributes") is not None:
         import capo_swf.types.child_workflow_execution_completed_event_attributes
 
         out["child_workflow_execution_completed_event_attributes"] = (
@@ -1022,7 +1022,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["childWorkflowExecutionCompletedEventAttributes"]
             )
         )
-    if "childWorkflowExecutionFailedEventAttributes" in data:
+    if data.get("childWorkflowExecutionFailedEventAttributes") is not None:
         import capo_swf.types.child_workflow_execution_failed_event_attributes
 
         out["child_workflow_execution_failed_event_attributes"] = (
@@ -1030,7 +1030,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["childWorkflowExecutionFailedEventAttributes"]
             )
         )
-    if "childWorkflowExecutionTimedOutEventAttributes" in data:
+    if data.get("childWorkflowExecutionTimedOutEventAttributes") is not None:
         import capo_swf.types.child_workflow_execution_timed_out_event_attributes
 
         out["child_workflow_execution_timed_out_event_attributes"] = (
@@ -1038,7 +1038,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["childWorkflowExecutionTimedOutEventAttributes"]
             )
         )
-    if "childWorkflowExecutionCanceledEventAttributes" in data:
+    if data.get("childWorkflowExecutionCanceledEventAttributes") is not None:
         import capo_swf.types.child_workflow_execution_canceled_event_attributes
 
         out["child_workflow_execution_canceled_event_attributes"] = (
@@ -1046,7 +1046,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["childWorkflowExecutionCanceledEventAttributes"]
             )
         )
-    if "childWorkflowExecutionTerminatedEventAttributes" in data:
+    if data.get("childWorkflowExecutionTerminatedEventAttributes") is not None:
         import capo_swf.types.child_workflow_execution_terminated_event_attributes
 
         out["child_workflow_execution_terminated_event_attributes"] = (
@@ -1054,7 +1054,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["childWorkflowExecutionTerminatedEventAttributes"]
             )
         )
-    if "signalExternalWorkflowExecutionInitiatedEventAttributes" in data:
+    if data.get("signalExternalWorkflowExecutionInitiatedEventAttributes") is not None:
         import capo_swf.types.signal_external_workflow_execution_initiated_event_attributes
 
         out["signal_external_workflow_execution_initiated_event_attributes"] = (
@@ -1062,7 +1062,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["signalExternalWorkflowExecutionInitiatedEventAttributes"]
             )
         )
-    if "externalWorkflowExecutionSignaledEventAttributes" in data:
+    if data.get("externalWorkflowExecutionSignaledEventAttributes") is not None:
         import capo_swf.types.external_workflow_execution_signaled_event_attributes
 
         out["external_workflow_execution_signaled_event_attributes"] = (
@@ -1070,7 +1070,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["externalWorkflowExecutionSignaledEventAttributes"]
             )
         )
-    if "signalExternalWorkflowExecutionFailedEventAttributes" in data:
+    if data.get("signalExternalWorkflowExecutionFailedEventAttributes") is not None:
         import capo_swf.types.signal_external_workflow_execution_failed_event_attributes
 
         out["signal_external_workflow_execution_failed_event_attributes"] = (
@@ -1078,7 +1078,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["signalExternalWorkflowExecutionFailedEventAttributes"]
             )
         )
-    if "externalWorkflowExecutionCancelRequestedEventAttributes" in data:
+    if data.get("externalWorkflowExecutionCancelRequestedEventAttributes") is not None:
         import capo_swf.types.external_workflow_execution_cancel_requested_event_attributes
 
         out["external_workflow_execution_cancel_requested_event_attributes"] = (
@@ -1086,7 +1086,10 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["externalWorkflowExecutionCancelRequestedEventAttributes"]
             )
         )
-    if "requestCancelExternalWorkflowExecutionInitiatedEventAttributes" in data:
+    if (
+        data.get("requestCancelExternalWorkflowExecutionInitiatedEventAttributes")
+        is not None
+    ):
         import capo_swf.types.request_cancel_external_workflow_execution_initiated_event_attributes
 
         out["request_cancel_external_workflow_execution_initiated_event_attributes"] = (
@@ -1094,7 +1097,10 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["requestCancelExternalWorkflowExecutionInitiatedEventAttributes"]
             )
         )
-    if "requestCancelExternalWorkflowExecutionFailedEventAttributes" in data:
+    if (
+        data.get("requestCancelExternalWorkflowExecutionFailedEventAttributes")
+        is not None
+    ):
         import capo_swf.types.request_cancel_external_workflow_execution_failed_event_attributes
 
         out["request_cancel_external_workflow_execution_failed_event_attributes"] = (
@@ -1102,7 +1108,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["requestCancelExternalWorkflowExecutionFailedEventAttributes"]
             )
         )
-    if "scheduleActivityTaskFailedEventAttributes" in data:
+    if data.get("scheduleActivityTaskFailedEventAttributes") is not None:
         import capo_swf.types.schedule_activity_task_failed_event_attributes
 
         out["schedule_activity_task_failed_event_attributes"] = (
@@ -1110,7 +1116,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["scheduleActivityTaskFailedEventAttributes"]
             )
         )
-    if "requestCancelActivityTaskFailedEventAttributes" in data:
+    if data.get("requestCancelActivityTaskFailedEventAttributes") is not None:
         import capo_swf.types.request_cancel_activity_task_failed_event_attributes
 
         out["request_cancel_activity_task_failed_event_attributes"] = (
@@ -1118,7 +1124,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["requestCancelActivityTaskFailedEventAttributes"]
             )
         )
-    if "startTimerFailedEventAttributes" in data:
+    if data.get("startTimerFailedEventAttributes") is not None:
         import capo_swf.types.start_timer_failed_event_attributes
 
         out["start_timer_failed_event_attributes"] = (
@@ -1126,7 +1132,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["startTimerFailedEventAttributes"]
             )
         )
-    if "cancelTimerFailedEventAttributes" in data:
+    if data.get("cancelTimerFailedEventAttributes") is not None:
         import capo_swf.types.cancel_timer_failed_event_attributes
 
         out["cancel_timer_failed_event_attributes"] = (
@@ -1134,7 +1140,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["cancelTimerFailedEventAttributes"]
             )
         )
-    if "startChildWorkflowExecutionFailedEventAttributes" in data:
+    if data.get("startChildWorkflowExecutionFailedEventAttributes") is not None:
         import capo_swf.types.start_child_workflow_execution_failed_event_attributes
 
         out["start_child_workflow_execution_failed_event_attributes"] = (
@@ -1142,7 +1148,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["startChildWorkflowExecutionFailedEventAttributes"]
             )
         )
-    if "lambdaFunctionScheduledEventAttributes" in data:
+    if data.get("lambdaFunctionScheduledEventAttributes") is not None:
         import capo_swf.types.lambda_function_scheduled_event_attributes
 
         out["lambda_function_scheduled_event_attributes"] = (
@@ -1150,7 +1156,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["lambdaFunctionScheduledEventAttributes"]
             )
         )
-    if "lambdaFunctionStartedEventAttributes" in data:
+    if data.get("lambdaFunctionStartedEventAttributes") is not None:
         import capo_swf.types.lambda_function_started_event_attributes
 
         out["lambda_function_started_event_attributes"] = (
@@ -1158,7 +1164,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["lambdaFunctionStartedEventAttributes"]
             )
         )
-    if "lambdaFunctionCompletedEventAttributes" in data:
+    if data.get("lambdaFunctionCompletedEventAttributes") is not None:
         import capo_swf.types.lambda_function_completed_event_attributes
 
         out["lambda_function_completed_event_attributes"] = (
@@ -1166,7 +1172,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["lambdaFunctionCompletedEventAttributes"]
             )
         )
-    if "lambdaFunctionFailedEventAttributes" in data:
+    if data.get("lambdaFunctionFailedEventAttributes") is not None:
         import capo_swf.types.lambda_function_failed_event_attributes
 
         out["lambda_function_failed_event_attributes"] = (
@@ -1174,7 +1180,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["lambdaFunctionFailedEventAttributes"]
             )
         )
-    if "lambdaFunctionTimedOutEventAttributes" in data:
+    if data.get("lambdaFunctionTimedOutEventAttributes") is not None:
         import capo_swf.types.lambda_function_timed_out_event_attributes
 
         out["lambda_function_timed_out_event_attributes"] = (
@@ -1182,7 +1188,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["lambdaFunctionTimedOutEventAttributes"]
             )
         )
-    if "scheduleLambdaFunctionFailedEventAttributes" in data:
+    if data.get("scheduleLambdaFunctionFailedEventAttributes") is not None:
         import capo_swf.types.schedule_lambda_function_failed_event_attributes
 
         out["schedule_lambda_function_failed_event_attributes"] = (
@@ -1190,7 +1196,7 @@ def deserialize_aws_json_1_0(data: dict) -> HistoryEvent:
                 data["scheduleLambdaFunctionFailedEventAttributes"]
             )
         )
-    if "startLambdaFunctionFailedEventAttributes" in data:
+    if data.get("startLambdaFunctionFailedEventAttributes") is not None:
         import capo_swf.types.start_lambda_function_failed_event_attributes
 
         out["start_lambda_function_failed_event_attributes"] = (

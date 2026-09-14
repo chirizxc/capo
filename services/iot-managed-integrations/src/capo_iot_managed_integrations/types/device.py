@@ -63,13 +63,13 @@ def serialize_json(value: Device) -> dict:
 
 def deserialize_json(data: dict) -> Device:
     out: Device = {}  # type: ignore[typeddict-item]
-    if "ConnectorDeviceId" in data:
+    if data.get("ConnectorDeviceId") is not None:
         out["connector_device_id"] = data["ConnectorDeviceId"]
     else:
         raise DeserializationError("Device.connector_device_id required")
-    if "ConnectorDeviceName" in data:
+    if data.get("ConnectorDeviceName") is not None:
         out["connector_device_name"] = data["ConnectorDeviceName"]
-    if "CapabilityReport" in data:
+    if data.get("CapabilityReport") is not None:
         import capo_iot_managed_integrations.types.matter_capability_report
 
         out["capability_report"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> Device:
         )
     else:
         raise DeserializationError("Device.capability_report required")
-    if "CapabilitySchemas" in data:
+    if data.get("CapabilitySchemas") is not None:
         import capo_iot_managed_integrations.types.capability_schemas
 
         out["capability_schemas"] = (
@@ -87,6 +87,6 @@ def deserialize_json(data: dict) -> Device:
                 data["CapabilitySchemas"]
             )
         )
-    if "DeviceMetadata" in data:
+    if data.get("DeviceMetadata") is not None:
         out["device_metadata"] = data["DeviceMetadata"]
     return out

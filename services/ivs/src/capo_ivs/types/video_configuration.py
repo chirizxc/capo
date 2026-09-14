@@ -60,34 +60,34 @@ def serialize_json(value: VideoConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VideoConfiguration:
     out: VideoConfiguration = {}  # type: ignore[typeddict-item]
-    if "avcProfile" in data:
+    if data.get("avcProfile") is not None:
         out["avc_profile"] = data["avcProfile"]
-    if "avcLevel" in data:
+    if data.get("avcLevel") is not None:
         out["avc_level"] = data["avcLevel"]
-    if "codec" in data:
+    if data.get("codec") is not None:
         out["codec"] = data["codec"]
-    if "encoder" in data:
+    if data.get("encoder") is not None:
         out["encoder"] = data["encoder"]
-    if "targetBitrate" in data:
+    if data.get("targetBitrate") is not None:
         out["target_bitrate"] = data["targetBitrate"]
     else:
         out["target_bitrate"] = 0
-    if "targetFramerate" in data:
+    if data.get("targetFramerate") is not None:
         out["target_framerate"] = data["targetFramerate"]
     else:
         out["target_framerate"] = 0
-    if "videoHeight" in data:
+    if data.get("videoHeight") is not None:
         out["video_height"] = data["videoHeight"]
     else:
         out["video_height"] = 0
-    if "videoWidth" in data:
+    if data.get("videoWidth") is not None:
         out["video_width"] = data["videoWidth"]
     else:
         out["video_width"] = 0
-    if "level" in data:
+    if data.get("level") is not None:
         out["level"] = data["level"]
-    if "track" in data:
+    if data.get("track") is not None:
         out["track"] = data["track"]
-    if "profile" in data:
+    if data.get("profile") is not None:
         out["profile"] = data["profile"]
     return out

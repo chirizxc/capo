@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MedicalAlternativeList:
 
     out: MedicalAlternativeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe_streaming.types.medical_alternative.deserialize_json(item)
         )

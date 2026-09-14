@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DescribeProtectionGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProtectionGroupResponse:
     out: DescribeProtectionGroupResponse = {}  # type: ignore[typeddict-item]
-    if "ProtectionGroup" in data:
+    if data.get("ProtectionGroup") is not None:
         import capo_shield.types.protection_group
 
         out["protection_group"] = (

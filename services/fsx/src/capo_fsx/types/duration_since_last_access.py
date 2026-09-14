@@ -30,10 +30,10 @@ def serialize_aws_json_1_1(value: DurationSinceLastAccess) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DurationSinceLastAccess:
     out: DurationSinceLastAccess = {}  # type: ignore[typeddict-item]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_fsx.types.unit
 
         out["unit"] = capo_fsx.types.unit.deserialize_aws_json_1_1(data["Unit"])
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

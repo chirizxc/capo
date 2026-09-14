@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetRoutingControlStateRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRoutingControlStateRequest:
     out: GetRoutingControlStateRequest = {}  # type: ignore[typeddict-item]
-    if "RoutingControlArn" in data:
+    if data.get("RoutingControlArn") is not None:
         out["routing_control_arn"] = data["RoutingControlArn"]
     else:
         raise DeserializationError(

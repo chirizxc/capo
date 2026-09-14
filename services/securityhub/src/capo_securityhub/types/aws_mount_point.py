@@ -29,8 +29,8 @@ def serialize_json(value: AwsMountPoint) -> dict:
 
 def deserialize_json(data: dict) -> AwsMountPoint:
     out: AwsMountPoint = {}  # type: ignore[typeddict-item]
-    if "SourceVolume" in data:
+    if data.get("SourceVolume") is not None:
         out["source_volume"] = data["SourceVolume"]
-    if "ContainerPath" in data:
+    if data.get("ContainerPath") is not None:
         out["container_path"] = data["ContainerPath"]
     return out

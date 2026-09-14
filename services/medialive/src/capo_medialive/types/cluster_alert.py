@@ -71,11 +71,11 @@ def serialize_json(value: ClusterAlert) -> dict:
 
 def deserialize_json(data: dict) -> ClusterAlert:
     out: ClusterAlert = {}  # type: ignore[typeddict-item]
-    if "alertType" in data:
+    if data.get("alertType") is not None:
         out["alert_type"] = data["alertType"]
-    if "channelId" in data:
+    if data.get("channelId") is not None:
         out["channel_id"] = data["channelId"]
-    if "clearedTimestamp" in data:
+    if data.get("clearedTimestamp") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["cleared_timestamp"] = (
@@ -83,13 +83,13 @@ def deserialize_json(data: dict) -> ClusterAlert:
                 data["clearedTimestamp"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "nodeId" in data:
+    if data.get("nodeId") is not None:
         out["node_id"] = data["nodeId"]
-    if "setTimestamp" in data:
+    if data.get("setTimestamp") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["set_timestamp"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> ClusterAlert:
                 data["setTimestamp"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.cluster_alert_state
 
         out["state"] = capo_medialive.types.cluster_alert_state.deserialize_json(

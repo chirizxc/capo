@@ -92,10 +92,11 @@ class SourceNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.create_source_network_request.CreateSourceNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_id"] = vpc_id
-        input_["origin_account_id"] = origin_account_id
-        input_["origin_region"] = origin_region
+        input_: capo_drs.types.create_source_network_request.CreateSourceNetworkRequest = {
+            "vpc_id": vpc_id,
+            "origin_account_id": origin_account_id,
+            "origin_region": origin_region,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -104,6 +105,7 @@ class SourceNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -141,14 +143,16 @@ class SourceNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.delete_source_network_request.DeleteSourceNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["source_network_id"] = source_network_id
+        input_: capo_drs.types.delete_source_network_request.DeleteSourceNetworkRequest = {
+            "source_network_id": source_network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -193,7 +197,7 @@ class SourceNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.describe_source_networks_request.DescribeSourceNetworksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.describe_source_networks_request.DescribeSourceNetworksRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -206,6 +210,7 @@ class SourceNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_source_network_stack(
@@ -247,15 +252,17 @@ class SourceNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.associate_source_network_stack_request.AssociateSourceNetworkStackRequest = {}  # type: ignore[typeddict-item]
-        input_["source_network_id"] = source_network_id
-        input_["cfn_stack_name"] = cfn_stack_name
+        input_: capo_drs.types.associate_source_network_stack_request.AssociateSourceNetworkStackRequest = {
+            "source_network_id": source_network_id,
+            "cfn_stack_name": cfn_stack_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_source_network_cfn_template(
@@ -294,14 +301,16 @@ class SourceNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.export_source_network_cfn_template_request.ExportSourceNetworkCfnTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["source_network_id"] = source_network_id
+        input_: capo_drs.types.export_source_network_cfn_template_request.ExportSourceNetworkCfnTemplateRequest = {
+            "source_network_id": source_network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_source_network_replication(
@@ -339,14 +348,16 @@ class SourceNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.start_source_network_replication_request.StartSourceNetworkReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_network_id"] = source_network_id
+        input_: capo_drs.types.start_source_network_replication_request.StartSourceNetworkReplicationRequest = {
+            "source_network_id": source_network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_source_network_replication(
@@ -385,14 +396,16 @@ class SourceNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.stop_source_network_replication_request.StopSourceNetworkReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_network_id"] = source_network_id
+        input_: capo_drs.types.stop_source_network_replication_request.StopSourceNetworkReplicationRequest = {
+            "source_network_id": source_network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_source_network_recovery(
@@ -435,8 +448,9 @@ class SourceNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.start_source_network_recovery_request.StartSourceNetworkRecoveryRequest = {}  # type: ignore[typeddict-item]
-        input_["source_networks"] = source_networks
+        input_: capo_drs.types.start_source_network_recovery_request.StartSourceNetworkRecoveryRequest = {
+            "source_networks": source_networks
+        }
         if deploy_as_new is not None:
             input_["deploy_as_new"] = deploy_as_new
         if tags is not None:
@@ -447,6 +461,7 @@ class SourceNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -498,10 +513,11 @@ class AsyncSourceNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.create_source_network_request.CreateSourceNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_id"] = vpc_id
-        input_["origin_account_id"] = origin_account_id
-        input_["origin_region"] = origin_region
+        input_: capo_drs.types.create_source_network_request.CreateSourceNetworkRequest = {
+            "vpc_id": vpc_id,
+            "origin_account_id": origin_account_id,
+            "origin_region": origin_region,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -510,6 +526,7 @@ class AsyncSourceNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -548,14 +565,16 @@ class AsyncSourceNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.delete_source_network_request.DeleteSourceNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["source_network_id"] = source_network_id
+        input_: capo_drs.types.delete_source_network_request.DeleteSourceNetworkRequest = {
+            "source_network_id": source_network_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -601,7 +620,7 @@ class AsyncSourceNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.describe_source_networks_request.DescribeSourceNetworksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.describe_source_networks_request.DescribeSourceNetworksRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -614,6 +633,7 @@ class AsyncSourceNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_source_network_stack(
@@ -656,15 +676,17 @@ class AsyncSourceNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.associate_source_network_stack_request.AssociateSourceNetworkStackRequest = {}  # type: ignore[typeddict-item]
-        input_["source_network_id"] = source_network_id
-        input_["cfn_stack_name"] = cfn_stack_name
+        input_: capo_drs.types.associate_source_network_stack_request.AssociateSourceNetworkStackRequest = {
+            "source_network_id": source_network_id,
+            "cfn_stack_name": cfn_stack_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_source_network_cfn_template(
@@ -704,14 +726,16 @@ class AsyncSourceNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.export_source_network_cfn_template_request.ExportSourceNetworkCfnTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["source_network_id"] = source_network_id
+        input_: capo_drs.types.export_source_network_cfn_template_request.ExportSourceNetworkCfnTemplateRequest = {
+            "source_network_id": source_network_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_source_network_replication(
@@ -750,14 +774,16 @@ class AsyncSourceNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.start_source_network_replication_request.StartSourceNetworkReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_network_id"] = source_network_id
+        input_: capo_drs.types.start_source_network_replication_request.StartSourceNetworkReplicationRequest = {
+            "source_network_id": source_network_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_source_network_replication(
@@ -797,14 +823,16 @@ class AsyncSourceNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.stop_source_network_replication_request.StopSourceNetworkReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_network_id"] = source_network_id
+        input_: capo_drs.types.stop_source_network_replication_request.StopSourceNetworkReplicationRequest = {
+            "source_network_id": source_network_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_source_network_recovery(
@@ -848,8 +876,9 @@ class AsyncSourceNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.start_source_network_recovery_request.StartSourceNetworkRecoveryRequest = {}  # type: ignore[typeddict-item]
-        input_["source_networks"] = source_networks
+        input_: capo_drs.types.start_source_network_recovery_request.StartSourceNetworkRecoveryRequest = {
+            "source_networks": source_networks
+        }
         if deploy_as_new is not None:
             input_["deploy_as_new"] = deploy_as_new
         if tags is not None:
@@ -860,4 +889,5 @@ class AsyncSourceNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -32,29 +32,29 @@ def serialize_json(value: SequenceStoreFilter) -> dict:
     if "name" in value:
         out["name"] = value["name"]
     if "created_after" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["createdAfter"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["createdAfter"] = capo_omics._protocol.serialize.fmt_date_time(
             value["created_after"]
         )
     if "created_before" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["createdBefore"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["createdBefore"] = capo_omics._protocol.serialize.fmt_date_time(
             value["created_before"]
         )
     if "status" in value:
         out["status"] = value["status"]
     if "updated_after" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["updatedAfter"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["updatedAfter"] = capo_omics._protocol.serialize.fmt_date_time(
             value["updated_after"]
         )
     if "updated_before" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["updatedBefore"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["updatedBefore"] = capo_omics._protocol.serialize.fmt_date_time(
             value["updated_before"]
         )
     return out
@@ -62,32 +62,32 @@ def serialize_json(value: SequenceStoreFilter) -> dict:
 
 def deserialize_json(data: dict) -> SequenceStoreFilter:
     out: SequenceStoreFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "createdAfter" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("createdAfter") is not None:
+        import datetime
 
-        out["created_after"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["createdAfter"]
+        out["created_after"] = datetime.datetime.fromisoformat(
+            data["createdAfter"].replace("Z", "+00:00")
         )
-    if "createdBefore" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("createdBefore") is not None:
+        import datetime
 
-        out["created_before"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["createdBefore"]
+        out["created_before"] = datetime.datetime.fromisoformat(
+            data["createdBefore"].replace("Z", "+00:00")
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "updatedAfter" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("updatedAfter") is not None:
+        import datetime
 
-        out["updated_after"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["updatedAfter"]
+        out["updated_after"] = datetime.datetime.fromisoformat(
+            data["updatedAfter"].replace("Z", "+00:00")
         )
-    if "updatedBefore" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("updatedBefore") is not None:
+        import datetime
 
-        out["updated_before"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["updatedBefore"]
+        out["updated_before"] = datetime.datetime.fromisoformat(
+            data["updatedBefore"].replace("Z", "+00:00")
         )
     return out

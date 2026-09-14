@@ -45,11 +45,11 @@ def serialize_json(value: PushNotificationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PushNotificationConfiguration:
     out: PushNotificationConfiguration = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_messaging.types.push_notification_type
 
         out["type"] = (

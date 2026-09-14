@@ -28,11 +28,11 @@ def serialize_json(value: ManifestFileLocation) -> dict:
 
 def deserialize_json(data: dict) -> ManifestFileLocation:
     out: ManifestFileLocation = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
     else:
         raise DeserializationError("ManifestFileLocation.bucket required")
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("ManifestFileLocation.key required")

@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: AutoScalingPolicyStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoScalingPolicyStatus:
     out: AutoScalingPolicyStatus = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_emr.types.auto_scaling_policy_state
 
         out["state"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoScalingPolicyStatus:
                 data["State"]
             )
         )
-    if "StateChangeReason" in data:
+    if data.get("StateChangeReason") is not None:
         import capo_emr.types.auto_scaling_policy_state_change_reason
 
         out["state_change_reason"] = (

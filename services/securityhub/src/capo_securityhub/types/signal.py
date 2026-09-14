@@ -90,7 +90,15 @@ def serialize_json(value: Signal) -> dict:
     if "last_seen_at" in value:
         out["LastSeenAt"] = value["last_seen_at"]
     if "severity" in value:
-        out["Severity"] = value["severity"]
+        out["Severity"] = (
+            "NaN"
+            if value["severity"] != value["severity"]
+            else "Infinity"
+            if value["severity"] == float("inf")
+            else "-Infinity"
+            if value["severity"] == float("-inf")
+            else value["severity"]
+        )
     if "count" in value:
         out["Count"] = value["count"]
     if "actor_ids" in value:
@@ -112,15 +120,15 @@ def serialize_json(value: Signal) -> dict:
 
 def deserialize_json(data: dict) -> Signal:
     out: Signal = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "ProductArn" in data:
+    if data.get("ProductArn") is not None:
         out["product_arn"] = data["ProductArn"]
-    if "ResourceIds" in data:
+    if data.get("ResourceIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["resource_ids"] = (
@@ -128,7 +136,7 @@ def deserialize_json(data: dict) -> Signal:
                 data["ResourceIds"]
             )
         )
-    if "SignalIndicators" in data:
+    if data.get("SignalIndicators") is not None:
         import capo_securityhub.types.indicators_list
 
         out["signal_indicators"] = (
@@ -136,21 +144,21 @@ def deserialize_json(data: dict) -> Signal:
                 data["SignalIndicators"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         out["created_at"] = data["CreatedAt"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         out["updated_at"] = data["UpdatedAt"]
-    if "FirstSeenAt" in data:
+    if data.get("FirstSeenAt") is not None:
         out["first_seen_at"] = data["FirstSeenAt"]
-    if "LastSeenAt" in data:
+    if data.get("LastSeenAt") is not None:
         out["last_seen_at"] = data["LastSeenAt"]
-    if "Severity" in data:
-        out["severity"] = data["Severity"]
-    if "Count" in data:
+    if data.get("Severity") is not None:
+        out["severity"] = float(data["Severity"])
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "ActorIds" in data:
+    if data.get("ActorIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["actor_ids"] = (
@@ -158,7 +166,7 @@ def deserialize_json(data: dict) -> Signal:
                 data["ActorIds"]
             )
         )
-    if "EndpointIds" in data:
+    if data.get("EndpointIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["endpoint_ids"] = (

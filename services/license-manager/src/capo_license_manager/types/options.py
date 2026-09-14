@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: Options) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Options:
     out: Options = {}  # type: ignore[typeddict-item]
-    if "ActivationOverrideBehavior" in data:
+    if data.get("ActivationOverrideBehavior") is not None:
         import capo_license_manager.types.activation_override_behavior
 
         out["activation_override_behavior"] = (

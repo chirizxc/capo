@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> EarthObservationJobList:
 
     out: EarthObservationJobList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_geospatial.types.list_earth_observation_job_output_config.deserialize_json(
                 item

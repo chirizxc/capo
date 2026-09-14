@@ -44,15 +44,15 @@ def serialize_aws_json_1_0(value: DeleteFHIRDatastoreResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteFHIRDatastoreResponse:
     out: DeleteFHIRDatastoreResponse = {}  # type: ignore[typeddict-item]
-    if "DatastoreId" in data:
+    if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]
     else:
         raise DeserializationError("DeleteFHIRDatastoreResponse.datastore_id required")
-    if "DatastoreArn" in data:
+    if data.get("DatastoreArn") is not None:
         out["datastore_arn"] = data["DatastoreArn"]
     else:
         raise DeserializationError("DeleteFHIRDatastoreResponse.datastore_arn required")
-    if "DatastoreStatus" in data:
+    if data.get("DatastoreStatus") is not None:
         import capo_healthlake.types.datastore_status
 
         out["datastore_status"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteFHIRDatastoreResponse:
         raise DeserializationError(
             "DeleteFHIRDatastoreResponse.datastore_status required"
         )
-    if "DatastoreEndpoint" in data:
+    if data.get("DatastoreEndpoint") is not None:
         out["datastore_endpoint"] = data["DatastoreEndpoint"]
     else:
         raise DeserializationError(

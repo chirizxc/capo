@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ListApplicationAccessScopesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationAccessScopesResponse:
     out: ListApplicationAccessScopesResponse = {}  # type: ignore[typeddict-item]
-    if "Scopes" in data:
+    if data.get("Scopes") is not None:
         import capo_sso_admin.types.scopes
 
         out["scopes"] = capo_sso_admin.types.scopes.deserialize_aws_json_1_1(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListApplicationAccessScopesResponse:
         raise DeserializationError(
             "ListApplicationAccessScopesResponse.scopes required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -159,15 +159,15 @@ def serialize_json(value: ChannelMessage) -> dict:
 
 def deserialize_json(data: dict) -> ChannelMessage:
     out: ChannelMessage = {}  # type: ignore[typeddict-item]
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_messaging.types.channel_message_type
 
         out["type"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> ChannelMessage:
                 data["Type"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["created_timestamp"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> ChannelMessage:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastEditedTimestamp" in data:
+    if data.get("LastEditedTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["last_edited_timestamp"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> ChannelMessage:
                 data["LastEditedTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["last_updated_timestamp"] = (
@@ -199,17 +199,17 @@ def deserialize_json(data: dict) -> ChannelMessage:
                 data["LastUpdatedTimestamp"]
             )
         )
-    if "Sender" in data:
+    if data.get("Sender") is not None:
         import capo_chime_sdk_messaging.types.identity
 
         out["sender"] = capo_chime_sdk_messaging.types.identity.deserialize_json(
             data["Sender"]
         )
-    if "Redacted" in data:
+    if data.get("Redacted") is not None:
         out["redacted"] = data["Redacted"]
     else:
         out["redacted"] = False
-    if "Persistence" in data:
+    if data.get("Persistence") is not None:
         import capo_chime_sdk_messaging.types.channel_message_persistence_type
 
         out["persistence"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> ChannelMessage:
                 data["Persistence"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime_sdk_messaging.types.channel_message_status_structure
 
         out["status"] = (
@@ -225,7 +225,7 @@ def deserialize_json(data: dict) -> ChannelMessage:
                 data["Status"]
             )
         )
-    if "MessageAttributes" in data:
+    if data.get("MessageAttributes") is not None:
         import capo_chime_sdk_messaging.types.message_attribute_map
 
         out["message_attributes"] = (
@@ -233,11 +233,11 @@ def deserialize_json(data: dict) -> ChannelMessage:
                 data["MessageAttributes"]
             )
         )
-    if "SubChannelId" in data:
+    if data.get("SubChannelId") is not None:
         out["sub_channel_id"] = data["SubChannelId"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_chime_sdk_messaging.types.target_list
 
         out["target"] = capo_chime_sdk_messaging.types.target_list.deserialize_json(

@@ -77,19 +77,19 @@ def serialize_aws_json_1_0(value: ConfigurationSetInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConfigurationSetInformation:
     out: ConfigurationSetInformation = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetArn" in data:
+    if data.get("ConfigurationSetArn") is not None:
         out["configuration_set_arn"] = data["ConfigurationSetArn"]
     else:
         raise DeserializationError(
             "ConfigurationSetInformation.configuration_set_arn required"
         )
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     else:
         raise DeserializationError(
             "ConfigurationSetInformation.configuration_set_name required"
         )
-    if "EventDestinations" in data:
+    if data.get("EventDestinations") is not None:
         import capo_pinpoint_sms_voice_v2.types.event_destination_list
 
         out["event_destinations"] = (
@@ -101,13 +101,13 @@ def deserialize_aws_json_1_0(data: dict) -> ConfigurationSetInformation:
         raise DeserializationError(
             "ConfigurationSetInformation.event_destinations required"
         )
-    if "DefaultMessageType" in data:
+    if data.get("DefaultMessageType") is not None:
         out["default_message_type"] = data["DefaultMessageType"]
-    if "DefaultSenderId" in data:
+    if data.get("DefaultSenderId") is not None:
         out["default_sender_id"] = data["DefaultSenderId"]
-    if "DefaultMessageFeedbackEnabled" in data:
+    if data.get("DefaultMessageFeedbackEnabled") is not None:
         out["default_message_feedback_enabled"] = data["DefaultMessageFeedbackEnabled"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -119,6 +119,6 @@ def deserialize_aws_json_1_0(data: dict) -> ConfigurationSetInformation:
         raise DeserializationError(
             "ConfigurationSetInformation.created_timestamp required"
         )
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     return out

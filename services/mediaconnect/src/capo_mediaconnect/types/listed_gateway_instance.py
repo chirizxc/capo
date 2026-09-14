@@ -39,13 +39,13 @@ def serialize_json(value: ListedGatewayInstance) -> dict:
 
 def deserialize_json(data: dict) -> ListedGatewayInstance:
     out: ListedGatewayInstance = {}  # type: ignore[typeddict-item]
-    if "gatewayArn" in data:
+    if data.get("gatewayArn") is not None:
         out["gateway_arn"] = data["gatewayArn"]
-    if "gatewayInstanceArn" in data:
+    if data.get("gatewayInstanceArn") is not None:
         out["gateway_instance_arn"] = data["gatewayInstanceArn"]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
-    if "instanceState" in data:
+    if data.get("instanceState") is not None:
         import capo_mediaconnect.types.instance_state
 
         out["instance_state"] = capo_mediaconnect.types.instance_state.deserialize_json(

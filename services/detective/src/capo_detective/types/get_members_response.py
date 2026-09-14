@@ -42,7 +42,7 @@ def serialize_json(value: GetMembersResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMembersResponse:
     out: GetMembersResponse = {}  # type: ignore[typeddict-item]
-    if "MemberDetails" in data:
+    if data.get("MemberDetails") is not None:
         import capo_detective.types.member_detail_list
 
         out["member_details"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> GetMembersResponse:
                 data["MemberDetails"]
             )
         )
-    if "UnprocessedAccounts" in data:
+    if data.get("UnprocessedAccounts") is not None:
         import capo_detective.types.unprocessed_account_list
 
         out["unprocessed_accounts"] = (

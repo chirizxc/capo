@@ -30,7 +30,7 @@ def serialize_json(value: MatchingRule) -> dict:
 
 def deserialize_json(data: dict) -> MatchingRule:
     out: MatchingRule = {}  # type: ignore[typeddict-item]
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_customer_profiles.types.matching_rule_attribute_list
 
         out["rule"] = (

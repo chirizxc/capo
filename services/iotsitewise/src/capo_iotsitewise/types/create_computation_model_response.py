@@ -40,19 +40,19 @@ def serialize_json(value: CreateComputationModelResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateComputationModelResponse:
     out: CreateComputationModelResponse = {}  # type: ignore[typeddict-item]
-    if "computationModelId" in data:
+    if data.get("computationModelId") is not None:
         out["computation_model_id"] = data["computationModelId"]
     else:
         raise DeserializationError(
             "CreateComputationModelResponse.computation_model_id required"
         )
-    if "computationModelArn" in data:
+    if data.get("computationModelArn") is not None:
         out["computation_model_arn"] = data["computationModelArn"]
     else:
         raise DeserializationError(
             "CreateComputationModelResponse.computation_model_arn required"
         )
-    if "computationModelStatus" in data:
+    if data.get("computationModelStatus") is not None:
         import capo_iotsitewise.types.computation_model_status
 
         out["computation_model_status"] = (

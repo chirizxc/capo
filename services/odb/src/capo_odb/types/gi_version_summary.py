@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: GiVersionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GiVersionSummary:
     out: GiVersionSummary = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

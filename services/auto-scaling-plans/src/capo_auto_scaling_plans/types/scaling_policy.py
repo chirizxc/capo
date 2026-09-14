@@ -47,11 +47,11 @@ def serialize_aws_json_1_1(value: ScalingPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingPolicy:
     out: ScalingPolicy = {}  # type: ignore[typeddict-item]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
     else:
         raise DeserializationError("ScalingPolicy.policy_name required")
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_auto_scaling_plans.types.policy_type
 
         out["policy_type"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPolicy:
         )
     else:
         raise DeserializationError("ScalingPolicy.policy_type required")
-    if "TargetTrackingConfiguration" in data:
+    if data.get("TargetTrackingConfiguration") is not None:
         import capo_auto_scaling_plans.types.target_tracking_configuration
 
         out["target_tracking_configuration"] = (

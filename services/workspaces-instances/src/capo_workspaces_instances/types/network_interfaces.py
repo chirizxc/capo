@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> NetworkInterfaces:
 
     out: NetworkInterfaces = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_instances.types.instance_network_interface_specification.deserialize_aws_json_1_0(
                 item

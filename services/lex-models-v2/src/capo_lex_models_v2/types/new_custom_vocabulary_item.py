@@ -33,12 +33,12 @@ def serialize_json(value: NewCustomVocabularyItem) -> dict:
 
 def deserialize_json(data: dict) -> NewCustomVocabularyItem:
     out: NewCustomVocabularyItem = {}  # type: ignore[typeddict-item]
-    if "phrase" in data:
+    if data.get("phrase") is not None:
         out["phrase"] = data["phrase"]
     else:
         raise DeserializationError("NewCustomVocabularyItem.phrase required")
-    if "weight" in data:
+    if data.get("weight") is not None:
         out["weight"] = data["weight"]
-    if "displayAs" in data:
+    if data.get("displayAs") is not None:
         out["display_as"] = data["displayAs"]
     return out

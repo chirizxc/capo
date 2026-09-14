@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: TermsExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TermsExistsException_:
     out: TermsExistsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,18 @@ class TermsExistsException(ServiceError):
 
     code: str | None = "TermsExistsException"
 
-    def __init__(self, data: TermsExistsException_):
+    def __init__(self, data: TermsExistsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TermsExistsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "TermsExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "TermsExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

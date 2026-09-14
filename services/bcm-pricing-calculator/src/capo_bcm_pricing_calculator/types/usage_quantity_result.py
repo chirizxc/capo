@@ -14,7 +14,15 @@ class UsageQuantityResult(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: UsageQuantityResult) -> dict:
     out: dict = {}
     if "amount" in value:
-        out["amount"] = value["amount"]
+        out["amount"] = (
+            "NaN"
+            if value["amount"] != value["amount"]
+            else "Infinity"
+            if value["amount"] == float("inf")
+            else "-Infinity"
+            if value["amount"] == float("-inf")
+            else value["amount"]
+        )
     if "unit" in value:
         out["unit"] = value["unit"]
     return out
@@ -22,8 +30,8 @@ def serialize_aws_json_1_0(value: UsageQuantityResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UsageQuantityResult:
     out: UsageQuantityResult = {}  # type: ignore[typeddict-item]
-    if "amount" in data:
-        out["amount"] = data["amount"]
-    if "unit" in data:
+    if data.get("amount") is not None:
+        out["amount"] = float(data["amount"])
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
     return out

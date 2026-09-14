@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: AutoDataQuality) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoDataQuality:
     out: AutoDataQuality = {}  # type: ignore[typeddict-item]
-    if "IsEnabled" in data:
+    if data.get("IsEnabled") is not None:
         out["is_enabled"] = data["IsEnabled"]
     else:
         out["is_enabled"] = False
-    if "EvaluationContext" in data:
+    if data.get("EvaluationContext") is not None:
         out["evaluation_context"] = data["EvaluationContext"]
     return out

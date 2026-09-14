@@ -36,11 +36,11 @@ def serialize_aws_json_1_0(value: DisassociateSourceViewsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateSourceViewsRequest:
     out: DisassociateSourceViewsRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DisassociateSourceViewsRequest.arn required")
-    if "sourceViews" in data:
+    if data.get("sourceViews") is not None:
         import capo_billing.types.billing_view_source_views_list
 
         out["source_views"] = (

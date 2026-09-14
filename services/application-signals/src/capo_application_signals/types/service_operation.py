@@ -36,11 +36,11 @@ def serialize_json(value: ServiceOperation) -> dict:
 
 def deserialize_json(data: dict) -> ServiceOperation:
     out: ServiceOperation = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ServiceOperation.name required")
-    if "MetricReferences" in data:
+    if data.get("MetricReferences") is not None:
         import capo_application_signals.types.metric_references
 
         out["metric_references"] = (

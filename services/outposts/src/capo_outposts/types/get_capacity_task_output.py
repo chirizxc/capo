@@ -132,15 +132,15 @@ def serialize_json(value: GetCapacityTaskOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetCapacityTaskOutput:
     out: GetCapacityTaskOutput = {}  # type: ignore[typeddict-item]
-    if "CapacityTaskId" in data:
+    if data.get("CapacityTaskId") is not None:
         out["capacity_task_id"] = data["CapacityTaskId"]
-    if "OutpostId" in data:
+    if data.get("OutpostId") is not None:
         out["outpost_id"] = data["OutpostId"]
-    if "OrderId" in data:
+    if data.get("OrderId") is not None:
         out["order_id"] = data["OrderId"]
-    if "AssetId" in data:
+    if data.get("AssetId") is not None:
         out["asset_id"] = data["AssetId"]
-    if "RequestedInstancePools" in data:
+    if data.get("RequestedInstancePools") is not None:
         import capo_outposts.types.requested_instance_pools
 
         out["requested_instance_pools"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> GetCapacityTaskOutput:
                 data["RequestedInstancePools"]
             )
         )
-    if "InstancesToExclude" in data:
+    if data.get("InstancesToExclude") is not None:
         import capo_outposts.types.instances_to_exclude
 
         out["instances_to_exclude"] = (
@@ -156,11 +156,11 @@ def deserialize_json(data: dict) -> GetCapacityTaskOutput:
                 data["InstancesToExclude"]
             )
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False
-    if "CapacityTaskStatus" in data:
+    if data.get("CapacityTaskStatus") is not None:
         import capo_outposts.types.capacity_task_status
 
         out["capacity_task_status"] = (
@@ -168,25 +168,25 @@ def deserialize_json(data: dict) -> GetCapacityTaskOutput:
                 data["CapacityTaskStatus"]
             )
         )
-    if "Failed" in data:
+    if data.get("Failed") is not None:
         import capo_outposts.types.capacity_task_failure
 
         out["failed"] = capo_outposts.types.capacity_task_failure.deserialize_json(
             data["Failed"]
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["creation_date"] = capo_outposts.types.iso8601_timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["completion_date"] = capo_outposts.types.iso8601_timestamp.deserialize_json(
             data["CompletionDate"]
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["last_modified_date"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> GetCapacityTaskOutput:
                 data["LastModifiedDate"]
             )
         )
-    if "TaskActionOnBlockingInstances" in data:
+    if data.get("TaskActionOnBlockingInstances") is not None:
         import capo_outposts.types.task_action_on_blocking_instances
 
         out["task_action_on_blocking_instances"] = (

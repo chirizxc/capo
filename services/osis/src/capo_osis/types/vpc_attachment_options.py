@@ -29,10 +29,10 @@ def serialize_json(value: VpcAttachmentOptions) -> dict:
 
 def deserialize_json(data: dict) -> VpcAttachmentOptions:
     out: VpcAttachmentOptions = {}  # type: ignore[typeddict-item]
-    if "AttachToVpc" in data:
+    if data.get("AttachToVpc") is not None:
         out["attach_to_vpc"] = data["AttachToVpc"]
     else:
         raise DeserializationError("VpcAttachmentOptions.attach_to_vpc required")
-    if "CidrBlock" in data:
+    if data.get("CidrBlock") is not None:
         out["cidr_block"] = data["CidrBlock"]
     return out

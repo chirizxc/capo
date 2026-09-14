@@ -21,20 +21,44 @@ class EntityRecognizerEvaluationMetrics(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: EntityRecognizerEvaluationMetrics) -> dict:
     out: dict = {}
     if "precision" in value:
-        out["Precision"] = value["precision"]
+        out["Precision"] = (
+            "NaN"
+            if value["precision"] != value["precision"]
+            else "Infinity"
+            if value["precision"] == float("inf")
+            else "-Infinity"
+            if value["precision"] == float("-inf")
+            else value["precision"]
+        )
     if "recall" in value:
-        out["Recall"] = value["recall"]
+        out["Recall"] = (
+            "NaN"
+            if value["recall"] != value["recall"]
+            else "Infinity"
+            if value["recall"] == float("inf")
+            else "-Infinity"
+            if value["recall"] == float("-inf")
+            else value["recall"]
+        )
     if "f1_score" in value:
-        out["F1Score"] = value["f1_score"]
+        out["F1Score"] = (
+            "NaN"
+            if value["f1_score"] != value["f1_score"]
+            else "Infinity"
+            if value["f1_score"] == float("inf")
+            else "-Infinity"
+            if value["f1_score"] == float("-inf")
+            else value["f1_score"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerEvaluationMetrics:
     out: EntityRecognizerEvaluationMetrics = {}  # type: ignore[typeddict-item]
-    if "Precision" in data:
-        out["precision"] = data["Precision"]
-    if "Recall" in data:
-        out["recall"] = data["Recall"]
-    if "F1Score" in data:
-        out["f1_score"] = data["F1Score"]
+    if data.get("Precision") is not None:
+        out["precision"] = float(data["Precision"])
+    if data.get("Recall") is not None:
+        out["recall"] = float(data["Recall"])
+    if data.get("F1Score") is not None:
+        out["f1_score"] = float(data["F1Score"])
     return out

@@ -13,9 +13,9 @@ from capo_neptune_graph import AsyncNeptuneGraphClient
 
 
 async def main():
-    async with AsyncNeptuneGraphClient() as s3:
+    async with AsyncNeptuneGraphClient() as neptune_graph:
         # Example: call the cancel_query operation
-        response = await s3.cancel_query()
+        response = await neptune_graph.cancel_query()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_neptune_graph import AsyncNeptuneGraphClient
 
 
 async def main():
-    async with AsyncNeptuneGraphClient() as s3:
+    async with AsyncNeptuneGraphClient() as neptune_graph:
         # Example: call execute_query and read the streaming response
-        async with s3.execute_query() as response:
+        async with neptune_graph.execute_query() as response:
             async for chunk in response["payload"]:
                 print(chunk)
 ```
@@ -45,9 +45,9 @@ from capo_neptune_graph.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncNeptuneGraphClient() as s3:
+    async with AsyncNeptuneGraphClient() as neptune_graph:
         try:
-            await s3.cancel_query()
+            await neptune_graph.cancel_query()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -64,13 +64,13 @@ from capo_neptune_graph import AsyncNeptuneGraphClient
 
 
 async def main():
-    async with AsyncNeptuneGraphClient() as s3:
+    async with AsyncNeptuneGraphClient() as neptune_graph:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_query()
+        response = await neptune_graph.cancel_query()
 
         # Override per operation
-        response = await s3.cancel_query(config_overrides={"retry_max_attempts": 5})
+        response = await neptune_graph.cancel_query(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_query(config_overrides={"retry_max_attempts": 1})
+        response = await neptune_graph.cancel_query(config_overrides={"retry_max_attempts": 1})
 ```

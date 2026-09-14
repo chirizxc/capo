@@ -32,10 +32,10 @@ def serialize_json(value: ChangedBlock) -> dict:
 
 def deserialize_json(data: dict) -> ChangedBlock:
     out: ChangedBlock = {}  # type: ignore[typeddict-item]
-    if "BlockIndex" in data:
+    if data.get("BlockIndex") is not None:
         out["block_index"] = data["BlockIndex"]
-    if "FirstBlockToken" in data:
+    if data.get("FirstBlockToken") is not None:
         out["first_block_token"] = data["FirstBlockToken"]
-    if "SecondBlockToken" in data:
+    if data.get("SecondBlockToken") is not None:
         out["second_block_token"] = data["SecondBlockToken"]
     return out

@@ -30,8 +30,8 @@ def serialize_json(value: PutImageRecipePolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutImageRecipePolicyResponse:
     out: PutImageRecipePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "imageRecipeArn" in data:
+    if data.get("imageRecipeArn") is not None:
         out["image_recipe_arn"] = data["imageRecipeArn"]
     return out

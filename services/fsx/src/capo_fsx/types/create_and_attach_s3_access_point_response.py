@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateAndAttachS3AccessPointResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAndAttachS3AccessPointResponse:
     out: CreateAndAttachS3AccessPointResponse = {}  # type: ignore[typeddict-item]
-    if "S3AccessPointAttachment" in data:
+    if data.get("S3AccessPointAttachment") is not None:
         import capo_fsx.types.s3_access_point_attachment
 
         out["s3_access_point_attachment"] = (

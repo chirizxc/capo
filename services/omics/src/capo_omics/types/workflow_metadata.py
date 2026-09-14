@@ -23,5 +23,7 @@ def serialize_json(input_to_serialize: WorkflowMetadata) -> dict:
 def deserialize_json(data: dict) -> WorkflowMetadata:
     out: WorkflowMetadata = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

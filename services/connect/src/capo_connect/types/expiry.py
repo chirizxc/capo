@@ -34,9 +34,9 @@ def serialize_json(value: Expiry) -> dict:
 
 def deserialize_json(data: dict) -> Expiry:
     out: Expiry = {}  # type: ignore[typeddict-item]
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
-    if "ExpiryTimestamp" in data:
+    if data.get("ExpiryTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["expiry_timestamp"] = capo_connect.types.timestamp.deserialize_json(

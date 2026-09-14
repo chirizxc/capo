@@ -32,7 +32,7 @@ def serialize_json(value: AudioExtractionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AudioExtractionConfiguration:
     out: AudioExtractionConfiguration = {}  # type: ignore[typeddict-item]
-    if "audioExtractionStatus" in data:
+    if data.get("audioExtractionStatus") is not None:
         import capo_quicksight.types.audio_extraction_status
 
         out["audio_extraction_status"] = (

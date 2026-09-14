@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: HashKeyRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HashKeyRange:
     out: HashKeyRange = {}  # type: ignore[typeddict-item]
-    if "StartingHashKey" in data:
+    if data.get("StartingHashKey") is not None:
         out["starting_hash_key"] = data["StartingHashKey"]
     else:
         raise DeserializationError("HashKeyRange.starting_hash_key required")
-    if "EndingHashKey" in data:
+    if data.get("EndingHashKey") is not None:
         out["ending_hash_key"] = data["EndingHashKey"]
     else:
         raise DeserializationError("HashKeyRange.ending_hash_key required")

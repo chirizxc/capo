@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: PublicWorkforceTaskPrice) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PublicWorkforceTaskPrice:
     out: PublicWorkforceTaskPrice = {}  # type: ignore[typeddict-item]
-    if "AmountInUsd" in data:
+    if data.get("AmountInUsd") is not None:
         import capo_sagemaker.types.usd
 
         out["amount_in_usd"] = capo_sagemaker.types.usd.deserialize_aws_json_1_1(

@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: PutSchemaInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutSchemaInput:
     out: PutSchemaInput = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("PutSchemaInput.policy_store_id required")
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_verifiedpermissions.types.schema_definition
 
         out["definition"] = (

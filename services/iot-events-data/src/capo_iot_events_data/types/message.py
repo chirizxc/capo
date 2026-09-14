@@ -43,15 +43,15 @@ def serialize_json(value: Message) -> dict:
 
 def deserialize_json(data: dict) -> Message:
     out: Message = {}  # type: ignore[typeddict-item]
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
     else:
         raise DeserializationError("Message.message_id required")
-    if "inputName" in data:
+    if data.get("inputName") is not None:
         out["input_name"] = data["inputName"]
     else:
         raise DeserializationError("Message.input_name required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot_events_data.types.payload
 
         out["payload"] = capo_iot_events_data.types.payload.deserialize_json(
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> Message:
         )
     else:
         raise DeserializationError("Message.payload required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iot_events_data.types.timestamp_value
 
         out["timestamp"] = capo_iot_events_data.types.timestamp_value.deserialize_json(

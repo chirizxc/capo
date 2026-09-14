@@ -38,9 +38,9 @@ def serialize_aws_json_1_0(value: InstanceTypeInfo) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceTypeInfo:
     out: InstanceTypeInfo = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "SupportedInstanceConfigurations" in data:
+    if data.get("SupportedInstanceConfigurations") is not None:
         import capo_workspaces_instances.types.supported_instance_configurations
 
         out["supported_instance_configurations"] = (

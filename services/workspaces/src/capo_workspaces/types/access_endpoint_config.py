@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: AccessEndpointConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessEndpointConfig:
     out: AccessEndpointConfig = {}  # type: ignore[typeddict-item]
-    if "AccessEndpoints" in data:
+    if data.get("AccessEndpoints") is not None:
         import capo_workspaces.types.access_endpoint_list
 
         out["access_endpoints"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> AccessEndpointConfig:
         )
     else:
         raise DeserializationError("AccessEndpointConfig.access_endpoints required")
-    if "InternetFallbackProtocols" in data:
+    if data.get("InternetFallbackProtocols") is not None:
         import capo_workspaces.types.internet_fallback_protocol_list
 
         out["internet_fallback_protocols"] = (

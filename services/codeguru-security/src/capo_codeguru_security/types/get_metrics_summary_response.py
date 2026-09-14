@@ -31,7 +31,7 @@ def serialize_json(value: GetMetricsSummaryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMetricsSummaryResponse:
     out: GetMetricsSummaryResponse = {}  # type: ignore[typeddict-item]
-    if "metricsSummary" in data:
+    if data.get("metricsSummary") is not None:
         import capo_codeguru_security.types.metrics_summary
 
         out["metrics_summary"] = (

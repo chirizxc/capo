@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteAgent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteAgent:
     out: DeleteAgent = {}  # type: ignore[typeddict-item]
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
     else:
         raise DeserializationError("DeleteAgent.agent_id required")
-    if "force" in data:
+    if data.get("force") is not None:
         out["force"] = data["force"]
     else:
         out["force"] = False

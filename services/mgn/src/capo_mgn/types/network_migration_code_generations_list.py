@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> NetworkMigrationCodeGenerationsList:
 
     out: NetworkMigrationCodeGenerationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.network_migration_code_generation_job_details.deserialize_json(
                 item

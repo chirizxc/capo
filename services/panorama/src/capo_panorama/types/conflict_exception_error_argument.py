@@ -27,11 +27,11 @@ def serialize_json(value: ConflictExceptionErrorArgument) -> dict:
 
 def deserialize_json(data: dict) -> ConflictExceptionErrorArgument:
     out: ConflictExceptionErrorArgument = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ConflictExceptionErrorArgument.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("ConflictExceptionErrorArgument.value required")

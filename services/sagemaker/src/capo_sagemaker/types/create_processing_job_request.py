@@ -140,7 +140,7 @@ def serialize_aws_json_1_1(value: CreateProcessingJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProcessingJobRequest:
     out: CreateProcessingJobRequest = {}  # type: ignore[typeddict-item]
-    if "ProcessingInputs" in data:
+    if data.get("ProcessingInputs") is not None:
         import capo_sagemaker.types.processing_inputs
 
         out["processing_inputs"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProcessingJobRequest:
                 data["ProcessingInputs"]
             )
         )
-    if "ProcessingOutputConfig" in data:
+    if data.get("ProcessingOutputConfig") is not None:
         import capo_sagemaker.types.processing_output_config
 
         out["processing_output_config"] = (
@@ -156,9 +156,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProcessingJobRequest:
                 data["ProcessingOutputConfig"]
             )
         )
-    if "ProcessingJobName" in data:
+    if data.get("ProcessingJobName") is not None:
         out["processing_job_name"] = data["ProcessingJobName"]
-    if "ProcessingResources" in data:
+    if data.get("ProcessingResources") is not None:
         import capo_sagemaker.types.processing_resources
 
         out["processing_resources"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProcessingJobRequest:
                 data["ProcessingResources"]
             )
         )
-    if "StoppingCondition" in data:
+    if data.get("StoppingCondition") is not None:
         import capo_sagemaker.types.processing_stopping_condition
 
         out["stopping_condition"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProcessingJobRequest:
                 data["StoppingCondition"]
             )
         )
-    if "AppSpecification" in data:
+    if data.get("AppSpecification") is not None:
         import capo_sagemaker.types.app_specification
 
         out["app_specification"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProcessingJobRequest:
                 data["AppSpecification"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.processing_environment_map
 
         out["environment"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProcessingJobRequest:
                 data["Environment"]
             )
         )
-    if "NetworkConfig" in data:
+    if data.get("NetworkConfig") is not None:
         import capo_sagemaker.types.network_config
 
         out["network_config"] = (
@@ -198,15 +198,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProcessingJobRequest:
                 data["NetworkConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ExperimentConfig" in data:
+    if data.get("ExperimentConfig") is not None:
         import capo_sagemaker.types.experiment_config
 
         out["experiment_config"] = (

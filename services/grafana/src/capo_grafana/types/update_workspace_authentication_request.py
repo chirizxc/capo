@@ -46,7 +46,7 @@ def serialize_json(value: UpdateWorkspaceAuthenticationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkspaceAuthenticationRequest:
     out: UpdateWorkspaceAuthenticationRequest = {}  # type: ignore[typeddict-item]
-    if "authenticationProviders" in data:
+    if data.get("authenticationProviders") is not None:
         import capo_grafana.types.authentication_providers
 
         out["authentication_providers"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> UpdateWorkspaceAuthenticationRequest:
         raise DeserializationError(
             "UpdateWorkspaceAuthenticationRequest.authentication_providers required"
         )
-    if "samlConfiguration" in data:
+    if data.get("samlConfiguration") is not None:
         import capo_grafana.types.saml_configuration
 
         out["saml_configuration"] = (

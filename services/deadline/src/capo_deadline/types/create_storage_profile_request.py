@@ -53,11 +53,11 @@ def serialize_json(value: CreateStorageProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateStorageProfileRequest:
     out: CreateStorageProfileRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateStorageProfileRequest.display_name required")
-    if "osFamily" in data:
+    if data.get("osFamily") is not None:
         import capo_deadline.types.storage_profile_operating_system_family
 
         out["os_family"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> CreateStorageProfileRequest:
         )
     else:
         raise DeserializationError("CreateStorageProfileRequest.os_family required")
-    if "fileSystemLocations" in data:
+    if data.get("fileSystemLocations") is not None:
         import capo_deadline.types.file_system_locations_list
 
         out["file_system_locations"] = (

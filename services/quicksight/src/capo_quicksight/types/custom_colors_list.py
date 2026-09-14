@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CustomColorsList:
 
     out: CustomColorsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.custom_color.deserialize_json(item))
     return out

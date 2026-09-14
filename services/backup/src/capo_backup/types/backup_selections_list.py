@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> BackupSelectionsList:
 
     out: BackupSelectionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_backup.types.backup_selections_list_member.deserialize_json(item)
         )

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ModelDashboardMonitoringSchedules:
 
     out: ModelDashboardMonitoringSchedules = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.model_dashboard_monitoring_schedule.deserialize_aws_json_1_1(
                 item

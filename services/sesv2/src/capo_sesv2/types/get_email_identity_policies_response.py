@@ -25,7 +25,7 @@ def serialize_json(value: GetEmailIdentityPoliciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEmailIdentityPoliciesResponse:
     out: GetEmailIdentityPoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "Policies" in data:
+    if data.get("Policies") is not None:
         import capo_sesv2.types.policy_map
 
         out["policies"] = capo_sesv2.types.policy_map.deserialize_json(data["Policies"])

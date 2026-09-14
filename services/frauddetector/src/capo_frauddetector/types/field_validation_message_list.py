@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> fieldValidationMessageList:
 
     out: fieldValidationMessageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_frauddetector.types.field_validation_message.deserialize_aws_json_1_1(
                 item

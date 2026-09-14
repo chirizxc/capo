@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetUICustomizationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUICustomizationResponse:
     out: GetUICustomizationResponse = {}  # type: ignore[typeddict-item]
-    if "UICustomization" in data:
+    if data.get("UICustomization") is not None:
         import capo_cognito_identity_provider.types.ui_customization_type
 
         out["ui_customization"] = (

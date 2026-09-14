@@ -61,25 +61,25 @@ def serialize_json(value: ActSummary) -> dict:
 
 def deserialize_json(data: dict) -> ActSummary:
     out: ActSummary = {}  # type: ignore[typeddict-item]
-    if "workflowRunId" in data:
+    if data.get("workflowRunId") is not None:
         out["workflow_run_id"] = data["workflowRunId"]
     else:
         raise DeserializationError("ActSummary.workflow_run_id required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("ActSummary.session_id required")
-    if "actId" in data:
+    if data.get("actId") is not None:
         out["act_id"] = data["actId"]
     else:
         raise DeserializationError("ActSummary.act_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_nova_act.types.act_status
 
         out["status"] = capo_nova_act.types.act_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("ActSummary.status required")
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_nova_act.types.date_timestamp
 
         out["started_at"] = capo_nova_act.types.date_timestamp.deserialize_json(
@@ -87,13 +87,13 @@ def deserialize_json(data: dict) -> ActSummary:
         )
     else:
         raise DeserializationError("ActSummary.started_at required")
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_nova_act.types.date_timestamp
 
         out["ended_at"] = capo_nova_act.types.date_timestamp.deserialize_json(
             data["endedAt"]
         )
-    if "traceLocation" in data:
+    if data.get("traceLocation") is not None:
         import capo_nova_act.types.trace_location
 
         out["trace_location"] = capo_nova_act.types.trace_location.deserialize_json(

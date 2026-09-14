@@ -26,7 +26,7 @@ def serialize_json(value: Matcher) -> dict:
 
 
 def deserialize_json(data: dict) -> Matcher:
-    if "httpCode" in data:
+    if data.get("httpCode") is not None:
         return {"httpCode": data["httpCode"]}
     else:
         raise DeserializationError("Matcher: no recognized variant key")

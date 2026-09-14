@@ -34,11 +34,11 @@ def serialize_json(value: GetViewOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetViewOutput:
     out: GetViewOutput = {}  # type: ignore[typeddict-item]
-    if "View" in data:
+    if data.get("View") is not None:
         import capo_resource_explorer_2.types.view
 
         out["view"] = capo_resource_explorer_2.types.view.deserialize_json(data["View"])
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_resource_explorer_2.types.tag_map
 
         out["tags"] = capo_resource_explorer_2.types.tag_map.deserialize_json(

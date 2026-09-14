@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ImageConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImageConfig:
     out: ImageConfig = {}  # type: ignore[typeddict-item]
-    if "RepositoryAccessMode" in data:
+    if data.get("RepositoryAccessMode") is not None:
         import capo_sagemaker.types.repository_access_mode
 
         out["repository_access_mode"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImageConfig:
                 data["RepositoryAccessMode"]
             )
         )
-    if "RepositoryAuthConfig" in data:
+    if data.get("RepositoryAuthConfig") is not None:
         import capo_sagemaker.types.repository_auth_config
 
         out["repository_auth_config"] = (

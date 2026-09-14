@@ -33,13 +33,13 @@ def serialize_json(value: StartScreenSharingRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartScreenSharingRequest:
     out: StartScreenSharingRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("StartScreenSharingRequest.instance_id required")
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("StartScreenSharingRequest.contact_id required")

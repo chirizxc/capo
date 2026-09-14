@@ -18,19 +18,35 @@ class Range(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: Range) -> dict:
     out: dict = {}
-    out["maximum"] = value.get("maximum", 0)
-    out["minimum"] = value.get("minimum", 0)
+    out["maximum"] = (
+        "NaN"
+        if value.get("maximum", 0) != value.get("maximum", 0)
+        else "Infinity"
+        if value.get("maximum", 0) == float("inf")
+        else "-Infinity"
+        if value.get("maximum", 0) == float("-inf")
+        else value.get("maximum", 0)
+    )
+    out["minimum"] = (
+        "NaN"
+        if value.get("minimum", 0) != value.get("minimum", 0)
+        else "Infinity"
+        if value.get("minimum", 0) == float("inf")
+        else "-Infinity"
+        if value.get("minimum", 0) == float("-inf")
+        else value.get("minimum", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> Range:
     out: Range = {}  # type: ignore[typeddict-item]
-    if "maximum" in data:
-        out["maximum"] = data["maximum"]
+    if data.get("maximum") is not None:
+        out["maximum"] = float(data["maximum"])
     else:
         out["maximum"] = 0
-    if "minimum" in data:
-        out["minimum"] = data["minimum"]
+    if data.get("minimum") is not None:
+        out["minimum"] = float(data["minimum"])
     else:
         out["minimum"] = 0
     return out

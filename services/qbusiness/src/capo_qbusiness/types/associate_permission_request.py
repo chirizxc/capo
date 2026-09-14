@@ -48,11 +48,11 @@ def serialize_json(value: AssociatePermissionRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociatePermissionRequest:
     out: AssociatePermissionRequest = {}  # type: ignore[typeddict-item]
-    if "statementId" in data:
+    if data.get("statementId") is not None:
         out["statement_id"] = data["statementId"]
     else:
         raise DeserializationError("AssociatePermissionRequest.statement_id required")
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_qbusiness.types.q_iam_actions
 
         out["actions"] = capo_qbusiness.types.q_iam_actions.deserialize_json(
@@ -60,13 +60,13 @@ def deserialize_json(data: dict) -> AssociatePermissionRequest:
         )
     else:
         raise DeserializationError("AssociatePermissionRequest.actions required")
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_qbusiness.types.permission_conditions
 
         out["conditions"] = capo_qbusiness.types.permission_conditions.deserialize_json(
             data["conditions"]
         )
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
     else:
         raise DeserializationError("AssociatePermissionRequest.principal required")

@@ -13,10 +13,25 @@ from capo_kendra_ranking import AsyncKendraRankingClient
 
 
 async def main():
-    async with AsyncKendraRankingClient() as s3:
+    async with AsyncKendraRankingClient() as kendra_ranking:
         # Example: call the create_rescore_execution_plan operation
-        response = await s3.create_rescore_execution_plan()
+        response = await kendra_ranking.create_rescore_execution_plan()
         print(response["id"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_kendra_ranking import AsyncKendraRankingClient
+
+
+async def main():
+    async with AsyncKendraRankingClient() as kendra_ranking:
+        # Example: paginate over list_rescore_execution_plans
+        async for item in kendra_ranking.iter_list_rescore_execution_plans():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_kendra_ranking.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncKendraRankingClient() as s3:
+    async with AsyncKendraRankingClient() as kendra_ranking:
         try:
-            await s3.create_rescore_execution_plan()
+            await kendra_ranking.create_rescore_execution_plan()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_kendra_ranking import AsyncKendraRankingClient
 
 
 async def main():
-    async with AsyncKendraRankingClient() as s3:
+    async with AsyncKendraRankingClient() as kendra_ranking:
         # Default: 3 attempts for every operation
-        response = await s3.create_rescore_execution_plan()
+        response = await kendra_ranking.create_rescore_execution_plan()
 
         # Override per operation
-        response = await s3.create_rescore_execution_plan(config_overrides={"retry_max_attempts": 5})
+        response = await kendra_ranking.create_rescore_execution_plan(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_rescore_execution_plan(config_overrides={"retry_max_attempts": 1})
+        response = await kendra_ranking.create_rescore_execution_plan(config_overrides={"retry_max_attempts": 1})
 ```

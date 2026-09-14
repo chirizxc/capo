@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchGetDevicePositionErrorList:
 
     out: BatchGetDevicePositionErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_location.types.batch_get_device_position_error.deserialize_json(item)
         )

@@ -144,15 +144,15 @@ def serialize_aws_json_1_0(value: InferenceExecutionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InferenceExecutionSummary:
     out: InferenceExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "InferenceSchedulerName" in data:
+    if data.get("InferenceSchedulerName") is not None:
         out["inference_scheduler_name"] = data["InferenceSchedulerName"]
-    if "InferenceSchedulerArn" in data:
+    if data.get("InferenceSchedulerArn") is not None:
         out["inference_scheduler_arn"] = data["InferenceSchedulerArn"]
-    if "ScheduledStartTime" in data:
+    if data.get("ScheduledStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["scheduled_start_time"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceExecutionSummary:
                 data["ScheduledStartTime"]
             )
         )
-    if "DataStartTime" in data:
+    if data.get("DataStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["data_start_time"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceExecutionSummary:
                 data["DataStartTime"]
             )
         )
-    if "DataEndTime" in data:
+    if data.get("DataEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["data_end_time"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceExecutionSummary:
                 data["DataEndTime"]
             )
         )
-    if "DataInputConfiguration" in data:
+    if data.get("DataInputConfiguration") is not None:
         import capo_lookoutequipment.types.inference_input_configuration
 
         out["data_input_configuration"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceExecutionSummary:
                 data["DataInputConfiguration"]
             )
         )
-    if "DataOutputConfiguration" in data:
+    if data.get("DataOutputConfiguration") is not None:
         import capo_lookoutequipment.types.inference_output_configuration
 
         out["data_output_configuration"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceExecutionSummary:
                 data["DataOutputConfiguration"]
             )
         )
-    if "CustomerResultObject" in data:
+    if data.get("CustomerResultObject") is not None:
         import capo_lookoutequipment.types.s3_object
 
         out["customer_result_object"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceExecutionSummary:
                 data["CustomerResultObject"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.inference_execution_status
 
         out["status"] = (
@@ -208,10 +208,10 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceExecutionSummary:
                 data["Status"]
             )
         )
-    if "FailedReason" in data:
+    if data.get("FailedReason") is not None:
         out["failed_reason"] = data["FailedReason"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "ModelVersionArn" in data:
+    if data.get("ModelVersionArn") is not None:
         out["model_version_arn"] = data["ModelVersionArn"]
     return out

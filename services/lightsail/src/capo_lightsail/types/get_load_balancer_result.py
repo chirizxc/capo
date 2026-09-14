@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetLoadBalancerResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLoadBalancerResult:
     out: GetLoadBalancerResult = {}  # type: ignore[typeddict-item]
-    if "loadBalancer" in data:
+    if data.get("loadBalancer") is not None:
         import capo_lightsail.types.load_balancer
 
         out["load_balancer"] = (

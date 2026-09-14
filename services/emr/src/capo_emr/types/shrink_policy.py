@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ShrinkPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShrinkPolicy:
     out: ShrinkPolicy = {}  # type: ignore[typeddict-item]
-    if "DecommissionTimeout" in data:
+    if data.get("DecommissionTimeout") is not None:
         out["decommission_timeout"] = data["DecommissionTimeout"]
-    if "InstanceResizePolicy" in data:
+    if data.get("InstanceResizePolicy") is not None:
         import capo_emr.types.instance_resize_policy
 
         out["instance_resize_policy"] = (

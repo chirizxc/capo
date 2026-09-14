@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: DescribeAppLicenseUsageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAppLicenseUsageRequest:
     out: DescribeAppLicenseUsageRequest = {}  # type: ignore[typeddict-item]
-    if "BillingPeriod" in data:
+    if data.get("BillingPeriod") is not None:
         out["billing_period"] = data["BillingPeriod"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

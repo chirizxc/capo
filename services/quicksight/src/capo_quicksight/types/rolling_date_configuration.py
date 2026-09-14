@@ -31,9 +31,9 @@ def serialize_json(value: RollingDateConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RollingDateConfiguration:
     out: RollingDateConfiguration = {}  # type: ignore[typeddict-item]
-    if "DataSetIdentifier" in data:
+    if data.get("DataSetIdentifier") is not None:
         out["data_set_identifier"] = data["DataSetIdentifier"]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError("RollingDateConfiguration.expression required")

@@ -24,7 +24,7 @@ def serialize_json(value: TestSetExportSpecification) -> dict:
 
 def deserialize_json(data: dict) -> TestSetExportSpecification:
     out: TestSetExportSpecification = {}  # type: ignore[typeddict-item]
-    if "testSetId" in data:
+    if data.get("testSetId") is not None:
         out["test_set_id"] = data["testSetId"]
     else:
         raise DeserializationError("TestSetExportSpecification.test_set_id required")

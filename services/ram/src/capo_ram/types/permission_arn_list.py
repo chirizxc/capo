@@ -14,4 +14,4 @@ def serialize_json(value: PermissionArnList) -> list:
 
 
 def deserialize_json(data: list) -> PermissionArnList:
-    return list(data)
+    return [item for item in data if item is not None]

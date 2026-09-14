@@ -39,14 +39,14 @@ def serialize_json(value: GetStatisticsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetStatisticsRequest:
     out: GetStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
     else:
         raise DeserializationError("GetStatisticsRequest.query_string required")
-    if "aggregationField" in data:
+    if data.get("aggregationField") is not None:
         out["aggregation_field"] = data["aggregationField"]
-    if "queryVersion" in data:
+    if data.get("queryVersion") is not None:
         out["query_version"] = data["queryVersion"]
     return out

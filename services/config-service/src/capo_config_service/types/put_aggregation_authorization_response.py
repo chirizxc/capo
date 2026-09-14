@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: PutAggregationAuthorizationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutAggregationAuthorizationResponse:
     out: PutAggregationAuthorizationResponse = {}  # type: ignore[typeddict-item]
-    if "AggregationAuthorization" in data:
+    if data.get("AggregationAuthorization") is not None:
         import capo_config_service.types.aggregation_authorization
 
         out["aggregation_authorization"] = (

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CustomRoutingEndpointDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomRoutingEndpointDescription:
     out: CustomRoutingEndpointDescription = {}  # type: ignore[typeddict-item]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
     return out

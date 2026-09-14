@@ -34,7 +34,7 @@ def serialize_json(value: PagerDutyAuthorizationConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> PagerDutyAuthorizationConfig:
-    if "oAuthClientCredentials" in data:
+    if data.get("oAuthClientCredentials") is not None:
         import capo_devops_agent.types.pager_duty_o_auth_client_credentials_config
 
         return {

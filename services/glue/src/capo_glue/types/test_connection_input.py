@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: TestConnectionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestConnectionInput:
     out: TestConnectionInput = {}  # type: ignore[typeddict-item]
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         import capo_glue.types.connection_type
 
         out["connection_type"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> TestConnectionInput:
         )
     else:
         raise DeserializationError("TestConnectionInput.connection_type required")
-    if "ConnectionProperties" in data:
+    if data.get("ConnectionProperties") is not None:
         import capo_glue.types.connection_properties
 
         out["connection_properties"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> TestConnectionInput:
         )
     else:
         raise DeserializationError("TestConnectionInput.connection_properties required")
-    if "AuthenticationConfiguration" in data:
+    if data.get("AuthenticationConfiguration") is not None:
         import capo_glue.types.authentication_configuration_input
 
         out["authentication_configuration"] = (

@@ -69,17 +69,17 @@ def serialize_aws_json_1_1(value: CreateFaqRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFaqRequest:
     out: CreateFaqRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("CreateFaqRequest.index_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateFaqRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "S3Path" in data:
+    if data.get("S3Path") is not None:
         import capo_kendra.types.s3_path
 
         out["s3_path"] = capo_kendra.types.s3_path.deserialize_aws_json_1_1(
@@ -87,22 +87,22 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFaqRequest:
         )
     else:
         raise DeserializationError("CreateFaqRequest.s3_path required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateFaqRequest.role_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kendra.types.tag_list
 
         out["tags"] = capo_kendra.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "FileFormat" in data:
+    if data.get("FileFormat") is not None:
         import capo_kendra.types.faq_file_format
 
         out["file_format"] = capo_kendra.types.faq_file_format.deserialize_aws_json_1_1(
             data["FileFormat"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
     return out

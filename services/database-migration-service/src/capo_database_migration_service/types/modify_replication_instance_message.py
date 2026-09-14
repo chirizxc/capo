@@ -104,21 +104,21 @@ def serialize_aws_json_1_1(value: ModifyReplicationInstanceMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyReplicationInstanceMessage:
     out: ModifyReplicationInstanceMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
     else:
         raise DeserializationError(
             "ModifyReplicationInstanceMessage.replication_instance_arn required"
         )
-    if "AllocatedStorage" in data:
+    if data.get("AllocatedStorage") is not None:
         out["allocated_storage"] = data["AllocatedStorage"]
-    if "ApplyImmediately" in data:
+    if data.get("ApplyImmediately") is not None:
         out["apply_immediately"] = data["ApplyImmediately"]
     else:
         out["apply_immediately"] = False
-    if "ReplicationInstanceClass" in data:
+    if data.get("ReplicationInstanceClass") is not None:
         out["replication_instance_class"] = data["ReplicationInstanceClass"]
-    if "VpcSecurityGroupIds" in data:
+    if data.get("VpcSecurityGroupIds") is not None:
         import capo_database_migration_service.types.vpc_security_group_id_list
 
         out["vpc_security_group_ids"] = (
@@ -126,23 +126,23 @@ def deserialize_aws_json_1_1(data: dict) -> ModifyReplicationInstanceMessage:
                 data["VpcSecurityGroupIds"]
             )
         )
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "MultiAZ" in data:
+    if data.get("MultiAZ") is not None:
         out["multi_az"] = data["MultiAZ"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "AllowMajorVersionUpgrade" in data:
+    if data.get("AllowMajorVersionUpgrade") is not None:
         out["allow_major_version_upgrade"] = data["AllowMajorVersionUpgrade"]
     else:
         out["allow_major_version_upgrade"] = False
-    if "AutoMinorVersionUpgrade" in data:
+    if data.get("AutoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["AutoMinorVersionUpgrade"]
-    if "ReplicationInstanceIdentifier" in data:
+    if data.get("ReplicationInstanceIdentifier") is not None:
         out["replication_instance_identifier"] = data["ReplicationInstanceIdentifier"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         out["network_type"] = data["NetworkType"]
-    if "KerberosAuthenticationSettings" in data:
+    if data.get("KerberosAuthenticationSettings") is not None:
         import capo_database_migration_service.types.kerberos_authentication_settings
 
         out["kerberos_authentication_settings"] = (

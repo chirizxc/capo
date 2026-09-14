@@ -36,7 +36,7 @@ def serialize_json(value: ListEventTypesResult) -> dict:
 
 def deserialize_json(data: dict) -> ListEventTypesResult:
     out: ListEventTypesResult = {}  # type: ignore[typeddict-item]
-    if "EventTypes" in data:
+    if data.get("EventTypes") is not None:
         import capo_codestar_notifications.types.event_type_batch
 
         out["event_types"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListEventTypesResult:
                 data["EventTypes"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

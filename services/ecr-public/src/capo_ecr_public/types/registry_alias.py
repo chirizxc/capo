@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: RegistryAlias) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegistryAlias:
     out: RegistryAlias = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RegistryAlias.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_ecr_public.types.registry_alias_status
 
         out["status"] = (
@@ -58,11 +58,11 @@ def deserialize_aws_json_1_1(data: dict) -> RegistryAlias:
         )
     else:
         raise DeserializationError("RegistryAlias.status required")
-    if "primaryRegistryAlias" in data:
+    if data.get("primaryRegistryAlias") is not None:
         out["primary_registry_alias"] = data["primaryRegistryAlias"]
     else:
         out["primary_registry_alias"] = False
-    if "defaultRegistryAlias" in data:
+    if data.get("defaultRegistryAlias") is not None:
         out["default_registry_alias"] = data["defaultRegistryAlias"]
     else:
         out["default_registry_alias"] = False

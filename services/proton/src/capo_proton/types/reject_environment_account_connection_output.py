@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: RejectEnvironmentAccountConnectionOutput) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> RejectEnvironmentAccountConnectionOutput:
     out: RejectEnvironmentAccountConnectionOutput = {}  # type: ignore[typeddict-item]
-    if "environmentAccountConnection" in data:
+    if data.get("environmentAccountConnection") is not None:
         import capo_proton.types.environment_account_connection
 
         out["environment_account_connection"] = (

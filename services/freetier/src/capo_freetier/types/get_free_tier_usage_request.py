@@ -36,16 +36,16 @@ def serialize_aws_json_1_0(value: GetFreeTierUsageRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetFreeTierUsageRequest:
     out: GetFreeTierUsageRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_freetier.types.expression
 
         out["filter"] = capo_freetier.types.expression.deserialize_aws_json_1_0(
             data["filter"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 10
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

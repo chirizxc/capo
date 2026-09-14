@@ -24,7 +24,7 @@ def serialize_json(value: Route) -> dict:
 
 def deserialize_json(data: dict) -> Route:
     out: Route = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("Route.region required")

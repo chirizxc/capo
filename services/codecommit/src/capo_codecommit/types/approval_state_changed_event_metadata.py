@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: ApprovalStateChangedEventMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApprovalStateChangedEventMetadata:
     out: ApprovalStateChangedEventMetadata = {}  # type: ignore[typeddict-item]
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "approvalStatus" in data:
+    if data.get("approvalStatus") is not None:
         import capo_codecommit.types.approval_state
 
         out["approval_status"] = (

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: PipelineRollbackMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineRollbackMetadata:
     out: PipelineRollbackMetadata = {}  # type: ignore[typeddict-item]
-    if "rollbackTargetPipelineExecutionId" in data:
+    if data.get("rollbackTargetPipelineExecutionId") is not None:
         out["rollback_target_pipeline_execution_id"] = data[
             "rollbackTargetPipelineExecutionId"
         ]

@@ -50,13 +50,13 @@ def serialize_json(value: PackageVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> PackageVersionSummary:
     out: PackageVersionSummary = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("PackageVersionSummary.version required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codeartifact.types.package_version_status
 
         out["status"] = capo_codeartifact.types.package_version_status.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> PackageVersionSummary:
         )
     else:
         raise DeserializationError("PackageVersionSummary.status required")
-    if "origin" in data:
+    if data.get("origin") is not None:
         import capo_codeartifact.types.package_version_origin
 
         out["origin"] = capo_codeartifact.types.package_version_origin.deserialize_json(

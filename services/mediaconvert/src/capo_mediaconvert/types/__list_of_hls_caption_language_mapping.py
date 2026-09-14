@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfHlsCaptionLanguageMapping:
 
     out: __listOfHlsCaptionLanguageMapping = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.hls_caption_language_mapping.deserialize_json(item)
         )

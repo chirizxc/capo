@@ -114,11 +114,11 @@ def serialize_aws_json_1_1(value: ScalingActivity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingActivity:
     out: ScalingActivity = {}  # type: ignore[typeddict-item]
-    if "ActivityId" in data:
+    if data.get("ActivityId") is not None:
         out["activity_id"] = data["ActivityId"]
     else:
         raise DeserializationError("ScalingActivity.activity_id required")
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_application_auto_scaling.types.service_namespace
 
         out["service_namespace"] = (
@@ -128,11 +128,11 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingActivity:
         )
     else:
         raise DeserializationError("ScalingActivity.service_namespace required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("ScalingActivity.resource_id required")
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_application_auto_scaling.types.scalable_dimension
 
         out["scalable_dimension"] = (
@@ -142,15 +142,15 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingActivity:
         )
     else:
         raise DeserializationError("ScalingActivity.scalable_dimension required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("ScalingActivity.description required")
-    if "Cause" in data:
+    if data.get("Cause") is not None:
         out["cause"] = data["Cause"]
     else:
         raise DeserializationError("ScalingActivity.cause required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_auto_scaling.types.timestamp_type
 
         out["start_time"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingActivity:
         )
     else:
         raise DeserializationError("ScalingActivity.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_application_auto_scaling.types.timestamp_type
 
         out["end_time"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingActivity:
                 data["EndTime"]
             )
         )
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_application_auto_scaling.types.scaling_activity_status_code
 
         out["status_code"] = (
@@ -178,11 +178,11 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingActivity:
         )
     else:
         raise DeserializationError("ScalingActivity.status_code required")
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "Details" in data:
+    if data.get("Details") is not None:
         out["details"] = data["Details"]
-    if "NotScaledReasons" in data:
+    if data.get("NotScaledReasons") is not None:
         import capo_application_auto_scaling.types.not_scaled_reasons
 
         out["not_scaled_reasons"] = (

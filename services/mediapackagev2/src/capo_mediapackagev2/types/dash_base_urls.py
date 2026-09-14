@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DashBaseUrls:
 
     out: DashBaseUrls = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackagev2.types.dash_base_url.deserialize_json(item))
     return out

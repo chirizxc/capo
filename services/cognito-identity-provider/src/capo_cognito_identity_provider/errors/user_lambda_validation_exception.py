@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UserLambdaValidationException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserLambdaValidationException_:
     out: UserLambdaValidationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -37,15 +37,20 @@ class UserLambdaValidationException(ServiceError):
 
     code: str | None = "UserLambdaValidationException"
 
-    def __init__(self, data: UserLambdaValidationException_):
+    def __init__(
+        self, data: UserLambdaValidationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UserLambdaValidationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "UserLambdaValidationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "UserLambdaValidationException":
+        return cls(deserialize_aws_json_1_1(data), message)

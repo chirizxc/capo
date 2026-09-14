@@ -65,9 +65,9 @@ def serialize_json(value: WorkflowStepAutomationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowStepAutomationConfiguration:
     out: WorkflowStepAutomationConfiguration = {}  # type: ignore[typeddict-item]
-    if "scriptLocationS3Bucket" in data:
+    if data.get("scriptLocationS3Bucket") is not None:
         out["script_location_s3_bucket"] = data["scriptLocationS3Bucket"]
-    if "scriptLocationS3Key" in data:
+    if data.get("scriptLocationS3Key") is not None:
         import capo_migrationhuborchestrator.types.platform_script_key
 
         out["script_location_s3_key"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> WorkflowStepAutomationConfiguration:
                 data["scriptLocationS3Key"]
             )
         )
-    if "command" in data:
+    if data.get("command") is not None:
         import capo_migrationhuborchestrator.types.platform_command
 
         out["command"] = (
@@ -83,8 +83,8 @@ def deserialize_json(data: dict) -> WorkflowStepAutomationConfiguration:
                 data["command"]
             )
         )
-    if "runEnvironment" in data:
+    if data.get("runEnvironment") is not None:
         out["run_environment"] = data["runEnvironment"]
-    if "targetType" in data:
+    if data.get("targetType") is not None:
         out["target_type"] = data["targetType"]
     return out

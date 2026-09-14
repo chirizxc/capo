@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ScansWithMostOpenCriticalFindings:
 
     out: ScansWithMostOpenCriticalFindings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguru_security.types.scan_name_with_finding_num.deserialize_json(
                 item

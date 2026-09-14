@@ -29,9 +29,9 @@ def serialize_json(value: ForbiddenException_) -> dict:
 
 def deserialize_json(data: dict) -> ForbiddenException_:
     out: ForbiddenException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestID" in data:
+    if data.get("RequestID") is not None:
         out["request_id"] = data["RequestID"]
     return out
 
@@ -41,15 +41,16 @@ class ForbiddenException(ServiceError):
 
     code: str | None = "ForbiddenException"
 
-    def __init__(self, data: ForbiddenException_):
+    def __init__(self, data: ForbiddenException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ForbiddenException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ForbiddenException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ForbiddenException":
+        return cls(deserialize_json(data), message)

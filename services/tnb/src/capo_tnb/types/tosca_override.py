@@ -22,8 +22,8 @@ def serialize_json(value: ToscaOverride) -> dict:
 
 def deserialize_json(data: dict) -> ToscaOverride:
     out: ToscaOverride = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
     return out

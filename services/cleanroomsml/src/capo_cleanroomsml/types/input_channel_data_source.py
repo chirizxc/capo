@@ -34,7 +34,7 @@ def serialize_json(value: InputChannelDataSource) -> dict:
 
 
 def deserialize_json(data: dict) -> InputChannelDataSource:
-    if "protectedQueryInputParameters" in data:
+    if data.get("protectedQueryInputParameters") is not None:
         import capo_cleanroomsml.types.protected_query_input_parameters
 
         return {

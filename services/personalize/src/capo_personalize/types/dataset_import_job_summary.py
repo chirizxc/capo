@@ -64,13 +64,13 @@ def serialize_aws_json_1_1(value: DatasetImportJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetImportJobSummary:
     out: DatasetImportJobSummary = {}  # type: ignore[typeddict-item]
-    if "datasetImportJobArn" in data:
+    if data.get("datasetImportJobArn") is not None:
         out["dataset_import_job_arn"] = data["datasetImportJobArn"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetImportJobSummary:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -86,9 +86,9 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetImportJobSummary:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "importMode" in data:
+    if data.get("importMode") is not None:
         import capo_personalize.types.import_mode
 
         out["import_mode"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Conversations:
 
     out: Conversations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.conversation.deserialize_json(item))
     return out

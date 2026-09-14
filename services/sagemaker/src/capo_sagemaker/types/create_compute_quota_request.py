@@ -83,13 +83,13 @@ def serialize_aws_json_1_1(value: CreateComputeQuotaRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateComputeQuotaRequest:
     out: CreateComputeQuotaRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "ComputeQuotaConfig" in data:
+    if data.get("ComputeQuotaConfig") is not None:
         import capo_sagemaker.types.compute_quota_config
 
         out["compute_quota_config"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateComputeQuotaRequest:
                 data["ComputeQuotaConfig"]
             )
         )
-    if "ComputeQuotaTarget" in data:
+    if data.get("ComputeQuotaTarget") is not None:
         import capo_sagemaker.types.compute_quota_target
 
         out["compute_quota_target"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateComputeQuotaRequest:
                 data["ComputeQuotaTarget"]
             )
         )
-    if "ActivationState" in data:
+    if data.get("ActivationState") is not None:
         import capo_sagemaker.types.activation_state
 
         out["activation_state"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateComputeQuotaRequest:
                 data["ActivationState"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

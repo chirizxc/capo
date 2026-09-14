@@ -13,9 +13,9 @@ from capo_kinesis_analytics_v2 import AsyncKinesisAnalyticsV2Client
 
 
 async def main():
-    async with AsyncKinesisAnalyticsV2Client() as s3:
+    async with AsyncKinesisAnalyticsV2Client() as kinesis_analytics_v2:
         # Example: call the add_application_cloud_watch_logging_option operation
-        response = await s3.add_application_cloud_watch_logging_option()
+        response = await kinesis_analytics_v2.add_application_cloud_watch_logging_option()
         print(response["application_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_kinesis_analytics_v2 import AsyncKinesisAnalyticsV2Client
 
 
 async def main():
-    async with AsyncKinesisAnalyticsV2Client() as s3:
+    async with AsyncKinesisAnalyticsV2Client() as kinesis_analytics_v2:
         # Example: paginate over list_application_operations
-        async for item in s3.iter_list_application_operations():
+        async for item in kinesis_analytics_v2.iter_list_application_operations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_kinesis_analytics_v2.error import ConcurrentModificationException
 
 
 async def main():
-    async with AsyncKinesisAnalyticsV2Client() as s3:
+    async with AsyncKinesisAnalyticsV2Client() as kinesis_analytics_v2:
         try:
-            await s3.add_application_cloud_watch_logging_option()
+            await kinesis_analytics_v2.add_application_cloud_watch_logging_option()
         except ConcurrentModificationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_kinesis_analytics_v2 import AsyncKinesisAnalyticsV2Client
 
 
 async def main():
-    async with AsyncKinesisAnalyticsV2Client() as s3:
+    async with AsyncKinesisAnalyticsV2Client() as kinesis_analytics_v2:
         # Default: 3 attempts for every operation
-        response = await s3.add_application_cloud_watch_logging_option()
+        response = await kinesis_analytics_v2.add_application_cloud_watch_logging_option()
 
         # Override per operation
-        response = await s3.add_application_cloud_watch_logging_option(config_overrides={"retry_max_attempts": 5})
+        response = await kinesis_analytics_v2.add_application_cloud_watch_logging_option(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_application_cloud_watch_logging_option(config_overrides={"retry_max_attempts": 1})
+        response = await kinesis_analytics_v2.add_application_cloud_watch_logging_option(config_overrides={"retry_max_attempts": 1})
 ```

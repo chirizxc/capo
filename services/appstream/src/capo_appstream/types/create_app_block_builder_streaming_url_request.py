@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: CreateAppBlockBuilderStreamingURLRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAppBlockBuilderStreamingURLRequest:
     out: CreateAppBlockBuilderStreamingURLRequest = {}  # type: ignore[typeddict-item]
-    if "AppBlockBuilderName" in data:
+    if data.get("AppBlockBuilderName") is not None:
         out["app_block_builder_name"] = data["AppBlockBuilderName"]
-    if "Validity" in data:
+    if data.get("Validity") is not None:
         out["validity"] = data["Validity"]
     return out

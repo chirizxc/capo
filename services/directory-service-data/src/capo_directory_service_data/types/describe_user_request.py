@@ -45,11 +45,11 @@ def serialize_json(value: DescribeUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeUserRequest:
     out: DescribeUserRequest = {}  # type: ignore[typeddict-item]
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
     else:
         raise DeserializationError("DescribeUserRequest.sam_account_name required")
-    if "OtherAttributes" in data:
+    if data.get("OtherAttributes") is not None:
         import capo_directory_service_data.types.ldap_display_name_list
 
         out["other_attributes"] = (
@@ -57,6 +57,6 @@ def deserialize_json(data: dict) -> DescribeUserRequest:
                 data["OtherAttributes"]
             )
         )
-    if "Realm" in data:
+    if data.get("Realm") is not None:
         out["realm"] = data["Realm"]
     return out

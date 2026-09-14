@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AuditSuppressionList:
 
     out: AuditSuppressionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.audit_suppression.deserialize_json(item))
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetTestGridProjectRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTestGridProjectRequest:
     out: GetTestGridProjectRequest = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError("GetTestGridProjectRequest.project_arn required")

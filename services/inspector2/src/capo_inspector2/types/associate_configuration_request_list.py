@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AssociateConfigurationRequestList:
 
     out: AssociateConfigurationRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.associate_configuration_request.deserialize_json(item)
         )

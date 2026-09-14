@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: UnprocessedQueryExecutionId) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnprocessedQueryExecutionId:
     out: UnprocessedQueryExecutionId = {}  # type: ignore[typeddict-item]
-    if "QueryExecutionId" in data:
+    if data.get("QueryExecutionId") is not None:
         out["query_execution_id"] = data["QueryExecutionId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

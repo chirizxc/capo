@@ -338,7 +338,7 @@ def serialize_aws_json_1_0(value: ManagedInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
     out: ManagedInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "BlockDeviceMappings" in data:
+    if data.get("BlockDeviceMappings") is not None:
         import capo_workspaces_instances.types.block_device_mappings
 
         out["block_device_mappings"] = (
@@ -346,7 +346,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["BlockDeviceMappings"]
             )
         )
-    if "CapacityReservationSpecification" in data:
+    if data.get("CapacityReservationSpecification") is not None:
         import capo_workspaces_instances.types.capacity_reservation_specification
 
         out["capacity_reservation_specification"] = (
@@ -354,7 +354,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["CapacityReservationSpecification"]
             )
         )
-    if "CpuOptions" in data:
+    if data.get("CpuOptions") is not None:
         import capo_workspaces_instances.types.cpu_options_request
 
         out["cpu_options"] = (
@@ -362,7 +362,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["CpuOptions"]
             )
         )
-    if "CreditSpecification" in data:
+    if data.get("CreditSpecification") is not None:
         import capo_workspaces_instances.types.credit_specification_request
 
         out["credit_specification"] = (
@@ -370,13 +370,13 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["CreditSpecification"]
             )
         )
-    if "DisableApiStop" in data:
+    if data.get("DisableApiStop") is not None:
         out["disable_api_stop"] = data["DisableApiStop"]
-    if "EbsOptimized" in data:
+    if data.get("EbsOptimized") is not None:
         out["ebs_optimized"] = data["EbsOptimized"]
-    if "EnablePrimaryIpv6" in data:
+    if data.get("EnablePrimaryIpv6") is not None:
         out["enable_primary_ipv6"] = data["EnablePrimaryIpv6"]
-    if "EnclaveOptions" in data:
+    if data.get("EnclaveOptions") is not None:
         import capo_workspaces_instances.types.enclave_options_request
 
         out["enclave_options"] = (
@@ -384,7 +384,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["EnclaveOptions"]
             )
         )
-    if "HibernationOptions" in data:
+    if data.get("HibernationOptions") is not None:
         import capo_workspaces_instances.types.hibernation_options_request
 
         out["hibernation_options"] = (
@@ -392,7 +392,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["HibernationOptions"]
             )
         )
-    if "IamInstanceProfile" in data:
+    if data.get("IamInstanceProfile") is not None:
         import capo_workspaces_instances.types.iam_instance_profile_specification
 
         out["iam_instance_profile"] = (
@@ -400,9 +400,9 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["IamInstanceProfile"]
             )
         )
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "InstanceMarketOptions" in data:
+    if data.get("InstanceMarketOptions") is not None:
         import capo_workspaces_instances.types.instance_market_options_request
 
         out["instance_market_options"] = (
@@ -410,9 +410,9 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["InstanceMarketOptions"]
             )
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "Ipv6Addresses" in data:
+    if data.get("Ipv6Addresses") is not None:
         import capo_workspaces_instances.types.ipv6_addresses
 
         out["ipv6_addresses"] = (
@@ -420,13 +420,13 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["Ipv6Addresses"]
             )
         )
-    if "Ipv6AddressCount" in data:
+    if data.get("Ipv6AddressCount") is not None:
         out["ipv6_address_count"] = data["Ipv6AddressCount"]
-    if "KernelId" in data:
+    if data.get("KernelId") is not None:
         out["kernel_id"] = data["KernelId"]
-    if "KeyName" in data:
+    if data.get("KeyName") is not None:
         out["key_name"] = data["KeyName"]
-    if "LicenseSpecifications" in data:
+    if data.get("LicenseSpecifications") is not None:
         import capo_workspaces_instances.types.license_specifications
 
         out["license_specifications"] = (
@@ -434,7 +434,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["LicenseSpecifications"]
             )
         )
-    if "MaintenanceOptions" in data:
+    if data.get("MaintenanceOptions") is not None:
         import capo_workspaces_instances.types.instance_maintenance_options_request
 
         out["maintenance_options"] = (
@@ -442,7 +442,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["MaintenanceOptions"]
             )
         )
-    if "MetadataOptions" in data:
+    if data.get("MetadataOptions") is not None:
         import capo_workspaces_instances.types.instance_metadata_options_request
 
         out["metadata_options"] = (
@@ -450,7 +450,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["MetadataOptions"]
             )
         )
-    if "Monitoring" in data:
+    if data.get("Monitoring") is not None:
         import capo_workspaces_instances.types.run_instances_monitoring_enabled
 
         out["monitoring"] = (
@@ -458,7 +458,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["Monitoring"]
             )
         )
-    if "NetworkInterfaces" in data:
+    if data.get("NetworkInterfaces") is not None:
         import capo_workspaces_instances.types.network_interfaces
 
         out["network_interfaces"] = (
@@ -466,7 +466,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["NetworkInterfaces"]
             )
         )
-    if "NetworkPerformanceOptions" in data:
+    if data.get("NetworkPerformanceOptions") is not None:
         import capo_workspaces_instances.types.instance_network_performance_options_request
 
         out["network_performance_options"] = (
@@ -474,7 +474,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["NetworkPerformanceOptions"]
             )
         )
-    if "Placement" in data:
+    if data.get("Placement") is not None:
         import capo_workspaces_instances.types.placement
 
         out["placement"] = (
@@ -482,7 +482,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["Placement"]
             )
         )
-    if "PrivateDnsNameOptions" in data:
+    if data.get("PrivateDnsNameOptions") is not None:
         import capo_workspaces_instances.types.private_dns_name_options_request
 
         out["private_dns_name_options"] = (
@@ -490,11 +490,11 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["PrivateDnsNameOptions"]
             )
         )
-    if "PrivateIpAddress" in data:
+    if data.get("PrivateIpAddress") is not None:
         out["private_ip_address"] = data["PrivateIpAddress"]
-    if "RamdiskId" in data:
+    if data.get("RamdiskId") is not None:
         out["ramdisk_id"] = data["RamdiskId"]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_workspaces_instances.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -502,7 +502,7 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["SecurityGroupIds"]
             )
         )
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_workspaces_instances.types.security_group_names
 
         out["security_groups"] = (
@@ -510,9 +510,9 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["SecurityGroups"]
             )
         )
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "TagSpecifications" in data:
+    if data.get("TagSpecifications") is not None:
         import capo_workspaces_instances.types.tag_specifications
 
         out["tag_specifications"] = (
@@ -520,6 +520,6 @@ def deserialize_aws_json_1_0(data: dict) -> ManagedInstanceRequest:
                 data["TagSpecifications"]
             )
         )
-    if "UserData" in data:
+    if data.get("UserData") is not None:
         out["user_data"] = data["UserData"]
     return out

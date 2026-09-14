@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> UnprocessedNamedQueryIdList:
 
     out: UnprocessedNamedQueryIdList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_athena.types.unprocessed_named_query_id.deserialize_aws_json_1_1(item)
         )

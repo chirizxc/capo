@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: ApplicationCodeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationCodeConfiguration:
     out: ApplicationCodeConfiguration = {}  # type: ignore[typeddict-item]
-    if "CodeContent" in data:
+    if data.get("CodeContent") is not None:
         import capo_kinesis_analytics_v2.types.code_content
 
         out["code_content"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationCodeConfiguration:
                 data["CodeContent"]
             )
         )
-    if "CodeContentType" in data:
+    if data.get("CodeContentType") is not None:
         import capo_kinesis_analytics_v2.types.code_content_type
 
         out["code_content_type"] = (

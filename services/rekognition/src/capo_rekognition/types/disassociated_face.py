@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DisassociatedFace) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociatedFace:
     out: DisassociatedFace = {}  # type: ignore[typeddict-item]
-    if "FaceId" in data:
+    if data.get("FaceId") is not None:
         out["face_id"] = data["FaceId"]
     return out

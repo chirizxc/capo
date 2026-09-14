@@ -61,17 +61,17 @@ def serialize_json(value: DataCatalogOutput) -> dict:
 
 def deserialize_json(data: dict) -> DataCatalogOutput:
     out: DataCatalogOutput = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("DataCatalogOutput.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("DataCatalogOutput.table_name required")
-    if "S3Options" in data:
+    if data.get("S3Options") is not None:
         import capo_databrew.types.s3_table_output_options
 
         out["s3_options"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> DataCatalogOutput:
                 data["S3Options"]
             )
         )
-    if "DatabaseOptions" in data:
+    if data.get("DatabaseOptions") is not None:
         import capo_databrew.types.database_table_output_options
 
         out["database_options"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> DataCatalogOutput:
                 data["DatabaseOptions"]
             )
         )
-    if "Overwrite" in data:
+    if data.get("Overwrite") is not None:
         out["overwrite"] = data["Overwrite"]
     else:
         out["overwrite"] = False

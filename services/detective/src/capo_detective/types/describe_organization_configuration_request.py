@@ -24,7 +24,7 @@ def serialize_json(value: DescribeOrganizationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOrganizationConfigurationRequest:
     out: DescribeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError(

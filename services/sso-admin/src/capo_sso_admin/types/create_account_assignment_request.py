@@ -52,17 +52,17 @@ def serialize_aws_json_1_1(value: CreateAccountAssignmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAccountAssignmentRequest:
     out: CreateAccountAssignmentRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "CreateAccountAssignmentRequest.instance_arn required"
         )
-    if "TargetId" in data:
+    if data.get("TargetId") is not None:
         out["target_id"] = data["TargetId"]
     else:
         raise DeserializationError("CreateAccountAssignmentRequest.target_id required")
-    if "TargetType" in data:
+    if data.get("TargetType") is not None:
         import capo_sso_admin.types.target_type
 
         out["target_type"] = capo_sso_admin.types.target_type.deserialize_aws_json_1_1(
@@ -72,13 +72,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAccountAssignmentRequest:
         raise DeserializationError(
             "CreateAccountAssignmentRequest.target_type required"
         )
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
     else:
         raise DeserializationError(
             "CreateAccountAssignmentRequest.permission_set_arn required"
         )
-    if "PrincipalType" in data:
+    if data.get("PrincipalType") is not None:
         import capo_sso_admin.types.principal_type
 
         out["principal_type"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAccountAssignmentRequest:
         raise DeserializationError(
             "CreateAccountAssignmentRequest.principal_type required"
         )
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
     else:
         raise DeserializationError(

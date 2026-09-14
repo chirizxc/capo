@@ -123,7 +123,7 @@ def serialize_aws_json_1_1(value: AttributeFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttributeFilter:
     out: AttributeFilter = {}  # type: ignore[typeddict-item]
-    if "AndAllFilters" in data:
+    if data.get("AndAllFilters") is not None:
         import capo_kendra.types.attribute_filter_list
 
         out["and_all_filters"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeFilter:
                 data["AndAllFilters"]
             )
         )
-    if "OrAllFilters" in data:
+    if data.get("OrAllFilters") is not None:
         import capo_kendra.types.attribute_filter_list
 
         out["or_all_filters"] = (
@@ -139,13 +139,13 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeFilter:
                 data["OrAllFilters"]
             )
         )
-    if "NotFilter" in data:
+    if data.get("NotFilter") is not None:
         import capo_kendra.types.attribute_filter
 
         out["not_filter"] = capo_kendra.types.attribute_filter.deserialize_aws_json_1_1(
             data["NotFilter"]
         )
-    if "EqualsTo" in data:
+    if data.get("EqualsTo") is not None:
         import capo_kendra.types.document_attribute
 
         out["equals_to"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeFilter:
                 data["EqualsTo"]
             )
         )
-    if "ContainsAll" in data:
+    if data.get("ContainsAll") is not None:
         import capo_kendra.types.document_attribute
 
         out["contains_all"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeFilter:
                 data["ContainsAll"]
             )
         )
-    if "ContainsAny" in data:
+    if data.get("ContainsAny") is not None:
         import capo_kendra.types.document_attribute
 
         out["contains_any"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeFilter:
                 data["ContainsAny"]
             )
         )
-    if "GreaterThan" in data:
+    if data.get("GreaterThan") is not None:
         import capo_kendra.types.document_attribute
 
         out["greater_than"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeFilter:
                 data["GreaterThan"]
             )
         )
-    if "GreaterThanOrEquals" in data:
+    if data.get("GreaterThanOrEquals") is not None:
         import capo_kendra.types.document_attribute
 
         out["greater_than_or_equals"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeFilter:
                 data["GreaterThanOrEquals"]
             )
         )
-    if "LessThan" in data:
+    if data.get("LessThan") is not None:
         import capo_kendra.types.document_attribute
 
         out["less_than"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeFilter:
                 data["LessThan"]
             )
         )
-    if "LessThanOrEquals" in data:
+    if data.get("LessThanOrEquals") is not None:
         import capo_kendra.types.document_attribute
 
         out["less_than_or_equals"] = (

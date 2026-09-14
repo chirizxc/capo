@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: FieldToProtect) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FieldToProtect:
     out: FieldToProtect = {}  # type: ignore[typeddict-item]
-    if "FieldType" in data:
+    if data.get("FieldType") is not None:
         import capo_wafv2.types.field_to_protect_type
 
         out["field_type"] = (
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> FieldToProtect:
         )
     else:
         raise DeserializationError("FieldToProtect.field_type required")
-    if "FieldKeys" in data:
+    if data.get("FieldKeys") is not None:
         import capo_wafv2.types.field_to_protect_keys
 
         out["field_keys"] = (

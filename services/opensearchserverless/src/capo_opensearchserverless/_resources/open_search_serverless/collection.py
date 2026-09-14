@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_opensearchserverless._services._pipeline import (
@@ -112,8 +113,9 @@ class Collection:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_collection_request.CreateCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_opensearchserverless.types.create_collection_request.CreateCollectionRequest = {
+            "name": name
+        }
         if type is not None:
             input_["type"] = type
         if description is not None:
@@ -130,14 +132,16 @@ class Collection:
             input_["encryption_config"] = encryption_config
         if deletion_protection is not None:
             input_["deletion_protection"] = deletion_protection
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -187,22 +191,25 @@ class Collection:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_collection_request.UpdateCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_opensearchserverless.types.update_collection_request.UpdateCollectionRequest = {
+            "id": id
+        }
         if description is not None:
             input_["description"] = description
         if vector_options is not None:
             input_["vector_options"] = vector_options
         if deletion_protection is not None:
             input_["deletion_protection"] = deletion_protection
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -243,16 +250,19 @@ class Collection:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_collection_request.DeleteCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_collection_request.DeleteCollectionRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -293,7 +303,7 @@ class Collection:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_collections_request.ListCollectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.list_collections_request.ListCollectionsRequest = {}
         if collection_filters is not None:
             input_["collection_filters"] = collection_filters
         if next_token is not None:
@@ -306,6 +316,7 @@ class Collection:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -381,8 +392,9 @@ class AsyncCollection:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_collection_request.CreateCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_opensearchserverless.types.create_collection_request.CreateCollectionRequest = {
+            "name": name
+        }
         if type is not None:
             input_["type"] = type
         if description is not None:
@@ -399,14 +411,16 @@ class AsyncCollection:
             input_["encryption_config"] = encryption_config
         if deletion_protection is not None:
             input_["deletion_protection"] = deletion_protection
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -457,22 +471,25 @@ class AsyncCollection:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_collection_request.UpdateCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_opensearchserverless.types.update_collection_request.UpdateCollectionRequest = {
+            "id": id
+        }
         if description is not None:
             input_["description"] = description
         if vector_options is not None:
             input_["vector_options"] = vector_options
         if deletion_protection is not None:
             input_["deletion_protection"] = deletion_protection
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -514,16 +531,19 @@ class AsyncCollection:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_collection_request.DeleteCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_collection_request.DeleteCollectionRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -565,7 +585,7 @@ class AsyncCollection:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_collections_request.ListCollectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.list_collections_request.ListCollectionsRequest = {}
         if collection_filters is not None:
             input_["collection_filters"] = collection_filters
         if next_token is not None:
@@ -578,4 +598,5 @@ class AsyncCollection:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

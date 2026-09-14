@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: Entitlement) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Entitlement:
     out: Entitlement = {}  # type: ignore[typeddict-item]
-    if "licenseArn" in data:
+    if data.get("licenseArn") is not None:
         out["license_arn"] = data["licenseArn"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RetryConfigCriteriaList:
 
     out: RetryConfigCriteriaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.retry_config_criteria.deserialize_json(
                 item

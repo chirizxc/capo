@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: UpdateFleetOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFleetOutput:
     out: UpdateFleetOutput = {}  # type: ignore[typeddict-item]
-    if "fleet" in data:
+    if data.get("fleet") is not None:
         import capo_codebuild.types.fleet
 
         out["fleet"] = capo_codebuild.types.fleet.deserialize_aws_json_1_1(

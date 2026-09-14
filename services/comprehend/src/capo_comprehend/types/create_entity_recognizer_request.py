@@ -90,27 +90,27 @@ def serialize_aws_json_1_1(value: CreateEntityRecognizerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEntityRecognizerRequest:
     out: CreateEntityRecognizerRequest = {}  # type: ignore[typeddict-item]
-    if "RecognizerName" in data:
+    if data.get("RecognizerName") is not None:
         out["recognizer_name"] = data["RecognizerName"]
     else:
         raise DeserializationError(
             "CreateEntityRecognizerRequest.recognizer_name required"
         )
-    if "VersionName" in data:
+    if data.get("VersionName") is not None:
         out["version_name"] = data["VersionName"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     else:
         raise DeserializationError(
             "CreateEntityRecognizerRequest.data_access_role_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_comprehend.types.tag_list
 
         out["tags"] = capo_comprehend.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_comprehend.types.entity_recognizer_input_data_config
 
         out["input_data_config"] = (
@@ -122,9 +122,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEntityRecognizerRequest:
         raise DeserializationError(
             "CreateEntityRecognizerRequest.input_data_config required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.language_code
 
         out["language_code"] = (
@@ -136,16 +136,16 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEntityRecognizerRequest:
         raise DeserializationError(
             "CreateEntityRecognizerRequest.language_code required"
         )
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_comprehend.types.vpc_config
 
         out["vpc_config"] = capo_comprehend.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "ModelKmsKeyId" in data:
+    if data.get("ModelKmsKeyId") is not None:
         out["model_kms_key_id"] = data["ModelKmsKeyId"]
-    if "ModelPolicy" in data:
+    if data.get("ModelPolicy") is not None:
         out["model_policy"] = data["ModelPolicy"]
     return out

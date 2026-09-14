@@ -34,10 +34,10 @@ def serialize_json(value: CreateRoomRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRoomRequest:
     out: CreateRoomRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateRoomRequest.name required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

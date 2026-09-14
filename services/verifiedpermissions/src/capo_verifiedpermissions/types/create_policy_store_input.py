@@ -81,9 +81,9 @@ def serialize_aws_json_1_0(value: CreatePolicyStoreInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreatePolicyStoreInput:
     out: CreatePolicyStoreInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "validationSettings" in data:
+    if data.get("validationSettings") is not None:
         import capo_verifiedpermissions.types.validation_settings
 
         out["validation_settings"] = (
@@ -95,9 +95,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePolicyStoreInput:
         raise DeserializationError(
             "CreatePolicyStoreInput.validation_settings required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         import capo_verifiedpermissions.types.deletion_protection
 
         out["deletion_protection"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePolicyStoreInput:
                 data["deletionProtection"]
             )
         )
-    if "encryptionSettings" in data:
+    if data.get("encryptionSettings") is not None:
         import capo_verifiedpermissions.types.encryption_settings
 
         out["encryption_settings"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePolicyStoreInput:
                 data["encryptionSettings"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_verifiedpermissions.types.tag_map
 
         out["tags"] = capo_verifiedpermissions.types.tag_map.deserialize_aws_json_1_0(

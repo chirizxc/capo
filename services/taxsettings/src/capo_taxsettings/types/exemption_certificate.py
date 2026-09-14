@@ -34,11 +34,11 @@ def serialize_json(value: ExemptionCertificate) -> dict:
 
 def deserialize_json(data: dict) -> ExemptionCertificate:
     out: ExemptionCertificate = {}  # type: ignore[typeddict-item]
-    if "documentName" in data:
+    if data.get("documentName") is not None:
         out["document_name"] = data["documentName"]
     else:
         raise DeserializationError("ExemptionCertificate.document_name required")
-    if "documentFile" in data:
+    if data.get("documentFile") is not None:
         import capo_taxsettings.types.exemption_file_blob
 
         out["document_file"] = (

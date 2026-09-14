@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> HostedConfigurationVersionSummaryList:
 
     out: HostedConfigurationVersionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appconfig.types.hosted_configuration_version_summary.deserialize_json(
                 item

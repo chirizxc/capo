@@ -29,7 +29,7 @@ def serialize_json(value: AwsApiGatewayEndpointConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AwsApiGatewayEndpointConfiguration:
     out: AwsApiGatewayEndpointConfiguration = {}  # type: ignore[typeddict-item]
-    if "Types" in data:
+    if data.get("Types") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["types"] = capo_securityhub.types.non_empty_string_list.deserialize_json(

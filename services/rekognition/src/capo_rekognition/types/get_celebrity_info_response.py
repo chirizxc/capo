@@ -39,13 +39,13 @@ def serialize_aws_json_1_1(value: GetCelebrityInfoResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCelebrityInfoResponse:
     out: GetCelebrityInfoResponse = {}  # type: ignore[typeddict-item]
-    if "Urls" in data:
+    if data.get("Urls") is not None:
         import capo_rekognition.types.urls
 
         out["urls"] = capo_rekognition.types.urls.deserialize_aws_json_1_1(data["Urls"])
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "KnownGender" in data:
+    if data.get("KnownGender") is not None:
         import capo_rekognition.types.known_gender
 
         out["known_gender"] = (

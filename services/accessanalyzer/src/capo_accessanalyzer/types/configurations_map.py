@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ConfigurationsMap) -> dict:
 def deserialize_json(data: dict) -> ConfigurationsMap:
     out: ConfigurationsMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_accessanalyzer.types.configuration
 
         out[key] = capo_accessanalyzer.types.configuration.deserialize_json(value)

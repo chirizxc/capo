@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ListRegionsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRegionsResponse:
     out: ListRegionsResponse = {}  # type: ignore[typeddict-item]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_workspaces_instances.types.region_list
 
         out["regions"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRegionsResponse:
         )
     else:
         raise DeserializationError("ListRegionsResponse.regions required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

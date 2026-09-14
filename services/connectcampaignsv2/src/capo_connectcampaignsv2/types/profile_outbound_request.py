@@ -34,15 +34,15 @@ def serialize_json(value: ProfileOutboundRequest) -> dict:
 
 def deserialize_json(data: dict) -> ProfileOutboundRequest:
     out: ProfileOutboundRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("ProfileOutboundRequest.client_token required")
-    if "profileId" in data:
+    if data.get("profileId") is not None:
         out["profile_id"] = data["profileId"]
     else:
         raise DeserializationError("ProfileOutboundRequest.profile_id required")
-    if "expirationTime" in data:
+    if data.get("expirationTime") is not None:
         import capo_connectcampaignsv2.types.time_stamp
 
         out["expiration_time"] = (

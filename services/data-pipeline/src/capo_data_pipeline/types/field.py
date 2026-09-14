@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: Field) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Field:
     out: Field = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("Field.key required")
-    if "stringValue" in data:
+    if data.get("stringValue") is not None:
         out["string_value"] = data["stringValue"]
-    if "refValue" in data:
+    if data.get("refValue") is not None:
         out["ref_value"] = data["refValue"]
     return out

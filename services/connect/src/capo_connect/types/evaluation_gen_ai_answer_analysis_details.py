@@ -38,9 +38,9 @@ def serialize_json(value: EvaluationGenAIAnswerAnalysisDetails) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationGenAIAnswerAnalysisDetails:
     out: EvaluationGenAIAnswerAnalysisDetails = {}  # type: ignore[typeddict-item]
-    if "Justification" in data:
+    if data.get("Justification") is not None:
         out["justification"] = data["Justification"]
-    if "PointsOfInterest" in data:
+    if data.get("PointsOfInterest") is not None:
         import capo_connect.types.evaluation_transcript_points_of_interest
 
         out["points_of_interest"] = (

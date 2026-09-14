@@ -52,19 +52,19 @@ def serialize_json(value: CaseSlaConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CaseSlaConfiguration:
     out: CaseSlaConfiguration = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CaseSlaConfiguration.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.sla_type
 
         out["type"] = capo_connect.types.sla_type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("CaseSlaConfiguration.type required")
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
-    if "TargetFieldValues" in data:
+    if data.get("TargetFieldValues") is not None:
         import capo_connect.types.sla_field_value_union_list
 
         out["target_field_values"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> CaseSlaConfiguration:
                 data["TargetFieldValues"]
             )
         )
-    if "TargetSlaMinutes" in data:
+    if data.get("TargetSlaMinutes") is not None:
         out["target_sla_minutes"] = data["TargetSlaMinutes"]
     else:
         raise DeserializationError("CaseSlaConfiguration.target_sla_minutes required")

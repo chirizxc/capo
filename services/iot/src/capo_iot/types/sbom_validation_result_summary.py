@@ -52,9 +52,9 @@ def serialize_json(value: SbomValidationResultSummary) -> dict:
 
 def deserialize_json(data: dict) -> SbomValidationResultSummary:
     out: SbomValidationResultSummary = {}  # type: ignore[typeddict-item]
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
-    if "validationResult" in data:
+    if data.get("validationResult") is not None:
         import capo_iot.types.sbom_validation_result
 
         out["validation_result"] = (
@@ -62,12 +62,12 @@ def deserialize_json(data: dict) -> SbomValidationResultSummary:
                 data["validationResult"]
             )
         )
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_iot.types.sbom_validation_error_code
 
         out["error_code"] = capo_iot.types.sbom_validation_error_code.deserialize_json(
             data["errorCode"]
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

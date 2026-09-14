@@ -30,7 +30,7 @@ def serialize_json(value: GetJourneyDateRangeKpiResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetJourneyDateRangeKpiResponse:
     out: GetJourneyDateRangeKpiResponse = {}  # type: ignore[typeddict-item]
-    if "JourneyDateRangeKpiResponse" in data:
+    if data.get("JourneyDateRangeKpiResponse") is not None:
         import capo_pinpoint.types.journey_date_range_kpi_response
 
         out["journey_date_range_kpi_response"] = (

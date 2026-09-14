@@ -53,21 +53,21 @@ def serialize_json(value: CreateWorkspaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkspaceRequest:
     out: CreateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateWorkspaceRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Theme" in data:
+    if data.get("Theme") is not None:
         import capo_connect.types.workspace_theme
 
         out["theme"] = capo_connect.types.workspace_theme.deserialize_json(
             data["Theme"]
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

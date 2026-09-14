@@ -92,29 +92,29 @@ def serialize_json(value: SourceServerActionDocument) -> dict:
 
 def deserialize_json(data: dict) -> SourceServerActionDocument:
     out: SourceServerActionDocument = {}  # type: ignore[typeddict-item]
-    if "actionID" in data:
+    if data.get("actionID") is not None:
         out["action_id"] = data["actionID"]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
-    if "documentIdentifier" in data:
+    if data.get("documentIdentifier") is not None:
         out["document_identifier"] = data["documentIdentifier"]
-    if "order" in data:
+    if data.get("order") is not None:
         out["order"] = data["order"]
-    if "documentVersion" in data:
+    if data.get("documentVersion") is not None:
         out["document_version"] = data["documentVersion"]
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
-    if "timeoutSeconds" in data:
+    if data.get("timeoutSeconds") is not None:
         out["timeout_seconds"] = data["timeoutSeconds"]
-    if "mustSucceedForCutover" in data:
+    if data.get("mustSucceedForCutover") is not None:
         out["must_succeed_for_cutover"] = data["mustSucceedForCutover"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_mgn.types.ssm_document_parameters
 
         out["parameters"] = capo_mgn.types.ssm_document_parameters.deserialize_json(
             data["parameters"]
         )
-    if "externalParameters" in data:
+    if data.get("externalParameters") is not None:
         import capo_mgn.types.ssm_document_external_parameters
 
         out["external_parameters"] = (
@@ -122,8 +122,8 @@ def deserialize_json(data: dict) -> SourceServerActionDocument:
                 data["externalParameters"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
     return out

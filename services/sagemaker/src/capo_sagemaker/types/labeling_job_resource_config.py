@@ -31,9 +31,9 @@ def serialize_aws_json_1_1(value: LabelingJobResourceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelingJobResourceConfig:
     out: LabelingJobResourceConfig = {}  # type: ignore[typeddict-item]
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["vpc_config"] = capo_sagemaker.types.vpc_config.deserialize_aws_json_1_1(

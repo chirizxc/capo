@@ -30,15 +30,15 @@ def serialize_json(value: GetAgentTaskResponseUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAgentTaskResponseUrlResponse:
     out: GetAgentTaskResponseUrlResponse = {}  # type: ignore[typeddict-item]
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
     else:
         raise DeserializationError("GetAgentTaskResponseUrlResponse.agent_id required")
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("GetAgentTaskResponseUrlResponse.task_id required")
-    if "presignedLogUrl" in data:
+    if data.get("presignedLogUrl") is not None:
         out["presigned_log_url"] = data["presignedLogUrl"]
     else:
         raise DeserializationError(

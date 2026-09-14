@@ -51,11 +51,11 @@ def serialize_aws_json_1_1(value: SessionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionSummary:
     out: SessionSummary = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         import capo_athena.types.engine_version
 
         out["engine_version"] = (
@@ -63,9 +63,9 @@ def deserialize_aws_json_1_1(data: dict) -> SessionSummary:
                 data["EngineVersion"]
             )
         )
-    if "NotebookVersion" in data:
+    if data.get("NotebookVersion") is not None:
         out["notebook_version"] = data["NotebookVersion"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_athena.types.session_status
 
         out["status"] = capo_athena.types.session_status.deserialize_aws_json_1_1(

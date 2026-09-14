@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> BatchGetAttributeItems:
 
     out: BatchGetAttributeItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.batch_get_attribute_output.deserialize_json(item)
         )

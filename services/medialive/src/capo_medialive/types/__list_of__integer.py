@@ -14,4 +14,4 @@ def serialize_json(value: __listOf__integer) -> list:
 
 
 def deserialize_json(data: list) -> __listOf__integer:
-    return list(data)
+    return [item for item in data if item is not None]

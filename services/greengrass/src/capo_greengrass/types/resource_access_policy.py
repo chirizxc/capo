@@ -32,12 +32,12 @@ def serialize_json(value: ResourceAccessPolicy) -> dict:
 
 def deserialize_json(data: dict) -> ResourceAccessPolicy:
     out: ResourceAccessPolicy = {}  # type: ignore[typeddict-item]
-    if "Permission" in data:
+    if data.get("Permission") is not None:
         import capo_greengrass.types.permission
 
         out["permission"] = capo_greengrass.types.permission.deserialize_json(
             data["Permission"]
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     return out

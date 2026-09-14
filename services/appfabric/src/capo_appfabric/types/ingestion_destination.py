@@ -85,15 +85,15 @@ def serialize_json(value: IngestionDestination) -> dict:
 
 def deserialize_json(data: dict) -> IngestionDestination:
     out: IngestionDestination = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("IngestionDestination.arn required")
-    if "ingestionArn" in data:
+    if data.get("ingestionArn") is not None:
         out["ingestion_arn"] = data["ingestionArn"]
     else:
         raise DeserializationError("IngestionDestination.ingestion_arn required")
-    if "processingConfiguration" in data:
+    if data.get("processingConfiguration") is not None:
         import capo_appfabric.types.processing_configuration
 
         out["processing_configuration"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> IngestionDestination:
         raise DeserializationError(
             "IngestionDestination.processing_configuration required"
         )
-    if "destinationConfiguration" in data:
+    if data.get("destinationConfiguration") is not None:
         import capo_appfabric.types.destination_configuration
 
         out["destination_configuration"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> IngestionDestination:
         raise DeserializationError(
             "IngestionDestination.destination_configuration required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_appfabric.types.ingestion_destination_status
 
         out["status"] = (
@@ -125,15 +125,15 @@ def deserialize_json(data: dict) -> IngestionDestination:
                 data["status"]
             )
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_appfabric.types.date_time
 
         out["created_at"] = capo_appfabric.types.date_time.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_appfabric.types.date_time
 
         out["updated_at"] = capo_appfabric.types.date_time.deserialize_json(

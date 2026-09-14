@@ -28,14 +28,32 @@ def serialize_query(
         pairs.append(
             (
                 f"{key_prefix}TotalBackupSizeInMegaBytes",
-                str(value["total_backup_size_in_mega_bytes"]),
+                (
+                    "NaN"
+                    if value["total_backup_size_in_mega_bytes"]
+                    != value["total_backup_size_in_mega_bytes"]
+                    else "Infinity"
+                    if value["total_backup_size_in_mega_bytes"] == float("inf")
+                    else "-Infinity"
+                    if value["total_backup_size_in_mega_bytes"] == float("-inf")
+                    else str(value["total_backup_size_in_mega_bytes"])
+                ),
             )
         )
     if "total_provisioned_storage_in_mega_bytes" in value:
         pairs.append(
             (
                 f"{key_prefix}TotalProvisionedStorageInMegaBytes",
-                str(value["total_provisioned_storage_in_mega_bytes"]),
+                (
+                    "NaN"
+                    if value["total_provisioned_storage_in_mega_bytes"]
+                    != value["total_provisioned_storage_in_mega_bytes"]
+                    else "Infinity"
+                    if value["total_provisioned_storage_in_mega_bytes"] == float("inf")
+                    else "-Infinity"
+                    if value["total_provisioned_storage_in_mega_bytes"] == float("-inf")
+                    else str(value["total_provisioned_storage_in_mega_bytes"])
+                ),
             )
         )
 

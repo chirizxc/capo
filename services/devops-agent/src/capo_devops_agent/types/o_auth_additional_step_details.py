@@ -19,7 +19,7 @@ def serialize_json(value: OAuthAdditionalStepDetails) -> dict:
 
 def deserialize_json(data: dict) -> OAuthAdditionalStepDetails:
     out: OAuthAdditionalStepDetails = {}  # type: ignore[typeddict-item]
-    if "authorizationUrl" in data:
+    if data.get("authorizationUrl") is not None:
         out["authorization_url"] = data["authorizationUrl"]
     else:
         raise DeserializationError(

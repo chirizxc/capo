@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: ListHapgsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListHapgsResponse:
     out: ListHapgsResponse = {}  # type: ignore[typeddict-item]
-    if "HapgList" in data:
+    if data.get("HapgList") is not None:
         import capo_cloudhsm.types.hapg_list
 
         out["hapg_list"] = capo_cloudhsm.types.hapg_list.deserialize_aws_json_1_1(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListHapgsResponse:
         )
     else:
         raise DeserializationError("ListHapgsResponse.hapg_list required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

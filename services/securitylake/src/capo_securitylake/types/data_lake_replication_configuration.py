@@ -32,12 +32,12 @@ def serialize_json(value: DataLakeReplicationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeReplicationConfiguration:
     out: DataLakeReplicationConfiguration = {}  # type: ignore[typeddict-item]
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_securitylake.types.region_list
 
         out["regions"] = capo_securitylake.types.region_list.deserialize_json(
             data["regions"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

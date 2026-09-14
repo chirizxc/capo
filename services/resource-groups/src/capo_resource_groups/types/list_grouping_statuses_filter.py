@@ -40,7 +40,7 @@ def serialize_json(value: ListGroupingStatusesFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListGroupingStatusesFilter:
     out: ListGroupingStatusesFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_resource_groups.types.list_grouping_statuses_filter_name
 
         out["name"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> ListGroupingStatusesFilter:
         )
     else:
         raise DeserializationError("ListGroupingStatusesFilter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_resource_groups.types.list_grouping_statuses_filter_values
 
         out["values"] = (

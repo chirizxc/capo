@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeChapCredentialsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeChapCredentialsInput:
     out: DescribeChapCredentialsInput = {}  # type: ignore[typeddict-item]
-    if "TargetARN" in data:
+    if data.get("TargetARN") is not None:
         out["target_arn"] = data["TargetARN"]
     else:
         raise DeserializationError("DescribeChapCredentialsInput.target_arn required")

@@ -50,11 +50,11 @@ def serialize_json(value: CreateLicenseEndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateLicenseEndpointRequest:
     out: CreateLicenseEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("CreateLicenseEndpointRequest.vpc_id required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_deadline.types.subnet_id_list
 
         out["subnet_ids"] = capo_deadline.types.subnet_id_list.deserialize_json(
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> CreateLicenseEndpointRequest:
         )
     else:
         raise DeserializationError("CreateLicenseEndpointRequest.subnet_ids required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_deadline.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> CreateLicenseEndpointRequest:
         raise DeserializationError(
             "CreateLicenseEndpointRequest.security_group_ids required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_deadline.types.tags
 
         out["tags"] = capo_deadline.types.tags.deserialize_json(data["tags"])

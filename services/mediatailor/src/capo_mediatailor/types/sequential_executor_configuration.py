@@ -49,7 +49,7 @@ def serialize_json(value: SequentialExecutorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SequentialExecutorConfiguration:
     out: SequentialExecutorConfiguration = {}  # type: ignore[typeddict-item]
-    if "Runtime" in data:
+    if data.get("Runtime") is not None:
         import capo_mediatailor.types.runtime_type
 
         out["runtime"] = capo_mediatailor.types.runtime_type.deserialize_json(
@@ -57,13 +57,13 @@ def deserialize_json(data: dict) -> SequentialExecutorConfiguration:
         )
     else:
         raise DeserializationError("SequentialExecutorConfiguration.runtime required")
-    if "Output" in data:
+    if data.get("Output") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["output"] = capo_mediatailor.types.__map_of__string.deserialize_json(
             data["Output"]
         )
-    if "FunctionList" in data:
+    if data.get("FunctionList") is not None:
         import capo_mediatailor.types.__list_of_functions_ref
 
         out["function_list"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> SequentialExecutorConfiguration:
         raise DeserializationError(
             "SequentialExecutorConfiguration.function_list required"
         )
-    if "TimeoutMilliseconds" in data:
+    if data.get("TimeoutMilliseconds") is not None:
         out["timeout_milliseconds"] = data["TimeoutMilliseconds"]
     else:
         raise DeserializationError(

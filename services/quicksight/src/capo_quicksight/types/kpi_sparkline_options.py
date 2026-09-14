@@ -48,13 +48,13 @@ def serialize_json(value: KPISparklineOptions) -> dict:
 
 def deserialize_json(data: dict) -> KPISparklineOptions:
     out: KPISparklineOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.kpi_sparkline_type
 
         out["type"] = capo_quicksight.types.kpi_sparkline_type.deserialize_json(
@@ -62,9 +62,9 @@ def deserialize_json(data: dict) -> KPISparklineOptions:
         )
     else:
         raise DeserializationError("KPISparklineOptions.type required")
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
-    if "TooltipVisibility" in data:
+    if data.get("TooltipVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["tooltip_visibility"] = capo_quicksight.types.visibility.deserialize_json(

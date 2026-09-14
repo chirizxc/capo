@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: ConformancePackComplianceScoresFilters) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ConformancePackComplianceScoresFilters:
     out: ConformancePackComplianceScoresFilters = {}  # type: ignore[typeddict-item]
-    if "ConformancePackNames" in data:
+    if data.get("ConformancePackNames") is not None:
         import capo_config_service.types.conformance_pack_name_filter
 
         out["conformance_pack_names"] = (

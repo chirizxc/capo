@@ -51,19 +51,19 @@ def serialize_aws_json_1_0(value: CreateVpcIngressConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateVpcIngressConnectionRequest:
     out: CreateVpcIngressConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
     else:
         raise DeserializationError(
             "CreateVpcIngressConnectionRequest.service_arn required"
         )
-    if "VpcIngressConnectionName" in data:
+    if data.get("VpcIngressConnectionName") is not None:
         out["vpc_ingress_connection_name"] = data["VpcIngressConnectionName"]
     else:
         raise DeserializationError(
             "CreateVpcIngressConnectionRequest.vpc_ingress_connection_name required"
         )
-    if "IngressVpcConfiguration" in data:
+    if data.get("IngressVpcConfiguration") is not None:
         import capo_apprunner.types.ingress_vpc_configuration
 
         out["ingress_vpc_configuration"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateVpcIngressConnectionRequest:
         raise DeserializationError(
             "CreateVpcIngressConnectionRequest.ingress_vpc_configuration required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_apprunner.types.tag_list
 
         out["tags"] = capo_apprunner.types.tag_list.deserialize_aws_json_1_0(

@@ -24,7 +24,7 @@ def serialize_json(value: LimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> LimitExceededException_:
     out: LimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("LimitExceededException_.message required")
@@ -36,18 +36,21 @@ class LimitExceededException(ServiceError):
 
     code: str | None = "LimitExceededException"
 
-    def __init__(self, data: LimitExceededException_):
+    def __init__(self, data: LimitExceededException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="LimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "LimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "LimitExceededException":
+        return cls(deserialize_json(data), message)
 
 
 def serialize_event_json(value: LimitExceededException_) -> bytes:

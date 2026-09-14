@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ViewSearchSummaryList:
 
     out: ViewSearchSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.view.deserialize_json(item))
     return out

@@ -54,7 +54,7 @@ def serialize_json(value: FileUploaderFieldConfig) -> dict:
 
 def deserialize_json(data: dict) -> FileUploaderFieldConfig:
     out: FileUploaderFieldConfig = {}  # type: ignore[typeddict-item]
-    if "accessLevel" in data:
+    if data.get("accessLevel") is not None:
         import capo_amplifyuibuilder.types.storage_access_level
 
         out["access_level"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> FileUploaderFieldConfig:
         )
     else:
         raise DeserializationError("FileUploaderFieldConfig.access_level required")
-    if "acceptedFileTypes" in data:
+    if data.get("acceptedFileTypes") is not None:
         import capo_amplifyuibuilder.types.str_values
 
         out["accepted_file_types"] = (
@@ -76,12 +76,12 @@ def deserialize_json(data: dict) -> FileUploaderFieldConfig:
         raise DeserializationError(
             "FileUploaderFieldConfig.accepted_file_types required"
         )
-    if "showThumbnails" in data:
+    if data.get("showThumbnails") is not None:
         out["show_thumbnails"] = data["showThumbnails"]
-    if "isResumable" in data:
+    if data.get("isResumable") is not None:
         out["is_resumable"] = data["isResumable"]
-    if "maxFileCount" in data:
+    if data.get("maxFileCount") is not None:
         out["max_file_count"] = data["maxFileCount"]
-    if "maxSize" in data:
+    if data.get("maxSize") is not None:
         out["max_size"] = data["maxSize"]
     return out

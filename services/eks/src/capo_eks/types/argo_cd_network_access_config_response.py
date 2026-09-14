@@ -25,7 +25,7 @@ def serialize_json(value: ArgoCdNetworkAccessConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> ArgoCdNetworkAccessConfigResponse:
     out: ArgoCdNetworkAccessConfigResponse = {}  # type: ignore[typeddict-item]
-    if "vpceIds" in data:
+    if data.get("vpceIds") is not None:
         import capo_eks.types.string_list
 
         out["vpce_ids"] = capo_eks.types.string_list.deserialize_json(data["vpceIds"])

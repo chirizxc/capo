@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteVerifiedDestinationNumberRequest) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteVerifiedDestinationNumberRequest:
     out: DeleteVerifiedDestinationNumberRequest = {}  # type: ignore[typeddict-item]
-    if "VerifiedDestinationNumberId" in data:
+    if data.get("VerifiedDestinationNumberId") is not None:
         out["verified_destination_number_id"] = data["VerifiedDestinationNumberId"]
     else:
         raise DeserializationError(

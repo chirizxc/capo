@@ -69,19 +69,19 @@ def serialize_json(value: DataProductListing) -> dict:
 
 def deserialize_json(data: dict) -> DataProductListing:
     out: DataProductListing = {}  # type: ignore[typeddict-item]
-    if "dataProductId" in data:
+    if data.get("dataProductId") is not None:
         out["data_product_id"] = data["dataProductId"]
-    if "dataProductRevision" in data:
+    if data.get("dataProductRevision") is not None:
         out["data_product_revision"] = data["dataProductRevision"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "forms" in data:
+    if data.get("forms") is not None:
         out["forms"] = data["forms"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.detailed_glossary_terms
 
         out["glossary_terms"] = (
@@ -89,9 +89,9 @@ def deserialize_json(data: dict) -> DataProductListing:
                 data["glossaryTerms"]
             )
         )
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.listing_summaries
 
         out["items"] = capo_datazone.types.listing_summaries.deserialize_json(

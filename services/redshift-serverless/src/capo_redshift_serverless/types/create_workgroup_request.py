@@ -127,19 +127,19 @@ def serialize_aws_json_1_1(value: CreateWorkgroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkgroupRequest:
     out: CreateWorkgroupRequest = {}  # type: ignore[typeddict-item]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     else:
         raise DeserializationError("CreateWorkgroupRequest.workgroup_name required")
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError("CreateWorkgroupRequest.namespace_name required")
-    if "baseCapacity" in data:
+    if data.get("baseCapacity") is not None:
         out["base_capacity"] = data["baseCapacity"]
-    if "enhancedVpcRouting" in data:
+    if data.get("enhancedVpcRouting") is not None:
         out["enhanced_vpc_routing"] = data["enhancedVpcRouting"]
-    if "configParameters" in data:
+    if data.get("configParameters") is not None:
         import capo_redshift_serverless.types.config_parameter_list
 
         out["config_parameters"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkgroupRequest:
                 data["configParameters"]
             )
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_redshift_serverless.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkgroupRequest:
                 data["securityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_redshift_serverless.types.subnet_id_list
 
         out["subnet_ids"] = (
@@ -163,19 +163,19 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkgroupRequest:
                 data["subnetIds"]
             )
         )
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_redshift_serverless.types.tag_list
 
         out["tags"] = capo_redshift_serverless.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "maxCapacity" in data:
+    if data.get("maxCapacity") is not None:
         out["max_capacity"] = data["maxCapacity"]
-    if "pricePerformanceTarget" in data:
+    if data.get("pricePerformanceTarget") is not None:
         import capo_redshift_serverless.types.performance_target
 
         out["price_performance_target"] = (
@@ -183,11 +183,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkgroupRequest:
                 data["pricePerformanceTarget"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         out["ip_address_type"] = data["ipAddressType"]
-    if "trackName" in data:
+    if data.get("trackName") is not None:
         out["track_name"] = data["trackName"]
-    if "extraComputeForAutomaticOptimization" in data:
+    if data.get("extraComputeForAutomaticOptimization") is not None:
         out["extra_compute_for_automatic_optimization"] = data[
             "extraComputeForAutomaticOptimization"
         ]

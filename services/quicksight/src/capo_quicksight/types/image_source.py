@@ -32,9 +32,9 @@ def serialize_json(value: ImageSource) -> dict:
 
 
 def deserialize_json(data: dict) -> ImageSource:
-    if "PublicUrl" in data:
+    if data.get("PublicUrl") is not None:
         return {"PublicUrl": data["PublicUrl"]}
-    elif "S3Uri" in data:
+    elif data.get("S3Uri") is not None:
         return {"S3Uri": data["S3Uri"]}
     else:
         raise DeserializationError("ImageSource: no recognized variant key")

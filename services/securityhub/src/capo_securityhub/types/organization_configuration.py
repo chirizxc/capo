@@ -51,7 +51,7 @@ def serialize_json(value: OrganizationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OrganizationConfiguration:
     out: OrganizationConfiguration = {}  # type: ignore[typeddict-item]
-    if "ConfigurationType" in data:
+    if data.get("ConfigurationType") is not None:
         import capo_securityhub.types.organization_configuration_configuration_type
 
         out["configuration_type"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> OrganizationConfiguration:
                 data["ConfigurationType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_securityhub.types.organization_configuration_status
 
         out["status"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> OrganizationConfiguration:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

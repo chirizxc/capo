@@ -213,7 +213,7 @@ def serialize_json(value: XavcSettings) -> dict:
 
 def deserialize_json(data: dict) -> XavcSettings:
     out: XavcSettings = {}  # type: ignore[typeddict-item]
-    if "adaptiveQuantization" in data:
+    if data.get("adaptiveQuantization") is not None:
         import capo_mediaconvert.types.xavc_adaptive_quantization
 
         out["adaptive_quantization"] = (
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["adaptiveQuantization"]
             )
         )
-    if "entropyEncoding" in data:
+    if data.get("entropyEncoding") is not None:
         import capo_mediaconvert.types.xavc_entropy_encoding
 
         out["entropy_encoding"] = (
@@ -229,7 +229,7 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["entropyEncoding"]
             )
         )
-    if "framerateControl" in data:
+    if data.get("framerateControl") is not None:
         import capo_mediaconvert.types.xavc_framerate_control
 
         out["framerate_control"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["framerateControl"]
             )
         )
-    if "framerateConversionAlgorithm" in data:
+    if data.get("framerateConversionAlgorithm") is not None:
         import capo_mediaconvert.types.xavc_framerate_conversion_algorithm
 
         out["framerate_conversion_algorithm"] = (
@@ -245,11 +245,11 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["framerateConversionAlgorithm"]
             )
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "perFrameMetrics" in data:
+    if data.get("perFrameMetrics") is not None:
         import capo_mediaconvert.types.__list_of_frame_metric_type
 
         out["per_frame_metrics"] = (
@@ -257,21 +257,21 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["perFrameMetrics"]
             )
         )
-    if "profile" in data:
+    if data.get("profile") is not None:
         import capo_mediaconvert.types.xavc_profile
 
         out["profile"] = capo_mediaconvert.types.xavc_profile.deserialize_json(
             data["profile"]
         )
-    if "slowPal" in data:
+    if data.get("slowPal") is not None:
         import capo_mediaconvert.types.xavc_slow_pal
 
         out["slow_pal"] = capo_mediaconvert.types.xavc_slow_pal.deserialize_json(
             data["slowPal"]
         )
-    if "softness" in data:
+    if data.get("softness") is not None:
         out["softness"] = data["softness"]
-    if "spatialAdaptiveQuantization" in data:
+    if data.get("spatialAdaptiveQuantization") is not None:
         import capo_mediaconvert.types.xavc_spatial_adaptive_quantization
 
         out["spatial_adaptive_quantization"] = (
@@ -279,7 +279,7 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["spatialAdaptiveQuantization"]
             )
         )
-    if "temporalAdaptiveQuantization" in data:
+    if data.get("temporalAdaptiveQuantization") is not None:
         import capo_mediaconvert.types.xavc_temporal_adaptive_quantization
 
         out["temporal_adaptive_quantization"] = (
@@ -287,7 +287,7 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["temporalAdaptiveQuantization"]
             )
         )
-    if "xavc4kIntraCbgProfileSettings" in data:
+    if data.get("xavc4kIntraCbgProfileSettings") is not None:
         import capo_mediaconvert.types.xavc4k_intra_cbg_profile_settings
 
         out["xavc4k_intra_cbg_profile_settings"] = (
@@ -295,7 +295,7 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["xavc4kIntraCbgProfileSettings"]
             )
         )
-    if "xavc4kIntraVbrProfileSettings" in data:
+    if data.get("xavc4kIntraVbrProfileSettings") is not None:
         import capo_mediaconvert.types.xavc4k_intra_vbr_profile_settings
 
         out["xavc4k_intra_vbr_profile_settings"] = (
@@ -303,7 +303,7 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["xavc4kIntraVbrProfileSettings"]
             )
         )
-    if "xavc4kProfileSettings" in data:
+    if data.get("xavc4kProfileSettings") is not None:
         import capo_mediaconvert.types.xavc4k_profile_settings
 
         out["xavc4k_profile_settings"] = (
@@ -311,7 +311,7 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["xavc4kProfileSettings"]
             )
         )
-    if "xavcHdIntraCbgProfileSettings" in data:
+    if data.get("xavcHdIntraCbgProfileSettings") is not None:
         import capo_mediaconvert.types.xavc_hd_intra_cbg_profile_settings
 
         out["xavc_hd_intra_cbg_profile_settings"] = (
@@ -319,7 +319,7 @@ def deserialize_json(data: dict) -> XavcSettings:
                 data["xavcHdIntraCbgProfileSettings"]
             )
         )
-    if "xavcHdProfileSettings" in data:
+    if data.get("xavcHdProfileSettings") is not None:
         import capo_mediaconvert.types.xavc_hd_profile_settings
 
         out["xavc_hd_profile_settings"] = (

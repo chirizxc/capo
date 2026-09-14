@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ContainerServiceLogEventList:
 
     out: ContainerServiceLogEventList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.container_service_log_event.deserialize_aws_json_1_1(
                 item

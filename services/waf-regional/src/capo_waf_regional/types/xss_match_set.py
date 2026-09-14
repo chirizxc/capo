@@ -39,13 +39,13 @@ def serialize_aws_json_1_1(value: XssMatchSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> XssMatchSet:
     out: XssMatchSet = {}  # type: ignore[typeddict-item]
-    if "XssMatchSetId" in data:
+    if data.get("XssMatchSetId") is not None:
         out["xss_match_set_id"] = data["XssMatchSetId"]
     else:
         raise DeserializationError("XssMatchSet.xss_match_set_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "XssMatchTuples" in data:
+    if data.get("XssMatchTuples") is not None:
         import capo_waf_regional.types.xss_match_tuples
 
         out["xss_match_tuples"] = (

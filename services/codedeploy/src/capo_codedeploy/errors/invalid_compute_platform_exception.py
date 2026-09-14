@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidComputePlatformException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidComputePlatformException_:
     out: InvalidComputePlatformException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class InvalidComputePlatformException(ServiceError):
 
     code: str | None = "InvalidComputePlatformException"
 
-    def __init__(self, data: InvalidComputePlatformException_):
+    def __init__(
+        self, data: InvalidComputePlatformException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidComputePlatformException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidComputePlatformException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidComputePlatformException":
+        return cls(deserialize_aws_json_1_1(data), message)

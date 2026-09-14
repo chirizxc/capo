@@ -28,8 +28,8 @@ def serialize_json(value: WarmTierRetentionPeriod) -> dict:
 
 def deserialize_json(data: dict) -> WarmTierRetentionPeriod:
     out: WarmTierRetentionPeriod = {}  # type: ignore[typeddict-item]
-    if "numberOfDays" in data:
+    if data.get("numberOfDays") is not None:
         out["number_of_days"] = data["numberOfDays"]
-    if "unlimited" in data:
+    if data.get("unlimited") is not None:
         out["unlimited"] = data["unlimited"]
     return out

@@ -52,9 +52,9 @@ def serialize_json(value: DescribeKeyRegistrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeKeyRegistrationResponse:
     out: DescribeKeyRegistrationResponse = {}  # type: ignore[typeddict-item]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "KeyRegistration" in data:
+    if data.get("KeyRegistration") is not None:
         import capo_quicksight.types.key_registration
 
         out["key_registration"] = (
@@ -62,15 +62,15 @@ def deserialize_json(data: dict) -> DescribeKeyRegistrationResponse:
                 data["KeyRegistration"]
             )
         )
-    if "QDataKey" in data:
+    if data.get("QDataKey") is not None:
         import capo_quicksight.types.q_data_key
 
         out["q_data_key"] = capo_quicksight.types.q_data_key.deserialize_json(
             data["QDataKey"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         out["status"] = 0

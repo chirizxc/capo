@@ -23,6 +23,6 @@ def serialize_json(value: MissionProfileIdResponse) -> dict:
 
 def deserialize_json(data: dict) -> MissionProfileIdResponse:
     out: MissionProfileIdResponse = {}  # type: ignore[typeddict-item]
-    if "missionProfileId" in data:
+    if data.get("missionProfileId") is not None:
         out["mission_profile_id"] = data["missionProfileId"]
     return out

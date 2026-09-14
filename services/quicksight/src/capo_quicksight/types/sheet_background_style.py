@@ -28,8 +28,8 @@ def serialize_json(value: SheetBackgroundStyle) -> dict:
 
 def deserialize_json(data: dict) -> SheetBackgroundStyle:
     out: SheetBackgroundStyle = {}  # type: ignore[typeddict-item]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
-    if "Gradient" in data:
+    if data.get("Gradient") is not None:
         out["gradient"] = data["Gradient"]
     return out

@@ -41,17 +41,17 @@ def serialize_json(value: UpdateSignalingChannelInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSignalingChannelInput:
     out: UpdateSignalingChannelInput = {}  # type: ignore[typeddict-item]
-    if "ChannelARN" in data:
+    if data.get("ChannelARN") is not None:
         out["channel_arn"] = data["ChannelARN"]
     else:
         raise DeserializationError("UpdateSignalingChannelInput.channel_arn required")
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         out["current_version"] = data["CurrentVersion"]
     else:
         raise DeserializationError(
             "UpdateSignalingChannelInput.current_version required"
         )
-    if "SingleMasterConfiguration" in data:
+    if data.get("SingleMasterConfiguration") is not None:
         import capo_kinesis_video.types.single_master_configuration
 
         out["single_master_configuration"] = (

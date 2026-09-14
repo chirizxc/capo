@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: DescribeSubnetGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSubnetGroupsRequest:
     out: DescribeSubnetGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "SubnetGroupName" in data:
+    if data.get("SubnetGroupName") is not None:
         out["subnet_group_name"] = data["SubnetGroupName"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

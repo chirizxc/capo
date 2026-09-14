@@ -52,11 +52,11 @@ def serialize_json(value: PillarDifference) -> dict:
 
 def deserialize_json(data: dict) -> PillarDifference:
     out: PillarDifference = {}  # type: ignore[typeddict-item]
-    if "PillarId" in data:
+    if data.get("PillarId") is not None:
         out["pillar_id"] = data["PillarId"]
-    if "PillarName" in data:
+    if data.get("PillarName") is not None:
         out["pillar_name"] = data["PillarName"]
-    if "DifferenceStatus" in data:
+    if data.get("DifferenceStatus") is not None:
         import capo_wellarchitected.types.difference_status
 
         out["difference_status"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> PillarDifference:
                 data["DifferenceStatus"]
             )
         )
-    if "QuestionDifferences" in data:
+    if data.get("QuestionDifferences") is not None:
         import capo_wellarchitected.types.question_differences
 
         out["question_differences"] = (

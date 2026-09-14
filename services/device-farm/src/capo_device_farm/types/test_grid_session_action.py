@@ -45,18 +45,18 @@ def serialize_aws_json_1_1(value: TestGridSessionAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestGridSessionAction:
     out: TestGridSessionAction = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "started" in data:
+    if data.get("started") is not None:
         import capo_device_farm.types.date_time
 
         out["started"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["started"]
         )
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
-    if "requestMethod" in data:
+    if data.get("requestMethod") is not None:
         out["request_method"] = data["requestMethod"]
     return out

@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteHostKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteHostKeyRequest:
     out: DeleteHostKeyRequest = {}  # type: ignore[typeddict-item]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("DeleteHostKeyRequest.server_id required")
-    if "HostKeyId" in data:
+    if data.get("HostKeyId") is not None:
         out["host_key_id"] = data["HostKeyId"]
     else:
         raise DeserializationError("DeleteHostKeyRequest.host_key_id required")

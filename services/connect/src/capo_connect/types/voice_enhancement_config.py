@@ -38,13 +38,13 @@ def serialize_json(value: VoiceEnhancementConfig) -> dict:
 
 def deserialize_json(data: dict) -> VoiceEnhancementConfig:
     out: VoiceEnhancementConfig = {}  # type: ignore[typeddict-item]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
     else:
         raise DeserializationError("VoiceEnhancementConfig.channel required")
-    if "VoiceEnhancementMode" in data:
+    if data.get("VoiceEnhancementMode") is not None:
         import capo_connect.types.voice_enhancement_mode
 
         out["voice_enhancement_mode"] = (

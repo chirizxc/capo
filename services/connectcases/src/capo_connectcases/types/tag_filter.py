@@ -32,7 +32,7 @@ def serialize_json(value: TagFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> TagFilter:
-    if "equalTo" in data:
+    if data.get("equalTo") is not None:
         import capo_connectcases.types.tag_value
 
         return {

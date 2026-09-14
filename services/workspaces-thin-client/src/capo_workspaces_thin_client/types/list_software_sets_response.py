@@ -38,7 +38,7 @@ def serialize_json(value: ListSoftwareSetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSoftwareSetsResponse:
     out: ListSoftwareSetsResponse = {}  # type: ignore[typeddict-item]
-    if "softwareSets" in data:
+    if data.get("softwareSets") is not None:
         import capo_workspaces_thin_client.types.software_set_list
 
         out["software_sets"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListSoftwareSetsResponse:
                 data["softwareSets"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

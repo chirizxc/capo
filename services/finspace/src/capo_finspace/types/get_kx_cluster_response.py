@@ -234,23 +234,23 @@ def serialize_json(value: GetKxClusterResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetKxClusterResponse:
     out: GetKxClusterResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.kx_cluster_status
 
         out["status"] = capo_finspace.types.kx_cluster_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "clusterType" in data:
+    if data.get("clusterType") is not None:
         import capo_finspace.types.kx_cluster_type
 
         out["cluster_type"] = capo_finspace.types.kx_cluster_type.deserialize_json(
             data["clusterType"]
         )
-    if "tickerplantLogConfiguration" in data:
+    if data.get("tickerplantLogConfiguration") is not None:
         import capo_finspace.types.tickerplant_log_configuration
 
         out["tickerplant_log_configuration"] = (
@@ -258,11 +258,11 @@ def deserialize_json(data: dict) -> GetKxClusterResponse:
                 data["tickerplantLogConfiguration"]
             )
         )
-    if "volumes" in data:
+    if data.get("volumes") is not None:
         import capo_finspace.types.volumes
 
         out["volumes"] = capo_finspace.types.volumes.deserialize_json(data["volumes"])
-    if "databases" in data:
+    if data.get("databases") is not None:
         import capo_finspace.types.kx_database_configurations
 
         out["databases"] = (
@@ -270,7 +270,7 @@ def deserialize_json(data: dict) -> GetKxClusterResponse:
                 data["databases"]
             )
         )
-    if "cacheStorageConfigurations" in data:
+    if data.get("cacheStorageConfigurations") is not None:
         import capo_finspace.types.kx_cache_storage_configurations
 
         out["cache_storage_configurations"] = (
@@ -278,7 +278,7 @@ def deserialize_json(data: dict) -> GetKxClusterResponse:
                 data["cacheStorageConfigurations"]
             )
         )
-    if "autoScalingConfiguration" in data:
+    if data.get("autoScalingConfiguration") is not None:
         import capo_finspace.types.auto_scaling_configuration
 
         out["auto_scaling_configuration"] = (
@@ -286,9 +286,9 @@ def deserialize_json(data: dict) -> GetKxClusterResponse:
                 data["autoScalingConfiguration"]
             )
         )
-    if "clusterDescription" in data:
+    if data.get("clusterDescription") is not None:
         out["cluster_description"] = data["clusterDescription"]
-    if "capacityConfiguration" in data:
+    if data.get("capacityConfiguration") is not None:
         import capo_finspace.types.capacity_configuration
 
         out["capacity_configuration"] = (
@@ -296,9 +296,9 @@ def deserialize_json(data: dict) -> GetKxClusterResponse:
                 data["capacityConfiguration"]
             )
         )
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
-    if "vpcConfiguration" in data:
+    if data.get("vpcConfiguration") is not None:
         import capo_finspace.types.vpc_configuration
 
         out["vpc_configuration"] = (
@@ -306,9 +306,9 @@ def deserialize_json(data: dict) -> GetKxClusterResponse:
                 data["vpcConfiguration"]
             )
         )
-    if "initializationScript" in data:
+    if data.get("initializationScript") is not None:
         out["initialization_script"] = data["initializationScript"]
-    if "commandLineArguments" in data:
+    if data.get("commandLineArguments") is not None:
         import capo_finspace.types.kx_command_line_arguments
 
         out["command_line_arguments"] = (
@@ -316,21 +316,21 @@ def deserialize_json(data: dict) -> GetKxClusterResponse:
                 data["commandLineArguments"]
             )
         )
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_finspace.types.code_configuration
 
         out["code"] = capo_finspace.types.code_configuration.deserialize_json(
             data["code"]
         )
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["lastModifiedTimestamp"]
         )
-    if "savedownStorageConfiguration" in data:
+    if data.get("savedownStorageConfiguration") is not None:
         import capo_finspace.types.kx_savedown_storage_configuration
 
         out["savedown_storage_configuration"] = (
@@ -338,19 +338,19 @@ def deserialize_json(data: dict) -> GetKxClusterResponse:
                 data["savedownStorageConfiguration"]
             )
         )
-    if "azMode" in data:
+    if data.get("azMode") is not None:
         import capo_finspace.types.kx_az_mode
 
         out["az_mode"] = capo_finspace.types.kx_az_mode.deserialize_json(data["azMode"])
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createdTimestamp"]
         )
-    if "scalingGroupConfiguration" in data:
+    if data.get("scalingGroupConfiguration") is not None:
         import capo_finspace.types.kx_scaling_group_configuration
 
         out["scaling_group_configuration"] = (

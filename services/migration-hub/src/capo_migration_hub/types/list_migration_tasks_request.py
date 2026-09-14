@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ListMigrationTasksRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMigrationTasksRequest:
     out: ListMigrationTasksRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     return out

@@ -68,13 +68,13 @@ def serialize_json(value: NoiseReducer) -> dict:
 
 def deserialize_json(data: dict) -> NoiseReducer:
     out: NoiseReducer = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_mediaconvert.types.noise_reducer_filter
 
         out["filter"] = capo_mediaconvert.types.noise_reducer_filter.deserialize_json(
             data["filter"]
         )
-    if "filterSettings" in data:
+    if data.get("filterSettings") is not None:
         import capo_mediaconvert.types.noise_reducer_filter_settings
 
         out["filter_settings"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> NoiseReducer:
                 data["filterSettings"]
             )
         )
-    if "spatialFilterSettings" in data:
+    if data.get("spatialFilterSettings") is not None:
         import capo_mediaconvert.types.noise_reducer_spatial_filter_settings
 
         out["spatial_filter_settings"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> NoiseReducer:
                 data["spatialFilterSettings"]
             )
         )
-    if "temporalFilterSettings" in data:
+    if data.get("temporalFilterSettings") is not None:
         import capo_mediaconvert.types.noise_reducer_temporal_filter_settings
 
         out["temporal_filter_settings"] = (

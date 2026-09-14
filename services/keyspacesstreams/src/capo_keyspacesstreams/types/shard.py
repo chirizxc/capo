@@ -49,9 +49,9 @@ def serialize_aws_json_1_0(value: Shard) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Shard:
     out: Shard = {}  # type: ignore[typeddict-item]
-    if "shardId" in data:
+    if data.get("shardId") is not None:
         out["shard_id"] = data["shardId"]
-    if "sequenceNumberRange" in data:
+    if data.get("sequenceNumberRange") is not None:
         import capo_keyspacesstreams.types.sequence_number_range
 
         out["sequence_number_range"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> Shard:
                 data["sequenceNumberRange"]
             )
         )
-    if "parentShardIds" in data:
+    if data.get("parentShardIds") is not None:
         import capo_keyspacesstreams.types.shard_id_list
 
         out["parent_shard_ids"] = (

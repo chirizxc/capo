@@ -43,12 +43,12 @@ def serialize_aws_json_1_1(value: NetworkResourceUtilization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkResourceUtilization:
     out: NetworkResourceUtilization = {}  # type: ignore[typeddict-item]
-    if "NetworkInBytesPerSecond" in data:
+    if data.get("NetworkInBytesPerSecond") is not None:
         out["network_in_bytes_per_second"] = data["NetworkInBytesPerSecond"]
-    if "NetworkOutBytesPerSecond" in data:
+    if data.get("NetworkOutBytesPerSecond") is not None:
         out["network_out_bytes_per_second"] = data["NetworkOutBytesPerSecond"]
-    if "NetworkPacketsInPerSecond" in data:
+    if data.get("NetworkPacketsInPerSecond") is not None:
         out["network_packets_in_per_second"] = data["NetworkPacketsInPerSecond"]
-    if "NetworkPacketsOutPerSecond" in data:
+    if data.get("NetworkPacketsOutPerSecond") is not None:
         out["network_packets_out_per_second"] = data["NetworkPacketsOutPerSecond"]
     return out

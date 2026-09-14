@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: ListResourcesInProtectionGroupResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ListResourcesInProtectionGroupResponse:
     out: ListResourcesInProtectionGroupResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceArns" in data:
+    if data.get("ResourceArns") is not None:
         import capo_shield.types.resource_arn_list
 
         out["resource_arns"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListResourcesInProtectionGroupRespon
         raise DeserializationError(
             "ListResourcesInProtectionGroupResponse.resource_arns required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

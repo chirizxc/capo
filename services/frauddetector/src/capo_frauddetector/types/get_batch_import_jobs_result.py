@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetBatchImportJobsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBatchImportJobsResult:
     out: GetBatchImportJobsResult = {}  # type: ignore[typeddict-item]
-    if "batchImports" in data:
+    if data.get("batchImports") is not None:
         import capo_frauddetector.types.batch_import_list
 
         out["batch_imports"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetBatchImportJobsResult:
                 data["batchImports"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

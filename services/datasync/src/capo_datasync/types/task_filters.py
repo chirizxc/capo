@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> TaskFilters:
 
     out: TaskFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datasync.types.task_filter.deserialize_aws_json_1_1(item))
     return out

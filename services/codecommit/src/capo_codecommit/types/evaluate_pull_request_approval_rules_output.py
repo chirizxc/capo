@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: EvaluatePullRequestApprovalRulesOutput) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluatePullRequestApprovalRulesOutput:
     out: EvaluatePullRequestApprovalRulesOutput = {}  # type: ignore[typeddict-item]
-    if "evaluation" in data:
+    if data.get("evaluation") is not None:
         import capo_codecommit.types.evaluation
 
         out["evaluation"] = capo_codecommit.types.evaluation.deserialize_aws_json_1_1(

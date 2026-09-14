@@ -27,13 +27,21 @@ def serialize_aws_json_1_1(value: ConnectedHomeSettings) -> dict:
         value["labels"]
     )
     if "min_confidence" in value:
-        out["MinConfidence"] = value["min_confidence"]
+        out["MinConfidence"] = (
+            "NaN"
+            if value["min_confidence"] != value["min_confidence"]
+            else "Infinity"
+            if value["min_confidence"] == float("inf")
+            else "-Infinity"
+            if value["min_confidence"] == float("-inf")
+            else value["min_confidence"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectedHomeSettings:
     out: ConnectedHomeSettings = {}  # type: ignore[typeddict-item]
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_rekognition.types.connected_home_labels
 
         out["labels"] = (
@@ -43,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectedHomeSettings:
         )
     else:
         raise DeserializationError("ConnectedHomeSettings.labels required")
-    if "MinConfidence" in data:
-        out["min_confidence"] = data["MinConfidence"]
+    if data.get("MinConfidence") is not None:
+        out["min_confidence"] = float(data["MinConfidence"])
     return out

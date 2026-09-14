@@ -56,7 +56,7 @@ def serialize_json(value: MetricQueryResult) -> dict:
 
 def deserialize_json(data: dict) -> MetricQueryResult:
     out: MetricQueryResult = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker_metrics.types.metric_query_result_status
 
         out["status"] = (
@@ -64,9 +64,9 @@ def deserialize_json(data: dict) -> MetricQueryResult:
                 data["Status"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "XAxisValues" in data:
+    if data.get("XAxisValues") is not None:
         import capo_sagemaker_metrics.types.x_axis_values
 
         out["x_axis_values"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> MetricQueryResult:
                 data["XAxisValues"]
             )
         )
-    if "MetricValues" in data:
+    if data.get("MetricValues") is not None:
         import capo_sagemaker_metrics.types.metric_values
 
         out["metric_values"] = (

@@ -79,13 +79,13 @@ def serialize_aws_json_1_1(value: Group) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Group:
     out: Group = {}  # type: ignore[typeddict-item]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     else:
         raise DeserializationError("Group.group_id required")
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "ExternalIds" in data:
+    if data.get("ExternalIds") is not None:
         import capo_identitystore.types.external_ids
 
         out["external_ids"] = (
@@ -93,25 +93,25 @@ def deserialize_aws_json_1_1(data: dict) -> Group:
                 data["ExternalIds"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_identitystore.types.date_type
 
         out["created_at"] = capo_identitystore.types.date_type.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_identitystore.types.date_type
 
         out["updated_at"] = capo_identitystore.types.date_type.deserialize_aws_json_1_1(
             data["UpdatedAt"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "UpdatedBy" in data:
+    if data.get("UpdatedBy") is not None:
         out["updated_by"] = data["UpdatedBy"]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
     else:
         raise DeserializationError("Group.identity_store_id required")

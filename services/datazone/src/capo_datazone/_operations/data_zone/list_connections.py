@@ -11,6 +11,7 @@ from typing_extensions import Never
 
 import capo_datazone._auth._signers
 import capo_datazone._auth._sigv4
+import capo_datazone._protocol.eventstream
 import capo_datazone.errors.access_denied_exception
 import capo_datazone.errors.internal_server_exception
 import capo_datazone.errors.throttling_exception
@@ -35,23 +36,23 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_datazone.errors.access_denied_exception.AccessDeniedException.from_json(
-                data
+                data, message
             )
         case "ThrottlingException":
             raise capo_datazone.errors.throttling_exception.ThrottlingException.from_json(
-                data
+                data, message
             )
         case "UnauthorizedException":
             raise capo_datazone.errors.unauthorized_exception.UnauthorizedException.from_json(
-                data
+                data, message
             )
         case "InternalServerException":
             raise capo_datazone.errors.internal_server_exception.InternalServerException.from_json(
-                data
+                data, message
             )
         case "ValidationException":
             raise capo_datazone.errors.validation_exception.ValidationException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -84,19 +85,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_datazone._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_datazone._auth._sigv4.build_sigv4_auth_scheme(
-                "datazone", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_datazone._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_datazone._auth._sigv4.build_sigv4_auth_scheme(
+                "datazone", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_datazone._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -109,34 +117,57 @@ def build_request(
             Region=options.region, UseFIPS=options.use_fips, Endpoint=options.endpoint
         )
     )  # noqa: F841
+    import capo_datazone.types.connection_scope
+    import capo_datazone.types.connection_type
+    import capo_datazone.types.sort_field_connection
+    import capo_datazone.types.sort_order
+
     url = endpoint.url.rstrip("/") + "/v2/domains/{domainIdentifier}/connections"
-    url = url.replace(
-        "{domainIdentifier}", quote(str(input_["domain_identifier"]), safe="")
-    )
-    params: dict[str, str] = {}
+    url = url.replace("{domainIdentifier}", quote(input_["domain_identifier"], safe=""))
+    params: list[tuple[str, str]] = []
     if "max_results" in input_:
-        params["maxResults"] = str(input_["max_results"])
+        params.append(("maxResults", str(input_["max_results"])))
     if "next_token" in input_:
-        params["nextToken"] = str(input_["next_token"])
+        params.append(("nextToken", input_["next_token"]))
     if "sort_by" in input_:
-        params["sortBy"] = str(input_["sort_by"])
+        params.append(
+            (
+                "sortBy",
+                capo_datazone.types.sort_field_connection.serialize_json(
+                    input_["sort_by"]
+                ),
+            )
+        )
     if "sort_order" in input_:
-        params["sortOrder"] = str(input_["sort_order"])
+        params.append(
+            (
+                "sortOrder",
+                capo_datazone.types.sort_order.serialize_json(input_["sort_order"]),
+            )
+        )
     if "name" in input_:
-        params["name"] = str(input_["name"])
+        params.append(("name", input_["name"]))
     if "environment_identifier" in input_:
-        params["environmentIdentifier"] = str(input_["environment_identifier"])
+        params.append(("environmentIdentifier", input_["environment_identifier"]))
     if "project_identifier" in input_:
-        params["projectIdentifier"] = str(input_["project_identifier"])
+        params.append(("projectIdentifier", input_["project_identifier"]))
     if "type" in input_:
-        params["type"] = str(input_["type"])
+        params.append(
+            ("type", capo_datazone.types.connection_type.serialize_json(input_["type"]))
+        )
     if "scope" in input_:
-        params["scope"] = str(input_["scope"])
+        params.append(
+            (
+                "scope",
+                capo_datazone.types.connection_scope.serialize_json(input_["scope"]),
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "GET", headers=headers, body=body, context={"signer": signer}
     )
@@ -150,7 +181,7 @@ def list_connections(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -167,7 +198,7 @@ async def async_list_connections(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

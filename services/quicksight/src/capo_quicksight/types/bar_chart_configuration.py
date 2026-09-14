@@ -234,7 +234,7 @@ def serialize_json(value: BarChartConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BarChartConfiguration:
     out: BarChartConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.bar_chart_field_wells
 
         out["field_wells"] = (
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.bar_chart_sort_configuration
 
         out["sort_configuration"] = (
@@ -250,7 +250,7 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "Orientation" in data:
+    if data.get("Orientation") is not None:
         import capo_quicksight.types.bar_chart_orientation
 
         out["orientation"] = (
@@ -258,7 +258,7 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["Orientation"]
             )
         )
-    if "BarsArrangement" in data:
+    if data.get("BarsArrangement") is not None:
         import capo_quicksight.types.bars_arrangement
 
         out["bars_arrangement"] = (
@@ -266,13 +266,13 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["BarsArrangement"]
             )
         )
-    if "VisualPalette" in data:
+    if data.get("VisualPalette") is not None:
         import capo_quicksight.types.visual_palette
 
         out["visual_palette"] = capo_quicksight.types.visual_palette.deserialize_json(
             data["VisualPalette"]
         )
-    if "SmallMultiplesOptions" in data:
+    if data.get("SmallMultiplesOptions") is not None:
         import capo_quicksight.types.small_multiples_options
 
         out["small_multiples_options"] = (
@@ -280,7 +280,7 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["SmallMultiplesOptions"]
             )
         )
-    if "CategoryAxis" in data:
+    if data.get("CategoryAxis") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["category_axis"] = (
@@ -288,7 +288,7 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["CategoryAxis"]
             )
         )
-    if "CategoryLabelOptions" in data:
+    if data.get("CategoryLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["category_label_options"] = (
@@ -296,13 +296,13 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["CategoryLabelOptions"]
             )
         )
-    if "ValueAxis" in data:
+    if data.get("ValueAxis") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["value_axis"] = capo_quicksight.types.axis_display_options.deserialize_json(
             data["ValueAxis"]
         )
-    if "ValueLabelOptions" in data:
+    if data.get("ValueLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["value_label_options"] = (
@@ -310,7 +310,7 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["ValueLabelOptions"]
             )
         )
-    if "ColorLabelOptions" in data:
+    if data.get("ColorLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["color_label_options"] = (
@@ -318,7 +318,7 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["ColorLabelOptions"]
             )
         )
-    if "DefaultSeriesSettings" in data:
+    if data.get("DefaultSeriesSettings") is not None:
         import capo_quicksight.types.bar_chart_default_series_settings
 
         out["default_series_settings"] = (
@@ -326,31 +326,31 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["DefaultSeriesSettings"]
             )
         )
-    if "Series" in data:
+    if data.get("Series") is not None:
         import capo_quicksight.types.bar_series_item_list
 
         out["series"] = capo_quicksight.types.bar_series_item_list.deserialize_json(
             data["Series"]
         )
-    if "Legend" in data:
+    if data.get("Legend") is not None:
         import capo_quicksight.types.legend_options
 
         out["legend"] = capo_quicksight.types.legend_options.deserialize_json(
             data["Legend"]
         )
-    if "DataLabels" in data:
+    if data.get("DataLabels") is not None:
         import capo_quicksight.types.data_label_options
 
         out["data_labels"] = capo_quicksight.types.data_label_options.deserialize_json(
             data["DataLabels"]
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["Tooltip"]
         )
-    if "ReferenceLines" in data:
+    if data.get("ReferenceLines") is not None:
         import capo_quicksight.types.reference_line_list
 
         out["reference_lines"] = (
@@ -358,7 +358,7 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["ReferenceLines"]
             )
         )
-    if "ContributionAnalysisDefaults" in data:
+    if data.get("ContributionAnalysisDefaults") is not None:
         import capo_quicksight.types.contribution_analysis_default_list
 
         out["contribution_analysis_defaults"] = (
@@ -366,7 +366,7 @@ def deserialize_json(data: dict) -> BarChartConfiguration:
                 data["ContributionAnalysisDefaults"]
             )
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

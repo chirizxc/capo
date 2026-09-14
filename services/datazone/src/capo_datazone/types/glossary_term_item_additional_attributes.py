@@ -27,7 +27,7 @@ def serialize_json(value: GlossaryTermItemAdditionalAttributes) -> dict:
 
 def deserialize_json(data: dict) -> GlossaryTermItemAdditionalAttributes:
     out: GlossaryTermItemAdditionalAttributes = {}  # type: ignore[typeddict-item]
-    if "matchRationale" in data:
+    if data.get("matchRationale") is not None:
         import capo_datazone.types.match_rationale
 
         out["match_rationale"] = capo_datazone.types.match_rationale.deserialize_json(

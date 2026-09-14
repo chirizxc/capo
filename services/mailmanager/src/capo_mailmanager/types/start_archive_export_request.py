@@ -74,11 +74,11 @@ def serialize_aws_json_1_0(value: StartArchiveExportRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartArchiveExportRequest:
     out: StartArchiveExportRequest = {}  # type: ignore[typeddict-item]
-    if "ArchiveId" in data:
+    if data.get("ArchiveId") is not None:
         out["archive_id"] = data["ArchiveId"]
     else:
         raise DeserializationError("StartArchiveExportRequest.archive_id required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_mailmanager.types.archive_filters
 
         out["filters"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartArchiveExportRequest:
                 data["Filters"]
             )
         )
-    if "FromTimestamp" in data:
+    if data.get("FromTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["from_timestamp"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartArchiveExportRequest:
         )
     else:
         raise DeserializationError("StartArchiveExportRequest.from_timestamp required")
-    if "ToTimestamp" in data:
+    if data.get("ToTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["to_timestamp"] = (
@@ -106,9 +106,9 @@ def deserialize_aws_json_1_0(data: dict) -> StartArchiveExportRequest:
         )
     else:
         raise DeserializationError("StartArchiveExportRequest.to_timestamp required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ExportDestinationConfiguration" in data:
+    if data.get("ExportDestinationConfiguration") is not None:
         import capo_mailmanager.types.export_destination_configuration
 
         out["export_destination_configuration"] = (
@@ -120,6 +120,6 @@ def deserialize_aws_json_1_0(data: dict) -> StartArchiveExportRequest:
         raise DeserializationError(
             "StartArchiveExportRequest.export_destination_configuration required"
         )
-    if "IncludeMetadata" in data:
+    if data.get("IncludeMetadata") is not None:
         out["include_metadata"] = data["IncludeMetadata"]
     return out

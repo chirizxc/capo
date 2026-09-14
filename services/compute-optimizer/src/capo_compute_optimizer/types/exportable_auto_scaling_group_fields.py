@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ExportableAutoScalingGroupFields:
 
     out: ExportableAutoScalingGroupFields = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer.types.exportable_auto_scaling_group_field.deserialize_aws_json_1_0(
                 item

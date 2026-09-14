@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ReplicationDestinations:
 
     out: ReplicationDestinations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_s3tables.types.replication_destination.deserialize_json(item))
     return out

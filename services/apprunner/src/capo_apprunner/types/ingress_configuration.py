@@ -22,7 +22,7 @@ def serialize_aws_json_1_0(value: IngressConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngressConfiguration:
     out: IngressConfiguration = {}  # type: ignore[typeddict-item]
-    if "IsPubliclyAccessible" in data:
+    if data.get("IsPubliclyAccessible") is not None:
         out["is_publicly_accessible"] = data["IsPubliclyAccessible"]
     else:
         out["is_publicly_accessible"] = False

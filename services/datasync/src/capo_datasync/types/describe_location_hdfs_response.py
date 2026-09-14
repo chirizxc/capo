@@ -153,11 +153,11 @@ def serialize_aws_json_1_1(value: DescribeLocationHdfsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLocationHdfsResponse:
     out: DescribeLocationHdfsResponse = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
-    if "NameNodes" in data:
+    if data.get("NameNodes") is not None:
         import capo_datasync.types.hdfs_name_node_list
 
         out["name_nodes"] = (
@@ -165,13 +165,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationHdfsResponse:
                 data["NameNodes"]
             )
         )
-    if "BlockSize" in data:
+    if data.get("BlockSize") is not None:
         out["block_size"] = data["BlockSize"]
-    if "ReplicationFactor" in data:
+    if data.get("ReplicationFactor") is not None:
         out["replication_factor"] = data["ReplicationFactor"]
-    if "KmsKeyProviderUri" in data:
+    if data.get("KmsKeyProviderUri") is not None:
         out["kms_key_provider_uri"] = data["KmsKeyProviderUri"]
-    if "QopConfiguration" in data:
+    if data.get("QopConfiguration") is not None:
         import capo_datasync.types.qop_configuration
 
         out["qop_configuration"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationHdfsResponse:
                 data["QopConfiguration"]
             )
         )
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_datasync.types.hdfs_authentication_type
 
         out["authentication_type"] = (
@@ -187,23 +187,23 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationHdfsResponse:
                 data["AuthenticationType"]
             )
         )
-    if "SimpleUser" in data:
+    if data.get("SimpleUser") is not None:
         out["simple_user"] = data["SimpleUser"]
-    if "KerberosPrincipal" in data:
+    if data.get("KerberosPrincipal") is not None:
         out["kerberos_principal"] = data["KerberosPrincipal"]
-    if "AgentArns" in data:
+    if data.get("AgentArns") is not None:
         import capo_datasync.types.agent_arn_list
 
         out["agent_arns"] = capo_datasync.types.agent_arn_list.deserialize_aws_json_1_1(
             data["AgentArns"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_datasync.types.time
 
         out["creation_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "ManagedSecretConfig" in data:
+    if data.get("ManagedSecretConfig") is not None:
         import capo_datasync.types.managed_secret_config
 
         out["managed_secret_config"] = (
@@ -211,7 +211,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationHdfsResponse:
                 data["ManagedSecretConfig"]
             )
         )
-    if "CmkSecretConfig" in data:
+    if data.get("CmkSecretConfig") is not None:
         import capo_datasync.types.cmk_secret_config
 
         out["cmk_secret_config"] = (
@@ -219,7 +219,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationHdfsResponse:
                 data["CmkSecretConfig"]
             )
         )
-    if "CustomSecretConfig" in data:
+    if data.get("CustomSecretConfig") is not None:
         import capo_datasync.types.custom_secret_config
 
         out["custom_secret_config"] = (

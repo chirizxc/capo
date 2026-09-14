@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BodySectionDynamicDimensionSortConfiguration
 
     out: BodySectionDynamicDimensionSortConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.column_sort.deserialize_json(item))
     return out

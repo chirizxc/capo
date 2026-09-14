@@ -70,7 +70,7 @@ def serialize_json(value: FindingSummaryV2) -> dict:
 
 def deserialize_json(data: dict) -> FindingSummaryV2:
     out: FindingSummaryV2 = {}  # type: ignore[typeddict-item]
-    if "analyzedAt" in data:
+    if data.get("analyzedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["analyzed_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> FindingSummaryV2:
         )
     else:
         raise DeserializationError("FindingSummaryV2.analyzed_at required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["created_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -86,27 +86,27 @@ def deserialize_json(data: dict) -> FindingSummaryV2:
         )
     else:
         raise DeserializationError("FindingSummaryV2.created_at required")
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("FindingSummaryV2.id required")
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("FindingSummaryV2.resource_type required")
-    if "resourceOwnerAccount" in data:
+    if data.get("resourceOwnerAccount") is not None:
         out["resource_owner_account"] = data["resourceOwnerAccount"]
     else:
         raise DeserializationError("FindingSummaryV2.resource_owner_account required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("FindingSummaryV2.status required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["updated_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -114,6 +114,6 @@ def deserialize_json(data: dict) -> FindingSummaryV2:
         )
     else:
         raise DeserializationError("FindingSummaryV2.updated_at required")
-    if "findingType" in data:
+    if data.get("findingType") is not None:
         out["finding_type"] = data["findingType"]
     return out

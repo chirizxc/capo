@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: TFITrainingMetricsValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TFITrainingMetricsValue:
     out: TFITrainingMetricsValue = {}  # type: ignore[typeddict-item]
-    if "metricDataPoints" in data:
+    if data.get("metricDataPoints") is not None:
         import capo_frauddetector.types.tfi_metric_data_points_list
 
         out["metric_data_points"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> TFITrainingMetricsValue:
                 data["metricDataPoints"]
             )
         )
-    if "modelPerformance" in data:
+    if data.get("modelPerformance") is not None:
         import capo_frauddetector.types.tfi_model_performance
 
         out["model_performance"] = (

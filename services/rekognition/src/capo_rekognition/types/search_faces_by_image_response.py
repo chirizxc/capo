@@ -36,7 +36,15 @@ def serialize_aws_json_1_1(value: SearchFacesByImageResponse) -> dict:
             )
         )
     if "searched_face_confidence" in value:
-        out["SearchedFaceConfidence"] = value["searched_face_confidence"]
+        out["SearchedFaceConfidence"] = (
+            "NaN"
+            if value["searched_face_confidence"] != value["searched_face_confidence"]
+            else "Infinity"
+            if value["searched_face_confidence"] == float("inf")
+            else "-Infinity"
+            if value["searched_face_confidence"] == float("-inf")
+            else value["searched_face_confidence"]
+        )
     if "face_matches" in value:
         import capo_rekognition.types.face_match_list
 
@@ -52,7 +60,7 @@ def serialize_aws_json_1_1(value: SearchFacesByImageResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchFacesByImageResponse:
     out: SearchFacesByImageResponse = {}  # type: ignore[typeddict-item]
-    if "SearchedFaceBoundingBox" in data:
+    if data.get("SearchedFaceBoundingBox") is not None:
         import capo_rekognition.types.bounding_box
 
         out["searched_face_bounding_box"] = (
@@ -60,9 +68,9 @@ def deserialize_aws_json_1_1(data: dict) -> SearchFacesByImageResponse:
                 data["SearchedFaceBoundingBox"]
             )
         )
-    if "SearchedFaceConfidence" in data:
-        out["searched_face_confidence"] = data["SearchedFaceConfidence"]
-    if "FaceMatches" in data:
+    if data.get("SearchedFaceConfidence") is not None:
+        out["searched_face_confidence"] = float(data["SearchedFaceConfidence"])
+    if data.get("FaceMatches") is not None:
         import capo_rekognition.types.face_match_list
 
         out["face_matches"] = (
@@ -70,6 +78,6 @@ def deserialize_aws_json_1_1(data: dict) -> SearchFacesByImageResponse:
                 data["FaceMatches"]
             )
         )
-    if "FaceModelVersion" in data:
+    if data.get("FaceModelVersion") is not None:
         out["face_model_version"] = data["FaceModelVersion"]
     return out

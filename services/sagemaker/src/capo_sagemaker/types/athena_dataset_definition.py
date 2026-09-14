@@ -70,19 +70,19 @@ def serialize_aws_json_1_1(value: AthenaDatasetDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AthenaDatasetDefinition:
     out: AthenaDatasetDefinition = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
-    if "OutputS3Uri" in data:
+    if data.get("OutputS3Uri") is not None:
         out["output_s3_uri"] = data["OutputS3Uri"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "OutputFormat" in data:
+    if data.get("OutputFormat") is not None:
         import capo_sagemaker.types.athena_result_format
 
         out["output_format"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> AthenaDatasetDefinition:
                 data["OutputFormat"]
             )
         )
-    if "OutputCompression" in data:
+    if data.get("OutputCompression") is not None:
         import capo_sagemaker.types.athena_result_compression_type
 
         out["output_compression"] = (

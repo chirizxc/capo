@@ -36,11 +36,11 @@ def serialize_aws_json_1_0(value: Envelope) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Envelope:
     out: Envelope = {}  # type: ignore[typeddict-item]
-    if "Helo" in data:
+    if data.get("Helo") is not None:
         out["helo"] = data["Helo"]
-    if "From" in data:
+    if data.get("From") is not None:
         out["from"] = data["From"]
-    if "To" in data:
+    if data.get("To") is not None:
         import capo_mailmanager.types.string_list
 
         out["to"] = capo_mailmanager.types.string_list.deserialize_aws_json_1_0(

@@ -69,15 +69,15 @@ def serialize_json(value: ApplicationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationSummary:
     out: ApplicationSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_service_catalog_appregistry.types.timestamp
 
         out["creation_time"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> ApplicationSummary:
                 data["creationTime"]
             )
         )
-    if "lastUpdateTime" in data:
+    if data.get("lastUpdateTime") is not None:
         import capo_service_catalog_appregistry.types.timestamp
 
         out["last_update_time"] = (

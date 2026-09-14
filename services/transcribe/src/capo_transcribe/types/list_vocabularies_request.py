@@ -25,9 +25,37 @@ class ListVocabulariesRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListVocabulariesRequest) -> dict:
     out: dict = {}
+    if "next_token" in value:
+        out["NextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["MaxResults"] = value["max_results"]
+    if "state_equals" in value:
+        import capo_transcribe.types.vocabulary_state
+
+        out["StateEquals"] = (
+            capo_transcribe.types.vocabulary_state.serialize_aws_json_1_1(
+                value["state_equals"]
+            )
+        )
+    if "name_contains" in value:
+        out["NameContains"] = value["name_contains"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ListVocabulariesRequest:
     out: ListVocabulariesRequest = {}  # type: ignore[typeddict-item]
+    if data.get("NextToken") is not None:
+        out["next_token"] = data["NextToken"]
+    if data.get("MaxResults") is not None:
+        out["max_results"] = data["MaxResults"]
+    if data.get("StateEquals") is not None:
+        import capo_transcribe.types.vocabulary_state
+
+        out["state_equals"] = (
+            capo_transcribe.types.vocabulary_state.deserialize_aws_json_1_1(
+                data["StateEquals"]
+            )
+        )
+    if data.get("NameContains") is not None:
+        out["name_contains"] = data["NameContains"]
     return out

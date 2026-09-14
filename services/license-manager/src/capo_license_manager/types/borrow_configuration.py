@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: BorrowConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BorrowConfiguration:
     out: BorrowConfiguration = {}  # type: ignore[typeddict-item]
-    if "AllowEarlyCheckIn" in data:
+    if data.get("AllowEarlyCheckIn") is not None:
         out["allow_early_check_in"] = data["AllowEarlyCheckIn"]
     else:
         raise DeserializationError("BorrowConfiguration.allow_early_check_in required")
-    if "MaxTimeToLiveInMinutes" in data:
+    if data.get("MaxTimeToLiveInMinutes") is not None:
         out["max_time_to_live_in_minutes"] = data["MaxTimeToLiveInMinutes"]
     else:
         raise DeserializationError(

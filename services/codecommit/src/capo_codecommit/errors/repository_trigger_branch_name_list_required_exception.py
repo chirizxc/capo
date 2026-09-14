@@ -29,7 +29,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> RepositoryTriggerBranchNameListRequiredException_:
     out: RepositoryTriggerBranchNameListRequiredException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -39,17 +39,22 @@ class RepositoryTriggerBranchNameListRequiredException(ServiceError):
 
     code: str | None = "RepositoryTriggerBranchNameListRequiredException"
 
-    def __init__(self, data: RepositoryTriggerBranchNameListRequiredException_):
+    def __init__(
+        self,
+        data: RepositoryTriggerBranchNameListRequiredException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RepositoryTriggerBranchNameListRequiredException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "RepositoryTriggerBranchNameListRequiredException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

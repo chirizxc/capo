@@ -59,7 +59,7 @@ def serialize_json(value: AntipatternReportResult) -> dict:
 
 def deserialize_json(data: dict) -> AntipatternReportResult:
     out: AntipatternReportResult = {}  # type: ignore[typeddict-item]
-    if "analyzerName" in data:
+    if data.get("analyzerName") is not None:
         import capo_migrationhubstrategy.types.analyzer_name_union
 
         out["analyzer_name"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> AntipatternReportResult:
                 data["analyzerName"]
             )
         )
-    if "antiPatternReportS3Object" in data:
+    if data.get("antiPatternReportS3Object") is not None:
         import capo_migrationhubstrategy.types.s3_object
 
         out["anti_pattern_report_s3_object"] = (
@@ -75,9 +75,9 @@ def deserialize_json(data: dict) -> AntipatternReportResult:
                 data["antiPatternReportS3Object"]
             )
         )
-    if "antipatternReportStatus" in data:
+    if data.get("antipatternReportStatus") is not None:
         out["antipattern_report_status"] = data["antipatternReportStatus"]
-    if "antipatternReportStatusMessage" in data:
+    if data.get("antipatternReportStatusMessage") is not None:
         out["antipattern_report_status_message"] = data[
             "antipatternReportStatusMessage"
         ]

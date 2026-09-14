@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: ScheduleRunTest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScheduleRunTest:
     out: ScheduleRunTest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.test_type
 
         out["type"] = capo_device_farm.types.test_type.deserialize_aws_json_1_1(
@@ -63,13 +63,13 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunTest:
         )
     else:
         raise DeserializationError("ScheduleRunTest.type required")
-    if "testPackageArn" in data:
+    if data.get("testPackageArn") is not None:
         out["test_package_arn"] = data["testPackageArn"]
-    if "testSpecArn" in data:
+    if data.get("testSpecArn") is not None:
         out["test_spec_arn"] = data["testSpecArn"]
-    if "filter" in data:
+    if data.get("filter") is not None:
         out["filter"] = data["filter"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_device_farm.types.test_parameters
 
         out["parameters"] = (

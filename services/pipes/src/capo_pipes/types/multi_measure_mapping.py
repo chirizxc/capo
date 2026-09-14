@@ -34,11 +34,11 @@ def serialize_json(value: MultiMeasureMapping) -> dict:
 
 def deserialize_json(data: dict) -> MultiMeasureMapping:
     out: MultiMeasureMapping = {}  # type: ignore[typeddict-item]
-    if "MultiMeasureName" in data:
+    if data.get("MultiMeasureName") is not None:
         out["multi_measure_name"] = data["MultiMeasureName"]
     else:
         raise DeserializationError("MultiMeasureMapping.multi_measure_name required")
-    if "MultiMeasureAttributeMappings" in data:
+    if data.get("MultiMeasureAttributeMappings") is not None:
         import capo_pipes.types.multi_measure_attribute_mappings
 
         out["multi_measure_attribute_mappings"] = (

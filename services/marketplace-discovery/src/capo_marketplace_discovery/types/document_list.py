@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> DocumentList:
 
     out: DocumentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.document_item.deserialize_json(item)
         )

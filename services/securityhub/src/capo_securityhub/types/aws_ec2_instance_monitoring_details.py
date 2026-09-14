@@ -23,6 +23,6 @@ def serialize_json(value: AwsEc2InstanceMonitoringDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2InstanceMonitoringDetails:
     out: AwsEc2InstanceMonitoringDetails = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
     return out

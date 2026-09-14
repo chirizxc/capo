@@ -94,7 +94,15 @@ def serialize_aws_json_1_0(value: GetWorkloadEstimateResponse) -> dict:
             )
         )
     if "total_cost" in value:
-        out["totalCost"] = value["total_cost"]
+        out["totalCost"] = (
+            "NaN"
+            if value["total_cost"] != value["total_cost"]
+            else "Infinity"
+            if value["total_cost"] == float("inf")
+            else "-Infinity"
+            if value["total_cost"] == float("-inf")
+            else value["total_cost"]
+        )
     if "cost_currency" in value:
         import capo_bcm_pricing_calculator.types.currency_code
 
@@ -110,13 +118,13 @@ def serialize_aws_json_1_0(value: GetWorkloadEstimateResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetWorkloadEstimateResponse:
     out: GetWorkloadEstimateResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetWorkloadEstimateResponse.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["created_at"] = (
@@ -124,7 +132,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkloadEstimateResponse:
                 data["createdAt"]
             )
         )
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["expires_at"] = (
@@ -132,7 +140,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkloadEstimateResponse:
                 data["expiresAt"]
             )
         )
-    if "rateType" in data:
+    if data.get("rateType") is not None:
         import capo_bcm_pricing_calculator.types.workload_estimate_rate_type
 
         out["rate_type"] = (
@@ -140,7 +148,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkloadEstimateResponse:
                 data["rateType"]
             )
         )
-    if "rateTimestamp" in data:
+    if data.get("rateTimestamp") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["rate_timestamp"] = (
@@ -148,7 +156,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkloadEstimateResponse:
                 data["rateTimestamp"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_bcm_pricing_calculator.types.workload_estimate_status
 
         out["status"] = (
@@ -156,9 +164,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkloadEstimateResponse:
                 data["status"]
             )
         )
-    if "totalCost" in data:
-        out["total_cost"] = data["totalCost"]
-    if "costCurrency" in data:
+    if data.get("totalCost") is not None:
+        out["total_cost"] = float(data["totalCost"])
+    if data.get("costCurrency") is not None:
         import capo_bcm_pricing_calculator.types.currency_code
 
         out["cost_currency"] = (
@@ -166,6 +174,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkloadEstimateResponse:
                 data["costCurrency"]
             )
         )
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
     return out

@@ -76,23 +76,23 @@ def serialize_json(value: ResourceShareInvitation) -> dict:
 
 def deserialize_json(data: dict) -> ResourceShareInvitation:
     out: ResourceShareInvitation = {}  # type: ignore[typeddict-item]
-    if "resourceShareInvitationArn" in data:
+    if data.get("resourceShareInvitationArn") is not None:
         out["resource_share_invitation_arn"] = data["resourceShareInvitationArn"]
-    if "resourceShareName" in data:
+    if data.get("resourceShareName") is not None:
         out["resource_share_name"] = data["resourceShareName"]
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
-    if "senderAccountId" in data:
+    if data.get("senderAccountId") is not None:
         out["sender_account_id"] = data["senderAccountId"]
-    if "receiverAccountId" in data:
+    if data.get("receiverAccountId") is not None:
         out["receiver_account_id"] = data["receiverAccountId"]
-    if "invitationTimestamp" in data:
+    if data.get("invitationTimestamp") is not None:
         import capo_ram.types.date_time
 
         out["invitation_timestamp"] = capo_ram.types.date_time.deserialize_json(
             data["invitationTimestamp"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_ram.types.resource_share_invitation_status
 
         out["status"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> ResourceShareInvitation:
                 data["status"]
             )
         )
-    if "resourceShareAssociations" in data:
+    if data.get("resourceShareAssociations") is not None:
         import capo_ram.types.resource_share_association_list
 
         out["resource_share_associations"] = (
@@ -108,6 +108,6 @@ def deserialize_json(data: dict) -> ResourceShareInvitation:
                 data["resourceShareAssociations"]
             )
         )
-    if "receiverArn" in data:
+    if data.get("receiverArn") is not None:
         out["receiver_arn"] = data["receiverArn"]
     return out

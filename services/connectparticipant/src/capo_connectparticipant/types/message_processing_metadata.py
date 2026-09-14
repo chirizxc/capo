@@ -31,7 +31,7 @@ def serialize_json(value: MessageProcessingMetadata) -> dict:
 
 def deserialize_json(data: dict) -> MessageProcessingMetadata:
     out: MessageProcessingMetadata = {}  # type: ignore[typeddict-item]
-    if "MessageProcessingStatus" in data:
+    if data.get("MessageProcessingStatus") is not None:
         import capo_connectparticipant.types.message_processing_status
 
         out["message_processing_status"] = (

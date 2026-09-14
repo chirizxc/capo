@@ -36,7 +36,7 @@ def serialize_json(value: ListMediaCapturePipelinesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMediaCapturePipelinesResponse:
     out: ListMediaCapturePipelinesResponse = {}  # type: ignore[typeddict-item]
-    if "MediaCapturePipelines" in data:
+    if data.get("MediaCapturePipelines") is not None:
         import capo_chime_sdk_media_pipelines.types.media_capture_pipeline_summary_list
 
         out["media_capture_pipelines"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListMediaCapturePipelinesResponse:
                 data["MediaCapturePipelines"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

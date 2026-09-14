@@ -32,14 +32,14 @@ def serialize_json(value: GetOfferTermsInput) -> dict:
 
 def deserialize_json(data: dict) -> GetOfferTermsInput:
     out: GetOfferTermsInput = {}  # type: ignore[typeddict-item]
-    if "offerId" in data:
+    if data.get("offerId") is not None:
         out["offer_id"] = data["offerId"]
     else:
         raise DeserializationError("GetOfferTermsInput.offer_id required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 10
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -34,12 +34,12 @@ def serialize_json(value: GetImagesOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetImagesOutput:
     out: GetImagesOutput = {}  # type: ignore[typeddict-item]
-    if "Images" in data:
+    if data.get("Images") is not None:
         import capo_kinesis_video_archived_media.types.images
 
         out["images"] = capo_kinesis_video_archived_media.types.images.deserialize_json(
             data["Images"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

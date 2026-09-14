@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ChannelModeratorSummaryList:
 
     out: ChannelModeratorSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_messaging.types.channel_moderator_summary.deserialize_json(
                 item

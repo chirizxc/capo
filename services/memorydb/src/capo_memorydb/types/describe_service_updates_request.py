@@ -56,9 +56,9 @@ def serialize_aws_json_1_1(value: DescribeServiceUpdatesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeServiceUpdatesRequest:
     out: DescribeServiceUpdatesRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceUpdateName" in data:
+    if data.get("ServiceUpdateName") is not None:
         out["service_update_name"] = data["ServiceUpdateName"]
-    if "ClusterNames" in data:
+    if data.get("ClusterNames") is not None:
         import capo_memorydb.types.cluster_name_list
 
         out["cluster_names"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeServiceUpdatesRequest:
                 data["ClusterNames"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_memorydb.types.service_update_status_list
 
         out["status"] = (
@@ -74,8 +74,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeServiceUpdatesRequest:
                 data["Status"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

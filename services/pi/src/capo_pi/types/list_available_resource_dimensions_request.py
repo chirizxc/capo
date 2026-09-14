@@ -63,7 +63,7 @@ def serialize_aws_json_1_1(value: ListAvailableResourceDimensionsRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ListAvailableResourceDimensionsRequest:
     out: ListAvailableResourceDimensionsRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
@@ -73,13 +73,13 @@ def deserialize_aws_json_1_1(data: dict) -> ListAvailableResourceDimensionsReque
         raise DeserializationError(
             "ListAvailableResourceDimensionsRequest.service_type required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "ListAvailableResourceDimensionsRequest.identifier required"
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_pi.types.dimensions_metric_list
 
         out["metrics"] = capo_pi.types.dimensions_metric_list.deserialize_aws_json_1_1(
@@ -89,11 +89,11 @@ def deserialize_aws_json_1_1(data: dict) -> ListAvailableResourceDimensionsReque
         raise DeserializationError(
             "ListAvailableResourceDimensionsRequest.metrics required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "AuthorizedActions" in data:
+    if data.get("AuthorizedActions") is not None:
         import capo_pi.types.authorized_actions_list
 
         out["authorized_actions"] = (

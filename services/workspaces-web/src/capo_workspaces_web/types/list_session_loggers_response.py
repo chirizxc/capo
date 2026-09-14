@@ -38,7 +38,7 @@ def serialize_json(value: ListSessionLoggersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSessionLoggersResponse:
     out: ListSessionLoggersResponse = {}  # type: ignore[typeddict-item]
-    if "sessionLoggers" in data:
+    if data.get("sessionLoggers") is not None:
         import capo_workspaces_web.types.session_logger_list
 
         out["session_loggers"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListSessionLoggersResponse:
                 data["sessionLoggers"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

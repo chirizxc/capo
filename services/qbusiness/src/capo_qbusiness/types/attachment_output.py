@@ -49,20 +49,20 @@ def serialize_json(value: AttachmentOutput) -> dict:
 
 def deserialize_json(data: dict) -> AttachmentOutput:
     out: AttachmentOutput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.attachment_status
 
         out["status"] = capo_qbusiness.types.attachment_status.deserialize_json(
             data["status"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_qbusiness.types.error_detail
 
         out["error"] = capo_qbusiness.types.error_detail.deserialize_json(data["error"])
-    if "attachmentId" in data:
+    if data.get("attachmentId") is not None:
         out["attachment_id"] = data["attachmentId"]
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
     return out

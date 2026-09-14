@@ -36,23 +36,23 @@ def serialize_aws_json_1_1(value: DescribeCreateCaseOptionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCreateCaseOptionsRequest:
     out: DescribeCreateCaseOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "issueType" in data:
+    if data.get("issueType") is not None:
         out["issue_type"] = data["issueType"]
     else:
         raise DeserializationError(
             "DescribeCreateCaseOptionsRequest.issue_type required"
         )
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
     else:
         raise DeserializationError(
             "DescribeCreateCaseOptionsRequest.service_code required"
         )
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
     else:
         raise DeserializationError("DescribeCreateCaseOptionsRequest.language required")
-    if "categoryCode" in data:
+    if data.get("categoryCode") is not None:
         out["category_code"] = data["categoryCode"]
     else:
         raise DeserializationError(

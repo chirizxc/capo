@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ComplianceTypes:
 
     out: ComplianceTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.compliance_type.deserialize_aws_json_1_1(item)
         )

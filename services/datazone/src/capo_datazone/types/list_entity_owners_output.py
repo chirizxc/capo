@@ -31,7 +31,7 @@ def serialize_json(value: ListEntityOwnersOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListEntityOwnersOutput:
     out: ListEntityOwnersOutput = {}  # type: ignore[typeddict-item]
-    if "owners" in data:
+    if data.get("owners") is not None:
         import capo_datazone.types.entity_owners
 
         out["owners"] = capo_datazone.types.entity_owners.deserialize_json(
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> ListEntityOwnersOutput:
         )
     else:
         raise DeserializationError("ListEntityOwnersOutput.owners required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

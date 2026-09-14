@@ -24,6 +24,8 @@ def serialize_json(input_to_serialize: CardStatusMap) -> dict:
 def deserialize_json(data: dict) -> CardStatusMap:
     out: CardStatusMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_qapps.types.card_status
 
         out[key] = capo_qapps.types.card_status.deserialize_json(value)

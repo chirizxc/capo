@@ -153,29 +153,29 @@ def serialize_json(value: Membership) -> dict:
 
 def deserialize_json(data: dict) -> Membership:
     out: Membership = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Membership.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Membership.arn required")
-    if "collaborationArn" in data:
+    if data.get("collaborationArn") is not None:
         out["collaboration_arn"] = data["collaborationArn"]
     else:
         raise DeserializationError("Membership.collaboration_arn required")
-    if "collaborationId" in data:
+    if data.get("collaborationId") is not None:
         out["collaboration_id"] = data["collaborationId"]
     else:
         raise DeserializationError("Membership.collaboration_id required")
-    if "collaborationCreatorAccountId" in data:
+    if data.get("collaborationCreatorAccountId") is not None:
         out["collaboration_creator_account_id"] = data["collaborationCreatorAccountId"]
     else:
         raise DeserializationError(
             "Membership.collaboration_creator_account_id required"
         )
-    if "collaborationCreatorDisplayName" in data:
+    if data.get("collaborationCreatorDisplayName") is not None:
         out["collaboration_creator_display_name"] = data[
             "collaborationCreatorDisplayName"
         ]
@@ -183,11 +183,11 @@ def deserialize_json(data: dict) -> Membership:
         raise DeserializationError(
             "Membership.collaboration_creator_display_name required"
         )
-    if "collaborationName" in data:
+    if data.get("collaborationName") is not None:
         out["collaboration_name"] = data["collaborationName"]
     else:
         raise DeserializationError("Membership.collaboration_name required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> Membership:
         )
     else:
         raise DeserializationError("Membership.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -203,11 +203,11 @@ def deserialize_json(data: dict) -> Membership:
         )
     else:
         raise DeserializationError("Membership.update_time required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("Membership.status required")
-    if "memberAbilities" in data:
+    if data.get("memberAbilities") is not None:
         import capo_cleanrooms.types.member_abilities
 
         out["member_abilities"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> Membership:
         )
     else:
         raise DeserializationError("Membership.member_abilities required")
-    if "mlMemberAbilities" in data:
+    if data.get("mlMemberAbilities") is not None:
         import capo_cleanrooms.types.ml_member_abilities
 
         out["ml_member_abilities"] = (
@@ -225,7 +225,7 @@ def deserialize_json(data: dict) -> Membership:
                 data["mlMemberAbilities"]
             )
         )
-    if "queryLogStatus" in data:
+    if data.get("queryLogStatus") is not None:
         import capo_cleanrooms.types.membership_query_log_status
 
         out["query_log_status"] = (
@@ -235,7 +235,7 @@ def deserialize_json(data: dict) -> Membership:
         )
     else:
         raise DeserializationError("Membership.query_log_status required")
-    if "jobLogStatus" in data:
+    if data.get("jobLogStatus") is not None:
         import capo_cleanrooms.types.membership_job_log_status
 
         out["job_log_status"] = (
@@ -243,7 +243,7 @@ def deserialize_json(data: dict) -> Membership:
                 data["jobLogStatus"]
             )
         )
-    if "defaultResultConfiguration" in data:
+    if data.get("defaultResultConfiguration") is not None:
         import capo_cleanrooms.types.membership_protected_query_result_configuration
 
         out["default_result_configuration"] = (
@@ -251,7 +251,7 @@ def deserialize_json(data: dict) -> Membership:
                 data["defaultResultConfiguration"]
             )
         )
-    if "defaultJobResultConfiguration" in data:
+    if data.get("defaultJobResultConfiguration") is not None:
         import capo_cleanrooms.types.membership_protected_job_result_configuration
 
         out["default_job_result_configuration"] = (
@@ -259,7 +259,7 @@ def deserialize_json(data: dict) -> Membership:
                 data["defaultJobResultConfiguration"]
             )
         )
-    if "paymentConfiguration" in data:
+    if data.get("paymentConfiguration") is not None:
         import capo_cleanrooms.types.membership_payment_configuration
 
         out["payment_configuration"] = (
@@ -269,6 +269,6 @@ def deserialize_json(data: dict) -> Membership:
         )
     else:
         raise DeserializationError("Membership.payment_configuration required")
-    if "isMetricsEnabled" in data:
+    if data.get("isMetricsEnabled") is not None:
         out["is_metrics_enabled"] = data["isMetricsEnabled"]
     return out

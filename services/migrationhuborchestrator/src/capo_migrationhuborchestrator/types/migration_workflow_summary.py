@@ -80,19 +80,19 @@ def serialize_json(value: MigrationWorkflowSummary) -> dict:
 
 def deserialize_json(data: dict) -> MigrationWorkflowSummary:
     out: MigrationWorkflowSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
-    if "adsApplicationConfigurationName" in data:
+    if data.get("adsApplicationConfigurationName") is not None:
         out["ads_application_configuration_name"] = data[
             "adsApplicationConfigurationName"
         ]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> MigrationWorkflowSummary:
                 data["creationTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["end_time"] = (
@@ -108,10 +108,10 @@ def deserialize_json(data: dict) -> MigrationWorkflowSummary:
                 data["endTime"]
             )
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "completedSteps" in data:
+    if data.get("completedSteps") is not None:
         out["completed_steps"] = data["completedSteps"]
-    if "totalSteps" in data:
+    if data.get("totalSteps") is not None:
         out["total_steps"] = data["totalSteps"]
     return out

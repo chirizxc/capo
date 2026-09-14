@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ParameterNameValueList:
 
     out: ParameterNameValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_memorydb.types.parameter_name_value.deserialize_aws_json_1_1(item)
         )

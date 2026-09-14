@@ -59,7 +59,7 @@ def serialize_json(value: MessageInsightsDataSource) -> dict:
 
 def deserialize_json(data: dict) -> MessageInsightsDataSource:
     out: MessageInsightsDataSource = {}  # type: ignore[typeddict-item]
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_sesv2.types.timestamp
 
         out["start_date"] = capo_sesv2.types.timestamp.deserialize_json(
@@ -67,24 +67,24 @@ def deserialize_json(data: dict) -> MessageInsightsDataSource:
         )
     else:
         raise DeserializationError("MessageInsightsDataSource.start_date required")
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         import capo_sesv2.types.timestamp
 
         out["end_date"] = capo_sesv2.types.timestamp.deserialize_json(data["EndDate"])
     else:
         raise DeserializationError("MessageInsightsDataSource.end_date required")
-    if "Include" in data:
+    if data.get("Include") is not None:
         import capo_sesv2.types.message_insights_filters
 
         out["include"] = capo_sesv2.types.message_insights_filters.deserialize_json(
             data["Include"]
         )
-    if "Exclude" in data:
+    if data.get("Exclude") is not None:
         import capo_sesv2.types.message_insights_filters
 
         out["exclude"] = capo_sesv2.types.message_insights_filters.deserialize_json(
             data["Exclude"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

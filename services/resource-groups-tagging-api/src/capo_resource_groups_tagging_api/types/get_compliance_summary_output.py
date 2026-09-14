@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: GetComplianceSummaryOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetComplianceSummaryOutput:
     out: GetComplianceSummaryOutput = {}  # type: ignore[typeddict-item]
-    if "SummaryList" in data:
+    if data.get("SummaryList") is not None:
         import capo_resource_groups_tagging_api.types.summary_list
 
         out["summary_list"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetComplianceSummaryOutput:
                 data["SummaryList"]
             )
         )
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
     return out

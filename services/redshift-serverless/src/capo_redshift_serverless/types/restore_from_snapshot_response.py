@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: RestoreFromSnapshotResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RestoreFromSnapshotResponse:
     out: RestoreFromSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_redshift_serverless.types.namespace
 
         out["namespace"] = (

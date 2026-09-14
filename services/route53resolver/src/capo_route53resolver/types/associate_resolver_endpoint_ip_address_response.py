@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AssociateResolverEndpointIpAddressResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateResolverEndpointIpAddressResponse:
     out: AssociateResolverEndpointIpAddressResponse = {}  # type: ignore[typeddict-item]
-    if "ResolverEndpoint" in data:
+    if data.get("ResolverEndpoint") is not None:
         import capo_route53resolver.types.resolver_endpoint
 
         out["resolver_endpoint"] = (

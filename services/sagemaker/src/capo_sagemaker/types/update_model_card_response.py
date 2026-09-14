@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateModelCardResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateModelCardResponse:
     out: UpdateModelCardResponse = {}  # type: ignore[typeddict-item]
-    if "ModelCardArn" in data:
+    if data.get("ModelCardArn") is not None:
         out["model_card_arn"] = data["ModelCardArn"]
     return out

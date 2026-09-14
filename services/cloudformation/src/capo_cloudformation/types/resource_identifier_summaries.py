@@ -18,6 +18,9 @@ def serialize_query(
 ) -> None:
     import capo_cloudformation.types.resource_identifier_summary
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_cloudformation.types.resource_identifier_summary.serialize_query(
             item, pairs, f"{prefix}.member.{n}"
@@ -42,6 +45,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_cloudformation.types.resource_identifier_summary
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_cloudformation.types.resource_identifier_summary.serialize_query(
             item, pairs, f"{prefix}.{n}"

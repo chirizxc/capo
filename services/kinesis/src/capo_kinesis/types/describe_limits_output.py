@@ -37,21 +37,21 @@ def serialize_aws_json_1_1(value: DescribeLimitsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLimitsOutput:
     out: DescribeLimitsOutput = {}  # type: ignore[typeddict-item]
-    if "ShardLimit" in data:
+    if data.get("ShardLimit") is not None:
         out["shard_limit"] = data["ShardLimit"]
     else:
         raise DeserializationError("DescribeLimitsOutput.shard_limit required")
-    if "OpenShardCount" in data:
+    if data.get("OpenShardCount") is not None:
         out["open_shard_count"] = data["OpenShardCount"]
     else:
         raise DeserializationError("DescribeLimitsOutput.open_shard_count required")
-    if "OnDemandStreamCount" in data:
+    if data.get("OnDemandStreamCount") is not None:
         out["on_demand_stream_count"] = data["OnDemandStreamCount"]
     else:
         raise DeserializationError(
             "DescribeLimitsOutput.on_demand_stream_count required"
         )
-    if "OnDemandStreamCountLimit" in data:
+    if data.get("OnDemandStreamCountLimit") is not None:
         out["on_demand_stream_count_limit"] = data["OnDemandStreamCountLimit"]
     else:
         raise DeserializationError(

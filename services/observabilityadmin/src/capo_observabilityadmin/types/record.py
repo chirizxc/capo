@@ -31,9 +31,9 @@ def serialize_json(value: Record) -> dict:
 
 def deserialize_json(data: dict) -> Record:
     out: Record = {}  # type: ignore[typeddict-item]
-    if "Data" in data:
+    if data.get("Data") is not None:
         out["data"] = data["Data"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_observabilityadmin.types.record_format
 
         out["type"] = capo_observabilityadmin.types.record_format.deserialize_json(

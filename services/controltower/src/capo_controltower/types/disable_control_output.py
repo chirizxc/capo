@@ -26,7 +26,7 @@ def serialize_json(value: DisableControlOutput) -> dict:
 
 def deserialize_json(data: dict) -> DisableControlOutput:
     out: DisableControlOutput = {}  # type: ignore[typeddict-item]
-    if "operationIdentifier" in data:
+    if data.get("operationIdentifier") is not None:
         out["operation_identifier"] = data["operationIdentifier"]
     else:
         raise DeserializationError("DisableControlOutput.operation_identifier required")

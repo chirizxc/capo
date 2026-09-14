@@ -97,19 +97,19 @@ def serialize_json(value: SigningProfile) -> dict:
 
 def deserialize_json(data: dict) -> SigningProfile:
     out: SigningProfile = {}  # type: ignore[typeddict-item]
-    if "profileName" in data:
+    if data.get("profileName") is not None:
         out["profile_name"] = data["profileName"]
-    if "profileVersion" in data:
+    if data.get("profileVersion") is not None:
         out["profile_version"] = data["profileVersion"]
-    if "profileVersionArn" in data:
+    if data.get("profileVersionArn") is not None:
         out["profile_version_arn"] = data["profileVersionArn"]
-    if "signingMaterial" in data:
+    if data.get("signingMaterial") is not None:
         import capo_signer.types.signing_material
 
         out["signing_material"] = capo_signer.types.signing_material.deserialize_json(
             data["signingMaterial"]
         )
-    if "signatureValidityPeriod" in data:
+    if data.get("signatureValidityPeriod") is not None:
         import capo_signer.types.signature_validity_period
 
         out["signature_validity_period"] = (
@@ -117,11 +117,11 @@ def deserialize_json(data: dict) -> SigningProfile:
                 data["signatureValidityPeriod"]
             )
         )
-    if "platformId" in data:
+    if data.get("platformId") is not None:
         out["platform_id"] = data["platformId"]
-    if "platformDisplayName" in data:
+    if data.get("platformDisplayName") is not None:
         out["platform_display_name"] = data["platformDisplayName"]
-    if "signingParameters" in data:
+    if data.get("signingParameters") is not None:
         import capo_signer.types.signing_parameters
 
         out["signing_parameters"] = (
@@ -129,15 +129,15 @@ def deserialize_json(data: dict) -> SigningProfile:
                 data["signingParameters"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_signer.types.signing_profile_status
 
         out["status"] = capo_signer.types.signing_profile_status.deserialize_json(
             data["status"]
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_signer.types.tag_map
 
         out["tags"] = capo_signer.types.tag_map.deserialize_json(data["tags"])

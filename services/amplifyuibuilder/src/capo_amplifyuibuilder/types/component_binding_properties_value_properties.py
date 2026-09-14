@@ -55,24 +55,24 @@ def serialize_json(value: ComponentBindingPropertiesValueProperties) -> dict:
 
 def deserialize_json(data: dict) -> ComponentBindingPropertiesValueProperties:
     out: ComponentBindingPropertiesValueProperties = {}  # type: ignore[typeddict-item]
-    if "model" in data:
+    if data.get("model") is not None:
         out["model"] = data["model"]
-    if "field" in data:
+    if data.get("field") is not None:
         out["field"] = data["field"]
-    if "predicates" in data:
+    if data.get("predicates") is not None:
         import capo_amplifyuibuilder.types.predicate_list
 
         out["predicates"] = capo_amplifyuibuilder.types.predicate_list.deserialize_json(
             data["predicates"]
         )
-    if "userAttribute" in data:
+    if data.get("userAttribute") is not None:
         out["user_attribute"] = data["userAttribute"]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
-    if "slotName" in data:
+    if data.get("slotName") is not None:
         out["slot_name"] = data["slotName"]
     return out

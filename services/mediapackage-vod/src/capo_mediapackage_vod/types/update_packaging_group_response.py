@@ -70,11 +70,11 @@ def serialize_json(value: UpdatePackagingGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackagingGroupResponse:
     out: UpdatePackagingGroupResponse = {}  # type: ignore[typeddict-item]
-    if "approximateAssetCount" in data:
+    if data.get("approximateAssetCount") is not None:
         out["approximate_asset_count"] = data["approximateAssetCount"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "authorization" in data:
+    if data.get("authorization") is not None:
         import capo_mediapackage_vod.types.authorization
 
         out["authorization"] = (
@@ -82,11 +82,11 @@ def deserialize_json(data: dict) -> UpdatePackagingGroupResponse:
                 data["authorization"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "egressAccessLogs" in data:
+    if data.get("egressAccessLogs") is not None:
         import capo_mediapackage_vod.types.egress_access_logs
 
         out["egress_access_logs"] = (
@@ -94,9 +94,9 @@ def deserialize_json(data: dict) -> UpdatePackagingGroupResponse:
                 data["egressAccessLogs"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediapackage_vod.types.tags
 
         out["tags"] = capo_mediapackage_vod.types.tags.deserialize_json(data["tags"])

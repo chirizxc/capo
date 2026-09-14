@@ -71,36 +71,36 @@ def serialize_json(value: BrokerSummary) -> dict:
 
 def deserialize_json(data: dict) -> BrokerSummary:
     out: BrokerSummary = {}  # type: ignore[typeddict-item]
-    if "brokerArn" in data:
+    if data.get("brokerArn") is not None:
         out["broker_arn"] = data["brokerArn"]
-    if "brokerId" in data:
+    if data.get("brokerId") is not None:
         out["broker_id"] = data["brokerId"]
-    if "brokerName" in data:
+    if data.get("brokerName") is not None:
         out["broker_name"] = data["brokerName"]
-    if "brokerState" in data:
+    if data.get("brokerState") is not None:
         import capo_mq.types.broker_state
 
         out["broker_state"] = capo_mq.types.broker_state.deserialize_json(
             data["brokerState"]
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_mq.types.__timestamp_iso8601
 
         out["created"] = capo_mq.types.__timestamp_iso8601.deserialize_json(
             data["created"]
         )
-    if "deploymentMode" in data:
+    if data.get("deploymentMode") is not None:
         import capo_mq.types.deployment_mode
 
         out["deployment_mode"] = capo_mq.types.deployment_mode.deserialize_json(
             data["deploymentMode"]
         )
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         import capo_mq.types.engine_type
 
         out["engine_type"] = capo_mq.types.engine_type.deserialize_json(
             data["engineType"]
         )
-    if "hostInstanceType" in data:
+    if data.get("hostInstanceType") is not None:
         out["host_instance_type"] = data["hostInstanceType"]
     return out

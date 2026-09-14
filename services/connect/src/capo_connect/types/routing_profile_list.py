@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RoutingProfileList:
 
     out: RoutingProfileList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.routing_profile.deserialize_json(item))
     return out

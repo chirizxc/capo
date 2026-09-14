@@ -41,13 +41,13 @@ def serialize_json(value: ListUsersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListUsersResponse:
     out: ListUsersResponse = {}  # type: ignore[typeddict-item]
-    if "brokerId" in data:
+    if data.get("brokerId") is not None:
         out["broker_id"] = data["brokerId"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "users" in data:
+    if data.get("users") is not None:
         import capo_mq.types.__list_of_user_summary
 
         out["users"] = capo_mq.types.__list_of_user_summary.deserialize_json(

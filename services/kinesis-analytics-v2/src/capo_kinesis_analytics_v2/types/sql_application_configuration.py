@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: SqlApplicationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SqlApplicationConfiguration:
     out: SqlApplicationConfiguration = {}  # type: ignore[typeddict-item]
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_kinesis_analytics_v2.types.inputs
 
         out["inputs"] = capo_kinesis_analytics_v2.types.inputs.deserialize_aws_json_1_1(
             data["Inputs"]
         )
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_kinesis_analytics_v2.types.outputs
 
         out["outputs"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> SqlApplicationConfiguration:
                 data["Outputs"]
             )
         )
-    if "ReferenceDataSources" in data:
+    if data.get("ReferenceDataSources") is not None:
         import capo_kinesis_analytics_v2.types.reference_data_sources
 
         out["reference_data_sources"] = (

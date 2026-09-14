@@ -28,8 +28,8 @@ def serialize_json(value: SuccessfulProfileOutboundRequest) -> dict:
 
 def deserialize_json(data: dict) -> SuccessfulProfileOutboundRequest:
     out: SuccessfulProfileOutboundRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

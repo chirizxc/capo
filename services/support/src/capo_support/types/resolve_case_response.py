@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ResolveCaseResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolveCaseResponse:
     out: ResolveCaseResponse = {}  # type: ignore[typeddict-item]
-    if "initialCaseStatus" in data:
+    if data.get("initialCaseStatus") is not None:
         out["initial_case_status"] = data["initialCaseStatus"]
-    if "finalCaseStatus" in data:
+    if data.get("finalCaseStatus") is not None:
         out["final_case_status"] = data["finalCaseStatus"]
     return out

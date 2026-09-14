@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: PullRequestDoesNotExistException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PullRequestDoesNotExistException_:
     out: PullRequestDoesNotExistException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class PullRequestDoesNotExistException(ServiceError):
 
     code: str | None = "PullRequestDoesNotExistException"
 
-    def __init__(self, data: PullRequestDoesNotExistException_):
+    def __init__(
+        self, data: PullRequestDoesNotExistException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PullRequestDoesNotExistException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "PullRequestDoesNotExistException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "PullRequestDoesNotExistException":
+        return cls(deserialize_aws_json_1_1(data), message)

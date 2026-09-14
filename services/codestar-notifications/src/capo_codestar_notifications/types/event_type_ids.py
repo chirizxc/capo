@@ -16,4 +16,4 @@ def serialize_json(value: EventTypeIds) -> list:
 
 
 def deserialize_json(data: list) -> EventTypeIds:
-    return list(data)
+    return [item for item in data if item is not None]

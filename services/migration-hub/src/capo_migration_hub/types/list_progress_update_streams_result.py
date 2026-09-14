@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListProgressUpdateStreamsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListProgressUpdateStreamsResult:
     out: ListProgressUpdateStreamsResult = {}  # type: ignore[typeddict-item]
-    if "ProgressUpdateStreamSummaryList" in data:
+    if data.get("ProgressUpdateStreamSummaryList") is not None:
         import capo_migration_hub.types.progress_update_stream_summary_list
 
         out["progress_update_stream_summary_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListProgressUpdateStreamsResult:
                 data["ProgressUpdateStreamSummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

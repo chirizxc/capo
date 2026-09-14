@@ -164,33 +164,33 @@ def serialize_aws_json_1_1(value: Fleet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Fleet:
     out: Fleet = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_codebuild.types.timestamp
 
         out["created"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "lastModified" in data:
+    if data.get("lastModified") is not None:
         import capo_codebuild.types.timestamp
 
         out["last_modified"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["lastModified"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codebuild.types.fleet_status
 
         out["status"] = capo_codebuild.types.fleet_status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "baseCapacity" in data:
+    if data.get("baseCapacity") is not None:
         out["base_capacity"] = data["baseCapacity"]
-    if "environmentType" in data:
+    if data.get("environmentType") is not None:
         import capo_codebuild.types.environment_type
 
         out["environment_type"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["environmentType"]
             )
         )
-    if "computeType" in data:
+    if data.get("computeType") is not None:
         import capo_codebuild.types.compute_type
 
         out["compute_type"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["computeType"]
             )
         )
-    if "computeConfiguration" in data:
+    if data.get("computeConfiguration") is not None:
         import capo_codebuild.types.compute_configuration
 
         out["compute_configuration"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["computeConfiguration"]
             )
         )
-    if "scalingConfiguration" in data:
+    if data.get("scalingConfiguration") is not None:
         import capo_codebuild.types.scaling_configuration_output
 
         out["scaling_configuration"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["scalingConfiguration"]
             )
         )
-    if "overflowBehavior" in data:
+    if data.get("overflowBehavior") is not None:
         import capo_codebuild.types.fleet_overflow_behavior
 
         out["overflow_behavior"] = (
@@ -230,13 +230,13 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["overflowBehavior"]
             )
         )
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_codebuild.types.vpc_config
 
         out["vpc_config"] = capo_codebuild.types.vpc_config.deserialize_aws_json_1_1(
             data["vpcConfig"]
         )
-    if "proxyConfiguration" in data:
+    if data.get("proxyConfiguration") is not None:
         import capo_codebuild.types.proxy_configuration
 
         out["proxy_configuration"] = (
@@ -244,11 +244,11 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["proxyConfiguration"]
             )
         )
-    if "imageId" in data:
+    if data.get("imageId") is not None:
         out["image_id"] = data["imageId"]
-    if "fleetServiceRole" in data:
+    if data.get("fleetServiceRole") is not None:
         out["fleet_service_role"] = data["fleetServiceRole"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codebuild.types.tag_list
 
         out["tags"] = capo_codebuild.types.tag_list.deserialize_aws_json_1_1(

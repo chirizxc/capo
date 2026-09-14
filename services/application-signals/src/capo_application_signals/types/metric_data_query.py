@@ -60,11 +60,11 @@ def serialize_json(value: MetricDataQuery) -> dict:
 
 def deserialize_json(data: dict) -> MetricDataQuery:
     out: MetricDataQuery = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("MetricDataQuery.id required")
-    if "MetricStat" in data:
+    if data.get("MetricStat") is not None:
         import capo_application_signals.types.metric_stat
 
         out["metric_stat"] = (
@@ -72,14 +72,14 @@ def deserialize_json(data: dict) -> MetricDataQuery:
                 data["MetricStat"]
             )
         )
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "ReturnData" in data:
+    if data.get("ReturnData") is not None:
         out["return_data"] = data["ReturnData"]
-    if "Period" in data:
+    if data.get("Period") is not None:
         out["period"] = data["Period"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

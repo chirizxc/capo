@@ -27,8 +27,8 @@ def serialize_json(value: SecurityContext) -> dict:
 
 def deserialize_json(data: dict) -> SecurityContext:
     out: SecurityContext = {}  # type: ignore[typeddict-item]
-    if "privileged" in data:
+    if data.get("privileged") is not None:
         out["privileged"] = data["privileged"]
-    if "allowPrivilegeEscalation" in data:
+    if data.get("allowPrivilegeEscalation") is not None:
         out["allow_privilege_escalation"] = data["allowPrivilegeEscalation"]
     return out

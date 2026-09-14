@@ -43,7 +43,7 @@ def serialize_json(value: DataIntegrationFlowDedupeStrategy) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowDedupeStrategy:
     out: DataIntegrationFlowDedupeStrategy = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_supplychain.types.data_integration_flow_dedupe_strategy_type
 
         out["type"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> DataIntegrationFlowDedupeStrategy:
         )
     else:
         raise DeserializationError("DataIntegrationFlowDedupeStrategy.type required")
-    if "fieldPriority" in data:
+    if data.get("fieldPriority") is not None:
         import capo_supplychain.types.data_integration_flow_field_priority_dedupe_strategy_configuration
 
         out["field_priority"] = (

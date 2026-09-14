@@ -46,13 +46,13 @@ def serialize_json(value: KxDataviewConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KxDataviewConfiguration:
     out: KxDataviewConfiguration = {}  # type: ignore[typeddict-item]
-    if "dataviewName" in data:
+    if data.get("dataviewName") is not None:
         out["dataview_name"] = data["dataviewName"]
-    if "dataviewVersionId" in data:
+    if data.get("dataviewVersionId") is not None:
         out["dataview_version_id"] = data["dataviewVersionId"]
-    if "changesetId" in data:
+    if data.get("changesetId") is not None:
         out["changeset_id"] = data["changesetId"]
-    if "segmentConfigurations" in data:
+    if data.get("segmentConfigurations") is not None:
         import capo_finspace.types.kx_dataview_segment_configuration_list
 
         out["segment_configurations"] = (

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ConnectionInvitationSummaryList:
 
     out: ConnectionInvitationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_account.types.connection_invitation_summary.deserialize_aws_json_1_0(
                 item

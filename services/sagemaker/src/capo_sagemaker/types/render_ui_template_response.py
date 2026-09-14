@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: RenderUiTemplateResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenderUiTemplateResponse:
     out: RenderUiTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "RenderedContent" in data:
+    if data.get("RenderedContent") is not None:
         out["rendered_content"] = data["RenderedContent"]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_sagemaker.types.rendering_error_list
 
         out["errors"] = (

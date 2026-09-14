@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: Principal) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Principal:
     out: Principal = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Principal.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kendra.types.principal_type
 
         out["type"] = capo_kendra.types.principal_type.deserialize_aws_json_1_1(
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> Principal:
         )
     else:
         raise DeserializationError("Principal.type required")
-    if "Access" in data:
+    if data.get("Access") is not None:
         import capo_kendra.types.read_access_type
 
         out["access"] = capo_kendra.types.read_access_type.deserialize_aws_json_1_1(
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_1(data: dict) -> Principal:
         )
     else:
         raise DeserializationError("Principal.access required")
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     return out

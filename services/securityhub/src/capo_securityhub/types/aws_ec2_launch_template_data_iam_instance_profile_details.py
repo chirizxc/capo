@@ -27,8 +27,8 @@ def serialize_json(value: AwsEc2LaunchTemplateDataIamInstanceProfileDetails) -> 
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataIamInstanceProfileDetails:
     out: AwsEc2LaunchTemplateDataIamInstanceProfileDetails = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

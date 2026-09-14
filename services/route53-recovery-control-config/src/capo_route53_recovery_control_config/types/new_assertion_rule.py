@@ -65,7 +65,7 @@ def serialize_json(value: NewAssertionRule) -> dict:
 
 def deserialize_json(data: dict) -> NewAssertionRule:
     out: NewAssertionRule = {}  # type: ignore[typeddict-item]
-    if "AssertedControls" in data:
+    if data.get("AssertedControls") is not None:
         import capo_route53_recovery_control_config.types.__list_of__string_min1_max256_pattern_a_za_z09
 
         out["asserted_controls"] = (
@@ -73,11 +73,11 @@ def deserialize_json(data: dict) -> NewAssertionRule:
                 data["AssertedControls"]
             )
         )
-    if "ControlPanelArn" in data:
+    if data.get("ControlPanelArn") is not None:
         out["control_panel_arn"] = data["ControlPanelArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RuleConfig" in data:
+    if data.get("RuleConfig") is not None:
         import capo_route53_recovery_control_config.types.rule_config
 
         out["rule_config"] = (
@@ -85,6 +85,6 @@ def deserialize_json(data: dict) -> NewAssertionRule:
                 data["RuleConfig"]
             )
         )
-    if "WaitPeriodMs" in data:
+    if data.get("WaitPeriodMs") is not None:
         out["wait_period_ms"] = data["WaitPeriodMs"]
     return out

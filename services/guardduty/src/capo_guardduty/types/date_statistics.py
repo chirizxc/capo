@@ -35,7 +35,15 @@ def serialize_json(value: DateStatistics) -> dict:
             value["last_generated_at"]
         )
     if "severity" in value:
-        out["severity"] = value["severity"]
+        out["severity"] = (
+            "NaN"
+            if value["severity"] != value["severity"]
+            else "Infinity"
+            if value["severity"] == float("inf")
+            else "-Infinity"
+            if value["severity"] == float("-inf")
+            else value["severity"]
+        )
     if "total_findings" in value:
         out["totalFindings"] = value["total_findings"]
     return out
@@ -43,18 +51,18 @@ def serialize_json(value: DateStatistics) -> dict:
 
 def deserialize_json(data: dict) -> DateStatistics:
     out: DateStatistics = {}  # type: ignore[typeddict-item]
-    if "date" in data:
+    if data.get("date") is not None:
         import capo_guardduty.types.timestamp
 
         out["date"] = capo_guardduty.types.timestamp.deserialize_json(data["date"])
-    if "lastGeneratedAt" in data:
+    if data.get("lastGeneratedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["last_generated_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["lastGeneratedAt"]
         )
-    if "severity" in data:
-        out["severity"] = data["severity"]
-    if "totalFindings" in data:
+    if data.get("severity") is not None:
+        out["severity"] = float(data["severity"])
+    if data.get("totalFindings") is not None:
         out["total_findings"] = data["totalFindings"]
     return out

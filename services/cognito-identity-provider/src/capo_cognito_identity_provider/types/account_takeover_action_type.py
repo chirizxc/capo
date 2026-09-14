@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: AccountTakeoverActionType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountTakeoverActionType:
     out: AccountTakeoverActionType = {}  # type: ignore[typeddict-item]
-    if "Notify" in data:
+    if data.get("Notify") is not None:
         out["notify"] = data["Notify"]
     else:
         out["notify"] = False
-    if "EventAction" in data:
+    if data.get("EventAction") is not None:
         import capo_cognito_identity_provider.types.account_takeover_event_action_type
 
         out["event_action"] = (

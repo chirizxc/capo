@@ -31,7 +31,7 @@ def serialize_json(value: CreateTypedLinkFacetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTypedLinkFacetRequest:
     out: CreateTypedLinkFacetRequest = {}  # type: ignore[typeddict-item]
-    if "Facet" in data:
+    if data.get("Facet") is not None:
         import capo_clouddirectory.types.typed_link_facet
 
         out["facet"] = capo_clouddirectory.types.typed_link_facet.deserialize_json(

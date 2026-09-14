@@ -27,8 +27,8 @@ def serialize_json(value: EmailSettings) -> dict:
 
 def deserialize_json(data: dict) -> EmailSettings:
     out: EmailSettings = {}  # type: ignore[typeddict-item]
-    if "emailMessage" in data:
+    if data.get("emailMessage") is not None:
         out["email_message"] = data["emailMessage"]
-    if "emailSubject" in data:
+    if data.get("emailSubject") is not None:
         out["email_subject"] = data["emailSubject"]
     return out

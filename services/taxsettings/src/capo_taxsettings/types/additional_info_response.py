@@ -343,7 +343,7 @@ def serialize_json(value: AdditionalInfoResponse) -> dict:
 
 def deserialize_json(data: dict) -> AdditionalInfoResponse:
     out: AdditionalInfoResponse = {}  # type: ignore[typeddict-item]
-    if "malaysiaAdditionalInfo" in data:
+    if data.get("malaysiaAdditionalInfo") is not None:
         import capo_taxsettings.types.malaysia_additional_info
 
         out["malaysia_additional_info"] = (
@@ -351,7 +351,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["malaysiaAdditionalInfo"]
             )
         )
-    if "israelAdditionalInfo" in data:
+    if data.get("israelAdditionalInfo") is not None:
         import capo_taxsettings.types.israel_additional_info
 
         out["israel_additional_info"] = (
@@ -359,7 +359,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["israelAdditionalInfo"]
             )
         )
-    if "estoniaAdditionalInfo" in data:
+    if data.get("estoniaAdditionalInfo") is not None:
         import capo_taxsettings.types.estonia_additional_info
 
         out["estonia_additional_info"] = (
@@ -367,7 +367,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["estoniaAdditionalInfo"]
             )
         )
-    if "canadaAdditionalInfo" in data:
+    if data.get("canadaAdditionalInfo") is not None:
         import capo_taxsettings.types.canada_additional_info
 
         out["canada_additional_info"] = (
@@ -375,7 +375,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["canadaAdditionalInfo"]
             )
         )
-    if "brazilAdditionalInfo" in data:
+    if data.get("brazilAdditionalInfo") is not None:
         import capo_taxsettings.types.brazil_additional_info
 
         out["brazil_additional_info"] = (
@@ -383,7 +383,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["brazilAdditionalInfo"]
             )
         )
-    if "spainAdditionalInfo" in data:
+    if data.get("spainAdditionalInfo") is not None:
         import capo_taxsettings.types.spain_additional_info
 
         out["spain_additional_info"] = (
@@ -391,7 +391,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["spainAdditionalInfo"]
             )
         )
-    if "kenyaAdditionalInfo" in data:
+    if data.get("kenyaAdditionalInfo") is not None:
         import capo_taxsettings.types.kenya_additional_info
 
         out["kenya_additional_info"] = (
@@ -399,7 +399,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["kenyaAdditionalInfo"]
             )
         )
-    if "southKoreaAdditionalInfo" in data:
+    if data.get("southKoreaAdditionalInfo") is not None:
         import capo_taxsettings.types.south_korea_additional_info
 
         out["south_korea_additional_info"] = (
@@ -407,7 +407,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["southKoreaAdditionalInfo"]
             )
         )
-    if "turkeyAdditionalInfo" in data:
+    if data.get("turkeyAdditionalInfo") is not None:
         import capo_taxsettings.types.turkey_additional_info
 
         out["turkey_additional_info"] = (
@@ -415,7 +415,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["turkeyAdditionalInfo"]
             )
         )
-    if "georgiaAdditionalInfo" in data:
+    if data.get("georgiaAdditionalInfo") is not None:
         import capo_taxsettings.types.georgia_additional_info
 
         out["georgia_additional_info"] = (
@@ -423,7 +423,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["georgiaAdditionalInfo"]
             )
         )
-    if "italyAdditionalInfo" in data:
+    if data.get("italyAdditionalInfo") is not None:
         import capo_taxsettings.types.italy_additional_info
 
         out["italy_additional_info"] = (
@@ -431,7 +431,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["italyAdditionalInfo"]
             )
         )
-    if "romaniaAdditionalInfo" in data:
+    if data.get("romaniaAdditionalInfo") is not None:
         import capo_taxsettings.types.romania_additional_info
 
         out["romania_additional_info"] = (
@@ -439,7 +439,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["romaniaAdditionalInfo"]
             )
         )
-    if "ukraineAdditionalInfo" in data:
+    if data.get("ukraineAdditionalInfo") is not None:
         import capo_taxsettings.types.ukraine_additional_info
 
         out["ukraine_additional_info"] = (
@@ -447,7 +447,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["ukraineAdditionalInfo"]
             )
         )
-    if "polandAdditionalInfo" in data:
+    if data.get("polandAdditionalInfo") is not None:
         import capo_taxsettings.types.poland_additional_info
 
         out["poland_additional_info"] = (
@@ -455,7 +455,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["polandAdditionalInfo"]
             )
         )
-    if "saudiArabiaAdditionalInfo" in data:
+    if data.get("saudiArabiaAdditionalInfo") is not None:
         import capo_taxsettings.types.saudi_arabia_additional_info
 
         out["saudi_arabia_additional_info"] = (
@@ -463,7 +463,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["saudiArabiaAdditionalInfo"]
             )
         )
-    if "indiaAdditionalInfo" in data:
+    if data.get("indiaAdditionalInfo") is not None:
         import capo_taxsettings.types.india_additional_info
 
         out["india_additional_info"] = (
@@ -471,7 +471,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["indiaAdditionalInfo"]
             )
         )
-    if "indonesiaAdditionalInfo" in data:
+    if data.get("indonesiaAdditionalInfo") is not None:
         import capo_taxsettings.types.indonesia_additional_info
 
         out["indonesia_additional_info"] = (
@@ -479,7 +479,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["indonesiaAdditionalInfo"]
             )
         )
-    if "vietnamAdditionalInfo" in data:
+    if data.get("vietnamAdditionalInfo") is not None:
         import capo_taxsettings.types.vietnam_additional_info
 
         out["vietnam_additional_info"] = (
@@ -487,7 +487,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["vietnamAdditionalInfo"]
             )
         )
-    if "egyptAdditionalInfo" in data:
+    if data.get("egyptAdditionalInfo") is not None:
         import capo_taxsettings.types.egypt_additional_info
 
         out["egypt_additional_info"] = (
@@ -495,7 +495,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["egyptAdditionalInfo"]
             )
         )
-    if "greeceAdditionalInfo" in data:
+    if data.get("greeceAdditionalInfo") is not None:
         import capo_taxsettings.types.greece_additional_info
 
         out["greece_additional_info"] = (
@@ -503,7 +503,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["greeceAdditionalInfo"]
             )
         )
-    if "uzbekistanAdditionalInfo" in data:
+    if data.get("uzbekistanAdditionalInfo") is not None:
         import capo_taxsettings.types.uzbekistan_additional_info
 
         out["uzbekistan_additional_info"] = (
@@ -511,7 +511,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["uzbekistanAdditionalInfo"]
             )
         )
-    if "philippinesAdditionalInfo" in data:
+    if data.get("philippinesAdditionalInfo") is not None:
         import capo_taxsettings.types.philippines_additional_info
 
         out["philippines_additional_info"] = (
@@ -519,7 +519,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["philippinesAdditionalInfo"]
             )
         )
-    if "belgiumAdditionalInfo" in data:
+    if data.get("belgiumAdditionalInfo") is not None:
         import capo_taxsettings.types.belgium_additional_info
 
         out["belgium_additional_info"] = (
@@ -527,7 +527,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["belgiumAdditionalInfo"]
             )
         )
-    if "chileAdditionalInfo" in data:
+    if data.get("chileAdditionalInfo") is not None:
         import capo_taxsettings.types.chile_additional_info
 
         out["chile_additional_info"] = (
@@ -535,7 +535,7 @@ def deserialize_json(data: dict) -> AdditionalInfoResponse:
                 data["chileAdditionalInfo"]
             )
         )
-    if "franceAdditionalInfo" in data:
+    if data.get("franceAdditionalInfo") is not None:
         import capo_taxsettings.types.france_additional_info
 
         out["france_additional_info"] = (

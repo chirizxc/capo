@@ -33,7 +33,7 @@ def serialize_json(value: PutContactInformationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutContactInformationRequest:
     out: PutContactInformationRequest = {}  # type: ignore[typeddict-item]
-    if "ContactInformation" in data:
+    if data.get("ContactInformation") is not None:
         import capo_account.types.contact_information
 
         out["contact_information"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> PutContactInformationRequest:
         raise DeserializationError(
             "PutContactInformationRequest.contact_information required"
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

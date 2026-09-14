@@ -103,15 +103,15 @@ def serialize_aws_json_1_1(value: CreateOpenZFSVolumeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateOpenZFSVolumeConfiguration:
     out: CreateOpenZFSVolumeConfiguration = {}  # type: ignore[typeddict-item]
-    if "ParentVolumeId" in data:
+    if data.get("ParentVolumeId") is not None:
         out["parent_volume_id"] = data["ParentVolumeId"]
-    if "StorageCapacityReservationGiB" in data:
+    if data.get("StorageCapacityReservationGiB") is not None:
         out["storage_capacity_reservation_gi_b"] = data["StorageCapacityReservationGiB"]
-    if "StorageCapacityQuotaGiB" in data:
+    if data.get("StorageCapacityQuotaGiB") is not None:
         out["storage_capacity_quota_gi_b"] = data["StorageCapacityQuotaGiB"]
-    if "RecordSizeKiB" in data:
+    if data.get("RecordSizeKiB") is not None:
         out["record_size_ki_b"] = data["RecordSizeKiB"]
-    if "DataCompressionType" in data:
+    if data.get("DataCompressionType") is not None:
         import capo_fsx.types.open_zfs_data_compression_type
 
         out["data_compression_type"] = (
@@ -119,9 +119,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateOpenZFSVolumeConfiguration:
                 data["DataCompressionType"]
             )
         )
-    if "CopyTagsToSnapshots" in data:
+    if data.get("CopyTagsToSnapshots") is not None:
         out["copy_tags_to_snapshots"] = data["CopyTagsToSnapshots"]
-    if "OriginSnapshot" in data:
+    if data.get("OriginSnapshot") is not None:
         import capo_fsx.types.create_open_zfs_origin_snapshot_configuration
 
         out["origin_snapshot"] = (
@@ -129,9 +129,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateOpenZFSVolumeConfiguration:
                 data["OriginSnapshot"]
             )
         )
-    if "ReadOnly" in data:
+    if data.get("ReadOnly") is not None:
         out["read_only"] = data["ReadOnly"]
-    if "NfsExports" in data:
+    if data.get("NfsExports") is not None:
         import capo_fsx.types.open_zfs_nfs_exports
 
         out["nfs_exports"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateOpenZFSVolumeConfiguration:
                 data["NfsExports"]
             )
         )
-    if "UserAndGroupQuotas" in data:
+    if data.get("UserAndGroupQuotas") is not None:
         import capo_fsx.types.open_zfs_user_and_group_quotas
 
         out["user_and_group_quotas"] = (

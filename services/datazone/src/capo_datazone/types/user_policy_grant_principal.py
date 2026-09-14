@@ -44,9 +44,9 @@ def serialize_json(value: UserPolicyGrantPrincipal) -> dict:
 
 
 def deserialize_json(data: dict) -> UserPolicyGrantPrincipal:
-    if "userIdentifier" in data:
+    if data.get("userIdentifier") is not None:
         return {"userIdentifier": data["userIdentifier"]}
-    elif "allUsersGrantFilter" in data:
+    elif data.get("allUsersGrantFilter") is not None:
         import capo_datazone.types.all_users_grant_filter
 
         return {

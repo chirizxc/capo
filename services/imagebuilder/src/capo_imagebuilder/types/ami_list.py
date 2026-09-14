@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AmiList:
 
     out: AmiList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_imagebuilder.types.ami.deserialize_json(item))
     return out

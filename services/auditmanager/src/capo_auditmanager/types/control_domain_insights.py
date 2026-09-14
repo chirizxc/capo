@@ -65,17 +65,17 @@ def serialize_json(value: ControlDomainInsights) -> dict:
 
 def deserialize_json(data: dict) -> ControlDomainInsights:
     out: ControlDomainInsights = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "controlsCountByNoncompliantEvidence" in data:
+    if data.get("controlsCountByNoncompliantEvidence") is not None:
         out["controls_count_by_noncompliant_evidence"] = data[
             "controlsCountByNoncompliantEvidence"
         ]
-    if "totalControlsCount" in data:
+    if data.get("totalControlsCount") is not None:
         out["total_controls_count"] = data["totalControlsCount"]
-    if "evidenceInsights" in data:
+    if data.get("evidenceInsights") is not None:
         import capo_auditmanager.types.evidence_insights
 
         out["evidence_insights"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> ControlDomainInsights:
                 data["evidenceInsights"]
             )
         )
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_auditmanager.types.timestamp
 
         out["last_updated"] = capo_auditmanager.types.timestamp.deserialize_json(

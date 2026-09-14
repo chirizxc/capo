@@ -30,7 +30,7 @@ def serialize_json(value: UpdateEmailIdentityPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEmailIdentityPolicyRequest:
     out: UpdateEmailIdentityPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     else:
         raise DeserializationError("UpdateEmailIdentityPolicyRequest.policy required")

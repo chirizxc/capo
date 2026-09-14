@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ShadowModelVariantConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShadowModelVariantConfig:
     out: ShadowModelVariantConfig = {}  # type: ignore[typeddict-item]
-    if "ShadowModelVariantName" in data:
+    if data.get("ShadowModelVariantName") is not None:
         out["shadow_model_variant_name"] = data["ShadowModelVariantName"]
-    if "SamplingPercentage" in data:
+    if data.get("SamplingPercentage") is not None:
         out["sampling_percentage"] = data["SamplingPercentage"]
     return out

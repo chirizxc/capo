@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeConnectionAliasesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConnectionAliasesResult:
     out: DescribeConnectionAliasesResult = {}  # type: ignore[typeddict-item]
-    if "ConnectionAliases" in data:
+    if data.get("ConnectionAliases") is not None:
         import capo_workspaces.types.connection_alias_list
 
         out["connection_aliases"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeConnectionAliasesResult:
                 data["ConnectionAliases"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

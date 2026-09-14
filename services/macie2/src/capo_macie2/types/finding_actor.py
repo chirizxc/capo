@@ -47,13 +47,13 @@ def serialize_json(value: FindingActor) -> dict:
 
 def deserialize_json(data: dict) -> FindingActor:
     out: FindingActor = {}  # type: ignore[typeddict-item]
-    if "domainDetails" in data:
+    if data.get("domainDetails") is not None:
         import capo_macie2.types.domain_details
 
         out["domain_details"] = capo_macie2.types.domain_details.deserialize_json(
             data["domainDetails"]
         )
-    if "ipAddressDetails" in data:
+    if data.get("ipAddressDetails") is not None:
         import capo_macie2.types.ip_address_details
 
         out["ip_address_details"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> FindingActor:
                 data["ipAddressDetails"]
             )
         )
-    if "userIdentity" in data:
+    if data.get("userIdentity") is not None:
         import capo_macie2.types.user_identity
 
         out["user_identity"] = capo_macie2.types.user_identity.deserialize_json(

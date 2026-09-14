@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ColumnStatisticsError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsError:
     out: ColumnStatisticsError = {}  # type: ignore[typeddict-item]
-    if "ColumnStatistics" in data:
+    if data.get("ColumnStatistics") is not None:
         import capo_glue.types.column_statistics
 
         out["column_statistics"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsError:
                 data["ColumnStatistics"]
             )
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_glue.types.error_detail
 
         out["error"] = capo_glue.types.error_detail.deserialize_aws_json_1_1(

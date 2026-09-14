@@ -27,8 +27,8 @@ def serialize_json(value: AwsRedshiftClusterElasticIpStatus) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterElasticIpStatus:
     out: AwsRedshiftClusterElasticIpStatus = {}  # type: ignore[typeddict-item]
-    if "ElasticIp" in data:
+    if data.get("ElasticIp") is not None:
         out["elastic_ip"] = data["ElasticIp"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

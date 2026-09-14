@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: TerminateResponsibilityTransferRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> TerminateResponsibilityTransferRequest:
     out: TerminateResponsibilityTransferRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("TerminateResponsibilityTransferRequest.id required")
-    if "EndTimestamp" in data:
+    if data.get("EndTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["end_timestamp"] = (

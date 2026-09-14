@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_billingconductor._auth._signers
@@ -129,17 +130,19 @@ class CustomLineItem:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.create_custom_line_item_input.CreateCustomLineItemInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
-        input_["description"] = description
-        input_["billing_group_arn"] = billing_group_arn
+        input_: capo_billingconductor.types.create_custom_line_item_input.CreateCustomLineItemInput = {
+            "name": name,
+            "description": description,
+            "billing_group_arn": billing_group_arn,
+            "charge_details": charge_details,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if billing_period_range is not None:
             input_["billing_period_range"] = billing_period_range
         if tags is not None:
             input_["tags"] = tags
-        input_["charge_details"] = charge_details
         if account_id is not None:
             input_["account_id"] = account_id
         if computation_rule is not None:
@@ -152,6 +155,7 @@ class CustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -205,8 +209,9 @@ class CustomLineItem:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.update_custom_line_item_input.UpdateCustomLineItemInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.update_custom_line_item_input.UpdateCustomLineItemInput = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -221,6 +226,7 @@ class CustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -261,8 +267,9 @@ class CustomLineItem:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.delete_custom_line_item_input.DeleteCustomLineItemInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.delete_custom_line_item_input.DeleteCustomLineItemInput = {
+            "arn": arn
+        }
         if billing_period_range is not None:
             input_["billing_period_range"] = billing_period_range
 
@@ -271,6 +278,7 @@ class CustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -320,7 +328,7 @@ class CustomLineItem:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_custom_line_items_input.ListCustomLineItemsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_custom_line_items_input.ListCustomLineItemsInput = {}
         if billing_period is not None:
             input_["billing_period"] = billing_period
         if max_results is not None:
@@ -335,6 +343,7 @@ class CustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_associate_resources_to_custom_line_item(
@@ -379,9 +388,10 @@ class CustomLineItem:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.batch_associate_resources_to_custom_line_item_input.BatchAssociateResourcesToCustomLineItemInput = {}  # type: ignore[typeddict-item]
-        input_["target_arn"] = target_arn
-        input_["resource_arns"] = resource_arns
+        input_: capo_billingconductor.types.batch_associate_resources_to_custom_line_item_input.BatchAssociateResourcesToCustomLineItemInput = {
+            "target_arn": target_arn,
+            "resource_arns": resource_arns,
+        }
         if billing_period_range is not None:
             input_["billing_period_range"] = billing_period_range
 
@@ -390,6 +400,7 @@ class CustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_disassociate_resources_from_custom_line_item(
@@ -433,9 +444,10 @@ class CustomLineItem:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.batch_disassociate_resources_from_custom_line_item_input.BatchDisassociateResourcesFromCustomLineItemInput = {}  # type: ignore[typeddict-item]
-        input_["target_arn"] = target_arn
-        input_["resource_arns"] = resource_arns
+        input_: capo_billingconductor.types.batch_disassociate_resources_from_custom_line_item_input.BatchDisassociateResourcesFromCustomLineItemInput = {
+            "target_arn": target_arn,
+            "resource_arns": resource_arns,
+        }
         if billing_period_range is not None:
             input_["billing_period_range"] = billing_period_range
 
@@ -444,6 +456,7 @@ class CustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_custom_line_item_versions(
@@ -490,8 +503,9 @@ class CustomLineItem:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_custom_line_item_versions_input.ListCustomLineItemVersionsInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.list_custom_line_item_versions_input.ListCustomLineItemVersionsInput = {
+            "arn": arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -504,6 +518,7 @@ class CustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_resources_associated_to_custom_line_item(
@@ -555,10 +570,11 @@ class CustomLineItem:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_resources_associated_to_custom_line_item_input.ListResourcesAssociatedToCustomLineItemInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_resources_associated_to_custom_line_item_input.ListResourcesAssociatedToCustomLineItemInput = {
+            "arn": arn
+        }
         if billing_period is not None:
             input_["billing_period"] = billing_period
-        input_["arn"] = arn
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -571,6 +587,7 @@ class CustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -641,17 +658,19 @@ class AsyncCustomLineItem:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.create_custom_line_item_input.CreateCustomLineItemInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
-        input_["description"] = description
-        input_["billing_group_arn"] = billing_group_arn
+        input_: capo_billingconductor.types.create_custom_line_item_input.CreateCustomLineItemInput = {
+            "name": name,
+            "description": description,
+            "billing_group_arn": billing_group_arn,
+            "charge_details": charge_details,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if billing_period_range is not None:
             input_["billing_period_range"] = billing_period_range
         if tags is not None:
             input_["tags"] = tags
-        input_["charge_details"] = charge_details
         if account_id is not None:
             input_["account_id"] = account_id
         if computation_rule is not None:
@@ -664,6 +683,7 @@ class AsyncCustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -718,8 +738,9 @@ class AsyncCustomLineItem:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.update_custom_line_item_input.UpdateCustomLineItemInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.update_custom_line_item_input.UpdateCustomLineItemInput = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -734,6 +755,7 @@ class AsyncCustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -775,8 +797,9 @@ class AsyncCustomLineItem:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.delete_custom_line_item_input.DeleteCustomLineItemInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.delete_custom_line_item_input.DeleteCustomLineItemInput = {
+            "arn": arn
+        }
         if billing_period_range is not None:
             input_["billing_period_range"] = billing_period_range
 
@@ -785,6 +808,7 @@ class AsyncCustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -835,7 +859,7 @@ class AsyncCustomLineItem:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_custom_line_items_input.ListCustomLineItemsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_custom_line_items_input.ListCustomLineItemsInput = {}
         if billing_period is not None:
             input_["billing_period"] = billing_period
         if max_results is not None:
@@ -850,6 +874,7 @@ class AsyncCustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_associate_resources_to_custom_line_item(
@@ -895,9 +920,10 @@ class AsyncCustomLineItem:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.batch_associate_resources_to_custom_line_item_input.BatchAssociateResourcesToCustomLineItemInput = {}  # type: ignore[typeddict-item]
-        input_["target_arn"] = target_arn
-        input_["resource_arns"] = resource_arns
+        input_: capo_billingconductor.types.batch_associate_resources_to_custom_line_item_input.BatchAssociateResourcesToCustomLineItemInput = {
+            "target_arn": target_arn,
+            "resource_arns": resource_arns,
+        }
         if billing_period_range is not None:
             input_["billing_period_range"] = billing_period_range
 
@@ -906,6 +932,7 @@ class AsyncCustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_disassociate_resources_from_custom_line_item(
@@ -950,9 +977,10 @@ class AsyncCustomLineItem:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.batch_disassociate_resources_from_custom_line_item_input.BatchDisassociateResourcesFromCustomLineItemInput = {}  # type: ignore[typeddict-item]
-        input_["target_arn"] = target_arn
-        input_["resource_arns"] = resource_arns
+        input_: capo_billingconductor.types.batch_disassociate_resources_from_custom_line_item_input.BatchDisassociateResourcesFromCustomLineItemInput = {
+            "target_arn": target_arn,
+            "resource_arns": resource_arns,
+        }
         if billing_period_range is not None:
             input_["billing_period_range"] = billing_period_range
 
@@ -961,6 +989,7 @@ class AsyncCustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_custom_line_item_versions(
@@ -1008,8 +1037,9 @@ class AsyncCustomLineItem:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_custom_line_item_versions_input.ListCustomLineItemVersionsInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.list_custom_line_item_versions_input.ListCustomLineItemVersionsInput = {
+            "arn": arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1022,6 +1052,7 @@ class AsyncCustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_resources_associated_to_custom_line_item(
@@ -1074,10 +1105,11 @@ class AsyncCustomLineItem:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_resources_associated_to_custom_line_item_input.ListResourcesAssociatedToCustomLineItemInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_resources_associated_to_custom_line_item_input.ListResourcesAssociatedToCustomLineItemInput = {
+            "arn": arn
+        }
         if billing_period is not None:
             input_["billing_period"] = billing_period
-        input_["arn"] = arn
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1090,4 +1122,5 @@ class AsyncCustomLineItem:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -51,7 +51,7 @@ def serialize_json(value: LandingZoneOperationSummary) -> dict:
 
 def deserialize_json(data: dict) -> LandingZoneOperationSummary:
     out: LandingZoneOperationSummary = {}  # type: ignore[typeddict-item]
-    if "operationType" in data:
+    if data.get("operationType") is not None:
         import capo_controltower.types.landing_zone_operation_type
 
         out["operation_type"] = (
@@ -59,9 +59,9 @@ def deserialize_json(data: dict) -> LandingZoneOperationSummary:
                 data["operationType"]
             )
         )
-    if "operationIdentifier" in data:
+    if data.get("operationIdentifier") is not None:
         out["operation_identifier"] = data["operationIdentifier"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_controltower.types.landing_zone_operation_status
 
         out["status"] = (

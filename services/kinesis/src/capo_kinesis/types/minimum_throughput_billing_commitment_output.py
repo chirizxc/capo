@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: MinimumThroughputBillingCommitmentOutput) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> MinimumThroughputBillingCommitmentOutput:
     out: MinimumThroughputBillingCommitmentOutput = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kinesis.types.minimum_throughput_billing_commitment_output_status
 
         out["status"] = (
@@ -69,19 +69,19 @@ def deserialize_aws_json_1_1(data: dict) -> MinimumThroughputBillingCommitmentOu
         raise DeserializationError(
             "MinimumThroughputBillingCommitmentOutput.status required"
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_kinesis.types.timestamp
 
         out["started_at"] = capo_kinesis.types.timestamp.deserialize_aws_json_1_1(
             data["StartedAt"]
         )
-    if "EndedAt" in data:
+    if data.get("EndedAt") is not None:
         import capo_kinesis.types.timestamp
 
         out["ended_at"] = capo_kinesis.types.timestamp.deserialize_aws_json_1_1(
             data["EndedAt"]
         )
-    if "EarliestAllowedEndAt" in data:
+    if data.get("EarliestAllowedEndAt") is not None:
         import capo_kinesis.types.timestamp
 
         out["earliest_allowed_end_at"] = (

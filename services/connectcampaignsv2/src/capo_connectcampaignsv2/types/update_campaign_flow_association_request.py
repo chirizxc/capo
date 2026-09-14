@@ -25,7 +25,7 @@ def serialize_json(value: UpdateCampaignFlowAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCampaignFlowAssociationRequest:
     out: UpdateCampaignFlowAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "connectCampaignFlowArn" in data:
+    if data.get("connectCampaignFlowArn") is not None:
         out["connect_campaign_flow_arn"] = data["connectCampaignFlowArn"]
     else:
         raise DeserializationError(

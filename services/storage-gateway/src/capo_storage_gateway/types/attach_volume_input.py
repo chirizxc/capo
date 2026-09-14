@@ -44,20 +44,20 @@ def serialize_aws_json_1_1(value: AttachVolumeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttachVolumeInput:
     out: AttachVolumeInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("AttachVolumeInput.gateway_arn required")
-    if "TargetName" in data:
+    if data.get("TargetName") is not None:
         out["target_name"] = data["TargetName"]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
     else:
         raise DeserializationError("AttachVolumeInput.volume_arn required")
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
     else:
         raise DeserializationError("AttachVolumeInput.network_interface_id required")
-    if "DiskId" in data:
+    if data.get("DiskId") is not None:
         out["disk_id"] = data["DiskId"]
     return out

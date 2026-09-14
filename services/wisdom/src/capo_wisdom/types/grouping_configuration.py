@@ -32,9 +32,9 @@ def serialize_json(value: GroupingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GroupingConfiguration:
     out: GroupingConfiguration = {}  # type: ignore[typeddict-item]
-    if "criteria" in data:
+    if data.get("criteria") is not None:
         out["criteria"] = data["criteria"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_wisdom.types.grouping_values
 
         out["values"] = capo_wisdom.types.grouping_values.deserialize_json(

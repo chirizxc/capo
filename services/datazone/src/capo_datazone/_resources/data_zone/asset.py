@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_datazone._auth._signers
@@ -111,12 +112,14 @@ class Asset:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_asset_input.CreateAssetInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.create_asset_input.CreateAssetInput = {
+            "name": name,
+            "domain_identifier": domain_identifier,
+            "type_identifier": type_identifier,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if external_identifier is not None:
             input_["external_identifier"] = external_identifier
-        input_["type_identifier"] = type_identifier
         if type_revision is not None:
             input_["type_revision"] = type_revision
         if description is not None:
@@ -125,17 +128,18 @@ class Asset:
             input_["glossary_terms"] = glossary_terms
         if forms_input is not None:
             input_["forms_input"] = forms_input
-        input_["owning_project_identifier"] = owning_project_identifier
         if prediction_configuration is not None:
             input_["prediction_configuration"] = prediction_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -176,9 +180,10 @@ class Asset:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_asset_input.GetAssetInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_asset_input.GetAssetInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -187,6 +192,7 @@ class Asset:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -228,15 +234,17 @@ class Asset:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_asset_input.DeleteAssetInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_asset_input.DeleteAssetInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_asset_revision(
@@ -298,10 +306,11 @@ class Asset:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_asset_revision_input.CreateAssetRevisionInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.create_asset_revision_input.CreateAssetRevisionInput = {
+            "name": name,
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if type_revision is not None:
             input_["type_revision"] = type_revision
         if description is not None:
@@ -312,14 +321,16 @@ class Asset:
             input_["forms_input"] = forms_input
         if prediction_configuration is not None:
             input_["prediction_configuration"] = prediction_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -394,12 +405,14 @@ class AsyncAsset:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_asset_input.CreateAssetInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.create_asset_input.CreateAssetInput = {
+            "name": name,
+            "domain_identifier": domain_identifier,
+            "type_identifier": type_identifier,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if external_identifier is not None:
             input_["external_identifier"] = external_identifier
-        input_["type_identifier"] = type_identifier
         if type_revision is not None:
             input_["type_revision"] = type_revision
         if description is not None:
@@ -408,17 +421,18 @@ class AsyncAsset:
             input_["glossary_terms"] = glossary_terms
         if forms_input is not None:
             input_["forms_input"] = forms_input
-        input_["owning_project_identifier"] = owning_project_identifier
         if prediction_configuration is not None:
             input_["prediction_configuration"] = prediction_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -462,9 +476,10 @@ class AsyncAsset:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_asset_input.GetAssetInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_asset_input.GetAssetInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -473,6 +488,7 @@ class AsyncAsset:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -515,15 +531,17 @@ class AsyncAsset:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_asset_input.DeleteAssetInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_asset_input.DeleteAssetInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_asset_revision(
@@ -586,10 +604,11 @@ class AsyncAsset:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_asset_revision_input.CreateAssetRevisionInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.create_asset_revision_input.CreateAssetRevisionInput = {
+            "name": name,
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if type_revision is not None:
             input_["type_revision"] = type_revision
         if description is not None:
@@ -600,12 +619,14 @@ class AsyncAsset:
             input_["forms_input"] = forms_input
         if prediction_configuration is not None:
             input_["prediction_configuration"] = prediction_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -39,14 +39,14 @@ def serialize_json(value: EmailGenerativeAnswerChunkDataDetails) -> dict:
 
 def deserialize_json(data: dict) -> EmailGenerativeAnswerChunkDataDetails:
     out: EmailGenerativeAnswerChunkDataDetails = {}  # type: ignore[typeddict-item]
-    if "completion" in data:
+    if data.get("completion") is not None:
         out["completion"] = data["completion"]
-    if "references" in data:
+    if data.get("references") is not None:
         import capo_qconnect.types.data_summary_list
 
         out["references"] = capo_qconnect.types.data_summary_list.deserialize_json(
             data["references"]
         )
-    if "nextChunkToken" in data:
+    if data.get("nextChunkToken") is not None:
         out["next_chunk_token"] = data["nextChunkToken"]
     return out

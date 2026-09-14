@@ -57,7 +57,7 @@ def serialize_json(value: CategoryFilterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CategoryFilterConfiguration:
     out: CategoryFilterConfiguration = {}  # type: ignore[typeddict-item]
-    if "FilterListConfiguration" in data:
+    if data.get("FilterListConfiguration") is not None:
         import capo_quicksight.types.filter_list_configuration
 
         out["filter_list_configuration"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> CategoryFilterConfiguration:
                 data["FilterListConfiguration"]
             )
         )
-    if "CustomFilterListConfiguration" in data:
+    if data.get("CustomFilterListConfiguration") is not None:
         import capo_quicksight.types.custom_filter_list_configuration
 
         out["custom_filter_list_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> CategoryFilterConfiguration:
                 data["CustomFilterListConfiguration"]
             )
         )
-    if "CustomFilterConfiguration" in data:
+    if data.get("CustomFilterConfiguration") is not None:
         import capo_quicksight.types.custom_filter_configuration
 
         out["custom_filter_configuration"] = (

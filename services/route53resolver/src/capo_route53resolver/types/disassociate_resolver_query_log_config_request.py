@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: DisassociateResolverQueryLogConfigRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateResolverQueryLogConfigRequest:
     out: DisassociateResolverQueryLogConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ResolverQueryLogConfigId" in data:
+    if data.get("ResolverQueryLogConfigId") is not None:
         out["resolver_query_log_config_id"] = data["ResolverQueryLogConfigId"]
     else:
         raise DeserializationError(
             "DisassociateResolverQueryLogConfigRequest.resolver_query_log_config_id required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(

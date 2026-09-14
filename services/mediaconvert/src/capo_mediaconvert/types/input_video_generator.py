@@ -73,20 +73,20 @@ def serialize_json(value: InputVideoGenerator) -> dict:
 
 def deserialize_json(data: dict) -> InputVideoGenerator:
     out: InputVideoGenerator = {}  # type: ignore[typeddict-item]
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "imageInput" in data:
+    if data.get("imageInput") is not None:
         out["image_input"] = data["imageInput"]
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     return out

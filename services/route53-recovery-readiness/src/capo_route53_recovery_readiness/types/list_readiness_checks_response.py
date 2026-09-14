@@ -36,9 +36,9 @@ def serialize_json(value: ListReadinessChecksResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReadinessChecksResponse:
     out: ListReadinessChecksResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "readinessChecks" in data:
+    if data.get("readinessChecks") is not None:
         import capo_route53_recovery_readiness.types.__list_of_readiness_check_output
 
         out["readiness_checks"] = (

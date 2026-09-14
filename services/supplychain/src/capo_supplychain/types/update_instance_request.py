@@ -33,8 +33,8 @@ def serialize_json(value: UpdateInstanceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateInstanceRequest:
     out: UpdateInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
-    if "instanceDescription" in data:
+    if data.get("instanceDescription") is not None:
         out["instance_description"] = data["instanceDescription"]
     return out

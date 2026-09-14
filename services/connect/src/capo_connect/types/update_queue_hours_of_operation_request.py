@@ -30,7 +30,7 @@ def serialize_json(value: UpdateQueueHoursOfOperationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQueueHoursOfOperationRequest:
     out: UpdateQueueHoursOfOperationRequest = {}  # type: ignore[typeddict-item]
-    if "HoursOfOperationId" in data:
+    if data.get("HoursOfOperationId") is not None:
         out["hours_of_operation_id"] = data["HoursOfOperationId"]
     else:
         raise DeserializationError(

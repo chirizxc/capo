@@ -69,7 +69,7 @@ def serialize_aws_json_1_0(value: ImportKeyInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportKeyInput:
     out: ImportKeyInput = {}  # type: ignore[typeddict-item]
-    if "KeyMaterial" in data:
+    if data.get("KeyMaterial") is not None:
         import capo_payment_cryptography.types.import_key_material
 
         out["key_material"] = (
@@ -79,17 +79,17 @@ def deserialize_aws_json_1_0(data: dict) -> ImportKeyInput:
         )
     else:
         raise DeserializationError("ImportKeyInput.key_material required")
-    if "KeyCheckValueAlgorithm" in data:
+    if data.get("KeyCheckValueAlgorithm") is not None:
         out["key_check_value_algorithm"] = data["KeyCheckValueAlgorithm"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_payment_cryptography.types.tags
 
         out["tags"] = capo_payment_cryptography.types.tags.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "ReplicationRegions" in data:
+    if data.get("ReplicationRegions") is not None:
         import capo_payment_cryptography.types.regions
 
         out["replication_regions"] = (
@@ -97,6 +97,6 @@ def deserialize_aws_json_1_0(data: dict) -> ImportKeyInput:
                 data["ReplicationRegions"]
             )
         )
-    if "RequesterComment" in data:
+    if data.get("RequesterComment") is not None:
         out["requester_comment"] = data["RequesterComment"]
     return out

@@ -34,7 +34,7 @@ def serialize_json(value: ListNotificationRulesFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListNotificationRulesFilter:
     out: ListNotificationRulesFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_codestar_notifications.types.list_notification_rules_filter_name
 
         out["name"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> ListNotificationRulesFilter:
         )
     else:
         raise DeserializationError("ListNotificationRulesFilter.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("ListNotificationRulesFilter.value required")

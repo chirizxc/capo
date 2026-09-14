@@ -147,7 +147,7 @@ def serialize_aws_json_1_1(value: IcebergDestinationDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergDestinationDescription:
     out: IcebergDestinationDescription = {}  # type: ignore[typeddict-item]
-    if "DestinationTableConfigurationList" in data:
+    if data.get("DestinationTableConfigurationList") is not None:
         import capo_firehose.types.destination_table_configuration_list
 
         out["destination_table_configuration_list"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergDestinationDescription:
                 data["DestinationTableConfigurationList"]
             )
         )
-    if "SchemaEvolutionConfiguration" in data:
+    if data.get("SchemaEvolutionConfiguration") is not None:
         import capo_firehose.types.schema_evolution_configuration
 
         out["schema_evolution_configuration"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergDestinationDescription:
                 data["SchemaEvolutionConfiguration"]
             )
         )
-    if "TableCreationConfiguration" in data:
+    if data.get("TableCreationConfiguration") is not None:
         import capo_firehose.types.table_creation_configuration
 
         out["table_creation_configuration"] = (
@@ -171,7 +171,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergDestinationDescription:
                 data["TableCreationConfiguration"]
             )
         )
-    if "BufferingHints" in data:
+    if data.get("BufferingHints") is not None:
         import capo_firehose.types.buffering_hints
 
         out["buffering_hints"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergDestinationDescription:
                 data["BufferingHints"]
             )
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_firehose.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (
@@ -187,7 +187,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergDestinationDescription:
                 data["CloudWatchLoggingOptions"]
             )
         )
-    if "ProcessingConfiguration" in data:
+    if data.get("ProcessingConfiguration") is not None:
         import capo_firehose.types.processing_configuration
 
         out["processing_configuration"] = (
@@ -195,7 +195,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergDestinationDescription:
                 data["ProcessingConfiguration"]
             )
         )
-    if "S3BackupMode" in data:
+    if data.get("S3BackupMode") is not None:
         import capo_firehose.types.iceberg_s3_backup_mode
 
         out["s3_backup_mode"] = (
@@ -203,7 +203,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergDestinationDescription:
                 data["S3BackupMode"]
             )
         )
-    if "RetryOptions" in data:
+    if data.get("RetryOptions") is not None:
         import capo_firehose.types.retry_options
 
         out["retry_options"] = (
@@ -211,11 +211,11 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergDestinationDescription:
                 data["RetryOptions"]
             )
         )
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "AppendOnly" in data:
+    if data.get("AppendOnly") is not None:
         out["append_only"] = data["AppendOnly"]
-    if "CatalogConfiguration" in data:
+    if data.get("CatalogConfiguration") is not None:
         import capo_firehose.types.catalog_configuration
 
         out["catalog_configuration"] = (
@@ -223,7 +223,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergDestinationDescription:
                 data["CatalogConfiguration"]
             )
         )
-    if "S3DestinationDescription" in data:
+    if data.get("S3DestinationDescription") is not None:
         import capo_firehose.types.s3_destination_description
 
         out["s3_destination_description"] = (

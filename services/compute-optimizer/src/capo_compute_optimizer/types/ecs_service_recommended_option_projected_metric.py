@@ -39,15 +39,15 @@ def serialize_aws_json_1_0(value: ECSServiceRecommendedOptionProjectedMetric) ->
 
 def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendedOptionProjectedMetric:
     out: ECSServiceRecommendedOptionProjectedMetric = {}  # type: ignore[typeddict-item]
-    if "recommendedCpuUnits" in data:
+    if data.get("recommendedCpuUnits") is not None:
         out["recommended_cpu_units"] = data["recommendedCpuUnits"]
     else:
         out["recommended_cpu_units"] = 0
-    if "recommendedMemorySize" in data:
+    if data.get("recommendedMemorySize") is not None:
         out["recommended_memory_size"] = data["recommendedMemorySize"]
     else:
         out["recommended_memory_size"] = 0
-    if "projectedMetrics" in data:
+    if data.get("projectedMetrics") is not None:
         import capo_compute_optimizer.types.ecs_service_projected_metrics
 
         out["projected_metrics"] = (

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_location._auth._signers
@@ -95,17 +96,19 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.start_job_request.StartJobRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["action"] = action
+        input_: capo_location.types.start_job_request.StartJobRequest = {
+            "action": action,
+            "execution_role_arn": execution_role_arn,
+            "input_options": input_options,
+            "output_options": output_options,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if action_options is not None:
             input_["action_options"] = action_options
-        input_["execution_role_arn"] = execution_role_arn
-        input_["input_options"] = input_options
         if name is not None:
             input_["name"] = name
-        input_["output_options"] = output_options
         if tags is not None:
             input_["tags"] = tags
 
@@ -114,6 +117,7 @@ class JobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -149,14 +153,14 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_job_request.GetJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_location.types.get_job_request.GetJobRequest = {"job_id": job_id}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -197,7 +201,7 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_jobs_request.ListJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if max_results is not None:
@@ -210,6 +214,7 @@ class JobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_job(
@@ -246,14 +251,16 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.cancel_job_request.CancelJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_location.types.cancel_job_request.CancelJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -312,17 +319,19 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.start_job_request.StartJobRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["action"] = action
+        input_: capo_location.types.start_job_request.StartJobRequest = {
+            "action": action,
+            "execution_role_arn": execution_role_arn,
+            "input_options": input_options,
+            "output_options": output_options,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if action_options is not None:
             input_["action_options"] = action_options
-        input_["execution_role_arn"] = execution_role_arn
-        input_["input_options"] = input_options
         if name is not None:
             input_["name"] = name
-        input_["output_options"] = output_options
         if tags is not None:
             input_["tags"] = tags
 
@@ -331,6 +340,7 @@ class AsyncJobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -369,14 +379,14 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_job_request.GetJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_location.types.get_job_request.GetJobRequest = {"job_id": job_id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -418,7 +428,7 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_jobs_request.ListJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if max_results is not None:
@@ -431,6 +441,7 @@ class AsyncJobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_job(
@@ -468,12 +479,14 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.cancel_job_request.CancelJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_location.types.cancel_job_request.CancelJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

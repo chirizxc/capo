@@ -13,9 +13,9 @@ from capo_s3vectors import AsyncS3VectorsClient
 
 
 async def main():
-    async with AsyncS3VectorsClient() as s3:
+    async with AsyncS3VectorsClient() as s3_vectors:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await s3_vectors.list_tags_for_resource()
         print(response["tags"])
 ```
 
@@ -29,9 +29,9 @@ from capo_s3vectors.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncS3VectorsClient() as s3:
+    async with AsyncS3VectorsClient() as s3_vectors:
         try:
-            await s3.list_tags_for_resource()
+            await s3_vectors.list_tags_for_resource()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_s3vectors import AsyncS3VectorsClient
 
 
 async def main():
-    async with AsyncS3VectorsClient() as s3:
+    async with AsyncS3VectorsClient() as s3_vectors:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await s3_vectors.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await s3_vectors.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await s3_vectors.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

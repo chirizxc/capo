@@ -46,7 +46,7 @@ def serialize_json(value: Change) -> dict:
 
 def deserialize_json(data: dict) -> Change:
     out: Change = {}  # type: ignore[typeddict-item]
-    if "specificationType" in data:
+    if data.get("specificationType") is not None:
         import capo_cleanrooms.types.change_specification_type
 
         out["specification_type"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> Change:
         )
     else:
         raise DeserializationError("Change.specification_type required")
-    if "specification" in data:
+    if data.get("specification") is not None:
         import capo_cleanrooms.types.change_specification
 
         out["specification"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> Change:
         )
     else:
         raise DeserializationError("Change.specification required")
-    if "types" in data:
+    if data.get("types") is not None:
         import capo_cleanrooms.types.change_type_list
 
         out["types"] = capo_cleanrooms.types.change_type_list.deserialize_json(

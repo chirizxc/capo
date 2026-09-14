@@ -39,7 +39,7 @@ def serialize_json(value: WrappedKey) -> dict:
 
 def deserialize_json(data: dict) -> WrappedKey:
     out: WrappedKey = {}  # type: ignore[typeddict-item]
-    if "WrappedKeyMaterial" in data:
+    if data.get("WrappedKeyMaterial") is not None:
         import capo_payment_cryptography_data.types.wrapped_key_material
 
         out["wrapped_key_material"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> WrappedKey:
         )
     else:
         raise DeserializationError("WrappedKey.wrapped_key_material required")
-    if "KeyCheckValueAlgorithm" in data:
+    if data.get("KeyCheckValueAlgorithm") is not None:
         out["key_check_value_algorithm"] = data["KeyCheckValueAlgorithm"]
     return out

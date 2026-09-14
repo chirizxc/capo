@@ -18,6 +18,6 @@ def serialize_json(value: LakehousePropertiesPatch) -> dict:
 
 def deserialize_json(data: dict) -> LakehousePropertiesPatch:
     out: LakehousePropertiesPatch = {}  # type: ignore[typeddict-item]
-    if "glueLineageSyncEnabled" in data:
+    if data.get("glueLineageSyncEnabled") is not None:
         out["glue_lineage_sync_enabled"] = data["glueLineageSyncEnabled"]
     return out

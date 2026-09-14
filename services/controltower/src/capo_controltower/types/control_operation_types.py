@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ControlOperationTypes:
 
     out: ControlOperationTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_controltower.types.control_operation_type.deserialize_json(item)
         )

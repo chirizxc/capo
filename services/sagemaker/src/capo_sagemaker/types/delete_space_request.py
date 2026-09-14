@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: DeleteSpaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSpaceRequest:
     out: DeleteSpaceRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "SpaceName" in data:
+    if data.get("SpaceName") is not None:
         out["space_name"] = data["SpaceName"]
     return out

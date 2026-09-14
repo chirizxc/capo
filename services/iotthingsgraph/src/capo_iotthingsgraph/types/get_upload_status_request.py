@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetUploadStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUploadStatusRequest:
     out: GetUploadStatusRequest = {}  # type: ignore[typeddict-item]
-    if "uploadId" in data:
+    if data.get("uploadId") is not None:
         out["upload_id"] = data["uploadId"]
     else:
         raise DeserializationError("GetUploadStatusRequest.upload_id required")

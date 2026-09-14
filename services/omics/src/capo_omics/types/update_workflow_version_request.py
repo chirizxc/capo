@@ -45,12 +45,12 @@ def serialize_json(value: UpdateWorkflowVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkflowVersionRequest:
     out: UpdateWorkflowVersionRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         out["storage_type"] = data["storageType"]
-    if "storageCapacity" in data:
+    if data.get("storageCapacity") is not None:
         out["storage_capacity"] = data["storageCapacity"]
-    if "readmeMarkdown" in data:
+    if data.get("readmeMarkdown") is not None:
         out["readme_markdown"] = data["readmeMarkdown"]
     return out

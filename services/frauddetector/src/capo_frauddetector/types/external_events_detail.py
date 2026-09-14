@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: ExternalEventsDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExternalEventsDetail:
     out: ExternalEventsDetail = {}  # type: ignore[typeddict-item]
-    if "dataLocation" in data:
+    if data.get("dataLocation") is not None:
         out["data_location"] = data["dataLocation"]
     else:
         raise DeserializationError("ExternalEventsDetail.data_location required")
-    if "dataAccessRoleArn" in data:
+    if data.get("dataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["dataAccessRoleArn"]
     else:
         raise DeserializationError("ExternalEventsDetail.data_access_role_arn required")

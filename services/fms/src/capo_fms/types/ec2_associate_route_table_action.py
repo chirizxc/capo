@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: EC2AssociateRouteTableAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2AssociateRouteTableAction:
     out: EC2AssociateRouteTableAction = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RouteTableId" in data:
+    if data.get("RouteTableId") is not None:
         import capo_fms.types.action_target
 
         out["route_table_id"] = capo_fms.types.action_target.deserialize_aws_json_1_1(
@@ -61,13 +61,13 @@ def deserialize_aws_json_1_1(data: dict) -> EC2AssociateRouteTableAction:
         raise DeserializationError(
             "EC2AssociateRouteTableAction.route_table_id required"
         )
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         import capo_fms.types.action_target
 
         out["subnet_id"] = capo_fms.types.action_target.deserialize_aws_json_1_1(
             data["SubnetId"]
         )
-    if "GatewayId" in data:
+    if data.get("GatewayId") is not None:
         import capo_fms.types.action_target
 
         out["gateway_id"] = capo_fms.types.action_target.deserialize_aws_json_1_1(

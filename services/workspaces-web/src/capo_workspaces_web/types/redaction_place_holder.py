@@ -33,12 +33,12 @@ def serialize_json(value: RedactionPlaceHolder) -> dict:
 
 def deserialize_json(data: dict) -> RedactionPlaceHolder:
     out: RedactionPlaceHolder = {}  # type: ignore[typeddict-item]
-    if "redactionPlaceHolderType" in data:
+    if data.get("redactionPlaceHolderType") is not None:
         out["redaction_place_holder_type"] = data["redactionPlaceHolderType"]
     else:
         raise DeserializationError(
             "RedactionPlaceHolder.redaction_place_holder_type required"
         )
-    if "redactionPlaceHolderText" in data:
+    if data.get("redactionPlaceHolderText") is not None:
         out["redaction_place_holder_text"] = data["redactionPlaceHolderText"]
     return out

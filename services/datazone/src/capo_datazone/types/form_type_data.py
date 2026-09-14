@@ -89,45 +89,45 @@ def serialize_json(value: FormTypeData) -> dict:
 
 def deserialize_json(data: dict) -> FormTypeData:
     out: FormTypeData = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("FormTypeData.domain_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("FormTypeData.name required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         raise DeserializationError("FormTypeData.revision required")
-    if "model" in data:
+    if data.get("model") is not None:
         import capo_datazone.types.model
 
         out["model"] = capo_datazone.types.model.deserialize_json(data["model"])
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.form_type_status
 
         out["status"] = capo_datazone.types.form_type_status.deserialize_json(
             data["status"]
         )
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
-    if "originDomainId" in data:
+    if data.get("originDomainId") is not None:
         out["origin_domain_id"] = data["originDomainId"]
-    if "originProjectId" in data:
+    if data.get("originProjectId") is not None:
         out["origin_project_id"] = data["originProjectId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "imports" in data:
+    if data.get("imports") is not None:
         import capo_datazone.types.import_list
 
         out["imports"] = capo_datazone.types.import_list.deserialize_json(

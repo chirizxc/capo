@@ -43,15 +43,15 @@ def serialize_aws_json_1_0(value: GetArchiveMessageResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetArchiveMessageResponse:
     out: GetArchiveMessageResponse = {}  # type: ignore[typeddict-item]
-    if "MessageDownloadLink" in data:
+    if data.get("MessageDownloadLink") is not None:
         out["message_download_link"] = data["MessageDownloadLink"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_mailmanager.types.metadata
 
         out["metadata"] = capo_mailmanager.types.metadata.deserialize_aws_json_1_0(
             data["Metadata"]
         )
-    if "Envelope" in data:
+    if data.get("Envelope") is not None:
         import capo_mailmanager.types.envelope
 
         out["envelope"] = capo_mailmanager.types.envelope.deserialize_aws_json_1_0(

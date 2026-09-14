@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfValidationError:
 
     out: __listOfValidationError = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.validation_error.deserialize_json(item))
     return out

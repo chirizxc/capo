@@ -75,15 +75,15 @@ def serialize_json(value: TelemetryRuleSummary) -> dict:
 
 def deserialize_json(data: dict) -> TelemetryRuleSummary:
     out: TelemetryRuleSummary = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
-    if "CreatedTimeStamp" in data:
+    if data.get("CreatedTimeStamp") is not None:
         out["created_time_stamp"] = data["CreatedTimeStamp"]
-    if "LastUpdateTimeStamp" in data:
+    if data.get("LastUpdateTimeStamp") is not None:
         out["last_update_time_stamp"] = data["LastUpdateTimeStamp"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_observabilityadmin.types.resource_type
 
         out["resource_type"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> TelemetryRuleSummary:
                 data["ResourceType"]
             )
         )
-    if "TelemetryType" in data:
+    if data.get("TelemetryType") is not None:
         import capo_observabilityadmin.types.telemetry_type
 
         out["telemetry_type"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> TelemetryRuleSummary:
                 data["TelemetryType"]
             )
         )
-    if "TelemetrySourceTypes" in data:
+    if data.get("TelemetrySourceTypes") is not None:
         import capo_observabilityadmin.types.telemetry_source_types
 
         out["telemetry_source_types"] = (

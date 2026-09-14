@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RestoreJobsList:
 
     out: RestoreJobsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.restore_jobs_list_member.deserialize_json(item))
     return out

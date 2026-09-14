@@ -96,7 +96,7 @@ def serialize_json(value: AwsGuardDutyDetectorDataSourcesDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsGuardDutyDetectorDataSourcesDetails:
     out: AwsGuardDutyDetectorDataSourcesDetails = {}  # type: ignore[typeddict-item]
-    if "CloudTrail" in data:
+    if data.get("CloudTrail") is not None:
         import capo_securityhub.types.aws_guard_duty_detector_data_sources_cloud_trail_details
 
         out["cloud_trail"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> AwsGuardDutyDetectorDataSourcesDetails:
                 data["CloudTrail"]
             )
         )
-    if "DnsLogs" in data:
+    if data.get("DnsLogs") is not None:
         import capo_securityhub.types.aws_guard_duty_detector_data_sources_dns_logs_details
 
         out["dns_logs"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> AwsGuardDutyDetectorDataSourcesDetails:
                 data["DnsLogs"]
             )
         )
-    if "FlowLogs" in data:
+    if data.get("FlowLogs") is not None:
         import capo_securityhub.types.aws_guard_duty_detector_data_sources_flow_logs_details
 
         out["flow_logs"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> AwsGuardDutyDetectorDataSourcesDetails:
                 data["FlowLogs"]
             )
         )
-    if "Kubernetes" in data:
+    if data.get("Kubernetes") is not None:
         import capo_securityhub.types.aws_guard_duty_detector_data_sources_kubernetes_details
 
         out["kubernetes"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> AwsGuardDutyDetectorDataSourcesDetails:
                 data["Kubernetes"]
             )
         )
-    if "MalwareProtection" in data:
+    if data.get("MalwareProtection") is not None:
         import capo_securityhub.types.aws_guard_duty_detector_data_sources_malware_protection_details
 
         out["malware_protection"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> AwsGuardDutyDetectorDataSourcesDetails:
                 data["MalwareProtection"]
             )
         )
-    if "S3Logs" in data:
+    if data.get("S3Logs") is not None:
         import capo_securityhub.types.aws_guard_duty_detector_data_sources_s3_logs_details
 
         out["s3_logs"] = (

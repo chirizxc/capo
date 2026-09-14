@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CopyBackupToRegionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyBackupToRegionResponse:
     out: CopyBackupToRegionResponse = {}  # type: ignore[typeddict-item]
-    if "DestinationBackup" in data:
+    if data.get("DestinationBackup") is not None:
         import capo_cloudhsm_v2.types.destination_backup
 
         out["destination_backup"] = (

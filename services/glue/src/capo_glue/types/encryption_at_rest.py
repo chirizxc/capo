@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: EncryptionAtRest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EncryptionAtRest:
     out: EncryptionAtRest = {}  # type: ignore[typeddict-item]
-    if "CatalogEncryptionMode" in data:
+    if data.get("CatalogEncryptionMode") is not None:
         import capo_glue.types.catalog_encryption_mode
 
         out["catalog_encryption_mode"] = (
@@ -54,8 +54,8 @@ def deserialize_aws_json_1_1(data: dict) -> EncryptionAtRest:
         )
     else:
         raise DeserializationError("EncryptionAtRest.catalog_encryption_mode required")
-    if "SseAwsKmsKeyId" in data:
+    if data.get("SseAwsKmsKeyId") is not None:
         out["sse_aws_kms_key_id"] = data["SseAwsKmsKeyId"]
-    if "CatalogEncryptionServiceRole" in data:
+    if data.get("CatalogEncryptionServiceRole") is not None:
         out["catalog_encryption_service_role"] = data["CatalogEncryptionServiceRole"]
     return out

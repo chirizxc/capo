@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AllowedFirstAuthFactorsListType:
 
     out: AllowedFirstAuthFactorsListType = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cognito_identity_provider.types.auth_factor_type.deserialize_aws_json_1_1(
                 item

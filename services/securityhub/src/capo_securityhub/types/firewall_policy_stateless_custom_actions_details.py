@@ -36,7 +36,7 @@ def serialize_json(value: FirewallPolicyStatelessCustomActionsDetails) -> dict:
 
 def deserialize_json(data: dict) -> FirewallPolicyStatelessCustomActionsDetails:
     out: FirewallPolicyStatelessCustomActionsDetails = {}  # type: ignore[typeddict-item]
-    if "ActionDefinition" in data:
+    if data.get("ActionDefinition") is not None:
         import capo_securityhub.types.stateless_custom_action_definition
 
         out["action_definition"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> FirewallPolicyStatelessCustomActionsDetails:
                 data["ActionDefinition"]
             )
         )
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
     return out

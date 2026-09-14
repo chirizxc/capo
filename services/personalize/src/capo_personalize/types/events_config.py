@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: EventsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventsConfig:
     out: EventsConfig = {}  # type: ignore[typeddict-item]
-    if "eventParametersList" in data:
+    if data.get("eventParametersList") is not None:
         import capo_personalize.types.event_parameters_list
 
         out["event_parameters_list"] = (

@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: UntagResourcesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UntagResourcesInput:
     out: UntagResourcesInput = {}  # type: ignore[typeddict-item]
-    if "ResourceARNList" in data:
+    if data.get("ResourceARNList") is not None:
         import capo_resource_groups_tagging_api.types.resource_arn_list_for_tag_untag
 
         out["resource_arn_list"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> UntagResourcesInput:
         )
     else:
         raise DeserializationError("UntagResourcesInput.resource_arn_list required")
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_resource_groups_tagging_api.types.tag_key_list_for_untag
 
         out["tag_keys"] = (

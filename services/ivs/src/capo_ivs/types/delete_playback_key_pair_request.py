@@ -24,7 +24,7 @@ def serialize_json(value: DeletePlaybackKeyPairRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeletePlaybackKeyPairRequest:
     out: DeletePlaybackKeyPairRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeletePlaybackKeyPairRequest.arn required")

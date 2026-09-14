@@ -47,13 +47,13 @@ def serialize_aws_json_1_1(value: CreateSolutionVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSolutionVersionRequest:
     out: CreateSolutionVersionRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "solutionArn" in data:
+    if data.get("solutionArn") is not None:
         out["solution_arn"] = data["solutionArn"]
     else:
         raise DeserializationError("CreateSolutionVersionRequest.solution_arn required")
-    if "trainingMode" in data:
+    if data.get("trainingMode") is not None:
         import capo_personalize.types.training_mode
 
         out["training_mode"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSolutionVersionRequest:
                 data["trainingMode"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])

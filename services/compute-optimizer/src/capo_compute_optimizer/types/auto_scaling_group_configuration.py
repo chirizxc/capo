@@ -59,9 +59,16 @@ def serialize_aws_json_1_0(value: AutoScalingGroupConfiguration) -> dict:
             )
         )
     if "estimated_instance_hour_reduction_percentage" in value:
-        out["estimatedInstanceHourReductionPercentage"] = value[
-            "estimated_instance_hour_reduction_percentage"
-        ]
+        out["estimatedInstanceHourReductionPercentage"] = (
+            "NaN"
+            if value["estimated_instance_hour_reduction_percentage"]
+            != value["estimated_instance_hour_reduction_percentage"]
+            else "Infinity"
+            if value["estimated_instance_hour_reduction_percentage"] == float("inf")
+            else "-Infinity"
+            if value["estimated_instance_hour_reduction_percentage"] == float("-inf")
+            else value["estimated_instance_hour_reduction_percentage"]
+        )
     if "type" in value:
         import capo_compute_optimizer.types.asg_type
 
@@ -81,21 +88,21 @@ def serialize_aws_json_1_0(value: AutoScalingGroupConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutoScalingGroupConfiguration:
     out: AutoScalingGroupConfiguration = {}  # type: ignore[typeddict-item]
-    if "desiredCapacity" in data:
+    if data.get("desiredCapacity") is not None:
         out["desired_capacity"] = data["desiredCapacity"]
     else:
         out["desired_capacity"] = 0
-    if "minSize" in data:
+    if data.get("minSize") is not None:
         out["min_size"] = data["minSize"]
     else:
         out["min_size"] = 0
-    if "maxSize" in data:
+    if data.get("maxSize") is not None:
         out["max_size"] = data["maxSize"]
     else:
         out["max_size"] = 0
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "allocationStrategy" in data:
+    if data.get("allocationStrategy") is not None:
         import capo_compute_optimizer.types.allocation_strategy
 
         out["allocation_strategy"] = (
@@ -103,17 +110,17 @@ def deserialize_aws_json_1_0(data: dict) -> AutoScalingGroupConfiguration:
                 data["allocationStrategy"]
             )
         )
-    if "estimatedInstanceHourReductionPercentage" in data:
-        out["estimated_instance_hour_reduction_percentage"] = data[
-            "estimatedInstanceHourReductionPercentage"
-        ]
-    if "type" in data:
+    if data.get("estimatedInstanceHourReductionPercentage") is not None:
+        out["estimated_instance_hour_reduction_percentage"] = float(
+            data["estimatedInstanceHourReductionPercentage"]
+        )
+    if data.get("type") is not None:
         import capo_compute_optimizer.types.asg_type
 
         out["type"] = capo_compute_optimizer.types.asg_type.deserialize_aws_json_1_0(
             data["type"]
         )
-    if "mixedInstanceTypes" in data:
+    if data.get("mixedInstanceTypes") is not None:
         import capo_compute_optimizer.types.mixed_instance_types
 
         out["mixed_instance_types"] = (

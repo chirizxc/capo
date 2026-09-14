@@ -13,9 +13,9 @@ from capo_route53resolver import AsyncRoute53ResolverClient
 
 
 async def main():
-    async with AsyncRoute53ResolverClient() as s3:
+    async with AsyncRoute53ResolverClient() as route53_resolver:
         # Example: call the associate_firewall_rule_group operation
-        response = await s3.associate_firewall_rule_group()
+        response = await route53_resolver.associate_firewall_rule_group()
         print(response["firewall_rule_group_association"])
 ```
 
@@ -28,9 +28,9 @@ from capo_route53resolver import AsyncRoute53ResolverClient
 
 
 async def main():
-    async with AsyncRoute53ResolverClient() as s3:
+    async with AsyncRoute53ResolverClient() as route53_resolver:
         # Example: paginate over list_firewall_configs
-        async for item in s3.iter_list_firewall_configs():
+        async for item in route53_resolver.iter_list_firewall_configs():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_route53resolver.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncRoute53ResolverClient() as s3:
+    async with AsyncRoute53ResolverClient() as route53_resolver:
         try:
-            await s3.associate_firewall_rule_group()
+            await route53_resolver.associate_firewall_rule_group()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_route53resolver import AsyncRoute53ResolverClient
 
 
 async def main():
-    async with AsyncRoute53ResolverClient() as s3:
+    async with AsyncRoute53ResolverClient() as route53_resolver:
         # Default: 3 attempts for every operation
-        response = await s3.associate_firewall_rule_group()
+        response = await route53_resolver.associate_firewall_rule_group()
 
         # Override per operation
-        response = await s3.associate_firewall_rule_group(config_overrides={"retry_max_attempts": 5})
+        response = await route53_resolver.associate_firewall_rule_group(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_firewall_rule_group(config_overrides={"retry_max_attempts": 1})
+        response = await route53_resolver.associate_firewall_rule_group(config_overrides={"retry_max_attempts": 1})
 ```

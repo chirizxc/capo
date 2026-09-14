@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: LaunchTemplateSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LaunchTemplateSpecification:
     out: LaunchTemplateSpecification = {}  # type: ignore[typeddict-item]
-    if "LaunchTemplateId" in data:
+    if data.get("LaunchTemplateId") is not None:
         out["launch_template_id"] = data["LaunchTemplateId"]
-    if "LaunchTemplateName" in data:
+    if data.get("LaunchTemplateName") is not None:
         out["launch_template_name"] = data["LaunchTemplateName"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

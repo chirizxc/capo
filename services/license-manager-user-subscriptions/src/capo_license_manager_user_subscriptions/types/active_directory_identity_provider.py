@@ -49,9 +49,9 @@ def serialize_json(value: ActiveDirectoryIdentityProvider) -> dict:
 
 def deserialize_json(data: dict) -> ActiveDirectoryIdentityProvider:
     out: ActiveDirectoryIdentityProvider = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "ActiveDirectorySettings" in data:
+    if data.get("ActiveDirectorySettings") is not None:
         import capo_license_manager_user_subscriptions.types.active_directory_settings
 
         out["active_directory_settings"] = (
@@ -59,8 +59,8 @@ def deserialize_json(data: dict) -> ActiveDirectoryIdentityProvider:
                 data["ActiveDirectorySettings"]
             )
         )
-    if "ActiveDirectoryType" in data:
+    if data.get("ActiveDirectoryType") is not None:
         out["active_directory_type"] = data["ActiveDirectoryType"]
-    if "IsSharedActiveDirectory" in data:
+    if data.get("IsSharedActiveDirectory") is not None:
         out["is_shared_active_directory"] = data["IsSharedActiveDirectory"]
     return out

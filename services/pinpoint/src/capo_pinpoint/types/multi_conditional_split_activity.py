@@ -45,7 +45,7 @@ def serialize_json(value: MultiConditionalSplitActivity) -> dict:
 
 def deserialize_json(data: dict) -> MultiConditionalSplitActivity:
     out: MultiConditionalSplitActivity = {}  # type: ignore[typeddict-item]
-    if "Branches" in data:
+    if data.get("Branches") is not None:
         import capo_pinpoint.types.list_of_multi_conditional_branch
 
         out["branches"] = (
@@ -53,9 +53,9 @@ def deserialize_json(data: dict) -> MultiConditionalSplitActivity:
                 data["Branches"]
             )
         )
-    if "DefaultActivity" in data:
+    if data.get("DefaultActivity") is not None:
         out["default_activity"] = data["DefaultActivity"]
-    if "EvaluationWaitTime" in data:
+    if data.get("EvaluationWaitTime") is not None:
         import capo_pinpoint.types.wait_time
 
         out["evaluation_wait_time"] = capo_pinpoint.types.wait_time.deserialize_json(

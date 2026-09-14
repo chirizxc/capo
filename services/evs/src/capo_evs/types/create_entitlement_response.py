@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: CreateEntitlementResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEntitlementResponse:
     out: CreateEntitlementResponse = {}  # type: ignore[typeddict-item]
-    if "entitlements" in data:
+    if data.get("entitlements") is not None:
         import capo_evs.types.vm_entitlement_list
 
         out["entitlements"] = (

@@ -40,12 +40,12 @@ def serialize_json(value: LicenseServer) -> dict:
 
 def deserialize_json(data: dict) -> LicenseServer:
     out: LicenseServer = {}  # type: ignore[typeddict-item]
-    if "ProvisioningStatus" in data:
+    if data.get("ProvisioningStatus") is not None:
         out["provisioning_status"] = data["ProvisioningStatus"]
-    if "HealthStatus" in data:
+    if data.get("HealthStatus") is not None:
         out["health_status"] = data["HealthStatus"]
-    if "Ipv4Address" in data:
+    if data.get("Ipv4Address") is not None:
         out["ipv4_address"] = data["Ipv4Address"]
-    if "Ipv6Address" in data:
+    if data.get("Ipv6Address") is not None:
         out["ipv6_address"] = data["Ipv6Address"]
     return out

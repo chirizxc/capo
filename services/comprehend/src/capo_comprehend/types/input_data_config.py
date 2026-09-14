@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: InputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputDataConfig:
     out: InputDataConfig = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("InputDataConfig.s3_uri required")
-    if "InputFormat" in data:
+    if data.get("InputFormat") is not None:
         import capo_comprehend.types.input_format
 
         out["input_format"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> InputDataConfig:
                 data["InputFormat"]
             )
         )
-    if "DocumentReaderConfig" in data:
+    if data.get("DocumentReaderConfig") is not None:
         import capo_comprehend.types.document_reader_config
 
         out["document_reader_config"] = (

@@ -33,12 +33,12 @@ def serialize_json(value: UpdateSystemRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSystemRequest:
     out: UpdateSystemRequest = {}  # type: ignore[typeddict-item]
-    if "systemArn" in data:
+    if data.get("systemArn") is not None:
         out["system_arn"] = data["systemArn"]
     else:
         raise DeserializationError("UpdateSystemRequest.system_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sharingEnabled" in data:
+    if data.get("sharingEnabled") is not None:
         out["sharing_enabled"] = data["sharingEnabled"]
     return out

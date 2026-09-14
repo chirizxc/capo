@@ -36,17 +36,17 @@ def serialize_json(value: AssociateCertificateResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateCertificateResponse:
     out: AssociateCertificateResponse = {}  # type: ignore[typeddict-item]
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError("AssociateCertificateResponse.gateway_id required")
-    if "acmCertificateArn" in data:
+    if data.get("acmCertificateArn") is not None:
         out["acm_certificate_arn"] = data["acmCertificateArn"]
     else:
         raise DeserializationError(
             "AssociateCertificateResponse.acm_certificate_arn required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.certificate_association_status
 
         out["status"] = (

@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: QueryInsights) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QueryInsights:
     out: QueryInsights = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_timestream_query.types.query_insights_mode
 
         out["mode"] = (

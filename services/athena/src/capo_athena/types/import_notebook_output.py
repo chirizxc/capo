@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ImportNotebookOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportNotebookOutput:
     out: ImportNotebookOutput = {}  # type: ignore[typeddict-item]
-    if "NotebookId" in data:
+    if data.get("NotebookId") is not None:
         out["notebook_id"] = data["NotebookId"]
     return out

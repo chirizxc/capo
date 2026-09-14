@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_workspaces_web._auth._signers
@@ -106,7 +107,9 @@ class IpAccessSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_ip_access_settings_request.CreateIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.create_ip_access_settings_request.CreateIpAccessSettingsRequest = {
+            "ip_rules": ip_rules
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -117,15 +120,16 @@ class IpAccessSettingsResource:
             input_["customer_managed_key"] = customer_managed_key
         if additional_encryption_context is not None:
             input_["additional_encryption_context"] = additional_encryption_context
-        input_["ip_rules"] = ip_rules
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -163,14 +167,16 @@ class IpAccessSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_ip_access_settings_request.GetIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["ip_access_settings_arn"] = ip_access_settings_arn
+        input_: capo_workspaces_web.types.get_ip_access_settings_request.GetIpAccessSettingsRequest = {
+            "ip_access_settings_arn": ip_access_settings_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -222,22 +228,25 @@ class IpAccessSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_ip_access_settings_request.UpdateIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["ip_access_settings_arn"] = ip_access_settings_arn
+        input_: capo_workspaces_web.types.update_ip_access_settings_request.UpdateIpAccessSettingsRequest = {
+            "ip_access_settings_arn": ip_access_settings_arn
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
             input_["description"] = description
         if ip_rules is not None:
             input_["ip_rules"] = ip_rules
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -275,14 +284,16 @@ class IpAccessSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_ip_access_settings_request.DeleteIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["ip_access_settings_arn"] = ip_access_settings_arn
+        input_: capo_workspaces_web.types.delete_ip_access_settings_request.DeleteIpAccessSettingsRequest = {
+            "ip_access_settings_arn": ip_access_settings_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -325,7 +336,7 @@ class IpAccessSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_ip_access_settings_request.ListIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_ip_access_settings_request.ListIpAccessSettingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -336,6 +347,7 @@ class IpAccessSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -402,7 +414,9 @@ class AsyncIpAccessSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_ip_access_settings_request.CreateIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.create_ip_access_settings_request.CreateIpAccessSettingsRequest = {
+            "ip_rules": ip_rules
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -413,15 +427,16 @@ class AsyncIpAccessSettingsResource:
             input_["customer_managed_key"] = customer_managed_key
         if additional_encryption_context is not None:
             input_["additional_encryption_context"] = additional_encryption_context
-        input_["ip_rules"] = ip_rules
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -460,14 +475,16 @@ class AsyncIpAccessSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_ip_access_settings_request.GetIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["ip_access_settings_arn"] = ip_access_settings_arn
+        input_: capo_workspaces_web.types.get_ip_access_settings_request.GetIpAccessSettingsRequest = {
+            "ip_access_settings_arn": ip_access_settings_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -520,22 +537,25 @@ class AsyncIpAccessSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_ip_access_settings_request.UpdateIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["ip_access_settings_arn"] = ip_access_settings_arn
+        input_: capo_workspaces_web.types.update_ip_access_settings_request.UpdateIpAccessSettingsRequest = {
+            "ip_access_settings_arn": ip_access_settings_arn
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
             input_["description"] = description
         if ip_rules is not None:
             input_["ip_rules"] = ip_rules
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -574,14 +594,16 @@ class AsyncIpAccessSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_ip_access_settings_request.DeleteIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["ip_access_settings_arn"] = ip_access_settings_arn
+        input_: capo_workspaces_web.types.delete_ip_access_settings_request.DeleteIpAccessSettingsRequest = {
+            "ip_access_settings_arn": ip_access_settings_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -625,7 +647,7 @@ class AsyncIpAccessSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_ip_access_settings_request.ListIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_ip_access_settings_request.ListIpAccessSettingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -636,4 +658,5 @@ class AsyncIpAccessSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

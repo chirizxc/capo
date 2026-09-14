@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: UpdatePullRequestApprovalRuleContentOutput) ->
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePullRequestApprovalRuleContentOutput:
     out: UpdatePullRequestApprovalRuleContentOutput = {}  # type: ignore[typeddict-item]
-    if "approvalRule" in data:
+    if data.get("approvalRule") is not None:
         import capo_codecommit.types.approval_rule
 
         out["approval_rule"] = (

@@ -125,21 +125,21 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AmazonOpenSearchServerlessDestinationConfiguration:
     out: AmazonOpenSearchServerlessDestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError(
             "AmazonOpenSearchServerlessDestinationConfiguration.role_arn required"
         )
-    if "CollectionEndpoint" in data:
+    if data.get("CollectionEndpoint") is not None:
         out["collection_endpoint"] = data["CollectionEndpoint"]
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
     else:
         raise DeserializationError(
             "AmazonOpenSearchServerlessDestinationConfiguration.index_name required"
         )
-    if "BufferingHints" in data:
+    if data.get("BufferingHints") is not None:
         import capo_firehose.types.amazon_open_search_serverless_buffering_hints
 
         out["buffering_hints"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(
                 data["BufferingHints"]
             )
         )
-    if "RetryOptions" in data:
+    if data.get("RetryOptions") is not None:
         import capo_firehose.types.amazon_open_search_serverless_retry_options
 
         out["retry_options"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_1(
                 data["RetryOptions"]
             )
         )
-    if "S3BackupMode" in data:
+    if data.get("S3BackupMode") is not None:
         import capo_firehose.types.amazon_open_search_serverless_s3_backup_mode
 
         out["s3_backup_mode"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_1(
                 data["S3BackupMode"]
             )
         )
-    if "S3Configuration" in data:
+    if data.get("S3Configuration") is not None:
         import capo_firehose.types.s3_destination_configuration
 
         out["s3_configuration"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "AmazonOpenSearchServerlessDestinationConfiguration.s3_configuration required"
         )
-    if "ProcessingConfiguration" in data:
+    if data.get("ProcessingConfiguration") is not None:
         import capo_firehose.types.processing_configuration
 
         out["processing_configuration"] = (
@@ -183,7 +183,7 @@ def deserialize_aws_json_1_1(
                 data["ProcessingConfiguration"]
             )
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_firehose.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (
@@ -191,7 +191,7 @@ def deserialize_aws_json_1_1(
                 data["CloudWatchLoggingOptions"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_firehose.types.vpc_configuration
 
         out["vpc_configuration"] = (

@@ -33,9 +33,9 @@ def serialize_json(value: SystemUserJourneyUpdatedMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SystemUserJourneyUpdatedMetadata:
     out: SystemUserJourneyUpdatedMetadata = {}  # type: ignore[typeddict-item]
-    if "userJourneyName" in data:
+    if data.get("userJourneyName") is not None:
         out["user_journey_name"] = data["userJourneyName"]
-    if "changes" in data:
+    if data.get("changes") is not None:
         import capo_resiliencehubv2.types.user_journey_changes
 
         out["changes"] = (

@@ -45,23 +45,23 @@ def serialize_json(value: ContextualAccentPalette) -> dict:
 
 def deserialize_json(data: dict) -> ContextualAccentPalette:
     out: ContextualAccentPalette = {}  # type: ignore[typeddict-item]
-    if "Connection" in data:
+    if data.get("Connection") is not None:
         import capo_quicksight.types.palette
 
         out["connection"] = capo_quicksight.types.palette.deserialize_json(
             data["Connection"]
         )
-    if "Visualization" in data:
+    if data.get("Visualization") is not None:
         import capo_quicksight.types.palette
 
         out["visualization"] = capo_quicksight.types.palette.deserialize_json(
             data["Visualization"]
         )
-    if "Insight" in data:
+    if data.get("Insight") is not None:
         import capo_quicksight.types.palette
 
         out["insight"] = capo_quicksight.types.palette.deserialize_json(data["Insight"])
-    if "Automation" in data:
+    if data.get("Automation") is not None:
         import capo_quicksight.types.palette
 
         out["automation"] = capo_quicksight.types.palette.deserialize_json(

@@ -39,17 +39,17 @@ def serialize_json(value: InsightsEvent) -> dict:
 
 def deserialize_json(data: dict) -> InsightsEvent:
     out: InsightsEvent = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["Timestamp"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sesv2.types.event_type
 
         out["type"] = capo_sesv2.types.event_type.deserialize_json(data["Type"])
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_sesv2.types.event_details
 
         out["details"] = capo_sesv2.types.event_details.deserialize_json(

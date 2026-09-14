@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> S3Buckets:
 
     out: S3Buckets = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ssm_guiconnect.types.s3_bucket.deserialize_json(item))
     return out

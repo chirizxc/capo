@@ -89,13 +89,13 @@ def serialize_json(value: SearchInput) -> dict:
 
 def deserialize_json(data: dict) -> SearchInput:
     out: SearchInput = {}  # type: ignore[typeddict-item]
-    if "owningProjectIdentifier" in data:
+    if data.get("owningProjectIdentifier") is not None:
         out["owning_project_identifier"] = data["owningProjectIdentifier"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "searchScope" in data:
+    if data.get("searchScope") is not None:
         import capo_datazone.types.inventory_search_scope
 
         out["search_scope"] = (
@@ -105,25 +105,25 @@ def deserialize_json(data: dict) -> SearchInput:
         )
     else:
         raise DeserializationError("SearchInput.search_scope required")
-    if "searchText" in data:
+    if data.get("searchText") is not None:
         out["search_text"] = data["searchText"]
-    if "searchIn" in data:
+    if data.get("searchIn") is not None:
         import capo_datazone.types.search_in_list
 
         out["search_in"] = capo_datazone.types.search_in_list.deserialize_json(
             data["searchIn"]
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_datazone.types.filter_clause
 
         out["filters"] = capo_datazone.types.filter_clause.deserialize_json(
             data["filters"]
         )
-    if "sort" in data:
+    if data.get("sort") is not None:
         import capo_datazone.types.search_sort
 
         out["sort"] = capo_datazone.types.search_sort.deserialize_json(data["sort"])
-    if "additionalAttributes" in data:
+    if data.get("additionalAttributes") is not None:
         import capo_datazone.types.search_output_additional_attributes
 
         out["additional_attributes"] = (

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListLaunchPathsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLaunchPathsOutput:
     out: ListLaunchPathsOutput = {}  # type: ignore[typeddict-item]
-    if "LaunchPathSummaries" in data:
+    if data.get("LaunchPathSummaries") is not None:
         import capo_service_catalog.types.launch_path_summaries
 
         out["launch_path_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListLaunchPathsOutput:
                 data["LaunchPathSummaries"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

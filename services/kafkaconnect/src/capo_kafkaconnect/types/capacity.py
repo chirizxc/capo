@@ -40,13 +40,13 @@ def serialize_json(value: Capacity) -> dict:
 
 def deserialize_json(data: dict) -> Capacity:
     out: Capacity = {}  # type: ignore[typeddict-item]
-    if "autoScaling" in data:
+    if data.get("autoScaling") is not None:
         import capo_kafkaconnect.types.auto_scaling
 
         out["auto_scaling"] = capo_kafkaconnect.types.auto_scaling.deserialize_json(
             data["autoScaling"]
         )
-    if "provisionedCapacity" in data:
+    if data.get("provisionedCapacity") is not None:
         import capo_kafkaconnect.types.provisioned_capacity
 
         out["provisioned_capacity"] = (

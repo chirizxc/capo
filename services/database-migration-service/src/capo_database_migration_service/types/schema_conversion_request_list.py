@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> SchemaConversionRequestList:
 
     out: SchemaConversionRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_database_migration_service.types.schema_conversion_request.deserialize_aws_json_1_1(
                 item

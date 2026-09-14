@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: UnknownMonitorException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnknownMonitorException_:
     out: UnknownMonitorException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class UnknownMonitorException(ServiceError):
 
     code: str | None = "UnknownMonitorException"
 
-    def __init__(self, data: UnknownMonitorException_):
+    def __init__(self, data: UnknownMonitorException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnknownMonitorException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "UnknownMonitorException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "UnknownMonitorException":
+        return cls(deserialize_aws_json_1_1(data), message)

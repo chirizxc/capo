@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_networkmonitor._auth._signers
@@ -87,11 +88,13 @@ class ProbeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkmonitor.types.create_probe_input.CreateProbeInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["probe"] = probe
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_networkmonitor.types.create_probe_input.CreateProbeInput = {
+            "monitor_name": monitor_name,
+            "probe": probe,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -100,6 +103,7 @@ class ProbeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -139,15 +143,17 @@ class ProbeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkmonitor.types.get_probe_input.GetProbeInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["probe_id"] = probe_id
+        input_: capo_networkmonitor.types.get_probe_input.GetProbeInput = {
+            "monitor_name": monitor_name,
+            "probe_id": probe_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -202,9 +208,10 @@ class ProbeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkmonitor.types.update_probe_input.UpdateProbeInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["probe_id"] = probe_id
+        input_: capo_networkmonitor.types.update_probe_input.UpdateProbeInput = {
+            "monitor_name": monitor_name,
+            "probe_id": probe_id,
+        }
         if state is not None:
             input_["state"] = state
         if destination is not None:
@@ -221,6 +228,7 @@ class ProbeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -261,15 +269,17 @@ class ProbeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkmonitor.types.delete_probe_input.DeleteProbeInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["probe_id"] = probe_id
+        input_: capo_networkmonitor.types.delete_probe_input.DeleteProbeInput = {
+            "monitor_name": monitor_name,
+            "probe_id": probe_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -320,11 +330,13 @@ class AsyncProbeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkmonitor.types.create_probe_input.CreateProbeInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["probe"] = probe
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_networkmonitor.types.create_probe_input.CreateProbeInput = {
+            "monitor_name": monitor_name,
+            "probe": probe,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -333,6 +345,7 @@ class AsyncProbeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -373,15 +386,17 @@ class AsyncProbeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkmonitor.types.get_probe_input.GetProbeInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["probe_id"] = probe_id
+        input_: capo_networkmonitor.types.get_probe_input.GetProbeInput = {
+            "monitor_name": monitor_name,
+            "probe_id": probe_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -437,9 +452,10 @@ class AsyncProbeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkmonitor.types.update_probe_input.UpdateProbeInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["probe_id"] = probe_id
+        input_: capo_networkmonitor.types.update_probe_input.UpdateProbeInput = {
+            "monitor_name": monitor_name,
+            "probe_id": probe_id,
+        }
         if state is not None:
             input_["state"] = state
         if destination is not None:
@@ -456,6 +472,7 @@ class AsyncProbeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -497,13 +514,15 @@ class AsyncProbeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkmonitor.types.delete_probe_input.DeleteProbeInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["probe_id"] = probe_id
+        input_: capo_networkmonitor.types.delete_probe_input.DeleteProbeInput = {
+            "monitor_name": monitor_name,
+            "probe_id": probe_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

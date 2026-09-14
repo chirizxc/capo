@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SelfUpgradeRequestDetailList:
 
     out: SelfUpgradeRequestDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.self_upgrade_request_detail.deserialize_json(item)
         )

@@ -28,11 +28,11 @@ def serialize_json(value: SnowflakeTableSchemaV1) -> dict:
 
 def deserialize_json(data: dict) -> SnowflakeTableSchemaV1:
     out: SnowflakeTableSchemaV1 = {}  # type: ignore[typeddict-item]
-    if "columnName" in data:
+    if data.get("columnName") is not None:
         out["column_name"] = data["columnName"]
     else:
         raise DeserializationError("SnowflakeTableSchemaV1.column_name required")
-    if "columnType" in data:
+    if data.get("columnType") is not None:
         out["column_type"] = data["columnType"]
     else:
         raise DeserializationError("SnowflakeTableSchemaV1.column_type required")

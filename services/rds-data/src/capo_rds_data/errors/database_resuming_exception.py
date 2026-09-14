@@ -24,7 +24,7 @@ def serialize_json(value: DatabaseResumingException_) -> dict:
 
 def deserialize_json(data: dict) -> DatabaseResumingException_:
     out: DatabaseResumingException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class DatabaseResumingException(ServiceError):
 
     code: str | None = "DatabaseResumingException"
 
-    def __init__(self, data: DatabaseResumingException_):
+    def __init__(self, data: DatabaseResumingException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DatabaseResumingException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DatabaseResumingException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DatabaseResumingException":
+        return cls(deserialize_json(data), message)

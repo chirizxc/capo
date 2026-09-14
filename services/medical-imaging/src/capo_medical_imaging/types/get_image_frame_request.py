@@ -38,7 +38,7 @@ def serialize_json(value: GetImageFrameRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetImageFrameRequest:
     out: GetImageFrameRequest = {}  # type: ignore[typeddict-item]
-    if "imageFrameInformation" in data:
+    if data.get("imageFrameInformation") is not None:
         import capo_medical_imaging.types.image_frame_information
 
         out["image_frame_information"] = (

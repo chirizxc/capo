@@ -39,7 +39,7 @@ def serialize_json(value: MergeRouterInputStreamDetails) -> dict:
 
 def deserialize_json(data: dict) -> MergeRouterInputStreamDetails:
     out: MergeRouterInputStreamDetails = {}  # type: ignore[typeddict-item]
-    if "sourceIndexZeroStreamDetails" in data:
+    if data.get("sourceIndexZeroStreamDetails") is not None:
         import capo_mediaconnect.types.merge_router_input_indexed_stream_details
 
         out["source_index_zero_stream_details"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> MergeRouterInputStreamDetails:
         raise DeserializationError(
             "MergeRouterInputStreamDetails.source_index_zero_stream_details required"
         )
-    if "sourceIndexOneStreamDetails" in data:
+    if data.get("sourceIndexOneStreamDetails") is not None:
         import capo_mediaconnect.types.merge_router_input_indexed_stream_details
 
         out["source_index_one_stream_details"] = (

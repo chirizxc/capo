@@ -95,29 +95,29 @@ def serialize_aws_json_1_1(value: ListMlflowAppsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMlflowAppsRequest:
     out: ListMlflowAppsRequest = {}  # type: ignore[typeddict-item]
-    if "CreatedAfter" in data:
+    if data.get("CreatedAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["created_after"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAfter"]
         )
-    if "CreatedBefore" in data:
+    if data.get("CreatedBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["created_before"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedBefore"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.mlflow_app_status
 
         out["status"] = capo_sagemaker.types.mlflow_app_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "MlflowVersion" in data:
+    if data.get("MlflowVersion") is not None:
         out["mlflow_version"] = data["MlflowVersion"]
-    if "DefaultForDomainId" in data:
+    if data.get("DefaultForDomainId") is not None:
         out["default_for_domain_id"] = data["DefaultForDomainId"]
-    if "AccountDefaultStatus" in data:
+    if data.get("AccountDefaultStatus") is not None:
         import capo_sagemaker.types.account_default_status
 
         out["account_default_status"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListMlflowAppsRequest:
                 data["AccountDefaultStatus"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.sort_mlflow_app_by
 
         out["sort_by"] = (
@@ -133,14 +133,14 @@ def deserialize_aws_json_1_1(data: dict) -> ListMlflowAppsRequest:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

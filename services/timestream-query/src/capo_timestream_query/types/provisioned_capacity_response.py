@@ -47,9 +47,9 @@ def serialize_aws_json_1_0(value: ProvisionedCapacityResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProvisionedCapacityResponse:
     out: ProvisionedCapacityResponse = {}  # type: ignore[typeddict-item]
-    if "ActiveQueryTCU" in data:
+    if data.get("ActiveQueryTCU") is not None:
         out["active_query_tcu"] = data["ActiveQueryTCU"]
-    if "NotificationConfiguration" in data:
+    if data.get("NotificationConfiguration") is not None:
         import capo_timestream_query.types.account_settings_notification_configuration
 
         out["notification_configuration"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProvisionedCapacityResponse:
                 data["NotificationConfiguration"]
             )
         )
-    if "LastUpdate" in data:
+    if data.get("LastUpdate") is not None:
         import capo_timestream_query.types.last_update
 
         out["last_update"] = (

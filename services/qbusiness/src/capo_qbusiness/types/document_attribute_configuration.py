@@ -39,13 +39,13 @@ def serialize_json(value: DocumentAttributeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DocumentAttributeConfiguration:
     out: DocumentAttributeConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.attribute_type
 
         out["type"] = capo_qbusiness.types.attribute_type.deserialize_json(data["type"])
-    if "search" in data:
+    if data.get("search") is not None:
         import capo_qbusiness.types.status
 
         out["search"] = capo_qbusiness.types.status.deserialize_json(data["search"])

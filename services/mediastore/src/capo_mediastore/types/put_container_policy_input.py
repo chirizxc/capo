@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: PutContainerPolicyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutContainerPolicyInput:
     out: PutContainerPolicyInput = {}  # type: ignore[typeddict-item]
-    if "ContainerName" in data:
+    if data.get("ContainerName") is not None:
         out["container_name"] = data["ContainerName"]
     else:
         raise DeserializationError("PutContainerPolicyInput.container_name required")
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     else:
         raise DeserializationError("PutContainerPolicyInput.policy required")

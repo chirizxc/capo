@@ -38,11 +38,11 @@ def serialize_json(value: DescribeInstanceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeInstanceResponse:
     out: DescribeInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "Instance" in data:
+    if data.get("Instance") is not None:
         import capo_connect.types.instance
 
         out["instance"] = capo_connect.types.instance.deserialize_json(data["Instance"])
-    if "ReplicationConfiguration" in data:
+    if data.get("ReplicationConfiguration") is not None:
         import capo_connect.types.replication_configuration
 
         out["replication_configuration"] = (

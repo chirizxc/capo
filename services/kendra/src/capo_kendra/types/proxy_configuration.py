@@ -33,14 +33,14 @@ def serialize_aws_json_1_1(value: ProxyConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProxyConfiguration:
     out: ProxyConfiguration = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("ProxyConfiguration.host required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("ProxyConfiguration.port required")
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         out["credentials"] = data["Credentials"]
     return out

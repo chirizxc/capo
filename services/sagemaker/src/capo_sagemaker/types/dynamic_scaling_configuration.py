@@ -48,15 +48,15 @@ def serialize_aws_json_1_1(value: DynamicScalingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DynamicScalingConfiguration:
     out: DynamicScalingConfiguration = {}  # type: ignore[typeddict-item]
-    if "MinCapacity" in data:
+    if data.get("MinCapacity") is not None:
         out["min_capacity"] = data["MinCapacity"]
-    if "MaxCapacity" in data:
+    if data.get("MaxCapacity") is not None:
         out["max_capacity"] = data["MaxCapacity"]
-    if "ScaleInCooldown" in data:
+    if data.get("ScaleInCooldown") is not None:
         out["scale_in_cooldown"] = data["ScaleInCooldown"]
-    if "ScaleOutCooldown" in data:
+    if data.get("ScaleOutCooldown") is not None:
         out["scale_out_cooldown"] = data["ScaleOutCooldown"]
-    if "ScalingPolicies" in data:
+    if data.get("ScalingPolicies") is not None:
         import capo_sagemaker.types.scaling_policies
 
         out["scaling_policies"] = (

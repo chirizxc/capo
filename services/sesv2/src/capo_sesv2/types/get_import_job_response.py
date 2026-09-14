@@ -94,9 +94,9 @@ def serialize_json(value: GetImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetImportJobResponse:
     out: GetImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "ImportDestination" in data:
+    if data.get("ImportDestination") is not None:
         import capo_sesv2.types.import_destination
 
         out["import_destination"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> GetImportJobResponse:
                 data["ImportDestination"]
             )
         )
-    if "ImportDataSource" in data:
+    if data.get("ImportDataSource") is not None:
         import capo_sesv2.types.import_data_source
 
         out["import_data_source"] = (
@@ -112,32 +112,32 @@ def deserialize_json(data: dict) -> GetImportJobResponse:
                 data["ImportDataSource"]
             )
         )
-    if "FailureInfo" in data:
+    if data.get("FailureInfo") is not None:
         import capo_sesv2.types.failure_info
 
         out["failure_info"] = capo_sesv2.types.failure_info.deserialize_json(
             data["FailureInfo"]
         )
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_sesv2.types.job_status
 
         out["job_status"] = capo_sesv2.types.job_status.deserialize_json(
             data["JobStatus"]
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["created_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "CompletedTimestamp" in data:
+    if data.get("CompletedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["completed_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["CompletedTimestamp"]
         )
-    if "ProcessedRecordsCount" in data:
+    if data.get("ProcessedRecordsCount") is not None:
         out["processed_records_count"] = data["ProcessedRecordsCount"]
-    if "FailedRecordsCount" in data:
+    if data.get("FailedRecordsCount") is not None:
         out["failed_records_count"] = data["FailedRecordsCount"]
     return out

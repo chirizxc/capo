@@ -36,7 +36,7 @@ def serialize_json(value: CapabilityFailure) -> dict:
 
 def deserialize_json(data: dict) -> CapabilityFailure:
     out: CapabilityFailure = {}  # type: ignore[typeddict-item]
-    if "reason" in data:
+    if data.get("reason") is not None:
         import capo_opensearch.types.capability_failure_reason
 
         out["reason"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> CapabilityFailure:
                 data["reason"]
             )
         )
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
     return out

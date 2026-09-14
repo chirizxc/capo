@@ -32,9 +32,9 @@ def serialize_json(value: MultiRegionProperties) -> dict:
 
 def deserialize_json(data: dict) -> MultiRegionProperties:
     out: MultiRegionProperties = {}  # type: ignore[typeddict-item]
-    if "witnessRegion" in data:
+    if data.get("witnessRegion") is not None:
         out["witness_region"] = data["witnessRegion"]
-    if "clusters" in data:
+    if data.get("clusters") is not None:
         import capo_dsql.types.cluster_arn_list
 
         out["clusters"] = capo_dsql.types.cluster_arn_list.deserialize_json(

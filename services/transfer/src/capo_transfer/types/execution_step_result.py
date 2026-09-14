@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: ExecutionStepResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionStepResult:
     out: ExecutionStepResult = {}  # type: ignore[typeddict-item]
-    if "StepType" in data:
+    if data.get("StepType") is not None:
         import capo_transfer.types.workflow_step_type
 
         out["step_type"] = (
@@ -51,9 +51,9 @@ def deserialize_aws_json_1_1(data: dict) -> ExecutionStepResult:
                 data["StepType"]
             )
         )
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         out["outputs"] = data["Outputs"]
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_transfer.types.execution_error
 
         out["error"] = capo_transfer.types.execution_error.deserialize_aws_json_1_1(

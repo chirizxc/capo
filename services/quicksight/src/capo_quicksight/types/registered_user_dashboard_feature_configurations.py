@@ -122,7 +122,7 @@ def serialize_json(value: RegisteredUserDashboardFeatureConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredUserDashboardFeatureConfigurations:
     out: RegisteredUserDashboardFeatureConfigurations = {}  # type: ignore[typeddict-item]
-    if "StatePersistence" in data:
+    if data.get("StatePersistence") is not None:
         import capo_quicksight.types.state_persistence_configurations
 
         out["state_persistence"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> RegisteredUserDashboardFeatureConfigurations
                 data["StatePersistence"]
             )
         )
-    if "Bookmarks" in data:
+    if data.get("Bookmarks") is not None:
         import capo_quicksight.types.bookmarks_configurations
 
         out["bookmarks"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> RegisteredUserDashboardFeatureConfigurations
                 data["Bookmarks"]
             )
         )
-    if "SharedView" in data:
+    if data.get("SharedView") is not None:
         import capo_quicksight.types.shared_view_configurations
 
         out["shared_view"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> RegisteredUserDashboardFeatureConfigurations
                 data["SharedView"]
             )
         )
-    if "AmazonQInQuickSight" in data:
+    if data.get("AmazonQInQuickSight") is not None:
         import capo_quicksight.types.amazon_q_in_quick_sight_dashboard_configurations
 
         out["amazon_q_in_quick_sight"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> RegisteredUserDashboardFeatureConfigurations
                 data["AmazonQInQuickSight"]
             )
         )
-    if "Schedules" in data:
+    if data.get("Schedules") is not None:
         import capo_quicksight.types.schedules_configurations
 
         out["schedules"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> RegisteredUserDashboardFeatureConfigurations
                 data["Schedules"]
             )
         )
-    if "RecentSnapshots" in data:
+    if data.get("RecentSnapshots") is not None:
         import capo_quicksight.types.recent_snapshots_configurations
 
         out["recent_snapshots"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> RegisteredUserDashboardFeatureConfigurations
                 data["RecentSnapshots"]
             )
         )
-    if "ThresholdAlerts" in data:
+    if data.get("ThresholdAlerts") is not None:
         import capo_quicksight.types.threshold_alerts_configurations
 
         out["threshold_alerts"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> RegisteredUserDashboardFeatureConfigurations
                 data["ThresholdAlerts"]
             )
         )
-    if "DashboardCustomizationSummary" in data:
+    if data.get("DashboardCustomizationSummary") is not None:
         import capo_quicksight.types.dashboard_customization_summary_configurations
 
         out["dashboard_customization_summary"] = (

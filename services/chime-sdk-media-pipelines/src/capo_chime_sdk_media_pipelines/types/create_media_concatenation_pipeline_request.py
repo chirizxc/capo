@@ -56,7 +56,7 @@ def serialize_json(value: CreateMediaConcatenationPipelineRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMediaConcatenationPipelineRequest:
     out: CreateMediaConcatenationPipelineRequest = {}  # type: ignore[typeddict-item]
-    if "Sources" in data:
+    if data.get("Sources") is not None:
         import capo_chime_sdk_media_pipelines.types.concatenation_source_list
 
         out["sources"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> CreateMediaConcatenationPipelineRequest:
         raise DeserializationError(
             "CreateMediaConcatenationPipelineRequest.sources required"
         )
-    if "Sinks" in data:
+    if data.get("Sinks") is not None:
         import capo_chime_sdk_media_pipelines.types.concatenation_sink_list
 
         out["sinks"] = (
@@ -80,9 +80,9 @@ def deserialize_json(data: dict) -> CreateMediaConcatenationPipelineRequest:
         raise DeserializationError(
             "CreateMediaConcatenationPipelineRequest.sinks required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_media_pipelines.types.tag_list
 
         out["tags"] = capo_chime_sdk_media_pipelines.types.tag_list.deserialize_json(

@@ -27,8 +27,8 @@ def serialize_json(value: ItemPath) -> dict:
 
 def deserialize_json(data: dict) -> ItemPath:
     out: ItemPath = {}  # type: ignore[typeddict-item]
-    if "nestedItemPath" in data:
+    if data.get("nestedItemPath") is not None:
         out["nested_item_path"] = data["nestedItemPath"]
-    if "hash" in data:
+    if data.get("hash") is not None:
         out["hash"] = data["hash"]
     return out

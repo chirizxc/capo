@@ -84,15 +84,15 @@ def serialize_json(value: GetPropertyValueRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetPropertyValueRequest:
     out: GetPropertyValueRequest = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "componentPath" in data:
+    if data.get("componentPath") is not None:
         out["component_path"] = data["componentPath"]
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "selectedProperties" in data:
+    if data.get("selectedProperties") is not None:
         import capo_iottwinmaker.types.selected_property_list
 
         out["selected_properties"] = (
@@ -104,13 +104,13 @@ def deserialize_json(data: dict) -> GetPropertyValueRequest:
         raise DeserializationError(
             "GetPropertyValueRequest.selected_properties required"
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "propertyGroupName" in data:
+    if data.get("propertyGroupName") is not None:
         out["property_group_name"] = data["propertyGroupName"]
-    if "tabularConditions" in data:
+    if data.get("tabularConditions") is not None:
         import capo_iottwinmaker.types.tabular_conditions
 
         out["tabular_conditions"] = (

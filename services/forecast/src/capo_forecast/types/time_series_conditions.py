@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> TimeSeriesConditions:
 
     out: TimeSeriesConditions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_forecast.types.time_series_condition.deserialize_aws_json_1_1(item)
         )

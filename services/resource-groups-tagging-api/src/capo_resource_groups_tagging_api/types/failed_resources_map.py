@@ -29,6 +29,8 @@ def serialize_aws_json_1_1(input_to_serialize: FailedResourcesMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> FailedResourcesMap:
     out: FailedResourcesMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_resource_groups_tagging_api.types.failure_info
 
         out[key] = (

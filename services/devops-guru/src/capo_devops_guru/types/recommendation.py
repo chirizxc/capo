@@ -75,15 +75,15 @@ def serialize_json(value: Recommendation) -> dict:
 
 def deserialize_json(data: dict) -> Recommendation:
     out: Recommendation = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Link" in data:
+    if data.get("Link") is not None:
         out["link"] = data["Link"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
-    if "RelatedEvents" in data:
+    if data.get("RelatedEvents") is not None:
         import capo_devops_guru.types.recommendation_related_events
 
         out["related_events"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> Recommendation:
                 data["RelatedEvents"]
             )
         )
-    if "RelatedAnomalies" in data:
+    if data.get("RelatedAnomalies") is not None:
         import capo_devops_guru.types.recommendation_related_anomalies
 
         out["related_anomalies"] = (
@@ -99,6 +99,6 @@ def deserialize_json(data: dict) -> Recommendation:
                 data["RelatedAnomalies"]
             )
         )
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "criteria" in data:
+    if data.get("criteria") is not None:
         import capo_rtbfabric.types.filter_criteria
 
         out["criteria"] = capo_rtbfabric.types.filter_criteria.deserialize_json(

@@ -51,15 +51,15 @@ def serialize_json(value: ListMembershipsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListMembershipsRequest:
     out: ListMembershipsRequest = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("ListMembershipsRequest.application_id required")
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("ListMembershipsRequest.agent_space_id required")
-    if "memberType" in data:
+    if data.get("memberType") is not None:
         import capo_securityagent.types.membership_type_filter
 
         out["member_type"] = (
@@ -67,8 +67,8 @@ def deserialize_json(data: dict) -> ListMembershipsRequest:
                 data["memberType"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

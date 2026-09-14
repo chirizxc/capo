@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ActionInteractionsList:
 
     out: ActionInteractionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_personalize_events.types.action_interaction.deserialize_json(item)
         )

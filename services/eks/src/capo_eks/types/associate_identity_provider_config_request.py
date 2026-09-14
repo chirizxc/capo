@@ -42,7 +42,7 @@ def serialize_json(value: AssociateIdentityProviderConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateIdentityProviderConfigRequest:
     out: AssociateIdentityProviderConfigRequest = {}  # type: ignore[typeddict-item]
-    if "oidc" in data:
+    if data.get("oidc") is not None:
         import capo_eks.types.oidc_identity_provider_config_request
 
         out["oidc"] = (
@@ -54,10 +54,10 @@ def deserialize_json(data: dict) -> AssociateIdentityProviderConfigRequest:
         raise DeserializationError(
             "AssociateIdentityProviderConfigRequest.oidc required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     return out

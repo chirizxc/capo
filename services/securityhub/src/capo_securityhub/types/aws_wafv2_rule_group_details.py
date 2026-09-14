@@ -66,25 +66,25 @@ def serialize_json(value: AwsWafv2RuleGroupDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafv2RuleGroupDetails:
     out: AwsWafv2RuleGroupDetails = {}  # type: ignore[typeddict-item]
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         out["capacity"] = data["Capacity"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_securityhub.types.aws_wafv2_rules_list
 
         out["rules"] = capo_securityhub.types.aws_wafv2_rules_list.deserialize_json(
             data["Rules"]
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         out["scope"] = data["Scope"]
-    if "VisibilityConfig" in data:
+    if data.get("VisibilityConfig") is not None:
         import capo_securityhub.types.aws_wafv2_visibility_config_details
 
         out["visibility_config"] = (

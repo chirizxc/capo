@@ -31,7 +31,7 @@ def serialize_json(value: DescribeVirtualClusterResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeVirtualClusterResponse:
     out: DescribeVirtualClusterResponse = {}  # type: ignore[typeddict-item]
-    if "virtualCluster" in data:
+    if data.get("virtualCluster") is not None:
         import capo_emr_containers.types.virtual_cluster
 
         out["virtual_cluster"] = (

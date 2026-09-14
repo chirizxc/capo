@@ -24,7 +24,15 @@ class VideoBlackFailoverSettings(TypedDict, closed=True):
 def serialize_json(value: VideoBlackFailoverSettings) -> dict:
     out: dict = {}
     if "black_detect_threshold" in value:
-        out["blackDetectThreshold"] = value["black_detect_threshold"]
+        out["blackDetectThreshold"] = (
+            "NaN"
+            if value["black_detect_threshold"] != value["black_detect_threshold"]
+            else "Infinity"
+            if value["black_detect_threshold"] == float("inf")
+            else "-Infinity"
+            if value["black_detect_threshold"] == float("-inf")
+            else value["black_detect_threshold"]
+        )
     if "video_black_threshold_msec" in value:
         out["videoBlackThresholdMsec"] = value["video_black_threshold_msec"]
     return out
@@ -32,8 +40,8 @@ def serialize_json(value: VideoBlackFailoverSettings) -> dict:
 
 def deserialize_json(data: dict) -> VideoBlackFailoverSettings:
     out: VideoBlackFailoverSettings = {}  # type: ignore[typeddict-item]
-    if "blackDetectThreshold" in data:
-        out["black_detect_threshold"] = data["blackDetectThreshold"]
-    if "videoBlackThresholdMsec" in data:
+    if data.get("blackDetectThreshold") is not None:
+        out["black_detect_threshold"] = float(data["blackDetectThreshold"])
+    if data.get("videoBlackThresholdMsec") is not None:
         out["video_black_threshold_msec"] = data["videoBlackThresholdMsec"]
     return out

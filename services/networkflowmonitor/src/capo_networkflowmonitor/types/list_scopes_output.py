@@ -32,7 +32,7 @@ def serialize_json(value: ListScopesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListScopesOutput:
     out: ListScopesOutput = {}  # type: ignore[typeddict-item]
-    if "scopes" in data:
+    if data.get("scopes") is not None:
         import capo_networkflowmonitor.types.scope_summary_list
 
         out["scopes"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListScopesOutput:
         )
     else:
         raise DeserializationError("ListScopesOutput.scopes required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -42,7 +42,7 @@ def serialize_json(value: TopicNumericEqualityFilter) -> dict:
 
 def deserialize_json(data: dict) -> TopicNumericEqualityFilter:
     out: TopicNumericEqualityFilter = {}  # type: ignore[typeddict-item]
-    if "Constant" in data:
+    if data.get("Constant") is not None:
         import capo_quicksight.types.topic_singular_filter_constant
 
         out["constant"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> TopicNumericEqualityFilter:
                 data["Constant"]
             )
         )
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_quicksight.types.named_filter_agg_type
 
         out["aggregation"] = (

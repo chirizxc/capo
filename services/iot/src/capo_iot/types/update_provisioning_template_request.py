@@ -59,15 +59,15 @@ def serialize_json(value: UpdateProvisioningTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProvisioningTemplateRequest:
     out: UpdateProvisioningTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "defaultVersionId" in data:
+    if data.get("defaultVersionId") is not None:
         out["default_version_id"] = data["defaultVersionId"]
-    if "provisioningRoleArn" in data:
+    if data.get("provisioningRoleArn") is not None:
         out["provisioning_role_arn"] = data["provisioningRoleArn"]
-    if "preProvisioningHook" in data:
+    if data.get("preProvisioningHook") is not None:
         import capo_iot.types.provisioning_hook
 
         out["pre_provisioning_hook"] = (
@@ -75,6 +75,6 @@ def deserialize_json(data: dict) -> UpdateProvisioningTemplateRequest:
                 data["preProvisioningHook"]
             )
         )
-    if "removePreProvisioningHook" in data:
+    if data.get("removePreProvisioningHook") is not None:
         out["remove_pre_provisioning_hook"] = data["removePreProvisioningHook"]
     return out

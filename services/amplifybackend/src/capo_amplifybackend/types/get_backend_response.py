@@ -56,15 +56,15 @@ def serialize_json(value: GetBackendResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBackendResponse:
     out: GetBackendResponse = {}  # type: ignore[typeddict-item]
-    if "amplifyFeatureFlags" in data:
+    if data.get("amplifyFeatureFlags") is not None:
         out["amplify_feature_flags"] = data["amplifyFeatureFlags"]
-    if "amplifyMetaConfig" in data:
+    if data.get("amplifyMetaConfig") is not None:
         out["amplify_meta_config"] = data["amplifyMetaConfig"]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
-    if "appName" in data:
+    if data.get("appName") is not None:
         out["app_name"] = data["appName"]
-    if "backendEnvironmentList" in data:
+    if data.get("backendEnvironmentList") is not None:
         import capo_amplifybackend.types.list_of__string
 
         out["backend_environment_list"] = (
@@ -72,8 +72,8 @@ def deserialize_json(data: dict) -> GetBackendResponse:
                 data["backendEnvironmentList"]
             )
         )
-    if "backendEnvironmentName" in data:
+    if data.get("backendEnvironmentName") is not None:
         out["backend_environment_name"] = data["backendEnvironmentName"]
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
     return out

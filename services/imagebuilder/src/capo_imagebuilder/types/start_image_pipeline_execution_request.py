@@ -35,19 +35,19 @@ def serialize_json(value: StartImagePipelineExecutionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartImagePipelineExecutionRequest:
     out: StartImagePipelineExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "imagePipelineArn" in data:
+    if data.get("imagePipelineArn") is not None:
         out["image_pipeline_arn"] = data["imagePipelineArn"]
     else:
         raise DeserializationError(
             "StartImagePipelineExecutionRequest.image_pipeline_arn required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(
             "StartImagePipelineExecutionRequest.client_token required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])

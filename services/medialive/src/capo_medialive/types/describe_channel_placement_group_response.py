@@ -65,27 +65,27 @@ def serialize_json(value: DescribeChannelPlacementGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeChannelPlacementGroupResponse:
     out: DescribeChannelPlacementGroupResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         import capo_medialive.types.__list_of__string
 
         out["channels"] = capo_medialive.types.__list_of__string.deserialize_json(
             data["channels"]
         )
-    if "clusterId" in data:
+    if data.get("clusterId") is not None:
         out["cluster_id"] = data["clusterId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "nodes" in data:
+    if data.get("nodes") is not None:
         import capo_medialive.types.__list_of__string
 
         out["nodes"] = capo_medialive.types.__list_of__string.deserialize_json(
             data["nodes"]
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.channel_placement_group_state
 
         out["state"] = (

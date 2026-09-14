@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: DescribeEdgeDeploymentPlanRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEdgeDeploymentPlanRequest:
     out: DescribeEdgeDeploymentPlanRequest = {}  # type: ignore[typeddict-item]
-    if "EdgeDeploymentPlanName" in data:
+    if data.get("EdgeDeploymentPlanName") is not None:
         out["edge_deployment_plan_name"] = data["EdgeDeploymentPlanName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

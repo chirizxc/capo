@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateRepositoryOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRepositoryOutput:
     out: CreateRepositoryOutput = {}  # type: ignore[typeddict-item]
-    if "repositoryMetadata" in data:
+    if data.get("repositoryMetadata") is not None:
         import capo_codecommit.types.repository_metadata
 
         out["repository_metadata"] = (

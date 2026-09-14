@@ -36,9 +36,9 @@ def serialize_json(value: RuleGroupSourceStatefulRulesOptionsDetails) -> dict:
 
 def deserialize_json(data: dict) -> RuleGroupSourceStatefulRulesOptionsDetails:
     out: RuleGroupSourceStatefulRulesOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "Keyword" in data:
+    if data.get("Keyword") is not None:
         out["keyword"] = data["Keyword"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_securityhub.types.rule_group_source_stateful_rules_rule_options_settings_list
 
         out["settings"] = (

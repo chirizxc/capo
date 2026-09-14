@@ -39,14 +39,14 @@ def serialize_json(value: PipelineBlueprintSummary) -> dict:
 
 def deserialize_json(data: dict) -> PipelineBlueprintSummary:
     out: PipelineBlueprintSummary = {}  # type: ignore[typeddict-item]
-    if "BlueprintName" in data:
+    if data.get("BlueprintName") is not None:
         out["blueprint_name"] = data["BlueprintName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "DisplayDescription" in data:
+    if data.get("DisplayDescription") is not None:
         out["display_description"] = data["DisplayDescription"]
-    if "Service" in data:
+    if data.get("Service") is not None:
         out["service"] = data["Service"]
-    if "UseCase" in data:
+    if data.get("UseCase") is not None:
         out["use_case"] = data["UseCase"]
     return out

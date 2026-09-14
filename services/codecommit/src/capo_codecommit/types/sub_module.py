@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: SubModule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SubModule:
     out: SubModule = {}  # type: ignore[typeddict-item]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
-    if "absolutePath" in data:
+    if data.get("absolutePath") is not None:
         out["absolute_path"] = data["absolutePath"]
-    if "relativePath" in data:
+    if data.get("relativePath") is not None:
         out["relative_path"] = data["relativePath"]
     return out

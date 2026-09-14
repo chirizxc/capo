@@ -86,17 +86,17 @@ def serialize_json(value: ReplicatorSummary) -> dict:
 
 def deserialize_json(data: dict) -> ReplicatorSummary:
     out: ReplicatorSummary = {}  # type: ignore[typeddict-item]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["creation_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["creationTime"]
         )
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "isReplicatorReference" in data:
+    if data.get("isReplicatorReference") is not None:
         out["is_replicator_reference"] = data["isReplicatorReference"]
-    if "kafkaClustersSummary" in data:
+    if data.get("kafkaClustersSummary") is not None:
         import capo_kafka.types.__list_of_kafka_cluster_summary
 
         out["kafka_clusters_summary"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> ReplicatorSummary:
                 data["kafkaClustersSummary"]
             )
         )
-    if "replicationInfoSummaryList" in data:
+    if data.get("replicationInfoSummaryList") is not None:
         import capo_kafka.types.__list_of_replication_info_summary
 
         out["replication_info_summary_list"] = (
@@ -112,13 +112,13 @@ def deserialize_json(data: dict) -> ReplicatorSummary:
                 data["replicationInfoSummaryList"]
             )
         )
-    if "replicatorArn" in data:
+    if data.get("replicatorArn") is not None:
         out["replicator_arn"] = data["replicatorArn"]
-    if "replicatorName" in data:
+    if data.get("replicatorName") is not None:
         out["replicator_name"] = data["replicatorName"]
-    if "replicatorResourceArn" in data:
+    if data.get("replicatorResourceArn") is not None:
         out["replicator_resource_arn"] = data["replicatorResourceArn"]
-    if "replicatorState" in data:
+    if data.get("replicatorState") is not None:
         import capo_kafka.types.replicator_state
 
         out["replicator_state"] = capo_kafka.types.replicator_state.deserialize_json(

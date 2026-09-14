@@ -37,15 +37,18 @@ class InvalidEndpointStateFault(ServiceError):
 
     code: str | None = "InvalidEndpointStateFault"
 
-    def __init__(self, data: InvalidEndpointStateFault_):
+    def __init__(self, data: InvalidEndpointStateFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidEndpointStateFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidEndpointStateFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidEndpointStateFault":
+        return cls(deserialize_query(el), message)

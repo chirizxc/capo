@@ -38,7 +38,7 @@ def serialize_json(value: ListAttributeGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAttributeGroupsResponse:
     out: ListAttributeGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "attributeGroups" in data:
+    if data.get("attributeGroups") is not None:
         import capo_service_catalog_appregistry.types.attribute_group_summaries
 
         out["attribute_groups"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListAttributeGroupsResponse:
                 data["attributeGroups"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

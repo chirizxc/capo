@@ -108,11 +108,11 @@ def serialize_aws_json_1_1(value: RemediationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemediationConfiguration:
     out: RemediationConfiguration = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
     else:
         raise DeserializationError("RemediationConfiguration.config_rule_name required")
-    if "TargetType" in data:
+    if data.get("TargetType") is not None:
         import capo_config_service.types.remediation_target_type
 
         out["target_type"] = (
@@ -122,13 +122,13 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationConfiguration:
         )
     else:
         raise DeserializationError("RemediationConfiguration.target_type required")
-    if "TargetId" in data:
+    if data.get("TargetId") is not None:
         out["target_id"] = data["TargetId"]
     else:
         raise DeserializationError("RemediationConfiguration.target_id required")
-    if "TargetVersion" in data:
+    if data.get("TargetVersion") is not None:
         out["target_version"] = data["TargetVersion"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_config_service.types.remediation_parameters
 
         out["parameters"] = (
@@ -136,13 +136,13 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationConfiguration:
                 data["Parameters"]
             )
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "Automatic" in data:
+    if data.get("Automatic") is not None:
         out["automatic"] = data["Automatic"]
     else:
         out["automatic"] = False
-    if "ExecutionControls" in data:
+    if data.get("ExecutionControls") is not None:
         import capo_config_service.types.execution_controls
 
         out["execution_controls"] = (
@@ -150,12 +150,12 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationConfiguration:
                 data["ExecutionControls"]
             )
         )
-    if "MaximumAutomaticAttempts" in data:
+    if data.get("MaximumAutomaticAttempts") is not None:
         out["maximum_automatic_attempts"] = data["MaximumAutomaticAttempts"]
-    if "RetryAttemptSeconds" in data:
+    if data.get("RetryAttemptSeconds") is not None:
         out["retry_attempt_seconds"] = data["RetryAttemptSeconds"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedByService" in data:
+    if data.get("CreatedByService") is not None:
         out["created_by_service"] = data["CreatedByService"]
     return out

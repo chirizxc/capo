@@ -75,7 +75,7 @@ def serialize_aws_json_1_1(value: SelfservicePermissions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SelfservicePermissions:
     out: SelfservicePermissions = {}  # type: ignore[typeddict-item]
-    if "RestartWorkspace" in data:
+    if data.get("RestartWorkspace") is not None:
         import capo_workspaces.types.reconnect_enum
 
         out["restart_workspace"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> SelfservicePermissions:
                 data["RestartWorkspace"]
             )
         )
-    if "IncreaseVolumeSize" in data:
+    if data.get("IncreaseVolumeSize") is not None:
         import capo_workspaces.types.reconnect_enum
 
         out["increase_volume_size"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> SelfservicePermissions:
                 data["IncreaseVolumeSize"]
             )
         )
-    if "ChangeComputeType" in data:
+    if data.get("ChangeComputeType") is not None:
         import capo_workspaces.types.reconnect_enum
 
         out["change_compute_type"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> SelfservicePermissions:
                 data["ChangeComputeType"]
             )
         )
-    if "SwitchRunningMode" in data:
+    if data.get("SwitchRunningMode") is not None:
         import capo_workspaces.types.reconnect_enum
 
         out["switch_running_mode"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> SelfservicePermissions:
                 data["SwitchRunningMode"]
             )
         )
-    if "RebuildWorkspace" in data:
+    if data.get("RebuildWorkspace") is not None:
         import capo_workspaces.types.reconnect_enum
 
         out["rebuild_workspace"] = (

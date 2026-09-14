@@ -38,7 +38,7 @@ def serialize_json(value: SearchVocabulariesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchVocabulariesResponse:
     out: SearchVocabulariesResponse = {}  # type: ignore[typeddict-item]
-    if "VocabularySummaryList" in data:
+    if data.get("VocabularySummaryList") is not None:
         import capo_connect.types.vocabulary_summary_list
 
         out["vocabulary_summary_list"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> SearchVocabulariesResponse:
                 data["VocabularySummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

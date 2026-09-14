@@ -32,7 +32,7 @@ def serialize_json(value: ConsolidatedPolicy) -> dict:
 
 
 def deserialize_json(data: dict) -> ConsolidatedPolicy:
-    if "v1" in data:
+    if data.get("v1") is not None:
         import capo_cleanrooms.types.consolidated_policy_v1
 
         return {

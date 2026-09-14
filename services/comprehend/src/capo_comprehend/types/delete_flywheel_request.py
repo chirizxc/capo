@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteFlywheelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFlywheelRequest:
     out: DeleteFlywheelRequest = {}  # type: ignore[typeddict-item]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
     else:
         raise DeserializationError("DeleteFlywheelRequest.flywheel_arn required")

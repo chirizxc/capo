@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: RoleMappingMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> RoleMappingMap:
     out: RoleMappingMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_cognito_identity.types.role_mapping
 
         out[key] = capo_cognito_identity.types.role_mapping.deserialize_aws_json_1_1(

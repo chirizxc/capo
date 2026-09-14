@@ -69,17 +69,17 @@ def serialize_json(value: GetWorkspaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkspaceResponse:
     out: GetWorkspaceResponse = {}  # type: ignore[typeddict-item]
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError("GetWorkspaceResponse.workspace_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetWorkspaceResponse.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "linkedServices" in data:
+    if data.get("linkedServices") is not None:
         import capo_iottwinmaker.types.linked_services
 
         out["linked_services"] = (
@@ -87,11 +87,11 @@ def deserialize_json(data: dict) -> GetWorkspaceResponse:
                 data["linkedServices"]
             )
         )
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         out["s3_location"] = data["s3Location"]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> GetWorkspaceResponse:
         )
     else:
         raise DeserializationError("GetWorkspaceResponse.creation_date_time required")
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(

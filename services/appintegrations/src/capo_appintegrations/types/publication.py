@@ -33,14 +33,14 @@ def serialize_json(value: Publication) -> dict:
 
 def deserialize_json(data: dict) -> Publication:
     out: Publication = {}  # type: ignore[typeddict-item]
-    if "Event" in data:
+    if data.get("Event") is not None:
         out["event"] = data["Event"]
     else:
         raise DeserializationError("Publication.event required")
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
     else:
         raise DeserializationError("Publication.schema required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DimensionLabelList:
 
     out: DimensionLabelList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.dimension_label.deserialize_json(item)
         )

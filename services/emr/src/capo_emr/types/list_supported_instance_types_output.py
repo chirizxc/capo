@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListSupportedInstanceTypesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSupportedInstanceTypesOutput:
     out: ListSupportedInstanceTypesOutput = {}  # type: ignore[typeddict-item]
-    if "SupportedInstanceTypes" in data:
+    if data.get("SupportedInstanceTypes") is not None:
         import capo_emr.types.supported_instance_types_list
 
         out["supported_instance_types"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListSupportedInstanceTypesOutput:
                 data["SupportedInstanceTypes"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

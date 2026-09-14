@@ -62,19 +62,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListApplicationAssignmentsForPrincipalRequest:
     out: ListApplicationAssignmentsForPrincipalRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "ListApplicationAssignmentsForPrincipalRequest.instance_arn required"
         )
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
     else:
         raise DeserializationError(
             "ListApplicationAssignmentsForPrincipalRequest.principal_id required"
         )
-    if "PrincipalType" in data:
+    if data.get("PrincipalType") is not None:
         import capo_sso_admin.types.principal_type
 
         out["principal_type"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "ListApplicationAssignmentsForPrincipalRequest.principal_type required"
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_sso_admin.types.list_application_assignments_filter
 
         out["filter"] = (
@@ -94,9 +94,9 @@ def deserialize_aws_json_1_1(
                 data["Filter"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 100

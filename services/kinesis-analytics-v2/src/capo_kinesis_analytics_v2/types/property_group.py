@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: PropertyGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PropertyGroup:
     out: PropertyGroup = {}  # type: ignore[typeddict-item]
-    if "PropertyGroupId" in data:
+    if data.get("PropertyGroupId") is not None:
         out["property_group_id"] = data["PropertyGroupId"]
     else:
         raise DeserializationError("PropertyGroup.property_group_id required")
-    if "PropertyMap" in data:
+    if data.get("PropertyMap") is not None:
         import capo_kinesis_analytics_v2.types.property_map
 
         out["property_map"] = (

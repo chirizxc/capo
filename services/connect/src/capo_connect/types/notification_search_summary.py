@@ -99,51 +99,51 @@ def serialize_json(value: NotificationSearchSummary) -> dict:
 
 def deserialize_json(data: dict) -> NotificationSearchSummary:
     out: NotificationSearchSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_connect.types.notification_content
 
         out["content"] = capo_connect.types.notification_content.deserialize_json(
             data["Content"]
         )
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         import capo_connect.types.notification_priority
 
         out["priority"] = capo_connect.types.notification_priority.deserialize_json(
             data["Priority"]
         )
-    if "Recipients" in data:
+    if data.get("Recipients") is not None:
         import capo_connect.types.recipient_list
 
         out["recipients"] = capo_connect.types.recipient_list.deserialize_json(
             data["Recipients"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_connect.types.timestamp
 
         out["created_at"] = capo_connect.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "ExpiresAt" in data:
+    if data.get("ExpiresAt") is not None:
         import capo_connect.types.timestamp
 
         out["expires_at"] = capo_connect.types.timestamp.deserialize_json(
             data["ExpiresAt"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: EdgeDeploymentModelConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdgeDeploymentModelConfig:
     out: EdgeDeploymentModelConfig = {}  # type: ignore[typeddict-item]
-    if "ModelHandle" in data:
+    if data.get("ModelHandle") is not None:
         out["model_handle"] = data["ModelHandle"]
-    if "EdgePackagingJobName" in data:
+    if data.get("EdgePackagingJobName") is not None:
         out["edge_packaging_job_name"] = data["EdgePackagingJobName"]
     return out

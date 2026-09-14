@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: VoiceSpoofingRisk) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VoiceSpoofingRisk:
     out: VoiceSpoofingRisk = {}  # type: ignore[typeddict-item]
-    if "RiskScore" in data:
+    if data.get("RiskScore") is not None:
         out["risk_score"] = data["RiskScore"]
     else:
         raise DeserializationError("VoiceSpoofingRisk.risk_score required")

@@ -51,7 +51,15 @@ def serialize_json(value: UpdatePricingRuleInput) -> dict:
             value["type"]
         )
     if "modifier_percentage" in value:
-        out["ModifierPercentage"] = value["modifier_percentage"]
+        out["ModifierPercentage"] = (
+            "NaN"
+            if value["modifier_percentage"] != value["modifier_percentage"]
+            else "Infinity"
+            if value["modifier_percentage"] == float("inf")
+            else "-Infinity"
+            if value["modifier_percentage"] == float("-inf")
+            else value["modifier_percentage"]
+        )
     if "tiering" in value:
         import capo_billingconductor.types.update_tiering_input
 
@@ -65,23 +73,23 @@ def serialize_json(value: UpdatePricingRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePricingRuleInput:
     out: UpdatePricingRuleInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UpdatePricingRuleInput.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_billingconductor.types.pricing_rule_type
 
         out["type"] = capo_billingconductor.types.pricing_rule_type.deserialize_json(
             data["Type"]
         )
-    if "ModifierPercentage" in data:
-        out["modifier_percentage"] = data["ModifierPercentage"]
-    if "Tiering" in data:
+    if data.get("ModifierPercentage") is not None:
+        out["modifier_percentage"] = float(data["ModifierPercentage"])
+    if data.get("Tiering") is not None:
         import capo_billingconductor.types.update_tiering_input
 
         out["tiering"] = (

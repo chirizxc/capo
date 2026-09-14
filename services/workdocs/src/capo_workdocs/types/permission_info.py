@@ -34,11 +34,11 @@ def serialize_json(value: PermissionInfo) -> dict:
 
 def deserialize_json(data: dict) -> PermissionInfo:
     out: PermissionInfo = {}  # type: ignore[typeddict-item]
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_workdocs.types.role_type
 
         out["role"] = capo_workdocs.types.role_type.deserialize_json(data["Role"])
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workdocs.types.role_permission_type
 
         out["type"] = capo_workdocs.types.role_permission_type.deserialize_json(

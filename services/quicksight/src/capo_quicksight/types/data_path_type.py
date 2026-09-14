@@ -31,7 +31,7 @@ def serialize_json(value: DataPathType) -> dict:
 
 def deserialize_json(data: dict) -> DataPathType:
     out: DataPathType = {}  # type: ignore[typeddict-item]
-    if "PivotTableDataPathType" in data:
+    if data.get("PivotTableDataPathType") is not None:
         import capo_quicksight.types.pivot_table_data_path_type
 
         out["pivot_table_data_path_type"] = (

@@ -45,14 +45,14 @@ def serialize_aws_json_1_1(value: VerifySoftwareTokenRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VerifySoftwareTokenRequest:
     out: VerifySoftwareTokenRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
-    if "Session" in data:
+    if data.get("Session") is not None:
         out["session"] = data["Session"]
-    if "UserCode" in data:
+    if data.get("UserCode") is not None:
         out["user_code"] = data["UserCode"]
     else:
         raise DeserializationError("VerifySoftwareTokenRequest.user_code required")
-    if "FriendlyDeviceName" in data:
+    if data.get("FriendlyDeviceName") is not None:
         out["friendly_device_name"] = data["FriendlyDeviceName"]
     return out

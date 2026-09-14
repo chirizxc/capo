@@ -29,7 +29,7 @@ def serialize_json(value: BlockchainInstant) -> dict:
 
 def deserialize_json(data: dict) -> BlockchainInstant:
     out: BlockchainInstant = {}  # type: ignore[typeddict-item]
-    if "time" in data:
+    if data.get("time") is not None:
         import capo_managedblockchain_query.types._prelude.timestamp
 
         out["time"] = (

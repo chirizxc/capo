@@ -22,8 +22,8 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseApex) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseApex:
     out: AutonomousDatabaseApex = {}  # type: ignore[typeddict-item]
-    if "apexVersion" in data:
+    if data.get("apexVersion") is not None:
         out["apex_version"] = data["apexVersion"]
-    if "ordsVersion" in data:
+    if data.get("ordsVersion") is not None:
         out["ords_version"] = data["ordsVersion"]
     return out

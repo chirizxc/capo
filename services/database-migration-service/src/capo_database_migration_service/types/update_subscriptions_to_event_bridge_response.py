@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateSubscriptionsToEventBridgeResponse) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSubscriptionsToEventBridgeResponse:
     out: UpdateSubscriptionsToEventBridgeResponse = {}  # type: ignore[typeddict-item]
-    if "Result" in data:
+    if data.get("Result") is not None:
         out["result"] = data["Result"]
     return out

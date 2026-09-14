@@ -41,15 +41,15 @@ def serialize_aws_json_1_1(value: ListRepositoriesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRepositoriesInput:
     out: ListRepositoriesInput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_codecommit.types.sort_by_enum
 
         out["sort_by"] = capo_codecommit.types.sort_by_enum.deserialize_aws_json_1_1(
             data["sortBy"]
         )
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_codecommit.types.order_enum
 
         out["order"] = capo_codecommit.types.order_enum.deserialize_aws_json_1_1(

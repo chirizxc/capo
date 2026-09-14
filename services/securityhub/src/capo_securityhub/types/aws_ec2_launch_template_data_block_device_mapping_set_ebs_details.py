@@ -57,20 +57,20 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails:
     out: AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails = {}  # type: ignore[typeddict-item]
-    if "DeleteOnTermination" in data:
+    if data.get("DeleteOnTermination") is not None:
         out["delete_on_termination"] = data["DeleteOnTermination"]
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "Iops" in data:
+    if data.get("Iops") is not None:
         out["iops"] = data["Iops"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
-    if "Throughput" in data:
+    if data.get("Throughput") is not None:
         out["throughput"] = data["Throughput"]
-    if "VolumeSize" in data:
+    if data.get("VolumeSize") is not None:
         out["volume_size"] = data["VolumeSize"]
-    if "VolumeType" in data:
+    if data.get("VolumeType") is not None:
         out["volume_type"] = data["VolumeType"]
     return out

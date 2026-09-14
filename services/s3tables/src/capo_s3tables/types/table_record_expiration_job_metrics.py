@@ -26,10 +26,10 @@ def serialize_json(value: TableRecordExpirationJobMetrics) -> dict:
 
 def deserialize_json(data: dict) -> TableRecordExpirationJobMetrics:
     out: TableRecordExpirationJobMetrics = {}  # type: ignore[typeddict-item]
-    if "deletedDataFiles" in data:
+    if data.get("deletedDataFiles") is not None:
         out["deleted_data_files"] = data["deletedDataFiles"]
-    if "deletedRecords" in data:
+    if data.get("deletedRecords") is not None:
         out["deleted_records"] = data["deletedRecords"]
-    if "removedFilesSize" in data:
+    if data.get("removedFilesSize") is not None:
         out["removed_files_size"] = data["removedFilesSize"]
     return out

@@ -36,7 +36,7 @@ def serialize_json(value: TargetIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> TargetIdentifier:
     out: TargetIdentifier = {}  # type: ignore[typeddict-item]
-    if "targetId" in data:
+    if data.get("targetId") is not None:
         import capo_networkflowmonitor.types.target_id
 
         out["target_id"] = capo_networkflowmonitor.types.target_id.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> TargetIdentifier:
         )
     else:
         raise DeserializationError("TargetIdentifier.target_id required")
-    if "targetType" in data:
+    if data.get("targetType") is not None:
         import capo_networkflowmonitor.types.target_type
 
         out["target_type"] = capo_networkflowmonitor.types.target_type.deserialize_json(

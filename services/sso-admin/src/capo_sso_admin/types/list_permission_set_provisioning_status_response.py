@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListPermissionSetProvisioningStatusResponse) -
 
 def deserialize_aws_json_1_1(data: dict) -> ListPermissionSetProvisioningStatusResponse:
     out: ListPermissionSetProvisioningStatusResponse = {}  # type: ignore[typeddict-item]
-    if "PermissionSetsProvisioningStatus" in data:
+    if data.get("PermissionSetsProvisioningStatus") is not None:
         import capo_sso_admin.types.permission_set_provisioning_status_list
 
         out["permission_sets_provisioning_status"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListPermissionSetProvisioningStatusR
                 data["PermissionSetsProvisioningStatus"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

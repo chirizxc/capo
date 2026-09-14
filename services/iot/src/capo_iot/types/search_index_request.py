@@ -46,16 +46,16 @@ def serialize_json(value: SearchIndexRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchIndexRequest:
     out: SearchIndexRequest = {}  # type: ignore[typeddict-item]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
     else:
         raise DeserializationError("SearchIndexRequest.query_string required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "queryVersion" in data:
+    if data.get("queryVersion") is not None:
         out["query_version"] = data["queryVersion"]
     return out

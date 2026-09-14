@@ -34,9 +34,9 @@ def serialize_aws_json_1_0(value: DeleteTLSInspectionConfigurationRequest) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteTLSInspectionConfigurationRequest:
     out: DeleteTLSInspectionConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "TLSInspectionConfigurationArn" in data:
+    if data.get("TLSInspectionConfigurationArn") is not None:
         out["tls_inspection_configuration_arn"] = data["TLSInspectionConfigurationArn"]
-    if "TLSInspectionConfigurationName" in data:
+    if data.get("TLSInspectionConfigurationName") is not None:
         out["tls_inspection_configuration_name"] = data[
             "TLSInspectionConfigurationName"
         ]

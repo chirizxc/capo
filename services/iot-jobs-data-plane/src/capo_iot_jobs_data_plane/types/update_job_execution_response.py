@@ -36,7 +36,7 @@ def serialize_json(value: UpdateJobExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateJobExecutionResponse:
     out: UpdateJobExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "executionState" in data:
+    if data.get("executionState") is not None:
         import capo_iot_jobs_data_plane.types.job_execution_state
 
         out["execution_state"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> UpdateJobExecutionResponse:
                 data["executionState"]
             )
         )
-    if "jobDocument" in data:
+    if data.get("jobDocument") is not None:
         out["job_document"] = data["jobDocument"]
     return out

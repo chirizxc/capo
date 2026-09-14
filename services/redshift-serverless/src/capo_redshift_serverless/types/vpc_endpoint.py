@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: VpcEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VpcEndpoint:
     out: VpcEndpoint = {}  # type: ignore[typeddict-item]
-    if "vpcEndpointId" in data:
+    if data.get("vpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["vpcEndpointId"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "networkInterfaces" in data:
+    if data.get("networkInterfaces") is not None:
         import capo_redshift_serverless.types.network_interface_list
 
         out["network_interfaces"] = (

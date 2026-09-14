@@ -32,10 +32,10 @@ def serialize_json(value: NodePropertiesSummary) -> dict:
 
 def deserialize_json(data: dict) -> NodePropertiesSummary:
     out: NodePropertiesSummary = {}  # type: ignore[typeddict-item]
-    if "isMainNode" in data:
+    if data.get("isMainNode") is not None:
         out["is_main_node"] = data["isMainNode"]
-    if "numNodes" in data:
+    if data.get("numNodes") is not None:
         out["num_nodes"] = data["numNodes"]
-    if "nodeIndex" in data:
+    if data.get("nodeIndex") is not None:
         out["node_index"] = data["nodeIndex"]
     return out

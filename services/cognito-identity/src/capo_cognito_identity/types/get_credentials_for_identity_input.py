@@ -38,18 +38,18 @@ def serialize_aws_json_1_1(value: GetCredentialsForIdentityInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCredentialsForIdentityInput:
     out: GetCredentialsForIdentityInput = {}  # type: ignore[typeddict-item]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
     else:
         raise DeserializationError(
             "GetCredentialsForIdentityInput.identity_id required"
         )
-    if "Logins" in data:
+    if data.get("Logins") is not None:
         import capo_cognito_identity.types.logins_map
 
         out["logins"] = capo_cognito_identity.types.logins_map.deserialize_aws_json_1_1(
             data["Logins"]
         )
-    if "CustomRoleArn" in data:
+    if data.get("CustomRoleArn") is not None:
         out["custom_role_arn"] = data["CustomRoleArn"]
     return out

@@ -48,11 +48,11 @@ def serialize_json(value: AnomalyInstance) -> dict:
 
 def deserialize_json(data: dict) -> AnomalyInstance:
     out: AnomalyInstance = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("AnomalyInstance.id required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["start_time"] = capo_codeguruprofiler.types.timestamp.deserialize_json(
@@ -60,13 +60,13 @@ def deserialize_json(data: dict) -> AnomalyInstance:
         )
     else:
         raise DeserializationError("AnomalyInstance.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["end_time"] = capo_codeguruprofiler.types.timestamp.deserialize_json(
             data["endTime"]
         )
-    if "userFeedback" in data:
+    if data.get("userFeedback") is not None:
         import capo_codeguruprofiler.types.user_feedback
 
         out["user_feedback"] = (

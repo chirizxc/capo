@@ -36,15 +36,15 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Filter.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("Filter.value required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_ssm_sap.types.filter_operator
 
         out["operator"] = capo_ssm_sap.types.filter_operator.deserialize_json(

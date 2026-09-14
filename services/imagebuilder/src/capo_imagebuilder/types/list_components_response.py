@@ -41,9 +41,9 @@ def serialize_json(value: ListComponentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListComponentsResponse:
     out: ListComponentsResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "componentVersionList" in data:
+    if data.get("componentVersionList") is not None:
         import capo_imagebuilder.types.component_version_list
 
         out["component_version_list"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> ListComponentsResponse:
                 data["componentVersionList"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

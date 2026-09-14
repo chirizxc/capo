@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RecommendationTemplateStatusList:
 
     out: RecommendationTemplateStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehub.types.recommendation_template_status.deserialize_json(
                 item

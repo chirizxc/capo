@@ -23,6 +23,6 @@ def serialize_json(value: ListS3BucketsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListS3BucketsRequest:
     out: ListS3BucketsRequest = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

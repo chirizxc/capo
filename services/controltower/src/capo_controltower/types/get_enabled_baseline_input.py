@@ -24,7 +24,7 @@ def serialize_json(value: GetEnabledBaselineInput) -> dict:
 
 def deserialize_json(data: dict) -> GetEnabledBaselineInput:
     out: GetEnabledBaselineInput = {}  # type: ignore[typeddict-item]
-    if "enabledBaselineIdentifier" in data:
+    if data.get("enabledBaselineIdentifier") is not None:
         out["enabled_baseline_identifier"] = data["enabledBaselineIdentifier"]
     else:
         raise DeserializationError(

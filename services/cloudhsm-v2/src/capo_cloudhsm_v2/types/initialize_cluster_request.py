@@ -31,15 +31,15 @@ def serialize_aws_json_1_1(value: InitializeClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InitializeClusterRequest:
     out: InitializeClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
     else:
         raise DeserializationError("InitializeClusterRequest.cluster_id required")
-    if "SignedCert" in data:
+    if data.get("SignedCert") is not None:
         out["signed_cert"] = data["SignedCert"]
     else:
         raise DeserializationError("InitializeClusterRequest.signed_cert required")
-    if "TrustAnchor" in data:
+    if data.get("TrustAnchor") is not None:
         out["trust_anchor"] = data["TrustAnchor"]
     else:
         raise DeserializationError("InitializeClusterRequest.trust_anchor required")

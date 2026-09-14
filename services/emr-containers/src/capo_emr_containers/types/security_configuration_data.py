@@ -31,7 +31,7 @@ def serialize_json(value: SecurityConfigurationData) -> dict:
 
 def deserialize_json(data: dict) -> SecurityConfigurationData:
     out: SecurityConfigurationData = {}  # type: ignore[typeddict-item]
-    if "authorizationConfiguration" in data:
+    if data.get("authorizationConfiguration") is not None:
         import capo_emr_containers.types.authorization_configuration
 
         out["authorization_configuration"] = (

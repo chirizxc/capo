@@ -36,11 +36,11 @@ def serialize_json(value: ManageSparqlStatisticsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ManageSparqlStatisticsOutput:
     out: ManageSparqlStatisticsOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ManageSparqlStatisticsOutput.status required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_neptunedata.types.refresh_statistics_id_map
 
         out["payload"] = (

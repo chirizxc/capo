@@ -187,11 +187,11 @@ def serialize_aws_json_1_1(value: DataMigration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataMigration:
     out: DataMigration = {}  # type: ignore[typeddict-item]
-    if "DataMigrationName" in data:
+    if data.get("DataMigrationName") is not None:
         out["data_migration_name"] = data["DataMigrationName"]
-    if "DataMigrationArn" in data:
+    if data.get("DataMigrationArn") is not None:
         out["data_migration_arn"] = data["DataMigrationArn"]
-    if "DataMigrationCreateTime" in data:
+    if data.get("DataMigrationCreateTime") is not None:
         import capo_database_migration_service.types.iso8601_date_time
 
         out["data_migration_create_time"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigration:
                 data["DataMigrationCreateTime"]
             )
         )
-    if "DataMigrationStartTime" in data:
+    if data.get("DataMigrationStartTime") is not None:
         import capo_database_migration_service.types.iso8601_date_time
 
         out["data_migration_start_time"] = (
@@ -207,7 +207,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigration:
                 data["DataMigrationStartTime"]
             )
         )
-    if "DataMigrationEndTime" in data:
+    if data.get("DataMigrationEndTime") is not None:
         import capo_database_migration_service.types.iso8601_date_time
 
         out["data_migration_end_time"] = (
@@ -215,11 +215,11 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigration:
                 data["DataMigrationEndTime"]
             )
         )
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "MigrationProjectArn" in data:
+    if data.get("MigrationProjectArn") is not None:
         out["migration_project_arn"] = data["MigrationProjectArn"]
-    if "DataMigrationType" in data:
+    if data.get("DataMigrationType") is not None:
         import capo_database_migration_service.types.migration_type_value
 
         out["data_migration_type"] = (
@@ -227,7 +227,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigration:
                 data["DataMigrationType"]
             )
         )
-    if "DataMigrationSettings" in data:
+    if data.get("DataMigrationSettings") is not None:
         import capo_database_migration_service.types.data_migration_settings
 
         out["data_migration_settings"] = (
@@ -235,7 +235,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigration:
                 data["DataMigrationSettings"]
             )
         )
-    if "SourceDataSettings" in data:
+    if data.get("SourceDataSettings") is not None:
         import capo_database_migration_service.types.source_data_settings
 
         out["source_data_settings"] = (
@@ -243,7 +243,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigration:
                 data["SourceDataSettings"]
             )
         )
-    if "TargetDataSettings" in data:
+    if data.get("TargetDataSettings") is not None:
         import capo_database_migration_service.types.target_data_settings
 
         out["target_data_settings"] = (
@@ -251,7 +251,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigration:
                 data["TargetDataSettings"]
             )
         )
-    if "DataMigrationStatistics" in data:
+    if data.get("DataMigrationStatistics") is not None:
         import capo_database_migration_service.types.data_migration_statistics
 
         out["data_migration_statistics"] = (
@@ -259,9 +259,9 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigration:
                 data["DataMigrationStatistics"]
             )
         )
-    if "DataMigrationStatus" in data:
+    if data.get("DataMigrationStatus") is not None:
         out["data_migration_status"] = data["DataMigrationStatus"]
-    if "PublicIpAddresses" in data:
+    if data.get("PublicIpAddresses") is not None:
         import capo_database_migration_service.types.public_ip_address_list
 
         out["public_ip_addresses"] = (
@@ -269,7 +269,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigration:
                 data["PublicIpAddresses"]
             )
         )
-    if "DataMigrationCidrBlocks" in data:
+    if data.get("DataMigrationCidrBlocks") is not None:
         import capo_database_migration_service.types.data_migration_cidr_block
 
         out["data_migration_cidr_blocks"] = (
@@ -277,8 +277,8 @@ def deserialize_aws_json_1_1(data: dict) -> DataMigration:
                 data["DataMigrationCidrBlocks"]
             )
         )
-    if "LastFailureMessage" in data:
+    if data.get("LastFailureMessage") is not None:
         out["last_failure_message"] = data["LastFailureMessage"]
-    if "StopReason" in data:
+    if data.get("StopReason") is not None:
         out["stop_reason"] = data["StopReason"]
     return out

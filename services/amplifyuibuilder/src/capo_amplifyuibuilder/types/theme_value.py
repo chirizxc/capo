@@ -33,9 +33,9 @@ def serialize_json(value: ThemeValue) -> dict:
 
 def deserialize_json(data: dict) -> ThemeValue:
     out: ThemeValue = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "children" in data:
+    if data.get("children") is not None:
         import capo_amplifyuibuilder.types.theme_values_list
 
         out["children"] = (

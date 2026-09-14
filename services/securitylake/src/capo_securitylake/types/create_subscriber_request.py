@@ -62,7 +62,7 @@ def serialize_json(value: CreateSubscriberRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSubscriberRequest:
     out: CreateSubscriberRequest = {}  # type: ignore[typeddict-item]
-    if "subscriberIdentity" in data:
+    if data.get("subscriberIdentity") is not None:
         import capo_securitylake.types.aws_identity
 
         out["subscriber_identity"] = (
@@ -74,13 +74,13 @@ def deserialize_json(data: dict) -> CreateSubscriberRequest:
         raise DeserializationError(
             "CreateSubscriberRequest.subscriber_identity required"
         )
-    if "subscriberName" in data:
+    if data.get("subscriberName") is not None:
         out["subscriber_name"] = data["subscriberName"]
     else:
         raise DeserializationError("CreateSubscriberRequest.subscriber_name required")
-    if "subscriberDescription" in data:
+    if data.get("subscriberDescription") is not None:
         out["subscriber_description"] = data["subscriberDescription"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_securitylake.types.log_source_resource_list
 
         out["sources"] = (
@@ -90,13 +90,13 @@ def deserialize_json(data: dict) -> CreateSubscriberRequest:
         )
     else:
         raise DeserializationError("CreateSubscriberRequest.sources required")
-    if "accessTypes" in data:
+    if data.get("accessTypes") is not None:
         import capo_securitylake.types.access_type_list
 
         out["access_types"] = capo_securitylake.types.access_type_list.deserialize_json(
             data["accessTypes"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_securitylake.types.tag_list
 
         out["tags"] = capo_securitylake.types.tag_list.deserialize_json(data["tags"])

@@ -34,7 +34,7 @@ def serialize_json(value: AddFlowMediaStreamsRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddFlowMediaStreamsRequest:
     out: AddFlowMediaStreamsRequest = {}  # type: ignore[typeddict-item]
-    if "mediaStreams" in data:
+    if data.get("mediaStreams") is not None:
         import capo_mediaconnect.types.__list_of_add_media_stream_request
 
         out["media_streams"] = (

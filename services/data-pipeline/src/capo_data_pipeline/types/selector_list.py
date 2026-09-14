@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> SelectorList:
 
     out: SelectorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_data_pipeline.types.selector.deserialize_aws_json_1_1(item))
     return out

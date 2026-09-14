@@ -30,7 +30,7 @@ def serialize_json(value: DifferentialPrivacyConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DifferentialPrivacyConfiguration:
     out: DifferentialPrivacyConfiguration = {}  # type: ignore[typeddict-item]
-    if "columns" in data:
+    if data.get("columns") is not None:
         import capo_cleanrooms.types.differential_privacy_column_list
 
         out["columns"] = (

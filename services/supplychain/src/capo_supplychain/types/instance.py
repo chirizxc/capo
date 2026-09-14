@@ -80,21 +80,29 @@ def serialize_json(value: Instance) -> dict:
     if "kms_key_arn" in value:
         out["kmsKeyArn"] = value["kms_key_arn"]
     if "version_number" in value:
-        out["versionNumber"] = value["version_number"]
+        out["versionNumber"] = (
+            "NaN"
+            if value["version_number"] != value["version_number"]
+            else "Infinity"
+            if value["version_number"] == float("inf")
+            else "-Infinity"
+            if value["version_number"] == float("-inf")
+            else value["version_number"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Instance:
     out: Instance = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError("Instance.instance_id required")
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
     else:
         raise DeserializationError("Instance.aws_account_id required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_supplychain.types.instance_state
 
         out["state"] = capo_supplychain.types.instance_state.deserialize_json(
@@ -102,11 +110,11 @@ def deserialize_json(data: dict) -> Instance:
         )
     else:
         raise DeserializationError("Instance.state required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "webAppDnsDomain" in data:
+    if data.get("webAppDnsDomain") is not None:
         out["web_app_dns_domain"] = data["webAppDnsDomain"]
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["created_time"] = (
@@ -114,7 +122,7 @@ def deserialize_json(data: dict) -> Instance:
                 data["createdTime"]
             )
         )
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["last_modified_time"] = (
@@ -122,12 +130,12 @@ def deserialize_json(data: dict) -> Instance:
                 data["lastModifiedTime"]
             )
         )
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
-    if "instanceDescription" in data:
+    if data.get("instanceDescription") is not None:
         out["instance_description"] = data["instanceDescription"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "versionNumber" in data:
-        out["version_number"] = data["versionNumber"]
+    if data.get("versionNumber") is not None:
+        out["version_number"] = float(data["versionNumber"])
     return out

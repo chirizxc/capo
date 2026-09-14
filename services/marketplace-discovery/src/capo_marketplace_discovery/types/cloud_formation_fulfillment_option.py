@@ -53,19 +53,19 @@ def serialize_json(value: CloudFormationFulfillmentOption) -> dict:
 
 def deserialize_json(data: dict) -> CloudFormationFulfillmentOption:
     out: CloudFormationFulfillmentOption = {}  # type: ignore[typeddict-item]
-    if "fulfillmentOptionId" in data:
+    if data.get("fulfillmentOptionId") is not None:
         out["fulfillment_option_id"] = data["fulfillmentOptionId"]
     else:
         raise DeserializationError(
             "CloudFormationFulfillmentOption.fulfillment_option_id required"
         )
-    if "fulfillmentOptionName" in data:
+    if data.get("fulfillmentOptionName") is not None:
         out["fulfillment_option_name"] = data["fulfillmentOptionName"]
     else:
         raise DeserializationError(
             "CloudFormationFulfillmentOption.fulfillment_option_name required"
         )
-    if "fulfillmentOptionType" in data:
+    if data.get("fulfillmentOptionType") is not None:
         import capo_marketplace_discovery.types.fulfillment_option_type
 
         out["fulfillment_option_type"] = (
@@ -77,16 +77,16 @@ def deserialize_json(data: dict) -> CloudFormationFulfillmentOption:
         raise DeserializationError(
             "CloudFormationFulfillmentOption.fulfillment_option_type required"
         )
-    if "fulfillmentOptionDisplayName" in data:
+    if data.get("fulfillmentOptionDisplayName") is not None:
         out["fulfillment_option_display_name"] = data["fulfillmentOptionDisplayName"]
     else:
         raise DeserializationError(
             "CloudFormationFulfillmentOption.fulfillment_option_display_name required"
         )
-    if "fulfillmentOptionVersion" in data:
+    if data.get("fulfillmentOptionVersion") is not None:
         out["fulfillment_option_version"] = data["fulfillmentOptionVersion"]
-    if "releaseNotes" in data:
+    if data.get("releaseNotes") is not None:
         out["release_notes"] = data["releaseNotes"]
-    if "usageInstructions" in data:
+    if data.get("usageInstructions") is not None:
         out["usage_instructions"] = data["usageInstructions"]
     return out

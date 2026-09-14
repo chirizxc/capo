@@ -23,6 +23,6 @@ def serialize_json(value: GetChannelPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetChannelPolicyResponse:
     out: GetChannelPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     return out

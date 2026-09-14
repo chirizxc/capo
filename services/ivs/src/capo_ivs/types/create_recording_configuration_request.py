@@ -78,9 +78,9 @@ def serialize_json(value: CreateRecordingConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRecordingConfigurationRequest:
     out: CreateRecordingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "destinationConfiguration" in data:
+    if data.get("destinationConfiguration") is not None:
         import capo_ivs.types.destination_configuration
 
         out["destination_configuration"] = (
@@ -92,11 +92,11 @@ def deserialize_json(data: dict) -> CreateRecordingConfigurationRequest:
         raise DeserializationError(
             "CreateRecordingConfigurationRequest.destination_configuration required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])
-    if "thumbnailConfiguration" in data:
+    if data.get("thumbnailConfiguration") is not None:
         import capo_ivs.types.thumbnail_configuration
 
         out["thumbnail_configuration"] = (
@@ -104,13 +104,13 @@ def deserialize_json(data: dict) -> CreateRecordingConfigurationRequest:
                 data["thumbnailConfiguration"]
             )
         )
-    if "recordingReconnectWindowSeconds" in data:
+    if data.get("recordingReconnectWindowSeconds") is not None:
         out["recording_reconnect_window_seconds"] = data[
             "recordingReconnectWindowSeconds"
         ]
     else:
         out["recording_reconnect_window_seconds"] = 0
-    if "renditionConfiguration" in data:
+    if data.get("renditionConfiguration") is not None:
         import capo_ivs.types.rendition_configuration
 
         out["rendition_configuration"] = (

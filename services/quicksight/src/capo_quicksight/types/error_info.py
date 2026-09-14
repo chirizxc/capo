@@ -32,12 +32,12 @@ def serialize_json(value: ErrorInfo) -> dict:
 
 def deserialize_json(data: dict) -> ErrorInfo:
     out: ErrorInfo = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.ingestion_error_type
 
         out["type"] = capo_quicksight.types.ingestion_error_type.deserialize_json(
             data["Type"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

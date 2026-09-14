@@ -90,9 +90,10 @@ class DictionaryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.create_dictionary_request.CreateDictionaryRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["language"] = language
+        input_: capo_elementalinference.types.create_dictionary_request.CreateDictionaryRequest = {
+            "name": name,
+            "language": language,
+        }
         if entries is not None:
             input_["entries"] = entries
         if tags is not None:
@@ -103,6 +104,7 @@ class DictionaryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -140,14 +142,16 @@ class DictionaryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.get_dictionary_request.GetDictionaryRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.get_dictionary_request.GetDictionaryRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -198,8 +202,9 @@ class DictionaryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.update_dictionary_request.UpdateDictionaryRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.update_dictionary_request.UpdateDictionaryRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if language is not None:
@@ -212,6 +217,7 @@ class DictionaryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -250,14 +256,16 @@ class DictionaryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.delete_dictionary_request.DeleteDictionaryRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.delete_dictionary_request.DeleteDictionaryRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -296,7 +304,7 @@ class DictionaryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.list_dictionaries_request.ListDictionariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elementalinference.types.list_dictionaries_request.ListDictionariesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -307,6 +315,7 @@ class DictionaryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_dictionary_entries(
@@ -344,14 +353,16 @@ class DictionaryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.export_dictionary_entries_request.ExportDictionaryEntriesRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.export_dictionary_entries_request.ExportDictionaryEntriesRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -404,9 +415,10 @@ class AsyncDictionaryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.create_dictionary_request.CreateDictionaryRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["language"] = language
+        input_: capo_elementalinference.types.create_dictionary_request.CreateDictionaryRequest = {
+            "name": name,
+            "language": language,
+        }
         if entries is not None:
             input_["entries"] = entries
         if tags is not None:
@@ -417,6 +429,7 @@ class AsyncDictionaryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -455,14 +468,16 @@ class AsyncDictionaryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.get_dictionary_request.GetDictionaryRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.get_dictionary_request.GetDictionaryRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -514,8 +529,9 @@ class AsyncDictionaryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.update_dictionary_request.UpdateDictionaryRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.update_dictionary_request.UpdateDictionaryRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if language is not None:
@@ -528,6 +544,7 @@ class AsyncDictionaryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -567,14 +584,16 @@ class AsyncDictionaryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.delete_dictionary_request.DeleteDictionaryRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.delete_dictionary_request.DeleteDictionaryRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -614,7 +633,7 @@ class AsyncDictionaryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.list_dictionaries_request.ListDictionariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elementalinference.types.list_dictionaries_request.ListDictionariesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -625,6 +644,7 @@ class AsyncDictionaryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_dictionary_entries(
@@ -663,12 +683,14 @@ class AsyncDictionaryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.export_dictionary_entries_request.ExportDictionaryEntriesRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.export_dictionary_entries_request.ExportDictionaryEntriesRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -47,7 +47,7 @@ def serialize_aws_json_1_0(value: SignalFetchConfig) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> SignalFetchConfig:
-    if "timeBased" in data:
+    if data.get("timeBased") is not None:
         import capo_iotfleetwise.types.time_based_signal_fetch_config
 
         return {
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> SignalFetchConfig:
                 data["timeBased"]
             )
         }
-    elif "conditionBased" in data:
+    elif data.get("conditionBased") is not None:
         import capo_iotfleetwise.types.condition_based_signal_fetch_config
 
         return {

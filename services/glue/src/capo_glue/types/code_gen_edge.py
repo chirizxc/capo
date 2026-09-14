@@ -32,14 +32,14 @@ def serialize_aws_json_1_1(value: CodeGenEdge) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeGenEdge:
     out: CodeGenEdge = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
     else:
         raise DeserializationError("CodeGenEdge.source required")
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
     else:
         raise DeserializationError("CodeGenEdge.target required")
-    if "TargetParameter" in data:
+    if data.get("TargetParameter") is not None:
         out["target_parameter"] = data["TargetParameter"]
     return out

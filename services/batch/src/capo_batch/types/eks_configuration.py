@@ -27,8 +27,8 @@ def serialize_json(value: EksConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EksConfiguration:
     out: EksConfiguration = {}  # type: ignore[typeddict-item]
-    if "eksClusterArn" in data:
+    if data.get("eksClusterArn") is not None:
         out["eks_cluster_arn"] = data["eksClusterArn"]
-    if "kubernetesNamespace" in data:
+    if data.get("kubernetesNamespace") is not None:
         out["kubernetes_namespace"] = data["kubernetesNamespace"]
     return out

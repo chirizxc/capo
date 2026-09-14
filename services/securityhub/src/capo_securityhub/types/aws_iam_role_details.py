@@ -98,9 +98,9 @@ def serialize_json(value: AwsIamRoleDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamRoleDetails:
     out: AwsIamRoleDetails = {}  # type: ignore[typeddict-item]
-    if "AssumeRolePolicyDocument" in data:
+    if data.get("AssumeRolePolicyDocument") is not None:
         out["assume_role_policy_document"] = data["AssumeRolePolicyDocument"]
-    if "AttachedManagedPolicies" in data:
+    if data.get("AttachedManagedPolicies") is not None:
         import capo_securityhub.types.aws_iam_attached_managed_policy_list
 
         out["attached_managed_policies"] = (
@@ -108,9 +108,9 @@ def deserialize_json(data: dict) -> AwsIamRoleDetails:
                 data["AttachedManagedPolicies"]
             )
         )
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         out["create_date"] = data["CreateDate"]
-    if "InstanceProfileList" in data:
+    if data.get("InstanceProfileList") is not None:
         import capo_securityhub.types.aws_iam_instance_profile_list
 
         out["instance_profile_list"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> AwsIamRoleDetails:
                 data["InstanceProfileList"]
             )
         )
-    if "PermissionsBoundary" in data:
+    if data.get("PermissionsBoundary") is not None:
         import capo_securityhub.types.aws_iam_permissions_boundary
 
         out["permissions_boundary"] = (
@@ -126,11 +126,11 @@ def deserialize_json(data: dict) -> AwsIamRoleDetails:
                 data["PermissionsBoundary"]
             )
         )
-    if "RoleId" in data:
+    if data.get("RoleId") is not None:
         out["role_id"] = data["RoleId"]
-    if "RoleName" in data:
+    if data.get("RoleName") is not None:
         out["role_name"] = data["RoleName"]
-    if "RolePolicyList" in data:
+    if data.get("RolePolicyList") is not None:
         import capo_securityhub.types.aws_iam_role_policy_list
 
         out["role_policy_list"] = (
@@ -138,8 +138,8 @@ def deserialize_json(data: dict) -> AwsIamRoleDetails:
                 data["RolePolicyList"]
             )
         )
-    if "MaxSessionDuration" in data:
+    if data.get("MaxSessionDuration") is not None:
         out["max_session_duration"] = data["MaxSessionDuration"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     return out

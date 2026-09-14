@@ -78,15 +78,15 @@ def serialize_json(value: AttributeGroup) -> dict:
 
 def deserialize_json(data: dict) -> AttributeGroup:
     out: AttributeGroup = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_service_catalog_appregistry.types.timestamp
 
         out["creation_time"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> AttributeGroup:
                 data["creationTime"]
             )
         )
-    if "lastUpdateTime" in data:
+    if data.get("lastUpdateTime") is not None:
         import capo_service_catalog_appregistry.types.timestamp
 
         out["last_update_time"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> AttributeGroup:
                 data["lastUpdateTime"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_service_catalog_appregistry.types.tags
 
         out["tags"] = capo_service_catalog_appregistry.types.tags.deserialize_json(

@@ -56,11 +56,11 @@ def serialize_json(value: ListRealtimeContactAnalysisSegmentsV2Request) -> dict:
 
 def deserialize_json(data: dict) -> ListRealtimeContactAnalysisSegmentsV2Request:
     out: ListRealtimeContactAnalysisSegmentsV2Request = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "OutputType" in data:
+    if data.get("OutputType") is not None:
         import capo_connect.types.real_time_contact_analysis_output_type
 
         out["output_type"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> ListRealtimeContactAnalysisSegmentsV2Request
         raise DeserializationError(
             "ListRealtimeContactAnalysisSegmentsV2Request.output_type required"
         )
-    if "SegmentTypes" in data:
+    if data.get("SegmentTypes") is not None:
         import capo_connect.types.real_time_contact_analysis_segment_types
 
         out["segment_types"] = (

@@ -56,7 +56,7 @@ def serialize_aws_json_1_0(value: PreferredResource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PreferredResource:
     out: PreferredResource = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_compute_optimizer.types.preferred_resource_name
 
         out["name"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_0(data: dict) -> PreferredResource:
                 data["name"]
             )
         )
-    if "includeList" in data:
+    if data.get("includeList") is not None:
         import capo_compute_optimizer.types.preferred_resource_values
 
         out["include_list"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> PreferredResource:
                 data["includeList"]
             )
         )
-    if "excludeList" in data:
+    if data.get("excludeList") is not None:
         import capo_compute_optimizer.types.preferred_resource_values
 
         out["exclude_list"] = (

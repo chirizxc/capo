@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ModifyInstanceGroupsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyInstanceGroupsInput:
     out: ModifyInstanceGroupsInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "InstanceGroups" in data:
+    if data.get("InstanceGroups") is not None:
         import capo_emr.types.instance_group_modify_config_list
 
         out["instance_groups"] = (

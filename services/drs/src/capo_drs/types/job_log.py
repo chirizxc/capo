@@ -39,11 +39,11 @@ def serialize_json(value: JobLog) -> dict:
 
 def deserialize_json(data: dict) -> JobLog:
     out: JobLog = {}  # type: ignore[typeddict-item]
-    if "logDateTime" in data:
+    if data.get("logDateTime") is not None:
         out["log_date_time"] = data["logDateTime"]
-    if "event" in data:
+    if data.get("event") is not None:
         out["event"] = data["event"]
-    if "eventData" in data:
+    if data.get("eventData") is not None:
         import capo_drs.types.job_log_event_data
 
         out["event_data"] = capo_drs.types.job_log_event_data.deserialize_json(

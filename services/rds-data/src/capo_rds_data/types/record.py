@@ -25,7 +25,7 @@ def serialize_json(value: Record) -> dict:
 
 def deserialize_json(data: dict) -> Record:
     out: Record = {}  # type: ignore[typeddict-item]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_rds_data.types.row
 
         out["values"] = capo_rds_data.types.row.deserialize_json(data["values"])

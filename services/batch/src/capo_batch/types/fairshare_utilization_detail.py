@@ -36,9 +36,9 @@ def serialize_json(value: FairshareUtilizationDetail) -> dict:
 
 def deserialize_json(data: dict) -> FairshareUtilizationDetail:
     out: FairshareUtilizationDetail = {}  # type: ignore[typeddict-item]
-    if "activeShareCount" in data:
+    if data.get("activeShareCount") is not None:
         out["active_share_count"] = data["activeShareCount"]
-    if "topCapacityUtilization" in data:
+    if data.get("topCapacityUtilization") is not None:
         import capo_batch.types.fairshare_capacity_utilization_list
 
         out["top_capacity_utilization"] = (

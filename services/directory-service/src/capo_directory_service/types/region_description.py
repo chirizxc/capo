@@ -108,11 +108,11 @@ def serialize_aws_json_1_1(value: RegionDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegionDescription:
     out: RegionDescription = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "RegionName" in data:
+    if data.get("RegionName") is not None:
         out["region_name"] = data["RegionName"]
-    if "RegionType" in data:
+    if data.get("RegionType") is not None:
         import capo_directory_service.types.region_type
 
         out["region_type"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegionDescription:
                 data["RegionType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_directory_service.types.directory_stage
 
         out["status"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegionDescription:
                 data["Status"]
             )
         )
-    if "VpcSettings" in data:
+    if data.get("VpcSettings") is not None:
         import capo_directory_service.types.directory_vpc_settings
 
         out["vpc_settings"] = (
@@ -136,11 +136,11 @@ def deserialize_aws_json_1_1(data: dict) -> RegionDescription:
                 data["VpcSettings"]
             )
         )
-    if "DesiredNumberOfDomainControllers" in data:
+    if data.get("DesiredNumberOfDomainControllers") is not None:
         out["desired_number_of_domain_controllers"] = data[
             "DesiredNumberOfDomainControllers"
         ]
-    if "LaunchTime" in data:
+    if data.get("LaunchTime") is not None:
         import capo_directory_service.types.launch_time
 
         out["launch_time"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegionDescription:
                 data["LaunchTime"]
             )
         )
-    if "StatusLastUpdatedDateTime" in data:
+    if data.get("StatusLastUpdatedDateTime") is not None:
         import capo_directory_service.types.state_last_updated_date_time
 
         out["status_last_updated_date_time"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegionDescription:
                 data["StatusLastUpdatedDateTime"]
             )
         )
-    if "LastUpdatedDateTime" in data:
+    if data.get("LastUpdatedDateTime") is not None:
         import capo_directory_service.types.last_updated_date_time
 
         out["last_updated_date_time"] = (

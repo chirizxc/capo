@@ -46,13 +46,13 @@ def serialize_json(value: CreateReadinessCheckResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateReadinessCheckResponse:
     out: CreateReadinessCheckResponse = {}  # type: ignore[typeddict-item]
-    if "readinessCheckArn" in data:
+    if data.get("readinessCheckArn") is not None:
         out["readiness_check_arn"] = data["readinessCheckArn"]
-    if "readinessCheckName" in data:
+    if data.get("readinessCheckName") is not None:
         out["readiness_check_name"] = data["readinessCheckName"]
-    if "resourceSet" in data:
+    if data.get("resourceSet") is not None:
         out["resource_set"] = data["resourceSet"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53_recovery_readiness.types.tags
 
         out["tags"] = capo_route53_recovery_readiness.types.tags.deserialize_json(

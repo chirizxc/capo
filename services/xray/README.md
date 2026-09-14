@@ -13,9 +13,9 @@ from capo_xray import AsyncXRayClient
 
 
 async def main():
-    async with AsyncXRayClient() as s3:
+    async with AsyncXRayClient() as x_ray:
         # Example: call the batch_get_traces operation
-        response = await s3.batch_get_traces()
+        response = await x_ray.batch_get_traces()
         print(response["traces"])
 ```
 
@@ -28,9 +28,9 @@ from capo_xray import AsyncXRayClient
 
 
 async def main():
-    async with AsyncXRayClient() as s3:
+    async with AsyncXRayClient() as x_ray:
         # Example: paginate over batch_get_traces
-        async for item in s3.iter_batch_get_traces():
+        async for item in x_ray.iter_batch_get_traces():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_xray.error import InvalidRequestException
 
 
 async def main():
-    async with AsyncXRayClient() as s3:
+    async with AsyncXRayClient() as x_ray:
         try:
-            await s3.batch_get_traces()
+            await x_ray.batch_get_traces()
         except InvalidRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_xray import AsyncXRayClient
 
 
 async def main():
-    async with AsyncXRayClient() as s3:
+    async with AsyncXRayClient() as x_ray:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_traces()
+        response = await x_ray.batch_get_traces()
 
         # Override per operation
-        response = await s3.batch_get_traces(config_overrides={"retry_max_attempts": 5})
+        response = await x_ray.batch_get_traces(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_traces(config_overrides={"retry_max_attempts": 1})
+        response = await x_ray.batch_get_traces(config_overrides={"retry_max_attempts": 1})
 ```

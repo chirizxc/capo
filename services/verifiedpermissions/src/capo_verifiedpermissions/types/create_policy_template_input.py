@@ -49,18 +49,18 @@ def serialize_aws_json_1_0(value: CreatePolicyTemplateInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreatePolicyTemplateInput:
     out: CreatePolicyTemplateInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("CreatePolicyTemplateInput.policy_store_id required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "statement" in data:
+    if data.get("statement") is not None:
         out["statement"] = data["statement"]
     else:
         raise DeserializationError("CreatePolicyTemplateInput.statement required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

@@ -39,10 +39,10 @@ def serialize_json(value: WiFiSimpleSetupConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WiFiSimpleSetupConfiguration:
     out: WiFiSimpleSetupConfiguration = {}  # type: ignore[typeddict-item]
-    if "EnableAsProvisioner" in data:
+    if data.get("EnableAsProvisioner") is not None:
         out["enable_as_provisioner"] = data["EnableAsProvisioner"]
-    if "EnableAsProvisionee" in data:
+    if data.get("EnableAsProvisionee") is not None:
         out["enable_as_provisionee"] = data["EnableAsProvisionee"]
-    if "TimeoutInMinutes" in data:
+    if data.get("TimeoutInMinutes") is not None:
         out["timeout_in_minutes"] = data["TimeoutInMinutes"]
     return out

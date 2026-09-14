@@ -38,18 +38,18 @@ def serialize_aws_json_1_1(value: ListMailboxPermissionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMailboxPermissionsRequest:
     out: ListMailboxPermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "ListMailboxPermissionsRequest.organization_id required"
         )
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError("ListMailboxPermissionsRequest.entity_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

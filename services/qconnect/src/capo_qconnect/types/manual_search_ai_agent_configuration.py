@@ -51,11 +51,11 @@ def serialize_json(value: ManualSearchAIAgentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ManualSearchAIAgentConfiguration:
     out: ManualSearchAIAgentConfiguration = {}  # type: ignore[typeddict-item]
-    if "answerGenerationAIPromptId" in data:
+    if data.get("answerGenerationAIPromptId") is not None:
         out["answer_generation_ai_prompt_id"] = data["answerGenerationAIPromptId"]
-    if "answerGenerationAIGuardrailId" in data:
+    if data.get("answerGenerationAIGuardrailId") is not None:
         out["answer_generation_ai_guardrail_id"] = data["answerGenerationAIGuardrailId"]
-    if "associationConfigurations" in data:
+    if data.get("associationConfigurations") is not None:
         import capo_qconnect.types.association_configuration_list
 
         out["association_configurations"] = (
@@ -63,6 +63,6 @@ def deserialize_json(data: dict) -> ManualSearchAIAgentConfiguration:
                 data["associationConfigurations"]
             )
         )
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
     return out

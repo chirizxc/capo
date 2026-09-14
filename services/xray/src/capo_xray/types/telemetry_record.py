@@ -62,21 +62,21 @@ def serialize_json(value: TelemetryRecord) -> dict:
 
 def deserialize_json(data: dict) -> TelemetryRecord:
     out: TelemetryRecord = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_xray.types.timestamp
 
         out["timestamp"] = capo_xray.types.timestamp.deserialize_json(data["Timestamp"])
     else:
         raise DeserializationError("TelemetryRecord.timestamp required")
-    if "SegmentsReceivedCount" in data:
+    if data.get("SegmentsReceivedCount") is not None:
         out["segments_received_count"] = data["SegmentsReceivedCount"]
-    if "SegmentsSentCount" in data:
+    if data.get("SegmentsSentCount") is not None:
         out["segments_sent_count"] = data["SegmentsSentCount"]
-    if "SegmentsSpilloverCount" in data:
+    if data.get("SegmentsSpilloverCount") is not None:
         out["segments_spillover_count"] = data["SegmentsSpilloverCount"]
-    if "SegmentsRejectedCount" in data:
+    if data.get("SegmentsRejectedCount") is not None:
         out["segments_rejected_count"] = data["SegmentsRejectedCount"]
-    if "BackendConnectionErrors" in data:
+    if data.get("BackendConnectionErrors") is not None:
         import capo_xray.types.backend_connection_errors
 
         out["backend_connection_errors"] = (

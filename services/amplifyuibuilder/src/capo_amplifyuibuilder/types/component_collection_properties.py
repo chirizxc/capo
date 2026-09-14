@@ -28,6 +28,8 @@ def serialize_json(input_to_serialize: ComponentCollectionProperties) -> dict:
 def deserialize_json(data: dict) -> ComponentCollectionProperties:
     out: ComponentCollectionProperties = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_amplifyuibuilder.types.component_data_configuration
 
         out[key] = (

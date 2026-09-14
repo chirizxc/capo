@@ -57,7 +57,7 @@ def serialize_json(value: HarvestedManifests) -> dict:
 
 def deserialize_json(data: dict) -> HarvestedManifests:
     out: HarvestedManifests = {}  # type: ignore[typeddict-item]
-    if "HlsManifests" in data:
+    if data.get("HlsManifests") is not None:
         import capo_mediapackagev2.types.harvested_hls_manifests_list
 
         out["hls_manifests"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> HarvestedManifests:
                 data["HlsManifests"]
             )
         )
-    if "DashManifests" in data:
+    if data.get("DashManifests") is not None:
         import capo_mediapackagev2.types.harvested_dash_manifests_list
 
         out["dash_manifests"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> HarvestedManifests:
                 data["DashManifests"]
             )
         )
-    if "LowLatencyHlsManifests" in data:
+    if data.get("LowLatencyHlsManifests") is not None:
         import capo_mediapackagev2.types.harvested_low_latency_hls_manifests_list
 
         out["low_latency_hls_manifests"] = (

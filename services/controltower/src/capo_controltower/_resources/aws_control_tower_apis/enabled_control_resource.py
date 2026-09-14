@@ -91,9 +91,10 @@ class EnabledControlResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.enable_control_input.EnableControlInput = {}  # type: ignore[typeddict-item]
-        input_["control_identifier"] = control_identifier
-        input_["target_identifier"] = target_identifier
+        input_: capo_controltower.types.enable_control_input.EnableControlInput = {
+            "control_identifier": control_identifier,
+            "target_identifier": target_identifier,
+        }
         if tags is not None:
             input_["tags"] = tags
         if parameters is not None:
@@ -104,6 +105,7 @@ class EnabledControlResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -141,14 +143,16 @@ class EnabledControlResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_enabled_control_input.GetEnabledControlInput = {}  # type: ignore[typeddict-item]
-        input_["enabled_control_identifier"] = enabled_control_identifier
+        input_: capo_controltower.types.get_enabled_control_input.GetEnabledControlInput = {
+            "enabled_control_identifier": enabled_control_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -190,15 +194,17 @@ class EnabledControlResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.update_enabled_control_input.UpdateEnabledControlInput = {}  # type: ignore[typeddict-item]
-        input_["parameters"] = parameters
-        input_["enabled_control_identifier"] = enabled_control_identifier
+        input_: capo_controltower.types.update_enabled_control_input.UpdateEnabledControlInput = {
+            "parameters": parameters,
+            "enabled_control_identifier": enabled_control_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -250,7 +256,7 @@ class EnabledControlResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_enabled_controls_input.ListEnabledControlsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_enabled_controls_input.ListEnabledControlsInput = {}
         if target_identifier is not None:
             input_["target_identifier"] = target_identifier
         if next_token is not None:
@@ -267,6 +273,7 @@ class EnabledControlResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_enabled_control(
@@ -308,14 +315,16 @@ class EnabledControlResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.reset_enabled_control_input.ResetEnabledControlInput = {}  # type: ignore[typeddict-item]
-        input_["enabled_control_identifier"] = enabled_control_identifier
+        input_: capo_controltower.types.reset_enabled_control_input.ResetEnabledControlInput = {
+            "enabled_control_identifier": enabled_control_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -369,9 +378,10 @@ class AsyncEnabledControlResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.enable_control_input.EnableControlInput = {}  # type: ignore[typeddict-item]
-        input_["control_identifier"] = control_identifier
-        input_["target_identifier"] = target_identifier
+        input_: capo_controltower.types.enable_control_input.EnableControlInput = {
+            "control_identifier": control_identifier,
+            "target_identifier": target_identifier,
+        }
         if tags is not None:
             input_["tags"] = tags
         if parameters is not None:
@@ -382,6 +392,7 @@ class AsyncEnabledControlResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -420,14 +431,16 @@ class AsyncEnabledControlResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_enabled_control_input.GetEnabledControlInput = {}  # type: ignore[typeddict-item]
-        input_["enabled_control_identifier"] = enabled_control_identifier
+        input_: capo_controltower.types.get_enabled_control_input.GetEnabledControlInput = {
+            "enabled_control_identifier": enabled_control_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -470,15 +483,17 @@ class AsyncEnabledControlResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.update_enabled_control_input.UpdateEnabledControlInput = {}  # type: ignore[typeddict-item]
-        input_["parameters"] = parameters
-        input_["enabled_control_identifier"] = enabled_control_identifier
+        input_: capo_controltower.types.update_enabled_control_input.UpdateEnabledControlInput = {
+            "parameters": parameters,
+            "enabled_control_identifier": enabled_control_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -531,7 +546,7 @@ class AsyncEnabledControlResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_enabled_controls_input.ListEnabledControlsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_enabled_controls_input.ListEnabledControlsInput = {}
         if target_identifier is not None:
             input_["target_identifier"] = target_identifier
         if next_token is not None:
@@ -548,6 +563,7 @@ class AsyncEnabledControlResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_enabled_control(
@@ -590,12 +606,14 @@ class AsyncEnabledControlResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.reset_enabled_control_input.ResetEnabledControlInput = {}  # type: ignore[typeddict-item]
-        input_["enabled_control_identifier"] = enabled_control_identifier
+        input_: capo_controltower.types.reset_enabled_control_input.ResetEnabledControlInput = {
+            "enabled_control_identifier": enabled_control_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

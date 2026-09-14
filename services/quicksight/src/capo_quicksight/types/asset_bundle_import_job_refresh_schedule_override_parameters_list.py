@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AssetBundleImportJobRefreshScheduleOverrideParametersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.asset_bundle_import_job_refresh_schedule_override_parameters.deserialize_json(
                 item

@@ -40,15 +40,15 @@ def serialize_aws_json_1_0(value: GetResourceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetResourceInput:
     out: GetResourceInput = {}  # type: ignore[typeddict-item]
-    if "TypeName" in data:
+    if data.get("TypeName") is not None:
         out["type_name"] = data["TypeName"]
     else:
         raise DeserializationError("GetResourceInput.type_name required")
-    if "TypeVersionId" in data:
+    if data.get("TypeVersionId") is not None:
         out["type_version_id"] = data["TypeVersionId"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("GetResourceInput.identifier required")

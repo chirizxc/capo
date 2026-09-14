@@ -32,10 +32,10 @@ def serialize_json(value: UpdateTestSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTestSetRequest:
     out: UpdateTestSetRequest = {}  # type: ignore[typeddict-item]
-    if "testSetName" in data:
+    if data.get("testSetName") is not None:
         out["test_set_name"] = data["testSetName"]
     else:
         raise DeserializationError("UpdateTestSetRequest.test_set_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

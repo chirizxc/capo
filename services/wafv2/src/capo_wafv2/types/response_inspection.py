@@ -68,7 +68,7 @@ def serialize_aws_json_1_1(value: ResponseInspection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponseInspection:
     out: ResponseInspection = {}  # type: ignore[typeddict-item]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_wafv2.types.response_inspection_status_code
 
         out["status_code"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponseInspection:
                 data["StatusCode"]
             )
         )
-    if "Header" in data:
+    if data.get("Header") is not None:
         import capo_wafv2.types.response_inspection_header
 
         out["header"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponseInspection:
                 data["Header"]
             )
         )
-    if "BodyContains" in data:
+    if data.get("BodyContains") is not None:
         import capo_wafv2.types.response_inspection_body_contains
 
         out["body_contains"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponseInspection:
                 data["BodyContains"]
             )
         )
-    if "Json" in data:
+    if data.get("Json") is not None:
         import capo_wafv2.types.response_inspection_json
 
         out["json"] = (

@@ -64,7 +64,7 @@ def serialize_json(value: MultiplexProgramSettings) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexProgramSettings:
     out: MultiplexProgramSettings = {}  # type: ignore[typeddict-item]
-    if "preferredChannelPipeline" in data:
+    if data.get("preferredChannelPipeline") is not None:
         import capo_medialive.types.preferred_channel_pipeline
 
         out["preferred_channel_pipeline"] = (
@@ -72,9 +72,9 @@ def deserialize_json(data: dict) -> MultiplexProgramSettings:
                 data["preferredChannelPipeline"]
             )
         )
-    if "programNumber" in data:
+    if data.get("programNumber") is not None:
         out["program_number"] = data["programNumber"]
-    if "serviceDescriptor" in data:
+    if data.get("serviceDescriptor") is not None:
         import capo_medialive.types.multiplex_program_service_descriptor
 
         out["service_descriptor"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> MultiplexProgramSettings:
                 data["serviceDescriptor"]
             )
         )
-    if "videoSettings" in data:
+    if data.get("videoSettings") is not None:
         import capo_medialive.types.multiplex_video_settings
 
         out["video_settings"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AdTriggers:
 
     out: AdTriggers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackage.types.__ad_triggers_element.deserialize_json(item))
     return out

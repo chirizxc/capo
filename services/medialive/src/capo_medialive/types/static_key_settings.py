@@ -36,7 +36,7 @@ def serialize_json(value: StaticKeySettings) -> dict:
 
 def deserialize_json(data: dict) -> StaticKeySettings:
     out: StaticKeySettings = {}  # type: ignore[typeddict-item]
-    if "keyProviderServer" in data:
+    if data.get("keyProviderServer") is not None:
         import capo_medialive.types.input_location
 
         out["key_provider_server"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> StaticKeySettings:
                 data["keyProviderServer"]
             )
         )
-    if "staticKeyValue" in data:
+    if data.get("staticKeyValue") is not None:
         out["static_key_value"] = data["staticKeyValue"]
     return out

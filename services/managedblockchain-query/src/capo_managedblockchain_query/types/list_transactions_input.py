@@ -86,15 +86,15 @@ def serialize_json(value: ListTransactionsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListTransactionsInput:
     out: ListTransactionsInput = {}  # type: ignore[typeddict-item]
-    if "address" in data:
+    if data.get("address") is not None:
         out["address"] = data["address"]
     else:
         raise DeserializationError("ListTransactionsInput.address required")
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
     else:
         raise DeserializationError("ListTransactionsInput.network required")
-    if "fromBlockchainInstant" in data:
+    if data.get("fromBlockchainInstant") is not None:
         import capo_managedblockchain_query.types.blockchain_instant
 
         out["from_blockchain_instant"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> ListTransactionsInput:
                 data["fromBlockchainInstant"]
             )
         )
-    if "toBlockchainInstant" in data:
+    if data.get("toBlockchainInstant") is not None:
         import capo_managedblockchain_query.types.blockchain_instant
 
         out["to_blockchain_instant"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> ListTransactionsInput:
                 data["toBlockchainInstant"]
             )
         )
-    if "sort" in data:
+    if data.get("sort") is not None:
         import capo_managedblockchain_query.types.list_transactions_sort
 
         out["sort"] = (
@@ -118,11 +118,11 @@ def deserialize_json(data: dict) -> ListTransactionsInput:
                 data["sort"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "confirmationStatusFilter" in data:
+    if data.get("confirmationStatusFilter") is not None:
         import capo_managedblockchain_query.types.confirmation_status_filter
 
         out["confirmation_status_filter"] = (

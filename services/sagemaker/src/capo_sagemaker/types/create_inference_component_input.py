@@ -83,13 +83,13 @@ def serialize_aws_json_1_1(value: CreateInferenceComponentInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateInferenceComponentInput:
     out: CreateInferenceComponentInput = {}  # type: ignore[typeddict-item]
-    if "InferenceComponentName" in data:
+    if data.get("InferenceComponentName") is not None:
         out["inference_component_name"] = data["InferenceComponentName"]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "VariantName" in data:
+    if data.get("VariantName") is not None:
         out["variant_name"] = data["VariantName"]
-    if "Specification" in data:
+    if data.get("Specification") is not None:
         import capo_sagemaker.types.inference_component_specification
 
         out["specification"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInferenceComponentInput:
                 data["Specification"]
             )
         )
-    if "Specifications" in data:
+    if data.get("Specifications") is not None:
         import capo_sagemaker.types.inference_component_specification_list
 
         out["specifications"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInferenceComponentInput:
                 data["Specifications"]
             )
         )
-    if "RuntimeConfig" in data:
+    if data.get("RuntimeConfig") is not None:
         import capo_sagemaker.types.inference_component_runtime_config
 
         out["runtime_config"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInferenceComponentInput:
                 data["RuntimeConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateCrossAccountAttachmentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCrossAccountAttachmentResponse:
     out: CreateCrossAccountAttachmentResponse = {}  # type: ignore[typeddict-item]
-    if "CrossAccountAttachment" in data:
+    if data.get("CrossAccountAttachment") is not None:
         import capo_global_accelerator.types.attachment
 
         out["cross_account_attachment"] = (

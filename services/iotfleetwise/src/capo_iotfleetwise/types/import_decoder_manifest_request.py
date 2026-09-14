@@ -23,6 +23,7 @@ class ImportDecoderManifestRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ImportDecoderManifestRequest) -> dict:
     out: dict = {}
+    out["name"] = value["name"]
     import capo_iotfleetwise.types.network_file_definitions
 
     out["networkFileDefinitions"] = (
@@ -35,7 +36,11 @@ def serialize_aws_json_1_0(value: ImportDecoderManifestRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportDecoderManifestRequest:
     out: ImportDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-    if "networkFileDefinitions" in data:
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("ImportDecoderManifestRequest.name required")
+    if data.get("networkFileDefinitions") is not None:
         import capo_iotfleetwise.types.network_file_definitions
 
         out["network_file_definitions"] = (

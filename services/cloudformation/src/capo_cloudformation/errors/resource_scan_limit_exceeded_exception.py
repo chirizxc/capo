@@ -39,15 +39,20 @@ class ResourceScanLimitExceededException(ServiceError):
 
     code: str | None = "ResourceScanLimitExceededException"
 
-    def __init__(self, data: ResourceScanLimitExceededException_):
+    def __init__(
+        self, data: ResourceScanLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceScanLimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ResourceScanLimitExceededException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ResourceScanLimitExceededException":
+        return cls(deserialize_query(el), message)

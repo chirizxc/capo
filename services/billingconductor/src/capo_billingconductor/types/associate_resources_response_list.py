@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AssociateResourcesResponseList:
 
     out: AssociateResourcesResponseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_billingconductor.types.associate_resource_response_element.deserialize_json(
                 item

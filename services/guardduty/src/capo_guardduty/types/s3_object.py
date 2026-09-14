@@ -31,10 +31,10 @@ def serialize_json(value: S3Object) -> dict:
 
 def deserialize_json(data: dict) -> S3Object:
     out: S3Object = {}  # type: ignore[typeddict-item]
-    if "eTag" in data:
+    if data.get("eTag") is not None:
         out["e_tag"] = data["eTag"]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "versionId" in data:
+    if data.get("versionId") is not None:
         out["version_id"] = data["versionId"]
     return out

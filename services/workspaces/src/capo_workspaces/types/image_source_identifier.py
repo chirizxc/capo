@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: ImageSourceIdentifier) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> ImageSourceIdentifier:
-    if "Ec2ImportTaskId" in data:
+    if data.get("Ec2ImportTaskId") is not None:
         return {"Ec2ImportTaskId": data["Ec2ImportTaskId"]}
-    elif "ImageBuildVersionArn" in data:
+    elif data.get("ImageBuildVersionArn") is not None:
         return {"ImageBuildVersionArn": data["ImageBuildVersionArn"]}
-    elif "Ec2ImageId" in data:
+    elif data.get("Ec2ImageId") is not None:
         return {"Ec2ImageId": data["Ec2ImageId"]}
     else:
         raise DeserializationError("ImageSourceIdentifier: no recognized variant key")

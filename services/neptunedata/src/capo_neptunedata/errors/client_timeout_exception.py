@@ -25,15 +25,15 @@ def serialize_json(value: ClientTimeoutException_) -> dict:
 
 def deserialize_json(data: dict) -> ClientTimeoutException_:
     out: ClientTimeoutException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError("ClientTimeoutException_.detailed_message required")
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("ClientTimeoutException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("ClientTimeoutException_.code required")
@@ -45,15 +45,18 @@ class ClientTimeoutException(ServiceError):
 
     code: str | None = "ClientTimeoutException"
 
-    def __init__(self, data: ClientTimeoutException_):
+    def __init__(self, data: ClientTimeoutException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=True,
             code="ClientTimeoutException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ClientTimeoutException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ClientTimeoutException":
+        return cls(deserialize_json(data), message)

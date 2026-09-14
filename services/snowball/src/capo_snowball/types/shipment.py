@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: Shipment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Shipment:
     out: Shipment = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "TrackingNumber" in data:
+    if data.get("TrackingNumber") is not None:
         out["tracking_number"] = data["TrackingNumber"]
     return out

@@ -151,7 +151,7 @@ def serialize_aws_json_1_0(value: Proxy) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Proxy:
     out: Proxy = {}  # type: ignore[typeddict-item]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_network_firewall.types.create_time
 
         out["create_time"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_0(data: dict) -> Proxy:
                 data["CreateTime"]
             )
         )
-    if "DeleteTime" in data:
+    if data.get("DeleteTime") is not None:
         import capo_network_firewall.types.delete_time
 
         out["delete_time"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_0(data: dict) -> Proxy:
                 data["DeleteTime"]
             )
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_network_firewall.types.update_time
 
         out["update_time"] = (
@@ -175,11 +175,11 @@ def deserialize_aws_json_1_0(data: dict) -> Proxy:
                 data["UpdateTime"]
             )
         )
-    if "FailureCode" in data:
+    if data.get("FailureCode") is not None:
         out["failure_code"] = data["FailureCode"]
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
-    if "ProxyState" in data:
+    if data.get("ProxyState") is not None:
         import capo_network_firewall.types.proxy_state
 
         out["proxy_state"] = (
@@ -187,7 +187,7 @@ def deserialize_aws_json_1_0(data: dict) -> Proxy:
                 data["ProxyState"]
             )
         )
-    if "ProxyModifyState" in data:
+    if data.get("ProxyModifyState") is not None:
         import capo_network_firewall.types.proxy_modify_state
 
         out["proxy_modify_state"] = (
@@ -195,17 +195,17 @@ def deserialize_aws_json_1_0(data: dict) -> Proxy:
                 data["ProxyModifyState"]
             )
         )
-    if "NatGatewayId" in data:
+    if data.get("NatGatewayId") is not None:
         out["nat_gateway_id"] = data["NatGatewayId"]
-    if "ProxyConfigurationName" in data:
+    if data.get("ProxyConfigurationName") is not None:
         out["proxy_configuration_name"] = data["ProxyConfigurationName"]
-    if "ProxyConfigurationArn" in data:
+    if data.get("ProxyConfigurationArn") is not None:
         out["proxy_configuration_arn"] = data["ProxyConfigurationArn"]
-    if "ProxyName" in data:
+    if data.get("ProxyName") is not None:
         out["proxy_name"] = data["ProxyName"]
-    if "ProxyArn" in data:
+    if data.get("ProxyArn") is not None:
         out["proxy_arn"] = data["ProxyArn"]
-    if "ListenerProperties" in data:
+    if data.get("ListenerProperties") is not None:
         import capo_network_firewall.types.listener_properties
 
         out["listener_properties"] = (
@@ -213,7 +213,7 @@ def deserialize_aws_json_1_0(data: dict) -> Proxy:
                 data["ListenerProperties"]
             )
         )
-    if "TlsInterceptProperties" in data:
+    if data.get("TlsInterceptProperties") is not None:
         import capo_network_firewall.types.tls_intercept_properties
 
         out["tls_intercept_properties"] = (
@@ -221,7 +221,7 @@ def deserialize_aws_json_1_0(data: dict) -> Proxy:
                 data["TlsInterceptProperties"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(

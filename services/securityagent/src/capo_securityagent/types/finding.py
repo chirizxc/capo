@@ -142,15 +142,15 @@ def serialize_json(value: Finding) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["createdAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["updatedAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     return out
@@ -158,55 +158,55 @@ def serialize_json(value: Finding) -> dict:
 
 def deserialize_json(data: dict) -> Finding:
     out: Finding = {}  # type: ignore[typeddict-item]
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
     else:
         raise DeserializationError("Finding.finding_id required")
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("Finding.agent_space_id required")
-    if "pentestId" in data:
+    if data.get("pentestId") is not None:
         out["pentest_id"] = data["pentestId"]
-    if "pentestJobId" in data:
+    if data.get("pentestJobId") is not None:
         out["pentest_job_id"] = data["pentestJobId"]
-    if "codeReviewId" in data:
+    if data.get("codeReviewId") is not None:
         out["code_review_id"] = data["codeReviewId"]
-    if "codeReviewJobId" in data:
+    if data.get("codeReviewJobId") is not None:
         out["code_review_job_id"] = data["codeReviewJobId"]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_securityagent.types.finding_status
 
         out["status"] = capo_securityagent.types.finding_status.deserialize_json(
             data["status"]
         )
-    if "riskType" in data:
+    if data.get("riskType") is not None:
         out["risk_type"] = data["riskType"]
-    if "riskLevel" in data:
+    if data.get("riskLevel") is not None:
         import capo_securityagent.types.risk_level
 
         out["risk_level"] = capo_securityagent.types.risk_level.deserialize_json(
             data["riskLevel"]
         )
-    if "riskScore" in data:
+    if data.get("riskScore") is not None:
         out["risk_score"] = data["riskScore"]
-    if "reasoning" in data:
+    if data.get("reasoning") is not None:
         out["reasoning"] = data["reasoning"]
-    if "confidence" in data:
+    if data.get("confidence") is not None:
         import capo_securityagent.types.confidence_level
 
         out["confidence"] = capo_securityagent.types.confidence_level.deserialize_json(
             data["confidence"]
         )
-    if "attackScript" in data:
+    if data.get("attackScript") is not None:
         out["attack_script"] = data["attackScript"]
-    if "codeRemediationTask" in data:
+    if data.get("codeRemediationTask") is not None:
         import capo_securityagent.types.code_remediation_task
 
         out["code_remediation_task"] = (
@@ -214,9 +214,9 @@ def deserialize_json(data: dict) -> Finding:
                 data["codeRemediationTask"]
             )
         )
-    if "lastUpdatedBy" in data:
+    if data.get("lastUpdatedBy") is not None:
         out["last_updated_by"] = data["lastUpdatedBy"]
-    if "codeLocations" in data:
+    if data.get("codeLocations") is not None:
         import capo_securityagent.types.code_location_list
 
         out["code_locations"] = (
@@ -224,7 +224,7 @@ def deserialize_json(data: dict) -> Finding:
                 data["codeLocations"]
             )
         )
-    if "verificationScript" in data:
+    if data.get("verificationScript") is not None:
         import capo_securityagent.types.verification_script
 
         out["verification_script"] = (
@@ -232,20 +232,16 @@ def deserialize_json(data: dict) -> Finding:
                 data["verificationScript"]
             )
         )
-    if "createdAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     return out

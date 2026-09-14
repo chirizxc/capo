@@ -44,7 +44,7 @@ def serialize_json(value: PackageVersionOrigin) -> dict:
 
 def deserialize_json(data: dict) -> PackageVersionOrigin:
     out: PackageVersionOrigin = {}  # type: ignore[typeddict-item]
-    if "domainEntryPoint" in data:
+    if data.get("domainEntryPoint") is not None:
         import capo_codeartifact.types.domain_entry_point
 
         out["domain_entry_point"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> PackageVersionOrigin:
                 data["domainEntryPoint"]
             )
         )
-    if "originType" in data:
+    if data.get("originType") is not None:
         import capo_codeartifact.types.package_version_origin_type
 
         out["origin_type"] = (

@@ -13,9 +13,9 @@ from capo_transcribe_streaming import AsyncTranscribeStreamingClient
 
 
 async def main():
-    async with AsyncTranscribeStreamingClient() as s3:
+    async with AsyncTranscribeStreamingClient() as transcribe_streaming:
         # Example: call the get_medical_scribe_stream operation
-        response = await s3.get_medical_scribe_stream()
+        response = await transcribe_streaming.get_medical_scribe_stream()
         print(response["medical_scribe_stream_details"])
 ```
 
@@ -28,16 +28,16 @@ from capo_transcribe_streaming import AsyncTranscribeStreamingClient
 
 
 async def main():
-    async with AsyncTranscribeStreamingClient() as s3:
+    async with AsyncTranscribeStreamingClient() as transcribe_streaming:
         # Example: call start_call_analytics_stream_transcription with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.start_call_analytics_stream_transcription(audio_stream=chunks())
+        response = await transcribe_streaming.start_call_analytics_stream_transcription(audio_stream=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.start_call_analytics_stream_transcription(audio_stream=b'Hello, World!')
+        response = await transcribe_streaming.start_call_analytics_stream_transcription(audio_stream=b'Hello, World!')
         print(response)
 ```
 
@@ -51,9 +51,9 @@ from capo_transcribe_streaming.error import BadRequestException
 
 
 async def main():
-    async with AsyncTranscribeStreamingClient() as s3:
+    async with AsyncTranscribeStreamingClient() as transcribe_streaming:
         try:
-            await s3.get_medical_scribe_stream()
+            await transcribe_streaming.get_medical_scribe_stream()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -70,13 +70,13 @@ from capo_transcribe_streaming import AsyncTranscribeStreamingClient
 
 
 async def main():
-    async with AsyncTranscribeStreamingClient() as s3:
+    async with AsyncTranscribeStreamingClient() as transcribe_streaming:
         # Default: 3 attempts for every operation
-        response = await s3.get_medical_scribe_stream()
+        response = await transcribe_streaming.get_medical_scribe_stream()
 
         # Override per operation
-        response = await s3.get_medical_scribe_stream(config_overrides={"retry_max_attempts": 5})
+        response = await transcribe_streaming.get_medical_scribe_stream(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_medical_scribe_stream(config_overrides={"retry_max_attempts": 1})
+        response = await transcribe_streaming.get_medical_scribe_stream(config_overrides={"retry_max_attempts": 1})
 ```

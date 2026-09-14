@@ -28,8 +28,8 @@ def serialize_json(value: ApplicationComponentSummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationComponentSummary:
     out: ApplicationComponentSummary = {}  # type: ignore[typeddict-item]
-    if "appType" in data:
+    if data.get("appType") is not None:
         out["app_type"] = data["appType"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     return out

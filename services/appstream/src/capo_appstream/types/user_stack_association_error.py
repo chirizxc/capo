@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: UserStackAssociationError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserStackAssociationError:
     out: UserStackAssociationError = {}  # type: ignore[typeddict-item]
-    if "UserStackAssociation" in data:
+    if data.get("UserStackAssociation") is not None:
         import capo_appstream.types.user_stack_association
 
         out["user_stack_association"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserStackAssociationError:
                 data["UserStackAssociation"]
             )
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_appstream.types.user_stack_association_error_code
 
         out["error_code"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> UserStackAssociationError:
                 data["ErrorCode"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

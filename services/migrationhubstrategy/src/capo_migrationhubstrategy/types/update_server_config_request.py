@@ -37,11 +37,11 @@ def serialize_json(value: UpdateServerConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServerConfigRequest:
     out: UpdateServerConfigRequest = {}  # type: ignore[typeddict-item]
-    if "serverId" in data:
+    if data.get("serverId") is not None:
         out["server_id"] = data["serverId"]
     else:
         raise DeserializationError("UpdateServerConfigRequest.server_id required")
-    if "strategyOption" in data:
+    if data.get("strategyOption") is not None:
         import capo_migrationhubstrategy.types.strategy_option
 
         out["strategy_option"] = (

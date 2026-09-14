@@ -34,9 +34,9 @@ def serialize_json(value: ImportLensOutput) -> dict:
 
 def deserialize_json(data: dict) -> ImportLensOutput:
     out: ImportLensOutput = {}  # type: ignore[typeddict-item]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_wellarchitected.types.import_lens_status
 
         out["status"] = capo_wellarchitected.types.import_lens_status.deserialize_json(

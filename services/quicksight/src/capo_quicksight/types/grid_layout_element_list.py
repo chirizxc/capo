@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GridLayoutElementList:
 
     out: GridLayoutElementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.grid_layout_element.deserialize_json(item))
     return out

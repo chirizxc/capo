@@ -27,13 +27,13 @@ def serialize_json(value: VirtualGatewayListenerTlsFileCertificate) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayListenerTlsFileCertificate:
     out: VirtualGatewayListenerTlsFileCertificate = {}  # type: ignore[typeddict-item]
-    if "certificateChain" in data:
+    if data.get("certificateChain") is not None:
         out["certificate_chain"] = data["certificateChain"]
     else:
         raise DeserializationError(
             "VirtualGatewayListenerTlsFileCertificate.certificate_chain required"
         )
-    if "privateKey" in data:
+    if data.get("privateKey") is not None:
         out["private_key"] = data["privateKey"]
     else:
         raise DeserializationError(

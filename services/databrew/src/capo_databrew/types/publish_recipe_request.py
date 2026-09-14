@@ -26,6 +26,6 @@ def serialize_json(value: PublishRecipeRequest) -> dict:
 
 def deserialize_json(data: dict) -> PublishRecipeRequest:
     out: PublishRecipeRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

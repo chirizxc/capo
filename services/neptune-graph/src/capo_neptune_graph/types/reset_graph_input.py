@@ -26,7 +26,7 @@ def serialize_json(value: ResetGraphInput) -> dict:
 
 def deserialize_json(data: dict) -> ResetGraphInput:
     out: ResetGraphInput = {}  # type: ignore[typeddict-item]
-    if "skipSnapshot" in data:
+    if data.get("skipSnapshot") is not None:
         out["skip_snapshot"] = data["skipSnapshot"]
     else:
         raise DeserializationError("ResetGraphInput.skip_snapshot required")

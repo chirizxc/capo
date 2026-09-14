@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: SendTextMessageResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SendTextMessageResult:
     out: SendTextMessageResult = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
     return out

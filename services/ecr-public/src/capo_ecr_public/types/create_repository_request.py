@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: CreateRepositoryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRepositoryRequest:
     out: CreateRepositoryRequest = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("CreateRepositoryRequest.repository_name required")
-    if "catalogData" in data:
+    if data.get("catalogData") is not None:
         import capo_ecr_public.types.repository_catalog_data_input
 
         out["catalog_data"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRepositoryRequest:
                 data["catalogData"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ecr_public.types.tag_list
 
         out["tags"] = capo_ecr_public.types.tag_list.deserialize_aws_json_1_1(

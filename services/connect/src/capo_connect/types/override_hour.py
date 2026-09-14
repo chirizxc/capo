@@ -49,21 +49,21 @@ def serialize_json(value: OverrideHour) -> dict:
 
 def deserialize_json(data: dict) -> OverrideHour:
     out: OverrideHour = {}  # type: ignore[typeddict-item]
-    if "Start" in data:
+    if data.get("Start") is not None:
         import capo_connect.types.override_time_slice
 
         out["start"] = capo_connect.types.override_time_slice.deserialize_json(
             data["Start"]
         )
-    if "End" in data:
+    if data.get("End") is not None:
         import capo_connect.types.override_time_slice
 
         out["end"] = capo_connect.types.override_time_slice.deserialize_json(
             data["End"]
         )
-    if "OverrideName" in data:
+    if data.get("OverrideName") is not None:
         out["override_name"] = data["OverrideName"]
-    if "OperationalStatus" in data:
+    if data.get("OperationalStatus") is not None:
         import capo_connect.types.operational_status
 
         out["operational_status"] = (

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetBucketBundlesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBucketBundlesResult:
     out: GetBucketBundlesResult = {}  # type: ignore[typeddict-item]
-    if "bundles" in data:
+    if data.get("bundles") is not None:
         import capo_lightsail.types.bucket_bundle_list
 
         out["bundles"] = (

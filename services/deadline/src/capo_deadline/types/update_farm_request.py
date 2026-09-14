@@ -32,16 +32,24 @@ def serialize_json(value: UpdateFarmRequest) -> dict:
     if "description" in value:
         out["description"] = value["description"]
     if "cost_scale_factor" in value:
-        out["costScaleFactor"] = value["cost_scale_factor"]
+        out["costScaleFactor"] = (
+            "NaN"
+            if value["cost_scale_factor"] != value["cost_scale_factor"]
+            else "Infinity"
+            if value["cost_scale_factor"] == float("inf")
+            else "-Infinity"
+            if value["cost_scale_factor"] == float("-inf")
+            else value["cost_scale_factor"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> UpdateFarmRequest:
     out: UpdateFarmRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "costScaleFactor" in data:
-        out["cost_scale_factor"] = data["costScaleFactor"]
+    if data.get("costScaleFactor") is not None:
+        out["cost_scale_factor"] = float(data["costScaleFactor"])
     return out

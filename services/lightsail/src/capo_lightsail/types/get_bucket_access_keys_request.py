@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetBucketAccessKeysRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBucketAccessKeysRequest:
     out: GetBucketAccessKeysRequest = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("GetBucketAccessKeysRequest.bucket_name required")

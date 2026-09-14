@@ -34,7 +34,7 @@ def serialize_json(value: UpdateNodeStateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNodeStateRequest:
     out: UpdateNodeStateRequest = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.update_node_state_shape
 
         out["state"] = capo_medialive.types.update_node_state_shape.deserialize_json(

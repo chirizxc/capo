@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> UnprocessedClusterList:
 
     out: UnprocessedClusterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_memorydb.types.unprocessed_cluster.deserialize_aws_json_1_1(item)
         )

@@ -24,7 +24,7 @@ def serialize_json(value: ExportApiResponse) -> dict:
 
 def deserialize_json(data: dict) -> ExportApiResponse:
     out: ExportApiResponse = {}  # type: ignore[typeddict-item]
-    if "body" in data:
+    if data.get("body") is not None:
         import capo_apigatewayv2.types.exported_api
 
         out["body"] = capo_apigatewayv2.types.exported_api.deserialize_json(

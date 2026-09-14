@@ -34,12 +34,12 @@ def serialize_json(value: NetworkInterface) -> dict:
 
 def deserialize_json(data: dict) -> NetworkInterface:
     out: NetworkInterface = {}  # type: ignore[typeddict-item]
-    if "macAddress" in data:
+    if data.get("macAddress") is not None:
         out["mac_address"] = data["macAddress"]
-    if "ips" in data:
+    if data.get("ips") is not None:
         import capo_mgn.types.i_ps_list
 
         out["ips"] = capo_mgn.types.i_ps_list.deserialize_json(data["ips"])
-    if "isPrimary" in data:
+    if data.get("isPrimary") is not None:
         out["is_primary"] = data["isPrimary"]
     return out

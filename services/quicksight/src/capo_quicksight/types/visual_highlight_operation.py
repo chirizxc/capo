@@ -28,7 +28,7 @@ def serialize_json(value: VisualHighlightOperation) -> dict:
 
 def deserialize_json(data: dict) -> VisualHighlightOperation:
     out: VisualHighlightOperation = {}  # type: ignore[typeddict-item]
-    if "Trigger" in data:
+    if data.get("Trigger") is not None:
         import capo_quicksight.types.visual_highlight_trigger
 
         out["trigger"] = (

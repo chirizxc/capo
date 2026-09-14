@@ -46,13 +46,13 @@ def serialize_aws_json_1_0(value: ListDataIngestionJobsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListDataIngestionJobsRequest:
     out: ListDataIngestionJobsRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.ingestion_job_status
 
         out["status"] = (

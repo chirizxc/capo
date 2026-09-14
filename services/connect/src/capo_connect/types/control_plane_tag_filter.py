@@ -49,7 +49,7 @@ def serialize_json(value: ControlPlaneTagFilter) -> dict:
 
 def deserialize_json(data: dict) -> ControlPlaneTagFilter:
     out: ControlPlaneTagFilter = {}  # type: ignore[typeddict-item]
-    if "OrConditions" in data:
+    if data.get("OrConditions") is not None:
         import capo_connect.types.tag_or_condition_list
 
         out["or_conditions"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> ControlPlaneTagFilter:
                 data["OrConditions"]
             )
         )
-    if "AndConditions" in data:
+    if data.get("AndConditions") is not None:
         import capo_connect.types.tag_and_condition_list
 
         out["and_conditions"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ControlPlaneTagFilter:
                 data["AndConditions"]
             )
         )
-    if "TagCondition" in data:
+    if data.get("TagCondition") is not None:
         import capo_connect.types.tag_condition
 
         out["tag_condition"] = capo_connect.types.tag_condition.deserialize_json(

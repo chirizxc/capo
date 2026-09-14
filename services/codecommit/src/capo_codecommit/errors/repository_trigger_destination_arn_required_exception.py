@@ -29,7 +29,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> RepositoryTriggerDestinationArnRequiredException_:
     out: RepositoryTriggerDestinationArnRequiredException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -39,17 +39,22 @@ class RepositoryTriggerDestinationArnRequiredException(ServiceError):
 
     code: str | None = "RepositoryTriggerDestinationArnRequiredException"
 
-    def __init__(self, data: RepositoryTriggerDestinationArnRequiredException_):
+    def __init__(
+        self,
+        data: RepositoryTriggerDestinationArnRequiredException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RepositoryTriggerDestinationArnRequiredException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "RepositoryTriggerDestinationArnRequiredException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

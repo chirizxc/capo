@@ -52,12 +52,10 @@ def serialize_json(value: StartVectorEnrichmentJobOutput) -> dict:
     out["Name"] = value["name"]
     out["Arn"] = value["arn"]
     out["Type"] = value["type"]
-    import capo_sagemaker_geospatial.types._prelude.timestamp
+    import capo_sagemaker_geospatial._protocol.serialize
 
-    out["CreationTime"] = (
-        capo_sagemaker_geospatial.types._prelude.timestamp.serialize_json(
-            value["creation_time"]
-        )
+    out["CreationTime"] = capo_sagemaker_geospatial._protocol.serialize.fmt_date_time(
+        value["creation_time"]
     )
     out["DurationInSeconds"] = value["duration_in_seconds"]
     out["Status"] = value["status"]
@@ -87,43 +85,41 @@ def serialize_json(value: StartVectorEnrichmentJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartVectorEnrichmentJobOutput:
     out: StartVectorEnrichmentJobOutput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("StartVectorEnrichmentJobOutput.name required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("StartVectorEnrichmentJobOutput.arn required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("StartVectorEnrichmentJobOutput.type required")
-    if "CreationTime" in data:
-        import capo_sagemaker_geospatial.types._prelude.timestamp
+    if data.get("CreationTime") is not None:
+        import datetime
 
-        out["creation_time"] = (
-            capo_sagemaker_geospatial.types._prelude.timestamp.deserialize_json(
-                data["CreationTime"]
-            )
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["CreationTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "StartVectorEnrichmentJobOutput.creation_time required"
         )
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
     else:
         raise DeserializationError(
             "StartVectorEnrichmentJobOutput.duration_in_seconds required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("StartVectorEnrichmentJobOutput.status required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "InputConfig" in data:
+    if data.get("InputConfig") is not None:
         import capo_sagemaker_geospatial.types.vector_enrichment_job_input_config
 
         out["input_config"] = (
@@ -135,7 +131,7 @@ def deserialize_json(data: dict) -> StartVectorEnrichmentJobOutput:
         raise DeserializationError(
             "StartVectorEnrichmentJobOutput.input_config required"
         )
-    if "JobConfig" in data:
+    if data.get("JobConfig") is not None:
         import capo_sagemaker_geospatial.types.vector_enrichment_job_config
 
         out["job_config"] = (
@@ -145,13 +141,13 @@ def deserialize_json(data: dict) -> StartVectorEnrichmentJobOutput:
         )
     else:
         raise DeserializationError("StartVectorEnrichmentJobOutput.job_config required")
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     else:
         raise DeserializationError(
             "StartVectorEnrichmentJobOutput.execution_role_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker_geospatial.types.tags
 
         out["tags"] = capo_sagemaker_geospatial.types.tags.deserialize_json(

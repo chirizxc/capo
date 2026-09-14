@@ -44,7 +44,7 @@ def serialize_json(value: EngagementPreferences) -> dict:
 
 def deserialize_json(data: dict) -> EngagementPreferences:
     out: EngagementPreferences = {}  # type: ignore[typeddict-item]
-    if "Phone" in data:
+    if data.get("Phone") is not None:
         import capo_customer_profiles.types.phone_preference_list
 
         out["phone"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> EngagementPreferences:
                 data["Phone"]
             )
         )
-    if "Email" in data:
+    if data.get("Email") is not None:
         import capo_customer_profiles.types.email_preference_list
 
         out["email"] = (

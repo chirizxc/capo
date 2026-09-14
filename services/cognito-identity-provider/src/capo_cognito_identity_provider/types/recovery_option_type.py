@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: RecoveryOptionType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecoveryOptionType:
     out: RecoveryOptionType = {}  # type: ignore[typeddict-item]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         raise DeserializationError("RecoveryOptionType.priority required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_cognito_identity_provider.types.recovery_option_name_type
 
         out["name"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> VoiceEnhancementConfigs:
 
     out: VoiceEnhancementConfigs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.voice_enhancement_config.deserialize_json(item))
     return out

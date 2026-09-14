@@ -120,11 +120,11 @@ def serialize_json(value: StartEmailContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartEmailContactRequest:
     out: StartEmailContactRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("StartEmailContactRequest.instance_id required")
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         import capo_connect.types.email_address_info
 
         out["from_email_address"] = (
@@ -136,23 +136,23 @@ def deserialize_json(data: dict) -> StartEmailContactRequest:
         raise DeserializationError(
             "StartEmailContactRequest.from_email_address required"
         )
-    if "DestinationEmailAddress" in data:
+    if data.get("DestinationEmailAddress") is not None:
         out["destination_email_address"] = data["DestinationEmailAddress"]
     else:
         raise DeserializationError(
             "StartEmailContactRequest.destination_email_address required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "References" in data:
+    if data.get("References") is not None:
         import capo_connect.types.contact_references
 
         out["references"] = capo_connect.types.contact_references.deserialize_json(
             data["References"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "EmailMessage" in data:
+    if data.get("EmailMessage") is not None:
         import capo_connect.types.inbound_email_content
 
         out["email_message"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> StartEmailContactRequest:
         )
     else:
         raise DeserializationError("StartEmailContactRequest.email_message required")
-    if "AdditionalRecipients" in data:
+    if data.get("AdditionalRecipients") is not None:
         import capo_connect.types.inbound_additional_recipients
 
         out["additional_recipients"] = (
@@ -170,23 +170,23 @@ def deserialize_json(data: dict) -> StartEmailContactRequest:
                 data["AdditionalRecipients"]
             )
         )
-    if "Attachments" in data:
+    if data.get("Attachments") is not None:
         import capo_connect.types.email_attachments
 
         out["attachments"] = capo_connect.types.email_attachments.deserialize_json(
             data["Attachments"]
         )
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
-    if "RelatedContactId" in data:
+    if data.get("RelatedContactId") is not None:
         out["related_contact_id"] = data["RelatedContactId"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes
 
         out["attributes"] = capo_connect.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "SegmentAttributes" in data:
+    if data.get("SegmentAttributes") is not None:
         import capo_connect.types.segment_attributes
 
         out["segment_attributes"] = (
@@ -194,6 +194,6 @@ def deserialize_json(data: dict) -> StartEmailContactRequest:
                 data["SegmentAttributes"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

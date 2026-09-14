@@ -41,7 +41,7 @@ def serialize_json(value: ContentArtifactsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ContentArtifactsConfiguration:
     out: ContentArtifactsConfiguration = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_chime_sdk_media_pipelines.types.artifacts_state
 
         out["state"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> ContentArtifactsConfiguration:
         )
     else:
         raise DeserializationError("ContentArtifactsConfiguration.state required")
-    if "MuxType" in data:
+    if data.get("MuxType") is not None:
         import capo_chime_sdk_media_pipelines.types.content_mux_type
 
         out["mux_type"] = (

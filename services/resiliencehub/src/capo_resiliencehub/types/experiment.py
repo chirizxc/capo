@@ -27,8 +27,8 @@ def serialize_json(value: Experiment) -> dict:
 
 def deserialize_json(data: dict) -> Experiment:
     out: Experiment = {}  # type: ignore[typeddict-item]
-    if "experimentArn" in data:
+    if data.get("experimentArn") is not None:
         out["experiment_arn"] = data["experimentArn"]
-    if "experimentTemplateId" in data:
+    if data.get("experimentTemplateId") is not None:
         out["experiment_template_id"] = data["experimentTemplateId"]
     return out

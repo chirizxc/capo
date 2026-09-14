@@ -79,7 +79,7 @@ def serialize_aws_json_1_1(value: CreateWebAppRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWebAppRequest:
     out: CreateWebAppRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityProviderDetails" in data:
+    if data.get("IdentityProviderDetails") is not None:
         import capo_transfer.types.web_app_identity_provider_details
 
         out["identity_provider_details"] = (
@@ -91,9 +91,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebAppRequest:
         raise DeserializationError(
             "CreateWebAppRequest.identity_provider_details required"
         )
-    if "AccessEndpoint" in data:
+    if data.get("AccessEndpoint") is not None:
         out["access_endpoint"] = data["AccessEndpoint"]
-    if "WebAppUnits" in data:
+    if data.get("WebAppUnits") is not None:
         import capo_transfer.types.web_app_units
 
         out["web_app_units"] = (
@@ -101,11 +101,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebAppRequest:
                 data["WebAppUnits"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "WebAppEndpointPolicy" in data:
+    if data.get("WebAppEndpointPolicy") is not None:
         import capo_transfer.types.web_app_endpoint_policy
 
         out["web_app_endpoint_policy"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebAppRequest:
                 data["WebAppEndpointPolicy"]
             )
         )
-    if "EndpointDetails" in data:
+    if data.get("EndpointDetails") is not None:
         import capo_transfer.types.web_app_endpoint_details
 
         out["endpoint_details"] = (

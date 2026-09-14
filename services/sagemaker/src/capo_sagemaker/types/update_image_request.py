@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: UpdateImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateImageRequest:
     out: UpdateImageRequest = {}  # type: ignore[typeddict-item]
-    if "DeleteProperties" in data:
+    if data.get("DeleteProperties") is not None:
         import capo_sagemaker.types.image_delete_property_list
 
         out["delete_properties"] = (
@@ -61,12 +61,12 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateImageRequest:
                 data["DeleteProperties"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

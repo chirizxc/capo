@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: ResolveCustomerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolveCustomerRequest:
     out: ResolveCustomerRequest = {}  # type: ignore[typeddict-item]
-    if "RegistrationToken" in data:
+    if data.get("RegistrationToken") is not None:
         out["registration_token"] = data["RegistrationToken"]
     else:
         raise DeserializationError("ResolveCustomerRequest.registration_token required")

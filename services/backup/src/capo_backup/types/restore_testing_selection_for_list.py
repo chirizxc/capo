@@ -45,7 +45,7 @@ def serialize_json(value: RestoreTestingSelectionForList) -> dict:
 
 def deserialize_json(data: dict) -> RestoreTestingSelectionForList:
     out: RestoreTestingSelectionForList = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["creation_time"] = capo_backup.types._prelude.timestamp.deserialize_json(
@@ -55,31 +55,31 @@ def deserialize_json(data: dict) -> RestoreTestingSelectionForList:
         raise DeserializationError(
             "RestoreTestingSelectionForList.creation_time required"
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError(
             "RestoreTestingSelectionForList.iam_role_arn required"
         )
-    if "ProtectedResourceType" in data:
+    if data.get("ProtectedResourceType") is not None:
         out["protected_resource_type"] = data["ProtectedResourceType"]
     else:
         raise DeserializationError(
             "RestoreTestingSelectionForList.protected_resource_type required"
         )
-    if "RestoreTestingPlanName" in data:
+    if data.get("RestoreTestingPlanName") is not None:
         out["restore_testing_plan_name"] = data["RestoreTestingPlanName"]
     else:
         raise DeserializationError(
             "RestoreTestingSelectionForList.restore_testing_plan_name required"
         )
-    if "RestoreTestingSelectionName" in data:
+    if data.get("RestoreTestingSelectionName") is not None:
         out["restore_testing_selection_name"] = data["RestoreTestingSelectionName"]
     else:
         raise DeserializationError(
             "RestoreTestingSelectionForList.restore_testing_selection_name required"
         )
-    if "ValidationWindowHours" in data:
+    if data.get("ValidationWindowHours") is not None:
         out["validation_window_hours"] = data["ValidationWindowHours"]
     else:
         out["validation_window_hours"] = 0

@@ -49,15 +49,15 @@ def serialize_aws_json_1_0(value: CreateVerifiedDestinationNumberRequest) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> CreateVerifiedDestinationNumberRequest:
     out: CreateVerifiedDestinationNumberRequest = {}  # type: ignore[typeddict-item]
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
     else:
         raise DeserializationError(
             "CreateVerifiedDestinationNumberRequest.destination_phone_number required"
         )
-    if "RcsAgentId" in data:
+    if data.get("RcsAgentId") is not None:
         out["rcs_agent_id"] = data["RcsAgentId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateVerifiedDestinationNumberReque
                 data["Tags"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

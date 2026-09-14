@@ -42,7 +42,7 @@ def serialize_json(value: AIGuardrailWordPolicyConfig) -> dict:
 
 def deserialize_json(data: dict) -> AIGuardrailWordPolicyConfig:
     out: AIGuardrailWordPolicyConfig = {}  # type: ignore[typeddict-item]
-    if "wordsConfig" in data:
+    if data.get("wordsConfig") is not None:
         import capo_qconnect.types.guardrail_words_config
 
         out["words_config"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> AIGuardrailWordPolicyConfig:
                 data["wordsConfig"]
             )
         )
-    if "managedWordListsConfig" in data:
+    if data.get("managedWordListsConfig") is not None:
         import capo_qconnect.types.guardrail_managed_word_lists_config
 
         out["managed_word_lists_config"] = (

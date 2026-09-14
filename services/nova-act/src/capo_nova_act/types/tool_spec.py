@@ -36,15 +36,15 @@ def serialize_json(value: ToolSpec) -> dict:
 
 def deserialize_json(data: dict) -> ToolSpec:
     out: ToolSpec = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ToolSpec.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("ToolSpec.description required")
-    if "inputSchema" in data:
+    if data.get("inputSchema") is not None:
         import capo_nova_act.types.tool_input_schema
 
         out["input_schema"] = capo_nova_act.types.tool_input_schema.deserialize_json(

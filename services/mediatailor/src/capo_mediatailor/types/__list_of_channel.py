@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfChannel:
 
     out: __listOfChannel = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediatailor.types.channel.deserialize_json(item))
     return out

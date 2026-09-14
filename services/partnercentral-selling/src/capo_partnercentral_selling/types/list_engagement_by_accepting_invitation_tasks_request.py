@@ -101,11 +101,11 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ListEngagementByAcceptingInvitationTasksRequest:
     out: ListEngagementByAcceptingInvitationTasksRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_partnercentral_selling.types.list_tasks_sort_base
 
         out["sort"] = (
@@ -113,13 +113,13 @@ def deserialize_aws_json_1_0(
                 data["Sort"]
             )
         )
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError(
             "ListEngagementByAcceptingInvitationTasksRequest.catalog required"
         )
-    if "TaskStatus" in data:
+    if data.get("TaskStatus") is not None:
         import capo_partnercentral_selling.types.task_statuses
 
         out["task_status"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_0(
                 data["TaskStatus"]
             )
         )
-    if "OpportunityIdentifier" in data:
+    if data.get("OpportunityIdentifier") is not None:
         import capo_partnercentral_selling.types.opportunity_identifiers
 
         out["opportunity_identifier"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(
                 data["OpportunityIdentifier"]
             )
         )
-    if "EngagementInvitationIdentifier" in data:
+    if data.get("EngagementInvitationIdentifier") is not None:
         import capo_partnercentral_selling.types.engagement_invitation_identifiers
 
         out["engagement_invitation_identifier"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(
                 data["EngagementInvitationIdentifier"]
             )
         )
-    if "TaskIdentifier" in data:
+    if data.get("TaskIdentifier") is not None:
         import capo_partnercentral_selling.types.task_identifiers
 
         out["task_identifier"] = (

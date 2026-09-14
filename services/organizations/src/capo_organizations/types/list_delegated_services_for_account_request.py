@@ -34,14 +34,14 @@ def serialize_aws_json_1_1(value: ListDelegatedServicesForAccountRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ListDelegatedServicesForAccountRequest:
     out: ListDelegatedServicesForAccountRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError(
             "ListDelegatedServicesForAccountRequest.account_id required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

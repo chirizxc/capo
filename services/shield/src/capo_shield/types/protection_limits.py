@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: ProtectionLimits) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProtectionLimits:
     out: ProtectionLimits = {}  # type: ignore[typeddict-item]
-    if "ProtectedResourceTypeLimits" in data:
+    if data.get("ProtectedResourceTypeLimits") is not None:
         import capo_shield.types.limits
 
         out["protected_resource_type_limits"] = (

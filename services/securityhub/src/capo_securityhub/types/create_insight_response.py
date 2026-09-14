@@ -23,6 +23,6 @@ def serialize_json(value: CreateInsightResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateInsightResponse:
     out: CreateInsightResponse = {}  # type: ignore[typeddict-item]
-    if "InsightArn" in data:
+    if data.get("InsightArn") is not None:
         out["insight_arn"] = data["InsightArn"]
     return out

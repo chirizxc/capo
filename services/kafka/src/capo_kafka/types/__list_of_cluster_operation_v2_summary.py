@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfClusterOperationV2Summary:
 
     out: __listOfClusterOperationV2Summary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kafka.types.cluster_operation_v2_summary.deserialize_json(item))
     return out

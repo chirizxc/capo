@@ -32,11 +32,11 @@ def serialize_json(value: ParentDataSet) -> dict:
 
 def deserialize_json(data: dict) -> ParentDataSet:
     out: ParentDataSet = {}  # type: ignore[typeddict-item]
-    if "DataSetArn" in data:
+    if data.get("DataSetArn") is not None:
         out["data_set_arn"] = data["DataSetArn"]
     else:
         raise DeserializationError("ParentDataSet.data_set_arn required")
-    if "InputColumns" in data:
+    if data.get("InputColumns") is not None:
         import capo_quicksight.types.input_column_list
 
         out["input_columns"] = capo_quicksight.types.input_column_list.deserialize_json(

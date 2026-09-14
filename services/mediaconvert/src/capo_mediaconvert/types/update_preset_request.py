@@ -38,11 +38,11 @@ def serialize_json(value: UpdatePresetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePresetRequest:
     out: UpdatePresetRequest = {}  # type: ignore[typeddict-item]
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_mediaconvert.types.preset_settings
 
         out["settings"] = capo_mediaconvert.types.preset_settings.deserialize_json(

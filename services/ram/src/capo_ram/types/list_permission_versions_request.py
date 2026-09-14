@@ -33,14 +33,14 @@ def serialize_json(value: ListPermissionVersionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListPermissionVersionsRequest:
     out: ListPermissionVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "permissionArn" in data:
+    if data.get("permissionArn") is not None:
         out["permission_arn"] = data["permissionArn"]
     else:
         raise DeserializationError(
             "ListPermissionVersionsRequest.permission_arn required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

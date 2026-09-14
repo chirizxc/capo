@@ -45,15 +45,15 @@ def serialize_json(value: UpdateConnectivityRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectivityRequest:
     out: UpdateConnectivityRequest = {}  # type: ignore[typeddict-item]
-    if "connectivityInfo" in data:
+    if data.get("connectivityInfo") is not None:
         import capo_kafka.types.connectivity_info
 
         out["connectivity_info"] = capo_kafka.types.connectivity_info.deserialize_json(
             data["connectivityInfo"]
         )
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "zookeeperAccess" in data:
+    if data.get("zookeeperAccess") is not None:
         import capo_kafka.types.zookeeper_access
 
         out["zookeeper_access"] = capo_kafka.types.zookeeper_access.deserialize_json(

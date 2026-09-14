@@ -40,7 +40,7 @@ def serialize_json(value: UpdateGatewayRouteInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGatewayRouteInput:
     out: UpdateGatewayRouteInput = {}  # type: ignore[typeddict-item]
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.gateway_route_spec
 
         out["spec"] = capo_app_mesh.types.gateway_route_spec.deserialize_json(
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> UpdateGatewayRouteInput:
         )
     else:
         raise DeserializationError("UpdateGatewayRouteInput.spec required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

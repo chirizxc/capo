@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: UserIdentityConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserIdentityConfiguration:
     out: UserIdentityConfiguration = {}  # type: ignore[typeddict-item]
-    if "IdentityAttributeName" in data:
+    if data.get("IdentityAttributeName") is not None:
         out["identity_attribute_name"] = data["IdentityAttributeName"]
     return out

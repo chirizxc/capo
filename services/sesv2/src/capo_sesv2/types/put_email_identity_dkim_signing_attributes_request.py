@@ -48,7 +48,7 @@ def serialize_json(value: PutEmailIdentityDkimSigningAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutEmailIdentityDkimSigningAttributesRequest:
     out: PutEmailIdentityDkimSigningAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "SigningAttributesOrigin" in data:
+    if data.get("SigningAttributesOrigin") is not None:
         import capo_sesv2.types.dkim_signing_attributes_origin
 
         out["signing_attributes_origin"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> PutEmailIdentityDkimSigningAttributesRequest
         raise DeserializationError(
             "PutEmailIdentityDkimSigningAttributesRequest.signing_attributes_origin required"
         )
-    if "SigningAttributes" in data:
+    if data.get("SigningAttributes") is not None:
         import capo_sesv2.types.dkim_signing_attributes
 
         out["signing_attributes"] = (

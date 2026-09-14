@@ -32,9 +32,9 @@ def serialize_json(value: JobDependency) -> dict:
 
 def deserialize_json(data: dict) -> JobDependency:
     out: JobDependency = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_batch.types.array_job_dependency
 
         out["type"] = capo_batch.types.array_job_dependency.deserialize_json(

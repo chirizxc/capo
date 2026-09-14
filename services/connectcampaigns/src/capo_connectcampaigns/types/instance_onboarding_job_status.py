@@ -32,16 +32,16 @@ def serialize_json(value: InstanceOnboardingJobStatus) -> dict:
 
 def deserialize_json(data: dict) -> InstanceOnboardingJobStatus:
     out: InstanceOnboardingJobStatus = {}  # type: ignore[typeddict-item]
-    if "connectInstanceId" in data:
+    if data.get("connectInstanceId") is not None:
         out["connect_instance_id"] = data["connectInstanceId"]
     else:
         raise DeserializationError(
             "InstanceOnboardingJobStatus.connect_instance_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("InstanceOnboardingJobStatus.status required")
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
     return out

@@ -43,17 +43,17 @@ def serialize_json(value: PivotTableSortBy) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableSortBy:
     out: PivotTableSortBy = {}  # type: ignore[typeddict-item]
-    if "Field" in data:
+    if data.get("Field") is not None:
         import capo_quicksight.types.field_sort
 
         out["field"] = capo_quicksight.types.field_sort.deserialize_json(data["Field"])
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_sort
 
         out["column"] = capo_quicksight.types.column_sort.deserialize_json(
             data["Column"]
         )
-    if "DataPath" in data:
+    if data.get("DataPath") is not None:
         import capo_quicksight.types.data_path_sort
 
         out["data_path"] = capo_quicksight.types.data_path_sort.deserialize_json(

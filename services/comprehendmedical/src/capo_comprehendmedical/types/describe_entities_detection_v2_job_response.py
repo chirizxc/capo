@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeEntitiesDetectionV2JobResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEntitiesDetectionV2JobResponse:
     out: DescribeEntitiesDetectionV2JobResponse = {}  # type: ignore[typeddict-item]
-    if "ComprehendMedicalAsyncJobProperties" in data:
+    if data.get("ComprehendMedicalAsyncJobProperties") is not None:
         import capo_comprehendmedical.types.comprehend_medical_async_job_properties
 
         out["comprehend_medical_async_job_properties"] = (

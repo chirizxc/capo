@@ -148,8 +148,9 @@ class UserResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
+        input_: capo_identitystore.types.create_user_request.CreateUserRequest = {
+            "identity_store_id": identity_store_id
+        }
         if user_name is not None:
             input_["user_name"] = user_name
         if name is not None:
@@ -192,6 +193,7 @@ class UserResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -235,9 +237,10 @@ class UserResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.describe_user_request.DescribeUserRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["user_id"] = user_id
+        input_: capo_identitystore.types.describe_user_request.DescribeUserRequest = {
+            "identity_store_id": identity_store_id,
+            "user_id": user_id,
+        }
         if extensions is not None:
             input_["extensions"] = extensions
 
@@ -246,6 +249,7 @@ class UserResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -289,16 +293,18 @@ class UserResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["user_id"] = user_id
-        input_["operations"] = operations
+        input_: capo_identitystore.types.update_user_request.UpdateUserRequest = {
+            "identity_store_id": identity_store_id,
+            "user_id": user_id,
+            "operations": operations,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -339,15 +345,17 @@ class UserResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["user_id"] = user_id
+        input_: capo_identitystore.types.delete_user_request.DeleteUserRequest = {
+            "identity_store_id": identity_store_id,
+            "user_id": user_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -395,8 +403,9 @@ class UserResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
+        input_: capo_identitystore.types.list_users_request.ListUsersRequest = {
+            "identity_store_id": identity_store_id
+        }
         if extensions is not None:
             input_["extensions"] = extensions
         if max_results is not None:
@@ -411,6 +420,7 @@ class UserResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -514,8 +524,9 @@ class AsyncUserResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
+        input_: capo_identitystore.types.create_user_request.CreateUserRequest = {
+            "identity_store_id": identity_store_id
+        }
         if user_name is not None:
             input_["user_name"] = user_name
         if name is not None:
@@ -558,6 +569,7 @@ class AsyncUserResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -602,9 +614,10 @@ class AsyncUserResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.describe_user_request.DescribeUserRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["user_id"] = user_id
+        input_: capo_identitystore.types.describe_user_request.DescribeUserRequest = {
+            "identity_store_id": identity_store_id,
+            "user_id": user_id,
+        }
         if extensions is not None:
             input_["extensions"] = extensions
 
@@ -613,6 +626,7 @@ class AsyncUserResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -657,16 +671,18 @@ class AsyncUserResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["user_id"] = user_id
-        input_["operations"] = operations
+        input_: capo_identitystore.types.update_user_request.UpdateUserRequest = {
+            "identity_store_id": identity_store_id,
+            "user_id": user_id,
+            "operations": operations,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -708,15 +724,17 @@ class AsyncUserResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
-        input_["user_id"] = user_id
+        input_: capo_identitystore.types.delete_user_request.DeleteUserRequest = {
+            "identity_store_id": identity_store_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -765,8 +783,9 @@ class AsyncUserResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_identitystore.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_store_id"] = identity_store_id
+        input_: capo_identitystore.types.list_users_request.ListUsersRequest = {
+            "identity_store_id": identity_store_id
+        }
         if extensions is not None:
             input_["extensions"] = extensions
         if max_results is not None:
@@ -781,4 +800,5 @@ class AsyncUserResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -38,9 +38,9 @@ def serialize_json(value: UpdateBrokerStorageRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrokerStorageRequest:
     out: UpdateBrokerStorageRequest = {}  # type: ignore[typeddict-item]
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "targetBrokerEBSVolumeInfo" in data:
+    if data.get("targetBrokerEBSVolumeInfo") is not None:
         import capo_kafka.types.__list_of_broker_ebs_volume_info
 
         out["target_broker_ebs_volume_info"] = (

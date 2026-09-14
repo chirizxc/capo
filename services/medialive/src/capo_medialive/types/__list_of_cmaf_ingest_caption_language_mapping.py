@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfCmafIngestCaptionLanguageMapping:
 
     out: __listOfCmafIngestCaptionLanguageMapping = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.cmaf_ingest_caption_language_mapping.deserialize_json(
                 item

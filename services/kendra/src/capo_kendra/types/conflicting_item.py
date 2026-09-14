@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: ConflictingItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConflictingItem:
     out: ConflictingItem = {}  # type: ignore[typeddict-item]
-    if "QueryText" in data:
+    if data.get("QueryText") is not None:
         out["query_text"] = data["QueryText"]
-    if "SetName" in data:
+    if data.get("SetName") is not None:
         out["set_name"] = data["SetName"]
-    if "SetId" in data:
+    if data.get("SetId") is not None:
         out["set_id"] = data["SetId"]
     return out

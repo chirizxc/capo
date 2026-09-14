@@ -22,5 +22,7 @@ def serialize_json(input_to_serialize: CountBySeverity) -> dict:
 def deserialize_json(data: dict) -> CountBySeverity:
     out: CountBySeverity = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

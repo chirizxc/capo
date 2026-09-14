@@ -68,7 +68,7 @@ def serialize_json(value: ListServiceStatesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListServiceStatesInput:
     out: ListServiceStatesInput = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["start_time"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ListServiceStatesInput:
         )
     else:
         raise DeserializationError("ListServiceStatesInput.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["end_time"] = (
@@ -88,19 +88,19 @@ def deserialize_json(data: dict) -> ListServiceStatesInput:
         )
     else:
         raise DeserializationError("ListServiceStatesInput.end_time required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 20
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "IncludeLinkedAccounts" in data:
+    if data.get("IncludeLinkedAccounts") is not None:
         out["include_linked_accounts"] = data["IncludeLinkedAccounts"]
     else:
         out["include_linked_accounts"] = False
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "AttributeFilters" in data:
+    if data.get("AttributeFilters") is not None:
         import capo_application_signals.types.attribute_filters
 
         out["attribute_filters"] = (

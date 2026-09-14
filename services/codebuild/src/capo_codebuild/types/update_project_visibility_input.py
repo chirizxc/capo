@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: UpdateProjectVisibilityInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProjectVisibilityInput:
     out: UpdateProjectVisibilityInput = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError("UpdateProjectVisibilityInput.project_arn required")
-    if "projectVisibility" in data:
+    if data.get("projectVisibility") is not None:
         import capo_codebuild.types.project_visibility_type
 
         out["project_visibility"] = (
@@ -57,6 +57,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProjectVisibilityInput:
         raise DeserializationError(
             "UpdateProjectVisibilityInput.project_visibility required"
         )
-    if "resourceAccessRole" in data:
+    if data.get("resourceAccessRole") is not None:
         out["resource_access_role"] = data["resourceAccessRole"]
     return out

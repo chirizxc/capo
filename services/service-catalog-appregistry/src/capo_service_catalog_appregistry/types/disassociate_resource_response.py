@@ -30,8 +30,8 @@ def serialize_json(value: DisassociateResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateResourceResponse:
     out: DisassociateResourceResponse = {}  # type: ignore[typeddict-item]
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     return out

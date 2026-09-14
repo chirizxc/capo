@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: StartFlywheelIterationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartFlywheelIterationRequest:
     out: StartFlywheelIterationRequest = {}  # type: ignore[typeddict-item]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
     else:
         raise DeserializationError(
             "StartFlywheelIterationRequest.flywheel_arn required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

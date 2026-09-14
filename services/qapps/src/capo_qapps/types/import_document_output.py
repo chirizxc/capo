@@ -18,6 +18,6 @@ def serialize_json(value: ImportDocumentOutput) -> dict:
 
 def deserialize_json(data: dict) -> ImportDocumentOutput:
     out: ImportDocumentOutput = {}  # type: ignore[typeddict-item]
-    if "fileId" in data:
+    if data.get("fileId") is not None:
         out["file_id"] = data["fileId"]
     return out

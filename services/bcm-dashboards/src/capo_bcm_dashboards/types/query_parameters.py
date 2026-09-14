@@ -92,7 +92,7 @@ def serialize_aws_json_1_0(value: QueryParameters) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> QueryParameters:
-    if "costAndUsage" in data:
+    if data.get("costAndUsage") is not None:
         import capo_bcm_dashboards.types.cost_and_usage_query
 
         return {
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_0(data: dict) -> QueryParameters:
                 data["costAndUsage"]
             )
         }
-    elif "savingsPlansCoverage" in data:
+    elif data.get("savingsPlansCoverage") is not None:
         import capo_bcm_dashboards.types.savings_plans_coverage_query
 
         return {
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_0(data: dict) -> QueryParameters:
                 data["savingsPlansCoverage"]
             )
         }
-    elif "savingsPlansUtilization" in data:
+    elif data.get("savingsPlansUtilization") is not None:
         import capo_bcm_dashboards.types.savings_plans_utilization_query
 
         return {
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_0(data: dict) -> QueryParameters:
                 data["savingsPlansUtilization"]
             )
         }
-    elif "reservationCoverage" in data:
+    elif data.get("reservationCoverage") is not None:
         import capo_bcm_dashboards.types.reservation_coverage_query
 
         return {
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_0(data: dict) -> QueryParameters:
                 data["reservationCoverage"]
             )
         }
-    elif "reservationUtilization" in data:
+    elif data.get("reservationUtilization") is not None:
         import capo_bcm_dashboards.types.reservation_utilization_query
 
         return {

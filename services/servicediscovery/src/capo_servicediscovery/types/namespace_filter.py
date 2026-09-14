@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: NamespaceFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NamespaceFilter:
     out: NamespaceFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_servicediscovery.types.namespace_filter_name
 
         out["name"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> NamespaceFilter:
         )
     else:
         raise DeserializationError("NamespaceFilter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_servicediscovery.types.filter_values
 
         out["values"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> NamespaceFilter:
         )
     else:
         raise DeserializationError("NamespaceFilter.values required")
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_servicediscovery.types.filter_condition
 
         out["condition"] = (

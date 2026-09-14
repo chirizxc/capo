@@ -47,15 +47,15 @@ def serialize_aws_json_1_0(value: GetShardIteratorInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetShardIteratorInput:
     out: GetShardIteratorInput = {}  # type: ignore[typeddict-item]
-    if "streamArn" in data:
+    if data.get("streamArn") is not None:
         out["stream_arn"] = data["streamArn"]
     else:
         raise DeserializationError("GetShardIteratorInput.stream_arn required")
-    if "shardId" in data:
+    if data.get("shardId") is not None:
         out["shard_id"] = data["shardId"]
     else:
         raise DeserializationError("GetShardIteratorInput.shard_id required")
-    if "shardIteratorType" in data:
+    if data.get("shardIteratorType") is not None:
         import capo_keyspacesstreams.types.shard_iterator_type
 
         out["shard_iterator_type"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetShardIteratorInput:
         )
     else:
         raise DeserializationError("GetShardIteratorInput.shard_iterator_type required")
-    if "sequenceNumber" in data:
+    if data.get("sequenceNumber") is not None:
         out["sequence_number"] = data["sequenceNumber"]
     return out

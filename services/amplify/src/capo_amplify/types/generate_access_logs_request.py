@@ -43,17 +43,17 @@ def serialize_json(value: GenerateAccessLogsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GenerateAccessLogsRequest:
     out: GenerateAccessLogsRequest = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_amplify.types.start_time
 
         out["start_time"] = capo_amplify.types.start_time.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_amplify.types.end_time
 
         out["end_time"] = capo_amplify.types.end_time.deserialize_json(data["endTime"])
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("GenerateAccessLogsRequest.domain_name required")

@@ -24,7 +24,7 @@ def serialize_json(value: GetBackupPlanFromJSONInput) -> dict:
 
 def deserialize_json(data: dict) -> GetBackupPlanFromJSONInput:
     out: GetBackupPlanFromJSONInput = {}  # type: ignore[typeddict-item]
-    if "BackupPlanTemplateJson" in data:
+    if data.get("BackupPlanTemplateJson") is not None:
         out["backup_plan_template_json"] = data["BackupPlanTemplateJson"]
     else:
         raise DeserializationError(

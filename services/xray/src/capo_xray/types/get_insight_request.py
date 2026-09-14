@@ -24,7 +24,7 @@ def serialize_json(value: GetInsightRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetInsightRequest:
     out: GetInsightRequest = {}  # type: ignore[typeddict-item]
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
     else:
         raise DeserializationError("GetInsightRequest.insight_id required")

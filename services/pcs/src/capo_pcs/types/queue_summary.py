@@ -37,16 +37,12 @@ def serialize_aws_json_1_0(value: QueueSummary) -> dict:
     out["id"] = value["id"]
     out["arn"] = value["arn"]
     out["clusterId"] = value["cluster_id"]
-    import capo_pcs.types._prelude.timestamp
+    import capo_pcs._protocol.serialize
 
-    out["createdAt"] = capo_pcs.types._prelude.timestamp.serialize_aws_json_1_0(
-        value["created_at"]
-    )
-    import capo_pcs.types._prelude.timestamp
+    out["createdAt"] = capo_pcs._protocol.serialize.fmt_date_time(value["created_at"])
+    import capo_pcs._protocol.serialize
 
-    out["modifiedAt"] = capo_pcs.types._prelude.timestamp.serialize_aws_json_1_0(
-        value["modified_at"]
-    )
+    out["modifiedAt"] = capo_pcs._protocol.serialize.fmt_date_time(value["modified_at"])
     import capo_pcs.types.queue_status
 
     out["status"] = capo_pcs.types.queue_status.serialize_aws_json_1_0(value["status"])
@@ -55,39 +51,39 @@ def serialize_aws_json_1_0(value: QueueSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QueueSummary:
     out: QueueSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("QueueSummary.name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("QueueSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("QueueSummary.arn required")
-    if "clusterId" in data:
+    if data.get("clusterId") is not None:
         out["cluster_id"] = data["clusterId"]
     else:
         raise DeserializationError("QueueSummary.cluster_id required")
-    if "createdAt" in data:
-        import capo_pcs.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_pcs.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("QueueSummary.created_at required")
-    if "modifiedAt" in data:
-        import capo_pcs.types._prelude.timestamp
+    if data.get("modifiedAt") is not None:
+        import datetime
 
-        out["modified_at"] = capo_pcs.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["modifiedAt"]
+        out["modified_at"] = datetime.datetime.fromisoformat(
+            data["modifiedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("QueueSummary.modified_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_pcs.types.queue_status
 
         out["status"] = capo_pcs.types.queue_status.deserialize_aws_json_1_0(

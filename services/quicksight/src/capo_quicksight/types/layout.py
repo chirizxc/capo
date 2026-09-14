@@ -28,7 +28,7 @@ def serialize_json(value: Layout) -> dict:
 
 def deserialize_json(data: dict) -> Layout:
     out: Layout = {}  # type: ignore[typeddict-item]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_quicksight.types.layout_configuration
 
         out["configuration"] = (

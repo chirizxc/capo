@@ -28,11 +28,11 @@ def serialize_json(value: PutMetadataRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutMetadataRequest:
     out: PutMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
     else:
         raise DeserializationError("PutMetadataRequest.channel_arn required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
     else:
         raise DeserializationError("PutMetadataRequest.metadata required")

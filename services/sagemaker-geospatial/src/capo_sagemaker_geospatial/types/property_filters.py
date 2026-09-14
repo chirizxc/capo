@@ -38,7 +38,7 @@ def serialize_json(value: PropertyFilters) -> dict:
 
 def deserialize_json(data: dict) -> PropertyFilters:
     out: PropertyFilters = {}  # type: ignore[typeddict-item]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker_geospatial.types.property_filters_list
 
         out["properties"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> PropertyFilters:
                 data["Properties"]
             )
         )
-    if "LogicalOperator" in data:
+    if data.get("LogicalOperator") is not None:
         out["logical_operator"] = data["LogicalOperator"]
     return out

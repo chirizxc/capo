@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: RemoveEndpointsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveEndpointsRequest:
     out: RemoveEndpointsRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointIdentifiers" in data:
+    if data.get("EndpointIdentifiers") is not None:
         import capo_global_accelerator.types.endpoint_identifiers
 
         out["endpoint_identifiers"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemoveEndpointsRequest:
         raise DeserializationError(
             "RemoveEndpointsRequest.endpoint_identifiers required"
         )
-    if "EndpointGroupArn" in data:
+    if data.get("EndpointGroupArn") is not None:
         out["endpoint_group_arn"] = data["EndpointGroupArn"]
     else:
         raise DeserializationError("RemoveEndpointsRequest.endpoint_group_arn required")

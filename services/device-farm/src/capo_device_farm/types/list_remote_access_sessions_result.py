@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListRemoteAccessSessionsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRemoteAccessSessionsResult:
     out: ListRemoteAccessSessionsResult = {}  # type: ignore[typeddict-item]
-    if "remoteAccessSessions" in data:
+    if data.get("remoteAccessSessions") is not None:
         import capo_device_farm.types.remote_access_sessions
 
         out["remote_access_sessions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListRemoteAccessSessionsResult:
                 data["remoteAccessSessions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

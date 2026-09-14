@@ -35,12 +35,12 @@ def serialize_json(value: BatchFailedResultModel) -> dict:
 
 def deserialize_json(data: dict) -> BatchFailedResultModel:
     out: BatchFailedResultModel = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

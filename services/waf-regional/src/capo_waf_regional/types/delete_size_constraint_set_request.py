@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteSizeConstraintSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSizeConstraintSetRequest:
     out: DeleteSizeConstraintSetRequest = {}  # type: ignore[typeddict-item]
-    if "SizeConstraintSetId" in data:
+    if data.get("SizeConstraintSetId") is not None:
         out["size_constraint_set_id"] = data["SizeConstraintSetId"]
     else:
         raise DeserializationError(
             "DeleteSizeConstraintSetRequest.size_constraint_set_id required"
         )
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError(

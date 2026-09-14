@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: Communication) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Communication:
     out: Communication = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
-    if "submittedBy" in data:
+    if data.get("submittedBy") is not None:
         out["submitted_by"] = data["submittedBy"]
-    if "timeCreated" in data:
+    if data.get("timeCreated") is not None:
         out["time_created"] = data["timeCreated"]
-    if "attachmentSet" in data:
+    if data.get("attachmentSet") is not None:
         import capo_support.types.attachment_set
 
         out["attachment_set"] = (

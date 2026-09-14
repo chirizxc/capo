@@ -31,7 +31,15 @@ def serialize_json(value: ExponentialRolloutRate) -> dict:
     if "base_rate_per_minute" in value:
         out["BaseRatePerMinute"] = value["base_rate_per_minute"]
     if "increment_factor" in value:
-        out["IncrementFactor"] = value["increment_factor"]
+        out["IncrementFactor"] = (
+            "NaN"
+            if value["increment_factor"] != value["increment_factor"]
+            else "Infinity"
+            if value["increment_factor"] == float("inf")
+            else "-Infinity"
+            if value["increment_factor"] == float("-inf")
+            else value["increment_factor"]
+        )
     if "rate_increase_criteria" in value:
         import capo_iot_managed_integrations.types.rollout_rate_increase_criteria
 
@@ -45,11 +53,11 @@ def serialize_json(value: ExponentialRolloutRate) -> dict:
 
 def deserialize_json(data: dict) -> ExponentialRolloutRate:
     out: ExponentialRolloutRate = {}  # type: ignore[typeddict-item]
-    if "BaseRatePerMinute" in data:
+    if data.get("BaseRatePerMinute") is not None:
         out["base_rate_per_minute"] = data["BaseRatePerMinute"]
-    if "IncrementFactor" in data:
-        out["increment_factor"] = data["IncrementFactor"]
-    if "RateIncreaseCriteria" in data:
+    if data.get("IncrementFactor") is not None:
+        out["increment_factor"] = float(data["IncrementFactor"])
+    if data.get("RateIncreaseCriteria") is not None:
         import capo_iot_managed_integrations.types.rollout_rate_increase_criteria
 
         out["rate_increase_criteria"] = (

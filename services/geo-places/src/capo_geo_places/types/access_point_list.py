@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AccessPointList:
 
     out: AccessPointList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_places.types.access_point.deserialize_json(item))
     return out

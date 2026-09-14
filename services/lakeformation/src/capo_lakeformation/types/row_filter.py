@@ -38,9 +38,9 @@ def serialize_json(value: RowFilter) -> dict:
 
 def deserialize_json(data: dict) -> RowFilter:
     out: RowFilter = {}  # type: ignore[typeddict-item]
-    if "FilterExpression" in data:
+    if data.get("FilterExpression") is not None:
         out["filter_expression"] = data["FilterExpression"]
-    if "AllRowsWildcard" in data:
+    if data.get("AllRowsWildcard") is not None:
         import capo_lakeformation.types.all_rows_wildcard
 
         out["all_rows_wildcard"] = (

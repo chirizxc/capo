@@ -45,9 +45,9 @@ def serialize_json(value: ResponseCard) -> dict:
 
 def deserialize_json(data: dict) -> ResponseCard:
     out: ResponseCard = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         import capo_lex_runtime_service.types.content_type
 
         out["content_type"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> ResponseCard:
                 data["contentType"]
             )
         )
-    if "genericAttachments" in data:
+    if data.get("genericAttachments") is not None:
         import capo_lex_runtime_service.types.generic_attachment_list
 
         out["generic_attachments"] = (

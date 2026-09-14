@@ -53,21 +53,21 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> SalesforceCustomKnowledgeArticleTypeConfiguration:
     out: SalesforceCustomKnowledgeArticleTypeConfiguration = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "SalesforceCustomKnowledgeArticleTypeConfiguration.name required"
         )
-    if "DocumentDataFieldName" in data:
+    if data.get("DocumentDataFieldName") is not None:
         out["document_data_field_name"] = data["DocumentDataFieldName"]
     else:
         raise DeserializationError(
             "SalesforceCustomKnowledgeArticleTypeConfiguration.document_data_field_name required"
         )
-    if "DocumentTitleFieldName" in data:
+    if data.get("DocumentTitleFieldName") is not None:
         out["document_title_field_name"] = data["DocumentTitleFieldName"]
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (

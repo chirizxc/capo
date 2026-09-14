@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ListAutonomousVirtualMachinesOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutonomousVirtualMachinesOutput:
     out: ListAutonomousVirtualMachinesOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "autonomousVirtualMachines" in data:
+    if data.get("autonomousVirtualMachines") is not None:
         import capo_odb.types.autonomous_virtual_machine_list
 
         out["autonomous_virtual_machines"] = (

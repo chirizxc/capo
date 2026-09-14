@@ -30,10 +30,10 @@ def serialize_json(value: ListRunCachesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRunCachesResponse:
     out: ListRunCachesResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_omics.types.run_cache_list
 
         out["items"] = capo_omics.types.run_cache_list.deserialize_json(data["items"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -26,20 +26,28 @@ def serialize_json(value: ServiceLimitExceededException_) -> dict:
     out: dict = {}
     if "limit_name" in value:
         out["LimitName"] = value["limit_name"]
-    out["LimitValue"] = value.get("limit_value", 0)
+    out["LimitValue"] = (
+        "NaN"
+        if value.get("limit_value", 0) != value.get("limit_value", 0)
+        else "Infinity"
+        if value.get("limit_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("limit_value", 0) == float("-inf")
+        else value.get("limit_value", 0)
+    )
     out["Message"] = value["message"]
     return out
 
 
 def deserialize_json(data: dict) -> ServiceLimitExceededException_:
     out: ServiceLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "LimitName" in data:
+    if data.get("LimitName") is not None:
         out["limit_name"] = data["LimitName"]
-    if "LimitValue" in data:
-        out["limit_value"] = data["LimitValue"]
+    if data.get("LimitValue") is not None:
+        out["limit_value"] = float(data["LimitValue"])
     else:
         out["limit_value"] = 0
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("ServiceLimitExceededException_.message required")
@@ -51,15 +59,20 @@ class ServiceLimitExceededException(ServiceError):
 
     code: str | None = "ServiceLimitExceededException"
 
-    def __init__(self, data: ServiceLimitExceededException_):
+    def __init__(
+        self, data: ServiceLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceLimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ServiceLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceLimitExceededException":
+        return cls(deserialize_json(data), message)

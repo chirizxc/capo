@@ -70,9 +70,9 @@ def serialize_json(value: PutIntegrationResponseRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutIntegrationResponseRequest:
     out: PutIntegrationResponseRequest = {}  # type: ignore[typeddict-item]
-    if "selectionPattern" in data:
+    if data.get("selectionPattern") is not None:
         out["selection_pattern"] = data["selectionPattern"]
-    if "responseParameters" in data:
+    if data.get("responseParameters") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["response_parameters"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> PutIntegrationResponseRequest:
                 data["responseParameters"]
             )
         )
-    if "responseTemplates" in data:
+    if data.get("responseTemplates") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["response_templates"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> PutIntegrationResponseRequest:
                 data["responseTemplates"]
             )
         )
-    if "contentHandling" in data:
+    if data.get("contentHandling") is not None:
         import capo_api_gateway.types.content_handling_strategy
 
         out["content_handling"] = (

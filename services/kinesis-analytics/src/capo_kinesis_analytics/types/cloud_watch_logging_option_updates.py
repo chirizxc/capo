@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> CloudWatchLoggingOptionUpdates:
 
     out: CloudWatchLoggingOptionUpdates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kinesis_analytics.types.cloud_watch_logging_option_update.deserialize_aws_json_1_1(
                 item

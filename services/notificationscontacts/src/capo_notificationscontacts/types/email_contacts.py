@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> EmailContacts:
 
     out: EmailContacts = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_notificationscontacts.types.email_contact.deserialize_json(item)
         )

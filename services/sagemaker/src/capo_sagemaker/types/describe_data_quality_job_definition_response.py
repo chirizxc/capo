@@ -134,17 +134,17 @@ def serialize_aws_json_1_1(value: DescribeDataQualityJobDefinitionResponse) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDataQualityJobDefinitionResponse:
     out: DescribeDataQualityJobDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "JobDefinitionArn" in data:
+    if data.get("JobDefinitionArn") is not None:
         out["job_definition_arn"] = data["JobDefinitionArn"]
-    if "JobDefinitionName" in data:
+    if data.get("JobDefinitionName") is not None:
         out["job_definition_name"] = data["JobDefinitionName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "DataQualityBaselineConfig" in data:
+    if data.get("DataQualityBaselineConfig") is not None:
         import capo_sagemaker.types.data_quality_baseline_config
 
         out["data_quality_baseline_config"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDataQualityJobDefinitionResp
                 data["DataQualityBaselineConfig"]
             )
         )
-    if "DataQualityAppSpecification" in data:
+    if data.get("DataQualityAppSpecification") is not None:
         import capo_sagemaker.types.data_quality_app_specification
 
         out["data_quality_app_specification"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDataQualityJobDefinitionResp
                 data["DataQualityAppSpecification"]
             )
         )
-    if "DataQualityJobInput" in data:
+    if data.get("DataQualityJobInput") is not None:
         import capo_sagemaker.types.data_quality_job_input
 
         out["data_quality_job_input"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDataQualityJobDefinitionResp
                 data["DataQualityJobInput"]
             )
         )
-    if "DataQualityJobOutputConfig" in data:
+    if data.get("DataQualityJobOutputConfig") is not None:
         import capo_sagemaker.types.monitoring_output_config
 
         out["data_quality_job_output_config"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDataQualityJobDefinitionResp
                 data["DataQualityJobOutputConfig"]
             )
         )
-    if "JobResources" in data:
+    if data.get("JobResources") is not None:
         import capo_sagemaker.types.monitoring_resources
 
         out["job_resources"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDataQualityJobDefinitionResp
                 data["JobResources"]
             )
         )
-    if "NetworkConfig" in data:
+    if data.get("NetworkConfig") is not None:
         import capo_sagemaker.types.monitoring_network_config
 
         out["network_config"] = (
@@ -192,9 +192,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDataQualityJobDefinitionResp
                 data["NetworkConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "StoppingCondition" in data:
+    if data.get("StoppingCondition") is not None:
         import capo_sagemaker.types.monitoring_stopping_condition
 
         out["stopping_condition"] = (

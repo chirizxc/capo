@@ -23,6 +23,6 @@ def serialize_json(value: SendAlexaOfferToMasterResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendAlexaOfferToMasterResponse:
     out: SendAlexaOfferToMasterResponse = {}  # type: ignore[typeddict-item]
-    if "Answer" in data:
+    if data.get("Answer") is not None:
         out["answer"] = data["Answer"]
     return out

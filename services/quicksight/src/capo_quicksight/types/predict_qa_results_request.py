@@ -60,11 +60,11 @@ def serialize_json(value: PredictQAResultsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PredictQAResultsRequest:
     out: PredictQAResultsRequest = {}  # type: ignore[typeddict-item]
-    if "QueryText" in data:
+    if data.get("QueryText") is not None:
         out["query_text"] = data["QueryText"]
     else:
         raise DeserializationError("PredictQAResultsRequest.query_text required")
-    if "IncludeQuickSightQIndex" in data:
+    if data.get("IncludeQuickSightQIndex") is not None:
         import capo_quicksight.types.include_quick_sight_q_index
 
         out["include_quick_sight_q_index"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> PredictQAResultsRequest:
                 data["IncludeQuickSightQIndex"]
             )
         )
-    if "IncludeGeneratedAnswer" in data:
+    if data.get("IncludeGeneratedAnswer") is not None:
         import capo_quicksight.types.include_generated_answer
 
         out["include_generated_answer"] = (
@@ -80,6 +80,6 @@ def deserialize_json(data: dict) -> PredictQAResultsRequest:
                 data["IncludeGeneratedAnswer"]
             )
         )
-    if "MaxTopicsToConsider" in data:
+    if data.get("MaxTopicsToConsider") is not None:
         out["max_topics_to_consider"] = data["MaxTopicsToConsider"]
     return out

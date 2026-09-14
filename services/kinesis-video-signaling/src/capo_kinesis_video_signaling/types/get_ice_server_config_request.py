@@ -44,16 +44,16 @@ def serialize_json(value: GetIceServerConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetIceServerConfigRequest:
     out: GetIceServerConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ChannelARN" in data:
+    if data.get("ChannelARN") is not None:
         out["channel_arn"] = data["ChannelARN"]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_kinesis_video_signaling.types.service
 
         out["service"] = capo_kinesis_video_signaling.types.service.deserialize_json(
             data["Service"]
         )
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     return out

@@ -31,6 +31,8 @@ def serialize_json(
 def deserialize_json(data: dict) -> CodeGenerationOutputFormatStatusDetailsMap:
     out: CodeGenerationOutputFormatStatusDetailsMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_mgn.types.code_generation_output_format_status_details
 
         out[key] = (

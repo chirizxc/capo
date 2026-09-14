@@ -36,7 +36,7 @@ def serialize_json(value: ListCustomVerificationEmailTemplatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCustomVerificationEmailTemplatesResponse:
     out: ListCustomVerificationEmailTemplatesResponse = {}  # type: ignore[typeddict-item]
-    if "CustomVerificationEmailTemplates" in data:
+    if data.get("CustomVerificationEmailTemplates") is not None:
         import capo_sesv2.types.custom_verification_email_templates_list
 
         out["custom_verification_email_templates"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListCustomVerificationEmailTemplatesResponse
                 data["CustomVerificationEmailTemplates"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteStudioInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteStudioInput:
     out: DeleteStudioInput = {}  # type: ignore[typeddict-item]
-    if "StudioId" in data:
+    if data.get("StudioId") is not None:
         out["studio_id"] = data["StudioId"]
     return out

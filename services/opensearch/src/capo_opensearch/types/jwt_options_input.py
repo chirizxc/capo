@@ -43,14 +43,14 @@ def serialize_json(value: JWTOptionsInput) -> dict:
 
 def deserialize_json(data: dict) -> JWTOptionsInput:
     out: JWTOptionsInput = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "SubjectKey" in data:
+    if data.get("SubjectKey") is not None:
         out["subject_key"] = data["SubjectKey"]
-    if "RolesKey" in data:
+    if data.get("RolesKey") is not None:
         out["roles_key"] = data["RolesKey"]
-    if "JwksUrl" in data:
+    if data.get("JwksUrl") is not None:
         out["jwks_url"] = data["JwksUrl"]
-    if "PublicKey" in data:
+    if data.get("PublicKey") is not None:
         out["public_key"] = data["PublicKey"]
     return out

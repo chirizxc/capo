@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> StreamGroupSummaryList:
 
     out: StreamGroupSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gameliftstreams.types.stream_group_summary.deserialize_json(item)
         )

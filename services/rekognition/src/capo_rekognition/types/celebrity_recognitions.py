@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CelebrityRecognitions:
 
     out: CelebrityRecognitions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.celebrity_recognition.deserialize_aws_json_1_1(item)
         )

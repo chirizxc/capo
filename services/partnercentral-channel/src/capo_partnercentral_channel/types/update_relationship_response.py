@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: UpdateRelationshipResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateRelationshipResponse:
     out: UpdateRelationshipResponse = {}  # type: ignore[typeddict-item]
-    if "relationshipDetail" in data:
+    if data.get("relationshipDetail") is not None:
         import capo_partnercentral_channel.types.update_relationship_detail
 
         out["relationship_detail"] = (

@@ -105,15 +105,15 @@ def serialize_json(value: RecordingInfo) -> dict:
 
 def deserialize_json(data: dict) -> RecordingInfo:
     out: RecordingInfo = {}  # type: ignore[typeddict-item]
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         import capo_connect.types.storage_type
 
         out["storage_type"] = capo_connect.types.storage_type.deserialize_json(
             data["StorageType"]
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "MediaStreamType" in data:
+    if data.get("MediaStreamType") is not None:
         import capo_connect.types.media_stream_type
 
         out["media_stream_type"] = (
@@ -121,36 +121,36 @@ def deserialize_json(data: dict) -> RecordingInfo:
                 data["MediaStreamType"]
             )
         )
-    if "ParticipantType" in data:
+    if data.get("ParticipantType") is not None:
         import capo_connect.types.participant_type
 
         out["participant_type"] = capo_connect.types.participant_type.deserialize_json(
             data["ParticipantType"]
         )
-    if "FragmentStartNumber" in data:
+    if data.get("FragmentStartNumber") is not None:
         out["fragment_start_number"] = data["FragmentStartNumber"]
-    if "FragmentStopNumber" in data:
+    if data.get("FragmentStopNumber") is not None:
         out["fragment_stop_number"] = data["FragmentStopNumber"]
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["start_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["StartTimestamp"]
         )
-    if "StopTimestamp" in data:
+    if data.get("StopTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["stop_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["StopTimestamp"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.recording_status
 
         out["status"] = capo_connect.types.recording_status.deserialize_json(
             data["Status"]
         )
-    if "DeletionReason" in data:
+    if data.get("DeletionReason") is not None:
         out["deletion_reason"] = data["DeletionReason"]
-    if "UnprocessedTranscriptLocation" in data:
+    if data.get("UnprocessedTranscriptLocation") is not None:
         out["unprocessed_transcript_location"] = data["UnprocessedTranscriptLocation"]
     return out

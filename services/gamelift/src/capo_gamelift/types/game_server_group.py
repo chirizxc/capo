@@ -133,13 +133,13 @@ def serialize_aws_json_1_1(value: GameServerGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GameServerGroup:
     out: GameServerGroup = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "GameServerGroupArn" in data:
+    if data.get("GameServerGroupArn") is not None:
         out["game_server_group_arn"] = data["GameServerGroupArn"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "InstanceDefinitions" in data:
+    if data.get("InstanceDefinitions") is not None:
         import capo_gamelift.types.instance_definitions
 
         out["instance_definitions"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> GameServerGroup:
                 data["InstanceDefinitions"]
             )
         )
-    if "BalancingStrategy" in data:
+    if data.get("BalancingStrategy") is not None:
         import capo_gamelift.types.balancing_strategy
 
         out["balancing_strategy"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_1(data: dict) -> GameServerGroup:
                 data["BalancingStrategy"]
             )
         )
-    if "GameServerProtectionPolicy" in data:
+    if data.get("GameServerProtectionPolicy") is not None:
         import capo_gamelift.types.game_server_protection_policy
 
         out["game_server_protection_policy"] = (
@@ -163,9 +163,9 @@ def deserialize_aws_json_1_1(data: dict) -> GameServerGroup:
                 data["GameServerProtectionPolicy"]
             )
         )
-    if "AutoScalingGroupArn" in data:
+    if data.get("AutoScalingGroupArn") is not None:
         out["auto_scaling_group_arn"] = data["AutoScalingGroupArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.game_server_group_status
 
         out["status"] = (
@@ -173,9 +173,9 @@ def deserialize_aws_json_1_1(data: dict) -> GameServerGroup:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "SuspendedActions" in data:
+    if data.get("SuspendedActions") is not None:
         import capo_gamelift.types.game_server_group_actions
 
         out["suspended_actions"] = (
@@ -183,13 +183,13 @@ def deserialize_aws_json_1_1(data: dict) -> GameServerGroup:
                 data["SuspendedActions"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["last_updated_time"] = (

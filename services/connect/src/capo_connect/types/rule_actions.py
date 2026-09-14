@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RuleActions:
 
     out: RuleActions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.rule_action.deserialize_json(item))
     return out

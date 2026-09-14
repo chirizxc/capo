@@ -16,4 +16,4 @@ def serialize_json(value: MeteringAccountIdList) -> list:
 
 
 def deserialize_json(data: list) -> MeteringAccountIdList:
-    return list(data)
+    return [item for item in data if item is not None]

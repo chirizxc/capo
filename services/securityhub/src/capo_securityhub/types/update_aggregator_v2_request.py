@@ -36,9 +36,9 @@ def serialize_json(value: UpdateAggregatorV2Request) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAggregatorV2Request:
     out: UpdateAggregatorV2Request = {}  # type: ignore[typeddict-item]
-    if "RegionLinkingMode" in data:
+    if data.get("RegionLinkingMode") is not None:
         out["region_linking_mode"] = data["RegionLinkingMode"]
-    if "LinkedRegions" in data:
+    if data.get("LinkedRegions") is not None:
         import capo_securityhub.types.string_list
 
         out["linked_regions"] = capo_securityhub.types.string_list.deserialize_json(

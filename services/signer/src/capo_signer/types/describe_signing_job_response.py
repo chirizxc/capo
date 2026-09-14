@@ -154,27 +154,27 @@ def serialize_json(value: DescribeSigningJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSigningJobResponse:
     out: DescribeSigningJobResponse = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_signer.types.source
 
         out["source"] = capo_signer.types.source.deserialize_json(data["source"])
-    if "signingMaterial" in data:
+    if data.get("signingMaterial") is not None:
         import capo_signer.types.signing_material
 
         out["signing_material"] = capo_signer.types.signing_material.deserialize_json(
             data["signingMaterial"]
         )
-    if "platformId" in data:
+    if data.get("platformId") is not None:
         out["platform_id"] = data["platformId"]
-    if "platformDisplayName" in data:
+    if data.get("platformDisplayName") is not None:
         out["platform_display_name"] = data["platformDisplayName"]
-    if "profileName" in data:
+    if data.get("profileName") is not None:
         out["profile_name"] = data["profileName"]
-    if "profileVersion" in data:
+    if data.get("profileVersion") is not None:
         out["profile_version"] = data["profileVersion"]
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_signer.types.signing_platform_overrides
 
         out["overrides"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> DescribeSigningJobResponse:
                 data["overrides"]
             )
         )
-    if "signingParameters" in data:
+    if data.get("signingParameters") is not None:
         import capo_signer.types.signing_parameters
 
         out["signing_parameters"] = (
@@ -190,35 +190,35 @@ def deserialize_json(data: dict) -> DescribeSigningJobResponse:
                 data["signingParameters"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_signer.types.timestamp
 
         out["created_at"] = capo_signer.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "completedAt" in data:
+    if data.get("completedAt") is not None:
         import capo_signer.types.timestamp
 
         out["completed_at"] = capo_signer.types.timestamp.deserialize_json(
             data["completedAt"]
         )
-    if "signatureExpiresAt" in data:
+    if data.get("signatureExpiresAt") is not None:
         import capo_signer.types.timestamp
 
         out["signature_expires_at"] = capo_signer.types.timestamp.deserialize_json(
             data["signatureExpiresAt"]
         )
-    if "requestedBy" in data:
+    if data.get("requestedBy") is not None:
         out["requested_by"] = data["requestedBy"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_signer.types.signing_status
 
         out["status"] = capo_signer.types.signing_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "revocationRecord" in data:
+    if data.get("revocationRecord") is not None:
         import capo_signer.types.signing_job_revocation_record
 
         out["revocation_record"] = (
@@ -226,14 +226,14 @@ def deserialize_json(data: dict) -> DescribeSigningJobResponse:
                 data["revocationRecord"]
             )
         )
-    if "signedObject" in data:
+    if data.get("signedObject") is not None:
         import capo_signer.types.signed_object
 
         out["signed_object"] = capo_signer.types.signed_object.deserialize_json(
             data["signedObject"]
         )
-    if "jobOwner" in data:
+    if data.get("jobOwner") is not None:
         out["job_owner"] = data["jobOwner"]
-    if "jobInvoker" in data:
+    if data.get("jobInvoker") is not None:
         out["job_invoker"] = data["jobInvoker"]
     return out

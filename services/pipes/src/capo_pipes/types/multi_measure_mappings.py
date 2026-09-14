@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MultiMeasureMappings:
 
     out: MultiMeasureMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pipes.types.multi_measure_mapping.deserialize_json(item))
     return out

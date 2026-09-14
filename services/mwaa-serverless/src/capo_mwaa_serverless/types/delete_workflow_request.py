@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_mwaa_serverless.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_mwaa_serverless.types.workflow_arn
     import capo_mwaa_serverless.types.workflow_version
@@ -21,9 +23,18 @@ class DeleteWorkflowRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: DeleteWorkflowRequest) -> dict:
     out: dict = {}
+    out["WorkflowArn"] = value["workflow_arn"]
+    if "workflow_version" in value:
+        out["WorkflowVersion"] = value["workflow_version"]
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteWorkflowRequest:
     out: DeleteWorkflowRequest = {}  # type: ignore[typeddict-item]
+    if data.get("WorkflowArn") is not None:
+        out["workflow_arn"] = data["WorkflowArn"]
+    else:
+        raise DeserializationError("DeleteWorkflowRequest.workflow_arn required")
+    if data.get("WorkflowVersion") is not None:
+        out["workflow_version"] = data["WorkflowVersion"]
     return out

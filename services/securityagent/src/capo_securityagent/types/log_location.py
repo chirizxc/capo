@@ -38,13 +38,13 @@ def serialize_json(value: LogLocation) -> dict:
 
 def deserialize_json(data: dict) -> LogLocation:
     out: LogLocation = {}  # type: ignore[typeddict-item]
-    if "logType" in data:
+    if data.get("logType") is not None:
         import capo_securityagent.types.log_type
 
         out["log_type"] = capo_securityagent.types.log_type.deserialize_json(
             data["logType"]
         )
-    if "cloudWatchLog" in data:
+    if data.get("cloudWatchLog") is not None:
         import capo_securityagent.types.cloud_watch_log
 
         out["cloud_watch_log"] = (

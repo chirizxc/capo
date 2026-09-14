@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: Route) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Route:
     out: Route = {}  # type: ignore[typeddict-item]
-    if "DestinationType" in data:
+    if data.get("DestinationType") is not None:
         import capo_fms.types.destination_type
 
         out["destination_type"] = (
@@ -53,14 +53,14 @@ def deserialize_aws_json_1_1(data: dict) -> Route:
                 data["DestinationType"]
             )
         )
-    if "TargetType" in data:
+    if data.get("TargetType") is not None:
         import capo_fms.types.target_type
 
         out["target_type"] = capo_fms.types.target_type.deserialize_aws_json_1_1(
             data["TargetType"]
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
     return out

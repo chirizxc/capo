@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PortalList:
 
     out: PortalList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workspaces_web.types.portal_summary.deserialize_json(item))
     return out

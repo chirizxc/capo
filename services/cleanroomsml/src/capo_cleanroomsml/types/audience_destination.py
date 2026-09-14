@@ -28,7 +28,7 @@ def serialize_json(value: AudienceDestination) -> dict:
 
 def deserialize_json(data: dict) -> AudienceDestination:
     out: AudienceDestination = {}  # type: ignore[typeddict-item]
-    if "s3Destination" in data:
+    if data.get("s3Destination") is not None:
         import capo_cleanroomsml.types.s3_config_map
 
         out["s3_destination"] = capo_cleanroomsml.types.s3_config_map.deserialize_json(

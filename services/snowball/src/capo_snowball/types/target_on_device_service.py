@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: TargetOnDeviceService) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetOnDeviceService:
     out: TargetOnDeviceService = {}  # type: ignore[typeddict-item]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         import capo_snowball.types.device_service_name
 
         out["service_name"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetOnDeviceService:
                 data["ServiceName"]
             )
         )
-    if "TransferOption" in data:
+    if data.get("TransferOption") is not None:
         import capo_snowball.types.transfer_option
 
         out["transfer_option"] = (

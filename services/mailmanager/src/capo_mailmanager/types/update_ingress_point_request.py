@@ -78,15 +78,15 @@ def serialize_aws_json_1_0(value: UpdateIngressPointRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateIngressPointRequest:
     out: UpdateIngressPointRequest = {}  # type: ignore[typeddict-item]
-    if "IngressPointId" in data:
+    if data.get("IngressPointId") is not None:
         out["ingress_point_id"] = data["IngressPointId"]
     else:
         raise DeserializationError(
             "UpdateIngressPointRequest.ingress_point_id required"
         )
-    if "IngressPointName" in data:
+    if data.get("IngressPointName") is not None:
         out["ingress_point_name"] = data["IngressPointName"]
-    if "StatusToUpdate" in data:
+    if data.get("StatusToUpdate") is not None:
         import capo_mailmanager.types.ingress_point_status_to_update
 
         out["status_to_update"] = (
@@ -94,11 +94,11 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateIngressPointRequest:
                 data["StatusToUpdate"]
             )
         )
-    if "RuleSetId" in data:
+    if data.get("RuleSetId") is not None:
         out["rule_set_id"] = data["RuleSetId"]
-    if "TrafficPolicyId" in data:
+    if data.get("TrafficPolicyId") is not None:
         out["traffic_policy_id"] = data["TrafficPolicyId"]
-    if "IngressPointConfiguration" in data:
+    if data.get("IngressPointConfiguration") is not None:
         import capo_mailmanager.types.ingress_point_configuration
 
         out["ingress_point_configuration"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateIngressPointRequest:
                 data["IngressPointConfiguration"]
             )
         )
-    if "TlsPolicy" in data:
+    if data.get("TlsPolicy") is not None:
         import capo_mailmanager.types.tls_policy
 
         out["tls_policy"] = capo_mailmanager.types.tls_policy.deserialize_aws_json_1_0(

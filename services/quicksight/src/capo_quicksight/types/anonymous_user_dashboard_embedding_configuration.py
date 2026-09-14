@@ -65,13 +65,13 @@ def serialize_json(value: AnonymousUserDashboardEmbeddingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AnonymousUserDashboardEmbeddingConfiguration:
     out: AnonymousUserDashboardEmbeddingConfiguration = {}  # type: ignore[typeddict-item]
-    if "InitialDashboardId" in data:
+    if data.get("InitialDashboardId") is not None:
         out["initial_dashboard_id"] = data["InitialDashboardId"]
     else:
         raise DeserializationError(
             "AnonymousUserDashboardEmbeddingConfiguration.initial_dashboard_id required"
         )
-    if "EnabledFeatures" in data:
+    if data.get("EnabledFeatures") is not None:
         import capo_quicksight.types.anonymous_user_dashboard_embedding_configuration_enabled_features
 
         out["enabled_features"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> AnonymousUserDashboardEmbeddingConfiguration
                 data["EnabledFeatures"]
             )
         )
-    if "DisabledFeatures" in data:
+    if data.get("DisabledFeatures") is not None:
         import capo_quicksight.types.anonymous_user_dashboard_embedding_configuration_disabled_features
 
         out["disabled_features"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> AnonymousUserDashboardEmbeddingConfiguration
                 data["DisabledFeatures"]
             )
         )
-    if "FeatureConfigurations" in data:
+    if data.get("FeatureConfigurations") is not None:
         import capo_quicksight.types.anonymous_user_dashboard_feature_configurations
 
         out["feature_configurations"] = (

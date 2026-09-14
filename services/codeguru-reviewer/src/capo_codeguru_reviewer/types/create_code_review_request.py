@@ -45,17 +45,17 @@ def serialize_json(value: CreateCodeReviewRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCodeReviewRequest:
     out: CreateCodeReviewRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateCodeReviewRequest.name required")
-    if "RepositoryAssociationArn" in data:
+    if data.get("RepositoryAssociationArn") is not None:
         out["repository_association_arn"] = data["RepositoryAssociationArn"]
     else:
         raise DeserializationError(
             "CreateCodeReviewRequest.repository_association_arn required"
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_codeguru_reviewer.types.code_review_type
 
         out["type"] = capo_codeguru_reviewer.types.code_review_type.deserialize_json(
@@ -63,6 +63,6 @@ def deserialize_json(data: dict) -> CreateCodeReviewRequest:
         )
     else:
         raise DeserializationError("CreateCodeReviewRequest.type required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

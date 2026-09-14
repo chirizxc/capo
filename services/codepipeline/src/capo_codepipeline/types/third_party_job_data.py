@@ -107,7 +107,7 @@ def serialize_aws_json_1_1(value: ThirdPartyJobData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ThirdPartyJobData:
     out: ThirdPartyJobData = {}  # type: ignore[typeddict-item]
-    if "actionTypeId" in data:
+    if data.get("actionTypeId") is not None:
         import capo_codepipeline.types.action_type_id
 
         out["action_type_id"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> ThirdPartyJobData:
                 data["actionTypeId"]
             )
         )
-    if "actionConfiguration" in data:
+    if data.get("actionConfiguration") is not None:
         import capo_codepipeline.types.action_configuration
 
         out["action_configuration"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> ThirdPartyJobData:
                 data["actionConfiguration"]
             )
         )
-    if "pipelineContext" in data:
+    if data.get("pipelineContext") is not None:
         import capo_codepipeline.types.pipeline_context
 
         out["pipeline_context"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> ThirdPartyJobData:
                 data["pipelineContext"]
             )
         )
-    if "inputArtifacts" in data:
+    if data.get("inputArtifacts") is not None:
         import capo_codepipeline.types.artifact_list
 
         out["input_artifacts"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> ThirdPartyJobData:
                 data["inputArtifacts"]
             )
         )
-    if "outputArtifacts" in data:
+    if data.get("outputArtifacts") is not None:
         import capo_codepipeline.types.artifact_list
 
         out["output_artifacts"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> ThirdPartyJobData:
                 data["outputArtifacts"]
             )
         )
-    if "artifactCredentials" in data:
+    if data.get("artifactCredentials") is not None:
         import capo_codepipeline.types.aws_session_credentials
 
         out["artifact_credentials"] = (
@@ -155,9 +155,9 @@ def deserialize_aws_json_1_1(data: dict) -> ThirdPartyJobData:
                 data["artifactCredentials"]
             )
         )
-    if "continuationToken" in data:
+    if data.get("continuationToken") is not None:
         out["continuation_token"] = data["continuationToken"]
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         import capo_codepipeline.types.encryption_key
 
         out["encryption_key"] = (

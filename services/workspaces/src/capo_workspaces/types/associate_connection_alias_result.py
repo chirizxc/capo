@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: AssociateConnectionAliasResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateConnectionAliasResult:
     out: AssociateConnectionAliasResult = {}  # type: ignore[typeddict-item]
-    if "ConnectionIdentifier" in data:
+    if data.get("ConnectionIdentifier") is not None:
         out["connection_identifier"] = data["ConnectionIdentifier"]
     return out

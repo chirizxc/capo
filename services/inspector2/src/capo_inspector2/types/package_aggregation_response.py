@@ -38,13 +38,13 @@ def serialize_json(value: PackageAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> PackageAggregationResponse:
     out: PackageAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "packageName" in data:
+    if data.get("packageName") is not None:
         out["package_name"] = data["packageName"]
     else:
         raise DeserializationError("PackageAggregationResponse.package_name required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(

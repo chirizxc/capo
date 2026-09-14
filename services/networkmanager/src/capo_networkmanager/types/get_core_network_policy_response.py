@@ -31,7 +31,7 @@ def serialize_json(value: GetCoreNetworkPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCoreNetworkPolicyResponse:
     out: GetCoreNetworkPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkPolicy" in data:
+    if data.get("CoreNetworkPolicy") is not None:
         import capo_networkmanager.types.core_network_policy
 
         out["core_network_policy"] = (

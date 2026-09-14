@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsAutoScalingLaunchConfigurationBlockDeviceMappingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_auto_scaling_launch_configuration_block_device_mappings_details.deserialize_json(
                 item

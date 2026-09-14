@@ -120,21 +120,21 @@ def serialize_aws_json_1_0(value: GetTaskInstanceResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetTaskInstanceResponse:
     out: GetTaskInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "WorkflowArn" in data:
+    if data.get("WorkflowArn") is not None:
         out["workflow_arn"] = data["WorkflowArn"]
     else:
         raise DeserializationError("GetTaskInstanceResponse.workflow_arn required")
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     else:
         raise DeserializationError("GetTaskInstanceResponse.run_id required")
-    if "TaskInstanceId" in data:
+    if data.get("TaskInstanceId") is not None:
         out["task_instance_id"] = data["TaskInstanceId"]
     else:
         raise DeserializationError("GetTaskInstanceResponse.task_instance_id required")
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mwaa_serverless.types.task_instance_status
 
         out["status"] = (
@@ -142,11 +142,11 @@ def deserialize_aws_json_1_0(data: dict) -> GetTaskInstanceResponse:
                 data["Status"]
             )
         )
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
-    if "OperatorName" in data:
+    if data.get("OperatorName") is not None:
         out["operator_name"] = data["OperatorName"]
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["modified_at"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetTaskInstanceResponse:
                 data["ModifiedAt"]
             )
         )
-    if "EndedAt" in data:
+    if data.get("EndedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["ended_at"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetTaskInstanceResponse:
                 data["EndedAt"]
             )
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["started_at"] = (
@@ -170,15 +170,15 @@ def deserialize_aws_json_1_0(data: dict) -> GetTaskInstanceResponse:
                 data["StartedAt"]
             )
         )
-    if "AttemptNumber" in data:
+    if data.get("AttemptNumber") is not None:
         out["attempt_number"] = data["AttemptNumber"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
-    if "LogStream" in data:
+    if data.get("LogStream") is not None:
         out["log_stream"] = data["LogStream"]
-    if "Xcom" in data:
+    if data.get("Xcom") is not None:
         import capo_mwaa_serverless.types.generic_map
 
         out["xcom"] = capo_mwaa_serverless.types.generic_map.deserialize_aws_json_1_0(

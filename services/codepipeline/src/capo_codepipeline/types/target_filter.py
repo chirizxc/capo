@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: TargetFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetFilter:
     out: TargetFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_codepipeline.types.target_filter_name
 
         out["name"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetFilter:
                 data["name"]
             )
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_codepipeline.types.target_filter_value_list
 
         out["values"] = (

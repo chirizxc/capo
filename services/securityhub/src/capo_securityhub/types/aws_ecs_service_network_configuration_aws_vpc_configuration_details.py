@@ -54,9 +54,9 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsServiceNetworkConfigurationAwsVpcConfigurationDetails:
     out: AwsEcsServiceNetworkConfigurationAwsVpcConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "AssignPublicIp" in data:
+    if data.get("AssignPublicIp") is not None:
         out["assign_public_ip"] = data["AssignPublicIp"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["security_groups"] = (
@@ -64,7 +64,7 @@ def deserialize_json(
                 data["SecurityGroups"]
             )
         )
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["subnets"] = capo_securityhub.types.non_empty_string_list.deserialize_json(

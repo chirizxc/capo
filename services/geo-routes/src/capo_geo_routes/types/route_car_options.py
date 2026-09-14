@@ -44,7 +44,15 @@ def serialize_json(value: RouteCarOptions) -> dict:
             )
         )
     if "max_speed" in value:
-        out["MaxSpeed"] = value["max_speed"]
+        out["MaxSpeed"] = (
+            "NaN"
+            if value["max_speed"] != value["max_speed"]
+            else "Infinity"
+            if value["max_speed"] == float("inf")
+            else "-Infinity"
+            if value["max_speed"] == float("-inf")
+            else value["max_speed"]
+        )
     if "occupancy" in value:
         out["Occupancy"] = value["occupancy"]
     return out
@@ -52,13 +60,13 @@ def serialize_json(value: RouteCarOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteCarOptions:
     out: RouteCarOptions = {}  # type: ignore[typeddict-item]
-    if "EngineType" in data:
+    if data.get("EngineType") is not None:
         import capo_geo_routes.types.route_engine_type
 
         out["engine_type"] = capo_geo_routes.types.route_engine_type.deserialize_json(
             data["EngineType"]
         )
-    if "LicensePlate" in data:
+    if data.get("LicensePlate") is not None:
         import capo_geo_routes.types.route_vehicle_license_plate
 
         out["license_plate"] = (
@@ -66,8 +74,8 @@ def deserialize_json(data: dict) -> RouteCarOptions:
                 data["LicensePlate"]
             )
         )
-    if "MaxSpeed" in data:
-        out["max_speed"] = data["MaxSpeed"]
-    if "Occupancy" in data:
+    if data.get("MaxSpeed") is not None:
+        out["max_speed"] = float(data["MaxSpeed"])
+    if data.get("Occupancy") is not None:
         out["occupancy"] = data["Occupancy"]
     return out

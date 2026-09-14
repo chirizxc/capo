@@ -66,19 +66,19 @@ def serialize_aws_json_1_1(value: CreateContextRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContextRequest:
     out: CreateContextRequest = {}  # type: ignore[typeddict-item]
-    if "ContextName" in data:
+    if data.get("ContextName") is not None:
         out["context_name"] = data["ContextName"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_sagemaker.types.context_source
 
         out["source"] = capo_sagemaker.types.context_source.deserialize_aws_json_1_1(
             data["Source"]
         )
-    if "ContextType" in data:
+    if data.get("ContextType") is not None:
         out["context_type"] = data["ContextType"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker.types.lineage_entity_parameters
 
         out["properties"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContextRequest:
                 data["Properties"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

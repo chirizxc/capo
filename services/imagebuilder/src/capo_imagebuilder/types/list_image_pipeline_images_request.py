@@ -45,20 +45,20 @@ def serialize_json(value: ListImagePipelineImagesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListImagePipelineImagesRequest:
     out: ListImagePipelineImagesRequest = {}  # type: ignore[typeddict-item]
-    if "imagePipelineArn" in data:
+    if data.get("imagePipelineArn") is not None:
         out["image_pipeline_arn"] = data["imagePipelineArn"]
     else:
         raise DeserializationError(
             "ListImagePipelineImagesRequest.image_pipeline_arn required"
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_imagebuilder.types.filter_list
 
         out["filters"] = capo_imagebuilder.types.filter_list.deserialize_json(
             data["filters"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -18,6 +18,6 @@ def serialize_json(value: GetReportResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetReportResponse:
     out: GetReportResponse = {}  # type: ignore[typeddict-item]
-    if "documentPresignedUrl" in data:
+    if data.get("documentPresignedUrl") is not None:
         out["document_presigned_url"] = data["documentPresignedUrl"]
     return out

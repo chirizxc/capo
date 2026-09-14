@@ -63,11 +63,11 @@ def serialize_aws_json_1_0(value: CreateProxyRule) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateProxyRule:
     out: CreateProxyRule = {}  # type: ignore[typeddict-item]
-    if "ProxyRuleName" in data:
+    if data.get("ProxyRuleName") is not None:
         out["proxy_rule_name"] = data["ProxyRuleName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_network_firewall.types.proxy_rule_phase_action
 
         out["action"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProxyRule:
                 data["Action"]
             )
         )
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_network_firewall.types.proxy_rule_condition_list
 
         out["conditions"] = (
@@ -83,6 +83,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProxyRule:
                 data["Conditions"]
             )
         )
-    if "InsertPosition" in data:
+    if data.get("InsertPosition") is not None:
         out["insert_position"] = data["InsertPosition"]
     return out

@@ -36,9 +36,9 @@ def serialize_json(value: AwsEc2VpnConnectionOptionsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VpnConnectionOptionsDetails:
     out: AwsEc2VpnConnectionOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "StaticRoutesOnly" in data:
+    if data.get("StaticRoutesOnly") is not None:
         out["static_routes_only"] = data["StaticRoutesOnly"]
-    if "TunnelOptions" in data:
+    if data.get("TunnelOptions") is not None:
         import capo_securityhub.types.aws_ec2_vpn_connection_options_tunnel_options_list
 
         out["tunnel_options"] = (

@@ -29,6 +29,6 @@ def deserialize_json(
     data: dict,
 ) -> ExperimentTemplateReportConfigurationCloudWatchDashboard:
     out: ExperimentTemplateReportConfigurationCloudWatchDashboard = {}  # type: ignore[typeddict-item]
-    if "dashboardIdentifier" in data:
+    if data.get("dashboardIdentifier") is not None:
         out["dashboard_identifier"] = data["dashboardIdentifier"]
     return out

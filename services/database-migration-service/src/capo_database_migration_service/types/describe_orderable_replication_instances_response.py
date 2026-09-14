@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeOrderableReplicationInstancesResponse:
     out: DescribeOrderableReplicationInstancesResponse = {}  # type: ignore[typeddict-item]
-    if "OrderableReplicationInstances" in data:
+    if data.get("OrderableReplicationInstances") is not None:
         import capo_database_migration_service.types.orderable_replication_instance_list
 
         out["orderable_replication_instances"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["OrderableReplicationInstances"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

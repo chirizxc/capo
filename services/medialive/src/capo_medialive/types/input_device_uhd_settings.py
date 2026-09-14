@@ -84,7 +84,15 @@ def serialize_json(value: InputDeviceUhdSettings) -> dict:
             value["device_state"]
         )
     if "framerate" in value:
-        out["framerate"] = value["framerate"]
+        out["framerate"] = (
+            "NaN"
+            if value["framerate"] != value["framerate"]
+            else "Infinity"
+            if value["framerate"] == float("inf")
+            else "-Infinity"
+            if value["framerate"] == float("-inf")
+            else value["framerate"]
+        )
     if "height" in value:
         out["height"] = value["height"]
     if "max_bitrate" in value:
@@ -128,7 +136,7 @@ def serialize_json(value: InputDeviceUhdSettings) -> dict:
 
 def deserialize_json(data: dict) -> InputDeviceUhdSettings:
     out: InputDeviceUhdSettings = {}  # type: ignore[typeddict-item]
-    if "activeInput" in data:
+    if data.get("activeInput") is not None:
         import capo_medialive.types.input_device_active_input
 
         out["active_input"] = (
@@ -136,7 +144,7 @@ def deserialize_json(data: dict) -> InputDeviceUhdSettings:
                 data["activeInput"]
             )
         )
-    if "configuredInput" in data:
+    if data.get("configuredInput") is not None:
         import capo_medialive.types.input_device_configured_input
 
         out["configured_input"] = (
@@ -144,35 +152,35 @@ def deserialize_json(data: dict) -> InputDeviceUhdSettings:
                 data["configuredInput"]
             )
         )
-    if "deviceState" in data:
+    if data.get("deviceState") is not None:
         import capo_medialive.types.input_device_state
 
         out["device_state"] = capo_medialive.types.input_device_state.deserialize_json(
             data["deviceState"]
         )
-    if "framerate" in data:
-        out["framerate"] = data["framerate"]
-    if "height" in data:
+    if data.get("framerate") is not None:
+        out["framerate"] = float(data["framerate"])
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
-    if "scanType" in data:
+    if data.get("scanType") is not None:
         import capo_medialive.types.input_device_scan_type
 
         out["scan_type"] = capo_medialive.types.input_device_scan_type.deserialize_json(
             data["scanType"]
         )
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
-    if "latencyMs" in data:
+    if data.get("latencyMs") is not None:
         out["latency_ms"] = data["latencyMs"]
-    if "codec" in data:
+    if data.get("codec") is not None:
         import capo_medialive.types.input_device_codec
 
         out["codec"] = capo_medialive.types.input_device_codec.deserialize_json(
             data["codec"]
         )
-    if "mediaconnectSettings" in data:
+    if data.get("mediaconnectSettings") is not None:
         import capo_medialive.types.input_device_media_connect_settings
 
         out["mediaconnect_settings"] = (
@@ -180,7 +188,7 @@ def deserialize_json(data: dict) -> InputDeviceUhdSettings:
                 data["mediaconnectSettings"]
             )
         )
-    if "audioChannelPairs" in data:
+    if data.get("audioChannelPairs") is not None:
         import capo_medialive.types.__list_of_input_device_uhd_audio_channel_pair_config
 
         out["audio_channel_pairs"] = (
@@ -188,6 +196,6 @@ def deserialize_json(data: dict) -> InputDeviceUhdSettings:
                 data["audioChannelPairs"]
             )
         )
-    if "inputResolution" in data:
+    if data.get("inputResolution") is not None:
         out["input_resolution"] = data["inputResolution"]
     return out

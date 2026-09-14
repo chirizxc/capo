@@ -13,9 +13,9 @@ from capo_deadline import AsyncdeadlineClient
 
 
 async def main():
-    async with AsyncdeadlineClient() as s3:
+    async with AsyncdeadlineClient() as deadline:
         # Example: call the batch_get_job operation
-        response = await s3.batch_get_job()
+        response = await deadline.batch_get_job()
         print(response["jobs"])
 ```
 
@@ -28,9 +28,9 @@ from capo_deadline import AsyncdeadlineClient
 
 
 async def main():
-    async with AsyncdeadlineClient() as s3:
+    async with AsyncdeadlineClient() as deadline:
         # Example: paginate over get_sessions_statistics_aggregation
-        async for item in s3.iter_get_sessions_statistics_aggregation():
+        async for item in deadline.iter_get_sessions_statistics_aggregation():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_deadline.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncdeadlineClient() as s3:
+    async with AsyncdeadlineClient() as deadline:
         try:
-            await s3.batch_get_job()
+            await deadline.batch_get_job()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_deadline import AsyncdeadlineClient
 
 
 async def main():
-    async with AsyncdeadlineClient() as s3:
+    async with AsyncdeadlineClient() as deadline:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_job()
+        response = await deadline.batch_get_job()
 
         # Override per operation
-        response = await s3.batch_get_job(config_overrides={"retry_max_attempts": 5})
+        response = await deadline.batch_get_job(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_job(config_overrides={"retry_max_attempts": 1})
+        response = await deadline.batch_get_job(config_overrides={"retry_max_attempts": 1})
 ```

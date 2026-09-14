@@ -13,9 +13,9 @@ from capo_forecastquery import AsyncforecastqueryClient
 
 
 async def main():
-    async with AsyncforecastqueryClient() as s3:
+    async with AsyncforecastqueryClient() as forecastquery:
         # Example: call the query_forecast operation
-        response = await s3.query_forecast()
+        response = await forecastquery.query_forecast()
         print(response["forecast"])
 ```
 
@@ -29,9 +29,9 @@ from capo_forecastquery.error import InvalidInputException
 
 
 async def main():
-    async with AsyncforecastqueryClient() as s3:
+    async with AsyncforecastqueryClient() as forecastquery:
         try:
-            await s3.query_forecast()
+            await forecastquery.query_forecast()
         except InvalidInputException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_forecastquery import AsyncforecastqueryClient
 
 
 async def main():
-    async with AsyncforecastqueryClient() as s3:
+    async with AsyncforecastqueryClient() as forecastquery:
         # Default: 3 attempts for every operation
-        response = await s3.query_forecast()
+        response = await forecastquery.query_forecast()
 
         # Override per operation
-        response = await s3.query_forecast(config_overrides={"retry_max_attempts": 5})
+        response = await forecastquery.query_forecast(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.query_forecast(config_overrides={"retry_max_attempts": 1})
+        response = await forecastquery.query_forecast(config_overrides={"retry_max_attempts": 1})
 ```

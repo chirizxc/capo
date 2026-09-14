@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataLakePrincipalList:
 
     out: DataLakePrincipalList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lakeformation.types.data_lake_principal.deserialize_json(item))
     return out

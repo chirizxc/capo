@@ -55,11 +55,11 @@ def serialize_json(value: CreateMonitorInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateMonitorInput:
     out: CreateMonitorInput = {}  # type: ignore[typeddict-item]
-    if "monitorName" in data:
+    if data.get("monitorName") is not None:
         out["monitor_name"] = data["monitorName"]
     else:
         raise DeserializationError("CreateMonitorInput.monitor_name required")
-    if "probes" in data:
+    if data.get("probes") is not None:
         import capo_networkmonitor.types.create_monitor_probe_input_list
 
         out["probes"] = (
@@ -67,11 +67,11 @@ def deserialize_json(data: dict) -> CreateMonitorInput:
                 data["probes"]
             )
         )
-    if "aggregationPeriod" in data:
+    if data.get("aggregationPeriod") is not None:
         out["aggregation_period"] = data["aggregationPeriod"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_networkmonitor.types.tag_map
 
         out["tags"] = capo_networkmonitor.types.tag_map.deserialize_json(data["tags"])

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: MonitoringJsonDatasetFormat) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringJsonDatasetFormat:
     out: MonitoringJsonDatasetFormat = {}  # type: ignore[typeddict-item]
-    if "Line" in data:
+    if data.get("Line") is not None:
         out["line"] = data["Line"]
     return out

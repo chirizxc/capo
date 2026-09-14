@@ -77,15 +77,15 @@ def serialize_json(value: LambdaFunctionRecipeSource) -> dict:
 
 def deserialize_json(data: dict) -> LambdaFunctionRecipeSource:
     out: LambdaFunctionRecipeSource = {}  # type: ignore[typeddict-item]
-    if "lambdaArn" in data:
+    if data.get("lambdaArn") is not None:
         out["lambda_arn"] = data["lambdaArn"]
     else:
         raise DeserializationError("LambdaFunctionRecipeSource.lambda_arn required")
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "componentVersion" in data:
+    if data.get("componentVersion") is not None:
         out["component_version"] = data["componentVersion"]
-    if "componentPlatforms" in data:
+    if data.get("componentPlatforms") is not None:
         import capo_greengrassv2.types.component_platform_list
 
         out["component_platforms"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> LambdaFunctionRecipeSource:
                 data["componentPlatforms"]
             )
         )
-    if "componentDependencies" in data:
+    if data.get("componentDependencies") is not None:
         import capo_greengrassv2.types.component_dependency_map
 
         out["component_dependencies"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> LambdaFunctionRecipeSource:
                 data["componentDependencies"]
             )
         )
-    if "componentLambdaParameters" in data:
+    if data.get("componentLambdaParameters") is not None:
         import capo_greengrassv2.types.lambda_execution_parameters
 
         out["component_lambda_parameters"] = (

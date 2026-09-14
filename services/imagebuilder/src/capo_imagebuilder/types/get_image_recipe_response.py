@@ -45,15 +45,15 @@ def serialize_json(value: GetImageRecipeResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetImageRecipeResponse:
     out: GetImageRecipeResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "imageRecipe" in data:
+    if data.get("imageRecipe") is not None:
         import capo_imagebuilder.types.image_recipe
 
         out["image_recipe"] = capo_imagebuilder.types.image_recipe.deserialize_json(
             data["imageRecipe"]
         )
-    if "latestVersionReferences" in data:
+    if data.get("latestVersionReferences") is not None:
         import capo_imagebuilder.types.latest_version_references
 
         out["latest_version_references"] = (

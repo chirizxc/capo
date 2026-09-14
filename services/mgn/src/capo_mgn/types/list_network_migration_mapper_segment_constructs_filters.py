@@ -44,7 +44,7 @@ def serialize_json(value: ListNetworkMigrationMapperSegmentConstructsFilters) ->
 
 def deserialize_json(data: dict) -> ListNetworkMigrationMapperSegmentConstructsFilters:
     out: ListNetworkMigrationMapperSegmentConstructsFilters = {}  # type: ignore[typeddict-item]
-    if "constructIDs" in data:
+    if data.get("constructIDs") is not None:
         import capo_mgn.types.list_network_migration_mapper_segment_constructs_i_ds_filter
 
         out["construct_i_ds"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ListNetworkMigrationMapperSegmentConstructsF
                 data["constructIDs"]
             )
         )
-    if "constructTypes" in data:
+    if data.get("constructTypes") is not None:
         import capo_mgn.types.list_network_migration_mapper_segment_construct_types_filter
 
         out["construct_types"] = (

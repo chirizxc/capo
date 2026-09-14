@@ -34,12 +34,12 @@ def serialize_json(value: ListMetadataGenerationRunsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListMetadataGenerationRunsOutput:
     out: ListMetadataGenerationRunsOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.metadata_generation_runs
 
         out["items"] = capo_datazone.types.metadata_generation_runs.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

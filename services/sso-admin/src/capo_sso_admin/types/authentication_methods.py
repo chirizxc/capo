@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AuthenticationMethods:
 
     out: AuthenticationMethods = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sso_admin.types.authentication_method_item.deserialize_aws_json_1_1(
                 item

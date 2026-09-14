@@ -54,11 +54,11 @@ def serialize_aws_json_1_1(value: Widget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Widget:
     out: Widget = {}  # type: ignore[typeddict-item]
-    if "QueryAlias" in data:
+    if data.get("QueryAlias") is not None:
         out["query_alias"] = data["QueryAlias"]
-    if "QueryStatement" in data:
+    if data.get("QueryStatement") is not None:
         out["query_statement"] = data["QueryStatement"]
-    if "QueryParameters" in data:
+    if data.get("QueryParameters") is not None:
         import capo_cloudtrail.types.query_parameters
 
         out["query_parameters"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> Widget:
                 data["QueryParameters"]
             )
         )
-    if "ViewProperties" in data:
+    if data.get("ViewProperties") is not None:
         import capo_cloudtrail.types.view_properties_map
 
         out["view_properties"] = (

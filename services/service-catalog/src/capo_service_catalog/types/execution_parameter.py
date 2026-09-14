@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: ExecutionParameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionParameter:
     out: ExecutionParameter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "DefaultValues" in data:
+    if data.get("DefaultValues") is not None:
         import capo_service_catalog.types.execution_parameter_value_list
 
         out["default_values"] = (

@@ -25,6 +25,6 @@ def serialize_json(value: BillingGroupProperties) -> dict:
 
 def deserialize_json(data: dict) -> BillingGroupProperties:
     out: BillingGroupProperties = {}  # type: ignore[typeddict-item]
-    if "billingGroupDescription" in data:
+    if data.get("billingGroupDescription") is not None:
         out["billing_group_description"] = data["billingGroupDescription"]
     return out

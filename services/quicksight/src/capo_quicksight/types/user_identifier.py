@@ -41,11 +41,11 @@ def serialize_json(value: UserIdentifier) -> dict:
 
 
 def deserialize_json(data: dict) -> UserIdentifier:
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         return {"UserName": data["UserName"]}
-    elif "Email" in data:
+    elif data.get("Email") is not None:
         return {"Email": data["Email"]}
-    elif "UserArn" in data:
+    elif data.get("UserArn") is not None:
         return {"UserArn": data["UserArn"]}
     else:
         raise DeserializationError("UserIdentifier: no recognized variant key")

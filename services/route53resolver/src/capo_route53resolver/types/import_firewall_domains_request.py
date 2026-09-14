@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: ImportFirewallDomainsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportFirewallDomainsRequest:
     out: ImportFirewallDomainsRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallDomainListId" in data:
+    if data.get("FirewallDomainListId") is not None:
         out["firewall_domain_list_id"] = data["FirewallDomainListId"]
     else:
         raise DeserializationError(
             "ImportFirewallDomainsRequest.firewall_domain_list_id required"
         )
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         import capo_route53resolver.types.firewall_domain_import_operation
 
         out["operation"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportFirewallDomainsRequest:
         )
     else:
         raise DeserializationError("ImportFirewallDomainsRequest.operation required")
-    if "DomainFileUrl" in data:
+    if data.get("DomainFileUrl") is not None:
         out["domain_file_url"] = data["DomainFileUrl"]
     else:
         raise DeserializationError(

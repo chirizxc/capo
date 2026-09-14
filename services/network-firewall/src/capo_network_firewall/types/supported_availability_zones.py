@@ -29,6 +29,8 @@ def serialize_aws_json_1_0(input_to_serialize: SupportedAvailabilityZones) -> di
 def deserialize_aws_json_1_0(data: dict) -> SupportedAvailabilityZones:
     out: SupportedAvailabilityZones = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_network_firewall.types.availability_zone_metadata
 
         out[key] = (

@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: Approval) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Approval:
     out: Approval = {}  # type: ignore[typeddict-item]
-    if "userArn" in data:
+    if data.get("userArn") is not None:
         out["user_arn"] = data["userArn"]
-    if "approvalState" in data:
+    if data.get("approvalState") is not None:
         import capo_codecommit.types.approval_state
 
         out["approval_state"] = (

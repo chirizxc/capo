@@ -27,7 +27,7 @@ def serialize_json(value: CreateBotReplicaRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBotReplicaRequest:
     out: CreateBotReplicaRequest = {}  # type: ignore[typeddict-item]
-    if "replicaRegion" in data:
+    if data.get("replicaRegion") is not None:
         out["replica_region"] = data["replicaRegion"]
     else:
         raise DeserializationError("CreateBotReplicaRequest.replica_region required")

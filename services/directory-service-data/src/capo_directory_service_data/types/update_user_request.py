@@ -75,17 +75,17 @@ def serialize_json(value: UpdateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserRequest:
     out: UpdateUserRequest = {}  # type: ignore[typeddict-item]
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
     else:
         raise DeserializationError("UpdateUserRequest.sam_account_name required")
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "GivenName" in data:
+    if data.get("GivenName") is not None:
         out["given_name"] = data["GivenName"]
-    if "Surname" in data:
+    if data.get("Surname") is not None:
         out["surname"] = data["Surname"]
-    if "OtherAttributes" in data:
+    if data.get("OtherAttributes") is not None:
         import capo_directory_service_data.types.attributes
 
         out["other_attributes"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> UpdateUserRequest:
                 data["OtherAttributes"]
             )
         )
-    if "UpdateType" in data:
+    if data.get("UpdateType") is not None:
         import capo_directory_service_data.types.update_type
 
         out["update_type"] = (
@@ -101,6 +101,6 @@ def deserialize_json(data: dict) -> UpdateUserRequest:
                 data["UpdateType"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

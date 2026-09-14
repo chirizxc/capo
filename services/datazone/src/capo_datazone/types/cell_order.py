@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CellOrder:
 
     out: CellOrder = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.cell_information.deserialize_json(item))
     return out

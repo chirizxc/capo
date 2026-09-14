@@ -30,7 +30,7 @@ def serialize_json(value: ApprovalStrategy) -> dict:
 
 
 def deserialize_json(data: dict) -> ApprovalStrategy:
-    if "MofN" in data:
+    if data.get("MofN") is not None:
         import capo_mpa.types.mof_n_approval_strategy
 
         return {

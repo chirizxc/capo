@@ -35,16 +35,16 @@ def serialize_json(value: KinesisVideoStreamSourceTaskConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KinesisVideoStreamSourceTaskConfiguration:
     out: KinesisVideoStreamSourceTaskConfiguration = {}  # type: ignore[typeddict-item]
-    if "StreamArn" in data:
+    if data.get("StreamArn") is not None:
         out["stream_arn"] = data["StreamArn"]
     else:
         raise DeserializationError(
             "KinesisVideoStreamSourceTaskConfiguration.stream_arn required"
         )
-    if "ChannelId" in data:
+    if data.get("ChannelId") is not None:
         out["channel_id"] = data["ChannelId"]
     else:
         out["channel_id"] = 0
-    if "FragmentNumber" in data:
+    if data.get("FragmentNumber") is not None:
         out["fragment_number"] = data["FragmentNumber"]
     return out

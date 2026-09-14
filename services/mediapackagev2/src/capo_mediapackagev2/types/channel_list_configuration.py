@@ -61,21 +61,21 @@ def serialize_json(value: ChannelListConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ChannelListConfiguration:
     out: ChannelListConfiguration = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ChannelListConfiguration.arn required")
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
     else:
         raise DeserializationError("ChannelListConfiguration.channel_name required")
-    if "ChannelGroupName" in data:
+    if data.get("ChannelGroupName") is not None:
         out["channel_group_name"] = data["ChannelGroupName"]
     else:
         raise DeserializationError(
             "ChannelListConfiguration.channel_group_name required"
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> ChannelListConfiguration:
         )
     else:
         raise DeserializationError("ChannelListConfiguration.created_at required")
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["modified_at"] = (
@@ -95,9 +95,9 @@ def deserialize_json(data: dict) -> ChannelListConfiguration:
         )
     else:
         raise DeserializationError("ChannelListConfiguration.modified_at required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "InputType" in data:
+    if data.get("InputType") is not None:
         import capo_mediapackagev2.types.input_type
 
         out["input_type"] = capo_mediapackagev2.types.input_type.deserialize_json(

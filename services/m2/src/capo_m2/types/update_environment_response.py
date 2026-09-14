@@ -24,7 +24,7 @@ def serialize_json(value: UpdateEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentResponse:
     out: UpdateEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("UpdateEnvironmentResponse.environment_id required")

@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: EvaluationErrorItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EvaluationErrorItem:
     out: EvaluationErrorItem = {}  # type: ignore[typeddict-item]
-    if "errorDescription" in data:
+    if data.get("errorDescription") is not None:
         out["error_description"] = data["errorDescription"]
     else:
         raise DeserializationError("EvaluationErrorItem.error_description required")

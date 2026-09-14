@@ -81,38 +81,38 @@ def serialize_json(value: CisScanResultDetails) -> dict:
 
 def deserialize_json(data: dict) -> CisScanResultDetails:
     out: CisScanResultDetails = {}  # type: ignore[typeddict-item]
-    if "scanArn" in data:
+    if data.get("scanArn") is not None:
         out["scan_arn"] = data["scanArn"]
     else:
         raise DeserializationError("CisScanResultDetails.scan_arn required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "targetResourceId" in data:
+    if data.get("targetResourceId") is not None:
         out["target_resource_id"] = data["targetResourceId"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_inspector2.types.cis_finding_status
 
         out["status"] = capo_inspector2.types.cis_finding_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "checkId" in data:
+    if data.get("checkId") is not None:
         out["check_id"] = data["checkId"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "checkDescription" in data:
+    if data.get("checkDescription") is not None:
         out["check_description"] = data["checkDescription"]
-    if "remediation" in data:
+    if data.get("remediation") is not None:
         out["remediation"] = data["remediation"]
-    if "level" in data:
+    if data.get("level") is not None:
         import capo_inspector2.types.cis_security_level
 
         out["level"] = capo_inspector2.types.cis_security_level.deserialize_json(
             data["level"]
         )
-    if "findingArn" in data:
+    if data.get("findingArn") is not None:
         out["finding_arn"] = data["findingArn"]
     return out

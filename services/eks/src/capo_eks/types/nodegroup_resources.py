@@ -36,7 +36,7 @@ def serialize_json(value: NodegroupResources) -> dict:
 
 def deserialize_json(data: dict) -> NodegroupResources:
     out: NodegroupResources = {}  # type: ignore[typeddict-item]
-    if "autoScalingGroups" in data:
+    if data.get("autoScalingGroups") is not None:
         import capo_eks.types.auto_scaling_group_list
 
         out["auto_scaling_groups"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> NodegroupResources:
                 data["autoScalingGroups"]
             )
         )
-    if "remoteAccessSecurityGroup" in data:
+    if data.get("remoteAccessSecurityGroup") is not None:
         out["remote_access_security_group"] = data["remoteAccessSecurityGroup"]
     return out

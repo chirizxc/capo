@@ -59,11 +59,11 @@ def serialize_json(value: Mp3Settings) -> dict:
 
 def deserialize_json(data: dict) -> Mp3Settings:
     out: Mp3Settings = {}  # type: ignore[typeddict-item]
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "rateControlMode" in data:
+    if data.get("rateControlMode") is not None:
         import capo_mediaconvert.types.mp3_rate_control_mode
 
         out["rate_control_mode"] = (
@@ -71,8 +71,8 @@ def deserialize_json(data: dict) -> Mp3Settings:
                 data["rateControlMode"]
             )
         )
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
-    if "vbrQuality" in data:
+    if data.get("vbrQuality") is not None:
         out["vbr_quality"] = data["vbrQuality"]
     return out

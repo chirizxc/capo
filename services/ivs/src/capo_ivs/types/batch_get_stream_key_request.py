@@ -26,7 +26,7 @@ def serialize_json(value: BatchGetStreamKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetStreamKeyRequest:
     out: BatchGetStreamKeyRequest = {}  # type: ignore[typeddict-item]
-    if "arns" in data:
+    if data.get("arns") is not None:
         import capo_ivs.types.stream_key_arn_list
 
         out["arns"] = capo_ivs.types.stream_key_arn_list.deserialize_json(data["arns"])

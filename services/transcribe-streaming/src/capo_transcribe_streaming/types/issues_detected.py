@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> IssuesDetected:
 
     out: IssuesDetected = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe_streaming.types.issue_detected.deserialize_json(item)
         )

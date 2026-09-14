@@ -49,7 +49,7 @@ def serialize_json(value: SendManagedThingCommandRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendManagedThingCommandRequest:
     out: SendManagedThingCommandRequest = {}  # type: ignore[typeddict-item]
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_iot_managed_integrations.types.command_endpoints
 
         out["endpoints"] = (
@@ -59,8 +59,8 @@ def deserialize_json(data: dict) -> SendManagedThingCommandRequest:
         )
     else:
         raise DeserializationError("SendManagedThingCommandRequest.endpoints required")
-    if "ConnectorAssociationId" in data:
+    if data.get("ConnectorAssociationId") is not None:
         out["connector_association_id"] = data["ConnectorAssociationId"]
-    if "AccountAssociationId" in data:
+    if data.get("AccountAssociationId") is not None:
         out["account_association_id"] = data["AccountAssociationId"]
     return out

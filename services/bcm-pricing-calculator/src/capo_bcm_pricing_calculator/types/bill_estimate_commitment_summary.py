@@ -85,9 +85,9 @@ def serialize_aws_json_1_0(value: BillEstimateCommitmentSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BillEstimateCommitmentSummary:
     out: BillEstimateCommitmentSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "purchaseAgreementType" in data:
+    if data.get("purchaseAgreementType") is not None:
         import capo_bcm_pricing_calculator.types.purchase_agreement_type
 
         out["purchase_agreement_type"] = (
@@ -95,17 +95,17 @@ def deserialize_aws_json_1_0(data: dict) -> BillEstimateCommitmentSummary:
                 data["purchaseAgreementType"]
             )
         )
-    if "offeringId" in data:
+    if data.get("offeringId") is not None:
         out["offering_id"] = data["offeringId"]
-    if "usageAccountId" in data:
+    if data.get("usageAccountId") is not None:
         out["usage_account_id"] = data["usageAccountId"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "termLength" in data:
+    if data.get("termLength") is not None:
         out["term_length"] = data["termLength"]
-    if "paymentOption" in data:
+    if data.get("paymentOption") is not None:
         out["payment_option"] = data["paymentOption"]
-    if "upfrontPayment" in data:
+    if data.get("upfrontPayment") is not None:
         import capo_bcm_pricing_calculator.types.cost_amount
 
         out["upfront_payment"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillEstimateCommitmentSummary:
                 data["upfrontPayment"]
             )
         )
-    if "monthlyPayment" in data:
+    if data.get("monthlyPayment") is not None:
         import capo_bcm_pricing_calculator.types.cost_amount
 
         out["monthly_payment"] = (

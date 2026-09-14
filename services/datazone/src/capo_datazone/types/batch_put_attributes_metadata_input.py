@@ -42,9 +42,9 @@ def serialize_json(value: BatchPutAttributesMetadataInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutAttributesMetadataInput:
     out: BatchPutAttributesMetadataInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_datazone.types.attributes
 
         out["attributes"] = capo_datazone.types.attributes.deserialize_json(

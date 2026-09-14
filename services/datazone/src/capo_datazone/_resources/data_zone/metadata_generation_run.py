@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_datazone._auth._signers
@@ -97,22 +98,25 @@ class MetadataGenerationRun:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.start_metadata_generation_run_input.StartMetadataGenerationRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.start_metadata_generation_run_input.StartMetadataGenerationRunInput = {
+            "domain_identifier": domain_identifier,
+            "target": target,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if type is not None:
             input_["type"] = type
         if types is not None:
             input_["types"] = types
-        input_["target"] = target
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["owning_project_identifier"] = owning_project_identifier
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -157,9 +161,10 @@ class MetadataGenerationRun:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_metadata_generation_run_input.GetMetadataGenerationRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_metadata_generation_run_input.GetMetadataGenerationRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if type is not None:
             input_["type"] = type
 
@@ -168,6 +173,7 @@ class MetadataGenerationRun:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -209,15 +215,17 @@ class MetadataGenerationRun:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.cancel_metadata_generation_run_input.CancelMetadataGenerationRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.cancel_metadata_generation_run_input.CancelMetadataGenerationRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -272,8 +280,9 @@ class MetadataGenerationRun:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_metadata_generation_runs_input.ListMetadataGenerationRunsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_metadata_generation_runs_input.ListMetadataGenerationRunsInput = {
+            "domain_identifier": domain_identifier
+        }
         if status is not None:
             input_["status"] = status
         if type is not None:
@@ -290,6 +299,7 @@ class MetadataGenerationRun:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -350,22 +360,25 @@ class AsyncMetadataGenerationRun:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.start_metadata_generation_run_input.StartMetadataGenerationRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.start_metadata_generation_run_input.StartMetadataGenerationRunInput = {
+            "domain_identifier": domain_identifier,
+            "target": target,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if type is not None:
             input_["type"] = type
         if types is not None:
             input_["types"] = types
-        input_["target"] = target
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["owning_project_identifier"] = owning_project_identifier
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -411,9 +424,10 @@ class AsyncMetadataGenerationRun:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_metadata_generation_run_input.GetMetadataGenerationRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_metadata_generation_run_input.GetMetadataGenerationRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if type is not None:
             input_["type"] = type
 
@@ -422,6 +436,7 @@ class AsyncMetadataGenerationRun:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -464,15 +479,17 @@ class AsyncMetadataGenerationRun:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.cancel_metadata_generation_run_input.CancelMetadataGenerationRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.cancel_metadata_generation_run_input.CancelMetadataGenerationRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -528,8 +545,9 @@ class AsyncMetadataGenerationRun:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_metadata_generation_runs_input.ListMetadataGenerationRunsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
+        input_: capo_datazone.types.list_metadata_generation_runs_input.ListMetadataGenerationRunsInput = {
+            "domain_identifier": domain_identifier
+        }
         if status is not None:
             input_["status"] = status
         if type is not None:
@@ -546,4 +564,5 @@ class AsyncMetadataGenerationRun:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

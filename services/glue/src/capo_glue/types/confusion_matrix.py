@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: ConfusionMatrix) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfusionMatrix:
     out: ConfusionMatrix = {}  # type: ignore[typeddict-item]
-    if "NumTruePositives" in data:
+    if data.get("NumTruePositives") is not None:
         out["num_true_positives"] = data["NumTruePositives"]
-    if "NumFalsePositives" in data:
+    if data.get("NumFalsePositives") is not None:
         out["num_false_positives"] = data["NumFalsePositives"]
-    if "NumTrueNegatives" in data:
+    if data.get("NumTrueNegatives") is not None:
         out["num_true_negatives"] = data["NumTrueNegatives"]
-    if "NumFalseNegatives" in data:
+    if data.get("NumFalseNegatives") is not None:
         out["num_false_negatives"] = data["NumFalseNegatives"]
     return out

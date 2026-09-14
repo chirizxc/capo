@@ -23,6 +23,6 @@ def serialize_json(value: StartOnDemandAuditTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartOnDemandAuditTaskResponse:
     out: StartOnDemandAuditTaskResponse = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: HttpEndpointNotEnabledException_) -> dict:
 
 def deserialize_json(data: dict) -> HttpEndpointNotEnabledException_:
     out: HttpEndpointNotEnabledException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class HttpEndpointNotEnabledException(ServiceError):
 
     code: str | None = "HttpEndpointNotEnabledException"
 
-    def __init__(self, data: HttpEndpointNotEnabledException_):
+    def __init__(
+        self, data: HttpEndpointNotEnabledException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="HttpEndpointNotEnabledException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "HttpEndpointNotEnabledException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "HttpEndpointNotEnabledException":
+        return cls(deserialize_json(data), message)

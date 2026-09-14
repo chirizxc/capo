@@ -90,42 +90,42 @@ def serialize_json(value: EmailTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> EmailTemplateResponse:
     out: EmailTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "DefaultSubstitutions" in data:
+    if data.get("DefaultSubstitutions") is not None:
         out["default_substitutions"] = data["DefaultSubstitutions"]
-    if "HtmlPart" in data:
+    if data.get("HtmlPart") is not None:
         out["html_part"] = data["HtmlPart"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "RecommenderId" in data:
+    if data.get("RecommenderId") is not None:
         out["recommender_id"] = data["RecommenderId"]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
-    if "Headers" in data:
+    if data.get("Headers") is not None:
         import capo_pinpoint.types.list_of_message_header
 
         out["headers"] = capo_pinpoint.types.list_of_message_header.deserialize_json(
             data["Headers"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "TemplateDescription" in data:
+    if data.get("TemplateDescription") is not None:
         out["template_description"] = data["TemplateDescription"]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "TemplateType" in data:
+    if data.get("TemplateType") is not None:
         import capo_pinpoint.types.template_type
 
         out["template_type"] = capo_pinpoint.types.template_type.deserialize_json(
             data["TemplateType"]
         )
-    if "TextPart" in data:
+    if data.get("TextPart") is not None:
         out["text_part"] = data["TextPart"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

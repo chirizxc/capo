@@ -66,7 +66,7 @@ def serialize_json(value: AudioSelectorSettings) -> dict:
 
 def deserialize_json(data: dict) -> AudioSelectorSettings:
     out: AudioSelectorSettings = {}  # type: ignore[typeddict-item]
-    if "audioHlsRenditionSelection" in data:
+    if data.get("audioHlsRenditionSelection") is not None:
         import capo_medialive.types.audio_hls_rendition_selection
 
         out["audio_hls_rendition_selection"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> AudioSelectorSettings:
                 data["audioHlsRenditionSelection"]
             )
         )
-    if "audioLanguageSelection" in data:
+    if data.get("audioLanguageSelection") is not None:
         import capo_medialive.types.audio_language_selection
 
         out["audio_language_selection"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> AudioSelectorSettings:
                 data["audioLanguageSelection"]
             )
         )
-    if "audioPidSelection" in data:
+    if data.get("audioPidSelection") is not None:
         import capo_medialive.types.audio_pid_selection
 
         out["audio_pid_selection"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> AudioSelectorSettings:
                 data["audioPidSelection"]
             )
         )
-    if "audioTrackSelection" in data:
+    if data.get("audioTrackSelection") is not None:
         import capo_medialive.types.audio_track_selection
 
         out["audio_track_selection"] = (

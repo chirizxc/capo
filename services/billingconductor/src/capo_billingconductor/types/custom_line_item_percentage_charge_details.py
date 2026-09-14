@@ -23,7 +23,15 @@ class CustomLineItemPercentageChargeDetails(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: CustomLineItemPercentageChargeDetails) -> dict:
     out: dict = {}
-    out["PercentageValue"] = value["percentage_value"]
+    out["PercentageValue"] = (
+        "NaN"
+        if value["percentage_value"] != value["percentage_value"]
+        else "Infinity"
+        if value["percentage_value"] == float("inf")
+        else "-Infinity"
+        if value["percentage_value"] == float("-inf")
+        else value["percentage_value"]
+    )
     if "associated_values" in value:
         import capo_billingconductor.types.custom_line_item_associations_list
 
@@ -37,13 +45,13 @@ def serialize_json(value: CustomLineItemPercentageChargeDetails) -> dict:
 
 def deserialize_json(data: dict) -> CustomLineItemPercentageChargeDetails:
     out: CustomLineItemPercentageChargeDetails = {}  # type: ignore[typeddict-item]
-    if "PercentageValue" in data:
-        out["percentage_value"] = data["PercentageValue"]
+    if data.get("PercentageValue") is not None:
+        out["percentage_value"] = float(data["PercentageValue"])
     else:
         raise DeserializationError(
             "CustomLineItemPercentageChargeDetails.percentage_value required"
         )
-    if "AssociatedValues" in data:
+    if data.get("AssociatedValues") is not None:
         import capo_billingconductor.types.custom_line_item_associations_list
 
         out["associated_values"] = (

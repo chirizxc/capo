@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: ImageFailure) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImageFailure:
     out: ImageFailure = {}  # type: ignore[typeddict-item]
-    if "imageId" in data:
+    if data.get("imageId") is not None:
         import capo_ecr_public.types.image_identifier
 
         out["image_id"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImageFailure:
                 data["imageId"]
             )
         )
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         import capo_ecr_public.types.image_failure_code
 
         out["failure_code"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_1(data: dict) -> ImageFailure:
                 data["failureCode"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
     return out

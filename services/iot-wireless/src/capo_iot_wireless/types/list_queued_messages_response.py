@@ -36,9 +36,9 @@ def serialize_json(value: ListQueuedMessagesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListQueuedMessagesResponse:
     out: ListQueuedMessagesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "DownlinkQueueMessagesList" in data:
+    if data.get("DownlinkQueueMessagesList") is not None:
         import capo_iot_wireless.types.downlink_queue_messages_list
 
         out["downlink_queue_messages_list"] = (

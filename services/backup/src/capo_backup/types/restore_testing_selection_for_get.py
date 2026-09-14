@@ -84,7 +84,7 @@ def serialize_json(value: RestoreTestingSelectionForGet) -> dict:
 
 def deserialize_json(data: dict) -> RestoreTestingSelectionForGet:
     out: RestoreTestingSelectionForGet = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["creation_time"] = capo_backup.types._prelude.timestamp.deserialize_json(
@@ -94,21 +94,21 @@ def deserialize_json(data: dict) -> RestoreTestingSelectionForGet:
         raise DeserializationError(
             "RestoreTestingSelectionForGet.creation_time required"
         )
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError(
             "RestoreTestingSelectionForGet.iam_role_arn required"
         )
-    if "ProtectedResourceArns" in data:
+    if data.get("ProtectedResourceArns") is not None:
         import capo_backup.types.string_list
 
         out["protected_resource_arns"] = capo_backup.types.string_list.deserialize_json(
             data["ProtectedResourceArns"]
         )
-    if "ProtectedResourceConditions" in data:
+    if data.get("ProtectedResourceConditions") is not None:
         import capo_backup.types.protected_resource_conditions
 
         out["protected_resource_conditions"] = (
@@ -116,13 +116,13 @@ def deserialize_json(data: dict) -> RestoreTestingSelectionForGet:
                 data["ProtectedResourceConditions"]
             )
         )
-    if "ProtectedResourceType" in data:
+    if data.get("ProtectedResourceType") is not None:
         out["protected_resource_type"] = data["ProtectedResourceType"]
     else:
         raise DeserializationError(
             "RestoreTestingSelectionForGet.protected_resource_type required"
         )
-    if "RestoreMetadataOverrides" in data:
+    if data.get("RestoreMetadataOverrides") is not None:
         import capo_backup.types.sensitive_string_map
 
         out["restore_metadata_overrides"] = (
@@ -130,19 +130,19 @@ def deserialize_json(data: dict) -> RestoreTestingSelectionForGet:
                 data["RestoreMetadataOverrides"]
             )
         )
-    if "RestoreTestingPlanName" in data:
+    if data.get("RestoreTestingPlanName") is not None:
         out["restore_testing_plan_name"] = data["RestoreTestingPlanName"]
     else:
         raise DeserializationError(
             "RestoreTestingSelectionForGet.restore_testing_plan_name required"
         )
-    if "RestoreTestingSelectionName" in data:
+    if data.get("RestoreTestingSelectionName") is not None:
         out["restore_testing_selection_name"] = data["RestoreTestingSelectionName"]
     else:
         raise DeserializationError(
             "RestoreTestingSelectionForGet.restore_testing_selection_name required"
         )
-    if "ValidationWindowHours" in data:
+    if data.get("ValidationWindowHours") is not None:
         out["validation_window_hours"] = data["ValidationWindowHours"]
     else:
         out["validation_window_hours"] = 0

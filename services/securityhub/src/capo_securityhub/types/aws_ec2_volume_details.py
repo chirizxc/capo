@@ -76,21 +76,21 @@ def serialize_json(value: AwsEc2VolumeDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VolumeDetails:
     out: AwsEc2VolumeDetails = {}  # type: ignore[typeddict-item]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         out["create_time"] = data["CreateTime"]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Attachments" in data:
+    if data.get("Attachments") is not None:
         import capo_securityhub.types.aws_ec2_volume_attachment_list
 
         out["attachments"] = (
@@ -98,10 +98,10 @@ def deserialize_json(data: dict) -> AwsEc2VolumeDetails:
                 data["Attachments"]
             )
         )
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "VolumeType" in data:
+    if data.get("VolumeType") is not None:
         out["volume_type"] = data["VolumeType"]
-    if "VolumeScanStatus" in data:
+    if data.get("VolumeScanStatus") is not None:
         out["volume_scan_status"] = data["VolumeScanStatus"]
     return out

@@ -28,8 +28,8 @@ def serialize_json(value: ExperimentTemplateStopCondition) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentTemplateStopCondition:
     out: ExperimentTemplateStopCondition = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

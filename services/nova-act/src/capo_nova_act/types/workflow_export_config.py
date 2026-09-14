@@ -29,10 +29,10 @@ def serialize_json(value: WorkflowExportConfig) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowExportConfig:
     out: WorkflowExportConfig = {}  # type: ignore[typeddict-item]
-    if "s3BucketName" in data:
+    if data.get("s3BucketName") is not None:
         out["s3_bucket_name"] = data["s3BucketName"]
     else:
         raise DeserializationError("WorkflowExportConfig.s3_bucket_name required")
-    if "s3KeyPrefix" in data:
+    if data.get("s3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["s3KeyPrefix"]
     return out

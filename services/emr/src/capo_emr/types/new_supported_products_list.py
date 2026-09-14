@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> NewSupportedProductsList:
 
     out: NewSupportedProductsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_emr.types.supported_product_config.deserialize_aws_json_1_1(item)
         )

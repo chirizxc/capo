@@ -24,7 +24,7 @@ def serialize_json(value: GetPlaybackRestrictionPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetPlaybackRestrictionPolicyRequest:
     out: GetPlaybackRestrictionPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetPlaybackRestrictionPolicyRequest.arn required")

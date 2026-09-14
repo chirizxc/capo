@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeDataDeletionJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDataDeletionJobResponse:
     out: DescribeDataDeletionJobResponse = {}  # type: ignore[typeddict-item]
-    if "dataDeletionJob" in data:
+    if data.get("dataDeletionJob") is not None:
         import capo_personalize.types.data_deletion_job
 
         out["data_deletion_job"] = (

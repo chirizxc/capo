@@ -25,6 +25,6 @@ def serialize_json(value: PutProfileObjectResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutProfileObjectResponse:
     out: PutProfileObjectResponse = {}  # type: ignore[typeddict-item]
-    if "ProfileObjectUniqueKey" in data:
+    if data.get("ProfileObjectUniqueKey") is not None:
         out["profile_object_unique_key"] = data["ProfileObjectUniqueKey"]
     return out

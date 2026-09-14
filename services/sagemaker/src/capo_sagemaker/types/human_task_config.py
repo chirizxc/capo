@@ -118,17 +118,17 @@ def serialize_aws_json_1_1(value: HumanTaskConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HumanTaskConfig:
     out: HumanTaskConfig = {}  # type: ignore[typeddict-item]
-    if "WorkteamArn" in data:
+    if data.get("WorkteamArn") is not None:
         out["workteam_arn"] = data["WorkteamArn"]
-    if "UiConfig" in data:
+    if data.get("UiConfig") is not None:
         import capo_sagemaker.types.ui_config
 
         out["ui_config"] = capo_sagemaker.types.ui_config.deserialize_aws_json_1_1(
             data["UiConfig"]
         )
-    if "PreHumanTaskLambdaArn" in data:
+    if data.get("PreHumanTaskLambdaArn") is not None:
         out["pre_human_task_lambda_arn"] = data["PreHumanTaskLambdaArn"]
-    if "TaskKeywords" in data:
+    if data.get("TaskKeywords") is not None:
         import capo_sagemaker.types.task_keywords
 
         out["task_keywords"] = (
@@ -136,23 +136,23 @@ def deserialize_aws_json_1_1(data: dict) -> HumanTaskConfig:
                 data["TaskKeywords"]
             )
         )
-    if "TaskTitle" in data:
+    if data.get("TaskTitle") is not None:
         out["task_title"] = data["TaskTitle"]
-    if "TaskDescription" in data:
+    if data.get("TaskDescription") is not None:
         out["task_description"] = data["TaskDescription"]
-    if "NumberOfHumanWorkersPerDataObject" in data:
+    if data.get("NumberOfHumanWorkersPerDataObject") is not None:
         out["number_of_human_workers_per_data_object"] = data[
             "NumberOfHumanWorkersPerDataObject"
         ]
-    if "TaskTimeLimitInSeconds" in data:
+    if data.get("TaskTimeLimitInSeconds") is not None:
         out["task_time_limit_in_seconds"] = data["TaskTimeLimitInSeconds"]
-    if "TaskAvailabilityLifetimeInSeconds" in data:
+    if data.get("TaskAvailabilityLifetimeInSeconds") is not None:
         out["task_availability_lifetime_in_seconds"] = data[
             "TaskAvailabilityLifetimeInSeconds"
         ]
-    if "MaxConcurrentTaskCount" in data:
+    if data.get("MaxConcurrentTaskCount") is not None:
         out["max_concurrent_task_count"] = data["MaxConcurrentTaskCount"]
-    if "AnnotationConsolidationConfig" in data:
+    if data.get("AnnotationConsolidationConfig") is not None:
         import capo_sagemaker.types.annotation_consolidation_config
 
         out["annotation_consolidation_config"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> HumanTaskConfig:
                 data["AnnotationConsolidationConfig"]
             )
         )
-    if "PublicWorkforceTaskPrice" in data:
+    if data.get("PublicWorkforceTaskPrice") is not None:
         import capo_sagemaker.types.public_workforce_task_price
 
         out["public_workforce_task_price"] = (

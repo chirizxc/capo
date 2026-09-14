@@ -29,13 +29,13 @@ def serialize_json(value: PermissionInput) -> dict:
 
 def deserialize_json(data: dict) -> PermissionInput:
     out: PermissionInput = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_qapps.types.action
 
         out["action"] = capo_qapps.types.action.deserialize_json(data["action"])
     else:
         raise DeserializationError("PermissionInput.action required")
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
     else:
         raise DeserializationError("PermissionInput.principal required")

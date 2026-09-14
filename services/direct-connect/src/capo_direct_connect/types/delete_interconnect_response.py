@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeleteInterconnectResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteInterconnectResponse:
     out: DeleteInterconnectResponse = {}  # type: ignore[typeddict-item]
-    if "interconnectState" in data:
+    if data.get("interconnectState") is not None:
         import capo_direct_connect.types.interconnect_state
 
         out["interconnect_state"] = (

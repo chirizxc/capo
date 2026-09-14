@@ -28,13 +28,22 @@ def serialize_aws_json_1_1(value: AggregatedLogOddsMetric) -> dict:
             value["variable_names"]
         )
     )
-    out["aggregatedVariablesImportance"] = value["aggregated_variables_importance"]
+    out["aggregatedVariablesImportance"] = (
+        "NaN"
+        if value["aggregated_variables_importance"]
+        != value["aggregated_variables_importance"]
+        else "Infinity"
+        if value["aggregated_variables_importance"] == float("inf")
+        else "-Infinity"
+        if value["aggregated_variables_importance"] == float("-inf")
+        else value["aggregated_variables_importance"]
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> AggregatedLogOddsMetric:
     out: AggregatedLogOddsMetric = {}  # type: ignore[typeddict-item]
-    if "variableNames" in data:
+    if data.get("variableNames") is not None:
         import capo_frauddetector.types.list_of_strings
 
         out["variable_names"] = (
@@ -44,8 +53,10 @@ def deserialize_aws_json_1_1(data: dict) -> AggregatedLogOddsMetric:
         )
     else:
         raise DeserializationError("AggregatedLogOddsMetric.variable_names required")
-    if "aggregatedVariablesImportance" in data:
-        out["aggregated_variables_importance"] = data["aggregatedVariablesImportance"]
+    if data.get("aggregatedVariablesImportance") is not None:
+        out["aggregated_variables_importance"] = float(
+            data["aggregatedVariablesImportance"]
+        )
     else:
         raise DeserializationError(
             "AggregatedLogOddsMetric.aggregated_variables_importance required"

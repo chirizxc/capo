@@ -23,5 +23,7 @@ def serialize_aws_json_1_0(input_to_serialize: LogDestinationMap) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> LogDestinationMap:
     out: LogDestinationMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

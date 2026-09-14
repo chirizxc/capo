@@ -39,14 +39,14 @@ def serialize_json(value: SessionIssuer) -> dict:
 
 def deserialize_json(data: dict) -> SessionIssuer:
     out: SessionIssuer = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
     return out

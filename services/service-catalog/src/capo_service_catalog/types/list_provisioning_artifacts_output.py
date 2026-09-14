@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListProvisioningArtifactsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListProvisioningArtifactsOutput:
     out: ListProvisioningArtifactsOutput = {}  # type: ignore[typeddict-item]
-    if "ProvisioningArtifactDetails" in data:
+    if data.get("ProvisioningArtifactDetails") is not None:
         import capo_service_catalog.types.provisioning_artifact_details
 
         out["provisioning_artifact_details"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListProvisioningArtifactsOutput:
                 data["ProvisioningArtifactDetails"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

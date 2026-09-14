@@ -31,7 +31,7 @@ def serialize_json(value: AwsS3BucketBucketLifecycleConfigurationDetails) -> dic
 
 def deserialize_json(data: dict) -> AwsS3BucketBucketLifecycleConfigurationDetails:
     out: AwsS3BucketBucketLifecycleConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_rules_list
 
         out["rules"] = (

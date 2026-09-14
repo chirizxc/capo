@@ -59,11 +59,11 @@ def serialize_aws_json_1_1(value: CheckoutLicenseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckoutLicenseRequest:
     out: CheckoutLicenseRequest = {}  # type: ignore[typeddict-item]
-    if "ProductSKU" in data:
+    if data.get("ProductSKU") is not None:
         out["product_sku"] = data["ProductSKU"]
     else:
         raise DeserializationError("CheckoutLicenseRequest.product_sku required")
-    if "CheckoutType" in data:
+    if data.get("CheckoutType") is not None:
         import capo_license_manager.types.checkout_type
 
         out["checkout_type"] = (
@@ -73,11 +73,11 @@ def deserialize_aws_json_1_1(data: dict) -> CheckoutLicenseRequest:
         )
     else:
         raise DeserializationError("CheckoutLicenseRequest.checkout_type required")
-    if "KeyFingerprint" in data:
+    if data.get("KeyFingerprint") is not None:
         out["key_fingerprint"] = data["KeyFingerprint"]
     else:
         raise DeserializationError("CheckoutLicenseRequest.key_fingerprint required")
-    if "Entitlements" in data:
+    if data.get("Entitlements") is not None:
         import capo_license_manager.types.entitlement_data_list
 
         out["entitlements"] = (
@@ -87,12 +87,12 @@ def deserialize_aws_json_1_1(data: dict) -> CheckoutLicenseRequest:
         )
     else:
         raise DeserializationError("CheckoutLicenseRequest.entitlements required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CheckoutLicenseRequest.client_token required")
-    if "Beneficiary" in data:
+    if data.get("Beneficiary") is not None:
         out["beneficiary"] = data["Beneficiary"]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
     return out

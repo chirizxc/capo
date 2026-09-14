@@ -42,11 +42,11 @@ def serialize_json(value: CreateNamespaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNamespaceRequest:
     out: CreateNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
     else:
         raise DeserializationError("CreateNamespaceRequest.namespace required")
-    if "IdentityStore" in data:
+    if data.get("IdentityStore") is not None:
         import capo_quicksight.types.identity_store
 
         out["identity_store"] = capo_quicksight.types.identity_store.deserialize_json(
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> CreateNamespaceRequest:
         )
     else:
         raise DeserializationError("CreateNamespaceRequest.identity_store required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

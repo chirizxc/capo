@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> KeySummaryList:
 
     out: KeySummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_payment_cryptography.types.key_summary.deserialize_aws_json_1_0(item)
         )

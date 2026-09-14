@@ -37,11 +37,11 @@ def serialize_json(value: CreateAssessmentFrameworkControlSet) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssessmentFrameworkControlSet:
     out: CreateAssessmentFrameworkControlSet = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAssessmentFrameworkControlSet.name required")
-    if "controls" in data:
+    if data.get("controls") is not None:
         import capo_auditmanager.types.create_assessment_framework_controls
 
         out["controls"] = (

@@ -29,7 +29,7 @@ def serialize_json(value: InspectorScoreDetails) -> dict:
 
 def deserialize_json(data: dict) -> InspectorScoreDetails:
     out: InspectorScoreDetails = {}  # type: ignore[typeddict-item]
-    if "adjustedCvss" in data:
+    if data.get("adjustedCvss") is not None:
         import capo_imagebuilder.types.cvss_score_details
 
         out["adjusted_cvss"] = (

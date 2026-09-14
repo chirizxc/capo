@@ -79,24 +79,24 @@ def serialize_json(value: Address) -> dict:
 
 def deserialize_json(data: dict) -> Address:
     out: Address = {}  # type: ignore[typeddict-item]
-    if "streetName" in data:
+    if data.get("streetName") is not None:
         out["street_name"] = data["streetName"]
-    if "streetSuffix" in data:
+    if data.get("streetSuffix") is not None:
         out["street_suffix"] = data["streetSuffix"]
-    if "postDirectional" in data:
+    if data.get("postDirectional") is not None:
         out["post_directional"] = data["postDirectional"]
-    if "preDirectional" in data:
+    if data.get("preDirectional") is not None:
         out["pre_directional"] = data["preDirectional"]
-    if "streetNumber" in data:
+    if data.get("streetNumber") is not None:
         out["street_number"] = data["streetNumber"]
-    if "city" in data:
+    if data.get("city") is not None:
         out["city"] = data["city"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "postalCode" in data:
+    if data.get("postalCode") is not None:
         out["postal_code"] = data["postalCode"]
-    if "postalCodePlus4" in data:
+    if data.get("postalCodePlus4") is not None:
         out["postal_code_plus4"] = data["postalCodePlus4"]
-    if "country" in data:
+    if data.get("country") is not None:
         out["country"] = data["country"]
     return out

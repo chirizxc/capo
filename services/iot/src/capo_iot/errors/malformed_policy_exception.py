@@ -25,7 +25,7 @@ def serialize_json(value: MalformedPolicyException_) -> dict:
 
 def deserialize_json(data: dict) -> MalformedPolicyException_:
     out: MalformedPolicyException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class MalformedPolicyException(ServiceError):
 
     code: str | None = "MalformedPolicyException"
 
-    def __init__(self, data: MalformedPolicyException_):
+    def __init__(self, data: MalformedPolicyException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MalformedPolicyException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "MalformedPolicyException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "MalformedPolicyException":
+        return cls(deserialize_json(data), message)

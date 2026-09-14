@@ -44,7 +44,7 @@ def serialize_json(value: BatchUpdateLinkAttributes) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateLinkAttributes:
     out: BatchUpdateLinkAttributes = {}  # type: ignore[typeddict-item]
-    if "TypedLinkSpecifier" in data:
+    if data.get("TypedLinkSpecifier") is not None:
         import capo_clouddirectory.types.typed_link_specifier
 
         out["typed_link_specifier"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> BatchUpdateLinkAttributes:
         raise DeserializationError(
             "BatchUpdateLinkAttributes.typed_link_specifier required"
         )
-    if "AttributeUpdates" in data:
+    if data.get("AttributeUpdates") is not None:
         import capo_clouddirectory.types.link_attribute_update_list
 
         out["attribute_updates"] = (

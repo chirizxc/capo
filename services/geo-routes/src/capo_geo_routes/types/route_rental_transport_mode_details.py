@@ -67,21 +67,21 @@ def serialize_json(value: RouteRentalTransportModeDetails) -> dict:
 
 def deserialize_json(data: dict) -> RouteRentalTransportModeDetails:
     out: RouteRentalTransportModeDetails = {}  # type: ignore[typeddict-item]
-    if "AvailableSeats" in data:
+    if data.get("AvailableSeats") is not None:
         out["available_seats"] = data["AvailableSeats"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         import capo_geo_routes.types.route_engine_type
 
         out["engine"] = capo_geo_routes.types.route_engine_type.deserialize_json(
             data["Engine"]
         )
-    if "LicensePlate" in data:
+    if data.get("LicensePlate") is not None:
         out["license_plate"] = data["LicensePlate"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_geo_routes.types.route_rental_mode
 
         out["mode"] = capo_geo_routes.types.route_rental_mode.deserialize_json(
@@ -89,10 +89,10 @@ def deserialize_json(data: dict) -> RouteRentalTransportModeDetails:
         )
     else:
         raise DeserializationError("RouteRentalTransportModeDetails.mode required")
-    if "Model" in data:
+    if data.get("Model") is not None:
         out["model"] = data["Model"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TextColor" in data:
+    if data.get("TextColor") is not None:
         out["text_color"] = data["TextColor"]
     return out

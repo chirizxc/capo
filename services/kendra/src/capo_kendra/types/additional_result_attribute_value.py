@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AdditionalResultAttributeValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdditionalResultAttributeValue:
     out: AdditionalResultAttributeValue = {}  # type: ignore[typeddict-item]
-    if "TextWithHighlightsValue" in data:
+    if data.get("TextWithHighlightsValue") is not None:
         import capo_kendra.types.text_with_highlights
 
         out["text_with_highlights_value"] = (

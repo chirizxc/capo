@@ -43,7 +43,7 @@ def serialize_json(value: UpdateElasticsearchDomainConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigResponse:
     out: UpdateElasticsearchDomainConfigResponse = {}  # type: ignore[typeddict-item]
-    if "DomainConfig" in data:
+    if data.get("DomainConfig") is not None:
         import capo_elasticsearch_service.types.elasticsearch_domain_config
 
         out["domain_config"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigResponse:
         raise DeserializationError(
             "UpdateElasticsearchDomainConfigResponse.domain_config required"
         )
-    if "DryRunResults" in data:
+    if data.get("DryRunResults") is not None:
         import capo_elasticsearch_service.types.dry_run_results
 
         out["dry_run_results"] = (

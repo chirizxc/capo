@@ -77,9 +77,9 @@ def serialize_json(value: ScannedResource) -> dict:
 
 def deserialize_json(data: dict) -> ScannedResource:
     out: ScannedResource = {}  # type: ignore[typeddict-item]
-    if "scannedResourceArn" in data:
+    if data.get("scannedResourceArn") is not None:
         out["scanned_resource_arn"] = data["scannedResourceArn"]
-    if "scannedResourceType" in data:
+    if data.get("scannedResourceType") is not None:
         import capo_guardduty.types.malware_protection_resource_type
 
         out["scanned_resource_type"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> ScannedResource:
                 data["scannedResourceType"]
             )
         )
-    if "scannedResourceStatus" in data:
+    if data.get("scannedResourceStatus") is not None:
         import capo_guardduty.types.malware_protection_scan_status
 
         out["scanned_resource_status"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> ScannedResource:
                 data["scannedResourceStatus"]
             )
         )
-    if "scanStatusReason" in data:
+    if data.get("scanStatusReason") is not None:
         import capo_guardduty.types.scan_status_reason
 
         out["scan_status_reason"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> ScannedResource:
                 data["scanStatusReason"]
             )
         )
-    if "resourceDetails" in data:
+    if data.get("resourceDetails") is not None:
         import capo_guardduty.types.scanned_resource_details
 
         out["resource_details"] = (

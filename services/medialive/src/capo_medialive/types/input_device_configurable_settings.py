@@ -80,7 +80,7 @@ def serialize_json(value: InputDeviceConfigurableSettings) -> dict:
 
 def deserialize_json(data: dict) -> InputDeviceConfigurableSettings:
     out: InputDeviceConfigurableSettings = {}  # type: ignore[typeddict-item]
-    if "configuredInput" in data:
+    if data.get("configuredInput") is not None:
         import capo_medialive.types.input_device_configured_input
 
         out["configured_input"] = (
@@ -88,17 +88,17 @@ def deserialize_json(data: dict) -> InputDeviceConfigurableSettings:
                 data["configuredInput"]
             )
         )
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
-    if "latencyMs" in data:
+    if data.get("latencyMs") is not None:
         out["latency_ms"] = data["latencyMs"]
-    if "codec" in data:
+    if data.get("codec") is not None:
         import capo_medialive.types.input_device_codec
 
         out["codec"] = capo_medialive.types.input_device_codec.deserialize_json(
             data["codec"]
         )
-    if "mediaconnectSettings" in data:
+    if data.get("mediaconnectSettings") is not None:
         import capo_medialive.types.input_device_media_connect_configurable_settings
 
         out["mediaconnect_settings"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> InputDeviceConfigurableSettings:
                 data["mediaconnectSettings"]
             )
         )
-    if "audioChannelPairs" in data:
+    if data.get("audioChannelPairs") is not None:
         import capo_medialive.types.__list_of_input_device_configurable_audio_channel_pair_config
 
         out["audio_channel_pairs"] = (
@@ -114,6 +114,6 @@ def deserialize_json(data: dict) -> InputDeviceConfigurableSettings:
                 data["audioChannelPairs"]
             )
         )
-    if "inputResolution" in data:
+    if data.get("inputResolution") is not None:
         out["input_resolution"] = data["inputResolution"]
     return out

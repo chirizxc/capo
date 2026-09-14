@@ -36,7 +36,7 @@ def serialize_json(value: BatchPutMetricsError) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutMetricsError:
     out: BatchPutMetricsError = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_sagemaker_metrics.types.put_metrics_error_code
 
         out["code"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> BatchPutMetricsError:
                 data["Code"]
             )
         )
-    if "MetricIndex" in data:
+    if data.get("MetricIndex") is not None:
         out["metric_index"] = data["MetricIndex"]
     return out

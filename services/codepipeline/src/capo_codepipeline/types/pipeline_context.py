@@ -53,22 +53,22 @@ def serialize_aws_json_1_1(value: PipelineContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineContext:
     out: PipelineContext = {}  # type: ignore[typeddict-item]
-    if "pipelineName" in data:
+    if data.get("pipelineName") is not None:
         out["pipeline_name"] = data["pipelineName"]
-    if "stage" in data:
+    if data.get("stage") is not None:
         import capo_codepipeline.types.stage_context
 
         out["stage"] = capo_codepipeline.types.stage_context.deserialize_aws_json_1_1(
             data["stage"]
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_codepipeline.types.action_context
 
         out["action"] = capo_codepipeline.types.action_context.deserialize_aws_json_1_1(
             data["action"]
         )
-    if "pipelineArn" in data:
+    if data.get("pipelineArn") is not None:
         out["pipeline_arn"] = data["pipelineArn"]
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
     return out

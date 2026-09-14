@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: GetClusterSessionCredentialsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetClusterSessionCredentialsOutput:
     out: GetClusterSessionCredentialsOutput = {}  # type: ignore[typeddict-item]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_emr.types.credentials
 
         out["credentials"] = capo_emr.types.credentials.deserialize_aws_json_1_1(
             data["Credentials"]
         )
-    if "ExpiresAt" in data:
+    if data.get("ExpiresAt") is not None:
         import capo_emr.types.date
 
         out["expires_at"] = capo_emr.types.date.deserialize_aws_json_1_1(

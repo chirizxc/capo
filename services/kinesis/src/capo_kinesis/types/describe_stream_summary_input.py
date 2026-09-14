@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: DescribeStreamSummaryInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeStreamSummaryInput:
     out: DescribeStreamSummaryInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

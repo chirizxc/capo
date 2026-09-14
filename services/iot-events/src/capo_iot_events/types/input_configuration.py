@@ -56,17 +56,17 @@ def serialize_json(value: InputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InputConfiguration:
     out: InputConfiguration = {}  # type: ignore[typeddict-item]
-    if "inputName" in data:
+    if data.get("inputName") is not None:
         out["input_name"] = data["inputName"]
     else:
         raise DeserializationError("InputConfiguration.input_name required")
-    if "inputDescription" in data:
+    if data.get("inputDescription") is not None:
         out["input_description"] = data["inputDescription"]
-    if "inputArn" in data:
+    if data.get("inputArn") is not None:
         out["input_arn"] = data["inputArn"]
     else:
         raise DeserializationError("InputConfiguration.input_arn required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iot_events.types.timestamp
 
         out["creation_time"] = capo_iot_events.types.timestamp.deserialize_json(
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> InputConfiguration:
         )
     else:
         raise DeserializationError("InputConfiguration.creation_time required")
-    if "lastUpdateTime" in data:
+    if data.get("lastUpdateTime") is not None:
         import capo_iot_events.types.timestamp
 
         out["last_update_time"] = capo_iot_events.types.timestamp.deserialize_json(
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> InputConfiguration:
         )
     else:
         raise DeserializationError("InputConfiguration.last_update_time required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot_events.types.input_status
 
         out["status"] = capo_iot_events.types.input_status.deserialize_json(

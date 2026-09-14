@@ -64,7 +64,7 @@ def serialize_json(value: SocialProviderSettings) -> dict:
 
 def deserialize_json(data: dict) -> SocialProviderSettings:
     out: SocialProviderSettings = {}  # type: ignore[typeddict-item]
-    if "Facebook" in data:
+    if data.get("Facebook") is not None:
         import capo_amplifybackend.types.backend_auth_social_provider_config
 
         out["facebook"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> SocialProviderSettings:
                 data["Facebook"]
             )
         )
-    if "Google" in data:
+    if data.get("Google") is not None:
         import capo_amplifybackend.types.backend_auth_social_provider_config
 
         out["google"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> SocialProviderSettings:
                 data["Google"]
             )
         )
-    if "LoginWithAmazon" in data:
+    if data.get("LoginWithAmazon") is not None:
         import capo_amplifybackend.types.backend_auth_social_provider_config
 
         out["login_with_amazon"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> SocialProviderSettings:
                 data["LoginWithAmazon"]
             )
         )
-    if "SignInWithApple" in data:
+    if data.get("SignInWithApple") is not None:
         import capo_amplifybackend.types.backend_auth_apple_provider_config
 
         out["sign_in_with_apple"] = (

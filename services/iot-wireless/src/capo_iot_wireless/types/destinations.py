@@ -54,11 +54,11 @@ def serialize_json(value: Destinations) -> dict:
 
 def deserialize_json(data: dict) -> Destinations:
     out: Destinations = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ExpressionType" in data:
+    if data.get("ExpressionType") is not None:
         import capo_iot_wireless.types.expression_type
 
         out["expression_type"] = (
@@ -66,10 +66,10 @@ def deserialize_json(data: dict) -> Destinations:
                 data["ExpressionType"]
             )
         )
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

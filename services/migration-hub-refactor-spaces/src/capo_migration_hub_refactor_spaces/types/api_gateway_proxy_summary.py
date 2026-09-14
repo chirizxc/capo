@@ -61,18 +61,18 @@ def serialize_json(value: ApiGatewayProxySummary) -> dict:
 
 def deserialize_json(data: dict) -> ApiGatewayProxySummary:
     out: ApiGatewayProxySummary = {}  # type: ignore[typeddict-item]
-    if "ProxyUrl" in data:
+    if data.get("ProxyUrl") is not None:
         out["proxy_url"] = data["ProxyUrl"]
-    if "ApiGatewayId" in data:
+    if data.get("ApiGatewayId") is not None:
         out["api_gateway_id"] = data["ApiGatewayId"]
-    if "VpcLinkId" in data:
+    if data.get("VpcLinkId") is not None:
         out["vpc_link_id"] = data["VpcLinkId"]
-    if "NlbArn" in data:
+    if data.get("NlbArn") is not None:
         out["nlb_arn"] = data["NlbArn"]
-    if "NlbName" in data:
+    if data.get("NlbName") is not None:
         out["nlb_name"] = data["NlbName"]
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         out["endpoint_type"] = data["EndpointType"]
-    if "StageName" in data:
+    if data.get("StageName") is not None:
         out["stage_name"] = data["StageName"]
     return out

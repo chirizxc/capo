@@ -36,15 +36,15 @@ def serialize_json(value: ModelError_) -> dict:
 
 def deserialize_json(data: dict) -> ModelError_:
     out: ModelError_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "OriginalStatusCode" in data:
+    if data.get("OriginalStatusCode") is not None:
         out["original_status_code"] = data["OriginalStatusCode"]
-    if "OriginalMessage" in data:
+    if data.get("OriginalMessage") is not None:
         out["original_message"] = data["OriginalMessage"]
-    if "LogStreamArn" in data:
+    if data.get("LogStreamArn") is not None:
         out["log_stream_arn"] = data["LogStreamArn"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     return out
 
@@ -54,12 +54,16 @@ class ModelError(ServiceError):
 
     code: str | None = "ModelError"
 
-    def __init__(self, data: ModelError_):
+    def __init__(self, data: ModelError_, message: str | None = None):
         super().__init__(
-            "client", is_throttling_error=False, is_retryable=False, code="ModelError"
+            "client",
+            is_throttling_error=False,
+            is_retryable=False,
+            code="ModelError",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ModelError":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ModelError":
+        return cls(deserialize_json(data), message)

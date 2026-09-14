@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: EntityDetails) -> dict:
 def deserialize_json(data: dict) -> EntityDetails:
     out: EntityDetails = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_marketplace_catalog.types.entity_detail
 
         out[key] = capo_marketplace_catalog.types.entity_detail.deserialize_json(value)

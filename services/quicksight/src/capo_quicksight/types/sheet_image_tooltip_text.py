@@ -23,6 +23,6 @@ def serialize_json(value: SheetImageTooltipText) -> dict:
 
 def deserialize_json(data: dict) -> SheetImageTooltipText:
     out: SheetImageTooltipText = {}  # type: ignore[typeddict-item]
-    if "PlainText" in data:
+    if data.get("PlainText") is not None:
         out["plain_text"] = data["PlainText"]
     return out

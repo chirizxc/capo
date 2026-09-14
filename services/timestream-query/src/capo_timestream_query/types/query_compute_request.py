@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: QueryComputeRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QueryComputeRequest:
     out: QueryComputeRequest = {}  # type: ignore[typeddict-item]
-    if "ComputeMode" in data:
+    if data.get("ComputeMode") is not None:
         import capo_timestream_query.types.compute_mode
 
         out["compute_mode"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> QueryComputeRequest:
                 data["ComputeMode"]
             )
         )
-    if "ProvisionedCapacity" in data:
+    if data.get("ProvisionedCapacity") is not None:
         import capo_timestream_query.types.provisioned_capacity_request
 
         out["provisioned_capacity"] = (

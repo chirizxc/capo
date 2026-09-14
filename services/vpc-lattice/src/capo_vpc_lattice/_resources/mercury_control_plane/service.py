@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_vpc_lattice._auth._signers
@@ -101,10 +102,12 @@ class Service:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_service_request.CreateServiceRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_vpc_lattice.types.create_service_request.CreateServiceRequest = {
+            "name": name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if custom_domain_name is not None:
@@ -119,6 +122,7 @@ class Service:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -156,14 +160,16 @@ class Service:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_service_request.GetServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
+        input_: capo_vpc_lattice.types.get_service_request.GetServiceRequest = {
+            "service_identifier": service_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -209,8 +215,9 @@ class Service:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_service_request.UpdateServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
+        input_: capo_vpc_lattice.types.update_service_request.UpdateServiceRequest = {
+            "service_identifier": service_identifier
+        }
         if certificate_arn is not None:
             input_["certificate_arn"] = certificate_arn
         if auth_type is not None:
@@ -221,6 +228,7 @@ class Service:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -259,14 +267,16 @@ class Service:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_service_request.DeleteServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
+        input_: capo_vpc_lattice.types.delete_service_request.DeleteServiceRequest = {
+            "service_identifier": service_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -305,7 +315,7 @@ class Service:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_services_request.ListServicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_services_request.ListServicesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -316,6 +326,7 @@ class Service:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -377,10 +388,12 @@ class AsyncService:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_service_request.CreateServiceRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_vpc_lattice.types.create_service_request.CreateServiceRequest = {
+            "name": name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if custom_domain_name is not None:
@@ -395,6 +408,7 @@ class AsyncService:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -433,14 +447,16 @@ class AsyncService:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_service_request.GetServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
+        input_: capo_vpc_lattice.types.get_service_request.GetServiceRequest = {
+            "service_identifier": service_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -487,8 +503,9 @@ class AsyncService:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_service_request.UpdateServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
+        input_: capo_vpc_lattice.types.update_service_request.UpdateServiceRequest = {
+            "service_identifier": service_identifier
+        }
         if certificate_arn is not None:
             input_["certificate_arn"] = certificate_arn
         if auth_type is not None:
@@ -499,6 +516,7 @@ class AsyncService:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -538,14 +556,16 @@ class AsyncService:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_service_request.DeleteServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
+        input_: capo_vpc_lattice.types.delete_service_request.DeleteServiceRequest = {
+            "service_identifier": service_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -585,7 +605,7 @@ class AsyncService:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_services_request.ListServicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_services_request.ListServicesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -596,4 +616,5 @@ class AsyncService:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

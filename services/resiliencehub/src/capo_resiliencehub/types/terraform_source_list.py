@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TerraformSourceList:
 
     out: TerraformSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.terraform_source.deserialize_json(item))
     return out

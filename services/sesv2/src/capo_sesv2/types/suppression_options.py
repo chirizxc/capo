@@ -56,7 +56,7 @@ def serialize_json(value: SuppressionOptions) -> dict:
 
 def deserialize_json(data: dict) -> SuppressionOptions:
     out: SuppressionOptions = {}  # type: ignore[typeddict-item]
-    if "SuppressedReasons" in data:
+    if data.get("SuppressedReasons") is not None:
         import capo_sesv2.types.suppression_list_reasons
 
         out["suppressed_reasons"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> SuppressionOptions:
                 data["SuppressedReasons"]
             )
         )
-    if "SuppressionScope" in data:
+    if data.get("SuppressionScope") is not None:
         import capo_sesv2.types.suppression_list_scope
 
         out["suppression_scope"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> SuppressionOptions:
                 data["SuppressionScope"]
             )
         )
-    if "ValidationOptions" in data:
+    if data.get("ValidationOptions") is not None:
         import capo_sesv2.types.suppression_validation_options
 
         out["validation_options"] = (

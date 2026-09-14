@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfScheduleEntry:
 
     out: __listOfScheduleEntry = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediatailor.types.schedule_entry.deserialize_json(item))
     return out

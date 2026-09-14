@@ -31,7 +31,7 @@ def serialize_json(value: BatchGetSchemaInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSchemaInput:
     out: BatchGetSchemaInput = {}  # type: ignore[typeddict-item]
-    if "names" in data:
+    if data.get("names") is not None:
         import capo_cleanrooms.types.table_alias_list
 
         out["names"] = capo_cleanrooms.types.table_alias_list.deserialize_json(

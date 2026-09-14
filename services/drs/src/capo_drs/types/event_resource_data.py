@@ -32,7 +32,7 @@ def serialize_json(value: EventResourceData) -> dict:
 
 
 def deserialize_json(data: dict) -> EventResourceData:
-    if "sourceNetworkData" in data:
+    if data.get("sourceNetworkData") is not None:
         import capo_drs.types.source_network_data
 
         return {

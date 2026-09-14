@@ -41,13 +41,13 @@ def serialize_json(value: CustomDetection) -> dict:
 
 def deserialize_json(data: dict) -> CustomDetection:
     out: CustomDetection = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "occurrences" in data:
+    if data.get("occurrences") is not None:
         import capo_macie2.types.occurrences
 
         out["occurrences"] = capo_macie2.types.occurrences.deserialize_json(

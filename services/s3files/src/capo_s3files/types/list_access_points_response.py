@@ -32,9 +32,9 @@ def serialize_json(value: ListAccessPointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAccessPointsResponse:
     out: ListAccessPointsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "accessPoints" in data:
+    if data.get("accessPoints") is not None:
         import capo_s3files.types.access_points
 
         out["access_points"] = capo_s3files.types.access_points.deserialize_json(

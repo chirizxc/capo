@@ -25,7 +25,7 @@ def serialize_json(value: DeleteMultiRegionEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteMultiRegionEndpointResponse:
     out: DeleteMultiRegionEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sesv2.types.status
 
         out["status"] = capo_sesv2.types.status.deserialize_json(data["Status"])

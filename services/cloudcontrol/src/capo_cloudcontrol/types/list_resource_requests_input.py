@@ -41,11 +41,11 @@ def serialize_aws_json_1_0(value: ListResourceRequestsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListResourceRequestsInput:
     out: ListResourceRequestsInput = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ResourceRequestStatusFilter" in data:
+    if data.get("ResourceRequestStatusFilter") is not None:
         import capo_cloudcontrol.types.resource_request_status_filter
 
         out["resource_request_status_filter"] = (

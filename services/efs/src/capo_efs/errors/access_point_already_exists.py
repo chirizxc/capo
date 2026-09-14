@@ -30,13 +30,13 @@ def serialize_json(value: AccessPointAlreadyExists_) -> dict:
 
 def deserialize_json(data: dict) -> AccessPointAlreadyExists_:
     out: AccessPointAlreadyExists_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError("AccessPointAlreadyExists_.error_code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "AccessPointId" in data:
+    if data.get("AccessPointId") is not None:
         out["access_point_id"] = data["AccessPointId"]
     else:
         raise DeserializationError("AccessPointAlreadyExists_.access_point_id required")
@@ -48,15 +48,18 @@ class AccessPointAlreadyExists(ServiceError):
 
     code: str | None = "AccessPointAlreadyExists"
 
-    def __init__(self, data: AccessPointAlreadyExists_):
+    def __init__(self, data: AccessPointAlreadyExists_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AccessPointAlreadyExists",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "AccessPointAlreadyExists":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "AccessPointAlreadyExists":
+        return cls(deserialize_json(data), message)

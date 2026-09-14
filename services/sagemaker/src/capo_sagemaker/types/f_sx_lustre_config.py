@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: FSxLustreConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FSxLustreConfig:
     out: FSxLustreConfig = {}  # type: ignore[typeddict-item]
-    if "SizeInGiB" in data:
+    if data.get("SizeInGiB") is not None:
         out["size_in_gi_b"] = data["SizeInGiB"]
-    if "PerUnitStorageThroughput" in data:
+    if data.get("PerUnitStorageThroughput") is not None:
         out["per_unit_storage_throughput"] = data["PerUnitStorageThroughput"]
     return out

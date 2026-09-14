@@ -40,13 +40,13 @@ def serialize_json(value: SystemEvent) -> dict:
 
 def deserialize_json(data: dict) -> SystemEvent:
     out: SystemEvent = {}  # type: ignore[typeddict-item]
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_iot_events_data.types.event_type
 
         out["event_type"] = capo_iot_events_data.types.event_type.deserialize_json(
             data["eventType"]
         )
-    if "stateChangeConfiguration" in data:
+    if data.get("stateChangeConfiguration") is not None:
         import capo_iot_events_data.types.state_change_configuration
 
         out["state_change_configuration"] = (

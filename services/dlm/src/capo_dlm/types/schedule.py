@@ -113,41 +113,41 @@ def serialize_json(value: Schedule) -> dict:
 
 def deserialize_json(data: dict) -> Schedule:
     out: Schedule = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CopyTags" in data:
+    if data.get("CopyTags") is not None:
         out["copy_tags"] = data["CopyTags"]
-    if "TagsToAdd" in data:
+    if data.get("TagsToAdd") is not None:
         import capo_dlm.types.tags_to_add_list
 
         out["tags_to_add"] = capo_dlm.types.tags_to_add_list.deserialize_json(
             data["TagsToAdd"]
         )
-    if "VariableTags" in data:
+    if data.get("VariableTags") is not None:
         import capo_dlm.types.variable_tags_list
 
         out["variable_tags"] = capo_dlm.types.variable_tags_list.deserialize_json(
             data["VariableTags"]
         )
-    if "CreateRule" in data:
+    if data.get("CreateRule") is not None:
         import capo_dlm.types.create_rule
 
         out["create_rule"] = capo_dlm.types.create_rule.deserialize_json(
             data["CreateRule"]
         )
-    if "RetainRule" in data:
+    if data.get("RetainRule") is not None:
         import capo_dlm.types.retain_rule
 
         out["retain_rule"] = capo_dlm.types.retain_rule.deserialize_json(
             data["RetainRule"]
         )
-    if "FastRestoreRule" in data:
+    if data.get("FastRestoreRule") is not None:
         import capo_dlm.types.fast_restore_rule
 
         out["fast_restore_rule"] = capo_dlm.types.fast_restore_rule.deserialize_json(
             data["FastRestoreRule"]
         )
-    if "CrossRegionCopyRules" in data:
+    if data.get("CrossRegionCopyRules") is not None:
         import capo_dlm.types.cross_region_copy_rules
 
         out["cross_region_copy_rules"] = (
@@ -155,19 +155,19 @@ def deserialize_json(data: dict) -> Schedule:
                 data["CrossRegionCopyRules"]
             )
         )
-    if "ShareRules" in data:
+    if data.get("ShareRules") is not None:
         import capo_dlm.types.share_rules
 
         out["share_rules"] = capo_dlm.types.share_rules.deserialize_json(
             data["ShareRules"]
         )
-    if "DeprecateRule" in data:
+    if data.get("DeprecateRule") is not None:
         import capo_dlm.types.deprecate_rule
 
         out["deprecate_rule"] = capo_dlm.types.deprecate_rule.deserialize_json(
             data["DeprecateRule"]
         )
-    if "ArchiveRule" in data:
+    if data.get("ArchiveRule") is not None:
         import capo_dlm.types.archive_rule
 
         out["archive_rule"] = capo_dlm.types.archive_rule.deserialize_json(

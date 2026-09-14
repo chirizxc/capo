@@ -41,12 +41,12 @@ def serialize_json(value: AwsRdsDbSecurityGroupEc2SecurityGroup) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbSecurityGroupEc2SecurityGroup:
     out: AwsRdsDbSecurityGroupEc2SecurityGroup = {}  # type: ignore[typeddict-item]
-    if "Ec2SecurityGroupId" in data:
+    if data.get("Ec2SecurityGroupId") is not None:
         out["ec2_security_group_id"] = data["Ec2SecurityGroupId"]
-    if "Ec2SecurityGroupName" in data:
+    if data.get("Ec2SecurityGroupName") is not None:
         out["ec2_security_group_name"] = data["Ec2SecurityGroupName"]
-    if "Ec2SecurityGroupOwnerId" in data:
+    if data.get("Ec2SecurityGroupOwnerId") is not None:
         out["ec2_security_group_owner_id"] = data["Ec2SecurityGroupOwnerId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

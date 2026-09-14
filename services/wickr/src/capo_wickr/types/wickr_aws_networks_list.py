@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> WickrAwsNetworksList:
 
     out: WickrAwsNetworksList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wickr.types.wickr_aws_networks.deserialize_json(item))
     return out

@@ -55,7 +55,7 @@ def serialize_json(value: StartSelector) -> dict:
 
 def deserialize_json(data: dict) -> StartSelector:
     out: StartSelector = {}  # type: ignore[typeddict-item]
-    if "StartSelectorType" in data:
+    if data.get("StartSelectorType") is not None:
         import capo_kinesis_video_media.types.start_selector_type
 
         out["start_selector_type"] = (
@@ -65,9 +65,9 @@ def deserialize_json(data: dict) -> StartSelector:
         )
     else:
         raise DeserializationError("StartSelector.start_selector_type required")
-    if "AfterFragmentNumber" in data:
+    if data.get("AfterFragmentNumber") is not None:
         out["after_fragment_number"] = data["AfterFragmentNumber"]
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_kinesis_video_media.types.timestamp
 
         out["start_timestamp"] = (
@@ -75,6 +75,6 @@ def deserialize_json(data: dict) -> StartSelector:
                 data["StartTimestamp"]
             )
         )
-    if "ContinuationToken" in data:
+    if data.get("ContinuationToken") is not None:
         out["continuation_token"] = data["ContinuationToken"]
     return out

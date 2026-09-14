@@ -51,13 +51,21 @@ def serialize_json(value: GeospatialCategoricalColor) -> dict:
             )
         )
     if "default_opacity" in value:
-        out["DefaultOpacity"] = value["default_opacity"]
+        out["DefaultOpacity"] = (
+            "NaN"
+            if value["default_opacity"] != value["default_opacity"]
+            else "Infinity"
+            if value["default_opacity"] == float("inf")
+            else "-Infinity"
+            if value["default_opacity"] == float("-inf")
+            else value["default_opacity"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> GeospatialCategoricalColor:
     out: GeospatialCategoricalColor = {}  # type: ignore[typeddict-item]
-    if "CategoryDataColors" in data:
+    if data.get("CategoryDataColors") is not None:
         import capo_quicksight.types.geospatial_categorical_data_color_list
 
         out["category_data_colors"] = (
@@ -69,13 +77,13 @@ def deserialize_json(data: dict) -> GeospatialCategoricalColor:
         raise DeserializationError(
             "GeospatialCategoricalColor.category_data_colors required"
         )
-    if "NullDataVisibility" in data:
+    if data.get("NullDataVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["null_data_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["NullDataVisibility"]
         )
-    if "NullDataSettings" in data:
+    if data.get("NullDataSettings") is not None:
         import capo_quicksight.types.geospatial_null_data_settings
 
         out["null_data_settings"] = (
@@ -83,6 +91,6 @@ def deserialize_json(data: dict) -> GeospatialCategoricalColor:
                 data["NullDataSettings"]
             )
         )
-    if "DefaultOpacity" in data:
-        out["default_opacity"] = data["DefaultOpacity"]
+    if data.get("DefaultOpacity") is not None:
+        out["default_opacity"] = float(data["DefaultOpacity"])
     return out

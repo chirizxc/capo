@@ -41,7 +41,7 @@ def serialize_json(value: CreateDataSetExportTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataSetExportTaskRequest:
     out: CreateDataSetExportTaskRequest = {}  # type: ignore[typeddict-item]
-    if "exportConfig" in data:
+    if data.get("exportConfig") is not None:
         import capo_m2.types.data_set_export_config
 
         out["export_config"] = capo_m2.types.data_set_export_config.deserialize_json(
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> CreateDataSetExportTaskRequest:
         raise DeserializationError(
             "CreateDataSetExportTaskRequest.export_config required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

@@ -47,7 +47,7 @@ def serialize_json(value: AnalyticsBinBySpecification) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsBinBySpecification:
     out: AnalyticsBinBySpecification = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lex_models_v2.types.analytics_bin_by_name
 
         out["name"] = capo_lex_models_v2.types.analytics_bin_by_name.deserialize_json(
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> AnalyticsBinBySpecification:
         )
     else:
         raise DeserializationError("AnalyticsBinBySpecification.name required")
-    if "interval" in data:
+    if data.get("interval") is not None:
         import capo_lex_models_v2.types.analytics_interval
 
         out["interval"] = capo_lex_models_v2.types.analytics_interval.deserialize_json(
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> AnalyticsBinBySpecification:
         )
     else:
         raise DeserializationError("AnalyticsBinBySpecification.interval required")
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_lex_models_v2.types.analytics_sort_order
 
         out["order"] = capo_lex_models_v2.types.analytics_sort_order.deserialize_json(

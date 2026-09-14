@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> OtaTaskExecutionSummariesListDefinition:
 
     out: OtaTaskExecutionSummariesListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.ota_task_execution_summaries.deserialize_json(
                 item

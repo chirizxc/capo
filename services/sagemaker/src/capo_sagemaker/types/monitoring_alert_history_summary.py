@@ -54,17 +54,17 @@ def serialize_aws_json_1_1(value: MonitoringAlertHistorySummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringAlertHistorySummary:
     out: MonitoringAlertHistorySummary = {}  # type: ignore[typeddict-item]
-    if "MonitoringScheduleName" in data:
+    if data.get("MonitoringScheduleName") is not None:
         out["monitoring_schedule_name"] = data["MonitoringScheduleName"]
-    if "MonitoringAlertName" in data:
+    if data.get("MonitoringAlertName") is not None:
         out["monitoring_alert_name"] = data["MonitoringAlertName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "AlertStatus" in data:
+    if data.get("AlertStatus") is not None:
         import capo_sagemaker.types.monitoring_alert_status
 
         out["alert_status"] = (

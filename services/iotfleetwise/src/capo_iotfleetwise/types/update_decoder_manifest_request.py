@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_iotfleetwise.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_iotfleetwise.types.default_for_unmapped_signals_type
     import capo_iotfleetwise.types.description
@@ -53,6 +55,7 @@ class UpdateDecoderManifestRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: UpdateDecoderManifestRequest) -> dict:
     out: dict = {}
+    out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
     if "signal_decoders_to_add" in value:
@@ -122,9 +125,13 @@ def serialize_aws_json_1_0(value: UpdateDecoderManifestRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateDecoderManifestRequest:
     out: UpdateDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("UpdateDecoderManifestRequest.name required")
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "signalDecodersToAdd" in data:
+    if data.get("signalDecodersToAdd") is not None:
         import capo_iotfleetwise.types.signal_decoders
 
         out["signal_decoders_to_add"] = (
@@ -132,7 +139,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDecoderManifestRequest:
                 data["signalDecodersToAdd"]
             )
         )
-    if "signalDecodersToUpdate" in data:
+    if data.get("signalDecodersToUpdate") is not None:
         import capo_iotfleetwise.types.signal_decoders
 
         out["signal_decoders_to_update"] = (
@@ -140,7 +147,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDecoderManifestRequest:
                 data["signalDecodersToUpdate"]
             )
         )
-    if "signalDecodersToRemove" in data:
+    if data.get("signalDecodersToRemove") is not None:
         import capo_iotfleetwise.types.fqns
 
         out["signal_decoders_to_remove"] = (
@@ -148,7 +155,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDecoderManifestRequest:
                 data["signalDecodersToRemove"]
             )
         )
-    if "networkInterfacesToAdd" in data:
+    if data.get("networkInterfacesToAdd") is not None:
         import capo_iotfleetwise.types.network_interfaces
 
         out["network_interfaces_to_add"] = (
@@ -156,7 +163,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDecoderManifestRequest:
                 data["networkInterfacesToAdd"]
             )
         )
-    if "networkInterfacesToUpdate" in data:
+    if data.get("networkInterfacesToUpdate") is not None:
         import capo_iotfleetwise.types.network_interfaces
 
         out["network_interfaces_to_update"] = (
@@ -164,7 +171,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDecoderManifestRequest:
                 data["networkInterfacesToUpdate"]
             )
         )
-    if "networkInterfacesToRemove" in data:
+    if data.get("networkInterfacesToRemove") is not None:
         import capo_iotfleetwise.types.interface_ids
 
         out["network_interfaces_to_remove"] = (
@@ -172,7 +179,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDecoderManifestRequest:
                 data["networkInterfacesToRemove"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotfleetwise.types.manifest_status
 
         out["status"] = (
@@ -180,7 +187,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDecoderManifestRequest:
                 data["status"]
             )
         )
-    if "defaultForUnmappedSignals" in data:
+    if data.get("defaultForUnmappedSignals") is not None:
         import capo_iotfleetwise.types.default_for_unmapped_signals_type
 
         out["default_for_unmapped_signals"] = (

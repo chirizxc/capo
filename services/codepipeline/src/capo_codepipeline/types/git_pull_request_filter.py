@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: GitPullRequestFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GitPullRequestFilter:
     out: GitPullRequestFilter = {}  # type: ignore[typeddict-item]
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_codepipeline.types.git_pull_request_event_type_list
 
         out["events"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitPullRequestFilter:
                 data["events"]
             )
         )
-    if "branches" in data:
+    if data.get("branches") is not None:
         import capo_codepipeline.types.git_branch_filter_criteria
 
         out["branches"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitPullRequestFilter:
                 data["branches"]
             )
         )
-    if "filePaths" in data:
+    if data.get("filePaths") is not None:
         import capo_codepipeline.types.git_file_path_filter_criteria
 
         out["file_paths"] = (

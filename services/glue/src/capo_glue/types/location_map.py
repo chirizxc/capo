@@ -22,5 +22,7 @@ def serialize_aws_json_1_1(input_to_serialize: LocationMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> LocationMap:
     out: LocationMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

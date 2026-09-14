@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: UserTurnSlotOutputMap) -> dict:
 def deserialize_json(data: dict) -> UserTurnSlotOutputMap:
     out: UserTurnSlotOutputMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_lex_models_v2.types.user_turn_slot_output
 
         out[key] = capo_lex_models_v2.types.user_turn_slot_output.deserialize_json(

@@ -93,11 +93,11 @@ def serialize_aws_json_1_0(value: CountClosedWorkflowExecutionsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CountClosedWorkflowExecutionsInput:
     out: CountClosedWorkflowExecutionsInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("CountClosedWorkflowExecutionsInput.domain required")
-    if "startTimeFilter" in data:
+    if data.get("startTimeFilter") is not None:
         import capo_swf.types.execution_time_filter
 
         out["start_time_filter"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> CountClosedWorkflowExecutionsInput:
                 data["startTimeFilter"]
             )
         )
-    if "closeTimeFilter" in data:
+    if data.get("closeTimeFilter") is not None:
         import capo_swf.types.execution_time_filter
 
         out["close_time_filter"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_0(data: dict) -> CountClosedWorkflowExecutionsInput:
                 data["closeTimeFilter"]
             )
         )
-    if "executionFilter" in data:
+    if data.get("executionFilter") is not None:
         import capo_swf.types.workflow_execution_filter
 
         out["execution_filter"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> CountClosedWorkflowExecutionsInput:
                 data["executionFilter"]
             )
         )
-    if "typeFilter" in data:
+    if data.get("typeFilter") is not None:
         import capo_swf.types.workflow_type_filter
 
         out["type_filter"] = (
@@ -129,13 +129,13 @@ def deserialize_aws_json_1_0(data: dict) -> CountClosedWorkflowExecutionsInput:
                 data["typeFilter"]
             )
         )
-    if "tagFilter" in data:
+    if data.get("tagFilter") is not None:
         import capo_swf.types.tag_filter
 
         out["tag_filter"] = capo_swf.types.tag_filter.deserialize_aws_json_1_0(
             data["tagFilter"]
         )
-    if "closeStatusFilter" in data:
+    if data.get("closeStatusFilter") is not None:
         import capo_swf.types.close_status_filter
 
         out["close_status_filter"] = (

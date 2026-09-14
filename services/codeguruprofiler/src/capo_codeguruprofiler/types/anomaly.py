@@ -37,7 +37,7 @@ def serialize_json(value: Anomaly) -> dict:
 
 def deserialize_json(data: dict) -> Anomaly:
     out: Anomaly = {}  # type: ignore[typeddict-item]
-    if "metric" in data:
+    if data.get("metric") is not None:
         import capo_codeguruprofiler.types.metric
 
         out["metric"] = capo_codeguruprofiler.types.metric.deserialize_json(
@@ -45,11 +45,11 @@ def deserialize_json(data: dict) -> Anomaly:
         )
     else:
         raise DeserializationError("Anomaly.metric required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     else:
         raise DeserializationError("Anomaly.reason required")
-    if "instances" in data:
+    if data.get("instances") is not None:
         import capo_codeguruprofiler.types.anomaly_instances
 
         out["instances"] = (

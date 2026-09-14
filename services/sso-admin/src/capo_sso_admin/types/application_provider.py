@@ -61,13 +61,13 @@ def serialize_aws_json_1_1(value: ApplicationProvider) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationProvider:
     out: ApplicationProvider = {}  # type: ignore[typeddict-item]
-    if "ApplicationProviderArn" in data:
+    if data.get("ApplicationProviderArn") is not None:
         out["application_provider_arn"] = data["ApplicationProviderArn"]
     else:
         raise DeserializationError(
             "ApplicationProvider.application_provider_arn required"
         )
-    if "FederationProtocol" in data:
+    if data.get("FederationProtocol") is not None:
         import capo_sso_admin.types.federation_protocol
 
         out["federation_protocol"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationProvider:
                 data["FederationProtocol"]
             )
         )
-    if "DisplayData" in data:
+    if data.get("DisplayData") is not None:
         import capo_sso_admin.types.display_data
 
         out["display_data"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationProvider:
                 data["DisplayData"]
             )
         )
-    if "ResourceServerConfig" in data:
+    if data.get("ResourceServerConfig") is not None:
         import capo_sso_admin.types.resource_server_config
 
         out["resource_server_config"] = (

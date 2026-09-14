@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AnalyticsUtteranceGroupByKeys:
 
     out: AnalyticsUtteranceGroupByKeys = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.analytics_utterance_group_by_key.deserialize_json(
                 item

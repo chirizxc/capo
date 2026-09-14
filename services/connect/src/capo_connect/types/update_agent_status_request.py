@@ -56,19 +56,19 @@ def serialize_json(value: UpdateAgentStatusRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAgentStatusRequest:
     out: UpdateAgentStatusRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_connect.types.agent_status_state
 
         out["state"] = capo_connect.types.agent_status_state.deserialize_json(
             data["State"]
         )
-    if "DisplayOrder" in data:
+    if data.get("DisplayOrder") is not None:
         out["display_order"] = data["DisplayOrder"]
-    if "ResetOrderNumber" in data:
+    if data.get("ResetOrderNumber") is not None:
         out["reset_order_number"] = data["ResetOrderNumber"]
     else:
         out["reset_order_number"] = False

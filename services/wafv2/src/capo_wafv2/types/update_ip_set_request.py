@@ -51,23 +51,23 @@ def serialize_aws_json_1_1(value: UpdateIPSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateIPSetRequest:
     out: UpdateIPSetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateIPSetRequest.name required")
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("UpdateIPSetRequest.scope required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateIPSetRequest.id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Addresses" in data:
+    if data.get("Addresses") is not None:
         import capo_wafv2.types.ip_addresses
 
         out["addresses"] = capo_wafv2.types.ip_addresses.deserialize_aws_json_1_1(
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateIPSetRequest:
         )
     else:
         raise DeserializationError("UpdateIPSetRequest.addresses required")
-    if "LockToken" in data:
+    if data.get("LockToken") is not None:
         out["lock_token"] = data["LockToken"]
     else:
         raise DeserializationError("UpdateIPSetRequest.lock_token required")

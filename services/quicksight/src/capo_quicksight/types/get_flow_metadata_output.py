@@ -77,21 +77,21 @@ def serialize_json(value: GetFlowMetadataOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetFlowMetadataOutput:
     out: GetFlowMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("GetFlowMetadataOutput.arn required")
-    if "FlowId" in data:
+    if data.get("FlowId") is not None:
         out["flow_id"] = data["FlowId"]
     else:
         raise DeserializationError("GetFlowMetadataOutput.flow_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetFlowMetadataOutput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "PublishState" in data:
+    if data.get("PublishState") is not None:
         import capo_quicksight.types.flow_publish_state
 
         out["publish_state"] = (
@@ -99,15 +99,15 @@ def deserialize_json(data: dict) -> GetFlowMetadataOutput:
                 data["PublishState"]
             )
         )
-    if "UserCount" in data:
+    if data.get("UserCount") is not None:
         out["user_count"] = data["UserCount"]
     else:
         out["user_count"] = 0
-    if "RunCount" in data:
+    if data.get("RunCount") is not None:
         out["run_count"] = data["RunCount"]
     else:
         out["run_count"] = 0
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
@@ -115,12 +115,12 @@ def deserialize_json(data: dict) -> GetFlowMetadataOutput:
         )
     else:
         raise DeserializationError("GetFlowMetadataOutput.created_time required")
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

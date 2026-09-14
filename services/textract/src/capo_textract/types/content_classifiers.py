@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ContentClassifiers:
 
     out: ContentClassifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_textract.types.content_classifier.deserialize_aws_json_1_1(item)
         )

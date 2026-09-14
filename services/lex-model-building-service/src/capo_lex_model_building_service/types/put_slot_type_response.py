@@ -118,11 +118,11 @@ def serialize_json(value: PutSlotTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutSlotTypeResponse:
     out: PutSlotTypeResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "enumerationValues" in data:
+    if data.get("enumerationValues") is not None:
         import capo_lex_model_building_service.types.enumeration_values
 
         out["enumeration_values"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> PutSlotTypeResponse:
                 data["enumerationValues"]
             )
         )
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["last_updated_date"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> PutSlotTypeResponse:
                 data["lastUpdatedDate"]
             )
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["created_date"] = (
@@ -146,11 +146,11 @@ def deserialize_json(data: dict) -> PutSlotTypeResponse:
                 data["createdDate"]
             )
         )
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         out["checksum"] = data["checksum"]
-    if "valueSelectionStrategy" in data:
+    if data.get("valueSelectionStrategy") is not None:
         import capo_lex_model_building_service.types.slot_value_selection_strategy
 
         out["value_selection_strategy"] = (
@@ -158,11 +158,11 @@ def deserialize_json(data: dict) -> PutSlotTypeResponse:
                 data["valueSelectionStrategy"]
             )
         )
-    if "createVersion" in data:
+    if data.get("createVersion") is not None:
         out["create_version"] = data["createVersion"]
-    if "parentSlotTypeSignature" in data:
+    if data.get("parentSlotTypeSignature") is not None:
         out["parent_slot_type_signature"] = data["parentSlotTypeSignature"]
-    if "slotTypeConfigurations" in data:
+    if data.get("slotTypeConfigurations") is not None:
         import capo_lex_model_building_service.types.slot_type_configurations
 
         out["slot_type_configurations"] = (

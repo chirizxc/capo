@@ -39,18 +39,18 @@ def serialize_aws_json_1_1(value: S3ManifestConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ManifestConfig:
     out: S3ManifestConfig = {}  # type: ignore[typeddict-item]
-    if "ManifestObjectPath" in data:
+    if data.get("ManifestObjectPath") is not None:
         out["manifest_object_path"] = data["ManifestObjectPath"]
     else:
         raise DeserializationError("S3ManifestConfig.manifest_object_path required")
-    if "BucketAccessRoleArn" in data:
+    if data.get("BucketAccessRoleArn") is not None:
         out["bucket_access_role_arn"] = data["BucketAccessRoleArn"]
     else:
         raise DeserializationError("S3ManifestConfig.bucket_access_role_arn required")
-    if "S3BucketArn" in data:
+    if data.get("S3BucketArn") is not None:
         out["s3_bucket_arn"] = data["S3BucketArn"]
     else:
         raise DeserializationError("S3ManifestConfig.s3_bucket_arn required")
-    if "ManifestObjectVersionId" in data:
+    if data.get("ManifestObjectVersionId") is not None:
         out["manifest_object_version_id"] = data["ManifestObjectVersionId"]
     return out

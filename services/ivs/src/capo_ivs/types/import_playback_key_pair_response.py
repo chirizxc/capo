@@ -27,7 +27,7 @@ def serialize_json(value: ImportPlaybackKeyPairResponse) -> dict:
 
 def deserialize_json(data: dict) -> ImportPlaybackKeyPairResponse:
     out: ImportPlaybackKeyPairResponse = {}  # type: ignore[typeddict-item]
-    if "keyPair" in data:
+    if data.get("keyPair") is not None:
         import capo_ivs.types.playback_key_pair
 
         out["key_pair"] = capo_ivs.types.playback_key_pair.deserialize_json(

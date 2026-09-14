@@ -82,9 +82,10 @@ class Config:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.create_config_request.CreateConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["config_data"] = config_data
+        input_: capo_groundstation.types.create_config_request.CreateConfigRequest = {
+            "name": name,
+            "config_data": config_data,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -93,6 +94,7 @@ class Config:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -130,15 +132,17 @@ class Config:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.get_config_request.GetConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["config_type"] = config_type
+        input_: capo_groundstation.types.get_config_request.GetConfigRequest = {
+            "config_id": config_id,
+            "config_type": config_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -180,17 +184,19 @@ class Config:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.update_config_request.UpdateConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["name"] = name
-        input_["config_type"] = config_type
-        input_["config_data"] = config_data
+        input_: capo_groundstation.types.update_config_request.UpdateConfigRequest = {
+            "config_id": config_id,
+            "name": name,
+            "config_type": config_type,
+            "config_data": config_data,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -228,15 +234,17 @@ class Config:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.delete_config_request.DeleteConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["config_type"] = config_type
+        input_: capo_groundstation.types.delete_config_request.DeleteConfigRequest = {
+            "config_id": config_id,
+            "config_type": config_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -278,7 +286,7 @@ class Config:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_configs_request.ListConfigsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_configs_request.ListConfigsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -289,6 +297,7 @@ class Config:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -335,9 +344,10 @@ class AsyncConfig:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.create_config_request.CreateConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["config_data"] = config_data
+        input_: capo_groundstation.types.create_config_request.CreateConfigRequest = {
+            "name": name,
+            "config_data": config_data,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -346,6 +356,7 @@ class AsyncConfig:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -384,15 +395,17 @@ class AsyncConfig:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.get_config_request.GetConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["config_type"] = config_type
+        input_: capo_groundstation.types.get_config_request.GetConfigRequest = {
+            "config_id": config_id,
+            "config_type": config_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -435,17 +448,19 @@ class AsyncConfig:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.update_config_request.UpdateConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["name"] = name
-        input_["config_type"] = config_type
-        input_["config_data"] = config_data
+        input_: capo_groundstation.types.update_config_request.UpdateConfigRequest = {
+            "config_id": config_id,
+            "name": name,
+            "config_type": config_type,
+            "config_data": config_data,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -484,15 +499,17 @@ class AsyncConfig:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.delete_config_request.DeleteConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["config_id"] = config_id
-        input_["config_type"] = config_type
+        input_: capo_groundstation.types.delete_config_request.DeleteConfigRequest = {
+            "config_id": config_id,
+            "config_type": config_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -535,7 +552,7 @@ class AsyncConfig:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_configs_request.ListConfigsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_configs_request.ListConfigsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -546,4 +563,5 @@ class AsyncConfig:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

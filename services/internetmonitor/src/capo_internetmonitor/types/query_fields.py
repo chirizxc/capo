@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> QueryFields:
 
     out: QueryFields = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_internetmonitor.types.query_field.deserialize_json(item))
     return out

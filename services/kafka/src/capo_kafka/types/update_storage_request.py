@@ -52,9 +52,9 @@ def serialize_json(value: UpdateStorageRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateStorageRequest:
     out: UpdateStorageRequest = {}  # type: ignore[typeddict-item]
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "provisionedThroughput" in data:
+    if data.get("provisionedThroughput") is not None:
         import capo_kafka.types.provisioned_throughput
 
         out["provisioned_throughput"] = (
@@ -62,12 +62,12 @@ def deserialize_json(data: dict) -> UpdateStorageRequest:
                 data["provisionedThroughput"]
             )
         )
-    if "storageMode" in data:
+    if data.get("storageMode") is not None:
         import capo_kafka.types.storage_mode
 
         out["storage_mode"] = capo_kafka.types.storage_mode.deserialize_json(
             data["storageMode"]
         )
-    if "volumeSizeGB" in data:
+    if data.get("volumeSizeGB") is not None:
         out["volume_size_gb"] = data["volumeSizeGB"]
     return out

@@ -42,12 +42,12 @@ def serialize_json(value: AwsRedshiftClusterClusterSnapshotCopyStatus) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterClusterSnapshotCopyStatus:
     out: AwsRedshiftClusterClusterSnapshotCopyStatus = {}  # type: ignore[typeddict-item]
-    if "DestinationRegion" in data:
+    if data.get("DestinationRegion") is not None:
         out["destination_region"] = data["DestinationRegion"]
-    if "ManualSnapshotRetentionPeriod" in data:
+    if data.get("ManualSnapshotRetentionPeriod") is not None:
         out["manual_snapshot_retention_period"] = data["ManualSnapshotRetentionPeriod"]
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         out["retention_period"] = data["RetentionPeriod"]
-    if "SnapshotCopyGrantName" in data:
+    if data.get("SnapshotCopyGrantName") is not None:
         out["snapshot_copy_grant_name"] = data["SnapshotCopyGrantName"]
     return out

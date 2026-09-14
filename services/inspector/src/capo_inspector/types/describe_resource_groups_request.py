@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DescribeResourceGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeResourceGroupsRequest:
     out: DescribeResourceGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceGroupArns" in data:
+    if data.get("resourceGroupArns") is not None:
         import capo_inspector.types.batch_describe_arn_list
 
         out["resource_group_arns"] = (

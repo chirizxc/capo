@@ -47,16 +47,16 @@ def serialize_json(value: DeleteAnalysisResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAnalysisResponse:
     out: DeleteAnalysisResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AnalysisId" in data:
+    if data.get("AnalysisId") is not None:
         out["analysis_id"] = data["AnalysisId"]
-    if "DeletionTime" in data:
+    if data.get("DeletionTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["deletion_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["DeletionTime"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

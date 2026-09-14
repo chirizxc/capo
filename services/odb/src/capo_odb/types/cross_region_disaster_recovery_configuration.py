@@ -40,13 +40,13 @@ def serialize_aws_json_1_0(value: CrossRegionDisasterRecoveryConfiguration) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> CrossRegionDisasterRecoveryConfiguration:
     out: CrossRegionDisasterRecoveryConfiguration = {}  # type: ignore[typeddict-item]
-    if "sourceAutonomousDatabaseArn" in data:
+    if data.get("sourceAutonomousDatabaseArn") is not None:
         out["source_autonomous_database_arn"] = data["sourceAutonomousDatabaseArn"]
     else:
         raise DeserializationError(
             "CrossRegionDisasterRecoveryConfiguration.source_autonomous_database_arn required"
         )
-    if "remoteDisasterRecoveryType" in data:
+    if data.get("remoteDisasterRecoveryType") is not None:
         import capo_odb.types.disaster_recovery_type
 
         out["remote_disaster_recovery_type"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_0(data: dict) -> CrossRegionDisasterRecoveryConfigura
         raise DeserializationError(
             "CrossRegionDisasterRecoveryConfiguration.remote_disaster_recovery_type required"
         )
-    if "isReplicateAutomaticBackups" in data:
+    if data.get("isReplicateAutomaticBackups") is not None:
         out["is_replicate_automatic_backups"] = data["isReplicateAutomaticBackups"]
     return out

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ConflictMetadataList:
 
     out: ConflictMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecommit.types.conflict_metadata.deserialize_aws_json_1_1(item)
         )

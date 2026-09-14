@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: StorageConnector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StorageConnector:
     out: StorageConnector = {}  # type: ignore[typeddict-item]
-    if "ConnectorType" in data:
+    if data.get("ConnectorType") is not None:
         import capo_workspaces.types.storage_connector_type_enum
 
         out["connector_type"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> StorageConnector:
         )
     else:
         raise DeserializationError("StorageConnector.connector_type required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_workspaces.types.storage_connector_status_enum
 
         out["status"] = (

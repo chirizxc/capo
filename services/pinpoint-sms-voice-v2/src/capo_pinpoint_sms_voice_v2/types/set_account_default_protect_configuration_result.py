@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: SetAccountDefaultProtectConfigurationResult) -
 
 def deserialize_aws_json_1_0(data: dict) -> SetAccountDefaultProtectConfigurationResult:
     out: SetAccountDefaultProtectConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "DefaultProtectConfigurationArn" in data:
+    if data.get("DefaultProtectConfigurationArn") is not None:
         out["default_protect_configuration_arn"] = data[
             "DefaultProtectConfigurationArn"
         ]
@@ -36,7 +36,7 @@ def deserialize_aws_json_1_0(data: dict) -> SetAccountDefaultProtectConfiguratio
         raise DeserializationError(
             "SetAccountDefaultProtectConfigurationResult.default_protect_configuration_arn required"
         )
-    if "DefaultProtectConfigurationId" in data:
+    if data.get("DefaultProtectConfigurationId") is not None:
         out["default_protect_configuration_id"] = data["DefaultProtectConfigurationId"]
     else:
         raise DeserializationError(

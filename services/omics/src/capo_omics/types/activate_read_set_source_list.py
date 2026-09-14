@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ActivateReadSetSourceList:
 
     out: ActivateReadSetSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_omics.types.activate_read_set_source_item.deserialize_json(item)
         )

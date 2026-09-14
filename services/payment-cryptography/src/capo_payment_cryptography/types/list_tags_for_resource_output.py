@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ListTagsForResourceOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTagsForResourceOutput:
     out: ListTagsForResourceOutput = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_payment_cryptography.types.tags
 
         out["tags"] = capo_payment_cryptography.types.tags.deserialize_aws_json_1_0(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListTagsForResourceOutput:
         )
     else:
         raise DeserializationError("ListTagsForResourceOutput.tags required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

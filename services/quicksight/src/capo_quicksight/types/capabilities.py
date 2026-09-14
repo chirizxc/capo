@@ -2549,13 +2549,13 @@ def serialize_json(value: Capabilities) -> dict:
 
 def deserialize_json(data: dict) -> Capabilities:
     out: Capabilities = {}  # type: ignore[typeddict-item]
-    if "ExportToCsv" in data:
+    if data.get("ExportToCsv") is not None:
         import capo_quicksight.types.capability_state
 
         out["export_to_csv"] = capo_quicksight.types.capability_state.deserialize_json(
             data["ExportToCsv"]
         )
-    if "ExportToExcel" in data:
+    if data.get("ExportToExcel") is not None:
         import capo_quicksight.types.capability_state
 
         out["export_to_excel"] = (
@@ -2563,19 +2563,19 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ExportToExcel"]
             )
         )
-    if "ExportToPdf" in data:
+    if data.get("ExportToPdf") is not None:
         import capo_quicksight.types.capability_state
 
         out["export_to_pdf"] = capo_quicksight.types.capability_state.deserialize_json(
             data["ExportToPdf"]
         )
-    if "PrintReports" in data:
+    if data.get("PrintReports") is not None:
         import capo_quicksight.types.capability_state
 
         out["print_reports"] = capo_quicksight.types.capability_state.deserialize_json(
             data["PrintReports"]
         )
-    if "CreateAndUpdateThemes" in data:
+    if data.get("CreateAndUpdateThemes") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_themes"] = (
@@ -2583,7 +2583,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateThemes"]
             )
         )
-    if "AddOrRunAnomalyDetectionForAnalyses" in data:
+    if data.get("AddOrRunAnomalyDetectionForAnalyses") is not None:
         import capo_quicksight.types.capability_state
 
         out["add_or_run_anomaly_detection_for_analyses"] = (
@@ -2591,13 +2591,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["AddOrRunAnomalyDetectionForAnalyses"]
             )
         )
-    if "ShareAnalyses" in data:
+    if data.get("ShareAnalyses") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_analyses"] = capo_quicksight.types.capability_state.deserialize_json(
             data["ShareAnalyses"]
         )
-    if "CreateAndUpdateDatasets" in data:
+    if data.get("CreateAndUpdateDatasets") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_datasets"] = (
@@ -2605,13 +2605,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateDatasets"]
             )
         )
-    if "ShareDatasets" in data:
+    if data.get("ShareDatasets") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_datasets"] = capo_quicksight.types.capability_state.deserialize_json(
             data["ShareDatasets"]
         )
-    if "SubscribeDashboardEmailReports" in data:
+    if data.get("SubscribeDashboardEmailReports") is not None:
         import capo_quicksight.types.capability_state
 
         out["subscribe_dashboard_email_reports"] = (
@@ -2619,7 +2619,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SubscribeDashboardEmailReports"]
             )
         )
-    if "CreateAndUpdateDashboardEmailReports" in data:
+    if data.get("CreateAndUpdateDashboardEmailReports") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_dashboard_email_reports"] = (
@@ -2627,7 +2627,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateDashboardEmailReports"]
             )
         )
-    if "ShareDashboards" in data:
+    if data.get("ShareDashboards") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_dashboards"] = (
@@ -2635,7 +2635,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareDashboards"]
             )
         )
-    if "CreateAndUpdateThresholdAlerts" in data:
+    if data.get("CreateAndUpdateThresholdAlerts") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_threshold_alerts"] = (
@@ -2643,7 +2643,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateThresholdAlerts"]
             )
         )
-    if "RenameSharedFolders" in data:
+    if data.get("RenameSharedFolders") is not None:
         import capo_quicksight.types.capability_state
 
         out["rename_shared_folders"] = (
@@ -2651,7 +2651,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["RenameSharedFolders"]
             )
         )
-    if "CreateSharedFolders" in data:
+    if data.get("CreateSharedFolders") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_shared_folders"] = (
@@ -2659,7 +2659,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateSharedFolders"]
             )
         )
-    if "CreateAndUpdateDataSources" in data:
+    if data.get("CreateAndUpdateDataSources") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_data_sources"] = (
@@ -2667,7 +2667,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateDataSources"]
             )
         )
-    if "ShareDataSources" in data:
+    if data.get("ShareDataSources") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_data_sources"] = (
@@ -2675,7 +2675,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareDataSources"]
             )
         )
-    if "ViewAccountSPICECapacity" in data:
+    if data.get("ViewAccountSPICECapacity") is not None:
         import capo_quicksight.types.capability_state
 
         out["view_account_spice_capacity"] = (
@@ -2683,7 +2683,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ViewAccountSPICECapacity"]
             )
         )
-    if "CreateSPICEDataset" in data:
+    if data.get("CreateSPICEDataset") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_spice_dataset"] = (
@@ -2691,7 +2691,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateSPICEDataset"]
             )
         )
-    if "ExportToPdfInScheduledReports" in data:
+    if data.get("ExportToPdfInScheduledReports") is not None:
         import capo_quicksight.types.capability_state
 
         out["export_to_pdf_in_scheduled_reports"] = (
@@ -2699,7 +2699,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ExportToPdfInScheduledReports"]
             )
         )
-    if "ExportToCsvInScheduledReports" in data:
+    if data.get("ExportToCsvInScheduledReports") is not None:
         import capo_quicksight.types.capability_state
 
         out["export_to_csv_in_scheduled_reports"] = (
@@ -2707,7 +2707,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ExportToCsvInScheduledReports"]
             )
         )
-    if "ExportToExcelInScheduledReports" in data:
+    if data.get("ExportToExcelInScheduledReports") is not None:
         import capo_quicksight.types.capability_state
 
         out["export_to_excel_in_scheduled_reports"] = (
@@ -2715,7 +2715,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ExportToExcelInScheduledReports"]
             )
         )
-    if "IncludeContentInScheduledReportsEmail" in data:
+    if data.get("IncludeContentInScheduledReportsEmail") is not None:
         import capo_quicksight.types.capability_state
 
         out["include_content_in_scheduled_reports_email"] = (
@@ -2723,37 +2723,37 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["IncludeContentInScheduledReportsEmail"]
             )
         )
-    if "Dashboard" in data:
+    if data.get("Dashboard") is not None:
         import capo_quicksight.types.capability_state
 
         out["dashboard"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Dashboard"]
         )
-    if "Analysis" in data:
+    if data.get("Analysis") is not None:
         import capo_quicksight.types.capability_state
 
         out["analysis"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Analysis"]
         )
-    if "Automate" in data:
+    if data.get("Automate") is not None:
         import capo_quicksight.types.capability_state
 
         out["automate"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Automate"]
         )
-    if "Flow" in data:
+    if data.get("Flow") is not None:
         import capo_quicksight.types.capability_state
 
         out["flow"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Flow"]
         )
-    if "Apps" in data:
+    if data.get("Apps") is not None:
         import capo_quicksight.types.capability_state
 
         out["apps"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Apps"]
         )
-    if "CreateAndUpdateApps" in data:
+    if data.get("CreateAndUpdateApps") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_apps"] = (
@@ -2761,13 +2761,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateApps"]
             )
         )
-    if "ShareApps" in data:
+    if data.get("ShareApps") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_apps"] = capo_quicksight.types.capability_state.deserialize_json(
             data["ShareApps"]
         )
-    if "InvokeAppsAIInference" in data:
+    if data.get("InvokeAppsAIInference") is not None:
         import capo_quicksight.types.capability_state
 
         out["invoke_apps_ai_inference"] = (
@@ -2775,7 +2775,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["InvokeAppsAIInference"]
             )
         )
-    if "AccessAppsNativeDataStore" in data:
+    if data.get("AccessAppsNativeDataStore") is not None:
         import capo_quicksight.types.capability_state
 
         out["access_apps_native_data_store"] = (
@@ -2783,7 +2783,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["AccessAppsNativeDataStore"]
             )
         )
-    if "PublishWithoutApproval" in data:
+    if data.get("PublishWithoutApproval") is not None:
         import capo_quicksight.types.capability_state
 
         out["publish_without_approval"] = (
@@ -2791,7 +2791,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["PublishWithoutApproval"]
             )
         )
-    if "UseBedrockModels" in data:
+    if data.get("UseBedrockModels") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_bedrock_models"] = (
@@ -2799,7 +2799,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseBedrockModels"]
             )
         )
-    if "PerformFlowUiTask" in data:
+    if data.get("PerformFlowUiTask") is not None:
         import capo_quicksight.types.capability_state
 
         out["perform_flow_ui_task"] = (
@@ -2807,7 +2807,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["PerformFlowUiTask"]
             )
         )
-    if "ApproveFlowShareRequests" in data:
+    if data.get("ApproveFlowShareRequests") is not None:
         import capo_quicksight.types.capability_state
 
         out["approve_flow_share_requests"] = (
@@ -2815,7 +2815,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ApproveFlowShareRequests"]
             )
         )
-    if "UseAgentWebSearch" in data:
+    if data.get("UseAgentWebSearch") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_agent_web_search"] = (
@@ -2823,19 +2823,19 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseAgentWebSearch"]
             )
         )
-    if "KnowledgeBase" in data:
+    if data.get("KnowledgeBase") is not None:
         import capo_quicksight.types.capability_state
 
         out["knowledge_base"] = capo_quicksight.types.capability_state.deserialize_json(
             data["KnowledgeBase"]
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_quicksight.types.capability_state
 
         out["action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Action"]
         )
-    if "GenericHTTPAction" in data:
+    if data.get("GenericHTTPAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["generic_http_action"] = (
@@ -2843,7 +2843,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["GenericHTTPAction"]
             )
         )
-    if "CreateAndUpdateGenericHTTPAction" in data:
+    if data.get("CreateAndUpdateGenericHTTPAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_generic_http_action"] = (
@@ -2851,7 +2851,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateGenericHTTPAction"]
             )
         )
-    if "ShareGenericHTTPAction" in data:
+    if data.get("ShareGenericHTTPAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_generic_http_action"] = (
@@ -2859,7 +2859,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareGenericHTTPAction"]
             )
         )
-    if "UseGenericHTTPAction" in data:
+    if data.get("UseGenericHTTPAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_generic_http_action"] = (
@@ -2867,13 +2867,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseGenericHTTPAction"]
             )
         )
-    if "AsanaAction" in data:
+    if data.get("AsanaAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["asana_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["AsanaAction"]
         )
-    if "CreateAndUpdateAsanaAction" in data:
+    if data.get("CreateAndUpdateAsanaAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_asana_action"] = (
@@ -2881,7 +2881,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateAsanaAction"]
             )
         )
-    if "ShareAsanaAction" in data:
+    if data.get("ShareAsanaAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_asana_action"] = (
@@ -2889,7 +2889,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareAsanaAction"]
             )
         )
-    if "UseAsanaAction" in data:
+    if data.get("UseAsanaAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_asana_action"] = (
@@ -2897,13 +2897,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseAsanaAction"]
             )
         )
-    if "SlackAction" in data:
+    if data.get("SlackAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["slack_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["SlackAction"]
         )
-    if "CreateAndUpdateSlackAction" in data:
+    if data.get("CreateAndUpdateSlackAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_slack_action"] = (
@@ -2911,7 +2911,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSlackAction"]
             )
         )
-    if "ShareSlackAction" in data:
+    if data.get("ShareSlackAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_slack_action"] = (
@@ -2919,7 +2919,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSlackAction"]
             )
         )
-    if "UseSlackAction" in data:
+    if data.get("UseSlackAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_slack_action"] = (
@@ -2927,7 +2927,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSlackAction"]
             )
         )
-    if "ServiceNowAction" in data:
+    if data.get("ServiceNowAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["service_now_action"] = (
@@ -2935,7 +2935,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ServiceNowAction"]
             )
         )
-    if "CreateAndUpdateServiceNowAction" in data:
+    if data.get("CreateAndUpdateServiceNowAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_service_now_action"] = (
@@ -2943,7 +2943,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateServiceNowAction"]
             )
         )
-    if "ShareServiceNowAction" in data:
+    if data.get("ShareServiceNowAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_service_now_action"] = (
@@ -2951,7 +2951,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareServiceNowAction"]
             )
         )
-    if "UseServiceNowAction" in data:
+    if data.get("UseServiceNowAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_service_now_action"] = (
@@ -2959,7 +2959,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseServiceNowAction"]
             )
         )
-    if "SalesforceAction" in data:
+    if data.get("SalesforceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["salesforce_action"] = (
@@ -2967,7 +2967,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SalesforceAction"]
             )
         )
-    if "CreateAndUpdateSalesforceAction" in data:
+    if data.get("CreateAndUpdateSalesforceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_salesforce_action"] = (
@@ -2975,7 +2975,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSalesforceAction"]
             )
         )
-    if "ShareSalesforceAction" in data:
+    if data.get("ShareSalesforceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_salesforce_action"] = (
@@ -2983,7 +2983,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSalesforceAction"]
             )
         )
-    if "UseSalesforceAction" in data:
+    if data.get("UseSalesforceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_salesforce_action"] = (
@@ -2991,7 +2991,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSalesforceAction"]
             )
         )
-    if "MSExchangeAction" in data:
+    if data.get("MSExchangeAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["ms_exchange_action"] = (
@@ -2999,7 +2999,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["MSExchangeAction"]
             )
         )
-    if "CreateAndUpdateMSExchangeAction" in data:
+    if data.get("CreateAndUpdateMSExchangeAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_ms_exchange_action"] = (
@@ -3007,7 +3007,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateMSExchangeAction"]
             )
         )
-    if "ShareMSExchangeAction" in data:
+    if data.get("ShareMSExchangeAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_ms_exchange_action"] = (
@@ -3015,7 +3015,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareMSExchangeAction"]
             )
         )
-    if "UseMSExchangeAction" in data:
+    if data.get("UseMSExchangeAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_ms_exchange_action"] = (
@@ -3023,7 +3023,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseMSExchangeAction"]
             )
         )
-    if "PagerDutyAction" in data:
+    if data.get("PagerDutyAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["pager_duty_action"] = (
@@ -3031,7 +3031,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["PagerDutyAction"]
             )
         )
-    if "CreateAndUpdatePagerDutyAction" in data:
+    if data.get("CreateAndUpdatePagerDutyAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_pager_duty_action"] = (
@@ -3039,7 +3039,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdatePagerDutyAction"]
             )
         )
-    if "SharePagerDutyAction" in data:
+    if data.get("SharePagerDutyAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_pager_duty_action"] = (
@@ -3047,7 +3047,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SharePagerDutyAction"]
             )
         )
-    if "UsePagerDutyAction" in data:
+    if data.get("UsePagerDutyAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_pager_duty_action"] = (
@@ -3055,13 +3055,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UsePagerDutyAction"]
             )
         )
-    if "JiraAction" in data:
+    if data.get("JiraAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["jira_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["JiraAction"]
         )
-    if "CreateAndUpdateJiraAction" in data:
+    if data.get("CreateAndUpdateJiraAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_jira_action"] = (
@@ -3069,7 +3069,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateJiraAction"]
             )
         )
-    if "ShareJiraAction" in data:
+    if data.get("ShareJiraAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_jira_action"] = (
@@ -3077,7 +3077,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareJiraAction"]
             )
         )
-    if "UseJiraAction" in data:
+    if data.get("UseJiraAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_jira_action"] = (
@@ -3085,7 +3085,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseJiraAction"]
             )
         )
-    if "ConfluenceAction" in data:
+    if data.get("ConfluenceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["confluence_action"] = (
@@ -3093,7 +3093,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ConfluenceAction"]
             )
         )
-    if "CreateAndUpdateConfluenceAction" in data:
+    if data.get("CreateAndUpdateConfluenceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_confluence_action"] = (
@@ -3101,7 +3101,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateConfluenceAction"]
             )
         )
-    if "ShareConfluenceAction" in data:
+    if data.get("ShareConfluenceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_confluence_action"] = (
@@ -3109,7 +3109,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareConfluenceAction"]
             )
         )
-    if "UseConfluenceAction" in data:
+    if data.get("UseConfluenceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_confluence_action"] = (
@@ -3117,7 +3117,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseConfluenceAction"]
             )
         )
-    if "OneDriveAction" in data:
+    if data.get("OneDriveAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["one_drive_action"] = (
@@ -3125,7 +3125,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["OneDriveAction"]
             )
         )
-    if "CreateAndUpdateOneDriveAction" in data:
+    if data.get("CreateAndUpdateOneDriveAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_one_drive_action"] = (
@@ -3133,7 +3133,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateOneDriveAction"]
             )
         )
-    if "ShareOneDriveAction" in data:
+    if data.get("ShareOneDriveAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_one_drive_action"] = (
@@ -3141,7 +3141,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareOneDriveAction"]
             )
         )
-    if "UseOneDriveAction" in data:
+    if data.get("UseOneDriveAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_one_drive_action"] = (
@@ -3149,7 +3149,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseOneDriveAction"]
             )
         )
-    if "SharePointAction" in data:
+    if data.get("SharePointAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_point_action"] = (
@@ -3157,7 +3157,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SharePointAction"]
             )
         )
-    if "CreateAndUpdateSharePointAction" in data:
+    if data.get("CreateAndUpdateSharePointAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_share_point_action"] = (
@@ -3165,7 +3165,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSharePointAction"]
             )
         )
-    if "ShareSharePointAction" in data:
+    if data.get("ShareSharePointAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_share_point_action"] = (
@@ -3173,7 +3173,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSharePointAction"]
             )
         )
-    if "UseSharePointAction" in data:
+    if data.get("UseSharePointAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_share_point_action"] = (
@@ -3181,7 +3181,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSharePointAction"]
             )
         )
-    if "MSTeamsAction" in data:
+    if data.get("MSTeamsAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["ms_teams_action"] = (
@@ -3189,7 +3189,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["MSTeamsAction"]
             )
         )
-    if "CreateAndUpdateMSTeamsAction" in data:
+    if data.get("CreateAndUpdateMSTeamsAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_ms_teams_action"] = (
@@ -3197,7 +3197,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateMSTeamsAction"]
             )
         )
-    if "ShareMSTeamsAction" in data:
+    if data.get("ShareMSTeamsAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_ms_teams_action"] = (
@@ -3205,7 +3205,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareMSTeamsAction"]
             )
         )
-    if "UseMSTeamsAction" in data:
+    if data.get("UseMSTeamsAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_ms_teams_action"] = (
@@ -3213,7 +3213,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseMSTeamsAction"]
             )
         )
-    if "GoogleCalendarAction" in data:
+    if data.get("GoogleCalendarAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["google_calendar_action"] = (
@@ -3221,7 +3221,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["GoogleCalendarAction"]
             )
         )
-    if "CreateAndUpdateGoogleCalendarAction" in data:
+    if data.get("CreateAndUpdateGoogleCalendarAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_google_calendar_action"] = (
@@ -3229,7 +3229,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateGoogleCalendarAction"]
             )
         )
-    if "ShareGoogleCalendarAction" in data:
+    if data.get("ShareGoogleCalendarAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_google_calendar_action"] = (
@@ -3237,7 +3237,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareGoogleCalendarAction"]
             )
         )
-    if "UseGoogleCalendarAction" in data:
+    if data.get("UseGoogleCalendarAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_google_calendar_action"] = (
@@ -3245,13 +3245,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseGoogleCalendarAction"]
             )
         )
-    if "ZendeskAction" in data:
+    if data.get("ZendeskAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["zendesk_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["ZendeskAction"]
         )
-    if "CreateAndUpdateZendeskAction" in data:
+    if data.get("CreateAndUpdateZendeskAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_zendesk_action"] = (
@@ -3259,7 +3259,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateZendeskAction"]
             )
         )
-    if "ShareZendeskAction" in data:
+    if data.get("ShareZendeskAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_zendesk_action"] = (
@@ -3267,7 +3267,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareZendeskAction"]
             )
         )
-    if "UseZendeskAction" in data:
+    if data.get("UseZendeskAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_zendesk_action"] = (
@@ -3275,7 +3275,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseZendeskAction"]
             )
         )
-    if "SmartsheetAction" in data:
+    if data.get("SmartsheetAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["smartsheet_action"] = (
@@ -3283,7 +3283,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SmartsheetAction"]
             )
         )
-    if "CreateAndUpdateSmartsheetAction" in data:
+    if data.get("CreateAndUpdateSmartsheetAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_smartsheet_action"] = (
@@ -3291,7 +3291,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSmartsheetAction"]
             )
         )
-    if "ShareSmartsheetAction" in data:
+    if data.get("ShareSmartsheetAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_smartsheet_action"] = (
@@ -3299,7 +3299,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSmartsheetAction"]
             )
         )
-    if "UseSmartsheetAction" in data:
+    if data.get("UseSmartsheetAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_smartsheet_action"] = (
@@ -3307,7 +3307,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSmartsheetAction"]
             )
         )
-    if "SAPBusinessPartnerAction" in data:
+    if data.get("SAPBusinessPartnerAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["sap_business_partner_action"] = (
@@ -3315,7 +3315,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SAPBusinessPartnerAction"]
             )
         )
-    if "CreateAndUpdateSAPBusinessPartnerAction" in data:
+    if data.get("CreateAndUpdateSAPBusinessPartnerAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_sap_business_partner_action"] = (
@@ -3323,7 +3323,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSAPBusinessPartnerAction"]
             )
         )
-    if "ShareSAPBusinessPartnerAction" in data:
+    if data.get("ShareSAPBusinessPartnerAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_sap_business_partner_action"] = (
@@ -3331,7 +3331,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSAPBusinessPartnerAction"]
             )
         )
-    if "UseSAPBusinessPartnerAction" in data:
+    if data.get("UseSAPBusinessPartnerAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_sap_business_partner_action"] = (
@@ -3339,7 +3339,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSAPBusinessPartnerAction"]
             )
         )
-    if "SAPProductMasterDataAction" in data:
+    if data.get("SAPProductMasterDataAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["sap_product_master_data_action"] = (
@@ -3347,7 +3347,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SAPProductMasterDataAction"]
             )
         )
-    if "CreateAndUpdateSAPProductMasterDataAction" in data:
+    if data.get("CreateAndUpdateSAPProductMasterDataAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_sap_product_master_data_action"] = (
@@ -3355,7 +3355,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSAPProductMasterDataAction"]
             )
         )
-    if "ShareSAPProductMasterDataAction" in data:
+    if data.get("ShareSAPProductMasterDataAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_sap_product_master_data_action"] = (
@@ -3363,7 +3363,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSAPProductMasterDataAction"]
             )
         )
-    if "UseSAPProductMasterDataAction" in data:
+    if data.get("UseSAPProductMasterDataAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_sap_product_master_data_action"] = (
@@ -3371,7 +3371,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSAPProductMasterDataAction"]
             )
         )
-    if "SAPPhysicalInventoryAction" in data:
+    if data.get("SAPPhysicalInventoryAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["sap_physical_inventory_action"] = (
@@ -3379,7 +3379,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SAPPhysicalInventoryAction"]
             )
         )
-    if "CreateAndUpdateSAPPhysicalInventoryAction" in data:
+    if data.get("CreateAndUpdateSAPPhysicalInventoryAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_sap_physical_inventory_action"] = (
@@ -3387,7 +3387,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSAPPhysicalInventoryAction"]
             )
         )
-    if "ShareSAPPhysicalInventoryAction" in data:
+    if data.get("ShareSAPPhysicalInventoryAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_sap_physical_inventory_action"] = (
@@ -3395,7 +3395,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSAPPhysicalInventoryAction"]
             )
         )
-    if "UseSAPPhysicalInventoryAction" in data:
+    if data.get("UseSAPPhysicalInventoryAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_sap_physical_inventory_action"] = (
@@ -3403,7 +3403,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSAPPhysicalInventoryAction"]
             )
         )
-    if "SAPBillOfMaterialAction" in data:
+    if data.get("SAPBillOfMaterialAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["sap_bill_of_material_action"] = (
@@ -3411,7 +3411,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SAPBillOfMaterialAction"]
             )
         )
-    if "CreateAndUpdateSAPBillOfMaterialAction" in data:
+    if data.get("CreateAndUpdateSAPBillOfMaterialAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_sap_bill_of_material_action"] = (
@@ -3419,7 +3419,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSAPBillOfMaterialAction"]
             )
         )
-    if "ShareSAPBillOfMaterialAction" in data:
+    if data.get("ShareSAPBillOfMaterialAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_sap_bill_of_material_action"] = (
@@ -3427,7 +3427,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSAPBillOfMaterialAction"]
             )
         )
-    if "UseSAPBillOfMaterialAction" in data:
+    if data.get("UseSAPBillOfMaterialAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_sap_bill_of_material_action"] = (
@@ -3435,7 +3435,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSAPBillOfMaterialAction"]
             )
         )
-    if "SAPMaterialStockAction" in data:
+    if data.get("SAPMaterialStockAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["sap_material_stock_action"] = (
@@ -3443,7 +3443,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SAPMaterialStockAction"]
             )
         )
-    if "CreateAndUpdateSAPMaterialStockAction" in data:
+    if data.get("CreateAndUpdateSAPMaterialStockAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_sap_material_stock_action"] = (
@@ -3451,7 +3451,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSAPMaterialStockAction"]
             )
         )
-    if "ShareSAPMaterialStockAction" in data:
+    if data.get("ShareSAPMaterialStockAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_sap_material_stock_action"] = (
@@ -3459,7 +3459,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSAPMaterialStockAction"]
             )
         )
-    if "UseSAPMaterialStockAction" in data:
+    if data.get("UseSAPMaterialStockAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_sap_material_stock_action"] = (
@@ -3467,7 +3467,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSAPMaterialStockAction"]
             )
         )
-    if "FactSetAction" in data:
+    if data.get("FactSetAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["fact_set_action"] = (
@@ -3475,7 +3475,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["FactSetAction"]
             )
         )
-    if "CreateAndUpdateFactSetAction" in data:
+    if data.get("CreateAndUpdateFactSetAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_fact_set_action"] = (
@@ -3483,7 +3483,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateFactSetAction"]
             )
         )
-    if "ShareFactSetAction" in data:
+    if data.get("ShareFactSetAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_fact_set_action"] = (
@@ -3491,7 +3491,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareFactSetAction"]
             )
         )
-    if "UseFactSetAction" in data:
+    if data.get("UseFactSetAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_fact_set_action"] = (
@@ -3499,7 +3499,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseFactSetAction"]
             )
         )
-    if "AmazonSThreeAction" in data:
+    if data.get("AmazonSThreeAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["amazon_s_three_action"] = (
@@ -3507,7 +3507,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["AmazonSThreeAction"]
             )
         )
-    if "CreateAndUpdateAmazonSThreeAction" in data:
+    if data.get("CreateAndUpdateAmazonSThreeAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_amazon_s_three_action"] = (
@@ -3515,7 +3515,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateAmazonSThreeAction"]
             )
         )
-    if "ShareAmazonSThreeAction" in data:
+    if data.get("ShareAmazonSThreeAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_amazon_s_three_action"] = (
@@ -3523,7 +3523,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareAmazonSThreeAction"]
             )
         )
-    if "UseAmazonSThreeAction" in data:
+    if data.get("UseAmazonSThreeAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_amazon_s_three_action"] = (
@@ -3531,7 +3531,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseAmazonSThreeAction"]
             )
         )
-    if "TextractAction" in data:
+    if data.get("TextractAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["textract_action"] = (
@@ -3539,7 +3539,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["TextractAction"]
             )
         )
-    if "CreateAndUpdateTextractAction" in data:
+    if data.get("CreateAndUpdateTextractAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_textract_action"] = (
@@ -3547,7 +3547,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateTextractAction"]
             )
         )
-    if "ShareTextractAction" in data:
+    if data.get("ShareTextractAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_textract_action"] = (
@@ -3555,7 +3555,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareTextractAction"]
             )
         )
-    if "UseTextractAction" in data:
+    if data.get("UseTextractAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_textract_action"] = (
@@ -3563,7 +3563,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseTextractAction"]
             )
         )
-    if "ComprehendAction" in data:
+    if data.get("ComprehendAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["comprehend_action"] = (
@@ -3571,7 +3571,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ComprehendAction"]
             )
         )
-    if "CreateAndUpdateComprehendAction" in data:
+    if data.get("CreateAndUpdateComprehendAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_comprehend_action"] = (
@@ -3579,7 +3579,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateComprehendAction"]
             )
         )
-    if "ShareComprehendAction" in data:
+    if data.get("ShareComprehendAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_comprehend_action"] = (
@@ -3587,7 +3587,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareComprehendAction"]
             )
         )
-    if "UseComprehendAction" in data:
+    if data.get("UseComprehendAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_comprehend_action"] = (
@@ -3595,7 +3595,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseComprehendAction"]
             )
         )
-    if "ComprehendMedicalAction" in data:
+    if data.get("ComprehendMedicalAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["comprehend_medical_action"] = (
@@ -3603,7 +3603,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ComprehendMedicalAction"]
             )
         )
-    if "CreateAndUpdateComprehendMedicalAction" in data:
+    if data.get("CreateAndUpdateComprehendMedicalAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_comprehend_medical_action"] = (
@@ -3611,7 +3611,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateComprehendMedicalAction"]
             )
         )
-    if "ShareComprehendMedicalAction" in data:
+    if data.get("ShareComprehendMedicalAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_comprehend_medical_action"] = (
@@ -3619,7 +3619,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareComprehendMedicalAction"]
             )
         )
-    if "UseComprehendMedicalAction" in data:
+    if data.get("UseComprehendMedicalAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_comprehend_medical_action"] = (
@@ -3627,7 +3627,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseComprehendMedicalAction"]
             )
         )
-    if "AmazonBedrockARSAction" in data:
+    if data.get("AmazonBedrockARSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["amazon_bedrock_ars_action"] = (
@@ -3635,7 +3635,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["AmazonBedrockARSAction"]
             )
         )
-    if "CreateAndUpdateAmazonBedrockARSAction" in data:
+    if data.get("CreateAndUpdateAmazonBedrockARSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_amazon_bedrock_ars_action"] = (
@@ -3643,7 +3643,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateAmazonBedrockARSAction"]
             )
         )
-    if "ShareAmazonBedrockARSAction" in data:
+    if data.get("ShareAmazonBedrockARSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_amazon_bedrock_ars_action"] = (
@@ -3651,7 +3651,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareAmazonBedrockARSAction"]
             )
         )
-    if "UseAmazonBedrockARSAction" in data:
+    if data.get("UseAmazonBedrockARSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_amazon_bedrock_ars_action"] = (
@@ -3659,7 +3659,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseAmazonBedrockARSAction"]
             )
         )
-    if "AmazonBedrockFSAction" in data:
+    if data.get("AmazonBedrockFSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["amazon_bedrock_fs_action"] = (
@@ -3667,7 +3667,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["AmazonBedrockFSAction"]
             )
         )
-    if "CreateAndUpdateAmazonBedrockFSAction" in data:
+    if data.get("CreateAndUpdateAmazonBedrockFSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_amazon_bedrock_fs_action"] = (
@@ -3675,7 +3675,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateAmazonBedrockFSAction"]
             )
         )
-    if "ShareAmazonBedrockFSAction" in data:
+    if data.get("ShareAmazonBedrockFSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_amazon_bedrock_fs_action"] = (
@@ -3683,7 +3683,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareAmazonBedrockFSAction"]
             )
         )
-    if "UseAmazonBedrockFSAction" in data:
+    if data.get("UseAmazonBedrockFSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_amazon_bedrock_fs_action"] = (
@@ -3691,7 +3691,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseAmazonBedrockFSAction"]
             )
         )
-    if "AmazonBedrockKRSAction" in data:
+    if data.get("AmazonBedrockKRSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["amazon_bedrock_krs_action"] = (
@@ -3699,7 +3699,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["AmazonBedrockKRSAction"]
             )
         )
-    if "CreateAndUpdateAmazonBedrockKRSAction" in data:
+    if data.get("CreateAndUpdateAmazonBedrockKRSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_amazon_bedrock_krs_action"] = (
@@ -3707,7 +3707,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateAmazonBedrockKRSAction"]
             )
         )
-    if "ShareAmazonBedrockKRSAction" in data:
+    if data.get("ShareAmazonBedrockKRSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_amazon_bedrock_krs_action"] = (
@@ -3715,7 +3715,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareAmazonBedrockKRSAction"]
             )
         )
-    if "UseAmazonBedrockKRSAction" in data:
+    if data.get("UseAmazonBedrockKRSAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_amazon_bedrock_krs_action"] = (
@@ -3723,13 +3723,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseAmazonBedrockKRSAction"]
             )
         )
-    if "MCPAction" in data:
+    if data.get("MCPAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["mcp_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["MCPAction"]
         )
-    if "CreateAndUpdateMCPAction" in data:
+    if data.get("CreateAndUpdateMCPAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_mcp_action"] = (
@@ -3737,7 +3737,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateMCPAction"]
             )
         )
-    if "ShareMCPAction" in data:
+    if data.get("ShareMCPAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_mcp_action"] = (
@@ -3745,13 +3745,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareMCPAction"]
             )
         )
-    if "UseMCPAction" in data:
+    if data.get("UseMCPAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_mcp_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["UseMCPAction"]
         )
-    if "OpenAPIAction" in data:
+    if data.get("OpenAPIAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["open_api_action"] = (
@@ -3759,7 +3759,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["OpenAPIAction"]
             )
         )
-    if "CreateAndUpdateOpenAPIAction" in data:
+    if data.get("CreateAndUpdateOpenAPIAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_open_api_action"] = (
@@ -3767,7 +3767,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateOpenAPIAction"]
             )
         )
-    if "ShareOpenAPIAction" in data:
+    if data.get("ShareOpenAPIAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_open_api_action"] = (
@@ -3775,7 +3775,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareOpenAPIAction"]
             )
         )
-    if "UseOpenAPIAction" in data:
+    if data.get("UseOpenAPIAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_open_api_action"] = (
@@ -3783,7 +3783,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseOpenAPIAction"]
             )
         )
-    if "SandPGMIAction" in data:
+    if data.get("SandPGMIAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["sand_pgmi_action"] = (
@@ -3791,7 +3791,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SandPGMIAction"]
             )
         )
-    if "CreateAndUpdateSandPGMIAction" in data:
+    if data.get("CreateAndUpdateSandPGMIAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_sand_pgmi_action"] = (
@@ -3799,7 +3799,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSandPGMIAction"]
             )
         )
-    if "ShareSandPGMIAction" in data:
+    if data.get("ShareSandPGMIAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_sand_pgmi_action"] = (
@@ -3807,7 +3807,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSandPGMIAction"]
             )
         )
-    if "UseSandPGMIAction" in data:
+    if data.get("UseSandPGMIAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_sand_pgmi_action"] = (
@@ -3815,7 +3815,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSandPGMIAction"]
             )
         )
-    if "SandPGlobalEnergyAction" in data:
+    if data.get("SandPGlobalEnergyAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["sand_p_global_energy_action"] = (
@@ -3823,7 +3823,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SandPGlobalEnergyAction"]
             )
         )
-    if "CreateAndUpdateSandPGlobalEnergyAction" in data:
+    if data.get("CreateAndUpdateSandPGlobalEnergyAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_sand_p_global_energy_action"] = (
@@ -3831,7 +3831,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateSandPGlobalEnergyAction"]
             )
         )
-    if "ShareSandPGlobalEnergyAction" in data:
+    if data.get("ShareSandPGlobalEnergyAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_sand_p_global_energy_action"] = (
@@ -3839,7 +3839,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareSandPGlobalEnergyAction"]
             )
         )
-    if "UseSandPGlobalEnergyAction" in data:
+    if data.get("UseSandPGlobalEnergyAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_sand_p_global_energy_action"] = (
@@ -3847,7 +3847,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseSandPGlobalEnergyAction"]
             )
         )
-    if "BambooHRAction" in data:
+    if data.get("BambooHRAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["bamboo_hr_action"] = (
@@ -3855,7 +3855,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["BambooHRAction"]
             )
         )
-    if "CreateAndUpdateBambooHRAction" in data:
+    if data.get("CreateAndUpdateBambooHRAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_bamboo_hr_action"] = (
@@ -3863,7 +3863,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateBambooHRAction"]
             )
         )
-    if "ShareBambooHRAction" in data:
+    if data.get("ShareBambooHRAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_bamboo_hr_action"] = (
@@ -3871,7 +3871,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareBambooHRAction"]
             )
         )
-    if "UseBambooHRAction" in data:
+    if data.get("UseBambooHRAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_bamboo_hr_action"] = (
@@ -3879,7 +3879,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseBambooHRAction"]
             )
         )
-    if "BoxAgentAction" in data:
+    if data.get("BoxAgentAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["box_agent_action"] = (
@@ -3887,7 +3887,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["BoxAgentAction"]
             )
         )
-    if "CreateAndUpdateBoxAgentAction" in data:
+    if data.get("CreateAndUpdateBoxAgentAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_box_agent_action"] = (
@@ -3895,7 +3895,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateBoxAgentAction"]
             )
         )
-    if "ShareBoxAgentAction" in data:
+    if data.get("ShareBoxAgentAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_box_agent_action"] = (
@@ -3903,7 +3903,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareBoxAgentAction"]
             )
         )
-    if "UseBoxAgentAction" in data:
+    if data.get("UseBoxAgentAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_box_agent_action"] = (
@@ -3911,7 +3911,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseBoxAgentAction"]
             )
         )
-    if "CanvaAgentAction" in data:
+    if data.get("CanvaAgentAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["canva_agent_action"] = (
@@ -3919,7 +3919,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CanvaAgentAction"]
             )
         )
-    if "CreateAndUpdateCanvaAgentAction" in data:
+    if data.get("CreateAndUpdateCanvaAgentAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_canva_agent_action"] = (
@@ -3927,7 +3927,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateCanvaAgentAction"]
             )
         )
-    if "ShareCanvaAgentAction" in data:
+    if data.get("ShareCanvaAgentAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_canva_agent_action"] = (
@@ -3935,7 +3935,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareCanvaAgentAction"]
             )
         )
-    if "UseCanvaAgentAction" in data:
+    if data.get("UseCanvaAgentAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_canva_agent_action"] = (
@@ -3943,13 +3943,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseCanvaAgentAction"]
             )
         )
-    if "GithubAction" in data:
+    if data.get("GithubAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["github_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["GithubAction"]
         )
-    if "CreateAndUpdateGithubAction" in data:
+    if data.get("CreateAndUpdateGithubAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_github_action"] = (
@@ -3957,7 +3957,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateGithubAction"]
             )
         )
-    if "ShareGithubAction" in data:
+    if data.get("ShareGithubAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_github_action"] = (
@@ -3965,7 +3965,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareGithubAction"]
             )
         )
-    if "UseGithubAction" in data:
+    if data.get("UseGithubAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_github_action"] = (
@@ -3973,13 +3973,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseGithubAction"]
             )
         )
-    if "NotionAction" in data:
+    if data.get("NotionAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["notion_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["NotionAction"]
         )
-    if "CreateAndUpdateNotionAction" in data:
+    if data.get("CreateAndUpdateNotionAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_notion_action"] = (
@@ -3987,7 +3987,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateNotionAction"]
             )
         )
-    if "ShareNotionAction" in data:
+    if data.get("ShareNotionAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_notion_action"] = (
@@ -3995,7 +3995,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareNotionAction"]
             )
         )
-    if "UseNotionAction" in data:
+    if data.get("UseNotionAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_notion_action"] = (
@@ -4003,13 +4003,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseNotionAction"]
             )
         )
-    if "LinearAction" in data:
+    if data.get("LinearAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["linear_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["LinearAction"]
         )
-    if "CreateAndUpdateLinearAction" in data:
+    if data.get("CreateAndUpdateLinearAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_linear_action"] = (
@@ -4017,7 +4017,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateLinearAction"]
             )
         )
-    if "ShareLinearAction" in data:
+    if data.get("ShareLinearAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_linear_action"] = (
@@ -4025,7 +4025,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareLinearAction"]
             )
         )
-    if "UseLinearAction" in data:
+    if data.get("UseLinearAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_linear_action"] = (
@@ -4033,7 +4033,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseLinearAction"]
             )
         )
-    if "HuggingFaceAction" in data:
+    if data.get("HuggingFaceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["hugging_face_action"] = (
@@ -4041,7 +4041,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["HuggingFaceAction"]
             )
         )
-    if "CreateAndUpdateHuggingFaceAction" in data:
+    if data.get("CreateAndUpdateHuggingFaceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_hugging_face_action"] = (
@@ -4049,7 +4049,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateHuggingFaceAction"]
             )
         )
-    if "ShareHuggingFaceAction" in data:
+    if data.get("ShareHuggingFaceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_hugging_face_action"] = (
@@ -4057,7 +4057,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareHuggingFaceAction"]
             )
         )
-    if "UseHuggingFaceAction" in data:
+    if data.get("UseHuggingFaceAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_hugging_face_action"] = (
@@ -4065,13 +4065,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseHuggingFaceAction"]
             )
         )
-    if "MondayAction" in data:
+    if data.get("MondayAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["monday_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["MondayAction"]
         )
-    if "CreateAndUpdateMondayAction" in data:
+    if data.get("CreateAndUpdateMondayAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_monday_action"] = (
@@ -4079,7 +4079,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateMondayAction"]
             )
         )
-    if "ShareMondayAction" in data:
+    if data.get("ShareMondayAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_monday_action"] = (
@@ -4087,7 +4087,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareMondayAction"]
             )
         )
-    if "UseMondayAction" in data:
+    if data.get("UseMondayAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_monday_action"] = (
@@ -4095,13 +4095,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseMondayAction"]
             )
         )
-    if "HubspotAction" in data:
+    if data.get("HubspotAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["hubspot_action"] = capo_quicksight.types.capability_state.deserialize_json(
             data["HubspotAction"]
         )
-    if "CreateAndUpdateHubspotAction" in data:
+    if data.get("CreateAndUpdateHubspotAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_hubspot_action"] = (
@@ -4109,7 +4109,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateHubspotAction"]
             )
         )
-    if "ShareHubspotAction" in data:
+    if data.get("ShareHubspotAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_hubspot_action"] = (
@@ -4117,7 +4117,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareHubspotAction"]
             )
         )
-    if "UseHubspotAction" in data:
+    if data.get("UseHubspotAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_hubspot_action"] = (
@@ -4125,7 +4125,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseHubspotAction"]
             )
         )
-    if "IntercomAction" in data:
+    if data.get("IntercomAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["intercom_action"] = (
@@ -4133,7 +4133,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["IntercomAction"]
             )
         )
-    if "CreateAndUpdateIntercomAction" in data:
+    if data.get("CreateAndUpdateIntercomAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_intercom_action"] = (
@@ -4141,7 +4141,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateIntercomAction"]
             )
         )
-    if "ShareIntercomAction" in data:
+    if data.get("ShareIntercomAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_intercom_action"] = (
@@ -4149,7 +4149,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareIntercomAction"]
             )
         )
-    if "UseIntercomAction" in data:
+    if data.get("UseIntercomAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_intercom_action"] = (
@@ -4157,7 +4157,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseIntercomAction"]
             )
         )
-    if "NewRelicAction" in data:
+    if data.get("NewRelicAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["new_relic_action"] = (
@@ -4165,7 +4165,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["NewRelicAction"]
             )
         )
-    if "CreateAndUpdateNewRelicAction" in data:
+    if data.get("CreateAndUpdateNewRelicAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_and_update_new_relic_action"] = (
@@ -4173,7 +4173,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateAndUpdateNewRelicAction"]
             )
         )
-    if "ShareNewRelicAction" in data:
+    if data.get("ShareNewRelicAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_new_relic_action"] = (
@@ -4181,7 +4181,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareNewRelicAction"]
             )
         )
-    if "UseNewRelicAction" in data:
+    if data.get("UseNewRelicAction") is not None:
         import capo_quicksight.types.capability_state
 
         out["use_new_relic_action"] = (
@@ -4189,13 +4189,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["UseNewRelicAction"]
             )
         )
-    if "Topic" in data:
+    if data.get("Topic") is not None:
         import capo_quicksight.types.capability_state
 
         out["topic"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Topic"]
         )
-    if "EditVisualWithQ" in data:
+    if data.get("EditVisualWithQ") is not None:
         import capo_quicksight.types.capability_state
 
         out["edit_visual_with_q"] = (
@@ -4203,7 +4203,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["EditVisualWithQ"]
             )
         )
-    if "BuildCalculatedFieldWithQ" in data:
+    if data.get("BuildCalculatedFieldWithQ") is not None:
         import capo_quicksight.types.capability_state
 
         out["build_calculated_field_with_q"] = (
@@ -4211,7 +4211,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["BuildCalculatedFieldWithQ"]
             )
         )
-    if "CreateDashboardExecutiveSummaryWithQ" in data:
+    if data.get("CreateDashboardExecutiveSummaryWithQ") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_dashboard_executive_summary_with_q"] = (
@@ -4219,31 +4219,31 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateDashboardExecutiveSummaryWithQ"]
             )
         )
-    if "Space" in data:
+    if data.get("Space") is not None:
         import capo_quicksight.types.capability_state
 
         out["space"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Space"]
         )
-    if "CreateSpaces" in data:
+    if data.get("CreateSpaces") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_spaces"] = capo_quicksight.types.capability_state.deserialize_json(
             data["CreateSpaces"]
         )
-    if "ShareSpaces" in data:
+    if data.get("ShareSpaces") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_spaces"] = capo_quicksight.types.capability_state.deserialize_json(
             data["ShareSpaces"]
         )
-    if "ChatAgent" in data:
+    if data.get("ChatAgent") is not None:
         import capo_quicksight.types.capability_state
 
         out["chat_agent"] = capo_quicksight.types.capability_state.deserialize_json(
             data["ChatAgent"]
         )
-    if "CreateChatAgents" in data:
+    if data.get("CreateChatAgents") is not None:
         import capo_quicksight.types.capability_state
 
         out["create_chat_agents"] = (
@@ -4251,7 +4251,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["CreateChatAgents"]
             )
         )
-    if "ShareChatAgents" in data:
+    if data.get("ShareChatAgents") is not None:
         import capo_quicksight.types.capability_state
 
         out["share_chat_agents"] = (
@@ -4259,13 +4259,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ShareChatAgents"]
             )
         )
-    if "Research" in data:
+    if data.get("Research") is not None:
         import capo_quicksight.types.capability_state
 
         out["research"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Research"]
         )
-    if "SelfUpgradeUserRole" in data:
+    if data.get("SelfUpgradeUserRole") is not None:
         import capo_quicksight.types.capability_state
 
         out["self_upgrade_user_role"] = (
@@ -4273,13 +4273,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["SelfUpgradeUserRole"]
             )
         )
-    if "Extension" in data:
+    if data.get("Extension") is not None:
         import capo_quicksight.types.capability_state
 
         out["extension"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Extension"]
         )
-    if "ManageSharedFolders" in data:
+    if data.get("ManageSharedFolders") is not None:
         import capo_quicksight.types.capability_state
 
         out["manage_shared_folders"] = (
@@ -4287,7 +4287,7 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["ManageSharedFolders"]
             )
         )
-    if "GenerateAnalyses" in data:
+    if data.get("GenerateAnalyses") is not None:
         import capo_quicksight.types.capability_state
 
         out["generate_analyses"] = (
@@ -4295,13 +4295,13 @@ def deserialize_json(data: dict) -> Capabilities:
                 data["GenerateAnalyses"]
             )
         )
-    if "Story" in data:
+    if data.get("Story") is not None:
         import capo_quicksight.types.capability_state
 
         out["story"] = capo_quicksight.types.capability_state.deserialize_json(
             data["Story"]
         )
-    if "Scenario" in data:
+    if data.get("Scenario") is not None:
         import capo_quicksight.types.capability_state
 
         out["scenario"] = capo_quicksight.types.capability_state.deserialize_json(

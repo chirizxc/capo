@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ListAccountAssignmentsFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAccountAssignmentsFilter:
     out: ListAccountAssignmentsFilter = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

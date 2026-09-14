@@ -23,6 +23,6 @@ def serialize_json(value: MediaConnectRouterOutputConnection) -> dict:
 
 def deserialize_json(data: dict) -> MediaConnectRouterOutputConnection:
     out: MediaConnectRouterOutputConnection = {}  # type: ignore[typeddict-item]
-    if "routerInputArn" in data:
+    if data.get("routerInputArn") is not None:
         out["router_input_arn"] = data["routerInputArn"]
     return out

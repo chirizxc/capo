@@ -68,21 +68,21 @@ def serialize_json(value: CreateMigrationWorkflowRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMigrationWorkflowRequest:
     out: CreateMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateMigrationWorkflowRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
     else:
         raise DeserializationError(
             "CreateMigrationWorkflowRequest.template_id required"
         )
-    if "applicationConfigurationId" in data:
+    if data.get("applicationConfigurationId") is not None:
         out["application_configuration_id"] = data["applicationConfigurationId"]
-    if "inputParameters" in data:
+    if data.get("inputParameters") is not None:
         import capo_migrationhuborchestrator.types.step_input_parameters
 
         out["input_parameters"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> CreateMigrationWorkflowRequest:
         raise DeserializationError(
             "CreateMigrationWorkflowRequest.input_parameters required"
         )
-    if "stepTargets" in data:
+    if data.get("stepTargets") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["step_targets"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> CreateMigrationWorkflowRequest:
                 data["stepTargets"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_migrationhuborchestrator.types.string_map
 
         out["tags"] = capo_migrationhuborchestrator.types.string_map.deserialize_json(

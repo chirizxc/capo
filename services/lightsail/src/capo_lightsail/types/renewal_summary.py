@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: RenewalSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenewalSummary:
     out: RenewalSummary = {}  # type: ignore[typeddict-item]
-    if "domainValidationRecords" in data:
+    if data.get("domainValidationRecords") is not None:
         import capo_lightsail.types.domain_validation_record_list
 
         out["domain_validation_records"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> RenewalSummary:
                 data["domainValidationRecords"]
             )
         )
-    if "renewalStatus" in data:
+    if data.get("renewalStatus") is not None:
         import capo_lightsail.types.renewal_status
 
         out["renewal_status"] = (
@@ -74,9 +74,9 @@ def deserialize_aws_json_1_1(data: dict) -> RenewalSummary:
                 data["renewalStatus"]
             )
         )
-    if "renewalStatusReason" in data:
+    if data.get("renewalStatusReason") is not None:
         out["renewal_status_reason"] = data["renewalStatusReason"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["updated_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(

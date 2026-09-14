@@ -78,30 +78,30 @@ def serialize_json(value: AwsDmsEndpointDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsDmsEndpointDetails:
     out: AwsDmsEndpointDetails = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
-    if "EndpointIdentifier" in data:
+    if data.get("EndpointIdentifier") is not None:
         out["endpoint_identifier"] = data["EndpointIdentifier"]
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         out["endpoint_type"] = data["EndpointType"]
-    if "EngineName" in data:
+    if data.get("EngineName") is not None:
         out["engine_name"] = data["EngineName"]
-    if "ExternalId" in data:
+    if data.get("ExternalId") is not None:
         out["external_id"] = data["ExternalId"]
-    if "ExtraConnectionAttributes" in data:
+    if data.get("ExtraConnectionAttributes") is not None:
         out["extra_connection_attributes"] = data["ExtraConnectionAttributes"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "SslMode" in data:
+    if data.get("SslMode") is not None:
         out["ssl_mode"] = data["SslMode"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     return out

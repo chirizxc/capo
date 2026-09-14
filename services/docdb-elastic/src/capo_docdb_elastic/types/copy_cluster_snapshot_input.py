@@ -40,17 +40,17 @@ def serialize_json(value: CopyClusterSnapshotInput) -> dict:
 
 def deserialize_json(data: dict) -> CopyClusterSnapshotInput:
     out: CopyClusterSnapshotInput = {}  # type: ignore[typeddict-item]
-    if "targetSnapshotName" in data:
+    if data.get("targetSnapshotName") is not None:
         out["target_snapshot_name"] = data["targetSnapshotName"]
     else:
         raise DeserializationError(
             "CopyClusterSnapshotInput.target_snapshot_name required"
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "copyTags" in data:
+    if data.get("copyTags") is not None:
         out["copy_tags"] = data["copyTags"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_docdb_elastic.types.tag_map
 
         out["tags"] = capo_docdb_elastic.types.tag_map.deserialize_json(data["tags"])

@@ -36,9 +36,9 @@ def serialize_json(value: BooleanCondition) -> dict:
 
 def deserialize_json(data: dict) -> BooleanCondition:
     out: BooleanCondition = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
-    if "ComparisonType" in data:
+    if data.get("ComparisonType") is not None:
         import capo_connect.types.boolean_comparison_type
 
         out["comparison_type"] = (

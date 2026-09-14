@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CreateAppBlockResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAppBlockResult:
     out: CreateAppBlockResult = {}  # type: ignore[typeddict-item]
-    if "AppBlock" in data:
+    if data.get("AppBlock") is not None:
         import capo_appstream.types.app_block
 
         out["app_block"] = capo_appstream.types.app_block.deserialize_aws_json_1_1(

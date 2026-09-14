@@ -52,17 +52,17 @@ def serialize_json(value: NetworkResourceSummary) -> dict:
 
 def deserialize_json(data: dict) -> NetworkResourceSummary:
     out: NetworkResourceSummary = {}  # type: ignore[typeddict-item]
-    if "RegisteredGatewayArn" in data:
+    if data.get("RegisteredGatewayArn") is not None:
         out["registered_gateway_arn"] = data["RegisteredGatewayArn"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         out["definition"] = data["Definition"]
-    if "NameTag" in data:
+    if data.get("NameTag") is not None:
         out["name_tag"] = data["NameTag"]
-    if "IsMiddlebox" in data:
+    if data.get("IsMiddlebox") is not None:
         out["is_middlebox"] = data["IsMiddlebox"]
     else:
         out["is_middlebox"] = False

@@ -49,10 +49,10 @@ def serialize_aws_json_1_1(value: EndpointAccess) -> dict:
     if "workgroup_name" in value:
         out["workgroupName"] = value["workgroup_name"]
     if "endpoint_create_time" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
         out["endpointCreateTime"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
+            capo_redshift_serverless._protocol.serialize.fmt_date_time(
                 value["endpoint_create_time"]
             )
         )
@@ -91,25 +91,23 @@ def serialize_aws_json_1_1(value: EndpointAccess) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointAccess:
     out: EndpointAccess = {}  # type: ignore[typeddict-item]
-    if "endpointName" in data:
+    if data.get("endpointName") is not None:
         out["endpoint_name"] = data["endpointName"]
-    if "endpointStatus" in data:
+    if data.get("endpointStatus") is not None:
         out["endpoint_status"] = data["endpointStatus"]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
-    if "endpointCreateTime" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("endpointCreateTime") is not None:
+        import datetime
 
-        out["endpoint_create_time"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["endpointCreateTime"]
-            )
+        out["endpoint_create_time"] = datetime.datetime.fromisoformat(
+            data["endpointCreateTime"].replace("Z", "+00:00")
         )
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "address" in data:
+    if data.get("address") is not None:
         out["address"] = data["address"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_redshift_serverless.types.subnet_id_list
 
         out["subnet_ids"] = (
@@ -117,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointAccess:
                 data["subnetIds"]
             )
         )
-    if "vpcSecurityGroups" in data:
+    if data.get("vpcSecurityGroups") is not None:
         import capo_redshift_serverless.types.vpc_security_group_membership_list
 
         out["vpc_security_groups"] = (
@@ -125,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointAccess:
                 data["vpcSecurityGroups"]
             )
         )
-    if "vpcEndpoint" in data:
+    if data.get("vpcEndpoint") is not None:
         import capo_redshift_serverless.types.vpc_endpoint
 
         out["vpc_endpoint"] = (
@@ -133,6 +131,6 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointAccess:
                 data["vpcEndpoint"]
             )
         )
-    if "endpointArn" in data:
+    if data.get("endpointArn") is not None:
         out["endpoint_arn"] = data["endpointArn"]
     return out

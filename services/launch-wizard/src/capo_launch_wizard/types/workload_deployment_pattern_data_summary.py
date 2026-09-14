@@ -69,19 +69,19 @@ def serialize_json(value: WorkloadDeploymentPatternDataSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkloadDeploymentPatternDataSummary:
     out: WorkloadDeploymentPatternDataSummary = {}  # type: ignore[typeddict-item]
-    if "workloadName" in data:
+    if data.get("workloadName") is not None:
         out["workload_name"] = data["workloadName"]
-    if "deploymentPatternName" in data:
+    if data.get("deploymentPatternName") is not None:
         out["deployment_pattern_name"] = data["deploymentPatternName"]
-    if "workloadVersionName" in data:
+    if data.get("workloadVersionName") is not None:
         out["workload_version_name"] = data["workloadVersionName"]
-    if "deploymentPatternVersionName" in data:
+    if data.get("deploymentPatternVersionName") is not None:
         out["deployment_pattern_version_name"] = data["deploymentPatternVersionName"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_launch_wizard.types.workload_deployment_pattern_status
 
         out["status"] = (
@@ -89,6 +89,6 @@ def deserialize_json(data: dict) -> WorkloadDeploymentPatternDataSummary:
                 data["status"]
             )
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

@@ -31,6 +31,8 @@ def deserialize_aws_json_1_1(
 
     out: ClusterRestrictedInstanceGroupSpecifications = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.cluster_restricted_instance_group_specification.deserialize_aws_json_1_1(
                 item

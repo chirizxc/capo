@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CancelQueryRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelQueryRequest:
     out: CancelQueryRequest = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
     else:
         raise DeserializationError("CancelQueryRequest.query_id required")

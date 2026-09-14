@@ -39,16 +39,16 @@ def serialize_aws_json_1_1(value: ListPersonalAccessTokensRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPersonalAccessTokensRequest:
     out: ListPersonalAccessTokensRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "ListPersonalAccessTokensRequest.organization_id required"
         )
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

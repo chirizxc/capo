@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: InstancePoolSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstancePoolSummary:
     out: InstancePoolSummary = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.production_variant_instance_type
 
         out["instance_type"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstancePoolSummary:
                 data["InstanceType"]
             )
         )
-    if "CurrentInstanceCount" in data:
+    if data.get("CurrentInstanceCount") is not None:
         out["current_instance_count"] = data["CurrentInstanceCount"]
     return out

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: WebACLHasIncompatibleConfigurationViolation) -
 
 def deserialize_aws_json_1_1(data: dict) -> WebACLHasIncompatibleConfigurationViolation:
     out: WebACLHasIncompatibleConfigurationViolation = {}  # type: ignore[typeddict-item]
-    if "WebACLArn" in data:
+    if data.get("WebACLArn") is not None:
         out["web_acl_arn"] = data["WebACLArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

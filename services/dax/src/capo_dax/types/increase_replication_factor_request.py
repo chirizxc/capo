@@ -41,17 +41,17 @@ def serialize_aws_json_1_1(value: IncreaseReplicationFactorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IncreaseReplicationFactorRequest:
     out: IncreaseReplicationFactorRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError(
             "IncreaseReplicationFactorRequest.cluster_name required"
         )
-    if "NewReplicationFactor" in data:
+    if data.get("NewReplicationFactor") is not None:
         out["new_replication_factor"] = data["NewReplicationFactor"]
     else:
         out["new_replication_factor"] = 0
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_dax.types.availability_zone_list
 
         out["availability_zones"] = (

@@ -30,6 +30,7 @@ class CreateModelManifestRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: CreateModelManifestRequest) -> dict:
     out: dict = {}
+    out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
     import capo_iotfleetwise.types.list_of_strings
@@ -49,9 +50,13 @@ def serialize_aws_json_1_0(value: CreateModelManifestRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateModelManifestRequest:
     out: CreateModelManifestRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("CreateModelManifestRequest.name required")
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "nodes" in data:
+    if data.get("nodes") is not None:
         import capo_iotfleetwise.types.list_of_strings
 
         out["nodes"] = capo_iotfleetwise.types.list_of_strings.deserialize_aws_json_1_0(
@@ -59,13 +64,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateModelManifestRequest:
         )
     else:
         raise DeserializationError("CreateModelManifestRequest.nodes required")
-    if "signalCatalogArn" in data:
+    if data.get("signalCatalogArn") is not None:
         out["signal_catalog_arn"] = data["signalCatalogArn"]
     else:
         raise DeserializationError(
             "CreateModelManifestRequest.signal_catalog_arn required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotfleetwise.types.tag_list
 
         out["tags"] = capo_iotfleetwise.types.tag_list.deserialize_aws_json_1_0(

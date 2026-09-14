@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: RepositorySyncAttempt) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RepositorySyncAttempt:
     out: RepositorySyncAttempt = {}  # type: ignore[typeddict-item]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["started_at"] = (
@@ -51,11 +51,11 @@ def deserialize_aws_json_1_0(data: dict) -> RepositorySyncAttempt:
         )
     else:
         raise DeserializationError("RepositorySyncAttempt.started_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("RepositorySyncAttempt.status required")
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_proton.types.repository_sync_events
 
         out["events"] = (

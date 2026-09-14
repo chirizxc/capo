@@ -63,7 +63,15 @@ def serialize_aws_json_1_1(value: Block) -> dict:
             value["block_type"]
         )
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "text" in value:
         out["Text"] = value["text"]
     if "text_type" in value:
@@ -121,39 +129,39 @@ def serialize_aws_json_1_1(value: Block) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Block:
     out: Block = {}  # type: ignore[typeddict-item]
-    if "BlockType" in data:
+    if data.get("BlockType") is not None:
         import capo_textract.types.block_type
 
         out["block_type"] = capo_textract.types.block_type.deserialize_aws_json_1_1(
             data["BlockType"]
         )
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "Text" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "TextType" in data:
+    if data.get("TextType") is not None:
         import capo_textract.types.text_type
 
         out["text_type"] = capo_textract.types.text_type.deserialize_aws_json_1_1(
             data["TextType"]
         )
-    if "RowIndex" in data:
+    if data.get("RowIndex") is not None:
         out["row_index"] = data["RowIndex"]
-    if "ColumnIndex" in data:
+    if data.get("ColumnIndex") is not None:
         out["column_index"] = data["ColumnIndex"]
-    if "RowSpan" in data:
+    if data.get("RowSpan") is not None:
         out["row_span"] = data["RowSpan"]
-    if "ColumnSpan" in data:
+    if data.get("ColumnSpan") is not None:
         out["column_span"] = data["ColumnSpan"]
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_textract.types.geometry
 
         out["geometry"] = capo_textract.types.geometry.deserialize_aws_json_1_1(
             data["Geometry"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Relationships" in data:
+    if data.get("Relationships") is not None:
         import capo_textract.types.relationship_list
 
         out["relationships"] = (
@@ -161,13 +169,13 @@ def deserialize_aws_json_1_1(data: dict) -> Block:
                 data["Relationships"]
             )
         )
-    if "EntityTypes" in data:
+    if data.get("EntityTypes") is not None:
         import capo_textract.types.entity_types
 
         out["entity_types"] = capo_textract.types.entity_types.deserialize_aws_json_1_1(
             data["EntityTypes"]
         )
-    if "SelectionStatus" in data:
+    if data.get("SelectionStatus") is not None:
         import capo_textract.types.selection_status
 
         out["selection_status"] = (
@@ -175,9 +183,9 @@ def deserialize_aws_json_1_1(data: dict) -> Block:
                 data["SelectionStatus"]
             )
         )
-    if "Page" in data:
+    if data.get("Page") is not None:
         out["page"] = data["Page"]
-    if "Query" in data:
+    if data.get("Query") is not None:
         import capo_textract.types.query
 
         out["query"] = capo_textract.types.query.deserialize_aws_json_1_1(data["Query"])

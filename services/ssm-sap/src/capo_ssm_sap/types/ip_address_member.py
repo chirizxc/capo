@@ -35,11 +35,11 @@ def serialize_json(value: IpAddressMember) -> dict:
 
 def deserialize_json(data: dict) -> IpAddressMember:
     out: IpAddressMember = {}  # type: ignore[typeddict-item]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         out["primary"] = data["Primary"]
-    if "AllocationType" in data:
+    if data.get("AllocationType") is not None:
         import capo_ssm_sap.types.allocation_type
 
         out["allocation_type"] = capo_ssm_sap.types.allocation_type.deserialize_json(

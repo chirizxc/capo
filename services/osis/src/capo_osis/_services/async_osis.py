@@ -251,11 +251,12 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.create_pipeline_request.CreatePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_name"] = pipeline_name
-        input_["min_units"] = min_units
-        input_["max_units"] = max_units
-        input_["pipeline_configuration_body"] = pipeline_configuration_body
+        input_: capo_osis.types.create_pipeline_request.CreatePipelineRequest = {
+            "pipeline_name": pipeline_name,
+            "min_units": min_units,
+            "max_units": max_units,
+            "pipeline_configuration_body": pipeline_configuration_body,
+        }
         if log_publishing_options is not None:
             input_["log_publishing_options"] = log_publishing_options
         if vpc_options is not None:
@@ -274,6 +275,7 @@ class AsyncOSISClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_pipeline_endpoint(
@@ -315,15 +317,17 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.create_pipeline_endpoint_request.CreatePipelineEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_arn"] = pipeline_arn
-        input_["vpc_options"] = vpc_options
+        input_: capo_osis.types.create_pipeline_endpoint_request.CreatePipelineEndpointRequest = {
+            "pipeline_arn": pipeline_arn,
+            "vpc_options": vpc_options,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_pipeline(
@@ -363,14 +367,16 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.delete_pipeline_request.DeletePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_name"] = pipeline_name
+        input_: capo_osis.types.delete_pipeline_request.DeletePipelineRequest = {
+            "pipeline_name": pipeline_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_pipeline_endpoint(
@@ -408,14 +414,16 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.delete_pipeline_endpoint_request.DeletePipelineEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_id"] = endpoint_id
+        input_: capo_osis.types.delete_pipeline_endpoint_request.DeletePipelineEndpointRequest = {
+            "endpoint_id": endpoint_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -455,14 +463,16 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_osis.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_pipeline(
@@ -501,14 +511,16 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.get_pipeline_request.GetPipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_name"] = pipeline_name
+        input_: capo_osis.types.get_pipeline_request.GetPipelineRequest = {
+            "pipeline_name": pipeline_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_pipeline_blueprint(
@@ -549,8 +561,9 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.get_pipeline_blueprint_request.GetPipelineBlueprintRequest = {}  # type: ignore[typeddict-item]
-        input_["blueprint_name"] = blueprint_name
+        input_: capo_osis.types.get_pipeline_blueprint_request.GetPipelineBlueprintRequest = {
+            "blueprint_name": blueprint_name
+        }
         if format is not None:
             input_["format"] = format
 
@@ -559,6 +572,7 @@ class AsyncOSISClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_pipeline_change_progress(
@@ -597,14 +611,16 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.get_pipeline_change_progress_request.GetPipelineChangeProgressRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_name"] = pipeline_name
+        input_: capo_osis.types.get_pipeline_change_progress_request.GetPipelineChangeProgressRequest = {
+            "pipeline_name": pipeline_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_policy(
@@ -644,14 +660,16 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_osis.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_pipeline_blueprints(
@@ -684,13 +702,14 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.list_pipeline_blueprints_request.ListPipelineBlueprintsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_osis.types.list_pipeline_blueprints_request.ListPipelineBlueprintsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_pipeline_endpoint_connections(
@@ -731,7 +750,7 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.list_pipeline_endpoint_connections_request.ListPipelineEndpointConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_osis.types.list_pipeline_endpoint_connections_request.ListPipelineEndpointConnectionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -742,6 +761,7 @@ class AsyncOSISClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_pipeline_endpoint_connections(
@@ -805,7 +825,7 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.list_pipeline_endpoints_request.ListPipelineEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_osis.types.list_pipeline_endpoints_request.ListPipelineEndpointsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -816,6 +836,7 @@ class AsyncOSISClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_pipeline_endpoints(
@@ -877,7 +898,7 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.list_pipelines_request.ListPipelinesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_osis.types.list_pipelines_request.ListPipelinesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -888,7 +909,27 @@ class AsyncOSISClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_pipelines(
+        self,
+        *,
+        config_overrides: Optional[AsyncOSISClientConfig] = None,
+        max_results: Optional["capo_osis.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_osis.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_osis.types.list_pipelines_response.ListPipelinesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_pipelines(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -926,14 +967,16 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_osis.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_policy(
@@ -975,15 +1018,17 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_osis.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def revoke_pipeline_endpoint_connections(
@@ -1024,15 +1069,17 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.revoke_pipeline_endpoint_connections_request.RevokePipelineEndpointConnectionsRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_arn"] = pipeline_arn
-        input_["endpoint_ids"] = endpoint_ids
+        input_: capo_osis.types.revoke_pipeline_endpoint_connections_request.RevokePipelineEndpointConnectionsRequest = {
+            "pipeline_arn": pipeline_arn,
+            "endpoint_ids": endpoint_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_pipeline(
@@ -1072,14 +1119,16 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.start_pipeline_request.StartPipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_name"] = pipeline_name
+        input_: capo_osis.types.start_pipeline_request.StartPipelineRequest = {
+            "pipeline_name": pipeline_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_pipeline(
@@ -1119,14 +1168,16 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.stop_pipeline_request.StopPipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_name"] = pipeline_name
+        input_: capo_osis.types.stop_pipeline_request.StopPipelineRequest = {
+            "pipeline_name": pipeline_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1168,15 +1219,17 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tags"] = tags
+        input_: capo_osis.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1217,15 +1270,17 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_osis.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_pipeline(
@@ -1287,8 +1342,9 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.update_pipeline_request.UpdatePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_name"] = pipeline_name
+        input_: capo_osis.types.update_pipeline_request.UpdatePipelineRequest = {
+            "pipeline_name": pipeline_name
+        }
         if min_units is not None:
             input_["min_units"] = min_units
         if max_units is not None:
@@ -1309,6 +1365,7 @@ class AsyncOSISClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def validate_pipeline(
@@ -1346,14 +1403,16 @@ class AsyncOSISClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_osis.types.validate_pipeline_request.ValidatePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_configuration_body"] = pipeline_configuration_body
+        input_: capo_osis.types.validate_pipeline_request.ValidatePipelineRequest = {
+            "pipeline_configuration_body": pipeline_configuration_body
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

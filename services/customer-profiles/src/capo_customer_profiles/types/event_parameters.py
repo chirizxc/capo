@@ -28,20 +28,36 @@ def serialize_json(value: EventParameters) -> dict:
     out: dict = {}
     out["EventType"] = value["event_type"]
     if "event_value_threshold" in value:
-        out["EventValueThreshold"] = value["event_value_threshold"]
+        out["EventValueThreshold"] = (
+            "NaN"
+            if value["event_value_threshold"] != value["event_value_threshold"]
+            else "Infinity"
+            if value["event_value_threshold"] == float("inf")
+            else "-Infinity"
+            if value["event_value_threshold"] == float("-inf")
+            else value["event_value_threshold"]
+        )
     if "event_weight" in value:
-        out["EventWeight"] = value["event_weight"]
+        out["EventWeight"] = (
+            "NaN"
+            if value["event_weight"] != value["event_weight"]
+            else "Infinity"
+            if value["event_weight"] == float("inf")
+            else "-Infinity"
+            if value["event_weight"] == float("-inf")
+            else value["event_weight"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> EventParameters:
     out: EventParameters = {}  # type: ignore[typeddict-item]
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         out["event_type"] = data["EventType"]
     else:
         raise DeserializationError("EventParameters.event_type required")
-    if "EventValueThreshold" in data:
-        out["event_value_threshold"] = data["EventValueThreshold"]
-    if "EventWeight" in data:
-        out["event_weight"] = data["EventWeight"]
+    if data.get("EventValueThreshold") is not None:
+        out["event_value_threshold"] = float(data["EventValueThreshold"])
+    if data.get("EventWeight") is not None:
+        out["event_weight"] = float(data["EventWeight"])
     return out

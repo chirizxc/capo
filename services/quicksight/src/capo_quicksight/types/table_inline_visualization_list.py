@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TableInlineVisualizationList:
 
     out: TableInlineVisualizationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.table_inline_visualization.deserialize_json(item)
         )

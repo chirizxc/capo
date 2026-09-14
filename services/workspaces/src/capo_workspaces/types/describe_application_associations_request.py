@@ -46,17 +46,17 @@ def serialize_aws_json_1_1(value: DescribeApplicationAssociationsRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationAssociationsRequest:
     out: DescribeApplicationAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError(
             "DescribeApplicationAssociationsRequest.application_id required"
         )
-    if "AssociatedResourceTypes" in data:
+    if data.get("AssociatedResourceTypes") is not None:
         import capo_workspaces.types.application_associated_resource_type_list
 
         out["associated_resource_types"] = (

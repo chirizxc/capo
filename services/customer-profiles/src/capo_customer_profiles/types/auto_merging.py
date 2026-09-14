@@ -51,19 +51,26 @@ def serialize_json(value: AutoMerging) -> dict:
             )
         )
     if "min_allowed_confidence_score_for_merging" in value:
-        out["MinAllowedConfidenceScoreForMerging"] = value[
-            "min_allowed_confidence_score_for_merging"
-        ]
+        out["MinAllowedConfidenceScoreForMerging"] = (
+            "NaN"
+            if value["min_allowed_confidence_score_for_merging"]
+            != value["min_allowed_confidence_score_for_merging"]
+            else "Infinity"
+            if value["min_allowed_confidence_score_for_merging"] == float("inf")
+            else "-Infinity"
+            if value["min_allowed_confidence_score_for_merging"] == float("-inf")
+            else value["min_allowed_confidence_score_for_merging"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AutoMerging:
     out: AutoMerging = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("AutoMerging.enabled required")
-    if "Consolidation" in data:
+    if data.get("Consolidation") is not None:
         import capo_customer_profiles.types.consolidation
 
         out["consolidation"] = (
@@ -71,7 +78,7 @@ def deserialize_json(data: dict) -> AutoMerging:
                 data["Consolidation"]
             )
         )
-    if "ConflictResolution" in data:
+    if data.get("ConflictResolution") is not None:
         import capo_customer_profiles.types.conflict_resolution
 
         out["conflict_resolution"] = (
@@ -79,8 +86,8 @@ def deserialize_json(data: dict) -> AutoMerging:
                 data["ConflictResolution"]
             )
         )
-    if "MinAllowedConfidenceScoreForMerging" in data:
-        out["min_allowed_confidence_score_for_merging"] = data[
-            "MinAllowedConfidenceScoreForMerging"
-        ]
+    if data.get("MinAllowedConfidenceScoreForMerging") is not None:
+        out["min_allowed_confidence_score_for_merging"] = float(
+            data["MinAllowedConfidenceScoreForMerging"]
+        )
     return out

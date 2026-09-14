@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEksClusterLoggingClusterLoggingList:
 
     out: AwsEksClusterLoggingClusterLoggingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_eks_cluster_logging_cluster_logging_details.deserialize_json(
                 item

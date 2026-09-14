@@ -75,24 +75,24 @@ def serialize_aws_json_1_1(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
     else:
         raise DeserializationError(
             "UpdateApplicationRequest.resource_group_name required"
         )
-    if "OpsCenterEnabled" in data:
+    if data.get("OpsCenterEnabled") is not None:
         out["ops_center_enabled"] = data["OpsCenterEnabled"]
-    if "CWEMonitorEnabled" in data:
+    if data.get("CWEMonitorEnabled") is not None:
         out["cwe_monitor_enabled"] = data["CWEMonitorEnabled"]
-    if "OpsItemSNSTopicArn" in data:
+    if data.get("OpsItemSNSTopicArn") is not None:
         out["ops_item_sns_topic_arn"] = data["OpsItemSNSTopicArn"]
-    if "SNSNotificationArn" in data:
+    if data.get("SNSNotificationArn") is not None:
         out["sns_notification_arn"] = data["SNSNotificationArn"]
-    if "RemoveSNSTopic" in data:
+    if data.get("RemoveSNSTopic") is not None:
         out["remove_sns_topic"] = data["RemoveSNSTopic"]
-    if "AutoConfigEnabled" in data:
+    if data.get("AutoConfigEnabled") is not None:
         out["auto_config_enabled"] = data["AutoConfigEnabled"]
-    if "AttachMissingPermission" in data:
+    if data.get("AttachMissingPermission") is not None:
         out["attach_missing_permission"] = data["AttachMissingPermission"]
     return out

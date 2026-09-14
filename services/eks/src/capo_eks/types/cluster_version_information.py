@@ -82,46 +82,46 @@ def serialize_json(value: ClusterVersionInformation) -> dict:
 
 def deserialize_json(data: dict) -> ClusterVersionInformation:
     out: ClusterVersionInformation = {}  # type: ignore[typeddict-item]
-    if "clusterVersion" in data:
+    if data.get("clusterVersion") is not None:
         out["cluster_version"] = data["clusterVersion"]
-    if "clusterType" in data:
+    if data.get("clusterType") is not None:
         out["cluster_type"] = data["clusterType"]
-    if "defaultPlatformVersion" in data:
+    if data.get("defaultPlatformVersion") is not None:
         out["default_platform_version"] = data["defaultPlatformVersion"]
-    if "defaultVersion" in data:
+    if data.get("defaultVersion") is not None:
         out["default_version"] = data["defaultVersion"]
     else:
         out["default_version"] = False
-    if "releaseDate" in data:
+    if data.get("releaseDate") is not None:
         import capo_eks.types.timestamp
 
         out["release_date"] = capo_eks.types.timestamp.deserialize_json(
             data["releaseDate"]
         )
-    if "endOfStandardSupportDate" in data:
+    if data.get("endOfStandardSupportDate") is not None:
         import capo_eks.types.timestamp
 
         out["end_of_standard_support_date"] = capo_eks.types.timestamp.deserialize_json(
             data["endOfStandardSupportDate"]
         )
-    if "endOfExtendedSupportDate" in data:
+    if data.get("endOfExtendedSupportDate") is not None:
         import capo_eks.types.timestamp
 
         out["end_of_extended_support_date"] = capo_eks.types.timestamp.deserialize_json(
             data["endOfExtendedSupportDate"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_eks.types.cluster_version_status
 
         out["status"] = capo_eks.types.cluster_version_status.deserialize_json(
             data["status"]
         )
-    if "versionStatus" in data:
+    if data.get("versionStatus") is not None:
         import capo_eks.types.version_status
 
         out["version_status"] = capo_eks.types.version_status.deserialize_json(
             data["versionStatus"]
         )
-    if "kubernetesPatchVersion" in data:
+    if data.get("kubernetesPatchVersion") is not None:
         out["kubernetes_patch_version"] = data["kubernetesPatchVersion"]
     return out

@@ -45,11 +45,11 @@ def serialize_aws_json_1_0(value: ListSecurityPoliciesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSecurityPoliciesRequest:
     out: ListSecurityPoliciesRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("ListSecurityPoliciesRequest.type required")
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_opensearchserverless.types.resource_filter
 
         out["resource"] = (
@@ -57,8 +57,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListSecurityPoliciesRequest:
                 data["resource"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

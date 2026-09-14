@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DedicatedIpList:
 
     out: DedicatedIpList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.dedicated_ip.deserialize_json(item))
     return out

@@ -110,25 +110,25 @@ def serialize_json(value: UpdateUserSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserSettingsRequest:
     out: UpdateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "copyAllowed" in data:
+    if data.get("copyAllowed") is not None:
         out["copy_allowed"] = data["copyAllowed"]
-    if "pasteAllowed" in data:
+    if data.get("pasteAllowed") is not None:
         out["paste_allowed"] = data["pasteAllowed"]
-    if "downloadAllowed" in data:
+    if data.get("downloadAllowed") is not None:
         out["download_allowed"] = data["downloadAllowed"]
-    if "uploadAllowed" in data:
+    if data.get("uploadAllowed") is not None:
         out["upload_allowed"] = data["uploadAllowed"]
-    if "printAllowed" in data:
+    if data.get("printAllowed") is not None:
         out["print_allowed"] = data["printAllowed"]
-    if "disconnectTimeoutInMinutes" in data:
+    if data.get("disconnectTimeoutInMinutes") is not None:
         out["disconnect_timeout_in_minutes"] = data["disconnectTimeoutInMinutes"]
-    if "idleDisconnectTimeoutInMinutes" in data:
+    if data.get("idleDisconnectTimeoutInMinutes") is not None:
         out["idle_disconnect_timeout_in_minutes"] = data[
             "idleDisconnectTimeoutInMinutes"
         ]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "cookieSynchronizationConfiguration" in data:
+    if data.get("cookieSynchronizationConfiguration") is not None:
         import capo_workspaces_web.types.cookie_synchronization_configuration
 
         out["cookie_synchronization_configuration"] = (
@@ -136,9 +136,9 @@ def deserialize_json(data: dict) -> UpdateUserSettingsRequest:
                 data["cookieSynchronizationConfiguration"]
             )
         )
-    if "deepLinkAllowed" in data:
+    if data.get("deepLinkAllowed") is not None:
         out["deep_link_allowed"] = data["deepLinkAllowed"]
-    if "toolbarConfiguration" in data:
+    if data.get("toolbarConfiguration") is not None:
         import capo_workspaces_web.types.toolbar_configuration
 
         out["toolbar_configuration"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> UpdateUserSettingsRequest:
                 data["toolbarConfiguration"]
             )
         )
-    if "brandingConfigurationInput" in data:
+    if data.get("brandingConfigurationInput") is not None:
         import capo_workspaces_web.types.branding_configuration_update_input
 
         out["branding_configuration_input"] = (
@@ -154,6 +154,6 @@ def deserialize_json(data: dict) -> UpdateUserSettingsRequest:
                 data["brandingConfigurationInput"]
             )
         )
-    if "webAuthnAllowed" in data:
+    if data.get("webAuthnAllowed") is not None:
         out["web_authn_allowed"] = data["webAuthnAllowed"]
     return out

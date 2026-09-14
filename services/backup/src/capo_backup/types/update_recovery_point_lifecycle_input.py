@@ -33,7 +33,7 @@ def serialize_json(value: UpdateRecoveryPointLifecycleInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecoveryPointLifecycleInput:
     out: UpdateRecoveryPointLifecycleInput = {}  # type: ignore[typeddict-item]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_backup.types.lifecycle
 
         out["lifecycle"] = capo_backup.types.lifecycle.deserialize_json(

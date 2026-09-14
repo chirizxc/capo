@@ -162,33 +162,33 @@ def serialize_json(value: ManagedThingSummary) -> dict:
 
 def deserialize_json(data: dict) -> ManagedThingSummary:
     out: ManagedThingSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AdvertisedProductId" in data:
+    if data.get("AdvertisedProductId") is not None:
         out["advertised_product_id"] = data["AdvertisedProductId"]
-    if "Brand" in data:
+    if data.get("Brand") is not None:
         out["brand"] = data["Brand"]
-    if "Classification" in data:
+    if data.get("Classification") is not None:
         out["classification"] = data["Classification"]
-    if "ConnectorDeviceId" in data:
+    if data.get("ConnectorDeviceId") is not None:
         out["connector_device_id"] = data["ConnectorDeviceId"]
-    if "ConnectorPolicyId" in data:
+    if data.get("ConnectorPolicyId") is not None:
         out["connector_policy_id"] = data["ConnectorPolicyId"]
-    if "ConnectorDestinationId" in data:
+    if data.get("ConnectorDestinationId") is not None:
         out["connector_destination_id"] = data["ConnectorDestinationId"]
-    if "Model" in data:
+    if data.get("Model") is not None:
         out["model"] = data["Model"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "CredentialLockerId" in data:
+    if data.get("CredentialLockerId") is not None:
         out["credential_locker_id"] = data["CredentialLockerId"]
-    if "ParentControllerId" in data:
+    if data.get("ParentControllerId") is not None:
         out["parent_controller_id"] = data["ParentControllerId"]
-    if "ProvisioningStatus" in data:
+    if data.get("ProvisioningStatus") is not None:
         import capo_iot_managed_integrations.types.provisioning_status
 
         out["provisioning_status"] = (
@@ -196,15 +196,15 @@ def deserialize_json(data: dict) -> ManagedThingSummary:
                 data["ProvisioningStatus"]
             )
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_iot_managed_integrations.types.role
 
         out["role"] = capo_iot_managed_integrations.types.role.deserialize_json(
             data["Role"]
         )
-    if "SerialNumber" in data:
+    if data.get("SerialNumber") is not None:
         out["serial_number"] = data["SerialNumber"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_iot_managed_integrations.types.created_at
 
         out["created_at"] = (
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> ManagedThingSummary:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_iot_managed_integrations.types.created_at
 
         out["updated_at"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> ManagedThingSummary:
                 data["UpdatedAt"]
             )
         )
-    if "ActivatedAt" in data:
+    if data.get("ActivatedAt") is not None:
         import capo_iot_managed_integrations.types.setup_at
 
         out["activated_at"] = (

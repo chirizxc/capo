@@ -47,18 +47,18 @@ def serialize_json(value: DefinitionRepositoryDetails) -> dict:
 
 def deserialize_json(data: dict) -> DefinitionRepositoryDetails:
     out: DefinitionRepositoryDetails = {}  # type: ignore[typeddict-item]
-    if "connectionArn" in data:
+    if data.get("connectionArn") is not None:
         out["connection_arn"] = data["connectionArn"]
-    if "fullRepositoryId" in data:
+    if data.get("fullRepositoryId") is not None:
         out["full_repository_id"] = data["fullRepositoryId"]
-    if "sourceReference" in data:
+    if data.get("sourceReference") is not None:
         import capo_omics.types.source_reference
 
         out["source_reference"] = capo_omics.types.source_reference.deserialize_json(
             data["sourceReference"]
         )
-    if "providerType" in data:
+    if data.get("providerType") is not None:
         out["provider_type"] = data["providerType"]
-    if "providerEndpoint" in data:
+    if data.get("providerEndpoint") is not None:
         out["provider_endpoint"] = data["providerEndpoint"]
     return out

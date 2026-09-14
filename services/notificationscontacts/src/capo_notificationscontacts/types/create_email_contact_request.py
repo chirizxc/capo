@@ -39,15 +39,15 @@ def serialize_json(value: CreateEmailContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEmailContactRequest:
     out: CreateEmailContactRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEmailContactRequest.name required")
-    if "emailAddress" in data:
+    if data.get("emailAddress") is not None:
         out["email_address"] = data["emailAddress"]
     else:
         raise DeserializationError("CreateEmailContactRequest.email_address required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_notificationscontacts.types.tag_map
 
         out["tags"] = capo_notificationscontacts.types.tag_map.deserialize_json(

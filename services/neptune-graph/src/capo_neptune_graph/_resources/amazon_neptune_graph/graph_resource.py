@@ -112,8 +112,10 @@ class GraphResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.create_graph_input.CreateGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_name"] = graph_name
+        input_: capo_neptune_graph.types.create_graph_input.CreateGraphInput = {
+            "graph_name": graph_name,
+            "provisioned_memory": provisioned_memory,
+        }
         if tags is not None:
             input_["tags"] = tags
         if public_connectivity is not None:
@@ -126,13 +128,13 @@ class GraphResource:
             input_["replica_count"] = replica_count
         if deletion_protection is not None:
             input_["deletion_protection"] = deletion_protection
-        input_["provisioned_memory"] = provisioned_memory
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_graph(
@@ -172,15 +174,17 @@ class GraphResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.delete_graph_input.DeleteGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["skip_snapshot"] = skip_snapshot
+        input_: capo_neptune_graph.types.delete_graph_input.DeleteGraphInput = {
+            "graph_identifier": graph_identifier,
+            "skip_snapshot": skip_snapshot,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_graph(
@@ -217,14 +221,16 @@ class GraphResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_graph_input.GetGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.get_graph_input.GetGraphInput = {
+            "graph_identifier": graph_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_graphs(
@@ -264,7 +270,7 @@ class GraphResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_graphs_input.ListGraphsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune_graph.types.list_graphs_input.ListGraphsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -275,6 +281,7 @@ class GraphResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_graph(
@@ -314,15 +321,17 @@ class GraphResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.reset_graph_input.ResetGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["skip_snapshot"] = skip_snapshot
+        input_: capo_neptune_graph.types.reset_graph_input.ResetGraphInput = {
+            "graph_identifier": graph_identifier,
+            "skip_snapshot": skip_snapshot,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_graph_from_snapshot(
@@ -377,9 +386,10 @@ class GraphResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.restore_graph_from_snapshot_input.RestoreGraphFromSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["snapshot_identifier"] = snapshot_identifier
-        input_["graph_name"] = graph_name
+        input_: capo_neptune_graph.types.restore_graph_from_snapshot_input.RestoreGraphFromSnapshotInput = {
+            "snapshot_identifier": snapshot_identifier,
+            "graph_name": graph_name,
+        }
         if provisioned_memory is not None:
             input_["provisioned_memory"] = provisioned_memory
         if deletion_protection is not None:
@@ -396,6 +406,7 @@ class GraphResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_graph(
@@ -433,14 +444,16 @@ class GraphResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.start_graph_input.StartGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.start_graph_input.StartGraphInput = {
+            "graph_identifier": graph_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_graph(
@@ -478,14 +491,16 @@ class GraphResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.stop_graph_input.StopGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.stop_graph_input.StopGraphInput = {
+            "graph_identifier": graph_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_graph(
@@ -531,8 +546,9 @@ class GraphResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.update_graph_input.UpdateGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.update_graph_input.UpdateGraphInput = {
+            "graph_identifier": graph_identifier
+        }
         if public_connectivity is not None:
             input_["public_connectivity"] = public_connectivity
         if provisioned_memory is not None:
@@ -545,6 +561,7 @@ class GraphResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -608,8 +625,10 @@ class AsyncGraphResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.create_graph_input.CreateGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_name"] = graph_name
+        input_: capo_neptune_graph.types.create_graph_input.CreateGraphInput = {
+            "graph_name": graph_name,
+            "provisioned_memory": provisioned_memory,
+        }
         if tags is not None:
             input_["tags"] = tags
         if public_connectivity is not None:
@@ -622,13 +641,13 @@ class AsyncGraphResource:
             input_["replica_count"] = replica_count
         if deletion_protection is not None:
             input_["deletion_protection"] = deletion_protection
-        input_["provisioned_memory"] = provisioned_memory
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_graph(
@@ -669,15 +688,17 @@ class AsyncGraphResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.delete_graph_input.DeleteGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["skip_snapshot"] = skip_snapshot
+        input_: capo_neptune_graph.types.delete_graph_input.DeleteGraphInput = {
+            "graph_identifier": graph_identifier,
+            "skip_snapshot": skip_snapshot,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_graph(
@@ -715,14 +736,16 @@ class AsyncGraphResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_graph_input.GetGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.get_graph_input.GetGraphInput = {
+            "graph_identifier": graph_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_graphs(
@@ -763,7 +786,7 @@ class AsyncGraphResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_graphs_input.ListGraphsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune_graph.types.list_graphs_input.ListGraphsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -774,6 +797,7 @@ class AsyncGraphResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_graph(
@@ -814,15 +838,17 @@ class AsyncGraphResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.reset_graph_input.ResetGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["skip_snapshot"] = skip_snapshot
+        input_: capo_neptune_graph.types.reset_graph_input.ResetGraphInput = {
+            "graph_identifier": graph_identifier,
+            "skip_snapshot": skip_snapshot,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def restore_graph_from_snapshot(
@@ -878,9 +904,10 @@ class AsyncGraphResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.restore_graph_from_snapshot_input.RestoreGraphFromSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["snapshot_identifier"] = snapshot_identifier
-        input_["graph_name"] = graph_name
+        input_: capo_neptune_graph.types.restore_graph_from_snapshot_input.RestoreGraphFromSnapshotInput = {
+            "snapshot_identifier": snapshot_identifier,
+            "graph_name": graph_name,
+        }
         if provisioned_memory is not None:
             input_["provisioned_memory"] = provisioned_memory
         if deletion_protection is not None:
@@ -897,6 +924,7 @@ class AsyncGraphResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_graph(
@@ -935,14 +963,16 @@ class AsyncGraphResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.start_graph_input.StartGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.start_graph_input.StartGraphInput = {
+            "graph_identifier": graph_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_graph(
@@ -981,14 +1011,16 @@ class AsyncGraphResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.stop_graph_input.StopGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.stop_graph_input.StopGraphInput = {
+            "graph_identifier": graph_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_graph(
@@ -1035,8 +1067,9 @@ class AsyncGraphResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.update_graph_input.UpdateGraphInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.update_graph_input.UpdateGraphInput = {
+            "graph_identifier": graph_identifier
+        }
         if public_connectivity is not None:
             input_["public_connectivity"] = public_connectivity
         if provisioned_memory is not None:
@@ -1049,4 +1082,5 @@ class AsyncGraphResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

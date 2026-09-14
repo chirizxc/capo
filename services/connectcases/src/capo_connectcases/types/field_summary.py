@@ -49,27 +49,27 @@ def serialize_json(value: FieldSummary) -> dict:
 
 def deserialize_json(data: dict) -> FieldSummary:
     out: FieldSummary = {}  # type: ignore[typeddict-item]
-    if "fieldId" in data:
+    if data.get("fieldId") is not None:
         out["field_id"] = data["fieldId"]
     else:
         raise DeserializationError("FieldSummary.field_id required")
-    if "fieldArn" in data:
+    if data.get("fieldArn") is not None:
         out["field_arn"] = data["fieldArn"]
     else:
         raise DeserializationError("FieldSummary.field_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("FieldSummary.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("FieldSummary.type required")
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     else:
         raise DeserializationError("FieldSummary.namespace required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_connectcases.types.field_attributes
 
         out["attributes"] = capo_connectcases.types.field_attributes.deserialize_json(

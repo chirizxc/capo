@@ -16,4 +16,4 @@ def serialize_json(value: Ipv4CidrBlockList) -> list:
 
 
 def deserialize_json(data: list) -> Ipv4CidrBlockList:
-    return list(data)
+    return [item for item in data if item is not None]

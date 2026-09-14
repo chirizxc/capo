@@ -29,12 +29,12 @@ def serialize_aws_json_1_0(value: ListEnvironmentProvisionedResourcesInput) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentProvisionedResourcesInput:
     out: ListEnvironmentProvisionedResourcesInput = {}  # type: ignore[typeddict-item]
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError(
             "ListEnvironmentProvisionedResourcesInput.environment_name required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

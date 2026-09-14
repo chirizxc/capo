@@ -364,11 +364,11 @@ def serialize_aws_json_1_1(value: CreateEndpointMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
     out: CreateEndpointMessage = {}  # type: ignore[typeddict-item]
-    if "EndpointIdentifier" in data:
+    if data.get("EndpointIdentifier") is not None:
         out["endpoint_identifier"] = data["EndpointIdentifier"]
     else:
         raise DeserializationError("CreateEndpointMessage.endpoint_identifier required")
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         import capo_database_migration_service.types.replication_endpoint_type_value
 
         out["endpoint_type"] = (
@@ -378,25 +378,25 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
         )
     else:
         raise DeserializationError("CreateEndpointMessage.endpoint_type required")
-    if "EngineName" in data:
+    if data.get("EngineName") is not None:
         out["engine_name"] = data["EngineName"]
     else:
         raise DeserializationError("CreateEndpointMessage.engine_name required")
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "ExtraConnectionAttributes" in data:
+    if data.get("ExtraConnectionAttributes") is not None:
         out["extra_connection_attributes"] = data["ExtraConnectionAttributes"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (
@@ -404,9 +404,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["Tags"]
             )
         )
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "SslMode" in data:
+    if data.get("SslMode") is not None:
         import capo_database_migration_service.types.dms_ssl_mode_value
 
         out["ssl_mode"] = (
@@ -414,11 +414,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["SslMode"]
             )
         )
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "ExternalTableDefinition" in data:
+    if data.get("ExternalTableDefinition") is not None:
         out["external_table_definition"] = data["ExternalTableDefinition"]
-    if "DynamoDbSettings" in data:
+    if data.get("DynamoDbSettings") is not None:
         import capo_database_migration_service.types.dynamo_db_settings
 
         out["dynamo_db_settings"] = (
@@ -426,7 +426,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["DynamoDbSettings"]
             )
         )
-    if "S3Settings" in data:
+    if data.get("S3Settings") is not None:
         import capo_database_migration_service.types.s3_settings
 
         out["s3_settings"] = (
@@ -434,7 +434,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["S3Settings"]
             )
         )
-    if "DmsTransferSettings" in data:
+    if data.get("DmsTransferSettings") is not None:
         import capo_database_migration_service.types.dms_transfer_settings
 
         out["dms_transfer_settings"] = (
@@ -442,7 +442,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["DmsTransferSettings"]
             )
         )
-    if "MongoDbSettings" in data:
+    if data.get("MongoDbSettings") is not None:
         import capo_database_migration_service.types.mongo_db_settings
 
         out["mongo_db_settings"] = (
@@ -450,7 +450,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["MongoDbSettings"]
             )
         )
-    if "KinesisSettings" in data:
+    if data.get("KinesisSettings") is not None:
         import capo_database_migration_service.types.kinesis_settings
 
         out["kinesis_settings"] = (
@@ -458,7 +458,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["KinesisSettings"]
             )
         )
-    if "KafkaSettings" in data:
+    if data.get("KafkaSettings") is not None:
         import capo_database_migration_service.types.kafka_settings
 
         out["kafka_settings"] = (
@@ -466,7 +466,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["KafkaSettings"]
             )
         )
-    if "ElasticsearchSettings" in data:
+    if data.get("ElasticsearchSettings") is not None:
         import capo_database_migration_service.types.elasticsearch_settings
 
         out["elasticsearch_settings"] = (
@@ -474,7 +474,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["ElasticsearchSettings"]
             )
         )
-    if "NeptuneSettings" in data:
+    if data.get("NeptuneSettings") is not None:
         import capo_database_migration_service.types.neptune_settings
 
         out["neptune_settings"] = (
@@ -482,7 +482,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["NeptuneSettings"]
             )
         )
-    if "RedshiftSettings" in data:
+    if data.get("RedshiftSettings") is not None:
         import capo_database_migration_service.types.redshift_settings
 
         out["redshift_settings"] = (
@@ -490,7 +490,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["RedshiftSettings"]
             )
         )
-    if "PostgreSQLSettings" in data:
+    if data.get("PostgreSQLSettings") is not None:
         import capo_database_migration_service.types.postgre_sql_settings
 
         out["postgre_sql_settings"] = (
@@ -498,7 +498,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["PostgreSQLSettings"]
             )
         )
-    if "MySQLSettings" in data:
+    if data.get("MySQLSettings") is not None:
         import capo_database_migration_service.types.my_sql_settings
 
         out["my_sql_settings"] = (
@@ -506,7 +506,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["MySQLSettings"]
             )
         )
-    if "OracleSettings" in data:
+    if data.get("OracleSettings") is not None:
         import capo_database_migration_service.types.oracle_settings
 
         out["oracle_settings"] = (
@@ -514,7 +514,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["OracleSettings"]
             )
         )
-    if "SybaseSettings" in data:
+    if data.get("SybaseSettings") is not None:
         import capo_database_migration_service.types.sybase_settings
 
         out["sybase_settings"] = (
@@ -522,7 +522,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["SybaseSettings"]
             )
         )
-    if "MicrosoftSQLServerSettings" in data:
+    if data.get("MicrosoftSQLServerSettings") is not None:
         import capo_database_migration_service.types.microsoft_sql_server_settings
 
         out["microsoft_sql_server_settings"] = (
@@ -530,7 +530,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["MicrosoftSQLServerSettings"]
             )
         )
-    if "IBMDb2Settings" in data:
+    if data.get("IBMDb2Settings") is not None:
         import capo_database_migration_service.types.ibm_db2_settings
 
         out["ibm_db2_settings"] = (
@@ -538,9 +538,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["IBMDb2Settings"]
             )
         )
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
-    if "DocDbSettings" in data:
+    if data.get("DocDbSettings") is not None:
         import capo_database_migration_service.types.doc_db_settings
 
         out["doc_db_settings"] = (
@@ -548,7 +548,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["DocDbSettings"]
             )
         )
-    if "RedisSettings" in data:
+    if data.get("RedisSettings") is not None:
         import capo_database_migration_service.types.redis_settings
 
         out["redis_settings"] = (
@@ -556,7 +556,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["RedisSettings"]
             )
         )
-    if "GcpMySQLSettings" in data:
+    if data.get("GcpMySQLSettings") is not None:
         import capo_database_migration_service.types.gcp_my_sql_settings
 
         out["gcp_my_sql_settings"] = (
@@ -564,7 +564,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointMessage:
                 data["GcpMySQLSettings"]
             )
         )
-    if "TimestreamSettings" in data:
+    if data.get("TimestreamSettings") is not None:
         import capo_database_migration_service.types.timestream_settings
 
         out["timestream_settings"] = (

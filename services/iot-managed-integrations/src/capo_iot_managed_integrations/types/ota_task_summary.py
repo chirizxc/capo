@@ -68,11 +68,11 @@ def serialize_json(value: OtaTaskSummary) -> dict:
 
 def deserialize_json(data: dict) -> OtaTaskSummary:
     out: OtaTaskSummary = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
-    if "TaskArn" in data:
+    if data.get("TaskArn") is not None:
         out["task_arn"] = data["TaskArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_iot_managed_integrations.types.created_at
 
         out["created_at"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> OtaTaskSummary:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_iot_managed_integrations.types.last_updated_at
 
         out["last_updated_at"] = (
@@ -88,9 +88,9 @@ def deserialize_json(data: dict) -> OtaTaskSummary:
                 data["LastUpdatedAt"]
             )
         )
-    if "TaskConfigurationId" in data:
+    if data.get("TaskConfigurationId") is not None:
         out["task_configuration_id"] = data["TaskConfigurationId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_managed_integrations.types.ota_status
 
         out["status"] = capo_iot_managed_integrations.types.ota_status.deserialize_json(

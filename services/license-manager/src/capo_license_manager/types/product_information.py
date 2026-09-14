@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: ProductInformation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProductInformation:
     out: ProductInformation = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError("ProductInformation.resource_type required")
-    if "ProductInformationFilterList" in data:
+    if data.get("ProductInformationFilterList") is not None:
         import capo_license_manager.types.product_information_filter_list
 
         out["product_information_filter_list"] = (

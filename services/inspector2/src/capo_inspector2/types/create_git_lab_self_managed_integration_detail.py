@@ -28,13 +28,13 @@ def serialize_json(value: CreateGitLabSelfManagedIntegrationDetail) -> dict:
 
 def deserialize_json(data: dict) -> CreateGitLabSelfManagedIntegrationDetail:
     out: CreateGitLabSelfManagedIntegrationDetail = {}  # type: ignore[typeddict-item]
-    if "instanceUrl" in data:
+    if data.get("instanceUrl") is not None:
         out["instance_url"] = data["instanceUrl"]
     else:
         raise DeserializationError(
             "CreateGitLabSelfManagedIntegrationDetail.instance_url required"
         )
-    if "accessToken" in data:
+    if data.get("accessToken") is not None:
         out["access_token"] = data["accessToken"]
     else:
         raise DeserializationError(

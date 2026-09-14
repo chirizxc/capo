@@ -184,11 +184,11 @@ def serialize_aws_json_1_1(value: GameSessionPlacement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GameSessionPlacement:
     out: GameSessionPlacement = {}  # type: ignore[typeddict-item]
-    if "PlacementId" in data:
+    if data.get("PlacementId") is not None:
         out["placement_id"] = data["PlacementId"]
-    if "GameSessionQueueName" in data:
+    if data.get("GameSessionQueueName") is not None:
         out["game_session_queue_name"] = data["GameSessionQueueName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.game_session_placement_state
 
         out["status"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> GameSessionPlacement:
                 data["Status"]
             )
         )
-    if "GameProperties" in data:
+    if data.get("GameProperties") is not None:
         import capo_gamelift.types.game_property_list
 
         out["game_properties"] = (
@@ -204,17 +204,17 @@ def deserialize_aws_json_1_1(data: dict) -> GameSessionPlacement:
                 data["GameProperties"]
             )
         )
-    if "MaximumPlayerSessionCount" in data:
+    if data.get("MaximumPlayerSessionCount") is not None:
         out["maximum_player_session_count"] = data["MaximumPlayerSessionCount"]
-    if "GameSessionName" in data:
+    if data.get("GameSessionName") is not None:
         out["game_session_name"] = data["GameSessionName"]
-    if "GameSessionId" in data:
+    if data.get("GameSessionId") is not None:
         out["game_session_id"] = data["GameSessionId"]
-    if "GameSessionArn" in data:
+    if data.get("GameSessionArn") is not None:
         out["game_session_arn"] = data["GameSessionArn"]
-    if "GameSessionRegion" in data:
+    if data.get("GameSessionRegion") is not None:
         out["game_session_region"] = data["GameSessionRegion"]
-    if "PlayerLatencies" in data:
+    if data.get("PlayerLatencies") is not None:
         import capo_gamelift.types.player_latency_list
 
         out["player_latencies"] = (
@@ -222,25 +222,25 @@ def deserialize_aws_json_1_1(data: dict) -> GameSessionPlacement:
                 data["PlayerLatencies"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["start_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["end_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "PlacedPlayerSessions" in data:
+    if data.get("PlacedPlayerSessions") is not None:
         import capo_gamelift.types.placed_player_session_list
 
         out["placed_player_sessions"] = (
@@ -248,11 +248,11 @@ def deserialize_aws_json_1_1(data: dict) -> GameSessionPlacement:
                 data["PlacedPlayerSessions"]
             )
         )
-    if "GameSessionData" in data:
+    if data.get("GameSessionData") is not None:
         out["game_session_data"] = data["GameSessionData"]
-    if "MatchmakerData" in data:
+    if data.get("MatchmakerData") is not None:
         out["matchmaker_data"] = data["MatchmakerData"]
-    if "PriorityConfigurationOverride" in data:
+    if data.get("PriorityConfigurationOverride") is not None:
         import capo_gamelift.types.priority_configuration_override
 
         out["priority_configuration_override"] = (
@@ -260,7 +260,7 @@ def deserialize_aws_json_1_1(data: dict) -> GameSessionPlacement:
                 data["PriorityConfigurationOverride"]
             )
         )
-    if "PlayerGatewayStatus" in data:
+    if data.get("PlayerGatewayStatus") is not None:
         import capo_gamelift.types.player_gateway_status
 
         out["player_gateway_status"] = (

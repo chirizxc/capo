@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: GetDeviceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDeviceRequest:
     out: GetDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceKey" in data:
+    if data.get("DeviceKey") is not None:
         out["device_key"] = data["DeviceKey"]
     else:
         raise DeserializationError("GetDeviceRequest.device_key required")
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     return out

@@ -36,19 +36,19 @@ def serialize_json(value: GetAutoMergingPreviewResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAutoMergingPreviewResponse:
     out: GetAutoMergingPreviewResponse = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("GetAutoMergingPreviewResponse.domain_name required")
-    if "NumberOfMatchesInSample" in data:
+    if data.get("NumberOfMatchesInSample") is not None:
         out["number_of_matches_in_sample"] = data["NumberOfMatchesInSample"]
     else:
         out["number_of_matches_in_sample"] = 0
-    if "NumberOfProfilesInSample" in data:
+    if data.get("NumberOfProfilesInSample") is not None:
         out["number_of_profiles_in_sample"] = data["NumberOfProfilesInSample"]
     else:
         out["number_of_profiles_in_sample"] = 0
-    if "NumberOfProfilesWillBeMerged" in data:
+    if data.get("NumberOfProfilesWillBeMerged") is not None:
         out["number_of_profiles_will_be_merged"] = data["NumberOfProfilesWillBeMerged"]
     else:
         out["number_of_profiles_will_be_merged"] = 0

@@ -40,12 +40,12 @@ def serialize_json(value: RemoveThingFromBillingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> RemoveThingFromBillingGroupRequest:
     out: RemoveThingFromBillingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "billingGroupName" in data:
+    if data.get("billingGroupName") is not None:
         out["billing_group_name"] = data["billingGroupName"]
-    if "billingGroupArn" in data:
+    if data.get("billingGroupArn") is not None:
         out["billing_group_arn"] = data["billingGroupArn"]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "thingArn" in data:
+    if data.get("thingArn") is not None:
         out["thing_arn"] = data["thingArn"]
     return out

@@ -79,11 +79,11 @@ def serialize_json(value: CreateProvisioningProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateProvisioningProfileResponse:
     out: CreateProvisioningProfileResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ProvisioningType" in data:
+    if data.get("ProvisioningType") is not None:
         import capo_iot_managed_integrations.types.provisioning_type
 
         out["provisioning_type"] = (
@@ -91,9 +91,9 @@ def deserialize_json(data: dict) -> CreateProvisioningProfileResponse:
                 data["ProvisioningType"]
             )
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_managed_integrations.types.provisioning_profile_status
 
         out["status"] = (
@@ -101,8 +101,8 @@ def deserialize_json(data: dict) -> CreateProvisioningProfileResponse:
                 data["Status"]
             )
         )
-    if "ClaimCertificate" in data:
+    if data.get("ClaimCertificate") is not None:
         out["claim_certificate"] = data["ClaimCertificate"]
-    if "ClaimCertificatePrivateKey" in data:
+    if data.get("ClaimCertificatePrivateKey") is not None:
         out["claim_certificate_private_key"] = data["ClaimCertificatePrivateKey"]
     return out

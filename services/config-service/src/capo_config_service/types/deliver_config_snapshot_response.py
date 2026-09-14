@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeliverConfigSnapshotResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeliverConfigSnapshotResponse:
     out: DeliverConfigSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "configSnapshotId" in data:
+    if data.get("configSnapshotId") is not None:
         out["config_snapshot_id"] = data["configSnapshotId"]
     return out

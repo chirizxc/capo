@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_vpc_lattice._auth._signers
@@ -95,11 +96,13 @@ class AccessLogSubscription:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_access_log_subscription_request.CreateAccessLogSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["resource_identifier"] = resource_identifier
-        input_["destination_arn"] = destination_arn
+        input_: capo_vpc_lattice.types.create_access_log_subscription_request.CreateAccessLogSubscriptionRequest = {
+            "resource_identifier": resource_identifier,
+            "destination_arn": destination_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if service_network_log_type is not None:
             input_["service_network_log_type"] = service_network_log_type
         if tags is not None:
@@ -110,6 +113,7 @@ class AccessLogSubscription:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -147,16 +151,16 @@ class AccessLogSubscription:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_access_log_subscription_request.GetAccessLogSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["access_log_subscription_identifier"] = (
-            access_log_subscription_identifier
-        )
+        input_: capo_vpc_lattice.types.get_access_log_subscription_request.GetAccessLogSubscriptionRequest = {
+            "access_log_subscription_identifier": access_log_subscription_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -197,17 +201,17 @@ class AccessLogSubscription:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_access_log_subscription_request.UpdateAccessLogSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["access_log_subscription_identifier"] = (
-            access_log_subscription_identifier
-        )
-        input_["destination_arn"] = destination_arn
+        input_: capo_vpc_lattice.types.update_access_log_subscription_request.UpdateAccessLogSubscriptionRequest = {
+            "access_log_subscription_identifier": access_log_subscription_identifier,
+            "destination_arn": destination_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -245,16 +249,16 @@ class AccessLogSubscription:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_access_log_subscription_request.DeleteAccessLogSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["access_log_subscription_identifier"] = (
-            access_log_subscription_identifier
-        )
+        input_: capo_vpc_lattice.types.delete_access_log_subscription_request.DeleteAccessLogSubscriptionRequest = {
+            "access_log_subscription_identifier": access_log_subscription_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -295,8 +299,9 @@ class AccessLogSubscription:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_access_log_subscriptions_request.ListAccessLogSubscriptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_vpc_lattice.types.list_access_log_subscriptions_request.ListAccessLogSubscriptionsRequest = {
+            "resource_identifier": resource_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -307,6 +312,7 @@ class AccessLogSubscription:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -363,11 +369,13 @@ class AsyncAccessLogSubscription:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_access_log_subscription_request.CreateAccessLogSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["resource_identifier"] = resource_identifier
-        input_["destination_arn"] = destination_arn
+        input_: capo_vpc_lattice.types.create_access_log_subscription_request.CreateAccessLogSubscriptionRequest = {
+            "resource_identifier": resource_identifier,
+            "destination_arn": destination_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if service_network_log_type is not None:
             input_["service_network_log_type"] = service_network_log_type
         if tags is not None:
@@ -378,6 +386,7 @@ class AsyncAccessLogSubscription:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -416,16 +425,16 @@ class AsyncAccessLogSubscription:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_access_log_subscription_request.GetAccessLogSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["access_log_subscription_identifier"] = (
-            access_log_subscription_identifier
-        )
+        input_: capo_vpc_lattice.types.get_access_log_subscription_request.GetAccessLogSubscriptionRequest = {
+            "access_log_subscription_identifier": access_log_subscription_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -467,17 +476,17 @@ class AsyncAccessLogSubscription:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_access_log_subscription_request.UpdateAccessLogSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["access_log_subscription_identifier"] = (
-            access_log_subscription_identifier
-        )
-        input_["destination_arn"] = destination_arn
+        input_: capo_vpc_lattice.types.update_access_log_subscription_request.UpdateAccessLogSubscriptionRequest = {
+            "access_log_subscription_identifier": access_log_subscription_identifier,
+            "destination_arn": destination_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -516,16 +525,16 @@ class AsyncAccessLogSubscription:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_access_log_subscription_request.DeleteAccessLogSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["access_log_subscription_identifier"] = (
-            access_log_subscription_identifier
-        )
+        input_: capo_vpc_lattice.types.delete_access_log_subscription_request.DeleteAccessLogSubscriptionRequest = {
+            "access_log_subscription_identifier": access_log_subscription_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -567,8 +576,9 @@ class AsyncAccessLogSubscription:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_access_log_subscriptions_request.ListAccessLogSubscriptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_vpc_lattice.types.list_access_log_subscriptions_request.ListAccessLogSubscriptionsRequest = {
+            "resource_identifier": resource_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -579,4 +589,5 @@ class AsyncAccessLogSubscription:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

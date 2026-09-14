@@ -13,9 +13,9 @@ from capo_mpa import AsyncMPAClient
 
 
 async def main():
-    async with AsyncMPAClient() as s3:
+    async with AsyncMPAClient() as mpa:
         # Example: call the get_policy_version operation
-        response = await s3.get_policy_version()
+        response = await mpa.get_policy_version()
         print(response["policy_version"])
 ```
 
@@ -28,9 +28,9 @@ from capo_mpa import AsyncMPAClient
 
 
 async def main():
-    async with AsyncMPAClient() as s3:
+    async with AsyncMPAClient() as mpa:
         # Example: paginate over list_policies
-        async for item in s3.iter_list_policies():
+        async for item in mpa.iter_list_policies():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_mpa.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncMPAClient() as s3:
+    async with AsyncMPAClient() as mpa:
         try:
-            await s3.get_policy_version()
+            await mpa.get_policy_version()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_mpa import AsyncMPAClient
 
 
 async def main():
-    async with AsyncMPAClient() as s3:
+    async with AsyncMPAClient() as mpa:
         # Default: 3 attempts for every operation
-        response = await s3.get_policy_version()
+        response = await mpa.get_policy_version()
 
         # Override per operation
-        response = await s3.get_policy_version(config_overrides={"retry_max_attempts": 5})
+        response = await mpa.get_policy_version(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_policy_version(config_overrides={"retry_max_attempts": 1})
+        response = await mpa.get_policy_version(config_overrides={"retry_max_attempts": 1})
 ```

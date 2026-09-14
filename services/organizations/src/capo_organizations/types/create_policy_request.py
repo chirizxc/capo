@@ -49,19 +49,19 @@ def serialize_aws_json_1_1(value: CreatePolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePolicyRequest:
     out: CreatePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("CreatePolicyRequest.content required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreatePolicyRequest.description required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreatePolicyRequest.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_organizations.types.policy_type
 
         out["type"] = capo_organizations.types.policy_type.deserialize_aws_json_1_1(
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePolicyRequest:
         )
     else:
         raise DeserializationError("CreatePolicyRequest.type required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_organizations.types.tags
 
         out["tags"] = capo_organizations.types.tags.deserialize_aws_json_1_1(

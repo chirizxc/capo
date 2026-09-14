@@ -81,9 +81,9 @@ def serialize_aws_json_1_1(value: DirectoryConnectSettingsDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectoryConnectSettingsDescription:
     out: DirectoryConnectSettingsDescription = {}  # type: ignore[typeddict-item]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_directory_service.types.subnet_ids
 
         out["subnet_ids"] = (
@@ -91,11 +91,11 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryConnectSettingsDescription:
                 data["SubnetIds"]
             )
         )
-    if "CustomerUserName" in data:
+    if data.get("CustomerUserName") is not None:
         out["customer_user_name"] = data["CustomerUserName"]
-    if "SecurityGroupId" in data:
+    if data.get("SecurityGroupId") is not None:
         out["security_group_id"] = data["SecurityGroupId"]
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_directory_service.types.availability_zones
 
         out["availability_zones"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryConnectSettingsDescription:
                 data["AvailabilityZones"]
             )
         )
-    if "ConnectIps" in data:
+    if data.get("ConnectIps") is not None:
         import capo_directory_service.types.ip_addrs
 
         out["connect_ips"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryConnectSettingsDescription:
                 data["ConnectIps"]
             )
         )
-    if "ConnectIpsV6" in data:
+    if data.get("ConnectIpsV6") is not None:
         import capo_directory_service.types.ip_v6_addrs
 
         out["connect_ips_v6"] = (

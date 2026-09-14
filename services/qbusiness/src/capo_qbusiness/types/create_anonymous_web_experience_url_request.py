@@ -31,6 +31,6 @@ def serialize_json(value: CreateAnonymousWebExperienceUrlRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAnonymousWebExperienceUrlRequest:
     out: CreateAnonymousWebExperienceUrlRequest = {}  # type: ignore[typeddict-item]
-    if "sessionDurationInMinutes" in data:
+    if data.get("sessionDurationInMinutes") is not None:
         out["session_duration_in_minutes"] = data["sessionDurationInMinutes"]
     return out

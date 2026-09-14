@@ -43,11 +43,11 @@ def serialize_json(value: Metadata) -> dict:
 
 def deserialize_json(data: dict) -> Metadata:
     out: Metadata = {}  # type: ignore[typeddict-item]
-    if "eTag" in data:
+    if data.get("eTag") is not None:
         out["e_tag"] = data["eTag"]
-    if "fileSize" in data:
+    if data.get("fileSize") is not None:
         out["file_size"] = data["fileSize"]
-    if "lastModified" in data:
+    if data.get("lastModified") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["last_modified"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> Metadata:
                 data["lastModified"]
             )
         )
-    if "mimeType" in data:
+    if data.get("mimeType") is not None:
         out["mime_type"] = data["mimeType"]
     return out

@@ -37,7 +37,7 @@ def serialize_json(value: AggregateStatus) -> dict:
 
 def deserialize_json(data: dict) -> AggregateStatus:
     out: AggregateStatus = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_groundstation.types.agent_status
 
         out["status"] = capo_groundstation.types.agent_status.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> AggregateStatus:
         )
     else:
         raise DeserializationError("AggregateStatus.status required")
-    if "signatureMap" in data:
+    if data.get("signatureMap") is not None:
         import capo_groundstation.types.signature_map
 
         out["signature_map"] = capo_groundstation.types.signature_map.deserialize_json(

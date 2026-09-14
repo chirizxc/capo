@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: GetCredentialsForIdentityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCredentialsForIdentityResponse:
     out: GetCredentialsForIdentityResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_cognito_identity.types.credentials
 
         out["credentials"] = (

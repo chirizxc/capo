@@ -53,11 +53,11 @@ def serialize_aws_json_1_0(value: PutSchemaOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutSchemaOutput:
     out: PutSchemaOutput = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("PutSchemaOutput.policy_store_id required")
-    if "namespaces" in data:
+    if data.get("namespaces") is not None:
         import capo_verifiedpermissions.types.namespace_list
 
         out["namespaces"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> PutSchemaOutput:
         )
     else:
         raise DeserializationError("PutSchemaOutput.namespaces required")
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["created_date"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> PutSchemaOutput:
         )
     else:
         raise DeserializationError("PutSchemaOutput.created_date required")
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["last_updated_date"] = (

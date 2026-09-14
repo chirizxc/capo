@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SlotTypeConfigurations:
 
     out: SlotTypeConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_model_building_service.types.slot_type_configuration.deserialize_json(
                 item

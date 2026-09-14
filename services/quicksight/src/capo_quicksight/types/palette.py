@@ -27,8 +27,8 @@ def serialize_json(value: Palette) -> dict:
 
 def deserialize_json(data: dict) -> Palette:
     out: Palette = {}  # type: ignore[typeddict-item]
-    if "Foreground" in data:
+    if data.get("Foreground") is not None:
         out["foreground"] = data["Foreground"]
-    if "Background" in data:
+    if data.get("Background") is not None:
         out["background"] = data["Background"]
     return out

@@ -51,7 +51,7 @@ def serialize_json(value: AppInstanceUserMembershipSummary) -> dict:
 
 def deserialize_json(data: dict) -> AppInstanceUserMembershipSummary:
     out: AppInstanceUserMembershipSummary = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_messaging.types.channel_membership_type
 
         out["type"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> AppInstanceUserMembershipSummary:
                 data["Type"]
             )
         )
-    if "ReadMarkerTimestamp" in data:
+    if data.get("ReadMarkerTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["read_marker_timestamp"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> AppInstanceUserMembershipSummary:
                 data["ReadMarkerTimestamp"]
             )
         )
-    if "SubChannelId" in data:
+    if data.get("SubChannelId") is not None:
         out["sub_channel_id"] = data["SubChannelId"]
     return out

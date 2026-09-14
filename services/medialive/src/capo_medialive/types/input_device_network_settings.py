@@ -53,22 +53,22 @@ def serialize_json(value: InputDeviceNetworkSettings) -> dict:
 
 def deserialize_json(data: dict) -> InputDeviceNetworkSettings:
     out: InputDeviceNetworkSettings = {}  # type: ignore[typeddict-item]
-    if "dnsAddresses" in data:
+    if data.get("dnsAddresses") is not None:
         import capo_medialive.types.__list_of__string
 
         out["dns_addresses"] = capo_medialive.types.__list_of__string.deserialize_json(
             data["dnsAddresses"]
         )
-    if "gateway" in data:
+    if data.get("gateway") is not None:
         out["gateway"] = data["gateway"]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "ipScheme" in data:
+    if data.get("ipScheme") is not None:
         import capo_medialive.types.input_device_ip_scheme
 
         out["ip_scheme"] = capo_medialive.types.input_device_ip_scheme.deserialize_json(
             data["ipScheme"]
         )
-    if "subnetMask" in data:
+    if data.get("subnetMask") is not None:
         out["subnet_mask"] = data["subnetMask"]
     return out

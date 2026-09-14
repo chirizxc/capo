@@ -24,7 +24,7 @@ def serialize_json(value: SampleUtterance) -> dict:
 
 def deserialize_json(data: dict) -> SampleUtterance:
     out: SampleUtterance = {}  # type: ignore[typeddict-item]
-    if "utterance" in data:
+    if data.get("utterance") is not None:
         out["utterance"] = data["utterance"]
     else:
         raise DeserializationError("SampleUtterance.utterance required")

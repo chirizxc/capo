@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListRescoreExecutionPlansResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRescoreExecutionPlansResponse:
     out: ListRescoreExecutionPlansResponse = {}  # type: ignore[typeddict-item]
-    if "SummaryItems" in data:
+    if data.get("SummaryItems") is not None:
         import capo_kendra_ranking.types.rescore_execution_plan_summary_list
 
         out["summary_items"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRescoreExecutionPlansResponse:
                 data["SummaryItems"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

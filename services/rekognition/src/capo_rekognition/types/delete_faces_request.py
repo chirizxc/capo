@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: DeleteFacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFacesRequest:
     out: DeleteFacesRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("DeleteFacesRequest.collection_id required")
-    if "FaceIds" in data:
+    if data.get("FaceIds") is not None:
         import capo_rekognition.types.face_id_list
 
         out["face_ids"] = capo_rekognition.types.face_id_list.deserialize_aws_json_1_1(

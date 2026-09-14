@@ -30,11 +30,11 @@ def serialize_json(value: CoverageStringFilter) -> dict:
 
 def deserialize_json(data: dict) -> CoverageStringFilter:
     out: CoverageStringFilter = {}  # type: ignore[typeddict-item]
-    if "comparison" in data:
+    if data.get("comparison") is not None:
         out["comparison"] = data["comparison"]
     else:
         raise DeserializationError("CoverageStringFilter.comparison required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("CoverageStringFilter.value required")

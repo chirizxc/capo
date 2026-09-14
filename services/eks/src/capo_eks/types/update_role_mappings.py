@@ -43,7 +43,7 @@ def serialize_json(value: UpdateRoleMappings) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRoleMappings:
     out: UpdateRoleMappings = {}  # type: ignore[typeddict-item]
-    if "addOrUpdateRoleMappings" in data:
+    if data.get("addOrUpdateRoleMappings") is not None:
         import capo_eks.types.argo_cd_role_mapping_list
 
         out["add_or_update_role_mappings"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> UpdateRoleMappings:
                 data["addOrUpdateRoleMappings"]
             )
         )
-    if "removeRoleMappings" in data:
+    if data.get("removeRoleMappings") is not None:
         import capo_eks.types.argo_cd_role_mapping_list
 
         out["remove_role_mappings"] = (

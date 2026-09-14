@@ -35,7 +35,7 @@ def serialize_json(value: ListResourceEndpointAssociationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListResourceEndpointAssociationsResponse:
     out: ListResourceEndpointAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_vpc_lattice.types.resource_endpoint_association_list
 
         out["items"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListResourceEndpointAssociationsResponse:
         raise DeserializationError(
             "ListResourceEndpointAssociationsResponse.items required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: CreateAppBlockBuilderStreamingURLResult) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAppBlockBuilderStreamingURLResult:
     out: CreateAppBlockBuilderStreamingURLResult = {}  # type: ignore[typeddict-item]
-    if "StreamingURL" in data:
+    if data.get("StreamingURL") is not None:
         out["streaming_url"] = data["StreamingURL"]
-    if "Expires" in data:
+    if data.get("Expires") is not None:
         import capo_appstream.types.timestamp
 
         out["expires"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(

@@ -40,9 +40,9 @@ def serialize_json(value: AwsEfsAccessPointPosixUserDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEfsAccessPointPosixUserDetails:
     out: AwsEfsAccessPointPosixUserDetails = {}  # type: ignore[typeddict-item]
-    if "Gid" in data:
+    if data.get("Gid") is not None:
         out["gid"] = data["Gid"]
-    if "SecondaryGids" in data:
+    if data.get("SecondaryGids") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["secondary_gids"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> AwsEfsAccessPointPosixUserDetails:
                 data["SecondaryGids"]
             )
         )
-    if "Uid" in data:
+    if data.get("Uid") is not None:
         out["uid"] = data["Uid"]
     return out

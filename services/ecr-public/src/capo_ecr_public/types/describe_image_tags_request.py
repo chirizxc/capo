@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: DescribeImageTagsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeImageTagsRequest:
     out: DescribeImageTagsRequest = {}  # type: ignore[typeddict-item]
-    if "registryId" in data:
+    if data.get("registryId") is not None:
         out["registry_id"] = data["registryId"]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("DescribeImageTagsRequest.repository_name required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

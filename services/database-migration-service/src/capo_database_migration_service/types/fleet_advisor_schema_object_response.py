@@ -46,14 +46,14 @@ def serialize_aws_json_1_1(value: FleetAdvisorSchemaObjectResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FleetAdvisorSchemaObjectResponse:
     out: FleetAdvisorSchemaObjectResponse = {}  # type: ignore[typeddict-item]
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         out["schema_id"] = data["SchemaId"]
-    if "ObjectType" in data:
+    if data.get("ObjectType") is not None:
         out["object_type"] = data["ObjectType"]
-    if "NumberOfObjects" in data:
+    if data.get("NumberOfObjects") is not None:
         out["number_of_objects"] = data["NumberOfObjects"]
-    if "CodeLineCount" in data:
+    if data.get("CodeLineCount") is not None:
         out["code_line_count"] = data["CodeLineCount"]
-    if "CodeSize" in data:
+    if data.get("CodeSize") is not None:
         out["code_size"] = data["CodeSize"]
     return out

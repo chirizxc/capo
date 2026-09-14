@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AddRegionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddRegionResponse:
     out: AddRegionResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sso_admin.types.region_status
 
         out["status"] = capo_sso_admin.types.region_status.deserialize_aws_json_1_1(

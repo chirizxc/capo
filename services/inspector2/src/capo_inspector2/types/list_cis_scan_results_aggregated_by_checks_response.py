@@ -36,7 +36,7 @@ def serialize_json(value: ListCisScanResultsAggregatedByChecksResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCisScanResultsAggregatedByChecksResponse:
     out: ListCisScanResultsAggregatedByChecksResponse = {}  # type: ignore[typeddict-item]
-    if "checkAggregations" in data:
+    if data.get("checkAggregations") is not None:
         import capo_inspector2.types.cis_check_aggregation_list
 
         out["check_aggregations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListCisScanResultsAggregatedByChecksResponse
                 data["checkAggregations"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

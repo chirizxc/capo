@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchGetTableOptimizerErrors:
 
     out: BatchGetTableOptimizerErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.batch_get_table_optimizer_error.deserialize_aws_json_1_1(
                 item

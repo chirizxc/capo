@@ -31,11 +31,11 @@ def serialize_aws_json_1_0(value: ProfileNextStepsHistory) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProfileNextStepsHistory:
     out: ProfileNextStepsHistory = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("ProfileNextStepsHistory.value required")
-    if "Time" in data:
+    if data.get("Time") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["time"] = (

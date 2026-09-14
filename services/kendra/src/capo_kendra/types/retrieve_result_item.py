@@ -67,17 +67,17 @@ def serialize_aws_json_1_1(value: RetrieveResultItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetrieveResultItem:
     out: RetrieveResultItem = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "DocumentId" in data:
+    if data.get("DocumentId") is not None:
         out["document_id"] = data["DocumentId"]
-    if "DocumentTitle" in data:
+    if data.get("DocumentTitle") is not None:
         out["document_title"] = data["DocumentTitle"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "DocumentURI" in data:
+    if data.get("DocumentURI") is not None:
         out["document_uri"] = data["DocumentURI"]
-    if "DocumentAttributes" in data:
+    if data.get("DocumentAttributes") is not None:
         import capo_kendra.types.document_attribute_list
 
         out["document_attributes"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> RetrieveResultItem:
                 data["DocumentAttributes"]
             )
         )
-    if "ScoreAttributes" in data:
+    if data.get("ScoreAttributes") is not None:
         import capo_kendra.types.score_attributes
 
         out["score_attributes"] = (

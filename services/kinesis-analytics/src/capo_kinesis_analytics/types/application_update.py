@@ -77,7 +77,7 @@ def serialize_aws_json_1_1(value: ApplicationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationUpdate:
     out: ApplicationUpdate = {}  # type: ignore[typeddict-item]
-    if "InputUpdates" in data:
+    if data.get("InputUpdates") is not None:
         import capo_kinesis_analytics.types.input_updates
 
         out["input_updates"] = (
@@ -85,9 +85,9 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationUpdate:
                 data["InputUpdates"]
             )
         )
-    if "ApplicationCodeUpdate" in data:
+    if data.get("ApplicationCodeUpdate") is not None:
         out["application_code_update"] = data["ApplicationCodeUpdate"]
-    if "OutputUpdates" in data:
+    if data.get("OutputUpdates") is not None:
         import capo_kinesis_analytics.types.output_updates
 
         out["output_updates"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationUpdate:
                 data["OutputUpdates"]
             )
         )
-    if "ReferenceDataSourceUpdates" in data:
+    if data.get("ReferenceDataSourceUpdates") is not None:
         import capo_kinesis_analytics.types.reference_data_source_updates
 
         out["reference_data_source_updates"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationUpdate:
                 data["ReferenceDataSourceUpdates"]
             )
         )
-    if "CloudWatchLoggingOptionUpdates" in data:
+    if data.get("CloudWatchLoggingOptionUpdates") is not None:
         import capo_kinesis_analytics.types.cloud_watch_logging_option_updates
 
         out["cloud_watch_logging_option_updates"] = (

@@ -32,11 +32,11 @@ def serialize_aws_json_1_0(value: DeprecateActivityTypeInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeprecateActivityTypeInput:
     out: DeprecateActivityTypeInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("DeprecateActivityTypeInput.domain required")
-    if "activityType" in data:
+    if data.get("activityType") is not None:
         import capo_swf.types.activity_type
 
         out["activity_type"] = capo_swf.types.activity_type.deserialize_aws_json_1_0(

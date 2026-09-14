@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteMigrationProjectMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteMigrationProjectMessage:
     out: DeleteMigrationProjectMessage = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(

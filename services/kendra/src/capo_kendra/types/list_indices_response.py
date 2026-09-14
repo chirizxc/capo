@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListIndicesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListIndicesResponse:
     out: ListIndicesResponse = {}  # type: ignore[typeddict-item]
-    if "IndexConfigurationSummaryItems" in data:
+    if data.get("IndexConfigurationSummaryItems") is not None:
         import capo_kendra.types.index_configuration_summary_list
 
         out["index_configuration_summary_items"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListIndicesResponse:
                 data["IndexConfigurationSummaryItems"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

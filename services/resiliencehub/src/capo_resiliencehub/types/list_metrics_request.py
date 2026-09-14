@@ -58,25 +58,25 @@ def serialize_json(value: ListMetricsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListMetricsRequest:
     out: ListMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_resiliencehub.types.field_list
 
         out["fields"] = capo_resiliencehub.types.field_list.deserialize_json(
             data["fields"]
         )
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         out["data_source"] = data["dataSource"]
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_resiliencehub.types.condition_list
 
         out["conditions"] = capo_resiliencehub.types.condition_list.deserialize_json(
             data["conditions"]
         )
-    if "sorts" in data:
+    if data.get("sorts") is not None:
         import capo_resiliencehub.types.sort_list
 
         out["sorts"] = capo_resiliencehub.types.sort_list.deserialize_json(

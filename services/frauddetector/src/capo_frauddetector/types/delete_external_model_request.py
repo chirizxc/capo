@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteExternalModelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteExternalModelRequest:
     out: DeleteExternalModelRequest = {}  # type: ignore[typeddict-item]
-    if "modelEndpoint" in data:
+    if data.get("modelEndpoint") is not None:
         out["model_endpoint"] = data["modelEndpoint"]
     else:
         raise DeserializationError("DeleteExternalModelRequest.model_endpoint required")

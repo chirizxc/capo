@@ -13,9 +13,9 @@ from capo_guardduty import AsyncGuardDutyClient
 
 
 async def main():
-    async with AsyncGuardDutyClient() as s3:
+    async with AsyncGuardDutyClient() as guard_duty:
         # Example: call the accept_administrator_invitation operation
-        response = await s3.accept_administrator_invitation()
+        response = await guard_duty.accept_administrator_invitation()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_guardduty import AsyncGuardDutyClient
 
 
 async def main():
-    async with AsyncGuardDutyClient() as s3:
+    async with AsyncGuardDutyClient() as guard_duty:
         # Example: paginate over describe_malware_scans
-        async for item in s3.iter_describe_malware_scans():
+        async for item in guard_duty.iter_describe_malware_scans():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_guardduty.error import BadRequestException
 
 
 async def main():
-    async with AsyncGuardDutyClient() as s3:
+    async with AsyncGuardDutyClient() as guard_duty:
         try:
-            await s3.accept_administrator_invitation()
+            await guard_duty.accept_administrator_invitation()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_guardduty import AsyncGuardDutyClient
 
 
 async def main():
-    async with AsyncGuardDutyClient() as s3:
+    async with AsyncGuardDutyClient() as guard_duty:
         # Default: 3 attempts for every operation
-        response = await s3.accept_administrator_invitation()
+        response = await guard_duty.accept_administrator_invitation()
 
         # Override per operation
-        response = await s3.accept_administrator_invitation(config_overrides={"retry_max_attempts": 5})
+        response = await guard_duty.accept_administrator_invitation(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_administrator_invitation(config_overrides={"retry_max_attempts": 1})
+        response = await guard_duty.accept_administrator_invitation(config_overrides={"retry_max_attempts": 1})
 ```

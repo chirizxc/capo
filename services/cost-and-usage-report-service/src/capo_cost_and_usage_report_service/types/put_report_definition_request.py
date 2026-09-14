@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: PutReportDefinitionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutReportDefinitionRequest:
     out: PutReportDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "ReportDefinition" in data:
+    if data.get("ReportDefinition") is not None:
         import capo_cost_and_usage_report_service.types.report_definition
 
         out["report_definition"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutReportDefinitionRequest:
         raise DeserializationError(
             "PutReportDefinitionRequest.report_definition required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_cost_and_usage_report_service.types.tag_list
 
         out["tags"] = (

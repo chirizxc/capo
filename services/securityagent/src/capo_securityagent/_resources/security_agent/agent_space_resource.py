@@ -97,8 +97,9 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.create_agent_space_input.CreateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_securityagent.types.create_agent_space_input.CreateAgentSpaceInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if aws_resources is not None:
@@ -117,6 +118,7 @@ class AgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -165,8 +167,9 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.update_agent_space_input.UpdateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.update_agent_space_input.UpdateAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -183,6 +186,7 @@ class AgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -215,14 +219,16 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.delete_agent_space_input.DeleteAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.delete_agent_space_input.DeleteAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -257,7 +263,7 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_agent_spaces_input.ListAgentSpacesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_agent_spaces_input.ListAgentSpacesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -268,6 +274,7 @@ class AgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_agent_spaces(
@@ -300,14 +307,16 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_agent_spaces_input.BatchGetAgentSpacesInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_ids"] = agent_space_ids
+        input_: capo_securityagent.types.batch_get_agent_spaces_input.BatchGetAgentSpacesInput = {
+            "agent_space_ids": agent_space_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -364,8 +373,9 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.create_agent_space_input.CreateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_securityagent.types.create_agent_space_input.CreateAgentSpaceInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if aws_resources is not None:
@@ -384,6 +394,7 @@ class AsyncAgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -433,8 +444,9 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.update_agent_space_input.UpdateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.update_agent_space_input.UpdateAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -451,6 +463,7 @@ class AsyncAgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -484,14 +497,16 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.delete_agent_space_input.DeleteAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.delete_agent_space_input.DeleteAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -527,7 +542,7 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_agent_spaces_input.ListAgentSpacesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_agent_spaces_input.ListAgentSpacesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -538,6 +553,7 @@ class AsyncAgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_agent_spaces(
@@ -571,12 +587,14 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_agent_spaces_input.BatchGetAgentSpacesInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_ids"] = agent_space_ids
+        input_: capo_securityagent.types.batch_get_agent_spaces_input.BatchGetAgentSpacesInput = {
+            "agent_space_ids": agent_space_ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

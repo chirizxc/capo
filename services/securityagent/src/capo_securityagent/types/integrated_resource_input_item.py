@@ -41,7 +41,7 @@ def serialize_json(value: IntegratedResourceInputItem) -> dict:
 
 def deserialize_json(data: dict) -> IntegratedResourceInputItem:
     out: IntegratedResourceInputItem = {}  # type: ignore[typeddict-item]
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_securityagent.types.integrated_resource
 
         out["resource"] = capo_securityagent.types.integrated_resource.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> IntegratedResourceInputItem:
         )
     else:
         raise DeserializationError("IntegratedResourceInputItem.resource required")
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_securityagent.types.provider_resource_capabilities
 
         out["capabilities"] = (

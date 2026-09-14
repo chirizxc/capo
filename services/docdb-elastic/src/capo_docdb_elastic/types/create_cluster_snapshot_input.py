@@ -33,15 +33,15 @@ def serialize_json(value: CreateClusterSnapshotInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateClusterSnapshotInput:
     out: CreateClusterSnapshotInput = {}  # type: ignore[typeddict-item]
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
     else:
         raise DeserializationError("CreateClusterSnapshotInput.cluster_arn required")
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
     else:
         raise DeserializationError("CreateClusterSnapshotInput.snapshot_name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_docdb_elastic.types.tag_map
 
         out["tags"] = capo_docdb_elastic.types.tag_map.deserialize_json(data["tags"])

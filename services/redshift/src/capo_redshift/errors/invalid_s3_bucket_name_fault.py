@@ -37,15 +37,18 @@ class InvalidS3BucketNameFault(ServiceError):
 
     code: str | None = "InvalidS3BucketNameFault"
 
-    def __init__(self, data: InvalidS3BucketNameFault_):
+    def __init__(self, data: InvalidS3BucketNameFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidS3BucketNameFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidS3BucketNameFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidS3BucketNameFault":
+        return cls(deserialize_query(el), message)

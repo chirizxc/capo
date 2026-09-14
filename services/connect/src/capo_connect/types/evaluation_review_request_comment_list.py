@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EvaluationReviewRequestCommentList:
 
     out: EvaluationReviewRequestCommentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.evaluation_review_request_comment.deserialize_json(item)
         )

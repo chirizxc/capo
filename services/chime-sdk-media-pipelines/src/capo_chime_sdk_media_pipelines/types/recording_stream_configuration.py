@@ -25,6 +25,6 @@ def serialize_json(value: RecordingStreamConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RecordingStreamConfiguration:
     out: RecordingStreamConfiguration = {}  # type: ignore[typeddict-item]
-    if "StreamArn" in data:
+    if data.get("StreamArn") is not None:
         out["stream_arn"] = data["StreamArn"]
     return out

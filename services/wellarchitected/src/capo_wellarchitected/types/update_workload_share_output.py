@@ -32,9 +32,9 @@ def serialize_json(value: UpdateWorkloadShareOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkloadShareOutput:
     out: UpdateWorkloadShareOutput = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "WorkloadShare" in data:
+    if data.get("WorkloadShare") is not None:
         import capo_wellarchitected.types.workload_share
 
         out["workload_share"] = (

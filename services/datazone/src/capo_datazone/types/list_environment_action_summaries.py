@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ListEnvironmentActionSummaries:
 
     out: ListEnvironmentActionSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.environment_action_summary.deserialize_json(item)
         )

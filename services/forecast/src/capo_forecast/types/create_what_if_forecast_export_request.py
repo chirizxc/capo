@@ -54,13 +54,13 @@ def serialize_aws_json_1_1(value: CreateWhatIfForecastExportRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWhatIfForecastExportRequest:
     out: CreateWhatIfForecastExportRequest = {}  # type: ignore[typeddict-item]
-    if "WhatIfForecastExportName" in data:
+    if data.get("WhatIfForecastExportName") is not None:
         out["what_if_forecast_export_name"] = data["WhatIfForecastExportName"]
     else:
         raise DeserializationError(
             "CreateWhatIfForecastExportRequest.what_if_forecast_export_name required"
         )
-    if "WhatIfForecastArns" in data:
+    if data.get("WhatIfForecastArns") is not None:
         import capo_forecast.types.what_if_forecast_arn_list_for_export
 
         out["what_if_forecast_arns"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWhatIfForecastExportRequest:
         raise DeserializationError(
             "CreateWhatIfForecastExportRequest.what_if_forecast_arns required"
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_forecast.types.data_destination
 
         out["destination"] = (
@@ -84,10 +84,10 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWhatIfForecastExportRequest:
         raise DeserializationError(
             "CreateWhatIfForecastExportRequest.destination required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     return out

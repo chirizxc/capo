@@ -33,22 +33,38 @@ def serialize_json(value: Goal) -> dict:
             value["interval"]
         )
     if "attainment_goal" in value:
-        out["AttainmentGoal"] = value["attainment_goal"]
+        out["AttainmentGoal"] = (
+            "NaN"
+            if value["attainment_goal"] != value["attainment_goal"]
+            else "Infinity"
+            if value["attainment_goal"] == float("inf")
+            else "-Infinity"
+            if value["attainment_goal"] == float("-inf")
+            else value["attainment_goal"]
+        )
     if "warning_threshold" in value:
-        out["WarningThreshold"] = value["warning_threshold"]
+        out["WarningThreshold"] = (
+            "NaN"
+            if value["warning_threshold"] != value["warning_threshold"]
+            else "Infinity"
+            if value["warning_threshold"] == float("inf")
+            else "-Infinity"
+            if value["warning_threshold"] == float("-inf")
+            else value["warning_threshold"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Goal:
     out: Goal = {}  # type: ignore[typeddict-item]
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         import capo_application_signals.types.interval
 
         out["interval"] = capo_application_signals.types.interval.deserialize_json(
             data["Interval"]
         )
-    if "AttainmentGoal" in data:
-        out["attainment_goal"] = data["AttainmentGoal"]
-    if "WarningThreshold" in data:
-        out["warning_threshold"] = data["WarningThreshold"]
+    if data.get("AttainmentGoal") is not None:
+        out["attainment_goal"] = float(data["AttainmentGoal"])
+    if data.get("WarningThreshold") is not None:
+        out["warning_threshold"] = float(data["WarningThreshold"])
     return out

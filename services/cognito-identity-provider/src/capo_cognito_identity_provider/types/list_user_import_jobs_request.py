@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: ListUserImportJobsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListUserImportJobsRequest:
     out: ListUserImportJobsRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("ListUserImportJobsRequest.user_pool_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         raise DeserializationError("ListUserImportJobsRequest.max_results required")
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
     return out

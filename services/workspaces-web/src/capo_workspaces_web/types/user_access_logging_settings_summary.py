@@ -31,12 +31,12 @@ def serialize_json(value: UserAccessLoggingSettingsSummary) -> dict:
 
 def deserialize_json(data: dict) -> UserAccessLoggingSettingsSummary:
     out: UserAccessLoggingSettingsSummary = {}  # type: ignore[typeddict-item]
-    if "userAccessLoggingSettingsArn" in data:
+    if data.get("userAccessLoggingSettingsArn") is not None:
         out["user_access_logging_settings_arn"] = data["userAccessLoggingSettingsArn"]
     else:
         raise DeserializationError(
             "UserAccessLoggingSettingsSummary.user_access_logging_settings_arn required"
         )
-    if "kinesisStreamArn" in data:
+    if data.get("kinesisStreamArn") is not None:
         out["kinesis_stream_arn"] = data["kinesisStreamArn"]
     return out

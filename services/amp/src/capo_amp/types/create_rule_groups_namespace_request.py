@@ -47,11 +47,11 @@ def serialize_json(value: CreateRuleGroupsNamespaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRuleGroupsNamespaceRequest:
     out: CreateRuleGroupsNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateRuleGroupsNamespaceRequest.name required")
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_amp.types.rule_groups_namespace_data
 
         out["data"] = capo_amp.types.rule_groups_namespace_data.deserialize_json(
@@ -59,9 +59,9 @@ def deserialize_json(data: dict) -> CreateRuleGroupsNamespaceRequest:
         )
     else:
         raise DeserializationError("CreateRuleGroupsNamespaceRequest.data required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])

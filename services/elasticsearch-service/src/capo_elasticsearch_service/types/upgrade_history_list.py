@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UpgradeHistoryList:
 
     out: UpgradeHistoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.upgrade_history.deserialize_json(item)
         )

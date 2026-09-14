@@ -41,11 +41,11 @@ def serialize_json(value: AggregationOutput) -> dict:
 
 def deserialize_json(data: dict) -> AggregationOutput:
     out: AggregationOutput = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         out["attribute"] = data["attribute"]
-    if "displayValue" in data:
+    if data.get("displayValue") is not None:
         out["display_value"] = data["displayValue"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.aggregation_output_items
 
         out["items"] = capo_datazone.types.aggregation_output_items.deserialize_json(

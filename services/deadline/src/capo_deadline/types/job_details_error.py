@@ -36,11 +36,11 @@ def serialize_json(value: JobDetailsError) -> dict:
 
 def deserialize_json(data: dict) -> JobDetailsError:
     out: JobDetailsError = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("JobDetailsError.job_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_deadline.types.job_entity_error_code
 
         out["code"] = capo_deadline.types.job_entity_error_code.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> JobDetailsError:
         )
     else:
         raise DeserializationError("JobDetailsError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("JobDetailsError.message required")

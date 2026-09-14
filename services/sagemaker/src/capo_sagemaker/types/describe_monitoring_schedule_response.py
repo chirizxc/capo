@@ -109,11 +109,11 @@ def serialize_aws_json_1_1(value: DescribeMonitoringScheduleResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMonitoringScheduleResponse:
     out: DescribeMonitoringScheduleResponse = {}  # type: ignore[typeddict-item]
-    if "MonitoringScheduleArn" in data:
+    if data.get("MonitoringScheduleArn") is not None:
         out["monitoring_schedule_arn"] = data["MonitoringScheduleArn"]
-    if "MonitoringScheduleName" in data:
+    if data.get("MonitoringScheduleName") is not None:
         out["monitoring_schedule_name"] = data["MonitoringScheduleName"]
-    if "MonitoringScheduleStatus" in data:
+    if data.get("MonitoringScheduleStatus") is not None:
         import capo_sagemaker.types.schedule_status
 
         out["monitoring_schedule_status"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMonitoringScheduleResponse:
                 data["MonitoringScheduleStatus"]
             )
         )
-    if "MonitoringType" in data:
+    if data.get("MonitoringType") is not None:
         import capo_sagemaker.types.monitoring_type
 
         out["monitoring_type"] = (
@@ -129,15 +129,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMonitoringScheduleResponse:
                 data["MonitoringType"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMonitoringScheduleResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "MonitoringScheduleConfig" in data:
+    if data.get("MonitoringScheduleConfig") is not None:
         import capo_sagemaker.types.monitoring_schedule_config
 
         out["monitoring_schedule_config"] = (
@@ -153,9 +153,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMonitoringScheduleResponse:
                 data["MonitoringScheduleConfig"]
             )
         )
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "LastMonitoringExecutionSummary" in data:
+    if data.get("LastMonitoringExecutionSummary") is not None:
         import capo_sagemaker.types.monitoring_execution_summary
 
         out["last_monitoring_execution_summary"] = (

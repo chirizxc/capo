@@ -43,7 +43,7 @@ def serialize_json(value: RepositoryAnalysis) -> dict:
 
 def deserialize_json(data: dict) -> RepositoryAnalysis:
     out: RepositoryAnalysis = {}  # type: ignore[typeddict-item]
-    if "RepositoryHead" in data:
+    if data.get("RepositoryHead") is not None:
         import capo_codeguru_reviewer.types.repository_head_source_code_type
 
         out["repository_head"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> RepositoryAnalysis:
                 data["RepositoryHead"]
             )
         )
-    if "SourceCodeType" in data:
+    if data.get("SourceCodeType") is not None:
         import capo_codeguru_reviewer.types.source_code_type
 
         out["source_code_type"] = (

@@ -26,5 +26,7 @@ def deserialize_json(data: dict) -> RiskCounts:
     for key, value in data.items():
         import capo_wellarchitected.types.risk
 
+        if value is None:
+            continue
         out[capo_wellarchitected.types.risk.deserialize_json(key)] = value
     return out

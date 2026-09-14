@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> GeospatialGradientStepColorList:
 
     out: GeospatialGradientStepColorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.geospatial_gradient_step_color.deserialize_json(item)
         )

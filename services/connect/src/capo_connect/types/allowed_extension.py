@@ -24,7 +24,7 @@ def serialize_json(value: AllowedExtension) -> dict:
 
 def deserialize_json(data: dict) -> AllowedExtension:
     out: AllowedExtension = {}  # type: ignore[typeddict-item]
-    if "Extension" in data:
+    if data.get("Extension") is not None:
         out["extension"] = data["Extension"]
     else:
         raise DeserializationError("AllowedExtension.extension required")

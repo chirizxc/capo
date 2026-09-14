@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListMonitoringAlertHistoryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMonitoringAlertHistoryResponse:
     out: ListMonitoringAlertHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "MonitoringAlertHistory" in data:
+    if data.get("MonitoringAlertHistory") is not None:
         import capo_sagemaker.types.monitoring_alert_history_list
 
         out["monitoring_alert_history"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListMonitoringAlertHistoryResponse:
                 data["MonitoringAlertHistory"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

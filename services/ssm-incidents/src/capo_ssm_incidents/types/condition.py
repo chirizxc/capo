@@ -58,7 +58,7 @@ def serialize_json(value: Condition) -> dict:
 
 
 def deserialize_json(data: dict) -> Condition:
-    if "before" in data:
+    if data.get("before") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         return {
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> Condition:
                 data["before"]
             )
         }
-    elif "after" in data:
+    elif data.get("after") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         return {
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> Condition:
                 data["after"]
             )
         }
-    elif "equals" in data:
+    elif data.get("equals") is not None:
         import capo_ssm_incidents.types.attribute_value_list
 
         return {

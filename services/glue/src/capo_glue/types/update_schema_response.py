@@ -36,10 +36,10 @@ def serialize_aws_json_1_1(value: UpdateSchemaResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSchemaResponse:
     out: UpdateSchemaResponse = {}  # type: ignore[typeddict-item]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "RegistryName" in data:
+    if data.get("RegistryName") is not None:
         out["registry_name"] = data["RegistryName"]
     return out

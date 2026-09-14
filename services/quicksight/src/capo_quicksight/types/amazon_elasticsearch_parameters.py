@@ -24,7 +24,7 @@ def serialize_json(value: AmazonElasticsearchParameters) -> dict:
 
 def deserialize_json(data: dict) -> AmazonElasticsearchParameters:
     out: AmazonElasticsearchParameters = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     else:
         raise DeserializationError("AmazonElasticsearchParameters.domain required")

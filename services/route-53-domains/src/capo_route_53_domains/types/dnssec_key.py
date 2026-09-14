@@ -55,18 +55,18 @@ def serialize_aws_json_1_1(value: DnssecKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DnssecKey:
     out: DnssecKey = {}  # type: ignore[typeddict-item]
-    if "Algorithm" in data:
+    if data.get("Algorithm") is not None:
         out["algorithm"] = data["Algorithm"]
-    if "Flags" in data:
+    if data.get("Flags") is not None:
         out["flags"] = data["Flags"]
-    if "PublicKey" in data:
+    if data.get("PublicKey") is not None:
         out["public_key"] = data["PublicKey"]
-    if "DigestType" in data:
+    if data.get("DigestType") is not None:
         out["digest_type"] = data["DigestType"]
-    if "Digest" in data:
+    if data.get("Digest") is not None:
         out["digest"] = data["Digest"]
-    if "KeyTag" in data:
+    if data.get("KeyTag") is not None:
         out["key_tag"] = data["KeyTag"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     return out

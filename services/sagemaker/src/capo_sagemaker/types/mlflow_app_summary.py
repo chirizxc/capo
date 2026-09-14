@@ -59,23 +59,23 @@ def serialize_aws_json_1_1(value: MlflowAppSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MlflowAppSummary:
     out: MlflowAppSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.mlflow_app_status
 
         out["status"] = capo_sagemaker.types.mlflow_app_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -83,6 +83,6 @@ def deserialize_aws_json_1_1(data: dict) -> MlflowAppSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "MlflowVersion" in data:
+    if data.get("MlflowVersion") is not None:
         out["mlflow_version"] = data["MlflowVersion"]
     return out

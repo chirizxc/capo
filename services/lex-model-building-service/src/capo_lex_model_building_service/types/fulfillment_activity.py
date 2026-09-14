@@ -41,7 +41,7 @@ def serialize_json(value: FulfillmentActivity) -> dict:
 
 def deserialize_json(data: dict) -> FulfillmentActivity:
     out: FulfillmentActivity = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_lex_model_building_service.types.fulfillment_activity_type
 
         out["type"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> FulfillmentActivity:
         )
     else:
         raise DeserializationError("FulfillmentActivity.type required")
-    if "codeHook" in data:
+    if data.get("codeHook") is not None:
         import capo_lex_model_building_service.types.code_hook
 
         out["code_hook"] = (

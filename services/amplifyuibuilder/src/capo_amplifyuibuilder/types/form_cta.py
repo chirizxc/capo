@@ -56,7 +56,7 @@ def serialize_json(value: FormCTA) -> dict:
 
 def deserialize_json(data: dict) -> FormCTA:
     out: FormCTA = {}  # type: ignore[typeddict-item]
-    if "position" in data:
+    if data.get("position") is not None:
         import capo_amplifyuibuilder.types.form_buttons_position
 
         out["position"] = (
@@ -64,19 +64,19 @@ def deserialize_json(data: dict) -> FormCTA:
                 data["position"]
             )
         )
-    if "clear" in data:
+    if data.get("clear") is not None:
         import capo_amplifyuibuilder.types.form_button
 
         out["clear"] = capo_amplifyuibuilder.types.form_button.deserialize_json(
             data["clear"]
         )
-    if "cancel" in data:
+    if data.get("cancel") is not None:
         import capo_amplifyuibuilder.types.form_button
 
         out["cancel"] = capo_amplifyuibuilder.types.form_button.deserialize_json(
             data["cancel"]
         )
-    if "submit" in data:
+    if data.get("submit") is not None:
         import capo_amplifyuibuilder.types.form_button
 
         out["submit"] = capo_amplifyuibuilder.types.form_button.deserialize_json(

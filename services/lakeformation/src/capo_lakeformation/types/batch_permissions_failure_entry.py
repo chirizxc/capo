@@ -40,7 +40,7 @@ def serialize_json(value: BatchPermissionsFailureEntry) -> dict:
 
 def deserialize_json(data: dict) -> BatchPermissionsFailureEntry:
     out: BatchPermissionsFailureEntry = {}  # type: ignore[typeddict-item]
-    if "RequestEntry" in data:
+    if data.get("RequestEntry") is not None:
         import capo_lakeformation.types.batch_permissions_request_entry
 
         out["request_entry"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> BatchPermissionsFailureEntry:
                 data["RequestEntry"]
             )
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_lakeformation.types.error_detail
 
         out["error"] = capo_lakeformation.types.error_detail.deserialize_json(

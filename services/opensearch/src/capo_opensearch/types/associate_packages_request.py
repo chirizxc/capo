@@ -33,7 +33,7 @@ def serialize_json(value: AssociatePackagesRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociatePackagesRequest:
     out: AssociatePackagesRequest = {}  # type: ignore[typeddict-item]
-    if "PackageList" in data:
+    if data.get("PackageList") is not None:
         import capo_opensearch.types.package_details_for_association_list
 
         out["package_list"] = (
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> AssociatePackagesRequest:
         )
     else:
         raise DeserializationError("AssociatePackagesRequest.package_list required")
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("AssociatePackagesRequest.domain_name required")

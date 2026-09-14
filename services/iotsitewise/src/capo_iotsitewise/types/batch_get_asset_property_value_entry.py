@@ -40,14 +40,14 @@ def serialize_json(value: BatchGetAssetPropertyValueEntry) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAssetPropertyValueEntry:
     out: BatchGetAssetPropertyValueEntry = {}  # type: ignore[typeddict-item]
-    if "entryId" in data:
+    if data.get("entryId") is not None:
         out["entry_id"] = data["entryId"]
     else:
         raise DeserializationError("BatchGetAssetPropertyValueEntry.entry_id required")
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
-    if "propertyId" in data:
+    if data.get("propertyId") is not None:
         out["property_id"] = data["propertyId"]
-    if "propertyAlias" in data:
+    if data.get("propertyAlias") is not None:
         out["property_alias"] = data["propertyAlias"]
     return out

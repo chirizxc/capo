@@ -28,11 +28,11 @@ def serialize_json(value: SubDomainSetting) -> dict:
 
 def deserialize_json(data: dict) -> SubDomainSetting:
     out: SubDomainSetting = {}  # type: ignore[typeddict-item]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     else:
         raise DeserializationError("SubDomainSetting.prefix required")
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     else:
         raise DeserializationError("SubDomainSetting.branch_name required")

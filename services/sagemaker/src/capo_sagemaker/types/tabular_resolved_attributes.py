@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: TabularResolvedAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TabularResolvedAttributes:
     out: TabularResolvedAttributes = {}  # type: ignore[typeddict-item]
-    if "ProblemType" in data:
+    if data.get("ProblemType") is not None:
         import capo_sagemaker.types.problem_type
 
         out["problem_type"] = (

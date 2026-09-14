@@ -36,7 +36,7 @@ def serialize_json(value: LocalDeviceResourceData) -> dict:
 
 def deserialize_json(data: dict) -> LocalDeviceResourceData:
     out: LocalDeviceResourceData = {}  # type: ignore[typeddict-item]
-    if "GroupOwnerSetting" in data:
+    if data.get("GroupOwnerSetting") is not None:
         import capo_greengrass.types.group_owner_setting
 
         out["group_owner_setting"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> LocalDeviceResourceData:
                 data["GroupOwnerSetting"]
             )
         )
-    if "SourcePath" in data:
+    if data.get("SourcePath") is not None:
         out["source_path"] = data["SourcePath"]
     return out

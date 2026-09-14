@@ -66,13 +66,13 @@ def serialize_aws_json_1_1(value: QualificationRequirement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QualificationRequirement:
     out: QualificationRequirement = {}  # type: ignore[typeddict-item]
-    if "QualificationTypeId" in data:
+    if data.get("QualificationTypeId") is not None:
         out["qualification_type_id"] = data["QualificationTypeId"]
     else:
         raise DeserializationError(
             "QualificationRequirement.qualification_type_id required"
         )
-    if "Comparator" in data:
+    if data.get("Comparator") is not None:
         import capo_mturk.types.comparator
 
         out["comparator"] = capo_mturk.types.comparator.deserialize_aws_json_1_1(
@@ -80,21 +80,21 @@ def deserialize_aws_json_1_1(data: dict) -> QualificationRequirement:
         )
     else:
         raise DeserializationError("QualificationRequirement.comparator required")
-    if "IntegerValues" in data:
+    if data.get("IntegerValues") is not None:
         import capo_mturk.types.integer_list
 
         out["integer_values"] = capo_mturk.types.integer_list.deserialize_aws_json_1_1(
             data["IntegerValues"]
         )
-    if "LocaleValues" in data:
+    if data.get("LocaleValues") is not None:
         import capo_mturk.types.locale_list
 
         out["locale_values"] = capo_mturk.types.locale_list.deserialize_aws_json_1_1(
             data["LocaleValues"]
         )
-    if "RequiredToPreview" in data:
+    if data.get("RequiredToPreview") is not None:
         out["required_to_preview"] = data["RequiredToPreview"]
-    if "ActionsGuarded" in data:
+    if data.get("ActionsGuarded") is not None:
         import capo_mturk.types.hit_access_actions
 
         out["actions_guarded"] = (

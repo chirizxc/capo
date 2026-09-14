@@ -13,9 +13,9 @@ from capo_schemas import AsyncschemasClient
 
 
 async def main():
-    async with AsyncschemasClient() as s3:
+    async with AsyncschemasClient() as schemas:
         # Example: call the create_discoverer operation
-        response = await s3.create_discoverer()
+        response = await schemas.create_discoverer()
         print(response["description"])
 ```
 
@@ -28,9 +28,9 @@ from capo_schemas import AsyncschemasClient
 
 
 async def main():
-    async with AsyncschemasClient() as s3:
+    async with AsyncschemasClient() as schemas:
         # Example: paginate over list_discoverers
-        async for item in s3.iter_list_discoverers():
+        async for item in schemas.iter_list_discoverers():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_schemas.error import BadRequestException
 
 
 async def main():
-    async with AsyncschemasClient() as s3:
+    async with AsyncschemasClient() as schemas:
         try:
-            await s3.create_discoverer()
+            await schemas.create_discoverer()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_schemas import AsyncschemasClient
 
 
 async def main():
-    async with AsyncschemasClient() as s3:
+    async with AsyncschemasClient() as schemas:
         # Default: 3 attempts for every operation
-        response = await s3.create_discoverer()
+        response = await schemas.create_discoverer()
 
         # Override per operation
-        response = await s3.create_discoverer(config_overrides={"retry_max_attempts": 5})
+        response = await schemas.create_discoverer(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_discoverer(config_overrides={"retry_max_attempts": 1})
+        response = await schemas.create_discoverer(config_overrides={"retry_max_attempts": 1})
 ```

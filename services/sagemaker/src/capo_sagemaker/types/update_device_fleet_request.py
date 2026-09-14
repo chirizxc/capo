@@ -55,13 +55,13 @@ def serialize_aws_json_1_1(value: UpdateDeviceFleetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDeviceFleetRequest:
     out: UpdateDeviceFleetRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.edge_output_config
 
         out["output_config"] = (
@@ -69,6 +69,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDeviceFleetRequest:
                 data["OutputConfig"]
             )
         )
-    if "EnableIotRoleAlias" in data:
+    if data.get("EnableIotRoleAlias") is not None:
         out["enable_iot_role_alias"] = data["EnableIotRoleAlias"]
     return out

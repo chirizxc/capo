@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> NotificationHubs:
 
     out: NotificationHubs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_notifications.types.notification_hub_overview.deserialize_json(item)
         )

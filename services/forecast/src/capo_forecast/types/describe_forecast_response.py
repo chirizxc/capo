@@ -96,11 +96,11 @@ def serialize_aws_json_1_1(value: DescribeForecastResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeForecastResponse:
     out: DescribeForecastResponse = {}  # type: ignore[typeddict-item]
-    if "ForecastArn" in data:
+    if data.get("ForecastArn") is not None:
         out["forecast_arn"] = data["ForecastArn"]
-    if "ForecastName" in data:
+    if data.get("ForecastName") is not None:
         out["forecast_name"] = data["ForecastName"]
-    if "ForecastTypes" in data:
+    if data.get("ForecastTypes") is not None:
         import capo_forecast.types.forecast_types
 
         out["forecast_types"] = (
@@ -108,25 +108,25 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeForecastResponse:
                 data["ForecastTypes"]
             )
         )
-    if "PredictorArn" in data:
+    if data.get("PredictorArn") is not None:
         out["predictor_arn"] = data["PredictorArn"]
-    if "DatasetGroupArn" in data:
+    if data.get("DatasetGroupArn") is not None:
         out["dataset_group_arn"] = data["DatasetGroupArn"]
-    if "EstimatedTimeRemainingInMinutes" in data:
+    if data.get("EstimatedTimeRemainingInMinutes") is not None:
         out["estimated_time_remaining_in_minutes"] = data[
             "EstimatedTimeRemainingInMinutes"
         ]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeForecastResponse:
                 data["LastModificationTime"]
             )
         )
-    if "TimeSeriesSelector" in data:
+    if data.get("TimeSeriesSelector") is not None:
         import capo_forecast.types.time_series_selector
 
         out["time_series_selector"] = (

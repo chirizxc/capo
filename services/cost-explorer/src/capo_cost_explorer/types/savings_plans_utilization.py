@@ -43,12 +43,12 @@ def serialize_aws_json_1_1(value: SavingsPlansUtilization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilization:
     out: SavingsPlansUtilization = {}  # type: ignore[typeddict-item]
-    if "TotalCommitment" in data:
+    if data.get("TotalCommitment") is not None:
         out["total_commitment"] = data["TotalCommitment"]
-    if "UsedCommitment" in data:
+    if data.get("UsedCommitment") is not None:
         out["used_commitment"] = data["UsedCommitment"]
-    if "UnusedCommitment" in data:
+    if data.get("UnusedCommitment") is not None:
         out["unused_commitment"] = data["UnusedCommitment"]
-    if "UtilizationPercentage" in data:
+    if data.get("UtilizationPercentage") is not None:
         out["utilization_percentage"] = data["UtilizationPercentage"]
     return out

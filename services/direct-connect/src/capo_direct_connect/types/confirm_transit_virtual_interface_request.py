@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: ConfirmTransitVirtualInterfaceRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ConfirmTransitVirtualInterfaceRequest:
     out: ConfirmTransitVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
     else:
         raise DeserializationError(
             "ConfirmTransitVirtualInterfaceRequest.virtual_interface_id required"
         )
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
     else:
         raise DeserializationError(

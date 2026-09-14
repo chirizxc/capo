@@ -14,4 +14,4 @@ def serialize_json(value: TickerplantLogVolumes) -> list:
 
 
 def deserialize_json(data: list) -> TickerplantLogVolumes:
-    return list(data)
+    return [item for item in data if item is not None]

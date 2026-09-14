@@ -26,11 +26,11 @@ def serialize_json(value: InstanceIdFilter) -> dict:
 
 def deserialize_json(data: dict) -> InstanceIdFilter:
     out: InstanceIdFilter = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("InstanceIdFilter.value required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         out["operator"] = data["operator"]
     else:
         raise DeserializationError("InstanceIdFilter.operator required")

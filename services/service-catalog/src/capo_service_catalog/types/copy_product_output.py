@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CopyProductOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyProductOutput:
     out: CopyProductOutput = {}  # type: ignore[typeddict-item]
-    if "CopyProductToken" in data:
+    if data.get("CopyProductToken") is not None:
         out["copy_product_token"] = data["CopyProductToken"]
     return out

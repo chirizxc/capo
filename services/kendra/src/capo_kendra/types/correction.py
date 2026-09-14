@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: Correction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Correction:
     out: Correction = {}  # type: ignore[typeddict-item]
-    if "BeginOffset" in data:
+    if data.get("BeginOffset") is not None:
         out["begin_offset"] = data["BeginOffset"]
-    if "EndOffset" in data:
+    if data.get("EndOffset") is not None:
         out["end_offset"] = data["EndOffset"]
-    if "Term" in data:
+    if data.get("Term") is not None:
         out["term"] = data["Term"]
-    if "CorrectedTerm" in data:
+    if data.get("CorrectedTerm") is not None:
         out["corrected_term"] = data["CorrectedTerm"]
     return out

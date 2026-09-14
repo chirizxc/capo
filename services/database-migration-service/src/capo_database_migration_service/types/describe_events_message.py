@@ -100,9 +100,9 @@ def serialize_aws_json_1_1(value: DescribeEventsMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventsMessage:
     out: DescribeEventsMessage = {}  # type: ignore[typeddict-item]
-    if "SourceIdentifier" in data:
+    if data.get("SourceIdentifier") is not None:
         out["source_identifier"] = data["SourceIdentifier"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_database_migration_service.types.source_type
 
         out["source_type"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventsMessage:
                 data["SourceType"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["start_time"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventsMessage:
                 data["StartTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["end_time"] = (
@@ -126,9 +126,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventsMessage:
                 data["EndTime"]
             )
         )
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
-    if "EventCategories" in data:
+    if data.get("EventCategories") is not None:
         import capo_database_migration_service.types.event_categories_list
 
         out["event_categories"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventsMessage:
                 data["EventCategories"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_database_migration_service.types.filter_list
 
         out["filters"] = (
@@ -144,8 +144,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventsMessage:
                 data["Filters"]
             )
         )
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

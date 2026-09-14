@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> SecretList:
 
     out: SecretList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_evs.types.secret.deserialize_aws_json_1_0(item))
     return out

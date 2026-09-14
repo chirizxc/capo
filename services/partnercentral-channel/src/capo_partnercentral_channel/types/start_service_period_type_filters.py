@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: StartServicePeriodTypeFilters) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartServicePeriodTypeFilters:
     out: StartServicePeriodTypeFilters = {}  # type: ignore[typeddict-item]
-    if "servicePeriodTypes" in data:
+    if data.get("servicePeriodTypes") is not None:
         import capo_partnercentral_channel.types.service_period_type_list
 
         out["service_period_types"] = (

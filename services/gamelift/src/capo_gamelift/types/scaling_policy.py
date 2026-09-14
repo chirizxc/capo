@@ -98,7 +98,15 @@ def serialize_aws_json_1_1(value: ScalingPolicy) -> dict:
             )
         )
     if "threshold" in value:
-        out["Threshold"] = value["threshold"]
+        out["Threshold"] = (
+            "NaN"
+            if value["threshold"] != value["threshold"]
+            else "Infinity"
+            if value["threshold"] == float("inf")
+            else "-Infinity"
+            if value["threshold"] == float("-inf")
+            else value["threshold"]
+        )
     if "evaluation_periods" in value:
         out["EvaluationPeriods"] = value["evaluation_periods"]
     if "metric_name" in value:
@@ -136,13 +144,13 @@ def serialize_aws_json_1_1(value: ScalingPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingPolicy:
     out: ScalingPolicy = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.scaling_status_type
 
         out["status"] = (
@@ -150,9 +158,9 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPolicy:
                 data["Status"]
             )
         )
-    if "ScalingAdjustment" in data:
+    if data.get("ScalingAdjustment") is not None:
         out["scaling_adjustment"] = data["ScalingAdjustment"]
-    if "ScalingAdjustmentType" in data:
+    if data.get("ScalingAdjustmentType") is not None:
         import capo_gamelift.types.scaling_adjustment_type
 
         out["scaling_adjustment_type"] = (
@@ -160,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPolicy:
                 data["ScalingAdjustmentType"]
             )
         )
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         import capo_gamelift.types.comparison_operator_type
 
         out["comparison_operator"] = (
@@ -168,23 +176,23 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPolicy:
                 data["ComparisonOperator"]
             )
         )
-    if "Threshold" in data:
-        out["threshold"] = data["Threshold"]
-    if "EvaluationPeriods" in data:
+    if data.get("Threshold") is not None:
+        out["threshold"] = float(data["Threshold"])
+    if data.get("EvaluationPeriods") is not None:
         out["evaluation_periods"] = data["EvaluationPeriods"]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         import capo_gamelift.types.metric_name
 
         out["metric_name"] = capo_gamelift.types.metric_name.deserialize_aws_json_1_1(
             data["MetricName"]
         )
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_gamelift.types.policy_type
 
         out["policy_type"] = capo_gamelift.types.policy_type.deserialize_aws_json_1_1(
             data["PolicyType"]
         )
-    if "TargetConfiguration" in data:
+    if data.get("TargetConfiguration") is not None:
         import capo_gamelift.types.target_configuration
 
         out["target_configuration"] = (
@@ -192,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPolicy:
                 data["TargetConfiguration"]
             )
         )
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         import capo_gamelift.types.location_update_status
 
         out["update_status"] = (
@@ -200,6 +208,6 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPolicy:
                 data["UpdateStatus"]
             )
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     return out

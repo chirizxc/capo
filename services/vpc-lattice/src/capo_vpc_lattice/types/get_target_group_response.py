@@ -86,42 +86,42 @@ def serialize_json(value: GetTargetGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTargetGroupResponse:
     out: GetTargetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "config" in data:
+    if data.get("config") is not None:
         import capo_vpc_lattice.types.target_group_config
 
         out["config"] = capo_vpc_lattice.types.target_group_config.deserialize_json(
             data["config"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "serviceArns" in data:
+    if data.get("serviceArns") is not None:
         import capo_vpc_lattice.types.service_arn_list
 
         out["service_arns"] = capo_vpc_lattice.types.service_arn_list.deserialize_json(
             data["serviceArns"]
         )
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
     return out

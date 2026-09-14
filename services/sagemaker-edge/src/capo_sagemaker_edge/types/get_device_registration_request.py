@@ -30,8 +30,8 @@ def serialize_json(value: GetDeviceRegistrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetDeviceRegistrationRequest:
     out: GetDeviceRegistrationRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
     return out

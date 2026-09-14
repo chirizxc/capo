@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: PreparedStatementSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PreparedStatementSummary:
     out: PreparedStatementSummary = {}  # type: ignore[typeddict-item]
-    if "StatementName" in data:
+    if data.get("StatementName") is not None:
         out["statement_name"] = data["StatementName"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_athena.types.date
 
         out["last_modified_time"] = capo_athena.types.date.deserialize_aws_json_1_1(

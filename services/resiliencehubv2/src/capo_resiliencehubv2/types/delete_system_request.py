@@ -23,7 +23,7 @@ def serialize_json(value: DeleteSystemRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSystemRequest:
     out: DeleteSystemRequest = {}  # type: ignore[typeddict-item]
-    if "systemArn" in data:
+    if data.get("systemArn") is not None:
         out["system_arn"] = data["systemArn"]
     else:
         raise DeserializationError("DeleteSystemRequest.system_arn required")

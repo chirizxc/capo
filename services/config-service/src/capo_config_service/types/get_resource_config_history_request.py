@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: GetResourceConfigHistoryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourceConfigHistoryRequest:
     out: GetResourceConfigHistoryRequest = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_config_service.types.resource_type
 
         out["resource_type"] = (
@@ -88,13 +88,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceConfigHistoryRequest:
         raise DeserializationError(
             "GetResourceConfigHistoryRequest.resource_type required"
         )
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError(
             "GetResourceConfigHistoryRequest.resource_id required"
         )
-    if "laterTime" in data:
+    if data.get("laterTime") is not None:
         import capo_config_service.types.later_time
 
         out["later_time"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceConfigHistoryRequest:
                 data["laterTime"]
             )
         )
-    if "earlierTime" in data:
+    if data.get("earlierTime") is not None:
         import capo_config_service.types.earlier_time
 
         out["earlier_time"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceConfigHistoryRequest:
                 data["earlierTime"]
             )
         )
-    if "chronologicalOrder" in data:
+    if data.get("chronologicalOrder") is not None:
         import capo_config_service.types.chronological_order
 
         out["chronological_order"] = (
@@ -118,10 +118,10 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceConfigHistoryRequest:
                 data["chronologicalOrder"]
             )
         )
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     else:
         out["limit"] = 0
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

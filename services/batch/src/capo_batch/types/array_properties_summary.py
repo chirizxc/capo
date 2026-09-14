@@ -43,11 +43,11 @@ def serialize_json(value: ArrayPropertiesSummary) -> dict:
 
 def deserialize_json(data: dict) -> ArrayPropertiesSummary:
     out: ArrayPropertiesSummary = {}  # type: ignore[typeddict-item]
-    if "size" in data:
+    if data.get("size") is not None:
         out["size"] = data["size"]
-    if "index" in data:
+    if data.get("index") is not None:
         out["index"] = data["index"]
-    if "statusSummary" in data:
+    if data.get("statusSummary") is not None:
         import capo_batch.types.array_job_status_summary
 
         out["status_summary"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> ArrayPropertiesSummary:
                 data["statusSummary"]
             )
         )
-    if "statusSummaryLastUpdatedAt" in data:
+    if data.get("statusSummaryLastUpdatedAt") is not None:
         out["status_summary_last_updated_at"] = data["statusSummaryLastUpdatedAt"]
     return out

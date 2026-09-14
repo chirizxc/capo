@@ -104,25 +104,25 @@ def serialize_json(value: NotebookRunSummary) -> dict:
 
 def deserialize_json(data: dict) -> NotebookRunSummary:
     out: NotebookRunSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("NotebookRunSummary.id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("NotebookRunSummary.domain_id required")
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
     else:
         raise DeserializationError("NotebookRunSummary.owning_project_id required")
-    if "notebookId" in data:
+    if data.get("notebookId") is not None:
         out["notebook_id"] = data["notebookId"]
     else:
         raise DeserializationError("NotebookRunSummary.notebook_id required")
-    if "scheduleId" in data:
+    if data.get("scheduleId") is not None:
         out["schedule_id"] = data["scheduleId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.notebook_run_status
 
         out["status"] = capo_datazone.types.notebook_run_status.deserialize_json(
@@ -130,35 +130,35 @@ def deserialize_json(data: dict) -> NotebookRunSummary:
         )
     else:
         raise DeserializationError("NotebookRunSummary.status required")
-    if "triggerSource" in data:
+    if data.get("triggerSource") is not None:
         import capo_datazone.types.trigger_source
 
         out["trigger_source"] = capo_datazone.types.trigger_source.deserialize_json(
             data["triggerSource"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["started_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
             data["startedAt"]
         )
-    if "completedAt" in data:
+    if data.get("completedAt") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["completed_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(

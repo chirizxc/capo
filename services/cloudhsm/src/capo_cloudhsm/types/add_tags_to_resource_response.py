@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: AddTagsToResourceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddTagsToResourceResponse:
     out: AddTagsToResourceResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("AddTagsToResourceResponse.status required")

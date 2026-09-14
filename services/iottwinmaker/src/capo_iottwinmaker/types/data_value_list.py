@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DataValueList:
 
     out: DataValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iottwinmaker.types.data_value.deserialize_json(item))
     return out

@@ -59,7 +59,7 @@ def serialize_json(value: Expression) -> dict:
 
 def deserialize_json(data: dict) -> Expression:
     out: Expression = {}  # type: ignore[typeddict-item]
-    if "AttributeCondition" in data:
+    if data.get("AttributeCondition") is not None:
         import capo_connect.types.attribute_condition
 
         out["attribute_condition"] = (
@@ -67,19 +67,19 @@ def deserialize_json(data: dict) -> Expression:
                 data["AttributeCondition"]
             )
         )
-    if "AndExpression" in data:
+    if data.get("AndExpression") is not None:
         import capo_connect.types.expressions
 
         out["and_expression"] = capo_connect.types.expressions.deserialize_json(
             data["AndExpression"]
         )
-    if "OrExpression" in data:
+    if data.get("OrExpression") is not None:
         import capo_connect.types.expressions
 
         out["or_expression"] = capo_connect.types.expressions.deserialize_json(
             data["OrExpression"]
         )
-    if "NotAttributeCondition" in data:
+    if data.get("NotAttributeCondition") is not None:
         import capo_connect.types.attribute_condition
 
         out["not_attribute_condition"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: TextSegment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TextSegment:
     out: TextSegment = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("TextSegment.text required")

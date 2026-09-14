@@ -36,11 +36,11 @@ def serialize_json(value: GetDataEndpointInput) -> dict:
 
 def deserialize_json(data: dict) -> GetDataEndpointInput:
     out: GetDataEndpointInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "APIName" in data:
+    if data.get("APIName") is not None:
         import capo_kinesis_video.types.api_name
 
         out["api_name"] = capo_kinesis_video.types.api_name.deserialize_json(

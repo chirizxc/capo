@@ -50,22 +50,22 @@ def serialize_json(value: CreateMLEndpointInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateMLEndpointInput:
     out: CreateMLEndpointInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "mlModelTrainingJobId" in data:
+    if data.get("mlModelTrainingJobId") is not None:
         out["ml_model_training_job_id"] = data["mlModelTrainingJobId"]
-    if "mlModelTransformJobId" in data:
+    if data.get("mlModelTransformJobId") is not None:
         out["ml_model_transform_job_id"] = data["mlModelTransformJobId"]
-    if "update" in data:
+    if data.get("update") is not None:
         out["update"] = data["update"]
-    if "neptuneIamRoleArn" in data:
+    if data.get("neptuneIamRoleArn") is not None:
         out["neptune_iam_role_arn"] = data["neptuneIamRoleArn"]
-    if "modelName" in data:
+    if data.get("modelName") is not None:
         out["model_name"] = data["modelName"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "instanceCount" in data:
+    if data.get("instanceCount") is not None:
         out["instance_count"] = data["instanceCount"]
-    if "volumeEncryptionKMSKey" in data:
+    if data.get("volumeEncryptionKMSKey") is not None:
         out["volume_encryption_kms_key"] = data["volumeEncryptionKMSKey"]
     return out

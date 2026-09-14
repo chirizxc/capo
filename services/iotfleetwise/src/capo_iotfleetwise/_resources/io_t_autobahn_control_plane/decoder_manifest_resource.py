@@ -115,11 +115,12 @@ class DecoderManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_decoder_manifest_request.CreateDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.create_decoder_manifest_request.CreateDecoderManifestRequest = {
+            "name": name,
+            "model_manifest_arn": model_manifest_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["model_manifest_arn"] = model_manifest_arn
         if signal_decoders is not None:
             input_["signal_decoders"] = signal_decoders
         if network_interfaces is not None:
@@ -134,6 +135,7 @@ class DecoderManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -171,14 +173,16 @@ class DecoderManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_decoder_manifest_request.GetDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.get_decoder_manifest_request.GetDecoderManifestRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -251,8 +255,9 @@ class DecoderManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_decoder_manifest_request.UpdateDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.update_decoder_manifest_request.UpdateDecoderManifestRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if signal_decoders_to_add is not None:
@@ -277,6 +282,7 @@ class DecoderManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -314,14 +320,16 @@ class DecoderManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_decoder_manifest_request.DeleteDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.delete_decoder_manifest_request.DeleteDecoderManifestRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -366,7 +374,7 @@ class DecoderManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_decoder_manifests_request.ListDecoderManifestsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_decoder_manifests_request.ListDecoderManifestsRequest = {}
         if model_manifest_arn is not None:
             input_["model_manifest_arn"] = model_manifest_arn
         if next_token is not None:
@@ -381,6 +389,7 @@ class DecoderManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_decoder_manifest(
@@ -423,15 +432,17 @@ class DecoderManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.import_decoder_manifest_request.ImportDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["network_file_definitions"] = network_file_definitions
+        input_: capo_iotfleetwise.types.import_decoder_manifest_request.ImportDecoderManifestRequest = {
+            "name": name,
+            "network_file_definitions": network_file_definitions,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_decoder_manifest_network_interfaces(
@@ -473,8 +484,9 @@ class DecoderManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_decoder_manifest_network_interfaces_request.ListDecoderManifestNetworkInterfacesRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.list_decoder_manifest_network_interfaces_request.ListDecoderManifestNetworkInterfacesRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -485,6 +497,7 @@ class DecoderManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_decoder_manifest_signals(
@@ -526,8 +539,9 @@ class DecoderManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_decoder_manifest_signals_request.ListDecoderManifestSignalsRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.list_decoder_manifest_signals_request.ListDecoderManifestSignalsRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -538,6 +552,7 @@ class DecoderManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -602,11 +617,12 @@ class AsyncDecoderManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_decoder_manifest_request.CreateDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.create_decoder_manifest_request.CreateDecoderManifestRequest = {
+            "name": name,
+            "model_manifest_arn": model_manifest_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["model_manifest_arn"] = model_manifest_arn
         if signal_decoders is not None:
             input_["signal_decoders"] = signal_decoders
         if network_interfaces is not None:
@@ -621,6 +637,7 @@ class AsyncDecoderManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -659,14 +676,16 @@ class AsyncDecoderManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_decoder_manifest_request.GetDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.get_decoder_manifest_request.GetDecoderManifestRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -740,8 +759,9 @@ class AsyncDecoderManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_decoder_manifest_request.UpdateDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.update_decoder_manifest_request.UpdateDecoderManifestRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if signal_decoders_to_add is not None:
@@ -766,6 +786,7 @@ class AsyncDecoderManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -804,14 +825,16 @@ class AsyncDecoderManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_decoder_manifest_request.DeleteDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.delete_decoder_manifest_request.DeleteDecoderManifestRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -857,7 +880,7 @@ class AsyncDecoderManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_decoder_manifests_request.ListDecoderManifestsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_decoder_manifests_request.ListDecoderManifestsRequest = {}
         if model_manifest_arn is not None:
             input_["model_manifest_arn"] = model_manifest_arn
         if next_token is not None:
@@ -872,6 +895,7 @@ class AsyncDecoderManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_decoder_manifest(
@@ -915,15 +939,17 @@ class AsyncDecoderManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.import_decoder_manifest_request.ImportDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["network_file_definitions"] = network_file_definitions
+        input_: capo_iotfleetwise.types.import_decoder_manifest_request.ImportDecoderManifestRequest = {
+            "name": name,
+            "network_file_definitions": network_file_definitions,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_decoder_manifest_network_interfaces(
@@ -966,8 +992,9 @@ class AsyncDecoderManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_decoder_manifest_network_interfaces_request.ListDecoderManifestNetworkInterfacesRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.list_decoder_manifest_network_interfaces_request.ListDecoderManifestNetworkInterfacesRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -978,6 +1005,7 @@ class AsyncDecoderManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_decoder_manifest_signals(
@@ -1020,8 +1048,9 @@ class AsyncDecoderManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_decoder_manifest_signals_request.ListDecoderManifestSignalsRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.list_decoder_manifest_signals_request.ListDecoderManifestSignalsRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1032,4 +1061,5 @@ class AsyncDecoderManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

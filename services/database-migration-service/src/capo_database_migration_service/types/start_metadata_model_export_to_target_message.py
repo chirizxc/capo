@@ -35,18 +35,18 @@ def serialize_aws_json_1_1(value: StartMetadataModelExportToTargetMessage) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> StartMetadataModelExportToTargetMessage:
     out: StartMetadataModelExportToTargetMessage = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(
             "StartMetadataModelExportToTargetMessage.migration_project_identifier required"
         )
-    if "SelectionRules" in data:
+    if data.get("SelectionRules") is not None:
         out["selection_rules"] = data["SelectionRules"]
     else:
         raise DeserializationError(
             "StartMetadataModelExportToTargetMessage.selection_rules required"
         )
-    if "OverwriteExtensionPack" in data:
+    if data.get("OverwriteExtensionPack") is not None:
         out["overwrite_extension_pack"] = data["OverwriteExtensionPack"]
     return out

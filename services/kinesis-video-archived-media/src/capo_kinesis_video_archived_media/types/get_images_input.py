@@ -121,11 +121,11 @@ def serialize_json(value: GetImagesInput) -> dict:
 
 def deserialize_json(data: dict) -> GetImagesInput:
     out: GetImagesInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "ImageSelectorType" in data:
+    if data.get("ImageSelectorType") is not None:
         import capo_kinesis_video_archived_media.types.image_selector_type
 
         out["image_selector_type"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> GetImagesInput:
         )
     else:
         raise DeserializationError("GetImagesInput.image_selector_type required")
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_kinesis_video_archived_media.types.timestamp
 
         out["start_timestamp"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> GetImagesInput:
         )
     else:
         raise DeserializationError("GetImagesInput.start_timestamp required")
-    if "EndTimestamp" in data:
+    if data.get("EndTimestamp") is not None:
         import capo_kinesis_video_archived_media.types.timestamp
 
         out["end_timestamp"] = (
@@ -155,9 +155,9 @@ def deserialize_json(data: dict) -> GetImagesInput:
         )
     else:
         raise DeserializationError("GetImagesInput.end_timestamp required")
-    if "SamplingInterval" in data:
+    if data.get("SamplingInterval") is not None:
         out["sampling_interval"] = data["SamplingInterval"]
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_kinesis_video_archived_media.types.format
 
         out["format"] = capo_kinesis_video_archived_media.types.format.deserialize_json(
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> GetImagesInput:
         )
     else:
         raise DeserializationError("GetImagesInput.format required")
-    if "FormatConfig" in data:
+    if data.get("FormatConfig") is not None:
         import capo_kinesis_video_archived_media.types.format_config
 
         out["format_config"] = (
@@ -173,12 +173,12 @@ def deserialize_json(data: dict) -> GetImagesInput:
                 data["FormatConfig"]
             )
         )
-    if "WidthPixels" in data:
+    if data.get("WidthPixels") is not None:
         out["width_pixels"] = data["WidthPixels"]
-    if "HeightPixels" in data:
+    if data.get("HeightPixels") is not None:
         out["height_pixels"] = data["HeightPixels"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

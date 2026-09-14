@@ -34,9 +34,9 @@ def serialize_json(value: ListHostedZoneAssociationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListHostedZoneAssociationsOutput:
     out: ListHostedZoneAssociationsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "hostedZoneAssociations" in data:
+    if data.get("hostedZoneAssociations") is not None:
         import capo_route53globalresolver.types.hosted_zone_associations
 
         out["hosted_zone_associations"] = (

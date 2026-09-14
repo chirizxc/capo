@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: MapOfMethodSnapshot) -> dict:
 def deserialize_json(data: dict) -> MapOfMethodSnapshot:
     out: MapOfMethodSnapshot = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_api_gateway.types.method_snapshot
 
         out[key] = capo_api_gateway.types.method_snapshot.deserialize_json(value)

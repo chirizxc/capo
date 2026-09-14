@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: ConnectionPropertiesConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionPropertiesConfiguration:
     out: ConnectionPropertiesConfiguration = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         import capo_glue.types.connector_property
 
         out["url"] = capo_glue.types.connector_property.deserialize_aws_json_1_1(
             data["Url"]
         )
-    if "AdditionalRequestParameters" in data:
+    if data.get("AdditionalRequestParameters") is not None:
         import capo_glue.types.connector_property_list
 
         out["additional_request_parameters"] = (

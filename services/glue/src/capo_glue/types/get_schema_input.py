@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: GetSchemaInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSchemaInput:
     out: GetSchemaInput = {}  # type: ignore[typeddict-item]
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         import capo_glue.types.schema_id
 
         out["schema_id"] = capo_glue.types.schema_id.deserialize_aws_json_1_1(

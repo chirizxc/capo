@@ -40,15 +40,15 @@ def serialize_json(value: ContactContent) -> dict:
 
 def deserialize_json(data: dict) -> ContactContent:
     out: ContactContent = {}  # type: ignore[typeddict-item]
-    if "contactArn" in data:
+    if data.get("contactArn") is not None:
         out["contact_arn"] = data["contactArn"]
     else:
         raise DeserializationError("ContactContent.contact_arn required")
-    if "channel" in data:
+    if data.get("channel") is not None:
         out["channel"] = data["channel"]
     else:
         raise DeserializationError("ContactContent.channel required")
-    if "connectedToSystemTime" in data:
+    if data.get("connectedToSystemTime") is not None:
         import capo_connectcases.types.connected_to_system_time
 
         out["connected_to_system_time"] = (

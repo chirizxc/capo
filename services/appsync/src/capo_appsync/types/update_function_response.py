@@ -31,7 +31,7 @@ def serialize_json(value: UpdateFunctionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFunctionResponse:
     out: UpdateFunctionResponse = {}  # type: ignore[typeddict-item]
-    if "functionConfiguration" in data:
+    if data.get("functionConfiguration") is not None:
         import capo_appsync.types.function_configuration
 
         out["function_configuration"] = (

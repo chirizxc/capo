@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_app_sync_graph_ql_api_additional_authentication_providers_details.deserialize_json(
                 item

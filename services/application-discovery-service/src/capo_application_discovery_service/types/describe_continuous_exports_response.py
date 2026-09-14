@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeContinuousExportsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeContinuousExportsResponse:
     out: DescribeContinuousExportsResponse = {}  # type: ignore[typeddict-item]
-    if "descriptions" in data:
+    if data.get("descriptions") is not None:
         import capo_application_discovery_service.types.continuous_export_descriptions
 
         out["descriptions"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeContinuousExportsResponse:
                 data["descriptions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

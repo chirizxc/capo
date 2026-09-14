@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: GetCostComparisonDriversResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCostComparisonDriversResponse:
     out: GetCostComparisonDriversResponse = {}  # type: ignore[typeddict-item]
-    if "CostComparisonDrivers" in data:
+    if data.get("CostComparisonDrivers") is not None:
         import capo_cost_explorer.types.cost_comparison_drivers
 
         out["cost_comparison_drivers"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostComparisonDriversResponse:
                 data["CostComparisonDrivers"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

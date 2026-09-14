@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: AddCommunicationToCaseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddCommunicationToCaseRequest:
     out: AddCommunicationToCaseRequest = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
-    if "communicationBody" in data:
+    if data.get("communicationBody") is not None:
         out["communication_body"] = data["communicationBody"]
     else:
         raise DeserializationError(
             "AddCommunicationToCaseRequest.communication_body required"
         )
-    if "ccEmailAddresses" in data:
+    if data.get("ccEmailAddresses") is not None:
         import capo_support.types.cc_email_address_list
 
         out["cc_email_addresses"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> AddCommunicationToCaseRequest:
                 data["ccEmailAddresses"]
             )
         )
-    if "attachmentSetId" in data:
+    if data.get("attachmentSetId") is not None:
         out["attachment_set_id"] = data["attachmentSetId"]
     return out

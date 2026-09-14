@@ -42,13 +42,13 @@ def serialize_json(value: Anchor) -> dict:
 
 def deserialize_json(data: dict) -> Anchor:
     out: Anchor = {}  # type: ignore[typeddict-item]
-    if "AnchorType" in data:
+    if data.get("AnchorType") is not None:
         import capo_quicksight.types.anchor_type
 
         out["anchor_type"] = capo_quicksight.types.anchor_type.deserialize_json(
             data["AnchorType"]
         )
-    if "TimeGranularity" in data:
+    if data.get("TimeGranularity") is not None:
         import capo_quicksight.types.time_granularity
 
         out["time_granularity"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> Anchor:
                 data["TimeGranularity"]
             )
         )
-    if "Offset" in data:
+    if data.get("Offset") is not None:
         out["offset"] = data["Offset"]
     else:
         out["offset"] = 0

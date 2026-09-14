@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: WorkspacesIpGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspacesIpGroup:
     out: WorkspacesIpGroup = {}  # type: ignore[typeddict-item]
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
-    if "groupName" in data:
+    if data.get("groupName") is not None:
         out["group_name"] = data["groupName"]
-    if "groupDesc" in data:
+    if data.get("groupDesc") is not None:
         out["group_desc"] = data["groupDesc"]
-    if "userRules" in data:
+    if data.get("userRules") is not None:
         import capo_workspaces.types.ip_rule_list
 
         out["user_rules"] = capo_workspaces.types.ip_rule_list.deserialize_aws_json_1_1(

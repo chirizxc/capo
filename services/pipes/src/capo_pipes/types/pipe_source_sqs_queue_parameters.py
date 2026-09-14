@@ -32,9 +32,9 @@ def serialize_json(value: PipeSourceSqsQueueParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeSourceSqsQueueParameters:
     out: PipeSourceSqsQueueParameters = {}  # type: ignore[typeddict-item]
-    if "BatchSize" in data:
+    if data.get("BatchSize") is not None:
         out["batch_size"] = data["BatchSize"]
-    if "MaximumBatchingWindowInSeconds" in data:
+    if data.get("MaximumBatchingWindowInSeconds") is not None:
         out["maximum_batching_window_in_seconds"] = data[
             "MaximumBatchingWindowInSeconds"
         ]

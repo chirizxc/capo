@@ -23,7 +23,7 @@ def serialize_aws_json_1_0(value: EndpointTemporarilyUnavailableException_) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> EndpointTemporarilyUnavailableException_:
     out: EndpointTemporarilyUnavailableException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
@@ -37,15 +37,20 @@ class EndpointTemporarilyUnavailableException(ServiceError):
 
     code: str | None = "EndpointTemporarilyUnavailableException"
 
-    def __init__(self, data: EndpointTemporarilyUnavailableException_):
+    def __init__(
+        self, data: EndpointTemporarilyUnavailableException_, message: str | None = None
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="EndpointTemporarilyUnavailableException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "EndpointTemporarilyUnavailableException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "EndpointTemporarilyUnavailableException":
+        return cls(deserialize_aws_json_1_0(data), message)

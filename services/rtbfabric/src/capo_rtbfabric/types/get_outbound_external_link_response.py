@@ -116,17 +116,17 @@ def serialize_json(value: GetOutboundExternalLinkResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetOutboundExternalLinkResponse:
     out: GetOutboundExternalLinkResponse = {}  # type: ignore[typeddict-item]
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError(
             "GetOutboundExternalLinkResponse.gateway_id required"
         )
-    if "linkId" in data:
+    if data.get("linkId") is not None:
         out["link_id"] = data["linkId"]
     else:
         raise DeserializationError("GetOutboundExternalLinkResponse.link_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.link_status
 
         out["status"] = capo_rtbfabric.types.link_status.deserialize_json(
@@ -134,13 +134,13 @@ def deserialize_json(data: dict) -> GetOutboundExternalLinkResponse:
         )
     else:
         raise DeserializationError("GetOutboundExternalLinkResponse.status required")
-    if "publicEndpoint" in data:
+    if data.get("publicEndpoint") is not None:
         out["public_endpoint"] = data["publicEndpoint"]
     else:
         raise DeserializationError(
             "GetOutboundExternalLinkResponse.public_endpoint required"
         )
-    if "flowModules" in data:
+    if data.get("flowModules") is not None:
         import capo_rtbfabric.types.module_configuration_list
 
         out["flow_modules"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> GetOutboundExternalLinkResponse:
                 data["flowModules"]
             )
         )
-    if "pendingFlowModules" in data:
+    if data.get("pendingFlowModules") is not None:
         import capo_rtbfabric.types.module_configuration_list
 
         out["pending_flow_modules"] = (
@@ -156,35 +156,35 @@ def deserialize_json(data: dict) -> GetOutboundExternalLinkResponse:
                 data["pendingFlowModules"]
             )
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_rtbfabric.types.link_attributes
 
         out["attributes"] = capo_rtbfabric.types.link_attributes.deserialize_json(
             data["attributes"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["created_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["updated_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_rtbfabric.types.tags_map
 
         out["tags"] = capo_rtbfabric.types.tags_map.deserialize_json(data["tags"])
-    if "logSettings" in data:
+    if data.get("logSettings") is not None:
         import capo_rtbfabric.types.link_log_settings
 
         out["log_settings"] = capo_rtbfabric.types.link_log_settings.deserialize_json(
             data["logSettings"]
         )
-    if "connectivityType" in data:
+    if data.get("connectivityType") is not None:
         import capo_rtbfabric.types.connectivity_type
 
         out["connectivity_type"] = (

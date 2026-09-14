@@ -58,31 +58,31 @@ def serialize_json(value: FilterCriteria) -> dict:
 
 def deserialize_json(data: dict) -> FilterCriteria:
     out: FilterCriteria = {}  # type: ignore[typeddict-item]
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_detective.types.string_filter
 
         out["severity"] = capo_detective.types.string_filter.deserialize_json(
             data["Severity"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_detective.types.string_filter
 
         out["status"] = capo_detective.types.string_filter.deserialize_json(
             data["Status"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_detective.types.string_filter
 
         out["state"] = capo_detective.types.string_filter.deserialize_json(
             data["State"]
         )
-    if "EntityArn" in data:
+    if data.get("EntityArn") is not None:
         import capo_detective.types.string_filter
 
         out["entity_arn"] = capo_detective.types.string_filter.deserialize_json(
             data["EntityArn"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_detective.types.date_filter
 
         out["created_time"] = capo_detective.types.date_filter.deserialize_json(

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> FileSystemMaintenanceOperations:
 
     out: FileSystemMaintenanceOperations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fsx.types.file_system_maintenance_operation.deserialize_aws_json_1_1(
                 item

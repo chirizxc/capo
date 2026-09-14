@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: UpdateSignalCatalogResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateSignalCatalogResponse:
     out: UpdateSignalCatalogResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateSignalCatalogResponse.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateSignalCatalogResponse.arn required")

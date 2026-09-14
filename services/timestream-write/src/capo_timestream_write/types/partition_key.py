@@ -46,7 +46,7 @@ def serialize_aws_json_1_0(value: PartitionKey) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PartitionKey:
     out: PartitionKey = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_timestream_write.types.partition_key_type
 
         out["type"] = (
@@ -56,9 +56,9 @@ def deserialize_aws_json_1_0(data: dict) -> PartitionKey:
         )
     else:
         raise DeserializationError("PartitionKey.type required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "EnforcementInRecord" in data:
+    if data.get("EnforcementInRecord") is not None:
         import capo_timestream_write.types.partition_key_enforcement_level
 
         out["enforcement_in_record"] = (

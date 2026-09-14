@@ -48,7 +48,7 @@ def serialize_aws_json_1_0(value: ResourceSnapshotPayload) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceSnapshotPayload:
-    if "OpportunitySummary" in data:
+    if data.get("OpportunitySummary") is not None:
         import capo_partnercentral_selling.types.opportunity_summary_view
 
         return {
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceSnapshotPayload:
                 data["OpportunitySummary"]
             )
         }
-    elif "AwsOpportunitySummaryFullView" in data:
+    elif data.get("AwsOpportunitySummaryFullView") is not None:
         import capo_partnercentral_selling.types.aws_opportunity_summary_full_view
 
         return {

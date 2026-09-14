@@ -54,9 +54,9 @@ def serialize_aws_json_1_1(value: TrialComponentSourceDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrialComponentSourceDetail:
     out: TrialComponentSourceDetail = {}  # type: ignore[typeddict-item]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
-    if "TrainingJob" in data:
+    if data.get("TrainingJob") is not None:
         import capo_sagemaker.types.training_job
 
         out["training_job"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponentSourceDetail:
                 data["TrainingJob"]
             )
         )
-    if "ProcessingJob" in data:
+    if data.get("ProcessingJob") is not None:
         import capo_sagemaker.types.processing_job
 
         out["processing_job"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponentSourceDetail:
                 data["ProcessingJob"]
             )
         )
-    if "TransformJob" in data:
+    if data.get("TransformJob") is not None:
         import capo_sagemaker.types.transform_job
 
         out["transform_job"] = (

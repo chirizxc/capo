@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteRemoteAccessSessionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteRemoteAccessSessionRequest:
     out: DeleteRemoteAccessSessionRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteRemoteAccessSessionRequest.arn required")

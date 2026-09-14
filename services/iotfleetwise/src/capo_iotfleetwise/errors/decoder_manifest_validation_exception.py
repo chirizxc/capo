@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: DecoderManifestValidationException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DecoderManifestValidationException_:
     out: DecoderManifestValidationException_ = {}  # type: ignore[typeddict-item]
-    if "invalidSignals" in data:
+    if data.get("invalidSignals") is not None:
         import capo_iotfleetwise.types.invalid_signal_decoders
 
         out["invalid_signals"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_0(data: dict) -> DecoderManifestValidationException_:
                 data["invalidSignals"]
             )
         )
-    if "invalidNetworkInterfaces" in data:
+    if data.get("invalidNetworkInterfaces") is not None:
         import capo_iotfleetwise.types.invalid_network_interfaces
 
         out["invalid_network_interfaces"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_0(data: dict) -> DecoderManifestValidationException_:
                 data["invalidNetworkInterfaces"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -76,15 +76,20 @@ class DecoderManifestValidationException(ServiceError):
 
     code: str | None = "DecoderManifestValidationException"
 
-    def __init__(self, data: DecoderManifestValidationException_):
+    def __init__(
+        self, data: DecoderManifestValidationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DecoderManifestValidationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "DecoderManifestValidationException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "DecoderManifestValidationException":
+        return cls(deserialize_aws_json_1_0(data), message)

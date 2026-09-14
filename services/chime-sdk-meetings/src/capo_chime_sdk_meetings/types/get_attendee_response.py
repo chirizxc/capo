@@ -27,7 +27,7 @@ def serialize_json(value: GetAttendeeResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAttendeeResponse:
     out: GetAttendeeResponse = {}  # type: ignore[typeddict-item]
-    if "Attendee" in data:
+    if data.get("Attendee") is not None:
         import capo_chime_sdk_meetings.types.attendee
 
         out["attendee"] = capo_chime_sdk_meetings.types.attendee.deserialize_json(

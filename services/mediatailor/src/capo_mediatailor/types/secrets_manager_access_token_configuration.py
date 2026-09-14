@@ -31,10 +31,10 @@ def serialize_json(value: SecretsManagerAccessTokenConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SecretsManagerAccessTokenConfiguration:
     out: SecretsManagerAccessTokenConfiguration = {}  # type: ignore[typeddict-item]
-    if "HeaderName" in data:
+    if data.get("HeaderName") is not None:
         out["header_name"] = data["HeaderName"]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "SecretStringKey" in data:
+    if data.get("SecretStringKey") is not None:
         out["secret_string_key"] = data["SecretStringKey"]
     return out

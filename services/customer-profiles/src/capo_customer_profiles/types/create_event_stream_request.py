@@ -36,11 +36,11 @@ def serialize_json(value: CreateEventStreamRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEventStreamRequest:
     out: CreateEventStreamRequest = {}  # type: ignore[typeddict-item]
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
     else:
         raise DeserializationError("CreateEventStreamRequest.uri required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

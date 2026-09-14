@@ -119,41 +119,41 @@ def serialize_json(value: AccessPreviewFinding) -> dict:
 
 def deserialize_json(data: dict) -> AccessPreviewFinding:
     out: AccessPreviewFinding = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("AccessPreviewFinding.id required")
-    if "existingFindingId" in data:
+    if data.get("existingFindingId") is not None:
         out["existing_finding_id"] = data["existingFindingId"]
-    if "existingFindingStatus" in data:
+    if data.get("existingFindingStatus") is not None:
         out["existing_finding_status"] = data["existingFindingStatus"]
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_accessanalyzer.types.principal_map
 
         out["principal"] = capo_accessanalyzer.types.principal_map.deserialize_json(
             data["principal"]
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_accessanalyzer.types.action_list
 
         out["action"] = capo_accessanalyzer.types.action_list.deserialize_json(
             data["action"]
         )
-    if "condition" in data:
+    if data.get("condition") is not None:
         import capo_accessanalyzer.types.condition_key_map
 
         out["condition"] = capo_accessanalyzer.types.condition_key_map.deserialize_json(
             data["condition"]
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
-    if "isPublic" in data:
+    if data.get("isPublic") is not None:
         out["is_public"] = data["isPublic"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("AccessPreviewFinding.resource_type required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["created_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -161,29 +161,29 @@ def deserialize_json(data: dict) -> AccessPreviewFinding:
         )
     else:
         raise DeserializationError("AccessPreviewFinding.created_at required")
-    if "changeType" in data:
+    if data.get("changeType") is not None:
         out["change_type"] = data["changeType"]
     else:
         raise DeserializationError("AccessPreviewFinding.change_type required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("AccessPreviewFinding.status required")
-    if "resourceOwnerAccount" in data:
+    if data.get("resourceOwnerAccount") is not None:
         out["resource_owner_account"] = data["resourceOwnerAccount"]
     else:
         raise DeserializationError(
             "AccessPreviewFinding.resource_owner_account required"
         )
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_accessanalyzer.types.finding_source_list
 
         out["sources"] = capo_accessanalyzer.types.finding_source_list.deserialize_json(
             data["sources"]
         )
-    if "resourceControlPolicyRestriction" in data:
+    if data.get("resourceControlPolicyRestriction") is not None:
         out["resource_control_policy_restriction"] = data[
             "resourceControlPolicyRestriction"
         ]

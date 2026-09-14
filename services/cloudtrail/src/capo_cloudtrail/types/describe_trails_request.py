@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: DescribeTrailsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTrailsRequest:
     out: DescribeTrailsRequest = {}  # type: ignore[typeddict-item]
-    if "trailNameList" in data:
+    if data.get("trailNameList") is not None:
         import capo_cloudtrail.types.trail_name_list
 
         out["trail_name_list"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTrailsRequest:
                 data["trailNameList"]
             )
         )
-    if "includeShadowTrails" in data:
+    if data.get("includeShadowTrails") is not None:
         out["include_shadow_trails"] = data["includeShadowTrails"]
     return out

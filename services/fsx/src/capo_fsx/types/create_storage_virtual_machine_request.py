@@ -72,7 +72,7 @@ def serialize_aws_json_1_1(value: CreateStorageVirtualMachineRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStorageVirtualMachineRequest:
     out: CreateStorageVirtualMachineRequest = {}  # type: ignore[typeddict-item]
-    if "ActiveDirectoryConfiguration" in data:
+    if data.get("ActiveDirectoryConfiguration") is not None:
         import capo_fsx.types.create_svm_active_directory_configuration
 
         out["active_directory_configuration"] = (
@@ -80,19 +80,19 @@ def deserialize_aws_json_1_1(data: dict) -> CreateStorageVirtualMachineRequest:
                 data["ActiveDirectoryConfiguration"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SvmAdminPassword" in data:
+    if data.get("SvmAdminPassword") is not None:
         out["svm_admin_password"] = data["SvmAdminPassword"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "RootVolumeSecurityStyle" in data:
+    if data.get("RootVolumeSecurityStyle") is not None:
         import capo_fsx.types.storage_virtual_machine_root_volume_security_style
 
         out["root_volume_security_style"] = (

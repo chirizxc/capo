@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MountTargetDescriptions:
 
     out: MountTargetDescriptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_efs.types.mount_target_description.deserialize_json(item))
     return out

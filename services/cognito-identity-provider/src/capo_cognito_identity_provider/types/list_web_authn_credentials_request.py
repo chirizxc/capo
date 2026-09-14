@@ -38,14 +38,14 @@ def serialize_aws_json_1_1(value: ListWebAuthnCredentialsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListWebAuthnCredentialsRequest:
     out: ListWebAuthnCredentialsRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError(
             "ListWebAuthnCredentialsRequest.access_token required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

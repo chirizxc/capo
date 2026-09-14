@@ -39,7 +39,7 @@ def serialize_json(value: ResultRow) -> dict:
 
 def deserialize_json(data: dict) -> ResultRow:
     out: ResultRow = {}  # type: ignore[typeddict-item]
-    if "GroupedBys" in data:
+    if data.get("GroupedBys") is not None:
         import capo_pinpoint.types.list_of_result_row_value
 
         out["grouped_bys"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> ResultRow:
                 data["GroupedBys"]
             )
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_pinpoint.types.list_of_result_row_value
 
         out["values"] = capo_pinpoint.types.list_of_result_row_value.deserialize_json(

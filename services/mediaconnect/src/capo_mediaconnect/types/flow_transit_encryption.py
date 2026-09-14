@@ -43,7 +43,7 @@ def serialize_json(value: FlowTransitEncryption) -> dict:
 
 def deserialize_json(data: dict) -> FlowTransitEncryption:
     out: FlowTransitEncryption = {}  # type: ignore[typeddict-item]
-    if "encryptionKeyType" in data:
+    if data.get("encryptionKeyType") is not None:
         import capo_mediaconnect.types.flow_transit_encryption_key_type
 
         out["encryption_key_type"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> FlowTransitEncryption:
                 data["encryptionKeyType"]
             )
         )
-    if "encryptionKeyConfiguration" in data:
+    if data.get("encryptionKeyConfiguration") is not None:
         import capo_mediaconnect.types.flow_transit_encryption_key_configuration
 
         out["encryption_key_configuration"] = (

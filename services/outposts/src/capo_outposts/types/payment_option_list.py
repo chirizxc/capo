@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PaymentOptionList:
 
     out: PaymentOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_outposts.types.payment_option.deserialize_json(item))
     return out

@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: GetAdminAccountResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAdminAccountResponse:
     out: GetAdminAccountResponse = {}  # type: ignore[typeddict-item]
-    if "AdminAccount" in data:
+    if data.get("AdminAccount") is not None:
         out["admin_account"] = data["AdminAccount"]
-    if "RoleStatus" in data:
+    if data.get("RoleStatus") is not None:
         import capo_fms.types.account_role_status
 
         out["role_status"] = (

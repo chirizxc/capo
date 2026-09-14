@@ -36,9 +36,9 @@ def serialize_json(value: PivotTableFieldCollapseStateTarget) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableFieldCollapseStateTarget:
     out: PivotTableFieldCollapseStateTarget = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
-    if "FieldDataPathValues" in data:
+    if data.get("FieldDataPathValues") is not None:
         import capo_quicksight.types.data_path_value_list
 
         out["field_data_path_values"] = (

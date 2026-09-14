@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: AssociateWorkspaceApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateWorkspaceApplicationRequest:
     out: AssociateWorkspaceApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
     else:
         raise DeserializationError(
             "AssociateWorkspaceApplicationRequest.workspace_id required"
         )
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError(

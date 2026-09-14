@@ -62,15 +62,15 @@ def serialize_aws_json_1_1(value: CreateDatasetExportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetExportJobRequest:
     out: CreateDatasetExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("CreateDatasetExportJobRequest.job_name required")
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
     else:
         raise DeserializationError("CreateDatasetExportJobRequest.dataset_arn required")
-    if "ingestionMode" in data:
+    if data.get("ingestionMode") is not None:
         import capo_personalize.types.ingestion_mode
 
         out["ingestion_mode"] = (
@@ -78,11 +78,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetExportJobRequest:
                 data["ingestionMode"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateDatasetExportJobRequest.role_arn required")
-    if "jobOutput" in data:
+    if data.get("jobOutput") is not None:
         import capo_personalize.types.dataset_export_job_output
 
         out["job_output"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetExportJobRequest:
         )
     else:
         raise DeserializationError("CreateDatasetExportJobRequest.job_output required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])

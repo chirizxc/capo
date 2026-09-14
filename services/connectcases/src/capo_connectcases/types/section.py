@@ -32,7 +32,7 @@ def serialize_json(value: Section) -> dict:
 
 
 def deserialize_json(data: dict) -> Section:
-    if "fieldGroup" in data:
+    if data.get("fieldGroup") is not None:
         import capo_connectcases.types.field_group
 
         return {

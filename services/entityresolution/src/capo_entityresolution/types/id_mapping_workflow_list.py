@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IdMappingWorkflowList:
 
     out: IdMappingWorkflowList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.id_mapping_workflow_summary.deserialize_json(
                 item

@@ -34,10 +34,10 @@ def serialize_aws_json_1_1(value: ListVolumesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListVolumesInput:
     out: ListVolumesInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

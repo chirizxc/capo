@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CreateJobOutputs:
 
     out: CreateJobOutputs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elastic_transcoder.types.create_job_output.deserialize_json(item)
         )

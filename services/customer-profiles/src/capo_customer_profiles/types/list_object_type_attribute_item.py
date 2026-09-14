@@ -32,13 +32,13 @@ def serialize_json(value: ListObjectTypeAttributeItem) -> dict:
 
 def deserialize_json(data: dict) -> ListObjectTypeAttributeItem:
     out: ListObjectTypeAttributeItem = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError(
             "ListObjectTypeAttributeItem.attribute_name required"
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (

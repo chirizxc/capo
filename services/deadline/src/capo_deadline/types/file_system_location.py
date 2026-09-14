@@ -36,15 +36,15 @@ def serialize_json(value: FileSystemLocation) -> dict:
 
 def deserialize_json(data: dict) -> FileSystemLocation:
     out: FileSystemLocation = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("FileSystemLocation.name required")
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     else:
         raise DeserializationError("FileSystemLocation.path required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_deadline.types.file_system_location_type
 
         out["type"] = capo_deadline.types.file_system_location_type.deserialize_json(

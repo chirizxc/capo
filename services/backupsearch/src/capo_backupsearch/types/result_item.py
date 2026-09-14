@@ -45,7 +45,7 @@ def serialize_json(value: ResultItem) -> dict:
 
 
 def deserialize_json(data: dict) -> ResultItem:
-    if "S3ResultItem" in data:
+    if data.get("S3ResultItem") is not None:
         import capo_backupsearch.types.s3_result_item
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> ResultItem:
                 data["S3ResultItem"]
             )
         }
-    elif "EBSResultItem" in data:
+    elif data.get("EBSResultItem") is not None:
         import capo_backupsearch.types.ebs_result_item
 
         return {

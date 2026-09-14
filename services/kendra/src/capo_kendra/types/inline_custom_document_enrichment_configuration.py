@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: InlineCustomDocumentEnrichmentConfiguration) -
 
 def deserialize_aws_json_1_1(data: dict) -> InlineCustomDocumentEnrichmentConfiguration:
     out: InlineCustomDocumentEnrichmentConfiguration = {}  # type: ignore[typeddict-item]
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_kendra.types.document_attribute_condition
 
         out["condition"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> InlineCustomDocumentEnrichmentConfig
                 data["Condition"]
             )
         )
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_kendra.types.document_attribute_target
 
         out["target"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> InlineCustomDocumentEnrichmentConfig
                 data["Target"]
             )
         )
-    if "DocumentContentDeletion" in data:
+    if data.get("DocumentContentDeletion") is not None:
         out["document_content_deletion"] = data["DocumentContentDeletion"]
     else:
         out["document_content_deletion"] = False

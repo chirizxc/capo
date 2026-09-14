@@ -42,9 +42,9 @@ def serialize_aws_json_1_1(value: ListSessionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSessionsInput:
     out: ListSessionsInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "SessionStates" in data:
+    if data.get("SessionStates") is not None:
         import capo_emr.types.session_state_list
 
         out["session_states"] = (
@@ -52,8 +52,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListSessionsInput:
                 data["SessionStates"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

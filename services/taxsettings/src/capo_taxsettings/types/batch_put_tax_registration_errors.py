@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchPutTaxRegistrationErrors:
 
     out: BatchPutTaxRegistrationErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_taxsettings.types.batch_put_tax_registration_error.deserialize_json(
                 item

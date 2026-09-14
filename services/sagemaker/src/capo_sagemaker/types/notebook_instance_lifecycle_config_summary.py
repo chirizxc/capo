@@ -58,15 +58,15 @@ def serialize_aws_json_1_1(value: NotebookInstanceLifecycleConfigSummary) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> NotebookInstanceLifecycleConfigSummary:
     out: NotebookInstanceLifecycleConfigSummary = {}  # type: ignore[typeddict-item]
-    if "NotebookInstanceLifecycleConfigName" in data:
+    if data.get("NotebookInstanceLifecycleConfigName") is not None:
         out["notebook_instance_lifecycle_config_name"] = data[
             "NotebookInstanceLifecycleConfigName"
         ]
-    if "NotebookInstanceLifecycleConfigArn" in data:
+    if data.get("NotebookInstanceLifecycleConfigArn") is not None:
         out["notebook_instance_lifecycle_config_arn"] = data[
             "NotebookInstanceLifecycleConfigArn"
         ]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookInstanceLifecycleConfigSumma
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (

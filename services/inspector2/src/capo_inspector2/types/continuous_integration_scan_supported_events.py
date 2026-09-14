@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ContinuousIntegrationScanSupportedEvents:
 
     out: ContinuousIntegrationScanSupportedEvents = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.continuous_integration_scan_event.deserialize_json(
                 item

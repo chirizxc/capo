@@ -32,8 +32,8 @@ def serialize_json(value: DataReplicationInitiationStep) -> dict:
 
 def deserialize_json(data: dict) -> DataReplicationInitiationStep:
     out: DataReplicationInitiationStep = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

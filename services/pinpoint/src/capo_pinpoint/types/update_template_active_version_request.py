@@ -35,7 +35,7 @@ def serialize_json(value: UpdateTemplateActiveVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTemplateActiveVersionRequest:
     out: UpdateTemplateActiveVersionRequest = {}  # type: ignore[typeddict-item]
-    if "TemplateActiveVersionRequest" in data:
+    if data.get("TemplateActiveVersionRequest") is not None:
         import capo_pinpoint.types.template_active_version_request
 
         out["template_active_version_request"] = (

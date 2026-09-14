@@ -43,21 +43,21 @@ def serialize_aws_json_1_1(value: ProvisionPermissionSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvisionPermissionSetRequest:
     out: ProvisionPermissionSetRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "ProvisionPermissionSetRequest.instance_arn required"
         )
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
     else:
         raise DeserializationError(
             "ProvisionPermissionSetRequest.permission_set_arn required"
         )
-    if "TargetId" in data:
+    if data.get("TargetId") is not None:
         out["target_id"] = data["TargetId"]
-    if "TargetType" in data:
+    if data.get("TargetType") is not None:
         import capo_sso_admin.types.provision_target_type
 
         out["target_type"] = (

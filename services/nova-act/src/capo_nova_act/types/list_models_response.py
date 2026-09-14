@@ -48,7 +48,7 @@ def serialize_json(value: ListModelsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListModelsResponse:
     out: ListModelsResponse = {}  # type: ignore[typeddict-item]
-    if "modelSummaries" in data:
+    if data.get("modelSummaries") is not None:
         import capo_nova_act.types.model_summaries
 
         out["model_summaries"] = capo_nova_act.types.model_summaries.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> ListModelsResponse:
         )
     else:
         raise DeserializationError("ListModelsResponse.model_summaries required")
-    if "modelAliases" in data:
+    if data.get("modelAliases") is not None:
         import capo_nova_act.types.model_aliases
 
         out["model_aliases"] = capo_nova_act.types.model_aliases.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ListModelsResponse:
         )
     else:
         raise DeserializationError("ListModelsResponse.model_aliases required")
-    if "compatibilityInformation" in data:
+    if data.get("compatibilityInformation") is not None:
         import capo_nova_act.types.compatibility_information
 
         out["compatibility_information"] = (

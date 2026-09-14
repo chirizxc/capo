@@ -63,21 +63,21 @@ def serialize_json(value: ComponentLatestVersion) -> dict:
 
 def deserialize_json(data: dict) -> ComponentLatestVersion:
     out: ComponentLatestVersion = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "componentVersion" in data:
+    if data.get("componentVersion") is not None:
         out["component_version"] = data["componentVersion"]
-    if "creationTimestamp" in data:
+    if data.get("creationTimestamp") is not None:
         import capo_greengrassv2.types.timestamp
 
         out["creation_timestamp"] = capo_greengrassv2.types.timestamp.deserialize_json(
             data["creationTimestamp"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "publisher" in data:
+    if data.get("publisher") is not None:
         out["publisher"] = data["publisher"]
-    if "platforms" in data:
+    if data.get("platforms") is not None:
         import capo_greengrassv2.types.component_platform_list
 
         out["platforms"] = (

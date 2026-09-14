@@ -38,15 +38,15 @@ def serialize_json(value: Record) -> dict:
 
 def deserialize_json(data: dict) -> Record:
     out: Record = {}  # type: ignore[typeddict-item]
-    if "inputSourceARN" in data:
+    if data.get("inputSourceARN") is not None:
         out["input_source_arn"] = data["inputSourceARN"]
     else:
         raise DeserializationError("Record.input_source_arn required")
-    if "uniqueId" in data:
+    if data.get("uniqueId") is not None:
         out["unique_id"] = data["uniqueId"]
     else:
         raise DeserializationError("Record.unique_id required")
-    if "recordAttributeMap" in data:
+    if data.get("recordAttributeMap") is not None:
         import capo_entityresolution.types.record_attribute_map_string255
 
         out["record_attribute_map"] = (

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> DataSourceSearchFilterList:
 
     out: DataSourceSearchFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.data_source_search_filter.deserialize_json(item)
         )

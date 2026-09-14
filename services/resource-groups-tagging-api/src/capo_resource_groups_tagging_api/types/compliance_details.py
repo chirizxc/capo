@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: ComplianceDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComplianceDetails:
     out: ComplianceDetails = {}  # type: ignore[typeddict-item]
-    if "NoncompliantKeys" in data:
+    if data.get("NoncompliantKeys") is not None:
         import capo_resource_groups_tagging_api.types.tag_key_list
 
         out["noncompliant_keys"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> ComplianceDetails:
                 data["NoncompliantKeys"]
             )
         )
-    if "KeysWithNoncompliantValues" in data:
+    if data.get("KeysWithNoncompliantValues") is not None:
         import capo_resource_groups_tagging_api.types.tag_key_list
 
         out["keys_with_noncompliant_values"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> ComplianceDetails:
                 data["KeysWithNoncompliantValues"]
             )
         )
-    if "MissingTagKeys" in data:
+    if data.get("MissingTagKeys") is not None:
         import capo_resource_groups_tagging_api.types.tag_key_list
 
         out["missing_tag_keys"] = (
@@ -86,6 +86,6 @@ def deserialize_aws_json_1_1(data: dict) -> ComplianceDetails:
                 data["MissingTagKeys"]
             )
         )
-    if "ComplianceStatus" in data:
+    if data.get("ComplianceStatus") is not None:
         out["compliance_status"] = data["ComplianceStatus"]
     return out

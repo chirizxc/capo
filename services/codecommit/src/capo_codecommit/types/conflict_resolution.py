@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: ConflictResolution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConflictResolution:
     out: ConflictResolution = {}  # type: ignore[typeddict-item]
-    if "replaceContents" in data:
+    if data.get("replaceContents") is not None:
         import capo_codecommit.types.replace_content_entries
 
         out["replace_contents"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConflictResolution:
                 data["replaceContents"]
             )
         )
-    if "deleteFiles" in data:
+    if data.get("deleteFiles") is not None:
         import capo_codecommit.types.delete_file_entries
 
         out["delete_files"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConflictResolution:
                 data["deleteFiles"]
             )
         )
-    if "setFileModes" in data:
+    if data.get("setFileModes") is not None:
         import capo_codecommit.types.set_file_mode_entries
 
         out["set_file_modes"] = (

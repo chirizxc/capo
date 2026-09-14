@@ -31,7 +31,7 @@ def serialize_json(value: GetLifecycleExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetLifecycleExecutionResponse:
     out: GetLifecycleExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "lifecycleExecution" in data:
+    if data.get("lifecycleExecution") is not None:
         import capo_imagebuilder.types.lifecycle_execution
 
         out["lifecycle_execution"] = (

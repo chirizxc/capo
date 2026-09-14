@@ -67,9 +67,9 @@ def serialize_json(value: ParentSavingsPlanOffering) -> dict:
 
 def deserialize_json(data: dict) -> ParentSavingsPlanOffering:
     out: ParentSavingsPlanOffering = {}  # type: ignore[typeddict-item]
-    if "offeringId" in data:
+    if data.get("offeringId") is not None:
         out["offering_id"] = data["offeringId"]
-    if "paymentOption" in data:
+    if data.get("paymentOption") is not None:
         import capo_savingsplans.types.savings_plan_payment_option
 
         out["payment_option"] = (
@@ -77,22 +77,22 @@ def deserialize_json(data: dict) -> ParentSavingsPlanOffering:
                 data["paymentOption"]
             )
         )
-    if "planType" in data:
+    if data.get("planType") is not None:
         import capo_savingsplans.types.savings_plan_type
 
         out["plan_type"] = capo_savingsplans.types.savings_plan_type.deserialize_json(
             data["planType"]
         )
-    if "durationSeconds" in data:
+    if data.get("durationSeconds") is not None:
         out["duration_seconds"] = data["durationSeconds"]
     else:
         out["duration_seconds"] = 0
-    if "currency" in data:
+    if data.get("currency") is not None:
         import capo_savingsplans.types.currency_code
 
         out["currency"] = capo_savingsplans.types.currency_code.deserialize_json(
             data["currency"]
         )
-    if "planDescription" in data:
+    if data.get("planDescription") is not None:
         out["plan_description"] = data["planDescription"]
     return out

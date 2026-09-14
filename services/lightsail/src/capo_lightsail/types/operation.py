@@ -101,11 +101,11 @@ def serialize_aws_json_1_1(value: Operation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Operation:
     out: Operation = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -113,13 +113,13 @@ def deserialize_aws_json_1_1(data: dict) -> Operation:
                 data["resourceType"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -127,11 +127,11 @@ def deserialize_aws_json_1_1(data: dict) -> Operation:
                 data["location"]
             )
         )
-    if "isTerminal" in data:
+    if data.get("isTerminal") is not None:
         out["is_terminal"] = data["isTerminal"]
-    if "operationDetails" in data:
+    if data.get("operationDetails") is not None:
         out["operation_details"] = data["operationDetails"]
-    if "operationType" in data:
+    if data.get("operationType") is not None:
         import capo_lightsail.types.operation_type
 
         out["operation_type"] = (
@@ -139,13 +139,13 @@ def deserialize_aws_json_1_1(data: dict) -> Operation:
                 data["operationType"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lightsail.types.operation_status
 
         out["status"] = capo_lightsail.types.operation_status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "statusChangedAt" in data:
+    if data.get("statusChangedAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["status_changed_at"] = (
@@ -153,8 +153,8 @@ def deserialize_aws_json_1_1(data: dict) -> Operation:
                 data["statusChangedAt"]
             )
         )
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorDetails" in data:
+    if data.get("errorDetails") is not None:
         out["error_details"] = data["errorDetails"]
     return out

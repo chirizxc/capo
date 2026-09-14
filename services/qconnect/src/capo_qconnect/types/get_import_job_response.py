@@ -27,7 +27,7 @@ def serialize_json(value: GetImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetImportJobResponse:
     out: GetImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "importJob" in data:
+    if data.get("importJob") is not None:
         import capo_qconnect.types.import_job_data
 
         out["import_job"] = capo_qconnect.types.import_job_data.deserialize_json(

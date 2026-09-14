@@ -103,11 +103,11 @@ def serialize_aws_json_1_1(value: StartGameSessionPlacementInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartGameSessionPlacementInput:
     out: StartGameSessionPlacementInput = {}  # type: ignore[typeddict-item]
-    if "PlacementId" in data:
+    if data.get("PlacementId") is not None:
         out["placement_id"] = data["PlacementId"]
-    if "GameSessionQueueName" in data:
+    if data.get("GameSessionQueueName") is not None:
         out["game_session_queue_name"] = data["GameSessionQueueName"]
-    if "GameProperties" in data:
+    if data.get("GameProperties") is not None:
         import capo_gamelift.types.game_property_list
 
         out["game_properties"] = (
@@ -115,11 +115,11 @@ def deserialize_aws_json_1_1(data: dict) -> StartGameSessionPlacementInput:
                 data["GameProperties"]
             )
         )
-    if "MaximumPlayerSessionCount" in data:
+    if data.get("MaximumPlayerSessionCount") is not None:
         out["maximum_player_session_count"] = data["MaximumPlayerSessionCount"]
-    if "GameSessionName" in data:
+    if data.get("GameSessionName") is not None:
         out["game_session_name"] = data["GameSessionName"]
-    if "PlayerLatencies" in data:
+    if data.get("PlayerLatencies") is not None:
         import capo_gamelift.types.player_latency_list
 
         out["player_latencies"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartGameSessionPlacementInput:
                 data["PlayerLatencies"]
             )
         )
-    if "DesiredPlayerSessions" in data:
+    if data.get("DesiredPlayerSessions") is not None:
         import capo_gamelift.types.desired_player_session_list
 
         out["desired_player_sessions"] = (
@@ -135,9 +135,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartGameSessionPlacementInput:
                 data["DesiredPlayerSessions"]
             )
         )
-    if "GameSessionData" in data:
+    if data.get("GameSessionData") is not None:
         out["game_session_data"] = data["GameSessionData"]
-    if "PriorityConfigurationOverride" in data:
+    if data.get("PriorityConfigurationOverride") is not None:
         import capo_gamelift.types.priority_configuration_override
 
         out["priority_configuration_override"] = (

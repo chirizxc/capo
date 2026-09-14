@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IntegrationSummaries:
 
     out: IntegrationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.code_security_integration_summary.deserialize_json(
                 item

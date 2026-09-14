@@ -37,11 +37,11 @@ def serialize_json(value: TableCellConditionalFormatting) -> dict:
 
 def deserialize_json(data: dict) -> TableCellConditionalFormatting:
     out: TableCellConditionalFormatting = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("TableCellConditionalFormatting.field_id required")
-    if "TextFormat" in data:
+    if data.get("TextFormat") is not None:
         import capo_quicksight.types.text_conditional_format
 
         out["text_format"] = (

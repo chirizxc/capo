@@ -32,7 +32,7 @@ def serialize_json(value: BatchDeleteUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteUserRequest:
     out: BatchDeleteUserRequest = {}  # type: ignore[typeddict-item]
-    if "userIds" in data:
+    if data.get("userIds") is not None:
         import capo_wickr.types.user_ids
 
         out["user_ids"] = capo_wickr.types.user_ids.deserialize_json(data["userIds"])

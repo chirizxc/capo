@@ -82,9 +82,9 @@ def serialize_json(value: NodePropertyOverride) -> dict:
 
 def deserialize_json(data: dict) -> NodePropertyOverride:
     out: NodePropertyOverride = {}  # type: ignore[typeddict-item]
-    if "targetNodes" in data:
+    if data.get("targetNodes") is not None:
         out["target_nodes"] = data["targetNodes"]
-    if "containerOverrides" in data:
+    if data.get("containerOverrides") is not None:
         import capo_batch.types.container_overrides
 
         out["container_overrides"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> NodePropertyOverride:
                 data["containerOverrides"]
             )
         )
-    if "ecsPropertiesOverride" in data:
+    if data.get("ecsPropertiesOverride") is not None:
         import capo_batch.types.ecs_properties_override
 
         out["ecs_properties_override"] = (
@@ -100,13 +100,13 @@ def deserialize_json(data: dict) -> NodePropertyOverride:
                 data["ecsPropertiesOverride"]
             )
         )
-    if "instanceTypes" in data:
+    if data.get("instanceTypes") is not None:
         import capo_batch.types.string_list
 
         out["instance_types"] = capo_batch.types.string_list.deserialize_json(
             data["instanceTypes"]
         )
-    if "eksPropertiesOverride" in data:
+    if data.get("eksPropertiesOverride") is not None:
         import capo_batch.types.eks_properties_override
 
         out["eks_properties_override"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> NodePropertyOverride:
                 data["eksPropertiesOverride"]
             )
         )
-    if "consumableResourcePropertiesOverride" in data:
+    if data.get("consumableResourcePropertiesOverride") is not None:
         import capo_batch.types.consumable_resource_properties
 
         out["consumable_resource_properties_override"] = (

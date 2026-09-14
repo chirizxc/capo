@@ -47,7 +47,15 @@ def serialize_json(value: CreateDeploymentStrategyRequest) -> dict:
         out["Description"] = value["description"]
     out["DeploymentDurationInMinutes"] = value["deployment_duration_in_minutes"]
     out["FinalBakeTimeInMinutes"] = value.get("final_bake_time_in_minutes", 0)
-    out["GrowthFactor"] = value["growth_factor"]
+    out["GrowthFactor"] = (
+        "NaN"
+        if value["growth_factor"] != value["growth_factor"]
+        else "Infinity"
+        if value["growth_factor"] == float("inf")
+        else "-Infinity"
+        if value["growth_factor"] == float("-inf")
+        else value["growth_factor"]
+    )
     if "growth_type" in value:
         import capo_appconfig.types.growth_type
 
@@ -69,41 +77,41 @@ def serialize_json(value: CreateDeploymentStrategyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentStrategyRequest:
     out: CreateDeploymentStrategyRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDeploymentStrategyRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DeploymentDurationInMinutes" in data:
+    if data.get("DeploymentDurationInMinutes") is not None:
         out["deployment_duration_in_minutes"] = data["DeploymentDurationInMinutes"]
     else:
         raise DeserializationError(
             "CreateDeploymentStrategyRequest.deployment_duration_in_minutes required"
         )
-    if "FinalBakeTimeInMinutes" in data:
+    if data.get("FinalBakeTimeInMinutes") is not None:
         out["final_bake_time_in_minutes"] = data["FinalBakeTimeInMinutes"]
     else:
         out["final_bake_time_in_minutes"] = 0
-    if "GrowthFactor" in data:
-        out["growth_factor"] = data["GrowthFactor"]
+    if data.get("GrowthFactor") is not None:
+        out["growth_factor"] = float(data["GrowthFactor"])
     else:
         raise DeserializationError(
             "CreateDeploymentStrategyRequest.growth_factor required"
         )
-    if "GrowthType" in data:
+    if data.get("GrowthType") is not None:
         import capo_appconfig.types.growth_type
 
         out["growth_type"] = capo_appconfig.types.growth_type.deserialize_json(
             data["GrowthType"]
         )
-    if "ReplicateTo" in data:
+    if data.get("ReplicateTo") is not None:
         import capo_appconfig.types.replicate_to
 
         out["replicate_to"] = capo_appconfig.types.replicate_to.deserialize_json(
             data["ReplicateTo"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appconfig.types.tag_map
 
         out["tags"] = capo_appconfig.types.tag_map.deserialize_json(data["Tags"])

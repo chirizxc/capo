@@ -80,11 +80,11 @@ def serialize_json(value: CreateTableRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTableRequest:
     out: CreateTableRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateTableRequest.name required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_s3tables.types.open_table_format
 
         out["format"] = capo_s3tables.types.open_table_format.deserialize_json(
@@ -92,13 +92,13 @@ def deserialize_json(data: dict) -> CreateTableRequest:
         )
     else:
         raise DeserializationError("CreateTableRequest.format required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_s3tables.types.table_metadata
 
         out["metadata"] = capo_s3tables.types.table_metadata.deserialize_json(
             data["metadata"]
         )
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_s3tables.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> CreateTableRequest:
                 data["encryptionConfiguration"]
             )
         )
-    if "storageClassConfiguration" in data:
+    if data.get("storageClassConfiguration") is not None:
         import capo_s3tables.types.storage_class_configuration
 
         out["storage_class_configuration"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> CreateTableRequest:
                 data["storageClassConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_s3tables.types.tags
 
         out["tags"] = capo_s3tables.types.tags.deserialize_json(data["tags"])

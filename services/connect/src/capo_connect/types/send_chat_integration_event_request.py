@@ -52,25 +52,25 @@ def serialize_json(value: SendChatIntegrationEventRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendChatIntegrationEventRequest:
     out: SendChatIntegrationEventRequest = {}  # type: ignore[typeddict-item]
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
     else:
         raise DeserializationError("SendChatIntegrationEventRequest.source_id required")
-    if "DestinationId" in data:
+    if data.get("DestinationId") is not None:
         out["destination_id"] = data["DestinationId"]
     else:
         raise DeserializationError(
             "SendChatIntegrationEventRequest.destination_id required"
         )
-    if "Subtype" in data:
+    if data.get("Subtype") is not None:
         out["subtype"] = data["Subtype"]
-    if "Event" in data:
+    if data.get("Event") is not None:
         import capo_connect.types.chat_event
 
         out["event"] = capo_connect.types.chat_event.deserialize_json(data["Event"])
     else:
         raise DeserializationError("SendChatIntegrationEventRequest.event required")
-    if "NewSessionDetails" in data:
+    if data.get("NewSessionDetails") is not None:
         import capo_connect.types.new_session_details
 
         out["new_session_details"] = (

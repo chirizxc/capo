@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: PutRetentionConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRetentionConfigurationRequest:
     out: PutRetentionConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "RetentionPeriodInDays" in data:
+    if data.get("RetentionPeriodInDays") is not None:
         out["retention_period_in_days"] = data["RetentionPeriodInDays"]
     else:
         raise DeserializationError(

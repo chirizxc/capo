@@ -41,15 +41,15 @@ def serialize_json(value: CreateGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupRequest:
     out: CreateGroupRequest = {}  # type: ignore[typeddict-item]
-    if "InitialVersion" in data:
+    if data.get("InitialVersion") is not None:
         import capo_greengrass.types.group_version
 
         out["initial_version"] = capo_greengrass.types.group_version.deserialize_json(
             data["InitialVersion"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrass.types.tags
 
         out["tags"] = capo_greengrass.types.tags.deserialize_json(data["tags"])

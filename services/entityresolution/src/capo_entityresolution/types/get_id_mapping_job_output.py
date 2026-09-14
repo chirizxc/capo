@@ -92,11 +92,11 @@ def serialize_json(value: GetIdMappingJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetIdMappingJobOutput:
     out: GetIdMappingJobOutput = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("GetIdMappingJobOutput.job_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_entityresolution.types.job_status
 
         out["status"] = capo_entityresolution.types.job_status.deserialize_json(
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> GetIdMappingJobOutput:
         )
     else:
         raise DeserializationError("GetIdMappingJobOutput.status required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["start_time"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> GetIdMappingJobOutput:
         )
     else:
         raise DeserializationError("GetIdMappingJobOutput.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["end_time"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> GetIdMappingJobOutput:
                 data["endTime"]
             )
         )
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_entityresolution.types.id_mapping_job_metrics
 
         out["metrics"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> GetIdMappingJobOutput:
                 data["metrics"]
             )
         )
-    if "errorDetails" in data:
+    if data.get("errorDetails") is not None:
         import capo_entityresolution.types.error_details
 
         out["error_details"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> GetIdMappingJobOutput:
                 data["errorDetails"]
             )
         )
-    if "outputSourceConfig" in data:
+    if data.get("outputSourceConfig") is not None:
         import capo_entityresolution.types.id_mapping_job_output_source_config
 
         out["output_source_config"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> GetIdMappingJobOutput:
                 data["outputSourceConfig"]
             )
         )
-    if "jobType" in data:
+    if data.get("jobType") is not None:
         import capo_entityresolution.types.job_type
 
         out["job_type"] = capo_entityresolution.types.job_type.deserialize_json(

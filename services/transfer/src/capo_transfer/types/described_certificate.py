@@ -128,13 +128,13 @@ def serialize_aws_json_1_1(value: DescribedCertificate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribedCertificate:
     out: DescribedCertificate = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DescribedCertificate.arn required")
-    if "CertificateId" in data:
+    if data.get("CertificateId") is not None:
         out["certificate_id"] = data["CertificateId"]
-    if "Usage" in data:
+    if data.get("Usage") is not None:
         import capo_transfer.types.certificate_usage_type
 
         out["usage"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedCertificate:
                 data["Usage"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_transfer.types.certificate_status_type
 
         out["status"] = (
@@ -150,45 +150,45 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedCertificate:
                 data["Status"]
             )
         )
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         out["certificate"] = data["Certificate"]
-    if "CertificateChain" in data:
+    if data.get("CertificateChain") is not None:
         out["certificate_chain"] = data["CertificateChain"]
-    if "ActiveDate" in data:
+    if data.get("ActiveDate") is not None:
         import capo_transfer.types.cert_date
 
         out["active_date"] = capo_transfer.types.cert_date.deserialize_aws_json_1_1(
             data["ActiveDate"]
         )
-    if "InactiveDate" in data:
+    if data.get("InactiveDate") is not None:
         import capo_transfer.types.cert_date
 
         out["inactive_date"] = capo_transfer.types.cert_date.deserialize_aws_json_1_1(
             data["InactiveDate"]
         )
-    if "Serial" in data:
+    if data.get("Serial") is not None:
         out["serial"] = data["Serial"]
-    if "NotBeforeDate" in data:
+    if data.get("NotBeforeDate") is not None:
         import capo_transfer.types.cert_date
 
         out["not_before_date"] = capo_transfer.types.cert_date.deserialize_aws_json_1_1(
             data["NotBeforeDate"]
         )
-    if "NotAfterDate" in data:
+    if data.get("NotAfterDate") is not None:
         import capo_transfer.types.cert_date
 
         out["not_after_date"] = capo_transfer.types.cert_date.deserialize_aws_json_1_1(
             data["NotAfterDate"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_transfer.types.certificate_type
 
         out["type"] = capo_transfer.types.certificate_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])

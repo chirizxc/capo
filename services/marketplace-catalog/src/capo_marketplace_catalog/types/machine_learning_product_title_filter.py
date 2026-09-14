@@ -38,7 +38,7 @@ def serialize_json(value: MachineLearningProductTitleFilter) -> dict:
 
 def deserialize_json(data: dict) -> MachineLearningProductTitleFilter:
     out: MachineLearningProductTitleFilter = {}  # type: ignore[typeddict-item]
-    if "ValueList" in data:
+    if data.get("ValueList") is not None:
         import capo_marketplace_catalog.types.machine_learning_product_title_filter_value_list
 
         out["value_list"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> MachineLearningProductTitleFilter:
                 data["ValueList"]
             )
         )
-    if "WildCardValue" in data:
+    if data.get("WildCardValue") is not None:
         out["wild_card_value"] = data["WildCardValue"]
     return out

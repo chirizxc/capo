@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: S3AccessPointVpcConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3AccessPointVpcConfiguration:
     out: S3AccessPointVpcConfiguration = {}  # type: ignore[typeddict-item]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

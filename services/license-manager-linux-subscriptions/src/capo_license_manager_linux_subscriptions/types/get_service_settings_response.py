@@ -69,9 +69,9 @@ def serialize_json(value: GetServiceSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceSettingsResponse:
     out: GetServiceSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "LinuxSubscriptionsDiscovery" in data:
+    if data.get("LinuxSubscriptionsDiscovery") is not None:
         out["linux_subscriptions_discovery"] = data["LinuxSubscriptionsDiscovery"]
-    if "LinuxSubscriptionsDiscoverySettings" in data:
+    if data.get("LinuxSubscriptionsDiscoverySettings") is not None:
         import capo_license_manager_linux_subscriptions.types.linux_subscriptions_discovery_settings
 
         out["linux_subscriptions_discovery_settings"] = (
@@ -79,9 +79,9 @@ def deserialize_json(data: dict) -> GetServiceSettingsResponse:
                 data["LinuxSubscriptionsDiscoverySettings"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         import capo_license_manager_linux_subscriptions.types.string_map
 
         out["status_message"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> GetServiceSettingsResponse:
                 data["StatusMessage"]
             )
         )
-    if "HomeRegions" in data:
+    if data.get("HomeRegions") is not None:
         import capo_license_manager_linux_subscriptions.types.string_list
 
         out["home_regions"] = (

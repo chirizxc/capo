@@ -27,7 +27,7 @@ def serialize_json(value: GetProfileOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetProfileOutput:
     out: GetProfileOutput = {}  # type: ignore[typeddict-item]
-    if "Profile" in data:
+    if data.get("Profile") is not None:
         import capo_wellarchitected.types.profile
 
         out["profile"] = capo_wellarchitected.types.profile.deserialize_json(

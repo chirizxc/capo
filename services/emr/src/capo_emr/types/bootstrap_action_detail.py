@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: BootstrapActionDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BootstrapActionDetail:
     out: BootstrapActionDetail = {}  # type: ignore[typeddict-item]
-    if "BootstrapActionConfig" in data:
+    if data.get("BootstrapActionConfig") is not None:
         import capo_emr.types.bootstrap_action_config
 
         out["bootstrap_action_config"] = (

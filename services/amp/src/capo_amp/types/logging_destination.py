@@ -36,7 +36,7 @@ def serialize_json(value: LoggingDestination) -> dict:
 
 def deserialize_json(data: dict) -> LoggingDestination:
     out: LoggingDestination = {}  # type: ignore[typeddict-item]
-    if "cloudWatchLogs" in data:
+    if data.get("cloudWatchLogs") is not None:
         import capo_amp.types.cloud_watch_log_destination
 
         out["cloud_watch_logs"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> LoggingDestination:
         )
     else:
         raise DeserializationError("LoggingDestination.cloud_watch_logs required")
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_amp.types.logging_filter
 
         out["filters"] = capo_amp.types.logging_filter.deserialize_json(data["filters"])

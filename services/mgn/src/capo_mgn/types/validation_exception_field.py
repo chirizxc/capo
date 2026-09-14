@@ -27,8 +27,8 @@ def serialize_json(value: ValidationExceptionField) -> dict:
 
 def deserialize_json(data: dict) -> ValidationExceptionField:
     out: ValidationExceptionField = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

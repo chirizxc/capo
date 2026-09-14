@@ -22,8 +22,8 @@ def serialize_json(value: DocumentInfo) -> dict:
 
 def deserialize_json(data: dict) -> DocumentInfo:
     out: DocumentInfo = {}  # type: ignore[typeddict-item]
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         out["s3_location"] = data["s3Location"]
-    if "artifactId" in data:
+    if data.get("artifactId") is not None:
         out["artifact_id"] = data["artifactId"]
     return out

@@ -122,23 +122,23 @@ def serialize_json(value: GetBatchResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBatchResponse:
     out: GetBatchResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "uuid" in data:
+    if data.get("uuid") is not None:
         out["uuid"] = data["uuid"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "totalRuns" in data:
+    if data.get("totalRuns") is not None:
         out["total_runs"] = data["totalRuns"]
-    if "defaultRunSetting" in data:
+    if data.get("defaultRunSetting") is not None:
         import capo_omics.types.default_run_setting
 
         out["default_run_setting"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> GetBatchResponse:
                 data["defaultRunSetting"]
             )
         )
-    if "submissionSummary" in data:
+    if data.get("submissionSummary") is not None:
         import capo_omics.types.submission_summary
 
         out["submission_summary"] = (
@@ -154,36 +154,36 @@ def deserialize_json(data: dict) -> GetBatchResponse:
                 data["submissionSummary"]
             )
         )
-    if "runSummary" in data:
+    if data.get("runSummary") is not None:
         import capo_omics.types.run_summary
 
         out["run_summary"] = capo_omics.types.run_summary.deserialize_json(
             data["runSummary"]
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.batch_timestamp
 
         out["creation_time"] = capo_omics.types.batch_timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "submittedTime" in data:
+    if data.get("submittedTime") is not None:
         import capo_omics.types.batch_timestamp
 
         out["submitted_time"] = capo_omics.types.batch_timestamp.deserialize_json(
             data["submittedTime"]
         )
-    if "processedTime" in data:
+    if data.get("processedTime") is not None:
         import capo_omics.types.batch_timestamp
 
         out["processed_time"] = capo_omics.types.batch_timestamp.deserialize_json(
             data["processedTime"]
         )
-    if "failedTime" in data:
+    if data.get("failedTime") is not None:
         import capo_omics.types.batch_timestamp
 
         out["failed_time"] = capo_omics.types.batch_timestamp.deserialize_json(
             data["failedTime"]
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
     return out

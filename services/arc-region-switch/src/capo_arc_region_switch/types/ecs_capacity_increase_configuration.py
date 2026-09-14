@@ -55,11 +55,11 @@ def serialize_aws_json_1_0(value: EcsCapacityIncreaseConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EcsCapacityIncreaseConfiguration:
     out: EcsCapacityIncreaseConfiguration = {}  # type: ignore[typeddict-item]
-    if "timeoutMinutes" in data:
+    if data.get("timeoutMinutes") is not None:
         out["timeout_minutes"] = data["timeoutMinutes"]
     else:
         out["timeout_minutes"] = 60
-    if "services" in data:
+    if data.get("services") is not None:
         import capo_arc_region_switch.types.service_list
 
         out["services"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> EcsCapacityIncreaseConfiguration:
         )
     else:
         raise DeserializationError("EcsCapacityIncreaseConfiguration.services required")
-    if "ungraceful" in data:
+    if data.get("ungraceful") is not None:
         import capo_arc_region_switch.types.ecs_ungraceful
 
         out["ungraceful"] = (
@@ -77,11 +77,11 @@ def deserialize_aws_json_1_0(data: dict) -> EcsCapacityIncreaseConfiguration:
                 data["ungraceful"]
             )
         )
-    if "targetPercent" in data:
+    if data.get("targetPercent") is not None:
         out["target_percent"] = data["targetPercent"]
     else:
         out["target_percent"] = 100
-    if "capacityMonitoringApproach" in data:
+    if data.get("capacityMonitoringApproach") is not None:
         import capo_arc_region_switch.types.ecs_capacity_monitoring_approach
 
         out["capacity_monitoring_approach"] = (

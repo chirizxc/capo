@@ -67,19 +67,19 @@ def serialize_json(value: ComponentSummary) -> dict:
 
 def deserialize_json(data: dict) -> ComponentSummary:
     out: ComponentSummary = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
     else:
         raise DeserializationError("ComponentSummary.component_name required")
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
     else:
         raise DeserializationError("ComponentSummary.component_type_id required")
-    if "definedIn" in data:
+    if data.get("definedIn") is not None:
         out["defined_in"] = data["definedIn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "propertyGroups" in data:
+    if data.get("propertyGroups") is not None:
         import capo_iottwinmaker.types.component_property_group_responses
 
         out["property_groups"] = (
@@ -87,14 +87,14 @@ def deserialize_json(data: dict) -> ComponentSummary:
                 data["propertyGroups"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.status
 
         out["status"] = capo_iottwinmaker.types.status.deserialize_json(data["status"])
     else:
         raise DeserializationError("ComponentSummary.status required")
-    if "syncSource" in data:
+    if data.get("syncSource") is not None:
         out["sync_source"] = data["syncSource"]
-    if "componentPath" in data:
+    if data.get("componentPath") is not None:
         out["component_path"] = data["componentPath"]
     return out

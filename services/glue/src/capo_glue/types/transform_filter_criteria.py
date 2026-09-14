@@ -88,35 +88,35 @@ def serialize_aws_json_1_1(value: TransformFilterCriteria) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransformFilterCriteria:
     out: TransformFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TransformType" in data:
+    if data.get("TransformType") is not None:
         import capo_glue.types.transform_type
 
         out["transform_type"] = capo_glue.types.transform_type.deserialize_aws_json_1_1(
             data["TransformType"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.transform_status_type
 
         out["status"] = capo_glue.types.transform_status_type.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "GlueVersion" in data:
+    if data.get("GlueVersion") is not None:
         out["glue_version"] = data["GlueVersion"]
-    if "CreatedBefore" in data:
+    if data.get("CreatedBefore") is not None:
         import capo_glue.types.timestamp
 
         out["created_before"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedBefore"]
         )
-    if "CreatedAfter" in data:
+    if data.get("CreatedAfter") is not None:
         import capo_glue.types.timestamp
 
         out["created_after"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAfter"]
         )
-    if "LastModifiedBefore" in data:
+    if data.get("LastModifiedBefore") is not None:
         import capo_glue.types.timestamp
 
         out["last_modified_before"] = (
@@ -124,13 +124,13 @@ def deserialize_aws_json_1_1(data: dict) -> TransformFilterCriteria:
                 data["LastModifiedBefore"]
             )
         )
-    if "LastModifiedAfter" in data:
+    if data.get("LastModifiedAfter") is not None:
         import capo_glue.types.timestamp
 
         out["last_modified_after"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastModifiedAfter"]
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_glue.types.transform_schema
 
         out["schema"] = capo_glue.types.transform_schema.deserialize_aws_json_1_1(

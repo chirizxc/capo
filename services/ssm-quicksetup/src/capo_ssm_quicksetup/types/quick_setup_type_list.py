@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> QuickSetupTypeList:
 
     out: QuickSetupTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ssm_quicksetup.types.quick_setup_type_output.deserialize_json(item)
         )

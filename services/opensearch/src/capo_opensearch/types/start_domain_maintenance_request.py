@@ -36,7 +36,7 @@ def serialize_json(value: StartDomainMaintenanceRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDomainMaintenanceRequest:
     out: StartDomainMaintenanceRequest = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_opensearch.types.maintenance_type
 
         out["action"] = capo_opensearch.types.maintenance_type.deserialize_json(
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> StartDomainMaintenanceRequest:
         )
     else:
         raise DeserializationError("StartDomainMaintenanceRequest.action required")
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
     return out

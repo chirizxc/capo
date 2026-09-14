@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_iot_managed_integrations._auth._signers
@@ -90,19 +91,22 @@ class EventLogConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_event_log_configuration_request.CreateEventLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
+        input_: capo_iot_managed_integrations.types.create_event_log_configuration_request.CreateEventLogConfigurationRequest = {
+            "resource_type": resource_type,
+            "event_log_level": event_log_level,
+        }
         if resource_id is not None:
             input_["resource_id"] = resource_id
-        input_["event_log_level"] = event_log_level
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event_log_configuration(
@@ -138,14 +142,16 @@ class EventLogConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_event_log_configuration_request.DeleteEventLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_managed_integrations.types.delete_event_log_configuration_request.DeleteEventLogConfigurationRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_log_configuration(
@@ -183,14 +189,16 @@ class EventLogConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_event_log_configuration_request.GetEventLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_managed_integrations.types.get_event_log_configuration_request.GetEventLogConfigurationRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_event_log_configurations(
@@ -233,7 +241,7 @@ class EventLogConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_event_log_configurations_request.ListEventLogConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_event_log_configurations_request.ListEventLogConfigurationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -244,6 +252,7 @@ class EventLogConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_event_log_configuration(
@@ -281,15 +290,17 @@ class EventLogConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_event_log_configuration_request.UpdateEventLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["event_log_level"] = event_log_level
+        input_: capo_iot_managed_integrations.types.update_event_log_configuration_request.UpdateEventLogConfigurationRequest = {
+            "id": id,
+            "event_log_level": event_log_level,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -344,19 +355,22 @@ class AsyncEventLogConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_event_log_configuration_request.CreateEventLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
+        input_: capo_iot_managed_integrations.types.create_event_log_configuration_request.CreateEventLogConfigurationRequest = {
+            "resource_type": resource_type,
+            "event_log_level": event_log_level,
+        }
         if resource_id is not None:
             input_["resource_id"] = resource_id
-        input_["event_log_level"] = event_log_level
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_event_log_configuration(
@@ -393,14 +407,16 @@ class AsyncEventLogConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_event_log_configuration_request.DeleteEventLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_managed_integrations.types.delete_event_log_configuration_request.DeleteEventLogConfigurationRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_event_log_configuration(
@@ -439,14 +455,16 @@ class AsyncEventLogConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_event_log_configuration_request.GetEventLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iot_managed_integrations.types.get_event_log_configuration_request.GetEventLogConfigurationRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_event_log_configurations(
@@ -490,7 +508,7 @@ class AsyncEventLogConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_event_log_configurations_request.ListEventLogConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_event_log_configurations_request.ListEventLogConfigurationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -501,6 +519,7 @@ class AsyncEventLogConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_event_log_configuration(
@@ -539,13 +558,15 @@ class AsyncEventLogConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_event_log_configuration_request.UpdateEventLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["event_log_level"] = event_log_level
+        input_: capo_iot_managed_integrations.types.update_event_log_configuration_request.UpdateEventLogConfigurationRequest = {
+            "id": id,
+            "event_log_level": event_log_level,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -67,11 +67,11 @@ def serialize_aws_json_1_1(value: S3DeltaSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DeltaSource:
     out: S3DeltaSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3DeltaSource.name required")
-    if "Paths" in data:
+    if data.get("Paths") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["paths"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DeltaSource:
         )
     else:
         raise DeserializationError("S3DeltaSource.paths required")
-    if "AdditionalDeltaOptions" in data:
+    if data.get("AdditionalDeltaOptions") is not None:
         import capo_glue.types.additional_options
 
         out["additional_delta_options"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DeltaSource:
                 data["AdditionalDeltaOptions"]
             )
         )
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.s3_direct_source_additional_options
 
         out["additional_options"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DeltaSource:
                 data["AdditionalOptions"]
             )
         )
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

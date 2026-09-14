@@ -87,31 +87,31 @@ def serialize_json(value: PrivacyBudgetTemplate) -> dict:
 
 def deserialize_json(data: dict) -> PrivacyBudgetTemplate:
     out: PrivacyBudgetTemplate = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("PrivacyBudgetTemplate.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("PrivacyBudgetTemplate.arn required")
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("PrivacyBudgetTemplate.membership_id required")
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
     else:
         raise DeserializationError("PrivacyBudgetTemplate.membership_arn required")
-    if "collaborationId" in data:
+    if data.get("collaborationId") is not None:
         out["collaboration_id"] = data["collaborationId"]
     else:
         raise DeserializationError("PrivacyBudgetTemplate.collaboration_id required")
-    if "collaborationArn" in data:
+    if data.get("collaborationArn") is not None:
         out["collaboration_arn"] = data["collaborationArn"]
     else:
         raise DeserializationError("PrivacyBudgetTemplate.collaboration_arn required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> PrivacyBudgetTemplate:
         )
     else:
         raise DeserializationError("PrivacyBudgetTemplate.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> PrivacyBudgetTemplate:
         )
     else:
         raise DeserializationError("PrivacyBudgetTemplate.update_time required")
-    if "privacyBudgetType" in data:
+    if data.get("privacyBudgetType") is not None:
         import capo_cleanrooms.types.privacy_budget_type
 
         out["privacy_budget_type"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> PrivacyBudgetTemplate:
         )
     else:
         raise DeserializationError("PrivacyBudgetTemplate.privacy_budget_type required")
-    if "autoRefresh" in data:
+    if data.get("autoRefresh") is not None:
         import capo_cleanrooms.types.privacy_budget_template_auto_refresh
 
         out["auto_refresh"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> PrivacyBudgetTemplate:
         )
     else:
         raise DeserializationError("PrivacyBudgetTemplate.auto_refresh required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_cleanrooms.types.privacy_budget_template_parameters_output
 
         out["parameters"] = (

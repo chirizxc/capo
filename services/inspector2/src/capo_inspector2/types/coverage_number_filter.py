@@ -22,8 +22,8 @@ def serialize_json(value: CoverageNumberFilter) -> dict:
 
 def deserialize_json(data: dict) -> CoverageNumberFilter:
     out: CoverageNumberFilter = {}  # type: ignore[typeddict-item]
-    if "upperInclusive" in data:
+    if data.get("upperInclusive") is not None:
         out["upper_inclusive"] = data["upperInclusive"]
-    if "lowerInclusive" in data:
+    if data.get("lowerInclusive") is not None:
         out["lower_inclusive"] = data["lowerInclusive"]
     return out

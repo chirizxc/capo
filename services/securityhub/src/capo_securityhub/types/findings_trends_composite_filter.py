@@ -53,7 +53,7 @@ def serialize_json(value: FindingsTrendsCompositeFilter) -> dict:
 
 def deserialize_json(data: dict) -> FindingsTrendsCompositeFilter:
     out: FindingsTrendsCompositeFilter = {}  # type: ignore[typeddict-item]
-    if "StringFilters" in data:
+    if data.get("StringFilters") is not None:
         import capo_securityhub.types.findings_trends_string_filter_list
 
         out["string_filters"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> FindingsTrendsCompositeFilter:
                 data["StringFilters"]
             )
         )
-    if "NestedCompositeFilters" in data:
+    if data.get("NestedCompositeFilters") is not None:
         import capo_securityhub.types.findings_trends_composite_filter_list
 
         out["nested_composite_filters"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> FindingsTrendsCompositeFilter:
                 data["NestedCompositeFilters"]
             )
         )
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_securityhub.types.allowed_operators
 
         out["operator"] = capo_securityhub.types.allowed_operators.deserialize_json(

@@ -69,11 +69,11 @@ def serialize_aws_json_1_1(value: UpdateGameServerGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateGameServerGroupInput:
     out: UpdateGameServerGroupInput = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "InstanceDefinitions" in data:
+    if data.get("InstanceDefinitions") is not None:
         import capo_gamelift.types.instance_definitions
 
         out["instance_definitions"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateGameServerGroupInput:
                 data["InstanceDefinitions"]
             )
         )
-    if "GameServerProtectionPolicy" in data:
+    if data.get("GameServerProtectionPolicy") is not None:
         import capo_gamelift.types.game_server_protection_policy
 
         out["game_server_protection_policy"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateGameServerGroupInput:
                 data["GameServerProtectionPolicy"]
             )
         )
-    if "BalancingStrategy" in data:
+    if data.get("BalancingStrategy") is not None:
         import capo_gamelift.types.balancing_strategy
 
         out["balancing_strategy"] = (

@@ -55,7 +55,7 @@ def serialize_aws_json_1_0(value: ProxyConfigDefaultRulePhaseActionsRequest) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> ProxyConfigDefaultRulePhaseActionsRequest:
     out: ProxyConfigDefaultRulePhaseActionsRequest = {}  # type: ignore[typeddict-item]
-    if "PreDNS" in data:
+    if data.get("PreDNS") is not None:
         import capo_network_firewall.types.proxy_rule_phase_action
 
         out["pre_dns"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProxyConfigDefaultRulePhaseActionsRe
                 data["PreDNS"]
             )
         )
-    if "PreREQUEST" in data:
+    if data.get("PreREQUEST") is not None:
         import capo_network_firewall.types.proxy_rule_phase_action
 
         out["pre_request"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProxyConfigDefaultRulePhaseActionsRe
                 data["PreREQUEST"]
             )
         )
-    if "PostRESPONSE" in data:
+    if data.get("PostRESPONSE") is not None:
         import capo_network_firewall.types.proxy_rule_phase_action
 
         out["post_response"] = (

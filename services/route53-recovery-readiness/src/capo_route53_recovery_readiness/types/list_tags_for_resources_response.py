@@ -27,7 +27,7 @@ def serialize_json(value: ListTagsForResourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourcesResponse:
     out: ListTagsForResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53_recovery_readiness.types.tags
 
         out["tags"] = capo_route53_recovery_readiness.types.tags.deserialize_json(

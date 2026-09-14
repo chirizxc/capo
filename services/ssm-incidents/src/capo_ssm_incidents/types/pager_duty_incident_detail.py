@@ -27,12 +27,12 @@ def serialize_json(value: PagerDutyIncidentDetail) -> dict:
 
 def deserialize_json(data: dict) -> PagerDutyIncidentDetail:
     out: PagerDutyIncidentDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("PagerDutyIncidentDetail.id required")
-    if "autoResolve" in data:
+    if data.get("autoResolve") is not None:
         out["auto_resolve"] = data["autoResolve"]
-    if "secretId" in data:
+    if data.get("secretId") is not None:
         out["secret_id"] = data["secretId"]
     return out

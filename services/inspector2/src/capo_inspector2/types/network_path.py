@@ -25,7 +25,7 @@ def serialize_json(value: NetworkPath) -> dict:
 
 def deserialize_json(data: dict) -> NetworkPath:
     out: NetworkPath = {}  # type: ignore[typeddict-item]
-    if "steps" in data:
+    if data.get("steps") is not None:
         import capo_inspector2.types.step_list
 
         out["steps"] = capo_inspector2.types.step_list.deserialize_json(data["steps"])

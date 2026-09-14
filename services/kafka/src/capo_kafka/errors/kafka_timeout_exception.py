@@ -29,9 +29,9 @@ def serialize_json(value: KafkaTimeoutException_) -> dict:
 
 def deserialize_json(data: dict) -> KafkaTimeoutException_:
     out: KafkaTimeoutException_ = {}  # type: ignore[typeddict-item]
-    if "invalidParameter" in data:
+    if data.get("invalidParameter") is not None:
         out["invalid_parameter"] = data["invalidParameter"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -41,15 +41,18 @@ class KafkaTimeoutException(ServiceError):
 
     code: str | None = "KafkaTimeoutException"
 
-    def __init__(self, data: KafkaTimeoutException_):
+    def __init__(self, data: KafkaTimeoutException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="KafkaTimeoutException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "KafkaTimeoutException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "KafkaTimeoutException":
+        return cls(deserialize_json(data), message)

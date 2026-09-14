@@ -32,9 +32,9 @@ def serialize_json(value: ValidatePipelineResponse) -> dict:
 
 def deserialize_json(data: dict) -> ValidatePipelineResponse:
     out: ValidatePipelineResponse = {}  # type: ignore[typeddict-item]
-    if "isValid" in data:
+    if data.get("isValid") is not None:
         out["is_valid"] = data["isValid"]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_osis.types.validation_message_list
 
         out["errors"] = capo_osis.types.validation_message_list.deserialize_json(

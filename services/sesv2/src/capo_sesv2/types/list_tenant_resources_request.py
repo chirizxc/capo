@@ -45,18 +45,18 @@ def serialize_json(value: ListTenantResourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListTenantResourcesRequest:
     out: ListTenantResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "TenantName" in data:
+    if data.get("TenantName") is not None:
         out["tenant_name"] = data["TenantName"]
     else:
         raise DeserializationError("ListTenantResourcesRequest.tenant_name required")
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_sesv2.types.list_tenant_resources_filter
 
         out["filter"] = capo_sesv2.types.list_tenant_resources_filter.deserialize_json(
             data["Filter"]
         )
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

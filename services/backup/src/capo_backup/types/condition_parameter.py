@@ -28,8 +28,8 @@ def serialize_json(value: ConditionParameter) -> dict:
 
 def deserialize_json(data: dict) -> ConditionParameter:
     out: ConditionParameter = {}  # type: ignore[typeddict-item]
-    if "ConditionKey" in data:
+    if data.get("ConditionKey") is not None:
         out["condition_key"] = data["ConditionKey"]
-    if "ConditionValue" in data:
+    if data.get("ConditionValue") is not None:
         out["condition_value"] = data["ConditionValue"]
     return out

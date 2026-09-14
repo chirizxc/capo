@@ -77,17 +77,17 @@ def serialize_json(value: GetStorageProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetStorageProfileResponse:
     out: GetStorageProfileResponse = {}  # type: ignore[typeddict-item]
-    if "storageProfileId" in data:
+    if data.get("storageProfileId") is not None:
         out["storage_profile_id"] = data["storageProfileId"]
     else:
         raise DeserializationError(
             "GetStorageProfileResponse.storage_profile_id required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("GetStorageProfileResponse.display_name required")
-    if "osFamily" in data:
+    if data.get("osFamily") is not None:
         import capo_deadline.types.storage_profile_operating_system_family
 
         out["os_family"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> GetStorageProfileResponse:
         )
     else:
         raise DeserializationError("GetStorageProfileResponse.os_family required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -105,19 +105,19 @@ def deserialize_json(data: dict) -> GetStorageProfileResponse:
         )
     else:
         raise DeserializationError("GetStorageProfileResponse.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("GetStorageProfileResponse.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "fileSystemLocations" in data:
+    if data.get("fileSystemLocations") is not None:
         import capo_deadline.types.file_system_locations_list
 
         out["file_system_locations"] = (

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: CloudWatchLogsDeliveryUnavailableException_) -
 
 def deserialize_aws_json_1_1(data: dict) -> CloudWatchLogsDeliveryUnavailableException_:
     out: CloudWatchLogsDeliveryUnavailableException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,17 +35,22 @@ class CloudWatchLogsDeliveryUnavailableException(ServiceError):
 
     code: str | None = "CloudWatchLogsDeliveryUnavailableException"
 
-    def __init__(self, data: CloudWatchLogsDeliveryUnavailableException_):
+    def __init__(
+        self,
+        data: CloudWatchLogsDeliveryUnavailableException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CloudWatchLogsDeliveryUnavailableException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "CloudWatchLogsDeliveryUnavailableException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

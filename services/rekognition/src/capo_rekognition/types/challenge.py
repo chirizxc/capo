@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: Challenge) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Challenge:
     out: Challenge = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_rekognition.types.challenge_type
 
         out["type"] = capo_rekognition.types.challenge_type.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> Challenge:
         )
     else:
         raise DeserializationError("Challenge.type required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         raise DeserializationError("Challenge.version required")

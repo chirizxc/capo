@@ -14,6 +14,9 @@ ClusterSecurityGroupNameList: TypeAlias = list["capo_redshift.types.string.Strin
 def serialize_query(
     value: ClusterSecurityGroupNameList, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.ClusterSecurityGroupName.{n}", str(item)))
 
@@ -28,6 +31,9 @@ def deserialize_query(el: Element) -> ClusterSecurityGroupNameList:
 def serialize_query_flat(
     value: ClusterSecurityGroupNameList, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.{n}", str(item)))
 

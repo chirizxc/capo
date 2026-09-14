@@ -35,12 +35,12 @@ def serialize_json(value: CreateCoreDefinitionVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCoreDefinitionVersionResponse:
     out: CreateCoreDefinitionVersionResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         out["creation_timestamp"] = data["CreationTimestamp"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

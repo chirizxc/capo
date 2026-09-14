@@ -41,7 +41,7 @@ def serialize_json(value: ForecastGeofenceEventsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ForecastGeofenceEventsResponse:
     out: ForecastGeofenceEventsResponse = {}  # type: ignore[typeddict-item]
-    if "ForecastedEvents" in data:
+    if data.get("ForecastedEvents") is not None:
         import capo_location.types.forecasted_events_list
 
         out["forecasted_events"] = (
@@ -53,15 +53,15 @@ def deserialize_json(data: dict) -> ForecastGeofenceEventsResponse:
         raise DeserializationError(
             "ForecastGeofenceEventsResponse.forecasted_events required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "DistanceUnit" in data:
+    if data.get("DistanceUnit") is not None:
         out["distance_unit"] = data["DistanceUnit"]
     else:
         raise DeserializationError(
             "ForecastGeofenceEventsResponse.distance_unit required"
         )
-    if "SpeedUnit" in data:
+    if data.get("SpeedUnit") is not None:
         out["speed_unit"] = data["SpeedUnit"]
     else:
         raise DeserializationError("ForecastGeofenceEventsResponse.speed_unit required")

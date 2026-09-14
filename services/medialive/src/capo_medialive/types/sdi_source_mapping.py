@@ -32,10 +32,10 @@ def serialize_json(value: SdiSourceMapping) -> dict:
 
 def deserialize_json(data: dict) -> SdiSourceMapping:
     out: SdiSourceMapping = {}  # type: ignore[typeddict-item]
-    if "cardNumber" in data:
+    if data.get("cardNumber") is not None:
         out["card_number"] = data["cardNumber"]
-    if "channelNumber" in data:
+    if data.get("channelNumber") is not None:
         out["channel_number"] = data["channelNumber"]
-    if "sdiSource" in data:
+    if data.get("sdiSource") is not None:
         out["sdi_source"] = data["sdiSource"]
     return out

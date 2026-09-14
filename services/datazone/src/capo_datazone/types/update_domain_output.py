@@ -64,27 +64,27 @@ def serialize_json(value: UpdateDomainOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDomainOutput:
     out: UpdateDomainOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateDomainOutput.id required")
-    if "rootDomainUnitId" in data:
+    if data.get("rootDomainUnitId") is not None:
         out["root_domain_unit_id"] = data["rootDomainUnitId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "singleSignOn" in data:
+    if data.get("singleSignOn") is not None:
         import capo_datazone.types.single_sign_on
 
         out["single_sign_on"] = capo_datazone.types.single_sign_on.deserialize_json(
             data["singleSignOn"]
         )
-    if "domainExecutionRole" in data:
+    if data.get("domainExecutionRole") is not None:
         out["domain_execution_role"] = data["domainExecutionRole"]
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["last_updated_at"] = capo_datazone.types.updated_at.deserialize_json(

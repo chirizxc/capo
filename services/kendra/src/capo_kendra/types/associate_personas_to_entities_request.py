@@ -38,17 +38,17 @@ def serialize_aws_json_1_1(value: AssociatePersonasToEntitiesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociatePersonasToEntitiesRequest:
     out: AssociatePersonasToEntitiesRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("AssociatePersonasToEntitiesRequest.id required")
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError(
             "AssociatePersonasToEntitiesRequest.index_id required"
         )
-    if "Personas" in data:
+    if data.get("Personas") is not None:
         import capo_kendra.types.entity_persona_configuration_list
 
         out["personas"] = (

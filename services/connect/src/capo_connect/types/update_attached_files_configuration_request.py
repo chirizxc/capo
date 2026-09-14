@@ -44,9 +44,9 @@ def serialize_json(value: UpdateAttachedFilesConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAttachedFilesConfigurationRequest:
     out: UpdateAttachedFilesConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "MaximumSizeLimitInBytes" in data:
+    if data.get("MaximumSizeLimitInBytes") is not None:
         out["maximum_size_limit_in_bytes"] = data["MaximumSizeLimitInBytes"]
-    if "ExtensionConfiguration" in data:
+    if data.get("ExtensionConfiguration") is not None:
         import capo_connect.types.extension_configuration
 
         out["extension_configuration"] = (

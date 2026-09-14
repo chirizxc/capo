@@ -37,15 +37,18 @@ class InvalidScheduleFault(ServiceError):
 
     code: str | None = "InvalidScheduleFault"
 
-    def __init__(self, data: InvalidScheduleFault_):
+    def __init__(self, data: InvalidScheduleFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidScheduleFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidScheduleFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidScheduleFault":
+        return cls(deserialize_query(el), message)

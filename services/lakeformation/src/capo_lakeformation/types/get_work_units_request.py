@@ -33,11 +33,11 @@ def serialize_json(value: GetWorkUnitsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkUnitsRequest:
     out: GetWorkUnitsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
     else:
         raise DeserializationError("GetWorkUnitsRequest.query_id required")

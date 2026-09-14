@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: ResourceNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceNotFoundException_:
     out: ResourceNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_identitystore.types.resource_type
 
         out["resource_type"] = (
@@ -66,9 +66,9 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceNotFoundException_:
                 data["ResourceType"]
             )
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_identitystore.types.resource_not_found_exception_reason
 
         out["reason"] = (
@@ -76,9 +76,9 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceNotFoundException_:
                 data["Reason"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -88,15 +88,18 @@ class ResourceNotFoundException(ServiceError):
 
     code: str | None = "ResourceNotFoundException"
 
-    def __init__(self, data: ResourceNotFoundException_):
+    def __init__(self, data: ResourceNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ResourceNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -81,13 +81,13 @@ def serialize_aws_json_1_1(value: CreateScheduledActionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateScheduledActionRequest:
     out: CreateScheduledActionRequest = {}  # type: ignore[typeddict-item]
-    if "scheduledActionName" in data:
+    if data.get("scheduledActionName") is not None:
         out["scheduled_action_name"] = data["scheduledActionName"]
     else:
         raise DeserializationError(
             "CreateScheduledActionRequest.scheduled_action_name required"
         )
-    if "targetAction" in data:
+    if data.get("targetAction") is not None:
         import capo_redshift_serverless.types.target_action
 
         out["target_action"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateScheduledActionRequest:
         raise DeserializationError(
             "CreateScheduledActionRequest.target_action required"
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_redshift_serverless.types.schedule
 
         out["schedule"] = (
@@ -109,21 +109,21 @@ def deserialize_aws_json_1_1(data: dict) -> CreateScheduledActionRequest:
         )
     else:
         raise DeserializationError("CreateScheduledActionRequest.schedule required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateScheduledActionRequest.role_arn required")
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError(
             "CreateScheduledActionRequest.namespace_name required"
         )
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "scheduledActionDescription" in data:
+    if data.get("scheduledActionDescription") is not None:
         out["scheduled_action_description"] = data["scheduledActionDescription"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["start_time"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateScheduledActionRequest:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["end_time"] = (

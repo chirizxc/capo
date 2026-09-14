@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_lightsail.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_lightsail.types.container_map
     import capo_lightsail.types.container_service_name
@@ -24,6 +26,7 @@ class CreateContainerServiceDeploymentRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: CreateContainerServiceDeploymentRequest) -> dict:
     out: dict = {}
+    out["serviceName"] = value["service_name"]
     if "containers" in value:
         import capo_lightsail.types.container_map
 
@@ -43,13 +46,19 @@ def serialize_aws_json_1_1(value: CreateContainerServiceDeploymentRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContainerServiceDeploymentRequest:
     out: CreateContainerServiceDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "containers" in data:
+    if data.get("serviceName") is not None:
+        out["service_name"] = data["serviceName"]
+    else:
+        raise DeserializationError(
+            "CreateContainerServiceDeploymentRequest.service_name required"
+        )
+    if data.get("containers") is not None:
         import capo_lightsail.types.container_map
 
         out["containers"] = capo_lightsail.types.container_map.deserialize_aws_json_1_1(
             data["containers"]
         )
-    if "publicEndpoint" in data:
+    if data.get("publicEndpoint") is not None:
         import capo_lightsail.types.endpoint_request
 
         out["public_endpoint"] = (

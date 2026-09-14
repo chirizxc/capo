@@ -33,12 +33,12 @@ def serialize_json(value: BatchGetRumMetricDefinitionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetRumMetricDefinitionsResponse:
     out: BatchGetRumMetricDefinitionsResponse = {}  # type: ignore[typeddict-item]
-    if "MetricDefinitions" in data:
+    if data.get("MetricDefinitions") is not None:
         import capo_rum.types.metric_definitions
 
         out["metric_definitions"] = capo_rum.types.metric_definitions.deserialize_json(
             data["MetricDefinitions"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

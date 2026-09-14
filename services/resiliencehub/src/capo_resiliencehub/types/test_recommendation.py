@@ -111,31 +111,31 @@ def serialize_json(value: TestRecommendation) -> dict:
 
 def deserialize_json(data: dict) -> TestRecommendation:
     out: TestRecommendation = {}  # type: ignore[typeddict-item]
-    if "recommendationId" in data:
+    if data.get("recommendationId") is not None:
         out["recommendation_id"] = data["recommendationId"]
-    if "referenceId" in data:
+    if data.get("referenceId") is not None:
         out["reference_id"] = data["referenceId"]
     else:
         raise DeserializationError("TestRecommendation.reference_id required")
-    if "appComponentId" in data:
+    if data.get("appComponentId") is not None:
         out["app_component_id"] = data["appComponentId"]
-    if "appComponentName" in data:
+    if data.get("appComponentName") is not None:
         out["app_component_name"] = data["appComponentName"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "intent" in data:
+    if data.get("intent") is not None:
         out["intent"] = data["intent"]
-    if "risk" in data:
+    if data.get("risk") is not None:
         import capo_resiliencehub.types.test_risk
 
         out["risk"] = capo_resiliencehub.types.test_risk.deserialize_json(data["risk"])
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_resiliencehub.types.test_type
 
         out["type"] = capo_resiliencehub.types.test_type.deserialize_json(data["type"])
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_resiliencehub.types.recommendation_item_list
 
         out["items"] = (
@@ -143,9 +143,9 @@ def deserialize_json(data: dict) -> TestRecommendation:
                 data["items"]
             )
         )
-    if "prerequisite" in data:
+    if data.get("prerequisite") is not None:
         out["prerequisite"] = data["prerequisite"]
-    if "dependsOnAlarms" in data:
+    if data.get("dependsOnAlarms") is not None:
         import capo_resiliencehub.types.alarm_reference_id_list
 
         out["depends_on_alarms"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> TestRecommendation:
                 data["dependsOnAlarms"]
             )
         )
-    if "recommendationStatus" in data:
+    if data.get("recommendationStatus") is not None:
         import capo_resiliencehub.types.recommendation_status
 
         out["recommendation_status"] = (

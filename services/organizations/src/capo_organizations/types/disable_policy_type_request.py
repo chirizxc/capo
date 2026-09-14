@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: DisablePolicyTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisablePolicyTypeRequest:
     out: DisablePolicyTypeRequest = {}  # type: ignore[typeddict-item]
-    if "RootId" in data:
+    if data.get("RootId") is not None:
         out["root_id"] = data["RootId"]
     else:
         raise DeserializationError("DisablePolicyTypeRequest.root_id required")
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_organizations.types.policy_type
 
         out["policy_type"] = (

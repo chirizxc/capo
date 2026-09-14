@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: AwsEc2NetworkInterfaceViolation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AwsEc2NetworkInterfaceViolation:
     out: AwsEc2NetworkInterfaceViolation = {}  # type: ignore[typeddict-item]
-    if "ViolationTarget" in data:
+    if data.get("ViolationTarget") is not None:
         out["violation_target"] = data["ViolationTarget"]
-    if "ViolatingSecurityGroups" in data:
+    if data.get("ViolatingSecurityGroups") is not None:
         import capo_fms.types.resource_id_list
 
         out["violating_security_groups"] = (

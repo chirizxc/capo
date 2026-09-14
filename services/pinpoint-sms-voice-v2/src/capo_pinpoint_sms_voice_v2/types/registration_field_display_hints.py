@@ -59,23 +59,23 @@ def serialize_aws_json_1_0(value: RegistrationFieldDisplayHints) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationFieldDisplayHints:
     out: RegistrationFieldDisplayHints = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("RegistrationFieldDisplayHints.title required")
-    if "ShortDescription" in data:
+    if data.get("ShortDescription") is not None:
         out["short_description"] = data["ShortDescription"]
     else:
         raise DeserializationError(
             "RegistrationFieldDisplayHints.short_description required"
         )
-    if "LongDescription" in data:
+    if data.get("LongDescription") is not None:
         out["long_description"] = data["LongDescription"]
-    if "DocumentationTitle" in data:
+    if data.get("DocumentationTitle") is not None:
         out["documentation_title"] = data["DocumentationTitle"]
-    if "DocumentationLink" in data:
+    if data.get("DocumentationLink") is not None:
         out["documentation_link"] = data["DocumentationLink"]
-    if "SelectOptionDescriptions" in data:
+    if data.get("SelectOptionDescriptions") is not None:
         import capo_pinpoint_sms_voice_v2.types.select_option_descriptions_list
 
         out["select_option_descriptions"] = (
@@ -83,8 +83,8 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationFieldDisplayHints:
                 data["SelectOptionDescriptions"]
             )
         )
-    if "TextValidationDescription" in data:
+    if data.get("TextValidationDescription") is not None:
         out["text_validation_description"] = data["TextValidationDescription"]
-    if "ExampleTextValue" in data:
+    if data.get("ExampleTextValue") is not None:
         out["example_text_value"] = data["ExampleTextValue"]
     return out

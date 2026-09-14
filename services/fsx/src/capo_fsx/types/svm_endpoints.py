@@ -47,23 +47,23 @@ def serialize_aws_json_1_1(value: SvmEndpoints) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SvmEndpoints:
     out: SvmEndpoints = {}  # type: ignore[typeddict-item]
-    if "Iscsi" in data:
+    if data.get("Iscsi") is not None:
         import capo_fsx.types.svm_endpoint
 
         out["iscsi"] = capo_fsx.types.svm_endpoint.deserialize_aws_json_1_1(
             data["Iscsi"]
         )
-    if "Management" in data:
+    if data.get("Management") is not None:
         import capo_fsx.types.svm_endpoint
 
         out["management"] = capo_fsx.types.svm_endpoint.deserialize_aws_json_1_1(
             data["Management"]
         )
-    if "Nfs" in data:
+    if data.get("Nfs") is not None:
         import capo_fsx.types.svm_endpoint
 
         out["nfs"] = capo_fsx.types.svm_endpoint.deserialize_aws_json_1_1(data["Nfs"])
-    if "Smb" in data:
+    if data.get("Smb") is not None:
         import capo_fsx.types.svm_endpoint
 
         out["smb"] = capo_fsx.types.svm_endpoint.deserialize_aws_json_1_1(data["Smb"])

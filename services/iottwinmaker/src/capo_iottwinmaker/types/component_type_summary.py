@@ -62,15 +62,15 @@ def serialize_json(value: ComponentTypeSummary) -> dict:
 
 def deserialize_json(data: dict) -> ComponentTypeSummary:
     out: ComponentTypeSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ComponentTypeSummary.arn required")
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
     else:
         raise DeserializationError("ComponentTypeSummary.component_type_id required")
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ComponentTypeSummary:
         )
     else:
         raise DeserializationError("ComponentTypeSummary.creation_date_time required")
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -86,12 +86,12 @@ def deserialize_json(data: dict) -> ComponentTypeSummary:
         )
     else:
         raise DeserializationError("ComponentTypeSummary.update_date_time required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.status
 
         out["status"] = capo_iottwinmaker.types.status.deserialize_json(data["status"])
-    if "componentTypeName" in data:
+    if data.get("componentTypeName") is not None:
         out["component_type_name"] = data["componentTypeName"]
     return out

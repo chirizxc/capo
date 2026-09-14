@@ -185,16 +185,18 @@ class AutoScalingPlansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling_plans.types.create_scaling_plan_request.CreateScalingPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["scaling_plan_name"] = scaling_plan_name
-        input_["application_source"] = application_source
-        input_["scaling_instructions"] = scaling_instructions
+        input_: capo_auto_scaling_plans.types.create_scaling_plan_request.CreateScalingPlanRequest = {
+            "scaling_plan_name": scaling_plan_name,
+            "application_source": application_source,
+            "scaling_instructions": scaling_instructions,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_scaling_plan(
@@ -233,15 +235,17 @@ class AutoScalingPlansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling_plans.types.delete_scaling_plan_request.DeleteScalingPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["scaling_plan_name"] = scaling_plan_name
-        input_["scaling_plan_version"] = scaling_plan_version
+        input_: capo_auto_scaling_plans.types.delete_scaling_plan_request.DeleteScalingPlanRequest = {
+            "scaling_plan_name": scaling_plan_name,
+            "scaling_plan_version": scaling_plan_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_scaling_plan_resources(
@@ -288,9 +292,10 @@ class AutoScalingPlansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling_plans.types.describe_scaling_plan_resources_request.DescribeScalingPlanResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["scaling_plan_name"] = scaling_plan_name
-        input_["scaling_plan_version"] = scaling_plan_version
+        input_: capo_auto_scaling_plans.types.describe_scaling_plan_resources_request.DescribeScalingPlanResourcesRequest = {
+            "scaling_plan_name": scaling_plan_name,
+            "scaling_plan_version": scaling_plan_version,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -301,6 +306,7 @@ class AutoScalingPlansClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_scaling_plans(
@@ -355,7 +361,7 @@ class AutoScalingPlansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling_plans.types.describe_scaling_plans_request.DescribeScalingPlansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auto_scaling_plans.types.describe_scaling_plans_request.DescribeScalingPlansRequest = {}
         if scaling_plan_names is not None:
             input_["scaling_plan_names"] = scaling_plan_names
         if scaling_plan_version is not None:
@@ -372,6 +378,7 @@ class AutoScalingPlansClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_scaling_plan_resource_forecast_data(
@@ -420,21 +427,23 @@ class AutoScalingPlansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling_plans.types.get_scaling_plan_resource_forecast_data_request.GetScalingPlanResourceForecastDataRequest = {}  # type: ignore[typeddict-item]
-        input_["scaling_plan_name"] = scaling_plan_name
-        input_["scaling_plan_version"] = scaling_plan_version
-        input_["service_namespace"] = service_namespace
-        input_["resource_id"] = resource_id
-        input_["scalable_dimension"] = scalable_dimension
-        input_["forecast_data_type"] = forecast_data_type
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_auto_scaling_plans.types.get_scaling_plan_resource_forecast_data_request.GetScalingPlanResourceForecastDataRequest = {
+            "scaling_plan_name": scaling_plan_name,
+            "scaling_plan_version": scaling_plan_version,
+            "service_namespace": service_namespace,
+            "resource_id": resource_id,
+            "scalable_dimension": scalable_dimension,
+            "forecast_data_type": forecast_data_type,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_scaling_plan(
@@ -481,9 +490,10 @@ class AutoScalingPlansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auto_scaling_plans.types.update_scaling_plan_request.UpdateScalingPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["scaling_plan_name"] = scaling_plan_name
-        input_["scaling_plan_version"] = scaling_plan_version
+        input_: capo_auto_scaling_plans.types.update_scaling_plan_request.UpdateScalingPlanRequest = {
+            "scaling_plan_name": scaling_plan_name,
+            "scaling_plan_version": scaling_plan_version,
+        }
         if application_source is not None:
             input_["application_source"] = application_source
         if scaling_instructions is not None:
@@ -494,6 +504,7 @@ class AutoScalingPlansClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

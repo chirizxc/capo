@@ -23,6 +23,6 @@ def serialize_json(value: ListSlackChannelConfigurationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListSlackChannelConfigurationsRequest:
     out: ListSlackChannelConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

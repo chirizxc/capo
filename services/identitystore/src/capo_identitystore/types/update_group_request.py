@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: UpdateGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateGroupRequest:
     out: UpdateGroupRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
     else:
         raise DeserializationError("UpdateGroupRequest.identity_store_id required")
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     else:
         raise DeserializationError("UpdateGroupRequest.group_id required")
-    if "Operations" in data:
+    if data.get("Operations") is not None:
         import capo_identitystore.types.attribute_operations
 
         out["operations"] = (

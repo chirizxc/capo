@@ -59,25 +59,25 @@ def serialize_json(value: ApplicationDateRangeKpiResponse) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationDateRangeKpiResponse:
     out: ApplicationDateRangeKpiResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_pinpoint.types.__timestamp_iso8601
 
         out["end_time"] = capo_pinpoint.types.__timestamp_iso8601.deserialize_json(
             data["EndTime"]
         )
-    if "KpiName" in data:
+    if data.get("KpiName") is not None:
         out["kpi_name"] = data["KpiName"]
-    if "KpiResult" in data:
+    if data.get("KpiResult") is not None:
         import capo_pinpoint.types.base_kpi_result
 
         out["kpi_result"] = capo_pinpoint.types.base_kpi_result.deserialize_json(
             data["KpiResult"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_pinpoint.types.__timestamp_iso8601
 
         out["start_time"] = capo_pinpoint.types.__timestamp_iso8601.deserialize_json(

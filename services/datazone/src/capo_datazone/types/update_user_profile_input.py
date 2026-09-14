@@ -47,13 +47,13 @@ def serialize_json(value: UpdateUserProfileInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserProfileInput:
     out: UpdateUserProfileInput = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.user_profile_type
 
         out["type"] = capo_datazone.types.user_profile_type.deserialize_json(
             data["type"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.user_profile_status
 
         out["status"] = capo_datazone.types.user_profile_status.deserialize_json(
@@ -61,6 +61,6 @@ def deserialize_json(data: dict) -> UpdateUserProfileInput:
         )
     else:
         raise DeserializationError("UpdateUserProfileInput.status required")
-    if "sessionName" in data:
+    if data.get("sessionName") is not None:
         out["session_name"] = data["sessionName"]
     return out

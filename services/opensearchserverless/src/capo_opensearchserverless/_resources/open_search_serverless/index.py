@@ -77,9 +77,10 @@ class Index:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_index_request.CreateIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_name"] = index_name
+        input_: capo_opensearchserverless.types.create_index_request.CreateIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
         if index_schema is not None:
             input_["index_schema"] = index_schema
 
@@ -88,6 +89,7 @@ class Index:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -125,15 +127,17 @@ class Index:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.get_index_request.GetIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_name"] = index_name
+        input_: capo_opensearchserverless.types.get_index_request.GetIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -175,9 +179,10 @@ class Index:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_index_request.UpdateIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_name"] = index_name
+        input_: capo_opensearchserverless.types.update_index_request.UpdateIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
         if index_schema is not None:
             input_["index_schema"] = index_schema
 
@@ -186,6 +191,7 @@ class Index:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -223,15 +229,17 @@ class Index:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_index_request.DeleteIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_name"] = index_name
+        input_: capo_opensearchserverless.types.delete_index_request.DeleteIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -280,9 +288,10 @@ class AsyncIndex:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_index_request.CreateIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_name"] = index_name
+        input_: capo_opensearchserverless.types.create_index_request.CreateIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
         if index_schema is not None:
             input_["index_schema"] = index_schema
 
@@ -291,6 +300,7 @@ class AsyncIndex:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -329,15 +339,17 @@ class AsyncIndex:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.get_index_request.GetIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_name"] = index_name
+        input_: capo_opensearchserverless.types.get_index_request.GetIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -380,9 +392,10 @@ class AsyncIndex:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_index_request.UpdateIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_name"] = index_name
+        input_: capo_opensearchserverless.types.update_index_request.UpdateIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
         if index_schema is not None:
             input_["index_schema"] = index_schema
 
@@ -391,6 +404,7 @@ class AsyncIndex:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -429,13 +443,15 @@ class AsyncIndex:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_index_request.DeleteIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_name"] = index_name
+        input_: capo_opensearchserverless.types.delete_index_request.DeleteIndexRequest = {
+            "id": id,
+            "index_name": index_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

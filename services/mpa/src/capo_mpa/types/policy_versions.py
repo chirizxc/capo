@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PolicyVersions:
 
     out: PolicyVersions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mpa.types.policy_version_summary.deserialize_json(item))
     return out

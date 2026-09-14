@@ -28,8 +28,8 @@ def serialize_json(value: StopContactMediaProcessingRequest) -> dict:
 
 def deserialize_json(data: dict) -> StopContactMediaProcessingRequest:
     out: StopContactMediaProcessingRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     return out

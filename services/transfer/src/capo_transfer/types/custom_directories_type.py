@@ -36,29 +36,29 @@ def serialize_aws_json_1_1(value: CustomDirectoriesType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomDirectoriesType:
     out: CustomDirectoriesType = {}  # type: ignore[typeddict-item]
-    if "FailedFilesDirectory" in data:
+    if data.get("FailedFilesDirectory") is not None:
         out["failed_files_directory"] = data["FailedFilesDirectory"]
     else:
         raise DeserializationError(
             "CustomDirectoriesType.failed_files_directory required"
         )
-    if "MdnFilesDirectory" in data:
+    if data.get("MdnFilesDirectory") is not None:
         out["mdn_files_directory"] = data["MdnFilesDirectory"]
     else:
         raise DeserializationError("CustomDirectoriesType.mdn_files_directory required")
-    if "PayloadFilesDirectory" in data:
+    if data.get("PayloadFilesDirectory") is not None:
         out["payload_files_directory"] = data["PayloadFilesDirectory"]
     else:
         raise DeserializationError(
             "CustomDirectoriesType.payload_files_directory required"
         )
-    if "StatusFilesDirectory" in data:
+    if data.get("StatusFilesDirectory") is not None:
         out["status_files_directory"] = data["StatusFilesDirectory"]
     else:
         raise DeserializationError(
             "CustomDirectoriesType.status_files_directory required"
         )
-    if "TemporaryFilesDirectory" in data:
+    if data.get("TemporaryFilesDirectory") is not None:
         out["temporary_files_directory"] = data["TemporaryFilesDirectory"]
     else:
         raise DeserializationError(

@@ -35,9 +35,9 @@ def serialize_json(value: ListReservationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReservationsResponse:
     out: ListReservationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "reservations" in data:
+    if data.get("reservations") is not None:
         import capo_mediaconnect.types.__list_of_reservation
 
         out["reservations"] = (

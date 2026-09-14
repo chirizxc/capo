@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> EffectiveLifecyclePolicyDetails:
 
     out: EffectiveLifecyclePolicyDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_opensearchserverless.types.effective_lifecycle_policy_detail.deserialize_aws_json_1_0(
                 item

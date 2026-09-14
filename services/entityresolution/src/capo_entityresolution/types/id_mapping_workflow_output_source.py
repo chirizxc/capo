@@ -29,9 +29,9 @@ def serialize_json(value: IdMappingWorkflowOutputSource) -> dict:
 
 def deserialize_json(data: dict) -> IdMappingWorkflowOutputSource:
     out: IdMappingWorkflowOutputSource = {}  # type: ignore[typeddict-item]
-    if "KMSArn" in data:
+    if data.get("KMSArn") is not None:
         out["kms_arn"] = data["KMSArn"]
-    if "outputS3Path" in data:
+    if data.get("outputS3Path") is not None:
         out["output_s3_path"] = data["outputS3Path"]
     else:
         raise DeserializationError(

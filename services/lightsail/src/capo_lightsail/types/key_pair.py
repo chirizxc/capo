@@ -74,19 +74,19 @@ def serialize_aws_json_1_1(value: KeyPair) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KeyPair:
     out: KeyPair = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> KeyPair:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -102,12 +102,12 @@ def deserialize_aws_json_1_1(data: dict) -> KeyPair:
                 data["resourceType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "fingerprint" in data:
+    if data.get("fingerprint") is not None:
         out["fingerprint"] = data["fingerprint"]
     return out

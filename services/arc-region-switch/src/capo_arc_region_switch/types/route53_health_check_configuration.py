@@ -57,27 +57,27 @@ def serialize_aws_json_1_0(value: Route53HealthCheckConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Route53HealthCheckConfiguration:
     out: Route53HealthCheckConfiguration = {}  # type: ignore[typeddict-item]
-    if "timeoutMinutes" in data:
+    if data.get("timeoutMinutes") is not None:
         out["timeout_minutes"] = data["timeoutMinutes"]
     else:
         out["timeout_minutes"] = 60
-    if "crossAccountRole" in data:
+    if data.get("crossAccountRole") is not None:
         out["cross_account_role"] = data["crossAccountRole"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "hostedZoneId" in data:
+    if data.get("hostedZoneId") is not None:
         out["hosted_zone_id"] = data["hostedZoneId"]
     else:
         raise DeserializationError(
             "Route53HealthCheckConfiguration.hosted_zone_id required"
         )
-    if "recordName" in data:
+    if data.get("recordName") is not None:
         out["record_name"] = data["recordName"]
     else:
         raise DeserializationError(
             "Route53HealthCheckConfiguration.record_name required"
         )
-    if "recordSets" in data:
+    if data.get("recordSets") is not None:
         import capo_arc_region_switch.types.route53_resource_record_set_list
 
         out["record_sets"] = (

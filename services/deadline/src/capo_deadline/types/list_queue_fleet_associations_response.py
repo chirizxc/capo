@@ -35,7 +35,7 @@ def serialize_json(value: ListQueueFleetAssociationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListQueueFleetAssociationsResponse:
     out: ListQueueFleetAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "queueFleetAssociations" in data:
+    if data.get("queueFleetAssociations") is not None:
         import capo_deadline.types.queue_fleet_association_summaries
 
         out["queue_fleet_associations"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListQueueFleetAssociationsResponse:
         raise DeserializationError(
             "ListQueueFleetAssociationsResponse.queue_fleet_associations required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

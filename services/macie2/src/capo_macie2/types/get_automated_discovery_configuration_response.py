@@ -83,7 +83,7 @@ def serialize_json(value: GetAutomatedDiscoveryConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAutomatedDiscoveryConfigurationResponse:
     out: GetAutomatedDiscoveryConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "autoEnableOrganizationMembers" in data:
+    if data.get("autoEnableOrganizationMembers") is not None:
         import capo_macie2.types.auto_enable_mode
 
         out["auto_enable_organization_members"] = (
@@ -91,31 +91,31 @@ def deserialize_json(data: dict) -> GetAutomatedDiscoveryConfigurationResponse:
                 data["autoEnableOrganizationMembers"]
             )
         )
-    if "classificationScopeId" in data:
+    if data.get("classificationScopeId") is not None:
         out["classification_scope_id"] = data["classificationScopeId"]
-    if "disabledAt" in data:
+    if data.get("disabledAt") is not None:
         import capo_macie2.types.timestamp
 
         out["disabled_at"] = capo_macie2.types.timestamp.deserialize_json(
             data["disabledAt"]
         )
-    if "firstEnabledAt" in data:
+    if data.get("firstEnabledAt") is not None:
         import capo_macie2.types.timestamp
 
         out["first_enabled_at"] = capo_macie2.types.timestamp.deserialize_json(
             data["firstEnabledAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_macie2.types.timestamp
 
         out["last_updated_at"] = capo_macie2.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "sensitivityInspectionTemplateId" in data:
+    if data.get("sensitivityInspectionTemplateId") is not None:
         out["sensitivity_inspection_template_id"] = data[
             "sensitivityInspectionTemplateId"
         ]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_macie2.types.automated_discovery_status
 
         out["status"] = capo_macie2.types.automated_discovery_status.deserialize_json(

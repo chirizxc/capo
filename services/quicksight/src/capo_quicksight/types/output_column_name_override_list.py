@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> OutputColumnNameOverrideList:
 
     out: OutputColumnNameOverrideList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.output_column_name_override.deserialize_json(item)
         )

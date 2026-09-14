@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: RateBasedStatementManagedKeysIPSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RateBasedStatementManagedKeysIPSet:
     out: RateBasedStatementManagedKeysIPSet = {}  # type: ignore[typeddict-item]
-    if "IPAddressVersion" in data:
+    if data.get("IPAddressVersion") is not None:
         import capo_wafv2.types.ip_address_version
 
         out["ip_address_version"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatementManagedKeysIPSet:
                 data["IPAddressVersion"]
             )
         )
-    if "Addresses" in data:
+    if data.get("Addresses") is not None:
         import capo_wafv2.types.ip_addresses
 
         out["addresses"] = capo_wafv2.types.ip_addresses.deserialize_aws_json_1_1(

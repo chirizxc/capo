@@ -36,26 +36,34 @@ def serialize_json(value: LteNmrObj) -> dict:
     if "rsrp" in value:
         out["Rsrp"] = value["rsrp"]
     if "rsrq" in value:
-        out["Rsrq"] = value["rsrq"]
+        out["Rsrq"] = (
+            "NaN"
+            if value["rsrq"] != value["rsrq"]
+            else "Infinity"
+            if value["rsrq"] == float("inf")
+            else "-Infinity"
+            if value["rsrq"] == float("-inf")
+            else value["rsrq"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> LteNmrObj:
     out: LteNmrObj = {}  # type: ignore[typeddict-item]
-    if "Pci" in data:
+    if data.get("Pci") is not None:
         out["pci"] = data["Pci"]
     else:
         raise DeserializationError("LteNmrObj.pci required")
-    if "Earfcn" in data:
+    if data.get("Earfcn") is not None:
         out["earfcn"] = data["Earfcn"]
     else:
         raise DeserializationError("LteNmrObj.earfcn required")
-    if "EutranCid" in data:
+    if data.get("EutranCid") is not None:
         out["eutran_cid"] = data["EutranCid"]
     else:
         out["eutran_cid"] = 0
-    if "Rsrp" in data:
+    if data.get("Rsrp") is not None:
         out["rsrp"] = data["Rsrp"]
-    if "Rsrq" in data:
-        out["rsrq"] = data["Rsrq"]
+    if data.get("Rsrq") is not None:
+        out["rsrq"] = float(data["Rsrq"])
     return out

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> S3LocationList:
 
     out: S3LocationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_b2bi.types.s3_location.deserialize_aws_json_1_0(item))
     return out

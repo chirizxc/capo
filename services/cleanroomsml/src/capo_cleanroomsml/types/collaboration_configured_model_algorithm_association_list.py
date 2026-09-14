@@ -31,6 +31,8 @@ def deserialize_json(
 
     out: CollaborationConfiguredModelAlgorithmAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.collaboration_configured_model_algorithm_association_summary.deserialize_json(
                 item

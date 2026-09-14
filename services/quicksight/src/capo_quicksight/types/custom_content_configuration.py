@@ -62,9 +62,9 @@ def serialize_json(value: CustomContentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomContentConfiguration:
     out: CustomContentConfiguration = {}  # type: ignore[typeddict-item]
-    if "ContentUrl" in data:
+    if data.get("ContentUrl") is not None:
         out["content_url"] = data["ContentUrl"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_quicksight.types.custom_content_type
 
         out["content_type"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> CustomContentConfiguration:
                 data["ContentType"]
             )
         )
-    if "ImageScaling" in data:
+    if data.get("ImageScaling") is not None:
         import capo_quicksight.types.custom_content_image_scaling_configuration
 
         out["image_scaling"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> CustomContentConfiguration:
                 data["ImageScaling"]
             )
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

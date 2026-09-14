@@ -36,13 +36,13 @@ def serialize_json(value: IpAddresses) -> dict:
 
 def deserialize_json(data: dict) -> IpAddresses:
     out: IpAddresses = {}  # type: ignore[typeddict-item]
-    if "ipV4Addresses" in data:
+    if data.get("ipV4Addresses") is not None:
         import capo_deadline.types.ip_v4_addresses
 
         out["ip_v4_addresses"] = capo_deadline.types.ip_v4_addresses.deserialize_json(
             data["ipV4Addresses"]
         )
-    if "ipV6Addresses" in data:
+    if data.get("ipV6Addresses") is not None:
         import capo_deadline.types.ip_v6_addresses
 
         out["ip_v6_addresses"] = capo_deadline.types.ip_v6_addresses.deserialize_json(

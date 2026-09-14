@@ -31,7 +31,7 @@ def serialize_json(value: DecimalDatasetParameterDefaultValues) -> dict:
 
 def deserialize_json(data: dict) -> DecimalDatasetParameterDefaultValues:
     out: DecimalDatasetParameterDefaultValues = {}  # type: ignore[typeddict-item]
-    if "StaticValues" in data:
+    if data.get("StaticValues") is not None:
         import capo_quicksight.types.decimal_dataset_parameter_value_list
 
         out["static_values"] = (

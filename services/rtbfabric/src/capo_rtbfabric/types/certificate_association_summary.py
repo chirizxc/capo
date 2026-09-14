@@ -50,13 +50,13 @@ def serialize_json(value: CertificateAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> CertificateAssociationSummary:
     out: CertificateAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "acmCertificateArn" in data:
+    if data.get("acmCertificateArn") is not None:
         out["acm_certificate_arn"] = data["acmCertificateArn"]
     else:
         raise DeserializationError(
             "CertificateAssociationSummary.acm_certificate_arn required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.certificate_association_status
 
         out["status"] = (
@@ -66,13 +66,13 @@ def deserialize_json(data: dict) -> CertificateAssociationSummary:
         )
     else:
         raise DeserializationError("CertificateAssociationSummary.status required")
-    if "associatedAt" in data:
+    if data.get("associatedAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["associated_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(
             data["associatedAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["updated_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(

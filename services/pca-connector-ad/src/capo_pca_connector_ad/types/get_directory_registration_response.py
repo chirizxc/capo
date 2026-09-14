@@ -31,7 +31,7 @@ def serialize_json(value: GetDirectoryRegistrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDirectoryRegistrationResponse:
     out: GetDirectoryRegistrationResponse = {}  # type: ignore[typeddict-item]
-    if "DirectoryRegistration" in data:
+    if data.get("DirectoryRegistration") is not None:
         import capo_pca_connector_ad.types.directory_registration
 
         out["directory_registration"] = (

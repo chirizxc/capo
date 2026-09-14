@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: DataQualityBaselineConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityBaselineConfig:
     out: DataQualityBaselineConfig = {}  # type: ignore[typeddict-item]
-    if "BaseliningJobName" in data:
+    if data.get("BaseliningJobName") is not None:
         out["baselining_job_name"] = data["BaseliningJobName"]
-    if "ConstraintsResource" in data:
+    if data.get("ConstraintsResource") is not None:
         import capo_sagemaker.types.monitoring_constraints_resource
 
         out["constraints_resource"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityBaselineConfig:
                 data["ConstraintsResource"]
             )
         )
-    if "StatisticsResource" in data:
+    if data.get("StatisticsResource") is not None:
         import capo_sagemaker.types.monitoring_statistics_resource
 
         out["statistics_resource"] = (

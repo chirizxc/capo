@@ -32,8 +32,8 @@ def serialize_json(value: MediaCapturePipelineSummary) -> dict:
 
 def deserialize_json(data: dict) -> MediaCapturePipelineSummary:
     out: MediaCapturePipelineSummary = {}  # type: ignore[typeddict-item]
-    if "MediaPipelineId" in data:
+    if data.get("MediaPipelineId") is not None:
         out["media_pipeline_id"] = data["MediaPipelineId"]
-    if "MediaPipelineArn" in data:
+    if data.get("MediaPipelineArn") is not None:
         out["media_pipeline_arn"] = data["MediaPipelineArn"]
     return out

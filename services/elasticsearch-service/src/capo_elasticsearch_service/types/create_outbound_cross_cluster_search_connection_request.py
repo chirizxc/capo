@@ -49,7 +49,7 @@ def serialize_json(value: CreateOutboundCrossClusterSearchConnectionRequest) -> 
 
 def deserialize_json(data: dict) -> CreateOutboundCrossClusterSearchConnectionRequest:
     out: CreateOutboundCrossClusterSearchConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "SourceDomainInfo" in data:
+    if data.get("SourceDomainInfo") is not None:
         import capo_elasticsearch_service.types.domain_information
 
         out["source_domain_info"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> CreateOutboundCrossClusterSearchConnectionRe
         raise DeserializationError(
             "CreateOutboundCrossClusterSearchConnectionRequest.source_domain_info required"
         )
-    if "DestinationDomainInfo" in data:
+    if data.get("DestinationDomainInfo") is not None:
         import capo_elasticsearch_service.types.domain_information
 
         out["destination_domain_info"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> CreateOutboundCrossClusterSearchConnectionRe
         raise DeserializationError(
             "CreateOutboundCrossClusterSearchConnectionRequest.destination_domain_info required"
         )
-    if "ConnectionAlias" in data:
+    if data.get("ConnectionAlias") is not None:
         out["connection_alias"] = data["ConnectionAlias"]
     else:
         raise DeserializationError(

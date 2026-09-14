@@ -30,7 +30,7 @@ def serialize_json(value: ConfirmationStatusFilter) -> dict:
 
 def deserialize_json(data: dict) -> ConfirmationStatusFilter:
     out: ConfirmationStatusFilter = {}  # type: ignore[typeddict-item]
-    if "include" in data:
+    if data.get("include") is not None:
         import capo_managedblockchain_query.types.confirmation_status_include_list
 
         out["include"] = (

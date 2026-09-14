@@ -34,7 +34,7 @@ def serialize_json(value: EventSummary) -> dict:
 
 
 def deserialize_json(data: dict) -> EventSummary:
-    if "openLineageRunEventSummary" in data:
+    if data.get("openLineageRunEventSummary") is not None:
         import capo_datazone.types.open_lineage_run_event_summary
 
         return {

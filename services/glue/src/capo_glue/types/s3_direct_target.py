@@ -101,11 +101,11 @@ def serialize_aws_json_1_1(value: S3DirectTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DirectTarget:
     out: S3DirectTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3DirectTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DirectTarget:
         )
     else:
         raise DeserializationError("S3DirectTarget.inputs required")
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["partition_keys"] = (
@@ -121,15 +121,15 @@ def deserialize_aws_json_1_1(data: dict) -> S3DirectTarget:
                 data["PartitionKeys"]
             )
         )
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     else:
         raise DeserializationError("S3DirectTarget.path required")
-    if "Compression" in data:
+    if data.get("Compression") is not None:
         out["compression"] = data["Compression"]
-    if "NumberTargetPartitions" in data:
+    if data.get("NumberTargetPartitions") is not None:
         out["number_target_partitions"] = data["NumberTargetPartitions"]
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_glue.types.target_format
 
         out["format"] = capo_glue.types.target_format.deserialize_aws_json_1_1(
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DirectTarget:
         )
     else:
         raise DeserializationError("S3DirectTarget.format required")
-    if "SchemaChangePolicy" in data:
+    if data.get("SchemaChangePolicy") is not None:
         import capo_glue.types.direct_schema_change_policy
 
         out["schema_change_policy"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DirectTarget:
                 data["SchemaChangePolicy"]
             )
         )
-    if "AutoDataQuality" in data:
+    if data.get("AutoDataQuality") is not None:
         import capo_glue.types.auto_data_quality
 
         out["auto_data_quality"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3DirectTarget:
                 data["AutoDataQuality"]
             )
         )
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

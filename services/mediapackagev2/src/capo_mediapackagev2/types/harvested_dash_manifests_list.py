@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> HarvestedDashManifestsList:
 
     out: HarvestedDashManifestsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediapackagev2.types.harvested_dash_manifest.deserialize_json(item)
         )

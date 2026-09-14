@@ -40,13 +40,13 @@ def serialize_json(value: GetSolVnfInfo) -> dict:
 
 def deserialize_json(data: dict) -> GetSolVnfInfo:
     out: GetSolVnfInfo = {}  # type: ignore[typeddict-item]
-    if "vnfState" in data:
+    if data.get("vnfState") is not None:
         import capo_tnb.types.vnf_operational_state
 
         out["vnf_state"] = capo_tnb.types.vnf_operational_state.deserialize_json(
             data["vnfState"]
         )
-    if "vnfcResourceInfo" in data:
+    if data.get("vnfcResourceInfo") is not None:
         import capo_tnb.types.get_sol_vnfc_resource_info_list
 
         out["vnfc_resource_info"] = (

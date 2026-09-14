@@ -44,7 +44,7 @@ def serialize_json(value: TranscriptCriteria) -> dict:
 
 def deserialize_json(data: dict) -> TranscriptCriteria:
     out: TranscriptCriteria = {}  # type: ignore[typeddict-item]
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_connect.types.participant_role
 
         out["participant_role"] = capo_connect.types.participant_role.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TranscriptCriteria:
         )
     else:
         raise DeserializationError("TranscriptCriteria.participant_role required")
-    if "SearchText" in data:
+    if data.get("SearchText") is not None:
         import capo_connect.types.search_text_list
 
         out["search_text"] = capo_connect.types.search_text_list.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> TranscriptCriteria:
         )
     else:
         raise DeserializationError("TranscriptCriteria.search_text required")
-    if "MatchType" in data:
+    if data.get("MatchType") is not None:
         import capo_connect.types.search_contacts_match_type
 
         out["match_type"] = (

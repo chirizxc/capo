@@ -58,27 +58,27 @@ def serialize_json(value: DataSetSummary) -> dict:
 
 def deserialize_json(data: dict) -> DataSetSummary:
     out: DataSetSummary = {}  # type: ignore[typeddict-item]
-    if "dataSetName" in data:
+    if data.get("dataSetName") is not None:
         out["data_set_name"] = data["dataSetName"]
     else:
         raise DeserializationError("DataSetSummary.data_set_name required")
-    if "dataSetOrg" in data:
+    if data.get("dataSetOrg") is not None:
         out["data_set_org"] = data["dataSetOrg"]
-    if "format" in data:
+    if data.get("format") is not None:
         out["format"] = data["format"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_m2.types.timestamp
 
         out["creation_time"] = capo_m2.types.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_m2.types.timestamp
 
         out["last_updated_time"] = capo_m2.types.timestamp.deserialize_json(
             data["lastUpdatedTime"]
         )
-    if "lastReferencedTime" in data:
+    if data.get("lastReferencedTime") is not None:
         import capo_m2.types.timestamp
 
         out["last_referenced_time"] = capo_m2.types.timestamp.deserialize_json(

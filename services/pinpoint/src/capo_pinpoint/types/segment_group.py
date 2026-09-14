@@ -60,7 +60,7 @@ def serialize_json(value: SegmentGroup) -> dict:
 
 def deserialize_json(data: dict) -> SegmentGroup:
     out: SegmentGroup = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pinpoint.types.list_of_segment_dimensions
 
         out["dimensions"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> SegmentGroup:
                 data["Dimensions"]
             )
         )
-    if "SourceSegments" in data:
+    if data.get("SourceSegments") is not None:
         import capo_pinpoint.types.list_of_segment_reference
 
         out["source_segments"] = (
@@ -76,13 +76,13 @@ def deserialize_json(data: dict) -> SegmentGroup:
                 data["SourceSegments"]
             )
         )
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_pinpoint.types.source_type
 
         out["source_type"] = capo_pinpoint.types.source_type.deserialize_json(
             data["SourceType"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_pinpoint.types.type
 
         out["type"] = capo_pinpoint.types.type.deserialize_json(data["Type"])

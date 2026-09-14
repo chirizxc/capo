@@ -44,13 +44,13 @@ def serialize_json(value: CreateDiscovererRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDiscovererRequest:
     out: CreateDiscovererRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
-    if "CrossAccount" in data:
+    if data.get("CrossAccount") is not None:
         out["cross_account"] = data["CrossAccount"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_schemas.types.tags
 
         out["tags"] = capo_schemas.types.tags.deserialize_json(data["tags"])

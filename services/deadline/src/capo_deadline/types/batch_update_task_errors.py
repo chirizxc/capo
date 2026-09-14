@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchUpdateTaskErrors:
 
     out: BatchUpdateTaskErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.batch_update_task_error.deserialize_json(item))
     return out

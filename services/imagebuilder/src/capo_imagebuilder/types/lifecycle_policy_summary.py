@@ -102,13 +102,13 @@ def serialize_json(value: LifecyclePolicySummary) -> dict:
 
 def deserialize_json(data: dict) -> LifecyclePolicySummary:
     out: LifecyclePolicySummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.lifecycle_policy_status
 
         out["status"] = (
@@ -116,9 +116,9 @@ def deserialize_json(data: dict) -> LifecyclePolicySummary:
                 data["status"]
             )
         )
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_imagebuilder.types.lifecycle_policy_resource_type
 
         out["resource_type"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> LifecyclePolicySummary:
                 data["resourceType"]
             )
         )
-    if "dateCreated" in data:
+    if data.get("dateCreated") is not None:
         import capo_imagebuilder.types.date_time_timestamp
 
         out["date_created"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> LifecyclePolicySummary:
                 data["dateCreated"]
             )
         )
-    if "dateUpdated" in data:
+    if data.get("dateUpdated") is not None:
         import capo_imagebuilder.types.date_time_timestamp
 
         out["date_updated"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> LifecyclePolicySummary:
                 data["dateUpdated"]
             )
         )
-    if "dateLastRun" in data:
+    if data.get("dateLastRun") is not None:
         import capo_imagebuilder.types.date_time_timestamp
 
         out["date_last_run"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> LifecyclePolicySummary:
                 data["dateLastRun"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])

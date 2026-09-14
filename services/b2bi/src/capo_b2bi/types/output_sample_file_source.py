@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: OutputSampleFileSource) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> OutputSampleFileSource:
-    if "fileLocation" in data:
+    if data.get("fileLocation") is not None:
         import capo_b2bi.types.s3_location
 
         return {

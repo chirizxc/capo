@@ -20,7 +20,15 @@ class Emissions(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: Emissions) -> dict:
     out: dict = {}
-    out["Value"] = value["value"]
+    out["Value"] = (
+        "NaN"
+        if value["value"] != value["value"]
+        else "Infinity"
+        if value["value"] == float("inf")
+        else "-Infinity"
+        if value["value"] == float("-inf")
+        else value["value"]
+    )
     import capo_sustainability.types.emissions_unit
 
     out["Unit"] = capo_sustainability.types.emissions_unit.serialize_json(value["unit"])
@@ -29,11 +37,11 @@ def serialize_json(value: Emissions) -> dict:
 
 def deserialize_json(data: dict) -> Emissions:
     out: Emissions = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         raise DeserializationError("Emissions.value required")
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_sustainability.types.emissions_unit
 
         out["unit"] = capo_sustainability.types.emissions_unit.deserialize_json(

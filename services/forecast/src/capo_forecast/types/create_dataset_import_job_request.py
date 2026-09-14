@@ -82,17 +82,17 @@ def serialize_aws_json_1_1(value: CreateDatasetImportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetImportJobRequest:
     out: CreateDatasetImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetImportJobName" in data:
+    if data.get("DatasetImportJobName") is not None:
         out["dataset_import_job_name"] = data["DatasetImportJobName"]
     else:
         raise DeserializationError(
             "CreateDatasetImportJobRequest.dataset_import_job_name required"
         )
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
     else:
         raise DeserializationError("CreateDatasetImportJobRequest.dataset_arn required")
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_forecast.types.data_source
 
         out["data_source"] = capo_forecast.types.data_source.deserialize_aws_json_1_1(
@@ -100,23 +100,23 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetImportJobRequest:
         )
     else:
         raise DeserializationError("CreateDatasetImportJobRequest.data_source required")
-    if "TimestampFormat" in data:
+    if data.get("TimestampFormat") is not None:
         out["timestamp_format"] = data["TimestampFormat"]
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
-    if "UseGeolocationForTimeZone" in data:
+    if data.get("UseGeolocationForTimeZone") is not None:
         out["use_geolocation_for_time_zone"] = data["UseGeolocationForTimeZone"]
     else:
         out["use_geolocation_for_time_zone"] = False
-    if "GeolocationFormat" in data:
+    if data.get("GeolocationFormat") is not None:
         out["geolocation_format"] = data["GeolocationFormat"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "ImportMode" in data:
+    if data.get("ImportMode") is not None:
         import capo_forecast.types.import_mode
 
         out["import_mode"] = capo_forecast.types.import_mode.deserialize_aws_json_1_1(

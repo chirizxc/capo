@@ -34,7 +34,7 @@ def serialize_json(value: ComputeConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ComputeConfiguration:
-    if "worker" in data:
+    if data.get("worker") is not None:
         import capo_cleanrooms.types.worker_compute_configuration
 
         return {

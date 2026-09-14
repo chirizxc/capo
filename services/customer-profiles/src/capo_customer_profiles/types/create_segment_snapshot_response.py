@@ -24,7 +24,7 @@ def serialize_json(value: CreateSegmentSnapshotResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSegmentSnapshotResponse:
     out: CreateSegmentSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
     else:
         raise DeserializationError("CreateSegmentSnapshotResponse.snapshot_id required")

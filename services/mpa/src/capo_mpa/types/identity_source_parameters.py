@@ -29,7 +29,7 @@ def serialize_json(value: IdentitySourceParameters) -> dict:
 
 def deserialize_json(data: dict) -> IdentitySourceParameters:
     out: IdentitySourceParameters = {}  # type: ignore[typeddict-item]
-    if "IamIdentityCenter" in data:
+    if data.get("IamIdentityCenter") is not None:
         import capo_mpa.types.iam_identity_center
 
         out["iam_identity_center"] = (

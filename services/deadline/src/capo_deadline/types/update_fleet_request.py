@@ -79,23 +79,23 @@ def serialize_json(value: UpdateFleetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFleetRequest:
     out: UpdateFleetRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "minWorkerCount" in data:
+    if data.get("minWorkerCount") is not None:
         out["min_worker_count"] = data["minWorkerCount"]
-    if "maxWorkerCount" in data:
+    if data.get("maxWorkerCount") is not None:
         out["max_worker_count"] = data["maxWorkerCount"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_deadline.types.fleet_configuration
 
         out["configuration"] = capo_deadline.types.fleet_configuration.deserialize_json(
             data["configuration"]
         )
-    if "hostConfiguration" in data:
+    if data.get("hostConfiguration") is not None:
         import capo_deadline.types.host_configuration
 
         out["host_configuration"] = (

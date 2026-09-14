@@ -41,25 +41,25 @@ def serialize_aws_json_1_1(value: CreateBatchPredictionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateBatchPredictionInput:
     out: CreateBatchPredictionInput = {}  # type: ignore[typeddict-item]
-    if "BatchPredictionId" in data:
+    if data.get("BatchPredictionId") is not None:
         out["batch_prediction_id"] = data["BatchPredictionId"]
     else:
         raise DeserializationError(
             "CreateBatchPredictionInput.batch_prediction_id required"
         )
-    if "BatchPredictionName" in data:
+    if data.get("BatchPredictionName") is not None:
         out["batch_prediction_name"] = data["BatchPredictionName"]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
     else:
         raise DeserializationError("CreateBatchPredictionInput.ml_model_id required")
-    if "BatchPredictionDataSourceId" in data:
+    if data.get("BatchPredictionDataSourceId") is not None:
         out["batch_prediction_data_source_id"] = data["BatchPredictionDataSourceId"]
     else:
         raise DeserializationError(
             "CreateBatchPredictionInput.batch_prediction_data_source_id required"
         )
-    if "OutputUri" in data:
+    if data.get("OutputUri") is not None:
         out["output_uri"] = data["OutputUri"]
     else:
         raise DeserializationError("CreateBatchPredictionInput.output_uri required")

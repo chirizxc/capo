@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> entityTypeList:
 
     out: entityTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_frauddetector.types.entity_type.deserialize_aws_json_1_1(item))
     return out

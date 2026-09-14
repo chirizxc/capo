@@ -64,7 +64,7 @@ def serialize_json(value: DataReference) -> dict:
 
 
 def deserialize_json(data: dict) -> DataReference:
-    if "contentReference" in data:
+    if data.get("contentReference") is not None:
         import capo_qconnect.types.content_reference
 
         return {
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> DataReference:
                 data["contentReference"]
             )
         }
-    elif "generativeReference" in data:
+    elif data.get("generativeReference") is not None:
         import capo_qconnect.types.generative_reference
 
         return {
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> DataReference:
                 data["generativeReference"]
             )
         }
-    elif "suggestedMessageReference" in data:
+    elif data.get("suggestedMessageReference") is not None:
         import capo_qconnect.types.suggested_message_reference
 
         return {

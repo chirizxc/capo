@@ -35,13 +35,13 @@ def serialize_json(value: HandlerConfigs) -> dict:
 
 def deserialize_json(data: dict) -> HandlerConfigs:
     out: HandlerConfigs = {}  # type: ignore[typeddict-item]
-    if "onPublish" in data:
+    if data.get("onPublish") is not None:
         import capo_appsync.types.handler_config
 
         out["on_publish"] = capo_appsync.types.handler_config.deserialize_json(
             data["onPublish"]
         )
-    if "onSubscribe" in data:
+    if data.get("onSubscribe") is not None:
         import capo_appsync.types.handler_config
 
         out["on_subscribe"] = capo_appsync.types.handler_config.deserialize_json(

@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: AccountAggregationSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountAggregationSource:
     out: AccountAggregationSource = {}  # type: ignore[typeddict-item]
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_config_service.types.account_aggregation_source_account_list
 
         out["account_ids"] = (
@@ -57,11 +57,11 @@ def deserialize_aws_json_1_1(data: dict) -> AccountAggregationSource:
         )
     else:
         raise DeserializationError("AccountAggregationSource.account_ids required")
-    if "AllAwsRegions" in data:
+    if data.get("AllAwsRegions") is not None:
         out["all_aws_regions"] = data["AllAwsRegions"]
     else:
         out["all_aws_regions"] = False
-    if "AwsRegions" in data:
+    if data.get("AwsRegions") is not None:
         import capo_config_service.types.aggregator_region_list
 
         out["aws_regions"] = (

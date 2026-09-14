@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: GetPlayerConnectionDetailsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPlayerConnectionDetailsOutput:
     out: GetPlayerConnectionDetailsOutput = {}  # type: ignore[typeddict-item]
-    if "GameSessionId" in data:
+    if data.get("GameSessionId") is not None:
         out["game_session_id"] = data["GameSessionId"]
-    if "PlayerConnectionDetails" in data:
+    if data.get("PlayerConnectionDetails") is not None:
         import capo_gamelift.types.player_connection_detail_list
 
         out["player_connection_details"] = (

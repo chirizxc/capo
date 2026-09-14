@@ -28,7 +28,7 @@ def serialize_json(value: ForwardingConfig) -> dict:
 
 def deserialize_json(data: dict) -> ForwardingConfig:
     out: ForwardingConfig = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_iotsitewise.types.forwarding_config_state
 
         out["state"] = capo_iotsitewise.types.forwarding_config_state.deserialize_json(

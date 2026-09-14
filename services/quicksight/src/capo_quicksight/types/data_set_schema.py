@@ -31,7 +31,7 @@ def serialize_json(value: DataSetSchema) -> dict:
 
 def deserialize_json(data: dict) -> DataSetSchema:
     out: DataSetSchema = {}  # type: ignore[typeddict-item]
-    if "ColumnSchemaList" in data:
+    if data.get("ColumnSchemaList") is not None:
         import capo_quicksight.types.column_schema_list
 
         out["column_schema_list"] = (

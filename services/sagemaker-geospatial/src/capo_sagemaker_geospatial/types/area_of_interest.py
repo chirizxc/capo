@@ -32,7 +32,7 @@ def serialize_json(value: AreaOfInterest) -> dict:
 
 
 def deserialize_json(data: dict) -> AreaOfInterest:
-    if "AreaOfInterestGeometry" in data:
+    if data.get("AreaOfInterestGeometry") is not None:
         import capo_sagemaker_geospatial.types.area_of_interest_geometry
 
         return {

@@ -31,7 +31,7 @@ def serialize_json(value: GetClassificationExportConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetClassificationExportConfigurationResponse:
     out: GetClassificationExportConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_macie2.types.classification_export_configuration
 
         out["configuration"] = (

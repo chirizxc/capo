@@ -31,7 +31,7 @@ def serialize_json(value: RuntimeHints) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeHints:
     out: RuntimeHints = {}  # type: ignore[typeddict-item]
-    if "slotHints" in data:
+    if data.get("slotHints") is not None:
         import capo_lex_models_v2.types.slot_hints_intent_map
 
         out["slot_hints"] = (

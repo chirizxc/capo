@@ -55,19 +55,19 @@ def serialize_json(value: ScheduledAuditMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ScheduledAuditMetadata:
     out: ScheduledAuditMetadata = {}  # type: ignore[typeddict-item]
-    if "scheduledAuditName" in data:
+    if data.get("scheduledAuditName") is not None:
         out["scheduled_audit_name"] = data["scheduledAuditName"]
-    if "scheduledAuditArn" in data:
+    if data.get("scheduledAuditArn") is not None:
         out["scheduled_audit_arn"] = data["scheduledAuditArn"]
-    if "frequency" in data:
+    if data.get("frequency") is not None:
         import capo_iot.types.audit_frequency
 
         out["frequency"] = capo_iot.types.audit_frequency.deserialize_json(
             data["frequency"]
         )
-    if "dayOfMonth" in data:
+    if data.get("dayOfMonth") is not None:
         out["day_of_month"] = data["dayOfMonth"]
-    if "dayOfWeek" in data:
+    if data.get("dayOfWeek") is not None:
         import capo_iot.types.day_of_week
 
         out["day_of_week"] = capo_iot.types.day_of_week.deserialize_json(

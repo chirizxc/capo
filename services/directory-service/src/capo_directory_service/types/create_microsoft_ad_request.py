@@ -85,19 +85,19 @@ def serialize_aws_json_1_1(value: CreateMicrosoftADRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMicrosoftADRequest:
     out: CreateMicrosoftADRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateMicrosoftADRequest.name required")
-    if "ShortName" in data:
+    if data.get("ShortName") is not None:
         out["short_name"] = data["ShortName"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError("CreateMicrosoftADRequest.password required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "VpcSettings" in data:
+    if data.get("VpcSettings") is not None:
         import capo_directory_service.types.directory_vpc_settings
 
         out["vpc_settings"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMicrosoftADRequest:
         )
     else:
         raise DeserializationError("CreateMicrosoftADRequest.vpc_settings required")
-    if "Edition" in data:
+    if data.get("Edition") is not None:
         import capo_directory_service.types.directory_edition
 
         out["edition"] = (
@@ -115,13 +115,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMicrosoftADRequest:
                 data["Edition"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_directory_service.types.tags
 
         out["tags"] = capo_directory_service.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_directory_service.types.network_type
 
         out["network_type"] = (

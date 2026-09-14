@@ -106,15 +106,15 @@ def serialize_json(value: SubscriberResource) -> dict:
     if "resource_share_name" in value:
         out["resourceShareName"] = value["resource_share_name"]
     if "created_at" in value:
-        import capo_securitylake.types._prelude.timestamp
+        import capo_securitylake._protocol.serialize
 
-        out["createdAt"] = capo_securitylake.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_securitylake._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_securitylake.types._prelude.timestamp
+        import capo_securitylake._protocol.serialize
 
-        out["updatedAt"] = capo_securitylake.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_securitylake._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     return out
@@ -122,15 +122,15 @@ def serialize_json(value: SubscriberResource) -> dict:
 
 def deserialize_json(data: dict) -> SubscriberResource:
     out: SubscriberResource = {}  # type: ignore[typeddict-item]
-    if "subscriberId" in data:
+    if data.get("subscriberId") is not None:
         out["subscriber_id"] = data["subscriberId"]
     else:
         raise DeserializationError("SubscriberResource.subscriber_id required")
-    if "subscriberArn" in data:
+    if data.get("subscriberArn") is not None:
         out["subscriber_arn"] = data["subscriberArn"]
     else:
         raise DeserializationError("SubscriberResource.subscriber_arn required")
-    if "subscriberIdentity" in data:
+    if data.get("subscriberIdentity") is not None:
         import capo_securitylake.types.aws_identity
 
         out["subscriber_identity"] = (
@@ -140,13 +140,13 @@ def deserialize_json(data: dict) -> SubscriberResource:
         )
     else:
         raise DeserializationError("SubscriberResource.subscriber_identity required")
-    if "subscriberName" in data:
+    if data.get("subscriberName") is not None:
         out["subscriber_name"] = data["subscriberName"]
     else:
         raise DeserializationError("SubscriberResource.subscriber_name required")
-    if "subscriberDescription" in data:
+    if data.get("subscriberDescription") is not None:
         out["subscriber_description"] = data["subscriberDescription"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_securitylake.types.log_source_resource_list
 
         out["sources"] = (
@@ -156,19 +156,19 @@ def deserialize_json(data: dict) -> SubscriberResource:
         )
     else:
         raise DeserializationError("SubscriberResource.sources required")
-    if "accessTypes" in data:
+    if data.get("accessTypes") is not None:
         import capo_securitylake.types.access_type_list
 
         out["access_types"] = capo_securitylake.types.access_type_list.deserialize_json(
             data["accessTypes"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "s3BucketArn" in data:
+    if data.get("s3BucketArn") is not None:
         out["s3_bucket_arn"] = data["s3BucketArn"]
-    if "subscriberEndpoint" in data:
+    if data.get("subscriberEndpoint") is not None:
         out["subscriber_endpoint"] = data["subscriberEndpoint"]
-    if "subscriberStatus" in data:
+    if data.get("subscriberStatus") is not None:
         import capo_securitylake.types.subscriber_status
 
         out["subscriber_status"] = (
@@ -176,20 +176,20 @@ def deserialize_json(data: dict) -> SubscriberResource:
                 data["subscriberStatus"]
             )
         )
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
-    if "resourceShareName" in data:
+    if data.get("resourceShareName") is not None:
         out["resource_share_name"] = data["resourceShareName"]
-    if "createdAt" in data:
-        import capo_securitylake.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_securitylake.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_securitylake.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_securitylake.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     return out

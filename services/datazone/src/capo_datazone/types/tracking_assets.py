@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: TrackingAssets) -> dict:
 def deserialize_json(data: dict) -> TrackingAssets:
     out: TrackingAssets = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_datazone.types.tracking_asset_arns
 
         out[key] = capo_datazone.types.tracking_asset_arns.deserialize_json(value)

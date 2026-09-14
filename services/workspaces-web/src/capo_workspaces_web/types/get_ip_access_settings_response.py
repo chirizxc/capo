@@ -31,7 +31,7 @@ def serialize_json(value: GetIpAccessSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetIpAccessSettingsResponse:
     out: GetIpAccessSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "ipAccessSettings" in data:
+    if data.get("ipAccessSettings") is not None:
         import capo_workspaces_web.types.ip_access_settings
 
         out["ip_access_settings"] = (

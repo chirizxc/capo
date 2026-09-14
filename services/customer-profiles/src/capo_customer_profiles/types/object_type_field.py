@@ -40,11 +40,11 @@ def serialize_json(value: ObjectTypeField) -> dict:
 
 def deserialize_json(data: dict) -> ObjectTypeField:
     out: ObjectTypeField = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_customer_profiles.types.field_content_type
 
         out["content_type"] = (

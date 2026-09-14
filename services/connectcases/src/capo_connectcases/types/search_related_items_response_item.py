@@ -60,17 +60,17 @@ def serialize_json(value: SearchRelatedItemsResponseItem) -> dict:
 
 def deserialize_json(data: dict) -> SearchRelatedItemsResponseItem:
     out: SearchRelatedItemsResponseItem = {}  # type: ignore[typeddict-item]
-    if "relatedItemId" in data:
+    if data.get("relatedItemId") is not None:
         out["related_item_id"] = data["relatedItemId"]
     else:
         raise DeserializationError(
             "SearchRelatedItemsResponseItem.related_item_id required"
         )
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("SearchRelatedItemsResponseItem.type required")
-    if "associationTime" in data:
+    if data.get("associationTime") is not None:
         import capo_connectcases.types.association_time
 
         out["association_time"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> SearchRelatedItemsResponseItem:
         raise DeserializationError(
             "SearchRelatedItemsResponseItem.association_time required"
         )
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_connectcases.types.related_item_content
 
         out["content"] = capo_connectcases.types.related_item_content.deserialize_json(
@@ -90,11 +90,11 @@ def deserialize_json(data: dict) -> SearchRelatedItemsResponseItem:
         )
     else:
         raise DeserializationError("SearchRelatedItemsResponseItem.content required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcases.types.tags
 
         out["tags"] = capo_connectcases.types.tags.deserialize_json(data["tags"])
-    if "performedBy" in data:
+    if data.get("performedBy") is not None:
         import capo_connectcases.types.user_union
 
         out["performed_by"] = capo_connectcases.types.user_union.deserialize_json(

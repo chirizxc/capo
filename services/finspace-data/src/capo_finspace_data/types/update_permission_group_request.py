@@ -55,11 +55,11 @@ def serialize_json(value: UpdatePermissionGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePermissionGroupRequest:
     out: UpdatePermissionGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "applicationPermissions" in data:
+    if data.get("applicationPermissions") is not None:
         import capo_finspace_data.types.application_permission_list
 
         out["application_permissions"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> UpdatePermissionGroupRequest:
                 data["applicationPermissions"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

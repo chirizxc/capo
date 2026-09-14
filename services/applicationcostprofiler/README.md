@@ -13,9 +13,9 @@ from capo_applicationcostprofiler import AsyncApplicationCostProfilerClient
 
 
 async def main():
-    async with AsyncApplicationCostProfilerClient() as s3:
+    async with AsyncApplicationCostProfilerClient() as application_cost_profiler:
         # Example: call the delete_report_definition operation
-        response = await s3.delete_report_definition()
+        response = await application_cost_profiler.delete_report_definition()
         print(response["report_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_applicationcostprofiler import AsyncApplicationCostProfilerClient
 
 
 async def main():
-    async with AsyncApplicationCostProfilerClient() as s3:
+    async with AsyncApplicationCostProfilerClient() as application_cost_profiler:
         # Example: paginate over list_report_definitions
-        async for item in s3.iter_list_report_definitions():
+        async for item in application_cost_profiler.iter_list_report_definitions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_applicationcostprofiler.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncApplicationCostProfilerClient() as s3:
+    async with AsyncApplicationCostProfilerClient() as application_cost_profiler:
         try:
-            await s3.delete_report_definition()
+            await application_cost_profiler.delete_report_definition()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_applicationcostprofiler import AsyncApplicationCostProfilerClient
 
 
 async def main():
-    async with AsyncApplicationCostProfilerClient() as s3:
+    async with AsyncApplicationCostProfilerClient() as application_cost_profiler:
         # Default: 3 attempts for every operation
-        response = await s3.delete_report_definition()
+        response = await application_cost_profiler.delete_report_definition()
 
         # Override per operation
-        response = await s3.delete_report_definition(config_overrides={"retry_max_attempts": 5})
+        response = await application_cost_profiler.delete_report_definition(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_report_definition(config_overrides={"retry_max_attempts": 1})
+        response = await application_cost_profiler.delete_report_definition(config_overrides={"retry_max_attempts": 1})
 ```

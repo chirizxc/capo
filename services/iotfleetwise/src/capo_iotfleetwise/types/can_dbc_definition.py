@@ -47,11 +47,11 @@ def serialize_aws_json_1_0(value: CanDbcDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CanDbcDefinition:
     out: CanDbcDefinition = {}  # type: ignore[typeddict-item]
-    if "networkInterface" in data:
+    if data.get("networkInterface") is not None:
         out["network_interface"] = data["networkInterface"]
     else:
         raise DeserializationError("CanDbcDefinition.network_interface required")
-    if "canDbcFiles" in data:
+    if data.get("canDbcFiles") is not None:
         import capo_iotfleetwise.types.network_files_list
 
         out["can_dbc_files"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> CanDbcDefinition:
         )
     else:
         raise DeserializationError("CanDbcDefinition.can_dbc_files required")
-    if "signalsMap" in data:
+    if data.get("signalsMap") is not None:
         import capo_iotfleetwise.types.model_signals_map
 
         out["signals_map"] = (

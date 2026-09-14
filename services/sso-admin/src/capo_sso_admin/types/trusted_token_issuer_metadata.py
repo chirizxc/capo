@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: TrustedTokenIssuerMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrustedTokenIssuerMetadata:
     out: TrustedTokenIssuerMetadata = {}  # type: ignore[typeddict-item]
-    if "TrustedTokenIssuerArn" in data:
+    if data.get("TrustedTokenIssuerArn") is not None:
         out["trusted_token_issuer_arn"] = data["TrustedTokenIssuerArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TrustedTokenIssuerType" in data:
+    if data.get("TrustedTokenIssuerType") is not None:
         import capo_sso_admin.types.trusted_token_issuer_type
 
         out["trusted_token_issuer_type"] = (

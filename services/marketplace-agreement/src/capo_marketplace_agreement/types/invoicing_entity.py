@@ -31,8 +31,8 @@ def serialize_aws_json_1_0(value: InvoicingEntity) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvoicingEntity:
     out: InvoicingEntity = {}  # type: ignore[typeddict-item]
-    if "legalName" in data:
+    if data.get("legalName") is not None:
         out["legal_name"] = data["legalName"]
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> WorkspaceAssociationSearchConditionList:
 
     out: WorkspaceAssociationSearchConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.workspace_association_search_criteria.deserialize_json(
                 item

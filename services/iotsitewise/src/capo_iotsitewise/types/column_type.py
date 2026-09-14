@@ -27,7 +27,7 @@ def serialize_json(value: ColumnType) -> dict:
 
 def deserialize_json(data: dict) -> ColumnType:
     out: ColumnType = {}  # type: ignore[typeddict-item]
-    if "scalarType" in data:
+    if data.get("scalarType") is not None:
         import capo_iotsitewise.types.scalar_type
 
         out["scalar_type"] = capo_iotsitewise.types.scalar_type.deserialize_json(

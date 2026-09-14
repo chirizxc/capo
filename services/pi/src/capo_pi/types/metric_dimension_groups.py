@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: MetricDimensionGroups) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricDimensionGroups:
     out: MetricDimensionGroups = {}  # type: ignore[typeddict-item]
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         out["metric"] = data["Metric"]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_pi.types.dimension_group_detail_list
 
         out["groups"] = (

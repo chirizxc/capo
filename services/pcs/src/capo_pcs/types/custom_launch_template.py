@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: CustomLaunchTemplate) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CustomLaunchTemplate:
     out: CustomLaunchTemplate = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CustomLaunchTemplate.id required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("CustomLaunchTemplate.version required")

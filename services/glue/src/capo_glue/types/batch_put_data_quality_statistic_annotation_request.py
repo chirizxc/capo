@@ -41,7 +41,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> BatchPutDataQualityStatisticAnnotationRequest:
     out: BatchPutDataQualityStatisticAnnotationRequest = {}  # type: ignore[typeddict-item]
-    if "InclusionAnnotations" in data:
+    if data.get("InclusionAnnotations") is not None:
         import capo_glue.types.inclusion_annotation_list
 
         out["inclusion_annotations"] = (
@@ -53,6 +53,6 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "BatchPutDataQualityStatisticAnnotationRequest.inclusion_annotations required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -37,15 +37,15 @@ def serialize_json(value: GetRouterInputSourceMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRouterInputSourceMetadataResponse:
     out: GetRouterInputSourceMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetRouterInputSourceMetadataResponse.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetRouterInputSourceMetadataResponse.name required")
-    if "sourceMetadataDetails" in data:
+    if data.get("sourceMetadataDetails") is not None:
         import capo_mediaconnect.types.router_input_source_metadata_details
 
         out["source_metadata_details"] = (

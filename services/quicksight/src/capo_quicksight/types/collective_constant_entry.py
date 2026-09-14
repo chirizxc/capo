@@ -34,12 +34,12 @@ def serialize_json(value: CollectiveConstantEntry) -> dict:
 
 def deserialize_json(data: dict) -> CollectiveConstantEntry:
     out: CollectiveConstantEntry = {}  # type: ignore[typeddict-item]
-    if "ConstantType" in data:
+    if data.get("ConstantType") is not None:
         import capo_quicksight.types.constant_type
 
         out["constant_type"] = capo_quicksight.types.constant_type.deserialize_json(
             data["ConstantType"]
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

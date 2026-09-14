@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: ListProgramManagementAccountsSortBase) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> ListProgramManagementAccountsSortBase:
     out: ListProgramManagementAccountsSortBase = {}  # type: ignore[typeddict-item]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_partnercentral_channel.types.sort_order
 
         out["sort_order"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListProgramManagementAccountsSortBas
         raise DeserializationError(
             "ListProgramManagementAccountsSortBase.sort_order required"
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_partnercentral_channel.types.list_program_management_accounts_sort_name
 
         out["sort_by"] = (

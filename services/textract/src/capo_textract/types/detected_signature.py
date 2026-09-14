@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DetectedSignature) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectedSignature:
     out: DetectedSignature = {}  # type: ignore[typeddict-item]
-    if "Page" in data:
+    if data.get("Page") is not None:
         out["page"] = data["Page"]
     return out

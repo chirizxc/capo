@@ -24,7 +24,7 @@ def serialize_json(value: ConnectorTimeoutException_) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorTimeoutException_:
     out: ConnectorTimeoutException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class ConnectorTimeoutException(ServiceError):
 
     code: str | None = "ConnectorTimeoutException"
 
-    def __init__(self, data: ConnectorTimeoutException_):
+    def __init__(self, data: ConnectorTimeoutException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConnectorTimeoutException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConnectorTimeoutException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ConnectorTimeoutException":
+        return cls(deserialize_json(data), message)

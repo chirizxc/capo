@@ -34,7 +34,7 @@ def serialize_json(value: RestrictedPeriods) -> dict:
 
 
 def deserialize_json(data: dict) -> RestrictedPeriods:
-    if "restrictedPeriodList" in data:
+    if data.get("restrictedPeriodList") is not None:
         import capo_connectcampaignsv2.types.restricted_period_list
 
         return {

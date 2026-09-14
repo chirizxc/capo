@@ -81,10 +81,11 @@ class LiveSourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_live_source_request.CreateLiveSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["http_package_configurations"] = http_package_configurations
-        input_["live_source_name"] = live_source_name
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.create_live_source_request.CreateLiveSourceRequest = {
+            "http_package_configurations": http_package_configurations,
+            "live_source_name": live_source_name,
+            "source_location_name": source_location_name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -93,6 +94,7 @@ class LiveSourceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -127,15 +129,17 @@ class LiveSourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.describe_live_source_request.DescribeLiveSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["live_source_name"] = live_source_name
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.describe_live_source_request.DescribeLiveSourceRequest = {
+            "live_source_name": live_source_name,
+            "source_location_name": source_location_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -172,16 +176,18 @@ class LiveSourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.update_live_source_request.UpdateLiveSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["http_package_configurations"] = http_package_configurations
-        input_["live_source_name"] = live_source_name
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.update_live_source_request.UpdateLiveSourceRequest = {
+            "http_package_configurations": http_package_configurations,
+            "live_source_name": live_source_name,
+            "source_location_name": source_location_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -216,15 +222,17 @@ class LiveSourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_live_source_request.DeleteLiveSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["live_source_name"] = live_source_name
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.delete_live_source_request.DeleteLiveSourceRequest = {
+            "live_source_name": live_source_name,
+            "source_location_name": source_location_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -261,18 +269,20 @@ class LiveSourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_live_sources_request.ListLiveSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_live_sources_request.ListLiveSourcesRequest = {
+            "source_location_name": source_location_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["source_location_name"] = source_location_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -319,10 +329,11 @@ class AsyncLiveSourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_live_source_request.CreateLiveSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["http_package_configurations"] = http_package_configurations
-        input_["live_source_name"] = live_source_name
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.create_live_source_request.CreateLiveSourceRequest = {
+            "http_package_configurations": http_package_configurations,
+            "live_source_name": live_source_name,
+            "source_location_name": source_location_name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -331,6 +342,7 @@ class AsyncLiveSourceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -366,15 +378,17 @@ class AsyncLiveSourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.describe_live_source_request.DescribeLiveSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["live_source_name"] = live_source_name
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.describe_live_source_request.DescribeLiveSourceRequest = {
+            "live_source_name": live_source_name,
+            "source_location_name": source_location_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -412,16 +426,18 @@ class AsyncLiveSourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.update_live_source_request.UpdateLiveSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["http_package_configurations"] = http_package_configurations
-        input_["live_source_name"] = live_source_name
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.update_live_source_request.UpdateLiveSourceRequest = {
+            "http_package_configurations": http_package_configurations,
+            "live_source_name": live_source_name,
+            "source_location_name": source_location_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -457,15 +473,17 @@ class AsyncLiveSourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_live_source_request.DeleteLiveSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["live_source_name"] = live_source_name
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.delete_live_source_request.DeleteLiveSourceRequest = {
+            "live_source_name": live_source_name,
+            "source_location_name": source_location_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -503,16 +521,18 @@ class AsyncLiveSourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_live_sources_request.ListLiveSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_live_sources_request.ListLiveSourcesRequest = {
+            "source_location_name": source_location_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["source_location_name"] = source_location_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

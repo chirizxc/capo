@@ -36,7 +36,7 @@ def serialize_json(value: UpdateDashboardLinksRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDashboardLinksRequest:
     out: UpdateDashboardLinksRequest = {}  # type: ignore[typeddict-item]
-    if "LinkEntities" in data:
+    if data.get("LinkEntities") is not None:
         import capo_quicksight.types.link_entity_arn_list
 
         out["link_entities"] = (

@@ -69,21 +69,21 @@ def serialize_json(value: QuoteOption) -> dict:
 
 def deserialize_json(data: dict) -> QuoteOption:
     out: QuoteOption = {}  # type: ignore[typeddict-item]
-    if "QuoteOptionIdentifier" in data:
+    if data.get("QuoteOptionIdentifier") is not None:
         out["quote_option_identifier"] = data["QuoteOptionIdentifier"]
-    if "Capacities" in data:
+    if data.get("Capacities") is not None:
         import capo_outposts.types.quote_capacity_list
 
         out["capacities"] = capo_outposts.types.quote_capacity_list.deserialize_json(
             data["Capacities"]
         )
-    if "CapacitySummary" in data:
+    if data.get("CapacitySummary") is not None:
         import capo_outposts.types.capacity_summary
 
         out["capacity_summary"] = capo_outposts.types.capacity_summary.deserialize_json(
             data["CapacitySummary"]
         )
-    if "Specifications" in data:
+    if data.get("Specifications") is not None:
         import capo_outposts.types.quote_specification_list
 
         out["specifications"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> QuoteOption:
                 data["Specifications"]
             )
         )
-    if "PricingOptions" in data:
+    if data.get("PricingOptions") is not None:
         import capo_outposts.types.pricing_option_list
 
         out["pricing_options"] = (

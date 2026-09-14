@@ -34,7 +34,7 @@ def serialize_json(value: ListCertificateAssociationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCertificateAssociationsResponse:
     out: ListCertificateAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "certificateAssociations" in data:
+    if data.get("certificateAssociations") is not None:
         import capo_rtbfabric.types.certificate_association_summary_list
 
         out["certificate_associations"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListCertificateAssociationsResponse:
         raise DeserializationError(
             "ListCertificateAssociationsResponse.certificate_associations required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -85,19 +85,19 @@ def serialize_json(value: PutMethodRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutMethodRequest:
     out: PutMethodRequest = {}  # type: ignore[typeddict-item]
-    if "authorizationType" in data:
+    if data.get("authorizationType") is not None:
         out["authorization_type"] = data["authorizationType"]
     else:
         raise DeserializationError("PutMethodRequest.authorization_type required")
-    if "authorizerId" in data:
+    if data.get("authorizerId") is not None:
         out["authorizer_id"] = data["authorizerId"]
-    if "apiKeyRequired" in data:
+    if data.get("apiKeyRequired") is not None:
         out["api_key_required"] = data["apiKeyRequired"]
     else:
         out["api_key_required"] = False
-    if "operationName" in data:
+    if data.get("operationName") is not None:
         out["operation_name"] = data["operationName"]
-    if "requestParameters" in data:
+    if data.get("requestParameters") is not None:
         import capo_api_gateway.types.map_of_string_to_boolean
 
         out["request_parameters"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> PutMethodRequest:
                 data["requestParameters"]
             )
         )
-    if "requestModels" in data:
+    if data.get("requestModels") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["request_models"] = (
@@ -113,9 +113,9 @@ def deserialize_json(data: dict) -> PutMethodRequest:
                 data["requestModels"]
             )
         )
-    if "requestValidatorId" in data:
+    if data.get("requestValidatorId") is not None:
         out["request_validator_id"] = data["requestValidatorId"]
-    if "authorizationScopes" in data:
+    if data.get("authorizationScopes") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["authorization_scopes"] = (

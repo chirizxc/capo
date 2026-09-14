@@ -45,9 +45,9 @@ def serialize_json(value: PerformanceInsightsMetricDimensionGroup) -> dict:
 
 def deserialize_json(data: dict) -> PerformanceInsightsMetricDimensionGroup:
     out: PerformanceInsightsMetricDimensionGroup = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_devops_guru.types.performance_insights_metric_dimensions
 
         out["dimensions"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> PerformanceInsightsMetricDimensionGroup:
                 data["Dimensions"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

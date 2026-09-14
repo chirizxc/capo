@@ -177,15 +177,15 @@ def serialize_json(value: GetOtaTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetOtaTaskResponse:
     out: GetOtaTaskResponse = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
-    if "TaskArn" in data:
+    if data.get("TaskArn") is not None:
         out["task_arn"] = data["TaskArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "S3Url" in data:
+    if data.get("S3Url") is not None:
         out["s3_url"] = data["S3Url"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_iot_managed_integrations.types.ota_protocol
 
         out["protocol"] = (
@@ -193,15 +193,15 @@ def deserialize_json(data: dict) -> GetOtaTaskResponse:
                 data["Protocol"]
             )
         )
-    if "OtaType" in data:
+    if data.get("OtaType") is not None:
         import capo_iot_managed_integrations.types.ota_type
 
         out["ota_type"] = capo_iot_managed_integrations.types.ota_type.deserialize_json(
             data["OtaType"]
         )
-    if "OtaTargetQueryString" in data:
+    if data.get("OtaTargetQueryString") is not None:
         out["ota_target_query_string"] = data["OtaTargetQueryString"]
-    if "OtaMechanism" in data:
+    if data.get("OtaMechanism") is not None:
         import capo_iot_managed_integrations.types.ota_mechanism
 
         out["ota_mechanism"] = (
@@ -209,13 +209,13 @@ def deserialize_json(data: dict) -> GetOtaTaskResponse:
                 data["OtaMechanism"]
             )
         )
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_iot_managed_integrations.types.target
 
         out["target"] = capo_iot_managed_integrations.types.target.deserialize_json(
             data["Target"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_iot_managed_integrations.types.created_at
 
         out["created_at"] = (
@@ -223,7 +223,7 @@ def deserialize_json(data: dict) -> GetOtaTaskResponse:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_iot_managed_integrations.types.last_updated_at
 
         out["last_updated_at"] = (
@@ -231,9 +231,9 @@ def deserialize_json(data: dict) -> GetOtaTaskResponse:
                 data["LastUpdatedAt"]
             )
         )
-    if "TaskConfigurationId" in data:
+    if data.get("TaskConfigurationId") is not None:
         out["task_configuration_id"] = data["TaskConfigurationId"]
-    if "TaskProcessingDetails" in data:
+    if data.get("TaskProcessingDetails") is not None:
         import capo_iot_managed_integrations.types.task_processing_details
 
         out["task_processing_details"] = (
@@ -241,7 +241,7 @@ def deserialize_json(data: dict) -> GetOtaTaskResponse:
                 data["TaskProcessingDetails"]
             )
         )
-    if "OtaSchedulingConfig" in data:
+    if data.get("OtaSchedulingConfig") is not None:
         import capo_iot_managed_integrations.types.ota_task_scheduling_config
 
         out["ota_scheduling_config"] = (
@@ -249,7 +249,7 @@ def deserialize_json(data: dict) -> GetOtaTaskResponse:
                 data["OtaSchedulingConfig"]
             )
         )
-    if "OtaTaskExecutionRetryConfig" in data:
+    if data.get("OtaTaskExecutionRetryConfig") is not None:
         import capo_iot_managed_integrations.types.ota_task_execution_retry_config
 
         out["ota_task_execution_retry_config"] = (
@@ -257,13 +257,13 @@ def deserialize_json(data: dict) -> GetOtaTaskResponse:
                 data["OtaTaskExecutionRetryConfig"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_managed_integrations.types.ota_status
 
         out["status"] = capo_iot_managed_integrations.types.ota_status.deserialize_json(
             data["Status"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(

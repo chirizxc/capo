@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetWebACLForResourceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetWebACLForResourceResponse:
     out: GetWebACLForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "WebACL" in data:
+    if data.get("WebACL") is not None:
         import capo_wafv2.types.web_acl
 
         out["web_acl"] = capo_wafv2.types.web_acl.deserialize_aws_json_1_1(

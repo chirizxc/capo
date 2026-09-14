@@ -34,15 +34,15 @@ def serialize_json(value: PackageObject) -> dict:
 
 def deserialize_json(data: dict) -> PackageObject:
     out: PackageObject = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PackageObject.name required")
-    if "PackageVersion" in data:
+    if data.get("PackageVersion") is not None:
         out["package_version"] = data["PackageVersion"]
     else:
         raise DeserializationError("PackageObject.package_version required")
-    if "PatchVersion" in data:
+    if data.get("PatchVersion") is not None:
         out["patch_version"] = data["PatchVersion"]
     else:
         raise DeserializationError("PackageObject.patch_version required")

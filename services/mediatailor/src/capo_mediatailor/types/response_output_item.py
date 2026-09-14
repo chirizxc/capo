@@ -56,7 +56,7 @@ def serialize_json(value: ResponseOutputItem) -> dict:
 
 def deserialize_json(data: dict) -> ResponseOutputItem:
     out: ResponseOutputItem = {}  # type: ignore[typeddict-item]
-    if "DashPlaylistSettings" in data:
+    if data.get("DashPlaylistSettings") is not None:
         import capo_mediatailor.types.dash_playlist_settings
 
         out["dash_playlist_settings"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ResponseOutputItem:
                 data["DashPlaylistSettings"]
             )
         )
-    if "HlsPlaylistSettings" in data:
+    if data.get("HlsPlaylistSettings") is not None:
         import capo_mediatailor.types.hls_playlist_settings
 
         out["hls_playlist_settings"] = (
@@ -72,15 +72,15 @@ def deserialize_json(data: dict) -> ResponseOutputItem:
                 data["HlsPlaylistSettings"]
             )
         )
-    if "ManifestName" in data:
+    if data.get("ManifestName") is not None:
         out["manifest_name"] = data["ManifestName"]
     else:
         raise DeserializationError("ResponseOutputItem.manifest_name required")
-    if "PlaybackUrl" in data:
+    if data.get("PlaybackUrl") is not None:
         out["playback_url"] = data["PlaybackUrl"]
     else:
         raise DeserializationError("ResponseOutputItem.playback_url required")
-    if "SourceGroup" in data:
+    if data.get("SourceGroup") is not None:
         out["source_group"] = data["SourceGroup"]
     else:
         raise DeserializationError("ResponseOutputItem.source_group required")

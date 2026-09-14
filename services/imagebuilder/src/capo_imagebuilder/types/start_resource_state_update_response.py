@@ -32,8 +32,8 @@ def serialize_json(value: StartResourceStateUpdateResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartResourceStateUpdateResponse:
     out: StartResourceStateUpdateResponse = {}  # type: ignore[typeddict-item]
-    if "lifecycleExecutionId" in data:
+    if data.get("lifecycleExecutionId") is not None:
         out["lifecycle_execution_id"] = data["lifecycleExecutionId"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     return out

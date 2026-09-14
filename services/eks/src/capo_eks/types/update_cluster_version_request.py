@@ -34,13 +34,13 @@ def serialize_json(value: UpdateClusterVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClusterVersionRequest:
     out: UpdateClusterVersionRequest = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("UpdateClusterVersionRequest.version required")
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "force" in data:
+    if data.get("force") is not None:
         out["force"] = data["force"]
     else:
         out["force"] = False

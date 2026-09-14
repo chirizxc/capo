@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> BatchImportList:
 
     out: BatchImportList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_frauddetector.types.batch_import.deserialize_aws_json_1_1(item))
     return out

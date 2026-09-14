@@ -38,13 +38,13 @@ def serialize_aws_json_1_0(value: RepositorySyncEvent) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RepositorySyncEvent:
     out: RepositorySyncEvent = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("RepositorySyncEvent.type required")
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "time" in data:
+    if data.get("time") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["time"] = capo_proton.types._prelude.timestamp.deserialize_aws_json_1_0(
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> RepositorySyncEvent:
         )
     else:
         raise DeserializationError("RepositorySyncEvent.time required")
-    if "event" in data:
+    if data.get("event") is not None:
         out["event"] = data["event"]
     else:
         raise DeserializationError("RepositorySyncEvent.event required")

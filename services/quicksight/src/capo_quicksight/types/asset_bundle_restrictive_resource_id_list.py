@@ -16,4 +16,4 @@ def serialize_json(value: AssetBundleRestrictiveResourceIdList) -> list:
 
 
 def deserialize_json(data: list) -> AssetBundleRestrictiveResourceIdList:
-    return list(data)
+    return [item for item in data if item is not None]

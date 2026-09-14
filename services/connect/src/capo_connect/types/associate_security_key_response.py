@@ -23,6 +23,6 @@ def serialize_json(value: AssociateSecurityKeyResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateSecurityKeyResponse:
     out: AssociateSecurityKeyResponse = {}  # type: ignore[typeddict-item]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
     return out

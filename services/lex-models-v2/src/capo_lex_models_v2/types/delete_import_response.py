@@ -32,9 +32,9 @@ def serialize_json(value: DeleteImportResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteImportResponse:
     out: DeleteImportResponse = {}  # type: ignore[typeddict-item]
-    if "importId" in data:
+    if data.get("importId") is not None:
         out["import_id"] = data["importId"]
-    if "importStatus" in data:
+    if data.get("importStatus") is not None:
         import capo_lex_models_v2.types.import_status
 
         out["import_status"] = capo_lex_models_v2.types.import_status.deserialize_json(

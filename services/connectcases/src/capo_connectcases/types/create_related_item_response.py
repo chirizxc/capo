@@ -28,11 +28,11 @@ def serialize_json(value: CreateRelatedItemResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRelatedItemResponse:
     out: CreateRelatedItemResponse = {}  # type: ignore[typeddict-item]
-    if "relatedItemId" in data:
+    if data.get("relatedItemId") is not None:
         out["related_item_id"] = data["relatedItemId"]
     else:
         raise DeserializationError("CreateRelatedItemResponse.related_item_id required")
-    if "relatedItemArn" in data:
+    if data.get("relatedItemArn") is not None:
         out["related_item_arn"] = data["relatedItemArn"]
     else:
         raise DeserializationError(

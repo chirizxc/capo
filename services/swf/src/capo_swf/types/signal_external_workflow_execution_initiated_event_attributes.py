@@ -52,26 +52,26 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> SignalExternalWorkflowExecutionInitiatedEventAttributes:
     out: SignalExternalWorkflowExecutionInitiatedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     else:
         raise DeserializationError(
             "SignalExternalWorkflowExecutionInitiatedEventAttributes.workflow_id required"
         )
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
-    if "signalName" in data:
+    if data.get("signalName") is not None:
         out["signal_name"] = data["signalName"]
     else:
         raise DeserializationError(
             "SignalExternalWorkflowExecutionInitiatedEventAttributes.signal_name required"
         )
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0
-    if "control" in data:
+    if data.get("control") is not None:
         out["control"] = data["control"]
     return out

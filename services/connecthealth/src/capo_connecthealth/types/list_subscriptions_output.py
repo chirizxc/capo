@@ -32,7 +32,7 @@ def serialize_json(value: ListSubscriptionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListSubscriptionsOutput:
     out: ListSubscriptionsOutput = {}  # type: ignore[typeddict-item]
-    if "subscriptions" in data:
+    if data.get("subscriptions") is not None:
         import capo_connecthealth.types.subscription_list
 
         out["subscriptions"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListSubscriptionsOutput:
         )
     else:
         raise DeserializationError("ListSubscriptionsOutput.subscriptions required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

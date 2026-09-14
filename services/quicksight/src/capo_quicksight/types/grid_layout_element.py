@@ -118,11 +118,11 @@ def serialize_json(value: GridLayoutElement) -> dict:
 
 def deserialize_json(data: dict) -> GridLayoutElement:
     out: GridLayoutElement = {}  # type: ignore[typeddict-item]
-    if "ElementId" in data:
+    if data.get("ElementId") is not None:
         out["element_id"] = data["ElementId"]
     else:
         raise DeserializationError("GridLayoutElement.element_id required")
-    if "ElementType" in data:
+    if data.get("ElementType") is not None:
         import capo_quicksight.types.layout_element_type
 
         out["element_type"] = (
@@ -132,19 +132,19 @@ def deserialize_json(data: dict) -> GridLayoutElement:
         )
     else:
         raise DeserializationError("GridLayoutElement.element_type required")
-    if "ColumnIndex" in data:
+    if data.get("ColumnIndex") is not None:
         out["column_index"] = data["ColumnIndex"]
-    if "ColumnSpan" in data:
+    if data.get("ColumnSpan") is not None:
         out["column_span"] = data["ColumnSpan"]
     else:
         raise DeserializationError("GridLayoutElement.column_span required")
-    if "RowIndex" in data:
+    if data.get("RowIndex") is not None:
         out["row_index"] = data["RowIndex"]
-    if "RowSpan" in data:
+    if data.get("RowSpan") is not None:
         out["row_span"] = data["RowSpan"]
     else:
         raise DeserializationError("GridLayoutElement.row_span required")
-    if "BorderStyle" in data:
+    if data.get("BorderStyle") is not None:
         import capo_quicksight.types.grid_layout_element_border_style
 
         out["border_style"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> GridLayoutElement:
                 data["BorderStyle"]
             )
         )
-    if "SelectedBorderStyle" in data:
+    if data.get("SelectedBorderStyle") is not None:
         import capo_quicksight.types.grid_layout_element_border_style
 
         out["selected_border_style"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> GridLayoutElement:
                 data["SelectedBorderStyle"]
             )
         )
-    if "BackgroundStyle" in data:
+    if data.get("BackgroundStyle") is not None:
         import capo_quicksight.types.grid_layout_element_background_style
 
         out["background_style"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> GridLayoutElement:
                 data["BackgroundStyle"]
             )
         )
-    if "LoadingAnimation" in data:
+    if data.get("LoadingAnimation") is not None:
         import capo_quicksight.types.loading_animation
 
         out["loading_animation"] = (
@@ -176,8 +176,8 @@ def deserialize_json(data: dict) -> GridLayoutElement:
                 data["LoadingAnimation"]
             )
         )
-    if "BorderRadius" in data:
+    if data.get("BorderRadius") is not None:
         out["border_radius"] = data["BorderRadius"]
-    if "Padding" in data:
+    if data.get("Padding") is not None:
         out["padding"] = data["Padding"]
     return out

@@ -35,14 +35,14 @@ def serialize_aws_json_1_0(value: ListEnrollmentStatusesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnrollmentStatusesRequest:
     out: ListEnrollmentStatusesRequest = {}  # type: ignore[typeddict-item]
-    if "includeOrganizationInfo" in data:
+    if data.get("includeOrganizationInfo") is not None:
         out["include_organization_info"] = data["includeOrganizationInfo"]
     else:
         out["include_organization_info"] = False
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

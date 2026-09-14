@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidS3PrefixException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidS3PrefixException_:
     out: InvalidS3PrefixException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidS3PrefixException(ServiceError):
 
     code: str | None = "InvalidS3PrefixException"
 
-    def __init__(self, data: InvalidS3PrefixException_):
+    def __init__(self, data: InvalidS3PrefixException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidS3PrefixException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidS3PrefixException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidS3PrefixException":
+        return cls(deserialize_aws_json_1_1(data), message)

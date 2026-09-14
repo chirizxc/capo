@@ -76,17 +76,17 @@ def serialize_json(value: CopySourceImageSetProperties) -> dict:
 
 def deserialize_json(data: dict) -> CopySourceImageSetProperties:
     out: CopySourceImageSetProperties = {}  # type: ignore[typeddict-item]
-    if "imageSetId" in data:
+    if data.get("imageSetId") is not None:
         out["image_set_id"] = data["imageSetId"]
     else:
         raise DeserializationError("CopySourceImageSetProperties.image_set_id required")
-    if "latestVersionId" in data:
+    if data.get("latestVersionId") is not None:
         out["latest_version_id"] = data["latestVersionId"]
     else:
         raise DeserializationError(
             "CopySourceImageSetProperties.latest_version_id required"
         )
-    if "imageSetState" in data:
+    if data.get("imageSetState") is not None:
         import capo_medical_imaging.types.image_set_state
 
         out["image_set_state"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> CopySourceImageSetProperties:
                 data["imageSetState"]
             )
         )
-    if "imageSetWorkflowStatus" in data:
+    if data.get("imageSetWorkflowStatus") is not None:
         import capo_medical_imaging.types.image_set_workflow_status
 
         out["image_set_workflow_status"] = (
@@ -102,18 +102,18 @@ def deserialize_json(data: dict) -> CopySourceImageSetProperties:
                 data["imageSetWorkflowStatus"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_medical_imaging.types.date
 
         out["created_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["updated_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["updatedAt"]
         )
-    if "imageSetArn" in data:
+    if data.get("imageSetArn") is not None:
         out["image_set_arn"] = data["imageSetArn"]
     return out

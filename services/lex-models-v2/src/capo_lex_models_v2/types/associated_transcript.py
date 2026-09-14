@@ -23,6 +23,6 @@ def serialize_json(value: AssociatedTranscript) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedTranscript:
     out: AssociatedTranscript = {}  # type: ignore[typeddict-item]
-    if "transcript" in data:
+    if data.get("transcript") is not None:
         out["transcript"] = data["transcript"]
     return out

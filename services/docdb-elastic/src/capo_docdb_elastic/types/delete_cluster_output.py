@@ -26,7 +26,7 @@ def serialize_json(value: DeleteClusterOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteClusterOutput:
     out: DeleteClusterOutput = {}  # type: ignore[typeddict-item]
-    if "cluster" in data:
+    if data.get("cluster") is not None:
         import capo_docdb_elastic.types.cluster
 
         out["cluster"] = capo_docdb_elastic.types.cluster.deserialize_json(

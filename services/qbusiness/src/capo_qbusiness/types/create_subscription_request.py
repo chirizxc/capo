@@ -42,7 +42,7 @@ def serialize_json(value: CreateSubscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSubscriptionRequest:
     out: CreateSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_qbusiness.types.subscription_principal
 
         out["principal"] = capo_qbusiness.types.subscription_principal.deserialize_json(
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> CreateSubscriptionRequest:
         )
     else:
         raise DeserializationError("CreateSubscriptionRequest.principal required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.subscription_type
 
         out["type"] = capo_qbusiness.types.subscription_type.deserialize_json(
@@ -58,6 +58,6 @@ def deserialize_json(data: dict) -> CreateSubscriptionRequest:
         )
     else:
         raise DeserializationError("CreateSubscriptionRequest.type required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: RelationshipsListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelationshipsListItem:
     out: RelationshipsListItem = {}  # type: ignore[typeddict-item]
-    if "Ids" in data:
+    if data.get("Ids") is not None:
         import capo_comprehend.types.string_list
 
         out["ids"] = capo_comprehend.types.string_list.deserialize_aws_json_1_1(
             data["Ids"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_comprehend.types.relationship_type
 
         out["type"] = capo_comprehend.types.relationship_type.deserialize_aws_json_1_1(

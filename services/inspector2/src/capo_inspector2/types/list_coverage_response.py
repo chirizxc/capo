@@ -36,9 +36,9 @@ def serialize_json(value: ListCoverageResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCoverageResponse:
     out: ListCoverageResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "coveredResources" in data:
+    if data.get("coveredResources") is not None:
         import capo_inspector2.types.covered_resources
 
         out["covered_resources"] = (

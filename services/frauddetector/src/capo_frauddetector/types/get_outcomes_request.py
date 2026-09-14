@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: GetOutcomesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetOutcomesRequest:
     out: GetOutcomesRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

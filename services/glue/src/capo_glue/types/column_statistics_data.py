@@ -119,7 +119,7 @@ def serialize_aws_json_1_1(value: ColumnStatisticsData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsData:
     out: ColumnStatisticsData = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_glue.types.column_statistics_type
 
         out["type"] = capo_glue.types.column_statistics_type.deserialize_aws_json_1_1(
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsData:
         )
     else:
         raise DeserializationError("ColumnStatisticsData.type required")
-    if "BooleanColumnStatisticsData" in data:
+    if data.get("BooleanColumnStatisticsData") is not None:
         import capo_glue.types.boolean_column_statistics_data
 
         out["boolean_column_statistics_data"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsData:
                 data["BooleanColumnStatisticsData"]
             )
         )
-    if "DateColumnStatisticsData" in data:
+    if data.get("DateColumnStatisticsData") is not None:
         import capo_glue.types.date_column_statistics_data
 
         out["date_column_statistics_data"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsData:
                 data["DateColumnStatisticsData"]
             )
         )
-    if "DecimalColumnStatisticsData" in data:
+    if data.get("DecimalColumnStatisticsData") is not None:
         import capo_glue.types.decimal_column_statistics_data
 
         out["decimal_column_statistics_data"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsData:
                 data["DecimalColumnStatisticsData"]
             )
         )
-    if "DoubleColumnStatisticsData" in data:
+    if data.get("DoubleColumnStatisticsData") is not None:
         import capo_glue.types.double_column_statistics_data
 
         out["double_column_statistics_data"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsData:
                 data["DoubleColumnStatisticsData"]
             )
         )
-    if "LongColumnStatisticsData" in data:
+    if data.get("LongColumnStatisticsData") is not None:
         import capo_glue.types.long_column_statistics_data
 
         out["long_column_statistics_data"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsData:
                 data["LongColumnStatisticsData"]
             )
         )
-    if "StringColumnStatisticsData" in data:
+    if data.get("StringColumnStatisticsData") is not None:
         import capo_glue.types.string_column_statistics_data
 
         out["string_column_statistics_data"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsData:
                 data["StringColumnStatisticsData"]
             )
         )
-    if "BinaryColumnStatisticsData" in data:
+    if data.get("BinaryColumnStatisticsData") is not None:
         import capo_glue.types.binary_column_statistics_data
 
         out["binary_column_statistics_data"] = (

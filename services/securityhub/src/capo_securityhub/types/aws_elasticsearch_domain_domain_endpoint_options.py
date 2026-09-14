@@ -30,8 +30,8 @@ def serialize_json(value: AwsElasticsearchDomainDomainEndpointOptions) -> dict:
 
 def deserialize_json(data: dict) -> AwsElasticsearchDomainDomainEndpointOptions:
     out: AwsElasticsearchDomainDomainEndpointOptions = {}  # type: ignore[typeddict-item]
-    if "EnforceHTTPS" in data:
+    if data.get("EnforceHTTPS") is not None:
         out["enforce_https"] = data["EnforceHTTPS"]
-    if "TLSSecurityPolicy" in data:
+    if data.get("TLSSecurityPolicy") is not None:
         out["tls_security_policy"] = data["TLSSecurityPolicy"]
     return out

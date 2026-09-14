@@ -193,10 +193,11 @@ class AsyncS3OutpostsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3outposts.types.create_endpoint_request.CreateEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["outpost_id"] = outpost_id
-        input_["subnet_id"] = subnet_id
-        input_["security_group_id"] = security_group_id
+        input_: capo_s3outposts.types.create_endpoint_request.CreateEndpointRequest = {
+            "outpost_id": outpost_id,
+            "subnet_id": subnet_id,
+            "security_group_id": security_group_id,
+        }
         if access_type is not None:
             input_["access_type"] = access_type
         if customer_owned_ipv4_pool is not None:
@@ -207,6 +208,7 @@ class AsyncS3OutpostsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_endpoint(
@@ -246,15 +248,17 @@ class AsyncS3OutpostsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3outposts.types.delete_endpoint_request.DeleteEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_id"] = endpoint_id
-        input_["outpost_id"] = outpost_id
+        input_: capo_s3outposts.types.delete_endpoint_request.DeleteEndpointRequest = {
+            "endpoint_id": endpoint_id,
+            "outpost_id": outpost_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_endpoints(
@@ -295,7 +299,7 @@ class AsyncS3OutpostsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3outposts.types.list_endpoints_request.ListEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_s3outposts.types.list_endpoints_request.ListEndpointsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -306,6 +310,7 @@ class AsyncS3OutpostsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_endpoints(
@@ -366,7 +371,7 @@ class AsyncS3OutpostsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3outposts.types.list_outposts_with_s3_request.ListOutpostsWithS3Request = {}  # type: ignore[typeddict-item]
+        input_: capo_s3outposts.types.list_outposts_with_s3_request.ListOutpostsWithS3Request = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -377,6 +382,7 @@ class AsyncS3OutpostsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_outposts_with_s3(
@@ -440,18 +446,20 @@ class AsyncS3OutpostsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_s3outposts.types.list_shared_endpoints_request.ListSharedEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_s3outposts.types.list_shared_endpoints_request.ListSharedEndpointsRequest = {
+            "outpost_id": outpost_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["outpost_id"] = outpost_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_shared_endpoints(

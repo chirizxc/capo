@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AutoImportPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoImportPolicy:
     out: AutoImportPolicy = {}  # type: ignore[typeddict-item]
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_fsx.types.event_types
 
         out["events"] = capo_fsx.types.event_types.deserialize_aws_json_1_1(

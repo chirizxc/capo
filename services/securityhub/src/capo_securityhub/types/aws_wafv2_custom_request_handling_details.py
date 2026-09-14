@@ -31,7 +31,7 @@ def serialize_json(value: AwsWafv2CustomRequestHandlingDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafv2CustomRequestHandlingDetails:
     out: AwsWafv2CustomRequestHandlingDetails = {}  # type: ignore[typeddict-item]
-    if "InsertHeaders" in data:
+    if data.get("InsertHeaders") is not None:
         import capo_securityhub.types.aws_wafv2_insert_headers_list
 
         out["insert_headers"] = (

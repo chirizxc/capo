@@ -27,7 +27,7 @@ def serialize_json(value: SuggestAddressHighlights) -> dict:
 
 def deserialize_json(data: dict) -> SuggestAddressHighlights:
     out: SuggestAddressHighlights = {}  # type: ignore[typeddict-item]
-    if "Label" in data:
+    if data.get("Label") is not None:
         import capo_geo_places.types.highlight_list
 
         out["label"] = capo_geo_places.types.highlight_list.deserialize_json(

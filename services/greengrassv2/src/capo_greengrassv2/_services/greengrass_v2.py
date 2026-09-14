@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.greengrassv2#GreengrassV2``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -251,14 +252,16 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.associate_service_role_to_account_request.AssociateServiceRoleToAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["role_arn"] = role_arn
+        input_: capo_greengrassv2.types.associate_service_role_to_account_request.AssociateServiceRoleToAccountRequest = {
+            "role_arn": role_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_associate_client_device_with_core_device(
@@ -300,16 +303,18 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.batch_associate_client_device_with_core_device_request.BatchAssociateClientDeviceWithCoreDeviceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrassv2.types.batch_associate_client_device_with_core_device_request.BatchAssociateClientDeviceWithCoreDeviceRequest = {
+            "core_device_thing_name": core_device_thing_name
+        }
         if entries is not None:
             input_["entries"] = entries
-        input_["core_device_thing_name"] = core_device_thing_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_disassociate_client_device_from_core_device(
@@ -351,16 +356,18 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.batch_disassociate_client_device_from_core_device_request.BatchDisassociateClientDeviceFromCoreDeviceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrassv2.types.batch_disassociate_client_device_from_core_device_request.BatchDisassociateClientDeviceFromCoreDeviceRequest = {
+            "core_device_thing_name": core_device_thing_name
+        }
         if entries is not None:
             input_["entries"] = entries
-        input_["core_device_thing_name"] = core_device_thing_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_deployment(
@@ -399,14 +406,16 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.cancel_deployment_request.CancelDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_greengrassv2.types.cancel_deployment_request.CancelDeploymentRequest = {
+            "deployment_id": deployment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_component_version(
@@ -458,21 +467,23 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.create_component_version_request.CreateComponentVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrassv2.types.create_component_version_request.CreateComponentVersionRequest = {}
         if inline_recipe is not None:
             input_["inline_recipe"] = inline_recipe
         if lambda_function is not None:
             input_["lambda_function"] = lambda_function
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_deployment(
@@ -538,8 +549,9 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.create_deployment_request.CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["target_arn"] = target_arn
+        input_: capo_greengrassv2.types.create_deployment_request.CreateDeploymentRequest = {
+            "target_arn": target_arn
+        }
         if deployment_name is not None:
             input_["deployment_name"] = deployment_name
         if components is not None:
@@ -552,14 +564,16 @@ class GreengrassV2Client:
             input_["parent_target_arn"] = parent_target_arn
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_component(
@@ -596,14 +610,16 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.delete_component_request.DeleteComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_greengrassv2.types.delete_component_request.DeleteComponentRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_core_device(
@@ -640,14 +656,16 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.delete_core_device_request.DeleteCoreDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["core_device_thing_name"] = core_device_thing_name
+        input_: capo_greengrassv2.types.delete_core_device_request.DeleteCoreDeviceRequest = {
+            "core_device_thing_name": core_device_thing_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_deployment(
@@ -684,14 +702,16 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.delete_deployment_request.DeleteDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_greengrassv2.types.delete_deployment_request.DeleteDeploymentRequest = {
+            "deployment_id": deployment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_component(
@@ -731,14 +751,16 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.describe_component_request.DescribeComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_greengrassv2.types.describe_component_request.DescribeComponentRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_service_role_from_account(
@@ -766,13 +788,14 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.disassociate_service_role_from_account_request.DisassociateServiceRoleFromAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrassv2.types.disassociate_service_role_from_account_request.DisassociateServiceRoleFromAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_component(
@@ -814,16 +837,18 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.get_component_request.GetComponentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrassv2.types.get_component_request.GetComponentRequest = {
+            "arn": arn
+        }
         if recipe_output_format is not None:
             input_["recipe_output_format"] = recipe_output_format
-        input_["arn"] = arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_component_version_artifact(
@@ -871,9 +896,10 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.get_component_version_artifact_request.GetComponentVersionArtifactRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["artifact_name"] = artifact_name
+        input_: capo_greengrassv2.types.get_component_version_artifact_request.GetComponentVersionArtifactRequest = {
+            "arn": arn,
+            "artifact_name": artifact_name,
+        }
         if s3_endpoint_type is not None:
             input_["s3_endpoint_type"] = s3_endpoint_type
         if iot_endpoint_type is not None:
@@ -884,6 +910,7 @@ class GreengrassV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_connectivity_info(
@@ -918,14 +945,16 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.get_connectivity_info_request.GetConnectivityInfoRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_greengrassv2.types.get_connectivity_info_request.GetConnectivityInfoRequest = {
+            "thing_name": thing_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_core_device(
@@ -963,14 +992,16 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.get_core_device_request.GetCoreDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["core_device_thing_name"] = core_device_thing_name
+        input_: capo_greengrassv2.types.get_core_device_request.GetCoreDeviceRequest = {
+            "core_device_thing_name": core_device_thing_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_deployment(
@@ -1008,14 +1039,16 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.get_deployment_request.GetDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_greengrassv2.types.get_deployment_request.GetDeploymentRequest = {
+            "deployment_id": deployment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_service_role_for_account(
@@ -1043,13 +1076,14 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.get_service_role_for_account_request.GetServiceRoleForAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrassv2.types.get_service_role_for_account_request.GetServiceRoleForAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_client_devices_associated_with_core_device(
@@ -1095,8 +1129,9 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.list_client_devices_associated_with_core_device_request.ListClientDevicesAssociatedWithCoreDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["core_device_thing_name"] = core_device_thing_name
+        input_: capo_greengrassv2.types.list_client_devices_associated_with_core_device_request.ListClientDevicesAssociatedWithCoreDeviceRequest = {
+            "core_device_thing_name": core_device_thing_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1107,6 +1142,7 @@ class GreengrassV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_client_devices_associated_with_core_device(
@@ -1181,7 +1217,7 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.list_components_request.ListComponentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrassv2.types.list_components_request.ListComponentsRequest = {}
         if scope is not None:
             input_["scope"] = scope
         if max_results is not None:
@@ -1194,6 +1230,7 @@ class GreengrassV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_components(
@@ -1268,8 +1305,9 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.list_component_versions_request.ListComponentVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_greengrassv2.types.list_component_versions_request.ListComponentVersionsRequest = {
+            "arn": arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1280,6 +1318,7 @@ class GreengrassV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_component_versions(
@@ -1361,7 +1400,7 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.list_core_devices_request.ListCoreDevicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrassv2.types.list_core_devices_request.ListCoreDevicesRequest = {}
         if thing_group_arn is not None:
             input_["thing_group_arn"] = thing_group_arn
         if status is not None:
@@ -1378,6 +1417,7 @@ class GreengrassV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_core_devices(
@@ -1467,7 +1507,7 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.list_deployments_request.ListDeploymentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrassv2.types.list_deployments_request.ListDeploymentsRequest = {}
         if target_arn is not None:
             input_["target_arn"] = target_arn
         if history_filter is not None:
@@ -1484,6 +1524,7 @@ class GreengrassV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_deployments(
@@ -1564,8 +1605,9 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.list_effective_deployments_request.ListEffectiveDeploymentsRequest = {}  # type: ignore[typeddict-item]
-        input_["core_device_thing_name"] = core_device_thing_name
+        input_: capo_greengrassv2.types.list_effective_deployments_request.ListEffectiveDeploymentsRequest = {
+            "core_device_thing_name": core_device_thing_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1576,6 +1618,7 @@ class GreengrassV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_effective_deployments(
@@ -1652,8 +1695,9 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.list_installed_components_request.ListInstalledComponentsRequest = {}  # type: ignore[typeddict-item]
-        input_["core_device_thing_name"] = core_device_thing_name
+        input_: capo_greengrassv2.types.list_installed_components_request.ListInstalledComponentsRequest = {
+            "core_device_thing_name": core_device_thing_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1666,6 +1710,7 @@ class GreengrassV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_installed_components(
@@ -1732,14 +1777,16 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_greengrassv2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def resolve_component_candidates(
@@ -1784,7 +1831,7 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.resolve_component_candidates_request.ResolveComponentCandidatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrassv2.types.resolve_component_candidates_request.ResolveComponentCandidatesRequest = {}
         if platform is not None:
             input_["platform"] = platform
         if component_candidates is not None:
@@ -1795,6 +1842,7 @@ class GreengrassV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1832,15 +1880,17 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_greengrassv2.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1878,15 +1928,17 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_greengrassv2.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_connectivity_info(
@@ -1923,15 +1975,17 @@ class GreengrassV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrassv2.types.update_connectivity_info_request.UpdateConnectivityInfoRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
-        input_["connectivity_info"] = connectivity_info
+        input_: capo_greengrassv2.types.update_connectivity_info_request.UpdateConnectivityInfoRequest = {
+            "thing_name": thing_name,
+            "connectivity_info": connectivity_info,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

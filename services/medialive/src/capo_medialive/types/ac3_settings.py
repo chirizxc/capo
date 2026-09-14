@@ -46,7 +46,15 @@ class Ac3Settings(TypedDict, closed=True):
 def serialize_json(value: Ac3Settings) -> dict:
     out: dict = {}
     if "bitrate" in value:
-        out["bitrate"] = value["bitrate"]
+        out["bitrate"] = (
+            "NaN"
+            if value["bitrate"] != value["bitrate"]
+            else "Infinity"
+            if value["bitrate"] == float("inf")
+            else "-Infinity"
+            if value["bitrate"] == float("-inf")
+            else value["bitrate"]
+        )
     if "bitstream_mode" in value:
         import capo_medialive.types.ac3_bitstream_mode
 
@@ -94,9 +102,9 @@ def serialize_json(value: Ac3Settings) -> dict:
 
 def deserialize_json(data: dict) -> Ac3Settings:
     out: Ac3Settings = {}  # type: ignore[typeddict-item]
-    if "bitrate" in data:
-        out["bitrate"] = data["bitrate"]
-    if "bitstreamMode" in data:
+    if data.get("bitrate") is not None:
+        out["bitrate"] = float(data["bitrate"])
+    if data.get("bitstreamMode") is not None:
         import capo_medialive.types.ac3_bitstream_mode
 
         out["bitstream_mode"] = (
@@ -104,27 +112,27 @@ def deserialize_json(data: dict) -> Ac3Settings:
                 data["bitstreamMode"]
             )
         )
-    if "codingMode" in data:
+    if data.get("codingMode") is not None:
         import capo_medialive.types.ac3_coding_mode
 
         out["coding_mode"] = capo_medialive.types.ac3_coding_mode.deserialize_json(
             data["codingMode"]
         )
-    if "dialnorm" in data:
+    if data.get("dialnorm") is not None:
         out["dialnorm"] = data["dialnorm"]
-    if "drcProfile" in data:
+    if data.get("drcProfile") is not None:
         import capo_medialive.types.ac3_drc_profile
 
         out["drc_profile"] = capo_medialive.types.ac3_drc_profile.deserialize_json(
             data["drcProfile"]
         )
-    if "lfeFilter" in data:
+    if data.get("lfeFilter") is not None:
         import capo_medialive.types.ac3_lfe_filter
 
         out["lfe_filter"] = capo_medialive.types.ac3_lfe_filter.deserialize_json(
             data["lfeFilter"]
         )
-    if "metadataControl" in data:
+    if data.get("metadataControl") is not None:
         import capo_medialive.types.ac3_metadata_control
 
         out["metadata_control"] = (
@@ -132,7 +140,7 @@ def deserialize_json(data: dict) -> Ac3Settings:
                 data["metadataControl"]
             )
         )
-    if "attenuationControl" in data:
+    if data.get("attenuationControl") is not None:
         import capo_medialive.types.ac3_attenuation_control
 
         out["attenuation_control"] = (

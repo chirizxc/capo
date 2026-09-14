@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ButtonsList:
 
     out: ButtonsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.button.deserialize_json(item))
     return out

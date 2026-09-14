@@ -39,7 +39,7 @@ def serialize_json(value: PutRuleGroupsNamespaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutRuleGroupsNamespaceRequest:
     out: PutRuleGroupsNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_amp.types.rule_groups_namespace_data
 
         out["data"] = capo_amp.types.rule_groups_namespace_data.deserialize_json(
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> PutRuleGroupsNamespaceRequest:
         )
     else:
         raise DeserializationError("PutRuleGroupsNamespaceRequest.data required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

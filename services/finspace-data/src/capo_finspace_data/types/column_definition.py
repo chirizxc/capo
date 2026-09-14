@@ -39,14 +39,14 @@ def serialize_json(value: ColumnDefinition) -> dict:
 
 def deserialize_json(data: dict) -> ColumnDefinition:
     out: ColumnDefinition = {}  # type: ignore[typeddict-item]
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_finspace_data.types.column_data_type
 
         out["data_type"] = capo_finspace_data.types.column_data_type.deserialize_json(
             data["dataType"]
         )
-    if "columnName" in data:
+    if data.get("columnName") is not None:
         out["column_name"] = data["columnName"]
-    if "columnDescription" in data:
+    if data.get("columnDescription") is not None:
         out["column_description"] = data["columnDescription"]
     return out

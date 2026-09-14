@@ -27,7 +27,7 @@ def serialize_json(value: MetricWindow) -> dict:
 
 def deserialize_json(data: dict) -> MetricWindow:
     out: MetricWindow = {}  # type: ignore[typeddict-item]
-    if "tumbling" in data:
+    if data.get("tumbling") is not None:
         import capo_iotsitewise.types.tumbling_window
 
         out["tumbling"] = capo_iotsitewise.types.tumbling_window.deserialize_json(

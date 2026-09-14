@@ -79,27 +79,27 @@ def serialize_json(value: AttachedFile) -> dict:
 
 def deserialize_json(data: dict) -> AttachedFile:
     out: AttachedFile = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
     else:
         raise DeserializationError("AttachedFile.creation_time required")
-    if "FileArn" in data:
+    if data.get("FileArn") is not None:
         out["file_arn"] = data["FileArn"]
     else:
         raise DeserializationError("AttachedFile.file_arn required")
-    if "FileId" in data:
+    if data.get("FileId") is not None:
         out["file_id"] = data["FileId"]
     else:
         raise DeserializationError("AttachedFile.file_id required")
-    if "FileName" in data:
+    if data.get("FileName") is not None:
         out["file_name"] = data["FileName"]
     else:
         raise DeserializationError("AttachedFile.file_name required")
-    if "FileSizeInBytes" in data:
+    if data.get("FileSizeInBytes") is not None:
         out["file_size_in_bytes"] = data["FileSizeInBytes"]
     else:
         raise DeserializationError("AttachedFile.file_size_in_bytes required")
-    if "FileStatus" in data:
+    if data.get("FileStatus") is not None:
         import capo_connect.types.file_status_type
 
         out["file_status"] = capo_connect.types.file_status_type.deserialize_json(
@@ -107,13 +107,13 @@ def deserialize_json(data: dict) -> AttachedFile:
         )
     else:
         raise DeserializationError("AttachedFile.file_status required")
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_connect.types.created_by_info
 
         out["created_by"] = capo_connect.types.created_by_info.deserialize_json(
             data["CreatedBy"]
         )
-    if "FileUseCaseType" in data:
+    if data.get("FileUseCaseType") is not None:
         import capo_connect.types.file_use_case_type
 
         out["file_use_case_type"] = (
@@ -121,9 +121,9 @@ def deserialize_json(data: dict) -> AttachedFile:
                 data["FileUseCaseType"]
             )
         )
-    if "AssociatedResourceArn" in data:
+    if data.get("AssociatedResourceArn") is not None:
         out["associated_resource_arn"] = data["AssociatedResourceArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

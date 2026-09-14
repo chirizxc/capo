@@ -44,7 +44,7 @@ def serialize_json(value: UpdatePipeSourceRabbitMQBrokerParameters) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePipeSourceRabbitMQBrokerParameters:
     out: UpdatePipeSourceRabbitMQBrokerParameters = {}  # type: ignore[typeddict-item]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_pipes.types.mq_broker_access_credentials
 
         out["credentials"] = (
@@ -56,9 +56,9 @@ def deserialize_json(data: dict) -> UpdatePipeSourceRabbitMQBrokerParameters:
         raise DeserializationError(
             "UpdatePipeSourceRabbitMQBrokerParameters.credentials required"
         )
-    if "BatchSize" in data:
+    if data.get("BatchSize") is not None:
         out["batch_size"] = data["BatchSize"]
-    if "MaximumBatchingWindowInSeconds" in data:
+    if data.get("MaximumBatchingWindowInSeconds") is not None:
         out["maximum_batching_window_in_seconds"] = data[
             "MaximumBatchingWindowInSeconds"
         ]

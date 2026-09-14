@@ -86,33 +86,33 @@ def serialize_json(value: UpdateQAppOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQAppOutput:
     out: UpdateQAppOutput = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("UpdateQAppOutput.app_id required")
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("UpdateQAppOutput.app_arn required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("UpdateQAppOutput.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "initialPrompt" in data:
+    if data.get("initialPrompt") is not None:
         out["initial_prompt"] = data["initialPrompt"]
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError("UpdateQAppOutput.app_version required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qapps.types.app_status
 
         out["status"] = capo_qapps.types.app_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("UpdateQAppOutput.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qapps.types.q_apps_timestamp
 
         out["created_at"] = capo_qapps.types.q_apps_timestamp.deserialize_json(
@@ -120,11 +120,11 @@ def deserialize_json(data: dict) -> UpdateQAppOutput:
         )
     else:
         raise DeserializationError("UpdateQAppOutput.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("UpdateQAppOutput.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qapps.types.q_apps_timestamp
 
         out["updated_at"] = capo_qapps.types.q_apps_timestamp.deserialize_json(
@@ -132,11 +132,11 @@ def deserialize_json(data: dict) -> UpdateQAppOutput:
         )
     else:
         raise DeserializationError("UpdateQAppOutput.updated_at required")
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
     else:
         raise DeserializationError("UpdateQAppOutput.updated_by required")
-    if "requiredCapabilities" in data:
+    if data.get("requiredCapabilities") is not None:
         import capo_qapps.types.app_required_capabilities
 
         out["required_capabilities"] = (

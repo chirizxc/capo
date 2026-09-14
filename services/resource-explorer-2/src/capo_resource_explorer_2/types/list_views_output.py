@@ -31,12 +31,12 @@ def serialize_json(value: ListViewsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListViewsOutput:
     out: ListViewsOutput = {}  # type: ignore[typeddict-item]
-    if "Views" in data:
+    if data.get("Views") is not None:
         import capo_resource_explorer_2.types.view_arn_list
 
         out["views"] = capo_resource_explorer_2.types.view_arn_list.deserialize_json(
             data["Views"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -47,13 +47,13 @@ def serialize_json(value: CreateVirtualServiceInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateVirtualServiceInput:
     out: CreateVirtualServiceInput = {}  # type: ignore[typeddict-item]
-    if "virtualServiceName" in data:
+    if data.get("virtualServiceName") is not None:
         out["virtual_service_name"] = data["virtualServiceName"]
     else:
         raise DeserializationError(
             "CreateVirtualServiceInput.virtual_service_name required"
         )
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.virtual_service_spec
 
         out["spec"] = capo_app_mesh.types.virtual_service_spec.deserialize_json(
@@ -61,10 +61,10 @@ def deserialize_json(data: dict) -> CreateVirtualServiceInput:
         )
     else:
         raise DeserializationError("CreateVirtualServiceInput.spec required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_app_mesh.types.tag_list
 
         out["tags"] = capo_app_mesh.types.tag_list.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

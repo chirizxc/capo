@@ -66,11 +66,11 @@ def serialize_json(value: StepInput) -> dict:
 
 
 def deserialize_json(data: dict) -> StepInput:
-    if "integerValue" in data:
+    if data.get("integerValue") is not None:
         return {"integerValue": data["integerValue"]}
-    elif "stringValue" in data:
+    elif data.get("stringValue") is not None:
         return {"stringValue": data["stringValue"]}
-    elif "listOfStringsValue" in data:
+    elif data.get("listOfStringsValue") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> StepInput:
                 data["listOfStringsValue"]
             )
         }
-    elif "mapOfStringValue" in data:
+    elif data.get("mapOfStringValue") is not None:
         import capo_migrationhuborchestrator.types.string_map
 
         return {

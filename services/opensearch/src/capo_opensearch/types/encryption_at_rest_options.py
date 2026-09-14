@@ -28,8 +28,8 @@ def serialize_json(value: EncryptionAtRestOptions) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionAtRestOptions:
     out: EncryptionAtRestOptions = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

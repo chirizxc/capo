@@ -87,17 +87,17 @@ def serialize_aws_json_1_1(value: Channel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Channel:
     out: Channel = {}  # type: ignore[typeddict-item]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_sagemaker.types.data_source
 
         out["data_source"] = capo_sagemaker.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "CompressionType" in data:
+    if data.get("CompressionType") is not None:
         import capo_sagemaker.types.compression_type
 
         out["compression_type"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> Channel:
                 data["CompressionType"]
             )
         )
-    if "RecordWrapperType" in data:
+    if data.get("RecordWrapperType") is not None:
         import capo_sagemaker.types.record_wrapper
 
         out["record_wrapper_type"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> Channel:
                 data["RecordWrapperType"]
             )
         )
-    if "InputMode" in data:
+    if data.get("InputMode") is not None:
         import capo_sagemaker.types.training_input_mode
 
         out["input_mode"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> Channel:
                 data["InputMode"]
             )
         )
-    if "ShuffleConfig" in data:
+    if data.get("ShuffleConfig") is not None:
         import capo_sagemaker.types.shuffle_config
 
         out["shuffle_config"] = (

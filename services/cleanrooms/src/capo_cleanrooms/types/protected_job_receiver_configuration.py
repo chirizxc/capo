@@ -45,7 +45,7 @@ def serialize_json(value: ProtectedJobReceiverConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedJobReceiverConfiguration:
     out: ProtectedJobReceiverConfiguration = {}  # type: ignore[typeddict-item]
-    if "analysisType" in data:
+    if data.get("analysisType") is not None:
         import capo_cleanrooms.types.protected_job_analysis_type
 
         out["analysis_type"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> ProtectedJobReceiverConfiguration:
         raise DeserializationError(
             "ProtectedJobReceiverConfiguration.analysis_type required"
         )
-    if "configurationDetails" in data:
+    if data.get("configurationDetails") is not None:
         import capo_cleanrooms.types.protected_job_configuration_details
 
         out["configuration_details"] = (

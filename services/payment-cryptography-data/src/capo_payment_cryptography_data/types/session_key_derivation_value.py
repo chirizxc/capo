@@ -41,9 +41,9 @@ def serialize_json(value: SessionKeyDerivationValue) -> dict:
 
 
 def deserialize_json(data: dict) -> SessionKeyDerivationValue:
-    if "ApplicationCryptogram" in data:
+    if data.get("ApplicationCryptogram") is not None:
         return {"ApplicationCryptogram": data["ApplicationCryptogram"]}
-    elif "ApplicationTransactionCounter" in data:
+    elif data.get("ApplicationTransactionCounter") is not None:
         return {"ApplicationTransactionCounter": data["ApplicationTransactionCounter"]}
     else:
         raise DeserializationError(

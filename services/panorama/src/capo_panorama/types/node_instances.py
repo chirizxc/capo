@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> NodeInstances:
 
     out: NodeInstances = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_panorama.types.node_instance.deserialize_json(item))
     return out

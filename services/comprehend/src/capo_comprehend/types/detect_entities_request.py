@@ -67,9 +67,9 @@ def serialize_aws_json_1_1(value: DetectEntitiesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectEntitiesRequest:
     out: DetectEntitiesRequest = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.language_code
 
         out["language_code"] = (
@@ -77,9 +77,9 @@ def deserialize_aws_json_1_1(data: dict) -> DetectEntitiesRequest:
                 data["LanguageCode"]
             )
         )
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
-    if "Bytes" in data:
+    if data.get("Bytes") is not None:
         import capo_comprehend.types.semi_structured_document_blob
 
         out["bytes"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectEntitiesRequest:
                 data["Bytes"]
             )
         )
-    if "DocumentReaderConfig" in data:
+    if data.get("DocumentReaderConfig") is not None:
         import capo_comprehend.types.document_reader_config
 
         out["document_reader_config"] = (

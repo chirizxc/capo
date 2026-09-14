@@ -36,19 +36,19 @@ def serialize_aws_json_1_1(value: DescribeCrossAccountAccessRoleResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCrossAccountAccessRoleResponse:
     out: DescribeCrossAccountAccessRoleResponse = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(
             "DescribeCrossAccountAccessRoleResponse.role_arn required"
         )
-    if "valid" in data:
+    if data.get("valid") is not None:
         out["valid"] = data["valid"]
     else:
         raise DeserializationError(
             "DescribeCrossAccountAccessRoleResponse.valid required"
         )
-    if "registeredAt" in data:
+    if data.get("registeredAt") is not None:
         import capo_inspector.types.timestamp
 
         out["registered_at"] = capo_inspector.types.timestamp.deserialize_aws_json_1_1(

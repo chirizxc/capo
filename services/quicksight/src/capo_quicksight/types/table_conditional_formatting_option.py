@@ -44,7 +44,7 @@ def serialize_json(value: TableConditionalFormattingOption) -> dict:
 
 def deserialize_json(data: dict) -> TableConditionalFormattingOption:
     out: TableConditionalFormattingOption = {}  # type: ignore[typeddict-item]
-    if "Cell" in data:
+    if data.get("Cell") is not None:
         import capo_quicksight.types.table_cell_conditional_formatting
 
         out["cell"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TableConditionalFormattingOption:
                 data["Cell"]
             )
         )
-    if "Row" in data:
+    if data.get("Row") is not None:
         import capo_quicksight.types.table_row_conditional_formatting
 
         out["row"] = (

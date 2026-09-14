@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: LabelAlias) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelAlias:
     out: LabelAlias = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

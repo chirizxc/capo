@@ -180,19 +180,19 @@ def serialize_aws_json_1_1(value: Instance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Instance:
     out: Instance = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> Instance:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -208,31 +208,31 @@ def deserialize_aws_json_1_1(data: dict) -> Instance:
                 data["resourceType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "blueprintId" in data:
+    if data.get("blueprintId") is not None:
         out["blueprint_id"] = data["blueprintId"]
-    if "blueprintName" in data:
+    if data.get("blueprintName") is not None:
         out["blueprint_name"] = data["blueprintName"]
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
-    if "addOns" in data:
+    if data.get("addOns") is not None:
         import capo_lightsail.types.add_on_list
 
         out["add_ons"] = capo_lightsail.types.add_on_list.deserialize_aws_json_1_1(
             data["addOns"]
         )
-    if "isStaticIp" in data:
+    if data.get("isStaticIp") is not None:
         out["is_static_ip"] = data["isStaticIp"]
-    if "privateIpAddress" in data:
+    if data.get("privateIpAddress") is not None:
         out["private_ip_address"] = data["privateIpAddress"]
-    if "publicIpAddress" in data:
+    if data.get("publicIpAddress") is not None:
         out["public_ip_address"] = data["publicIpAddress"]
-    if "ipv6Addresses" in data:
+    if data.get("ipv6Addresses") is not None:
         import capo_lightsail.types.ipv6_address_list
 
         out["ipv6_addresses"] = (
@@ -240,7 +240,7 @@ def deserialize_aws_json_1_1(data: dict) -> Instance:
                 data["ipv6Addresses"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_lightsail.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -248,7 +248,7 @@ def deserialize_aws_json_1_1(data: dict) -> Instance:
                 data["ipAddressType"]
             )
         )
-    if "hardware" in data:
+    if data.get("hardware") is not None:
         import capo_lightsail.types.instance_hardware
 
         out["hardware"] = (
@@ -256,7 +256,7 @@ def deserialize_aws_json_1_1(data: dict) -> Instance:
                 data["hardware"]
             )
         )
-    if "networking" in data:
+    if data.get("networking") is not None:
         import capo_lightsail.types.instance_networking
 
         out["networking"] = (
@@ -264,17 +264,17 @@ def deserialize_aws_json_1_1(data: dict) -> Instance:
                 data["networking"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.instance_state
 
         out["state"] = capo_lightsail.types.instance_state.deserialize_aws_json_1_1(
             data["state"]
         )
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "sshKeyName" in data:
+    if data.get("sshKeyName") is not None:
         out["ssh_key_name"] = data["sshKeyName"]
-    if "metadataOptions" in data:
+    if data.get("metadataOptions") is not None:
         import capo_lightsail.types.instance_metadata_options
 
         out["metadata_options"] = (

@@ -27,8 +27,8 @@ def serialize_json(value: LongRangeType) -> dict:
 
 def deserialize_json(data: dict) -> LongRangeType:
     out: LongRangeType = {}  # type: ignore[typeddict-item]
-    if "StartValue" in data:
+    if data.get("StartValue") is not None:
         out["start_value"] = data["StartValue"]
-    if "EndValue" in data:
+    if data.get("EndValue") is not None:
         out["end_value"] = data["EndValue"]
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateJobFromSourceControlResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateJobFromSourceControlResponse:
     out: UpdateJobFromSourceControlResponse = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
     return out

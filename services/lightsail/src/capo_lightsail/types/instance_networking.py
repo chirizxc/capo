@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: InstanceNetworking) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceNetworking:
     out: InstanceNetworking = {}  # type: ignore[typeddict-item]
-    if "monthlyTransfer" in data:
+    if data.get("monthlyTransfer") is not None:
         import capo_lightsail.types.monthly_transfer
 
         out["monthly_transfer"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceNetworking:
                 data["monthlyTransfer"]
             )
         )
-    if "ports" in data:
+    if data.get("ports") is not None:
         import capo_lightsail.types.instance_port_info_list
 
         out["ports"] = (

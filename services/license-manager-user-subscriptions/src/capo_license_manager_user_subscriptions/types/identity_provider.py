@@ -35,7 +35,7 @@ def serialize_json(value: IdentityProvider) -> dict:
 
 
 def deserialize_json(data: dict) -> IdentityProvider:
-    if "ActiveDirectoryIdentityProvider" in data:
+    if data.get("ActiveDirectoryIdentityProvider") is not None:
         import capo_license_manager_user_subscriptions.types.active_directory_identity_provider
 
         return {

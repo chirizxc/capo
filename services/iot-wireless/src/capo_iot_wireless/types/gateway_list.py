@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GatewayList:
 
     out: GatewayList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_wireless.types.gateway_list_item.deserialize_json(item))
     return out

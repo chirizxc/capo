@@ -37,25 +37,25 @@ def serialize_aws_json_1_0(value: AssociateProtectConfigurationResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateProtectConfigurationResult:
     out: AssociateProtectConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetArn" in data:
+    if data.get("ConfigurationSetArn") is not None:
         out["configuration_set_arn"] = data["ConfigurationSetArn"]
     else:
         raise DeserializationError(
             "AssociateProtectConfigurationResult.configuration_set_arn required"
         )
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     else:
         raise DeserializationError(
             "AssociateProtectConfigurationResult.configuration_set_name required"
         )
-    if "ProtectConfigurationArn" in data:
+    if data.get("ProtectConfigurationArn") is not None:
         out["protect_configuration_arn"] = data["ProtectConfigurationArn"]
     else:
         raise DeserializationError(
             "AssociateProtectConfigurationResult.protect_configuration_arn required"
         )
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     else:
         raise DeserializationError(

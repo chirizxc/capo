@@ -43,7 +43,7 @@ def serialize_json(value: BatchAssociateResourcesToCustomLineItemOutput) -> dict
 
 def deserialize_json(data: dict) -> BatchAssociateResourcesToCustomLineItemOutput:
     out: BatchAssociateResourcesToCustomLineItemOutput = {}  # type: ignore[typeddict-item]
-    if "SuccessfullyAssociatedResources" in data:
+    if data.get("SuccessfullyAssociatedResources") is not None:
         import capo_billingconductor.types.associate_resources_response_list
 
         out["successfully_associated_resources"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> BatchAssociateResourcesToCustomLineItemOutpu
                 data["SuccessfullyAssociatedResources"]
             )
         )
-    if "FailedAssociatedResources" in data:
+    if data.get("FailedAssociatedResources") is not None:
         import capo_billingconductor.types.associate_resources_response_list
 
         out["failed_associated_resources"] = (

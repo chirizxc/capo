@@ -46,7 +46,7 @@ def serialize_json(value: ListEnabledBaselinesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListEnabledBaselinesInput:
     out: ListEnabledBaselinesInput = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_controltower.types.enabled_baseline_filter
 
         out["filter"] = (
@@ -54,11 +54,11 @@ def deserialize_json(data: dict) -> ListEnabledBaselinesInput:
                 data["filter"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "includeChildren" in data:
+    if data.get("includeChildren") is not None:
         out["include_children"] = data["includeChildren"]
     else:
         out["include_children"] = False

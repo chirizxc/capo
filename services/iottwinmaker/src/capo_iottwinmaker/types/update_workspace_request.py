@@ -36,10 +36,10 @@ def serialize_json(value: UpdateWorkspaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkspaceRequest:
     out: UpdateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         out["s3_location"] = data["s3Location"]
     return out

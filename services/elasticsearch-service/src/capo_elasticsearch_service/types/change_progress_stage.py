@@ -50,13 +50,13 @@ def serialize_json(value: ChangeProgressStage) -> dict:
 
 def deserialize_json(data: dict) -> ChangeProgressStage:
     out: ChangeProgressStage = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_elasticsearch_service.types.last_updated
 
         out["last_updated"] = (

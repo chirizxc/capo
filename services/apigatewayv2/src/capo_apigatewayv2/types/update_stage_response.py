@@ -139,7 +139,7 @@ def serialize_json(value: UpdateStageResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateStageResponse:
     out: UpdateStageResponse = {}  # type: ignore[typeddict-item]
-    if "accessLogSettings" in data:
+    if data.get("accessLogSettings") is not None:
         import capo_apigatewayv2.types.access_log_settings
 
         out["access_log_settings"] = (
@@ -147,13 +147,13 @@ def deserialize_json(data: dict) -> UpdateStageResponse:
                 data["accessLogSettings"]
             )
         )
-    if "apiGatewayManaged" in data:
+    if data.get("apiGatewayManaged") is not None:
         out["api_gateway_managed"] = data["apiGatewayManaged"]
-    if "autoDeploy" in data:
+    if data.get("autoDeploy") is not None:
         out["auto_deploy"] = data["autoDeploy"]
-    if "clientCertificateId" in data:
+    if data.get("clientCertificateId") is not None:
         out["client_certificate_id"] = data["clientCertificateId"]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["created_date"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> UpdateStageResponse:
                 data["createdDate"]
             )
         )
-    if "defaultRouteSettings" in data:
+    if data.get("defaultRouteSettings") is not None:
         import capo_apigatewayv2.types.route_settings
 
         out["default_route_settings"] = (
@@ -169,13 +169,13 @@ def deserialize_json(data: dict) -> UpdateStageResponse:
                 data["defaultRouteSettings"]
             )
         )
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "lastDeploymentStatusMessage" in data:
+    if data.get("lastDeploymentStatusMessage") is not None:
         out["last_deployment_status_message"] = data["lastDeploymentStatusMessage"]
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["last_updated_date"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> UpdateStageResponse:
                 data["lastUpdatedDate"]
             )
         )
-    if "routeSettings" in data:
+    if data.get("routeSettings") is not None:
         import capo_apigatewayv2.types.route_settings_map
 
         out["route_settings"] = (
@@ -191,9 +191,9 @@ def deserialize_json(data: dict) -> UpdateStageResponse:
                 data["routeSettings"]
             )
         )
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
-    if "stageVariables" in data:
+    if data.get("stageVariables") is not None:
         import capo_apigatewayv2.types.stage_variables_map
 
         out["stage_variables"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> UpdateStageResponse:
                 data["stageVariables"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])

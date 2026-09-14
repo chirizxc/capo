@@ -35,9 +35,9 @@ def serialize_json(value: UpdateKxDatabaseRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKxDatabaseRequest:
     out: UpdateKxDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("UpdateKxDatabaseRequest.client_token required")

@@ -32,14 +32,14 @@ def serialize_aws_json_1_1(value: TelemetryMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TelemetryMetadata:
     out: TelemetryMetadata = {}  # type: ignore[typeddict-item]
-    if "messageType" in data:
+    if data.get("messageType") is not None:
         out["message_type"] = data["messageType"]
     else:
         raise DeserializationError("TelemetryMetadata.message_type required")
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         raise DeserializationError("TelemetryMetadata.count required")
-    if "dataSize" in data:
+    if data.get("dataSize") is not None:
         out["data_size"] = data["dataSize"]
     return out

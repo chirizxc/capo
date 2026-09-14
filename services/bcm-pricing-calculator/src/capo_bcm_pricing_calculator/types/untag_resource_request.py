@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: UntagResourceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UntagResourceRequest:
     out: UntagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UntagResourceRequest.arn required")
-    if "tagKeys" in data:
+    if data.get("tagKeys") is not None:
         import capo_bcm_pricing_calculator.types.resource_tag_keys
 
         out["tag_keys"] = (

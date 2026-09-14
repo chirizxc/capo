@@ -169,19 +169,19 @@ def serialize_json(value: TopicCalculatedField) -> dict:
 
 def deserialize_json(data: dict) -> TopicCalculatedField:
     out: TopicCalculatedField = {}  # type: ignore[typeddict-item]
-    if "CalculatedFieldName" in data:
+    if data.get("CalculatedFieldName") is not None:
         out["calculated_field_name"] = data["CalculatedFieldName"]
     else:
         raise DeserializationError(
             "TopicCalculatedField.calculated_field_name required"
         )
-    if "CalculatedFieldDescription" in data:
+    if data.get("CalculatedFieldDescription") is not None:
         out["calculated_field_description"] = data["CalculatedFieldDescription"]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError("TopicCalculatedField.expression required")
-    if "CalculatedFieldSynonyms" in data:
+    if data.get("CalculatedFieldSynonyms") is not None:
         import capo_quicksight.types.synonyms
 
         out["calculated_field_synonyms"] = (
@@ -189,13 +189,13 @@ def deserialize_json(data: dict) -> TopicCalculatedField:
                 data["CalculatedFieldSynonyms"]
             )
         )
-    if "IsIncludedInTopic" in data:
+    if data.get("IsIncludedInTopic") is not None:
         out["is_included_in_topic"] = data["IsIncludedInTopic"]
     else:
         out["is_included_in_topic"] = False
-    if "DisableIndexing" in data:
+    if data.get("DisableIndexing") is not None:
         out["disable_indexing"] = data["DisableIndexing"]
-    if "ColumnDataRole" in data:
+    if data.get("ColumnDataRole") is not None:
         import capo_quicksight.types.column_data_role
 
         out["column_data_role"] = (
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> TopicCalculatedField:
                 data["ColumnDataRole"]
             )
         )
-    if "TimeGranularity" in data:
+    if data.get("TimeGranularity") is not None:
         import capo_quicksight.types.topic_time_granularity
 
         out["time_granularity"] = (
@@ -211,7 +211,7 @@ def deserialize_json(data: dict) -> TopicCalculatedField:
                 data["TimeGranularity"]
             )
         )
-    if "DefaultFormatting" in data:
+    if data.get("DefaultFormatting") is not None:
         import capo_quicksight.types.default_formatting
 
         out["default_formatting"] = (
@@ -219,13 +219,13 @@ def deserialize_json(data: dict) -> TopicCalculatedField:
                 data["DefaultFormatting"]
             )
         )
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_quicksight.types.default_aggregation
 
         out["aggregation"] = capo_quicksight.types.default_aggregation.deserialize_json(
             data["Aggregation"]
         )
-    if "ComparativeOrder" in data:
+    if data.get("ComparativeOrder") is not None:
         import capo_quicksight.types.comparative_order
 
         out["comparative_order"] = (
@@ -233,13 +233,13 @@ def deserialize_json(data: dict) -> TopicCalculatedField:
                 data["ComparativeOrder"]
             )
         )
-    if "SemanticType" in data:
+    if data.get("SemanticType") is not None:
         import capo_quicksight.types.semantic_type
 
         out["semantic_type"] = capo_quicksight.types.semantic_type.deserialize_json(
             data["SemanticType"]
         )
-    if "AllowedAggregations" in data:
+    if data.get("AllowedAggregations") is not None:
         import capo_quicksight.types.author_specified_aggregations
 
         out["allowed_aggregations"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> TopicCalculatedField:
                 data["AllowedAggregations"]
             )
         )
-    if "NotAllowedAggregations" in data:
+    if data.get("NotAllowedAggregations") is not None:
         import capo_quicksight.types.author_specified_aggregations
 
         out["not_allowed_aggregations"] = (
@@ -255,11 +255,11 @@ def deserialize_json(data: dict) -> TopicCalculatedField:
                 data["NotAllowedAggregations"]
             )
         )
-    if "NeverAggregateInFilter" in data:
+    if data.get("NeverAggregateInFilter") is not None:
         out["never_aggregate_in_filter"] = data["NeverAggregateInFilter"]
     else:
         out["never_aggregate_in_filter"] = False
-    if "CellValueSynonyms" in data:
+    if data.get("CellValueSynonyms") is not None:
         import capo_quicksight.types.cell_value_synonyms
 
         out["cell_value_synonyms"] = (
@@ -267,6 +267,6 @@ def deserialize_json(data: dict) -> TopicCalculatedField:
                 data["CellValueSynonyms"]
             )
         )
-    if "NonAdditive" in data:
+    if data.get("NonAdditive") is not None:
         out["non_additive"] = data["NonAdditive"]
     return out

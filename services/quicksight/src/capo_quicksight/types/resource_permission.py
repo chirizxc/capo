@@ -30,11 +30,11 @@ def serialize_json(value: ResourcePermission) -> dict:
 
 def deserialize_json(data: dict) -> ResourcePermission:
     out: ResourcePermission = {}  # type: ignore[typeddict-item]
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         out["principal"] = data["Principal"]
     else:
         raise DeserializationError("ResourcePermission.principal required")
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_quicksight.types.action_list
 
         out["actions"] = capo_quicksight.types.action_list.deserialize_json(

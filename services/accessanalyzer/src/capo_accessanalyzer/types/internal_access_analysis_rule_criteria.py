@@ -55,7 +55,7 @@ def serialize_json(value: InternalAccessAnalysisRuleCriteria) -> dict:
 
 def deserialize_json(data: dict) -> InternalAccessAnalysisRuleCriteria:
     out: InternalAccessAnalysisRuleCriteria = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_accessanalyzer.types.account_ids_list
 
         out["account_ids"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> InternalAccessAnalysisRuleCriteria:
                 data["accountIds"]
             )
         )
-    if "resourceTypes" in data:
+    if data.get("resourceTypes") is not None:
         import capo_accessanalyzer.types.resource_type_list
 
         out["resource_types"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> InternalAccessAnalysisRuleCriteria:
                 data["resourceTypes"]
             )
         )
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_accessanalyzer.types.resource_arns_list
 
         out["resource_arns"] = (

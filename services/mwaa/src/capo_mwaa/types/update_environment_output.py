@@ -23,6 +23,6 @@ def serialize_json(value: UpdateEnvironmentOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentOutput:
     out: UpdateEnvironmentOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

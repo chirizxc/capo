@@ -62,7 +62,15 @@ def serialize_json(value: SamplingRuleUpdate) -> dict:
     if "priority" in value:
         out["Priority"] = value["priority"]
     if "fixed_rate" in value:
-        out["FixedRate"] = value["fixed_rate"]
+        out["FixedRate"] = (
+            "NaN"
+            if value["fixed_rate"] != value["fixed_rate"]
+            else "Infinity"
+            if value["fixed_rate"] == float("inf")
+            else "-Infinity"
+            if value["fixed_rate"] == float("-inf")
+            else value["fixed_rate"]
+        )
     if "reservoir_size" in value:
         out["ReservoirSize"] = value["reservoir_size"]
     if "host" in value:
@@ -92,35 +100,35 @@ def serialize_json(value: SamplingRuleUpdate) -> dict:
 
 def deserialize_json(data: dict) -> SamplingRuleUpdate:
     out: SamplingRuleUpdate = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "RuleARN" in data:
+    if data.get("RuleARN") is not None:
         out["rule_arn"] = data["RuleARN"]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "FixedRate" in data:
-        out["fixed_rate"] = data["FixedRate"]
-    if "ReservoirSize" in data:
+    if data.get("FixedRate") is not None:
+        out["fixed_rate"] = float(data["FixedRate"])
+    if data.get("ReservoirSize") is not None:
         out["reservoir_size"] = data["ReservoirSize"]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         out["service_type"] = data["ServiceType"]
-    if "HTTPMethod" in data:
+    if data.get("HTTPMethod") is not None:
         out["http_method"] = data["HTTPMethod"]
-    if "URLPath" in data:
+    if data.get("URLPath") is not None:
         out["url_path"] = data["URLPath"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_xray.types.attribute_map
 
         out["attributes"] = capo_xray.types.attribute_map.deserialize_json(
             data["Attributes"]
         )
-    if "SamplingRateBoost" in data:
+    if data.get("SamplingRateBoost") is not None:
         import capo_xray.types.sampling_rate_boost
 
         out["sampling_rate_boost"] = (

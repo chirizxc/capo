@@ -56,28 +56,28 @@ def serialize_json(value: ExecuteStatementResponse) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteStatementResponse:
     out: ExecuteStatementResponse = {}  # type: ignore[typeddict-item]
-    if "records" in data:
+    if data.get("records") is not None:
         import capo_rds_data.types.sql_records
 
         out["records"] = capo_rds_data.types.sql_records.deserialize_json(
             data["records"]
         )
-    if "columnMetadata" in data:
+    if data.get("columnMetadata") is not None:
         import capo_rds_data.types.metadata
 
         out["column_metadata"] = capo_rds_data.types.metadata.deserialize_json(
             data["columnMetadata"]
         )
-    if "numberOfRecordsUpdated" in data:
+    if data.get("numberOfRecordsUpdated") is not None:
         out["number_of_records_updated"] = data["numberOfRecordsUpdated"]
     else:
         out["number_of_records_updated"] = 0
-    if "generatedFields" in data:
+    if data.get("generatedFields") is not None:
         import capo_rds_data.types.field_list
 
         out["generated_fields"] = capo_rds_data.types.field_list.deserialize_json(
             data["generatedFields"]
         )
-    if "formattedRecords" in data:
+    if data.get("formattedRecords") is not None:
         out["formatted_records"] = data["formattedRecords"]
     return out

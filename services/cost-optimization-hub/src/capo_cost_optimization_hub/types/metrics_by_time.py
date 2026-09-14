@@ -18,11 +18,35 @@ class MetricsByTime(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: MetricsByTime) -> dict:
     out: dict = {}
     if "score" in value:
-        out["score"] = value["score"]
+        out["score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     if "savings" in value:
-        out["savings"] = value["savings"]
+        out["savings"] = (
+            "NaN"
+            if value["savings"] != value["savings"]
+            else "Infinity"
+            if value["savings"] == float("inf")
+            else "-Infinity"
+            if value["savings"] == float("-inf")
+            else value["savings"]
+        )
     if "spend" in value:
-        out["spend"] = value["spend"]
+        out["spend"] = (
+            "NaN"
+            if value["spend"] != value["spend"]
+            else "Infinity"
+            if value["spend"] == float("inf")
+            else "-Infinity"
+            if value["spend"] == float("-inf")
+            else value["spend"]
+        )
     if "timestamp" in value:
         out["timestamp"] = value["timestamp"]
     return out
@@ -30,12 +54,12 @@ def serialize_aws_json_1_0(value: MetricsByTime) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MetricsByTime:
     out: MetricsByTime = {}  # type: ignore[typeddict-item]
-    if "score" in data:
-        out["score"] = data["score"]
-    if "savings" in data:
-        out["savings"] = data["savings"]
-    if "spend" in data:
-        out["spend"] = data["spend"]
-    if "timestamp" in data:
+    if data.get("score") is not None:
+        out["score"] = float(data["score"])
+    if data.get("savings") is not None:
+        out["savings"] = float(data["savings"])
+    if data.get("spend") is not None:
+        out["spend"] = float(data["spend"])
+    if data.get("timestamp") is not None:
         out["timestamp"] = data["timestamp"]
     return out

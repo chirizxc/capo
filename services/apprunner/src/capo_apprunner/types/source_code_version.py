@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: SourceCodeVersion) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SourceCodeVersion:
     out: SourceCodeVersion = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_apprunner.types.source_code_version_type
 
         out["type"] = (
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_0(data: dict) -> SourceCodeVersion:
         )
     else:
         raise DeserializationError("SourceCodeVersion.type required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("SourceCodeVersion.value required")

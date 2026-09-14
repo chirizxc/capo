@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> JobExecutionSummaryForThingList:
 
     out: JobExecutionSummaryForThingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot.types.job_execution_summary_for_thing.deserialize_json(item)
         )

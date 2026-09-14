@@ -25,6 +25,6 @@ def serialize_json(value: AwsDmsReplicationInstanceVpcSecurityGroupsDetails) -> 
 
 def deserialize_json(data: dict) -> AwsDmsReplicationInstanceVpcSecurityGroupsDetails:
     out: AwsDmsReplicationInstanceVpcSecurityGroupsDetails = {}  # type: ignore[typeddict-item]
-    if "VpcSecurityGroupId" in data:
+    if data.get("VpcSecurityGroupId") is not None:
         out["vpc_security_group_id"] = data["VpcSecurityGroupId"]
     return out

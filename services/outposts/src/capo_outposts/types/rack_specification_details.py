@@ -47,15 +47,55 @@ def serialize_json(value: RackSpecificationDetails) -> dict:
             value["rack_use"]
         )
     if "rack_power_draw_kva" in value:
-        out["RackPowerDrawKva"] = value["rack_power_draw_kva"]
+        out["RackPowerDrawKva"] = (
+            "NaN"
+            if value["rack_power_draw_kva"] != value["rack_power_draw_kva"]
+            else "Infinity"
+            if value["rack_power_draw_kva"] == float("inf")
+            else "-Infinity"
+            if value["rack_power_draw_kva"] == float("-inf")
+            else value["rack_power_draw_kva"]
+        )
     if "rack_weight_lbs" in value:
-        out["RackWeightLbs"] = value["rack_weight_lbs"]
+        out["RackWeightLbs"] = (
+            "NaN"
+            if value["rack_weight_lbs"] != value["rack_weight_lbs"]
+            else "Infinity"
+            if value["rack_weight_lbs"] == float("inf")
+            else "-Infinity"
+            if value["rack_weight_lbs"] == float("-inf")
+            else value["rack_weight_lbs"]
+        )
     if "rack_height_inches" in value:
-        out["RackHeightInches"] = value["rack_height_inches"]
+        out["RackHeightInches"] = (
+            "NaN"
+            if value["rack_height_inches"] != value["rack_height_inches"]
+            else "Infinity"
+            if value["rack_height_inches"] == float("inf")
+            else "-Infinity"
+            if value["rack_height_inches"] == float("-inf")
+            else value["rack_height_inches"]
+        )
     if "rack_width_inches" in value:
-        out["RackWidthInches"] = value["rack_width_inches"]
+        out["RackWidthInches"] = (
+            "NaN"
+            if value["rack_width_inches"] != value["rack_width_inches"]
+            else "Infinity"
+            if value["rack_width_inches"] == float("inf")
+            else "-Infinity"
+            if value["rack_width_inches"] == float("-inf")
+            else value["rack_width_inches"]
+        )
     if "rack_depth_inches" in value:
-        out["RackDepthInches"] = value["rack_depth_inches"]
+        out["RackDepthInches"] = (
+            "NaN"
+            if value["rack_depth_inches"] != value["rack_depth_inches"]
+            else "Infinity"
+            if value["rack_depth_inches"] == float("inf")
+            else "-Infinity"
+            if value["rack_depth_inches"] == float("-inf")
+            else value["rack_depth_inches"]
+        )
     if "rack_unit_height" in value:
         import capo_outposts.types.rack_unit_height
 
@@ -75,31 +115,31 @@ def serialize_json(value: RackSpecificationDetails) -> dict:
 
 def deserialize_json(data: dict) -> RackSpecificationDetails:
     out: RackSpecificationDetails = {}  # type: ignore[typeddict-item]
-    if "RackId" in data:
+    if data.get("RackId") is not None:
         out["rack_id"] = data["RackId"]
-    if "RackUse" in data:
+    if data.get("RackUse") is not None:
         import capo_outposts.types.quote_rack_use_type
 
         out["rack_use"] = capo_outposts.types.quote_rack_use_type.deserialize_json(
             data["RackUse"]
         )
-    if "RackPowerDrawKva" in data:
-        out["rack_power_draw_kva"] = data["RackPowerDrawKva"]
-    if "RackWeightLbs" in data:
-        out["rack_weight_lbs"] = data["RackWeightLbs"]
-    if "RackHeightInches" in data:
-        out["rack_height_inches"] = data["RackHeightInches"]
-    if "RackWidthInches" in data:
-        out["rack_width_inches"] = data["RackWidthInches"]
-    if "RackDepthInches" in data:
-        out["rack_depth_inches"] = data["RackDepthInches"]
-    if "RackUnitHeight" in data:
+    if data.get("RackPowerDrawKva") is not None:
+        out["rack_power_draw_kva"] = float(data["RackPowerDrawKva"])
+    if data.get("RackWeightLbs") is not None:
+        out["rack_weight_lbs"] = float(data["RackWeightLbs"])
+    if data.get("RackHeightInches") is not None:
+        out["rack_height_inches"] = float(data["RackHeightInches"])
+    if data.get("RackWidthInches") is not None:
+        out["rack_width_inches"] = float(data["RackWidthInches"])
+    if data.get("RackDepthInches") is not None:
+        out["rack_depth_inches"] = float(data["RackDepthInches"])
+    if data.get("RackUnitHeight") is not None:
         import capo_outposts.types.rack_unit_height
 
         out["rack_unit_height"] = capo_outposts.types.rack_unit_height.deserialize_json(
             data["RackUnitHeight"]
         )
-    if "EC2Capacities" in data:
+    if data.get("EC2Capacities") is not None:
         import capo_outposts.types.ec2_capacity_list_definition
 
         out["ec2_capacities"] = (

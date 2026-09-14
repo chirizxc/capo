@@ -258,9 +258,9 @@ def serialize_aws_json_1_1(value: DescribeTaskExecutionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTaskExecutionResponse:
     out: DescribeTaskExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "TaskExecutionArn" in data:
+    if data.get("TaskExecutionArn") is not None:
         out["task_execution_arn"] = data["TaskExecutionArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_datasync.types.task_execution_status
 
         out["status"] = (
@@ -268,25 +268,25 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskExecutionResponse:
                 data["Status"]
             )
         )
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_datasync.types.options
 
         out["options"] = capo_datasync.types.options.deserialize_aws_json_1_1(
             data["Options"]
         )
-    if "Excludes" in data:
+    if data.get("Excludes") is not None:
         import capo_datasync.types.filter_list
 
         out["excludes"] = capo_datasync.types.filter_list.deserialize_aws_json_1_1(
             data["Excludes"]
         )
-    if "Includes" in data:
+    if data.get("Includes") is not None:
         import capo_datasync.types.filter_list
 
         out["includes"] = capo_datasync.types.filter_list.deserialize_aws_json_1_1(
             data["Includes"]
         )
-    if "ManifestConfig" in data:
+    if data.get("ManifestConfig") is not None:
         import capo_datasync.types.manifest_config
 
         out["manifest_config"] = (
@@ -294,37 +294,37 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskExecutionResponse:
                 data["ManifestConfig"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_datasync.types.time
 
         out["start_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EstimatedFilesToTransfer" in data:
+    if data.get("EstimatedFilesToTransfer") is not None:
         out["estimated_files_to_transfer"] = data["EstimatedFilesToTransfer"]
     else:
         out["estimated_files_to_transfer"] = 0
-    if "EstimatedBytesToTransfer" in data:
+    if data.get("EstimatedBytesToTransfer") is not None:
         out["estimated_bytes_to_transfer"] = data["EstimatedBytesToTransfer"]
     else:
         out["estimated_bytes_to_transfer"] = 0
-    if "FilesTransferred" in data:
+    if data.get("FilesTransferred") is not None:
         out["files_transferred"] = data["FilesTransferred"]
     else:
         out["files_transferred"] = 0
-    if "BytesWritten" in data:
+    if data.get("BytesWritten") is not None:
         out["bytes_written"] = data["BytesWritten"]
     else:
         out["bytes_written"] = 0
-    if "BytesTransferred" in data:
+    if data.get("BytesTransferred") is not None:
         out["bytes_transferred"] = data["BytesTransferred"]
     else:
         out["bytes_transferred"] = 0
-    if "BytesCompressed" in data:
+    if data.get("BytesCompressed") is not None:
         out["bytes_compressed"] = data["BytesCompressed"]
     else:
         out["bytes_compressed"] = 0
-    if "Result" in data:
+    if data.get("Result") is not None:
         import capo_datasync.types.task_execution_result_detail
 
         out["result"] = (
@@ -332,7 +332,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskExecutionResponse:
                 data["Result"]
             )
         )
-    if "TaskReportConfig" in data:
+    if data.get("TaskReportConfig") is not None:
         import capo_datasync.types.task_report_config
 
         out["task_report_config"] = (
@@ -340,19 +340,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskExecutionResponse:
                 data["TaskReportConfig"]
             )
         )
-    if "FilesDeleted" in data:
+    if data.get("FilesDeleted") is not None:
         out["files_deleted"] = data["FilesDeleted"]
     else:
         out["files_deleted"] = 0
-    if "FilesSkipped" in data:
+    if data.get("FilesSkipped") is not None:
         out["files_skipped"] = data["FilesSkipped"]
     else:
         out["files_skipped"] = 0
-    if "FilesVerified" in data:
+    if data.get("FilesVerified") is not None:
         out["files_verified"] = data["FilesVerified"]
     else:
         out["files_verified"] = 0
-    if "ReportResult" in data:
+    if data.get("ReportResult") is not None:
         import capo_datasync.types.report_result
 
         out["report_result"] = (
@@ -360,21 +360,21 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskExecutionResponse:
                 data["ReportResult"]
             )
         )
-    if "EstimatedFilesToDelete" in data:
+    if data.get("EstimatedFilesToDelete") is not None:
         out["estimated_files_to_delete"] = data["EstimatedFilesToDelete"]
     else:
         out["estimated_files_to_delete"] = 0
-    if "TaskMode" in data:
+    if data.get("TaskMode") is not None:
         import capo_datasync.types.task_mode
 
         out["task_mode"] = capo_datasync.types.task_mode.deserialize_aws_json_1_1(
             data["TaskMode"]
         )
-    if "FilesPrepared" in data:
+    if data.get("FilesPrepared") is not None:
         out["files_prepared"] = data["FilesPrepared"]
     else:
         out["files_prepared"] = 0
-    if "FilesListed" in data:
+    if data.get("FilesListed") is not None:
         import capo_datasync.types.task_execution_files_listed_detail
 
         out["files_listed"] = (
@@ -382,7 +382,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskExecutionResponse:
                 data["FilesListed"]
             )
         )
-    if "FilesFailed" in data:
+    if data.get("FilesFailed") is not None:
         import capo_datasync.types.task_execution_files_failed_detail
 
         out["files_failed"] = (
@@ -390,21 +390,21 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskExecutionResponse:
                 data["FilesFailed"]
             )
         )
-    if "EstimatedFoldersToDelete" in data:
+    if data.get("EstimatedFoldersToDelete") is not None:
         out["estimated_folders_to_delete"] = data["EstimatedFoldersToDelete"]
-    if "EstimatedFoldersToTransfer" in data:
+    if data.get("EstimatedFoldersToTransfer") is not None:
         out["estimated_folders_to_transfer"] = data["EstimatedFoldersToTransfer"]
-    if "FoldersSkipped" in data:
+    if data.get("FoldersSkipped") is not None:
         out["folders_skipped"] = data["FoldersSkipped"]
-    if "FoldersPrepared" in data:
+    if data.get("FoldersPrepared") is not None:
         out["folders_prepared"] = data["FoldersPrepared"]
-    if "FoldersTransferred" in data:
+    if data.get("FoldersTransferred") is not None:
         out["folders_transferred"] = data["FoldersTransferred"]
-    if "FoldersVerified" in data:
+    if data.get("FoldersVerified") is not None:
         out["folders_verified"] = data["FoldersVerified"]
-    if "FoldersDeleted" in data:
+    if data.get("FoldersDeleted") is not None:
         out["folders_deleted"] = data["FoldersDeleted"]
-    if "FoldersListed" in data:
+    if data.get("FoldersListed") is not None:
         import capo_datasync.types.task_execution_folders_listed_detail
 
         out["folders_listed"] = (
@@ -412,7 +412,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskExecutionResponse:
                 data["FoldersListed"]
             )
         )
-    if "FoldersFailed" in data:
+    if data.get("FoldersFailed") is not None:
         import capo_datasync.types.task_execution_folders_failed_detail
 
         out["folders_failed"] = (
@@ -420,13 +420,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskExecutionResponse:
                 data["FoldersFailed"]
             )
         )
-    if "LaunchTime" in data:
+    if data.get("LaunchTime") is not None:
         import capo_datasync.types.time
 
         out["launch_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["LaunchTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_datasync.types.time
 
         out["end_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(

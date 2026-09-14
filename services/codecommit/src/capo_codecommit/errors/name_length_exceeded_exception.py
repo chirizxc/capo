@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: NameLengthExceededException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NameLengthExceededException_:
     out: NameLengthExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class NameLengthExceededException(ServiceError):
 
     code: str | None = "NameLengthExceededException"
 
-    def __init__(self, data: NameLengthExceededException_):
+    def __init__(self, data: NameLengthExceededException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NameLengthExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "NameLengthExceededException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "NameLengthExceededException":
+        return cls(deserialize_aws_json_1_1(data), message)

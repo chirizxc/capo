@@ -34,10 +34,10 @@ def serialize_json(value: DisableUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisableUserRequest:
     out: DisableUserRequest = {}  # type: ignore[typeddict-item]
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
     else:
         raise DeserializationError("DisableUserRequest.sam_account_name required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

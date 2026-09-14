@@ -43,21 +43,21 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> DisassociateAwsTrainingCertificationEmailDomainRequest:
     out: DisassociateAwsTrainingCertificationEmailDomainRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError(
             "DisassociateAwsTrainingCertificationEmailDomainRequest.catalog required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "DisassociateAwsTrainingCertificationEmailDomainRequest.identifier required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(

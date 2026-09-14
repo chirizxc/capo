@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> CapabilityList:
 
     out: CapabilityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_b2bi.types.capability_summary.deserialize_aws_json_1_0(item))
     return out

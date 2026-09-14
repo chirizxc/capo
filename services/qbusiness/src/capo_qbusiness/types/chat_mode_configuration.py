@@ -32,7 +32,7 @@ def serialize_json(value: ChatModeConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ChatModeConfiguration:
-    if "pluginConfiguration" in data:
+    if data.get("pluginConfiguration") is not None:
         import capo_qbusiness.types.plugin_configuration
 
         return {

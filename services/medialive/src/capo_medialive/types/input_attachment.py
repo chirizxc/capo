@@ -62,7 +62,7 @@ def serialize_json(value: InputAttachment) -> dict:
 
 def deserialize_json(data: dict) -> InputAttachment:
     out: InputAttachment = {}  # type: ignore[typeddict-item]
-    if "automaticInputFailoverSettings" in data:
+    if data.get("automaticInputFailoverSettings") is not None:
         import capo_medialive.types.automatic_input_failover_settings
 
         out["automatic_input_failover_settings"] = (
@@ -70,17 +70,17 @@ def deserialize_json(data: dict) -> InputAttachment:
                 data["automaticInputFailoverSettings"]
             )
         )
-    if "inputAttachmentName" in data:
+    if data.get("inputAttachmentName") is not None:
         out["input_attachment_name"] = data["inputAttachmentName"]
-    if "inputId" in data:
+    if data.get("inputId") is not None:
         out["input_id"] = data["inputId"]
-    if "inputSettings" in data:
+    if data.get("inputSettings") is not None:
         import capo_medialive.types.input_settings
 
         out["input_settings"] = capo_medialive.types.input_settings.deserialize_json(
             data["inputSettings"]
         )
-    if "logicalInterfaceNames" in data:
+    if data.get("logicalInterfaceNames") is not None:
         import capo_medialive.types.__list_of__string
 
         out["logical_interface_names"] = (

@@ -96,7 +96,7 @@ def serialize_json(value: CustomerAction) -> dict:
 
 def deserialize_json(data: dict) -> CustomerAction:
     out: CustomerAction = {}  # type: ignore[typeddict-item]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         import capo_iot_events_data.types.customer_action_name
 
         out["action_name"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> CustomerAction:
                 data["actionName"]
             )
         )
-    if "snoozeActionConfiguration" in data:
+    if data.get("snoozeActionConfiguration") is not None:
         import capo_iot_events_data.types.snooze_action_configuration
 
         out["snooze_action_configuration"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> CustomerAction:
                 data["snoozeActionConfiguration"]
             )
         )
-    if "enableActionConfiguration" in data:
+    if data.get("enableActionConfiguration") is not None:
         import capo_iot_events_data.types.enable_action_configuration
 
         out["enable_action_configuration"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> CustomerAction:
                 data["enableActionConfiguration"]
             )
         )
-    if "disableActionConfiguration" in data:
+    if data.get("disableActionConfiguration") is not None:
         import capo_iot_events_data.types.disable_action_configuration
 
         out["disable_action_configuration"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> CustomerAction:
                 data["disableActionConfiguration"]
             )
         )
-    if "acknowledgeActionConfiguration" in data:
+    if data.get("acknowledgeActionConfiguration") is not None:
         import capo_iot_events_data.types.acknowledge_action_configuration
 
         out["acknowledge_action_configuration"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> CustomerAction:
                 data["acknowledgeActionConfiguration"]
             )
         )
-    if "resetActionConfiguration" in data:
+    if data.get("resetActionConfiguration") is not None:
         import capo_iot_events_data.types.reset_action_configuration
 
         out["reset_action_configuration"] = (

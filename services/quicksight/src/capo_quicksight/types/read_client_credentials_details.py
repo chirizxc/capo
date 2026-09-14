@@ -36,7 +36,7 @@ def serialize_json(value: ReadClientCredentialsDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> ReadClientCredentialsDetails:
-    if "ReadClientCredentialsGrantDetails" in data:
+    if data.get("ReadClientCredentialsGrantDetails") is not None:
         import capo_quicksight.types.read_client_credentials_grant_details
 
         return {

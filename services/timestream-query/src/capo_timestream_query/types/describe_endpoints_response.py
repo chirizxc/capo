@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: DescribeEndpointsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeEndpointsResponse:
     out: DescribeEndpointsResponse = {}  # type: ignore[typeddict-item]
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_timestream_query.types.endpoints
 
         out["endpoints"] = (

@@ -89,7 +89,7 @@ def serialize_json(value: UpdateUserConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserConfigRequest:
     out: UpdateUserConfigRequest = {}  # type: ignore[typeddict-item]
-    if "AutoAcceptConfigs" in data:
+    if data.get("AutoAcceptConfigs") is not None:
         import capo_connect.types.auto_accept_configs
 
         out["auto_accept_configs"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> UpdateUserConfigRequest:
                 data["AutoAcceptConfigs"]
             )
         )
-    if "AfterContactWorkConfigs" in data:
+    if data.get("AfterContactWorkConfigs") is not None:
         import capo_connect.types.after_contact_work_configs
 
         out["after_contact_work_configs"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> UpdateUserConfigRequest:
                 data["AfterContactWorkConfigs"]
             )
         )
-    if "PhoneNumberConfigs" in data:
+    if data.get("PhoneNumberConfigs") is not None:
         import capo_connect.types.phone_number_configs
 
         out["phone_number_configs"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> UpdateUserConfigRequest:
                 data["PhoneNumberConfigs"]
             )
         )
-    if "PersistentConnectionConfigs" in data:
+    if data.get("PersistentConnectionConfigs") is not None:
         import capo_connect.types.persistent_connection_configs
 
         out["persistent_connection_configs"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> UpdateUserConfigRequest:
                 data["PersistentConnectionConfigs"]
             )
         )
-    if "VoiceEnhancementConfigs" in data:
+    if data.get("VoiceEnhancementConfigs") is not None:
         import capo_connect.types.voice_enhancement_configs
 
         out["voice_enhancement_configs"] = (

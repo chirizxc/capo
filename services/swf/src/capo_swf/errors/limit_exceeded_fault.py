@@ -25,7 +25,7 @@ def serialize_aws_json_1_0(value: LimitExceededFault_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LimitExceededFault_:
     out: LimitExceededFault_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class LimitExceededFault(ServiceError):
 
     code: str | None = "LimitExceededFault"
 
-    def __init__(self, data: LimitExceededFault_):
+    def __init__(self, data: LimitExceededFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="LimitExceededFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "LimitExceededFault":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "LimitExceededFault":
+        return cls(deserialize_aws_json_1_0(data), message)

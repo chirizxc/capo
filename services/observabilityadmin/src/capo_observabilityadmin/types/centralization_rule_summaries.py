@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CentralizationRuleSummaries:
 
     out: CentralizationRuleSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_observabilityadmin.types.centralization_rule_summary.deserialize_json(
                 item

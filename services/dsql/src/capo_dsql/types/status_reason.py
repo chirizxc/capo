@@ -37,7 +37,7 @@ def serialize_json(value: StatusReason) -> dict:
 
 def deserialize_json(data: dict) -> StatusReason:
     out: StatusReason = {}  # type: ignore[typeddict-item]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_dsql.types.stream_failure_error_code
 
         out["error"] = capo_dsql.types.stream_failure_error_code.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> StatusReason:
         )
     else:
         raise DeserializationError("StatusReason.error required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_dsql.types._prelude.timestamp
 
         out["updated_at"] = capo_dsql.types._prelude.timestamp.deserialize_json(

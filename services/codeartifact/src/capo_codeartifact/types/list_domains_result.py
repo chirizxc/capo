@@ -34,12 +34,12 @@ def serialize_json(value: ListDomainsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListDomainsResult:
     out: ListDomainsResult = {}  # type: ignore[typeddict-item]
-    if "domains" in data:
+    if data.get("domains") is not None:
         import capo_codeartifact.types.domain_summary_list
 
         out["domains"] = capo_codeartifact.types.domain_summary_list.deserialize_json(
             data["domains"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

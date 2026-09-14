@@ -29,7 +29,7 @@ def serialize_json(value: CommonAttributeAndCondition) -> dict:
 
 def deserialize_json(data: dict) -> CommonAttributeAndCondition:
     out: CommonAttributeAndCondition = {}  # type: ignore[typeddict-item]
-    if "TagConditions" in data:
+    if data.get("TagConditions") is not None:
         import capo_connect.types.tag_and_condition_list
 
         out["tag_conditions"] = (

@@ -69,13 +69,13 @@ def serialize_aws_json_1_1(value: CollapseConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CollapseConfiguration:
     out: CollapseConfiguration = {}  # type: ignore[typeddict-item]
-    if "DocumentAttributeKey" in data:
+    if data.get("DocumentAttributeKey") is not None:
         out["document_attribute_key"] = data["DocumentAttributeKey"]
     else:
         raise DeserializationError(
             "CollapseConfiguration.document_attribute_key required"
         )
-    if "SortingConfigurations" in data:
+    if data.get("SortingConfigurations") is not None:
         import capo_kendra.types.sorting_configuration_list
 
         out["sorting_configurations"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> CollapseConfiguration:
                 data["SortingConfigurations"]
             )
         )
-    if "MissingAttributeKeyStrategy" in data:
+    if data.get("MissingAttributeKeyStrategy") is not None:
         import capo_kendra.types.missing_attribute_key_strategy
 
         out["missing_attribute_key_strategy"] = (
@@ -91,11 +91,11 @@ def deserialize_aws_json_1_1(data: dict) -> CollapseConfiguration:
                 data["MissingAttributeKeyStrategy"]
             )
         )
-    if "Expand" in data:
+    if data.get("Expand") is not None:
         out["expand"] = data["Expand"]
     else:
         out["expand"] = False
-    if "ExpandConfiguration" in data:
+    if data.get("ExpandConfiguration") is not None:
         import capo_kendra.types.expand_configuration
 
         out["expand_configuration"] = (

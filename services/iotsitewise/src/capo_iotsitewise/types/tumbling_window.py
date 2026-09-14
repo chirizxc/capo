@@ -29,10 +29,10 @@ def serialize_json(value: TumblingWindow) -> dict:
 
 def deserialize_json(data: dict) -> TumblingWindow:
     out: TumblingWindow = {}  # type: ignore[typeddict-item]
-    if "interval" in data:
+    if data.get("interval") is not None:
         out["interval"] = data["interval"]
     else:
         raise DeserializationError("TumblingWindow.interval required")
-    if "offset" in data:
+    if data.get("offset") is not None:
         out["offset"] = data["offset"]
     return out

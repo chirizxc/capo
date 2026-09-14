@@ -114,41 +114,41 @@ def serialize_json(value: ContactFlowModule) -> dict:
 
 def deserialize_json(data: dict) -> ContactFlowModule:
     out: ContactFlowModule = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_connect.types.contact_flow_module_state
 
         out["state"] = capo_connect.types.contact_flow_module_state.deserialize_json(
             data["State"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.contact_flow_module_status
 
         out["status"] = capo_connect.types.contact_flow_module_status.deserialize_json(
             data["Status"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "FlowModuleContentSha256" in data:
+    if data.get("FlowModuleContentSha256") is not None:
         out["flow_module_content_sha256"] = data["FlowModuleContentSha256"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         out["settings"] = data["Settings"]
-    if "ExternalInvocationConfiguration" in data:
+    if data.get("ExternalInvocationConfiguration") is not None:
         import capo_connect.types.external_invocation_configuration
 
         out["external_invocation_configuration"] = (

@@ -46,7 +46,7 @@ def serialize_aws_json_1_0(value: DescribeOptOutListsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeOptOutListsRequest:
     out: DescribeOptOutListsRequest = {}  # type: ignore[typeddict-item]
-    if "OptOutListNames" in data:
+    if data.get("OptOutListNames") is not None:
         import capo_pinpoint_sms_voice_v2.types.opt_out_list_name_list
 
         out["opt_out_list_names"] = (
@@ -54,10 +54,10 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeOptOutListsRequest:
                 data["OptOutListNames"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
     return out

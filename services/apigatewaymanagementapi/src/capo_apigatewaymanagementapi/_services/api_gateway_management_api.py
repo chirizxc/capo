@@ -156,14 +156,16 @@ class ApiGatewayManagementApiClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewaymanagementapi.types.delete_connection_request.DeleteConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_apigatewaymanagementapi.types.delete_connection_request.DeleteConnectionRequest = {
+            "connection_id": connection_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_connection(
@@ -196,14 +198,16 @@ class ApiGatewayManagementApiClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewaymanagementapi.types.get_connection_request.GetConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_apigatewaymanagementapi.types.get_connection_request.GetConnectionRequest = {
+            "connection_id": connection_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def post_to_connection(
@@ -240,16 +244,18 @@ class ApiGatewayManagementApiClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewaymanagementapi.types.post_to_connection_request.PostToConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewaymanagementapi.types.post_to_connection_request.PostToConnectionRequest = {
+            "connection_id": connection_id
+        }
         if data is not None:
             input_["data"] = data
-        input_["connection_id"] = connection_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

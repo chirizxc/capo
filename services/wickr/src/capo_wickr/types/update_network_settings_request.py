@@ -31,7 +31,7 @@ def serialize_json(value: UpdateNetworkSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNetworkSettingsRequest:
     out: UpdateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_wickr.types.network_settings
 
         out["settings"] = capo_wickr.types.network_settings.deserialize_json(

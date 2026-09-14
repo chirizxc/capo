@@ -30,12 +30,12 @@ def serialize_json(value: UpdateRequesterGatewayRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRequesterGatewayRequest:
     out: UpdateRequesterGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(
             "UpdateRequesterGatewayRequest.client_token required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

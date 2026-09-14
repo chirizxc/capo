@@ -31,12 +31,12 @@ def serialize_json(value: UpdateLibraryItemMetadataInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLibraryItemMetadataInput:
     out: UpdateLibraryItemMetadataInput = {}  # type: ignore[typeddict-item]
-    if "libraryItemId" in data:
+    if data.get("libraryItemId") is not None:
         out["library_item_id"] = data["libraryItemId"]
     else:
         raise DeserializationError(
             "UpdateLibraryItemMetadataInput.library_item_id required"
         )
-    if "isVerified" in data:
+    if data.get("isVerified") is not None:
         out["is_verified"] = data["isVerified"]
     return out

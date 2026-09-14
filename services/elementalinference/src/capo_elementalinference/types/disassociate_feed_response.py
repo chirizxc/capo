@@ -28,11 +28,11 @@ def serialize_json(value: DisassociateFeedResponse) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateFeedResponse:
     out: DisassociateFeedResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DisassociateFeedResponse.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DisassociateFeedResponse.id required")

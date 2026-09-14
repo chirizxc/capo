@@ -33,7 +33,7 @@ def serialize_json(value: ListConnectorEntitiesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListConnectorEntitiesResponse:
     out: ListConnectorEntitiesResponse = {}  # type: ignore[typeddict-item]
-    if "connectorEntityMap" in data:
+    if data.get("connectorEntityMap") is not None:
         import capo_appflow.types.connector_entity_map
 
         out["connector_entity_map"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListConnectorEntitiesResponse:
         raise DeserializationError(
             "ListConnectorEntitiesResponse.connector_entity_map required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

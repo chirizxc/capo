@@ -39,12 +39,12 @@ def serialize_json(value: UpdateConsumableResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConsumableResourceRequest:
     out: UpdateConsumableResourceRequest = {}  # type: ignore[typeddict-item]
-    if "consumableResource" in data:
+    if data.get("consumableResource") is not None:
         out["consumable_resource"] = data["consumableResource"]
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
-    if "quantity" in data:
+    if data.get("quantity") is not None:
         out["quantity"] = data["quantity"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DeleteBackupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteBackupResponse:
     out: DeleteBackupResponse = {}  # type: ignore[typeddict-item]
-    if "Backup" in data:
+    if data.get("Backup") is not None:
         import capo_cloudhsm_v2.types.backup
 
         out["backup"] = capo_cloudhsm_v2.types.backup.deserialize_aws_json_1_1(

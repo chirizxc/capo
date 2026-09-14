@@ -85,48 +85,48 @@ def serialize_json(value: GetConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConnectionResponse:
     out: GetConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "connected" in data:
+    if data.get("connected") is not None:
         out["connected"] = data["connected"]
     else:
         out["connected"] = False
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "cleanSession" in data:
+    if data.get("cleanSession") is not None:
         out["clean_session"] = data["cleanSession"]
     else:
         out["clean_session"] = False
-    if "sourceIp" in data:
+    if data.get("sourceIp") is not None:
         out["source_ip"] = data["sourceIp"]
-    if "sourcePort" in data:
+    if data.get("sourcePort") is not None:
         out["source_port"] = data["sourcePort"]
     else:
         out["source_port"] = 0
-    if "targetIp" in data:
+    if data.get("targetIp") is not None:
         out["target_ip"] = data["targetIp"]
-    if "targetPort" in data:
+    if data.get("targetPort") is not None:
         out["target_port"] = data["targetPort"]
     else:
         out["target_port"] = 0
-    if "keepAliveDuration" in data:
+    if data.get("keepAliveDuration") is not None:
         out["keep_alive_duration"] = data["keepAliveDuration"]
     else:
         out["keep_alive_duration"] = 0
-    if "connectedSince" in data:
+    if data.get("connectedSince") is not None:
         out["connected_since"] = data["connectedSince"]
     else:
         out["connected_since"] = 0
-    if "disconnectedSince" in data:
+    if data.get("disconnectedSince") is not None:
         out["disconnected_since"] = data["disconnectedSince"]
     else:
         out["disconnected_since"] = 0
-    if "disconnectReason" in data:
+    if data.get("disconnectReason") is not None:
         out["disconnect_reason"] = data["disconnectReason"]
-    if "sessionExpiry" in data:
+    if data.get("sessionExpiry") is not None:
         out["session_expiry"] = data["sessionExpiry"]
     else:
         out["session_expiry"] = 0
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
-    if "vpcEndpointId" in data:
+    if data.get("vpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["vpcEndpointId"]
     return out

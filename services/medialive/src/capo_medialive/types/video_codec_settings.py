@@ -62,7 +62,7 @@ def serialize_json(value: VideoCodecSettings) -> dict:
 
 def deserialize_json(data: dict) -> VideoCodecSettings:
     out: VideoCodecSettings = {}  # type: ignore[typeddict-item]
-    if "frameCaptureSettings" in data:
+    if data.get("frameCaptureSettings") is not None:
         import capo_medialive.types.frame_capture_settings
 
         out["frame_capture_settings"] = (
@@ -70,25 +70,25 @@ def deserialize_json(data: dict) -> VideoCodecSettings:
                 data["frameCaptureSettings"]
             )
         )
-    if "h264Settings" in data:
+    if data.get("h264Settings") is not None:
         import capo_medialive.types.h264_settings
 
         out["h264_settings"] = capo_medialive.types.h264_settings.deserialize_json(
             data["h264Settings"]
         )
-    if "h265Settings" in data:
+    if data.get("h265Settings") is not None:
         import capo_medialive.types.h265_settings
 
         out["h265_settings"] = capo_medialive.types.h265_settings.deserialize_json(
             data["h265Settings"]
         )
-    if "mpeg2Settings" in data:
+    if data.get("mpeg2Settings") is not None:
         import capo_medialive.types.mpeg2_settings
 
         out["mpeg2_settings"] = capo_medialive.types.mpeg2_settings.deserialize_json(
             data["mpeg2Settings"]
         )
-    if "av1Settings" in data:
+    if data.get("av1Settings") is not None:
         import capo_medialive.types.av1_settings
 
         out["av1_settings"] = capo_medialive.types.av1_settings.deserialize_json(

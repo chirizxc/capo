@@ -31,7 +31,7 @@ def serialize_json(value: ExportHiddenFieldsOption) -> dict:
 
 def deserialize_json(data: dict) -> ExportHiddenFieldsOption:
     out: ExportHiddenFieldsOption = {}  # type: ignore[typeddict-item]
-    if "AvailabilityStatus" in data:
+    if data.get("AvailabilityStatus") is not None:
         import capo_quicksight.types.dashboard_behavior
 
         out["availability_status"] = (

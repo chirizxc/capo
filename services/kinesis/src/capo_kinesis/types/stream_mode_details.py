@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: StreamModeDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamModeDetails:
     out: StreamModeDetails = {}  # type: ignore[typeddict-item]
-    if "StreamMode" in data:
+    if data.get("StreamMode") is not None:
         import capo_kinesis.types.stream_mode
 
         out["stream_mode"] = capo_kinesis.types.stream_mode.deserialize_aws_json_1_1(

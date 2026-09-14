@@ -138,23 +138,23 @@ def serialize_json(value: RegisterJobDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterJobDefinitionRequest:
     out: RegisterJobDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "jobDefinitionName" in data:
+    if data.get("jobDefinitionName") is not None:
         out["job_definition_name"] = data["jobDefinitionName"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_batch.types.job_definition_type
 
         out["type"] = capo_batch.types.job_definition_type.deserialize_json(
             data["type"]
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_batch.types.parameters_map
 
         out["parameters"] = capo_batch.types.parameters_map.deserialize_json(
             data["parameters"]
         )
-    if "schedulingPriority" in data:
+    if data.get("schedulingPriority") is not None:
         out["scheduling_priority"] = data["schedulingPriority"]
-    if "containerProperties" in data:
+    if data.get("containerProperties") is not None:
         import capo_batch.types.container_properties
 
         out["container_properties"] = (
@@ -162,29 +162,29 @@ def deserialize_json(data: dict) -> RegisterJobDefinitionRequest:
                 data["containerProperties"]
             )
         )
-    if "nodeProperties" in data:
+    if data.get("nodeProperties") is not None:
         import capo_batch.types.node_properties
 
         out["node_properties"] = capo_batch.types.node_properties.deserialize_json(
             data["nodeProperties"]
         )
-    if "retryStrategy" in data:
+    if data.get("retryStrategy") is not None:
         import capo_batch.types.retry_strategy
 
         out["retry_strategy"] = capo_batch.types.retry_strategy.deserialize_json(
             data["retryStrategy"]
         )
-    if "propagateTags" in data:
+    if data.get("propagateTags") is not None:
         out["propagate_tags"] = data["propagateTags"]
-    if "timeout" in data:
+    if data.get("timeout") is not None:
         import capo_batch.types.job_timeout
 
         out["timeout"] = capo_batch.types.job_timeout.deserialize_json(data["timeout"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])
-    if "platformCapabilities" in data:
+    if data.get("platformCapabilities") is not None:
         import capo_batch.types.platform_capability_list
 
         out["platform_capabilities"] = (
@@ -192,19 +192,19 @@ def deserialize_json(data: dict) -> RegisterJobDefinitionRequest:
                 data["platformCapabilities"]
             )
         )
-    if "eksProperties" in data:
+    if data.get("eksProperties") is not None:
         import capo_batch.types.eks_properties
 
         out["eks_properties"] = capo_batch.types.eks_properties.deserialize_json(
             data["eksProperties"]
         )
-    if "ecsProperties" in data:
+    if data.get("ecsProperties") is not None:
         import capo_batch.types.ecs_properties
 
         out["ecs_properties"] = capo_batch.types.ecs_properties.deserialize_json(
             data["ecsProperties"]
         )
-    if "consumableResourceProperties" in data:
+    if data.get("consumableResourceProperties") is not None:
         import capo_batch.types.consumable_resource_properties
 
         out["consumable_resource_properties"] = (

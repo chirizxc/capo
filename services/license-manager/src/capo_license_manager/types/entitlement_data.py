@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: EntitlementData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntitlementData:
     out: EntitlementData = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("EntitlementData.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_license_manager.types.entitlement_data_unit
 
         out["unit"] = (

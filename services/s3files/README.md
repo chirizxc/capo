@@ -13,9 +13,9 @@ from capo_s3files import AsyncS3FilesClient
 
 
 async def main():
-    async with AsyncS3FilesClient() as s3:
+    async with AsyncS3FilesClient() as s3_files:
         # Example: call the create_access_point operation
-        response = await s3.create_access_point()
+        response = await s3_files.create_access_point()
         print(response["access_point_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_s3files import AsyncS3FilesClient
 
 
 async def main():
-    async with AsyncS3FilesClient() as s3:
+    async with AsyncS3FilesClient() as s3_files:
         # Example: paginate over list_access_points
-        async for item in s3.iter_list_access_points():
+        async for item in s3_files.iter_list_access_points():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_s3files.error import ThrottlingException
 
 
 async def main():
-    async with AsyncS3FilesClient() as s3:
+    async with AsyncS3FilesClient() as s3_files:
         try:
-            await s3.create_access_point()
+            await s3_files.create_access_point()
         except ThrottlingException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_s3files import AsyncS3FilesClient
 
 
 async def main():
-    async with AsyncS3FilesClient() as s3:
+    async with AsyncS3FilesClient() as s3_files:
         # Default: 3 attempts for every operation
-        response = await s3.create_access_point()
+        response = await s3_files.create_access_point()
 
         # Override per operation
-        response = await s3.create_access_point(config_overrides={"retry_max_attempts": 5})
+        response = await s3_files.create_access_point(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_access_point(config_overrides={"retry_max_attempts": 1})
+        response = await s3_files.create_access_point(config_overrides={"retry_max_attempts": 1})
 ```

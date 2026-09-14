@@ -37,7 +37,7 @@ def serialize_json(value: UpdateRouteRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRouteRequest:
     out: UpdateRouteRequest = {}  # type: ignore[typeddict-item]
-    if "ActivationState" in data:
+    if data.get("ActivationState") is not None:
         out["activation_state"] = data["ActivationState"]
     else:
         raise DeserializationError("UpdateRouteRequest.activation_state required")

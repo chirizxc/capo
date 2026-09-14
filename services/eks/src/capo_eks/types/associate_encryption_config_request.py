@@ -35,7 +35,7 @@ def serialize_json(value: AssociateEncryptionConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateEncryptionConfigRequest:
     out: AssociateEncryptionConfigRequest = {}  # type: ignore[typeddict-item]
-    if "encryptionConfig" in data:
+    if data.get("encryptionConfig") is not None:
         import capo_eks.types.encryption_config_list
 
         out["encryption_config"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> AssociateEncryptionConfigRequest:
         raise DeserializationError(
             "AssociateEncryptionConfigRequest.encryption_config required"
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     return out

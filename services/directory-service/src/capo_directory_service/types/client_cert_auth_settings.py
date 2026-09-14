@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ClientCertAuthSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClientCertAuthSettings:
     out: ClientCertAuthSettings = {}  # type: ignore[typeddict-item]
-    if "OCSPUrl" in data:
+    if data.get("OCSPUrl") is not None:
         out["ocsp_url"] = data["OCSPUrl"]
     return out

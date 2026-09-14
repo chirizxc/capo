@@ -94,7 +94,7 @@ def serialize_aws_json_1_1(value: SearchTrainingPlanOfferingsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchTrainingPlanOfferingsRequest:
     out: SearchTrainingPlanOfferingsRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.reserved_capacity_instance_type
 
         out["instance_type"] = (
@@ -102,13 +102,13 @@ def deserialize_aws_json_1_1(data: dict) -> SearchTrainingPlanOfferingsRequest:
                 data["InstanceType"]
             )
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "UltraServerType" in data:
+    if data.get("UltraServerType") is not None:
         out["ultra_server_type"] = data["UltraServerType"]
-    if "UltraServerCount" in data:
+    if data.get("UltraServerCount") is not None:
         out["ultra_server_count"] = data["UltraServerCount"]
-    if "StartTimeAfter" in data:
+    if data.get("StartTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time_after"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchTrainingPlanOfferingsRequest:
                 data["StartTimeAfter"]
             )
         )
-    if "EndTimeBefore" in data:
+    if data.get("EndTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time_before"] = (
@@ -124,9 +124,9 @@ def deserialize_aws_json_1_1(data: dict) -> SearchTrainingPlanOfferingsRequest:
                 data["EndTimeBefore"]
             )
         )
-    if "DurationHours" in data:
+    if data.get("DurationHours") is not None:
         out["duration_hours"] = data["DurationHours"]
-    if "TargetResources" in data:
+    if data.get("TargetResources") is not None:
         import capo_sagemaker.types.sage_maker_resource_names
 
         out["target_resources"] = (
@@ -134,6 +134,6 @@ def deserialize_aws_json_1_1(data: dict) -> SearchTrainingPlanOfferingsRequest:
                 data["TargetResources"]
             )
         )
-    if "TrainingPlanArn" in data:
+    if data.get("TrainingPlanArn") is not None:
         out["training_plan_arn"] = data["TrainingPlanArn"]
     return out

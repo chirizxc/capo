@@ -33,6 +33,8 @@ def deserialize_aws_json_1_1(
 
     out: RequestedServiceQuotaChangeHistoryListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_service_quotas.types.requested_service_quota_change.deserialize_aws_json_1_1(
                 item

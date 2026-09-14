@@ -334,14 +334,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.accept_grant_request.AcceptGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["grant_arn"] = grant_arn
+        input_: capo_license_manager.types.accept_grant_request.AcceptGrantRequest = {
+            "grant_arn": grant_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def check_in_license(
@@ -384,8 +386,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.check_in_license_request.CheckInLicenseRequest = {}  # type: ignore[typeddict-item]
-        input_["license_consumption_token"] = license_consumption_token
+        input_: capo_license_manager.types.check_in_license_request.CheckInLicenseRequest = {
+            "license_consumption_token": license_consumption_token
+        }
         if beneficiary is not None:
             input_["beneficiary"] = beneficiary
 
@@ -394,6 +397,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def checkout_borrow_license(
@@ -449,21 +453,23 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.checkout_borrow_license_request.CheckoutBorrowLicenseRequest = {}  # type: ignore[typeddict-item]
-        input_["license_arn"] = license_arn
-        input_["entitlements"] = entitlements
-        input_["digital_signature_method"] = digital_signature_method
+        input_: capo_license_manager.types.checkout_borrow_license_request.CheckoutBorrowLicenseRequest = {
+            "license_arn": license_arn,
+            "entitlements": entitlements,
+            "digital_signature_method": digital_signature_method,
+            "client_token": client_token,
+        }
         if node_id is not None:
             input_["node_id"] = node_id
         if checkout_metadata is not None:
             input_["checkout_metadata"] = checkout_metadata
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def checkout_license(
@@ -518,12 +524,13 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.checkout_license_request.CheckoutLicenseRequest = {}  # type: ignore[typeddict-item]
-        input_["product_sku"] = product_sku
-        input_["checkout_type"] = checkout_type
-        input_["key_fingerprint"] = key_fingerprint
-        input_["entitlements"] = entitlements
-        input_["client_token"] = client_token
+        input_: capo_license_manager.types.checkout_license_request.CheckoutLicenseRequest = {
+            "product_sku": product_sku,
+            "checkout_type": checkout_type,
+            "key_fingerprint": key_fingerprint,
+            "entitlements": entitlements,
+            "client_token": client_token,
+        }
         if beneficiary is not None:
             input_["beneficiary"] = beneficiary
         if node_id is not None:
@@ -534,6 +541,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_grant(
@@ -585,13 +593,14 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.create_grant_request.CreateGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["grant_name"] = grant_name
-        input_["license_arn"] = license_arn
-        input_["principals"] = principals
-        input_["home_region"] = home_region
-        input_["allowed_operations"] = allowed_operations
+        input_: capo_license_manager.types.create_grant_request.CreateGrantRequest = {
+            "client_token": client_token,
+            "grant_name": grant_name,
+            "license_arn": license_arn,
+            "principals": principals,
+            "home_region": home_region,
+            "allowed_operations": allowed_operations,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -600,6 +609,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_grant_version(
@@ -657,9 +667,10 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.create_grant_version_request.CreateGrantVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["grant_arn"] = grant_arn
+        input_: capo_license_manager.types.create_grant_version_request.CreateGrantVersionRequest = {
+            "client_token": client_token,
+            "grant_arn": grant_arn,
+        }
         if grant_name is not None:
             input_["grant_name"] = grant_name
         if allowed_operations is not None:
@@ -678,6 +689,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_license(
@@ -741,19 +753,20 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.create_license_request.CreateLicenseRequest = {}  # type: ignore[typeddict-item]
-        input_["license_name"] = license_name
-        input_["product_name"] = product_name
-        input_["product_sku"] = product_sku
-        input_["issuer"] = issuer
-        input_["home_region"] = home_region
-        input_["validity"] = validity
-        input_["entitlements"] = entitlements
-        input_["beneficiary"] = beneficiary
-        input_["consumption_configuration"] = consumption_configuration
+        input_: capo_license_manager.types.create_license_request.CreateLicenseRequest = {
+            "license_name": license_name,
+            "product_name": product_name,
+            "product_sku": product_sku,
+            "issuer": issuer,
+            "home_region": home_region,
+            "validity": validity,
+            "entitlements": entitlements,
+            "beneficiary": beneficiary,
+            "consumption_configuration": consumption_configuration,
+            "client_token": client_token,
+        }
         if license_metadata is not None:
             input_["license_metadata"] = license_metadata
-        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -762,6 +775,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_license_asset_group(
@@ -816,27 +830,25 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.create_license_asset_group_request.CreateLicenseAssetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_license_manager.types.create_license_asset_group_request.CreateLicenseAssetGroupRequest = {
+            "name": name,
+            "license_asset_group_configurations": license_asset_group_configurations,
+            "associated_license_asset_ruleset_ar_ns": associated_license_asset_ruleset_ar_ns,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["license_asset_group_configurations"] = (
-            license_asset_group_configurations
-        )
-        input_["associated_license_asset_ruleset_ar_ns"] = (
-            associated_license_asset_ruleset_ar_ns
-        )
         if properties is not None:
             input_["properties"] = properties
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_license_asset_ruleset(
@@ -885,20 +897,22 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.create_license_asset_ruleset_request.CreateLicenseAssetRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_license_manager.types.create_license_asset_ruleset_request.CreateLicenseAssetRulesetRequest = {
+            "name": name,
+            "rules": rules,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["rules"] = rules
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_license_configuration(
@@ -963,11 +977,12 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.create_license_configuration_request.CreateLicenseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_license_manager.types.create_license_configuration_request.CreateLicenseConfigurationRequest = {
+            "name": name,
+            "license_counting_type": license_counting_type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["license_counting_type"] = license_counting_type
         if license_count is not None:
             input_["license_count"] = license_count
         if license_count_hard_limit is not None:
@@ -988,6 +1003,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_license_conversion_task_for_resource(
@@ -1030,16 +1046,18 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.create_license_conversion_task_for_resource_request.CreateLicenseConversionTaskForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["source_license_context"] = source_license_context
-        input_["destination_license_context"] = destination_license_context
+        input_: capo_license_manager.types.create_license_conversion_task_for_resource_request.CreateLicenseConversionTaskForResourceRequest = {
+            "resource_arn": resource_arn,
+            "source_license_context": source_license_context,
+            "destination_license_context": destination_license_context,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_license_manager_report_generator(
@@ -1092,12 +1110,13 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.create_license_manager_report_generator_request.CreateLicenseManagerReportGeneratorRequest = {}  # type: ignore[typeddict-item]
-        input_["report_generator_name"] = report_generator_name
-        input_["type"] = type
-        input_["report_context"] = report_context
-        input_["report_frequency"] = report_frequency
-        input_["client_token"] = client_token
+        input_: capo_license_manager.types.create_license_manager_report_generator_request.CreateLicenseManagerReportGeneratorRequest = {
+            "report_generator_name": report_generator_name,
+            "type": type,
+            "report_context": report_context,
+            "report_frequency": report_frequency,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -1108,6 +1127,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_license_version(
@@ -1172,19 +1192,20 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.create_license_version_request.CreateLicenseVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["license_arn"] = license_arn
-        input_["license_name"] = license_name
-        input_["product_name"] = product_name
-        input_["issuer"] = issuer
-        input_["home_region"] = home_region
-        input_["validity"] = validity
+        input_: capo_license_manager.types.create_license_version_request.CreateLicenseVersionRequest = {
+            "license_arn": license_arn,
+            "license_name": license_name,
+            "product_name": product_name,
+            "issuer": issuer,
+            "home_region": home_region,
+            "validity": validity,
+            "entitlements": entitlements,
+            "consumption_configuration": consumption_configuration,
+            "status": status,
+            "client_token": client_token,
+        }
         if license_metadata is not None:
             input_["license_metadata"] = license_metadata
-        input_["entitlements"] = entitlements
-        input_["consumption_configuration"] = consumption_configuration
-        input_["status"] = status
-        input_["client_token"] = client_token
         if source_version is not None:
             input_["source_version"] = source_version
 
@@ -1193,6 +1214,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_token(
@@ -1245,21 +1267,23 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.create_token_request.CreateTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["license_arn"] = license_arn
+        input_: capo_license_manager.types.create_token_request.CreateTokenRequest = {
+            "license_arn": license_arn,
+            "client_token": client_token,
+        }
         if role_arns is not None:
             input_["role_arns"] = role_arns
         if expiration_in_days is not None:
             input_["expiration_in_days"] = expiration_in_days
         if token_properties is not None:
             input_["token_properties"] = token_properties
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_grant(
@@ -1305,17 +1329,19 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.delete_grant_request.DeleteGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["grant_arn"] = grant_arn
+        input_: capo_license_manager.types.delete_grant_request.DeleteGrantRequest = {
+            "grant_arn": grant_arn,
+            "version": version,
+        }
         if status_reason is not None:
             input_["status_reason"] = status_reason
-        input_["version"] = version
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_license(
@@ -1358,15 +1384,17 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.delete_license_request.DeleteLicenseRequest = {}  # type: ignore[typeddict-item]
-        input_["license_arn"] = license_arn
-        input_["source_version"] = source_version
+        input_: capo_license_manager.types.delete_license_request.DeleteLicenseRequest = {
+            "license_arn": license_arn,
+            "source_version": source_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_license_asset_group(
@@ -1405,14 +1433,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.delete_license_asset_group_request.DeleteLicenseAssetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["license_asset_group_arn"] = license_asset_group_arn
+        input_: capo_license_manager.types.delete_license_asset_group_request.DeleteLicenseAssetGroupRequest = {
+            "license_asset_group_arn": license_asset_group_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_license_asset_ruleset(
@@ -1451,14 +1481,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.delete_license_asset_ruleset_request.DeleteLicenseAssetRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["license_asset_ruleset_arn"] = license_asset_ruleset_arn
+        input_: capo_license_manager.types.delete_license_asset_ruleset_request.DeleteLicenseAssetRulesetRequest = {
+            "license_asset_ruleset_arn": license_asset_ruleset_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_license_configuration(
@@ -1496,14 +1528,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.delete_license_configuration_request.DeleteLicenseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["license_configuration_arn"] = license_configuration_arn
+        input_: capo_license_manager.types.delete_license_configuration_request.DeleteLicenseConfigurationRequest = {
+            "license_configuration_arn": license_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_license_manager_report_generator(
@@ -1544,16 +1578,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.delete_license_manager_report_generator_request.DeleteLicenseManagerReportGeneratorRequest = {}  # type: ignore[typeddict-item]
-        input_["license_manager_report_generator_arn"] = (
-            license_manager_report_generator_arn
-        )
+        input_: capo_license_manager.types.delete_license_manager_report_generator_request.DeleteLicenseManagerReportGeneratorRequest = {
+            "license_manager_report_generator_arn": license_manager_report_generator_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_token(
@@ -1593,14 +1627,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.delete_token_request.DeleteTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["token_id"] = token_id
+        input_: capo_license_manager.types.delete_token_request.DeleteTokenRequest = {
+            "token_id": token_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def extend_license_consumption(
@@ -1642,8 +1678,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.extend_license_consumption_request.ExtendLicenseConsumptionRequest = {}  # type: ignore[typeddict-item]
-        input_["license_consumption_token"] = license_consumption_token
+        input_: capo_license_manager.types.extend_license_consumption_request.ExtendLicenseConsumptionRequest = {
+            "license_consumption_token": license_consumption_token
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -1652,6 +1689,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_access_token(
@@ -1693,8 +1731,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.get_access_token_request.GetAccessTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["token"] = token
+        input_: capo_license_manager.types.get_access_token_request.GetAccessTokenRequest = {
+            "token": token
+        }
         if token_properties is not None:
             input_["token_properties"] = token_properties
 
@@ -1703,6 +1742,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_grant(
@@ -1744,8 +1784,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.get_grant_request.GetGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["grant_arn"] = grant_arn
+        input_: capo_license_manager.types.get_grant_request.GetGrantRequest = {
+            "grant_arn": grant_arn
+        }
         if version is not None:
             input_["version"] = version
 
@@ -1754,6 +1795,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_license(
@@ -1794,8 +1836,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.get_license_request.GetLicenseRequest = {}  # type: ignore[typeddict-item]
-        input_["license_arn"] = license_arn
+        input_: capo_license_manager.types.get_license_request.GetLicenseRequest = {
+            "license_arn": license_arn
+        }
         if version is not None:
             input_["version"] = version
 
@@ -1804,6 +1847,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_license_asset_group(
@@ -1842,14 +1886,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.get_license_asset_group_request.GetLicenseAssetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["license_asset_group_arn"] = license_asset_group_arn
+        input_: capo_license_manager.types.get_license_asset_group_request.GetLicenseAssetGroupRequest = {
+            "license_asset_group_arn": license_asset_group_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_license_asset_ruleset(
@@ -1888,14 +1934,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.get_license_asset_ruleset_request.GetLicenseAssetRulesetRequest = {}  # type: ignore[typeddict-item]
-        input_["license_asset_ruleset_arn"] = license_asset_ruleset_arn
+        input_: capo_license_manager.types.get_license_asset_ruleset_request.GetLicenseAssetRulesetRequest = {
+            "license_asset_ruleset_arn": license_asset_ruleset_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_license_configuration(
@@ -1933,14 +1981,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.get_license_configuration_request.GetLicenseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["license_configuration_arn"] = license_configuration_arn
+        input_: capo_license_manager.types.get_license_configuration_request.GetLicenseConfigurationRequest = {
+            "license_configuration_arn": license_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_license_conversion_task(
@@ -1978,14 +2028,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.get_license_conversion_task_request.GetLicenseConversionTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["license_conversion_task_id"] = license_conversion_task_id
+        input_: capo_license_manager.types.get_license_conversion_task_request.GetLicenseConversionTaskRequest = {
+            "license_conversion_task_id": license_conversion_task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_license_manager_report_generator(
@@ -2026,16 +2078,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.get_license_manager_report_generator_request.GetLicenseManagerReportGeneratorRequest = {}  # type: ignore[typeddict-item]
-        input_["license_manager_report_generator_arn"] = (
-            license_manager_report_generator_arn
-        )
+        input_: capo_license_manager.types.get_license_manager_report_generator_request.GetLicenseManagerReportGeneratorRequest = {
+            "license_manager_report_generator_arn": license_manager_report_generator_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_license_usage(
@@ -2076,14 +2128,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.get_license_usage_request.GetLicenseUsageRequest = {}  # type: ignore[typeddict-item]
-        input_["license_arn"] = license_arn
+        input_: capo_license_manager.types.get_license_usage_request.GetLicenseUsageRequest = {
+            "license_arn": license_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_service_settings(
@@ -2114,13 +2168,14 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.get_service_settings_request.GetServiceSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.get_service_settings_request.GetServiceSettingsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_assets_for_license_asset_group(
@@ -2167,9 +2222,10 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_assets_for_license_asset_group_request.ListAssetsForLicenseAssetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["license_asset_group_arn"] = license_asset_group_arn
-        input_["asset_type"] = asset_type
+        input_: capo_license_manager.types.list_assets_for_license_asset_group_request.ListAssetsForLicenseAssetGroupRequest = {
+            "license_asset_group_arn": license_asset_group_arn,
+            "asset_type": asset_type,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2180,6 +2236,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_associations_for_license_configuration(
@@ -2224,8 +2281,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_associations_for_license_configuration_request.ListAssociationsForLicenseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["license_configuration_arn"] = license_configuration_arn
+        input_: capo_license_manager.types.list_associations_for_license_configuration_request.ListAssociationsForLicenseConfigurationRequest = {
+            "license_configuration_arn": license_configuration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2236,6 +2294,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_distributed_grants(
@@ -2283,7 +2342,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_distributed_grants_request.ListDistributedGrantsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_distributed_grants_request.ListDistributedGrantsRequest = {}
         if grant_arns is not None:
             input_["grant_arns"] = grant_arns
         if filters is not None:
@@ -2298,6 +2357,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_failures_for_license_configuration_operations(
@@ -2341,8 +2401,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_failures_for_license_configuration_operations_request.ListFailuresForLicenseConfigurationOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["license_configuration_arn"] = license_configuration_arn
+        input_: capo_license_manager.types.list_failures_for_license_configuration_operations_request.ListFailuresForLicenseConfigurationOperationsRequest = {
+            "license_configuration_arn": license_configuration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2353,6 +2414,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_license_asset_groups(
@@ -2397,7 +2459,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_license_asset_groups_request.ListLicenseAssetGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_license_asset_groups_request.ListLicenseAssetGroupsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2410,6 +2472,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_license_asset_rulesets(
@@ -2458,7 +2521,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_license_asset_rulesets_request.ListLicenseAssetRulesetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_license_asset_rulesets_request.ListLicenseAssetRulesetsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if show_aws_managed_license_asset_rulesets is not None:
@@ -2475,6 +2538,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_license_configurations(
@@ -2523,7 +2587,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_license_configurations_request.ListLicenseConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_license_configurations_request.ListLicenseConfigurationsRequest = {}
         if license_configuration_arns is not None:
             input_["license_configuration_arns"] = license_configuration_arns
         if max_results is not None:
@@ -2538,6 +2602,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_license_configurations_for_organization(
@@ -2586,7 +2651,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_license_configurations_for_organization_request.ListLicenseConfigurationsForOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_license_configurations_for_organization_request.ListLicenseConfigurationsForOrganizationRequest = {}
         if license_configuration_arns is not None:
             input_["license_configuration_arns"] = license_configuration_arns
         if max_results is not None:
@@ -2601,6 +2666,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_license_conversion_tasks(
@@ -2644,7 +2710,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_license_conversion_tasks_request.ListLicenseConversionTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_license_conversion_tasks_request.ListLicenseConversionTasksRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2657,6 +2723,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_license_manager_report_generators(
@@ -2703,7 +2770,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_license_manager_report_generators_request.ListLicenseManagerReportGeneratorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_license_manager_report_generators_request.ListLicenseManagerReportGeneratorsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -2716,6 +2783,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_licenses(
@@ -2762,7 +2830,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_licenses_request.ListLicensesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_licenses_request.ListLicensesRequest = {}
         if license_arns is not None:
             input_["license_arns"] = license_arns
         if filters is not None:
@@ -2777,6 +2845,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_license_specifications_for_resource(
@@ -2820,8 +2889,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_license_specifications_for_resource_request.ListLicenseSpecificationsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_license_manager.types.list_license_specifications_for_resource_request.ListLicenseSpecificationsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2832,6 +2902,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_license_versions(
@@ -2875,8 +2946,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_license_versions_request.ListLicenseVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["license_arn"] = license_arn
+        input_: capo_license_manager.types.list_license_versions_request.ListLicenseVersionsRequest = {
+            "license_arn": license_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2887,6 +2959,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_received_grants(
@@ -2934,7 +3007,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_received_grants_request.ListReceivedGrantsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_received_grants_request.ListReceivedGrantsRequest = {}
         if grant_arns is not None:
             input_["grant_arns"] = grant_arns
         if filters is not None:
@@ -2949,6 +3022,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_received_grants_for_organization(
@@ -2996,8 +3070,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_received_grants_for_organization_request.ListReceivedGrantsForOrganizationRequest = {}  # type: ignore[typeddict-item]
-        input_["license_arn"] = license_arn
+        input_: capo_license_manager.types.list_received_grants_for_organization_request.ListReceivedGrantsForOrganizationRequest = {
+            "license_arn": license_arn
+        }
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -3010,6 +3085,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_received_licenses(
@@ -3057,7 +3133,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_received_licenses_request.ListReceivedLicensesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_received_licenses_request.ListReceivedLicensesRequest = {}
         if license_arns is not None:
             input_["license_arns"] = license_arns
         if filters is not None:
@@ -3072,6 +3148,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_received_licenses_for_organization(
@@ -3117,7 +3194,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_received_licenses_for_organization_request.ListReceivedLicensesForOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_received_licenses_for_organization_request.ListReceivedLicensesForOrganizationRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -3130,6 +3207,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_resource_inventory(
@@ -3177,7 +3255,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_resource_inventory_request.ListResourceInventoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_resource_inventory_request.ListResourceInventoryRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3190,6 +3268,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -3228,14 +3307,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_license_manager.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tokens(
@@ -3281,7 +3362,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_tokens_request.ListTokensRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.list_tokens_request.ListTokensRequest = {}
         if token_ids is not None:
             input_["token_ids"] = token_ids
         if filters is not None:
@@ -3296,6 +3377,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_usage_for_license_configuration(
@@ -3342,8 +3424,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.list_usage_for_license_configuration_request.ListUsageForLicenseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["license_configuration_arn"] = license_configuration_arn
+        input_: capo_license_manager.types.list_usage_for_license_configuration_request.ListUsageForLicenseConfigurationRequest = {
+            "license_configuration_arn": license_configuration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3356,6 +3439,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_grant(
@@ -3395,14 +3479,16 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.reject_grant_request.RejectGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["grant_arn"] = grant_arn
+        input_: capo_license_manager.types.reject_grant_request.RejectGrantRequest = {
+            "grant_arn": grant_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -3443,15 +3529,17 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_license_manager.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -3492,15 +3580,17 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_license_manager.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_license_asset_group(
@@ -3563,7 +3653,11 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.update_license_asset_group_request.UpdateLicenseAssetGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.update_license_asset_group_request.UpdateLicenseAssetGroupRequest = {
+            "associated_license_asset_ruleset_ar_ns": associated_license_asset_ruleset_ar_ns,
+            "license_asset_group_arn": license_asset_group_arn,
+            "client_token": client_token,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -3572,21 +3666,17 @@ class LicenseManagerClient:
             input_["license_asset_group_configurations"] = (
                 license_asset_group_configurations
             )
-        input_["associated_license_asset_ruleset_ar_ns"] = (
-            associated_license_asset_ruleset_ar_ns
-        )
         if properties is not None:
             input_["properties"] = properties
-        input_["license_asset_group_arn"] = license_asset_group_arn
         if status is not None:
             input_["status"] = status
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_license_asset_ruleset(
@@ -3637,20 +3727,22 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.update_license_asset_ruleset_request.UpdateLicenseAssetRulesetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.update_license_asset_ruleset_request.UpdateLicenseAssetRulesetRequest = {
+            "rules": rules,
+            "license_asset_ruleset_arn": license_asset_ruleset_arn,
+            "client_token": client_token,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        input_["rules"] = rules
-        input_["license_asset_ruleset_arn"] = license_asset_ruleset_arn
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_license_configuration(
@@ -3718,8 +3810,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.update_license_configuration_request.UpdateLicenseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["license_configuration_arn"] = license_configuration_arn
+        input_: capo_license_manager.types.update_license_configuration_request.UpdateLicenseConfigurationRequest = {
+            "license_configuration_arn": license_configuration_arn
+        }
         if license_configuration_status is not None:
             input_["license_configuration_status"] = license_configuration_status
         if license_rules is not None:
@@ -3744,6 +3837,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_license_manager_report_generator(
@@ -3796,15 +3890,14 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.update_license_manager_report_generator_request.UpdateLicenseManagerReportGeneratorRequest = {}  # type: ignore[typeddict-item]
-        input_["license_manager_report_generator_arn"] = (
-            license_manager_report_generator_arn
-        )
-        input_["report_generator_name"] = report_generator_name
-        input_["type"] = type
-        input_["report_context"] = report_context
-        input_["report_frequency"] = report_frequency
-        input_["client_token"] = client_token
+        input_: capo_license_manager.types.update_license_manager_report_generator_request.UpdateLicenseManagerReportGeneratorRequest = {
+            "license_manager_report_generator_arn": license_manager_report_generator_arn,
+            "report_generator_name": report_generator_name,
+            "type": type,
+            "report_context": report_context,
+            "report_frequency": report_frequency,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -3813,6 +3906,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_license_specifications_for_resource(
@@ -3861,8 +3955,9 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.update_license_specifications_for_resource_request.UpdateLicenseSpecificationsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_license_manager.types.update_license_specifications_for_resource_request.UpdateLicenseSpecificationsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if add_license_specifications is not None:
             input_["add_license_specifications"] = add_license_specifications
         if remove_license_specifications is not None:
@@ -3873,6 +3968,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service_settings(
@@ -3926,7 +4022,7 @@ class LicenseManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager.types.update_service_settings_request.UpdateServiceSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager.types.update_service_settings_request.UpdateServiceSettingsRequest = {}
         if s3_bucket_arn is not None:
             input_["s3_bucket_arn"] = s3_bucket_arn
         if sns_topic_arn is not None:
@@ -3945,6 +4041,7 @@ class LicenseManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

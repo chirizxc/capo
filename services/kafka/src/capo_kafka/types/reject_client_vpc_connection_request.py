@@ -25,6 +25,6 @@ def serialize_json(value: RejectClientVpcConnectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> RejectClientVpcConnectionRequest:
     out: RejectClientVpcConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "vpcConnectionArn" in data:
+    if data.get("vpcConnectionArn") is not None:
         out["vpc_connection_arn"] = data["vpcConnectionArn"]
     return out

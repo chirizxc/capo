@@ -30,6 +30,6 @@ def serialize_json(value: ReimportApiRequest) -> dict:
 
 def deserialize_json(data: dict) -> ReimportApiRequest:
     out: ReimportApiRequest = {}  # type: ignore[typeddict-item]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
     return out

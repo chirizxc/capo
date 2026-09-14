@@ -33,9 +33,9 @@ def serialize_json(value: UpdateTrustAnchorRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTrustAnchorRequest:
     out: UpdateTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_rolesanywhere.types.source
 
         out["source"] = capo_rolesanywhere.types.source.deserialize_json(data["source"])

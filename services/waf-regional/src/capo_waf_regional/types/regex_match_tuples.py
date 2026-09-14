@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> RegexMatchTuples:
 
     out: RegexMatchTuples = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_waf_regional.types.regex_match_tuple.deserialize_aws_json_1_1(item)
         )

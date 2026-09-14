@@ -13,10 +13,25 @@ from capo_cloudhsm_v2 import AsyncCloudHSMV2Client
 
 
 async def main():
-    async with AsyncCloudHSMV2Client() as s3:
+    async with AsyncCloudHSMV2Client() as cloud_hsmv2:
         # Example: call the copy_backup_to_region operation
-        response = await s3.copy_backup_to_region()
+        response = await cloud_hsmv2.copy_backup_to_region()
         print(response["destination_backup"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_cloudhsm_v2 import AsyncCloudHSMV2Client
+
+
+async def main():
+    async with AsyncCloudHSMV2Client() as cloud_hsmv2:
+        # Example: paginate over describe_backups
+        async for item in cloud_hsmv2.iter_describe_backups():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_cloudhsm_v2.error import CloudHsmAccessDeniedException
 
 
 async def main():
-    async with AsyncCloudHSMV2Client() as s3:
+    async with AsyncCloudHSMV2Client() as cloud_hsmv2:
         try:
-            await s3.copy_backup_to_region()
+            await cloud_hsmv2.copy_backup_to_region()
         except CloudHsmAccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_cloudhsm_v2 import AsyncCloudHSMV2Client
 
 
 async def main():
-    async with AsyncCloudHSMV2Client() as s3:
+    async with AsyncCloudHSMV2Client() as cloud_hsmv2:
         # Default: 3 attempts for every operation
-        response = await s3.copy_backup_to_region()
+        response = await cloud_hsmv2.copy_backup_to_region()
 
         # Override per operation
-        response = await s3.copy_backup_to_region(config_overrides={"retry_max_attempts": 5})
+        response = await cloud_hsmv2.copy_backup_to_region(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.copy_backup_to_region(config_overrides={"retry_max_attempts": 1})
+        response = await cloud_hsmv2.copy_backup_to_region(config_overrides={"retry_max_attempts": 1})
 ```

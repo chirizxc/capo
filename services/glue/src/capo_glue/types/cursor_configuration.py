@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: CursorConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CursorConfiguration:
     out: CursorConfiguration = {}  # type: ignore[typeddict-item]
-    if "NextPage" in data:
+    if data.get("NextPage") is not None:
         import capo_glue.types.extracted_parameter
 
         out["next_page"] = capo_glue.types.extracted_parameter.deserialize_aws_json_1_1(
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> CursorConfiguration:
         )
     else:
         raise DeserializationError("CursorConfiguration.next_page required")
-    if "LimitParameter" in data:
+    if data.get("LimitParameter") is not None:
         import capo_glue.types.extracted_parameter
 
         out["limit_parameter"] = (

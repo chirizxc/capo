@@ -23,6 +23,6 @@ def serialize_json(value: DeletePricingRuleOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeletePricingRuleOutput:
     out: DeletePricingRuleOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: CustomInstruction) -> dict:
 
 def deserialize_json(data: dict) -> CustomInstruction:
     out: CustomInstruction = {}  # type: ignore[typeddict-item]
-    if "InlineCustomInstruction" in data:
+    if data.get("InlineCustomInstruction") is not None:
         import capo_quicksight.types.inline_custom_instruction
 
         out["inline_custom_instruction"] = (

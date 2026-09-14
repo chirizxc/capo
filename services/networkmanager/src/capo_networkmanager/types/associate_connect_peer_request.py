@@ -36,16 +36,16 @@ def serialize_json(value: AssociateConnectPeerRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateConnectPeerRequest:
     out: AssociateConnectPeerRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectPeerId" in data:
+    if data.get("ConnectPeerId") is not None:
         out["connect_peer_id"] = data["ConnectPeerId"]
     else:
         raise DeserializationError(
             "AssociateConnectPeerRequest.connect_peer_id required"
         )
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError("AssociateConnectPeerRequest.device_id required")
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
     return out

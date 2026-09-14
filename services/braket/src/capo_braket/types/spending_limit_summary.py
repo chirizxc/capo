@@ -49,14 +49,14 @@ def serialize_json(value: SpendingLimitSummary) -> dict:
     out["spendingLimit"] = value["spending_limit"]
     out["queuedSpend"] = value["queued_spend"]
     out["totalSpend"] = value["total_spend"]
-    import capo_braket.types._prelude.timestamp
+    import capo_braket._protocol.serialize
 
-    out["createdAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_braket._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
-    import capo_braket.types._prelude.timestamp
+    import capo_braket._protocol.serialize
 
-    out["updatedAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+    out["updatedAt"] = capo_braket._protocol.serialize.fmt_date_time(
         value["updated_at"]
     )
     if "tags" in value:
@@ -68,15 +68,15 @@ def serialize_json(value: SpendingLimitSummary) -> dict:
 
 def deserialize_json(data: dict) -> SpendingLimitSummary:
     out: SpendingLimitSummary = {}  # type: ignore[typeddict-item]
-    if "spendingLimitArn" in data:
+    if data.get("spendingLimitArn") is not None:
         out["spending_limit_arn"] = data["spendingLimitArn"]
     else:
         raise DeserializationError("SpendingLimitSummary.spending_limit_arn required")
-    if "deviceArn" in data:
+    if data.get("deviceArn") is not None:
         out["device_arn"] = data["deviceArn"]
     else:
         raise DeserializationError("SpendingLimitSummary.device_arn required")
-    if "timePeriod" in data:
+    if data.get("timePeriod") is not None:
         import capo_braket.types.time_period
 
         out["time_period"] = capo_braket.types.time_period.deserialize_json(
@@ -84,35 +84,35 @@ def deserialize_json(data: dict) -> SpendingLimitSummary:
         )
     else:
         raise DeserializationError("SpendingLimitSummary.time_period required")
-    if "spendingLimit" in data:
+    if data.get("spendingLimit") is not None:
         out["spending_limit"] = data["spendingLimit"]
     else:
         raise DeserializationError("SpendingLimitSummary.spending_limit required")
-    if "queuedSpend" in data:
+    if data.get("queuedSpend") is not None:
         out["queued_spend"] = data["queuedSpend"]
     else:
         raise DeserializationError("SpendingLimitSummary.queued_spend required")
-    if "totalSpend" in data:
+    if data.get("totalSpend") is not None:
         out["total_spend"] = data["totalSpend"]
     else:
         raise DeserializationError("SpendingLimitSummary.total_spend required")
-    if "createdAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("SpendingLimitSummary.created_at required")
-    if "updatedAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("SpendingLimitSummary.updated_at required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_braket.types.tags_map
 
         out["tags"] = capo_braket.types.tags_map.deserialize_json(data["tags"])

@@ -54,19 +54,19 @@ def serialize_json(value: InsightImpactGraphService) -> dict:
 
 def deserialize_json(data: dict) -> InsightImpactGraphService:
     out: InsightImpactGraphService = {}  # type: ignore[typeddict-item]
-    if "ReferenceId" in data:
+    if data.get("ReferenceId") is not None:
         out["reference_id"] = data["ReferenceId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_xray.types.service_names
 
         out["names"] = capo_xray.types.service_names.deserialize_json(data["Names"])
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Edges" in data:
+    if data.get("Edges") is not None:
         import capo_xray.types.insight_impact_graph_edge_list
 
         out["edges"] = capo_xray.types.insight_impact_graph_edge_list.deserialize_json(

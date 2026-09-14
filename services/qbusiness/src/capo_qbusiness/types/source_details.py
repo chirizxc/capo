@@ -62,7 +62,7 @@ def serialize_json(value: SourceDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> SourceDetails:
-    if "imageSourceDetails" in data:
+    if data.get("imageSourceDetails") is not None:
         import capo_qbusiness.types.image_source_details
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> SourceDetails:
                 data["imageSourceDetails"]
             )
         }
-    elif "audioSourceDetails" in data:
+    elif data.get("audioSourceDetails") is not None:
         import capo_qbusiness.types.audio_source_details
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> SourceDetails:
                 data["audioSourceDetails"]
             )
         }
-    elif "videoSourceDetails" in data:
+    elif data.get("videoSourceDetails") is not None:
         import capo_qbusiness.types.video_source_details
 
         return {

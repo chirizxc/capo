@@ -73,7 +73,7 @@ def serialize_aws_json_1_1(value: CheckoutLicenseResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckoutLicenseResponse:
     out: CheckoutLicenseResponse = {}  # type: ignore[typeddict-item]
-    if "CheckoutType" in data:
+    if data.get("CheckoutType") is not None:
         import capo_license_manager.types.checkout_type
 
         out["checkout_type"] = (
@@ -81,9 +81,9 @@ def deserialize_aws_json_1_1(data: dict) -> CheckoutLicenseResponse:
                 data["CheckoutType"]
             )
         )
-    if "LicenseConsumptionToken" in data:
+    if data.get("LicenseConsumptionToken") is not None:
         out["license_consumption_token"] = data["LicenseConsumptionToken"]
-    if "EntitlementsAllowed" in data:
+    if data.get("EntitlementsAllowed") is not None:
         import capo_license_manager.types.entitlement_data_list
 
         out["entitlements_allowed"] = (
@@ -91,14 +91,14 @@ def deserialize_aws_json_1_1(data: dict) -> CheckoutLicenseResponse:
                 data["EntitlementsAllowed"]
             )
         )
-    if "SignedToken" in data:
+    if data.get("SignedToken") is not None:
         out["signed_token"] = data["SignedToken"]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
-    if "IssuedAt" in data:
+    if data.get("IssuedAt") is not None:
         out["issued_at"] = data["IssuedAt"]
-    if "Expiration" in data:
+    if data.get("Expiration") is not None:
         out["expiration"] = data["Expiration"]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     return out

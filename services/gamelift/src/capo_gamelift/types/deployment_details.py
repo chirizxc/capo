@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeploymentDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentDetails:
     out: DeploymentDetails = {}  # type: ignore[typeddict-item]
-    if "LatestDeploymentId" in data:
+    if data.get("LatestDeploymentId") is not None:
         out["latest_deployment_id"] = data["LatestDeploymentId"]
     return out

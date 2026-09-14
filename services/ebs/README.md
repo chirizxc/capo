@@ -13,10 +13,25 @@ from capo_ebs import AsyncEBSClient
 
 
 async def main():
-    async with AsyncEBSClient() as s3:
+    async with AsyncEBSClient() as ebs:
         # Example: call the complete_snapshot operation
-        response = await s3.complete_snapshot()
+        response = await ebs.complete_snapshot()
         print(response["status"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_ebs import AsyncEBSClient
+
+
+async def main():
+    async with AsyncEBSClient() as ebs:
+        # Example: paginate over list_changed_blocks
+        async for item in ebs.iter_list_changed_blocks():
+            print(item)
 ```
 
 ## Streaming Request
@@ -28,16 +43,16 @@ from capo_ebs import AsyncEBSClient
 
 
 async def main():
-    async with AsyncEBSClient() as s3:
+    async with AsyncEBSClient() as ebs:
         # Example: call put_snapshot_block with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.put_snapshot_block(block_data=chunks())
+        response = await ebs.put_snapshot_block(block_data=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.put_snapshot_block(block_data=b'Hello, World!')
+        response = await ebs.put_snapshot_block(block_data=b'Hello, World!')
         print(response)
 ```
 
@@ -50,9 +65,9 @@ from capo_ebs import AsyncEBSClient
 
 
 async def main():
-    async with AsyncEBSClient() as s3:
+    async with AsyncEBSClient() as ebs:
         # Example: call get_snapshot_block and read the streaming response
-        async with s3.get_snapshot_block() as response:
+        async with ebs.get_snapshot_block() as response:
             async for chunk in response["block_data"]:
                 print(chunk)
 ```
@@ -67,9 +82,9 @@ from capo_ebs.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncEBSClient() as s3:
+    async with AsyncEBSClient() as ebs:
         try:
-            await s3.complete_snapshot()
+            await ebs.complete_snapshot()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -86,13 +101,13 @@ from capo_ebs import AsyncEBSClient
 
 
 async def main():
-    async with AsyncEBSClient() as s3:
+    async with AsyncEBSClient() as ebs:
         # Default: 3 attempts for every operation
-        response = await s3.complete_snapshot()
+        response = await ebs.complete_snapshot()
 
         # Override per operation
-        response = await s3.complete_snapshot(config_overrides={"retry_max_attempts": 5})
+        response = await ebs.complete_snapshot(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.complete_snapshot(config_overrides={"retry_max_attempts": 1})
+        response = await ebs.complete_snapshot(config_overrides={"retry_max_attempts": 1})
 ```

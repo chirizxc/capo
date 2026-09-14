@@ -34,13 +34,13 @@ def serialize_json(value: SegmentGroupList) -> dict:
 
 def deserialize_json(data: dict) -> SegmentGroupList:
     out: SegmentGroupList = {}  # type: ignore[typeddict-item]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_pinpoint.types.list_of_segment_group
 
         out["groups"] = capo_pinpoint.types.list_of_segment_group.deserialize_json(
             data["Groups"]
         )
-    if "Include" in data:
+    if data.get("Include") is not None:
         import capo_pinpoint.types.include
 
         out["include"] = capo_pinpoint.types.include.deserialize_json(data["Include"])

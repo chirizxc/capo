@@ -28,8 +28,8 @@ def serialize_json(value: DescribeNotificationConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeNotificationConfigurationInput:
     out: DescribeNotificationConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
     return out

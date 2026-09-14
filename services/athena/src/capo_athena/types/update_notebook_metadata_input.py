@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: UpdateNotebookMetadataInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateNotebookMetadataInput:
     out: UpdateNotebookMetadataInput = {}  # type: ignore[typeddict-item]
-    if "NotebookId" in data:
+    if data.get("NotebookId") is not None:
         out["notebook_id"] = data["NotebookId"]
     else:
         raise DeserializationError("UpdateNotebookMetadataInput.notebook_id required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateNotebookMetadataInput.name required")

@@ -64,7 +64,7 @@ def serialize_aws_json_1_0(value: Parameters) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> Parameters:
-    if "InfluxDBv2" in data:
+    if data.get("InfluxDBv2") is not None:
         import capo_timestream_influxdb.types.influx_d_bv2_parameters
 
         return {
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> Parameters:
                 data["InfluxDBv2"]
             )
         }
-    elif "InfluxDBv3Core" in data:
+    elif data.get("InfluxDBv3Core") is not None:
         import capo_timestream_influxdb.types.influx_d_bv3_core_parameters
 
         return {
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> Parameters:
                 data["InfluxDBv3Core"]
             )
         }
-    elif "InfluxDBv3Enterprise" in data:
+    elif data.get("InfluxDBv3Enterprise") is not None:
         import capo_timestream_influxdb.types.influx_d_bv3_enterprise_parameters
 
         return {

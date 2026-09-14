@@ -42,19 +42,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AddApplicationCloudWatchLoggingOptionRequest:
     out: AddApplicationCloudWatchLoggingOptionRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError(
             "AddApplicationCloudWatchLoggingOptionRequest.application_name required"
         )
-    if "CurrentApplicationVersionId" in data:
+    if data.get("CurrentApplicationVersionId") is not None:
         out["current_application_version_id"] = data["CurrentApplicationVersionId"]
     else:
         raise DeserializationError(
             "AddApplicationCloudWatchLoggingOptionRequest.current_application_version_id required"
         )
-    if "CloudWatchLoggingOption" in data:
+    if data.get("CloudWatchLoggingOption") is not None:
         import capo_kinesis_analytics.types.cloud_watch_logging_option
 
         out["cloud_watch_logging_option"] = (

@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: CreateRateBasedRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRateBasedRuleRequest:
     out: CreateRateBasedRuleRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateRateBasedRuleRequest.name required")
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
     else:
         raise DeserializationError("CreateRateBasedRuleRequest.metric_name required")
-    if "RateKey" in data:
+    if data.get("RateKey") is not None:
         import capo_waf.types.rate_key
 
         out["rate_key"] = capo_waf.types.rate_key.deserialize_aws_json_1_1(
@@ -65,15 +65,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRateBasedRuleRequest:
         )
     else:
         raise DeserializationError("CreateRateBasedRuleRequest.rate_key required")
-    if "RateLimit" in data:
+    if data.get("RateLimit") is not None:
         out["rate_limit"] = data["RateLimit"]
     else:
         raise DeserializationError("CreateRateBasedRuleRequest.rate_limit required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("CreateRateBasedRuleRequest.change_token required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_waf.types.tag_list
 
         out["tags"] = capo_waf.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

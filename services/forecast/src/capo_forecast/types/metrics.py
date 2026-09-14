@@ -27,7 +27,15 @@ class Metrics(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: Metrics) -> dict:
     out: dict = {}
     if "rmse" in value:
-        out["RMSE"] = value["rmse"]
+        out["RMSE"] = (
+            "NaN"
+            if value["rmse"] != value["rmse"]
+            else "Infinity"
+            if value["rmse"] == float("inf")
+            else "-Infinity"
+            if value["rmse"] == float("-inf")
+            else value["rmse"]
+        )
     if "weighted_quantile_losses" in value:
         import capo_forecast.types.weighted_quantile_losses
 
@@ -43,15 +51,24 @@ def serialize_aws_json_1_1(value: Metrics) -> dict:
             value["error_metrics"]
         )
     if "average_weighted_quantile_loss" in value:
-        out["AverageWeightedQuantileLoss"] = value["average_weighted_quantile_loss"]
+        out["AverageWeightedQuantileLoss"] = (
+            "NaN"
+            if value["average_weighted_quantile_loss"]
+            != value["average_weighted_quantile_loss"]
+            else "Infinity"
+            if value["average_weighted_quantile_loss"] == float("inf")
+            else "-Infinity"
+            if value["average_weighted_quantile_loss"] == float("-inf")
+            else value["average_weighted_quantile_loss"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> Metrics:
     out: Metrics = {}  # type: ignore[typeddict-item]
-    if "RMSE" in data:
-        out["rmse"] = data["RMSE"]
-    if "WeightedQuantileLosses" in data:
+    if data.get("RMSE") is not None:
+        out["rmse"] = float(data["RMSE"])
+    if data.get("WeightedQuantileLosses") is not None:
         import capo_forecast.types.weighted_quantile_losses
 
         out["weighted_quantile_losses"] = (
@@ -59,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> Metrics:
                 data["WeightedQuantileLosses"]
             )
         )
-    if "ErrorMetrics" in data:
+    if data.get("ErrorMetrics") is not None:
         import capo_forecast.types.error_metrics
 
         out["error_metrics"] = (
@@ -67,6 +84,8 @@ def deserialize_aws_json_1_1(data: dict) -> Metrics:
                 data["ErrorMetrics"]
             )
         )
-    if "AverageWeightedQuantileLoss" in data:
-        out["average_weighted_quantile_loss"] = data["AverageWeightedQuantileLoss"]
+    if data.get("AverageWeightedQuantileLoss") is not None:
+        out["average_weighted_quantile_loss"] = float(
+            data["AverageWeightedQuantileLoss"]
+        )
     return out

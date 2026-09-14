@@ -22,14 +22,22 @@ def serialize_json(value: ThresholdV2) -> dict:
     if "comparison" in value:
         out["Comparison"] = value["comparison"]
     if "threshold_value" in value:
-        out["ThresholdValue"] = value["threshold_value"]
+        out["ThresholdValue"] = (
+            "NaN"
+            if value["threshold_value"] != value["threshold_value"]
+            else "Infinity"
+            if value["threshold_value"] == float("inf")
+            else "-Infinity"
+            if value["threshold_value"] == float("-inf")
+            else value["threshold_value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> ThresholdV2:
     out: ThresholdV2 = {}  # type: ignore[typeddict-item]
-    if "Comparison" in data:
+    if data.get("Comparison") is not None:
         out["comparison"] = data["Comparison"]
-    if "ThresholdValue" in data:
-        out["threshold_value"] = data["ThresholdValue"]
+    if data.get("ThresholdValue") is not None:
+        out["threshold_value"] = float(data["ThresholdValue"])
     return out

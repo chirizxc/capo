@@ -74,29 +74,29 @@ def serialize_aws_json_1_1(value: DescribeInstanceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeInstanceResponse:
     out: DescribeInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_sso_admin.types.date
 
         out["created_date"] = capo_sso_admin.types.date.deserialize_aws_json_1_1(
             data["CreatedDate"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sso_admin.types.instance_status
 
         out["status"] = capo_sso_admin.types.instance_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "EncryptionConfigurationDetails" in data:
+    if data.get("EncryptionConfigurationDetails") is not None:
         import capo_sso_admin.types.encryption_configuration_details
 
         out["encryption_configuration_details"] = (

@@ -30,15 +30,15 @@ def serialize_json(value: CodeErrorLocation) -> dict:
 
 def deserialize_json(data: dict) -> CodeErrorLocation:
     out: CodeErrorLocation = {}  # type: ignore[typeddict-item]
-    if "line" in data:
+    if data.get("line") is not None:
         out["line"] = data["line"]
     else:
         out["line"] = 0
-    if "column" in data:
+    if data.get("column") is not None:
         out["column"] = data["column"]
     else:
         out["column"] = 0
-    if "span" in data:
+    if data.get("span") is not None:
         out["span"] = data["span"]
     else:
         out["span"] = 0

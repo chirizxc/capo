@@ -28,7 +28,7 @@ def serialize_json(value: AwsJsonSubstitutionCommandPreprocessorConfig) -> dict:
 
 def deserialize_json(data: dict) -> AwsJsonSubstitutionCommandPreprocessorConfig:
     out: AwsJsonSubstitutionCommandPreprocessorConfig = {}  # type: ignore[typeddict-item]
-    if "outputFormat" in data:
+    if data.get("outputFormat") is not None:
         import capo_iot.types.output_format
 
         out["output_format"] = capo_iot.types.output_format.deserialize_json(

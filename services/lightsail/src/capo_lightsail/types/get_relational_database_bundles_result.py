@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetRelationalDatabaseBundlesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseBundlesResult:
     out: GetRelationalDatabaseBundlesResult = {}  # type: ignore[typeddict-item]
-    if "bundles" in data:
+    if data.get("bundles") is not None:
         import capo_lightsail.types.relational_database_bundle_list
 
         out["bundles"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseBundlesResult:
                 data["bundles"]
             )
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

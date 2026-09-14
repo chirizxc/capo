@@ -34,11 +34,11 @@ def serialize_json(value: NumericAxisOptions) -> dict:
 
 def deserialize_json(data: dict) -> NumericAxisOptions:
     out: NumericAxisOptions = {}  # type: ignore[typeddict-item]
-    if "Scale" in data:
+    if data.get("Scale") is not None:
         import capo_quicksight.types.axis_scale
 
         out["scale"] = capo_quicksight.types.axis_scale.deserialize_json(data["Scale"])
-    if "Range" in data:
+    if data.get("Range") is not None:
         import capo_quicksight.types.axis_display_range
 
         out["range"] = capo_quicksight.types.axis_display_range.deserialize_json(

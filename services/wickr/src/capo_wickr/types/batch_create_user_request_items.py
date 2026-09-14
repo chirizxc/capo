@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> BatchCreateUserRequestItems:
 
     out: BatchCreateUserRequestItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wickr.types.batch_create_user_request_item.deserialize_json(item)
         )

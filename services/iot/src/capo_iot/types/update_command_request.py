@@ -36,10 +36,10 @@ def serialize_json(value: UpdateCommandRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCommandRequest:
     out: UpdateCommandRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "deprecated" in data:
+    if data.get("deprecated") is not None:
         out["deprecated"] = data["deprecated"]
     return out

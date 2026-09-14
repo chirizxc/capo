@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SearchContentCategoryTypeList:
 
     out: SearchContentCategoryTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workdocs.types.content_category_type.deserialize_json(item))
     return out

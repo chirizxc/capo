@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: RightsizingRecommendationConfiguration) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> RightsizingRecommendationConfiguration:
     out: RightsizingRecommendationConfiguration = {}  # type: ignore[typeddict-item]
-    if "RecommendationTarget" in data:
+    if data.get("RecommendationTarget") is not None:
         import capo_cost_explorer.types.recommendation_target
 
         out["recommendation_target"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> RightsizingRecommendationConfigurati
         raise DeserializationError(
             "RightsizingRecommendationConfiguration.recommendation_target required"
         )
-    if "BenefitsConsidered" in data:
+    if data.get("BenefitsConsidered") is not None:
         out["benefits_considered"] = data["BenefitsConsidered"]
     else:
         out["benefits_considered"] = False

@@ -24,7 +24,7 @@ def serialize_json(value: CreateFarmResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateFarmResponse:
     out: CreateFarmResponse = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("CreateFarmResponse.farm_id required")

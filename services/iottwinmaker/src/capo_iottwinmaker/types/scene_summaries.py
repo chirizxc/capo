@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SceneSummaries:
 
     out: SceneSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iottwinmaker.types.scene_summary.deserialize_json(item))
     return out

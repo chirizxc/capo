@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: UpdateEnrollmentStatusRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateEnrollmentStatusRequest:
     out: UpdateEnrollmentStatusRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_compute_optimizer.types.status
 
         out["status"] = capo_compute_optimizer.types.status.deserialize_aws_json_1_0(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateEnrollmentStatusRequest:
         )
     else:
         raise DeserializationError("UpdateEnrollmentStatusRequest.status required")
-    if "includeMemberAccounts" in data:
+    if data.get("includeMemberAccounts") is not None:
         out["include_member_accounts"] = data["includeMemberAccounts"]
     else:
         out["include_member_accounts"] = False

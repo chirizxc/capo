@@ -36,14 +36,14 @@ def serialize_json(value: WeeklyStartTime) -> dict:
 
 def deserialize_json(data: dict) -> WeeklyStartTime:
     out: WeeklyStartTime = {}  # type: ignore[typeddict-item]
-    if "dayOfWeek" in data:
+    if data.get("dayOfWeek") is not None:
         import capo_mq.types.day_of_week
 
         out["day_of_week"] = capo_mq.types.day_of_week.deserialize_json(
             data["dayOfWeek"]
         )
-    if "timeOfDay" in data:
+    if data.get("timeOfDay") is not None:
         out["time_of_day"] = data["timeOfDay"]
-    if "timeZone" in data:
+    if data.get("timeZone") is not None:
         out["time_zone"] = data["timeZone"]
     return out

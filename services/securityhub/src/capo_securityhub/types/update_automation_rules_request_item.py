@@ -72,23 +72,23 @@ def serialize_json(value: UpdateAutomationRulesRequestItem) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAutomationRulesRequestItem:
     out: UpdateAutomationRulesRequestItem = {}  # type: ignore[typeddict-item]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
-    if "RuleStatus" in data:
+    if data.get("RuleStatus") is not None:
         import capo_securityhub.types.rule_status
 
         out["rule_status"] = capo_securityhub.types.rule_status.deserialize_json(
             data["RuleStatus"]
         )
-    if "RuleOrder" in data:
+    if data.get("RuleOrder") is not None:
         out["rule_order"] = data["RuleOrder"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "IsTerminal" in data:
+    if data.get("IsTerminal") is not None:
         out["is_terminal"] = data["IsTerminal"]
-    if "Criteria" in data:
+    if data.get("Criteria") is not None:
         import capo_securityhub.types.automation_rules_finding_filters
 
         out["criteria"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> UpdateAutomationRulesRequestItem:
                 data["Criteria"]
             )
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_securityhub.types.action_list
 
         out["actions"] = capo_securityhub.types.action_list.deserialize_json(

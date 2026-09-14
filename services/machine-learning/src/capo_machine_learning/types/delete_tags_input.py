@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DeleteTagsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteTagsInput:
     out: DeleteTagsInput = {}  # type: ignore[typeddict-item]
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_machine_learning.types.tag_key_list
 
         out["tag_keys"] = (
@@ -54,11 +54,11 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteTagsInput:
         )
     else:
         raise DeserializationError("DeleteTagsInput.tag_keys required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("DeleteTagsInput.resource_id required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_machine_learning.types.taggable_resource_type
 
         out["resource_type"] = (

@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: InternalAccessResourceTypeStatisticsMap) 
 def deserialize_json(data: dict) -> InternalAccessResourceTypeStatisticsMap:
     out: InternalAccessResourceTypeStatisticsMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_accessanalyzer.types.internal_access_resource_type_details
 
         out[key] = (

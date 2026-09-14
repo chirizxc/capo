@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: AndStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AndStatement:
     out: AndStatement = {}  # type: ignore[typeddict-item]
-    if "Statements" in data:
+    if data.get("Statements") is not None:
         import capo_wafv2.types.statements
 
         out["statements"] = capo_wafv2.types.statements.deserialize_aws_json_1_1(

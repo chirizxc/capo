@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ImagePullSecrets:
 
     out: ImagePullSecrets = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.image_pull_secret.deserialize_json(item))
     return out

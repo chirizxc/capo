@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteRetentionPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteRetentionPolicyRequest:
     out: DeleteRetentionPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "DeleteRetentionPolicyRequest.organization_id required"
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DeleteRetentionPolicyRequest.id required")

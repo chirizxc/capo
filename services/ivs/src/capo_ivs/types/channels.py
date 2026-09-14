@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Channels:
 
     out: Channels = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ivs.types.channel.deserialize_json(item))
     return out

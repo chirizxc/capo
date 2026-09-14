@@ -41,12 +41,12 @@ def serialize_aws_json_1_1(value: OpenTunnelResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenTunnelResponse:
     out: OpenTunnelResponse = {}  # type: ignore[typeddict-item]
-    if "tunnelId" in data:
+    if data.get("tunnelId") is not None:
         out["tunnel_id"] = data["tunnelId"]
-    if "tunnelArn" in data:
+    if data.get("tunnelArn") is not None:
         out["tunnel_arn"] = data["tunnelArn"]
-    if "sourceAccessToken" in data:
+    if data.get("sourceAccessToken") is not None:
         out["source_access_token"] = data["sourceAccessToken"]
-    if "destinationAccessToken" in data:
+    if data.get("destinationAccessToken") is not None:
         out["destination_access_token"] = data["destinationAccessToken"]
     return out

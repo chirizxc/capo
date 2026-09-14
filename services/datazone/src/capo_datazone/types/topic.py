@@ -36,11 +36,11 @@ def serialize_json(value: Topic) -> dict:
 
 def deserialize_json(data: dict) -> Topic:
     out: Topic = {}  # type: ignore[typeddict-item]
-    if "subject" in data:
+    if data.get("subject") is not None:
         out["subject"] = data["subject"]
     else:
         raise DeserializationError("Topic.subject required")
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_datazone.types.notification_resource
 
         out["resource"] = capo_datazone.types.notification_resource.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> Topic:
         )
     else:
         raise DeserializationError("Topic.resource required")
-    if "role" in data:
+    if data.get("role") is not None:
         import capo_datazone.types.notification_role
 
         out["role"] = capo_datazone.types.notification_role.deserialize_json(

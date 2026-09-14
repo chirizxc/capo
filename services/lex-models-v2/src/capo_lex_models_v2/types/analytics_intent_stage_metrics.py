@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AnalyticsIntentStageMetrics:
 
     out: AnalyticsIntentStageMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.analytics_intent_stage_metric.deserialize_json(
                 item

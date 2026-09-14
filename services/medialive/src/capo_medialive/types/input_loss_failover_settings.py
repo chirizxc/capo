@@ -25,6 +25,6 @@ def serialize_json(value: InputLossFailoverSettings) -> dict:
 
 def deserialize_json(data: dict) -> InputLossFailoverSettings:
     out: InputLossFailoverSettings = {}  # type: ignore[typeddict-item]
-    if "inputLossThresholdMsec" in data:
+    if data.get("inputLossThresholdMsec") is not None:
         out["input_loss_threshold_msec"] = data["inputLossThresholdMsec"]
     return out

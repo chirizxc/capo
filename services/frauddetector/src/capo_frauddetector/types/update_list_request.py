@@ -54,11 +54,11 @@ def serialize_aws_json_1_1(value: UpdateListRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateListRequest:
     out: UpdateListRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateListRequest.name required")
-    if "elements" in data:
+    if data.get("elements") is not None:
         import capo_frauddetector.types.elements_list
 
         out["elements"] = (
@@ -66,9 +66,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateListRequest:
                 data["elements"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "updateMode" in data:
+    if data.get("updateMode") is not None:
         import capo_frauddetector.types.list_update_mode
 
         out["update_mode"] = (
@@ -76,6 +76,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateListRequest:
                 data["updateMode"]
             )
         )
-    if "variableType" in data:
+    if data.get("variableType") is not None:
         out["variable_type"] = data["variableType"]
     return out

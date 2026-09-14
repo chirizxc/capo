@@ -38,7 +38,7 @@ def serialize_json(value: SearchActionConnectorsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchActionConnectorsRequest:
     out: SearchActionConnectorsRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_quicksight.types.action_connector_search_filter_list
 
         out["filters"] = (

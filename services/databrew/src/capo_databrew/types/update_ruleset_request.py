@@ -36,9 +36,9 @@ def serialize_json(value: UpdateRulesetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRulesetRequest:
     out: UpdateRulesetRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_databrew.types.rule_list
 
         out["rules"] = capo_databrew.types.rule_list.deserialize_json(data["Rules"])

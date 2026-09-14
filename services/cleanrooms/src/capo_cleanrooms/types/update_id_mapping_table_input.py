@@ -38,8 +38,8 @@ def serialize_json(value: UpdateIdMappingTableInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIdMappingTableInput:
     out: UpdateIdMappingTableInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

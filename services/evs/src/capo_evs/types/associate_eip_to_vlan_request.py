@@ -36,17 +36,17 @@ def serialize_aws_json_1_0(value: AssociateEipToVlanRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateEipToVlanRequest:
     out: AssociateEipToVlanRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("AssociateEipToVlanRequest.environment_id required")
-    if "vlanName" in data:
+    if data.get("vlanName") is not None:
         out["vlan_name"] = data["vlanName"]
     else:
         raise DeserializationError("AssociateEipToVlanRequest.vlan_name required")
-    if "allocationId" in data:
+    if data.get("allocationId") is not None:
         out["allocation_id"] = data["allocationId"]
     else:
         raise DeserializationError("AssociateEipToVlanRequest.allocation_id required")

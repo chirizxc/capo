@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: UpdateParameterGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateParameterGroupRequest:
     out: UpdateParameterGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
     else:
         raise DeserializationError(
             "UpdateParameterGroupRequest.parameter_group_name required"
         )
-    if "ParameterNameValues" in data:
+    if data.get("ParameterNameValues") is not None:
         import capo_dax.types.parameter_name_value_list
 
         out["parameter_name_values"] = (

@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: ListCapacityReservationsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCapacityReservationsOutput:
     out: ListCapacityReservationsOutput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "CapacityReservations" in data:
+    if data.get("CapacityReservations") is not None:
         import capo_athena.types.capacity_reservations_list
 
         out["capacity_reservations"] = (

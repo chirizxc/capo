@@ -32,8 +32,11 @@ def serialize_aws_json_1_1(
 def deserialize_aws_json_1_1(data: dict) -> AutoMLInferenceContainerDefinitions:
     out: AutoMLInferenceContainerDefinitions = {}
     for key, value in data.items():
-        import capo_sagemaker.types.auto_ml_container_definitions
         import capo_sagemaker.types.auto_ml_processing_unit
+
+        if value is None:
+            continue
+        import capo_sagemaker.types.auto_ml_container_definitions
 
         out[
             capo_sagemaker.types.auto_ml_processing_unit.deserialize_aws_json_1_1(key)

@@ -32,7 +32,7 @@ def serialize_json(value: TableMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> TableMetadata:
-    if "iceberg" in data:
+    if data.get("iceberg") is not None:
         import capo_s3tables.types.iceberg_metadata
 
         return {

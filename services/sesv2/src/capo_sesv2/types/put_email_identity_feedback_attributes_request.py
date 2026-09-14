@@ -25,7 +25,7 @@ def serialize_json(value: PutEmailIdentityFeedbackAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutEmailIdentityFeedbackAttributesRequest:
     out: PutEmailIdentityFeedbackAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "EmailForwardingEnabled" in data:
+    if data.get("EmailForwardingEnabled") is not None:
         out["email_forwarding_enabled"] = data["EmailForwardingEnabled"]
     else:
         out["email_forwarding_enabled"] = False

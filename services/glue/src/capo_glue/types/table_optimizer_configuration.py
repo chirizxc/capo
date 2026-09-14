@@ -80,11 +80,11 @@ def serialize_aws_json_1_1(value: TableOptimizerConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableOptimizerConfiguration:
     out: TableOptimizerConfiguration = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "vpcConfiguration" in data:
+    if data.get("vpcConfiguration") is not None:
         import capo_glue.types.table_optimizer_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> TableOptimizerConfiguration:
                 data["vpcConfiguration"]
             )
         )
-    if "compactionConfiguration" in data:
+    if data.get("compactionConfiguration") is not None:
         import capo_glue.types.compaction_configuration
 
         out["compaction_configuration"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> TableOptimizerConfiguration:
                 data["compactionConfiguration"]
             )
         )
-    if "retentionConfiguration" in data:
+    if data.get("retentionConfiguration") is not None:
         import capo_glue.types.retention_configuration
 
         out["retention_configuration"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> TableOptimizerConfiguration:
                 data["retentionConfiguration"]
             )
         )
-    if "orphanFileDeletionConfiguration" in data:
+    if data.get("orphanFileDeletionConfiguration") is not None:
         import capo_glue.types.orphan_file_deletion_configuration
 
         out["orphan_file_deletion_configuration"] = (

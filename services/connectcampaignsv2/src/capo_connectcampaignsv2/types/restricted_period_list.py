@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> RestrictedPeriodList:
 
     out: RestrictedPeriodList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connectcampaignsv2.types.restricted_period.deserialize_json(item)
         )

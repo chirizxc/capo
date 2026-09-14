@@ -33,9 +33,9 @@ def serialize_json(value: ListFuotaTasksResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFuotaTasksResponse:
     out: ListFuotaTasksResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "FuotaTaskList" in data:
+    if data.get("FuotaTaskList") is not None:
         import capo_iot_wireless.types.fuota_task_list
 
         out["fuota_task_list"] = (

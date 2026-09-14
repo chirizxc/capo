@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> GetAssociatedResourceFilter:
 
     out: GetAssociatedResourceFilter = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_service_catalog_appregistry.types.resource_item_status.deserialize_json(
                 item

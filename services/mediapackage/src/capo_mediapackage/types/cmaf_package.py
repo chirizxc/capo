@@ -61,13 +61,13 @@ def serialize_json(value: CmafPackage) -> dict:
 
 def deserialize_json(data: dict) -> CmafPackage:
     out: CmafPackage = {}  # type: ignore[typeddict-item]
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediapackage.types.cmaf_encryption
 
         out["encryption"] = capo_mediapackage.types.cmaf_encryption.deserialize_json(
             data["encryption"]
         )
-    if "hlsManifests" in data:
+    if data.get("hlsManifests") is not None:
         import capo_mediapackage.types.__list_of_hls_manifest
 
         out["hls_manifests"] = (
@@ -75,11 +75,11 @@ def deserialize_json(data: dict) -> CmafPackage:
                 data["hlsManifests"]
             )
         )
-    if "segmentDurationSeconds" in data:
+    if data.get("segmentDurationSeconds") is not None:
         out["segment_duration_seconds"] = data["segmentDurationSeconds"]
-    if "segmentPrefix" in data:
+    if data.get("segmentPrefix") is not None:
         out["segment_prefix"] = data["segmentPrefix"]
-    if "streamSelection" in data:
+    if data.get("streamSelection") is not None:
         import capo_mediapackage.types.stream_selection
 
         out["stream_selection"] = (

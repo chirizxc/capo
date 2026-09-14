@@ -41,13 +41,13 @@ def serialize_json(value: CreateCentralizationRuleForOrganizationInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateCentralizationRuleForOrganizationInput:
     out: CreateCentralizationRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
     else:
         raise DeserializationError(
             "CreateCentralizationRuleForOrganizationInput.rule_name required"
         )
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_observabilityadmin.types.centralization_rule
 
         out["rule"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> CreateCentralizationRuleForOrganizationInput
         raise DeserializationError(
             "CreateCentralizationRuleForOrganizationInput.rule required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_observabilityadmin.types.tag_map_input
 
         out["tags"] = capo_observabilityadmin.types.tag_map_input.deserialize_json(

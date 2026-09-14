@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DeregisterGameServerInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeregisterGameServerInput:
     out: DeregisterGameServerInput = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "GameServerId" in data:
+    if data.get("GameServerId") is not None:
         out["game_server_id"] = data["GameServerId"]
     return out

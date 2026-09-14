@@ -34,12 +34,12 @@ def serialize_aws_json_1_0(value: ListAttachPointsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAttachPointsRequest:
     out: ListAttachPointsRequest = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("ListAttachPointsRequest.environment_id required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

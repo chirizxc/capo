@@ -90,7 +90,7 @@ def serialize_aws_json_1_1(value: ProjectSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectSource:
     out: ProjectSource = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.source_type
 
         out["type"] = capo_codebuild.types.source_type.deserialize_aws_json_1_1(
@@ -98,11 +98,11 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectSource:
         )
     else:
         raise DeserializationError("ProjectSource.type required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "gitCloneDepth" in data:
+    if data.get("gitCloneDepth") is not None:
         out["git_clone_depth"] = data["gitCloneDepth"]
-    if "gitSubmodulesConfig" in data:
+    if data.get("gitSubmodulesConfig") is not None:
         import capo_codebuild.types.git_submodules_config
 
         out["git_submodules_config"] = (
@@ -110,17 +110,17 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectSource:
                 data["gitSubmodulesConfig"]
             )
         )
-    if "buildspec" in data:
+    if data.get("buildspec") is not None:
         out["buildspec"] = data["buildspec"]
-    if "auth" in data:
+    if data.get("auth") is not None:
         import capo_codebuild.types.source_auth
 
         out["auth"] = capo_codebuild.types.source_auth.deserialize_aws_json_1_1(
             data["auth"]
         )
-    if "reportBuildStatus" in data:
+    if data.get("reportBuildStatus") is not None:
         out["report_build_status"] = data["reportBuildStatus"]
-    if "buildStatusConfig" in data:
+    if data.get("buildStatusConfig") is not None:
         import capo_codebuild.types.build_status_config
 
         out["build_status_config"] = (
@@ -128,8 +128,8 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectSource:
                 data["buildStatusConfig"]
             )
         )
-    if "insecureSsl" in data:
+    if data.get("insecureSsl") is not None:
         out["insecure_ssl"] = data["insecureSsl"]
-    if "sourceIdentifier" in data:
+    if data.get("sourceIdentifier") is not None:
         out["source_identifier"] = data["sourceIdentifier"]
     return out

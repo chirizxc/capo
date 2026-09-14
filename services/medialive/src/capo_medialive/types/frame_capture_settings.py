@@ -51,9 +51,9 @@ def serialize_json(value: FrameCaptureSettings) -> dict:
 
 def deserialize_json(data: dict) -> FrameCaptureSettings:
     out: FrameCaptureSettings = {}  # type: ignore[typeddict-item]
-    if "captureInterval" in data:
+    if data.get("captureInterval") is not None:
         out["capture_interval"] = data["captureInterval"]
-    if "captureIntervalUnits" in data:
+    if data.get("captureIntervalUnits") is not None:
         import capo_medialive.types.frame_capture_interval_unit
 
         out["capture_interval_units"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> FrameCaptureSettings:
                 data["captureIntervalUnits"]
             )
         )
-    if "timecodeBurninSettings" in data:
+    if data.get("timecodeBurninSettings") is not None:
         import capo_medialive.types.timecode_burnin_settings
 
         out["timecode_burnin_settings"] = (

@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: ConnectorDataTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectorDataTarget:
     out: ConnectorDataTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ConnectorDataTarget.name required")
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         out["connection_type"] = data["ConnectionType"]
     else:
         raise DeserializationError("ConnectorDataTarget.connection_type required")
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_glue.types.connector_options
 
         out["data"] = capo_glue.types.connector_options.deserialize_aws_json_1_1(
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectorDataTarget:
         )
     else:
         raise DeserializationError("ConnectorDataTarget.data required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(

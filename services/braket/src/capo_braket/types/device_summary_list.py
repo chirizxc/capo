@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DeviceSummaryList:
 
     out: DeviceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_braket.types.device_summary.deserialize_json(item))
     return out

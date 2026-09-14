@@ -18,6 +18,6 @@ def serialize_json(value: AddEgressGatewayBridgeRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddEgressGatewayBridgeRequest:
     out: AddEgressGatewayBridgeRequest = {}  # type: ignore[typeddict-item]
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
     return out

@@ -70,15 +70,15 @@ def serialize_json(value: EnvironmentSummary) -> dict:
     out["domainId"] = value["domain_id"]
     out["createdBy"] = value["created_by"]
     if "created_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["createdAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["updatedAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     out["name"] = value["name"]
@@ -105,58 +105,58 @@ def serialize_json(value: EnvironmentSummary) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentSummary:
     out: EnvironmentSummary = {}  # type: ignore[typeddict-item]
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
     else:
         raise DeserializationError("EnvironmentSummary.project_id required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("EnvironmentSummary.domain_id required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("EnvironmentSummary.created_by required")
-    if "createdAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("EnvironmentSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "environmentProfileId" in data:
+    if data.get("environmentProfileId") is not None:
         out["environment_profile_id"] = data["environmentProfileId"]
     else:
         out["environment_profile_id"] = ""
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "awsAccountRegion" in data:
+    if data.get("awsAccountRegion") is not None:
         out["aws_account_region"] = data["awsAccountRegion"]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("EnvironmentSummary.provider required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.environment_status
 
         out["status"] = capo_datazone.types.environment_status.deserialize_json(
             data["status"]
         )
-    if "environmentConfigurationId" in data:
+    if data.get("environmentConfigurationId") is not None:
         out["environment_configuration_id"] = data["environmentConfigurationId"]
-    if "environmentConfigurationName" in data:
+    if data.get("environmentConfigurationName") is not None:
         out["environment_configuration_name"] = data["environmentConfigurationName"]
     return out

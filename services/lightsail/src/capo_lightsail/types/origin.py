@@ -72,9 +72,9 @@ def serialize_aws_json_1_1(value: Origin) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Origin:
     out: Origin = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -82,13 +82,13 @@ def deserialize_aws_json_1_1(data: dict) -> Origin:
                 data["resourceType"]
             )
         )
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         import capo_lightsail.types.region_name
 
         out["region_name"] = capo_lightsail.types.region_name.deserialize_aws_json_1_1(
             data["regionName"]
         )
-    if "protocolPolicy" in data:
+    if data.get("protocolPolicy") is not None:
         import capo_lightsail.types.origin_protocol_policy_enum
 
         out["protocol_policy"] = (
@@ -96,9 +96,9 @@ def deserialize_aws_json_1_1(data: dict) -> Origin:
                 data["protocolPolicy"]
             )
         )
-    if "responseTimeout" in data:
+    if data.get("responseTimeout") is not None:
         out["response_timeout"] = data["responseTimeout"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_lightsail.types.origin_ip_address_type_enum
 
         out["ip_address_type"] = (

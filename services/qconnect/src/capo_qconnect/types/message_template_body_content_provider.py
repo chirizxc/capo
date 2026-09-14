@@ -30,7 +30,7 @@ def serialize_json(value: MessageTemplateBodyContentProvider) -> dict:
 
 
 def deserialize_json(data: dict) -> MessageTemplateBodyContentProvider:
-    if "content" in data:
+    if data.get("content") is not None:
         return {"content": data["content"]}
     else:
         raise DeserializationError(

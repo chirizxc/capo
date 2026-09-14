@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DescribeRemediationConfigurationsRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRemediationConfigurationsRequest:
     out: DescribeRemediationConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleNames" in data:
+    if data.get("ConfigRuleNames") is not None:
         import capo_config_service.types.config_rule_names
 
         out["config_rule_names"] = (

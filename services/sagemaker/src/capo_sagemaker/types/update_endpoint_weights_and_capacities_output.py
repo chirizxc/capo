@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateEndpointWeightsAndCapacitiesOutput) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEndpointWeightsAndCapacitiesOutput:
     out: UpdateEndpointWeightsAndCapacitiesOutput = {}  # type: ignore[typeddict-item]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
     return out

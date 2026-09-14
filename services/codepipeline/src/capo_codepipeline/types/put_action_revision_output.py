@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: PutActionRevisionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutActionRevisionOutput:
     out: PutActionRevisionOutput = {}  # type: ignore[typeddict-item]
-    if "newRevision" in data:
+    if data.get("newRevision") is not None:
         out["new_revision"] = data["newRevision"]
     else:
         out["new_revision"] = False
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
     return out

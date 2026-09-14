@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ServiceVpcEndpointsList:
 
     out: ServiceVpcEndpointsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_osis.types.service_vpc_endpoint.deserialize_json(item))
     return out

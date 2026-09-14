@@ -13,9 +13,9 @@ from capo_arc_region_switch import AsyncARCRegionswitchClient
 
 
 async def main():
-    async with AsyncARCRegionswitchClient() as s3:
+    async with AsyncARCRegionswitchClient() as arc_regionswitch:
         # Example: call the approve_plan_execution_step operation
-        response = await s3.approve_plan_execution_step()
+        response = await arc_regionswitch.approve_plan_execution_step()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_arc_region_switch import AsyncARCRegionswitchClient
 
 
 async def main():
-    async with AsyncARCRegionswitchClient() as s3:
+    async with AsyncARCRegionswitchClient() as arc_regionswitch:
         # Example: paginate over get_plan_evaluation_status
-        async for item in s3.iter_get_plan_evaluation_status():
+        async for item in arc_regionswitch.iter_get_plan_evaluation_status():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_arc_region_switch.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncARCRegionswitchClient() as s3:
+    async with AsyncARCRegionswitchClient() as arc_regionswitch:
         try:
-            await s3.approve_plan_execution_step()
+            await arc_regionswitch.approve_plan_execution_step()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_arc_region_switch import AsyncARCRegionswitchClient
 
 
 async def main():
-    async with AsyncARCRegionswitchClient() as s3:
+    async with AsyncARCRegionswitchClient() as arc_regionswitch:
         # Default: 3 attempts for every operation
-        response = await s3.approve_plan_execution_step()
+        response = await arc_regionswitch.approve_plan_execution_step()
 
         # Override per operation
-        response = await s3.approve_plan_execution_step(config_overrides={"retry_max_attempts": 5})
+        response = await arc_regionswitch.approve_plan_execution_step(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.approve_plan_execution_step(config_overrides={"retry_max_attempts": 1})
+        response = await arc_regionswitch.approve_plan_execution_step(config_overrides={"retry_max_attempts": 1})
 ```

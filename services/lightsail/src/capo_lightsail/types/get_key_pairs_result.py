@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: GetKeyPairsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetKeyPairsResult:
     out: GetKeyPairsResult = {}  # type: ignore[typeddict-item]
-    if "keyPairs" in data:
+    if data.get("keyPairs") is not None:
         import capo_lightsail.types.key_pair_list
 
         out["key_pairs"] = capo_lightsail.types.key_pair_list.deserialize_aws_json_1_1(
             data["keyPairs"]
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

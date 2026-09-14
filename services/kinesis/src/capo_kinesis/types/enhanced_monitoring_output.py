@@ -53,9 +53,9 @@ def serialize_aws_json_1_1(value: EnhancedMonitoringOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnhancedMonitoringOutput:
     out: EnhancedMonitoringOutput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "CurrentShardLevelMetrics" in data:
+    if data.get("CurrentShardLevelMetrics") is not None:
         import capo_kinesis.types.metrics_name_list
 
         out["current_shard_level_metrics"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> EnhancedMonitoringOutput:
                 data["CurrentShardLevelMetrics"]
             )
         )
-    if "DesiredShardLevelMetrics" in data:
+    if data.get("DesiredShardLevelMetrics") is not None:
         import capo_kinesis.types.metrics_name_list
 
         out["desired_shard_level_metrics"] = (
@@ -71,6 +71,6 @@ def deserialize_aws_json_1_1(data: dict) -> EnhancedMonitoringOutput:
                 data["DesiredShardLevelMetrics"]
             )
         )
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
     return out

@@ -72,11 +72,11 @@ def serialize_json(value: DeviceState) -> dict:
 
 def deserialize_json(data: dict) -> DeviceState:
     out: DeviceState = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError("DeviceState.device_id required")
-    if "SampleTime" in data:
+    if data.get("SampleTime") is not None:
         import capo_location.types.timestamp
 
         out["sample_time"] = capo_location.types.timestamp.deserialize_json(
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> DeviceState:
         )
     else:
         raise DeserializationError("DeviceState.sample_time required")
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_location.types.position
 
         out["position"] = capo_location.types.position.deserialize_json(
@@ -92,15 +92,15 @@ def deserialize_json(data: dict) -> DeviceState:
         )
     else:
         raise DeserializationError("DeviceState.position required")
-    if "Accuracy" in data:
+    if data.get("Accuracy") is not None:
         import capo_location.types.positional_accuracy
 
         out["accuracy"] = capo_location.types.positional_accuracy.deserialize_json(
             data["Accuracy"]
         )
-    if "Ipv4Address" in data:
+    if data.get("Ipv4Address") is not None:
         out["ipv4_address"] = data["Ipv4Address"]
-    if "WiFiAccessPoints" in data:
+    if data.get("WiFiAccessPoints") is not None:
         import capo_location.types.wi_fi_access_point_list
 
         out["wi_fi_access_points"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> DeviceState:
                 data["WiFiAccessPoints"]
             )
         )
-    if "CellSignals" in data:
+    if data.get("CellSignals") is not None:
         import capo_location.types.cell_signals
 
         out["cell_signals"] = capo_location.types.cell_signals.deserialize_json(

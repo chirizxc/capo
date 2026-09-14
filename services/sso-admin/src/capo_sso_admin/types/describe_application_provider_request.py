@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DescribeApplicationProviderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationProviderRequest:
     out: DescribeApplicationProviderRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationProviderArn" in data:
+    if data.get("ApplicationProviderArn") is not None:
         out["application_provider_arn"] = data["ApplicationProviderArn"]
     else:
         raise DeserializationError(

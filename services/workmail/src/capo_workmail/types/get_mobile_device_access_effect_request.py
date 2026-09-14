@@ -48,18 +48,18 @@ def serialize_aws_json_1_1(value: GetMobileDeviceAccessEffectRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMobileDeviceAccessEffectRequest:
     out: GetMobileDeviceAccessEffectRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "GetMobileDeviceAccessEffectRequest.organization_id required"
         )
-    if "DeviceType" in data:
+    if data.get("DeviceType") is not None:
         out["device_type"] = data["DeviceType"]
-    if "DeviceModel" in data:
+    if data.get("DeviceModel") is not None:
         out["device_model"] = data["DeviceModel"]
-    if "DeviceOperatingSystem" in data:
+    if data.get("DeviceOperatingSystem") is not None:
         out["device_operating_system"] = data["DeviceOperatingSystem"]
-    if "DeviceUserAgent" in data:
+    if data.get("DeviceUserAgent") is not None:
         out["device_user_agent"] = data["DeviceUserAgent"]
     return out

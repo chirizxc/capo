@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetApplicationAuthenticationMethodResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> GetApplicationAuthenticationMethodResponse:
     out: GetApplicationAuthenticationMethodResponse = {}  # type: ignore[typeddict-item]
-    if "AuthenticationMethod" in data:
+    if data.get("AuthenticationMethod") is not None:
         import capo_sso_admin.types.authentication_method
 
         out["authentication_method"] = (

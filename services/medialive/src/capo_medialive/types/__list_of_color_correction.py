@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfColorCorrection:
 
     out: __listOfColorCorrection = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.color_correction.deserialize_json(item))
     return out

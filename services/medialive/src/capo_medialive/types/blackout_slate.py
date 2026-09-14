@@ -70,7 +70,7 @@ def serialize_json(value: BlackoutSlate) -> dict:
 
 def deserialize_json(data: dict) -> BlackoutSlate:
     out: BlackoutSlate = {}  # type: ignore[typeddict-item]
-    if "blackoutSlateImage" in data:
+    if data.get("blackoutSlateImage") is not None:
         import capo_medialive.types.input_location
 
         out["blackout_slate_image"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> BlackoutSlate:
                 data["blackoutSlateImage"]
             )
         )
-    if "networkEndBlackout" in data:
+    if data.get("networkEndBlackout") is not None:
         import capo_medialive.types.blackout_slate_network_end_blackout
 
         out["network_end_blackout"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> BlackoutSlate:
                 data["networkEndBlackout"]
             )
         )
-    if "networkEndBlackoutImage" in data:
+    if data.get("networkEndBlackoutImage") is not None:
         import capo_medialive.types.input_location
 
         out["network_end_blackout_image"] = (
@@ -94,9 +94,9 @@ def deserialize_json(data: dict) -> BlackoutSlate:
                 data["networkEndBlackoutImage"]
             )
         )
-    if "networkId" in data:
+    if data.get("networkId") is not None:
         out["network_id"] = data["networkId"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.blackout_slate_state
 
         out["state"] = capo_medialive.types.blackout_slate_state.deserialize_json(

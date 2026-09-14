@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: ExecutionProperty) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionProperty:
     out: ExecutionProperty = {}  # type: ignore[typeddict-item]
-    if "MaxConcurrentRuns" in data:
+    if data.get("MaxConcurrentRuns") is not None:
         out["max_concurrent_runs"] = data["MaxConcurrentRuns"]
     else:
         out["max_concurrent_runs"] = 0

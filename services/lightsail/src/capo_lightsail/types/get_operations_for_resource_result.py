@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetOperationsForResourceResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetOperationsForResourceResult:
     out: GetOperationsForResourceResult = {}  # type: ignore[typeddict-item]
-    if "operations" in data:
+    if data.get("operations") is not None:
         import capo_lightsail.types.operation_list
 
         out["operations"] = (
@@ -44,8 +44,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetOperationsForResourceResult:
                 data["operations"]
             )
         )
-    if "nextPageCount" in data:
+    if data.get("nextPageCount") is not None:
         out["next_page_count"] = data["nextPageCount"]
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

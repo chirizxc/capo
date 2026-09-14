@@ -126,7 +126,7 @@ def serialize_json(value: UserTurnResult) -> dict:
 
 def deserialize_json(data: dict) -> UserTurnResult:
     out: UserTurnResult = {}  # type: ignore[typeddict-item]
-    if "input" in data:
+    if data.get("input") is not None:
         import capo_lex_models_v2.types.user_turn_input_specification
 
         out["input"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> UserTurnResult:
         )
     else:
         raise DeserializationError("UserTurnResult.input required")
-    if "expectedOutput" in data:
+    if data.get("expectedOutput") is not None:
         import capo_lex_models_v2.types.user_turn_output_specification
 
         out["expected_output"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> UserTurnResult:
         )
     else:
         raise DeserializationError("UserTurnResult.expected_output required")
-    if "actualOutput" in data:
+    if data.get("actualOutput") is not None:
         import capo_lex_models_v2.types.user_turn_output_specification
 
         out["actual_output"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> UserTurnResult:
                 data["actualOutput"]
             )
         )
-    if "errorDetails" in data:
+    if data.get("errorDetails") is not None:
         import capo_lex_models_v2.types.execution_error_details
 
         out["error_details"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> UserTurnResult:
                 data["errorDetails"]
             )
         )
-    if "endToEndResult" in data:
+    if data.get("endToEndResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["end_to_end_result"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> UserTurnResult:
                 data["endToEndResult"]
             )
         )
-    if "intentMatchResult" in data:
+    if data.get("intentMatchResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["intent_match_result"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> UserTurnResult:
                 data["intentMatchResult"]
             )
         )
-    if "slotMatchResult" in data:
+    if data.get("slotMatchResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["slot_match_result"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> UserTurnResult:
                 data["slotMatchResult"]
             )
         )
-    if "speechTranscriptionResult" in data:
+    if data.get("speechTranscriptionResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["speech_transcription_result"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> UserTurnResult:
                 data["speechTranscriptionResult"]
             )
         )
-    if "conversationLevelResult" in data:
+    if data.get("conversationLevelResult") is not None:
         import capo_lex_models_v2.types.conversation_level_result_detail
 
         out["conversation_level_result"] = (

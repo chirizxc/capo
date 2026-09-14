@@ -26,8 +26,8 @@ def serialize_json(value: SuccessfulRequest) -> dict:
 
 def deserialize_json(data: dict) -> SuccessfulRequest:
     out: SuccessfulRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

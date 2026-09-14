@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Protocols:
 
     out: Protocols = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_transfer.types.protocol.deserialize_aws_json_1_1(item))
     return out

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> SupportedInstanceTypesList:
 
     out: SupportedInstanceTypesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_emr.types.supported_instance_type.deserialize_aws_json_1_1(item)
         )

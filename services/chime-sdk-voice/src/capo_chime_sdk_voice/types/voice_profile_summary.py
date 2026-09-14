@@ -73,13 +73,13 @@ def serialize_json(value: VoiceProfileSummary) -> dict:
 
 def deserialize_json(data: dict) -> VoiceProfileSummary:
     out: VoiceProfileSummary = {}  # type: ignore[typeddict-item]
-    if "VoiceProfileId" in data:
+    if data.get("VoiceProfileId") is not None:
         out["voice_profile_id"] = data["VoiceProfileId"]
-    if "VoiceProfileArn" in data:
+    if data.get("VoiceProfileArn") is not None:
         out["voice_profile_arn"] = data["VoiceProfileArn"]
-    if "VoiceProfileDomainId" in data:
+    if data.get("VoiceProfileDomainId") is not None:
         out["voice_profile_domain_id"] = data["VoiceProfileDomainId"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> VoiceProfileSummary:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["updated_timestamp"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> VoiceProfileSummary:
                 data["UpdatedTimestamp"]
             )
         )
-    if "ExpirationTimestamp" in data:
+    if data.get("ExpirationTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["expiration_timestamp"] = (

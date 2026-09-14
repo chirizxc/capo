@@ -42,11 +42,11 @@ def serialize_json(value: DataReplicationInitiation) -> dict:
 
 def deserialize_json(data: dict) -> DataReplicationInitiation:
     out: DataReplicationInitiation = {}  # type: ignore[typeddict-item]
-    if "startDateTime" in data:
+    if data.get("startDateTime") is not None:
         out["start_date_time"] = data["startDateTime"]
-    if "nextAttemptDateTime" in data:
+    if data.get("nextAttemptDateTime") is not None:
         out["next_attempt_date_time"] = data["nextAttemptDateTime"]
-    if "steps" in data:
+    if data.get("steps") is not None:
         import capo_drs.types.data_replication_initiation_steps
 
         out["steps"] = (

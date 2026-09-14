@@ -32,7 +32,7 @@ def serialize_json(value: ListKafkaVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListKafkaVersionsResponse:
     out: ListKafkaVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "kafkaVersions" in data:
+    if data.get("kafkaVersions") is not None:
         import capo_kafka.types.__list_of_kafka_version
 
         out["kafka_versions"] = (
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> ListKafkaVersionsResponse:
                 data["kafkaVersions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

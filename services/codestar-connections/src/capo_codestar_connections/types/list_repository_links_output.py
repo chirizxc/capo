@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: ListRepositoryLinksOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRepositoryLinksOutput:
     out: ListRepositoryLinksOutput = {}  # type: ignore[typeddict-item]
-    if "RepositoryLinks" in data:
+    if data.get("RepositoryLinks") is not None:
         import capo_codestar_connections.types.repository_link_list
 
         out["repository_links"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRepositoryLinksOutput:
         raise DeserializationError(
             "ListRepositoryLinksOutput.repository_links required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

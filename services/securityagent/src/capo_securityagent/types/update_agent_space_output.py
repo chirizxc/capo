@@ -69,15 +69,15 @@ def serialize_json(value: UpdateAgentSpaceOutput) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["createdAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["updatedAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     return out
@@ -85,23 +85,23 @@ def serialize_json(value: UpdateAgentSpaceOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAgentSpaceOutput:
     out: UpdateAgentSpaceOutput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("UpdateAgentSpaceOutput.agent_space_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateAgentSpaceOutput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "awsResources" in data:
+    if data.get("awsResources") is not None:
         import capo_securityagent.types.aws_resources
 
         out["aws_resources"] = capo_securityagent.types.aws_resources.deserialize_json(
             data["awsResources"]
         )
-    if "targetDomainIds" in data:
+    if data.get("targetDomainIds") is not None:
         import capo_securityagent.types.target_domain_id_list
 
         out["target_domain_ids"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> UpdateAgentSpaceOutput:
                 data["targetDomainIds"]
             )
         )
-    if "codeReviewSettings" in data:
+    if data.get("codeReviewSettings") is not None:
         import capo_securityagent.types.code_review_settings
 
         out["code_review_settings"] = (
@@ -117,20 +117,16 @@ def deserialize_json(data: dict) -> UpdateAgentSpaceOutput:
                 data["codeReviewSettings"]
             )
         )
-    if "createdAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     return out

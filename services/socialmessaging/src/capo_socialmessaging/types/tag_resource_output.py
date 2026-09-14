@@ -18,6 +18,6 @@ def serialize_json(value: TagResourceOutput) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceOutput:
     out: TagResourceOutput = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
     return out

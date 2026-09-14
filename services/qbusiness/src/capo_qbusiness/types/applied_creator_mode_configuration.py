@@ -30,7 +30,7 @@ def serialize_json(value: AppliedCreatorModeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AppliedCreatorModeConfiguration:
     out: AppliedCreatorModeConfiguration = {}  # type: ignore[typeddict-item]
-    if "creatorModeControl" in data:
+    if data.get("creatorModeControl") is not None:
         import capo_qbusiness.types.creator_mode_control
 
         out["creator_mode_control"] = (

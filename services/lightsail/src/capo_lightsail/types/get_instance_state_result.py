@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetInstanceStateResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstanceStateResult:
     out: GetInstanceStateResult = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.instance_state
 
         out["state"] = capo_lightsail.types.instance_state.deserialize_aws_json_1_1(

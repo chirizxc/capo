@@ -13,9 +13,9 @@ from capo_quicksight import AsyncQuickSightClient
 
 
 async def main():
-    async with AsyncQuickSightClient() as s3:
+    async with AsyncQuickSightClient() as quick_sight:
         # Example: call the batch_create_topic_reviewed_answer operation
-        response = await s3.batch_create_topic_reviewed_answer()
+        response = await quick_sight.batch_create_topic_reviewed_answer()
         print(response["topic_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_quicksight import AsyncQuickSightClient
 
 
 async def main():
-    async with AsyncQuickSightClient() as s3:
+    async with AsyncQuickSightClient() as quick_sight:
         # Example: paginate over describe_folder_permissions
-        async for item in s3.iter_describe_folder_permissions():
+        async for item in quick_sight.iter_describe_folder_permissions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_quicksight.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncQuickSightClient() as s3:
+    async with AsyncQuickSightClient() as quick_sight:
         try:
-            await s3.batch_create_topic_reviewed_answer()
+            await quick_sight.batch_create_topic_reviewed_answer()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_quicksight import AsyncQuickSightClient
 
 
 async def main():
-    async with AsyncQuickSightClient() as s3:
+    async with AsyncQuickSightClient() as quick_sight:
         # Default: 3 attempts for every operation
-        response = await s3.batch_create_topic_reviewed_answer()
+        response = await quick_sight.batch_create_topic_reviewed_answer()
 
         # Override per operation
-        response = await s3.batch_create_topic_reviewed_answer(config_overrides={"retry_max_attempts": 5})
+        response = await quick_sight.batch_create_topic_reviewed_answer(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_create_topic_reviewed_answer(config_overrides={"retry_max_attempts": 1})
+        response = await quick_sight.batch_create_topic_reviewed_answer(config_overrides={"retry_max_attempts": 1})
 ```

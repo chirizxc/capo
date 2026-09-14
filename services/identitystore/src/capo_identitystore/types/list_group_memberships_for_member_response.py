@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: ListGroupMembershipsForMemberResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ListGroupMembershipsForMemberResponse:
     out: ListGroupMembershipsForMemberResponse = {}  # type: ignore[typeddict-item]
-    if "GroupMemberships" in data:
+    if data.get("GroupMemberships") is not None:
         import capo_identitystore.types.group_memberships
 
         out["group_memberships"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListGroupMembershipsForMemberRespons
         raise DeserializationError(
             "ListGroupMembershipsForMemberResponse.group_memberships required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -39,14 +39,14 @@ def serialize_json(value: UpdateWaveRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWaveRequest:
     out: UpdateWaveRequest = {}  # type: ignore[typeddict-item]
-    if "waveID" in data:
+    if data.get("waveID") is not None:
         out["wave_id"] = data["waveID"]
     else:
         raise DeserializationError("UpdateWaveRequest.wave_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

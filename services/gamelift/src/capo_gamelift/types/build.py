@@ -80,23 +80,23 @@ def serialize_aws_json_1_1(value: Build) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Build:
     out: Build = {}  # type: ignore[typeddict-item]
-    if "BuildId" in data:
+    if data.get("BuildId") is not None:
         out["build_id"] = data["BuildId"]
-    if "BuildArn" in data:
+    if data.get("BuildArn") is not None:
         out["build_arn"] = data["BuildArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.build_status
 
         out["status"] = capo_gamelift.types.build_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "SizeOnDisk" in data:
+    if data.get("SizeOnDisk") is not None:
         out["size_on_disk"] = data["SizeOnDisk"]
-    if "OperatingSystem" in data:
+    if data.get("OperatingSystem") is not None:
         import capo_gamelift.types.operating_system
 
         out["operating_system"] = (
@@ -104,12 +104,12 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["OperatingSystem"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "ServerSdkVersion" in data:
+    if data.get("ServerSdkVersion") is not None:
         out["server_sdk_version"] = data["ServerSdkVersion"]
     return out

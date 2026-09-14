@@ -55,13 +55,13 @@ def serialize_aws_json_1_0(value: Trigger) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Trigger:
     out: Trigger = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "targetRegion" in data:
+    if data.get("targetRegion") is not None:
         out["target_region"] = data["targetRegion"]
     else:
         raise DeserializationError("Trigger.target_region required")
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_arc_region_switch.types.workflow_target_action
 
         out["action"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_0(data: dict) -> Trigger:
         )
     else:
         raise DeserializationError("Trigger.action required")
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_arc_region_switch.types.trigger_condition_list
 
         out["conditions"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_0(data: dict) -> Trigger:
         )
     else:
         raise DeserializationError("Trigger.conditions required")
-    if "minDelayMinutesBetweenExecutions" in data:
+    if data.get("minDelayMinutesBetweenExecutions") is not None:
         out["min_delay_minutes_between_executions"] = data[
             "minDelayMinutesBetweenExecutions"
         ]

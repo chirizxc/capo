@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_mwaa_serverless._services._pipeline import (
@@ -121,12 +122,14 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.create_workflow_request.CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["definition_s3_location"] = definition_s3_location
-        input_["role_arn"] = role_arn
+        input_: capo_mwaa_serverless.types.create_workflow_request.CreateWorkflowRequest = {
+            "name": name,
+            "definition_s3_location": definition_s3_location,
+            "role_arn": role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if encryption_configuration is not None:
@@ -147,6 +150,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -189,8 +193,9 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.get_workflow_request.GetWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
+        input_: capo_mwaa_serverless.types.get_workflow_request.GetWorkflowRequest = {
+            "workflow_arn": workflow_arn
+        }
         if workflow_version is not None:
             input_["workflow_version"] = workflow_version
 
@@ -199,6 +204,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -263,10 +269,11 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.update_workflow_request.UpdateWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        input_["definition_s3_location"] = definition_s3_location
-        input_["role_arn"] = role_arn
+        input_: capo_mwaa_serverless.types.update_workflow_request.UpdateWorkflowRequest = {
+            "workflow_arn": workflow_arn,
+            "definition_s3_location": definition_s3_location,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
         if logging_configuration is not None:
@@ -283,6 +290,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -325,8 +333,9 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.delete_workflow_request.DeleteWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
+        input_: capo_mwaa_serverless.types.delete_workflow_request.DeleteWorkflowRequest = {
+            "workflow_arn": workflow_arn
+        }
         if workflow_version is not None:
             input_["workflow_version"] = workflow_version
 
@@ -335,6 +344,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -374,7 +384,7 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.list_workflows_request.ListWorkflowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mwaa_serverless.types.list_workflows_request.ListWorkflowsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -385,6 +395,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -464,12 +475,14 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.create_workflow_request.CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["definition_s3_location"] = definition_s3_location
-        input_["role_arn"] = role_arn
+        input_: capo_mwaa_serverless.types.create_workflow_request.CreateWorkflowRequest = {
+            "name": name,
+            "definition_s3_location": definition_s3_location,
+            "role_arn": role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if encryption_configuration is not None:
@@ -490,6 +503,7 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -533,8 +547,9 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.get_workflow_request.GetWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
+        input_: capo_mwaa_serverless.types.get_workflow_request.GetWorkflowRequest = {
+            "workflow_arn": workflow_arn
+        }
         if workflow_version is not None:
             input_["workflow_version"] = workflow_version
 
@@ -543,6 +558,7 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -608,10 +624,11 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.update_workflow_request.UpdateWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        input_["definition_s3_location"] = definition_s3_location
-        input_["role_arn"] = role_arn
+        input_: capo_mwaa_serverless.types.update_workflow_request.UpdateWorkflowRequest = {
+            "workflow_arn": workflow_arn,
+            "definition_s3_location": definition_s3_location,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
         if logging_configuration is not None:
@@ -628,6 +645,7 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -671,8 +689,9 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.delete_workflow_request.DeleteWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
+        input_: capo_mwaa_serverless.types.delete_workflow_request.DeleteWorkflowRequest = {
+            "workflow_arn": workflow_arn
+        }
         if workflow_version is not None:
             input_["workflow_version"] = workflow_version
 
@@ -681,6 +700,7 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -721,7 +741,7 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.list_workflows_request.ListWorkflowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mwaa_serverless.types.list_workflows_request.ListWorkflowsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -732,4 +752,5 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

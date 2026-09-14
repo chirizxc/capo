@@ -21,7 +21,15 @@ class QueryStatus(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: QueryStatus) -> dict:
     out: dict = {}
-    out["ProgressPercentage"] = value.get("progress_percentage", 0)
+    out["ProgressPercentage"] = (
+        "NaN"
+        if value.get("progress_percentage", 0) != value.get("progress_percentage", 0)
+        else "Infinity"
+        if value.get("progress_percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("progress_percentage", 0) == float("-inf")
+        else value.get("progress_percentage", 0)
+    )
     out["CumulativeBytesScanned"] = value.get("cumulative_bytes_scanned", 0)
     out["CumulativeBytesMetered"] = value.get("cumulative_bytes_metered", 0)
     return out
@@ -29,15 +37,15 @@ def serialize_aws_json_1_0(value: QueryStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QueryStatus:
     out: QueryStatus = {}  # type: ignore[typeddict-item]
-    if "ProgressPercentage" in data:
-        out["progress_percentage"] = data["ProgressPercentage"]
+    if data.get("ProgressPercentage") is not None:
+        out["progress_percentage"] = float(data["ProgressPercentage"])
     else:
         out["progress_percentage"] = 0
-    if "CumulativeBytesScanned" in data:
+    if data.get("CumulativeBytesScanned") is not None:
         out["cumulative_bytes_scanned"] = data["CumulativeBytesScanned"]
     else:
         out["cumulative_bytes_scanned"] = 0
-    if "CumulativeBytesMetered" in data:
+    if data.get("CumulativeBytesMetered") is not None:
         out["cumulative_bytes_metered"] = data["CumulativeBytesMetered"]
     else:
         out["cumulative_bytes_metered"] = 0

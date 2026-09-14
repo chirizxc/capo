@@ -64,7 +64,7 @@ def serialize_json(value: PutPortfolioPreferencesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutPortfolioPreferencesRequest:
     out: PutPortfolioPreferencesRequest = {}  # type: ignore[typeddict-item]
-    if "prioritizeBusinessGoals" in data:
+    if data.get("prioritizeBusinessGoals") is not None:
         import capo_migrationhubstrategy.types.prioritize_business_goals
 
         out["prioritize_business_goals"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> PutPortfolioPreferencesRequest:
                 data["prioritizeBusinessGoals"]
             )
         )
-    if "applicationPreferences" in data:
+    if data.get("applicationPreferences") is not None:
         import capo_migrationhubstrategy.types.application_preferences
 
         out["application_preferences"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> PutPortfolioPreferencesRequest:
                 data["applicationPreferences"]
             )
         )
-    if "databasePreferences" in data:
+    if data.get("databasePreferences") is not None:
         import capo_migrationhubstrategy.types.database_preferences
 
         out["database_preferences"] = (
@@ -88,6 +88,6 @@ def deserialize_json(data: dict) -> PutPortfolioPreferencesRequest:
                 data["databasePreferences"]
             )
         )
-    if "applicationMode" in data:
+    if data.get("applicationMode") is not None:
         out["application_mode"] = data["applicationMode"]
     return out

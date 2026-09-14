@@ -35,9 +35,9 @@ def serialize_json(value: ListManagedViewsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListManagedViewsOutput:
     out: ListManagedViewsOutput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ManagedViews" in data:
+    if data.get("ManagedViews") is not None:
         import capo_resource_explorer_2.types.managed_view_arn_list
 
         out["managed_views"] = (

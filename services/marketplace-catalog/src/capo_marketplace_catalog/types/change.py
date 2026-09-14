@@ -58,11 +58,11 @@ def serialize_json(value: Change) -> dict:
 
 def deserialize_json(data: dict) -> Change:
     out: Change = {}  # type: ignore[typeddict-item]
-    if "ChangeType" in data:
+    if data.get("ChangeType") is not None:
         out["change_type"] = data["ChangeType"]
     else:
         raise DeserializationError("Change.change_type required")
-    if "Entity" in data:
+    if data.get("Entity") is not None:
         import capo_marketplace_catalog.types.entity
 
         out["entity"] = capo_marketplace_catalog.types.entity.deserialize_json(
@@ -70,16 +70,16 @@ def deserialize_json(data: dict) -> Change:
         )
     else:
         raise DeserializationError("Change.entity required")
-    if "EntityTags" in data:
+    if data.get("EntityTags") is not None:
         import capo_marketplace_catalog.types.tag_list
 
         out["entity_tags"] = capo_marketplace_catalog.types.tag_list.deserialize_json(
             data["EntityTags"]
         )
-    if "Details" in data:
+    if data.get("Details") is not None:
         out["details"] = data["Details"]
-    if "DetailsDocument" in data:
+    if data.get("DetailsDocument") is not None:
         out["details_document"] = data["DetailsDocument"]
-    if "ChangeName" in data:
+    if data.get("ChangeName") is not None:
         out["change_name"] = data["ChangeName"]
     return out

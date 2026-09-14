@@ -34,15 +34,15 @@ def serialize_json(value: UpdateError) -> dict:
 
 def deserialize_json(data: dict) -> UpdateError:
     out: UpdateError = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("UpdateError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("UpdateError.message required")
-    if "causedBy" in data:
+    if data.get("causedBy") is not None:
         import capo_grafana.types.update_instruction
 
         out["caused_by"] = capo_grafana.types.update_instruction.deserialize_json(

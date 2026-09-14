@@ -23,6 +23,6 @@ def serialize_json(value: CustomConnectionParameters) -> dict:
 
 def deserialize_json(data: dict) -> CustomConnectionParameters:
     out: CustomConnectionParameters = {}  # type: ignore[typeddict-item]
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         out["connection_type"] = data["ConnectionType"]
     return out

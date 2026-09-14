@@ -36,10 +36,10 @@ def serialize_json(value: IdentityCenterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IdentityCenterConfiguration:
     out: IdentityCenterConfiguration = {}  # type: ignore[typeddict-item]
-    if "identityCenterInstanceArn" in data:
+    if data.get("identityCenterInstanceArn") is not None:
         out["identity_center_instance_arn"] = data["identityCenterInstanceArn"]
-    if "identityCenterApplicationArn" in data:
+    if data.get("identityCenterApplicationArn") is not None:
         out["identity_center_application_arn"] = data["identityCenterApplicationArn"]
-    if "userBackgroundSessionsEnabled" in data:
+    if data.get("userBackgroundSessionsEnabled") is not None:
         out["user_background_sessions_enabled"] = data["userBackgroundSessionsEnabled"]
     return out

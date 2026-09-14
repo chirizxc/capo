@@ -43,9 +43,9 @@ def serialize_json(value: VpcPropertiesPatch) -> dict:
 
 def deserialize_json(data: dict) -> VpcPropertiesPatch:
     out: VpcPropertiesPatch = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_datazone.types.vpc_connection_subnet_id_list
 
         out["subnet_ids"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> VpcPropertiesPatch:
                 data["subnetIds"]
             )
         )
-    if "securityGroupId" in data:
+    if data.get("securityGroupId") is not None:
         out["security_group_id"] = data["securityGroupId"]
     return out

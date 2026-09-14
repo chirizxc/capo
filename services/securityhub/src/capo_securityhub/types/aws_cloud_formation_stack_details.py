@@ -120,7 +120,7 @@ def serialize_json(value: AwsCloudFormationStackDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFormationStackDetails:
     out: AwsCloudFormationStackDetails = {}  # type: ignore[typeddict-item]
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["capabilities"] = (
@@ -128,13 +128,13 @@ def deserialize_json(data: dict) -> AwsCloudFormationStackDetails:
                 data["Capabilities"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DisableRollback" in data:
+    if data.get("DisableRollback") is not None:
         out["disable_rollback"] = data["DisableRollback"]
-    if "DriftInformation" in data:
+    if data.get("DriftInformation") is not None:
         import capo_securityhub.types.aws_cloud_formation_stack_drift_information_details
 
         out["drift_information"] = (
@@ -142,11 +142,11 @@ def deserialize_json(data: dict) -> AwsCloudFormationStackDetails:
                 data["DriftInformation"]
             )
         )
-    if "EnableTerminationProtection" in data:
+    if data.get("EnableTerminationProtection") is not None:
         out["enable_termination_protection"] = data["EnableTerminationProtection"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         out["last_updated_time"] = data["LastUpdatedTime"]
-    if "NotificationArns" in data:
+    if data.get("NotificationArns") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["notification_arns"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> AwsCloudFormationStackDetails:
                 data["NotificationArns"]
             )
         )
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_securityhub.types.aws_cloud_formation_stack_outputs_list
 
         out["outputs"] = (
@@ -162,16 +162,16 @@ def deserialize_json(data: dict) -> AwsCloudFormationStackDetails:
                 data["Outputs"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "StackId" in data:
+    if data.get("StackId") is not None:
         out["stack_id"] = data["StackId"]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "StackStatus" in data:
+    if data.get("StackStatus") is not None:
         out["stack_status"] = data["StackStatus"]
-    if "StackStatusReason" in data:
+    if data.get("StackStatusReason") is not None:
         out["stack_status_reason"] = data["StackStatusReason"]
-    if "TimeoutInMinutes" in data:
+    if data.get("TimeoutInMinutes") is not None:
         out["timeout_in_minutes"] = data["TimeoutInMinutes"]
     return out

@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: MigrateWorkspaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MigrateWorkspaceRequest:
     out: MigrateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-    if "SourceWorkspaceId" in data:
+    if data.get("SourceWorkspaceId") is not None:
         out["source_workspace_id"] = data["SourceWorkspaceId"]
     else:
         raise DeserializationError(
             "MigrateWorkspaceRequest.source_workspace_id required"
         )
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
     else:
         raise DeserializationError("MigrateWorkspaceRequest.bundle_id required")

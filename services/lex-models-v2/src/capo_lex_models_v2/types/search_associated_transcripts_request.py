@@ -60,13 +60,13 @@ def serialize_json(value: SearchAssociatedTranscriptsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchAssociatedTranscriptsRequest:
     out: SearchAssociatedTranscriptsRequest = {}  # type: ignore[typeddict-item]
-    if "searchOrder" in data:
+    if data.get("searchOrder") is not None:
         import capo_lex_models_v2.types.search_order
 
         out["search_order"] = capo_lex_models_v2.types.search_order.deserialize_json(
             data["searchOrder"]
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_lex_models_v2.types.associated_transcript_filters
 
         out["filters"] = (
@@ -78,8 +78,8 @@ def deserialize_json(data: dict) -> SearchAssociatedTranscriptsRequest:
         raise DeserializationError(
             "SearchAssociatedTranscriptsRequest.filters required"
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextIndex" in data:
+    if data.get("nextIndex") is not None:
         out["next_index"] = data["nextIndex"]
     return out

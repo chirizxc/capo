@@ -42,7 +42,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ListBillEstimateInputCommitmentModificationsResponse:
     out: ListBillEstimateInputCommitmentModificationsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_bcm_pricing_calculator.types.bill_estimate_input_commitment_modification_summaries
 
         out["items"] = (
@@ -50,6 +50,6 @@ def deserialize_aws_json_1_0(
                 data["items"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

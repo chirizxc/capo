@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> NamespaceFilters:
 
     out: NamespaceFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_servicediscovery.types.namespace_filter.deserialize_aws_json_1_1(item)
         )

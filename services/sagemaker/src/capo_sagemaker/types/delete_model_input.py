@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteModelInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteModelInput:
     out: DeleteModelInput = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
     return out

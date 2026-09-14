@@ -76,7 +76,7 @@ def serialize_json(value: TelephonyOutboundMode) -> dict:
 
 
 def deserialize_json(data: dict) -> TelephonyOutboundMode:
-    if "progressive" in data:
+    if data.get("progressive") is not None:
         import capo_connectcampaignsv2.types.progressive_config
 
         return {
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> TelephonyOutboundMode:
                 data["progressive"]
             )
         }
-    elif "predictive" in data:
+    elif data.get("predictive") is not None:
         import capo_connectcampaignsv2.types.predictive_config
 
         return {
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> TelephonyOutboundMode:
                 data["predictive"]
             )
         }
-    elif "agentless" in data:
+    elif data.get("agentless") is not None:
         import capo_connectcampaignsv2.types.agentless_config
 
         return {
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> TelephonyOutboundMode:
                 data["agentless"]
             )
         }
-    elif "preview" in data:
+    elif data.get("preview") is not None:
         import capo_connectcampaignsv2.types.preview_config
 
         return {

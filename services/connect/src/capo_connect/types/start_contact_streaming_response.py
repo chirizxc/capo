@@ -24,7 +24,7 @@ def serialize_json(value: StartContactStreamingResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartContactStreamingResponse:
     out: StartContactStreamingResponse = {}  # type: ignore[typeddict-item]
-    if "StreamingId" in data:
+    if data.get("StreamingId") is not None:
         out["streaming_id"] = data["StreamingId"]
     else:
         raise DeserializationError(

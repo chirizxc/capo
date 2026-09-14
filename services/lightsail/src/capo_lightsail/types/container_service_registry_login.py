@@ -40,16 +40,16 @@ def serialize_aws_json_1_1(value: ContainerServiceRegistryLogin) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerServiceRegistryLogin:
     out: ContainerServiceRegistryLogin = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["expires_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["expiresAt"]
         )
-    if "registry" in data:
+    if data.get("registry") is not None:
         out["registry"] = data["registry"]
     return out

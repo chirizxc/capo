@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: AcceptMatchInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AcceptMatchInput:
     out: AcceptMatchInput = {}  # type: ignore[typeddict-item]
-    if "TicketId" in data:
+    if data.get("TicketId") is not None:
         out["ticket_id"] = data["TicketId"]
-    if "PlayerIds" in data:
+    if data.get("PlayerIds") is not None:
         import capo_gamelift.types.player_ids_for_accept_match
 
         out["player_ids"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> AcceptMatchInput:
                 data["PlayerIds"]
             )
         )
-    if "AcceptanceType" in data:
+    if data.get("AcceptanceType") is not None:
         import capo_gamelift.types.acceptance_type
 
         out["acceptance_type"] = (

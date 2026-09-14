@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteIdentityCenterApplicationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteIdentityCenterApplicationRequest:
     out: DeleteIdentityCenterApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     else:
         raise DeserializationError(

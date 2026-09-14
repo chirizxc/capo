@@ -13,9 +13,9 @@ from capo_workmail import AsyncWorkMailClient
 
 
 async def main():
-    async with AsyncWorkMailClient() as s3:
+    async with AsyncWorkMailClient() as work_mail:
         # Example: call the associate_delegate_to_resource operation
-        response = await s3.associate_delegate_to_resource()
+        response = await work_mail.associate_delegate_to_resource()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_workmail import AsyncWorkMailClient
 
 
 async def main():
-    async with AsyncWorkMailClient() as s3:
-        # Example: paginate over list_availability_configurations
-        async for item in s3.iter_list_availability_configurations():
+    async with AsyncWorkMailClient() as work_mail:
+        # Example: paginate over list_aliases
+        async for item in work_mail.iter_list_aliases():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_workmail.error import EntityNotFoundException
 
 
 async def main():
-    async with AsyncWorkMailClient() as s3:
+    async with AsyncWorkMailClient() as work_mail:
         try:
-            await s3.associate_delegate_to_resource()
+            await work_mail.associate_delegate_to_resource()
         except EntityNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_workmail import AsyncWorkMailClient
 
 
 async def main():
-    async with AsyncWorkMailClient() as s3:
+    async with AsyncWorkMailClient() as work_mail:
         # Default: 3 attempts for every operation
-        response = await s3.associate_delegate_to_resource()
+        response = await work_mail.associate_delegate_to_resource()
 
         # Override per operation
-        response = await s3.associate_delegate_to_resource(config_overrides={"retry_max_attempts": 5})
+        response = await work_mail.associate_delegate_to_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_delegate_to_resource(config_overrides={"retry_max_attempts": 1})
+        response = await work_mail.associate_delegate_to_resource(config_overrides={"retry_max_attempts": 1})
 ```

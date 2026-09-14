@@ -24,7 +24,7 @@ def serialize_json(value: LockoutPreventionException_) -> dict:
 
 def deserialize_json(data: dict) -> LockoutPreventionException_:
     out: LockoutPreventionException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class LockoutPreventionException(ServiceError):
 
     code: str | None = "LockoutPreventionException"
 
-    def __init__(self, data: LockoutPreventionException_):
+    def __init__(self, data: LockoutPreventionException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="LockoutPreventionException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "LockoutPreventionException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "LockoutPreventionException":
+        return cls(deserialize_json(data), message)

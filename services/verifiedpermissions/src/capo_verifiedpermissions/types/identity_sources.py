@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> IdentitySources:
 
     out: IdentitySources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_verifiedpermissions.types.identity_source_item.deserialize_aws_json_1_0(
                 item

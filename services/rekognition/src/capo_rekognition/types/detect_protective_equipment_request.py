@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: DetectProtectiveEquipmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectProtectiveEquipmentRequest:
     out: DetectProtectiveEquipmentRequest = {}  # type: ignore[typeddict-item]
-    if "Image" in data:
+    if data.get("Image") is not None:
         import capo_rekognition.types.image
 
         out["image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectProtectiveEquipmentRequest:
         )
     else:
         raise DeserializationError("DetectProtectiveEquipmentRequest.image required")
-    if "SummarizationAttributes" in data:
+    if data.get("SummarizationAttributes") is not None:
         import capo_rekognition.types.protective_equipment_summarization_attributes
 
         out["summarization_attributes"] = (

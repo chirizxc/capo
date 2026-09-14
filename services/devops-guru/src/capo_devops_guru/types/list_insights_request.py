@@ -44,7 +44,7 @@ def serialize_json(value: ListInsightsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListInsightsRequest:
     out: ListInsightsRequest = {}  # type: ignore[typeddict-item]
-    if "StatusFilter" in data:
+    if data.get("StatusFilter") is not None:
         import capo_devops_guru.types.list_insights_status_filter
 
         out["status_filter"] = (
@@ -54,8 +54,8 @@ def deserialize_json(data: dict) -> ListInsightsRequest:
         )
     else:
         raise DeserializationError("ListInsightsRequest.status_filter required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

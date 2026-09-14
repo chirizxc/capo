@@ -97,7 +97,7 @@ def serialize_aws_json_1_0(value: InitialVlans) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
     out: InitialVlans = {}  # type: ignore[typeddict-item]
-    if "vmkManagement" in data:
+    if data.get("vmkManagement") is not None:
         import capo_evs.types.initial_vlan_info
 
         out["vmk_management"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
         )
     else:
         raise DeserializationError("InitialVlans.vmk_management required")
-    if "vmManagement" in data:
+    if data.get("vmManagement") is not None:
         import capo_evs.types.initial_vlan_info
 
         out["vm_management"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
         )
     else:
         raise DeserializationError("InitialVlans.vm_management required")
-    if "vMotion" in data:
+    if data.get("vMotion") is not None:
         import capo_evs.types.initial_vlan_info
 
         out["v_motion"] = capo_evs.types.initial_vlan_info.deserialize_aws_json_1_0(
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
         )
     else:
         raise DeserializationError("InitialVlans.v_motion required")
-    if "vSan" in data:
+    if data.get("vSan") is not None:
         import capo_evs.types.initial_vlan_info
 
         out["v_san"] = capo_evs.types.initial_vlan_info.deserialize_aws_json_1_0(
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
         )
     else:
         raise DeserializationError("InitialVlans.v_san required")
-    if "vTep" in data:
+    if data.get("vTep") is not None:
         import capo_evs.types.initial_vlan_info
 
         out["v_tep"] = capo_evs.types.initial_vlan_info.deserialize_aws_json_1_0(
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
         )
     else:
         raise DeserializationError("InitialVlans.v_tep required")
-    if "edgeVTep" in data:
+    if data.get("edgeVTep") is not None:
         import capo_evs.types.initial_vlan_info
 
         out["edge_v_tep"] = capo_evs.types.initial_vlan_info.deserialize_aws_json_1_0(
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
         )
     else:
         raise DeserializationError("InitialVlans.edge_v_tep required")
-    if "nsxUplink" in data:
+    if data.get("nsxUplink") is not None:
         import capo_evs.types.initial_vlan_info
 
         out["nsx_uplink"] = capo_evs.types.initial_vlan_info.deserialize_aws_json_1_0(
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
         )
     else:
         raise DeserializationError("InitialVlans.nsx_uplink required")
-    if "hcx" in data:
+    if data.get("hcx") is not None:
         import capo_evs.types.initial_vlan_info
 
         out["hcx"] = capo_evs.types.initial_vlan_info.deserialize_aws_json_1_0(
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
         )
     else:
         raise DeserializationError("InitialVlans.hcx required")
-    if "expansionVlan1" in data:
+    if data.get("expansionVlan1") is not None:
         import capo_evs.types.initial_vlan_info
 
         out["expansion_vlan1"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
         )
     else:
         raise DeserializationError("InitialVlans.expansion_vlan1 required")
-    if "expansionVlan2" in data:
+    if data.get("expansionVlan2") is not None:
         import capo_evs.types.initial_vlan_info
 
         out["expansion_vlan2"] = (
@@ -185,10 +185,10 @@ def deserialize_aws_json_1_0(data: dict) -> InitialVlans:
         )
     else:
         raise DeserializationError("InitialVlans.expansion_vlan2 required")
-    if "isHcxPublic" in data:
+    if data.get("isHcxPublic") is not None:
         out["is_hcx_public"] = data["isHcxPublic"]
     else:
         out["is_hcx_public"] = False
-    if "hcxNetworkAclId" in data:
+    if data.get("hcxNetworkAclId") is not None:
         out["hcx_network_acl_id"] = data["hcxNetworkAclId"]
     return out

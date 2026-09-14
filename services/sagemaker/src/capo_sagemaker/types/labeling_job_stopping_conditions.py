@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: LabelingJobStoppingConditions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelingJobStoppingConditions:
     out: LabelingJobStoppingConditions = {}  # type: ignore[typeddict-item]
-    if "MaxHumanLabeledObjectCount" in data:
+    if data.get("MaxHumanLabeledObjectCount") is not None:
         out["max_human_labeled_object_count"] = data["MaxHumanLabeledObjectCount"]
-    if "MaxPercentageOfInputDatasetLabeled" in data:
+    if data.get("MaxPercentageOfInputDatasetLabeled") is not None:
         out["max_percentage_of_input_dataset_labeled"] = data[
             "MaxPercentageOfInputDatasetLabeled"
         ]

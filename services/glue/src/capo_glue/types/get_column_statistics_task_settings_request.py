@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: GetColumnStatisticsTaskSettingsRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> GetColumnStatisticsTaskSettingsRequest:
     out: GetColumnStatisticsTaskSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "GetColumnStatisticsTaskSettingsRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(

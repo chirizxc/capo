@@ -62,7 +62,7 @@ def serialize_aws_json_1_0(value: HandshakeDetail) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> HandshakeDetail:
-    if "startServicePeriodHandshakeDetail" in data:
+    if data.get("startServicePeriodHandshakeDetail") is not None:
         import capo_partnercentral_channel.types.start_service_period_handshake_detail
 
         return {
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> HandshakeDetail:
                 data["startServicePeriodHandshakeDetail"]
             )
         }
-    elif "revokeServicePeriodHandshakeDetail" in data:
+    elif data.get("revokeServicePeriodHandshakeDetail") is not None:
         import capo_partnercentral_channel.types.revoke_service_period_handshake_detail
 
         return {
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> HandshakeDetail:
                 data["revokeServicePeriodHandshakeDetail"]
             )
         }
-    elif "programManagementAccountHandshakeDetail" in data:
+    elif data.get("programManagementAccountHandshakeDetail") is not None:
         import capo_partnercentral_channel.types.program_management_account_handshake_detail
 
         return {

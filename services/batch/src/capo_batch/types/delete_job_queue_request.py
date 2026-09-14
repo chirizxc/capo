@@ -23,6 +23,6 @@ def serialize_json(value: DeleteJobQueueRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteJobQueueRequest:
     out: DeleteJobQueueRequest = {}  # type: ignore[typeddict-item]
-    if "jobQueue" in data:
+    if data.get("jobQueue") is not None:
         out["job_queue"] = data["jobQueue"]
     return out

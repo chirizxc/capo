@@ -86,13 +86,13 @@ def serialize_aws_json_1_1(value: CreateContainerServiceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContainerServiceRequest:
     out: CreateContainerServiceRequest = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError(
             "CreateContainerServiceRequest.service_name required"
         )
-    if "power" in data:
+    if data.get("power") is not None:
         import capo_lightsail.types.container_service_power_name
 
         out["power"] = (
@@ -102,17 +102,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerServiceRequest:
         )
     else:
         raise DeserializationError("CreateContainerServiceRequest.power required")
-    if "scale" in data:
+    if data.get("scale") is not None:
         out["scale"] = data["scale"]
     else:
         raise DeserializationError("CreateContainerServiceRequest.scale required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "publicDomainNames" in data:
+    if data.get("publicDomainNames") is not None:
         import capo_lightsail.types.container_service_public_domains
 
         out["public_domain_names"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerServiceRequest:
                 data["publicDomainNames"]
             )
         )
-    if "deployment" in data:
+    if data.get("deployment") is not None:
         import capo_lightsail.types.container_service_deployment_request
 
         out["deployment"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerServiceRequest:
                 data["deployment"]
             )
         )
-    if "privateRegistryAccess" in data:
+    if data.get("privateRegistryAccess") is not None:
         import capo_lightsail.types.private_registry_access_request
 
         out["private_registry_access"] = (

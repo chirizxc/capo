@@ -32,7 +32,7 @@ def serialize_json(value: CreateReportResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateReportResponse:
     out: CreateReportResponse = {}  # type: ignore[typeddict-item]
-    if "reportGenerationResult" in data:
+    if data.get("reportGenerationResult") is not None:
         import capo_resiliencehubv2.types.report_generation_result
 
         out["report_generation_result"] = (

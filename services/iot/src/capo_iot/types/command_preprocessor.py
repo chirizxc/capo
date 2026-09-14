@@ -31,7 +31,7 @@ def serialize_json(value: CommandPreprocessor) -> dict:
 
 def deserialize_json(data: dict) -> CommandPreprocessor:
     out: CommandPreprocessor = {}  # type: ignore[typeddict-item]
-    if "awsJsonSubstitution" in data:
+    if data.get("awsJsonSubstitution") is not None:
         import capo_iot.types.aws_json_substitution_command_preprocessor_config
 
         out["aws_json_substitution"] = (

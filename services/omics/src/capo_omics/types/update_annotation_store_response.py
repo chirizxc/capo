@@ -73,11 +73,11 @@ def serialize_json(value: UpdateAnnotationStoreResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAnnotationStoreResponse:
     out: UpdateAnnotationStoreResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateAnnotationStoreResponse.id required")
-    if "reference" in data:
+    if data.get("reference") is not None:
         import capo_omics.types.reference_item
 
         out["reference"] = capo_omics.types.reference_item.deserialize_json(
@@ -85,19 +85,19 @@ def deserialize_json(data: dict) -> UpdateAnnotationStoreResponse:
         )
     else:
         raise DeserializationError("UpdateAnnotationStoreResponse.reference required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("UpdateAnnotationStoreResponse.status required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateAnnotationStoreResponse.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("UpdateAnnotationStoreResponse.description required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.creation_time
 
         out["creation_time"] = capo_omics.types.creation_time.deserialize_json(
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> UpdateAnnotationStoreResponse:
         raise DeserializationError(
             "UpdateAnnotationStoreResponse.creation_time required"
         )
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_omics.types.update_time
 
         out["update_time"] = capo_omics.types.update_time.deserialize_json(
@@ -115,12 +115,12 @@ def deserialize_json(data: dict) -> UpdateAnnotationStoreResponse:
         )
     else:
         raise DeserializationError("UpdateAnnotationStoreResponse.update_time required")
-    if "storeOptions" in data:
+    if data.get("storeOptions") is not None:
         import capo_omics.types.store_options
 
         out["store_options"] = capo_omics.types.store_options.deserialize_json(
             data["storeOptions"]
         )
-    if "storeFormat" in data:
+    if data.get("storeFormat") is not None:
         out["store_format"] = data["storeFormat"]
     return out

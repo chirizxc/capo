@@ -70,7 +70,7 @@ def serialize_json(value: RegisterServiceInput) -> dict:
 
 def deserialize_json(data: dict) -> RegisterServiceInput:
     out: RegisterServiceInput = {}  # type: ignore[typeddict-item]
-    if "serviceDetails" in data:
+    if data.get("serviceDetails") is not None:
         import capo_devops_agent.types.service_details
 
         out["service_details"] = (
@@ -80,21 +80,21 @@ def deserialize_json(data: dict) -> RegisterServiceInput:
         )
     else:
         raise DeserializationError("RegisterServiceInput.service_details required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "privateConnectionName" in data:
+    if data.get("privateConnectionName") is not None:
         out["private_connection_name"] = data["privateConnectionName"]
-    if "targetUrlPrivateConnectionName" in data:
+    if data.get("targetUrlPrivateConnectionName") is not None:
         out["target_url_private_connection_name"] = data[
             "targetUrlPrivateConnectionName"
         ]
-    if "exchangeUrlPrivateConnectionName" in data:
+    if data.get("exchangeUrlPrivateConnectionName") is not None:
         out["exchange_url_private_connection_name"] = data[
             "exchangeUrlPrivateConnectionName"
         ]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_devops_agent.types.tags
 
         out["tags"] = capo_devops_agent.types.tags.deserialize_json(data["tags"])

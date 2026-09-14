@@ -86,11 +86,12 @@ class FormType:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_form_type_input.CreateFormTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
-        input_["model"] = model
-        input_["owning_project_identifier"] = owning_project_identifier
+        input_: capo_datazone.types.create_form_type_input.CreateFormTypeInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "model": model,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if status is not None:
             input_["status"] = status
         if description is not None:
@@ -101,6 +102,7 @@ class FormType:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_form_type(
@@ -142,15 +144,17 @@ class FormType:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_form_type_input.DeleteFormTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["form_type_identifier"] = form_type_identifier
+        input_: capo_datazone.types.delete_form_type_input.DeleteFormTypeInput = {
+            "domain_identifier": domain_identifier,
+            "form_type_identifier": form_type_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_form_type(
@@ -193,9 +197,10 @@ class FormType:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_form_type_input.GetFormTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["form_type_identifier"] = form_type_identifier
+        input_: capo_datazone.types.get_form_type_input.GetFormTypeInput = {
+            "domain_identifier": domain_identifier,
+            "form_type_identifier": form_type_identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -204,6 +209,7 @@ class FormType:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -259,11 +265,12 @@ class AsyncFormType:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_form_type_input.CreateFormTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
-        input_["model"] = model
-        input_["owning_project_identifier"] = owning_project_identifier
+        input_: capo_datazone.types.create_form_type_input.CreateFormTypeInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "model": model,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if status is not None:
             input_["status"] = status
         if description is not None:
@@ -274,6 +281,7 @@ class AsyncFormType:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_form_type(
@@ -316,15 +324,17 @@ class AsyncFormType:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_form_type_input.DeleteFormTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["form_type_identifier"] = form_type_identifier
+        input_: capo_datazone.types.delete_form_type_input.DeleteFormTypeInput = {
+            "domain_identifier": domain_identifier,
+            "form_type_identifier": form_type_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_form_type(
@@ -368,9 +378,10 @@ class AsyncFormType:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_form_type_input.GetFormTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["form_type_identifier"] = form_type_identifier
+        input_: capo_datazone.types.get_form_type_input.GetFormTypeInput = {
+            "domain_identifier": domain_identifier,
+            "form_type_identifier": form_type_identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -379,4 +390,5 @@ class AsyncFormType:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

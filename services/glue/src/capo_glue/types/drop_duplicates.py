@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: DropDuplicates) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DropDuplicates:
     out: DropDuplicates = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DropDuplicates.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> DropDuplicates:
         )
     else:
         raise DeserializationError("DropDuplicates.inputs required")
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_glue.types.limited_path_list
 
         out["columns"] = capo_glue.types.limited_path_list.deserialize_aws_json_1_1(

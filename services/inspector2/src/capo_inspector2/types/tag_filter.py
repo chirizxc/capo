@@ -35,7 +35,7 @@ def serialize_json(value: TagFilter) -> dict:
 
 def deserialize_json(data: dict) -> TagFilter:
     out: TagFilter = {}  # type: ignore[typeddict-item]
-    if "comparison" in data:
+    if data.get("comparison") is not None:
         import capo_inspector2.types.tag_comparison
 
         out["comparison"] = capo_inspector2.types.tag_comparison.deserialize_json(
@@ -43,11 +43,11 @@ def deserialize_json(data: dict) -> TagFilter:
         )
     else:
         raise DeserializationError("TagFilter.comparison required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("TagFilter.key required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("TagFilter.value required")

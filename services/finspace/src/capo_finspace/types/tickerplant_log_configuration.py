@@ -31,7 +31,7 @@ def serialize_json(value: TickerplantLogConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TickerplantLogConfiguration:
     out: TickerplantLogConfiguration = {}  # type: ignore[typeddict-item]
-    if "tickerplantLogVolumes" in data:
+    if data.get("tickerplantLogVolumes") is not None:
         import capo_finspace.types.tickerplant_log_volumes
 
         out["tickerplant_log_volumes"] = (

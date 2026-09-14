@@ -37,7 +37,7 @@ def serialize_json(value: S3Parameters) -> dict:
 
 def deserialize_json(data: dict) -> S3Parameters:
     out: S3Parameters = {}  # type: ignore[typeddict-item]
-    if "ManifestFileLocation" in data:
+    if data.get("ManifestFileLocation") is not None:
         import capo_quicksight.types.manifest_file_location
 
         out["manifest_file_location"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> S3Parameters:
         )
     else:
         raise DeserializationError("S3Parameters.manifest_file_location required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

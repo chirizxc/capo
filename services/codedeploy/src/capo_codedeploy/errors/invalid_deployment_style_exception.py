@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidDeploymentStyleException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidDeploymentStyleException_:
     out: InvalidDeploymentStyleException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class InvalidDeploymentStyleException(ServiceError):
 
     code: str | None = "InvalidDeploymentStyleException"
 
-    def __init__(self, data: InvalidDeploymentStyleException_):
+    def __init__(
+        self, data: InvalidDeploymentStyleException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidDeploymentStyleException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidDeploymentStyleException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidDeploymentStyleException":
+        return cls(deserialize_aws_json_1_1(data), message)

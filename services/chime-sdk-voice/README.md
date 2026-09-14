@@ -13,9 +13,9 @@ from capo_chime_sdk_voice import AsyncChimeSDKVoiceClient
 
 
 async def main():
-    async with AsyncChimeSDKVoiceClient() as s3:
+    async with AsyncChimeSDKVoiceClient() as chime_sdk_voice:
         # Example: call the associate_phone_numbers_with_voice_connector operation
-        response = await s3.associate_phone_numbers_with_voice_connector()
+        response = await chime_sdk_voice.associate_phone_numbers_with_voice_connector()
         print(response["phone_number_errors"])
 ```
 
@@ -28,9 +28,9 @@ from capo_chime_sdk_voice import AsyncChimeSDKVoiceClient
 
 
 async def main():
-    async with AsyncChimeSDKVoiceClient() as s3:
-        # Example: paginate over list_sip_media_applications
-        async for item in s3.iter_list_sip_media_applications():
+    async with AsyncChimeSDKVoiceClient() as chime_sdk_voice:
+        # Example: paginate over list_phone_number_orders
+        async for item in chime_sdk_voice.iter_list_phone_number_orders():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_chime_sdk_voice.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncChimeSDKVoiceClient() as s3:
+    async with AsyncChimeSDKVoiceClient() as chime_sdk_voice:
         try:
-            await s3.associate_phone_numbers_with_voice_connector()
+            await chime_sdk_voice.associate_phone_numbers_with_voice_connector()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_chime_sdk_voice import AsyncChimeSDKVoiceClient
 
 
 async def main():
-    async with AsyncChimeSDKVoiceClient() as s3:
+    async with AsyncChimeSDKVoiceClient() as chime_sdk_voice:
         # Default: 3 attempts for every operation
-        response = await s3.associate_phone_numbers_with_voice_connector()
+        response = await chime_sdk_voice.associate_phone_numbers_with_voice_connector()
 
         # Override per operation
-        response = await s3.associate_phone_numbers_with_voice_connector(config_overrides={"retry_max_attempts": 5})
+        response = await chime_sdk_voice.associate_phone_numbers_with_voice_connector(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_phone_numbers_with_voice_connector(config_overrides={"retry_max_attempts": 1})
+        response = await chime_sdk_voice.associate_phone_numbers_with_voice_connector(config_overrides={"retry_max_attempts": 1})
 ```

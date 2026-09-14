@@ -24,7 +24,7 @@ def serialize_json(value: OwnerUserProperties) -> dict:
 
 def deserialize_json(data: dict) -> OwnerUserProperties:
     out: OwnerUserProperties = {}  # type: ignore[typeddict-item]
-    if "userIdentifier" in data:
+    if data.get("userIdentifier") is not None:
         out["user_identifier"] = data["userIdentifier"]
     else:
         raise DeserializationError("OwnerUserProperties.user_identifier required")

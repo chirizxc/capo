@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListGroupsForEntityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListGroupsForEntityResponse:
     out: ListGroupsForEntityResponse = {}  # type: ignore[typeddict-item]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_workmail.types.group_identifiers
 
         out["groups"] = capo_workmail.types.group_identifiers.deserialize_aws_json_1_1(
             data["Groups"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

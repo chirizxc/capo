@@ -47,9 +47,9 @@ def serialize_json(value: GetRecoveryGroupReadinessSummaryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRecoveryGroupReadinessSummaryResponse:
     out: GetRecoveryGroupReadinessSummaryResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "readiness" in data:
+    if data.get("readiness") is not None:
         import capo_route53_recovery_readiness.types.readiness
 
         out["readiness"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> GetRecoveryGroupReadinessSummaryResponse:
                 data["readiness"]
             )
         )
-    if "readinessChecks" in data:
+    if data.get("readinessChecks") is not None:
         import capo_route53_recovery_readiness.types.__list_of_readiness_check_summary
 
         out["readiness_checks"] = (

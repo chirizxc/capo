@@ -56,9 +56,9 @@ def serialize_aws_json_1_1(value: NonTalkTimeFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NonTalkTimeFilter:
     out: NonTalkTimeFilter = {}  # type: ignore[typeddict-item]
-    if "Threshold" in data:
+    if data.get("Threshold") is not None:
         out["threshold"] = data["Threshold"]
-    if "AbsoluteTimeRange" in data:
+    if data.get("AbsoluteTimeRange") is not None:
         import capo_transcribe.types.absolute_time_range
 
         out["absolute_time_range"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> NonTalkTimeFilter:
                 data["AbsoluteTimeRange"]
             )
         )
-    if "RelativeTimeRange" in data:
+    if data.get("RelativeTimeRange") is not None:
         import capo_transcribe.types.relative_time_range
 
         out["relative_time_range"] = (
@@ -74,6 +74,6 @@ def deserialize_aws_json_1_1(data: dict) -> NonTalkTimeFilter:
                 data["RelativeTimeRange"]
             )
         )
-    if "Negate" in data:
+    if data.get("Negate") is not None:
         out["negate"] = data["Negate"]
     return out

@@ -38,7 +38,7 @@ def serialize_json(value: DataAccessorAuthenticationConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> DataAccessorAuthenticationConfiguration:
-    if "idcTrustedTokenIssuerConfiguration" in data:
+    if data.get("idcTrustedTokenIssuerConfiguration") is not None:
         import capo_qbusiness.types.data_accessor_idc_trusted_token_issuer_configuration
 
         return {

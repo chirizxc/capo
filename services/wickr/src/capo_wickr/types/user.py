@@ -104,15 +104,15 @@ def serialize_json(value: User) -> dict:
 
 def deserialize_json(data: dict) -> User:
     out: User = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_wickr.types.security_group_id_list
 
         out["security_groups"] = (
@@ -120,32 +120,32 @@ def deserialize_json(data: dict) -> User:
                 data["securityGroups"]
             )
         )
-    if "isAdmin" in data:
+    if data.get("isAdmin") is not None:
         out["is_admin"] = data["isAdmin"]
-    if "suspended" in data:
+    if data.get("suspended") is not None:
         out["suspended"] = data["suspended"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "otpEnabled" in data:
+    if data.get("otpEnabled") is not None:
         out["otp_enabled"] = data["otpEnabled"]
-    if "scimId" in data:
+    if data.get("scimId") is not None:
         out["scim_id"] = data["scimId"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "cell" in data:
+    if data.get("cell") is not None:
         out["cell"] = data["cell"]
-    if "countryCode" in data:
+    if data.get("countryCode") is not None:
         out["country_code"] = data["countryCode"]
-    if "challengeFailures" in data:
+    if data.get("challengeFailures") is not None:
         out["challenge_failures"] = data["challengeFailures"]
-    if "isInviteExpired" in data:
+    if data.get("isInviteExpired") is not None:
         out["is_invite_expired"] = data["isInviteExpired"]
-    if "isUser" in data:
+    if data.get("isUser") is not None:
         out["is_user"] = data["isUser"]
-    if "inviteCode" in data:
+    if data.get("inviteCode") is not None:
         out["invite_code"] = data["inviteCode"]
-    if "codeValidation" in data:
+    if data.get("codeValidation") is not None:
         out["code_validation"] = data["codeValidation"]
-    if "uname" in data:
+    if data.get("uname") is not None:
         out["uname"] = data["uname"]
     return out

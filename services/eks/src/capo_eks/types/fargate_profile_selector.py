@@ -32,9 +32,9 @@ def serialize_json(value: FargateProfileSelector) -> dict:
 
 def deserialize_json(data: dict) -> FargateProfileSelector:
     out: FargateProfileSelector = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_eks.types.fargate_profile_label
 
         out["labels"] = capo_eks.types.fargate_profile_label.deserialize_json(

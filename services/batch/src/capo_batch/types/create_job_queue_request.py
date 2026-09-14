@@ -94,17 +94,17 @@ def serialize_json(value: CreateJobQueueRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobQueueRequest:
     out: CreateJobQueueRequest = {}  # type: ignore[typeddict-item]
-    if "jobQueueName" in data:
+    if data.get("jobQueueName") is not None:
         out["job_queue_name"] = data["jobQueueName"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_batch.types.jq_state
 
         out["state"] = capo_batch.types.jq_state.deserialize_json(data["state"])
-    if "schedulingPolicyArn" in data:
+    if data.get("schedulingPolicyArn") is not None:
         out["scheduling_policy_arn"] = data["schedulingPolicyArn"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "computeEnvironmentOrder" in data:
+    if data.get("computeEnvironmentOrder") is not None:
         import capo_batch.types.compute_environment_orders
 
         out["compute_environment_order"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> CreateJobQueueRequest:
                 data["computeEnvironmentOrder"]
             )
         )
-    if "serviceEnvironmentOrder" in data:
+    if data.get("serviceEnvironmentOrder") is not None:
         import capo_batch.types.service_environment_orders
 
         out["service_environment_order"] = (
@@ -120,17 +120,17 @@ def deserialize_json(data: dict) -> CreateJobQueueRequest:
                 data["serviceEnvironmentOrder"]
             )
         )
-    if "jobQueueType" in data:
+    if data.get("jobQueueType") is not None:
         import capo_batch.types.job_queue_type
 
         out["job_queue_type"] = capo_batch.types.job_queue_type.deserialize_json(
             data["jobQueueType"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])
-    if "jobStateTimeLimitActions" in data:
+    if data.get("jobStateTimeLimitActions") is not None:
         import capo_batch.types.job_state_time_limit_actions
 
         out["job_state_time_limit_actions"] = (

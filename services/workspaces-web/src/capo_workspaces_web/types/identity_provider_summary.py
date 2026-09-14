@@ -38,14 +38,14 @@ def serialize_json(value: IdentityProviderSummary) -> dict:
 
 def deserialize_json(data: dict) -> IdentityProviderSummary:
     out: IdentityProviderSummary = {}  # type: ignore[typeddict-item]
-    if "identityProviderArn" in data:
+    if data.get("identityProviderArn") is not None:
         out["identity_provider_arn"] = data["identityProviderArn"]
     else:
         raise DeserializationError(
             "IdentityProviderSummary.identity_provider_arn required"
         )
-    if "identityProviderName" in data:
+    if data.get("identityProviderName") is not None:
         out["identity_provider_name"] = data["identityProviderName"]
-    if "identityProviderType" in data:
+    if data.get("identityProviderType") is not None:
         out["identity_provider_type"] = data["identityProviderType"]
     return out

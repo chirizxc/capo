@@ -13,9 +13,9 @@ from capo_device_farm import AsyncDeviceFarmClient
 
 
 async def main():
-    async with AsyncDeviceFarmClient() as s3:
+    async with AsyncDeviceFarmClient() as device_farm:
         # Example: call the create_device_pool operation
-        response = await s3.create_device_pool()
+        response = await device_farm.create_device_pool()
         print(response["device_pool"])
 ```
 
@@ -28,9 +28,9 @@ from capo_device_farm import AsyncDeviceFarmClient
 
 
 async def main():
-    async with AsyncDeviceFarmClient() as s3:
-        # Example: paginate over list_artifacts
-        async for item in s3.iter_list_artifacts():
+    async with AsyncDeviceFarmClient() as device_farm:
+        # Example: paginate over get_offering_status
+        async for item in device_farm.iter_get_offering_status():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_device_farm.error import ArgumentException
 
 
 async def main():
-    async with AsyncDeviceFarmClient() as s3:
+    async with AsyncDeviceFarmClient() as device_farm:
         try:
-            await s3.create_device_pool()
+            await device_farm.create_device_pool()
         except ArgumentException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_device_farm import AsyncDeviceFarmClient
 
 
 async def main():
-    async with AsyncDeviceFarmClient() as s3:
+    async with AsyncDeviceFarmClient() as device_farm:
         # Default: 3 attempts for every operation
-        response = await s3.create_device_pool()
+        response = await device_farm.create_device_pool()
 
         # Override per operation
-        response = await s3.create_device_pool(config_overrides={"retry_max_attempts": 5})
+        response = await device_farm.create_device_pool(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_device_pool(config_overrides={"retry_max_attempts": 1})
+        response = await device_farm.create_device_pool(config_overrides={"retry_max_attempts": 1})
 ```

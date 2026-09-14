@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: RepositoryTriggerExecutionFailure) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RepositoryTriggerExecutionFailure:
     out: RepositoryTriggerExecutionFailure = {}  # type: ignore[typeddict-item]
-    if "trigger" in data:
+    if data.get("trigger") is not None:
         out["trigger"] = data["trigger"]
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
     return out

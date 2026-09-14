@@ -32,7 +32,7 @@ def serialize_json(value: ResultItem) -> dict:
 
 
 def deserialize_json(data: dict) -> ResultItem:
-    if "lineageNode" in data:
+    if data.get("lineageNode") is not None:
         import capo_datazone.types.lineage_node_item
 
         return {

@@ -51,21 +51,21 @@ def serialize_aws_json_1_1(value: RedshiftDataParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedshiftDataParameters:
     out: RedshiftDataParameters = {}  # type: ignore[typeddict-item]
-    if "SecretManagerArn" in data:
+    if data.get("SecretManagerArn") is not None:
         out["secret_manager_arn"] = data["SecretManagerArn"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("RedshiftDataParameters.database required")
-    if "DbUser" in data:
+    if data.get("DbUser") is not None:
         out["db_user"] = data["DbUser"]
-    if "Sql" in data:
+    if data.get("Sql") is not None:
         out["sql"] = data["Sql"]
     else:
         raise DeserializationError("RedshiftDataParameters.sql required")
-    if "StatementName" in data:
+    if data.get("StatementName") is not None:
         out["statement_name"] = data["StatementName"]
-    if "WithEvent" in data:
+    if data.get("WithEvent") is not None:
         out["with_event"] = data["WithEvent"]
     else:
         out["with_event"] = False

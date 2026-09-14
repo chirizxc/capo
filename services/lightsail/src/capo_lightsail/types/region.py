@@ -65,19 +65,19 @@ def serialize_aws_json_1_1(value: Region) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Region:
     out: Region = {}  # type: ignore[typeddict-item]
-    if "continentCode" in data:
+    if data.get("continentCode") is not None:
         out["continent_code"] = data["continentCode"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lightsail.types.region_name
 
         out["name"] = capo_lightsail.types.region_name.deserialize_aws_json_1_1(
             data["name"]
         )
-    if "availabilityZones" in data:
+    if data.get("availabilityZones") is not None:
         import capo_lightsail.types.availability_zone_list
 
         out["availability_zones"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> Region:
                 data["availabilityZones"]
             )
         )
-    if "relationalDatabaseAvailabilityZones" in data:
+    if data.get("relationalDatabaseAvailabilityZones") is not None:
         import capo_lightsail.types.availability_zone_list
 
         out["relational_database_availability_zones"] = (

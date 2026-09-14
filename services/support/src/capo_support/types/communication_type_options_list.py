@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CommunicationTypeOptionsList:
 
     out: CommunicationTypeOptionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_support.types.communication_type_options.deserialize_aws_json_1_1(item)
         )

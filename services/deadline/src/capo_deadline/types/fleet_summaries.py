@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> FleetSummaries:
 
     out: FleetSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.fleet_summary.deserialize_json(item))
     return out

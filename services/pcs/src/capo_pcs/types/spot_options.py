@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: SpotOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SpotOptions:
     out: SpotOptions = {}  # type: ignore[typeddict-item]
-    if "allocationStrategy" in data:
+    if data.get("allocationStrategy") is not None:
         import capo_pcs.types.spot_allocation_strategy
 
         out["allocation_strategy"] = (

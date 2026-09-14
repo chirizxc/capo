@@ -34,14 +34,14 @@ def serialize_aws_json_1_1(value: ListFlowExecutionMessagesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFlowExecutionMessagesRequest:
     out: ListFlowExecutionMessagesRequest = {}  # type: ignore[typeddict-item]
-    if "flowExecutionId" in data:
+    if data.get("flowExecutionId") is not None:
         out["flow_execution_id"] = data["flowExecutionId"]
     else:
         raise DeserializationError(
             "ListFlowExecutionMessagesRequest.flow_execution_id required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

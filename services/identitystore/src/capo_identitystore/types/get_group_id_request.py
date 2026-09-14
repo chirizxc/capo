@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: GetGroupIdRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetGroupIdRequest:
     out: GetGroupIdRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
     else:
         raise DeserializationError("GetGroupIdRequest.identity_store_id required")
-    if "AlternateIdentifier" in data:
+    if data.get("AlternateIdentifier") is not None:
         import capo_identitystore.types.alternate_identifier
 
         out["alternate_identifier"] = (

@@ -106,17 +106,17 @@ def serialize_json(value: UpdateResourceConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceConfigurationResponse:
     out: UpdateResourceConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "resourceGatewayId" in data:
+    if data.get("resourceGatewayId") is not None:
         out["resource_gateway_id"] = data["resourceGatewayId"]
-    if "resourceConfigurationGroupId" in data:
+    if data.get("resourceConfigurationGroupId") is not None:
         out["resource_configuration_group_id"] = data["resourceConfigurationGroupId"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_vpc_lattice.types.resource_configuration_type
 
         out["type"] = (
@@ -124,21 +124,21 @@ def deserialize_json(data: dict) -> UpdateResourceConfigurationResponse:
                 data["type"]
             )
         )
-    if "portRanges" in data:
+    if data.get("portRanges") is not None:
         import capo_vpc_lattice.types.port_range_list
 
         out["port_ranges"] = capo_vpc_lattice.types.port_range_list.deserialize_json(
             data["portRanges"]
         )
-    if "allowAssociationToShareableServiceNetwork" in data:
+    if data.get("allowAssociationToShareableServiceNetwork") is not None:
         out["allow_association_to_shareable_service_network"] = data[
             "allowAssociationToShareableServiceNetwork"
         ]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "resourceConfigurationDefinition" in data:
+    if data.get("resourceConfigurationDefinition") is not None:
         import capo_vpc_lattice.types.resource_configuration_definition
 
         out["resource_configuration_definition"] = (

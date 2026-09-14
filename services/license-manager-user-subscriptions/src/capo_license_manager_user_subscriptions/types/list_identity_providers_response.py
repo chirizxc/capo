@@ -34,7 +34,7 @@ def serialize_json(value: ListIdentityProvidersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIdentityProvidersResponse:
     out: ListIdentityProvidersResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityProviderSummaries" in data:
+    if data.get("IdentityProviderSummaries") is not None:
         import capo_license_manager_user_subscriptions.types.identity_provider_summary_list
 
         out["identity_provider_summaries"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListIdentityProvidersResponse:
         raise DeserializationError(
             "ListIdentityProvidersResponse.identity_provider_summaries required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

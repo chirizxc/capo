@@ -33,13 +33,13 @@ def serialize_json(value: DisassociateConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateConfigurationRequest:
     out: DisassociateConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "scanConfigurationArn" in data:
+    if data.get("scanConfigurationArn") is not None:
         out["scan_configuration_arn"] = data["scanConfigurationArn"]
     else:
         raise DeserializationError(
             "DisassociateConfigurationRequest.scan_configuration_arn required"
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_inspector2.types.code_security_resource
 
         out["resource"] = capo_inspector2.types.code_security_resource.deserialize_json(

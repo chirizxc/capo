@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> FilePathList:
 
     out: FilePathList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.file_paths.deserialize_json(item))
     return out

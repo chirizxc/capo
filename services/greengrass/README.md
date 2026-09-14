@@ -13,9 +13,9 @@ from capo_greengrass import AsyncGreengrassClient
 
 
 async def main():
-    async with AsyncGreengrassClient() as s3:
+    async with AsyncGreengrassClient() as greengrass:
         # Example: call the associate_role_to_group operation
-        response = await s3.associate_role_to_group()
+        response = await greengrass.associate_role_to_group()
         print(response["associated_at"])
 ```
 
@@ -29,9 +29,9 @@ from capo_greengrass.error import BadRequestException
 
 
 async def main():
-    async with AsyncGreengrassClient() as s3:
+    async with AsyncGreengrassClient() as greengrass:
         try:
-            await s3.associate_role_to_group()
+            await greengrass.associate_role_to_group()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_greengrass import AsyncGreengrassClient
 
 
 async def main():
-    async with AsyncGreengrassClient() as s3:
+    async with AsyncGreengrassClient() as greengrass:
         # Default: 3 attempts for every operation
-        response = await s3.associate_role_to_group()
+        response = await greengrass.associate_role_to_group()
 
         # Override per operation
-        response = await s3.associate_role_to_group(config_overrides={"retry_max_attempts": 5})
+        response = await greengrass.associate_role_to_group(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_role_to_group(config_overrides={"retry_max_attempts": 1})
+        response = await greengrass.associate_role_to_group(config_overrides={"retry_max_attempts": 1})
 ```

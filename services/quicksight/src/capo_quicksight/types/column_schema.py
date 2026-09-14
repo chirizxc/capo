@@ -31,10 +31,10 @@ def serialize_json(value: ColumnSchema) -> dict:
 
 def deserialize_json(data: dict) -> ColumnSchema:
     out: ColumnSchema = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DataType" in data:
+    if data.get("DataType") is not None:
         out["data_type"] = data["DataType"]
-    if "GeographicRole" in data:
+    if data.get("GeographicRole") is not None:
         out["geographic_role"] = data["GeographicRole"]
     return out

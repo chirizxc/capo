@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: DescribeCustomerMetadataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCustomerMetadataResponse:
     out: DescribeCustomerMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "agreements" in data:
+    if data.get("agreements") is not None:
         import capo_direct_connect.types.agreement_list
 
         out["agreements"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCustomerMetadataResponse:
                 data["agreements"]
             )
         )
-    if "nniPartnerType" in data:
+    if data.get("nniPartnerType") is not None:
         import capo_direct_connect.types.nni_partner_type
 
         out["nni_partner_type"] = (

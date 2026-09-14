@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Baselines:
 
     out: Baselines = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_controltower.types.baseline_summary.deserialize_json(item))
     return out

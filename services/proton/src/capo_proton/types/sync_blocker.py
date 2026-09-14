@@ -66,23 +66,23 @@ def serialize_aws_json_1_0(value: SyncBlocker) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SyncBlocker:
     out: SyncBlocker = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("SyncBlocker.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("SyncBlocker.type required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("SyncBlocker.status required")
-    if "createdReason" in data:
+    if data.get("createdReason") is not None:
         out["created_reason"] = data["createdReason"]
     else:
         raise DeserializationError("SyncBlocker.created_reason required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> SyncBlocker:
         )
     else:
         raise DeserializationError("SyncBlocker.created_at required")
-    if "contexts" in data:
+    if data.get("contexts") is not None:
         import capo_proton.types.sync_blocker_contexts
 
         out["contexts"] = (
@@ -100,9 +100,9 @@ def deserialize_aws_json_1_0(data: dict) -> SyncBlocker:
                 data["contexts"]
             )
         )
-    if "resolvedReason" in data:
+    if data.get("resolvedReason") is not None:
         out["resolved_reason"] = data["resolvedReason"]
-    if "resolvedAt" in data:
+    if data.get("resolvedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["resolved_at"] = (

@@ -34,14 +34,14 @@ def serialize_aws_json_1_0(value: DeleteAutomationRuleRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteAutomationRuleRequest:
     out: DeleteAutomationRuleRequest = {}  # type: ignore[typeddict-item]
-    if "ruleArn" in data:
+    if data.get("ruleArn") is not None:
         out["rule_arn"] = data["ruleArn"]
     else:
         raise DeserializationError("DeleteAutomationRuleRequest.rule_arn required")
-    if "ruleRevision" in data:
+    if data.get("ruleRevision") is not None:
         out["rule_revision"] = data["ruleRevision"]
     else:
         raise DeserializationError("DeleteAutomationRuleRequest.rule_revision required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

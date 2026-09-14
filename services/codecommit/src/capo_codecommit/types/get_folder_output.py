@@ -74,29 +74,29 @@ def serialize_aws_json_1_1(value: GetFolderOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetFolderOutput:
     out: GetFolderOutput = {}  # type: ignore[typeddict-item]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
     else:
         raise DeserializationError("GetFolderOutput.commit_id required")
-    if "folderPath" in data:
+    if data.get("folderPath") is not None:
         out["folder_path"] = data["folderPath"]
     else:
         raise DeserializationError("GetFolderOutput.folder_path required")
-    if "treeId" in data:
+    if data.get("treeId") is not None:
         out["tree_id"] = data["treeId"]
-    if "subFolders" in data:
+    if data.get("subFolders") is not None:
         import capo_codecommit.types.folder_list
 
         out["sub_folders"] = capo_codecommit.types.folder_list.deserialize_aws_json_1_1(
             data["subFolders"]
         )
-    if "files" in data:
+    if data.get("files") is not None:
         import capo_codecommit.types.file_list
 
         out["files"] = capo_codecommit.types.file_list.deserialize_aws_json_1_1(
             data["files"]
         )
-    if "symbolicLinks" in data:
+    if data.get("symbolicLinks") is not None:
         import capo_codecommit.types.symbolic_link_list
 
         out["symbolic_links"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetFolderOutput:
                 data["symbolicLinks"]
             )
         )
-    if "subModules" in data:
+    if data.get("subModules") is not None:
         import capo_codecommit.types.sub_module_list
 
         out["sub_modules"] = (

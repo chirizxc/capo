@@ -158,29 +158,29 @@ def serialize_json(value: EvaluationForm) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationForm:
     out: EvaluationForm = {}  # type: ignore[typeddict-item]
-    if "EvaluationFormId" in data:
+    if data.get("EvaluationFormId") is not None:
         out["evaluation_form_id"] = data["EvaluationFormId"]
     else:
         raise DeserializationError("EvaluationForm.evaluation_form_id required")
-    if "EvaluationFormVersion" in data:
+    if data.get("EvaluationFormVersion") is not None:
         out["evaluation_form_version"] = data["EvaluationFormVersion"]
     else:
         out["evaluation_form_version"] = 0
-    if "Locked" in data:
+    if data.get("Locked") is not None:
         out["locked"] = data["Locked"]
     else:
         out["locked"] = False
-    if "EvaluationFormArn" in data:
+    if data.get("EvaluationFormArn") is not None:
         out["evaluation_form_arn"] = data["EvaluationFormArn"]
     else:
         raise DeserializationError("EvaluationForm.evaluation_form_arn required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("EvaluationForm.title required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.evaluation_form_version_status
 
         out["status"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> EvaluationForm:
         )
     else:
         raise DeserializationError("EvaluationForm.status required")
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_connect.types.evaluation_form_items_list
 
         out["items"] = capo_connect.types.evaluation_form_items_list.deserialize_json(
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> EvaluationForm:
         )
     else:
         raise DeserializationError("EvaluationForm.items required")
-    if "ScoringStrategy" in data:
+    if data.get("ScoringStrategy") is not None:
         import capo_connect.types.evaluation_form_scoring_strategy
 
         out["scoring_strategy"] = (
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> EvaluationForm:
                 data["ScoringStrategy"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -214,11 +214,11 @@ def deserialize_json(data: dict) -> EvaluationForm:
         )
     else:
         raise DeserializationError("EvaluationForm.created_time required")
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
     else:
         raise DeserializationError("EvaluationForm.created_by required")
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -226,11 +226,11 @@ def deserialize_json(data: dict) -> EvaluationForm:
         )
     else:
         raise DeserializationError("EvaluationForm.last_modified_time required")
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
     else:
         raise DeserializationError("EvaluationForm.last_modified_by required")
-    if "AutoEvaluationConfiguration" in data:
+    if data.get("AutoEvaluationConfiguration") is not None:
         import capo_connect.types.evaluation_form_auto_evaluation_configuration
 
         out["auto_evaluation_configuration"] = (
@@ -238,7 +238,7 @@ def deserialize_json(data: dict) -> EvaluationForm:
                 data["AutoEvaluationConfiguration"]
             )
         )
-    if "ReviewConfiguration" in data:
+    if data.get("ReviewConfiguration") is not None:
         import capo_connect.types.evaluation_review_configuration
 
         out["review_configuration"] = (
@@ -246,11 +246,11 @@ def deserialize_json(data: dict) -> EvaluationForm:
                 data["ReviewConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "TargetConfiguration" in data:
+    if data.get("TargetConfiguration") is not None:
         import capo_connect.types.evaluation_form_target_configuration
 
         out["target_configuration"] = (
@@ -258,7 +258,7 @@ def deserialize_json(data: dict) -> EvaluationForm:
                 data["TargetConfiguration"]
             )
         )
-    if "LanguageConfiguration" in data:
+    if data.get("LanguageConfiguration") is not None:
         import capo_connect.types.evaluation_form_language_configuration
 
         out["language_configuration"] = (

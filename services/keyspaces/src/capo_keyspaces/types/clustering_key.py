@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: ClusteringKey) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ClusteringKey:
     out: ClusteringKey = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ClusteringKey.name required")
-    if "orderBy" in data:
+    if data.get("orderBy") is not None:
         out["order_by"] = data["orderBy"]
     else:
         raise DeserializationError("ClusteringKey.order_by required")

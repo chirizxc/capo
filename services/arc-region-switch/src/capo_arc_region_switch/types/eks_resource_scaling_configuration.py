@@ -85,11 +85,11 @@ def serialize_aws_json_1_0(value: EksResourceScalingConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EksResourceScalingConfiguration:
     out: EksResourceScalingConfiguration = {}  # type: ignore[typeddict-item]
-    if "timeoutMinutes" in data:
+    if data.get("timeoutMinutes") is not None:
         out["timeout_minutes"] = data["timeoutMinutes"]
     else:
         out["timeout_minutes"] = 60
-    if "kubernetesResourceType" in data:
+    if data.get("kubernetesResourceType") is not None:
         import capo_arc_region_switch.types.kubernetes_resource_type
 
         out["kubernetes_resource_type"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> EksResourceScalingConfiguration:
         raise DeserializationError(
             "EksResourceScalingConfiguration.kubernetes_resource_type required"
         )
-    if "scalingResources" in data:
+    if data.get("scalingResources") is not None:
         import capo_arc_region_switch.types.kubernetes_scaling_apps
 
         out["scaling_resources"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> EksResourceScalingConfiguration:
                 data["scalingResources"]
             )
         )
-    if "eksClusters" in data:
+    if data.get("eksClusters") is not None:
         import capo_arc_region_switch.types.eks_clusters
 
         out["eks_clusters"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> EksResourceScalingConfiguration:
                 data["eksClusters"]
             )
         )
-    if "ungraceful" in data:
+    if data.get("ungraceful") is not None:
         import capo_arc_region_switch.types.eks_resource_scaling_ungraceful
 
         out["ungraceful"] = (
@@ -125,11 +125,11 @@ def deserialize_aws_json_1_0(data: dict) -> EksResourceScalingConfiguration:
                 data["ungraceful"]
             )
         )
-    if "targetPercent" in data:
+    if data.get("targetPercent") is not None:
         out["target_percent"] = data["targetPercent"]
     else:
         out["target_percent"] = 100
-    if "capacityMonitoringApproach" in data:
+    if data.get("capacityMonitoringApproach") is not None:
         import capo_arc_region_switch.types.eks_capacity_monitoring_approach
 
         out["capacity_monitoring_approach"] = (

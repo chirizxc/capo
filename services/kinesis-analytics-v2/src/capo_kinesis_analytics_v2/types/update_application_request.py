@@ -97,13 +97,13 @@ def serialize_aws_json_1_1(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError("UpdateApplicationRequest.application_name required")
-    if "CurrentApplicationVersionId" in data:
+    if data.get("CurrentApplicationVersionId") is not None:
         out["current_application_version_id"] = data["CurrentApplicationVersionId"]
-    if "ApplicationConfigurationUpdate" in data:
+    if data.get("ApplicationConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.application_configuration_update
 
         out["application_configuration_update"] = (
@@ -111,9 +111,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationRequest:
                 data["ApplicationConfigurationUpdate"]
             )
         )
-    if "ServiceExecutionRoleUpdate" in data:
+    if data.get("ServiceExecutionRoleUpdate") is not None:
         out["service_execution_role_update"] = data["ServiceExecutionRoleUpdate"]
-    if "RunConfigurationUpdate" in data:
+    if data.get("RunConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.run_configuration_update
 
         out["run_configuration_update"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationRequest:
                 data["RunConfigurationUpdate"]
             )
         )
-    if "CloudWatchLoggingOptionUpdates" in data:
+    if data.get("CloudWatchLoggingOptionUpdates") is not None:
         import capo_kinesis_analytics_v2.types.cloud_watch_logging_option_updates
 
         out["cloud_watch_logging_option_updates"] = (
@@ -129,9 +129,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationRequest:
                 data["CloudWatchLoggingOptionUpdates"]
             )
         )
-    if "ConditionalToken" in data:
+    if data.get("ConditionalToken") is not None:
         out["conditional_token"] = data["ConditionalToken"]
-    if "RuntimeEnvironmentUpdate" in data:
+    if data.get("RuntimeEnvironmentUpdate") is not None:
         import capo_kinesis_analytics_v2.types.runtime_environment
 
         out["runtime_environment_update"] = (

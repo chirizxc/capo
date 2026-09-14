@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> CollectorResponses:
 
     out: CollectorResponses = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_database_migration_service.types.collector_response.deserialize_aws_json_1_1(
                 item

@@ -33,7 +33,7 @@ def serialize_json(value: GetPropertygraphSummaryOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetPropertygraphSummaryOutput:
     out: GetPropertygraphSummaryOutput = {}  # type: ignore[typeddict-item]
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_neptunedata.types.propertygraph_summary_value_map
 
         out["payload"] = (

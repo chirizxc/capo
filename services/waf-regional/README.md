@@ -13,9 +13,9 @@ from capo_waf_regional import AsyncWAFRegionalClient
 
 
 async def main():
-    async with AsyncWAFRegionalClient() as s3:
+    async with AsyncWAFRegionalClient() as waf_regional:
         # Example: call the associate_web_acl operation
-        response = await s3.associate_web_acl()
+        response = await waf_regional.associate_web_acl()
         print(response)
 ```
 
@@ -29,9 +29,9 @@ from capo_waf_regional.error import WAFInternalErrorException
 
 
 async def main():
-    async with AsyncWAFRegionalClient() as s3:
+    async with AsyncWAFRegionalClient() as waf_regional:
         try:
-            await s3.associate_web_acl()
+            await waf_regional.associate_web_acl()
         except WAFInternalErrorException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_waf_regional import AsyncWAFRegionalClient
 
 
 async def main():
-    async with AsyncWAFRegionalClient() as s3:
+    async with AsyncWAFRegionalClient() as waf_regional:
         # Default: 3 attempts for every operation
-        response = await s3.associate_web_acl()
+        response = await waf_regional.associate_web_acl()
 
         # Override per operation
-        response = await s3.associate_web_acl(config_overrides={"retry_max_attempts": 5})
+        response = await waf_regional.associate_web_acl(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_web_acl(config_overrides={"retry_max_attempts": 1})
+        response = await waf_regional.associate_web_acl(config_overrides={"retry_max_attempts": 1})
 ```

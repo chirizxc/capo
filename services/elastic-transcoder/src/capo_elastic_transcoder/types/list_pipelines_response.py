@@ -32,12 +32,12 @@ def serialize_json(value: ListPipelinesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPipelinesResponse:
     out: ListPipelinesResponse = {}  # type: ignore[typeddict-item]
-    if "Pipelines" in data:
+    if data.get("Pipelines") is not None:
         import capo_elastic_transcoder.types.pipelines
 
         out["pipelines"] = capo_elastic_transcoder.types.pipelines.deserialize_json(
             data["Pipelines"]
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

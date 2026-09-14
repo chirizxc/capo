@@ -48,7 +48,7 @@ def serialize_json(value: ParticipantTimerValue) -> dict:
 
 
 def deserialize_json(data: dict) -> ParticipantTimerValue:
-    if "ParticipantTimerAction" in data:
+    if data.get("ParticipantTimerAction") is not None:
         import capo_connect.types.participant_timer_action
 
         return {
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> ParticipantTimerValue:
                 data["ParticipantTimerAction"]
             )
         }
-    elif "ParticipantTimerDurationInMinutes" in data:
+    elif data.get("ParticipantTimerDurationInMinutes") is not None:
         return {
             "ParticipantTimerDurationInMinutes": data[
                 "ParticipantTimerDurationInMinutes"

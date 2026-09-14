@@ -31,7 +31,7 @@ def serialize_json(value: CategoryDetails) -> dict:
 
 def deserialize_json(data: dict) -> CategoryDetails:
     out: CategoryDetails = {}  # type: ignore[typeddict-item]
-    if "PointsOfInterest" in data:
+    if data.get("PointsOfInterest") is not None:
         import capo_connect_contact_lens.types.points_of_interest
 
         out["points_of_interest"] = (

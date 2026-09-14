@@ -29,7 +29,7 @@ def serialize_json(value: ImageInteractionOptions) -> dict:
 
 def deserialize_json(data: dict) -> ImageInteractionOptions:
     out: ImageInteractionOptions = {}  # type: ignore[typeddict-item]
-    if "ImageMenuOption" in data:
+    if data.get("ImageMenuOption") is not None:
         import capo_quicksight.types.image_menu_option
 
         out["image_menu_option"] = (

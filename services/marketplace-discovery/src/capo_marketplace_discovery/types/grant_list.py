@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> GrantList:
 
     out: GrantList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_marketplace_discovery.types.grant_item.deserialize_json(item))
     return out

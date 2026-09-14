@@ -34,7 +34,7 @@ def serialize_json(value: ContactMetricResult) -> dict:
 
 def deserialize_json(data: dict) -> ContactMetricResult:
     out: ContactMetricResult = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_connect.types.contact_metric_name
 
         out["name"] = capo_connect.types.contact_metric_name.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> ContactMetricResult:
         )
     else:
         raise DeserializationError("ContactMetricResult.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_connect.types.contact_metric_value
 
         out["value"] = capo_connect.types.contact_metric_value.deserialize_json(

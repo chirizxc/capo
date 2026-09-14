@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ReservedCapacityDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservedCapacityDetails:
     out: ReservedCapacityDetails = {}  # type: ignore[typeddict-item]
-    if "DynamoDBCapacityDetails" in data:
+    if data.get("DynamoDBCapacityDetails") is not None:
         import capo_cost_explorer.types.dynamo_db_capacity_details
 
         out["dynamo_db_capacity_details"] = (

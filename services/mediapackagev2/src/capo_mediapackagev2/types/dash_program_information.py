@@ -34,14 +34,14 @@ def serialize_json(value: DashProgramInformation) -> dict:
 
 def deserialize_json(data: dict) -> DashProgramInformation:
     out: DashProgramInformation = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "Copyright" in data:
+    if data.get("Copyright") is not None:
         out["copyright"] = data["Copyright"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "MoreInformationUrl" in data:
+    if data.get("MoreInformationUrl") is not None:
         out["more_information_url"] = data["MoreInformationUrl"]
     return out

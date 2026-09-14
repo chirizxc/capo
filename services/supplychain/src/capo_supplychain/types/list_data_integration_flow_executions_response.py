@@ -37,7 +37,7 @@ def serialize_json(value: ListDataIntegrationFlowExecutionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDataIntegrationFlowExecutionsResponse:
     out: ListDataIntegrationFlowExecutionsResponse = {}  # type: ignore[typeddict-item]
-    if "flowExecutions" in data:
+    if data.get("flowExecutions") is not None:
         import capo_supplychain.types.data_integration_flow_execution_list
 
         out["flow_executions"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListDataIntegrationFlowExecutionsResponse:
         raise DeserializationError(
             "ListDataIntegrationFlowExecutionsResponse.flow_executions required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

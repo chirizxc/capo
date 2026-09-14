@@ -67,15 +67,15 @@ def serialize_json(value: DICOMImportJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> DICOMImportJobSummary:
     out: DICOMImportJobSummary = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("DICOMImportJobSummary.job_id required")
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("DICOMImportJobSummary.job_name required")
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         import capo_medical_imaging.types.job_status
 
         out["job_status"] = capo_medical_imaging.types.job_status.deserialize_json(
@@ -83,24 +83,24 @@ def deserialize_json(data: dict) -> DICOMImportJobSummary:
         )
     else:
         raise DeserializationError("DICOMImportJobSummary.job_status required")
-    if "datastoreId" in data:
+    if data.get("datastoreId") is not None:
         out["datastore_id"] = data["datastoreId"]
     else:
         raise DeserializationError("DICOMImportJobSummary.datastore_id required")
-    if "dataAccessRoleArn" in data:
+    if data.get("dataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["dataAccessRoleArn"]
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["ended_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["endedAt"]
         )
-    if "submittedAt" in data:
+    if data.get("submittedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["submitted_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["submittedAt"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

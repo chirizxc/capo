@@ -13,9 +13,9 @@ from capo_dlm import AsyncDLMClient
 
 
 async def main():
-    async with AsyncDLMClient() as s3:
+    async with AsyncDLMClient() as dlm:
         # Example: call the create_lifecycle_policy operation
-        response = await s3.create_lifecycle_policy()
+        response = await dlm.create_lifecycle_policy()
         print(response["policy_id"])
 ```
 
@@ -29,9 +29,9 @@ from capo_dlm.error import InternalServerException
 
 
 async def main():
-    async with AsyncDLMClient() as s3:
+    async with AsyncDLMClient() as dlm:
         try:
-            await s3.create_lifecycle_policy()
+            await dlm.create_lifecycle_policy()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_dlm import AsyncDLMClient
 
 
 async def main():
-    async with AsyncDLMClient() as s3:
+    async with AsyncDLMClient() as dlm:
         # Default: 3 attempts for every operation
-        response = await s3.create_lifecycle_policy()
+        response = await dlm.create_lifecycle_policy()
 
         # Override per operation
-        response = await s3.create_lifecycle_policy(config_overrides={"retry_max_attempts": 5})
+        response = await dlm.create_lifecycle_policy(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_lifecycle_policy(config_overrides={"retry_max_attempts": 1})
+        response = await dlm.create_lifecycle_policy(config_overrides={"retry_max_attempts": 1})
 ```

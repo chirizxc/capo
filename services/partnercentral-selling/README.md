@@ -13,9 +13,9 @@ from capo_partnercentral_selling import AsyncPartnerCentralSellingClient
 
 
 async def main():
-    async with AsyncPartnerCentralSellingClient() as s3:
+    async with AsyncPartnerCentralSellingClient() as partner_central_selling:
         # Example: call the create_engagement_context operation
-        response = await s3.create_engagement_context()
+        response = await partner_central_selling.create_engagement_context()
         print(response["engagement_id"])
 ```
 
@@ -29,9 +29,9 @@ from capo_partnercentral_selling.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncPartnerCentralSellingClient() as s3:
+    async with AsyncPartnerCentralSellingClient() as partner_central_selling:
         try:
-            await s3.create_engagement_context()
+            await partner_central_selling.create_engagement_context()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_partnercentral_selling import AsyncPartnerCentralSellingClient
 
 
 async def main():
-    async with AsyncPartnerCentralSellingClient() as s3:
+    async with AsyncPartnerCentralSellingClient() as partner_central_selling:
         # Default: 3 attempts for every operation
-        response = await s3.create_engagement_context()
+        response = await partner_central_selling.create_engagement_context()
 
         # Override per operation
-        response = await s3.create_engagement_context(config_overrides={"retry_max_attempts": 5})
+        response = await partner_central_selling.create_engagement_context(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_engagement_context(config_overrides={"retry_max_attempts": 1})
+        response = await partner_central_selling.create_engagement_context(config_overrides={"retry_max_attempts": 1})
 ```

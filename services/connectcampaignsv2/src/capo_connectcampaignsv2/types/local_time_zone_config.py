@@ -40,9 +40,9 @@ def serialize_json(value: LocalTimeZoneConfig) -> dict:
 
 def deserialize_json(data: dict) -> LocalTimeZoneConfig:
     out: LocalTimeZoneConfig = {}  # type: ignore[typeddict-item]
-    if "defaultTimeZone" in data:
+    if data.get("defaultTimeZone") is not None:
         out["default_time_zone"] = data["defaultTimeZone"]
-    if "localTimeZoneDetection" in data:
+    if data.get("localTimeZoneDetection") is not None:
         import capo_connectcampaignsv2.types.local_time_zone_detection
 
         out["local_time_zone_detection"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> LocalTimeZoneConfig:
                 data["localTimeZoneDetection"]
             )
         )
-    if "localTimeZoneDetectionScope" in data:
+    if data.get("localTimeZoneDetectionScope") is not None:
         out["local_time_zone_detection_scope"] = data["localTimeZoneDetectionScope"]
     return out

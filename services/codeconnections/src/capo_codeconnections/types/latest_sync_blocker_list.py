@@ -25,6 +25,8 @@ def deserialize_aws_json_1_0(data: list) -> LatestSyncBlockerList:
 
     out: LatestSyncBlockerList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeconnections.types.sync_blocker.deserialize_aws_json_1_0(item)
         )

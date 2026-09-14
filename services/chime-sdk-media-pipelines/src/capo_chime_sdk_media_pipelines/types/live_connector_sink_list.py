@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> LiveConnectorSinkList:
 
     out: LiveConnectorSinkList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_media_pipelines.types.live_connector_sink_configuration.deserialize_json(
                 item

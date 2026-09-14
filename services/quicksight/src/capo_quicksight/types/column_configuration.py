@@ -74,7 +74,7 @@ def serialize_json(value: ColumnConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ColumnConfiguration:
     out: ColumnConfiguration = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> ColumnConfiguration:
         )
     else:
         raise DeserializationError("ColumnConfiguration.column required")
-    if "FormatConfiguration" in data:
+    if data.get("FormatConfiguration") is not None:
         import capo_quicksight.types.format_configuration
 
         out["format_configuration"] = (
@@ -90,11 +90,11 @@ def deserialize_json(data: dict) -> ColumnConfiguration:
                 data["FormatConfiguration"]
             )
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_quicksight.types.column_role
 
         out["role"] = capo_quicksight.types.column_role.deserialize_json(data["Role"])
-    if "ColorsConfiguration" in data:
+    if data.get("ColorsConfiguration") is not None:
         import capo_quicksight.types.colors_configuration
 
         out["colors_configuration"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> ColumnConfiguration:
                 data["ColorsConfiguration"]
             )
         )
-    if "DecalSettingsConfiguration" in data:
+    if data.get("DecalSettingsConfiguration") is not None:
         import capo_quicksight.types.decal_settings_configuration
 
         out["decal_settings_configuration"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> IndexingRuleList:
 
     out: IndexingRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.indexing_rule.deserialize_json(item))
     return out

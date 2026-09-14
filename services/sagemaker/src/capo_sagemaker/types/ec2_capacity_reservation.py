@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: Ec2CapacityReservation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Ec2CapacityReservation:
     out: Ec2CapacityReservation = {}  # type: ignore[typeddict-item]
-    if "Ec2CapacityReservationId" in data:
+    if data.get("Ec2CapacityReservationId") is not None:
         out["ec2_capacity_reservation_id"] = data["Ec2CapacityReservationId"]
-    if "TotalInstanceCount" in data:
+    if data.get("TotalInstanceCount") is not None:
         out["total_instance_count"] = data["TotalInstanceCount"]
-    if "AvailableInstanceCount" in data:
+    if data.get("AvailableInstanceCount") is not None:
         out["available_instance_count"] = data["AvailableInstanceCount"]
-    if "UsedByCurrentEndpoint" in data:
+    if data.get("UsedByCurrentEndpoint") is not None:
         out["used_by_current_endpoint"] = data["UsedByCurrentEndpoint"]
     return out

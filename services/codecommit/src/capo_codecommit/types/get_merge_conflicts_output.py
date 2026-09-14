@@ -52,23 +52,23 @@ def serialize_aws_json_1_1(value: GetMergeConflictsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMergeConflictsOutput:
     out: GetMergeConflictsOutput = {}  # type: ignore[typeddict-item]
-    if "mergeable" in data:
+    if data.get("mergeable") is not None:
         out["mergeable"] = data["mergeable"]
     else:
         out["mergeable"] = False
-    if "destinationCommitId" in data:
+    if data.get("destinationCommitId") is not None:
         out["destination_commit_id"] = data["destinationCommitId"]
     else:
         raise DeserializationError(
             "GetMergeConflictsOutput.destination_commit_id required"
         )
-    if "sourceCommitId" in data:
+    if data.get("sourceCommitId") is not None:
         out["source_commit_id"] = data["sourceCommitId"]
     else:
         raise DeserializationError("GetMergeConflictsOutput.source_commit_id required")
-    if "baseCommitId" in data:
+    if data.get("baseCommitId") is not None:
         out["base_commit_id"] = data["baseCommitId"]
-    if "conflictMetadataList" in data:
+    if data.get("conflictMetadataList") is not None:
         import capo_codecommit.types.conflict_metadata_list
 
         out["conflict_metadata_list"] = (
@@ -80,6 +80,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetMergeConflictsOutput:
         raise DeserializationError(
             "GetMergeConflictsOutput.conflict_metadata_list required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

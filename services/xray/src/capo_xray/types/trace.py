@@ -28,7 +28,15 @@ def serialize_json(value: Trace) -> dict:
     if "id" in value:
         out["Id"] = value["id"]
     if "duration" in value:
-        out["Duration"] = value["duration"]
+        out["Duration"] = (
+            "NaN"
+            if value["duration"] != value["duration"]
+            else "Infinity"
+            if value["duration"] == float("inf")
+            else "-Infinity"
+            if value["duration"] == float("-inf")
+            else value["duration"]
+        )
     if "limit_exceeded" in value:
         out["LimitExceeded"] = value["limit_exceeded"]
     if "segments" in value:
@@ -40,13 +48,13 @@ def serialize_json(value: Trace) -> dict:
 
 def deserialize_json(data: dict) -> Trace:
     out: Trace = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Duration" in data:
-        out["duration"] = data["Duration"]
-    if "LimitExceeded" in data:
+    if data.get("Duration") is not None:
+        out["duration"] = float(data["Duration"])
+    if data.get("LimitExceeded") is not None:
         out["limit_exceeded"] = data["LimitExceeded"]
-    if "Segments" in data:
+    if data.get("Segments") is not None:
         import capo_xray.types.segment_list
 
         out["segments"] = capo_xray.types.segment_list.deserialize_json(

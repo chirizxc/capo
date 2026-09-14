@@ -38,7 +38,7 @@ def serialize_json(value: UpdateAssessmentControlSetStatusRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssessmentControlSetStatusRequest:
     out: UpdateAssessmentControlSetStatusRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_auditmanager.types.control_set_status
 
         out["status"] = capo_auditmanager.types.control_set_status.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> UpdateAssessmentControlSetStatusRequest:
         raise DeserializationError(
             "UpdateAssessmentControlSetStatusRequest.status required"
         )
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     else:
         raise DeserializationError(

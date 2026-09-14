@@ -33,7 +33,7 @@ def serialize_json(value: ListTrackerConsumersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTrackerConsumersResponse:
     out: ListTrackerConsumersResponse = {}  # type: ignore[typeddict-item]
-    if "ConsumerArns" in data:
+    if data.get("ConsumerArns") is not None:
         import capo_location.types.arn_list
 
         out["consumer_arns"] = capo_location.types.arn_list.deserialize_json(
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListTrackerConsumersResponse:
         raise DeserializationError(
             "ListTrackerConsumersResponse.consumer_arns required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

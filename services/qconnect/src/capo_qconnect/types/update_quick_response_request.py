@@ -101,9 +101,9 @@ def serialize_json(value: UpdateQuickResponseRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQuickResponseRequest:
     out: UpdateQuickResponseRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_qconnect.types.quick_response_data_provider
 
         out["content"] = (
@@ -111,9 +111,9 @@ def deserialize_json(data: dict) -> UpdateQuickResponseRequest:
                 data["content"]
             )
         )
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
-    if "groupingConfiguration" in data:
+    if data.get("groupingConfiguration") is not None:
         import capo_qconnect.types.grouping_configuration
 
         out["grouping_configuration"] = (
@@ -121,24 +121,24 @@ def deserialize_json(data: dict) -> UpdateQuickResponseRequest:
                 data["groupingConfiguration"]
             )
         )
-    if "removeGroupingConfiguration" in data:
+    if data.get("removeGroupingConfiguration") is not None:
         out["remove_grouping_configuration"] = data["removeGroupingConfiguration"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "removeDescription" in data:
+    if data.get("removeDescription") is not None:
         out["remove_description"] = data["removeDescription"]
-    if "shortcutKey" in data:
+    if data.get("shortcutKey") is not None:
         out["shortcut_key"] = data["shortcutKey"]
-    if "removeShortcutKey" in data:
+    if data.get("removeShortcutKey") is not None:
         out["remove_shortcut_key"] = data["removeShortcutKey"]
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         import capo_qconnect.types.channels
 
         out["channels"] = capo_qconnect.types.channels.deserialize_json(
             data["channels"]
         )
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
     return out

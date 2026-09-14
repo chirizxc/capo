@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CodeSnippet:
 
     out: CodeSnippet = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeguru_security.types.code_line.deserialize_json(item))
     return out

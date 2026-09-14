@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: DeleteTrustRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteTrustRequest:
     out: DeleteTrustRequest = {}  # type: ignore[typeddict-item]
-    if "TrustId" in data:
+    if data.get("TrustId") is not None:
         out["trust_id"] = data["TrustId"]
     else:
         raise DeserializationError("DeleteTrustRequest.trust_id required")
-    if "DeleteAssociatedConditionalForwarder" in data:
+    if data.get("DeleteAssociatedConditionalForwarder") is not None:
         out["delete_associated_conditional_forwarder"] = data[
             "DeleteAssociatedConditionalForwarder"
         ]

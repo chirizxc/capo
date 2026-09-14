@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: DeleteVehicleResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteVehicleResponse:
     out: DeleteVehicleResponse = {}  # type: ignore[typeddict-item]
-    if "vehicleName" in data:
+    if data.get("vehicleName") is not None:
         out["vehicle_name"] = data["vehicleName"]
     else:
         raise DeserializationError("DeleteVehicleResponse.vehicle_name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteVehicleResponse.arn required")

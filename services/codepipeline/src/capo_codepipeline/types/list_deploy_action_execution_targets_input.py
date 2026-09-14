@@ -50,15 +50,15 @@ def serialize_aws_json_1_1(value: ListDeployActionExecutionTargetsInput) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ListDeployActionExecutionTargetsInput:
     out: ListDeployActionExecutionTargetsInput = {}  # type: ignore[typeddict-item]
-    if "pipelineName" in data:
+    if data.get("pipelineName") is not None:
         out["pipeline_name"] = data["pipelineName"]
-    if "actionExecutionId" in data:
+    if data.get("actionExecutionId") is not None:
         out["action_execution_id"] = data["actionExecutionId"]
     else:
         raise DeserializationError(
             "ListDeployActionExecutionTargetsInput.action_execution_id required"
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_codepipeline.types.target_filter_list
 
         out["filters"] = (
@@ -66,8 +66,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListDeployActionExecutionTargetsInpu
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

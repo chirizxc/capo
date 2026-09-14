@@ -26,5 +26,7 @@ def deserialize_json(data: dict) -> CountByResourceType:
     for key, value in data.items():
         import capo_guardduty.types.resource_type
 
+        if value is None:
+            continue
         out[capo_guardduty.types.resource_type.deserialize_json(key)] = value
     return out

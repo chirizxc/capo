@@ -221,13 +221,13 @@ def serialize_aws_json_1_1(value: TrialComponent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
     out: TrialComponent = {}  # type: ignore[typeddict-item]
-    if "TrialComponentName" in data:
+    if data.get("TrialComponentName") is not None:
         out["trial_component_name"] = data["TrialComponentName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "TrialComponentArn" in data:
+    if data.get("TrialComponentArn") is not None:
         out["trial_component_arn"] = data["TrialComponentArn"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_sagemaker.types.trial_component_source
 
         out["source"] = (
@@ -235,7 +235,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
                 data["Source"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.trial_component_status
 
         out["status"] = (
@@ -243,31 +243,31 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
                 data["Status"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -275,7 +275,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
                 data["LastModifiedTime"]
             )
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["last_modified_by"] = (
@@ -283,7 +283,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
                 data["LastModifiedBy"]
             )
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_sagemaker.types.trial_component_parameters
 
         out["parameters"] = (
@@ -291,7 +291,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
                 data["Parameters"]
             )
         )
-    if "InputArtifacts" in data:
+    if data.get("InputArtifacts") is not None:
         import capo_sagemaker.types.trial_component_artifacts
 
         out["input_artifacts"] = (
@@ -299,7 +299,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
                 data["InputArtifacts"]
             )
         )
-    if "OutputArtifacts" in data:
+    if data.get("OutputArtifacts") is not None:
         import capo_sagemaker.types.trial_component_artifacts
 
         out["output_artifacts"] = (
@@ -307,7 +307,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
                 data["OutputArtifacts"]
             )
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_sagemaker.types.trial_component_metric_summaries
 
         out["metrics"] = (
@@ -315,7 +315,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
                 data["Metrics"]
             )
         )
-    if "MetadataProperties" in data:
+    if data.get("MetadataProperties") is not None:
         import capo_sagemaker.types.metadata_properties
 
         out["metadata_properties"] = (
@@ -323,7 +323,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
                 data["MetadataProperties"]
             )
         )
-    if "SourceDetail" in data:
+    if data.get("SourceDetail") is not None:
         import capo_sagemaker.types.trial_component_source_detail
 
         out["source_detail"] = (
@@ -331,20 +331,20 @@ def deserialize_aws_json_1_1(data: dict) -> TrialComponent:
                 data["SourceDetail"]
             )
         )
-    if "LineageGroupArn" in data:
+    if data.get("LineageGroupArn") is not None:
         out["lineage_group_arn"] = data["LineageGroupArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "Parents" in data:
+    if data.get("Parents") is not None:
         import capo_sagemaker.types.parents
 
         out["parents"] = capo_sagemaker.types.parents.deserialize_aws_json_1_1(
             data["Parents"]
         )
-    if "RunName" in data:
+    if data.get("RunName") is not None:
         out["run_name"] = data["RunName"]
     return out

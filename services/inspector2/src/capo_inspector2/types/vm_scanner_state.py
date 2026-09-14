@@ -38,9 +38,9 @@ def serialize_json(value: VMScannerState) -> dict:
 
 def deserialize_json(data: dict) -> VMScannerState:
     out: VMScannerState = {}  # type: ignore[typeddict-item]
-    if "activated" in data:
+    if data.get("activated") is not None:
         out["activated"] = data["activated"]
-    if "activatedAt" in data:
+    if data.get("activatedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["activated_at"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> VMScannerState:
                 data["activatedAt"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

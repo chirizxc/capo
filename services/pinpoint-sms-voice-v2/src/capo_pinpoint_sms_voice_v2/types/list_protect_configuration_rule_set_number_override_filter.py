@@ -33,6 +33,8 @@ def deserialize_aws_json_1_0(
 
     out: ListProtectConfigurationRuleSetNumberOverrideFilter = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pinpoint_sms_voice_v2.types.protect_configuration_rule_set_number_override_filter_item.deserialize_aws_json_1_0(
                 item

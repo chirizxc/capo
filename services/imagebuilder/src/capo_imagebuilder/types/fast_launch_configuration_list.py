@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FastLaunchConfigurationList:
 
     out: FastLaunchConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.fast_launch_configuration.deserialize_json(item)
         )

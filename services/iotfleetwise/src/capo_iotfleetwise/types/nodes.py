@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> Nodes:
 
     out: Nodes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotfleetwise.types.node.deserialize_aws_json_1_0(item))
     return out

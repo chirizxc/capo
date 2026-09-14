@@ -79,19 +79,19 @@ def serialize_aws_json_1_1(value: GetEntityRecordsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEntityRecordsRequest:
     out: GetEntityRecordsRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "EntityName" in data:
+    if data.get("EntityName") is not None:
         out["entity_name"] = data["EntityName"]
     else:
         raise DeserializationError("GetEntityRecordsRequest.entity_name required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "DataStoreApiVersion" in data:
+    if data.get("DataStoreApiVersion") is not None:
         out["data_store_api_version"] = data["DataStoreApiVersion"]
-    if "ConnectionOptions" in data:
+    if data.get("ConnectionOptions") is not None:
         import capo_glue.types.connection_options
 
         out["connection_options"] = (
@@ -99,15 +99,15 @@ def deserialize_aws_json_1_1(data: dict) -> GetEntityRecordsRequest:
                 data["ConnectionOptions"]
             )
         )
-    if "FilterPredicate" in data:
+    if data.get("FilterPredicate") is not None:
         out["filter_predicate"] = data["FilterPredicate"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         raise DeserializationError("GetEntityRecordsRequest.limit required")
-    if "OrderBy" in data:
+    if data.get("OrderBy") is not None:
         out["order_by"] = data["OrderBy"]
-    if "SelectedFields" in data:
+    if data.get("SelectedFields") is not None:
         import capo_glue.types.selected_fields
 
         out["selected_fields"] = (

@@ -53,7 +53,7 @@ def serialize_json(value: MonitoredRequestCountMetricDataQueries) -> dict:
 
 
 def deserialize_json(data: dict) -> MonitoredRequestCountMetricDataQueries:
-    if "GoodCountMetric" in data:
+    if data.get("GoodCountMetric") is not None:
         import capo_application_signals.types.metric_data_queries
 
         return {
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> MonitoredRequestCountMetricDataQueries:
                 data["GoodCountMetric"]
             )
         }
-    elif "BadCountMetric" in data:
+    elif data.get("BadCountMetric") is not None:
         import capo_application_signals.types.metric_data_queries
 
         return {

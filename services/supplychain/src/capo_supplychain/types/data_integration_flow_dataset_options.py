@@ -48,7 +48,7 @@ def serialize_json(value: DataIntegrationFlowDatasetOptions) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowDatasetOptions:
     out: DataIntegrationFlowDatasetOptions = {}  # type: ignore[typeddict-item]
-    if "loadType" in data:
+    if data.get("loadType") is not None:
         import capo_supplychain.types.data_integration_flow_load_type
 
         out["load_type"] = (
@@ -56,9 +56,9 @@ def deserialize_json(data: dict) -> DataIntegrationFlowDatasetOptions:
                 data["loadType"]
             )
         )
-    if "dedupeRecords" in data:
+    if data.get("dedupeRecords") is not None:
         out["dedupe_records"] = data["dedupeRecords"]
-    if "dedupeStrategy" in data:
+    if data.get("dedupeStrategy") is not None:
         import capo_supplychain.types.data_integration_flow_dedupe_strategy
 
         out["dedupe_strategy"] = (

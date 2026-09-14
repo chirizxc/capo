@@ -28,7 +28,7 @@ def serialize_json(value: ColumnClassificationDetails) -> dict:
 
 def deserialize_json(data: dict) -> ColumnClassificationDetails:
     out: ColumnClassificationDetails = {}  # type: ignore[typeddict-item]
-    if "columnMapping" in data:
+    if data.get("columnMapping") is not None:
         import capo_cleanroomsml.types.column_mapping_list
 
         out["column_mapping"] = (

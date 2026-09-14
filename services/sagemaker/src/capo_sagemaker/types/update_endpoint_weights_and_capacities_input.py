@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: UpdateEndpointWeightsAndCapacitiesInput) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEndpointWeightsAndCapacitiesInput:
     out: UpdateEndpointWeightsAndCapacitiesInput = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "DesiredWeightsAndCapacities" in data:
+    if data.get("DesiredWeightsAndCapacities") is not None:
         import capo_sagemaker.types.desired_weight_and_capacity_list
 
         out["desired_weights_and_capacities"] = (

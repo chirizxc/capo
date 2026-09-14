@@ -54,11 +54,11 @@ def serialize_aws_json_1_1(value: AWSManagedRulesATPRuleSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AWSManagedRulesATPRuleSet:
     out: AWSManagedRulesATPRuleSet = {}  # type: ignore[typeddict-item]
-    if "LoginPath" in data:
+    if data.get("LoginPath") is not None:
         out["login_path"] = data["LoginPath"]
     else:
         raise DeserializationError("AWSManagedRulesATPRuleSet.login_path required")
-    if "RequestInspection" in data:
+    if data.get("RequestInspection") is not None:
         import capo_wafv2.types.request_inspection
 
         out["request_inspection"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> AWSManagedRulesATPRuleSet:
                 data["RequestInspection"]
             )
         )
-    if "ResponseInspection" in data:
+    if data.get("ResponseInspection") is not None:
         import capo_wafv2.types.response_inspection
 
         out["response_inspection"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> AWSManagedRulesATPRuleSet:
                 data["ResponseInspection"]
             )
         )
-    if "EnableRegexInPath" in data:
+    if data.get("EnableRegexInPath") is not None:
         out["enable_regex_in_path"] = data["EnableRegexInPath"]
     else:
         out["enable_regex_in_path"] = False

@@ -49,11 +49,11 @@ def serialize_aws_json_1_1(value: Image) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Image:
     out: Image = {}  # type: ignore[typeddict-item]
-    if "registryId" in data:
+    if data.get("registryId") is not None:
         out["registry_id"] = data["registryId"]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "imageId" in data:
+    if data.get("imageId") is not None:
         import capo_ecr_public.types.image_identifier
 
         out["image_id"] = (
@@ -61,8 +61,8 @@ def deserialize_aws_json_1_1(data: dict) -> Image:
                 data["imageId"]
             )
         )
-    if "imageManifest" in data:
+    if data.get("imageManifest") is not None:
         out["image_manifest"] = data["imageManifest"]
-    if "imageManifestMediaType" in data:
+    if data.get("imageManifestMediaType") is not None:
         out["image_manifest_media_type"] = data["imageManifestMediaType"]
     return out

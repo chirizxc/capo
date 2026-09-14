@@ -42,21 +42,21 @@ def serialize_json(value: RealTimeContactAnalysisAttachment) -> dict:
 
 def deserialize_json(data: dict) -> RealTimeContactAnalysisAttachment:
     out: RealTimeContactAnalysisAttachment = {}  # type: ignore[typeddict-item]
-    if "AttachmentName" in data:
+    if data.get("AttachmentName") is not None:
         out["attachment_name"] = data["AttachmentName"]
     else:
         raise DeserializationError(
             "RealTimeContactAnalysisAttachment.attachment_name required"
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "AttachmentId" in data:
+    if data.get("AttachmentId") is not None:
         out["attachment_id"] = data["AttachmentId"]
     else:
         raise DeserializationError(
             "RealTimeContactAnalysisAttachment.attachment_id required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.artifact_status
 
         out["status"] = capo_connect.types.artifact_status.deserialize_json(

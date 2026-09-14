@@ -13,10 +13,25 @@ from capo_apprunner import AsyncAppRunnerClient
 
 
 async def main():
-    async with AsyncAppRunnerClient() as s3:
+    async with AsyncAppRunnerClient() as app_runner:
         # Example: call the associate_custom_domain operation
-        response = await s3.associate_custom_domain()
+        response = await app_runner.associate_custom_domain()
         print(response["dns_target"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_apprunner import AsyncAppRunnerClient
+
+
+async def main():
+    async with AsyncAppRunnerClient() as app_runner:
+        # Example: paginate over describe_custom_domains
+        async for item in app_runner.iter_describe_custom_domains():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_apprunner.error import InternalServiceErrorException
 
 
 async def main():
-    async with AsyncAppRunnerClient() as s3:
+    async with AsyncAppRunnerClient() as app_runner:
         try:
-            await s3.associate_custom_domain()
+            await app_runner.associate_custom_domain()
         except InternalServiceErrorException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_apprunner import AsyncAppRunnerClient
 
 
 async def main():
-    async with AsyncAppRunnerClient() as s3:
+    async with AsyncAppRunnerClient() as app_runner:
         # Default: 3 attempts for every operation
-        response = await s3.associate_custom_domain()
+        response = await app_runner.associate_custom_domain()
 
         # Override per operation
-        response = await s3.associate_custom_domain(config_overrides={"retry_max_attempts": 5})
+        response = await app_runner.associate_custom_domain(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_custom_domain(config_overrides={"retry_max_attempts": 1})
+        response = await app_runner.associate_custom_domain(config_overrides={"retry_max_attempts": 1})
 ```

@@ -38,17 +38,49 @@ class RecommendationMetrics(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: RecommendationMetrics) -> dict:
     out: dict = {}
     if "cost_per_hour" in value:
-        out["CostPerHour"] = value["cost_per_hour"]
+        out["CostPerHour"] = (
+            "NaN"
+            if value["cost_per_hour"] != value["cost_per_hour"]
+            else "Infinity"
+            if value["cost_per_hour"] == float("inf")
+            else "-Infinity"
+            if value["cost_per_hour"] == float("-inf")
+            else value["cost_per_hour"]
+        )
     if "cost_per_inference" in value:
-        out["CostPerInference"] = value["cost_per_inference"]
+        out["CostPerInference"] = (
+            "NaN"
+            if value["cost_per_inference"] != value["cost_per_inference"]
+            else "Infinity"
+            if value["cost_per_inference"] == float("inf")
+            else "-Infinity"
+            if value["cost_per_inference"] == float("-inf")
+            else value["cost_per_inference"]
+        )
     if "max_invocations" in value:
         out["MaxInvocations"] = value["max_invocations"]
     if "model_latency" in value:
         out["ModelLatency"] = value["model_latency"]
     if "cpu_utilization" in value:
-        out["CpuUtilization"] = value["cpu_utilization"]
+        out["CpuUtilization"] = (
+            "NaN"
+            if value["cpu_utilization"] != value["cpu_utilization"]
+            else "Infinity"
+            if value["cpu_utilization"] == float("inf")
+            else "-Infinity"
+            if value["cpu_utilization"] == float("-inf")
+            else value["cpu_utilization"]
+        )
     if "memory_utilization" in value:
-        out["MemoryUtilization"] = value["memory_utilization"]
+        out["MemoryUtilization"] = (
+            "NaN"
+            if value["memory_utilization"] != value["memory_utilization"]
+            else "Infinity"
+            if value["memory_utilization"] == float("inf")
+            else "-Infinity"
+            if value["memory_utilization"] == float("-inf")
+            else value["memory_utilization"]
+        )
     if "model_setup_time" in value:
         out["ModelSetupTime"] = value["model_setup_time"]
     return out
@@ -56,18 +88,18 @@ def serialize_aws_json_1_1(value: RecommendationMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationMetrics:
     out: RecommendationMetrics = {}  # type: ignore[typeddict-item]
-    if "CostPerHour" in data:
-        out["cost_per_hour"] = data["CostPerHour"]
-    if "CostPerInference" in data:
-        out["cost_per_inference"] = data["CostPerInference"]
-    if "MaxInvocations" in data:
+    if data.get("CostPerHour") is not None:
+        out["cost_per_hour"] = float(data["CostPerHour"])
+    if data.get("CostPerInference") is not None:
+        out["cost_per_inference"] = float(data["CostPerInference"])
+    if data.get("MaxInvocations") is not None:
         out["max_invocations"] = data["MaxInvocations"]
-    if "ModelLatency" in data:
+    if data.get("ModelLatency") is not None:
         out["model_latency"] = data["ModelLatency"]
-    if "CpuUtilization" in data:
-        out["cpu_utilization"] = data["CpuUtilization"]
-    if "MemoryUtilization" in data:
-        out["memory_utilization"] = data["MemoryUtilization"]
-    if "ModelSetupTime" in data:
+    if data.get("CpuUtilization") is not None:
+        out["cpu_utilization"] = float(data["CpuUtilization"])
+    if data.get("MemoryUtilization") is not None:
+        out["memory_utilization"] = float(data["MemoryUtilization"])
+    if data.get("ModelSetupTime") is not None:
         out["model_setup_time"] = data["ModelSetupTime"]
     return out

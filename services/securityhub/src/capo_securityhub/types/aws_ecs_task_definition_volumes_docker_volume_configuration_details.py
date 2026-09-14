@@ -53,22 +53,22 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails:
     out: AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "Autoprovision" in data:
+    if data.get("Autoprovision") is not None:
         out["autoprovision"] = data["Autoprovision"]
-    if "Driver" in data:
+    if data.get("Driver") is not None:
         out["driver"] = data["Driver"]
-    if "DriverOpts" in data:
+    if data.get("DriverOpts") is not None:
         import capo_securityhub.types.field_map
 
         out["driver_opts"] = capo_securityhub.types.field_map.deserialize_json(
             data["DriverOpts"]
         )
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_securityhub.types.field_map
 
         out["labels"] = capo_securityhub.types.field_map.deserialize_json(
             data["Labels"]
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         out["scope"] = data["Scope"]
     return out

@@ -30,13 +30,13 @@ def serialize_aws_json_1_0(value: VerifyDestinationNumberRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VerifyDestinationNumberRequest:
     out: VerifyDestinationNumberRequest = {}  # type: ignore[typeddict-item]
-    if "VerifiedDestinationNumberId" in data:
+    if data.get("VerifiedDestinationNumberId") is not None:
         out["verified_destination_number_id"] = data["VerifiedDestinationNumberId"]
     else:
         raise DeserializationError(
             "VerifyDestinationNumberRequest.verified_destination_number_id required"
         )
-    if "VerificationCode" in data:
+    if data.get("VerificationCode") is not None:
         out["verification_code"] = data["VerificationCode"]
     else:
         raise DeserializationError(

@@ -27,7 +27,7 @@ def serialize_json(value: DeleteQAppInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteQAppInput:
     out: DeleteQAppInput = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("DeleteQAppInput.app_id required")

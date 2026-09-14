@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DeleteSubnetGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSubnetGroupResponse:
     out: DeleteSubnetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "SubnetGroup" in data:
+    if data.get("SubnetGroup") is not None:
         import capo_memorydb.types.subnet_group
 
         out["subnet_group"] = capo_memorydb.types.subnet_group.deserialize_aws_json_1_1(

@@ -58,7 +58,7 @@ def serialize_json(value: OpeningHours) -> dict:
 
 def deserialize_json(data: dict) -> OpeningHours:
     out: OpeningHours = {}  # type: ignore[typeddict-item]
-    if "Display" in data:
+    if data.get("Display") is not None:
         import capo_geo_places.types.opening_hours_display_list
 
         out["display"] = (
@@ -66,9 +66,9 @@ def deserialize_json(data: dict) -> OpeningHours:
                 data["Display"]
             )
         )
-    if "OpenNow" in data:
+    if data.get("OpenNow") is not None:
         out["open_now"] = data["OpenNow"]
-    if "Components" in data:
+    if data.get("Components") is not None:
         import capo_geo_places.types.opening_hours_components_list
 
         out["components"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> OpeningHours:
                 data["Components"]
             )
         )
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_geo_places.types.category_list
 
         out["categories"] = capo_geo_places.types.category_list.deserialize_json(

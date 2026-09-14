@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: CreateSqlInjectionMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSqlInjectionMatchSetRequest:
     out: CreateSqlInjectionMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateSqlInjectionMatchSetRequest.name required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError(

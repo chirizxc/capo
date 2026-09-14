@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: TimeSeriesReplacementsDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeSeriesReplacementsDataSource:
     out: TimeSeriesReplacementsDataSource = {}  # type: ignore[typeddict-item]
-    if "S3Config" in data:
+    if data.get("S3Config") is not None:
         import capo_forecast.types.s3_config
 
         out["s3_config"] = capo_forecast.types.s3_config.deserialize_aws_json_1_1(
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> TimeSeriesReplacementsDataSource:
         raise DeserializationError(
             "TimeSeriesReplacementsDataSource.s3_config required"
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_forecast.types.schema
 
         out["schema"] = capo_forecast.types.schema.deserialize_aws_json_1_1(
@@ -62,8 +62,8 @@ def deserialize_aws_json_1_1(data: dict) -> TimeSeriesReplacementsDataSource:
         )
     else:
         raise DeserializationError("TimeSeriesReplacementsDataSource.schema required")
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "TimestampFormat" in data:
+    if data.get("TimestampFormat") is not None:
         out["timestamp_format"] = data["TimestampFormat"]
     return out

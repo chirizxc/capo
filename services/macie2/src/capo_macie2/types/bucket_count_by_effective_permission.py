@@ -35,12 +35,12 @@ def serialize_json(value: BucketCountByEffectivePermission) -> dict:
 
 def deserialize_json(data: dict) -> BucketCountByEffectivePermission:
     out: BucketCountByEffectivePermission = {}  # type: ignore[typeddict-item]
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "publiclyReadable" in data:
+    if data.get("publiclyReadable") is not None:
         out["publicly_readable"] = data["publiclyReadable"]
-    if "publiclyWritable" in data:
+    if data.get("publiclyWritable") is not None:
         out["publicly_writable"] = data["publiclyWritable"]
-    if "unknown" in data:
+    if data.get("unknown") is not None:
         out["unknown"] = data["unknown"]
     return out

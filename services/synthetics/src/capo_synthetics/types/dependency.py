@@ -33,13 +33,13 @@ def serialize_json(value: Dependency) -> dict:
 
 def deserialize_json(data: dict) -> Dependency:
     out: Dependency = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_synthetics.types.dependency_type
 
         out["type"] = capo_synthetics.types.dependency_type.deserialize_json(
             data["Type"]
         )
-    if "Reference" in data:
+    if data.get("Reference") is not None:
         out["reference"] = data["Reference"]
     else:
         raise DeserializationError("Dependency.reference required")

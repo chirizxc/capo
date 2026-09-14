@@ -61,11 +61,11 @@ def serialize_aws_json_1_1(value: CreateListenerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateListenerRequest:
     out: CreateListenerRequest = {}  # type: ignore[typeddict-item]
-    if "AcceleratorArn" in data:
+    if data.get("AcceleratorArn") is not None:
         out["accelerator_arn"] = data["AcceleratorArn"]
     else:
         raise DeserializationError("CreateListenerRequest.accelerator_arn required")
-    if "PortRanges" in data:
+    if data.get("PortRanges") is not None:
         import capo_global_accelerator.types.port_ranges
 
         out["port_ranges"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateListenerRequest:
         )
     else:
         raise DeserializationError("CreateListenerRequest.port_ranges required")
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_global_accelerator.types.protocol
 
         out["protocol"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateListenerRequest:
         )
     else:
         raise DeserializationError("CreateListenerRequest.protocol required")
-    if "ClientAffinity" in data:
+    if data.get("ClientAffinity") is not None:
         import capo_global_accelerator.types.client_affinity
 
         out["client_affinity"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateListenerRequest:
                 data["ClientAffinity"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError("CreateListenerRequest.idempotency_token required")

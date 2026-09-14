@@ -51,15 +51,15 @@ def serialize_json(value: JourneyLimits) -> dict:
 
 def deserialize_json(data: dict) -> JourneyLimits:
     out: JourneyLimits = {}  # type: ignore[typeddict-item]
-    if "DailyCap" in data:
+    if data.get("DailyCap") is not None:
         out["daily_cap"] = data["DailyCap"]
-    if "EndpointReentryCap" in data:
+    if data.get("EndpointReentryCap") is not None:
         out["endpoint_reentry_cap"] = data["EndpointReentryCap"]
-    if "MessagesPerSecond" in data:
+    if data.get("MessagesPerSecond") is not None:
         out["messages_per_second"] = data["MessagesPerSecond"]
-    if "EndpointReentryInterval" in data:
+    if data.get("EndpointReentryInterval") is not None:
         out["endpoint_reentry_interval"] = data["EndpointReentryInterval"]
-    if "TimeframeCap" in data:
+    if data.get("TimeframeCap") is not None:
         import capo_pinpoint.types.journey_timeframe_cap
 
         out["timeframe_cap"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> JourneyLimits:
                 data["TimeframeCap"]
             )
         )
-    if "TotalCap" in data:
+    if data.get("TotalCap") is not None:
         out["total_cap"] = data["TotalCap"]
     return out

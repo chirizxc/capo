@@ -45,7 +45,15 @@ def serialize_json(value: DataValue) -> dict:
     if "boolean_value" in value:
         out["booleanValue"] = value["boolean_value"]
     if "double_value" in value:
-        out["doubleValue"] = value["double_value"]
+        out["doubleValue"] = (
+            "NaN"
+            if value["double_value"] != value["double_value"]
+            else "Infinity"
+            if value["double_value"] == float("inf")
+            else "-Infinity"
+            if value["double_value"] == float("-inf")
+            else value["double_value"]
+        )
     if "integer_value" in value:
         out["integerValue"] = value["integer_value"]
     if "long_value" in value:
@@ -79,29 +87,29 @@ def serialize_json(value: DataValue) -> dict:
 
 def deserialize_json(data: dict) -> DataValue:
     out: DataValue = {}  # type: ignore[typeddict-item]
-    if "booleanValue" in data:
+    if data.get("booleanValue") is not None:
         out["boolean_value"] = data["booleanValue"]
-    if "doubleValue" in data:
-        out["double_value"] = data["doubleValue"]
-    if "integerValue" in data:
+    if data.get("doubleValue") is not None:
+        out["double_value"] = float(data["doubleValue"])
+    if data.get("integerValue") is not None:
         out["integer_value"] = data["integerValue"]
-    if "longValue" in data:
+    if data.get("longValue") is not None:
         out["long_value"] = data["longValue"]
-    if "stringValue" in data:
+    if data.get("stringValue") is not None:
         out["string_value"] = data["stringValue"]
-    if "listValue" in data:
+    if data.get("listValue") is not None:
         import capo_iottwinmaker.types.data_value_list
 
         out["list_value"] = capo_iottwinmaker.types.data_value_list.deserialize_json(
             data["listValue"]
         )
-    if "mapValue" in data:
+    if data.get("mapValue") is not None:
         import capo_iottwinmaker.types.data_value_map
 
         out["map_value"] = capo_iottwinmaker.types.data_value_map.deserialize_json(
             data["mapValue"]
         )
-    if "relationshipValue" in data:
+    if data.get("relationshipValue") is not None:
         import capo_iottwinmaker.types.relationship_value
 
         out["relationship_value"] = (
@@ -109,6 +117,6 @@ def deserialize_json(data: dict) -> DataValue:
                 data["relationshipValue"]
             )
         )
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
     return out

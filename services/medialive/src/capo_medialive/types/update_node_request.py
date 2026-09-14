@@ -47,13 +47,13 @@ def serialize_json(value: UpdateNodeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNodeRequest:
     out: UpdateNodeRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "role" in data:
+    if data.get("role") is not None:
         import capo_medialive.types.node_role
 
         out["role"] = capo_medialive.types.node_role.deserialize_json(data["role"])
-    if "sdiSourceMappings" in data:
+    if data.get("sdiSourceMappings") is not None:
         import capo_medialive.types.sdi_source_mappings_update_request
 
         out["sdi_source_mappings"] = (

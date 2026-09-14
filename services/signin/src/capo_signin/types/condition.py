@@ -21,6 +21,8 @@ def serialize_json(input_to_serialize: Condition) -> dict:
 def deserialize_json(data: dict) -> Condition:
     out: Condition = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_signin.types.condition_values
 
         out[key] = capo_signin.types.condition_values.deserialize_json(value)

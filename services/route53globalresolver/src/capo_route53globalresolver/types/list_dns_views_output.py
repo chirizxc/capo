@@ -32,9 +32,9 @@ def serialize_json(value: ListDNSViewsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListDNSViewsOutput:
     out: ListDNSViewsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "dnsViews" in data:
+    if data.get("dnsViews") is not None:
         import capo_route53globalresolver.types.dns_views
 
         out["dns_views"] = capo_route53globalresolver.types.dns_views.deserialize_json(

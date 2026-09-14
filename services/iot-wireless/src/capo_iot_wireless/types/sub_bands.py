@@ -14,4 +14,4 @@ def serialize_json(value: SubBands) -> list:
 
 
 def deserialize_json(data: list) -> SubBands:
-    return list(data)
+    return [item for item in data if item is not None]

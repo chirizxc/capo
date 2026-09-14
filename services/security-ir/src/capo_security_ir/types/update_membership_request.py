@@ -67,9 +67,9 @@ def serialize_json(value: UpdateMembershipRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMembershipRequest:
     out: UpdateMembershipRequest = {}  # type: ignore[typeddict-item]
-    if "membershipName" in data:
+    if data.get("membershipName") is not None:
         out["membership_name"] = data["membershipName"]
-    if "incidentResponseTeam" in data:
+    if data.get("incidentResponseTeam") is not None:
         import capo_security_ir.types.incident_response_team
 
         out["incident_response_team"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> UpdateMembershipRequest:
                 data["incidentResponseTeam"]
             )
         )
-    if "optInFeatures" in data:
+    if data.get("optInFeatures") is not None:
         import capo_security_ir.types.opt_in_features
 
         out["opt_in_features"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> UpdateMembershipRequest:
                 data["optInFeatures"]
             )
         )
-    if "membershipAccountsConfigurationsUpdate" in data:
+    if data.get("membershipAccountsConfigurationsUpdate") is not None:
         import capo_security_ir.types.membership_accounts_configurations_update
 
         out["membership_accounts_configurations_update"] = (
@@ -93,6 +93,6 @@ def deserialize_json(data: dict) -> UpdateMembershipRequest:
                 data["membershipAccountsConfigurationsUpdate"]
             )
         )
-    if "undoMembershipCancellation" in data:
+    if data.get("undoMembershipCancellation") is not None:
         out["undo_membership_cancellation"] = data["undoMembershipCancellation"]
     return out

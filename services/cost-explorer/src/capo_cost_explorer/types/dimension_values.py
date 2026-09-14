@@ -47,19 +47,19 @@ def serialize_aws_json_1_1(value: DimensionValues) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DimensionValues:
     out: DimensionValues = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         import capo_cost_explorer.types.dimension
 
         out["key"] = capo_cost_explorer.types.dimension.deserialize_aws_json_1_1(
             data["Key"]
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_cost_explorer.types.values
 
         out["values"] = capo_cost_explorer.types.values.deserialize_aws_json_1_1(
             data["Values"]
         )
-    if "MatchOptions" in data:
+    if data.get("MatchOptions") is not None:
         import capo_cost_explorer.types.match_options
 
         out["match_options"] = (

@@ -36,9 +36,9 @@ def serialize_json(value: DescribeScheduleResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeScheduleResponse:
     out: DescribeScheduleResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "scheduleActions" in data:
+    if data.get("scheduleActions") is not None:
         import capo_medialive.types.__list_of_schedule_action
 
         out["schedule_actions"] = (

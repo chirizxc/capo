@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetBlobOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBlobOutput:
     out: GetBlobOutput = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_codecommit.types.blob
 
         out["content"] = capo_codecommit.types.blob.deserialize_aws_json_1_1(

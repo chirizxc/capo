@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: SendDestinationNumberVerificationCodeResult) -
 
 def deserialize_aws_json_1_0(data: dict) -> SendDestinationNumberVerificationCodeResult:
     out: SendDestinationNumberVerificationCodeResult = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
     else:
         raise DeserializationError(

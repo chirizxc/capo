@@ -105,11 +105,11 @@ def serialize_json(value: UpdateDashboardRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDashboardRequest:
     out: UpdateDashboardRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateDashboardRequest.name required")
-    if "SourceEntity" in data:
+    if data.get("SourceEntity") is not None:
         import capo_quicksight.types.dashboard_source_entity
 
         out["source_entity"] = (
@@ -117,15 +117,15 @@ def deserialize_json(data: dict) -> UpdateDashboardRequest:
                 data["SourceEntity"]
             )
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_quicksight.types.parameters
 
         out["parameters"] = capo_quicksight.types.parameters.deserialize_json(
             data["Parameters"]
         )
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "DashboardPublishOptions" in data:
+    if data.get("DashboardPublishOptions") is not None:
         import capo_quicksight.types.dashboard_publish_options
 
         out["dashboard_publish_options"] = (
@@ -133,9 +133,9 @@ def deserialize_json(data: dict) -> UpdateDashboardRequest:
                 data["DashboardPublishOptions"]
             )
         )
-    if "ThemeArn" in data:
+    if data.get("ThemeArn") is not None:
         out["theme_arn"] = data["ThemeArn"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_quicksight.types.dashboard_version_definition
 
         out["definition"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> UpdateDashboardRequest:
                 data["Definition"]
             )
         )
-    if "ValidationStrategy" in data:
+    if data.get("ValidationStrategy") is not None:
         import capo_quicksight.types.validation_strategy
 
         out["validation_strategy"] = (

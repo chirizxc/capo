@@ -31,7 +31,7 @@ def serialize_json(value: PutAccountSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAccountSettingsRequest:
     out: PutAccountSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "notificationSubscriptionStatus" in data:
+    if data.get("notificationSubscriptionStatus") is not None:
         import capo_artifact.types.notification_subscription_status
 
         out["notification_subscription_status"] = (

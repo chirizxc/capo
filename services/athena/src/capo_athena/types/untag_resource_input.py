@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UntagResourceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UntagResourceInput:
     out: UntagResourceInput = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError("UntagResourceInput.resource_arn required")
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_athena.types.tag_key_list
 
         out["tag_keys"] = capo_athena.types.tag_key_list.deserialize_aws_json_1_1(

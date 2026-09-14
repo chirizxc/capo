@@ -263,15 +263,17 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.associate_to_configuration_request.AssociateToConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource"] = resource
-        input_["chat_configuration"] = chat_configuration
+        input_: capo_chatbot.types.associate_to_configuration_request.AssociateToConfigurationRequest = {
+            "resource": resource,
+            "chat_configuration": chat_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_chime_webhook_configuration(
@@ -324,12 +326,13 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.create_chime_webhook_configuration_request.CreateChimeWebhookConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["webhook_description"] = webhook_description
-        input_["webhook_url"] = webhook_url
-        input_["sns_topic_arns"] = sns_topic_arns
-        input_["iam_role_arn"] = iam_role_arn
-        input_["configuration_name"] = configuration_name
+        input_: capo_chatbot.types.create_chime_webhook_configuration_request.CreateChimeWebhookConfigurationRequest = {
+            "webhook_description": webhook_description,
+            "webhook_url": webhook_url,
+            "sns_topic_arns": sns_topic_arns,
+            "iam_role_arn": iam_role_arn,
+            "configuration_name": configuration_name,
+        }
         if logging_level is not None:
             input_["logging_level"] = logging_level
         if tags is not None:
@@ -340,6 +343,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_microsoft_teams_channel_configuration(
@@ -410,18 +414,19 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.create_teams_channel_configuration_request.CreateTeamsChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_chatbot.types.create_teams_channel_configuration_request.CreateTeamsChannelConfigurationRequest = {
+            "channel_id": channel_id,
+            "team_id": team_id,
+            "tenant_id": tenant_id,
+            "iam_role_arn": iam_role_arn,
+            "configuration_name": configuration_name,
+        }
         if channel_name is not None:
             input_["channel_name"] = channel_name
-        input_["team_id"] = team_id
         if team_name is not None:
             input_["team_name"] = team_name
-        input_["tenant_id"] = tenant_id
         if sns_topic_arns is not None:
             input_["sns_topic_arns"] = sns_topic_arns
-        input_["iam_role_arn"] = iam_role_arn
-        input_["configuration_name"] = configuration_name
         if logging_level is not None:
             input_["logging_level"] = logging_level
         if guardrail_policy_arns is not None:
@@ -436,6 +441,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_slack_channel_configuration(
@@ -502,15 +508,16 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.create_slack_channel_configuration_request.CreateSlackChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["slack_team_id"] = slack_team_id
-        input_["slack_channel_id"] = slack_channel_id
+        input_: capo_chatbot.types.create_slack_channel_configuration_request.CreateSlackChannelConfigurationRequest = {
+            "slack_team_id": slack_team_id,
+            "slack_channel_id": slack_channel_id,
+            "iam_role_arn": iam_role_arn,
+            "configuration_name": configuration_name,
+        }
         if slack_channel_name is not None:
             input_["slack_channel_name"] = slack_channel_name
         if sns_topic_arns is not None:
             input_["sns_topic_arns"] = sns_topic_arns
-        input_["iam_role_arn"] = iam_role_arn
-        input_["configuration_name"] = configuration_name
         if logging_level is not None:
             input_["logging_level"] = logging_level
         if guardrail_policy_arns is not None:
@@ -525,6 +532,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_chime_webhook_configuration(
@@ -562,14 +570,16 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.delete_chime_webhook_configuration_request.DeleteChimeWebhookConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["chat_configuration_arn"] = chat_configuration_arn
+        input_: capo_chatbot.types.delete_chime_webhook_configuration_request.DeleteChimeWebhookConfigurationRequest = {
+            "chat_configuration_arn": chat_configuration_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_microsoft_teams_channel_configuration(
@@ -607,14 +617,16 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.delete_teams_channel_configuration_request.DeleteTeamsChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["chat_configuration_arn"] = chat_configuration_arn
+        input_: capo_chatbot.types.delete_teams_channel_configuration_request.DeleteTeamsChannelConfigurationRequest = {
+            "chat_configuration_arn": chat_configuration_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_microsoft_teams_configured_team(
@@ -650,14 +662,16 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.delete_teams_configured_team_request.DeleteTeamsConfiguredTeamRequest = {}  # type: ignore[typeddict-item]
-        input_["team_id"] = team_id
+        input_: capo_chatbot.types.delete_teams_configured_team_request.DeleteTeamsConfiguredTeamRequest = {
+            "team_id": team_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_microsoft_teams_user_identity(
@@ -696,15 +710,17 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.delete_microsoft_teams_user_identity_request.DeleteMicrosoftTeamsUserIdentityRequest = {}  # type: ignore[typeddict-item]
-        input_["chat_configuration_arn"] = chat_configuration_arn
-        input_["user_id"] = user_id
+        input_: capo_chatbot.types.delete_microsoft_teams_user_identity_request.DeleteMicrosoftTeamsUserIdentityRequest = {
+            "chat_configuration_arn": chat_configuration_arn,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_slack_channel_configuration(
@@ -742,14 +758,16 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.delete_slack_channel_configuration_request.DeleteSlackChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["chat_configuration_arn"] = chat_configuration_arn
+        input_: capo_chatbot.types.delete_slack_channel_configuration_request.DeleteSlackChannelConfigurationRequest = {
+            "chat_configuration_arn": chat_configuration_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_slack_user_identity(
@@ -790,16 +808,18 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.delete_slack_user_identity_request.DeleteSlackUserIdentityRequest = {}  # type: ignore[typeddict-item]
-        input_["chat_configuration_arn"] = chat_configuration_arn
-        input_["slack_team_id"] = slack_team_id
-        input_["slack_user_id"] = slack_user_id
+        input_: capo_chatbot.types.delete_slack_user_identity_request.DeleteSlackUserIdentityRequest = {
+            "chat_configuration_arn": chat_configuration_arn,
+            "slack_team_id": slack_team_id,
+            "slack_user_id": slack_user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_slack_workspace_authorization(
@@ -835,14 +855,16 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.delete_slack_workspace_authorization_request.DeleteSlackWorkspaceAuthorizationRequest = {}  # type: ignore[typeddict-item]
-        input_["slack_team_id"] = slack_team_id
+        input_: capo_chatbot.types.delete_slack_workspace_authorization_request.DeleteSlackWorkspaceAuthorizationRequest = {
+            "slack_team_id": slack_team_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_chime_webhook_configurations(
@@ -887,7 +909,7 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.describe_chime_webhook_configurations_request.DescribeChimeWebhookConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.describe_chime_webhook_configurations_request.DescribeChimeWebhookConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -900,6 +922,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_chime_webhook_configurations(
@@ -971,7 +994,7 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.describe_slack_channel_configurations_request.DescribeSlackChannelConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.describe_slack_channel_configurations_request.DescribeSlackChannelConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -984,6 +1007,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_slack_channel_configurations(
@@ -1055,7 +1079,7 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.describe_slack_user_identities_request.DescribeSlackUserIdentitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.describe_slack_user_identities_request.DescribeSlackUserIdentitiesRequest = {}
         if chat_configuration_arn is not None:
             input_["chat_configuration_arn"] = chat_configuration_arn
         if next_token is not None:
@@ -1068,6 +1092,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_slack_user_identities(
@@ -1135,7 +1160,7 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.describe_slack_workspaces_request.DescribeSlackWorkspacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.describe_slack_workspaces_request.DescribeSlackWorkspacesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1146,6 +1171,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_slack_workspaces(
@@ -1212,15 +1238,17 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.disassociate_from_configuration_request.DisassociateFromConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource"] = resource
-        input_["chat_configuration"] = chat_configuration
+        input_: capo_chatbot.types.disassociate_from_configuration_request.DisassociateFromConfigurationRequest = {
+            "resource": resource,
+            "chat_configuration": chat_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_preferences(
@@ -1252,13 +1280,14 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.get_account_preferences_request.GetAccountPreferencesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.get_account_preferences_request.GetAccountPreferencesRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_microsoft_teams_channel_configuration(
@@ -1295,14 +1324,16 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.get_teams_channel_configuration_request.GetTeamsChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["chat_configuration_arn"] = chat_configuration_arn
+        input_: capo_chatbot.types.get_teams_channel_configuration_request.GetTeamsChannelConfigurationRequest = {
+            "chat_configuration_arn": chat_configuration_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_associations(
@@ -1345,8 +1376,9 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.list_associations_request.ListAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["chat_configuration"] = chat_configuration
+        input_: capo_chatbot.types.list_associations_request.ListAssociationsRequest = {
+            "chat_configuration": chat_configuration
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1357,6 +1389,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_associations(
@@ -1422,7 +1455,7 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.list_teams_channel_configurations_request.ListTeamsChannelConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.list_teams_channel_configurations_request.ListTeamsChannelConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1435,6 +1468,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_microsoft_teams_channel_configurations(
@@ -1500,7 +1534,7 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.list_microsoft_teams_configured_teams_request.ListMicrosoftTeamsConfiguredTeamsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.list_microsoft_teams_configured_teams_request.ListMicrosoftTeamsConfiguredTeamsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1511,6 +1545,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_microsoft_teams_configured_teams(
@@ -1578,7 +1613,7 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.list_microsoft_teams_user_identities_request.ListMicrosoftTeamsUserIdentitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.list_microsoft_teams_user_identities_request.ListMicrosoftTeamsUserIdentitiesRequest = {}
         if chat_configuration_arn is not None:
             input_["chat_configuration_arn"] = chat_configuration_arn
         if next_token is not None:
@@ -1591,6 +1626,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_microsoft_teams_user_identities(
@@ -1656,14 +1692,16 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_chatbot.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1703,15 +1741,17 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_chatbot.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1750,15 +1790,17 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_chatbot.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_account_preferences(
@@ -1801,7 +1843,7 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.update_account_preferences_request.UpdateAccountPreferencesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chatbot.types.update_account_preferences_request.UpdateAccountPreferencesRequest = {}
         if user_authorization_required is not None:
             input_["user_authorization_required"] = user_authorization_required
         if training_data_collection_enabled is not None:
@@ -1814,6 +1856,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_chime_webhook_configuration(
@@ -1869,8 +1912,9 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.update_chime_webhook_configuration_request.UpdateChimeWebhookConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["chat_configuration_arn"] = chat_configuration_arn
+        input_: capo_chatbot.types.update_chime_webhook_configuration_request.UpdateChimeWebhookConfigurationRequest = {
+            "chat_configuration_arn": chat_configuration_arn
+        }
         if webhook_description is not None:
             input_["webhook_description"] = webhook_description
         if webhook_url is not None:
@@ -1887,6 +1931,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_microsoft_teams_channel_configuration(
@@ -1948,9 +1993,10 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.update_teams_channel_configuration_request.UpdateTeamsChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["chat_configuration_arn"] = chat_configuration_arn
-        input_["channel_id"] = channel_id
+        input_: capo_chatbot.types.update_teams_channel_configuration_request.UpdateTeamsChannelConfigurationRequest = {
+            "chat_configuration_arn": chat_configuration_arn,
+            "channel_id": channel_id,
+        }
         if channel_name is not None:
             input_["channel_name"] = channel_name
         if sns_topic_arns is not None:
@@ -1969,6 +2015,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_slack_channel_configuration(
@@ -2030,9 +2077,10 @@ class AsyncchatbotClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chatbot.types.update_slack_channel_configuration_request.UpdateSlackChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["chat_configuration_arn"] = chat_configuration_arn
-        input_["slack_channel_id"] = slack_channel_id
+        input_: capo_chatbot.types.update_slack_channel_configuration_request.UpdateSlackChannelConfigurationRequest = {
+            "chat_configuration_arn": chat_configuration_arn,
+            "slack_channel_id": slack_channel_id,
+        }
         if slack_channel_name is not None:
             input_["slack_channel_name"] = slack_channel_name
         if sns_topic_arns is not None:
@@ -2051,6 +2099,7 @@ class AsyncchatbotClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

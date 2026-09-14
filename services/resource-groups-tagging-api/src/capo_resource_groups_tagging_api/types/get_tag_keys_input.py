@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: GetTagKeysInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTagKeysInput:
     out: GetTagKeysInput = {}  # type: ignore[typeddict-item]
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
     return out

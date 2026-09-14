@@ -43,11 +43,11 @@ def serialize_json(value: AwsEcsContainerDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsContainerDetails:
     out: AwsEcsContainerDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Image" in data:
+    if data.get("Image") is not None:
         out["image"] = data["Image"]
-    if "MountPoints" in data:
+    if data.get("MountPoints") is not None:
         import capo_securityhub.types.aws_mount_point_list
 
         out["mount_points"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> AwsEcsContainerDetails:
                 data["MountPoints"]
             )
         )
-    if "Privileged" in data:
+    if data.get("Privileged") is not None:
         out["privileged"] = data["Privileged"]
     return out

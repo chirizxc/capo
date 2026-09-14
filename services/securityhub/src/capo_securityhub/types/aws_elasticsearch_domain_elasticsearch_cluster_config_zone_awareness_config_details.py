@@ -29,6 +29,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsElasticsearchDomainElasticsearchClusterConfigZoneAwarenessConfigDetails:
     out: AwsElasticsearchDomainElasticsearchClusterConfigZoneAwarenessConfigDetails = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZoneCount" in data:
+    if data.get("AvailabilityZoneCount") is not None:
         out["availability_zone_count"] = data["AvailabilityZoneCount"]
     return out

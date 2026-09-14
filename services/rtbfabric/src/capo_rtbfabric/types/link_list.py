@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> LinkList:
 
     out: LinkList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rtbfabric.types.list_links_response_structure.deserialize_json(item)
         )

@@ -74,19 +74,19 @@ def serialize_json(value: AwsS3AccessPointDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3AccessPointDetails:
     out: AwsS3AccessPointDetails = {}  # type: ignore[typeddict-item]
-    if "AccessPointArn" in data:
+    if data.get("AccessPointArn") is not None:
         out["access_point_arn"] = data["AccessPointArn"]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
-    if "BucketAccountId" in data:
+    if data.get("BucketAccountId") is not None:
         out["bucket_account_id"] = data["BucketAccountId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "NetworkOrigin" in data:
+    if data.get("NetworkOrigin") is not None:
         out["network_origin"] = data["NetworkOrigin"]
-    if "PublicAccessBlockConfiguration" in data:
+    if data.get("PublicAccessBlockConfiguration") is not None:
         import capo_securityhub.types.aws_s3_account_public_access_block_details
 
         out["public_access_block_configuration"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> AwsS3AccessPointDetails:
                 data["PublicAccessBlockConfiguration"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_securityhub.types.aws_s3_access_point_vpc_configuration_details
 
         out["vpc_configuration"] = (

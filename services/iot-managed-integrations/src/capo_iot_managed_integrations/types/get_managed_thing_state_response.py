@@ -30,7 +30,7 @@ def serialize_json(value: GetManagedThingStateResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetManagedThingStateResponse:
     out: GetManagedThingStateResponse = {}  # type: ignore[typeddict-item]
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_iot_managed_integrations.types.state_endpoints
 
         out["endpoints"] = (

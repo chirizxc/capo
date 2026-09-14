@@ -277,17 +277,19 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.delete_recommendation_preferences_request.DeleteRecommendationPreferencesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
+        input_: capo_compute_optimizer.types.delete_recommendation_preferences_request.DeleteRecommendationPreferencesRequest = {
+            "resource_type": resource_type,
+            "recommendation_preference_names": recommendation_preference_names,
+        }
         if scope is not None:
             input_["scope"] = scope
-        input_["recommendation_preference_names"] = recommendation_preference_names
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_recommendation_export_jobs(
@@ -338,7 +340,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.describe_recommendation_export_jobs_request.DescribeRecommendationExportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.describe_recommendation_export_jobs_request.DescribeRecommendationExportJobsRequest = {}
         if job_ids is not None:
             input_["job_ids"] = job_ids
         if filters is not None:
@@ -353,6 +355,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_recommendation_export_jobs(
@@ -444,14 +447,15 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.export_auto_scaling_group_recommendations_request.ExportAutoScalingGroupRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.export_auto_scaling_group_recommendations_request.ExportAutoScalingGroupRecommendationsRequest = {
+            "s3_destination_config": s3_destination_config
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if filters is not None:
             input_["filters"] = filters
         if fields_to_export is not None:
             input_["fields_to_export"] = fields_to_export
-        input_["s3_destination_config"] = s3_destination_config
         if file_format is not None:
             input_["file_format"] = file_format
         if include_member_accounts is not None:
@@ -464,6 +468,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_ebs_volume_recommendations(
@@ -521,14 +526,15 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.export_ebs_volume_recommendations_request.ExportEBSVolumeRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.export_ebs_volume_recommendations_request.ExportEBSVolumeRecommendationsRequest = {
+            "s3_destination_config": s3_destination_config
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if filters is not None:
             input_["filters"] = filters
         if fields_to_export is not None:
             input_["fields_to_export"] = fields_to_export
-        input_["s3_destination_config"] = s3_destination_config
         if file_format is not None:
             input_["file_format"] = file_format
         if include_member_accounts is not None:
@@ -539,6 +545,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_ec2_instance_recommendations(
@@ -601,14 +608,15 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.export_ec2_instance_recommendations_request.ExportEC2InstanceRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.export_ec2_instance_recommendations_request.ExportEC2InstanceRecommendationsRequest = {
+            "s3_destination_config": s3_destination_config
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if filters is not None:
             input_["filters"] = filters
         if fields_to_export is not None:
             input_["fields_to_export"] = fields_to_export
-        input_["s3_destination_config"] = s3_destination_config
         if file_format is not None:
             input_["file_format"] = file_format
         if include_member_accounts is not None:
@@ -621,6 +629,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_ecs_service_recommendations(
@@ -680,14 +689,15 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.export_ecs_service_recommendations_request.ExportECSServiceRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.export_ecs_service_recommendations_request.ExportECSServiceRecommendationsRequest = {
+            "s3_destination_config": s3_destination_config
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if filters is not None:
             input_["filters"] = filters
         if fields_to_export is not None:
             input_["fields_to_export"] = fields_to_export
-        input_["s3_destination_config"] = s3_destination_config
         if file_format is not None:
             input_["file_format"] = file_format
         if include_member_accounts is not None:
@@ -698,6 +708,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_idle_recommendations(
@@ -757,14 +768,15 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.export_idle_recommendations_request.ExportIdleRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.export_idle_recommendations_request.ExportIdleRecommendationsRequest = {
+            "s3_destination_config": s3_destination_config
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if filters is not None:
             input_["filters"] = filters
         if fields_to_export is not None:
             input_["fields_to_export"] = fields_to_export
-        input_["s3_destination_config"] = s3_destination_config
         if file_format is not None:
             input_["file_format"] = file_format
         if include_member_accounts is not None:
@@ -775,6 +787,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_lambda_function_recommendations(
@@ -834,14 +847,15 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.export_lambda_function_recommendations_request.ExportLambdaFunctionRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.export_lambda_function_recommendations_request.ExportLambdaFunctionRecommendationsRequest = {
+            "s3_destination_config": s3_destination_config
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if filters is not None:
             input_["filters"] = filters
         if fields_to_export is not None:
             input_["fields_to_export"] = fields_to_export
-        input_["s3_destination_config"] = s3_destination_config
         if file_format is not None:
             input_["file_format"] = file_format
         if include_member_accounts is not None:
@@ -852,6 +866,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_license_recommendations(
@@ -911,14 +926,15 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.export_license_recommendations_request.ExportLicenseRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.export_license_recommendations_request.ExportLicenseRecommendationsRequest = {
+            "s3_destination_config": s3_destination_config
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if filters is not None:
             input_["filters"] = filters
         if fields_to_export is not None:
             input_["fields_to_export"] = fields_to_export
-        input_["s3_destination_config"] = s3_destination_config
         if file_format is not None:
             input_["file_format"] = file_format
         if include_member_accounts is not None:
@@ -929,6 +945,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_rds_database_recommendations(
@@ -991,14 +1008,15 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.export_rds_database_recommendations_request.ExportRDSDatabaseRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.export_rds_database_recommendations_request.ExportRDSDatabaseRecommendationsRequest = {
+            "s3_destination_config": s3_destination_config
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if filters is not None:
             input_["filters"] = filters
         if fields_to_export is not None:
             input_["fields_to_export"] = fields_to_export
-        input_["s3_destination_config"] = s3_destination_config
         if file_format is not None:
             input_["file_format"] = file_format
         if include_member_accounts is not None:
@@ -1011,6 +1029,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_auto_scaling_group_recommendations(
@@ -1071,7 +1090,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_auto_scaling_group_recommendations_request.GetAutoScalingGroupRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_auto_scaling_group_recommendations_request.GetAutoScalingGroupRecommendationsRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if auto_scaling_group_arns is not None:
@@ -1090,6 +1109,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ebs_volume_recommendations(
@@ -1146,7 +1166,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_ebs_volume_recommendations_request.GetEBSVolumeRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_ebs_volume_recommendations_request.GetEBSVolumeRecommendationsRequest = {}
         if volume_arns is not None:
             input_["volume_arns"] = volume_arns
         if next_token is not None:
@@ -1163,6 +1183,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ec2_instance_recommendations(
@@ -1223,7 +1244,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_ec2_instance_recommendations_request.GetEC2InstanceRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_ec2_instance_recommendations_request.GetEC2InstanceRecommendationsRequest = {}
         if instance_arns is not None:
             input_["instance_arns"] = instance_arns
         if next_token is not None:
@@ -1242,6 +1263,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ec2_recommendation_projected_metrics(
@@ -1294,12 +1316,13 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_ec2_recommendation_projected_metrics_request.GetEC2RecommendationProjectedMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_arn"] = instance_arn
-        input_["stat"] = stat
-        input_["period"] = period
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_compute_optimizer.types.get_ec2_recommendation_projected_metrics_request.GetEC2RecommendationProjectedMetricsRequest = {
+            "instance_arn": instance_arn,
+            "stat": stat,
+            "period": period,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if recommendation_preferences is not None:
             input_["recommendation_preferences"] = recommendation_preferences
 
@@ -1308,6 +1331,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ecs_service_recommendation_projected_metrics(
@@ -1356,18 +1380,20 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_ecs_service_recommendation_projected_metrics_request.GetECSServiceRecommendationProjectedMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["stat"] = stat
-        input_["period"] = period
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_compute_optimizer.types.get_ecs_service_recommendation_projected_metrics_request.GetECSServiceRecommendationProjectedMetricsRequest = {
+            "service_arn": service_arn,
+            "stat": stat,
+            "period": period,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ecs_service_recommendations(
@@ -1426,7 +1452,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_ecs_service_recommendations_request.GetECSServiceRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_ecs_service_recommendations_request.GetECSServiceRecommendationsRequest = {}
         if service_arns is not None:
             input_["service_arns"] = service_arns
         if next_token is not None:
@@ -1443,6 +1469,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_effective_recommendation_preferences(
@@ -1483,14 +1510,16 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_effective_recommendation_preferences_request.GetEffectiveRecommendationPreferencesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_compute_optimizer.types.get_effective_recommendation_preferences_request.GetEffectiveRecommendationPreferencesRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_enrollment_status(
@@ -1523,13 +1552,14 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_enrollment_status_request.GetEnrollmentStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_enrollment_status_request.GetEnrollmentStatusRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_enrollment_statuses_for_organization(
@@ -1578,7 +1608,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_enrollment_statuses_for_organization_request.GetEnrollmentStatusesForOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_enrollment_statuses_for_organization_request.GetEnrollmentStatusesForOrganizationRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -1591,6 +1621,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_enrollment_statuses_for_organization(
@@ -1680,7 +1711,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_idle_recommendations_request.GetIdleRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_idle_recommendations_request.GetIdleRecommendationsRequest = {}
         if resource_arns is not None:
             input_["resource_arns"] = resource_arns
         if next_token is not None:
@@ -1699,6 +1730,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lambda_function_recommendations(
@@ -1757,7 +1789,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_lambda_function_recommendations_request.GetLambdaFunctionRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_lambda_function_recommendations_request.GetLambdaFunctionRecommendationsRequest = {}
         if function_arns is not None:
             input_["function_arns"] = function_arns
         if account_ids is not None:
@@ -1774,6 +1806,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_lambda_function_recommendations(
@@ -1869,7 +1902,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_license_recommendations_request.GetLicenseRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_license_recommendations_request.GetLicenseRecommendationsRequest = {}
         if resource_arns is not None:
             input_["resource_arns"] = resource_arns
         if next_token is not None:
@@ -1886,6 +1919,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_rds_database_recommendation_projected_metrics(
@@ -1937,12 +1971,13 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_rds_database_recommendation_projected_metrics_request.GetRDSDatabaseRecommendationProjectedMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["stat"] = stat
-        input_["period"] = period
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_compute_optimizer.types.get_rds_database_recommendation_projected_metrics_request.GetRDSDatabaseRecommendationProjectedMetricsRequest = {
+            "resource_arn": resource_arn,
+            "stat": stat,
+            "period": period,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if recommendation_preferences is not None:
             input_["recommendation_preferences"] = recommendation_preferences
 
@@ -1951,6 +1986,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_rds_database_recommendations(
@@ -2012,7 +2048,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_rds_database_recommendations_request.GetRDSDatabaseRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_rds_database_recommendations_request.GetRDSDatabaseRecommendationsRequest = {}
         if resource_arns is not None:
             input_["resource_arns"] = resource_arns
         if next_token is not None:
@@ -2031,6 +2067,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recommendation_preferences(
@@ -2081,8 +2118,9 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_recommendation_preferences_request.GetRecommendationPreferencesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
+        input_: capo_compute_optimizer.types.get_recommendation_preferences_request.GetRecommendationPreferencesRequest = {
+            "resource_type": resource_type
+        }
         if scope is not None:
             input_["scope"] = scope
         if next_token is not None:
@@ -2095,6 +2133,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_recommendation_preferences(
@@ -2173,7 +2212,7 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.get_recommendation_summaries_request.GetRecommendationSummariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer.types.get_recommendation_summaries_request.GetRecommendationSummariesRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if next_token is not None:
@@ -2186,6 +2225,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_recommendation_summaries(
@@ -2285,8 +2325,9 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.put_recommendation_preferences_request.PutRecommendationPreferencesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
+        input_: capo_compute_optimizer.types.put_recommendation_preferences_request.PutRecommendationPreferencesRequest = {
+            "resource_type": resource_type
+        }
         if scope is not None:
             input_["scope"] = scope
         if enhanced_infrastructure_metrics is not None:
@@ -2309,6 +2350,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_enrollment_status(
@@ -2351,8 +2393,9 @@ class ComputeOptimizerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer.types.update_enrollment_status_request.UpdateEnrollmentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["status"] = status
+        input_: capo_compute_optimizer.types.update_enrollment_status_request.UpdateEnrollmentStatusRequest = {
+            "status": status
+        }
         if include_member_accounts is not None:
             input_["include_member_accounts"] = include_member_accounts
 
@@ -2361,6 +2404,7 @@ class ComputeOptimizerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

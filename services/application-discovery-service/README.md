@@ -13,9 +13,9 @@ from capo_application_discovery_service import AsyncApplicationDiscoveryServiceC
 
 
 async def main():
-    async with AsyncApplicationDiscoveryServiceClient() as s3:
+    async with AsyncApplicationDiscoveryServiceClient() as application_discovery_service:
         # Example: call the associate_configuration_items_to_application operation
-        response = await s3.associate_configuration_items_to_application()
+        response = await application_discovery_service.associate_configuration_items_to_application()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_application_discovery_service import AsyncApplicationDiscoveryServiceC
 
 
 async def main():
-    async with AsyncApplicationDiscoveryServiceClient() as s3:
+    async with AsyncApplicationDiscoveryServiceClient() as application_discovery_service:
         # Example: paginate over describe_agents
-        async for item in s3.iter_describe_agents():
+        async for item in application_discovery_service.iter_describe_agents():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_application_discovery_service.error import AuthorizationErrorException
 
 
 async def main():
-    async with AsyncApplicationDiscoveryServiceClient() as s3:
+    async with AsyncApplicationDiscoveryServiceClient() as application_discovery_service:
         try:
-            await s3.associate_configuration_items_to_application()
+            await application_discovery_service.associate_configuration_items_to_application()
         except AuthorizationErrorException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_application_discovery_service import AsyncApplicationDiscoveryServiceC
 
 
 async def main():
-    async with AsyncApplicationDiscoveryServiceClient() as s3:
+    async with AsyncApplicationDiscoveryServiceClient() as application_discovery_service:
         # Default: 3 attempts for every operation
-        response = await s3.associate_configuration_items_to_application()
+        response = await application_discovery_service.associate_configuration_items_to_application()
 
         # Override per operation
-        response = await s3.associate_configuration_items_to_application(config_overrides={"retry_max_attempts": 5})
+        response = await application_discovery_service.associate_configuration_items_to_application(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_configuration_items_to_application(config_overrides={"retry_max_attempts": 1})
+        response = await application_discovery_service.associate_configuration_items_to_application(config_overrides={"retry_max_attempts": 1})
 ```

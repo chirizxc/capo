@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: DescribeS3AccessPointAttachmentsResponse) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeS3AccessPointAttachmentsResponse:
     out: DescribeS3AccessPointAttachmentsResponse = {}  # type: ignore[typeddict-item]
-    if "S3AccessPointAttachments" in data:
+    if data.get("S3AccessPointAttachments") is not None:
         import capo_fsx.types.s3_access_point_attachments
 
         out["s3_access_point_attachments"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeS3AccessPointAttachmentsResp
                 data["S3AccessPointAttachments"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

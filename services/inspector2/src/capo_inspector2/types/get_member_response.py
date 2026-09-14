@@ -25,7 +25,7 @@ def serialize_json(value: GetMemberResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMemberResponse:
     out: GetMemberResponse = {}  # type: ignore[typeddict-item]
-    if "member" in data:
+    if data.get("member") is not None:
         import capo_inspector2.types.member
 
         out["member"] = capo_inspector2.types.member.deserialize_json(data["member"])

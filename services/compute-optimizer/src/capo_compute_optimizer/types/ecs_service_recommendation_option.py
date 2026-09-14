@@ -79,11 +79,11 @@ def serialize_aws_json_1_0(value: ECSServiceRecommendationOption) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendationOption:
     out: ECSServiceRecommendationOption = {}  # type: ignore[typeddict-item]
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
-    if "cpu" in data:
+    if data.get("cpu") is not None:
         out["cpu"] = data["cpu"]
-    if "savingsOpportunity" in data:
+    if data.get("savingsOpportunity") is not None:
         import capo_compute_optimizer.types.savings_opportunity
 
         out["savings_opportunity"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendationOption:
                 data["savingsOpportunity"]
             )
         )
-    if "savingsOpportunityAfterDiscounts" in data:
+    if data.get("savingsOpportunityAfterDiscounts") is not None:
         import capo_compute_optimizer.types.ecs_savings_opportunity_after_discounts
 
         out["savings_opportunity_after_discounts"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendationOption:
                 data["savingsOpportunityAfterDiscounts"]
             )
         )
-    if "projectedUtilizationMetrics" in data:
+    if data.get("projectedUtilizationMetrics") is not None:
         import capo_compute_optimizer.types.ecs_service_projected_utilization_metrics
 
         out["projected_utilization_metrics"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceRecommendationOption:
                 data["projectedUtilizationMetrics"]
             )
         )
-    if "containerRecommendations" in data:
+    if data.get("containerRecommendations") is not None:
         import capo_compute_optimizer.types.container_recommendations
 
         out["container_recommendations"] = (

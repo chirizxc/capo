@@ -35,13 +35,13 @@ def serialize_json(value: CopySourceImageSetInformation) -> dict:
 
 def deserialize_json(data: dict) -> CopySourceImageSetInformation:
     out: CopySourceImageSetInformation = {}  # type: ignore[typeddict-item]
-    if "latestVersionId" in data:
+    if data.get("latestVersionId") is not None:
         out["latest_version_id"] = data["latestVersionId"]
     else:
         raise DeserializationError(
             "CopySourceImageSetInformation.latest_version_id required"
         )
-    if "DICOMCopies" in data:
+    if data.get("DICOMCopies") is not None:
         import capo_medical_imaging.types.metadata_copies
 
         out["dicom_copies"] = (

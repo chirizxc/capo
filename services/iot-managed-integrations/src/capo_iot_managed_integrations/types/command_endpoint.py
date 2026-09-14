@@ -36,11 +36,11 @@ def serialize_json(value: CommandEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> CommandEndpoint:
     out: CommandEndpoint = {}  # type: ignore[typeddict-item]
-    if "endpointId" in data:
+    if data.get("endpointId") is not None:
         out["endpoint_id"] = data["endpointId"]
     else:
         raise DeserializationError("CommandEndpoint.endpoint_id required")
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_iot_managed_integrations.types.command_capabilities
 
         out["capabilities"] = (

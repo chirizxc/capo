@@ -93,9 +93,9 @@ def serialize_aws_json_1_1(value: UserType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserType:
     out: UserType = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_cognito_identity_provider.types.attribute_list_type
 
         out["attributes"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserType:
                 data["Attributes"]
             )
         )
-    if "UserCreateDate" in data:
+    if data.get("UserCreateDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["user_create_date"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserType:
                 data["UserCreateDate"]
             )
         )
-    if "UserLastModifiedDate" in data:
+    if data.get("UserLastModifiedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["user_last_modified_date"] = (
@@ -119,11 +119,11 @@ def deserialize_aws_json_1_1(data: dict) -> UserType:
                 data["UserLastModifiedDate"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         out["enabled"] = False
-    if "UserStatus" in data:
+    if data.get("UserStatus") is not None:
         import capo_cognito_identity_provider.types.user_status_type
 
         out["user_status"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserType:
                 data["UserStatus"]
             )
         )
-    if "MFAOptions" in data:
+    if data.get("MFAOptions") is not None:
         import capo_cognito_identity_provider.types.mfa_option_list_type
 
         out["mfa_options"] = (

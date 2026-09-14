@@ -69,17 +69,17 @@ def serialize_json(value: LoRaWANDeviceMetadata) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANDeviceMetadata:
     out: LoRaWANDeviceMetadata = {}  # type: ignore[typeddict-item]
-    if "DevEui" in data:
+    if data.get("DevEui") is not None:
         out["dev_eui"] = data["DevEui"]
-    if "FPort" in data:
+    if data.get("FPort") is not None:
         out["f_port"] = data["FPort"]
-    if "DataRate" in data:
+    if data.get("DataRate") is not None:
         out["data_rate"] = data["DataRate"]
-    if "Frequency" in data:
+    if data.get("Frequency") is not None:
         out["frequency"] = data["Frequency"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
-    if "Gateways" in data:
+    if data.get("Gateways") is not None:
         import capo_iot_wireless.types.lo_ra_wan_gateway_metadata_list
 
         out["gateways"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> LoRaWANDeviceMetadata:
                 data["Gateways"]
             )
         )
-    if "PublicGateways" in data:
+    if data.get("PublicGateways") is not None:
         import capo_iot_wireless.types.lo_ra_wan_public_gateway_metadata_list
 
         out["public_gateways"] = (

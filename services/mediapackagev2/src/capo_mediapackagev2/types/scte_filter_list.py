@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ScteFilterList:
 
     out: ScteFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackagev2.types.scte_filter.deserialize_json(item))
     return out

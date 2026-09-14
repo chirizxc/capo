@@ -39,18 +39,18 @@ def serialize_aws_json_1_1(value: StoredQueryMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StoredQueryMetadata:
     out: StoredQueryMetadata = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
     else:
         raise DeserializationError("StoredQueryMetadata.query_id required")
-    if "QueryArn" in data:
+    if data.get("QueryArn") is not None:
         out["query_arn"] = data["QueryArn"]
     else:
         raise DeserializationError("StoredQueryMetadata.query_arn required")
-    if "QueryName" in data:
+    if data.get("QueryName") is not None:
         out["query_name"] = data["QueryName"]
     else:
         raise DeserializationError("StoredQueryMetadata.query_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

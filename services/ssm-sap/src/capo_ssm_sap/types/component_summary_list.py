@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ComponentSummaryList:
 
     out: ComponentSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ssm_sap.types.component_summary.deserialize_json(item))
     return out

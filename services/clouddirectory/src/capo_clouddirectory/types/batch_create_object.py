@@ -63,7 +63,7 @@ def serialize_json(value: BatchCreateObject) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateObject:
     out: BatchCreateObject = {}  # type: ignore[typeddict-item]
-    if "SchemaFacet" in data:
+    if data.get("SchemaFacet") is not None:
         import capo_clouddirectory.types.schema_facet_list
 
         out["schema_facet"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> BatchCreateObject:
         )
     else:
         raise DeserializationError("BatchCreateObject.schema_facet required")
-    if "ObjectAttributeList" in data:
+    if data.get("ObjectAttributeList") is not None:
         import capo_clouddirectory.types.attribute_key_and_value_list
 
         out["object_attribute_list"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> BatchCreateObject:
         )
     else:
         raise DeserializationError("BatchCreateObject.object_attribute_list required")
-    if "ParentReference" in data:
+    if data.get("ParentReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["parent_reference"] = (
@@ -91,8 +91,8 @@ def deserialize_json(data: dict) -> BatchCreateObject:
                 data["ParentReference"]
             )
         )
-    if "LinkName" in data:
+    if data.get("LinkName") is not None:
         out["link_name"] = data["LinkName"]
-    if "BatchReferenceName" in data:
+    if data.get("BatchReferenceName") is not None:
         out["batch_reference_name"] = data["BatchReferenceName"]
     return out

@@ -30,8 +30,8 @@ def serialize_json(value: RetryImageResponse) -> dict:
 
 def deserialize_json(data: dict) -> RetryImageResponse:
     out: RetryImageResponse = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
     return out

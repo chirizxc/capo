@@ -51,9 +51,9 @@ def serialize_aws_json_1_1(value: RequiredTag) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RequiredTag:
     out: RequiredTag = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "CloudFormationResourceTypes" in data:
+    if data.get("CloudFormationResourceTypes") is not None:
         import capo_resource_groups_tagging_api.types.cloud_formation_resource_types
 
         out["cloud_formation_resource_types"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> RequiredTag:
                 data["CloudFormationResourceTypes"]
             )
         )
-    if "ReportingTagKeys" in data:
+    if data.get("ReportingTagKeys") is not None:
         import capo_resource_groups_tagging_api.types.reporting_tag_keys
 
         out["reporting_tag_keys"] = (

@@ -57,13 +57,13 @@ def serialize_json(value: UpdateProgramRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProgramRequest:
     out: UpdateProgramRequest = {}  # type: ignore[typeddict-item]
-    if "AdBreaks" in data:
+    if data.get("AdBreaks") is not None:
         import capo_mediatailor.types.__list_of_ad_break
 
         out["ad_breaks"] = capo_mediatailor.types.__list_of_ad_break.deserialize_json(
             data["AdBreaks"]
         )
-    if "ScheduleConfiguration" in data:
+    if data.get("ScheduleConfiguration") is not None:
         import capo_mediatailor.types.update_program_schedule_configuration
 
         out["schedule_configuration"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> UpdateProgramRequest:
         raise DeserializationError(
             "UpdateProgramRequest.schedule_configuration required"
         )
-    if "AudienceMedia" in data:
+    if data.get("AudienceMedia") is not None:
         import capo_mediatailor.types.__list_of_audience_media
 
         out["audience_media"] = (

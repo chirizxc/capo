@@ -34,12 +34,12 @@ def serialize_json(value: AwsDynamoDbTableProjection) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableProjection:
     out: AwsDynamoDbTableProjection = {}  # type: ignore[typeddict-item]
-    if "NonKeyAttributes" in data:
+    if data.get("NonKeyAttributes") is not None:
         import capo_securityhub.types.string_list
 
         out["non_key_attributes"] = capo_securityhub.types.string_list.deserialize_json(
             data["NonKeyAttributes"]
         )
-    if "ProjectionType" in data:
+    if data.get("ProjectionType") is not None:
         out["projection_type"] = data["ProjectionType"]
     return out

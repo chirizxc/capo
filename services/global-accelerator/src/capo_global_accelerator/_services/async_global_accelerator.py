@@ -308,15 +308,17 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.add_custom_routing_endpoints_request.AddCustomRoutingEndpointsRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_configurations"] = endpoint_configurations
-        input_["endpoint_group_arn"] = endpoint_group_arn
+        input_: capo_global_accelerator.types.add_custom_routing_endpoints_request.AddCustomRoutingEndpointsRequest = {
+            "endpoint_configurations": endpoint_configurations,
+            "endpoint_group_arn": endpoint_group_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_endpoints(
@@ -358,15 +360,17 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.add_endpoints_request.AddEndpointsRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_configurations"] = endpoint_configurations
-        input_["endpoint_group_arn"] = endpoint_group_arn
+        input_: capo_global_accelerator.types.add_endpoints_request.AddEndpointsRequest = {
+            "endpoint_configurations": endpoint_configurations,
+            "endpoint_group_arn": endpoint_group_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def advertise_byoip_cidr(
@@ -405,14 +409,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.advertise_byoip_cidr_request.AdvertiseByoipCidrRequest = {}  # type: ignore[typeddict-item]
-        input_["cidr"] = cidr
+        input_: capo_global_accelerator.types.advertise_byoip_cidr_request.AdvertiseByoipCidrRequest = {
+            "cidr": cidr
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def allow_custom_routing_traffic(
@@ -461,9 +467,10 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.allow_custom_routing_traffic_request.AllowCustomRoutingTrafficRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_group_arn"] = endpoint_group_arn
-        input_["endpoint_id"] = endpoint_id
+        input_: capo_global_accelerator.types.allow_custom_routing_traffic_request.AllowCustomRoutingTrafficRequest = {
+            "endpoint_group_arn": endpoint_group_arn,
+            "endpoint_id": endpoint_id,
+        }
         if destination_addresses is not None:
             input_["destination_addresses"] = destination_addresses
         if destination_ports is not None:
@@ -476,6 +483,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_accelerator(
@@ -530,15 +538,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.create_accelerator_request.CreateAcceleratorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_global_accelerator.types.create_accelerator_request.CreateAcceleratorRequest = {
+            "name": name,
+            "idempotency_token": idempotency_token,
+        }
         if ip_address_type is not None:
             input_["ip_address_type"] = ip_address_type
         if ip_addresses is not None:
             input_["ip_addresses"] = ip_addresses
         if enabled is not None:
             input_["enabled"] = enabled
-        input_["idempotency_token"] = idempotency_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -547,6 +556,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cross_account_attachment(
@@ -595,13 +605,14 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.create_cross_account_attachment_request.CreateCrossAccountAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_global_accelerator.types.create_cross_account_attachment_request.CreateCrossAccountAttachmentRequest = {
+            "name": name,
+            "idempotency_token": idempotency_token,
+        }
         if principals is not None:
             input_["principals"] = principals
         if resources is not None:
             input_["resources"] = resources
-        input_["idempotency_token"] = idempotency_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -610,6 +621,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_custom_routing_accelerator(
@@ -664,15 +676,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.create_custom_routing_accelerator_request.CreateCustomRoutingAcceleratorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_global_accelerator.types.create_custom_routing_accelerator_request.CreateCustomRoutingAcceleratorRequest = {
+            "name": name,
+            "idempotency_token": idempotency_token,
+        }
         if ip_address_type is not None:
             input_["ip_address_type"] = ip_address_type
         if ip_addresses is not None:
             input_["ip_addresses"] = ip_addresses
         if enabled is not None:
             input_["enabled"] = enabled
-        input_["idempotency_token"] = idempotency_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -681,6 +694,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_custom_routing_endpoint_group(
@@ -728,17 +742,19 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.create_custom_routing_endpoint_group_request.CreateCustomRoutingEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["listener_arn"] = listener_arn
-        input_["endpoint_group_region"] = endpoint_group_region
-        input_["destination_configurations"] = destination_configurations
-        input_["idempotency_token"] = idempotency_token
+        input_: capo_global_accelerator.types.create_custom_routing_endpoint_group_request.CreateCustomRoutingEndpointGroupRequest = {
+            "listener_arn": listener_arn,
+            "endpoint_group_region": endpoint_group_region,
+            "destination_configurations": destination_configurations,
+            "idempotency_token": idempotency_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_custom_routing_listener(
@@ -781,16 +797,18 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.create_custom_routing_listener_request.CreateCustomRoutingListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
-        input_["port_ranges"] = port_ranges
-        input_["idempotency_token"] = idempotency_token
+        input_: capo_global_accelerator.types.create_custom_routing_listener_request.CreateCustomRoutingListenerRequest = {
+            "accelerator_arn": accelerator_arn,
+            "port_ranges": port_ranges,
+            "idempotency_token": idempotency_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_endpoint_group(
@@ -867,9 +885,11 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.create_endpoint_group_request.CreateEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["listener_arn"] = listener_arn
-        input_["endpoint_group_region"] = endpoint_group_region
+        input_: capo_global_accelerator.types.create_endpoint_group_request.CreateEndpointGroupRequest = {
+            "listener_arn": listener_arn,
+            "endpoint_group_region": endpoint_group_region,
+            "idempotency_token": idempotency_token,
+        }
         if endpoint_configurations is not None:
             input_["endpoint_configurations"] = endpoint_configurations
         if traffic_dial_percentage is not None:
@@ -884,7 +904,6 @@ class AsyncGlobalAcceleratorClient:
             input_["health_check_interval_seconds"] = health_check_interval_seconds
         if threshold_count is not None:
             input_["threshold_count"] = threshold_count
-        input_["idempotency_token"] = idempotency_token
         if port_overrides is not None:
             input_["port_overrides"] = port_overrides
 
@@ -893,6 +912,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_listener(
@@ -943,19 +963,21 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.create_listener_request.CreateListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
-        input_["port_ranges"] = port_ranges
-        input_["protocol"] = protocol
+        input_: capo_global_accelerator.types.create_listener_request.CreateListenerRequest = {
+            "accelerator_arn": accelerator_arn,
+            "port_ranges": port_ranges,
+            "protocol": protocol,
+            "idempotency_token": idempotency_token,
+        }
         if client_affinity is not None:
             input_["client_affinity"] = client_affinity
-        input_["idempotency_token"] = idempotency_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_accelerator(
@@ -993,14 +1015,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.delete_accelerator_request.DeleteAcceleratorRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.delete_accelerator_request.DeleteAcceleratorRequest = {
+            "accelerator_arn": accelerator_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cross_account_attachment(
@@ -1037,14 +1061,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.delete_cross_account_attachment_request.DeleteCrossAccountAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_arn"] = attachment_arn
+        input_: capo_global_accelerator.types.delete_cross_account_attachment_request.DeleteCrossAccountAttachmentRequest = {
+            "attachment_arn": attachment_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_custom_routing_accelerator(
@@ -1082,14 +1108,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.delete_custom_routing_accelerator_request.DeleteCustomRoutingAcceleratorRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.delete_custom_routing_accelerator_request.DeleteCustomRoutingAcceleratorRequest = {
+            "accelerator_arn": accelerator_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_custom_routing_endpoint_group(
@@ -1124,14 +1152,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.delete_custom_routing_endpoint_group_request.DeleteCustomRoutingEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_group_arn"] = endpoint_group_arn
+        input_: capo_global_accelerator.types.delete_custom_routing_endpoint_group_request.DeleteCustomRoutingEndpointGroupRequest = {
+            "endpoint_group_arn": endpoint_group_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_custom_routing_listener(
@@ -1167,14 +1197,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.delete_custom_routing_listener_request.DeleteCustomRoutingListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["listener_arn"] = listener_arn
+        input_: capo_global_accelerator.types.delete_custom_routing_listener_request.DeleteCustomRoutingListenerRequest = {
+            "listener_arn": listener_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_endpoint_group(
@@ -1209,14 +1241,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.delete_endpoint_group_request.DeleteEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_group_arn"] = endpoint_group_arn
+        input_: capo_global_accelerator.types.delete_endpoint_group_request.DeleteEndpointGroupRequest = {
+            "endpoint_group_arn": endpoint_group_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_listener(
@@ -1252,14 +1286,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.delete_listener_request.DeleteListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["listener_arn"] = listener_arn
+        input_: capo_global_accelerator.types.delete_listener_request.DeleteListenerRequest = {
+            "listener_arn": listener_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deny_custom_routing_traffic(
@@ -1308,9 +1344,10 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.deny_custom_routing_traffic_request.DenyCustomRoutingTrafficRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_group_arn"] = endpoint_group_arn
-        input_["endpoint_id"] = endpoint_id
+        input_: capo_global_accelerator.types.deny_custom_routing_traffic_request.DenyCustomRoutingTrafficRequest = {
+            "endpoint_group_arn": endpoint_group_arn,
+            "endpoint_id": endpoint_id,
+        }
         if destination_addresses is not None:
             input_["destination_addresses"] = destination_addresses
         if destination_ports is not None:
@@ -1323,6 +1360,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deprovision_byoip_cidr(
@@ -1361,14 +1399,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.deprovision_byoip_cidr_request.DeprovisionByoipCidrRequest = {}  # type: ignore[typeddict-item]
-        input_["cidr"] = cidr
+        input_: capo_global_accelerator.types.deprovision_byoip_cidr_request.DeprovisionByoipCidrRequest = {
+            "cidr": cidr
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_accelerator(
@@ -1405,14 +1445,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.describe_accelerator_request.DescribeAcceleratorRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.describe_accelerator_request.DescribeAcceleratorRequest = {
+            "accelerator_arn": accelerator_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_accelerator_attributes(
@@ -1449,14 +1491,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.describe_accelerator_attributes_request.DescribeAcceleratorAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.describe_accelerator_attributes_request.DescribeAcceleratorAttributesRequest = {
+            "accelerator_arn": accelerator_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_cross_account_attachment(
@@ -1494,14 +1538,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.describe_cross_account_attachment_request.DescribeCrossAccountAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_arn"] = attachment_arn
+        input_: capo_global_accelerator.types.describe_cross_account_attachment_request.DescribeCrossAccountAttachmentRequest = {
+            "attachment_arn": attachment_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_custom_routing_accelerator(
@@ -1538,14 +1584,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.describe_custom_routing_accelerator_request.DescribeCustomRoutingAcceleratorRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.describe_custom_routing_accelerator_request.DescribeCustomRoutingAcceleratorRequest = {
+            "accelerator_arn": accelerator_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_custom_routing_accelerator_attributes(
@@ -1582,14 +1630,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.describe_custom_routing_accelerator_attributes_request.DescribeCustomRoutingAcceleratorAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.describe_custom_routing_accelerator_attributes_request.DescribeCustomRoutingAcceleratorAttributesRequest = {
+            "accelerator_arn": accelerator_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_custom_routing_endpoint_group(
@@ -1626,14 +1676,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.describe_custom_routing_endpoint_group_request.DescribeCustomRoutingEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_group_arn"] = endpoint_group_arn
+        input_: capo_global_accelerator.types.describe_custom_routing_endpoint_group_request.DescribeCustomRoutingEndpointGroupRequest = {
+            "endpoint_group_arn": endpoint_group_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_custom_routing_listener(
@@ -1670,14 +1722,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.describe_custom_routing_listener_request.DescribeCustomRoutingListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["listener_arn"] = listener_arn
+        input_: capo_global_accelerator.types.describe_custom_routing_listener_request.DescribeCustomRoutingListenerRequest = {
+            "listener_arn": listener_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_endpoint_group(
@@ -1714,14 +1768,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.describe_endpoint_group_request.DescribeEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_group_arn"] = endpoint_group_arn
+        input_: capo_global_accelerator.types.describe_endpoint_group_request.DescribeEndpointGroupRequest = {
+            "endpoint_group_arn": endpoint_group_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_listener(
@@ -1758,14 +1814,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.describe_listener_request.DescribeListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["listener_arn"] = listener_arn
+        input_: capo_global_accelerator.types.describe_listener_request.DescribeListenerRequest = {
+            "listener_arn": listener_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_accelerators(
@@ -1808,7 +1866,7 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_accelerators_request.ListAcceleratorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_global_accelerator.types.list_accelerators_request.ListAcceleratorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1819,6 +1877,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_accelerators(
@@ -1889,7 +1948,7 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_byoip_cidrs_request.ListByoipCidrsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_global_accelerator.types.list_byoip_cidrs_request.ListByoipCidrsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1900,6 +1959,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_byoip_cidrs(
@@ -1968,7 +2028,7 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_cross_account_attachments_request.ListCrossAccountAttachmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_global_accelerator.types.list_cross_account_attachments_request.ListCrossAccountAttachmentsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1979,6 +2039,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cross_account_attachments(
@@ -2033,13 +2094,14 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_cross_account_resource_accounts_request.ListCrossAccountResourceAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_global_accelerator.types.list_cross_account_resource_accounts_request.ListCrossAccountResourceAccountsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_cross_account_resources(
@@ -2090,10 +2152,11 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_cross_account_resources_request.ListCrossAccountResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_global_accelerator.types.list_cross_account_resources_request.ListCrossAccountResourcesRequest = {
+            "resource_owner_aws_account_id": resource_owner_aws_account_id
+        }
         if accelerator_arn is not None:
             input_["accelerator_arn"] = accelerator_arn
-        input_["resource_owner_aws_account_id"] = resource_owner_aws_account_id
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2104,6 +2167,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cross_account_resources(
@@ -2177,7 +2241,7 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_custom_routing_accelerators_request.ListCustomRoutingAcceleratorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_global_accelerator.types.list_custom_routing_accelerators_request.ListCustomRoutingAcceleratorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2188,6 +2252,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_custom_routing_accelerators(
@@ -2258,8 +2323,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_custom_routing_endpoint_groups_request.ListCustomRoutingEndpointGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["listener_arn"] = listener_arn
+        input_: capo_global_accelerator.types.list_custom_routing_endpoint_groups_request.ListCustomRoutingEndpointGroupsRequest = {
+            "listener_arn": listener_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2270,6 +2336,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_custom_routing_endpoint_groups(
@@ -2342,8 +2409,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_custom_routing_listeners_request.ListCustomRoutingListenersRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.list_custom_routing_listeners_request.ListCustomRoutingListenersRequest = {
+            "accelerator_arn": accelerator_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2354,6 +2422,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_custom_routing_listeners(
@@ -2431,8 +2500,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_custom_routing_port_mappings_request.ListCustomRoutingPortMappingsRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.list_custom_routing_port_mappings_request.ListCustomRoutingPortMappingsRequest = {
+            "accelerator_arn": accelerator_arn
+        }
         if endpoint_group_arn is not None:
             input_["endpoint_group_arn"] = endpoint_group_arn
         if max_results is not None:
@@ -2445,6 +2515,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_custom_routing_port_mappings(
@@ -2523,9 +2594,10 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_custom_routing_port_mappings_by_destination_request.ListCustomRoutingPortMappingsByDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_id"] = endpoint_id
-        input_["destination_address"] = destination_address
+        input_: capo_global_accelerator.types.list_custom_routing_port_mappings_by_destination_request.ListCustomRoutingPortMappingsByDestinationRequest = {
+            "endpoint_id": endpoint_id,
+            "destination_address": destination_address,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2536,6 +2608,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_custom_routing_port_mappings_by_destination(
@@ -2610,8 +2683,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_endpoint_groups_request.ListEndpointGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["listener_arn"] = listener_arn
+        input_: capo_global_accelerator.types.list_endpoint_groups_request.ListEndpointGroupsRequest = {
+            "listener_arn": listener_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2622,6 +2696,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_endpoint_groups(
@@ -2694,8 +2769,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_listeners_request.ListListenersRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.list_listeners_request.ListListenersRequest = {
+            "accelerator_arn": accelerator_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2706,6 +2782,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_listeners(
@@ -2772,14 +2849,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_global_accelerator.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def provision_byoip_cidr(
@@ -2820,15 +2899,17 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.provision_byoip_cidr_request.ProvisionByoipCidrRequest = {}  # type: ignore[typeddict-item]
-        input_["cidr"] = cidr
-        input_["cidr_authorization_context"] = cidr_authorization_context
+        input_: capo_global_accelerator.types.provision_byoip_cidr_request.ProvisionByoipCidrRequest = {
+            "cidr": cidr,
+            "cidr_authorization_context": cidr_authorization_context,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_custom_routing_endpoints(
@@ -2868,15 +2949,17 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.remove_custom_routing_endpoints_request.RemoveCustomRoutingEndpointsRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_ids"] = endpoint_ids
-        input_["endpoint_group_arn"] = endpoint_group_arn
+        input_: capo_global_accelerator.types.remove_custom_routing_endpoints_request.RemoveCustomRoutingEndpointsRequest = {
+            "endpoint_ids": endpoint_ids,
+            "endpoint_group_arn": endpoint_group_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_endpoints(
@@ -2915,15 +2998,17 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.remove_endpoints_request.RemoveEndpointsRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_identifiers"] = endpoint_identifiers
-        input_["endpoint_group_arn"] = endpoint_group_arn
+        input_: capo_global_accelerator.types.remove_endpoints_request.RemoveEndpointsRequest = {
+            "endpoint_identifiers": endpoint_identifiers,
+            "endpoint_group_arn": endpoint_group_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2962,15 +3047,17 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_global_accelerator.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -3009,15 +3096,17 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_global_accelerator.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_accelerator(
@@ -3073,8 +3162,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.update_accelerator_request.UpdateAcceleratorRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.update_accelerator_request.UpdateAcceleratorRequest = {
+            "accelerator_arn": accelerator_arn
+        }
         if name is not None:
             input_["name"] = name
         if ip_address_type is not None:
@@ -3089,6 +3179,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_accelerator_attributes(
@@ -3139,8 +3230,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.update_accelerator_attributes_request.UpdateAcceleratorAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.update_accelerator_attributes_request.UpdateAcceleratorAttributesRequest = {
+            "accelerator_arn": accelerator_arn
+        }
         if flow_logs_enabled is not None:
             input_["flow_logs_enabled"] = flow_logs_enabled
         if flow_logs_s3_bucket is not None:
@@ -3153,6 +3245,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cross_account_attachment(
@@ -3212,8 +3305,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.update_cross_account_attachment_request.UpdateCrossAccountAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_arn"] = attachment_arn
+        input_: capo_global_accelerator.types.update_cross_account_attachment_request.UpdateCrossAccountAttachmentRequest = {
+            "attachment_arn": attachment_arn
+        }
         if name is not None:
             input_["name"] = name
         if add_principals is not None:
@@ -3230,6 +3324,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_custom_routing_accelerator(
@@ -3284,8 +3379,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.update_custom_routing_accelerator_request.UpdateCustomRoutingAcceleratorRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.update_custom_routing_accelerator_request.UpdateCustomRoutingAcceleratorRequest = {
+            "accelerator_arn": accelerator_arn
+        }
         if name is not None:
             input_["name"] = name
         if ip_address_type is not None:
@@ -3300,6 +3396,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_custom_routing_accelerator_attributes(
@@ -3350,8 +3447,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.update_custom_routing_accelerator_attributes_request.UpdateCustomRoutingAcceleratorAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["accelerator_arn"] = accelerator_arn
+        input_: capo_global_accelerator.types.update_custom_routing_accelerator_attributes_request.UpdateCustomRoutingAcceleratorAttributesRequest = {
+            "accelerator_arn": accelerator_arn
+        }
         if flow_logs_enabled is not None:
             input_["flow_logs_enabled"] = flow_logs_enabled
         if flow_logs_s3_bucket is not None:
@@ -3364,6 +3462,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_custom_routing_listener(
@@ -3404,15 +3503,17 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.update_custom_routing_listener_request.UpdateCustomRoutingListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["listener_arn"] = listener_arn
-        input_["port_ranges"] = port_ranges
+        input_: capo_global_accelerator.types.update_custom_routing_listener_request.UpdateCustomRoutingListenerRequest = {
+            "listener_arn": listener_arn,
+            "port_ranges": port_ranges,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_endpoint_group(
@@ -3483,8 +3584,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.update_endpoint_group_request.UpdateEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_group_arn"] = endpoint_group_arn
+        input_: capo_global_accelerator.types.update_endpoint_group_request.UpdateEndpointGroupRequest = {
+            "endpoint_group_arn": endpoint_group_arn
+        }
         if endpoint_configurations is not None:
             input_["endpoint_configurations"] = endpoint_configurations
         if traffic_dial_percentage is not None:
@@ -3507,6 +3609,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_listener(
@@ -3557,8 +3660,9 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.update_listener_request.UpdateListenerRequest = {}  # type: ignore[typeddict-item]
-        input_["listener_arn"] = listener_arn
+        input_: capo_global_accelerator.types.update_listener_request.UpdateListenerRequest = {
+            "listener_arn": listener_arn
+        }
         if port_ranges is not None:
             input_["port_ranges"] = port_ranges
         if protocol is not None:
@@ -3571,6 +3675,7 @@ class AsyncGlobalAcceleratorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def withdraw_byoip_cidr(
@@ -3609,14 +3714,16 @@ class AsyncGlobalAcceleratorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_global_accelerator.types.withdraw_byoip_cidr_request.WithdrawByoipCidrRequest = {}  # type: ignore[typeddict-item]
-        input_["cidr"] = cidr
+        input_: capo_global_accelerator.types.withdraw_byoip_cidr_request.WithdrawByoipCidrRequest = {
+            "cidr": cidr
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

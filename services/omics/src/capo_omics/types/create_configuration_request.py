@@ -50,13 +50,13 @@ def serialize_json(value: CreateConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationRequest:
     out: CreateConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateConfigurationRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "runConfigurations" in data:
+    if data.get("runConfigurations") is not None:
         import capo_omics.types.run_configurations
 
         out["run_configurations"] = (
@@ -68,11 +68,11 @@ def deserialize_json(data: dict) -> CreateConfigurationRequest:
         raise DeserializationError(
             "CreateConfigurationRequest.run_configurations required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("CreateConfigurationRequest.request_id required")

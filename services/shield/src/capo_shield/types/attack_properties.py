@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> AttackProperties:
 
     out: AttackProperties = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_shield.types.attack_property.deserialize_aws_json_1_1(item))
     return out

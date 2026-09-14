@@ -33,10 +33,10 @@ def serialize_aws_json_1_0(value: DeleteInvoiceUnitRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteInvoiceUnitRequest:
     out: DeleteInvoiceUnitRequest = {}  # type: ignore[typeddict-item]
-    if "InvoiceUnitArn" in data:
+    if data.get("InvoiceUnitArn") is not None:
         out["invoice_unit_arn"] = data["InvoiceUnitArn"]
     else:
         raise DeserializationError("DeleteInvoiceUnitRequest.invoice_unit_arn required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

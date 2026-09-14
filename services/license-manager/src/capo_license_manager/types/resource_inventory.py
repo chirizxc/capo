@@ -83,9 +83,9 @@ def serialize_aws_json_1_1(value: ResourceInventory) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceInventory:
     out: ResourceInventory = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_license_manager.types.resource_type
 
         out["resource_type"] = (
@@ -93,15 +93,15 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceInventory:
                 data["ResourceType"]
             )
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         out["platform"] = data["Platform"]
-    if "PlatformVersion" in data:
+    if data.get("PlatformVersion") is not None:
         out["platform_version"] = data["PlatformVersion"]
-    if "ResourceOwningAccountId" in data:
+    if data.get("ResourceOwningAccountId") is not None:
         out["resource_owning_account_id"] = data["ResourceOwningAccountId"]
-    if "MarketplaceProductCodes" in data:
+    if data.get("MarketplaceProductCodes") is not None:
         import capo_license_manager.types.string_list
 
         out["marketplace_product_codes"] = (
@@ -109,14 +109,14 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceInventory:
                 data["MarketplaceProductCodes"]
             )
         )
-    if "UsageOperation" in data:
+    if data.get("UsageOperation") is not None:
         out["usage_operation"] = data["UsageOperation"]
-    if "AmiId" in data:
+    if data.get("AmiId") is not None:
         out["ami_id"] = data["AmiId"]
-    if "HostId" in data:
+    if data.get("HostId") is not None:
         out["host_id"] = data["HostId"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
     return out

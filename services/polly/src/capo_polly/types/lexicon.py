@@ -28,8 +28,8 @@ def serialize_json(value: Lexicon) -> dict:
 
 def deserialize_json(data: dict) -> Lexicon:
     out: Lexicon = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

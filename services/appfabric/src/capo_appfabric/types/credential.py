@@ -45,7 +45,7 @@ def serialize_json(value: Credential) -> dict:
 
 
 def deserialize_json(data: dict) -> Credential:
-    if "oauth2Credential" in data:
+    if data.get("oauth2Credential") is not None:
         import capo_appfabric.types.oauth2_credential
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> Credential:
                 data["oauth2Credential"]
             )
         }
-    elif "apiKeyCredential" in data:
+    elif data.get("apiKeyCredential") is not None:
         import capo_appfabric.types.api_key_credential
 
         return {

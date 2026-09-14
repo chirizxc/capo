@@ -48,22 +48,22 @@ def serialize_json(value: ListIntegratedResourcesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListIntegratedResourcesInput:
     out: ListIntegratedResourcesInput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError(
             "ListIntegratedResourcesInput.agent_space_id required"
         )
-    if "integrationId" in data:
+    if data.get("integrationId") is not None:
         out["integration_id"] = data["integrationId"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_securityagent.types.resource_type
 
         out["resource_type"] = capo_securityagent.types.resource_type.deserialize_json(
             data["resourceType"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

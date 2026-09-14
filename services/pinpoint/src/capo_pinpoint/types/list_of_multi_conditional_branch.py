@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfMultiConditionalBranch:
 
     out: ListOfMultiConditionalBranch = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint.types.multi_conditional_branch.deserialize_json(item))
     return out

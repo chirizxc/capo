@@ -72,15 +72,15 @@ def serialize_json(value: CreateEventTriggerRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEventTriggerRequest:
     out: CreateEventTriggerRequest = {}  # type: ignore[typeddict-item]
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
     else:
         raise DeserializationError(
             "CreateEventTriggerRequest.object_type_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EventTriggerConditions" in data:
+    if data.get("EventTriggerConditions") is not None:
         import capo_customer_profiles.types.event_trigger_conditions
 
         out["event_trigger_conditions"] = (
@@ -92,9 +92,9 @@ def deserialize_json(data: dict) -> CreateEventTriggerRequest:
         raise DeserializationError(
             "CreateEventTriggerRequest.event_trigger_conditions required"
         )
-    if "SegmentFilter" in data:
+    if data.get("SegmentFilter") is not None:
         out["segment_filter"] = data["SegmentFilter"]
-    if "EventTriggerLimits" in data:
+    if data.get("EventTriggerLimits") is not None:
         import capo_customer_profiles.types.event_trigger_limits
 
         out["event_trigger_limits"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> CreateEventTriggerRequest:
                 data["EventTriggerLimits"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AdditionalInferenceSpecifications:
 
     out: AdditionalInferenceSpecifications = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.additional_inference_specification_definition.deserialize_aws_json_1_1(
                 item

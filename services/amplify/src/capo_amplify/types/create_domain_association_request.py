@@ -75,15 +75,15 @@ def serialize_json(value: CreateDomainAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainAssociationRequest:
     out: CreateDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError(
             "CreateDomainAssociationRequest.domain_name required"
         )
-    if "enableAutoSubDomain" in data:
+    if data.get("enableAutoSubDomain") is not None:
         out["enable_auto_sub_domain"] = data["enableAutoSubDomain"]
-    if "subDomainSettings" in data:
+    if data.get("subDomainSettings") is not None:
         import capo_amplify.types.sub_domain_settings
 
         out["sub_domain_settings"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> CreateDomainAssociationRequest:
         raise DeserializationError(
             "CreateDomainAssociationRequest.sub_domain_settings required"
         )
-    if "autoSubDomainCreationPatterns" in data:
+    if data.get("autoSubDomainCreationPatterns") is not None:
         import capo_amplify.types.auto_sub_domain_creation_patterns
 
         out["auto_sub_domain_creation_patterns"] = (
@@ -103,9 +103,9 @@ def deserialize_json(data: dict) -> CreateDomainAssociationRequest:
                 data["autoSubDomainCreationPatterns"]
             )
         )
-    if "autoSubDomainIAMRole" in data:
+    if data.get("autoSubDomainIAMRole") is not None:
         out["auto_sub_domain_iam_role"] = data["autoSubDomainIAMRole"]
-    if "certificateSettings" in data:
+    if data.get("certificateSettings") is not None:
         import capo_amplify.types.certificate_settings
 
         out["certificate_settings"] = (

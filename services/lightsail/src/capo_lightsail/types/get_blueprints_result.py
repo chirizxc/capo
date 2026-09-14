@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetBlueprintsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBlueprintsResult:
     out: GetBlueprintsResult = {}  # type: ignore[typeddict-item]
-    if "blueprints" in data:
+    if data.get("blueprints") is not None:
         import capo_lightsail.types.blueprint_list
 
         out["blueprints"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetBlueprintsResult:
                 data["blueprints"]
             )
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

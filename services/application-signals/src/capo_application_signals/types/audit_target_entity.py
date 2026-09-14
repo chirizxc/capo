@@ -78,7 +78,7 @@ def serialize_json(value: AuditTargetEntity) -> dict:
 
 
 def deserialize_json(data: dict) -> AuditTargetEntity:
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_application_signals.types.service_entity
 
         return {
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> AuditTargetEntity:
                 data["Service"]
             )
         }
-    elif "Slo" in data:
+    elif data.get("Slo") is not None:
         import capo_application_signals.types.service_level_objective_entity
 
         return {
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> AuditTargetEntity:
                 data["Slo"]
             )
         }
-    elif "ServiceOperation" in data:
+    elif data.get("ServiceOperation") is not None:
         import capo_application_signals.types.service_operation_entity
 
         return {
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> AuditTargetEntity:
                 data["ServiceOperation"]
             )
         }
-    elif "Canary" in data:
+    elif data.get("Canary") is not None:
         import capo_application_signals.types.canary_entity
 
         return {

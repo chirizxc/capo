@@ -27,8 +27,11 @@ def serialize_json(input_to_serialize: EventConfigurations) -> dict:
 def deserialize_json(data: dict) -> EventConfigurations:
     out: EventConfigurations = {}
     for key, value in data.items():
-        import capo_iot.types.configuration
         import capo_iot.types.event_type
+
+        if value is None:
+            continue
+        import capo_iot.types.configuration
 
         out[capo_iot.types.event_type.deserialize_json(key)] = (
             capo_iot.types.configuration.deserialize_json(value)

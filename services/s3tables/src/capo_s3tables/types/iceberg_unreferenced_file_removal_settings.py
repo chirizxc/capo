@@ -31,8 +31,8 @@ def serialize_json(value: IcebergUnreferencedFileRemovalSettings) -> dict:
 
 def deserialize_json(data: dict) -> IcebergUnreferencedFileRemovalSettings:
     out: IcebergUnreferencedFileRemovalSettings = {}  # type: ignore[typeddict-item]
-    if "unreferencedDays" in data:
+    if data.get("unreferencedDays") is not None:
         out["unreferenced_days"] = data["unreferencedDays"]
-    if "nonCurrentDays" in data:
+    if data.get("nonCurrentDays") is not None:
         out["non_current_days"] = data["nonCurrentDays"]
     return out

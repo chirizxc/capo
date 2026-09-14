@@ -242,9 +242,9 @@ def serialize_json(value: BucketMetadata) -> dict:
 
 def deserialize_json(data: dict) -> BucketMetadata:
     out: BucketMetadata = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "allowsUnencryptedObjectUploads" in data:
+    if data.get("allowsUnencryptedObjectUploads") is not None:
         import capo_macie2.types.allows_unencrypted_object_uploads
 
         out["allows_unencrypted_object_uploads"] = (
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> BucketMetadata:
                 data["allowsUnencryptedObjectUploads"]
             )
         )
-    if "automatedDiscoveryMonitoringStatus" in data:
+    if data.get("automatedDiscoveryMonitoringStatus") is not None:
         import capo_macie2.types.automated_discovery_monitoring_status
 
         out["automated_discovery_monitoring_status"] = (
@@ -260,9 +260,9 @@ def deserialize_json(data: dict) -> BucketMetadata:
                 data["automatedDiscoveryMonitoringStatus"]
             )
         )
-    if "bucketArn" in data:
+    if data.get("bucketArn") is not None:
         out["bucket_arn"] = data["bucketArn"]
-    if "bucketCreatedAt" in data:
+    if data.get("bucketCreatedAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["bucket_created_at"] = (
@@ -270,13 +270,13 @@ def deserialize_json(data: dict) -> BucketMetadata:
                 data["bucketCreatedAt"]
             )
         )
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
-    if "classifiableObjectCount" in data:
+    if data.get("classifiableObjectCount") is not None:
         out["classifiable_object_count"] = data["classifiableObjectCount"]
-    if "classifiableSizeInBytes" in data:
+    if data.get("classifiableSizeInBytes") is not None:
         out["classifiable_size_in_bytes"] = data["classifiableSizeInBytes"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_macie2.types.bucket_metadata_error_code
 
         out["error_code"] = (
@@ -284,15 +284,15 @@ def deserialize_json(data: dict) -> BucketMetadata:
                 data["errorCode"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "jobDetails" in data:
+    if data.get("jobDetails") is not None:
         import capo_macie2.types.job_details
 
         out["job_details"] = capo_macie2.types.job_details.deserialize_json(
             data["jobDetails"]
         )
-    if "lastAutomatedDiscoveryTime" in data:
+    if data.get("lastAutomatedDiscoveryTime") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["last_automated_discovery_time"] = (
@@ -300,15 +300,15 @@ def deserialize_json(data: dict) -> BucketMetadata:
                 data["lastAutomatedDiscoveryTime"]
             )
         )
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["last_updated"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["lastUpdated"]
         )
-    if "objectCount" in data:
+    if data.get("objectCount") is not None:
         out["object_count"] = data["objectCount"]
-    if "objectCountByEncryptionType" in data:
+    if data.get("objectCountByEncryptionType") is not None:
         import capo_macie2.types.object_count_by_encryption_type
 
         out["object_count_by_encryption_type"] = (
@@ -316,15 +316,15 @@ def deserialize_json(data: dict) -> BucketMetadata:
                 data["objectCountByEncryptionType"]
             )
         )
-    if "publicAccess" in data:
+    if data.get("publicAccess") is not None:
         import capo_macie2.types.bucket_public_access
 
         out["public_access"] = capo_macie2.types.bucket_public_access.deserialize_json(
             data["publicAccess"]
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "replicationDetails" in data:
+    if data.get("replicationDetails") is not None:
         import capo_macie2.types.replication_details
 
         out["replication_details"] = (
@@ -332,9 +332,9 @@ def deserialize_json(data: dict) -> BucketMetadata:
                 data["replicationDetails"]
             )
         )
-    if "sensitivityScore" in data:
+    if data.get("sensitivityScore") is not None:
         out["sensitivity_score"] = data["sensitivityScore"]
-    if "serverSideEncryption" in data:
+    if data.get("serverSideEncryption") is not None:
         import capo_macie2.types.bucket_server_side_encryption
 
         out["server_side_encryption"] = (
@@ -342,23 +342,23 @@ def deserialize_json(data: dict) -> BucketMetadata:
                 data["serverSideEncryption"]
             )
         )
-    if "sharedAccess" in data:
+    if data.get("sharedAccess") is not None:
         import capo_macie2.types.shared_access
 
         out["shared_access"] = capo_macie2.types.shared_access.deserialize_json(
             data["sharedAccess"]
         )
-    if "sizeInBytes" in data:
+    if data.get("sizeInBytes") is not None:
         out["size_in_bytes"] = data["sizeInBytes"]
-    if "sizeInBytesCompressed" in data:
+    if data.get("sizeInBytesCompressed") is not None:
         out["size_in_bytes_compressed"] = data["sizeInBytesCompressed"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_macie2.types.__list_of_key_value_pair
 
         out["tags"] = capo_macie2.types.__list_of_key_value_pair.deserialize_json(
             data["tags"]
         )
-    if "unclassifiableObjectCount" in data:
+    if data.get("unclassifiableObjectCount") is not None:
         import capo_macie2.types.object_level_statistics
 
         out["unclassifiable_object_count"] = (
@@ -366,7 +366,7 @@ def deserialize_json(data: dict) -> BucketMetadata:
                 data["unclassifiableObjectCount"]
             )
         )
-    if "unclassifiableObjectSizeInBytes" in data:
+    if data.get("unclassifiableObjectSizeInBytes") is not None:
         import capo_macie2.types.object_level_statistics
 
         out["unclassifiable_object_size_in_bytes"] = (
@@ -374,6 +374,6 @@ def deserialize_json(data: dict) -> BucketMetadata:
                 data["unclassifiableObjectSizeInBytes"]
             )
         )
-    if "versioning" in data:
+    if data.get("versioning") is not None:
         out["versioning"] = data["versioning"]
     return out

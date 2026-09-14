@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: GetResourceMetadataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourceMetadataResponse:
     out: GetResourceMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
-    if "Features" in data:
+    if data.get("Features") is not None:
         import capo_pi.types.feature_metadata_map
 
         out["features"] = capo_pi.types.feature_metadata_map.deserialize_aws_json_1_1(

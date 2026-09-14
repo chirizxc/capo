@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ManagedResourceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedResourceSummary:
     out: ManagedResourceSummary = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_license_manager.types.resource_type
 
         out["resource_type"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedResourceSummary:
                 data["ResourceType"]
             )
         )
-    if "AssociationCount" in data:
+    if data.get("AssociationCount") is not None:
         out["association_count"] = data["AssociationCount"]
     return out

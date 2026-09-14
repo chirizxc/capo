@@ -43,15 +43,15 @@ def serialize_json(value: CanaryStatus) -> dict:
 
 def deserialize_json(data: dict) -> CanaryStatus:
     out: CanaryStatus = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_synthetics.types.canary_state
 
         out["state"] = capo_synthetics.types.canary_state.deserialize_json(
             data["State"]
         )
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
-    if "StateReasonCode" in data:
+    if data.get("StateReasonCode") is not None:
         import capo_synthetics.types.canary_state_reason_code
 
         out["state_reason_code"] = (

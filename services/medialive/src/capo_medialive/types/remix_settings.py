@@ -45,7 +45,7 @@ def serialize_json(value: RemixSettings) -> dict:
 
 def deserialize_json(data: dict) -> RemixSettings:
     out: RemixSettings = {}  # type: ignore[typeddict-item]
-    if "channelMappings" in data:
+    if data.get("channelMappings") is not None:
         import capo_medialive.types.__list_of_audio_channel_mapping
 
         out["channel_mappings"] = (
@@ -53,8 +53,8 @@ def deserialize_json(data: dict) -> RemixSettings:
                 data["channelMappings"]
             )
         )
-    if "channelsIn" in data:
+    if data.get("channelsIn") is not None:
         out["channels_in"] = data["channelsIn"]
-    if "channelsOut" in data:
+    if data.get("channelsOut") is not None:
         out["channels_out"] = data["channelsOut"]
     return out

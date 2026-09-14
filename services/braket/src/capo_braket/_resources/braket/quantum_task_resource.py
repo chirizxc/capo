@@ -103,15 +103,16 @@ class QuantumTaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.create_quantum_task_request.CreateQuantumTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["device_arn"] = device_arn
+        input_: capo_braket.types.create_quantum_task_request.CreateQuantumTaskRequest = {
+            "client_token": client_token,
+            "device_arn": device_arn,
+            "shots": shots,
+            "output_s3_bucket": output_s3_bucket,
+            "output_s3_key_prefix": output_s3_key_prefix,
+            "action": action,
+        }
         if device_parameters is not None:
             input_["device_parameters"] = device_parameters
-        input_["shots"] = shots
-        input_["output_s3_bucket"] = output_s3_bucket
-        input_["output_s3_key_prefix"] = output_s3_key_prefix
-        input_["action"] = action
         if tags is not None:
             input_["tags"] = tags
         if job_token is not None:
@@ -126,6 +127,7 @@ class QuantumTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -167,8 +169,9 @@ class QuantumTaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.get_quantum_task_request.GetQuantumTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["quantum_task_arn"] = quantum_task_arn
+        input_: capo_braket.types.get_quantum_task_request.GetQuantumTaskRequest = {
+            "quantum_task_arn": quantum_task_arn
+        }
         if additional_attribute_names is not None:
             input_["additional_attribute_names"] = additional_attribute_names
 
@@ -177,6 +180,7 @@ class QuantumTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -217,15 +221,17 @@ class QuantumTaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.cancel_quantum_task_request.CancelQuantumTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["quantum_task_arn"] = quantum_task_arn
-        input_["client_token"] = client_token
+        input_: capo_braket.types.cancel_quantum_task_request.CancelQuantumTaskRequest = {
+            "quantum_task_arn": quantum_task_arn,
+            "client_token": client_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -266,18 +272,20 @@ class QuantumTaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.search_quantum_tasks_request.SearchQuantumTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_braket.types.search_quantum_tasks_request.SearchQuantumTasksRequest = {
+            "filters": filters
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["filters"] = filters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -345,15 +353,16 @@ class AsyncQuantumTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.create_quantum_task_request.CreateQuantumTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["device_arn"] = device_arn
+        input_: capo_braket.types.create_quantum_task_request.CreateQuantumTaskRequest = {
+            "client_token": client_token,
+            "device_arn": device_arn,
+            "shots": shots,
+            "output_s3_bucket": output_s3_bucket,
+            "output_s3_key_prefix": output_s3_key_prefix,
+            "action": action,
+        }
         if device_parameters is not None:
             input_["device_parameters"] = device_parameters
-        input_["shots"] = shots
-        input_["output_s3_bucket"] = output_s3_bucket
-        input_["output_s3_key_prefix"] = output_s3_key_prefix
-        input_["action"] = action
         if tags is not None:
             input_["tags"] = tags
         if job_token is not None:
@@ -368,6 +377,7 @@ class AsyncQuantumTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -410,8 +420,9 @@ class AsyncQuantumTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.get_quantum_task_request.GetQuantumTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["quantum_task_arn"] = quantum_task_arn
+        input_: capo_braket.types.get_quantum_task_request.GetQuantumTaskRequest = {
+            "quantum_task_arn": quantum_task_arn
+        }
         if additional_attribute_names is not None:
             input_["additional_attribute_names"] = additional_attribute_names
 
@@ -420,6 +431,7 @@ class AsyncQuantumTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -461,15 +473,17 @@ class AsyncQuantumTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.cancel_quantum_task_request.CancelQuantumTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["quantum_task_arn"] = quantum_task_arn
-        input_["client_token"] = client_token
+        input_: capo_braket.types.cancel_quantum_task_request.CancelQuantumTaskRequest = {
+            "quantum_task_arn": quantum_task_arn,
+            "client_token": client_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -511,16 +525,18 @@ class AsyncQuantumTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.search_quantum_tasks_request.SearchQuantumTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_braket.types.search_quantum_tasks_request.SearchQuantumTasksRequest = {
+            "filters": filters
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["filters"] = filters
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

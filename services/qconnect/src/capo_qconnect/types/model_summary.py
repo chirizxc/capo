@@ -77,19 +77,19 @@ def serialize_json(value: ModelSummary) -> dict:
 
 def deserialize_json(data: dict) -> ModelSummary:
     out: ModelSummary = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("ModelSummary.model_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("ModelSummary.display_name required")
-    if "crossRegionStatus" in data:
+    if data.get("crossRegionStatus") is not None:
         out["cross_region_status"] = data["crossRegionStatus"]
-    if "supportsPromptCaching" in data:
+    if data.get("supportsPromptCaching") is not None:
         out["supports_prompt_caching"] = data["supportsPromptCaching"]
-    if "supportedAIPromptTypes" in data:
+    if data.get("supportedAIPromptTypes") is not None:
         import capo_qconnect.types.ai_prompt_type_list
 
         out["supported_ai_prompt_types"] = (
@@ -97,9 +97,9 @@ def deserialize_json(data: dict) -> ModelSummary:
                 data["supportedAIPromptTypes"]
             )
         )
-    if "modelLifecycle" in data:
+    if data.get("modelLifecycle") is not None:
         out["model_lifecycle"] = data["modelLifecycle"]
-    if "legacyTimestamp" in data:
+    if data.get("legacyTimestamp") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["legacy_timestamp"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> ModelSummary:
                 data["legacyTimestamp"]
             )
         )
-    if "endOfLifeTimestamp" in data:
+    if data.get("endOfLifeTimestamp") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["end_of_life_timestamp"] = (

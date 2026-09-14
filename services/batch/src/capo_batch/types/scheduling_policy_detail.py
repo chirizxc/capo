@@ -54,11 +54,11 @@ def serialize_json(value: SchedulingPolicyDetail) -> dict:
 
 def deserialize_json(data: dict) -> SchedulingPolicyDetail:
     out: SchedulingPolicyDetail = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "quotaSharePolicy" in data:
+    if data.get("quotaSharePolicy") is not None:
         import capo_batch.types.quota_share_policy
 
         out["quota_share_policy"] = (
@@ -66,13 +66,13 @@ def deserialize_json(data: dict) -> SchedulingPolicyDetail:
                 data["quotaSharePolicy"]
             )
         )
-    if "fairsharePolicy" in data:
+    if data.get("fairsharePolicy") is not None:
         import capo_batch.types.fairshare_policy
 
         out["fairshare_policy"] = capo_batch.types.fairshare_policy.deserialize_json(
             data["fairsharePolicy"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GeocodeResultItemList:
 
     out: GeocodeResultItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_places.types.geocode_result_item.deserialize_json(item))
     return out

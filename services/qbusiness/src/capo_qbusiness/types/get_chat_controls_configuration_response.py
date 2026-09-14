@@ -97,13 +97,13 @@ def serialize_json(value: GetChatControlsConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetChatControlsConfigurationResponse:
     out: GetChatControlsConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "responseScope" in data:
+    if data.get("responseScope") is not None:
         import capo_qbusiness.types.response_scope
 
         out["response_scope"] = capo_qbusiness.types.response_scope.deserialize_json(
             data["responseScope"]
         )
-    if "orchestrationConfiguration" in data:
+    if data.get("orchestrationConfiguration") is not None:
         import capo_qbusiness.types.applied_orchestration_configuration
 
         out["orchestration_configuration"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> GetChatControlsConfigurationResponse:
                 data["orchestrationConfiguration"]
             )
         )
-    if "blockedPhrases" in data:
+    if data.get("blockedPhrases") is not None:
         import capo_qbusiness.types.blocked_phrases_configuration
 
         out["blocked_phrases"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> GetChatControlsConfigurationResponse:
                 data["blockedPhrases"]
             )
         )
-    if "topicConfigurations" in data:
+    if data.get("topicConfigurations") is not None:
         import capo_qbusiness.types.topic_configurations
 
         out["topic_configurations"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> GetChatControlsConfigurationResponse:
                 data["topicConfigurations"]
             )
         )
-    if "creatorModeConfiguration" in data:
+    if data.get("creatorModeConfiguration") is not None:
         import capo_qbusiness.types.applied_creator_mode_configuration
 
         out["creator_mode_configuration"] = (
@@ -135,9 +135,9 @@ def deserialize_json(data: dict) -> GetChatControlsConfigurationResponse:
                 data["creatorModeConfiguration"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "hallucinationReductionConfiguration" in data:
+    if data.get("hallucinationReductionConfiguration") is not None:
         import capo_qbusiness.types.hallucination_reduction_configuration
 
         out["hallucination_reduction_configuration"] = (

@@ -32,7 +32,7 @@ def serialize_json(value: Selector) -> dict:
 
 def deserialize_json(data: dict) -> Selector:
     out: Selector = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.selector_type
 
         out["type"] = capo_marketplace_discovery.types.selector_type.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> Selector:
         )
     else:
         raise DeserializationError("Selector.type required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("Selector.value required")

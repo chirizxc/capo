@@ -73,32 +73,32 @@ def serialize_json(value: Bot) -> dict:
 
 def deserialize_json(data: dict) -> Bot:
     out: Bot = {}  # type: ignore[typeddict-item]
-    if "BotId" in data:
+    if data.get("BotId") is not None:
         out["bot_id"] = data["BotId"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "BotType" in data:
+    if data.get("BotType") is not None:
         import capo_chime.types.bot_type
 
         out["bot_type"] = capo_chime.types.bot_type.deserialize_json(data["BotType"])
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime.types.iso8601_timestamp
 
         out["created_timestamp"] = capo_chime.types.iso8601_timestamp.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime.types.iso8601_timestamp
 
         out["updated_timestamp"] = capo_chime.types.iso8601_timestamp.deserialize_json(
             data["UpdatedTimestamp"]
         )
-    if "BotEmail" in data:
+    if data.get("BotEmail") is not None:
         out["bot_email"] = data["BotEmail"]
-    if "SecurityToken" in data:
+    if data.get("SecurityToken") is not None:
         out["security_token"] = data["SecurityToken"]
     return out

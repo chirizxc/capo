@@ -24,7 +24,7 @@ def serialize_json(value: DeregisterApplicationInput) -> dict:
 
 def deserialize_json(data: dict) -> DeregisterApplicationInput:
     out: DeregisterApplicationInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError("DeregisterApplicationInput.application_id required")

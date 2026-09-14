@@ -37,9 +37,9 @@ def serialize_json(value: ListWorkspaceServiceAccountsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkspaceServiceAccountsResponse:
     out: ListWorkspaceServiceAccountsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "serviceAccounts" in data:
+    if data.get("serviceAccounts") is not None:
         import capo_grafana.types.service_account_list
 
         out["service_accounts"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> ListWorkspaceServiceAccountsResponse:
         raise DeserializationError(
             "ListWorkspaceServiceAccountsResponse.service_accounts required"
         )
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError(

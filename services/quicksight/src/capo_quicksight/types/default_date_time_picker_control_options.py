@@ -53,7 +53,7 @@ def serialize_json(value: DefaultDateTimePickerControlOptions) -> dict:
 
 def deserialize_json(data: dict) -> DefaultDateTimePickerControlOptions:
     out: DefaultDateTimePickerControlOptions = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.sheet_control_date_time_picker_type
 
         out["type"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> DefaultDateTimePickerControlOptions:
                 data["Type"]
             )
         )
-    if "DisplayOptions" in data:
+    if data.get("DisplayOptions") is not None:
         import capo_quicksight.types.date_time_picker_control_display_options
 
         out["display_options"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> DefaultDateTimePickerControlOptions:
                 data["DisplayOptions"]
             )
         )
-    if "CommitMode" in data:
+    if data.get("CommitMode") is not None:
         import capo_quicksight.types.commit_mode
 
         out["commit_mode"] = capo_quicksight.types.commit_mode.deserialize_json(

@@ -88,13 +88,13 @@ def serialize_aws_json_1_1(value: CreateWorkspaceImageResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkspaceImageResult:
     out: CreateWorkspaceImageResult = {}  # type: ignore[typeddict-item]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OperatingSystem" in data:
+    if data.get("OperatingSystem") is not None:
         import capo_workspaces.types.operating_system
 
         out["operating_system"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkspaceImageResult:
                 data["OperatingSystem"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.workspace_image_state
 
         out["state"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkspaceImageResult:
                 data["State"]
             )
         )
-    if "RequiredTenancy" in data:
+    if data.get("RequiredTenancy") is not None:
         import capo_workspaces.types.workspace_image_required_tenancy
 
         out["required_tenancy"] = (
@@ -118,12 +118,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkspaceImageResult:
                 data["RequiredTenancy"]
             )
         )
-    if "Created" in data:
+    if data.get("Created") is not None:
         import capo_workspaces.types.timestamp
 
         out["created"] = capo_workspaces.types.timestamp.deserialize_aws_json_1_1(
             data["Created"]
         )
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
     return out

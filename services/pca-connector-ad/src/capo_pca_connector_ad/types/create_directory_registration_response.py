@@ -25,6 +25,6 @@ def serialize_json(value: CreateDirectoryRegistrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDirectoryRegistrationResponse:
     out: CreateDirectoryRegistrationResponse = {}  # type: ignore[typeddict-item]
-    if "DirectoryRegistrationArn" in data:
+    if data.get("DirectoryRegistrationArn") is not None:
         out["directory_registration_arn"] = data["DirectoryRegistrationArn"]
     return out

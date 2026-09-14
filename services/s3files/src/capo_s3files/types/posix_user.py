@@ -37,15 +37,15 @@ def serialize_json(value: PosixUser) -> dict:
 
 def deserialize_json(data: dict) -> PosixUser:
     out: PosixUser = {}  # type: ignore[typeddict-item]
-    if "uid" in data:
+    if data.get("uid") is not None:
         out["uid"] = data["uid"]
     else:
         raise DeserializationError("PosixUser.uid required")
-    if "gid" in data:
+    if data.get("gid") is not None:
         out["gid"] = data["gid"]
     else:
         raise DeserializationError("PosixUser.gid required")
-    if "secondaryGids" in data:
+    if data.get("secondaryGids") is not None:
         import capo_s3files.types.secondary_gids
 
         out["secondary_gids"] = capo_s3files.types.secondary_gids.deserialize_json(

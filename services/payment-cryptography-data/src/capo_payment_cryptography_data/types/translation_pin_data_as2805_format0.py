@@ -24,7 +24,7 @@ def serialize_json(value: TranslationPinDataAs2805Format0) -> dict:
 
 def deserialize_json(data: dict) -> TranslationPinDataAs2805Format0:
     out: TranslationPinDataAs2805Format0 = {}  # type: ignore[typeddict-item]
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
     else:
         raise DeserializationError(

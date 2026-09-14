@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: AlternateIdentifier) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> AlternateIdentifier:
-    if "ExternalId" in data:
+    if data.get("ExternalId") is not None:
         import capo_identitystore.types.external_id
 
         return {
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlternateIdentifier:
                 data["ExternalId"]
             )
         }
-    elif "UniqueAttribute" in data:
+    elif data.get("UniqueAttribute") is not None:
         import capo_identitystore.types.unique_attribute
 
         return {

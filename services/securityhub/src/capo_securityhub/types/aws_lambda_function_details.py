@@ -161,15 +161,15 @@ def serialize_json(value: AwsLambdaFunctionDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsLambdaFunctionDetails:
     out: AwsLambdaFunctionDetails = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_securityhub.types.aws_lambda_function_code
 
         out["code"] = capo_securityhub.types.aws_lambda_function_code.deserialize_json(
             data["Code"]
         )
-    if "CodeSha256" in data:
+    if data.get("CodeSha256") is not None:
         out["code_sha256"] = data["CodeSha256"]
-    if "DeadLetterConfig" in data:
+    if data.get("DeadLetterConfig") is not None:
         import capo_securityhub.types.aws_lambda_function_dead_letter_config
 
         out["dead_letter_config"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> AwsLambdaFunctionDetails:
                 data["DeadLetterConfig"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_securityhub.types.aws_lambda_function_environment
 
         out["environment"] = (
@@ -185,15 +185,15 @@ def deserialize_json(data: dict) -> AwsLambdaFunctionDetails:
                 data["Environment"]
             )
         )
-    if "FunctionName" in data:
+    if data.get("FunctionName") is not None:
         out["function_name"] = data["FunctionName"]
-    if "Handler" in data:
+    if data.get("Handler") is not None:
         out["handler"] = data["Handler"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         out["last_modified"] = data["LastModified"]
-    if "Layers" in data:
+    if data.get("Layers") is not None:
         import capo_securityhub.types.aws_lambda_function_layer_list
 
         out["layers"] = (
@@ -201,19 +201,19 @@ def deserialize_json(data: dict) -> AwsLambdaFunctionDetails:
                 data["Layers"]
             )
         )
-    if "MasterArn" in data:
+    if data.get("MasterArn") is not None:
         out["master_arn"] = data["MasterArn"]
-    if "MemorySize" in data:
+    if data.get("MemorySize") is not None:
         out["memory_size"] = data["MemorySize"]
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "Runtime" in data:
+    if data.get("Runtime") is not None:
         out["runtime"] = data["Runtime"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "TracingConfig" in data:
+    if data.get("TracingConfig") is not None:
         import capo_securityhub.types.aws_lambda_function_tracing_config
 
         out["tracing_config"] = (
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> AwsLambdaFunctionDetails:
                 data["TracingConfig"]
             )
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_securityhub.types.aws_lambda_function_vpc_config
 
         out["vpc_config"] = (
@@ -229,9 +229,9 @@ def deserialize_json(data: dict) -> AwsLambdaFunctionDetails:
                 data["VpcConfig"]
             )
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Architectures" in data:
+    if data.get("Architectures") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["architectures"] = (
@@ -239,6 +239,6 @@ def deserialize_json(data: dict) -> AwsLambdaFunctionDetails:
                 data["Architectures"]
             )
         )
-    if "PackageType" in data:
+    if data.get("PackageType") is not None:
         out["package_type"] = data["PackageType"]
     return out

@@ -102,15 +102,15 @@ def serialize_aws_json_1_1(value: ManagedRuleGroupConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupConfig:
     out: ManagedRuleGroupConfig = {}  # type: ignore[typeddict-item]
-    if "LoginPath" in data:
+    if data.get("LoginPath") is not None:
         out["login_path"] = data["LoginPath"]
-    if "PayloadType" in data:
+    if data.get("PayloadType") is not None:
         import capo_wafv2.types.payload_type
 
         out["payload_type"] = capo_wafv2.types.payload_type.deserialize_aws_json_1_1(
             data["PayloadType"]
         )
-    if "UsernameField" in data:
+    if data.get("UsernameField") is not None:
         import capo_wafv2.types.username_field
 
         out["username_field"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupConfig:
                 data["UsernameField"]
             )
         )
-    if "PasswordField" in data:
+    if data.get("PasswordField") is not None:
         import capo_wafv2.types.password_field
 
         out["password_field"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupConfig:
                 data["PasswordField"]
             )
         )
-    if "AWSManagedRulesBotControlRuleSet" in data:
+    if data.get("AWSManagedRulesBotControlRuleSet") is not None:
         import capo_wafv2.types.aws_managed_rules_bot_control_rule_set
 
         out["aws_managed_rules_bot_control_rule_set"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupConfig:
                 data["AWSManagedRulesBotControlRuleSet"]
             )
         )
-    if "AWSManagedRulesATPRuleSet" in data:
+    if data.get("AWSManagedRulesATPRuleSet") is not None:
         import capo_wafv2.types.aws_managed_rules_atp_rule_set
 
         out["aws_managed_rules_atp_rule_set"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupConfig:
                 data["AWSManagedRulesATPRuleSet"]
             )
         )
-    if "AWSManagedRulesACFPRuleSet" in data:
+    if data.get("AWSManagedRulesACFPRuleSet") is not None:
         import capo_wafv2.types.aws_managed_rules_acfp_rule_set
 
         out["aws_managed_rules_acfp_rule_set"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupConfig:
                 data["AWSManagedRulesACFPRuleSet"]
             )
         )
-    if "AWSManagedRulesAntiDDoSRuleSet" in data:
+    if data.get("AWSManagedRulesAntiDDoSRuleSet") is not None:
         import capo_wafv2.types.aws_managed_rules_anti_d_do_s_rule_set
 
         out["aws_managed_rules_anti_d_do_s_rule_set"] = (

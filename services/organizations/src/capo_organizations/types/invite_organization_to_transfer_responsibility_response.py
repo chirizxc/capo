@@ -30,7 +30,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> InviteOrganizationToTransferResponsibilityResponse:
     out: InviteOrganizationToTransferResponsibilityResponse = {}  # type: ignore[typeddict-item]
-    if "Handshake" in data:
+    if data.get("Handshake") is not None:
         import capo_organizations.types.handshake
 
         out["handshake"] = capo_organizations.types.handshake.deserialize_aws_json_1_1(

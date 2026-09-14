@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsDynamoDbTableAttributeDefinitionList:
 
     out: AwsDynamoDbTableAttributeDefinitionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_dynamo_db_table_attribute_definition.deserialize_json(
                 item

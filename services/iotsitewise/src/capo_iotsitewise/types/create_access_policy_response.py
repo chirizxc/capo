@@ -28,13 +28,13 @@ def serialize_json(value: CreateAccessPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessPolicyResponse:
     out: CreateAccessPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "accessPolicyId" in data:
+    if data.get("accessPolicyId") is not None:
         out["access_policy_id"] = data["accessPolicyId"]
     else:
         raise DeserializationError(
             "CreateAccessPolicyResponse.access_policy_id required"
         )
-    if "accessPolicyArn" in data:
+    if data.get("accessPolicyArn") is not None:
         out["access_policy_arn"] = data["accessPolicyArn"]
     else:
         raise DeserializationError(

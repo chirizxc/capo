@@ -43,13 +43,13 @@ def serialize_aws_json_1_1(value: AdminLinkProviderForUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminLinkProviderForUserRequest:
     out: AdminLinkProviderForUserRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "AdminLinkProviderForUserRequest.user_pool_id required"
         )
-    if "DestinationUser" in data:
+    if data.get("DestinationUser") is not None:
         import capo_cognito_identity_provider.types.provider_user_identifier_type
 
         out["destination_user"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminLinkProviderForUserRequest:
         raise DeserializationError(
             "AdminLinkProviderForUserRequest.destination_user required"
         )
-    if "SourceUser" in data:
+    if data.get("SourceUser") is not None:
         import capo_cognito_identity_provider.types.provider_user_identifier_type
 
         out["source_user"] = (

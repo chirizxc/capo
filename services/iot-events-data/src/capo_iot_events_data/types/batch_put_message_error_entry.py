@@ -37,14 +37,14 @@ def serialize_json(value: BatchPutMessageErrorEntry) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutMessageErrorEntry:
     out: BatchPutMessageErrorEntry = {}  # type: ignore[typeddict-item]
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_iot_events_data.types.error_code
 
         out["error_code"] = capo_iot_events_data.types.error_code.deserialize_json(
             data["errorCode"]
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

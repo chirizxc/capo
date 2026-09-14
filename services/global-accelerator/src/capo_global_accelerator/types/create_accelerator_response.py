@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: CreateAcceleratorResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAcceleratorResponse:
     out: CreateAcceleratorResponse = {}  # type: ignore[typeddict-item]
-    if "Accelerator" in data:
+    if data.get("Accelerator") is not None:
         import capo_global_accelerator.types.accelerator
 
         out["accelerator"] = (

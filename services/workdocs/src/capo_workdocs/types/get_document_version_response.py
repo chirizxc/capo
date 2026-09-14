@@ -40,7 +40,7 @@ def serialize_json(value: GetDocumentVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDocumentVersionResponse:
     out: GetDocumentVersionResponse = {}  # type: ignore[typeddict-item]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_workdocs.types.document_version_metadata
 
         out["metadata"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> GetDocumentVersionResponse:
                 data["Metadata"]
             )
         )
-    if "CustomMetadata" in data:
+    if data.get("CustomMetadata") is not None:
         import capo_workdocs.types.custom_metadata_map
 
         out["custom_metadata"] = (

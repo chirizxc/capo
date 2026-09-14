@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: ExportSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportSummary:
     out: ExportSummary = {}  # type: ignore[typeddict-item]
-    if "ExportId" in data:
+    if data.get("ExportId") is not None:
         out["export_id"] = data["ExportId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mailmanager.types.export_status
 
         out["status"] = capo_mailmanager.types.export_status.deserialize_aws_json_1_0(

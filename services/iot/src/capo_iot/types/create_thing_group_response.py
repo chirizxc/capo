@@ -33,10 +33,10 @@ def serialize_json(value: CreateThingGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateThingGroupResponse:
     out: CreateThingGroupResponse = {}  # type: ignore[typeddict-item]
-    if "thingGroupName" in data:
+    if data.get("thingGroupName") is not None:
         out["thing_group_name"] = data["thingGroupName"]
-    if "thingGroupArn" in data:
+    if data.get("thingGroupArn") is not None:
         out["thing_group_arn"] = data["thingGroupArn"]
-    if "thingGroupId" in data:
+    if data.get("thingGroupId") is not None:
         out["thing_group_id"] = data["thingGroupId"]
     return out

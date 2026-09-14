@@ -40,7 +40,7 @@ def serialize_json(value: GetTelemetryEnrichmentStatusOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetTelemetryEnrichmentStatusOutput:
     out: GetTelemetryEnrichmentStatusOutput = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_observabilityadmin.types.telemetry_enrichment_status
 
         out["status"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> GetTelemetryEnrichmentStatusOutput:
                 data["Status"]
             )
         )
-    if "AwsResourceExplorerManagedViewArn" in data:
+    if data.get("AwsResourceExplorerManagedViewArn") is not None:
         out["aws_resource_explorer_managed_view_arn"] = data[
             "AwsResourceExplorerManagedViewArn"
         ]

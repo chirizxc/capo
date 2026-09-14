@@ -47,15 +47,15 @@ def serialize_json(value: WaveAggregatedStatus) -> dict:
 
 def deserialize_json(data: dict) -> WaveAggregatedStatus:
     out: WaveAggregatedStatus = {}  # type: ignore[typeddict-item]
-    if "lastUpdateDateTime" in data:
+    if data.get("lastUpdateDateTime") is not None:
         out["last_update_date_time"] = data["lastUpdateDateTime"]
-    if "replicationStartedDateTime" in data:
+    if data.get("replicationStartedDateTime") is not None:
         out["replication_started_date_time"] = data["replicationStartedDateTime"]
-    if "healthStatus" in data:
+    if data.get("healthStatus") is not None:
         out["health_status"] = data["healthStatus"]
-    if "progressStatus" in data:
+    if data.get("progressStatus") is not None:
         out["progress_status"] = data["progressStatus"]
-    if "totalApplications" in data:
+    if data.get("totalApplications") is not None:
         out["total_applications"] = data["totalApplications"]
     else:
         out["total_applications"] = 0

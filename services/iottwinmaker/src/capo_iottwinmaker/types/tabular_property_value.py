@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TabularPropertyValue:
 
     out: TabularPropertyValue = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iottwinmaker.types.property_table_value.deserialize_json(item))
     return out

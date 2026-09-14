@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: LineageMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LineageMetadata:
     out: LineageMetadata = {}  # type: ignore[typeddict-item]
-    if "ActionArns" in data:
+    if data.get("ActionArns") is not None:
         import capo_sagemaker.types.map_string2048
 
         out["action_arns"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> LineageMetadata:
                 data["ActionArns"]
             )
         )
-    if "ArtifactArns" in data:
+    if data.get("ArtifactArns") is not None:
         import capo_sagemaker.types.map_string2048
 
         out["artifact_arns"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> LineageMetadata:
                 data["ArtifactArns"]
             )
         )
-    if "ContextArns" in data:
+    if data.get("ContextArns") is not None:
         import capo_sagemaker.types.map_string2048
 
         out["context_arns"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> LineageMetadata:
                 data["ContextArns"]
             )
         )
-    if "Associations" in data:
+    if data.get("Associations") is not None:
         import capo_sagemaker.types.association_info_list
 
         out["associations"] = (

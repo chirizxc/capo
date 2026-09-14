@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BlockingAlarms:
 
     out: BlockingAlarms = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_arc_zonal_shift.types.control_condition.deserialize_json(item))
     return out

@@ -59,13 +59,13 @@ def serialize_json(value: UtteranceData) -> dict:
 
 def deserialize_json(data: dict) -> UtteranceData:
     out: UtteranceData = {}  # type: ignore[typeddict-item]
-    if "utteranceString" in data:
+    if data.get("utteranceString") is not None:
         out["utterance_string"] = data["utteranceString"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "distinctUsers" in data:
+    if data.get("distinctUsers") is not None:
         out["distinct_users"] = data["distinctUsers"]
-    if "firstUtteredDate" in data:
+    if data.get("firstUtteredDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["first_uttered_date"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> UtteranceData:
                 data["firstUtteredDate"]
             )
         )
-    if "lastUtteredDate" in data:
+    if data.get("lastUtteredDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["last_uttered_date"] = (

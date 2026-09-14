@@ -39,13 +39,13 @@ def serialize_json(value: DescribeResourceGroupingRecommendationTaskResponse) ->
 
 def deserialize_json(data: dict) -> DescribeResourceGroupingRecommendationTaskResponse:
     out: DescribeResourceGroupingRecommendationTaskResponse = {}  # type: ignore[typeddict-item]
-    if "groupingId" in data:
+    if data.get("groupingId") is not None:
         out["grouping_id"] = data["groupingId"]
     else:
         raise DeserializationError(
             "DescribeResourceGroupingRecommendationTaskResponse.grouping_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehub.types.resources_grouping_rec_gen_status_type
 
         out["status"] = (
@@ -57,6 +57,6 @@ def deserialize_json(data: dict) -> DescribeResourceGroupingRecommendationTaskRe
         raise DeserializationError(
             "DescribeResourceGroupingRecommendationTaskResponse.status required"
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

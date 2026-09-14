@@ -28,11 +28,11 @@ def serialize_json(value: CreatePortalResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePortalResponse:
     out: CreatePortalResponse = {}  # type: ignore[typeddict-item]
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
     else:
         raise DeserializationError("CreatePortalResponse.portal_arn required")
-    if "portalEndpoint" in data:
+    if data.get("portalEndpoint") is not None:
         out["portal_endpoint"] = data["portalEndpoint"]
     else:
         raise DeserializationError("CreatePortalResponse.portal_endpoint required")

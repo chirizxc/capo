@@ -30,7 +30,7 @@ def serialize_json(value: AudioLogDestination) -> dict:
 
 def deserialize_json(data: dict) -> AudioLogDestination:
     out: AudioLogDestination = {}  # type: ignore[typeddict-item]
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         import capo_lex_models_v2.types.s3_bucket_log_destination
 
         out["s3_bucket"] = (

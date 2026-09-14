@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AIRecommendationDeploymentS3ChannelL
 
     out: AIRecommendationDeploymentS3ChannelList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.ai_recommendation_deployment_s3_channel.deserialize_aws_json_1_1(
                 item

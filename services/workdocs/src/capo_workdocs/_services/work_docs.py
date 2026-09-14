@@ -300,17 +300,19 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.abort_document_version_upload_request.AbortDocumentVersionUploadRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.abort_document_version_upload_request.AbortDocumentVersionUploadRequest = {
+            "document_id": document_id,
+            "version_id": version_id,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
-        input_["version_id"] = version_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def activate_user(
@@ -352,8 +354,9 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.activate_user_request.ActivateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
+        input_: capo_workdocs.types.activate_user_request.ActivateUserRequest = {
+            "user_id": user_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
 
@@ -362,6 +365,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_resource_permissions(
@@ -409,11 +413,12 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.add_resource_permissions_request.AddResourcePermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.add_resource_permissions_request.AddResourcePermissionsRequest = {
+            "resource_id": resource_id,
+            "principals": principals,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["resource_id"] = resource_id
-        input_["principals"] = principals
         if notification_options is not None:
             input_["notification_options"] = notification_options
 
@@ -422,6 +427,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_comment(
@@ -482,16 +488,17 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.create_comment_request.CreateCommentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.create_comment_request.CreateCommentRequest = {
+            "document_id": document_id,
+            "version_id": version_id,
+            "text": text,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
-        input_["version_id"] = version_id
         if parent_id is not None:
             input_["parent_id"] = parent_id
         if thread_id is not None:
             input_["thread_id"] = thread_id
-        input_["text"] = text
         if visibility is not None:
             input_["visibility"] = visibility
         if notify_collaborators is not None:
@@ -502,6 +509,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_custom_metadata(
@@ -551,19 +559,21 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.create_custom_metadata_request.CreateCustomMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.create_custom_metadata_request.CreateCustomMetadataRequest = {
+            "resource_id": resource_id,
+            "custom_metadata": custom_metadata,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["resource_id"] = resource_id
         if version_id is not None:
             input_["version_id"] = version_id
-        input_["custom_metadata"] = custom_metadata
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_folder(
@@ -614,18 +624,20 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.create_folder_request.CreateFolderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.create_folder_request.CreateFolderRequest = {
+            "parent_folder_id": parent_folder_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
         if name is not None:
             input_["name"] = name
-        input_["parent_folder_id"] = parent_folder_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_labels(
@@ -670,9 +682,10 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.create_labels_request.CreateLabelsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["labels"] = labels
+        input_: capo_workdocs.types.create_labels_request.CreateLabelsRequest = {
+            "resource_id": resource_id,
+            "labels": labels,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
 
@@ -681,6 +694,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_notification_subscription(
@@ -723,17 +737,19 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.create_notification_subscription_request.CreateNotificationSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["endpoint"] = endpoint
-        input_["protocol"] = protocol
-        input_["subscription_type"] = subscription_type
+        input_: capo_workdocs.types.create_notification_subscription_request.CreateNotificationSubscriptionRequest = {
+            "organization_id": organization_id,
+            "endpoint": endpoint,
+            "protocol": protocol,
+            "subscription_type": subscription_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user(
@@ -795,15 +811,16 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.create_user_request.CreateUserRequest = {
+            "username": username,
+            "given_name": given_name,
+            "surname": surname,
+            "password": password,
+        }
         if organization_id is not None:
             input_["organization_id"] = organization_id
-        input_["username"] = username
         if email_address is not None:
             input_["email_address"] = email_address
-        input_["given_name"] = given_name
-        input_["surname"] = surname
-        input_["password"] = password
         if time_zone_id is not None:
             input_["time_zone_id"] = time_zone_id
         if storage_rule is not None:
@@ -816,6 +833,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deactivate_user(
@@ -855,8 +873,9 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.deactivate_user_request.DeactivateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
+        input_: capo_workdocs.types.deactivate_user_request.DeactivateUserRequest = {
+            "user_id": user_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
 
@@ -865,6 +884,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_comment(
@@ -910,18 +930,20 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.delete_comment_request.DeleteCommentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.delete_comment_request.DeleteCommentRequest = {
+            "document_id": document_id,
+            "version_id": version_id,
+            "comment_id": comment_id,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
-        input_["version_id"] = version_id
-        input_["comment_id"] = comment_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_custom_metadata(
@@ -974,10 +996,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.delete_custom_metadata_request.DeleteCustomMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.delete_custom_metadata_request.DeleteCustomMetadataRequest = {
+            "resource_id": resource_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["resource_id"] = resource_id
         if version_id is not None:
             input_["version_id"] = version_id
         if keys is not None:
@@ -990,6 +1013,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_document(
@@ -1033,16 +1057,18 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.delete_document_request.DeleteDocumentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.delete_document_request.DeleteDocumentRequest = {
+            "document_id": document_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_document_version(
@@ -1089,18 +1115,20 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.delete_document_version_request.DeleteDocumentVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.delete_document_version_request.DeleteDocumentVersionRequest = {
+            "document_id": document_id,
+            "version_id": version_id,
+            "delete_prior_versions": delete_prior_versions,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
-        input_["version_id"] = version_id
-        input_["delete_prior_versions"] = delete_prior_versions
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_folder(
@@ -1144,16 +1172,18 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.delete_folder_request.DeleteFolderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.delete_folder_request.DeleteFolderRequest = {
+            "folder_id": folder_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["folder_id"] = folder_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_folder_contents(
@@ -1195,16 +1225,18 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.delete_folder_contents_request.DeleteFolderContentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.delete_folder_contents_request.DeleteFolderContentsRequest = {
+            "folder_id": folder_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["folder_id"] = folder_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_labels(
@@ -1251,8 +1283,9 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.delete_labels_request.DeleteLabelsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_workdocs.types.delete_labels_request.DeleteLabelsRequest = {
+            "resource_id": resource_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
         if labels is not None:
@@ -1265,6 +1298,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_notification_subscription(
@@ -1301,15 +1335,17 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.delete_notification_subscription_request.DeleteNotificationSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["subscription_id"] = subscription_id
-        input_["organization_id"] = organization_id
+        input_: capo_workdocs.types.delete_notification_subscription_request.DeleteNotificationSubscriptionRequest = {
+            "subscription_id": subscription_id,
+            "organization_id": organization_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user(
@@ -1349,16 +1385,18 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.delete_user_request.DeleteUserRequest = {
+            "user_id": user_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["user_id"] = user_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_activities(
@@ -1422,7 +1460,7 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.describe_activities_request.DescribeActivitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.describe_activities_request.DescribeActivitiesRequest = {}
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
         if start_time is not None:
@@ -1449,6 +1487,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_activities(
@@ -1542,11 +1581,12 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.describe_comments_request.DescribeCommentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.describe_comments_request.DescribeCommentsRequest = {
+            "document_id": document_id,
+            "version_id": version_id,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
-        input_["version_id"] = version_id
         if limit is not None:
             input_["limit"] = limit
         if marker is not None:
@@ -1557,6 +1597,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_comments(
@@ -1638,10 +1679,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.describe_document_versions_request.DescribeDocumentVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.describe_document_versions_request.DescribeDocumentVersionsRequest = {
+            "document_id": document_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
         if marker is not None:
             input_["marker"] = marker
         if limit is not None:
@@ -1656,6 +1698,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_document_versions(
@@ -1745,10 +1788,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.describe_folder_contents_request.DescribeFolderContentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.describe_folder_contents_request.DescribeFolderContentsRequest = {
+            "folder_id": folder_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["folder_id"] = folder_id
         if sort is not None:
             input_["sort"] = sort
         if order is not None:
@@ -1767,7 +1811,45 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_folder_contents(
+        self,
+        folder_id: "capo_workdocs.types.resource_id_type.ResourceIdType",
+        *,
+        config_overrides: Optional[WorkDocsClientConfig] = None,
+        authentication_token: Optional[
+            "capo_workdocs.types.authentication_header_type.AuthenticationHeaderType"
+        ] = None,
+        sort: Optional[
+            "capo_workdocs.types.resource_sort_type.ResourceSortType"
+        ] = None,
+        order: Optional["capo_workdocs.types.order_type.OrderType"] = None,
+        limit: Optional["capo_workdocs.types.limit_type.LimitType"] = None,
+        marker: Optional["capo_workdocs.types.page_marker_type.PageMarkerType"] = None,
+        type: Optional[
+            "capo_workdocs.types.folder_content_type.FolderContentType"
+        ] = None,
+        include: Optional["capo_workdocs.types.field_names_type.FieldNamesType"] = None,
+    ) -> "Iterator[capo_workdocs.types.describe_folder_contents_response.DescribeFolderContentsResponse]":
+        _token = marker
+        while True:
+            _response = self.describe_folder_contents(
+                folder_id,
+                config_overrides=config_overrides,
+                authentication_token=authentication_token,
+                sort=sort,
+                order=order,
+                limit=limit,
+                marker=_token,
+                type=type,
+                include=include,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     def describe_groups(
         self,
@@ -1815,10 +1897,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.describe_groups_request.DescribeGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.describe_groups_request.DescribeGroupsRequest = {
+            "search_query": search_query
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["search_query"] = search_query
         if organization_id is not None:
             input_["organization_id"] = organization_id
         if marker is not None:
@@ -1831,6 +1914,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_groups(
@@ -1901,8 +1985,9 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.describe_notification_subscriptions_request.DescribeNotificationSubscriptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workdocs.types.describe_notification_subscriptions_request.DescribeNotificationSubscriptionsRequest = {
+            "organization_id": organization_id
+        }
         if marker is not None:
             input_["marker"] = marker
         if limit is not None:
@@ -1913,6 +1998,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_notification_subscriptions(
@@ -1983,10 +2069,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.describe_resource_permissions_request.DescribeResourcePermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.describe_resource_permissions_request.DescribeResourcePermissionsRequest = {
+            "resource_id": resource_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["resource_id"] = resource_id
         if principal_id is not None:
             input_["principal_id"] = principal_id
         if limit is not None:
@@ -1999,6 +2086,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_resource_permissions(
@@ -2071,8 +2159,9 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.describe_root_folders_request.DescribeRootFoldersRequest = {}  # type: ignore[typeddict-item]
-        input_["authentication_token"] = authentication_token
+        input_: capo_workdocs.types.describe_root_folders_request.DescribeRootFoldersRequest = {
+            "authentication_token": authentication_token
+        }
         if limit is not None:
             input_["limit"] = limit
         if marker is not None:
@@ -2083,6 +2172,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_root_folders(
@@ -2165,7 +2255,7 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.describe_users_request.DescribeUsersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.describe_users_request.DescribeUsersRequest = {}
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
         if organization_id is not None:
@@ -2192,6 +2282,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_users(
@@ -2268,14 +2359,16 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.get_current_user_request.GetCurrentUserRequest = {}  # type: ignore[typeddict-item]
-        input_["authentication_token"] = authentication_token
+        input_: capo_workdocs.types.get_current_user_request.GetCurrentUserRequest = {
+            "authentication_token": authentication_token
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_document(
@@ -2323,10 +2416,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.get_document_request.GetDocumentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.get_document_request.GetDocumentRequest = {
+            "document_id": document_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
         if include_custom_metadata is not None:
             input_["include_custom_metadata"] = include_custom_metadata
 
@@ -2335,6 +2429,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_document_path(
@@ -2382,10 +2477,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.get_document_path_request.GetDocumentPathRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.get_document_path_request.GetDocumentPathRequest = {
+            "document_id": document_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
         if limit is not None:
             input_["limit"] = limit
         if fields is not None:
@@ -2398,6 +2494,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_document_version(
@@ -2449,11 +2546,12 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.get_document_version_request.GetDocumentVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.get_document_version_request.GetDocumentVersionRequest = {
+            "document_id": document_id,
+            "version_id": version_id,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
-        input_["version_id"] = version_id
         if fields is not None:
             input_["fields"] = fields
         if include_custom_metadata is not None:
@@ -2464,6 +2562,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_folder(
@@ -2511,10 +2610,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.get_folder_request.GetFolderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.get_folder_request.GetFolderRequest = {
+            "folder_id": folder_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["folder_id"] = folder_id
         if include_custom_metadata is not None:
             input_["include_custom_metadata"] = include_custom_metadata
 
@@ -2523,6 +2623,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_folder_path(
@@ -2570,10 +2671,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.get_folder_path_request.GetFolderPathRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.get_folder_path_request.GetFolderPathRequest = {
+            "folder_id": folder_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["folder_id"] = folder_id
         if limit is not None:
             input_["limit"] = limit
         if fields is not None:
@@ -2586,6 +2688,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resources(
@@ -2635,7 +2738,7 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.get_resources_request.GetResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.get_resources_request.GetResourcesRequest = {}
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
         if user_id is not None:
@@ -2652,6 +2755,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def initiate_document_version_upload(
@@ -2726,7 +2830,7 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.initiate_document_version_upload_request.InitiateDocumentVersionUploadRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.initiate_document_version_upload_request.InitiateDocumentVersionUploadRequest = {}
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
         if id is not None:
@@ -2749,6 +2853,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_all_resource_permissions(
@@ -2787,16 +2892,18 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.remove_all_resource_permissions_request.RemoveAllResourcePermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.remove_all_resource_permissions_request.RemoveAllResourcePermissionsRequest = {
+            "resource_id": resource_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["resource_id"] = resource_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_resource_permission(
@@ -2841,11 +2948,12 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.remove_resource_permission_request.RemoveResourcePermissionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.remove_resource_permission_request.RemoveResourcePermissionRequest = {
+            "resource_id": resource_id,
+            "principal_id": principal_id,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["resource_id"] = resource_id
-        input_["principal_id"] = principal_id
         if principal_type is not None:
             input_["principal_type"] = principal_type
 
@@ -2854,6 +2962,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_document_versions(
@@ -2896,16 +3005,18 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.restore_document_versions_request.RestoreDocumentVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.restore_document_versions_request.RestoreDocumentVersionsRequest = {
+            "document_id": document_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_resources(
@@ -2970,7 +3081,7 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.search_resources_request.SearchResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.search_resources_request.SearchResourcesRequest = {}
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
         if query_text is not None:
@@ -2995,6 +3106,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_resources(
@@ -3098,10 +3210,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.update_document_request.UpdateDocumentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.update_document_request.UpdateDocumentRequest = {
+            "document_id": document_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
         if name is not None:
             input_["name"] = name
         if parent_folder_id is not None:
@@ -3114,6 +3227,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_document_version(
@@ -3162,11 +3276,12 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.update_document_version_request.UpdateDocumentVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.update_document_version_request.UpdateDocumentVersionRequest = {
+            "document_id": document_id,
+            "version_id": version_id,
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["document_id"] = document_id
-        input_["version_id"] = version_id
         if version_status is not None:
             input_["version_status"] = version_status
 
@@ -3175,6 +3290,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_folder(
@@ -3231,10 +3347,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.update_folder_request.UpdateFolderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.update_folder_request.UpdateFolderRequest = {
+            "folder_id": folder_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["folder_id"] = folder_id
         if name is not None:
             input_["name"] = name
         if parent_folder_id is not None:
@@ -3247,6 +3364,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_user(
@@ -3316,10 +3434,11 @@ class WorkDocsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workdocs.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workdocs.types.update_user_request.UpdateUserRequest = {
+            "user_id": user_id
+        }
         if authentication_token is not None:
             input_["authentication_token"] = authentication_token
-        input_["user_id"] = user_id
         if given_name is not None:
             input_["given_name"] = given_name
         if surname is not None:
@@ -3340,6 +3459,7 @@ class WorkDocsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

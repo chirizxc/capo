@@ -25,6 +25,6 @@ def serialize_json(value: AwsEc2SecurityGroupPrefixListId) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2SecurityGroupPrefixListId:
     out: AwsEc2SecurityGroupPrefixListId = {}  # type: ignore[typeddict-item]
-    if "PrefixListId" in data:
+    if data.get("PrefixListId") is not None:
         out["prefix_list_id"] = data["PrefixListId"]
     return out

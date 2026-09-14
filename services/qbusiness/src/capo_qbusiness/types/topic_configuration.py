@@ -48,13 +48,13 @@ def serialize_json(value: TopicConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TopicConfiguration:
     out: TopicConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("TopicConfiguration.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "exampleChatMessages" in data:
+    if data.get("exampleChatMessages") is not None:
         import capo_qbusiness.types.example_chat_messages
 
         out["example_chat_messages"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> TopicConfiguration:
                 data["exampleChatMessages"]
             )
         )
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_qbusiness.types.rules
 
         out["rules"] = capo_qbusiness.types.rules.deserialize_json(data["rules"])

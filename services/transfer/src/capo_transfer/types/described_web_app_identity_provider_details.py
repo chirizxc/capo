@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribedWebAppIdentityProviderDetails) -> dic
 
 
 def deserialize_aws_json_1_1(data: dict) -> DescribedWebAppIdentityProviderDetails:
-    if "IdentityCenterConfig" in data:
+    if data.get("IdentityCenterConfig") is not None:
         import capo_transfer.types.described_identity_center_config
 
         return {

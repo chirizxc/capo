@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: DatapointInclusionAnnotation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatapointInclusionAnnotation:
     out: DatapointInclusionAnnotation = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
-    if "StatisticId" in data:
+    if data.get("StatisticId") is not None:
         out["statistic_id"] = data["StatisticId"]
-    if "InclusionAnnotation" in data:
+    if data.get("InclusionAnnotation") is not None:
         import capo_glue.types.inclusion_annotation_value
 
         out["inclusion_annotation"] = (

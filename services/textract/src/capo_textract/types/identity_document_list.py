@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> IdentityDocumentList:
 
     out: IdentityDocumentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_textract.types.identity_document.deserialize_aws_json_1_1(item))
     return out

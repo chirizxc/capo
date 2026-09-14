@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeInstanceProfilesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeInstanceProfilesResponse:
     out: DescribeInstanceProfilesResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "InstanceProfiles" in data:
+    if data.get("InstanceProfiles") is not None:
         import capo_database_migration_service.types.instance_profile_list
 
         out["instance_profiles"] = (

@@ -125,11 +125,11 @@ def serialize_aws_json_1_1(value: Tunnel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Tunnel:
     out: Tunnel = {}  # type: ignore[typeddict-item]
-    if "tunnelId" in data:
+    if data.get("tunnelId") is not None:
         out["tunnel_id"] = data["tunnelId"]
-    if "tunnelArn" in data:
+    if data.get("tunnelArn") is not None:
         out["tunnel_arn"] = data["tunnelArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotsecuretunneling.types.tunnel_status
 
         out["status"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> Tunnel:
                 data["status"]
             )
         )
-    if "sourceConnectionState" in data:
+    if data.get("sourceConnectionState") is not None:
         import capo_iotsecuretunneling.types.connection_state
 
         out["source_connection_state"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> Tunnel:
                 data["sourceConnectionState"]
             )
         )
-    if "destinationConnectionState" in data:
+    if data.get("destinationConnectionState") is not None:
         import capo_iotsecuretunneling.types.connection_state
 
         out["destination_connection_state"] = (
@@ -153,9 +153,9 @@ def deserialize_aws_json_1_1(data: dict) -> Tunnel:
                 data["destinationConnectionState"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "destinationConfig" in data:
+    if data.get("destinationConfig") is not None:
         import capo_iotsecuretunneling.types.destination_config
 
         out["destination_config"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_1(data: dict) -> Tunnel:
                 data["destinationConfig"]
             )
         )
-    if "timeoutConfig" in data:
+    if data.get("timeoutConfig") is not None:
         import capo_iotsecuretunneling.types.timeout_config
 
         out["timeout_config"] = (
@@ -171,13 +171,13 @@ def deserialize_aws_json_1_1(data: dict) -> Tunnel:
                 data["timeoutConfig"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotsecuretunneling.types.tag_list
 
         out["tags"] = capo_iotsecuretunneling.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotsecuretunneling.types.date_type
 
         out["created_at"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> Tunnel:
                 data["createdAt"]
             )
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iotsecuretunneling.types.date_type
 
         out["last_updated_at"] = (

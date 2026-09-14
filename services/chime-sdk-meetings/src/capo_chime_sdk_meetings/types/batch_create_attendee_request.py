@@ -33,7 +33,7 @@ def serialize_json(value: BatchCreateAttendeeRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateAttendeeRequest:
     out: BatchCreateAttendeeRequest = {}  # type: ignore[typeddict-item]
-    if "Attendees" in data:
+    if data.get("Attendees") is not None:
         import capo_chime_sdk_meetings.types.create_attendee_request_item_list
 
         out["attendees"] = (

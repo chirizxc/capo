@@ -42,12 +42,12 @@ def serialize_json(value: AwsEcsServiceLoadBalancersDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsServiceLoadBalancersDetails:
     out: AwsEcsServiceLoadBalancersDetails = {}  # type: ignore[typeddict-item]
-    if "ContainerName" in data:
+    if data.get("ContainerName") is not None:
         out["container_name"] = data["ContainerName"]
-    if "ContainerPort" in data:
+    if data.get("ContainerPort") is not None:
         out["container_port"] = data["ContainerPort"]
-    if "LoadBalancerName" in data:
+    if data.get("LoadBalancerName") is not None:
         out["load_balancer_name"] = data["LoadBalancerName"]
-    if "TargetGroupArn" in data:
+    if data.get("TargetGroupArn") is not None:
         out["target_group_arn"] = data["TargetGroupArn"]
     return out

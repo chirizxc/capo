@@ -48,7 +48,7 @@ def serialize_aws_json_1_0(value: ChannelHandshakePayload) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ChannelHandshakePayload:
-    if "startServicePeriodPayload" in data:
+    if data.get("startServicePeriodPayload") is not None:
         import capo_partnercentral_channel.types.start_service_period_payload
 
         return {
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_0(data: dict) -> ChannelHandshakePayload:
                 data["startServicePeriodPayload"]
             )
         }
-    elif "revokeServicePeriodPayload" in data:
+    elif data.get("revokeServicePeriodPayload") is not None:
         import capo_partnercentral_channel.types.revoke_service_period_payload
 
         return {

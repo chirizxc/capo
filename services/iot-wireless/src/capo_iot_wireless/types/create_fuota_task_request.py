@@ -82,13 +82,13 @@ def serialize_json(value: CreateFuotaTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFuotaTaskRequest:
     out: CreateFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_fuota_task
 
         out["lo_ra_wan"] = (
@@ -96,28 +96,28 @@ def deserialize_json(data: dict) -> CreateFuotaTaskRequest:
                 data["LoRaWAN"]
             )
         )
-    if "FirmwareUpdateImage" in data:
+    if data.get("FirmwareUpdateImage") is not None:
         out["firmware_update_image"] = data["FirmwareUpdateImage"]
     else:
         raise DeserializationError(
             "CreateFuotaTaskRequest.firmware_update_image required"
         )
-    if "FirmwareUpdateRole" in data:
+    if data.get("FirmwareUpdateRole") is not None:
         out["firmware_update_role"] = data["FirmwareUpdateRole"]
     else:
         raise DeserializationError(
             "CreateFuotaTaskRequest.firmware_update_role required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_wireless.types.tag_list
 
         out["tags"] = capo_iot_wireless.types.tag_list.deserialize_json(data["Tags"])
-    if "RedundancyPercent" in data:
+    if data.get("RedundancyPercent") is not None:
         out["redundancy_percent"] = data["RedundancyPercent"]
-    if "FragmentSizeBytes" in data:
+    if data.get("FragmentSizeBytes") is not None:
         out["fragment_size_bytes"] = data["FragmentSizeBytes"]
-    if "FragmentIntervalMS" in data:
+    if data.get("FragmentIntervalMS") is not None:
         out["fragment_interval_ms"] = data["FragmentIntervalMS"]
-    if "Descriptor" in data:
+    if data.get("Descriptor") is not None:
         out["descriptor"] = data["Descriptor"]
     return out

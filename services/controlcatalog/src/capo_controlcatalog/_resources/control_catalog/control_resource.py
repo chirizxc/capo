@@ -72,14 +72,16 @@ class ControlResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controlcatalog.types.get_control_request.GetControlRequest = {}  # type: ignore[typeddict-item]
-        input_["control_arn"] = control_arn
+        input_: capo_controlcatalog.types.get_control_request.GetControlRequest = {
+            "control_arn": control_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -126,7 +128,7 @@ class ControlResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controlcatalog.types.list_controls_request.ListControlsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_controlcatalog.types.list_controls_request.ListControlsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -139,6 +141,7 @@ class ControlResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -182,14 +185,16 @@ class AsyncControlResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controlcatalog.types.get_control_request.GetControlRequest = {}  # type: ignore[typeddict-item]
-        input_["control_arn"] = control_arn
+        input_: capo_controlcatalog.types.get_control_request.GetControlRequest = {
+            "control_arn": control_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -237,7 +242,7 @@ class AsyncControlResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controlcatalog.types.list_controls_request.ListControlsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_controlcatalog.types.list_controls_request.ListControlsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -250,4 +255,5 @@ class AsyncControlResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

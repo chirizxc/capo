@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> GlueStudioSchemaColumnList:
 
     out: GlueStudioSchemaColumnList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.glue_studio_schema_column.deserialize_aws_json_1_1(item)
         )

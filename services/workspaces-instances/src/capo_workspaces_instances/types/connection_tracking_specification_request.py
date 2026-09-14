@@ -37,10 +37,10 @@ def serialize_aws_json_1_0(value: ConnectionTrackingSpecificationRequest) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> ConnectionTrackingSpecificationRequest:
     out: ConnectionTrackingSpecificationRequest = {}  # type: ignore[typeddict-item]
-    if "TcpEstablishedTimeout" in data:
+    if data.get("TcpEstablishedTimeout") is not None:
         out["tcp_established_timeout"] = data["TcpEstablishedTimeout"]
-    if "UdpStreamTimeout" in data:
+    if data.get("UdpStreamTimeout") is not None:
         out["udp_stream_timeout"] = data["UdpStreamTimeout"]
-    if "UdpTimeout" in data:
+    if data.get("UdpTimeout") is not None:
         out["udp_timeout"] = data["UdpTimeout"]
     return out

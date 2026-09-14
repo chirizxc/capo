@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> NotificationSettingKeys:
 
     out: NotificationSettingKeys = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rolesanywhere.types.notification_setting_key.deserialize_json(item)
         )

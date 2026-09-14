@@ -35,9 +35,9 @@ def serialize_json(value: ListTrainedModelInferenceJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTrainedModelInferenceJobsResponse:
     out: ListTrainedModelInferenceJobsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "trainedModelInferenceJobs" in data:
+    if data.get("trainedModelInferenceJobs") is not None:
         import capo_cleanroomsml.types.trained_model_inference_job_list
 
         out["trained_model_inference_jobs"] = (

@@ -88,15 +88,15 @@ def serialize_aws_json_1_1(value: ScheduleRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScheduleRunRequest:
     out: ScheduleRunRequest = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError("ScheduleRunRequest.project_arn required")
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
-    if "devicePoolArn" in data:
+    if data.get("devicePoolArn") is not None:
         out["device_pool_arn"] = data["devicePoolArn"]
-    if "deviceSelectionConfiguration" in data:
+    if data.get("deviceSelectionConfiguration") is not None:
         import capo_device_farm.types.device_selection_configuration
 
         out["device_selection_configuration"] = (
@@ -104,9 +104,9 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunRequest:
                 data["deviceSelectionConfiguration"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "test" in data:
+    if data.get("test") is not None:
         import capo_device_farm.types.schedule_run_test
 
         out["test"] = capo_device_farm.types.schedule_run_test.deserialize_aws_json_1_1(
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunRequest:
         )
     else:
         raise DeserializationError("ScheduleRunRequest.test required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_device_farm.types.schedule_run_configuration
 
         out["configuration"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduleRunRequest:
                 data["configuration"]
             )
         )
-    if "executionConfiguration" in data:
+    if data.get("executionConfiguration") is not None:
         import capo_device_farm.types.execution_configuration
 
         out["execution_configuration"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CancelAgreementInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelAgreementInput:
     out: CancelAgreementInput = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError("CancelAgreementInput.agreement_id required")

@@ -89,15 +89,15 @@ def serialize_aws_json_1_1(value: Account) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Account:
     out: Account = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_organizations.types.account_status
 
         out["status"] = (
@@ -105,19 +105,19 @@ def deserialize_aws_json_1_1(data: dict) -> Account:
                 data["Status"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_organizations.types.account_state
 
         out["state"] = capo_organizations.types.account_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "Paths" in data:
+    if data.get("Paths") is not None:
         import capo_organizations.types.paths
 
         out["paths"] = capo_organizations.types.paths.deserialize_aws_json_1_1(
             data["Paths"]
         )
-    if "JoinedMethod" in data:
+    if data.get("JoinedMethod") is not None:
         import capo_organizations.types.account_joined_method
 
         out["joined_method"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> Account:
                 data["JoinedMethod"]
             )
         )
-    if "JoinedTimestamp" in data:
+    if data.get("JoinedTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["joined_timestamp"] = (

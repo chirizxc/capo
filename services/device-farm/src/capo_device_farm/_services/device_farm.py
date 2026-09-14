@@ -386,12 +386,13 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.create_device_pool_request.CreateDevicePoolRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
-        input_["name"] = name
+        input_: capo_device_farm.types.create_device_pool_request.CreateDevicePoolRequest = {
+            "project_arn": project_arn,
+            "name": name,
+            "rules": rules,
+        }
         if description is not None:
             input_["description"] = description
-        input_["rules"] = rules
         if max_devices is not None:
             input_["max_devices"] = max_devices
 
@@ -400,6 +401,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_instance_profile(
@@ -446,8 +448,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.create_instance_profile_request.CreateInstanceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_device_farm.types.create_instance_profile_request.CreateInstanceProfileRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if package_cleanup is not None:
@@ -464,6 +467,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_network_profile(
@@ -528,9 +532,10 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.create_network_profile_request.CreateNetworkProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
-        input_["name"] = name
+        input_: capo_device_farm.types.create_network_profile_request.CreateNetworkProfileRequest = {
+            "project_arn": project_arn,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if type is not None:
@@ -557,6 +562,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_project(
@@ -608,8 +614,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.create_project_request.CreateProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_device_farm.types.create_project_request.CreateProjectRequest = {
+            "name": name
+        }
         if default_job_timeout_minutes is not None:
             input_["default_job_timeout_minutes"] = default_job_timeout_minutes
         if vpc_config is not None:
@@ -624,6 +631,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_remote_access_session(
@@ -688,9 +696,10 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.create_remote_access_session_request.CreateRemoteAccessSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
-        input_["device_arn"] = device_arn
+        input_: capo_device_farm.types.create_remote_access_session_request.CreateRemoteAccessSessionRequest = {
+            "project_arn": project_arn,
+            "device_arn": device_arn,
+        }
         if app_arn is not None:
             input_["app_arn"] = app_arn
         if instance_arn is not None:
@@ -709,6 +718,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_test_grid_project(
@@ -752,8 +762,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.create_test_grid_project_request.CreateTestGridProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_device_farm.types.create_test_grid_project_request.CreateTestGridProjectRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if vpc_config is not None:
@@ -764,6 +775,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_test_grid_url(
@@ -801,15 +813,17 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.create_test_grid_url_request.CreateTestGridUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
-        input_["expires_in_seconds"] = expires_in_seconds
+        input_: capo_device_farm.types.create_test_grid_url_request.CreateTestGridUrlRequest = {
+            "project_arn": project_arn,
+            "expires_in_seconds": expires_in_seconds,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_upload(
@@ -854,10 +868,11 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.create_upload_request.CreateUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_device_farm.types.create_upload_request.CreateUploadRequest = {
+            "project_arn": project_arn,
+            "name": name,
+            "type": type,
+        }
         if content_type is not None:
             input_["content_type"] = content_type
 
@@ -866,6 +881,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_vpce_configuration(
@@ -909,10 +925,11 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.create_vpce_configuration_request.CreateVPCEConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["vpce_configuration_name"] = vpce_configuration_name
-        input_["vpce_service_name"] = vpce_service_name
-        input_["service_dns_name"] = service_dns_name
+        input_: capo_device_farm.types.create_vpce_configuration_request.CreateVPCEConfigurationRequest = {
+            "vpce_configuration_name": vpce_configuration_name,
+            "vpce_service_name": vpce_service_name,
+            "service_dns_name": service_dns_name,
+        }
         if vpce_configuration_description is not None:
             input_["vpce_configuration_description"] = vpce_configuration_description
 
@@ -921,6 +938,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_device_pool(
@@ -963,14 +981,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.delete_device_pool_request.DeleteDevicePoolRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.delete_device_pool_request.DeleteDevicePoolRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_instance_profile(
@@ -1007,14 +1027,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.delete_instance_profile_request.DeleteInstanceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.delete_instance_profile_request.DeleteInstanceProfileRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_network_profile(
@@ -1051,14 +1073,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.delete_network_profile_request.DeleteNetworkProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.delete_network_profile_request.DeleteNetworkProfileRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_project(
@@ -1101,14 +1125,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.delete_project_request.DeleteProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.delete_project_request.DeleteProjectRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_remote_access_session(
@@ -1151,14 +1177,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.delete_remote_access_session_request.DeleteRemoteAccessSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.delete_remote_access_session_request.DeleteRemoteAccessSessionRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_run(
@@ -1201,14 +1229,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.delete_run_request.DeleteRunRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.delete_run_request.DeleteRunRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_test_grid_project(
@@ -1245,14 +1275,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.delete_test_grid_project_request.DeleteTestGridProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
+        input_: capo_device_farm.types.delete_test_grid_project_request.DeleteTestGridProjectRequest = {
+            "project_arn": project_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_upload(
@@ -1295,14 +1327,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.delete_upload_request.DeleteUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.delete_upload_request.DeleteUploadRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vpce_configuration(
@@ -1339,14 +1373,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.delete_vpce_configuration_request.DeleteVPCEConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.delete_vpce_configuration_request.DeleteVPCEConfigurationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_account_settings(
@@ -1383,13 +1419,14 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_account_settings_request.GetAccountSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.get_account_settings_request.GetAccountSettingsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_device(
@@ -1432,14 +1469,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_device_request.GetDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_device_request.GetDeviceRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_device_instance(
@@ -1476,14 +1515,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_device_instance_request.GetDeviceInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_device_instance_request.GetDeviceInstanceRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_device_pool(
@@ -1526,14 +1567,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_device_pool_request.GetDevicePoolRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_device_pool_request.GetDevicePoolRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_device_pool_compatibility(
@@ -1594,8 +1637,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_device_pool_compatibility_request.GetDevicePoolCompatibilityRequest = {}  # type: ignore[typeddict-item]
-        input_["device_pool_arn"] = device_pool_arn
+        input_: capo_device_farm.types.get_device_pool_compatibility_request.GetDevicePoolCompatibilityRequest = {
+            "device_pool_arn": device_pool_arn
+        }
         if app_arn is not None:
             input_["app_arn"] = app_arn
         if test_type is not None:
@@ -1612,6 +1656,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance_profile(
@@ -1648,14 +1693,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_instance_profile_request.GetInstanceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_instance_profile_request.GetInstanceProfileRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_job(
@@ -1696,14 +1743,14 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_job_request.GetJobRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_job_request.GetJobRequest = {"arn": arn}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_network_profile(
@@ -1740,14 +1787,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_network_profile_request.GetNetworkProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_network_profile_request.GetNetworkProfileRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_offering_status(
@@ -1787,7 +1836,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_offering_status_request.GetOfferingStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.get_offering_status_request.GetOfferingStatusRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1796,7 +1845,27 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_offering_status(
+        self,
+        *,
+        config_overrides: Optional[DeviceFarmClientConfig] = None,
+        next_token: Optional[
+            "capo_device_farm.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_device_farm.types.get_offering_status_result.GetOfferingStatusResult]":
+        _token = next_token
+        while True:
+            _response = self.get_offering_status(
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_project(
         self,
@@ -1832,14 +1901,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_project_request.GetProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_project_request.GetProjectRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_remote_access_session(
@@ -1882,14 +1953,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_remote_access_session_request.GetRemoteAccessSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_remote_access_session_request.GetRemoteAccessSessionRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_run(
@@ -1924,14 +1997,14 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_run_request.GetRunRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_run_request.GetRunRequest = {"arn": arn}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_suite(
@@ -1974,14 +2047,14 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_suite_request.GetSuiteRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_suite_request.GetSuiteRequest = {"arn": arn}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_test(
@@ -2022,14 +2095,14 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_test_request.GetTestRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_test_request.GetTestRequest = {"arn": arn}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_test_grid_project(
@@ -2065,14 +2138,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_test_grid_project_request.GetTestGridProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
+        input_: capo_device_farm.types.get_test_grid_project_request.GetTestGridProjectRequest = {
+            "project_arn": project_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_test_grid_session(
@@ -2116,7 +2191,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_test_grid_session_request.GetTestGridSessionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.get_test_grid_session_request.GetTestGridSessionRequest = {}
         if project_arn is not None:
             input_["project_arn"] = project_arn
         if session_id is not None:
@@ -2129,6 +2204,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_upload(
@@ -2171,14 +2247,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_upload_request.GetUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_upload_request.GetUploadRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_vpce_configuration(
@@ -2214,14 +2292,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.get_vpce_configuration_request.GetVPCEConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.get_vpce_configuration_request.GetVPCEConfigurationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def install_to_remote_access_session(
@@ -2266,15 +2346,17 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.install_to_remote_access_session_request.InstallToRemoteAccessSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["remote_access_session_arn"] = remote_access_session_arn
-        input_["app_arn"] = app_arn
+        input_: capo_device_farm.types.install_to_remote_access_session_request.InstallToRemoteAccessSessionRequest = {
+            "remote_access_session_arn": remote_access_session_arn,
+            "app_arn": app_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_artifacts(
@@ -2323,9 +2405,10 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_artifacts_request.ListArtifactsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["type"] = type
+        input_: capo_device_farm.types.list_artifacts_request.ListArtifactsRequest = {
+            "arn": arn,
+            "type": type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2334,6 +2417,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_artifacts(
@@ -2401,7 +2485,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_device_instances_request.ListDeviceInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.list_device_instances_request.ListDeviceInstancesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2412,6 +2496,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_device_pools(
@@ -2460,8 +2545,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_device_pools_request.ListDevicePoolsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.list_device_pools_request.ListDevicePoolsRequest = {
+            "arn": arn
+        }
         if type is not None:
             input_["type"] = type
         if next_token is not None:
@@ -2472,6 +2558,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_device_pools(
@@ -2547,7 +2634,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_devices_request.ListDevicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.list_devices_request.ListDevicesRequest = {}
         if arn is not None:
             input_["arn"] = arn
         if next_token is not None:
@@ -2560,6 +2647,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_devices(
@@ -2627,7 +2715,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_instance_profiles_request.ListInstanceProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.list_instance_profiles_request.ListInstanceProfilesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2638,6 +2726,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_jobs(
@@ -2684,8 +2773,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.list_jobs_request.ListJobsRequest = {"arn": arn}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2694,6 +2782,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_jobs(
@@ -2763,8 +2852,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_network_profiles_request.ListNetworkProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.list_network_profiles_request.ListNetworkProfilesRequest = {
+            "arn": arn
+        }
         if type is not None:
             input_["type"] = type
         if next_token is not None:
@@ -2775,6 +2865,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_offering_promotions(
@@ -2814,7 +2905,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_offering_promotions_request.ListOfferingPromotionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.list_offering_promotions_request.ListOfferingPromotionsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2823,6 +2914,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_offerings(
@@ -2868,7 +2960,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_offerings_request.ListOfferingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.list_offerings_request.ListOfferingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2877,6 +2969,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_offerings(
@@ -2937,7 +3030,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_offering_transactions_request.ListOfferingTransactionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.list_offering_transactions_request.ListOfferingTransactionsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2946,6 +3039,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_offering_transactions(
@@ -3009,7 +3103,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_projects_request.ListProjectsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.list_projects_request.ListProjectsRequest = {}
         if arn is not None:
             input_["arn"] = arn
         if next_token is not None:
@@ -3020,6 +3114,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_projects(
@@ -3091,8 +3186,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_remote_access_sessions_request.ListRemoteAccessSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.list_remote_access_sessions_request.ListRemoteAccessSessionsRequest = {
+            "arn": arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3101,6 +3197,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_runs(
@@ -3141,8 +3238,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_runs_request.ListRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.list_runs_request.ListRunsRequest = {"arn": arn}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3151,6 +3247,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_runs(
@@ -3220,8 +3317,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_samples_request.ListSamplesRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.list_samples_request.ListSamplesRequest = {
+            "arn": arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3230,6 +3328,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_samples(
@@ -3299,8 +3398,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_suites_request.ListSuitesRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.list_suites_request.ListSuitesRequest = {
+            "arn": arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3309,6 +3409,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_suites(
@@ -3367,14 +3468,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_device_farm.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_test_grid_projects(
@@ -3413,7 +3516,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_test_grid_projects_request.ListTestGridProjectsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.list_test_grid_projects_request.ListTestGridProjectsRequest = {}
         if max_result is not None:
             input_["max_result"] = max_result
         if next_token is not None:
@@ -3424,7 +3527,29 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_test_grid_projects(
+        self,
+        *,
+        config_overrides: Optional[DeviceFarmClientConfig] = None,
+        max_result: Optional["capo_device_farm.types.max_page_size.MaxPageSize"] = None,
+        next_token: Optional[
+            "capo_device_farm.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_device_farm.types.list_test_grid_projects_result.ListTestGridProjectsResult]":
+        _token = next_token
+        while True:
+            _response = self.list_test_grid_projects(
+                config_overrides=config_overrides,
+                max_result=max_result,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_test_grid_session_actions(
         self,
@@ -3465,8 +3590,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_test_grid_session_actions_request.ListTestGridSessionActionsRequest = {}  # type: ignore[typeddict-item]
-        input_["session_arn"] = session_arn
+        input_: capo_device_farm.types.list_test_grid_session_actions_request.ListTestGridSessionActionsRequest = {
+            "session_arn": session_arn
+        }
         if max_result is not None:
             input_["max_result"] = max_result
         if next_token is not None:
@@ -3477,7 +3603,31 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_test_grid_session_actions(
+        self,
+        session_arn: "capo_device_farm.types.device_farm_arn.DeviceFarmArn",
+        *,
+        config_overrides: Optional[DeviceFarmClientConfig] = None,
+        max_result: Optional["capo_device_farm.types.max_page_size.MaxPageSize"] = None,
+        next_token: Optional[
+            "capo_device_farm.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_device_farm.types.list_test_grid_session_actions_result.ListTestGridSessionActionsResult]":
+        _token = next_token
+        while True:
+            _response = self.list_test_grid_session_actions(
+                session_arn,
+                config_overrides=config_overrides,
+                max_result=max_result,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_test_grid_session_artifacts(
         self,
@@ -3522,8 +3672,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_test_grid_session_artifacts_request.ListTestGridSessionArtifactsRequest = {}  # type: ignore[typeddict-item]
-        input_["session_arn"] = session_arn
+        input_: capo_device_farm.types.list_test_grid_session_artifacts_request.ListTestGridSessionArtifactsRequest = {
+            "session_arn": session_arn
+        }
         if type is not None:
             input_["type"] = type
         if max_result is not None:
@@ -3536,7 +3687,35 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_test_grid_session_artifacts(
+        self,
+        session_arn: "capo_device_farm.types.device_farm_arn.DeviceFarmArn",
+        *,
+        config_overrides: Optional[DeviceFarmClientConfig] = None,
+        type: Optional[
+            "capo_device_farm.types.test_grid_session_artifact_category.TestGridSessionArtifactCategory"
+        ] = None,
+        max_result: Optional["capo_device_farm.types.max_page_size.MaxPageSize"] = None,
+        next_token: Optional[
+            "capo_device_farm.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_device_farm.types.list_test_grid_session_artifacts_result.ListTestGridSessionArtifactsResult]":
+        _token = next_token
+        while True:
+            _response = self.list_test_grid_session_artifacts(
+                session_arn,
+                config_overrides=config_overrides,
+                type=type,
+                max_result=max_result,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_test_grid_sessions(
         self,
@@ -3593,8 +3772,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_test_grid_sessions_request.ListTestGridSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
+        input_: capo_device_farm.types.list_test_grid_sessions_request.ListTestGridSessionsRequest = {
+            "project_arn": project_arn
+        }
         if status is not None:
             input_["status"] = status
         if creation_time_after is not None:
@@ -3615,7 +3795,47 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_test_grid_sessions(
+        self,
+        project_arn: "capo_device_farm.types.device_farm_arn.DeviceFarmArn",
+        *,
+        config_overrides: Optional[DeviceFarmClientConfig] = None,
+        status: Optional[
+            "capo_device_farm.types.test_grid_session_status.TestGridSessionStatus"
+        ] = None,
+        creation_time_after: Optional[
+            "capo_device_farm.types.date_time.DateTime"
+        ] = None,
+        creation_time_before: Optional[
+            "capo_device_farm.types.date_time.DateTime"
+        ] = None,
+        end_time_after: Optional["capo_device_farm.types.date_time.DateTime"] = None,
+        end_time_before: Optional["capo_device_farm.types.date_time.DateTime"] = None,
+        max_result: Optional["capo_device_farm.types.max_page_size.MaxPageSize"] = None,
+        next_token: Optional[
+            "capo_device_farm.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_device_farm.types.list_test_grid_sessions_result.ListTestGridSessionsResult]":
+        _token = next_token
+        while True:
+            _response = self.list_test_grid_sessions(
+                project_arn,
+                config_overrides=config_overrides,
+                status=status,
+                creation_time_after=creation_time_after,
+                creation_time_before=creation_time_before,
+                end_time_after=end_time_after,
+                end_time_before=end_time_before,
+                max_result=max_result,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tests(
         self,
@@ -3661,8 +3881,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_tests_request.ListTestsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.list_tests_request.ListTestsRequest = {
+            "arn": arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3671,6 +3892,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tests(
@@ -3740,8 +3962,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_unique_problems_request.ListUniqueProblemsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.list_unique_problems_request.ListUniqueProblemsRequest = {
+            "arn": arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3750,6 +3973,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_unique_problems(
@@ -3821,8 +4045,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_uploads_request.ListUploadsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.list_uploads_request.ListUploadsRequest = {
+            "arn": arn
+        }
         if type is not None:
             input_["type"] = type
         if next_token is not None:
@@ -3833,6 +4058,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_uploads(
@@ -3896,7 +4122,7 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.list_vpce_configurations_request.ListVPCEConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_device_farm.types.list_vpce_configurations_request.ListVPCEConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3907,6 +4133,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def purchase_offering(
@@ -3950,9 +4177,10 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.purchase_offering_request.PurchaseOfferingRequest = {}  # type: ignore[typeddict-item]
-        input_["offering_id"] = offering_id
-        input_["quantity"] = quantity
+        input_: capo_device_farm.types.purchase_offering_request.PurchaseOfferingRequest = {
+            "offering_id": offering_id,
+            "quantity": quantity,
+        }
         if offering_promotion_id is not None:
             input_["offering_promotion_id"] = offering_promotion_id
 
@@ -3961,6 +4189,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def renew_offering(
@@ -4000,15 +4229,17 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.renew_offering_request.RenewOfferingRequest = {}  # type: ignore[typeddict-item]
-        input_["offering_id"] = offering_id
-        input_["quantity"] = quantity
+        input_: capo_device_farm.types.renew_offering_request.RenewOfferingRequest = {
+            "offering_id": offering_id,
+            "quantity": quantity,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def schedule_run(
@@ -4076,8 +4307,10 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.schedule_run_request.ScheduleRunRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
+        input_: capo_device_farm.types.schedule_run_request.ScheduleRunRequest = {
+            "project_arn": project_arn,
+            "test": test,
+        }
         if app_arn is not None:
             input_["app_arn"] = app_arn
         if device_pool_arn is not None:
@@ -4086,7 +4319,6 @@ class DeviceFarmClient:
             input_["device_selection_configuration"] = device_selection_configuration
         if name is not None:
             input_["name"] = name
-        input_["test"] = test
         if configuration is not None:
             input_["configuration"] = configuration
         if execution_configuration is not None:
@@ -4097,6 +4329,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_job(
@@ -4131,14 +4364,14 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.stop_job_request.StopJobRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.stop_job_request.StopJobRequest = {"arn": arn}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_remote_access_session(
@@ -4175,14 +4408,16 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.stop_remote_access_session_request.StopRemoteAccessSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.stop_remote_access_session_request.StopRemoteAccessSessionRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_run(
@@ -4223,14 +4458,14 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.stop_run_request.StopRunRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.stop_run_request.StopRunRequest = {"arn": arn}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -4270,15 +4505,17 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_device_farm.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -4316,15 +4553,17 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_device_farm.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_device_instance(
@@ -4369,8 +4608,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.update_device_instance_request.UpdateDeviceInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.update_device_instance_request.UpdateDeviceInstanceRequest = {
+            "arn": arn
+        }
         if profile_arn is not None:
             input_["profile_arn"] = profile_arn
         if labels is not None:
@@ -4381,6 +4621,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_device_pool(
@@ -4433,8 +4674,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.update_device_pool_request.UpdateDevicePoolRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.update_device_pool_request.UpdateDevicePoolRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -4451,6 +4693,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_instance_profile(
@@ -4499,8 +4742,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.update_instance_profile_request.UpdateInstanceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.update_instance_profile_request.UpdateInstanceProfileRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -4519,6 +4763,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_network_profile(
@@ -4583,8 +4828,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.update_network_profile_request.UpdateNetworkProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.update_network_profile_request.UpdateNetworkProfileRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -4613,6 +4859,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_project(
@@ -4665,8 +4912,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.update_project_request.UpdateProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.update_project_request.UpdateProjectRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if default_job_timeout_minutes is not None:
@@ -4683,6 +4931,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_test_grid_project(
@@ -4729,8 +4978,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.update_test_grid_project_request.UpdateTestGridProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
+        input_: capo_device_farm.types.update_test_grid_project_request.UpdateTestGridProjectRequest = {
+            "project_arn": project_arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -4743,6 +4993,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_upload(
@@ -4787,8 +5038,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.update_upload_request.UpdateUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.update_upload_request.UpdateUploadRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if content_type is not None:
@@ -4801,6 +5053,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_vpce_configuration(
@@ -4853,8 +5106,9 @@ class DeviceFarmClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_device_farm.types.update_vpce_configuration_request.UpdateVPCEConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_device_farm.types.update_vpce_configuration_request.UpdateVPCEConfigurationRequest = {
+            "arn": arn
+        }
         if vpce_configuration_name is not None:
             input_["vpce_configuration_name"] = vpce_configuration_name
         if vpce_service_name is not None:
@@ -4869,6 +5123,7 @@ class DeviceFarmClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

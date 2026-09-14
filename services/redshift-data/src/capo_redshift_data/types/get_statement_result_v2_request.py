@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: GetStatementResultV2Request) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetStatementResultV2Request:
     out: GetStatementResultV2Request = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("GetStatementResultV2Request.id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -37,14 +37,14 @@ def serialize_json(value: ListTestSetsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListTestSetsRequest:
     out: ListTestSetsRequest = {}  # type: ignore[typeddict-item]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_lex_models_v2.types.test_set_sort_by
 
         out["sort_by"] = capo_lex_models_v2.types.test_set_sort_by.deserialize_json(
             data["sortBy"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

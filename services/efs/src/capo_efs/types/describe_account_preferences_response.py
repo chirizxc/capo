@@ -36,7 +36,7 @@ def serialize_json(value: DescribeAccountPreferencesResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAccountPreferencesResponse:
     out: DescribeAccountPreferencesResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceIdPreference" in data:
+    if data.get("ResourceIdPreference") is not None:
         import capo_efs.types.resource_id_preference
 
         out["resource_id_preference"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DescribeAccountPreferencesResponse:
                 data["ResourceIdPreference"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

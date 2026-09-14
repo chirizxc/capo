@@ -70,21 +70,21 @@ def serialize_json(value: DescribeMapResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeMapResponse:
     out: DescribeMapResponse = {}  # type: ignore[typeddict-item]
-    if "MapName" in data:
+    if data.get("MapName") is not None:
         out["map_name"] = data["MapName"]
     else:
         raise DeserializationError("DescribeMapResponse.map_name required")
-    if "MapArn" in data:
+    if data.get("MapArn") is not None:
         out["map_arn"] = data["MapArn"]
     else:
         raise DeserializationError("DescribeMapResponse.map_arn required")
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         out["data_source"] = data["DataSource"]
     else:
         raise DeserializationError("DescribeMapResponse.data_source required")
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_location.types.map_configuration
 
         out["configuration"] = capo_location.types.map_configuration.deserialize_json(
@@ -92,15 +92,15 @@ def deserialize_json(data: dict) -> DescribeMapResponse:
         )
     else:
         raise DeserializationError("DescribeMapResponse.configuration required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("DescribeMapResponse.description required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> DescribeMapResponse:
         )
     else:
         raise DeserializationError("DescribeMapResponse.create_time required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(

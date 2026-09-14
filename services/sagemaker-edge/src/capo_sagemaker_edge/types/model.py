@@ -54,11 +54,11 @@ def serialize_json(value: Model) -> dict:
 
 def deserialize_json(data: dict) -> Model:
     out: Model = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "LatestSampleTime" in data:
+    if data.get("LatestSampleTime") is not None:
         import capo_sagemaker_edge.types.timestamp
 
         out["latest_sample_time"] = (
@@ -66,13 +66,13 @@ def deserialize_json(data: dict) -> Model:
                 data["LatestSampleTime"]
             )
         )
-    if "LatestInference" in data:
+    if data.get("LatestInference") is not None:
         import capo_sagemaker_edge.types.timestamp
 
         out["latest_inference"] = capo_sagemaker_edge.types.timestamp.deserialize_json(
             data["LatestInference"]
         )
-    if "ModelMetrics" in data:
+    if data.get("ModelMetrics") is not None:
         import capo_sagemaker_edge.types.edge_metrics
 
         out["model_metrics"] = capo_sagemaker_edge.types.edge_metrics.deserialize_json(

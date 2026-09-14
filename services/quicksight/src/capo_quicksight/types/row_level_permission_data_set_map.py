@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: RowLevelPermissionDataSetMap) -> dict:
 def deserialize_json(data: dict) -> RowLevelPermissionDataSetMap:
     out: RowLevelPermissionDataSetMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_quicksight.types.row_level_permission_data_set
 
         out[key] = capo_quicksight.types.row_level_permission_data_set.deserialize_json(

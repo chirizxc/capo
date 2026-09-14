@@ -67,21 +67,21 @@ def serialize_json(value: GetEmailIdentityResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEmailIdentityResponse:
     out: GetEmailIdentityResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityType" in data:
+    if data.get("IdentityType") is not None:
         import capo_pinpoint_email.types.identity_type
 
         out["identity_type"] = capo_pinpoint_email.types.identity_type.deserialize_json(
             data["IdentityType"]
         )
-    if "FeedbackForwardingStatus" in data:
+    if data.get("FeedbackForwardingStatus") is not None:
         out["feedback_forwarding_status"] = data["FeedbackForwardingStatus"]
     else:
         out["feedback_forwarding_status"] = False
-    if "VerifiedForSendingStatus" in data:
+    if data.get("VerifiedForSendingStatus") is not None:
         out["verified_for_sending_status"] = data["VerifiedForSendingStatus"]
     else:
         out["verified_for_sending_status"] = False
-    if "DkimAttributes" in data:
+    if data.get("DkimAttributes") is not None:
         import capo_pinpoint_email.types.dkim_attributes
 
         out["dkim_attributes"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> GetEmailIdentityResponse:
                 data["DkimAttributes"]
             )
         )
-    if "MailFromAttributes" in data:
+    if data.get("MailFromAttributes") is not None:
         import capo_pinpoint_email.types.mail_from_attributes
 
         out["mail_from_attributes"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> GetEmailIdentityResponse:
                 data["MailFromAttributes"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_email.types.tag_list
 
         out["tags"] = capo_pinpoint_email.types.tag_list.deserialize_json(data["Tags"])

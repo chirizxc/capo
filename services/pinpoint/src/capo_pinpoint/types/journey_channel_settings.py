@@ -31,9 +31,9 @@ def serialize_json(value: JourneyChannelSettings) -> dict:
 
 def deserialize_json(data: dict) -> JourneyChannelSettings:
     out: JourneyChannelSettings = {}  # type: ignore[typeddict-item]
-    if "ConnectCampaignArn" in data:
+    if data.get("ConnectCampaignArn") is not None:
         out["connect_campaign_arn"] = data["ConnectCampaignArn"]
-    if "ConnectCampaignExecutionRoleArn" in data:
+    if data.get("ConnectCampaignExecutionRoleArn") is not None:
         out["connect_campaign_execution_role_arn"] = data[
             "ConnectCampaignExecutionRoleArn"
         ]

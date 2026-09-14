@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ListTapePoolsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTapePoolsOutput:
     out: ListTapePoolsOutput = {}  # type: ignore[typeddict-item]
-    if "PoolInfos" in data:
+    if data.get("PoolInfos") is not None:
         import capo_storage_gateway.types.pool_infos
 
         out["pool_infos"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListTapePoolsOutput:
                 data["PoolInfos"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

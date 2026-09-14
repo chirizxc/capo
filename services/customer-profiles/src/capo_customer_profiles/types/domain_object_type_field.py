@@ -45,15 +45,15 @@ def serialize_json(value: DomainObjectTypeField) -> dict:
 
 def deserialize_json(data: dict) -> DomainObjectTypeField:
     out: DomainObjectTypeField = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
     else:
         raise DeserializationError("DomainObjectTypeField.source required")
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
     else:
         raise DeserializationError("DomainObjectTypeField.target required")
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_customer_profiles.types.content_type
 
         out["content_type"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> DomainObjectTypeField:
                 data["ContentType"]
             )
         )
-    if "FeatureType" in data:
+    if data.get("FeatureType") is not None:
         import capo_customer_profiles.types.feature_type
 
         out["feature_type"] = (

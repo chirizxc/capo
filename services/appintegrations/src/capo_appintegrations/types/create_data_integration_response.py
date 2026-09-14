@@ -101,19 +101,19 @@ def serialize_json(value: CreateDataIntegrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataIntegrationResponse:
     out: CreateDataIntegrationResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "KmsKey" in data:
+    if data.get("KmsKey") is not None:
         out["kms_key"] = data["KmsKey"]
-    if "SourceURI" in data:
+    if data.get("SourceURI") is not None:
         out["source_uri"] = data["SourceURI"]
-    if "ScheduleConfiguration" in data:
+    if data.get("ScheduleConfiguration") is not None:
         import capo_appintegrations.types.schedule_configuration
 
         out["schedule_configuration"] = (
@@ -121,13 +121,13 @@ def deserialize_json(data: dict) -> CreateDataIntegrationResponse:
                 data["ScheduleConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appintegrations.types.tag_map
 
         out["tags"] = capo_appintegrations.types.tag_map.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "FileConfiguration" in data:
+    if data.get("FileConfiguration") is not None:
         import capo_appintegrations.types.file_configuration
 
         out["file_configuration"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> CreateDataIntegrationResponse:
                 data["FileConfiguration"]
             )
         )
-    if "ObjectConfiguration" in data:
+    if data.get("ObjectConfiguration") is not None:
         import capo_appintegrations.types.object_configuration
 
         out["object_configuration"] = (

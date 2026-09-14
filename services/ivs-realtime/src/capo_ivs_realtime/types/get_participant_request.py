@@ -32,15 +32,15 @@ def serialize_json(value: GetParticipantRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetParticipantRequest:
     out: GetParticipantRequest = {}  # type: ignore[typeddict-item]
-    if "stageArn" in data:
+    if data.get("stageArn") is not None:
         out["stage_arn"] = data["stageArn"]
     else:
         raise DeserializationError("GetParticipantRequest.stage_arn required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("GetParticipantRequest.session_id required")
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
     else:
         raise DeserializationError("GetParticipantRequest.participant_id required")

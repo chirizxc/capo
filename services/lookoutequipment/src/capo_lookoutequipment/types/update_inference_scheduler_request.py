@@ -75,15 +75,15 @@ def serialize_aws_json_1_0(value: UpdateInferenceSchedulerRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateInferenceSchedulerRequest:
     out: UpdateInferenceSchedulerRequest = {}  # type: ignore[typeddict-item]
-    if "InferenceSchedulerName" in data:
+    if data.get("InferenceSchedulerName") is not None:
         out["inference_scheduler_name"] = data["InferenceSchedulerName"]
     else:
         raise DeserializationError(
             "UpdateInferenceSchedulerRequest.inference_scheduler_name required"
         )
-    if "DataDelayOffsetInMinutes" in data:
+    if data.get("DataDelayOffsetInMinutes") is not None:
         out["data_delay_offset_in_minutes"] = data["DataDelayOffsetInMinutes"]
-    if "DataUploadFrequency" in data:
+    if data.get("DataUploadFrequency") is not None:
         import capo_lookoutequipment.types.data_upload_frequency
 
         out["data_upload_frequency"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateInferenceSchedulerRequest:
                 data["DataUploadFrequency"]
             )
         )
-    if "DataInputConfiguration" in data:
+    if data.get("DataInputConfiguration") is not None:
         import capo_lookoutequipment.types.inference_input_configuration
 
         out["data_input_configuration"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateInferenceSchedulerRequest:
                 data["DataInputConfiguration"]
             )
         )
-    if "DataOutputConfiguration" in data:
+    if data.get("DataOutputConfiguration") is not None:
         import capo_lookoutequipment.types.inference_output_configuration
 
         out["data_output_configuration"] = (
@@ -107,6 +107,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateInferenceSchedulerRequest:
                 data["DataOutputConfiguration"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

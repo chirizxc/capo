@@ -34,13 +34,13 @@ def serialize_json(value: TextResponseEvent) -> dict:
 
 def deserialize_json(data: dict) -> TextResponseEvent:
     out: TextResponseEvent = {}  # type: ignore[typeddict-item]
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_lex_runtime_v2.types.messages
 
         out["messages"] = capo_lex_runtime_v2.types.messages.deserialize_json(
             data["messages"]
         )
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     return out
 

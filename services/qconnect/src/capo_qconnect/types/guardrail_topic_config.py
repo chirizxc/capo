@@ -45,21 +45,21 @@ def serialize_json(value: GuardrailTopicConfig) -> dict:
 
 def deserialize_json(data: dict) -> GuardrailTopicConfig:
     out: GuardrailTopicConfig = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GuardrailTopicConfig.name required")
-    if "definition" in data:
+    if data.get("definition") is not None:
         out["definition"] = data["definition"]
     else:
         raise DeserializationError("GuardrailTopicConfig.definition required")
-    if "examples" in data:
+    if data.get("examples") is not None:
         import capo_qconnect.types.guardrail_topic_examples
 
         out["examples"] = capo_qconnect.types.guardrail_topic_examples.deserialize_json(
             data["examples"]
         )
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("GuardrailTopicConfig.type required")

@@ -57,7 +57,7 @@ def serialize_json(value: UpdateGlobalSettingsInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGlobalSettingsInput:
     out: UpdateGlobalSettingsInput = {}  # type: ignore[typeddict-item]
-    if "OrganizationSharingStatus" in data:
+    if data.get("OrganizationSharingStatus") is not None:
         import capo_wellarchitected.types.organization_sharing_status
 
         out["organization_sharing_status"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> UpdateGlobalSettingsInput:
                 data["OrganizationSharingStatus"]
             )
         )
-    if "DiscoveryIntegrationStatus" in data:
+    if data.get("DiscoveryIntegrationStatus") is not None:
         import capo_wellarchitected.types.discovery_integration_status
 
         out["discovery_integration_status"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> UpdateGlobalSettingsInput:
                 data["DiscoveryIntegrationStatus"]
             )
         )
-    if "JiraConfiguration" in data:
+    if data.get("JiraConfiguration") is not None:
         import capo_wellarchitected.types.account_jira_configuration_input
 
         out["jira_configuration"] = (

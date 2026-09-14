@@ -37,12 +37,12 @@ def serialize_json(value: ParsedQueryComponent) -> dict:
 
 def deserialize_json(data: dict) -> ParsedQueryComponent:
     out: ParsedQueryComponent = {}  # type: ignore[typeddict-item]
-    if "StartIndex" in data:
+    if data.get("StartIndex") is not None:
         out["start_index"] = data["StartIndex"]
-    if "EndIndex" in data:
+    if data.get("EndIndex") is not None:
         out["end_index"] = data["EndIndex"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "QueryComponent" in data:
+    if data.get("QueryComponent") is not None:
         out["query_component"] = data["QueryComponent"]
     return out

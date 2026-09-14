@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FormSummaryList:
 
     out: FormSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplifyuibuilder.types.form_summary.deserialize_json(item))
     return out

@@ -39,7 +39,7 @@ def serialize_json(value: FailoverRouterInputStreamDetails) -> dict:
 
 def deserialize_json(data: dict) -> FailoverRouterInputStreamDetails:
     out: FailoverRouterInputStreamDetails = {}  # type: ignore[typeddict-item]
-    if "sourceIndexZeroStreamDetails" in data:
+    if data.get("sourceIndexZeroStreamDetails") is not None:
         import capo_mediaconnect.types.failover_router_input_indexed_stream_details
 
         out["source_index_zero_stream_details"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> FailoverRouterInputStreamDetails:
         raise DeserializationError(
             "FailoverRouterInputStreamDetails.source_index_zero_stream_details required"
         )
-    if "sourceIndexOneStreamDetails" in data:
+    if data.get("sourceIndexOneStreamDetails") is not None:
         import capo_mediaconnect.types.failover_router_input_indexed_stream_details
 
         out["source_index_one_stream_details"] = (

@@ -27,11 +27,11 @@ def serialize_json(value: SubscriptionTargetForm) -> dict:
 
 def deserialize_json(data: dict) -> SubscriptionTargetForm:
     out: SubscriptionTargetForm = {}  # type: ignore[typeddict-item]
-    if "formName" in data:
+    if data.get("formName") is not None:
         out["form_name"] = data["formName"]
     else:
         raise DeserializationError("SubscriptionTargetForm.form_name required")
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     else:
         raise DeserializationError("SubscriptionTargetForm.content required")

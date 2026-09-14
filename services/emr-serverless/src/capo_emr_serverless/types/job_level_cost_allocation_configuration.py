@@ -18,6 +18,6 @@ def serialize_json(value: JobLevelCostAllocationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> JobLevelCostAllocationConfiguration:
     out: JobLevelCostAllocationConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     return out

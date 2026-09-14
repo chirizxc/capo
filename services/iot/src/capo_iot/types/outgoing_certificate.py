@@ -55,21 +55,21 @@ def serialize_json(value: OutgoingCertificate) -> dict:
 
 def deserialize_json(data: dict) -> OutgoingCertificate:
     out: OutgoingCertificate = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "certificateId" in data:
+    if data.get("certificateId") is not None:
         out["certificate_id"] = data["certificateId"]
-    if "transferredTo" in data:
+    if data.get("transferredTo") is not None:
         out["transferred_to"] = data["transferredTo"]
-    if "transferDate" in data:
+    if data.get("transferDate") is not None:
         import capo_iot.types.date_type
 
         out["transfer_date"] = capo_iot.types.date_type.deserialize_json(
             data["transferDate"]
         )
-    if "transferMessage" in data:
+    if data.get("transferMessage") is not None:
         out["transfer_message"] = data["transferMessage"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(

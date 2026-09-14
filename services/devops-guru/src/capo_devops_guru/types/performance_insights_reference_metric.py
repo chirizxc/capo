@@ -31,7 +31,7 @@ def serialize_json(value: PerformanceInsightsReferenceMetric) -> dict:
 
 def deserialize_json(data: dict) -> PerformanceInsightsReferenceMetric:
     out: PerformanceInsightsReferenceMetric = {}  # type: ignore[typeddict-item]
-    if "MetricQuery" in data:
+    if data.get("MetricQuery") is not None:
         import capo_devops_guru.types.performance_insights_metric_query
 
         out["metric_query"] = (

@@ -23,6 +23,6 @@ def serialize_json(value: WafOverrideAction) -> dict:
 
 def deserialize_json(data: dict) -> WafOverrideAction:
     out: WafOverrideAction = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

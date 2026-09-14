@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> InferenceRecommendationsJobs:
 
     out: InferenceRecommendationsJobs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.inference_recommendations_job.deserialize_aws_json_1_1(
                 item

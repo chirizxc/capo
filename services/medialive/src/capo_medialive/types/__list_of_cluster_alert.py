@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfClusterAlert:
 
     out: __listOfClusterAlert = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.cluster_alert.deserialize_json(item))
     return out

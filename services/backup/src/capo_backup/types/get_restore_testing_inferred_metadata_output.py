@@ -28,7 +28,7 @@ def serialize_json(value: GetRestoreTestingInferredMetadataOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetRestoreTestingInferredMetadataOutput:
     out: GetRestoreTestingInferredMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "InferredMetadata" in data:
+    if data.get("InferredMetadata") is not None:
         import capo_backup.types.string_map
 
         out["inferred_metadata"] = capo_backup.types.string_map.deserialize_json(

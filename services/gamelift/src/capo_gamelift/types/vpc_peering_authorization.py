@@ -54,19 +54,19 @@ def serialize_aws_json_1_1(value: VpcPeeringAuthorization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VpcPeeringAuthorization:
     out: VpcPeeringAuthorization = {}  # type: ignore[typeddict-item]
-    if "GameLiftAwsAccountId" in data:
+    if data.get("GameLiftAwsAccountId") is not None:
         out["game_lift_aws_account_id"] = data["GameLiftAwsAccountId"]
-    if "PeerVpcAwsAccountId" in data:
+    if data.get("PeerVpcAwsAccountId") is not None:
         out["peer_vpc_aws_account_id"] = data["PeerVpcAwsAccountId"]
-    if "PeerVpcId" in data:
+    if data.get("PeerVpcId") is not None:
         out["peer_vpc_id"] = data["PeerVpcId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "ExpirationTime" in data:
+    if data.get("ExpirationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["expiration_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(

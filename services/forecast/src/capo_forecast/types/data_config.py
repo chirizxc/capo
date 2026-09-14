@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: DataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataConfig:
     out: DataConfig = {}  # type: ignore[typeddict-item]
-    if "DatasetGroupArn" in data:
+    if data.get("DatasetGroupArn") is not None:
         out["dataset_group_arn"] = data["DatasetGroupArn"]
     else:
         raise DeserializationError("DataConfig.dataset_group_arn required")
-    if "AttributeConfigs" in data:
+    if data.get("AttributeConfigs") is not None:
         import capo_forecast.types.attribute_configs
 
         out["attribute_configs"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataConfig:
                 data["AttributeConfigs"]
             )
         )
-    if "AdditionalDatasets" in data:
+    if data.get("AdditionalDatasets") is not None:
         import capo_forecast.types.additional_datasets
 
         out["additional_datasets"] = (

@@ -80,23 +80,23 @@ def serialize_aws_json_1_1(value: RuleDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleDetail:
     out: RuleDetail = {}  # type: ignore[typeddict-item]
-    if "ruleId" in data:
+    if data.get("ruleId") is not None:
         out["rule_id"] = data["ruleId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
-    if "ruleVersion" in data:
+    if data.get("ruleVersion") is not None:
         out["rule_version"] = data["ruleVersion"]
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
-    if "language" in data:
+    if data.get("language") is not None:
         import capo_frauddetector.types.language
 
         out["language"] = capo_frauddetector.types.language.deserialize_aws_json_1_1(
             data["language"]
         )
-    if "outcomes" in data:
+    if data.get("outcomes") is not None:
         import capo_frauddetector.types.non_empty_list_of_strings
 
         out["outcomes"] = (
@@ -104,10 +104,10 @@ def deserialize_aws_json_1_1(data: dict) -> RuleDetail:
                 data["outcomes"]
             )
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         out["last_updated_time"] = data["lastUpdatedTime"]
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         out["created_time"] = data["createdTime"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

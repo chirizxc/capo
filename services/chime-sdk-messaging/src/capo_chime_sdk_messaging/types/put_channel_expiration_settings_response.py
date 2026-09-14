@@ -36,9 +36,9 @@ def serialize_json(value: PutChannelExpirationSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutChannelExpirationSettingsResponse:
     out: PutChannelExpirationSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "ExpirationSettings" in data:
+    if data.get("ExpirationSettings") is not None:
         import capo_chime_sdk_messaging.types.expiration_settings
 
         out["expiration_settings"] = (

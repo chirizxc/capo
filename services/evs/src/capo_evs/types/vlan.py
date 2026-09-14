@@ -95,37 +95,37 @@ def serialize_aws_json_1_0(value: Vlan) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Vlan:
     out: Vlan = {}  # type: ignore[typeddict-item]
-    if "vlanId" in data:
+    if data.get("vlanId") is not None:
         out["vlan_id"] = data["vlanId"]
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "functionName" in data:
+    if data.get("functionName") is not None:
         out["function_name"] = data["functionName"]
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["created_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["createdAt"]
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["modified_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["modifiedAt"]
         )
-    if "vlanState" in data:
+    if data.get("vlanState") is not None:
         import capo_evs.types.vlan_state
 
         out["vlan_state"] = capo_evs.types.vlan_state.deserialize_aws_json_1_0(
             data["vlanState"]
         )
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
-    if "eipAssociations" in data:
+    if data.get("eipAssociations") is not None:
         import capo_evs.types.eip_association_list
 
         out["eip_associations"] = (
@@ -133,8 +133,8 @@ def deserialize_aws_json_1_0(data: dict) -> Vlan:
                 data["eipAssociations"]
             )
         )
-    if "isPublic" in data:
+    if data.get("isPublic") is not None:
         out["is_public"] = data["isPublic"]
-    if "networkAclId" in data:
+    if data.get("networkAclId") is not None:
         out["network_acl_id"] = data["networkAclId"]
     return out

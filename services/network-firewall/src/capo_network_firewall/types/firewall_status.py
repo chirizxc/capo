@@ -79,7 +79,7 @@ def serialize_aws_json_1_0(value: FirewallStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FirewallStatus:
     out: FirewallStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_network_firewall.types.firewall_status_value
 
         out["status"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallStatus:
         )
     else:
         raise DeserializationError("FirewallStatus.status required")
-    if "ConfigurationSyncStateSummary" in data:
+    if data.get("ConfigurationSyncStateSummary") is not None:
         import capo_network_firewall.types.configuration_sync_state
 
         out["configuration_sync_state_summary"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallStatus:
         raise DeserializationError(
             "FirewallStatus.configuration_sync_state_summary required"
         )
-    if "SyncStates" in data:
+    if data.get("SyncStates") is not None:
         import capo_network_firewall.types.sync_states
 
         out["sync_states"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallStatus:
                 data["SyncStates"]
             )
         )
-    if "CapacityUsageSummary" in data:
+    if data.get("CapacityUsageSummary") is not None:
         import capo_network_firewall.types.capacity_usage_summary
 
         out["capacity_usage_summary"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> FirewallStatus:
                 data["CapacityUsageSummary"]
             )
         )
-    if "TransitGatewayAttachmentSyncState" in data:
+    if data.get("TransitGatewayAttachmentSyncState") is not None:
         import capo_network_firewall.types.transit_gateway_attachment_sync_state
 
         out["transit_gateway_attachment_sync_state"] = (

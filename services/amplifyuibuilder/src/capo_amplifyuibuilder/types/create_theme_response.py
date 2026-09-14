@@ -27,7 +27,7 @@ def serialize_json(value: CreateThemeResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateThemeResponse:
     out: CreateThemeResponse = {}  # type: ignore[typeddict-item]
-    if "entity" in data:
+    if data.get("entity") is not None:
         import capo_amplifyuibuilder.types.theme
 
         out["entity"] = capo_amplifyuibuilder.types.theme.deserialize_json(

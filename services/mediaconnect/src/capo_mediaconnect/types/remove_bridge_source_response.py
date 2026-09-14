@@ -22,8 +22,8 @@ def serialize_json(value: RemoveBridgeSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> RemoveBridgeSourceResponse:
     out: RemoveBridgeSourceResponse = {}  # type: ignore[typeddict-item]
-    if "bridgeArn" in data:
+    if data.get("bridgeArn") is not None:
         out["bridge_arn"] = data["bridgeArn"]
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         out["source_name"] = data["sourceName"]
     return out

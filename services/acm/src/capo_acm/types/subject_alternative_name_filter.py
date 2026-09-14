@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: SubjectAlternativeNameFilter) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> SubjectAlternativeNameFilter:
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         import capo_acm.types.dns_name_filter
 
         return {

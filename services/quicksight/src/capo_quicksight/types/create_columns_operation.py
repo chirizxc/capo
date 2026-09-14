@@ -46,9 +46,9 @@ def serialize_json(value: CreateColumnsOperation) -> dict:
 
 def deserialize_json(data: dict) -> CreateColumnsOperation:
     out: CreateColumnsOperation = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.transform_operation_source
 
         out["source"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> CreateColumnsOperation:
                 data["Source"]
             )
         )
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_quicksight.types.calculated_column_list
 
         out["columns"] = capo_quicksight.types.calculated_column_list.deserialize_json(

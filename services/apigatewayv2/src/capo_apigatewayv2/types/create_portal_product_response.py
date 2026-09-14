@@ -75,17 +75,17 @@ def serialize_json(value: CreatePortalProductResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePortalProductResponse:
     out: CreatePortalProductResponse = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "displayOrder" in data:
+    if data.get("displayOrder") is not None:
         import capo_apigatewayv2.types.display_order
 
         out["display_order"] = capo_apigatewayv2.types.display_order.deserialize_json(
             data["displayOrder"]
         )
-    if "lastModified" in data:
+    if data.get("lastModified") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["last_modified"] = (
@@ -93,11 +93,11 @@ def deserialize_json(data: dict) -> CreatePortalProductResponse:
                 data["lastModified"]
             )
         )
-    if "portalProductArn" in data:
+    if data.get("portalProductArn") is not None:
         out["portal_product_arn"] = data["portalProductArn"]
-    if "portalProductId" in data:
+    if data.get("portalProductId") is not None:
         out["portal_product_id"] = data["portalProductId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])

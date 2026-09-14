@@ -40,7 +40,7 @@ def serialize_json(value: ResourceCollection) -> dict:
 
 def deserialize_json(data: dict) -> ResourceCollection:
     out: ResourceCollection = {}  # type: ignore[typeddict-item]
-    if "CloudFormation" in data:
+    if data.get("CloudFormation") is not None:
         import capo_devops_guru.types.cloud_formation_collection
 
         out["cloud_formation"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ResourceCollection:
                 data["CloudFormation"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_devops_guru.types.tag_collections
 
         out["tags"] = capo_devops_guru.types.tag_collections.deserialize_json(

@@ -85,7 +85,7 @@ def serialize_aws_json_1_0(value: StreamRecord) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StreamRecord:
     out: StreamRecord = {}  # type: ignore[typeddict-item]
-    if "ApproximateCreationDateTime" in data:
+    if data.get("ApproximateCreationDateTime") is not None:
         import capo_dynamodb_streams.types.date
 
         out["approximate_creation_date_time"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> StreamRecord:
                 data["ApproximateCreationDateTime"]
             )
         )
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_dynamodb_streams.types.attribute_map
 
         out["keys"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> StreamRecord:
                 data["Keys"]
             )
         )
-    if "NewImage" in data:
+    if data.get("NewImage") is not None:
         import capo_dynamodb_streams.types.attribute_map
 
         out["new_image"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> StreamRecord:
                 data["NewImage"]
             )
         )
-    if "OldImage" in data:
+    if data.get("OldImage") is not None:
         import capo_dynamodb_streams.types.attribute_map
 
         out["old_image"] = (
@@ -117,11 +117,11 @@ def deserialize_aws_json_1_0(data: dict) -> StreamRecord:
                 data["OldImage"]
             )
         )
-    if "SequenceNumber" in data:
+    if data.get("SequenceNumber") is not None:
         out["sequence_number"] = data["SequenceNumber"]
-    if "SizeBytes" in data:
+    if data.get("SizeBytes") is not None:
         out["size_bytes"] = data["SizeBytes"]
-    if "StreamViewType" in data:
+    if data.get("StreamViewType") is not None:
         import capo_dynamodb_streams.types.stream_view_type
 
         out["stream_view_type"] = (

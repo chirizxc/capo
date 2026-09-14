@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: ListedWorkflow) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListedWorkflow:
     out: ListedWorkflow = {}  # type: ignore[typeddict-item]
-    if "WorkflowId" in data:
+    if data.get("WorkflowId") is not None:
         out["workflow_id"] = data["WorkflowId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

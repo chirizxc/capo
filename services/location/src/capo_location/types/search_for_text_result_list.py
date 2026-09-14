@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SearchForTextResultList:
 
     out: SearchForTextResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_location.types.search_for_text_result.deserialize_json(item))
     return out

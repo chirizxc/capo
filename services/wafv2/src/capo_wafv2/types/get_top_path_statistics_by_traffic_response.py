@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: GetTopPathStatisticsByTrafficResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> GetTopPathStatisticsByTrafficResponse:
     out: GetTopPathStatisticsByTrafficResponse = {}  # type: ignore[typeddict-item]
-    if "PathStatistics" in data:
+    if data.get("PathStatistics") is not None:
         import capo_wafv2.types.path_statistics_list
 
         out["path_statistics"] = (
@@ -63,13 +63,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetTopPathStatisticsByTrafficRespons
         raise DeserializationError(
             "GetTopPathStatisticsByTrafficResponse.path_statistics required"
         )
-    if "TotalRequestCount" in data:
+    if data.get("TotalRequestCount") is not None:
         out["total_request_count"] = data["TotalRequestCount"]
     else:
         out["total_request_count"] = 0
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "TopCategories" in data:
+    if data.get("TopCategories") is not None:
         import capo_wafv2.types.path_statistics_list
 
         out["top_categories"] = (

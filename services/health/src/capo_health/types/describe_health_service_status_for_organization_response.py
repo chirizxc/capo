@@ -31,7 +31,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeHealthServiceStatusForOrganizationResponse:
     out: DescribeHealthServiceStatusForOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "healthServiceAccessStatusForOrganization" in data:
+    if data.get("healthServiceAccessStatusForOrganization") is not None:
         out["health_service_access_status_for_organization"] = data[
             "healthServiceAccessStatusForOrganization"
         ]

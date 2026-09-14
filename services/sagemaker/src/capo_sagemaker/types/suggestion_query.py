@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: SuggestionQuery) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SuggestionQuery:
     out: SuggestionQuery = {}  # type: ignore[typeddict-item]
-    if "PropertyNameQuery" in data:
+    if data.get("PropertyNameQuery") is not None:
         import capo_sagemaker.types.property_name_query
 
         out["property_name_query"] = (

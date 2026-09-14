@@ -27,9 +27,9 @@ def serialize_aws_json_1_1(value: SendSSHPublicKeyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SendSSHPublicKeyResponse:
     out: SendSSHPublicKeyResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "Success" in data:
+    if data.get("Success") is not None:
         out["success"] = data["Success"]
     else:
         out["success"] = False

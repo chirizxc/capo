@@ -27,7 +27,7 @@ def serialize_json(value: ServiceOptions) -> dict:
 
 def deserialize_json(data: dict) -> ServiceOptions:
     out: ServiceOptions = {}  # type: ignore[typeddict-item]
-    if "SupportedRegions" in data:
+    if data.get("SupportedRegions") is not None:
         import capo_opensearch.types.regions_list
 
         out["supported_regions"] = capo_opensearch.types.regions_list.deserialize_json(

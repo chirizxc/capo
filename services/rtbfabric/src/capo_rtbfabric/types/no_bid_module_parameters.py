@@ -20,16 +20,24 @@ def serialize_json(value: NoBidModuleParameters) -> dict:
     if "reason_code" in value:
         out["reasonCode"] = value["reason_code"]
     if "pass_through_percentage" in value:
-        out["passThroughPercentage"] = value["pass_through_percentage"]
+        out["passThroughPercentage"] = (
+            "NaN"
+            if value["pass_through_percentage"] != value["pass_through_percentage"]
+            else "Infinity"
+            if value["pass_through_percentage"] == float("inf")
+            else "-Infinity"
+            if value["pass_through_percentage"] == float("-inf")
+            else value["pass_through_percentage"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> NoBidModuleParameters:
     out: NoBidModuleParameters = {}  # type: ignore[typeddict-item]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "reasonCode" in data:
+    if data.get("reasonCode") is not None:
         out["reason_code"] = data["reasonCode"]
-    if "passThroughPercentage" in data:
-        out["pass_through_percentage"] = data["passThroughPercentage"]
+    if data.get("passThroughPercentage") is not None:
+        out["pass_through_percentage"] = float(data["passThroughPercentage"])
     return out

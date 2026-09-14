@@ -65,9 +65,9 @@ def serialize_json(value: OfferSetSummary) -> dict:
 
 def deserialize_json(data: dict) -> OfferSetSummary:
     out: OfferSetSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_marketplace_catalog.types.offer_set_state_string
 
         out["state"] = (
@@ -75,9 +75,9 @@ def deserialize_json(data: dict) -> OfferSetSummary:
                 data["State"]
             )
         )
-    if "ReleaseDate" in data:
+    if data.get("ReleaseDate") is not None:
         out["release_date"] = data["ReleaseDate"]
-    if "AssociatedOfferIds" in data:
+    if data.get("AssociatedOfferIds") is not None:
         import capo_marketplace_catalog.types.offer_set_associated_offer_ids_list
 
         out["associated_offer_ids"] = (
@@ -85,6 +85,6 @@ def deserialize_json(data: dict) -> OfferSetSummary:
                 data["AssociatedOfferIds"]
             )
         )
-    if "SolutionId" in data:
+    if data.get("SolutionId") is not None:
         out["solution_id"] = data["SolutionId"]
     return out

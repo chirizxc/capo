@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BuiltInSlotTypeSummaryList:
 
     out: BuiltInSlotTypeSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.built_in_slot_type_summary.deserialize_json(item)
         )

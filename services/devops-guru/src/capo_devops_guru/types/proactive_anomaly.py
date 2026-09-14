@@ -131,7 +131,15 @@ def serialize_json(value: ProactiveAnomaly) -> dict:
             )
         )
     if "limit" in value:
-        out["Limit"] = value["limit"]
+        out["Limit"] = (
+            "NaN"
+            if value["limit"] != value["limit"]
+            else "Infinity"
+            if value["limit"] == float("inf")
+            else "-Infinity"
+            if value["limit"] == float("-inf")
+            else value["limit"]
+        )
     if "source_metadata" in value:
         import capo_devops_guru.types.anomaly_source_metadata
 
@@ -155,27 +163,27 @@ def serialize_json(value: ProactiveAnomaly) -> dict:
 
 def deserialize_json(data: dict) -> ProactiveAnomaly:
     out: ProactiveAnomaly = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_devops_guru.types.anomaly_severity
 
         out["severity"] = capo_devops_guru.types.anomaly_severity.deserialize_json(
             data["Severity"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_devops_guru.types.anomaly_status
 
         out["status"] = capo_devops_guru.types.anomaly_status.deserialize_json(
             data["Status"]
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["update_time"] = capo_devops_guru.types.timestamp.deserialize_json(
             data["UpdateTime"]
         )
-    if "AnomalyTimeRange" in data:
+    if data.get("AnomalyTimeRange") is not None:
         import capo_devops_guru.types.anomaly_time_range
 
         out["anomaly_time_range"] = (
@@ -183,7 +191,7 @@ def deserialize_json(data: dict) -> ProactiveAnomaly:
                 data["AnomalyTimeRange"]
             )
         )
-    if "AnomalyReportedTimeRange" in data:
+    if data.get("AnomalyReportedTimeRange") is not None:
         import capo_devops_guru.types.anomaly_reported_time_range
 
         out["anomaly_reported_time_range"] = (
@@ -191,7 +199,7 @@ def deserialize_json(data: dict) -> ProactiveAnomaly:
                 data["AnomalyReportedTimeRange"]
             )
         )
-    if "PredictionTimeRange" in data:
+    if data.get("PredictionTimeRange") is not None:
         import capo_devops_guru.types.prediction_time_range
 
         out["prediction_time_range"] = (
@@ -199,7 +207,7 @@ def deserialize_json(data: dict) -> ProactiveAnomaly:
                 data["PredictionTimeRange"]
             )
         )
-    if "SourceDetails" in data:
+    if data.get("SourceDetails") is not None:
         import capo_devops_guru.types.anomaly_source_details
 
         out["source_details"] = (
@@ -207,9 +215,9 @@ def deserialize_json(data: dict) -> ProactiveAnomaly:
                 data["SourceDetails"]
             )
         )
-    if "AssociatedInsightId" in data:
+    if data.get("AssociatedInsightId") is not None:
         out["associated_insight_id"] = data["AssociatedInsightId"]
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.resource_collection
 
         out["resource_collection"] = (
@@ -217,9 +225,9 @@ def deserialize_json(data: dict) -> ProactiveAnomaly:
                 data["ResourceCollection"]
             )
         )
-    if "Limit" in data:
-        out["limit"] = data["Limit"]
-    if "SourceMetadata" in data:
+    if data.get("Limit") is not None:
+        out["limit"] = float(data["Limit"])
+    if data.get("SourceMetadata") is not None:
         import capo_devops_guru.types.anomaly_source_metadata
 
         out["source_metadata"] = (
@@ -227,7 +235,7 @@ def deserialize_json(data: dict) -> ProactiveAnomaly:
                 data["SourceMetadata"]
             )
         )
-    if "AnomalyResources" in data:
+    if data.get("AnomalyResources") is not None:
         import capo_devops_guru.types.anomaly_resources
 
         out["anomaly_resources"] = (
@@ -235,6 +243,6 @@ def deserialize_json(data: dict) -> ProactiveAnomaly:
                 data["AnomalyResources"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

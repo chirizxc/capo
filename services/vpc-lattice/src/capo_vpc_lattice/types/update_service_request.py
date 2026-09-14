@@ -33,8 +33,8 @@ def serialize_json(value: UpdateServiceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceRequest:
     out: UpdateServiceRequest = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
     return out

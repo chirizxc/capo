@@ -52,17 +52,17 @@ def serialize_aws_json_1_1(value: ListServerNeighborsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListServerNeighborsRequest:
     out: ListServerNeighborsRequest = {}  # type: ignore[typeddict-item]
-    if "configurationId" in data:
+    if data.get("configurationId") is not None:
         out["configuration_id"] = data["configurationId"]
     else:
         raise DeserializationError(
             "ListServerNeighborsRequest.configuration_id required"
         )
-    if "portInformationNeeded" in data:
+    if data.get("portInformationNeeded") is not None:
         out["port_information_needed"] = data["portInformationNeeded"]
     else:
         out["port_information_needed"] = False
-    if "neighborConfigurationIds" in data:
+    if data.get("neighborConfigurationIds") is not None:
         import capo_application_discovery_service.types.configuration_id_list
 
         out["neighbor_configuration_ids"] = (
@@ -70,10 +70,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListServerNeighborsRequest:
                 data["neighborConfigurationIds"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 0
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

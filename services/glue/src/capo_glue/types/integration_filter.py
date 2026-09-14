@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: IntegrationFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IntegrationFilter:
     out: IntegrationFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_glue.types.integration_filter_values
 
         out["values"] = (

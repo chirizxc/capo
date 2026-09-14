@@ -37,7 +37,7 @@ def serialize_json(value: PortalStatus) -> dict:
 
 def deserialize_json(data: dict) -> PortalStatus:
     out: PortalStatus = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_iotsitewise.types.portal_state
 
         out["state"] = capo_iotsitewise.types.portal_state.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> PortalStatus:
         )
     else:
         raise DeserializationError("PortalStatus.state required")
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_iotsitewise.types.monitor_error_details
 
         out["error"] = capo_iotsitewise.types.monitor_error_details.deserialize_json(

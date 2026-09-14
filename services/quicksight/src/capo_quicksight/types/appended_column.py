@@ -28,11 +28,11 @@ def serialize_json(value: AppendedColumn) -> dict:
 
 def deserialize_json(data: dict) -> AppendedColumn:
     out: AppendedColumn = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
     else:
         raise DeserializationError("AppendedColumn.column_name required")
-    if "NewColumnId" in data:
+    if data.get("NewColumnId") is not None:
         out["new_column_id"] = data["NewColumnId"]
     else:
         raise DeserializationError("AppendedColumn.new_column_id required")

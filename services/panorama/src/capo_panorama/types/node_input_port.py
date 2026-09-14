@@ -44,15 +44,15 @@ def serialize_json(value: NodeInputPort) -> dict:
 
 def deserialize_json(data: dict) -> NodeInputPort:
     out: NodeInputPort = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "MaxConnections" in data:
+    if data.get("MaxConnections") is not None:
         out["max_connections"] = data["MaxConnections"]
     else:
         out["max_connections"] = 0

@@ -47,23 +47,23 @@ def serialize_json(value: DryRunProgressStatus) -> dict:
 
 def deserialize_json(data: dict) -> DryRunProgressStatus:
     out: DryRunProgressStatus = {}  # type: ignore[typeddict-item]
-    if "DryRunId" in data:
+    if data.get("DryRunId") is not None:
         out["dry_run_id"] = data["DryRunId"]
     else:
         raise DeserializationError("DryRunProgressStatus.dry_run_id required")
-    if "DryRunStatus" in data:
+    if data.get("DryRunStatus") is not None:
         out["dry_run_status"] = data["DryRunStatus"]
     else:
         raise DeserializationError("DryRunProgressStatus.dry_run_status required")
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
     else:
         raise DeserializationError("DryRunProgressStatus.creation_date required")
-    if "UpdateDate" in data:
+    if data.get("UpdateDate") is not None:
         out["update_date"] = data["UpdateDate"]
     else:
         raise DeserializationError("DryRunProgressStatus.update_date required")
-    if "ValidationFailures" in data:
+    if data.get("ValidationFailures") is not None:
         import capo_opensearch.types.validation_failures
 
         out["validation_failures"] = (

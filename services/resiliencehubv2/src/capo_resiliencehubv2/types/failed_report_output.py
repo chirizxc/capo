@@ -34,7 +34,7 @@ def serialize_json(value: FailedReportOutput) -> dict:
 
 def deserialize_json(data: dict) -> FailedReportOutput:
     out: FailedReportOutput = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_resiliencehubv2.types.report_generation_error_code
 
         out["error_code"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> FailedReportOutput:
         )
     else:
         raise DeserializationError("FailedReportOutput.error_code required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

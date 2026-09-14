@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ResourceTags:
 
     out: ResourceTags = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rbin.types.resource_tag.deserialize_json(item))
     return out

@@ -31,10 +31,10 @@ def serialize_json(value: PaletteCanvas) -> dict:
 
 def deserialize_json(data: dict) -> PaletteCanvas:
     out: PaletteCanvas = {}  # type: ignore[typeddict-item]
-    if "ContainerBackground" in data:
+    if data.get("ContainerBackground") is not None:
         out["container_background"] = data["ContainerBackground"]
-    if "PageBackground" in data:
+    if data.get("PageBackground") is not None:
         out["page_background"] = data["PageBackground"]
-    if "ActiveBackground" in data:
+    if data.get("ActiveBackground") is not None:
         out["active_background"] = data["ActiveBackground"]
     return out

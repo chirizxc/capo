@@ -52,13 +52,13 @@ def serialize_json(value: RowAlternateColorOptions) -> dict:
 
 def deserialize_json(data: dict) -> RowAlternateColorOptions:
     out: RowAlternateColorOptions = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.widget_status
 
         out["status"] = capo_quicksight.types.widget_status.deserialize_json(
             data["Status"]
         )
-    if "RowAlternateColors" in data:
+    if data.get("RowAlternateColors") is not None:
         import capo_quicksight.types.row_alternate_color_list
 
         out["row_alternate_colors"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> RowAlternateColorOptions:
                 data["RowAlternateColors"]
             )
         )
-    if "UsePrimaryBackgroundColor" in data:
+    if data.get("UsePrimaryBackgroundColor") is not None:
         import capo_quicksight.types.widget_status
 
         out["use_primary_background_color"] = (

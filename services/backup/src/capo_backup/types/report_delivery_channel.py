@@ -35,13 +35,13 @@ def serialize_json(value: ReportDeliveryChannel) -> dict:
 
 def deserialize_json(data: dict) -> ReportDeliveryChannel:
     out: ReportDeliveryChannel = {}  # type: ignore[typeddict-item]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
     else:
         raise DeserializationError("ReportDeliveryChannel.s3_bucket_name required")
-    if "S3KeyPrefix" in data:
+    if data.get("S3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["S3KeyPrefix"]
-    if "Formats" in data:
+    if data.get("Formats") is not None:
         import capo_backup.types.format_list
 
         out["formats"] = capo_backup.types.format_list.deserialize_json(data["Formats"])

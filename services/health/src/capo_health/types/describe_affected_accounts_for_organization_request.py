@@ -38,14 +38,14 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeAffectedAccountsForOrganizationRequest:
     out: DescribeAffectedAccountsForOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "eventArn" in data:
+    if data.get("eventArn") is not None:
         out["event_arn"] = data["eventArn"]
     else:
         raise DeserializationError(
             "DescribeAffectedAccountsForOrganizationRequest.event_arn required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

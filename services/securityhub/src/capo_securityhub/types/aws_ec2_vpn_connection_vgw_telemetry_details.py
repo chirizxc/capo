@@ -52,16 +52,16 @@ def serialize_json(value: AwsEc2VpnConnectionVgwTelemetryDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VpnConnectionVgwTelemetryDetails:
     out: AwsEc2VpnConnectionVgwTelemetryDetails = {}  # type: ignore[typeddict-item]
-    if "AcceptedRouteCount" in data:
+    if data.get("AcceptedRouteCount") is not None:
         out["accepted_route_count"] = data["AcceptedRouteCount"]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "LastStatusChange" in data:
+    if data.get("LastStatusChange") is not None:
         out["last_status_change"] = data["LastStatusChange"]
-    if "OutsideIpAddress" in data:
+    if data.get("OutsideIpAddress") is not None:
         out["outside_ip_address"] = data["OutsideIpAddress"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

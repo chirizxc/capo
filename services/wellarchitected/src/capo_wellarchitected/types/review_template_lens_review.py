@@ -87,21 +87,21 @@ def serialize_json(value: ReviewTemplateLensReview) -> dict:
 
 def deserialize_json(data: dict) -> ReviewTemplateLensReview:
     out: ReviewTemplateLensReview = {}  # type: ignore[typeddict-item]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "LensVersion" in data:
+    if data.get("LensVersion") is not None:
         out["lens_version"] = data["LensVersion"]
-    if "LensName" in data:
+    if data.get("LensName") is not None:
         out["lens_name"] = data["LensName"]
-    if "LensStatus" in data:
+    if data.get("LensStatus") is not None:
         import capo_wellarchitected.types.lens_status
 
         out["lens_status"] = capo_wellarchitected.types.lens_status.deserialize_json(
             data["LensStatus"]
         )
-    if "PillarReviewSummaries" in data:
+    if data.get("PillarReviewSummaries") is not None:
         import capo_wellarchitected.types.review_template_pillar_review_summaries
 
         out["pillar_review_summaries"] = (
@@ -109,15 +109,15 @@ def deserialize_json(data: dict) -> ReviewTemplateLensReview:
                 data["PillarReviewSummaries"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "QuestionCounts" in data:
+    if data.get("QuestionCounts") is not None:
         import capo_wellarchitected.types.question_counts
 
         out["question_counts"] = (
@@ -125,6 +125,6 @@ def deserialize_json(data: dict) -> ReviewTemplateLensReview:
                 data["QuestionCounts"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -70,7 +70,7 @@ def serialize_json(value: ExportResourceSpecification) -> dict:
 
 def deserialize_json(data: dict) -> ExportResourceSpecification:
     out: ExportResourceSpecification = {}  # type: ignore[typeddict-item]
-    if "botExportSpecification" in data:
+    if data.get("botExportSpecification") is not None:
         import capo_lex_models_v2.types.bot_export_specification
 
         out["bot_export_specification"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ExportResourceSpecification:
                 data["botExportSpecification"]
             )
         )
-    if "botLocaleExportSpecification" in data:
+    if data.get("botLocaleExportSpecification") is not None:
         import capo_lex_models_v2.types.bot_locale_export_specification
 
         out["bot_locale_export_specification"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ExportResourceSpecification:
                 data["botLocaleExportSpecification"]
             )
         )
-    if "customVocabularyExportSpecification" in data:
+    if data.get("customVocabularyExportSpecification") is not None:
         import capo_lex_models_v2.types.custom_vocabulary_export_specification
 
         out["custom_vocabulary_export_specification"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> ExportResourceSpecification:
                 data["customVocabularyExportSpecification"]
             )
         )
-    if "testSetExportSpecification" in data:
+    if data.get("testSetExportSpecification") is not None:
         import capo_lex_models_v2.types.test_set_export_specification
 
         out["test_set_export_specification"] = (

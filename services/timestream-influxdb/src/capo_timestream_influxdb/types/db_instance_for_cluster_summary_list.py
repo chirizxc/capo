@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> DbInstanceForClusterSummaryList:
 
     out: DbInstanceForClusterSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_timestream_influxdb.types.db_instance_for_cluster_summary.deserialize_aws_json_1_0(
                 item

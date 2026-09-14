@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: TextDetectionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TextDetectionResult:
     out: TextDetectionResult = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
     else:
         out["timestamp"] = 0
-    if "TextDetection" in data:
+    if data.get("TextDetection") is not None:
         import capo_rekognition.types.text_detection
 
         out["text_detection"] = (

@@ -36,7 +36,7 @@ def serialize_json(value: UpdateNetworkResourceMetadataRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNetworkResourceMetadataRequest:
     out: UpdateNetworkResourceMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_networkmanager.types.network_resource_metadata_map
 
         out["metadata"] = (

@@ -63,11 +63,11 @@ def serialize_json(value: CreateCloudConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCloudConnectorRequest:
     out: CreateCloudConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateCloudConnectorRequest.name required")
-    if "EndpointConfig" in data:
+    if data.get("EndpointConfig") is not None:
         import capo_iot_managed_integrations.types.endpoint_config
 
         out["endpoint_config"] = (
@@ -79,9 +79,9 @@ def deserialize_json(data: dict) -> CreateCloudConnectorRequest:
         raise DeserializationError(
             "CreateCloudConnectorRequest.endpoint_config required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         import capo_iot_managed_integrations.types.endpoint_type
 
         out["endpoint_type"] = (
@@ -89,6 +89,6 @@ def deserialize_json(data: dict) -> CreateCloudConnectorRequest:
                 data["EndpointType"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

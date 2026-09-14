@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LicenseInfoList:
 
     out: LicenseInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeartifact.types.license_info.deserialize_json(item))
     return out

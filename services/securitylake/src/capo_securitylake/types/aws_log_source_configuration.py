@@ -49,13 +49,13 @@ def serialize_json(value: AwsLogSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AwsLogSourceConfiguration:
     out: AwsLogSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "accounts" in data:
+    if data.get("accounts") is not None:
         import capo_securitylake.types.account_list
 
         out["accounts"] = capo_securitylake.types.account_list.deserialize_json(
             data["accounts"]
         )
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_securitylake.types.region_list
 
         out["regions"] = capo_securitylake.types.region_list.deserialize_json(
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> AwsLogSourceConfiguration:
         )
     else:
         raise DeserializationError("AwsLogSourceConfiguration.regions required")
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         import capo_securitylake.types.aws_log_source_name
 
         out["source_name"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> AwsLogSourceConfiguration:
         )
     else:
         raise DeserializationError("AwsLogSourceConfiguration.source_name required")
-    if "sourceVersion" in data:
+    if data.get("sourceVersion") is not None:
         out["source_version"] = data["sourceVersion"]
     else:
         out["source_version"] = "latest"

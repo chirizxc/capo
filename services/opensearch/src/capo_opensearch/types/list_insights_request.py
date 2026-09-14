@@ -54,7 +54,7 @@ def serialize_json(value: ListInsightsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListInsightsRequest:
     out: ListInsightsRequest = {}  # type: ignore[typeddict-item]
-    if "Entity" in data:
+    if data.get("Entity") is not None:
         import capo_opensearch.types.insight_entity
 
         out["entity"] = capo_opensearch.types.insight_entity.deserialize_json(
@@ -62,20 +62,20 @@ def deserialize_json(data: dict) -> ListInsightsRequest:
         )
     else:
         raise DeserializationError("ListInsightsRequest.entity required")
-    if "TimeRange" in data:
+    if data.get("TimeRange") is not None:
         import capo_opensearch.types.insight_time_range
 
         out["time_range"] = capo_opensearch.types.insight_time_range.deserialize_json(
             data["TimeRange"]
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_opensearch.types.insight_sort_order
 
         out["sort_order"] = capo_opensearch.types.insight_sort_order.deserialize_json(
             data["SortOrder"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

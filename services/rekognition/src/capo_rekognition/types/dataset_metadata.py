@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: DatasetMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetMetadata:
     out: DatasetMetadata = {}  # type: ignore[typeddict-item]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["creation_timestamp"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetMetadata:
                 data["CreationTimestamp"]
             )
         )
-    if "DatasetType" in data:
+    if data.get("DatasetType") is not None:
         import capo_rekognition.types.dataset_type
 
         out["dataset_type"] = (
@@ -86,17 +86,17 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetMetadata:
                 data["DatasetType"]
             )
         )
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_rekognition.types.dataset_status
 
         out["status"] = capo_rekognition.types.dataset_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "StatusMessageCode" in data:
+    if data.get("StatusMessageCode") is not None:
         import capo_rekognition.types.dataset_status_message_code
 
         out["status_message_code"] = (

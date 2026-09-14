@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ProductCodeList:
 
     out: ProductCodeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.product_code_list_item.deserialize_json(item)
         )

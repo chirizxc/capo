@@ -41,25 +41,25 @@ def serialize_json(value: PutDeploymentParameterResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutDeploymentParameterResponse:
     out: PutDeploymentParameterResponse = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
             "PutDeploymentParameterResponse.resource_arn required"
         )
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError(
             "PutDeploymentParameterResponse.agreement_id required"
         )
-    if "deploymentParameterId" in data:
+    if data.get("deploymentParameterId") is not None:
         out["deployment_parameter_id"] = data["deploymentParameterId"]
     else:
         raise DeserializationError(
             "PutDeploymentParameterResponse.deployment_parameter_id required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_marketplace_deployment.types.tags_map
 
         out["tags"] = capo_marketplace_deployment.types.tags_map.deserialize_json(

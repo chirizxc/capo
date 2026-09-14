@@ -44,15 +44,20 @@ class TemplateDoesNotExistException(ServiceError):
 
     code: str | None = "TemplateDoesNotExistException"
 
-    def __init__(self, data: TemplateDoesNotExistException_):
+    def __init__(
+        self, data: TemplateDoesNotExistException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TemplateDoesNotExistException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TemplateDoesNotExistException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TemplateDoesNotExistException":
+        return cls(deserialize_query(el), message)

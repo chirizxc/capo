@@ -83,7 +83,7 @@ def serialize_json(value: AssetDetails) -> dict:
 
 def deserialize_json(data: dict) -> AssetDetails:
     out: AssetDetails = {}  # type: ignore[typeddict-item]
-    if "S3SnapshotAsset" in data:
+    if data.get("S3SnapshotAsset") is not None:
         import capo_dataexchange.types.s3_snapshot_asset
 
         out["s3_snapshot_asset"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> AssetDetails:
                 data["S3SnapshotAsset"]
             )
         )
-    if "RedshiftDataShareAsset" in data:
+    if data.get("RedshiftDataShareAsset") is not None:
         import capo_dataexchange.types.redshift_data_share_asset
 
         out["redshift_data_share_asset"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> AssetDetails:
                 data["RedshiftDataShareAsset"]
             )
         )
-    if "ApiGatewayApiAsset" in data:
+    if data.get("ApiGatewayApiAsset") is not None:
         import capo_dataexchange.types.api_gateway_api_asset
 
         out["api_gateway_api_asset"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> AssetDetails:
                 data["ApiGatewayApiAsset"]
             )
         )
-    if "S3DataAccessAsset" in data:
+    if data.get("S3DataAccessAsset") is not None:
         import capo_dataexchange.types.s3_data_access_asset
 
         out["s3_data_access_asset"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> AssetDetails:
                 data["S3DataAccessAsset"]
             )
         )
-    if "LakeFormationDataPermissionAsset" in data:
+    if data.get("LakeFormationDataPermissionAsset") is not None:
         import capo_dataexchange.types.lake_formation_data_permission_asset
 
         out["lake_formation_data_permission_asset"] = (

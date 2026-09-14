@@ -43,9 +43,9 @@ def serialize_json(value: AwsLambdaLayerVersionDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsLambdaLayerVersionDetails:
     out: AwsLambdaLayerVersionDetails = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "CompatibleRuntimes" in data:
+    if data.get("CompatibleRuntimes") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["compatible_runtimes"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> AwsLambdaLayerVersionDetails:
                 data["CompatibleRuntimes"]
             )
         )
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         out["created_date"] = data["CreatedDate"]
     return out

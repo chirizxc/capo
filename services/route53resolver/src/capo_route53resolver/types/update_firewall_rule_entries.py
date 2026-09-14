@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> UpdateFirewallRuleEntries:
 
     out: UpdateFirewallRuleEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53resolver.types.update_firewall_rule_entry.deserialize_aws_json_1_1(
                 item

@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: TimeSeriesConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeSeriesConfig:
     out: TimeSeriesConfig = {}  # type: ignore[typeddict-item]
-    if "TargetAttributeName" in data:
+    if data.get("TargetAttributeName") is not None:
         out["target_attribute_name"] = data["TargetAttributeName"]
-    if "TimestampAttributeName" in data:
+    if data.get("TimestampAttributeName") is not None:
         out["timestamp_attribute_name"] = data["TimestampAttributeName"]
-    if "ItemIdentifierAttributeName" in data:
+    if data.get("ItemIdentifierAttributeName") is not None:
         out["item_identifier_attribute_name"] = data["ItemIdentifierAttributeName"]
-    if "GroupingAttributeNames" in data:
+    if data.get("GroupingAttributeNames") is not None:
         import capo_sagemaker.types.grouping_attribute_names
 
         out["grouping_attribute_names"] = (

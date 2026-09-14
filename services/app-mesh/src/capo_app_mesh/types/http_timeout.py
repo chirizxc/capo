@@ -33,13 +33,13 @@ def serialize_json(value: HttpTimeout) -> dict:
 
 def deserialize_json(data: dict) -> HttpTimeout:
     out: HttpTimeout = {}  # type: ignore[typeddict-item]
-    if "perRequest" in data:
+    if data.get("perRequest") is not None:
         import capo_app_mesh.types.duration
 
         out["per_request"] = capo_app_mesh.types.duration.deserialize_json(
             data["perRequest"]
         )
-    if "idle" in data:
+    if data.get("idle") is not None:
         import capo_app_mesh.types.duration
 
         out["idle"] = capo_app_mesh.types.duration.deserialize_json(data["idle"])

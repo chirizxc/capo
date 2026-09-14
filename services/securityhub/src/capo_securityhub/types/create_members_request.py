@@ -31,7 +31,7 @@ def serialize_json(value: CreateMembersRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMembersRequest:
     out: CreateMembersRequest = {}  # type: ignore[typeddict-item]
-    if "AccountDetails" in data:
+    if data.get("AccountDetails") is not None:
         import capo_securityhub.types.account_details_list
 
         out["account_details"] = (

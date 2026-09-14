@@ -31,7 +31,7 @@ def serialize_json(value: LoRaWANGatewayCurrentVersion) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANGatewayCurrentVersion:
     out: LoRaWANGatewayCurrentVersion = {}  # type: ignore[typeddict-item]
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         import capo_iot_wireless.types.lo_ra_wan_gateway_version
 
         out["current_version"] = (

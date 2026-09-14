@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: TotalHits) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TotalHits:
     out: TotalHits = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Relation" in data:
+    if data.get("Relation") is not None:
         import capo_sagemaker.types.relation
 
         out["relation"] = capo_sagemaker.types.relation.deserialize_aws_json_1_1(

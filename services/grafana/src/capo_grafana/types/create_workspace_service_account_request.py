@@ -31,11 +31,11 @@ def serialize_json(value: CreateWorkspaceServiceAccountRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkspaceServiceAccountRequest:
     out: CreateWorkspaceServiceAccountRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateWorkspaceServiceAccountRequest.name required")
-    if "grafanaRole" in data:
+    if data.get("grafanaRole") is not None:
         out["grafana_role"] = data["grafanaRole"]
     else:
         raise DeserializationError(

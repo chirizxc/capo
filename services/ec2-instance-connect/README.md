@@ -13,9 +13,9 @@ from capo_ec2_instance_connect import AsyncEC2InstanceConnectClient
 
 
 async def main():
-    async with AsyncEC2InstanceConnectClient() as s3:
+    async with AsyncEC2InstanceConnectClient() as ec2_instance_connect:
         # Example: call the send_serial_console_ssh_public_key operation
-        response = await s3.send_serial_console_ssh_public_key()
+        response = await ec2_instance_connect.send_serial_console_ssh_public_key()
         print(response["request_id"])
 ```
 
@@ -29,9 +29,9 @@ from capo_ec2_instance_connect.error import AuthException
 
 
 async def main():
-    async with AsyncEC2InstanceConnectClient() as s3:
+    async with AsyncEC2InstanceConnectClient() as ec2_instance_connect:
         try:
-            await s3.send_serial_console_ssh_public_key()
+            await ec2_instance_connect.send_serial_console_ssh_public_key()
         except AuthException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_ec2_instance_connect import AsyncEC2InstanceConnectClient
 
 
 async def main():
-    async with AsyncEC2InstanceConnectClient() as s3:
+    async with AsyncEC2InstanceConnectClient() as ec2_instance_connect:
         # Default: 3 attempts for every operation
-        response = await s3.send_serial_console_ssh_public_key()
+        response = await ec2_instance_connect.send_serial_console_ssh_public_key()
 
         # Override per operation
-        response = await s3.send_serial_console_ssh_public_key(config_overrides={"retry_max_attempts": 5})
+        response = await ec2_instance_connect.send_serial_console_ssh_public_key(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.send_serial_console_ssh_public_key(config_overrides={"retry_max_attempts": 1})
+        response = await ec2_instance_connect.send_serial_console_ssh_public_key(config_overrides={"retry_max_attempts": 1})
 ```

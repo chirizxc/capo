@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CompositeSliComponents:
 
     out: CompositeSliComponents = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_signals.types.composite_sli_component.deserialize_json(
                 item

@@ -34,7 +34,7 @@ def serialize_json(value: GetServiceOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceOutput:
     out: GetServiceOutput = {}  # type: ignore[typeddict-item]
-    if "service" in data:
+    if data.get("service") is not None:
         import capo_devops_agent.types.registered_service
 
         out["service"] = capo_devops_agent.types.registered_service.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> GetServiceOutput:
         )
     else:
         raise DeserializationError("GetServiceOutput.service required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_devops_agent.types.tags
 
         out["tags"] = capo_devops_agent.types.tags.deserialize_json(data["tags"])

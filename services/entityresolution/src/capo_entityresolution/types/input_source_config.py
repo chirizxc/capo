@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InputSourceConfig:
 
     out: InputSourceConfig = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_entityresolution.types.input_source.deserialize_json(item))
     return out

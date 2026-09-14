@@ -42,7 +42,7 @@ def serialize_json(value: EncryptionInfo) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionInfo:
     out: EncryptionInfo = {}  # type: ignore[typeddict-item]
-    if "encryptionAtRest" in data:
+    if data.get("encryptionAtRest") is not None:
         import capo_kafka.types.encryption_at_rest
 
         out["encryption_at_rest"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> EncryptionInfo:
                 data["encryptionAtRest"]
             )
         )
-    if "encryptionInTransit" in data:
+    if data.get("encryptionInTransit") is not None:
         import capo_kafka.types.encryption_in_transit
 
         out["encryption_in_transit"] = (

@@ -56,19 +56,19 @@ def serialize_json(value: MetaFlowSummary) -> dict:
 
 def deserialize_json(data: dict) -> MetaFlowSummary:
     out: MetaFlowSummary = {}  # type: ignore[typeddict-item]
-    if "flowId" in data:
+    if data.get("flowId") is not None:
         out["flow_id"] = data["flowId"]
     else:
         raise DeserializationError("MetaFlowSummary.flow_id required")
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
     else:
         raise DeserializationError("MetaFlowSummary.flow_name required")
-    if "flowStatus" in data:
+    if data.get("flowStatus") is not None:
         out["flow_status"] = data["flowStatus"]
     else:
         raise DeserializationError("MetaFlowSummary.flow_status required")
-    if "flowCategories" in data:
+    if data.get("flowCategories") is not None:
         import capo_socialmessaging.types.meta_flow_category_list
 
         out["flow_categories"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> MetaFlowSummary:
         )
     else:
         raise DeserializationError("MetaFlowSummary.flow_categories required")
-    if "validationErrors" in data:
+    if data.get("validationErrors") is not None:
         import capo_socialmessaging.types.validation_error_list
 
         out["validation_errors"] = (

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> DescribeEventDetailsFailedSet:
 
     out: DescribeEventDetailsFailedSet = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_health.types.event_details_error_item.deserialize_aws_json_1_1(item)
         )

@@ -33,13 +33,13 @@ def serialize_json(value: S3BatchJobIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> S3BatchJobIdentifier:
     out: S3BatchJobIdentifier = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError("S3BatchJobIdentifier.bucket required")
-    if "keyPrefix" in data:
+    if data.get("keyPrefix") is not None:
         out["key_prefix"] = data["keyPrefix"]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         import capo_m2.types.job_identifier
 
         out["identifier"] = capo_m2.types.job_identifier.deserialize_json(

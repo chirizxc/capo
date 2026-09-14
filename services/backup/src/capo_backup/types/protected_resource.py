@@ -50,20 +50,20 @@ def serialize_json(value: ProtectedResource) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedResource:
     out: ProtectedResource = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "LastBackupTime" in data:
+    if data.get("LastBackupTime") is not None:
         import capo_backup.types.timestamp
 
         out["last_backup_time"] = capo_backup.types.timestamp.deserialize_json(
             data["LastBackupTime"]
         )
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
-    if "LastBackupVaultArn" in data:
+    if data.get("LastBackupVaultArn") is not None:
         out["last_backup_vault_arn"] = data["LastBackupVaultArn"]
-    if "LastRecoveryPointArn" in data:
+    if data.get("LastRecoveryPointArn") is not None:
         out["last_recovery_point_arn"] = data["LastRecoveryPointArn"]
     return out

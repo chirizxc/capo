@@ -28,7 +28,7 @@ def serialize_json(value: UpdateSessionLoggerResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSessionLoggerResponse:
     out: UpdateSessionLoggerResponse = {}  # type: ignore[typeddict-item]
-    if "sessionLogger" in data:
+    if data.get("sessionLogger") is not None:
         import capo_workspaces_web.types.session_logger
 
         out["session_logger"] = (

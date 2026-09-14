@@ -37,10 +37,10 @@ def serialize_json(value: AwsOpenSearchServiceDomainMasterUserOptionsDetails) ->
 
 def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainMasterUserOptionsDetails:
     out: AwsOpenSearchServiceDomainMasterUserOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "MasterUserArn" in data:
+    if data.get("MasterUserArn") is not None:
         out["master_user_arn"] = data["MasterUserArn"]
-    if "MasterUserName" in data:
+    if data.get("MasterUserName") is not None:
         out["master_user_name"] = data["MasterUserName"]
-    if "MasterUserPassword" in data:
+    if data.get("MasterUserPassword") is not None:
         out["master_user_password"] = data["MasterUserPassword"]
     return out

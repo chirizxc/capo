@@ -69,11 +69,11 @@ def serialize_json(value: TimeSeriesServiceStatistics) -> dict:
 
 def deserialize_json(data: dict) -> TimeSeriesServiceStatistics:
     out: TimeSeriesServiceStatistics = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_xray.types.timestamp
 
         out["timestamp"] = capo_xray.types.timestamp.deserialize_json(data["Timestamp"])
-    if "EdgeSummaryStatistics" in data:
+    if data.get("EdgeSummaryStatistics") is not None:
         import capo_xray.types.edge_statistics
 
         out["edge_summary_statistics"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> TimeSeriesServiceStatistics:
                 data["EdgeSummaryStatistics"]
             )
         )
-    if "ServiceSummaryStatistics" in data:
+    if data.get("ServiceSummaryStatistics") is not None:
         import capo_xray.types.service_statistics
 
         out["service_summary_statistics"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> TimeSeriesServiceStatistics:
                 data["ServiceSummaryStatistics"]
             )
         )
-    if "ServiceForecastStatistics" in data:
+    if data.get("ServiceForecastStatistics") is not None:
         import capo_xray.types.forecast_statistics
 
         out["service_forecast_statistics"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> TimeSeriesServiceStatistics:
                 data["ServiceForecastStatistics"]
             )
         )
-    if "ResponseTimeHistogram" in data:
+    if data.get("ResponseTimeHistogram") is not None:
         import capo_xray.types.histogram
 
         out["response_time_histogram"] = capo_xray.types.histogram.deserialize_json(

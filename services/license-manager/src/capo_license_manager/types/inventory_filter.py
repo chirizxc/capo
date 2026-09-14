@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: InventoryFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InventoryFilter:
     out: InventoryFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("InventoryFilter.name required")
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_license_manager.types.inventory_filter_condition
 
         out["condition"] = (
@@ -54,6 +54,6 @@ def deserialize_aws_json_1_1(data: dict) -> InventoryFilter:
         )
     else:
         raise DeserializationError("InventoryFilter.condition required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

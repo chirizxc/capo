@@ -64,17 +64,17 @@ def serialize_aws_json_1_1(value: CreateTrustedTokenIssuerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTrustedTokenIssuerRequest:
     out: CreateTrustedTokenIssuerRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "CreateTrustedTokenIssuerRequest.instance_arn required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateTrustedTokenIssuerRequest.name required")
-    if "TrustedTokenIssuerType" in data:
+    if data.get("TrustedTokenIssuerType") is not None:
         import capo_sso_admin.types.trusted_token_issuer_type
 
         out["trusted_token_issuer_type"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrustedTokenIssuerRequest:
         raise DeserializationError(
             "CreateTrustedTokenIssuerRequest.trusted_token_issuer_type required"
         )
-    if "TrustedTokenIssuerConfiguration" in data:
+    if data.get("TrustedTokenIssuerConfiguration") is not None:
         import capo_sso_admin.types.trusted_token_issuer_configuration
 
         out["trusted_token_issuer_configuration"] = (
@@ -98,9 +98,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrustedTokenIssuerRequest:
         raise DeserializationError(
             "CreateTrustedTokenIssuerRequest.trusted_token_issuer_configuration required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sso_admin.types.tag_list
 
         out["tags"] = capo_sso_admin.types.tag_list.deserialize_aws_json_1_1(

@@ -32,9 +32,9 @@ def serialize_json(value: RegisterThingResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterThingResponse:
     out: RegisterThingResponse = {}  # type: ignore[typeddict-item]
-    if "certificatePem" in data:
+    if data.get("certificatePem") is not None:
         out["certificate_pem"] = data["certificatePem"]
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_iot.types.resource_arns
 
         out["resource_arns"] = capo_iot.types.resource_arns.deserialize_json(

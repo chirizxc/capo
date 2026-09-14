@@ -68,11 +68,11 @@ def serialize_aws_json_1_1(value: SparkConnectorTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SparkConnectorTarget:
     out: SparkConnectorTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SparkConnectorTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -80,19 +80,19 @@ def deserialize_aws_json_1_1(data: dict) -> SparkConnectorTarget:
         )
     else:
         raise DeserializationError("SparkConnectorTarget.inputs required")
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
     else:
         raise DeserializationError("SparkConnectorTarget.connection_name required")
-    if "ConnectorName" in data:
+    if data.get("ConnectorName") is not None:
         out["connector_name"] = data["ConnectorName"]
     else:
         raise DeserializationError("SparkConnectorTarget.connector_name required")
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         out["connection_type"] = data["ConnectionType"]
     else:
         raise DeserializationError("SparkConnectorTarget.connection_type required")
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.additional_options
 
         out["additional_options"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> SparkConnectorTarget:
                 data["AdditionalOptions"]
             )
         )
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

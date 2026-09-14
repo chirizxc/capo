@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetCommitmentPurchaseAnalysisRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCommitmentPurchaseAnalysisRequest:
     out: GetCommitmentPurchaseAnalysisRequest = {}  # type: ignore[typeddict-item]
-    if "AnalysisId" in data:
+    if data.get("AnalysisId") is not None:
         out["analysis_id"] = data["AnalysisId"]
     else:
         raise DeserializationError(

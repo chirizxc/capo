@@ -68,11 +68,11 @@ def serialize_json(value: ListAuditFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAuditFindingsRequest:
     out: ListAuditFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "checkName" in data:
+    if data.get("checkName") is not None:
         out["check_name"] = data["checkName"]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         import capo_iot.types.resource_identifier
 
         out["resource_identifier"] = (
@@ -80,19 +80,19 @@ def deserialize_json(data: dict) -> ListAuditFindingsRequest:
                 data["resourceIdentifier"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_iot.types.timestamp
 
         out["start_time"] = capo_iot.types.timestamp.deserialize_json(data["startTime"])
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_iot.types.timestamp
 
         out["end_time"] = capo_iot.types.timestamp.deserialize_json(data["endTime"])
-    if "listSuppressedFindings" in data:
+    if data.get("listSuppressedFindings") is not None:
         out["list_suppressed_findings"] = data["listSuppressedFindings"]
     else:
         out["list_suppressed_findings"] = False

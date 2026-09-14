@@ -32,12 +32,12 @@ def serialize_json(value: HostPropertiesRequest) -> dict:
 
 def deserialize_json(data: dict) -> HostPropertiesRequest:
     out: HostPropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "ipAddresses" in data:
+    if data.get("ipAddresses") is not None:
         import capo_deadline.types.ip_addresses
 
         out["ip_addresses"] = capo_deadline.types.ip_addresses.deserialize_json(
             data["ipAddresses"]
         )
-    if "hostName" in data:
+    if data.get("hostName") is not None:
         out["host_name"] = data["hostName"]
     return out

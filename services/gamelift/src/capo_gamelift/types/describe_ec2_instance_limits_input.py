@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeEC2InstanceLimitsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEC2InstanceLimitsInput:
     out: DescribeEC2InstanceLimitsInput = {}  # type: ignore[typeddict-item]
-    if "EC2InstanceType" in data:
+    if data.get("EC2InstanceType") is not None:
         import capo_gamelift.types.ec2_instance_type
 
         out["ec2_instance_type"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEC2InstanceLimitsInput:
                 data["EC2InstanceType"]
             )
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> FindingReasonCodes:
 
     out: FindingReasonCodes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.finding_reason_code.deserialize_aws_json_1_1(item)
         )

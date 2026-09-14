@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: CmkSecretConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CmkSecretConfig:
     out: CmkSecretConfig = {}  # type: ignore[typeddict-item]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

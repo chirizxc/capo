@@ -42,13 +42,21 @@ def serialize_aws_json_1_0(value: LambdaFunctionMemoryProjectedMetric) -> dict:
                 value["statistic"]
             )
         )
-    out["value"] = value.get("value", 0)
+    out["value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionMemoryProjectedMetric:
     out: LambdaFunctionMemoryProjectedMetric = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_compute_optimizer.types.lambda_function_memory_metric_name
 
         out["name"] = (
@@ -56,7 +64,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionMemoryProjectedMetric:
                 data["name"]
             )
         )
-    if "statistic" in data:
+    if data.get("statistic") is not None:
         import capo_compute_optimizer.types.lambda_function_memory_metric_statistic
 
         out["statistic"] = (
@@ -64,8 +72,8 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionMemoryProjectedMetric:
                 data["statistic"]
             )
         )
-    if "value" in data:
-        out["value"] = data["value"]
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
     else:
         out["value"] = 0
     return out

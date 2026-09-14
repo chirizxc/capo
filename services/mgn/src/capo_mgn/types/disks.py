@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Disks:
 
     out: Disks = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.disk.deserialize_json(item))
     return out

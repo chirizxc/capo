@@ -27,7 +27,7 @@ def serialize_json(value: GradientColor) -> dict:
 
 def deserialize_json(data: dict) -> GradientColor:
     out: GradientColor = {}  # type: ignore[typeddict-item]
-    if "Stops" in data:
+    if data.get("Stops") is not None:
         import capo_quicksight.types.gradient_stop_list
 
         out["stops"] = capo_quicksight.types.gradient_stop_list.deserialize_json(

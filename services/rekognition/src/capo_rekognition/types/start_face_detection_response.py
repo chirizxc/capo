@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StartFaceDetectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartFaceDetectionResponse:
     out: StartFaceDetectionResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     return out

@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: HandshakeFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HandshakeFilter:
     out: HandshakeFilter = {}  # type: ignore[typeddict-item]
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         import capo_organizations.types.action_type
 
         out["action_type"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> HandshakeFilter:
                 data["ActionType"]
             )
         )
-    if "ParentHandshakeId" in data:
+    if data.get("ParentHandshakeId") is not None:
         out["parent_handshake_id"] = data["ParentHandshakeId"]
     return out

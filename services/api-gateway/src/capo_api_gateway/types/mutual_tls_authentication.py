@@ -40,11 +40,11 @@ def serialize_json(value: MutualTlsAuthentication) -> dict:
 
 def deserialize_json(data: dict) -> MutualTlsAuthentication:
     out: MutualTlsAuthentication = {}  # type: ignore[typeddict-item]
-    if "truststoreUri" in data:
+    if data.get("truststoreUri") is not None:
         out["truststore_uri"] = data["truststoreUri"]
-    if "truststoreVersion" in data:
+    if data.get("truststoreVersion") is not None:
         out["truststore_version"] = data["truststoreVersion"]
-    if "truststoreWarnings" in data:
+    if data.get("truststoreWarnings") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["truststore_warnings"] = (

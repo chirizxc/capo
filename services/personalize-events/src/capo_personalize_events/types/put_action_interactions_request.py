@@ -36,11 +36,11 @@ def serialize_json(value: PutActionInteractionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutActionInteractionsRequest:
     out: PutActionInteractionsRequest = {}  # type: ignore[typeddict-item]
-    if "trackingId" in data:
+    if data.get("trackingId") is not None:
         out["tracking_id"] = data["trackingId"]
     else:
         raise DeserializationError("PutActionInteractionsRequest.tracking_id required")
-    if "actionInteractions" in data:
+    if data.get("actionInteractions") is not None:
         import capo_personalize_events.types.action_interactions_list
 
         out["action_interactions"] = (

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: GetMobileDeviceAccessEffectResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMobileDeviceAccessEffectResponse:
     out: GetMobileDeviceAccessEffectResponse = {}  # type: ignore[typeddict-item]
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.mobile_device_access_rule_effect
 
         out["effect"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMobileDeviceAccessEffectResponse:
                 data["Effect"]
             )
         )
-    if "MatchedRules" in data:
+    if data.get("MatchedRules") is not None:
         import capo_workmail.types.mobile_device_access_matched_rule_list
 
         out["matched_rules"] = (

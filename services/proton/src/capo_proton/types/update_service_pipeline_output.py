@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: UpdateServicePipelineOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateServicePipelineOutput:
     out: UpdateServicePipelineOutput = {}  # type: ignore[typeddict-item]
-    if "pipeline" in data:
+    if data.get("pipeline") is not None:
         import capo_proton.types.service_pipeline
 
         out["pipeline"] = capo_proton.types.service_pipeline.deserialize_aws_json_1_0(

@@ -23,6 +23,6 @@ def serialize_json(value: InvokedIntentSample) -> dict:
 
 def deserialize_json(data: dict) -> InvokedIntentSample:
     out: InvokedIntentSample = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
     return out

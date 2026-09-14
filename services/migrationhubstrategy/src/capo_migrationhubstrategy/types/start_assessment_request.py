@@ -51,11 +51,11 @@ def serialize_json(value: StartAssessmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAssessmentRequest:
     out: StartAssessmentRequest = {}  # type: ignore[typeddict-item]
-    if "s3bucketForAnalysisData" in data:
+    if data.get("s3bucketForAnalysisData") is not None:
         out["s3bucket_for_analysis_data"] = data["s3bucketForAnalysisData"]
-    if "s3bucketForReportData" in data:
+    if data.get("s3bucketForReportData") is not None:
         out["s3bucket_for_report_data"] = data["s3bucketForReportData"]
-    if "assessmentTargets" in data:
+    if data.get("assessmentTargets") is not None:
         import capo_migrationhubstrategy.types.assessment_targets
 
         out["assessment_targets"] = (
@@ -63,6 +63,6 @@ def deserialize_json(data: dict) -> StartAssessmentRequest:
                 data["assessmentTargets"]
             )
         )
-    if "assessmentDataSourceType" in data:
+    if data.get("assessmentDataSourceType") is not None:
         out["assessment_data_source_type"] = data["assessmentDataSourceType"]
     return out

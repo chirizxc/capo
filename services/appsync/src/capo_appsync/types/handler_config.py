@@ -36,7 +36,7 @@ def serialize_json(value: HandlerConfig) -> dict:
 
 def deserialize_json(data: dict) -> HandlerConfig:
     out: HandlerConfig = {}  # type: ignore[typeddict-item]
-    if "behavior" in data:
+    if data.get("behavior") is not None:
         import capo_appsync.types.handler_behavior
 
         out["behavior"] = capo_appsync.types.handler_behavior.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> HandlerConfig:
         )
     else:
         raise DeserializationError("HandlerConfig.behavior required")
-    if "integration" in data:
+    if data.get("integration") is not None:
         import capo_appsync.types.integration
 
         out["integration"] = capo_appsync.types.integration.deserialize_json(

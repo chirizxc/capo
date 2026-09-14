@@ -47,15 +47,15 @@ def serialize_aws_json_1_0(value: UpdateBillingViewRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateBillingViewRequest:
     out: UpdateBillingViewRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateBillingViewRequest.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "dataFilterExpression" in data:
+    if data.get("dataFilterExpression") is not None:
         import capo_billing.types.expression
 
         out["data_filter_expression"] = (

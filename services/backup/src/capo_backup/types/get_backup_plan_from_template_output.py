@@ -27,7 +27,7 @@ def serialize_json(value: GetBackupPlanFromTemplateOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetBackupPlanFromTemplateOutput:
     out: GetBackupPlanFromTemplateOutput = {}  # type: ignore[typeddict-item]
-    if "BackupPlanDocument" in data:
+    if data.get("BackupPlanDocument") is not None:
         import capo_backup.types.backup_plan
 
         out["backup_plan_document"] = capo_backup.types.backup_plan.deserialize_json(

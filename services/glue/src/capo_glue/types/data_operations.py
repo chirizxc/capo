@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> DataOperations:
 
     out: DataOperations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.data_operation.deserialize_aws_json_1_1(item))
     return out

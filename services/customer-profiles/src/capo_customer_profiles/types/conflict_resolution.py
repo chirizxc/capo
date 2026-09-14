@@ -37,7 +37,7 @@ def serialize_json(value: ConflictResolution) -> dict:
 
 def deserialize_json(data: dict) -> ConflictResolution:
     out: ConflictResolution = {}  # type: ignore[typeddict-item]
-    if "ConflictResolvingModel" in data:
+    if data.get("ConflictResolvingModel") is not None:
         import capo_customer_profiles.types.conflict_resolving_model
 
         out["conflict_resolving_model"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ConflictResolution:
         raise DeserializationError(
             "ConflictResolution.conflict_resolving_model required"
         )
-    if "SourceName" in data:
+    if data.get("SourceName") is not None:
         out["source_name"] = data["SourceName"]
     return out

@@ -25,6 +25,6 @@ def serialize_json(value: StartCommandExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartCommandExecutionResponse:
     out: StartCommandExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     return out

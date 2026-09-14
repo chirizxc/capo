@@ -26,7 +26,7 @@ def serialize_json(value: NotificationTargetItem) -> dict:
 
 
 def deserialize_json(data: dict) -> NotificationTargetItem:
-    if "snsTopicArn" in data:
+    if data.get("snsTopicArn") is not None:
         return {"snsTopicArn": data["snsTopicArn"]}
     else:
         raise DeserializationError("NotificationTargetItem: no recognized variant key")

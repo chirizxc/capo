@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeDirectoryConfigsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDirectoryConfigsResult:
     out: DescribeDirectoryConfigsResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryConfigs" in data:
+    if data.get("DirectoryConfigs") is not None:
         import capo_appstream.types.directory_config_list
 
         out["directory_configs"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDirectoryConfigsResult:
                 data["DirectoryConfigs"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

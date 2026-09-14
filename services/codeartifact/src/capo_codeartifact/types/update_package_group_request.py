@@ -42,12 +42,12 @@ def serialize_json(value: UpdatePackageGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageGroupRequest:
     out: UpdatePackageGroupRequest = {}  # type: ignore[typeddict-item]
-    if "packageGroup" in data:
+    if data.get("packageGroup") is not None:
         out["package_group"] = data["packageGroup"]
     else:
         raise DeserializationError("UpdatePackageGroupRequest.package_group required")
-    if "contactInfo" in data:
+    if data.get("contactInfo") is not None:
         out["contact_info"] = data["contactInfo"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

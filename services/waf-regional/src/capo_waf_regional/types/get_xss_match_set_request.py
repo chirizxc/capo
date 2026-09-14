@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetXssMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetXssMatchSetRequest:
     out: GetXssMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "XssMatchSetId" in data:
+    if data.get("XssMatchSetId") is not None:
         out["xss_match_set_id"] = data["XssMatchSetId"]
     else:
         raise DeserializationError("GetXssMatchSetRequest.xss_match_set_id required")

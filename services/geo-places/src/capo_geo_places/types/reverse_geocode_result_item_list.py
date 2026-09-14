@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ReverseGeocodeResultItemList:
 
     out: ReverseGeocodeResultItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_places.types.reverse_geocode_result_item.deserialize_json(item)
         )

@@ -26,16 +26,24 @@ def serialize_aws_json_1_1(value: RelationalDatabaseHardware) -> dict:
     if "disk_size_in_gb" in value:
         out["diskSizeInGb"] = value["disk_size_in_gb"]
     if "ram_size_in_gb" in value:
-        out["ramSizeInGb"] = value["ram_size_in_gb"]
+        out["ramSizeInGb"] = (
+            "NaN"
+            if value["ram_size_in_gb"] != value["ram_size_in_gb"]
+            else "Infinity"
+            if value["ram_size_in_gb"] == float("inf")
+            else "-Infinity"
+            if value["ram_size_in_gb"] == float("-inf")
+            else value["ram_size_in_gb"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> RelationalDatabaseHardware:
     out: RelationalDatabaseHardware = {}  # type: ignore[typeddict-item]
-    if "cpuCount" in data:
+    if data.get("cpuCount") is not None:
         out["cpu_count"] = data["cpuCount"]
-    if "diskSizeInGb" in data:
+    if data.get("diskSizeInGb") is not None:
         out["disk_size_in_gb"] = data["diskSizeInGb"]
-    if "ramSizeInGb" in data:
-        out["ram_size_in_gb"] = data["ramSizeInGb"]
+    if data.get("ramSizeInGb") is not None:
+        out["ram_size_in_gb"] = float(data["ramSizeInGb"])
     return out

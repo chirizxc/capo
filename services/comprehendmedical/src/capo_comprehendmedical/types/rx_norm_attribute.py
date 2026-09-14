@@ -47,9 +47,25 @@ def serialize_aws_json_1_1(value: RxNormAttribute) -> dict:
             )
         )
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     if "relationship_score" in value:
-        out["RelationshipScore"] = value["relationship_score"]
+        out["RelationshipScore"] = (
+            "NaN"
+            if value["relationship_score"] != value["relationship_score"]
+            else "Infinity"
+            if value["relationship_score"] == float("inf")
+            else "-Infinity"
+            if value["relationship_score"] == float("-inf")
+            else value["relationship_score"]
+        )
     if "id" in value:
         out["Id"] = value["id"]
     if "begin_offset" in value:
@@ -71,7 +87,7 @@ def serialize_aws_json_1_1(value: RxNormAttribute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RxNormAttribute:
     out: RxNormAttribute = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_comprehendmedical.types.rx_norm_attribute_type
 
         out["type"] = (
@@ -79,19 +95,19 @@ def deserialize_aws_json_1_1(data: dict) -> RxNormAttribute:
                 data["Type"]
             )
         )
-    if "Score" in data:
-        out["score"] = data["Score"]
-    if "RelationshipScore" in data:
-        out["relationship_score"] = data["RelationshipScore"]
-    if "Id" in data:
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
+    if data.get("RelationshipScore") is not None:
+        out["relationship_score"] = float(data["RelationshipScore"])
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "BeginOffset" in data:
+    if data.get("BeginOffset") is not None:
         out["begin_offset"] = data["BeginOffset"]
-    if "EndOffset" in data:
+    if data.get("EndOffset") is not None:
         out["end_offset"] = data["EndOffset"]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "Traits" in data:
+    if data.get("Traits") is not None:
         import capo_comprehendmedical.types.rx_norm_trait_list
 
         out["traits"] = (

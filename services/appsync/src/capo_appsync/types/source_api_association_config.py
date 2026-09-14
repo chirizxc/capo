@@ -27,7 +27,7 @@ def serialize_json(value: SourceApiAssociationConfig) -> dict:
 
 def deserialize_json(data: dict) -> SourceApiAssociationConfig:
     out: SourceApiAssociationConfig = {}  # type: ignore[typeddict-item]
-    if "mergeType" in data:
+    if data.get("mergeType") is not None:
         import capo_appsync.types.merge_type
 
         out["merge_type"] = capo_appsync.types.merge_type.deserialize_json(

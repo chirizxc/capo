@@ -86,8 +86,9 @@ class DbParameterGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.create_db_parameter_group_input.CreateDbParameterGroupInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_timestream_influxdb.types.create_db_parameter_group_input.CreateDbParameterGroupInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if parameters is not None:
@@ -100,6 +101,7 @@ class DbParameterGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -137,14 +139,16 @@ class DbParameterGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.get_db_parameter_group_input.GetDbParameterGroupInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_timestream_influxdb.types.get_db_parameter_group_input.GetDbParameterGroupInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -188,7 +192,7 @@ class DbParameterGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.list_db_parameter_groups_input.ListDbParameterGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_influxdb.types.list_db_parameter_groups_input.ListDbParameterGroupsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -199,6 +203,7 @@ class DbParameterGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -254,8 +259,9 @@ class AsyncDbParameterGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.create_db_parameter_group_input.CreateDbParameterGroupInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_timestream_influxdb.types.create_db_parameter_group_input.CreateDbParameterGroupInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if parameters is not None:
@@ -268,6 +274,7 @@ class AsyncDbParameterGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -306,14 +313,16 @@ class AsyncDbParameterGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.get_db_parameter_group_input.GetDbParameterGroupInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_timestream_influxdb.types.get_db_parameter_group_input.GetDbParameterGroupInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -358,7 +367,7 @@ class AsyncDbParameterGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.list_db_parameter_groups_input.ListDbParameterGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_influxdb.types.list_db_parameter_groups_input.ListDbParameterGroupsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -369,4 +378,5 @@ class AsyncDbParameterGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

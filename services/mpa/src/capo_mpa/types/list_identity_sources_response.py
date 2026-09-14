@@ -32,9 +32,9 @@ def serialize_json(value: ListIdentitySourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIdentitySourcesResponse:
     out: ListIdentitySourcesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "IdentitySources" in data:
+    if data.get("IdentitySources") is not None:
         import capo_mpa.types.identity_sources
 
         out["identity_sources"] = capo_mpa.types.identity_sources.deserialize_json(

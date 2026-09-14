@@ -24,7 +24,15 @@ class Cost(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: Cost) -> dict:
     out: dict = {}
-    out["amount"] = value.get("amount", 0)
+    out["amount"] = (
+        "NaN"
+        if value.get("amount", 0) != value.get("amount", 0)
+        else "Infinity"
+        if value.get("amount", 0) == float("inf")
+        else "-Infinity"
+        if value.get("amount", 0) == float("-inf")
+        else value.get("amount", 0)
+    )
     out["currency"] = value["currency"]
     import capo_resiliencehub.types.cost_frequency
 
@@ -36,15 +44,15 @@ def serialize_json(value: Cost) -> dict:
 
 def deserialize_json(data: dict) -> Cost:
     out: Cost = {}  # type: ignore[typeddict-item]
-    if "amount" in data:
-        out["amount"] = data["amount"]
+    if data.get("amount") is not None:
+        out["amount"] = float(data["amount"])
     else:
         out["amount"] = 0
-    if "currency" in data:
+    if data.get("currency") is not None:
         out["currency"] = data["currency"]
     else:
         raise DeserializationError("Cost.currency required")
-    if "frequency" in data:
+    if data.get("frequency") is not None:
         import capo_resiliencehub.types.cost_frequency
 
         out["frequency"] = capo_resiliencehub.types.cost_frequency.deserialize_json(

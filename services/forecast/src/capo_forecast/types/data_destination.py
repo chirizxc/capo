@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DataDestination) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataDestination:
     out: DataDestination = {}  # type: ignore[typeddict-item]
-    if "S3Config" in data:
+    if data.get("S3Config") is not None:
         import capo_forecast.types.s3_config
 
         out["s3_config"] = capo_forecast.types.s3_config.deserialize_aws_json_1_1(

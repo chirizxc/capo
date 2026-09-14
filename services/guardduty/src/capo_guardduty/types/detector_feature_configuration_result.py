@@ -60,25 +60,25 @@ def serialize_json(value: DetectorFeatureConfigurationResult) -> dict:
 
 def deserialize_json(data: dict) -> DetectorFeatureConfigurationResult:
     out: DetectorFeatureConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_guardduty.types.detector_feature_result
 
         out["name"] = capo_guardduty.types.detector_feature_result.deserialize_json(
             data["name"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.feature_status
 
         out["status"] = capo_guardduty.types.feature_status.deserialize_json(
             data["status"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["updated_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "additionalConfiguration" in data:
+    if data.get("additionalConfiguration") is not None:
         import capo_guardduty.types.detector_additional_configuration_results
 
         out["additional_configuration"] = (

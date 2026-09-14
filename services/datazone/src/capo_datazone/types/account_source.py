@@ -49,7 +49,7 @@ def serialize_json(value: AccountSource) -> dict:
 
 
 def deserialize_json(data: dict) -> AccountSource:
-    if "accounts" in data:
+    if data.get("accounts") is not None:
         import capo_datazone.types.account_info_list
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> AccountSource:
                 data["accounts"]
             )
         }
-    elif "customAccountPoolHandler" in data:
+    elif data.get("customAccountPoolHandler") is not None:
         import capo_datazone.types.custom_account_pool_handler
 
         return {

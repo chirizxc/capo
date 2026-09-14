@@ -31,7 +31,7 @@ def serialize_json(value: AudioPitchCorrectionSettings) -> dict:
 
 def deserialize_json(data: dict) -> AudioPitchCorrectionSettings:
     out: AudioPitchCorrectionSettings = {}  # type: ignore[typeddict-item]
-    if "slowPalPitchCorrection" in data:
+    if data.get("slowPalPitchCorrection") is not None:
         import capo_mediaconvert.types.slow_pal_pitch_correction
 
         out["slow_pal_pitch_correction"] = (

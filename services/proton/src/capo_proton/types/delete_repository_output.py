@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: DeleteRepositoryOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteRepositoryOutput:
     out: DeleteRepositoryOutput = {}  # type: ignore[typeddict-item]
-    if "repository" in data:
+    if data.get("repository") is not None:
         import capo_proton.types.repository
 
         out["repository"] = capo_proton.types.repository.deserialize_aws_json_1_0(

@@ -36,9 +36,9 @@ def serialize_json(value: ReplicationStatus) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationStatus:
     out: ReplicationStatus = {}  # type: ignore[typeddict-item]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gameliftstreams.types.replication_status_type
 
         out["status"] = (

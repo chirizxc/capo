@@ -35,7 +35,7 @@ def serialize_json(value: ListTableBucketsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTableBucketsResponse:
     out: ListTableBucketsResponse = {}  # type: ignore[typeddict-item]
-    if "tableBuckets" in data:
+    if data.get("tableBuckets") is not None:
         import capo_s3tables.types.table_bucket_summary_list
 
         out["table_buckets"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListTableBucketsResponse:
         )
     else:
         raise DeserializationError("ListTableBucketsResponse.table_buckets required")
-    if "continuationToken" in data:
+    if data.get("continuationToken") is not None:
         out["continuation_token"] = data["continuationToken"]
     return out

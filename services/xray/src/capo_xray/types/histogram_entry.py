@@ -19,18 +19,26 @@ class HistogramEntry(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: HistogramEntry) -> dict:
     out: dict = {}
-    out["Value"] = value.get("value", 0)
+    out["Value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     out["Count"] = value.get("count", 0)
     return out
 
 
 def deserialize_json(data: dict) -> HistogramEntry:
     out: HistogramEntry = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         out["value"] = 0
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     else:
         out["count"] = 0

@@ -64,15 +64,15 @@ def serialize_aws_json_1_1(value: TokenData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TokenData:
     out: TokenData = {}  # type: ignore[typeddict-item]
-    if "TokenId" in data:
+    if data.get("TokenId") is not None:
         out["token_id"] = data["TokenId"]
-    if "TokenType" in data:
+    if data.get("TokenType") is not None:
         out["token_type"] = data["TokenType"]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
-    if "ExpirationTime" in data:
+    if data.get("ExpirationTime") is not None:
         out["expiration_time"] = data["ExpirationTime"]
-    if "TokenProperties" in data:
+    if data.get("TokenProperties") is not None:
         import capo_license_manager.types.max_size3_string_list
 
         out["token_properties"] = (
@@ -80,12 +80,12 @@ def deserialize_aws_json_1_1(data: dict) -> TokenData:
                 data["TokenProperties"]
             )
         )
-    if "RoleArns" in data:
+    if data.get("RoleArns") is not None:
         import capo_license_manager.types.arn_list
 
         out["role_arns"] = capo_license_manager.types.arn_list.deserialize_aws_json_1_1(
             data["RoleArns"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

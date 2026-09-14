@@ -52,17 +52,17 @@ def serialize_json(value: RateCardItem) -> dict:
 
 def deserialize_json(data: dict) -> RateCardItem:
     out: RateCardItem = {}  # type: ignore[typeddict-item]
-    if "dimensionKey" in data:
+    if data.get("dimensionKey") is not None:
         out["dimension_key"] = data["dimensionKey"]
     else:
         raise DeserializationError("RateCardItem.dimension_key required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("RateCardItem.display_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "dimensionLabels" in data:
+    if data.get("dimensionLabels") is not None:
         import capo_marketplace_discovery.types.dimension_label_list
 
         out["dimension_labels"] = (
@@ -70,11 +70,11 @@ def deserialize_json(data: dict) -> RateCardItem:
                 data["dimensionLabels"]
             )
         )
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
     else:
         raise DeserializationError("RateCardItem.unit required")
-    if "price" in data:
+    if data.get("price") is not None:
         out["price"] = data["price"]
     else:
         raise DeserializationError("RateCardItem.price required")

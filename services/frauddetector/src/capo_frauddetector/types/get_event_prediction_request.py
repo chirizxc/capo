@@ -74,21 +74,21 @@ def serialize_aws_json_1_1(value: GetEventPredictionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionRequest:
     out: GetEventPredictionRequest = {}  # type: ignore[typeddict-item]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
     else:
         raise DeserializationError("GetEventPredictionRequest.detector_id required")
-    if "detectorVersionId" in data:
+    if data.get("detectorVersionId") is not None:
         out["detector_version_id"] = data["detectorVersionId"]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("GetEventPredictionRequest.event_id required")
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
     else:
         raise DeserializationError("GetEventPredictionRequest.event_type_name required")
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_frauddetector.types.list_of_entities
 
         out["entities"] = (
@@ -98,11 +98,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionRequest:
         )
     else:
         raise DeserializationError("GetEventPredictionRequest.entities required")
-    if "eventTimestamp" in data:
+    if data.get("eventTimestamp") is not None:
         out["event_timestamp"] = data["eventTimestamp"]
     else:
         raise DeserializationError("GetEventPredictionRequest.event_timestamp required")
-    if "eventVariables" in data:
+    if data.get("eventVariables") is not None:
         import capo_frauddetector.types.event_variable_map
 
         out["event_variables"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionRequest:
         )
     else:
         raise DeserializationError("GetEventPredictionRequest.event_variables required")
-    if "externalModelEndpointDataBlobs" in data:
+    if data.get("externalModelEndpointDataBlobs") is not None:
         import capo_frauddetector.types.external_model_endpoint_data_blob_map
 
         out["external_model_endpoint_data_blobs"] = (

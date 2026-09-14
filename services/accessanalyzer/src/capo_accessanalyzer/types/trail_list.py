@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TrailList:
 
     out: TrailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_accessanalyzer.types.trail.deserialize_json(item))
     return out

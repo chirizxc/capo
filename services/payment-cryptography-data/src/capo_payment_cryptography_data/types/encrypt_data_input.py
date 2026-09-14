@@ -50,11 +50,11 @@ def serialize_json(value: EncryptDataInput) -> dict:
 
 def deserialize_json(data: dict) -> EncryptDataInput:
     out: EncryptDataInput = {}  # type: ignore[typeddict-item]
-    if "PlainText" in data:
+    if data.get("PlainText") is not None:
         out["plain_text"] = data["PlainText"]
     else:
         raise DeserializationError("EncryptDataInput.plain_text required")
-    if "EncryptionAttributes" in data:
+    if data.get("EncryptionAttributes") is not None:
         import capo_payment_cryptography_data.types.encryption_decryption_attributes
 
         out["encryption_attributes"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> EncryptDataInput:
         )
     else:
         raise DeserializationError("EncryptDataInput.encryption_attributes required")
-    if "WrappedKey" in data:
+    if data.get("WrappedKey") is not None:
         import capo_payment_cryptography_data.types.wrapped_key
 
         out["wrapped_key"] = (

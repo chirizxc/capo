@@ -27,7 +27,7 @@ def serialize_json(value: SegmentBehaviors) -> dict:
 
 def deserialize_json(data: dict) -> SegmentBehaviors:
     out: SegmentBehaviors = {}  # type: ignore[typeddict-item]
-    if "Recency" in data:
+    if data.get("Recency") is not None:
         import capo_pinpoint.types.recency_dimension
 
         out["recency"] = capo_pinpoint.types.recency_dimension.deserialize_json(

@@ -36,12 +36,12 @@ def serialize_aws_json_1_0(value: ListSourceViewsForBillingViewRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSourceViewsForBillingViewRequest:
     out: ListSourceViewsForBillingViewRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ListSourceViewsForBillingViewRequest.arn required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: IdleDimension) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IdleDimension:
     out: IdleDimension = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_compute_optimizer.types.idle_dimension_values
 
         out["values"] = (

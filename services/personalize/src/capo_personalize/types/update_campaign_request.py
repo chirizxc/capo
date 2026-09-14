@@ -48,15 +48,15 @@ def serialize_aws_json_1_1(value: UpdateCampaignRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCampaignRequest:
     out: UpdateCampaignRequest = {}  # type: ignore[typeddict-item]
-    if "campaignArn" in data:
+    if data.get("campaignArn") is not None:
         out["campaign_arn"] = data["campaignArn"]
     else:
         raise DeserializationError("UpdateCampaignRequest.campaign_arn required")
-    if "solutionVersionArn" in data:
+    if data.get("solutionVersionArn") is not None:
         out["solution_version_arn"] = data["solutionVersionArn"]
-    if "minProvisionedTPS" in data:
+    if data.get("minProvisionedTPS") is not None:
         out["min_provisioned_tps"] = data["minProvisionedTPS"]
-    if "campaignConfig" in data:
+    if data.get("campaignConfig") is not None:
         import capo_personalize.types.campaign_config
 
         out["campaign_config"] = (

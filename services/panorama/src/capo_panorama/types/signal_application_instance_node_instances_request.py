@@ -33,7 +33,7 @@ def serialize_json(value: SignalApplicationInstanceNodeInstancesRequest) -> dict
 
 def deserialize_json(data: dict) -> SignalApplicationInstanceNodeInstancesRequest:
     out: SignalApplicationInstanceNodeInstancesRequest = {}  # type: ignore[typeddict-item]
-    if "NodeSignals" in data:
+    if data.get("NodeSignals") is not None:
         import capo_panorama.types.node_signal_list
 
         out["node_signals"] = capo_panorama.types.node_signal_list.deserialize_json(

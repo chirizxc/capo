@@ -31,7 +31,7 @@ def serialize_json(value: DescribeUserHierarchyStructureResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeUserHierarchyStructureResponse:
     out: DescribeUserHierarchyStructureResponse = {}  # type: ignore[typeddict-item]
-    if "HierarchyStructure" in data:
+    if data.get("HierarchyStructure") is not None:
         import capo_connect.types.hierarchy_structure
 
         out["hierarchy_structure"] = (

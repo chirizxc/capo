@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: RecommendationJobCompiledOutputConfig) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationJobCompiledOutputConfig:
     out: RecommendationJobCompiledOutputConfig = {}  # type: ignore[typeddict-item]
-    if "S3OutputUri" in data:
+    if data.get("S3OutputUri") is not None:
         out["s3_output_uri"] = data["S3OutputUri"]
     return out

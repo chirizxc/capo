@@ -56,17 +56,17 @@ def serialize_aws_json_1_0(value: CreateConnectionInvitationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateConnectionInvitationRequest:
     out: CreateConnectionInvitationRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("CreateConnectionInvitationRequest.catalog required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(
             "CreateConnectionInvitationRequest.client_token required"
         )
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         import capo_partnercentral_account.types.connection_type
 
         out["connection_type"] = (
@@ -78,19 +78,19 @@ def deserialize_aws_json_1_0(data: dict) -> CreateConnectionInvitationRequest:
         raise DeserializationError(
             "CreateConnectionInvitationRequest.connection_type required"
         )
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     else:
         raise DeserializationError("CreateConnectionInvitationRequest.email required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("CreateConnectionInvitationRequest.message required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateConnectionInvitationRequest.name required")
-    if "ReceiverIdentifier" in data:
+    if data.get("ReceiverIdentifier") is not None:
         out["receiver_identifier"] = data["ReceiverIdentifier"]
     else:
         raise DeserializationError(

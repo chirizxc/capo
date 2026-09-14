@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetContainerImagesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContainerImagesResult:
     out: GetContainerImagesResult = {}  # type: ignore[typeddict-item]
-    if "containerImages" in data:
+    if data.get("containerImages") is not None:
         import capo_lightsail.types.container_image_list
 
         out["container_images"] = (

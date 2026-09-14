@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetConnectionPreferencesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetConnectionPreferencesRequest:
     out: GetConnectionPreferencesRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("GetConnectionPreferencesRequest.catalog required")

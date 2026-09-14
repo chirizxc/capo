@@ -31,8 +31,8 @@ def serialize_json(value: UpdateWebhookRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWebhookRequest:
     out: UpdateWebhookRequest = {}  # type: ignore[typeddict-item]
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

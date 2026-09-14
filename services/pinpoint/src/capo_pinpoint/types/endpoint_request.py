@@ -95,47 +95,47 @@ def serialize_json(value: EndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> EndpointRequest:
     out: EndpointRequest = {}  # type: ignore[typeddict-item]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["attributes"] = capo_pinpoint.types.map_of_list_of__string.deserialize_json(
             data["Attributes"]
         )
-    if "ChannelType" in data:
+    if data.get("ChannelType") is not None:
         import capo_pinpoint.types.channel_type
 
         out["channel_type"] = capo_pinpoint.types.channel_type.deserialize_json(
             data["ChannelType"]
         )
-    if "Demographic" in data:
+    if data.get("Demographic") is not None:
         import capo_pinpoint.types.endpoint_demographic
 
         out["demographic"] = capo_pinpoint.types.endpoint_demographic.deserialize_json(
             data["Demographic"]
         )
-    if "EffectiveDate" in data:
+    if data.get("EffectiveDate") is not None:
         out["effective_date"] = data["EffectiveDate"]
-    if "EndpointStatus" in data:
+    if data.get("EndpointStatus") is not None:
         out["endpoint_status"] = data["EndpointStatus"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         import capo_pinpoint.types.endpoint_location
 
         out["location"] = capo_pinpoint.types.endpoint_location.deserialize_json(
             data["Location"]
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_pinpoint.types.map_of__double
 
         out["metrics"] = capo_pinpoint.types.map_of__double.deserialize_json(
             data["Metrics"]
         )
-    if "OptOut" in data:
+    if data.get("OptOut") is not None:
         out["opt_out"] = data["OptOut"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "User" in data:
+    if data.get("User") is not None:
         import capo_pinpoint.types.endpoint_user
 
         out["user"] = capo_pinpoint.types.endpoint_user.deserialize_json(data["User"])

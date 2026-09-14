@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: IpRuleItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IpRuleItem:
     out: IpRuleItem = {}  # type: ignore[typeddict-item]
-    if "ipRule" in data:
+    if data.get("ipRule") is not None:
         out["ip_rule"] = data["ipRule"]
-    if "ruleDesc" in data:
+    if data.get("ruleDesc") is not None:
         out["rule_desc"] = data["ruleDesc"]
     return out

@@ -74,15 +74,15 @@ def serialize_json(value: GetQuantumTaskResponse) -> dict:
     out["shots"] = value["shots"]
     out["outputS3Bucket"] = value["output_s3_bucket"]
     out["outputS3Directory"] = value["output_s3_directory"]
-    import capo_braket.types._prelude.timestamp
+    import capo_braket._protocol.serialize
 
-    out["createdAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_braket._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
     if "ended_at" in value:
-        import capo_braket.types._prelude.timestamp
+        import capo_braket._protocol.serialize
 
-        out["endedAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+        out["endedAt"] = capo_braket._protocol.serialize.fmt_date_time(
             value["ended_at"]
         )
     if "tags" in value:
@@ -124,79 +124,79 @@ def serialize_json(value: GetQuantumTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetQuantumTaskResponse:
     out: GetQuantumTaskResponse = {}  # type: ignore[typeddict-item]
-    if "quantumTaskArn" in data:
+    if data.get("quantumTaskArn") is not None:
         out["quantum_task_arn"] = data["quantumTaskArn"]
     else:
         raise DeserializationError("GetQuantumTaskResponse.quantum_task_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetQuantumTaskResponse.status required")
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "deviceArn" in data:
+    if data.get("deviceArn") is not None:
         out["device_arn"] = data["deviceArn"]
     else:
         raise DeserializationError("GetQuantumTaskResponse.device_arn required")
-    if "deviceParameters" in data:
+    if data.get("deviceParameters") is not None:
         out["device_parameters"] = data["deviceParameters"]
     else:
         raise DeserializationError("GetQuantumTaskResponse.device_parameters required")
-    if "shots" in data:
+    if data.get("shots") is not None:
         out["shots"] = data["shots"]
     else:
         raise DeserializationError("GetQuantumTaskResponse.shots required")
-    if "outputS3Bucket" in data:
+    if data.get("outputS3Bucket") is not None:
         out["output_s3_bucket"] = data["outputS3Bucket"]
     else:
         raise DeserializationError("GetQuantumTaskResponse.output_s3_bucket required")
-    if "outputS3Directory" in data:
+    if data.get("outputS3Directory") is not None:
         out["output_s3_directory"] = data["outputS3Directory"]
     else:
         raise DeserializationError(
             "GetQuantumTaskResponse.output_s3_directory required"
         )
-    if "createdAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetQuantumTaskResponse.created_at required")
-    if "endedAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("endedAt") is not None:
+        import datetime
 
-        out["ended_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["endedAt"]
+        out["ended_at"] = datetime.datetime.fromisoformat(
+            data["endedAt"].replace("Z", "+00:00")
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_braket.types.tags_map
 
         out["tags"] = capo_braket.types.tags_map.deserialize_json(data["tags"])
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "queueInfo" in data:
+    if data.get("queueInfo") is not None:
         import capo_braket.types.quantum_task_queue_info
 
         out["queue_info"] = capo_braket.types.quantum_task_queue_info.deserialize_json(
             data["queueInfo"]
         )
-    if "associations" in data:
+    if data.get("associations") is not None:
         import capo_braket.types.associations
 
         out["associations"] = capo_braket.types.associations.deserialize_json(
             data["associations"]
         )
-    if "numSuccessfulShots" in data:
+    if data.get("numSuccessfulShots") is not None:
         out["num_successful_shots"] = data["numSuccessfulShots"]
-    if "actionMetadata" in data:
+    if data.get("actionMetadata") is not None:
         import capo_braket.types.action_metadata
 
         out["action_metadata"] = capo_braket.types.action_metadata.deserialize_json(
             data["actionMetadata"]
         )
-    if "experimentalCapabilities" in data:
+    if data.get("experimentalCapabilities") is not None:
         import capo_braket.types.experimental_capabilities
 
         out["experimental_capabilities"] = (

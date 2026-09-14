@@ -47,7 +47,7 @@ def serialize_json(value: MaintenanceConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> MaintenanceConfiguration:
-    if "preferredDayTime" in data:
+    if data.get("preferredDayTime") is not None:
         import capo_mediaconnect.types.preferred_day_time_maintenance_configuration
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> MaintenanceConfiguration:
                 data["preferredDayTime"]
             )
         }
-    elif "default" in data:
+    elif data.get("default") is not None:
         import capo_mediaconnect.types.default_maintenance_configuration
 
         return {

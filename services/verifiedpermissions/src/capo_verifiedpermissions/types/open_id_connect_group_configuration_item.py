@@ -30,13 +30,13 @@ def serialize_aws_json_1_0(value: OpenIdConnectGroupConfigurationItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OpenIdConnectGroupConfigurationItem:
     out: OpenIdConnectGroupConfigurationItem = {}  # type: ignore[typeddict-item]
-    if "groupClaim" in data:
+    if data.get("groupClaim") is not None:
         out["group_claim"] = data["groupClaim"]
     else:
         raise DeserializationError(
             "OpenIdConnectGroupConfigurationItem.group_claim required"
         )
-    if "groupEntityType" in data:
+    if data.get("groupEntityType") is not None:
         out["group_entity_type"] = data["groupEntityType"]
     else:
         raise DeserializationError(

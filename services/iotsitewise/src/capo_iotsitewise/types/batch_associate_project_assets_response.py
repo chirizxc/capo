@@ -31,7 +31,7 @@ def serialize_json(value: BatchAssociateProjectAssetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchAssociateProjectAssetsResponse:
     out: BatchAssociateProjectAssetsResponse = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_iotsitewise.types.batch_associate_project_assets_errors
 
         out["errors"] = (

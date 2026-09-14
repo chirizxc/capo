@@ -61,13 +61,13 @@ def serialize_json(value: AccountPoolSummary) -> dict:
 
 def deserialize_json(data: dict) -> AccountPoolSummary:
     out: AccountPoolSummary = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "resolutionStrategy" in data:
+    if data.get("resolutionStrategy") is not None:
         import capo_datazone.types.resolution_strategy
 
         out["resolution_strategy"] = (
@@ -75,10 +75,10 @@ def deserialize_json(data: dict) -> AccountPoolSummary:
                 data["resolutionStrategy"]
             )
         )
-    if "domainUnitId" in data:
+    if data.get("domainUnitId") is not None:
         out["domain_unit_id"] = data["domainUnitId"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
     return out

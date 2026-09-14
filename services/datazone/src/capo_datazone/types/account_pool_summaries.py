@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AccountPoolSummaries:
 
     out: AccountPoolSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.account_pool_summary.deserialize_json(item))
     return out

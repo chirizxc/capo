@@ -36,11 +36,11 @@ def serialize_json(value: ApplicationCredential) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationCredential:
     out: ApplicationCredential = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("ApplicationCredential.database_name required")
-    if "CredentialType" in data:
+    if data.get("CredentialType") is not None:
         import capo_ssm_sap.types.credential_type
 
         out["credential_type"] = capo_ssm_sap.types.credential_type.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ApplicationCredential:
         )
     else:
         raise DeserializationError("ApplicationCredential.credential_type required")
-    if "SecretId" in data:
+    if data.get("SecretId") is not None:
         out["secret_id"] = data["SecretId"]
     else:
         raise DeserializationError("ApplicationCredential.secret_id required")

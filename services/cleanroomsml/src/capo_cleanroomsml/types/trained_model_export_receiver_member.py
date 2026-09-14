@@ -24,7 +24,7 @@ def serialize_json(value: TrainedModelExportReceiverMember) -> dict:
 
 def deserialize_json(data: dict) -> TrainedModelExportReceiverMember:
     out: TrainedModelExportReceiverMember = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError(

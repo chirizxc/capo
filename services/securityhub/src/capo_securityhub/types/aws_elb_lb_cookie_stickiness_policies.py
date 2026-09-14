@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsElbLbCookieStickinessPolicies:
 
     out: AwsElbLbCookieStickinessPolicies = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_elb_lb_cookie_stickiness_policy.deserialize_json(
                 item

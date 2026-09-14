@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: AssessmentReport) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentReport:
     out: AssessmentReport = {}  # type: ignore[typeddict-item]
-    if "DomainControllerIp" in data:
+    if data.get("DomainControllerIp") is not None:
         out["domain_controller_ip"] = data["DomainControllerIp"]
-    if "Validations" in data:
+    if data.get("Validations") is not None:
         import capo_directory_service.types.assessment_validations
 
         out["validations"] = (

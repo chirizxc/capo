@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetDistributionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDistributionsRequest:
     out: GetDistributionsRequest = {}  # type: ignore[typeddict-item]
-    if "distributionName" in data:
+    if data.get("distributionName") is not None:
         out["distribution_name"] = data["distributionName"]
-    if "pageToken" in data:
+    if data.get("pageToken") is not None:
         out["page_token"] = data["pageToken"]
     return out

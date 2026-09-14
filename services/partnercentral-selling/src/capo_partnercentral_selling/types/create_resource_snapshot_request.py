@@ -58,17 +58,17 @@ def serialize_aws_json_1_0(value: CreateResourceSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateResourceSnapshotRequest:
     out: CreateResourceSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("CreateResourceSnapshotRequest.catalog required")
-    if "EngagementIdentifier" in data:
+    if data.get("EngagementIdentifier") is not None:
         out["engagement_identifier"] = data["EngagementIdentifier"]
     else:
         raise DeserializationError(
             "CreateResourceSnapshotRequest.engagement_identifier required"
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_partnercentral_selling.types.resource_type
 
         out["resource_type"] = (
@@ -80,13 +80,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateResourceSnapshotRequest:
         raise DeserializationError(
             "CreateResourceSnapshotRequest.resource_type required"
         )
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
     else:
         raise DeserializationError(
             "CreateResourceSnapshotRequest.resource_identifier required"
         )
-    if "ResourceSnapshotTemplateIdentifier" in data:
+    if data.get("ResourceSnapshotTemplateIdentifier") is not None:
         out["resource_snapshot_template_identifier"] = data[
             "ResourceSnapshotTemplateIdentifier"
         ]
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateResourceSnapshotRequest:
         raise DeserializationError(
             "CreateResourceSnapshotRequest.resource_snapshot_template_identifier required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(

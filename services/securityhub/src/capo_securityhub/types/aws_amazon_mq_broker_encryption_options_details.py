@@ -28,8 +28,8 @@ def serialize_json(value: AwsAmazonMqBrokerEncryptionOptionsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAmazonMqBrokerEncryptionOptionsDetails:
     out: AwsAmazonMqBrokerEncryptionOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "UseAwsOwnedKey" in data:
+    if data.get("UseAwsOwnedKey") is not None:
         out["use_aws_owned_key"] = data["UseAwsOwnedKey"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: SlotValueRegexFilter) -> dict:
 
 def deserialize_json(data: dict) -> SlotValueRegexFilter:
     out: SlotValueRegexFilter = {}  # type: ignore[typeddict-item]
-    if "pattern" in data:
+    if data.get("pattern") is not None:
         out["pattern"] = data["pattern"]
     else:
         raise DeserializationError("SlotValueRegexFilter.pattern required")

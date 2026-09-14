@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: CloudWatchLogsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CloudWatchLogsConfig:
     out: CloudWatchLogsConfig = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codebuild.types.logs_config_status_type
 
         out["status"] = (
@@ -47,8 +47,8 @@ def deserialize_aws_json_1_1(data: dict) -> CloudWatchLogsConfig:
         )
     else:
         raise DeserializationError("CloudWatchLogsConfig.status required")
-    if "groupName" in data:
+    if data.get("groupName") is not None:
         out["group_name"] = data["groupName"]
-    if "streamName" in data:
+    if data.get("streamName") is not None:
         out["stream_name"] = data["streamName"]
     return out

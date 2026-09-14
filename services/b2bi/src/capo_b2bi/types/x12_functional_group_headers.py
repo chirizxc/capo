@@ -39,10 +39,10 @@ def serialize_aws_json_1_0(value: X12FunctionalGroupHeaders) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12FunctionalGroupHeaders:
     out: X12FunctionalGroupHeaders = {}  # type: ignore[typeddict-item]
-    if "applicationSenderCode" in data:
+    if data.get("applicationSenderCode") is not None:
         out["application_sender_code"] = data["applicationSenderCode"]
-    if "applicationReceiverCode" in data:
+    if data.get("applicationReceiverCode") is not None:
         out["application_receiver_code"] = data["applicationReceiverCode"]
-    if "responsibleAgencyCode" in data:
+    if data.get("responsibleAgencyCode") is not None:
         out["responsible_agency_code"] = data["responsibleAgencyCode"]
     return out

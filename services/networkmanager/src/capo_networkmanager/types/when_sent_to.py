@@ -31,7 +31,7 @@ def serialize_json(value: WhenSentTo) -> dict:
 
 def deserialize_json(data: dict) -> WhenSentTo:
     out: WhenSentTo = {}  # type: ignore[typeddict-item]
-    if "WhenSentToSegmentsList" in data:
+    if data.get("WhenSentToSegmentsList") is not None:
         import capo_networkmanager.types.when_sent_to_segments_list
 
         out["when_sent_to_segments_list"] = (

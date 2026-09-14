@@ -62,7 +62,7 @@ def serialize_aws_json_1_0(value: RunDetailSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RunDetailSummary:
     out: RunDetailSummary = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mwaa_serverless.types.workflow_run_status
 
         out["status"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> RunDetailSummary:
                 data["Status"]
             )
         )
-    if "CreatedOn" in data:
+    if data.get("CreatedOn") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["created_on"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> RunDetailSummary:
                 data["CreatedOn"]
             )
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["started_at"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> RunDetailSummary:
                 data["StartedAt"]
             )
         )
-    if "EndedAt" in data:
+    if data.get("EndedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["ended_at"] = (

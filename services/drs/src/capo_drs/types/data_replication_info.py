@@ -90,11 +90,11 @@ def serialize_json(value: DataReplicationInfo) -> dict:
 
 def deserialize_json(data: dict) -> DataReplicationInfo:
     out: DataReplicationInfo = {}  # type: ignore[typeddict-item]
-    if "lagDuration" in data:
+    if data.get("lagDuration") is not None:
         out["lag_duration"] = data["lagDuration"]
-    if "etaDateTime" in data:
+    if data.get("etaDateTime") is not None:
         out["eta_date_time"] = data["etaDateTime"]
-    if "replicatedDisks" in data:
+    if data.get("replicatedDisks") is not None:
         import capo_drs.types.data_replication_info_replicated_disks
 
         out["replicated_disks"] = (
@@ -102,9 +102,9 @@ def deserialize_json(data: dict) -> DataReplicationInfo:
                 data["replicatedDisks"]
             )
         )
-    if "dataReplicationState" in data:
+    if data.get("dataReplicationState") is not None:
         out["data_replication_state"] = data["dataReplicationState"]
-    if "dataReplicationInitiation" in data:
+    if data.get("dataReplicationInitiation") is not None:
         import capo_drs.types.data_replication_initiation
 
         out["data_replication_initiation"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> DataReplicationInfo:
                 data["dataReplicationInitiation"]
             )
         )
-    if "dataReplicationError" in data:
+    if data.get("dataReplicationError") is not None:
         import capo_drs.types.data_replication_error
 
         out["data_replication_error"] = (
@@ -120,8 +120,8 @@ def deserialize_json(data: dict) -> DataReplicationInfo:
                 data["dataReplicationError"]
             )
         )
-    if "stagingAvailabilityZone" in data:
+    if data.get("stagingAvailabilityZone") is not None:
         out["staging_availability_zone"] = data["stagingAvailabilityZone"]
-    if "stagingOutpostArn" in data:
+    if data.get("stagingOutpostArn") is not None:
         out["staging_outpost_arn"] = data["stagingOutpostArn"]
     return out

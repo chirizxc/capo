@@ -96,20 +96,22 @@ class RunBatchResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_run_batch_request.StartRunBatchRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.start_run_batch_request.StartRunBatchRequest = {
+            "request_id": request_id,
+            "default_run_setting": default_run_setting,
+            "batch_run_settings": batch_run_settings,
+        }
         if batch_name is not None:
             input_["batch_name"] = batch_name
-        input_["request_id"] = request_id
         if tags is not None:
             input_["tags"] = tags
-        input_["default_run_setting"] = default_run_setting
-        input_["batch_run_settings"] = batch_run_settings
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -144,14 +146,16 @@ class RunBatchResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_batch_request.GetBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_id"] = batch_id
+        input_: capo_omics.types.get_batch_request.GetBatchRequest = {
+            "batch_id": batch_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -190,14 +194,16 @@ class RunBatchResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_batch_request.DeleteBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_id"] = batch_id
+        input_: capo_omics.types.delete_batch_request.DeleteBatchRequest = {
+            "batch_id": batch_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -241,7 +247,7 @@ class RunBatchResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_batch_request.ListBatchRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_batch_request.ListBatchRequest = {}
         if max_items is not None:
             input_["max_items"] = max_items
         if starting_token is not None:
@@ -258,6 +264,7 @@ class RunBatchResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_run_batch(
@@ -298,14 +305,16 @@ class RunBatchResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.cancel_run_batch_request.CancelRunBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_id"] = batch_id
+        input_: capo_omics.types.cancel_run_batch_request.CancelRunBatchRequest = {
+            "batch_id": batch_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_run_batch(
@@ -346,14 +355,16 @@ class RunBatchResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_run_batch_request.DeleteRunBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_id"] = batch_id
+        input_: capo_omics.types.delete_run_batch_request.DeleteRunBatchRequest = {
+            "batch_id": batch_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_runs_in_batch(
@@ -406,8 +417,9 @@ class RunBatchResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_runs_in_batch_request.ListRunsInBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_id"] = batch_id
+        input_: capo_omics.types.list_runs_in_batch_request.ListRunsInBatchRequest = {
+            "batch_id": batch_id
+        }
         if max_items is not None:
             input_["max_items"] = max_items
         if starting_token is not None:
@@ -424,6 +436,7 @@ class RunBatchResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -478,20 +491,22 @@ class AsyncRunBatchResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_run_batch_request.StartRunBatchRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.start_run_batch_request.StartRunBatchRequest = {
+            "request_id": request_id,
+            "default_run_setting": default_run_setting,
+            "batch_run_settings": batch_run_settings,
+        }
         if batch_name is not None:
             input_["batch_name"] = batch_name
-        input_["request_id"] = request_id
         if tags is not None:
             input_["tags"] = tags
-        input_["default_run_setting"] = default_run_setting
-        input_["batch_run_settings"] = batch_run_settings
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -531,14 +546,16 @@ class AsyncRunBatchResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_batch_request.GetBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_id"] = batch_id
+        input_: capo_omics.types.get_batch_request.GetBatchRequest = {
+            "batch_id": batch_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -578,14 +595,16 @@ class AsyncRunBatchResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_batch_request.DeleteBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_id"] = batch_id
+        input_: capo_omics.types.delete_batch_request.DeleteBatchRequest = {
+            "batch_id": batch_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -632,7 +651,7 @@ class AsyncRunBatchResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_batch_request.ListBatchRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_batch_request.ListBatchRequest = {}
         if max_items is not None:
             input_["max_items"] = max_items
         if starting_token is not None:
@@ -649,6 +668,7 @@ class AsyncRunBatchResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_run_batch(
@@ -690,14 +710,16 @@ class AsyncRunBatchResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.cancel_run_batch_request.CancelRunBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_id"] = batch_id
+        input_: capo_omics.types.cancel_run_batch_request.CancelRunBatchRequest = {
+            "batch_id": batch_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_run_batch(
@@ -739,14 +761,16 @@ class AsyncRunBatchResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_run_batch_request.DeleteRunBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_id"] = batch_id
+        input_: capo_omics.types.delete_run_batch_request.DeleteRunBatchRequest = {
+            "batch_id": batch_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_runs_in_batch(
@@ -800,8 +824,9 @@ class AsyncRunBatchResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_runs_in_batch_request.ListRunsInBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_id"] = batch_id
+        input_: capo_omics.types.list_runs_in_batch_request.ListRunsInBatchRequest = {
+            "batch_id": batch_id
+        }
         if max_items is not None:
             input_["max_items"] = max_items
         if starting_token is not None:
@@ -818,4 +843,5 @@ class AsyncRunBatchResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -76,7 +76,7 @@ def serialize_json(value: UpdateMonitorInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMonitorInput:
     out: UpdateMonitorInput = {}  # type: ignore[typeddict-item]
-    if "localResourcesToAdd" in data:
+    if data.get("localResourcesToAdd") is not None:
         import capo_networkflowmonitor.types.monitor_local_resources
 
         out["local_resources_to_add"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> UpdateMonitorInput:
                 data["localResourcesToAdd"]
             )
         )
-    if "localResourcesToRemove" in data:
+    if data.get("localResourcesToRemove") is not None:
         import capo_networkflowmonitor.types.monitor_local_resources
 
         out["local_resources_to_remove"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> UpdateMonitorInput:
                 data["localResourcesToRemove"]
             )
         )
-    if "remoteResourcesToAdd" in data:
+    if data.get("remoteResourcesToAdd") is not None:
         import capo_networkflowmonitor.types.monitor_remote_resources
 
         out["remote_resources_to_add"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> UpdateMonitorInput:
                 data["remoteResourcesToAdd"]
             )
         )
-    if "remoteResourcesToRemove" in data:
+    if data.get("remoteResourcesToRemove") is not None:
         import capo_networkflowmonitor.types.monitor_remote_resources
 
         out["remote_resources_to_remove"] = (
@@ -108,6 +108,6 @@ def deserialize_json(data: dict) -> UpdateMonitorInput:
                 data["remoteResourcesToRemove"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: RealTimeContactAnalysisMatchedDetails) ->
 def deserialize_json(data: dict) -> RealTimeContactAnalysisMatchedDetails:
     out: RealTimeContactAnalysisMatchedDetails = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_connect.types.real_time_contact_analysis_category_details
 
         out[key] = (

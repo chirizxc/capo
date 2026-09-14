@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ScalingPolicyObjective) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingPolicyObjective:
     out: ScalingPolicyObjective = {}  # type: ignore[typeddict-item]
-    if "MinInvocationsPerMinute" in data:
+    if data.get("MinInvocationsPerMinute") is not None:
         out["min_invocations_per_minute"] = data["MinInvocationsPerMinute"]
-    if "MaxInvocationsPerMinute" in data:
+    if data.get("MaxInvocationsPerMinute") is not None:
         out["max_invocations_per_minute"] = data["MaxInvocationsPerMinute"]
     return out

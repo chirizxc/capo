@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DatastoreSummaries:
 
     out: DatastoreSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medical_imaging.types.datastore_summary.deserialize_json(item))
     return out

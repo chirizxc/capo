@@ -24,7 +24,7 @@ def serialize_json(value: CreateEmailContactResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateEmailContactResponse:
     out: CreateEmailContactResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateEmailContactResponse.arn required")

@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: UpdateRepositoryDescriptionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRepositoryDescriptionInput:
     out: UpdateRepositoryDescriptionInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "UpdateRepositoryDescriptionInput.repository_name required"
         )
-    if "repositoryDescription" in data:
+    if data.get("repositoryDescription") is not None:
         out["repository_description"] = data["repositoryDescription"]
     return out

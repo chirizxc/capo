@@ -32,7 +32,7 @@ def serialize_json(value: ListSequenceStoresRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListSequenceStoresRequest:
     out: ListSequenceStoresRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_omics.types.sequence_store_filter
 
         out["filter"] = capo_omics.types.sequence_store_filter.deserialize_json(

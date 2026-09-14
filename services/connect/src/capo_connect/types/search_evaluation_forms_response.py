@@ -43,7 +43,7 @@ def serialize_json(value: SearchEvaluationFormsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchEvaluationFormsResponse:
     out: SearchEvaluationFormsResponse = {}  # type: ignore[typeddict-item]
-    if "EvaluationFormSearchSummaryList" in data:
+    if data.get("EvaluationFormSearchSummaryList") is not None:
         import capo_connect.types.evaluation_form_search_summary_list
 
         out["evaluation_form_search_summary_list"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> SearchEvaluationFormsResponse:
                 data["EvaluationFormSearchSummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ApproximateTotalCount" in data:
+    if data.get("ApproximateTotalCount") is not None:
         out["approximate_total_count"] = data["ApproximateTotalCount"]
     return out

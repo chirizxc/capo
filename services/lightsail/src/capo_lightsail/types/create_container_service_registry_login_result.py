@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateContainerServiceRegistryLoginResult) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContainerServiceRegistryLoginResult:
     out: CreateContainerServiceRegistryLoginResult = {}  # type: ignore[typeddict-item]
-    if "registryLogin" in data:
+    if data.get("registryLogin") is not None:
         import capo_lightsail.types.container_service_registry_login
 
         out["registry_login"] = (

@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DeleteApplicationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteApplicationsRequest:
     out: DeleteApplicationsRequest = {}  # type: ignore[typeddict-item]
-    if "configurationIds" in data:
+    if data.get("configurationIds") is not None:
         import capo_application_discovery_service.types.application_ids_list
 
         out["configuration_ids"] = (

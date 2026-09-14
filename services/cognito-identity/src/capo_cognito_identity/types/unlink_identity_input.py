@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: UnlinkIdentityInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnlinkIdentityInput:
     out: UnlinkIdentityInput = {}  # type: ignore[typeddict-item]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
     else:
         raise DeserializationError("UnlinkIdentityInput.identity_id required")
-    if "Logins" in data:
+    if data.get("Logins") is not None:
         import capo_cognito_identity.types.logins_map
 
         out["logins"] = capo_cognito_identity.types.logins_map.deserialize_aws_json_1_1(
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> UnlinkIdentityInput:
         )
     else:
         raise DeserializationError("UnlinkIdentityInput.logins required")
-    if "LoginsToRemove" in data:
+    if data.get("LoginsToRemove") is not None:
         import capo_cognito_identity.types.logins_list
 
         out["logins_to_remove"] = (

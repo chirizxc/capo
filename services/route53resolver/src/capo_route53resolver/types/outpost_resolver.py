@@ -94,23 +94,23 @@ def serialize_aws_json_1_1(value: OutpostResolver) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OutpostResolver:
     out: OutpostResolver = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "ModificationTime" in data:
+    if data.get("ModificationTime") is not None:
         out["modification_time"] = data["ModificationTime"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "PreferredInstanceType" in data:
+    if data.get("PreferredInstanceType") is not None:
         out["preferred_instance_type"] = data["PreferredInstanceType"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53resolver.types.outpost_resolver_status
 
         out["status"] = (
@@ -118,8 +118,8 @@ def deserialize_aws_json_1_1(data: dict) -> OutpostResolver:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "OutpostArn" in data:
+    if data.get("OutpostArn") is not None:
         out["outpost_arn"] = data["OutpostArn"]
     return out

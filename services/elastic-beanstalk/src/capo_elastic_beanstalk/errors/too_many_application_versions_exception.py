@@ -42,15 +42,20 @@ class TooManyApplicationVersionsException(ServiceError):
 
     code: str | None = "TooManyApplicationVersionsException"
 
-    def __init__(self, data: TooManyApplicationVersionsException_):
+    def __init__(
+        self, data: TooManyApplicationVersionsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyApplicationVersionsException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TooManyApplicationVersionsException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TooManyApplicationVersionsException":
+        return cls(deserialize_query(el), message)

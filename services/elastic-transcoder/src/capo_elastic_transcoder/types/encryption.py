@@ -43,12 +43,12 @@ def serialize_json(value: Encryption) -> dict:
 
 def deserialize_json(data: dict) -> Encryption:
     out: Encryption = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         out["mode"] = data["Mode"]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "KeyMd5" in data:
+    if data.get("KeyMd5") is not None:
         out["key_md5"] = data["KeyMd5"]
-    if "InitializationVector" in data:
+    if data.get("InitializationVector") is not None:
         out["initialization_vector"] = data["InitializationVector"]
     return out

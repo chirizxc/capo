@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: TimeRange) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimeRange:
     out: TimeRange = {}  # type: ignore[typeddict-item]
-    if "beginDateInclusive" in data:
+    if data.get("beginDateInclusive") is not None:
         import capo_billing.types._prelude.timestamp
 
         out["begin_date_inclusive"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_0(data: dict) -> TimeRange:
                 data["beginDateInclusive"]
             )
         )
-    if "endDateInclusive" in data:
+    if data.get("endDateInclusive") is not None:
         import capo_billing.types._prelude.timestamp
 
         out["end_date_inclusive"] = (

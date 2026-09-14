@@ -43,7 +43,7 @@ def serialize_json(value: ListOAuthClientApplicationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListOAuthClientApplicationsResponse:
     out: ListOAuthClientApplicationsResponse = {}  # type: ignore[typeddict-item]
-    if "OAuthClientApplications" in data:
+    if data.get("OAuthClientApplications") is not None:
         import capo_quicksight.types.o_auth_client_application_summary_list
 
         out["o_auth_client_applications"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> ListOAuthClientApplicationsResponse:
                 data["OAuthClientApplications"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

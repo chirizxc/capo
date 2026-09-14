@@ -56,11 +56,11 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "associationTime" in data:
+    if data.get("associationTime") is not None:
         import capo_service_catalog_appregistry.types.timestamp
 
         out["association_time"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["associationTime"]
             )
         )
-    if "integrations" in data:
+    if data.get("integrations") is not None:
         import capo_service_catalog_appregistry.types.resource_integrations
 
         out["integrations"] = (

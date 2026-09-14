@@ -81,8 +81,9 @@ class AliasResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.create_alias_input.CreateAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_payment_cryptography.types.create_alias_input.CreateAliasInput = {
+            "alias_name": alias_name
+        }
         if key_arn is not None:
             input_["key_arn"] = key_arn
 
@@ -91,6 +92,7 @@ class AliasResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -129,14 +131,16 @@ class AliasResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.get_alias_input.GetAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_payment_cryptography.types.get_alias_input.GetAliasInput = {
+            "alias_name": alias_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -178,8 +182,9 @@ class AliasResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.update_alias_input.UpdateAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_payment_cryptography.types.update_alias_input.UpdateAliasInput = {
+            "alias_name": alias_name
+        }
         if key_arn is not None:
             input_["key_arn"] = key_arn
 
@@ -188,6 +193,7 @@ class AliasResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -227,14 +233,16 @@ class AliasResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.delete_alias_input.DeleteAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_payment_cryptography.types.delete_alias_input.DeleteAliasInput = {
+            "alias_name": alias_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -281,7 +289,7 @@ class AliasResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.list_aliases_input.ListAliasesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_payment_cryptography.types.list_aliases_input.ListAliasesInput = {}
         if key_arn is not None:
             input_["key_arn"] = key_arn
         if next_token is not None:
@@ -294,6 +302,7 @@ class AliasResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -342,8 +351,9 @@ class AsyncAliasResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.create_alias_input.CreateAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_payment_cryptography.types.create_alias_input.CreateAliasInput = {
+            "alias_name": alias_name
+        }
         if key_arn is not None:
             input_["key_arn"] = key_arn
 
@@ -352,6 +362,7 @@ class AsyncAliasResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -391,14 +402,16 @@ class AsyncAliasResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.get_alias_input.GetAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_payment_cryptography.types.get_alias_input.GetAliasInput = {
+            "alias_name": alias_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -441,8 +454,9 @@ class AsyncAliasResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.update_alias_input.UpdateAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_payment_cryptography.types.update_alias_input.UpdateAliasInput = {
+            "alias_name": alias_name
+        }
         if key_arn is not None:
             input_["key_arn"] = key_arn
 
@@ -451,6 +465,7 @@ class AsyncAliasResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -491,14 +506,16 @@ class AsyncAliasResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.delete_alias_input.DeleteAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_payment_cryptography.types.delete_alias_input.DeleteAliasInput = {
+            "alias_name": alias_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -546,7 +563,7 @@ class AsyncAliasResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.list_aliases_input.ListAliasesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_payment_cryptography.types.list_aliases_input.ListAliasesInput = {}
         if key_arn is not None:
             input_["key_arn"] = key_arn
         if next_token is not None:
@@ -559,4 +576,5 @@ class AsyncAliasResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -88,40 +88,40 @@ def serialize_aws_json_1_1(value: TrainingPlanExtension) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingPlanExtension:
     out: TrainingPlanExtension = {}  # type: ignore[typeddict-item]
-    if "TrainingPlanExtensionOfferingId" in data:
+    if data.get("TrainingPlanExtensionOfferingId") is not None:
         out["training_plan_extension_offering_id"] = data[
             "TrainingPlanExtensionOfferingId"
         ]
-    if "ExtendedAt" in data:
+    if data.get("ExtendedAt") is not None:
         import capo_sagemaker.types.timestamp
 
         out["extended_at"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["ExtendedAt"]
         )
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_date"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartDate"]
         )
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_date"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndDate"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "PaymentStatus" in data:
+    if data.get("PaymentStatus") is not None:
         out["payment_status"] = data["PaymentStatus"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "AvailabilityZoneId" in data:
+    if data.get("AvailabilityZoneId") is not None:
         out["availability_zone_id"] = data["AvailabilityZoneId"]
-    if "DurationHours" in data:
+    if data.get("DurationHours") is not None:
         out["duration_hours"] = data["DurationHours"]
-    if "UpfrontFee" in data:
+    if data.get("UpfrontFee") is not None:
         out["upfront_fee"] = data["UpfrontFee"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
     return out

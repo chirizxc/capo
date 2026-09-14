@@ -31,7 +31,7 @@ def serialize_json(value: DescribePhoneNumberResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribePhoneNumberResponse:
     out: DescribePhoneNumberResponse = {}  # type: ignore[typeddict-item]
-    if "ClaimedPhoneNumberSummary" in data:
+    if data.get("ClaimedPhoneNumberSummary") is not None:
         import capo_connect.types.claimed_phone_number_summary
 
         out["claimed_phone_number_summary"] = (

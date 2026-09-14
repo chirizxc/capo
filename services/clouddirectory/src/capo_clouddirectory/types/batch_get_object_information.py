@@ -28,7 +28,7 @@ def serialize_json(value: BatchGetObjectInformation) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetObjectInformation:
     out: BatchGetObjectInformation = {}  # type: ignore[typeddict-item]
-    if "ObjectReference" in data:
+    if data.get("ObjectReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["object_reference"] = (

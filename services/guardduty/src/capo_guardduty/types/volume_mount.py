@@ -27,8 +27,8 @@ def serialize_json(value: VolumeMount) -> dict:
 
 def deserialize_json(data: dict) -> VolumeMount:
     out: VolumeMount = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "mountPath" in data:
+    if data.get("mountPath") is not None:
         out["mount_path"] = data["mountPath"]
     return out

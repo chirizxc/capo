@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeBatchInferenceJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBatchInferenceJobResponse:
     out: DescribeBatchInferenceJobResponse = {}  # type: ignore[typeddict-item]
-    if "batchInferenceJob" in data:
+    if data.get("batchInferenceJob") is not None:
         import capo_personalize.types.batch_inference_job
 
         out["batch_inference_job"] = (

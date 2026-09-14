@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EntityRequestList:
 
     out: EntityRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_marketplace_catalog.types.entity_request.deserialize_json(item))
     return out

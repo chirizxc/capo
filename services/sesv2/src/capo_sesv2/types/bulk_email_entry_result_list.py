@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BulkEmailEntryResultList:
 
     out: BulkEmailEntryResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.bulk_email_entry_result.deserialize_json(item))
     return out

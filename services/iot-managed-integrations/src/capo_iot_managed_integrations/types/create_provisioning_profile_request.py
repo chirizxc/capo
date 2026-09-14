@@ -69,7 +69,7 @@ def serialize_json(value: CreateProvisioningProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProvisioningProfileRequest:
     out: CreateProvisioningProfileRequest = {}  # type: ignore[typeddict-item]
-    if "ProvisioningType" in data:
+    if data.get("ProvisioningType") is not None:
         import capo_iot_managed_integrations.types.provisioning_type
 
         out["provisioning_type"] = (
@@ -81,15 +81,15 @@ def deserialize_json(data: dict) -> CreateProvisioningProfileRequest:
         raise DeserializationError(
             "CreateProvisioningProfileRequest.provisioning_type required"
         )
-    if "CaCertificate" in data:
+    if data.get("CaCertificate") is not None:
         out["ca_certificate"] = data["CaCertificate"]
-    if "ClaimCertificate" in data:
+    if data.get("ClaimCertificate") is not None:
         out["claim_certificate"] = data["ClaimCertificate"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(

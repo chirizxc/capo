@@ -35,10 +35,10 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> DisassociateBenefitApplicationResourceOutput:
     out: DisassociateBenefitApplicationResourceOutput = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Revision" in data:
+    if data.get("Revision") is not None:
         out["revision"] = data["Revision"]
     return out

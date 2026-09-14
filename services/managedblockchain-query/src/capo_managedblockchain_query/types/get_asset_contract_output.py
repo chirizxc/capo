@@ -54,7 +54,7 @@ def serialize_json(value: GetAssetContractOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetAssetContractOutput:
     out: GetAssetContractOutput = {}  # type: ignore[typeddict-item]
-    if "contractIdentifier" in data:
+    if data.get("contractIdentifier") is not None:
         import capo_managedblockchain_query.types.contract_identifier
 
         out["contract_identifier"] = (
@@ -66,15 +66,15 @@ def deserialize_json(data: dict) -> GetAssetContractOutput:
         raise DeserializationError(
             "GetAssetContractOutput.contract_identifier required"
         )
-    if "tokenStandard" in data:
+    if data.get("tokenStandard") is not None:
         out["token_standard"] = data["tokenStandard"]
     else:
         raise DeserializationError("GetAssetContractOutput.token_standard required")
-    if "deployerAddress" in data:
+    if data.get("deployerAddress") is not None:
         out["deployer_address"] = data["deployerAddress"]
     else:
         raise DeserializationError("GetAssetContractOutput.deployer_address required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_managedblockchain_query.types.contract_metadata
 
         out["metadata"] = (

@@ -78,13 +78,13 @@ def serialize_json(value: PutSigningProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutSigningProfileRequest:
     out: PutSigningProfileRequest = {}  # type: ignore[typeddict-item]
-    if "signingMaterial" in data:
+    if data.get("signingMaterial") is not None:
         import capo_signer.types.signing_material
 
         out["signing_material"] = capo_signer.types.signing_material.deserialize_json(
             data["signingMaterial"]
         )
-    if "signatureValidityPeriod" in data:
+    if data.get("signatureValidityPeriod") is not None:
         import capo_signer.types.signature_validity_period
 
         out["signature_validity_period"] = (
@@ -92,11 +92,11 @@ def deserialize_json(data: dict) -> PutSigningProfileRequest:
                 data["signatureValidityPeriod"]
             )
         )
-    if "platformId" in data:
+    if data.get("platformId") is not None:
         out["platform_id"] = data["platformId"]
     else:
         raise DeserializationError("PutSigningProfileRequest.platform_id required")
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_signer.types.signing_platform_overrides
 
         out["overrides"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> PutSigningProfileRequest:
                 data["overrides"]
             )
         )
-    if "signingParameters" in data:
+    if data.get("signingParameters") is not None:
         import capo_signer.types.signing_parameters
 
         out["signing_parameters"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> PutSigningProfileRequest:
                 data["signingParameters"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_signer.types.tag_map
 
         out["tags"] = capo_signer.types.tag_map.deserialize_json(data["tags"])

@@ -170,11 +170,11 @@ def serialize_aws_json_1_1(value: DescribeClusterResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClusterResponse:
     out: DescribeClusterResponse = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "ClusterStatus" in data:
+    if data.get("ClusterStatus") is not None:
         import capo_sagemaker.types.cluster_status
 
         out["cluster_status"] = (
@@ -182,15 +182,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeClusterResponse:
                 data["ClusterStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
-    if "InstanceGroups" in data:
+    if data.get("InstanceGroups") is not None:
         import capo_sagemaker.types.cluster_instance_group_details_list
 
         out["instance_groups"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeClusterResponse:
                 data["InstanceGroups"]
             )
         )
-    if "RestrictedInstanceGroups" in data:
+    if data.get("RestrictedInstanceGroups") is not None:
         import capo_sagemaker.types.cluster_restricted_instance_group_details_list
 
         out["restricted_instance_groups"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeClusterResponse:
                 data["RestrictedInstanceGroups"]
             )
         )
-    if "RestrictedInstanceGroupsConfig" in data:
+    if data.get("RestrictedInstanceGroupsConfig") is not None:
         import capo_sagemaker.types.cluster_restricted_instance_groups_config_output
 
         out["restricted_instance_groups_config"] = (
@@ -214,13 +214,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeClusterResponse:
                 data["RestrictedInstanceGroupsConfig"]
             )
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["vpc_config"] = capo_sagemaker.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "Orchestrator" in data:
+    if data.get("Orchestrator") is not None:
         import capo_sagemaker.types.cluster_orchestrator
 
         out["orchestrator"] = (
@@ -228,7 +228,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeClusterResponse:
                 data["Orchestrator"]
             )
         )
-    if "TieredStorageConfig" in data:
+    if data.get("TieredStorageConfig") is not None:
         import capo_sagemaker.types.cluster_tiered_storage_config
 
         out["tiered_storage_config"] = (
@@ -236,7 +236,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeClusterResponse:
                 data["TieredStorageConfig"]
             )
         )
-    if "NodeRecovery" in data:
+    if data.get("NodeRecovery") is not None:
         import capo_sagemaker.types.cluster_node_recovery
 
         out["node_recovery"] = (
@@ -244,7 +244,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeClusterResponse:
                 data["NodeRecovery"]
             )
         )
-    if "NodeProvisioningMode" in data:
+    if data.get("NodeProvisioningMode") is not None:
         import capo_sagemaker.types.cluster_node_provisioning_mode
 
         out["node_provisioning_mode"] = (
@@ -252,9 +252,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeClusterResponse:
                 data["NodeProvisioningMode"]
             )
         )
-    if "ClusterRole" in data:
+    if data.get("ClusterRole") is not None:
         out["cluster_role"] = data["ClusterRole"]
-    if "AutoScaling" in data:
+    if data.get("AutoScaling") is not None:
         import capo_sagemaker.types.cluster_auto_scaling_config_output
 
         out["auto_scaling"] = (

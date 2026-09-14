@@ -13,9 +13,9 @@ from capo_partnercentral_benefits import AsyncPartnerCentralBenefitsClient
 
 
 async def main():
-    async with AsyncPartnerCentralBenefitsClient() as s3:
+    async with AsyncPartnerCentralBenefitsClient() as partner_central_benefits:
         # Example: call the amend_benefit_application operation
-        response = await s3.amend_benefit_application()
+        response = await partner_central_benefits.amend_benefit_application()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_partnercentral_benefits import AsyncPartnerCentralBenefitsClient
 
 
 async def main():
-    async with AsyncPartnerCentralBenefitsClient() as s3:
+    async with AsyncPartnerCentralBenefitsClient() as partner_central_benefits:
         # Example: paginate over list_benefit_allocations
-        async for item in s3.iter_list_benefit_allocations():
+        async for item in partner_central_benefits.iter_list_benefit_allocations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_partnercentral_benefits.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncPartnerCentralBenefitsClient() as s3:
+    async with AsyncPartnerCentralBenefitsClient() as partner_central_benefits:
         try:
-            await s3.amend_benefit_application()
+            await partner_central_benefits.amend_benefit_application()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_partnercentral_benefits import AsyncPartnerCentralBenefitsClient
 
 
 async def main():
-    async with AsyncPartnerCentralBenefitsClient() as s3:
+    async with AsyncPartnerCentralBenefitsClient() as partner_central_benefits:
         # Default: 3 attempts for every operation
-        response = await s3.amend_benefit_application()
+        response = await partner_central_benefits.amend_benefit_application()
 
         # Override per operation
-        response = await s3.amend_benefit_application(config_overrides={"retry_max_attempts": 5})
+        response = await partner_central_benefits.amend_benefit_application(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.amend_benefit_application(config_overrides={"retry_max_attempts": 1})
+        response = await partner_central_benefits.amend_benefit_application(config_overrides={"retry_max_attempts": 1})
 ```

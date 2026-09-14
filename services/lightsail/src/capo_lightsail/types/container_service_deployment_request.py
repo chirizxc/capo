@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: ContainerServiceDeploymentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerServiceDeploymentRequest:
     out: ContainerServiceDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_lightsail.types.container_map
 
         out["containers"] = capo_lightsail.types.container_map.deserialize_aws_json_1_1(
             data["containers"]
         )
-    if "publicEndpoint" in data:
+    if data.get("publicEndpoint") is not None:
         import capo_lightsail.types.endpoint_request
 
         out["public_endpoint"] = (

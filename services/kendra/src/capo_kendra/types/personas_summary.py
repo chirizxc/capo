@@ -49,21 +49,21 @@ def serialize_aws_json_1_1(value: PersonasSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PersonasSummary:
     out: PersonasSummary = {}  # type: ignore[typeddict-item]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
-    if "Persona" in data:
+    if data.get("Persona") is not None:
         import capo_kendra.types.persona
 
         out["persona"] = capo_kendra.types.persona.deserialize_aws_json_1_1(
             data["Persona"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(

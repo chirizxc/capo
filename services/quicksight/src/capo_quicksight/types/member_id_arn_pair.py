@@ -30,8 +30,8 @@ def serialize_json(value: MemberIdArnPair) -> dict:
 
 def deserialize_json(data: dict) -> MemberIdArnPair:
     out: MemberIdArnPair = {}  # type: ignore[typeddict-item]
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
-    if "MemberArn" in data:
+    if data.get("MemberArn") is not None:
         out["member_arn"] = data["MemberArn"]
     return out

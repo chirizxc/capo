@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CommunicationLimitList:
 
     out: CommunicationLimitList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connectcampaignsv2.types.communication_limit.deserialize_json(item)
         )

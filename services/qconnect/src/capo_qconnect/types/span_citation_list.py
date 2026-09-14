@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SpanCitationList:
 
     out: SpanCitationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.span_citation.deserialize_json(item))
     return out

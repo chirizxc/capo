@@ -70,19 +70,19 @@ def serialize_json(value: ApiGatewayApiAsset) -> dict:
 
 def deserialize_json(data: dict) -> ApiGatewayApiAsset:
     out: ApiGatewayApiAsset = {}  # type: ignore[typeddict-item]
-    if "ApiDescription" in data:
+    if data.get("ApiDescription") is not None:
         out["api_description"] = data["ApiDescription"]
-    if "ApiEndpoint" in data:
+    if data.get("ApiEndpoint") is not None:
         out["api_endpoint"] = data["ApiEndpoint"]
-    if "ApiId" in data:
+    if data.get("ApiId") is not None:
         out["api_id"] = data["ApiId"]
-    if "ApiKey" in data:
+    if data.get("ApiKey") is not None:
         out["api_key"] = data["ApiKey"]
-    if "ApiName" in data:
+    if data.get("ApiName") is not None:
         out["api_name"] = data["ApiName"]
-    if "ApiSpecificationDownloadUrl" in data:
+    if data.get("ApiSpecificationDownloadUrl") is not None:
         out["api_specification_download_url"] = data["ApiSpecificationDownloadUrl"]
-    if "ApiSpecificationDownloadUrlExpiresAt" in data:
+    if data.get("ApiSpecificationDownloadUrlExpiresAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["api_specification_download_url_expires_at"] = (
@@ -90,8 +90,8 @@ def deserialize_json(data: dict) -> ApiGatewayApiAsset:
                 data["ApiSpecificationDownloadUrlExpiresAt"]
             )
         )
-    if "ProtocolType" in data:
+    if data.get("ProtocolType") is not None:
         out["protocol_type"] = data["ProtocolType"]
-    if "Stage" in data:
+    if data.get("Stage") is not None:
         out["stage"] = data["Stage"]
     return out

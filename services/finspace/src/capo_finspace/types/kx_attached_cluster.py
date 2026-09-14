@@ -41,15 +41,15 @@ def serialize_json(value: KxAttachedCluster) -> dict:
 
 def deserialize_json(data: dict) -> KxAttachedCluster:
     out: KxAttachedCluster = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "clusterType" in data:
+    if data.get("clusterType") is not None:
         import capo_finspace.types.kx_cluster_type
 
         out["cluster_type"] = capo_finspace.types.kx_cluster_type.deserialize_json(
             data["clusterType"]
         )
-    if "clusterStatus" in data:
+    if data.get("clusterStatus") is not None:
         import capo_finspace.types.kx_cluster_status
 
         out["cluster_status"] = capo_finspace.types.kx_cluster_status.deserialize_json(

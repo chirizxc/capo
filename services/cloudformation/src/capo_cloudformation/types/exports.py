@@ -14,6 +14,9 @@ Exports: TypeAlias = list["capo_cloudformation.types.export.Export"]
 def serialize_query(value: Exports, pairs: list[tuple[str, str]], prefix: str) -> None:
     import capo_cloudformation.types.export
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_cloudformation.types.export.serialize_query(
             item, pairs, f"{prefix}.member.{n}"
@@ -34,6 +37,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_cloudformation.types.export
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_cloudformation.types.export.serialize_query(item, pairs, f"{prefix}.{n}")
 

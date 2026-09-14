@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfAssetSourceEntry:
 
     out: ListOfAssetSourceEntry = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dataexchange.types.asset_source_entry.deserialize_json(item))
     return out

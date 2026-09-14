@@ -45,7 +45,15 @@ def serialize_json(value: MetricDatum) -> dict:
             value["dimensions"]
         )
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     if "unit" in value:
         out["Unit"] = value["unit"]
     if "statistic_values" in value:
@@ -59,11 +67,11 @@ def serialize_json(value: MetricDatum) -> dict:
 
 def deserialize_json(data: dict) -> MetricDatum:
     out: MetricDatum = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
     else:
         raise DeserializationError("MetricDatum.metric_name required")
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_mwaa.types._prelude.timestamp
 
         out["timestamp"] = capo_mwaa.types._prelude.timestamp.deserialize_json(
@@ -71,17 +79,17 @@ def deserialize_json(data: dict) -> MetricDatum:
         )
     else:
         raise DeserializationError("MetricDatum.timestamp required")
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_mwaa.types.dimensions
 
         out["dimensions"] = capo_mwaa.types.dimensions.deserialize_json(
             data["Dimensions"]
         )
-    if "Value" in data:
-        out["value"] = data["Value"]
-    if "Unit" in data:
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
-    if "StatisticValues" in data:
+    if data.get("StatisticValues") is not None:
         import capo_mwaa.types.statistic_set
 
         out["statistic_values"] = capo_mwaa.types.statistic_set.deserialize_json(

@@ -32,8 +32,8 @@ def serialize_json(value: Id3Insertion) -> dict:
 
 def deserialize_json(data: dict) -> Id3Insertion:
     out: Id3Insertion = {}  # type: ignore[typeddict-item]
-    if "id3" in data:
+    if data.get("id3") is not None:
         out["id3"] = data["id3"]
-    if "timecode" in data:
+    if data.get("timecode") is not None:
         out["timecode"] = data["timecode"]
     return out

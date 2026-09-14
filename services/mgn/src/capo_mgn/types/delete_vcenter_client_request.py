@@ -24,7 +24,7 @@ def serialize_json(value: DeleteVcenterClientRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteVcenterClientRequest:
     out: DeleteVcenterClientRequest = {}  # type: ignore[typeddict-item]
-    if "vcenterClientID" in data:
+    if data.get("vcenterClientID") is not None:
         out["vcenter_client_id"] = data["vcenterClientID"]
     else:
         raise DeserializationError(

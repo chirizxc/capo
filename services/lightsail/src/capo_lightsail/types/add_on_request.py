@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: AddOnRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddOnRequest:
     out: AddOnRequest = {}  # type: ignore[typeddict-item]
-    if "addOnType" in data:
+    if data.get("addOnType") is not None:
         import capo_lightsail.types.add_on_type
 
         out["add_on_type"] = capo_lightsail.types.add_on_type.deserialize_aws_json_1_1(
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> AddOnRequest:
         )
     else:
         raise DeserializationError("AddOnRequest.add_on_type required")
-    if "autoSnapshotAddOnRequest" in data:
+    if data.get("autoSnapshotAddOnRequest") is not None:
         import capo_lightsail.types.auto_snapshot_add_on_request
 
         out["auto_snapshot_add_on_request"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> AddOnRequest:
                 data["autoSnapshotAddOnRequest"]
             )
         )
-    if "stopInstanceOnIdleRequest" in data:
+    if data.get("stopInstanceOnIdleRequest") is not None:
         import capo_lightsail.types.stop_instance_on_idle_request
 
         out["stop_instance_on_idle_request"] = (

@@ -31,8 +31,8 @@ def deserialize_json(
     data: dict,
 ) -> RuleGroupSourceStatelessRuleMatchAttributesSourcePorts:
     out: RuleGroupSourceStatelessRuleMatchAttributesSourcePorts = {}  # type: ignore[typeddict-item]
-    if "FromPort" in data:
+    if data.get("FromPort") is not None:
         out["from_port"] = data["FromPort"]
-    if "ToPort" in data:
+    if data.get("ToPort") is not None:
         out["to_port"] = data["ToPort"]
     return out

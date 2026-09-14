@@ -65,11 +65,11 @@ def serialize_aws_json_1_0(value: InferenceEventSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InferenceEventSummary:
     out: InferenceEventSummary = {}  # type: ignore[typeddict-item]
-    if "InferenceSchedulerArn" in data:
+    if data.get("InferenceSchedulerArn") is not None:
         out["inference_scheduler_arn"] = data["InferenceSchedulerArn"]
-    if "InferenceSchedulerName" in data:
+    if data.get("InferenceSchedulerName") is not None:
         out["inference_scheduler_name"] = data["InferenceSchedulerName"]
-    if "EventStartTime" in data:
+    if data.get("EventStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["event_start_time"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceEventSummary:
                 data["EventStartTime"]
             )
         )
-    if "EventEndTime" in data:
+    if data.get("EventEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["event_end_time"] = (
@@ -85,8 +85,8 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceEventSummary:
                 data["EventEndTime"]
             )
         )
-    if "Diagnostics" in data:
+    if data.get("Diagnostics") is not None:
         out["diagnostics"] = data["Diagnostics"]
-    if "EventDurationInSeconds" in data:
+    if data.get("EventDurationInSeconds") is not None:
         out["event_duration_in_seconds"] = data["EventDurationInSeconds"]
     return out

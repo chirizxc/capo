@@ -25,17 +25,17 @@ def serialize_json(value: TimeLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> TimeLimitExceededException_:
     out: TimeLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError(
             "TimeLimitExceededException_.detailed_message required"
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("TimeLimitExceededException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("TimeLimitExceededException_.code required")
@@ -47,15 +47,18 @@ class TimeLimitExceededException(ServiceError):
 
     code: str | None = "TimeLimitExceededException"
 
-    def __init__(self, data: TimeLimitExceededException_):
+    def __init__(self, data: TimeLimitExceededException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=True,
             code="TimeLimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "TimeLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "TimeLimitExceededException":
+        return cls(deserialize_json(data), message)

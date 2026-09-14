@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteScriptInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteScriptInput:
     out: DeleteScriptInput = {}  # type: ignore[typeddict-item]
-    if "ScriptId" in data:
+    if data.get("ScriptId") is not None:
         out["script_id"] = data["ScriptId"]
     return out

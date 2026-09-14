@@ -43,9 +43,9 @@ def serialize_aws_json_1_1(value: Configuration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Configuration:
     out: Configuration = {}  # type: ignore[typeddict-item]
-    if "Classification" in data:
+    if data.get("Classification") is not None:
         out["classification"] = data["Classification"]
-    if "Configurations" in data:
+    if data.get("Configurations") is not None:
         import capo_emr.types.configuration_list
 
         out["configurations"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> Configuration:
                 data["Configurations"]
             )
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_emr.types.string_map
 
         out["properties"] = capo_emr.types.string_map.deserialize_aws_json_1_1(

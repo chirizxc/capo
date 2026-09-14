@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> StaticFileList:
 
     out: StaticFileList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.static_file.deserialize_json(item))
     return out

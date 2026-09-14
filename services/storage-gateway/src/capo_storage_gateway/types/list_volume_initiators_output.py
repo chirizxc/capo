@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: ListVolumeInitiatorsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListVolumeInitiatorsOutput:
     out: ListVolumeInitiatorsOutput = {}  # type: ignore[typeddict-item]
-    if "Initiators" in data:
+    if data.get("Initiators") is not None:
         import capo_storage_gateway.types.initiators
 
         out["initiators"] = (

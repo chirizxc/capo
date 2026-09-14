@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: MetricSpecification) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> MetricSpecification:
-    if "Predefined" in data:
+    if data.get("Predefined") is not None:
         import capo_sagemaker.types.predefined_metric_specification
 
         return {
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> MetricSpecification:
                 data["Predefined"]
             )
         }
-    elif "Customized" in data:
+    elif data.get("Customized") is not None:
         import capo_sagemaker.types.customized_metric_specification
 
         return {

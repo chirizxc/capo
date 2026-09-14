@@ -23,6 +23,6 @@ def serialize_json(value: AwsNetworkFirewallFirewallSubnetMappingsDetails) -> di
 
 def deserialize_json(data: dict) -> AwsNetworkFirewallFirewallSubnetMappingsDetails:
     out: AwsNetworkFirewallFirewallSubnetMappingsDetails = {}  # type: ignore[typeddict-item]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
     return out

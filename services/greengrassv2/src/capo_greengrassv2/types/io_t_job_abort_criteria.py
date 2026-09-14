@@ -39,14 +39,22 @@ def serialize_json(value: IoTJobAbortCriteria) -> dict:
     out["action"] = capo_greengrassv2.types.io_t_job_abort_action.serialize_json(
         value["action"]
     )
-    out["thresholdPercentage"] = value.get("threshold_percentage", 0)
+    out["thresholdPercentage"] = (
+        "NaN"
+        if value.get("threshold_percentage", 0) != value.get("threshold_percentage", 0)
+        else "Infinity"
+        if value.get("threshold_percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("threshold_percentage", 0) == float("-inf")
+        else value.get("threshold_percentage", 0)
+    )
     out["minNumberOfExecutedThings"] = value["min_number_of_executed_things"]
     return out
 
 
 def deserialize_json(data: dict) -> IoTJobAbortCriteria:
     out: IoTJobAbortCriteria = {}  # type: ignore[typeddict-item]
-    if "failureType" in data:
+    if data.get("failureType") is not None:
         import capo_greengrassv2.types.io_t_job_execution_failure_type
 
         out["failure_type"] = (
@@ -56,7 +64,7 @@ def deserialize_json(data: dict) -> IoTJobAbortCriteria:
         )
     else:
         raise DeserializationError("IoTJobAbortCriteria.failure_type required")
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_greengrassv2.types.io_t_job_abort_action
 
         out["action"] = capo_greengrassv2.types.io_t_job_abort_action.deserialize_json(
@@ -64,11 +72,11 @@ def deserialize_json(data: dict) -> IoTJobAbortCriteria:
         )
     else:
         raise DeserializationError("IoTJobAbortCriteria.action required")
-    if "thresholdPercentage" in data:
-        out["threshold_percentage"] = data["thresholdPercentage"]
+    if data.get("thresholdPercentage") is not None:
+        out["threshold_percentage"] = float(data["thresholdPercentage"])
     else:
         out["threshold_percentage"] = 0
-    if "minNumberOfExecutedThings" in data:
+    if data.get("minNumberOfExecutedThings") is not None:
         out["min_number_of_executed_things"] = data["minNumberOfExecutedThings"]
     else:
         raise DeserializationError(

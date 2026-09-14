@@ -68,23 +68,23 @@ def serialize_aws_json_1_1(value: DataQualityRulesetListDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityRulesetListDetails:
     out: DataQualityRulesetListDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedOn" in data:
+    if data.get("CreatedOn") is not None:
         import capo_glue.types.timestamp
 
         out["created_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedOn"]
         )
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp
 
         out["last_modified_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastModifiedOn"]
         )
-    if "TargetTable" in data:
+    if data.get("TargetTable") is not None:
         import capo_glue.types.data_quality_target_table
 
         out["target_table"] = (
@@ -92,8 +92,8 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityRulesetListDetails:
                 data["TargetTable"]
             )
         )
-    if "RecommendationRunId" in data:
+    if data.get("RecommendationRunId") is not None:
         out["recommendation_run_id"] = data["RecommendationRunId"]
-    if "RuleCount" in data:
+    if data.get("RuleCount") is not None:
         out["rule_count"] = data["RuleCount"]
     return out

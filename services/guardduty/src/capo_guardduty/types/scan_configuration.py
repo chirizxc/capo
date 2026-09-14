@@ -58,15 +58,15 @@ def serialize_json(value: ScanConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ScanConfiguration:
     out: ScanConfiguration = {}  # type: ignore[typeddict-item]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
-    if "triggerDetails" in data:
+    if data.get("triggerDetails") is not None:
         import capo_guardduty.types.trigger_details
 
         out["trigger_details"] = capo_guardduty.types.trigger_details.deserialize_json(
             data["triggerDetails"]
         )
-    if "incrementalScanDetails" in data:
+    if data.get("incrementalScanDetails") is not None:
         import capo_guardduty.types.incremental_scan_details
 
         out["incremental_scan_details"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ScanConfiguration:
                 data["incrementalScanDetails"]
             )
         )
-    if "recoveryPoint" in data:
+    if data.get("recoveryPoint") is not None:
         import capo_guardduty.types.scan_configuration_recovery_point
 
         out["recovery_point"] = (

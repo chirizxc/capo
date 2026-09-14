@@ -48,29 +48,29 @@ def serialize_json(value: StartCopyJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartCopyJobInput:
     out: StartCopyJobInput = {}  # type: ignore[typeddict-item]
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
     else:
         raise DeserializationError("StartCopyJobInput.recovery_point_arn required")
-    if "SourceBackupVaultName" in data:
+    if data.get("SourceBackupVaultName") is not None:
         out["source_backup_vault_name"] = data["SourceBackupVaultName"]
     else:
         raise DeserializationError(
             "StartCopyJobInput.source_backup_vault_name required"
         )
-    if "DestinationBackupVaultArn" in data:
+    if data.get("DestinationBackupVaultArn") is not None:
         out["destination_backup_vault_arn"] = data["DestinationBackupVaultArn"]
     else:
         raise DeserializationError(
             "StartCopyJobInput.destination_backup_vault_arn required"
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("StartCopyJobInput.iam_role_arn required")
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_backup.types.lifecycle
 
         out["lifecycle"] = capo_backup.types.lifecycle.deserialize_json(

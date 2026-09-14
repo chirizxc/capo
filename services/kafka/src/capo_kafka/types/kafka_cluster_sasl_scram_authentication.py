@@ -36,7 +36,7 @@ def serialize_json(value: KafkaClusterSaslScramAuthentication) -> dict:
 
 def deserialize_json(data: dict) -> KafkaClusterSaslScramAuthentication:
     out: KafkaClusterSaslScramAuthentication = {}  # type: ignore[typeddict-item]
-    if "mechanism" in data:
+    if data.get("mechanism") is not None:
         import capo_kafka.types.kafka_cluster_sasl_scram_mechanism
 
         out["mechanism"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> KafkaClusterSaslScramAuthentication:
                 data["mechanism"]
             )
         )
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     return out

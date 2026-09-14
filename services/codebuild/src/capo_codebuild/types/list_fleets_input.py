@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: ListFleetsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFleetsInput:
     out: ListFleetsInput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_codebuild.types.sort_order_type
 
         out["sort_order"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListFleetsInput:
                 data["sortOrder"]
             )
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_codebuild.types.fleet_sort_by_type
 
         out["sort_by"] = (

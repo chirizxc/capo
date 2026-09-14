@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeAttackStatisticsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAttackStatisticsResponse:
     out: DescribeAttackStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "TimeRange" in data:
+    if data.get("TimeRange") is not None:
         import capo_shield.types.time_range
 
         out["time_range"] = capo_shield.types.time_range.deserialize_aws_json_1_1(
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAttackStatisticsResponse:
         raise DeserializationError(
             "DescribeAttackStatisticsResponse.time_range required"
         )
-    if "DataItems" in data:
+    if data.get("DataItems") is not None:
         import capo_shield.types.attack_statistics_data_list
 
         out["data_items"] = (

@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ResourceDetails) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
-    if "ebsVolume" in data:
+    if data.get("ebsVolume") is not None:
         import capo_compute_optimizer_automation.types.ebs_volume
 
         return {

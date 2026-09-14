@@ -106,11 +106,11 @@ def serialize_json(value: CreateJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobOutput:
     out: CreateJobOutput = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "ThumbnailPattern" in data:
+    if data.get("ThumbnailPattern") is not None:
         out["thumbnail_pattern"] = data["ThumbnailPattern"]
-    if "ThumbnailEncryption" in data:
+    if data.get("ThumbnailEncryption") is not None:
         import capo_elastic_transcoder.types.encryption
 
         out["thumbnail_encryption"] = (
@@ -118,13 +118,13 @@ def deserialize_json(data: dict) -> CreateJobOutput:
                 data["ThumbnailEncryption"]
             )
         )
-    if "Rotate" in data:
+    if data.get("Rotate") is not None:
         out["rotate"] = data["Rotate"]
-    if "PresetId" in data:
+    if data.get("PresetId") is not None:
         out["preset_id"] = data["PresetId"]
-    if "SegmentDuration" in data:
+    if data.get("SegmentDuration") is not None:
         out["segment_duration"] = data["SegmentDuration"]
-    if "Watermarks" in data:
+    if data.get("Watermarks") is not None:
         import capo_elastic_transcoder.types.job_watermarks
 
         out["watermarks"] = (
@@ -132,25 +132,25 @@ def deserialize_json(data: dict) -> CreateJobOutput:
                 data["Watermarks"]
             )
         )
-    if "AlbumArt" in data:
+    if data.get("AlbumArt") is not None:
         import capo_elastic_transcoder.types.job_album_art
 
         out["album_art"] = capo_elastic_transcoder.types.job_album_art.deserialize_json(
             data["AlbumArt"]
         )
-    if "Composition" in data:
+    if data.get("Composition") is not None:
         import capo_elastic_transcoder.types.composition
 
         out["composition"] = capo_elastic_transcoder.types.composition.deserialize_json(
             data["Composition"]
         )
-    if "Captions" in data:
+    if data.get("Captions") is not None:
         import capo_elastic_transcoder.types.captions
 
         out["captions"] = capo_elastic_transcoder.types.captions.deserialize_json(
             data["Captions"]
         )
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_elastic_transcoder.types.encryption
 
         out["encryption"] = capo_elastic_transcoder.types.encryption.deserialize_json(

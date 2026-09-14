@@ -64,25 +64,25 @@ def serialize_json(value: EcsClusterDetails) -> dict:
 
 def deserialize_json(data: dict) -> EcsClusterDetails:
     out: EcsClusterDetails = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "activeServicesCount" in data:
+    if data.get("activeServicesCount") is not None:
         out["active_services_count"] = data["activeServicesCount"]
-    if "registeredContainerInstancesCount" in data:
+    if data.get("registeredContainerInstancesCount") is not None:
         out["registered_container_instances_count"] = data[
             "registeredContainerInstancesCount"
         ]
-    if "runningTasksCount" in data:
+    if data.get("runningTasksCount") is not None:
         out["running_tasks_count"] = data["runningTasksCount"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tags
 
         out["tags"] = capo_guardduty.types.tags.deserialize_json(data["tags"])
-    if "taskDetails" in data:
+    if data.get("taskDetails") is not None:
         import capo_guardduty.types.ecs_task_details
 
         out["task_details"] = capo_guardduty.types.ecs_task_details.deserialize_json(

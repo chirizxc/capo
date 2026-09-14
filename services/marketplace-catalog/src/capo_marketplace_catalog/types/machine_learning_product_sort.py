@@ -40,7 +40,7 @@ def serialize_json(value: MachineLearningProductSort) -> dict:
 
 def deserialize_json(data: dict) -> MachineLearningProductSort:
     out: MachineLearningProductSort = {}  # type: ignore[typeddict-item]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_marketplace_catalog.types.machine_learning_product_sort_by
 
         out["sort_by"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> MachineLearningProductSort:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_marketplace_catalog.types.sort_order
 
         out["sort_order"] = capo_marketplace_catalog.types.sort_order.deserialize_json(

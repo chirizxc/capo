@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CompositionRelationshipSummaries:
 
     out: CompositionRelationshipSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.composition_relationship_summary.deserialize_json(
                 item

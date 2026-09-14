@@ -31,7 +31,7 @@ def serialize_json(value: GetTraceGraphRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetTraceGraphRequest:
     out: GetTraceGraphRequest = {}  # type: ignore[typeddict-item]
-    if "TraceIds" in data:
+    if data.get("TraceIds") is not None:
         import capo_xray.types.trace_id_list
 
         out["trace_ids"] = capo_xray.types.trace_id_list.deserialize_json(
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> GetTraceGraphRequest:
         )
     else:
         raise DeserializationError("GetTraceGraphRequest.trace_ids required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

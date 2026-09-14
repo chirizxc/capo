@@ -30,13 +30,21 @@ def serialize_aws_json_1_1(value: LanguageCodeItem) -> dict:
             )
         )
     if "duration_in_seconds" in value:
-        out["DurationInSeconds"] = value["duration_in_seconds"]
+        out["DurationInSeconds"] = (
+            "NaN"
+            if value["duration_in_seconds"] != value["duration_in_seconds"]
+            else "Infinity"
+            if value["duration_in_seconds"] == float("inf")
+            else "-Infinity"
+            if value["duration_in_seconds"] == float("-inf")
+            else value["duration_in_seconds"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> LanguageCodeItem:
     out: LanguageCodeItem = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -44,6 +52,6 @@ def deserialize_aws_json_1_1(data: dict) -> LanguageCodeItem:
                 data["LanguageCode"]
             )
         )
-    if "DurationInSeconds" in data:
-        out["duration_in_seconds"] = data["DurationInSeconds"]
+    if data.get("DurationInSeconds") is not None:
+        out["duration_in_seconds"] = float(data["DurationInSeconds"])
     return out

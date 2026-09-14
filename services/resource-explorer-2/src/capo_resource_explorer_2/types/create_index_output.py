@@ -27,28 +27,24 @@ def serialize_json(value: CreateIndexOutput) -> dict:
     if "state" in value:
         out["State"] = value["state"]
     if "created_at" in value:
-        import capo_resource_explorer_2.types._prelude.timestamp
+        import capo_resource_explorer_2._protocol.serialize
 
-        out["CreatedAt"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.serialize_json(
-                value["created_at"]
-            )
+        out["CreatedAt"] = capo_resource_explorer_2._protocol.serialize.fmt_date_time(
+            value["created_at"]
         )
     return out
 
 
 def deserialize_json(data: dict) -> CreateIndexOutput:
     out: CreateIndexOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "CreatedAt" in data:
-        import capo_resource_explorer_2.types._prelude.timestamp
+    if data.get("CreatedAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.deserialize_json(
-                data["CreatedAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["CreatedAt"].replace("Z", "+00:00")
         )
     return out

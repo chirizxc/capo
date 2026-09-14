@@ -103,21 +103,21 @@ def serialize_json(value: S3Bucket) -> dict:
 
 def deserialize_json(data: dict) -> S3Bucket:
     out: S3Bucket = {}  # type: ignore[typeddict-item]
-    if "ownerId" in data:
+    if data.get("ownerId") is not None:
         out["owner_id"] = data["ownerId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["created_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         out["encryption_type"] = data["encryptionType"]
-    if "encryptionKeyArn" in data:
+    if data.get("encryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["encryptionKeyArn"]
-    if "effectivePermission" in data:
+    if data.get("effectivePermission") is not None:
         out["effective_permission"] = data["effectivePermission"]
-    if "publicReadAccess" in data:
+    if data.get("publicReadAccess") is not None:
         import capo_guardduty.types.public_access_status
 
         out["public_read_access"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> S3Bucket:
                 data["publicReadAccess"]
             )
         )
-    if "publicWriteAccess" in data:
+    if data.get("publicWriteAccess") is not None:
         import capo_guardduty.types.public_access_status
 
         out["public_write_access"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> S3Bucket:
                 data["publicWriteAccess"]
             )
         )
-    if "accountPublicAccess" in data:
+    if data.get("accountPublicAccess") is not None:
         import capo_guardduty.types.public_access_configuration
 
         out["account_public_access"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> S3Bucket:
                 data["accountPublicAccess"]
             )
         )
-    if "bucketPublicAccess" in data:
+    if data.get("bucketPublicAccess") is not None:
         import capo_guardduty.types.public_access_configuration
 
         out["bucket_public_access"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> S3Bucket:
                 data["bucketPublicAccess"]
             )
         )
-    if "s3ObjectUids" in data:
+    if data.get("s3ObjectUids") is not None:
         import capo_guardduty.types.s3_object_uids
 
         out["s3_object_uids"] = capo_guardduty.types.s3_object_uids.deserialize_json(

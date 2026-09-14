@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: AsnMatchStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AsnMatchStatement:
     out: AsnMatchStatement = {}  # type: ignore[typeddict-item]
-    if "AsnList" in data:
+    if data.get("AsnList") is not None:
         import capo_wafv2.types.asn_list
 
         out["asn_list"] = capo_wafv2.types.asn_list.deserialize_aws_json_1_1(
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> AsnMatchStatement:
         )
     else:
         raise DeserializationError("AsnMatchStatement.asn_list required")
-    if "ForwardedIPConfig" in data:
+    if data.get("ForwardedIPConfig") is not None:
         import capo_wafv2.types.forwarded_ip_config
 
         out["forwarded_ip_config"] = (

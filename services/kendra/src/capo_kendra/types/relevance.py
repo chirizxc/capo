@@ -57,19 +57,19 @@ def serialize_aws_json_1_1(value: Relevance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Relevance:
     out: Relevance = {}  # type: ignore[typeddict-item]
-    if "Freshness" in data:
+    if data.get("Freshness") is not None:
         out["freshness"] = data["Freshness"]
-    if "Importance" in data:
+    if data.get("Importance") is not None:
         out["importance"] = data["Importance"]
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
-    if "RankOrder" in data:
+    if data.get("RankOrder") is not None:
         import capo_kendra.types.order
 
         out["rank_order"] = capo_kendra.types.order.deserialize_aws_json_1_1(
             data["RankOrder"]
         )
-    if "ValueImportanceMap" in data:
+    if data.get("ValueImportanceMap") is not None:
         import capo_kendra.types.value_importance_map
 
         out["value_importance_map"] = (

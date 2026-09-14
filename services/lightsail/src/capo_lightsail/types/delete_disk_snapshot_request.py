@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteDiskSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDiskSnapshotRequest:
     out: DeleteDiskSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "diskSnapshotName" in data:
+    if data.get("diskSnapshotName") is not None:
         out["disk_snapshot_name"] = data["diskSnapshotName"]
     else:
         raise DeserializationError(

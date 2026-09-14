@@ -22,8 +22,8 @@ def serialize_json(value: HttpVerification) -> dict:
 
 def deserialize_json(data: dict) -> HttpVerification:
     out: HttpVerification = {}  # type: ignore[typeddict-item]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
-    if "routePath" in data:
+    if data.get("routePath") is not None:
         out["route_path"] = data["routePath"]
     return out

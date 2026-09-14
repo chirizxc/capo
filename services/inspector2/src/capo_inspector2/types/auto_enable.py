@@ -33,18 +33,18 @@ def serialize_json(value: AutoEnable) -> dict:
 
 def deserialize_json(data: dict) -> AutoEnable:
     out: AutoEnable = {}  # type: ignore[typeddict-item]
-    if "ec2" in data:
+    if data.get("ec2") is not None:
         out["ec2"] = data["ec2"]
     else:
         raise DeserializationError("AutoEnable.ec2 required")
-    if "ecr" in data:
+    if data.get("ecr") is not None:
         out["ecr"] = data["ecr"]
     else:
         raise DeserializationError("AutoEnable.ecr required")
-    if "lambda" in data:
+    if data.get("lambda") is not None:
         out["lambda"] = data["lambda"]
-    if "lambdaCode" in data:
+    if data.get("lambdaCode") is not None:
         out["lambda_code"] = data["lambdaCode"]
-    if "codeRepository" in data:
+    if data.get("codeRepository") is not None:
         out["code_repository"] = data["codeRepository"]
     return out

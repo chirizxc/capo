@@ -25,6 +25,6 @@ def serialize_json(value: OtaTaskTimeoutConfig) -> dict:
 
 def deserialize_json(data: dict) -> OtaTaskTimeoutConfig:
     out: OtaTaskTimeoutConfig = {}  # type: ignore[typeddict-item]
-    if "InProgressTimeoutInMinutes" in data:
+    if data.get("InProgressTimeoutInMinutes") is not None:
         out["in_progress_timeout_in_minutes"] = data["InProgressTimeoutInMinutes"]
     return out

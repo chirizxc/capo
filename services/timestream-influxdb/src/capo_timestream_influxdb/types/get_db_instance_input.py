@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: GetDbInstanceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetDbInstanceInput:
     out: GetDbInstanceInput = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("GetDbInstanceInput.identifier required")

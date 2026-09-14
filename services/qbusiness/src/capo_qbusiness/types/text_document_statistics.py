@@ -32,8 +32,8 @@ def serialize_json(value: TextDocumentStatistics) -> dict:
 
 def deserialize_json(data: dict) -> TextDocumentStatistics:
     out: TextDocumentStatistics = {}  # type: ignore[typeddict-item]
-    if "indexedTextBytes" in data:
+    if data.get("indexedTextBytes") is not None:
         out["indexed_text_bytes"] = data["indexedTextBytes"]
-    if "indexedTextDocumentCount" in data:
+    if data.get("indexedTextDocumentCount") is not None:
         out["indexed_text_document_count"] = data["indexedTextDocumentCount"]
     return out

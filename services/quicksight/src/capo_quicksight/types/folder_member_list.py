@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FolderMemberList:
 
     out: FolderMemberList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.member_id_arn_pair.deserialize_json(item))
     return out

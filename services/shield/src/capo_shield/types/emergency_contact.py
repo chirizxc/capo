@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: EmergencyContact) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EmergencyContact:
     out: EmergencyContact = {}  # type: ignore[typeddict-item]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
     else:
         raise DeserializationError("EmergencyContact.email_address required")
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
-    if "ContactNotes" in data:
+    if data.get("ContactNotes") is not None:
         out["contact_notes"] = data["ContactNotes"]
     return out

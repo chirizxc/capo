@@ -182,7 +182,7 @@ class AsyncPinpointSMSVoiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_sms_voice.types.create_configuration_set_request.CreateConfigurationSetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_sms_voice.types.create_configuration_set_request.CreateConfigurationSetRequest = {}
         if configuration_set_name is not None:
             input_["configuration_set_name"] = configuration_set_name
 
@@ -191,6 +191,7 @@ class AsyncPinpointSMSVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_configuration_set_event_destination(
@@ -237,8 +238,9 @@ class AsyncPinpointSMSVoiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_sms_voice.types.create_configuration_set_event_destination_request.CreateConfigurationSetEventDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_sms_voice.types.create_configuration_set_event_destination_request.CreateConfigurationSetEventDestinationRequest = {
+            "configuration_set_name": configuration_set_name
+        }
         if event_destination is not None:
             input_["event_destination"] = event_destination
         if event_destination_name is not None:
@@ -249,6 +251,7 @@ class AsyncPinpointSMSVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configuration_set(
@@ -286,14 +289,16 @@ class AsyncPinpointSMSVoiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_sms_voice.types.delete_configuration_set_request.DeleteConfigurationSetRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_sms_voice.types.delete_configuration_set_request.DeleteConfigurationSetRequest = {
+            "configuration_set_name": configuration_set_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configuration_set_event_destination(
@@ -333,15 +338,17 @@ class AsyncPinpointSMSVoiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_sms_voice.types.delete_configuration_set_event_destination_request.DeleteConfigurationSetEventDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["event_destination_name"] = event_destination_name
+        input_: capo_pinpoint_sms_voice.types.delete_configuration_set_event_destination_request.DeleteConfigurationSetEventDestinationRequest = {
+            "configuration_set_name": configuration_set_name,
+            "event_destination_name": event_destination_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_configuration_set_event_destinations(
@@ -379,14 +386,16 @@ class AsyncPinpointSMSVoiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_sms_voice.types.get_configuration_set_event_destinations_request.GetConfigurationSetEventDestinationsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_sms_voice.types.get_configuration_set_event_destinations_request.GetConfigurationSetEventDestinationsRequest = {
+            "configuration_set_name": configuration_set_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_configuration_sets(
@@ -425,7 +434,7 @@ class AsyncPinpointSMSVoiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_sms_voice.types.list_configuration_sets_request.ListConfigurationSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_sms_voice.types.list_configuration_sets_request.ListConfigurationSetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -436,6 +445,7 @@ class AsyncPinpointSMSVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_voice_message(
@@ -487,7 +497,7 @@ class AsyncPinpointSMSVoiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_sms_voice.types.send_voice_message_request.SendVoiceMessageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_sms_voice.types.send_voice_message_request.SendVoiceMessageRequest = {}
         if caller_id is not None:
             input_["caller_id"] = caller_id
         if configuration_set_name is not None:
@@ -504,6 +514,7 @@ class AsyncPinpointSMSVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_configuration_set_event_destination(
@@ -546,17 +557,19 @@ class AsyncPinpointSMSVoiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_sms_voice.types.update_configuration_set_event_destination_request.UpdateConfigurationSetEventDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_sms_voice.types.update_configuration_set_event_destination_request.UpdateConfigurationSetEventDestinationRequest = {
+            "configuration_set_name": configuration_set_name,
+            "event_destination_name": event_destination_name,
+        }
         if event_destination is not None:
             input_["event_destination"] = event_destination
-        input_["event_destination_name"] = event_destination_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

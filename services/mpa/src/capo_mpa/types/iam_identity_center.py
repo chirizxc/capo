@@ -28,11 +28,11 @@ def serialize_json(value: IamIdentityCenter) -> dict:
 
 def deserialize_json(data: dict) -> IamIdentityCenter:
     out: IamIdentityCenter = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError("IamIdentityCenter.instance_arn required")
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("IamIdentityCenter.region required")

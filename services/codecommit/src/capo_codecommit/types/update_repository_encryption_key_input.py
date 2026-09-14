@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: UpdateRepositoryEncryptionKeyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRepositoryEncryptionKeyInput:
     out: UpdateRepositoryEncryptionKeyInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "UpdateRepositoryEncryptionKeyInput.repository_name required"
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     else:
         raise DeserializationError(

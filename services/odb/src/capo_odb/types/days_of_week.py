@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> DaysOfWeek:
 
     out: DaysOfWeek = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_odb.types.day_of_week.deserialize_aws_json_1_0(item))
     return out

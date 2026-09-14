@@ -156,15 +156,15 @@ def serialize_aws_json_1_0(value: SensorStatisticsSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SensorStatisticsSummary:
     out: SensorStatisticsSummary = {}  # type: ignore[typeddict-item]
-    if "ComponentName" in data:
+    if data.get("ComponentName") is not None:
         out["component_name"] = data["ComponentName"]
-    if "SensorName" in data:
+    if data.get("SensorName") is not None:
         out["sensor_name"] = data["SensorName"]
-    if "DataExists" in data:
+    if data.get("DataExists") is not None:
         out["data_exists"] = data["DataExists"]
     else:
         out["data_exists"] = False
-    if "MissingValues" in data:
+    if data.get("MissingValues") is not None:
         import capo_lookoutequipment.types.count_percent
 
         out["missing_values"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_0(data: dict) -> SensorStatisticsSummary:
                 data["MissingValues"]
             )
         )
-    if "InvalidValues" in data:
+    if data.get("InvalidValues") is not None:
         import capo_lookoutequipment.types.count_percent
 
         out["invalid_values"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_0(data: dict) -> SensorStatisticsSummary:
                 data["InvalidValues"]
             )
         )
-    if "InvalidDateEntries" in data:
+    if data.get("InvalidDateEntries") is not None:
         import capo_lookoutequipment.types.count_percent
 
         out["invalid_date_entries"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_0(data: dict) -> SensorStatisticsSummary:
                 data["InvalidDateEntries"]
             )
         )
-    if "DuplicateTimestamps" in data:
+    if data.get("DuplicateTimestamps") is not None:
         import capo_lookoutequipment.types.count_percent
 
         out["duplicate_timestamps"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_0(data: dict) -> SensorStatisticsSummary:
                 data["DuplicateTimestamps"]
             )
         )
-    if "CategoricalValues" in data:
+    if data.get("CategoricalValues") is not None:
         import capo_lookoutequipment.types.categorical_values
 
         out["categorical_values"] = (
@@ -204,7 +204,7 @@ def deserialize_aws_json_1_0(data: dict) -> SensorStatisticsSummary:
                 data["CategoricalValues"]
             )
         )
-    if "MultipleOperatingModes" in data:
+    if data.get("MultipleOperatingModes") is not None:
         import capo_lookoutequipment.types.multiple_operating_modes
 
         out["multiple_operating_modes"] = (
@@ -212,7 +212,7 @@ def deserialize_aws_json_1_0(data: dict) -> SensorStatisticsSummary:
                 data["MultipleOperatingModes"]
             )
         )
-    if "LargeTimestampGaps" in data:
+    if data.get("LargeTimestampGaps") is not None:
         import capo_lookoutequipment.types.large_timestamp_gaps
 
         out["large_timestamp_gaps"] = (
@@ -220,7 +220,7 @@ def deserialize_aws_json_1_0(data: dict) -> SensorStatisticsSummary:
                 data["LargeTimestampGaps"]
             )
         )
-    if "MonotonicValues" in data:
+    if data.get("MonotonicValues") is not None:
         import capo_lookoutequipment.types.monotonic_values
 
         out["monotonic_values"] = (
@@ -228,7 +228,7 @@ def deserialize_aws_json_1_0(data: dict) -> SensorStatisticsSummary:
                 data["MonotonicValues"]
             )
         )
-    if "DataStartTime" in data:
+    if data.get("DataStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["data_start_time"] = (
@@ -236,7 +236,7 @@ def deserialize_aws_json_1_0(data: dict) -> SensorStatisticsSummary:
                 data["DataStartTime"]
             )
         )
-    if "DataEndTime" in data:
+    if data.get("DataEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["data_end_time"] = (

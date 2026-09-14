@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: AttachedDisk) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttachedDisk:
     out: AttachedDisk = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "sizeInGb" in data:
+    if data.get("sizeInGb") is not None:
         out["size_in_gb"] = data["sizeInGb"]
     return out

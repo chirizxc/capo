@@ -44,7 +44,7 @@ def serialize_json(value: ForecastScenario) -> dict:
 
 def deserialize_json(data: dict) -> ForecastScenario:
     out: ForecastScenario = {}  # type: ignore[typeddict-item]
-    if "WhatIfPointScenario" in data:
+    if data.get("WhatIfPointScenario") is not None:
         import capo_quicksight.types.what_if_point_scenario
 
         out["what_if_point_scenario"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ForecastScenario:
                 data["WhatIfPointScenario"]
             )
         )
-    if "WhatIfRangeScenario" in data:
+    if data.get("WhatIfRangeScenario") is not None:
         import capo_quicksight.types.what_if_range_scenario
 
         out["what_if_range_scenario"] = (

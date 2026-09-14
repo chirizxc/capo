@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: GetCrawlerMetricsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCrawlerMetricsRequest:
     out: GetCrawlerMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "CrawlerNameList" in data:
+    if data.get("CrawlerNameList") is not None:
         import capo_glue.types.crawler_name_list
 
         out["crawler_name_list"] = (
@@ -47,8 +47,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetCrawlerMetricsRequest:
                 data["CrawlerNameList"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: ComboChartFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> ComboChartFieldWells:
     out: ComboChartFieldWells = {}  # type: ignore[typeddict-item]
-    if "ComboChartAggregatedFieldWells" in data:
+    if data.get("ComboChartAggregatedFieldWells") is not None:
         import capo_quicksight.types.combo_chart_aggregated_field_wells
 
         out["combo_chart_aggregated_field_wells"] = (

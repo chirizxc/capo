@@ -36,7 +36,7 @@ def serialize_json(value: Sort) -> dict:
 
 def deserialize_json(data: dict) -> Sort:
     out: Sort = {}  # type: ignore[typeddict-item]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_medical_imaging.types.sort_order
 
         out["sort_order"] = capo_medical_imaging.types.sort_order.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> Sort:
         )
     else:
         raise DeserializationError("Sort.sort_order required")
-    if "sortField" in data:
+    if data.get("sortField") is not None:
         import capo_medical_imaging.types.sort_field
 
         out["sort_field"] = capo_medical_imaging.types.sort_field.deserialize_json(

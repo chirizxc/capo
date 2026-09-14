@@ -55,13 +55,13 @@ def serialize_json(value: CreateEventIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEventIntegrationRequest:
     out: CreateEventIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateEventIntegrationRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EventFilter" in data:
+    if data.get("EventFilter") is not None:
         import capo_appintegrations.types.event_filter
 
         out["event_filter"] = capo_appintegrations.types.event_filter.deserialize_json(
@@ -71,15 +71,15 @@ def deserialize_json(data: dict) -> CreateEventIntegrationRequest:
         raise DeserializationError(
             "CreateEventIntegrationRequest.event_filter required"
         )
-    if "EventBridgeBus" in data:
+    if data.get("EventBridgeBus") is not None:
         out["event_bridge_bus"] = data["EventBridgeBus"]
     else:
         raise DeserializationError(
             "CreateEventIntegrationRequest.event_bridge_bus required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appintegrations.types.tag_map
 
         out["tags"] = capo_appintegrations.types.tag_map.deserialize_json(data["Tags"])

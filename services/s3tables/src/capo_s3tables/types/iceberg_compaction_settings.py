@@ -38,9 +38,9 @@ def serialize_json(value: IcebergCompactionSettings) -> dict:
 
 def deserialize_json(data: dict) -> IcebergCompactionSettings:
     out: IcebergCompactionSettings = {}  # type: ignore[typeddict-item]
-    if "targetFileSizeMB" in data:
+    if data.get("targetFileSizeMB") is not None:
         out["target_file_size_mb"] = data["targetFileSizeMB"]
-    if "strategy" in data:
+    if data.get("strategy") is not None:
         import capo_s3tables.types.iceberg_compaction_strategy
 
         out["strategy"] = (

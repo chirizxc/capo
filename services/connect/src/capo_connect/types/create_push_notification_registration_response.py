@@ -24,7 +24,7 @@ def serialize_json(value: CreatePushNotificationRegistrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePushNotificationRegistrationResponse:
     out: CreatePushNotificationRegistrationResponse = {}  # type: ignore[typeddict-item]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(

@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: TextClassificationJobConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TextClassificationJobConfig:
     out: TextClassificationJobConfig = {}  # type: ignore[typeddict-item]
-    if "CompletionCriteria" in data:
+    if data.get("CompletionCriteria") is not None:
         import capo_sagemaker.types.auto_ml_job_completion_criteria
 
         out["completion_criteria"] = (
@@ -51,8 +51,8 @@ def deserialize_aws_json_1_1(data: dict) -> TextClassificationJobConfig:
                 data["CompletionCriteria"]
             )
         )
-    if "ContentColumn" in data:
+    if data.get("ContentColumn") is not None:
         out["content_column"] = data["ContentColumn"]
-    if "TargetLabelColumn" in data:
+    if data.get("TargetLabelColumn") is not None:
         out["target_label_column"] = data["TargetLabelColumn"]
     return out

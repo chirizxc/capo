@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListDataSourceSyncJobsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDataSourceSyncJobsResponse:
     out: ListDataSourceSyncJobsResponse = {}  # type: ignore[typeddict-item]
-    if "History" in data:
+    if data.get("History") is not None:
         import capo_kendra.types.data_source_sync_job_history_list
 
         out["history"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListDataSourceSyncJobsResponse:
                 data["History"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

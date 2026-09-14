@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: AuthenticationMethodItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthenticationMethodItem:
     out: AuthenticationMethodItem = {}  # type: ignore[typeddict-item]
-    if "AuthenticationMethodType" in data:
+    if data.get("AuthenticationMethodType") is not None:
         import capo_sso_admin.types.authentication_method_type
 
         out["authentication_method_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> AuthenticationMethodItem:
                 data["AuthenticationMethodType"]
             )
         )
-    if "AuthenticationMethod" in data:
+    if data.get("AuthenticationMethod") is not None:
         import capo_sso_admin.types.authentication_method
 
         out["authentication_method"] = (

@@ -40,7 +40,7 @@ def serialize_json(value: BatchGetTokenBalanceOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetTokenBalanceOutput:
     out: BatchGetTokenBalanceOutput = {}  # type: ignore[typeddict-item]
-    if "tokenBalances" in data:
+    if data.get("tokenBalances") is not None:
         import capo_managedblockchain_query.types.batch_get_token_balance_output_list
 
         out["token_balances"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> BatchGetTokenBalanceOutput:
         )
     else:
         raise DeserializationError("BatchGetTokenBalanceOutput.token_balances required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_managedblockchain_query.types.batch_get_token_balance_errors
 
         out["errors"] = (

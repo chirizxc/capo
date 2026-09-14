@@ -40,13 +40,13 @@ def serialize_json(value: PluginVisualTableQuerySort) -> dict:
 
 def deserialize_json(data: dict) -> PluginVisualTableQuerySort:
     out: PluginVisualTableQuerySort = {}  # type: ignore[typeddict-item]
-    if "RowSort" in data:
+    if data.get("RowSort") is not None:
         import capo_quicksight.types.row_sort_list
 
         out["row_sort"] = capo_quicksight.types.row_sort_list.deserialize_json(
             data["RowSort"]
         )
-    if "ItemsLimitConfiguration" in data:
+    if data.get("ItemsLimitConfiguration") is not None:
         import capo_quicksight.types.plugin_visual_items_limit_configuration
 
         out["items_limit_configuration"] = (

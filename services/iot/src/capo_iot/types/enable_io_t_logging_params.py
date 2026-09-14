@@ -30,13 +30,13 @@ def serialize_json(value: EnableIoTLoggingParams) -> dict:
 
 def deserialize_json(data: dict) -> EnableIoTLoggingParams:
     out: EnableIoTLoggingParams = {}  # type: ignore[typeddict-item]
-    if "roleArnForLogging" in data:
+    if data.get("roleArnForLogging") is not None:
         out["role_arn_for_logging"] = data["roleArnForLogging"]
     else:
         raise DeserializationError(
             "EnableIoTLoggingParams.role_arn_for_logging required"
         )
-    if "logLevel" in data:
+    if data.get("logLevel") is not None:
         import capo_iot.types.log_level
 
         out["log_level"] = capo_iot.types.log_level.deserialize_json(data["logLevel"])

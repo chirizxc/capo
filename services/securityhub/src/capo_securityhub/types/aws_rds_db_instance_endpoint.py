@@ -34,10 +34,10 @@ def serialize_json(value: AwsRdsDbInstanceEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbInstanceEndpoint:
     out: AwsRdsDbInstanceEndpoint = {}  # type: ignore[typeddict-item]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "HostedZoneId" in data:
+    if data.get("HostedZoneId") is not None:
         out["hosted_zone_id"] = data["HostedZoneId"]
     return out

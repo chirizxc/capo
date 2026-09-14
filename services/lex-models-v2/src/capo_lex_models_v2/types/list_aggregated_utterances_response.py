@@ -106,15 +106,15 @@ def serialize_json(value: ListAggregatedUtterancesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAggregatedUtterancesResponse:
     out: ListAggregatedUtterancesResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botAliasId" in data:
+    if data.get("botAliasId") is not None:
         out["bot_alias_id"] = data["botAliasId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "aggregationDuration" in data:
+    if data.get("aggregationDuration") is not None:
         import capo_lex_models_v2.types.utterance_aggregation_duration
 
         out["aggregation_duration"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> ListAggregatedUtterancesResponse:
                 data["aggregationDuration"]
             )
         )
-    if "aggregationWindowStartTime" in data:
+    if data.get("aggregationWindowStartTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["aggregation_window_start_time"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> ListAggregatedUtterancesResponse:
                 data["aggregationWindowStartTime"]
             )
         )
-    if "aggregationWindowEndTime" in data:
+    if data.get("aggregationWindowEndTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["aggregation_window_end_time"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> ListAggregatedUtterancesResponse:
                 data["aggregationWindowEndTime"]
             )
         )
-    if "aggregationLastRefreshedDateTime" in data:
+    if data.get("aggregationLastRefreshedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["aggregation_last_refreshed_date_time"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> ListAggregatedUtterancesResponse:
                 data["aggregationLastRefreshedDateTime"]
             )
         )
-    if "aggregatedUtterancesSummaries" in data:
+    if data.get("aggregatedUtterancesSummaries") is not None:
         import capo_lex_models_v2.types.aggregated_utterances_summary_list
 
         out["aggregated_utterances_summaries"] = (
@@ -154,6 +154,6 @@ def deserialize_json(data: dict) -> ListAggregatedUtterancesResponse:
                 data["aggregatedUtterancesSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

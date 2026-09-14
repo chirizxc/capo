@@ -47,13 +47,13 @@ def serialize_aws_json_1_1(value: RestoreVolumeFromSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RestoreVolumeFromSnapshotRequest:
     out: RestoreVolumeFromSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_fsx.types.restore_open_zfs_volume_options
 
         out["options"] = (

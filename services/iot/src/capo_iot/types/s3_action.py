@@ -43,19 +43,19 @@ def serialize_json(value: S3Action) -> dict:
 
 def deserialize_json(data: dict) -> S3Action:
     out: S3Action = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("S3Action.role_arn required")
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("S3Action.bucket_name required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("S3Action.key required")
-    if "cannedAcl" in data:
+    if data.get("cannedAcl") is not None:
         import capo_iot.types.canned_access_control_list
 
         out["canned_acl"] = capo_iot.types.canned_access_control_list.deserialize_json(

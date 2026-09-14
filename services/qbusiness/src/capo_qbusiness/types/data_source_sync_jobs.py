@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataSourceSyncJobs:
 
     out: DataSourceSyncJobs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.data_source_sync_job.deserialize_json(item))
     return out

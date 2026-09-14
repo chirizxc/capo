@@ -36,7 +36,7 @@ def serialize_json(value: ListSbomValidationResultsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSbomValidationResultsResponse:
     out: ListSbomValidationResultsResponse = {}  # type: ignore[typeddict-item]
-    if "validationResultSummaries" in data:
+    if data.get("validationResultSummaries") is not None:
         import capo_iot.types.sbom_validation_result_summary_list
 
         out["validation_result_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListSbomValidationResultsResponse:
                 data["validationResultSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

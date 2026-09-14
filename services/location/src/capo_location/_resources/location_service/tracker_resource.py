@@ -130,8 +130,9 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_tracker_request.CreateTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.create_tracker_request.CreateTrackerRequest = {
+            "tracker_name": tracker_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if kms_key_id is not None:
@@ -156,6 +157,7 @@ class TrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -193,14 +195,16 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_tracker_request.DescribeTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.describe_tracker_request.DescribeTrackerRequest = {
+            "tracker_name": tracker_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -254,8 +258,9 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_tracker_request.UpdateTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.update_tracker_request.UpdateTrackerRequest = {
+            "tracker_name": tracker_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if pricing_plan_data_source is not None:
@@ -276,6 +281,7 @@ class TrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -313,14 +319,16 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_tracker_request.DeleteTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.delete_tracker_request.DeleteTrackerRequest = {
+            "tracker_name": tracker_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -359,7 +367,7 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_trackers_request.ListTrackersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_trackers_request.ListTrackersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -370,6 +378,7 @@ class TrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_tracker_consumer(
@@ -411,15 +420,17 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.associate_tracker_consumer_request.AssociateTrackerConsumerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["consumer_arn"] = consumer_arn
+        input_: capo_location.types.associate_tracker_consumer_request.AssociateTrackerConsumerRequest = {
+            "tracker_name": tracker_name,
+            "consumer_arn": consumer_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_device_position_history(
@@ -459,15 +470,17 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_delete_device_position_history_request.BatchDeleteDevicePositionHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["device_ids"] = device_ids
+        input_: capo_location.types.batch_delete_device_position_history_request.BatchDeleteDevicePositionHistoryRequest = {
+            "tracker_name": tracker_name,
+            "device_ids": device_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_device_position(
@@ -507,15 +520,17 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_get_device_position_request.BatchGetDevicePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["device_ids"] = device_ids
+        input_: capo_location.types.batch_get_device_position_request.BatchGetDevicePositionRequest = {
+            "tracker_name": tracker_name,
+            "device_ids": device_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_update_device_position(
@@ -555,15 +570,17 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_update_device_position_request.BatchUpdateDevicePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["updates"] = updates
+        input_: capo_location.types.batch_update_device_position_request.BatchUpdateDevicePositionRequest = {
+            "tracker_name": tracker_name,
+            "updates": updates,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_tracker_consumer(
@@ -603,15 +620,17 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.disassociate_tracker_consumer_request.DisassociateTrackerConsumerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["consumer_arn"] = consumer_arn
+        input_: capo_location.types.disassociate_tracker_consumer_request.DisassociateTrackerConsumerRequest = {
+            "tracker_name": tracker_name,
+            "consumer_arn": consumer_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_device_position(
@@ -651,15 +670,17 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_device_position_request.GetDevicePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["device_id"] = device_id
+        input_: capo_location.types.get_device_position_request.GetDevicePositionRequest = {
+            "tracker_name": tracker_name,
+            "device_id": device_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_device_position_history(
@@ -709,9 +730,10 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_device_position_history_request.GetDevicePositionHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["device_id"] = device_id
+        input_: capo_location.types.get_device_position_history_request.GetDevicePositionHistoryRequest = {
+            "tracker_name": tracker_name,
+            "device_id": device_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if start_time_inclusive is not None:
@@ -726,6 +748,7 @@ class TrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_device_positions(
@@ -772,8 +795,9 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_device_positions_request.ListDevicePositionsRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.list_device_positions_request.ListDevicePositionsRequest = {
+            "tracker_name": tracker_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -786,6 +810,7 @@ class TrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tracker_consumers(
@@ -827,8 +852,9 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_tracker_consumers_request.ListTrackerConsumersRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.list_tracker_consumers_request.ListTrackerConsumersRequest = {
+            "tracker_name": tracker_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -839,6 +865,7 @@ class TrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def verify_device_position(
@@ -882,9 +909,10 @@ class TrackerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.verify_device_position_request.VerifyDevicePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["device_state"] = device_state
+        input_: capo_location.types.verify_device_position_request.VerifyDevicePositionRequest = {
+            "tracker_name": tracker_name,
+            "device_state": device_state,
+        }
         if distance_unit is not None:
             input_["distance_unit"] = distance_unit
 
@@ -893,6 +921,7 @@ class TrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -957,8 +986,9 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_tracker_request.CreateTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.create_tracker_request.CreateTrackerRequest = {
+            "tracker_name": tracker_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if kms_key_id is not None:
@@ -983,6 +1013,7 @@ class AsyncTrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1021,14 +1052,16 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_tracker_request.DescribeTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.describe_tracker_request.DescribeTrackerRequest = {
+            "tracker_name": tracker_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1083,8 +1116,9 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_tracker_request.UpdateTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.update_tracker_request.UpdateTrackerRequest = {
+            "tracker_name": tracker_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if pricing_plan_data_source is not None:
@@ -1105,6 +1139,7 @@ class AsyncTrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1143,14 +1178,16 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_tracker_request.DeleteTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.delete_tracker_request.DeleteTrackerRequest = {
+            "tracker_name": tracker_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1190,7 +1227,7 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_trackers_request.ListTrackersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_trackers_request.ListTrackersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1201,6 +1238,7 @@ class AsyncTrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_tracker_consumer(
@@ -1243,15 +1281,17 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.associate_tracker_consumer_request.AssociateTrackerConsumerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["consumer_arn"] = consumer_arn
+        input_: capo_location.types.associate_tracker_consumer_request.AssociateTrackerConsumerRequest = {
+            "tracker_name": tracker_name,
+            "consumer_arn": consumer_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_device_position_history(
@@ -1292,15 +1332,17 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_delete_device_position_history_request.BatchDeleteDevicePositionHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["device_ids"] = device_ids
+        input_: capo_location.types.batch_delete_device_position_history_request.BatchDeleteDevicePositionHistoryRequest = {
+            "tracker_name": tracker_name,
+            "device_ids": device_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_device_position(
@@ -1341,15 +1383,17 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_get_device_position_request.BatchGetDevicePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["device_ids"] = device_ids
+        input_: capo_location.types.batch_get_device_position_request.BatchGetDevicePositionRequest = {
+            "tracker_name": tracker_name,
+            "device_ids": device_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_device_position(
@@ -1390,15 +1434,17 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_update_device_position_request.BatchUpdateDevicePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["updates"] = updates
+        input_: capo_location.types.batch_update_device_position_request.BatchUpdateDevicePositionRequest = {
+            "tracker_name": tracker_name,
+            "updates": updates,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_tracker_consumer(
@@ -1439,15 +1485,17 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.disassociate_tracker_consumer_request.DisassociateTrackerConsumerRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["consumer_arn"] = consumer_arn
+        input_: capo_location.types.disassociate_tracker_consumer_request.DisassociateTrackerConsumerRequest = {
+            "tracker_name": tracker_name,
+            "consumer_arn": consumer_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_device_position(
@@ -1488,15 +1536,17 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_device_position_request.GetDevicePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["device_id"] = device_id
+        input_: capo_location.types.get_device_position_request.GetDevicePositionRequest = {
+            "tracker_name": tracker_name,
+            "device_id": device_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_device_position_history(
@@ -1547,9 +1597,10 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_device_position_history_request.GetDevicePositionHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["device_id"] = device_id
+        input_: capo_location.types.get_device_position_history_request.GetDevicePositionHistoryRequest = {
+            "tracker_name": tracker_name,
+            "device_id": device_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if start_time_inclusive is not None:
@@ -1564,6 +1615,7 @@ class AsyncTrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_device_positions(
@@ -1611,8 +1663,9 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_device_positions_request.ListDevicePositionsRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.list_device_positions_request.ListDevicePositionsRequest = {
+            "tracker_name": tracker_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1625,6 +1678,7 @@ class AsyncTrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tracker_consumers(
@@ -1667,8 +1721,9 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_tracker_consumers_request.ListTrackerConsumersRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
+        input_: capo_location.types.list_tracker_consumers_request.ListTrackerConsumersRequest = {
+            "tracker_name": tracker_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1679,6 +1734,7 @@ class AsyncTrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def verify_device_position(
@@ -1723,9 +1779,10 @@ class AsyncTrackerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.verify_device_position_request.VerifyDevicePositionRequest = {}  # type: ignore[typeddict-item]
-        input_["tracker_name"] = tracker_name
-        input_["device_state"] = device_state
+        input_: capo_location.types.verify_device_position_request.VerifyDevicePositionRequest = {
+            "tracker_name": tracker_name,
+            "device_state": device_state,
+        }
         if distance_unit is not None:
             input_["distance_unit"] = distance_unit
 
@@ -1734,4 +1791,5 @@ class AsyncTrackerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

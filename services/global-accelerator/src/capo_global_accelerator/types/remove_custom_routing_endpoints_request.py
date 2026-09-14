@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: RemoveCustomRoutingEndpointsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveCustomRoutingEndpointsRequest:
     out: RemoveCustomRoutingEndpointsRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointIds" in data:
+    if data.get("EndpointIds") is not None:
         import capo_global_accelerator.types.endpoint_ids
 
         out["endpoint_ids"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemoveCustomRoutingEndpointsRequest:
         raise DeserializationError(
             "RemoveCustomRoutingEndpointsRequest.endpoint_ids required"
         )
-    if "EndpointGroupArn" in data:
+    if data.get("EndpointGroupArn") is not None:
         out["endpoint_group_arn"] = data["EndpointGroupArn"]
     else:
         raise DeserializationError(

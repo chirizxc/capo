@@ -46,12 +46,12 @@ def serialize_json(value: ConnectorDestinationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorDestinationSummary:
     out: ConnectorDestinationSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CloudConnectorId" in data:
+    if data.get("CloudConnectorId") is not None:
         out["cloud_connector_id"] = data["CloudConnectorId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     return out

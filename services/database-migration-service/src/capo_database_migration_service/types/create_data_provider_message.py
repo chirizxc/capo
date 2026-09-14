@@ -62,17 +62,17 @@ def serialize_aws_json_1_1(value: CreateDataProviderMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataProviderMessage:
     out: CreateDataProviderMessage = {}  # type: ignore[typeddict-item]
-    if "DataProviderName" in data:
+    if data.get("DataProviderName") is not None:
         out["data_provider_name"] = data["DataProviderName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
     else:
         raise DeserializationError("CreateDataProviderMessage.engine required")
-    if "Virtual" in data:
+    if data.get("Virtual") is not None:
         out["virtual"] = data["Virtual"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_database_migration_service.types.data_provider_settings
 
         out["settings"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataProviderMessage:
         )
     else:
         raise DeserializationError("CreateDataProviderMessage.settings required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (

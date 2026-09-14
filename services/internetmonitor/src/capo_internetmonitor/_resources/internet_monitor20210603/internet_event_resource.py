@@ -70,14 +70,16 @@ class InternetEventResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.get_internet_event_input.GetInternetEventInput = {}  # type: ignore[typeddict-item]
-        input_["event_id"] = event_id
+        input_: capo_internetmonitor.types.get_internet_event_input.GetInternetEventInput = {
+            "event_id": event_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -126,7 +128,7 @@ class InternetEventResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.list_internet_events_input.ListInternetEventsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_internetmonitor.types.list_internet_events_input.ListInternetEventsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -145,6 +147,7 @@ class InternetEventResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -187,14 +190,16 @@ class AsyncInternetEventResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.get_internet_event_input.GetInternetEventInput = {}  # type: ignore[typeddict-item]
-        input_["event_id"] = event_id
+        input_: capo_internetmonitor.types.get_internet_event_input.GetInternetEventInput = {
+            "event_id": event_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -244,7 +249,7 @@ class AsyncInternetEventResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_internetmonitor.types.list_internet_events_input.ListInternetEventsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_internetmonitor.types.list_internet_events_input.ListInternetEventsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -263,4 +268,5 @@ class AsyncInternetEventResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -67,7 +67,7 @@ def serialize_json(value: ApiKeyRestrictions) -> dict:
 
 def deserialize_json(data: dict) -> ApiKeyRestrictions:
     out: ApiKeyRestrictions = {}  # type: ignore[typeddict-item]
-    if "AllowActions" in data:
+    if data.get("AllowActions") is not None:
         import capo_location.types.api_key_action_list
 
         out["allow_actions"] = capo_location.types.api_key_action_list.deserialize_json(
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> ApiKeyRestrictions:
         )
     else:
         raise DeserializationError("ApiKeyRestrictions.allow_actions required")
-    if "AllowResources" in data:
+    if data.get("AllowResources") is not None:
         import capo_location.types.geo_arn_list
 
         out["allow_resources"] = capo_location.types.geo_arn_list.deserialize_json(
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> ApiKeyRestrictions:
         )
     else:
         raise DeserializationError("ApiKeyRestrictions.allow_resources required")
-    if "AllowReferers" in data:
+    if data.get("AllowReferers") is not None:
         import capo_location.types.referer_pattern_list
 
         out["allow_referers"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> ApiKeyRestrictions:
                 data["AllowReferers"]
             )
         )
-    if "AllowAndroidApps" in data:
+    if data.get("AllowAndroidApps") is not None:
         import capo_location.types.android_app_list
 
         out["allow_android_apps"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> ApiKeyRestrictions:
                 data["AllowAndroidApps"]
             )
         )
-    if "AllowAppleApps" in data:
+    if data.get("AllowAppleApps") is not None:
         import capo_location.types.apple_app_list
 
         out["allow_apple_apps"] = capo_location.types.apple_app_list.deserialize_json(

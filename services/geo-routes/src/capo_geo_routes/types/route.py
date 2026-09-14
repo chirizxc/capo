@@ -47,7 +47,7 @@ def serialize_json(value: Route) -> dict:
 
 def deserialize_json(data: dict) -> Route:
     out: Route = {}  # type: ignore[typeddict-item]
-    if "Legs" in data:
+    if data.get("Legs") is not None:
         import capo_geo_routes.types.route_leg_list
 
         out["legs"] = capo_geo_routes.types.route_leg_list.deserialize_json(
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> Route:
         )
     else:
         raise DeserializationError("Route.legs required")
-    if "MajorRoadLabels" in data:
+    if data.get("MajorRoadLabels") is not None:
         import capo_geo_routes.types.route_major_road_label_list
 
         out["major_road_labels"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> Route:
         )
     else:
         raise DeserializationError("Route.major_road_labels required")
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         import capo_geo_routes.types.route_summary
 
         out["summary"] = capo_geo_routes.types.route_summary.deserialize_json(

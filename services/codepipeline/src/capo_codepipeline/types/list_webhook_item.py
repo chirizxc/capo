@@ -75,7 +75,7 @@ def serialize_aws_json_1_1(value: ListWebhookItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListWebhookItem:
     out: ListWebhookItem = {}  # type: ignore[typeddict-item]
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_codepipeline.types.webhook_definition
 
         out["definition"] = (
@@ -85,15 +85,15 @@ def deserialize_aws_json_1_1(data: dict) -> ListWebhookItem:
         )
     else:
         raise DeserializationError("ListWebhookItem.definition required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("ListWebhookItem.url required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "lastTriggered" in data:
+    if data.get("lastTriggered") is not None:
         import capo_codepipeline.types.webhook_last_triggered
 
         out["last_triggered"] = (
@@ -101,9 +101,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListWebhookItem:
                 data["lastTriggered"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codepipeline.types.tag_list
 
         out["tags"] = capo_codepipeline.types.tag_list.deserialize_aws_json_1_1(

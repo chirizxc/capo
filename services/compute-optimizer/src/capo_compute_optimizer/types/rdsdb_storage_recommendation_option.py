@@ -73,7 +73,7 @@ def serialize_aws_json_1_0(value: RDSDBStorageRecommendationOption) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RDSDBStorageRecommendationOption:
     out: RDSDBStorageRecommendationOption = {}  # type: ignore[typeddict-item]
-    if "storageConfiguration" in data:
+    if data.get("storageConfiguration") is not None:
         import capo_compute_optimizer.types.db_storage_configuration
 
         out["storage_configuration"] = (
@@ -81,11 +81,11 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBStorageRecommendationOption:
                 data["storageConfiguration"]
             )
         )
-    if "rank" in data:
+    if data.get("rank") is not None:
         out["rank"] = data["rank"]
     else:
         out["rank"] = 0
-    if "savingsOpportunity" in data:
+    if data.get("savingsOpportunity") is not None:
         import capo_compute_optimizer.types.savings_opportunity
 
         out["savings_opportunity"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBStorageRecommendationOption:
                 data["savingsOpportunity"]
             )
         )
-    if "savingsOpportunityAfterDiscounts" in data:
+    if data.get("savingsOpportunityAfterDiscounts") is not None:
         import capo_compute_optimizer.types.rds_storage_savings_opportunity_after_discounts
 
         out["savings_opportunity_after_discounts"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBStorageRecommendationOption:
                 data["savingsOpportunityAfterDiscounts"]
             )
         )
-    if "estimatedMonthlyVolumeIOPsCostVariation" in data:
+    if data.get("estimatedMonthlyVolumeIOPsCostVariation") is not None:
         import capo_compute_optimizer.types.rds_estimated_monthly_volume_io_ps_cost_variation
 
         out["estimated_monthly_volume_io_ps_cost_variation"] = (

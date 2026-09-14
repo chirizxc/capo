@@ -37,15 +37,18 @@ class EndpointAlreadyExistsFault(ServiceError):
 
     code: str | None = "EndpointAlreadyExistsFault"
 
-    def __init__(self, data: EndpointAlreadyExistsFault_):
+    def __init__(self, data: EndpointAlreadyExistsFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EndpointAlreadyExistsFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "EndpointAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "EndpointAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

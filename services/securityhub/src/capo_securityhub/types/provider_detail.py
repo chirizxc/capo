@@ -45,7 +45,7 @@ def serialize_json(value: ProviderDetail) -> dict:
 
 
 def deserialize_json(data: dict) -> ProviderDetail:
-    if "JiraCloud" in data:
+    if data.get("JiraCloud") is not None:
         import capo_securityhub.types.jira_cloud_detail
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> ProviderDetail:
                 data["JiraCloud"]
             )
         }
-    elif "ServiceNow" in data:
+    elif data.get("ServiceNow") is not None:
         import capo_securityhub.types.service_now_detail
 
         return {

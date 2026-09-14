@@ -52,9 +52,9 @@ def serialize_json(value: UpdateRecordsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecordsRequest:
     out: UpdateRecordsRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "RecordPatches" in data:
+    if data.get("RecordPatches") is not None:
         import capo_cognito_sync.types.record_patch_list
 
         out["record_patches"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> UpdateRecordsRequest:
                 data["RecordPatches"]
             )
         )
-    if "SyncSessionToken" in data:
+    if data.get("SyncSessionToken") is not None:
         out["sync_session_token"] = data["SyncSessionToken"]
     else:
         raise DeserializationError("UpdateRecordsRequest.sync_session_token required")

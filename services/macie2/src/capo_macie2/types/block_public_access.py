@@ -35,12 +35,12 @@ def serialize_json(value: BlockPublicAccess) -> dict:
 
 def deserialize_json(data: dict) -> BlockPublicAccess:
     out: BlockPublicAccess = {}  # type: ignore[typeddict-item]
-    if "blockPublicAcls" in data:
+    if data.get("blockPublicAcls") is not None:
         out["block_public_acls"] = data["blockPublicAcls"]
-    if "blockPublicPolicy" in data:
+    if data.get("blockPublicPolicy") is not None:
         out["block_public_policy"] = data["blockPublicPolicy"]
-    if "ignorePublicAcls" in data:
+    if data.get("ignorePublicAcls") is not None:
         out["ignore_public_acls"] = data["ignorePublicAcls"]
-    if "restrictPublicBuckets" in data:
+    if data.get("restrictPublicBuckets") is not None:
         out["restrict_public_buckets"] = data["restrictPublicBuckets"]
     return out

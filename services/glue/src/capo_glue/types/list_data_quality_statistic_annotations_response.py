@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListDataQualityStatisticAnnotationsResponse) -
 
 def deserialize_aws_json_1_1(data: dict) -> ListDataQualityStatisticAnnotationsResponse:
     out: ListDataQualityStatisticAnnotationsResponse = {}  # type: ignore[typeddict-item]
-    if "Annotations" in data:
+    if data.get("Annotations") is not None:
         import capo_glue.types.annotation_list
 
         out["annotations"] = capo_glue.types.annotation_list.deserialize_aws_json_1_1(
             data["Annotations"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

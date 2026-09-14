@@ -47,20 +47,20 @@ def serialize_json(value: CreateSystemRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSystemRequest:
     out: CreateSystemRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateSystemRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sharingEnabled" in data:
+    if data.get("sharingEnabled") is not None:
         out["sharing_enabled"] = data["sharingEnabled"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehubv2.types.tag_map
 
         out["tags"] = capo_resiliencehubv2.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: RedactionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedactionConfig:
     out: RedactionConfig = {}  # type: ignore[typeddict-item]
-    if "PiiEntityTypes" in data:
+    if data.get("PiiEntityTypes") is not None:
         import capo_comprehend.types.list_of_pii_entity_types
 
         out["pii_entity_types"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> RedactionConfig:
                 data["PiiEntityTypes"]
             )
         )
-    if "MaskMode" in data:
+    if data.get("MaskMode") is not None:
         import capo_comprehend.types.pii_entities_detection_mask_mode
 
         out["mask_mode"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> RedactionConfig:
                 data["MaskMode"]
             )
         )
-    if "MaskCharacter" in data:
+    if data.get("MaskCharacter") is not None:
         out["mask_character"] = data["MaskCharacter"]
     return out

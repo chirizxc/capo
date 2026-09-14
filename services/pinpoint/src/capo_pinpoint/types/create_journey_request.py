@@ -33,7 +33,7 @@ def serialize_json(value: CreateJourneyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJourneyRequest:
     out: CreateJourneyRequest = {}  # type: ignore[typeddict-item]
-    if "WriteJourneyRequest" in data:
+    if data.get("WriteJourneyRequest") is not None:
         import capo_pinpoint.types.write_journey_request
 
         out["write_journey_request"] = (

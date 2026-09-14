@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetOnClusterAppUIPresignedURLOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetOnClusterAppUIPresignedURLOutput:
     out: GetOnClusterAppUIPresignedURLOutput = {}  # type: ignore[typeddict-item]
-    if "PresignedURLReady" in data:
+    if data.get("PresignedURLReady") is not None:
         out["presigned_url_ready"] = data["PresignedURLReady"]
-    if "PresignedURL" in data:
+    if data.get("PresignedURL") is not None:
         out["presigned_url"] = data["PresignedURL"]
     return out

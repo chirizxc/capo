@@ -64,23 +64,32 @@ def serialize_aws_json_1_1(value: CloudFormationTarget) -> dict:
         )
     if "resource_type" in value:
         out["resourceType"] = value["resource_type"]
-    out["targetVersionWeight"] = value.get("target_version_weight", 0)
+    out["targetVersionWeight"] = (
+        "NaN"
+        if value.get("target_version_weight", 0)
+        != value.get("target_version_weight", 0)
+        else "Infinity"
+        if value.get("target_version_weight", 0) == float("inf")
+        else "-Infinity"
+        if value.get("target_version_weight", 0) == float("-inf")
+        else value.get("target_version_weight", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> CloudFormationTarget:
     out: CloudFormationTarget = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "targetId" in data:
+    if data.get("targetId") is not None:
         out["target_id"] = data["targetId"]
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_codedeploy.types.time
 
         out["last_updated_at"] = capo_codedeploy.types.time.deserialize_aws_json_1_1(
             data["lastUpdatedAt"]
         )
-    if "lifecycleEvents" in data:
+    if data.get("lifecycleEvents") is not None:
         import capo_codedeploy.types.lifecycle_event_list
 
         out["lifecycle_events"] = (
@@ -88,16 +97,16 @@ def deserialize_aws_json_1_1(data: dict) -> CloudFormationTarget:
                 data["lifecycleEvents"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codedeploy.types.target_status
 
         out["status"] = capo_codedeploy.types.target_status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "targetVersionWeight" in data:
-        out["target_version_weight"] = data["targetVersionWeight"]
+    if data.get("targetVersionWeight") is not None:
+        out["target_version_weight"] = float(data["targetVersionWeight"])
     else:
         out["target_version_weight"] = 0
     return out

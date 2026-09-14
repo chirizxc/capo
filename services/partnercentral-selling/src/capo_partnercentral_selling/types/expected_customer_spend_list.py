@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ExpectedCustomerSpendList:
 
     out: ExpectedCustomerSpendList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_selling.types.expected_customer_spend.deserialize_aws_json_1_0(
                 item

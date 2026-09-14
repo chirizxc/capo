@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: CreateGovCloudAccountResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateGovCloudAccountResponse:
     out: CreateGovCloudAccountResponse = {}  # type: ignore[typeddict-item]
-    if "CreateAccountStatus" in data:
+    if data.get("CreateAccountStatus") is not None:
         import capo_organizations.types.create_account_status
 
         out["create_account_status"] = (

@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: ListAliasesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAliasesInput:
     out: ListAliasesInput = {}  # type: ignore[typeddict-item]
-    if "RoutingStrategyType" in data:
+    if data.get("RoutingStrategyType") is not None:
         import capo_gamelift.types.routing_strategy_type
 
         out["routing_strategy_type"] = (
@@ -53,10 +53,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListAliasesInput:
                 data["RoutingStrategyType"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

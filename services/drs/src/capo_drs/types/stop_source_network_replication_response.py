@@ -27,7 +27,7 @@ def serialize_json(value: StopSourceNetworkReplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> StopSourceNetworkReplicationResponse:
     out: StopSourceNetworkReplicationResponse = {}  # type: ignore[typeddict-item]
-    if "sourceNetwork" in data:
+    if data.get("sourceNetwork") is not None:
         import capo_drs.types.source_network
 
         out["source_network"] = capo_drs.types.source_network.deserialize_json(

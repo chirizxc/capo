@@ -44,7 +44,7 @@ def serialize_json(value: DecimalDefaultValues) -> dict:
 
 def deserialize_json(data: dict) -> DecimalDefaultValues:
     out: DecimalDefaultValues = {}  # type: ignore[typeddict-item]
-    if "DynamicValue" in data:
+    if data.get("DynamicValue") is not None:
         import capo_quicksight.types.dynamic_default_value
 
         out["dynamic_value"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DecimalDefaultValues:
                 data["DynamicValue"]
             )
         )
-    if "StaticValues" in data:
+    if data.get("StaticValues") is not None:
         import capo_quicksight.types.decimal_default_value_list
 
         out["static_values"] = (

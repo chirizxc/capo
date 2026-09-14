@@ -63,14 +63,14 @@ def serialize_json(value: MembershipSummary) -> dict:
         out["metadata"] = capo_securityagent.types.member_metadata.serialize_json(
             value["metadata"]
         )
-    import capo_securityagent.types._prelude.timestamp
+    import capo_securityagent._protocol.serialize
 
-    out["createdAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
-    import capo_securityagent.types._prelude.timestamp
+    import capo_securityagent._protocol.serialize
 
-    out["updatedAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+    out["updatedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
         value["updated_at"]
     )
     out["createdBy"] = value["created_by"]
@@ -80,19 +80,19 @@ def serialize_json(value: MembershipSummary) -> dict:
 
 def deserialize_json(data: dict) -> MembershipSummary:
     out: MembershipSummary = {}  # type: ignore[typeddict-item]
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("MembershipSummary.membership_id required")
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("MembershipSummary.application_id required")
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("MembershipSummary.agent_space_id required")
-    if "memberType" in data:
+    if data.get("memberType") is not None:
         import capo_securityagent.types.membership_type
 
         out["member_type"] = capo_securityagent.types.membership_type.deserialize_json(
@@ -100,43 +100,39 @@ def deserialize_json(data: dict) -> MembershipSummary:
         )
     else:
         raise DeserializationError("MembershipSummary.member_type required")
-    if "config" in data:
+    if data.get("config") is not None:
         import capo_securityagent.types.membership_config
 
         out["config"] = capo_securityagent.types.membership_config.deserialize_json(
             data["config"]
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_securityagent.types.member_metadata
 
         out["metadata"] = capo_securityagent.types.member_metadata.deserialize_json(
             data["metadata"]
         )
-    if "createdAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("MembershipSummary.created_at required")
-    if "updatedAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("MembershipSummary.updated_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("MembershipSummary.created_by required")
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
     else:
         raise DeserializationError("MembershipSummary.updated_by required")

@@ -50,17 +50,17 @@ def serialize_json(value: KxNode) -> dict:
 
 def deserialize_json(data: dict) -> KxNode:
     out: KxNode = {}  # type: ignore[typeddict-item]
-    if "nodeId" in data:
+    if data.get("nodeId") is not None:
         out["node_id"] = data["nodeId"]
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "launchTime" in data:
+    if data.get("launchTime") is not None:
         import capo_finspace.types.timestamp
 
         out["launch_time"] = capo_finspace.types.timestamp.deserialize_json(
             data["launchTime"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.kx_node_status
 
         out["status"] = capo_finspace.types.kx_node_status.deserialize_json(

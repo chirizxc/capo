@@ -29,8 +29,8 @@ def serialize_json(value: AwsCodeBuildProjectEnvironmentRegistryCredential) -> d
 
 def deserialize_json(data: dict) -> AwsCodeBuildProjectEnvironmentRegistryCredential:
     out: AwsCodeBuildProjectEnvironmentRegistryCredential = {}  # type: ignore[typeddict-item]
-    if "Credential" in data:
+    if data.get("Credential") is not None:
         out["credential"] = data["Credential"]
-    if "CredentialProvider" in data:
+    if data.get("CredentialProvider") is not None:
         out["credential_provider"] = data["CredentialProvider"]
     return out

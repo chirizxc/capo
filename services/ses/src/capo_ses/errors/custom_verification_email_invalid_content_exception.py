@@ -39,17 +39,22 @@ class CustomVerificationEmailInvalidContentException(ServiceError):
 
     code: str | None = "CustomVerificationEmailInvalidContentException"
 
-    def __init__(self, data: CustomVerificationEmailInvalidContentException_):
+    def __init__(
+        self,
+        data: CustomVerificationEmailInvalidContentException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CustomVerificationEmailInvalidContentException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
     def from_query(
-        cls, el: Element
+        cls, el: Element, message: str | None = None
     ) -> "CustomVerificationEmailInvalidContentException":
-        return cls(deserialize_query(el))
+        return cls(deserialize_query(el), message)

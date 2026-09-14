@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceAssociationsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceAssociationsResult:
     out: DescribeWorkspaceAssociationsResult = {}  # type: ignore[typeddict-item]
-    if "Associations" in data:
+    if data.get("Associations") is not None:
         import capo_workspaces.types.workspace_resource_association_list
 
         out["associations"] = (

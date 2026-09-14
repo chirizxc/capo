@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: StartADAssessmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartADAssessmentRequest:
     out: StartADAssessmentRequest = {}  # type: ignore[typeddict-item]
-    if "AssessmentConfiguration" in data:
+    if data.get("AssessmentConfiguration") is not None:
         import capo_directory_service.types.assessment_configuration
 
         out["assessment_configuration"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> StartADAssessmentRequest:
                 data["AssessmentConfiguration"]
             )
         )
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     return out

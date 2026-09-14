@@ -18,7 +18,7 @@ def serialize_json(value: NoSuchExportException_) -> dict:
 
 def deserialize_json(data: dict) -> NoSuchExportException_:
     out: NoSuchExportException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("NoSuchExportException_.message required")
@@ -30,15 +30,18 @@ class NoSuchExportException(ServiceError):
 
     code: str | None = "NoSuchExportException"
 
-    def __init__(self, data: NoSuchExportException_):
+    def __init__(self, data: NoSuchExportException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NoSuchExportException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "NoSuchExportException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "NoSuchExportException":
+        return cls(deserialize_json(data), message)

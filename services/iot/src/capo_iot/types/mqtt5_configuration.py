@@ -31,7 +31,7 @@ def serialize_json(value: Mqtt5Configuration) -> dict:
 
 def deserialize_json(data: dict) -> Mqtt5Configuration:
     out: Mqtt5Configuration = {}  # type: ignore[typeddict-item]
-    if "propagatingAttributes" in data:
+    if data.get("propagatingAttributes") is not None:
         import capo_iot.types.propagating_attribute_list
 
         out["propagating_attributes"] = (

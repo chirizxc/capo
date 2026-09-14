@@ -58,15 +58,15 @@ def serialize_json(value: CreateViewRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateViewRequest:
     out: CreateViewRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.view_status
 
         out["status"] = capo_connect.types.view_status.deserialize_json(data["Status"])
     else:
         raise DeserializationError("CreateViewRequest.status required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_connect.types.view_input_content
 
         out["content"] = capo_connect.types.view_input_content.deserialize_json(
@@ -74,13 +74,13 @@ def deserialize_json(data: dict) -> CreateViewRequest:
         )
     else:
         raise DeserializationError("CreateViewRequest.content required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateViewRequest.name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: ServiceMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceMetadata:
     out: ServiceMetadata = {}  # type: ignore[typeddict-item]
-    if "UserDetails" in data:
+    if data.get("UserDetails") is not None:
         import capo_transfer.types.user_details
 
         out["user_details"] = capo_transfer.types.user_details.deserialize_aws_json_1_1(

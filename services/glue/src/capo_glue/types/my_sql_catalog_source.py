@@ -31,15 +31,15 @@ def serialize_aws_json_1_1(value: MySQLCatalogSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MySQLCatalogSource:
     out: MySQLCatalogSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("MySQLCatalogSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("MySQLCatalogSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("MySQLCatalogSource.table required")

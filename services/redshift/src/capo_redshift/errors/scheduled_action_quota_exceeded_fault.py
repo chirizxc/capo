@@ -37,15 +37,20 @@ class ScheduledActionQuotaExceededFault(ServiceError):
 
     code: str | None = "ScheduledActionQuotaExceededFault"
 
-    def __init__(self, data: ScheduledActionQuotaExceededFault_):
+    def __init__(
+        self, data: ScheduledActionQuotaExceededFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ScheduledActionQuotaExceededFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ScheduledActionQuotaExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ScheduledActionQuotaExceededFault":
+        return cls(deserialize_query(el), message)

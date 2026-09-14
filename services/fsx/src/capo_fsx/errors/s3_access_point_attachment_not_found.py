@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: S3AccessPointAttachmentNotFound_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3AccessPointAttachmentNotFound_:
     out: S3AccessPointAttachmentNotFound_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class S3AccessPointAttachmentNotFound(ServiceError):
 
     code: str | None = "S3AccessPointAttachmentNotFound"
 
-    def __init__(self, data: S3AccessPointAttachmentNotFound_):
+    def __init__(
+        self, data: S3AccessPointAttachmentNotFound_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="S3AccessPointAttachmentNotFound",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "S3AccessPointAttachmentNotFound":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "S3AccessPointAttachmentNotFound":
+        return cls(deserialize_aws_json_1_1(data), message)

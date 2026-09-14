@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ReplicationConfigList:
 
     out: ReplicationConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_database_migration_service.types.replication_config.deserialize_aws_json_1_1(
                 item

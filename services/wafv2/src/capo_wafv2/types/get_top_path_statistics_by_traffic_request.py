@@ -71,13 +71,13 @@ def serialize_aws_json_1_1(value: GetTopPathStatisticsByTrafficRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTopPathStatisticsByTrafficRequest:
     out: GetTopPathStatisticsByTrafficRequest = {}  # type: ignore[typeddict-item]
-    if "WebAclArn" in data:
+    if data.get("WebAclArn") is not None:
         out["web_acl_arn"] = data["WebAclArn"]
     else:
         raise DeserializationError(
             "GetTopPathStatisticsByTrafficRequest.web_acl_arn required"
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
@@ -85,9 +85,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetTopPathStatisticsByTrafficRequest
         raise DeserializationError(
             "GetTopPathStatisticsByTrafficRequest.scope required"
         )
-    if "UriPathPrefix" in data:
+    if data.get("UriPathPrefix") is not None:
         out["uri_path_prefix"] = data["UriPathPrefix"]
-    if "TimeWindow" in data:
+    if data.get("TimeWindow") is not None:
         import capo_wafv2.types.time_window
 
         out["time_window"] = capo_wafv2.types.time_window.deserialize_aws_json_1_1(
@@ -97,19 +97,19 @@ def deserialize_aws_json_1_1(data: dict) -> GetTopPathStatisticsByTrafficRequest
         raise DeserializationError(
             "GetTopPathStatisticsByTrafficRequest.time_window required"
         )
-    if "BotCategory" in data:
+    if data.get("BotCategory") is not None:
         out["bot_category"] = data["BotCategory"]
-    if "BotOrganization" in data:
+    if data.get("BotOrganization") is not None:
         out["bot_organization"] = data["BotOrganization"]
-    if "BotName" in data:
+    if data.get("BotName") is not None:
         out["bot_name"] = data["BotName"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         raise DeserializationError(
             "GetTopPathStatisticsByTrafficRequest.limit required"
         )
-    if "NumberOfTopTrafficBotsPerPath" in data:
+    if data.get("NumberOfTopTrafficBotsPerPath") is not None:
         out["number_of_top_traffic_bots_per_path"] = data[
             "NumberOfTopTrafficBotsPerPath"
         ]
@@ -117,6 +117,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetTopPathStatisticsByTrafficRequest
         raise DeserializationError(
             "GetTopPathStatisticsByTrafficRequest.number_of_top_traffic_bots_per_path required"
         )
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
     return out

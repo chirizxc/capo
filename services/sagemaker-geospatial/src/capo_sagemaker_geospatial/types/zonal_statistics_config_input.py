@@ -54,11 +54,11 @@ def serialize_json(value: ZonalStatisticsConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> ZonalStatisticsConfigInput:
     out: ZonalStatisticsConfigInput = {}  # type: ignore[typeddict-item]
-    if "ZoneS3Path" in data:
+    if data.get("ZoneS3Path") is not None:
         out["zone_s3_path"] = data["ZoneS3Path"]
     else:
         raise DeserializationError("ZonalStatisticsConfigInput.zone_s3_path required")
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_sagemaker_geospatial.types.zonal_statistics_list_input
 
         out["statistics"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> ZonalStatisticsConfigInput:
         )
     else:
         raise DeserializationError("ZonalStatisticsConfigInput.statistics required")
-    if "TargetBands" in data:
+    if data.get("TargetBands") is not None:
         import capo_sagemaker_geospatial.types.string_list_input
 
         out["target_bands"] = (
@@ -76,6 +76,6 @@ def deserialize_json(data: dict) -> ZonalStatisticsConfigInput:
                 data["TargetBands"]
             )
         )
-    if "ZoneS3PathKmsKeyId" in data:
+    if data.get("ZoneS3PathKmsKeyId") is not None:
         out["zone_s3_path_kms_key_id"] = data["ZoneS3PathKmsKeyId"]
     return out

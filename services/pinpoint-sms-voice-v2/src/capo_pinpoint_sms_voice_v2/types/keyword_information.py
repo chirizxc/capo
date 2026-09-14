@@ -32,15 +32,15 @@ def serialize_aws_json_1_0(value: KeywordInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KeywordInformation:
     out: KeywordInformation = {}  # type: ignore[typeddict-item]
-    if "Keyword" in data:
+    if data.get("Keyword") is not None:
         out["keyword"] = data["Keyword"]
     else:
         raise DeserializationError("KeywordInformation.keyword required")
-    if "KeywordMessage" in data:
+    if data.get("KeywordMessage") is not None:
         out["keyword_message"] = data["KeywordMessage"]
     else:
         raise DeserializationError("KeywordInformation.keyword_message required")
-    if "KeywordAction" in data:
+    if data.get("KeywordAction") is not None:
         out["keyword_action"] = data["KeywordAction"]
     else:
         raise DeserializationError("KeywordInformation.keyword_action required")

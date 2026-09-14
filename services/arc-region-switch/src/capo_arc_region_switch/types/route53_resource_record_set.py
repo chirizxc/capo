@@ -30,8 +30,8 @@ def serialize_aws_json_1_0(value: Route53ResourceRecordSet) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Route53ResourceRecordSet:
     out: Route53ResourceRecordSet = {}  # type: ignore[typeddict-item]
-    if "recordSetIdentifier" in data:
+    if data.get("recordSetIdentifier") is not None:
         out["record_set_identifier"] = data["recordSetIdentifier"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     return out

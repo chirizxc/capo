@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: BatchGetVariableResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetVariableResult:
     out: BatchGetVariableResult = {}  # type: ignore[typeddict-item]
-    if "variables" in data:
+    if data.get("variables") is not None:
         import capo_frauddetector.types.variable_list
 
         out["variables"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetVariableResult:
                 data["variables"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_frauddetector.types.batch_get_variable_error_list
 
         out["errors"] = (

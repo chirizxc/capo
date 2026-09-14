@@ -36,15 +36,15 @@ def serialize_json(value: UpdateMapResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMapResponse:
     out: UpdateMapResponse = {}  # type: ignore[typeddict-item]
-    if "MapName" in data:
+    if data.get("MapName") is not None:
         out["map_name"] = data["MapName"]
     else:
         raise DeserializationError("UpdateMapResponse.map_name required")
-    if "MapArn" in data:
+    if data.get("MapArn") is not None:
         out["map_arn"] = data["MapArn"]
     else:
         raise DeserializationError("UpdateMapResponse.map_arn required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(

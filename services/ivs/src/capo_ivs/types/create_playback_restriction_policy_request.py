@@ -65,7 +65,7 @@ def serialize_json(value: CreatePlaybackRestrictionPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePlaybackRestrictionPolicyRequest:
     out: CreatePlaybackRestrictionPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "allowedCountries" in data:
+    if data.get("allowedCountries") is not None:
         import capo_ivs.types.playback_restriction_policy_allowed_country_list
 
         out["allowed_countries"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> CreatePlaybackRestrictionPolicyRequest:
                 data["allowedCountries"]
             )
         )
-    if "allowedOrigins" in data:
+    if data.get("allowedOrigins") is not None:
         import capo_ivs.types.playback_restriction_policy_allowed_origin_list
 
         out["allowed_origins"] = (
@@ -81,11 +81,11 @@ def deserialize_json(data: dict) -> CreatePlaybackRestrictionPolicyRequest:
                 data["allowedOrigins"]
             )
         )
-    if "enableStrictOriginEnforcement" in data:
+    if data.get("enableStrictOriginEnforcement") is not None:
         out["enable_strict_origin_enforcement"] = data["enableStrictOriginEnforcement"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfSegmentDimensions:
 
     out: ListOfSegmentDimensions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint.types.segment_dimensions.deserialize_json(item))
     return out

@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: ListExclusionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListExclusionsRequest:
     out: ListExclusionsRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentRunArn" in data:
+    if data.get("assessmentRunArn") is not None:
         out["assessment_run_arn"] = data["assessmentRunArn"]
     else:
         raise DeserializationError("ListExclusionsRequest.assessment_run_arn required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

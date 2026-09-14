@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DnsRecord) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DnsRecord:
     out: DnsRecord = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_servicediscovery.types.record_type
 
         out["type"] = capo_servicediscovery.types.record_type.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> DnsRecord:
         )
     else:
         raise DeserializationError("DnsRecord.type required")
-    if "TTL" in data:
+    if data.get("TTL") is not None:
         out["ttl"] = data["TTL"]
     else:
         raise DeserializationError("DnsRecord.ttl required")

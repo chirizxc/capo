@@ -64,21 +64,21 @@ def serialize_aws_json_1_1(value: GetContactChannelResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContactChannelResult:
     out: GetContactChannelResult = {}  # type: ignore[typeddict-item]
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
     else:
         raise DeserializationError("GetContactChannelResult.contact_arn required")
-    if "ContactChannelArn" in data:
+    if data.get("ContactChannelArn") is not None:
         out["contact_channel_arn"] = data["ContactChannelArn"]
     else:
         raise DeserializationError(
             "GetContactChannelResult.contact_channel_arn required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetContactChannelResult.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_ssm_contacts.types.channel_type
 
         out["type"] = capo_ssm_contacts.types.channel_type.deserialize_aws_json_1_1(
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetContactChannelResult:
         )
     else:
         raise DeserializationError("GetContactChannelResult.type required")
-    if "DeliveryAddress" in data:
+    if data.get("DeliveryAddress") is not None:
         import capo_ssm_contacts.types.contact_channel_address
 
         out["delivery_address"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetContactChannelResult:
         )
     else:
         raise DeserializationError("GetContactChannelResult.delivery_address required")
-    if "ActivationStatus" in data:
+    if data.get("ActivationStatus") is not None:
         import capo_ssm_contacts.types.activation_status
 
         out["activation_status"] = (

@@ -90,9 +90,9 @@ def serialize_aws_json_1_1(value: CreateModelInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateModelInput:
     out: CreateModelInput = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "PrimaryContainer" in data:
+    if data.get("PrimaryContainer") is not None:
         import capo_sagemaker.types.container_definition
 
         out["primary_container"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelInput:
                 data["PrimaryContainer"]
             )
         )
-    if "Containers" in data:
+    if data.get("Containers") is not None:
         import capo_sagemaker.types.container_definition_list
 
         out["containers"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelInput:
                 data["Containers"]
             )
         )
-    if "InferenceExecutionConfig" in data:
+    if data.get("InferenceExecutionConfig") is not None:
         import capo_sagemaker.types.inference_execution_config
 
         out["inference_execution_config"] = (
@@ -116,20 +116,20 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelInput:
                 data["InferenceExecutionConfig"]
             )
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["vpc_config"] = capo_sagemaker.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "EnableNetworkIsolation" in data:
+    if data.get("EnableNetworkIsolation") is not None:
         out["enable_network_isolation"] = data["EnableNetworkIsolation"]
     return out

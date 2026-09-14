@@ -24,7 +24,7 @@ def serialize_json(value: KekValidationResponse) -> dict:
 
 def deserialize_json(data: dict) -> KekValidationResponse:
     out: KekValidationResponse = {}  # type: ignore[typeddict-item]
-    if "RandomKeySend" in data:
+    if data.get("RandomKeySend") is not None:
         out["random_key_send"] = data["RandomKeySend"]
     else:
         raise DeserializationError("KekValidationResponse.random_key_send required")

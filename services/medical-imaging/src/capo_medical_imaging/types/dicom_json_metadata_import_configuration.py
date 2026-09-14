@@ -32,7 +32,7 @@ def serialize_json(value: DicomJsonMetadataImportConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DicomJsonMetadataImportConfiguration:
     out: DicomJsonMetadataImportConfiguration = {}  # type: ignore[typeddict-item]
-    if "dicomMetadataMappings" in data:
+    if data.get("dicomMetadataMappings") is not None:
         import capo_medical_imaging.types.dicom_metadata_mappings
 
         out["dicom_metadata_mappings"] = (

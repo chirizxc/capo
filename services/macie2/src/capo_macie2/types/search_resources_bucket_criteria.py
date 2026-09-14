@@ -43,7 +43,7 @@ def serialize_json(value: SearchResourcesBucketCriteria) -> dict:
 
 def deserialize_json(data: dict) -> SearchResourcesBucketCriteria:
     out: SearchResourcesBucketCriteria = {}  # type: ignore[typeddict-item]
-    if "excludes" in data:
+    if data.get("excludes") is not None:
         import capo_macie2.types.search_resources_criteria_block
 
         out["excludes"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> SearchResourcesBucketCriteria:
                 data["excludes"]
             )
         )
-    if "includes" in data:
+    if data.get("includes") is not None:
         import capo_macie2.types.search_resources_criteria_block
 
         out["includes"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> StatelessCustomPublishMetricActionDimensions
 
     out: StatelessCustomPublishMetricActionDimensionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.stateless_custom_publish_metric_action_dimension.deserialize_json(
                 item

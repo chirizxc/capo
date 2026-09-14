@@ -19,6 +19,7 @@ from capo_polly._auth._providers import (
 )
 from capo_polly._auth._zapros_handler import AuthMiddleware
 from capo_polly._iter import ensure_sync_iterator
+from capo_polly._pagination import resolve_path as _resolve_path
 from capo_polly._services._aws_config import aws_config
 from capo_polly._services._pipeline import (
     Interceptor,
@@ -203,14 +204,16 @@ class PollyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_polly.types.delete_lexicon_input.DeleteLexiconInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_polly.types.delete_lexicon_input.DeleteLexiconInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_voices(
@@ -259,7 +262,7 @@ class PollyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_polly.types.describe_voices_input.DescribeVoicesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_polly.types.describe_voices_input.DescribeVoicesInput = {}
         if engine is not None:
             input_["engine"] = engine
         if language_code is not None:
@@ -276,6 +279,7 @@ class PollyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lexicon(
@@ -308,14 +312,14 @@ class PollyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_polly.types.get_lexicon_input.GetLexiconInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_polly.types.get_lexicon_input.GetLexiconInput = {"name": name}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_speech_synthesis_task(
@@ -353,14 +357,16 @@ class PollyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_polly.types.get_speech_synthesis_task_input.GetSpeechSynthesisTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_polly.types.get_speech_synthesis_task_input.GetSpeechSynthesisTaskInput = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_lexicons(
@@ -401,7 +407,7 @@ class PollyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_polly.types.list_lexicons_input.ListLexiconsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_polly.types.list_lexicons_input.ListLexiconsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -410,6 +416,7 @@ class PollyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_speech_synthesis_tasks(
@@ -448,7 +455,7 @@ class PollyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_polly.types.list_speech_synthesis_tasks_input.ListSpeechSynthesisTasksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_polly.types.list_speech_synthesis_tasks_input.ListSpeechSynthesisTasksInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -461,7 +468,29 @@ class PollyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_speech_synthesis_tasks(
+        self,
+        *,
+        config_overrides: Optional[PollyClientConfig] = None,
+        max_results: Optional["capo_polly.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_polly.types.next_token.NextToken"] = None,
+        status: Optional["capo_polly.types.task_status.TaskStatus"] = None,
+    ) -> "Iterator[capo_polly.types.list_speech_synthesis_tasks_output.ListSpeechSynthesisTasksOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_speech_synthesis_tasks(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                status=status,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def put_lexicon(
         self,
@@ -506,15 +535,17 @@ class PollyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_polly.types.put_lexicon_input.PutLexiconInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["content"] = content
+        input_: capo_polly.types.put_lexicon_input.PutLexiconInput = {
+            "name": name,
+            "content": content,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -568,16 +599,17 @@ class PollyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_polly.types.start_speech_synthesis_stream_input.StartSpeechSynthesisStreamInput = {}  # type: ignore[typeddict-item]
-        input_["engine"] = engine
+        input_: capo_polly.types.start_speech_synthesis_stream_input.StartSpeechSynthesisStreamInput = {
+            "engine": engine,
+            "output_format": output_format,
+            "voice_id": voice_id,
+        }
         if language_code is not None:
             input_["language_code"] = language_code
         if lexicon_names is not None:
             input_["lexicon_names"] = lexicon_names
-        input_["output_format"] = output_format
         if sample_rate is not None:
             input_["sample_rate"] = sample_rate
-        input_["voice_id"] = voice_id
         if action_stream is not None:
             input_["action_stream"] = ensure_sync_iterator(action_stream)
 
@@ -586,7 +618,10 @@ class PollyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def start_speech_synthesis_task(
         self,
@@ -658,15 +693,18 @@ class PollyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_polly.types.start_speech_synthesis_task_input.StartSpeechSynthesisTaskInput = {}  # type: ignore[typeddict-item]
+        input_: capo_polly.types.start_speech_synthesis_task_input.StartSpeechSynthesisTaskInput = {
+            "output_format": output_format,
+            "output_s3_bucket_name": output_s3_bucket_name,
+            "text": text,
+            "voice_id": voice_id,
+        }
         if engine is not None:
             input_["engine"] = engine
         if language_code is not None:
             input_["language_code"] = language_code
         if lexicon_names is not None:
             input_["lexicon_names"] = lexicon_names
-        input_["output_format"] = output_format
-        input_["output_s3_bucket_name"] = output_s3_bucket_name
         if output_s3_key_prefix is not None:
             input_["output_s3_key_prefix"] = output_s3_key_prefix
         if sample_rate is not None:
@@ -675,16 +713,15 @@ class PollyClient:
             input_["sns_topic_arn"] = sns_topic_arn
         if speech_mark_types is not None:
             input_["speech_mark_types"] = speech_mark_types
-        input_["text"] = text
         if text_type is not None:
             input_["text_type"] = text_type
-        input_["voice_id"] = voice_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -753,29 +790,33 @@ class PollyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_polly.types.synthesize_speech_input.SynthesizeSpeechInput = {}  # type: ignore[typeddict-item]
+        input_: capo_polly.types.synthesize_speech_input.SynthesizeSpeechInput = {
+            "output_format": output_format,
+            "text": text,
+            "voice_id": voice_id,
+        }
         if engine is not None:
             input_["engine"] = engine
         if language_code is not None:
             input_["language_code"] = language_code
         if lexicon_names is not None:
             input_["lexicon_names"] = lexicon_names
-        input_["output_format"] = output_format
         if sample_rate is not None:
             input_["sample_rate"] = sample_rate
         if speech_mark_types is not None:
             input_["speech_mark_types"] = speech_mark_types
-        input_["text"] = text
         if text_type is not None:
             input_["text_type"] = text_type
-        input_["voice_id"] = voice_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def __enter__(self) -> Self:
         return self

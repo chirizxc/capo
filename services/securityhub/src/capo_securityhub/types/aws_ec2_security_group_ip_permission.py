@@ -84,13 +84,13 @@ def serialize_json(value: AwsEc2SecurityGroupIpPermission) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2SecurityGroupIpPermission:
     out: AwsEc2SecurityGroupIpPermission = {}  # type: ignore[typeddict-item]
-    if "IpProtocol" in data:
+    if data.get("IpProtocol") is not None:
         out["ip_protocol"] = data["IpProtocol"]
-    if "FromPort" in data:
+    if data.get("FromPort") is not None:
         out["from_port"] = data["FromPort"]
-    if "ToPort" in data:
+    if data.get("ToPort") is not None:
         out["to_port"] = data["ToPort"]
-    if "UserIdGroupPairs" in data:
+    if data.get("UserIdGroupPairs") is not None:
         import capo_securityhub.types.aws_ec2_security_group_user_id_group_pair_list
 
         out["user_id_group_pairs"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> AwsEc2SecurityGroupIpPermission:
                 data["UserIdGroupPairs"]
             )
         )
-    if "IpRanges" in data:
+    if data.get("IpRanges") is not None:
         import capo_securityhub.types.aws_ec2_security_group_ip_range_list
 
         out["ip_ranges"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> AwsEc2SecurityGroupIpPermission:
                 data["IpRanges"]
             )
         )
-    if "Ipv6Ranges" in data:
+    if data.get("Ipv6Ranges") is not None:
         import capo_securityhub.types.aws_ec2_security_group_ipv6_range_list
 
         out["ipv6_ranges"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> AwsEc2SecurityGroupIpPermission:
                 data["Ipv6Ranges"]
             )
         )
-    if "PrefixListIds" in data:
+    if data.get("PrefixListIds") is not None:
         import capo_securityhub.types.aws_ec2_security_group_prefix_list_id_list
 
         out["prefix_list_ids"] = (

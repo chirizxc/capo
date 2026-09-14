@@ -32,11 +32,11 @@ def serialize_json(value: FreeTrialAccountInfo) -> dict:
 
 def deserialize_json(data: dict) -> FreeTrialAccountInfo:
     out: FreeTrialAccountInfo = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("FreeTrialAccountInfo.account_id required")
-    if "freeTrialInfo" in data:
+    if data.get("freeTrialInfo") is not None:
         import capo_inspector2.types.free_trial_info_list
 
         out["free_trial_info"] = (

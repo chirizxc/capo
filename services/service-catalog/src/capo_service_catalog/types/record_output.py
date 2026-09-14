@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: RecordOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecordOutput:
     out: RecordOutput = {}  # type: ignore[typeddict-item]
-    if "OutputKey" in data:
+    if data.get("OutputKey") is not None:
         out["output_key"] = data["OutputKey"]
-    if "OutputValue" in data:
+    if data.get("OutputValue") is not None:
         out["output_value"] = data["OutputValue"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

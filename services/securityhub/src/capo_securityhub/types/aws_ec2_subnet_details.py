@@ -88,31 +88,31 @@ def serialize_json(value: AwsEc2SubnetDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2SubnetDetails:
     out: AwsEc2SubnetDetails = {}  # type: ignore[typeddict-item]
-    if "AssignIpv6AddressOnCreation" in data:
+    if data.get("AssignIpv6AddressOnCreation") is not None:
         out["assign_ipv6_address_on_creation"] = data["AssignIpv6AddressOnCreation"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "AvailabilityZoneId" in data:
+    if data.get("AvailabilityZoneId") is not None:
         out["availability_zone_id"] = data["AvailabilityZoneId"]
-    if "AvailableIpAddressCount" in data:
+    if data.get("AvailableIpAddressCount") is not None:
         out["available_ip_address_count"] = data["AvailableIpAddressCount"]
-    if "CidrBlock" in data:
+    if data.get("CidrBlock") is not None:
         out["cidr_block"] = data["CidrBlock"]
-    if "DefaultForAz" in data:
+    if data.get("DefaultForAz") is not None:
         out["default_for_az"] = data["DefaultForAz"]
-    if "MapPublicIpOnLaunch" in data:
+    if data.get("MapPublicIpOnLaunch") is not None:
         out["map_public_ip_on_launch"] = data["MapPublicIpOnLaunch"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "SubnetArn" in data:
+    if data.get("SubnetArn") is not None:
         out["subnet_arn"] = data["SubnetArn"]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "Ipv6CidrBlockAssociationSet" in data:
+    if data.get("Ipv6CidrBlockAssociationSet") is not None:
         import capo_securityhub.types.ipv6_cidr_block_association_list
 
         out["ipv6_cidr_block_association_set"] = (

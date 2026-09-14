@@ -13,9 +13,9 @@ from capo_compute_optimizer import AsyncComputeOptimizerClient
 
 
 async def main():
-    async with AsyncComputeOptimizerClient() as s3:
+    async with AsyncComputeOptimizerClient() as compute_optimizer:
         # Example: call the delete_recommendation_preferences operation
-        response = await s3.delete_recommendation_preferences()
+        response = await compute_optimizer.delete_recommendation_preferences()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_compute_optimizer import AsyncComputeOptimizerClient
 
 
 async def main():
-    async with AsyncComputeOptimizerClient() as s3:
+    async with AsyncComputeOptimizerClient() as compute_optimizer:
         # Example: paginate over describe_recommendation_export_jobs
-        async for item in s3.iter_describe_recommendation_export_jobs():
+        async for item in compute_optimizer.iter_describe_recommendation_export_jobs():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_compute_optimizer.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncComputeOptimizerClient() as s3:
+    async with AsyncComputeOptimizerClient() as compute_optimizer:
         try:
-            await s3.delete_recommendation_preferences()
+            await compute_optimizer.delete_recommendation_preferences()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_compute_optimizer import AsyncComputeOptimizerClient
 
 
 async def main():
-    async with AsyncComputeOptimizerClient() as s3:
+    async with AsyncComputeOptimizerClient() as compute_optimizer:
         # Default: 3 attempts for every operation
-        response = await s3.delete_recommendation_preferences()
+        response = await compute_optimizer.delete_recommendation_preferences()
 
         # Override per operation
-        response = await s3.delete_recommendation_preferences(config_overrides={"retry_max_attempts": 5})
+        response = await compute_optimizer.delete_recommendation_preferences(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_recommendation_preferences(config_overrides={"retry_max_attempts": 1})
+        response = await compute_optimizer.delete_recommendation_preferences(config_overrides={"retry_max_attempts": 1})
 ```

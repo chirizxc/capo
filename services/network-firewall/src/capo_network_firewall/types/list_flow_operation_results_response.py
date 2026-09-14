@@ -99,17 +99,17 @@ def serialize_aws_json_1_0(value: ListFlowOperationResultsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListFlowOperationResultsResponse:
     out: ListFlowOperationResultsResponse = {}  # type: ignore[typeddict-item]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "VpcEndpointAssociationArn" in data:
+    if data.get("VpcEndpointAssociationArn") is not None:
         out["vpc_endpoint_association_arn"] = data["VpcEndpointAssociationArn"]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "FlowOperationId" in data:
+    if data.get("FlowOperationId") is not None:
         out["flow_operation_id"] = data["FlowOperationId"]
-    if "FlowOperationStatus" in data:
+    if data.get("FlowOperationStatus") is not None:
         import capo_network_firewall.types.flow_operation_status
 
         out["flow_operation_status"] = (
@@ -117,9 +117,9 @@ def deserialize_aws_json_1_0(data: dict) -> ListFlowOperationResultsResponse:
                 data["FlowOperationStatus"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "FlowRequestTimestamp" in data:
+    if data.get("FlowRequestTimestamp") is not None:
         import capo_network_firewall.types.flow_request_timestamp
 
         out["flow_request_timestamp"] = (
@@ -127,12 +127,12 @@ def deserialize_aws_json_1_0(data: dict) -> ListFlowOperationResultsResponse:
                 data["FlowRequestTimestamp"]
             )
         )
-    if "Flows" in data:
+    if data.get("Flows") is not None:
         import capo_network_firewall.types.flows
 
         out["flows"] = capo_network_firewall.types.flows.deserialize_aws_json_1_0(
             data["Flows"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

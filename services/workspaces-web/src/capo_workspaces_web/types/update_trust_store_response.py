@@ -24,7 +24,7 @@ def serialize_json(value: UpdateTrustStoreResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTrustStoreResponse:
     out: UpdateTrustStoreResponse = {}  # type: ignore[typeddict-item]
-    if "trustStoreArn" in data:
+    if data.get("trustStoreArn") is not None:
         out["trust_store_arn"] = data["trustStoreArn"]
     else:
         raise DeserializationError("UpdateTrustStoreResponse.trust_store_arn required")

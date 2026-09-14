@@ -43,7 +43,7 @@ def serialize_json(value: ApplicationComponentStrategy) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationComponentStrategy:
     out: ApplicationComponentStrategy = {}  # type: ignore[typeddict-item]
-    if "recommendation" in data:
+    if data.get("recommendation") is not None:
         import capo_migrationhubstrategy.types.recommendation_set
 
         out["recommendation"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> ApplicationComponentStrategy:
                 data["recommendation"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "isPreferred" in data:
+    if data.get("isPreferred") is not None:
         out["is_preferred"] = data["isPreferred"]
     return out

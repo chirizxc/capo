@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MonitorRemoteResources:
 
     out: MonitorRemoteResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkflowmonitor.types.monitor_remote_resource.deserialize_json(item)
         )

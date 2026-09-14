@@ -62,23 +62,31 @@ def serialize_json(value: GetFarmResponse) -> dict:
         out["updatedBy"] = value["updated_by"]
     if "description" in value:
         out["description"] = value["description"]
-    out["costScaleFactor"] = value.get("cost_scale_factor", 1)
+    out["costScaleFactor"] = (
+        "NaN"
+        if value.get("cost_scale_factor", 1) != value.get("cost_scale_factor", 1)
+        else "Infinity"
+        if value.get("cost_scale_factor", 1) == float("inf")
+        else "-Infinity"
+        if value.get("cost_scale_factor", 1) == float("-inf")
+        else value.get("cost_scale_factor", 1)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> GetFarmResponse:
     out: GetFarmResponse = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("GetFarmResponse.farm_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("GetFarmResponse.display_name required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -86,22 +94,22 @@ def deserialize_json(data: dict) -> GetFarmResponse:
         )
     else:
         raise DeserializationError("GetFarmResponse.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("GetFarmResponse.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "costScaleFactor" in data:
-        out["cost_scale_factor"] = data["costScaleFactor"]
+    if data.get("costScaleFactor") is not None:
+        out["cost_scale_factor"] = float(data["costScaleFactor"])
     else:
         out["cost_scale_factor"] = 1
     return out

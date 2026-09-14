@@ -44,13 +44,13 @@ def serialize_aws_json_1_0(value: ReplicaSpecification) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReplicaSpecification:
     out: ReplicaSpecification = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("ReplicaSpecification.region required")
-    if "readCapacityUnits" in data:
+    if data.get("readCapacityUnits") is not None:
         out["read_capacity_units"] = data["readCapacityUnits"]
-    if "readCapacityAutoScaling" in data:
+    if data.get("readCapacityAutoScaling") is not None:
         import capo_keyspaces.types.auto_scaling_settings
 
         out["read_capacity_auto_scaling"] = (

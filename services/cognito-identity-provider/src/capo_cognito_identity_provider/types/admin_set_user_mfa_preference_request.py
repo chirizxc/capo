@@ -82,7 +82,7 @@ def serialize_aws_json_1_1(value: AdminSetUserMFAPreferenceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminSetUserMFAPreferenceRequest:
     out: AdminSetUserMFAPreferenceRequest = {}  # type: ignore[typeddict-item]
-    if "SMSMfaSettings" in data:
+    if data.get("SMSMfaSettings") is not None:
         import capo_cognito_identity_provider.types.sms_mfa_settings_type
 
         out["sms_mfa_settings"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminSetUserMFAPreferenceRequest:
                 data["SMSMfaSettings"]
             )
         )
-    if "SoftwareTokenMfaSettings" in data:
+    if data.get("SoftwareTokenMfaSettings") is not None:
         import capo_cognito_identity_provider.types.software_token_mfa_settings_type
 
         out["software_token_mfa_settings"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminSetUserMFAPreferenceRequest:
                 data["SoftwareTokenMfaSettings"]
             )
         )
-    if "EmailMfaSettings" in data:
+    if data.get("EmailMfaSettings") is not None:
         import capo_cognito_identity_provider.types.email_mfa_settings_type
 
         out["email_mfa_settings"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminSetUserMFAPreferenceRequest:
                 data["EmailMfaSettings"]
             )
         )
-    if "WebAuthnMfaSettings" in data:
+    if data.get("WebAuthnMfaSettings") is not None:
         import capo_cognito_identity_provider.types.web_authn_mfa_settings_type
 
         out["web_authn_mfa_settings"] = (
@@ -114,11 +114,11 @@ def deserialize_aws_json_1_1(data: dict) -> AdminSetUserMFAPreferenceRequest:
                 data["WebAuthnMfaSettings"]
             )
         )
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("AdminSetUserMFAPreferenceRequest.username required")
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(

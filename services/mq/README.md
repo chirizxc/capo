@@ -13,9 +13,9 @@ from capo_mq import AsyncmqClient
 
 
 async def main():
-    async with AsyncmqClient() as s3:
+    async with AsyncmqClient() as mq:
         # Example: call the create_broker operation
-        response = await s3.create_broker()
+        response = await mq.create_broker()
         print(response["broker_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_mq import AsyncmqClient
 
 
 async def main():
-    async with AsyncmqClient() as s3:
+    async with AsyncmqClient() as mq:
         # Example: paginate over list_brokers
-        async for item in s3.iter_list_brokers():
+        async for item in mq.iter_list_brokers():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_mq.error import BadRequestException
 
 
 async def main():
-    async with AsyncmqClient() as s3:
+    async with AsyncmqClient() as mq:
         try:
-            await s3.create_broker()
+            await mq.create_broker()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_mq import AsyncmqClient
 
 
 async def main():
-    async with AsyncmqClient() as s3:
+    async with AsyncmqClient() as mq:
         # Default: 3 attempts for every operation
-        response = await s3.create_broker()
+        response = await mq.create_broker()
 
         # Override per operation
-        response = await s3.create_broker(config_overrides={"retry_max_attempts": 5})
+        response = await mq.create_broker(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_broker(config_overrides={"retry_max_attempts": 1})
+        response = await mq.create_broker(config_overrides={"retry_max_attempts": 1})
 ```

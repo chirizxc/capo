@@ -157,21 +157,21 @@ def serialize_aws_json_1_0(value: RuleGroupResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleGroupResponse:
     out: RuleGroupResponse = {}  # type: ignore[typeddict-item]
-    if "RuleGroupArn" in data:
+    if data.get("RuleGroupArn") is not None:
         out["rule_group_arn"] = data["RuleGroupArn"]
     else:
         raise DeserializationError("RuleGroupResponse.rule_group_arn required")
-    if "RuleGroupName" in data:
+    if data.get("RuleGroupName") is not None:
         out["rule_group_name"] = data["RuleGroupName"]
     else:
         raise DeserializationError("RuleGroupResponse.rule_group_name required")
-    if "RuleGroupId" in data:
+    if data.get("RuleGroupId") is not None:
         out["rule_group_id"] = data["RuleGroupId"]
     else:
         raise DeserializationError("RuleGroupResponse.rule_group_id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_network_firewall.types.rule_group_type
 
         out["type"] = (
@@ -179,9 +179,9 @@ def deserialize_aws_json_1_0(data: dict) -> RuleGroupResponse:
                 data["Type"]
             )
         )
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         out["capacity"] = data["Capacity"]
-    if "RuleGroupStatus" in data:
+    if data.get("RuleGroupStatus") is not None:
         import capo_network_firewall.types.resource_status
 
         out["rule_group_status"] = (
@@ -189,17 +189,17 @@ def deserialize_aws_json_1_0(data: dict) -> RuleGroupResponse:
                 data["RuleGroupStatus"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "ConsumedCapacity" in data:
+    if data.get("ConsumedCapacity") is not None:
         out["consumed_capacity"] = data["ConsumedCapacity"]
-    if "NumberOfAssociations" in data:
+    if data.get("NumberOfAssociations") is not None:
         out["number_of_associations"] = data["NumberOfAssociations"]
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_network_firewall.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -207,7 +207,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleGroupResponse:
                 data["EncryptionConfiguration"]
             )
         )
-    if "SourceMetadata" in data:
+    if data.get("SourceMetadata") is not None:
         import capo_network_firewall.types.source_metadata
 
         out["source_metadata"] = (
@@ -215,9 +215,9 @@ def deserialize_aws_json_1_0(data: dict) -> RuleGroupResponse:
                 data["SourceMetadata"]
             )
         )
-    if "SnsTopic" in data:
+    if data.get("SnsTopic") is not None:
         out["sns_topic"] = data["SnsTopic"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_network_firewall.types.last_update_time
 
         out["last_modified_time"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleGroupResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "AnalysisResults" in data:
+    if data.get("AnalysisResults") is not None:
         import capo_network_firewall.types.analysis_result_list
 
         out["analysis_results"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleGroupResponse:
                 data["AnalysisResults"]
             )
         )
-    if "SummaryConfiguration" in data:
+    if data.get("SummaryConfiguration") is not None:
         import capo_network_firewall.types.summary_configuration
 
         out["summary_configuration"] = (

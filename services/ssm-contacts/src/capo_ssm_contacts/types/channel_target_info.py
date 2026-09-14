@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: ChannelTargetInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ChannelTargetInfo:
     out: ChannelTargetInfo = {}  # type: ignore[typeddict-item]
-    if "ContactChannelId" in data:
+    if data.get("ContactChannelId") is not None:
         out["contact_channel_id"] = data["ContactChannelId"]
     else:
         raise DeserializationError("ChannelTargetInfo.contact_channel_id required")
-    if "RetryIntervalInMinutes" in data:
+    if data.get("RetryIntervalInMinutes") is not None:
         out["retry_interval_in_minutes"] = data["RetryIntervalInMinutes"]
     return out

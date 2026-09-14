@@ -50,9 +50,9 @@ def serialize_aws_json_1_0(value: LifeCycleForView) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LifeCycleForView:
     out: LifeCycleForView = {}  # type: ignore[typeddict-item]
-    if "TargetCloseDate" in data:
+    if data.get("TargetCloseDate") is not None:
         out["target_close_date"] = data["TargetCloseDate"]
-    if "ReviewStatus" in data:
+    if data.get("ReviewStatus") is not None:
         import capo_partnercentral_selling.types.review_status
 
         out["review_status"] = (
@@ -60,12 +60,12 @@ def deserialize_aws_json_1_0(data: dict) -> LifeCycleForView:
                 data["ReviewStatus"]
             )
         )
-    if "Stage" in data:
+    if data.get("Stage") is not None:
         import capo_partnercentral_selling.types.stage
 
         out["stage"] = capo_partnercentral_selling.types.stage.deserialize_aws_json_1_0(
             data["Stage"]
         )
-    if "NextSteps" in data:
+    if data.get("NextSteps") is not None:
         out["next_steps"] = data["NextSteps"]
     return out

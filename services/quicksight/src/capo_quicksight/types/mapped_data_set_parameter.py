@@ -28,13 +28,13 @@ def serialize_json(value: MappedDataSetParameter) -> dict:
 
 def deserialize_json(data: dict) -> MappedDataSetParameter:
     out: MappedDataSetParameter = {}  # type: ignore[typeddict-item]
-    if "DataSetIdentifier" in data:
+    if data.get("DataSetIdentifier") is not None:
         out["data_set_identifier"] = data["DataSetIdentifier"]
     else:
         raise DeserializationError(
             "MappedDataSetParameter.data_set_identifier required"
         )
-    if "DataSetParameterName" in data:
+    if data.get("DataSetParameterName") is not None:
         out["data_set_parameter_name"] = data["DataSetParameterName"]
     else:
         raise DeserializationError(

@@ -62,13 +62,13 @@ def serialize_aws_json_1_1(value: CreateParallelDataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateParallelDataRequest:
     out: CreateParallelDataRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateParallelDataRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ParallelDataConfig" in data:
+    if data.get("ParallelDataConfig") is not None:
         import capo_translate.types.parallel_data_config
 
         out["parallel_data_config"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateParallelDataRequest:
         raise DeserializationError(
             "CreateParallelDataRequest.parallel_data_config required"
         )
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         import capo_translate.types.encryption_key
 
         out["encryption_key"] = (
@@ -88,11 +88,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateParallelDataRequest:
                 data["EncryptionKey"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateParallelDataRequest.client_token required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_translate.types.tag_list
 
         out["tags"] = capo_translate.types.tag_list.deserialize_aws_json_1_1(

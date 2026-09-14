@@ -35,9 +35,9 @@ def serialize_json(value: SystemUserJourneyDeletedMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SystemUserJourneyDeletedMetadata:
     out: SystemUserJourneyDeletedMetadata = {}  # type: ignore[typeddict-item]
-    if "userJourneyName" in data:
+    if data.get("userJourneyName") is not None:
         out["user_journey_name"] = data["userJourneyName"]
-    if "associatedServicesAtDeletion" in data:
+    if data.get("associatedServicesAtDeletion") is not None:
         import capo_resiliencehubv2.types.service_reference_list
 
         out["associated_services_at_deletion"] = (

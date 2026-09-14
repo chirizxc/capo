@@ -148,9 +148,9 @@ def serialize_json(value: AwsAutoScalingLaunchConfigurationDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAutoScalingLaunchConfigurationDetails:
     out: AwsAutoScalingLaunchConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "AssociatePublicIpAddress" in data:
+    if data.get("AssociatePublicIpAddress") is not None:
         out["associate_public_ip_address"] = data["AssociatePublicIpAddress"]
-    if "BlockDeviceMappings" in data:
+    if data.get("BlockDeviceMappings") is not None:
         import capo_securityhub.types.aws_auto_scaling_launch_configuration_block_device_mappings_list
 
         out["block_device_mappings"] = (
@@ -158,9 +158,9 @@ def deserialize_json(data: dict) -> AwsAutoScalingLaunchConfigurationDetails:
                 data["BlockDeviceMappings"]
             )
         )
-    if "ClassicLinkVpcId" in data:
+    if data.get("ClassicLinkVpcId") is not None:
         out["classic_link_vpc_id"] = data["ClassicLinkVpcId"]
-    if "ClassicLinkVpcSecurityGroups" in data:
+    if data.get("ClassicLinkVpcSecurityGroups") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["classic_link_vpc_security_groups"] = (
@@ -168,15 +168,15 @@ def deserialize_json(data: dict) -> AwsAutoScalingLaunchConfigurationDetails:
                 data["ClassicLinkVpcSecurityGroups"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         out["created_time"] = data["CreatedTime"]
-    if "EbsOptimized" in data:
+    if data.get("EbsOptimized") is not None:
         out["ebs_optimized"] = data["EbsOptimized"]
-    if "IamInstanceProfile" in data:
+    if data.get("IamInstanceProfile") is not None:
         out["iam_instance_profile"] = data["IamInstanceProfile"]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "InstanceMonitoring" in data:
+    if data.get("InstanceMonitoring") is not None:
         import capo_securityhub.types.aws_auto_scaling_launch_configuration_instance_monitoring_details
 
         out["instance_monitoring"] = (
@@ -184,19 +184,19 @@ def deserialize_json(data: dict) -> AwsAutoScalingLaunchConfigurationDetails:
                 data["InstanceMonitoring"]
             )
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "KernelId" in data:
+    if data.get("KernelId") is not None:
         out["kernel_id"] = data["KernelId"]
-    if "KeyName" in data:
+    if data.get("KeyName") is not None:
         out["key_name"] = data["KeyName"]
-    if "LaunchConfigurationName" in data:
+    if data.get("LaunchConfigurationName") is not None:
         out["launch_configuration_name"] = data["LaunchConfigurationName"]
-    if "PlacementTenancy" in data:
+    if data.get("PlacementTenancy") is not None:
         out["placement_tenancy"] = data["PlacementTenancy"]
-    if "RamdiskId" in data:
+    if data.get("RamdiskId") is not None:
         out["ramdisk_id"] = data["RamdiskId"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["security_groups"] = (
@@ -204,11 +204,11 @@ def deserialize_json(data: dict) -> AwsAutoScalingLaunchConfigurationDetails:
                 data["SecurityGroups"]
             )
         )
-    if "SpotPrice" in data:
+    if data.get("SpotPrice") is not None:
         out["spot_price"] = data["SpotPrice"]
-    if "UserData" in data:
+    if data.get("UserData") is not None:
         out["user_data"] = data["UserData"]
-    if "MetadataOptions" in data:
+    if data.get("MetadataOptions") is not None:
         import capo_securityhub.types.aws_auto_scaling_launch_configuration_metadata_options
 
         out["metadata_options"] = (

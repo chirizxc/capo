@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: TestCaseFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestCaseFilter:
     out: TestCaseFilter = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "keyword" in data:
+    if data.get("keyword") is not None:
         out["keyword"] = data["keyword"]
     return out

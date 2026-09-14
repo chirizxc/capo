@@ -53,15 +53,15 @@ def serialize_json(value: GenerateEmbedUrlForRegisteredUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> GenerateEmbedUrlForRegisteredUserRequest:
     out: GenerateEmbedUrlForRegisteredUserRequest = {}  # type: ignore[typeddict-item]
-    if "SessionLifetimeInMinutes" in data:
+    if data.get("SessionLifetimeInMinutes") is not None:
         out["session_lifetime_in_minutes"] = data["SessionLifetimeInMinutes"]
-    if "UserArn" in data:
+    if data.get("UserArn") is not None:
         out["user_arn"] = data["UserArn"]
     else:
         raise DeserializationError(
             "GenerateEmbedUrlForRegisteredUserRequest.user_arn required"
         )
-    if "ExperienceConfiguration" in data:
+    if data.get("ExperienceConfiguration") is not None:
         import capo_quicksight.types.registered_user_embedding_experience_configuration
 
         out["experience_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> GenerateEmbedUrlForRegisteredUserRequest:
         raise DeserializationError(
             "GenerateEmbedUrlForRegisteredUserRequest.experience_configuration required"
         )
-    if "AllowedDomains" in data:
+    if data.get("AllowedDomains") is not None:
         import capo_quicksight.types.string_list
 
         out["allowed_domains"] = capo_quicksight.types.string_list.deserialize_json(

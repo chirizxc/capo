@@ -39,15 +39,20 @@ class CustomDomainAssociationNotFoundFault(ServiceError):
 
     code: str | None = "CustomDomainAssociationNotFoundFault"
 
-    def __init__(self, data: CustomDomainAssociationNotFoundFault_):
+    def __init__(
+        self, data: CustomDomainAssociationNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CustomDomainAssociationNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CustomDomainAssociationNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CustomDomainAssociationNotFoundFault":
+        return cls(deserialize_query(el), message)

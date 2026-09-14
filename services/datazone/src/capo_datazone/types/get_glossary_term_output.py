@@ -108,33 +108,33 @@ def serialize_json(value: GetGlossaryTermOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetGlossaryTermOutput:
     out: GetGlossaryTermOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("GetGlossaryTermOutput.domain_id required")
-    if "glossaryId" in data:
+    if data.get("glossaryId") is not None:
         out["glossary_id"] = data["glossaryId"]
     else:
         raise DeserializationError("GetGlossaryTermOutput.glossary_id required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetGlossaryTermOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetGlossaryTermOutput.name required")
-    if "shortDescription" in data:
+    if data.get("shortDescription") is not None:
         out["short_description"] = data["shortDescription"]
-    if "longDescription" in data:
+    if data.get("longDescription") is not None:
         out["long_description"] = data["longDescription"]
-    if "termRelations" in data:
+    if data.get("termRelations") is not None:
         import capo_datazone.types.term_relations
 
         out["term_relations"] = capo_datazone.types.term_relations.deserialize_json(
             data["termRelations"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.glossary_term_status
 
         out["status"] = capo_datazone.types.glossary_term_status.deserialize_json(
@@ -142,23 +142,23 @@ def deserialize_json(data: dict) -> GetGlossaryTermOutput:
         )
     else:
         raise DeserializationError("GetGlossaryTermOutput.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "usageRestrictions" in data:
+    if data.get("usageRestrictions") is not None:
         import capo_datazone.types.glossary_usage_restrictions
 
         out["usage_restrictions"] = (

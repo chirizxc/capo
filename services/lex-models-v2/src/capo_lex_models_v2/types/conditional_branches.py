@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ConditionalBranches:
 
     out: ConditionalBranches = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.conditional_branch.deserialize_json(item))
     return out

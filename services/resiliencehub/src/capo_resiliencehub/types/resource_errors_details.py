@@ -38,7 +38,7 @@ def serialize_json(value: ResourceErrorsDetails) -> dict:
 
 def deserialize_json(data: dict) -> ResourceErrorsDetails:
     out: ResourceErrorsDetails = {}  # type: ignore[typeddict-item]
-    if "resourceErrors" in data:
+    if data.get("resourceErrors") is not None:
         import capo_resiliencehub.types.resource_error_list
 
         out["resource_errors"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ResourceErrorsDetails:
                 data["resourceErrors"]
             )
         )
-    if "hasMoreErrors" in data:
+    if data.get("hasMoreErrors") is not None:
         out["has_more_errors"] = data["hasMoreErrors"]
     return out

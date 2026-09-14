@@ -58,13 +58,13 @@ def serialize_aws_json_1_1(value: SybaseAseDataProviderSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SybaseAseDataProviderSettings:
     out: SybaseAseDataProviderSettings = {}  # type: ignore[typeddict-item]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "SslMode" in data:
+    if data.get("SslMode") is not None:
         import capo_database_migration_service.types.dms_ssl_mode_value
 
         out["ssl_mode"] = (
@@ -72,8 +72,8 @@ def deserialize_aws_json_1_1(data: dict) -> SybaseAseDataProviderSettings:
                 data["SslMode"]
             )
         )
-    if "EncryptPassword" in data:
+    if data.get("EncryptPassword") is not None:
         out["encrypt_password"] = data["EncryptPassword"]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
     return out

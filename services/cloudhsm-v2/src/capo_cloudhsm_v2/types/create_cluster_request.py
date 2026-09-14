@@ -77,7 +77,7 @@ def serialize_aws_json_1_1(value: CreateClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
     out: CreateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "BackupRetentionPolicy" in data:
+    if data.get("BackupRetentionPolicy") is not None:
         import capo_cloudhsm_v2.types.backup_retention_policy
 
         out["backup_retention_policy"] = (
@@ -85,13 +85,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["BackupRetentionPolicy"]
             )
         )
-    if "HsmType" in data:
+    if data.get("HsmType") is not None:
         out["hsm_type"] = data["HsmType"]
     else:
         raise DeserializationError("CreateClusterRequest.hsm_type required")
-    if "SourceBackupId" in data:
+    if data.get("SourceBackupId") is not None:
         out["source_backup_id"] = data["SourceBackupId"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_cloudhsm_v2.types.subnet_ids
 
         out["subnet_ids"] = capo_cloudhsm_v2.types.subnet_ids.deserialize_aws_json_1_1(
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
         )
     else:
         raise DeserializationError("CreateClusterRequest.subnet_ids required")
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_cloudhsm_v2.types.network_type
 
         out["network_type"] = (
@@ -107,13 +107,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["NetworkType"]
             )
         )
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_cloudhsm_v2.types.tag_list
 
         out["tag_list"] = capo_cloudhsm_v2.types.tag_list.deserialize_aws_json_1_1(
             data["TagList"]
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_cloudhsm_v2.types.cluster_mode
 
         out["mode"] = capo_cloudhsm_v2.types.cluster_mode.deserialize_aws_json_1_1(

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> SummaryList:
 
     out: SummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resource_groups_tagging_api.types.summary.deserialize_aws_json_1_1(
                 item

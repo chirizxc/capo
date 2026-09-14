@@ -43,12 +43,12 @@ def serialize_json(value: HlsBasicPutSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsBasicPutSettings:
     out: HlsBasicPutSettings = {}  # type: ignore[typeddict-item]
-    if "connectionRetryInterval" in data:
+    if data.get("connectionRetryInterval") is not None:
         out["connection_retry_interval"] = data["connectionRetryInterval"]
-    if "filecacheDuration" in data:
+    if data.get("filecacheDuration") is not None:
         out["filecache_duration"] = data["filecacheDuration"]
-    if "numRetries" in data:
+    if data.get("numRetries") is not None:
         out["num_retries"] = data["numRetries"]
-    if "restartDelay" in data:
+    if data.get("restartDelay") is not None:
         out["restart_delay"] = data["restartDelay"]
     return out

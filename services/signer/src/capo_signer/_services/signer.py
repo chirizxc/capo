@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.signer#WallabyService``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_signer._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_signer._auth._zapros_handler import AuthMiddleware
+from capo_signer._pagination import resolve_path as _resolve_path
 from capo_signer._services._aws_config import aws_config
 from capo_signer._services._pipeline import (
     Interceptor,
@@ -234,21 +236,23 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.add_profile_permission_request.AddProfilePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_name"] = profile_name
+        input_: capo_signer.types.add_profile_permission_request.AddProfilePermissionRequest = {
+            "profile_name": profile_name,
+            "action": action,
+            "principal": principal,
+            "statement_id": statement_id,
+        }
         if profile_version is not None:
             input_["profile_version"] = profile_version
-        input_["action"] = action
-        input_["principal"] = principal
         if revision_id is not None:
             input_["revision_id"] = revision_id
-        input_["statement_id"] = statement_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_signing_profile(
@@ -283,14 +287,16 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.cancel_signing_profile_request.CancelSigningProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_name"] = profile_name
+        input_: capo_signer.types.cancel_signing_profile_request.CancelSigningProfileRequest = {
+            "profile_name": profile_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_signing_job(
@@ -327,14 +333,16 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.describe_signing_job_request.DescribeSigningJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_signer.types.describe_signing_job_request.DescribeSigningJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_revocation_status(
@@ -379,18 +387,20 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.get_revocation_status_request.GetRevocationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["signature_timestamp"] = signature_timestamp
-        input_["platform_id"] = platform_id
-        input_["profile_version_arn"] = profile_version_arn
-        input_["job_arn"] = job_arn
-        input_["certificate_hashes"] = certificate_hashes
+        input_: capo_signer.types.get_revocation_status_request.GetRevocationStatusRequest = {
+            "signature_timestamp": signature_timestamp,
+            "platform_id": platform_id,
+            "profile_version_arn": profile_version_arn,
+            "job_arn": job_arn,
+            "certificate_hashes": certificate_hashes,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_signing_platform(
@@ -427,14 +437,16 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.get_signing_platform_request.GetSigningPlatformRequest = {}  # type: ignore[typeddict-item]
-        input_["platform_id"] = platform_id
+        input_: capo_signer.types.get_signing_platform_request.GetSigningPlatformRequest = {
+            "platform_id": platform_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_signing_profile(
@@ -473,8 +485,9 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.get_signing_profile_request.GetSigningProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_name"] = profile_name
+        input_: capo_signer.types.get_signing_profile_request.GetSigningProfileRequest = {
+            "profile_name": profile_name
+        }
         if profile_owner is not None:
             input_["profile_owner"] = profile_owner
 
@@ -483,6 +496,7 @@ class signerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_profile_permissions(
@@ -522,8 +536,9 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.list_profile_permissions_request.ListProfilePermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_name"] = profile_name
+        input_: capo_signer.types.list_profile_permissions_request.ListProfilePermissionsRequest = {
+            "profile_name": profile_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -532,6 +547,7 @@ class signerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_signing_jobs(
@@ -588,7 +604,7 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.list_signing_jobs_request.ListSigningJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_signer.types.list_signing_jobs_request.ListSigningJobsRequest = {}
         if status is not None:
             input_["status"] = status
         if platform_id is not None:
@@ -613,7 +629,47 @@ class signerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_signing_jobs(
+        self,
+        *,
+        config_overrides: Optional[signerClientConfig] = None,
+        status: Optional["capo_signer.types.signing_status.SigningStatus"] = None,
+        platform_id: Optional["capo_signer.types.platform_id.PlatformId"] = None,
+        requested_by: Optional["capo_signer.types.requested_by.RequestedBy"] = None,
+        max_results: Optional["capo_signer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_signer.types.next_token.NextToken"] = None,
+        is_revoked: Optional["capo_signer.types.bool.bool"] = None,
+        signature_expires_before: Optional[
+            "capo_signer.types.timestamp.Timestamp"
+        ] = None,
+        signature_expires_after: Optional[
+            "capo_signer.types.timestamp.Timestamp"
+        ] = None,
+        job_invoker: Optional["capo_signer.types.account_id.AccountId"] = None,
+    ) -> (
+        "Iterator[capo_signer.types.list_signing_jobs_response.ListSigningJobsResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_signing_jobs(
+                config_overrides=config_overrides,
+                status=status,
+                platform_id=platform_id,
+                requested_by=requested_by,
+                max_results=max_results,
+                next_token=_token,
+                is_revoked=is_revoked,
+                signature_expires_before=signature_expires_before,
+                signature_expires_after=signature_expires_after,
+                job_invoker=job_invoker,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_signing_platforms(
         self,
@@ -659,7 +715,7 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.list_signing_platforms_request.ListSigningPlatformsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_signer.types.list_signing_platforms_request.ListSigningPlatformsRequest = {}
         if category is not None:
             input_["category"] = category
         if partner is not None:
@@ -676,7 +732,33 @@ class signerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_signing_platforms(
+        self,
+        *,
+        config_overrides: Optional[signerClientConfig] = None,
+        category: Optional["capo_signer.types.string.String"] = None,
+        partner: Optional["capo_signer.types.string.String"] = None,
+        target: Optional["capo_signer.types.string.String"] = None,
+        max_results: Optional["capo_signer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_signer.types.string.String"] = None,
+    ) -> "Iterator[capo_signer.types.list_signing_platforms_response.ListSigningPlatformsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_signing_platforms(
+                config_overrides=config_overrides,
+                category=category,
+                partner=partner,
+                target=target,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_signing_profiles(
         self,
@@ -719,7 +801,7 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.list_signing_profiles_request.ListSigningProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_signer.types.list_signing_profiles_request.ListSigningProfilesRequest = {}
         if include_canceled is not None:
             input_["include_canceled"] = include_canceled
         if max_results is not None:
@@ -736,7 +818,33 @@ class signerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_signing_profiles(
+        self,
+        *,
+        config_overrides: Optional[signerClientConfig] = None,
+        include_canceled: Optional["capo_signer.types.bool.bool"] = None,
+        max_results: Optional["capo_signer.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_signer.types.next_token.NextToken"] = None,
+        platform_id: Optional["capo_signer.types.platform_id.PlatformId"] = None,
+        statuses: Optional["capo_signer.types.statuses.Statuses"] = None,
+    ) -> "Iterator[capo_signer.types.list_signing_profiles_response.ListSigningProfilesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_signing_profiles(
+                config_overrides=config_overrides,
+                include_canceled=include_canceled,
+                max_results=max_results,
+                next_token=_token,
+                platform_id=platform_id,
+                statuses=statuses,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -774,14 +882,16 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_signer.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_signing_profile(
@@ -839,13 +949,14 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.put_signing_profile_request.PutSigningProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_name"] = profile_name
+        input_: capo_signer.types.put_signing_profile_request.PutSigningProfileRequest = {
+            "profile_name": profile_name,
+            "platform_id": platform_id,
+        }
         if signing_material is not None:
             input_["signing_material"] = signing_material
         if signature_validity_period is not None:
             input_["signature_validity_period"] = signature_validity_period
-        input_["platform_id"] = platform_id
         if overrides is not None:
             input_["overrides"] = overrides
         if signing_parameters is not None:
@@ -858,6 +969,7 @@ class signerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_profile_permission(
@@ -900,16 +1012,18 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.remove_profile_permission_request.RemoveProfilePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_name"] = profile_name
-        input_["revision_id"] = revision_id
-        input_["statement_id"] = statement_id
+        input_: capo_signer.types.remove_profile_permission_request.RemoveProfilePermissionRequest = {
+            "profile_name": profile_name,
+            "revision_id": revision_id,
+            "statement_id": statement_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def revoke_signature(
@@ -949,17 +1063,19 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.revoke_signature_request.RevokeSignatureRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_signer.types.revoke_signature_request.RevokeSignatureRequest = {
+            "job_id": job_id,
+            "reason": reason,
+        }
         if job_owner is not None:
             input_["job_owner"] = job_owner
-        input_["reason"] = reason
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def revoke_signing_profile(
@@ -1001,17 +1117,19 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.revoke_signing_profile_request.RevokeSigningProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_name"] = profile_name
-        input_["profile_version"] = profile_version
-        input_["reason"] = reason
-        input_["effective_time"] = effective_time
+        input_: capo_signer.types.revoke_signing_profile_request.RevokeSigningProfileRequest = {
+            "profile_name": profile_name,
+            "profile_version": profile_version,
+            "reason": reason,
+            "effective_time": effective_time,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def sign_payload(
@@ -1055,18 +1173,20 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.sign_payload_request.SignPayloadRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_name"] = profile_name
+        input_: capo_signer.types.sign_payload_request.SignPayloadRequest = {
+            "profile_name": profile_name,
+            "payload": payload,
+            "payload_format": payload_format,
+        }
         if profile_owner is not None:
             input_["profile_owner"] = profile_owner
-        input_["payload"] = payload
-        input_["payload_format"] = payload_format
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_signing_job(
@@ -1113,11 +1233,12 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.start_signing_job_request.StartSigningJobRequest = {}  # type: ignore[typeddict-item]
-        input_["source"] = source
-        input_["destination"] = destination
-        input_["profile_name"] = profile_name
-        input_["client_request_token"] = client_request_token
+        input_: capo_signer.types.start_signing_job_request.StartSigningJobRequest = {
+            "source": source,
+            "destination": destination,
+            "profile_name": profile_name,
+            "client_request_token": client_request_token,
+        }
         if profile_owner is not None:
             input_["profile_owner"] = profile_owner
 
@@ -1126,6 +1247,7 @@ class signerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1164,15 +1286,17 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_signer.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1211,15 +1335,17 @@ class signerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_signer.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

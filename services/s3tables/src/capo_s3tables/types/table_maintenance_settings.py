@@ -50,7 +50,7 @@ def serialize_json(value: TableMaintenanceSettings) -> dict:
 
 
 def deserialize_json(data: dict) -> TableMaintenanceSettings:
-    if "icebergCompaction" in data:
+    if data.get("icebergCompaction") is not None:
         import capo_s3tables.types.iceberg_compaction_settings
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> TableMaintenanceSettings:
                 data["icebergCompaction"]
             )
         }
-    elif "icebergSnapshotManagement" in data:
+    elif data.get("icebergSnapshotManagement") is not None:
         import capo_s3tables.types.iceberg_snapshot_management_settings
 
         return {

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: LoggingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LoggingConfiguration:
     out: LoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "LoggingRole" in data:
+    if data.get("LoggingRole") is not None:
         out["logging_role"] = data["LoggingRole"]
-    if "LogGroupName" in data:
+    if data.get("LogGroupName") is not None:
         out["log_group_name"] = data["LogGroupName"]
     return out

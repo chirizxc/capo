@@ -59,11 +59,11 @@ def serialize_json(value: CreateLinkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateLinkRequest:
     out: CreateLinkRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Bandwidth" in data:
+    if data.get("Bandwidth") is not None:
         import capo_networkmanager.types.bandwidth
 
         out["bandwidth"] = capo_networkmanager.types.bandwidth.deserialize_json(
@@ -71,13 +71,13 @@ def deserialize_json(data: dict) -> CreateLinkRequest:
         )
     else:
         raise DeserializationError("CreateLinkRequest.bandwidth required")
-    if "Provider" in data:
+    if data.get("Provider") is not None:
         out["provider"] = data["Provider"]
-    if "SiteId" in data:
+    if data.get("SiteId") is not None:
         out["site_id"] = data["SiteId"]
     else:
         raise DeserializationError("CreateLinkRequest.site_id required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])

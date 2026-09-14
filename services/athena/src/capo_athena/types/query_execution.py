@@ -158,11 +158,11 @@ def serialize_aws_json_1_1(value: QueryExecution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryExecution:
     out: QueryExecution = {}  # type: ignore[typeddict-item]
-    if "QueryExecutionId" in data:
+    if data.get("QueryExecutionId") is not None:
         out["query_execution_id"] = data["QueryExecutionId"]
-    if "Query" in data:
+    if data.get("Query") is not None:
         out["query"] = data["Query"]
-    if "StatementType" in data:
+    if data.get("StatementType") is not None:
         import capo_athena.types.statement_type
 
         out["statement_type"] = (
@@ -170,7 +170,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryExecution:
                 data["StatementType"]
             )
         )
-    if "ManagedQueryResultsConfiguration" in data:
+    if data.get("ManagedQueryResultsConfiguration") is not None:
         import capo_athena.types.managed_query_results_configuration
 
         out["managed_query_results_configuration"] = (
@@ -178,7 +178,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryExecution:
                 data["ManagedQueryResultsConfiguration"]
             )
         )
-    if "ResultConfiguration" in data:
+    if data.get("ResultConfiguration") is not None:
         import capo_athena.types.result_configuration
 
         out["result_configuration"] = (
@@ -186,7 +186,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryExecution:
                 data["ResultConfiguration"]
             )
         )
-    if "ResultReuseConfiguration" in data:
+    if data.get("ResultReuseConfiguration") is not None:
         import capo_athena.types.result_reuse_configuration
 
         out["result_reuse_configuration"] = (
@@ -194,7 +194,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryExecution:
                 data["ResultReuseConfiguration"]
             )
         )
-    if "QueryExecutionContext" in data:
+    if data.get("QueryExecutionContext") is not None:
         import capo_athena.types.query_execution_context
 
         out["query_execution_context"] = (
@@ -202,7 +202,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryExecution:
                 data["QueryExecutionContext"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_athena.types.query_execution_status
 
         out["status"] = (
@@ -210,7 +210,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryExecution:
                 data["Status"]
             )
         )
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_athena.types.query_execution_statistics
 
         out["statistics"] = (
@@ -218,9 +218,9 @@ def deserialize_aws_json_1_1(data: dict) -> QueryExecution:
                 data["Statistics"]
             )
         )
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         import capo_athena.types.engine_version
 
         out["engine_version"] = (
@@ -228,7 +228,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryExecution:
                 data["EngineVersion"]
             )
         )
-    if "ExecutionParameters" in data:
+    if data.get("ExecutionParameters") is not None:
         import capo_athena.types.execution_parameters
 
         out["execution_parameters"] = (
@@ -236,9 +236,9 @@ def deserialize_aws_json_1_1(data: dict) -> QueryExecution:
                 data["ExecutionParameters"]
             )
         )
-    if "SubstatementType" in data:
+    if data.get("SubstatementType") is not None:
         out["substatement_type"] = data["SubstatementType"]
-    if "QueryResultsS3AccessGrantsConfiguration" in data:
+    if data.get("QueryResultsS3AccessGrantsConfiguration") is not None:
         import capo_athena.types.query_results_s3_access_grants_configuration
 
         out["query_results_s3_access_grants_configuration"] = (

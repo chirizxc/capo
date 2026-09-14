@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ChangesetList:
 
     out: ChangesetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_finspace_data.types.changeset_summary.deserialize_json(item))
     return out

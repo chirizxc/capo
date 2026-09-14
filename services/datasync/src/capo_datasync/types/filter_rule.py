@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: FilterRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FilterRule:
     out: FilterRule = {}  # type: ignore[typeddict-item]
-    if "FilterType" in data:
+    if data.get("FilterType") is not None:
         import capo_datasync.types.filter_type
 
         out["filter_type"] = capo_datasync.types.filter_type.deserialize_aws_json_1_1(
             data["FilterType"]
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

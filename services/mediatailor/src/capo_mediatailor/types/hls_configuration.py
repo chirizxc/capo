@@ -23,6 +23,6 @@ def serialize_json(value: HlsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HlsConfiguration:
     out: HlsConfiguration = {}  # type: ignore[typeddict-item]
-    if "ManifestEndpointPrefix" in data:
+    if data.get("ManifestEndpointPrefix") is not None:
         out["manifest_endpoint_prefix"] = data["ManifestEndpointPrefix"]
     return out

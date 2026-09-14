@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: QueryRuntimeStatisticsRows) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryRuntimeStatisticsRows:
     out: QueryRuntimeStatisticsRows = {}  # type: ignore[typeddict-item]
-    if "InputRows" in data:
+    if data.get("InputRows") is not None:
         out["input_rows"] = data["InputRows"]
-    if "InputBytes" in data:
+    if data.get("InputBytes") is not None:
         out["input_bytes"] = data["InputBytes"]
-    if "OutputBytes" in data:
+    if data.get("OutputBytes") is not None:
         out["output_bytes"] = data["OutputBytes"]
-    if "OutputRows" in data:
+    if data.get("OutputRows") is not None:
         out["output_rows"] = data["OutputRows"]
     return out

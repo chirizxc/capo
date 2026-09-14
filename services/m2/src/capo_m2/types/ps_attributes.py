@@ -23,10 +23,10 @@ def serialize_json(value: PsAttributes) -> dict:
 
 def deserialize_json(data: dict) -> PsAttributes:
     out: PsAttributes = {}  # type: ignore[typeddict-item]
-    if "format" in data:
+    if data.get("format") is not None:
         out["format"] = data["format"]
     else:
         raise DeserializationError("PsAttributes.format required")
-    if "encoding" in data:
+    if data.get("encoding") is not None:
         out["encoding"] = data["encoding"]
     return out

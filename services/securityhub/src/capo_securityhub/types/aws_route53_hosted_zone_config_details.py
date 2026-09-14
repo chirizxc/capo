@@ -23,6 +23,6 @@ def serialize_json(value: AwsRoute53HostedZoneConfigDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRoute53HostedZoneConfigDetails:
     out: AwsRoute53HostedZoneConfigDetails = {}  # type: ignore[typeddict-item]
-    if "Comment" in data:
+    if data.get("Comment") is not None:
         out["comment"] = data["Comment"]
     return out

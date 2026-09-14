@@ -58,7 +58,7 @@ def serialize_aws_json_1_0(value: EdiConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EdiConfiguration:
     out: EdiConfiguration = {}  # type: ignore[typeddict-item]
-    if "capabilityDirection" in data:
+    if data.get("capabilityDirection") is not None:
         import capo_b2bi.types.capability_direction
 
         out["capability_direction"] = (
@@ -66,13 +66,13 @@ def deserialize_aws_json_1_0(data: dict) -> EdiConfiguration:
                 data["capabilityDirection"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_b2bi.types.edi_type
 
         out["type"] = capo_b2bi.types.edi_type.deserialize_aws_json_1_0(data["type"])
     else:
         raise DeserializationError("EdiConfiguration.type required")
-    if "inputLocation" in data:
+    if data.get("inputLocation") is not None:
         import capo_b2bi.types.s3_location
 
         out["input_location"] = capo_b2bi.types.s3_location.deserialize_aws_json_1_0(
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> EdiConfiguration:
         )
     else:
         raise DeserializationError("EdiConfiguration.input_location required")
-    if "outputLocation" in data:
+    if data.get("outputLocation") is not None:
         import capo_b2bi.types.s3_location
 
         out["output_location"] = capo_b2bi.types.s3_location.deserialize_aws_json_1_0(
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> EdiConfiguration:
         )
     else:
         raise DeserializationError("EdiConfiguration.output_location required")
-    if "transformerId" in data:
+    if data.get("transformerId") is not None:
         out["transformer_id"] = data["transformerId"]
     else:
         raise DeserializationError("EdiConfiguration.transformer_id required")

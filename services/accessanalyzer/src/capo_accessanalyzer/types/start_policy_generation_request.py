@@ -49,7 +49,7 @@ def serialize_json(value: StartPolicyGenerationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartPolicyGenerationRequest:
     out: StartPolicyGenerationRequest = {}  # type: ignore[typeddict-item]
-    if "policyGenerationDetails" in data:
+    if data.get("policyGenerationDetails") is not None:
         import capo_accessanalyzer.types.policy_generation_details
 
         out["policy_generation_details"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> StartPolicyGenerationRequest:
         raise DeserializationError(
             "StartPolicyGenerationRequest.policy_generation_details required"
         )
-    if "cloudTrailDetails" in data:
+    if data.get("cloudTrailDetails") is not None:
         import capo_accessanalyzer.types.cloud_trail_details
 
         out["cloud_trail_details"] = (
@@ -69,6 +69,6 @@ def deserialize_json(data: dict) -> StartPolicyGenerationRequest:
                 data["cloudTrailDetails"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

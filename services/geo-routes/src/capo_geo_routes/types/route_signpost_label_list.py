@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RouteSignpostLabelList:
 
     out: RouteSignpostLabelList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_routes.types.route_signpost_label.deserialize_json(item))
     return out

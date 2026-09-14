@@ -43,17 +43,17 @@ def serialize_json(value: MediaConcurrency) -> dict:
 
 def deserialize_json(data: dict) -> MediaConcurrency:
     out: MediaConcurrency = {}  # type: ignore[typeddict-item]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
     else:
         raise DeserializationError("MediaConcurrency.channel required")
-    if "Concurrency" in data:
+    if data.get("Concurrency") is not None:
         out["concurrency"] = data["Concurrency"]
     else:
         raise DeserializationError("MediaConcurrency.concurrency required")
-    if "CrossChannelBehavior" in data:
+    if data.get("CrossChannelBehavior") is not None:
         import capo_connect.types.cross_channel_behavior
 
         out["cross_channel_behavior"] = (

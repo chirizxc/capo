@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> CrawlerMetricsList:
 
     out: CrawlerMetricsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.crawler_metrics.deserialize_aws_json_1_1(item))
     return out

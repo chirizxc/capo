@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: BatchGetReportsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetReportsInput:
     out: BatchGetReportsInput = {}  # type: ignore[typeddict-item]
-    if "reportArns" in data:
+    if data.get("reportArns") is not None:
         import capo_codebuild.types.report_arns
 
         out["report_arns"] = capo_codebuild.types.report_arns.deserialize_aws_json_1_1(

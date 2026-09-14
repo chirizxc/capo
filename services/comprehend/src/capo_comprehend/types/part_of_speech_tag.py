@@ -30,13 +30,21 @@ def serialize_aws_json_1_1(value: PartOfSpeechTag) -> dict:
             )
         )
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> PartOfSpeechTag:
     out: PartOfSpeechTag = {}  # type: ignore[typeddict-item]
-    if "Tag" in data:
+    if data.get("Tag") is not None:
         import capo_comprehend.types.part_of_speech_tag_type
 
         out["tag"] = (
@@ -44,6 +52,6 @@ def deserialize_aws_json_1_1(data: dict) -> PartOfSpeechTag:
                 data["Tag"]
             )
         )
-    if "Score" in data:
-        out["score"] = data["Score"]
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
     return out

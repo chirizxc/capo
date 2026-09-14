@@ -89,27 +89,27 @@ def serialize_aws_json_1_1(value: UpdateTableRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTableRequest:
     out: UpdateTableRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("UpdateTableRequest.database_name required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TableInput" in data:
+    if data.get("TableInput") is not None:
         import capo_glue.types.table_input
 
         out["table_input"] = capo_glue.types.table_input.deserialize_aws_json_1_1(
             data["TableInput"]
         )
-    if "SkipArchive" in data:
+    if data.get("SkipArchive") is not None:
         out["skip_archive"] = data["SkipArchive"]
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "ViewUpdateAction" in data:
+    if data.get("ViewUpdateAction") is not None:
         import capo_glue.types.view_update_action
 
         out["view_update_action"] = (
@@ -117,11 +117,11 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTableRequest:
                 data["ViewUpdateAction"]
             )
         )
-    if "Force" in data:
+    if data.get("Force") is not None:
         out["force"] = data["Force"]
     else:
         out["force"] = False
-    if "UpdateOpenTableFormatInput" in data:
+    if data.get("UpdateOpenTableFormatInput") is not None:
         import capo_glue.types.update_open_table_format_input
 
         out["update_open_table_format_input"] = (

@@ -22,8 +22,8 @@ def serialize_json(value: GitHubResourceCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> GitHubResourceCapabilities:
     out: GitHubResourceCapabilities = {}  # type: ignore[typeddict-item]
-    if "leaveComments" in data:
+    if data.get("leaveComments") is not None:
         out["leave_comments"] = data["leaveComments"]
-    if "remediateCode" in data:
+    if data.get("remediateCode") is not None:
         out["remediate_code"] = data["remediateCode"]
     return out

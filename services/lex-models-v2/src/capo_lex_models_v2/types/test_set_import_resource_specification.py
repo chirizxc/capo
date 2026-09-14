@@ -72,21 +72,21 @@ def serialize_json(value: TestSetImportResourceSpecification) -> dict:
 
 def deserialize_json(data: dict) -> TestSetImportResourceSpecification:
     out: TestSetImportResourceSpecification = {}  # type: ignore[typeddict-item]
-    if "testSetName" in data:
+    if data.get("testSetName") is not None:
         out["test_set_name"] = data["testSetName"]
     else:
         raise DeserializationError(
             "TestSetImportResourceSpecification.test_set_name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(
             "TestSetImportResourceSpecification.role_arn required"
         )
-    if "storageLocation" in data:
+    if data.get("storageLocation") is not None:
         import capo_lex_models_v2.types.test_set_storage_location
 
         out["storage_location"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> TestSetImportResourceSpecification:
         raise DeserializationError(
             "TestSetImportResourceSpecification.storage_location required"
         )
-    if "importInputLocation" in data:
+    if data.get("importInputLocation") is not None:
         import capo_lex_models_v2.types.test_set_import_input_location
 
         out["import_input_location"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> TestSetImportResourceSpecification:
         raise DeserializationError(
             "TestSetImportResourceSpecification.import_input_location required"
         )
-    if "modality" in data:
+    if data.get("modality") is not None:
         import capo_lex_models_v2.types.test_set_modality
 
         out["modality"] = capo_lex_models_v2.types.test_set_modality.deserialize_json(
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> TestSetImportResourceSpecification:
         raise DeserializationError(
             "TestSetImportResourceSpecification.modality required"
         )
-    if "testSetTags" in data:
+    if data.get("testSetTags") is not None:
         import capo_lex_models_v2.types.tag_map
 
         out["test_set_tags"] = capo_lex_models_v2.types.tag_map.deserialize_json(

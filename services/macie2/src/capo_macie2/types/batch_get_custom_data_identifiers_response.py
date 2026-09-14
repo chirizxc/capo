@@ -44,7 +44,7 @@ def serialize_json(value: BatchGetCustomDataIdentifiersResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCustomDataIdentifiersResponse:
     out: BatchGetCustomDataIdentifiersResponse = {}  # type: ignore[typeddict-item]
-    if "customDataIdentifiers" in data:
+    if data.get("customDataIdentifiers") is not None:
         import capo_macie2.types.__list_of_batch_get_custom_data_identifier_summary
 
         out["custom_data_identifiers"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchGetCustomDataIdentifiersResponse:
                 data["customDataIdentifiers"]
             )
         )
-    if "notFoundIdentifierIds" in data:
+    if data.get("notFoundIdentifierIds") is not None:
         import capo_macie2.types.__list_of__string
 
         out["not_found_identifier_ids"] = (

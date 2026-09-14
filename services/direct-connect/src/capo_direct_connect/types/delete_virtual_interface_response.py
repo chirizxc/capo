@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeleteVirtualInterfaceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteVirtualInterfaceResponse:
     out: DeleteVirtualInterfaceResponse = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceState" in data:
+    if data.get("virtualInterfaceState") is not None:
         import capo_direct_connect.types.virtual_interface_state
 
         out["virtual_interface_state"] = (

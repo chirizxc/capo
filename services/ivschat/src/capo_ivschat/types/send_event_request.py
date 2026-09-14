@@ -37,15 +37,15 @@ def serialize_json(value: SendEventRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendEventRequest:
     out: SendEventRequest = {}  # type: ignore[typeddict-item]
-    if "roomIdentifier" in data:
+    if data.get("roomIdentifier") is not None:
         out["room_identifier"] = data["roomIdentifier"]
     else:
         raise DeserializationError("SendEventRequest.room_identifier required")
-    if "eventName" in data:
+    if data.get("eventName") is not None:
         out["event_name"] = data["eventName"]
     else:
         raise DeserializationError("SendEventRequest.event_name required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_ivschat.types.event_attributes
 
         out["attributes"] = capo_ivschat.types.event_attributes.deserialize_json(

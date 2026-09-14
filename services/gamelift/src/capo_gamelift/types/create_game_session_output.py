@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CreateGameSessionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateGameSessionOutput:
     out: CreateGameSessionOutput = {}  # type: ignore[typeddict-item]
-    if "GameSession" in data:
+    if data.get("GameSession") is not None:
         import capo_gamelift.types.game_session
 
         out["game_session"] = capo_gamelift.types.game_session.deserialize_aws_json_1_1(

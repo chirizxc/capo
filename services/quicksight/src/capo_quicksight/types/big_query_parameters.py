@@ -29,10 +29,10 @@ def serialize_json(value: BigQueryParameters) -> dict:
 
 def deserialize_json(data: dict) -> BigQueryParameters:
     out: BigQueryParameters = {}  # type: ignore[typeddict-item]
-    if "ProjectId" in data:
+    if data.get("ProjectId") is not None:
         out["project_id"] = data["ProjectId"]
     else:
         raise DeserializationError("BigQueryParameters.project_id required")
-    if "DataSetRegion" in data:
+    if data.get("DataSetRegion") is not None:
         out["data_set_region"] = data["DataSetRegion"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NetworkACLConfiguration:
 
     out: NetworkACLConfiguration = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_finspace.types.network_acl_entry.deserialize_json(item))
     return out

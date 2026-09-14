@@ -39,13 +39,13 @@ def serialize_json(value: SqlParameter) -> dict:
 
 def deserialize_json(data: dict) -> SqlParameter:
     out: SqlParameter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_rds_data.types.field
 
         out["value"] = capo_rds_data.types.field.deserialize_json(data["value"])
-    if "typeHint" in data:
+    if data.get("typeHint") is not None:
         import capo_rds_data.types.type_hint
 
         out["type_hint"] = capo_rds_data.types.type_hint.deserialize_json(

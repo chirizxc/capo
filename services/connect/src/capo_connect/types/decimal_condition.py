@@ -29,9 +29,25 @@ def serialize_json(value: DecimalCondition) -> dict:
     if "field_name" in value:
         out["FieldName"] = value["field_name"]
     if "min_value" in value:
-        out["MinValue"] = value["min_value"]
+        out["MinValue"] = (
+            "NaN"
+            if value["min_value"] != value["min_value"]
+            else "Infinity"
+            if value["min_value"] == float("inf")
+            else "-Infinity"
+            if value["min_value"] == float("-inf")
+            else value["min_value"]
+        )
     if "max_value" in value:
-        out["MaxValue"] = value["max_value"]
+        out["MaxValue"] = (
+            "NaN"
+            if value["max_value"] != value["max_value"]
+            else "Infinity"
+            if value["max_value"] == float("inf")
+            else "-Infinity"
+            if value["max_value"] == float("-inf")
+            else value["max_value"]
+        )
     if "comparison_type" in value:
         import capo_connect.types.decimal_comparison_type
 
@@ -45,13 +61,13 @@ def serialize_json(value: DecimalCondition) -> dict:
 
 def deserialize_json(data: dict) -> DecimalCondition:
     out: DecimalCondition = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
-    if "MinValue" in data:
-        out["min_value"] = data["MinValue"]
-    if "MaxValue" in data:
-        out["max_value"] = data["MaxValue"]
-    if "ComparisonType" in data:
+    if data.get("MinValue") is not None:
+        out["min_value"] = float(data["MinValue"])
+    if data.get("MaxValue") is not None:
+        out["max_value"] = float(data["MaxValue"])
+    if data.get("ComparisonType") is not None:
         import capo_connect.types.decimal_comparison_type
 
         out["comparison_type"] = (

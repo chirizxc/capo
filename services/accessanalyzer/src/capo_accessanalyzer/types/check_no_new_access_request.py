@@ -33,19 +33,19 @@ def serialize_json(value: CheckNoNewAccessRequest) -> dict:
 
 def deserialize_json(data: dict) -> CheckNoNewAccessRequest:
     out: CheckNoNewAccessRequest = {}  # type: ignore[typeddict-item]
-    if "newPolicyDocument" in data:
+    if data.get("newPolicyDocument") is not None:
         out["new_policy_document"] = data["newPolicyDocument"]
     else:
         raise DeserializationError(
             "CheckNoNewAccessRequest.new_policy_document required"
         )
-    if "existingPolicyDocument" in data:
+    if data.get("existingPolicyDocument") is not None:
         out["existing_policy_document"] = data["existingPolicyDocument"]
     else:
         raise DeserializationError(
             "CheckNoNewAccessRequest.existing_policy_document required"
         )
-    if "policyType" in data:
+    if data.get("policyType") is not None:
         out["policy_type"] = data["policyType"]
     else:
         raise DeserializationError("CheckNoNewAccessRequest.policy_type required")

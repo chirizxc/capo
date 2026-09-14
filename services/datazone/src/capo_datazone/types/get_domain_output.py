@@ -107,31 +107,31 @@ def serialize_json(value: GetDomainOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetDomainOutput:
     out: GetDomainOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetDomainOutput.id required")
-    if "rootDomainUnitId" in data:
+    if data.get("rootDomainUnitId") is not None:
         out["root_domain_unit_id"] = data["rootDomainUnitId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "singleSignOn" in data:
+    if data.get("singleSignOn") is not None:
         import capo_datazone.types.single_sign_on
 
         out["single_sign_on"] = capo_datazone.types.single_sign_on.deserialize_json(
             data["singleSignOn"]
         )
-    if "domainExecutionRole" in data:
+    if data.get("domainExecutionRole") is not None:
         out["domain_execution_role"] = data["domainExecutionRole"]
     else:
         raise DeserializationError("GetDomainOutput.domain_execution_role required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "kmsKeyIdentifier" in data:
+    if data.get("kmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["kmsKeyIdentifier"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.domain_status
 
         out["status"] = capo_datazone.types.domain_status.deserialize_json(
@@ -139,30 +139,30 @@ def deserialize_json(data: dict) -> GetDomainOutput:
         )
     else:
         raise DeserializationError("GetDomainOutput.status required")
-    if "portalUrl" in data:
+    if data.get("portalUrl") is not None:
         out["portal_url"] = data["portalUrl"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["last_updated_at"] = capo_datazone.types.updated_at.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_datazone.types.tags
 
         out["tags"] = capo_datazone.types.tags.deserialize_json(data["tags"])
-    if "domainVersion" in data:
+    if data.get("domainVersion") is not None:
         import capo_datazone.types.domain_version
 
         out["domain_version"] = capo_datazone.types.domain_version.deserialize_json(
             data["domainVersion"]
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
     return out

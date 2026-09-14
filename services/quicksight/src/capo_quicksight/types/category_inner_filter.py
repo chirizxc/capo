@@ -48,7 +48,7 @@ def serialize_json(value: CategoryInnerFilter) -> dict:
 
 def deserialize_json(data: dict) -> CategoryInnerFilter:
     out: CategoryInnerFilter = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> CategoryInnerFilter:
         )
     else:
         raise DeserializationError("CategoryInnerFilter.column required")
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_quicksight.types.category_filter_configuration
 
         out["configuration"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> CategoryInnerFilter:
         )
     else:
         raise DeserializationError("CategoryInnerFilter.configuration required")
-    if "DefaultFilterControlConfiguration" in data:
+    if data.get("DefaultFilterControlConfiguration") is not None:
         import capo_quicksight.types.default_filter_control_configuration
 
         out["default_filter_control_configuration"] = (

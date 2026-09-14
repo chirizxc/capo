@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: UpdateConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateConnectionRequest:
     out: UpdateConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateConnectionRequest.name required")
-    if "ConnectionInput" in data:
+    if data.get("ConnectionInput") is not None:
         import capo_glue.types.connection_input
 
         out["connection_input"] = (

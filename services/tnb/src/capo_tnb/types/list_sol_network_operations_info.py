@@ -79,15 +79,15 @@ def serialize_json(value: ListSolNetworkOperationsInfo) -> dict:
 
 def deserialize_json(data: dict) -> ListSolNetworkOperationsInfo:
     out: ListSolNetworkOperationsInfo = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ListSolNetworkOperationsInfo.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ListSolNetworkOperationsInfo.arn required")
-    if "operationState" in data:
+    if data.get("operationState") is not None:
         import capo_tnb.types.ns_lcm_operation_state
 
         out["operation_state"] = capo_tnb.types.ns_lcm_operation_state.deserialize_json(
@@ -97,13 +97,13 @@ def deserialize_json(data: dict) -> ListSolNetworkOperationsInfo:
         raise DeserializationError(
             "ListSolNetworkOperationsInfo.operation_state required"
         )
-    if "nsInstanceId" in data:
+    if data.get("nsInstanceId") is not None:
         out["ns_instance_id"] = data["nsInstanceId"]
     else:
         raise DeserializationError(
             "ListSolNetworkOperationsInfo.ns_instance_id required"
         )
-    if "lcmOperationType" in data:
+    if data.get("lcmOperationType") is not None:
         import capo_tnb.types.lcm_operation_type
 
         out["lcm_operation_type"] = capo_tnb.types.lcm_operation_type.deserialize_json(
@@ -113,17 +113,17 @@ def deserialize_json(data: dict) -> ListSolNetworkOperationsInfo:
         raise DeserializationError(
             "ListSolNetworkOperationsInfo.lcm_operation_type required"
         )
-    if "updateType" in data:
+    if data.get("updateType") is not None:
         import capo_tnb.types.update_sol_network_type
 
         out["update_type"] = capo_tnb.types.update_sol_network_type.deserialize_json(
             data["updateType"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_tnb.types.problem_details
 
         out["error"] = capo_tnb.types.problem_details.deserialize_json(data["error"])
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_tnb.types.list_sol_network_operations_metadata
 
         out["metadata"] = (

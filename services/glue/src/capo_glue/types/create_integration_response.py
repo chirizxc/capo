@@ -110,29 +110,29 @@ def serialize_aws_json_1_1(value: CreateIntegrationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIntegrationResponse:
     out: CreateIntegrationResponse = {}  # type: ignore[typeddict-item]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
     else:
         raise DeserializationError("CreateIntegrationResponse.source_arn required")
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
     else:
         raise DeserializationError("CreateIntegrationResponse.target_arn required")
-    if "IntegrationName" in data:
+    if data.get("IntegrationName") is not None:
         out["integration_name"] = data["IntegrationName"]
     else:
         raise DeserializationError(
             "CreateIntegrationResponse.integration_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IntegrationArn" in data:
+    if data.get("IntegrationArn") is not None:
         out["integration_arn"] = data["IntegrationArn"]
     else:
         raise DeserializationError("CreateIntegrationResponse.integration_arn required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "AdditionalEncryptionContext" in data:
+    if data.get("AdditionalEncryptionContext") is not None:
         import capo_glue.types.integration_additional_encryption_context_map
 
         out["additional_encryption_context"] = (
@@ -140,13 +140,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIntegrationResponse:
                 data["AdditionalEncryptionContext"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.integration_tags_list
 
         out["tags"] = capo_glue.types.integration_tags_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.integration_status
 
         out["status"] = capo_glue.types.integration_status.deserialize_aws_json_1_1(
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIntegrationResponse:
         )
     else:
         raise DeserializationError("CreateIntegrationResponse.status required")
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_glue.types.integration_timestamp
 
         out["create_time"] = (
@@ -164,15 +164,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIntegrationResponse:
         )
     else:
         raise DeserializationError("CreateIntegrationResponse.create_time required")
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_glue.types.integration_error_list
 
         out["errors"] = capo_glue.types.integration_error_list.deserialize_aws_json_1_1(
             data["Errors"]
         )
-    if "DataFilter" in data:
+    if data.get("DataFilter") is not None:
         out["data_filter"] = data["DataFilter"]
-    if "IntegrationConfig" in data:
+    if data.get("IntegrationConfig") is not None:
         import capo_glue.types.integration_config
 
         out["integration_config"] = (

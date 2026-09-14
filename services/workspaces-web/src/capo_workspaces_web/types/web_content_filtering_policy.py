@@ -52,7 +52,7 @@ def serialize_json(value: WebContentFilteringPolicy) -> dict:
 
 def deserialize_json(data: dict) -> WebContentFilteringPolicy:
     out: WebContentFilteringPolicy = {}  # type: ignore[typeddict-item]
-    if "blockedCategories" in data:
+    if data.get("blockedCategories") is not None:
         import capo_workspaces_web.types.blocked_categories
 
         out["blocked_categories"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> WebContentFilteringPolicy:
                 data["blockedCategories"]
             )
         )
-    if "allowedUrls" in data:
+    if data.get("allowedUrls") is not None:
         import capo_workspaces_web.types.url_pattern_list
 
         out["allowed_urls"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> WebContentFilteringPolicy:
                 data["allowedUrls"]
             )
         )
-    if "blockedUrls" in data:
+    if data.get("blockedUrls") is not None:
         import capo_workspaces_web.types.url_pattern_list
 
         out["blocked_urls"] = (

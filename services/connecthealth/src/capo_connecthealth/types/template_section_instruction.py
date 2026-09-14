@@ -30,11 +30,11 @@ def serialize_json(value: TemplateSectionInstruction) -> dict:
 
 def deserialize_json(data: dict) -> TemplateSectionInstruction:
     out: TemplateSectionInstruction = {}  # type: ignore[typeddict-item]
-    if "sectionHeader" in data:
+    if data.get("sectionHeader") is not None:
         out["section_header"] = data["sectionHeader"]
     else:
         raise DeserializationError("TemplateSectionInstruction.section_header required")
-    if "sectionInstruction" in data:
+    if data.get("sectionInstruction") is not None:
         out["section_instruction"] = data["sectionInstruction"]
     else:
         raise DeserializationError(

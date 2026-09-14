@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_odb._services._pipeline import (
@@ -228,7 +229,7 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_autonomous_database_input.CreateAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.create_autonomous_database_input.CreateAutonomousDatabaseInput = {}
         if odb_network_id is not None:
             input_["odb_network_id"] = odb_network_id
         if display_name is not None:
@@ -309,8 +310,9 @@ class AutonomousDatabaseResource:
             input_["encryption_key_provider"] = encryption_key_provider
         if encryption_key_configuration is not None:
             input_["encryption_key_configuration"] = encryption_key_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -319,6 +321,7 @@ class AutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -356,14 +359,16 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_autonomous_database_input.GetAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.get_autonomous_database_input.GetAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -520,8 +525,9 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.update_autonomous_database_input.UpdateAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.update_autonomous_database_input.UpdateAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if admin_password is not None:
             input_["admin_password"] = admin_password
         if compute_count is not None:
@@ -624,6 +630,7 @@ class AutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -662,14 +669,16 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_autonomous_database_input.DeleteAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.delete_autonomous_database_input.DeleteAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -710,7 +719,7 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_autonomous_databases_input.ListAutonomousDatabasesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_autonomous_databases_input.ListAutonomousDatabasesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -721,6 +730,7 @@ class AutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_autonomous_database_wallet(
@@ -766,19 +776,22 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_autonomous_database_wallet_input.CreateAutonomousDatabaseWalletInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.create_autonomous_database_wallet_input.CreateAutonomousDatabaseWalletInput = {
+            "autonomous_database_id": autonomous_database_id,
+            "password": password,
+        }
         if wallet_type is not None:
             input_["wallet_type"] = wallet_type
-        input_["password"] = password
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def failover_autonomous_database(
@@ -819,8 +832,9 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.failover_autonomous_database_input.FailoverAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.failover_autonomous_database_input.FailoverAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if peer_db_arn is not None:
             input_["peer_db_arn"] = peer_db_arn
 
@@ -829,6 +843,7 @@ class AutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_autonomous_database_wallet_details(
@@ -866,14 +881,16 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_autonomous_database_wallet_details_input.GetAutonomousDatabaseWalletDetailsInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.get_autonomous_database_wallet_details_input.GetAutonomousDatabaseWalletDetailsInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_autonomous_database_clones(
@@ -915,18 +932,20 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_autonomous_database_clones_input.ListAutonomousDatabaseClonesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_autonomous_database_clones_input.ListAutonomousDatabaseClonesInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["autonomous_database_id"] = autonomous_database_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_autonomous_database_peers(
@@ -968,18 +987,20 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_autonomous_database_peers_input.ListAutonomousDatabasePeersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_autonomous_database_peers_input.ListAutonomousDatabasePeersInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["autonomous_database_id"] = autonomous_database_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reboot_autonomous_database(
@@ -1020,8 +1041,9 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.reboot_autonomous_database_input.RebootAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.reboot_autonomous_database_input.RebootAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if is_online_reboot is not None:
             input_["is_online_reboot"] = is_online_reboot
 
@@ -1030,6 +1052,7 @@ class AutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_autonomous_database(
@@ -1070,15 +1093,17 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.restore_autonomous_database_input.RestoreAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
-        input_["timestamp"] = timestamp
+        input_: capo_odb.types.restore_autonomous_database_input.RestoreAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id,
+            "timestamp": timestamp,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def shrink_autonomous_database(
@@ -1117,14 +1142,16 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.shrink_autonomous_database_input.ShrinkAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.shrink_autonomous_database_input.ShrinkAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_autonomous_database(
@@ -1165,14 +1192,16 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.start_autonomous_database_input.StartAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.start_autonomous_database_input.StartAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_autonomous_database(
@@ -1211,14 +1240,16 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.stop_autonomous_database_input.StopAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.stop_autonomous_database_input.StopAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def switchover_autonomous_database(
@@ -1259,8 +1290,9 @@ class AutonomousDatabaseResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.switchover_autonomous_database_input.SwitchoverAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.switchover_autonomous_database_input.SwitchoverAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if peer_db_arn is not None:
             input_["peer_db_arn"] = peer_db_arn
 
@@ -1269,6 +1301,7 @@ class AutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1424,7 +1457,7 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_autonomous_database_input.CreateAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.create_autonomous_database_input.CreateAutonomousDatabaseInput = {}
         if odb_network_id is not None:
             input_["odb_network_id"] = odb_network_id
         if display_name is not None:
@@ -1505,8 +1538,9 @@ class AsyncAutonomousDatabaseResource:
             input_["encryption_key_provider"] = encryption_key_provider
         if encryption_key_configuration is not None:
             input_["encryption_key_configuration"] = encryption_key_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1515,6 +1549,7 @@ class AsyncAutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1553,14 +1588,16 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_autonomous_database_input.GetAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.get_autonomous_database_input.GetAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1718,8 +1755,9 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.update_autonomous_database_input.UpdateAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.update_autonomous_database_input.UpdateAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if admin_password is not None:
             input_["admin_password"] = admin_password
         if compute_count is not None:
@@ -1822,6 +1860,7 @@ class AsyncAutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1861,14 +1900,16 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_autonomous_database_input.DeleteAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.delete_autonomous_database_input.DeleteAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1910,7 +1951,7 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_autonomous_databases_input.ListAutonomousDatabasesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_autonomous_databases_input.ListAutonomousDatabasesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1921,6 +1962,7 @@ class AsyncAutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_autonomous_database_wallet(
@@ -1967,19 +2009,22 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_autonomous_database_wallet_input.CreateAutonomousDatabaseWalletInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.create_autonomous_database_wallet_input.CreateAutonomousDatabaseWalletInput = {
+            "autonomous_database_id": autonomous_database_id,
+            "password": password,
+        }
         if wallet_type is not None:
             input_["wallet_type"] = wallet_type
-        input_["password"] = password
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def failover_autonomous_database(
@@ -2021,8 +2066,9 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.failover_autonomous_database_input.FailoverAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.failover_autonomous_database_input.FailoverAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if peer_db_arn is not None:
             input_["peer_db_arn"] = peer_db_arn
 
@@ -2031,6 +2077,7 @@ class AsyncAutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_autonomous_database_wallet_details(
@@ -2069,14 +2116,16 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_autonomous_database_wallet_details_input.GetAutonomousDatabaseWalletDetailsInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.get_autonomous_database_wallet_details_input.GetAutonomousDatabaseWalletDetailsInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_autonomous_database_clones(
@@ -2119,18 +2168,20 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_autonomous_database_clones_input.ListAutonomousDatabaseClonesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_autonomous_database_clones_input.ListAutonomousDatabaseClonesInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["autonomous_database_id"] = autonomous_database_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_autonomous_database_peers(
@@ -2173,18 +2224,20 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_autonomous_database_peers_input.ListAutonomousDatabasePeersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_autonomous_database_peers_input.ListAutonomousDatabasePeersInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["autonomous_database_id"] = autonomous_database_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_autonomous_database(
@@ -2226,8 +2279,9 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.reboot_autonomous_database_input.RebootAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.reboot_autonomous_database_input.RebootAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if is_online_reboot is not None:
             input_["is_online_reboot"] = is_online_reboot
 
@@ -2236,6 +2290,7 @@ class AsyncAutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def restore_autonomous_database(
@@ -2277,15 +2332,17 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.restore_autonomous_database_input.RestoreAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
-        input_["timestamp"] = timestamp
+        input_: capo_odb.types.restore_autonomous_database_input.RestoreAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id,
+            "timestamp": timestamp,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def shrink_autonomous_database(
@@ -2325,14 +2382,16 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.shrink_autonomous_database_input.ShrinkAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.shrink_autonomous_database_input.ShrinkAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_autonomous_database(
@@ -2374,14 +2433,16 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.start_autonomous_database_input.StartAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.start_autonomous_database_input.StartAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_autonomous_database(
@@ -2421,14 +2482,16 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.stop_autonomous_database_input.StopAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.stop_autonomous_database_input.StopAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def switchover_autonomous_database(
@@ -2470,8 +2533,9 @@ class AsyncAutonomousDatabaseResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.switchover_autonomous_database_input.SwitchoverAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["autonomous_database_id"] = autonomous_database_id
+        input_: capo_odb.types.switchover_autonomous_database_input.SwitchoverAutonomousDatabaseInput = {
+            "autonomous_database_id": autonomous_database_id
+        }
         if peer_db_arn is not None:
             input_["peer_db_arn"] = peer_db_arn
 
@@ -2480,4 +2544,5 @@ class AsyncAutonomousDatabaseResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

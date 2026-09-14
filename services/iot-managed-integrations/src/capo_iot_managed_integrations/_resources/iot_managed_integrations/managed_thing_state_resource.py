@@ -68,14 +68,16 @@ class ManagedThingStateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_state_request.GetManagedThingStateRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
+        input_: capo_iot_managed_integrations.types.get_managed_thing_state_request.GetManagedThingStateRequest = {
+            "managed_thing_id": managed_thing_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -121,12 +123,14 @@ class AsyncManagedThingStateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_state_request.GetManagedThingStateRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_thing_id"] = managed_thing_id
+        input_: capo_iot_managed_integrations.types.get_managed_thing_state_request.GetManagedThingStateRequest = {
+            "managed_thing_id": managed_thing_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

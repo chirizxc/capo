@@ -58,21 +58,21 @@ def serialize_json(value: CreateRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRuleRequest:
     out: CreateRuleRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateRuleRequest.name required")
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_vpc_lattice.types.rule_match
 
         out["match"] = capo_vpc_lattice.types.rule_match.deserialize_json(data["match"])
     else:
         raise DeserializationError("CreateRuleRequest.match required")
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     else:
         raise DeserializationError("CreateRuleRequest.priority required")
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_vpc_lattice.types.rule_action
 
         out["action"] = capo_vpc_lattice.types.rule_action.deserialize_json(
@@ -80,9 +80,9 @@ def deserialize_json(data: dict) -> CreateRuleRequest:
         )
     else:
         raise DeserializationError("CreateRuleRequest.action required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])

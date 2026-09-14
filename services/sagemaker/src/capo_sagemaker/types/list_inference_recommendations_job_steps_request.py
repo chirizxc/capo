@@ -61,9 +61,9 @@ def serialize_aws_json_1_1(value: ListInferenceRecommendationsJobStepsRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> ListInferenceRecommendationsJobStepsRequest:
     out: ListInferenceRecommendationsJobStepsRequest = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.recommendation_job_status
 
         out["status"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceRecommendationsJobSteps
                 data["Status"]
             )
         )
-    if "StepType" in data:
+    if data.get("StepType") is not None:
         import capo_sagemaker.types.recommendation_step_type
 
         out["step_type"] = (
@@ -79,8 +79,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceRecommendationsJobSteps
                 data["StepType"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

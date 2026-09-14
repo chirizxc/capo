@@ -51,22 +51,22 @@ def serialize_json(value: RuleSummary) -> dict:
 
 def deserialize_json(data: dict) -> RuleSummary:
     out: RuleSummary = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         import capo_rbin.types.retention_period
 
         out["retention_period"] = capo_rbin.types.retention_period.deserialize_json(
             data["RetentionPeriod"]
         )
-    if "LockState" in data:
+    if data.get("LockState") is not None:
         import capo_rbin.types.lock_state
 
         out["lock_state"] = capo_rbin.types.lock_state.deserialize_json(
             data["LockState"]
         )
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
     return out

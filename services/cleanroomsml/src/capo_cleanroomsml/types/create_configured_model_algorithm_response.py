@@ -24,7 +24,7 @@ def serialize_json(value: CreateConfiguredModelAlgorithmResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfiguredModelAlgorithmResponse:
     out: CreateConfiguredModelAlgorithmResponse = {}  # type: ignore[typeddict-item]
-    if "configuredModelAlgorithmArn" in data:
+    if data.get("configuredModelAlgorithmArn") is not None:
         out["configured_model_algorithm_arn"] = data["configuredModelAlgorithmArn"]
     else:
         raise DeserializationError(

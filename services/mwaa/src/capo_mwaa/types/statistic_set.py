@@ -20,22 +20,46 @@ def serialize_json(value: StatisticSet) -> dict:
     if "sample_count" in value:
         out["SampleCount"] = value["sample_count"]
     if "sum" in value:
-        out["Sum"] = value["sum"]
+        out["Sum"] = (
+            "NaN"
+            if value["sum"] != value["sum"]
+            else "Infinity"
+            if value["sum"] == float("inf")
+            else "-Infinity"
+            if value["sum"] == float("-inf")
+            else value["sum"]
+        )
     if "minimum" in value:
-        out["Minimum"] = value["minimum"]
+        out["Minimum"] = (
+            "NaN"
+            if value["minimum"] != value["minimum"]
+            else "Infinity"
+            if value["minimum"] == float("inf")
+            else "-Infinity"
+            if value["minimum"] == float("-inf")
+            else value["minimum"]
+        )
     if "maximum" in value:
-        out["Maximum"] = value["maximum"]
+        out["Maximum"] = (
+            "NaN"
+            if value["maximum"] != value["maximum"]
+            else "Infinity"
+            if value["maximum"] == float("inf")
+            else "-Infinity"
+            if value["maximum"] == float("-inf")
+            else value["maximum"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> StatisticSet:
     out: StatisticSet = {}  # type: ignore[typeddict-item]
-    if "SampleCount" in data:
+    if data.get("SampleCount") is not None:
         out["sample_count"] = data["SampleCount"]
-    if "Sum" in data:
-        out["sum"] = data["Sum"]
-    if "Minimum" in data:
-        out["minimum"] = data["Minimum"]
-    if "Maximum" in data:
-        out["maximum"] = data["Maximum"]
+    if data.get("Sum") is not None:
+        out["sum"] = float(data["Sum"])
+    if data.get("Minimum") is not None:
+        out["minimum"] = float(data["Minimum"])
+    if data.get("Maximum") is not None:
+        out["maximum"] = float(data["Maximum"])
     return out

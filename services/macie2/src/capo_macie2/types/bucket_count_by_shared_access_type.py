@@ -35,12 +35,12 @@ def serialize_json(value: BucketCountBySharedAccessType) -> dict:
 
 def deserialize_json(data: dict) -> BucketCountBySharedAccessType:
     out: BucketCountBySharedAccessType = {}  # type: ignore[typeddict-item]
-    if "external" in data:
+    if data.get("external") is not None:
         out["external"] = data["external"]
-    if "internal" in data:
+    if data.get("internal") is not None:
         out["internal"] = data["internal"]
-    if "notShared" in data:
+    if data.get("notShared") is not None:
         out["not_shared"] = data["notShared"]
-    if "unknown" in data:
+    if data.get("unknown") is not None:
         out["unknown"] = data["unknown"]
     return out

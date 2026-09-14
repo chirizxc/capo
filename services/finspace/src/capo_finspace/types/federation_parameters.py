@@ -55,17 +55,17 @@ def serialize_json(value: FederationParameters) -> dict:
 
 def deserialize_json(data: dict) -> FederationParameters:
     out: FederationParameters = {}  # type: ignore[typeddict-item]
-    if "samlMetadataDocument" in data:
+    if data.get("samlMetadataDocument") is not None:
         out["saml_metadata_document"] = data["samlMetadataDocument"]
-    if "samlMetadataURL" in data:
+    if data.get("samlMetadataURL") is not None:
         out["saml_metadata_url"] = data["samlMetadataURL"]
-    if "applicationCallBackURL" in data:
+    if data.get("applicationCallBackURL") is not None:
         out["application_call_back_url"] = data["applicationCallBackURL"]
-    if "federationURN" in data:
+    if data.get("federationURN") is not None:
         out["federation_urn"] = data["federationURN"]
-    if "federationProviderName" in data:
+    if data.get("federationProviderName") is not None:
         out["federation_provider_name"] = data["federationProviderName"]
-    if "attributeMap" in data:
+    if data.get("attributeMap") is not None:
         import capo_finspace.types.attribute_map
 
         out["attribute_map"] = capo_finspace.types.attribute_map.deserialize_json(

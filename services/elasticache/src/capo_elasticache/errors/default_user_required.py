@@ -37,15 +37,18 @@ class DefaultUserRequired(ServiceError):
 
     code: str | None = "DefaultUserRequired"
 
-    def __init__(self, data: DefaultUserRequired_):
+    def __init__(self, data: DefaultUserRequired_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DefaultUserRequired",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "DefaultUserRequired":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "DefaultUserRequired":
+        return cls(deserialize_query(el), message)

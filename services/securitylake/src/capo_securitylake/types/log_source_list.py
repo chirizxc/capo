@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LogSourceList:
 
     out: LogSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securitylake.types.log_source.deserialize_json(item))
     return out

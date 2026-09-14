@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: ResetUserPasswordRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResetUserPasswordRequest:
     out: ResetUserPasswordRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("ResetUserPasswordRequest.directory_id required")
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     else:
         raise DeserializationError("ResetUserPasswordRequest.user_name required")
-    if "NewPassword" in data:
+    if data.get("NewPassword") is not None:
         out["new_password"] = data["NewPassword"]
     else:
         raise DeserializationError("ResetUserPasswordRequest.new_password required")

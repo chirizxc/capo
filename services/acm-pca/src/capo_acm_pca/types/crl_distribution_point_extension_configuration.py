@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CrlDistributionPointExtensionConfiguration) ->
 
 def deserialize_aws_json_1_1(data: dict) -> CrlDistributionPointExtensionConfiguration:
     out: CrlDistributionPointExtensionConfiguration = {}  # type: ignore[typeddict-item]
-    if "OmitExtension" in data:
+    if data.get("OmitExtension") is not None:
         out["omit_extension"] = data["OmitExtension"]
     else:
         raise DeserializationError(

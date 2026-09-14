@@ -73,29 +73,29 @@ def serialize_json(value: ChannelInfo) -> dict:
 
 def deserialize_json(data: dict) -> ChannelInfo:
     out: ChannelInfo = {}  # type: ignore[typeddict-item]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
-    if "ChannelARN" in data:
+    if data.get("ChannelARN") is not None:
         out["channel_arn"] = data["ChannelARN"]
-    if "ChannelType" in data:
+    if data.get("ChannelType") is not None:
         import capo_kinesis_video.types.channel_type
 
         out["channel_type"] = capo_kinesis_video.types.channel_type.deserialize_json(
             data["ChannelType"]
         )
-    if "ChannelStatus" in data:
+    if data.get("ChannelStatus") is not None:
         import capo_kinesis_video.types.status
 
         out["channel_status"] = capo_kinesis_video.types.status.deserialize_json(
             data["ChannelStatus"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_kinesis_video.types.timestamp
 
         out["creation_time"] = capo_kinesis_video.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "SingleMasterConfiguration" in data:
+    if data.get("SingleMasterConfiguration") is not None:
         import capo_kinesis_video.types.single_master_configuration
 
         out["single_master_configuration"] = (
@@ -103,6 +103,6 @@ def deserialize_json(data: dict) -> ChannelInfo:
                 data["SingleMasterConfiguration"]
             )
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

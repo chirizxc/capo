@@ -50,27 +50,27 @@ def serialize_aws_json_1_1(value: PutResourceConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutResourceConfigRequest:
     out: PutResourceConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError("PutResourceConfigRequest.resource_type required")
-    if "SchemaVersionId" in data:
+    if data.get("SchemaVersionId") is not None:
         out["schema_version_id"] = data["SchemaVersionId"]
     else:
         raise DeserializationError(
             "PutResourceConfigRequest.schema_version_id required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("PutResourceConfigRequest.resource_id required")
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         out["configuration"] = data["Configuration"]
     else:
         raise DeserializationError("PutResourceConfigRequest.configuration required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_config_service.types.tags
 
         out["tags"] = capo_config_service.types.tags.deserialize_aws_json_1_1(

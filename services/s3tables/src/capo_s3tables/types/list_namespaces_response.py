@@ -33,7 +33,7 @@ def serialize_json(value: ListNamespacesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListNamespacesResponse:
     out: ListNamespacesResponse = {}  # type: ignore[typeddict-item]
-    if "namespaces" in data:
+    if data.get("namespaces") is not None:
         import capo_s3tables.types.namespace_summary_list
 
         out["namespaces"] = capo_s3tables.types.namespace_summary_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListNamespacesResponse:
         )
     else:
         raise DeserializationError("ListNamespacesResponse.namespaces required")
-    if "continuationToken" in data:
+    if data.get("continuationToken") is not None:
         out["continuation_token"] = data["continuationToken"]
     return out

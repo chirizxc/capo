@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AlgorithmValidationProfiles:
 
     out: AlgorithmValidationProfiles = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.algorithm_validation_profile.deserialize_aws_json_1_1(
                 item

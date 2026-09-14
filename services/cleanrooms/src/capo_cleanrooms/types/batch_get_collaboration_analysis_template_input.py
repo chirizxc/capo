@@ -37,7 +37,7 @@ def serialize_json(value: BatchGetCollaborationAnalysisTemplateInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCollaborationAnalysisTemplateInput:
     out: BatchGetCollaborationAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-    if "analysisTemplateArns" in data:
+    if data.get("analysisTemplateArns") is not None:
         import capo_cleanrooms.types.analysis_template_arn_list
 
         out["analysis_template_arns"] = (

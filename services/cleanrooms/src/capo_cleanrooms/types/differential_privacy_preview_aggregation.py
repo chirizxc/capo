@@ -33,7 +33,7 @@ def serialize_json(value: DifferentialPrivacyPreviewAggregation) -> dict:
 
 def deserialize_json(data: dict) -> DifferentialPrivacyPreviewAggregation:
     out: DifferentialPrivacyPreviewAggregation = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanrooms.types.differential_privacy_aggregation_type
 
         out["type"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> DifferentialPrivacyPreviewAggregation:
         raise DeserializationError(
             "DifferentialPrivacyPreviewAggregation.type required"
         )
-    if "maxCount" in data:
+    if data.get("maxCount") is not None:
         out["max_count"] = data["maxCount"]
     else:
         raise DeserializationError(

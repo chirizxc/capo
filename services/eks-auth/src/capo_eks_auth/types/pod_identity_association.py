@@ -22,11 +22,11 @@ def serialize_json(value: PodIdentityAssociation) -> dict:
 
 def deserialize_json(data: dict) -> PodIdentityAssociation:
     out: PodIdentityAssociation = {}  # type: ignore[typeddict-item]
-    if "associationArn" in data:
+    if data.get("associationArn") is not None:
         out["association_arn"] = data["associationArn"]
     else:
         raise DeserializationError("PodIdentityAssociation.association_arn required")
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
     else:
         raise DeserializationError("PodIdentityAssociation.association_id required")

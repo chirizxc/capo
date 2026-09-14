@@ -73,21 +73,21 @@ def serialize_aws_json_1_1(value: CreateCaseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCaseRequest:
     out: CreateCaseRequest = {}  # type: ignore[typeddict-item]
-    if "subject" in data:
+    if data.get("subject") is not None:
         out["subject"] = data["subject"]
     else:
         raise DeserializationError("CreateCaseRequest.subject required")
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
-    if "severityCode" in data:
+    if data.get("severityCode") is not None:
         out["severity_code"] = data["severityCode"]
-    if "categoryCode" in data:
+    if data.get("categoryCode") is not None:
         out["category_code"] = data["categoryCode"]
-    if "communicationBody" in data:
+    if data.get("communicationBody") is not None:
         out["communication_body"] = data["communicationBody"]
     else:
         raise DeserializationError("CreateCaseRequest.communication_body required")
-    if "ccEmailAddresses" in data:
+    if data.get("ccEmailAddresses") is not None:
         import capo_support.types.cc_email_address_list
 
         out["cc_email_addresses"] = (
@@ -95,10 +95,10 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCaseRequest:
                 data["ccEmailAddresses"]
             )
         )
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
-    if "issueType" in data:
+    if data.get("issueType") is not None:
         out["issue_type"] = data["issueType"]
-    if "attachmentSetId" in data:
+    if data.get("attachmentSetId") is not None:
         out["attachment_set_id"] = data["attachmentSetId"]
     return out

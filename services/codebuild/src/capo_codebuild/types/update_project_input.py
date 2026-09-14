@@ -201,19 +201,19 @@ def serialize_aws_json_1_1(value: UpdateProjectInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProjectInput:
     out: UpdateProjectInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateProjectInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_codebuild.types.project_source
 
         out["source"] = capo_codebuild.types.project_source.deserialize_aws_json_1_1(
             data["source"]
         )
-    if "secondarySources" in data:
+    if data.get("secondarySources") is not None:
         import capo_codebuild.types.project_sources
 
         out["secondary_sources"] = (
@@ -221,9 +221,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProjectInput:
                 data["secondarySources"]
             )
         )
-    if "sourceVersion" in data:
+    if data.get("sourceVersion") is not None:
         out["source_version"] = data["sourceVersion"]
-    if "secondarySourceVersions" in data:
+    if data.get("secondarySourceVersions") is not None:
         import capo_codebuild.types.project_secondary_source_versions
 
         out["secondary_source_versions"] = (
@@ -231,7 +231,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProjectInput:
                 data["secondarySourceVersions"]
             )
         )
-    if "artifacts" in data:
+    if data.get("artifacts") is not None:
         import capo_codebuild.types.project_artifacts
 
         out["artifacts"] = (
@@ -239,7 +239,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProjectInput:
                 data["artifacts"]
             )
         )
-    if "secondaryArtifacts" in data:
+    if data.get("secondaryArtifacts") is not None:
         import capo_codebuild.types.project_artifacts_list
 
         out["secondary_artifacts"] = (
@@ -247,13 +247,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProjectInput:
                 data["secondaryArtifacts"]
             )
         )
-    if "cache" in data:
+    if data.get("cache") is not None:
         import capo_codebuild.types.project_cache
 
         out["cache"] = capo_codebuild.types.project_cache.deserialize_aws_json_1_1(
             data["cache"]
         )
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_codebuild.types.project_environment
 
         out["environment"] = (
@@ -261,35 +261,35 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProjectInput:
                 data["environment"]
             )
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "timeoutInMinutes" in data:
+    if data.get("timeoutInMinutes") is not None:
         out["timeout_in_minutes"] = data["timeoutInMinutes"]
-    if "queuedTimeoutInMinutes" in data:
+    if data.get("queuedTimeoutInMinutes") is not None:
         out["queued_timeout_in_minutes"] = data["queuedTimeoutInMinutes"]
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         out["encryption_key"] = data["encryptionKey"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codebuild.types.tag_list
 
         out["tags"] = capo_codebuild.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_codebuild.types.vpc_config
 
         out["vpc_config"] = capo_codebuild.types.vpc_config.deserialize_aws_json_1_1(
             data["vpcConfig"]
         )
-    if "badgeEnabled" in data:
+    if data.get("badgeEnabled") is not None:
         out["badge_enabled"] = data["badgeEnabled"]
-    if "logsConfig" in data:
+    if data.get("logsConfig") is not None:
         import capo_codebuild.types.logs_config
 
         out["logs_config"] = capo_codebuild.types.logs_config.deserialize_aws_json_1_1(
             data["logsConfig"]
         )
-    if "fileSystemLocations" in data:
+    if data.get("fileSystemLocations") is not None:
         import capo_codebuild.types.project_file_system_locations
 
         out["file_system_locations"] = (
@@ -297,7 +297,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProjectInput:
                 data["fileSystemLocations"]
             )
         )
-    if "buildBatchConfig" in data:
+    if data.get("buildBatchConfig") is not None:
         import capo_codebuild.types.project_build_batch_config
 
         out["build_batch_config"] = (
@@ -305,8 +305,8 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProjectInput:
                 data["buildBatchConfig"]
             )
         )
-    if "concurrentBuildLimit" in data:
+    if data.get("concurrentBuildLimit") is not None:
         out["concurrent_build_limit"] = data["concurrentBuildLimit"]
-    if "autoRetryLimit" in data:
+    if data.get("autoRetryLimit") is not None:
         out["auto_retry_limit"] = data["autoRetryLimit"]
     return out

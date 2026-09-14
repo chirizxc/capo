@@ -34,12 +34,12 @@ def serialize_json(value: ListSubCheckResultsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListSubCheckResultsInput:
     out: ListSubCheckResultsInput = {}  # type: ignore[typeddict-item]
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     else:
         raise DeserializationError("ListSubCheckResultsInput.operation_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

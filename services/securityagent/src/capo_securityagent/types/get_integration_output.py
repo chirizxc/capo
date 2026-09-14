@@ -52,15 +52,15 @@ def serialize_json(value: GetIntegrationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetIntegrationOutput:
     out: GetIntegrationOutput = {}  # type: ignore[typeddict-item]
-    if "integrationId" in data:
+    if data.get("integrationId") is not None:
         out["integration_id"] = data["integrationId"]
     else:
         raise DeserializationError("GetIntegrationOutput.integration_id required")
-    if "installationId" in data:
+    if data.get("installationId") is not None:
         out["installation_id"] = data["installationId"]
     else:
         raise DeserializationError("GetIntegrationOutput.installation_id required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_securityagent.types.provider
 
         out["provider"] = capo_securityagent.types.provider.deserialize_json(
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> GetIntegrationOutput:
         )
     else:
         raise DeserializationError("GetIntegrationOutput.provider required")
-    if "providerType" in data:
+    if data.get("providerType") is not None:
         import capo_securityagent.types.provider_type
 
         out["provider_type"] = capo_securityagent.types.provider_type.deserialize_json(
@@ -76,8 +76,8 @@ def deserialize_json(data: dict) -> GetIntegrationOutput:
         )
     else:
         raise DeserializationError("GetIntegrationOutput.provider_type required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

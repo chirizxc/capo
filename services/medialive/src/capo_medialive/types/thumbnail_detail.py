@@ -34,9 +34,9 @@ def serialize_json(value: ThumbnailDetail) -> dict:
 
 def deserialize_json(data: dict) -> ThumbnailDetail:
     out: ThumbnailDetail = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
-    if "thumbnails" in data:
+    if data.get("thumbnails") is not None:
         import capo_medialive.types.__list_of_thumbnail
 
         out["thumbnails"] = capo_medialive.types.__list_of_thumbnail.deserialize_json(

@@ -31,7 +31,7 @@ def serialize_json(value: LinkSharingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LinkSharingConfiguration:
     out: LinkSharingConfiguration = {}  # type: ignore[typeddict-item]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (

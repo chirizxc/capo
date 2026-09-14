@@ -40,14 +40,14 @@ def serialize_json(value: CreateBackupVaultInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackupVaultInput:
     out: CreateBackupVaultInput = {}  # type: ignore[typeddict-item]
-    if "BackupVaultTags" in data:
+    if data.get("BackupVaultTags") is not None:
         import capo_backup.types.tags
 
         out["backup_vault_tags"] = capo_backup.types.tags.deserialize_json(
             data["BackupVaultTags"]
         )
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
     return out

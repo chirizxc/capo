@@ -94,11 +94,11 @@ def serialize_aws_json_1_1(value: UserPoolDescriptionType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserPoolDescriptionType:
     out: UserPoolDescriptionType = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LambdaConfig" in data:
+    if data.get("LambdaConfig") is not None:
         import capo_cognito_identity_provider.types.lambda_config_type
 
         out["lambda_config"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolDescriptionType:
                 data["LambdaConfig"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cognito_identity_provider.types.status_type
 
         out["status"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolDescriptionType:
                 data["Status"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["last_modified_date"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolDescriptionType:
                 data["LastModifiedDate"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["creation_date"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolDescriptionType:
                 data["CreationDate"]
             )
         )
-    if "ReplicaRegions" in data:
+    if data.get("ReplicaRegions") is not None:
         import capo_cognito_identity_provider.types.replica_regions_type
 
         out["replica_regions"] = (

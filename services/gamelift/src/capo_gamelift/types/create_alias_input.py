@@ -52,11 +52,11 @@ def serialize_aws_json_1_1(value: CreateAliasInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAliasInput:
     out: CreateAliasInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoutingStrategy" in data:
+    if data.get("RoutingStrategy") is not None:
         import capo_gamelift.types.routing_strategy
 
         out["routing_strategy"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAliasInput:
                 data["RoutingStrategy"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_gamelift.types.tag_list
 
         out["tags"] = capo_gamelift.types.tag_list.deserialize_aws_json_1_1(

@@ -82,39 +82,39 @@ def serialize_json(value: RevokeRevisionResponse) -> dict:
 
 def deserialize_json(data: dict) -> RevokeRevisionResponse:
     out: RevokeRevisionResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Comment" in data:
+    if data.get("Comment") is not None:
         out["comment"] = data["Comment"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["created_at"] = capo_dataexchange.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
-    if "Finalized" in data:
+    if data.get("Finalized") is not None:
         out["finalized"] = data["Finalized"]
     else:
         out["finalized"] = False
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["updated_at"] = capo_dataexchange.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "RevocationComment" in data:
+    if data.get("RevocationComment") is not None:
         out["revocation_comment"] = data["RevocationComment"]
-    if "Revoked" in data:
+    if data.get("Revoked") is not None:
         out["revoked"] = data["Revoked"]
     else:
         out["revoked"] = False
-    if "RevokedAt" in data:
+    if data.get("RevokedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["revoked_at"] = capo_dataexchange.types.timestamp.deserialize_json(

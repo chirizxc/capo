@@ -31,7 +31,7 @@ def serialize_json(value: DescribeFlowSourceThumbnailResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFlowSourceThumbnailResponse:
     out: DescribeFlowSourceThumbnailResponse = {}  # type: ignore[typeddict-item]
-    if "thumbnailDetails" in data:
+    if data.get("thumbnailDetails") is not None:
         import capo_mediaconnect.types.thumbnail_details
 
         out["thumbnail_details"] = (

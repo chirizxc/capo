@@ -43,16 +43,16 @@ def serialize_aws_json_1_1(value: ListCustomRoutingPortMappingsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCustomRoutingPortMappingsRequest:
     out: ListCustomRoutingPortMappingsRequest = {}  # type: ignore[typeddict-item]
-    if "AcceleratorArn" in data:
+    if data.get("AcceleratorArn") is not None:
         out["accelerator_arn"] = data["AcceleratorArn"]
     else:
         raise DeserializationError(
             "ListCustomRoutingPortMappingsRequest.accelerator_arn required"
         )
-    if "EndpointGroupArn" in data:
+    if data.get("EndpointGroupArn") is not None:
         out["endpoint_group_arn"] = data["EndpointGroupArn"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

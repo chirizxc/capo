@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: RSessionAppSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RSessionAppSettings:
     out: RSessionAppSettings = {}  # type: ignore[typeddict-item]
-    if "DefaultResourceSpec" in data:
+    if data.get("DefaultResourceSpec") is not None:
         import capo_sagemaker.types.resource_spec
 
         out["default_resource_spec"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> RSessionAppSettings:
                 data["DefaultResourceSpec"]
             )
         )
-    if "CustomImages" in data:
+    if data.get("CustomImages") is not None:
         import capo_sagemaker.types.custom_images
 
         out["custom_images"] = (

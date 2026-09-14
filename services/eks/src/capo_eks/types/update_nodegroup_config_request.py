@@ -87,19 +87,19 @@ def serialize_json(value: UpdateNodegroupConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNodegroupConfigRequest:
     out: UpdateNodegroupConfigRequest = {}  # type: ignore[typeddict-item]
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_eks.types.update_labels_payload
 
         out["labels"] = capo_eks.types.update_labels_payload.deserialize_json(
             data["labels"]
         )
-    if "taints" in data:
+    if data.get("taints") is not None:
         import capo_eks.types.update_taints_payload
 
         out["taints"] = capo_eks.types.update_taints_payload.deserialize_json(
             data["taints"]
         )
-    if "scalingConfig" in data:
+    if data.get("scalingConfig") is not None:
         import capo_eks.types.nodegroup_scaling_config
 
         out["scaling_config"] = (
@@ -107,24 +107,24 @@ def deserialize_json(data: dict) -> UpdateNodegroupConfigRequest:
                 data["scalingConfig"]
             )
         )
-    if "updateConfig" in data:
+    if data.get("updateConfig") is not None:
         import capo_eks.types.nodegroup_update_config
 
         out["update_config"] = capo_eks.types.nodegroup_update_config.deserialize_json(
             data["updateConfig"]
         )
-    if "nodeRepairConfig" in data:
+    if data.get("nodeRepairConfig") is not None:
         import capo_eks.types.node_repair_config
 
         out["node_repair_config"] = capo_eks.types.node_repair_config.deserialize_json(
             data["nodeRepairConfig"]
         )
-    if "warmPoolConfig" in data:
+    if data.get("warmPoolConfig") is not None:
         import capo_eks.types.warm_pool_config
 
         out["warm_pool_config"] = capo_eks.types.warm_pool_config.deserialize_json(
             data["warmPoolConfig"]
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     return out

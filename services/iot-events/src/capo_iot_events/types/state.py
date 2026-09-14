@@ -51,23 +51,23 @@ def serialize_json(value: State) -> dict:
 
 def deserialize_json(data: dict) -> State:
     out: State = {}  # type: ignore[typeddict-item]
-    if "stateName" in data:
+    if data.get("stateName") is not None:
         out["state_name"] = data["stateName"]
     else:
         raise DeserializationError("State.state_name required")
-    if "onInput" in data:
+    if data.get("onInput") is not None:
         import capo_iot_events.types.on_input_lifecycle
 
         out["on_input"] = capo_iot_events.types.on_input_lifecycle.deserialize_json(
             data["onInput"]
         )
-    if "onEnter" in data:
+    if data.get("onEnter") is not None:
         import capo_iot_events.types.on_enter_lifecycle
 
         out["on_enter"] = capo_iot_events.types.on_enter_lifecycle.deserialize_json(
             data["onEnter"]
         )
-    if "onExit" in data:
+    if data.get("onExit") is not None:
         import capo_iot_events.types.on_exit_lifecycle
 
         out["on_exit"] = capo_iot_events.types.on_exit_lifecycle.deserialize_json(

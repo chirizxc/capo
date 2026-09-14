@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> RouteFilterPrefixList:
 
     out: RouteFilterPrefixList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_direct_connect.types.route_filter_prefix.deserialize_aws_json_1_1(item)
         )

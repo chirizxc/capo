@@ -189,11 +189,11 @@ def serialize_aws_json_1_1(value: CertificateSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateSummary:
     out: CertificateSummary = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "SubjectAlternativeNameSummaries" in data:
+    if data.get("SubjectAlternativeNameSummaries") is not None:
         import capo_acm.types.domain_list
 
         out["subject_alternative_name_summaries"] = (
@@ -201,35 +201,35 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateSummary:
                 data["SubjectAlternativeNameSummaries"]
             )
         )
-    if "HasAdditionalSubjectAlternativeNames" in data:
+    if data.get("HasAdditionalSubjectAlternativeNames") is not None:
         out["has_additional_subject_alternative_names"] = data[
             "HasAdditionalSubjectAlternativeNames"
         ]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_acm.types.certificate_status
 
         out["status"] = capo_acm.types.certificate_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_acm.types.certificate_type
 
         out["type"] = capo_acm.types.certificate_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "KeyAlgorithm" in data:
+    if data.get("KeyAlgorithm") is not None:
         import capo_acm.types.key_algorithm
 
         out["key_algorithm"] = capo_acm.types.key_algorithm.deserialize_aws_json_1_1(
             data["KeyAlgorithm"]
         )
-    if "KeyUsages" in data:
+    if data.get("KeyUsages") is not None:
         import capo_acm.types.key_usage_names
 
         out["key_usages"] = capo_acm.types.key_usage_names.deserialize_aws_json_1_1(
             data["KeyUsages"]
         )
-    if "ExtendedKeyUsages" in data:
+    if data.get("ExtendedKeyUsages") is not None:
         import capo_acm.types.extended_key_usage_names
 
         out["extended_key_usages"] = (
@@ -237,7 +237,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateSummary:
                 data["ExtendedKeyUsages"]
             )
         )
-    if "ExportOption" in data:
+    if data.get("ExportOption") is not None:
         import capo_acm.types.certificate_export
 
         out["export_option"] = (
@@ -245,11 +245,11 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateSummary:
                 data["ExportOption"]
             )
         )
-    if "InUse" in data:
+    if data.get("InUse") is not None:
         out["in_use"] = data["InUse"]
-    if "Exported" in data:
+    if data.get("Exported") is not None:
         out["exported"] = data["Exported"]
-    if "RenewalEligibility" in data:
+    if data.get("RenewalEligibility") is not None:
         import capo_acm.types.renewal_eligibility
 
         out["renewal_eligibility"] = (
@@ -257,43 +257,43 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateSummary:
                 data["RenewalEligibility"]
             )
         )
-    if "NotBefore" in data:
+    if data.get("NotBefore") is not None:
         import capo_acm.types.t_stamp
 
         out["not_before"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["NotBefore"]
         )
-    if "NotAfter" in data:
+    if data.get("NotAfter") is not None:
         import capo_acm.types.t_stamp
 
         out["not_after"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["NotAfter"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_acm.types.t_stamp
 
         out["created_at"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "IssuedAt" in data:
+    if data.get("IssuedAt") is not None:
         import capo_acm.types.t_stamp
 
         out["issued_at"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["IssuedAt"]
         )
-    if "ImportedAt" in data:
+    if data.get("ImportedAt") is not None:
         import capo_acm.types.t_stamp
 
         out["imported_at"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["ImportedAt"]
         )
-    if "RevokedAt" in data:
+    if data.get("RevokedAt") is not None:
         import capo_acm.types.t_stamp
 
         out["revoked_at"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["RevokedAt"]
         )
-    if "ManagedBy" in data:
+    if data.get("ManagedBy") is not None:
         import capo_acm.types.certificate_managed_by
 
         out["managed_by"] = (

@@ -35,13 +35,13 @@ def serialize_json(value: BedrockFoundationModelConfigurationForParsing) -> dict
 
 def deserialize_json(data: dict) -> BedrockFoundationModelConfigurationForParsing:
     out: BedrockFoundationModelConfigurationForParsing = {}  # type: ignore[typeddict-item]
-    if "modelArn" in data:
+    if data.get("modelArn") is not None:
         out["model_arn"] = data["modelArn"]
     else:
         raise DeserializationError(
             "BedrockFoundationModelConfigurationForParsing.model_arn required"
         )
-    if "parsingPrompt" in data:
+    if data.get("parsingPrompt") is not None:
         import capo_qconnect.types.parsing_prompt
 
         out["parsing_prompt"] = capo_qconnect.types.parsing_prompt.deserialize_json(

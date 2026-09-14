@@ -32,9 +32,9 @@ def serialize_json(value: ContactList) -> dict:
 
 def deserialize_json(data: dict) -> ContactList:
     out: ContactList = {}  # type: ignore[typeddict-item]
-    if "ContactListName" in data:
+    if data.get("ContactListName") is not None:
         out["contact_list_name"] = data["ContactListName"]
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["last_updated_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(

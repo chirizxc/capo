@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfHopDestination:
 
     out: __listOfHopDestination = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.hop_destination.deserialize_json(item))
     return out

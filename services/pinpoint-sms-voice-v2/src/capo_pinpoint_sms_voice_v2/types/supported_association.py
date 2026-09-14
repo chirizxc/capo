@@ -38,17 +38,17 @@ def serialize_aws_json_1_0(value: SupportedAssociation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SupportedAssociation:
     out: SupportedAssociation = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError("SupportedAssociation.resource_type required")
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
-    if "AssociationBehavior" in data:
+    if data.get("AssociationBehavior") is not None:
         out["association_behavior"] = data["AssociationBehavior"]
     else:
         raise DeserializationError("SupportedAssociation.association_behavior required")
-    if "DisassociationBehavior" in data:
+    if data.get("DisassociationBehavior") is not None:
         out["disassociation_behavior"] = data["DisassociationBehavior"]
     else:
         raise DeserializationError(

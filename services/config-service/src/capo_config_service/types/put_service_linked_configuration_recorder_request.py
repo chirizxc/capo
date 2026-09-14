@@ -35,13 +35,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> PutServiceLinkedConfigurationRecorderRequest:
     out: PutServiceLinkedConfigurationRecorderRequest = {}  # type: ignore[typeddict-item]
-    if "ServicePrincipal" in data:
+    if data.get("ServicePrincipal") is not None:
         out["service_principal"] = data["ServicePrincipal"]
     else:
         raise DeserializationError(
             "PutServiceLinkedConfigurationRecorderRequest.service_principal required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_config_service.types.tags_list
 
         out["tags"] = capo_config_service.types.tags_list.deserialize_aws_json_1_1(

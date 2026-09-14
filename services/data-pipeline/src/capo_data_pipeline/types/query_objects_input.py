@@ -46,22 +46,22 @@ def serialize_aws_json_1_1(value: QueryObjectsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryObjectsInput:
     out: QueryObjectsInput = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
     else:
         raise DeserializationError("QueryObjectsInput.pipeline_id required")
-    if "query" in data:
+    if data.get("query") is not None:
         import capo_data_pipeline.types.query
 
         out["query"] = capo_data_pipeline.types.query.deserialize_aws_json_1_1(
             data["query"]
         )
-    if "sphere" in data:
+    if data.get("sphere") is not None:
         out["sphere"] = data["sphere"]
     else:
         raise DeserializationError("QueryObjectsInput.sphere required")
-    if "marker" in data:
+    if data.get("marker") is not None:
         out["marker"] = data["marker"]
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     return out

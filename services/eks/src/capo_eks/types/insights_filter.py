@@ -47,19 +47,19 @@ def serialize_json(value: InsightsFilter) -> dict:
 
 def deserialize_json(data: dict) -> InsightsFilter:
     out: InsightsFilter = {}  # type: ignore[typeddict-item]
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_eks.types.category_list
 
         out["categories"] = capo_eks.types.category_list.deserialize_json(
             data["categories"]
         )
-    if "kubernetesVersions" in data:
+    if data.get("kubernetesVersions") is not None:
         import capo_eks.types.string_list
 
         out["kubernetes_versions"] = capo_eks.types.string_list.deserialize_json(
             data["kubernetesVersions"]
         )
-    if "statuses" in data:
+    if data.get("statuses") is not None:
         import capo_eks.types.insight_status_value_list
 
         out["statuses"] = capo_eks.types.insight_status_value_list.deserialize_json(

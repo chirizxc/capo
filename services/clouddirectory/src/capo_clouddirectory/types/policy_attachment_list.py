@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PolicyAttachmentList:
 
     out: PolicyAttachmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_clouddirectory.types.policy_attachment.deserialize_json(item))
     return out

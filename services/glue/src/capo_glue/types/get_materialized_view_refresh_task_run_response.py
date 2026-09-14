@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetMaterializedViewRefreshTaskRunResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> GetMaterializedViewRefreshTaskRunResponse:
     out: GetMaterializedViewRefreshTaskRunResponse = {}  # type: ignore[typeddict-item]
-    if "MaterializedViewRefreshTaskRun" in data:
+    if data.get("MaterializedViewRefreshTaskRun") is not None:
         import capo_glue.types.materialized_view_refresh_task_run
 
         out["materialized_view_refresh_task_run"] = (

@@ -23,6 +23,6 @@ def serialize_json(value: SnsChannelConfig) -> dict:
 
 def deserialize_json(data: dict) -> SnsChannelConfig:
     out: SnsChannelConfig = {}  # type: ignore[typeddict-item]
-    if "TopicArn" in data:
+    if data.get("TopicArn") is not None:
         out["topic_arn"] = data["TopicArn"]
     return out

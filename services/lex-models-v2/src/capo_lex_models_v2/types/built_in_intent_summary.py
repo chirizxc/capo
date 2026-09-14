@@ -30,8 +30,8 @@ def serialize_json(value: BuiltInIntentSummary) -> dict:
 
 def deserialize_json(data: dict) -> BuiltInIntentSummary:
     out: BuiltInIntentSummary = {}  # type: ignore[typeddict-item]
-    if "intentSignature" in data:
+    if data.get("intentSignature") is not None:
         out["intent_signature"] = data["intentSignature"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

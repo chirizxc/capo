@@ -33,52 +33,44 @@ def serialize_json(value: CodegenJobSummary) -> dict:
     out["environmentName"] = value["environment_name"]
     out["id"] = value["id"]
     if "created_at" in value:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+        import capo_amplifyuibuilder._protocol.serialize
 
-        out["createdAt"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.serialize_json(
-                value["created_at"]
-            )
+        out["createdAt"] = capo_amplifyuibuilder._protocol.serialize.fmt_date_time(
+            value["created_at"]
         )
     if "modified_at" in value:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+        import capo_amplifyuibuilder._protocol.serialize
 
-        out["modifiedAt"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.serialize_json(
-                value["modified_at"]
-            )
+        out["modifiedAt"] = capo_amplifyuibuilder._protocol.serialize.fmt_date_time(
+            value["modified_at"]
         )
     return out
 
 
 def deserialize_json(data: dict) -> CodegenJobSummary:
     out: CodegenJobSummary = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("CodegenJobSummary.app_id required")
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError("CodegenJobSummary.environment_name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CodegenJobSummary.id required")
-    if "createdAt" in data:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "modifiedAt" in data:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+    if data.get("modifiedAt") is not None:
+        import datetime
 
-        out["modified_at"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.deserialize_json(
-                data["modifiedAt"]
-            )
+        out["modified_at"] = datetime.datetime.fromisoformat(
+            data["modifiedAt"].replace("Z", "+00:00")
         )
     return out

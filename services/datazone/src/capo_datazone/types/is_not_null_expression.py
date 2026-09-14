@@ -19,7 +19,7 @@ def serialize_json(value: IsNotNullExpression) -> dict:
 
 def deserialize_json(data: dict) -> IsNotNullExpression:
     out: IsNotNullExpression = {}  # type: ignore[typeddict-item]
-    if "columnName" in data:
+    if data.get("columnName") is not None:
         out["column_name"] = data["columnName"]
     else:
         raise DeserializationError("IsNotNullExpression.column_name required")

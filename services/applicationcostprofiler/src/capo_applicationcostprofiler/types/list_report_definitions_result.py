@@ -36,7 +36,7 @@ def serialize_json(value: ListReportDefinitionsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListReportDefinitionsResult:
     out: ListReportDefinitionsResult = {}  # type: ignore[typeddict-item]
-    if "reportDefinitions" in data:
+    if data.get("reportDefinitions") is not None:
         import capo_applicationcostprofiler.types.report_definition_list
 
         out["report_definitions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListReportDefinitionsResult:
                 data["reportDefinitions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

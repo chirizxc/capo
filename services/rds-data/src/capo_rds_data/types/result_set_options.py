@@ -40,7 +40,7 @@ def serialize_json(value: ResultSetOptions) -> dict:
 
 def deserialize_json(data: dict) -> ResultSetOptions:
     out: ResultSetOptions = {}  # type: ignore[typeddict-item]
-    if "decimalReturnType" in data:
+    if data.get("decimalReturnType") is not None:
         import capo_rds_data.types.decimal_return_type
 
         out["decimal_return_type"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ResultSetOptions:
                 data["decimalReturnType"]
             )
         )
-    if "longReturnType" in data:
+    if data.get("longReturnType") is not None:
         import capo_rds_data.types.long_return_type
 
         out["long_return_type"] = capo_rds_data.types.long_return_type.deserialize_json(

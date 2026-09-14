@@ -26,8 +26,8 @@ def serialize_json(value: BestPractice) -> dict:
 
 def deserialize_json(data: dict) -> BestPractice:
     out: BestPractice = {}  # type: ignore[typeddict-item]
-    if "ChoiceId" in data:
+    if data.get("ChoiceId") is not None:
         out["choice_id"] = data["ChoiceId"]
-    if "ChoiceTitle" in data:
+    if data.get("ChoiceTitle") is not None:
         out["choice_title"] = data["ChoiceTitle"]
     return out

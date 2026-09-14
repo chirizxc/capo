@@ -66,7 +66,15 @@ def serialize_aws_json_1_1(value: DataQualityResult) -> dict:
     if "profile_id" in value:
         out["ProfileId"] = value["profile_id"]
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     if "data_source" in value:
         import capo_glue.types.data_source
 
@@ -132,41 +140,41 @@ def serialize_aws_json_1_1(value: DataQualityResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityResult:
     out: DataQualityResult = {}  # type: ignore[typeddict-item]
-    if "ResultId" in data:
+    if data.get("ResultId") is not None:
         out["result_id"] = data["ResultId"]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
-    if "Score" in data:
-        out["score"] = data["Score"]
-    if "DataSource" in data:
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
+    if data.get("DataSource") is not None:
         import capo_glue.types.data_source
 
         out["data_source"] = capo_glue.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
         )
-    if "RulesetName" in data:
+    if data.get("RulesetName") is not None:
         out["ruleset_name"] = data["RulesetName"]
-    if "EvaluationContext" in data:
+    if data.get("EvaluationContext") is not None:
         out["evaluation_context"] = data["EvaluationContext"]
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp
 
         out["started_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["StartedOn"]
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp
 
         out["completed_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobRunId" in data:
+    if data.get("JobRunId") is not None:
         out["job_run_id"] = data["JobRunId"]
-    if "RulesetEvaluationRunId" in data:
+    if data.get("RulesetEvaluationRunId") is not None:
         out["ruleset_evaluation_run_id"] = data["RulesetEvaluationRunId"]
-    if "RuleResults" in data:
+    if data.get("RuleResults") is not None:
         import capo_glue.types.data_quality_rule_results
 
         out["rule_results"] = (
@@ -174,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityResult:
                 data["RuleResults"]
             )
         )
-    if "AnalyzerResults" in data:
+    if data.get("AnalyzerResults") is not None:
         import capo_glue.types.data_quality_analyzer_results
 
         out["analyzer_results"] = (
@@ -182,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityResult:
                 data["AnalyzerResults"]
             )
         )
-    if "Observations" in data:
+    if data.get("Observations") is not None:
         import capo_glue.types.data_quality_observations
 
         out["observations"] = (
@@ -190,7 +198,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityResult:
                 data["Observations"]
             )
         )
-    if "AggregatedMetrics" in data:
+    if data.get("AggregatedMetrics") is not None:
         import capo_glue.types.data_quality_aggregated_metrics
 
         out["aggregated_metrics"] = (

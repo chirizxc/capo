@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: EntityConfigurationMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> EntityConfigurationMap:
     out: EntityConfigurationMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_glue.types.entity_configuration
 
         out[key] = capo_glue.types.entity_configuration.deserialize_aws_json_1_1(value)

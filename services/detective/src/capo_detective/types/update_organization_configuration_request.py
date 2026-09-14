@@ -28,13 +28,13 @@ def serialize_json(value: UpdateOrganizationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOrganizationConfigurationRequest:
     out: UpdateOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError(
             "UpdateOrganizationConfigurationRequest.graph_arn required"
         )
-    if "AutoEnable" in data:
+    if data.get("AutoEnable") is not None:
         out["auto_enable"] = data["AutoEnable"]
     else:
         out["auto_enable"] = False

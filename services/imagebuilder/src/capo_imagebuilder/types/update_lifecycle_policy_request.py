@@ -82,15 +82,15 @@ def serialize_json(value: UpdateLifecyclePolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLifecyclePolicyRequest:
     out: UpdateLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "lifecyclePolicyArn" in data:
+    if data.get("lifecyclePolicyArn") is not None:
         out["lifecycle_policy_arn"] = data["lifecyclePolicyArn"]
     else:
         raise DeserializationError(
             "UpdateLifecyclePolicyRequest.lifecycle_policy_arn required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.lifecycle_policy_status
 
         out["status"] = (
@@ -98,13 +98,13 @@ def deserialize_json(data: dict) -> UpdateLifecyclePolicyRequest:
                 data["status"]
             )
         )
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
     else:
         raise DeserializationError(
             "UpdateLifecyclePolicyRequest.execution_role required"
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_imagebuilder.types.lifecycle_policy_resource_type
 
         out["resource_type"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> UpdateLifecyclePolicyRequest:
         raise DeserializationError(
             "UpdateLifecyclePolicyRequest.resource_type required"
         )
-    if "policyDetails" in data:
+    if data.get("policyDetails") is not None:
         import capo_imagebuilder.types.lifecycle_policy_details
 
         out["policy_details"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> UpdateLifecyclePolicyRequest:
         raise DeserializationError(
             "UpdateLifecyclePolicyRequest.policy_details required"
         )
-    if "resourceSelection" in data:
+    if data.get("resourceSelection") is not None:
         import capo_imagebuilder.types.lifecycle_policy_resource_selection
 
         out["resource_selection"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> UpdateLifecyclePolicyRequest:
         raise DeserializationError(
             "UpdateLifecyclePolicyRequest.resource_selection required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("UpdateLifecyclePolicyRequest.client_token required")

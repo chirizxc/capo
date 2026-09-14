@@ -55,21 +55,21 @@ def serialize_json(value: VpcConnection) -> dict:
 
 def deserialize_json(data: dict) -> VpcConnection:
     out: VpcConnection = {}  # type: ignore[typeddict-item]
-    if "vpcConnectionArn" in data:
+    if data.get("vpcConnectionArn") is not None:
         out["vpc_connection_arn"] = data["vpcConnectionArn"]
-    if "targetClusterArn" in data:
+    if data.get("targetClusterArn") is not None:
         out["target_cluster_arn"] = data["targetClusterArn"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["creation_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["creationTime"]
         )
-    if "authentication" in data:
+    if data.get("authentication") is not None:
         out["authentication"] = data["authentication"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_kafka.types.vpc_connection_state
 
         out["state"] = capo_kafka.types.vpc_connection_state.deserialize_json(

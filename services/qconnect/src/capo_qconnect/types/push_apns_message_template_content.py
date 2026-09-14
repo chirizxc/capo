@@ -73,9 +73,9 @@ def serialize_json(value: PushAPNSMessageTemplateContent) -> dict:
 
 def deserialize_json(data: dict) -> PushAPNSMessageTemplateContent:
     out: PushAPNSMessageTemplateContent = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "body" in data:
+    if data.get("body") is not None:
         import capo_qconnect.types.message_template_body_content_provider
 
         out["body"] = (
@@ -83,15 +83,15 @@ def deserialize_json(data: dict) -> PushAPNSMessageTemplateContent:
                 data["body"]
             )
         )
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "sound" in data:
+    if data.get("sound") is not None:
         out["sound"] = data["sound"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "mediaUrl" in data:
+    if data.get("mediaUrl") is not None:
         out["media_url"] = data["mediaUrl"]
-    if "rawContent" in data:
+    if data.get("rawContent") is not None:
         import capo_qconnect.types.message_template_body_content_provider
 
         out["raw_content"] = (

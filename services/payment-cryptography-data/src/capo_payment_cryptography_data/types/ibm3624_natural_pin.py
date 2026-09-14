@@ -34,17 +34,17 @@ def serialize_json(value: Ibm3624NaturalPin) -> dict:
 
 def deserialize_json(data: dict) -> Ibm3624NaturalPin:
     out: Ibm3624NaturalPin = {}  # type: ignore[typeddict-item]
-    if "DecimalizationTable" in data:
+    if data.get("DecimalizationTable") is not None:
         out["decimalization_table"] = data["DecimalizationTable"]
     else:
         raise DeserializationError("Ibm3624NaturalPin.decimalization_table required")
-    if "PinValidationDataPadCharacter" in data:
+    if data.get("PinValidationDataPadCharacter") is not None:
         out["pin_validation_data_pad_character"] = data["PinValidationDataPadCharacter"]
     else:
         raise DeserializationError(
             "Ibm3624NaturalPin.pin_validation_data_pad_character required"
         )
-    if "PinValidationData" in data:
+    if data.get("PinValidationData") is not None:
         out["pin_validation_data"] = data["PinValidationData"]
     else:
         raise DeserializationError("Ibm3624NaturalPin.pin_validation_data required")

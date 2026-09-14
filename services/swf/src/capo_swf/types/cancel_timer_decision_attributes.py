@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CancelTimerDecisionAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelTimerDecisionAttributes:
     out: CancelTimerDecisionAttributes = {}  # type: ignore[typeddict-item]
-    if "timerId" in data:
+    if data.get("timerId") is not None:
         out["timer_id"] = data["timerId"]
     else:
         raise DeserializationError("CancelTimerDecisionAttributes.timer_id required")

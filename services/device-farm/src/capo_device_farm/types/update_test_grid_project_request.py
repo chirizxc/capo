@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: UpdateTestGridProjectRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTestGridProjectRequest:
     out: UpdateTestGridProjectRequest = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError("UpdateTestGridProjectRequest.project_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_device_farm.types.test_grid_vpc_config
 
         out["vpc_config"] = (

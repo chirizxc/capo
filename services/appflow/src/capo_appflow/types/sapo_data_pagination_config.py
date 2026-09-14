@@ -24,7 +24,7 @@ def serialize_json(value: SAPODataPaginationConfig) -> dict:
 
 def deserialize_json(data: dict) -> SAPODataPaginationConfig:
     out: SAPODataPaginationConfig = {}  # type: ignore[typeddict-item]
-    if "maxPageSize" in data:
+    if data.get("maxPageSize") is not None:
         out["max_page_size"] = data["maxPageSize"]
     else:
         raise DeserializationError("SAPODataPaginationConfig.max_page_size required")

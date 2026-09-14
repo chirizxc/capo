@@ -132,23 +132,23 @@ def serialize_json(value: StartTrainedModelInferenceJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartTrainedModelInferenceJobRequest:
     out: StartTrainedModelInferenceJobRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StartTrainedModelInferenceJobRequest.name required")
-    if "trainedModelArn" in data:
+    if data.get("trainedModelArn") is not None:
         out["trained_model_arn"] = data["trainedModelArn"]
     else:
         raise DeserializationError(
             "StartTrainedModelInferenceJobRequest.trained_model_arn required"
         )
-    if "trainedModelVersionIdentifier" in data:
+    if data.get("trainedModelVersionIdentifier") is not None:
         out["trained_model_version_identifier"] = data["trainedModelVersionIdentifier"]
-    if "configuredModelAlgorithmAssociationArn" in data:
+    if data.get("configuredModelAlgorithmAssociationArn") is not None:
         out["configured_model_algorithm_association_arn"] = data[
             "configuredModelAlgorithmAssociationArn"
         ]
-    if "resourceConfig" in data:
+    if data.get("resourceConfig") is not None:
         import capo_cleanroomsml.types.inference_resource_config
 
         out["resource_config"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> StartTrainedModelInferenceJobRequest:
         raise DeserializationError(
             "StartTrainedModelInferenceJobRequest.resource_config required"
         )
-    if "outputConfiguration" in data:
+    if data.get("outputConfiguration") is not None:
         import capo_cleanroomsml.types.inference_output_configuration
 
         out["output_configuration"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> StartTrainedModelInferenceJobRequest:
         raise DeserializationError(
             "StartTrainedModelInferenceJobRequest.output_configuration required"
         )
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_cleanroomsml.types.model_inference_data_source
 
         out["data_source"] = (
@@ -184,9 +184,9 @@ def deserialize_json(data: dict) -> StartTrainedModelInferenceJobRequest:
         raise DeserializationError(
             "StartTrainedModelInferenceJobRequest.data_source required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "containerExecutionParameters" in data:
+    if data.get("containerExecutionParameters") is not None:
         import capo_cleanroomsml.types.inference_container_execution_parameters
 
         out["container_execution_parameters"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> StartTrainedModelInferenceJobRequest:
                 data["containerExecutionParameters"]
             )
         )
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_cleanroomsml.types.inference_environment_map
 
         out["environment"] = (
@@ -202,13 +202,13 @@ def deserialize_json(data: dict) -> StartTrainedModelInferenceJobRequest:
                 data["environment"]
             )
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "mlModelInferencePayerAccountId" in data:
+    if data.get("mlModelInferencePayerAccountId") is not None:
         out["ml_model_inference_payer_account_id"] = data[
             "mlModelInferencePayerAccountId"
         ]

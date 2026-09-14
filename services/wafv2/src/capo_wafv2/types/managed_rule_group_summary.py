@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: ManagedRuleGroupSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedRuleGroupSummary:
     out: ManagedRuleGroupSummary = {}  # type: ignore[typeddict-item]
-    if "VendorName" in data:
+    if data.get("VendorName") is not None:
         out["vendor_name"] = data["VendorName"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "VersioningSupported" in data:
+    if data.get("VersioningSupported") is not None:
         out["versioning_supported"] = data["VersioningSupported"]
     else:
         out["versioning_supported"] = False
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

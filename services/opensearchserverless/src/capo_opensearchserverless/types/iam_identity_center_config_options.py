@@ -54,16 +54,16 @@ def serialize_aws_json_1_0(value: IamIdentityCenterConfigOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IamIdentityCenterConfigOptions:
     out: IamIdentityCenterConfigOptions = {}  # type: ignore[typeddict-item]
-    if "instanceArn" in data:
+    if data.get("instanceArn") is not None:
         out["instance_arn"] = data["instanceArn"]
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
-    if "applicationDescription" in data:
+    if data.get("applicationDescription") is not None:
         out["application_description"] = data["applicationDescription"]
-    if "userAttribute" in data:
+    if data.get("userAttribute") is not None:
         out["user_attribute"] = data["userAttribute"]
-    if "groupAttribute" in data:
+    if data.get("groupAttribute") is not None:
         out["group_attribute"] = data["groupAttribute"]
     return out

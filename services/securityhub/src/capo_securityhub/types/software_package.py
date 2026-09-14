@@ -71,26 +71,26 @@ def serialize_json(value: SoftwarePackage) -> dict:
 
 def deserialize_json(data: dict) -> SoftwarePackage:
     out: SoftwarePackage = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Epoch" in data:
+    if data.get("Epoch") is not None:
         out["epoch"] = data["Epoch"]
-    if "Release" in data:
+    if data.get("Release") is not None:
         out["release"] = data["Release"]
-    if "Architecture" in data:
+    if data.get("Architecture") is not None:
         out["architecture"] = data["Architecture"]
-    if "PackageManager" in data:
+    if data.get("PackageManager") is not None:
         out["package_manager"] = data["PackageManager"]
-    if "FilePath" in data:
+    if data.get("FilePath") is not None:
         out["file_path"] = data["FilePath"]
-    if "FixedInVersion" in data:
+    if data.get("FixedInVersion") is not None:
         out["fixed_in_version"] = data["FixedInVersion"]
-    if "Remediation" in data:
+    if data.get("Remediation") is not None:
         out["remediation"] = data["Remediation"]
-    if "SourceLayerHash" in data:
+    if data.get("SourceLayerHash") is not None:
         out["source_layer_hash"] = data["SourceLayerHash"]
-    if "SourceLayerArn" in data:
+    if data.get("SourceLayerArn") is not None:
         out["source_layer_arn"] = data["SourceLayerArn"]
     return out

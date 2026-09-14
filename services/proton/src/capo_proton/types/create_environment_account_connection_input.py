@@ -53,28 +53,28 @@ def serialize_aws_json_1_0(value: CreateEnvironmentAccountConnectionInput) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentAccountConnectionInput:
     out: CreateEnvironmentAccountConnectionInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "managementAccountId" in data:
+    if data.get("managementAccountId") is not None:
         out["management_account_id"] = data["managementAccountId"]
     else:
         raise DeserializationError(
             "CreateEnvironmentAccountConnectionInput.management_account_id required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError(
             "CreateEnvironmentAccountConnectionInput.environment_name required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_proton.types.tag_list
 
         out["tags"] = capo_proton.types.tag_list.deserialize_aws_json_1_0(data["tags"])
-    if "componentRoleArn" in data:
+    if data.get("componentRoleArn") is not None:
         out["component_role_arn"] = data["componentRoleArn"]
-    if "codebuildRoleArn" in data:
+    if data.get("codebuildRoleArn") is not None:
         out["codebuild_role_arn"] = data["codebuildRoleArn"]
     return out

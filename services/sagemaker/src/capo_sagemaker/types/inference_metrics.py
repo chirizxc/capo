@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: InferenceMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceMetrics:
     out: InferenceMetrics = {}  # type: ignore[typeddict-item]
-    if "MaxInvocations" in data:
+    if data.get("MaxInvocations") is not None:
         out["max_invocations"] = data["MaxInvocations"]
-    if "ModelLatency" in data:
+    if data.get("ModelLatency") is not None:
         out["model_latency"] = data["ModelLatency"]
     return out

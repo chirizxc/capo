@@ -82,19 +82,19 @@ def serialize_aws_json_1_1(value: SubStatementData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SubStatementData:
     out: SubStatementData = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("SubStatementData.id required")
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_redshift_data.types._prelude.timestamp
 
         out["created_at"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> SubStatementData:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_redshift_data.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -110,20 +110,20 @@ def deserialize_aws_json_1_1(data: dict) -> SubStatementData:
                 data["UpdatedAt"]
             )
         )
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
-    if "ResultRows" in data:
+    if data.get("ResultRows") is not None:
         out["result_rows"] = data["ResultRows"]
     else:
         out["result_rows"] = 0
-    if "ResultSize" in data:
+    if data.get("ResultSize") is not None:
         out["result_size"] = data["ResultSize"]
     else:
         out["result_size"] = 0
-    if "RedshiftQueryId" in data:
+    if data.get("RedshiftQueryId") is not None:
         out["redshift_query_id"] = data["RedshiftQueryId"]
     else:
         out["redshift_query_id"] = 0
-    if "HasResultSet" in data:
+    if data.get("HasResultSet") is not None:
         out["has_result_set"] = data["HasResultSet"]
     return out

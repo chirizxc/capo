@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: EvaluationContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluationContext:
     out: EvaluationContext = {}  # type: ignore[typeddict-item]
-    if "EvaluationContextIdentifier" in data:
+    if data.get("EvaluationContextIdentifier") is not None:
         out["evaluation_context_identifier"] = data["EvaluationContextIdentifier"]
     return out

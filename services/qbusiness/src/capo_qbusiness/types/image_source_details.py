@@ -28,8 +28,8 @@ def serialize_json(value: ImageSourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> ImageSourceDetails:
     out: ImageSourceDetails = {}  # type: ignore[typeddict-item]
-    if "mediaId" in data:
+    if data.get("mediaId") is not None:
         out["media_id"] = data["mediaId"]
-    if "mediaMimeType" in data:
+    if data.get("mediaMimeType") is not None:
         out["media_mime_type"] = data["mediaMimeType"]
     return out

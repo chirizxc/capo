@@ -43,7 +43,7 @@ def serialize_json(value: ExportErrorDetails) -> dict:
 
 def deserialize_json(data: dict) -> ExportErrorDetails:
     out: ExportErrorDetails = {}  # type: ignore[typeddict-item]
-    if "ExportResults" in data:
+    if data.get("ExportResults") is not None:
         import capo_sagemaker_geospatial.types.export_error_details_output
 
         out["export_results"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> ExportErrorDetails:
                 data["ExportResults"]
             )
         )
-    if "ExportSourceImages" in data:
+    if data.get("ExportSourceImages") is not None:
         import capo_sagemaker_geospatial.types.export_error_details_output
 
         out["export_source_images"] = (

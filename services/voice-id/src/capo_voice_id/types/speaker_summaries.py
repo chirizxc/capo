@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> SpeakerSummaries:
 
     out: SpeakerSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_voice_id.types.speaker_summary.deserialize_aws_json_1_0(item))
     return out

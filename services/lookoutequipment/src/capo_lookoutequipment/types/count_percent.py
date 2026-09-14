@@ -22,18 +22,26 @@ class CountPercent(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: CountPercent) -> dict:
     out: dict = {}
     out["Count"] = value["count"]
-    out["Percentage"] = value.get("percentage", 0)
+    out["Percentage"] = (
+        "NaN"
+        if value.get("percentage", 0) != value.get("percentage", 0)
+        else "Infinity"
+        if value.get("percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("percentage", 0) == float("-inf")
+        else value.get("percentage", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> CountPercent:
     out: CountPercent = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     else:
         raise DeserializationError("CountPercent.count required")
-    if "Percentage" in data:
-        out["percentage"] = data["Percentage"]
+    if data.get("Percentage") is not None:
+        out["percentage"] = float(data["Percentage"])
     else:
         out["percentage"] = 0
     return out

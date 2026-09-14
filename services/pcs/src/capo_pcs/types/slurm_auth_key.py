@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: SlurmAuthKey) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SlurmAuthKey:
     out: SlurmAuthKey = {}  # type: ignore[typeddict-item]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError("SlurmAuthKey.secret_arn required")
-    if "secretVersion" in data:
+    if data.get("secretVersion") is not None:
         out["secret_version"] = data["secretVersion"]
     else:
         raise DeserializationError("SlurmAuthKey.secret_version required")

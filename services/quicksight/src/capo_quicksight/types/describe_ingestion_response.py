@@ -35,12 +35,12 @@ def serialize_json(value: DescribeIngestionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeIngestionResponse:
     out: DescribeIngestionResponse = {}  # type: ignore[typeddict-item]
-    if "Ingestion" in data:
+    if data.get("Ingestion") is not None:
         import capo_quicksight.types.ingestion
 
         out["ingestion"] = capo_quicksight.types.ingestion.deserialize_json(
             data["Ingestion"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

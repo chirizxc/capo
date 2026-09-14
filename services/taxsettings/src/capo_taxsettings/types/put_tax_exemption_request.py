@@ -50,7 +50,7 @@ def serialize_json(value: PutTaxExemptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutTaxExemptionRequest:
     out: PutTaxExemptionRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_taxsettings.types.account_ids
 
         out["account_ids"] = capo_taxsettings.types.account_ids.deserialize_json(
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> PutTaxExemptionRequest:
         )
     else:
         raise DeserializationError("PutTaxExemptionRequest.account_ids required")
-    if "authority" in data:
+    if data.get("authority") is not None:
         import capo_taxsettings.types.authority
 
         out["authority"] = capo_taxsettings.types.authority.deserialize_json(
@@ -66,11 +66,11 @@ def deserialize_json(data: dict) -> PutTaxExemptionRequest:
         )
     else:
         raise DeserializationError("PutTaxExemptionRequest.authority required")
-    if "exemptionType" in data:
+    if data.get("exemptionType") is not None:
         out["exemption_type"] = data["exemptionType"]
     else:
         raise DeserializationError("PutTaxExemptionRequest.exemption_type required")
-    if "exemptionCertificate" in data:
+    if data.get("exemptionCertificate") is not None:
         import capo_taxsettings.types.exemption_certificate
 
         out["exemption_certificate"] = (

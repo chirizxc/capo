@@ -27,8 +27,8 @@ def serialize_json(value: JourneyTimeframeCap) -> dict:
 
 def deserialize_json(data: dict) -> JourneyTimeframeCap:
     out: JourneyTimeframeCap = {}  # type: ignore[typeddict-item]
-    if "Cap" in data:
+    if data.get("Cap") is not None:
         out["cap"] = data["Cap"]
-    if "Days" in data:
+    if data.get("Days") is not None:
         out["days"] = data["Days"]
     return out

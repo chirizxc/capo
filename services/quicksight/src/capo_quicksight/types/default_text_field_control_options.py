@@ -31,7 +31,7 @@ def serialize_json(value: DefaultTextFieldControlOptions) -> dict:
 
 def deserialize_json(data: dict) -> DefaultTextFieldControlOptions:
     out: DefaultTextFieldControlOptions = {}  # type: ignore[typeddict-item]
-    if "DisplayOptions" in data:
+    if data.get("DisplayOptions") is not None:
         import capo_quicksight.types.text_field_control_display_options
 
         out["display_options"] = (

@@ -40,7 +40,7 @@ def serialize_json(value: BatchGetCollaborationAnalysisTemplateOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCollaborationAnalysisTemplateOutput:
     out: BatchGetCollaborationAnalysisTemplateOutput = {}  # type: ignore[typeddict-item]
-    if "collaborationAnalysisTemplates" in data:
+    if data.get("collaborationAnalysisTemplates") is not None:
         import capo_cleanrooms.types.collaboration_analysis_template_list
 
         out["collaboration_analysis_templates"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchGetCollaborationAnalysisTemplateOutput:
         raise DeserializationError(
             "BatchGetCollaborationAnalysisTemplateOutput.collaboration_analysis_templates required"
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_cleanrooms.types.batch_get_collaboration_analysis_template_error_list
 
         out["errors"] = (

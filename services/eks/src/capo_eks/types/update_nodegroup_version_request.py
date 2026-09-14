@@ -52,11 +52,11 @@ def serialize_json(value: UpdateNodegroupVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNodegroupVersionRequest:
     out: UpdateNodegroupVersionRequest = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "releaseVersion" in data:
+    if data.get("releaseVersion") is not None:
         out["release_version"] = data["releaseVersion"]
-    if "launchTemplate" in data:
+    if data.get("launchTemplate") is not None:
         import capo_eks.types.launch_template_specification
 
         out["launch_template"] = (
@@ -64,10 +64,10 @@ def deserialize_json(data: dict) -> UpdateNodegroupVersionRequest:
                 data["launchTemplate"]
             )
         )
-    if "force" in data:
+    if data.get("force") is not None:
         out["force"] = data["force"]
     else:
         out["force"] = False
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     return out

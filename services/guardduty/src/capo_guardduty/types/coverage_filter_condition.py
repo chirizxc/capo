@@ -34,11 +34,11 @@ def serialize_json(value: CoverageFilterCondition) -> dict:
 
 def deserialize_json(data: dict) -> CoverageFilterCondition:
     out: CoverageFilterCondition = {}  # type: ignore[typeddict-item]
-    if "equals" in data:
+    if data.get("equals") is not None:
         import capo_guardduty.types.equals
 
         out["equals"] = capo_guardduty.types.equals.deserialize_json(data["equals"])
-    if "notEquals" in data:
+    if data.get("notEquals") is not None:
         import capo_guardduty.types.not_equals
 
         out["not_equals"] = capo_guardduty.types.not_equals.deserialize_json(

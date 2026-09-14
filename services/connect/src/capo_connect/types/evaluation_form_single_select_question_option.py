@@ -49,27 +49,27 @@ def serialize_json(value: EvaluationFormSingleSelectQuestionOption) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormSingleSelectQuestionOption:
     out: EvaluationFormSingleSelectQuestionOption = {}  # type: ignore[typeddict-item]
-    if "RefId" in data:
+    if data.get("RefId") is not None:
         out["ref_id"] = data["RefId"]
     else:
         raise DeserializationError(
             "EvaluationFormSingleSelectQuestionOption.ref_id required"
         )
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError(
             "EvaluationFormSingleSelectQuestionOption.text required"
         )
-    if "Score" in data:
+    if data.get("Score") is not None:
         out["score"] = data["Score"]
     else:
         out["score"] = 0
-    if "AutomaticFail" in data:
+    if data.get("AutomaticFail") is not None:
         out["automatic_fail"] = data["AutomaticFail"]
     else:
         out["automatic_fail"] = False
-    if "AutomaticFailConfiguration" in data:
+    if data.get("AutomaticFailConfiguration") is not None:
         import capo_connect.types.automatic_fail_configuration
 
         out["automatic_fail_configuration"] = (

@@ -71,17 +71,17 @@ def serialize_aws_json_1_0(value: ListFlowOperationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListFlowOperationsRequest:
     out: ListFlowOperationsRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
     else:
         raise DeserializationError("ListFlowOperationsRequest.firewall_arn required")
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "VpcEndpointAssociationArn" in data:
+    if data.get("VpcEndpointAssociationArn") is not None:
         out["vpc_endpoint_association_arn"] = data["VpcEndpointAssociationArn"]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "FlowOperationType" in data:
+    if data.get("FlowOperationType") is not None:
         import capo_network_firewall.types.flow_operation_type
 
         out["flow_operation_type"] = (
@@ -89,8 +89,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListFlowOperationsRequest:
                 data["FlowOperationType"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

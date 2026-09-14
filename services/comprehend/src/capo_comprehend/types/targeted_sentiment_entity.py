@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: TargetedSentimentEntity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetedSentimentEntity:
     out: TargetedSentimentEntity = {}  # type: ignore[typeddict-item]
-    if "DescriptiveMentionIndex" in data:
+    if data.get("DescriptiveMentionIndex") is not None:
         import capo_comprehend.types.list_of_descriptive_mention_indices
 
         out["descriptive_mention_index"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetedSentimentEntity:
                 data["DescriptiveMentionIndex"]
             )
         )
-    if "Mentions" in data:
+    if data.get("Mentions") is not None:
         import capo_comprehend.types.list_of_mentions
 
         out["mentions"] = (

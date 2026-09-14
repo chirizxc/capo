@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: HumanLoopDataAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HumanLoopDataAttributes:
     out: HumanLoopDataAttributes = {}  # type: ignore[typeddict-item]
-    if "ContentClassifiers" in data:
+    if data.get("ContentClassifiers") is not None:
         import capo_textract.types.content_classifiers
 
         out["content_classifiers"] = (

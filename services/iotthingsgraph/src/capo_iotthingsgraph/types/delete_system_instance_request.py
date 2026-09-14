@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteSystemInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSystemInstanceRequest:
     out: DeleteSystemInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

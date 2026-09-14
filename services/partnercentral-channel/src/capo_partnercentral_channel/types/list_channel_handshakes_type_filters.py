@@ -68,7 +68,7 @@ def serialize_aws_json_1_0(value: ListChannelHandshakesTypeFilters) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ListChannelHandshakesTypeFilters:
-    if "startServicePeriodTypeFilters" in data:
+    if data.get("startServicePeriodTypeFilters") is not None:
         import capo_partnercentral_channel.types.start_service_period_type_filters
 
         return {
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListChannelHandshakesTypeFilters:
                 data["startServicePeriodTypeFilters"]
             )
         }
-    elif "revokeServicePeriodTypeFilters" in data:
+    elif data.get("revokeServicePeriodTypeFilters") is not None:
         import capo_partnercentral_channel.types.revoke_service_period_type_filters
 
         return {
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListChannelHandshakesTypeFilters:
                 data["revokeServicePeriodTypeFilters"]
             )
         }
-    elif "programManagementAccountTypeFilters" in data:
+    elif data.get("programManagementAccountTypeFilters") is not None:
         import capo_partnercentral_channel.types.program_management_account_type_filters
 
         return {

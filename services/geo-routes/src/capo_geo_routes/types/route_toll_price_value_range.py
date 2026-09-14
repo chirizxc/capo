@@ -20,19 +20,35 @@ class RouteTollPriceValueRange(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: RouteTollPriceValueRange) -> dict:
     out: dict = {}
-    out["Min"] = value["min"]
-    out["Max"] = value["max"]
+    out["Min"] = (
+        "NaN"
+        if value["min"] != value["min"]
+        else "Infinity"
+        if value["min"] == float("inf")
+        else "-Infinity"
+        if value["min"] == float("-inf")
+        else value["min"]
+    )
+    out["Max"] = (
+        "NaN"
+        if value["max"] != value["max"]
+        else "Infinity"
+        if value["max"] == float("inf")
+        else "-Infinity"
+        if value["max"] == float("-inf")
+        else value["max"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> RouteTollPriceValueRange:
     out: RouteTollPriceValueRange = {}  # type: ignore[typeddict-item]
-    if "Min" in data:
-        out["min"] = data["Min"]
+    if data.get("Min") is not None:
+        out["min"] = float(data["Min"])
     else:
         raise DeserializationError("RouteTollPriceValueRange.min required")
-    if "Max" in data:
-        out["max"] = data["Max"]
+    if data.get("Max") is not None:
+        out["max"] = float(data["Max"])
     else:
         raise DeserializationError("RouteTollPriceValueRange.max required")
     return out

@@ -44,7 +44,7 @@ def serialize_json(value: BatchPutProfileObjectResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutProfileObjectResponse:
     out: BatchPutProfileObjectResponse = {}  # type: ignore[typeddict-item]
-    if "Successful" in data:
+    if data.get("Successful") is not None:
         import capo_customer_profiles.types.batch_put_profile_object_response_list
 
         out["successful"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchPutProfileObjectResponse:
                 data["Successful"]
             )
         )
-    if "Failed" in data:
+    if data.get("Failed") is not None:
         import capo_customer_profiles.types.batch_put_profile_object_error_list
 
         out["failed"] = (

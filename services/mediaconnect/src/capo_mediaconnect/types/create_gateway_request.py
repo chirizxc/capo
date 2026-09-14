@@ -48,7 +48,7 @@ def serialize_json(value: CreateGatewayRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateGatewayRequest:
     out: CreateGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "egressCidrBlocks" in data:
+    if data.get("egressCidrBlocks") is not None:
         import capo_mediaconnect.types.__list_of_string
 
         out["egress_cidr_blocks"] = (
@@ -56,9 +56,9 @@ def deserialize_json(data: dict) -> CreateGatewayRequest:
                 data["egressCidrBlocks"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "networks" in data:
+    if data.get("networks") is not None:
         import capo_mediaconnect.types.__list_of_gateway_network
 
         out["networks"] = (

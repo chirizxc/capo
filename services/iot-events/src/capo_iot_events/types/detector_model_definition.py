@@ -30,13 +30,13 @@ def serialize_json(value: DetectorModelDefinition) -> dict:
 
 def deserialize_json(data: dict) -> DetectorModelDefinition:
     out: DetectorModelDefinition = {}  # type: ignore[typeddict-item]
-    if "states" in data:
+    if data.get("states") is not None:
         import capo_iot_events.types.states
 
         out["states"] = capo_iot_events.types.states.deserialize_json(data["states"])
     else:
         raise DeserializationError("DetectorModelDefinition.states required")
-    if "initialStateName" in data:
+    if data.get("initialStateName") is not None:
         out["initial_state_name"] = data["initialStateName"]
     else:
         raise DeserializationError(

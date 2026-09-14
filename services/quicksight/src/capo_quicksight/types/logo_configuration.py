@@ -32,11 +32,11 @@ def serialize_json(value: LogoConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogoConfiguration:
     out: LogoConfiguration = {}  # type: ignore[typeddict-item]
-    if "AltText" in data:
+    if data.get("AltText") is not None:
         out["alt_text"] = data["AltText"]
     else:
         raise DeserializationError("LogoConfiguration.alt_text required")
-    if "LogoSet" in data:
+    if data.get("LogoSet") is not None:
         import capo_quicksight.types.logo_set_configuration
 
         out["logo_set"] = capo_quicksight.types.logo_set_configuration.deserialize_json(

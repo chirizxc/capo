@@ -31,8 +31,8 @@ def serialize_json(value: PayerConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PayerConfiguration:
     out: PayerConfiguration = {}  # type: ignore[typeddict-item]
-    if "computePayerAccountId" in data:
+    if data.get("computePayerAccountId") is not None:
         out["compute_payer_account_id"] = data["computePayerAccountId"]
-    if "syntheticDataPayerAccountId" in data:
+    if data.get("syntheticDataPayerAccountId") is not None:
         out["synthetic_data_payer_account_id"] = data["syntheticDataPayerAccountId"]
     return out

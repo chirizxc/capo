@@ -90,7 +90,15 @@ def serialize_aws_json_1_1(value: RequestedServiceQuotaChange) -> dict:
     if "quota_name" in value:
         out["QuotaName"] = value["quota_name"]
     if "desired_value" in value:
-        out["DesiredValue"] = value["desired_value"]
+        out["DesiredValue"] = (
+            "NaN"
+            if value["desired_value"] != value["desired_value"]
+            else "Infinity"
+            if value["desired_value"] == float("inf")
+            else "-Infinity"
+            if value["desired_value"] == float("-inf")
+            else value["desired_value"]
+        )
     if "status" in value:
         import capo_service_quotas.types.request_status
 
@@ -137,9 +145,9 @@ def serialize_aws_json_1_1(value: RequestedServiceQuotaChange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RequestedServiceQuotaChange:
     out: RequestedServiceQuotaChange = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "RequestType" in data:
+    if data.get("RequestType") is not None:
         import capo_service_quotas.types.request_type
 
         out["request_type"] = (
@@ -147,19 +155,19 @@ def deserialize_aws_json_1_1(data: dict) -> RequestedServiceQuotaChange:
                 data["RequestType"]
             )
         )
-    if "CaseId" in data:
+    if data.get("CaseId") is not None:
         out["case_id"] = data["CaseId"]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "QuotaCode" in data:
+    if data.get("QuotaCode") is not None:
         out["quota_code"] = data["QuotaCode"]
-    if "QuotaName" in data:
+    if data.get("QuotaName") is not None:
         out["quota_name"] = data["QuotaName"]
-    if "DesiredValue" in data:
-        out["desired_value"] = data["DesiredValue"]
-    if "Status" in data:
+    if data.get("DesiredValue") is not None:
+        out["desired_value"] = float(data["DesiredValue"])
+    if data.get("Status") is not None:
         import capo_service_quotas.types.request_status
 
         out["status"] = (
@@ -167,13 +175,13 @@ def deserialize_aws_json_1_1(data: dict) -> RequestedServiceQuotaChange:
                 data["Status"]
             )
         )
-    if "Created" in data:
+    if data.get("Created") is not None:
         import capo_service_quotas.types.date_time
 
         out["created"] = capo_service_quotas.types.date_time.deserialize_aws_json_1_1(
             data["Created"]
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_service_quotas.types.date_time
 
         out["last_updated"] = (
@@ -181,17 +189,17 @@ def deserialize_aws_json_1_1(data: dict) -> RequestedServiceQuotaChange:
                 data["LastUpdated"]
             )
         )
-    if "Requester" in data:
+    if data.get("Requester") is not None:
         out["requester"] = data["Requester"]
-    if "QuotaArn" in data:
+    if data.get("QuotaArn") is not None:
         out["quota_arn"] = data["QuotaArn"]
-    if "GlobalQuota" in data:
+    if data.get("GlobalQuota") is not None:
         out["global_quota"] = data["GlobalQuota"]
     else:
         out["global_quota"] = False
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
-    if "QuotaRequestedAtLevel" in data:
+    if data.get("QuotaRequestedAtLevel") is not None:
         import capo_service_quotas.types.applied_level_enum
 
         out["quota_requested_at_level"] = (
@@ -199,7 +207,7 @@ def deserialize_aws_json_1_1(data: dict) -> RequestedServiceQuotaChange:
                 data["QuotaRequestedAtLevel"]
             )
         )
-    if "QuotaContext" in data:
+    if data.get("QuotaContext") is not None:
         import capo_service_quotas.types.quota_context_info
 
         out["quota_context"] = (

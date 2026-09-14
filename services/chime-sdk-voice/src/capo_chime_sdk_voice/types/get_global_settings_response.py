@@ -31,7 +31,7 @@ def serialize_json(value: GetGlobalSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetGlobalSettingsResponse:
     out: GetGlobalSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "VoiceConnector" in data:
+    if data.get("VoiceConnector") is not None:
         import capo_chime_sdk_voice.types.voice_connector_settings
 
         out["voice_connector"] = (

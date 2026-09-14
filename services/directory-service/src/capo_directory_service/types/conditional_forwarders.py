@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ConditionalForwarders:
 
     out: ConditionalForwarders = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_directory_service.types.conditional_forwarder.deserialize_aws_json_1_1(
                 item

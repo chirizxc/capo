@@ -31,7 +31,7 @@ def serialize_json(value: WebvttDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> WebvttDestinationSettings:
     out: WebvttDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "styleControl" in data:
+    if data.get("styleControl") is not None:
         import capo_medialive.types.webvtt_destination_style_control
 
         out["style_control"] = (

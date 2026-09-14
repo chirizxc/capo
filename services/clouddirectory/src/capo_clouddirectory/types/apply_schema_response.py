@@ -27,8 +27,8 @@ def serialize_json(value: ApplySchemaResponse) -> dict:
 
 def deserialize_json(data: dict) -> ApplySchemaResponse:
     out: ApplySchemaResponse = {}  # type: ignore[typeddict-item]
-    if "AppliedSchemaArn" in data:
+    if data.get("AppliedSchemaArn") is not None:
         out["applied_schema_arn"] = data["AppliedSchemaArn"]
-    if "DirectoryArn" in data:
+    if data.get("DirectoryArn") is not None:
         out["directory_arn"] = data["DirectoryArn"]
     return out

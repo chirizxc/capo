@@ -14,4 +14,4 @@ def serialize_aws_json_1_0(value: BodyTokensList) -> list:
 
 
 def deserialize_aws_json_1_0(data: list) -> BodyTokensList:
-    return list(data)
+    return [item for item in data if item is not None]

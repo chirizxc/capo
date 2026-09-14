@@ -30,8 +30,8 @@ def serialize_json(value: UpdatePolicy) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePolicy:
     out: UpdatePolicy = {}  # type: ignore[typeddict-item]
-    if "terminateJobsOnUpdate" in data:
+    if data.get("terminateJobsOnUpdate") is not None:
         out["terminate_jobs_on_update"] = data["terminateJobsOnUpdate"]
-    if "jobExecutionTimeoutMinutes" in data:
+    if data.get("jobExecutionTimeoutMinutes") is not None:
         out["job_execution_timeout_minutes"] = data["jobExecutionTimeoutMinutes"]
     return out

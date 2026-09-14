@@ -121,15 +121,15 @@ def serialize_json(value: ServiceLevelObjectiveSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceLevelObjectiveSummary:
     out: ServiceLevelObjectiveSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ServiceLevelObjectiveSummary.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ServiceLevelObjectiveSummary.name required")
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["key_attributes"] = (
@@ -137,9 +137,9 @@ def deserialize_json(data: dict) -> ServiceLevelObjectiveSummary:
                 data["KeyAttributes"]
             )
         )
-    if "OperationName" in data:
+    if data.get("OperationName") is not None:
         out["operation_name"] = data["OperationName"]
-    if "DependencyConfig" in data:
+    if data.get("DependencyConfig") is not None:
         import capo_application_signals.types.dependency_config
 
         out["dependency_config"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjectiveSummary:
                 data["DependencyConfig"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["created_time"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjectiveSummary:
                 data["CreatedTime"]
             )
         )
-    if "EvaluationType" in data:
+    if data.get("EvaluationType") is not None:
         import capo_application_signals.types.evaluation_type
 
         out["evaluation_type"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjectiveSummary:
                 data["EvaluationType"]
             )
         )
-    if "MetricSourceType" in data:
+    if data.get("MetricSourceType") is not None:
         import capo_application_signals.types.metric_source_type
 
         out["metric_source_type"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjectiveSummary:
                 data["MetricSourceType"]
             )
         )
-    if "MetricSource" in data:
+    if data.get("MetricSource") is not None:
         import capo_application_signals.types.metric_source
 
         out["metric_source"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjectiveSummary:
                 data["MetricSource"]
             )
         )
-    if "CompositeSliConfig" in data:
+    if data.get("CompositeSliConfig") is not None:
         import capo_application_signals.types.composite_sli_config
 
         out["composite_sli_config"] = (

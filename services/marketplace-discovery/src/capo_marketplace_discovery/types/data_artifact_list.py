@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> DataArtifactList:
 
     out: DataArtifactList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.data_artifact.deserialize_json(item)
         )

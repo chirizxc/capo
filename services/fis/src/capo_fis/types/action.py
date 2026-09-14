@@ -58,25 +58,25 @@ def serialize_json(value: Action) -> dict:
 
 def deserialize_json(data: dict) -> Action:
     out: Action = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_fis.types.action_parameter_map
 
         out["parameters"] = capo_fis.types.action_parameter_map.deserialize_json(
             data["parameters"]
         )
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_fis.types.action_target_map
 
         out["targets"] = capo_fis.types.action_target_map.deserialize_json(
             data["targets"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_fis.types.tag_map
 
         out["tags"] = capo_fis.types.tag_map.deserialize_json(data["tags"])

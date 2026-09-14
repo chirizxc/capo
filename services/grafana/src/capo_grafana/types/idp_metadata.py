@@ -32,9 +32,9 @@ def serialize_json(value: IdpMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> IdpMetadata:
-    if "url" in data:
+    if data.get("url") is not None:
         return {"url": data["url"]}
-    elif "xml" in data:
+    elif data.get("xml") is not None:
         return {"xml": data["xml"]}
     else:
         raise DeserializationError("IdpMetadata: no recognized variant key")

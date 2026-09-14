@@ -44,7 +44,7 @@ def serialize_json(value: CaseEditItem) -> dict:
 
 def deserialize_json(data: dict) -> CaseEditItem:
     out: CaseEditItem = {}  # type: ignore[typeddict-item]
-    if "eventTimestamp" in data:
+    if data.get("eventTimestamp") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["event_timestamp"] = (
@@ -52,10 +52,10 @@ def deserialize_json(data: dict) -> CaseEditItem:
                 data["eventTimestamp"]
             )
         )
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

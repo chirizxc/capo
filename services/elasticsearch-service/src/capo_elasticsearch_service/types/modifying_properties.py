@@ -44,13 +44,13 @@ def serialize_json(value: ModifyingProperties) -> dict:
 
 def deserialize_json(data: dict) -> ModifyingProperties:
     out: ModifyingProperties = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ActiveValue" in data:
+    if data.get("ActiveValue") is not None:
         out["active_value"] = data["ActiveValue"]
-    if "PendingValue" in data:
+    if data.get("PendingValue") is not None:
         out["pending_value"] = data["PendingValue"]
-    if "ValueType" in data:
+    if data.get("ValueType") is not None:
         import capo_elasticsearch_service.types.property_value_type
 
         out["value_type"] = (

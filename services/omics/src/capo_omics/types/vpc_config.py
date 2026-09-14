@@ -38,7 +38,7 @@ def serialize_json(value: VpcConfig) -> dict:
 
 def deserialize_json(data: dict) -> VpcConfig:
     out: VpcConfig = {}  # type: ignore[typeddict-item]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_omics.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> VpcConfig:
                 data["securityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_omics.types.subnet_ids
 
         out["subnet_ids"] = capo_omics.types.subnet_ids.deserialize_json(

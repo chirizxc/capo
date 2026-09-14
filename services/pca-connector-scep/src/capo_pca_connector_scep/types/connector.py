@@ -115,17 +115,17 @@ def serialize_json(value: Connector) -> dict:
 
 def deserialize_json(data: dict) -> Connector:
     out: Connector = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_pca_connector_scep.types.connector_type
 
         out["type"] = capo_pca_connector_scep.types.connector_type.deserialize_json(
             data["Type"]
         )
-    if "MobileDeviceManagement" in data:
+    if data.get("MobileDeviceManagement") is not None:
         import capo_pca_connector_scep.types.mobile_device_management
 
         out["mobile_device_management"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> Connector:
                 data["MobileDeviceManagement"]
             )
         )
-    if "OpenIdConfiguration" in data:
+    if data.get("OpenIdConfiguration") is not None:
         import capo_pca_connector_scep.types.open_id_configuration
 
         out["open_id_configuration"] = (
@@ -141,13 +141,13 @@ def deserialize_json(data: dict) -> Connector:
                 data["OpenIdConfiguration"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_pca_connector_scep.types.connector_status
 
         out["status"] = capo_pca_connector_scep.types.connector_status.deserialize_json(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_pca_connector_scep.types.connector_status_reason
 
         out["status_reason"] = (
@@ -155,9 +155,9 @@ def deserialize_json(data: dict) -> Connector:
                 data["StatusReason"]
             )
         )
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_pca_connector_scep.types._prelude.timestamp
 
         out["created_at"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> Connector:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_pca_connector_scep.types._prelude.timestamp
 
         out["updated_at"] = (

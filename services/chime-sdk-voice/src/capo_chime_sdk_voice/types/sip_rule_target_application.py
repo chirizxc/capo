@@ -37,10 +37,10 @@ def serialize_json(value: SipRuleTargetApplication) -> dict:
 
 def deserialize_json(data: dict) -> SipRuleTargetApplication:
     out: SipRuleTargetApplication = {}  # type: ignore[typeddict-item]
-    if "SipMediaApplicationId" in data:
+    if data.get("SipMediaApplicationId") is not None:
         out["sip_media_application_id"] = data["SipMediaApplicationId"]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
     return out

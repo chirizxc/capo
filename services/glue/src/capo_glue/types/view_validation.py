@@ -66,29 +66,29 @@ def serialize_aws_json_1_1(value: ViewValidation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ViewValidation:
     out: ViewValidation = {}  # type: ignore[typeddict-item]
-    if "Dialect" in data:
+    if data.get("Dialect") is not None:
         import capo_glue.types.view_dialect
 
         out["dialect"] = capo_glue.types.view_dialect.deserialize_aws_json_1_1(
             data["Dialect"]
         )
-    if "DialectVersion" in data:
+    if data.get("DialectVersion") is not None:
         out["dialect_version"] = data["DialectVersion"]
-    if "ViewValidationText" in data:
+    if data.get("ViewValidationText") is not None:
         out["view_validation_text"] = data["ViewValidationText"]
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_glue.types.timestamp
 
         out["update_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["UpdateTime"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_glue.types.resource_state
 
         out["state"] = capo_glue.types.resource_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_glue.types.error_detail
 
         out["error"] = capo_glue.types.error_detail.deserialize_aws_json_1_1(

@@ -61,11 +61,11 @@ def serialize_json(value: MemberChangeSpecification) -> dict:
 
 def deserialize_json(data: dict) -> MemberChangeSpecification:
     out: MemberChangeSpecification = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("MemberChangeSpecification.account_id required")
-    if "memberAbilities" in data:
+    if data.get("memberAbilities") is not None:
         import capo_cleanrooms.types.member_abilities
 
         out["member_abilities"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> MemberChangeSpecification:
         raise DeserializationError(
             "MemberChangeSpecification.member_abilities required"
         )
-    if "mlMemberAbilities" in data:
+    if data.get("mlMemberAbilities") is not None:
         import capo_cleanrooms.types.ml_member_abilities
 
         out["ml_member_abilities"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> MemberChangeSpecification:
                 data["mlMemberAbilities"]
             )
         )
-    if "paymentConfiguration" in data:
+    if data.get("paymentConfiguration") is not None:
         import capo_cleanrooms.types.payment_configuration
 
         out["payment_configuration"] = (
@@ -93,6 +93,6 @@ def deserialize_json(data: dict) -> MemberChangeSpecification:
                 data["paymentConfiguration"]
             )
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     return out

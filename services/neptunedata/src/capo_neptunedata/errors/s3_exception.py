@@ -25,15 +25,15 @@ def serialize_json(value: S3Exception_) -> dict:
 
 def deserialize_json(data: dict) -> S3Exception_:
     out: S3Exception_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError("S3Exception_.detailed_message required")
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("S3Exception_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("S3Exception_.code required")
@@ -45,12 +45,16 @@ class S3Exception(ServiceError):
 
     code: str | None = "S3Exception"
 
-    def __init__(self, data: S3Exception_):
+    def __init__(self, data: S3Exception_, message: str | None = None):
         super().__init__(
-            "client", is_throttling_error=False, is_retryable=True, code="S3Exception"
+            "client",
+            is_throttling_error=False,
+            is_retryable=True,
+            code="S3Exception",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "S3Exception":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "S3Exception":
+        return cls(deserialize_json(data), message)

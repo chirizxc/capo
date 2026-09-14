@@ -143,25 +143,25 @@ def serialize_json(value: GetApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationResponse:
     out: GetApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetApplicationResponse.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("GetApplicationResponse.application_id required")
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
     else:
         raise DeserializationError("GetApplicationResponse.application_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetApplicationResponse.status required")
-    if "latestVersion" in data:
+    if data.get("latestVersion") is not None:
         import capo_m2.types.application_version_summary
 
         out["latest_version"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
         )
     else:
         raise DeserializationError("GetApplicationResponse.latest_version required")
-    if "deployedVersion" in data:
+    if data.get("deployedVersion") is not None:
         import capo_m2.types.deployed_version_summary
 
         out["deployed_version"] = (
@@ -179,17 +179,17 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["deployedVersion"]
             )
         )
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         out["engine_type"] = data["engineType"]
     else:
         raise DeserializationError("GetApplicationResponse.engine_type required")
-    if "logGroups" in data:
+    if data.get("logGroups") is not None:
         import capo_m2.types.log_group_summaries
 
         out["log_groups"] = capo_m2.types.log_group_summaries.deserialize_json(
             data["logGroups"]
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_m2.types.timestamp
 
         out["creation_time"] = capo_m2.types.timestamp.deserialize_json(
@@ -197,42 +197,42 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
         )
     else:
         raise DeserializationError("GetApplicationResponse.creation_time required")
-    if "lastStartTime" in data:
+    if data.get("lastStartTime") is not None:
         import capo_m2.types.timestamp
 
         out["last_start_time"] = capo_m2.types.timestamp.deserialize_json(
             data["lastStartTime"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_m2.types.tag_map
 
         out["tags"] = capo_m2.types.tag_map.deserialize_json(data["tags"])
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "targetGroupArns" in data:
+    if data.get("targetGroupArns") is not None:
         import capo_m2.types.arn_list
 
         out["target_group_arns"] = capo_m2.types.arn_list.deserialize_json(
             data["targetGroupArns"]
         )
-    if "listenerArns" in data:
+    if data.get("listenerArns") is not None:
         import capo_m2.types.arn_list
 
         out["listener_arns"] = capo_m2.types.arn_list.deserialize_json(
             data["listenerArns"]
         )
-    if "listenerPorts" in data:
+    if data.get("listenerPorts") is not None:
         import capo_m2.types.port_list
 
         out["listener_ports"] = capo_m2.types.port_list.deserialize_json(
             data["listenerPorts"]
         )
-    if "loadBalancerDnsName" in data:
+    if data.get("loadBalancerDnsName") is not None:
         out["load_balancer_dns_name"] = data["loadBalancerDnsName"]
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

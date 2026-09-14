@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: BatchGetInvoiceProfileRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetInvoiceProfileRequest:
     out: BatchGetInvoiceProfileRequest = {}  # type: ignore[typeddict-item]
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_invoicing.types.account_id_list
 
         out["account_ids"] = (

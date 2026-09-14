@@ -33,11 +33,11 @@ def serialize_json(value: Integration) -> dict:
 
 def deserialize_json(data: dict) -> Integration:
     out: Integration = {}  # type: ignore[typeddict-item]
-    if "dataSourceName" in data:
+    if data.get("dataSourceName") is not None:
         out["data_source_name"] = data["dataSourceName"]
     else:
         raise DeserializationError("Integration.data_source_name required")
-    if "lambdaConfig" in data:
+    if data.get("lambdaConfig") is not None:
         import capo_appsync.types.lambda_config
 
         out["lambda_config"] = capo_appsync.types.lambda_config.deserialize_json(

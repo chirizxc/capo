@@ -27,11 +27,11 @@ def serialize_json(value: AllowedInputTypes) -> dict:
 
 def deserialize_json(data: dict) -> AllowedInputTypes:
     out: AllowedInputTypes = {}  # type: ignore[typeddict-item]
-    if "allowAudioInput" in data:
+    if data.get("allowAudioInput") is not None:
         out["allow_audio_input"] = data["allowAudioInput"]
     else:
         raise DeserializationError("AllowedInputTypes.allow_audio_input required")
-    if "allowDTMFInput" in data:
+    if data.get("allowDTMFInput") is not None:
         out["allow_dtmf_input"] = data["allowDTMFInput"]
     else:
         raise DeserializationError("AllowedInputTypes.allow_dtmf_input required")

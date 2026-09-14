@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsCertificateManagerCertificateKeyUsages:
 
     out: AwsCertificateManagerCertificateKeyUsages = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_certificate_manager_certificate_key_usage.deserialize_json(
                 item

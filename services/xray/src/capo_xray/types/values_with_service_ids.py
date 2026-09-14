@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ValuesWithServiceIds:
 
     out: ValuesWithServiceIds = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.value_with_service_ids.deserialize_json(item))
     return out

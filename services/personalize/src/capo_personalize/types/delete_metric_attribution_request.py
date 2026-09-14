@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteMetricAttributionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteMetricAttributionRequest:
     out: DeleteMetricAttributionRequest = {}  # type: ignore[typeddict-item]
-    if "metricAttributionArn" in data:
+    if data.get("metricAttributionArn") is not None:
         out["metric_attribution_arn"] = data["metricAttributionArn"]
     else:
         raise DeserializationError(

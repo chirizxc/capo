@@ -33,10 +33,10 @@ def serialize_json(value: ListExportsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListExportsRequest:
     out: ListExportsRequest = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

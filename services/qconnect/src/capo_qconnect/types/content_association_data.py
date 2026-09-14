@@ -65,39 +65,39 @@ def serialize_json(value: ContentAssociationData) -> dict:
 
 def deserialize_json(data: dict) -> ContentAssociationData:
     out: ContentAssociationData = {}  # type: ignore[typeddict-item]
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
     else:
         raise DeserializationError("ContentAssociationData.knowledge_base_id required")
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError("ContentAssociationData.knowledge_base_arn required")
-    if "contentId" in data:
+    if data.get("contentId") is not None:
         out["content_id"] = data["contentId"]
     else:
         raise DeserializationError("ContentAssociationData.content_id required")
-    if "contentArn" in data:
+    if data.get("contentArn") is not None:
         out["content_arn"] = data["contentArn"]
     else:
         raise DeserializationError("ContentAssociationData.content_arn required")
-    if "contentAssociationId" in data:
+    if data.get("contentAssociationId") is not None:
         out["content_association_id"] = data["contentAssociationId"]
     else:
         raise DeserializationError(
             "ContentAssociationData.content_association_id required"
         )
-    if "contentAssociationArn" in data:
+    if data.get("contentAssociationArn") is not None:
         out["content_association_arn"] = data["contentAssociationArn"]
     else:
         raise DeserializationError(
             "ContentAssociationData.content_association_arn required"
         )
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         out["association_type"] = data["associationType"]
     else:
         raise DeserializationError("ContentAssociationData.association_type required")
-    if "associationData" in data:
+    if data.get("associationData") is not None:
         import capo_qconnect.types.content_association_contents
 
         out["association_data"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> ContentAssociationData:
         )
     else:
         raise DeserializationError("ContentAssociationData.association_data required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

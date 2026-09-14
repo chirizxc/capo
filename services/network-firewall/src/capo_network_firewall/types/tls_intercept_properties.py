@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: TlsInterceptProperties) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TlsInterceptProperties:
     out: TlsInterceptProperties = {}  # type: ignore[typeddict-item]
-    if "PcaArn" in data:
+    if data.get("PcaArn") is not None:
         out["pca_arn"] = data["PcaArn"]
-    if "TlsInterceptMode" in data:
+    if data.get("TlsInterceptMode") is not None:
         import capo_network_firewall.types.tls_intercept_mode
 
         out["tls_intercept_mode"] = (

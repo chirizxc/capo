@@ -26,6 +26,8 @@ def serialize_json(input_to_serialize: DynamicSsmParameters) -> dict:
 def deserialize_json(data: dict) -> DynamicSsmParameters:
     out: DynamicSsmParameters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_ssm_incidents.types.dynamic_ssm_parameter_value
 
         out[key] = (

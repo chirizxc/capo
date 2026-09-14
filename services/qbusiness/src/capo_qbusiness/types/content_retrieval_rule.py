@@ -31,7 +31,7 @@ def serialize_json(value: ContentRetrievalRule) -> dict:
 
 def deserialize_json(data: dict) -> ContentRetrievalRule:
     out: ContentRetrievalRule = {}  # type: ignore[typeddict-item]
-    if "eligibleDataSources" in data:
+    if data.get("eligibleDataSources") is not None:
         import capo_qbusiness.types.eligible_data_sources
 
         out["eligible_data_sources"] = (

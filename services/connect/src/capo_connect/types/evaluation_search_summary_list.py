@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EvaluationSearchSummaryList:
 
     out: EvaluationSearchSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.evaluation_search_summary.deserialize_json(item))
     return out

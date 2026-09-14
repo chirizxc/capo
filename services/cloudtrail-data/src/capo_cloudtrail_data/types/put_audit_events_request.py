@@ -34,7 +34,7 @@ def serialize_json(value: PutAuditEventsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAuditEventsRequest:
     out: PutAuditEventsRequest = {}  # type: ignore[typeddict-item]
-    if "auditEvents" in data:
+    if data.get("auditEvents") is not None:
         import capo_cloudtrail_data.types.audit_events
 
         out["audit_events"] = capo_cloudtrail_data.types.audit_events.deserialize_json(

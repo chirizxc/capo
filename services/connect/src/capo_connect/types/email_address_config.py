@@ -24,7 +24,7 @@ def serialize_json(value: EmailAddressConfig) -> dict:
 
 def deserialize_json(data: dict) -> EmailAddressConfig:
     out: EmailAddressConfig = {}  # type: ignore[typeddict-item]
-    if "EmailAddressId" in data:
+    if data.get("EmailAddressId") is not None:
         out["email_address_id"] = data["EmailAddressId"]
     else:
         raise DeserializationError("EmailAddressConfig.email_address_id required")

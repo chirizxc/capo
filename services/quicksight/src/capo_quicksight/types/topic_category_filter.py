@@ -61,7 +61,7 @@ def serialize_json(value: TopicCategoryFilter) -> dict:
 
 def deserialize_json(data: dict) -> TopicCategoryFilter:
     out: TopicCategoryFilter = {}  # type: ignore[typeddict-item]
-    if "CategoryFilterFunction" in data:
+    if data.get("CategoryFilterFunction") is not None:
         import capo_quicksight.types.category_filter_function
 
         out["category_filter_function"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> TopicCategoryFilter:
                 data["CategoryFilterFunction"]
             )
         )
-    if "CategoryFilterType" in data:
+    if data.get("CategoryFilterType") is not None:
         import capo_quicksight.types.category_filter_type
 
         out["category_filter_type"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> TopicCategoryFilter:
                 data["CategoryFilterType"]
             )
         )
-    if "Constant" in data:
+    if data.get("Constant") is not None:
         import capo_quicksight.types.topic_category_filter_constant
 
         out["constant"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> TopicCategoryFilter:
                 data["Constant"]
             )
         )
-    if "Inverse" in data:
+    if data.get("Inverse") is not None:
         out["inverse"] = data["Inverse"]
     else:
         out["inverse"] = False

@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: S3AccessPoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3AccessPoint:
     out: S3AccessPoint = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_fsx.types.s3_access_point_vpc_configuration
 
         out["vpc_configuration"] = (

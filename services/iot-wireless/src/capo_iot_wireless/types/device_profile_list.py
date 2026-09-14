@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DeviceProfileList:
 
     out: DeviceProfileList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_wireless.types.device_profile.deserialize_json(item))
     return out

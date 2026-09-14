@@ -41,14 +41,14 @@ def serialize_json(value: MediaPackageOutputDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> MediaPackageOutputDestinationSettings:
     out: MediaPackageOutputDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "channelId" in data:
+    if data.get("channelId") is not None:
         out["channel_id"] = data["channelId"]
-    if "channelGroup" in data:
+    if data.get("channelGroup") is not None:
         out["channel_group"] = data["channelGroup"]
-    if "channelName" in data:
+    if data.get("channelName") is not None:
         out["channel_name"] = data["channelName"]
-    if "channelEndpointId" in data:
+    if data.get("channelEndpointId") is not None:
         out["channel_endpoint_id"] = data["channelEndpointId"]
-    if "mediaPackageRegionName" in data:
+    if data.get("mediaPackageRegionName") is not None:
         out["media_package_region_name"] = data["mediaPackageRegionName"]
     return out

@@ -43,11 +43,11 @@ def serialize_json(value: BatchGetTracesResult) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetTracesResult:
     out: BatchGetTracesResult = {}  # type: ignore[typeddict-item]
-    if "Traces" in data:
+    if data.get("Traces") is not None:
         import capo_xray.types.trace_list
 
         out["traces"] = capo_xray.types.trace_list.deserialize_json(data["Traces"])
-    if "UnprocessedTraceIds" in data:
+    if data.get("UnprocessedTraceIds") is not None:
         import capo_xray.types.unprocessed_trace_id_list
 
         out["unprocessed_trace_ids"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> BatchGetTracesResult:
                 data["UnprocessedTraceIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

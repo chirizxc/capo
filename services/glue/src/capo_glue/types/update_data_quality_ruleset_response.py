@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: UpdateDataQualityRulesetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDataQualityRulesetResponse:
     out: UpdateDataQualityRulesetResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Ruleset" in data:
+    if data.get("Ruleset") is not None:
         out["ruleset"] = data["Ruleset"]
     return out

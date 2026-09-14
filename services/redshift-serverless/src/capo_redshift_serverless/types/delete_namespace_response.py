@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DeleteNamespaceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteNamespaceResponse:
     out: DeleteNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_redshift_serverless.types.namespace
 
         out["namespace"] = (

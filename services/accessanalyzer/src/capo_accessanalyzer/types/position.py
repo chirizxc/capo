@@ -25,15 +25,15 @@ def serialize_json(value: Position) -> dict:
 
 def deserialize_json(data: dict) -> Position:
     out: Position = {}  # type: ignore[typeddict-item]
-    if "line" in data:
+    if data.get("line") is not None:
         out["line"] = data["line"]
     else:
         raise DeserializationError("Position.line required")
-    if "column" in data:
+    if data.get("column") is not None:
         out["column"] = data["column"]
     else:
         raise DeserializationError("Position.column required")
-    if "offset" in data:
+    if data.get("offset") is not None:
         out["offset"] = data["offset"]
     else:
         raise DeserializationError("Position.offset required")

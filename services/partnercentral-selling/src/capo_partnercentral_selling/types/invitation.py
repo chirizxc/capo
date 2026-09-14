@@ -38,11 +38,11 @@ def serialize_aws_json_1_0(value: Invitation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Invitation:
     out: Invitation = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("Invitation.message required")
-    if "Receiver" in data:
+    if data.get("Receiver") is not None:
         import capo_partnercentral_selling.types.receiver
 
         out["receiver"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> Invitation:
         )
     else:
         raise DeserializationError("Invitation.receiver required")
-    if "Payload" in data:
+    if data.get("Payload") is not None:
         import capo_partnercentral_selling.types.payload
 
         out["payload"] = (

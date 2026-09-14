@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SlotValues:
 
     out: SlotValues = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.slot_value_override.deserialize_json(item))
     return out

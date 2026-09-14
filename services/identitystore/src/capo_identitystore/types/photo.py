@@ -40,15 +40,15 @@ def serialize_aws_json_1_1(value: Photo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Photo:
     out: Photo = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("Photo.value required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Display" in data:
+    if data.get("Display") is not None:
         out["display"] = data["Display"]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         out["primary"] = data["Primary"]
     else:
         out["primary"] = False

@@ -31,7 +31,7 @@ def serialize_json(value: TestingRecommendation) -> dict:
 
 def deserialize_json(data: dict) -> TestingRecommendation:
     out: TestingRecommendation = {}  # type: ignore[typeddict-item]
-    if "suggestedChanges" in data:
+    if data.get("suggestedChanges") is not None:
         import capo_resiliencehubv2.types.suggested_changes_list
 
         out["suggested_changes"] = (

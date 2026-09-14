@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ProcessingOutputs:
 
     out: ProcessingOutputs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.processing_output.deserialize_aws_json_1_1(item)
         )

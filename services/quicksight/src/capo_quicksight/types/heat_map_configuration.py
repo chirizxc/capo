@@ -143,7 +143,7 @@ def serialize_json(value: HeatMapConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HeatMapConfiguration:
     out: HeatMapConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.heat_map_field_wells
 
         out["field_wells"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> HeatMapConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.heat_map_sort_configuration
 
         out["sort_configuration"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> HeatMapConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "RowAxisDisplayOptions" in data:
+    if data.get("RowAxisDisplayOptions") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["row_axis_display_options"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> HeatMapConfiguration:
                 data["RowAxisDisplayOptions"]
             )
         )
-    if "RowLabelOptions" in data:
+    if data.get("RowLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["row_label_options"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> HeatMapConfiguration:
                 data["RowLabelOptions"]
             )
         )
-    if "ColumnAxisDisplayOptions" in data:
+    if data.get("ColumnAxisDisplayOptions") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["column_axis_display_options"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> HeatMapConfiguration:
                 data["ColumnAxisDisplayOptions"]
             )
         )
-    if "ColumnLabelOptions" in data:
+    if data.get("ColumnLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["column_label_options"] = (
@@ -191,31 +191,31 @@ def deserialize_json(data: dict) -> HeatMapConfiguration:
                 data["ColumnLabelOptions"]
             )
         )
-    if "ColorScale" in data:
+    if data.get("ColorScale") is not None:
         import capo_quicksight.types.color_scale
 
         out["color_scale"] = capo_quicksight.types.color_scale.deserialize_json(
             data["ColorScale"]
         )
-    if "Legend" in data:
+    if data.get("Legend") is not None:
         import capo_quicksight.types.legend_options
 
         out["legend"] = capo_quicksight.types.legend_options.deserialize_json(
             data["Legend"]
         )
-    if "DataLabels" in data:
+    if data.get("DataLabels") is not None:
         import capo_quicksight.types.data_label_options
 
         out["data_labels"] = capo_quicksight.types.data_label_options.deserialize_json(
             data["DataLabels"]
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["Tooltip"]
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

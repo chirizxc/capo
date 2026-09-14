@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidDeletionParameterException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidDeletionParameterException_:
     out: InvalidDeletionParameterException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class InvalidDeletionParameterException(ServiceError):
 
     code: str | None = "InvalidDeletionParameterException"
 
-    def __init__(self, data: InvalidDeletionParameterException_):
+    def __init__(
+        self, data: InvalidDeletionParameterException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidDeletionParameterException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidDeletionParameterException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidDeletionParameterException":
+        return cls(deserialize_aws_json_1_1(data), message)

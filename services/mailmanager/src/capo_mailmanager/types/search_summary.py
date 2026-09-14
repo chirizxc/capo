@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: SearchSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SearchSummary:
     out: SearchSummary = {}  # type: ignore[typeddict-item]
-    if "SearchId" in data:
+    if data.get("SearchId") is not None:
         out["search_id"] = data["SearchId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mailmanager.types.search_status
 
         out["status"] = capo_mailmanager.types.search_status.deserialize_aws_json_1_0(

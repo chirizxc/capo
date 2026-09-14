@@ -13,9 +13,9 @@ from capo_rbin import AsyncrbinClient
 
 
 async def main():
-    async with AsyncrbinClient() as s3:
+    async with AsyncrbinClient() as rbin:
         # Example: call the create_rule operation
-        response = await s3.create_rule()
+        response = await rbin.create_rule()
         print(response["identifier"])
 ```
 
@@ -28,9 +28,9 @@ from capo_rbin import AsyncrbinClient
 
 
 async def main():
-    async with AsyncrbinClient() as s3:
+    async with AsyncrbinClient() as rbin:
         # Example: paginate over list_rules
-        async for item in s3.iter_list_rules():
+        async for item in rbin.iter_list_rules():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_rbin.error import InternalServerException
 
 
 async def main():
-    async with AsyncrbinClient() as s3:
+    async with AsyncrbinClient() as rbin:
         try:
-            await s3.create_rule()
+            await rbin.create_rule()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_rbin import AsyncrbinClient
 
 
 async def main():
-    async with AsyncrbinClient() as s3:
+    async with AsyncrbinClient() as rbin:
         # Default: 3 attempts for every operation
-        response = await s3.create_rule()
+        response = await rbin.create_rule()
 
         # Override per operation
-        response = await s3.create_rule(config_overrides={"retry_max_attempts": 5})
+        response = await rbin.create_rule(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_rule(config_overrides={"retry_max_attempts": 1})
+        response = await rbin.create_rule(config_overrides={"retry_max_attempts": 1})
 ```

@@ -32,17 +32,17 @@ def serialize_json(value: ClientCredentialsGrantDetails) -> dict:
 
 def deserialize_json(data: dict) -> ClientCredentialsGrantDetails:
     out: ClientCredentialsGrantDetails = {}  # type: ignore[typeddict-item]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError("ClientCredentialsGrantDetails.client_id required")
-    if "ClientSecret" in data:
+    if data.get("ClientSecret") is not None:
         out["client_secret"] = data["ClientSecret"]
     else:
         raise DeserializationError(
             "ClientCredentialsGrantDetails.client_secret required"
         )
-    if "TokenEndpoint" in data:
+    if data.get("TokenEndpoint") is not None:
         out["token_endpoint"] = data["TokenEndpoint"]
     else:
         raise DeserializationError(

@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: CreateFileSystemLustreMetadataConfiguration) -
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemLustreMetadataConfiguration:
     out: CreateFileSystemLustreMetadataConfiguration = {}  # type: ignore[typeddict-item]
-    if "Iops" in data:
+    if data.get("Iops") is not None:
         out["iops"] = data["Iops"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_fsx.types.metadata_configuration_mode
 
         out["mode"] = (

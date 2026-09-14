@@ -31,10 +31,10 @@ def serialize_json(value: KubernetesRoleDetails) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesRoleDetails:
     out: KubernetesRoleDetails = {}  # type: ignore[typeddict-item]
-    if "kind" in data:
+    if data.get("kind") is not None:
         out["kind"] = data["kind"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "uid" in data:
+    if data.get("uid") is not None:
         out["uid"] = data["uid"]
     return out

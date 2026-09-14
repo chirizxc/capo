@@ -67,7 +67,7 @@ def serialize_aws_json_1_0(value: ECSServiceProjectedMetric) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ECSServiceProjectedMetric:
     out: ECSServiceProjectedMetric = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_compute_optimizer.types.ecs_service_metric_name
 
         out["name"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceProjectedMetric:
                 data["name"]
             )
         )
-    if "timestamps" in data:
+    if data.get("timestamps") is not None:
         import capo_compute_optimizer.types.timestamps
 
         out["timestamps"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceProjectedMetric:
                 data["timestamps"]
             )
         )
-    if "upperBoundValues" in data:
+    if data.get("upperBoundValues") is not None:
         import capo_compute_optimizer.types.metric_values
 
         out["upper_bound_values"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceProjectedMetric:
                 data["upperBoundValues"]
             )
         )
-    if "lowerBoundValues" in data:
+    if data.get("lowerBoundValues") is not None:
         import capo_compute_optimizer.types.metric_values
 
         out["lower_bound_values"] = (

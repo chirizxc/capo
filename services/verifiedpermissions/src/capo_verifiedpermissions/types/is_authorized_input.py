@@ -88,11 +88,11 @@ def serialize_aws_json_1_0(value: IsAuthorizedInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IsAuthorizedInput:
     out: IsAuthorizedInput = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("IsAuthorizedInput.policy_store_id required")
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["principal"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_0(data: dict) -> IsAuthorizedInput:
                 data["principal"]
             )
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_verifiedpermissions.types.action_identifier
 
         out["action"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_0(data: dict) -> IsAuthorizedInput:
                 data["action"]
             )
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["resource"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_0(data: dict) -> IsAuthorizedInput:
                 data["resource"]
             )
         )
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_verifiedpermissions.types.context_definition
 
         out["context"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_0(data: dict) -> IsAuthorizedInput:
                 data["context"]
             )
         )
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_verifiedpermissions.types.entities_definition
 
         out["entities"] = (

@@ -30,7 +30,7 @@ def serialize_json(value: DeleteAnnotationStoreVersionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAnnotationStoreVersionsRequest:
     out: DeleteAnnotationStoreVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "versions" in data:
+    if data.get("versions") is not None:
         import capo_omics.types.version_list
 
         out["versions"] = capo_omics.types.version_list.deserialize_json(

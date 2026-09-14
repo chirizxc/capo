@@ -48,17 +48,17 @@ def serialize_aws_json_1_1(value: CreateMetricAttributionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMetricAttributionRequest:
     out: CreateMetricAttributionRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateMetricAttributionRequest.name required")
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
     else:
         raise DeserializationError(
             "CreateMetricAttributionRequest.dataset_group_arn required"
         )
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_personalize.types.metric_attributes
 
         out["metrics"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMetricAttributionRequest:
         )
     else:
         raise DeserializationError("CreateMetricAttributionRequest.metrics required")
-    if "metricsOutputConfig" in data:
+    if data.get("metricsOutputConfig") is not None:
         import capo_personalize.types.metric_attribution_output
 
         out["metrics_output_config"] = (

@@ -16,6 +16,9 @@ Scope: TypeAlias = list[
 def serialize_query(value: Scope, pairs: list[tuple[str, str]], prefix: str) -> None:
     import capo_cloudformation.types.resource_attribute
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_cloudformation.types.resource_attribute.serialize_query(
             item, pairs, f"{prefix}.member.{n}"
@@ -38,6 +41,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_cloudformation.types.resource_attribute
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_cloudformation.types.resource_attribute.serialize_query(
             item, pairs, f"{prefix}.{n}"

@@ -26,7 +26,7 @@ def serialize_json(value: InvalidMediaFrameException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidMediaFrameException_:
     out: InvalidMediaFrameException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -36,15 +36,18 @@ class InvalidMediaFrameException(ServiceError):
 
     code: str | None = "InvalidMediaFrameException"
 
-    def __init__(self, data: InvalidMediaFrameException_):
+    def __init__(self, data: InvalidMediaFrameException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidMediaFrameException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidMediaFrameException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidMediaFrameException":
+        return cls(deserialize_json(data), message)

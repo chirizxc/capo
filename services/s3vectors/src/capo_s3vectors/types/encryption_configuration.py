@@ -31,7 +31,7 @@ def serialize_json(value: EncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionConfiguration:
     out: EncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "sseType" in data:
+    if data.get("sseType") is not None:
         import capo_s3vectors.types.sse_type
 
         out["sse_type"] = capo_s3vectors.types.sse_type.deserialize_json(
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> EncryptionConfiguration:
         )
     else:
         out["sse_type"] = "AES256"
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

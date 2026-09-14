@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeProjectsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProjectsResponse:
     out: DescribeProjectsResponse = {}  # type: ignore[typeddict-item]
-    if "ProjectDescriptions" in data:
+    if data.get("ProjectDescriptions") is not None:
         import capo_rekognition.types.project_descriptions
 
         out["project_descriptions"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProjectsResponse:
                 data["ProjectDescriptions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

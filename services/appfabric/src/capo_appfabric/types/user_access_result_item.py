@@ -90,33 +90,33 @@ def serialize_json(value: UserAccessResultItem) -> dict:
 
 def deserialize_json(data: dict) -> UserAccessResultItem:
     out: UserAccessResultItem = {}  # type: ignore[typeddict-item]
-    if "app" in data:
+    if data.get("app") is not None:
         out["app"] = data["app"]
-    if "tenantId" in data:
+    if data.get("tenantId") is not None:
         out["tenant_id"] = data["tenantId"]
-    if "tenantDisplayName" in data:
+    if data.get("tenantDisplayName") is not None:
         out["tenant_display_name"] = data["tenantDisplayName"]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "resultStatus" in data:
+    if data.get("resultStatus") is not None:
         import capo_appfabric.types.result_status
 
         out["result_status"] = capo_appfabric.types.result_status.deserialize_json(
             data["resultStatus"]
         )
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "userFullName" in data:
+    if data.get("userFullName") is not None:
         out["user_full_name"] = data["userFullName"]
-    if "userFirstName" in data:
+    if data.get("userFirstName") is not None:
         out["user_first_name"] = data["userFirstName"]
-    if "userLastName" in data:
+    if data.get("userLastName") is not None:
         out["user_last_name"] = data["userLastName"]
-    if "userStatus" in data:
+    if data.get("userStatus") is not None:
         out["user_status"] = data["userStatus"]
-    if "taskError" in data:
+    if data.get("taskError") is not None:
         import capo_appfabric.types.task_error
 
         out["task_error"] = capo_appfabric.types.task_error.deserialize_json(

@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DeleteNamespaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteNamespaceRequest:
     out: DeleteNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError("DeleteNamespaceRequest.namespace_name required")
-    if "finalSnapshotName" in data:
+    if data.get("finalSnapshotName") is not None:
         out["final_snapshot_name"] = data["finalSnapshotName"]
-    if "finalSnapshotRetentionPeriod" in data:
+    if data.get("finalSnapshotRetentionPeriod") is not None:
         out["final_snapshot_retention_period"] = data["finalSnapshotRetentionPeriod"]
     return out

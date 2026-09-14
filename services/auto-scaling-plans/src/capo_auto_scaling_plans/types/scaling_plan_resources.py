@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ScalingPlanResources:
 
     out: ScalingPlanResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auto_scaling_plans.types.scaling_plan_resource.deserialize_aws_json_1_1(
                 item

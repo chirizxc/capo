@@ -36,15 +36,15 @@ def serialize_json(value: UpdateTrackerResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTrackerResponse:
     out: UpdateTrackerResponse = {}  # type: ignore[typeddict-item]
-    if "TrackerName" in data:
+    if data.get("TrackerName") is not None:
         out["tracker_name"] = data["TrackerName"]
     else:
         raise DeserializationError("UpdateTrackerResponse.tracker_name required")
-    if "TrackerArn" in data:
+    if data.get("TrackerArn") is not None:
         out["tracker_arn"] = data["TrackerArn"]
     else:
         raise DeserializationError("UpdateTrackerResponse.tracker_arn required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(

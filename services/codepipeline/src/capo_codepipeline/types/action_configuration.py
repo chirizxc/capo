@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ActionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionConfiguration:
     out: ActionConfiguration = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_codepipeline.types.action_configuration_map
 
         out["configuration"] = (

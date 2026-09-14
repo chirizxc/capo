@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListOfDomainNameAccessAssociation:
 
     out: ListOfDomainNameAccessAssociation = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_api_gateway.types.domain_name_access_association.deserialize_json(item)
         )

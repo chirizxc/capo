@@ -19,7 +19,15 @@ class RankingData(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: RankingData) -> dict:
     out: dict = {}
-    out["relevanceScore"] = value.get("relevance_score", 0)
+    out["relevanceScore"] = (
+        "NaN"
+        if value.get("relevance_score", 0) != value.get("relevance_score", 0)
+        else "Infinity"
+        if value.get("relevance_score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("relevance_score", 0) == float("-inf")
+        else value.get("relevance_score", 0)
+    )
     if "relevance_level" in value:
         out["relevanceLevel"] = value["relevance_level"]
     return out
@@ -27,10 +35,10 @@ def serialize_json(value: RankingData) -> dict:
 
 def deserialize_json(data: dict) -> RankingData:
     out: RankingData = {}  # type: ignore[typeddict-item]
-    if "relevanceScore" in data:
-        out["relevance_score"] = data["relevanceScore"]
+    if data.get("relevanceScore") is not None:
+        out["relevance_score"] = float(data["relevanceScore"])
     else:
         out["relevance_score"] = 0
-    if "relevanceLevel" in data:
+    if data.get("relevanceLevel") is not None:
         out["relevance_level"] = data["relevanceLevel"]
     return out

@@ -112,19 +112,19 @@ def serialize_json(value: ReservationResourceSpecification) -> dict:
 
 def deserialize_json(data: dict) -> ReservationResourceSpecification:
     out: ReservationResourceSpecification = {}  # type: ignore[typeddict-item]
-    if "channelClass" in data:
+    if data.get("channelClass") is not None:
         import capo_medialive.types.channel_class
 
         out["channel_class"] = capo_medialive.types.channel_class.deserialize_json(
             data["channelClass"]
         )
-    if "codec" in data:
+    if data.get("codec") is not None:
         import capo_medialive.types.reservation_codec
 
         out["codec"] = capo_medialive.types.reservation_codec.deserialize_json(
             data["codec"]
         )
-    if "maximumBitrate" in data:
+    if data.get("maximumBitrate") is not None:
         import capo_medialive.types.reservation_maximum_bitrate
 
         out["maximum_bitrate"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> ReservationResourceSpecification:
                 data["maximumBitrate"]
             )
         )
-    if "maximumFramerate" in data:
+    if data.get("maximumFramerate") is not None:
         import capo_medialive.types.reservation_maximum_framerate
 
         out["maximum_framerate"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> ReservationResourceSpecification:
                 data["maximumFramerate"]
             )
         )
-    if "resolution" in data:
+    if data.get("resolution") is not None:
         import capo_medialive.types.reservation_resolution
 
         out["resolution"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> ReservationResourceSpecification:
                 data["resolution"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_medialive.types.reservation_resource_type
 
         out["resource_type"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> ReservationResourceSpecification:
                 data["resourceType"]
             )
         )
-    if "specialFeature" in data:
+    if data.get("specialFeature") is not None:
         import capo_medialive.types.reservation_special_feature
 
         out["special_feature"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> ReservationResourceSpecification:
                 data["specialFeature"]
             )
         )
-    if "videoQuality" in data:
+    if data.get("videoQuality") is not None:
         import capo_medialive.types.reservation_video_quality
 
         out["video_quality"] = (

@@ -38,13 +38,13 @@ def serialize_json(value: LifecyclePolicyDetailExclusionRules) -> dict:
 
 def deserialize_json(data: dict) -> LifecyclePolicyDetailExclusionRules:
     out: LifecyclePolicyDetailExclusionRules = {}  # type: ignore[typeddict-item]
-    if "tagMap" in data:
+    if data.get("tagMap") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tag_map"] = capo_imagebuilder.types.tag_map.deserialize_json(
             data["tagMap"]
         )
-    if "amis" in data:
+    if data.get("amis") is not None:
         import capo_imagebuilder.types.lifecycle_policy_detail_exclusion_rules_amis
 
         out["amis"] = (

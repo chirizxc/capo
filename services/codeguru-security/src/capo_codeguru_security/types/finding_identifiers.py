@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> FindingIdentifiers:
 
     out: FindingIdentifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguru_security.types.finding_identifier.deserialize_json(item)
         )

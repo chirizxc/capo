@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CompareFacesMatchList:
 
     out: CompareFacesMatchList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.compare_faces_match.deserialize_aws_json_1_1(item)
         )

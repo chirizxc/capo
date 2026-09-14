@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ValidationErrors:
 
     out: ValidationErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.validation_error.deserialize_json(item))
     return out

@@ -53,11 +53,11 @@ def serialize_aws_json_1_1(value: RenameField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenameField:
     out: RenameField = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RenameField.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> RenameField:
         )
     else:
         raise DeserializationError("RenameField.inputs required")
-    if "SourcePath" in data:
+    if data.get("SourcePath") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["source_path"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> RenameField:
         )
     else:
         raise DeserializationError("RenameField.source_path required")
-    if "TargetPath" in data:
+    if data.get("TargetPath") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["target_path"] = (

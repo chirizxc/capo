@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: NetworkFileDefinition) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> NetworkFileDefinition:
-    if "canDbc" in data:
+    if data.get("canDbc") is not None:
         import capo_iotfleetwise.types.can_dbc_definition
 
         return {

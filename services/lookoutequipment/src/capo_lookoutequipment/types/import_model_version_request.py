@@ -85,19 +85,19 @@ def serialize_aws_json_1_0(value: ImportModelVersionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportModelVersionRequest:
     out: ImportModelVersionRequest = {}  # type: ignore[typeddict-item]
-    if "SourceModelVersionArn" in data:
+    if data.get("SourceModelVersionArn") is not None:
         out["source_model_version_arn"] = data["SourceModelVersionArn"]
     else:
         raise DeserializationError(
             "ImportModelVersionRequest.source_model_version_arn required"
         )
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
     else:
         raise DeserializationError("ImportModelVersionRequest.dataset_name required")
-    if "LabelsInputConfiguration" in data:
+    if data.get("LabelsInputConfiguration") is not None:
         import capo_lookoutequipment.types.labels_input_configuration
 
         out["labels_input_configuration"] = (
@@ -105,21 +105,21 @@ def deserialize_aws_json_1_0(data: dict) -> ImportModelVersionRequest:
                 data["LabelsInputConfiguration"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("ImportModelVersionRequest.client_token required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ServerSideKmsKeyId" in data:
+    if data.get("ServerSideKmsKeyId") is not None:
         out["server_side_kms_key_id"] = data["ServerSideKmsKeyId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_lookoutequipment.types.tag_list
 
         out["tags"] = capo_lookoutequipment.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "InferenceDataImportStrategy" in data:
+    if data.get("InferenceDataImportStrategy") is not None:
         import capo_lookoutequipment.types.inference_data_import_strategy
 
         out["inference_data_import_strategy"] = (

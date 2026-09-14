@@ -54,19 +54,19 @@ def serialize_aws_json_1_0(value: CreateProtectConfigurationResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateProtectConfigurationResult:
     out: CreateProtectConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "ProtectConfigurationArn" in data:
+    if data.get("ProtectConfigurationArn") is not None:
         out["protect_configuration_arn"] = data["ProtectConfigurationArn"]
     else:
         raise DeserializationError(
             "CreateProtectConfigurationResult.protect_configuration_arn required"
         )
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     else:
         raise DeserializationError(
             "CreateProtectConfigurationResult.protect_configuration_id required"
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -78,15 +78,15 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProtectConfigurationResult:
         raise DeserializationError(
             "CreateProtectConfigurationResult.created_timestamp required"
         )
-    if "AccountDefault" in data:
+    if data.get("AccountDefault") is not None:
         out["account_default"] = data["AccountDefault"]
     else:
         out["account_default"] = False
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     else:
         out["deletion_protection_enabled"] = False
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (

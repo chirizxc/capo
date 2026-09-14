@@ -35,7 +35,7 @@ def serialize_json(value: ListAIAgentVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAIAgentVersionsResponse:
     out: ListAIAgentVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "aiAgentVersionSummaries" in data:
+    if data.get("aiAgentVersionSummaries") is not None:
         import capo_qconnect.types.ai_agent_version_summaries_list
 
         out["ai_agent_version_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListAIAgentVersionsResponse:
         raise DeserializationError(
             "ListAIAgentVersionsResponse.ai_agent_version_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

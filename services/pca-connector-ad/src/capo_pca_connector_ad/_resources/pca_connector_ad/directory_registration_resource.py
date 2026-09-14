@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_pca_connector_ad._auth._signers
@@ -84,10 +85,12 @@ class DirectoryRegistrationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.create_directory_registration_request.CreateDirectoryRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pca_connector_ad.types.create_directory_registration_request.CreateDirectoryRegistrationRequest = {
+            "directory_id": directory_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -96,6 +99,7 @@ class DirectoryRegistrationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -133,14 +137,16 @@ class DirectoryRegistrationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.get_directory_registration_request.GetDirectoryRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_registration_arn"] = directory_registration_arn
+        input_: capo_pca_connector_ad.types.get_directory_registration_request.GetDirectoryRegistrationRequest = {
+            "directory_registration_arn": directory_registration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -176,14 +182,16 @@ class DirectoryRegistrationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.delete_directory_registration_request.DeleteDirectoryRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_registration_arn"] = directory_registration_arn
+        input_: capo_pca_connector_ad.types.delete_directory_registration_request.DeleteDirectoryRegistrationRequest = {
+            "directory_registration_arn": directory_registration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -224,7 +232,7 @@ class DirectoryRegistrationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.list_directory_registrations_request.ListDirectoryRegistrationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_ad.types.list_directory_registrations_request.ListDirectoryRegistrationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -235,6 +243,7 @@ class DirectoryRegistrationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -285,10 +294,12 @@ class AsyncDirectoryRegistrationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.create_directory_registration_request.CreateDirectoryRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pca_connector_ad.types.create_directory_registration_request.CreateDirectoryRegistrationRequest = {
+            "directory_id": directory_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -297,6 +308,7 @@ class AsyncDirectoryRegistrationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -335,14 +347,16 @@ class AsyncDirectoryRegistrationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.get_directory_registration_request.GetDirectoryRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_registration_arn"] = directory_registration_arn
+        input_: capo_pca_connector_ad.types.get_directory_registration_request.GetDirectoryRegistrationRequest = {
+            "directory_registration_arn": directory_registration_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -379,14 +393,16 @@ class AsyncDirectoryRegistrationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.delete_directory_registration_request.DeleteDirectoryRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_registration_arn"] = directory_registration_arn
+        input_: capo_pca_connector_ad.types.delete_directory_registration_request.DeleteDirectoryRegistrationRequest = {
+            "directory_registration_arn": directory_registration_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -428,7 +444,7 @@ class AsyncDirectoryRegistrationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.list_directory_registrations_request.ListDirectoryRegistrationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_ad.types.list_directory_registrations_request.ListDirectoryRegistrationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -439,4 +455,5 @@ class AsyncDirectoryRegistrationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -34,10 +34,10 @@ def serialize_json(value: PutBackupVaultLockConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> PutBackupVaultLockConfigurationInput:
     out: PutBackupVaultLockConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "MinRetentionDays" in data:
+    if data.get("MinRetentionDays") is not None:
         out["min_retention_days"] = data["MinRetentionDays"]
-    if "MaxRetentionDays" in data:
+    if data.get("MaxRetentionDays") is not None:
         out["max_retention_days"] = data["MaxRetentionDays"]
-    if "ChangeableForDays" in data:
+    if data.get("ChangeableForDays") is not None:
         out["changeable_for_days"] = data["ChangeableForDays"]
     return out

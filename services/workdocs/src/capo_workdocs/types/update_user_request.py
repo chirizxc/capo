@@ -80,27 +80,27 @@ def serialize_json(value: UpdateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserRequest:
     out: UpdateUserRequest = {}  # type: ignore[typeddict-item]
-    if "GivenName" in data:
+    if data.get("GivenName") is not None:
         out["given_name"] = data["GivenName"]
-    if "Surname" in data:
+    if data.get("Surname") is not None:
         out["surname"] = data["Surname"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workdocs.types.user_type
 
         out["type"] = capo_workdocs.types.user_type.deserialize_json(data["Type"])
-    if "StorageRule" in data:
+    if data.get("StorageRule") is not None:
         import capo_workdocs.types.storage_rule_type
 
         out["storage_rule"] = capo_workdocs.types.storage_rule_type.deserialize_json(
             data["StorageRule"]
         )
-    if "TimeZoneId" in data:
+    if data.get("TimeZoneId") is not None:
         out["time_zone_id"] = data["TimeZoneId"]
-    if "Locale" in data:
+    if data.get("Locale") is not None:
         import capo_workdocs.types.locale_type
 
         out["locale"] = capo_workdocs.types.locale_type.deserialize_json(data["Locale"])
-    if "GrantPoweruserPrivileges" in data:
+    if data.get("GrantPoweruserPrivileges") is not None:
         import capo_workdocs.types.boolean_enum_type
 
         out["grant_poweruser_privileges"] = (

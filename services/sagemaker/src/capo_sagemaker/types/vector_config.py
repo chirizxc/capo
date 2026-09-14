@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: VectorConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VectorConfig:
     out: VectorConfig = {}  # type: ignore[typeddict-item]
-    if "Dimension" in data:
+    if data.get("Dimension") is not None:
         out["dimension"] = data["Dimension"]
     return out

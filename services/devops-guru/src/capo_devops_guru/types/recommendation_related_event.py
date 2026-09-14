@@ -38,9 +38,9 @@ def serialize_json(value: RecommendationRelatedEvent) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationRelatedEvent:
     out: RecommendationRelatedEvent = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_devops_guru.types.recommendation_related_event_resources
 
         out["resources"] = (

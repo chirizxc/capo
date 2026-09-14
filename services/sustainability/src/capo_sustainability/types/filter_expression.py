@@ -29,7 +29,7 @@ def serialize_json(value: FilterExpression) -> dict:
 
 def deserialize_json(data: dict) -> FilterExpression:
     out: FilterExpression = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_sustainability.types.dimension_list_map
 
         out["dimensions"] = (

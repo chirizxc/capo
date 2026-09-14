@@ -292,12 +292,13 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.add_policy_statement_input.AddPolicyStatementInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["statement_id"] = statement_id
-        input_["effect"] = effect
-        input_["action"] = action
-        input_["principal"] = principal
+        input_: capo_entityresolution.types.add_policy_statement_input.AddPolicyStatementInput = {
+            "arn": arn,
+            "statement_id": statement_id,
+            "effect": effect,
+            "action": action,
+            "principal": principal,
+        }
         if condition is not None:
             input_["condition"] = condition
 
@@ -306,6 +307,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_unique_id(
@@ -346,17 +348,19 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.batch_delete_unique_id_input.BatchDeleteUniqueIdInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.batch_delete_unique_id_input.BatchDeleteUniqueIdInput = {
+            "workflow_name": workflow_name,
+            "unique_ids": unique_ids,
+        }
         if input_source is not None:
             input_["input_source"] = input_source
-        input_["unique_ids"] = unique_ids
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_id_mapping_workflow(
@@ -418,14 +422,15 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.create_id_mapping_workflow_input.CreateIdMappingWorkflowInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.create_id_mapping_workflow_input.CreateIdMappingWorkflowInput = {
+            "workflow_name": workflow_name,
+            "input_source_config": input_source_config,
+            "id_mapping_techniques": id_mapping_techniques,
+        }
         if description is not None:
             input_["description"] = description
-        input_["input_source_config"] = input_source_config
         if output_source_config is not None:
             input_["output_source_config"] = output_source_config
-        input_["id_mapping_techniques"] = id_mapping_techniques
         if incremental_run_config is not None:
             input_["incremental_run_config"] = incremental_run_config
         if role_arn is not None:
@@ -438,6 +443,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_id_namespace(
@@ -497,15 +503,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.create_id_namespace_input.CreateIdNamespaceInput = {}  # type: ignore[typeddict-item]
-        input_["id_namespace_name"] = id_namespace_name
+        input_: capo_entityresolution.types.create_id_namespace_input.CreateIdNamespaceInput = {
+            "id_namespace_name": id_namespace_name,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
         if input_source_config is not None:
             input_["input_source_config"] = input_source_config
         if id_mapping_workflow_properties is not None:
             input_["id_mapping_workflow_properties"] = id_mapping_workflow_properties
-        input_["type"] = type
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if tags is not None:
@@ -516,6 +523,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_matching_workflow(
@@ -573,16 +581,17 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.create_matching_workflow_input.CreateMatchingWorkflowInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.create_matching_workflow_input.CreateMatchingWorkflowInput = {
+            "workflow_name": workflow_name,
+            "input_source_config": input_source_config,
+            "output_source_config": output_source_config,
+            "resolution_techniques": resolution_techniques,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["input_source_config"] = input_source_config
-        input_["output_source_config"] = output_source_config
-        input_["resolution_techniques"] = resolution_techniques
         if incremental_run_config is not None:
             input_["incremental_run_config"] = incremental_run_config
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -591,6 +600,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_schema_mapping(
@@ -638,11 +648,12 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.create_schema_mapping_input.CreateSchemaMappingInput = {}  # type: ignore[typeddict-item]
-        input_["schema_name"] = schema_name
+        input_: capo_entityresolution.types.create_schema_mapping_input.CreateSchemaMappingInput = {
+            "schema_name": schema_name,
+            "mapped_input_fields": mapped_input_fields,
+        }
         if description is not None:
             input_["description"] = description
-        input_["mapped_input_fields"] = mapped_input_fields
         if tags is not None:
             input_["tags"] = tags
 
@@ -651,6 +662,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_id_mapping_workflow(
@@ -689,14 +701,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.delete_id_mapping_workflow_input.DeleteIdMappingWorkflowInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.delete_id_mapping_workflow_input.DeleteIdMappingWorkflowInput = {
+            "workflow_name": workflow_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_id_namespace(
@@ -736,14 +750,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.delete_id_namespace_input.DeleteIdNamespaceInput = {}  # type: ignore[typeddict-item]
-        input_["id_namespace_name"] = id_namespace_name
+        input_: capo_entityresolution.types.delete_id_namespace_input.DeleteIdNamespaceInput = {
+            "id_namespace_name": id_namespace_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_matching_workflow(
@@ -782,14 +798,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.delete_matching_workflow_input.DeleteMatchingWorkflowInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.delete_matching_workflow_input.DeleteMatchingWorkflowInput = {
+            "workflow_name": workflow_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_policy_statement(
@@ -831,15 +849,17 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.delete_policy_statement_input.DeletePolicyStatementInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["statement_id"] = statement_id
+        input_: capo_entityresolution.types.delete_policy_statement_input.DeletePolicyStatementInput = {
+            "arn": arn,
+            "statement_id": statement_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_schema_mapping(
@@ -878,14 +898,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.delete_schema_mapping_input.DeleteSchemaMappingInput = {}  # type: ignore[typeddict-item]
-        input_["schema_name"] = schema_name
+        input_: capo_entityresolution.types.delete_schema_mapping_input.DeleteSchemaMappingInput = {
+            "schema_name": schema_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def generate_match_id(
@@ -930,9 +952,10 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.generate_match_id_input.GenerateMatchIdInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
-        input_["records"] = records
+        input_: capo_entityresolution.types.generate_match_id_input.GenerateMatchIdInput = {
+            "workflow_name": workflow_name,
+            "records": records,
+        }
         if processing_type is not None:
             input_["processing_type"] = processing_type
 
@@ -941,6 +964,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_id_mapping_job(
@@ -981,15 +1005,17 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.get_id_mapping_job_input.GetIdMappingJobInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
-        input_["job_id"] = job_id
+        input_: capo_entityresolution.types.get_id_mapping_job_input.GetIdMappingJobInput = {
+            "workflow_name": workflow_name,
+            "job_id": job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_id_mapping_workflow(
@@ -1028,14 +1054,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.get_id_mapping_workflow_input.GetIdMappingWorkflowInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.get_id_mapping_workflow_input.GetIdMappingWorkflowInput = {
+            "workflow_name": workflow_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_id_namespace(
@@ -1074,14 +1102,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.get_id_namespace_input.GetIdNamespaceInput = {}  # type: ignore[typeddict-item]
-        input_["id_namespace_name"] = id_namespace_name
+        input_: capo_entityresolution.types.get_id_namespace_input.GetIdNamespaceInput = {
+            "id_namespace_name": id_namespace_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_match_id(
@@ -1124,9 +1154,10 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.get_match_id_input.GetMatchIdInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
-        input_["record"] = record
+        input_: capo_entityresolution.types.get_match_id_input.GetMatchIdInput = {
+            "workflow_name": workflow_name,
+            "record": record,
+        }
         if apply_normalization is not None:
             input_["apply_normalization"] = apply_normalization
 
@@ -1135,6 +1166,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_matching_job(
@@ -1175,15 +1207,17 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.get_matching_job_input.GetMatchingJobInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
-        input_["job_id"] = job_id
+        input_: capo_entityresolution.types.get_matching_job_input.GetMatchingJobInput = {
+            "workflow_name": workflow_name,
+            "job_id": job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_matching_workflow(
@@ -1222,14 +1256,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.get_matching_workflow_input.GetMatchingWorkflowInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.get_matching_workflow_input.GetMatchingWorkflowInput = {
+            "workflow_name": workflow_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_policy(
@@ -1268,14 +1304,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.get_policy_input.GetPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_entityresolution.types.get_policy_input.GetPolicyInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_provider_service(
@@ -1316,15 +1354,17 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.get_provider_service_input.GetProviderServiceInput = {}  # type: ignore[typeddict-item]
-        input_["provider_name"] = provider_name
-        input_["provider_service_name"] = provider_service_name
+        input_: capo_entityresolution.types.get_provider_service_input.GetProviderServiceInput = {
+            "provider_name": provider_name,
+            "provider_service_name": provider_service_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_schema_mapping(
@@ -1363,14 +1403,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.get_schema_mapping_input.GetSchemaMappingInput = {}  # type: ignore[typeddict-item]
-        input_["schema_name"] = schema_name
+        input_: capo_entityresolution.types.get_schema_mapping_input.GetSchemaMappingInput = {
+            "schema_name": schema_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_id_mapping_jobs(
@@ -1413,8 +1455,9 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.list_id_mapping_jobs_input.ListIdMappingJobsInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.list_id_mapping_jobs_input.ListIdMappingJobsInput = {
+            "workflow_name": workflow_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1425,6 +1468,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_id_mapping_jobs(
@@ -1487,7 +1531,7 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.list_id_mapping_workflows_input.ListIdMappingWorkflowsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_entityresolution.types.list_id_mapping_workflows_input.ListIdMappingWorkflowsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1498,6 +1542,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_id_mapping_workflows(
@@ -1558,7 +1603,7 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.list_id_namespaces_input.ListIdNamespacesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_entityresolution.types.list_id_namespaces_input.ListIdNamespacesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1569,6 +1614,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_id_namespaces(
@@ -1632,8 +1678,9 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.list_matching_jobs_input.ListMatchingJobsInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.list_matching_jobs_input.ListMatchingJobsInput = {
+            "workflow_name": workflow_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1644,6 +1691,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_matching_jobs(
@@ -1706,7 +1754,7 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.list_matching_workflows_input.ListMatchingWorkflowsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_entityresolution.types.list_matching_workflows_input.ListMatchingWorkflowsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1717,6 +1765,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_matching_workflows(
@@ -1781,7 +1830,7 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.list_provider_services_input.ListProviderServicesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_entityresolution.types.list_provider_services_input.ListProviderServicesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1794,6 +1843,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_provider_services(
@@ -1858,7 +1908,7 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.list_schema_mappings_input.ListSchemaMappingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_entityresolution.types.list_schema_mappings_input.ListSchemaMappingsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1869,6 +1919,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_schema_mappings(
@@ -1926,14 +1977,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_entityresolution.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_policy(
@@ -1977,17 +2030,19 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.put_policy_input.PutPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_entityresolution.types.put_policy_input.PutPolicyInput = {
+            "arn": arn,
+            "policy": policy,
+        }
         if token is not None:
             input_["token"] = token
-        input_["policy"] = policy
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_id_mapping_job(
@@ -2034,8 +2089,9 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.start_id_mapping_job_input.StartIdMappingJobInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.start_id_mapping_job_input.StartIdMappingJobInput = {
+            "workflow_name": workflow_name
+        }
         if output_source_config is not None:
             input_["output_source_config"] = output_source_config
         if job_type is not None:
@@ -2046,6 +2102,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_matching_job(
@@ -2086,14 +2143,16 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.start_matching_job_input.StartMatchingJobInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.start_matching_job_input.StartMatchingJobInput = {
+            "workflow_name": workflow_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2132,15 +2191,17 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_entityresolution.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2178,15 +2239,17 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_entityresolution.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_id_mapping_workflow(
@@ -2245,14 +2308,15 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.update_id_mapping_workflow_input.UpdateIdMappingWorkflowInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.update_id_mapping_workflow_input.UpdateIdMappingWorkflowInput = {
+            "workflow_name": workflow_name,
+            "input_source_config": input_source_config,
+            "id_mapping_techniques": id_mapping_techniques,
+        }
         if description is not None:
             input_["description"] = description
-        input_["input_source_config"] = input_source_config
         if output_source_config is not None:
             input_["output_source_config"] = output_source_config
-        input_["id_mapping_techniques"] = id_mapping_techniques
         if incremental_run_config is not None:
             input_["incremental_run_config"] = incremental_run_config
         if role_arn is not None:
@@ -2263,6 +2327,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_id_namespace(
@@ -2317,8 +2382,9 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.update_id_namespace_input.UpdateIdNamespaceInput = {}  # type: ignore[typeddict-item]
-        input_["id_namespace_name"] = id_namespace_name
+        input_: capo_entityresolution.types.update_id_namespace_input.UpdateIdNamespaceInput = {
+            "id_namespace_name": id_namespace_name
+        }
         if description is not None:
             input_["description"] = description
         if input_source_config is not None:
@@ -2333,6 +2399,7 @@ class AsyncEntityResolutionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_matching_workflow(
@@ -2387,22 +2454,24 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.update_matching_workflow_input.UpdateMatchingWorkflowInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_name"] = workflow_name
+        input_: capo_entityresolution.types.update_matching_workflow_input.UpdateMatchingWorkflowInput = {
+            "workflow_name": workflow_name,
+            "input_source_config": input_source_config,
+            "output_source_config": output_source_config,
+            "resolution_techniques": resolution_techniques,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["input_source_config"] = input_source_config
-        input_["output_source_config"] = output_source_config
-        input_["resolution_techniques"] = resolution_techniques
         if incremental_run_config is not None:
             input_["incremental_run_config"] = incremental_run_config
-        input_["role_arn"] = role_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_schema_mapping(
@@ -2448,17 +2517,19 @@ class AsyncEntityResolutionClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_entityresolution.types.update_schema_mapping_input.UpdateSchemaMappingInput = {}  # type: ignore[typeddict-item]
-        input_["schema_name"] = schema_name
+        input_: capo_entityresolution.types.update_schema_mapping_input.UpdateSchemaMappingInput = {
+            "schema_name": schema_name,
+            "mapped_input_fields": mapped_input_fields,
+        }
         if description is not None:
             input_["description"] = description
-        input_["mapped_input_fields"] = mapped_input_fields
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -80,11 +80,11 @@ def serialize_json(value: CloudWatchMetricsDetail) -> dict:
 
 def deserialize_json(data: dict) -> CloudWatchMetricsDetail:
     out: CloudWatchMetricsDetail = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_devops_guru.types.cloud_watch_metrics_dimensions
 
         out["dimensions"] = (
@@ -92,19 +92,19 @@ def deserialize_json(data: dict) -> CloudWatchMetricsDetail:
                 data["Dimensions"]
             )
         )
-    if "Stat" in data:
+    if data.get("Stat") is not None:
         import capo_devops_guru.types.cloud_watch_metrics_stat
 
         out["stat"] = capo_devops_guru.types.cloud_watch_metrics_stat.deserialize_json(
             data["Stat"]
         )
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
-    if "Period" in data:
+    if data.get("Period") is not None:
         out["period"] = data["Period"]
     else:
         out["period"] = 0
-    if "MetricDataSummary" in data:
+    if data.get("MetricDataSummary") is not None:
         import capo_devops_guru.types.cloud_watch_metrics_data_summary
 
         out["metric_data_summary"] = (

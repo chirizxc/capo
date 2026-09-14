@@ -36,7 +36,7 @@ def serialize_json(value: ListCrossAccountAuthorizationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCrossAccountAuthorizationsResponse:
     out: ListCrossAccountAuthorizationsResponse = {}  # type: ignore[typeddict-item]
-    if "crossAccountAuthorizations" in data:
+    if data.get("crossAccountAuthorizations") is not None:
         import capo_route53_recovery_readiness.types.__list_of_cross_account_authorization
 
         out["cross_account_authorizations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListCrossAccountAuthorizationsResponse:
                 data["crossAccountAuthorizations"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -63,11 +63,11 @@ def serialize_aws_json_1_1(value: EventType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventType:
     out: EventType = {}  # type: ignore[typeddict-item]
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_health.types.event_type_category
 
         out["category"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventType:
                 data["category"]
             )
         )
-    if "actionability" in data:
+    if data.get("actionability") is not None:
         import capo_health.types.event_type_actionability
 
         out["actionability"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventType:
                 data["actionability"]
             )
         )
-    if "personas" in data:
+    if data.get("personas") is not None:
         import capo_health.types.event_type_persona_list
 
         out["personas"] = (

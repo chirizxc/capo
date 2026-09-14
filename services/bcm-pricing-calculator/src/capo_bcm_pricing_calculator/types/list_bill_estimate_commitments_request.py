@@ -36,14 +36,14 @@ def serialize_aws_json_1_0(value: ListBillEstimateCommitmentsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListBillEstimateCommitmentsRequest:
     out: ListBillEstimateCommitmentsRequest = {}  # type: ignore[typeddict-item]
-    if "billEstimateId" in data:
+    if data.get("billEstimateId") is not None:
         out["bill_estimate_id"] = data["billEstimateId"]
     else:
         raise DeserializationError(
             "ListBillEstimateCommitmentsRequest.bill_estimate_id required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

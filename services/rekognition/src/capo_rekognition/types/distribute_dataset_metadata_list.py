@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> DistributeDatasetMetadataList:
 
     out: DistributeDatasetMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.distribute_dataset.deserialize_aws_json_1_1(item)
         )

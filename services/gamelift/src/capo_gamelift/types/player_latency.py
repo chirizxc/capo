@@ -29,16 +29,24 @@ def serialize_aws_json_1_1(value: PlayerLatency) -> dict:
     if "region_identifier" in value:
         out["RegionIdentifier"] = value["region_identifier"]
     if "latency_in_milliseconds" in value:
-        out["LatencyInMilliseconds"] = value["latency_in_milliseconds"]
+        out["LatencyInMilliseconds"] = (
+            "NaN"
+            if value["latency_in_milliseconds"] != value["latency_in_milliseconds"]
+            else "Infinity"
+            if value["latency_in_milliseconds"] == float("inf")
+            else "-Infinity"
+            if value["latency_in_milliseconds"] == float("-inf")
+            else value["latency_in_milliseconds"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> PlayerLatency:
     out: PlayerLatency = {}  # type: ignore[typeddict-item]
-    if "PlayerId" in data:
+    if data.get("PlayerId") is not None:
         out["player_id"] = data["PlayerId"]
-    if "RegionIdentifier" in data:
+    if data.get("RegionIdentifier") is not None:
         out["region_identifier"] = data["RegionIdentifier"]
-    if "LatencyInMilliseconds" in data:
-        out["latency_in_milliseconds"] = data["LatencyInMilliseconds"]
+    if data.get("LatencyInMilliseconds") is not None:
+        out["latency_in_milliseconds"] = float(data["LatencyInMilliseconds"])
     return out

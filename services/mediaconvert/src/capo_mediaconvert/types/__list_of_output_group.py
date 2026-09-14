@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfOutputGroup:
 
     out: __listOfOutputGroup = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.output_group.deserialize_json(item))
     return out

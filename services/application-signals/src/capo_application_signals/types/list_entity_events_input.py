@@ -50,7 +50,7 @@ def serialize_json(value: ListEntityEventsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListEntityEventsInput:
     out: ListEntityEventsInput = {}  # type: ignore[typeddict-item]
-    if "Entity" in data:
+    if data.get("Entity") is not None:
         import capo_application_signals.types.attributes
 
         out["entity"] = capo_application_signals.types.attributes.deserialize_json(
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> ListEntityEventsInput:
         )
     else:
         raise DeserializationError("ListEntityEventsInput.entity required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["start_time"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> ListEntityEventsInput:
         )
     else:
         raise DeserializationError("ListEntityEventsInput.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["end_time"] = (

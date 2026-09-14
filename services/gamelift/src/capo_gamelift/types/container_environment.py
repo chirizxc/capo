@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: ContainerEnvironment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerEnvironment:
     out: ContainerEnvironment = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

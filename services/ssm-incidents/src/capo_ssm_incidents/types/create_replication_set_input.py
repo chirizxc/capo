@@ -40,7 +40,7 @@ def serialize_json(value: CreateReplicationSetInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateReplicationSetInput:
     out: CreateReplicationSetInput = {}  # type: ignore[typeddict-item]
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_ssm_incidents.types.region_map_input
 
         out["regions"] = capo_ssm_incidents.types.region_map_input.deserialize_json(
@@ -48,9 +48,9 @@ def deserialize_json(data: dict) -> CreateReplicationSetInput:
         )
     else:
         raise DeserializationError("CreateReplicationSetInput.regions required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ssm_incidents.types.tag_map
 
         out["tags"] = capo_ssm_incidents.types.tag_map.deserialize_json(data["tags"])

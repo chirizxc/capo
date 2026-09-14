@@ -62,19 +62,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeComponentConfigurationRecommendationRequest:
     out: DescribeComponentConfigurationRecommendationRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
     else:
         raise DeserializationError(
             "DescribeComponentConfigurationRecommendationRequest.resource_group_name required"
         )
-    if "ComponentName" in data:
+    if data.get("ComponentName") is not None:
         out["component_name"] = data["ComponentName"]
     else:
         raise DeserializationError(
             "DescribeComponentConfigurationRecommendationRequest.component_name required"
         )
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         import capo_application_insights.types.tier
 
         out["tier"] = capo_application_insights.types.tier.deserialize_aws_json_1_1(
@@ -84,9 +84,9 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "DescribeComponentConfigurationRecommendationRequest.tier required"
         )
-    if "WorkloadName" in data:
+    if data.get("WorkloadName") is not None:
         out["workload_name"] = data["WorkloadName"]
-    if "RecommendationType" in data:
+    if data.get("RecommendationType") is not None:
         import capo_application_insights.types.recommendation_type
 
         out["recommendation_type"] = (

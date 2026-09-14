@@ -98,15 +98,15 @@ def serialize_aws_json_1_1(value: GetSessionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSessionResponse:
     out: GetSessionResponse = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "EngineConfiguration" in data:
+    if data.get("EngineConfiguration") is not None:
         import capo_athena.types.engine_configuration
 
         out["engine_configuration"] = (
@@ -114,9 +114,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetSessionResponse:
                 data["EngineConfiguration"]
             )
         )
-    if "NotebookVersion" in data:
+    if data.get("NotebookVersion") is not None:
         out["notebook_version"] = data["NotebookVersion"]
-    if "MonitoringConfiguration" in data:
+    if data.get("MonitoringConfiguration") is not None:
         import capo_athena.types.monitoring_configuration
 
         out["monitoring_configuration"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSessionResponse:
                 data["MonitoringConfiguration"]
             )
         )
-    if "SessionConfiguration" in data:
+    if data.get("SessionConfiguration") is not None:
         import capo_athena.types.session_configuration
 
         out["session_configuration"] = (
@@ -132,13 +132,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetSessionResponse:
                 data["SessionConfiguration"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_athena.types.session_status
 
         out["status"] = capo_athena.types.session_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_athena.types.session_statistics
 
         out["statistics"] = (

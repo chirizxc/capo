@@ -85,9 +85,9 @@ def serialize_aws_json_1_1(value: GetOperationDetailResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetOperationDetailResponse:
     out: GetOperationDetailResponse = {}  # type: ignore[typeddict-item]
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route_53_domains.types.operation_status
 
         out["status"] = (
@@ -95,11 +95,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetOperationDetailResponse:
                 data["Status"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_route_53_domains.types.operation_type
 
         out["type"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetOperationDetailResponse:
                 data["Type"]
             )
         )
-    if "SubmittedDate" in data:
+    if data.get("SubmittedDate") is not None:
         import capo_route_53_domains.types.timestamp
 
         out["submitted_date"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetOperationDetailResponse:
                 data["SubmittedDate"]
             )
         )
-    if "LastUpdatedDate" in data:
+    if data.get("LastUpdatedDate") is not None:
         import capo_route_53_domains.types.timestamp
 
         out["last_updated_date"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetOperationDetailResponse:
                 data["LastUpdatedDate"]
             )
         )
-    if "StatusFlag" in data:
+    if data.get("StatusFlag") is not None:
         import capo_route_53_domains.types.status_flag
 
         out["status_flag"] = (

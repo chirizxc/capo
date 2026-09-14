@@ -24,7 +24,7 @@ def serialize_json(value: CreateCaseCommentResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCaseCommentResponse:
     out: CreateCaseCommentResponse = {}  # type: ignore[typeddict-item]
-    if "commentId" in data:
+    if data.get("commentId") is not None:
         out["comment_id"] = data["commentId"]
     else:
         raise DeserializationError("CreateCaseCommentResponse.comment_id required")

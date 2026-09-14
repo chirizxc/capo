@@ -48,13 +48,13 @@ def serialize_json(value: PostWhatsAppMessageMediaInput) -> dict:
 
 def deserialize_json(data: dict) -> PostWhatsAppMessageMediaInput:
     out: PostWhatsAppMessageMediaInput = {}  # type: ignore[typeddict-item]
-    if "originationPhoneNumberId" in data:
+    if data.get("originationPhoneNumberId") is not None:
         out["origination_phone_number_id"] = data["originationPhoneNumberId"]
     else:
         raise DeserializationError(
             "PostWhatsAppMessageMediaInput.origination_phone_number_id required"
         )
-    if "sourceS3PresignedUrl" in data:
+    if data.get("sourceS3PresignedUrl") is not None:
         import capo_socialmessaging.types.s3_presigned_url
 
         out["source_s3_presigned_url"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> PostWhatsAppMessageMediaInput:
                 data["sourceS3PresignedUrl"]
             )
         )
-    if "sourceS3File" in data:
+    if data.get("sourceS3File") is not None:
         import capo_socialmessaging.types.s3_file
 
         out["source_s3_file"] = capo_socialmessaging.types.s3_file.deserialize_json(

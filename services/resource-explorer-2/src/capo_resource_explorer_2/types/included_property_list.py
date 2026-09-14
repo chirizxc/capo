@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IncludedPropertyList:
 
     out: IncludedPropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resource_explorer_2.types.included_property.deserialize_json(item)
         )

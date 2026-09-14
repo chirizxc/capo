@@ -67,7 +67,7 @@ def serialize_aws_json_1_1(value: DetectModerationLabelsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectModerationLabelsResponse:
     out: DetectModerationLabelsResponse = {}  # type: ignore[typeddict-item]
-    if "ModerationLabels" in data:
+    if data.get("ModerationLabels") is not None:
         import capo_rekognition.types.moderation_labels
 
         out["moderation_labels"] = (
@@ -75,9 +75,9 @@ def deserialize_aws_json_1_1(data: dict) -> DetectModerationLabelsResponse:
                 data["ModerationLabels"]
             )
         )
-    if "ModerationModelVersion" in data:
+    if data.get("ModerationModelVersion") is not None:
         out["moderation_model_version"] = data["ModerationModelVersion"]
-    if "HumanLoopActivationOutput" in data:
+    if data.get("HumanLoopActivationOutput") is not None:
         import capo_rekognition.types.human_loop_activation_output
 
         out["human_loop_activation_output"] = (
@@ -85,9 +85,9 @@ def deserialize_aws_json_1_1(data: dict) -> DetectModerationLabelsResponse:
                 data["HumanLoopActivationOutput"]
             )
         )
-    if "ProjectVersion" in data:
+    if data.get("ProjectVersion") is not None:
         out["project_version"] = data["ProjectVersion"]
-    if "ContentTypes" in data:
+    if data.get("ContentTypes") is not None:
         import capo_rekognition.types.content_types
 
         out["content_types"] = (

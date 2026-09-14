@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: RejectAccountLinkInvitationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RejectAccountLinkInvitationRequest:
     out: RejectAccountLinkInvitationRequest = {}  # type: ignore[typeddict-item]
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
     else:
         raise DeserializationError(
             "RejectAccountLinkInvitationRequest.link_id required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

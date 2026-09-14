@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: DataCatalogConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataCatalogConfig:
     out: DataCatalogConfig = {}  # type: ignore[typeddict-item]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     return out

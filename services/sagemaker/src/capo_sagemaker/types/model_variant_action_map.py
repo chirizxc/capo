@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: ModelVariantActionMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ModelVariantActionMap:
     out: ModelVariantActionMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_sagemaker.types.model_variant_action
 
         out[key] = capo_sagemaker.types.model_variant_action.deserialize_aws_json_1_1(

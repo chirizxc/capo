@@ -31,6 +31,8 @@ def serialize_aws_json_1_1(
 def deserialize_aws_json_1_1(data: dict) -> ExternalModelEndpointDataBlobMap:
     out: ExternalModelEndpointDataBlobMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_frauddetector.types.model_endpoint_data_blob
 
         out[key] = (

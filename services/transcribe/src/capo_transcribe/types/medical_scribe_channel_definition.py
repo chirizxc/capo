@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: MedicalScribeChannelDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MedicalScribeChannelDefinition:
     out: MedicalScribeChannelDefinition = {}  # type: ignore[typeddict-item]
-    if "ChannelId" in data:
+    if data.get("ChannelId") is not None:
         out["channel_id"] = data["ChannelId"]
     else:
         out["channel_id"] = 0
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_transcribe.types.medical_scribe_participant_role
 
         out["participant_role"] = (

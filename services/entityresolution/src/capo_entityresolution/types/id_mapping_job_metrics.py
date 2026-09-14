@@ -74,34 +74,34 @@ def serialize_json(value: IdMappingJobMetrics) -> dict:
 
 def deserialize_json(data: dict) -> IdMappingJobMetrics:
     out: IdMappingJobMetrics = {}  # type: ignore[typeddict-item]
-    if "inputRecords" in data:
+    if data.get("inputRecords") is not None:
         out["input_records"] = data["inputRecords"]
-    if "totalRecordsProcessed" in data:
+    if data.get("totalRecordsProcessed") is not None:
         out["total_records_processed"] = data["totalRecordsProcessed"]
-    if "recordsNotProcessed" in data:
+    if data.get("recordsNotProcessed") is not None:
         out["records_not_processed"] = data["recordsNotProcessed"]
-    if "deleteRecordsProcessed" in data:
+    if data.get("deleteRecordsProcessed") is not None:
         out["delete_records_processed"] = data["deleteRecordsProcessed"]
-    if "totalMappedRecords" in data:
+    if data.get("totalMappedRecords") is not None:
         out["total_mapped_records"] = data["totalMappedRecords"]
-    if "totalMappedSourceRecords" in data:
+    if data.get("totalMappedSourceRecords") is not None:
         out["total_mapped_source_records"] = data["totalMappedSourceRecords"]
-    if "totalMappedTargetRecords" in data:
+    if data.get("totalMappedTargetRecords") is not None:
         out["total_mapped_target_records"] = data["totalMappedTargetRecords"]
-    if "uniqueRecordsLoaded" in data:
+    if data.get("uniqueRecordsLoaded") is not None:
         out["unique_records_loaded"] = data["uniqueRecordsLoaded"]
-    if "newMappedRecords" in data:
+    if data.get("newMappedRecords") is not None:
         out["new_mapped_records"] = data["newMappedRecords"]
-    if "newMappedSourceRecords" in data:
+    if data.get("newMappedSourceRecords") is not None:
         out["new_mapped_source_records"] = data["newMappedSourceRecords"]
-    if "newMappedTargetRecords" in data:
+    if data.get("newMappedTargetRecords") is not None:
         out["new_mapped_target_records"] = data["newMappedTargetRecords"]
-    if "newUniqueRecordsLoaded" in data:
+    if data.get("newUniqueRecordsLoaded") is not None:
         out["new_unique_records_loaded"] = data["newUniqueRecordsLoaded"]
-    if "mappedRecordsRemoved" in data:
+    if data.get("mappedRecordsRemoved") is not None:
         out["mapped_records_removed"] = data["mappedRecordsRemoved"]
-    if "mappedSourceRecordsRemoved" in data:
+    if data.get("mappedSourceRecordsRemoved") is not None:
         out["mapped_source_records_removed"] = data["mappedSourceRecordsRemoved"]
-    if "mappedTargetRecordsRemoved" in data:
+    if data.get("mappedTargetRecordsRemoved") is not None:
         out["mapped_target_records_removed"] = data["mappedTargetRecordsRemoved"]
     return out

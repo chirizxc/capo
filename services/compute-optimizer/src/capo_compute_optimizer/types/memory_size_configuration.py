@@ -30,8 +30,8 @@ def serialize_aws_json_1_0(value: MemorySizeConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MemorySizeConfiguration:
     out: MemorySizeConfiguration = {}  # type: ignore[typeddict-item]
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
-    if "memoryReservation" in data:
+    if data.get("memoryReservation") is not None:
         out["memory_reservation"] = data["memoryReservation"]
     return out

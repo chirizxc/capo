@@ -78,21 +78,21 @@ def serialize_json(value: ActionReviewPayloadField) -> dict:
 
 def deserialize_json(data: dict) -> ActionReviewPayloadField:
     out: ActionReviewPayloadField = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "displayOrder" in data:
+    if data.get("displayOrder") is not None:
         out["display_order"] = data["displayOrder"]
-    if "displayDescription" in data:
+    if data.get("displayDescription") is not None:
         out["display_description"] = data["displayDescription"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.action_payload_field_type
 
         out["type"] = capo_qbusiness.types.action_payload_field_type.deserialize_json(
             data["type"]
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "allowedValues" in data:
+    if data.get("allowedValues") is not None:
         import capo_qbusiness.types.action_review_payload_field_allowed_values
 
         out["allowed_values"] = (
@@ -100,10 +100,10 @@ def deserialize_json(data: dict) -> ActionReviewPayloadField:
                 data["allowedValues"]
             )
         )
-    if "allowedFormat" in data:
+    if data.get("allowedFormat") is not None:
         out["allowed_format"] = data["allowedFormat"]
-    if "arrayItemJsonSchema" in data:
+    if data.get("arrayItemJsonSchema") is not None:
         out["array_item_json_schema"] = data["arrayItemJsonSchema"]
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
     return out

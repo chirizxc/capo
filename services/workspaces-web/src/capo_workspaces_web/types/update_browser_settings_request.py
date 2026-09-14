@@ -46,11 +46,11 @@ def serialize_json(value: UpdateBrowserSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrowserSettingsRequest:
     out: UpdateBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "browserPolicy" in data:
+    if data.get("browserPolicy") is not None:
         out["browser_policy"] = data["browserPolicy"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "webContentFilteringPolicy" in data:
+    if data.get("webContentFilteringPolicy") is not None:
         import capo_workspaces_web.types.web_content_filtering_policy
 
         out["web_content_filtering_policy"] = (

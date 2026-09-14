@@ -45,17 +45,17 @@ def serialize_json(value: MediaPackageV2DestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> MediaPackageV2DestinationSettings:
     out: MediaPackageV2DestinationSettings = {}  # type: ignore[typeddict-item]
-    if "audioGroupId" in data:
+    if data.get("audioGroupId") is not None:
         out["audio_group_id"] = data["audioGroupId"]
-    if "audioRenditionSets" in data:
+    if data.get("audioRenditionSets") is not None:
         out["audio_rendition_sets"] = data["audioRenditionSets"]
-    if "hlsAutoSelect" in data:
+    if data.get("hlsAutoSelect") is not None:
         import capo_medialive.types.hls_auto_select
 
         out["hls_auto_select"] = capo_medialive.types.hls_auto_select.deserialize_json(
             data["hlsAutoSelect"]
         )
-    if "hlsDefault" in data:
+    if data.get("hlsDefault") is not None:
         import capo_medialive.types.hls_default
 
         out["hls_default"] = capo_medialive.types.hls_default.deserialize_json(

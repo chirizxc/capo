@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: FailedWorkspaceChangeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailedWorkspaceChangeRequest:
     out: FailedWorkspaceChangeRequest = {}  # type: ignore[typeddict-item]
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

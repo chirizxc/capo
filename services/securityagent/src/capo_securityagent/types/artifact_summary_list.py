@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ArtifactSummaryList:
 
     out: ArtifactSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityagent.types.artifact_summary.deserialize_json(item))
     return out

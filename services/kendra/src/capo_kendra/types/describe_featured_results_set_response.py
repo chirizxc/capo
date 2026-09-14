@@ -96,13 +96,13 @@ def serialize_aws_json_1_1(value: DescribeFeaturedResultsSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFeaturedResultsSetResponse:
     out: DescribeFeaturedResultsSetResponse = {}  # type: ignore[typeddict-item]
-    if "FeaturedResultsSetId" in data:
+    if data.get("FeaturedResultsSetId") is not None:
         out["featured_results_set_id"] = data["FeaturedResultsSetId"]
-    if "FeaturedResultsSetName" in data:
+    if data.get("FeaturedResultsSetName") is not None:
         out["featured_results_set_name"] = data["FeaturedResultsSetName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.featured_results_set_status
 
         out["status"] = (
@@ -110,13 +110,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeaturedResultsSetResponse:
                 data["Status"]
             )
         )
-    if "QueryTexts" in data:
+    if data.get("QueryTexts") is not None:
         import capo_kendra.types.query_text_list
 
         out["query_texts"] = capo_kendra.types.query_text_list.deserialize_aws_json_1_1(
             data["QueryTexts"]
         )
-    if "FeaturedDocumentsWithMetadata" in data:
+    if data.get("FeaturedDocumentsWithMetadata") is not None:
         import capo_kendra.types.featured_document_with_metadata_list
 
         out["featured_documents_with_metadata"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeaturedResultsSetResponse:
                 data["FeaturedDocumentsWithMetadata"]
             )
         )
-    if "FeaturedDocumentsMissing" in data:
+    if data.get("FeaturedDocumentsMissing") is not None:
         import capo_kendra.types.featured_document_missing_list
 
         out["featured_documents_missing"] = (
@@ -132,8 +132,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeaturedResultsSetResponse:
                 data["FeaturedDocumentsMissing"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         out["last_updated_timestamp"] = data["LastUpdatedTimestamp"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         out["creation_timestamp"] = data["CreationTimestamp"]
     return out

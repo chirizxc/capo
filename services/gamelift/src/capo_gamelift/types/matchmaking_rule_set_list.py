@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> MatchmakingRuleSetList:
 
     out: MatchmakingRuleSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gamelift.types.matchmaking_rule_set.deserialize_aws_json_1_1(item)
         )

@@ -48,13 +48,13 @@ def serialize_aws_json_1_0(value: AddressSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AddressSummary:
     out: AddressSummary = {}  # type: ignore[typeddict-item]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
-    if "StateOrRegion" in data:
+    if data.get("StateOrRegion") is not None:
         out["state_or_region"] = data["StateOrRegion"]
-    if "CountryCode" in data:
+    if data.get("CountryCode") is not None:
         import capo_partnercentral_selling.types.country_code
 
         out["country_code"] = (

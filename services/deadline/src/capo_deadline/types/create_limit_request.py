@@ -44,21 +44,21 @@ def serialize_json(value: CreateLimitRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateLimitRequest:
     out: CreateLimitRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateLimitRequest.display_name required")
-    if "amountRequirementName" in data:
+    if data.get("amountRequirementName") is not None:
         out["amount_requirement_name"] = data["amountRequirementName"]
     else:
         raise DeserializationError(
             "CreateLimitRequest.amount_requirement_name required"
         )
-    if "maxCount" in data:
+    if data.get("maxCount") is not None:
         out["max_count"] = data["maxCount"]
     else:
         raise DeserializationError("CreateLimitRequest.max_count required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         out["description"] = ""

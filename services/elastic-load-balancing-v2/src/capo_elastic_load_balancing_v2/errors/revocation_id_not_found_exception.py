@@ -39,15 +39,20 @@ class RevocationIdNotFoundException(ServiceError):
 
     code: str | None = "RevocationIdNotFoundException"
 
-    def __init__(self, data: RevocationIdNotFoundException_):
+    def __init__(
+        self, data: RevocationIdNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RevocationIdNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "RevocationIdNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "RevocationIdNotFoundException":
+        return cls(deserialize_query(el), message)

@@ -28,11 +28,11 @@ def serialize_json(value: MaintenanceWindow) -> dict:
 
 def deserialize_json(data: dict) -> MaintenanceWindow:
     out: MaintenanceWindow = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
     else:
         raise DeserializationError("MaintenanceWindow.start_time required")
-    if "durationInMinutes" in data:
+    if data.get("durationInMinutes") is not None:
         out["duration_in_minutes"] = data["durationInMinutes"]
     else:
         raise DeserializationError("MaintenanceWindow.duration_in_minutes required")

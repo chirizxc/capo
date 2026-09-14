@@ -74,7 +74,15 @@ def serialize_aws_json_1_1(value: StartJobRunRequest) -> dict:
     if "timeout" in value:
         out["Timeout"] = value["timeout"]
     if "max_capacity" in value:
-        out["MaxCapacity"] = value["max_capacity"]
+        out["MaxCapacity"] = (
+            "NaN"
+            if value["max_capacity"] != value["max_capacity"]
+            else "Infinity"
+            if value["max_capacity"] == float("inf")
+            else "-Infinity"
+            if value["max_capacity"] == float("-inf")
+            else value["max_capacity"]
+        )
     if "security_configuration" in value:
         out["SecurityConfiguration"] = value["security_configuration"]
     if "notification_property" in value:
@@ -106,31 +114,31 @@ def serialize_aws_json_1_1(value: StartJobRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartJobRunRequest:
     out: StartJobRunRequest = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
     else:
         raise DeserializationError("StartJobRunRequest.job_name required")
-    if "JobRunQueuingEnabled" in data:
+    if data.get("JobRunQueuingEnabled") is not None:
         out["job_run_queuing_enabled"] = data["JobRunQueuingEnabled"]
-    if "JobRunId" in data:
+    if data.get("JobRunId") is not None:
         out["job_run_id"] = data["JobRunId"]
-    if "Arguments" in data:
+    if data.get("Arguments") is not None:
         import capo_glue.types.generic_map
 
         out["arguments"] = capo_glue.types.generic_map.deserialize_aws_json_1_1(
             data["Arguments"]
         )
-    if "AllocatedCapacity" in data:
+    if data.get("AllocatedCapacity") is not None:
         out["allocated_capacity"] = data["AllocatedCapacity"]
     else:
         out["allocated_capacity"] = 0
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "MaxCapacity" in data:
-        out["max_capacity"] = data["MaxCapacity"]
-    if "SecurityConfiguration" in data:
+    if data.get("MaxCapacity") is not None:
+        out["max_capacity"] = float(data["MaxCapacity"])
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "NotificationProperty" in data:
+    if data.get("NotificationProperty") is not None:
         import capo_glue.types.notification_property
 
         out["notification_property"] = (
@@ -138,15 +146,15 @@ def deserialize_aws_json_1_1(data: dict) -> StartJobRunRequest:
                 data["NotificationProperty"]
             )
         )
-    if "WorkerType" in data:
+    if data.get("WorkerType") is not None:
         import capo_glue.types.worker_type
 
         out["worker_type"] = capo_glue.types.worker_type.deserialize_aws_json_1_1(
             data["WorkerType"]
         )
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "ExecutionClass" in data:
+    if data.get("ExecutionClass") is not None:
         import capo_glue.types.execution_class
 
         out["execution_class"] = (
@@ -154,6 +162,6 @@ def deserialize_aws_json_1_1(data: dict) -> StartJobRunRequest:
                 data["ExecutionClass"]
             )
         )
-    if "ExecutionRoleSessionPolicy" in data:
+    if data.get("ExecutionRoleSessionPolicy") is not None:
         out["execution_role_session_policy"] = data["ExecutionRoleSessionPolicy"]
     return out

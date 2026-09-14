@@ -28,8 +28,8 @@ def serialize_json(value: RegisterAccountRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterAccountRequest:
     out: RegisterAccountRequest = {}  # type: ignore[typeddict-item]
-    if "kmsKey" in data:
+    if data.get("kmsKey") is not None:
         out["kms_key"] = data["kmsKey"]
-    if "delegatedAdminAccount" in data:
+    if data.get("delegatedAdminAccount") is not None:
         out["delegated_admin_account"] = data["delegatedAdminAccount"]
     return out

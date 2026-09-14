@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchGetJobEntityErrors:
 
     out: BatchGetJobEntityErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.get_job_entity_error.deserialize_json(item))
     return out

@@ -27,13 +27,13 @@ def serialize_json(value: OpenSearchServiceDataSourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> OpenSearchServiceDataSourceConfig:
     out: OpenSearchServiceDataSourceConfig = {}  # type: ignore[typeddict-item]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError(
             "OpenSearchServiceDataSourceConfig.endpoint required"
         )
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         out["aws_region"] = data["awsRegion"]
     else:
         raise DeserializationError(

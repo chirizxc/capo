@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LambdaVolumeList:
 
     out: LambdaVolumeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrassv2.types.lambda_volume_mount.deserialize_json(item))
     return out

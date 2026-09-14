@@ -67,13 +67,14 @@ class AccountSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.get_account_settings_request.GetAccountSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_artifact.types.get_account_settings_request.GetAccountSettingsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_account_settings(
@@ -121,7 +122,7 @@ class AccountSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.put_account_settings_request.PutAccountSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_artifact.types.put_account_settings_request.PutAccountSettingsRequest = {}
         if notification_subscription_status is not None:
             input_["notification_subscription_status"] = (
                 notification_subscription_status
@@ -132,6 +133,7 @@ class AccountSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -177,13 +179,14 @@ class AsyncAccountSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.get_account_settings_request.GetAccountSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_artifact.types.get_account_settings_request.GetAccountSettingsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_account_settings(
@@ -232,7 +235,7 @@ class AsyncAccountSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.put_account_settings_request.PutAccountSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_artifact.types.put_account_settings_request.PutAccountSettingsRequest = {}
         if notification_subscription_status is not None:
             input_["notification_subscription_status"] = (
                 notification_subscription_status
@@ -243,4 +246,5 @@ class AsyncAccountSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

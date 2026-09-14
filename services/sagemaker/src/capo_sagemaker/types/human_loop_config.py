@@ -92,23 +92,23 @@ def serialize_aws_json_1_1(value: HumanLoopConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HumanLoopConfig:
     out: HumanLoopConfig = {}  # type: ignore[typeddict-item]
-    if "WorkteamArn" in data:
+    if data.get("WorkteamArn") is not None:
         out["workteam_arn"] = data["WorkteamArn"]
-    if "HumanTaskUiArn" in data:
+    if data.get("HumanTaskUiArn") is not None:
         out["human_task_ui_arn"] = data["HumanTaskUiArn"]
-    if "TaskTitle" in data:
+    if data.get("TaskTitle") is not None:
         out["task_title"] = data["TaskTitle"]
-    if "TaskDescription" in data:
+    if data.get("TaskDescription") is not None:
         out["task_description"] = data["TaskDescription"]
-    if "TaskCount" in data:
+    if data.get("TaskCount") is not None:
         out["task_count"] = data["TaskCount"]
-    if "TaskAvailabilityLifetimeInSeconds" in data:
+    if data.get("TaskAvailabilityLifetimeInSeconds") is not None:
         out["task_availability_lifetime_in_seconds"] = data[
             "TaskAvailabilityLifetimeInSeconds"
         ]
-    if "TaskTimeLimitInSeconds" in data:
+    if data.get("TaskTimeLimitInSeconds") is not None:
         out["task_time_limit_in_seconds"] = data["TaskTimeLimitInSeconds"]
-    if "TaskKeywords" in data:
+    if data.get("TaskKeywords") is not None:
         import capo_sagemaker.types.flow_definition_task_keywords
 
         out["task_keywords"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> HumanLoopConfig:
                 data["TaskKeywords"]
             )
         )
-    if "PublicWorkforceTaskPrice" in data:
+    if data.get("PublicWorkforceTaskPrice") is not None:
         import capo_sagemaker.types.public_workforce_task_price
 
         out["public_workforce_task_price"] = (

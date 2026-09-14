@@ -150,7 +150,7 @@ def serialize_json(value: OutputGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> OutputGroupSettings:
     out: OutputGroupSettings = {}  # type: ignore[typeddict-item]
-    if "archiveGroupSettings" in data:
+    if data.get("archiveGroupSettings") is not None:
         import capo_medialive.types.archive_group_settings
 
         out["archive_group_settings"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["archiveGroupSettings"]
             )
         )
-    if "frameCaptureGroupSettings" in data:
+    if data.get("frameCaptureGroupSettings") is not None:
         import capo_medialive.types.frame_capture_group_settings
 
         out["frame_capture_group_settings"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["frameCaptureGroupSettings"]
             )
         )
-    if "hlsGroupSettings" in data:
+    if data.get("hlsGroupSettings") is not None:
         import capo_medialive.types.hls_group_settings
 
         out["hls_group_settings"] = (
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["hlsGroupSettings"]
             )
         )
-    if "mediaPackageGroupSettings" in data:
+    if data.get("mediaPackageGroupSettings") is not None:
         import capo_medialive.types.media_package_group_settings
 
         out["media_package_group_settings"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["mediaPackageGroupSettings"]
             )
         )
-    if "msSmoothGroupSettings" in data:
+    if data.get("msSmoothGroupSettings") is not None:
         import capo_medialive.types.ms_smooth_group_settings
 
         out["ms_smooth_group_settings"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["msSmoothGroupSettings"]
             )
         )
-    if "multiplexGroupSettings" in data:
+    if data.get("multiplexGroupSettings") is not None:
         import capo_medialive.types.multiplex_group_settings
 
         out["multiplex_group_settings"] = (
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["multiplexGroupSettings"]
             )
         )
-    if "rtmpGroupSettings" in data:
+    if data.get("rtmpGroupSettings") is not None:
         import capo_medialive.types.rtmp_group_settings
 
         out["rtmp_group_settings"] = (
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["rtmpGroupSettings"]
             )
         )
-    if "udpGroupSettings" in data:
+    if data.get("udpGroupSettings") is not None:
         import capo_medialive.types.udp_group_settings
 
         out["udp_group_settings"] = (
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["udpGroupSettings"]
             )
         )
-    if "cmafIngestGroupSettings" in data:
+    if data.get("cmafIngestGroupSettings") is not None:
         import capo_medialive.types.cmaf_ingest_group_settings
 
         out["cmaf_ingest_group_settings"] = (
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["cmafIngestGroupSettings"]
             )
         )
-    if "srtGroupSettings" in data:
+    if data.get("srtGroupSettings") is not None:
         import capo_medialive.types.srt_group_settings
 
         out["srt_group_settings"] = (
@@ -230,7 +230,7 @@ def deserialize_json(data: dict) -> OutputGroupSettings:
                 data["srtGroupSettings"]
             )
         )
-    if "mediaConnectRouterGroupSettings" in data:
+    if data.get("mediaConnectRouterGroupSettings") is not None:
         import capo_medialive.types.media_connect_router_group_settings
 
         out["media_connect_router_group_settings"] = (

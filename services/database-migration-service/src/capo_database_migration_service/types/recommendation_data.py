@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: RecommendationData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationData:
     out: RecommendationData = {}  # type: ignore[typeddict-item]
-    if "RdsEngine" in data:
+    if data.get("RdsEngine") is not None:
         import capo_database_migration_service.types.rds_recommendation
 
         out["rds_engine"] = (

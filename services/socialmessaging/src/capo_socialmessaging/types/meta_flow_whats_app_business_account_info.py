@@ -49,18 +49,18 @@ def serialize_json(value: MetaFlowWhatsAppBusinessAccountInfo) -> dict:
 
 def deserialize_json(data: dict) -> MetaFlowWhatsAppBusinessAccountInfo:
     out: MetaFlowWhatsAppBusinessAccountInfo = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("MetaFlowWhatsAppBusinessAccountInfo.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("MetaFlowWhatsAppBusinessAccountInfo.name required")
-    if "currency" in data:
+    if data.get("currency") is not None:
         out["currency"] = data["currency"]
-    if "timezoneId" in data:
+    if data.get("timezoneId") is not None:
         out["timezone_id"] = data["timezoneId"]
-    if "messageTemplateNamespace" in data:
+    if data.get("messageTemplateNamespace") is not None:
         out["message_template_namespace"] = data["messageTemplateNamespace"]
     return out

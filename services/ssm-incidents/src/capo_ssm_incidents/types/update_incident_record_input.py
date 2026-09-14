@@ -73,27 +73,27 @@ def serialize_json(value: UpdateIncidentRecordInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIncidentRecordInput:
     out: UpdateIncidentRecordInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateIncidentRecordInput.arn required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
-    if "impact" in data:
+    if data.get("impact") is not None:
         out["impact"] = data["impact"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "chatChannel" in data:
+    if data.get("chatChannel") is not None:
         import capo_ssm_incidents.types.chat_channel
 
         out["chat_channel"] = capo_ssm_incidents.types.chat_channel.deserialize_json(
             data["chatChannel"]
         )
-    if "notificationTargets" in data:
+    if data.get("notificationTargets") is not None:
         import capo_ssm_incidents.types.notification_target_set
 
         out["notification_targets"] = (

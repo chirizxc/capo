@@ -31,19 +31,19 @@ def serialize_json(value: WaypointOptimizationTimeBreakdown) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationTimeBreakdown:
     out: WaypointOptimizationTimeBreakdown = {}  # type: ignore[typeddict-item]
-    if "RestDuration" in data:
+    if data.get("RestDuration") is not None:
         out["rest_duration"] = data["RestDuration"]
     else:
         out["rest_duration"] = 0
-    if "ServiceDuration" in data:
+    if data.get("ServiceDuration") is not None:
         out["service_duration"] = data["ServiceDuration"]
     else:
         out["service_duration"] = 0
-    if "TravelDuration" in data:
+    if data.get("TravelDuration") is not None:
         out["travel_duration"] = data["TravelDuration"]
     else:
         out["travel_duration"] = 0
-    if "WaitDuration" in data:
+    if data.get("WaitDuration") is not None:
         out["wait_duration"] = data["WaitDuration"]
     else:
         out["wait_duration"] = 0

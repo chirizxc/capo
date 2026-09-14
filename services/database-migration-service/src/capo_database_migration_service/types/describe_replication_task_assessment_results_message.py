@@ -40,10 +40,10 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeReplicationTaskAssessmentResultsMessage:
     out: DescribeReplicationTaskAssessmentResultsMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

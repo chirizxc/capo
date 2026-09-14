@@ -54,19 +54,19 @@ def serialize_json(value: TaskContainerOverrides) -> dict:
 
 def deserialize_json(data: dict) -> TaskContainerOverrides:
     out: TaskContainerOverrides = {}  # type: ignore[typeddict-item]
-    if "command" in data:
+    if data.get("command") is not None:
         import capo_batch.types.string_list
 
         out["command"] = capo_batch.types.string_list.deserialize_json(data["command"])
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_batch.types.environment_variables
 
         out["environment"] = capo_batch.types.environment_variables.deserialize_json(
             data["environment"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "resourceRequirements" in data:
+    if data.get("resourceRequirements") is not None:
         import capo_batch.types.resource_requirements
 
         out["resource_requirements"] = (

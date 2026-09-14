@@ -73,9 +73,9 @@ def serialize_json(value: ReviewTemplateSummary) -> dict:
 
 def deserialize_json(data: dict) -> ReviewTemplateSummary:
     out: ReviewTemplateSummary = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Lenses" in data:
+    if data.get("Lenses") is not None:
         import capo_wellarchitected.types.review_template_lenses
 
         out["lenses"] = (
@@ -83,19 +83,19 @@ def deserialize_json(data: dict) -> ReviewTemplateSummary:
                 data["Lenses"]
             )
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         import capo_wellarchitected.types.review_template_update_status
 
         out["update_status"] = (

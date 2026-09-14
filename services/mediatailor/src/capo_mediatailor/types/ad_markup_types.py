@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> adMarkupTypes:
 
     out: adMarkupTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediatailor.types.ad_markup_type.deserialize_json(item))
     return out

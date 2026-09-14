@@ -37,10 +37,10 @@ def serialize_json(value: OutboundCallerConfig) -> dict:
 
 def deserialize_json(data: dict) -> OutboundCallerConfig:
     out: OutboundCallerConfig = {}  # type: ignore[typeddict-item]
-    if "OutboundCallerIdName" in data:
+    if data.get("OutboundCallerIdName") is not None:
         out["outbound_caller_id_name"] = data["OutboundCallerIdName"]
-    if "OutboundCallerIdNumberId" in data:
+    if data.get("OutboundCallerIdNumberId") is not None:
         out["outbound_caller_id_number_id"] = data["OutboundCallerIdNumberId"]
-    if "OutboundFlowId" in data:
+    if data.get("OutboundFlowId") is not None:
         out["outbound_flow_id"] = data["OutboundFlowId"]
     return out

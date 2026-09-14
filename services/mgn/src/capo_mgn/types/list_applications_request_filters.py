@@ -42,7 +42,7 @@ def serialize_json(value: ListApplicationsRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListApplicationsRequestFilters:
     out: ListApplicationsRequestFilters = {}  # type: ignore[typeddict-item]
-    if "applicationIDs" in data:
+    if data.get("applicationIDs") is not None:
         import capo_mgn.types.application_i_ds_filter
 
         out["application_i_ds"] = (
@@ -50,9 +50,9 @@ def deserialize_json(data: dict) -> ListApplicationsRequestFilters:
                 data["applicationIDs"]
             )
         )
-    if "isArchived" in data:
+    if data.get("isArchived") is not None:
         out["is_archived"] = data["isArchived"]
-    if "waveIDs" in data:
+    if data.get("waveIDs") is not None:
         import capo_mgn.types.wave_i_ds_filter
 
         out["wave_i_ds"] = capo_mgn.types.wave_i_ds_filter.deserialize_json(

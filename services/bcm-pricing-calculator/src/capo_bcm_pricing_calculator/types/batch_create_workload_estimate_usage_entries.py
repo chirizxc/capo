@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> BatchCreateWorkloadEstimateUsageEntr
 
     out: BatchCreateWorkloadEstimateUsageEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_pricing_calculator.types.batch_create_workload_estimate_usage_entry.deserialize_aws_json_1_0(
                 item

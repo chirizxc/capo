@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ColumnGroupColumnSchemaList:
 
     out: ColumnGroupColumnSchemaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.column_group_column_schema.deserialize_json(item)
         )

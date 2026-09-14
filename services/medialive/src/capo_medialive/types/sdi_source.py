@@ -62,31 +62,31 @@ def serialize_json(value: SdiSource) -> dict:
 
 def deserialize_json(data: dict) -> SdiSource:
     out: SdiSource = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "inputs" in data:
+    if data.get("inputs") is not None:
         import capo_medialive.types.__list_of__string
 
         out["inputs"] = capo_medialive.types.__list_of__string.deserialize_json(
             data["inputs"]
         )
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_medialive.types.sdi_source_mode
 
         out["mode"] = capo_medialive.types.sdi_source_mode.deserialize_json(
             data["mode"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.sdi_source_state
 
         out["state"] = capo_medialive.types.sdi_source_state.deserialize_json(
             data["state"]
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_medialive.types.sdi_source_type
 
         out["type"] = capo_medialive.types.sdi_source_type.deserialize_json(

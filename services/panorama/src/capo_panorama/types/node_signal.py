@@ -28,11 +28,11 @@ def serialize_json(value: NodeSignal) -> dict:
 
 def deserialize_json(data: dict) -> NodeSignal:
     out: NodeSignal = {}  # type: ignore[typeddict-item]
-    if "NodeInstanceId" in data:
+    if data.get("NodeInstanceId") is not None:
         out["node_instance_id"] = data["NodeInstanceId"]
     else:
         raise DeserializationError("NodeSignal.node_instance_id required")
-    if "Signal" in data:
+    if data.get("Signal") is not None:
         out["signal"] = data["Signal"]
     else:
         raise DeserializationError("NodeSignal.signal required")

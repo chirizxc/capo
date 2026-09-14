@@ -25,6 +25,6 @@ def serialize_json(value: MediaTailorPlaybackConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MediaTailorPlaybackConfiguration:
     out: MediaTailorPlaybackConfiguration = {}  # type: ignore[typeddict-item]
-    if "playbackConfigurationArn" in data:
+    if data.get("playbackConfigurationArn") is not None:
         out["playback_configuration_arn"] = data["playbackConfigurationArn"]
     return out

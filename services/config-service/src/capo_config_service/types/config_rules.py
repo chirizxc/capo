@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ConfigRules:
 
     out: ConfigRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_config_service.types.config_rule.deserialize_aws_json_1_1(item))
     return out

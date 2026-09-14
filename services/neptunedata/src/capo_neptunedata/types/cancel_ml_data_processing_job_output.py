@@ -18,6 +18,6 @@ def serialize_json(value: CancelMLDataProcessingJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> CancelMLDataProcessingJobOutput:
     out: CancelMLDataProcessingJobOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

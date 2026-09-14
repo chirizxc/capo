@@ -41,18 +41,18 @@ def serialize_json(value: ConfiguredTeam) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredTeam:
     out: ConfiguredTeam = {}  # type: ignore[typeddict-item]
-    if "TenantId" in data:
+    if data.get("TenantId") is not None:
         out["tenant_id"] = data["TenantId"]
     else:
         raise DeserializationError("ConfiguredTeam.tenant_id required")
-    if "TeamId" in data:
+    if data.get("TeamId") is not None:
         out["team_id"] = data["TeamId"]
     else:
         raise DeserializationError("ConfiguredTeam.team_id required")
-    if "TeamName" in data:
+    if data.get("TeamName") is not None:
         out["team_name"] = data["TeamName"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
     return out

@@ -36,7 +36,7 @@ def serialize_json(value: CustomDataIdentifiersResult) -> dict:
 
 def deserialize_json(data: dict) -> CustomDataIdentifiersResult:
     out: CustomDataIdentifiersResult = {}  # type: ignore[typeddict-item]
-    if "Detections" in data:
+    if data.get("Detections") is not None:
         import capo_securityhub.types.custom_data_identifiers_detections_list
 
         out["detections"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> CustomDataIdentifiersResult:
                 data["Detections"]
             )
         )
-    if "TotalCount" in data:
+    if data.get("TotalCount") is not None:
         out["total_count"] = data["TotalCount"]
     return out

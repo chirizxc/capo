@@ -36,12 +36,12 @@ def serialize_json(value: TimecodeConfig) -> dict:
 
 def deserialize_json(data: dict) -> TimecodeConfig:
     out: TimecodeConfig = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_medialive.types.timecode_config_source
 
         out["source"] = capo_medialive.types.timecode_config_source.deserialize_json(
             data["source"]
         )
-    if "syncThreshold" in data:
+    if data.get("syncThreshold") is not None:
         out["sync_threshold"] = data["syncThreshold"]
     return out

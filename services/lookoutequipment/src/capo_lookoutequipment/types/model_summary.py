@@ -151,15 +151,15 @@ def serialize_aws_json_1_0(value: ModelSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ModelSummary:
     out: ModelSummary = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.model_status
 
         out["status"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_0(data: dict) -> ModelSummary:
                 data["Status"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at"] = (
@@ -175,11 +175,11 @@ def deserialize_aws_json_1_0(data: dict) -> ModelSummary:
                 data["CreatedAt"]
             )
         )
-    if "ActiveModelVersion" in data:
+    if data.get("ActiveModelVersion") is not None:
         out["active_model_version"] = data["ActiveModelVersion"]
-    if "ActiveModelVersionArn" in data:
+    if data.get("ActiveModelVersionArn") is not None:
         out["active_model_version_arn"] = data["ActiveModelVersionArn"]
-    if "LatestScheduledRetrainingStatus" in data:
+    if data.get("LatestScheduledRetrainingStatus") is not None:
         import capo_lookoutequipment.types.model_version_status
 
         out["latest_scheduled_retraining_status"] = (
@@ -187,11 +187,11 @@ def deserialize_aws_json_1_0(data: dict) -> ModelSummary:
                 data["LatestScheduledRetrainingStatus"]
             )
         )
-    if "LatestScheduledRetrainingModelVersion" in data:
+    if data.get("LatestScheduledRetrainingModelVersion") is not None:
         out["latest_scheduled_retraining_model_version"] = data[
             "LatestScheduledRetrainingModelVersion"
         ]
-    if "LatestScheduledRetrainingStartTime" in data:
+    if data.get("LatestScheduledRetrainingStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["latest_scheduled_retraining_start_time"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_0(data: dict) -> ModelSummary:
                 data["LatestScheduledRetrainingStartTime"]
             )
         )
-    if "NextScheduledRetrainingStartDate" in data:
+    if data.get("NextScheduledRetrainingStartDate") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["next_scheduled_retraining_start_date"] = (
@@ -207,7 +207,7 @@ def deserialize_aws_json_1_0(data: dict) -> ModelSummary:
                 data["NextScheduledRetrainingStartDate"]
             )
         )
-    if "RetrainingSchedulerStatus" in data:
+    if data.get("RetrainingSchedulerStatus") is not None:
         import capo_lookoutequipment.types.retraining_scheduler_status
 
         out["retraining_scheduler_status"] = (
@@ -215,7 +215,7 @@ def deserialize_aws_json_1_0(data: dict) -> ModelSummary:
                 data["RetrainingSchedulerStatus"]
             )
         )
-    if "ModelDiagnosticsOutputConfiguration" in data:
+    if data.get("ModelDiagnosticsOutputConfiguration") is not None:
         import capo_lookoutequipment.types.model_diagnostics_output_configuration
 
         out["model_diagnostics_output_configuration"] = (
@@ -223,7 +223,7 @@ def deserialize_aws_json_1_0(data: dict) -> ModelSummary:
                 data["ModelDiagnosticsOutputConfiguration"]
             )
         )
-    if "ModelQuality" in data:
+    if data.get("ModelQuality") is not None:
         import capo_lookoutequipment.types.model_quality
 
         out["model_quality"] = (

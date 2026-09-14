@@ -83,19 +83,19 @@ def serialize_json(value: GetFirewallDomainListOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetFirewallDomainListOutput:
     out: GetFirewallDomainListOutput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetFirewallDomainListOutput.arn required")
-    if "globalResolverId" in data:
+    if data.get("globalResolverId") is not None:
         out["global_resolver_id"] = data["globalResolverId"]
     else:
         raise DeserializationError(
             "GetFirewallDomainListOutput.global_resolver_id required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["created_at"] = (
@@ -105,21 +105,21 @@ def deserialize_json(data: dict) -> GetFirewallDomainListOutput:
         )
     else:
         raise DeserializationError("GetFirewallDomainListOutput.created_at required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "domainCount" in data:
+    if data.get("domainCount") is not None:
         out["domain_count"] = data["domainCount"]
     else:
         raise DeserializationError("GetFirewallDomainListOutput.domain_count required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetFirewallDomainListOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetFirewallDomainListOutput.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_route53globalresolver.types.cr_resource_status
 
         out["status"] = (
@@ -129,9 +129,9 @@ def deserialize_json(data: dict) -> GetFirewallDomainListOutput:
         )
     else:
         raise DeserializationError("GetFirewallDomainListOutput.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["updated_at"] = (

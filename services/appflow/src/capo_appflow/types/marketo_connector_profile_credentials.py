@@ -46,21 +46,21 @@ def serialize_json(value: MarketoConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> MarketoConnectorProfileCredentials:
     out: MarketoConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     else:
         raise DeserializationError(
             "MarketoConnectorProfileCredentials.client_id required"
         )
-    if "clientSecret" in data:
+    if data.get("clientSecret") is not None:
         out["client_secret"] = data["clientSecret"]
     else:
         raise DeserializationError(
             "MarketoConnectorProfileCredentials.client_secret required"
         )
-    if "accessToken" in data:
+    if data.get("accessToken") is not None:
         out["access_token"] = data["accessToken"]
-    if "oAuthRequest" in data:
+    if data.get("oAuthRequest") is not None:
         import capo_appflow.types.connector_o_auth_request
 
         out["o_auth_request"] = (

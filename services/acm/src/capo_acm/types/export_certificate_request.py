@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: ExportCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportCertificateRequest:
     out: ExportCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
     else:
         raise DeserializationError("ExportCertificateRequest.certificate_arn required")
-    if "Passphrase" in data:
+    if data.get("Passphrase") is not None:
         import capo_acm.types.passphrase_blob
 
         out["passphrase"] = capo_acm.types.passphrase_blob.deserialize_aws_json_1_1(

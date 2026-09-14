@@ -62,23 +62,23 @@ def serialize_aws_json_1_1(value: ViolationDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ViolationDetail:
     out: ViolationDetail = {}  # type: ignore[typeddict-item]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
     else:
         raise DeserializationError("ViolationDetail.policy_id required")
-    if "MemberAccount" in data:
+    if data.get("MemberAccount") is not None:
         out["member_account"] = data["MemberAccount"]
     else:
         raise DeserializationError("ViolationDetail.member_account required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("ViolationDetail.resource_id required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError("ViolationDetail.resource_type required")
-    if "ResourceViolations" in data:
+    if data.get("ResourceViolations") is not None:
         import capo_fms.types.resource_violations
 
         out["resource_violations"] = (
@@ -88,12 +88,12 @@ def deserialize_aws_json_1_1(data: dict) -> ViolationDetail:
         )
     else:
         raise DeserializationError("ViolationDetail.resource_violations required")
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_fms.types.tag_list
 
         out["resource_tags"] = capo_fms.types.tag_list.deserialize_aws_json_1_1(
             data["ResourceTags"]
         )
-    if "ResourceDescription" in data:
+    if data.get("ResourceDescription") is not None:
         out["resource_description"] = data["ResourceDescription"]
     return out

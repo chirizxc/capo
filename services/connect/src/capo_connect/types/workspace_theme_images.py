@@ -25,7 +25,7 @@ def serialize_json(value: WorkspaceThemeImages) -> dict:
 
 def deserialize_json(data: dict) -> WorkspaceThemeImages:
     out: WorkspaceThemeImages = {}  # type: ignore[typeddict-item]
-    if "Logo" in data:
+    if data.get("Logo") is not None:
         import capo_connect.types.images_logo
 
         out["logo"] = capo_connect.types.images_logo.deserialize_json(data["Logo"])

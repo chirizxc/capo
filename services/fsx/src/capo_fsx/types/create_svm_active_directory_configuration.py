@@ -35,9 +35,9 @@ def serialize_aws_json_1_1(value: CreateSvmActiveDirectoryConfiguration) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSvmActiveDirectoryConfiguration:
     out: CreateSvmActiveDirectoryConfiguration = {}  # type: ignore[typeddict-item]
-    if "NetBiosName" in data:
+    if data.get("NetBiosName") is not None:
         out["net_bios_name"] = data["NetBiosName"]
-    if "SelfManagedActiveDirectoryConfiguration" in data:
+    if data.get("SelfManagedActiveDirectoryConfiguration") is not None:
         import capo_fsx.types.self_managed_active_directory_configuration
 
         out["self_managed_active_directory_configuration"] = (

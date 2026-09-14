@@ -25,7 +25,7 @@ def serialize_json(value: GetSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSessionResponse:
     out: GetSessionResponse = {}  # type: ignore[typeddict-item]
-    if "session" in data:
+    if data.get("session") is not None:
         import capo_wisdom.types.session_data
 
         out["session"] = capo_wisdom.types.session_data.deserialize_json(

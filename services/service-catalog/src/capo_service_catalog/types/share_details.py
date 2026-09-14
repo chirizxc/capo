@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: ShareDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShareDetails:
     out: ShareDetails = {}  # type: ignore[typeddict-item]
-    if "SuccessfulShares" in data:
+    if data.get("SuccessfulShares") is not None:
         import capo_service_catalog.types.successful_shares
 
         out["successful_shares"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> ShareDetails:
                 data["SuccessfulShares"]
             )
         )
-    if "ShareErrors" in data:
+    if data.get("ShareErrors") is not None:
         import capo_service_catalog.types.share_errors
 
         out["share_errors"] = (

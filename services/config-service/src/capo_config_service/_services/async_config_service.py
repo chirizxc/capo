@@ -472,15 +472,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.associate_resource_types_request.AssociateResourceTypesRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_recorder_arn"] = configuration_recorder_arn
-        input_["resource_types"] = resource_types
+        input_: capo_config_service.types.associate_resource_types_request.AssociateResourceTypesRequest = {
+            "configuration_recorder_arn": configuration_recorder_arn,
+            "resource_types": resource_types,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_aggregate_resource_config(
@@ -518,15 +520,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.batch_get_aggregate_resource_config_request.BatchGetAggregateResourceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
-        input_["resource_identifiers"] = resource_identifiers
+        input_: capo_config_service.types.batch_get_aggregate_resource_config_request.BatchGetAggregateResourceConfigRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name,
+            "resource_identifiers": resource_identifiers,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_resource_config(
@@ -562,14 +566,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.batch_get_resource_config_request.BatchGetResourceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_keys"] = resource_keys
+        input_: capo_config_service.types.batch_get_resource_config_request.BatchGetResourceConfigRequest = {
+            "resource_keys": resource_keys
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_aggregation_authorization(
@@ -604,15 +610,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_aggregation_authorization_request.DeleteAggregationAuthorizationRequest = {}  # type: ignore[typeddict-item]
-        input_["authorized_account_id"] = authorized_account_id
-        input_["authorized_aws_region"] = authorized_aws_region
+        input_: capo_config_service.types.delete_aggregation_authorization_request.DeleteAggregationAuthorizationRequest = {
+            "authorized_account_id": authorized_account_id,
+            "authorized_aws_region": authorized_aws_region,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_config_rule(
@@ -646,14 +654,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_config_rule_request.DeleteConfigRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_name"] = config_rule_name
+        input_: capo_config_service.types.delete_config_rule_request.DeleteConfigRuleRequest = {
+            "config_rule_name": config_rule_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configuration_aggregator(
@@ -686,14 +696,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_configuration_aggregator_request.DeleteConfigurationAggregatorRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
+        input_: capo_config_service.types.delete_configuration_aggregator_request.DeleteConfigurationAggregatorRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configuration_recorder(
@@ -727,14 +739,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_configuration_recorder_request.DeleteConfigurationRecorderRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_recorder_name"] = configuration_recorder_name
+        input_: capo_config_service.types.delete_configuration_recorder_request.DeleteConfigurationRecorderRequest = {
+            "configuration_recorder_name": configuration_recorder_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_conformance_pack(
@@ -768,14 +782,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_conformance_pack_request.DeleteConformancePackRequest = {}  # type: ignore[typeddict-item]
-        input_["conformance_pack_name"] = conformance_pack_name
+        input_: capo_config_service.types.delete_conformance_pack_request.DeleteConformancePackRequest = {
+            "conformance_pack_name": conformance_pack_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_delivery_channel(
@@ -809,14 +825,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_delivery_channel_request.DeleteDeliveryChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["delivery_channel_name"] = delivery_channel_name
+        input_: capo_config_service.types.delete_delivery_channel_request.DeleteDeliveryChannelRequest = {
+            "delivery_channel_name": delivery_channel_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_evaluation_results(
@@ -852,14 +870,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_evaluation_results_request.DeleteEvaluationResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_name"] = config_rule_name
+        input_: capo_config_service.types.delete_evaluation_results_request.DeleteEvaluationResultsRequest = {
+            "config_rule_name": config_rule_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_organization_config_rule(
@@ -894,14 +914,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_organization_config_rule_request.DeleteOrganizationConfigRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_config_rule_name"] = organization_config_rule_name
+        input_: capo_config_service.types.delete_organization_config_rule_request.DeleteOrganizationConfigRuleRequest = {
+            "organization_config_rule_name": organization_config_rule_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_organization_conformance_pack(
@@ -936,16 +958,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_organization_conformance_pack_request.DeleteOrganizationConformancePackRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_conformance_pack_name"] = (
-            organization_conformance_pack_name
-        )
+        input_: capo_config_service.types.delete_organization_conformance_pack_request.DeleteOrganizationConformancePackRequest = {
+            "organization_conformance_pack_name": organization_conformance_pack_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_pending_aggregation_request(
@@ -980,15 +1002,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_pending_aggregation_request_request.DeletePendingAggregationRequestRequest = {}  # type: ignore[typeddict-item]
-        input_["requester_account_id"] = requester_account_id
-        input_["requester_aws_region"] = requester_aws_region
+        input_: capo_config_service.types.delete_pending_aggregation_request_request.DeletePendingAggregationRequestRequest = {
+            "requester_account_id": requester_account_id,
+            "requester_aws_region": requester_aws_region,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_remediation_configuration(
@@ -1028,8 +1052,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_remediation_configuration_request.DeleteRemediationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_name"] = config_rule_name
+        input_: capo_config_service.types.delete_remediation_configuration_request.DeleteRemediationConfigurationRequest = {
+            "config_rule_name": config_rule_name
+        }
         if resource_type is not None:
             input_["resource_type"] = resource_type
 
@@ -1038,6 +1063,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_remediation_exceptions(
@@ -1074,15 +1100,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_remediation_exceptions_request.DeleteRemediationExceptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_name"] = config_rule_name
-        input_["resource_keys"] = resource_keys
+        input_: capo_config_service.types.delete_remediation_exceptions_request.DeleteRemediationExceptionsRequest = {
+            "config_rule_name": config_rule_name,
+            "resource_keys": resource_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_config(
@@ -1118,15 +1146,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_resource_config_request.DeleteResourceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
-        input_["resource_id"] = resource_id
+        input_: capo_config_service.types.delete_resource_config_request.DeleteResourceConfigRequest = {
+            "resource_type": resource_type,
+            "resource_id": resource_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_retention_configuration(
@@ -1160,14 +1190,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_retention_configuration_request.DeleteRetentionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["retention_configuration_name"] = retention_configuration_name
+        input_: capo_config_service.types.delete_retention_configuration_request.DeleteRetentionConfigurationRequest = {
+            "retention_configuration_name": retention_configuration_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_service_linked_configuration_recorder(
@@ -1204,14 +1236,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_service_linked_configuration_recorder_request.DeleteServiceLinkedConfigurationRecorderRequest = {}  # type: ignore[typeddict-item]
-        input_["service_principal"] = service_principal
+        input_: capo_config_service.types.delete_service_linked_configuration_recorder_request.DeleteServiceLinkedConfigurationRecorderRequest = {
+            "service_principal": service_principal
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_stored_query(
@@ -1247,14 +1281,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.delete_stored_query_request.DeleteStoredQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["query_name"] = query_name
+        input_: capo_config_service.types.delete_stored_query_request.DeleteStoredQueryRequest = {
+            "query_name": query_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deliver_config_snapshot(
@@ -1291,14 +1327,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.deliver_config_snapshot_request.DeliverConfigSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["delivery_channel_name"] = delivery_channel_name
+        input_: capo_config_service.types.deliver_config_snapshot_request.DeliverConfigSnapshotRequest = {
+            "delivery_channel_name": delivery_channel_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_aggregate_compliance_by_config_rules(
@@ -1346,8 +1384,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_aggregate_compliance_by_config_rules_request.DescribeAggregateComplianceByConfigRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
+        input_: capo_config_service.types.describe_aggregate_compliance_by_config_rules_request.DescribeAggregateComplianceByConfigRulesRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name
+        }
         if filters is not None:
             input_["filters"] = filters
         if limit is not None:
@@ -1360,7 +1399,35 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_aggregate_compliance_by_config_rules(
+        self,
+        configuration_aggregator_name: "capo_config_service.types.configuration_aggregator_name.ConfigurationAggregatorName",
+        *,
+        config_overrides: Optional[AsyncConfigServiceClientConfig] = None,
+        filters: Optional[
+            "capo_config_service.types.config_rule_compliance_filters.ConfigRuleComplianceFilters"
+        ] = None,
+        limit: Optional[
+            "capo_config_service.types.group_by_api_limit.GroupByAPILimit"
+        ] = None,
+        next_token: Optional["capo_config_service.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_config_service.types.describe_aggregate_compliance_by_config_rules_response.DescribeAggregateComplianceByConfigRulesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_aggregate_compliance_by_config_rules(
+                configuration_aggregator_name,
+                config_overrides=config_overrides,
+                filters=filters,
+                limit=limit,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_aggregate_compliance_by_conformance_packs(
         self,
@@ -1405,8 +1472,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_aggregate_compliance_by_conformance_packs_request.DescribeAggregateComplianceByConformancePacksRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
+        input_: capo_config_service.types.describe_aggregate_compliance_by_conformance_packs_request.DescribeAggregateComplianceByConformancePacksRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name
+        }
         if filters is not None:
             input_["filters"] = filters
         if limit is not None:
@@ -1419,6 +1487,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_aggregate_compliance_by_conformance_packs(
@@ -1486,7 +1555,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_aggregation_authorizations_request.DescribeAggregationAuthorizationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_aggregation_authorizations_request.DescribeAggregationAuthorizationsRequest = {}
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -1497,6 +1566,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_aggregation_authorizations(
@@ -1562,7 +1632,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_compliance_by_config_rule_request.DescribeComplianceByConfigRuleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_compliance_by_config_rule_request.DescribeComplianceByConfigRuleRequest = {}
         if config_rule_names is not None:
             input_["config_rule_names"] = config_rule_names
         if compliance_types is not None:
@@ -1575,6 +1645,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_compliance_by_config_rule(
@@ -1651,7 +1722,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_compliance_by_resource_request.DescribeComplianceByResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_compliance_by_resource_request.DescribeComplianceByResourceRequest = {}
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if resource_id is not None:
@@ -1668,6 +1739,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_compliance_by_resource(
@@ -1743,7 +1815,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_config_rule_evaluation_status_request.DescribeConfigRuleEvaluationStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_config_rule_evaluation_status_request.DescribeConfigRuleEvaluationStatusRequest = {}
         if config_rule_names is not None:
             input_["config_rule_names"] = config_rule_names
         if next_token is not None:
@@ -1756,6 +1828,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_config_rule_evaluation_status(
@@ -1825,7 +1898,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_config_rules_request.DescribeConfigRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_config_rules_request.DescribeConfigRulesRequest = {}
         if config_rule_names is not None:
             input_["config_rule_names"] = config_rule_names
         if next_token is not None:
@@ -1838,6 +1911,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_config_rules(
@@ -1908,7 +1982,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_configuration_aggregators_request.DescribeConfigurationAggregatorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_configuration_aggregators_request.DescribeConfigurationAggregatorsRequest = {}
         if configuration_aggregator_names is not None:
             input_["configuration_aggregator_names"] = configuration_aggregator_names
         if next_token is not None:
@@ -1921,6 +1995,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_configuration_aggregators(
@@ -1991,8 +2066,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_configuration_aggregator_sources_status_request.DescribeConfigurationAggregatorSourcesStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
+        input_: capo_config_service.types.describe_configuration_aggregator_sources_status_request.DescribeConfigurationAggregatorSourcesStatusRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name
+        }
         if update_status is not None:
             input_["update_status"] = update_status
         if next_token is not None:
@@ -2005,6 +2081,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_configuration_aggregator_sources_status(
@@ -2077,7 +2154,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_configuration_recorders_request.DescribeConfigurationRecordersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_configuration_recorders_request.DescribeConfigurationRecordersRequest = {}
         if configuration_recorder_names is not None:
             input_["configuration_recorder_names"] = configuration_recorder_names
         if service_principal is not None:
@@ -2090,6 +2167,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_configuration_recorder_status(
@@ -2135,7 +2213,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_configuration_recorder_status_request.DescribeConfigurationRecorderStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_configuration_recorder_status_request.DescribeConfigurationRecorderStatusRequest = {}
         if configuration_recorder_names is not None:
             input_["configuration_recorder_names"] = configuration_recorder_names
         if service_principal is not None:
@@ -2148,6 +2226,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_conformance_pack_compliance(
@@ -2196,8 +2275,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_conformance_pack_compliance_request.DescribeConformancePackComplianceRequest = {}  # type: ignore[typeddict-item]
-        input_["conformance_pack_name"] = conformance_pack_name
+        input_: capo_config_service.types.describe_conformance_pack_compliance_request.DescribeConformancePackComplianceRequest = {
+            "conformance_pack_name": conformance_pack_name
+        }
         if filters is not None:
             input_["filters"] = filters
         if limit is not None:
@@ -2210,6 +2290,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_conformance_pack_compliance(
@@ -2284,7 +2365,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_conformance_packs_request.DescribeConformancePacksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_conformance_packs_request.DescribeConformancePacksRequest = {}
         if conformance_pack_names is not None:
             input_["conformance_pack_names"] = conformance_pack_names
         if limit is not None:
@@ -2297,6 +2378,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_conformance_packs(
@@ -2368,7 +2450,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_conformance_pack_status_request.DescribeConformancePackStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_conformance_pack_status_request.DescribeConformancePackStatusRequest = {}
         if conformance_pack_names is not None:
             input_["conformance_pack_names"] = conformance_pack_names
         if limit is not None:
@@ -2381,6 +2463,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_conformance_pack_status(
@@ -2444,7 +2527,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_delivery_channels_request.DescribeDeliveryChannelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_delivery_channels_request.DescribeDeliveryChannelsRequest = {}
         if delivery_channel_names is not None:
             input_["delivery_channel_names"] = delivery_channel_names
 
@@ -2453,6 +2536,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_delivery_channel_status(
@@ -2489,7 +2573,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_delivery_channel_status_request.DescribeDeliveryChannelStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_delivery_channel_status_request.DescribeDeliveryChannelStatusRequest = {}
         if delivery_channel_names is not None:
             input_["delivery_channel_names"] = delivery_channel_names
 
@@ -2498,6 +2582,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_organization_config_rules(
@@ -2543,7 +2628,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_organization_config_rules_request.DescribeOrganizationConfigRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_organization_config_rules_request.DescribeOrganizationConfigRulesRequest = {}
         if organization_config_rule_names is not None:
             input_["organization_config_rule_names"] = organization_config_rule_names
         if limit is not None:
@@ -2556,6 +2641,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_organization_config_rules(
@@ -2628,7 +2714,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_organization_config_rule_statuses_request.DescribeOrganizationConfigRuleStatusesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_organization_config_rule_statuses_request.DescribeOrganizationConfigRuleStatusesRequest = {}
         if organization_config_rule_names is not None:
             input_["organization_config_rule_names"] = organization_config_rule_names
         if limit is not None:
@@ -2641,6 +2727,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_organization_config_rule_statuses(
@@ -2713,7 +2800,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_organization_conformance_packs_request.DescribeOrganizationConformancePacksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_organization_conformance_packs_request.DescribeOrganizationConformancePacksRequest = {}
         if organization_conformance_pack_names is not None:
             input_["organization_conformance_pack_names"] = (
                 organization_conformance_pack_names
@@ -2728,6 +2815,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_organization_conformance_packs(
@@ -2800,7 +2888,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_organization_conformance_pack_statuses_request.DescribeOrganizationConformancePackStatusesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_organization_conformance_pack_statuses_request.DescribeOrganizationConformancePackStatusesRequest = {}
         if organization_conformance_pack_names is not None:
             input_["organization_conformance_pack_names"] = (
                 organization_conformance_pack_names
@@ -2815,6 +2903,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_organization_conformance_pack_statuses(
@@ -2884,7 +2973,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_pending_aggregation_requests_request.DescribePendingAggregationRequestsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_pending_aggregation_requests_request.DescribePendingAggregationRequestsRequest = {}
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -2895,6 +2984,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_pending_aggregation_requests(
@@ -2951,14 +3041,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_remediation_configurations_request.DescribeRemediationConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_names"] = config_rule_names
+        input_: capo_config_service.types.describe_remediation_configurations_request.DescribeRemediationConfigurationsRequest = {
+            "config_rule_names": config_rule_names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_remediation_exceptions(
@@ -3002,8 +3094,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_remediation_exceptions_request.DescribeRemediationExceptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_name"] = config_rule_name
+        input_: capo_config_service.types.describe_remediation_exceptions_request.DescribeRemediationExceptionsRequest = {
+            "config_rule_name": config_rule_name
+        }
         if resource_keys is not None:
             input_["resource_keys"] = resource_keys
         if limit is not None:
@@ -3016,7 +3109,33 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_remediation_exceptions(
+        self,
+        config_rule_name: "capo_config_service.types.config_rule_name.ConfigRuleName",
+        *,
+        config_overrides: Optional[AsyncConfigServiceClientConfig] = None,
+        resource_keys: Optional[
+            "capo_config_service.types.remediation_exception_resource_keys.RemediationExceptionResourceKeys"
+        ] = None,
+        limit: Optional["capo_config_service.types.limit.Limit"] = None,
+        next_token: Optional["capo_config_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_config_service.types.describe_remediation_exceptions_response.DescribeRemediationExceptionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_remediation_exceptions(
+                config_rule_name,
+                config_overrides=config_overrides,
+                resource_keys=resource_keys,
+                limit=limit,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_remediation_execution_status(
         self,
@@ -3060,8 +3179,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_remediation_execution_status_request.DescribeRemediationExecutionStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_name"] = config_rule_name
+        input_: capo_config_service.types.describe_remediation_execution_status_request.DescribeRemediationExecutionStatusRequest = {
+            "config_rule_name": config_rule_name
+        }
         if resource_keys is not None:
             input_["resource_keys"] = resource_keys
         if limit is not None:
@@ -3074,6 +3194,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_remediation_execution_status(
@@ -3141,7 +3262,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.describe_retention_configurations_request.DescribeRetentionConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.describe_retention_configurations_request.DescribeRetentionConfigurationsRequest = {}
         if retention_configuration_names is not None:
             input_["retention_configuration_names"] = retention_configuration_names
         if next_token is not None:
@@ -3152,6 +3273,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_retention_configurations(
@@ -3213,15 +3335,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.disassociate_resource_types_request.DisassociateResourceTypesRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_recorder_arn"] = configuration_recorder_arn
-        input_["resource_types"] = resource_types
+        input_: capo_config_service.types.disassociate_resource_types_request.DisassociateResourceTypesRequest = {
+            "configuration_recorder_arn": configuration_recorder_arn,
+            "resource_types": resource_types,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_aggregate_compliance_details_by_config_rule(
@@ -3273,11 +3397,12 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_aggregate_compliance_details_by_config_rule_request.GetAggregateComplianceDetailsByConfigRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
-        input_["config_rule_name"] = config_rule_name
-        input_["account_id"] = account_id
-        input_["aws_region"] = aws_region
+        input_: capo_config_service.types.get_aggregate_compliance_details_by_config_rule_request.GetAggregateComplianceDetailsByConfigRuleRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name,
+            "config_rule_name": config_rule_name,
+            "account_id": account_id,
+            "aws_region": aws_region,
+        }
         if compliance_type is not None:
             input_["compliance_type"] = compliance_type
         if limit is not None:
@@ -3290,6 +3415,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_aggregate_compliance_details_by_config_rule(
@@ -3374,8 +3500,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_aggregate_config_rule_compliance_summary_request.GetAggregateConfigRuleComplianceSummaryRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
+        input_: capo_config_service.types.get_aggregate_config_rule_compliance_summary_request.GetAggregateConfigRuleComplianceSummaryRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name
+        }
         if filters is not None:
             input_["filters"] = filters
         if group_by_key is not None:
@@ -3390,7 +3517,39 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_aggregate_config_rule_compliance_summary(
+        self,
+        configuration_aggregator_name: "capo_config_service.types.configuration_aggregator_name.ConfigurationAggregatorName",
+        *,
+        config_overrides: Optional[AsyncConfigServiceClientConfig] = None,
+        filters: Optional[
+            "capo_config_service.types.config_rule_compliance_summary_filters.ConfigRuleComplianceSummaryFilters"
+        ] = None,
+        group_by_key: Optional[
+            "capo_config_service.types.config_rule_compliance_summary_group_key.ConfigRuleComplianceSummaryGroupKey"
+        ] = None,
+        limit: Optional[
+            "capo_config_service.types.group_by_api_limit.GroupByAPILimit"
+        ] = None,
+        next_token: Optional["capo_config_service.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_config_service.types.get_aggregate_config_rule_compliance_summary_response.GetAggregateConfigRuleComplianceSummaryResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_aggregate_config_rule_compliance_summary(
+                configuration_aggregator_name,
+                config_overrides=config_overrides,
+                filters=filters,
+                group_by_key=group_by_key,
+                limit=limit,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_aggregate_conformance_pack_compliance_summary(
         self,
@@ -3439,8 +3598,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_aggregate_conformance_pack_compliance_summary_request.GetAggregateConformancePackComplianceSummaryRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
+        input_: capo_config_service.types.get_aggregate_conformance_pack_compliance_summary_request.GetAggregateConformancePackComplianceSummaryRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name
+        }
         if filters is not None:
             input_["filters"] = filters
         if group_by_key is not None:
@@ -3455,7 +3615,37 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_aggregate_conformance_pack_compliance_summary(
+        self,
+        configuration_aggregator_name: "capo_config_service.types.configuration_aggregator_name.ConfigurationAggregatorName",
+        *,
+        config_overrides: Optional[AsyncConfigServiceClientConfig] = None,
+        filters: Optional[
+            "capo_config_service.types.aggregate_conformance_pack_compliance_summary_filters.AggregateConformancePackComplianceSummaryFilters"
+        ] = None,
+        group_by_key: Optional[
+            "capo_config_service.types.aggregate_conformance_pack_compliance_summary_group_key.AggregateConformancePackComplianceSummaryGroupKey"
+        ] = None,
+        limit: Optional["capo_config_service.types.limit.Limit"] = None,
+        next_token: Optional["capo_config_service.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_config_service.types.get_aggregate_conformance_pack_compliance_summary_response.GetAggregateConformancePackComplianceSummaryResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_aggregate_conformance_pack_compliance_summary(
+                configuration_aggregator_name,
+                config_overrides=config_overrides,
+                filters=filters,
+                group_by_key=group_by_key,
+                limit=limit,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_aggregate_discovered_resource_counts(
         self,
@@ -3506,8 +3696,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_aggregate_discovered_resource_counts_request.GetAggregateDiscoveredResourceCountsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
+        input_: capo_config_service.types.get_aggregate_discovered_resource_counts_request.GetAggregateDiscoveredResourceCountsRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name
+        }
         if filters is not None:
             input_["filters"] = filters
         if group_by_key is not None:
@@ -3522,7 +3713,39 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_aggregate_discovered_resource_counts(
+        self,
+        configuration_aggregator_name: "capo_config_service.types.configuration_aggregator_name.ConfigurationAggregatorName",
+        *,
+        config_overrides: Optional[AsyncConfigServiceClientConfig] = None,
+        filters: Optional[
+            "capo_config_service.types.resource_count_filters.ResourceCountFilters"
+        ] = None,
+        group_by_key: Optional[
+            "capo_config_service.types.resource_count_group_key.ResourceCountGroupKey"
+        ] = None,
+        limit: Optional[
+            "capo_config_service.types.group_by_api_limit.GroupByAPILimit"
+        ] = None,
+        next_token: Optional["capo_config_service.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_config_service.types.get_aggregate_discovered_resource_counts_response.GetAggregateDiscoveredResourceCountsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_aggregate_discovered_resource_counts(
+                configuration_aggregator_name,
+                config_overrides=config_overrides,
+                filters=filters,
+                group_by_key=group_by_key,
+                limit=limit,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_aggregate_resource_config(
         self,
@@ -3561,15 +3784,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_aggregate_resource_config_request.GetAggregateResourceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_config_service.types.get_aggregate_resource_config_request.GetAggregateResourceConfigRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name,
+            "resource_identifier": resource_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_compliance_details_by_config_rule(
@@ -3614,8 +3839,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_compliance_details_by_config_rule_request.GetComplianceDetailsByConfigRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_name"] = config_rule_name
+        input_: capo_config_service.types.get_compliance_details_by_config_rule_request.GetComplianceDetailsByConfigRuleRequest = {
+            "config_rule_name": config_rule_name
+        }
         if compliance_types is not None:
             input_["compliance_types"] = compliance_types
         if limit is not None:
@@ -3628,6 +3854,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_compliance_details_by_config_rule(
@@ -3705,7 +3932,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_compliance_details_by_resource_request.GetComplianceDetailsByResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.get_compliance_details_by_resource_request.GetComplianceDetailsByResourceRequest = {}
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if resource_id is not None:
@@ -3722,6 +3949,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_compliance_details_by_resource(
@@ -3790,6 +4018,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_compliance_summary_by_resource_type(
@@ -3826,7 +4055,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_compliance_summary_by_resource_type_request.GetComplianceSummaryByResourceTypeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.get_compliance_summary_by_resource_type_request.GetComplianceSummaryByResourceTypeRequest = {}
         if resource_types is not None:
             input_["resource_types"] = resource_types
 
@@ -3835,6 +4064,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_conformance_pack_compliance_details(
@@ -3883,8 +4113,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_conformance_pack_compliance_details_request.GetConformancePackComplianceDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["conformance_pack_name"] = conformance_pack_name
+        input_: capo_config_service.types.get_conformance_pack_compliance_details_request.GetConformancePackComplianceDetailsRequest = {
+            "conformance_pack_name": conformance_pack_name
+        }
         if filters is not None:
             input_["filters"] = filters
         if limit is not None:
@@ -3897,7 +4128,35 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_conformance_pack_compliance_details(
+        self,
+        conformance_pack_name: "capo_config_service.types.conformance_pack_name.ConformancePackName",
+        *,
+        config_overrides: Optional[AsyncConfigServiceClientConfig] = None,
+        filters: Optional[
+            "capo_config_service.types.conformance_pack_evaluation_filters.ConformancePackEvaluationFilters"
+        ] = None,
+        limit: Optional[
+            "capo_config_service.types.get_conformance_pack_compliance_details_limit.GetConformancePackComplianceDetailsLimit"
+        ] = None,
+        next_token: Optional["capo_config_service.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_config_service.types.get_conformance_pack_compliance_details_response.GetConformancePackComplianceDetailsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_conformance_pack_compliance_details(
+                conformance_pack_name,
+                config_overrides=config_overrides,
+                filters=filters,
+                limit=limit,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_conformance_pack_compliance_summary(
         self,
@@ -3939,8 +4198,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_conformance_pack_compliance_summary_request.GetConformancePackComplianceSummaryRequest = {}  # type: ignore[typeddict-item]
-        input_["conformance_pack_names"] = conformance_pack_names
+        input_: capo_config_service.types.get_conformance_pack_compliance_summary_request.GetConformancePackComplianceSummaryRequest = {
+            "conformance_pack_names": conformance_pack_names
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -3951,6 +4211,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_conformance_pack_compliance_summary(
@@ -4014,7 +4275,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_custom_rule_policy_request.GetCustomRulePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.get_custom_rule_policy_request.GetCustomRulePolicyRequest = {}
         if config_rule_name is not None:
             input_["config_rule_name"] = config_rule_name
 
@@ -4023,6 +4284,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_discovered_resource_counts(
@@ -4065,7 +4327,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_discovered_resource_counts_request.GetDiscoveredResourceCountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.get_discovered_resource_counts_request.GetDiscoveredResourceCountsRequest = {}
         if resource_types is not None:
             input_["resource_types"] = resource_types
         if limit is not None:
@@ -4078,7 +4340,31 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_discovered_resource_counts(
+        self,
+        *,
+        config_overrides: Optional[AsyncConfigServiceClientConfig] = None,
+        resource_types: Optional[
+            "capo_config_service.types.resource_types.ResourceTypes"
+        ] = None,
+        limit: Optional["capo_config_service.types.limit.Limit"] = None,
+        next_token: Optional["capo_config_service.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_config_service.types.get_discovered_resource_counts_response.GetDiscoveredResourceCountsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_discovered_resource_counts(
+                config_overrides=config_overrides,
+                resource_types=resource_types,
+                limit=limit,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_organization_config_rule_detailed_status(
         self,
@@ -4125,8 +4411,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_organization_config_rule_detailed_status_request.GetOrganizationConfigRuleDetailedStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_config_rule_name"] = organization_config_rule_name
+        input_: capo_config_service.types.get_organization_config_rule_detailed_status_request.GetOrganizationConfigRuleDetailedStatusRequest = {
+            "organization_config_rule_name": organization_config_rule_name
+        }
         if filters is not None:
             input_["filters"] = filters
         if limit is not None:
@@ -4139,6 +4426,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_organization_config_rule_detailed_status(
@@ -4217,10 +4505,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_organization_conformance_pack_detailed_status_request.GetOrganizationConformancePackDetailedStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_conformance_pack_name"] = (
-            organization_conformance_pack_name
-        )
+        input_: capo_config_service.types.get_organization_conformance_pack_detailed_status_request.GetOrganizationConformancePackDetailedStatusRequest = {
+            "organization_conformance_pack_name": organization_conformance_pack_name
+        }
         if filters is not None:
             input_["filters"] = filters
         if limit is not None:
@@ -4233,6 +4520,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_organization_conformance_pack_detailed_status(
@@ -4299,14 +4587,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_organization_custom_rule_policy_request.GetOrganizationCustomRulePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_config_rule_name"] = organization_config_rule_name
+        input_: capo_config_service.types.get_organization_custom_rule_policy_request.GetOrganizationCustomRulePolicyRequest = {
+            "organization_config_rule_name": organization_config_rule_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_config_history(
@@ -4362,9 +4652,10 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_resource_config_history_request.GetResourceConfigHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
-        input_["resource_id"] = resource_id
+        input_: capo_config_service.types.get_resource_config_history_request.GetResourceConfigHistoryRequest = {
+            "resource_type": resource_type,
+            "resource_id": resource_id,
+        }
         if later_time is not None:
             input_["later_time"] = later_time
         if earlier_time is not None:
@@ -4381,6 +4672,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_resource_config_history(
@@ -4452,14 +4744,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_resource_evaluation_summary_request.GetResourceEvaluationSummaryRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_evaluation_id"] = resource_evaluation_id
+        input_: capo_config_service.types.get_resource_evaluation_summary_request.GetResourceEvaluationSummaryRequest = {
+            "resource_evaluation_id": resource_evaluation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_stored_query(
@@ -4495,14 +4789,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.get_stored_query_request.GetStoredQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["query_name"] = query_name
+        input_: capo_config_service.types.get_stored_query_request.GetStoredQueryRequest = {
+            "query_name": query_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_aggregate_discovered_resources(
@@ -4550,9 +4846,10 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.list_aggregate_discovered_resources_request.ListAggregateDiscoveredResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
-        input_["resource_type"] = resource_type
+        input_: capo_config_service.types.list_aggregate_discovered_resources_request.ListAggregateDiscoveredResourcesRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name,
+            "resource_type": resource_type,
+        }
         if filters is not None:
             input_["filters"] = filters
         if limit is not None:
@@ -4565,6 +4862,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_aggregate_discovered_resources(
@@ -4636,7 +4934,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.list_configuration_recorders_request.ListConfigurationRecordersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.list_configuration_recorders_request.ListConfigurationRecordersRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -4649,6 +4947,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_configuration_recorders(
@@ -4724,7 +5023,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.list_conformance_pack_compliance_scores_request.ListConformancePackComplianceScoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.list_conformance_pack_compliance_scores_request.ListConformancePackComplianceScoresRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if sort_order is not None:
@@ -4741,7 +5040,37 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_conformance_pack_compliance_scores(
+        self,
+        *,
+        config_overrides: Optional[AsyncConfigServiceClientConfig] = None,
+        filters: Optional[
+            "capo_config_service.types.conformance_pack_compliance_scores_filters.ConformancePackComplianceScoresFilters"
+        ] = None,
+        sort_order: Optional["capo_config_service.types.sort_order.SortOrder"] = None,
+        sort_by: Optional["capo_config_service.types.sort_by.SortBy"] = None,
+        limit: Optional[
+            "capo_config_service.types.page_size_limit.PageSizeLimit"
+        ] = None,
+        next_token: Optional["capo_config_service.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_config_service.types.list_conformance_pack_compliance_scores_response.ListConformancePackComplianceScoresResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_conformance_pack_compliance_scores(
+                config_overrides=config_overrides,
+                filters=filters,
+                sort_order=sort_order,
+                sort_by=sort_by,
+                limit=limit,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_discovered_resources(
         self,
@@ -4794,8 +5123,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.list_discovered_resources_request.ListDiscoveredResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
+        input_: capo_config_service.types.list_discovered_resources_request.ListDiscoveredResourcesRequest = {
+            "resource_type": resource_type
+        }
         if resource_ids is not None:
             input_["resource_ids"] = resource_ids
         if resource_name is not None:
@@ -4812,6 +5142,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_discovered_resources(
@@ -4891,7 +5222,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.list_resource_evaluations_request.ListResourceEvaluationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.list_resource_evaluations_request.ListResourceEvaluationsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if limit is not None:
@@ -4904,6 +5235,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resource_evaluations(
@@ -4968,7 +5300,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.list_stored_queries_request.ListStoredQueriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.list_stored_queries_request.ListStoredQueriesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4979,7 +5311,27 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_stored_queries(
+        self,
+        *,
+        config_overrides: Optional[AsyncConfigServiceClientConfig] = None,
+        next_token: Optional["capo_config_service.types.string.String"] = None,
+        max_results: Optional["capo_config_service.types.limit.Limit"] = None,
+    ) -> "AsyncIterator[capo_config_service.types.list_stored_queries_response.ListStoredQueriesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_stored_queries(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -5020,8 +5372,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_config_service.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -5032,6 +5385,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_tags_for_resource(
@@ -5093,9 +5447,10 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_aggregation_authorization_request.PutAggregationAuthorizationRequest = {}  # type: ignore[typeddict-item]
-        input_["authorized_account_id"] = authorized_account_id
-        input_["authorized_aws_region"] = authorized_aws_region
+        input_: capo_config_service.types.put_aggregation_authorization_request.PutAggregationAuthorizationRequest = {
+            "authorized_account_id": authorized_account_id,
+            "authorized_aws_region": authorized_aws_region,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -5104,6 +5459,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_config_rule(
@@ -5142,8 +5498,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_config_rule_request.PutConfigRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule"] = config_rule
+        input_: capo_config_service.types.put_config_rule_request.PutConfigRuleRequest = {
+            "config_rule": config_rule
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -5152,6 +5509,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_configuration_aggregator(
@@ -5205,8 +5563,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_configuration_aggregator_request.PutConfigurationAggregatorRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
+        input_: capo_config_service.types.put_configuration_aggregator_request.PutConfigurationAggregatorRequest = {
+            "configuration_aggregator_name": configuration_aggregator_name
+        }
         if account_aggregation_sources is not None:
             input_["account_aggregation_sources"] = account_aggregation_sources
         if organization_aggregation_source is not None:
@@ -5221,6 +5580,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_configuration_recorder(
@@ -5260,8 +5620,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_configuration_recorder_request.PutConfigurationRecorderRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_recorder"] = configuration_recorder
+        input_: capo_config_service.types.put_configuration_recorder_request.PutConfigurationRecorderRequest = {
+            "configuration_recorder": configuration_recorder
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -5270,6 +5631,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_conformance_pack(
@@ -5334,8 +5696,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_conformance_pack_request.PutConformancePackRequest = {}  # type: ignore[typeddict-item]
-        input_["conformance_pack_name"] = conformance_pack_name
+        input_: capo_config_service.types.put_conformance_pack_request.PutConformancePackRequest = {
+            "conformance_pack_name": conformance_pack_name
+        }
         if template_s3_uri is not None:
             input_["template_s3_uri"] = template_s3_uri
         if template_body is not None:
@@ -5358,6 +5721,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_delivery_channel(
@@ -5397,14 +5761,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_delivery_channel_request.PutDeliveryChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["delivery_channel"] = delivery_channel
+        input_: capo_config_service.types.put_delivery_channel_request.PutDeliveryChannelRequest = {
+            "delivery_channel": delivery_channel
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_evaluations(
@@ -5447,10 +5813,11 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_evaluations_request.PutEvaluationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.put_evaluations_request.PutEvaluationsRequest = {
+            "result_token": result_token
+        }
         if evaluations is not None:
             input_["evaluations"] = evaluations
-        input_["result_token"] = result_token
         if test_mode is not None:
             input_["test_mode"] = test_mode
 
@@ -5459,6 +5826,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_external_evaluation(
@@ -5496,15 +5864,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_external_evaluation_request.PutExternalEvaluationRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_name"] = config_rule_name
-        input_["external_evaluation"] = external_evaluation
+        input_: capo_config_service.types.put_external_evaluation_request.PutExternalEvaluationRequest = {
+            "config_rule_name": config_rule_name,
+            "external_evaluation": external_evaluation,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_organization_config_rule(
@@ -5562,8 +5932,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_organization_config_rule_request.PutOrganizationConfigRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_config_rule_name"] = organization_config_rule_name
+        input_: capo_config_service.types.put_organization_config_rule_request.PutOrganizationConfigRuleRequest = {
+            "organization_config_rule_name": organization_config_rule_name
+        }
         if organization_managed_rule_metadata is not None:
             input_["organization_managed_rule_metadata"] = (
                 organization_managed_rule_metadata
@@ -5584,6 +5955,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_organization_conformance_pack(
@@ -5649,10 +6021,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_organization_conformance_pack_request.PutOrganizationConformancePackRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_conformance_pack_name"] = (
-            organization_conformance_pack_name
-        )
+        input_: capo_config_service.types.put_organization_conformance_pack_request.PutOrganizationConformancePackRequest = {
+            "organization_conformance_pack_name": organization_conformance_pack_name
+        }
         if template_s3_uri is not None:
             input_["template_s3_uri"] = template_s3_uri
         if template_body is not None:
@@ -5673,6 +6044,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_remediation_configurations(
@@ -5708,14 +6080,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_remediation_configurations_request.PutRemediationConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["remediation_configurations"] = remediation_configurations
+        input_: capo_config_service.types.put_remediation_configurations_request.PutRemediationConfigurationsRequest = {
+            "remediation_configurations": remediation_configurations
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_remediation_exceptions(
@@ -5759,9 +6133,10 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_remediation_exceptions_request.PutRemediationExceptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_name"] = config_rule_name
-        input_["resource_keys"] = resource_keys
+        input_: capo_config_service.types.put_remediation_exceptions_request.PutRemediationExceptionsRequest = {
+            "config_rule_name": config_rule_name,
+            "resource_keys": resource_keys,
+        }
         if message is not None:
             input_["message"] = message
         if expiration_time is not None:
@@ -5772,6 +6147,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_config(
@@ -5819,13 +6195,14 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_resource_config_request.PutResourceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
-        input_["schema_version_id"] = schema_version_id
-        input_["resource_id"] = resource_id
+        input_: capo_config_service.types.put_resource_config_request.PutResourceConfigRequest = {
+            "resource_type": resource_type,
+            "schema_version_id": schema_version_id,
+            "resource_id": resource_id,
+            "configuration": configuration,
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
-        input_["configuration"] = configuration
         if tags is not None:
             input_["tags"] = tags
 
@@ -5834,6 +6211,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_retention_configuration(
@@ -5869,14 +6247,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_retention_configuration_request.PutRetentionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["retention_period_in_days"] = retention_period_in_days
+        input_: capo_config_service.types.put_retention_configuration_request.PutRetentionConfigurationRequest = {
+            "retention_period_in_days": retention_period_in_days
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_service_linked_configuration_recorder(
@@ -5916,8 +6296,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_service_linked_configuration_recorder_request.PutServiceLinkedConfigurationRecorderRequest = {}  # type: ignore[typeddict-item]
-        input_["service_principal"] = service_principal
+        input_: capo_config_service.types.put_service_linked_configuration_recorder_request.PutServiceLinkedConfigurationRecorderRequest = {
+            "service_principal": service_principal
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -5926,6 +6307,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_stored_query(
@@ -5964,8 +6346,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.put_stored_query_request.PutStoredQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["stored_query"] = stored_query
+        input_: capo_config_service.types.put_stored_query_request.PutStoredQueryRequest = {
+            "stored_query": stored_query
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -5974,6 +6357,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def select_aggregate_resource_config(
@@ -6019,9 +6403,10 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.select_aggregate_resource_config_request.SelectAggregateResourceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["expression"] = expression
-        input_["configuration_aggregator_name"] = configuration_aggregator_name
+        input_: capo_config_service.types.select_aggregate_resource_config_request.SelectAggregateResourceConfigRequest = {
+            "expression": expression,
+            "configuration_aggregator_name": configuration_aggregator_name,
+        }
         if limit is not None:
             input_["limit"] = limit
         if max_results is not None:
@@ -6034,6 +6419,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_select_aggregate_resource_config(
@@ -6101,8 +6487,9 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.select_resource_config_request.SelectResourceConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["expression"] = expression
+        input_: capo_config_service.types.select_resource_config_request.SelectResourceConfigRequest = {
+            "expression": expression
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -6113,6 +6500,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_select_resource_config(
@@ -6175,7 +6563,7 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.start_config_rules_evaluation_request.StartConfigRulesEvaluationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_config_service.types.start_config_rules_evaluation_request.StartConfigRulesEvaluationRequest = {}
         if config_rule_names is not None:
             input_["config_rule_names"] = config_rule_names
 
@@ -6184,6 +6572,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_configuration_recorder(
@@ -6218,14 +6607,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.start_configuration_recorder_request.StartConfigurationRecorderRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_recorder_name"] = configuration_recorder_name
+        input_: capo_config_service.types.start_configuration_recorder_request.StartConfigurationRecorderRequest = {
+            "configuration_recorder_name": configuration_recorder_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_remediation_execution(
@@ -6264,15 +6655,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.start_remediation_execution_request.StartRemediationExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["config_rule_name"] = config_rule_name
-        input_["resource_keys"] = resource_keys
+        input_: capo_config_service.types.start_remediation_execution_request.StartRemediationExecutionRequest = {
+            "config_rule_name": config_rule_name,
+            "resource_keys": resource_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_resource_evaluation(
@@ -6322,11 +6715,12 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.start_resource_evaluation_request.StartResourceEvaluationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_details"] = resource_details
+        input_: capo_config_service.types.start_resource_evaluation_request.StartResourceEvaluationRequest = {
+            "resource_details": resource_details,
+            "evaluation_mode": evaluation_mode,
+        }
         if evaluation_context is not None:
             input_["evaluation_context"] = evaluation_context
-        input_["evaluation_mode"] = evaluation_mode
         if evaluation_timeout is not None:
             input_["evaluation_timeout"] = evaluation_timeout
         if client_token is not None:
@@ -6337,6 +6731,7 @@ class AsyncConfigServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_configuration_recorder(
@@ -6370,14 +6765,16 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.stop_configuration_recorder_request.StopConfigurationRecorderRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_recorder_name"] = configuration_recorder_name
+        input_: capo_config_service.types.stop_configuration_recorder_request.StopConfigurationRecorderRequest = {
+            "configuration_recorder_name": configuration_recorder_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -6414,15 +6811,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_config_service.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -6458,15 +6857,17 @@ class AsyncConfigServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_config_service.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_config_service.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

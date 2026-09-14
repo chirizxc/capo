@@ -41,7 +41,7 @@ def serialize_json(value: AwsOpenSearchServiceDomainVpcOptionsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainVpcOptionsDetails:
     out: AwsOpenSearchServiceDomainVpcOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["security_group_ids"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainVpcOptionsDetails:
                 data["SecurityGroupIds"]
             )
         )
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["subnet_ids"] = (

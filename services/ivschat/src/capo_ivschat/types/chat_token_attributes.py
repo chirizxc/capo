@@ -21,5 +21,7 @@ def serialize_json(input_to_serialize: ChatTokenAttributes) -> dict:
 def deserialize_json(data: dict) -> ChatTokenAttributes:
     out: ChatTokenAttributes = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

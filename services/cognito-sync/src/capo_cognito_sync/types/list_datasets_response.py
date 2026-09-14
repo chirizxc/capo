@@ -36,16 +36,16 @@ def serialize_json(value: ListDatasetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDatasetsResponse:
     out: ListDatasetsResponse = {}  # type: ignore[typeddict-item]
-    if "Datasets" in data:
+    if data.get("Datasets") is not None:
         import capo_cognito_sync.types.dataset_list
 
         out["datasets"] = capo_cognito_sync.types.dataset_list.deserialize_json(
             data["Datasets"]
         )
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     else:
         out["count"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -51,9 +51,9 @@ def serialize_aws_json_1_1(value: WebAuthnConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WebAuthnConfigurationType:
     out: WebAuthnConfigurationType = {}  # type: ignore[typeddict-item]
-    if "RelyingPartyId" in data:
+    if data.get("RelyingPartyId") is not None:
         out["relying_party_id"] = data["RelyingPartyId"]
-    if "UserVerification" in data:
+    if data.get("UserVerification") is not None:
         import capo_cognito_identity_provider.types.user_verification_type
 
         out["user_verification"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> WebAuthnConfigurationType:
                 data["UserVerification"]
             )
         )
-    if "FactorConfiguration" in data:
+    if data.get("FactorConfiguration") is not None:
         import capo_cognito_identity_provider.types.web_authn_factor_configuration_type
 
         out["factor_configuration"] = (

@@ -274,7 +274,7 @@ def serialize_json(value: CoverageFilterCriteria) -> dict:
 
 def deserialize_json(data: dict) -> CoverageFilterCriteria:
     out: CoverageFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "scanStatusCode" in data:
+    if data.get("scanStatusCode") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["scan_status_code"] = (
@@ -282,7 +282,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["scanStatusCode"]
             )
         )
-    if "scanStatusReason" in data:
+    if data.get("scanStatusReason") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["scan_status_reason"] = (
@@ -290,7 +290,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["scanStatusReason"]
             )
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["account_id"] = (
@@ -298,7 +298,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["accountId"]
             )
         )
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["resource_id"] = (
@@ -306,7 +306,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["resourceId"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["resource_type"] = (
@@ -314,7 +314,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["resourceType"]
             )
         )
-    if "scanType" in data:
+    if data.get("scanType") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["scan_type"] = (
@@ -322,7 +322,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["scanType"]
             )
         )
-    if "ecrRepositoryName" in data:
+    if data.get("ecrRepositoryName") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["ecr_repository_name"] = (
@@ -330,7 +330,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["ecrRepositoryName"]
             )
         )
-    if "ecrImageTags" in data:
+    if data.get("ecrImageTags") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["ecr_image_tags"] = (
@@ -338,7 +338,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["ecrImageTags"]
             )
         )
-    if "ec2InstanceTags" in data:
+    if data.get("ec2InstanceTags") is not None:
         import capo_inspector2.types.coverage_map_filter_list
 
         out["ec2_instance_tags"] = (
@@ -346,7 +346,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["ec2InstanceTags"]
             )
         )
-    if "lambdaFunctionName" in data:
+    if data.get("lambdaFunctionName") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["lambda_function_name"] = (
@@ -354,7 +354,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["lambdaFunctionName"]
             )
         )
-    if "lambdaFunctionTags" in data:
+    if data.get("lambdaFunctionTags") is not None:
         import capo_inspector2.types.coverage_map_filter_list
 
         out["lambda_function_tags"] = (
@@ -362,7 +362,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["lambdaFunctionTags"]
             )
         )
-    if "lambdaFunctionRuntime" in data:
+    if data.get("lambdaFunctionRuntime") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["lambda_function_runtime"] = (
@@ -370,7 +370,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["lambdaFunctionRuntime"]
             )
         )
-    if "lastScannedAt" in data:
+    if data.get("lastScannedAt") is not None:
         import capo_inspector2.types.coverage_date_filter_list
 
         out["last_scanned_at"] = (
@@ -378,7 +378,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["lastScannedAt"]
             )
         )
-    if "scanMode" in data:
+    if data.get("scanMode") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["scan_mode"] = (
@@ -386,7 +386,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["scanMode"]
             )
         )
-    if "imagePulledAt" in data:
+    if data.get("imagePulledAt") is not None:
         import capo_inspector2.types.coverage_date_filter_list
 
         out["image_pulled_at"] = (
@@ -394,7 +394,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["imagePulledAt"]
             )
         )
-    if "ecrImageLastInUseAt" in data:
+    if data.get("ecrImageLastInUseAt") is not None:
         import capo_inspector2.types.coverage_date_filter_list
 
         out["ecr_image_last_in_use_at"] = (
@@ -402,7 +402,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["ecrImageLastInUseAt"]
             )
         )
-    if "ecrImageInUseCount" in data:
+    if data.get("ecrImageInUseCount") is not None:
         import capo_inspector2.types.coverage_number_filter_list
 
         out["ecr_image_in_use_count"] = (
@@ -410,7 +410,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["ecrImageInUseCount"]
             )
         )
-    if "codeRepositoryProjectName" in data:
+    if data.get("codeRepositoryProjectName") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["code_repository_project_name"] = (
@@ -418,7 +418,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["codeRepositoryProjectName"]
             )
         )
-    if "codeRepositoryProviderType" in data:
+    if data.get("codeRepositoryProviderType") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["code_repository_provider_type"] = (
@@ -426,7 +426,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["codeRepositoryProviderType"]
             )
         )
-    if "codeRepositoryProviderTypeVisibility" in data:
+    if data.get("codeRepositoryProviderTypeVisibility") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["code_repository_provider_type_visibility"] = (
@@ -434,7 +434,7 @@ def deserialize_json(data: dict) -> CoverageFilterCriteria:
                 data["codeRepositoryProviderTypeVisibility"]
             )
         )
-    if "lastScannedCommitId" in data:
+    if data.get("lastScannedCommitId") is not None:
         import capo_inspector2.types.coverage_string_filter_list
 
         out["last_scanned_commit_id"] = (

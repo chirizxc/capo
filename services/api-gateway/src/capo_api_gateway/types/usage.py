@@ -42,13 +42,13 @@ def serialize_json(value: Usage) -> dict:
 
 def deserialize_json(data: dict) -> Usage:
     out: Usage = {}  # type: ignore[typeddict-item]
-    if "usagePlanId" in data:
+    if data.get("usagePlanId") is not None:
         out["usage_plan_id"] = data["usagePlanId"]
-    if "startDate" in data:
+    if data.get("startDate") is not None:
         out["start_date"] = data["startDate"]
-    if "endDate" in data:
+    if data.get("endDate") is not None:
         out["end_date"] = data["endDate"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_api_gateway.types.map_of_key_usages
 
         out["items"] = capo_api_gateway.types.map_of_key_usages.deserialize_json(

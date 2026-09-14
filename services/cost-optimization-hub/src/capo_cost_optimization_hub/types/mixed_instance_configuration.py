@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: MixedInstanceConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MixedInstanceConfiguration:
     out: MixedInstanceConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

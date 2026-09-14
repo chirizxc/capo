@@ -79,7 +79,7 @@ def serialize_json(value: EngineTranscribeMedicalSettings) -> dict:
 
 def deserialize_json(data: dict) -> EngineTranscribeMedicalSettings:
     out: EngineTranscribeMedicalSettings = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_chime_sdk_meetings.types.transcribe_medical_language_code
 
         out["language_code"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> EngineTranscribeMedicalSettings:
         raise DeserializationError(
             "EngineTranscribeMedicalSettings.language_code required"
         )
-    if "Specialty" in data:
+    if data.get("Specialty") is not None:
         import capo_chime_sdk_meetings.types.transcribe_medical_specialty
 
         out["specialty"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> EngineTranscribeMedicalSettings:
         )
     else:
         raise DeserializationError("EngineTranscribeMedicalSettings.specialty required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_meetings.types.transcribe_medical_type
 
         out["type"] = (
@@ -111,9 +111,9 @@ def deserialize_json(data: dict) -> EngineTranscribeMedicalSettings:
         )
     else:
         raise DeserializationError("EngineTranscribeMedicalSettings.type required")
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         import capo_chime_sdk_meetings.types.transcribe_medical_region
 
         out["region"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> EngineTranscribeMedicalSettings:
                 data["Region"]
             )
         )
-    if "ContentIdentificationType" in data:
+    if data.get("ContentIdentificationType") is not None:
         import capo_chime_sdk_meetings.types.transcribe_medical_content_identification_type
 
         out["content_identification_type"] = (

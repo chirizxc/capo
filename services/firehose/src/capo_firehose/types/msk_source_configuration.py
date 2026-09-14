@@ -53,15 +53,15 @@ def serialize_aws_json_1_1(value: MSKSourceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MSKSourceConfiguration:
     out: MSKSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "MSKClusterARN" in data:
+    if data.get("MSKClusterARN") is not None:
         out["msk_cluster_arn"] = data["MSKClusterARN"]
     else:
         raise DeserializationError("MSKSourceConfiguration.msk_cluster_arn required")
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
     else:
         raise DeserializationError("MSKSourceConfiguration.topic_name required")
-    if "AuthenticationConfiguration" in data:
+    if data.get("AuthenticationConfiguration") is not None:
         import capo_firehose.types.authentication_configuration
 
         out["authentication_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> MSKSourceConfiguration:
         raise DeserializationError(
             "MSKSourceConfiguration.authentication_configuration required"
         )
-    if "ReadFromTimestamp" in data:
+    if data.get("ReadFromTimestamp") is not None:
         import capo_firehose.types.read_from_timestamp
 
         out["read_from_timestamp"] = (

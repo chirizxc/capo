@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CheckDetails:
 
     out: CheckDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wellarchitected.types.check_detail.deserialize_json(item))
     return out

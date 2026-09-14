@@ -62,23 +62,23 @@ def serialize_aws_json_1_0(value: UpdateEngagementContextRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateEngagementContextRequest:
     out: UpdateEngagementContextRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("UpdateEngagementContextRequest.catalog required")
-    if "EngagementIdentifier" in data:
+    if data.get("EngagementIdentifier") is not None:
         out["engagement_identifier"] = data["EngagementIdentifier"]
     else:
         raise DeserializationError(
             "UpdateEngagementContextRequest.engagement_identifier required"
         )
-    if "ContextIdentifier" in data:
+    if data.get("ContextIdentifier") is not None:
         out["context_identifier"] = data["ContextIdentifier"]
     else:
         raise DeserializationError(
             "UpdateEngagementContextRequest.context_identifier required"
         )
-    if "EngagementLastModifiedAt" in data:
+    if data.get("EngagementLastModifiedAt") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["engagement_last_modified_at"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateEngagementContextRequest:
         raise DeserializationError(
             "UpdateEngagementContextRequest.engagement_last_modified_at required"
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_partnercentral_selling.types.engagement_context_type
 
         out["type"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateEngagementContextRequest:
         )
     else:
         raise DeserializationError("UpdateEngagementContextRequest.type required")
-    if "Payload" in data:
+    if data.get("Payload") is not None:
         import capo_partnercentral_selling.types.update_engagement_context_payload
 
         out["payload"] = (

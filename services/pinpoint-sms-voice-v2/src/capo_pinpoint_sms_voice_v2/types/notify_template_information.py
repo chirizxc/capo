@@ -132,19 +132,19 @@ def serialize_aws_json_1_0(value: NotifyTemplateInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NotifyTemplateInformation:
     out: NotifyTemplateInformation = {}  # type: ignore[typeddict-item]
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
     else:
         raise DeserializationError("NotifyTemplateInformation.template_id required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         raise DeserializationError("NotifyTemplateInformation.version required")
-    if "TemplateType" in data:
+    if data.get("TemplateType") is not None:
         out["template_type"] = data["TemplateType"]
     else:
         raise DeserializationError("NotifyTemplateInformation.template_type required")
-    if "Channels" in data:
+    if data.get("Channels") is not None:
         import capo_pinpoint_sms_voice_v2.types.number_capability_list
 
         out["channels"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> NotifyTemplateInformation:
         )
     else:
         raise DeserializationError("NotifyTemplateInformation.channels required")
-    if "TierAccess" in data:
+    if data.get("TierAccess") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_configuration_tier_list
 
         out["tier_access"] = (
@@ -162,9 +162,9 @@ def deserialize_aws_json_1_0(data: dict) -> NotifyTemplateInformation:
                 data["TierAccess"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "SupportedCountries" in data:
+    if data.get("SupportedCountries") is not None:
         import capo_pinpoint_sms_voice_v2.types.iso_country_code_list
 
         out["supported_countries"] = (
@@ -172,11 +172,11 @@ def deserialize_aws_json_1_0(data: dict) -> NotifyTemplateInformation:
                 data["SupportedCountries"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Variables" in data:
+    if data.get("Variables") is not None:
         import capo_pinpoint_sms_voice_v2.types.template_variables_map
 
         out["variables"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_0(data: dict) -> NotifyTemplateInformation:
                 data["Variables"]
             )
         )
-    if "SupportedVoiceIds" in data:
+    if data.get("SupportedVoiceIds") is not None:
         import capo_pinpoint_sms_voice_v2.types.voice_id_list
 
         out["supported_voice_ids"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_0(data: dict) -> NotifyTemplateInformation:
                 data["SupportedVoiceIds"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

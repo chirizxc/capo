@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: DetachAndDeleteS3AccessPointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetachAndDeleteS3AccessPointRequest:
     out: DetachAndDeleteS3AccessPointRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

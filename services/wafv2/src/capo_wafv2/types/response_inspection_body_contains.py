@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: ResponseInspectionBodyContains) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponseInspectionBodyContains:
     out: ResponseInspectionBodyContains = {}  # type: ignore[typeddict-item]
-    if "SuccessStrings" in data:
+    if data.get("SuccessStrings") is not None:
         import capo_wafv2.types.response_inspection_body_contains_success_strings
 
         out["success_strings"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponseInspectionBodyContains:
         raise DeserializationError(
             "ResponseInspectionBodyContains.success_strings required"
         )
-    if "FailureStrings" in data:
+    if data.get("FailureStrings") is not None:
         import capo_wafv2.types.response_inspection_body_contains_failure_strings
 
         out["failure_strings"] = (

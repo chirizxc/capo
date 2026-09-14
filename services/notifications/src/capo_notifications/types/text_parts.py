@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: TextParts) -> dict:
 def deserialize_json(data: dict) -> TextParts:
     out: TextParts = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_notifications.types.text_part_value
 
         out[key] = capo_notifications.types.text_part_value.deserialize_json(value)

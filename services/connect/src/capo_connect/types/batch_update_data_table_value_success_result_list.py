@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchUpdateDataTableValueSuccessResultList:
 
     out: BatchUpdateDataTableValueSuccessResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.batch_update_data_table_value_success_result.deserialize_json(
                 item

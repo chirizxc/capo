@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_amplifyuibuilder._auth._signers
@@ -85,18 +86,21 @@ class FormResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.create_form_request.CreateFormRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["form_to_create"] = form_to_create
+        input_: capo_amplifyuibuilder.types.create_form_request.CreateFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "form_to_create": form_to_create,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -136,16 +140,18 @@ class FormResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.get_form_request.GetFormRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.get_form_request.GetFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -189,19 +195,22 @@ class FormResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.update_form_request.UpdateFormRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["updated_form"] = updated_form
+        input_: capo_amplifyuibuilder.types.update_form_request.UpdateFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+            "updated_form": updated_form,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -239,16 +248,18 @@ class FormResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.delete_form_request.DeleteFormRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.delete_form_request.DeleteFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -291,9 +302,10 @@ class FormResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.list_forms_request.ListFormsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.list_forms_request.ListFormsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -304,6 +316,7 @@ class FormResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_forms(
@@ -342,9 +355,10 @@ class FormResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.export_forms_request.ExportFormsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.export_forms_request.ExportFormsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -353,6 +367,7 @@ class FormResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -401,18 +416,21 @@ class AsyncFormResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.create_form_request.CreateFormRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["form_to_create"] = form_to_create
+        input_: capo_amplifyuibuilder.types.create_form_request.CreateFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "form_to_create": form_to_create,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -453,16 +471,18 @@ class AsyncFormResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.get_form_request.GetFormRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.get_form_request.GetFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -507,19 +527,22 @@ class AsyncFormResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.update_form_request.UpdateFormRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["updated_form"] = updated_form
+        input_: capo_amplifyuibuilder.types.update_form_request.UpdateFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+            "updated_form": updated_form,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -558,16 +581,18 @@ class AsyncFormResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.delete_form_request.DeleteFormRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.delete_form_request.DeleteFormRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -611,9 +636,10 @@ class AsyncFormResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.list_forms_request.ListFormsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.list_forms_request.ListFormsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -624,6 +650,7 @@ class AsyncFormResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_forms(
@@ -663,9 +690,10 @@ class AsyncFormResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.export_forms_request.ExportFormsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.export_forms_request.ExportFormsRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -674,4 +702,5 @@ class AsyncFormResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

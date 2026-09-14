@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: BadRequest_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BadRequest_:
     out: BadRequest_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,12 +34,16 @@ class BadRequest(ServiceError):
 
     code: str | None = "BadRequest"
 
-    def __init__(self, data: BadRequest_):
+    def __init__(self, data: BadRequest_, message: str | None = None):
         super().__init__(
-            "client", is_throttling_error=False, is_retryable=False, code="BadRequest"
+            "client",
+            is_throttling_error=False,
+            is_retryable=False,
+            code="BadRequest",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "BadRequest":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(cls, data: dict, message: str | None = None) -> "BadRequest":
+        return cls(deserialize_aws_json_1_1(data), message)

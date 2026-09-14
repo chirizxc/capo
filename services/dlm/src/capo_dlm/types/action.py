@@ -36,9 +36,9 @@ def serialize_json(value: Action) -> dict:
 
 def deserialize_json(data: dict) -> Action:
     out: Action = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CrossRegionCopy" in data:
+    if data.get("CrossRegionCopy") is not None:
         import capo_dlm.types.cross_region_copy_action_list
 
         out["cross_region_copy"] = (

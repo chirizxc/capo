@@ -47,22 +47,22 @@ def serialize_json(value: ProvisionDeviceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ProvisionDeviceResponse:
     out: ProvisionDeviceResponse = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ProvisionDeviceResponse.arn required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("ProvisionDeviceResponse.status required")
-    if "Certificates" in data:
+    if data.get("Certificates") is not None:
         import capo_panorama.types.certificates
 
         out["certificates"] = capo_panorama.types.certificates.deserialize_json(
             data["Certificates"]
         )
-    if "IotThingName" in data:
+    if data.get("IotThingName") is not None:
         out["iot_thing_name"] = data["IotThingName"]
     return out

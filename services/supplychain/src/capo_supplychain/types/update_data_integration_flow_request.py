@@ -63,7 +63,7 @@ def serialize_json(value: UpdateDataIntegrationFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataIntegrationFlowRequest:
     out: UpdateDataIntegrationFlowRequest = {}  # type: ignore[typeddict-item]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_supplychain.types.data_integration_flow_source_list
 
         out["sources"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> UpdateDataIntegrationFlowRequest:
                 data["sources"]
             )
         )
-    if "transformation" in data:
+    if data.get("transformation") is not None:
         import capo_supplychain.types.data_integration_flow_transformation
 
         out["transformation"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> UpdateDataIntegrationFlowRequest:
                 data["transformation"]
             )
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_supplychain.types.data_integration_flow_target
 
         out["target"] = (

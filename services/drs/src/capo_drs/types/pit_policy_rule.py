@@ -41,22 +41,22 @@ def serialize_json(value: PITPolicyRule) -> dict:
 
 def deserialize_json(data: dict) -> PITPolicyRule:
     out: PITPolicyRule = {}  # type: ignore[typeddict-item]
-    if "ruleID" in data:
+    if data.get("ruleID") is not None:
         out["rule_id"] = data["ruleID"]
     else:
         out["rule_id"] = 0
-    if "units" in data:
+    if data.get("units") is not None:
         out["units"] = data["units"]
     else:
         raise DeserializationError("PITPolicyRule.units required")
-    if "interval" in data:
+    if data.get("interval") is not None:
         out["interval"] = data["interval"]
     else:
         raise DeserializationError("PITPolicyRule.interval required")
-    if "retentionDuration" in data:
+    if data.get("retentionDuration") is not None:
         out["retention_duration"] = data["retentionDuration"]
     else:
         raise DeserializationError("PITPolicyRule.retention_duration required")
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     return out

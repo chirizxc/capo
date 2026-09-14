@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetRelationalDatabaseLogStreamsResult) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseLogStreamsResult:
     out: GetRelationalDatabaseLogStreamsResult = {}  # type: ignore[typeddict-item]
-    if "logStreams" in data:
+    if data.get("logStreams") is not None:
         import capo_lightsail.types.string_list
 
         out["log_streams"] = capo_lightsail.types.string_list.deserialize_aws_json_1_1(

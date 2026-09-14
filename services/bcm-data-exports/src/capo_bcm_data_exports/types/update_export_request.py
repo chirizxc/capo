@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UpdateExportRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateExportRequest:
     out: UpdateExportRequest = {}  # type: ignore[typeddict-item]
-    if "ExportArn" in data:
+    if data.get("ExportArn") is not None:
         out["export_arn"] = data["ExportArn"]
     else:
         raise DeserializationError("UpdateExportRequest.export_arn required")
-    if "Export" in data:
+    if data.get("Export") is not None:
         import capo_bcm_data_exports.types.export
 
         out["export"] = capo_bcm_data_exports.types.export.deserialize_aws_json_1_1(

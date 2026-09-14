@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> HiddenSageMakerImageVersionAliasesLi
 
     out: HiddenSageMakerImageVersionAliasesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.hidden_sage_maker_image.deserialize_aws_json_1_1(item)
         )

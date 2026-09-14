@@ -100,13 +100,13 @@ def serialize_json(value: UpdateOriginEndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOriginEndpointRequest:
     out: UpdateOriginEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "authorization" in data:
+    if data.get("authorization") is not None:
         import capo_mediapackage.types.authorization
 
         out["authorization"] = capo_mediapackage.types.authorization.deserialize_json(
             data["authorization"]
         )
-    if "cmafPackage" in data:
+    if data.get("cmafPackage") is not None:
         import capo_mediapackage.types.cmaf_package_create_or_update_parameters
 
         out["cmaf_package"] = (
@@ -114,39 +114,39 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointRequest:
                 data["cmafPackage"]
             )
         )
-    if "dashPackage" in data:
+    if data.get("dashPackage") is not None:
         import capo_mediapackage.types.dash_package
 
         out["dash_package"] = capo_mediapackage.types.dash_package.deserialize_json(
             data["dashPackage"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "hlsPackage" in data:
+    if data.get("hlsPackage") is not None:
         import capo_mediapackage.types.hls_package
 
         out["hls_package"] = capo_mediapackage.types.hls_package.deserialize_json(
             data["hlsPackage"]
         )
-    if "manifestName" in data:
+    if data.get("manifestName") is not None:
         out["manifest_name"] = data["manifestName"]
-    if "mssPackage" in data:
+    if data.get("mssPackage") is not None:
         import capo_mediapackage.types.mss_package
 
         out["mss_package"] = capo_mediapackage.types.mss_package.deserialize_json(
             data["mssPackage"]
         )
-    if "origination" in data:
+    if data.get("origination") is not None:
         import capo_mediapackage.types.origination
 
         out["origination"] = capo_mediapackage.types.origination.deserialize_json(
             data["origination"]
         )
-    if "startoverWindowSeconds" in data:
+    if data.get("startoverWindowSeconds") is not None:
         out["startover_window_seconds"] = data["startoverWindowSeconds"]
-    if "timeDelaySeconds" in data:
+    if data.get("timeDelaySeconds") is not None:
         out["time_delay_seconds"] = data["timeDelaySeconds"]
-    if "whitelist" in data:
+    if data.get("whitelist") is not None:
         import capo_mediapackage.types.__list_of__string
 
         out["whitelist"] = capo_mediapackage.types.__list_of__string.deserialize_json(

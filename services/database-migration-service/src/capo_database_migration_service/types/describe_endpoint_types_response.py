@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeEndpointTypesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEndpointTypesResponse:
     out: DescribeEndpointTypesResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "SupportedEndpointTypes" in data:
+    if data.get("SupportedEndpointTypes") is not None:
         import capo_database_migration_service.types.supported_endpoint_type_list
 
         out["supported_endpoint_types"] = (

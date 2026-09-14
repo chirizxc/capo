@@ -32,7 +32,7 @@ def serialize_json(value: PredefinedAttributeValues) -> dict:
 
 
 def deserialize_json(data: dict) -> PredefinedAttributeValues:
-    if "StringList" in data:
+    if data.get("StringList") is not None:
         import capo_connect.types.predefined_attribute_string_values_list
 
         return {

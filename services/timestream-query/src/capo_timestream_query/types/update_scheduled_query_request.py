@@ -36,13 +36,13 @@ def serialize_aws_json_1_0(value: UpdateScheduledQueryRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateScheduledQueryRequest:
     out: UpdateScheduledQueryRequest = {}  # type: ignore[typeddict-item]
-    if "ScheduledQueryArn" in data:
+    if data.get("ScheduledQueryArn") is not None:
         out["scheduled_query_arn"] = data["ScheduledQueryArn"]
     else:
         raise DeserializationError(
             "UpdateScheduledQueryRequest.scheduled_query_arn required"
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_timestream_query.types.scheduled_query_state
 
         out["state"] = (

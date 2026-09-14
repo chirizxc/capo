@@ -35,8 +35,8 @@ def serialize_json(value: UpgradeProfileVersionInput) -> dict:
 
 def deserialize_json(data: dict) -> UpgradeProfileVersionInput:
     out: UpgradeProfileVersionInput = {}  # type: ignore[typeddict-item]
-    if "MilestoneName" in data:
+    if data.get("MilestoneName") is not None:
         out["milestone_name"] = data["MilestoneName"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

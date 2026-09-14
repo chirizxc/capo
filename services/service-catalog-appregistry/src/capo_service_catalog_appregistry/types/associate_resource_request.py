@@ -38,7 +38,7 @@ def serialize_json(value: AssociateResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateResourceRequest:
     out: AssociateResourceRequest = {}  # type: ignore[typeddict-item]
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_service_catalog_appregistry.types.options
 
         out["options"] = (

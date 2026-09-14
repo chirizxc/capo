@@ -32,8 +32,8 @@ def serialize_json(value: Websocket) -> dict:
 
 def deserialize_json(data: dict) -> Websocket:
     out: Websocket = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "ConnectionExpiry" in data:
+    if data.get("ConnectionExpiry") is not None:
         out["connection_expiry"] = data["ConnectionExpiry"]
     return out

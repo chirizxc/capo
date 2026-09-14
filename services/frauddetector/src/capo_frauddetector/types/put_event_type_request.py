@@ -96,13 +96,13 @@ def serialize_aws_json_1_1(value: PutEventTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutEventTypeRequest:
     out: PutEventTypeRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("PutEventTypeRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "eventVariables" in data:
+    if data.get("eventVariables") is not None:
         import capo_frauddetector.types.non_empty_list_of_strings
 
         out["event_variables"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutEventTypeRequest:
         )
     else:
         raise DeserializationError("PutEventTypeRequest.event_variables required")
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_frauddetector.types.list_of_strings
 
         out["labels"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutEventTypeRequest:
                 data["labels"]
             )
         )
-    if "entityTypes" in data:
+    if data.get("entityTypes") is not None:
         import capo_frauddetector.types.non_empty_list_of_strings
 
         out["entity_types"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutEventTypeRequest:
         )
     else:
         raise DeserializationError("PutEventTypeRequest.entity_types required")
-    if "eventIngestion" in data:
+    if data.get("eventIngestion") is not None:
         import capo_frauddetector.types.event_ingestion
 
         out["event_ingestion"] = (
@@ -138,13 +138,13 @@ def deserialize_aws_json_1_1(data: dict) -> PutEventTypeRequest:
                 data["eventIngestion"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_frauddetector.types.tag_list
 
         out["tags"] = capo_frauddetector.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "eventOrchestration" in data:
+    if data.get("eventOrchestration") is not None:
         import capo_frauddetector.types.event_orchestration
 
         out["event_orchestration"] = (

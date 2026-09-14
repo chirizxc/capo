@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: BatchGetCollectionGroupRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetCollectionGroupRequest:
     out: BatchGetCollectionGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_opensearchserverless.types.collection_group_ids
 
         out["ids"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchGetCollectionGroupRequest:
                 data["ids"]
             )
         )
-    if "names" in data:
+    if data.get("names") is not None:
         import capo_opensearchserverless.types.collection_group_names
 
         out["names"] = (

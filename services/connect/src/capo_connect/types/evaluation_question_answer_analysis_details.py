@@ -50,7 +50,7 @@ def serialize_json(value: EvaluationQuestionAnswerAnalysisDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> EvaluationQuestionAnswerAnalysisDetails:
-    if "GenAI" in data:
+    if data.get("GenAI") is not None:
         import capo_connect.types.evaluation_gen_ai_answer_analysis_details
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> EvaluationQuestionAnswerAnalysisDetails:
                 data["GenAI"]
             )
         }
-    elif "ContactLens" in data:
+    elif data.get("ContactLens") is not None:
         import capo_connect.types.evaluation_contact_lens_answer_analysis_details
 
         return {

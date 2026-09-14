@@ -42,18 +42,18 @@ def serialize_aws_json_1_1(value: ListMaterializedViewRefreshTaskRunsRequest) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ListMaterializedViewRefreshTaskRunsRequest:
     out: ListMaterializedViewRefreshTaskRunsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     else:
         raise DeserializationError(
             "ListMaterializedViewRefreshTaskRunsRequest.catalog_id required"
         )
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

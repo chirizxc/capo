@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> NetworkSettingsList:
 
     out: NetworkSettingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_web.types.network_settings_summary.deserialize_json(item)
         )

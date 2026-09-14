@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: BatchDeleteFeaturedResultsSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteFeaturedResultsSetRequest:
     out: BatchDeleteFeaturedResultsSetRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError(
             "BatchDeleteFeaturedResultsSetRequest.index_id required"
         )
-    if "FeaturedResultsSetIds" in data:
+    if data.get("FeaturedResultsSetIds") is not None:
         import capo_kendra.types.featured_results_set_id_list
 
         out["featured_results_set_ids"] = (

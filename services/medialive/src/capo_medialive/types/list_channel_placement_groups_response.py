@@ -36,7 +36,7 @@ def serialize_json(value: ListChannelPlacementGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListChannelPlacementGroupsResponse:
     out: ListChannelPlacementGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "channelPlacementGroups" in data:
+    if data.get("channelPlacementGroups") is not None:
         import capo_medialive.types.__list_of_describe_channel_placement_group_summary
 
         out["channel_placement_groups"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListChannelPlacementGroupsResponse:
                 data["channelPlacementGroups"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

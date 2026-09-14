@@ -76,7 +76,7 @@ def serialize_json(value: AccountJiraConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> AccountJiraConfigurationOutput:
     out: AccountJiraConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "IntegrationStatus" in data:
+    if data.get("IntegrationStatus") is not None:
         import capo_wellarchitected.types.integration_status
 
         out["integration_status"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> AccountJiraConfigurationOutput:
                 data["IntegrationStatus"]
             )
         )
-    if "IssueManagementStatus" in data:
+    if data.get("IssueManagementStatus") is not None:
         import capo_wellarchitected.types.account_jira_issue_management_status
 
         out["issue_management_status"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> AccountJiraConfigurationOutput:
                 data["IssueManagementStatus"]
             )
         )
-    if "IssueManagementType" in data:
+    if data.get("IssueManagementType") is not None:
         import capo_wellarchitected.types.issue_management_type
 
         out["issue_management_type"] = (
@@ -100,10 +100,10 @@ def deserialize_json(data: dict) -> AccountJiraConfigurationOutput:
                 data["IssueManagementType"]
             )
         )
-    if "Subdomain" in data:
+    if data.get("Subdomain") is not None:
         out["subdomain"] = data["Subdomain"]
-    if "JiraProjectKey" in data:
+    if data.get("JiraProjectKey") is not None:
         out["jira_project_key"] = data["JiraProjectKey"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

@@ -64,7 +64,7 @@ def serialize_json(value: EmvEncryptionAttributes) -> dict:
 
 def deserialize_json(data: dict) -> EmvEncryptionAttributes:
     out: EmvEncryptionAttributes = {}  # type: ignore[typeddict-item]
-    if "MajorKeyDerivationMode" in data:
+    if data.get("MajorKeyDerivationMode") is not None:
         import capo_payment_cryptography_data.types.emv_major_key_derivation_mode
 
         out["major_key_derivation_mode"] = (
@@ -76,25 +76,25 @@ def deserialize_json(data: dict) -> EmvEncryptionAttributes:
         raise DeserializationError(
             "EmvEncryptionAttributes.major_key_derivation_mode required"
         )
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
     else:
         raise DeserializationError(
             "EmvEncryptionAttributes.primary_account_number required"
         )
-    if "PanSequenceNumber" in data:
+    if data.get("PanSequenceNumber") is not None:
         out["pan_sequence_number"] = data["PanSequenceNumber"]
     else:
         raise DeserializationError(
             "EmvEncryptionAttributes.pan_sequence_number required"
         )
-    if "SessionDerivationData" in data:
+    if data.get("SessionDerivationData") is not None:
         out["session_derivation_data"] = data["SessionDerivationData"]
     else:
         raise DeserializationError(
             "EmvEncryptionAttributes.session_derivation_data required"
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_payment_cryptography_data.types.emv_encryption_mode
 
         out["mode"] = (
@@ -102,6 +102,6 @@ def deserialize_json(data: dict) -> EmvEncryptionAttributes:
                 data["Mode"]
             )
         )
-    if "InitializationVector" in data:
+    if data.get("InitializationVector") is not None:
         out["initialization_vector"] = data["InitializationVector"]
     return out

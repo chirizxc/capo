@@ -24,7 +24,7 @@ def serialize_json(value: ResolveTo) -> dict:
 
 def deserialize_json(data: dict) -> ResolveTo:
     out: ResolveTo = {}  # type: ignore[typeddict-item]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
     else:
         raise DeserializationError("ResolveTo.asset_id required")

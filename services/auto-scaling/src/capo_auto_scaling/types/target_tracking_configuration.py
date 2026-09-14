@@ -52,7 +52,20 @@ def serialize_query(
             f"{key_prefix}CustomizedMetricSpecification",
         )
     if "target_value" in value:
-        pairs.append((f"{key_prefix}TargetValue", str(value["target_value"])))
+        pairs.append(
+            (
+                f"{key_prefix}TargetValue",
+                (
+                    "NaN"
+                    if value["target_value"] != value["target_value"]
+                    else "Infinity"
+                    if value["target_value"] == float("inf")
+                    else "-Infinity"
+                    if value["target_value"] == float("-inf")
+                    else str(value["target_value"])
+                ),
+            )
+        )
     if "disable_scale_in" in value:
         pairs.append(
             (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> QuoteOptionList:
 
     out: QuoteOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_outposts.types.quote_option.deserialize_json(item))
     return out

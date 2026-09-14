@@ -211,19 +211,19 @@ def serialize_json(value: GetCaseResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCaseResponse:
     out: GetCaseResponse = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "caseArn" in data:
+    if data.get("caseArn") is not None:
         out["case_arn"] = data["caseArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "caseStatus" in data:
+    if data.get("caseStatus") is not None:
         import capo_security_ir.types.case_status
 
         out["case_status"] = capo_security_ir.types.case_status.deserialize_json(
             data["caseStatus"]
         )
-    if "engagementType" in data:
+    if data.get("engagementType") is not None:
         import capo_security_ir.types.engagement_type
 
         out["engagement_type"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> GetCaseResponse:
                 data["engagementType"]
             )
         )
-    if "reportedIncidentStartDate" in data:
+    if data.get("reportedIncidentStartDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["reported_incident_start_date"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> GetCaseResponse:
                 data["reportedIncidentStartDate"]
             )
         )
-    if "actualIncidentStartDate" in data:
+    if data.get("actualIncidentStartDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["actual_incident_start_date"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> GetCaseResponse:
                 data["actualIncidentStartDate"]
             )
         )
-    if "impactedAwsRegions" in data:
+    if data.get("impactedAwsRegions") is not None:
         import capo_security_ir.types.impacted_aws_region_list
 
         out["impacted_aws_regions"] = (
@@ -255,7 +255,7 @@ def deserialize_json(data: dict) -> GetCaseResponse:
                 data["impactedAwsRegions"]
             )
         )
-    if "threatActorIpAddresses" in data:
+    if data.get("threatActorIpAddresses") is not None:
         import capo_security_ir.types.threat_actor_ip_list
 
         out["threat_actor_ip_addresses"] = (
@@ -263,13 +263,13 @@ def deserialize_json(data: dict) -> GetCaseResponse:
                 data["threatActorIpAddresses"]
             )
         )
-    if "pendingAction" in data:
+    if data.get("pendingAction") is not None:
         import capo_security_ir.types.pending_action
 
         out["pending_action"] = capo_security_ir.types.pending_action.deserialize_json(
             data["pendingAction"]
         )
-    if "impactedAccounts" in data:
+    if data.get("impactedAccounts") is not None:
         import capo_security_ir.types.impacted_accounts
 
         out["impacted_accounts"] = (
@@ -277,13 +277,13 @@ def deserialize_json(data: dict) -> GetCaseResponse:
                 data["impactedAccounts"]
             )
         )
-    if "watchers" in data:
+    if data.get("watchers") is not None:
         import capo_security_ir.types.watchers
 
         out["watchers"] = capo_security_ir.types.watchers.deserialize_json(
             data["watchers"]
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["created_date"] = (
@@ -291,7 +291,7 @@ def deserialize_json(data: dict) -> GetCaseResponse:
                 data["createdDate"]
             )
         )
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["last_updated_date"] = (
@@ -299,19 +299,19 @@ def deserialize_json(data: dict) -> GetCaseResponse:
                 data["lastUpdatedDate"]
             )
         )
-    if "closureCode" in data:
+    if data.get("closureCode") is not None:
         import capo_security_ir.types.closure_code
 
         out["closure_code"] = capo_security_ir.types.closure_code.deserialize_json(
             data["closureCode"]
         )
-    if "resolverType" in data:
+    if data.get("resolverType") is not None:
         import capo_security_ir.types.resolver_type
 
         out["resolver_type"] = capo_security_ir.types.resolver_type.deserialize_json(
             data["resolverType"]
         )
-    if "impactedServices" in data:
+    if data.get("impactedServices") is not None:
         import capo_security_ir.types.impacted_services_list
 
         out["impacted_services"] = (
@@ -319,7 +319,7 @@ def deserialize_json(data: dict) -> GetCaseResponse:
                 data["impactedServices"]
             )
         )
-    if "caseAttachments" in data:
+    if data.get("caseAttachments") is not None:
         import capo_security_ir.types.case_attachments_list
 
         out["case_attachments"] = (
@@ -327,13 +327,13 @@ def deserialize_json(data: dict) -> GetCaseResponse:
                 data["caseAttachments"]
             )
         )
-    if "closedDate" in data:
+    if data.get("closedDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["closed_date"] = capo_security_ir.types._prelude.timestamp.deserialize_json(
             data["closedDate"]
         )
-    if "caseMetadata" in data:
+    if data.get("caseMetadata") is not None:
         import capo_security_ir.types.case_metadata
 
         out["case_metadata"] = capo_security_ir.types.case_metadata.deserialize_json(

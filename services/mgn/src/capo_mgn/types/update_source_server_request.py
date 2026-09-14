@@ -42,15 +42,15 @@ def serialize_json(value: UpdateSourceServerRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSourceServerRequest:
     out: UpdateSourceServerRequest = {}  # type: ignore[typeddict-item]
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError(
             "UpdateSourceServerRequest.source_server_id required"
         )
-    if "connectorAction" in data:
+    if data.get("connectorAction") is not None:
         import capo_mgn.types.source_server_connector_action
 
         out["connector_action"] = (

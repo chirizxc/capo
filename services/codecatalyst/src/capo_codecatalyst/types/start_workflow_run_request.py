@@ -30,6 +30,6 @@ def serialize_json(value: StartWorkflowRunRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartWorkflowRunRequest:
     out: StartWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

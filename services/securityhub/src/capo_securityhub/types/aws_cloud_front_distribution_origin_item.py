@@ -57,13 +57,13 @@ def serialize_json(value: AwsCloudFrontDistributionOriginItem) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionOriginItem:
     out: AwsCloudFrontDistributionOriginItem = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "OriginPath" in data:
+    if data.get("OriginPath") is not None:
         out["origin_path"] = data["OriginPath"]
-    if "S3OriginConfig" in data:
+    if data.get("S3OriginConfig") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_origin_s3_origin_config
 
         out["s3_origin_config"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> AwsCloudFrontDistributionOriginItem:
                 data["S3OriginConfig"]
             )
         )
-    if "CustomOriginConfig" in data:
+    if data.get("CustomOriginConfig") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_origin_custom_origin_config
 
         out["custom_origin_config"] = (

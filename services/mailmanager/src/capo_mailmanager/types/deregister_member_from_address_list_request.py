@@ -28,13 +28,13 @@ def serialize_aws_json_1_0(value: DeregisterMemberFromAddressListRequest) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> DeregisterMemberFromAddressListRequest:
     out: DeregisterMemberFromAddressListRequest = {}  # type: ignore[typeddict-item]
-    if "AddressListId" in data:
+    if data.get("AddressListId") is not None:
         out["address_list_id"] = data["AddressListId"]
     else:
         raise DeserializationError(
             "DeregisterMemberFromAddressListRequest.address_list_id required"
         )
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
     else:
         raise DeserializationError(

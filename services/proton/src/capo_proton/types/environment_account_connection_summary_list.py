@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> EnvironmentAccountConnectionSummaryL
 
     out: EnvironmentAccountConnectionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_proton.types.environment_account_connection_summary.deserialize_aws_json_1_0(
                 item

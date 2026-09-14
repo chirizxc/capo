@@ -30,7 +30,7 @@ def serialize_json(value: GetBaselineOperationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetBaselineOperationOutput:
     out: GetBaselineOperationOutput = {}  # type: ignore[typeddict-item]
-    if "baselineOperation" in data:
+    if data.get("baselineOperation") is not None:
         import capo_controltower.types.baseline_operation
 
         out["baseline_operation"] = (

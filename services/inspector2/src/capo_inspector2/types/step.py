@@ -33,14 +33,14 @@ def serialize_json(value: Step) -> dict:
 
 def deserialize_json(data: dict) -> Step:
     out: Step = {}  # type: ignore[typeddict-item]
-    if "componentId" in data:
+    if data.get("componentId") is not None:
         out["component_id"] = data["componentId"]
     else:
         raise DeserializationError("Step.component_id required")
-    if "componentType" in data:
+    if data.get("componentType") is not None:
         out["component_type"] = data["componentType"]
     else:
         raise DeserializationError("Step.component_type required")
-    if "componentArn" in data:
+    if data.get("componentArn") is not None:
         out["component_arn"] = data["componentArn"]
     return out

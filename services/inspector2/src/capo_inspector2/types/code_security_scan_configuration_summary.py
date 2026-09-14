@@ -91,23 +91,23 @@ def serialize_json(value: CodeSecurityScanConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> CodeSecurityScanConfigurationSummary:
     out: CodeSecurityScanConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "scanConfigurationArn" in data:
+    if data.get("scanConfigurationArn") is not None:
         out["scan_configuration_arn"] = data["scanConfigurationArn"]
     else:
         raise DeserializationError(
             "CodeSecurityScanConfigurationSummary.scan_configuration_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CodeSecurityScanConfigurationSummary.name required")
-    if "ownerAccountId" in data:
+    if data.get("ownerAccountId") is not None:
         out["owner_account_id"] = data["ownerAccountId"]
     else:
         raise DeserializationError(
             "CodeSecurityScanConfigurationSummary.owner_account_id required"
         )
-    if "periodicScanFrequency" in data:
+    if data.get("periodicScanFrequency") is not None:
         import capo_inspector2.types.periodic_scan_frequency
 
         out["periodic_scan_frequency"] = (
@@ -115,9 +115,9 @@ def deserialize_json(data: dict) -> CodeSecurityScanConfigurationSummary:
                 data["periodicScanFrequency"]
             )
         )
-    if "frequencyExpression" in data:
+    if data.get("frequencyExpression") is not None:
         out["frequency_expression"] = data["frequencyExpression"]
-    if "continuousIntegrationScanSupportedEvents" in data:
+    if data.get("continuousIntegrationScanSupportedEvents") is not None:
         import capo_inspector2.types.continuous_integration_scan_supported_events
 
         out["continuous_integration_scan_supported_events"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> CodeSecurityScanConfigurationSummary:
                 data["continuousIntegrationScanSupportedEvents"]
             )
         )
-    if "ruleSetCategories" in data:
+    if data.get("ruleSetCategories") is not None:
         import capo_inspector2.types.rule_set_categories
 
         out["rule_set_categories"] = (
@@ -137,13 +137,13 @@ def deserialize_json(data: dict) -> CodeSecurityScanConfigurationSummary:
         raise DeserializationError(
             "CodeSecurityScanConfigurationSummary.rule_set_categories required"
         )
-    if "scopeSettings" in data:
+    if data.get("scopeSettings") is not None:
         import capo_inspector2.types.scope_settings
 
         out["scope_settings"] = capo_inspector2.types.scope_settings.deserialize_json(
             data["scopeSettings"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])

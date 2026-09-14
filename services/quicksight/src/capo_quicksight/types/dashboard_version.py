@@ -88,31 +88,31 @@ def serialize_json(value: DashboardVersion) -> dict:
 
 def deserialize_json(data: dict) -> DashboardVersion:
     out: DashboardVersion = {}  # type: ignore[typeddict-item]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_quicksight.types.dashboard_error_list
 
         out["errors"] = capo_quicksight.types.dashboard_error_list.deserialize_json(
             data["Errors"]
         )
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.resource_status
 
         out["status"] = capo_quicksight.types.resource_status.deserialize_json(
             data["Status"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "SourceEntityArn" in data:
+    if data.get("SourceEntityArn") is not None:
         out["source_entity_arn"] = data["SourceEntityArn"]
-    if "DataSetArns" in data:
+    if data.get("DataSetArns") is not None:
         import capo_quicksight.types.data_set_arns_list
 
         out["data_set_arns"] = (
@@ -120,11 +120,11 @@ def deserialize_json(data: dict) -> DashboardVersion:
                 data["DataSetArns"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ThemeArn" in data:
+    if data.get("ThemeArn") is not None:
         out["theme_arn"] = data["ThemeArn"]
-    if "Sheets" in data:
+    if data.get("Sheets") is not None:
         import capo_quicksight.types.sheet_list
 
         out["sheets"] = capo_quicksight.types.sheet_list.deserialize_json(

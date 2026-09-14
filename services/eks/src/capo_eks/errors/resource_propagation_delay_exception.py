@@ -25,7 +25,7 @@ def serialize_json(value: ResourcePropagationDelayException_) -> dict:
 
 def deserialize_json(data: dict) -> ResourcePropagationDelayException_:
     out: ResourcePropagationDelayException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class ResourcePropagationDelayException(ServiceError):
 
     code: str | None = "ResourcePropagationDelayException"
 
-    def __init__(self, data: ResourcePropagationDelayException_):
+    def __init__(
+        self, data: ResourcePropagationDelayException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourcePropagationDelayException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourcePropagationDelayException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourcePropagationDelayException":
+        return cls(deserialize_json(data), message)

@@ -30,10 +30,10 @@ def serialize_aws_json_1_0(value: DeleteKeyInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteKeyInput:
     out: DeleteKeyInput = {}  # type: ignore[typeddict-item]
-    if "KeyIdentifier" in data:
+    if data.get("KeyIdentifier") is not None:
         out["key_identifier"] = data["KeyIdentifier"]
     else:
         raise DeserializationError("DeleteKeyInput.key_identifier required")
-    if "DeleteKeyInDays" in data:
+    if data.get("DeleteKeyInDays") is not None:
         out["delete_key_in_days"] = data["DeleteKeyInDays"]
     return out

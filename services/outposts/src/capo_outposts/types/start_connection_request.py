@@ -41,17 +41,17 @@ def serialize_json(value: StartConnectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartConnectionRequest:
     out: StartConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceSerialNumber" in data:
+    if data.get("DeviceSerialNumber") is not None:
         out["device_serial_number"] = data["DeviceSerialNumber"]
-    if "AssetId" in data:
+    if data.get("AssetId") is not None:
         out["asset_id"] = data["AssetId"]
     else:
         raise DeserializationError("StartConnectionRequest.asset_id required")
-    if "ClientPublicKey" in data:
+    if data.get("ClientPublicKey") is not None:
         out["client_public_key"] = data["ClientPublicKey"]
     else:
         raise DeserializationError("StartConnectionRequest.client_public_key required")
-    if "NetworkInterfaceDeviceIndex" in data:
+    if data.get("NetworkInterfaceDeviceIndex") is not None:
         out["network_interface_device_index"] = data["NetworkInterfaceDeviceIndex"]
     else:
         out["network_interface_device_index"] = 0

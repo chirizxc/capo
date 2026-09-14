@@ -31,7 +31,7 @@ def serialize_json(value: PrimaryChannelSettings) -> dict:
 
 def deserialize_json(data: dict) -> PrimaryChannelSettings:
     out: PrimaryChannelSettings = {}  # type: ignore[typeddict-item]
-    if "linkedChannelType" in data:
+    if data.get("linkedChannelType") is not None:
         import capo_medialive.types.linked_channel_type
 
         out["linked_channel_type"] = (

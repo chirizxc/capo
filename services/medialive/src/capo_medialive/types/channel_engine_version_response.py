@@ -34,7 +34,7 @@ def serialize_json(value: ChannelEngineVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> ChannelEngineVersionResponse:
     out: ChannelEngineVersionResponse = {}  # type: ignore[typeddict-item]
-    if "expirationDate" in data:
+    if data.get("expirationDate") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["expiration_date"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ChannelEngineVersionResponse:
                 data["expirationDate"]
             )
         )
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

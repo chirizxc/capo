@@ -300,7 +300,15 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseSummary) -> dict:
     if "oci_resource_anchor_name" in value:
         out["ociResourceAnchorName"] = value["oci_resource_anchor_name"]
     if "percent_progress" in value:
-        out["percentProgress"] = value["percent_progress"]
+        out["percentProgress"] = (
+            "NaN"
+            if value["percent_progress"] != value["percent_progress"]
+            else "Infinity"
+            if value["percent_progress"] == float("inf")
+            else "-Infinity"
+            if value["percent_progress"] == float("-inf")
+            else value["percent_progress"]
+        )
     if "ocid" in value:
         out["ocid"] = value["ocid"]
     if "oci_url" in value:
@@ -490,7 +498,15 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseSummary) -> dict:
     if "resource_pool_leader_id" in value:
         out["resourcePoolLeaderId"] = value["resource_pool_leader_id"]
     if "compute_count" in value:
-        out["computeCount"] = value["compute_count"]
+        out["computeCount"] = (
+            "NaN"
+            if value["compute_count"] != value["compute_count"]
+            else "Infinity"
+            if value["compute_count"] == float("inf")
+            else "-Infinity"
+            if value["compute_count"] == float("-inf")
+            else value["compute_count"]
+        )
     if "compute_model" in value:
         import capo_odb.types.compute_model
 
@@ -512,19 +528,52 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseSummary) -> dict:
     if "is_auto_scaling_enabled" in value:
         out["isAutoScalingEnabled"] = value["is_auto_scaling_enabled"]
     if "data_storage_size_in_t_bs" in value:
-        out["dataStorageSizeInTBs"] = value["data_storage_size_in_t_bs"]
+        out["dataStorageSizeInTBs"] = (
+            "NaN"
+            if value["data_storage_size_in_t_bs"] != value["data_storage_size_in_t_bs"]
+            else "Infinity"
+            if value["data_storage_size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["data_storage_size_in_t_bs"] == float("-inf")
+            else value["data_storage_size_in_t_bs"]
+        )
     if "data_storage_size_in_g_bs" in value:
         out["dataStorageSizeInGBs"] = value["data_storage_size_in_g_bs"]
     if "used_data_storage_size_in_t_bs" in value:
-        out["usedDataStorageSizeInTBs"] = value["used_data_storage_size_in_t_bs"]
+        out["usedDataStorageSizeInTBs"] = (
+            "NaN"
+            if value["used_data_storage_size_in_t_bs"]
+            != value["used_data_storage_size_in_t_bs"]
+            else "Infinity"
+            if value["used_data_storage_size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["used_data_storage_size_in_t_bs"] == float("-inf")
+            else value["used_data_storage_size_in_t_bs"]
+        )
     if "used_data_storage_size_in_g_bs" in value:
         out["usedDataStorageSizeInGBs"] = value["used_data_storage_size_in_g_bs"]
     if "actual_used_data_storage_size_in_t_bs" in value:
-        out["actualUsedDataStorageSizeInTBs"] = value[
-            "actual_used_data_storage_size_in_t_bs"
-        ]
+        out["actualUsedDataStorageSizeInTBs"] = (
+            "NaN"
+            if value["actual_used_data_storage_size_in_t_bs"]
+            != value["actual_used_data_storage_size_in_t_bs"]
+            else "Infinity"
+            if value["actual_used_data_storage_size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["actual_used_data_storage_size_in_t_bs"] == float("-inf")
+            else value["actual_used_data_storage_size_in_t_bs"]
+        )
     if "allocated_storage_size_in_t_bs" in value:
-        out["allocatedStorageSizeInTBs"] = value["allocated_storage_size_in_t_bs"]
+        out["allocatedStorageSizeInTBs"] = (
+            "NaN"
+            if value["allocated_storage_size_in_t_bs"]
+            != value["allocated_storage_size_in_t_bs"]
+            else "Infinity"
+            if value["allocated_storage_size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["allocated_storage_size_in_t_bs"] == float("-inf")
+            else value["allocated_storage_size_in_t_bs"]
+        )
     if "in_memory_area_in_g_bs" in value:
         out["inMemoryAreaInGBs"] = value["in_memory_area_in_g_bs"]
     if "is_auto_scaling_for_storage_enabled" in value:
@@ -644,7 +693,16 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseSummary) -> dict:
     if "is_backup_retention_locked" in value:
         out["isBackupRetentionLocked"] = value["is_backup_retention_locked"]
     if "total_backup_storage_size_in_g_bs" in value:
-        out["totalBackupStorageSizeInGBs"] = value["total_backup_storage_size_in_g_bs"]
+        out["totalBackupStorageSizeInGBs"] = (
+            "NaN"
+            if value["total_backup_storage_size_in_g_bs"]
+            != value["total_backup_storage_size_in_g_bs"]
+            else "Infinity"
+            if value["total_backup_storage_size_in_g_bs"] == float("inf")
+            else "-Infinity"
+            if value["total_backup_storage_size_in_g_bs"] == float("-inf")
+            else value["total_backup_storage_size_in_g_bs"]
+        )
     if "resource_pool_summary" in value:
         import capo_odb.types.resource_pool_summary
 
@@ -662,143 +720,119 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseSummary) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["createdAt"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["createdAt"] = capo_odb._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "time_of_last_backup" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeOfLastBackup"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_of_last_backup"]
-            )
+        out["timeOfLastBackup"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_of_last_backup"]
         )
     if "time_maintenance_begin" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeMaintenanceBegin"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_maintenance_begin"]
-            )
+        out["timeMaintenanceBegin"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_maintenance_begin"]
         )
     if "time_maintenance_end" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeMaintenanceEnd"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_maintenance_end"]
-            )
+        out["timeMaintenanceEnd"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_maintenance_end"]
         )
     if "time_local_data_guard_enabled" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeLocalDataGuardEnabled"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_local_data_guard_enabled"]
-            )
+        out["timeLocalDataGuardEnabled"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_local_data_guard_enabled"]
         )
     if "time_data_guard_role_changed" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeDataGuardRoleChanged"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_data_guard_role_changed"]
-            )
+        out["timeDataGuardRoleChanged"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_data_guard_role_changed"]
         )
     if "time_of_last_switchover" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeOfLastSwitchover"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_of_last_switchover"]
-            )
+        out["timeOfLastSwitchover"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_of_last_switchover"]
         )
     if "time_of_last_failover" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeOfLastFailover"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_of_last_failover"]
-            )
+        out["timeOfLastFailover"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_of_last_failover"]
         )
     if "time_of_last_refresh" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeOfLastRefresh"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_of_last_refresh"]
-            )
+        out["timeOfLastRefresh"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_of_last_refresh"]
         )
     if "time_of_last_refresh_point" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeOfLastRefreshPoint"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_of_last_refresh_point"]
-            )
+        out["timeOfLastRefreshPoint"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_of_last_refresh_point"]
         )
     if "time_of_next_refresh" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeOfNextRefresh"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_of_next_refresh"]
-            )
+        out["timeOfNextRefresh"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_of_next_refresh"]
         )
     if "time_of_auto_refresh_start" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeOfAutoRefreshStart"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_of_auto_refresh_start"]
-            )
+        out["timeOfAutoRefreshStart"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_of_auto_refresh_start"]
         )
     if "time_deletion_of_free_autonomous_database" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
         out["timeDeletionOfFreeAutonomousDatabase"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_odb._protocol.serialize.fmt_date_time(
                 value["time_deletion_of_free_autonomous_database"]
             )
         )
     if "time_reclamation_of_free_autonomous_database" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
         out["timeReclamationOfFreeAutonomousDatabase"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_odb._protocol.serialize.fmt_date_time(
                 value["time_reclamation_of_free_autonomous_database"]
             )
         )
     if "time_disaster_recovery_role_changed" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
         out["timeDisasterRecoveryRoleChanged"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_odb._protocol.serialize.fmt_date_time(
                 value["time_disaster_recovery_role_changed"]
             )
         )
     if "time_until_reconnect_clone_enabled" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
         out["timeUntilReconnectCloneEnabled"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_odb._protocol.serialize.fmt_date_time(
                 value["time_until_reconnect_clone_enabled"]
             )
         )
     if "next_long_term_backup_time_stamp" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["nextLongTermBackupTimeStamp"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["next_long_term_backup_time_stamp"]
-            )
+        out["nextLongTermBackupTimeStamp"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["next_long_term_backup_time_stamp"]
         )
     if "time_undeleted" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeUndeleted"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["timeUndeleted"] = capo_odb._protocol.serialize.fmt_date_time(
             value["time_undeleted"]
         )
     return out
@@ -806,25 +840,25 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
     out: AutonomousDatabaseSummary = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
-    if "autonomousDatabaseArn" in data:
+    if data.get("autonomousDatabaseArn") is not None:
         out["autonomous_database_arn"] = data["autonomousDatabaseArn"]
-    if "ociResourceAnchorName" in data:
+    if data.get("ociResourceAnchorName") is not None:
         out["oci_resource_anchor_name"] = data["ociResourceAnchorName"]
-    if "percentProgress" in data:
-        out["percent_progress"] = data["percentProgress"]
-    if "ocid" in data:
+    if data.get("percentProgress") is not None:
+        out["percent_progress"] = float(data["percentProgress"])
+    if data.get("ocid") is not None:
         out["ocid"] = data["ocid"]
-    if "ociUrl" in data:
+    if data.get("ociUrl") is not None:
         out["oci_url"] = data["ociUrl"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "dbName" in data:
+    if data.get("dbName") is not None:
         out["db_name"] = data["dbName"]
-    if "sourceId" in data:
+    if data.get("sourceId") is not None:
         out["source_id"] = data["sourceId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.autonomous_database_resource_status
 
         out["status"] = (
@@ -832,27 +866,27 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["status"]
             )
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "databaseType" in data:
+    if data.get("databaseType") is not None:
         import capo_odb.types.database_type
 
         out["database_type"] = capo_odb.types.database_type.deserialize_aws_json_1_0(
             data["databaseType"]
         )
-    if "dbVersion" in data:
+    if data.get("dbVersion") is not None:
         out["db_version"] = data["dbVersion"]
-    if "dbWorkload" in data:
+    if data.get("dbWorkload") is not None:
         import capo_odb.types.db_workload
 
         out["db_workload"] = capo_odb.types.db_workload.deserialize_aws_json_1_0(
             data["dbWorkload"]
         )
-    if "characterSet" in data:
+    if data.get("characterSet") is not None:
         out["character_set"] = data["characterSet"]
-    if "ncharacterSet" in data:
+    if data.get("ncharacterSet") is not None:
         out["ncharacter_set"] = data["ncharacterSet"]
-    if "databaseEdition" in data:
+    if data.get("databaseEdition") is not None:
         import capo_odb.types.database_edition
 
         out["database_edition"] = (
@@ -860,19 +894,19 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["databaseEdition"]
             )
         )
-    if "licenseModel" in data:
+    if data.get("licenseModel") is not None:
         import capo_odb.types.license_model
 
         out["license_model"] = capo_odb.types.license_model.deserialize_aws_json_1_0(
             data["licenseModel"]
         )
-    if "openMode" in data:
+    if data.get("openMode") is not None:
         import capo_odb.types.open_mode
 
         out["open_mode"] = capo_odb.types.open_mode.deserialize_aws_json_1_0(
             data["openMode"]
         )
-    if "permissionLevel" in data:
+    if data.get("permissionLevel") is not None:
         import capo_odb.types.permission_level
 
         out["permission_level"] = (
@@ -880,9 +914,9 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["permissionLevel"]
             )
         )
-    if "isMtlsConnectionRequired" in data:
+    if data.get("isMtlsConnectionRequired") is not None:
         out["is_mtls_connection_required"] = data["isMtlsConnectionRequired"]
-    if "autonomousMaintenanceScheduleType" in data:
+    if data.get("autonomousMaintenanceScheduleType") is not None:
         import capo_odb.types.autonomous_maintenance_schedule_type
 
         out["autonomous_maintenance_schedule_type"] = (
@@ -890,7 +924,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["autonomousMaintenanceScheduleType"]
             )
         )
-    if "netServicesArchitecture" in data:
+    if data.get("netServicesArchitecture") is not None:
         import capo_odb.types.net_services_architecture
 
         out["net_services_architecture"] = (
@@ -898,7 +932,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["netServicesArchitecture"]
             )
         )
-    if "availableUpgradeVersions" in data:
+    if data.get("availableUpgradeVersions") is not None:
         import capo_odb.types.string_list
 
         out["available_upgrade_versions"] = (
@@ -906,9 +940,9 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["availableUpgradeVersions"]
             )
         )
-    if "byolComputeCountLimit" in data:
+    if data.get("byolComputeCountLimit") is not None:
         out["byol_compute_count_limit"] = data["byolComputeCountLimit"]
-    if "connectionStringDetails" in data:
+    if data.get("connectionStringDetails") is not None:
         import capo_odb.types.autonomous_database_connection_strings
 
         out["connection_string_details"] = (
@@ -916,11 +950,11 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["connectionStringDetails"]
             )
         )
-    if "serviceConsoleUrl" in data:
+    if data.get("serviceConsoleUrl") is not None:
         out["service_console_url"] = data["serviceConsoleUrl"]
-    if "sqlWebDeveloperUrl" in data:
+    if data.get("sqlWebDeveloperUrl") is not None:
         out["sql_web_developer_url"] = data["sqlWebDeveloperUrl"]
-    if "customerContacts" in data:
+    if data.get("customerContacts") is not None:
         import capo_odb.types.customer_contacts
 
         out["customer_contacts"] = (
@@ -928,7 +962,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["customerContacts"]
             )
         )
-    if "apexDetails" in data:
+    if data.get("apexDetails") is not None:
         import capo_odb.types.autonomous_database_apex
 
         out["apex_details"] = (
@@ -936,7 +970,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["apexDetails"]
             )
         )
-    if "standbyDb" in data:
+    if data.get("standbyDb") is not None:
         import capo_odb.types.database_standby_summary
 
         out["standby_db"] = (
@@ -944,7 +978,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["standbyDb"]
             )
         )
-    if "localStandbyDb" in data:
+    if data.get("localStandbyDb") is not None:
         import capo_odb.types.database_standby_summary
 
         out["local_standby_db"] = (
@@ -952,7 +986,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["localStandbyDb"]
             )
         )
-    if "dataSafeStatus" in data:
+    if data.get("dataSafeStatus") is not None:
         import capo_odb.types.data_safe_status
 
         out["data_safe_status"] = (
@@ -960,7 +994,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["dataSafeStatus"]
             )
         )
-    if "databaseManagementStatus" in data:
+    if data.get("databaseManagementStatus") is not None:
         import capo_odb.types.database_management_status
 
         out["database_management_status"] = (
@@ -968,7 +1002,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["databaseManagementStatus"]
             )
         )
-    if "operationsInsightsStatus" in data:
+    if data.get("operationsInsightsStatus") is not None:
         import capo_odb.types.operations_insights_status
 
         out["operations_insights_status"] = (
@@ -976,13 +1010,13 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["operationsInsightsStatus"]
             )
         )
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "maintenanceTargetComponent" in data:
+    if data.get("maintenanceTargetComponent") is not None:
         out["maintenance_target_component"] = data["maintenanceTargetComponent"]
-    if "connectionUrls" in data:
+    if data.get("connectionUrls") is not None:
         import capo_odb.types.autonomous_database_connection_urls
 
         out["connection_urls"] = (
@@ -990,7 +1024,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["connectionUrls"]
             )
         )
-    if "dbToolsDetails" in data:
+    if data.get("dbToolsDetails") is not None:
         import capo_odb.types.database_tool_list
 
         out["db_tools_details"] = (
@@ -998,7 +1032,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["dbToolsDetails"]
             )
         )
-    if "scheduledOperations" in data:
+    if data.get("scheduledOperations") is not None:
         import capo_odb.types.scheduled_operation_details_list
 
         out["scheduled_operations"] = (
@@ -1006,23 +1040,23 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["scheduledOperations"]
             )
         )
-    if "resourcePoolLeaderId" in data:
+    if data.get("resourcePoolLeaderId") is not None:
         out["resource_pool_leader_id"] = data["resourcePoolLeaderId"]
-    if "computeCount" in data:
-        out["compute_count"] = data["computeCount"]
-    if "computeModel" in data:
+    if data.get("computeCount") is not None:
+        out["compute_count"] = float(data["computeCount"])
+    if data.get("computeModel") is not None:
         import capo_odb.types.compute_model
 
         out["compute_model"] = capo_odb.types.compute_model.deserialize_aws_json_1_0(
             data["computeModel"]
         )
-    if "cpuCoreCount" in data:
+    if data.get("cpuCoreCount") is not None:
         out["cpu_core_count"] = data["cpuCoreCount"]
-    if "memoryPerOracleComputeUnitInGBs" in data:
+    if data.get("memoryPerOracleComputeUnitInGBs") is not None:
         out["memory_per_oracle_compute_unit_in_g_bs"] = data[
             "memoryPerOracleComputeUnitInGBs"
         ]
-    if "provisionableCpus" in data:
+    if data.get("provisionableCpus") is not None:
         import capo_odb.types.integer_list
 
         out["provisionable_cpus"] = (
@@ -1030,45 +1064,45 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["provisionableCpus"]
             )
         )
-    if "isAutoScalingEnabled" in data:
+    if data.get("isAutoScalingEnabled") is not None:
         out["is_auto_scaling_enabled"] = data["isAutoScalingEnabled"]
-    if "dataStorageSizeInTBs" in data:
-        out["data_storage_size_in_t_bs"] = data["dataStorageSizeInTBs"]
-    if "dataStorageSizeInGBs" in data:
+    if data.get("dataStorageSizeInTBs") is not None:
+        out["data_storage_size_in_t_bs"] = float(data["dataStorageSizeInTBs"])
+    if data.get("dataStorageSizeInGBs") is not None:
         out["data_storage_size_in_g_bs"] = data["dataStorageSizeInGBs"]
-    if "usedDataStorageSizeInTBs" in data:
-        out["used_data_storage_size_in_t_bs"] = data["usedDataStorageSizeInTBs"]
-    if "usedDataStorageSizeInGBs" in data:
+    if data.get("usedDataStorageSizeInTBs") is not None:
+        out["used_data_storage_size_in_t_bs"] = float(data["usedDataStorageSizeInTBs"])
+    if data.get("usedDataStorageSizeInGBs") is not None:
         out["used_data_storage_size_in_g_bs"] = data["usedDataStorageSizeInGBs"]
-    if "actualUsedDataStorageSizeInTBs" in data:
-        out["actual_used_data_storage_size_in_t_bs"] = data[
-            "actualUsedDataStorageSizeInTBs"
-        ]
-    if "allocatedStorageSizeInTBs" in data:
-        out["allocated_storage_size_in_t_bs"] = data["allocatedStorageSizeInTBs"]
-    if "inMemoryAreaInGBs" in data:
+    if data.get("actualUsedDataStorageSizeInTBs") is not None:
+        out["actual_used_data_storage_size_in_t_bs"] = float(
+            data["actualUsedDataStorageSizeInTBs"]
+        )
+    if data.get("allocatedStorageSizeInTBs") is not None:
+        out["allocated_storage_size_in_t_bs"] = float(data["allocatedStorageSizeInTBs"])
+    if data.get("inMemoryAreaInGBs") is not None:
         out["in_memory_area_in_g_bs"] = data["inMemoryAreaInGBs"]
-    if "isAutoScalingForStorageEnabled" in data:
+    if data.get("isAutoScalingForStorageEnabled") is not None:
         out["is_auto_scaling_for_storage_enabled"] = data[
             "isAutoScalingForStorageEnabled"
         ]
-    if "odbNetworkId" in data:
+    if data.get("odbNetworkId") is not None:
         out["odb_network_id"] = data["odbNetworkId"]
-    if "odbNetworkArn" in data:
+    if data.get("odbNetworkArn") is not None:
         out["odb_network_arn"] = data["odbNetworkArn"]
-    if "privateEndpoint" in data:
+    if data.get("privateEndpoint") is not None:
         out["private_endpoint"] = data["privateEndpoint"]
-    if "privateEndpointIp" in data:
+    if data.get("privateEndpointIp") is not None:
         out["private_endpoint_ip"] = data["privateEndpointIp"]
-    if "privateEndpointLabel" in data:
+    if data.get("privateEndpointLabel") is not None:
         out["private_endpoint_label"] = data["privateEndpointLabel"]
-    if "allowlistedIps" in data:
+    if data.get("allowlistedIps") is not None:
         import capo_odb.types.string_list
 
         out["allowlisted_ips"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["allowlistedIps"]
         )
-    if "standbyAllowlistedIps" in data:
+    if data.get("standbyAllowlistedIps") is not None:
         import capo_odb.types.string_list
 
         out["standby_allowlisted_ips"] = (
@@ -1076,7 +1110,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["standbyAllowlistedIps"]
             )
         )
-    if "standbyAllowlistedIpsSource" in data:
+    if data.get("standbyAllowlistedIpsSource") is not None:
         import capo_odb.types.standby_allowlisted_ips_source
 
         out["standby_allowlisted_ips_source"] = (
@@ -1084,11 +1118,11 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["standbyAllowlistedIpsSource"]
             )
         )
-    if "isLocalDataGuardEnabled" in data:
+    if data.get("isLocalDataGuardEnabled") is not None:
         out["is_local_data_guard_enabled"] = data["isLocalDataGuardEnabled"]
-    if "isRemoteDataGuardEnabled" in data:
+    if data.get("isRemoteDataGuardEnabled") is not None:
         out["is_remote_data_guard_enabled"] = data["isRemoteDataGuardEnabled"]
-    if "localDisasterRecoveryType" in data:
+    if data.get("localDisasterRecoveryType") is not None:
         import capo_odb.types.disaster_recovery_type
 
         out["local_disaster_recovery_type"] = (
@@ -1096,25 +1130,25 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["localDisasterRecoveryType"]
             )
         )
-    if "role" in data:
+    if data.get("role") is not None:
         import capo_odb.types.data_guard_role
 
         out["role"] = capo_odb.types.data_guard_role.deserialize_aws_json_1_0(
             data["role"]
         )
-    if "peerDbIds" in data:
+    if data.get("peerDbIds") is not None:
         import capo_odb.types.string_list
 
         out["peer_db_ids"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["peerDbIds"]
         )
-    if "failedDataRecoveryInSeconds" in data:
+    if data.get("failedDataRecoveryInSeconds") is not None:
         out["failed_data_recovery_in_seconds"] = data["failedDataRecoveryInSeconds"]
-    if "localAdgAutoFailoverMaxDataLossLimit" in data:
+    if data.get("localAdgAutoFailoverMaxDataLossLimit") is not None:
         out["local_adg_auto_failover_max_data_loss_limit"] = data[
             "localAdgAutoFailoverMaxDataLossLimit"
         ]
-    if "remoteDisasterRecoveryConfiguration" in data:
+    if data.get("remoteDisasterRecoveryConfiguration") is not None:
         import capo_odb.types.disaster_recovery_configuration
 
         out["remote_disaster_recovery_configuration"] = (
@@ -1122,9 +1156,9 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["remoteDisasterRecoveryConfiguration"]
             )
         )
-    if "isRefreshableClone" in data:
+    if data.get("isRefreshableClone") is not None:
         out["is_refreshable_clone"] = data["isRefreshableClone"]
-    if "refreshableMode" in data:
+    if data.get("refreshableMode") is not None:
         import capo_odb.types.refreshable_mode
 
         out["refreshable_mode"] = (
@@ -1132,7 +1166,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["refreshableMode"]
             )
         )
-    if "refreshableStatus" in data:
+    if data.get("refreshableStatus") is not None:
         import capo_odb.types.refreshable_status
 
         out["refreshable_status"] = (
@@ -1140,13 +1174,13 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["refreshableStatus"]
             )
         )
-    if "autoRefreshFrequencyInSeconds" in data:
+    if data.get("autoRefreshFrequencyInSeconds") is not None:
         out["auto_refresh_frequency_in_seconds"] = data["autoRefreshFrequencyInSeconds"]
-    if "autoRefreshPointLagInSeconds" in data:
+    if data.get("autoRefreshPointLagInSeconds") is not None:
         out["auto_refresh_point_lag_in_seconds"] = data["autoRefreshPointLagInSeconds"]
-    if "isReconnectCloneEnabled" in data:
+    if data.get("isReconnectCloneEnabled") is not None:
         out["is_reconnect_clone_enabled"] = data["isReconnectCloneEnabled"]
-    if "cloneTableSpaceList" in data:
+    if data.get("cloneTableSpaceList") is not None:
         import capo_odb.types.integer_list
 
         out["clone_table_space_list"] = (
@@ -1154,9 +1188,9 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["cloneTableSpaceList"]
             )
         )
-    if "backupRetentionPeriodInDays" in data:
+    if data.get("backupRetentionPeriodInDays") is not None:
         out["backup_retention_period_in_days"] = data["backupRetentionPeriodInDays"]
-    if "longTermBackupSchedule" in data:
+    if data.get("longTermBackupSchedule") is not None:
         import capo_odb.types.long_term_backup_schedule
 
         out["long_term_backup_schedule"] = (
@@ -1164,11 +1198,13 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["longTermBackupSchedule"]
             )
         )
-    if "isBackupRetentionLocked" in data:
+    if data.get("isBackupRetentionLocked") is not None:
         out["is_backup_retention_locked"] = data["isBackupRetentionLocked"]
-    if "totalBackupStorageSizeInGBs" in data:
-        out["total_backup_storage_size_in_g_bs"] = data["totalBackupStorageSizeInGBs"]
-    if "resourcePoolSummary" in data:
+    if data.get("totalBackupStorageSizeInGBs") is not None:
+        out["total_backup_storage_size_in_g_bs"] = float(
+            data["totalBackupStorageSizeInGBs"]
+        )
+    if data.get("resourcePoolSummary") is not None:
         import capo_odb.types.resource_pool_summary
 
         out["resource_pool_summary"] = (
@@ -1176,7 +1212,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["resourcePoolSummary"]
             )
         )
-    if "encryptionSummary" in data:
+    if data.get("encryptionSummary") is not None:
         import capo_odb.types.encryption_summary
 
         out["encryption_summary"] = (
@@ -1184,146 +1220,116 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseSummary:
                 data["encryptionSummary"]
             )
         )
-    if "createdAt" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "timeOfLastBackup" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeOfLastBackup") is not None:
+        import datetime
 
-        out["time_of_last_backup"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeOfLastBackup"]
-            )
+        out["time_of_last_backup"] = datetime.datetime.fromisoformat(
+            data["timeOfLastBackup"].replace("Z", "+00:00")
         )
-    if "timeMaintenanceBegin" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeMaintenanceBegin") is not None:
+        import datetime
 
-        out["time_maintenance_begin"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeMaintenanceBegin"]
-            )
+        out["time_maintenance_begin"] = datetime.datetime.fromisoformat(
+            data["timeMaintenanceBegin"].replace("Z", "+00:00")
         )
-    if "timeMaintenanceEnd" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeMaintenanceEnd") is not None:
+        import datetime
 
-        out["time_maintenance_end"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeMaintenanceEnd"]
-            )
+        out["time_maintenance_end"] = datetime.datetime.fromisoformat(
+            data["timeMaintenanceEnd"].replace("Z", "+00:00")
         )
-    if "timeLocalDataGuardEnabled" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeLocalDataGuardEnabled") is not None:
+        import datetime
 
-        out["time_local_data_guard_enabled"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeLocalDataGuardEnabled"]
-            )
+        out["time_local_data_guard_enabled"] = datetime.datetime.fromisoformat(
+            data["timeLocalDataGuardEnabled"].replace("Z", "+00:00")
         )
-    if "timeDataGuardRoleChanged" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeDataGuardRoleChanged") is not None:
+        import datetime
 
-        out["time_data_guard_role_changed"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeDataGuardRoleChanged"]
-            )
+        out["time_data_guard_role_changed"] = datetime.datetime.fromisoformat(
+            data["timeDataGuardRoleChanged"].replace("Z", "+00:00")
         )
-    if "timeOfLastSwitchover" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeOfLastSwitchover") is not None:
+        import datetime
 
-        out["time_of_last_switchover"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeOfLastSwitchover"]
-            )
+        out["time_of_last_switchover"] = datetime.datetime.fromisoformat(
+            data["timeOfLastSwitchover"].replace("Z", "+00:00")
         )
-    if "timeOfLastFailover" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeOfLastFailover") is not None:
+        import datetime
 
-        out["time_of_last_failover"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeOfLastFailover"]
-            )
+        out["time_of_last_failover"] = datetime.datetime.fromisoformat(
+            data["timeOfLastFailover"].replace("Z", "+00:00")
         )
-    if "timeOfLastRefresh" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeOfLastRefresh") is not None:
+        import datetime
 
-        out["time_of_last_refresh"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeOfLastRefresh"]
-            )
+        out["time_of_last_refresh"] = datetime.datetime.fromisoformat(
+            data["timeOfLastRefresh"].replace("Z", "+00:00")
         )
-    if "timeOfLastRefreshPoint" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeOfLastRefreshPoint") is not None:
+        import datetime
 
-        out["time_of_last_refresh_point"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeOfLastRefreshPoint"]
-            )
+        out["time_of_last_refresh_point"] = datetime.datetime.fromisoformat(
+            data["timeOfLastRefreshPoint"].replace("Z", "+00:00")
         )
-    if "timeOfNextRefresh" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeOfNextRefresh") is not None:
+        import datetime
 
-        out["time_of_next_refresh"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeOfNextRefresh"]
-            )
+        out["time_of_next_refresh"] = datetime.datetime.fromisoformat(
+            data["timeOfNextRefresh"].replace("Z", "+00:00")
         )
-    if "timeOfAutoRefreshStart" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeOfAutoRefreshStart") is not None:
+        import datetime
 
-        out["time_of_auto_refresh_start"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeOfAutoRefreshStart"]
-            )
+        out["time_of_auto_refresh_start"] = datetime.datetime.fromisoformat(
+            data["timeOfAutoRefreshStart"].replace("Z", "+00:00")
         )
-    if "timeDeletionOfFreeAutonomousDatabase" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeDeletionOfFreeAutonomousDatabase") is not None:
+        import datetime
 
         out["time_deletion_of_free_autonomous_database"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeDeletionOfFreeAutonomousDatabase"]
+            datetime.datetime.fromisoformat(
+                data["timeDeletionOfFreeAutonomousDatabase"].replace("Z", "+00:00")
             )
         )
-    if "timeReclamationOfFreeAutonomousDatabase" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeReclamationOfFreeAutonomousDatabase") is not None:
+        import datetime
 
         out["time_reclamation_of_free_autonomous_database"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeReclamationOfFreeAutonomousDatabase"]
+            datetime.datetime.fromisoformat(
+                data["timeReclamationOfFreeAutonomousDatabase"].replace("Z", "+00:00")
             )
         )
-    if "timeDisasterRecoveryRoleChanged" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeDisasterRecoveryRoleChanged") is not None:
+        import datetime
 
-        out["time_disaster_recovery_role_changed"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeDisasterRecoveryRoleChanged"]
-            )
+        out["time_disaster_recovery_role_changed"] = datetime.datetime.fromisoformat(
+            data["timeDisasterRecoveryRoleChanged"].replace("Z", "+00:00")
         )
-    if "timeUntilReconnectCloneEnabled" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeUntilReconnectCloneEnabled") is not None:
+        import datetime
 
-        out["time_until_reconnect_clone_enabled"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeUntilReconnectCloneEnabled"]
-            )
+        out["time_until_reconnect_clone_enabled"] = datetime.datetime.fromisoformat(
+            data["timeUntilReconnectCloneEnabled"].replace("Z", "+00:00")
         )
-    if "nextLongTermBackupTimeStamp" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("nextLongTermBackupTimeStamp") is not None:
+        import datetime
 
-        out["next_long_term_backup_time_stamp"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["nextLongTermBackupTimeStamp"]
-            )
+        out["next_long_term_backup_time_stamp"] = datetime.datetime.fromisoformat(
+            data["nextLongTermBackupTimeStamp"].replace("Z", "+00:00")
         )
-    if "timeUndeleted" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeUndeleted") is not None:
+        import datetime
 
-        out["time_undeleted"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeUndeleted"]
-            )
+        out["time_undeleted"] = datetime.datetime.fromisoformat(
+            data["timeUndeleted"].replace("Z", "+00:00")
         )
     return out

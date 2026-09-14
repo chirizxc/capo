@@ -23,6 +23,6 @@ def serialize_json(value: ResourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> ResourceDetails:
     out: ResourceDetails = {}  # type: ignore[typeddict-item]
-    if "tagValue" in data:
+    if data.get("tagValue") is not None:
         out["tag_value"] = data["tagValue"]
     return out

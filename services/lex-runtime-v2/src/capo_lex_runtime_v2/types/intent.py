@@ -53,21 +53,21 @@ def serialize_json(value: Intent) -> dict:
 
 def deserialize_json(data: dict) -> Intent:
     out: Intent = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Intent.name required")
-    if "slots" in data:
+    if data.get("slots") is not None:
         import capo_lex_runtime_v2.types.slots
 
         out["slots"] = capo_lex_runtime_v2.types.slots.deserialize_json(data["slots"])
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lex_runtime_v2.types.intent_state
 
         out["state"] = capo_lex_runtime_v2.types.intent_state.deserialize_json(
             data["state"]
         )
-    if "confirmationState" in data:
+    if data.get("confirmationState") is not None:
         import capo_lex_runtime_v2.types.confirmation_state
 
         out["confirmation_state"] = (

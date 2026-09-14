@@ -66,13 +66,13 @@ def serialize_json(value: DistributionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DistributionConfiguration:
     out: DistributionConfiguration = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "distributions" in data:
+    if data.get("distributions") is not None:
         import capo_imagebuilder.types.distribution_list
 
         out["distributions"] = (
@@ -80,15 +80,15 @@ def deserialize_json(data: dict) -> DistributionConfiguration:
                 data["distributions"]
             )
         )
-    if "timeoutMinutes" in data:
+    if data.get("timeoutMinutes") is not None:
         out["timeout_minutes"] = data["timeoutMinutes"]
     else:
         raise DeserializationError("DistributionConfiguration.timeout_minutes required")
-    if "dateCreated" in data:
+    if data.get("dateCreated") is not None:
         out["date_created"] = data["dateCreated"]
-    if "dateUpdated" in data:
+    if data.get("dateUpdated") is not None:
         out["date_updated"] = data["dateUpdated"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])

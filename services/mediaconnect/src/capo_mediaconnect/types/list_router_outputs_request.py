@@ -35,7 +35,7 @@ def serialize_json(value: ListRouterOutputsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListRouterOutputsRequest:
     out: ListRouterOutputsRequest = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_mediaconnect.types.router_output_filter_list
 
         out["filters"] = (

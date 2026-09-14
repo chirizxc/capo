@@ -28,11 +28,11 @@ def serialize_json(value: SsmParameterStoreParameter) -> dict:
 
 def deserialize_json(data: dict) -> SsmParameterStoreParameter:
     out: SsmParameterStoreParameter = {}  # type: ignore[typeddict-item]
-    if "parameterType" in data:
+    if data.get("parameterType") is not None:
         out["parameter_type"] = data["parameterType"]
     else:
         raise DeserializationError("SsmParameterStoreParameter.parameter_type required")
-    if "parameterName" in data:
+    if data.get("parameterName") is not None:
         out["parameter_name"] = data["parameterName"]
     else:
         raise DeserializationError("SsmParameterStoreParameter.parameter_name required")

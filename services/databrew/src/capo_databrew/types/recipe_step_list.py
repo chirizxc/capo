@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RecipeStepList:
 
     out: RecipeStepList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_databrew.types.recipe_step.deserialize_json(item))
     return out

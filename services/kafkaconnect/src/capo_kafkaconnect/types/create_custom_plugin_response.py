@@ -38,13 +38,13 @@ def serialize_json(value: CreateCustomPluginResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCustomPluginResponse:
     out: CreateCustomPluginResponse = {}  # type: ignore[typeddict-item]
-    if "customPluginArn" in data:
+    if data.get("customPluginArn") is not None:
         out["custom_plugin_arn"] = data["customPluginArn"]
-    if "customPluginState" in data:
+    if data.get("customPluginState") is not None:
         out["custom_plugin_state"] = data["customPluginState"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         out["revision"] = 0

@@ -20,20 +20,28 @@ def serialize_json(value: ServiceQuotaExceededException_) -> dict:
     if "quota_name" in value:
         out["quotaName"] = value["quota_name"]
     if "quota_value" in value:
-        out["quotaValue"] = value["quota_value"]
+        out["quotaValue"] = (
+            "NaN"
+            if value["quota_value"] != value["quota_value"]
+            else "Infinity"
+            if value["quota_value"] == float("inf")
+            else "-Infinity"
+            if value["quota_value"] == float("-inf")
+            else value["quota_value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> ServiceQuotaExceededException_:
     out: ServiceQuotaExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ServiceQuotaExceededException_.message required")
-    if "quotaName" in data:
+    if data.get("quotaName") is not None:
         out["quota_name"] = data["quotaName"]
-    if "quotaValue" in data:
-        out["quota_value"] = data["quotaValue"]
+    if data.get("quotaValue") is not None:
+        out["quota_value"] = float(data["quotaValue"])
     return out
 
 
@@ -42,15 +50,20 @@ class ServiceQuotaExceededException(ServiceError):
 
     code: str | None = "ServiceQuotaExceededException"
 
-    def __init__(self, data: ServiceQuotaExceededException_):
+    def __init__(
+        self, data: ServiceQuotaExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceQuotaExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ServiceQuotaExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceQuotaExceededException":
+        return cls(deserialize_json(data), message)

@@ -23,24 +23,56 @@ class BoundingBox(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: BoundingBox) -> dict:
     out: dict = {}
     if "width" in value:
-        out["Width"] = value["width"]
+        out["Width"] = (
+            "NaN"
+            if value["width"] != value["width"]
+            else "Infinity"
+            if value["width"] == float("inf")
+            else "-Infinity"
+            if value["width"] == float("-inf")
+            else value["width"]
+        )
     if "height" in value:
-        out["Height"] = value["height"]
+        out["Height"] = (
+            "NaN"
+            if value["height"] != value["height"]
+            else "Infinity"
+            if value["height"] == float("inf")
+            else "-Infinity"
+            if value["height"] == float("-inf")
+            else value["height"]
+        )
     if "left" in value:
-        out["Left"] = value["left"]
+        out["Left"] = (
+            "NaN"
+            if value["left"] != value["left"]
+            else "Infinity"
+            if value["left"] == float("inf")
+            else "-Infinity"
+            if value["left"] == float("-inf")
+            else value["left"]
+        )
     if "top" in value:
-        out["Top"] = value["top"]
+        out["Top"] = (
+            "NaN"
+            if value["top"] != value["top"]
+            else "Infinity"
+            if value["top"] == float("inf")
+            else "-Infinity"
+            if value["top"] == float("-inf")
+            else value["top"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> BoundingBox:
     out: BoundingBox = {}  # type: ignore[typeddict-item]
-    if "Width" in data:
-        out["width"] = data["Width"]
-    if "Height" in data:
-        out["height"] = data["Height"]
-    if "Left" in data:
-        out["left"] = data["Left"]
-    if "Top" in data:
-        out["top"] = data["Top"]
+    if data.get("Width") is not None:
+        out["width"] = float(data["Width"])
+    if data.get("Height") is not None:
+        out["height"] = float(data["Height"])
+    if data.get("Left") is not None:
+        out["left"] = float(data["Left"])
+    if data.get("Top") is not None:
+        out["top"] = float(data["Top"])
     return out

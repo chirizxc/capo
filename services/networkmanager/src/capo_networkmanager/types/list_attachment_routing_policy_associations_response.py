@@ -36,7 +36,7 @@ def serialize_json(value: ListAttachmentRoutingPolicyAssociationsResponse) -> di
 
 def deserialize_json(data: dict) -> ListAttachmentRoutingPolicyAssociationsResponse:
     out: ListAttachmentRoutingPolicyAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "AttachmentRoutingPolicyAssociations" in data:
+    if data.get("AttachmentRoutingPolicyAssociations") is not None:
         import capo_networkmanager.types.attachment_routing_policy_associations_list
 
         out["attachment_routing_policy_associations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAttachmentRoutingPolicyAssociationsRespo
                 data["AttachmentRoutingPolicyAssociations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -58,21 +58,21 @@ def serialize_json(value: GetQAppSessionOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetQAppSessionOutput:
     out: GetQAppSessionOutput = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("GetQAppSessionOutput.session_id required")
-    if "sessionArn" in data:
+    if data.get("sessionArn") is not None:
         out["session_arn"] = data["sessionArn"]
     else:
         raise DeserializationError("GetQAppSessionOutput.session_arn required")
-    if "sessionName" in data:
+    if data.get("sessionName") is not None:
         out["session_name"] = data["sessionName"]
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
-    if "latestPublishedAppVersion" in data:
+    if data.get("latestPublishedAppVersion") is not None:
         out["latest_published_app_version"] = data["latestPublishedAppVersion"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qapps.types.execution_status
 
         out["status"] = capo_qapps.types.execution_status.deserialize_json(
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> GetQAppSessionOutput:
         )
     else:
         raise DeserializationError("GetQAppSessionOutput.status required")
-    if "cardStatus" in data:
+    if data.get("cardStatus") is not None:
         import capo_qapps.types.card_status_map
 
         out["card_status"] = capo_qapps.types.card_status_map.deserialize_json(
@@ -88,6 +88,6 @@ def deserialize_json(data: dict) -> GetQAppSessionOutput:
         )
     else:
         raise DeserializationError("GetQAppSessionOutput.card_status required")
-    if "userIsHost" in data:
+    if data.get("userIsHost") is not None:
         out["user_is_host"] = data["userIsHost"]
     return out

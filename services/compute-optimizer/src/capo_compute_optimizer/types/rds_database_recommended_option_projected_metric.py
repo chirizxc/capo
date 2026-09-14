@@ -42,13 +42,13 @@ def serialize_aws_json_1_0(value: RDSDatabaseRecommendedOptionProjectedMetric) -
 
 def deserialize_aws_json_1_0(data: dict) -> RDSDatabaseRecommendedOptionProjectedMetric:
     out: RDSDatabaseRecommendedOptionProjectedMetric = {}  # type: ignore[typeddict-item]
-    if "recommendedDBInstanceClass" in data:
+    if data.get("recommendedDBInstanceClass") is not None:
         out["recommended_db_instance_class"] = data["recommendedDBInstanceClass"]
-    if "rank" in data:
+    if data.get("rank") is not None:
         out["rank"] = data["rank"]
     else:
         out["rank"] = 0
-    if "projectedMetrics" in data:
+    if data.get("projectedMetrics") is not None:
         import capo_compute_optimizer.types.rds_database_projected_metrics
 
         out["projected_metrics"] = (

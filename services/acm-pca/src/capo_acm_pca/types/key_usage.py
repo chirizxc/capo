@@ -46,39 +46,39 @@ def serialize_aws_json_1_1(value: KeyUsage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KeyUsage:
     out: KeyUsage = {}  # type: ignore[typeddict-item]
-    if "DigitalSignature" in data:
+    if data.get("DigitalSignature") is not None:
         out["digital_signature"] = data["DigitalSignature"]
     else:
         out["digital_signature"] = False
-    if "NonRepudiation" in data:
+    if data.get("NonRepudiation") is not None:
         out["non_repudiation"] = data["NonRepudiation"]
     else:
         out["non_repudiation"] = False
-    if "KeyEncipherment" in data:
+    if data.get("KeyEncipherment") is not None:
         out["key_encipherment"] = data["KeyEncipherment"]
     else:
         out["key_encipherment"] = False
-    if "DataEncipherment" in data:
+    if data.get("DataEncipherment") is not None:
         out["data_encipherment"] = data["DataEncipherment"]
     else:
         out["data_encipherment"] = False
-    if "KeyAgreement" in data:
+    if data.get("KeyAgreement") is not None:
         out["key_agreement"] = data["KeyAgreement"]
     else:
         out["key_agreement"] = False
-    if "KeyCertSign" in data:
+    if data.get("KeyCertSign") is not None:
         out["key_cert_sign"] = data["KeyCertSign"]
     else:
         out["key_cert_sign"] = False
-    if "CRLSign" in data:
+    if data.get("CRLSign") is not None:
         out["crl_sign"] = data["CRLSign"]
     else:
         out["crl_sign"] = False
-    if "EncipherOnly" in data:
+    if data.get("EncipherOnly") is not None:
         out["encipher_only"] = data["EncipherOnly"]
     else:
         out["encipher_only"] = False
-    if "DecipherOnly" in data:
+    if data.get("DecipherOnly") is not None:
         out["decipher_only"] = data["DecipherOnly"]
     else:
         out["decipher_only"] = False

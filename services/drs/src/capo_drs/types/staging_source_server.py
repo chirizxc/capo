@@ -35,11 +35,11 @@ def serialize_json(value: StagingSourceServer) -> dict:
 
 def deserialize_json(data: dict) -> StagingSourceServer:
     out: StagingSourceServer = {}  # type: ignore[typeddict-item]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])

@@ -59,15 +59,15 @@ def serialize_json(value: DeleteEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteEnvironmentResponse:
     out: DeleteEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "EnvironmentId" in data:
+    if data.get("EnvironmentId") is not None:
         out["environment_id"] = data["EnvironmentId"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["last_updated_time"] = (

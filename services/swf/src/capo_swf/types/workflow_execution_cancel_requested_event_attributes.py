@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> WorkflowExecutionCancelRequestedEventAttributes:
     out: WorkflowExecutionCancelRequestedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "externalWorkflowExecution" in data:
+    if data.get("externalWorkflowExecution") is not None:
         import capo_swf.types.workflow_execution
 
         out["external_workflow_execution"] = (
@@ -60,11 +60,11 @@ def deserialize_aws_json_1_0(
                 data["externalWorkflowExecution"]
             )
         )
-    if "externalInitiatedEventId" in data:
+    if data.get("externalInitiatedEventId") is not None:
         out["external_initiated_event_id"] = data["externalInitiatedEventId"]
     else:
         out["external_initiated_event_id"] = 0
-    if "cause" in data:
+    if data.get("cause") is not None:
         import capo_swf.types.workflow_execution_cancel_requested_cause
 
         out["cause"] = (

@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: IngressIsInAddressList) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngressIsInAddressList:
     out: IngressIsInAddressList = {}  # type: ignore[typeddict-item]
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_mailmanager.types.ingress_address_list_email_attribute
 
         out["attribute"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> IngressIsInAddressList:
         )
     else:
         raise DeserializationError("IngressIsInAddressList.attribute required")
-    if "AddressLists" in data:
+    if data.get("AddressLists") is not None:
         import capo_mailmanager.types.ingress_address_list_arn_list
 
         out["address_lists"] = (

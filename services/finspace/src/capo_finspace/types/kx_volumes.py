@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> KxVolumes:
 
     out: KxVolumes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_finspace.types.kx_volume.deserialize_json(item))
     return out

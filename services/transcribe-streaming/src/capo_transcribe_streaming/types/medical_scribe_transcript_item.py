@@ -34,8 +34,24 @@ class MedicalScribeTranscriptItem(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: MedicalScribeTranscriptItem) -> dict:
     out: dict = {}
-    out["BeginAudioTime"] = value.get("begin_audio_time", 0)
-    out["EndAudioTime"] = value.get("end_audio_time", 0)
+    out["BeginAudioTime"] = (
+        "NaN"
+        if value.get("begin_audio_time", 0) != value.get("begin_audio_time", 0)
+        else "Infinity"
+        if value.get("begin_audio_time", 0) == float("inf")
+        else "-Infinity"
+        if value.get("begin_audio_time", 0) == float("-inf")
+        else value.get("begin_audio_time", 0)
+    )
+    out["EndAudioTime"] = (
+        "NaN"
+        if value.get("end_audio_time", 0) != value.get("end_audio_time", 0)
+        else "Infinity"
+        if value.get("end_audio_time", 0) == float("inf")
+        else "-Infinity"
+        if value.get("end_audio_time", 0) == float("-inf")
+        else value.get("end_audio_time", 0)
+    )
     if "type" in value:
         import capo_transcribe_streaming.types.medical_scribe_transcript_item_type
 
@@ -45,7 +61,15 @@ def serialize_json(value: MedicalScribeTranscriptItem) -> dict:
             )
         )
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "content" in value:
         out["Content"] = value["content"]
     if "vocabulary_filter_match" in value:
@@ -55,15 +79,15 @@ def serialize_json(value: MedicalScribeTranscriptItem) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeTranscriptItem:
     out: MedicalScribeTranscriptItem = {}  # type: ignore[typeddict-item]
-    if "BeginAudioTime" in data:
-        out["begin_audio_time"] = data["BeginAudioTime"]
+    if data.get("BeginAudioTime") is not None:
+        out["begin_audio_time"] = float(data["BeginAudioTime"])
     else:
         out["begin_audio_time"] = 0
-    if "EndAudioTime" in data:
-        out["end_audio_time"] = data["EndAudioTime"]
+    if data.get("EndAudioTime") is not None:
+        out["end_audio_time"] = float(data["EndAudioTime"])
     else:
         out["end_audio_time"] = 0
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_transcribe_streaming.types.medical_scribe_transcript_item_type
 
         out["type"] = (
@@ -71,10 +95,10 @@ def deserialize_json(data: dict) -> MedicalScribeTranscriptItem:
                 data["Type"]
             )
         )
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "Content" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "VocabularyFilterMatch" in data:
+    if data.get("VocabularyFilterMatch") is not None:
         out["vocabulary_filter_match"] = data["VocabularyFilterMatch"]
     return out

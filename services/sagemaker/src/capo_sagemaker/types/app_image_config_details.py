@@ -88,17 +88,17 @@ def serialize_aws_json_1_1(value: AppImageConfigDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AppImageConfigDetails:
     out: AppImageConfigDetails = {}  # type: ignore[typeddict-item]
-    if "AppImageConfigArn" in data:
+    if data.get("AppImageConfigArn") is not None:
         out["app_image_config_arn"] = data["AppImageConfigArn"]
-    if "AppImageConfigName" in data:
+    if data.get("AppImageConfigName") is not None:
         out["app_image_config_name"] = data["AppImageConfigName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> AppImageConfigDetails:
                 data["LastModifiedTime"]
             )
         )
-    if "KernelGatewayImageConfig" in data:
+    if data.get("KernelGatewayImageConfig") is not None:
         import capo_sagemaker.types.kernel_gateway_image_config
 
         out["kernel_gateway_image_config"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> AppImageConfigDetails:
                 data["KernelGatewayImageConfig"]
             )
         )
-    if "JupyterLabAppImageConfig" in data:
+    if data.get("JupyterLabAppImageConfig") is not None:
         import capo_sagemaker.types.jupyter_lab_app_image_config
 
         out["jupyter_lab_app_image_config"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> AppImageConfigDetails:
                 data["JupyterLabAppImageConfig"]
             )
         )
-    if "CodeEditorAppImageConfig" in data:
+    if data.get("CodeEditorAppImageConfig") is not None:
         import capo_sagemaker.types.code_editor_app_image_config
 
         out["code_editor_app_image_config"] = (

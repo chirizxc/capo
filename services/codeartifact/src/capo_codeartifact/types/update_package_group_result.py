@@ -31,7 +31,7 @@ def serialize_json(value: UpdatePackageGroupResult) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageGroupResult:
     out: UpdatePackageGroupResult = {}  # type: ignore[typeddict-item]
-    if "packageGroup" in data:
+    if data.get("packageGroup") is not None:
         import capo_codeartifact.types.package_group_description
 
         out["package_group"] = (

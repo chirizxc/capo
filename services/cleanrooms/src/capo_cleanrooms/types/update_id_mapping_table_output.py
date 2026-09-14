@@ -28,7 +28,7 @@ def serialize_json(value: UpdateIdMappingTableOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIdMappingTableOutput:
     out: UpdateIdMappingTableOutput = {}  # type: ignore[typeddict-item]
-    if "idMappingTable" in data:
+    if data.get("idMappingTable") is not None:
         import capo_cleanrooms.types.id_mapping_table
 
         out["id_mapping_table"] = (

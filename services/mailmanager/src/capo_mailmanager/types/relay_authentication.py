@@ -41,9 +41,9 @@ def serialize_aws_json_1_0(value: RelayAuthentication) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> RelayAuthentication:
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         return {"SecretArn": data["SecretArn"]}
-    elif "NoAuthentication" in data:
+    elif data.get("NoAuthentication") is not None:
         import capo_mailmanager.types.no_authentication
 
         return {

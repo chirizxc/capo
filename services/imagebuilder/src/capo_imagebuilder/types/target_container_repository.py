@@ -34,7 +34,7 @@ def serialize_json(value: TargetContainerRepository) -> dict:
 
 def deserialize_json(data: dict) -> TargetContainerRepository:
     out: TargetContainerRepository = {}  # type: ignore[typeddict-item]
-    if "service" in data:
+    if data.get("service") is not None:
         import capo_imagebuilder.types.container_repository_service
 
         out["service"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> TargetContainerRepository:
         )
     else:
         raise DeserializationError("TargetContainerRepository.service required")
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("TargetContainerRepository.repository_name required")

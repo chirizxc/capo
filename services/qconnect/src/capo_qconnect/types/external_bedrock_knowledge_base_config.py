@@ -30,13 +30,13 @@ def serialize_json(value: ExternalBedrockKnowledgeBaseConfig) -> dict:
 
 def deserialize_json(data: dict) -> ExternalBedrockKnowledgeBaseConfig:
     out: ExternalBedrockKnowledgeBaseConfig = {}  # type: ignore[typeddict-item]
-    if "bedrockKnowledgeBaseArn" in data:
+    if data.get("bedrockKnowledgeBaseArn") is not None:
         out["bedrock_knowledge_base_arn"] = data["bedrockKnowledgeBaseArn"]
     else:
         raise DeserializationError(
             "ExternalBedrockKnowledgeBaseConfig.bedrock_knowledge_base_arn required"
         )
-    if "accessRoleArn" in data:
+    if data.get("accessRoleArn") is not None:
         out["access_role_arn"] = data["accessRoleArn"]
     else:
         raise DeserializationError(

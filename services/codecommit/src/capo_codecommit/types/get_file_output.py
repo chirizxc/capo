@@ -51,19 +51,19 @@ def serialize_aws_json_1_1(value: GetFileOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetFileOutput:
     out: GetFileOutput = {}  # type: ignore[typeddict-item]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
     else:
         raise DeserializationError("GetFileOutput.commit_id required")
-    if "blobId" in data:
+    if data.get("blobId") is not None:
         out["blob_id"] = data["blobId"]
     else:
         raise DeserializationError("GetFileOutput.blob_id required")
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError("GetFileOutput.file_path required")
-    if "fileMode" in data:
+    if data.get("fileMode") is not None:
         import capo_codecommit.types.file_mode_type_enum
 
         out["file_mode"] = (
@@ -73,11 +73,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetFileOutput:
         )
     else:
         raise DeserializationError("GetFileOutput.file_mode required")
-    if "fileSize" in data:
+    if data.get("fileSize") is not None:
         out["file_size"] = data["fileSize"]
     else:
         out["file_size"] = 0
-    if "fileContent" in data:
+    if data.get("fileContent") is not None:
         import capo_codecommit.types.file_content
 
         out["file_content"] = (

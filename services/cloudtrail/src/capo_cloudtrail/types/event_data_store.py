@@ -96,13 +96,13 @@ def serialize_aws_json_1_1(value: EventDataStore) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventDataStore:
     out: EventDataStore = {}  # type: ignore[typeddict-item]
-    if "EventDataStoreArn" in data:
+    if data.get("EventDataStoreArn") is not None:
         out["event_data_store_arn"] = data["EventDataStoreArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TerminationProtectionEnabled" in data:
+    if data.get("TerminationProtectionEnabled") is not None:
         out["termination_protection_enabled"] = data["TerminationProtectionEnabled"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cloudtrail.types.event_data_store_status
 
         out["status"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventDataStore:
                 data["Status"]
             )
         )
-    if "AdvancedEventSelectors" in data:
+    if data.get("AdvancedEventSelectors") is not None:
         import capo_cloudtrail.types.advanced_event_selectors
 
         out["advanced_event_selectors"] = (
@@ -118,19 +118,19 @@ def deserialize_aws_json_1_1(data: dict) -> EventDataStore:
                 data["AdvancedEventSelectors"]
             )
         )
-    if "MultiRegionEnabled" in data:
+    if data.get("MultiRegionEnabled") is not None:
         out["multi_region_enabled"] = data["MultiRegionEnabled"]
-    if "OrganizationEnabled" in data:
+    if data.get("OrganizationEnabled") is not None:
         out["organization_enabled"] = data["OrganizationEnabled"]
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         out["retention_period"] = data["RetentionPeriod"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_cloudtrail.types.date
 
         out["created_timestamp"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["CreatedTimestamp"]
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_cloudtrail.types.date
 
         out["updated_timestamp"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(

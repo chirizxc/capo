@@ -42,13 +42,13 @@ def serialize_json(value: CreateDelegationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDelegationRequest:
     out: CreateDelegationRequest = {}  # type: ignore[typeddict-item]
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "controlSetId" in data:
+    if data.get("controlSetId") is not None:
         out["control_set_id"] = data["controlSetId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "roleType" in data:
+    if data.get("roleType") is not None:
         import capo_auditmanager.types.role_type
 
         out["role_type"] = capo_auditmanager.types.role_type.deserialize_json(

@@ -119,22 +119,23 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.create_job_request.CreateJobRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["algorithm_specification"] = algorithm_specification
+        input_: capo_braket.types.create_job_request.CreateJobRequest = {
+            "client_token": client_token,
+            "algorithm_specification": algorithm_specification,
+            "output_data_config": output_data_config,
+            "job_name": job_name,
+            "role_arn": role_arn,
+            "instance_config": instance_config,
+            "device_config": device_config,
+        }
         if input_data_config is not None:
             input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
         if checkpoint_config is not None:
             input_["checkpoint_config"] = checkpoint_config
-        input_["job_name"] = job_name
-        input_["role_arn"] = role_arn
         if stopping_condition is not None:
             input_["stopping_condition"] = stopping_condition
-        input_["instance_config"] = instance_config
         if hyper_parameters is not None:
             input_["hyper_parameters"] = hyper_parameters
-        input_["device_config"] = device_config
         if tags is not None:
             input_["tags"] = tags
         if associations is not None:
@@ -145,6 +146,7 @@ class JobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -182,8 +184,7 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.get_job_request.GetJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_arn"] = job_arn
+        input_: capo_braket.types.get_job_request.GetJobRequest = {"job_arn": job_arn}
         if additional_attribute_names is not None:
             input_["additional_attribute_names"] = additional_attribute_names
 
@@ -192,6 +193,7 @@ class JobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -230,14 +232,16 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.cancel_job_request.CancelJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_arn"] = job_arn
+        input_: capo_braket.types.cancel_job_request.CancelJobRequest = {
+            "job_arn": job_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_jobs(
@@ -278,18 +282,20 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.search_jobs_request.SearchJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_braket.types.search_jobs_request.SearchJobsRequest = {
+            "filters": filters
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["filters"] = filters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -368,22 +374,23 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.create_job_request.CreateJobRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["algorithm_specification"] = algorithm_specification
+        input_: capo_braket.types.create_job_request.CreateJobRequest = {
+            "client_token": client_token,
+            "algorithm_specification": algorithm_specification,
+            "output_data_config": output_data_config,
+            "job_name": job_name,
+            "role_arn": role_arn,
+            "instance_config": instance_config,
+            "device_config": device_config,
+        }
         if input_data_config is not None:
             input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
         if checkpoint_config is not None:
             input_["checkpoint_config"] = checkpoint_config
-        input_["job_name"] = job_name
-        input_["role_arn"] = role_arn
         if stopping_condition is not None:
             input_["stopping_condition"] = stopping_condition
-        input_["instance_config"] = instance_config
         if hyper_parameters is not None:
             input_["hyper_parameters"] = hyper_parameters
-        input_["device_config"] = device_config
         if tags is not None:
             input_["tags"] = tags
         if associations is not None:
@@ -394,6 +401,7 @@ class AsyncJobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -436,8 +444,7 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.get_job_request.GetJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_arn"] = job_arn
+        input_: capo_braket.types.get_job_request.GetJobRequest = {"job_arn": job_arn}
         if additional_attribute_names is not None:
             input_["additional_attribute_names"] = additional_attribute_names
 
@@ -446,6 +453,7 @@ class AsyncJobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -485,14 +493,16 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.cancel_job_request.CancelJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_arn"] = job_arn
+        input_: capo_braket.types.cancel_job_request.CancelJobRequest = {
+            "job_arn": job_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_jobs(
@@ -534,16 +544,18 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.search_jobs_request.SearchJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_braket.types.search_jobs_request.SearchJobsRequest = {
+            "filters": filters
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["filters"] = filters
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

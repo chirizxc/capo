@@ -51,9 +51,9 @@ def serialize_json(value: DeviceDiscoverySummary) -> dict:
 
 def deserialize_json(data: dict) -> DeviceDiscoverySummary:
     out: DeviceDiscoverySummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "DiscoveryType" in data:
+    if data.get("DiscoveryType") is not None:
         import capo_iot_managed_integrations.types.discovery_type
 
         out["discovery_type"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> DeviceDiscoverySummary:
                 data["DiscoveryType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_managed_integrations.types.device_discovery_status
 
         out["status"] = (

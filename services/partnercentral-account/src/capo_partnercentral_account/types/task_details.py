@@ -75,23 +75,23 @@ def serialize_aws_json_1_0(value: TaskDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TaskDetails:
     out: TaskDetails = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError("TaskDetails.display_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("TaskDetails.description required")
-    if "WebsiteUrl" in data:
+    if data.get("WebsiteUrl") is not None:
         out["website_url"] = data["WebsiteUrl"]
     else:
         raise DeserializationError("TaskDetails.website_url required")
-    if "LogoUrl" in data:
+    if data.get("LogoUrl") is not None:
         out["logo_url"] = data["LogoUrl"]
     else:
         raise DeserializationError("TaskDetails.logo_url required")
-    if "PrimarySolutionType" in data:
+    if data.get("PrimarySolutionType") is not None:
         import capo_partnercentral_account.types.primary_solution_type
 
         out["primary_solution_type"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> TaskDetails:
         )
     else:
         raise DeserializationError("TaskDetails.primary_solution_type required")
-    if "IndustrySegments" in data:
+    if data.get("IndustrySegments") is not None:
         import capo_partnercentral_account.types.industry_segment_list
 
         out["industry_segments"] = (
@@ -111,11 +111,11 @@ def deserialize_aws_json_1_0(data: dict) -> TaskDetails:
         )
     else:
         raise DeserializationError("TaskDetails.industry_segments required")
-    if "TranslationSourceLocale" in data:
+    if data.get("TranslationSourceLocale") is not None:
         out["translation_source_locale"] = data["TranslationSourceLocale"]
     else:
         raise DeserializationError("TaskDetails.translation_source_locale required")
-    if "LocalizedContents" in data:
+    if data.get("LocalizedContents") is not None:
         import capo_partnercentral_account.types.localized_content_list
 
         out["localized_contents"] = (

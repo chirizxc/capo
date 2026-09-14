@@ -123,31 +123,31 @@ def serialize_json(value: UpdateGlobalResolverOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGlobalResolverOutput:
     out: UpdateGlobalResolverOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateGlobalResolverOutput.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateGlobalResolverOutput.arn required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("UpdateGlobalResolverOutput.client_token required")
-    if "dnsName" in data:
+    if data.get("dnsName") is not None:
         out["dns_name"] = data["dnsName"]
     else:
         raise DeserializationError("UpdateGlobalResolverOutput.dns_name required")
-    if "observabilityRegion" in data:
+    if data.get("observabilityRegion") is not None:
         out["observability_region"] = data["observabilityRegion"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateGlobalResolverOutput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_route53globalresolver.types.regions
 
         out["regions"] = capo_route53globalresolver.types.regions.deserialize_json(
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> UpdateGlobalResolverOutput:
         )
     else:
         raise DeserializationError("UpdateGlobalResolverOutput.regions required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["created_at"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> UpdateGlobalResolverOutput:
         )
     else:
         raise DeserializationError("UpdateGlobalResolverOutput.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["updated_at"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> UpdateGlobalResolverOutput:
         )
     else:
         raise DeserializationError("UpdateGlobalResolverOutput.updated_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_route53globalresolver.types.cr_resource_status
 
         out["status"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> UpdateGlobalResolverOutput:
         )
     else:
         raise DeserializationError("UpdateGlobalResolverOutput.status required")
-    if "ipv4Addresses" in data:
+    if data.get("ipv4Addresses") is not None:
         import capo_route53globalresolver.types.i_pv4_addresses
 
         out["ipv4_addresses"] = (
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> UpdateGlobalResolverOutput:
         )
     else:
         raise DeserializationError("UpdateGlobalResolverOutput.ipv4_addresses required")
-    if "ipv6Addresses" in data:
+    if data.get("ipv6Addresses") is not None:
         import capo_route53globalresolver.types.i_pv6_addresses
 
         out["ipv6_addresses"] = (
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> UpdateGlobalResolverOutput:
                 data["ipv6Addresses"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_route53globalresolver.types.global_resolver_ip_address_type
 
         out["ip_address_type"] = (

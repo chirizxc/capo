@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: MessageSignal) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MessageSignal:
     out: MessageSignal = {}  # type: ignore[typeddict-item]
-    if "topicName" in data:
+    if data.get("topicName") is not None:
         out["topic_name"] = data["topicName"]
     else:
         raise DeserializationError("MessageSignal.topic_name required")
-    if "structuredMessage" in data:
+    if data.get("structuredMessage") is not None:
         import capo_iotfleetwise.types.structured_message
 
         out["structured_message"] = (

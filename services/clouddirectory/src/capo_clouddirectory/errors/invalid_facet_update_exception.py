@@ -24,7 +24,7 @@ def serialize_json(value: InvalidFacetUpdateException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidFacetUpdateException_:
     out: InvalidFacetUpdateException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidFacetUpdateException(ServiceError):
 
     code: str | None = "InvalidFacetUpdateException"
 
-    def __init__(self, data: InvalidFacetUpdateException_):
+    def __init__(self, data: InvalidFacetUpdateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidFacetUpdateException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidFacetUpdateException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidFacetUpdateException":
+        return cls(deserialize_json(data), message)

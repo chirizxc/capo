@@ -14,4 +14,4 @@ def serialize_json(value: FindingIdList) -> list:
 
 
 def deserialize_json(data: list) -> FindingIdList:
-    return list(data)
+    return [item for item in data if item is not None]

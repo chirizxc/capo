@@ -200,11 +200,11 @@ def serialize_aws_json_1_0(value: InvoiceSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
     out: InvoiceSummary = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "InvoiceId" in data:
+    if data.get("InvoiceId") is not None:
         out["invoice_id"] = data["InvoiceId"]
-    if "IssuedDate" in data:
+    if data.get("IssuedDate") is not None:
         import capo_invoicing.types._prelude.timestamp
 
         out["issued_date"] = (
@@ -212,7 +212,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["IssuedDate"]
             )
         )
-    if "DueDate" in data:
+    if data.get("DueDate") is not None:
         import capo_invoicing.types._prelude.timestamp
 
         out["due_date"] = (
@@ -220,7 +220,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["DueDate"]
             )
         )
-    if "BillSourceAccounts" in data:
+    if data.get("BillSourceAccounts") is not None:
         import capo_invoicing.types.bill_source_account_list
 
         out["bill_source_accounts"] = (
@@ -228,9 +228,9 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["BillSourceAccounts"]
             )
         )
-    if "BillSourceAccountsTotalCount" in data:
+    if data.get("BillSourceAccountsTotalCount") is not None:
         out["bill_source_accounts_total_count"] = data["BillSourceAccountsTotalCount"]
-    if "ReceiverRole" in data:
+    if data.get("ReceiverRole") is not None:
         import capo_invoicing.types.receiver_role
 
         out["receiver_role"] = (
@@ -238,13 +238,13 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["ReceiverRole"]
             )
         )
-    if "Entity" in data:
+    if data.get("Entity") is not None:
         import capo_invoicing.types.entity
 
         out["entity"] = capo_invoicing.types.entity.deserialize_aws_json_1_0(
             data["Entity"]
         )
-    if "BillingPeriod" in data:
+    if data.get("BillingPeriod") is not None:
         import capo_invoicing.types.billing_period
 
         out["billing_period"] = (
@@ -252,7 +252,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["BillingPeriod"]
             )
         )
-    if "InvoiceFrequency" in data:
+    if data.get("InvoiceFrequency") is not None:
         import capo_invoicing.types.invoice_frequency
 
         out["invoice_frequency"] = (
@@ -260,13 +260,13 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["InvoiceFrequency"]
             )
         )
-    if "BillType" in data:
+    if data.get("BillType") is not None:
         import capo_invoicing.types.bill_type
 
         out["bill_type"] = capo_invoicing.types.bill_type.deserialize_aws_json_1_0(
             data["BillType"]
         )
-    if "InvoiceType" in data:
+    if data.get("InvoiceType") is not None:
         import capo_invoicing.types.invoice_type
 
         out["invoice_type"] = (
@@ -274,13 +274,13 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["InvoiceType"]
             )
         )
-    if "CommercialInvoiceId" in data:
+    if data.get("CommercialInvoiceId") is not None:
         out["commercial_invoice_id"] = data["CommercialInvoiceId"]
-    if "OriginalInvoiceId" in data:
+    if data.get("OriginalInvoiceId") is not None:
         out["original_invoice_id"] = data["OriginalInvoiceId"]
-    if "PurchaseOrderNumber" in data:
+    if data.get("PurchaseOrderNumber") is not None:
         out["purchase_order_number"] = data["PurchaseOrderNumber"]
-    if "EinvoiceDeliveryStatus" in data:
+    if data.get("EinvoiceDeliveryStatus") is not None:
         import capo_invoicing.types.einvoice_delivery_status
 
         out["einvoice_delivery_status"] = (
@@ -288,7 +288,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["EinvoiceDeliveryStatus"]
             )
         )
-    if "TaxAuthorityStatus" in data:
+    if data.get("TaxAuthorityStatus") is not None:
         import capo_invoicing.types.tax_authority_status
 
         out["tax_authority_status"] = (
@@ -296,7 +296,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["TaxAuthorityStatus"]
             )
         )
-    if "BaseCurrencyAmount" in data:
+    if data.get("BaseCurrencyAmount") is not None:
         import capo_invoicing.types.invoice_currency_amount
 
         out["base_currency_amount"] = (
@@ -304,7 +304,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["BaseCurrencyAmount"]
             )
         )
-    if "TaxCurrencyAmount" in data:
+    if data.get("TaxCurrencyAmount") is not None:
         import capo_invoicing.types.invoice_currency_amount
 
         out["tax_currency_amount"] = (
@@ -312,7 +312,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummary:
                 data["TaxCurrencyAmount"]
             )
         )
-    if "PaymentCurrencyAmount" in data:
+    if data.get("PaymentCurrencyAmount") is not None:
         import capo_invoicing.types.invoice_currency_amount
 
         out["payment_currency_amount"] = (

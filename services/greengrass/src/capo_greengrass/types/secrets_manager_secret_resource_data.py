@@ -36,9 +36,9 @@ def serialize_json(value: SecretsManagerSecretResourceData) -> dict:
 
 def deserialize_json(data: dict) -> SecretsManagerSecretResourceData:
     out: SecretsManagerSecretResourceData = {}  # type: ignore[typeddict-item]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
-    if "AdditionalStagingLabelsToDownload" in data:
+    if data.get("AdditionalStagingLabelsToDownload") is not None:
         import capo_greengrass.types.__list_of__string
 
         out["additional_staging_labels_to_download"] = (

@@ -35,12 +35,10 @@ def serialize_json(value: ListEarthObservationJobOutputConfig) -> dict:
     out: dict = {}
     out["Arn"] = value["arn"]
     out["Name"] = value["name"]
-    import capo_sagemaker_geospatial.types._prelude.timestamp
+    import capo_sagemaker_geospatial._protocol.serialize
 
-    out["CreationTime"] = (
-        capo_sagemaker_geospatial.types._prelude.timestamp.serialize_json(
-            value["creation_time"]
-        )
+    out["CreationTime"] = capo_sagemaker_geospatial._protocol.serialize.fmt_date_time(
+        value["creation_time"]
     )
     out["DurationInSeconds"] = value["duration_in_seconds"]
     out["Status"] = value["status"]
@@ -54,45 +52,43 @@ def serialize_json(value: ListEarthObservationJobOutputConfig) -> dict:
 
 def deserialize_json(data: dict) -> ListEarthObservationJobOutputConfig:
     out: ListEarthObservationJobOutputConfig = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ListEarthObservationJobOutputConfig.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ListEarthObservationJobOutputConfig.name required")
-    if "CreationTime" in data:
-        import capo_sagemaker_geospatial.types._prelude.timestamp
+    if data.get("CreationTime") is not None:
+        import datetime
 
-        out["creation_time"] = (
-            capo_sagemaker_geospatial.types._prelude.timestamp.deserialize_json(
-                data["CreationTime"]
-            )
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["CreationTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "ListEarthObservationJobOutputConfig.creation_time required"
         )
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
     else:
         raise DeserializationError(
             "ListEarthObservationJobOutputConfig.duration_in_seconds required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError(
             "ListEarthObservationJobOutputConfig.status required"
         )
-    if "OperationType" in data:
+    if data.get("OperationType") is not None:
         out["operation_type"] = data["OperationType"]
     else:
         raise DeserializationError(
             "ListEarthObservationJobOutputConfig.operation_type required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker_geospatial.types.tags
 
         out["tags"] = capo_sagemaker_geospatial.types.tags.deserialize_json(

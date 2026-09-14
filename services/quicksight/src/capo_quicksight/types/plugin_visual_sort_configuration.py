@@ -31,7 +31,7 @@ def serialize_json(value: PluginVisualSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PluginVisualSortConfiguration:
     out: PluginVisualSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "PluginVisualTableQuerySort" in data:
+    if data.get("PluginVisualTableQuerySort") is not None:
         import capo_quicksight.types.plugin_visual_table_query_sort
 
         out["plugin_visual_table_query_sort"] = (

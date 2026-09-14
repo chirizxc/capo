@@ -31,7 +31,7 @@ def serialize_json(value: GetPortfolioSummaryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPortfolioSummaryResponse:
     out: GetPortfolioSummaryResponse = {}  # type: ignore[typeddict-item]
-    if "assessmentSummary" in data:
+    if data.get("assessmentSummary") is not None:
         import capo_migrationhubstrategy.types.assessment_summary
 
         out["assessment_summary"] = (

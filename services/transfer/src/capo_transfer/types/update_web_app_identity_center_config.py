@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateWebAppIdentityCenterConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWebAppIdentityCenterConfig:
     out: UpdateWebAppIdentityCenterConfig = {}  # type: ignore[typeddict-item]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     return out

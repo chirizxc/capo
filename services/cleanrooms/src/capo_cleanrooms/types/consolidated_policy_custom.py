@@ -105,7 +105,7 @@ def serialize_json(value: ConsolidatedPolicyCustom) -> dict:
 
 def deserialize_json(data: dict) -> ConsolidatedPolicyCustom:
     out: ConsolidatedPolicyCustom = {}  # type: ignore[typeddict-item]
-    if "allowedAnalyses" in data:
+    if data.get("allowedAnalyses") is not None:
         import capo_cleanrooms.types.allowed_analyses_list
 
         out["allowed_analyses"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyCustom:
         )
     else:
         raise DeserializationError("ConsolidatedPolicyCustom.allowed_analyses required")
-    if "allowedAnalysisProviders" in data:
+    if data.get("allowedAnalysisProviders") is not None:
         import capo_cleanrooms.types.allowed_analysis_provider_list
 
         out["allowed_analysis_providers"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyCustom:
                 data["allowedAnalysisProviders"]
             )
         )
-    if "additionalAnalyses" in data:
+    if data.get("additionalAnalyses") is not None:
         import capo_cleanrooms.types.additional_analyses
 
         out["additional_analyses"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyCustom:
                 data["additionalAnalyses"]
             )
         )
-    if "disallowedOutputColumns" in data:
+    if data.get("disallowedOutputColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["disallowed_output_columns"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyCustom:
                 data["disallowedOutputColumns"]
             )
         )
-    if "differentialPrivacy" in data:
+    if data.get("differentialPrivacy") is not None:
         import capo_cleanrooms.types.differential_privacy_configuration
 
         out["differential_privacy"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyCustom:
                 data["differentialPrivacy"]
             )
         )
-    if "allowedResultReceivers" in data:
+    if data.get("allowedResultReceivers") is not None:
         import capo_cleanrooms.types.allowed_result_receivers
 
         out["allowed_result_receivers"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyCustom:
                 data["allowedResultReceivers"]
             )
         )
-    if "allowedAdditionalAnalyses" in data:
+    if data.get("allowedAdditionalAnalyses") is not None:
         import capo_cleanrooms.types.allowed_additional_analyses
 
         out["allowed_additional_analyses"] = (

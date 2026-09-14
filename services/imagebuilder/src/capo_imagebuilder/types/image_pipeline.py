@@ -193,29 +193,29 @@ def serialize_json(value: ImagePipeline) -> dict:
 
 def deserialize_json(data: dict) -> ImagePipeline:
     out: ImagePipeline = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_imagebuilder.types.platform
 
         out["platform"] = capo_imagebuilder.types.platform.deserialize_json(
             data["platform"]
         )
-    if "enhancedImageMetadataEnabled" in data:
+    if data.get("enhancedImageMetadataEnabled") is not None:
         out["enhanced_image_metadata_enabled"] = data["enhancedImageMetadataEnabled"]
-    if "imageRecipeArn" in data:
+    if data.get("imageRecipeArn") is not None:
         out["image_recipe_arn"] = data["imageRecipeArn"]
-    if "containerRecipeArn" in data:
+    if data.get("containerRecipeArn") is not None:
         out["container_recipe_arn"] = data["containerRecipeArn"]
-    if "infrastructureConfigurationArn" in data:
+    if data.get("infrastructureConfigurationArn") is not None:
         out["infrastructure_configuration_arn"] = data["infrastructureConfigurationArn"]
-    if "distributionConfigurationArn" in data:
+    if data.get("distributionConfigurationArn") is not None:
         out["distribution_configuration_arn"] = data["distributionConfigurationArn"]
-    if "imageTestsConfiguration" in data:
+    if data.get("imageTestsConfiguration") is not None:
         import capo_imagebuilder.types.image_tests_configuration
 
         out["image_tests_configuration"] = (
@@ -223,37 +223,37 @@ def deserialize_json(data: dict) -> ImagePipeline:
                 data["imageTestsConfiguration"]
             )
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_imagebuilder.types.schedule
 
         out["schedule"] = capo_imagebuilder.types.schedule.deserialize_json(
             data["schedule"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.pipeline_status
 
         out["status"] = capo_imagebuilder.types.pipeline_status.deserialize_json(
             data["status"]
         )
-    if "dateCreated" in data:
+    if data.get("dateCreated") is not None:
         out["date_created"] = data["dateCreated"]
-    if "dateUpdated" in data:
+    if data.get("dateUpdated") is not None:
         out["date_updated"] = data["dateUpdated"]
-    if "dateLastRun" in data:
+    if data.get("dateLastRun") is not None:
         out["date_last_run"] = data["dateLastRun"]
-    if "lastRunStatus" in data:
+    if data.get("lastRunStatus") is not None:
         import capo_imagebuilder.types.image_status
 
         out["last_run_status"] = capo_imagebuilder.types.image_status.deserialize_json(
             data["lastRunStatus"]
         )
-    if "dateNextRun" in data:
+    if data.get("dateNextRun") is not None:
         out["date_next_run"] = data["dateNextRun"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "imageScanningConfiguration" in data:
+    if data.get("imageScanningConfiguration") is not None:
         import capo_imagebuilder.types.image_scanning_configuration
 
         out["image_scanning_configuration"] = (
@@ -261,15 +261,15 @@ def deserialize_json(data: dict) -> ImagePipeline:
                 data["imageScanningConfiguration"]
             )
         )
-    if "imageTags" in data:
+    if data.get("imageTags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["image_tags"] = capo_imagebuilder.types.tag_map.deserialize_json(
             data["imageTags"]
         )
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
-    if "workflows" in data:
+    if data.get("workflows") is not None:
         import capo_imagebuilder.types.workflow_configuration_list
 
         out["workflows"] = (
@@ -277,7 +277,7 @@ def deserialize_json(data: dict) -> ImagePipeline:
                 data["workflows"]
             )
         )
-    if "loggingConfiguration" in data:
+    if data.get("loggingConfiguration") is not None:
         import capo_imagebuilder.types.pipeline_logging_configuration
 
         out["logging_configuration"] = (
@@ -285,6 +285,6 @@ def deserialize_json(data: dict) -> ImagePipeline:
                 data["loggingConfiguration"]
             )
         )
-    if "consecutiveFailures" in data:
+    if data.get("consecutiveFailures") is not None:
         out["consecutive_failures"] = data["consecutiveFailures"]
     return out

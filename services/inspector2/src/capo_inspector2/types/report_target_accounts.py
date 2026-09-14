@@ -14,4 +14,4 @@ def serialize_json(value: ReportTargetAccounts) -> list:
 
 
 def deserialize_json(data: list) -> ReportTargetAccounts:
-    return list(data)
+    return [item for item in data if item is not None]

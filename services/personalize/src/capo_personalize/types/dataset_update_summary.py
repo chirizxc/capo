@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: DatasetUpdateSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetUpdateSummary:
     out: DatasetUpdateSummary = {}  # type: ignore[typeddict-item]
-    if "schemaArn" in data:
+    if data.get("schemaArn") is not None:
         out["schema_arn"] = data["schemaArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetUpdateSummary:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (

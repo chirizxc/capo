@@ -40,7 +40,7 @@ def serialize_json(value: SheetImageTooltipConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SheetImageTooltipConfiguration:
     out: SheetImageTooltipConfiguration = {}  # type: ignore[typeddict-item]
-    if "TooltipText" in data:
+    if data.get("TooltipText") is not None:
         import capo_quicksight.types.sheet_image_tooltip_text
 
         out["tooltip_text"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> SheetImageTooltipConfiguration:
                 data["TooltipText"]
             )
         )
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(

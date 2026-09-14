@@ -40,11 +40,11 @@ def serialize_json(value: AttemptEcsTaskDetails) -> dict:
 
 def deserialize_json(data: dict) -> AttemptEcsTaskDetails:
     out: AttemptEcsTaskDetails = {}  # type: ignore[typeddict-item]
-    if "containerInstanceArn" in data:
+    if data.get("containerInstanceArn") is not None:
         out["container_instance_arn"] = data["containerInstanceArn"]
-    if "taskArn" in data:
+    if data.get("taskArn") is not None:
         out["task_arn"] = data["taskArn"]
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_batch.types.list_attempt_task_container_details
 
         out["containers"] = (

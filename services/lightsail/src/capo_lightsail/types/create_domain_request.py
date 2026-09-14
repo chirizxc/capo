@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: CreateDomainRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDomainRequest:
     out: CreateDomainRequest = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("CreateDomainRequest.domain_name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

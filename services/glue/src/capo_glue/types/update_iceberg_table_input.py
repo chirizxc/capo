@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: UpdateIcebergTableInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateIcebergTableInput:
     out: UpdateIcebergTableInput = {}  # type: ignore[typeddict-item]
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_glue.types.iceberg_table_update_list
 
         out["updates"] = (

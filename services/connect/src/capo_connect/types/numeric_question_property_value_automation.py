@@ -30,7 +30,7 @@ def serialize_json(value: NumericQuestionPropertyValueAutomation) -> dict:
 
 def deserialize_json(data: dict) -> NumericQuestionPropertyValueAutomation:
     out: NumericQuestionPropertyValueAutomation = {}  # type: ignore[typeddict-item]
-    if "Label" in data:
+    if data.get("Label") is not None:
         import capo_connect.types.numeric_question_property_automation_label
 
         out["label"] = (

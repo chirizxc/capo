@@ -28,7 +28,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ProtectConfigurationCountryRuleSetInformation:
     out: ProtectConfigurationCountryRuleSetInformation = {}  # type: ignore[typeddict-item]
-    if "ProtectStatus" in data:
+    if data.get("ProtectStatus") is not None:
         out["protect_status"] = data["ProtectStatus"]
     else:
         raise DeserializationError(

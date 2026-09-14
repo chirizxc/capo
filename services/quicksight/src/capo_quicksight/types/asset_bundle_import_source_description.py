@@ -28,8 +28,8 @@ def serialize_json(value: AssetBundleImportSourceDescription) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportSourceDescription:
     out: AssetBundleImportSourceDescription = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     return out

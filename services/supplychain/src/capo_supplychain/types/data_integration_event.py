@@ -65,15 +65,15 @@ def serialize_json(value: DataIntegrationEvent) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationEvent:
     out: DataIntegrationEvent = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError("DataIntegrationEvent.instance_id required")
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("DataIntegrationEvent.event_id required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_supplychain.types.data_integration_event_type
 
         out["event_type"] = (
@@ -83,11 +83,11 @@ def deserialize_json(data: dict) -> DataIntegrationEvent:
         )
     else:
         raise DeserializationError("DataIntegrationEvent.event_type required")
-    if "eventGroupId" in data:
+    if data.get("eventGroupId") is not None:
         out["event_group_id"] = data["eventGroupId"]
     else:
         raise DeserializationError("DataIntegrationEvent.event_group_id required")
-    if "eventTimestamp" in data:
+    if data.get("eventTimestamp") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["event_timestamp"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> DataIntegrationEvent:
         )
     else:
         raise DeserializationError("DataIntegrationEvent.event_timestamp required")
-    if "datasetTargetDetails" in data:
+    if data.get("datasetTargetDetails") is not None:
         import capo_supplychain.types.data_integration_event_dataset_target_details
 
         out["dataset_target_details"] = (

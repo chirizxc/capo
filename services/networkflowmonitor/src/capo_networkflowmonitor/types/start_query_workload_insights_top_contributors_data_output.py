@@ -19,7 +19,7 @@ def serialize_json(value: StartQueryWorkloadInsightsTopContributorsDataOutput) -
 
 def deserialize_json(data: dict) -> StartQueryWorkloadInsightsTopContributorsDataOutput:
     out: StartQueryWorkloadInsightsTopContributorsDataOutput = {}  # type: ignore[typeddict-item]
-    if "queryId" in data:
+    if data.get("queryId") is not None:
         out["query_id"] = data["queryId"]
     else:
         raise DeserializationError(

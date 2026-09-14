@@ -69,9 +69,9 @@ def serialize_aws_json_1_1(value: TaskExecutionResultDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskExecutionResultDetail:
     out: TaskExecutionResultDetail = {}  # type: ignore[typeddict-item]
-    if "PrepareDuration" in data:
+    if data.get("PrepareDuration") is not None:
         out["prepare_duration"] = data["PrepareDuration"]
-    if "PrepareStatus" in data:
+    if data.get("PrepareStatus") is not None:
         import capo_datasync.types.phase_status
 
         out["prepare_status"] = (
@@ -79,11 +79,11 @@ def deserialize_aws_json_1_1(data: dict) -> TaskExecutionResultDetail:
                 data["PrepareStatus"]
             )
         )
-    if "TotalDuration" in data:
+    if data.get("TotalDuration") is not None:
         out["total_duration"] = data["TotalDuration"]
-    if "TransferDuration" in data:
+    if data.get("TransferDuration") is not None:
         out["transfer_duration"] = data["TransferDuration"]
-    if "TransferStatus" in data:
+    if data.get("TransferStatus") is not None:
         import capo_datasync.types.phase_status
 
         out["transfer_status"] = (
@@ -91,9 +91,9 @@ def deserialize_aws_json_1_1(data: dict) -> TaskExecutionResultDetail:
                 data["TransferStatus"]
             )
         )
-    if "VerifyDuration" in data:
+    if data.get("VerifyDuration") is not None:
         out["verify_duration"] = data["VerifyDuration"]
-    if "VerifyStatus" in data:
+    if data.get("VerifyStatus") is not None:
         import capo_datasync.types.phase_status
 
         out["verify_status"] = (
@@ -101,8 +101,8 @@ def deserialize_aws_json_1_1(data: dict) -> TaskExecutionResultDetail:
                 data["VerifyStatus"]
             )
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorDetail" in data:
+    if data.get("ErrorDetail") is not None:
         out["error_detail"] = data["ErrorDetail"]
     return out

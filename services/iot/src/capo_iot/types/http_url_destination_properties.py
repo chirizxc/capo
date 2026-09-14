@@ -23,6 +23,6 @@ def serialize_json(value: HttpUrlDestinationProperties) -> dict:
 
 def deserialize_json(data: dict) -> HttpUrlDestinationProperties:
     out: HttpUrlDestinationProperties = {}  # type: ignore[typeddict-item]
-    if "confirmationUrl" in data:
+    if data.get("confirmationUrl") is not None:
         out["confirmation_url"] = data["confirmationUrl"]
     return out

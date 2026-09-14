@@ -42,7 +42,15 @@ def serialize_json(value: AudioPreMixerSettings) -> dict:
     if "channels" in value:
         out["channels"] = value["channels"]
     if "gain_db" in value:
-        out["gainDb"] = value["gain_db"]
+        out["gainDb"] = (
+            "NaN"
+            if value["gain_db"] != value["gain_db"]
+            else "Infinity"
+            if value["gain_db"] == float("inf")
+            else "-Infinity"
+            if value["gain_db"] == float("-inf")
+            else value["gain_db"]
+        )
     if "remix_settings" in value:
         import capo_medialive.types.remix_settings
 
@@ -54,7 +62,7 @@ def serialize_json(value: AudioPreMixerSettings) -> dict:
 
 def deserialize_json(data: dict) -> AudioPreMixerSettings:
     out: AudioPreMixerSettings = {}  # type: ignore[typeddict-item]
-    if "audioNormalizationSettings" in data:
+    if data.get("audioNormalizationSettings") is not None:
         import capo_medialive.types.audio_normalization_settings
 
         out["audio_normalization_settings"] = (
@@ -62,11 +70,11 @@ def deserialize_json(data: dict) -> AudioPreMixerSettings:
                 data["audioNormalizationSettings"]
             )
         )
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "gainDb" in data:
-        out["gain_db"] = data["gainDb"]
-    if "remixSettings" in data:
+    if data.get("gainDb") is not None:
+        out["gain_db"] = float(data["gainDb"])
+    if data.get("remixSettings") is not None:
         import capo_medialive.types.remix_settings
 
         out["remix_settings"] = capo_medialive.types.remix_settings.deserialize_json(

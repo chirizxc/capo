@@ -40,13 +40,13 @@ def serialize_json(value: StreamKey) -> dict:
 
 def deserialize_json(data: dict) -> StreamKey:
     out: StreamKey = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])

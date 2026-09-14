@@ -83,9 +83,9 @@ def serialize_aws_json_1_1(value: CreateMigrationProjectMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMigrationProjectMessage:
     out: CreateMigrationProjectMessage = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectName" in data:
+    if data.get("MigrationProjectName") is not None:
         out["migration_project_name"] = data["MigrationProjectName"]
-    if "SourceDataProviderDescriptors" in data:
+    if data.get("SourceDataProviderDescriptors") is not None:
         import capo_database_migration_service.types.data_provider_descriptor_definition_list
 
         out["source_data_provider_descriptors"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMigrationProjectMessage:
         raise DeserializationError(
             "CreateMigrationProjectMessage.source_data_provider_descriptors required"
         )
-    if "TargetDataProviderDescriptors" in data:
+    if data.get("TargetDataProviderDescriptors") is not None:
         import capo_database_migration_service.types.data_provider_descriptor_definition_list
 
         out["target_data_provider_descriptors"] = (
@@ -109,17 +109,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMigrationProjectMessage:
         raise DeserializationError(
             "CreateMigrationProjectMessage.target_data_provider_descriptors required"
         )
-    if "InstanceProfileIdentifier" in data:
+    if data.get("InstanceProfileIdentifier") is not None:
         out["instance_profile_identifier"] = data["InstanceProfileIdentifier"]
     else:
         raise DeserializationError(
             "CreateMigrationProjectMessage.instance_profile_identifier required"
         )
-    if "TransformationRules" in data:
+    if data.get("TransformationRules") is not None:
         out["transformation_rules"] = data["TransformationRules"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMigrationProjectMessage:
                 data["Tags"]
             )
         )
-    if "SchemaConversionApplicationAttributes" in data:
+    if data.get("SchemaConversionApplicationAttributes") is not None:
         import capo_database_migration_service.types.sc_application_attributes
 
         out["schema_conversion_application_attributes"] = (

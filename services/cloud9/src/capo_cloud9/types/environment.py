@@ -89,13 +89,13 @@ def serialize_aws_json_1_1(value: Environment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Environment:
     out: Environment = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cloud9.types.environment_type
 
         out["type"] = capo_cloud9.types.environment_type.deserialize_aws_json_1_1(
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> Environment:
         )
     else:
         raise DeserializationError("Environment.type required")
-    if "connectionType" in data:
+    if data.get("connectionType") is not None:
         import capo_cloud9.types.connection_type
 
         out["connection_type"] = (
@@ -111,15 +111,15 @@ def deserialize_aws_json_1_1(data: dict) -> Environment:
                 data["connectionType"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Environment.arn required")
-    if "ownerArn" in data:
+    if data.get("ownerArn") is not None:
         out["owner_arn"] = data["ownerArn"]
     else:
         raise DeserializationError("Environment.owner_arn required")
-    if "lifecycle" in data:
+    if data.get("lifecycle") is not None:
         import capo_cloud9.types.environment_lifecycle
 
         out["lifecycle"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> Environment:
                 data["lifecycle"]
             )
         )
-    if "managedCredentialsStatus" in data:
+    if data.get("managedCredentialsStatus") is not None:
         import capo_cloud9.types.managed_credentials_status
 
         out["managed_credentials_status"] = (

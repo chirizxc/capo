@@ -47,7 +47,7 @@ def serialize_json(value: AudioPid) -> dict:
 
 def deserialize_json(data: dict) -> AudioPid:
     out: AudioPid = {}  # type: ignore[typeddict-item]
-    if "dolbyEDecode" in data:
+    if data.get("dolbyEDecode") is not None:
         import capo_medialive.types.audio_dolby_e_decode
 
         out["dolby_e_decode"] = (
@@ -55,9 +55,9 @@ def deserialize_json(data: dict) -> AudioPid:
                 data["dolbyEDecode"]
             )
         )
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
-    if "premixSettings" in data:
+    if data.get("premixSettings") is not None:
         import capo_medialive.types.audio_pre_mixer_settings
 
         out["premix_settings"] = (

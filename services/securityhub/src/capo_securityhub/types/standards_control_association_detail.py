@@ -101,13 +101,13 @@ def serialize_json(value: StandardsControlAssociationDetail) -> dict:
 
 def deserialize_json(data: dict) -> StandardsControlAssociationDetail:
     out: StandardsControlAssociationDetail = {}  # type: ignore[typeddict-item]
-    if "StandardsArn" in data:
+    if data.get("StandardsArn") is not None:
         out["standards_arn"] = data["StandardsArn"]
-    if "SecurityControlId" in data:
+    if data.get("SecurityControlId") is not None:
         out["security_control_id"] = data["SecurityControlId"]
-    if "SecurityControlArn" in data:
+    if data.get("SecurityControlArn") is not None:
         out["security_control_arn"] = data["SecurityControlArn"]
-    if "AssociationStatus" in data:
+    if data.get("AssociationStatus") is not None:
         import capo_securityhub.types.association_status
 
         out["association_status"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> StandardsControlAssociationDetail:
                 data["AssociationStatus"]
             )
         )
-    if "RelatedRequirements" in data:
+    if data.get("RelatedRequirements") is not None:
         import capo_securityhub.types.related_requirements_list
 
         out["related_requirements"] = (
@@ -123,19 +123,19 @@ def deserialize_json(data: dict) -> StandardsControlAssociationDetail:
                 data["RelatedRequirements"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["updated_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "UpdatedReason" in data:
+    if data.get("UpdatedReason") is not None:
         out["updated_reason"] = data["UpdatedReason"]
-    if "StandardsControlTitle" in data:
+    if data.get("StandardsControlTitle") is not None:
         out["standards_control_title"] = data["StandardsControlTitle"]
-    if "StandardsControlDescription" in data:
+    if data.get("StandardsControlDescription") is not None:
         out["standards_control_description"] = data["StandardsControlDescription"]
-    if "StandardsControlArns" in data:
+    if data.get("StandardsControlArns") is not None:
         import capo_securityhub.types.standards_control_arn_list
 
         out["standards_control_arns"] = (

@@ -55,7 +55,7 @@ def serialize_aws_json_1_0(value: NetworkConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NetworkConfiguration:
     out: NetworkConfiguration = {}  # type: ignore[typeddict-item]
-    if "EgressConfiguration" in data:
+    if data.get("EgressConfiguration") is not None:
         import capo_apprunner.types.egress_configuration
 
         out["egress_configuration"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_0(data: dict) -> NetworkConfiguration:
                 data["EgressConfiguration"]
             )
         )
-    if "IngressConfiguration" in data:
+    if data.get("IngressConfiguration") is not None:
         import capo_apprunner.types.ingress_configuration
 
         out["ingress_configuration"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_0(data: dict) -> NetworkConfiguration:
                 data["IngressConfiguration"]
             )
         )
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_apprunner.types.ip_address_type
 
         out["ip_address_type"] = (

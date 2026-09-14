@@ -36,7 +36,7 @@ def serialize_json(value: ListEdgeAgentConfigurationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListEdgeAgentConfigurationsOutput:
     out: ListEdgeAgentConfigurationsOutput = {}  # type: ignore[typeddict-item]
-    if "EdgeConfigs" in data:
+    if data.get("EdgeConfigs") is not None:
         import capo_kinesis_video.types.list_edge_agent_configurations_edge_config_list
 
         out["edge_configs"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListEdgeAgentConfigurationsOutput:
                 data["EdgeConfigs"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

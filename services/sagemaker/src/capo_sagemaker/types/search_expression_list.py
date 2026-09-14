@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> SearchExpressionList:
 
     out: SearchExpressionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.search_expression.deserialize_aws_json_1_1(item)
         )

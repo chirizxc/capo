@@ -31,7 +31,7 @@ def serialize_json(value: UpdateQuickSightQSearchConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQuickSightQSearchConfigurationRequest:
     out: UpdateQuickSightQSearchConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "QSearchStatus" in data:
+    if data.get("QSearchStatus") is not None:
         import capo_quicksight.types.q_search_status
 
         out["q_search_status"] = capo_quicksight.types.q_search_status.deserialize_json(

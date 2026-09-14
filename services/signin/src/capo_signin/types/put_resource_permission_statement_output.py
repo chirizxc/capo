@@ -24,7 +24,7 @@ def serialize_json(value: PutResourcePermissionStatementOutput) -> dict:
 
 def deserialize_json(data: dict) -> PutResourcePermissionStatementOutput:
     out: PutResourcePermissionStatementOutput = {}  # type: ignore[typeddict-item]
-    if "statementId" in data:
+    if data.get("statementId") is not None:
         out["statement_id"] = data["statementId"]
     else:
         raise DeserializationError(

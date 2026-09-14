@@ -151,7 +151,7 @@ def serialize_json(value: PutIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutIntegrationRequest:
     out: PutIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_api_gateway.types.integration_type
 
         out["type"] = capo_api_gateway.types.integration_type.deserialize_json(
@@ -159,11 +159,11 @@ def deserialize_json(data: dict) -> PutIntegrationRequest:
         )
     else:
         raise DeserializationError("PutIntegrationRequest.type required")
-    if "httpMethod" in data:
+    if data.get("httpMethod") is not None:
         out["integration_http_method"] = data["httpMethod"]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
-    if "connectionType" in data:
+    if data.get("connectionType") is not None:
         import capo_api_gateway.types.connection_type
 
         out["connection_type"] = (
@@ -171,11 +171,11 @@ def deserialize_json(data: dict) -> PutIntegrationRequest:
                 data["connectionType"]
             )
         )
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
-    if "credentials" in data:
+    if data.get("credentials") is not None:
         out["credentials"] = data["credentials"]
-    if "requestParameters" in data:
+    if data.get("requestParameters") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["request_parameters"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> PutIntegrationRequest:
                 data["requestParameters"]
             )
         )
-    if "requestTemplates" in data:
+    if data.get("requestTemplates") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["request_templates"] = (
@@ -191,11 +191,11 @@ def deserialize_json(data: dict) -> PutIntegrationRequest:
                 data["requestTemplates"]
             )
         )
-    if "passthroughBehavior" in data:
+    if data.get("passthroughBehavior") is not None:
         out["passthrough_behavior"] = data["passthroughBehavior"]
-    if "cacheNamespace" in data:
+    if data.get("cacheNamespace") is not None:
         out["cache_namespace"] = data["cacheNamespace"]
-    if "cacheKeyParameters" in data:
+    if data.get("cacheKeyParameters") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["cache_key_parameters"] = (
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> PutIntegrationRequest:
                 data["cacheKeyParameters"]
             )
         )
-    if "contentHandling" in data:
+    if data.get("contentHandling") is not None:
         import capo_api_gateway.types.content_handling_strategy
 
         out["content_handling"] = (
@@ -211,15 +211,15 @@ def deserialize_json(data: dict) -> PutIntegrationRequest:
                 data["contentHandling"]
             )
         )
-    if "timeoutInMillis" in data:
+    if data.get("timeoutInMillis") is not None:
         out["timeout_in_millis"] = data["timeoutInMillis"]
-    if "tlsConfig" in data:
+    if data.get("tlsConfig") is not None:
         import capo_api_gateway.types.tls_config
 
         out["tls_config"] = capo_api_gateway.types.tls_config.deserialize_json(
             data["tlsConfig"]
         )
-    if "responseTransferMode" in data:
+    if data.get("responseTransferMode") is not None:
         import capo_api_gateway.types.response_transfer_mode
 
         out["response_transfer_mode"] = (
@@ -227,6 +227,6 @@ def deserialize_json(data: dict) -> PutIntegrationRequest:
                 data["responseTransferMode"]
             )
         )
-    if "integrationTarget" in data:
+    if data.get("integrationTarget") is not None:
         out["integration_target"] = data["integrationTarget"]
     return out

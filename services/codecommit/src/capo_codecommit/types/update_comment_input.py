@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: UpdateCommentInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCommentInput:
     out: UpdateCommentInput = {}  # type: ignore[typeddict-item]
-    if "commentId" in data:
+    if data.get("commentId") is not None:
         out["comment_id"] = data["commentId"]
     else:
         raise DeserializationError("UpdateCommentInput.comment_id required")
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     else:
         raise DeserializationError("UpdateCommentInput.content required")

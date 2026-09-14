@@ -40,9 +40,9 @@ def serialize_json(value: RegisterPackageVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterPackageVersionRequest:
     out: RegisterPackageVersionRequest = {}  # type: ignore[typeddict-item]
-    if "OwnerAccount" in data:
+    if data.get("OwnerAccount") is not None:
         out["owner_account"] = data["OwnerAccount"]
-    if "MarkLatest" in data:
+    if data.get("MarkLatest") is not None:
         out["mark_latest"] = data["MarkLatest"]
     else:
         out["mark_latest"] = False

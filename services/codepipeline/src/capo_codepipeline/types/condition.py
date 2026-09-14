@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: Condition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Condition:
     out: Condition = {}  # type: ignore[typeddict-item]
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_codepipeline.types.result
 
         out["result"] = capo_codepipeline.types.result.deserialize_aws_json_1_1(
             data["result"]
         )
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_codepipeline.types.rule_declaration_list
 
         out["rules"] = (

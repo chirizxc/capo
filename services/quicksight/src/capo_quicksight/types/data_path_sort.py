@@ -36,7 +36,7 @@ def serialize_json(value: DataPathSort) -> dict:
 
 def deserialize_json(data: dict) -> DataPathSort:
     out: DataPathSort = {}  # type: ignore[typeddict-item]
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         import capo_quicksight.types.sort_direction
 
         out["direction"] = capo_quicksight.types.sort_direction.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> DataPathSort:
         )
     else:
         raise DeserializationError("DataPathSort.direction required")
-    if "SortPaths" in data:
+    if data.get("SortPaths") is not None:
         import capo_quicksight.types.data_path_value_list
 
         out["sort_paths"] = capo_quicksight.types.data_path_value_list.deserialize_json(

@@ -97,21 +97,21 @@ def serialize_json(value: SegmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> SegmentResponse:
     out: SegmentResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pinpoint.types.segment_dimensions
 
         out["dimensions"] = capo_pinpoint.types.segment_dimensions.deserialize_json(
             data["Dimensions"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ImportDefinition" in data:
+    if data.get("ImportDefinition") is not None:
         import capo_pinpoint.types.segment_import_resource
 
         out["import_definition"] = (
@@ -119,26 +119,26 @@ def deserialize_json(data: dict) -> SegmentResponse:
                 data["ImportDefinition"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SegmentGroups" in data:
+    if data.get("SegmentGroups") is not None:
         import capo_pinpoint.types.segment_group_list
 
         out["segment_groups"] = capo_pinpoint.types.segment_group_list.deserialize_json(
             data["SegmentGroups"]
         )
-    if "SegmentType" in data:
+    if data.get("SegmentType") is not None:
         import capo_pinpoint.types.segment_type
 
         out["segment_type"] = capo_pinpoint.types.segment_type.deserialize_json(
             data["SegmentType"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

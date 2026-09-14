@@ -75,19 +75,19 @@ def serialize_aws_json_1_0(value: TimestreamConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimestreamConfiguration:
     out: TimestreamConfiguration = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("TimestreamConfiguration.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("TimestreamConfiguration.table_name required")
-    if "TimeColumn" in data:
+    if data.get("TimeColumn") is not None:
         out["time_column"] = data["TimeColumn"]
     else:
         raise DeserializationError("TimestreamConfiguration.time_column required")
-    if "DimensionMappings" in data:
+    if data.get("DimensionMappings") is not None:
         import capo_timestream_query.types.dimension_mapping_list
 
         out["dimension_mappings"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> TimestreamConfiguration:
         raise DeserializationError(
             "TimestreamConfiguration.dimension_mappings required"
         )
-    if "MultiMeasureMappings" in data:
+    if data.get("MultiMeasureMappings") is not None:
         import capo_timestream_query.types.multi_measure_mappings
 
         out["multi_measure_mappings"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> TimestreamConfiguration:
                 data["MultiMeasureMappings"]
             )
         )
-    if "MixedMeasureMappings" in data:
+    if data.get("MixedMeasureMappings") is not None:
         import capo_timestream_query.types.mixed_measure_mapping_list
 
         out["mixed_measure_mappings"] = (
@@ -115,6 +115,6 @@ def deserialize_aws_json_1_0(data: dict) -> TimestreamConfiguration:
                 data["MixedMeasureMappings"]
             )
         )
-    if "MeasureNameColumn" in data:
+    if data.get("MeasureNameColumn") is not None:
         out["measure_name_column"] = data["MeasureNameColumn"]
     return out

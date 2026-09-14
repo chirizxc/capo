@@ -27,8 +27,8 @@ def serialize_json(value: OpenHoursRule) -> dict:
 
 def deserialize_json(data: dict) -> OpenHoursRule:
     out: OpenHoursRule = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         out["start_time"] = data["StartTime"]
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         out["end_time"] = data["EndTime"]
     return out

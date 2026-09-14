@@ -37,9 +37,9 @@ def serialize_json(value: DeleteSparqlStatisticsOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSparqlStatisticsOutput:
     out: DeleteSparqlStatisticsOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_neptunedata.types.delete_statistics_value_map
 
         out["payload"] = (

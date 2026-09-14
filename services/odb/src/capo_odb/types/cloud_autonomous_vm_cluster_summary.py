@@ -149,7 +149,15 @@ def serialize_aws_json_1_0(value: CloudAutonomousVmClusterSummary) -> dict:
     if "oci_resource_anchor_name" in value:
         out["ociResourceAnchorName"] = value["oci_resource_anchor_name"]
     if "percent_progress" in value:
-        out["percentProgress"] = value["percent_progress"]
+        out["percentProgress"] = (
+            "NaN"
+            if value["percent_progress"] != value["percent_progress"]
+            else "Infinity"
+            if value["percent_progress"] == float("inf")
+            else "-Infinity"
+            if value["percent_progress"] == float("-inf")
+            else value["percent_progress"]
+        )
     if "display_name" in value:
         out["displayName"] = value["display_name"]
     if "status" in value:
@@ -165,21 +173,50 @@ def serialize_aws_json_1_0(value: CloudAutonomousVmClusterSummary) -> dict:
     if "cloud_exadata_infrastructure_arn" in value:
         out["cloudExadataInfrastructureArn"] = value["cloud_exadata_infrastructure_arn"]
     if "autonomous_data_storage_percentage" in value:
-        out["autonomousDataStoragePercentage"] = value[
-            "autonomous_data_storage_percentage"
-        ]
+        out["autonomousDataStoragePercentage"] = (
+            "NaN"
+            if value["autonomous_data_storage_percentage"]
+            != value["autonomous_data_storage_percentage"]
+            else "Infinity"
+            if value["autonomous_data_storage_percentage"] == float("inf")
+            else "-Infinity"
+            if value["autonomous_data_storage_percentage"] == float("-inf")
+            else value["autonomous_data_storage_percentage"]
+        )
     if "autonomous_data_storage_size_in_t_bs" in value:
-        out["autonomousDataStorageSizeInTBs"] = value[
-            "autonomous_data_storage_size_in_t_bs"
-        ]
+        out["autonomousDataStorageSizeInTBs"] = (
+            "NaN"
+            if value["autonomous_data_storage_size_in_t_bs"]
+            != value["autonomous_data_storage_size_in_t_bs"]
+            else "Infinity"
+            if value["autonomous_data_storage_size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["autonomous_data_storage_size_in_t_bs"] == float("-inf")
+            else value["autonomous_data_storage_size_in_t_bs"]
+        )
     if "available_autonomous_data_storage_size_in_t_bs" in value:
-        out["availableAutonomousDataStorageSizeInTBs"] = value[
-            "available_autonomous_data_storage_size_in_t_bs"
-        ]
+        out["availableAutonomousDataStorageSizeInTBs"] = (
+            "NaN"
+            if value["available_autonomous_data_storage_size_in_t_bs"]
+            != value["available_autonomous_data_storage_size_in_t_bs"]
+            else "Infinity"
+            if value["available_autonomous_data_storage_size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["available_autonomous_data_storage_size_in_t_bs"] == float("-inf")
+            else value["available_autonomous_data_storage_size_in_t_bs"]
+        )
     if "available_container_databases" in value:
         out["availableContainerDatabases"] = value["available_container_databases"]
     if "available_cpus" in value:
-        out["availableCpus"] = value["available_cpus"]
+        out["availableCpus"] = (
+            "NaN"
+            if value["available_cpus"] != value["available_cpus"]
+            else "Infinity"
+            if value["available_cpus"] == float("inf")
+            else "-Infinity"
+            if value["available_cpus"] == float("-inf")
+            else value["available_cpus"]
+        )
     if "compute_model" in value:
         import capo_odb.types.compute_model
 
@@ -191,11 +228,35 @@ def serialize_aws_json_1_0(value: CloudAutonomousVmClusterSummary) -> dict:
     if "cpu_core_count_per_node" in value:
         out["cpuCoreCountPerNode"] = value["cpu_core_count_per_node"]
     if "cpu_percentage" in value:
-        out["cpuPercentage"] = value["cpu_percentage"]
+        out["cpuPercentage"] = (
+            "NaN"
+            if value["cpu_percentage"] != value["cpu_percentage"]
+            else "Infinity"
+            if value["cpu_percentage"] == float("inf")
+            else "-Infinity"
+            if value["cpu_percentage"] == float("-inf")
+            else value["cpu_percentage"]
+        )
     if "data_storage_size_in_g_bs" in value:
-        out["dataStorageSizeInGBs"] = value["data_storage_size_in_g_bs"]
+        out["dataStorageSizeInGBs"] = (
+            "NaN"
+            if value["data_storage_size_in_g_bs"] != value["data_storage_size_in_g_bs"]
+            else "Infinity"
+            if value["data_storage_size_in_g_bs"] == float("inf")
+            else "-Infinity"
+            if value["data_storage_size_in_g_bs"] == float("-inf")
+            else value["data_storage_size_in_g_bs"]
+        )
     if "data_storage_size_in_t_bs" in value:
-        out["dataStorageSizeInTBs"] = value["data_storage_size_in_t_bs"]
+        out["dataStorageSizeInTBs"] = (
+            "NaN"
+            if value["data_storage_size_in_t_bs"] != value["data_storage_size_in_t_bs"]
+            else "Infinity"
+            if value["data_storage_size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["data_storage_size_in_t_bs"] == float("-inf")
+            else value["data_storage_size_in_t_bs"]
+        )
     if "db_node_storage_size_in_g_bs" in value:
         out["dbNodeStorageSizeInGBs"] = value["db_node_storage_size_in_g_bs"]
     if "db_servers" in value:
@@ -209,9 +270,16 @@ def serialize_aws_json_1_0(value: CloudAutonomousVmClusterSummary) -> dict:
     if "domain" in value:
         out["domain"] = value["domain"]
     if "exadata_storage_in_t_bs_lowest_scaled_value" in value:
-        out["exadataStorageInTBsLowestScaledValue"] = value[
-            "exadata_storage_in_t_bs_lowest_scaled_value"
-        ]
+        out["exadataStorageInTBsLowestScaledValue"] = (
+            "NaN"
+            if value["exadata_storage_in_t_bs_lowest_scaled_value"]
+            != value["exadata_storage_in_t_bs_lowest_scaled_value"]
+            else "Infinity"
+            if value["exadata_storage_in_t_bs_lowest_scaled_value"] == float("inf")
+            else "-Infinity"
+            if value["exadata_storage_in_t_bs_lowest_scaled_value"] == float("-inf")
+            else value["exadata_storage_in_t_bs_lowest_scaled_value"]
+        )
     if "hostname" in value:
         out["hostname"] = value["hostname"]
     if "ocid" in value:
@@ -257,11 +325,35 @@ def serialize_aws_json_1_0(value: CloudAutonomousVmClusterSummary) -> dict:
             "provisioned_autonomous_container_databases"
         ]
     if "provisioned_cpus" in value:
-        out["provisionedCpus"] = value["provisioned_cpus"]
+        out["provisionedCpus"] = (
+            "NaN"
+            if value["provisioned_cpus"] != value["provisioned_cpus"]
+            else "Infinity"
+            if value["provisioned_cpus"] == float("inf")
+            else "-Infinity"
+            if value["provisioned_cpus"] == float("-inf")
+            else value["provisioned_cpus"]
+        )
     if "reclaimable_cpus" in value:
-        out["reclaimableCpus"] = value["reclaimable_cpus"]
+        out["reclaimableCpus"] = (
+            "NaN"
+            if value["reclaimable_cpus"] != value["reclaimable_cpus"]
+            else "Infinity"
+            if value["reclaimable_cpus"] == float("inf")
+            else "-Infinity"
+            if value["reclaimable_cpus"] == float("-inf")
+            else value["reclaimable_cpus"]
+        )
     if "reserved_cpus" in value:
-        out["reservedCpus"] = value["reserved_cpus"]
+        out["reservedCpus"] = (
+            "NaN"
+            if value["reserved_cpus"] != value["reserved_cpus"]
+            else "Infinity"
+            if value["reserved_cpus"] == float("inf")
+            else "-Infinity"
+            if value["reserved_cpus"] == float("-inf")
+            else value["reserved_cpus"]
+        )
     if "scan_listener_port_non_tls" in value:
         out["scanListenerPortNonTls"] = value["scan_listener_port_non_tls"]
     if "scan_listener_port_tls" in value:
@@ -269,26 +361,24 @@ def serialize_aws_json_1_0(value: CloudAutonomousVmClusterSummary) -> dict:
     if "shape" in value:
         out["shape"] = value["shape"]
     if "created_at" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["createdAt"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["createdAt"] = capo_odb._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "time_database_ssl_certificate_expires" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
         out["timeDatabaseSslCertificateExpires"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_odb._protocol.serialize.fmt_date_time(
                 value["time_database_ssl_certificate_expires"]
             )
         )
     if "time_ords_certificate_expires" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeOrdsCertificateExpires"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_ords_certificate_expires"]
-            )
+        out["timeOrdsCertificateExpires"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_ords_certificate_expires"]
         )
     if "time_zone" in value:
         out["timeZone"] = value["time_zone"]
@@ -305,99 +395,99 @@ def serialize_aws_json_1_0(value: CloudAutonomousVmClusterSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CloudAutonomousVmClusterSummary:
     out: CloudAutonomousVmClusterSummary = {}  # type: ignore[typeddict-item]
-    if "cloudAutonomousVmClusterId" in data:
+    if data.get("cloudAutonomousVmClusterId") is not None:
         out["cloud_autonomous_vm_cluster_id"] = data["cloudAutonomousVmClusterId"]
     else:
         raise DeserializationError(
             "CloudAutonomousVmClusterSummary.cloud_autonomous_vm_cluster_id required"
         )
-    if "cloudAutonomousVmClusterArn" in data:
+    if data.get("cloudAutonomousVmClusterArn") is not None:
         out["cloud_autonomous_vm_cluster_arn"] = data["cloudAutonomousVmClusterArn"]
-    if "odbNetworkId" in data:
+    if data.get("odbNetworkId") is not None:
         out["odb_network_id"] = data["odbNetworkId"]
-    if "odbNetworkArn" in data:
+    if data.get("odbNetworkArn") is not None:
         out["odb_network_arn"] = data["odbNetworkArn"]
-    if "ociResourceAnchorName" in data:
+    if data.get("ociResourceAnchorName") is not None:
         out["oci_resource_anchor_name"] = data["ociResourceAnchorName"]
-    if "percentProgress" in data:
-        out["percent_progress"] = data["percentProgress"]
-    if "displayName" in data:
+    if data.get("percentProgress") is not None:
+        out["percent_progress"] = float(data["percentProgress"])
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.resource_status
 
         out["status"] = capo_odb.types.resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "cloudExadataInfrastructureId" in data:
+    if data.get("cloudExadataInfrastructureId") is not None:
         out["cloud_exadata_infrastructure_id"] = data["cloudExadataInfrastructureId"]
-    if "cloudExadataInfrastructureArn" in data:
+    if data.get("cloudExadataInfrastructureArn") is not None:
         out["cloud_exadata_infrastructure_arn"] = data["cloudExadataInfrastructureArn"]
-    if "autonomousDataStoragePercentage" in data:
-        out["autonomous_data_storage_percentage"] = data[
-            "autonomousDataStoragePercentage"
-        ]
-    if "autonomousDataStorageSizeInTBs" in data:
-        out["autonomous_data_storage_size_in_t_bs"] = data[
-            "autonomousDataStorageSizeInTBs"
-        ]
-    if "availableAutonomousDataStorageSizeInTBs" in data:
-        out["available_autonomous_data_storage_size_in_t_bs"] = data[
-            "availableAutonomousDataStorageSizeInTBs"
-        ]
-    if "availableContainerDatabases" in data:
+    if data.get("autonomousDataStoragePercentage") is not None:
+        out["autonomous_data_storage_percentage"] = float(
+            data["autonomousDataStoragePercentage"]
+        )
+    if data.get("autonomousDataStorageSizeInTBs") is not None:
+        out["autonomous_data_storage_size_in_t_bs"] = float(
+            data["autonomousDataStorageSizeInTBs"]
+        )
+    if data.get("availableAutonomousDataStorageSizeInTBs") is not None:
+        out["available_autonomous_data_storage_size_in_t_bs"] = float(
+            data["availableAutonomousDataStorageSizeInTBs"]
+        )
+    if data.get("availableContainerDatabases") is not None:
         out["available_container_databases"] = data["availableContainerDatabases"]
-    if "availableCpus" in data:
-        out["available_cpus"] = data["availableCpus"]
-    if "computeModel" in data:
+    if data.get("availableCpus") is not None:
+        out["available_cpus"] = float(data["availableCpus"])
+    if data.get("computeModel") is not None:
         import capo_odb.types.compute_model
 
         out["compute_model"] = capo_odb.types.compute_model.deserialize_aws_json_1_0(
             data["computeModel"]
         )
-    if "cpuCoreCount" in data:
+    if data.get("cpuCoreCount") is not None:
         out["cpu_core_count"] = data["cpuCoreCount"]
-    if "cpuCoreCountPerNode" in data:
+    if data.get("cpuCoreCountPerNode") is not None:
         out["cpu_core_count_per_node"] = data["cpuCoreCountPerNode"]
-    if "cpuPercentage" in data:
-        out["cpu_percentage"] = data["cpuPercentage"]
-    if "dataStorageSizeInGBs" in data:
-        out["data_storage_size_in_g_bs"] = data["dataStorageSizeInGBs"]
-    if "dataStorageSizeInTBs" in data:
-        out["data_storage_size_in_t_bs"] = data["dataStorageSizeInTBs"]
-    if "dbNodeStorageSizeInGBs" in data:
+    if data.get("cpuPercentage") is not None:
+        out["cpu_percentage"] = float(data["cpuPercentage"])
+    if data.get("dataStorageSizeInGBs") is not None:
+        out["data_storage_size_in_g_bs"] = float(data["dataStorageSizeInGBs"])
+    if data.get("dataStorageSizeInTBs") is not None:
+        out["data_storage_size_in_t_bs"] = float(data["dataStorageSizeInTBs"])
+    if data.get("dbNodeStorageSizeInGBs") is not None:
         out["db_node_storage_size_in_g_bs"] = data["dbNodeStorageSizeInGBs"]
-    if "dbServers" in data:
+    if data.get("dbServers") is not None:
         import capo_odb.types.string_list
 
         out["db_servers"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["dbServers"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
-    if "exadataStorageInTBsLowestScaledValue" in data:
-        out["exadata_storage_in_t_bs_lowest_scaled_value"] = data[
-            "exadataStorageInTBsLowestScaledValue"
-        ]
-    if "hostname" in data:
+    if data.get("exadataStorageInTBsLowestScaledValue") is not None:
+        out["exadata_storage_in_t_bs_lowest_scaled_value"] = float(
+            data["exadataStorageInTBsLowestScaledValue"]
+        )
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "ocid" in data:
+    if data.get("ocid") is not None:
         out["ocid"] = data["ocid"]
-    if "ociUrl" in data:
+    if data.get("ociUrl") is not None:
         out["oci_url"] = data["ociUrl"]
-    if "isMtlsEnabledVmCluster" in data:
+    if data.get("isMtlsEnabledVmCluster") is not None:
         out["is_mtls_enabled_vm_cluster"] = data["isMtlsEnabledVmCluster"]
-    if "licenseModel" in data:
+    if data.get("licenseModel") is not None:
         import capo_odb.types.license_model
 
         out["license_model"] = capo_odb.types.license_model.deserialize_aws_json_1_0(
             data["licenseModel"]
         )
-    if "maintenanceWindow" in data:
+    if data.get("maintenanceWindow") is not None:
         import capo_odb.types.maintenance_window
 
         out["maintenance_window"] = (
@@ -405,67 +495,63 @@ def deserialize_aws_json_1_0(data: dict) -> CloudAutonomousVmClusterSummary:
                 data["maintenanceWindow"]
             )
         )
-    if "maxAcdsLowestScaledValue" in data:
+    if data.get("maxAcdsLowestScaledValue") is not None:
         out["max_acds_lowest_scaled_value"] = data["maxAcdsLowestScaledValue"]
-    if "memoryPerOracleComputeUnitInGBs" in data:
+    if data.get("memoryPerOracleComputeUnitInGBs") is not None:
         out["memory_per_oracle_compute_unit_in_g_bs"] = data[
             "memoryPerOracleComputeUnitInGBs"
         ]
-    if "memorySizeInGBs" in data:
+    if data.get("memorySizeInGBs") is not None:
         out["memory_size_in_g_bs"] = data["memorySizeInGBs"]
-    if "nodeCount" in data:
+    if data.get("nodeCount") is not None:
         out["node_count"] = data["nodeCount"]
-    if "nonProvisionableAutonomousContainerDatabases" in data:
+    if data.get("nonProvisionableAutonomousContainerDatabases") is not None:
         out["non_provisionable_autonomous_container_databases"] = data[
             "nonProvisionableAutonomousContainerDatabases"
         ]
-    if "provisionableAutonomousContainerDatabases" in data:
+    if data.get("provisionableAutonomousContainerDatabases") is not None:
         out["provisionable_autonomous_container_databases"] = data[
             "provisionableAutonomousContainerDatabases"
         ]
-    if "provisionedAutonomousContainerDatabases" in data:
+    if data.get("provisionedAutonomousContainerDatabases") is not None:
         out["provisioned_autonomous_container_databases"] = data[
             "provisionedAutonomousContainerDatabases"
         ]
-    if "provisionedCpus" in data:
-        out["provisioned_cpus"] = data["provisionedCpus"]
-    if "reclaimableCpus" in data:
-        out["reclaimable_cpus"] = data["reclaimableCpus"]
-    if "reservedCpus" in data:
-        out["reserved_cpus"] = data["reservedCpus"]
-    if "scanListenerPortNonTls" in data:
+    if data.get("provisionedCpus") is not None:
+        out["provisioned_cpus"] = float(data["provisionedCpus"])
+    if data.get("reclaimableCpus") is not None:
+        out["reclaimable_cpus"] = float(data["reclaimableCpus"])
+    if data.get("reservedCpus") is not None:
+        out["reserved_cpus"] = float(data["reservedCpus"])
+    if data.get("scanListenerPortNonTls") is not None:
         out["scan_listener_port_non_tls"] = data["scanListenerPortNonTls"]
-    if "scanListenerPortTls" in data:
+    if data.get("scanListenerPortTls") is not None:
         out["scan_listener_port_tls"] = data["scanListenerPortTls"]
-    if "shape" in data:
+    if data.get("shape") is not None:
         out["shape"] = data["shape"]
-    if "createdAt" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "timeDatabaseSslCertificateExpires" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeDatabaseSslCertificateExpires") is not None:
+        import datetime
 
-        out["time_database_ssl_certificate_expires"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeDatabaseSslCertificateExpires"]
-            )
+        out["time_database_ssl_certificate_expires"] = datetime.datetime.fromisoformat(
+            data["timeDatabaseSslCertificateExpires"].replace("Z", "+00:00")
         )
-    if "timeOrdsCertificateExpires" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeOrdsCertificateExpires") is not None:
+        import datetime
 
-        out["time_ords_certificate_expires"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeOrdsCertificateExpires"]
-            )
+        out["time_ords_certificate_expires"] = datetime.datetime.fromisoformat(
+            data["timeOrdsCertificateExpires"].replace("Z", "+00:00")
         )
-    if "timeZone" in data:
+    if data.get("timeZone") is not None:
         out["time_zone"] = data["timeZone"]
-    if "totalContainerDatabases" in data:
+    if data.get("totalContainerDatabases") is not None:
         out["total_container_databases"] = data["totalContainerDatabases"]
-    if "iamRoles" in data:
+    if data.get("iamRoles") is not None:
         import capo_odb.types.iam_role_list
 
         out["iam_roles"] = capo_odb.types.iam_role_list.deserialize_aws_json_1_0(

@@ -27,7 +27,7 @@ def serialize_json(value: MultiViewSettings) -> dict:
 
 def deserialize_json(data: dict) -> MultiViewSettings:
     out: MultiViewSettings = {}  # type: ignore[typeddict-item]
-    if "input" in data:
+    if data.get("input") is not None:
         import capo_mediaconvert.types.multi_view_input
 
         out["input"] = capo_mediaconvert.types.multi_view_input.deserialize_json(

@@ -38,16 +38,16 @@ def serialize_json(value: Category) -> dict:
 
 def deserialize_json(data: dict) -> Category:
     out: Category = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("Category.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Category.name required")
-    if "LocalizedName" in data:
+    if data.get("LocalizedName") is not None:
         out["localized_name"] = data["LocalizedName"]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         out["primary"] = data["Primary"]
     return out

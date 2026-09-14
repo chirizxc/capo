@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: TestWindowSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestWindowSummary:
     out: TestWindowSummary = {}  # type: ignore[typeddict-item]
-    if "TestWindowStart" in data:
+    if data.get("TestWindowStart") is not None:
         import capo_forecast.types.timestamp
 
         out["test_window_start"] = (
@@ -53,14 +53,14 @@ def deserialize_aws_json_1_1(data: dict) -> TestWindowSummary:
                 data["TestWindowStart"]
             )
         )
-    if "TestWindowEnd" in data:
+    if data.get("TestWindowEnd") is not None:
         import capo_forecast.types.timestamp
 
         out["test_window_end"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["TestWindowEnd"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

@@ -102,7 +102,15 @@ def serialize_json(value: AppAssessmentSummary) -> dict:
         import capo_resiliencehub.types.cost
 
         out["cost"] = capo_resiliencehub.types.cost.serialize_json(value["cost"])
-    out["resiliencyScore"] = value.get("resiliency_score", 0)
+    out["resiliencyScore"] = (
+        "NaN"
+        if value.get("resiliency_score", 0) != value.get("resiliency_score", 0)
+        else "Infinity"
+        if value.get("resiliency_score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("resiliency_score", 0) == float("-inf")
+        else value.get("resiliency_score", 0)
+    )
     if "version_name" in value:
         out["versionName"] = value["version_name"]
     if "drift_status" in value:
@@ -116,11 +124,11 @@ def serialize_json(value: AppAssessmentSummary) -> dict:
 
 def deserialize_json(data: dict) -> AppAssessmentSummary:
     out: AppAssessmentSummary = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
-    if "assessmentStatus" in data:
+    if data.get("assessmentStatus") is not None:
         import capo_resiliencehub.types.assessment_status
 
         out["assessment_status"] = (
@@ -130,33 +138,33 @@ def deserialize_json(data: dict) -> AppAssessmentSummary:
         )
     else:
         raise DeserializationError("AppAssessmentSummary.assessment_status required")
-    if "invoker" in data:
+    if data.get("invoker") is not None:
         import capo_resiliencehub.types.assessment_invoker
 
         out["invoker"] = capo_resiliencehub.types.assessment_invoker.deserialize_json(
             data["invoker"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_resiliencehub.types.time_stamp
 
         out["start_time"] = capo_resiliencehub.types.time_stamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_resiliencehub.types.time_stamp
 
         out["end_time"] = capo_resiliencehub.types.time_stamp.deserialize_json(
             data["endTime"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "assessmentName" in data:
+    if data.get("assessmentName") is not None:
         out["assessment_name"] = data["assessmentName"]
-    if "assessmentArn" in data:
+    if data.get("assessmentArn") is not None:
         out["assessment_arn"] = data["assessmentArn"]
     else:
         raise DeserializationError("AppAssessmentSummary.assessment_arn required")
-    if "complianceStatus" in data:
+    if data.get("complianceStatus") is not None:
         import capo_resiliencehub.types.compliance_status
 
         out["compliance_status"] = (
@@ -164,17 +172,17 @@ def deserialize_json(data: dict) -> AppAssessmentSummary:
                 data["complianceStatus"]
             )
         )
-    if "cost" in data:
+    if data.get("cost") is not None:
         import capo_resiliencehub.types.cost
 
         out["cost"] = capo_resiliencehub.types.cost.deserialize_json(data["cost"])
-    if "resiliencyScore" in data:
-        out["resiliency_score"] = data["resiliencyScore"]
+    if data.get("resiliencyScore") is not None:
+        out["resiliency_score"] = float(data["resiliencyScore"])
     else:
         out["resiliency_score"] = 0
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
-    if "driftStatus" in data:
+    if data.get("driftStatus") is not None:
         import capo_resiliencehub.types.drift_status
 
         out["drift_status"] = capo_resiliencehub.types.drift_status.deserialize_json(

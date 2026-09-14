@@ -54,19 +54,19 @@ def serialize_json(value: CreateSipMediaApplicationCallRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSipMediaApplicationCallRequest:
     out: CreateSipMediaApplicationCallRequest = {}  # type: ignore[typeddict-item]
-    if "FromPhoneNumber" in data:
+    if data.get("FromPhoneNumber") is not None:
         out["from_phone_number"] = data["FromPhoneNumber"]
     else:
         raise DeserializationError(
             "CreateSipMediaApplicationCallRequest.from_phone_number required"
         )
-    if "ToPhoneNumber" in data:
+    if data.get("ToPhoneNumber") is not None:
         out["to_phone_number"] = data["ToPhoneNumber"]
     else:
         raise DeserializationError(
             "CreateSipMediaApplicationCallRequest.to_phone_number required"
         )
-    if "SipHeaders" in data:
+    if data.get("SipHeaders") is not None:
         import capo_chime_sdk_voice.types.sip_headers_map
 
         out["sip_headers"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> CreateSipMediaApplicationCallRequest:
                 data["SipHeaders"]
             )
         )
-    if "ArgumentsMap" in data:
+    if data.get("ArgumentsMap") is not None:
         import capo_chime_sdk_voice.types.sma_create_call_arguments_map
 
         out["arguments_map"] = (

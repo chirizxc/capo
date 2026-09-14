@@ -55,25 +55,25 @@ def serialize_json(value: ListBacklogTasksRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListBacklogTasksRequest:
     out: ListBacklogTasksRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_devops_agent.types.task_filter
 
         out["filter"] = capo_devops_agent.types.task_filter.deserialize_json(
             data["filter"]
         )
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     else:
         out["limit"] = 100
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sortField" in data:
+    if data.get("sortField") is not None:
         import capo_devops_agent.types.task_sort_field
 
         out["sort_field"] = capo_devops_agent.types.task_sort_field.deserialize_json(
             data["sortField"]
         )
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_devops_agent.types.task_sort_order
 
         out["order"] = capo_devops_agent.types.task_sort_order.deserialize_json(

@@ -36,13 +36,13 @@ def serialize_json(value: TileLayoutStyle) -> dict:
 
 def deserialize_json(data: dict) -> TileLayoutStyle:
     out: TileLayoutStyle = {}  # type: ignore[typeddict-item]
-    if "Gutter" in data:
+    if data.get("Gutter") is not None:
         import capo_quicksight.types.gutter_style
 
         out["gutter"] = capo_quicksight.types.gutter_style.deserialize_json(
             data["Gutter"]
         )
-    if "Margin" in data:
+    if data.get("Margin") is not None:
         import capo_quicksight.types.margin_style
 
         out["margin"] = capo_quicksight.types.margin_style.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> OtherMetadataValueList:
 
     out: OtherMetadataValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.other_metadata_value_list_item.deserialize_aws_json_1_1(
                 item

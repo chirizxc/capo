@@ -29,7 +29,7 @@ def serialize_json(value: ColorsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ColorsConfiguration:
     out: ColorsConfiguration = {}  # type: ignore[typeddict-item]
-    if "CustomColors" in data:
+    if data.get("CustomColors") is not None:
         import capo_quicksight.types.custom_colors_list
 
         out["custom_colors"] = (

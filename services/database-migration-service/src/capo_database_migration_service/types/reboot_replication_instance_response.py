@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: RebootReplicationInstanceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RebootReplicationInstanceResponse:
     out: RebootReplicationInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstance" in data:
+    if data.get("ReplicationInstance") is not None:
         import capo_database_migration_service.types.replication_instance
 
         out["replication_instance"] = (

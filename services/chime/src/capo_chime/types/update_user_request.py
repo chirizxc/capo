@@ -52,17 +52,17 @@ def serialize_json(value: UpdateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserRequest:
     out: UpdateUserRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseType" in data:
+    if data.get("LicenseType") is not None:
         import capo_chime.types.license
 
         out["license_type"] = capo_chime.types.license.deserialize_json(
             data["LicenseType"]
         )
-    if "UserType" in data:
+    if data.get("UserType") is not None:
         import capo_chime.types.user_type
 
         out["user_type"] = capo_chime.types.user_type.deserialize_json(data["UserType"])
-    if "AlexaForBusinessMetadata" in data:
+    if data.get("AlexaForBusinessMetadata") is not None:
         import capo_chime.types.alexa_for_business_metadata
 
         out["alexa_for_business_metadata"] = (

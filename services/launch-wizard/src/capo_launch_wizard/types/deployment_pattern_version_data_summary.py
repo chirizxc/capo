@@ -34,14 +34,14 @@ def serialize_json(value: DeploymentPatternVersionDataSummary) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentPatternVersionDataSummary:
     out: DeploymentPatternVersionDataSummary = {}  # type: ignore[typeddict-item]
-    if "deploymentPatternVersionName" in data:
+    if data.get("deploymentPatternVersionName") is not None:
         out["deployment_pattern_version_name"] = data["deploymentPatternVersionName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "documentationUrl" in data:
+    if data.get("documentationUrl") is not None:
         out["documentation_url"] = data["documentationUrl"]
-    if "workloadName" in data:
+    if data.get("workloadName") is not None:
         out["workload_name"] = data["workloadName"]
-    if "deploymentPatternName" in data:
+    if data.get("deploymentPatternName") is not None:
         out["deployment_pattern_name"] = data["deploymentPatternName"]
     return out

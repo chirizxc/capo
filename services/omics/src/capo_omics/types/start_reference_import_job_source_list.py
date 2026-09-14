@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> StartReferenceImportJobSourceList:
 
     out: StartReferenceImportJobSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_omics.types.start_reference_import_job_source_item.deserialize_json(
                 item

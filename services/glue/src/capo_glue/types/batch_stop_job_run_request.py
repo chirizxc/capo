@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: BatchStopJobRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchStopJobRunRequest:
     out: BatchStopJobRunRequest = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
     else:
         raise DeserializationError("BatchStopJobRunRequest.job_name required")
-    if "JobRunIds" in data:
+    if data.get("JobRunIds") is not None:
         import capo_glue.types.batch_stop_job_run_job_run_id_list
 
         out["job_run_ids"] = (

@@ -109,7 +109,7 @@ def serialize_json(value: UpdateBrokerRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrokerRequest:
     out: UpdateBrokerRequest = {}  # type: ignore[typeddict-item]
-    if "authenticationStrategy" in data:
+    if data.get("authenticationStrategy") is not None:
         import capo_mq.types.authentication_strategy
 
         out["authentication_strategy"] = (
@@ -117,19 +117,19 @@ def deserialize_json(data: dict) -> UpdateBrokerRequest:
                 data["authenticationStrategy"]
             )
         )
-    if "autoMinorVersionUpgrade" in data:
+    if data.get("autoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["autoMinorVersionUpgrade"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_mq.types.configuration_id
 
         out["configuration"] = capo_mq.types.configuration_id.deserialize_json(
             data["configuration"]
         )
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "hostInstanceType" in data:
+    if data.get("hostInstanceType") is not None:
         out["host_instance_type"] = data["hostInstanceType"]
-    if "ldapServerMetadata" in data:
+    if data.get("ldapServerMetadata") is not None:
         import capo_mq.types.ldap_server_metadata_input
 
         out["ldap_server_metadata"] = (
@@ -137,11 +137,11 @@ def deserialize_json(data: dict) -> UpdateBrokerRequest:
                 data["ldapServerMetadata"]
             )
         )
-    if "logs" in data:
+    if data.get("logs") is not None:
         import capo_mq.types.logs
 
         out["logs"] = capo_mq.types.logs.deserialize_json(data["logs"])
-    if "maintenanceWindowStartTime" in data:
+    if data.get("maintenanceWindowStartTime") is not None:
         import capo_mq.types.weekly_start_time
 
         out["maintenance_window_start_time"] = (
@@ -149,13 +149,13 @@ def deserialize_json(data: dict) -> UpdateBrokerRequest:
                 data["maintenanceWindowStartTime"]
             )
         )
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_mq.types.__list_of__string
 
         out["security_groups"] = capo_mq.types.__list_of__string.deserialize_json(
             data["securityGroups"]
         )
-    if "dataReplicationMode" in data:
+    if data.get("dataReplicationMode") is not None:
         import capo_mq.types.data_replication_mode
 
         out["data_replication_mode"] = (

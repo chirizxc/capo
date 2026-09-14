@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FindingsMetricList:
 
     out: FindingsMetricList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguru_security.types.account_findings_metric.deserialize_json(item)
         )

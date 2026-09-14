@@ -27,11 +27,11 @@ def serialize_json(value: IdentityProviderConfig) -> dict:
 
 def deserialize_json(data: dict) -> IdentityProviderConfig:
     out: IdentityProviderConfig = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("IdentityProviderConfig.type required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("IdentityProviderConfig.name required")

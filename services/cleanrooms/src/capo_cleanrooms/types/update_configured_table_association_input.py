@@ -36,8 +36,8 @@ def serialize_json(value: UpdateConfiguredTableAssociationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConfiguredTableAssociationInput:
     out: UpdateConfiguredTableAssociationInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

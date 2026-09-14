@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfTemplateResponse:
 
     out: ListOfTemplateResponse = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint.types.template_response.deserialize_json(item))
     return out

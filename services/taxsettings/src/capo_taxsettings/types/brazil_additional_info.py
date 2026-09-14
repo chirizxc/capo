@@ -30,8 +30,8 @@ def serialize_json(value: BrazilAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> BrazilAdditionalInfo:
     out: BrazilAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "ccmCode" in data:
+    if data.get("ccmCode") is not None:
         out["ccm_code"] = data["ccmCode"]
-    if "legalNatureCode" in data:
+    if data.get("legalNatureCode") is not None:
         out["legal_nature_code"] = data["legalNatureCode"]
     return out

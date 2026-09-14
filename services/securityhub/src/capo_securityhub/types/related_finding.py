@@ -27,8 +27,8 @@ def serialize_json(value: RelatedFinding) -> dict:
 
 def deserialize_json(data: dict) -> RelatedFinding:
     out: RelatedFinding = {}  # type: ignore[typeddict-item]
-    if "ProductArn" in data:
+    if data.get("ProductArn") is not None:
         out["product_arn"] = data["ProductArn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     return out

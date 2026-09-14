@@ -55,17 +55,17 @@ def serialize_json(value: CreateSignalingChannelInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSignalingChannelInput:
     out: CreateSignalingChannelInput = {}  # type: ignore[typeddict-item]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
     else:
         raise DeserializationError("CreateSignalingChannelInput.channel_name required")
-    if "ChannelType" in data:
+    if data.get("ChannelType") is not None:
         import capo_kinesis_video.types.channel_type
 
         out["channel_type"] = capo_kinesis_video.types.channel_type.deserialize_json(
             data["ChannelType"]
         )
-    if "SingleMasterConfiguration" in data:
+    if data.get("SingleMasterConfiguration") is not None:
         import capo_kinesis_video.types.single_master_configuration
 
         out["single_master_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> CreateSignalingChannelInput:
                 data["SingleMasterConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis_video.types.tag_on_create_list
 
         out["tags"] = capo_kinesis_video.types.tag_on_create_list.deserialize_json(

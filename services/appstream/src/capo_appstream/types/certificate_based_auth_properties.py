@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: CertificateBasedAuthProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateBasedAuthProperties:
     out: CertificateBasedAuthProperties = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_appstream.types.certificate_based_auth_status
 
         out["status"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateBasedAuthProperties:
                 data["Status"]
             )
         )
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     return out

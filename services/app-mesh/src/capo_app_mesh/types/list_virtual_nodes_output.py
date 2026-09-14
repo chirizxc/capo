@@ -32,7 +32,7 @@ def serialize_json(value: ListVirtualNodesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListVirtualNodesOutput:
     out: ListVirtualNodesOutput = {}  # type: ignore[typeddict-item]
-    if "virtualNodes" in data:
+    if data.get("virtualNodes") is not None:
         import capo_app_mesh.types.virtual_node_list
 
         out["virtual_nodes"] = capo_app_mesh.types.virtual_node_list.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> ListVirtualNodesOutput:
         )
     else:
         raise DeserializationError("ListVirtualNodesOutput.virtual_nodes required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

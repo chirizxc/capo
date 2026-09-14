@@ -24,7 +24,7 @@ def serialize_json(value: AddNotificationChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> AddNotificationChannelResponse:
     out: AddNotificationChannelResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("AddNotificationChannelResponse.id required")

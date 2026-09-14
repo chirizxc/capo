@@ -36,15 +36,15 @@ def serialize_json(value: MonitorSummary) -> dict:
 
 def deserialize_json(data: dict) -> MonitorSummary:
     out: MonitorSummary = {}  # type: ignore[typeddict-item]
-    if "monitorArn" in data:
+    if data.get("monitorArn") is not None:
         out["monitor_arn"] = data["monitorArn"]
     else:
         raise DeserializationError("MonitorSummary.monitor_arn required")
-    if "monitorName" in data:
+    if data.get("monitorName") is not None:
         out["monitor_name"] = data["monitorName"]
     else:
         raise DeserializationError("MonitorSummary.monitor_name required")
-    if "monitorStatus" in data:
+    if data.get("monitorStatus") is not None:
         import capo_networkflowmonitor.types.monitor_status
 
         out["monitor_status"] = (

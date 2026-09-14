@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ProvisioningArtifactPreferences) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvisioningArtifactPreferences:
     out: ProvisioningArtifactPreferences = {}  # type: ignore[typeddict-item]
-    if "StackSetAccounts" in data:
+    if data.get("StackSetAccounts") is not None:
         import capo_service_catalog.types.stack_set_accounts
 
         out["stack_set_accounts"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisioningArtifactPreferences:
                 data["StackSetAccounts"]
             )
         )
-    if "StackSetRegions" in data:
+    if data.get("StackSetRegions") is not None:
         import capo_service_catalog.types.stack_set_regions
 
         out["stack_set_regions"] = (

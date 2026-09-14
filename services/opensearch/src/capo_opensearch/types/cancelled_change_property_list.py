@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CancelledChangePropertyList:
 
     out: CancelledChangePropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_opensearch.types.cancelled_change_property.deserialize_json(item)
         )

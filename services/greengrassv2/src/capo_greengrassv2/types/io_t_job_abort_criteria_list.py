@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> IoTJobAbortCriteriaList:
 
     out: IoTJobAbortCriteriaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_greengrassv2.types.io_t_job_abort_criteria.deserialize_json(item)
         )

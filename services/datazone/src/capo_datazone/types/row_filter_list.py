@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RowFilterList:
 
     out: RowFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.row_filter.deserialize_json(item))
     return out

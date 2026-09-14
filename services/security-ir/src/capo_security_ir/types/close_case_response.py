@@ -37,13 +37,13 @@ def serialize_json(value: CloseCaseResponse) -> dict:
 
 def deserialize_json(data: dict) -> CloseCaseResponse:
     out: CloseCaseResponse = {}  # type: ignore[typeddict-item]
-    if "caseStatus" in data:
+    if data.get("caseStatus") is not None:
         import capo_security_ir.types.case_status
 
         out["case_status"] = capo_security_ir.types.case_status.deserialize_json(
             data["caseStatus"]
         )
-    if "closedDate" in data:
+    if data.get("closedDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["closed_date"] = capo_security_ir.types._prelude.timestamp.deserialize_json(

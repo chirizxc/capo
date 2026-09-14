@@ -18,6 +18,6 @@ def serialize_json(value: Hash) -> dict:
 
 def deserialize_json(data: dict) -> Hash:
     out: Hash = {}  # type: ignore[typeddict-item]
-    if "sha256" in data:
+    if data.get("sha256") is not None:
         out["sha256"] = data["sha256"]
     return out

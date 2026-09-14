@@ -80,9 +80,10 @@ class Share:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_share_request.CreateShareRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["principal_subscriber"] = principal_subscriber
+        input_: capo_omics.types.create_share_request.CreateShareRequest = {
+            "resource_arn": resource_arn,
+            "principal_subscriber": principal_subscriber,
+        }
         if share_name is not None:
             input_["share_name"] = share_name
 
@@ -91,6 +92,7 @@ class Share:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -123,14 +125,16 @@ class Share:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_share_request.GetShareRequest = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
+        input_: capo_omics.types.get_share_request.GetShareRequest = {
+            "share_id": share_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -167,14 +171,16 @@ class Share:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.accept_share_request.AcceptShareRequest = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
+        input_: capo_omics.types.accept_share_request.AcceptShareRequest = {
+            "share_id": share_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -211,14 +217,16 @@ class Share:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_share_request.DeleteShareRequest = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
+        input_: capo_omics.types.delete_share_request.DeleteShareRequest = {
+            "share_id": share_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -264,8 +272,9 @@ class Share:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_shares_request.ListSharesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_owner"] = resource_owner
+        input_: capo_omics.types.list_shares_request.ListSharesRequest = {
+            "resource_owner": resource_owner
+        }
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -278,6 +287,7 @@ class Share:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -327,9 +337,10 @@ class AsyncShare:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_share_request.CreateShareRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["principal_subscriber"] = principal_subscriber
+        input_: capo_omics.types.create_share_request.CreateShareRequest = {
+            "resource_arn": resource_arn,
+            "principal_subscriber": principal_subscriber,
+        }
         if share_name is not None:
             input_["share_name"] = share_name
 
@@ -338,6 +349,7 @@ class AsyncShare:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -378,14 +390,16 @@ class AsyncShare:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_share_request.GetShareRequest = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
+        input_: capo_omics.types.get_share_request.GetShareRequest = {
+            "share_id": share_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -426,14 +440,16 @@ class AsyncShare:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.accept_share_request.AcceptShareRequest = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
+        input_: capo_omics.types.accept_share_request.AcceptShareRequest = {
+            "share_id": share_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -474,14 +490,16 @@ class AsyncShare:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_share_request.DeleteShareRequest = {}  # type: ignore[typeddict-item]
-        input_["share_id"] = share_id
+        input_: capo_omics.types.delete_share_request.DeleteShareRequest = {
+            "share_id": share_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -528,8 +546,9 @@ class AsyncShare:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_shares_request.ListSharesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_owner"] = resource_owner
+        input_: capo_omics.types.list_shares_request.ListSharesRequest = {
+            "resource_owner": resource_owner
+        }
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -542,4 +561,5 @@ class AsyncShare:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

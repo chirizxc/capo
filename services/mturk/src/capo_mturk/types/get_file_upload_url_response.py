@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetFileUploadURLResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetFileUploadURLResponse:
     out: GetFileUploadURLResponse = {}  # type: ignore[typeddict-item]
-    if "FileUploadURL" in data:
+    if data.get("FileUploadURL") is not None:
         out["file_upload_url"] = data["FileUploadURL"]
     return out

@@ -68,25 +68,25 @@ def serialize_json(value: CreateStreamInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateStreamInput:
     out: CreateStreamInput = {}  # type: ignore[typeddict-item]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
     else:
         raise DeserializationError("CreateStreamInput.stream_name required")
-    if "MediaType" in data:
+    if data.get("MediaType") is not None:
         out["media_type"] = data["MediaType"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "DataRetentionInHours" in data:
+    if data.get("DataRetentionInHours") is not None:
         out["data_retention_in_hours"] = data["DataRetentionInHours"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis_video.types.resource_tags
 
         out["tags"] = capo_kinesis_video.types.resource_tags.deserialize_json(
             data["Tags"]
         )
-    if "StreamStorageConfiguration" in data:
+    if data.get("StreamStorageConfiguration") is not None:
         import capo_kinesis_video.types.stream_storage_configuration
 
         out["stream_storage_configuration"] = (

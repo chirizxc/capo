@@ -46,17 +46,17 @@ def serialize_json(value: GetNotificationEventResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetNotificationEventResponse:
     out: GetNotificationEventResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetNotificationEventResponse.arn required")
-    if "notificationConfigurationArn" in data:
+    if data.get("notificationConfigurationArn") is not None:
         out["notification_configuration_arn"] = data["notificationConfigurationArn"]
     else:
         raise DeserializationError(
             "GetNotificationEventResponse.notification_configuration_arn required"
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_notifications.types.creation_time
 
         out["creation_time"] = capo_notifications.types.creation_time.deserialize_json(
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> GetNotificationEventResponse:
         raise DeserializationError(
             "GetNotificationEventResponse.creation_time required"
         )
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_notifications.types.notification_event_schema
 
         out["content"] = (

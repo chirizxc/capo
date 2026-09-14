@@ -19,14 +19,22 @@ class ProgressiveConfig(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ProgressiveConfig) -> dict:
     out: dict = {}
-    out["bandwidthAllocation"] = value["bandwidth_allocation"]
+    out["bandwidthAllocation"] = (
+        "NaN"
+        if value["bandwidth_allocation"] != value["bandwidth_allocation"]
+        else "Infinity"
+        if value["bandwidth_allocation"] == float("inf")
+        else "-Infinity"
+        if value["bandwidth_allocation"] == float("-inf")
+        else value["bandwidth_allocation"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> ProgressiveConfig:
     out: ProgressiveConfig = {}  # type: ignore[typeddict-item]
-    if "bandwidthAllocation" in data:
-        out["bandwidth_allocation"] = data["bandwidthAllocation"]
+    if data.get("bandwidthAllocation") is not None:
+        out["bandwidth_allocation"] = float(data["bandwidthAllocation"])
     else:
         raise DeserializationError("ProgressiveConfig.bandwidth_allocation required")
     return out

@@ -48,18 +48,18 @@ def serialize_json(value: WarmPoolConfig) -> dict:
 
 def deserialize_json(data: dict) -> WarmPoolConfig:
     out: WarmPoolConfig = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "minSize" in data:
+    if data.get("minSize") is not None:
         out["min_size"] = data["minSize"]
-    if "maxGroupPreparedCapacity" in data:
+    if data.get("maxGroupPreparedCapacity") is not None:
         out["max_group_prepared_capacity"] = data["maxGroupPreparedCapacity"]
-    if "poolState" in data:
+    if data.get("poolState") is not None:
         import capo_eks.types.warm_pool_state
 
         out["pool_state"] = capo_eks.types.warm_pool_state.deserialize_json(
             data["poolState"]
         )
-    if "reuseOnScaleIn" in data:
+    if data.get("reuseOnScaleIn") is not None:
         out["reuse_on_scale_in"] = data["reuseOnScaleIn"]
     return out

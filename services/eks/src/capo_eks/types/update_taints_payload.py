@@ -35,13 +35,13 @@ def serialize_json(value: UpdateTaintsPayload) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTaintsPayload:
     out: UpdateTaintsPayload = {}  # type: ignore[typeddict-item]
-    if "addOrUpdateTaints" in data:
+    if data.get("addOrUpdateTaints") is not None:
         import capo_eks.types.taints_list
 
         out["add_or_update_taints"] = capo_eks.types.taints_list.deserialize_json(
             data["addOrUpdateTaints"]
         )
-    if "removeTaints" in data:
+    if data.get("removeTaints") is not None:
         import capo_eks.types.taints_list
 
         out["remove_taints"] = capo_eks.types.taints_list.deserialize_json(

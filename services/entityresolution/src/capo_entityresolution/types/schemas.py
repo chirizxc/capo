@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Schemas:
 
     out: Schemas = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_entityresolution.types.schema_list.deserialize_json(item))
     return out

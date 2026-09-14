@@ -38,16 +38,16 @@ def serialize_aws_json_1_0(value: Ec2InstanceSavingsPlansConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Ec2InstanceSavingsPlansConfiguration:
     out: Ec2InstanceSavingsPlansConfiguration = {}  # type: ignore[typeddict-item]
-    if "accountScope" in data:
+    if data.get("accountScope") is not None:
         out["account_scope"] = data["accountScope"]
-    if "term" in data:
+    if data.get("term") is not None:
         out["term"] = data["term"]
-    if "paymentOption" in data:
+    if data.get("paymentOption") is not None:
         out["payment_option"] = data["paymentOption"]
-    if "hourlyCommitment" in data:
+    if data.get("hourlyCommitment") is not None:
         out["hourly_commitment"] = data["hourlyCommitment"]
-    if "instanceFamily" in data:
+    if data.get("instanceFamily") is not None:
         out["instance_family"] = data["instanceFamily"]
-    if "savingsPlansRegion" in data:
+    if data.get("savingsPlansRegion") is not None:
         out["savings_plans_region"] = data["savingsPlansRegion"]
     return out

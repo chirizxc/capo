@@ -40,11 +40,11 @@ def serialize_json(value: FairsharePolicy) -> dict:
 
 def deserialize_json(data: dict) -> FairsharePolicy:
     out: FairsharePolicy = {}  # type: ignore[typeddict-item]
-    if "shareDecaySeconds" in data:
+    if data.get("shareDecaySeconds") is not None:
         out["share_decay_seconds"] = data["shareDecaySeconds"]
-    if "computeReservation" in data:
+    if data.get("computeReservation") is not None:
         out["compute_reservation"] = data["computeReservation"]
-    if "shareDistribution" in data:
+    if data.get("shareDistribution") is not None:
         import capo_batch.types.share_attributes_list
 
         out["share_distribution"] = (

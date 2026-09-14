@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: StartMaterializedViewRefreshTaskRunResponse) -
 
 def deserialize_aws_json_1_1(data: dict) -> StartMaterializedViewRefreshTaskRunResponse:
     out: StartMaterializedViewRefreshTaskRunResponse = {}  # type: ignore[typeddict-item]
-    if "MaterializedViewRefreshTaskRunId" in data:
+    if data.get("MaterializedViewRefreshTaskRunId") is not None:
         out["materialized_view_refresh_task_run_id"] = data[
             "MaterializedViewRefreshTaskRunId"
         ]

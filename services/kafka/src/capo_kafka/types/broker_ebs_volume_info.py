@@ -41,9 +41,9 @@ def serialize_json(value: BrokerEBSVolumeInfo) -> dict:
 
 def deserialize_json(data: dict) -> BrokerEBSVolumeInfo:
     out: BrokerEBSVolumeInfo = {}  # type: ignore[typeddict-item]
-    if "kafkaBrokerNodeId" in data:
+    if data.get("kafkaBrokerNodeId") is not None:
         out["kafka_broker_node_id"] = data["kafkaBrokerNodeId"]
-    if "provisionedThroughput" in data:
+    if data.get("provisionedThroughput") is not None:
         import capo_kafka.types.provisioned_throughput
 
         out["provisioned_throughput"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> BrokerEBSVolumeInfo:
                 data["provisionedThroughput"]
             )
         )
-    if "volumeSizeGB" in data:
+    if data.get("volumeSizeGB") is not None:
         out["volume_size_gb"] = data["volumeSizeGB"]
     return out

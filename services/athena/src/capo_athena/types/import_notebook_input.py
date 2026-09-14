@@ -51,17 +51,17 @@ def serialize_aws_json_1_1(value: ImportNotebookInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportNotebookInput:
     out: ImportNotebookInput = {}  # type: ignore[typeddict-item]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     else:
         raise DeserializationError("ImportNotebookInput.work_group required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ImportNotebookInput.name required")
-    if "Payload" in data:
+    if data.get("Payload") is not None:
         out["payload"] = data["Payload"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_athena.types.notebook_type
 
         out["type"] = capo_athena.types.notebook_type.deserialize_aws_json_1_1(
@@ -69,8 +69,8 @@ def deserialize_aws_json_1_1(data: dict) -> ImportNotebookInput:
         )
     else:
         raise DeserializationError("ImportNotebookInput.type required")
-    if "NotebookS3LocationUri" in data:
+    if data.get("NotebookS3LocationUri") is not None:
         out["notebook_s3_location_uri"] = data["NotebookS3LocationUri"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

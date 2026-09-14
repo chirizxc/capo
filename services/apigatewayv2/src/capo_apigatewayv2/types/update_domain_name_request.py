@@ -56,7 +56,7 @@ def serialize_json(value: UpdateDomainNameRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDomainNameRequest:
     out: UpdateDomainNameRequest = {}  # type: ignore[typeddict-item]
-    if "domainNameConfigurations" in data:
+    if data.get("domainNameConfigurations") is not None:
         import capo_apigatewayv2.types.domain_name_configurations
 
         out["domain_name_configurations"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UpdateDomainNameRequest:
                 data["domainNameConfigurations"]
             )
         )
-    if "mutualTlsAuthentication" in data:
+    if data.get("mutualTlsAuthentication") is not None:
         import capo_apigatewayv2.types.mutual_tls_authentication_input
 
         out["mutual_tls_authentication"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> UpdateDomainNameRequest:
                 data["mutualTlsAuthentication"]
             )
         )
-    if "routingMode" in data:
+    if data.get("routingMode") is not None:
         import capo_apigatewayv2.types.routing_mode
 
         out["routing_mode"] = capo_apigatewayv2.types.routing_mode.deserialize_json(

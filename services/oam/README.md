@@ -13,9 +13,9 @@ from capo_oam import AsyncOAMClient
 
 
 async def main():
-    async with AsyncOAMClient() as s3:
+    async with AsyncOAMClient() as oam:
         # Example: call the create_link operation
-        response = await s3.create_link()
+        response = await oam.create_link()
         print(response["arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_oam import AsyncOAMClient
 
 
 async def main():
-    async with AsyncOAMClient() as s3:
+    async with AsyncOAMClient() as oam:
         # Example: paginate over list_attached_links
-        async for item in s3.iter_list_attached_links():
+        async for item in oam.iter_list_attached_links():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_oam.error import ConflictException
 
 
 async def main():
-    async with AsyncOAMClient() as s3:
+    async with AsyncOAMClient() as oam:
         try:
-            await s3.create_link()
+            await oam.create_link()
         except ConflictException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_oam import AsyncOAMClient
 
 
 async def main():
-    async with AsyncOAMClient() as s3:
+    async with AsyncOAMClient() as oam:
         # Default: 3 attempts for every operation
-        response = await s3.create_link()
+        response = await oam.create_link()
 
         # Override per operation
-        response = await s3.create_link(config_overrides={"retry_max_attempts": 5})
+        response = await oam.create_link(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_link(config_overrides={"retry_max_attempts": 1})
+        response = await oam.create_link(config_overrides={"retry_max_attempts": 1})
 ```

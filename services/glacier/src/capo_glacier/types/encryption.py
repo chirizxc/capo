@@ -36,14 +36,14 @@ def serialize_json(value: Encryption) -> dict:
 
 def deserialize_json(data: dict) -> Encryption:
     out: Encryption = {}  # type: ignore[typeddict-item]
-    if "EncryptionType" in data:
+    if data.get("EncryptionType") is not None:
         import capo_glacier.types.encryption_type
 
         out["encryption_type"] = capo_glacier.types.encryption_type.deserialize_json(
             data["EncryptionType"]
         )
-    if "KMSKeyId" in data:
+    if data.get("KMSKeyId") is not None:
         out["kms_key_id"] = data["KMSKeyId"]
-    if "KMSContext" in data:
+    if data.get("KMSContext") is not None:
         out["kms_context"] = data["KMSContext"]
     return out

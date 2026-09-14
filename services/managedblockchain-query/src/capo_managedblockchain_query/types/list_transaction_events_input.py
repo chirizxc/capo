@@ -47,16 +47,16 @@ def serialize_json(value: ListTransactionEventsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListTransactionEventsInput:
     out: ListTransactionEventsInput = {}  # type: ignore[typeddict-item]
-    if "transactionHash" in data:
+    if data.get("transactionHash") is not None:
         out["transaction_hash"] = data["transactionHash"]
-    if "transactionId" in data:
+    if data.get("transactionId") is not None:
         out["transaction_id"] = data["transactionId"]
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
     else:
         raise DeserializationError("ListTransactionEventsInput.network required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

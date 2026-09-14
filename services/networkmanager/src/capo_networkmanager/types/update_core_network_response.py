@@ -27,7 +27,7 @@ def serialize_json(value: UpdateCoreNetworkResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCoreNetworkResponse:
     out: UpdateCoreNetworkResponse = {}  # type: ignore[typeddict-item]
-    if "CoreNetwork" in data:
+    if data.get("CoreNetwork") is not None:
         import capo_networkmanager.types.core_network
 
         out["core_network"] = capo_networkmanager.types.core_network.deserialize_json(

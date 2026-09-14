@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: PartitionField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartitionField:
     out: PartitionField = {}  # type: ignore[typeddict-item]
-    if "SourceName" in data:
+    if data.get("SourceName") is not None:
         out["source_name"] = data["SourceName"]
     else:
         raise DeserializationError("PartitionField.source_name required")

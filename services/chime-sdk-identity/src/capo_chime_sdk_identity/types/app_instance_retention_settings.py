@@ -31,7 +31,7 @@ def serialize_json(value: AppInstanceRetentionSettings) -> dict:
 
 def deserialize_json(data: dict) -> AppInstanceRetentionSettings:
     out: AppInstanceRetentionSettings = {}  # type: ignore[typeddict-item]
-    if "ChannelRetentionSettings" in data:
+    if data.get("ChannelRetentionSettings") is not None:
         import capo_chime_sdk_identity.types.channel_retention_settings
 
         out["channel_retention_settings"] = (

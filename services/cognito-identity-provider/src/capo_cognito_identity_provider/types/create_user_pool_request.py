@@ -326,11 +326,11 @@ def serialize_aws_json_1_1(value: CreateUserPoolRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
     out: CreateUserPoolRequest = {}  # type: ignore[typeddict-item]
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
     else:
         raise DeserializationError("CreateUserPoolRequest.pool_name required")
-    if "Policies" in data:
+    if data.get("Policies") is not None:
         import capo_cognito_identity_provider.types.user_pool_policy_type
 
         out["policies"] = (
@@ -338,7 +338,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["Policies"]
             )
         )
-    if "DeletionProtection" in data:
+    if data.get("DeletionProtection") is not None:
         import capo_cognito_identity_provider.types.deletion_protection_type
 
         out["deletion_protection"] = (
@@ -346,7 +346,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["DeletionProtection"]
             )
         )
-    if "LambdaConfig" in data:
+    if data.get("LambdaConfig") is not None:
         import capo_cognito_identity_provider.types.lambda_config_type
 
         out["lambda_config"] = (
@@ -354,7 +354,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["LambdaConfig"]
             )
         )
-    if "AutoVerifiedAttributes" in data:
+    if data.get("AutoVerifiedAttributes") is not None:
         import capo_cognito_identity_provider.types.verified_attributes_list_type
 
         out["auto_verified_attributes"] = (
@@ -362,7 +362,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["AutoVerifiedAttributes"]
             )
         )
-    if "AliasAttributes" in data:
+    if data.get("AliasAttributes") is not None:
         import capo_cognito_identity_provider.types.alias_attributes_list_type
 
         out["alias_attributes"] = (
@@ -370,7 +370,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["AliasAttributes"]
             )
         )
-    if "UsernameAttributes" in data:
+    if data.get("UsernameAttributes") is not None:
         import capo_cognito_identity_provider.types.username_attributes_list_type
 
         out["username_attributes"] = (
@@ -378,13 +378,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["UsernameAttributes"]
             )
         )
-    if "SmsVerificationMessage" in data:
+    if data.get("SmsVerificationMessage") is not None:
         out["sms_verification_message"] = data["SmsVerificationMessage"]
-    if "EmailVerificationMessage" in data:
+    if data.get("EmailVerificationMessage") is not None:
         out["email_verification_message"] = data["EmailVerificationMessage"]
-    if "EmailVerificationSubject" in data:
+    if data.get("EmailVerificationSubject") is not None:
         out["email_verification_subject"] = data["EmailVerificationSubject"]
-    if "VerificationMessageTemplate" in data:
+    if data.get("VerificationMessageTemplate") is not None:
         import capo_cognito_identity_provider.types.verification_message_template_type
 
         out["verification_message_template"] = (
@@ -392,9 +392,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["VerificationMessageTemplate"]
             )
         )
-    if "SmsAuthenticationMessage" in data:
+    if data.get("SmsAuthenticationMessage") is not None:
         out["sms_authentication_message"] = data["SmsAuthenticationMessage"]
-    if "MfaConfiguration" in data:
+    if data.get("MfaConfiguration") is not None:
         import capo_cognito_identity_provider.types.user_pool_mfa_type
 
         out["mfa_configuration"] = (
@@ -402,7 +402,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["MfaConfiguration"]
             )
         )
-    if "UserAttributeUpdateSettings" in data:
+    if data.get("UserAttributeUpdateSettings") is not None:
         import capo_cognito_identity_provider.types.user_attribute_update_settings_type
 
         out["user_attribute_update_settings"] = (
@@ -410,7 +410,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["UserAttributeUpdateSettings"]
             )
         )
-    if "DeviceConfiguration" in data:
+    if data.get("DeviceConfiguration") is not None:
         import capo_cognito_identity_provider.types.device_configuration_type
 
         out["device_configuration"] = (
@@ -418,7 +418,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["DeviceConfiguration"]
             )
         )
-    if "EmailConfiguration" in data:
+    if data.get("EmailConfiguration") is not None:
         import capo_cognito_identity_provider.types.email_configuration_type
 
         out["email_configuration"] = (
@@ -426,7 +426,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["EmailConfiguration"]
             )
         )
-    if "SmsConfiguration" in data:
+    if data.get("SmsConfiguration") is not None:
         import capo_cognito_identity_provider.types.sms_configuration_type
 
         out["sms_configuration"] = (
@@ -434,7 +434,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["SmsConfiguration"]
             )
         )
-    if "UserPoolTags" in data:
+    if data.get("UserPoolTags") is not None:
         import capo_cognito_identity_provider.types.user_pool_tags_type
 
         out["user_pool_tags"] = (
@@ -442,7 +442,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["UserPoolTags"]
             )
         )
-    if "AdminCreateUserConfig" in data:
+    if data.get("AdminCreateUserConfig") is not None:
         import capo_cognito_identity_provider.types.admin_create_user_config_type
 
         out["admin_create_user_config"] = (
@@ -450,7 +450,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["AdminCreateUserConfig"]
             )
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_cognito_identity_provider.types.schema_attributes_list_type
 
         out["schema"] = (
@@ -458,7 +458,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["Schema"]
             )
         )
-    if "UserPoolAddOns" in data:
+    if data.get("UserPoolAddOns") is not None:
         import capo_cognito_identity_provider.types.user_pool_add_ons_type
 
         out["user_pool_add_ons"] = (
@@ -466,7 +466,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["UserPoolAddOns"]
             )
         )
-    if "UsernameConfiguration" in data:
+    if data.get("UsernameConfiguration") is not None:
         import capo_cognito_identity_provider.types.username_configuration_type
 
         out["username_configuration"] = (
@@ -474,7 +474,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["UsernameConfiguration"]
             )
         )
-    if "AccountRecoverySetting" in data:
+    if data.get("AccountRecoverySetting") is not None:
         import capo_cognito_identity_provider.types.account_recovery_setting_type
 
         out["account_recovery_setting"] = (
@@ -482,7 +482,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["AccountRecoverySetting"]
             )
         )
-    if "UserPoolTier" in data:
+    if data.get("UserPoolTier") is not None:
         import capo_cognito_identity_provider.types.user_pool_tier_type
 
         out["user_pool_tier"] = (
@@ -490,7 +490,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["UserPoolTier"]
             )
         )
-    if "KeyConfiguration" in data:
+    if data.get("KeyConfiguration") is not None:
         import capo_cognito_identity_provider.types.key_configuration_type
 
         out["key_configuration"] = (
@@ -498,7 +498,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserPoolRequest:
                 data["KeyConfiguration"]
             )
         )
-    if "IssuerConfiguration" in data:
+    if data.get("IssuerConfiguration") is not None:
         import capo_cognito_identity_provider.types.issuer_configuration_type
 
         out["issuer_configuration"] = (

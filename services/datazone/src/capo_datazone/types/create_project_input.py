@@ -97,29 +97,29 @@ def serialize_json(value: CreateProjectInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateProjectInput:
     out: CreateProjectInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateProjectInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_datazone.types.tags
 
         out["resource_tags"] = capo_datazone.types.tags.deserialize_json(
             data["resourceTags"]
         )
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "domainUnitId" in data:
+    if data.get("domainUnitId") is not None:
         out["domain_unit_id"] = data["domainUnitId"]
-    if "projectProfileId" in data:
+    if data.get("projectProfileId") is not None:
         out["project_profile_id"] = data["projectProfileId"]
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.environment_configuration_user_parameters_list
 
         out["user_parameters"] = (
@@ -127,11 +127,11 @@ def deserialize_json(data: dict) -> CreateProjectInput:
                 data["userParameters"]
             )
         )
-    if "projectCategory" in data:
+    if data.get("projectCategory") is not None:
         out["project_category"] = data["projectCategory"]
-    if "projectExecutionRole" in data:
+    if data.get("projectExecutionRole") is not None:
         out["project_execution_role"] = data["projectExecutionRole"]
-    if "membershipAssignments" in data:
+    if data.get("membershipAssignments") is not None:
         import capo_datazone.types.project_membership_assignments
 
         out["membership_assignments"] = (

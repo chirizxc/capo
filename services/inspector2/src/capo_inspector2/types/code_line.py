@@ -22,11 +22,11 @@ def serialize_json(value: CodeLine) -> dict:
 
 def deserialize_json(data: dict) -> CodeLine:
     out: CodeLine = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     else:
         raise DeserializationError("CodeLine.content required")
-    if "lineNumber" in data:
+    if data.get("lineNumber") is not None:
         out["line_number"] = data["lineNumber"]
     else:
         raise DeserializationError("CodeLine.line_number required")

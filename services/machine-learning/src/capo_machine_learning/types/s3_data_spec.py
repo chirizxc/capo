@@ -40,14 +40,14 @@ def serialize_aws_json_1_1(value: S3DataSpec) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DataSpec:
     out: S3DataSpec = {}  # type: ignore[typeddict-item]
-    if "DataLocationS3" in data:
+    if data.get("DataLocationS3") is not None:
         out["data_location_s3"] = data["DataLocationS3"]
     else:
         raise DeserializationError("S3DataSpec.data_location_s3 required")
-    if "DataRearrangement" in data:
+    if data.get("DataRearrangement") is not None:
         out["data_rearrangement"] = data["DataRearrangement"]
-    if "DataSchema" in data:
+    if data.get("DataSchema") is not None:
         out["data_schema"] = data["DataSchema"]
-    if "DataSchemaLocationS3" in data:
+    if data.get("DataSchemaLocationS3") is not None:
         out["data_schema_location_s3"] = data["DataSchemaLocationS3"]
     return out

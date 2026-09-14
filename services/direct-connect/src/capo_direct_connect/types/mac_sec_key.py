@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: MacSecKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MacSecKey:
     out: MacSecKey = {}  # type: ignore[typeddict-item]
-    if "secretARN" in data:
+    if data.get("secretARN") is not None:
         out["secret_arn"] = data["secretARN"]
-    if "ckn" in data:
+    if data.get("ckn") is not None:
         out["ckn"] = data["ckn"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "startOn" in data:
+    if data.get("startOn") is not None:
         out["start_on"] = data["startOn"]
     return out

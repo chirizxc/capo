@@ -41,11 +41,11 @@ def serialize_json(value: MessageData) -> dict:
 
 
 def deserialize_json(data: dict) -> MessageData:
-    if "text" in data:
+    if data.get("text") is not None:
         import capo_qconnect.types.text_message
 
         return {"text": capo_qconnect.types.text_message.deserialize_json(data["text"])}
-    elif "toolUseResult" in data:
+    elif data.get("toolUseResult") is not None:
         import capo_qconnect.types.tool_use_result_data
 
         return {

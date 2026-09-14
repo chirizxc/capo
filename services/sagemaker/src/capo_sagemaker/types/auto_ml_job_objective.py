@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AutoMLJobObjective) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLJobObjective:
     out: AutoMLJobObjective = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         import capo_sagemaker.types.auto_ml_metric_enum
 
         out["metric_name"] = (

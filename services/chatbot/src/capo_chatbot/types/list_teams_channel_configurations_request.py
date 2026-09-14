@@ -33,10 +33,10 @@ def serialize_json(value: ListTeamsChannelConfigurationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListTeamsChannelConfigurationsRequest:
     out: ListTeamsChannelConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "TeamId" in data:
+    if data.get("TeamId") is not None:
         out["team_id"] = data["TeamId"]
     return out

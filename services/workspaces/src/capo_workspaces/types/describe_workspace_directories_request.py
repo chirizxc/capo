@@ -67,7 +67,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceDirectoriesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceDirectoriesRequest:
     out: DescribeWorkspaceDirectoriesRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryIds" in data:
+    if data.get("DirectoryIds") is not None:
         import capo_workspaces.types.directory_id_list
 
         out["directory_ids"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceDirectoriesRequest:
                 data["DirectoryIds"]
             )
         )
-    if "WorkspaceDirectoryNames" in data:
+    if data.get("WorkspaceDirectoryNames") is not None:
         import capo_workspaces.types.workspace_directory_name_list
 
         out["workspace_directory_names"] = (
@@ -83,11 +83,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceDirectoriesRequest:
                 data["WorkspaceDirectoryNames"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_workspaces.types.describe_workspace_directories_filter_list
 
         out["filters"] = (

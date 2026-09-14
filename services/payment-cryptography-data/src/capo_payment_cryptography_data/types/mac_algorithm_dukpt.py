@@ -49,11 +49,11 @@ def serialize_json(value: MacAlgorithmDukpt) -> dict:
 
 def deserialize_json(data: dict) -> MacAlgorithmDukpt:
     out: MacAlgorithmDukpt = {}  # type: ignore[typeddict-item]
-    if "KeySerialNumber" in data:
+    if data.get("KeySerialNumber") is not None:
         out["key_serial_number"] = data["KeySerialNumber"]
     else:
         raise DeserializationError("MacAlgorithmDukpt.key_serial_number required")
-    if "DukptKeyVariant" in data:
+    if data.get("DukptKeyVariant") is not None:
         import capo_payment_cryptography_data.types.dukpt_key_variant
 
         out["dukpt_key_variant"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> MacAlgorithmDukpt:
         )
     else:
         raise DeserializationError("MacAlgorithmDukpt.dukpt_key_variant required")
-    if "DukptDerivationType" in data:
+    if data.get("DukptDerivationType") is not None:
         import capo_payment_cryptography_data.types.dukpt_derivation_type
 
         out["dukpt_derivation_type"] = (

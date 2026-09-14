@@ -35,7 +35,7 @@ def serialize_json(value: GrantFlowEntitlementsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GrantFlowEntitlementsResponse:
     out: GrantFlowEntitlementsResponse = {}  # type: ignore[typeddict-item]
-    if "entitlements" in data:
+    if data.get("entitlements") is not None:
         import capo_mediaconnect.types.__list_of_entitlement
 
         out["entitlements"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> GrantFlowEntitlementsResponse:
                 data["entitlements"]
             )
         )
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
     return out

@@ -29,7 +29,7 @@ def serialize_json(value: LifecycleConfigurationDescription) -> dict:
 
 def deserialize_json(data: dict) -> LifecycleConfigurationDescription:
     out: LifecycleConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "LifecyclePolicies" in data:
+    if data.get("LifecyclePolicies") is not None:
         import capo_efs.types.lifecycle_policies
 
         out["lifecycle_policies"] = capo_efs.types.lifecycle_policies.deserialize_json(

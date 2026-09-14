@@ -41,14 +41,14 @@ def serialize_json(value: DnsRequestAction) -> dict:
 
 def deserialize_json(data: dict) -> DnsRequestAction:
     out: DnsRequestAction = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
-    if "blocked" in data:
+    if data.get("blocked") is not None:
         out["blocked"] = data["blocked"]
-    if "domainWithSuffix" in data:
+    if data.get("domainWithSuffix") is not None:
         out["domain_with_suffix"] = data["domainWithSuffix"]
-    if "vpcOwnerAccountId" in data:
+    if data.get("vpcOwnerAccountId") is not None:
         out["vpc_owner_account_id"] = data["vpcOwnerAccountId"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ScanThreatNames:
 
     out: ScanThreatNames = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.scan_threat_name.deserialize_json(item))
     return out

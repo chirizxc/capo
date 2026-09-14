@@ -49,15 +49,15 @@ def serialize_json(value: StartTagSyncTaskInput) -> dict:
 
 def deserialize_json(data: dict) -> StartTagSyncTaskInput:
     out: StartTagSyncTaskInput = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
     else:
         raise DeserializationError("StartTagSyncTaskInput.group required")
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
-    if "TagValue" in data:
+    if data.get("TagValue") is not None:
         out["tag_value"] = data["TagValue"]
-    if "ResourceQuery" in data:
+    if data.get("ResourceQuery") is not None:
         import capo_resource_groups.types.resource_query
 
         out["resource_query"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> StartTagSyncTaskInput:
                 data["ResourceQuery"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("StartTagSyncTaskInput.role_arn required")

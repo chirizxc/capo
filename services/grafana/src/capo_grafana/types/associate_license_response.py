@@ -28,7 +28,7 @@ def serialize_json(value: AssociateLicenseResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateLicenseResponse:
     out: AssociateLicenseResponse = {}  # type: ignore[typeddict-item]
-    if "workspace" in data:
+    if data.get("workspace") is not None:
         import capo_grafana.types.workspace_description
 
         out["workspace"] = capo_grafana.types.workspace_description.deserialize_json(

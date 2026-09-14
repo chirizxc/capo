@@ -65,9 +65,9 @@ def serialize_aws_json_1_0(value: ExpectedCharge) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExpectedCharge:
     out: ExpectedCharge = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "time" in data:
+    if data.get("time") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["time"] = (
@@ -75,11 +75,11 @@ def deserialize_aws_json_1_0(data: dict) -> ExpectedCharge:
                 data["time"]
             )
         )
-    if "amount" in data:
+    if data.get("amount") is not None:
         out["amount"] = data["amount"]
-    if "amountAfterTax" in data:
+    if data.get("amountAfterTax") is not None:
         out["amount_after_tax"] = data["amountAfterTax"]
-    if "timing" in data:
+    if data.get("timing") is not None:
         import capo_marketplace_agreement.types.timing
 
         out["timing"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExpectedCharge:
                 data["timing"]
             )
         )
-    if "estimatedTaxes" in data:
+    if data.get("estimatedTaxes") is not None:
         import capo_marketplace_agreement.types.estimated_taxes
 
         out["estimated_taxes"] = (

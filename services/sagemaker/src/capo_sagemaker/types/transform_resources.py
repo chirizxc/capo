@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: TransformResources) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransformResources:
     out: TransformResources = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.transform_instance_type
 
         out["instance_type"] = (
@@ -58,10 +58,10 @@ def deserialize_aws_json_1_1(data: dict) -> TransformResources:
                 data["InstanceType"]
             )
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "TransformAmiVersion" in data:
+    if data.get("TransformAmiVersion") is not None:
         out["transform_ami_version"] = data["TransformAmiVersion"]
     return out

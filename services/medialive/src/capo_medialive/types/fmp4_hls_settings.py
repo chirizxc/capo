@@ -49,9 +49,9 @@ def serialize_json(value: Fmp4HlsSettings) -> dict:
 
 def deserialize_json(data: dict) -> Fmp4HlsSettings:
     out: Fmp4HlsSettings = {}  # type: ignore[typeddict-item]
-    if "audioRenditionSets" in data:
+    if data.get("audioRenditionSets") is not None:
         out["audio_rendition_sets"] = data["audioRenditionSets"]
-    if "nielsenId3Behavior" in data:
+    if data.get("nielsenId3Behavior") is not None:
         import capo_medialive.types.fmp4_nielsen_id3_behavior
 
         out["nielsen_id3_behavior"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> Fmp4HlsSettings:
                 data["nielsenId3Behavior"]
             )
         )
-    if "timedMetadataBehavior" in data:
+    if data.get("timedMetadataBehavior") is not None:
         import capo_medialive.types.fmp4_timed_metadata_behavior
 
         out["timed_metadata_behavior"] = (

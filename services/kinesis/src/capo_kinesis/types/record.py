@@ -56,11 +56,11 @@ def serialize_aws_json_1_1(value: Record) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Record:
     out: Record = {}  # type: ignore[typeddict-item]
-    if "SequenceNumber" in data:
+    if data.get("SequenceNumber") is not None:
         out["sequence_number"] = data["SequenceNumber"]
     else:
         raise DeserializationError("Record.sequence_number required")
-    if "ApproximateArrivalTimestamp" in data:
+    if data.get("ApproximateArrivalTimestamp") is not None:
         import capo_kinesis.types.timestamp
 
         out["approximate_arrival_timestamp"] = (
@@ -68,17 +68,17 @@ def deserialize_aws_json_1_1(data: dict) -> Record:
                 data["ApproximateArrivalTimestamp"]
             )
         )
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_kinesis.types.data
 
         out["data"] = capo_kinesis.types.data.deserialize_aws_json_1_1(data["Data"])
     else:
         raise DeserializationError("Record.data required")
-    if "PartitionKey" in data:
+    if data.get("PartitionKey") is not None:
         out["partition_key"] = data["PartitionKey"]
     else:
         raise DeserializationError("Record.partition_key required")
-    if "EncryptionType" in data:
+    if data.get("EncryptionType") is not None:
         import capo_kinesis.types.encryption_type
 
         out["encryption_type"] = (

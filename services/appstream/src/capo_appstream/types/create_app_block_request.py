@@ -87,13 +87,13 @@ def serialize_aws_json_1_1(value: CreateAppBlockRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAppBlockRequest:
     out: CreateAppBlockRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "SourceS3Location" in data:
+    if data.get("SourceS3Location") is not None:
         import capo_appstream.types.s3_location
 
         out["source_s3_location"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAppBlockRequest:
                 data["SourceS3Location"]
             )
         )
-    if "SetupScriptDetails" in data:
+    if data.get("SetupScriptDetails") is not None:
         import capo_appstream.types.script_details
 
         out["setup_script_details"] = (
@@ -109,11 +109,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAppBlockRequest:
                 data["SetupScriptDetails"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appstream.types.tags
 
         out["tags"] = capo_appstream.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "PostSetupScriptDetails" in data:
+    if data.get("PostSetupScriptDetails") is not None:
         import capo_appstream.types.script_details
 
         out["post_setup_script_details"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAppBlockRequest:
                 data["PostSetupScriptDetails"]
             )
         )
-    if "PackagingType" in data:
+    if data.get("PackagingType") is not None:
         import capo_appstream.types.packaging_type
 
         out["packaging_type"] = (

@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: BatchItemError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchItemError:
     out: BatchItemError = {}  # type: ignore[typeddict-item]
-    if "Index" in data:
+    if data.get("Index") is not None:
         out["index"] = data["Index"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

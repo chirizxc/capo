@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListRouteCalculatorsResponseEntryList:
 
     out: ListRouteCalculatorsResponseEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_location.types.list_route_calculators_response_entry.deserialize_json(
                 item

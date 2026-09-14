@@ -32,7 +32,7 @@ def serialize_json(value: Message) -> dict:
 
 def deserialize_json(data: dict) -> Message:
     out: Message = {}  # type: ignore[typeddict-item]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         import capo_pinpoint_email.types.content
 
         out["subject"] = capo_pinpoint_email.types.content.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> Message:
         )
     else:
         raise DeserializationError("Message.subject required")
-    if "Body" in data:
+    if data.get("Body") is not None:
         import capo_pinpoint_email.types.body
 
         out["body"] = capo_pinpoint_email.types.body.deserialize_json(data["Body"])

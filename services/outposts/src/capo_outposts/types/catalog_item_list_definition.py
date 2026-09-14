@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CatalogItemListDefinition:
 
     out: CatalogItemListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_outposts.types.catalog_item.deserialize_json(item))
     return out

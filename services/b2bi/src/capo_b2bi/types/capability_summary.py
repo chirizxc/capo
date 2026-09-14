@@ -51,15 +51,15 @@ def serialize_aws_json_1_0(value: CapabilitySummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CapabilitySummary:
     out: CapabilitySummary = {}  # type: ignore[typeddict-item]
-    if "capabilityId" in data:
+    if data.get("capabilityId") is not None:
         out["capability_id"] = data["capabilityId"]
     else:
         raise DeserializationError("CapabilitySummary.capability_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CapabilitySummary.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_b2bi.types.capability_type
 
         out["type"] = capo_b2bi.types.capability_type.deserialize_aws_json_1_0(
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> CapabilitySummary:
         )
     else:
         raise DeserializationError("CapabilitySummary.type required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_b2bi.types.created_date
 
         out["created_at"] = capo_b2bi.types.created_date.deserialize_aws_json_1_0(
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_0(data: dict) -> CapabilitySummary:
         )
     else:
         raise DeserializationError("CapabilitySummary.created_at required")
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_b2bi.types.modified_date
 
         out["modified_at"] = capo_b2bi.types.modified_date.deserialize_aws_json_1_0(

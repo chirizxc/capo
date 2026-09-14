@@ -62,19 +62,19 @@ def serialize_json(value: ChangeSummary) -> dict:
 
 def deserialize_json(data: dict) -> ChangeSummary:
     out: ChangeSummary = {}  # type: ignore[typeddict-item]
-    if "ChangeType" in data:
+    if data.get("ChangeType") is not None:
         out["change_type"] = data["ChangeType"]
-    if "Entity" in data:
+    if data.get("Entity") is not None:
         import capo_marketplace_catalog.types.entity
 
         out["entity"] = capo_marketplace_catalog.types.entity.deserialize_json(
             data["Entity"]
         )
-    if "Details" in data:
+    if data.get("Details") is not None:
         out["details"] = data["Details"]
-    if "DetailsDocument" in data:
+    if data.get("DetailsDocument") is not None:
         out["details_document"] = data["DetailsDocument"]
-    if "ErrorDetailList" in data:
+    if data.get("ErrorDetailList") is not None:
         import capo_marketplace_catalog.types.error_detail_list
 
         out["error_detail_list"] = (
@@ -82,6 +82,6 @@ def deserialize_json(data: dict) -> ChangeSummary:
                 data["ErrorDetailList"]
             )
         )
-    if "ChangeName" in data:
+    if data.get("ChangeName") is not None:
         out["change_name"] = data["ChangeName"]
     return out

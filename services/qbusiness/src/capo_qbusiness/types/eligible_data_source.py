@@ -28,8 +28,8 @@ def serialize_json(value: EligibleDataSource) -> dict:
 
 def deserialize_json(data: dict) -> EligibleDataSource:
     out: EligibleDataSource = {}  # type: ignore[typeddict-item]
-    if "indexId" in data:
+    if data.get("indexId") is not None:
         out["index_id"] = data["indexId"]
-    if "dataSourceId" in data:
+    if data.get("dataSourceId") is not None:
         out["data_source_id"] = data["dataSourceId"]
     return out

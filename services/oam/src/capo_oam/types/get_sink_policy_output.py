@@ -26,10 +26,10 @@ def serialize_json(value: GetSinkPolicyOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSinkPolicyOutput:
     out: GetSinkPolicyOutput = {}  # type: ignore[typeddict-item]
-    if "SinkArn" in data:
+    if data.get("SinkArn") is not None:
         out["sink_arn"] = data["SinkArn"]
-    if "SinkId" in data:
+    if data.get("SinkId") is not None:
         out["sink_id"] = data["SinkId"]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     return out

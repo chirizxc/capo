@@ -28,7 +28,7 @@ def serialize_json(value: ListenerConfig) -> dict:
 
 def deserialize_json(data: dict) -> ListenerConfig:
     out: ListenerConfig = {}  # type: ignore[typeddict-item]
-    if "protocols" in data:
+    if data.get("protocols") is not None:
         import capo_rtbfabric.types.protocol_list
 
         out["protocols"] = capo_rtbfabric.types.protocol_list.deserialize_json(

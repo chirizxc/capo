@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchUpdateRecommendationStatusSuccessfulEnt
 
     out: BatchUpdateRecommendationStatusSuccessfulEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehub.types.batch_update_recommendation_status_successful_entry.deserialize_json(
                 item

@@ -55,19 +55,19 @@ def serialize_aws_json_1_1(value: CreateCampaignRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCampaignRequest:
     out: CreateCampaignRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateCampaignRequest.name required")
-    if "solutionVersionArn" in data:
+    if data.get("solutionVersionArn") is not None:
         out["solution_version_arn"] = data["solutionVersionArn"]
     else:
         raise DeserializationError(
             "CreateCampaignRequest.solution_version_arn required"
         )
-    if "minProvisionedTPS" in data:
+    if data.get("minProvisionedTPS") is not None:
         out["min_provisioned_tps"] = data["minProvisionedTPS"]
-    if "campaignConfig" in data:
+    if data.get("campaignConfig") is not None:
         import capo_personalize.types.campaign_config
 
         out["campaign_config"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCampaignRequest:
                 data["campaignConfig"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])

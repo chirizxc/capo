@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: PutResolverRulePolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutResolverRulePolicyRequest:
     out: PutResolverRulePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("PutResolverRulePolicyRequest.arn required")
-    if "ResolverRulePolicy" in data:
+    if data.get("ResolverRulePolicy") is not None:
         out["resolver_rule_policy"] = data["ResolverRulePolicy"]
     else:
         raise DeserializationError(

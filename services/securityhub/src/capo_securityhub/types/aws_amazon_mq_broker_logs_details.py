@@ -53,15 +53,15 @@ def serialize_json(value: AwsAmazonMqBrokerLogsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAmazonMqBrokerLogsDetails:
     out: AwsAmazonMqBrokerLogsDetails = {}  # type: ignore[typeddict-item]
-    if "Audit" in data:
+    if data.get("Audit") is not None:
         out["audit"] = data["Audit"]
-    if "General" in data:
+    if data.get("General") is not None:
         out["general"] = data["General"]
-    if "AuditLogGroup" in data:
+    if data.get("AuditLogGroup") is not None:
         out["audit_log_group"] = data["AuditLogGroup"]
-    if "GeneralLogGroup" in data:
+    if data.get("GeneralLogGroup") is not None:
         out["general_log_group"] = data["GeneralLogGroup"]
-    if "Pending" in data:
+    if data.get("Pending") is not None:
         import capo_securityhub.types.aws_amazon_mq_broker_logs_pending_details
 
         out["pending"] = (

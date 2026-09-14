@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeEngineVersionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEngineVersionsResponse:
     out: DescribeEngineVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "EngineVersions" in data:
+    if data.get("EngineVersions") is not None:
         import capo_memorydb.types.engine_version_info_list
 
         out["engine_versions"] = (

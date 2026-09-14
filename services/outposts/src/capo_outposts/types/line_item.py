@@ -77,19 +77,19 @@ def serialize_json(value: LineItem) -> dict:
 
 def deserialize_json(data: dict) -> LineItem:
     out: LineItem = {}  # type: ignore[typeddict-item]
-    if "CatalogItemId" in data:
+    if data.get("CatalogItemId") is not None:
         out["catalog_item_id"] = data["CatalogItemId"]
-    if "LineItemId" in data:
+    if data.get("LineItemId") is not None:
         out["line_item_id"] = data["LineItemId"]
-    if "Quantity" in data:
+    if data.get("Quantity") is not None:
         out["quantity"] = data["Quantity"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_outposts.types.line_item_status
 
         out["status"] = capo_outposts.types.line_item_status.deserialize_json(
             data["Status"]
         )
-    if "ShipmentInformation" in data:
+    if data.get("ShipmentInformation") is not None:
         import capo_outposts.types.shipment_information
 
         out["shipment_information"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> LineItem:
                 data["ShipmentInformation"]
             )
         )
-    if "AssetInformationList" in data:
+    if data.get("AssetInformationList") is not None:
         import capo_outposts.types.line_item_asset_information_list
 
         out["asset_information_list"] = (
@@ -105,8 +105,8 @@ def deserialize_json(data: dict) -> LineItem:
                 data["AssetInformationList"]
             )
         )
-    if "PreviousLineItemId" in data:
+    if data.get("PreviousLineItemId") is not None:
         out["previous_line_item_id"] = data["PreviousLineItemId"]
-    if "PreviousOrderId" in data:
+    if data.get("PreviousOrderId") is not None:
         out["previous_order_id"] = data["PreviousOrderId"]
     return out

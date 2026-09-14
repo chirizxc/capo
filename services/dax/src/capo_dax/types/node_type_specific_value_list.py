@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> NodeTypeSpecificValueList:
 
     out: NodeTypeSpecificValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_dax.types.node_type_specific_value.deserialize_aws_json_1_1(item)
         )

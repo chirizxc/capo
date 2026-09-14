@@ -91,11 +91,11 @@ def serialize_json(value: ManagedNotificationEventOverview) -> dict:
 
 def deserialize_json(data: dict) -> ManagedNotificationEventOverview:
     out: ManagedNotificationEventOverview = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ManagedNotificationEventOverview.arn required")
-    if "managedNotificationConfigurationArn" in data:
+    if data.get("managedNotificationConfigurationArn") is not None:
         out["managed_notification_configuration_arn"] = data[
             "managedNotificationConfigurationArn"
         ]
@@ -103,13 +103,13 @@ def deserialize_json(data: dict) -> ManagedNotificationEventOverview:
         raise DeserializationError(
             "ManagedNotificationEventOverview.managed_notification_configuration_arn required"
         )
-    if "relatedAccount" in data:
+    if data.get("relatedAccount") is not None:
         out["related_account"] = data["relatedAccount"]
     else:
         raise DeserializationError(
             "ManagedNotificationEventOverview.related_account required"
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_notifications.types.creation_time
 
         out["creation_time"] = capo_notifications.types.creation_time.deserialize_json(
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> ManagedNotificationEventOverview:
         raise DeserializationError(
             "ManagedNotificationEventOverview.creation_time required"
         )
-    if "notificationEvent" in data:
+    if data.get("notificationEvent") is not None:
         import capo_notifications.types.managed_notification_event_summary
 
         out["notification_event"] = (
@@ -131,11 +131,11 @@ def deserialize_json(data: dict) -> ManagedNotificationEventOverview:
         raise DeserializationError(
             "ManagedNotificationEventOverview.notification_event required"
         )
-    if "aggregationEventType" in data:
+    if data.get("aggregationEventType") is not None:
         out["aggregation_event_type"] = data["aggregationEventType"]
-    if "organizationalUnitId" in data:
+    if data.get("organizationalUnitId") is not None:
         out["organizational_unit_id"] = data["organizationalUnitId"]
-    if "aggregationSummary" in data:
+    if data.get("aggregationSummary") is not None:
         import capo_notifications.types.aggregation_summary
 
         out["aggregation_summary"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> ManagedNotificationEventOverview:
                 data["aggregationSummary"]
             )
         )
-    if "aggregatedNotificationRegions" in data:
+    if data.get("aggregatedNotificationRegions") is not None:
         import capo_notifications.types.aggregated_notification_regions
 
         out["aggregated_notification_regions"] = (

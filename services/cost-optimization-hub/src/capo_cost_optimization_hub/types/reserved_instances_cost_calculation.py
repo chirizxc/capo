@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: ReservedInstancesCostCalculation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReservedInstancesCostCalculation:
     out: ReservedInstancesCostCalculation = {}  # type: ignore[typeddict-item]
-    if "pricing" in data:
+    if data.get("pricing") is not None:
         import capo_cost_optimization_hub.types.reserved_instances_pricing
 
         out["pricing"] = (

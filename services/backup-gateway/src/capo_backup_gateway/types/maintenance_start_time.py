@@ -38,15 +38,15 @@ def serialize_aws_json_1_0(value: MaintenanceStartTime) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MaintenanceStartTime:
     out: MaintenanceStartTime = {}  # type: ignore[typeddict-item]
-    if "DayOfMonth" in data:
+    if data.get("DayOfMonth") is not None:
         out["day_of_month"] = data["DayOfMonth"]
-    if "DayOfWeek" in data:
+    if data.get("DayOfWeek") is not None:
         out["day_of_week"] = data["DayOfWeek"]
-    if "HourOfDay" in data:
+    if data.get("HourOfDay") is not None:
         out["hour_of_day"] = data["HourOfDay"]
     else:
         raise DeserializationError("MaintenanceStartTime.hour_of_day required")
-    if "MinuteOfHour" in data:
+    if data.get("MinuteOfHour") is not None:
         out["minute_of_hour"] = data["MinuteOfHour"]
     else:
         raise DeserializationError("MaintenanceStartTime.minute_of_hour required")

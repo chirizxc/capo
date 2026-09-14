@@ -51,7 +51,7 @@ def serialize_aws_json_1_0(value: ResourceTagsCriteriaCondition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceTagsCriteriaCondition:
     out: ResourceTagsCriteriaCondition = {}  # type: ignore[typeddict-item]
-    if "comparison" in data:
+    if data.get("comparison") is not None:
         import capo_compute_optimizer_automation.types.comparison_operator
 
         out["comparison"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceTagsCriteriaCondition:
                 data["comparison"]
             )
         )
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_compute_optimizer_automation.types.string_criteria_values
 
         out["values"] = (

@@ -70,11 +70,11 @@ def serialize_aws_json_1_1(value: GetUploadStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUploadStatusResponse:
     out: GetUploadStatusResponse = {}  # type: ignore[typeddict-item]
-    if "uploadId" in data:
+    if data.get("uploadId") is not None:
         out["upload_id"] = data["uploadId"]
     else:
         raise DeserializationError("GetUploadStatusResponse.upload_id required")
-    if "uploadStatus" in data:
+    if data.get("uploadStatus") is not None:
         import capo_iotthingsgraph.types.upload_status
 
         out["upload_status"] = (
@@ -84,13 +84,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetUploadStatusResponse:
         )
     else:
         raise DeserializationError("GetUploadStatusResponse.upload_status required")
-    if "namespaceArn" in data:
+    if data.get("namespaceArn") is not None:
         out["namespace_arn"] = data["namespaceArn"]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "namespaceVersion" in data:
+    if data.get("namespaceVersion") is not None:
         out["namespace_version"] = data["namespaceVersion"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         import capo_iotthingsgraph.types.string_list
 
         out["failure_reason"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetUploadStatusResponse:
                 data["failureReason"]
             )
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_iotthingsgraph.types.timestamp
 
         out["created_date"] = (

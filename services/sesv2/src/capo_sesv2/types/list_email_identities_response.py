@@ -34,12 +34,12 @@ def serialize_json(value: ListEmailIdentitiesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEmailIdentitiesResponse:
     out: ListEmailIdentitiesResponse = {}  # type: ignore[typeddict-item]
-    if "EmailIdentities" in data:
+    if data.get("EmailIdentities") is not None:
         import capo_sesv2.types.identity_info_list
 
         out["email_identities"] = capo_sesv2.types.identity_info_list.deserialize_json(
             data["EmailIdentities"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

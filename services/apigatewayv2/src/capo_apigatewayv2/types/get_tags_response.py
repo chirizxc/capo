@@ -24,7 +24,7 @@ def serialize_json(value: GetTagsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTagsResponse:
     out: GetTagsResponse = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])

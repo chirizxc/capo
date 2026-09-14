@@ -24,7 +24,7 @@ def serialize_json(value: AzElProgramTrackSettings) -> dict:
 
 def deserialize_json(data: dict) -> AzElProgramTrackSettings:
     out: AzElProgramTrackSettings = {}  # type: ignore[typeddict-item]
-    if "ephemerisId" in data:
+    if data.get("ephemerisId") is not None:
         out["ephemeris_id"] = data["ephemerisId"]
     else:
         raise DeserializationError("AzElProgramTrackSettings.ephemeris_id required")

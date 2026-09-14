@@ -29,7 +29,7 @@ def serialize_json(value: UntagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UntagResourceRequest:
     out: UntagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_osis.types.string_list
 
         out["tag_keys"] = capo_osis.types.string_list.deserialize_json(data["TagKeys"])

@@ -41,18 +41,18 @@ def serialize_json(value: ListThingRegistrationTaskReportsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListThingRegistrationTaskReportsResponse:
     out: ListThingRegistrationTaskReportsResponse = {}  # type: ignore[typeddict-item]
-    if "resourceLinks" in data:
+    if data.get("resourceLinks") is not None:
         import capo_iot.types.s3_file_url_list
 
         out["resource_links"] = capo_iot.types.s3_file_url_list.deserialize_json(
             data["resourceLinks"]
         )
-    if "reportType" in data:
+    if data.get("reportType") is not None:
         import capo_iot.types.report_type
 
         out["report_type"] = capo_iot.types.report_type.deserialize_json(
             data["reportType"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

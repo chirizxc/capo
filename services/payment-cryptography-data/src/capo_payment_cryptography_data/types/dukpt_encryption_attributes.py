@@ -70,13 +70,13 @@ def serialize_json(value: DukptEncryptionAttributes) -> dict:
 
 def deserialize_json(data: dict) -> DukptEncryptionAttributes:
     out: DukptEncryptionAttributes = {}  # type: ignore[typeddict-item]
-    if "KeySerialNumber" in data:
+    if data.get("KeySerialNumber") is not None:
         out["key_serial_number"] = data["KeySerialNumber"]
     else:
         raise DeserializationError(
             "DukptEncryptionAttributes.key_serial_number required"
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_payment_cryptography_data.types.dukpt_encryption_mode
 
         out["mode"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> DukptEncryptionAttributes:
                 data["Mode"]
             )
         )
-    if "DukptKeyDerivationType" in data:
+    if data.get("DukptKeyDerivationType") is not None:
         import capo_payment_cryptography_data.types.dukpt_derivation_type
 
         out["dukpt_key_derivation_type"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> DukptEncryptionAttributes:
                 data["DukptKeyDerivationType"]
             )
         )
-    if "DukptKeyVariant" in data:
+    if data.get("DukptKeyVariant") is not None:
         import capo_payment_cryptography_data.types.dukpt_key_variant
 
         out["dukpt_key_variant"] = (
@@ -100,6 +100,6 @@ def deserialize_json(data: dict) -> DukptEncryptionAttributes:
                 data["DukptKeyVariant"]
             )
         )
-    if "InitializationVector" in data:
+    if data.get("InitializationVector") is not None:
         out["initialization_vector"] = data["InitializationVector"]
     return out

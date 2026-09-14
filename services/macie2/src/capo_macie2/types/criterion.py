@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: Criterion) -> dict:
 def deserialize_json(data: dict) -> Criterion:
     out: Criterion = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_macie2.types.criterion_additional_properties
 
         out[key] = capo_macie2.types.criterion_additional_properties.deserialize_json(

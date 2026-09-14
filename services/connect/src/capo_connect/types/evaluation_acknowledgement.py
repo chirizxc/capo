@@ -39,7 +39,7 @@ def serialize_json(value: EvaluationAcknowledgement) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationAcknowledgement:
     out: EvaluationAcknowledgement = {}  # type: ignore[typeddict-item]
-    if "AcknowledgedTime" in data:
+    if data.get("AcknowledgedTime") is not None:
         import capo_connect.types.timestamp
 
         out["acknowledged_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -49,10 +49,10 @@ def deserialize_json(data: dict) -> EvaluationAcknowledgement:
         raise DeserializationError(
             "EvaluationAcknowledgement.acknowledged_time required"
         )
-    if "AcknowledgedBy" in data:
+    if data.get("AcknowledgedBy") is not None:
         out["acknowledged_by"] = data["AcknowledgedBy"]
     else:
         raise DeserializationError("EvaluationAcknowledgement.acknowledged_by required")
-    if "AcknowledgerComment" in data:
+    if data.get("AcknowledgerComment") is not None:
         out["acknowledger_comment"] = data["AcknowledgerComment"]
     return out

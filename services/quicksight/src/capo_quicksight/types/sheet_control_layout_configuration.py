@@ -31,7 +31,7 @@ def serialize_json(value: SheetControlLayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SheetControlLayoutConfiguration:
     out: SheetControlLayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "GridLayout" in data:
+    if data.get("GridLayout") is not None:
         import capo_quicksight.types.grid_layout_configuration
 
         out["grid_layout"] = (

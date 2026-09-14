@@ -52,13 +52,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> UpdateManagedRuleSetVersionExpiryDateRequest:
     out: UpdateManagedRuleSetVersionExpiryDateRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "UpdateManagedRuleSetVersionExpiryDateRequest.name required"
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
@@ -66,25 +66,25 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "UpdateManagedRuleSetVersionExpiryDateRequest.scope required"
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError(
             "UpdateManagedRuleSetVersionExpiryDateRequest.id required"
         )
-    if "LockToken" in data:
+    if data.get("LockToken") is not None:
         out["lock_token"] = data["LockToken"]
     else:
         raise DeserializationError(
             "UpdateManagedRuleSetVersionExpiryDateRequest.lock_token required"
         )
-    if "VersionToExpire" in data:
+    if data.get("VersionToExpire") is not None:
         out["version_to_expire"] = data["VersionToExpire"]
     else:
         raise DeserializationError(
             "UpdateManagedRuleSetVersionExpiryDateRequest.version_to_expire required"
         )
-    if "ExpiryTimestamp" in data:
+    if data.get("ExpiryTimestamp") is not None:
         import capo_wafv2.types.timestamp
 
         out["expiry_timestamp"] = capo_wafv2.types.timestamp.deserialize_aws_json_1_1(

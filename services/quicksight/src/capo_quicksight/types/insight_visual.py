@@ -85,11 +85,11 @@ def serialize_json(value: InsightVisual) -> dict:
 
 def deserialize_json(data: dict) -> InsightVisual:
     out: InsightVisual = {}  # type: ignore[typeddict-item]
-    if "VisualId" in data:
+    if data.get("VisualId") is not None:
         out["visual_id"] = data["VisualId"]
     else:
         raise DeserializationError("InsightVisual.visual_id required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         import capo_quicksight.types.visual_title_label_options
 
         out["title"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> InsightVisual:
                 data["Title"]
             )
         )
-    if "Subtitle" in data:
+    if data.get("Subtitle") is not None:
         import capo_quicksight.types.visual_subtitle_label_options
 
         out["subtitle"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> InsightVisual:
                 data["Subtitle"]
             )
         )
-    if "InsightConfiguration" in data:
+    if data.get("InsightConfiguration") is not None:
         import capo_quicksight.types.insight_configuration
 
         out["insight_configuration"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> InsightVisual:
                 data["InsightConfiguration"]
             )
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_quicksight.types.visual_custom_action_list
 
         out["actions"] = (
@@ -121,10 +121,10 @@ def deserialize_json(data: dict) -> InsightVisual:
                 data["Actions"]
             )
         )
-    if "DataSetIdentifier" in data:
+    if data.get("DataSetIdentifier") is not None:
         out["data_set_identifier"] = data["DataSetIdentifier"]
     else:
         raise DeserializationError("InsightVisual.data_set_identifier required")
-    if "VisualContentAltText" in data:
+    if data.get("VisualContentAltText") is not None:
         out["visual_content_alt_text"] = data["VisualContentAltText"]
     return out

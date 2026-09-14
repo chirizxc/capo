@@ -30,13 +30,13 @@ def serialize_json(value: DeregisterAccountAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeregisterAccountAssociationRequest:
     out: DeregisterAccountAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "ManagedThingId" in data:
+    if data.get("ManagedThingId") is not None:
         out["managed_thing_id"] = data["ManagedThingId"]
     else:
         raise DeserializationError(
             "DeregisterAccountAssociationRequest.managed_thing_id required"
         )
-    if "AccountAssociationId" in data:
+    if data.get("AccountAssociationId") is not None:
         out["account_association_id"] = data["AccountAssociationId"]
     else:
         raise DeserializationError(

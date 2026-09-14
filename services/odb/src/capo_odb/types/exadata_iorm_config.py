@@ -53,15 +53,15 @@ def serialize_aws_json_1_0(value: ExadataIormConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExadataIormConfig:
     out: ExadataIormConfig = {}  # type: ignore[typeddict-item]
-    if "dbPlans" in data:
+    if data.get("dbPlans") is not None:
         import capo_odb.types.db_iorm_config_list
 
         out["db_plans"] = capo_odb.types.db_iorm_config_list.deserialize_aws_json_1_0(
             data["dbPlans"]
         )
-    if "lifecycleDetails" in data:
+    if data.get("lifecycleDetails") is not None:
         out["lifecycle_details"] = data["lifecycleDetails"]
-    if "lifecycleState" in data:
+    if data.get("lifecycleState") is not None:
         import capo_odb.types.iorm_lifecycle_state
 
         out["lifecycle_state"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExadataIormConfig:
                 data["lifecycleState"]
             )
         )
-    if "objective" in data:
+    if data.get("objective") is not None:
         import capo_odb.types.objective
 
         out["objective"] = capo_odb.types.objective.deserialize_aws_json_1_0(

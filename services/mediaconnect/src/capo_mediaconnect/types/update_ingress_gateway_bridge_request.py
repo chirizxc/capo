@@ -22,8 +22,8 @@ def serialize_json(value: UpdateIngressGatewayBridgeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIngressGatewayBridgeRequest:
     out: UpdateIngressGatewayBridgeRequest = {}  # type: ignore[typeddict-item]
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
-    if "maxOutputs" in data:
+    if data.get("maxOutputs") is not None:
         out["max_outputs"] = data["maxOutputs"]
     return out

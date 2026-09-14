@@ -90,21 +90,21 @@ def serialize_aws_json_1_1(value: DeviceDeploymentSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceDeploymentSummary:
     out: DeviceDeploymentSummary = {}  # type: ignore[typeddict-item]
-    if "EdgeDeploymentPlanArn" in data:
+    if data.get("EdgeDeploymentPlanArn") is not None:
         out["edge_deployment_plan_arn"] = data["EdgeDeploymentPlanArn"]
-    if "EdgeDeploymentPlanName" in data:
+    if data.get("EdgeDeploymentPlanName") is not None:
         out["edge_deployment_plan_name"] = data["EdgeDeploymentPlanName"]
-    if "StageName" in data:
+    if data.get("StageName") is not None:
         out["stage_name"] = data["StageName"]
-    if "DeployedStageName" in data:
+    if data.get("DeployedStageName") is not None:
         out["deployed_stage_name"] = data["DeployedStageName"]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "DeviceArn" in data:
+    if data.get("DeviceArn") is not None:
         out["device_arn"] = data["DeviceArn"]
-    if "DeviceDeploymentStatus" in data:
+    if data.get("DeviceDeploymentStatus") is not None:
         import capo_sagemaker.types.device_deployment_status
 
         out["device_deployment_status"] = (
@@ -112,11 +112,11 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceDeploymentSummary:
                 data["DeviceDeploymentStatus"]
             )
         )
-    if "DeviceDeploymentStatusMessage" in data:
+    if data.get("DeviceDeploymentStatusMessage") is not None:
         out["device_deployment_status_message"] = data["DeviceDeploymentStatusMessage"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DeploymentStartTime" in data:
+    if data.get("DeploymentStartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["deployment_start_time"] = (

@@ -35,7 +35,7 @@ def serialize_json(value: DateFilter) -> dict:
 
 def deserialize_json(data: dict) -> DateFilter:
     out: DateFilter = {}  # type: ignore[typeddict-item]
-    if "startInclusive" in data:
+    if data.get("startInclusive") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["start_inclusive"] = (
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> DateFilter:
                 data["startInclusive"]
             )
         )
-    if "endInclusive" in data:
+    if data.get("endInclusive") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["end_inclusive"] = (

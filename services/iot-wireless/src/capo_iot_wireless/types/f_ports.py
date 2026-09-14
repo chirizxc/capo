@@ -46,19 +46,19 @@ def serialize_json(value: FPorts) -> dict:
 
 def deserialize_json(data: dict) -> FPorts:
     out: FPorts = {}  # type: ignore[typeddict-item]
-    if "Fuota" in data:
+    if data.get("Fuota") is not None:
         out["fuota"] = data["Fuota"]
-    if "Multicast" in data:
+    if data.get("Multicast") is not None:
         out["multicast"] = data["Multicast"]
-    if "ClockSync" in data:
+    if data.get("ClockSync") is not None:
         out["clock_sync"] = data["ClockSync"]
-    if "Positioning" in data:
+    if data.get("Positioning") is not None:
         import capo_iot_wireless.types.positioning
 
         out["positioning"] = capo_iot_wireless.types.positioning.deserialize_json(
             data["Positioning"]
         )
-    if "Applications" in data:
+    if data.get("Applications") is not None:
         import capo_iot_wireless.types.applications
 
         out["applications"] = capo_iot_wireless.types.applications.deserialize_json(

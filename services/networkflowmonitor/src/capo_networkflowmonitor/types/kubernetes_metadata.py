@@ -38,16 +38,16 @@ def serialize_json(value: KubernetesMetadata) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesMetadata:
     out: KubernetesMetadata = {}  # type: ignore[typeddict-item]
-    if "localServiceName" in data:
+    if data.get("localServiceName") is not None:
         out["local_service_name"] = data["localServiceName"]
-    if "localPodName" in data:
+    if data.get("localPodName") is not None:
         out["local_pod_name"] = data["localPodName"]
-    if "localPodNamespace" in data:
+    if data.get("localPodNamespace") is not None:
         out["local_pod_namespace"] = data["localPodNamespace"]
-    if "remoteServiceName" in data:
+    if data.get("remoteServiceName") is not None:
         out["remote_service_name"] = data["remoteServiceName"]
-    if "remotePodName" in data:
+    if data.get("remotePodName") is not None:
         out["remote_pod_name"] = data["remotePodName"]
-    if "remotePodNamespace" in data:
+    if data.get("remotePodNamespace") is not None:
         out["remote_pod_namespace"] = data["remotePodNamespace"]
     return out

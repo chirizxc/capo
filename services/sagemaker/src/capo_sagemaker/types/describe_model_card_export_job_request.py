@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeModelCardExportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeModelCardExportJobRequest:
     out: DescribeModelCardExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "ModelCardExportJobArn" in data:
+    if data.get("ModelCardExportJobArn") is not None:
         out["model_card_export_job_arn"] = data["ModelCardExportJobArn"]
     return out

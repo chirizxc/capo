@@ -42,20 +42,20 @@ def serialize_aws_json_1_0(value: DisassociateOriginationIdentityRequest) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateOriginationIdentityRequest:
     out: DisassociateOriginationIdentityRequest = {}  # type: ignore[typeddict-item]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
     else:
         raise DeserializationError(
             "DisassociateOriginationIdentityRequest.pool_id required"
         )
-    if "OriginationIdentity" in data:
+    if data.get("OriginationIdentity") is not None:
         out["origination_identity"] = data["OriginationIdentity"]
     else:
         raise DeserializationError(
             "DisassociateOriginationIdentityRequest.origination_identity required"
         )
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

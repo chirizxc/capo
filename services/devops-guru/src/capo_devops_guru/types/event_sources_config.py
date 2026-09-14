@@ -31,7 +31,7 @@ def serialize_json(value: EventSourcesConfig) -> dict:
 
 def deserialize_json(data: dict) -> EventSourcesConfig:
     out: EventSourcesConfig = {}  # type: ignore[typeddict-item]
-    if "AmazonCodeGuruProfiler" in data:
+    if data.get("AmazonCodeGuruProfiler") is not None:
         import capo_devops_guru.types.amazon_code_guru_profiler_integration
 
         out["amazon_code_guru_profiler"] = (

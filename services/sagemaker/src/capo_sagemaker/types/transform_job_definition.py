@@ -93,11 +93,11 @@ def serialize_aws_json_1_1(value: TransformJobDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransformJobDefinition:
     out: TransformJobDefinition = {}  # type: ignore[typeddict-item]
-    if "MaxConcurrentTransforms" in data:
+    if data.get("MaxConcurrentTransforms") is not None:
         out["max_concurrent_transforms"] = data["MaxConcurrentTransforms"]
-    if "MaxPayloadInMB" in data:
+    if data.get("MaxPayloadInMB") is not None:
         out["max_payload_in_mb"] = data["MaxPayloadInMB"]
-    if "BatchStrategy" in data:
+    if data.get("BatchStrategy") is not None:
         import capo_sagemaker.types.batch_strategy
 
         out["batch_strategy"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJobDefinition:
                 data["BatchStrategy"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.transform_environment_map
 
         out["environment"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJobDefinition:
                 data["Environment"]
             )
         )
-    if "TransformInput" in data:
+    if data.get("TransformInput") is not None:
         import capo_sagemaker.types.transform_input
 
         out["transform_input"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJobDefinition:
                 data["TransformInput"]
             )
         )
-    if "TransformOutput" in data:
+    if data.get("TransformOutput") is not None:
         import capo_sagemaker.types.transform_output
 
         out["transform_output"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJobDefinition:
                 data["TransformOutput"]
             )
         )
-    if "TransformResources" in data:
+    if data.get("TransformResources") is not None:
         import capo_sagemaker.types.transform_resources
 
         out["transform_resources"] = (

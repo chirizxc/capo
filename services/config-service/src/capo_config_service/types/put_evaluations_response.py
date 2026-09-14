@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: PutEvaluationsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutEvaluationsResponse:
     out: PutEvaluationsResponse = {}  # type: ignore[typeddict-item]
-    if "FailedEvaluations" in data:
+    if data.get("FailedEvaluations") is not None:
         import capo_config_service.types.evaluations
 
         out["failed_evaluations"] = (

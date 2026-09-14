@@ -44,7 +44,7 @@ def serialize_json(value: FilledMapAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> FilledMapAggregatedFieldWells:
     out: FilledMapAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "Geospatial" in data:
+    if data.get("Geospatial") is not None:
         import capo_quicksight.types.filled_map_dimension_field_list
 
         out["geospatial"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> FilledMapAggregatedFieldWells:
                 data["Geospatial"]
             )
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.filled_map_measure_field_list
 
         out["values"] = (

@@ -40,11 +40,11 @@ def serialize_json(value: ProfileQueryResult) -> dict:
 
 def deserialize_json(data: dict) -> ProfileQueryResult:
     out: ProfileQueryResult = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError("ProfileQueryResult.profile_id required")
-    if "QueryResult" in data:
+    if data.get("QueryResult") is not None:
         import capo_customer_profiles.types.query_result
 
         out["query_result"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> ProfileQueryResult:
         )
     else:
         raise DeserializationError("ProfileQueryResult.query_result required")
-    if "Profile" in data:
+    if data.get("Profile") is not None:
         import capo_customer_profiles.types.profile
 
         out["profile"] = capo_customer_profiles.types.profile.deserialize_json(

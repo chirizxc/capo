@@ -36,19 +36,19 @@ def serialize_json(value: OracleParameters) -> dict:
 
 def deserialize_json(data: dict) -> OracleParameters:
     out: OracleParameters = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("OracleParameters.host required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("OracleParameters.port required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("OracleParameters.database required")
-    if "UseServiceName" in data:
+    if data.get("UseServiceName") is not None:
         out["use_service_name"] = data["UseServiceName"]
     else:
         out["use_service_name"] = False

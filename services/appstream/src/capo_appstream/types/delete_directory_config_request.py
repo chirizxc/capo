@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteDirectoryConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDirectoryConfigRequest:
     out: DeleteDirectoryConfigRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryName" in data:
+    if data.get("DirectoryName") is not None:
         out["directory_name"] = data["DirectoryName"]
     return out

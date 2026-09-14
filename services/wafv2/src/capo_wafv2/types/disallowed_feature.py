@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: DisallowedFeature) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisallowedFeature:
     out: DisallowedFeature = {}  # type: ignore[typeddict-item]
-    if "Feature" in data:
+    if data.get("Feature") is not None:
         out["feature"] = data["Feature"]
-    if "RequiredPricingPlan" in data:
+    if data.get("RequiredPricingPlan") is not None:
         out["required_pricing_plan"] = data["RequiredPricingPlan"]
     return out

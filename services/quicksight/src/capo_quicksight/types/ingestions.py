@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Ingestions:
 
     out: Ingestions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.ingestion.deserialize_json(item))
     return out

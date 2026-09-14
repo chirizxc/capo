@@ -131,13 +131,13 @@ def serialize_aws_json_1_1(value: ConfigRuleEvaluationStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigRuleEvaluationStatus:
     out: ConfigRuleEvaluationStatus = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
-    if "ConfigRuleArn" in data:
+    if data.get("ConfigRuleArn") is not None:
         out["config_rule_arn"] = data["ConfigRuleArn"]
-    if "ConfigRuleId" in data:
+    if data.get("ConfigRuleId") is not None:
         out["config_rule_id"] = data["ConfigRuleId"]
-    if "LastSuccessfulInvocationTime" in data:
+    if data.get("LastSuccessfulInvocationTime") is not None:
         import capo_config_service.types.date
 
         out["last_successful_invocation_time"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigRuleEvaluationStatus:
                 data["LastSuccessfulInvocationTime"]
             )
         )
-    if "LastFailedInvocationTime" in data:
+    if data.get("LastFailedInvocationTime") is not None:
         import capo_config_service.types.date
 
         out["last_failed_invocation_time"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigRuleEvaluationStatus:
                 data["LastFailedInvocationTime"]
             )
         )
-    if "LastSuccessfulEvaluationTime" in data:
+    if data.get("LastSuccessfulEvaluationTime") is not None:
         import capo_config_service.types.date
 
         out["last_successful_evaluation_time"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigRuleEvaluationStatus:
                 data["LastSuccessfulEvaluationTime"]
             )
         )
-    if "LastFailedEvaluationTime" in data:
+    if data.get("LastFailedEvaluationTime") is not None:
         import capo_config_service.types.date
 
         out["last_failed_evaluation_time"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigRuleEvaluationStatus:
                 data["LastFailedEvaluationTime"]
             )
         )
-    if "FirstActivatedTime" in data:
+    if data.get("FirstActivatedTime") is not None:
         import capo_config_service.types.date
 
         out["first_activated_time"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigRuleEvaluationStatus:
                 data["FirstActivatedTime"]
             )
         )
-    if "LastDeactivatedTime" in data:
+    if data.get("LastDeactivatedTime") is not None:
         import capo_config_service.types.date
 
         out["last_deactivated_time"] = (
@@ -185,21 +185,21 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigRuleEvaluationStatus:
                 data["LastDeactivatedTime"]
             )
         )
-    if "LastErrorCode" in data:
+    if data.get("LastErrorCode") is not None:
         out["last_error_code"] = data["LastErrorCode"]
-    if "LastErrorMessage" in data:
+    if data.get("LastErrorMessage") is not None:
         out["last_error_message"] = data["LastErrorMessage"]
-    if "FirstEvaluationStarted" in data:
+    if data.get("FirstEvaluationStarted") is not None:
         out["first_evaluation_started"] = data["FirstEvaluationStarted"]
     else:
         out["first_evaluation_started"] = False
-    if "LastDebugLogDeliveryStatus" in data:
+    if data.get("LastDebugLogDeliveryStatus") is not None:
         out["last_debug_log_delivery_status"] = data["LastDebugLogDeliveryStatus"]
-    if "LastDebugLogDeliveryStatusReason" in data:
+    if data.get("LastDebugLogDeliveryStatusReason") is not None:
         out["last_debug_log_delivery_status_reason"] = data[
             "LastDebugLogDeliveryStatusReason"
         ]
-    if "LastDebugLogDeliveryTime" in data:
+    if data.get("LastDebugLogDeliveryTime") is not None:
         import capo_config_service.types.date
 
         out["last_debug_log_delivery_time"] = (

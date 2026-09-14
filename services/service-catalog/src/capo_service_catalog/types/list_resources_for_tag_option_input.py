@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_service_catalog.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_service_catalog.types.page_size
     import capo_service_catalog.types.page_token
@@ -25,9 +27,29 @@ class ListResourcesForTagOptionInput(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListResourcesForTagOptionInput) -> dict:
     out: dict = {}
+    out["TagOptionId"] = value["tag_option_id"]
+    if "resource_type" in value:
+        out["ResourceType"] = value["resource_type"]
+    out["PageSize"] = value.get("page_size", 0)
+    if "page_token" in value:
+        out["PageToken"] = value["page_token"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ListResourcesForTagOptionInput:
     out: ListResourcesForTagOptionInput = {}  # type: ignore[typeddict-item]
+    if data.get("TagOptionId") is not None:
+        out["tag_option_id"] = data["TagOptionId"]
+    else:
+        raise DeserializationError(
+            "ListResourcesForTagOptionInput.tag_option_id required"
+        )
+    if data.get("ResourceType") is not None:
+        out["resource_type"] = data["ResourceType"]
+    if data.get("PageSize") is not None:
+        out["page_size"] = data["PageSize"]
+    else:
+        out["page_size"] = 0
+    if data.get("PageToken") is not None:
+        out["page_token"] = data["PageToken"]
     return out

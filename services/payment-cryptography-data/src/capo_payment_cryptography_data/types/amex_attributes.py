@@ -65,7 +65,7 @@ def serialize_json(value: AmexAttributes) -> dict:
 
 def deserialize_json(data: dict) -> AmexAttributes:
     out: AmexAttributes = {}  # type: ignore[typeddict-item]
-    if "MajorKeyDerivationMode" in data:
+    if data.get("MajorKeyDerivationMode") is not None:
         import capo_payment_cryptography_data.types.major_key_derivation_mode
 
         out["major_key_derivation_mode"] = (
@@ -75,21 +75,21 @@ def deserialize_json(data: dict) -> AmexAttributes:
         )
     else:
         raise DeserializationError("AmexAttributes.major_key_derivation_mode required")
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
     else:
         raise DeserializationError("AmexAttributes.primary_account_number required")
-    if "PanSequenceNumber" in data:
+    if data.get("PanSequenceNumber") is not None:
         out["pan_sequence_number"] = data["PanSequenceNumber"]
     else:
         raise DeserializationError("AmexAttributes.pan_sequence_number required")
-    if "ApplicationTransactionCounter" in data:
+    if data.get("ApplicationTransactionCounter") is not None:
         out["application_transaction_counter"] = data["ApplicationTransactionCounter"]
     else:
         raise DeserializationError(
             "AmexAttributes.application_transaction_counter required"
         )
-    if "AuthorizationRequestKeyIdentifier" in data:
+    if data.get("AuthorizationRequestKeyIdentifier") is not None:
         out["authorization_request_key_identifier"] = data[
             "AuthorizationRequestKeyIdentifier"
         ]
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> AmexAttributes:
         raise DeserializationError(
             "AmexAttributes.authorization_request_key_identifier required"
         )
-    if "CurrentPinAttributes" in data:
+    if data.get("CurrentPinAttributes") is not None:
         import capo_payment_cryptography_data.types.current_pin_attributes
 
         out["current_pin_attributes"] = (

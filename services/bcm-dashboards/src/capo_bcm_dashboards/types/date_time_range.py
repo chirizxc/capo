@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: DateTimeRange) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DateTimeRange:
     out: DateTimeRange = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_bcm_dashboards.types.date_time_value
 
         out["start_time"] = (
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_0(data: dict) -> DateTimeRange:
         )
     else:
         raise DeserializationError("DateTimeRange.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_bcm_dashboards.types.date_time_value
 
         out["end_time"] = (

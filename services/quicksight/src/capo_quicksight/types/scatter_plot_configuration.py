@@ -145,7 +145,7 @@ def serialize_json(value: ScatterPlotConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ScatterPlotConfiguration:
     out: ScatterPlotConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.scatter_plot_field_wells
 
         out["field_wells"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> ScatterPlotConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.scatter_plot_sort_configuration
 
         out["sort_configuration"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> ScatterPlotConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "XAxisLabelOptions" in data:
+    if data.get("XAxisLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["x_axis_label_options"] = (
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> ScatterPlotConfiguration:
                 data["XAxisLabelOptions"]
             )
         )
-    if "XAxisDisplayOptions" in data:
+    if data.get("XAxisDisplayOptions") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["x_axis_display_options"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> ScatterPlotConfiguration:
                 data["XAxisDisplayOptions"]
             )
         )
-    if "YAxisLabelOptions" in data:
+    if data.get("YAxisLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["y_axis_label_options"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> ScatterPlotConfiguration:
                 data["YAxisLabelOptions"]
             )
         )
-    if "YAxisDisplayOptions" in data:
+    if data.get("YAxisDisplayOptions") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["y_axis_display_options"] = (
@@ -193,31 +193,31 @@ def deserialize_json(data: dict) -> ScatterPlotConfiguration:
                 data["YAxisDisplayOptions"]
             )
         )
-    if "Legend" in data:
+    if data.get("Legend") is not None:
         import capo_quicksight.types.legend_options
 
         out["legend"] = capo_quicksight.types.legend_options.deserialize_json(
             data["Legend"]
         )
-    if "DataLabels" in data:
+    if data.get("DataLabels") is not None:
         import capo_quicksight.types.data_label_options
 
         out["data_labels"] = capo_quicksight.types.data_label_options.deserialize_json(
             data["DataLabels"]
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["Tooltip"]
         )
-    if "VisualPalette" in data:
+    if data.get("VisualPalette") is not None:
         import capo_quicksight.types.visual_palette
 
         out["visual_palette"] = capo_quicksight.types.visual_palette.deserialize_json(
             data["VisualPalette"]
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

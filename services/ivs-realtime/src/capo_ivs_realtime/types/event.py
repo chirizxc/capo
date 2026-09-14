@@ -93,33 +93,33 @@ def serialize_json(value: Event) -> dict:
 
 def deserialize_json(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
-    if "eventTime" in data:
+    if data.get("eventTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["event_time"] = capo_ivs_realtime.types.time.deserialize_json(
             data["eventTime"]
         )
-    if "remoteParticipantId" in data:
+    if data.get("remoteParticipantId") is not None:
         out["remote_participant_id"] = data["remoteParticipantId"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_ivs_realtime.types.event_error_code
 
         out["error_code"] = capo_ivs_realtime.types.event_error_code.deserialize_json(
             data["errorCode"]
         )
-    if "destinationStageArn" in data:
+    if data.get("destinationStageArn") is not None:
         out["destination_stage_arn"] = data["destinationStageArn"]
-    if "destinationSessionId" in data:
+    if data.get("destinationSessionId") is not None:
         out["destination_session_id"] = data["destinationSessionId"]
-    if "replica" in data:
+    if data.get("replica") is not None:
         out["replica"] = data["replica"]
     else:
         out["replica"] = False
-    if "previousToken" in data:
+    if data.get("previousToken") is not None:
         import capo_ivs_realtime.types.exchanged_participant_token
 
         out["previous_token"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> Event:
                 data["previousToken"]
             )
         )
-    if "newToken" in data:
+    if data.get("newToken") is not None:
         import capo_ivs_realtime.types.exchanged_participant_token
 
         out["new_token"] = (

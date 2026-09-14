@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: DetectSentimentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectSentimentRequest:
     out: DetectSentimentRequest = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("DetectSentimentRequest.text required")
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.language_code
 
         out["language_code"] = (

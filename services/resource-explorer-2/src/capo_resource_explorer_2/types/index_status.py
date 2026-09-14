@@ -46,15 +46,15 @@ def serialize_json(value: IndexStatus) -> dict:
 
 def deserialize_json(data: dict) -> IndexStatus:
     out: IndexStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Index" in data:
+    if data.get("Index") is not None:
         import capo_resource_explorer_2.types.index
 
         out["index"] = capo_resource_explorer_2.types.index.deserialize_json(
             data["Index"]
         )
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_resource_explorer_2.types.error_details
 
         out["error_details"] = (

@@ -32,13 +32,13 @@ def serialize_aws_json_1_0(value: StructuredMessageFieldNameAndDataTypePair) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> StructuredMessageFieldNameAndDataTypePair:
     out: StructuredMessageFieldNameAndDataTypePair = {}  # type: ignore[typeddict-item]
-    if "fieldName" in data:
+    if data.get("fieldName") is not None:
         out["field_name"] = data["fieldName"]
     else:
         raise DeserializationError(
             "StructuredMessageFieldNameAndDataTypePair.field_name required"
         )
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_iotfleetwise.types.structured_message
 
         out["data_type"] = (

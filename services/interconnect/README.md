@@ -13,9 +13,9 @@ from capo_interconnect import AsyncInterconnectClient
 
 
 async def main():
-    async with AsyncInterconnectClient() as s3:
+    async with AsyncInterconnectClient() as interconnect:
         # Example: call the accept_connection_proposal operation
-        response = await s3.accept_connection_proposal()
+        response = await interconnect.accept_connection_proposal()
         print(response["connection"])
 ```
 
@@ -28,9 +28,9 @@ from capo_interconnect import AsyncInterconnectClient
 
 
 async def main():
-    async with AsyncInterconnectClient() as s3:
+    async with AsyncInterconnectClient() as interconnect:
         # Example: paginate over list_attach_points
-        async for item in s3.iter_list_attach_points():
+        async for item in interconnect.iter_list_attach_points():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_interconnect.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncInterconnectClient() as s3:
+    async with AsyncInterconnectClient() as interconnect:
         try:
-            await s3.accept_connection_proposal()
+            await interconnect.accept_connection_proposal()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_interconnect import AsyncInterconnectClient
 
 
 async def main():
-    async with AsyncInterconnectClient() as s3:
+    async with AsyncInterconnectClient() as interconnect:
         # Default: 3 attempts for every operation
-        response = await s3.accept_connection_proposal()
+        response = await interconnect.accept_connection_proposal()
 
         # Override per operation
-        response = await s3.accept_connection_proposal(config_overrides={"retry_max_attempts": 5})
+        response = await interconnect.accept_connection_proposal(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_connection_proposal(config_overrides={"retry_max_attempts": 1})
+        response = await interconnect.accept_connection_proposal(config_overrides={"retry_max_attempts": 1})
 ```

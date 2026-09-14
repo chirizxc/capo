@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: UpdateApplicationPortalOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationPortalOptions:
     out: UpdateApplicationPortalOptions = {}  # type: ignore[typeddict-item]
-    if "SignInOptions" in data:
+    if data.get("SignInOptions") is not None:
         import capo_sso_admin.types.sign_in_options
 
         out["sign_in_options"] = (

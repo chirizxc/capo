@@ -102,11 +102,11 @@ def serialize_aws_json_1_0(value: RejectAgreementPaymentRequestOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RejectAgreementPaymentRequestOutput:
     out: RejectAgreementPaymentRequestOutput = {}  # type: ignore[typeddict-item]
-    if "paymentRequestId" in data:
+    if data.get("paymentRequestId") is not None:
         out["payment_request_id"] = data["paymentRequestId"]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_marketplace_agreement.types.payment_request_status
 
         out["status"] = (
@@ -114,17 +114,17 @@ def deserialize_aws_json_1_0(data: dict) -> RejectAgreementPaymentRequestOutput:
                 data["status"]
             )
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "chargeAmount" in data:
+    if data.get("chargeAmount") is not None:
         out["charge_amount"] = data["chargeAmount"]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_marketplace_agreement.types._prelude.timestamp
 
         out["created_at"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_0(data: dict) -> RejectAgreementPaymentRequestOutput:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_marketplace_agreement.types._prelude.timestamp
 
         out["updated_at"] = (

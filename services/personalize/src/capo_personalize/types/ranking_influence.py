@@ -20,7 +20,15 @@ def serialize_aws_json_1_1(input_to_serialize: RankingInfluence) -> dict:
 
         out[
             capo_personalize.types.ranking_influence_type.serialize_aws_json_1_1(key)
-        ] = value
+        ] = (
+            "NaN"
+            if value != value
+            else "Infinity"
+            if value == float("inf")
+            else "-Infinity"
+            if value == float("-inf")
+            else value
+        )
     return out
 
 
@@ -29,7 +37,9 @@ def deserialize_aws_json_1_1(data: dict) -> RankingInfluence:
     for key, value in data.items():
         import capo_personalize.types.ranking_influence_type
 
+        if value is None:
+            continue
         out[
             capo_personalize.types.ranking_influence_type.deserialize_aws_json_1_1(key)
-        ] = value
+        ] = float(value)
     return out

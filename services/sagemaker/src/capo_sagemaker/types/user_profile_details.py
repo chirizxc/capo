@@ -61,11 +61,11 @@ def serialize_aws_json_1_1(value: UserProfileDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserProfileDetails:
     out: UserProfileDetails = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "UserProfileName" in data:
+    if data.get("UserProfileName") is not None:
         out["user_profile_name"] = data["UserProfileName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.user_profile_status
 
         out["status"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserProfileDetails:
                 data["Status"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserProfileDetails:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (

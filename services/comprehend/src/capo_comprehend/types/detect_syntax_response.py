@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DetectSyntaxResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectSyntaxResponse:
     out: DetectSyntaxResponse = {}  # type: ignore[typeddict-item]
-    if "SyntaxTokens" in data:
+    if data.get("SyntaxTokens") is not None:
         import capo_comprehend.types.list_of_syntax_tokens
 
         out["syntax_tokens"] = (

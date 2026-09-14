@@ -60,17 +60,17 @@ def serialize_json(value: StartAudienceGenerationJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAudienceGenerationJobRequest:
     out: StartAudienceGenerationJobRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StartAudienceGenerationJobRequest.name required")
-    if "configuredAudienceModelArn" in data:
+    if data.get("configuredAudienceModelArn") is not None:
         out["configured_audience_model_arn"] = data["configuredAudienceModelArn"]
     else:
         raise DeserializationError(
             "StartAudienceGenerationJobRequest.configured_audience_model_arn required"
         )
-    if "seedAudience" in data:
+    if data.get("seedAudience") is not None:
         import capo_cleanroomsml.types.audience_generation_job_data_source
 
         out["seed_audience"] = (
@@ -82,15 +82,15 @@ def deserialize_json(data: dict) -> StartAudienceGenerationJobRequest:
         raise DeserializationError(
             "StartAudienceGenerationJobRequest.seed_audience required"
         )
-    if "includeSeedInOutput" in data:
+    if data.get("includeSeedInOutput") is not None:
         out["include_seed_in_output"] = data["includeSeedInOutput"]
     else:
         out["include_seed_in_output"] = False
-    if "collaborationId" in data:
+    if data.get("collaborationId") is not None:
         out["collaboration_id"] = data["collaborationId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])

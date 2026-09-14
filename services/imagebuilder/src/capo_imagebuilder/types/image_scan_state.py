@@ -32,12 +32,12 @@ def serialize_json(value: ImageScanState) -> dict:
 
 def deserialize_json(data: dict) -> ImageScanState:
     out: ImageScanState = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.image_scan_status
 
         out["status"] = capo_imagebuilder.types.image_scan_status.deserialize_json(
             data["status"]
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

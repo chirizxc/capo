@@ -31,7 +31,7 @@ def serialize_json(value: CancelElasticsearchServiceSoftwareUpdateResponse) -> d
 
 def deserialize_json(data: dict) -> CancelElasticsearchServiceSoftwareUpdateResponse:
     out: CancelElasticsearchServiceSoftwareUpdateResponse = {}  # type: ignore[typeddict-item]
-    if "ServiceSoftwareOptions" in data:
+    if data.get("ServiceSoftwareOptions") is not None:
         import capo_elasticsearch_service.types.service_software_options
 
         out["service_software_options"] = (

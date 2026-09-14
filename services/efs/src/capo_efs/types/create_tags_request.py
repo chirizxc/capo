@@ -29,7 +29,7 @@ def serialize_json(value: CreateTagsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTagsRequest:
     out: CreateTagsRequest = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_efs.types.tags
 
         out["tags"] = capo_efs.types.tags.deserialize_json(data["Tags"])

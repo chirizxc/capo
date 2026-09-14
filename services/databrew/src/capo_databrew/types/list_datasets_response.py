@@ -31,7 +31,7 @@ def serialize_json(value: ListDatasetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDatasetsResponse:
     out: ListDatasetsResponse = {}  # type: ignore[typeddict-item]
-    if "Datasets" in data:
+    if data.get("Datasets") is not None:
         import capo_databrew.types.dataset_list
 
         out["datasets"] = capo_databrew.types.dataset_list.deserialize_json(
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> ListDatasetsResponse:
         )
     else:
         raise DeserializationError("ListDatasetsResponse.datasets required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

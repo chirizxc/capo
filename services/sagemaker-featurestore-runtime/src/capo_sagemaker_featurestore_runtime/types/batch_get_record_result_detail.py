@@ -49,11 +49,11 @@ def serialize_json(value: BatchGetRecordResultDetail) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetRecordResultDetail:
     out: BatchGetRecordResultDetail = {}  # type: ignore[typeddict-item]
-    if "FeatureGroupName" in data:
+    if data.get("FeatureGroupName") is not None:
         out["feature_group_name"] = data["FeatureGroupName"]
-    if "RecordIdentifierValueAsString" in data:
+    if data.get("RecordIdentifierValueAsString") is not None:
         out["record_identifier_value_as_string"] = data["RecordIdentifierValueAsString"]
-    if "Record" in data:
+    if data.get("Record") is not None:
         import capo_sagemaker_featurestore_runtime.types.record
 
         out["record"] = (
@@ -61,6 +61,6 @@ def deserialize_json(data: dict) -> BatchGetRecordResultDetail:
                 data["Record"]
             )
         )
-    if "ExpiresAt" in data:
+    if data.get("ExpiresAt") is not None:
         out["expires_at"] = data["ExpiresAt"]
     return out

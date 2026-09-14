@@ -108,11 +108,11 @@ def serialize_aws_json_1_1(value: S3HudiDirectTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3HudiDirectTarget:
     out: S3HudiDirectTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3HudiDirectTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -120,11 +120,11 @@ def deserialize_aws_json_1_1(data: dict) -> S3HudiDirectTarget:
         )
     else:
         raise DeserializationError("S3HudiDirectTarget.inputs required")
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     else:
         raise DeserializationError("S3HudiDirectTarget.path required")
-    if "Compression" in data:
+    if data.get("Compression") is not None:
         import capo_glue.types.hudi_target_compression_type
 
         out["compression"] = (
@@ -134,9 +134,9 @@ def deserialize_aws_json_1_1(data: dict) -> S3HudiDirectTarget:
         )
     else:
         raise DeserializationError("S3HudiDirectTarget.compression required")
-    if "NumberTargetPartitions" in data:
+    if data.get("NumberTargetPartitions") is not None:
         out["number_target_partitions"] = data["NumberTargetPartitions"]
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["partition_keys"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3HudiDirectTarget:
                 data["PartitionKeys"]
             )
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_glue.types.target_format
 
         out["format"] = capo_glue.types.target_format.deserialize_aws_json_1_1(
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3HudiDirectTarget:
         )
     else:
         raise DeserializationError("S3HudiDirectTarget.format required")
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.additional_options
 
         out["additional_options"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3HudiDirectTarget:
         )
     else:
         raise DeserializationError("S3HudiDirectTarget.additional_options required")
-    if "SchemaChangePolicy" in data:
+    if data.get("SchemaChangePolicy") is not None:
         import capo_glue.types.direct_schema_change_policy
 
         out["schema_change_policy"] = (
@@ -170,7 +170,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3HudiDirectTarget:
                 data["SchemaChangePolicy"]
             )
         )
-    if "AutoDataQuality" in data:
+    if data.get("AutoDataQuality") is not None:
         import capo_glue.types.auto_data_quality
 
         out["auto_data_quality"] = (

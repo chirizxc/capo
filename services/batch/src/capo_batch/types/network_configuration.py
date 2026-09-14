@@ -27,7 +27,7 @@ def serialize_json(value: NetworkConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NetworkConfiguration:
     out: NetworkConfiguration = {}  # type: ignore[typeddict-item]
-    if "assignPublicIp" in data:
+    if data.get("assignPublicIp") is not None:
         import capo_batch.types.assign_public_ip
 
         out["assign_public_ip"] = capo_batch.types.assign_public_ip.deserialize_json(

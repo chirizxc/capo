@@ -38,23 +38,23 @@ def serialize_aws_json_1_0(value: LocalizedContent) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LocalizedContent:
     out: LocalizedContent = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError("LocalizedContent.display_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("LocalizedContent.description required")
-    if "WebsiteUrl" in data:
+    if data.get("WebsiteUrl") is not None:
         out["website_url"] = data["WebsiteUrl"]
     else:
         raise DeserializationError("LocalizedContent.website_url required")
-    if "LogoUrl" in data:
+    if data.get("LogoUrl") is not None:
         out["logo_url"] = data["LogoUrl"]
     else:
         raise DeserializationError("LocalizedContent.logo_url required")
-    if "Locale" in data:
+    if data.get("Locale") is not None:
         out["locale"] = data["Locale"]
     else:
         raise DeserializationError("LocalizedContent.locale required")

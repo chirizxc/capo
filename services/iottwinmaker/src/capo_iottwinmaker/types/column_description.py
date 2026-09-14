@@ -28,8 +28,8 @@ def serialize_json(value: ColumnDescription) -> dict:
 
 def deserialize_json(data: dict) -> ColumnDescription:
     out: ColumnDescription = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

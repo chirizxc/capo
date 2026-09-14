@@ -38,11 +38,11 @@ def serialize_json(value: SimpleRule) -> dict:
 
 def deserialize_json(data: dict) -> SimpleRule:
     out: SimpleRule = {}  # type: ignore[typeddict-item]
-    if "inputProperty" in data:
+    if data.get("inputProperty") is not None:
         out["input_property"] = data["inputProperty"]
     else:
         raise DeserializationError("SimpleRule.input_property required")
-    if "comparisonOperator" in data:
+    if data.get("comparisonOperator") is not None:
         import capo_iot_events.types.comparison_operator
 
         out["comparison_operator"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> SimpleRule:
         )
     else:
         raise DeserializationError("SimpleRule.comparison_operator required")
-    if "threshold" in data:
+    if data.get("threshold") is not None:
         out["threshold"] = data["threshold"]
     else:
         raise DeserializationError("SimpleRule.threshold required")

@@ -32,7 +32,7 @@ def serialize_json(value: GetEnabledControlOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetEnabledControlOutput:
     out: GetEnabledControlOutput = {}  # type: ignore[typeddict-item]
-    if "enabledControlDetails" in data:
+    if data.get("enabledControlDetails") is not None:
         import capo_controltower.types.enabled_control_details
 
         out["enabled_control_details"] = (

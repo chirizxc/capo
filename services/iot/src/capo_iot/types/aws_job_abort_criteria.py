@@ -39,14 +39,22 @@ def serialize_json(value: AwsJobAbortCriteria) -> dict:
     out["action"] = capo_iot.types.aws_job_abort_criteria_abort_action.serialize_json(
         value["action"]
     )
-    out["thresholdPercentage"] = value["threshold_percentage"]
+    out["thresholdPercentage"] = (
+        "NaN"
+        if value["threshold_percentage"] != value["threshold_percentage"]
+        else "Infinity"
+        if value["threshold_percentage"] == float("inf")
+        else "-Infinity"
+        if value["threshold_percentage"] == float("-inf")
+        else value["threshold_percentage"]
+    )
     out["minNumberOfExecutedThings"] = value["min_number_of_executed_things"]
     return out
 
 
 def deserialize_json(data: dict) -> AwsJobAbortCriteria:
     out: AwsJobAbortCriteria = {}  # type: ignore[typeddict-item]
-    if "failureType" in data:
+    if data.get("failureType") is not None:
         import capo_iot.types.aws_job_abort_criteria_failure_type
 
         out["failure_type"] = (
@@ -56,7 +64,7 @@ def deserialize_json(data: dict) -> AwsJobAbortCriteria:
         )
     else:
         raise DeserializationError("AwsJobAbortCriteria.failure_type required")
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_iot.types.aws_job_abort_criteria_abort_action
 
         out["action"] = (
@@ -66,11 +74,11 @@ def deserialize_json(data: dict) -> AwsJobAbortCriteria:
         )
     else:
         raise DeserializationError("AwsJobAbortCriteria.action required")
-    if "thresholdPercentage" in data:
-        out["threshold_percentage"] = data["thresholdPercentage"]
+    if data.get("thresholdPercentage") is not None:
+        out["threshold_percentage"] = float(data["thresholdPercentage"])
     else:
         raise DeserializationError("AwsJobAbortCriteria.threshold_percentage required")
-    if "minNumberOfExecutedThings" in data:
+    if data.get("minNumberOfExecutedThings") is not None:
         out["min_number_of_executed_things"] = data["minNumberOfExecutedThings"]
     else:
         raise DeserializationError(

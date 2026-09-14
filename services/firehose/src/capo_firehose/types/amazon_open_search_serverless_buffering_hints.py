@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: AmazonOpenSearchServerlessBufferingHints) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> AmazonOpenSearchServerlessBufferingHints:
     out: AmazonOpenSearchServerlessBufferingHints = {}  # type: ignore[typeddict-item]
-    if "IntervalInSeconds" in data:
+    if data.get("IntervalInSeconds") is not None:
         out["interval_in_seconds"] = data["IntervalInSeconds"]
-    if "SizeInMBs" in data:
+    if data.get("SizeInMBs") is not None:
         out["size_in_m_bs"] = data["SizeInMBs"]
     return out

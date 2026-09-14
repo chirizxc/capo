@@ -49,9 +49,9 @@ def serialize_json(value: SecurityHubPolicy) -> dict:
 
 def deserialize_json(data: dict) -> SecurityHubPolicy:
     out: SecurityHubPolicy = {}  # type: ignore[typeddict-item]
-    if "ServiceEnabled" in data:
+    if data.get("ServiceEnabled") is not None:
         out["service_enabled"] = data["ServiceEnabled"]
-    if "EnabledStandardIdentifiers" in data:
+    if data.get("EnabledStandardIdentifiers") is not None:
         import capo_securityhub.types.enabled_standard_identifier_list
 
         out["enabled_standard_identifiers"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> SecurityHubPolicy:
                 data["EnabledStandardIdentifiers"]
             )
         )
-    if "SecurityControlsConfiguration" in data:
+    if data.get("SecurityControlsConfiguration") is not None:
         import capo_securityhub.types.security_controls_configuration
 
         out["security_controls_configuration"] = (

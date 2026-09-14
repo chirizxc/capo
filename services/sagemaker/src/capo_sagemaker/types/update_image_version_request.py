@@ -111,13 +111,13 @@ def serialize_aws_json_1_1(value: UpdateImageVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateImageVersionRequest:
     out: UpdateImageVersionRequest = {}  # type: ignore[typeddict-item]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "AliasesToAdd" in data:
+    if data.get("AliasesToAdd") is not None:
         import capo_sagemaker.types.sage_maker_image_version_aliases
 
         out["aliases_to_add"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateImageVersionRequest:
                 data["AliasesToAdd"]
             )
         )
-    if "AliasesToDelete" in data:
+    if data.get("AliasesToDelete") is not None:
         import capo_sagemaker.types.sage_maker_image_version_aliases
 
         out["aliases_to_delete"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateImageVersionRequest:
                 data["AliasesToDelete"]
             )
         )
-    if "VendorGuidance" in data:
+    if data.get("VendorGuidance") is not None:
         import capo_sagemaker.types.vendor_guidance
 
         out["vendor_guidance"] = (
@@ -141,24 +141,24 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateImageVersionRequest:
                 data["VendorGuidance"]
             )
         )
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         import capo_sagemaker.types.job_type
 
         out["job_type"] = capo_sagemaker.types.job_type.deserialize_aws_json_1_1(
             data["JobType"]
         )
-    if "MLFramework" in data:
+    if data.get("MLFramework") is not None:
         out["ml_framework"] = data["MLFramework"]
-    if "ProgrammingLang" in data:
+    if data.get("ProgrammingLang") is not None:
         out["programming_lang"] = data["ProgrammingLang"]
-    if "Processor" in data:
+    if data.get("Processor") is not None:
         import capo_sagemaker.types.processor
 
         out["processor"] = capo_sagemaker.types.processor.deserialize_aws_json_1_1(
             data["Processor"]
         )
-    if "Horovod" in data:
+    if data.get("Horovod") is not None:
         out["horovod"] = data["Horovod"]
-    if "ReleaseNotes" in data:
+    if data.get("ReleaseNotes") is not None:
         out["release_notes"] = data["ReleaseNotes"]
     return out

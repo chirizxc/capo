@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> MappingRulesList:
 
     out: MappingRulesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cognito_identity.types.mapping_rule.deserialize_aws_json_1_1(item)
         )

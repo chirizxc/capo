@@ -38,13 +38,13 @@ def serialize_json(value: UpdateServiceSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceSettingsRequest:
     out: UpdateServiceSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "LinuxSubscriptionsDiscovery" in data:
+    if data.get("LinuxSubscriptionsDiscovery") is not None:
         out["linux_subscriptions_discovery"] = data["LinuxSubscriptionsDiscovery"]
     else:
         raise DeserializationError(
             "UpdateServiceSettingsRequest.linux_subscriptions_discovery required"
         )
-    if "LinuxSubscriptionsDiscoverySettings" in data:
+    if data.get("LinuxSubscriptionsDiscoverySettings") is not None:
         import capo_license_manager_linux_subscriptions.types.linux_subscriptions_discovery_settings
 
         out["linux_subscriptions_discovery_settings"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> UpdateServiceSettingsRequest:
         raise DeserializationError(
             "UpdateServiceSettingsRequest.linux_subscriptions_discovery_settings required"
         )
-    if "AllowUpdate" in data:
+    if data.get("AllowUpdate") is not None:
         out["allow_update"] = data["AllowUpdate"]
     return out

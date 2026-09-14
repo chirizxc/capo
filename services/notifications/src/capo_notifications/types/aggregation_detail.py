@@ -31,7 +31,7 @@ def serialize_json(value: AggregationDetail) -> dict:
 
 def deserialize_json(data: dict) -> AggregationDetail:
     out: AggregationDetail = {}  # type: ignore[typeddict-item]
-    if "summarizationDimensions" in data:
+    if data.get("summarizationDimensions") is not None:
         import capo_notifications.types.summarization_dimension_details
 
         out["summarization_dimensions"] = (

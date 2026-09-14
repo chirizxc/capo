@@ -60,22 +60,22 @@ def serialize_aws_json_1_1(value: SchemaListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SchemaListItem:
     out: SchemaListItem = {}  # type: ignore[typeddict-item]
-    if "RegistryName" in data:
+    if data.get("RegistryName") is not None:
         out["registry_name"] = data["RegistryName"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SchemaStatus" in data:
+    if data.get("SchemaStatus") is not None:
         import capo_glue.types.schema_status
 
         out["schema_status"] = capo_glue.types.schema_status.deserialize_aws_json_1_1(
             data["SchemaStatus"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         out["created_time"] = data["CreatedTime"]
-    if "UpdatedTime" in data:
+    if data.get("UpdatedTime") is not None:
         out["updated_time"] = data["UpdatedTime"]
     return out

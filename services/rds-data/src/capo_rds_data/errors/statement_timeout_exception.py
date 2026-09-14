@@ -29,9 +29,9 @@ def serialize_json(value: StatementTimeoutException_) -> dict:
 
 def deserialize_json(data: dict) -> StatementTimeoutException_:
     out: StatementTimeoutException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "dbConnectionId" in data:
+    if data.get("dbConnectionId") is not None:
         out["db_connection_id"] = data["dbConnectionId"]
     else:
         out["db_connection_id"] = 0
@@ -43,15 +43,18 @@ class StatementTimeoutException(ServiceError):
 
     code: str | None = "StatementTimeoutException"
 
-    def __init__(self, data: StatementTimeoutException_):
+    def __init__(self, data: StatementTimeoutException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="StatementTimeoutException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "StatementTimeoutException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "StatementTimeoutException":
+        return cls(deserialize_json(data), message)

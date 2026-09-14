@@ -25,6 +25,6 @@ def serialize_json(value: DvbSubSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> DvbSubSourceSettings:
     out: DvbSubSourceSettings = {}  # type: ignore[typeddict-item]
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
     return out

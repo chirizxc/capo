@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: Row) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Row:
     out: Row = {}  # type: ignore[typeddict-item]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_timestream_query.types.datum_list
 
         out["data"] = capo_timestream_query.types.datum_list.deserialize_aws_json_1_0(

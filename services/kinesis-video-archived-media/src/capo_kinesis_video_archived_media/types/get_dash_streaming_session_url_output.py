@@ -25,6 +25,6 @@ def serialize_json(value: GetDASHStreamingSessionURLOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetDASHStreamingSessionURLOutput:
     out: GetDASHStreamingSessionURLOutput = {}  # type: ignore[typeddict-item]
-    if "DASHStreamingSessionURL" in data:
+    if data.get("DASHStreamingSessionURL") is not None:
         out["dash_streaming_session_url"] = data["DASHStreamingSessionURL"]
     return out

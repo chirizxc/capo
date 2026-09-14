@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: AccountLevelBpaSync) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountLevelBpaSync:
     out: AccountLevelBpaSync = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lightsail.types.account_level_bpa_sync_status
 
         out["status"] = (
@@ -62,13 +62,13 @@ def deserialize_aws_json_1_1(data: dict) -> AccountLevelBpaSync:
                 data["status"]
             )
         )
-    if "lastSyncedAt" in data:
+    if data.get("lastSyncedAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["last_synced_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["lastSyncedAt"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         import capo_lightsail.types.bpa_status_message
 
         out["message"] = (
@@ -76,6 +76,6 @@ def deserialize_aws_json_1_1(data: dict) -> AccountLevelBpaSync:
                 data["message"]
             )
         )
-    if "bpaImpactsLightsail" in data:
+    if data.get("bpaImpactsLightsail") is not None:
         out["bpa_impacts_lightsail"] = data["bpaImpactsLightsail"]
     return out

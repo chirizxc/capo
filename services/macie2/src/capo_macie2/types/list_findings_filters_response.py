@@ -36,7 +36,7 @@ def serialize_json(value: ListFindingsFiltersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFindingsFiltersResponse:
     out: ListFindingsFiltersResponse = {}  # type: ignore[typeddict-item]
-    if "findingsFilterListItems" in data:
+    if data.get("findingsFilterListItems") is not None:
         import capo_macie2.types.__list_of_findings_filter_list_item
 
         out["findings_filter_list_items"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListFindingsFiltersResponse:
                 data["findingsFilterListItems"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

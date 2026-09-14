@@ -28,10 +28,10 @@ def serialize_json(value: MemoryMiBRange) -> dict:
 
 def deserialize_json(data: dict) -> MemoryMiBRange:
     out: MemoryMiBRange = {}  # type: ignore[typeddict-item]
-    if "min" in data:
+    if data.get("min") is not None:
         out["min"] = data["min"]
     else:
         raise DeserializationError("MemoryMiBRange.min required")
-    if "max" in data:
+    if data.get("max") is not None:
         out["max"] = data["max"]
     return out

@@ -60,19 +60,19 @@ def serialize_json(value: IncidentTemplate) -> dict:
 
 def deserialize_json(data: dict) -> IncidentTemplate:
     out: IncidentTemplate = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("IncidentTemplate.title required")
-    if "impact" in data:
+    if data.get("impact") is not None:
         out["impact"] = data["impact"]
     else:
         raise DeserializationError("IncidentTemplate.impact required")
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
-    if "dedupeString" in data:
+    if data.get("dedupeString") is not None:
         out["dedupe_string"] = data["dedupeString"]
-    if "notificationTargets" in data:
+    if data.get("notificationTargets") is not None:
         import capo_ssm_incidents.types.notification_target_set
 
         out["notification_targets"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> IncidentTemplate:
                 data["notificationTargets"]
             )
         )
-    if "incidentTags" in data:
+    if data.get("incidentTags") is not None:
         import capo_ssm_incidents.types.tag_map
 
         out["incident_tags"] = capo_ssm_incidents.types.tag_map.deserialize_json(

@@ -44,7 +44,7 @@ def serialize_json(value: Remediation) -> dict:
 
 def deserialize_json(data: dict) -> Remediation:
     out: Remediation = {}  # type: ignore[typeddict-item]
-    if "recommendation" in data:
+    if data.get("recommendation") is not None:
         import capo_codeguru_security.types.recommendation
 
         out["recommendation"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> Remediation:
                 data["recommendation"]
             )
         )
-    if "suggestedFixes" in data:
+    if data.get("suggestedFixes") is not None:
         import capo_codeguru_security.types.suggested_fixes
 
         out["suggested_fixes"] = (

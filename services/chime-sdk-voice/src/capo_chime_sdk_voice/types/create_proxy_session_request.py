@@ -96,7 +96,7 @@ def serialize_json(value: CreateProxySessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProxySessionRequest:
     out: CreateProxySessionRequest = {}  # type: ignore[typeddict-item]
-    if "ParticipantPhoneNumbers" in data:
+    if data.get("ParticipantPhoneNumbers") is not None:
         import capo_chime_sdk_voice.types.participant_phone_number_list
 
         out["participant_phone_numbers"] = (
@@ -108,11 +108,11 @@ def deserialize_json(data: dict) -> CreateProxySessionRequest:
         raise DeserializationError(
             "CreateProxySessionRequest.participant_phone_numbers required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ExpiryMinutes" in data:
+    if data.get("ExpiryMinutes") is not None:
         out["expiry_minutes"] = data["ExpiryMinutes"]
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_chime_sdk_voice.types.capability_list
 
         out["capabilities"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> CreateProxySessionRequest:
         )
     else:
         raise DeserializationError("CreateProxySessionRequest.capabilities required")
-    if "NumberSelectionBehavior" in data:
+    if data.get("NumberSelectionBehavior") is not None:
         import capo_chime_sdk_voice.types.number_selection_behavior
 
         out["number_selection_behavior"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> CreateProxySessionRequest:
                 data["NumberSelectionBehavior"]
             )
         )
-    if "GeoMatchLevel" in data:
+    if data.get("GeoMatchLevel") is not None:
         import capo_chime_sdk_voice.types.geo_match_level
 
         out["geo_match_level"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> CreateProxySessionRequest:
                 data["GeoMatchLevel"]
             )
         )
-    if "GeoMatchParams" in data:
+    if data.get("GeoMatchParams") is not None:
         import capo_chime_sdk_voice.types.geo_match_params
 
         out["geo_match_params"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: WithdrawByoipCidrRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WithdrawByoipCidrRequest:
     out: WithdrawByoipCidrRequest = {}  # type: ignore[typeddict-item]
-    if "Cidr" in data:
+    if data.get("Cidr") is not None:
         out["cidr"] = data["Cidr"]
     else:
         raise DeserializationError("WithdrawByoipCidrRequest.cidr required")

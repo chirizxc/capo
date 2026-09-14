@@ -318,18 +318,20 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.associate_external_connection_request.AssociateExternalConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.associate_external_connection_request.AssociateExternalConnectionRequest = {
+            "domain": domain,
+            "repository": repository,
+            "external_connection": external_connection,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["external_connection"] = external_connection
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def copy_package_versions(
@@ -401,16 +403,17 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.copy_package_versions_request.CopyPackageVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.copy_package_versions_request.CopyPackageVersionsRequest = {
+            "domain": domain,
+            "source_repository": source_repository,
+            "destination_repository": destination_repository,
+            "format": format,
+            "package": package,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["source_repository"] = source_repository
-        input_["destination_repository"] = destination_repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
         if versions is not None:
             input_["versions"] = versions
         if version_revisions is not None:
@@ -425,6 +428,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain(
@@ -468,8 +472,9 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.create_domain_request.CreateDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.create_domain_request.CreateDomainRequest = {
+            "domain": domain
+        }
         if encryption_key is not None:
             input_["encryption_key"] = encryption_key
         if tags is not None:
@@ -480,6 +485,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_package_group(
@@ -531,11 +537,12 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.create_package_group_request.CreatePackageGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.create_package_group_request.CreatePackageGroupRequest = {
+            "domain": domain,
+            "package_group": package_group,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["package_group"] = package_group
         if contact_info is not None:
             input_["contact_info"] = contact_info
         if description is not None:
@@ -548,6 +555,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_repository(
@@ -599,11 +607,12 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.create_repository_request.CreateRepositoryRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.create_repository_request.CreateRepositoryRequest = {
+            "domain": domain,
+            "repository": repository,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
         if description is not None:
             input_["description"] = description
         if upstreams is not None:
@@ -616,6 +625,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain(
@@ -655,8 +665,9 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.delete_domain_request.DeleteDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.delete_domain_request.DeleteDomainRequest = {
+            "domain": domain
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
 
@@ -665,6 +676,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain_permissions_policy(
@@ -709,8 +721,9 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.delete_domain_permissions_policy_request.DeleteDomainPermissionsPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.delete_domain_permissions_policy_request.DeleteDomainPermissionsPolicyRequest = {
+            "domain": domain
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
         if policy_revision is not None:
@@ -721,6 +734,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_package(
@@ -771,21 +785,23 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.delete_package_request.DeletePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.delete_package_request.DeletePackageRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_package_group(
@@ -829,17 +845,19 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.delete_package_group_request.DeletePackageGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.delete_package_group_request.DeletePackageGroupRequest = {
+            "domain": domain,
+            "package_group": package_group,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["package_group"] = package_group
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_package_versions(
@@ -896,16 +914,17 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.delete_package_versions_request.DeletePackageVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.delete_package_versions_request.DeletePackageVersionsRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+            "versions": versions,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
-        input_["versions"] = versions
         if expected_status is not None:
             input_["expected_status"] = expected_status
 
@@ -914,6 +933,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_repository(
@@ -956,17 +976,19 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.delete_repository_request.DeleteRepositoryRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.delete_repository_request.DeleteRepositoryRequest = {
+            "domain": domain,
+            "repository": repository,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_repository_permissions_policy(
@@ -1013,11 +1035,12 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.delete_repository_permissions_policy_request.DeleteRepositoryPermissionsPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.delete_repository_permissions_policy_request.DeleteRepositoryPermissionsPolicyRequest = {
+            "domain": domain,
+            "repository": repository,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
         if policy_revision is not None:
             input_["policy_revision"] = policy_revision
 
@@ -1026,6 +1049,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domain(
@@ -1065,8 +1089,9 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.describe_domain_request.DescribeDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.describe_domain_request.DescribeDomainRequest = {
+            "domain": domain
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
 
@@ -1075,6 +1100,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_package(
@@ -1124,21 +1150,23 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.describe_package_request.DescribePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.describe_package_request.DescribePackageRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_package_group(
@@ -1180,17 +1208,19 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.describe_package_group_request.DescribePackageGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.describe_package_group_request.DescribePackageGroupRequest = {
+            "domain": domain,
+            "package_group": package_group,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["package_group"] = package_group
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_package_version(
@@ -1243,22 +1273,24 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.describe_package_version_request.DescribePackageVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.describe_package_version_request.DescribePackageVersionRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+            "package_version": package_version,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
-        input_["package_version"] = package_version
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_repository(
@@ -1300,17 +1332,19 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.describe_repository_request.DescribeRepositoryRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.describe_repository_request.DescribeRepositoryRequest = {
+            "domain": domain,
+            "repository": repository,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_external_connection(
@@ -1356,18 +1390,20 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.disassociate_external_connection_request.DisassociateExternalConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.disassociate_external_connection_request.DisassociateExternalConnectionRequest = {
+            "domain": domain,
+            "repository": repository,
+            "external_connection": external_connection,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["external_connection"] = external_connection
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def dispose_package_versions(
@@ -1428,16 +1464,17 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.dispose_package_versions_request.DisposePackageVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.dispose_package_versions_request.DisposePackageVersionsRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+            "versions": versions,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
-        input_["versions"] = versions
         if version_revisions is not None:
             input_["version_revisions"] = version_revisions
         if expected_status is not None:
@@ -1448,6 +1485,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_associated_package_group(
@@ -1494,20 +1532,22 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.get_associated_package_group_request.GetAssociatedPackageGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.get_associated_package_group_request.GetAssociatedPackageGroupRequest = {
+            "domain": domain,
+            "format": format,
+            "package": package,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_authorization_token(
@@ -1551,8 +1591,9 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.get_authorization_token_request.GetAuthorizationTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.get_authorization_token_request.GetAuthorizationTokenRequest = {
+            "domain": domain
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
         if duration_seconds is not None:
@@ -1563,6 +1604,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain_permissions_policy(
@@ -1602,8 +1644,9 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.get_domain_permissions_policy_request.GetDomainPermissionsPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.get_domain_permissions_policy_request.GetDomainPermissionsPolicyRequest = {
+            "domain": domain
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
 
@@ -1612,6 +1655,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -1671,17 +1715,18 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.get_package_version_asset_request.GetPackageVersionAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.get_package_version_asset_request.GetPackageVersionAssetRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+            "package_version": package_version,
+            "asset": asset,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
-        input_["package_version"] = package_version
-        input_["asset"] = asset
         if package_version_revision is not None:
             input_["package_version_revision"] = package_version_revision
 
@@ -1690,7 +1735,10 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def get_package_version_readme(
         self,
@@ -1741,22 +1789,24 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.get_package_version_readme_request.GetPackageVersionReadmeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.get_package_version_readme_request.GetPackageVersionReadmeRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+            "package_version": package_version,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
-        input_["package_version"] = package_version
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_repository_endpoint(
@@ -1804,12 +1854,13 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.get_repository_endpoint_request.GetRepositoryEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.get_repository_endpoint_request.GetRepositoryEndpointRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if endpoint_type is not None:
             input_["endpoint_type"] = endpoint_type
 
@@ -1818,6 +1869,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_repository_permissions_policy(
@@ -1859,17 +1911,19 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.get_repository_permissions_policy_request.GetRepositoryPermissionsPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.get_repository_permissions_policy_request.GetRepositoryPermissionsPolicyRequest = {
+            "domain": domain,
+            "repository": repository,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_allowed_repositories_for_group(
@@ -1922,12 +1976,13 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_allowed_repositories_for_group_request.ListAllowedRepositoriesForGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.list_allowed_repositories_for_group_request.ListAllowedRepositoriesForGroupRequest = {
+            "domain": domain,
+            "package_group": package_group,
+            "origin_restriction_type": origin_restriction_type,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["package_group"] = package_group
-        input_["origin_restriction_type"] = origin_restriction_type
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1938,6 +1993,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_allowed_repositories_for_group(
@@ -2023,11 +2079,12 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_associated_packages_request.ListAssociatedPackagesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.list_associated_packages_request.ListAssociatedPackagesRequest = {
+            "domain": domain,
+            "package_group": package_group,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["package_group"] = package_group
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2040,6 +2097,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_associated_packages(
@@ -2117,7 +2175,7 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_domains_request.ListDomainsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codeartifact.types.list_domains_request.ListDomainsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2128,6 +2186,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_domains(
@@ -2204,8 +2263,9 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_package_groups_request.ListPackageGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.list_package_groups_request.ListPackageGroupsRequest = {
+            "domain": domain
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
         if max_results is not None:
@@ -2220,6 +2280,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_package_groups(
@@ -2318,11 +2379,12 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_packages_request.ListPackagesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.list_packages_request.ListPackagesRequest = {
+            "domain": domain,
+            "repository": repository,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
         if format is not None:
             input_["format"] = format
         if namespace is not None:
@@ -2343,6 +2405,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_packages(
@@ -2449,16 +2512,17 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_package_version_assets_request.ListPackageVersionAssetsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.list_package_version_assets_request.ListPackageVersionAssetsRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+            "package_version": package_version,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
-        input_["package_version"] = package_version
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2469,6 +2533,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_package_version_assets(
@@ -2565,16 +2630,17 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_package_version_dependencies_request.ListPackageVersionDependenciesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.list_package_version_dependencies_request.ListPackageVersionDependenciesRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+            "package_version": package_version,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
-        input_["package_version"] = package_version
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2583,6 +2649,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_package_versions(
@@ -2654,15 +2721,16 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_package_versions_request.ListPackageVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.list_package_versions_request.ListPackageVersionsRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
         if status is not None:
             input_["status"] = status
         if sort_by is not None:
@@ -2679,6 +2747,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_package_versions(
@@ -2776,7 +2845,7 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_repositories_request.ListRepositoriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codeartifact.types.list_repositories_request.ListRepositoriesRequest = {}
         if repository_prefix is not None:
             input_["repository_prefix"] = repository_prefix
         if max_results is not None:
@@ -2789,6 +2858,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_repositories(
@@ -2873,8 +2943,9 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_repositories_in_domain_request.ListRepositoriesInDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.list_repositories_in_domain_request.ListRepositoriesInDomainRequest = {
+            "domain": domain
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
         if administrator_account is not None:
@@ -2891,6 +2962,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_repositories_in_domain(
@@ -2977,11 +3049,12 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_sub_package_groups_request.ListSubPackageGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.list_sub_package_groups_request.ListSubPackageGroupsRequest = {
+            "domain": domain,
+            "package_group": package_group,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["package_group"] = package_group
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2992,6 +3065,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_sub_package_groups(
@@ -3059,14 +3133,16 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_codeartifact.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def publish_package_version(
@@ -3130,19 +3206,20 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.publish_package_version_request.PublishPackageVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.publish_package_version_request.PublishPackageVersionRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+            "package_version": package_version,
+            "asset_content": ensure_sync_iterator(asset_content),
+            "asset_name": asset_name,
+            "asset_sha256": asset_sha256,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
-        input_["package_version"] = package_version
-        input_["asset_content"] = ensure_sync_iterator(asset_content)
-        input_["asset_name"] = asset_name
-        input_["asset_sha256"] = asset_sha256
         if unfinished is not None:
             input_["unfinished"] = unfinished
 
@@ -3151,6 +3228,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_domain_permissions_policy(
@@ -3198,19 +3276,21 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.put_domain_permissions_policy_request.PutDomainPermissionsPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.put_domain_permissions_policy_request.PutDomainPermissionsPolicyRequest = {
+            "domain": domain,
+            "policy_document": policy_document,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
         if policy_revision is not None:
             input_["policy_revision"] = policy_revision
-        input_["policy_document"] = policy_document
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_package_origin_configuration(
@@ -3262,22 +3342,24 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.put_package_origin_configuration_request.PutPackageOriginConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.put_package_origin_configuration_request.PutPackageOriginConfigurationRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+            "restrictions": restrictions,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
-        input_["restrictions"] = restrictions
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_repository_permissions_policy(
@@ -3327,20 +3409,22 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.put_repository_permissions_policy_request.PutRepositoryPermissionsPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.put_repository_permissions_policy_request.PutRepositoryPermissionsPolicyRequest = {
+            "domain": domain,
+            "repository": repository,
+            "policy_document": policy_document,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
         if policy_revision is not None:
             input_["policy_revision"] = policy_revision
-        input_["policy_document"] = policy_document
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -3380,15 +3464,17 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_codeartifact.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -3427,15 +3513,17 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_codeartifact.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_package_group(
@@ -3484,11 +3572,12 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.update_package_group_request.UpdatePackageGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.update_package_group_request.UpdatePackageGroupRequest = {
+            "domain": domain,
+            "package_group": package_group,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["package_group"] = package_group
         if contact_info is not None:
             input_["contact_info"] = contact_info
         if description is not None:
@@ -3499,6 +3588,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_package_group_origin_configuration(
@@ -3553,11 +3643,12 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.update_package_group_origin_configuration_request.UpdatePackageGroupOriginConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.update_package_group_origin_configuration_request.UpdatePackageGroupOriginConfigurationRequest = {
+            "domain": domain,
+            "package_group": package_group,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["package_group"] = package_group
         if restrictions is not None:
             input_["restrictions"] = restrictions
         if add_allowed_repositories is not None:
@@ -3570,6 +3661,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_package_versions_status(
@@ -3632,27 +3724,29 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.update_package_versions_status_request.UpdatePackageVersionsStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.update_package_versions_status_request.UpdatePackageVersionsStatusRequest = {
+            "domain": domain,
+            "repository": repository,
+            "format": format,
+            "package": package,
+            "versions": versions,
+            "target_status": target_status,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
-        input_["format"] = format
         if namespace is not None:
             input_["namespace"] = namespace
-        input_["package"] = package
-        input_["versions"] = versions
         if version_revisions is not None:
             input_["version_revisions"] = version_revisions
         if expected_status is not None:
             input_["expected_status"] = expected_status
-        input_["target_status"] = target_status
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_repository(
@@ -3702,11 +3796,12 @@ class codeartifactClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codeartifact.types.update_repository_request.UpdateRepositoryRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_codeartifact.types.update_repository_request.UpdateRepositoryRequest = {
+            "domain": domain,
+            "repository": repository,
+        }
         if domain_owner is not None:
             input_["domain_owner"] = domain_owner
-        input_["repository"] = repository
         if description is not None:
             input_["description"] = description
         if upstreams is not None:
@@ -3717,6 +3812,7 @@ class codeartifactClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -82,17 +82,17 @@ def serialize_json(value: DescribeGroupResult) -> dict:
 
 def deserialize_json(data: dict) -> DescribeGroupResult:
     out: DescribeGroupResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "Realm" in data:
+    if data.get("Realm") is not None:
         out["realm"] = data["Realm"]
-    if "SID" in data:
+    if data.get("SID") is not None:
         out["sid"] = data["SID"]
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
-    if "DistinguishedName" in data:
+    if data.get("DistinguishedName") is not None:
         out["distinguished_name"] = data["DistinguishedName"]
-    if "GroupType" in data:
+    if data.get("GroupType") is not None:
         import capo_directory_service_data.types.group_type
 
         out["group_type"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> DescribeGroupResult:
                 data["GroupType"]
             )
         )
-    if "GroupScope" in data:
+    if data.get("GroupScope") is not None:
         import capo_directory_service_data.types.group_scope
 
         out["group_scope"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> DescribeGroupResult:
                 data["GroupScope"]
             )
         )
-    if "OtherAttributes" in data:
+    if data.get("OtherAttributes") is not None:
         import capo_directory_service_data.types.attributes
 
         out["other_attributes"] = (

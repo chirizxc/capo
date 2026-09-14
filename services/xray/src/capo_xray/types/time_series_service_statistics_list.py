@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> TimeSeriesServiceStatisticsList:
 
     out: TimeSeriesServiceStatisticsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_xray.types.time_series_service_statistics.deserialize_json(item)
         )

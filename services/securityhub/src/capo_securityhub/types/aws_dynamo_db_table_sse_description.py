@@ -41,14 +41,14 @@ def serialize_json(value: AwsDynamoDbTableSseDescription) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableSseDescription:
     out: AwsDynamoDbTableSseDescription = {}  # type: ignore[typeddict-item]
-    if "InaccessibleEncryptionDateTime" in data:
+    if data.get("InaccessibleEncryptionDateTime") is not None:
         out["inaccessible_encryption_date_time"] = data[
             "InaccessibleEncryptionDateTime"
         ]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "SseType" in data:
+    if data.get("SseType") is not None:
         out["sse_type"] = data["SseType"]
-    if "KmsMasterKeyArn" in data:
+    if data.get("KmsMasterKeyArn") is not None:
         out["kms_master_key_arn"] = data["KmsMasterKeyArn"]
     return out

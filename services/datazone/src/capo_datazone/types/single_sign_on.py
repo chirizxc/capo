@@ -38,16 +38,16 @@ def serialize_json(value: SingleSignOn) -> dict:
 
 def deserialize_json(data: dict) -> SingleSignOn:
     out: SingleSignOn = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.auth_type
 
         out["type"] = capo_datazone.types.auth_type.deserialize_json(data["type"])
-    if "userAssignment" in data:
+    if data.get("userAssignment") is not None:
         import capo_datazone.types.user_assignment
 
         out["user_assignment"] = capo_datazone.types.user_assignment.deserialize_json(
             data["userAssignment"]
         )
-    if "idcInstanceArn" in data:
+    if data.get("idcInstanceArn") is not None:
         out["idc_instance_arn"] = data["idcInstanceArn"]
     return out

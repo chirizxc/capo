@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: OtherName) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OtherName:
     out: OtherName = {}  # type: ignore[typeddict-item]
-    if "ObjectIdentifier" in data:
+    if data.get("ObjectIdentifier") is not None:
         out["object_identifier"] = data["ObjectIdentifier"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

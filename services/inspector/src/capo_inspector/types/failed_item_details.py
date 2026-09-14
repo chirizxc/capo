@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: FailedItemDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailedItemDetails:
     out: FailedItemDetails = {}  # type: ignore[typeddict-item]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         import capo_inspector.types.failed_item_error_code
 
         out["failure_code"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> FailedItemDetails:
         )
     else:
         raise DeserializationError("FailedItemDetails.failure_code required")
-    if "retryable" in data:
+    if data.get("retryable") is not None:
         out["retryable"] = data["retryable"]
     else:
         raise DeserializationError("FailedItemDetails.retryable required")

@@ -58,21 +58,21 @@ def serialize_json(value: SearchResourceTagsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchResourceTagsRequest:
     out: SearchResourceTagsRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("SearchResourceTagsRequest.instance_id required")
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_connect.types.resource_type_list
 
         out["resource_types"] = capo_connect.types.resource_type_list.deserialize_json(
             data["ResourceTypes"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "SearchCriteria" in data:
+    if data.get("SearchCriteria") is not None:
         import capo_connect.types.resource_tags_search_criteria
 
         out["search_criteria"] = (

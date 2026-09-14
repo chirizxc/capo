@@ -25,6 +25,6 @@ def serialize_json(value: S3AccessConfig) -> dict:
 
 def deserialize_json(data: dict) -> S3AccessConfig:
     out: S3AccessConfig = {}  # type: ignore[typeddict-item]
-    if "accessLogLocation" in data:
+    if data.get("accessLogLocation") is not None:
         out["access_log_location"] = data["accessLogLocation"]
     return out

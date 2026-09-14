@@ -129,7 +129,7 @@ def serialize_json(value: ServiceManagedEc2InstanceCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> ServiceManagedEc2InstanceCapabilities:
     out: ServiceManagedEc2InstanceCapabilities = {}  # type: ignore[typeddict-item]
-    if "vCpuCount" in data:
+    if data.get("vCpuCount") is not None:
         import capo_deadline.types.v_cpu_count_range
 
         out["v_cpu_count"] = capo_deadline.types.v_cpu_count_range.deserialize_json(
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> ServiceManagedEc2InstanceCapabilities:
         raise DeserializationError(
             "ServiceManagedEc2InstanceCapabilities.v_cpu_count required"
         )
-    if "memoryMiB" in data:
+    if data.get("memoryMiB") is not None:
         import capo_deadline.types.memory_mi_b_range
 
         out["memory_mi_b"] = capo_deadline.types.memory_mi_b_range.deserialize_json(
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> ServiceManagedEc2InstanceCapabilities:
         raise DeserializationError(
             "ServiceManagedEc2InstanceCapabilities.memory_mi_b required"
         )
-    if "osFamily" in data:
+    if data.get("osFamily") is not None:
         import capo_deadline.types.service_managed_fleet_operating_system_family
 
         out["os_family"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> ServiceManagedEc2InstanceCapabilities:
         raise DeserializationError(
             "ServiceManagedEc2InstanceCapabilities.os_family required"
         )
-    if "cpuArchitectureType" in data:
+    if data.get("cpuArchitectureType") is not None:
         import capo_deadline.types.cpu_architecture_type
 
         out["cpu_architecture_type"] = (
@@ -173,13 +173,13 @@ def deserialize_json(data: dict) -> ServiceManagedEc2InstanceCapabilities:
         raise DeserializationError(
             "ServiceManagedEc2InstanceCapabilities.cpu_architecture_type required"
         )
-    if "rootEbsVolume" in data:
+    if data.get("rootEbsVolume") is not None:
         import capo_deadline.types.ec2_ebs_volume
 
         out["root_ebs_volume"] = capo_deadline.types.ec2_ebs_volume.deserialize_json(
             data["rootEbsVolume"]
         )
-    if "acceleratorCapabilities" in data:
+    if data.get("acceleratorCapabilities") is not None:
         import capo_deadline.types.accelerator_capabilities
 
         out["accelerator_capabilities"] = (
@@ -187,7 +187,7 @@ def deserialize_json(data: dict) -> ServiceManagedEc2InstanceCapabilities:
                 data["acceleratorCapabilities"]
             )
         )
-    if "allowedInstanceTypes" in data:
+    if data.get("allowedInstanceTypes") is not None:
         import capo_deadline.types.instance_types
 
         out["allowed_instance_types"] = (
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> ServiceManagedEc2InstanceCapabilities:
                 data["allowedInstanceTypes"]
             )
         )
-    if "excludedInstanceTypes" in data:
+    if data.get("excludedInstanceTypes") is not None:
         import capo_deadline.types.instance_types
 
         out["excluded_instance_types"] = (
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> ServiceManagedEc2InstanceCapabilities:
                 data["excludedInstanceTypes"]
             )
         )
-    if "customAmounts" in data:
+    if data.get("customAmounts") is not None:
         import capo_deadline.types.custom_fleet_amount_capabilities
 
         out["custom_amounts"] = (
@@ -211,7 +211,7 @@ def deserialize_json(data: dict) -> ServiceManagedEc2InstanceCapabilities:
                 data["customAmounts"]
             )
         )
-    if "customAttributes" in data:
+    if data.get("customAttributes") is not None:
         import capo_deadline.types.custom_fleet_attribute_capabilities
 
         out["custom_attributes"] = (

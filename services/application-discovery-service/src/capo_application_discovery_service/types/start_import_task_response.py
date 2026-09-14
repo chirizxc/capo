@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: StartImportTaskResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartImportTaskResponse:
     out: StartImportTaskResponse = {}  # type: ignore[typeddict-item]
-    if "task" in data:
+    if data.get("task") is not None:
         import capo_application_discovery_service.types.import_task
 
         out["task"] = (

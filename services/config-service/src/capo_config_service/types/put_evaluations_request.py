@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: PutEvaluationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutEvaluationsRequest:
     out: PutEvaluationsRequest = {}  # type: ignore[typeddict-item]
-    if "Evaluations" in data:
+    if data.get("Evaluations") is not None:
         import capo_config_service.types.evaluations
 
         out["evaluations"] = (
@@ -47,11 +47,11 @@ def deserialize_aws_json_1_1(data: dict) -> PutEvaluationsRequest:
                 data["Evaluations"]
             )
         )
-    if "ResultToken" in data:
+    if data.get("ResultToken") is not None:
         out["result_token"] = data["ResultToken"]
     else:
         raise DeserializationError("PutEvaluationsRequest.result_token required")
-    if "TestMode" in data:
+    if data.get("TestMode") is not None:
         out["test_mode"] = data["TestMode"]
     else:
         out["test_mode"] = False

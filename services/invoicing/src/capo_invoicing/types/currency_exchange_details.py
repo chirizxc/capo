@@ -31,10 +31,10 @@ def serialize_aws_json_1_0(value: CurrencyExchangeDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CurrencyExchangeDetails:
     out: CurrencyExchangeDetails = {}  # type: ignore[typeddict-item]
-    if "SourceCurrencyCode" in data:
+    if data.get("SourceCurrencyCode") is not None:
         out["source_currency_code"] = data["SourceCurrencyCode"]
-    if "TargetCurrencyCode" in data:
+    if data.get("TargetCurrencyCode") is not None:
         out["target_currency_code"] = data["TargetCurrencyCode"]
-    if "Rate" in data:
+    if data.get("Rate") is not None:
         out["rate"] = data["Rate"]
     return out

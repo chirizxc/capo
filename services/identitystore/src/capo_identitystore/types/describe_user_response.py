@@ -205,17 +205,17 @@ def serialize_aws_json_1_1(value: DescribeUserResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUserResponse:
     out: DescribeUserResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
     else:
         raise DeserializationError("DescribeUserResponse.identity_store_id required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("DescribeUserResponse.user_id required")
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "ExternalIds" in data:
+    if data.get("ExternalIds") is not None:
         import capo_identitystore.types.external_ids
 
         out["external_ids"] = (
@@ -223,31 +223,31 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUserResponse:
                 data["ExternalIds"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_identitystore.types.name
 
         out["name"] = capo_identitystore.types.name.deserialize_aws_json_1_1(
             data["Name"]
         )
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "NickName" in data:
+    if data.get("NickName") is not None:
         out["nick_name"] = data["NickName"]
-    if "ProfileUrl" in data:
+    if data.get("ProfileUrl") is not None:
         out["profile_url"] = data["ProfileUrl"]
-    if "Emails" in data:
+    if data.get("Emails") is not None:
         import capo_identitystore.types.emails
 
         out["emails"] = capo_identitystore.types.emails.deserialize_aws_json_1_1(
             data["Emails"]
         )
-    if "Addresses" in data:
+    if data.get("Addresses") is not None:
         import capo_identitystore.types.addresses
 
         out["addresses"] = capo_identitystore.types.addresses.deserialize_aws_json_1_1(
             data["Addresses"]
         )
-    if "PhoneNumbers" in data:
+    if data.get("PhoneNumbers") is not None:
         import capo_identitystore.types.phone_numbers
 
         out["phone_numbers"] = (
@@ -255,17 +255,17 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUserResponse:
                 data["PhoneNumbers"]
             )
         )
-    if "UserType" in data:
+    if data.get("UserType") is not None:
         out["user_type"] = data["UserType"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "PreferredLanguage" in data:
+    if data.get("PreferredLanguage") is not None:
         out["preferred_language"] = data["PreferredLanguage"]
-    if "Locale" in data:
+    if data.get("Locale") is not None:
         out["locale"] = data["Locale"]
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
-    if "UserStatus" in data:
+    if data.get("UserStatus") is not None:
         import capo_identitystore.types.user_status
 
         out["user_status"] = (
@@ -273,39 +273,39 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUserResponse:
                 data["UserStatus"]
             )
         )
-    if "Photos" in data:
+    if data.get("Photos") is not None:
         import capo_identitystore.types.photos
 
         out["photos"] = capo_identitystore.types.photos.deserialize_aws_json_1_1(
             data["Photos"]
         )
-    if "Website" in data:
+    if data.get("Website") is not None:
         out["website"] = data["Website"]
-    if "Birthdate" in data:
+    if data.get("Birthdate") is not None:
         out["birthdate"] = data["Birthdate"]
-    if "Roles" in data:
+    if data.get("Roles") is not None:
         import capo_identitystore.types.roles
 
         out["roles"] = capo_identitystore.types.roles.deserialize_aws_json_1_1(
             data["Roles"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_identitystore.types.date_type
 
         out["created_at"] = capo_identitystore.types.date_type.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_identitystore.types.date_type
 
         out["updated_at"] = capo_identitystore.types.date_type.deserialize_aws_json_1_1(
             data["UpdatedAt"]
         )
-    if "UpdatedBy" in data:
+    if data.get("UpdatedBy") is not None:
         out["updated_by"] = data["UpdatedBy"]
-    if "Extensions" in data:
+    if data.get("Extensions") is not None:
         import capo_identitystore.types.extensions
 
         out["extensions"] = (

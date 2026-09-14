@@ -36,7 +36,7 @@ def serialize_json(value: BatchImportEvidenceToAssessmentControlRequest) -> dict
 
 def deserialize_json(data: dict) -> BatchImportEvidenceToAssessmentControlRequest:
     out: BatchImportEvidenceToAssessmentControlRequest = {}  # type: ignore[typeddict-item]
-    if "manualEvidence" in data:
+    if data.get("manualEvidence") is not None:
         import capo_auditmanager.types.manual_evidence_list
 
         out["manual_evidence"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: VirtualRouterListener) -> dict:
 
 def deserialize_json(data: dict) -> VirtualRouterListener:
     out: VirtualRouterListener = {}  # type: ignore[typeddict-item]
-    if "portMapping" in data:
+    if data.get("portMapping") is not None:
         import capo_app_mesh.types.port_mapping
 
         out["port_mapping"] = capo_app_mesh.types.port_mapping.deserialize_json(

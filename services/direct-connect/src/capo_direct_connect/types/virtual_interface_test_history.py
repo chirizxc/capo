@@ -78,11 +78,11 @@ def serialize_aws_json_1_1(value: VirtualInterfaceTestHistory) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VirtualInterfaceTestHistory:
     out: VirtualInterfaceTestHistory = {}  # type: ignore[typeddict-item]
-    if "testId" in data:
+    if data.get("testId") is not None:
         out["test_id"] = data["testId"]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
-    if "bgpPeers" in data:
+    if data.get("bgpPeers") is not None:
         import capo_direct_connect.types.bgp_peer_id_list
 
         out["bgp_peers"] = (
@@ -90,13 +90,13 @@ def deserialize_aws_json_1_1(data: dict) -> VirtualInterfaceTestHistory:
                 data["bgpPeers"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "testDurationInMinutes" in data:
+    if data.get("testDurationInMinutes") is not None:
         out["test_duration_in_minutes"] = data["testDurationInMinutes"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_direct_connect.types.start_time
 
         out["start_time"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> VirtualInterfaceTestHistory:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_direct_connect.types.end_time
 
         out["end_time"] = capo_direct_connect.types.end_time.deserialize_aws_json_1_1(

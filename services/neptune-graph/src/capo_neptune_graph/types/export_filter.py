@@ -43,7 +43,7 @@ def serialize_json(value: ExportFilter) -> dict:
 
 def deserialize_json(data: dict) -> ExportFilter:
     out: ExportFilter = {}  # type: ignore[typeddict-item]
-    if "vertexFilter" in data:
+    if data.get("vertexFilter") is not None:
         import capo_neptune_graph.types.export_filter_per_label_map
 
         out["vertex_filter"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> ExportFilter:
                 data["vertexFilter"]
             )
         )
-    if "edgeFilter" in data:
+    if data.get("edgeFilter") is not None:
         import capo_neptune_graph.types.export_filter_per_label_map
 
         out["edge_filter"] = (

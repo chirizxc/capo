@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EventSubscriptionList:
 
     out: EventSubscriptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.event_subscription.deserialize_json(item))
     return out

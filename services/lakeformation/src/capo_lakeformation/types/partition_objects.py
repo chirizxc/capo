@@ -40,7 +40,7 @@ def serialize_json(value: PartitionObjects) -> dict:
 
 def deserialize_json(data: dict) -> PartitionObjects:
     out: PartitionObjects = {}  # type: ignore[typeddict-item]
-    if "PartitionValues" in data:
+    if data.get("PartitionValues") is not None:
         import capo_lakeformation.types.partition_values_list
 
         out["partition_values"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> PartitionObjects:
                 data["PartitionValues"]
             )
         )
-    if "Objects" in data:
+    if data.get("Objects") is not None:
         import capo_lakeformation.types.table_object_list
 
         out["objects"] = capo_lakeformation.types.table_object_list.deserialize_json(

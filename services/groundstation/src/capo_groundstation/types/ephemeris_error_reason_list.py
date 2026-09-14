@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> EphemerisErrorReasonList:
 
     out: EphemerisErrorReasonList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_groundstation.types.ephemeris_error_reason.deserialize_json(item)
         )

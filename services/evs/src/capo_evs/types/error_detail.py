@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: ErrorDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ErrorDetail:
     out: ErrorDetail = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     else:
         raise DeserializationError("ErrorDetail.error_code required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError("ErrorDetail.error_message required")

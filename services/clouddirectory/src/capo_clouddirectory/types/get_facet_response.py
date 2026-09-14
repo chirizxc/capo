@@ -25,7 +25,7 @@ def serialize_json(value: GetFacetResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFacetResponse:
     out: GetFacetResponse = {}  # type: ignore[typeddict-item]
-    if "Facet" in data:
+    if data.get("Facet") is not None:
         import capo_clouddirectory.types.facet
 
         out["facet"] = capo_clouddirectory.types.facet.deserialize_json(data["Facet"])

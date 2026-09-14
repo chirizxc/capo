@@ -41,11 +41,11 @@ def serialize_json(value: ListResourceTypesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListResourceTypesRequest:
     out: ListResourceTypesRequest = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "resourceRegionScope" in data:
+    if data.get("resourceRegionScope") is not None:
         import capo_ram.types.resource_region_scope_filter
 
         out["resource_region_scope"] = (

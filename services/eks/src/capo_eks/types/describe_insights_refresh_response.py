@@ -45,19 +45,19 @@ def serialize_json(value: DescribeInsightsRefreshResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeInsightsRefreshResponse:
     out: DescribeInsightsRefreshResponse = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_eks.types.insights_refresh_status
 
         out["status"] = capo_eks.types.insights_refresh_status.deserialize_json(
             data["status"]
         )
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_eks.types.timestamp
 
         out["started_at"] = capo_eks.types.timestamp.deserialize_json(data["startedAt"])
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_eks.types.timestamp
 
         out["ended_at"] = capo_eks.types.timestamp.deserialize_json(data["endedAt"])

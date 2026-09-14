@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: CompositeComponentResponse) -> dict:
 def deserialize_json(data: dict) -> CompositeComponentResponse:
     out: CompositeComponentResponse = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iottwinmaker.types.component_summary
 
         out[key] = capo_iottwinmaker.types.component_summary.deserialize_json(value)

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: PutOrganizationConformancePackResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConformancePackResponse:
     out: PutOrganizationConformancePackResponse = {}  # type: ignore[typeddict-item]
-    if "OrganizationConformancePackArn" in data:
+    if data.get("OrganizationConformancePackArn") is not None:
         out["organization_conformance_pack_arn"] = data[
             "OrganizationConformancePackArn"
         ]

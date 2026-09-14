@@ -33,9 +33,9 @@ def serialize_aws_json_1_1(value: ListPagesByContactResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPagesByContactResult:
     out: ListPagesByContactResult = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Pages" in data:
+    if data.get("Pages") is not None:
         import capo_ssm_contacts.types.pages_list
 
         out["pages"] = capo_ssm_contacts.types.pages_list.deserialize_aws_json_1_1(

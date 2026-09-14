@@ -49,20 +49,20 @@ def serialize_json(value: ComponentSummary) -> dict:
 
 def deserialize_json(data: dict) -> ComponentSummary:
     out: ComponentSummary = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "ComponentId" in data:
+    if data.get("ComponentId") is not None:
         out["component_id"] = data["ComponentId"]
-    if "ComponentType" in data:
+    if data.get("ComponentType") is not None:
         import capo_ssm_sap.types.component_type
 
         out["component_type"] = capo_ssm_sap.types.component_type.deserialize_json(
             data["ComponentType"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_sap.types.tag_map
 
         out["tags"] = capo_ssm_sap.types.tag_map.deserialize_json(data["Tags"])
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

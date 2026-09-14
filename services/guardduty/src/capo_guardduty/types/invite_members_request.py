@@ -40,14 +40,14 @@ def serialize_json(value: InviteMembersRequest) -> dict:
 
 def deserialize_json(data: dict) -> InviteMembersRequest:
     out: InviteMembersRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_guardduty.types.account_ids
 
         out["account_ids"] = capo_guardduty.types.account_ids.deserialize_json(
             data["accountIds"]
         )
-    if "disableEmailNotification" in data:
+    if data.get("disableEmailNotification") is not None:
         out["disable_email_notification"] = data["disableEmailNotification"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

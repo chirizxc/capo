@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: DatasetDocumentClassifierInputDataConfig) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetDocumentClassifierInputDataConfig:
     out: DatasetDocumentClassifierInputDataConfig = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError(
             "DatasetDocumentClassifierInputDataConfig.s3_uri required"
         )
-    if "LabelDelimiter" in data:
+    if data.get("LabelDelimiter") is not None:
         out["label_delimiter"] = data["LabelDelimiter"]
     return out

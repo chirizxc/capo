@@ -36,13 +36,13 @@ def serialize_json(value: CreateChallengeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChallengeRequest:
     out: CreateChallengeRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
     else:
         raise DeserializationError("CreateChallengeRequest.connector_arn required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pca_connector_scep.types.tags
 
         out["tags"] = capo_pca_connector_scep.types.tags.deserialize_json(data["Tags"])

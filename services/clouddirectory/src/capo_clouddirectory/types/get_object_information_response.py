@@ -38,7 +38,7 @@ def serialize_json(value: GetObjectInformationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetObjectInformationResponse:
     out: GetObjectInformationResponse = {}  # type: ignore[typeddict-item]
-    if "SchemaFacets" in data:
+    if data.get("SchemaFacets") is not None:
         import capo_clouddirectory.types.schema_facet_list
 
         out["schema_facets"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> GetObjectInformationResponse:
                 data["SchemaFacets"]
             )
         )
-    if "ObjectIdentifier" in data:
+    if data.get("ObjectIdentifier") is not None:
         out["object_identifier"] = data["ObjectIdentifier"]
     return out

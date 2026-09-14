@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> VcenterBasedRemoteInfoList:
 
     out: VcenterBasedRemoteInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhubstrategy.types.vcenter_based_remote_info.deserialize_json(
                 item

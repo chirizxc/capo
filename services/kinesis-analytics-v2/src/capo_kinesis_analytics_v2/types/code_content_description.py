@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: CodeContentDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeContentDescription:
     out: CodeContentDescription = {}  # type: ignore[typeddict-item]
-    if "TextContent" in data:
+    if data.get("TextContent") is not None:
         out["text_content"] = data["TextContent"]
-    if "CodeMD5" in data:
+    if data.get("CodeMD5") is not None:
         out["code_md5"] = data["CodeMD5"]
-    if "CodeSize" in data:
+    if data.get("CodeSize") is not None:
         out["code_size"] = data["CodeSize"]
-    if "S3ApplicationCodeLocationDescription" in data:
+    if data.get("S3ApplicationCodeLocationDescription") is not None:
         import capo_kinesis_analytics_v2.types.s3_application_code_location_description
 
         out["s3_application_code_location_description"] = (

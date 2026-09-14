@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_supplychain._auth._signers
@@ -83,17 +84,20 @@ class BillOfMaterialsImportJobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.create_bill_of_materials_import_job_request.CreateBillOfMaterialsImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["s3uri"] = s3uri
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_supplychain.types.create_bill_of_materials_import_job_request.CreateBillOfMaterialsImportJobRequest = {
+            "instance_id": instance_id,
+            "s3uri": s3uri,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -143,15 +147,17 @@ class BillOfMaterialsImportJobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.get_bill_of_materials_import_job_request.GetBillOfMaterialsImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["job_id"] = job_id
+        input_: capo_supplychain.types.get_bill_of_materials_import_job_request.GetBillOfMaterialsImportJobRequest = {
+            "instance_id": instance_id,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -208,17 +214,20 @@ class AsyncBillOfMaterialsImportJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.create_bill_of_materials_import_job_request.CreateBillOfMaterialsImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["s3uri"] = s3uri
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_supplychain.types.create_bill_of_materials_import_job_request.CreateBillOfMaterialsImportJobRequest = {
+            "instance_id": instance_id,
+            "s3uri": s3uri,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -269,13 +278,15 @@ class AsyncBillOfMaterialsImportJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.get_bill_of_materials_import_job_request.GetBillOfMaterialsImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["job_id"] = job_id
+        input_: capo_supplychain.types.get_bill_of_materials_import_job_request.GetBillOfMaterialsImportJobRequest = {
+            "instance_id": instance_id,
+            "job_id": job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -30,9 +30,25 @@ def serialize_json(value: MedicalScribeTranscriptSegment) -> dict:
     if "segment_id" in value:
         out["segmentId"] = value["segment_id"]
     if "audio_begin_offset" in value:
-        out["audioBeginOffset"] = value["audio_begin_offset"]
+        out["audioBeginOffset"] = (
+            "NaN"
+            if value["audio_begin_offset"] != value["audio_begin_offset"]
+            else "Infinity"
+            if value["audio_begin_offset"] == float("inf")
+            else "-Infinity"
+            if value["audio_begin_offset"] == float("-inf")
+            else value["audio_begin_offset"]
+        )
     if "audio_end_offset" in value:
-        out["audioEndOffset"] = value["audio_end_offset"]
+        out["audioEndOffset"] = (
+            "NaN"
+            if value["audio_end_offset"] != value["audio_end_offset"]
+            else "Infinity"
+            if value["audio_end_offset"] == float("inf")
+            else "-Infinity"
+            if value["audio_end_offset"] == float("-inf")
+            else value["audio_end_offset"]
+        )
     if "is_partial" in value:
         out["isPartial"] = value["is_partial"]
     if "channel_id" in value:
@@ -44,16 +60,16 @@ def serialize_json(value: MedicalScribeTranscriptSegment) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeTranscriptSegment:
     out: MedicalScribeTranscriptSegment = {}  # type: ignore[typeddict-item]
-    if "segmentId" in data:
+    if data.get("segmentId") is not None:
         out["segment_id"] = data["segmentId"]
-    if "audioBeginOffset" in data:
-        out["audio_begin_offset"] = data["audioBeginOffset"]
-    if "audioEndOffset" in data:
-        out["audio_end_offset"] = data["audioEndOffset"]
-    if "isPartial" in data:
+    if data.get("audioBeginOffset") is not None:
+        out["audio_begin_offset"] = float(data["audioBeginOffset"])
+    if data.get("audioEndOffset") is not None:
+        out["audio_end_offset"] = float(data["audioEndOffset"])
+    if data.get("isPartial") is not None:
         out["is_partial"] = data["isPartial"]
-    if "channelId" in data:
+    if data.get("channelId") is not None:
         out["channel_id"] = data["channelId"]
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     return out

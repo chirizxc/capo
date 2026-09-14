@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: DurationRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DurationRange:
     out: DurationRange = {}  # type: ignore[typeddict-item]
-    if "minSeconds" in data:
+    if data.get("minSeconds") is not None:
         out["min_seconds"] = data["minSeconds"]
-    if "maxSeconds" in data:
+    if data.get("maxSeconds") is not None:
         out["max_seconds"] = data["maxSeconds"]
     return out

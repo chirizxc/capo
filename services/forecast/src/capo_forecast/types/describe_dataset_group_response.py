@@ -70,31 +70,31 @@ def serialize_aws_json_1_1(value: DescribeDatasetGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetGroupResponse:
     out: DescribeDatasetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "DatasetGroupName" in data:
+    if data.get("DatasetGroupName") is not None:
         out["dataset_group_name"] = data["DatasetGroupName"]
-    if "DatasetGroupArn" in data:
+    if data.get("DatasetGroupArn") is not None:
         out["dataset_group_arn"] = data["DatasetGroupArn"]
-    if "DatasetArns" in data:
+    if data.get("DatasetArns") is not None:
         import capo_forecast.types.arn_list
 
         out["dataset_arns"] = capo_forecast.types.arn_list.deserialize_aws_json_1_1(
             data["DatasetArns"]
         )
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         import capo_forecast.types.domain
 
         out["domain"] = capo_forecast.types.domain.deserialize_aws_json_1_1(
             data["Domain"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (

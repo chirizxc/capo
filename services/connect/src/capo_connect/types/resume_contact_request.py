@@ -33,14 +33,14 @@ def serialize_json(value: ResumeContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> ResumeContactRequest:
     out: ResumeContactRequest = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("ResumeContactRequest.contact_id required")
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("ResumeContactRequest.instance_id required")
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
     return out

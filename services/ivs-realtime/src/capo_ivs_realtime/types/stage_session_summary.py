@@ -38,15 +38,15 @@ def serialize_json(value: StageSessionSummary) -> dict:
 
 def deserialize_json(data: dict) -> StageSessionSummary:
     out: StageSessionSummary = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["start_time"] = capo_ivs_realtime.types.time.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["end_time"] = capo_ivs_realtime.types.time.deserialize_json(data["endTime"])

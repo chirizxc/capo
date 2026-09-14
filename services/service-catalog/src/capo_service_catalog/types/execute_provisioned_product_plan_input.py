@@ -35,15 +35,15 @@ def serialize_aws_json_1_1(value: ExecuteProvisionedProductPlanInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecuteProvisionedProductPlanInput:
     out: ExecuteProvisionedProductPlanInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "PlanId" in data:
+    if data.get("PlanId") is not None:
         out["plan_id"] = data["PlanId"]
     else:
         raise DeserializationError(
             "ExecuteProvisionedProductPlanInput.plan_id required"
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(

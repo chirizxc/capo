@@ -34,9 +34,9 @@ def serialize_json(value: ListSessionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSessionsResponse:
     out: ListSessionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Sessions" in data:
+    if data.get("Sessions") is not None:
         import capo_mpa.types.list_sessions_response_sessions
 
         out["sessions"] = (

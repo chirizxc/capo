@@ -81,7 +81,7 @@ def serialize_aws_json_1_0(value: GetIdentitySourceOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetIdentitySourceOutput:
     out: GetIdentitySourceOutput = {}  # type: ignore[typeddict-item]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["created_date"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetIdentitySourceOutput:
         )
     else:
         raise DeserializationError("GetIdentitySourceOutput.created_date required")
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_verifiedpermissions.types.identity_source_details
 
         out["details"] = (
@@ -99,13 +99,13 @@ def deserialize_aws_json_1_0(data: dict) -> GetIdentitySourceOutput:
                 data["details"]
             )
         )
-    if "identitySourceId" in data:
+    if data.get("identitySourceId") is not None:
         out["identity_source_id"] = data["identitySourceId"]
     else:
         raise DeserializationError(
             "GetIdentitySourceOutput.identity_source_id required"
         )
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["last_updated_date"] = (
@@ -115,17 +115,17 @@ def deserialize_aws_json_1_0(data: dict) -> GetIdentitySourceOutput:
         )
     else:
         raise DeserializationError("GetIdentitySourceOutput.last_updated_date required")
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("GetIdentitySourceOutput.policy_store_id required")
-    if "principalEntityType" in data:
+    if data.get("principalEntityType") is not None:
         out["principal_entity_type"] = data["principalEntityType"]
     else:
         raise DeserializationError(
             "GetIdentitySourceOutput.principal_entity_type required"
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_verifiedpermissions.types.configuration_detail
 
         out["configuration"] = (

@@ -27,10 +27,10 @@ def serialize_json(value: SearchStatus) -> dict:
 
 def deserialize_json(data: dict) -> SearchStatus:
     out: SearchStatus = {}  # type: ignore[typeddict-item]
-    if "timems" in data:
+    if data.get("timems") is not None:
         out["timems"] = data["timems"]
     else:
         out["timems"] = 0
-    if "rid" in data:
+    if data.get("rid") is not None:
         out["rid"] = data["rid"]
     return out

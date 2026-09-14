@@ -13,9 +13,9 @@ from capo_resiliencehubv2 import Asyncresiliencehubv2Client
 
 
 async def main():
-    async with Asyncresiliencehubv2Client() as s3:
+    async with Asyncresiliencehubv2Client() as resiliencehubv2:
         # Example: call the create_assertion operation
-        response = await s3.create_assertion()
+        response = await resiliencehubv2.create_assertion()
         print(response["assertion"])
 ```
 
@@ -28,9 +28,9 @@ from capo_resiliencehubv2 import Asyncresiliencehubv2Client
 
 
 async def main():
-    async with Asyncresiliencehubv2Client() as s3:
+    async with Asyncresiliencehubv2Client() as resiliencehubv2:
         # Example: paginate over list_assertions
-        async for item in s3.iter_list_assertions():
+        async for item in resiliencehubv2.iter_list_assertions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_resiliencehubv2.error import AccessDeniedException
 
 
 async def main():
-    async with Asyncresiliencehubv2Client() as s3:
+    async with Asyncresiliencehubv2Client() as resiliencehubv2:
         try:
-            await s3.create_assertion()
+            await resiliencehubv2.create_assertion()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_resiliencehubv2 import Asyncresiliencehubv2Client
 
 
 async def main():
-    async with Asyncresiliencehubv2Client() as s3:
+    async with Asyncresiliencehubv2Client() as resiliencehubv2:
         # Default: 3 attempts for every operation
-        response = await s3.create_assertion()
+        response = await resiliencehubv2.create_assertion()
 
         # Override per operation
-        response = await s3.create_assertion(config_overrides={"retry_max_attempts": 5})
+        response = await resiliencehubv2.create_assertion(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_assertion(config_overrides={"retry_max_attempts": 1})
+        response = await resiliencehubv2.create_assertion(config_overrides={"retry_max_attempts": 1})
 ```

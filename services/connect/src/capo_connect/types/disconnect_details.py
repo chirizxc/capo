@@ -25,6 +25,6 @@ def serialize_json(value: DisconnectDetails) -> dict:
 
 def deserialize_json(data: dict) -> DisconnectDetails:
     out: DisconnectDetails = {}  # type: ignore[typeddict-item]
-    if "PotentialDisconnectIssue" in data:
+    if data.get("PotentialDisconnectIssue") is not None:
         out["potential_disconnect_issue"] = data["PotentialDisconnectIssue"]
     return out

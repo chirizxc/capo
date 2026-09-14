@@ -45,16 +45,16 @@ def serialize_json(value: StringListConfigurationOptions) -> dict:
 
 def deserialize_json(data: dict) -> StringListConfigurationOptions:
     out: StringListConfigurationOptions = {}  # type: ignore[typeddict-item]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         import capo_securityhub.types.string_list
 
         out["default_value"] = capo_securityhub.types.string_list.deserialize_json(
             data["DefaultValue"]
         )
-    if "Re2Expression" in data:
+    if data.get("Re2Expression") is not None:
         out["re2_expression"] = data["Re2Expression"]
-    if "MaxItems" in data:
+    if data.get("MaxItems") is not None:
         out["max_items"] = data["MaxItems"]
-    if "ExpressionDescription" in data:
+    if data.get("ExpressionDescription") is not None:
         out["expression_description"] = data["ExpressionDescription"]
     return out

@@ -33,10 +33,10 @@ def serialize_json(value: LaunchedInstance) -> dict:
 
 def deserialize_json(data: dict) -> LaunchedInstance:
     out: LaunchedInstance = {}  # type: ignore[typeddict-item]
-    if "ec2InstanceID" in data:
+    if data.get("ec2InstanceID") is not None:
         out["ec2_instance_id"] = data["ec2InstanceID"]
-    if "jobID" in data:
+    if data.get("jobID") is not None:
         out["job_id"] = data["jobID"]
-    if "firstBoot" in data:
+    if data.get("firstBoot") is not None:
         out["first_boot"] = data["firstBoot"]
     return out

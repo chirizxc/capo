@@ -34,18 +34,18 @@ def serialize_aws_json_1_1(value: UpdateAssessmentTargetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAssessmentTargetRequest:
     out: UpdateAssessmentTargetRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentTargetArn" in data:
+    if data.get("assessmentTargetArn") is not None:
         out["assessment_target_arn"] = data["assessmentTargetArn"]
     else:
         raise DeserializationError(
             "UpdateAssessmentTargetRequest.assessment_target_arn required"
         )
-    if "assessmentTargetName" in data:
+    if data.get("assessmentTargetName") is not None:
         out["assessment_target_name"] = data["assessmentTargetName"]
     else:
         raise DeserializationError(
             "UpdateAssessmentTargetRequest.assessment_target_name required"
         )
-    if "resourceGroupArn" in data:
+    if data.get("resourceGroupArn") is not None:
         out["resource_group_arn"] = data["resourceGroupArn"]
     return out

@@ -232,13 +232,14 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.associate_service_quota_template_request.AssociateServiceQuotaTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_quotas.types.associate_service_quota_template_request.AssociateServiceQuotaTemplateRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_support_case(
@@ -280,14 +281,16 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.create_support_case_request.CreateSupportCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["request_id"] = request_id
+        input_: capo_service_quotas.types.create_support_case_request.CreateSupportCaseRequest = {
+            "request_id": request_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_service_quota_increase_request_from_template(
@@ -334,16 +337,18 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.delete_service_quota_increase_request_from_template_request.DeleteServiceQuotaIncreaseRequestFromTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
-        input_["quota_code"] = quota_code
-        input_["aws_region"] = aws_region
+        input_: capo_service_quotas.types.delete_service_quota_increase_request_from_template_request.DeleteServiceQuotaIncreaseRequestFromTemplateRequest = {
+            "service_code": service_code,
+            "quota_code": quota_code,
+            "aws_region": aws_region,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_service_quota_template(
@@ -379,13 +384,14 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.disassociate_service_quota_template_request.DisassociateServiceQuotaTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_quotas.types.disassociate_service_quota_template_request.DisassociateServiceQuotaTemplateRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_association_for_service_quota_template(
@@ -421,13 +427,14 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.get_association_for_service_quota_template_request.GetAssociationForServiceQuotaTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_quotas.types.get_association_for_service_quota_template_request.GetAssociationForServiceQuotaTemplateRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_auto_management_configuration(
@@ -460,13 +467,14 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.get_auto_management_configuration_request.GetAutoManagementConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_quotas.types.get_auto_management_configuration_request.GetAutoManagementConfigurationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_aws_default_service_quota(
@@ -507,15 +515,17 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.get_aws_default_service_quota_request.GetAWSDefaultServiceQuotaRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
-        input_["quota_code"] = quota_code
+        input_: capo_service_quotas.types.get_aws_default_service_quota_request.GetAWSDefaultServiceQuotaRequest = {
+            "service_code": service_code,
+            "quota_code": quota_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_quota_utilization_report(
@@ -560,8 +570,9 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.get_quota_utilization_report_request.GetQuotaUtilizationReportRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_service_quotas.types.get_quota_utilization_report_request.GetQuotaUtilizationReportRequest = {
+            "report_id": report_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -572,6 +583,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_requested_service_quota_change(
@@ -610,14 +622,16 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.get_requested_service_quota_change_request.GetRequestedServiceQuotaChangeRequest = {}  # type: ignore[typeddict-item]
-        input_["request_id"] = request_id
+        input_: capo_service_quotas.types.get_requested_service_quota_change_request.GetRequestedServiceQuotaChangeRequest = {
+            "request_id": request_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_service_quota(
@@ -662,9 +676,10 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.get_service_quota_request.GetServiceQuotaRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
-        input_["quota_code"] = quota_code
+        input_: capo_service_quotas.types.get_service_quota_request.GetServiceQuotaRequest = {
+            "service_code": service_code,
+            "quota_code": quota_code,
+        }
         if context_id is not None:
             input_["context_id"] = context_id
 
@@ -673,6 +688,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_service_quota_increase_request_from_template(
@@ -719,16 +735,18 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.get_service_quota_increase_request_from_template_request.GetServiceQuotaIncreaseRequestFromTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
-        input_["quota_code"] = quota_code
-        input_["aws_region"] = aws_region
+        input_: capo_service_quotas.types.get_service_quota_increase_request_from_template_request.GetServiceQuotaIncreaseRequestFromTemplateRequest = {
+            "service_code": service_code,
+            "quota_code": quota_code,
+            "aws_region": aws_region,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_aws_default_service_quotas(
@@ -774,8 +792,9 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.list_aws_default_service_quotas_request.ListAWSDefaultServiceQuotasRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
+        input_: capo_service_quotas.types.list_aws_default_service_quotas_request.ListAWSDefaultServiceQuotasRequest = {
+            "service_code": service_code
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -786,6 +805,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_aws_default_service_quotas(
@@ -866,7 +886,7 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.list_requested_service_quota_change_history_request.ListRequestedServiceQuotaChangeHistoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_quotas.types.list_requested_service_quota_change_history_request.ListRequestedServiceQuotaChangeHistoryRequest = {}
         if service_code is not None:
             input_["service_code"] = service_code
         if status is not None:
@@ -883,6 +903,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_requested_service_quota_change_history(
@@ -973,9 +994,10 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.list_requested_service_quota_change_history_by_quota_request.ListRequestedServiceQuotaChangeHistoryByQuotaRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
-        input_["quota_code"] = quota_code
+        input_: capo_service_quotas.types.list_requested_service_quota_change_history_by_quota_request.ListRequestedServiceQuotaChangeHistoryByQuotaRequest = {
+            "service_code": service_code,
+            "quota_code": quota_code,
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -990,6 +1012,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_requested_service_quota_change_history_by_quota(
@@ -1076,7 +1099,7 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.list_service_quota_increase_requests_in_template_request.ListServiceQuotaIncreaseRequestsInTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_quotas.types.list_service_quota_increase_requests_in_template_request.ListServiceQuotaIncreaseRequestsInTemplateRequest = {}
         if service_code is not None:
             input_["service_code"] = service_code
         if aws_region is not None:
@@ -1091,6 +1114,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_service_quota_increase_requests_in_template(
@@ -1173,8 +1197,9 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.list_service_quotas_request.ListServiceQuotasRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
+        input_: capo_service_quotas.types.list_service_quotas_request.ListServiceQuotasRequest = {
+            "service_code": service_code
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1189,6 +1214,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_service_quotas(
@@ -1262,7 +1288,7 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.list_services_request.ListServicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_quotas.types.list_services_request.ListServicesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1273,6 +1299,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_services(
@@ -1334,14 +1361,16 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_service_quotas.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_service_quota_increase_request_into_template(
@@ -1391,17 +1420,19 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.put_service_quota_increase_request_into_template_request.PutServiceQuotaIncreaseRequestIntoTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["quota_code"] = quota_code
-        input_["service_code"] = service_code
-        input_["aws_region"] = aws_region
-        input_["desired_value"] = desired_value
+        input_: capo_service_quotas.types.put_service_quota_increase_request_into_template_request.PutServiceQuotaIncreaseRequestIntoTemplateRequest = {
+            "quota_code": quota_code,
+            "service_code": service_code,
+            "aws_region": aws_region,
+            "desired_value": desired_value,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def request_service_quota_increase(
@@ -1456,10 +1487,11 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.request_service_quota_increase_request.RequestServiceQuotaIncreaseRequest = {}  # type: ignore[typeddict-item]
-        input_["service_code"] = service_code
-        input_["quota_code"] = quota_code
-        input_["desired_value"] = desired_value
+        input_: capo_service_quotas.types.request_service_quota_increase_request.RequestServiceQuotaIncreaseRequest = {
+            "service_code": service_code,
+            "quota_code": quota_code,
+            "desired_value": desired_value,
+        }
         if context_id is not None:
             input_["context_id"] = context_id
         if support_case_allowed is not None:
@@ -1470,6 +1502,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_auto_management(
@@ -1518,9 +1551,10 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.start_auto_management_request.StartAutoManagementRequest = {}  # type: ignore[typeddict-item]
-        input_["opt_in_level"] = opt_in_level
-        input_["opt_in_type"] = opt_in_type
+        input_: capo_service_quotas.types.start_auto_management_request.StartAutoManagementRequest = {
+            "opt_in_level": opt_in_level,
+            "opt_in_type": opt_in_type,
+        }
         if notification_arn is not None:
             input_["notification_arn"] = notification_arn
         if exclusion_list is not None:
@@ -1531,6 +1565,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_quota_utilization_report(
@@ -1564,13 +1599,14 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.start_quota_utilization_report_request.StartQuotaUtilizationReportRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_quotas.types.start_quota_utilization_report_request.StartQuotaUtilizationReportRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_auto_management(
@@ -1603,13 +1639,14 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.stop_auto_management_request.StopAutoManagementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_quotas.types.stop_auto_management_request.StopAutoManagementRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1652,15 +1689,17 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_service_quotas.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1701,15 +1740,17 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_service_quotas.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_auto_management(
@@ -1756,7 +1797,7 @@ class AsyncServiceQuotasClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_quotas.types.update_auto_management_request.UpdateAutoManagementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_quotas.types.update_auto_management_request.UpdateAutoManagementRequest = {}
         if opt_in_type is not None:
             input_["opt_in_type"] = opt_in_type
         if notification_arn is not None:
@@ -1769,6 +1810,7 @@ class AsyncServiceQuotasClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

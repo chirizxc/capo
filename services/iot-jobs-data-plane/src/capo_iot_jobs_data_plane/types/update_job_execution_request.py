@@ -80,7 +80,7 @@ def serialize_json(value: UpdateJobExecutionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateJobExecutionRequest:
     out: UpdateJobExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot_jobs_data_plane.types.job_execution_status
 
         out["status"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> UpdateJobExecutionRequest:
         )
     else:
         raise DeserializationError("UpdateJobExecutionRequest.status required")
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         import capo_iot_jobs_data_plane.types.details_map
 
         out["status_details"] = (
@@ -98,14 +98,14 @@ def deserialize_json(data: dict) -> UpdateJobExecutionRequest:
                 data["statusDetails"]
             )
         )
-    if "stepTimeoutInMinutes" in data:
+    if data.get("stepTimeoutInMinutes") is not None:
         out["step_timeout_in_minutes"] = data["stepTimeoutInMinutes"]
-    if "expectedVersion" in data:
+    if data.get("expectedVersion") is not None:
         out["expected_version"] = data["expectedVersion"]
-    if "includeJobExecutionState" in data:
+    if data.get("includeJobExecutionState") is not None:
         out["include_job_execution_state"] = data["includeJobExecutionState"]
-    if "includeJobDocument" in data:
+    if data.get("includeJobDocument") is not None:
         out["include_job_document"] = data["includeJobDocument"]
-    if "executionNumber" in data:
+    if data.get("executionNumber") is not None:
         out["execution_number"] = data["executionNumber"]
     return out

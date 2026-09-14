@@ -31,7 +31,7 @@ def serialize_json(value: DeleteObjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteObjectRequest:
     out: DeleteObjectRequest = {}  # type: ignore[typeddict-item]
-    if "ObjectReference" in data:
+    if data.get("ObjectReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["object_reference"] = (

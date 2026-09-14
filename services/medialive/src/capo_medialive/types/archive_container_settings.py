@@ -34,13 +34,13 @@ def serialize_json(value: ArchiveContainerSettings) -> dict:
 
 def deserialize_json(data: dict) -> ArchiveContainerSettings:
     out: ArchiveContainerSettings = {}  # type: ignore[typeddict-item]
-    if "m2tsSettings" in data:
+    if data.get("m2tsSettings") is not None:
         import capo_medialive.types.m2ts_settings
 
         out["m2ts_settings"] = capo_medialive.types.m2ts_settings.deserialize_json(
             data["m2tsSettings"]
         )
-    if "rawSettings" in data:
+    if data.get("rawSettings") is not None:
         import capo_medialive.types.raw_settings
 
         out["raw_settings"] = capo_medialive.types.raw_settings.deserialize_json(

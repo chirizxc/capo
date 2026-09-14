@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GenerativeAiSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GenerativeAiSettings:
     out: GenerativeAiSettings = {}  # type: ignore[typeddict-item]
-    if "AmazonBedrockRoleArn" in data:
+    if data.get("AmazonBedrockRoleArn") is not None:
         out["amazon_bedrock_role_arn"] = data["AmazonBedrockRoleArn"]
     return out

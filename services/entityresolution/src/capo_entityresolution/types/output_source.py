@@ -54,13 +54,13 @@ def serialize_json(value: OutputSource) -> dict:
 
 def deserialize_json(data: dict) -> OutputSource:
     out: OutputSource = {}  # type: ignore[typeddict-item]
-    if "KMSArn" in data:
+    if data.get("KMSArn") is not None:
         out["kms_arn"] = data["KMSArn"]
-    if "outputS3Path" in data:
+    if data.get("outputS3Path") is not None:
         out["output_s3_path"] = data["outputS3Path"]
     else:
         out["output_s3_path"] = ""
-    if "output" in data:
+    if data.get("output") is not None:
         import capo_entityresolution.types.output_attributes
 
         out["output"] = capo_entityresolution.types.output_attributes.deserialize_json(
@@ -68,9 +68,9 @@ def deserialize_json(data: dict) -> OutputSource:
         )
     else:
         raise DeserializationError("OutputSource.output required")
-    if "applyNormalization" in data:
+    if data.get("applyNormalization") is not None:
         out["apply_normalization"] = data["applyNormalization"]
-    if "customerProfilesIntegrationConfig" in data:
+    if data.get("customerProfilesIntegrationConfig") is not None:
         import capo_entityresolution.types.customer_profiles_integration_config
 
         out["customer_profiles_integration_config"] = (

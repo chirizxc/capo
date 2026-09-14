@@ -23,5 +23,7 @@ def serialize_json(input_to_serialize: AuthorizationResponseMap) -> dict:
 def deserialize_json(data: dict) -> AuthorizationResponseMap:
     out: AuthorizationResponseMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

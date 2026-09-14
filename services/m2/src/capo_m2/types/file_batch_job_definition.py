@@ -23,10 +23,10 @@ def serialize_json(value: FileBatchJobDefinition) -> dict:
 
 def deserialize_json(data: dict) -> FileBatchJobDefinition:
     out: FileBatchJobDefinition = {}  # type: ignore[typeddict-item]
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     else:
         raise DeserializationError("FileBatchJobDefinition.file_name required")
-    if "folderPath" in data:
+    if data.get("folderPath") is not None:
         out["folder_path"] = data["folderPath"]
     return out

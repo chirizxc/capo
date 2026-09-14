@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: BatchCreateVariableRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchCreateVariableRequest:
     out: BatchCreateVariableRequest = {}  # type: ignore[typeddict-item]
-    if "variableEntries" in data:
+    if data.get("variableEntries") is not None:
         import capo_frauddetector.types.variable_entry_list
 
         out["variable_entries"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchCreateVariableRequest:
         raise DeserializationError(
             "BatchCreateVariableRequest.variable_entries required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_frauddetector.types.tag_list
 
         out["tags"] = capo_frauddetector.types.tag_list.deserialize_aws_json_1_1(

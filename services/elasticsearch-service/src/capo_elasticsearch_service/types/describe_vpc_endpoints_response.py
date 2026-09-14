@@ -40,7 +40,7 @@ def serialize_json(value: DescribeVpcEndpointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeVpcEndpointsResponse:
     out: DescribeVpcEndpointsResponse = {}  # type: ignore[typeddict-item]
-    if "VpcEndpoints" in data:
+    if data.get("VpcEndpoints") is not None:
         import capo_elasticsearch_service.types.vpc_endpoints
 
         out["vpc_endpoints"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DescribeVpcEndpointsResponse:
         raise DeserializationError(
             "DescribeVpcEndpointsResponse.vpc_endpoints required"
         )
-    if "VpcEndpointErrors" in data:
+    if data.get("VpcEndpointErrors") is not None:
         import capo_elasticsearch_service.types.vpc_endpoint_error_list
 
         out["vpc_endpoint_errors"] = (

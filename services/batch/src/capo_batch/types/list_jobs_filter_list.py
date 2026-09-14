@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ListJobsFilterList:
 
     out: ListJobsFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.key_values_pair.deserialize_json(item))
     return out

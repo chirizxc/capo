@@ -22,7 +22,15 @@ class TrainingMetrics(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: TrainingMetrics) -> dict:
     out: dict = {}
     if "auc" in value:
-        out["auc"] = value["auc"]
+        out["auc"] = (
+            "NaN"
+            if value["auc"] != value["auc"]
+            else "Infinity"
+            if value["auc"] == float("inf")
+            else "-Infinity"
+            if value["auc"] == float("-inf")
+            else value["auc"]
+        )
     if "metric_data_points" in value:
         import capo_frauddetector.types.metric_data_points_list
 
@@ -36,9 +44,9 @@ def serialize_aws_json_1_1(value: TrainingMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingMetrics:
     out: TrainingMetrics = {}  # type: ignore[typeddict-item]
-    if "auc" in data:
-        out["auc"] = data["auc"]
-    if "metricDataPoints" in data:
+    if data.get("auc") is not None:
+        out["auc"] = float(data["auc"])
+    if data.get("metricDataPoints") is not None:
         import capo_frauddetector.types.metric_data_points_list
 
         out["metric_data_points"] = (

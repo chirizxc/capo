@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TagsList:
 
     out: TagsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.tag_set.deserialize_json(item))
     return out

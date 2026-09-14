@@ -64,21 +64,21 @@ def serialize_json(value: OperationUnion) -> dict:
 
 
 def deserialize_json(data: dict) -> OperationUnion:
-    if "merge" in data:
+    if data.get("merge") is not None:
         import capo_mgn.types.merge_operation
 
         return {"merge": capo_mgn.types.merge_operation.deserialize_json(data["merge"])}
-    elif "split" in data:
+    elif data.get("split") is not None:
         import capo_mgn.types.split_operation
 
         return {"split": capo_mgn.types.split_operation.deserialize_json(data["split"])}
-    elif "delete" in data:
+    elif data.get("delete") is not None:
         import capo_mgn.types.delete_operation
 
         return {
             "delete": capo_mgn.types.delete_operation.deserialize_json(data["delete"])
         }
-    elif "update" in data:
+    elif data.get("update") is not None:
         import capo_mgn.types.update_operation
 
         return {

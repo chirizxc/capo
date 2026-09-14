@@ -36,13 +36,13 @@ def serialize_json(value: CompatibilityInformation) -> dict:
 
 def deserialize_json(data: dict) -> CompatibilityInformation:
     out: CompatibilityInformation = {}  # type: ignore[typeddict-item]
-    if "clientCompatibilityVersion" in data:
+    if data.get("clientCompatibilityVersion") is not None:
         out["client_compatibility_version"] = data["clientCompatibilityVersion"]
     else:
         raise DeserializationError(
             "CompatibilityInformation.client_compatibility_version required"
         )
-    if "supportedModelIds" in data:
+    if data.get("supportedModelIds") is not None:
         import capo_nova_act.types.model_id_list
 
         out["supported_model_ids"] = capo_nova_act.types.model_id_list.deserialize_json(
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> CompatibilityInformation:
         raise DeserializationError(
             "CompatibilityInformation.supported_model_ids required"
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

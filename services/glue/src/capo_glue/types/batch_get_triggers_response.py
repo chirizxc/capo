@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: BatchGetTriggersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetTriggersResponse:
     out: BatchGetTriggersResponse = {}  # type: ignore[typeddict-item]
-    if "Triggers" in data:
+    if data.get("Triggers") is not None:
         import capo_glue.types.trigger_list
 
         out["triggers"] = capo_glue.types.trigger_list.deserialize_aws_json_1_1(
             data["Triggers"]
         )
-    if "TriggersNotFound" in data:
+    if data.get("TriggersNotFound") is not None:
         import capo_glue.types.trigger_name_list
 
         out["triggers_not_found"] = (

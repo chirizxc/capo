@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CapabilitySchemas:
 
     out: CapabilitySchemas = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.capability_schema_item.deserialize_json(
                 item

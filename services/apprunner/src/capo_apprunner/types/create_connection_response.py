@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: CreateConnectionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateConnectionResponse:
     out: CreateConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "Connection" in data:
+    if data.get("Connection") is not None:
         import capo_apprunner.types.connection
 
         out["connection"] = capo_apprunner.types.connection.deserialize_aws_json_1_0(

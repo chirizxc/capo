@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FaultRootCauseEntityPath:
 
     out: FaultRootCauseEntityPath = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.fault_root_cause_entity.deserialize_json(item))
     return out

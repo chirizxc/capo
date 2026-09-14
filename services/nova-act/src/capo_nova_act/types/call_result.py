@@ -33,9 +33,9 @@ def serialize_json(value: CallResult) -> dict:
 
 def deserialize_json(data: dict) -> CallResult:
     out: CallResult = {}  # type: ignore[typeddict-item]
-    if "callId" in data:
+    if data.get("callId") is not None:
         out["call_id"] = data["callId"]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_nova_act.types.call_result_contents
 
         out["content"] = capo_nova_act.types.call_result_contents.deserialize_json(

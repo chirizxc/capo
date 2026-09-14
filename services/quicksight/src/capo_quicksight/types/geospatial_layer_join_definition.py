@@ -48,9 +48,9 @@ def serialize_json(value: GeospatialLayerJoinDefinition) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialLayerJoinDefinition:
     out: GeospatialLayerJoinDefinition = {}  # type: ignore[typeddict-item]
-    if "ShapeKeyField" in data:
+    if data.get("ShapeKeyField") is not None:
         out["shape_key_field"] = data["ShapeKeyField"]
-    if "DatasetKeyField" in data:
+    if data.get("DatasetKeyField") is not None:
         import capo_quicksight.types.unaggregated_field
 
         out["dataset_key_field"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> GeospatialLayerJoinDefinition:
                 data["DatasetKeyField"]
             )
         )
-    if "ColorField" in data:
+    if data.get("ColorField") is not None:
         import capo_quicksight.types.geospatial_layer_color_field
 
         out["color_field"] = (

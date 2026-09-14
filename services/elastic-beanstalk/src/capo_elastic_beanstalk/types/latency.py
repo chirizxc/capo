@@ -33,21 +33,125 @@ class Latency(TypedDict, closed=True):
 def serialize_query(value: Latency, pairs: list[tuple[str, str]], prefix: str) -> None:
     key_prefix = f"{prefix}." if prefix else ""
     if "p999" in value:
-        pairs.append((f"{key_prefix}P999", str(value["p999"])))
+        pairs.append(
+            (
+                f"{key_prefix}P999",
+                (
+                    "NaN"
+                    if value["p999"] != value["p999"]
+                    else "Infinity"
+                    if value["p999"] == float("inf")
+                    else "-Infinity"
+                    if value["p999"] == float("-inf")
+                    else str(value["p999"])
+                ),
+            )
+        )
     if "p99" in value:
-        pairs.append((f"{key_prefix}P99", str(value["p99"])))
+        pairs.append(
+            (
+                f"{key_prefix}P99",
+                (
+                    "NaN"
+                    if value["p99"] != value["p99"]
+                    else "Infinity"
+                    if value["p99"] == float("inf")
+                    else "-Infinity"
+                    if value["p99"] == float("-inf")
+                    else str(value["p99"])
+                ),
+            )
+        )
     if "p95" in value:
-        pairs.append((f"{key_prefix}P95", str(value["p95"])))
+        pairs.append(
+            (
+                f"{key_prefix}P95",
+                (
+                    "NaN"
+                    if value["p95"] != value["p95"]
+                    else "Infinity"
+                    if value["p95"] == float("inf")
+                    else "-Infinity"
+                    if value["p95"] == float("-inf")
+                    else str(value["p95"])
+                ),
+            )
+        )
     if "p90" in value:
-        pairs.append((f"{key_prefix}P90", str(value["p90"])))
+        pairs.append(
+            (
+                f"{key_prefix}P90",
+                (
+                    "NaN"
+                    if value["p90"] != value["p90"]
+                    else "Infinity"
+                    if value["p90"] == float("inf")
+                    else "-Infinity"
+                    if value["p90"] == float("-inf")
+                    else str(value["p90"])
+                ),
+            )
+        )
     if "p85" in value:
-        pairs.append((f"{key_prefix}P85", str(value["p85"])))
+        pairs.append(
+            (
+                f"{key_prefix}P85",
+                (
+                    "NaN"
+                    if value["p85"] != value["p85"]
+                    else "Infinity"
+                    if value["p85"] == float("inf")
+                    else "-Infinity"
+                    if value["p85"] == float("-inf")
+                    else str(value["p85"])
+                ),
+            )
+        )
     if "p75" in value:
-        pairs.append((f"{key_prefix}P75", str(value["p75"])))
+        pairs.append(
+            (
+                f"{key_prefix}P75",
+                (
+                    "NaN"
+                    if value["p75"] != value["p75"]
+                    else "Infinity"
+                    if value["p75"] == float("inf")
+                    else "-Infinity"
+                    if value["p75"] == float("-inf")
+                    else str(value["p75"])
+                ),
+            )
+        )
     if "p50" in value:
-        pairs.append((f"{key_prefix}P50", str(value["p50"])))
+        pairs.append(
+            (
+                f"{key_prefix}P50",
+                (
+                    "NaN"
+                    if value["p50"] != value["p50"]
+                    else "Infinity"
+                    if value["p50"] == float("inf")
+                    else "-Infinity"
+                    if value["p50"] == float("-inf")
+                    else str(value["p50"])
+                ),
+            )
+        )
     if "p10" in value:
-        pairs.append((f"{key_prefix}P10", str(value["p10"])))
+        pairs.append(
+            (
+                f"{key_prefix}P10",
+                (
+                    "NaN"
+                    if value["p10"] != value["p10"]
+                    else "Infinity"
+                    if value["p10"] == float("inf")
+                    else "-Infinity"
+                    if value["p10"] == float("-inf")
+                    else str(value["p10"])
+                ),
+            )
+        )
 
 
 def deserialize_query(el: Element) -> Latency:

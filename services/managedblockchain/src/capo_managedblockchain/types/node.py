@@ -121,17 +121,17 @@ def serialize_json(value: Node) -> dict:
 
 def deserialize_json(data: dict) -> Node:
     out: Node = {}  # type: ignore[typeddict-item]
-    if "NetworkId" in data:
+    if data.get("NetworkId") is not None:
         out["network_id"] = data["NetworkId"]
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "FrameworkAttributes" in data:
+    if data.get("FrameworkAttributes") is not None:
         import capo_managedblockchain.types.node_framework_attributes
 
         out["framework_attributes"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> Node:
                 data["FrameworkAttributes"]
             )
         )
-    if "LogPublishingConfiguration" in data:
+    if data.get("LogPublishingConfiguration") is not None:
         import capo_managedblockchain.types.node_log_publishing_configuration
 
         out["log_publishing_configuration"] = (
@@ -147,32 +147,32 @@ def deserialize_json(data: dict) -> Node:
                 data["LogPublishingConfiguration"]
             )
         )
-    if "StateDB" in data:
+    if data.get("StateDB") is not None:
         import capo_managedblockchain.types.state_db_type
 
         out["state_db"] = capo_managedblockchain.types.state_db_type.deserialize_json(
             data["StateDB"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_managedblockchain.types.node_status
 
         out["status"] = capo_managedblockchain.types.node_status.deserialize_json(
             data["Status"]
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["creation_date"] = capo_managedblockchain.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_managedblockchain.types.output_tag_map
 
         out["tags"] = capo_managedblockchain.types.output_tag_map.deserialize_json(
             data["Tags"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

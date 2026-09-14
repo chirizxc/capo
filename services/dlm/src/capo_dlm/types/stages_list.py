@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> StagesList:
 
     out: StagesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dlm.types.stage_values.deserialize_json(item))
     return out

@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: OnlineStoreConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OnlineStoreConfig:
     out: OnlineStoreConfig = {}  # type: ignore[typeddict-item]
-    if "SecurityConfig" in data:
+    if data.get("SecurityConfig") is not None:
         import capo_sagemaker.types.online_store_security_config
 
         out["security_config"] = (
@@ -62,9 +62,9 @@ def deserialize_aws_json_1_1(data: dict) -> OnlineStoreConfig:
                 data["SecurityConfig"]
             )
         )
-    if "EnableOnlineStore" in data:
+    if data.get("EnableOnlineStore") is not None:
         out["enable_online_store"] = data["EnableOnlineStore"]
-    if "TtlDuration" in data:
+    if data.get("TtlDuration") is not None:
         import capo_sagemaker.types.ttl_duration
 
         out["ttl_duration"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> OnlineStoreConfig:
                 data["TtlDuration"]
             )
         )
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         import capo_sagemaker.types.storage_type
 
         out["storage_type"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: PutAuthPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAuthPolicyRequest:
     out: PutAuthPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     else:
         raise DeserializationError("PutAuthPolicyRequest.policy required")

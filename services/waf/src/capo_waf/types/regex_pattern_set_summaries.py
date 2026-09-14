@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> RegexPatternSetSummaries:
 
     out: RegexPatternSetSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_waf.types.regex_pattern_set_summary.deserialize_aws_json_1_1(item)
         )

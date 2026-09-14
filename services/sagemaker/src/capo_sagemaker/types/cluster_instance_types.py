@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ClusterInstanceTypes:
 
     out: ClusterInstanceTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.cluster_instance_type.deserialize_aws_json_1_1(item)
         )

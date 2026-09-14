@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: EndpointStepMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointStepMetadata:
     out: EndpointStepMetadata = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

@@ -55,23 +55,23 @@ def serialize_aws_json_1_1(value: UpdateRegexPatternSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRegexPatternSetRequest:
     out: UpdateRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateRegexPatternSetRequest.name required")
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("UpdateRegexPatternSetRequest.scope required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateRegexPatternSetRequest.id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RegularExpressionList" in data:
+    if data.get("RegularExpressionList") is not None:
         import capo_wafv2.types.regular_expression_list
 
         out["regular_expression_list"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateRegexPatternSetRequest:
         raise DeserializationError(
             "UpdateRegexPatternSetRequest.regular_expression_list required"
         )
-    if "LockToken" in data:
+    if data.get("LockToken") is not None:
         out["lock_token"] = data["LockToken"]
     else:
         raise DeserializationError("UpdateRegexPatternSetRequest.lock_token required")

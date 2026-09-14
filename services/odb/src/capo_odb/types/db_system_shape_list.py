@@ -25,6 +25,8 @@ def deserialize_aws_json_1_0(data: list) -> DbSystemShapeList:
 
     out: DbSystemShapeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_odb.types.db_system_shape_summary.deserialize_aws_json_1_0(item)
         )

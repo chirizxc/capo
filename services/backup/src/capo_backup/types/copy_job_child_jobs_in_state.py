@@ -26,5 +26,7 @@ def deserialize_json(data: dict) -> CopyJobChildJobsInState:
     for key, value in data.items():
         import capo_backup.types.copy_job_state
 
+        if value is None:
+            continue
         out[capo_backup.types.copy_job_state.deserialize_json(key)] = value
     return out

@@ -27,8 +27,8 @@ def serialize_json(value: SimulationAppPortMapping) -> dict:
 
 def deserialize_json(data: dict) -> SimulationAppPortMapping:
     out: SimulationAppPortMapping = {}  # type: ignore[typeddict-item]
-    if "Declared" in data:
+    if data.get("Declared") is not None:
         out["declared"] = data["Declared"]
-    if "Actual" in data:
+    if data.get("Actual") is not None:
         out["actual"] = data["Actual"]
     return out

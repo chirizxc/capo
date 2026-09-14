@@ -36,15 +36,15 @@ def serialize_json(value: KinesisVideoStreamConfig) -> dict:
 
 def deserialize_json(data: dict) -> KinesisVideoStreamConfig:
     out: KinesisVideoStreamConfig = {}  # type: ignore[typeddict-item]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
     else:
         raise DeserializationError("KinesisVideoStreamConfig.prefix required")
-    if "RetentionPeriodHours" in data:
+    if data.get("RetentionPeriodHours") is not None:
         out["retention_period_hours"] = data["RetentionPeriodHours"]
     else:
         out["retention_period_hours"] = 0
-    if "EncryptionConfig" in data:
+    if data.get("EncryptionConfig") is not None:
         import capo_connect.types.encryption_config
 
         out["encryption_config"] = (

@@ -44,21 +44,21 @@ def serialize_json(value: MCPServerSigV4AuthorizationConfig) -> dict:
 
 def deserialize_json(data: dict) -> MCPServerSigV4AuthorizationConfig:
     out: MCPServerSigV4AuthorizationConfig = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("MCPServerSigV4AuthorizationConfig.region required")
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
     else:
         raise DeserializationError("MCPServerSigV4AuthorizationConfig.service required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         out["role_arn"] = ""
-    if "mcpRoleArn" in data:
+    if data.get("mcpRoleArn") is not None:
         out["mcp_role_arn"] = data["mcpRoleArn"]
-    if "customHeaders" in data:
+    if data.get("customHeaders") is not None:
         import capo_devops_agent.types.custom_headers
 
         out["custom_headers"] = capo_devops_agent.types.custom_headers.deserialize_json(

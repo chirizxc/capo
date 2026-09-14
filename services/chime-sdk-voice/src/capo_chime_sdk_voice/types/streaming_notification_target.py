@@ -31,7 +31,7 @@ def serialize_json(value: StreamingNotificationTarget) -> dict:
 
 def deserialize_json(data: dict) -> StreamingNotificationTarget:
     out: StreamingNotificationTarget = {}  # type: ignore[typeddict-item]
-    if "NotificationTarget" in data:
+    if data.get("NotificationTarget") is not None:
         import capo_chime_sdk_voice.types.notification_target
 
         out["notification_target"] = (

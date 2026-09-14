@@ -40,7 +40,15 @@ def serialize_aws_json_1_1(value: DetectLabelsRequest) -> dict:
     if "max_labels" in value:
         out["MaxLabels"] = value["max_labels"]
     if "min_confidence" in value:
-        out["MinConfidence"] = value["min_confidence"]
+        out["MinConfidence"] = (
+            "NaN"
+            if value["min_confidence"] != value["min_confidence"]
+            else "Infinity"
+            if value["min_confidence"] == float("inf")
+            else "-Infinity"
+            if value["min_confidence"] == float("-inf")
+            else value["min_confidence"]
+        )
     if "features" in value:
         import capo_rekognition.types.detect_labels_feature_list
 
@@ -62,7 +70,7 @@ def serialize_aws_json_1_1(value: DetectLabelsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectLabelsRequest:
     out: DetectLabelsRequest = {}  # type: ignore[typeddict-item]
-    if "Image" in data:
+    if data.get("Image") is not None:
         import capo_rekognition.types.image
 
         out["image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -70,11 +78,11 @@ def deserialize_aws_json_1_1(data: dict) -> DetectLabelsRequest:
         )
     else:
         raise DeserializationError("DetectLabelsRequest.image required")
-    if "MaxLabels" in data:
+    if data.get("MaxLabels") is not None:
         out["max_labels"] = data["MaxLabels"]
-    if "MinConfidence" in data:
-        out["min_confidence"] = data["MinConfidence"]
-    if "Features" in data:
+    if data.get("MinConfidence") is not None:
+        out["min_confidence"] = float(data["MinConfidence"])
+    if data.get("Features") is not None:
         import capo_rekognition.types.detect_labels_feature_list
 
         out["features"] = (
@@ -82,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectLabelsRequest:
                 data["Features"]
             )
         )
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_rekognition.types.detect_labels_settings
 
         out["settings"] = (

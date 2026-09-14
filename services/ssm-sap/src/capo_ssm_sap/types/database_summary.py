@@ -54,21 +54,21 @@ def serialize_json(value: DatabaseSummary) -> dict:
 
 def deserialize_json(data: dict) -> DatabaseSummary:
     out: DatabaseSummary = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "ComponentId" in data:
+    if data.get("ComponentId") is not None:
         out["component_id"] = data["ComponentId"]
-    if "DatabaseId" in data:
+    if data.get("DatabaseId") is not None:
         out["database_id"] = data["DatabaseId"]
-    if "DatabaseType" in data:
+    if data.get("DatabaseType") is not None:
         import capo_ssm_sap.types.database_type
 
         out["database_type"] = capo_ssm_sap.types.database_type.deserialize_json(
             data["DatabaseType"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_sap.types.tag_map
 
         out["tags"] = capo_ssm_sap.types.tag_map.deserialize_json(data["Tags"])

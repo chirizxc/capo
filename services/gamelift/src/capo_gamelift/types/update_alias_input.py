@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: UpdateAliasInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAliasInput:
     out: UpdateAliasInput = {}  # type: ignore[typeddict-item]
-    if "AliasId" in data:
+    if data.get("AliasId") is not None:
         out["alias_id"] = data["AliasId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoutingStrategy" in data:
+    if data.get("RoutingStrategy") is not None:
         import capo_gamelift.types.routing_strategy
 
         out["routing_strategy"] = (

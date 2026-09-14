@@ -50,15 +50,15 @@ def serialize_json(value: CreateFirewallDomainListInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateFirewallDomainListInput:
     out: CreateFirewallDomainListInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateFirewallDomainListInput.name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53globalresolver.types.tags
 
         out["tags"] = capo_route53globalresolver.types.tags.deserialize_json(

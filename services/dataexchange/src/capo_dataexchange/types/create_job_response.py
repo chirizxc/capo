@@ -86,9 +86,9 @@ def serialize_json(value: CreateJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobResponse:
     out: CreateJobResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AssetConfiguration" in data:
+    if data.get("AssetConfiguration") is not None:
         import capo_dataexchange.types.asset_configuration
 
         out["asset_configuration"] = (
@@ -96,31 +96,31 @@ def deserialize_json(data: dict) -> CreateJobResponse:
                 data["AssetConfiguration"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["created_at"] = capo_dataexchange.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_dataexchange.types.response_details
 
         out["details"] = capo_dataexchange.types.response_details.deserialize_json(
             data["Details"]
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_dataexchange.types.list_of_job_error
 
         out["errors"] = capo_dataexchange.types.list_of_job_error.deserialize_json(
             data["Errors"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["updated_at"] = capo_dataexchange.types.timestamp.deserialize_json(

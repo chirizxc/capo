@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: ListFileCommitHistoryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFileCommitHistoryResponse:
     out: ListFileCommitHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "revisionDag" in data:
+    if data.get("revisionDag") is not None:
         import capo_codecommit.types.revision_dag
 
         out["revision_dag"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListFileCommitHistoryResponse:
         raise DeserializationError(
             "ListFileCommitHistoryResponse.revision_dag required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

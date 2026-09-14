@@ -31,11 +31,11 @@ def serialize_json(value: CachingConfig) -> dict:
 
 def deserialize_json(data: dict) -> CachingConfig:
     out: CachingConfig = {}  # type: ignore[typeddict-item]
-    if "ttl" in data:
+    if data.get("ttl") is not None:
         out["ttl"] = data["ttl"]
     else:
         out["ttl"] = 0
-    if "cachingKeys" in data:
+    if data.get("cachingKeys") is not None:
         import capo_appsync.types.caching_keys
 
         out["caching_keys"] = capo_appsync.types.caching_keys.deserialize_json(

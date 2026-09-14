@@ -27,8 +27,8 @@ def serialize_json(value: ContainerInstanceDetails) -> dict:
 
 def deserialize_json(data: dict) -> ContainerInstanceDetails:
     out: ContainerInstanceDetails = {}  # type: ignore[typeddict-item]
-    if "coveredContainerInstances" in data:
+    if data.get("coveredContainerInstances") is not None:
         out["covered_container_instances"] = data["coveredContainerInstances"]
-    if "compatibleContainerInstances" in data:
+    if data.get("compatibleContainerInstances") is not None:
         out["compatible_container_instances"] = data["compatibleContainerInstances"]
     return out

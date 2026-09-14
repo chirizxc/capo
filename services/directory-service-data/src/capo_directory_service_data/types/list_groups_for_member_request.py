@@ -46,18 +46,18 @@ def serialize_json(value: ListGroupsForMemberRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListGroupsForMemberRequest:
     out: ListGroupsForMemberRequest = {}  # type: ignore[typeddict-item]
-    if "Realm" in data:
+    if data.get("Realm") is not None:
         out["realm"] = data["Realm"]
-    if "MemberRealm" in data:
+    if data.get("MemberRealm") is not None:
         out["member_realm"] = data["MemberRealm"]
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
     else:
         raise DeserializationError(
             "ListGroupsForMemberRequest.sam_account_name required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -49,20 +49,20 @@ def serialize_json(value: ListSnapshotBlocksResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSnapshotBlocksResponse:
     out: ListSnapshotBlocksResponse = {}  # type: ignore[typeddict-item]
-    if "Blocks" in data:
+    if data.get("Blocks") is not None:
         import capo_ebs.types.blocks
 
         out["blocks"] = capo_ebs.types.blocks.deserialize_json(data["Blocks"])
-    if "ExpiryTime" in data:
+    if data.get("ExpiryTime") is not None:
         import capo_ebs.types.time_stamp
 
         out["expiry_time"] = capo_ebs.types.time_stamp.deserialize_json(
             data["ExpiryTime"]
         )
-    if "VolumeSize" in data:
+    if data.get("VolumeSize") is not None:
         out["volume_size"] = data["VolumeSize"]
-    if "BlockSize" in data:
+    if data.get("BlockSize") is not None:
         out["block_size"] = data["BlockSize"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

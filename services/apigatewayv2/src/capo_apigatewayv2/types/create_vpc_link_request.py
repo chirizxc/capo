@@ -54,9 +54,9 @@ def serialize_json(value: CreateVpcLinkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVpcLinkRequest:
     out: CreateVpcLinkRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_apigatewayv2.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -64,13 +64,13 @@ def deserialize_json(data: dict) -> CreateVpcLinkRequest:
                 data["securityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_apigatewayv2.types.subnet_id_list
 
         out["subnet_ids"] = capo_apigatewayv2.types.subnet_id_list.deserialize_json(
             data["subnetIds"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])

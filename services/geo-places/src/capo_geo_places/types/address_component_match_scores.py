@@ -44,23 +44,111 @@ class AddressComponentMatchScores(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: AddressComponentMatchScores) -> dict:
     out: dict = {}
-    out["Country"] = value.get("country", 0)
-    out["Region"] = value.get("region", 0)
-    out["SubRegion"] = value.get("sub_region", 0)
-    out["Locality"] = value.get("locality", 0)
-    out["District"] = value.get("district", 0)
-    out["SubDistrict"] = value.get("sub_district", 0)
-    out["PostalCode"] = value.get("postal_code", 0)
-    out["Block"] = value.get("block", 0)
-    out["SubBlock"] = value.get("sub_block", 0)
+    out["Country"] = (
+        "NaN"
+        if value.get("country", 0) != value.get("country", 0)
+        else "Infinity"
+        if value.get("country", 0) == float("inf")
+        else "-Infinity"
+        if value.get("country", 0) == float("-inf")
+        else value.get("country", 0)
+    )
+    out["Region"] = (
+        "NaN"
+        if value.get("region", 0) != value.get("region", 0)
+        else "Infinity"
+        if value.get("region", 0) == float("inf")
+        else "-Infinity"
+        if value.get("region", 0) == float("-inf")
+        else value.get("region", 0)
+    )
+    out["SubRegion"] = (
+        "NaN"
+        if value.get("sub_region", 0) != value.get("sub_region", 0)
+        else "Infinity"
+        if value.get("sub_region", 0) == float("inf")
+        else "-Infinity"
+        if value.get("sub_region", 0) == float("-inf")
+        else value.get("sub_region", 0)
+    )
+    out["Locality"] = (
+        "NaN"
+        if value.get("locality", 0) != value.get("locality", 0)
+        else "Infinity"
+        if value.get("locality", 0) == float("inf")
+        else "-Infinity"
+        if value.get("locality", 0) == float("-inf")
+        else value.get("locality", 0)
+    )
+    out["District"] = (
+        "NaN"
+        if value.get("district", 0) != value.get("district", 0)
+        else "Infinity"
+        if value.get("district", 0) == float("inf")
+        else "-Infinity"
+        if value.get("district", 0) == float("-inf")
+        else value.get("district", 0)
+    )
+    out["SubDistrict"] = (
+        "NaN"
+        if value.get("sub_district", 0) != value.get("sub_district", 0)
+        else "Infinity"
+        if value.get("sub_district", 0) == float("inf")
+        else "-Infinity"
+        if value.get("sub_district", 0) == float("-inf")
+        else value.get("sub_district", 0)
+    )
+    out["PostalCode"] = (
+        "NaN"
+        if value.get("postal_code", 0) != value.get("postal_code", 0)
+        else "Infinity"
+        if value.get("postal_code", 0) == float("inf")
+        else "-Infinity"
+        if value.get("postal_code", 0) == float("-inf")
+        else value.get("postal_code", 0)
+    )
+    out["Block"] = (
+        "NaN"
+        if value.get("block", 0) != value.get("block", 0)
+        else "Infinity"
+        if value.get("block", 0) == float("inf")
+        else "-Infinity"
+        if value.get("block", 0) == float("-inf")
+        else value.get("block", 0)
+    )
+    out["SubBlock"] = (
+        "NaN"
+        if value.get("sub_block", 0) != value.get("sub_block", 0)
+        else "Infinity"
+        if value.get("sub_block", 0) == float("inf")
+        else "-Infinity"
+        if value.get("sub_block", 0) == float("-inf")
+        else value.get("sub_block", 0)
+    )
     if "intersection" in value:
         import capo_geo_places.types.match_score_list
 
         out["Intersection"] = capo_geo_places.types.match_score_list.serialize_json(
             value["intersection"]
         )
-    out["AddressNumber"] = value.get("address_number", 0)
-    out["Building"] = value.get("building", 0)
+    out["AddressNumber"] = (
+        "NaN"
+        if value.get("address_number", 0) != value.get("address_number", 0)
+        else "Infinity"
+        if value.get("address_number", 0) == float("inf")
+        else "-Infinity"
+        if value.get("address_number", 0) == float("-inf")
+        else value.get("address_number", 0)
+    )
+    out["Building"] = (
+        "NaN"
+        if value.get("building", 0) != value.get("building", 0)
+        else "Infinity"
+        if value.get("building", 0) == float("inf")
+        else "-Infinity"
+        if value.get("building", 0) == float("-inf")
+        else value.get("building", 0)
+    )
     if "secondary_address_components" in value:
         import capo_geo_places.types.secondary_address_component_match_score_list
 
@@ -74,57 +162,57 @@ def serialize_json(value: AddressComponentMatchScores) -> dict:
 
 def deserialize_json(data: dict) -> AddressComponentMatchScores:
     out: AddressComponentMatchScores = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
-        out["country"] = data["Country"]
+    if data.get("Country") is not None:
+        out["country"] = float(data["Country"])
     else:
         out["country"] = 0
-    if "Region" in data:
-        out["region"] = data["Region"]
+    if data.get("Region") is not None:
+        out["region"] = float(data["Region"])
     else:
         out["region"] = 0
-    if "SubRegion" in data:
-        out["sub_region"] = data["SubRegion"]
+    if data.get("SubRegion") is not None:
+        out["sub_region"] = float(data["SubRegion"])
     else:
         out["sub_region"] = 0
-    if "Locality" in data:
-        out["locality"] = data["Locality"]
+    if data.get("Locality") is not None:
+        out["locality"] = float(data["Locality"])
     else:
         out["locality"] = 0
-    if "District" in data:
-        out["district"] = data["District"]
+    if data.get("District") is not None:
+        out["district"] = float(data["District"])
     else:
         out["district"] = 0
-    if "SubDistrict" in data:
-        out["sub_district"] = data["SubDistrict"]
+    if data.get("SubDistrict") is not None:
+        out["sub_district"] = float(data["SubDistrict"])
     else:
         out["sub_district"] = 0
-    if "PostalCode" in data:
-        out["postal_code"] = data["PostalCode"]
+    if data.get("PostalCode") is not None:
+        out["postal_code"] = float(data["PostalCode"])
     else:
         out["postal_code"] = 0
-    if "Block" in data:
-        out["block"] = data["Block"]
+    if data.get("Block") is not None:
+        out["block"] = float(data["Block"])
     else:
         out["block"] = 0
-    if "SubBlock" in data:
-        out["sub_block"] = data["SubBlock"]
+    if data.get("SubBlock") is not None:
+        out["sub_block"] = float(data["SubBlock"])
     else:
         out["sub_block"] = 0
-    if "Intersection" in data:
+    if data.get("Intersection") is not None:
         import capo_geo_places.types.match_score_list
 
         out["intersection"] = capo_geo_places.types.match_score_list.deserialize_json(
             data["Intersection"]
         )
-    if "AddressNumber" in data:
-        out["address_number"] = data["AddressNumber"]
+    if data.get("AddressNumber") is not None:
+        out["address_number"] = float(data["AddressNumber"])
     else:
         out["address_number"] = 0
-    if "Building" in data:
-        out["building"] = data["Building"]
+    if data.get("Building") is not None:
+        out["building"] = float(data["Building"])
     else:
         out["building"] = 0
-    if "SecondaryAddressComponents" in data:
+    if data.get("SecondaryAddressComponents") is not None:
         import capo_geo_places.types.secondary_address_component_match_score_list
 
         out["secondary_address_components"] = (

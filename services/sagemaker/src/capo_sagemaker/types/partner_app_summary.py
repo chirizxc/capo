@@ -55,17 +55,17 @@ def serialize_aws_json_1_1(value: PartnerAppSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartnerAppSummary:
     out: PartnerAppSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.partner_app_type
 
         out["type"] = capo_sagemaker.types.partner_app_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.partner_app_status
 
         out["status"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> PartnerAppSummary:
                 data["Status"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(

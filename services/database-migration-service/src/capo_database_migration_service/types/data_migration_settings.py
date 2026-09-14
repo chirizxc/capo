@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: DataMigrationSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataMigrationSettings:
     out: DataMigrationSettings = {}  # type: ignore[typeddict-item]
-    if "NumberOfJobs" in data:
+    if data.get("NumberOfJobs") is not None:
         out["number_of_jobs"] = data["NumberOfJobs"]
-    if "CloudwatchLogsEnabled" in data:
+    if data.get("CloudwatchLogsEnabled") is not None:
         out["cloudwatch_logs_enabled"] = data["CloudwatchLogsEnabled"]
-    if "SelectionRules" in data:
+    if data.get("SelectionRules") is not None:
         out["selection_rules"] = data["SelectionRules"]
     return out

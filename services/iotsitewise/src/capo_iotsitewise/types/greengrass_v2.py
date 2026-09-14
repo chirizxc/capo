@@ -39,11 +39,11 @@ def serialize_json(value: GreengrassV2) -> dict:
 
 def deserialize_json(data: dict) -> GreengrassV2:
     out: GreengrassV2 = {}  # type: ignore[typeddict-item]
-    if "coreDeviceThingName" in data:
+    if data.get("coreDeviceThingName") is not None:
         out["core_device_thing_name"] = data["coreDeviceThingName"]
     else:
         raise DeserializationError("GreengrassV2.core_device_thing_name required")
-    if "coreDeviceOperatingSystem" in data:
+    if data.get("coreDeviceOperatingSystem") is not None:
         import capo_iotsitewise.types.core_device_operating_system
 
         out["core_device_operating_system"] = (

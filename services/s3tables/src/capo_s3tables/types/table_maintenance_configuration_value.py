@@ -38,13 +38,13 @@ def serialize_json(value: TableMaintenanceConfigurationValue) -> dict:
 
 def deserialize_json(data: dict) -> TableMaintenanceConfigurationValue:
     out: TableMaintenanceConfigurationValue = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_s3tables.types.maintenance_status
 
         out["status"] = capo_s3tables.types.maintenance_status.deserialize_json(
             data["status"]
         )
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_s3tables.types.table_maintenance_settings
 
         out["settings"] = (

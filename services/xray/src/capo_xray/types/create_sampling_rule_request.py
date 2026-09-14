@@ -35,7 +35,7 @@ def serialize_json(value: CreateSamplingRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSamplingRuleRequest:
     out: CreateSamplingRuleRequest = {}  # type: ignore[typeddict-item]
-    if "SamplingRule" in data:
+    if data.get("SamplingRule") is not None:
         import capo_xray.types.sampling_rule
 
         out["sampling_rule"] = capo_xray.types.sampling_rule.deserialize_json(
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> CreateSamplingRuleRequest:
         )
     else:
         raise DeserializationError("CreateSamplingRuleRequest.sampling_rule required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_xray.types.tag_list
 
         out["tags"] = capo_xray.types.tag_list.deserialize_json(data["Tags"])

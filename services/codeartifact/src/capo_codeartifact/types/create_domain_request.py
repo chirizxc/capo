@@ -33,9 +33,9 @@ def serialize_json(value: CreateDomainRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainRequest:
     out: CreateDomainRequest = {}  # type: ignore[typeddict-item]
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         out["encryption_key"] = data["encryptionKey"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codeartifact.types.tag_list
 
         out["tags"] = capo_codeartifact.types.tag_list.deserialize_json(data["tags"])

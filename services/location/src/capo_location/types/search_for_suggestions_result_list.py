@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SearchForSuggestionsResultList:
 
     out: SearchForSuggestionsResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_location.types.search_for_suggestions_result.deserialize_json(item)
         )

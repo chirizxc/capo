@@ -53,11 +53,11 @@ def serialize_json(value: SortAttribute) -> dict:
 
 def deserialize_json(data: dict) -> SortAttribute:
     out: SortAttribute = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SortAttribute.name required")
-    if "DataType" in data:
+    if data.get("DataType") is not None:
         import capo_customer_profiles.types.segment_sort_data_type
 
         out["data_type"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> SortAttribute:
                 data["DataType"]
             )
         )
-    if "Order" in data:
+    if data.get("Order") is not None:
         import capo_customer_profiles.types.segment_sort_order
 
         out["order"] = capo_customer_profiles.types.segment_sort_order.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> SortAttribute:
         )
     else:
         raise DeserializationError("SortAttribute.order required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_customer_profiles.types.sort_attribute_type
 
         out["type"] = capo_customer_profiles.types.sort_attribute_type.deserialize_json(

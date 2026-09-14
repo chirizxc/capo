@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ManagedThingSchemaListDefinition:
 
     out: ManagedThingSchemaListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.managed_thing_schema_list_item.deserialize_json(
                 item

@@ -67,29 +67,29 @@ def serialize_json(value: UserDataFilters) -> dict:
 
 def deserialize_json(data: dict) -> UserDataFilters:
     out: UserDataFilters = {}  # type: ignore[typeddict-item]
-    if "Queues" in data:
+    if data.get("Queues") is not None:
         import capo_connect.types.queues
 
         out["queues"] = capo_connect.types.queues.deserialize_json(data["Queues"])
-    if "ContactFilter" in data:
+    if data.get("ContactFilter") is not None:
         import capo_connect.types.contact_filter
 
         out["contact_filter"] = capo_connect.types.contact_filter.deserialize_json(
             data["ContactFilter"]
         )
-    if "RoutingProfiles" in data:
+    if data.get("RoutingProfiles") is not None:
         import capo_connect.types.routing_profiles
 
         out["routing_profiles"] = capo_connect.types.routing_profiles.deserialize_json(
             data["RoutingProfiles"]
         )
-    if "Agents" in data:
+    if data.get("Agents") is not None:
         import capo_connect.types.agents_min_one_max_hundred
 
         out["agents"] = capo_connect.types.agents_min_one_max_hundred.deserialize_json(
             data["Agents"]
         )
-    if "UserHierarchyGroups" in data:
+    if data.get("UserHierarchyGroups") is not None:
         import capo_connect.types.user_data_hierarchy_groups
 
         out["user_hierarchy_groups"] = (

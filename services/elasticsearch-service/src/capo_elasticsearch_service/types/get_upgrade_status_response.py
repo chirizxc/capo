@@ -51,7 +51,7 @@ def serialize_json(value: GetUpgradeStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUpgradeStatusResponse:
     out: GetUpgradeStatusResponse = {}  # type: ignore[typeddict-item]
-    if "UpgradeStep" in data:
+    if data.get("UpgradeStep") is not None:
         import capo_elasticsearch_service.types.upgrade_step
 
         out["upgrade_step"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> GetUpgradeStatusResponse:
                 data["UpgradeStep"]
             )
         )
-    if "StepStatus" in data:
+    if data.get("StepStatus") is not None:
         import capo_elasticsearch_service.types.upgrade_status
 
         out["step_status"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> GetUpgradeStatusResponse:
                 data["StepStatus"]
             )
         )
-    if "UpgradeName" in data:
+    if data.get("UpgradeName") is not None:
         out["upgrade_name"] = data["UpgradeName"]
     return out

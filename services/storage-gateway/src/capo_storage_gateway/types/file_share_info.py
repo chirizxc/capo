@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: FileShareInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileShareInfo:
     out: FileShareInfo = {}  # type: ignore[typeddict-item]
-    if "FileShareType" in data:
+    if data.get("FileShareType") is not None:
         import capo_storage_gateway.types.file_share_type
 
         out["file_share_type"] = (
@@ -58,12 +58,12 @@ def deserialize_aws_json_1_1(data: dict) -> FileShareInfo:
                 data["FileShareType"]
             )
         )
-    if "FileShareARN" in data:
+    if data.get("FileShareARN") is not None:
         out["file_share_arn"] = data["FileShareARN"]
-    if "FileShareId" in data:
+    if data.get("FileShareId") is not None:
         out["file_share_id"] = data["FileShareId"]
-    if "FileShareStatus" in data:
+    if data.get("FileShareStatus") is not None:
         out["file_share_status"] = data["FileShareStatus"]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     return out

@@ -62,15 +62,15 @@ def serialize_aws_json_1_1(value: CreateAdapterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAdapterRequest:
     out: CreateAdapterRequest = {}  # type: ignore[typeddict-item]
-    if "AdapterName" in data:
+    if data.get("AdapterName") is not None:
         out["adapter_name"] = data["AdapterName"]
     else:
         raise DeserializationError("CreateAdapterRequest.adapter_name required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FeatureTypes" in data:
+    if data.get("FeatureTypes") is not None:
         import capo_textract.types.feature_types
 
         out["feature_types"] = (
@@ -80,13 +80,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAdapterRequest:
         )
     else:
         raise DeserializationError("CreateAdapterRequest.feature_types required")
-    if "AutoUpdate" in data:
+    if data.get("AutoUpdate") is not None:
         import capo_textract.types.auto_update
 
         out["auto_update"] = capo_textract.types.auto_update.deserialize_aws_json_1_1(
             data["AutoUpdate"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_textract.types.tag_map
 
         out["tags"] = capo_textract.types.tag_map.deserialize_aws_json_1_1(data["Tags"])

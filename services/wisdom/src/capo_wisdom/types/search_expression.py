@@ -26,7 +26,7 @@ def serialize_json(value: SearchExpression) -> dict:
 
 def deserialize_json(data: dict) -> SearchExpression:
     out: SearchExpression = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_wisdom.types.filter_list
 
         out["filters"] = capo_wisdom.types.filter_list.deserialize_json(data["filters"])

@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: CloseStatusFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CloseStatusFilter:
     out: CloseStatusFilter = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_swf.types.close_status
 
         out["status"] = capo_swf.types.close_status.deserialize_aws_json_1_0(

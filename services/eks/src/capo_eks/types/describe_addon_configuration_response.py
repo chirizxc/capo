@@ -44,13 +44,13 @@ def serialize_json(value: DescribeAddonConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAddonConfigurationResponse:
     out: DescribeAddonConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "addonName" in data:
+    if data.get("addonName") is not None:
         out["addon_name"] = data["addonName"]
-    if "addonVersion" in data:
+    if data.get("addonVersion") is not None:
         out["addon_version"] = data["addonVersion"]
-    if "configurationSchema" in data:
+    if data.get("configurationSchema") is not None:
         out["configuration_schema"] = data["configurationSchema"]
-    if "podIdentityConfiguration" in data:
+    if data.get("podIdentityConfiguration") is not None:
         import capo_eks.types.addon_pod_identity_configuration_list
 
         out["pod_identity_configuration"] = (

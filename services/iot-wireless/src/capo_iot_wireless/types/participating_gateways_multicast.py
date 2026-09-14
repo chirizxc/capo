@@ -38,7 +38,7 @@ def serialize_json(value: ParticipatingGatewaysMulticast) -> dict:
 
 def deserialize_json(data: dict) -> ParticipatingGatewaysMulticast:
     out: ParticipatingGatewaysMulticast = {}  # type: ignore[typeddict-item]
-    if "GatewayList" in data:
+    if data.get("GatewayList") is not None:
         import capo_iot_wireless.types.gateway_list_multicast
 
         out["gateway_list"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ParticipatingGatewaysMulticast:
                 data["GatewayList"]
             )
         )
-    if "TransmissionInterval" in data:
+    if data.get("TransmissionInterval") is not None:
         out["transmission_interval"] = data["TransmissionInterval"]
     return out

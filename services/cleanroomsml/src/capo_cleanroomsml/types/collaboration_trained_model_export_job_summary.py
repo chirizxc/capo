@@ -49,14 +49,14 @@ class CollaborationTrainedModelExportJobSummary(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: CollaborationTrainedModelExportJobSummary) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     out["name"] = value["name"]
@@ -93,37 +93,33 @@ def serialize_json(value: CollaborationTrainedModelExportJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> CollaborationTrainedModelExportJobSummary:
     out: CollaborationTrainedModelExportJobSummary = {}  # type: ignore[typeddict-item]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "CollaborationTrainedModelExportJobSummary.create_time required"
         )
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "CollaborationTrainedModelExportJobSummary.update_time required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "CollaborationTrainedModelExportJobSummary.name required"
         )
-    if "outputConfiguration" in data:
+    if data.get("outputConfiguration") is not None:
         import capo_cleanroomsml.types.trained_model_export_output_configuration
 
         out["output_configuration"] = (
@@ -135,7 +131,7 @@ def deserialize_json(data: dict) -> CollaborationTrainedModelExportJobSummary:
         raise DeserializationError(
             "CollaborationTrainedModelExportJobSummary.output_configuration required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanroomsml.types.trained_model_export_job_status
 
         out["status"] = (
@@ -147,35 +143,35 @@ def deserialize_json(data: dict) -> CollaborationTrainedModelExportJobSummary:
         raise DeserializationError(
             "CollaborationTrainedModelExportJobSummary.status required"
         )
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         import capo_cleanroomsml.types.status_details
 
         out["status_details"] = capo_cleanroomsml.types.status_details.deserialize_json(
             data["statusDetails"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creatorAccountId" in data:
+    if data.get("creatorAccountId") is not None:
         out["creator_account_id"] = data["creatorAccountId"]
     else:
         raise DeserializationError(
             "CollaborationTrainedModelExportJobSummary.creator_account_id required"
         )
-    if "trainedModelArn" in data:
+    if data.get("trainedModelArn") is not None:
         out["trained_model_arn"] = data["trainedModelArn"]
     else:
         raise DeserializationError(
             "CollaborationTrainedModelExportJobSummary.trained_model_arn required"
         )
-    if "trainedModelVersionIdentifier" in data:
+    if data.get("trainedModelVersionIdentifier") is not None:
         out["trained_model_version_identifier"] = data["trainedModelVersionIdentifier"]
-    if "membershipIdentifier" in data:
+    if data.get("membershipIdentifier") is not None:
         out["membership_identifier"] = data["membershipIdentifier"]
     else:
         raise DeserializationError(
             "CollaborationTrainedModelExportJobSummary.membership_identifier required"
         )
-    if "collaborationIdentifier" in data:
+    if data.get("collaborationIdentifier") is not None:
         out["collaboration_identifier"] = data["collaborationIdentifier"]
     else:
         raise DeserializationError(

@@ -67,21 +67,21 @@ def serialize_json(value: BotSummary) -> dict:
 
 def deserialize_json(data: dict) -> BotSummary:
     out: BotSummary = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botName" in data:
+    if data.get("botName") is not None:
         out["bot_name"] = data["botName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "botStatus" in data:
+    if data.get("botStatus") is not None:
         import capo_lex_models_v2.types.bot_status
 
         out["bot_status"] = capo_lex_models_v2.types.bot_status.deserialize_json(
             data["botStatus"]
         )
-    if "latestBotVersion" in data:
+    if data.get("latestBotVersion") is not None:
         out["latest_bot_version"] = data["latestBotVersion"]
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> BotSummary:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "botType" in data:
+    if data.get("botType") is not None:
         import capo_lex_models_v2.types.bot_type
 
         out["bot_type"] = capo_lex_models_v2.types.bot_type.deserialize_json(

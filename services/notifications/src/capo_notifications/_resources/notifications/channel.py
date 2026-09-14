@@ -76,15 +76,17 @@ class Channel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.associate_channel_request.AssociateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["notification_configuration_arn"] = notification_configuration_arn
+        input_: capo_notifications.types.associate_channel_request.AssociateChannelRequest = {
+            "arn": arn,
+            "notification_configuration_arn": notification_configuration_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -124,15 +126,17 @@ class Channel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.disassociate_channel_request.DisassociateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["notification_configuration_arn"] = notification_configuration_arn
+        input_: capo_notifications.types.disassociate_channel_request.DisassociateChannelRequest = {
+            "arn": arn,
+            "notification_configuration_arn": notification_configuration_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -174,8 +178,9 @@ class Channel:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.list_channels_request.ListChannelsRequest = {}  # type: ignore[typeddict-item]
-        input_["notification_configuration_arn"] = notification_configuration_arn
+        input_: capo_notifications.types.list_channels_request.ListChannelsRequest = {
+            "notification_configuration_arn": notification_configuration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -186,6 +191,7 @@ class Channel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -233,15 +239,17 @@ class AsyncChannel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.associate_channel_request.AssociateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["notification_configuration_arn"] = notification_configuration_arn
+        input_: capo_notifications.types.associate_channel_request.AssociateChannelRequest = {
+            "arn": arn,
+            "notification_configuration_arn": notification_configuration_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -282,15 +290,17 @@ class AsyncChannel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.disassociate_channel_request.DisassociateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["notification_configuration_arn"] = notification_configuration_arn
+        input_: capo_notifications.types.disassociate_channel_request.DisassociateChannelRequest = {
+            "arn": arn,
+            "notification_configuration_arn": notification_configuration_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -333,8 +343,9 @@ class AsyncChannel:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.list_channels_request.ListChannelsRequest = {}  # type: ignore[typeddict-item]
-        input_["notification_configuration_arn"] = notification_configuration_arn
+        input_: capo_notifications.types.list_channels_request.ListChannelsRequest = {
+            "notification_configuration_arn": notification_configuration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -345,4 +356,5 @@ class AsyncChannel:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

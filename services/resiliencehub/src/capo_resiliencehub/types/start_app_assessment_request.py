@@ -44,21 +44,21 @@ def serialize_json(value: StartAppAssessmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAppAssessmentRequest:
     out: StartAppAssessmentRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("StartAppAssessmentRequest.app_arn required")
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError("StartAppAssessmentRequest.app_version required")
-    if "assessmentName" in data:
+    if data.get("assessmentName") is not None:
         out["assessment_name"] = data["assessmentName"]
     else:
         raise DeserializationError("StartAppAssessmentRequest.assessment_name required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehub.types.tag_map
 
         out["tags"] = capo_resiliencehub.types.tag_map.deserialize_json(data["tags"])

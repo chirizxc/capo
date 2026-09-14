@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: GetQueryResultsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetQueryResultsInput:
     out: GetQueryResultsInput = {}  # type: ignore[typeddict-item]
-    if "QueryExecutionId" in data:
+    if data.get("QueryExecutionId") is not None:
         out["query_execution_id"] = data["QueryExecutionId"]
     else:
         raise DeserializationError("GetQueryResultsInput.query_execution_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "QueryResultType" in data:
+    if data.get("QueryResultType") is not None:
         import capo_athena.types.query_result_type
 
         out["query_result_type"] = (

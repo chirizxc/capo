@@ -38,10 +38,10 @@ def serialize_json(value: SubmitFeedbackRequest) -> dict:
 
 def deserialize_json(data: dict) -> SubmitFeedbackRequest:
     out: SubmitFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("SubmitFeedbackRequest.type required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

@@ -32,12 +32,12 @@ def serialize_json(value: RouteZone) -> dict:
 
 def deserialize_json(data: dict) -> RouteZone:
     out: RouteZone = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_geo_routes.types.route_zone_category
 
         out["category"] = capo_geo_routes.types.route_zone_category.deserialize_json(
             data["Category"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

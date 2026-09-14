@@ -88,31 +88,31 @@ def serialize_json(value: CreateCommandRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCommandRequest:
     out: CreateCommandRequest = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_iot.types.command_namespace
 
         out["namespace"] = capo_iot.types.command_namespace.deserialize_json(
             data["namespace"]
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot.types.command_payload
 
         out["payload"] = capo_iot.types.command_payload.deserialize_json(
             data["payload"]
         )
-    if "payloadTemplate" in data:
+    if data.get("payloadTemplate") is not None:
         out["payload_template"] = data["payloadTemplate"]
-    if "preprocessor" in data:
+    if data.get("preprocessor") is not None:
         import capo_iot.types.command_preprocessor
 
         out["preprocessor"] = capo_iot.types.command_preprocessor.deserialize_json(
             data["preprocessor"]
         )
-    if "mandatoryParameters" in data:
+    if data.get("mandatoryParameters") is not None:
         import capo_iot.types.command_parameter_list
 
         out["mandatory_parameters"] = (
@@ -120,9 +120,9 @@ def deserialize_json(data: dict) -> CreateCommandRequest:
                 data["mandatoryParameters"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

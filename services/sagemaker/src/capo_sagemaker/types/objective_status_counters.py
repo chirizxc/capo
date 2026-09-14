@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: ObjectiveStatusCounters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ObjectiveStatusCounters:
     out: ObjectiveStatusCounters = {}  # type: ignore[typeddict-item]
-    if "Succeeded" in data:
+    if data.get("Succeeded") is not None:
         out["succeeded"] = data["Succeeded"]
-    if "Pending" in data:
+    if data.get("Pending") is not None:
         out["pending"] = data["Pending"]
-    if "Failed" in data:
+    if data.get("Failed") is not None:
         out["failed"] = data["Failed"]
     return out

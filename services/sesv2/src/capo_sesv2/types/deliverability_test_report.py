@@ -62,21 +62,21 @@ def serialize_json(value: DeliverabilityTestReport) -> dict:
 
 def deserialize_json(data: dict) -> DeliverabilityTestReport:
     out: DeliverabilityTestReport = {}  # type: ignore[typeddict-item]
-    if "ReportId" in data:
+    if data.get("ReportId") is not None:
         out["report_id"] = data["ReportId"]
-    if "ReportName" in data:
+    if data.get("ReportName") is not None:
         out["report_name"] = data["ReportName"]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         out["from_email_address"] = data["FromEmailAddress"]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_sesv2.types.timestamp
 
         out["create_date"] = capo_sesv2.types.timestamp.deserialize_json(
             data["CreateDate"]
         )
-    if "DeliverabilityTestStatus" in data:
+    if data.get("DeliverabilityTestStatus") is not None:
         import capo_sesv2.types.deliverability_test_status
 
         out["deliverability_test_status"] = (

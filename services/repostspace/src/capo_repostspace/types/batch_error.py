@@ -32,15 +32,15 @@ def serialize_json(value: BatchError) -> dict:
 
 def deserialize_json(data: dict) -> BatchError:
     out: BatchError = {}  # type: ignore[typeddict-item]
-    if "accessorId" in data:
+    if data.get("accessorId") is not None:
         out["accessor_id"] = data["accessorId"]
     else:
         raise DeserializationError("BatchError.accessor_id required")
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
     else:
         raise DeserializationError("BatchError.error required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("BatchError.message required")

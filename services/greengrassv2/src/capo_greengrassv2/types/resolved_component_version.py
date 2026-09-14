@@ -64,19 +64,19 @@ def serialize_json(value: ResolvedComponentVersion) -> dict:
 
 def deserialize_json(data: dict) -> ResolvedComponentVersion:
     out: ResolvedComponentVersion = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "componentVersion" in data:
+    if data.get("componentVersion") is not None:
         out["component_version"] = data["componentVersion"]
-    if "recipe" in data:
+    if data.get("recipe") is not None:
         import capo_greengrassv2.types.recipe_blob
 
         out["recipe"] = capo_greengrassv2.types.recipe_blob.deserialize_json(
             data["recipe"]
         )
-    if "vendorGuidance" in data:
+    if data.get("vendorGuidance") is not None:
         import capo_greengrassv2.types.vendor_guidance
 
         out["vendor_guidance"] = (
@@ -84,6 +84,6 @@ def deserialize_json(data: dict) -> ResolvedComponentVersion:
                 data["vendorGuidance"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

@@ -133,13 +133,13 @@ def serialize_aws_json_1_1(value: GetMediaAnalysisJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMediaAnalysisJobResponse:
     out: GetMediaAnalysisJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("GetMediaAnalysisJobResponse.job_id required")
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "OperationsConfig" in data:
+    if data.get("OperationsConfig") is not None:
         import capo_rekognition.types.media_analysis_operations_config
 
         out["operations_config"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMediaAnalysisJobResponse:
         raise DeserializationError(
             "GetMediaAnalysisJobResponse.operations_config required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_rekognition.types.media_analysis_job_status
 
         out["status"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMediaAnalysisJobResponse:
         )
     else:
         raise DeserializationError("GetMediaAnalysisJobResponse.status required")
-    if "FailureDetails" in data:
+    if data.get("FailureDetails") is not None:
         import capo_rekognition.types.media_analysis_job_failure_details
 
         out["failure_details"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMediaAnalysisJobResponse:
                 data["FailureDetails"]
             )
         )
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["creation_timestamp"] = (
@@ -181,7 +181,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMediaAnalysisJobResponse:
         raise DeserializationError(
             "GetMediaAnalysisJobResponse.creation_timestamp required"
         )
-    if "CompletionTimestamp" in data:
+    if data.get("CompletionTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["completion_timestamp"] = (
@@ -189,7 +189,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMediaAnalysisJobResponse:
                 data["CompletionTimestamp"]
             )
         )
-    if "Input" in data:
+    if data.get("Input") is not None:
         import capo_rekognition.types.media_analysis_input
 
         out["input"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMediaAnalysisJobResponse:
         )
     else:
         raise DeserializationError("GetMediaAnalysisJobResponse.input required")
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_rekognition.types.media_analysis_output_config
 
         out["output_config"] = (
@@ -209,9 +209,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetMediaAnalysisJobResponse:
         )
     else:
         raise DeserializationError("GetMediaAnalysisJobResponse.output_config required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_rekognition.types.media_analysis_results
 
         out["results"] = (
@@ -219,7 +219,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMediaAnalysisJobResponse:
                 data["Results"]
             )
         )
-    if "ManifestSummary" in data:
+    if data.get("ManifestSummary") is not None:
         import capo_rekognition.types.media_analysis_manifest_summary
 
         out["manifest_summary"] = (

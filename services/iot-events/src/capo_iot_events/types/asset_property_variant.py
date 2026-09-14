@@ -46,12 +46,12 @@ def serialize_json(value: AssetPropertyVariant) -> dict:
 
 def deserialize_json(data: dict) -> AssetPropertyVariant:
     out: AssetPropertyVariant = {}  # type: ignore[typeddict-item]
-    if "stringValue" in data:
+    if data.get("stringValue") is not None:
         out["string_value"] = data["stringValue"]
-    if "integerValue" in data:
+    if data.get("integerValue") is not None:
         out["integer_value"] = data["integerValue"]
-    if "doubleValue" in data:
+    if data.get("doubleValue") is not None:
         out["double_value"] = data["doubleValue"]
-    if "booleanValue" in data:
+    if data.get("booleanValue") is not None:
         out["boolean_value"] = data["booleanValue"]
     return out

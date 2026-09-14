@@ -130,7 +130,7 @@ def serialize_json(value: ConsolidatedPolicyAggregation) -> dict:
 
 def deserialize_json(data: dict) -> ConsolidatedPolicyAggregation:
     out: ConsolidatedPolicyAggregation = {}  # type: ignore[typeddict-item]
-    if "aggregateColumns" in data:
+    if data.get("aggregateColumns") is not None:
         import capo_cleanrooms.types.aggregate_column_list
 
         out["aggregate_columns"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyAggregation:
         raise DeserializationError(
             "ConsolidatedPolicyAggregation.aggregate_columns required"
         )
-    if "joinColumns" in data:
+    if data.get("joinColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["join_columns"] = (
@@ -154,9 +154,9 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyAggregation:
         raise DeserializationError(
             "ConsolidatedPolicyAggregation.join_columns required"
         )
-    if "joinRequired" in data:
+    if data.get("joinRequired") is not None:
         out["join_required"] = data["joinRequired"]
-    if "allowedJoinOperators" in data:
+    if data.get("allowedJoinOperators") is not None:
         import capo_cleanrooms.types.join_operators_list
 
         out["allowed_join_operators"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyAggregation:
                 data["allowedJoinOperators"]
             )
         )
-    if "dimensionColumns" in data:
+    if data.get("dimensionColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["dimension_columns"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyAggregation:
         raise DeserializationError(
             "ConsolidatedPolicyAggregation.dimension_columns required"
         )
-    if "scalarFunctions" in data:
+    if data.get("scalarFunctions") is not None:
         import capo_cleanrooms.types.scalar_functions_list
 
         out["scalar_functions"] = (
@@ -188,7 +188,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyAggregation:
         raise DeserializationError(
             "ConsolidatedPolicyAggregation.scalar_functions required"
         )
-    if "outputConstraints" in data:
+    if data.get("outputConstraints") is not None:
         import capo_cleanrooms.types.aggregation_constraints
 
         out["output_constraints"] = (
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyAggregation:
         raise DeserializationError(
             "ConsolidatedPolicyAggregation.output_constraints required"
         )
-    if "additionalAnalyses" in data:
+    if data.get("additionalAnalyses") is not None:
         import capo_cleanrooms.types.additional_analyses
 
         out["additional_analyses"] = (
@@ -208,7 +208,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyAggregation:
                 data["additionalAnalyses"]
             )
         )
-    if "allowedResultReceivers" in data:
+    if data.get("allowedResultReceivers") is not None:
         import capo_cleanrooms.types.allowed_result_receivers
 
         out["allowed_result_receivers"] = (
@@ -216,7 +216,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyAggregation:
                 data["allowedResultReceivers"]
             )
         )
-    if "allowedAdditionalAnalyses" in data:
+    if data.get("allowedAdditionalAnalyses") is not None:
         import capo_cleanrooms.types.allowed_additional_analyses
 
         out["allowed_additional_analyses"] = (

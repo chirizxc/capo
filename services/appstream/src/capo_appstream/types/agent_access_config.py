@@ -69,7 +69,7 @@ def serialize_aws_json_1_1(value: AgentAccessConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AgentAccessConfig:
     out: AgentAccessConfig = {}  # type: ignore[typeddict-item]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_appstream.types.agent_access_setting_list
 
         out["settings"] = (
@@ -77,11 +77,11 @@ def deserialize_aws_json_1_1(data: dict) -> AgentAccessConfig:
                 data["Settings"]
             )
         )
-    if "S3BucketArn" in data:
+    if data.get("S3BucketArn") is not None:
         out["s3_bucket_arn"] = data["S3BucketArn"]
-    if "ScreenshotsUploadEnabled" in data:
+    if data.get("ScreenshotsUploadEnabled") is not None:
         out["screenshots_upload_enabled"] = data["ScreenshotsUploadEnabled"]
-    if "ScreenResolution" in data:
+    if data.get("ScreenResolution") is not None:
         import capo_appstream.types.screen_resolution
 
         out["screen_resolution"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> AgentAccessConfig:
                 data["ScreenResolution"]
             )
         )
-    if "ScreenImageFormat" in data:
+    if data.get("ScreenImageFormat") is not None:
         import capo_appstream.types.screen_image_format
 
         out["screen_image_format"] = (

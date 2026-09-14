@@ -34,15 +34,15 @@ def serialize_json(value: AntennaListItem) -> dict:
 
 def deserialize_json(data: dict) -> AntennaListItem:
     out: AntennaListItem = {}  # type: ignore[typeddict-item]
-    if "groundStationName" in data:
+    if data.get("groundStationName") is not None:
         out["ground_station_name"] = data["groundStationName"]
     else:
         raise DeserializationError("AntennaListItem.ground_station_name required")
-    if "antennaName" in data:
+    if data.get("antennaName") is not None:
         out["antenna_name"] = data["antennaName"]
     else:
         raise DeserializationError("AntennaListItem.antenna_name required")
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("AntennaListItem.region required")

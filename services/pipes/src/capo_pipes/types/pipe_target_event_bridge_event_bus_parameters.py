@@ -57,13 +57,13 @@ def serialize_json(value: PipeTargetEventBridgeEventBusParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetEventBridgeEventBusParameters:
     out: PipeTargetEventBridgeEventBusParameters = {}  # type: ignore[typeddict-item]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "DetailType" in data:
+    if data.get("DetailType") is not None:
         out["detail_type"] = data["DetailType"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_pipes.types.event_bridge_event_resource_list
 
         out["resources"] = (
@@ -71,6 +71,6 @@ def deserialize_json(data: dict) -> PipeTargetEventBridgeEventBusParameters:
                 data["Resources"]
             )
         )
-    if "Time" in data:
+    if data.get("Time") is not None:
         out["time"] = data["Time"]
     return out

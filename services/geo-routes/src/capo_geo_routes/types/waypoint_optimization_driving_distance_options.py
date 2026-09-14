@@ -22,7 +22,7 @@ def serialize_json(value: WaypointOptimizationDrivingDistanceOptions) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationDrivingDistanceOptions:
     out: WaypointOptimizationDrivingDistanceOptions = {}  # type: ignore[typeddict-item]
-    if "DrivingDistance" in data:
+    if data.get("DrivingDistance") is not None:
         out["driving_distance"] = data["DrivingDistance"]
     else:
         out["driving_distance"] = 5

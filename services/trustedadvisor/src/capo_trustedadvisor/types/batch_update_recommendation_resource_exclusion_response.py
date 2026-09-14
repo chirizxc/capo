@@ -30,7 +30,7 @@ def serialize_json(value: BatchUpdateRecommendationResourceExclusionResponse) ->
 
 def deserialize_json(data: dict) -> BatchUpdateRecommendationResourceExclusionResponse:
     out: BatchUpdateRecommendationResourceExclusionResponse = {}  # type: ignore[typeddict-item]
-    if "batchUpdateRecommendationResourceExclusionErrors" in data:
+    if data.get("batchUpdateRecommendationResourceExclusionErrors") is not None:
         import capo_trustedadvisor.types.update_recommendation_resource_exclusion_error_list
 
         out["batch_update_recommendation_resource_exclusion_errors"] = (

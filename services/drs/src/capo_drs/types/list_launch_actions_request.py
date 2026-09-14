@@ -44,18 +44,18 @@ def serialize_json(value: ListLaunchActionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListLaunchActionsRequest:
     out: ListLaunchActionsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("ListLaunchActionsRequest.resource_id required")
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_drs.types.launch_actions_request_filters
 
         out["filters"] = capo_drs.types.launch_actions_request_filters.deserialize_json(
             data["filters"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

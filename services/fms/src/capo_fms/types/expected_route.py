@@ -60,13 +60,13 @@ def serialize_aws_json_1_1(value: ExpectedRoute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExpectedRoute:
     out: ExpectedRoute = {}  # type: ignore[typeddict-item]
-    if "IpV4Cidr" in data:
+    if data.get("IpV4Cidr") is not None:
         out["ip_v4_cidr"] = data["IpV4Cidr"]
-    if "PrefixListId" in data:
+    if data.get("PrefixListId") is not None:
         out["prefix_list_id"] = data["PrefixListId"]
-    if "IpV6Cidr" in data:
+    if data.get("IpV6Cidr") is not None:
         out["ip_v6_cidr"] = data["IpV6Cidr"]
-    if "ContributingSubnets" in data:
+    if data.get("ContributingSubnets") is not None:
         import capo_fms.types.resource_id_list
 
         out["contributing_subnets"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExpectedRoute:
                 data["ContributingSubnets"]
             )
         )
-    if "AllowedTargets" in data:
+    if data.get("AllowedTargets") is not None:
         import capo_fms.types.length_bounded_string_list
 
         out["allowed_targets"] = (
@@ -82,6 +82,6 @@ def deserialize_aws_json_1_1(data: dict) -> ExpectedRoute:
                 data["AllowedTargets"]
             )
         )
-    if "RouteTableId" in data:
+    if data.get("RouteTableId") is not None:
         out["route_table_id"] = data["RouteTableId"]
     return out

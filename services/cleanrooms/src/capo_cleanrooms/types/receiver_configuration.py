@@ -41,7 +41,7 @@ def serialize_json(value: ReceiverConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ReceiverConfiguration:
     out: ReceiverConfiguration = {}  # type: ignore[typeddict-item]
-    if "analysisType" in data:
+    if data.get("analysisType") is not None:
         import capo_cleanrooms.types.analysis_type
 
         out["analysis_type"] = capo_cleanrooms.types.analysis_type.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> ReceiverConfiguration:
         )
     else:
         raise DeserializationError("ReceiverConfiguration.analysis_type required")
-    if "configurationDetails" in data:
+    if data.get("configurationDetails") is not None:
         import capo_cleanrooms.types.configuration_details
 
         out["configuration_details"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateEmergencyContactSettingsRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEmergencyContactSettingsRequest:
     out: UpdateEmergencyContactSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "EmergencyContactList" in data:
+    if data.get("EmergencyContactList") is not None:
         import capo_shield.types.emergency_contact_list
 
         out["emergency_contact_list"] = (

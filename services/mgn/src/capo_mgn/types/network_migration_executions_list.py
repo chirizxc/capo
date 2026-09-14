@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NetworkMigrationExecutionsList:
 
     out: NetworkMigrationExecutionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.network_migration_execution.deserialize_json(item))
     return out

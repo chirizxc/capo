@@ -44,12 +44,12 @@ def serialize_json(value: CreateRoutingControlRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRoutingControlRequest:
     out: CreateRoutingControlRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "ControlPanelArn" in data:
+    if data.get("ControlPanelArn") is not None:
         out["control_panel_arn"] = data["ControlPanelArn"]
-    if "RoutingControlName" in data:
+    if data.get("RoutingControlName") is not None:
         out["routing_control_name"] = data["RoutingControlName"]
     return out

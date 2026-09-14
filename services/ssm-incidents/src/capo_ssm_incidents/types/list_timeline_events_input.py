@@ -55,24 +55,24 @@ def serialize_json(value: ListTimelineEventsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListTimelineEventsInput:
     out: ListTimelineEventsInput = {}  # type: ignore[typeddict-item]
-    if "incidentRecordArn" in data:
+    if data.get("incidentRecordArn") is not None:
         out["incident_record_arn"] = data["incidentRecordArn"]
     else:
         raise DeserializationError(
             "ListTimelineEventsInput.incident_record_arn required"
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_ssm_incidents.types.filter_list
 
         out["filters"] = capo_ssm_incidents.types.filter_list.deserialize_json(
             data["filters"]
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

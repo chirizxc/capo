@@ -26,7 +26,7 @@ def serialize_json(value: QInConnectAssistantConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> QInConnectAssistantConfiguration:
     out: QInConnectAssistantConfiguration = {}  # type: ignore[typeddict-item]
-    if "assistantArn" in data:
+    if data.get("assistantArn") is not None:
         out["assistant_arn"] = data["assistantArn"]
     else:
         raise DeserializationError(

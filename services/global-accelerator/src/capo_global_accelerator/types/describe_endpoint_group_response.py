@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeEndpointGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEndpointGroupResponse:
     out: DescribeEndpointGroupResponse = {}  # type: ignore[typeddict-item]
-    if "EndpointGroup" in data:
+    if data.get("EndpointGroup") is not None:
         import capo_global_accelerator.types.endpoint_group
 
         out["endpoint_group"] = (

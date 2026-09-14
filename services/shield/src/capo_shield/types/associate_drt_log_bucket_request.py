@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: AssociateDRTLogBucketRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateDRTLogBucketRequest:
     out: AssociateDRTLogBucketRequest = {}  # type: ignore[typeddict-item]
-    if "LogBucket" in data:
+    if data.get("LogBucket") is not None:
         out["log_bucket"] = data["LogBucket"]
     else:
         raise DeserializationError("AssociateDRTLogBucketRequest.log_bucket required")

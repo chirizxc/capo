@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: MapOfStringToList) -> dict:
 def deserialize_json(data: dict) -> MapOfStringToList:
     out: MapOfStringToList = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_api_gateway.types.list_of_string
 
         out[key] = capo_api_gateway.types.list_of_string.deserialize_json(value)

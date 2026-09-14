@@ -44,9 +44,9 @@ def serialize_json(value: GetS3AccessPolicyResponse) -> dict:
             value["store_type"]
         )
     if "update_time" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["updateTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["updateTime"] = capo_omics._protocol.serialize.fmt_date_time(
             value["update_time"]
         )
     out["s3AccessPolicy"] = value["s3_access_policy"]
@@ -55,23 +55,23 @@ def serialize_json(value: GetS3AccessPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetS3AccessPolicyResponse:
     out: GetS3AccessPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "s3AccessPointArn" in data:
+    if data.get("s3AccessPointArn") is not None:
         out["s3_access_point_arn"] = data["s3AccessPointArn"]
-    if "storeId" in data:
+    if data.get("storeId") is not None:
         out["store_id"] = data["storeId"]
-    if "storeType" in data:
+    if data.get("storeType") is not None:
         import capo_omics.types.store_type
 
         out["store_type"] = capo_omics.types.store_type.deserialize_json(
             data["storeType"]
         )
-    if "updateTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["updateTime"]
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
-    if "s3AccessPolicy" in data:
+    if data.get("s3AccessPolicy") is not None:
         out["s3_access_policy"] = data["s3AccessPolicy"]
     else:
         raise DeserializationError(

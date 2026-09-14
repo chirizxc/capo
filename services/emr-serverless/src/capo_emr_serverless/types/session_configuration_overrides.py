@@ -31,7 +31,7 @@ def serialize_json(value: SessionConfigurationOverrides) -> dict:
 
 def deserialize_json(data: dict) -> SessionConfigurationOverrides:
     out: SessionConfigurationOverrides = {}  # type: ignore[typeddict-item]
-    if "runtimeConfiguration" in data:
+    if data.get("runtimeConfiguration") is not None:
         import capo_emr_serverless.types.configuration_list
 
         out["runtime_configuration"] = (

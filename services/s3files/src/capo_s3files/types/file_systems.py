@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FileSystems:
 
     out: FileSystems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_s3files.types.list_file_systems_description.deserialize_json(item)
         )

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> StringFilterList:
 
     out: StringFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.string_filter.deserialize_json(item))
     return out

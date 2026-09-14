@@ -46,17 +46,17 @@ def serialize_aws_json_1_1(value: TaskListEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskListEntry:
     out: TaskListEntry = {}  # type: ignore[typeddict-item]
-    if "TaskArn" in data:
+    if data.get("TaskArn") is not None:
         out["task_arn"] = data["TaskArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_datasync.types.task_status
 
         out["status"] = capo_datasync.types.task_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TaskMode" in data:
+    if data.get("TaskMode") is not None:
         import capo_datasync.types.task_mode
 
         out["task_mode"] = capo_datasync.types.task_mode.deserialize_aws_json_1_1(

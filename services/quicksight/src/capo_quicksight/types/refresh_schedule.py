@@ -54,11 +54,11 @@ def serialize_json(value: RefreshSchedule) -> dict:
 
 def deserialize_json(data: dict) -> RefreshSchedule:
     out: RefreshSchedule = {}  # type: ignore[typeddict-item]
-    if "ScheduleId" in data:
+    if data.get("ScheduleId") is not None:
         out["schedule_id"] = data["ScheduleId"]
     else:
         raise DeserializationError("RefreshSchedule.schedule_id required")
-    if "ScheduleFrequency" in data:
+    if data.get("ScheduleFrequency") is not None:
         import capo_quicksight.types.refresh_frequency
 
         out["schedule_frequency"] = (
@@ -68,13 +68,13 @@ def deserialize_json(data: dict) -> RefreshSchedule:
         )
     else:
         raise DeserializationError("RefreshSchedule.schedule_frequency required")
-    if "StartAfterDateTime" in data:
+    if data.get("StartAfterDateTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["start_after_date_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["StartAfterDateTime"]
         )
-    if "RefreshType" in data:
+    if data.get("RefreshType") is not None:
         import capo_quicksight.types.ingestion_type
 
         out["refresh_type"] = capo_quicksight.types.ingestion_type.deserialize_json(
@@ -82,6 +82,6 @@ def deserialize_json(data: dict) -> RefreshSchedule:
         )
     else:
         raise DeserializationError("RefreshSchedule.refresh_type required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

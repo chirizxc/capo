@@ -27,7 +27,7 @@ def serialize_json(value: DeregisterCapabilityResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeregisterCapabilityResponse:
     out: DeregisterCapabilityResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_opensearch.types.capability_status
 
         out["status"] = capo_opensearch.types.capability_status.deserialize_json(

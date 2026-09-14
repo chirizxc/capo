@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: TrialComponentArtifacts) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> TrialComponentArtifacts:
     out: TrialComponentArtifacts = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_sagemaker.types.trial_component_artifact
 
         out[key] = (

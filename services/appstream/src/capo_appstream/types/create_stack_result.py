@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: CreateStackResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStackResult:
     out: CreateStackResult = {}  # type: ignore[typeddict-item]
-    if "Stack" in data:
+    if data.get("Stack") is not None:
         import capo_appstream.types.stack
 
         out["stack"] = capo_appstream.types.stack.deserialize_aws_json_1_1(

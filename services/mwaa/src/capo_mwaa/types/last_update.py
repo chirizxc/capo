@@ -51,20 +51,20 @@ def serialize_json(value: LastUpdate) -> dict:
 
 def deserialize_json(data: dict) -> LastUpdate:
     out: LastUpdate = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mwaa.types.update_created_at
 
         out["created_at"] = capo_mwaa.types.update_created_at.deserialize_json(
             data["CreatedAt"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_mwaa.types.update_error
 
         out["error"] = capo_mwaa.types.update_error.deserialize_json(data["Error"])
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "WorkerReplacementStrategy" in data:
+    if data.get("WorkerReplacementStrategy") is not None:
         out["worker_replacement_strategy"] = data["WorkerReplacementStrategy"]
     return out

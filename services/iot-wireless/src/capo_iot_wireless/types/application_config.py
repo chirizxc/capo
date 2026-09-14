@@ -40,14 +40,14 @@ def serialize_json(value: ApplicationConfig) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationConfig:
     out: ApplicationConfig = {}  # type: ignore[typeddict-item]
-    if "FPort" in data:
+    if data.get("FPort") is not None:
         out["f_port"] = data["FPort"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_iot_wireless.types.application_config_type
 
         out["type"] = capo_iot_wireless.types.application_config_type.deserialize_json(
             data["Type"]
         )
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
     return out

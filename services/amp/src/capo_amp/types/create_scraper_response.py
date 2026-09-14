@@ -41,21 +41,21 @@ def serialize_json(value: CreateScraperResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateScraperResponse:
     out: CreateScraperResponse = {}  # type: ignore[typeddict-item]
-    if "scraperId" in data:
+    if data.get("scraperId") is not None:
         out["scraper_id"] = data["scraperId"]
     else:
         raise DeserializationError("CreateScraperResponse.scraper_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateScraperResponse.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.scraper_status
 
         out["status"] = capo_amp.types.scraper_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("CreateScraperResponse.status required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])

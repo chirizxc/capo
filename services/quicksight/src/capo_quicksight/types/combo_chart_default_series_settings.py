@@ -62,7 +62,7 @@ def serialize_json(value: ComboChartDefaultSeriesSettings) -> dict:
 
 def deserialize_json(data: dict) -> ComboChartDefaultSeriesSettings:
     out: ComboChartDefaultSeriesSettings = {}  # type: ignore[typeddict-item]
-    if "LineStyleSettings" in data:
+    if data.get("LineStyleSettings") is not None:
         import capo_quicksight.types.line_chart_line_style_settings
 
         out["line_style_settings"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ComboChartDefaultSeriesSettings:
                 data["LineStyleSettings"]
             )
         )
-    if "MarkerStyleSettings" in data:
+    if data.get("MarkerStyleSettings") is not None:
         import capo_quicksight.types.line_chart_marker_style_settings
 
         out["marker_style_settings"] = (
@@ -78,13 +78,13 @@ def deserialize_json(data: dict) -> ComboChartDefaultSeriesSettings:
                 data["MarkerStyleSettings"]
             )
         )
-    if "DecalSettings" in data:
+    if data.get("DecalSettings") is not None:
         import capo_quicksight.types.decal_settings
 
         out["decal_settings"] = capo_quicksight.types.decal_settings.deserialize_json(
             data["DecalSettings"]
         )
-    if "BorderSettings" in data:
+    if data.get("BorderSettings") is not None:
         import capo_quicksight.types.border_settings
 
         out["border_settings"] = capo_quicksight.types.border_settings.deserialize_json(

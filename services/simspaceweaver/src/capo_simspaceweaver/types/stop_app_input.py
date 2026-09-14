@@ -30,15 +30,15 @@ def serialize_json(value: StopAppInput) -> dict:
 
 def deserialize_json(data: dict) -> StopAppInput:
     out: StopAppInput = {}  # type: ignore[typeddict-item]
-    if "Simulation" in data:
+    if data.get("Simulation") is not None:
         out["simulation"] = data["Simulation"]
     else:
         raise DeserializationError("StopAppInput.simulation required")
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     else:
         raise DeserializationError("StopAppInput.domain required")
-    if "App" in data:
+    if data.get("App") is not None:
         out["app"] = data["App"]
     else:
         raise DeserializationError("StopAppInput.app required")

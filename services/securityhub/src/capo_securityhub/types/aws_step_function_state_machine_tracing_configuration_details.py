@@ -27,6 +27,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsStepFunctionStateMachineTracingConfigurationDetails:
     out: AwsStepFunctionStateMachineTracingConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     return out

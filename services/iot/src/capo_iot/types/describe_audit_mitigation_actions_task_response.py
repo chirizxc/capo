@@ -94,7 +94,7 @@ def serialize_json(value: DescribeAuditMitigationActionsTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAuditMitigationActionsTaskResponse:
     out: DescribeAuditMitigationActionsTaskResponse = {}  # type: ignore[typeddict-item]
-    if "taskStatus" in data:
+    if data.get("taskStatus") is not None:
         import capo_iot.types.audit_mitigation_actions_task_status
 
         out["task_status"] = (
@@ -102,15 +102,15 @@ def deserialize_json(data: dict) -> DescribeAuditMitigationActionsTaskResponse:
                 data["taskStatus"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_iot.types.timestamp
 
         out["start_time"] = capo_iot.types.timestamp.deserialize_json(data["startTime"])
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_iot.types.timestamp
 
         out["end_time"] = capo_iot.types.timestamp.deserialize_json(data["endTime"])
-    if "taskStatistics" in data:
+    if data.get("taskStatistics") is not None:
         import capo_iot.types.audit_mitigation_actions_task_statistics
 
         out["task_statistics"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> DescribeAuditMitigationActionsTaskResponse:
                 data["taskStatistics"]
             )
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_iot.types.audit_mitigation_actions_task_target
 
         out["target"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> DescribeAuditMitigationActionsTaskResponse:
                 data["target"]
             )
         )
-    if "auditCheckToActionsMapping" in data:
+    if data.get("auditCheckToActionsMapping") is not None:
         import capo_iot.types.audit_check_to_actions_mapping
 
         out["audit_check_to_actions_mapping"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> DescribeAuditMitigationActionsTaskResponse:
                 data["auditCheckToActionsMapping"]
             )
         )
-    if "actionsDefinition" in data:
+    if data.get("actionsDefinition") is not None:
         import capo_iot.types.mitigation_action_list
 
         out["actions_definition"] = (

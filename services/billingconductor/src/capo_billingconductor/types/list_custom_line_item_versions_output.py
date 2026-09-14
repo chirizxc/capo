@@ -36,7 +36,7 @@ def serialize_json(value: ListCustomLineItemVersionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListCustomLineItemVersionsOutput:
     out: ListCustomLineItemVersionsOutput = {}  # type: ignore[typeddict-item]
-    if "CustomLineItemVersions" in data:
+    if data.get("CustomLineItemVersions") is not None:
         import capo_billingconductor.types.custom_line_item_version_list
 
         out["custom_line_item_versions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListCustomLineItemVersionsOutput:
                 data["CustomLineItemVersions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

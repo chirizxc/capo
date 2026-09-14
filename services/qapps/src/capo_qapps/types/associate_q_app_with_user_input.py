@@ -27,7 +27,7 @@ def serialize_json(value: AssociateQAppWithUserInput) -> dict:
 
 def deserialize_json(data: dict) -> AssociateQAppWithUserInput:
     out: AssociateQAppWithUserInput = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("AssociateQAppWithUserInput.app_id required")

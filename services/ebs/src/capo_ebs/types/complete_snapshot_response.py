@@ -25,7 +25,7 @@ def serialize_json(value: CompleteSnapshotResponse) -> dict:
 
 def deserialize_json(data: dict) -> CompleteSnapshotResponse:
     out: CompleteSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_ebs.types.status
 
         out["status"] = capo_ebs.types.status.deserialize_json(data["Status"])

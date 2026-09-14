@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: CapabilityOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CapabilityOptions:
     out: CapabilityOptions = {}  # type: ignore[typeddict-item]
-    if "outboundEdi" in data:
+    if data.get("outboundEdi") is not None:
         import capo_b2bi.types.outbound_edi_options
 
         out["outbound_edi"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_0(data: dict) -> CapabilityOptions:
                 data["outboundEdi"]
             )
         )
-    if "inboundEdi" in data:
+    if data.get("inboundEdi") is not None:
         import capo_b2bi.types.inbound_edi_options
 
         out["inbound_edi"] = (

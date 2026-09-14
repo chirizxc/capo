@@ -11,4 +11,4 @@ def serialize_json(value: EdgeLabels) -> list:
 
 
 def deserialize_json(data: list) -> EdgeLabels:
-    return list(data)
+    return [item for item in data if item is not None]

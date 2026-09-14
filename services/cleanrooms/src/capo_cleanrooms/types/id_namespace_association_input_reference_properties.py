@@ -38,7 +38,7 @@ def serialize_json(value: IdNamespaceAssociationInputReferenceProperties) -> dic
 
 def deserialize_json(data: dict) -> IdNamespaceAssociationInputReferenceProperties:
     out: IdNamespaceAssociationInputReferenceProperties = {}  # type: ignore[typeddict-item]
-    if "idNamespaceType" in data:
+    if data.get("idNamespaceType") is not None:
         import capo_cleanrooms.types.id_namespace_type
 
         out["id_namespace_type"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> IdNamespaceAssociationInputReferenceProperti
         raise DeserializationError(
             "IdNamespaceAssociationInputReferenceProperties.id_namespace_type required"
         )
-    if "idMappingWorkflowsSupported" in data:
+    if data.get("idMappingWorkflowsSupported") is not None:
         import capo_cleanrooms.types.id_mapping_workflows_supported
 
         out["id_mapping_workflows_supported"] = (

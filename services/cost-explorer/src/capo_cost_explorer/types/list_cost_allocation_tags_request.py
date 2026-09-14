@@ -69,7 +69,7 @@ def serialize_aws_json_1_1(value: ListCostAllocationTagsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCostAllocationTagsRequest:
     out: ListCostAllocationTagsRequest = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cost_explorer.types.cost_allocation_tag_status
 
         out["status"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListCostAllocationTagsRequest:
                 data["Status"]
             )
         )
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_cost_explorer.types.cost_allocation_tag_key_list
 
         out["tag_keys"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListCostAllocationTagsRequest:
                 data["TagKeys"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_cost_explorer.types.cost_allocation_tag_type
 
         out["type"] = (
@@ -93,8 +93,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListCostAllocationTagsRequest:
                 data["Type"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

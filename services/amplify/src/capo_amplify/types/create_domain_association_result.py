@@ -28,7 +28,7 @@ def serialize_json(value: CreateDomainAssociationResult) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainAssociationResult:
     out: CreateDomainAssociationResult = {}  # type: ignore[typeddict-item]
-    if "domainAssociation" in data:
+    if data.get("domainAssociation") is not None:
         import capo_amplify.types.domain_association
 
         out["domain_association"] = (

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AppLifecycleManagement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AppLifecycleManagement:
     out: AppLifecycleManagement = {}  # type: ignore[typeddict-item]
-    if "IdleSettings" in data:
+    if data.get("IdleSettings") is not None:
         import capo_sagemaker.types.idle_settings
 
         out["idle_settings"] = (

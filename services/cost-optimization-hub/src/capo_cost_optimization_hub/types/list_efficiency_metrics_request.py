@@ -64,9 +64,9 @@ def serialize_aws_json_1_0(value: ListEfficiencyMetricsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEfficiencyMetricsRequest:
     out: ListEfficiencyMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         out["group_by"] = data["groupBy"]
-    if "granularity" in data:
+    if data.get("granularity") is not None:
         import capo_cost_optimization_hub.types.granularity_type
 
         out["granularity"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListEfficiencyMetricsRequest:
         )
     else:
         raise DeserializationError("ListEfficiencyMetricsRequest.granularity required")
-    if "timePeriod" in data:
+    if data.get("timePeriod") is not None:
         import capo_cost_optimization_hub.types.time_period
 
         out["time_period"] = (
@@ -86,9 +86,9 @@ def deserialize_aws_json_1_0(data: dict) -> ListEfficiencyMetricsRequest:
         )
     else:
         raise DeserializationError("ListEfficiencyMetricsRequest.time_period required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "orderBy" in data:
+    if data.get("orderBy") is not None:
         import capo_cost_optimization_hub.types.order_by
 
         out["order_by"] = (
@@ -96,6 +96,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListEfficiencyMetricsRequest:
                 data["orderBy"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -13,10 +13,25 @@ from capo_serverlessapplicationrepository import AsyncServerlessApplicationRepos
 
 
 async def main():
-    async with AsyncServerlessApplicationRepositoryClient() as s3:
+    async with AsyncServerlessApplicationRepositoryClient() as serverless_application_repository:
         # Example: call the create_application operation
-        response = await s3.create_application()
+        response = await serverless_application_repository.create_application()
         print(response["application_id"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_serverlessapplicationrepository import AsyncServerlessApplicationRepositoryClient
+
+
+async def main():
+    async with AsyncServerlessApplicationRepositoryClient() as serverless_application_repository:
+        # Example: paginate over list_application_dependencies
+        async for item in serverless_application_repository.iter_list_application_dependencies():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_serverlessapplicationrepository.error import BadRequestException
 
 
 async def main():
-    async with AsyncServerlessApplicationRepositoryClient() as s3:
+    async with AsyncServerlessApplicationRepositoryClient() as serverless_application_repository:
         try:
-            await s3.create_application()
+            await serverless_application_repository.create_application()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_serverlessapplicationrepository import AsyncServerlessApplicationRepos
 
 
 async def main():
-    async with AsyncServerlessApplicationRepositoryClient() as s3:
+    async with AsyncServerlessApplicationRepositoryClient() as serverless_application_repository:
         # Default: 3 attempts for every operation
-        response = await s3.create_application()
+        response = await serverless_application_repository.create_application()
 
         # Override per operation
-        response = await s3.create_application(config_overrides={"retry_max_attempts": 5})
+        response = await serverless_application_repository.create_application(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_application(config_overrides={"retry_max_attempts": 1})
+        response = await serverless_application_repository.create_application(config_overrides={"retry_max_attempts": 1})
 ```

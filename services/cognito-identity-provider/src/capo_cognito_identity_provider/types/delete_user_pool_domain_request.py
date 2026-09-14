@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: DeleteUserPoolDomainRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteUserPoolDomainRequest:
     out: DeleteUserPoolDomainRequest = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     else:
         raise DeserializationError("DeleteUserPoolDomainRequest.domain required")
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("DeleteUserPoolDomainRequest.user_pool_id required")

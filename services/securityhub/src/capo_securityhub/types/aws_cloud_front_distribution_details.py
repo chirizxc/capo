@@ -125,7 +125,7 @@ def serialize_json(value: AwsCloudFrontDistributionDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionDetails:
     out: AwsCloudFrontDistributionDetails = {}  # type: ignore[typeddict-item]
-    if "CacheBehaviors" in data:
+    if data.get("CacheBehaviors") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_cache_behaviors
 
         out["cache_behaviors"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> AwsCloudFrontDistributionDetails:
                 data["CacheBehaviors"]
             )
         )
-    if "DefaultCacheBehavior" in data:
+    if data.get("DefaultCacheBehavior") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_default_cache_behavior
 
         out["default_cache_behavior"] = (
@@ -141,15 +141,15 @@ def deserialize_json(data: dict) -> AwsCloudFrontDistributionDetails:
                 data["DefaultCacheBehavior"]
             )
         )
-    if "DefaultRootObject" in data:
+    if data.get("DefaultRootObject") is not None:
         out["default_root_object"] = data["DefaultRootObject"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         out["last_modified_time"] = data["LastModifiedTime"]
-    if "Logging" in data:
+    if data.get("Logging") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_logging
 
         out["logging"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> AwsCloudFrontDistributionDetails:
                 data["Logging"]
             )
         )
-    if "Origins" in data:
+    if data.get("Origins") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_origins
 
         out["origins"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> AwsCloudFrontDistributionDetails:
                 data["Origins"]
             )
         )
-    if "OriginGroups" in data:
+    if data.get("OriginGroups") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_origin_groups
 
         out["origin_groups"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> AwsCloudFrontDistributionDetails:
                 data["OriginGroups"]
             )
         )
-    if "ViewerCertificate" in data:
+    if data.get("ViewerCertificate") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_viewer_certificate
 
         out["viewer_certificate"] = (
@@ -181,8 +181,8 @@ def deserialize_json(data: dict) -> AwsCloudFrontDistributionDetails:
                 data["ViewerCertificate"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "WebAclId" in data:
+    if data.get("WebAclId") is not None:
         out["web_acl_id"] = data["WebAclId"]
     return out

@@ -57,7 +57,7 @@ def serialize_json(value: RadarChartAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> RadarChartAggregatedFieldWells:
     out: RadarChartAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_quicksight.types.radar_chart_category_field_list
 
         out["category"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> RadarChartAggregatedFieldWells:
                 data["Category"]
             )
         )
-    if "Color" in data:
+    if data.get("Color") is not None:
         import capo_quicksight.types.radar_chart_color_field_list
 
         out["color"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> RadarChartAggregatedFieldWells:
                 data["Color"]
             )
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.radar_chart_values_field_list
 
         out["values"] = (

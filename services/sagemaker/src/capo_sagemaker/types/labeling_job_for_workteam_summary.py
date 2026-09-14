@@ -68,19 +68,19 @@ def serialize_aws_json_1_1(value: LabelingJobForWorkteamSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelingJobForWorkteamSummary:
     out: LabelingJobForWorkteamSummary = {}  # type: ignore[typeddict-item]
-    if "LabelingJobName" in data:
+    if data.get("LabelingJobName") is not None:
         out["labeling_job_name"] = data["LabelingJobName"]
-    if "JobReferenceCode" in data:
+    if data.get("JobReferenceCode") is not None:
         out["job_reference_code"] = data["JobReferenceCode"]
-    if "WorkRequesterAccountId" in data:
+    if data.get("WorkRequesterAccountId") is not None:
         out["work_requester_account_id"] = data["WorkRequesterAccountId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LabelCounters" in data:
+    if data.get("LabelCounters") is not None:
         import capo_sagemaker.types.label_counters_for_workteam
 
         out["label_counters"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> LabelingJobForWorkteamSummary:
                 data["LabelCounters"]
             )
         )
-    if "NumberOfHumanWorkersPerDataObject" in data:
+    if data.get("NumberOfHumanWorkersPerDataObject") is not None:
         out["number_of_human_workers_per_data_object"] = data[
             "NumberOfHumanWorkersPerDataObject"
         ]

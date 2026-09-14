@@ -41,21 +41,21 @@ def serialize_aws_json_1_1(value: PutMailboxPermissionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutMailboxPermissionsRequest:
     out: PutMailboxPermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "PutMailboxPermissionsRequest.organization_id required"
         )
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError("PutMailboxPermissionsRequest.entity_id required")
-    if "GranteeId" in data:
+    if data.get("GranteeId") is not None:
         out["grantee_id"] = data["GranteeId"]
     else:
         raise DeserializationError("PutMailboxPermissionsRequest.grantee_id required")
-    if "PermissionValues" in data:
+    if data.get("PermissionValues") is not None:
         import capo_workmail.types.permission_values
 
         out["permission_values"] = (

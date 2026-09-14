@@ -93,9 +93,9 @@ def serialize_json(value: AwsAutoScalingAutoScalingGroupDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAutoScalingAutoScalingGroupDetails:
     out: AwsAutoScalingAutoScalingGroupDetails = {}  # type: ignore[typeddict-item]
-    if "LaunchConfigurationName" in data:
+    if data.get("LaunchConfigurationName") is not None:
         out["launch_configuration_name"] = data["LaunchConfigurationName"]
-    if "LoadBalancerNames" in data:
+    if data.get("LoadBalancerNames") is not None:
         import capo_securityhub.types.string_list
 
         out["load_balancer_names"] = (
@@ -103,13 +103,13 @@ def deserialize_json(data: dict) -> AwsAutoScalingAutoScalingGroupDetails:
                 data["LoadBalancerNames"]
             )
         )
-    if "HealthCheckType" in data:
+    if data.get("HealthCheckType") is not None:
         out["health_check_type"] = data["HealthCheckType"]
-    if "HealthCheckGracePeriod" in data:
+    if data.get("HealthCheckGracePeriod") is not None:
         out["health_check_grace_period"] = data["HealthCheckGracePeriod"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         out["created_time"] = data["CreatedTime"]
-    if "MixedInstancesPolicy" in data:
+    if data.get("MixedInstancesPolicy") is not None:
         import capo_securityhub.types.aws_auto_scaling_auto_scaling_group_mixed_instances_policy_details
 
         out["mixed_instances_policy"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> AwsAutoScalingAutoScalingGroupDetails:
                 data["MixedInstancesPolicy"]
             )
         )
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_securityhub.types.aws_auto_scaling_auto_scaling_group_availability_zones_list
 
         out["availability_zones"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> AwsAutoScalingAutoScalingGroupDetails:
                 data["AvailabilityZones"]
             )
         )
-    if "LaunchTemplate" in data:
+    if data.get("LaunchTemplate") is not None:
         import capo_securityhub.types.aws_auto_scaling_auto_scaling_group_launch_template_launch_template_specification
 
         out["launch_template"] = (
@@ -133,6 +133,6 @@ def deserialize_json(data: dict) -> AwsAutoScalingAutoScalingGroupDetails:
                 data["LaunchTemplate"]
             )
         )
-    if "CapacityRebalance" in data:
+    if data.get("CapacityRebalance") is not None:
         out["capacity_rebalance"] = data["CapacityRebalance"]
     return out

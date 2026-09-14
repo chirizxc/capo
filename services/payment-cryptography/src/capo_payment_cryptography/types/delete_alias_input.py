@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteAliasInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteAliasInput:
     out: DeleteAliasInput = {}  # type: ignore[typeddict-item]
-    if "AliasName" in data:
+    if data.get("AliasName") is not None:
         out["alias_name"] = data["AliasName"]
     else:
         raise DeserializationError("DeleteAliasInput.alias_name required")

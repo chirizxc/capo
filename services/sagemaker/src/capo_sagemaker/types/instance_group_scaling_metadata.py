@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: InstanceGroupScalingMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceGroupScalingMetadata:
     out: InstanceGroupScalingMetadata = {}  # type: ignore[typeddict-item]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "TargetCount" in data:
+    if data.get("TargetCount") is not None:
         out["target_count"] = data["TargetCount"]
-    if "MinCount" in data:
+    if data.get("MinCount") is not None:
         out["min_count"] = data["MinCount"]
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
     return out

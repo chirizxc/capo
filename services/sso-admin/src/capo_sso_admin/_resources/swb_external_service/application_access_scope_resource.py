@@ -75,17 +75,19 @@ class ApplicationAccessScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.put_application_access_scope_request.PutApplicationAccessScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_sso_admin.types.put_application_access_scope_request.PutApplicationAccessScopeRequest = {
+            "scope": scope,
+            "application_arn": application_arn,
+        }
         if authorized_targets is not None:
             input_["authorized_targets"] = authorized_targets
-        input_["application_arn"] = application_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -125,15 +127,17 @@ class ApplicationAccessScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.get_application_access_scope_request.GetApplicationAccessScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["scope"] = scope
+        input_: capo_sso_admin.types.get_application_access_scope_request.GetApplicationAccessScopeRequest = {
+            "application_arn": application_arn,
+            "scope": scope,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -172,15 +176,17 @@ class ApplicationAccessScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_application_access_scope_request.DeleteApplicationAccessScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["scope"] = scope
+        input_: capo_sso_admin.types.delete_application_access_scope_request.DeleteApplicationAccessScopeRequest = {
+            "application_arn": application_arn,
+            "scope": scope,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -222,8 +228,9 @@ class ApplicationAccessScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_application_access_scopes_request.ListApplicationAccessScopesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.list_application_access_scopes_request.ListApplicationAccessScopesRequest = {
+            "application_arn": application_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -234,6 +241,7 @@ class ApplicationAccessScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -282,17 +290,19 @@ class AsyncApplicationAccessScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.put_application_access_scope_request.PutApplicationAccessScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_sso_admin.types.put_application_access_scope_request.PutApplicationAccessScopeRequest = {
+            "scope": scope,
+            "application_arn": application_arn,
+        }
         if authorized_targets is not None:
             input_["authorized_targets"] = authorized_targets
-        input_["application_arn"] = application_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -333,15 +343,17 @@ class AsyncApplicationAccessScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.get_application_access_scope_request.GetApplicationAccessScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["scope"] = scope
+        input_: capo_sso_admin.types.get_application_access_scope_request.GetApplicationAccessScopeRequest = {
+            "application_arn": application_arn,
+            "scope": scope,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -381,15 +393,17 @@ class AsyncApplicationAccessScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_application_access_scope_request.DeleteApplicationAccessScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["scope"] = scope
+        input_: capo_sso_admin.types.delete_application_access_scope_request.DeleteApplicationAccessScopeRequest = {
+            "application_arn": application_arn,
+            "scope": scope,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -432,8 +446,9 @@ class AsyncApplicationAccessScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_application_access_scopes_request.ListApplicationAccessScopesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.list_application_access_scopes_request.ListApplicationAccessScopesRequest = {
+            "application_arn": application_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -444,4 +459,5 @@ class AsyncApplicationAccessScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

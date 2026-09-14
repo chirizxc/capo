@@ -32,9 +32,9 @@ def serialize_json(value: CreateGlobalNetworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateGlobalNetworkRequest:
     out: CreateGlobalNetworkRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])

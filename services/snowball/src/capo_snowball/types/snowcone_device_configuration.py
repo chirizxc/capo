@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: SnowconeDeviceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnowconeDeviceConfiguration:
     out: SnowconeDeviceConfiguration = {}  # type: ignore[typeddict-item]
-    if "WirelessConnection" in data:
+    if data.get("WirelessConnection") is not None:
         import capo_snowball.types.wireless_connection
 
         out["wireless_connection"] = (

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: AICapacityReservationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AICapacityReservationConfig:
     out: AICapacityReservationConfig = {}  # type: ignore[typeddict-item]
-    if "CapacityReservationPreference" in data:
+    if data.get("CapacityReservationPreference") is not None:
         import capo_sagemaker.types.ai_capacity_reservation_preference
 
         out["capacity_reservation_preference"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> AICapacityReservationConfig:
                 data["CapacityReservationPreference"]
             )
         )
-    if "MlReservationArns" in data:
+    if data.get("MlReservationArns") is not None:
         import capo_sagemaker.types.ai_ml_reservation_arn_list
 
         out["ml_reservation_arns"] = (

@@ -31,19 +31,19 @@ def serialize_aws_json_1_1(value: DisassociateDelegateFromResourceRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateDelegateFromResourceRequest:
     out: DisassociateDelegateFromResourceRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "DisassociateDelegateFromResourceRequest.organization_id required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(
             "DisassociateDelegateFromResourceRequest.resource_id required"
         )
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError(

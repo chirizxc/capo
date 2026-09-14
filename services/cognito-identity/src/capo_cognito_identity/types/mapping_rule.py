@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: MappingRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MappingRule:
     out: MappingRule = {}  # type: ignore[typeddict-item]
-    if "Claim" in data:
+    if data.get("Claim") is not None:
         out["claim"] = data["Claim"]
     else:
         raise DeserializationError("MappingRule.claim required")
-    if "MatchType" in data:
+    if data.get("MatchType") is not None:
         import capo_cognito_identity.types.mapping_rule_match_type
 
         out["match_type"] = (
@@ -58,11 +58,11 @@ def deserialize_aws_json_1_1(data: dict) -> MappingRule:
         )
     else:
         raise DeserializationError("MappingRule.match_type required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("MappingRule.value required")
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError("MappingRule.role_arn required")

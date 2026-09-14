@@ -91,13 +91,13 @@ def serialize_json(value: UpdateServiceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceRequest:
     out: UpdateServiceRequest = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("UpdateServiceRequest.service_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "associatedSystems" in data:
+    if data.get("associatedSystems") is not None:
         import capo_resiliencehubv2.types.associated_system_list
 
         out["associated_systems"] = (
@@ -105,15 +105,15 @@ def deserialize_json(data: dict) -> UpdateServiceRequest:
                 data["associatedSystems"]
             )
         )
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_resiliencehubv2.types.region_list
 
         out["regions"] = capo_resiliencehubv2.types.region_list.deserialize_json(
             data["regions"]
         )
-    if "permissionModel" in data:
+    if data.get("permissionModel") is not None:
         import capo_resiliencehubv2.types.permission_model
 
         out["permission_model"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> UpdateServiceRequest:
                 data["permissionModel"]
             )
         )
-    if "dependencyDiscovery" in data:
+    if data.get("dependencyDiscovery") is not None:
         import capo_resiliencehubv2.types.dependency_discovery_input
 
         out["dependency_discovery"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> UpdateServiceRequest:
                 data["dependencyDiscovery"]
             )
         )
-    if "reportConfiguration" in data:
+    if data.get("reportConfiguration") is not None:
         import capo_resiliencehubv2.types.service_report_configuration
 
         out["report_configuration"] = (

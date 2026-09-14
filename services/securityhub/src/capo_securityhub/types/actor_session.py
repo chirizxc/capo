@@ -45,9 +45,9 @@ def serialize_json(value: ActorSession) -> dict:
 
 def deserialize_json(data: dict) -> ActorSession:
     out: ActorSession = {}  # type: ignore[typeddict-item]
-    if "Uid" in data:
+    if data.get("Uid") is not None:
         out["uid"] = data["Uid"]
-    if "MfaStatus" in data:
+    if data.get("MfaStatus") is not None:
         import capo_securityhub.types.actor_session_mfa_status
 
         out["mfa_status"] = (
@@ -55,8 +55,8 @@ def deserialize_json(data: dict) -> ActorSession:
                 data["MfaStatus"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         out["created_time"] = data["CreatedTime"]
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         out["issuer"] = data["Issuer"]
     return out

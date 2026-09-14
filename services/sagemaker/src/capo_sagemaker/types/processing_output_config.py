@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ProcessingOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProcessingOutputConfig:
     out: ProcessingOutputConfig = {}  # type: ignore[typeddict-item]
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_sagemaker.types.processing_outputs
 
         out["outputs"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessingOutputConfig:
                 data["Outputs"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

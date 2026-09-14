@@ -31,7 +31,7 @@ def serialize_json(value: EmergencyCallingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EmergencyCallingConfiguration:
     out: EmergencyCallingConfiguration = {}  # type: ignore[typeddict-item]
-    if "DNIS" in data:
+    if data.get("DNIS") is not None:
         import capo_chime_sdk_voice.types.dnis_emergency_calling_configuration_list
 
         out["dnis"] = (

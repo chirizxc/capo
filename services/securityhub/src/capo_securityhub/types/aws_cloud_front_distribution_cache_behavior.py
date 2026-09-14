@@ -25,6 +25,6 @@ def serialize_json(value: AwsCloudFrontDistributionCacheBehavior) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionCacheBehavior:
     out: AwsCloudFrontDistributionCacheBehavior = {}  # type: ignore[typeddict-item]
-    if "ViewerProtocolPolicy" in data:
+    if data.get("ViewerProtocolPolicy") is not None:
         out["viewer_protocol_policy"] = data["ViewerProtocolPolicy"]
     return out

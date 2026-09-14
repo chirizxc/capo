@@ -27,11 +27,11 @@ def serialize_json(value: InterfaceSummary) -> dict:
 
 def deserialize_json(data: dict) -> InterfaceSummary:
     out: InterfaceSummary = {}  # type: ignore[typeddict-item]
-    if "interfaceAssetModelId" in data:
+    if data.get("interfaceAssetModelId") is not None:
         out["interface_asset_model_id"] = data["interfaceAssetModelId"]
     else:
         raise DeserializationError("InterfaceSummary.interface_asset_model_id required")
-    if "interfaceAssetModelPropertyId" in data:
+    if data.get("interfaceAssetModelPropertyId") is not None:
         out["interface_asset_model_property_id"] = data["interfaceAssetModelPropertyId"]
     else:
         raise DeserializationError(

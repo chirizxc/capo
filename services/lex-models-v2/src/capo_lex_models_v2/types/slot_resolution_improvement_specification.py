@@ -35,11 +35,11 @@ def serialize_json(value: SlotResolutionImprovementSpecification) -> dict:
 
 def deserialize_json(data: dict) -> SlotResolutionImprovementSpecification:
     out: SlotResolutionImprovementSpecification = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "bedrockModelSpecification" in data:
+    if data.get("bedrockModelSpecification") is not None:
         import capo_lex_models_v2.types.bedrock_model_specification
 
         out["bedrock_model_specification"] = (

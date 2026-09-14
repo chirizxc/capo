@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: KMSDisabledException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KMSDisabledException_:
     out: KMSDisabledException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,18 +36,21 @@ class KMSDisabledException(ServiceError):
 
     code: str | None = "KMSDisabledException"
 
-    def __init__(self, data: KMSDisabledException_):
+    def __init__(self, data: KMSDisabledException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="KMSDisabledException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "KMSDisabledException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "KMSDisabledException":
+        return cls(deserialize_aws_json_1_1(data), message)
 
 
 def serialize_event_aws_json_1_1(value: KMSDisabledException_) -> bytes:

@@ -51,19 +51,19 @@ def serialize_json(value: ModuleConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ModuleConfiguration:
     out: ModuleConfiguration = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ModuleConfiguration.name required")
-    if "dependsOn" in data:
+    if data.get("dependsOn") is not None:
         import capo_rtbfabric.types.flow_module_name_list
 
         out["depends_on"] = capo_rtbfabric.types.flow_module_name_list.deserialize_json(
             data["dependsOn"]
         )
-    if "moduleParameters" in data:
+    if data.get("moduleParameters") is not None:
         import capo_rtbfabric.types.module_parameters
 
         out["module_parameters"] = (

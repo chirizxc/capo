@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DetectorDebugOptions:
 
     out: DetectorDebugOptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_events.types.detector_debug_option.deserialize_json(item))
     return out

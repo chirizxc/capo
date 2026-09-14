@@ -91,17 +91,17 @@ def serialize_json(value: StandardsControl) -> dict:
 
 def deserialize_json(data: dict) -> StandardsControl:
     out: StandardsControl = {}  # type: ignore[typeddict-item]
-    if "StandardsControlArn" in data:
+    if data.get("StandardsControlArn") is not None:
         out["standards_control_arn"] = data["StandardsControlArn"]
-    if "ControlStatus" in data:
+    if data.get("ControlStatus") is not None:
         import capo_securityhub.types.control_status
 
         out["control_status"] = capo_securityhub.types.control_status.deserialize_json(
             data["ControlStatus"]
         )
-    if "DisabledReason" in data:
+    if data.get("DisabledReason") is not None:
         out["disabled_reason"] = data["DisabledReason"]
-    if "ControlStatusUpdatedAt" in data:
+    if data.get("ControlStatusUpdatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["control_status_updated_at"] = (
@@ -109,15 +109,15 @@ def deserialize_json(data: dict) -> StandardsControl:
                 data["ControlStatusUpdatedAt"]
             )
         )
-    if "ControlId" in data:
+    if data.get("ControlId") is not None:
         out["control_id"] = data["ControlId"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RemediationUrl" in data:
+    if data.get("RemediationUrl") is not None:
         out["remediation_url"] = data["RemediationUrl"]
-    if "SeverityRating" in data:
+    if data.get("SeverityRating") is not None:
         import capo_securityhub.types.severity_rating
 
         out["severity_rating"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> StandardsControl:
                 data["SeverityRating"]
             )
         )
-    if "RelatedRequirements" in data:
+    if data.get("RelatedRequirements") is not None:
         import capo_securityhub.types.related_requirements_list
 
         out["related_requirements"] = (

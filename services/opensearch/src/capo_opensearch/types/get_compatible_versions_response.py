@@ -31,7 +31,7 @@ def serialize_json(value: GetCompatibleVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCompatibleVersionsResponse:
     out: GetCompatibleVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "CompatibleVersions" in data:
+    if data.get("CompatibleVersions") is not None:
         import capo_opensearch.types.compatible_versions_list
 
         out["compatible_versions"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: DeleteAttributeGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAttributeGroupResponse:
     out: DeleteAttributeGroupResponse = {}  # type: ignore[typeddict-item]
-    if "attributeGroup" in data:
+    if data.get("attributeGroup") is not None:
         import capo_service_catalog_appregistry.types.attribute_group_summary
 
         out["attribute_group"] = (

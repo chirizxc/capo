@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: SendAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SendAction:
     out: SendAction = {}  # type: ignore[typeddict-item]
-    if "ActionFailurePolicy" in data:
+    if data.get("ActionFailurePolicy") is not None:
         import capo_mailmanager.types.action_failure_policy
 
         out["action_failure_policy"] = (
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_0(data: dict) -> SendAction:
                 data["ActionFailurePolicy"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("SendAction.role_arn required")

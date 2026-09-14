@@ -29,9 +29,9 @@ def serialize_json(value: ListCrlsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCrlsResponse:
     out: ListCrlsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "crls" in data:
+    if data.get("crls") is not None:
         import capo_rolesanywhere.types.crl_details
 
         out["crls"] = capo_rolesanywhere.types.crl_details.deserialize_json(

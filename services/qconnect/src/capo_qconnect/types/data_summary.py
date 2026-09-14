@@ -34,7 +34,7 @@ def serialize_json(value: DataSummary) -> dict:
 
 def deserialize_json(data: dict) -> DataSummary:
     out: DataSummary = {}  # type: ignore[typeddict-item]
-    if "reference" in data:
+    if data.get("reference") is not None:
         import capo_qconnect.types.data_reference
 
         out["reference"] = capo_qconnect.types.data_reference.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> DataSummary:
         )
     else:
         raise DeserializationError("DataSummary.reference required")
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_qconnect.types.data_details
 
         out["details"] = capo_qconnect.types.data_details.deserialize_json(

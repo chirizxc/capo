@@ -31,13 +31,13 @@ def serialize_json(value: ViolationEventOccurrenceRange) -> dict:
 
 def deserialize_json(data: dict) -> ViolationEventOccurrenceRange:
     out: ViolationEventOccurrenceRange = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_iot.types.timestamp
 
         out["start_time"] = capo_iot.types.timestamp.deserialize_json(data["startTime"])
     else:
         raise DeserializationError("ViolationEventOccurrenceRange.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_iot.types.timestamp
 
         out["end_time"] = capo_iot.types.timestamp.deserialize_json(data["endTime"])

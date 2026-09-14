@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FindingsList:
 
     out: FindingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehubv2.types.finding_summary.deserialize_json(item))
     return out

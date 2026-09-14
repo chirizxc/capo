@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CoreNetworkEdgeList:
 
     out: CoreNetworkEdgeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_networkmanager.types.core_network_edge.deserialize_json(item))
     return out

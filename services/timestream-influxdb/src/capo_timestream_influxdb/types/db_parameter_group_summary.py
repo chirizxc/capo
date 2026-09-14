@@ -36,18 +36,18 @@ def serialize_aws_json_1_0(value: DbParameterGroupSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DbParameterGroupSummary:
     out: DbParameterGroupSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DbParameterGroupSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DbParameterGroupSummary.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DbParameterGroupSummary.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

@@ -26,7 +26,7 @@ def serialize_json(value: UpdateGoalResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGoalResponse:
     out: UpdateGoalResponse = {}  # type: ignore[typeddict-item]
-    if "goal" in data:
+    if data.get("goal") is not None:
         import capo_devops_agent.types.goal
 
         out["goal"] = capo_devops_agent.types.goal.deserialize_json(data["goal"])

@@ -66,19 +66,19 @@ def serialize_json(value: EksContainerOverride) -> dict:
 
 def deserialize_json(data: dict) -> EksContainerOverride:
     out: EksContainerOverride = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
-    if "command" in data:
+    if data.get("command") is not None:
         import capo_batch.types.string_list
 
         out["command"] = capo_batch.types.string_list.deserialize_json(data["command"])
-    if "args" in data:
+    if data.get("args") is not None:
         import capo_batch.types.string_list
 
         out["args"] = capo_batch.types.string_list.deserialize_json(data["args"])
-    if "env" in data:
+    if data.get("env") is not None:
         import capo_batch.types.eks_container_environment_variables
 
         out["env"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> EksContainerOverride:
                 data["env"]
             )
         )
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_batch.types.eks_container_resource_requirements
 
         out["resources"] = (

@@ -31,13 +31,13 @@ def serialize_json(value: BillingPeriodRange) -> dict:
 
 def deserialize_json(data: dict) -> BillingPeriodRange:
     out: BillingPeriodRange = {}  # type: ignore[typeddict-item]
-    if "InclusiveStartBillingPeriod" in data:
+    if data.get("InclusiveStartBillingPeriod") is not None:
         out["inclusive_start_billing_period"] = data["InclusiveStartBillingPeriod"]
     else:
         raise DeserializationError(
             "BillingPeriodRange.inclusive_start_billing_period required"
         )
-    if "ExclusiveEndBillingPeriod" in data:
+    if data.get("ExclusiveEndBillingPeriod") is not None:
         out["exclusive_end_billing_period"] = data["ExclusiveEndBillingPeriod"]
     else:
         raise DeserializationError(

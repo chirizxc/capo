@@ -117,27 +117,27 @@ def serialize_json(value: CreateMeetingWithAttendeesRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMeetingWithAttendeesRequest:
     out: CreateMeetingWithAttendeesRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     else:
         raise DeserializationError(
             "CreateMeetingWithAttendeesRequest.client_request_token required"
         )
-    if "MediaRegion" in data:
+    if data.get("MediaRegion") is not None:
         out["media_region"] = data["MediaRegion"]
     else:
         raise DeserializationError(
             "CreateMeetingWithAttendeesRequest.media_region required"
         )
-    if "MeetingHostId" in data:
+    if data.get("MeetingHostId") is not None:
         out["meeting_host_id"] = data["MeetingHostId"]
-    if "ExternalMeetingId" in data:
+    if data.get("ExternalMeetingId") is not None:
         out["external_meeting_id"] = data["ExternalMeetingId"]
     else:
         raise DeserializationError(
             "CreateMeetingWithAttendeesRequest.external_meeting_id required"
         )
-    if "MeetingFeatures" in data:
+    if data.get("MeetingFeatures") is not None:
         import capo_chime_sdk_meetings.types.meeting_features_configuration
 
         out["meeting_features"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> CreateMeetingWithAttendeesRequest:
                 data["MeetingFeatures"]
             )
         )
-    if "NotificationsConfiguration" in data:
+    if data.get("NotificationsConfiguration") is not None:
         import capo_chime_sdk_meetings.types.notifications_configuration
 
         out["notifications_configuration"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> CreateMeetingWithAttendeesRequest:
                 data["NotificationsConfiguration"]
             )
         )
-    if "Attendees" in data:
+    if data.get("Attendees") is not None:
         import capo_chime_sdk_meetings.types.create_meeting_with_attendees_request_item_list
 
         out["attendees"] = (
@@ -165,9 +165,9 @@ def deserialize_json(data: dict) -> CreateMeetingWithAttendeesRequest:
         raise DeserializationError(
             "CreateMeetingWithAttendeesRequest.attendees required"
         )
-    if "PrimaryMeetingId" in data:
+    if data.get("PrimaryMeetingId") is not None:
         out["primary_meeting_id"] = data["PrimaryMeetingId"]
-    if "TenantIds" in data:
+    if data.get("TenantIds") is not None:
         import capo_chime_sdk_meetings.types.tenant_id_list
 
         out["tenant_ids"] = (
@@ -175,13 +175,13 @@ def deserialize_json(data: dict) -> CreateMeetingWithAttendeesRequest:
                 data["TenantIds"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_meetings.types.tag_list
 
         out["tags"] = capo_chime_sdk_meetings.types.tag_list.deserialize_json(
             data["Tags"]
         )
-    if "MediaPlacementNetworkType" in data:
+    if data.get("MediaPlacementNetworkType") is not None:
         import capo_chime_sdk_meetings.types.media_placement_network_type
 
         out["media_placement_network_type"] = (

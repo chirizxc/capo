@@ -146,7 +146,15 @@ def serialize_aws_json_1_1(value: CallAnalyticsJob) -> dict:
     if "data_access_role_arn" in value:
         out["DataAccessRoleArn"] = value["data_access_role_arn"]
     if "identified_language_score" in value:
-        out["IdentifiedLanguageScore"] = value["identified_language_score"]
+        out["IdentifiedLanguageScore"] = (
+            "NaN"
+            if value["identified_language_score"] != value["identified_language_score"]
+            else "Infinity"
+            if value["identified_language_score"] == float("inf")
+            else "-Infinity"
+            if value["identified_language_score"] == float("-inf")
+            else value["identified_language_score"]
+        )
     if "settings" in value:
         import capo_transcribe.types.call_analytics_job_settings
 
@@ -174,9 +182,9 @@ def serialize_aws_json_1_1(value: CallAnalyticsJob) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJob:
     out: CallAnalyticsJob = {}  # type: ignore[typeddict-item]
-    if "CallAnalyticsJobName" in data:
+    if data.get("CallAnalyticsJobName") is not None:
         out["call_analytics_job_name"] = data["CallAnalyticsJobName"]
-    if "CallAnalyticsJobStatus" in data:
+    if data.get("CallAnalyticsJobStatus") is not None:
         import capo_transcribe.types.call_analytics_job_status
 
         out["call_analytics_job_status"] = (
@@ -184,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJob:
                 data["CallAnalyticsJobStatus"]
             )
         )
-    if "CallAnalyticsJobDetails" in data:
+    if data.get("CallAnalyticsJobDetails") is not None:
         import capo_transcribe.types.call_analytics_job_details
 
         out["call_analytics_job_details"] = (
@@ -192,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJob:
                 data["CallAnalyticsJobDetails"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -200,9 +208,9 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJob:
                 data["LanguageCode"]
             )
         )
-    if "MediaSampleRateHertz" in data:
+    if data.get("MediaSampleRateHertz") is not None:
         out["media_sample_rate_hertz"] = data["MediaSampleRateHertz"]
-    if "MediaFormat" in data:
+    if data.get("MediaFormat") is not None:
         import capo_transcribe.types.media_format
 
         out["media_format"] = (
@@ -210,31 +218,31 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJob:
                 data["MediaFormat"]
             )
         )
-    if "Media" in data:
+    if data.get("Media") is not None:
         import capo_transcribe.types.media
 
         out["media"] = capo_transcribe.types.media.deserialize_aws_json_1_1(
             data["Media"]
         )
-    if "Transcript" in data:
+    if data.get("Transcript") is not None:
         import capo_transcribe.types.transcript
 
         out["transcript"] = capo_transcribe.types.transcript.deserialize_aws_json_1_1(
             data["Transcript"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_transcribe.types.date_time
 
         out["start_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_transcribe.types.date_time
 
         out["creation_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_transcribe.types.date_time
 
         out["completion_time"] = (
@@ -242,13 +250,13 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJob:
                 data["CompletionTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "IdentifiedLanguageScore" in data:
-        out["identified_language_score"] = data["IdentifiedLanguageScore"]
-    if "Settings" in data:
+    if data.get("IdentifiedLanguageScore") is not None:
+        out["identified_language_score"] = float(data["IdentifiedLanguageScore"])
+    if data.get("Settings") is not None:
         import capo_transcribe.types.call_analytics_job_settings
 
         out["settings"] = (
@@ -256,7 +264,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJob:
                 data["Settings"]
             )
         )
-    if "ChannelDefinitions" in data:
+    if data.get("ChannelDefinitions") is not None:
         import capo_transcribe.types.channel_definitions
 
         out["channel_definitions"] = (
@@ -264,7 +272,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJob:
                 data["ChannelDefinitions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(

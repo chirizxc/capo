@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: SuccessConditions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SuccessConditions:
     out: SuccessConditions = {}  # type: ignore[typeddict-item]
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_codepipeline.types.condition_list
 
         out["conditions"] = (

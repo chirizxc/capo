@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: AutoMLChannel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLChannel:
     out: AutoMLChannel = {}  # type: ignore[typeddict-item]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_sagemaker.types.auto_ml_data_source
 
         out["data_source"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLChannel:
                 data["DataSource"]
             )
         )
-    if "CompressionType" in data:
+    if data.get("CompressionType") is not None:
         import capo_sagemaker.types.compression_type
 
         out["compression_type"] = (
@@ -92,11 +92,11 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLChannel:
                 data["CompressionType"]
             )
         )
-    if "TargetAttributeName" in data:
+    if data.get("TargetAttributeName") is not None:
         out["target_attribute_name"] = data["TargetAttributeName"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "ChannelType" in data:
+    if data.get("ChannelType") is not None:
         import capo_sagemaker.types.auto_ml_channel_type
 
         out["channel_type"] = (
@@ -104,6 +104,6 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLChannel:
                 data["ChannelType"]
             )
         )
-    if "SampleWeightAttributeName" in data:
+    if data.get("SampleWeightAttributeName") is not None:
         out["sample_weight_attribute_name"] = data["SampleWeightAttributeName"]
     return out

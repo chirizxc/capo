@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: ListLanguagesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLanguagesRequest:
     out: ListLanguagesRequest = {}  # type: ignore[typeddict-item]
-    if "DisplayLanguageCode" in data:
+    if data.get("DisplayLanguageCode") is not None:
         import capo_translate.types.display_language_code
 
         out["display_language_code"] = (
@@ -51,8 +51,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListLanguagesRequest:
                 data["DisplayLanguageCode"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

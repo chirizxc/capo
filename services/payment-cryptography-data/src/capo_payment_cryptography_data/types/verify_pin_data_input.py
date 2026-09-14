@@ -90,19 +90,19 @@ def serialize_json(value: VerifyPinDataInput) -> dict:
 
 def deserialize_json(data: dict) -> VerifyPinDataInput:
     out: VerifyPinDataInput = {}  # type: ignore[typeddict-item]
-    if "VerificationKeyIdentifier" in data:
+    if data.get("VerificationKeyIdentifier") is not None:
         out["verification_key_identifier"] = data["VerificationKeyIdentifier"]
     else:
         raise DeserializationError(
             "VerifyPinDataInput.verification_key_identifier required"
         )
-    if "EncryptionKeyIdentifier" in data:
+    if data.get("EncryptionKeyIdentifier") is not None:
         out["encryption_key_identifier"] = data["EncryptionKeyIdentifier"]
     else:
         raise DeserializationError(
             "VerifyPinDataInput.encryption_key_identifier required"
         )
-    if "VerificationAttributes" in data:
+    if data.get("VerificationAttributes") is not None:
         import capo_payment_cryptography_data.types.pin_verification_attributes
 
         out["verification_attributes"] = (
@@ -114,13 +114,13 @@ def deserialize_json(data: dict) -> VerifyPinDataInput:
         raise DeserializationError(
             "VerifyPinDataInput.verification_attributes required"
         )
-    if "EncryptedPinBlock" in data:
+    if data.get("EncryptedPinBlock") is not None:
         out["encrypted_pin_block"] = data["EncryptedPinBlock"]
     else:
         raise DeserializationError("VerifyPinDataInput.encrypted_pin_block required")
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
-    if "PinBlockFormat" in data:
+    if data.get("PinBlockFormat") is not None:
         import capo_payment_cryptography_data.types.pin_block_format_for_pin_data
 
         out["pin_block_format"] = (
@@ -130,9 +130,9 @@ def deserialize_json(data: dict) -> VerifyPinDataInput:
         )
     else:
         raise DeserializationError("VerifyPinDataInput.pin_block_format required")
-    if "PinDataLength" in data:
+    if data.get("PinDataLength") is not None:
         out["pin_data_length"] = data["PinDataLength"]
-    if "DukptAttributes" in data:
+    if data.get("DukptAttributes") is not None:
         import capo_payment_cryptography_data.types.dukpt_attributes
 
         out["dukpt_attributes"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> VerifyPinDataInput:
                 data["DukptAttributes"]
             )
         )
-    if "EncryptionWrappedKey" in data:
+    if data.get("EncryptionWrappedKey") is not None:
         import capo_payment_cryptography_data.types.wrapped_key
 
         out["encryption_wrapped_key"] = (

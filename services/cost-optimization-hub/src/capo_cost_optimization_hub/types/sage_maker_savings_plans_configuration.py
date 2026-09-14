@@ -30,12 +30,12 @@ def serialize_aws_json_1_0(value: SageMakerSavingsPlansConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SageMakerSavingsPlansConfiguration:
     out: SageMakerSavingsPlansConfiguration = {}  # type: ignore[typeddict-item]
-    if "accountScope" in data:
+    if data.get("accountScope") is not None:
         out["account_scope"] = data["accountScope"]
-    if "term" in data:
+    if data.get("term") is not None:
         out["term"] = data["term"]
-    if "paymentOption" in data:
+    if data.get("paymentOption") is not None:
         out["payment_option"] = data["paymentOption"]
-    if "hourlyCommitment" in data:
+    if data.get("hourlyCommitment") is not None:
         out["hourly_commitment"] = data["hourlyCommitment"]
     return out

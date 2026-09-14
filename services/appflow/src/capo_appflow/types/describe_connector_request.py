@@ -33,7 +33,7 @@ def serialize_json(value: DescribeConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeConnectorRequest:
     out: DescribeConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "connectorType" in data:
+    if data.get("connectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["connector_type"] = capo_appflow.types.connector_type.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> DescribeConnectorRequest:
         )
     else:
         raise DeserializationError("DescribeConnectorRequest.connector_type required")
-    if "connectorLabel" in data:
+    if data.get("connectorLabel") is not None:
         out["connector_label"] = data["connectorLabel"]
     return out

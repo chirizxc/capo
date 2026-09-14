@@ -31,11 +31,11 @@ def serialize_json(value: PutProfileObjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutProfileObjectRequest:
     out: PutProfileObjectRequest = {}  # type: ignore[typeddict-item]
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
     else:
         raise DeserializationError("PutProfileObjectRequest.object_type_name required")
-    if "Object" in data:
+    if data.get("Object") is not None:
         out["object"] = data["Object"]
     else:
         raise DeserializationError("PutProfileObjectRequest.object required")

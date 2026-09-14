@@ -43,19 +43,19 @@ def serialize_aws_json_1_1(value: CreateWorkspaceImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkspaceImageRequest:
     out: CreateWorkspaceImageRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateWorkspaceImageRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateWorkspaceImageRequest.description required")
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
     else:
         raise DeserializationError("CreateWorkspaceImageRequest.workspace_id required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces.types.tag_list
 
         out["tags"] = capo_workspaces.types.tag_list.deserialize_aws_json_1_1(

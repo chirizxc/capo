@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchUpdateExclusionWindowsErrors:
 
     out: BatchUpdateExclusionWindowsErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_signals.types.batch_update_exclusion_windows_error.deserialize_json(
                 item

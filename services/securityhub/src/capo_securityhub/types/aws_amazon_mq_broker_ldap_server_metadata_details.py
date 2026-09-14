@@ -71,28 +71,28 @@ def serialize_json(value: AwsAmazonMqBrokerLdapServerMetadataDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAmazonMqBrokerLdapServerMetadataDetails:
     out: AwsAmazonMqBrokerLdapServerMetadataDetails = {}  # type: ignore[typeddict-item]
-    if "Hosts" in data:
+    if data.get("Hosts") is not None:
         import capo_securityhub.types.string_list
 
         out["hosts"] = capo_securityhub.types.string_list.deserialize_json(
             data["Hosts"]
         )
-    if "RoleBase" in data:
+    if data.get("RoleBase") is not None:
         out["role_base"] = data["RoleBase"]
-    if "RoleName" in data:
+    if data.get("RoleName") is not None:
         out["role_name"] = data["RoleName"]
-    if "RoleSearchMatching" in data:
+    if data.get("RoleSearchMatching") is not None:
         out["role_search_matching"] = data["RoleSearchMatching"]
-    if "RoleSearchSubtree" in data:
+    if data.get("RoleSearchSubtree") is not None:
         out["role_search_subtree"] = data["RoleSearchSubtree"]
-    if "ServiceAccountUsername" in data:
+    if data.get("ServiceAccountUsername") is not None:
         out["service_account_username"] = data["ServiceAccountUsername"]
-    if "UserBase" in data:
+    if data.get("UserBase") is not None:
         out["user_base"] = data["UserBase"]
-    if "UserRoleName" in data:
+    if data.get("UserRoleName") is not None:
         out["user_role_name"] = data["UserRoleName"]
-    if "UserSearchMatching" in data:
+    if data.get("UserSearchMatching") is not None:
         out["user_search_matching"] = data["UserSearchMatching"]
-    if "UserSearchSubtree" in data:
+    if data.get("UserSearchSubtree") is not None:
         out["user_search_subtree"] = data["UserSearchSubtree"]
     return out

@@ -69,29 +69,29 @@ def serialize_json(value: AssociateHostedZoneOutput) -> dict:
 
 def deserialize_json(data: dict) -> AssociateHostedZoneOutput:
     out: AssociateHostedZoneOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("AssociateHostedZoneOutput.id required")
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("AssociateHostedZoneOutput.resource_arn required")
-    if "hostedZoneId" in data:
+    if data.get("hostedZoneId") is not None:
         out["hosted_zone_id"] = data["hostedZoneId"]
     else:
         raise DeserializationError("AssociateHostedZoneOutput.hosted_zone_id required")
-    if "hostedZoneName" in data:
+    if data.get("hostedZoneName") is not None:
         out["hosted_zone_name"] = data["hostedZoneName"]
     else:
         raise DeserializationError(
             "AssociateHostedZoneOutput.hosted_zone_name required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AssociateHostedZoneOutput.name required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["created_at"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> AssociateHostedZoneOutput:
         )
     else:
         raise DeserializationError("AssociateHostedZoneOutput.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["updated_at"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> AssociateHostedZoneOutput:
         )
     else:
         raise DeserializationError("AssociateHostedZoneOutput.updated_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_route53globalresolver.types.hosted_zone_association_status
 
         out["status"] = (

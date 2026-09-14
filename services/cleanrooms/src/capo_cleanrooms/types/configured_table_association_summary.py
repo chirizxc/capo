@@ -72,29 +72,29 @@ def serialize_json(value: ConfiguredTableAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredTableAssociationSummary:
     out: ConfiguredTableAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "configuredTableId" in data:
+    if data.get("configuredTableId") is not None:
         out["configured_table_id"] = data["configuredTableId"]
     else:
         raise DeserializationError(
             "ConfiguredTableAssociationSummary.configured_table_id required"
         )
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError(
             "ConfiguredTableAssociationSummary.membership_id required"
         )
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
     else:
         raise DeserializationError(
             "ConfiguredTableAssociationSummary.membership_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ConfiguredTableAssociationSummary.name required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociationSummary:
         raise DeserializationError(
             "ConfiguredTableAssociationSummary.create_time required"
         )
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -114,15 +114,15 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociationSummary:
         raise DeserializationError(
             "ConfiguredTableAssociationSummary.update_time required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ConfiguredTableAssociationSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ConfiguredTableAssociationSummary.arn required")
-    if "analysisRuleTypes" in data:
+    if data.get("analysisRuleTypes") is not None:
         import capo_cleanrooms.types.configured_table_association_analysis_rule_type_list
 
         out["analysis_rule_types"] = (

@@ -35,11 +35,11 @@ def serialize_json(value: ServiceFunctionResourcesAddedMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ServiceFunctionResourcesAddedMetadata:
     out: ServiceFunctionResourcesAddedMetadata = {}  # type: ignore[typeddict-item]
-    if "serviceFunctionId" in data:
+    if data.get("serviceFunctionId") is not None:
         out["service_function_id"] = data["serviceFunctionId"]
-    if "serviceFunctionName" in data:
+    if data.get("serviceFunctionName") is not None:
         out["service_function_name"] = data["serviceFunctionName"]
-    if "resourcesAdded" in data:
+    if data.get("resourcesAdded") is not None:
         import capo_resiliencehubv2.types.arn_list
 
         out["resources_added"] = capo_resiliencehubv2.types.arn_list.deserialize_json(

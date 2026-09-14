@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: CreateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateApplicationRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "wave" in data:
+    if data.get("wave") is not None:
         out["wave"] = data["wave"]
     return out

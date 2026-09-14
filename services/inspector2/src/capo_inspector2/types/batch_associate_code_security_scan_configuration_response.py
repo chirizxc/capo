@@ -44,7 +44,7 @@ def serialize_json(value: BatchAssociateCodeSecurityScanConfigurationResponse) -
 
 def deserialize_json(data: dict) -> BatchAssociateCodeSecurityScanConfigurationResponse:
     out: BatchAssociateCodeSecurityScanConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "failedAssociations" in data:
+    if data.get("failedAssociations") is not None:
         import capo_inspector2.types.failed_association_result_list
 
         out["failed_associations"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchAssociateCodeSecurityScanConfigurationR
                 data["failedAssociations"]
             )
         )
-    if "successfulAssociations" in data:
+    if data.get("successfulAssociations") is not None:
         import capo_inspector2.types.successful_association_result_list
 
         out["successful_associations"] = (

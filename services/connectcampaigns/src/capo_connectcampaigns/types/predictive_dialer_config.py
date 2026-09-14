@@ -23,20 +23,36 @@ class PredictiveDialerConfig(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: PredictiveDialerConfig) -> dict:
     out: dict = {}
-    out["bandwidthAllocation"] = value["bandwidth_allocation"]
+    out["bandwidthAllocation"] = (
+        "NaN"
+        if value["bandwidth_allocation"] != value["bandwidth_allocation"]
+        else "Infinity"
+        if value["bandwidth_allocation"] == float("inf")
+        else "-Infinity"
+        if value["bandwidth_allocation"] == float("-inf")
+        else value["bandwidth_allocation"]
+    )
     if "dialing_capacity" in value:
-        out["dialingCapacity"] = value["dialing_capacity"]
+        out["dialingCapacity"] = (
+            "NaN"
+            if value["dialing_capacity"] != value["dialing_capacity"]
+            else "Infinity"
+            if value["dialing_capacity"] == float("inf")
+            else "-Infinity"
+            if value["dialing_capacity"] == float("-inf")
+            else value["dialing_capacity"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> PredictiveDialerConfig:
     out: PredictiveDialerConfig = {}  # type: ignore[typeddict-item]
-    if "bandwidthAllocation" in data:
-        out["bandwidth_allocation"] = data["bandwidthAllocation"]
+    if data.get("bandwidthAllocation") is not None:
+        out["bandwidth_allocation"] = float(data["bandwidthAllocation"])
     else:
         raise DeserializationError(
             "PredictiveDialerConfig.bandwidth_allocation required"
         )
-    if "dialingCapacity" in data:
-        out["dialing_capacity"] = data["dialingCapacity"]
+    if data.get("dialingCapacity") is not None:
+        out["dialing_capacity"] = float(data["dialingCapacity"])
     return out

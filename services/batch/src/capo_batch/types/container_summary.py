@@ -28,8 +28,8 @@ def serialize_json(value: ContainerSummary) -> dict:
 
 def deserialize_json(data: dict) -> ContainerSummary:
     out: ContainerSummary = {}  # type: ignore[typeddict-item]
-    if "exitCode" in data:
+    if data.get("exitCode") is not None:
         out["exit_code"] = data["exitCode"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

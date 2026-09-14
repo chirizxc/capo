@@ -49,11 +49,11 @@ def serialize_aws_json_1_1(value: UpdateACLRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateACLRequest:
     out: UpdateACLRequest = {}  # type: ignore[typeddict-item]
-    if "ACLName" in data:
+    if data.get("ACLName") is not None:
         out["acl_name"] = data["ACLName"]
     else:
         raise DeserializationError("UpdateACLRequest.acl_name required")
-    if "UserNamesToAdd" in data:
+    if data.get("UserNamesToAdd") is not None:
         import capo_memorydb.types.user_name_list_input
 
         out["user_names_to_add"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateACLRequest:
                 data["UserNamesToAdd"]
             )
         )
-    if "UserNamesToRemove" in data:
+    if data.get("UserNamesToRemove") is not None:
         import capo_memorydb.types.user_name_list_input
 
         out["user_names_to_remove"] = (

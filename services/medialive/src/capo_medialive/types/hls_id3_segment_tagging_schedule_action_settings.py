@@ -27,8 +27,8 @@ def serialize_json(value: HlsId3SegmentTaggingScheduleActionSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsId3SegmentTaggingScheduleActionSettings:
     out: HlsId3SegmentTaggingScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "tag" in data:
+    if data.get("tag") is not None:
         out["tag"] = data["tag"]
-    if "id3" in data:
+    if data.get("id3") is not None:
         out["id3"] = data["id3"]
     return out

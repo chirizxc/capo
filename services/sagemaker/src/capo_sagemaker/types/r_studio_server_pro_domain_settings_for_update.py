@@ -44,9 +44,9 @@ def serialize_aws_json_1_1(value: RStudioServerProDomainSettingsForUpdate) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> RStudioServerProDomainSettingsForUpdate:
     out: RStudioServerProDomainSettingsForUpdate = {}  # type: ignore[typeddict-item]
-    if "DomainExecutionRoleArn" in data:
+    if data.get("DomainExecutionRoleArn") is not None:
         out["domain_execution_role_arn"] = data["DomainExecutionRoleArn"]
-    if "DefaultResourceSpec" in data:
+    if data.get("DefaultResourceSpec") is not None:
         import capo_sagemaker.types.resource_spec
 
         out["default_resource_spec"] = (
@@ -54,8 +54,8 @@ def deserialize_aws_json_1_1(data: dict) -> RStudioServerProDomainSettingsForUpd
                 data["DefaultResourceSpec"]
             )
         )
-    if "RStudioConnectUrl" in data:
+    if data.get("RStudioConnectUrl") is not None:
         out["r_studio_connect_url"] = data["RStudioConnectUrl"]
-    if "RStudioPackageManagerUrl" in data:
+    if data.get("RStudioPackageManagerUrl") is not None:
         out["r_studio_package_manager_url"] = data["RStudioPackageManagerUrl"]
     return out

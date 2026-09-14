@@ -95,7 +95,7 @@ def serialize_aws_json_1_0(value: ExportEC2InstanceRecommendationsRequest) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> ExportEC2InstanceRecommendationsRequest:
     out: ExportEC2InstanceRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_compute_optimizer.types.account_ids
 
         out["account_ids"] = (
@@ -103,13 +103,13 @@ def deserialize_aws_json_1_0(data: dict) -> ExportEC2InstanceRecommendationsRequ
                 data["accountIds"]
             )
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_compute_optimizer.types.filters
 
         out["filters"] = capo_compute_optimizer.types.filters.deserialize_aws_json_1_0(
             data["filters"]
         )
-    if "fieldsToExport" in data:
+    if data.get("fieldsToExport") is not None:
         import capo_compute_optimizer.types.exportable_instance_fields
 
         out["fields_to_export"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportEC2InstanceRecommendationsRequ
                 data["fieldsToExport"]
             )
         )
-    if "s3DestinationConfig" in data:
+    if data.get("s3DestinationConfig") is not None:
         import capo_compute_optimizer.types.s3_destination_config
 
         out["s3_destination_config"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportEC2InstanceRecommendationsRequ
         raise DeserializationError(
             "ExportEC2InstanceRecommendationsRequest.s3_destination_config required"
         )
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_compute_optimizer.types.file_format
 
         out["file_format"] = (
@@ -137,11 +137,11 @@ def deserialize_aws_json_1_0(data: dict) -> ExportEC2InstanceRecommendationsRequ
                 data["fileFormat"]
             )
         )
-    if "includeMemberAccounts" in data:
+    if data.get("includeMemberAccounts") is not None:
         out["include_member_accounts"] = data["includeMemberAccounts"]
     else:
         out["include_member_accounts"] = False
-    if "recommendationPreferences" in data:
+    if data.get("recommendationPreferences") is not None:
         import capo_compute_optimizer.types.recommendation_preferences
 
         out["recommendation_preferences"] = (

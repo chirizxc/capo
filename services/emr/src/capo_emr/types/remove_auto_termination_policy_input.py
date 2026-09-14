@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: RemoveAutoTerminationPolicyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveAutoTerminationPolicyInput:
     out: RemoveAutoTerminationPolicyInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
     return out

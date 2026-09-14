@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ReplicationConfigurationReplicatedDisks:
 
     out: ReplicationConfigurationReplicatedDisks = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.replication_configuration_replicated_disk.deserialize_json(
                 item

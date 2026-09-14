@@ -57,7 +57,7 @@ def serialize_json(value: ListInsightsStatusFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListInsightsStatusFilter:
     out: ListInsightsStatusFilter = {}  # type: ignore[typeddict-item]
-    if "Ongoing" in data:
+    if data.get("Ongoing") is not None:
         import capo_devops_guru.types.list_insights_ongoing_status_filter
 
         out["ongoing"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ListInsightsStatusFilter:
                 data["Ongoing"]
             )
         )
-    if "Closed" in data:
+    if data.get("Closed") is not None:
         import capo_devops_guru.types.list_insights_closed_status_filter
 
         out["closed"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ListInsightsStatusFilter:
                 data["Closed"]
             )
         )
-    if "Any" in data:
+    if data.get("Any") is not None:
         import capo_devops_guru.types.list_insights_any_status_filter
 
         out["any"] = (

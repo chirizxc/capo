@@ -66,7 +66,7 @@ def serialize_json(value: AttachTypedLinkRequest) -> dict:
 
 def deserialize_json(data: dict) -> AttachTypedLinkRequest:
     out: AttachTypedLinkRequest = {}  # type: ignore[typeddict-item]
-    if "SourceObjectReference" in data:
+    if data.get("SourceObjectReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["source_object_reference"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> AttachTypedLinkRequest:
         raise DeserializationError(
             "AttachTypedLinkRequest.source_object_reference required"
         )
-    if "TargetObjectReference" in data:
+    if data.get("TargetObjectReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["target_object_reference"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> AttachTypedLinkRequest:
         raise DeserializationError(
             "AttachTypedLinkRequest.target_object_reference required"
         )
-    if "TypedLinkFacet" in data:
+    if data.get("TypedLinkFacet") is not None:
         import capo_clouddirectory.types.typed_link_schema_and_facet_name
 
         out["typed_link_facet"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> AttachTypedLinkRequest:
         )
     else:
         raise DeserializationError("AttachTypedLinkRequest.typed_link_facet required")
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_clouddirectory.types.attribute_name_and_value_list
 
         out["attributes"] = (

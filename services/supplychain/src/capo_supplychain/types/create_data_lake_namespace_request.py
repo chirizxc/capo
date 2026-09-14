@@ -38,9 +38,9 @@ def serialize_json(value: CreateDataLakeNamespaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataLakeNamespaceRequest:
     out: CreateDataLakeNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_supplychain.types.tag_map
 
         out["tags"] = capo_supplychain.types.tag_map.deserialize_json(data["tags"])

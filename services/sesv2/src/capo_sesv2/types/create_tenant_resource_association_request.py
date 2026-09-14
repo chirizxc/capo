@@ -28,13 +28,13 @@ def serialize_json(value: CreateTenantResourceAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTenantResourceAssociationRequest:
     out: CreateTenantResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "TenantName" in data:
+    if data.get("TenantName") is not None:
         out["tenant_name"] = data["TenantName"]
     else:
         raise DeserializationError(
             "CreateTenantResourceAssociationRequest.tenant_name required"
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(

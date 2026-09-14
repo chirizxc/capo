@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: ChallengeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ChallengeResponse:
     out: ChallengeResponse = {}  # type: ignore[typeddict-item]
-    if "ResponseCode" in data:
+    if data.get("ResponseCode") is not None:
         out["response_code"] = data["ResponseCode"]
-    if "SolveTimestamp" in data:
+    if data.get("SolveTimestamp") is not None:
         out["solve_timestamp"] = data["SolveTimestamp"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         import capo_wafv2.types.failure_reason
 
         out["failure_reason"] = (

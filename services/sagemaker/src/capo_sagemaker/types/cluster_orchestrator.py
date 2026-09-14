@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ClusterOrchestrator) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterOrchestrator:
     out: ClusterOrchestrator = {}  # type: ignore[typeddict-item]
-    if "Eks" in data:
+    if data.get("Eks") is not None:
         import capo_sagemaker.types.cluster_orchestrator_eks_config
 
         out["eks"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterOrchestrator:
                 data["Eks"]
             )
         )
-    if "Slurm" in data:
+    if data.get("Slurm") is not None:
         import capo_sagemaker.types.cluster_orchestrator_slurm_config
 
         out["slurm"] = (

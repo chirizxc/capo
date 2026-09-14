@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MappedResourceConfigurationList:
 
     out: MappedResourceConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kinesis_video.types.mapped_resource_configuration_list_item.deserialize_json(
                 item

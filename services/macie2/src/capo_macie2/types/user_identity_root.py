@@ -31,10 +31,10 @@ def serialize_json(value: UserIdentityRoot) -> dict:
 
 def deserialize_json(data: dict) -> UserIdentityRoot:
     out: UserIdentityRoot = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
     return out

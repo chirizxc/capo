@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DestinationsToCreate:
 
     out: DestinationsToCreate = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_efs.types.destination_to_create.deserialize_json(item))
     return out

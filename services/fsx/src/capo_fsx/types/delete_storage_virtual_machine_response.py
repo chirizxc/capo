@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: DeleteStorageVirtualMachineResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteStorageVirtualMachineResponse:
     out: DeleteStorageVirtualMachineResponse = {}  # type: ignore[typeddict-item]
-    if "StorageVirtualMachineId" in data:
+    if data.get("StorageVirtualMachineId") is not None:
         out["storage_virtual_machine_id"] = data["StorageVirtualMachineId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.storage_virtual_machine_lifecycle
 
         out["lifecycle"] = (

@@ -37,7 +37,7 @@ def serialize_json(value: StartDevEnvironmentSessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDevEnvironmentSessionRequest:
     out: StartDevEnvironmentSessionRequest = {}  # type: ignore[typeddict-item]
-    if "sessionConfiguration" in data:
+    if data.get("sessionConfiguration") is not None:
         import capo_codecatalyst.types.dev_environment_session_configuration
 
         out["session_configuration"] = (

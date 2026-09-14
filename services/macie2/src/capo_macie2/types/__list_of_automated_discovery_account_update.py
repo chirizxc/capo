@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfAutomatedDiscoveryAccountUpdate:
 
     out: __listOfAutomatedDiscoveryAccountUpdate = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_macie2.types.automated_discovery_account_update.deserialize_json(item)
         )

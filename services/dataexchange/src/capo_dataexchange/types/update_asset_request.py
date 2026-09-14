@@ -31,7 +31,7 @@ def serialize_json(value: UpdateAssetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssetRequest:
     out: UpdateAssetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateAssetRequest.name required")

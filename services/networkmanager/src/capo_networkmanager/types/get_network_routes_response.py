@@ -71,9 +71,9 @@ def serialize_json(value: GetNetworkRoutesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetNetworkRoutesResponse:
     out: GetNetworkRoutesResponse = {}  # type: ignore[typeddict-item]
-    if "RouteTableArn" in data:
+    if data.get("RouteTableArn") is not None:
         out["route_table_arn"] = data["RouteTableArn"]
-    if "CoreNetworkSegmentEdge" in data:
+    if data.get("CoreNetworkSegmentEdge") is not None:
         import capo_networkmanager.types.core_network_segment_edge_identifier
 
         out["core_network_segment_edge"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> GetNetworkRoutesResponse:
                 data["CoreNetworkSegmentEdge"]
             )
         )
-    if "RouteTableType" in data:
+    if data.get("RouteTableType") is not None:
         import capo_networkmanager.types.route_table_type
 
         out["route_table_type"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> GetNetworkRoutesResponse:
                 data["RouteTableType"]
             )
         )
-    if "RouteTableTimestamp" in data:
+    if data.get("RouteTableTimestamp") is not None:
         import capo_networkmanager.types.date_time
 
         out["route_table_timestamp"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> GetNetworkRoutesResponse:
                 data["RouteTableTimestamp"]
             )
         )
-    if "NetworkRoutes" in data:
+    if data.get("NetworkRoutes") is not None:
         import capo_networkmanager.types.network_route_list
 
         out["network_routes"] = (

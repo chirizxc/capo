@@ -121,13 +121,21 @@ def serialize_aws_json_1_0(value: OdbNetworkSummary) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["createdAt"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["createdAt"] = capo_odb._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "percent_progress" in value:
-        out["percentProgress"] = value["percent_progress"]
+        out["percentProgress"] = (
+            "NaN"
+            if value["percent_progress"] != value["percent_progress"]
+            else "Infinity"
+            if value["percent_progress"] == float("inf")
+            else "-Infinity"
+            if value["percent_progress"] == float("-inf")
+            else value["percent_progress"]
+        )
     if "managed_services" in value:
         import capo_odb.types.managed_services
 
@@ -147,51 +155,51 @@ def serialize_aws_json_1_0(value: OdbNetworkSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OdbNetworkSummary:
     out: OdbNetworkSummary = {}  # type: ignore[typeddict-item]
-    if "odbNetworkId" in data:
+    if data.get("odbNetworkId") is not None:
         out["odb_network_id"] = data["odbNetworkId"]
     else:
         raise DeserializationError("OdbNetworkSummary.odb_network_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.resource_status
 
         out["status"] = capo_odb.types.resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "odbNetworkArn" in data:
+    if data.get("odbNetworkArn") is not None:
         out["odb_network_arn"] = data["odbNetworkArn"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "clientSubnetCidr" in data:
+    if data.get("clientSubnetCidr") is not None:
         out["client_subnet_cidr"] = data["clientSubnetCidr"]
-    if "backupSubnetCidr" in data:
+    if data.get("backupSubnetCidr") is not None:
         out["backup_subnet_cidr"] = data["backupSubnetCidr"]
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "defaultDnsPrefix" in data:
+    if data.get("defaultDnsPrefix") is not None:
         out["default_dns_prefix"] = data["defaultDnsPrefix"]
-    if "peeredCidrs" in data:
+    if data.get("peeredCidrs") is not None:
         import capo_odb.types.string_list
 
         out["peered_cidrs"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["peeredCidrs"]
         )
-    if "ociNetworkAnchorId" in data:
+    if data.get("ociNetworkAnchorId") is not None:
         out["oci_network_anchor_id"] = data["ociNetworkAnchorId"]
-    if "ociNetworkAnchorUrl" in data:
+    if data.get("ociNetworkAnchorUrl") is not None:
         out["oci_network_anchor_url"] = data["ociNetworkAnchorUrl"]
-    if "ociResourceAnchorName" in data:
+    if data.get("ociResourceAnchorName") is not None:
         out["oci_resource_anchor_name"] = data["ociResourceAnchorName"]
-    if "ociVcnId" in data:
+    if data.get("ociVcnId") is not None:
         out["oci_vcn_id"] = data["ociVcnId"]
-    if "ociVcnUrl" in data:
+    if data.get("ociVcnUrl") is not None:
         out["oci_vcn_url"] = data["ociVcnUrl"]
-    if "ociDnsForwardingConfigs" in data:
+    if data.get("ociDnsForwardingConfigs") is not None:
         import capo_odb.types.oci_dns_forwarding_config_list
 
         out["oci_dns_forwarding_configs"] = (
@@ -199,15 +207,15 @@ def deserialize_aws_json_1_0(data: dict) -> OdbNetworkSummary:
                 data["ociDnsForwardingConfigs"]
             )
         )
-    if "createdAt" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "percentProgress" in data:
-        out["percent_progress"] = data["percentProgress"]
-    if "managedServices" in data:
+    if data.get("percentProgress") is not None:
+        out["percent_progress"] = float(data["percentProgress"])
+    if data.get("managedServices") is not None:
         import capo_odb.types.managed_services
 
         out["managed_services"] = (
@@ -215,7 +223,7 @@ def deserialize_aws_json_1_0(data: dict) -> OdbNetworkSummary:
                 data["managedServices"]
             )
         )
-    if "ec2PlacementGroupIds" in data:
+    if data.get("ec2PlacementGroupIds") is not None:
         import capo_odb.types.resource_id_list
 
         out["ec2_placement_group_ids"] = (

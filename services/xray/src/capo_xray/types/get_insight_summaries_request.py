@@ -62,17 +62,17 @@ def serialize_json(value: GetInsightSummariesRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetInsightSummariesRequest:
     out: GetInsightSummariesRequest = {}  # type: ignore[typeddict-item]
-    if "States" in data:
+    if data.get("States") is not None:
         import capo_xray.types.insight_state_list
 
         out["states"] = capo_xray.types.insight_state_list.deserialize_json(
             data["States"]
         )
-    if "GroupARN" in data:
+    if data.get("GroupARN") is not None:
         out["group_arn"] = data["GroupARN"]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
@@ -80,14 +80,14 @@ def deserialize_json(data: dict) -> GetInsightSummariesRequest:
         )
     else:
         raise DeserializationError("GetInsightSummariesRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])
     else:
         raise DeserializationError("GetInsightSummariesRequest.end_time required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

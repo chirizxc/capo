@@ -52,22 +52,22 @@ def serialize_json(value: CreateRunGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRunGroupRequest:
     out: CreateRunGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "maxCpus" in data:
+    if data.get("maxCpus") is not None:
         out["max_cpus"] = data["maxCpus"]
-    if "maxRuns" in data:
+    if data.get("maxRuns") is not None:
         out["max_runs"] = data["maxRuns"]
-    if "maxDuration" in data:
+    if data.get("maxDuration") is not None:
         out["max_duration"] = data["maxDuration"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("CreateRunGroupRequest.request_id required")
-    if "maxGpus" in data:
+    if data.get("maxGpus") is not None:
         out["max_gpus"] = data["maxGpus"]
     return out

@@ -79,11 +79,11 @@ def serialize_aws_json_1_0(value: UpdateVpcEndpointRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateVpcEndpointRequest:
     out: UpdateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateVpcEndpointRequest.id required")
-    if "addSubnetIds" in data:
+    if data.get("addSubnetIds") is not None:
         import capo_opensearchserverless.types.subnet_ids
 
         out["add_subnet_ids"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateVpcEndpointRequest:
                 data["addSubnetIds"]
             )
         )
-    if "removeSubnetIds" in data:
+    if data.get("removeSubnetIds") is not None:
         import capo_opensearchserverless.types.subnet_ids
 
         out["remove_subnet_ids"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateVpcEndpointRequest:
                 data["removeSubnetIds"]
             )
         )
-    if "addSecurityGroupIds" in data:
+    if data.get("addSecurityGroupIds") is not None:
         import capo_opensearchserverless.types.security_group_ids
 
         out["add_security_group_ids"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateVpcEndpointRequest:
                 data["addSecurityGroupIds"]
             )
         )
-    if "removeSecurityGroupIds" in data:
+    if data.get("removeSecurityGroupIds") is not None:
         import capo_opensearchserverless.types.security_group_ids
 
         out["remove_security_group_ids"] = (
@@ -115,6 +115,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateVpcEndpointRequest:
                 data["removeSecurityGroupIds"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

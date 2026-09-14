@@ -28,6 +28,6 @@ def serialize_json(value: UpdateVpcLinkRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVpcLinkRequest:
     out: UpdateVpcLinkRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

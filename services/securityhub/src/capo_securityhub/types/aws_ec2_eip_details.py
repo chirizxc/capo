@@ -71,24 +71,24 @@ def serialize_json(value: AwsEc2EipDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2EipDetails:
     out: AwsEc2EipDetails = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "PublicIp" in data:
+    if data.get("PublicIp") is not None:
         out["public_ip"] = data["PublicIp"]
-    if "AllocationId" in data:
+    if data.get("AllocationId") is not None:
         out["allocation_id"] = data["AllocationId"]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "PublicIpv4Pool" in data:
+    if data.get("PublicIpv4Pool") is not None:
         out["public_ipv4_pool"] = data["PublicIpv4Pool"]
-    if "NetworkBorderGroup" in data:
+    if data.get("NetworkBorderGroup") is not None:
         out["network_border_group"] = data["NetworkBorderGroup"]
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
-    if "NetworkInterfaceOwnerId" in data:
+    if data.get("NetworkInterfaceOwnerId") is not None:
         out["network_interface_owner_id"] = data["NetworkInterfaceOwnerId"]
-    if "PrivateIpAddress" in data:
+    if data.get("PrivateIpAddress") is not None:
         out["private_ip_address"] = data["PrivateIpAddress"]
     return out

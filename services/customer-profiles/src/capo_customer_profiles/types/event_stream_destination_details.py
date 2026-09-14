@@ -48,11 +48,11 @@ def serialize_json(value: EventStreamDestinationDetails) -> dict:
 
 def deserialize_json(data: dict) -> EventStreamDestinationDetails:
     out: EventStreamDestinationDetails = {}  # type: ignore[typeddict-item]
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
     else:
         raise DeserializationError("EventStreamDestinationDetails.uri required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.event_stream_destination_status
 
         out["status"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> EventStreamDestinationDetails:
         )
     else:
         raise DeserializationError("EventStreamDestinationDetails.status required")
-    if "UnhealthySince" in data:
+    if data.get("UnhealthySince") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["unhealthy_since"] = (
@@ -70,6 +70,6 @@ def deserialize_json(data: dict) -> EventStreamDestinationDetails:
                 data["UnhealthySince"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

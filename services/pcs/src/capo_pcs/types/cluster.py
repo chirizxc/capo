@@ -56,16 +56,12 @@ def serialize_aws_json_1_0(value: Cluster) -> dict:
     out["status"] = capo_pcs.types.cluster_status.serialize_aws_json_1_0(
         value["status"]
     )
-    import capo_pcs.types._prelude.timestamp
+    import capo_pcs._protocol.serialize
 
-    out["createdAt"] = capo_pcs.types._prelude.timestamp.serialize_aws_json_1_0(
-        value["created_at"]
-    )
-    import capo_pcs.types._prelude.timestamp
+    out["createdAt"] = capo_pcs._protocol.serialize.fmt_date_time(value["created_at"])
+    import capo_pcs._protocol.serialize
 
-    out["modifiedAt"] = capo_pcs.types._prelude.timestamp.serialize_aws_json_1_0(
-        value["modified_at"]
-    )
+    out["modifiedAt"] = capo_pcs._protocol.serialize.fmt_date_time(value["modified_at"])
     import capo_pcs.types.scheduler
 
     out["scheduler"] = capo_pcs.types.scheduler.serialize_aws_json_1_0(
@@ -104,19 +100,19 @@ def serialize_aws_json_1_0(value: Cluster) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Cluster:
     out: Cluster = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Cluster.name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Cluster.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Cluster.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_pcs.types.cluster_status
 
         out["status"] = capo_pcs.types.cluster_status.deserialize_aws_json_1_0(
@@ -124,23 +120,23 @@ def deserialize_aws_json_1_0(data: dict) -> Cluster:
         )
     else:
         raise DeserializationError("Cluster.status required")
-    if "createdAt" in data:
-        import capo_pcs.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_pcs.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("Cluster.created_at required")
-    if "modifiedAt" in data:
-        import capo_pcs.types._prelude.timestamp
+    if data.get("modifiedAt") is not None:
+        import datetime
 
-        out["modified_at"] = capo_pcs.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["modifiedAt"]
+        out["modified_at"] = datetime.datetime.fromisoformat(
+            data["modifiedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("Cluster.modified_at required")
-    if "scheduler" in data:
+    if data.get("scheduler") is not None:
         import capo_pcs.types.scheduler
 
         out["scheduler"] = capo_pcs.types.scheduler.deserialize_aws_json_1_0(
@@ -148,13 +144,13 @@ def deserialize_aws_json_1_0(data: dict) -> Cluster:
         )
     else:
         raise DeserializationError("Cluster.scheduler required")
-    if "size" in data:
+    if data.get("size") is not None:
         import capo_pcs.types.size
 
         out["size"] = capo_pcs.types.size.deserialize_aws_json_1_0(data["size"])
     else:
         raise DeserializationError("Cluster.size required")
-    if "slurmConfiguration" in data:
+    if data.get("slurmConfiguration") is not None:
         import capo_pcs.types.cluster_slurm_configuration
 
         out["slurm_configuration"] = (
@@ -162,7 +158,7 @@ def deserialize_aws_json_1_0(data: dict) -> Cluster:
                 data["slurmConfiguration"]
             )
         )
-    if "networking" in data:
+    if data.get("networking") is not None:
         import capo_pcs.types.networking
 
         out["networking"] = capo_pcs.types.networking.deserialize_aws_json_1_0(
@@ -170,13 +166,13 @@ def deserialize_aws_json_1_0(data: dict) -> Cluster:
         )
     else:
         raise DeserializationError("Cluster.networking required")
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_pcs.types.endpoints
 
         out["endpoints"] = capo_pcs.types.endpoints.deserialize_aws_json_1_0(
             data["endpoints"]
         )
-    if "errorInfo" in data:
+    if data.get("errorInfo") is not None:
         import capo_pcs.types.error_info_list
 
         out["error_info"] = capo_pcs.types.error_info_list.deserialize_aws_json_1_0(

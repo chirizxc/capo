@@ -36,9 +36,9 @@ def serialize_json(value: ListReadSetActivationJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReadSetActivationJobsResponse:
     out: ListReadSetActivationJobsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "activationJobs" in data:
+    if data.get("activationJobs") is not None:
         import capo_omics.types.activate_read_set_job_list
 
         out["activation_jobs"] = (

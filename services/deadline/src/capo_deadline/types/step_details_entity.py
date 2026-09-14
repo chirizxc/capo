@@ -44,23 +44,23 @@ def serialize_json(value: StepDetailsEntity) -> dict:
 
 def deserialize_json(data: dict) -> StepDetailsEntity:
     out: StepDetailsEntity = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("StepDetailsEntity.job_id required")
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
     else:
         raise DeserializationError("StepDetailsEntity.step_id required")
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     else:
         raise DeserializationError("StepDetailsEntity.schema_version required")
-    if "template" in data:
+    if data.get("template") is not None:
         out["template"] = data["template"]
     else:
         raise DeserializationError("StepDetailsEntity.template required")
-    if "dependencies" in data:
+    if data.get("dependencies") is not None:
         import capo_deadline.types.dependencies_list
 
         out["dependencies"] = capo_deadline.types.dependencies_list.deserialize_json(

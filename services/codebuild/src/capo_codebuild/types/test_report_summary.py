@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: TestReportSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestReportSummary:
     out: TestReportSummary = {}  # type: ignore[typeddict-item]
-    if "total" in data:
+    if data.get("total") is not None:
         out["total"] = data["total"]
     else:
         raise DeserializationError("TestReportSummary.total required")
-    if "statusCounts" in data:
+    if data.get("statusCounts") is not None:
         import capo_codebuild.types.report_status_counts
 
         out["status_counts"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> TestReportSummary:
         )
     else:
         raise DeserializationError("TestReportSummary.status_counts required")
-    if "durationInNanoSeconds" in data:
+    if data.get("durationInNanoSeconds") is not None:
         out["duration_in_nano_seconds"] = data["durationInNanoSeconds"]
     else:
         raise DeserializationError(

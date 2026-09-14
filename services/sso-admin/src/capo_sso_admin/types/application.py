@@ -91,19 +91,19 @@ def serialize_aws_json_1_1(value: Application) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Application:
     out: Application = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
-    if "ApplicationProviderArn" in data:
+    if data.get("ApplicationProviderArn") is not None:
         out["application_provider_arn"] = data["ApplicationProviderArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ApplicationAccount" in data:
+    if data.get("ApplicationAccount") is not None:
         out["application_account"] = data["ApplicationAccount"]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
-    if "IdentityStoreArn" in data:
+    if data.get("IdentityStoreArn") is not None:
         out["identity_store_arn"] = data["IdentityStoreArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sso_admin.types.application_status
 
         out["status"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> Application:
                 data["Status"]
             )
         )
-    if "PortalOptions" in data:
+    if data.get("PortalOptions") is not None:
         import capo_sso_admin.types.portal_options
 
         out["portal_options"] = (
@@ -119,14 +119,14 @@ def deserialize_aws_json_1_1(data: dict) -> Application:
                 data["PortalOptions"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_sso_admin.types.date
 
         out["created_date"] = capo_sso_admin.types.date.deserialize_aws_json_1_1(
             data["CreatedDate"]
         )
-    if "CreatedFrom" in data:
+    if data.get("CreatedFrom") is not None:
         out["created_from"] = data["CreatedFrom"]
     return out

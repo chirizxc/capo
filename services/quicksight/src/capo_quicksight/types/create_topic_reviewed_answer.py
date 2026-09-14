@@ -57,29 +57,29 @@ def serialize_json(value: CreateTopicReviewedAnswer) -> dict:
 
 def deserialize_json(data: dict) -> CreateTopicReviewedAnswer:
     out: CreateTopicReviewedAnswer = {}  # type: ignore[typeddict-item]
-    if "AnswerId" in data:
+    if data.get("AnswerId") is not None:
         out["answer_id"] = data["AnswerId"]
     else:
         raise DeserializationError("CreateTopicReviewedAnswer.answer_id required")
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
     else:
         raise DeserializationError("CreateTopicReviewedAnswer.dataset_arn required")
-    if "Question" in data:
+    if data.get("Question") is not None:
         out["question"] = data["Question"]
     else:
         raise DeserializationError("CreateTopicReviewedAnswer.question required")
-    if "Mir" in data:
+    if data.get("Mir") is not None:
         import capo_quicksight.types.topic_ir
 
         out["mir"] = capo_quicksight.types.topic_ir.deserialize_json(data["Mir"])
-    if "PrimaryVisual" in data:
+    if data.get("PrimaryVisual") is not None:
         import capo_quicksight.types.topic_visual
 
         out["primary_visual"] = capo_quicksight.types.topic_visual.deserialize_json(
             data["PrimaryVisual"]
         )
-    if "Template" in data:
+    if data.get("Template") is not None:
         import capo_quicksight.types.topic_template
 
         out["template"] = capo_quicksight.types.topic_template.deserialize_json(

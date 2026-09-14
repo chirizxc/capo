@@ -31,7 +31,7 @@ def serialize_json(value: AuthChallengeResponseEvent) -> dict:
 
 def deserialize_json(data: dict) -> AuthChallengeResponseEvent:
     out: AuthChallengeResponseEvent = {}  # type: ignore[typeddict-item]
-    if "responseMap" in data:
+    if data.get("responseMap") is not None:
         import capo_qbusiness.types.authorization_response_map
 
         out["response_map"] = (

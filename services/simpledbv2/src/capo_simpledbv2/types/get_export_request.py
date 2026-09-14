@@ -24,7 +24,7 @@ def serialize_json(value: GetExportRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetExportRequest:
     out: GetExportRequest = {}  # type: ignore[typeddict-item]
-    if "exportArn" in data:
+    if data.get("exportArn") is not None:
         out["export_arn"] = data["exportArn"]
     else:
         raise DeserializationError("GetExportRequest.export_arn required")

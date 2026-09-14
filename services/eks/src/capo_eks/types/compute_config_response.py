@@ -37,14 +37,14 @@ def serialize_json(value: ComputeConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> ComputeConfigResponse:
     out: ComputeConfigResponse = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "nodePools" in data:
+    if data.get("nodePools") is not None:
         import capo_eks.types.string_list
 
         out["node_pools"] = capo_eks.types.string_list.deserialize_json(
             data["nodePools"]
         )
-    if "nodeRoleArn" in data:
+    if data.get("nodeRoleArn") is not None:
         out["node_role_arn"] = data["nodeRoleArn"]
     return out

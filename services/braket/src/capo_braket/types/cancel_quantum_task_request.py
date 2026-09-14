@@ -27,7 +27,7 @@ def serialize_json(value: CancelQuantumTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelQuantumTaskRequest:
     out: CancelQuantumTaskRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CancelQuantumTaskRequest.client_token required")

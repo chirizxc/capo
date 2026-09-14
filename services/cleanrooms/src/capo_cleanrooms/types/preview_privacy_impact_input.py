@@ -35,7 +35,7 @@ def serialize_json(value: PreviewPrivacyImpactInput) -> dict:
 
 def deserialize_json(data: dict) -> PreviewPrivacyImpactInput:
     out: PreviewPrivacyImpactInput = {}  # type: ignore[typeddict-item]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_cleanrooms.types.preview_privacy_impact_parameters_input
 
         out["parameters"] = (

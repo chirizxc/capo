@@ -30,15 +30,15 @@ def serialize_json(value: ClusterInList) -> dict:
 
 def deserialize_json(data: dict) -> ClusterInList:
     out: ClusterInList = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
     else:
         raise DeserializationError("ClusterInList.cluster_name required")
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
     else:
         raise DeserializationError("ClusterInList.cluster_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ClusterInList.status required")

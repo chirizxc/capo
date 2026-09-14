@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: CreateWorkerBlockRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkerBlockRequest:
     out: CreateWorkerBlockRequest = {}  # type: ignore[typeddict-item]
-    if "WorkerId" in data:
+    if data.get("WorkerId") is not None:
         out["worker_id"] = data["WorkerId"]
     else:
         raise DeserializationError("CreateWorkerBlockRequest.worker_id required")
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     else:
         raise DeserializationError("CreateWorkerBlockRequest.reason required")

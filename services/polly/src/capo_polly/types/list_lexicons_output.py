@@ -34,12 +34,12 @@ def serialize_json(value: ListLexiconsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListLexiconsOutput:
     out: ListLexiconsOutput = {}  # type: ignore[typeddict-item]
-    if "Lexicons" in data:
+    if data.get("Lexicons") is not None:
         import capo_polly.types.lexicon_description_list
 
         out["lexicons"] = capo_polly.types.lexicon_description_list.deserialize_json(
             data["Lexicons"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

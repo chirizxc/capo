@@ -66,19 +66,19 @@ def serialize_aws_json_1_1(value: PartitionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartitionInput:
     out: PartitionInput = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_glue.types.value_string_list
 
         out["values"] = capo_glue.types.value_string_list.deserialize_aws_json_1_1(
             data["Values"]
         )
-    if "LastAccessTime" in data:
+    if data.get("LastAccessTime") is not None:
         import capo_glue.types.timestamp
 
         out["last_access_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastAccessTime"]
         )
-    if "StorageDescriptor" in data:
+    if data.get("StorageDescriptor") is not None:
         import capo_glue.types.storage_descriptor
 
         out["storage_descriptor"] = (
@@ -86,13 +86,13 @@ def deserialize_aws_json_1_1(data: dict) -> PartitionInput:
                 data["StorageDescriptor"]
             )
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.parameters_map
 
         out["parameters"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(
             data["Parameters"]
         )
-    if "LastAnalyzedTime" in data:
+    if data.get("LastAnalyzedTime") is not None:
         import capo_glue.types.timestamp
 
         out["last_analyzed_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(

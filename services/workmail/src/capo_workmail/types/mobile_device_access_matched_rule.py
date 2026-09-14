@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: MobileDeviceAccessMatchedRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessMatchedRule:
     out: MobileDeviceAccessMatchedRule = {}  # type: ignore[typeddict-item]
-    if "MobileDeviceAccessRuleId" in data:
+    if data.get("MobileDeviceAccessRuleId") is not None:
         out["mobile_device_access_rule_id"] = data["MobileDeviceAccessRuleId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

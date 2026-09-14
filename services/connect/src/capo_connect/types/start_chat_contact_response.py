@@ -39,12 +39,12 @@ def serialize_json(value: StartChatContactResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartChatContactResponse:
     out: StartChatContactResponse = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
-    if "ParticipantId" in data:
+    if data.get("ParticipantId") is not None:
         out["participant_id"] = data["ParticipantId"]
-    if "ParticipantToken" in data:
+    if data.get("ParticipantToken") is not None:
         out["participant_token"] = data["ParticipantToken"]
-    if "ContinuedFromContactId" in data:
+    if data.get("ContinuedFromContactId") is not None:
         out["continued_from_contact_id"] = data["ContinuedFromContactId"]
     return out

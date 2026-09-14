@@ -41,18 +41,18 @@ def serialize_json(value: CisaData) -> dict:
 
 def deserialize_json(data: dict) -> CisaData:
     out: CisaData = {}  # type: ignore[typeddict-item]
-    if "dateAdded" in data:
+    if data.get("dateAdded") is not None:
         import capo_inspector2.types.cisa_date_added
 
         out["date_added"] = capo_inspector2.types.cisa_date_added.deserialize_json(
             data["dateAdded"]
         )
-    if "dateDue" in data:
+    if data.get("dateDue") is not None:
         import capo_inspector2.types.cisa_date_due
 
         out["date_due"] = capo_inspector2.types.cisa_date_due.deserialize_json(
             data["dateDue"]
         )
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     return out

@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: IdentityCenterConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IdentityCenterConfig:
     out: IdentityCenterConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     return out

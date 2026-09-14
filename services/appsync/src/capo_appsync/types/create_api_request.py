@@ -43,17 +43,17 @@ def serialize_json(value: CreateApiRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApiRequest:
     out: CreateApiRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateApiRequest.name required")
-    if "ownerContact" in data:
+    if data.get("ownerContact") is not None:
         out["owner_contact"] = data["ownerContact"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appsync.types.tag_map
 
         out["tags"] = capo_appsync.types.tag_map.deserialize_json(data["tags"])
-    if "eventConfig" in data:
+    if data.get("eventConfig") is not None:
         import capo_appsync.types.event_config
 
         out["event_config"] = capo_appsync.types.event_config.deserialize_json(

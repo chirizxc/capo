@@ -31,7 +31,7 @@ def serialize_json(value: DeleteResourceExplorerSetupInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteResourceExplorerSetupInput:
     out: DeleteResourceExplorerSetupInput = {}  # type: ignore[typeddict-item]
-    if "RegionList" in data:
+    if data.get("RegionList") is not None:
         import capo_resource_explorer_2.types.region_list
 
         out["region_list"] = (
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> DeleteResourceExplorerSetupInput:
                 data["RegionList"]
             )
         )
-    if "DeleteInAllRegions" in data:
+    if data.get("DeleteInAllRegions") is not None:
         out["delete_in_all_regions"] = data["DeleteInAllRegions"]
     return out

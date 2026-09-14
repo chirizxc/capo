@@ -26,22 +26,30 @@ def serialize_aws_json_1_1(value: BotStatistics) -> dict:
     out: dict = {}
     out["BotName"] = value["bot_name"]
     out["RequestCount"] = value.get("request_count", 0)
-    out["Percentage"] = value.get("percentage", 0)
+    out["Percentage"] = (
+        "NaN"
+        if value.get("percentage", 0) != value.get("percentage", 0)
+        else "Infinity"
+        if value.get("percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("percentage", 0) == float("-inf")
+        else value.get("percentage", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> BotStatistics:
     out: BotStatistics = {}  # type: ignore[typeddict-item]
-    if "BotName" in data:
+    if data.get("BotName") is not None:
         out["bot_name"] = data["BotName"]
     else:
         raise DeserializationError("BotStatistics.bot_name required")
-    if "RequestCount" in data:
+    if data.get("RequestCount") is not None:
         out["request_count"] = data["RequestCount"]
     else:
         out["request_count"] = 0
-    if "Percentage" in data:
-        out["percentage"] = data["Percentage"]
+    if data.get("Percentage") is not None:
+        out["percentage"] = float(data["Percentage"])
     else:
         out["percentage"] = 0
     return out

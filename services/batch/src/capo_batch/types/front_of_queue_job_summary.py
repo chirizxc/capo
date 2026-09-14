@@ -28,8 +28,8 @@ def serialize_json(value: FrontOfQueueJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> FrontOfQueueJobSummary:
     out: FrontOfQueueJobSummary = {}  # type: ignore[typeddict-item]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "earliestTimeAtPosition" in data:
+    if data.get("earliestTimeAtPosition") is not None:
         out["earliest_time_at_position"] = data["earliestTimeAtPosition"]
     return out

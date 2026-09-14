@@ -47,16 +47,16 @@ def serialize_json(value: AppMonitorSummary) -> dict:
 
 def deserialize_json(data: dict) -> AppMonitorSummary:
     out: AppMonitorSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Created" in data:
+    if data.get("Created") is not None:
         out["created"] = data["Created"]
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         out["last_modified"] = data["LastModified"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         out["platform"] = data["Platform"]
     return out

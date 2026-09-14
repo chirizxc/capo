@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteSubnetGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSubnetGroupRequest:
     out: DeleteSubnetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "SubnetGroupName" in data:
+    if data.get("SubnetGroupName") is not None:
         out["subnet_group_name"] = data["SubnetGroupName"]
     else:
         raise DeserializationError(

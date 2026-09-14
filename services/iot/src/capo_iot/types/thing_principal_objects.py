@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ThingPrincipalObjects:
 
     out: ThingPrincipalObjects = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.thing_principal_object.deserialize_json(item))
     return out

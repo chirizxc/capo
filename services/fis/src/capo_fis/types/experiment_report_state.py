@@ -45,15 +45,15 @@ def serialize_json(value: ExperimentReportState) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentReportState:
     out: ExperimentReportState = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_fis.types.experiment_report_status
 
         out["status"] = capo_fis.types.experiment_report_status.deserialize_json(
             data["status"]
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_fis.types.experiment_report_error
 
         out["error"] = capo_fis.types.experiment_report_error.deserialize_json(

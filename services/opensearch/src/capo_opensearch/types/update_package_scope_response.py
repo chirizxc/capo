@@ -47,9 +47,9 @@ def serialize_json(value: UpdatePackageScopeResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageScopeResponse:
     out: UpdatePackageScopeResponse = {}  # type: ignore[typeddict-item]
-    if "PackageID" in data:
+    if data.get("PackageID") is not None:
         out["package_id"] = data["PackageID"]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         import capo_opensearch.types.package_scope_operation_enum
 
         out["operation"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> UpdatePackageScopeResponse:
                 data["Operation"]
             )
         )
-    if "PackageUserList" in data:
+    if data.get("PackageUserList") is not None:
         import capo_opensearch.types.package_user_list
 
         out["package_user_list"] = (

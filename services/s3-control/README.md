@@ -13,9 +13,9 @@ from capo_s3_control import AsyncS3ControlClient
 
 
 async def main():
-    async with AsyncS3ControlClient() as s3:
+    async with AsyncS3ControlClient() as s3_control:
         # Example: call the associate_access_grants_identity_center operation
-        response = await s3.associate_access_grants_identity_center()
+        response = await s3_control.associate_access_grants_identity_center()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_s3_control import AsyncS3ControlClient
 
 
 async def main():
-    async with AsyncS3ControlClient() as s3:
-        # Example: paginate over list_access_points_for_directory_buckets
-        async for item in s3.iter_list_access_points_for_directory_buckets():
+    async with AsyncS3ControlClient() as s3_control:
+        # Example: paginate over list_access_grants
+        async for item in s3_control.iter_list_access_grants():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_s3_control.error import BucketAlreadyExists
 
 
 async def main():
-    async with AsyncS3ControlClient() as s3:
+    async with AsyncS3ControlClient() as s3_control:
         try:
-            await s3.create_bucket()
+            await s3_control.create_bucket()
         except BucketAlreadyExists as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_s3_control import AsyncS3ControlClient
 
 
 async def main():
-    async with AsyncS3ControlClient() as s3:
+    async with AsyncS3ControlClient() as s3_control:
         # Default: 3 attempts for every operation
-        response = await s3.associate_access_grants_identity_center()
+        response = await s3_control.associate_access_grants_identity_center()
 
         # Override per operation
-        response = await s3.associate_access_grants_identity_center(config_overrides={"retry_max_attempts": 5})
+        response = await s3_control.associate_access_grants_identity_center(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_access_grants_identity_center(config_overrides={"retry_max_attempts": 1})
+        response = await s3_control.associate_access_grants_identity_center(config_overrides={"retry_max_attempts": 1})
 ```

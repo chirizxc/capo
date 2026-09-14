@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: RollingDeploymentPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RollingDeploymentPolicy:
     out: RollingDeploymentPolicy = {}  # type: ignore[typeddict-item]
-    if "MaximumBatchSize" in data:
+    if data.get("MaximumBatchSize") is not None:
         import capo_sagemaker.types.capacity_size_config
 
         out["maximum_batch_size"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> RollingDeploymentPolicy:
                 data["MaximumBatchSize"]
             )
         )
-    if "RollbackMaximumBatchSize" in data:
+    if data.get("RollbackMaximumBatchSize") is not None:
         import capo_sagemaker.types.capacity_size_config
 
         out["rollback_maximum_batch_size"] = (

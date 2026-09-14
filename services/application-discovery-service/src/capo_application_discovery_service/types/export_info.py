@@ -86,11 +86,11 @@ def serialize_aws_json_1_1(value: ExportInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportInfo:
     out: ExportInfo = {}  # type: ignore[typeddict-item]
-    if "exportId" in data:
+    if data.get("exportId") is not None:
         out["export_id"] = data["exportId"]
     else:
         raise DeserializationError("ExportInfo.export_id required")
-    if "exportStatus" in data:
+    if data.get("exportStatus") is not None:
         import capo_application_discovery_service.types.export_status
 
         out["export_status"] = (
@@ -100,13 +100,13 @@ def deserialize_aws_json_1_1(data: dict) -> ExportInfo:
         )
     else:
         raise DeserializationError("ExportInfo.export_status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     else:
         raise DeserializationError("ExportInfo.status_message required")
-    if "configurationsDownloadUrl" in data:
+    if data.get("configurationsDownloadUrl") is not None:
         out["configurations_download_url"] = data["configurationsDownloadUrl"]
-    if "exportRequestTime" in data:
+    if data.get("exportRequestTime") is not None:
         import capo_application_discovery_service.types.export_request_time
 
         out["export_request_time"] = (
@@ -116,11 +116,11 @@ def deserialize_aws_json_1_1(data: dict) -> ExportInfo:
         )
     else:
         raise DeserializationError("ExportInfo.export_request_time required")
-    if "isTruncated" in data:
+    if data.get("isTruncated") is not None:
         out["is_truncated"] = data["isTruncated"]
     else:
         out["is_truncated"] = False
-    if "requestedStartTime" in data:
+    if data.get("requestedStartTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["requested_start_time"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExportInfo:
                 data["requestedStartTime"]
             )
         )
-    if "requestedEndTime" in data:
+    if data.get("requestedEndTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["requested_end_time"] = (

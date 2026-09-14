@@ -36,11 +36,11 @@ def serialize_json(value: CodeError) -> dict:
 
 def deserialize_json(data: dict) -> CodeError:
     out: CodeError = {}  # type: ignore[typeddict-item]
-    if "errorType" in data:
+    if data.get("errorType") is not None:
         out["error_type"] = data["errorType"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_appsync.types.code_error_location
 
         out["location"] = capo_appsync.types.code_error_location.deserialize_json(

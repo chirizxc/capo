@@ -49,26 +49,26 @@ def serialize_json(value: CreateLogicallyAirGappedBackupVaultInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateLogicallyAirGappedBackupVaultInput:
     out: CreateLogicallyAirGappedBackupVaultInput = {}  # type: ignore[typeddict-item]
-    if "BackupVaultTags" in data:
+    if data.get("BackupVaultTags") is not None:
         import capo_backup.types.tags
 
         out["backup_vault_tags"] = capo_backup.types.tags.deserialize_json(
             data["BackupVaultTags"]
         )
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "MinRetentionDays" in data:
+    if data.get("MinRetentionDays") is not None:
         out["min_retention_days"] = data["MinRetentionDays"]
     else:
         raise DeserializationError(
             "CreateLogicallyAirGappedBackupVaultInput.min_retention_days required"
         )
-    if "MaxRetentionDays" in data:
+    if data.get("MaxRetentionDays") is not None:
         out["max_retention_days"] = data["MaxRetentionDays"]
     else:
         raise DeserializationError(
             "CreateLogicallyAirGappedBackupVaultInput.max_retention_days required"
         )
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
     return out

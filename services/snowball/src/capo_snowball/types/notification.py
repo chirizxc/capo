@@ -44,9 +44,9 @@ def serialize_aws_json_1_1(value: Notification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Notification:
     out: Notification = {}  # type: ignore[typeddict-item]
-    if "SnsTopicARN" in data:
+    if data.get("SnsTopicARN") is not None:
         out["sns_topic_arn"] = data["SnsTopicARN"]
-    if "JobStatesToNotify" in data:
+    if data.get("JobStatesToNotify") is not None:
         import capo_snowball.types.job_state_list
 
         out["job_states_to_notify"] = (
@@ -54,10 +54,10 @@ def deserialize_aws_json_1_1(data: dict) -> Notification:
                 data["JobStatesToNotify"]
             )
         )
-    if "NotifyAll" in data:
+    if data.get("NotifyAll") is not None:
         out["notify_all"] = data["NotifyAll"]
     else:
         out["notify_all"] = False
-    if "DevicePickupSnsTopicARN" in data:
+    if data.get("DevicePickupSnsTopicARN") is not None:
         out["device_pickup_sns_topic_arn"] = data["DevicePickupSnsTopicARN"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ResetAlarmActionRequests:
 
     out: ResetAlarmActionRequests = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_events_data.types.reset_alarm_action_request.deserialize_json(item)
         )

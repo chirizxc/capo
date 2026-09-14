@@ -49,7 +49,7 @@ def serialize_json(value: Deinterlacer) -> dict:
 
 def deserialize_json(data: dict) -> Deinterlacer:
     out: Deinterlacer = {}  # type: ignore[typeddict-item]
-    if "algorithm" in data:
+    if data.get("algorithm") is not None:
         import capo_mediaconvert.types.deinterlace_algorithm
 
         out["algorithm"] = (
@@ -57,13 +57,13 @@ def deserialize_json(data: dict) -> Deinterlacer:
                 data["algorithm"]
             )
         )
-    if "control" in data:
+    if data.get("control") is not None:
         import capo_mediaconvert.types.deinterlacer_control
 
         out["control"] = capo_mediaconvert.types.deinterlacer_control.deserialize_json(
             data["control"]
         )
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_mediaconvert.types.deinterlacer_mode
 
         out["mode"] = capo_mediaconvert.types.deinterlacer_mode.deserialize_json(

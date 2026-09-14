@@ -33,8 +33,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsServiceDeploymentConfigurationDeploymentCircuitBreakerDetails:
     out: AwsEcsServiceDeploymentConfigurationDeploymentCircuitBreakerDetails = {}  # type: ignore[typeddict-item]
-    if "Enable" in data:
+    if data.get("Enable") is not None:
         out["enable"] = data["Enable"]
-    if "Rollback" in data:
+    if data.get("Rollback") is not None:
         out["rollback"] = data["Rollback"]
     return out

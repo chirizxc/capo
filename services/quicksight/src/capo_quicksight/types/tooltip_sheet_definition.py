@@ -75,13 +75,13 @@ def serialize_json(value: TooltipSheetDefinition) -> dict:
 
 def deserialize_json(data: dict) -> TooltipSheetDefinition:
     out: TooltipSheetDefinition = {}  # type: ignore[typeddict-item]
-    if "SheetId" in data:
+    if data.get("SheetId") is not None:
         out["sheet_id"] = data["SheetId"]
     else:
         raise DeserializationError("TooltipSheetDefinition.sheet_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Visuals" in data:
+    if data.get("Visuals") is not None:
         import capo_quicksight.types.tooltip_sheet_visual_list
 
         out["visuals"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> TooltipSheetDefinition:
                 data["Visuals"]
             )
         )
-    if "TextBoxes" in data:
+    if data.get("TextBoxes") is not None:
         import capo_quicksight.types.tooltip_sheet_text_box_list
 
         out["text_boxes"] = (
@@ -97,13 +97,13 @@ def deserialize_json(data: dict) -> TooltipSheetDefinition:
                 data["TextBoxes"]
             )
         )
-    if "Images" in data:
+    if data.get("Images") is not None:
         import capo_quicksight.types.tooltip_sheet_image_list
 
         out["images"] = capo_quicksight.types.tooltip_sheet_image_list.deserialize_json(
             data["Images"]
         )
-    if "Layouts" in data:
+    if data.get("Layouts") is not None:
         import capo_quicksight.types.layout_list
 
         out["layouts"] = capo_quicksight.types.layout_list.deserialize_json(

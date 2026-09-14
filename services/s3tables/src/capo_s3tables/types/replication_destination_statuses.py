@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ReplicationDestinationStatuses:
 
     out: ReplicationDestinationStatuses = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_s3tables.types.replication_destination_status_model.deserialize_json(
                 item

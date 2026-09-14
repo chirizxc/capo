@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SecurityGroupIdentifierList:
 
     out: SecurityGroupIdentifierList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_snow_device_management.types.security_group_identifier.deserialize_json(
                 item

@@ -22,8 +22,8 @@ def serialize_json(value: Tool) -> dict:
 
 def deserialize_json(data: dict) -> Tool:
     out: Tool = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

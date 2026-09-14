@@ -72,27 +72,27 @@ def serialize_aws_json_1_1(value: DescribeLocationEfsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLocationEfsResponse:
     out: DescribeLocationEfsResponse = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
-    if "Ec2Config" in data:
+    if data.get("Ec2Config") is not None:
         import capo_datasync.types.ec2_config
 
         out["ec2_config"] = capo_datasync.types.ec2_config.deserialize_aws_json_1_1(
             data["Ec2Config"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_datasync.types.time
 
         out["creation_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "AccessPointArn" in data:
+    if data.get("AccessPointArn") is not None:
         out["access_point_arn"] = data["AccessPointArn"]
-    if "FileSystemAccessRoleArn" in data:
+    if data.get("FileSystemAccessRoleArn") is not None:
         out["file_system_access_role_arn"] = data["FileSystemAccessRoleArn"]
-    if "InTransitEncryption" in data:
+    if data.get("InTransitEncryption") is not None:
         import capo_datasync.types.efs_in_transit_encryption
 
         out["in_transit_encryption"] = (

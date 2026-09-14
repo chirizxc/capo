@@ -110,7 +110,7 @@ def serialize_json(value: RequestBasedServiceLevelIndicatorMetric) -> dict:
 
 def deserialize_json(data: dict) -> RequestBasedServiceLevelIndicatorMetric:
     out: RequestBasedServiceLevelIndicatorMetric = {}  # type: ignore[typeddict-item]
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["key_attributes"] = (
@@ -118,9 +118,9 @@ def deserialize_json(data: dict) -> RequestBasedServiceLevelIndicatorMetric:
                 data["KeyAttributes"]
             )
         )
-    if "OperationName" in data:
+    if data.get("OperationName") is not None:
         out["operation_name"] = data["OperationName"]
-    if "MetricType" in data:
+    if data.get("MetricType") is not None:
         import capo_application_signals.types.service_level_indicator_metric_type
 
         out["metric_type"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> RequestBasedServiceLevelIndicatorMetric:
                 data["MetricType"]
             )
         )
-    if "TotalRequestCountMetric" in data:
+    if data.get("TotalRequestCountMetric") is not None:
         import capo_application_signals.types.metric_data_queries
 
         out["total_request_count_metric"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> RequestBasedServiceLevelIndicatorMetric:
         raise DeserializationError(
             "RequestBasedServiceLevelIndicatorMetric.total_request_count_metric required"
         )
-    if "MonitoredRequestCountMetric" in data:
+    if data.get("MonitoredRequestCountMetric") is not None:
         import capo_application_signals.types.monitored_request_count_metric_data_queries
 
         out["monitored_request_count_metric"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> RequestBasedServiceLevelIndicatorMetric:
         raise DeserializationError(
             "RequestBasedServiceLevelIndicatorMetric.monitored_request_count_metric required"
         )
-    if "DependencyConfig" in data:
+    if data.get("DependencyConfig") is not None:
         import capo_application_signals.types.dependency_config
 
         out["dependency_config"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> RequestBasedServiceLevelIndicatorMetric:
                 data["DependencyConfig"]
             )
         )
-    if "MetricSource" in data:
+    if data.get("MetricSource") is not None:
         import capo_application_signals.types.metric_source
 
         out["metric_source"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> RequestBasedServiceLevelIndicatorMetric:
                 data["MetricSource"]
             )
         )
-    if "CompositeSliConfig" in data:
+    if data.get("CompositeSliConfig") is not None:
         import capo_application_signals.types.composite_sli_config
 
         out["composite_sli_config"] = (

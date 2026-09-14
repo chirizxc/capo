@@ -30,7 +30,7 @@ def serialize_json(value: UpdateBridgeStateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBridgeStateRequest:
     out: UpdateBridgeStateRequest = {}  # type: ignore[typeddict-item]
-    if "desiredState" in data:
+    if data.get("desiredState") is not None:
         import capo_mediaconnect.types.desired_state
 
         out["desired_state"] = capo_mediaconnect.types.desired_state.deserialize_json(

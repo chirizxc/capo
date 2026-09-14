@@ -59,11 +59,11 @@ def serialize_json(value: ContainerConfig) -> dict:
 
 def deserialize_json(data: dict) -> ContainerConfig:
     out: ContainerConfig = {}  # type: ignore[typeddict-item]
-    if "imageUri" in data:
+    if data.get("imageUri") is not None:
         out["image_uri"] = data["imageUri"]
     else:
         raise DeserializationError("ContainerConfig.image_uri required")
-    if "entrypoint" in data:
+    if data.get("entrypoint") is not None:
         import capo_cleanroomsml.types.container_entrypoint
 
         out["entrypoint"] = (
@@ -71,13 +71,13 @@ def deserialize_json(data: dict) -> ContainerConfig:
                 data["entrypoint"]
             )
         )
-    if "arguments" in data:
+    if data.get("arguments") is not None:
         import capo_cleanroomsml.types.container_arguments
 
         out["arguments"] = capo_cleanroomsml.types.container_arguments.deserialize_json(
             data["arguments"]
         )
-    if "metricDefinitions" in data:
+    if data.get("metricDefinitions") is not None:
         import capo_cleanroomsml.types.metric_definition_list
 
         out["metric_definitions"] = (

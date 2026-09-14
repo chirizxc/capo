@@ -36,6 +36,8 @@ def serialize_aws_json_1_0(
             value["commitment_modifications"]
         )
     )
+    if "client_token" in value:
+        out["clientToken"] = value["client_token"]
     return out
 
 
@@ -43,13 +45,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> BatchCreateBillScenarioCommitmentModificationRequest:
     out: BatchCreateBillScenarioCommitmentModificationRequest = {}  # type: ignore[typeddict-item]
-    if "billScenarioId" in data:
+    if data.get("billScenarioId") is not None:
         out["bill_scenario_id"] = data["billScenarioId"]
     else:
         raise DeserializationError(
             "BatchCreateBillScenarioCommitmentModificationRequest.bill_scenario_id required"
         )
-    if "commitmentModifications" in data:
+    if data.get("commitmentModifications") is not None:
         import capo_bcm_pricing_calculator.types.batch_create_bill_scenario_commitment_modification_entries
 
         out["commitment_modifications"] = (
@@ -61,4 +63,6 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "BatchCreateBillScenarioCommitmentModificationRequest.commitment_modifications required"
         )
+    if data.get("clientToken") is not None:
+        out["client_token"] = data["clientToken"]
     return out

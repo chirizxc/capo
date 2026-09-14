@@ -37,15 +37,20 @@ class ReservedNodeExchangeNotFoundFault(ServiceError):
 
     code: str | None = "ReservedNodeExchangeNotFoundFault"
 
-    def __init__(self, data: ReservedNodeExchangeNotFoundFault_):
+    def __init__(
+        self, data: ReservedNodeExchangeNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ReservedNodeExchangeNotFoundFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ReservedNodeExchangeNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ReservedNodeExchangeNotFoundFault":
+        return cls(deserialize_query(el), message)

@@ -57,13 +57,13 @@ def serialize_json(value: UpdateApprovalTeamRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApprovalTeamRequest:
     out: UpdateApprovalTeamRequest = {}  # type: ignore[typeddict-item]
-    if "ApprovalStrategy" in data:
+    if data.get("ApprovalStrategy") is not None:
         import capo_mpa.types.approval_strategy
 
         out["approval_strategy"] = capo_mpa.types.approval_strategy.deserialize_json(
             data["ApprovalStrategy"]
         )
-    if "Approvers" in data:
+    if data.get("Approvers") is not None:
         import capo_mpa.types.approval_team_request_approvers
 
         out["approvers"] = (
@@ -71,9 +71,9 @@ def deserialize_json(data: dict) -> UpdateApprovalTeamRequest:
                 data["Approvers"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "UpdateActions" in data:
+    if data.get("UpdateActions") is not None:
         import capo_mpa.types.update_actions
 
         out["update_actions"] = capo_mpa.types.update_actions.deserialize_json(

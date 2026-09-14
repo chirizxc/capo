@@ -13,9 +13,9 @@ from capo_mediaconvert import AsyncMediaConvertClient
 
 
 async def main():
-    async with AsyncMediaConvertClient() as s3:
+    async with AsyncMediaConvertClient() as media_convert:
         # Example: call the associate_certificate operation
-        response = await s3.associate_certificate()
+        response = await media_convert.associate_certificate()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_mediaconvert import AsyncMediaConvertClient
 
 
 async def main():
-    async with AsyncMediaConvertClient() as s3:
+    async with AsyncMediaConvertClient() as media_convert:
         # Example: paginate over describe_endpoints
-        async for item in s3.iter_describe_endpoints():
+        async for item in media_convert.iter_describe_endpoints():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_mediaconvert.error import BadRequestException
 
 
 async def main():
-    async with AsyncMediaConvertClient() as s3:
+    async with AsyncMediaConvertClient() as media_convert:
         try:
-            await s3.associate_certificate()
+            await media_convert.associate_certificate()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_mediaconvert import AsyncMediaConvertClient
 
 
 async def main():
-    async with AsyncMediaConvertClient() as s3:
+    async with AsyncMediaConvertClient() as media_convert:
         # Default: 3 attempts for every operation
-        response = await s3.associate_certificate()
+        response = await media_convert.associate_certificate()
 
         # Override per operation
-        response = await s3.associate_certificate(config_overrides={"retry_max_attempts": 5})
+        response = await media_convert.associate_certificate(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_certificate(config_overrides={"retry_max_attempts": 1})
+        response = await media_convert.associate_certificate(config_overrides={"retry_max_attempts": 1})
 ```

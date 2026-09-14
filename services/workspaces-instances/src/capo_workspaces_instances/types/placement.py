@@ -69,21 +69,21 @@ def serialize_aws_json_1_0(value: Placement) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Placement:
     out: Placement = {}  # type: ignore[typeddict-item]
-    if "Affinity" in data:
+    if data.get("Affinity") is not None:
         out["affinity"] = data["Affinity"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "HostId" in data:
+    if data.get("HostId") is not None:
         out["host_id"] = data["HostId"]
-    if "HostResourceGroupArn" in data:
+    if data.get("HostResourceGroupArn") is not None:
         out["host_resource_group_arn"] = data["HostResourceGroupArn"]
-    if "PartitionNumber" in data:
+    if data.get("PartitionNumber") is not None:
         out["partition_number"] = data["PartitionNumber"]
-    if "Tenancy" in data:
+    if data.get("Tenancy") is not None:
         import capo_workspaces_instances.types.tenancy_enum
 
         out["tenancy"] = (

@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> StatementList:
 
     out: StatementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_redshift_data.types.statement_data.deserialize_aws_json_1_1(item)
         )

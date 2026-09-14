@@ -55,7 +55,7 @@ def serialize_json(value: Destination) -> dict:
 
 def deserialize_json(data: dict) -> Destination:
     out: Destination = {}  # type: ignore[typeddict-item]
-    if "ToAddresses" in data:
+    if data.get("ToAddresses") is not None:
         import capo_pinpoint_email.types.email_address_list
 
         out["to_addresses"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> Destination:
                 data["ToAddresses"]
             )
         )
-    if "CcAddresses" in data:
+    if data.get("CcAddresses") is not None:
         import capo_pinpoint_email.types.email_address_list
 
         out["cc_addresses"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> Destination:
                 data["CcAddresses"]
             )
         )
-    if "BccAddresses" in data:
+    if data.get("BccAddresses") is not None:
         import capo_pinpoint_email.types.email_address_list
 
         out["bcc_addresses"] = (

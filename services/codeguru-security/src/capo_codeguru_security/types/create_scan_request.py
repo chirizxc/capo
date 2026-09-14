@@ -64,9 +64,9 @@ def serialize_json(value: CreateScanRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateScanRequest:
     out: CreateScanRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         import capo_codeguru_security.types.resource_id
 
         out["resource_id"] = capo_codeguru_security.types.resource_id.deserialize_json(
@@ -74,17 +74,17 @@ def deserialize_json(data: dict) -> CreateScanRequest:
         )
     else:
         raise DeserializationError("CreateScanRequest.resource_id required")
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
     else:
         raise DeserializationError("CreateScanRequest.scan_name required")
-    if "scanType" in data:
+    if data.get("scanType") is not None:
         import capo_codeguru_security.types.scan_type
 
         out["scan_type"] = capo_codeguru_security.types.scan_type.deserialize_json(
             data["scanType"]
         )
-    if "analysisType" in data:
+    if data.get("analysisType") is not None:
         import capo_codeguru_security.types.analysis_type
 
         out["analysis_type"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> CreateScanRequest:
                 data["analysisType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codeguru_security.types.tag_map
 
         out["tags"] = capo_codeguru_security.types.tag_map.deserialize_json(

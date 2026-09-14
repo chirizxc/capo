@@ -34,7 +34,7 @@ def serialize_json(value: EvaluationReviewConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationReviewConfiguration:
     out: EvaluationReviewConfiguration = {}  # type: ignore[typeddict-item]
-    if "ReviewNotificationRecipients" in data:
+    if data.get("ReviewNotificationRecipients") is not None:
         import capo_connect.types.evaluation_review_notification_recipient_list
 
         out["review_notification_recipients"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> EvaluationReviewConfiguration:
         raise DeserializationError(
             "EvaluationReviewConfiguration.review_notification_recipients required"
         )
-    if "EligibilityDays" in data:
+    if data.get("EligibilityDays") is not None:
         out["eligibility_days"] = data["EligibilityDays"]
     else:
         out["eligibility_days"] = 0

@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: GetAssessmentReportResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAssessmentReportResponse:
     out: GetAssessmentReportResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_inspector.types.report_status
 
         out["status"] = capo_inspector.types.report_status.deserialize_aws_json_1_1(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetAssessmentReportResponse:
         )
     else:
         raise DeserializationError("GetAssessmentReportResponse.status required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

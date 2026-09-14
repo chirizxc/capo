@@ -23,6 +23,6 @@ def serialize_json(value: ResourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> ResourceDetails:
     out: ResourceDetails = {}  # type: ignore[typeddict-item]
-    if "instanceArn" in data:
+    if data.get("instanceArn") is not None:
         out["instance_arn"] = data["instanceArn"]
     return out

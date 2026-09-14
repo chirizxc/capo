@@ -53,20 +53,20 @@ def serialize_json(value: GeocodeQueryComponents) -> dict:
 
 def deserialize_json(data: dict) -> GeocodeQueryComponents:
     out: GeocodeQueryComponents = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "SubRegion" in data:
+    if data.get("SubRegion") is not None:
         out["sub_region"] = data["SubRegion"]
-    if "Locality" in data:
+    if data.get("Locality") is not None:
         out["locality"] = data["Locality"]
-    if "District" in data:
+    if data.get("District") is not None:
         out["district"] = data["District"]
-    if "Street" in data:
+    if data.get("Street") is not None:
         out["street"] = data["Street"]
-    if "AddressNumber" in data:
+    if data.get("AddressNumber") is not None:
         out["address_number"] = data["AddressNumber"]
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
     return out

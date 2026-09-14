@@ -74,11 +74,11 @@ def serialize_json(value: CreateDetectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDetectorRequest:
     out: CreateDetectorRequest = {}  # type: ignore[typeddict-item]
-    if "enable" in data:
+    if data.get("enable") is not None:
         out["enable"] = data["enable"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "findingPublishingFrequency" in data:
+    if data.get("findingPublishingFrequency") is not None:
         import capo_guardduty.types.finding_publishing_frequency
 
         out["finding_publishing_frequency"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> CreateDetectorRequest:
                 data["findingPublishingFrequency"]
             )
         )
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_guardduty.types.data_source_configurations
 
         out["data_sources"] = (
@@ -94,11 +94,11 @@ def deserialize_json(data: dict) -> CreateDetectorRequest:
                 data["dataSources"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tag_map
 
         out["tags"] = capo_guardduty.types.tag_map.deserialize_json(data["tags"])
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_guardduty.types.detector_feature_configurations
 
         out["features"] = (

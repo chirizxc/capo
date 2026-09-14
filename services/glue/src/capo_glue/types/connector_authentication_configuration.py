@@ -66,7 +66,7 @@ def serialize_aws_json_1_1(value: ConnectorAuthenticationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectorAuthenticationConfiguration:
     out: ConnectorAuthenticationConfiguration = {}  # type: ignore[typeddict-item]
-    if "AuthenticationTypes" in data:
+    if data.get("AuthenticationTypes") is not None:
         import capo_glue.types.authentication_types
 
         out["authentication_types"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectorAuthenticationConfiguration
         raise DeserializationError(
             "ConnectorAuthenticationConfiguration.authentication_types required"
         )
-    if "OAuth2Properties" in data:
+    if data.get("OAuth2Properties") is not None:
         import capo_glue.types.connector_o_auth2_properties
 
         out["o_auth2_properties"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectorAuthenticationConfiguration
                 data["OAuth2Properties"]
             )
         )
-    if "BasicAuthenticationProperties" in data:
+    if data.get("BasicAuthenticationProperties") is not None:
         import capo_glue.types.basic_authentication_properties
 
         out["basic_authentication_properties"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectorAuthenticationConfiguration
                 data["BasicAuthenticationProperties"]
             )
         )
-    if "CustomAuthenticationProperties" in data:
+    if data.get("CustomAuthenticationProperties") is not None:
         import capo_glue.types.custom_authentication_properties
 
         out["custom_authentication_properties"] = (

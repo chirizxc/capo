@@ -47,22 +47,22 @@ def serialize_aws_json_1_1(value: TestIdentityProviderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestIdentityProviderRequest:
     out: TestIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("TestIdentityProviderRequest.server_id required")
-    if "ServerProtocol" in data:
+    if data.get("ServerProtocol") is not None:
         import capo_transfer.types.protocol
 
         out["server_protocol"] = capo_transfer.types.protocol.deserialize_aws_json_1_1(
             data["ServerProtocol"]
         )
-    if "SourceIp" in data:
+    if data.get("SourceIp") is not None:
         out["source_ip"] = data["SourceIp"]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     else:
         raise DeserializationError("TestIdentityProviderRequest.user_name required")
-    if "UserPassword" in data:
+    if data.get("UserPassword") is not None:
         out["user_password"] = data["UserPassword"]
     return out

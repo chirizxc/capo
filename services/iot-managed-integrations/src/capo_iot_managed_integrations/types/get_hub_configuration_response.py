@@ -40,11 +40,11 @@ def serialize_json(value: GetHubConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetHubConfigurationResponse:
     out: GetHubConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "HubTokenTimerExpirySettingInSeconds" in data:
+    if data.get("HubTokenTimerExpirySettingInSeconds") is not None:
         out["hub_token_timer_expiry_setting_in_seconds"] = data[
             "HubTokenTimerExpirySettingInSeconds"
         ]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_iot_managed_integrations.types.hub_configuration_updated_at
 
         out["updated_at"] = (

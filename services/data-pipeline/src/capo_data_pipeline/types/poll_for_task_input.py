@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: PollForTaskInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PollForTaskInput:
     out: PollForTaskInput = {}  # type: ignore[typeddict-item]
-    if "workerGroup" in data:
+    if data.get("workerGroup") is not None:
         out["worker_group"] = data["workerGroup"]
     else:
         raise DeserializationError("PollForTaskInput.worker_group required")
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "instanceIdentity" in data:
+    if data.get("instanceIdentity") is not None:
         import capo_data_pipeline.types.instance_identity
 
         out["instance_identity"] = (

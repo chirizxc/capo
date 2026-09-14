@@ -55,19 +55,19 @@ def serialize_json(value: CertificateSummary) -> dict:
 
 def deserialize_json(data: dict) -> CertificateSummary:
     out: CertificateSummary = {}  # type: ignore[typeddict-item]
-    if "thumbprint" in data:
+    if data.get("thumbprint") is not None:
         out["thumbprint"] = data["thumbprint"]
-    if "subject" in data:
+    if data.get("subject") is not None:
         out["subject"] = data["subject"]
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
-    if "notValidBefore" in data:
+    if data.get("notValidBefore") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["not_valid_before"] = capo_workspaces_web.types.timestamp.deserialize_json(
             data["notValidBefore"]
         )
-    if "notValidAfter" in data:
+    if data.get("notValidAfter") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["not_valid_after"] = capo_workspaces_web.types.timestamp.deserialize_json(

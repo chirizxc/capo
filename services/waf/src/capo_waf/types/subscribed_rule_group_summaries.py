@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> SubscribedRuleGroupSummaries:
 
     out: SubscribedRuleGroupSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_waf.types.subscribed_rule_group_summary.deserialize_aws_json_1_1(item)
         )

@@ -32,8 +32,8 @@ def serialize_json(value: ControlTitleFormatText) -> dict:
 
 def deserialize_json(data: dict) -> ControlTitleFormatText:
     out: ControlTitleFormatText = {}  # type: ignore[typeddict-item]
-    if "PlainText" in data:
+    if data.get("PlainText") is not None:
         out["plain_text"] = data["PlainText"]
-    if "RichText" in data:
+    if data.get("RichText") is not None:
         out["rich_text"] = data["RichText"]
     return out

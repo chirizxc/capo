@@ -22,7 +22,7 @@ def serialize_json(value: SentimentAnalysisSettings) -> dict:
 
 def deserialize_json(data: dict) -> SentimentAnalysisSettings:
     out: SentimentAnalysisSettings = {}  # type: ignore[typeddict-item]
-    if "detectSentiment" in data:
+    if data.get("detectSentiment") is not None:
         out["detect_sentiment"] = data["detectSentiment"]
     else:
         out["detect_sentiment"] = False

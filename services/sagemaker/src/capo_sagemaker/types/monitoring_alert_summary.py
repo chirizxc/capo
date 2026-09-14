@@ -82,15 +82,15 @@ def serialize_aws_json_1_1(value: MonitoringAlertSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringAlertSummary:
     out: MonitoringAlertSummary = {}  # type: ignore[typeddict-item]
-    if "MonitoringAlertName" in data:
+    if data.get("MonitoringAlertName") is not None:
         out["monitoring_alert_name"] = data["MonitoringAlertName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringAlertSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "AlertStatus" in data:
+    if data.get("AlertStatus") is not None:
         import capo_sagemaker.types.monitoring_alert_status
 
         out["alert_status"] = (
@@ -106,11 +106,11 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringAlertSummary:
                 data["AlertStatus"]
             )
         )
-    if "DatapointsToAlert" in data:
+    if data.get("DatapointsToAlert") is not None:
         out["datapoints_to_alert"] = data["DatapointsToAlert"]
-    if "EvaluationPeriod" in data:
+    if data.get("EvaluationPeriod") is not None:
         out["evaluation_period"] = data["EvaluationPeriod"]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_sagemaker.types.monitoring_alert_actions
 
         out["actions"] = (

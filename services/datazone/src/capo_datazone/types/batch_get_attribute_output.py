@@ -33,13 +33,13 @@ def serialize_json(value: BatchGetAttributeOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAttributeOutput:
     out: BatchGetAttributeOutput = {}  # type: ignore[typeddict-item]
-    if "attributeIdentifier" in data:
+    if data.get("attributeIdentifier") is not None:
         out["attribute_identifier"] = data["attributeIdentifier"]
     else:
         raise DeserializationError(
             "BatchGetAttributeOutput.attribute_identifier required"
         )
-    if "forms" in data:
+    if data.get("forms") is not None:
         import capo_datazone.types.form_output_list
 
         out["forms"] = capo_datazone.types.form_output_list.deserialize_json(

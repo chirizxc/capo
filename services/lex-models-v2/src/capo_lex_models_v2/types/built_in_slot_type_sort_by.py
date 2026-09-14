@@ -36,7 +36,7 @@ def serialize_json(value: BuiltInSlotTypeSortBy) -> dict:
 
 def deserialize_json(data: dict) -> BuiltInSlotTypeSortBy:
     out: BuiltInSlotTypeSortBy = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         import capo_lex_models_v2.types.built_in_slot_type_sort_attribute
 
         out["attribute"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> BuiltInSlotTypeSortBy:
         )
     else:
         raise DeserializationError("BuiltInSlotTypeSortBy.attribute required")
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_lex_models_v2.types.sort_order
 
         out["order"] = capo_lex_models_v2.types.sort_order.deserialize_json(

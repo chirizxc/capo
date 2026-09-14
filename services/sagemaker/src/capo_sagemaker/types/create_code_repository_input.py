@@ -41,15 +41,15 @@ def serialize_aws_json_1_1(value: CreateCodeRepositoryInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCodeRepositoryInput:
     out: CreateCodeRepositoryInput = {}  # type: ignore[typeddict-item]
-    if "CodeRepositoryName" in data:
+    if data.get("CodeRepositoryName") is not None:
         out["code_repository_name"] = data["CodeRepositoryName"]
-    if "GitConfig" in data:
+    if data.get("GitConfig") is not None:
         import capo_sagemaker.types.git_config
 
         out["git_config"] = capo_sagemaker.types.git_config.deserialize_aws_json_1_1(
             data["GitConfig"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

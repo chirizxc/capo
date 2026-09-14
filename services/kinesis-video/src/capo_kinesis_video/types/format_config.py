@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> FormatConfig:
     for key, value in data.items():
         import capo_kinesis_video.types.format_config_key
 
+        if value is None:
+            continue
         out[capo_kinesis_video.types.format_config_key.deserialize_json(key)] = value
     return out

@@ -39,18 +39,18 @@ def serialize_json(value: StartNetworkMigrationMappingRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartNetworkMigrationMappingRequest:
     out: StartNetworkMigrationMappingRequest = {}  # type: ignore[typeddict-item]
-    if "networkMigrationExecutionID" in data:
+    if data.get("networkMigrationExecutionID") is not None:
         out["network_migration_execution_id"] = data["networkMigrationExecutionID"]
     else:
         raise DeserializationError(
             "StartNetworkMigrationMappingRequest.network_migration_execution_id required"
         )
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
     else:
         raise DeserializationError(
             "StartNetworkMigrationMappingRequest.network_migration_definition_id required"
         )
-    if "securityGroupMappingStrategy" in data:
+    if data.get("securityGroupMappingStrategy") is not None:
         out["security_group_mapping_strategy"] = data["securityGroupMappingStrategy"]
     return out

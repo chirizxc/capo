@@ -50,11 +50,11 @@ def serialize_json(value: CreateRouterNetworkInterfaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRouterNetworkInterfaceRequest:
     out: CreateRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateRouterNetworkInterfaceRequest.name required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_mediaconnect.types.router_network_interface_configuration
 
         out["configuration"] = (
@@ -66,14 +66,14 @@ def deserialize_json(data: dict) -> CreateRouterNetworkInterfaceRequest:
         raise DeserializationError(
             "CreateRouterNetworkInterfaceRequest.configuration required"
         )
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         out["region_name"] = data["regionName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediaconnect.types.__map_of_string
 
         out["tags"] = capo_mediaconnect.types.__map_of_string.deserialize_json(
             data["tags"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

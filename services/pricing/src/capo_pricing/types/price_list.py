@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: PriceList) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PriceList:
     out: PriceList = {}  # type: ignore[typeddict-item]
-    if "PriceListArn" in data:
+    if data.get("PriceListArn") is not None:
         out["price_list_arn"] = data["PriceListArn"]
-    if "RegionCode" in data:
+    if data.get("RegionCode") is not None:
         out["region_code"] = data["RegionCode"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "FileFormats" in data:
+    if data.get("FileFormats") is not None:
         import capo_pricing.types.file_formats
 
         out["file_formats"] = capo_pricing.types.file_formats.deserialize_aws_json_1_1(

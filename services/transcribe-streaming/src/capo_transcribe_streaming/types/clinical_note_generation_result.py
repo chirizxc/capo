@@ -47,11 +47,11 @@ def serialize_json(value: ClinicalNoteGenerationResult) -> dict:
 
 def deserialize_json(data: dict) -> ClinicalNoteGenerationResult:
     out: ClinicalNoteGenerationResult = {}  # type: ignore[typeddict-item]
-    if "ClinicalNoteOutputLocation" in data:
+    if data.get("ClinicalNoteOutputLocation") is not None:
         out["clinical_note_output_location"] = data["ClinicalNoteOutputLocation"]
-    if "TranscriptOutputLocation" in data:
+    if data.get("TranscriptOutputLocation") is not None:
         out["transcript_output_location"] = data["TranscriptOutputLocation"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_transcribe_streaming.types.clinical_note_generation_status
 
         out["status"] = (
@@ -59,6 +59,6 @@ def deserialize_json(data: dict) -> ClinicalNoteGenerationResult:
                 data["Status"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

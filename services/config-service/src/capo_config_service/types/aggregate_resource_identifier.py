@@ -47,21 +47,21 @@ def serialize_aws_json_1_1(value: AggregateResourceIdentifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AggregateResourceIdentifier:
     out: AggregateResourceIdentifier = {}  # type: ignore[typeddict-item]
-    if "SourceAccountId" in data:
+    if data.get("SourceAccountId") is not None:
         out["source_account_id"] = data["SourceAccountId"]
     else:
         raise DeserializationError(
             "AggregateResourceIdentifier.source_account_id required"
         )
-    if "SourceRegion" in data:
+    if data.get("SourceRegion") is not None:
         out["source_region"] = data["SourceRegion"]
     else:
         raise DeserializationError("AggregateResourceIdentifier.source_region required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("AggregateResourceIdentifier.resource_id required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_config_service.types.resource_type
 
         out["resource_type"] = (
@@ -71,6 +71,6 @@ def deserialize_aws_json_1_1(data: dict) -> AggregateResourceIdentifier:
         )
     else:
         raise DeserializationError("AggregateResourceIdentifier.resource_type required")
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     return out

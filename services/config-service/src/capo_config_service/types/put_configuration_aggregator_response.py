@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: PutConfigurationAggregatorResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutConfigurationAggregatorResponse:
     out: PutConfigurationAggregatorResponse = {}  # type: ignore[typeddict-item]
-    if "ConfigurationAggregator" in data:
+    if data.get("ConfigurationAggregator") is not None:
         import capo_config_service.types.configuration_aggregator
 
         out["configuration_aggregator"] = (

@@ -57,25 +57,25 @@ def serialize_json(value: OpenLineageRunEventSummary) -> dict:
 
 def deserialize_json(data: dict) -> OpenLineageRunEventSummary:
     out: OpenLineageRunEventSummary = {}  # type: ignore[typeddict-item]
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_datazone.types.open_lineage_run_state
 
         out["event_type"] = capo_datazone.types.open_lineage_run_state.deserialize_json(
             data["eventType"]
         )
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
-    if "job" in data:
+    if data.get("job") is not None:
         import capo_datazone.types.name_identifier
 
         out["job"] = capo_datazone.types.name_identifier.deserialize_json(data["job"])
-    if "inputs" in data:
+    if data.get("inputs") is not None:
         import capo_datazone.types.name_identifiers
 
         out["inputs"] = capo_datazone.types.name_identifiers.deserialize_json(
             data["inputs"]
         )
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_datazone.types.name_identifiers
 
         out["outputs"] = capo_datazone.types.name_identifiers.deserialize_json(

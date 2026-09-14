@@ -28,7 +28,7 @@ def serialize_json(value: AppliedOrchestrationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AppliedOrchestrationConfiguration:
     out: AppliedOrchestrationConfiguration = {}  # type: ignore[typeddict-item]
-    if "control" in data:
+    if data.get("control") is not None:
         import capo_qbusiness.types.orchestration_control
 
         out["control"] = capo_qbusiness.types.orchestration_control.deserialize_json(

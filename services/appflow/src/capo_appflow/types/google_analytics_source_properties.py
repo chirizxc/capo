@@ -24,7 +24,7 @@ def serialize_json(value: GoogleAnalyticsSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> GoogleAnalyticsSourceProperties:
     out: GoogleAnalyticsSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("GoogleAnalyticsSourceProperties.object required")

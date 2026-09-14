@@ -73,11 +73,11 @@ def serialize_json(value: StartCapacityTaskInput) -> dict:
 
 def deserialize_json(data: dict) -> StartCapacityTaskInput:
     out: StartCapacityTaskInput = {}  # type: ignore[typeddict-item]
-    if "OrderId" in data:
+    if data.get("OrderId") is not None:
         out["order_id"] = data["OrderId"]
-    if "AssetId" in data:
+    if data.get("AssetId") is not None:
         out["asset_id"] = data["AssetId"]
-    if "InstancePools" in data:
+    if data.get("InstancePools") is not None:
         import capo_outposts.types.requested_instance_pools
 
         out["instance_pools"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> StartCapacityTaskInput:
         )
     else:
         raise DeserializationError("StartCapacityTaskInput.instance_pools required")
-    if "InstancesToExclude" in data:
+    if data.get("InstancesToExclude") is not None:
         import capo_outposts.types.instances_to_exclude
 
         out["instances_to_exclude"] = (
@@ -95,11 +95,11 @@ def deserialize_json(data: dict) -> StartCapacityTaskInput:
                 data["InstancesToExclude"]
             )
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False
-    if "TaskActionOnBlockingInstances" in data:
+    if data.get("TaskActionOnBlockingInstances") is not None:
         import capo_outposts.types.task_action_on_blocking_instances
 
         out["task_action_on_blocking_instances"] = (

@@ -30,7 +30,7 @@ def serialize_json(value: LinkLogSettings) -> dict:
 
 def deserialize_json(data: dict) -> LinkLogSettings:
     out: LinkLogSettings = {}  # type: ignore[typeddict-item]
-    if "applicationLogs" in data:
+    if data.get("applicationLogs") is not None:
         import capo_rtbfabric.types.link_application_log_configuration
 
         out["application_logs"] = (

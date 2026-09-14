@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: HierarchicalPrincipal) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HierarchicalPrincipal:
     out: HierarchicalPrincipal = {}  # type: ignore[typeddict-item]
-    if "PrincipalList" in data:
+    if data.get("PrincipalList") is not None:
         import capo_kendra.types.principal_list
 
         out["principal_list"] = (

@@ -107,25 +107,25 @@ def serialize_json(value: MessageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MessageConfiguration:
     out: MessageConfiguration = {}  # type: ignore[typeddict-item]
-    if "ADMMessage" in data:
+    if data.get("ADMMessage") is not None:
         import capo_pinpoint.types.message
 
         out["adm_message"] = capo_pinpoint.types.message.deserialize_json(
             data["ADMMessage"]
         )
-    if "APNSMessage" in data:
+    if data.get("APNSMessage") is not None:
         import capo_pinpoint.types.message
 
         out["apns_message"] = capo_pinpoint.types.message.deserialize_json(
             data["APNSMessage"]
         )
-    if "BaiduMessage" in data:
+    if data.get("BaiduMessage") is not None:
         import capo_pinpoint.types.message
 
         out["baidu_message"] = capo_pinpoint.types.message.deserialize_json(
             data["BaiduMessage"]
         )
-    if "CustomMessage" in data:
+    if data.get("CustomMessage") is not None:
         import capo_pinpoint.types.campaign_custom_message
 
         out["custom_message"] = (
@@ -133,13 +133,13 @@ def deserialize_json(data: dict) -> MessageConfiguration:
                 data["CustomMessage"]
             )
         )
-    if "DefaultMessage" in data:
+    if data.get("DefaultMessage") is not None:
         import capo_pinpoint.types.message
 
         out["default_message"] = capo_pinpoint.types.message.deserialize_json(
             data["DefaultMessage"]
         )
-    if "EmailMessage" in data:
+    if data.get("EmailMessage") is not None:
         import capo_pinpoint.types.campaign_email_message
 
         out["email_message"] = (
@@ -147,19 +147,19 @@ def deserialize_json(data: dict) -> MessageConfiguration:
                 data["EmailMessage"]
             )
         )
-    if "GCMMessage" in data:
+    if data.get("GCMMessage") is not None:
         import capo_pinpoint.types.message
 
         out["gcm_message"] = capo_pinpoint.types.message.deserialize_json(
             data["GCMMessage"]
         )
-    if "SMSMessage" in data:
+    if data.get("SMSMessage") is not None:
         import capo_pinpoint.types.campaign_sms_message
 
         out["sms_message"] = capo_pinpoint.types.campaign_sms_message.deserialize_json(
             data["SMSMessage"]
         )
-    if "InAppMessage" in data:
+    if data.get("InAppMessage") is not None:
         import capo_pinpoint.types.campaign_in_app_message
 
         out["in_app_message"] = (

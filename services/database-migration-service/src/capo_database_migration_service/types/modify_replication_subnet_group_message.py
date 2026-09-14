@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: ModifyReplicationSubnetGroupMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyReplicationSubnetGroupMessage:
     out: ModifyReplicationSubnetGroupMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationSubnetGroupIdentifier" in data:
+    if data.get("ReplicationSubnetGroupIdentifier") is not None:
         out["replication_subnet_group_identifier"] = data[
             "ReplicationSubnetGroupIdentifier"
         ]
@@ -54,11 +54,11 @@ def deserialize_aws_json_1_1(data: dict) -> ModifyReplicationSubnetGroupMessage:
         raise DeserializationError(
             "ModifyReplicationSubnetGroupMessage.replication_subnet_group_identifier required"
         )
-    if "ReplicationSubnetGroupDescription" in data:
+    if data.get("ReplicationSubnetGroupDescription") is not None:
         out["replication_subnet_group_description"] = data[
             "ReplicationSubnetGroupDescription"
         ]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_database_migration_service.types.subnet_identifier_list
 
         out["subnet_ids"] = (

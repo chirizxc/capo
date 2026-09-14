@@ -29,10 +29,10 @@ def serialize_json(value: DeleteApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteApplicationRequest:
     out: DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "applicationID" in data:
+    if data.get("applicationID") is not None:
         out["application_id"] = data["applicationID"]
     else:
         raise DeserializationError("DeleteApplicationRequest.application_id required")
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

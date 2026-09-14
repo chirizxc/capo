@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchImportFindingsRequestFindingList:
 
     out: BatchImportFindingsRequestFindingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.aws_security_finding.deserialize_json(item))
     return out

@@ -149,8 +149,10 @@ class Opportunity:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_opportunity_request.CreateOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.create_opportunity_request.CreateOpportunityRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+        }
         if primary_needs_from_aws is not None:
             input_["primary_needs_from_aws"] = primary_needs_from_aws
         if national_security is not None:
@@ -167,7 +169,6 @@ class Opportunity:
             input_["marketing"] = marketing
         if software_revenue is not None:
             input_["software_revenue"] = software_revenue
-        input_["client_token"] = client_token
         if life_cycle is not None:
             input_["life_cycle"] = life_cycle
         if origin is not None:
@@ -182,6 +183,7 @@ class Opportunity:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -221,15 +223,17 @@ class Opportunity:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_opportunity_request.GetOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.get_opportunity_request.GetOpportunityRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -304,8 +308,11 @@ class Opportunity:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.update_opportunity_request.UpdateOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.update_opportunity_request.UpdateOpportunityRequest = {
+            "catalog": catalog,
+            "last_modified_date": last_modified_date,
+            "identifier": identifier,
+        }
         if primary_needs_from_aws is not None:
             input_["primary_needs_from_aws"] = primary_needs_from_aws
         if national_security is not None:
@@ -322,8 +329,6 @@ class Opportunity:
             input_["marketing"] = marketing
         if software_revenue is not None:
             input_["software_revenue"] = software_revenue
-        input_["last_modified_date"] = last_modified_date
-        input_["identifier"] = identifier
         if life_cycle is not None:
             input_["life_cycle"] = life_cycle
 
@@ -332,6 +337,7 @@ class Opportunity:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -407,8 +413,9 @@ class Opportunity:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_opportunities_request.ListOpportunitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_opportunities_request.ListOpportunitiesRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -435,6 +442,7 @@ class Opportunity:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def assign_opportunity(
@@ -474,16 +482,18 @@ class Opportunity:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.assign_opportunity_request.AssignOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["assignee"] = assignee
+        input_: capo_partnercentral_selling.types.assign_opportunity_request.AssignOpportunityRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "assignee": assignee,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_opportunity(
@@ -525,17 +535,19 @@ class Opportunity:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.associate_opportunity_request.AssociateOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["opportunity_identifier"] = opportunity_identifier
-        input_["related_entity_type"] = related_entity_type
-        input_["related_entity_identifier"] = related_entity_identifier
+        input_: capo_partnercentral_selling.types.associate_opportunity_request.AssociateOpportunityRequest = {
+            "catalog": catalog,
+            "opportunity_identifier": opportunity_identifier,
+            "related_entity_type": related_entity_type,
+            "related_entity_identifier": related_entity_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_opportunity(
@@ -577,17 +589,19 @@ class Opportunity:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.disassociate_opportunity_request.DisassociateOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["opportunity_identifier"] = opportunity_identifier
-        input_["related_entity_type"] = related_entity_type
-        input_["related_entity_identifier"] = related_entity_identifier
+        input_: capo_partnercentral_selling.types.disassociate_opportunity_request.DisassociateOpportunityRequest = {
+            "catalog": catalog,
+            "opportunity_identifier": opportunity_identifier,
+            "related_entity_type": related_entity_type,
+            "related_entity_identifier": related_entity_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_aws_opportunity_summary(
@@ -627,15 +641,17 @@ class Opportunity:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_aws_opportunity_summary_request.GetAwsOpportunitySummaryRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["related_opportunity_identifier"] = related_opportunity_identifier
+        input_: capo_partnercentral_selling.types.get_aws_opportunity_summary_request.GetAwsOpportunitySummaryRequest = {
+            "catalog": catalog,
+            "related_opportunity_identifier": related_opportunity_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def submit_opportunity(
@@ -679,10 +695,11 @@ class Opportunity:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.submit_opportunity_request.SubmitOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["involvement_type"] = involvement_type
+        input_: capo_partnercentral_selling.types.submit_opportunity_request.SubmitOpportunityRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "involvement_type": involvement_type,
+        }
         if visibility is not None:
             input_["visibility"] = visibility
 
@@ -691,6 +708,7 @@ class Opportunity:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -779,8 +797,10 @@ class AsyncOpportunity:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_opportunity_request.CreateOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.create_opportunity_request.CreateOpportunityRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+        }
         if primary_needs_from_aws is not None:
             input_["primary_needs_from_aws"] = primary_needs_from_aws
         if national_security is not None:
@@ -797,7 +817,6 @@ class AsyncOpportunity:
             input_["marketing"] = marketing
         if software_revenue is not None:
             input_["software_revenue"] = software_revenue
-        input_["client_token"] = client_token
         if life_cycle is not None:
             input_["life_cycle"] = life_cycle
         if origin is not None:
@@ -812,6 +831,7 @@ class AsyncOpportunity:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -852,15 +872,17 @@ class AsyncOpportunity:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_opportunity_request.GetOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.get_opportunity_request.GetOpportunityRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -936,8 +958,11 @@ class AsyncOpportunity:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.update_opportunity_request.UpdateOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.update_opportunity_request.UpdateOpportunityRequest = {
+            "catalog": catalog,
+            "last_modified_date": last_modified_date,
+            "identifier": identifier,
+        }
         if primary_needs_from_aws is not None:
             input_["primary_needs_from_aws"] = primary_needs_from_aws
         if national_security is not None:
@@ -954,8 +979,6 @@ class AsyncOpportunity:
             input_["marketing"] = marketing
         if software_revenue is not None:
             input_["software_revenue"] = software_revenue
-        input_["last_modified_date"] = last_modified_date
-        input_["identifier"] = identifier
         if life_cycle is not None:
             input_["life_cycle"] = life_cycle
 
@@ -964,6 +987,7 @@ class AsyncOpportunity:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1040,8 +1064,9 @@ class AsyncOpportunity:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_opportunities_request.ListOpportunitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_opportunities_request.ListOpportunitiesRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1068,6 +1093,7 @@ class AsyncOpportunity:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def assign_opportunity(
@@ -1108,16 +1134,18 @@ class AsyncOpportunity:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.assign_opportunity_request.AssignOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["assignee"] = assignee
+        input_: capo_partnercentral_selling.types.assign_opportunity_request.AssignOpportunityRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "assignee": assignee,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_opportunity(
@@ -1160,17 +1188,19 @@ class AsyncOpportunity:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.associate_opportunity_request.AssociateOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["opportunity_identifier"] = opportunity_identifier
-        input_["related_entity_type"] = related_entity_type
-        input_["related_entity_identifier"] = related_entity_identifier
+        input_: capo_partnercentral_selling.types.associate_opportunity_request.AssociateOpportunityRequest = {
+            "catalog": catalog,
+            "opportunity_identifier": opportunity_identifier,
+            "related_entity_type": related_entity_type,
+            "related_entity_identifier": related_entity_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_opportunity(
@@ -1213,17 +1243,19 @@ class AsyncOpportunity:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.disassociate_opportunity_request.DisassociateOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["opportunity_identifier"] = opportunity_identifier
-        input_["related_entity_type"] = related_entity_type
-        input_["related_entity_identifier"] = related_entity_identifier
+        input_: capo_partnercentral_selling.types.disassociate_opportunity_request.DisassociateOpportunityRequest = {
+            "catalog": catalog,
+            "opportunity_identifier": opportunity_identifier,
+            "related_entity_type": related_entity_type,
+            "related_entity_identifier": related_entity_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_aws_opportunity_summary(
@@ -1264,15 +1296,17 @@ class AsyncOpportunity:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_aws_opportunity_summary_request.GetAwsOpportunitySummaryRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["related_opportunity_identifier"] = related_opportunity_identifier
+        input_: capo_partnercentral_selling.types.get_aws_opportunity_summary_request.GetAwsOpportunitySummaryRequest = {
+            "catalog": catalog,
+            "related_opportunity_identifier": related_opportunity_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def submit_opportunity(
@@ -1317,10 +1351,11 @@ class AsyncOpportunity:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.submit_opportunity_request.SubmitOpportunityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["involvement_type"] = involvement_type
+        input_: capo_partnercentral_selling.types.submit_opportunity_request.SubmitOpportunityRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "involvement_type": involvement_type,
+        }
         if visibility is not None:
             input_["visibility"] = visibility
 
@@ -1329,4 +1364,5 @@ class AsyncOpportunity:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

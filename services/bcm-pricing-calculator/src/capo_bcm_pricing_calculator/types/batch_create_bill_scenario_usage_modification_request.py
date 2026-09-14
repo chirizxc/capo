@@ -36,6 +36,8 @@ def serialize_aws_json_1_0(
             value["usage_modifications"]
         )
     )
+    if "client_token" in value:
+        out["clientToken"] = value["client_token"]
     return out
 
 
@@ -43,13 +45,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> BatchCreateBillScenarioUsageModificationRequest:
     out: BatchCreateBillScenarioUsageModificationRequest = {}  # type: ignore[typeddict-item]
-    if "billScenarioId" in data:
+    if data.get("billScenarioId") is not None:
         out["bill_scenario_id"] = data["billScenarioId"]
     else:
         raise DeserializationError(
             "BatchCreateBillScenarioUsageModificationRequest.bill_scenario_id required"
         )
-    if "usageModifications" in data:
+    if data.get("usageModifications") is not None:
         import capo_bcm_pricing_calculator.types.batch_create_bill_scenario_usage_modification_entries
 
         out["usage_modifications"] = (
@@ -61,4 +63,6 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "BatchCreateBillScenarioUsageModificationRequest.usage_modifications required"
         )
+    if data.get("clientToken") is not None:
+        out["client_token"] = data["clientToken"]
     return out

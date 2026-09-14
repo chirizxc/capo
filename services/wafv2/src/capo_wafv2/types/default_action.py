@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: DefaultAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DefaultAction:
     out: DefaultAction = {}  # type: ignore[typeddict-item]
-    if "Block" in data:
+    if data.get("Block") is not None:
         import capo_wafv2.types.block_action
 
         out["block"] = capo_wafv2.types.block_action.deserialize_aws_json_1_1(
             data["Block"]
         )
-    if "Allow" in data:
+    if data.get("Allow") is not None:
         import capo_wafv2.types.allow_action
 
         out["allow"] = capo_wafv2.types.allow_action.deserialize_aws_json_1_1(

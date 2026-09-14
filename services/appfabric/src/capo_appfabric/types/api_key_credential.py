@@ -24,7 +24,7 @@ def serialize_json(value: ApiKeyCredential) -> dict:
 
 def deserialize_json(data: dict) -> ApiKeyCredential:
     out: ApiKeyCredential = {}  # type: ignore[typeddict-item]
-    if "apiKey" in data:
+    if data.get("apiKey") is not None:
         out["api_key"] = data["apiKey"]
     else:
         raise DeserializationError("ApiKeyCredential.api_key required")

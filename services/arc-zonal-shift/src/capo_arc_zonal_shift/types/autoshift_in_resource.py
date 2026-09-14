@@ -44,7 +44,7 @@ def serialize_json(value: AutoshiftInResource) -> dict:
 
 def deserialize_json(data: dict) -> AutoshiftInResource:
     out: AutoshiftInResource = {}  # type: ignore[typeddict-item]
-    if "appliedStatus" in data:
+    if data.get("appliedStatus") is not None:
         import capo_arc_zonal_shift.types.autoshift_applied_status
 
         out["applied_status"] = (
@@ -54,11 +54,11 @@ def deserialize_json(data: dict) -> AutoshiftInResource:
         )
     else:
         raise DeserializationError("AutoshiftInResource.applied_status required")
-    if "awayFrom" in data:
+    if data.get("awayFrom") is not None:
         out["away_from"] = data["awayFrom"]
     else:
         raise DeserializationError("AutoshiftInResource.away_from required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_arc_zonal_shift.types.start_time
 
         out["start_time"] = capo_arc_zonal_shift.types.start_time.deserialize_json(

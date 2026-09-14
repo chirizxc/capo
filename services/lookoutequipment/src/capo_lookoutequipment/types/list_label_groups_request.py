@@ -35,10 +35,10 @@ def serialize_aws_json_1_0(value: ListLabelGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListLabelGroupsRequest:
     out: ListLabelGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "LabelGroupNameBeginsWith" in data:
+    if data.get("LabelGroupNameBeginsWith") is not None:
         out["label_group_name_begins_with"] = data["LabelGroupNameBeginsWith"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

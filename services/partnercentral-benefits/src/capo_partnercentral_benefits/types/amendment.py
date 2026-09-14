@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: Amendment) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Amendment:
     out: Amendment = {}  # type: ignore[typeddict-item]
-    if "FieldPath" in data:
+    if data.get("FieldPath") is not None:
         out["field_path"] = data["FieldPath"]
     else:
         raise DeserializationError("Amendment.field_path required")
-    if "NewValue" in data:
+    if data.get("NewValue") is not None:
         out["new_value"] = data["NewValue"]
     else:
         raise DeserializationError("Amendment.new_value required")

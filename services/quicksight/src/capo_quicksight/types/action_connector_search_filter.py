@@ -41,7 +41,7 @@ def serialize_json(value: ActionConnectorSearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> ActionConnectorSearchFilter:
     out: ActionConnectorSearchFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_quicksight.types.action_connector_search_filter_name_enum
 
         out["name"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> ActionConnectorSearchFilter:
         )
     else:
         raise DeserializationError("ActionConnectorSearchFilter.name required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_quicksight.types.filter_operator
 
         out["operator"] = capo_quicksight.types.filter_operator.deserialize_json(
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> ActionConnectorSearchFilter:
         )
     else:
         raise DeserializationError("ActionConnectorSearchFilter.operator required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("ActionConnectorSearchFilter.value required")

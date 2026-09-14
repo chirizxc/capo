@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListFirewallConfigsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFirewallConfigsResponse:
     out: ListFirewallConfigsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "FirewallConfigs" in data:
+    if data.get("FirewallConfigs") is not None:
         import capo_route53resolver.types.firewall_config_list
 
         out["firewall_configs"] = (

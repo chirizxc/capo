@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: BatchUpdateWorkloadEstimateUsageResponse) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> BatchUpdateWorkloadEstimateUsageResponse:
     out: BatchUpdateWorkloadEstimateUsageResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_bcm_pricing_calculator.types.workload_estimate_usage_items
 
         out["items"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchUpdateWorkloadEstimateUsageResp
                 data["items"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_bcm_pricing_calculator.types.batch_update_workload_estimate_usage_errors
 
         out["errors"] = (

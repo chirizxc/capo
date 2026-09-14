@@ -35,11 +35,11 @@ def serialize_json(value: SamlAuthentication) -> dict:
 
 def deserialize_json(data: dict) -> SamlAuthentication:
     out: SamlAuthentication = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("SamlAuthentication.status required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_grafana.types.saml_configuration
 
         out["configuration"] = capo_grafana.types.saml_configuration.deserialize_json(

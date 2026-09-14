@@ -63,7 +63,7 @@ def serialize_json(value: CreateIntegrationAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIntegrationAssociationRequest:
     out: CreateIntegrationAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "IntegrationType" in data:
+    if data.get("IntegrationType") is not None:
         import capo_connect.types.integration_type
 
         out["integration_type"] = capo_connect.types.integration_type.deserialize_json(
@@ -73,23 +73,23 @@ def deserialize_json(data: dict) -> CreateIntegrationAssociationRequest:
         raise DeserializationError(
             "CreateIntegrationAssociationRequest.integration_type required"
         )
-    if "IntegrationArn" in data:
+    if data.get("IntegrationArn") is not None:
         out["integration_arn"] = data["IntegrationArn"]
     else:
         raise DeserializationError(
             "CreateIntegrationAssociationRequest.integration_arn required"
         )
-    if "SourceApplicationUrl" in data:
+    if data.get("SourceApplicationUrl") is not None:
         out["source_application_url"] = data["SourceApplicationUrl"]
-    if "SourceApplicationName" in data:
+    if data.get("SourceApplicationName") is not None:
         out["source_application_name"] = data["SourceApplicationName"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_connect.types.source_type
 
         out["source_type"] = capo_connect.types.source_type.deserialize_json(
             data["SourceType"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

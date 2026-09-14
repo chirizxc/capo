@@ -37,27 +37,27 @@ def serialize_aws_json_1_0(value: ExecutionStats) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExecutionStats:
     out: ExecutionStats = {}  # type: ignore[typeddict-item]
-    if "ExecutionTimeInMillis" in data:
+    if data.get("ExecutionTimeInMillis") is not None:
         out["execution_time_in_millis"] = data["ExecutionTimeInMillis"]
     else:
         out["execution_time_in_millis"] = 0
-    if "DataWrites" in data:
+    if data.get("DataWrites") is not None:
         out["data_writes"] = data["DataWrites"]
     else:
         out["data_writes"] = 0
-    if "BytesMetered" in data:
+    if data.get("BytesMetered") is not None:
         out["bytes_metered"] = data["BytesMetered"]
     else:
         out["bytes_metered"] = 0
-    if "CumulativeBytesScanned" in data:
+    if data.get("CumulativeBytesScanned") is not None:
         out["cumulative_bytes_scanned"] = data["CumulativeBytesScanned"]
     else:
         out["cumulative_bytes_scanned"] = 0
-    if "RecordsIngested" in data:
+    if data.get("RecordsIngested") is not None:
         out["records_ingested"] = data["RecordsIngested"]
     else:
         out["records_ingested"] = 0
-    if "QueryResultRows" in data:
+    if data.get("QueryResultRows") is not None:
         out["query_result_rows"] = data["QueryResultRows"]
     else:
         out["query_result_rows"] = 0

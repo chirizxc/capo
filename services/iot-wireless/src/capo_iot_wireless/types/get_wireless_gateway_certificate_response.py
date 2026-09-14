@@ -33,9 +33,9 @@ def serialize_json(value: GetWirelessGatewayCertificateResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWirelessGatewayCertificateResponse:
     out: GetWirelessGatewayCertificateResponse = {}  # type: ignore[typeddict-item]
-    if "IotCertificateId" in data:
+    if data.get("IotCertificateId") is not None:
         out["iot_certificate_id"] = data["IotCertificateId"]
-    if "LoRaWANNetworkServerCertificateId" in data:
+    if data.get("LoRaWANNetworkServerCertificateId") is not None:
         out["lo_ra_wan_network_server_certificate_id"] = data[
             "LoRaWANNetworkServerCertificateId"
         ]

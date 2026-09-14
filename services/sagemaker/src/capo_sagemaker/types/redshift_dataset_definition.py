@@ -77,21 +77,21 @@ def serialize_aws_json_1_1(value: RedshiftDatasetDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedshiftDatasetDefinition:
     out: RedshiftDatasetDefinition = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "DbUser" in data:
+    if data.get("DbUser") is not None:
         out["db_user"] = data["DbUser"]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
-    if "ClusterRoleArn" in data:
+    if data.get("ClusterRoleArn") is not None:
         out["cluster_role_arn"] = data["ClusterRoleArn"]
-    if "OutputS3Uri" in data:
+    if data.get("OutputS3Uri") is not None:
         out["output_s3_uri"] = data["OutputS3Uri"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "OutputFormat" in data:
+    if data.get("OutputFormat") is not None:
         import capo_sagemaker.types.redshift_result_format
 
         out["output_format"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftDatasetDefinition:
                 data["OutputFormat"]
             )
         )
-    if "OutputCompression" in data:
+    if data.get("OutputCompression") is not None:
         import capo_sagemaker.types.redshift_result_compression_type
 
         out["output_compression"] = (

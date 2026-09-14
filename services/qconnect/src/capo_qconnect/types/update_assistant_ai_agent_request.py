@@ -46,13 +46,13 @@ def serialize_json(value: UpdateAssistantAIAgentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssistantAIAgentRequest:
     out: UpdateAssistantAIAgentRequest = {}  # type: ignore[typeddict-item]
-    if "aiAgentType" in data:
+    if data.get("aiAgentType") is not None:
         out["ai_agent_type"] = data["aiAgentType"]
     else:
         raise DeserializationError(
             "UpdateAssistantAIAgentRequest.ai_agent_type required"
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_qconnect.types.ai_agent_configuration_data
 
         out["configuration"] = (
@@ -64,6 +64,6 @@ def deserialize_json(data: dict) -> UpdateAssistantAIAgentRequest:
         raise DeserializationError(
             "UpdateAssistantAIAgentRequest.configuration required"
         )
-    if "orchestratorUseCase" in data:
+    if data.get("orchestratorUseCase") is not None:
         out["orchestrator_use_case"] = data["orchestratorUseCase"]
     return out

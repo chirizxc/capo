@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RecommendationRelatedEventResources:
 
     out: RecommendationRelatedEventResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.recommendation_related_event_resource.deserialize_json(
                 item

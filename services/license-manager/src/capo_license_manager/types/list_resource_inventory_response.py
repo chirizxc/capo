@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListResourceInventoryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListResourceInventoryResponse:
     out: ListResourceInventoryResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceInventoryList" in data:
+    if data.get("ResourceInventoryList") is not None:
         import capo_license_manager.types.resource_inventory_list
 
         out["resource_inventory_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListResourceInventoryResponse:
                 data["ResourceInventoryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

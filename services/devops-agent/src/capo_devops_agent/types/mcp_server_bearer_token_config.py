@@ -30,15 +30,15 @@ def serialize_json(value: MCPServerBearerTokenConfig) -> dict:
 
 def deserialize_json(data: dict) -> MCPServerBearerTokenConfig:
     out: MCPServerBearerTokenConfig = {}  # type: ignore[typeddict-item]
-    if "tokenName" in data:
+    if data.get("tokenName") is not None:
         out["token_name"] = data["tokenName"]
     else:
         raise DeserializationError("MCPServerBearerTokenConfig.token_name required")
-    if "tokenValue" in data:
+    if data.get("tokenValue") is not None:
         out["token_value"] = data["tokenValue"]
     else:
         raise DeserializationError("MCPServerBearerTokenConfig.token_value required")
-    if "authorizationHeader" in data:
+    if data.get("authorizationHeader") is not None:
         out["authorization_header"] = data["authorizationHeader"]
     else:
         out["authorization_header"] = "Authorization"

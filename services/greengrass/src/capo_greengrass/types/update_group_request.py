@@ -25,6 +25,6 @@ def serialize_json(value: UpdateGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGroupRequest:
     out: UpdateGroupRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

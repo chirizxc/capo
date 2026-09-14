@@ -32,7 +32,7 @@ def serialize_json(value: ListFailureModeFindingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFailureModeFindingsResponse:
     out: ListFailureModeFindingsResponse = {}  # type: ignore[typeddict-item]
-    if "findingsSummary" in data:
+    if data.get("findingsSummary") is not None:
         import capo_resiliencehubv2.types.findings_list
 
         out["findings_summary"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListFailureModeFindingsResponse:
         raise DeserializationError(
             "ListFailureModeFindingsResponse.findings_summary required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

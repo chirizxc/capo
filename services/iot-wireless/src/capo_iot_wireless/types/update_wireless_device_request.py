@@ -75,13 +75,13 @@ def serialize_json(value: UpdateWirelessDeviceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWirelessDeviceRequest:
     out: UpdateWirelessDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_update_device
 
         out["lo_ra_wan"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> UpdateWirelessDeviceRequest:
                 data["LoRaWAN"]
             )
         )
-    if "Positioning" in data:
+    if data.get("Positioning") is not None:
         import capo_iot_wireless.types.positioning_config_status
 
         out["positioning"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> UpdateWirelessDeviceRequest:
                 data["Positioning"]
             )
         )
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_update_wireless_device
 
         out["sidewalk"] = (

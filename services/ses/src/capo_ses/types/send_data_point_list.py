@@ -16,6 +16,9 @@ def serialize_query(
 ) -> None:
     import capo_ses.types.send_data_point
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_ses.types.send_data_point.serialize_query(
             item, pairs, f"{prefix}.member.{n}"
@@ -36,6 +39,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_ses.types.send_data_point
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_ses.types.send_data_point.serialize_query(item, pairs, f"{prefix}.{n}")
 

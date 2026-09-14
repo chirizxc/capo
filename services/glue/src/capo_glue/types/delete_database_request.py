@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: DeleteDatabaseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDatabaseRequest:
     out: DeleteDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DeleteDatabaseRequest.name required")

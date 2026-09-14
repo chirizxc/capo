@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: TraceConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TraceConfiguration:
     out: TraceConfiguration = {}  # type: ignore[typeddict-item]
-    if "Vendor" in data:
+    if data.get("Vendor") is not None:
         import capo_apprunner.types.tracing_vendor
 
         out["vendor"] = capo_apprunner.types.tracing_vendor.deserialize_aws_json_1_0(

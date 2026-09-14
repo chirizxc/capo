@@ -72,25 +72,25 @@ def serialize_json(value: UpdateExperimentTemplateTargetInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateExperimentTemplateTargetInput:
     out: UpdateExperimentTemplateTargetInput = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError(
             "UpdateExperimentTemplateTargetInput.resource_type required"
         )
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_fis.types.resource_arn_list
 
         out["resource_arns"] = capo_fis.types.resource_arn_list.deserialize_json(
             data["resourceArns"]
         )
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_fis.types.tag_map
 
         out["resource_tags"] = capo_fis.types.tag_map.deserialize_json(
             data["resourceTags"]
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_fis.types.experiment_template_target_filter_input_list
 
         out["filters"] = (
@@ -98,13 +98,13 @@ def deserialize_json(data: dict) -> UpdateExperimentTemplateTargetInput:
                 data["filters"]
             )
         )
-    if "selectionMode" in data:
+    if data.get("selectionMode") is not None:
         out["selection_mode"] = data["selectionMode"]
     else:
         raise DeserializationError(
             "UpdateExperimentTemplateTargetInput.selection_mode required"
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_fis.types.experiment_template_target_parameter_map
 
         out["parameters"] = (

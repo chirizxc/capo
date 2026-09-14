@@ -74,29 +74,29 @@ def serialize_json(value: ExperimentTarget) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentTarget:
     out: ExperimentTarget = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_fis.types.resource_arn_list
 
         out["resource_arns"] = capo_fis.types.resource_arn_list.deserialize_json(
             data["resourceArns"]
         )
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_fis.types.tag_map
 
         out["resource_tags"] = capo_fis.types.tag_map.deserialize_json(
             data["resourceTags"]
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_fis.types.experiment_target_filter_list
 
         out["filters"] = capo_fis.types.experiment_target_filter_list.deserialize_json(
             data["filters"]
         )
-    if "selectionMode" in data:
+    if data.get("selectionMode") is not None:
         out["selection_mode"] = data["selectionMode"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_fis.types.experiment_target_parameter_map
 
         out["parameters"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MembershipInferenceAttackScoreList:
 
     out: MembershipInferenceAttackScoreList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.membership_inference_attack_score.deserialize_json(
                 item

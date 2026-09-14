@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> IntegrationSummaryList:
 
     out: IntegrationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityagent.types.integration_summary.deserialize_json(item))
     return out

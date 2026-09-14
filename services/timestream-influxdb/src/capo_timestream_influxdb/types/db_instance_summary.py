@@ -107,29 +107,29 @@ def serialize_aws_json_1_0(value: DbInstanceSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DbInstanceSummary:
     out: DbInstanceSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DbInstanceSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DbInstanceSummary.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DbInstanceSummary.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_timestream_influxdb.types.status
 
         out["status"] = capo_timestream_influxdb.types.status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         import capo_timestream_influxdb.types.network_type
 
         out["network_type"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_0(data: dict) -> DbInstanceSummary:
                 data["networkType"]
             )
         )
-    if "dbInstanceType" in data:
+    if data.get("dbInstanceType") is not None:
         import capo_timestream_influxdb.types.db_instance_type
 
         out["db_instance_type"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_0(data: dict) -> DbInstanceSummary:
                 data["dbInstanceType"]
             )
         )
-    if "dbStorageType" in data:
+    if data.get("dbStorageType") is not None:
         import capo_timestream_influxdb.types.db_storage_type
 
         out["db_storage_type"] = (
@@ -153,9 +153,9 @@ def deserialize_aws_json_1_0(data: dict) -> DbInstanceSummary:
                 data["dbStorageType"]
             )
         )
-    if "allocatedStorage" in data:
+    if data.get("allocatedStorage") is not None:
         out["allocated_storage"] = data["allocatedStorage"]
-    if "deploymentType" in data:
+    if data.get("deploymentType") is not None:
         import capo_timestream_influxdb.types.deployment_type
 
         out["deployment_type"] = (

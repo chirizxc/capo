@@ -14,4 +14,4 @@ def serialize_json(value: UpdateStackNames) -> list:
 
 
 def deserialize_json(data: list) -> UpdateStackNames:
-    return list(data)
+    return [item for item in data if item is not None]

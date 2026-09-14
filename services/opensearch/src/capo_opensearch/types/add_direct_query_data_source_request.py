@@ -73,13 +73,13 @@ def serialize_json(value: AddDirectQueryDataSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddDirectQueryDataSourceRequest:
     out: AddDirectQueryDataSourceRequest = {}  # type: ignore[typeddict-item]
-    if "DataSourceName" in data:
+    if data.get("DataSourceName") is not None:
         out["data_source_name"] = data["DataSourceName"]
     else:
         raise DeserializationError(
             "AddDirectQueryDataSourceRequest.data_source_name required"
         )
-    if "DataSourceType" in data:
+    if data.get("DataSourceType") is not None:
         import capo_opensearch.types.direct_query_data_source_type
 
         out["data_source_type"] = (
@@ -91,9 +91,9 @@ def deserialize_json(data: dict) -> AddDirectQueryDataSourceRequest:
         raise DeserializationError(
             "AddDirectQueryDataSourceRequest.data_source_type required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OpenSearchArns" in data:
+    if data.get("OpenSearchArns") is not None:
         import capo_opensearch.types.direct_query_open_search_arn_list
 
         out["open_search_arns"] = (
@@ -101,9 +101,9 @@ def deserialize_json(data: dict) -> AddDirectQueryDataSourceRequest:
                 data["OpenSearchArns"]
             )
         )
-    if "DataSourceAccessPolicy" in data:
+    if data.get("DataSourceAccessPolicy") is not None:
         out["data_source_access_policy"] = data["DataSourceAccessPolicy"]
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_opensearch.types.tag_list
 
         out["tag_list"] = capo_opensearch.types.tag_list.deserialize_json(

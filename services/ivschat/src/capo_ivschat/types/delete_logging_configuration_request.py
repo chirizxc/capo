@@ -24,7 +24,7 @@ def serialize_json(value: DeleteLoggingConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteLoggingConfigurationRequest:
     out: DeleteLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError(

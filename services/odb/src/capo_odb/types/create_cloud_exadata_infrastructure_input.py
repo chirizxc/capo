@@ -93,35 +93,35 @@ def serialize_aws_json_1_0(value: CreateCloudExadataInfrastructureInput) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCloudExadataInfrastructureInput:
     out: CreateCloudExadataInfrastructureInput = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError(
             "CreateCloudExadataInfrastructureInput.display_name required"
         )
-    if "shape" in data:
+    if data.get("shape") is not None:
         out["shape"] = data["shape"]
     else:
         raise DeserializationError(
             "CreateCloudExadataInfrastructureInput.shape required"
         )
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_odb.types.request_tag_map
 
         out["tags"] = capo_odb.types.request_tag_map.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "computeCount" in data:
+    if data.get("computeCount") is not None:
         out["compute_count"] = data["computeCount"]
     else:
         raise DeserializationError(
             "CreateCloudExadataInfrastructureInput.compute_count required"
         )
-    if "customerContactsToSendToOCI" in data:
+    if data.get("customerContactsToSendToOCI") is not None:
         import capo_odb.types.customer_contacts
 
         out["customer_contacts_to_send_to_oci"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCloudExadataInfrastructureInpu
                 data["customerContactsToSendToOCI"]
             )
         )
-    if "maintenanceWindow" in data:
+    if data.get("maintenanceWindow") is not None:
         import capo_odb.types.maintenance_window
 
         out["maintenance_window"] = (
@@ -137,16 +137,16 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCloudExadataInfrastructureInpu
                 data["maintenanceWindow"]
             )
         )
-    if "storageCount" in data:
+    if data.get("storageCount") is not None:
         out["storage_count"] = data["storageCount"]
     else:
         raise DeserializationError(
             "CreateCloudExadataInfrastructureInput.storage_count required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "databaseServerType" in data:
+    if data.get("databaseServerType") is not None:
         out["database_server_type"] = data["databaseServerType"]
-    if "storageServerType" in data:
+    if data.get("storageServerType") is not None:
         out["storage_server_type"] = data["storageServerType"]
     return out

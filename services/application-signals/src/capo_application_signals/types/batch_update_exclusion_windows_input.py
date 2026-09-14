@@ -55,7 +55,7 @@ def serialize_json(value: BatchUpdateExclusionWindowsInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateExclusionWindowsInput:
     out: BatchUpdateExclusionWindowsInput = {}  # type: ignore[typeddict-item]
-    if "SloIds" in data:
+    if data.get("SloIds") is not None:
         import capo_application_signals.types.service_level_objective_ids
 
         out["slo_ids"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> BatchUpdateExclusionWindowsInput:
         )
     else:
         raise DeserializationError("BatchUpdateExclusionWindowsInput.slo_ids required")
-    if "AddExclusionWindows" in data:
+    if data.get("AddExclusionWindows") is not None:
         import capo_application_signals.types.exclusion_windows
 
         out["add_exclusion_windows"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> BatchUpdateExclusionWindowsInput:
                 data["AddExclusionWindows"]
             )
         )
-    if "RemoveExclusionWindows" in data:
+    if data.get("RemoveExclusionWindows") is not None:
         import capo_application_signals.types.exclusion_windows
 
         out["remove_exclusion_windows"] = (

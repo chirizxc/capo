@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: ResultSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResultSet:
     out: ResultSet = {}  # type: ignore[typeddict-item]
-    if "Rows" in data:
+    if data.get("Rows") is not None:
         import capo_athena.types.row_list
 
         out["rows"] = capo_athena.types.row_list.deserialize_aws_json_1_1(data["Rows"])
-    if "ResultSetMetadata" in data:
+    if data.get("ResultSetMetadata") is not None:
         import capo_athena.types.result_set_metadata
 
         out["result_set_metadata"] = (

@@ -32,7 +32,7 @@ def serialize_json(value: CloudtrailParameters) -> dict:
 
 def deserialize_json(data: dict) -> CloudtrailParameters:
     out: CloudtrailParameters = {}  # type: ignore[typeddict-item]
-    if "AdvancedEventSelectors" in data:
+    if data.get("AdvancedEventSelectors") is not None:
         import capo_observabilityadmin.types.advanced_event_selectors
 
         out["advanced_event_selectors"] = (

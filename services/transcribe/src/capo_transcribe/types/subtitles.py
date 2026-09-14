@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: Subtitles) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Subtitles:
     out: Subtitles = {}  # type: ignore[typeddict-item]
-    if "Formats" in data:
+    if data.get("Formats") is not None:
         import capo_transcribe.types.subtitle_formats
 
         out["formats"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> Subtitles:
                 data["Formats"]
             )
         )
-    if "OutputStartIndex" in data:
+    if data.get("OutputStartIndex") is not None:
         out["output_start_index"] = data["OutputStartIndex"]
     return out

@@ -51,9 +51,9 @@ def serialize_json(value: GetBuiltinIntentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBuiltinIntentResponse:
     out: GetBuiltinIntentResponse = {}  # type: ignore[typeddict-item]
-    if "signature" in data:
+    if data.get("signature") is not None:
         out["signature"] = data["signature"]
-    if "supportedLocales" in data:
+    if data.get("supportedLocales") is not None:
         import capo_lex_model_building_service.types.locale_list
 
         out["supported_locales"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> GetBuiltinIntentResponse:
                 data["supportedLocales"]
             )
         )
-    if "slots" in data:
+    if data.get("slots") is not None:
         import capo_lex_model_building_service.types.builtin_intent_slot_list
 
         out["slots"] = (

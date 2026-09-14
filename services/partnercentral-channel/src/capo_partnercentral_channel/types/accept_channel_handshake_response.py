@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: AcceptChannelHandshakeResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AcceptChannelHandshakeResponse:
     out: AcceptChannelHandshakeResponse = {}  # type: ignore[typeddict-item]
-    if "channelHandshakeDetail" in data:
+    if data.get("channelHandshakeDetail") is not None:
         import capo_partnercentral_channel.types.accept_channel_handshake_detail
 
         out["channel_handshake_detail"] = (

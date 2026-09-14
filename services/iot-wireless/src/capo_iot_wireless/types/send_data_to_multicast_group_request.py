@@ -36,13 +36,13 @@ def serialize_json(value: SendDataToMulticastGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendDataToMulticastGroupRequest:
     out: SendDataToMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-    if "PayloadData" in data:
+    if data.get("PayloadData") is not None:
         out["payload_data"] = data["PayloadData"]
     else:
         raise DeserializationError(
             "SendDataToMulticastGroupRequest.payload_data required"
         )
-    if "WirelessMetadata" in data:
+    if data.get("WirelessMetadata") is not None:
         import capo_iot_wireless.types.multicast_wireless_metadata
 
         out["wireless_metadata"] = (

@@ -52,7 +52,7 @@ def serialize_json(value: CapabilitySchemaItem) -> dict:
 
 def deserialize_json(data: dict) -> CapabilitySchemaItem:
     out: CapabilitySchemaItem = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_iot_managed_integrations.types.schema_version_format
 
         out["format"] = (
@@ -62,19 +62,19 @@ def deserialize_json(data: dict) -> CapabilitySchemaItem:
         )
     else:
         raise DeserializationError("CapabilitySchemaItem.format required")
-    if "CapabilityId" in data:
+    if data.get("CapabilityId") is not None:
         out["capability_id"] = data["CapabilityId"]
     else:
         raise DeserializationError("CapabilitySchemaItem.capability_id required")
-    if "ExtrinsicId" in data:
+    if data.get("ExtrinsicId") is not None:
         out["extrinsic_id"] = data["ExtrinsicId"]
     else:
         raise DeserializationError("CapabilitySchemaItem.extrinsic_id required")
-    if "ExtrinsicVersion" in data:
+    if data.get("ExtrinsicVersion") is not None:
         out["extrinsic_version"] = data["ExtrinsicVersion"]
     else:
         raise DeserializationError("CapabilitySchemaItem.extrinsic_version required")
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
     else:
         raise DeserializationError("CapabilitySchemaItem.schema required")

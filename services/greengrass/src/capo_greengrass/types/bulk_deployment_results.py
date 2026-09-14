@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BulkDeploymentResults:
 
     out: BulkDeploymentResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrass.types.bulk_deployment_result.deserialize_json(item))
     return out

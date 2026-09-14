@@ -84,8 +84,9 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mgn.types.create_application_request.CreateApplicationRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -98,6 +99,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -135,8 +137,9 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_mgn.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -145,6 +148,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -186,7 +190,7 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_applications_request.ListApplicationsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -201,6 +205,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def archive_application(
@@ -237,8 +242,9 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.archive_application_request.ArchiveApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_mgn.types.archive_application_request.ArchiveApplicationRequest = {
+            "application_id": application_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -247,6 +253,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_source_servers(
@@ -287,9 +294,10 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.associate_source_servers_request.AssociateSourceServersRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["source_server_i_ds"] = source_server_i_ds
+        input_: capo_mgn.types.associate_source_servers_request.AssociateSourceServersRequest = {
+            "application_id": application_id,
+            "source_server_i_ds": source_server_i_ds,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -298,6 +306,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_source_servers(
@@ -337,9 +346,10 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.disassociate_source_servers_request.DisassociateSourceServersRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["source_server_i_ds"] = source_server_i_ds
+        input_: capo_mgn.types.disassociate_source_servers_request.DisassociateSourceServersRequest = {
+            "application_id": application_id,
+            "source_server_i_ds": source_server_i_ds,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -348,6 +358,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def unarchive_application(
@@ -383,8 +394,9 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.unarchive_application_request.UnarchiveApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_mgn.types.unarchive_application_request.UnarchiveApplicationRequest = {
+            "application_id": application_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -393,6 +405,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_application(
@@ -434,8 +447,9 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_mgn.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -448,6 +462,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -495,8 +510,9 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mgn.types.create_application_request.CreateApplicationRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -509,6 +525,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -547,8 +564,9 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_mgn.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -557,6 +575,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -599,7 +618,7 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_applications_request.ListApplicationsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -614,6 +633,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def archive_application(
@@ -651,8 +671,9 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.archive_application_request.ArchiveApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_mgn.types.archive_application_request.ArchiveApplicationRequest = {
+            "application_id": application_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -661,6 +682,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_source_servers(
@@ -702,9 +724,10 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.associate_source_servers_request.AssociateSourceServersRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["source_server_i_ds"] = source_server_i_ds
+        input_: capo_mgn.types.associate_source_servers_request.AssociateSourceServersRequest = {
+            "application_id": application_id,
+            "source_server_i_ds": source_server_i_ds,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -713,6 +736,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_source_servers(
@@ -753,9 +777,10 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.disassociate_source_servers_request.DisassociateSourceServersRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["source_server_i_ds"] = source_server_i_ds
+        input_: capo_mgn.types.disassociate_source_servers_request.DisassociateSourceServersRequest = {
+            "application_id": application_id,
+            "source_server_i_ds": source_server_i_ds,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -764,6 +789,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def unarchive_application(
@@ -800,8 +826,9 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.unarchive_application_request.UnarchiveApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_mgn.types.unarchive_application_request.UnarchiveApplicationRequest = {
+            "application_id": application_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -810,6 +837,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_application(
@@ -852,8 +880,9 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_mgn.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -866,4 +895,5 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

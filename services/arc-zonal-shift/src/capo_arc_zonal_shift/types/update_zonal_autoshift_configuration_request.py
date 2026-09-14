@@ -37,7 +37,7 @@ def serialize_json(value: UpdateZonalAutoshiftConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateZonalAutoshiftConfigurationRequest:
     out: UpdateZonalAutoshiftConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "zonalAutoshiftStatus" in data:
+    if data.get("zonalAutoshiftStatus") is not None:
         import capo_arc_zonal_shift.types.zonal_autoshift_status
 
         out["zonal_autoshift_status"] = (

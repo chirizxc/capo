@@ -86,40 +86,40 @@ def serialize_json(value: TaskListItem) -> dict:
 
 def deserialize_json(data: dict) -> TaskListItem:
     out: TaskListItem = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "cpus" in data:
+    if data.get("cpus") is not None:
         out["cpus"] = data["cpus"]
-    if "cacheHit" in data:
+    if data.get("cacheHit") is not None:
         out["cache_hit"] = data["cacheHit"]
-    if "cacheS3Uri" in data:
+    if data.get("cacheS3Uri") is not None:
         out["cache_s3_uri"] = data["cacheS3Uri"]
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.task_timestamp
 
         out["creation_time"] = capo_omics.types.task_timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_omics.types.task_timestamp
 
         out["start_time"] = capo_omics.types.task_timestamp.deserialize_json(
             data["startTime"]
         )
-    if "stopTime" in data:
+    if data.get("stopTime") is not None:
         import capo_omics.types.task_timestamp
 
         out["stop_time"] = capo_omics.types.task_timestamp.deserialize_json(
             data["stopTime"]
         )
-    if "gpus" in data:
+    if data.get("gpus") is not None:
         out["gpus"] = data["gpus"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     return out

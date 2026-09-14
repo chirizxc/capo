@@ -98,14 +98,14 @@ def serialize_json(value: ExtendedMessageTemplateData) -> dict:
     if "channel" in value:
         out["channel"] = value["channel"]
     out["channelSubtype"] = value["channel_subtype"]
-    import capo_qconnect.types._prelude.timestamp
+    import capo_qconnect._protocol.serialize
 
-    out["createdTime"] = capo_qconnect.types._prelude.timestamp.serialize_json(
+    out["createdTime"] = capo_qconnect._protocol.serialize.fmt_date_time(
         value["created_time"]
     )
-    import capo_qconnect.types._prelude.timestamp
+    import capo_qconnect._protocol.serialize
 
-    out["lastModifiedTime"] = capo_qconnect.types._prelude.timestamp.serialize_json(
+    out["lastModifiedTime"] = capo_qconnect._protocol.serialize.fmt_date_time(
         value["last_modified_time"]
     )
     out["lastModifiedBy"] = value["last_modified_by"]
@@ -175,69 +175,67 @@ def serialize_json(value: ExtendedMessageTemplateData) -> dict:
 
 def deserialize_json(data: dict) -> ExtendedMessageTemplateData:
     out: ExtendedMessageTemplateData = {}  # type: ignore[typeddict-item]
-    if "messageTemplateArn" in data:
+    if data.get("messageTemplateArn") is not None:
         out["message_template_arn"] = data["messageTemplateArn"]
     else:
         raise DeserializationError(
             "ExtendedMessageTemplateData.message_template_arn required"
         )
-    if "messageTemplateId" in data:
+    if data.get("messageTemplateId") is not None:
         out["message_template_id"] = data["messageTemplateId"]
     else:
         raise DeserializationError(
             "ExtendedMessageTemplateData.message_template_id required"
         )
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError(
             "ExtendedMessageTemplateData.knowledge_base_arn required"
         )
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
     else:
         raise DeserializationError(
             "ExtendedMessageTemplateData.knowledge_base_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ExtendedMessageTemplateData.name required")
-    if "channel" in data:
+    if data.get("channel") is not None:
         out["channel"] = data["channel"]
-    if "channelSubtype" in data:
+    if data.get("channelSubtype") is not None:
         out["channel_subtype"] = data["channelSubtype"]
     else:
         raise DeserializationError(
             "ExtendedMessageTemplateData.channel_subtype required"
         )
-    if "createdTime" in data:
-        import capo_qconnect.types._prelude.timestamp
+    if data.get("createdTime") is not None:
+        import datetime
 
-        out["created_time"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
-            data["createdTime"]
+        out["created_time"] = datetime.datetime.fromisoformat(
+            data["createdTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ExtendedMessageTemplateData.created_time required")
-    if "lastModifiedTime" in data:
-        import capo_qconnect.types._prelude.timestamp
+    if data.get("lastModifiedTime") is not None:
+        import datetime
 
-        out["last_modified_time"] = (
-            capo_qconnect.types._prelude.timestamp.deserialize_json(
-                data["lastModifiedTime"]
-            )
+        out["last_modified_time"] = datetime.datetime.fromisoformat(
+            data["lastModifiedTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "ExtendedMessageTemplateData.last_modified_time required"
         )
-    if "lastModifiedBy" in data:
+    if data.get("lastModifiedBy") is not None:
         out["last_modified_by"] = data["lastModifiedBy"]
     else:
         raise DeserializationError(
             "ExtendedMessageTemplateData.last_modified_by required"
         )
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_qconnect.types.message_template_content_provider
 
         out["content"] = (
@@ -245,11 +243,11 @@ def deserialize_json(data: dict) -> ExtendedMessageTemplateData:
                 data["content"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
-    if "sourceConfigurationSummary" in data:
+    if data.get("sourceConfigurationSummary") is not None:
         import capo_qconnect.types.message_template_source_configuration_summary
 
         out["source_configuration_summary"] = (
@@ -257,7 +255,7 @@ def deserialize_json(data: dict) -> ExtendedMessageTemplateData:
                 data["sourceConfigurationSummary"]
             )
         )
-    if "groupingConfiguration" in data:
+    if data.get("groupingConfiguration") is not None:
         import capo_qconnect.types.grouping_configuration
 
         out["grouping_configuration"] = (
@@ -265,7 +263,7 @@ def deserialize_json(data: dict) -> ExtendedMessageTemplateData:
                 data["groupingConfiguration"]
             )
         )
-    if "defaultAttributes" in data:
+    if data.get("defaultAttributes") is not None:
         import capo_qconnect.types.message_template_attributes
 
         out["default_attributes"] = (
@@ -273,7 +271,7 @@ def deserialize_json(data: dict) -> ExtendedMessageTemplateData:
                 data["defaultAttributes"]
             )
         )
-    if "attributeTypes" in data:
+    if data.get("attributeTypes") is not None:
         import capo_qconnect.types.message_template_attribute_type_list
 
         out["attribute_types"] = (
@@ -281,7 +279,7 @@ def deserialize_json(data: dict) -> ExtendedMessageTemplateData:
                 data["attributeTypes"]
             )
         )
-    if "attachments" in data:
+    if data.get("attachments") is not None:
         import capo_qconnect.types.message_template_attachment_list
 
         out["attachments"] = (
@@ -289,17 +287,17 @@ def deserialize_json(data: dict) -> ExtendedMessageTemplateData:
                 data["attachments"]
             )
         )
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
-    if "versionNumber" in data:
+    if data.get("versionNumber") is not None:
         out["version_number"] = data["versionNumber"]
-    if "messageTemplateContentSha256" in data:
+    if data.get("messageTemplateContentSha256") is not None:
         out["message_template_content_sha256"] = data["messageTemplateContentSha256"]
     else:
         raise DeserializationError(
             "ExtendedMessageTemplateData.message_template_content_sha256 required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

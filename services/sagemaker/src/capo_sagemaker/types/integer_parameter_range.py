@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: IntegerParameterRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IntegerParameterRange:
     out: IntegerParameterRange = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "MinValue" in data:
+    if data.get("MinValue") is not None:
         out["min_value"] = data["MinValue"]
-    if "MaxValue" in data:
+    if data.get("MaxValue") is not None:
         out["max_value"] = data["MaxValue"]
-    if "ScalingType" in data:
+    if data.get("ScalingType") is not None:
         import capo_sagemaker.types.hyper_parameter_scaling_type
 
         out["scaling_type"] = (

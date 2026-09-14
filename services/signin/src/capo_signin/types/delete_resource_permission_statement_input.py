@@ -29,12 +29,12 @@ def serialize_json(value: DeleteResourcePermissionStatementInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteResourcePermissionStatementInput:
     out: DeleteResourcePermissionStatementInput = {}  # type: ignore[typeddict-item]
-    if "statementId" in data:
+    if data.get("statementId") is not None:
         out["statement_id"] = data["statementId"]
     else:
         raise DeserializationError(
             "DeleteResourcePermissionStatementInput.statement_id required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

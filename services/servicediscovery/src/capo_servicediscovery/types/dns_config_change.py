@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DnsConfigChange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DnsConfigChange:
     out: DnsConfigChange = {}  # type: ignore[typeddict-item]
-    if "DnsRecords" in data:
+    if data.get("DnsRecords") is not None:
         import capo_servicediscovery.types.dns_record_list
 
         out["dns_records"] = (

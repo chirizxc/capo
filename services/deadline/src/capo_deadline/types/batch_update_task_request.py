@@ -31,7 +31,7 @@ def serialize_json(value: BatchUpdateTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateTaskRequest:
     out: BatchUpdateTaskRequest = {}  # type: ignore[typeddict-item]
-    if "tasks" in data:
+    if data.get("tasks") is not None:
         import capo_deadline.types.batch_update_task_items
 
         out["tasks"] = capo_deadline.types.batch_update_task_items.deserialize_json(

@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: UpdateDataSourceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDataSourceInput:
     out: UpdateDataSourceInput = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     else:
         raise DeserializationError("UpdateDataSourceInput.data_source_id required")
-    if "DataSourceName" in data:
+    if data.get("DataSourceName") is not None:
         out["data_source_name"] = data["DataSourceName"]
     else:
         raise DeserializationError("UpdateDataSourceInput.data_source_name required")

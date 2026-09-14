@@ -40,13 +40,13 @@ def serialize_json(value: OrganizationDetails) -> dict:
 
 def deserialize_json(data: dict) -> OrganizationDetails:
     out: OrganizationDetails = {}  # type: ignore[typeddict-item]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["updated_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "organizationStatistics" in data:
+    if data.get("organizationStatistics") is not None:
         import capo_guardduty.types.organization_statistics
 
         out["organization_statistics"] = (

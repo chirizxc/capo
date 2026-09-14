@@ -31,6 +31,8 @@ def deserialize_json(
 
     out: ProtectedQueryDistributeOutputConfigurationLocations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.protected_query_distribute_output_configuration_location.deserialize_json(
                 item

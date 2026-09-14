@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: TestMappingResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TestMappingResponse:
     out: TestMappingResponse = {}  # type: ignore[typeddict-item]
-    if "mappedFileContent" in data:
+    if data.get("mappedFileContent") is not None:
         out["mapped_file_content"] = data["mappedFileContent"]
     else:
         raise DeserializationError("TestMappingResponse.mapped_file_content required")

@@ -55,15 +55,15 @@ def serialize_json(value: ConnectorSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorSummary:
     out: ConnectorSummary = {}  # type: ignore[typeddict-item]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ProviderSummary" in data:
+    if data.get("ProviderSummary") is not None:
         import capo_securityhub.types.provider_summary
 
         out["provider_summary"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> ConnectorSummary:
                 data["ProviderSummary"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["created_at"] = capo_securityhub.types.timestamp.deserialize_json(

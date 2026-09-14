@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: InstancePool) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstancePool:
     out: InstancePool = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.production_variant_instance_type
 
         out["instance_type"] = (
@@ -51,8 +51,8 @@ def deserialize_aws_json_1_1(data: dict) -> InstancePool:
                 data["InstanceType"]
             )
         )
-    if "ModelNameOverride" in data:
+    if data.get("ModelNameOverride") is not None:
         out["model_name_override"] = data["ModelNameOverride"]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     return out

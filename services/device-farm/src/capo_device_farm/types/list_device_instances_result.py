@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListDeviceInstancesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDeviceInstancesResult:
     out: ListDeviceInstancesResult = {}  # type: ignore[typeddict-item]
-    if "deviceInstances" in data:
+    if data.get("deviceInstances") is not None:
         import capo_device_farm.types.device_instances
 
         out["device_instances"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListDeviceInstancesResult:
                 data["deviceInstances"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

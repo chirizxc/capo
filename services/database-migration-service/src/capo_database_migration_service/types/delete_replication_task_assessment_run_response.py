@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeleteReplicationTaskAssessmentRunResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteReplicationTaskAssessmentRunResponse:
     out: DeleteReplicationTaskAssessmentRunResponse = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskAssessmentRun" in data:
+    if data.get("ReplicationTaskAssessmentRun") is not None:
         import capo_database_migration_service.types.replication_task_assessment_run
 
         out["replication_task_assessment_run"] = (

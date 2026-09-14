@@ -33,15 +33,15 @@ def serialize_json(value: IncrementalTrainingDataChannel) -> dict:
 
 def deserialize_json(data: dict) -> IncrementalTrainingDataChannel:
     out: IncrementalTrainingDataChannel = {}  # type: ignore[typeddict-item]
-    if "trainedModelArn" in data:
+    if data.get("trainedModelArn") is not None:
         out["trained_model_arn"] = data["trainedModelArn"]
     else:
         raise DeserializationError(
             "IncrementalTrainingDataChannel.trained_model_arn required"
         )
-    if "versionIdentifier" in data:
+    if data.get("versionIdentifier") is not None:
         out["version_identifier"] = data["versionIdentifier"]
-    if "channelName" in data:
+    if data.get("channelName") is not None:
         out["channel_name"] = data["channelName"]
     else:
         raise DeserializationError(

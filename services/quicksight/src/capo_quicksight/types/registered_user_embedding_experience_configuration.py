@@ -96,7 +96,7 @@ def serialize_json(value: RegisteredUserEmbeddingExperienceConfiguration) -> dic
 
 def deserialize_json(data: dict) -> RegisteredUserEmbeddingExperienceConfiguration:
     out: RegisteredUserEmbeddingExperienceConfiguration = {}  # type: ignore[typeddict-item]
-    if "Dashboard" in data:
+    if data.get("Dashboard") is not None:
         import capo_quicksight.types.registered_user_dashboard_embedding_configuration
 
         out["dashboard"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> RegisteredUserEmbeddingExperienceConfigurati
                 data["Dashboard"]
             )
         )
-    if "QuickSightConsole" in data:
+    if data.get("QuickSightConsole") is not None:
         import capo_quicksight.types.registered_user_quick_sight_console_embedding_configuration
 
         out["quick_sight_console"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> RegisteredUserEmbeddingExperienceConfigurati
                 data["QuickSightConsole"]
             )
         )
-    if "QSearchBar" in data:
+    if data.get("QSearchBar") is not None:
         import capo_quicksight.types.registered_user_q_search_bar_embedding_configuration
 
         out["q_search_bar"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> RegisteredUserEmbeddingExperienceConfigurati
                 data["QSearchBar"]
             )
         )
-    if "DashboardVisual" in data:
+    if data.get("DashboardVisual") is not None:
         import capo_quicksight.types.registered_user_dashboard_visual_embedding_configuration
 
         out["dashboard_visual"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> RegisteredUserEmbeddingExperienceConfigurati
                 data["DashboardVisual"]
             )
         )
-    if "GenerativeQnA" in data:
+    if data.get("GenerativeQnA") is not None:
         import capo_quicksight.types.registered_user_generative_qn_a_embedding_configuration
 
         out["generative_qn_a"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> RegisteredUserEmbeddingExperienceConfigurati
                 data["GenerativeQnA"]
             )
         )
-    if "QuickChat" in data:
+    if data.get("QuickChat") is not None:
         import capo_quicksight.types.registered_user_quick_chat_embedding_configuration
 
         out["quick_chat"] = (

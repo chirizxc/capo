@@ -114,23 +114,23 @@ def serialize_json(value: WirelessDeviceStatistics) -> dict:
 
 def deserialize_json(data: dict) -> WirelessDeviceStatistics:
     out: WirelessDeviceStatistics = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_iot_wireless.types.wireless_device_type
 
         out["type"] = capo_iot_wireless.types.wireless_device_type.deserialize_json(
             data["Type"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
-    if "LastUplinkReceivedAt" in data:
+    if data.get("LastUplinkReceivedAt") is not None:
         out["last_uplink_received_at"] = data["LastUplinkReceivedAt"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_list_device
 
         out["lo_ra_wan"] = (
@@ -138,13 +138,13 @@ def deserialize_json(data: dict) -> WirelessDeviceStatistics:
                 data["LoRaWAN"]
             )
         )
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_list_device
 
         out["sidewalk"] = capo_iot_wireless.types.sidewalk_list_device.deserialize_json(
             data["Sidewalk"]
         )
-    if "FuotaDeviceStatus" in data:
+    if data.get("FuotaDeviceStatus") is not None:
         import capo_iot_wireless.types.fuota_device_status
 
         out["fuota_device_status"] = (
@@ -152,11 +152,11 @@ def deserialize_json(data: dict) -> WirelessDeviceStatistics:
                 data["FuotaDeviceStatus"]
             )
         )
-    if "MulticastDeviceStatus" in data:
+    if data.get("MulticastDeviceStatus") is not None:
         out["multicast_device_status"] = data["MulticastDeviceStatus"]
-    if "McGroupId" in data:
+    if data.get("McGroupId") is not None:
         out["mc_group_id"] = data["McGroupId"]
-    if "Positioning" in data:
+    if data.get("Positioning") is not None:
         import capo_iot_wireless.types.positioning_config_status
 
         out["positioning"] = (

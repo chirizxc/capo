@@ -43,19 +43,19 @@ def serialize_aws_json_1_1(value: GetUserAttributeVerificationCodeRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetUserAttributeVerificationCodeRequest:
     out: GetUserAttributeVerificationCodeRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError(
             "GetUserAttributeVerificationCodeRequest.access_token required"
         )
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError(
             "GetUserAttributeVerificationCodeRequest.attribute_name required"
         )
-    if "ClientMetadata" in data:
+    if data.get("ClientMetadata") is not None:
         import capo_cognito_identity_provider.types.client_metadata_type
 
         out["client_metadata"] = (

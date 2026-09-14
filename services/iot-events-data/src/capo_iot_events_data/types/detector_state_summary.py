@@ -23,6 +23,6 @@ def serialize_json(value: DetectorStateSummary) -> dict:
 
 def deserialize_json(data: dict) -> DetectorStateSummary:
     out: DetectorStateSummary = {}  # type: ignore[typeddict-item]
-    if "stateName" in data:
+    if data.get("stateName") is not None:
         out["state_name"] = data["stateName"]
     return out

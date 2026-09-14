@@ -63,9 +63,9 @@ def serialize_json(value: VoiceToneAnalysisTask) -> dict:
 
 def deserialize_json(data: dict) -> VoiceToneAnalysisTask:
     out: VoiceToneAnalysisTask = {}  # type: ignore[typeddict-item]
-    if "VoiceToneAnalysisTaskId" in data:
+    if data.get("VoiceToneAnalysisTaskId") is not None:
         out["voice_tone_analysis_task_id"] = data["VoiceToneAnalysisTaskId"]
-    if "VoiceToneAnalysisTaskStatus" in data:
+    if data.get("VoiceToneAnalysisTaskStatus") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_task_status
 
         out["voice_tone_analysis_task_status"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> VoiceToneAnalysisTask:
                 data["VoiceToneAnalysisTaskStatus"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> VoiceToneAnalysisTask:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["updated_timestamp"] = (

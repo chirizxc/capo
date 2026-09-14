@@ -18,6 +18,6 @@ def serialize_json(value: TelemetryPipelineStatusReason) -> dict:
 
 def deserialize_json(data: dict) -> TelemetryPipelineStatusReason:
     out: TelemetryPipelineStatusReason = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

@@ -33,12 +33,12 @@ def serialize_aws_json_1_1(value: ModelPackageConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelPackageConfig:
     out: ModelPackageConfig = {}  # type: ignore[typeddict-item]
-    if "ModelPackageGroupArn" in data:
+    if data.get("ModelPackageGroupArn") is not None:
         out["model_package_group_arn"] = data["ModelPackageGroupArn"]
     else:
         raise DeserializationError(
             "ModelPackageConfig.model_package_group_arn required"
         )
-    if "SourceModelPackageArn" in data:
+    if data.get("SourceModelPackageArn") is not None:
         out["source_model_package_arn"] = data["SourceModelPackageArn"]
     return out

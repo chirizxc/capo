@@ -34,12 +34,12 @@ def serialize_json(value: GetDeploymentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDeploymentsResponse:
     out: GetDeploymentsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_apigatewayv2.types.__list_of_deployment
 
         out["items"] = capo_apigatewayv2.types.__list_of_deployment.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

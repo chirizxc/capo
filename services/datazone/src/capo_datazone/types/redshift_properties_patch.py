@@ -65,7 +65,7 @@ def serialize_json(value: RedshiftPropertiesPatch) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftPropertiesPatch:
     out: RedshiftPropertiesPatch = {}  # type: ignore[typeddict-item]
-    if "storage" in data:
+    if data.get("storage") is not None:
         import capo_datazone.types.redshift_storage_properties
 
         out["storage"] = (
@@ -73,19 +73,19 @@ def deserialize_json(data: dict) -> RedshiftPropertiesPatch:
                 data["storage"]
             )
         )
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
-    if "host" in data:
+    if data.get("host") is not None:
         out["host"] = data["host"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "credentials" in data:
+    if data.get("credentials") is not None:
         import capo_datazone.types.redshift_credentials
 
         out["credentials"] = capo_datazone.types.redshift_credentials.deserialize_json(
             data["credentials"]
         )
-    if "lineageSync" in data:
+    if data.get("lineageSync") is not None:
         import capo_datazone.types.redshift_lineage_sync_configuration_input
 
         out["lineage_sync"] = (

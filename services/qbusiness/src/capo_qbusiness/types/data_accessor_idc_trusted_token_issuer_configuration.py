@@ -26,7 +26,7 @@ def serialize_json(value: DataAccessorIdcTrustedTokenIssuerConfiguration) -> dic
 
 def deserialize_json(data: dict) -> DataAccessorIdcTrustedTokenIssuerConfiguration:
     out: DataAccessorIdcTrustedTokenIssuerConfiguration = {}  # type: ignore[typeddict-item]
-    if "idcTrustedTokenIssuerArn" in data:
+    if data.get("idcTrustedTokenIssuerArn") is not None:
         out["idc_trusted_token_issuer_arn"] = data["idcTrustedTokenIssuerArn"]
     else:
         raise DeserializationError(

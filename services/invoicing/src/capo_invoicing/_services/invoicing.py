@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.invoicing#Invoicing``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -225,14 +226,16 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.batch_get_invoice_profile_request.BatchGetInvoiceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["account_ids"] = account_ids
+        input_: capo_invoicing.types.batch_get_invoice_profile_request.BatchGetInvoiceProfileRequest = {
+            "account_ids": account_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_invoice_unit(
@@ -294,24 +297,27 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.create_invoice_unit_request.CreateInvoiceUnitRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["invoice_receiver"] = invoice_receiver
+        input_: capo_invoicing.types.create_invoice_unit_request.CreateInvoiceUnitRequest = {
+            "name": name,
+            "invoice_receiver": invoice_receiver,
+            "rule": rule,
+        }
         if description is not None:
             input_["description"] = description
         if tax_inheritance_disabled is not None:
             input_["tax_inheritance_disabled"] = tax_inheritance_disabled
-        input_["rule"] = rule
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_procurement_portal_preference(
@@ -396,12 +402,16 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.create_procurement_portal_preference_request.CreateProcurementPortalPreferenceRequest = {}  # type: ignore[typeddict-item]
-        input_["procurement_portal_name"] = procurement_portal_name
-        input_["buyer_domain"] = buyer_domain
-        input_["buyer_identifier"] = buyer_identifier
-        input_["supplier_domain"] = supplier_domain
-        input_["supplier_identifier"] = supplier_identifier
+        input_: capo_invoicing.types.create_procurement_portal_preference_request.CreateProcurementPortalPreferenceRequest = {
+            "procurement_portal_name": procurement_portal_name,
+            "buyer_domain": buyer_domain,
+            "buyer_identifier": buyer_identifier,
+            "supplier_domain": supplier_domain,
+            "supplier_identifier": supplier_identifier,
+            "einvoice_delivery_enabled": einvoice_delivery_enabled,
+            "purchase_order_retrieval_enabled": purchase_order_retrieval_enabled,
+            "contacts": contacts,
+        }
         if selector is not None:
             input_["selector"] = selector
         if procurement_portal_shared_secret is not None:
@@ -414,21 +424,20 @@ class InvoicingClient:
             )
         if test_env_preference is not None:
             input_["test_env_preference"] = test_env_preference
-        input_["einvoice_delivery_enabled"] = einvoice_delivery_enabled
         if einvoice_delivery_preference is not None:
             input_["einvoice_delivery_preference"] = einvoice_delivery_preference
-        input_["purchase_order_retrieval_enabled"] = purchase_order_retrieval_enabled
-        input_["contacts"] = contacts
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_invoice_unit(
@@ -475,16 +484,19 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.delete_invoice_unit_request.DeleteInvoiceUnitRequest = {}  # type: ignore[typeddict-item]
-        input_["invoice_unit_arn"] = invoice_unit_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_invoicing.types.delete_invoice_unit_request.DeleteInvoiceUnitRequest = {
+            "invoice_unit_arn": invoice_unit_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_procurement_portal_preference(
@@ -532,16 +544,19 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.delete_procurement_portal_preference_request.DeleteProcurementPortalPreferenceRequest = {}  # type: ignore[typeddict-item]
-        input_["procurement_portal_preference_arn"] = procurement_portal_preference_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_invoicing.types.delete_procurement_portal_preference_request.DeleteProcurementPortalPreferenceRequest = {
+            "procurement_portal_preference_arn": procurement_portal_preference_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_invoice_pdf(
@@ -587,14 +602,16 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.get_invoice_pdf_request.GetInvoicePDFRequest = {}  # type: ignore[typeddict-item]
-        input_["invoice_id"] = invoice_id
+        input_: capo_invoicing.types.get_invoice_pdf_request.GetInvoicePDFRequest = {
+            "invoice_id": invoice_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_invoice_unit(
@@ -642,8 +659,9 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.get_invoice_unit_request.GetInvoiceUnitRequest = {}  # type: ignore[typeddict-item]
-        input_["invoice_unit_arn"] = invoice_unit_arn
+        input_: capo_invoicing.types.get_invoice_unit_request.GetInvoiceUnitRequest = {
+            "invoice_unit_arn": invoice_unit_arn
+        }
         if as_of is not None:
             input_["as_of"] = as_of
 
@@ -652,6 +670,7 @@ class InvoicingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_procurement_portal_preference(
@@ -696,14 +715,16 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.get_procurement_portal_preference_request.GetProcurementPortalPreferenceRequest = {}  # type: ignore[typeddict-item]
-        input_["procurement_portal_preference_arn"] = procurement_portal_preference_arn
+        input_: capo_invoicing.types.get_procurement_portal_preference_request.GetProcurementPortalPreferenceRequest = {
+            "procurement_portal_preference_arn": procurement_portal_preference_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_invoice_summaries(
@@ -773,8 +794,9 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.list_invoice_summaries_request.ListInvoiceSummariesRequest = {}  # type: ignore[typeddict-item]
-        input_["selector"] = selector
+        input_: capo_invoicing.types.list_invoice_summaries_request.ListInvoiceSummariesRequest = {
+            "selector": selector
+        }
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -787,6 +809,7 @@ class InvoicingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_invoice_summaries(
@@ -878,7 +901,7 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.list_invoice_units_request.ListInvoiceUnitsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_invoicing.types.list_invoice_units_request.ListInvoiceUnitsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -893,6 +916,7 @@ class InvoicingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_invoice_units(
@@ -972,7 +996,7 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.list_procurement_portal_preferences_request.ListProcurementPortalPreferencesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_invoicing.types.list_procurement_portal_preferences_request.ListProcurementPortalPreferencesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -983,6 +1007,7 @@ class InvoicingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_procurement_portal_preferences(
@@ -1048,14 +1073,16 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_invoicing.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_procurement_portal_preference(
@@ -1129,8 +1156,12 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.put_procurement_portal_preference_request.PutProcurementPortalPreferenceRequest = {}  # type: ignore[typeddict-item]
-        input_["procurement_portal_preference_arn"] = procurement_portal_preference_arn
+        input_: capo_invoicing.types.put_procurement_portal_preference_request.PutProcurementPortalPreferenceRequest = {
+            "procurement_portal_preference_arn": procurement_portal_preference_arn,
+            "einvoice_delivery_enabled": einvoice_delivery_enabled,
+            "purchase_order_retrieval_enabled": purchase_order_retrieval_enabled,
+            "contacts": contacts,
+        }
         if selector is not None:
             input_["selector"] = selector
         if procurement_portal_shared_secret is not None:
@@ -1143,19 +1174,18 @@ class InvoicingClient:
             )
         if test_env_preference is not None:
             input_["test_env_preference"] = test_env_preference
-        input_["einvoice_delivery_enabled"] = einvoice_delivery_enabled
         if einvoice_delivery_preference is not None:
             input_["einvoice_delivery_preference"] = einvoice_delivery_preference
-        input_["purchase_order_retrieval_enabled"] = purchase_order_retrieval_enabled
-        input_["contacts"] = contacts
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1201,15 +1231,17 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tags"] = resource_tags
+        input_: capo_invoicing.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tags": resource_tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1254,15 +1286,17 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tag_keys"] = resource_tag_keys
+        input_: capo_invoicing.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tag_keys": resource_tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_invoice_unit(
@@ -1322,22 +1356,25 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.update_invoice_unit_request.UpdateInvoiceUnitRequest = {}  # type: ignore[typeddict-item]
-        input_["invoice_unit_arn"] = invoice_unit_arn
+        input_: capo_invoicing.types.update_invoice_unit_request.UpdateInvoiceUnitRequest = {
+            "invoice_unit_arn": invoice_unit_arn
+        }
         if description is not None:
             input_["description"] = description
         if tax_inheritance_disabled is not None:
             input_["tax_inheritance_disabled"] = tax_inheritance_disabled
         if rule is not None:
             input_["rule"] = rule
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_procurement_portal_preference_status(
@@ -1402,8 +1439,9 @@ class InvoicingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_invoicing.types.update_procurement_portal_preference_status_request.UpdateProcurementPortalPreferenceStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["procurement_portal_preference_arn"] = procurement_portal_preference_arn
+        input_: capo_invoicing.types.update_procurement_portal_preference_status_request.UpdateProcurementPortalPreferenceStatusRequest = {
+            "procurement_portal_preference_arn": procurement_portal_preference_arn
+        }
         if einvoice_delivery_preference_status is not None:
             input_["einvoice_delivery_preference_status"] = (
                 einvoice_delivery_preference_status
@@ -1420,14 +1458,16 @@ class InvoicingClient:
             input_["purchase_order_retrieval_preference_status_reason"] = (
                 purchase_order_retrieval_preference_status_reason
             )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

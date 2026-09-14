@@ -88,15 +88,15 @@ def serialize_json(value: UpdateProjectProfileInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProjectProfileInput:
     out: UpdateProjectProfileInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.status
 
         out["status"] = capo_datazone.types.status.deserialize_json(data["status"])
-    if "projectResourceTags" in data:
+    if data.get("projectResourceTags") is not None:
         import capo_datazone.types.project_resource_tag_parameters
 
         out["project_resource_tags"] = (
@@ -104,15 +104,15 @@ def deserialize_json(data: dict) -> UpdateProjectProfileInput:
                 data["projectResourceTags"]
             )
         )
-    if "allowCustomProjectResourceTags" in data:
+    if data.get("allowCustomProjectResourceTags") is not None:
         out["allow_custom_project_resource_tags"] = data[
             "allowCustomProjectResourceTags"
         ]
-    if "projectResourceTagsDescription" in data:
+    if data.get("projectResourceTagsDescription") is not None:
         out["project_resource_tags_description"] = data[
             "projectResourceTagsDescription"
         ]
-    if "environmentConfigurations" in data:
+    if data.get("environmentConfigurations") is not None:
         import capo_datazone.types.environment_configurations_list
 
         out["environment_configurations"] = (
@@ -120,6 +120,6 @@ def deserialize_json(data: dict) -> UpdateProjectProfileInput:
                 data["environmentConfigurations"]
             )
         )
-    if "domainUnitIdentifier" in data:
+    if data.get("domainUnitIdentifier") is not None:
         out["domain_unit_identifier"] = data["domainUnitIdentifier"]
     return out

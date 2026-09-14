@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: UpdateTermsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTermsResponse:
     out: UpdateTermsResponse = {}  # type: ignore[typeddict-item]
-    if "Terms" in data:
+    if data.get("Terms") is not None:
         import capo_cognito_identity_provider.types.terms_type
 
         out["terms"] = (

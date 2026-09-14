@@ -41,12 +41,12 @@ def serialize_aws_json_1_1(value: AutoMLJobCompletionCriteria) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLJobCompletionCriteria:
     out: AutoMLJobCompletionCriteria = {}  # type: ignore[typeddict-item]
-    if "MaxCandidates" in data:
+    if data.get("MaxCandidates") is not None:
         out["max_candidates"] = data["MaxCandidates"]
-    if "MaxRuntimePerTrainingJobInSeconds" in data:
+    if data.get("MaxRuntimePerTrainingJobInSeconds") is not None:
         out["max_runtime_per_training_job_in_seconds"] = data[
             "MaxRuntimePerTrainingJobInSeconds"
         ]
-    if "MaxAutoMLJobRuntimeInSeconds" in data:
+    if data.get("MaxAutoMLJobRuntimeInSeconds") is not None:
         out["max_auto_ml_job_runtime_in_seconds"] = data["MaxAutoMLJobRuntimeInSeconds"]
     return out

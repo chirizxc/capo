@@ -152,9 +152,9 @@ def serialize_json(value: RouteViolatedConstraints) -> dict:
 
 def deserialize_json(data: dict) -> RouteViolatedConstraints:
     out: RouteViolatedConstraints = {}  # type: ignore[typeddict-item]
-    if "AllHazardsRestricted" in data:
+    if data.get("AllHazardsRestricted") is not None:
         out["all_hazards_restricted"] = data["AllHazardsRestricted"]
-    if "AxleCount" in data:
+    if data.get("AxleCount") is not None:
         import capo_geo_routes.types.route_notice_detail_range
 
         out["axle_count"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> RouteViolatedConstraints:
                 data["AxleCount"]
             )
         )
-    if "HazardousCargos" in data:
+    if data.get("HazardousCargos") is not None:
         import capo_geo_routes.types.route_hazardous_cargo_type_list
 
         out["hazardous_cargos"] = (
@@ -172,23 +172,23 @@ def deserialize_json(data: dict) -> RouteViolatedConstraints:
         )
     else:
         raise DeserializationError("RouteViolatedConstraints.hazardous_cargos required")
-    if "MaxHeight" in data:
+    if data.get("MaxHeight") is not None:
         out["max_height"] = data["MaxHeight"]
     else:
         out["max_height"] = 0
-    if "MaxKpraLength" in data:
+    if data.get("MaxKpraLength") is not None:
         out["max_kpra_length"] = data["MaxKpraLength"]
     else:
         out["max_kpra_length"] = 0
-    if "MaxLength" in data:
+    if data.get("MaxLength") is not None:
         out["max_length"] = data["MaxLength"]
     else:
         out["max_length"] = 0
-    if "MaxPayloadCapacity" in data:
+    if data.get("MaxPayloadCapacity") is not None:
         out["max_payload_capacity"] = data["MaxPayloadCapacity"]
     else:
         out["max_payload_capacity"] = 0
-    if "MaxWeight" in data:
+    if data.get("MaxWeight") is not None:
         import capo_geo_routes.types.route_weight_constraint
 
         out["max_weight"] = (
@@ -196,11 +196,11 @@ def deserialize_json(data: dict) -> RouteViolatedConstraints:
                 data["MaxWeight"]
             )
         )
-    if "MaxWeightPerAxle" in data:
+    if data.get("MaxWeightPerAxle") is not None:
         out["max_weight_per_axle"] = data["MaxWeightPerAxle"]
     else:
         out["max_weight_per_axle"] = 0
-    if "MaxWeightPerAxleGroup" in data:
+    if data.get("MaxWeightPerAxleGroup") is not None:
         import capo_geo_routes.types.weight_per_axle_group
 
         out["max_weight_per_axle_group"] = (
@@ -208,11 +208,11 @@ def deserialize_json(data: dict) -> RouteViolatedConstraints:
                 data["MaxWeightPerAxleGroup"]
             )
         )
-    if "MaxWidth" in data:
+    if data.get("MaxWidth") is not None:
         out["max_width"] = data["MaxWidth"]
     else:
         out["max_width"] = 0
-    if "Occupancy" in data:
+    if data.get("Occupancy") is not None:
         import capo_geo_routes.types.route_notice_detail_range
 
         out["occupancy"] = (
@@ -220,11 +220,11 @@ def deserialize_json(data: dict) -> RouteViolatedConstraints:
                 data["Occupancy"]
             )
         )
-    if "RestrictedTimes" in data:
+    if data.get("RestrictedTimes") is not None:
         out["restricted_times"] = data["RestrictedTimes"]
-    if "TimeDependent" in data:
+    if data.get("TimeDependent") is not None:
         out["time_dependent"] = data["TimeDependent"]
-    if "TrailerCount" in data:
+    if data.get("TrailerCount") is not None:
         import capo_geo_routes.types.route_notice_detail_range
 
         out["trailer_count"] = (
@@ -232,16 +232,16 @@ def deserialize_json(data: dict) -> RouteViolatedConstraints:
                 data["TrailerCount"]
             )
         )
-    if "TravelMode" in data:
+    if data.get("TravelMode") is not None:
         out["travel_mode"] = data["TravelMode"]
-    if "TruckRoadType" in data:
+    if data.get("TruckRoadType") is not None:
         out["truck_road_type"] = data["TruckRoadType"]
-    if "TruckType" in data:
+    if data.get("TruckType") is not None:
         import capo_geo_routes.types.route_truck_type
 
         out["truck_type"] = capo_geo_routes.types.route_truck_type.deserialize_json(
             data["TruckType"]
         )
-    if "TunnelRestrictionCode" in data:
+    if data.get("TunnelRestrictionCode") is not None:
         out["tunnel_restriction_code"] = data["TunnelRestrictionCode"]
     return out

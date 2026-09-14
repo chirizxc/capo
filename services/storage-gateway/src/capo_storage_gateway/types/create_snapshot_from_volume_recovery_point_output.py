@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: CreateSnapshotFromVolumeRecoveryPointOutput) -
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSnapshotFromVolumeRecoveryPointOutput:
     out: CreateSnapshotFromVolumeRecoveryPointOutput = {}  # type: ignore[typeddict-item]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
-    if "VolumeRecoveryPointTime" in data:
+    if data.get("VolumeRecoveryPointTime") is not None:
         out["volume_recovery_point_time"] = data["VolumeRecoveryPointTime"]
     return out

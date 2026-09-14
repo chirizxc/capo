@@ -36,15 +36,15 @@ def serialize_json(value: DeleteFeedResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteFeedResponse:
     out: DeleteFeedResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteFeedResponse.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeleteFeedResponse.id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_elementalinference.types.feed_status
 
         out["status"] = capo_elementalinference.types.feed_status.deserialize_json(

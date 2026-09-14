@@ -43,7 +43,7 @@ def serialize_json(value: QnAIntentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> QnAIntentConfiguration:
     out: QnAIntentConfiguration = {}  # type: ignore[typeddict-item]
-    if "dataSourceConfiguration" in data:
+    if data.get("dataSourceConfiguration") is not None:
         import capo_lex_models_v2.types.data_source_configuration
 
         out["data_source_configuration"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> QnAIntentConfiguration:
                 data["dataSourceConfiguration"]
             )
         )
-    if "bedrockModelConfiguration" in data:
+    if data.get("bedrockModelConfiguration") is not None:
         import capo_lex_models_v2.types.bedrock_model_specification
 
         out["bedrock_model_configuration"] = (

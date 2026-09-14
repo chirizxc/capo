@@ -33,9 +33,9 @@ def serialize_json(value: PathMatchType) -> dict:
 
 
 def deserialize_json(data: dict) -> PathMatchType:
-    if "exact" in data:
+    if data.get("exact") is not None:
         return {"exact": data["exact"]}
-    elif "prefix" in data:
+    elif data.get("prefix") is not None:
         return {"prefix": data["prefix"]}
     else:
         raise DeserializationError("PathMatchType: no recognized variant key")

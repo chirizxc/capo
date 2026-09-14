@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ComponentPropertyList:
 
     out: ComponentPropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_amplifyuibuilder.types.component_property.deserialize_json(item)
         )

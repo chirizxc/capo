@@ -35,7 +35,7 @@ def serialize_json(value: PopulateIdMappingTableInput) -> dict:
 
 def deserialize_json(data: dict) -> PopulateIdMappingTableInput:
     out: PopulateIdMappingTableInput = {}  # type: ignore[typeddict-item]
-    if "jobType" in data:
+    if data.get("jobType") is not None:
         import capo_cleanrooms.types.job_type
 
         out["job_type"] = capo_cleanrooms.types.job_type.deserialize_json(

@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DomainJoinInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainJoinInfo:
     out: DomainJoinInfo = {}  # type: ignore[typeddict-item]
-    if "DirectoryName" in data:
+    if data.get("DirectoryName") is not None:
         out["directory_name"] = data["DirectoryName"]
-    if "OrganizationalUnitDistinguishedName" in data:
+    if data.get("OrganizationalUnitDistinguishedName") is not None:
         out["organizational_unit_distinguished_name"] = data[
             "OrganizationalUnitDistinguishedName"
         ]

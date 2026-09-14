@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: UpdateContactRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateContactRequest:
     out: UpdateContactRequest = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("UpdateContactRequest.contact_id required")
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Plan" in data:
+    if data.get("Plan") is not None:
         import capo_ssm_contacts.types.plan
 
         out["plan"] = capo_ssm_contacts.types.plan.deserialize_aws_json_1_1(

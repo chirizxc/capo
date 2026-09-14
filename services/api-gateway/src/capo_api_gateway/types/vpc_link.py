@@ -64,27 +64,27 @@ def serialize_json(value: VpcLink) -> dict:
 
 def deserialize_json(data: dict) -> VpcLink:
     out: VpcLink = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "targetArns" in data:
+    if data.get("targetArns") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["target_arns"] = capo_api_gateway.types.list_of_string.deserialize_json(
             data["targetArns"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_api_gateway.types.vpc_link_status
 
         out["status"] = capo_api_gateway.types.vpc_link_status.deserialize_json(
             data["status"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

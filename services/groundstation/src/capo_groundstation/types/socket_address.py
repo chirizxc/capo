@@ -22,11 +22,11 @@ def serialize_json(value: SocketAddress) -> dict:
 
 def deserialize_json(data: dict) -> SocketAddress:
     out: SocketAddress = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SocketAddress.name required")
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         raise DeserializationError("SocketAddress.port required")

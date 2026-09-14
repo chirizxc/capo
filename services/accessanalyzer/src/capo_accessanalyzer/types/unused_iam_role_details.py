@@ -27,7 +27,7 @@ def serialize_json(value: UnusedIamRoleDetails) -> dict:
 
 def deserialize_json(data: dict) -> UnusedIamRoleDetails:
     out: UnusedIamRoleDetails = {}  # type: ignore[typeddict-item]
-    if "lastAccessed" in data:
+    if data.get("lastAccessed") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["last_accessed"] = capo_accessanalyzer.types.timestamp.deserialize_json(

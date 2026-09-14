@@ -67,7 +67,7 @@ def serialize_json(value: AuditCheckDetails) -> dict:
 
 def deserialize_json(data: dict) -> AuditCheckDetails:
     out: AuditCheckDetails = {}  # type: ignore[typeddict-item]
-    if "checkRunStatus" in data:
+    if data.get("checkRunStatus") is not None:
         import capo_iot.types.audit_check_run_status
 
         out["check_run_status"] = (
@@ -75,18 +75,18 @@ def deserialize_json(data: dict) -> AuditCheckDetails:
                 data["checkRunStatus"]
             )
         )
-    if "checkCompliant" in data:
+    if data.get("checkCompliant") is not None:
         out["check_compliant"] = data["checkCompliant"]
-    if "totalResourcesCount" in data:
+    if data.get("totalResourcesCount") is not None:
         out["total_resources_count"] = data["totalResourcesCount"]
-    if "nonCompliantResourcesCount" in data:
+    if data.get("nonCompliantResourcesCount") is not None:
         out["non_compliant_resources_count"] = data["nonCompliantResourcesCount"]
-    if "suppressedNonCompliantResourcesCount" in data:
+    if data.get("suppressedNonCompliantResourcesCount") is not None:
         out["suppressed_non_compliant_resources_count"] = data[
             "suppressedNonCompliantResourcesCount"
         ]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

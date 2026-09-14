@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EndpointErrorConditions:
 
     out: EndpointErrorConditions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediapackagev2.types.endpoint_error_condition.deserialize_json(item)
         )

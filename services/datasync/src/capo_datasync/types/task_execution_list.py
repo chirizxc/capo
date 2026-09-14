@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> TaskExecutionList:
 
     out: TaskExecutionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datasync.types.task_execution_list_entry.deserialize_aws_json_1_1(item)
         )

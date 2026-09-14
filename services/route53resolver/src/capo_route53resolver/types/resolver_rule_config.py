@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: ResolverRuleConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolverRuleConfig:
     out: ResolverRuleConfig = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TargetIps" in data:
+    if data.get("TargetIps") is not None:
         import capo_route53resolver.types.target_list
 
         out["target_ips"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> ResolverRuleConfig:
                 data["TargetIps"]
             )
         )
-    if "ResolverEndpointId" in data:
+    if data.get("ResolverEndpointId") is not None:
         out["resolver_endpoint_id"] = data["ResolverEndpointId"]
     return out

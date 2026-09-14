@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: PutAdminAccountRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutAdminAccountRequest:
     out: PutAdminAccountRequest = {}  # type: ignore[typeddict-item]
-    if "AdminAccount" in data:
+    if data.get("AdminAccount") is not None:
         out["admin_account"] = data["AdminAccount"]
     else:
         raise DeserializationError("PutAdminAccountRequest.admin_account required")
-    if "AdminScope" in data:
+    if data.get("AdminScope") is not None:
         import capo_fms.types.admin_scope
 
         out["admin_scope"] = capo_fms.types.admin_scope.deserialize_aws_json_1_1(

@@ -31,8 +31,8 @@ def serialize_json(value: PointOfInterest) -> dict:
 
 def deserialize_json(data: dict) -> PointOfInterest:
     out: PointOfInterest = {}  # type: ignore[typeddict-item]
-    if "BeginOffsetMillis" in data:
+    if data.get("BeginOffsetMillis") is not None:
         out["begin_offset_millis"] = data["BeginOffsetMillis"]
-    if "EndOffsetMillis" in data:
+    if data.get("EndOffsetMillis") is not None:
         out["end_offset_millis"] = data["EndOffsetMillis"]
     return out

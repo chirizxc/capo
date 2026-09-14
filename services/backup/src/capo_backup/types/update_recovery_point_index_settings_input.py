@@ -37,9 +37,9 @@ def serialize_json(value: UpdateRecoveryPointIndexSettingsInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecoveryPointIndexSettingsInput:
     out: UpdateRecoveryPointIndexSettingsInput = {}  # type: ignore[typeddict-item]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "Index" in data:
+    if data.get("Index") is not None:
         import capo_backup.types.index
 
         out["index"] = capo_backup.types.index.deserialize_json(data["Index"])

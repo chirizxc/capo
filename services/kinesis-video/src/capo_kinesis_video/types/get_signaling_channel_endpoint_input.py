@@ -37,13 +37,13 @@ def serialize_json(value: GetSignalingChannelEndpointInput) -> dict:
 
 def deserialize_json(data: dict) -> GetSignalingChannelEndpointInput:
     out: GetSignalingChannelEndpointInput = {}  # type: ignore[typeddict-item]
-    if "ChannelARN" in data:
+    if data.get("ChannelARN") is not None:
         out["channel_arn"] = data["ChannelARN"]
     else:
         raise DeserializationError(
             "GetSignalingChannelEndpointInput.channel_arn required"
         )
-    if "SingleMasterChannelEndpointConfiguration" in data:
+    if data.get("SingleMasterChannelEndpointConfiguration") is not None:
         import capo_kinesis_video.types.single_master_channel_endpoint_configuration
 
         out["single_master_channel_endpoint_configuration"] = (

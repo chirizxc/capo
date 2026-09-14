@@ -39,21 +39,21 @@ def serialize_json(value: SubjectSummary) -> dict:
     if "x509_subject" in value:
         out["x509Subject"] = value["x509_subject"]
     if "last_seen_at" in value:
-        import capo_rolesanywhere.types._prelude.timestamp
+        import capo_rolesanywhere._protocol.serialize
 
-        out["lastSeenAt"] = capo_rolesanywhere.types._prelude.timestamp.serialize_json(
+        out["lastSeenAt"] = capo_rolesanywhere._protocol.serialize.fmt_date_time(
             value["last_seen_at"]
         )
     if "created_at" in value:
-        import capo_rolesanywhere.types._prelude.timestamp
+        import capo_rolesanywhere._protocol.serialize
 
-        out["createdAt"] = capo_rolesanywhere.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_rolesanywhere._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_rolesanywhere.types._prelude.timestamp
+        import capo_rolesanywhere._protocol.serialize
 
-        out["updatedAt"] = capo_rolesanywhere.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_rolesanywhere._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     return out
@@ -61,36 +61,30 @@ def serialize_json(value: SubjectSummary) -> dict:
 
 def deserialize_json(data: dict) -> SubjectSummary:
     out: SubjectSummary = {}  # type: ignore[typeddict-item]
-    if "subjectArn" in data:
+    if data.get("subjectArn") is not None:
         out["subject_arn"] = data["subjectArn"]
-    if "subjectId" in data:
+    if data.get("subjectId") is not None:
         out["subject_id"] = data["subjectId"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "x509Subject" in data:
+    if data.get("x509Subject") is not None:
         out["x509_subject"] = data["x509Subject"]
-    if "lastSeenAt" in data:
-        import capo_rolesanywhere.types._prelude.timestamp
+    if data.get("lastSeenAt") is not None:
+        import datetime
 
-        out["last_seen_at"] = (
-            capo_rolesanywhere.types._prelude.timestamp.deserialize_json(
-                data["lastSeenAt"]
-            )
+        out["last_seen_at"] = datetime.datetime.fromisoformat(
+            data["lastSeenAt"].replace("Z", "+00:00")
         )
-    if "createdAt" in data:
-        import capo_rolesanywhere.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_rolesanywhere.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_rolesanywhere.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_rolesanywhere.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     return out

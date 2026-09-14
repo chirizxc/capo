@@ -40,13 +40,13 @@ def serialize_json(value: SliderControlDisplayOptions) -> dict:
 
 def deserialize_json(data: dict) -> SliderControlDisplayOptions:
     out: SliderControlDisplayOptions = {}  # type: ignore[typeddict-item]
-    if "TitleOptions" in data:
+    if data.get("TitleOptions") is not None:
         import capo_quicksight.types.label_options
 
         out["title_options"] = capo_quicksight.types.label_options.deserialize_json(
             data["TitleOptions"]
         )
-    if "InfoIconLabelOptions" in data:
+    if data.get("InfoIconLabelOptions") is not None:
         import capo_quicksight.types.sheet_control_info_icon_label_options
 
         out["info_icon_label_options"] = (

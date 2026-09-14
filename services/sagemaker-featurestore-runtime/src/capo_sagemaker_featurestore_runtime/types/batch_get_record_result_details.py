@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchGetRecordResultDetails:
 
     out: BatchGetRecordResultDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_featurestore_runtime.types.batch_get_record_result_detail.deserialize_json(
                 item

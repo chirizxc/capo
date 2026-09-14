@@ -30,7 +30,7 @@ def serialize_json(value: BatchGetSessionActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSessionActionRequest:
     out: BatchGetSessionActionRequest = {}  # type: ignore[typeddict-item]
-    if "identifiers" in data:
+    if data.get("identifiers") is not None:
         import capo_deadline.types.batch_get_session_action_identifiers
 
         out["identifiers"] = (

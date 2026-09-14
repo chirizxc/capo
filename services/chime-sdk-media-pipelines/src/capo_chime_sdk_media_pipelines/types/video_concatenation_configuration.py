@@ -30,7 +30,7 @@ def serialize_json(value: VideoConcatenationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VideoConcatenationConfiguration:
     out: VideoConcatenationConfiguration = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_chime_sdk_media_pipelines.types.artifacts_concatenation_state
 
         out["state"] = (

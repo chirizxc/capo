@@ -45,7 +45,7 @@ def serialize_json(value: SyntheticDataConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SyntheticDataConfiguration:
     out: SyntheticDataConfiguration = {}  # type: ignore[typeddict-item]
-    if "syntheticDataParameters" in data:
+    if data.get("syntheticDataParameters") is not None:
         import capo_cleanroomsml.types.ml_synthetic_data_parameters
 
         out["synthetic_data_parameters"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> SyntheticDataConfiguration:
         raise DeserializationError(
             "SyntheticDataConfiguration.synthetic_data_parameters required"
         )
-    if "syntheticDataEvaluationScores" in data:
+    if data.get("syntheticDataEvaluationScores") is not None:
         import capo_cleanroomsml.types.synthetic_data_evaluation_scores
 
         out["synthetic_data_evaluation_scores"] = (

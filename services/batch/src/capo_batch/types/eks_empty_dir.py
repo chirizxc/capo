@@ -28,8 +28,8 @@ def serialize_json(value: EksEmptyDir) -> dict:
 
 def deserialize_json(data: dict) -> EksEmptyDir:
     out: EksEmptyDir = {}  # type: ignore[typeddict-item]
-    if "medium" in data:
+    if data.get("medium") is not None:
         out["medium"] = data["medium"]
-    if "sizeLimit" in data:
+    if data.get("sizeLimit") is not None:
         out["size_limit"] = data["sizeLimit"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CallAnalyticsEntityList:
 
     out: CallAnalyticsEntityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe_streaming.types.call_analytics_entity.deserialize_json(item)
         )

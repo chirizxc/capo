@@ -45,17 +45,17 @@ def serialize_json(value: EncoderConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EncoderConfiguration:
     out: EncoderConfiguration = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("EncoderConfiguration.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "video" in data:
+    if data.get("video") is not None:
         import capo_ivs_realtime.types.video
 
         out["video"] = capo_ivs_realtime.types.video.deserialize_json(data["video"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs_realtime.types.tags
 
         out["tags"] = capo_ivs_realtime.types.tags.deserialize_json(data["tags"])

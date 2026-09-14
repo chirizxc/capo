@@ -95,8 +95,9 @@ class SignalCatalogResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_signal_catalog_request.CreateSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.create_signal_catalog_request.CreateSignalCatalogRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if nodes is not None:
@@ -109,6 +110,7 @@ class SignalCatalogResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -146,14 +148,16 @@ class SignalCatalogResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_signal_catalog_request.GetSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.get_signal_catalog_request.GetSignalCatalogRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -205,8 +209,9 @@ class SignalCatalogResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_signal_catalog_request.UpdateSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.update_signal_catalog_request.UpdateSignalCatalogRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if nodes_to_add is not None:
@@ -221,6 +226,7 @@ class SignalCatalogResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -258,14 +264,16 @@ class SignalCatalogResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_signal_catalog_request.DeleteSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.delete_signal_catalog_request.DeleteSignalCatalogRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -304,7 +312,7 @@ class SignalCatalogResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_signal_catalogs_request.ListSignalCatalogsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_signal_catalogs_request.ListSignalCatalogsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -315,6 +323,7 @@ class SignalCatalogResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_signal_catalog(
@@ -361,8 +370,9 @@ class SignalCatalogResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.import_signal_catalog_request.ImportSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.import_signal_catalog_request.ImportSignalCatalogRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if vss is not None:
@@ -375,6 +385,7 @@ class SignalCatalogResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_signal_catalog_nodes(
@@ -421,8 +432,9 @@ class SignalCatalogResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_signal_catalog_nodes_request.ListSignalCatalogNodesRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.list_signal_catalog_nodes_request.ListSignalCatalogNodesRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -435,6 +447,7 @@ class SignalCatalogResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -487,8 +500,9 @@ class AsyncSignalCatalogResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_signal_catalog_request.CreateSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.create_signal_catalog_request.CreateSignalCatalogRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if nodes is not None:
@@ -501,6 +515,7 @@ class AsyncSignalCatalogResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -539,14 +554,16 @@ class AsyncSignalCatalogResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_signal_catalog_request.GetSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.get_signal_catalog_request.GetSignalCatalogRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -599,8 +616,9 @@ class AsyncSignalCatalogResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_signal_catalog_request.UpdateSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.update_signal_catalog_request.UpdateSignalCatalogRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if nodes_to_add is not None:
@@ -615,6 +633,7 @@ class AsyncSignalCatalogResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -653,14 +672,16 @@ class AsyncSignalCatalogResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_signal_catalog_request.DeleteSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.delete_signal_catalog_request.DeleteSignalCatalogRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -700,7 +721,7 @@ class AsyncSignalCatalogResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_signal_catalogs_request.ListSignalCatalogsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_signal_catalogs_request.ListSignalCatalogsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -711,6 +732,7 @@ class AsyncSignalCatalogResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_signal_catalog(
@@ -758,8 +780,9 @@ class AsyncSignalCatalogResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.import_signal_catalog_request.ImportSignalCatalogRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.import_signal_catalog_request.ImportSignalCatalogRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if vss is not None:
@@ -772,6 +795,7 @@ class AsyncSignalCatalogResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_signal_catalog_nodes(
@@ -819,8 +843,9 @@ class AsyncSignalCatalogResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_signal_catalog_nodes_request.ListSignalCatalogNodesRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.list_signal_catalog_nodes_request.ListSignalCatalogNodesRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -833,4 +858,5 @@ class AsyncSignalCatalogResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

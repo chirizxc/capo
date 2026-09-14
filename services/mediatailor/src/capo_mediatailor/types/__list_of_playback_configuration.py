@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfPlaybackConfiguration:
 
     out: __listOfPlaybackConfiguration = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediatailor.types.playback_configuration.deserialize_json(item))
     return out

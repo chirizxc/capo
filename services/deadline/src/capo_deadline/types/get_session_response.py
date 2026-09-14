@@ -113,19 +113,19 @@ def serialize_json(value: GetSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSessionResponse:
     out: GetSessionResponse = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("GetSessionResponse.session_id required")
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
     else:
         raise DeserializationError("GetSessionResponse.fleet_id required")
-    if "workerId" in data:
+    if data.get("workerId") is not None:
         out["worker_id"] = data["workerId"]
     else:
         raise DeserializationError("GetSessionResponse.worker_id required")
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_deadline.types.started_at
 
         out["started_at"] = capo_deadline.types.started_at.deserialize_json(
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> GetSessionResponse:
         )
     else:
         raise DeserializationError("GetSessionResponse.started_at required")
-    if "lifecycleStatus" in data:
+    if data.get("lifecycleStatus") is not None:
         import capo_deadline.types.session_lifecycle_status
 
         out["lifecycle_status"] = (
@@ -143,11 +143,11 @@ def deserialize_json(data: dict) -> GetSessionResponse:
         )
     else:
         raise DeserializationError("GetSessionResponse.lifecycle_status required")
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_deadline.types.ended_at
 
         out["ended_at"] = capo_deadline.types.ended_at.deserialize_json(data["endedAt"])
-    if "targetLifecycleStatus" in data:
+    if data.get("targetLifecycleStatus") is not None:
         import capo_deadline.types.session_lifecycle_target_status
 
         out["target_lifecycle_status"] = (
@@ -155,21 +155,21 @@ def deserialize_json(data: dict) -> GetSessionResponse:
                 data["targetLifecycleStatus"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "log" in data:
+    if data.get("log") is not None:
         import capo_deadline.types.log_configuration
 
         out["log"] = capo_deadline.types.log_configuration.deserialize_json(data["log"])
     else:
         raise DeserializationError("GetSessionResponse.log required")
-    if "hostProperties" in data:
+    if data.get("hostProperties") is not None:
         import capo_deadline.types.host_properties_response
 
         out["host_properties"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> GetSessionResponse:
                 data["hostProperties"]
             )
         )
-    if "workerLog" in data:
+    if data.get("workerLog") is not None:
         import capo_deadline.types.log_configuration
 
         out["worker_log"] = capo_deadline.types.log_configuration.deserialize_json(

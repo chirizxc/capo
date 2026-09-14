@@ -51,7 +51,7 @@ def serialize_json(value: AnalyticsIntentMetric) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsIntentMetric:
     out: AnalyticsIntentMetric = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lex_models_v2.types.analytics_intent_metric_name
 
         out["name"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> AnalyticsIntentMetric:
         )
     else:
         raise DeserializationError("AnalyticsIntentMetric.name required")
-    if "statistic" in data:
+    if data.get("statistic") is not None:
         import capo_lex_models_v2.types.analytics_metric_statistic
 
         out["statistic"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> AnalyticsIntentMetric:
         )
     else:
         raise DeserializationError("AnalyticsIntentMetric.statistic required")
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_lex_models_v2.types.analytics_sort_order
 
         out["order"] = capo_lex_models_v2.types.analytics_sort_order.deserialize_json(

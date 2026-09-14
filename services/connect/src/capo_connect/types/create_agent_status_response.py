@@ -28,8 +28,8 @@ def serialize_json(value: CreateAgentStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAgentStatusResponse:
     out: CreateAgentStatusResponse = {}  # type: ignore[typeddict-item]
-    if "AgentStatusARN" in data:
+    if data.get("AgentStatusARN") is not None:
         out["agent_status_arn"] = data["AgentStatusARN"]
-    if "AgentStatusId" in data:
+    if data.get("AgentStatusId") is not None:
         out["agent_status_id"] = data["AgentStatusId"]
     return out

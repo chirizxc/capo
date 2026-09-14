@@ -68,19 +68,19 @@ def serialize_aws_json_1_0(value: GetDecoderManifestResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetDecoderManifestResponse:
     out: GetDecoderManifestResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetDecoderManifestResponse.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetDecoderManifestResponse.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "modelManifestArn" in data:
+    if data.get("modelManifestArn") is not None:
         out["model_manifest_arn"] = data["modelManifestArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotfleetwise.types.manifest_status
 
         out["status"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetDecoderManifestResponse:
                 data["status"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["creation_time"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetDecoderManifestResponse:
         )
     else:
         raise DeserializationError("GetDecoderManifestResponse.creation_time required")
-    if "lastModificationTime" in data:
+    if data.get("lastModificationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["last_modification_time"] = (
@@ -110,6 +110,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetDecoderManifestResponse:
         raise DeserializationError(
             "GetDecoderManifestResponse.last_modification_time required"
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

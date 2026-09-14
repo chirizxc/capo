@@ -51,7 +51,7 @@ def serialize_json(value: UpdateNetworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNetworkRequest:
     out: UpdateNetworkRequest = {}  # type: ignore[typeddict-item]
-    if "ipPools" in data:
+    if data.get("ipPools") is not None:
         import capo_medialive.types.__list_of_ip_pool_update_request
 
         out["ip_pools"] = (
@@ -59,9 +59,9 @@ def deserialize_json(data: dict) -> UpdateNetworkRequest:
                 data["ipPools"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "routes" in data:
+    if data.get("routes") is not None:
         import capo_medialive.types.__list_of_route_update_request
 
         out["routes"] = (

@@ -34,10 +34,10 @@ def serialize_json(value: ListMembersRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListMembersRequest:
     out: ListMembersRequest = {}  # type: ignore[typeddict-item]
-    if "onlyAssociated" in data:
+    if data.get("onlyAssociated") is not None:
         out["only_associated"] = data["onlyAssociated"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DataQualityRulesetEvaluationRunList:
 
     out: DataQualityRulesetEvaluationRunList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.data_quality_ruleset_evaluation_run_description.deserialize_aws_json_1_1(
                 item

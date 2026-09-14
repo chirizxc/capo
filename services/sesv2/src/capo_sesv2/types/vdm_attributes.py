@@ -52,7 +52,7 @@ def serialize_json(value: VdmAttributes) -> dict:
 
 def deserialize_json(data: dict) -> VdmAttributes:
     out: VdmAttributes = {}  # type: ignore[typeddict-item]
-    if "VdmEnabled" in data:
+    if data.get("VdmEnabled") is not None:
         import capo_sesv2.types.feature_status
 
         out["vdm_enabled"] = capo_sesv2.types.feature_status.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> VdmAttributes:
         )
     else:
         raise DeserializationError("VdmAttributes.vdm_enabled required")
-    if "DashboardAttributes" in data:
+    if data.get("DashboardAttributes") is not None:
         import capo_sesv2.types.dashboard_attributes
 
         out["dashboard_attributes"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> VdmAttributes:
                 data["DashboardAttributes"]
             )
         )
-    if "GuardianAttributes" in data:
+    if data.get("GuardianAttributes") is not None:
         import capo_sesv2.types.guardian_attributes
 
         out["guardian_attributes"] = (

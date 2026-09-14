@@ -37,15 +37,18 @@ class InvalidUserStateFault(ServiceError):
 
     code: str | None = "InvalidUserStateFault"
 
-    def __init__(self, data: InvalidUserStateFault_):
+    def __init__(self, data: InvalidUserStateFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidUserStateFault",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidUserStateFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidUserStateFault":
+        return cls(deserialize_query(el), message)

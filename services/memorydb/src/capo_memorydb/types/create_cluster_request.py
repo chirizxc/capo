@@ -162,27 +162,27 @@ def serialize_aws_json_1_1(value: CreateClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
     out: CreateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError("CreateClusterRequest.cluster_name required")
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
     else:
         raise DeserializationError("CreateClusterRequest.node_type required")
-    if "MultiRegionClusterName" in data:
+    if data.get("MultiRegionClusterName") is not None:
         out["multi_region_cluster_name"] = data["MultiRegionClusterName"]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "NumShards" in data:
+    if data.get("NumShards") is not None:
         out["num_shards"] = data["NumShards"]
-    if "NumReplicasPerShard" in data:
+    if data.get("NumReplicasPerShard") is not None:
         out["num_replicas_per_shard"] = data["NumReplicasPerShard"]
-    if "SubnetGroupName" in data:
+    if data.get("SubnetGroupName") is not None:
         out["subnet_group_name"] = data["SubnetGroupName"]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_memorydb.types.security_group_ids_list
 
         out["security_group_ids"] = (
@@ -190,17 +190,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["SecurityGroupIds"]
             )
         )
-    if "MaintenanceWindow" in data:
+    if data.get("MaintenanceWindow") is not None:
         out["maintenance_window"] = data["MaintenanceWindow"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "TLSEnabled" in data:
+    if data.get("TLSEnabled") is not None:
         out["tls_enabled"] = data["TLSEnabled"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "SnapshotArns" in data:
+    if data.get("SnapshotArns") is not None:
         import capo_memorydb.types.snapshot_arns_list
 
         out["snapshot_arns"] = (
@@ -208,37 +208,37 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["SnapshotArns"]
             )
         )
-    if "SnapshotName" in data:
+    if data.get("SnapshotName") is not None:
         out["snapshot_name"] = data["SnapshotName"]
-    if "SnapshotRetentionLimit" in data:
+    if data.get("SnapshotRetentionLimit") is not None:
         out["snapshot_retention_limit"] = data["SnapshotRetentionLimit"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_memorydb.types.tag_list
 
         out["tags"] = capo_memorydb.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "SnapshotWindow" in data:
+    if data.get("SnapshotWindow") is not None:
         out["snapshot_window"] = data["SnapshotWindow"]
-    if "ACLName" in data:
+    if data.get("ACLName") is not None:
         out["acl_name"] = data["ACLName"]
     else:
         raise DeserializationError("CreateClusterRequest.acl_name required")
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "AutoMinorVersionUpgrade" in data:
+    if data.get("AutoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["AutoMinorVersionUpgrade"]
-    if "DataTiering" in data:
+    if data.get("DataTiering") is not None:
         out["data_tiering"] = data["DataTiering"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_memorydb.types.network_type
 
         out["network_type"] = capo_memorydb.types.network_type.deserialize_aws_json_1_1(
             data["NetworkType"]
         )
-    if "IpDiscovery" in data:
+    if data.get("IpDiscovery") is not None:
         import capo_memorydb.types.ip_discovery
 
         out["ip_discovery"] = capo_memorydb.types.ip_discovery.deserialize_aws_json_1_1(

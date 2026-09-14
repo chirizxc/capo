@@ -36,7 +36,7 @@ def serialize_json(value: CisScanStatusFilter) -> dict:
 
 def deserialize_json(data: dict) -> CisScanStatusFilter:
     out: CisScanStatusFilter = {}  # type: ignore[typeddict-item]
-    if "comparison" in data:
+    if data.get("comparison") is not None:
         import capo_inspector2.types.cis_scan_status_comparison
 
         out["comparison"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> CisScanStatusFilter:
         )
     else:
         raise DeserializationError("CisScanStatusFilter.comparison required")
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_inspector2.types.cis_scan_status
 
         out["value"] = capo_inspector2.types.cis_scan_status.deserialize_json(

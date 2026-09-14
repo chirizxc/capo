@@ -102,17 +102,17 @@ def serialize_aws_json_1_1(value: CurrentInstance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CurrentInstance:
     out: CurrentInstance = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "InstanceName" in data:
+    if data.get("InstanceName") is not None:
         out["instance_name"] = data["InstanceName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_cost_explorer.types.tag_values_list
 
         out["tags"] = capo_cost_explorer.types.tag_values_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ResourceDetails" in data:
+    if data.get("ResourceDetails") is not None:
         import capo_cost_explorer.types.resource_details
 
         out["resource_details"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> CurrentInstance:
                 data["ResourceDetails"]
             )
         )
-    if "ResourceUtilization" in data:
+    if data.get("ResourceUtilization") is not None:
         import capo_cost_explorer.types.resource_utilization
 
         out["resource_utilization"] = (
@@ -128,24 +128,24 @@ def deserialize_aws_json_1_1(data: dict) -> CurrentInstance:
                 data["ResourceUtilization"]
             )
         )
-    if "ReservationCoveredHoursInLookbackPeriod" in data:
+    if data.get("ReservationCoveredHoursInLookbackPeriod") is not None:
         out["reservation_covered_hours_in_lookback_period"] = data[
             "ReservationCoveredHoursInLookbackPeriod"
         ]
-    if "SavingsPlansCoveredHoursInLookbackPeriod" in data:
+    if data.get("SavingsPlansCoveredHoursInLookbackPeriod") is not None:
         out["savings_plans_covered_hours_in_lookback_period"] = data[
             "SavingsPlansCoveredHoursInLookbackPeriod"
         ]
-    if "OnDemandHoursInLookbackPeriod" in data:
+    if data.get("OnDemandHoursInLookbackPeriod") is not None:
         out["on_demand_hours_in_lookback_period"] = data[
             "OnDemandHoursInLookbackPeriod"
         ]
-    if "TotalRunningHoursInLookbackPeriod" in data:
+    if data.get("TotalRunningHoursInLookbackPeriod") is not None:
         out["total_running_hours_in_lookback_period"] = data[
             "TotalRunningHoursInLookbackPeriod"
         ]
-    if "MonthlyCost" in data:
+    if data.get("MonthlyCost") is not None:
         out["monthly_cost"] = data["MonthlyCost"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
     return out

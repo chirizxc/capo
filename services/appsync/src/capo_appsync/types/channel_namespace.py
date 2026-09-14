@@ -84,41 +84,41 @@ def serialize_json(value: ChannelNamespace) -> dict:
 
 def deserialize_json(data: dict) -> ChannelNamespace:
     out: ChannelNamespace = {}  # type: ignore[typeddict-item]
-    if "apiId" in data:
+    if data.get("apiId") is not None:
         out["api_id"] = data["apiId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "subscribeAuthModes" in data:
+    if data.get("subscribeAuthModes") is not None:
         import capo_appsync.types.auth_modes
 
         out["subscribe_auth_modes"] = capo_appsync.types.auth_modes.deserialize_json(
             data["subscribeAuthModes"]
         )
-    if "publishAuthModes" in data:
+    if data.get("publishAuthModes") is not None:
         import capo_appsync.types.auth_modes
 
         out["publish_auth_modes"] = capo_appsync.types.auth_modes.deserialize_json(
             data["publishAuthModes"]
         )
-    if "codeHandlers" in data:
+    if data.get("codeHandlers") is not None:
         out["code_handlers"] = data["codeHandlers"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appsync.types.tag_map
 
         out["tags"] = capo_appsync.types.tag_map.deserialize_json(data["tags"])
-    if "channelNamespaceArn" in data:
+    if data.get("channelNamespaceArn") is not None:
         out["channel_namespace_arn"] = data["channelNamespaceArn"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_appsync.types.timestamp
 
         out["created"] = capo_appsync.types.timestamp.deserialize_json(data["created"])
-    if "lastModified" in data:
+    if data.get("lastModified") is not None:
         import capo_appsync.types.timestamp
 
         out["last_modified"] = capo_appsync.types.timestamp.deserialize_json(
             data["lastModified"]
         )
-    if "handlerConfigs" in data:
+    if data.get("handlerConfigs") is not None:
         import capo_appsync.types.handler_configs
 
         out["handler_configs"] = capo_appsync.types.handler_configs.deserialize_json(

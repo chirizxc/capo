@@ -95,13 +95,13 @@ def serialize_json(value: ShareInvitationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ShareInvitationSummary:
     out: ShareInvitationSummary = {}  # type: ignore[typeddict-item]
-    if "ShareInvitationId" in data:
+    if data.get("ShareInvitationId") is not None:
         out["share_invitation_id"] = data["ShareInvitationId"]
-    if "SharedBy" in data:
+    if data.get("SharedBy") is not None:
         out["shared_by"] = data["SharedBy"]
-    if "SharedWith" in data:
+    if data.get("SharedWith") is not None:
         out["shared_with"] = data["SharedWith"]
-    if "PermissionType" in data:
+    if data.get("PermissionType") is not None:
         import capo_wellarchitected.types.permission_type
 
         out["permission_type"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> ShareInvitationSummary:
                 data["PermissionType"]
             )
         )
-    if "ShareResourceType" in data:
+    if data.get("ShareResourceType") is not None:
         import capo_wellarchitected.types.share_resource_type
 
         out["share_resource_type"] = (
@@ -117,20 +117,20 @@ def deserialize_json(data: dict) -> ShareInvitationSummary:
                 data["ShareResourceType"]
             )
         )
-    if "WorkloadName" in data:
+    if data.get("WorkloadName") is not None:
         out["workload_name"] = data["WorkloadName"]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "LensName" in data:
+    if data.get("LensName") is not None:
         out["lens_name"] = data["LensName"]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "ProfileName" in data:
+    if data.get("ProfileName") is not None:
         out["profile_name"] = data["ProfileName"]
-    if "ProfileArn" in data:
+    if data.get("ProfileArn") is not None:
         out["profile_arn"] = data["ProfileArn"]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
     return out

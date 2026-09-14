@@ -40,9 +40,9 @@ def serialize_aws_json_1_1(value: ActiveDirectoryError_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActiveDirectoryError_:
     out: ActiveDirectoryError_ = {}  # type: ignore[typeddict-item]
-    if "ActiveDirectoryId" in data:
+    if data.get("ActiveDirectoryId") is not None:
         out["active_directory_id"] = data["ActiveDirectoryId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_fsx.types.active_directory_error_type
 
         out["type"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActiveDirectoryError_:
                 data["Type"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -60,15 +60,18 @@ class ActiveDirectoryError(ServiceError):
 
     code: str | None = "ActiveDirectoryError"
 
-    def __init__(self, data: ActiveDirectoryError_):
+    def __init__(self, data: ActiveDirectoryError_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ActiveDirectoryError",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ActiveDirectoryError":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ActiveDirectoryError":
+        return cls(deserialize_aws_json_1_1(data), message)

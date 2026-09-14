@@ -71,23 +71,21 @@ def serialize_json(value: AccountRecommendationLifecycleSummary) -> dict:
             )
         )
     if "last_updated_at" in value:
-        import capo_trustedadvisor.types._prelude.timestamp
+        import capo_trustedadvisor._protocol.serialize
 
-        out["lastUpdatedAt"] = (
-            capo_trustedadvisor.types._prelude.timestamp.serialize_json(
-                value["last_updated_at"]
-            )
+        out["lastUpdatedAt"] = capo_trustedadvisor._protocol.serialize.fmt_date_time(
+            value["last_updated_at"]
         )
     return out
 
 
 def deserialize_json(data: dict) -> AccountRecommendationLifecycleSummary:
     out: AccountRecommendationLifecycleSummary = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "accountRecommendationArn" in data:
+    if data.get("accountRecommendationArn") is not None:
         out["account_recommendation_arn"] = data["accountRecommendationArn"]
-    if "lifecycleStage" in data:
+    if data.get("lifecycleStage") is not None:
         import capo_trustedadvisor.types.recommendation_lifecycle_stage
 
         out["lifecycle_stage"] = (
@@ -95,13 +93,13 @@ def deserialize_json(data: dict) -> AccountRecommendationLifecycleSummary:
                 data["lifecycleStage"]
             )
         )
-    if "updatedOnBehalfOf" in data:
+    if data.get("updatedOnBehalfOf") is not None:
         out["updated_on_behalf_of"] = data["updatedOnBehalfOf"]
-    if "updatedOnBehalfOfJobTitle" in data:
+    if data.get("updatedOnBehalfOfJobTitle") is not None:
         out["updated_on_behalf_of_job_title"] = data["updatedOnBehalfOfJobTitle"]
-    if "updateReason" in data:
+    if data.get("updateReason") is not None:
         out["update_reason"] = data["updateReason"]
-    if "updateReasonCode" in data:
+    if data.get("updateReasonCode") is not None:
         import capo_trustedadvisor.types.update_recommendation_lifecycle_stage_reason_code
 
         out["update_reason_code"] = (
@@ -109,12 +107,10 @@ def deserialize_json(data: dict) -> AccountRecommendationLifecycleSummary:
                 data["updateReasonCode"]
             )
         )
-    if "lastUpdatedAt" in data:
-        import capo_trustedadvisor.types._prelude.timestamp
+    if data.get("lastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_trustedadvisor.types._prelude.timestamp.deserialize_json(
-                data["lastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["lastUpdatedAt"].replace("Z", "+00:00")
         )
     return out

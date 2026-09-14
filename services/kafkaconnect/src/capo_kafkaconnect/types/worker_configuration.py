@@ -28,11 +28,11 @@ def serialize_json(value: WorkerConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WorkerConfiguration:
     out: WorkerConfiguration = {}  # type: ignore[typeddict-item]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         out["revision"] = 0
-    if "workerConfigurationArn" in data:
+    if data.get("workerConfigurationArn") is not None:
         out["worker_configuration_arn"] = data["workerConfigurationArn"]
     else:
         raise DeserializationError(

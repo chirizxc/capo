@@ -160,15 +160,17 @@ class EKSAuthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_eks_auth.types.assume_role_for_pod_identity_request.AssumeRoleForPodIdentityRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["token"] = token
+        input_: capo_eks_auth.types.assume_role_for_pod_identity_request.AssumeRoleForPodIdentityRequest = {
+            "cluster_name": cluster_name,
+            "token": token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

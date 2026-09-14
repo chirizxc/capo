@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: HybridUpdateValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HybridUpdateValue:
     out: HybridUpdateValue = {}  # type: ignore[typeddict-item]
-    if "InstanceIds" in data:
+    if data.get("InstanceIds") is not None:
         import capo_directory_service.types.assessment_instance_ids
 
         out["instance_ids"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> HybridUpdateValue:
                 data["InstanceIds"]
             )
         )
-    if "DnsIps" in data:
+    if data.get("DnsIps") is not None:
         import capo_directory_service.types.customer_dns_ips
 
         out["dns_ips"] = (

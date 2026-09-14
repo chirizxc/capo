@@ -72,11 +72,11 @@ def serialize_json(value: CoreNetworkPolicyVersion) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkPolicyVersion:
     out: CoreNetworkPolicyVersion = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "PolicyVersionId" in data:
+    if data.get("PolicyVersionId") is not None:
         out["policy_version_id"] = data["PolicyVersionId"]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         import capo_networkmanager.types.core_network_policy_alias
 
         out["alias"] = (
@@ -84,15 +84,15 @@ def deserialize_json(data: dict) -> CoreNetworkPolicyVersion:
                 data["Alias"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_networkmanager.types.date_time
 
         out["created_at"] = capo_networkmanager.types.date_time.deserialize_json(
             data["CreatedAt"]
         )
-    if "ChangeSetState" in data:
+    if data.get("ChangeSetState") is not None:
         import capo_networkmanager.types.change_set_state
 
         out["change_set_state"] = (

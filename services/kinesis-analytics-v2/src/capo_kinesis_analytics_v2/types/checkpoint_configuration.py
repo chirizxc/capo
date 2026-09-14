@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: CheckpointConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckpointConfiguration:
     out: CheckpointConfiguration = {}  # type: ignore[typeddict-item]
-    if "ConfigurationType" in data:
+    if data.get("ConfigurationType") is not None:
         import capo_kinesis_analytics_v2.types.configuration_type
 
         out["configuration_type"] = (
@@ -65,10 +65,10 @@ def deserialize_aws_json_1_1(data: dict) -> CheckpointConfiguration:
         raise DeserializationError(
             "CheckpointConfiguration.configuration_type required"
         )
-    if "CheckpointingEnabled" in data:
+    if data.get("CheckpointingEnabled") is not None:
         out["checkpointing_enabled"] = data["CheckpointingEnabled"]
-    if "CheckpointInterval" in data:
+    if data.get("CheckpointInterval") is not None:
         out["checkpoint_interval"] = data["CheckpointInterval"]
-    if "MinPauseBetweenCheckpoints" in data:
+    if data.get("MinPauseBetweenCheckpoints") is not None:
         out["min_pause_between_checkpoints"] = data["MinPauseBetweenCheckpoints"]
     return out

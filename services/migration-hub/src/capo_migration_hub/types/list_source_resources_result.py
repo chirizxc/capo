@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListSourceResourcesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSourceResourcesResult:
     out: ListSourceResourcesResult = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SourceResourceList" in data:
+    if data.get("SourceResourceList") is not None:
         import capo_migration_hub.types.source_resource_list
 
         out["source_resource_list"] = (

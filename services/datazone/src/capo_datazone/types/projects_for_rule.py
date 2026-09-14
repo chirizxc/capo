@@ -43,7 +43,7 @@ def serialize_json(value: ProjectsForRule) -> dict:
 
 def deserialize_json(data: dict) -> ProjectsForRule:
     out: ProjectsForRule = {}  # type: ignore[typeddict-item]
-    if "selectionMode" in data:
+    if data.get("selectionMode") is not None:
         import capo_datazone.types.rule_scope_selection_mode
 
         out["selection_mode"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> ProjectsForRule:
         )
     else:
         raise DeserializationError("ProjectsForRule.selection_mode required")
-    if "specificProjects" in data:
+    if data.get("specificProjects") is not None:
         import capo_datazone.types.rule_project_identifier_list
 
         out["specific_projects"] = (

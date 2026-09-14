@@ -13,9 +13,9 @@ from capo_pinpoint_sms_voice_v2 import AsyncPinpointSMSVoiceV2Client
 
 
 async def main():
-    async with AsyncPinpointSMSVoiceV2Client() as s3:
+    async with AsyncPinpointSMSVoiceV2Client() as pinpoint_sms_voice_v2:
         # Example: call the associate_origination_identity operation
-        response = await s3.associate_origination_identity()
+        response = await pinpoint_sms_voice_v2.associate_origination_identity()
         print(response["pool_arn"])
 ```
 
@@ -29,9 +29,9 @@ from capo_pinpoint_sms_voice_v2.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncPinpointSMSVoiceV2Client() as s3:
+    async with AsyncPinpointSMSVoiceV2Client() as pinpoint_sms_voice_v2:
         try:
-            await s3.associate_origination_identity()
+            await pinpoint_sms_voice_v2.associate_origination_identity()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_pinpoint_sms_voice_v2 import AsyncPinpointSMSVoiceV2Client
 
 
 async def main():
-    async with AsyncPinpointSMSVoiceV2Client() as s3:
+    async with AsyncPinpointSMSVoiceV2Client() as pinpoint_sms_voice_v2:
         # Default: 3 attempts for every operation
-        response = await s3.associate_origination_identity()
+        response = await pinpoint_sms_voice_v2.associate_origination_identity()
 
         # Override per operation
-        response = await s3.associate_origination_identity(config_overrides={"retry_max_attempts": 5})
+        response = await pinpoint_sms_voice_v2.associate_origination_identity(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_origination_identity(config_overrides={"retry_max_attempts": 1})
+        response = await pinpoint_sms_voice_v2.associate_origination_identity(config_overrides={"retry_max_attempts": 1})
 ```

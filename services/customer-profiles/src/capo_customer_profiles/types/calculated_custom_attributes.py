@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: CalculatedCustomAttributes) -> dict:
 def deserialize_json(data: dict) -> CalculatedCustomAttributes:
     out: CalculatedCustomAttributes = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_customer_profiles.types.calculated_attribute_dimension
 
         out[key] = (

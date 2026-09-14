@@ -29,12 +29,12 @@ def serialize_aws_json_1_0(value: RecordActivityTaskHeartbeatInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecordActivityTaskHeartbeatInput:
     out: RecordActivityTaskHeartbeatInput = {}  # type: ignore[typeddict-item]
-    if "taskToken" in data:
+    if data.get("taskToken") is not None:
         out["task_token"] = data["taskToken"]
     else:
         raise DeserializationError(
             "RecordActivityTaskHeartbeatInput.task_token required"
         )
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
     return out

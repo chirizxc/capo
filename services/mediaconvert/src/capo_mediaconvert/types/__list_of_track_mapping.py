@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfTrackMapping:
 
     out: __listOfTrackMapping = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.track_mapping.deserialize_json(item))
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ProjectListFilters:
 
     out: ProjectListFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codecatalyst.types.project_list_filter.deserialize_json(item))
     return out

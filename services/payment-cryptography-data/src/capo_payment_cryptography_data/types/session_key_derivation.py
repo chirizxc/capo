@@ -95,7 +95,7 @@ def serialize_json(value: SessionKeyDerivation) -> dict:
 
 
 def deserialize_json(data: dict) -> SessionKeyDerivation:
-    if "EmvCommon" in data:
+    if data.get("EmvCommon") is not None:
         import capo_payment_cryptography_data.types.session_key_emv_common
 
         return {
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> SessionKeyDerivation:
                 data["EmvCommon"]
             )
         }
-    elif "Mastercard" in data:
+    elif data.get("Mastercard") is not None:
         import capo_payment_cryptography_data.types.session_key_mastercard
 
         return {
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> SessionKeyDerivation:
                 data["Mastercard"]
             )
         }
-    elif "Emv2000" in data:
+    elif data.get("Emv2000") is not None:
         import capo_payment_cryptography_data.types.session_key_emv2000
 
         return {
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> SessionKeyDerivation:
                 data["Emv2000"]
             )
         }
-    elif "Amex" in data:
+    elif data.get("Amex") is not None:
         import capo_payment_cryptography_data.types.session_key_amex
 
         return {
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> SessionKeyDerivation:
                 data["Amex"]
             )
         }
-    elif "Visa" in data:
+    elif data.get("Visa") is not None:
         import capo_payment_cryptography_data.types.session_key_visa
 
         return {

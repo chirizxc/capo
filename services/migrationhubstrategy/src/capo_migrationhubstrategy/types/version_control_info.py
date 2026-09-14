@@ -34,9 +34,9 @@ def serialize_json(value: VersionControlInfo) -> dict:
 
 def deserialize_json(data: dict) -> VersionControlInfo:
     out: VersionControlInfo = {}  # type: ignore[typeddict-item]
-    if "versionControlType" in data:
+    if data.get("versionControlType") is not None:
         out["version_control_type"] = data["versionControlType"]
-    if "versionControlConfigurationTimeStamp" in data:
+    if data.get("versionControlConfigurationTimeStamp") is not None:
         out["version_control_configuration_time_stamp"] = data[
             "versionControlConfigurationTimeStamp"
         ]

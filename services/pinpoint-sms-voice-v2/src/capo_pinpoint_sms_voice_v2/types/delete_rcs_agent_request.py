@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteRcsAgentRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteRcsAgentRequest:
     out: DeleteRcsAgentRequest = {}  # type: ignore[typeddict-item]
-    if "RcsAgentId" in data:
+    if data.get("RcsAgentId") is not None:
         out["rcs_agent_id"] = data["RcsAgentId"]
     else:
         raise DeserializationError("DeleteRcsAgentRequest.rcs_agent_id required")

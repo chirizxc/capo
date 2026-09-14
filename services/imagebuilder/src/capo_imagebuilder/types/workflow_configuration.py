@@ -53,11 +53,11 @@ def serialize_json(value: WorkflowConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowConfiguration:
     out: WorkflowConfiguration = {}  # type: ignore[typeddict-item]
-    if "workflowArn" in data:
+    if data.get("workflowArn") is not None:
         out["workflow_arn"] = data["workflowArn"]
     else:
         raise DeserializationError("WorkflowConfiguration.workflow_arn required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_imagebuilder.types.workflow_parameter_list
 
         out["parameters"] = (
@@ -65,9 +65,9 @@ def deserialize_json(data: dict) -> WorkflowConfiguration:
                 data["parameters"]
             )
         )
-    if "parallelGroup" in data:
+    if data.get("parallelGroup") is not None:
         out["parallel_group"] = data["parallelGroup"]
-    if "onFailure" in data:
+    if data.get("onFailure") is not None:
         import capo_imagebuilder.types.on_workflow_failure
 
         out["on_failure"] = (

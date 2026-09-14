@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_opensearchserverless._services._pipeline import (
@@ -85,20 +86,23 @@ class VpcEndpoint:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_vpc_endpoint_request.CreateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["vpc_id"] = vpc_id
-        input_["subnet_ids"] = subnet_ids
+        input_: capo_opensearchserverless.types.create_vpc_endpoint_request.CreateVpcEndpointRequest = {
+            "name": name,
+            "vpc_id": vpc_id,
+            "subnet_ids": subnet_ids,
+        }
         if security_group_ids is not None:
             input_["security_group_ids"] = security_group_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -139,16 +143,19 @@ class VpcEndpoint:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_vpc_endpoint_request.DeleteVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_vpc_endpoint_request.DeleteVpcEndpointRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -189,7 +196,7 @@ class VpcEndpoint:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_vpc_endpoints_request.ListVpcEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.list_vpc_endpoints_request.ListVpcEndpointsRequest = {}
         if vpc_endpoint_filters is not None:
             input_["vpc_endpoint_filters"] = vpc_endpoint_filters
         if next_token is not None:
@@ -202,6 +209,7 @@ class VpcEndpoint:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -256,20 +264,23 @@ class AsyncVpcEndpoint:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_vpc_endpoint_request.CreateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["vpc_id"] = vpc_id
-        input_["subnet_ids"] = subnet_ids
+        input_: capo_opensearchserverless.types.create_vpc_endpoint_request.CreateVpcEndpointRequest = {
+            "name": name,
+            "vpc_id": vpc_id,
+            "subnet_ids": subnet_ids,
+        }
         if security_group_ids is not None:
             input_["security_group_ids"] = security_group_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -311,16 +322,19 @@ class AsyncVpcEndpoint:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_vpc_endpoint_request.DeleteVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_vpc_endpoint_request.DeleteVpcEndpointRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -362,7 +376,7 @@ class AsyncVpcEndpoint:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_vpc_endpoints_request.ListVpcEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.list_vpc_endpoints_request.ListVpcEndpointsRequest = {}
         if vpc_endpoint_filters is not None:
             input_["vpc_endpoint_filters"] = vpc_endpoint_filters
         if next_token is not None:
@@ -375,4 +389,5 @@ class AsyncVpcEndpoint:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

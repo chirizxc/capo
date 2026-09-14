@@ -36,9 +36,9 @@ def serialize_json(value: AssociateResourceError) -> dict:
 
 def deserialize_json(data: dict) -> AssociateResourceError:
     out: AssociateResourceError = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_billingconductor.types.associate_resource_error_reason
 
         out["reason"] = (

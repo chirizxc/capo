@@ -40,17 +40,17 @@ def serialize_json(value: DkimAttributes) -> dict:
 
 def deserialize_json(data: dict) -> DkimAttributes:
     out: DkimAttributes = {}  # type: ignore[typeddict-item]
-    if "SigningEnabled" in data:
+    if data.get("SigningEnabled") is not None:
         out["signing_enabled"] = data["SigningEnabled"]
     else:
         out["signing_enabled"] = False
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_pinpoint_email.types.dkim_status
 
         out["status"] = capo_pinpoint_email.types.dkim_status.deserialize_json(
             data["Status"]
         )
-    if "Tokens" in data:
+    if data.get("Tokens") is not None:
         import capo_pinpoint_email.types.dns_token_list
 
         out["tokens"] = capo_pinpoint_email.types.dns_token_list.deserialize_json(

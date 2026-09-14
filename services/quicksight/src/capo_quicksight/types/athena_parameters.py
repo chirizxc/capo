@@ -45,13 +45,13 @@ def serialize_json(value: AthenaParameters) -> dict:
 
 def deserialize_json(data: dict) -> AthenaParameters:
     out: AthenaParameters = {}  # type: ignore[typeddict-item]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ConsumerAccountRoleArn" in data:
+    if data.get("ConsumerAccountRoleArn") is not None:
         out["consumer_account_role_arn"] = data["ConsumerAccountRoleArn"]
-    if "IdentityCenterConfiguration" in data:
+    if data.get("IdentityCenterConfiguration") is not None:
         import capo_quicksight.types.identity_center_configuration
 
         out["identity_center_configuration"] = (

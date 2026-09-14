@@ -31,11 +31,11 @@ def serialize_json(value: ReputationOptions) -> dict:
 
 def deserialize_json(data: dict) -> ReputationOptions:
     out: ReputationOptions = {}  # type: ignore[typeddict-item]
-    if "ReputationMetricsEnabled" in data:
+    if data.get("ReputationMetricsEnabled") is not None:
         out["reputation_metrics_enabled"] = data["ReputationMetricsEnabled"]
     else:
         out["reputation_metrics_enabled"] = False
-    if "LastFreshStart" in data:
+    if data.get("LastFreshStart") is not None:
         import capo_sesv2.types.last_fresh_start
 
         out["last_fresh_start"] = capo_sesv2.types.last_fresh_start.deserialize_json(

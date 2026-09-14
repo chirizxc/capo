@@ -31,9 +31,9 @@ def serialize_json(value: ListRegionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRegionsResponse:
     out: ListRegionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_account.types.region_opt_list
 
         out["regions"] = capo_account.types.region_opt_list.deserialize_json(

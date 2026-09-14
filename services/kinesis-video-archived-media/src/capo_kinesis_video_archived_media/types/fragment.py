@@ -59,13 +59,13 @@ def serialize_json(value: Fragment) -> dict:
 
 def deserialize_json(data: dict) -> Fragment:
     out: Fragment = {}  # type: ignore[typeddict-item]
-    if "FragmentNumber" in data:
+    if data.get("FragmentNumber") is not None:
         out["fragment_number"] = data["FragmentNumber"]
-    if "FragmentSizeInBytes" in data:
+    if data.get("FragmentSizeInBytes") is not None:
         out["fragment_size_in_bytes"] = data["FragmentSizeInBytes"]
     else:
         out["fragment_size_in_bytes"] = 0
-    if "ProducerTimestamp" in data:
+    if data.get("ProducerTimestamp") is not None:
         import capo_kinesis_video_archived_media.types.timestamp
 
         out["producer_timestamp"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> Fragment:
                 data["ProducerTimestamp"]
             )
         )
-    if "ServerTimestamp" in data:
+    if data.get("ServerTimestamp") is not None:
         import capo_kinesis_video_archived_media.types.timestamp
 
         out["server_timestamp"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> Fragment:
                 data["ServerTimestamp"]
             )
         )
-    if "FragmentLengthInMilliseconds" in data:
+    if data.get("FragmentLengthInMilliseconds") is not None:
         out["fragment_length_in_milliseconds"] = data["FragmentLengthInMilliseconds"]
     else:
         out["fragment_length_in_milliseconds"] = 0

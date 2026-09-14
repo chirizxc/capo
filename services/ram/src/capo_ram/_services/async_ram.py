@@ -263,8 +263,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.accept_resource_share_invitation_request.AcceptResourceShareInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_invitation_arn"] = resource_share_invitation_arn
+        input_: capo_ram.types.accept_resource_share_invitation_request.AcceptResourceShareInvitationRequest = {
+            "resource_share_invitation_arn": resource_share_invitation_arn
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -273,6 +274,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_resource_share(
@@ -331,8 +333,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.associate_resource_share_request.AssociateResourceShareRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_arn"] = resource_share_arn
+        input_: capo_ram.types.associate_resource_share_request.AssociateResourceShareRequest = {
+            "resource_share_arn": resource_share_arn
+        }
         if resource_arns is not None:
             input_["resource_arns"] = resource_arns
         if principals is not None:
@@ -347,6 +350,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_resource_share_permission(
@@ -395,9 +399,10 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.associate_resource_share_permission_request.AssociateResourceSharePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_arn"] = resource_share_arn
-        input_["permission_arn"] = permission_arn
+        input_: capo_ram.types.associate_resource_share_permission_request.AssociateResourceSharePermissionRequest = {
+            "resource_share_arn": resource_share_arn,
+            "permission_arn": permission_arn,
+        }
         if replace is not None:
             input_["replace"] = replace
         if client_token is not None:
@@ -410,6 +415,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_permission(
@@ -461,10 +467,11 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.create_permission_request.CreatePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["resource_type"] = resource_type
-        input_["policy_template"] = policy_template
+        input_: capo_ram.types.create_permission_request.CreatePermissionRequest = {
+            "name": name,
+            "resource_type": resource_type,
+            "policy_template": policy_template,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
         if tags is not None:
@@ -475,6 +482,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_permission_version(
@@ -522,9 +530,10 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.create_permission_version_request.CreatePermissionVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_arn"] = permission_arn
-        input_["policy_template"] = policy_template
+        input_: capo_ram.types.create_permission_version_request.CreatePermissionVersionRequest = {
+            "permission_arn": permission_arn,
+            "policy_template": policy_template,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -533,6 +542,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resource_share(
@@ -605,8 +615,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.create_resource_share_request.CreateResourceShareRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_ram.types.create_resource_share_request.CreateResourceShareRequest = {
+            "name": name
+        }
         if resource_arns is not None:
             input_["resource_arns"] = resource_arns
         if principals is not None:
@@ -629,6 +640,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_permission(
@@ -671,8 +683,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.delete_permission_request.DeletePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_arn"] = permission_arn
+        input_: capo_ram.types.delete_permission_request.DeletePermissionRequest = {
+            "permission_arn": permission_arn
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -681,6 +694,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_permission_version(
@@ -726,9 +740,10 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.delete_permission_version_request.DeletePermissionVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_arn"] = permission_arn
-        input_["permission_version"] = permission_version
+        input_: capo_ram.types.delete_permission_version_request.DeletePermissionVersionRequest = {
+            "permission_arn": permission_arn,
+            "permission_version": permission_version,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -737,6 +752,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_share(
@@ -782,8 +798,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.delete_resource_share_request.DeleteResourceShareRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_arn"] = resource_share_arn
+        input_: capo_ram.types.delete_resource_share_request.DeleteResourceShareRequest = {
+            "resource_share_arn": resource_share_arn
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -792,6 +809,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_resource_share(
@@ -850,8 +868,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.disassociate_resource_share_request.DisassociateResourceShareRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_arn"] = resource_share_arn
+        input_: capo_ram.types.disassociate_resource_share_request.DisassociateResourceShareRequest = {
+            "resource_share_arn": resource_share_arn
+        }
         if resource_arns is not None:
             input_["resource_arns"] = resource_arns
         if principals is not None:
@@ -866,6 +885,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_resource_share_permission(
@@ -911,9 +931,10 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.disassociate_resource_share_permission_request.DisassociateResourceSharePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_arn"] = resource_share_arn
-        input_["permission_arn"] = permission_arn
+        input_: capo_ram.types.disassociate_resource_share_permission_request.DisassociateResourceSharePermissionRequest = {
+            "resource_share_arn": resource_share_arn,
+            "permission_arn": permission_arn,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -922,6 +943,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_sharing_with_aws_organization(
@@ -952,13 +974,14 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.enable_sharing_with_aws_organization_request.EnableSharingWithAwsOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ram.types.enable_sharing_with_aws_organization_request.EnableSharingWithAwsOrganizationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_permission(
@@ -1000,8 +1023,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.get_permission_request.GetPermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_arn"] = permission_arn
+        input_: capo_ram.types.get_permission_request.GetPermissionRequest = {
+            "permission_arn": permission_arn
+        }
         if permission_version is not None:
             input_["permission_version"] = permission_version
 
@@ -1010,6 +1034,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_policies(
@@ -1055,8 +1080,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.get_resource_policies_request.GetResourcePoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arns"] = resource_arns
+        input_: capo_ram.types.get_resource_policies_request.GetResourcePoliciesRequest = {
+            "resource_arns": resource_arns
+        }
         if principal is not None:
             input_["principal"] = principal
         if next_token is not None:
@@ -1069,7 +1095,31 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_resource_policies(
+        self,
+        resource_arns: "capo_ram.types.resource_arn_list.ResourceArnList",
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        principal: Optional["capo_ram.types.string.String"] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_ram.types.get_resource_policies_response.GetResourcePoliciesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_resource_policies(
+                resource_arns,
+                config_overrides=config_overrides,
+                principal=principal,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_resource_share_associations(
         self,
@@ -1125,8 +1175,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.get_resource_share_associations_request.GetResourceShareAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["association_type"] = association_type
+        input_: capo_ram.types.get_resource_share_associations_request.GetResourceShareAssociationsRequest = {
+            "association_type": association_type
+        }
         if resource_share_arns is not None:
             input_["resource_share_arns"] = resource_share_arns
         if resource_arn is not None:
@@ -1145,7 +1196,41 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_resource_share_associations(
+        self,
+        association_type: "capo_ram.types.resource_share_association_type.ResourceShareAssociationType",
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        resource_share_arns: Optional[
+            "capo_ram.types.resource_share_arn_list.ResourceShareArnList"
+        ] = None,
+        resource_arn: Optional["capo_ram.types.string.String"] = None,
+        principal: Optional["capo_ram.types.string.String"] = None,
+        association_status: Optional[
+            "capo_ram.types.resource_share_association_status.ResourceShareAssociationStatus"
+        ] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_ram.types.get_resource_share_associations_response.GetResourceShareAssociationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_resource_share_associations(
+                association_type,
+                config_overrides=config_overrides,
+                resource_share_arns=resource_share_arns,
+                resource_arn=resource_arn,
+                principal=principal,
+                association_status=association_status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_resource_share_invitations(
         self,
@@ -1196,7 +1281,7 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.get_resource_share_invitations_request.GetResourceShareInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ram.types.get_resource_share_invitations_request.GetResourceShareInvitationsRequest = {}
         if resource_share_invitation_arns is not None:
             input_["resource_share_invitation_arns"] = resource_share_invitation_arns
         if resource_share_arns is not None:
@@ -1211,7 +1296,35 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_resource_share_invitations(
+        self,
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        resource_share_invitation_arns: Optional[
+            "capo_ram.types.resource_share_invitation_arn_list.ResourceShareInvitationArnList"
+        ] = None,
+        resource_share_arns: Optional[
+            "capo_ram.types.resource_share_arn_list.ResourceShareArnList"
+        ] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_ram.types.get_resource_share_invitations_response.GetResourceShareInvitationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_resource_share_invitations(
+                config_overrides=config_overrides,
+                resource_share_invitation_arns=resource_share_invitation_arns,
+                resource_share_arns=resource_share_arns,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_resource_shares(
         self,
@@ -1270,12 +1383,13 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.get_resource_shares_request.GetResourceSharesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ram.types.get_resource_shares_request.GetResourceSharesRequest = {
+            "resource_owner": resource_owner
+        }
         if resource_share_arns is not None:
             input_["resource_share_arns"] = resource_share_arns
         if resource_share_status is not None:
             input_["resource_share_status"] = resource_share_status
-        input_["resource_owner"] = resource_owner
         if name is not None:
             input_["name"] = name
         if tag_filters is not None:
@@ -1294,7 +1408,45 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_resource_shares(
+        self,
+        resource_owner: "capo_ram.types.resource_owner.ResourceOwner",
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        resource_share_arns: Optional[
+            "capo_ram.types.resource_share_arn_list.ResourceShareArnList"
+        ] = None,
+        resource_share_status: Optional[
+            "capo_ram.types.resource_share_status.ResourceShareStatus"
+        ] = None,
+        name: Optional["capo_ram.types.string.String"] = None,
+        tag_filters: Optional["capo_ram.types.tag_filters.TagFilters"] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+        permission_arn: Optional["capo_ram.types.string.String"] = None,
+        permission_version: Optional["capo_ram.types.integer.Integer"] = None,
+    ) -> "AsyncIterator[capo_ram.types.get_resource_shares_response.GetResourceSharesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_resource_shares(
+                resource_owner,
+                config_overrides=config_overrides,
+                resource_share_arns=resource_share_arns,
+                resource_share_status=resource_share_status,
+                name=name,
+                tag_filters=tag_filters,
+                next_token=_token,
+                max_results=max_results,
+                permission_arn=permission_arn,
+                permission_version=permission_version,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_pending_invitation_resources(
         self,
@@ -1344,8 +1496,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.list_pending_invitation_resources_request.ListPendingInvitationResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_invitation_arn"] = resource_share_invitation_arn
+        input_: capo_ram.types.list_pending_invitation_resources_request.ListPendingInvitationResourcesRequest = {
+            "resource_share_invitation_arn": resource_share_invitation_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1358,7 +1511,33 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_pending_invitation_resources(
+        self,
+        resource_share_invitation_arn: "capo_ram.types.string.String",
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+        resource_region_scope: Optional[
+            "capo_ram.types.resource_region_scope_filter.ResourceRegionScopeFilter"
+        ] = None,
+    ) -> "AsyncIterator[capo_ram.types.list_pending_invitation_resources_response.ListPendingInvitationResourcesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_pending_invitation_resources(
+                resource_share_invitation_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                resource_region_scope=resource_region_scope,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_permission_associations(
         self,
@@ -1414,7 +1593,7 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.list_permission_associations_request.ListPermissionAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ram.types.list_permission_associations_request.ListPermissionAssociationsRequest = {}
         if permission_arn is not None:
             input_["permission_arn"] = permission_arn
         if permission_version is not None:
@@ -1437,7 +1616,43 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_permission_associations(
+        self,
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        permission_arn: Optional["capo_ram.types.string.String"] = None,
+        permission_version: Optional["capo_ram.types.integer.Integer"] = None,
+        association_status: Optional[
+            "capo_ram.types.resource_share_association_status.ResourceShareAssociationStatus"
+        ] = None,
+        resource_type: Optional["capo_ram.types.string.String"] = None,
+        feature_set: Optional[
+            "capo_ram.types.permission_feature_set.PermissionFeatureSet"
+        ] = None,
+        default_version: Optional["capo_ram.types.boolean.Boolean"] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_ram.types.list_permission_associations_response.ListPermissionAssociationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_permission_associations(
+                config_overrides=config_overrides,
+                permission_arn=permission_arn,
+                permission_version=permission_version,
+                association_status=association_status,
+                resource_type=resource_type,
+                feature_set=feature_set,
+                default_version=default_version,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_permissions(
         self,
@@ -1483,7 +1698,7 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.list_permissions_request.ListPermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ram.types.list_permissions_request.ListPermissionsRequest = {}
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if next_token is not None:
@@ -1498,7 +1713,33 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_permissions(
+        self,
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        resource_type: Optional["capo_ram.types.string.String"] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+        permission_type: Optional[
+            "capo_ram.types.permission_type_filter.PermissionTypeFilter"
+        ] = None,
+    ) -> "AsyncIterator[capo_ram.types.list_permissions_response.ListPermissionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_permissions(
+                config_overrides=config_overrides,
+                resource_type=resource_type,
+                next_token=_token,
+                max_results=max_results,
+                permission_type=permission_type,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_permission_versions(
         self,
@@ -1542,8 +1783,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.list_permission_versions_request.ListPermissionVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_arn"] = permission_arn
+        input_: capo_ram.types.list_permission_versions_request.ListPermissionVersionsRequest = {
+            "permission_arn": permission_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1554,7 +1796,29 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_permission_versions(
+        self,
+        permission_arn: "capo_ram.types.string.String",
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_ram.types.list_permission_versions_response.ListPermissionVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_permission_versions(
+                permission_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_principals(
         self,
@@ -1609,8 +1873,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.list_principals_request.ListPrincipalsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_owner"] = resource_owner
+        input_: capo_ram.types.list_principals_request.ListPrincipalsRequest = {
+            "resource_owner": resource_owner
+        }
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if principals is not None:
@@ -1629,7 +1894,43 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_principals(
+        self,
+        resource_owner: "capo_ram.types.resource_owner.ResourceOwner",
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        resource_arn: Optional["capo_ram.types.string.String"] = None,
+        principals: Optional[
+            "capo_ram.types.principal_arn_or_id_list.PrincipalArnOrIdList"
+        ] = None,
+        resource_type: Optional["capo_ram.types.string.String"] = None,
+        resource_share_arns: Optional[
+            "capo_ram.types.resource_share_arn_list.ResourceShareArnList"
+        ] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+    ) -> (
+        "AsyncIterator[capo_ram.types.list_principals_response.ListPrincipalsResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = await self.list_principals(
+                resource_owner,
+                config_overrides=config_overrides,
+                resource_arn=resource_arn,
+                principals=principals,
+                resource_type=resource_type,
+                resource_share_arns=resource_share_arns,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_replace_permission_associations_work(
         self,
@@ -1676,7 +1977,7 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.list_replace_permission_associations_work_request.ListReplacePermissionAssociationsWorkRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ram.types.list_replace_permission_associations_work_request.ListReplacePermissionAssociationsWorkRequest = {}
         if work_ids is not None:
             input_["work_ids"] = work_ids
         if status is not None:
@@ -1691,7 +1992,35 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_replace_permission_associations_work(
+        self,
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        work_ids: Optional[
+            "capo_ram.types.replace_permission_associations_work_id_list.ReplacePermissionAssociationsWorkIdList"
+        ] = None,
+        status: Optional[
+            "capo_ram.types.replace_permission_associations_work_status.ReplacePermissionAssociationsWorkStatus"
+        ] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_ram.types.list_replace_permission_associations_work_response.ListReplacePermissionAssociationsWorkResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_replace_permission_associations_work(
+                config_overrides=config_overrides,
+                work_ids=work_ids,
+                status=status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_resources(
         self,
@@ -1751,8 +2080,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.list_resources_request.ListResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_owner"] = resource_owner
+        input_: capo_ram.types.list_resources_request.ListResourcesRequest = {
+            "resource_owner": resource_owner
+        }
         if principal is not None:
             input_["principal"] = principal
         if resource_type is not None:
@@ -1773,7 +2103,45 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_resources(
+        self,
+        resource_owner: "capo_ram.types.resource_owner.ResourceOwner",
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        principal: Optional["capo_ram.types.string.String"] = None,
+        resource_type: Optional["capo_ram.types.string.String"] = None,
+        resource_arns: Optional[
+            "capo_ram.types.resource_arn_list.ResourceArnList"
+        ] = None,
+        resource_share_arns: Optional[
+            "capo_ram.types.resource_share_arn_list.ResourceShareArnList"
+        ] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+        resource_region_scope: Optional[
+            "capo_ram.types.resource_region_scope_filter.ResourceRegionScopeFilter"
+        ] = None,
+    ) -> "AsyncIterator[capo_ram.types.list_resources_response.ListResourcesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_resources(
+                resource_owner,
+                config_overrides=config_overrides,
+                principal=principal,
+                resource_type=resource_type,
+                resource_arns=resource_arns,
+                resource_share_arns=resource_share_arns,
+                next_token=_token,
+                max_results=max_results,
+                resource_region_scope=resource_region_scope,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_resource_share_permissions(
         self,
@@ -1817,8 +2185,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.list_resource_share_permissions_request.ListResourceSharePermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_arn"] = resource_share_arn
+        input_: capo_ram.types.list_resource_share_permissions_request.ListResourceSharePermissionsRequest = {
+            "resource_share_arn": resource_share_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1829,7 +2198,29 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_resource_share_permissions(
+        self,
+        resource_share_arn: "capo_ram.types.string.String",
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_ram.types.list_resource_share_permissions_response.ListResourceSharePermissionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_resource_share_permissions(
+                resource_share_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_resource_types(
         self,
@@ -1872,7 +2263,7 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.list_resource_types_request.ListResourceTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ram.types.list_resource_types_request.ListResourceTypesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1885,7 +2276,31 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_resource_types(
+        self,
+        *,
+        config_overrides: Optional[AsyncRAMClientConfig] = None,
+        next_token: Optional["capo_ram.types.string.String"] = None,
+        max_results: Optional["capo_ram.types.max_results.MaxResults"] = None,
+        resource_region_scope: Optional[
+            "capo_ram.types.resource_region_scope_filter.ResourceRegionScopeFilter"
+        ] = None,
+    ) -> "AsyncIterator[capo_ram.types.list_resource_types_response.ListResourceTypesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_resource_types(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                resource_region_scope=resource_region_scope,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_source_associations(
         self,
@@ -1938,7 +2353,7 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.list_source_associations_request.ListSourceAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ram.types.list_source_associations_request.ListSourceAssociationsRequest = {}
         if resource_share_arns is not None:
             input_["resource_share_arns"] = resource_share_arns
         if source_id is not None:
@@ -1957,6 +2372,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_source_associations(
@@ -2035,9 +2451,10 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.promote_permission_created_from_policy_request.PromotePermissionCreatedFromPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_arn"] = permission_arn
-        input_["name"] = name
+        input_: capo_ram.types.promote_permission_created_from_policy_request.PromotePermissionCreatedFromPolicyRequest = {
+            "permission_arn": permission_arn,
+            "name": name,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -2046,6 +2463,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def promote_resource_share_created_from_policy(
@@ -2089,14 +2507,16 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.promote_resource_share_created_from_policy_request.PromoteResourceShareCreatedFromPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_arn"] = resource_share_arn
+        input_: capo_ram.types.promote_resource_share_created_from_policy_request.PromoteResourceShareCreatedFromPolicyRequest = {
+            "resource_share_arn": resource_share_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_resource_share_invitation(
@@ -2142,8 +2562,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.reject_resource_share_invitation_request.RejectResourceShareInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_invitation_arn"] = resource_share_invitation_arn
+        input_: capo_ram.types.reject_resource_share_invitation_request.RejectResourceShareInvitationRequest = {
+            "resource_share_invitation_arn": resource_share_invitation_arn
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -2152,6 +2573,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def replace_permission_associations(
@@ -2199,11 +2621,12 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.replace_permission_associations_request.ReplacePermissionAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["from_permission_arn"] = from_permission_arn
+        input_: capo_ram.types.replace_permission_associations_request.ReplacePermissionAssociationsRequest = {
+            "from_permission_arn": from_permission_arn,
+            "to_permission_arn": to_permission_arn,
+        }
         if from_permission_version is not None:
             input_["from_permission_version"] = from_permission_version
-        input_["to_permission_arn"] = to_permission_arn
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -2212,6 +2635,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_default_permission_version(
@@ -2256,9 +2680,10 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.set_default_permission_version_request.SetDefaultPermissionVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_arn"] = permission_arn
-        input_["permission_version"] = permission_version
+        input_: capo_ram.types.set_default_permission_version_request.SetDefaultPermissionVersionRequest = {
+            "permission_arn": permission_arn,
+            "permission_version": permission_version,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -2267,6 +2692,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2312,10 +2738,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ram.types.tag_resource_request.TagResourceRequest = {"tags": tags}
         if resource_share_arn is not None:
             input_["resource_share_arn"] = resource_share_arn
-        input_["tags"] = tags
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -2324,6 +2749,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2366,10 +2792,11 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ram.types.untag_resource_request.UntagResourceRequest = {
+            "tag_keys": tag_keys
+        }
         if resource_share_arn is not None:
             input_["resource_share_arn"] = resource_share_arn
-        input_["tag_keys"] = tag_keys
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -2378,6 +2805,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resource_share(
@@ -2426,8 +2854,9 @@ class AsyncRAMClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ram.types.update_resource_share_request.UpdateResourceShareRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_share_arn"] = resource_share_arn
+        input_: capo_ram.types.update_resource_share_request.UpdateResourceShareRequest = {
+            "resource_share_arn": resource_share_arn
+        }
         if name is not None:
             input_["name"] = name
         if allow_external_principals is not None:
@@ -2440,6 +2869,7 @@ class AsyncRAMClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

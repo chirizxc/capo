@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: NoSuchRetentionConfigurationException_) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> NoSuchRetentionConfigurationException_:
     out: NoSuchRetentionConfigurationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class NoSuchRetentionConfigurationException(ServiceError):
 
     code: str | None = "NoSuchRetentionConfigurationException"
 
-    def __init__(self, data: NoSuchRetentionConfigurationException_):
+    def __init__(
+        self, data: NoSuchRetentionConfigurationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NoSuchRetentionConfigurationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "NoSuchRetentionConfigurationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "NoSuchRetentionConfigurationException":
+        return cls(deserialize_aws_json_1_1(data), message)

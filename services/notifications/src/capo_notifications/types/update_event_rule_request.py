@@ -37,9 +37,9 @@ def serialize_json(value: UpdateEventRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEventRuleRequest:
     out: UpdateEventRuleRequest = {}  # type: ignore[typeddict-item]
-    if "eventPattern" in data:
+    if data.get("eventPattern") is not None:
         out["event_pattern"] = data["eventPattern"]
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_notifications.types.regions
 
         out["regions"] = capo_notifications.types.regions.deserialize_json(

@@ -34,12 +34,12 @@ def serialize_json(value: ListLineageEventsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListLineageEventsOutput:
     out: ListLineageEventsOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.lineage_event_summaries
 
         out["items"] = capo_datazone.types.lineage_event_summaries.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

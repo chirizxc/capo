@@ -76,17 +76,17 @@ def serialize_aws_json_1_1(value: GroupType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GroupType:
     out: GroupType = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Precedence" in data:
+    if data.get("Precedence") is not None:
         out["precedence"] = data["Precedence"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["last_modified_date"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> GroupType:
                 data["LastModifiedDate"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["creation_date"] = (

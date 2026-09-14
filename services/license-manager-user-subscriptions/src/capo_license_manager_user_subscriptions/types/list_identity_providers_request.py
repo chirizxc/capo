@@ -42,9 +42,9 @@ def serialize_json(value: ListIdentityProvidersRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListIdentityProvidersRequest:
     out: ListIdentityProvidersRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_license_manager_user_subscriptions.types.filter_list
 
         out["filters"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> ListIdentityProvidersRequest:
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

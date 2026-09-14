@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: HumanLoopActivationOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HumanLoopActivationOutput:
     out: HumanLoopActivationOutput = {}  # type: ignore[typeddict-item]
-    if "HumanLoopArn" in data:
+    if data.get("HumanLoopArn") is not None:
         out["human_loop_arn"] = data["HumanLoopArn"]
-    if "HumanLoopActivationReasons" in data:
+    if data.get("HumanLoopActivationReasons") is not None:
         import capo_textract.types.human_loop_activation_reasons
 
         out["human_loop_activation_reasons"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> HumanLoopActivationOutput:
                 data["HumanLoopActivationReasons"]
             )
         )
-    if "HumanLoopActivationConditionsEvaluationResults" in data:
+    if data.get("HumanLoopActivationConditionsEvaluationResults") is not None:
         out["human_loop_activation_conditions_evaluation_results"] = data[
             "HumanLoopActivationConditionsEvaluationResults"
         ]

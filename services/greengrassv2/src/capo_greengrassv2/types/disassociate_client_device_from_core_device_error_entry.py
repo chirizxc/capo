@@ -32,10 +32,10 @@ def serialize_json(value: DisassociateClientDeviceFromCoreDeviceErrorEntry) -> d
 
 def deserialize_json(data: dict) -> DisassociateClientDeviceFromCoreDeviceErrorEntry:
     out: DisassociateClientDeviceFromCoreDeviceErrorEntry = {}  # type: ignore[typeddict-item]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

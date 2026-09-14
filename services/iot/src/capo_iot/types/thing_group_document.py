@@ -55,19 +55,19 @@ def serialize_json(value: ThingGroupDocument) -> dict:
 
 def deserialize_json(data: dict) -> ThingGroupDocument:
     out: ThingGroupDocument = {}  # type: ignore[typeddict-item]
-    if "thingGroupName" in data:
+    if data.get("thingGroupName") is not None:
         out["thing_group_name"] = data["thingGroupName"]
-    if "thingGroupId" in data:
+    if data.get("thingGroupId") is not None:
         out["thing_group_id"] = data["thingGroupId"]
-    if "thingGroupDescription" in data:
+    if data.get("thingGroupDescription") is not None:
         out["thing_group_description"] = data["thingGroupDescription"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iot.types.attributes
 
         out["attributes"] = capo_iot.types.attributes.deserialize_json(
             data["attributes"]
         )
-    if "parentGroupNames" in data:
+    if data.get("parentGroupNames") is not None:
         import capo_iot.types.thing_group_name_list
 
         out["parent_group_names"] = (

@@ -24,7 +24,7 @@ def serialize_json(value: StartBatchJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartBatchJobResponse:
     out: StartBatchJobResponse = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("StartBatchJobResponse.execution_id required")

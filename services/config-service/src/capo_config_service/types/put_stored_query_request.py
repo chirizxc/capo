@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: PutStoredQueryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutStoredQueryRequest:
     out: PutStoredQueryRequest = {}  # type: ignore[typeddict-item]
-    if "StoredQuery" in data:
+    if data.get("StoredQuery") is not None:
         import capo_config_service.types.stored_query
 
         out["stored_query"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutStoredQueryRequest:
         )
     else:
         raise DeserializationError("PutStoredQueryRequest.stored_query required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_config_service.types.tags_list
 
         out["tags"] = capo_config_service.types.tags_list.deserialize_aws_json_1_1(

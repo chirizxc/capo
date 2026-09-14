@@ -44,7 +44,7 @@ def serialize_json(value: EnabledControlDriftTypes) -> dict:
 
 def deserialize_json(data: dict) -> EnabledControlDriftTypes:
     out: EnabledControlDriftTypes = {}  # type: ignore[typeddict-item]
-    if "inheritance" in data:
+    if data.get("inheritance") is not None:
         import capo_controltower.types.enabled_control_inheritance_drift
 
         out["inheritance"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> EnabledControlDriftTypes:
                 data["inheritance"]
             )
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_controltower.types.enabled_control_resource_drift
 
         out["resource"] = (

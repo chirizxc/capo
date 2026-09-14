@@ -24,7 +24,7 @@ def serialize_json(value: GetEmailAddressInsightsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetEmailAddressInsightsRequest:
     out: GetEmailAddressInsightsRequest = {}  # type: ignore[typeddict-item]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
     else:
         raise DeserializationError(

@@ -44,13 +44,13 @@ def serialize_json(value: UpdateConfigurationPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConfigurationPolicyRequest:
     out: UpdateConfigurationPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "UpdatedReason" in data:
+    if data.get("UpdatedReason") is not None:
         out["updated_reason"] = data["UpdatedReason"]
-    if "ConfigurationPolicy" in data:
+    if data.get("ConfigurationPolicy") is not None:
         import capo_securityhub.types.policy
 
         out["configuration_policy"] = capo_securityhub.types.policy.deserialize_json(

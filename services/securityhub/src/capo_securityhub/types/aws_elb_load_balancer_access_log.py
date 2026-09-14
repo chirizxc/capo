@@ -41,12 +41,12 @@ def serialize_json(value: AwsElbLoadBalancerAccessLog) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerAccessLog:
     out: AwsElbLoadBalancerAccessLog = {}  # type: ignore[typeddict-item]
-    if "EmitInterval" in data:
+    if data.get("EmitInterval") is not None:
         out["emit_interval"] = data["EmitInterval"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "S3BucketPrefix" in data:
+    if data.get("S3BucketPrefix") is not None:
         out["s3_bucket_prefix"] = data["S3BucketPrefix"]
     return out

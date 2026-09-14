@@ -30,13 +30,21 @@ def serialize_aws_json_1_1(value: ICD10CMTrait) -> dict:
             )
         )
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ICD10CMTrait:
     out: ICD10CMTrait = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_comprehendmedical.types.icd10_cm_trait_name
 
         out["name"] = (
@@ -44,6 +52,6 @@ def deserialize_aws_json_1_1(data: dict) -> ICD10CMTrait:
                 data["Name"]
             )
         )
-    if "Score" in data:
-        out["score"] = data["Score"]
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
     return out

@@ -29,10 +29,10 @@ def serialize_json(value: StartFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartFlowRequest:
     out: StartFlowRequest = {}  # type: ignore[typeddict-item]
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
     else:
         raise DeserializationError("StartFlowRequest.flow_name required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

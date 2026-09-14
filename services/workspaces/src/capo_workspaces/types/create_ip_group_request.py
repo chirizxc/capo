@@ -47,19 +47,19 @@ def serialize_aws_json_1_1(value: CreateIpGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIpGroupRequest:
     out: CreateIpGroupRequest = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     else:
         raise DeserializationError("CreateIpGroupRequest.group_name required")
-    if "GroupDesc" in data:
+    if data.get("GroupDesc") is not None:
         out["group_desc"] = data["GroupDesc"]
-    if "UserRules" in data:
+    if data.get("UserRules") is not None:
         import capo_workspaces.types.ip_rule_list
 
         out["user_rules"] = capo_workspaces.types.ip_rule_list.deserialize_aws_json_1_1(
             data["UserRules"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces.types.tag_list
 
         out["tags"] = capo_workspaces.types.tag_list.deserialize_aws_json_1_1(

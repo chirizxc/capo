@@ -43,9 +43,9 @@ def serialize_json(value: UpdateSipMediaApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSipMediaApplicationRequest:
     out: UpdateSipMediaApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_chime_sdk_voice.types.sip_media_application_endpoint_list
 
         out["endpoints"] = (

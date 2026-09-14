@@ -72,7 +72,17 @@ def serialize_json(value: ParameterValue) -> dict:
             )
         }
     elif "Double" in value:
-        return {"Double": value["Double"]}
+        return {
+            "Double": (
+                "NaN"
+                if value["Double"] != value["Double"]
+                else "Infinity"
+                if value["Double"] == float("inf")
+                else "-Infinity"
+                if value["Double"] == float("-inf")
+                else value["Double"]
+            )
+        }
     elif "String" in value:
         return {"String": value["String"]}
     elif "StringList" in value:
@@ -100,9 +110,9 @@ def serialize_json(value: ParameterValue) -> dict:
 
 
 def deserialize_json(data: dict) -> ParameterValue:
-    if "Integer" in data:
+    if data.get("Integer") is not None:
         return {"Integer": data["Integer"]}
-    elif "IntegerList" in data:
+    elif data.get("IntegerList") is not None:
         import capo_securityhub.types.integer_list
 
         return {
@@ -110,11 +120,11 @@ def deserialize_json(data: dict) -> ParameterValue:
                 data["IntegerList"]
             )
         }
-    elif "Double" in data:
-        return {"Double": data["Double"]}
-    elif "String" in data:
+    elif data.get("Double") is not None:
+        return {"Double": float(data["Double"])}
+    elif data.get("String") is not None:
         return {"String": data["String"]}
-    elif "StringList" in data:
+    elif data.get("StringList") is not None:
         import capo_securityhub.types.string_list
 
         return {
@@ -122,11 +132,11 @@ def deserialize_json(data: dict) -> ParameterValue:
                 data["StringList"]
             )
         }
-    elif "Boolean" in data:
+    elif data.get("Boolean") is not None:
         return {"Boolean": data["Boolean"]}
-    elif "Enum" in data:
+    elif data.get("Enum") is not None:
         return {"Enum": data["Enum"]}
-    elif "EnumList" in data:
+    elif data.get("EnumList") is not None:
         import capo_securityhub.types.string_list
 
         return {

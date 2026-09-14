@@ -84,17 +84,17 @@ def serialize_aws_json_1_0(value: UpdateProxyRuleRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRuleRequest:
     out: UpdateProxyRuleRequest = {}  # type: ignore[typeddict-item]
-    if "ProxyRuleGroupName" in data:
+    if data.get("ProxyRuleGroupName") is not None:
         out["proxy_rule_group_name"] = data["ProxyRuleGroupName"]
-    if "ProxyRuleGroupArn" in data:
+    if data.get("ProxyRuleGroupArn") is not None:
         out["proxy_rule_group_arn"] = data["ProxyRuleGroupArn"]
-    if "ProxyRuleName" in data:
+    if data.get("ProxyRuleName") is not None:
         out["proxy_rule_name"] = data["ProxyRuleName"]
     else:
         raise DeserializationError("UpdateProxyRuleRequest.proxy_rule_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_network_firewall.types.proxy_rule_phase_action
 
         out["action"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRuleRequest:
                 data["Action"]
             )
         )
-    if "AddConditions" in data:
+    if data.get("AddConditions") is not None:
         import capo_network_firewall.types.proxy_rule_condition_list
 
         out["add_conditions"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRuleRequest:
                 data["AddConditions"]
             )
         )
-    if "RemoveConditions" in data:
+    if data.get("RemoveConditions") is not None:
         import capo_network_firewall.types.proxy_rule_condition_list
 
         out["remove_conditions"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRuleRequest:
                 data["RemoveConditions"]
             )
         )
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError("UpdateProxyRuleRequest.update_token required")

@@ -30,11 +30,11 @@ def serialize_json(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("ListTagsForResourceResponse.resource_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_rum.types.tag_map
 
         out["tags"] = capo_rum.types.tag_map.deserialize_json(data["Tags"])

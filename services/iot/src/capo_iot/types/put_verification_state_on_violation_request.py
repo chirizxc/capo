@@ -38,7 +38,7 @@ def serialize_json(value: PutVerificationStateOnViolationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutVerificationStateOnViolationRequest:
     out: PutVerificationStateOnViolationRequest = {}  # type: ignore[typeddict-item]
-    if "verificationState" in data:
+    if data.get("verificationState") is not None:
         import capo_iot.types.verification_state
 
         out["verification_state"] = capo_iot.types.verification_state.deserialize_json(
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> PutVerificationStateOnViolationRequest:
         raise DeserializationError(
             "PutVerificationStateOnViolationRequest.verification_state required"
         )
-    if "verificationStateDescription" in data:
+    if data.get("verificationStateDescription") is not None:
         out["verification_state_description"] = data["verificationStateDescription"]
     return out

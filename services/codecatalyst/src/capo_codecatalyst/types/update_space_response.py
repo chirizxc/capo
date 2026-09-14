@@ -31,10 +31,10 @@ def serialize_json(value: UpdateSpaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSpaceResponse:
     out: UpdateSpaceResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

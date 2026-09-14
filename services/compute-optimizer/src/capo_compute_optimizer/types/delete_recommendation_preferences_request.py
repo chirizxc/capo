@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: DeleteRecommendationPreferencesRequest) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteRecommendationPreferencesRequest:
     out: DeleteRecommendationPreferencesRequest = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_compute_optimizer.types.resource_type
 
         out["resource_type"] = (
@@ -61,13 +61,13 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteRecommendationPreferencesReque
         raise DeserializationError(
             "DeleteRecommendationPreferencesRequest.resource_type required"
         )
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_compute_optimizer.types.scope
 
         out["scope"] = capo_compute_optimizer.types.scope.deserialize_aws_json_1_0(
             data["scope"]
         )
-    if "recommendationPreferenceNames" in data:
+    if data.get("recommendationPreferenceNames") is not None:
         import capo_compute_optimizer.types.recommendation_preference_names
 
         out["recommendation_preference_names"] = (

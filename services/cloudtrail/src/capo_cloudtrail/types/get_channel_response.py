@@ -66,13 +66,13 @@ def serialize_aws_json_1_1(value: GetChannelResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetChannelResponse:
     out: GetChannelResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "SourceConfig" in data:
+    if data.get("SourceConfig") is not None:
         import capo_cloudtrail.types.source_config
 
         out["source_config"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetChannelResponse:
                 data["SourceConfig"]
             )
         )
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_cloudtrail.types.destinations
 
         out["destinations"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetChannelResponse:
                 data["Destinations"]
             )
         )
-    if "IngestionStatus" in data:
+    if data.get("IngestionStatus") is not None:
         import capo_cloudtrail.types.ingestion_status
 
         out["ingestion_status"] = (

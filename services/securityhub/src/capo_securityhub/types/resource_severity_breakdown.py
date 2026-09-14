@@ -51,20 +51,20 @@ def serialize_json(value: ResourceSeverityBreakdown) -> dict:
 
 def deserialize_json(data: dict) -> ResourceSeverityBreakdown:
     out: ResourceSeverityBreakdown = {}  # type: ignore[typeddict-item]
-    if "Other" in data:
+    if data.get("Other") is not None:
         out["other"] = data["Other"]
-    if "Fatal" in data:
+    if data.get("Fatal") is not None:
         out["fatal"] = data["Fatal"]
-    if "Critical" in data:
+    if data.get("Critical") is not None:
         out["critical"] = data["Critical"]
-    if "High" in data:
+    if data.get("High") is not None:
         out["high"] = data["High"]
-    if "Medium" in data:
+    if data.get("Medium") is not None:
         out["medium"] = data["Medium"]
-    if "Low" in data:
+    if data.get("Low") is not None:
         out["low"] = data["Low"]
-    if "Informational" in data:
+    if data.get("Informational") is not None:
         out["informational"] = data["Informational"]
-    if "Unknown" in data:
+    if data.get("Unknown") is not None:
         out["unknown"] = data["Unknown"]
     return out

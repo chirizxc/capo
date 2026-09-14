@@ -33,18 +33,18 @@ def serialize_aws_json_1_1(value: MergePullRequestByFastForwardInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MergePullRequestByFastForwardInput:
     out: MergePullRequestByFastForwardInput = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
     else:
         raise DeserializationError(
             "MergePullRequestByFastForwardInput.pull_request_id required"
         )
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "MergePullRequestByFastForwardInput.repository_name required"
         )
-    if "sourceCommitId" in data:
+    if data.get("sourceCommitId") is not None:
         out["source_commit_id"] = data["sourceCommitId"]
     return out

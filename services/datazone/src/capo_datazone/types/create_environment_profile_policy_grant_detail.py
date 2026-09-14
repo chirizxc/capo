@@ -23,6 +23,6 @@ def serialize_json(value: CreateEnvironmentProfilePolicyGrantDetail) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentProfilePolicyGrantDetail:
     out: CreateEnvironmentProfilePolicyGrantDetail = {}  # type: ignore[typeddict-item]
-    if "domainUnitId" in data:
+    if data.get("domainUnitId") is not None:
         out["domain_unit_id"] = data["domainUnitId"]
     return out

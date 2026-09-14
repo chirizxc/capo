@@ -29,8 +29,8 @@ def serialize_json(value: CreateTicketV2Response) -> dict:
 
 def deserialize_json(data: dict) -> CreateTicketV2Response:
     out: CreateTicketV2Response = {}  # type: ignore[typeddict-item]
-    if "TicketId" in data:
+    if data.get("TicketId") is not None:
         out["ticket_id"] = data["TicketId"]
-    if "TicketSrcUrl" in data:
+    if data.get("TicketSrcUrl") is not None:
         out["ticket_src_url"] = data["TicketSrcUrl"]
     return out

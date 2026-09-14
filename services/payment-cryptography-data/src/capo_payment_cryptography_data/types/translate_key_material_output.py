@@ -32,7 +32,7 @@ def serialize_json(value: TranslateKeyMaterialOutput) -> dict:
 
 def deserialize_json(data: dict) -> TranslateKeyMaterialOutput:
     out: TranslateKeyMaterialOutput = {}  # type: ignore[typeddict-item]
-    if "WrappedKey" in data:
+    if data.get("WrappedKey") is not None:
         import capo_payment_cryptography_data.types.wrapped_working_key
 
         out["wrapped_key"] = (

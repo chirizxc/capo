@@ -84,9 +84,9 @@ def serialize_aws_json_1_1(value: DomainPrice) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainPrice:
     out: DomainPrice = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RegistrationPrice" in data:
+    if data.get("RegistrationPrice") is not None:
         import capo_route_53_domains.types.price_with_currency
 
         out["registration_price"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainPrice:
                 data["RegistrationPrice"]
             )
         )
-    if "TransferPrice" in data:
+    if data.get("TransferPrice") is not None:
         import capo_route_53_domains.types.price_with_currency
 
         out["transfer_price"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainPrice:
                 data["TransferPrice"]
             )
         )
-    if "RenewalPrice" in data:
+    if data.get("RenewalPrice") is not None:
         import capo_route_53_domains.types.price_with_currency
 
         out["renewal_price"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainPrice:
                 data["RenewalPrice"]
             )
         )
-    if "ChangeOwnershipPrice" in data:
+    if data.get("ChangeOwnershipPrice") is not None:
         import capo_route_53_domains.types.price_with_currency
 
         out["change_ownership_price"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainPrice:
                 data["ChangeOwnershipPrice"]
             )
         )
-    if "RestorationPrice" in data:
+    if data.get("RestorationPrice") is not None:
         import capo_route_53_domains.types.price_with_currency
 
         out["restoration_price"] = (

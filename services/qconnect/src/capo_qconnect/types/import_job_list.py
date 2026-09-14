@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ImportJobList:
 
     out: ImportJobList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.import_job_summary.deserialize_json(item))
     return out

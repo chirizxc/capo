@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: LambdaStepMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LambdaStepMetadata:
     out: LambdaStepMetadata = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "OutputParameters" in data:
+    if data.get("OutputParameters") is not None:
         import capo_sagemaker.types.output_parameter_list
 
         out["output_parameters"] = (

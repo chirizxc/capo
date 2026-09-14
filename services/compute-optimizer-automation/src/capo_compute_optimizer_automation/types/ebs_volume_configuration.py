@@ -30,12 +30,12 @@ def serialize_aws_json_1_0(value: EbsVolumeConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EbsVolumeConfiguration:
     out: EbsVolumeConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "sizeInGib" in data:
+    if data.get("sizeInGib") is not None:
         out["size_in_gib"] = data["sizeInGib"]
-    if "iops" in data:
+    if data.get("iops") is not None:
         out["iops"] = data["iops"]
-    if "throughput" in data:
+    if data.get("throughput") is not None:
         out["throughput"] = data["throughput"]
     return out

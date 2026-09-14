@@ -32,8 +32,8 @@ def serialize_json(value: ConnectionCredentials) -> dict:
 
 def deserialize_json(data: dict) -> ConnectionCredentials:
     out: ConnectionCredentials = {}  # type: ignore[typeddict-item]
-    if "ConnectionToken" in data:
+    if data.get("ConnectionToken") is not None:
         out["connection_token"] = data["ConnectionToken"]
-    if "Expiry" in data:
+    if data.get("Expiry") is not None:
         out["expiry"] = data["Expiry"]
     return out

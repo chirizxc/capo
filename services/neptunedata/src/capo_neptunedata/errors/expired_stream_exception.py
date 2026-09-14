@@ -25,15 +25,15 @@ def serialize_json(value: ExpiredStreamException_) -> dict:
 
 def deserialize_json(data: dict) -> ExpiredStreamException_:
     out: ExpiredStreamException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError("ExpiredStreamException_.detailed_message required")
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("ExpiredStreamException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("ExpiredStreamException_.code required")
@@ -45,15 +45,18 @@ class ExpiredStreamException(ServiceError):
 
     code: str | None = "ExpiredStreamException"
 
-    def __init__(self, data: ExpiredStreamException_):
+    def __init__(self, data: ExpiredStreamException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ExpiredStreamException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ExpiredStreamException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ExpiredStreamException":
+        return cls(deserialize_json(data), message)

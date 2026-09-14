@@ -30,11 +30,11 @@ def serialize_json(value: CreateLandingZoneOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateLandingZoneOutput:
     out: CreateLandingZoneOutput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateLandingZoneOutput.arn required")
-    if "operationIdentifier" in data:
+    if data.get("operationIdentifier") is not None:
         out["operation_identifier"] = data["operationIdentifier"]
     else:
         raise DeserializationError(

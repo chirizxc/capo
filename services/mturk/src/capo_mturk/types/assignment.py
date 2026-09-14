@@ -103,13 +103,13 @@ def serialize_aws_json_1_1(value: Assignment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Assignment:
     out: Assignment = {}  # type: ignore[typeddict-item]
-    if "AssignmentId" in data:
+    if data.get("AssignmentId") is not None:
         out["assignment_id"] = data["AssignmentId"]
-    if "WorkerId" in data:
+    if data.get("WorkerId") is not None:
         out["worker_id"] = data["WorkerId"]
-    if "HITId" in data:
+    if data.get("HITId") is not None:
         out["hit_id"] = data["HITId"]
-    if "AssignmentStatus" in data:
+    if data.get("AssignmentStatus") is not None:
         import capo_mturk.types.assignment_status
 
         out["assignment_status"] = (
@@ -117,44 +117,44 @@ def deserialize_aws_json_1_1(data: dict) -> Assignment:
                 data["AssignmentStatus"]
             )
         )
-    if "AutoApprovalTime" in data:
+    if data.get("AutoApprovalTime") is not None:
         import capo_mturk.types.timestamp
 
         out["auto_approval_time"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(
             data["AutoApprovalTime"]
         )
-    if "AcceptTime" in data:
+    if data.get("AcceptTime") is not None:
         import capo_mturk.types.timestamp
 
         out["accept_time"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(
             data["AcceptTime"]
         )
-    if "SubmitTime" in data:
+    if data.get("SubmitTime") is not None:
         import capo_mturk.types.timestamp
 
         out["submit_time"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(
             data["SubmitTime"]
         )
-    if "ApprovalTime" in data:
+    if data.get("ApprovalTime") is not None:
         import capo_mturk.types.timestamp
 
         out["approval_time"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(
             data["ApprovalTime"]
         )
-    if "RejectionTime" in data:
+    if data.get("RejectionTime") is not None:
         import capo_mturk.types.timestamp
 
         out["rejection_time"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(
             data["RejectionTime"]
         )
-    if "Deadline" in data:
+    if data.get("Deadline") is not None:
         import capo_mturk.types.timestamp
 
         out["deadline"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(
             data["Deadline"]
         )
-    if "Answer" in data:
+    if data.get("Answer") is not None:
         out["answer"] = data["Answer"]
-    if "RequesterFeedback" in data:
+    if data.get("RequesterFeedback") is not None:
         out["requester_feedback"] = data["RequesterFeedback"]
     return out

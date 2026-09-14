@@ -81,9 +81,9 @@ def serialize_aws_json_1_0(value: ListBillingAdjustmentRequestsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListBillingAdjustmentRequestsInput:
     out: ListBillingAdjustmentRequestsInput = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_marketplace_agreement.types.billing_adjustment_status
 
         out["status"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListBillingAdjustmentRequestsInput:
                 data["status"]
             )
         )
-    if "createdAfter" in data:
+    if data.get("createdAfter") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["created_after"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListBillingAdjustmentRequestsInput:
                 data["createdAfter"]
             )
         )
-    if "createdBefore" in data:
+    if data.get("createdBefore") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["created_before"] = (
@@ -107,12 +107,12 @@ def deserialize_aws_json_1_0(data: dict) -> ListBillingAdjustmentRequestsInput:
                 data["createdBefore"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
-    if "agreementType" in data:
+    if data.get("agreementType") is not None:
         out["agreement_type"] = data["agreementType"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -32,13 +32,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeCertificateAuthorityAuditReportRequest:
     out: DescribeCertificateAuthorityAuditReportRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "DescribeCertificateAuthorityAuditReportRequest.certificate_authority_arn required"
         )
-    if "AuditReportId" in data:
+    if data.get("AuditReportId") is not None:
         out["audit_report_id"] = data["AuditReportId"]
     else:
         raise DeserializationError(

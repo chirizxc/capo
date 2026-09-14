@@ -27,7 +27,7 @@ def serialize_json(value: UpdateCustomMetricRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCustomMetricRequest:
     out: UpdateCustomMetricRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("UpdateCustomMetricRequest.display_name required")

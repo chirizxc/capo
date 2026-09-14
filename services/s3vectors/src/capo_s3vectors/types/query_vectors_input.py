@@ -59,17 +59,17 @@ def serialize_json(value: QueryVectorsInput) -> dict:
 
 def deserialize_json(data: dict) -> QueryVectorsInput:
     out: QueryVectorsInput = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "indexArn" in data:
+    if data.get("indexArn") is not None:
         out["index_arn"] = data["indexArn"]
-    if "topK" in data:
+    if data.get("topK") is not None:
         out["top_k"] = data["topK"]
     else:
         raise DeserializationError("QueryVectorsInput.top_k required")
-    if "queryVector" in data:
+    if data.get("queryVector") is not None:
         import capo_s3vectors.types.vector_data
 
         out["query_vector"] = capo_s3vectors.types.vector_data.deserialize_json(
@@ -77,13 +77,13 @@ def deserialize_json(data: dict) -> QueryVectorsInput:
         )
     else:
         raise DeserializationError("QueryVectorsInput.query_vector required")
-    if "filter" in data:
+    if data.get("filter") is not None:
         out["filter"] = data["filter"]
-    if "returnMetadata" in data:
+    if data.get("returnMetadata") is not None:
         out["return_metadata"] = data["returnMetadata"]
     else:
         out["return_metadata"] = False
-    if "returnDistance" in data:
+    if data.get("returnDistance") is not None:
         out["return_distance"] = data["returnDistance"]
     else:
         out["return_distance"] = False

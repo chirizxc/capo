@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: UpdateCollectionGroupResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateCollectionGroupResponse:
     out: UpdateCollectionGroupResponse = {}  # type: ignore[typeddict-item]
-    if "updateCollectionGroupDetail" in data:
+    if data.get("updateCollectionGroupDetail") is not None:
         import capo_opensearchserverless.types.update_collection_group_detail
 
         out["update_collection_group_detail"] = (

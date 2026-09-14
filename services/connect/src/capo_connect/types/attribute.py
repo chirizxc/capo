@@ -38,7 +38,7 @@ def serialize_json(value: Attribute) -> dict:
 
 def deserialize_json(data: dict) -> Attribute:
     out: Attribute = {}  # type: ignore[typeddict-item]
-    if "AttributeType" in data:
+    if data.get("AttributeType") is not None:
         import capo_connect.types.instance_attribute_type
 
         out["attribute_type"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> Attribute:
                 data["AttributeType"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

@@ -30,7 +30,7 @@ def serialize_json(value: ConfigureAgentResponse) -> dict:
 
 def deserialize_json(data: dict) -> ConfigureAgentResponse:
     out: ConfigureAgentResponse = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_codeguruprofiler.types.agent_configuration
 
         out["configuration"] = (

@@ -36,7 +36,7 @@ def serialize_json(value: UpdateRoutingProfileQueuesRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRoutingProfileQueuesRequest:
     out: UpdateRoutingProfileQueuesRequest = {}  # type: ignore[typeddict-item]
-    if "QueueConfigs" in data:
+    if data.get("QueueConfigs") is not None:
         import capo_connect.types.routing_profile_queue_config_list
 
         out["queue_configs"] = (

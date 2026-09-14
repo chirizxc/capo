@@ -32,12 +32,12 @@ def serialize_json(value: CreateResourceShareResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateResourceShareResponse:
     out: CreateResourceShareResponse = {}  # type: ignore[typeddict-item]
-    if "resourceShare" in data:
+    if data.get("resourceShare") is not None:
         import capo_ram.types.resource_share
 
         out["resource_share"] = capo_ram.types.resource_share.deserialize_json(
             data["resourceShare"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

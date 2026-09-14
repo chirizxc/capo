@@ -40,31 +40,31 @@ def serialize_aws_json_1_1(value: CustomerConnectorInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomerConnectorInfo:
     out: CustomerConnectorInfo = {}  # type: ignore[typeddict-item]
-    if "activeConnectors" in data:
+    if data.get("activeConnectors") is not None:
         out["active_connectors"] = data["activeConnectors"]
     else:
         out["active_connectors"] = 0
-    if "healthyConnectors" in data:
+    if data.get("healthyConnectors") is not None:
         out["healthy_connectors"] = data["healthyConnectors"]
     else:
         out["healthy_connectors"] = 0
-    if "blackListedConnectors" in data:
+    if data.get("blackListedConnectors") is not None:
         out["black_listed_connectors"] = data["blackListedConnectors"]
     else:
         out["black_listed_connectors"] = 0
-    if "shutdownConnectors" in data:
+    if data.get("shutdownConnectors") is not None:
         out["shutdown_connectors"] = data["shutdownConnectors"]
     else:
         out["shutdown_connectors"] = 0
-    if "unhealthyConnectors" in data:
+    if data.get("unhealthyConnectors") is not None:
         out["unhealthy_connectors"] = data["unhealthyConnectors"]
     else:
         out["unhealthy_connectors"] = 0
-    if "totalConnectors" in data:
+    if data.get("totalConnectors") is not None:
         out["total_connectors"] = data["totalConnectors"]
     else:
         out["total_connectors"] = 0
-    if "unknownConnectors" in data:
+    if data.get("unknownConnectors") is not None:
         out["unknown_connectors"] = data["unknownConnectors"]
     else:
         out["unknown_connectors"] = 0

@@ -41,9 +41,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> NetworkFirewallMissingExpectedRoutesViolation:
     out: NetworkFirewallMissingExpectedRoutesViolation = {}  # type: ignore[typeddict-item]
-    if "ViolationTarget" in data:
+    if data.get("ViolationTarget") is not None:
         out["violation_target"] = data["ViolationTarget"]
-    if "ExpectedRoutes" in data:
+    if data.get("ExpectedRoutes") is not None:
         import capo_fms.types.expected_routes
 
         out["expected_routes"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(
                 data["ExpectedRoutes"]
             )
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

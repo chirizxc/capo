@@ -34,11 +34,11 @@ def serialize_json(value: CreateTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTypeRequest:
     out: CreateTypeRequest = {}  # type: ignore[typeddict-item]
-    if "definition" in data:
+    if data.get("definition") is not None:
         out["definition"] = data["definition"]
     else:
         raise DeserializationError("CreateTypeRequest.definition required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_appsync.types.type_definition_format
 
         out["format"] = capo_appsync.types.type_definition_format.deserialize_json(

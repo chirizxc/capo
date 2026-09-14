@@ -42,17 +42,17 @@ def serialize_json(value: EmailConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EmailConfiguration:
     out: EmailConfiguration = {}  # type: ignore[typeddict-item]
-    if "from" in data:
+    if data.get("from") is not None:
         out["from"] = data["from"]
     else:
         raise DeserializationError("EmailConfiguration.from required")
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_iot_events.types.email_content
 
         out["content"] = capo_iot_events.types.email_content.deserialize_json(
             data["content"]
         )
-    if "recipients" in data:
+    if data.get("recipients") is not None:
         import capo_iot_events.types.email_recipients
 
         out["recipients"] = capo_iot_events.types.email_recipients.deserialize_json(

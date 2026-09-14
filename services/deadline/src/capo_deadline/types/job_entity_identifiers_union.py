@@ -76,7 +76,7 @@ def serialize_json(value: JobEntityIdentifiersUnion) -> dict:
 
 
 def deserialize_json(data: dict) -> JobEntityIdentifiersUnion:
-    if "jobDetails" in data:
+    if data.get("jobDetails") is not None:
         import capo_deadline.types.job_details_identifiers
 
         return {
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> JobEntityIdentifiersUnion:
                 data["jobDetails"]
             )
         }
-    elif "jobAttachmentDetails" in data:
+    elif data.get("jobAttachmentDetails") is not None:
         import capo_deadline.types.job_attachment_details_identifiers
 
         return {
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> JobEntityIdentifiersUnion:
                 data["jobAttachmentDetails"]
             )
         }
-    elif "stepDetails" in data:
+    elif data.get("stepDetails") is not None:
         import capo_deadline.types.step_details_identifiers
 
         return {
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> JobEntityIdentifiersUnion:
                 data["stepDetails"]
             )
         }
-    elif "environmentDetails" in data:
+    elif data.get("environmentDetails") is not None:
         import capo_deadline.types.environment_details_identifiers
 
         return {

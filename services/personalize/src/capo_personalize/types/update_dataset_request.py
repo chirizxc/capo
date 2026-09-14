@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: UpdateDatasetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDatasetRequest:
     out: UpdateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
     else:
         raise DeserializationError("UpdateDatasetRequest.dataset_arn required")
-    if "schemaArn" in data:
+    if data.get("schemaArn") is not None:
         out["schema_arn"] = data["schemaArn"]
     else:
         raise DeserializationError("UpdateDatasetRequest.schema_arn required")

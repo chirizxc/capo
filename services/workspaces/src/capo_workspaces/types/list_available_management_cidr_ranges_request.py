@@ -36,14 +36,14 @@ def serialize_aws_json_1_1(value: ListAvailableManagementCidrRangesRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> ListAvailableManagementCidrRangesRequest:
     out: ListAvailableManagementCidrRangesRequest = {}  # type: ignore[typeddict-item]
-    if "ManagementCidrRangeConstraint" in data:
+    if data.get("ManagementCidrRangeConstraint") is not None:
         out["management_cidr_range_constraint"] = data["ManagementCidrRangeConstraint"]
     else:
         raise DeserializationError(
             "ListAvailableManagementCidrRangesRequest.management_cidr_range_constraint required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -64,9 +64,9 @@ def serialize_aws_json_1_1(value: ImportsListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportsListItem:
     out: ImportsListItem = {}  # type: ignore[typeddict-item]
-    if "ImportId" in data:
+    if data.get("ImportId") is not None:
         out["import_id"] = data["ImportId"]
-    if "ImportStatus" in data:
+    if data.get("ImportStatus") is not None:
         import capo_cloudtrail.types.import_status
 
         out["import_status"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportsListItem:
                 data["ImportStatus"]
             )
         )
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_cloudtrail.types.import_destinations
 
         out["destinations"] = (
@@ -82,13 +82,13 @@ def deserialize_aws_json_1_1(data: dict) -> ImportsListItem:
                 data["Destinations"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_cloudtrail.types.date
 
         out["created_timestamp"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["CreatedTimestamp"]
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_cloudtrail.types.date
 
         out["updated_timestamp"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(

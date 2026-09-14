@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StopUserImportJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopUserImportJobResponse:
     out: StopUserImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "UserImportJob" in data:
+    if data.get("UserImportJob") is not None:
         import capo_cognito_identity_provider.types.user_import_job_type
 
         out["user_import_job"] = (

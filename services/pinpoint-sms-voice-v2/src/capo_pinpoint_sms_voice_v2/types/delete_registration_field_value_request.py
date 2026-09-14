@@ -30,13 +30,13 @@ def serialize_aws_json_1_0(value: DeleteRegistrationFieldValueRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteRegistrationFieldValueRequest:
     out: DeleteRegistrationFieldValueRequest = {}  # type: ignore[typeddict-item]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(
             "DeleteRegistrationFieldValueRequest.registration_id required"
         )
-    if "FieldPath" in data:
+    if data.get("FieldPath") is not None:
         out["field_path"] = data["FieldPath"]
     else:
         raise DeserializationError(

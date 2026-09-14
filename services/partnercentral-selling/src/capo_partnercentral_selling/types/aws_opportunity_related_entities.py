@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: AwsOpportunityRelatedEntities) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityRelatedEntities:
     out: AwsOpportunityRelatedEntities = {}  # type: ignore[typeddict-item]
-    if "AwsProducts" in data:
+    if data.get("AwsProducts") is not None:
         import capo_partnercentral_selling.types.aws_product_identifiers
 
         out["aws_products"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityRelatedEntities:
                 data["AwsProducts"]
             )
         )
-    if "Solutions" in data:
+    if data.get("Solutions") is not None:
         import capo_partnercentral_selling.types.solution_identifiers
 
         out["solutions"] = (

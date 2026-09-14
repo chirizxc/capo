@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DescribeEdgePackagingJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEdgePackagingJobRequest:
     out: DescribeEdgePackagingJobRequest = {}  # type: ignore[typeddict-item]
-    if "EdgePackagingJobName" in data:
+    if data.get("EdgePackagingJobName") is not None:
         out["edge_packaging_job_name"] = data["EdgePackagingJobName"]
     return out

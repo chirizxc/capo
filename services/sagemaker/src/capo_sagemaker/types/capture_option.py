@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CaptureOption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CaptureOption:
     out: CaptureOption = {}  # type: ignore[typeddict-item]
-    if "CaptureMode" in data:
+    if data.get("CaptureMode") is not None:
         import capo_sagemaker.types.capture_mode
 
         out["capture_mode"] = (

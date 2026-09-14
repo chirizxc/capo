@@ -36,14 +36,14 @@ def serialize_aws_json_1_1(value: DataProviderDescriptorDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataProviderDescriptorDefinition:
     out: DataProviderDescriptorDefinition = {}  # type: ignore[typeddict-item]
-    if "DataProviderIdentifier" in data:
+    if data.get("DataProviderIdentifier") is not None:
         out["data_provider_identifier"] = data["DataProviderIdentifier"]
     else:
         raise DeserializationError(
             "DataProviderDescriptorDefinition.data_provider_identifier required"
         )
-    if "SecretsManagerSecretId" in data:
+    if data.get("SecretsManagerSecretId") is not None:
         out["secrets_manager_secret_id"] = data["SecretsManagerSecretId"]
-    if "SecretsManagerAccessRoleArn" in data:
+    if data.get("SecretsManagerAccessRoleArn") is not None:
         out["secrets_manager_access_role_arn"] = data["SecretsManagerAccessRoleArn"]
     return out

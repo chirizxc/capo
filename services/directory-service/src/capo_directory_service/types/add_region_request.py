@@ -39,15 +39,15 @@ def serialize_aws_json_1_1(value: AddRegionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddRegionRequest:
     out: AddRegionRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("AddRegionRequest.directory_id required")
-    if "RegionName" in data:
+    if data.get("RegionName") is not None:
         out["region_name"] = data["RegionName"]
     else:
         raise DeserializationError("AddRegionRequest.region_name required")
-    if "VPCSettings" in data:
+    if data.get("VPCSettings") is not None:
         import capo_directory_service.types.directory_vpc_settings
 
         out["vpc_settings"] = (

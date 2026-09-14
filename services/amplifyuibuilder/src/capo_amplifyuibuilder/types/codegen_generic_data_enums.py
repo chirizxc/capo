@@ -26,6 +26,8 @@ def serialize_json(input_to_serialize: CodegenGenericDataEnums) -> dict:
 def deserialize_json(data: dict) -> CodegenGenericDataEnums:
     out: CodegenGenericDataEnums = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_amplifyuibuilder.types.codegen_generic_data_enum
 
         out[key] = (

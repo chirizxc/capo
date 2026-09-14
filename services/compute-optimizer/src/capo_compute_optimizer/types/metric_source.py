@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: MetricSource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MetricSource:
     out: MetricSource = {}  # type: ignore[typeddict-item]
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_compute_optimizer.types.metric_source_provider
 
         out["provider"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(data: dict) -> MetricSource:
                 data["provider"]
             )
         )
-    if "providerArn" in data:
+    if data.get("providerArn") is not None:
         out["provider_arn"] = data["providerArn"]
     return out

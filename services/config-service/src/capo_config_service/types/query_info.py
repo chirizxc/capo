@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: QueryInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryInfo:
     out: QueryInfo = {}  # type: ignore[typeddict-item]
-    if "SelectFields" in data:
+    if data.get("SelectFields") is not None:
         import capo_config_service.types.field_info_list
 
         out["select_fields"] = (

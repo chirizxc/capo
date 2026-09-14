@@ -44,7 +44,7 @@ def serialize_json(value: TenantSuppressionAttributes) -> dict:
 
 def deserialize_json(data: dict) -> TenantSuppressionAttributes:
     out: TenantSuppressionAttributes = {}  # type: ignore[typeddict-item]
-    if "SuppressedReasons" in data:
+    if data.get("SuppressedReasons") is not None:
         import capo_sesv2.types.suppression_list_reasons
 
         out["suppressed_reasons"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TenantSuppressionAttributes:
                 data["SuppressedReasons"]
             )
         )
-    if "SuppressionScope" in data:
+    if data.get("SuppressionScope") is not None:
         import capo_sesv2.types.suppression_list_scope
 
         out["suppression_scope"] = (

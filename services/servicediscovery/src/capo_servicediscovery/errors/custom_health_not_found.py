@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CustomHealthNotFound_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomHealthNotFound_:
     out: CustomHealthNotFound_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class CustomHealthNotFound(ServiceError):
 
     code: str | None = "CustomHealthNotFound"
 
-    def __init__(self, data: CustomHealthNotFound_):
+    def __init__(self, data: CustomHealthNotFound_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CustomHealthNotFound",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "CustomHealthNotFound":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "CustomHealthNotFound":
+        return cls(deserialize_aws_json_1_1(data), message)

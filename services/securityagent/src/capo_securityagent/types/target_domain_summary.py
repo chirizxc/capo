@@ -40,15 +40,15 @@ def serialize_json(value: TargetDomainSummary) -> dict:
 
 def deserialize_json(data: dict) -> TargetDomainSummary:
     out: TargetDomainSummary = {}  # type: ignore[typeddict-item]
-    if "targetDomainId" in data:
+    if data.get("targetDomainId") is not None:
         out["target_domain_id"] = data["targetDomainId"]
     else:
         raise DeserializationError("TargetDomainSummary.target_domain_id required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("TargetDomainSummary.domain_name required")
-    if "verificationStatus" in data:
+    if data.get("verificationStatus") is not None:
         import capo_securityagent.types.target_domain_status
 
         out["verification_status"] = (

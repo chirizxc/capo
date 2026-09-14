@@ -29,7 +29,7 @@ def serialize_json(value: PublishMetricsInput) -> dict:
 
 def deserialize_json(data: dict) -> PublishMetricsInput:
     out: PublishMetricsInput = {}  # type: ignore[typeddict-item]
-    if "MetricData" in data:
+    if data.get("MetricData") is not None:
         import capo_mwaa.types.metric_data
 
         out["metric_data"] = capo_mwaa.types.metric_data.deserialize_json(

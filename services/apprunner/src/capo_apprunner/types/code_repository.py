@@ -54,11 +54,11 @@ def serialize_aws_json_1_0(value: CodeRepository) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CodeRepository:
     out: CodeRepository = {}  # type: ignore[typeddict-item]
-    if "RepositoryUrl" in data:
+    if data.get("RepositoryUrl") is not None:
         out["repository_url"] = data["RepositoryUrl"]
     else:
         raise DeserializationError("CodeRepository.repository_url required")
-    if "SourceCodeVersion" in data:
+    if data.get("SourceCodeVersion") is not None:
         import capo_apprunner.types.source_code_version
 
         out["source_code_version"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_0(data: dict) -> CodeRepository:
         )
     else:
         raise DeserializationError("CodeRepository.source_code_version required")
-    if "CodeConfiguration" in data:
+    if data.get("CodeConfiguration") is not None:
         import capo_apprunner.types.code_configuration
 
         out["code_configuration"] = (
@@ -76,6 +76,6 @@ def deserialize_aws_json_1_0(data: dict) -> CodeRepository:
                 data["CodeConfiguration"]
             )
         )
-    if "SourceDirectory" in data:
+    if data.get("SourceDirectory") is not None:
         out["source_directory"] = data["SourceDirectory"]
     return out

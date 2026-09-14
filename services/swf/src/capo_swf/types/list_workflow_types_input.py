@@ -52,13 +52,13 @@ def serialize_aws_json_1_0(value: ListWorkflowTypesInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListWorkflowTypesInput:
     out: ListWorkflowTypesInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("ListWorkflowTypesInput.domain required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "registrationStatus" in data:
+    if data.get("registrationStatus") is not None:
         import capo_swf.types.registration_status
 
         out["registration_status"] = (
@@ -70,13 +70,13 @@ def deserialize_aws_json_1_0(data: dict) -> ListWorkflowTypesInput:
         raise DeserializationError(
             "ListWorkflowTypesInput.registration_status required"
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
-    if "maximumPageSize" in data:
+    if data.get("maximumPageSize") is not None:
         out["maximum_page_size"] = data["maximumPageSize"]
     else:
         out["maximum_page_size"] = 0
-    if "reverseOrder" in data:
+    if data.get("reverseOrder") is not None:
         out["reverse_order"] = data["reverseOrder"]
     else:
         out["reverse_order"] = False

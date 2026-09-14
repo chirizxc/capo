@@ -31,7 +31,7 @@ def serialize_json(value: QuotaSharePreemptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> QuotaSharePreemptionConfiguration:
     out: QuotaSharePreemptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "inSharePreemption" in data:
+    if data.get("inSharePreemption") is not None:
         import capo_batch.types.quota_share_in_share_preemption_state
 
         out["in_share_preemption"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> HeaderFooterSectionConfigurationList:
 
     out: HeaderFooterSectionConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.header_footer_section_configuration.deserialize_json(
                 item

@@ -44,9 +44,9 @@ def serialize_aws_json_1_1(value: DescribeAvailabilityMonitorTestOutput) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAvailabilityMonitorTestOutput:
     out: DescribeAvailabilityMonitorTestOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_storage_gateway.types.availability_monitor_test_status
 
         out["status"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAvailabilityMonitorTestOutpu
                 data["Status"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_storage_gateway.types.time
 
         out["start_time"] = capo_storage_gateway.types.time.deserialize_aws_json_1_1(

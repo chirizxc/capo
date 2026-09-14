@@ -31,8 +31,8 @@ def serialize_json(value: ListCustomLineItemVersionsBillingPeriodRangeFilter) ->
 
 def deserialize_json(data: dict) -> ListCustomLineItemVersionsBillingPeriodRangeFilter:
     out: ListCustomLineItemVersionsBillingPeriodRangeFilter = {}  # type: ignore[typeddict-item]
-    if "StartBillingPeriod" in data:
+    if data.get("StartBillingPeriod") is not None:
         out["start_billing_period"] = data["StartBillingPeriod"]
-    if "EndBillingPeriod" in data:
+    if data.get("EndBillingPeriod") is not None:
         out["end_billing_period"] = data["EndBillingPeriod"]
     return out

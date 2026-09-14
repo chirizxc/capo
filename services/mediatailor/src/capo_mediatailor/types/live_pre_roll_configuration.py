@@ -28,8 +28,8 @@ def serialize_json(value: LivePreRollConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LivePreRollConfiguration:
     out: LivePreRollConfiguration = {}  # type: ignore[typeddict-item]
-    if "AdDecisionServerUrl" in data:
+    if data.get("AdDecisionServerUrl") is not None:
         out["ad_decision_server_url"] = data["AdDecisionServerUrl"]
-    if "MaxDurationSeconds" in data:
+    if data.get("MaxDurationSeconds") is not None:
         out["max_duration_seconds"] = data["MaxDurationSeconds"]
     return out

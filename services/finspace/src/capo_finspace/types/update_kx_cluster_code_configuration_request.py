@@ -71,9 +71,9 @@ def serialize_json(value: UpdateKxClusterCodeConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKxClusterCodeConfigurationRequest:
     out: UpdateKxClusterCodeConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_finspace.types.code_configuration
 
         out["code"] = capo_finspace.types.code_configuration.deserialize_json(
@@ -83,9 +83,9 @@ def deserialize_json(data: dict) -> UpdateKxClusterCodeConfigurationRequest:
         raise DeserializationError(
             "UpdateKxClusterCodeConfigurationRequest.code required"
         )
-    if "initializationScript" in data:
+    if data.get("initializationScript") is not None:
         out["initialization_script"] = data["initializationScript"]
-    if "commandLineArguments" in data:
+    if data.get("commandLineArguments") is not None:
         import capo_finspace.types.kx_command_line_arguments
 
         out["command_line_arguments"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> UpdateKxClusterCodeConfigurationRequest:
                 data["commandLineArguments"]
             )
         )
-    if "deploymentConfiguration" in data:
+    if data.get("deploymentConfiguration") is not None:
         import capo_finspace.types.kx_cluster_code_deployment_configuration
 
         out["deployment_configuration"] = (

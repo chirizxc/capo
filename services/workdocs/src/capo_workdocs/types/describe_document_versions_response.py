@@ -36,7 +36,7 @@ def serialize_json(value: DescribeDocumentVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDocumentVersionsResponse:
     out: DescribeDocumentVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "DocumentVersions" in data:
+    if data.get("DocumentVersions") is not None:
         import capo_workdocs.types.document_version_metadata_list
 
         out["document_versions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DescribeDocumentVersionsResponse:
                 data["DocumentVersions"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

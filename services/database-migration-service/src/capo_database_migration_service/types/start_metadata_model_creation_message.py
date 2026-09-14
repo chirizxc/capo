@@ -41,25 +41,25 @@ def serialize_aws_json_1_1(value: StartMetadataModelCreationMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartMetadataModelCreationMessage:
     out: StartMetadataModelCreationMessage = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(
             "StartMetadataModelCreationMessage.migration_project_identifier required"
         )
-    if "SelectionRules" in data:
+    if data.get("SelectionRules") is not None:
         out["selection_rules"] = data["SelectionRules"]
     else:
         raise DeserializationError(
             "StartMetadataModelCreationMessage.selection_rules required"
         )
-    if "MetadataModelName" in data:
+    if data.get("MetadataModelName") is not None:
         out["metadata_model_name"] = data["MetadataModelName"]
     else:
         raise DeserializationError(
             "StartMetadataModelCreationMessage.metadata_model_name required"
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_database_migration_service.types.metadata_model_properties
 
         out["properties"] = (

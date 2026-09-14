@@ -71,25 +71,25 @@ def serialize_json(value: OAuth2Defaults) -> dict:
 
 def deserialize_json(data: dict) -> OAuth2Defaults:
     out: OAuth2Defaults = {}  # type: ignore[typeddict-item]
-    if "oauthScopes" in data:
+    if data.get("oauthScopes") is not None:
         import capo_appflow.types.o_auth_scope_list
 
         out["oauth_scopes"] = capo_appflow.types.o_auth_scope_list.deserialize_json(
             data["oauthScopes"]
         )
-    if "tokenUrls" in data:
+    if data.get("tokenUrls") is not None:
         import capo_appflow.types.token_url_list
 
         out["token_urls"] = capo_appflow.types.token_url_list.deserialize_json(
             data["tokenUrls"]
         )
-    if "authCodeUrls" in data:
+    if data.get("authCodeUrls") is not None:
         import capo_appflow.types.auth_code_url_list
 
         out["auth_code_urls"] = capo_appflow.types.auth_code_url_list.deserialize_json(
             data["authCodeUrls"]
         )
-    if "oauth2GrantTypesSupported" in data:
+    if data.get("oauth2GrantTypesSupported") is not None:
         import capo_appflow.types.o_auth2_grant_type_supported_list
 
         out["oauth2_grant_types_supported"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> OAuth2Defaults:
                 data["oauth2GrantTypesSupported"]
             )
         )
-    if "oauth2CustomProperties" in data:
+    if data.get("oauth2CustomProperties") is not None:
         import capo_appflow.types.o_auth2_custom_properties_list
 
         out["oauth2_custom_properties"] = (

@@ -140,19 +140,19 @@ def serialize_aws_json_1_0(value: RequestPhoneNumberResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RequestPhoneNumberResult:
     out: RequestPhoneNumberResult = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberArn" in data:
+    if data.get("PhoneNumberArn") is not None:
         out["phone_number_arn"] = data["PhoneNumberArn"]
-    if "PhoneNumberId" in data:
+    if data.get("PhoneNumberId") is not None:
         out["phone_number_id"] = data["PhoneNumberId"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         out["message_type"] = data["MessageType"]
-    if "NumberCapabilities" in data:
+    if data.get("NumberCapabilities") is not None:
         import capo_pinpoint_sms_voice_v2.types.number_capability_list
 
         out["number_capabilities"] = (
@@ -160,37 +160,37 @@ def deserialize_aws_json_1_0(data: dict) -> RequestPhoneNumberResult:
                 data["NumberCapabilities"]
             )
         )
-    if "NumberType" in data:
+    if data.get("NumberType") is not None:
         out["number_type"] = data["NumberType"]
-    if "MonthlyLeasingPrice" in data:
+    if data.get("MonthlyLeasingPrice") is not None:
         out["monthly_leasing_price"] = data["MonthlyLeasingPrice"]
-    if "TwoWayEnabled" in data:
+    if data.get("TwoWayEnabled") is not None:
         out["two_way_enabled"] = data["TwoWayEnabled"]
     else:
         out["two_way_enabled"] = False
-    if "TwoWayChannelArn" in data:
+    if data.get("TwoWayChannelArn") is not None:
         out["two_way_channel_arn"] = data["TwoWayChannelArn"]
-    if "TwoWayChannelRole" in data:
+    if data.get("TwoWayChannelRole") is not None:
         out["two_way_channel_role"] = data["TwoWayChannelRole"]
-    if "SelfManagedOptOutsEnabled" in data:
+    if data.get("SelfManagedOptOutsEnabled") is not None:
         out["self_managed_opt_outs_enabled"] = data["SelfManagedOptOutsEnabled"]
     else:
         out["self_managed_opt_outs_enabled"] = False
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
-    if "InternationalSendingEnabled" in data:
+    if data.get("InternationalSendingEnabled") is not None:
         out["international_sending_enabled"] = data["InternationalSendingEnabled"]
     else:
         out["international_sending_enabled"] = False
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     else:
         out["deletion_protection_enabled"] = False
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_0(data: dict) -> RequestPhoneNumberResult:
                 data["Tags"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

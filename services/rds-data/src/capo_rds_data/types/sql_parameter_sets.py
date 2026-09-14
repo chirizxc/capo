@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SqlParameterSets:
 
     out: SqlParameterSets = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rds_data.types.sql_parameters_list.deserialize_json(item))
     return out

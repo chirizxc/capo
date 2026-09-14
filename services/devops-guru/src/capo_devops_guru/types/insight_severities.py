@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InsightSeverities:
 
     out: InsightSeverities = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.insight_severity.deserialize_json(item))
     return out

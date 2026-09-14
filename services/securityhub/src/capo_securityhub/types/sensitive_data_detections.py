@@ -37,11 +37,11 @@ def serialize_json(value: SensitiveDataDetections) -> dict:
 
 def deserialize_json(data: dict) -> SensitiveDataDetections:
     out: SensitiveDataDetections = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Occurrences" in data:
+    if data.get("Occurrences") is not None:
         import capo_securityhub.types.occurrences
 
         out["occurrences"] = capo_securityhub.types.occurrences.deserialize_json(

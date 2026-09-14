@@ -32,7 +32,7 @@ def serialize_json(value: ConnectAppAuthorizationResponse) -> dict:
 
 def deserialize_json(data: dict) -> ConnectAppAuthorizationResponse:
     out: ConnectAppAuthorizationResponse = {}  # type: ignore[typeddict-item]
-    if "appAuthorizationSummary" in data:
+    if data.get("appAuthorizationSummary") is not None:
         import capo_appfabric.types.app_authorization_summary
 
         out["app_authorization_summary"] = (

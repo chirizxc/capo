@@ -47,7 +47,7 @@ def serialize_aws_json_1_0(value: CreateStarterMappingTemplateRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateStarterMappingTemplateRequest:
     out: CreateStarterMappingTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "outputSampleLocation" in data:
+    if data.get("outputSampleLocation") is not None:
         import capo_b2bi.types.s3_location
 
         out["output_sample_location"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateStarterMappingTemplateRequest:
                 data["outputSampleLocation"]
             )
         )
-    if "mappingType" in data:
+    if data.get("mappingType") is not None:
         import capo_b2bi.types.mapping_type
 
         out["mapping_type"] = capo_b2bi.types.mapping_type.deserialize_aws_json_1_0(
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateStarterMappingTemplateRequest:
         raise DeserializationError(
             "CreateStarterMappingTemplateRequest.mapping_type required"
         )
-    if "templateDetails" in data:
+    if data.get("templateDetails") is not None:
         import capo_b2bi.types.template_details
 
         out["template_details"] = (

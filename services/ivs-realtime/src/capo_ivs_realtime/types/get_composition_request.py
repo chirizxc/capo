@@ -24,7 +24,7 @@ def serialize_json(value: GetCompositionRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetCompositionRequest:
     out: GetCompositionRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetCompositionRequest.arn required")

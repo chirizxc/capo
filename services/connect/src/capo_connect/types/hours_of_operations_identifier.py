@@ -33,14 +33,14 @@ def serialize_json(value: HoursOfOperationsIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> HoursOfOperationsIdentifier:
     out: HoursOfOperationsIdentifier = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("HoursOfOperationsIdentifier.name required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("HoursOfOperationsIdentifier.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

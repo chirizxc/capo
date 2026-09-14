@@ -24,7 +24,7 @@ def serialize_json(value: CreateReplicationSetOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateReplicationSetOutput:
     out: CreateReplicationSetOutput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateReplicationSetOutput.arn required")

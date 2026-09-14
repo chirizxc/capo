@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DQStopJobOnFailureOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DQStopJobOnFailureOptions:
     out: DQStopJobOnFailureOptions = {}  # type: ignore[typeddict-item]
-    if "StopJobOnFailureTiming" in data:
+    if data.get("StopJobOnFailureTiming") is not None:
         import capo_glue.types.dq_stop_job_on_failure_timing
 
         out["stop_job_on_failure_timing"] = (

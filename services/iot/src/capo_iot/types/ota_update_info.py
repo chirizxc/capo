@@ -149,33 +149,33 @@ def serialize_json(value: OTAUpdateInfo) -> dict:
 
 def deserialize_json(data: dict) -> OTAUpdateInfo:
     out: OTAUpdateInfo = {}  # type: ignore[typeddict-item]
-    if "otaUpdateId" in data:
+    if data.get("otaUpdateId") is not None:
         out["ota_update_id"] = data["otaUpdateId"]
-    if "otaUpdateArn" in data:
+    if data.get("otaUpdateArn") is not None:
         out["ota_update_arn"] = data["otaUpdateArn"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.date_type
 
         out["last_modified_date"] = capo_iot.types.date_type.deserialize_json(
             data["lastModifiedDate"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_iot.types.targets
 
         out["targets"] = capo_iot.types.targets.deserialize_json(data["targets"])
-    if "protocols" in data:
+    if data.get("protocols") is not None:
         import capo_iot.types.protocols
 
         out["protocols"] = capo_iot.types.protocols.deserialize_json(data["protocols"])
-    if "awsJobExecutionsRolloutConfig" in data:
+    if data.get("awsJobExecutionsRolloutConfig") is not None:
         import capo_iot.types.aws_job_executions_rollout_config
 
         out["aws_job_executions_rollout_config"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> OTAUpdateInfo:
                 data["awsJobExecutionsRolloutConfig"]
             )
         )
-    if "awsJobPresignedUrlConfig" in data:
+    if data.get("awsJobPresignedUrlConfig") is not None:
         import capo_iot.types.aws_job_presigned_url_config
 
         out["aws_job_presigned_url_config"] = (
@@ -191,35 +191,35 @@ def deserialize_json(data: dict) -> OTAUpdateInfo:
                 data["awsJobPresignedUrlConfig"]
             )
         )
-    if "targetSelection" in data:
+    if data.get("targetSelection") is not None:
         import capo_iot.types.target_selection
 
         out["target_selection"] = capo_iot.types.target_selection.deserialize_json(
             data["targetSelection"]
         )
-    if "otaUpdateFiles" in data:
+    if data.get("otaUpdateFiles") is not None:
         import capo_iot.types.ota_update_files
 
         out["ota_update_files"] = capo_iot.types.ota_update_files.deserialize_json(
             data["otaUpdateFiles"]
         )
-    if "otaUpdateStatus" in data:
+    if data.get("otaUpdateStatus") is not None:
         import capo_iot.types.ota_update_status
 
         out["ota_update_status"] = capo_iot.types.ota_update_status.deserialize_json(
             data["otaUpdateStatus"]
         )
-    if "awsIotJobId" in data:
+    if data.get("awsIotJobId") is not None:
         out["aws_iot_job_id"] = data["awsIotJobId"]
-    if "awsIotJobArn" in data:
+    if data.get("awsIotJobArn") is not None:
         out["aws_iot_job_arn"] = data["awsIotJobArn"]
-    if "errorInfo" in data:
+    if data.get("errorInfo") is not None:
         import capo_iot.types.error_info
 
         out["error_info"] = capo_iot.types.error_info.deserialize_json(
             data["errorInfo"]
         )
-    if "additionalParameters" in data:
+    if data.get("additionalParameters") is not None:
         import capo_iot.types.additional_parameter_map
 
         out["additional_parameters"] = (

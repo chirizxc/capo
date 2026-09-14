@@ -37,11 +37,11 @@ def serialize_json(value: OTAUpdateSummary) -> dict:
 
 def deserialize_json(data: dict) -> OTAUpdateSummary:
     out: OTAUpdateSummary = {}  # type: ignore[typeddict-item]
-    if "otaUpdateId" in data:
+    if data.get("otaUpdateId") is not None:
         out["ota_update_id"] = data["otaUpdateId"]
-    if "otaUpdateArn" in data:
+    if data.get("otaUpdateArn") is not None:
         out["ota_update_arn"] = data["otaUpdateArn"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(

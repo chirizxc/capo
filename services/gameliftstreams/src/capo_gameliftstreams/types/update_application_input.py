@@ -46,9 +46,9 @@ def serialize_json(value: UpdateApplicationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationInput:
     out: UpdateApplicationInput = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ApplicationLogPaths" in data:
+    if data.get("ApplicationLogPaths") is not None:
         import capo_gameliftstreams.types.file_paths
 
         out["application_log_paths"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> UpdateApplicationInput:
                 data["ApplicationLogPaths"]
             )
         )
-    if "ApplicationLogOutputUri" in data:
+    if data.get("ApplicationLogOutputUri") is not None:
         out["application_log_output_uri"] = data["ApplicationLogOutputUri"]
     return out

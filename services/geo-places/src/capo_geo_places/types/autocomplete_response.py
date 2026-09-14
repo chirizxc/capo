@@ -33,7 +33,7 @@ def serialize_json(value: AutocompleteResponse) -> dict:
 
 def deserialize_json(data: dict) -> AutocompleteResponse:
     out: AutocompleteResponse = {}  # type: ignore[typeddict-item]
-    if "ResultItems" in data:
+    if data.get("ResultItems") is not None:
         import capo_geo_places.types.autocomplete_result_item_list
 
         out["result_items"] = (

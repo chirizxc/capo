@@ -104,33 +104,33 @@ def serialize_aws_json_1_0(value: NotifyConfigurationInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NotifyConfigurationInformation:
     out: NotifyConfigurationInformation = {}  # type: ignore[typeddict-item]
-    if "NotifyConfigurationArn" in data:
+    if data.get("NotifyConfigurationArn") is not None:
         out["notify_configuration_arn"] = data["NotifyConfigurationArn"]
     else:
         raise DeserializationError(
             "NotifyConfigurationInformation.notify_configuration_arn required"
         )
-    if "NotifyConfigurationId" in data:
+    if data.get("NotifyConfigurationId") is not None:
         out["notify_configuration_id"] = data["NotifyConfigurationId"]
     else:
         raise DeserializationError(
             "NotifyConfigurationInformation.notify_configuration_id required"
         )
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError(
             "NotifyConfigurationInformation.display_name required"
         )
-    if "UseCase" in data:
+    if data.get("UseCase") is not None:
         out["use_case"] = data["UseCase"]
     else:
         raise DeserializationError("NotifyConfigurationInformation.use_case required")
-    if "DefaultTemplateId" in data:
+    if data.get("DefaultTemplateId") is not None:
         out["default_template_id"] = data["DefaultTemplateId"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "EnabledCountries" in data:
+    if data.get("EnabledCountries") is not None:
         import capo_pinpoint_sms_voice_v2.types.iso_country_code_list
 
         out["enabled_countries"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_0(data: dict) -> NotifyConfigurationInformation:
                 data["EnabledCountries"]
             )
         )
-    if "EnabledChannels" in data:
+    if data.get("EnabledChannels") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_enabled_channels_list
 
         out["enabled_channels"] = (
@@ -150,27 +150,27 @@ def deserialize_aws_json_1_0(data: dict) -> NotifyConfigurationInformation:
         raise DeserializationError(
             "NotifyConfigurationInformation.enabled_channels required"
         )
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         out["tier"] = data["Tier"]
     else:
         raise DeserializationError("NotifyConfigurationInformation.tier required")
-    if "TierUpgradeStatus" in data:
+    if data.get("TierUpgradeStatus") is not None:
         out["tier_upgrade_status"] = data["TierUpgradeStatus"]
     else:
         raise DeserializationError(
             "NotifyConfigurationInformation.tier_upgrade_status required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("NotifyConfigurationInformation.status required")
-    if "RejectionReason" in data:
+    if data.get("RejectionReason") is not None:
         out["rejection_reason"] = data["RejectionReason"]
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     else:
         out["deletion_protection_enabled"] = False
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

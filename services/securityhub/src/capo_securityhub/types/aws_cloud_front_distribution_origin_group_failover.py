@@ -31,7 +31,7 @@ def serialize_json(value: AwsCloudFrontDistributionOriginGroupFailover) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionOriginGroupFailover:
     out: AwsCloudFrontDistributionOriginGroupFailover = {}  # type: ignore[typeddict-item]
-    if "StatusCodes" in data:
+    if data.get("StatusCodes") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_origin_group_failover_status_codes
 
         out["status_codes"] = (

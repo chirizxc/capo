@@ -31,6 +31,6 @@ def serialize_json(value: DisassociateTimeSeriesFromAssetPropertyRequest) -> dic
 
 def deserialize_json(data: dict) -> DisassociateTimeSeriesFromAssetPropertyRequest:
     out: DisassociateTimeSeriesFromAssetPropertyRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

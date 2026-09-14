@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: GitConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GitConfig:
     out: GitConfig = {}  # type: ignore[typeddict-item]
-    if "RepositoryUrl" in data:
+    if data.get("RepositoryUrl") is not None:
         out["repository_url"] = data["RepositoryUrl"]
-    if "Branch" in data:
+    if data.get("Branch") is not None:
         out["branch"] = data["Branch"]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     return out

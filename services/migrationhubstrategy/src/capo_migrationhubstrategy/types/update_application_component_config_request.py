@@ -74,15 +74,15 @@ def serialize_json(value: UpdateApplicationComponentConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationComponentConfigRequest:
     out: UpdateApplicationComponentConfigRequest = {}  # type: ignore[typeddict-item]
-    if "applicationComponentId" in data:
+    if data.get("applicationComponentId") is not None:
         out["application_component_id"] = data["applicationComponentId"]
     else:
         raise DeserializationError(
             "UpdateApplicationComponentConfigRequest.application_component_id required"
         )
-    if "inclusionStatus" in data:
+    if data.get("inclusionStatus") is not None:
         out["inclusion_status"] = data["inclusionStatus"]
-    if "strategyOption" in data:
+    if data.get("strategyOption") is not None:
         import capo_migrationhubstrategy.types.strategy_option
 
         out["strategy_option"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> UpdateApplicationComponentConfigRequest:
                 data["strategyOption"]
             )
         )
-    if "sourceCodeList" in data:
+    if data.get("sourceCodeList") is not None:
         import capo_migrationhubstrategy.types.source_code_list
 
         out["source_code_list"] = (
@@ -98,10 +98,10 @@ def deserialize_json(data: dict) -> UpdateApplicationComponentConfigRequest:
                 data["sourceCodeList"]
             )
         )
-    if "secretsManagerKey" in data:
+    if data.get("secretsManagerKey") is not None:
         out["secrets_manager_key"] = data["secretsManagerKey"]
-    if "configureOnly" in data:
+    if data.get("configureOnly") is not None:
         out["configure_only"] = data["configureOnly"]
-    if "appType" in data:
+    if data.get("appType") is not None:
         out["app_type"] = data["appType"]
     return out

@@ -34,11 +34,11 @@ def serialize_json(value: SortCriteria) -> dict:
 
 def deserialize_json(data: dict) -> SortCriteria:
     out: SortCriteria = {}  # type: ignore[typeddict-item]
-    if "Field" in data:
+    if data.get("Field") is not None:
         import capo_detective.types.field
 
         out["field"] = capo_detective.types.field.deserialize_json(data["Field"])
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_detective.types.sort_order
 
         out["sort_order"] = capo_detective.types.sort_order.deserialize_json(

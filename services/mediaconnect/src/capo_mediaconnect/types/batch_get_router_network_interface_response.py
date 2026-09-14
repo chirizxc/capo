@@ -40,7 +40,7 @@ def serialize_json(value: BatchGetRouterNetworkInterfaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetRouterNetworkInterfaceResponse:
     out: BatchGetRouterNetworkInterfaceResponse = {}  # type: ignore[typeddict-item]
-    if "routerNetworkInterfaces" in data:
+    if data.get("routerNetworkInterfaces") is not None:
         import capo_mediaconnect.types.router_network_interface_list
 
         out["router_network_interfaces"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchGetRouterNetworkInterfaceResponse:
         raise DeserializationError(
             "BatchGetRouterNetworkInterfaceResponse.router_network_interfaces required"
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_mediaconnect.types.batch_get_router_network_interface_error_list
 
         out["errors"] = (

@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: PutDeliveryChannelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutDeliveryChannelRequest:
     out: PutDeliveryChannelRequest = {}  # type: ignore[typeddict-item]
-    if "DeliveryChannel" in data:
+    if data.get("DeliveryChannel") is not None:
         import capo_config_service.types.delivery_channel
 
         out["delivery_channel"] = (

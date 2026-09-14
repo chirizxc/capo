@@ -118,17 +118,17 @@ def serialize_aws_json_1_1(value: SettingEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SettingEntry:
     out: SettingEntry = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AllowedValues" in data:
+    if data.get("AllowedValues") is not None:
         out["allowed_values"] = data["AllowedValues"]
-    if "AppliedValue" in data:
+    if data.get("AppliedValue") is not None:
         out["applied_value"] = data["AppliedValue"]
-    if "RequestedValue" in data:
+    if data.get("RequestedValue") is not None:
         out["requested_value"] = data["RequestedValue"]
-    if "RequestStatus" in data:
+    if data.get("RequestStatus") is not None:
         import capo_directory_service.types.directory_configuration_status
 
         out["request_status"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> SettingEntry:
                 data["RequestStatus"]
             )
         )
-    if "RequestDetailedStatus" in data:
+    if data.get("RequestDetailedStatus") is not None:
         import capo_directory_service.types.directory_configuration_setting_request_detailed_status
 
         out["request_detailed_status"] = (
@@ -144,9 +144,9 @@ def deserialize_aws_json_1_1(data: dict) -> SettingEntry:
                 data["RequestDetailedStatus"]
             )
         )
-    if "RequestStatusMessage" in data:
+    if data.get("RequestStatusMessage") is not None:
         out["request_status_message"] = data["RequestStatusMessage"]
-    if "LastUpdatedDateTime" in data:
+    if data.get("LastUpdatedDateTime") is not None:
         import capo_directory_service.types.directory_configuration_setting_last_updated_date_time
 
         out["last_updated_date_time"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> SettingEntry:
                 data["LastUpdatedDateTime"]
             )
         )
-    if "LastRequestedDateTime" in data:
+    if data.get("LastRequestedDateTime") is not None:
         import capo_directory_service.types.directory_configuration_setting_last_requested_date_time
 
         out["last_requested_date_time"] = (
@@ -162,6 +162,6 @@ def deserialize_aws_json_1_1(data: dict) -> SettingEntry:
                 data["LastRequestedDateTime"]
             )
         )
-    if "DataType" in data:
+    if data.get("DataType") is not None:
         out["data_type"] = data["DataType"]
     return out

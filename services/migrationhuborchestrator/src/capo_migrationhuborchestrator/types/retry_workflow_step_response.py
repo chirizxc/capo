@@ -35,12 +35,12 @@ def serialize_json(value: RetryWorkflowStepResponse) -> dict:
 
 def deserialize_json(data: dict) -> RetryWorkflowStepResponse:
     out: RetryWorkflowStepResponse = {}  # type: ignore[typeddict-item]
-    if "stepGroupId" in data:
+    if data.get("stepGroupId") is not None:
         out["step_group_id"] = data["stepGroupId"]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

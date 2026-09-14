@@ -43,14 +43,14 @@ def serialize_json(value: ListEarthObservationJobInput) -> dict:
 
 def deserialize_json(data: dict) -> ListEarthObservationJobInput:
     out: ListEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-    if "StatusEquals" in data:
+    if data.get("StatusEquals") is not None:
         out["status_equals"] = data["StatusEquals"]
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         out["sort_order"] = data["SortOrder"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         out["sort_by"] = data["SortBy"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

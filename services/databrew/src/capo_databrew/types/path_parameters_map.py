@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: PathParametersMap) -> dict:
 def deserialize_json(data: dict) -> PathParametersMap:
     out: PathParametersMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_databrew.types.dataset_parameter
 
         out[key] = capo_databrew.types.dataset_parameter.deserialize_json(value)

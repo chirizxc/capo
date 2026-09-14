@@ -63,21 +63,21 @@ def serialize_json(value: CreateDatastoreRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDatastoreRequest:
     out: CreateDatastoreRequest = {}  # type: ignore[typeddict-item]
-    if "datastoreName" in data:
+    if data.get("datastoreName") is not None:
         out["datastore_name"] = data["datastoreName"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateDatastoreRequest.client_token required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medical_imaging.types.tag_map
 
         out["tags"] = capo_medical_imaging.types.tag_map.deserialize_json(data["tags"])
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "lambdaAuthorizerArn" in data:
+    if data.get("lambdaAuthorizerArn") is not None:
         out["lambda_authorizer_arn"] = data["lambdaAuthorizerArn"]
-    if "losslessStorageFormat" in data:
+    if data.get("losslessStorageFormat") is not None:
         import capo_medical_imaging.types.lossless_storage_format
 
         out["lossless_storage_format"] = (

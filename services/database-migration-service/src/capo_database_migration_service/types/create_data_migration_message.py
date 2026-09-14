@@ -103,15 +103,15 @@ def serialize_aws_json_1_1(value: CreateDataMigrationMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataMigrationMessage:
     out: CreateDataMigrationMessage = {}  # type: ignore[typeddict-item]
-    if "DataMigrationName" in data:
+    if data.get("DataMigrationName") is not None:
         out["data_migration_name"] = data["DataMigrationName"]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(
             "CreateDataMigrationMessage.migration_project_identifier required"
         )
-    if "DataMigrationType" in data:
+    if data.get("DataMigrationType") is not None:
         import capo_database_migration_service.types.migration_type_value
 
         out["data_migration_type"] = (
@@ -123,15 +123,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataMigrationMessage:
         raise DeserializationError(
             "CreateDataMigrationMessage.data_migration_type required"
         )
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
     else:
         raise DeserializationError(
             "CreateDataMigrationMessage.service_access_role_arn required"
         )
-    if "EnableCloudwatchLogs" in data:
+    if data.get("EnableCloudwatchLogs") is not None:
         out["enable_cloudwatch_logs"] = data["EnableCloudwatchLogs"]
-    if "SourceDataSettings" in data:
+    if data.get("SourceDataSettings") is not None:
         import capo_database_migration_service.types.source_data_settings
 
         out["source_data_settings"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataMigrationMessage:
                 data["SourceDataSettings"]
             )
         )
-    if "TargetDataSettings" in data:
+    if data.get("TargetDataSettings") is not None:
         import capo_database_migration_service.types.target_data_settings
 
         out["target_data_settings"] = (
@@ -147,9 +147,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataMigrationMessage:
                 data["TargetDataSettings"]
             )
         )
-    if "NumberOfJobs" in data:
+    if data.get("NumberOfJobs") is not None:
         out["number_of_jobs"] = data["NumberOfJobs"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (
@@ -157,6 +157,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataMigrationMessage:
                 data["Tags"]
             )
         )
-    if "SelectionRules" in data:
+    if data.get("SelectionRules") is not None:
         out["selection_rules"] = data["SelectionRules"]
     return out

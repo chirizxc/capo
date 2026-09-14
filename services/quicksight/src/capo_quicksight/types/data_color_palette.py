@@ -38,18 +38,18 @@ def serialize_json(value: DataColorPalette) -> dict:
 
 def deserialize_json(data: dict) -> DataColorPalette:
     out: DataColorPalette = {}  # type: ignore[typeddict-item]
-    if "Colors" in data:
+    if data.get("Colors") is not None:
         import capo_quicksight.types.color_list
 
         out["colors"] = capo_quicksight.types.color_list.deserialize_json(
             data["Colors"]
         )
-    if "MinMaxGradient" in data:
+    if data.get("MinMaxGradient") is not None:
         import capo_quicksight.types.color_list
 
         out["min_max_gradient"] = capo_quicksight.types.color_list.deserialize_json(
             data["MinMaxGradient"]
         )
-    if "EmptyFillColor" in data:
+    if data.get("EmptyFillColor") is not None:
         out["empty_fill_color"] = data["EmptyFillColor"]
     return out

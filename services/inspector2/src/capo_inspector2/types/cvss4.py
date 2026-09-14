@@ -21,7 +21,15 @@ class Cvss4(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: Cvss4) -> dict:
     out: dict = {}
-    out["baseScore"] = value.get("base_score", 0)
+    out["baseScore"] = (
+        "NaN"
+        if value.get("base_score", 0) != value.get("base_score", 0)
+        else "Infinity"
+        if value.get("base_score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("base_score", 0) == float("-inf")
+        else value.get("base_score", 0)
+    )
     if "scoring_vector" in value:
         out["scoringVector"] = value["scoring_vector"]
     return out
@@ -29,10 +37,10 @@ def serialize_json(value: Cvss4) -> dict:
 
 def deserialize_json(data: dict) -> Cvss4:
     out: Cvss4 = {}  # type: ignore[typeddict-item]
-    if "baseScore" in data:
-        out["base_score"] = data["baseScore"]
+    if data.get("baseScore") is not None:
+        out["base_score"] = float(data["baseScore"])
     else:
         out["base_score"] = 0
-    if "scoringVector" in data:
+    if data.get("scoringVector") is not None:
         out["scoring_vector"] = data["scoringVector"]
     return out

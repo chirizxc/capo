@@ -29,10 +29,10 @@ def serialize_json(value: IpRule) -> dict:
 
 def deserialize_json(data: dict) -> IpRule:
     out: IpRule = {}  # type: ignore[typeddict-item]
-    if "ipRange" in data:
+    if data.get("ipRange") is not None:
         out["ip_range"] = data["ipRange"]
     else:
         raise DeserializationError("IpRule.ip_range required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

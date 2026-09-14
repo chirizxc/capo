@@ -28,7 +28,7 @@ def serialize_json(value: CreateDataLakeDatasetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataLakeDatasetResponse:
     out: CreateDataLakeDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "dataset" in data:
+    if data.get("dataset") is not None:
         import capo_supplychain.types.data_lake_dataset
 
         out["dataset"] = capo_supplychain.types.data_lake_dataset.deserialize_json(

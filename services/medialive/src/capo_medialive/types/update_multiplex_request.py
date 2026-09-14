@@ -50,7 +50,7 @@ def serialize_json(value: UpdateMultiplexRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMultiplexRequest:
     out: UpdateMultiplexRequest = {}  # type: ignore[typeddict-item]
-    if "multiplexSettings" in data:
+    if data.get("multiplexSettings") is not None:
         import capo_medialive.types.multiplex_settings
 
         out["multiplex_settings"] = (
@@ -58,9 +58,9 @@ def deserialize_json(data: dict) -> UpdateMultiplexRequest:
                 data["multiplexSettings"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "packetIdentifiersMapping" in data:
+    if data.get("packetIdentifiersMapping") is not None:
         import capo_medialive.types.multiplex_packet_identifiers_mapping
 
         out["packet_identifiers_mapping"] = (

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> ListenerProperties:
 
     out: ListenerProperties = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_network_firewall.types.listener_property.deserialize_aws_json_1_0(item)
         )

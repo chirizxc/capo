@@ -52,18 +52,18 @@ def serialize_aws_json_1_1(value: ApplicationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationConfig:
     out: ApplicationConfig = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "AbsoluteAppPath" in data:
+    if data.get("AbsoluteAppPath") is not None:
         out["absolute_app_path"] = data["AbsoluteAppPath"]
-    if "AbsoluteIconPath" in data:
+    if data.get("AbsoluteIconPath") is not None:
         out["absolute_icon_path"] = data["AbsoluteIconPath"]
-    if "AbsoluteManifestPath" in data:
+    if data.get("AbsoluteManifestPath") is not None:
         out["absolute_manifest_path"] = data["AbsoluteManifestPath"]
-    if "WorkingDirectory" in data:
+    if data.get("WorkingDirectory") is not None:
         out["working_directory"] = data["WorkingDirectory"]
-    if "LaunchParameters" in data:
+    if data.get("LaunchParameters") is not None:
         out["launch_parameters"] = data["LaunchParameters"]
     return out

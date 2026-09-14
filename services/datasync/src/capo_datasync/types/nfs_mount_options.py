@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: NfsMountOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NfsMountOptions:
     out: NfsMountOptions = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         import capo_datasync.types.nfs_version
 
         out["version"] = capo_datasync.types.nfs_version.deserialize_aws_json_1_1(

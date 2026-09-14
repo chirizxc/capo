@@ -28,8 +28,8 @@ def serialize_aws_json_1_0(value: ListAddonInstancesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAddonInstancesRequest:
     out: ListAddonInstancesRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     return out

@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: ListInboundResponsibilityTransfersRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> ListInboundResponsibilityTransfersRequest:
     out: ListInboundResponsibilityTransfersRequest = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_organizations.types.responsibility_transfer_type
 
         out["type"] = (
@@ -59,10 +59,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListInboundResponsibilityTransfersRe
         raise DeserializationError(
             "ListInboundResponsibilityTransfersRequest.type required"
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

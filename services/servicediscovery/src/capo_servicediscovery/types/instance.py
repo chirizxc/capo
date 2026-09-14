@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: Instance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Instance:
     out: Instance = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("Instance.id required")
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_servicediscovery.types.attributes
 
         out["attributes"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> Instance:
                 data["Attributes"]
             )
         )
-    if "CreatedByAccount" in data:
+    if data.get("CreatedByAccount") is not None:
         out["created_by_account"] = data["CreatedByAccount"]
     return out

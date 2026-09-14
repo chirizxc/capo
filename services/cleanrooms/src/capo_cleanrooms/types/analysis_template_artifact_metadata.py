@@ -39,7 +39,7 @@ def serialize_json(value: AnalysisTemplateArtifactMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisTemplateArtifactMetadata:
     out: AnalysisTemplateArtifactMetadata = {}  # type: ignore[typeddict-item]
-    if "entryPointHash" in data:
+    if data.get("entryPointHash") is not None:
         import capo_cleanrooms.types.hash
 
         out["entry_point_hash"] = capo_cleanrooms.types.hash.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> AnalysisTemplateArtifactMetadata:
         raise DeserializationError(
             "AnalysisTemplateArtifactMetadata.entry_point_hash required"
         )
-    if "additionalArtifactHashes" in data:
+    if data.get("additionalArtifactHashes") is not None:
         import capo_cleanrooms.types.hash_list
 
         out["additional_artifact_hashes"] = (

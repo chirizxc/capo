@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CallAnalyticsJobDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobDetails:
     out: CallAnalyticsJobDetails = {}  # type: ignore[typeddict-item]
-    if "Skipped" in data:
+    if data.get("Skipped") is not None:
         import capo_transcribe.types.call_analytics_skipped_feature_list
 
         out["skipped"] = (

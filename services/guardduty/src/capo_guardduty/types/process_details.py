@@ -80,35 +80,35 @@ def serialize_json(value: ProcessDetails) -> dict:
 
 def deserialize_json(data: dict) -> ProcessDetails:
     out: ProcessDetails = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "executablePath" in data:
+    if data.get("executablePath") is not None:
         out["executable_path"] = data["executablePath"]
-    if "executableSha256" in data:
+    if data.get("executableSha256") is not None:
         out["executable_sha256"] = data["executableSha256"]
-    if "namespacePid" in data:
+    if data.get("namespacePid") is not None:
         out["namespace_pid"] = data["namespacePid"]
-    if "pwd" in data:
+    if data.get("pwd") is not None:
         out["pwd"] = data["pwd"]
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_guardduty.types.timestamp
 
         out["start_time"] = capo_guardduty.types.timestamp.deserialize_json(
             data["startTime"]
         )
-    if "uuid" in data:
+    if data.get("uuid") is not None:
         out["uuid"] = data["uuid"]
-    if "parentUuid" in data:
+    if data.get("parentUuid") is not None:
         out["parent_uuid"] = data["parentUuid"]
-    if "user" in data:
+    if data.get("user") is not None:
         out["user"] = data["user"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "euid" in data:
+    if data.get("euid") is not None:
         out["euid"] = data["euid"]
-    if "lineage" in data:
+    if data.get("lineage") is not None:
         import capo_guardduty.types.lineage
 
         out["lineage"] = capo_guardduty.types.lineage.deserialize_json(data["lineage"])

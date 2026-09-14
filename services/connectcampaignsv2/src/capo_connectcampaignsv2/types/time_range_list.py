@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TimeRangeList:
 
     out: TimeRangeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectcampaignsv2.types.time_range.deserialize_json(item))
     return out

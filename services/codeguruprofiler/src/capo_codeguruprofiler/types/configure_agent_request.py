@@ -39,9 +39,9 @@ def serialize_json(value: ConfigureAgentRequest) -> dict:
 
 def deserialize_json(data: dict) -> ConfigureAgentRequest:
     out: ConfigureAgentRequest = {}  # type: ignore[typeddict-item]
-    if "fleetInstanceId" in data:
+    if data.get("fleetInstanceId") is not None:
         out["fleet_instance_id"] = data["fleetInstanceId"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_codeguruprofiler.types.metadata
 
         out["metadata"] = capo_codeguruprofiler.types.metadata.deserialize_json(

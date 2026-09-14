@@ -90,7 +90,15 @@ def serialize_aws_json_1_0(value: CreateCloudVmClusterInput) -> dict:
             )
         )
     if "data_storage_size_in_t_bs" in value:
-        out["dataStorageSizeInTBs"] = value["data_storage_size_in_t_bs"]
+        out["dataStorageSizeInTBs"] = (
+            "NaN"
+            if value["data_storage_size_in_t_bs"] != value["data_storage_size_in_t_bs"]
+            else "Infinity"
+            if value["data_storage_size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["data_storage_size_in_t_bs"] == float("-inf")
+            else value["data_storage_size_in_t_bs"]
+        )
     if "db_node_storage_size_in_g_bs" in value:
         out["dbNodeStorageSizeInGBs"] = value["db_node_storage_size_in_g_bs"]
     if "db_servers" in value:
@@ -130,29 +138,29 @@ def serialize_aws_json_1_0(value: CreateCloudVmClusterInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCloudVmClusterInput:
     out: CreateCloudVmClusterInput = {}  # type: ignore[typeddict-item]
-    if "cloudExadataInfrastructureId" in data:
+    if data.get("cloudExadataInfrastructureId") is not None:
         out["cloud_exadata_infrastructure_id"] = data["cloudExadataInfrastructureId"]
     else:
         raise DeserializationError(
             "CreateCloudVmClusterInput.cloud_exadata_infrastructure_id required"
         )
-    if "cpuCoreCount" in data:
+    if data.get("cpuCoreCount") is not None:
         out["cpu_core_count"] = data["cpuCoreCount"]
     else:
         raise DeserializationError("CreateCloudVmClusterInput.cpu_core_count required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateCloudVmClusterInput.display_name required")
-    if "giVersion" in data:
+    if data.get("giVersion") is not None:
         out["gi_version"] = data["giVersion"]
     else:
         raise DeserializationError("CreateCloudVmClusterInput.gi_version required")
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
     else:
         raise DeserializationError("CreateCloudVmClusterInput.hostname required")
-    if "sshPublicKeys" in data:
+    if data.get("sshPublicKeys") is not None:
         import capo_odb.types.string_list
 
         out["ssh_public_keys"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
@@ -160,13 +168,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCloudVmClusterInput:
         )
     else:
         raise DeserializationError("CreateCloudVmClusterInput.ssh_public_keys required")
-    if "odbNetworkId" in data:
+    if data.get("odbNetworkId") is not None:
         out["odb_network_id"] = data["odbNetworkId"]
     else:
         raise DeserializationError("CreateCloudVmClusterInput.odb_network_id required")
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "dataCollectionOptions" in data:
+    if data.get("dataCollectionOptions") is not None:
         import capo_odb.types.data_collection_options
 
         out["data_collection_options"] = (
@@ -174,40 +182,40 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCloudVmClusterInput:
                 data["dataCollectionOptions"]
             )
         )
-    if "dataStorageSizeInTBs" in data:
-        out["data_storage_size_in_t_bs"] = data["dataStorageSizeInTBs"]
-    if "dbNodeStorageSizeInGBs" in data:
+    if data.get("dataStorageSizeInTBs") is not None:
+        out["data_storage_size_in_t_bs"] = float(data["dataStorageSizeInTBs"])
+    if data.get("dbNodeStorageSizeInGBs") is not None:
         out["db_node_storage_size_in_g_bs"] = data["dbNodeStorageSizeInGBs"]
-    if "dbServers" in data:
+    if data.get("dbServers") is not None:
         import capo_odb.types.string_list
 
         out["db_servers"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["dbServers"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_odb.types.request_tag_map
 
         out["tags"] = capo_odb.types.request_tag_map.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "isLocalBackupEnabled" in data:
+    if data.get("isLocalBackupEnabled") is not None:
         out["is_local_backup_enabled"] = data["isLocalBackupEnabled"]
-    if "isSparseDiskgroupEnabled" in data:
+    if data.get("isSparseDiskgroupEnabled") is not None:
         out["is_sparse_diskgroup_enabled"] = data["isSparseDiskgroupEnabled"]
-    if "licenseModel" in data:
+    if data.get("licenseModel") is not None:
         import capo_odb.types.license_model
 
         out["license_model"] = capo_odb.types.license_model.deserialize_aws_json_1_0(
             data["licenseModel"]
         )
-    if "memorySizeInGBs" in data:
+    if data.get("memorySizeInGBs") is not None:
         out["memory_size_in_g_bs"] = data["memorySizeInGBs"]
-    if "systemVersion" in data:
+    if data.get("systemVersion") is not None:
         out["system_version"] = data["systemVersion"]
-    if "timeZone" in data:
+    if data.get("timeZone") is not None:
         out["time_zone"] = data["timeZone"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "scanListenerPortTcp" in data:
+    if data.get("scanListenerPortTcp") is not None:
         out["scan_listener_port_tcp"] = data["scanListenerPortTcp"]
     return out

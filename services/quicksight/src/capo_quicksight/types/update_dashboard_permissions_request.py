@@ -76,7 +76,7 @@ def serialize_json(value: UpdateDashboardPermissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDashboardPermissionsRequest:
     out: UpdateDashboardPermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "GrantPermissions" in data:
+    if data.get("GrantPermissions") is not None:
         import capo_quicksight.types.update_resource_permission_list
 
         out["grant_permissions"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> UpdateDashboardPermissionsRequest:
                 data["GrantPermissions"]
             )
         )
-    if "RevokePermissions" in data:
+    if data.get("RevokePermissions") is not None:
         import capo_quicksight.types.update_resource_permission_list
 
         out["revoke_permissions"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> UpdateDashboardPermissionsRequest:
                 data["RevokePermissions"]
             )
         )
-    if "GrantLinkPermissions" in data:
+    if data.get("GrantLinkPermissions") is not None:
         import capo_quicksight.types.update_link_permission_list
 
         out["grant_link_permissions"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> UpdateDashboardPermissionsRequest:
                 data["GrantLinkPermissions"]
             )
         )
-    if "RevokeLinkPermissions" in data:
+    if data.get("RevokeLinkPermissions") is not None:
         import capo_quicksight.types.update_link_permission_list
 
         out["revoke_link_permissions"] = (

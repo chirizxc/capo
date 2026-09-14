@@ -38,7 +38,7 @@ def serialize_json(value: DataAggregation) -> dict:
 
 def deserialize_json(data: dict) -> DataAggregation:
     out: DataAggregation = {}  # type: ignore[typeddict-item]
-    if "DatasetRowDateGranularity" in data:
+    if data.get("DatasetRowDateGranularity") is not None:
         import capo_quicksight.types.topic_time_granularity
 
         out["dataset_row_date_granularity"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> DataAggregation:
                 data["DatasetRowDateGranularity"]
             )
         )
-    if "DefaultDateColumnName" in data:
+    if data.get("DefaultDateColumnName") is not None:
         out["default_date_column_name"] = data["DefaultDateColumnName"]
     return out

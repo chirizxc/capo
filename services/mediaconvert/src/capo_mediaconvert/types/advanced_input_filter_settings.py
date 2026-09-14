@@ -44,7 +44,7 @@ def serialize_json(value: AdvancedInputFilterSettings) -> dict:
 
 def deserialize_json(data: dict) -> AdvancedInputFilterSettings:
     out: AdvancedInputFilterSettings = {}  # type: ignore[typeddict-item]
-    if "addTexture" in data:
+    if data.get("addTexture") is not None:
         import capo_mediaconvert.types.advanced_input_filter_add_texture
 
         out["add_texture"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AdvancedInputFilterSettings:
                 data["addTexture"]
             )
         )
-    if "sharpening" in data:
+    if data.get("sharpening") is not None:
         import capo_mediaconvert.types.advanced_input_filter_sharpen
 
         out["sharpening"] = (

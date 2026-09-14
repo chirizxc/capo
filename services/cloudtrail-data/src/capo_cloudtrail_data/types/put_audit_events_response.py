@@ -40,7 +40,7 @@ def serialize_json(value: PutAuditEventsResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutAuditEventsResponse:
     out: PutAuditEventsResponse = {}  # type: ignore[typeddict-item]
-    if "successful" in data:
+    if data.get("successful") is not None:
         import capo_cloudtrail_data.types.audit_event_result_entries
 
         out["successful"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> PutAuditEventsResponse:
         )
     else:
         raise DeserializationError("PutAuditEventsResponse.successful required")
-    if "failed" in data:
+    if data.get("failed") is not None:
         import capo_cloudtrail_data.types.result_error_entries
 
         out["failed"] = (

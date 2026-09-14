@@ -29,9 +29,9 @@ def serialize_json(value: CreateApiKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApiKeyRequest:
     out: CreateApiKeyRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "expires" in data:
+    if data.get("expires") is not None:
         out["expires"] = data["expires"]
     else:
         out["expires"] = 0

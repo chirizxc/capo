@@ -78,13 +78,13 @@ def serialize_json(value: StartResourceStateUpdateRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartResourceStateUpdateRequest:
     out: StartResourceStateUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
             "StartResourceStateUpdateRequest.resource_arn required"
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_imagebuilder.types.resource_state
 
         out["state"] = capo_imagebuilder.types.resource_state.deserialize_json(
@@ -92,9 +92,9 @@ def deserialize_json(data: dict) -> StartResourceStateUpdateRequest:
         )
     else:
         raise DeserializationError("StartResourceStateUpdateRequest.state required")
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
-    if "includeResources" in data:
+    if data.get("includeResources") is not None:
         import capo_imagebuilder.types.resource_state_update_include_resources
 
         out["include_resources"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> StartResourceStateUpdateRequest:
                 data["includeResources"]
             )
         )
-    if "exclusionRules" in data:
+    if data.get("exclusionRules") is not None:
         import capo_imagebuilder.types.resource_state_update_exclusion_rules
 
         out["exclusion_rules"] = (
@@ -110,13 +110,13 @@ def deserialize_json(data: dict) -> StartResourceStateUpdateRequest:
                 data["exclusionRules"]
             )
         )
-    if "updateAt" in data:
+    if data.get("updateAt") is not None:
         import capo_imagebuilder.types.date_time_timestamp
 
         out["update_at"] = capo_imagebuilder.types.date_time_timestamp.deserialize_json(
             data["updateAt"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(

@@ -27,6 +27,6 @@ def serialize_json(value: UpdateReadinessCheckRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReadinessCheckRequest:
     out: UpdateReadinessCheckRequest = {}  # type: ignore[typeddict-item]
-    if "resourceSetName" in data:
+    if data.get("resourceSetName") is not None:
         out["resource_set_name"] = data["resourceSetName"]
     return out

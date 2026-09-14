@@ -46,27 +46,27 @@ def serialize_json(value: CreateKxScalingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxScalingGroupRequest:
     out: CreateKxScalingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateKxScalingGroupRequest.client_token required")
-    if "scalingGroupName" in data:
+    if data.get("scalingGroupName") is not None:
         out["scaling_group_name"] = data["scalingGroupName"]
     else:
         raise DeserializationError(
             "CreateKxScalingGroupRequest.scaling_group_name required"
         )
-    if "hostType" in data:
+    if data.get("hostType") is not None:
         out["host_type"] = data["hostType"]
     else:
         raise DeserializationError("CreateKxScalingGroupRequest.host_type required")
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
     else:
         raise DeserializationError(
             "CreateKxScalingGroupRequest.availability_zone_id required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_finspace.types.tag_map
 
         out["tags"] = capo_finspace.types.tag_map.deserialize_json(data["tags"])

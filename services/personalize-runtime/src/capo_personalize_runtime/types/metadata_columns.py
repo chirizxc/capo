@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: MetadataColumns) -> dict:
 def deserialize_json(data: dict) -> MetadataColumns:
     out: MetadataColumns = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_personalize_runtime.types.column_names_list
 
         out[key] = capo_personalize_runtime.types.column_names_list.deserialize_json(

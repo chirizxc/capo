@@ -28,7 +28,7 @@ def serialize_json(value: CreateCollaborationOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateCollaborationOutput:
     out: CreateCollaborationOutput = {}  # type: ignore[typeddict-item]
-    if "collaboration" in data:
+    if data.get("collaboration") is not None:
         import capo_cleanrooms.types.collaboration
 
         out["collaboration"] = capo_cleanrooms.types.collaboration.deserialize_json(

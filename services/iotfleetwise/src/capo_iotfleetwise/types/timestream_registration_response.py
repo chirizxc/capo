@@ -58,23 +58,23 @@ def serialize_aws_json_1_0(value: TimestreamRegistrationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimestreamRegistrationResponse:
     out: TimestreamRegistrationResponse = {}  # type: ignore[typeddict-item]
-    if "timestreamDatabaseName" in data:
+    if data.get("timestreamDatabaseName") is not None:
         out["timestream_database_name"] = data["timestreamDatabaseName"]
     else:
         raise DeserializationError(
             "TimestreamRegistrationResponse.timestream_database_name required"
         )
-    if "timestreamTableName" in data:
+    if data.get("timestreamTableName") is not None:
         out["timestream_table_name"] = data["timestreamTableName"]
     else:
         raise DeserializationError(
             "TimestreamRegistrationResponse.timestream_table_name required"
         )
-    if "timestreamDatabaseArn" in data:
+    if data.get("timestreamDatabaseArn") is not None:
         out["timestream_database_arn"] = data["timestreamDatabaseArn"]
-    if "timestreamTableArn" in data:
+    if data.get("timestreamTableArn") is not None:
         out["timestream_table_arn"] = data["timestreamTableArn"]
-    if "registrationStatus" in data:
+    if data.get("registrationStatus") is not None:
         import capo_iotfleetwise.types.registration_status
 
         out["registration_status"] = (
@@ -86,6 +86,6 @@ def deserialize_aws_json_1_0(data: dict) -> TimestreamRegistrationResponse:
         raise DeserializationError(
             "TimestreamRegistrationResponse.registration_status required"
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

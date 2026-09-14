@@ -38,7 +38,7 @@ def serialize_json(value: SearchNearbyResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchNearbyResponse:
     out: SearchNearbyResponse = {}  # type: ignore[typeddict-item]
-    if "ResultItems" in data:
+    if data.get("ResultItems") is not None:
         import capo_geo_places.types.search_nearby_result_item_list
 
         out["result_items"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> SearchNearbyResponse:
                 data["ResultItems"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

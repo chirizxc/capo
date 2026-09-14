@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AssociationsList:
 
     out: AssociationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_agent.types.association.deserialize_json(item))
     return out

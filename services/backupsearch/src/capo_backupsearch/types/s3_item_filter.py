@@ -75,7 +75,7 @@ def serialize_json(value: S3ItemFilter) -> dict:
 
 def deserialize_json(data: dict) -> S3ItemFilter:
     out: S3ItemFilter = {}  # type: ignore[typeddict-item]
-    if "ObjectKeys" in data:
+    if data.get("ObjectKeys") is not None:
         import capo_backupsearch.types.string_condition_list
 
         out["object_keys"] = (
@@ -83,13 +83,13 @@ def deserialize_json(data: dict) -> S3ItemFilter:
                 data["ObjectKeys"]
             )
         )
-    if "Sizes" in data:
+    if data.get("Sizes") is not None:
         import capo_backupsearch.types.long_condition_list
 
         out["sizes"] = capo_backupsearch.types.long_condition_list.deserialize_json(
             data["Sizes"]
         )
-    if "CreationTimes" in data:
+    if data.get("CreationTimes") is not None:
         import capo_backupsearch.types.time_condition_list
 
         out["creation_times"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> S3ItemFilter:
                 data["CreationTimes"]
             )
         )
-    if "VersionIds" in data:
+    if data.get("VersionIds") is not None:
         import capo_backupsearch.types.string_condition_list
 
         out["version_ids"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> S3ItemFilter:
                 data["VersionIds"]
             )
         )
-    if "ETags" in data:
+    if data.get("ETags") is not None:
         import capo_backupsearch.types.string_condition_list
 
         out["e_tags"] = capo_backupsearch.types.string_condition_list.deserialize_json(

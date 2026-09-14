@@ -64,7 +64,7 @@ def serialize_json(value: SearchTypesResultItem) -> dict:
 
 
 def deserialize_json(data: dict) -> SearchTypesResultItem:
-    if "assetTypeItem" in data:
+    if data.get("assetTypeItem") is not None:
         import capo_datazone.types.asset_type_item
 
         return {
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> SearchTypesResultItem:
                 data["assetTypeItem"]
             )
         }
-    elif "formTypeItem" in data:
+    elif data.get("formTypeItem") is not None:
         import capo_datazone.types.form_type_data
 
         return {
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> SearchTypesResultItem:
                 data["formTypeItem"]
             )
         }
-    elif "lineageNodeTypeItem" in data:
+    elif data.get("lineageNodeTypeItem") is not None:
         import capo_datazone.types.lineage_node_type_item
 
         return {

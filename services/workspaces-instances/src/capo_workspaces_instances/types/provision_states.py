@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ProvisionStates:
 
     out: ProvisionStates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_instances.types.provision_state_enum.deserialize_aws_json_1_0(
                 item

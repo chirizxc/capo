@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: GetBucketsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBucketsResult:
     out: GetBucketsResult = {}  # type: ignore[typeddict-item]
-    if "buckets" in data:
+    if data.get("buckets") is not None:
         import capo_lightsail.types.bucket_list
 
         out["buckets"] = capo_lightsail.types.bucket_list.deserialize_aws_json_1_1(
             data["buckets"]
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
-    if "accountLevelBpaSync" in data:
+    if data.get("accountLevelBpaSync") is not None:
         import capo_lightsail.types.account_level_bpa_sync
 
         out["account_level_bpa_sync"] = (

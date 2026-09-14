@@ -50,17 +50,17 @@ def serialize_aws_json_1_1(value: RelatedWorkspaceProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelatedWorkspaceProperties:
     out: RelatedWorkspaceProperties = {}  # type: ignore[typeddict-item]
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.workspace_state
 
         out["state"] = capo_workspaces.types.workspace_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workspaces.types.standby_workspace_relationship_type
 
         out["type"] = (

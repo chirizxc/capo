@@ -31,12 +31,12 @@ def serialize_json(value: CodeArtifacts) -> dict:
 
 def deserialize_json(data: dict) -> CodeArtifacts:
     out: CodeArtifacts = {}  # type: ignore[typeddict-item]
-    if "SourceCodeArtifactsObjectKey" in data:
+    if data.get("SourceCodeArtifactsObjectKey") is not None:
         out["source_code_artifacts_object_key"] = data["SourceCodeArtifactsObjectKey"]
     else:
         raise DeserializationError(
             "CodeArtifacts.source_code_artifacts_object_key required"
         )
-    if "BuildArtifactsObjectKey" in data:
+    if data.get("BuildArtifactsObjectKey") is not None:
         out["build_artifacts_object_key"] = data["BuildArtifactsObjectKey"]
     return out

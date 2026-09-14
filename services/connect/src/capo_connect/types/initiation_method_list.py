@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InitiationMethodList:
 
     out: InitiationMethodList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.contact_initiation_method.deserialize_json(item))
     return out

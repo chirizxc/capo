@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateRecommenderResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRecommenderResponse:
     out: UpdateRecommenderResponse = {}  # type: ignore[typeddict-item]
-    if "recommenderArn" in data:
+    if data.get("recommenderArn") is not None:
         out["recommender_arn"] = data["recommenderArn"]
     return out

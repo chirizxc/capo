@@ -88,11 +88,11 @@ def serialize_aws_json_1_1(value: GetUnfilteredTableMetadataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredTableMetadataResponse:
     out: GetUnfilteredTableMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "Table" in data:
+    if data.get("Table") is not None:
         import capo_glue.types.table
 
         out["table"] = capo_glue.types.table.deserialize_aws_json_1_1(data["Table"])
-    if "AuthorizedColumns" in data:
+    if data.get("AuthorizedColumns") is not None:
         import capo_glue.types.name_string_list
 
         out["authorized_columns"] = (
@@ -100,11 +100,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredTableMetadataResponse:
                 data["AuthorizedColumns"]
             )
         )
-    if "IsRegisteredWithLakeFormation" in data:
+    if data.get("IsRegisteredWithLakeFormation") is not None:
         out["is_registered_with_lake_formation"] = data["IsRegisteredWithLakeFormation"]
     else:
         out["is_registered_with_lake_formation"] = False
-    if "CellFilters" in data:
+    if data.get("CellFilters") is not None:
         import capo_glue.types.column_row_filter_list
 
         out["cell_filters"] = (
@@ -112,28 +112,28 @@ def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredTableMetadataResponse:
                 data["CellFilters"]
             )
         )
-    if "QueryAuthorizationId" in data:
+    if data.get("QueryAuthorizationId") is not None:
         out["query_authorization_id"] = data["QueryAuthorizationId"]
-    if "IsMultiDialectView" in data:
+    if data.get("IsMultiDialectView") is not None:
         out["is_multi_dialect_view"] = data["IsMultiDialectView"]
     else:
         out["is_multi_dialect_view"] = False
-    if "IsMaterializedView" in data:
+    if data.get("IsMaterializedView") is not None:
         out["is_materialized_view"] = data["IsMaterializedView"]
     else:
         out["is_materialized_view"] = False
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "IsProtected" in data:
+    if data.get("IsProtected") is not None:
         out["is_protected"] = data["IsProtected"]
     else:
         out["is_protected"] = False
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_glue.types.permission_list
 
         out["permissions"] = capo_glue.types.permission_list.deserialize_aws_json_1_1(
             data["Permissions"]
         )
-    if "RowFilter" in data:
+    if data.get("RowFilter") is not None:
         out["row_filter"] = data["RowFilter"]
     return out

@@ -259,13 +259,14 @@ class AsyncIoTManagedIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_custom_endpoint_request.GetCustomEndpointRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.get_custom_endpoint_request.GetCustomEndpointRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -303,14 +304,16 @@ class AsyncIoTManagedIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_iot_managed_integrations.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_custom_endpoint(
@@ -347,13 +350,14 @@ class AsyncIoTManagedIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.register_custom_endpoint_request.RegisterCustomEndpointRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.register_custom_endpoint_request.RegisterCustomEndpointRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_connector_event(
@@ -440,11 +444,12 @@ class AsyncIoTManagedIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.send_connector_event_request.SendConnectorEventRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
+        input_: capo_iot_managed_integrations.types.send_connector_event_request.SendConnectorEventRequest = {
+            "connector_id": connector_id,
+            "operation": operation,
+        }
         if user_id is not None:
             input_["user_id"] = user_id
-        input_["operation"] = operation
         if operation_version is not None:
             input_["operation_version"] = operation_version
         if status_code is not None:
@@ -467,6 +472,7 @@ class AsyncIoTManagedIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -509,15 +515,17 @@ class AsyncIoTManagedIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_iot_managed_integrations.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -558,15 +566,17 @@ class AsyncIoTManagedIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_iot_managed_integrations.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -43,17 +43,17 @@ def serialize_aws_json_1_1(value: SubscribeToShardInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SubscribeToShardInput:
     out: SubscribeToShardInput = {}  # type: ignore[typeddict-item]
-    if "ConsumerARN" in data:
+    if data.get("ConsumerARN") is not None:
         out["consumer_arn"] = data["ConsumerARN"]
     else:
         raise DeserializationError("SubscribeToShardInput.consumer_arn required")
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
-    if "ShardId" in data:
+    if data.get("ShardId") is not None:
         out["shard_id"] = data["ShardId"]
     else:
         raise DeserializationError("SubscribeToShardInput.shard_id required")
-    if "StartingPosition" in data:
+    if data.get("StartingPosition") is not None:
         import capo_kinesis.types.starting_position
 
         out["starting_position"] = (

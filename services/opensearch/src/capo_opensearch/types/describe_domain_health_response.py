@@ -110,43 +110,43 @@ def serialize_json(value: DescribeDomainHealthResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDomainHealthResponse:
     out: DescribeDomainHealthResponse = {}  # type: ignore[typeddict-item]
-    if "DomainState" in data:
+    if data.get("DomainState") is not None:
         import capo_opensearch.types.domain_state
 
         out["domain_state"] = capo_opensearch.types.domain_state.deserialize_json(
             data["DomainState"]
         )
-    if "AvailabilityZoneCount" in data:
+    if data.get("AvailabilityZoneCount") is not None:
         out["availability_zone_count"] = data["AvailabilityZoneCount"]
-    if "ActiveAvailabilityZoneCount" in data:
+    if data.get("ActiveAvailabilityZoneCount") is not None:
         out["active_availability_zone_count"] = data["ActiveAvailabilityZoneCount"]
-    if "StandByAvailabilityZoneCount" in data:
+    if data.get("StandByAvailabilityZoneCount") is not None:
         out["stand_by_availability_zone_count"] = data["StandByAvailabilityZoneCount"]
-    if "DataNodeCount" in data:
+    if data.get("DataNodeCount") is not None:
         out["data_node_count"] = data["DataNodeCount"]
-    if "DedicatedMaster" in data:
+    if data.get("DedicatedMaster") is not None:
         out["dedicated_master"] = data["DedicatedMaster"]
-    if "MasterEligibleNodeCount" in data:
+    if data.get("MasterEligibleNodeCount") is not None:
         out["master_eligible_node_count"] = data["MasterEligibleNodeCount"]
-    if "WarmNodeCount" in data:
+    if data.get("WarmNodeCount") is not None:
         out["warm_node_count"] = data["WarmNodeCount"]
-    if "MasterNode" in data:
+    if data.get("MasterNode") is not None:
         import capo_opensearch.types.master_node_status
 
         out["master_node"] = capo_opensearch.types.master_node_status.deserialize_json(
             data["MasterNode"]
         )
-    if "ClusterHealth" in data:
+    if data.get("ClusterHealth") is not None:
         import capo_opensearch.types.domain_health
 
         out["cluster_health"] = capo_opensearch.types.domain_health.deserialize_json(
             data["ClusterHealth"]
         )
-    if "TotalShards" in data:
+    if data.get("TotalShards") is not None:
         out["total_shards"] = data["TotalShards"]
-    if "TotalUnAssignedShards" in data:
+    if data.get("TotalUnAssignedShards") is not None:
         out["total_un_assigned_shards"] = data["TotalUnAssignedShards"]
-    if "EnvironmentInformation" in data:
+    if data.get("EnvironmentInformation") is not None:
         import capo_opensearch.types.environment_info_list
 
         out["environment_information"] = (

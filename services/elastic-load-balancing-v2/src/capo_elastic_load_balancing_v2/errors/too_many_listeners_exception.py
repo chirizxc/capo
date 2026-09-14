@@ -39,15 +39,18 @@ class TooManyListenersException(ServiceError):
 
     code: str | None = "TooManyListenersException"
 
-    def __init__(self, data: TooManyListenersException_):
+    def __init__(self, data: TooManyListenersException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyListenersException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TooManyListenersException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TooManyListenersException":
+        return cls(deserialize_query(el), message)

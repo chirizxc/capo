@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> AnalysisReportSummaryList:
 
     out: AnalysisReportSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pi.types.analysis_report_summary.deserialize_aws_json_1_1(item))
     return out

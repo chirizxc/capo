@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListAssociatedStacksResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAssociatedStacksResult:
     out: ListAssociatedStacksResult = {}  # type: ignore[typeddict-item]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_appstream.types.string_list
 
         out["names"] = capo_appstream.types.string_list.deserialize_aws_json_1_1(
             data["Names"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

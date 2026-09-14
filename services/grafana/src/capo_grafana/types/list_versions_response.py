@@ -34,9 +34,9 @@ def serialize_json(value: ListVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListVersionsResponse:
     out: ListVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "grafanaVersions" in data:
+    if data.get("grafanaVersions") is not None:
         import capo_grafana.types.grafana_version_list
 
         out["grafana_versions"] = (

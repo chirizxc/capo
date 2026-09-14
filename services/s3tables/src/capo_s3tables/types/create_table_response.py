@@ -28,11 +28,11 @@ def serialize_json(value: CreateTableResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateTableResponse:
     out: CreateTableResponse = {}  # type: ignore[typeddict-item]
-    if "tableARN" in data:
+    if data.get("tableARN") is not None:
         out["table_arn"] = data["tableARN"]
     else:
         raise DeserializationError("CreateTableResponse.table_arn required")
-    if "versionToken" in data:
+    if data.get("versionToken") is not None:
         out["version_token"] = data["versionToken"]
     else:
         raise DeserializationError("CreateTableResponse.version_token required")

@@ -52,11 +52,11 @@ def serialize_aws_json_1_1(value: ExtractedParameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExtractedParameter:
     out: ExtractedParameter = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "PropertyLocation" in data:
+    if data.get("PropertyLocation") is not None:
         import capo_glue.types.property_location
 
         out["property_location"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtractedParameter:
                 data["PropertyLocation"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_glue.types.response_extraction_mapping
 
         out["value"] = (

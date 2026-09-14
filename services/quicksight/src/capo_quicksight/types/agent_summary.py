@@ -58,21 +58,21 @@ def serialize_json(value: AgentSummary) -> dict:
 
 def deserialize_json(data: dict) -> AgentSummary:
     out: AgentSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("AgentSummary.arn required")
-    if "AgentId" in data:
+    if data.get("AgentId") is not None:
         out["agent_id"] = data["AgentId"]
     else:
         raise DeserializationError("AgentSummary.agent_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("AgentSummary.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["created_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> AgentSummary:
         )
     else:
         raise DeserializationError("AgentSummary.created_at required")
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["updated_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
@@ -88,6 +88,6 @@ def deserialize_json(data: dict) -> AgentSummary:
         )
     else:
         raise DeserializationError("AgentSummary.updated_at required")
-    if "IconId" in data:
+    if data.get("IconId") is not None:
         out["icon_id"] = data["IconId"]
     return out

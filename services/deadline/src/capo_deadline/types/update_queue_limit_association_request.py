@@ -39,7 +39,7 @@ def serialize_json(value: UpdateQueueLimitAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQueueLimitAssociationRequest:
     out: UpdateQueueLimitAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.update_queue_limit_association_status
 
         out["status"] = (

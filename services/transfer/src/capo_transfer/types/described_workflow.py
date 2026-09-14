@@ -62,19 +62,19 @@ def serialize_aws_json_1_1(value: DescribedWorkflow) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribedWorkflow:
     out: DescribedWorkflow = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DescribedWorkflow.arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_transfer.types.workflow_steps
 
         out["steps"] = capo_transfer.types.workflow_steps.deserialize_aws_json_1_1(
             data["Steps"]
         )
-    if "OnExceptionSteps" in data:
+    if data.get("OnExceptionSteps") is not None:
         import capo_transfer.types.workflow_steps
 
         out["on_exception_steps"] = (
@@ -82,9 +82,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedWorkflow:
                 data["OnExceptionSteps"]
             )
         )
-    if "WorkflowId" in data:
+    if data.get("WorkflowId") is not None:
         out["workflow_id"] = data["WorkflowId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])

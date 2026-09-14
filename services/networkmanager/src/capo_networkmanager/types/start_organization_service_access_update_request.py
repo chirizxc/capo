@@ -24,7 +24,7 @@ def serialize_json(value: StartOrganizationServiceAccessUpdateRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartOrganizationServiceAccessUpdateRequest:
     out: StartOrganizationServiceAccessUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError(

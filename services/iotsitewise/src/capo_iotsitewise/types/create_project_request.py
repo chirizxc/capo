@@ -45,19 +45,19 @@ def serialize_json(value: CreateProjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProjectRequest:
     out: CreateProjectRequest = {}  # type: ignore[typeddict-item]
-    if "portalId" in data:
+    if data.get("portalId") is not None:
         out["portal_id"] = data["portalId"]
     else:
         raise DeserializationError("CreateProjectRequest.portal_id required")
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("CreateProjectRequest.project_name required")
-    if "projectDescription" in data:
+    if data.get("projectDescription") is not None:
         out["project_description"] = data["projectDescription"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotsitewise.types.tag_map
 
         out["tags"] = capo_iotsitewise.types.tag_map.deserialize_json(data["tags"])

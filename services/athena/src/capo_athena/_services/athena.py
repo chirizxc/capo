@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.athena#AmazonAthena``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -370,14 +371,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.batch_get_named_query_input.BatchGetNamedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["named_query_ids"] = named_query_ids
+        input_: capo_athena.types.batch_get_named_query_input.BatchGetNamedQueryInput = {
+            "named_query_ids": named_query_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_prepared_statement(
@@ -414,15 +417,17 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.batch_get_prepared_statement_input.BatchGetPreparedStatementInput = {}  # type: ignore[typeddict-item]
-        input_["prepared_statement_names"] = prepared_statement_names
-        input_["work_group"] = work_group
+        input_: capo_athena.types.batch_get_prepared_statement_input.BatchGetPreparedStatementInput = {
+            "prepared_statement_names": prepared_statement_names,
+            "work_group": work_group,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_query_execution(
@@ -457,14 +462,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.batch_get_query_execution_input.BatchGetQueryExecutionInput = {}  # type: ignore[typeddict-item]
-        input_["query_execution_ids"] = query_execution_ids
+        input_: capo_athena.types.batch_get_query_execution_input.BatchGetQueryExecutionInput = {
+            "query_execution_ids": query_execution_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_capacity_reservation(
@@ -499,14 +506,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.cancel_capacity_reservation_input.CancelCapacityReservationInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_athena.types.cancel_capacity_reservation_input.CancelCapacityReservationInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_capacity_reservation(
@@ -545,9 +554,10 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.create_capacity_reservation_input.CreateCapacityReservationInput = {}  # type: ignore[typeddict-item]
-        input_["target_dpus"] = target_dpus
-        input_["name"] = name
+        input_: capo_athena.types.create_capacity_reservation_input.CreateCapacityReservationInput = {
+            "target_dpus": target_dpus,
+            "name": name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -556,6 +566,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_catalog(
@@ -600,9 +611,10 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.create_data_catalog_input.CreateDataCatalogInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_athena.types.create_data_catalog_input.CreateDataCatalogInput = {
+            "name": name,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
         if parameters is not None:
@@ -615,6 +627,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_named_query(
@@ -663,14 +676,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.create_named_query_input.CreateNamedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_athena.types.create_named_query_input.CreateNamedQueryInput = {
+            "name": name,
+            "database": database,
+            "query_string": query_string,
+        }
         if description is not None:
             input_["description"] = description
-        input_["database"] = database
-        input_["query_string"] = query_string
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if work_group is not None:
             input_["work_group"] = work_group
 
@@ -679,6 +694,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_notebook(
@@ -720,9 +736,10 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.create_notebook_input.CreateNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["work_group"] = work_group
-        input_["name"] = name
+        input_: capo_athena.types.create_notebook_input.CreateNotebookInput = {
+            "work_group": work_group,
+            "name": name,
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
 
@@ -731,6 +748,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_prepared_statement(
@@ -773,10 +791,11 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.create_prepared_statement_input.CreatePreparedStatementInput = {}  # type: ignore[typeddict-item]
-        input_["statement_name"] = statement_name
-        input_["work_group"] = work_group
-        input_["query_statement"] = query_statement
+        input_: capo_athena.types.create_prepared_statement_input.CreatePreparedStatementInput = {
+            "statement_name": statement_name,
+            "work_group": work_group,
+            "query_statement": query_statement,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -785,6 +804,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_presigned_notebook_url(
@@ -820,14 +840,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.create_presigned_notebook_url_request.CreatePresignedNotebookUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_athena.types.create_presigned_notebook_url_request.CreatePresignedNotebookUrlRequest = {
+            "session_id": session_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_work_group(
@@ -872,8 +894,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.create_work_group_input.CreateWorkGroupInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_athena.types.create_work_group_input.CreateWorkGroupInput = {
+            "name": name
+        }
         if configuration is not None:
             input_["configuration"] = configuration
         if description is not None:
@@ -886,6 +909,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_capacity_reservation(
@@ -920,14 +944,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.delete_capacity_reservation_input.DeleteCapacityReservationInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_athena.types.delete_capacity_reservation_input.DeleteCapacityReservationInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_data_catalog(
@@ -964,8 +990,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.delete_data_catalog_input.DeleteDataCatalogInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_athena.types.delete_data_catalog_input.DeleteDataCatalogInput = {
+            "name": name
+        }
         if delete_catalog_only is not None:
             input_["delete_catalog_only"] = delete_catalog_only
 
@@ -974,6 +1001,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_named_query(
@@ -1008,14 +1036,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.delete_named_query_input.DeleteNamedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["named_query_id"] = named_query_id
+        input_: capo_athena.types.delete_named_query_input.DeleteNamedQueryInput = {
+            "named_query_id": named_query_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_notebook(
@@ -1051,14 +1081,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.delete_notebook_input.DeleteNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["notebook_id"] = notebook_id
+        input_: capo_athena.types.delete_notebook_input.DeleteNotebookInput = {
+            "notebook_id": notebook_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_prepared_statement(
@@ -1096,15 +1128,17 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.delete_prepared_statement_input.DeletePreparedStatementInput = {}  # type: ignore[typeddict-item]
-        input_["statement_name"] = statement_name
-        input_["work_group"] = work_group
+        input_: capo_athena.types.delete_prepared_statement_input.DeletePreparedStatementInput = {
+            "statement_name": statement_name,
+            "work_group": work_group,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_work_group(
@@ -1143,8 +1177,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.delete_work_group_input.DeleteWorkGroupInput = {}  # type: ignore[typeddict-item]
-        input_["work_group"] = work_group
+        input_: capo_athena.types.delete_work_group_input.DeleteWorkGroupInput = {
+            "work_group": work_group
+        }
         if recursive_delete_option is not None:
             input_["recursive_delete_option"] = recursive_delete_option
 
@@ -1153,6 +1188,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_notebook(
@@ -1188,14 +1224,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.export_notebook_input.ExportNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["notebook_id"] = notebook_id
+        input_: capo_athena.types.export_notebook_input.ExportNotebookInput = {
+            "notebook_id": notebook_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_calculation_execution(
@@ -1231,14 +1269,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_calculation_execution_request.GetCalculationExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["calculation_execution_id"] = calculation_execution_id
+        input_: capo_athena.types.get_calculation_execution_request.GetCalculationExecutionRequest = {
+            "calculation_execution_id": calculation_execution_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_calculation_execution_code(
@@ -1274,14 +1314,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_calculation_execution_code_request.GetCalculationExecutionCodeRequest = {}  # type: ignore[typeddict-item]
-        input_["calculation_execution_id"] = calculation_execution_id
+        input_: capo_athena.types.get_calculation_execution_code_request.GetCalculationExecutionCodeRequest = {
+            "calculation_execution_id": calculation_execution_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_calculation_execution_status(
@@ -1317,14 +1359,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_calculation_execution_status_request.GetCalculationExecutionStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["calculation_execution_id"] = calculation_execution_id
+        input_: capo_athena.types.get_calculation_execution_status_request.GetCalculationExecutionStatusRequest = {
+            "calculation_execution_id": calculation_execution_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_capacity_assignment_configuration(
@@ -1359,14 +1403,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_capacity_assignment_configuration_input.GetCapacityAssignmentConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["capacity_reservation_name"] = capacity_reservation_name
+        input_: capo_athena.types.get_capacity_assignment_configuration_input.GetCapacityAssignmentConfigurationInput = {
+            "capacity_reservation_name": capacity_reservation_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_capacity_reservation(
@@ -1403,14 +1449,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_capacity_reservation_input.GetCapacityReservationInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_athena.types.get_capacity_reservation_input.GetCapacityReservationInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_database(
@@ -1450,9 +1498,10 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_database_input.GetDatabaseInput = {}  # type: ignore[typeddict-item]
-        input_["catalog_name"] = catalog_name
-        input_["database_name"] = database_name
+        input_: capo_athena.types.get_database_input.GetDatabaseInput = {
+            "catalog_name": catalog_name,
+            "database_name": database_name,
+        }
         if work_group is not None:
             input_["work_group"] = work_group
 
@@ -1461,6 +1510,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_catalog(
@@ -1497,8 +1547,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_data_catalog_input.GetDataCatalogInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_athena.types.get_data_catalog_input.GetDataCatalogInput = {
+            "name": name
+        }
         if work_group is not None:
             input_["work_group"] = work_group
 
@@ -1507,6 +1558,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_named_query(
@@ -1541,14 +1593,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_named_query_input.GetNamedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["named_query_id"] = named_query_id
+        input_: capo_athena.types.get_named_query_input.GetNamedQueryInput = {
+            "named_query_id": named_query_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_notebook_metadata(
@@ -1584,14 +1638,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_notebook_metadata_input.GetNotebookMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["notebook_id"] = notebook_id
+        input_: capo_athena.types.get_notebook_metadata_input.GetNotebookMetadataInput = {
+            "notebook_id": notebook_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_prepared_statement(
@@ -1629,15 +1685,17 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_prepared_statement_input.GetPreparedStatementInput = {}  # type: ignore[typeddict-item]
-        input_["statement_name"] = statement_name
-        input_["work_group"] = work_group
+        input_: capo_athena.types.get_prepared_statement_input.GetPreparedStatementInput = {
+            "statement_name": statement_name,
+            "work_group": work_group,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_execution(
@@ -1672,14 +1730,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_query_execution_input.GetQueryExecutionInput = {}  # type: ignore[typeddict-item]
-        input_["query_execution_id"] = query_execution_id
+        input_: capo_athena.types.get_query_execution_input.GetQueryExecutionInput = {
+            "query_execution_id": query_execution_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_results(
@@ -1725,8 +1785,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_query_results_input.GetQueryResultsInput = {}  # type: ignore[typeddict-item]
-        input_["query_execution_id"] = query_execution_id
+        input_: capo_athena.types.get_query_results_input.GetQueryResultsInput = {
+            "query_execution_id": query_execution_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1739,7 +1800,35 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_query_results(
+        self,
+        query_execution_id: "capo_athena.types.query_execution_id.QueryExecutionId",
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        next_token: Optional["capo_athena.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_athena.types.max_query_results.MaxQueryResults"
+        ] = None,
+        query_result_type: Optional[
+            "capo_athena.types.query_result_type.QueryResultType"
+        ] = None,
+    ) -> "Iterator[capo_athena.types.get_query_results_output.GetQueryResultsOutput]":
+        _token = next_token
+        while True:
+            _response = self.get_query_results(
+                query_execution_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                query_result_type=query_result_type,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_query_runtime_statistics(
         self,
@@ -1773,14 +1862,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_query_runtime_statistics_input.GetQueryRuntimeStatisticsInput = {}  # type: ignore[typeddict-item]
-        input_["query_execution_id"] = query_execution_id
+        input_: capo_athena.types.get_query_runtime_statistics_input.GetQueryRuntimeStatisticsInput = {
+            "query_execution_id": query_execution_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_dashboard(
@@ -1818,14 +1909,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_resource_dashboard_request.GetResourceDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_athena.types.get_resource_dashboard_request.GetResourceDashboardRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_session(
@@ -1861,14 +1954,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_session_request.GetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_athena.types.get_session_request.GetSessionRequest = {
+            "session_id": session_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_session_endpoint(
@@ -1904,14 +1999,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_session_endpoint_request.GetSessionEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_athena.types.get_session_endpoint_request.GetSessionEndpointRequest = {
+            "session_id": session_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_session_status(
@@ -1947,14 +2044,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_session_status_request.GetSessionStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_athena.types.get_session_status_request.GetSessionStatusRequest = {
+            "session_id": session_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_table_metadata(
@@ -1996,10 +2095,11 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_table_metadata_input.GetTableMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["catalog_name"] = catalog_name
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_athena.types.get_table_metadata_input.GetTableMetadataInput = {
+            "catalog_name": catalog_name,
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if work_group is not None:
             input_["work_group"] = work_group
 
@@ -2008,6 +2108,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_work_group(
@@ -2042,14 +2143,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.get_work_group_input.GetWorkGroupInput = {}  # type: ignore[typeddict-item]
-        input_["work_group"] = work_group
+        input_: capo_athena.types.get_work_group_input.GetWorkGroupInput = {
+            "work_group": work_group
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_notebook(
@@ -2097,12 +2200,13 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.import_notebook_input.ImportNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["work_group"] = work_group
-        input_["name"] = name
+        input_: capo_athena.types.import_notebook_input.ImportNotebookInput = {
+            "work_group": work_group,
+            "name": name,
+            "type": type,
+        }
         if payload is not None:
             input_["payload"] = payload
-        input_["type"] = type
         if notebook_s3_location_uri is not None:
             input_["notebook_s3_location_uri"] = notebook_s3_location_uri
         if client_request_token is not None:
@@ -2113,6 +2217,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_application_dpu_sizes(
@@ -2152,7 +2257,7 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_application_dpu_sizes_input.ListApplicationDPUSizesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_athena.types.list_application_dpu_sizes_input.ListApplicationDPUSizesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2163,7 +2268,29 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_application_dpu_sizes(
+        self,
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        max_results: Optional[
+            "capo_athena.types.max_application_dpu_sizes_count.MaxApplicationDPUSizesCount"
+        ] = None,
+        next_token: Optional["capo_athena.types.token.Token"] = None,
+    ) -> "Iterator[capo_athena.types.list_application_dpu_sizes_output.ListApplicationDPUSizesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_application_dpu_sizes(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_calculation_executions(
         self,
@@ -2210,8 +2337,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_calculation_executions_request.ListCalculationExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_athena.types.list_calculation_executions_request.ListCalculationExecutionsRequest = {
+            "session_id": session_id
+        }
         if state_filter is not None:
             input_["state_filter"] = state_filter
         if max_results is not None:
@@ -2224,7 +2352,37 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_calculation_executions(
+        self,
+        session_id: "capo_athena.types.session_id.SessionId",
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        state_filter: Optional[
+            "capo_athena.types.calculation_execution_state.CalculationExecutionState"
+        ] = None,
+        max_results: Optional[
+            "capo_athena.types.max_calculations_count.MaxCalculationsCount"
+        ] = None,
+        next_token: Optional[
+            "capo_athena.types.session_manager_token.SessionManagerToken"
+        ] = None,
+    ) -> "Iterator[capo_athena.types.list_calculation_executions_response.ListCalculationExecutionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_calculation_executions(
+                session_id,
+                config_overrides=config_overrides,
+                state_filter=state_filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_capacity_reservations(
         self,
@@ -2262,7 +2420,7 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_capacity_reservations_input.ListCapacityReservationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_athena.types.list_capacity_reservations_input.ListCapacityReservationsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2273,7 +2431,29 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_capacity_reservations(
+        self,
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        next_token: Optional["capo_athena.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_athena.types.max_capacity_reservations_count.MaxCapacityReservationsCount"
+        ] = None,
+    ) -> "Iterator[capo_athena.types.list_capacity_reservations_output.ListCapacityReservationsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_capacity_reservations(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_databases(
         self,
@@ -2316,8 +2496,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_databases_input.ListDatabasesInput = {}  # type: ignore[typeddict-item]
-        input_["catalog_name"] = catalog_name
+        input_: capo_athena.types.list_databases_input.ListDatabasesInput = {
+            "catalog_name": catalog_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2330,6 +2511,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_databases(
@@ -2397,7 +2579,7 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_data_catalogs_input.ListDataCatalogsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_athena.types.list_data_catalogs_input.ListDataCatalogsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2410,6 +2592,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_data_catalogs(
@@ -2473,7 +2656,7 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_engine_versions_input.ListEngineVersionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_athena.types.list_engine_versions_input.ListEngineVersionsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2484,7 +2667,29 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_engine_versions(
+        self,
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        next_token: Optional["capo_athena.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_athena.types.max_engine_versions_count.MaxEngineVersionsCount"
+        ] = None,
+    ) -> "Iterator[capo_athena.types.list_engine_versions_output.ListEngineVersionsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_engine_versions(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_executors(
         self,
@@ -2531,8 +2736,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_executors_request.ListExecutorsRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_athena.types.list_executors_request.ListExecutorsRequest = {
+            "session_id": session_id
+        }
         if executor_state_filter is not None:
             input_["executor_state_filter"] = executor_state_filter
         if max_results is not None:
@@ -2545,7 +2751,37 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_executors(
+        self,
+        session_id: "capo_athena.types.session_id.SessionId",
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        executor_state_filter: Optional[
+            "capo_athena.types.executor_state.ExecutorState"
+        ] = None,
+        max_results: Optional[
+            "capo_athena.types.max_list_executors_count.MaxListExecutorsCount"
+        ] = None,
+        next_token: Optional[
+            "capo_athena.types.session_manager_token.SessionManagerToken"
+        ] = None,
+    ) -> "Iterator[capo_athena.types.list_executors_response.ListExecutorsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_executors(
+                session_id,
+                config_overrides=config_overrides,
+                executor_state_filter=executor_state_filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_named_queries(
         self,
@@ -2585,7 +2821,7 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_named_queries_input.ListNamedQueriesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_athena.types.list_named_queries_input.ListNamedQueriesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2598,7 +2834,31 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_named_queries(
+        self,
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        next_token: Optional["capo_athena.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_athena.types.max_named_queries_count.MaxNamedQueriesCount"
+        ] = None,
+        work_group: Optional["capo_athena.types.work_group_name.WorkGroupName"] = None,
+    ) -> "Iterator[capo_athena.types.list_named_queries_output.ListNamedQueriesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_named_queries(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                work_group=work_group,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_notebook_metadata(
         self,
@@ -2643,20 +2903,22 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_notebook_metadata_input.ListNotebookMetadataInput = {}  # type: ignore[typeddict-item]
+        input_: capo_athena.types.list_notebook_metadata_input.ListNotebookMetadataInput = {
+            "work_group": work_group
+        }
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["work_group"] = work_group
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_notebook_sessions(
@@ -2700,8 +2962,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_notebook_sessions_request.ListNotebookSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["notebook_id"] = notebook_id
+        input_: capo_athena.types.list_notebook_sessions_request.ListNotebookSessionsRequest = {
+            "notebook_id": notebook_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2712,6 +2975,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_prepared_statements(
@@ -2754,8 +3018,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_prepared_statements_input.ListPreparedStatementsInput = {}  # type: ignore[typeddict-item]
-        input_["work_group"] = work_group
+        input_: capo_athena.types.list_prepared_statements_input.ListPreparedStatementsInput = {
+            "work_group": work_group
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2766,7 +3031,31 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_prepared_statements(
+        self,
+        work_group: "capo_athena.types.work_group_name.WorkGroupName",
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        next_token: Optional["capo_athena.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_athena.types.max_prepared_statements_count.MaxPreparedStatementsCount"
+        ] = None,
+    ) -> "Iterator[capo_athena.types.list_prepared_statements_output.ListPreparedStatementsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_prepared_statements(
+                work_group,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_query_executions(
         self,
@@ -2806,7 +3095,7 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_query_executions_input.ListQueryExecutionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_athena.types.list_query_executions_input.ListQueryExecutionsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2819,7 +3108,31 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_query_executions(
+        self,
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        next_token: Optional["capo_athena.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_athena.types.max_query_executions_count.MaxQueryExecutionsCount"
+        ] = None,
+        work_group: Optional["capo_athena.types.work_group_name.WorkGroupName"] = None,
+    ) -> "Iterator[capo_athena.types.list_query_executions_output.ListQueryExecutionsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_query_executions(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                work_group=work_group,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_sessions(
         self,
@@ -2864,8 +3177,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_sessions_request.ListSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["work_group"] = work_group
+        input_: capo_athena.types.list_sessions_request.ListSessionsRequest = {
+            "work_group": work_group
+        }
         if state_filter is not None:
             input_["state_filter"] = state_filter
         if max_results is not None:
@@ -2878,7 +3192,35 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_sessions(
+        self,
+        work_group: "capo_athena.types.work_group_name.WorkGroupName",
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        state_filter: Optional["capo_athena.types.session_state.SessionState"] = None,
+        max_results: Optional[
+            "capo_athena.types.max_sessions_count.MaxSessionsCount"
+        ] = None,
+        next_token: Optional[
+            "capo_athena.types.session_manager_token.SessionManagerToken"
+        ] = None,
+    ) -> "Iterator[capo_athena.types.list_sessions_response.ListSessionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_sessions(
+                work_group,
+                config_overrides=config_overrides,
+                state_filter=state_filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_table_metadata(
         self,
@@ -2927,9 +3269,10 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_table_metadata_input.ListTableMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["catalog_name"] = catalog_name
-        input_["database_name"] = database_name
+        input_: capo_athena.types.list_table_metadata_input.ListTableMetadataInput = {
+            "catalog_name": catalog_name,
+            "database_name": database_name,
+        }
         if expression is not None:
             input_["expression"] = expression
         if next_token is not None:
@@ -2944,6 +3287,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_table_metadata(
@@ -3016,8 +3360,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_athena.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3028,6 +3373,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags_for_resource(
@@ -3089,7 +3435,7 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.list_work_groups_input.ListWorkGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_athena.types.list_work_groups_input.ListWorkGroupsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3100,7 +3446,29 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_work_groups(
+        self,
+        *,
+        config_overrides: Optional[AthenaClientConfig] = None,
+        next_token: Optional["capo_athena.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_athena.types.max_work_groups_count.MaxWorkGroupsCount"
+        ] = None,
+    ) -> "Iterator[capo_athena.types.list_work_groups_output.ListWorkGroupsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_work_groups(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def put_capacity_assignment_configuration(
         self,
@@ -3136,15 +3504,17 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.put_capacity_assignment_configuration_input.PutCapacityAssignmentConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["capacity_reservation_name"] = capacity_reservation_name
-        input_["capacity_assignments"] = capacity_assignments
+        input_: capo_athena.types.put_capacity_assignment_configuration_input.PutCapacityAssignmentConfigurationInput = {
+            "capacity_reservation_name": capacity_reservation_name,
+            "capacity_assignments": capacity_assignments,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_calculation_execution(
@@ -3194,8 +3564,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.start_calculation_execution_request.StartCalculationExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_athena.types.start_calculation_execution_request.StartCalculationExecutionRequest = {
+            "session_id": session_id
+        }
         if description is not None:
             input_["description"] = description
         if calculation_configuration is not None:
@@ -3210,6 +3581,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_query_execution(
@@ -3271,10 +3643,12 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.start_query_execution_input.StartQueryExecutionInput = {}  # type: ignore[typeddict-item]
-        input_["query_string"] = query_string
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_athena.types.start_query_execution_input.StartQueryExecutionInput = {
+            "query_string": query_string
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if query_execution_context is not None:
             input_["query_execution_context"] = query_execution_context
         if result_configuration is not None:
@@ -3293,6 +3667,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_session(
@@ -3358,11 +3733,12 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.start_session_request.StartSessionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_athena.types.start_session_request.StartSessionRequest = {
+            "work_group": work_group,
+            "engine_configuration": engine_configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["work_group"] = work_group
-        input_["engine_configuration"] = engine_configuration
         if execution_role is not None:
             input_["execution_role"] = execution_role
         if monitoring_configuration is not None:
@@ -3383,6 +3759,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_calculation_execution(
@@ -3418,14 +3795,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.stop_calculation_execution_request.StopCalculationExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["calculation_execution_id"] = calculation_execution_id
+        input_: capo_athena.types.stop_calculation_execution_request.StopCalculationExecutionRequest = {
+            "calculation_execution_id": calculation_execution_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_query_execution(
@@ -3460,14 +3839,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.stop_query_execution_input.StopQueryExecutionInput = {}  # type: ignore[typeddict-item]
-        input_["query_execution_id"] = query_execution_id
+        input_: capo_athena.types.stop_query_execution_input.StopQueryExecutionInput = {
+            "query_execution_id": query_execution_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -3505,15 +3886,17 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_athena.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def terminate_session(
@@ -3549,14 +3932,16 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.terminate_session_request.TerminateSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_athena.types.terminate_session_request.TerminateSessionRequest = {
+            "session_id": session_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -3594,15 +3979,17 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_athena.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_capacity_reservation(
@@ -3639,15 +4026,17 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.update_capacity_reservation_input.UpdateCapacityReservationInput = {}  # type: ignore[typeddict-item]
-        input_["target_dpus"] = target_dpus
-        input_["name"] = name
+        input_: capo_athena.types.update_capacity_reservation_input.UpdateCapacityReservationInput = {
+            "target_dpus": target_dpus,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_data_catalog(
@@ -3690,9 +4079,10 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.update_data_catalog_input.UpdateDataCatalogInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_athena.types.update_data_catalog_input.UpdateDataCatalogInput = {
+            "name": name,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
         if parameters is not None:
@@ -3703,6 +4093,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_named_query(
@@ -3745,18 +4136,20 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.update_named_query_input.UpdateNamedQueryInput = {}  # type: ignore[typeddict-item]
-        input_["named_query_id"] = named_query_id
-        input_["name"] = name
+        input_: capo_athena.types.update_named_query_input.UpdateNamedQueryInput = {
+            "named_query_id": named_query_id,
+            "name": name,
+            "query_string": query_string,
+        }
         if description is not None:
             input_["description"] = description
-        input_["query_string"] = query_string
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_notebook(
@@ -3802,10 +4195,11 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.update_notebook_input.UpdateNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["notebook_id"] = notebook_id
-        input_["payload"] = payload
-        input_["type"] = type
+        input_: capo_athena.types.update_notebook_input.UpdateNotebookInput = {
+            "notebook_id": notebook_id,
+            "payload": payload,
+            "type": type,
+        }
         if session_id is not None:
             input_["session_id"] = session_id
         if client_request_token is not None:
@@ -3816,6 +4210,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_notebook_metadata(
@@ -3859,17 +4254,19 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.update_notebook_metadata_input.UpdateNotebookMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["notebook_id"] = notebook_id
+        input_: capo_athena.types.update_notebook_metadata_input.UpdateNotebookMetadataInput = {
+            "notebook_id": notebook_id,
+            "name": name,
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
-        input_["name"] = name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_prepared_statement(
@@ -3913,10 +4310,11 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.update_prepared_statement_input.UpdatePreparedStatementInput = {}  # type: ignore[typeddict-item]
-        input_["statement_name"] = statement_name
-        input_["work_group"] = work_group
-        input_["query_statement"] = query_statement
+        input_: capo_athena.types.update_prepared_statement_input.UpdatePreparedStatementInput = {
+            "statement_name": statement_name,
+            "work_group": work_group,
+            "query_statement": query_statement,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -3925,6 +4323,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_work_group(
@@ -3969,8 +4368,9 @@ class AthenaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_athena.types.update_work_group_input.UpdateWorkGroupInput = {}  # type: ignore[typeddict-item]
-        input_["work_group"] = work_group
+        input_: capo_athena.types.update_work_group_input.UpdateWorkGroupInput = {
+            "work_group": work_group
+        }
         if description is not None:
             input_["description"] = description
         if configuration_updates is not None:
@@ -3983,6 +4383,7 @@ class AthenaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

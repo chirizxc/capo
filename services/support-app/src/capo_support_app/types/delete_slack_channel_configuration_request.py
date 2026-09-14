@@ -28,13 +28,13 @@ def serialize_json(value: DeleteSlackChannelConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSlackChannelConfigurationRequest:
     out: DeleteSlackChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "teamId" in data:
+    if data.get("teamId") is not None:
         out["team_id"] = data["teamId"]
     else:
         raise DeserializationError(
             "DeleteSlackChannelConfigurationRequest.team_id required"
         )
-    if "channelId" in data:
+    if data.get("channelId") is not None:
         out["channel_id"] = data["channelId"]
     else:
         raise DeserializationError(

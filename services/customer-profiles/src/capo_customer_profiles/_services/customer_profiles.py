@@ -483,17 +483,19 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.add_profile_key_request.AddProfileKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["key_name"] = key_name
-        input_["values"] = values
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.add_profile_key_request.AddProfileKeyRequest = {
+            "profile_id": profile_id,
+            "key_name": key_name,
+            "values": values,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_calculated_attribute_for_profile(
@@ -539,10 +541,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.batch_get_calculated_attribute_for_profile_request.BatchGetCalculatedAttributeForProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["calculated_attribute_name"] = calculated_attribute_name
-        input_["domain_name"] = domain_name
-        input_["profile_ids"] = profile_ids
+        input_: capo_customer_profiles.types.batch_get_calculated_attribute_for_profile_request.BatchGetCalculatedAttributeForProfileRequest = {
+            "calculated_attribute_name": calculated_attribute_name,
+            "domain_name": domain_name,
+            "profile_ids": profile_ids,
+        }
         if condition_overrides is not None:
             input_["condition_overrides"] = condition_overrides
 
@@ -551,6 +554,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_profile(
@@ -590,15 +594,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.batch_get_profile_request.BatchGetProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["profile_ids"] = profile_ids
+        input_: capo_customer_profiles.types.batch_get_profile_request.BatchGetProfileRequest = {
+            "domain_name": domain_name,
+            "profile_ids": profile_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_put_profile_object(
@@ -640,16 +646,18 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.batch_put_profile_object_request.BatchPutProfileObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
-        input_["items"] = items
+        input_: capo_customer_profiles.types.batch_put_profile_object_request.BatchPutProfileObjectRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+            "items": items,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_calculated_attribute_definition(
@@ -713,19 +721,20 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_calculated_attribute_definition_request.CreateCalculatedAttributeDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["calculated_attribute_name"] = calculated_attribute_name
+        input_: capo_customer_profiles.types.create_calculated_attribute_definition_request.CreateCalculatedAttributeDefinitionRequest = {
+            "domain_name": domain_name,
+            "calculated_attribute_name": calculated_attribute_name,
+            "attribute_details": attribute_details,
+            "statistic": statistic,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
             input_["description"] = description
-        input_["attribute_details"] = attribute_details
         if conditions is not None:
             input_["conditions"] = conditions
         if filter is not None:
             input_["filter"] = filter
-        input_["statistic"] = statistic
         if use_historical_data is not None:
             input_["use_historical_data"] = use_historical_data
         if tags is not None:
@@ -736,6 +745,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain(
@@ -797,9 +807,10 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_domain_request.CreateDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["default_expiration_days"] = default_expiration_days
+        input_: capo_customer_profiles.types.create_domain_request.CreateDomainRequest = {
+            "domain_name": domain_name,
+            "default_expiration_days": default_expiration_days,
+        }
         if default_encryption_key is not None:
             input_["default_encryption_key"] = default_encryption_key
         if dead_letter_queue_url is not None:
@@ -818,6 +829,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain_layout(
@@ -869,15 +881,16 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_domain_layout_request.CreateDomainLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["layout_definition_name"] = layout_definition_name
-        input_["description"] = description
-        input_["display_name"] = display_name
+        input_: capo_customer_profiles.types.create_domain_layout_request.CreateDomainLayoutRequest = {
+            "domain_name": domain_name,
+            "layout_definition_name": layout_definition_name,
+            "description": description,
+            "display_name": display_name,
+            "layout_type": layout_type,
+            "layout": layout,
+        }
         if is_default is not None:
             input_["is_default"] = is_default
-        input_["layout_type"] = layout_type
-        input_["layout"] = layout
         if tags is not None:
             input_["tags"] = tags
 
@@ -886,6 +899,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_event_stream(
@@ -929,10 +943,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_event_stream_request.CreateEventStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["uri"] = uri
-        input_["event_stream_name"] = event_stream_name
+        input_: capo_customer_profiles.types.create_event_stream_request.CreateEventStreamRequest = {
+            "domain_name": domain_name,
+            "uri": uri,
+            "event_stream_name": event_stream_name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -941,6 +956,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_event_trigger(
@@ -996,13 +1012,14 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_event_trigger_request.CreateEventTriggerRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["event_trigger_name"] = event_trigger_name
-        input_["object_type_name"] = object_type_name
+        input_: capo_customer_profiles.types.create_event_trigger_request.CreateEventTriggerRequest = {
+            "domain_name": domain_name,
+            "event_trigger_name": event_trigger_name,
+            "object_type_name": object_type_name,
+            "event_trigger_conditions": event_trigger_conditions,
+        }
         if description is not None:
             input_["description"] = description
-        input_["event_trigger_conditions"] = event_trigger_conditions
         if segment_filter is not None:
             input_["segment_filter"] = segment_filter
         if event_trigger_limits is not None:
@@ -1015,6 +1032,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_integration_workflow(
@@ -1062,12 +1080,13 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_integration_workflow_request.CreateIntegrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["workflow_type"] = workflow_type
-        input_["integration_config"] = integration_config
-        input_["object_type_name"] = object_type_name
-        input_["role_arn"] = role_arn
+        input_: capo_customer_profiles.types.create_integration_workflow_request.CreateIntegrationWorkflowRequest = {
+            "domain_name": domain_name,
+            "workflow_type": workflow_type,
+            "integration_config": integration_config,
+            "object_type_name": object_type_name,
+            "role_arn": role_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1076,6 +1095,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_profile(
@@ -1209,8 +1229,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_profile_request.CreateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.create_profile_request.CreateProfileRequest = {
+            "domain_name": domain_name
+        }
         if account_number is not None:
             input_["account_number"] = account_number
         if additional_information is not None:
@@ -1267,6 +1288,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_recommender(
@@ -1322,10 +1344,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_recommender_request.CreateRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_name"] = recommender_name
-        input_["recommender_recipe_name"] = recommender_recipe_name
+        input_: capo_customer_profiles.types.create_recommender_request.CreateRecommenderRequest = {
+            "domain_name": domain_name,
+            "recommender_name": recommender_name,
+            "recommender_recipe_name": recommender_recipe_name,
+        }
         if recommender_config is not None:
             input_["recommender_config"] = recommender_config
         if description is not None:
@@ -1340,6 +1363,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_recommender_filter(
@@ -1391,10 +1415,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_recommender_filter_request.CreateRecommenderFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_filter_name"] = recommender_filter_name
-        input_["recommender_filter_expression"] = recommender_filter_expression
+        input_: capo_customer_profiles.types.create_recommender_filter_request.CreateRecommenderFilterRequest = {
+            "domain_name": domain_name,
+            "recommender_filter_name": recommender_filter_name,
+            "recommender_filter_expression": recommender_filter_expression,
+        }
         if recommender_schema_name is not None:
             input_["recommender_schema_name"] = recommender_schema_name
         if description is not None:
@@ -1407,6 +1432,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_recommender_schema(
@@ -1450,10 +1476,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_recommender_schema_request.CreateRecommenderSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_schema_name"] = recommender_schema_name
-        input_["fields"] = fields
+        input_: capo_customer_profiles.types.create_recommender_schema_request.CreateRecommenderSchemaRequest = {
+            "domain_name": domain_name,
+            "recommender_schema_name": recommender_schema_name,
+            "fields": fields,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1462,6 +1489,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_segment_definition(
@@ -1521,10 +1549,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_segment_definition_request.CreateSegmentDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["segment_definition_name"] = segment_definition_name
-        input_["display_name"] = display_name
+        input_: capo_customer_profiles.types.create_segment_definition_request.CreateSegmentDefinitionRequest = {
+            "domain_name": domain_name,
+            "segment_definition_name": segment_definition_name,
+            "display_name": display_name,
+        }
         if description is not None:
             input_["description"] = description
         if segment_groups is not None:
@@ -1541,6 +1570,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_segment_estimate(
@@ -1586,8 +1616,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_segment_estimate_request.CreateSegmentEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.create_segment_estimate_request.CreateSegmentEstimateRequest = {
+            "domain_name": domain_name
+        }
         if segment_query is not None:
             input_["segment_query"] = segment_query
         if segment_sql_query is not None:
@@ -1598,6 +1629,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_segment_snapshot(
@@ -1649,10 +1681,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_segment_snapshot_request.CreateSegmentSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["segment_definition_name"] = segment_definition_name
-        input_["data_format"] = data_format
+        input_: capo_customer_profiles.types.create_segment_snapshot_request.CreateSegmentSnapshotRequest = {
+            "domain_name": domain_name,
+            "segment_definition_name": segment_definition_name,
+            "data_format": data_format,
+        }
         if encryption_key is not None:
             input_["encryption_key"] = encryption_key
         if role_arn is not None:
@@ -1665,6 +1698,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_upload_job(
@@ -1712,11 +1746,12 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.create_upload_job_request.CreateUploadJobRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["display_name"] = display_name
-        input_["fields"] = fields
-        input_["unique_key"] = unique_key
+        input_: capo_customer_profiles.types.create_upload_job_request.CreateUploadJobRequest = {
+            "domain_name": domain_name,
+            "display_name": display_name,
+            "fields": fields,
+            "unique_key": unique_key,
+        }
         if data_expiry is not None:
             input_["data_expiry"] = data_expiry
 
@@ -1725,6 +1760,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_calculated_attribute_definition(
@@ -1764,15 +1800,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_calculated_attribute_definition_request.DeleteCalculatedAttributeDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["calculated_attribute_name"] = calculated_attribute_name
+        input_: capo_customer_profiles.types.delete_calculated_attribute_definition_request.DeleteCalculatedAttributeDefinitionRequest = {
+            "domain_name": domain_name,
+            "calculated_attribute_name": calculated_attribute_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain(
@@ -1810,14 +1848,16 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_domain_request.DeleteDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.delete_domain_request.DeleteDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain_layout(
@@ -1857,15 +1897,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_domain_layout_request.DeleteDomainLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["layout_definition_name"] = layout_definition_name
+        input_: capo_customer_profiles.types.delete_domain_layout_request.DeleteDomainLayoutRequest = {
+            "domain_name": domain_name,
+            "layout_definition_name": layout_definition_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain_object_type(
@@ -1905,15 +1947,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_domain_object_type_request.DeleteDomainObjectTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
+        input_: capo_customer_profiles.types.delete_domain_object_type_request.DeleteDomainObjectTypeRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event_stream(
@@ -1953,15 +1997,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_event_stream_request.DeleteEventStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["event_stream_name"] = event_stream_name
+        input_: capo_customer_profiles.types.delete_event_stream_request.DeleteEventStreamRequest = {
+            "domain_name": domain_name,
+            "event_stream_name": event_stream_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event_trigger(
@@ -2001,15 +2047,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_event_trigger_request.DeleteEventTriggerRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["event_trigger_name"] = event_trigger_name
+        input_: capo_customer_profiles.types.delete_event_trigger_request.DeleteEventTriggerRequest = {
+            "domain_name": domain_name,
+            "event_trigger_name": event_trigger_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_integration(
@@ -2049,15 +2097,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_integration_request.DeleteIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["uri"] = uri
+        input_: capo_customer_profiles.types.delete_integration_request.DeleteIntegrationRequest = {
+            "domain_name": domain_name,
+            "uri": uri,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_profile(
@@ -2097,15 +2147,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_profile_request.DeleteProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.delete_profile_request.DeleteProfileRequest = {
+            "profile_id": profile_id,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_profile_key(
@@ -2149,17 +2201,19 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_profile_key_request.DeleteProfileKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["key_name"] = key_name
-        input_["values"] = values
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.delete_profile_key_request.DeleteProfileKeyRequest = {
+            "profile_id": profile_id,
+            "key_name": key_name,
+            "values": values,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_profile_object(
@@ -2203,17 +2257,19 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_profile_object_request.DeleteProfileObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["profile_object_unique_key"] = profile_object_unique_key
-        input_["object_type_name"] = object_type_name
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.delete_profile_object_request.DeleteProfileObjectRequest = {
+            "profile_id": profile_id,
+            "profile_object_unique_key": profile_object_unique_key,
+            "object_type_name": object_type_name,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_profile_object_type(
@@ -2253,15 +2309,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_profile_object_type_request.DeleteProfileObjectTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
+        input_: capo_customer_profiles.types.delete_profile_object_type_request.DeleteProfileObjectTypeRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_recommender(
@@ -2301,15 +2359,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_recommender_request.DeleteRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_name"] = recommender_name
+        input_: capo_customer_profiles.types.delete_recommender_request.DeleteRecommenderRequest = {
+            "domain_name": domain_name,
+            "recommender_name": recommender_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_recommender_filter(
@@ -2349,15 +2409,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_recommender_filter_request.DeleteRecommenderFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_filter_name"] = recommender_filter_name
+        input_: capo_customer_profiles.types.delete_recommender_filter_request.DeleteRecommenderFilterRequest = {
+            "domain_name": domain_name,
+            "recommender_filter_name": recommender_filter_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_recommender_schema(
@@ -2397,15 +2459,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_recommender_schema_request.DeleteRecommenderSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_schema_name"] = recommender_schema_name
+        input_: capo_customer_profiles.types.delete_recommender_schema_request.DeleteRecommenderSchemaRequest = {
+            "domain_name": domain_name,
+            "recommender_schema_name": recommender_schema_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_segment_definition(
@@ -2445,15 +2509,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_segment_definition_request.DeleteSegmentDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["segment_definition_name"] = segment_definition_name
+        input_: capo_customer_profiles.types.delete_segment_definition_request.DeleteSegmentDefinitionRequest = {
+            "domain_name": domain_name,
+            "segment_definition_name": segment_definition_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_workflow(
@@ -2493,15 +2559,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.delete_workflow_request.DeleteWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["workflow_id"] = workflow_id
+        input_: capo_customer_profiles.types.delete_workflow_request.DeleteWorkflowRequest = {
+            "domain_name": domain_name,
+            "workflow_id": workflow_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detect_profile_object_type(
@@ -2541,15 +2609,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.detect_profile_object_type_request.DetectProfileObjectTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["objects"] = objects
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.detect_profile_object_type_request.DetectProfileObjectTypeRequest = {
+            "objects": objects,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_auto_merging_preview(
@@ -2595,10 +2665,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_auto_merging_preview_request.GetAutoMergingPreviewRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["consolidation"] = consolidation
-        input_["conflict_resolution"] = conflict_resolution
+        input_: capo_customer_profiles.types.get_auto_merging_preview_request.GetAutoMergingPreviewRequest = {
+            "domain_name": domain_name,
+            "consolidation": consolidation,
+            "conflict_resolution": conflict_resolution,
+        }
         if min_allowed_confidence_score_for_merging is not None:
             input_["min_allowed_confidence_score_for_merging"] = (
                 min_allowed_confidence_score_for_merging
@@ -2609,6 +2680,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_calculated_attribute_definition(
@@ -2648,15 +2720,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_calculated_attribute_definition_request.GetCalculatedAttributeDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["calculated_attribute_name"] = calculated_attribute_name
+        input_: capo_customer_profiles.types.get_calculated_attribute_definition_request.GetCalculatedAttributeDefinitionRequest = {
+            "domain_name": domain_name,
+            "calculated_attribute_name": calculated_attribute_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_calculated_attribute_for_profile(
@@ -2698,16 +2772,18 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_calculated_attribute_for_profile_request.GetCalculatedAttributeForProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["profile_id"] = profile_id
-        input_["calculated_attribute_name"] = calculated_attribute_name
+        input_: capo_customer_profiles.types.get_calculated_attribute_for_profile_request.GetCalculatedAttributeForProfileRequest = {
+            "domain_name": domain_name,
+            "profile_id": profile_id,
+            "calculated_attribute_name": calculated_attribute_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain(
@@ -2745,14 +2821,16 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_domain_request.GetDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.get_domain_request.GetDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain_layout(
@@ -2792,15 +2870,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_domain_layout_request.GetDomainLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["layout_definition_name"] = layout_definition_name
+        input_: capo_customer_profiles.types.get_domain_layout_request.GetDomainLayoutRequest = {
+            "domain_name": domain_name,
+            "layout_definition_name": layout_definition_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain_object_type(
@@ -2840,15 +2920,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_domain_object_type_request.GetDomainObjectTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
+        input_: capo_customer_profiles.types.get_domain_object_type_request.GetDomainObjectTypeRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_stream(
@@ -2890,15 +2972,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_event_stream_request.GetEventStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["event_stream_name"] = event_stream_name
+        input_: capo_customer_profiles.types.get_event_stream_request.GetEventStreamRequest = {
+            "domain_name": domain_name,
+            "event_stream_name": event_stream_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_trigger(
@@ -2938,15 +3022,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_event_trigger_request.GetEventTriggerRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["event_trigger_name"] = event_trigger_name
+        input_: capo_customer_profiles.types.get_event_trigger_request.GetEventTriggerRequest = {
+            "domain_name": domain_name,
+            "event_trigger_name": event_trigger_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_identity_resolution_job(
@@ -2986,15 +3072,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_identity_resolution_job_request.GetIdentityResolutionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["job_id"] = job_id
+        input_: capo_customer_profiles.types.get_identity_resolution_job_request.GetIdentityResolutionJobRequest = {
+            "domain_name": domain_name,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_integration(
@@ -3034,15 +3122,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_integration_request.GetIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["uri"] = uri
+        input_: capo_customer_profiles.types.get_integration_request.GetIntegrationRequest = {
+            "domain_name": domain_name,
+            "uri": uri,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_matches(
@@ -3086,18 +3176,20 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_matches_request.GetMatchesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.get_matches_request.GetMatchesRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["domain_name"] = domain_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_object_type_attribute_statistics(
@@ -3139,16 +3231,18 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_object_type_attribute_statistics_request.GetObjectTypeAttributeStatisticsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
-        input_["attribute_name"] = attribute_name
+        input_: capo_customer_profiles.types.get_object_type_attribute_statistics_request.GetObjectTypeAttributeStatisticsRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+            "attribute_name": attribute_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_profile_history_record(
@@ -3190,16 +3284,18 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_profile_history_record_request.GetProfileHistoryRecordRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["profile_id"] = profile_id
-        input_["id"] = id
+        input_: capo_customer_profiles.types.get_profile_history_record_request.GetProfileHistoryRecordRequest = {
+            "domain_name": domain_name,
+            "profile_id": profile_id,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_profile_object_type(
@@ -3239,15 +3335,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_profile_object_type_request.GetProfileObjectTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
+        input_: capo_customer_profiles.types.get_profile_object_type_request.GetProfileObjectTypeRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_profile_object_type_template(
@@ -3285,14 +3383,16 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_profile_object_type_template_request.GetProfileObjectTypeTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_id"] = template_id
+        input_: capo_customer_profiles.types.get_profile_object_type_template_request.GetProfileObjectTypeTemplateRequest = {
+            "template_id": template_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_profile_recommendations(
@@ -3358,10 +3458,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_profile_recommendations_request.GetProfileRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["profile_id"] = profile_id
-        input_["recommender_name"] = recommender_name
+        input_: capo_customer_profiles.types.get_profile_recommendations_request.GetProfileRecommendationsRequest = {
+            "domain_name": domain_name,
+            "profile_id": profile_id,
+            "recommender_name": recommender_name,
+        }
         if context is not None:
             input_["context"] = context
         if recommender_filters is not None:
@@ -3380,6 +3481,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recommender(
@@ -3423,9 +3525,10 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_recommender_request.GetRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_name"] = recommender_name
+        input_: capo_customer_profiles.types.get_recommender_request.GetRecommenderRequest = {
+            "domain_name": domain_name,
+            "recommender_name": recommender_name,
+        }
         if training_metrics_count is not None:
             input_["training_metrics_count"] = training_metrics_count
 
@@ -3434,6 +3537,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recommender_filter(
@@ -3473,15 +3577,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_recommender_filter_request.GetRecommenderFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_filter_name"] = recommender_filter_name
+        input_: capo_customer_profiles.types.get_recommender_filter_request.GetRecommenderFilterRequest = {
+            "domain_name": domain_name,
+            "recommender_filter_name": recommender_filter_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recommender_schema(
@@ -3521,15 +3627,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_recommender_schema_request.GetRecommenderSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_schema_name"] = recommender_schema_name
+        input_: capo_customer_profiles.types.get_recommender_schema_request.GetRecommenderSchemaRequest = {
+            "domain_name": domain_name,
+            "recommender_schema_name": recommender_schema_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_segment_definition(
@@ -3569,15 +3677,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_segment_definition_request.GetSegmentDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["segment_definition_name"] = segment_definition_name
+        input_: capo_customer_profiles.types.get_segment_definition_request.GetSegmentDefinitionRequest = {
+            "domain_name": domain_name,
+            "segment_definition_name": segment_definition_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_segment_estimate(
@@ -3617,15 +3727,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_segment_estimate_request.GetSegmentEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["estimate_id"] = estimate_id
+        input_: capo_customer_profiles.types.get_segment_estimate_request.GetSegmentEstimateRequest = {
+            "domain_name": domain_name,
+            "estimate_id": estimate_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_segment_membership(
@@ -3667,16 +3779,18 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_segment_membership_request.GetSegmentMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["segment_definition_name"] = segment_definition_name
-        input_["profile_ids"] = profile_ids
+        input_: capo_customer_profiles.types.get_segment_membership_request.GetSegmentMembershipRequest = {
+            "domain_name": domain_name,
+            "segment_definition_name": segment_definition_name,
+            "profile_ids": profile_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_segment_snapshot(
@@ -3718,16 +3832,18 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_segment_snapshot_request.GetSegmentSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["segment_definition_name"] = segment_definition_name
-        input_["snapshot_id"] = snapshot_id
+        input_: capo_customer_profiles.types.get_segment_snapshot_request.GetSegmentSnapshotRequest = {
+            "domain_name": domain_name,
+            "segment_definition_name": segment_definition_name,
+            "snapshot_id": snapshot_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_similar_profiles(
@@ -3777,21 +3893,23 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_similar_profiles_request.GetSimilarProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.get_similar_profiles_request.GetSimilarProfilesRequest = {
+            "domain_name": domain_name,
+            "match_type": match_type,
+            "search_key": search_key,
+            "search_value": search_value,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["domain_name"] = domain_name
-        input_["match_type"] = match_type
-        input_["search_key"] = search_key
-        input_["search_value"] = search_value
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_similar_profiles(
@@ -3862,15 +3980,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_upload_job_request.GetUploadJobRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["job_id"] = job_id
+        input_: capo_customer_profiles.types.get_upload_job_request.GetUploadJobRequest = {
+            "domain_name": domain_name,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_upload_job_path(
@@ -3910,15 +4030,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_upload_job_path_request.GetUploadJobPathRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["job_id"] = job_id
+        input_: capo_customer_profiles.types.get_upload_job_path_request.GetUploadJobPathRequest = {
+            "domain_name": domain_name,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_workflow(
@@ -3958,15 +4080,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_workflow_request.GetWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["workflow_id"] = workflow_id
+        input_: capo_customer_profiles.types.get_workflow_request.GetWorkflowRequest = {
+            "domain_name": domain_name,
+            "workflow_id": workflow_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_workflow_steps(
@@ -4012,9 +4136,10 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.get_workflow_steps_request.GetWorkflowStepsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["workflow_id"] = workflow_id
+        input_: capo_customer_profiles.types.get_workflow_steps_request.GetWorkflowStepsRequest = {
+            "domain_name": domain_name,
+            "workflow_id": workflow_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4025,6 +4150,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_account_integrations(
@@ -4072,8 +4198,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_account_integrations_request.ListAccountIntegrationsRequest = {}  # type: ignore[typeddict-item]
-        input_["uri"] = uri
+        input_: capo_customer_profiles.types.list_account_integrations_request.ListAccountIntegrationsRequest = {
+            "uri": uri
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4086,6 +4213,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_calculated_attribute_definitions(
@@ -4129,8 +4257,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_calculated_attribute_definitions_request.ListCalculatedAttributeDefinitionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_calculated_attribute_definitions_request.ListCalculatedAttributeDefinitionsRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4141,6 +4270,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_calculated_attributes_for_profile(
@@ -4186,19 +4316,21 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_calculated_attributes_for_profile_request.ListCalculatedAttributesForProfileRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.list_calculated_attributes_for_profile_request.ListCalculatedAttributesForProfileRequest = {
+            "domain_name": domain_name,
+            "profile_id": profile_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["domain_name"] = domain_name
-        input_["profile_id"] = profile_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_domain_layouts(
@@ -4242,8 +4374,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_domain_layouts_request.ListDomainLayoutsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_domain_layouts_request.ListDomainLayoutsRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4254,6 +4387,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_domain_layouts(
@@ -4322,8 +4456,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_domain_object_types_request.ListDomainObjectTypesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_domain_object_types_request.ListDomainObjectTypesRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4334,6 +4469,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_domain_object_types(
@@ -4400,7 +4536,7 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_domains_request.ListDomainsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.list_domains_request.ListDomainsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4411,6 +4547,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_event_streams(
@@ -4454,8 +4591,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_event_streams_request.ListEventStreamsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_event_streams_request.ListEventStreamsRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4466,6 +4604,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_event_streams(
@@ -4536,8 +4675,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_event_triggers_request.ListEventTriggersRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_event_triggers_request.ListEventTriggersRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4548,6 +4688,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_event_triggers(
@@ -4616,8 +4757,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_identity_resolution_jobs_request.ListIdentityResolutionJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_identity_resolution_jobs_request.ListIdentityResolutionJobsRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4628,6 +4770,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_integrations(
@@ -4675,8 +4818,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_integrations_request.ListIntegrationsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_integrations_request.ListIntegrationsRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4689,6 +4833,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_object_type_attributes(
@@ -4734,19 +4879,21 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_object_type_attributes_request.ListObjectTypeAttributesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.list_object_type_attributes_request.ListObjectTypeAttributesRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_object_type_attributes(
@@ -4821,20 +4968,22 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_object_type_attribute_values_request.ListObjectTypeAttributeValuesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.list_object_type_attribute_values_request.ListObjectTypeAttributeValuesRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+            "attribute_name": attribute_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
-        input_["attribute_name"] = attribute_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_profile_attribute_values(
@@ -4874,15 +5023,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.profile_attribute_values_request.ProfileAttributeValuesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["attribute_name"] = attribute_name
+        input_: capo_customer_profiles.types.profile_attribute_values_request.ProfileAttributeValuesRequest = {
+            "domain_name": domain_name,
+            "attribute_name": attribute_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_profile_history_records(
@@ -4940,9 +5091,10 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_profile_history_records_request.ListProfileHistoryRecordsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["profile_id"] = profile_id
+        input_: capo_customer_profiles.types.list_profile_history_records_request.ListProfileHistoryRecordsRequest = {
+            "domain_name": domain_name,
+            "profile_id": profile_id,
+        }
         if object_type_name is not None:
             input_["object_type_name"] = object_type_name
         if next_token is not None:
@@ -4959,6 +5111,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_profile_objects(
@@ -5010,14 +5163,15 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_profile_objects_request.ListProfileObjectsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.list_profile_objects_request.ListProfileObjectsRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+            "profile_id": profile_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
-        input_["profile_id"] = profile_id
         if object_filter is not None:
             input_["object_filter"] = object_filter
 
@@ -5026,6 +5180,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_profile_object_types(
@@ -5069,8 +5224,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_profile_object_types_request.ListProfileObjectTypesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_profile_object_types_request.ListProfileObjectTypesRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5081,6 +5237,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_profile_object_type_templates(
@@ -5122,7 +5279,7 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_profile_object_type_templates_request.ListProfileObjectTypeTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.list_profile_object_type_templates_request.ListProfileObjectTypeTemplatesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5133,6 +5290,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_recommender_filters(
@@ -5176,8 +5334,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_recommender_filters_request.ListRecommenderFiltersRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_recommender_filters_request.ListRecommenderFiltersRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5188,6 +5347,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recommender_filters(
@@ -5253,7 +5413,7 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_recommender_recipes_request.ListRecommenderRecipesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.list_recommender_recipes_request.ListRecommenderRecipesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5264,6 +5424,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recommender_recipes(
@@ -5330,8 +5491,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_recommenders_request.ListRecommendersRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_recommenders_request.ListRecommendersRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5342,6 +5504,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recommenders(
@@ -5412,8 +5575,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_recommender_schemas_request.ListRecommenderSchemasRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_recommender_schemas_request.ListRecommenderSchemasRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5424,6 +5588,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recommender_schemas(
@@ -5492,18 +5657,20 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_rule_based_matches_request.ListRuleBasedMatchesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.list_rule_based_matches_request.ListRuleBasedMatchesRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["domain_name"] = domain_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_rule_based_matches(
@@ -5572,8 +5739,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_segment_definitions_request.ListSegmentDefinitionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_segment_definitions_request.ListSegmentDefinitionsRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5584,6 +5752,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_segment_definitions(
@@ -5644,14 +5813,16 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_customer_profiles.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_upload_jobs(
@@ -5697,8 +5868,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_upload_jobs_request.ListUploadJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_upload_jobs_request.ListUploadJobsRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5709,6 +5881,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_upload_jobs(
@@ -5791,8 +5964,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.list_workflows_request.ListWorkflowsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.list_workflows_request.ListWorkflowsRequest = {
+            "domain_name": domain_name
+        }
         if workflow_type is not None:
             input_["workflow_type"] = workflow_type
         if status is not None:
@@ -5811,6 +5985,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def merge_profiles(
@@ -5855,10 +6030,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.merge_profiles_request.MergeProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["main_profile_id"] = main_profile_id
-        input_["profile_ids_to_be_merged"] = profile_ids_to_be_merged
+        input_: capo_customer_profiles.types.merge_profiles_request.MergeProfilesRequest = {
+            "domain_name": domain_name,
+            "main_profile_id": main_profile_id,
+            "profile_ids_to_be_merged": profile_ids_to_be_merged,
+        }
         if field_source_profile_ids is not None:
             input_["field_source_profile_ids"] = field_source_profile_ids
 
@@ -5867,6 +6043,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_domain_object_type(
@@ -5918,14 +6095,15 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.put_domain_object_type_request.PutDomainObjectTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
+        input_: capo_customer_profiles.types.put_domain_object_type_request.PutDomainObjectTypeRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+            "fields": fields,
+        }
         if description is not None:
             input_["description"] = description
         if encryption_key is not None:
             input_["encryption_key"] = encryption_key
-        input_["fields"] = fields
         if tags is not None:
             input_["tags"] = tags
 
@@ -5934,6 +6112,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_integration(
@@ -5995,8 +6174,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.put_integration_request.PutIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.put_integration_request.PutIntegrationRequest = {
+            "domain_name": domain_name
+        }
         if uri is not None:
             input_["uri"] = uri
         if object_type_name is not None:
@@ -6019,6 +6199,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_profile_object(
@@ -6060,16 +6241,18 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.put_profile_object_request.PutProfileObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["object_type_name"] = object_type_name
-        input_["object"] = object
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.put_profile_object_request.PutProfileObjectRequest = {
+            "object_type_name": object_type_name,
+            "object": object,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_profile_object_type(
@@ -6143,10 +6326,11 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.put_profile_object_type_request.PutProfileObjectTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["object_type_name"] = object_type_name
-        input_["description"] = description
+        input_: capo_customer_profiles.types.put_profile_object_type_request.PutProfileObjectTypeRequest = {
+            "domain_name": domain_name,
+            "object_type_name": object_type_name,
+            "description": description,
+        }
         if template_id is not None:
             input_["template_id"] = template_id
         if expiration_days is not None:
@@ -6175,6 +6359,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_profiles(
@@ -6230,14 +6415,15 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.search_profiles_request.SearchProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_customer_profiles.types.search_profiles_request.SearchProfilesRequest = {
+            "domain_name": domain_name,
+            "key_name": key_name,
+            "values": values,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["domain_name"] = domain_name
-        input_["key_name"] = key_name
-        input_["values"] = values
         if additional_search_keys is not None:
             input_["additional_search_keys"] = additional_search_keys
         if logical_operator is not None:
@@ -6248,6 +6434,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_recommender(
@@ -6287,15 +6474,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.start_recommender_request.StartRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_name"] = recommender_name
+        input_: capo_customer_profiles.types.start_recommender_request.StartRecommenderRequest = {
+            "domain_name": domain_name,
+            "recommender_name": recommender_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_upload_job(
@@ -6337,15 +6526,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.start_upload_job_request.StartUploadJobRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["job_id"] = job_id
+        input_: capo_customer_profiles.types.start_upload_job_request.StartUploadJobRequest = {
+            "domain_name": domain_name,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_recommender(
@@ -6387,15 +6578,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.stop_recommender_request.StopRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_name"] = recommender_name
+        input_: capo_customer_profiles.types.stop_recommender_request.StopRecommenderRequest = {
+            "domain_name": domain_name,
+            "recommender_name": recommender_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_upload_job(
@@ -6435,15 +6628,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.stop_upload_job_request.StopUploadJobRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["job_id"] = job_id
+        input_: capo_customer_profiles.types.stop_upload_job_request.StopUploadJobRequest = {
+            "domain_name": domain_name,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -6481,15 +6676,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_customer_profiles.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -6527,15 +6724,17 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_customer_profiles.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_calculated_attribute_definition(
@@ -6587,9 +6786,10 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.update_calculated_attribute_definition_request.UpdateCalculatedAttributeDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["calculated_attribute_name"] = calculated_attribute_name
+        input_: capo_customer_profiles.types.update_calculated_attribute_definition_request.UpdateCalculatedAttributeDefinitionRequest = {
+            "domain_name": domain_name,
+            "calculated_attribute_name": calculated_attribute_name,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -6602,6 +6802,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_domain(
@@ -6665,8 +6866,9 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.update_domain_request.UpdateDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_customer_profiles.types.update_domain_request.UpdateDomainRequest = {
+            "domain_name": domain_name
+        }
         if default_expiration_days is not None:
             input_["default_expiration_days"] = default_expiration_days
         if default_encryption_key is not None:
@@ -6687,6 +6889,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_domain_layout(
@@ -6744,9 +6947,10 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.update_domain_layout_request.UpdateDomainLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["layout_definition_name"] = layout_definition_name
+        input_: capo_customer_profiles.types.update_domain_layout_request.UpdateDomainLayoutRequest = {
+            "domain_name": domain_name,
+            "layout_definition_name": layout_definition_name,
+        }
         if description is not None:
             input_["description"] = description
         if display_name is not None:
@@ -6763,6 +6967,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_event_trigger(
@@ -6820,9 +7025,10 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.update_event_trigger_request.UpdateEventTriggerRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["event_trigger_name"] = event_trigger_name
+        input_: capo_customer_profiles.types.update_event_trigger_request.UpdateEventTriggerRequest = {
+            "domain_name": domain_name,
+            "event_trigger_name": event_trigger_name,
+        }
         if object_type_name is not None:
             input_["object_type_name"] = object_type_name
         if description is not None:
@@ -6839,6 +7045,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_profile(
@@ -6976,9 +7183,10 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.update_profile_request.UpdateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["profile_id"] = profile_id
+        input_: capo_customer_profiles.types.update_profile_request.UpdateProfileRequest = {
+            "domain_name": domain_name,
+            "profile_id": profile_id,
+        }
         if additional_information is not None:
             input_["additional_information"] = additional_information
         if account_number is not None:
@@ -7035,6 +7243,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_recommender(
@@ -7082,9 +7291,10 @@ class CustomerProfilesClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_customer_profiles.types.update_recommender_request.UpdateRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["recommender_name"] = recommender_name
+        input_: capo_customer_profiles.types.update_recommender_request.UpdateRecommenderRequest = {
+            "domain_name": domain_name,
+            "recommender_name": recommender_name,
+        }
         if description is not None:
             input_["description"] = description
         if recommender_config is not None:
@@ -7095,6 +7305,7 @@ class CustomerProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

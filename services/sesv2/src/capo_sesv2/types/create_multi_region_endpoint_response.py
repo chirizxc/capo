@@ -30,10 +30,10 @@ def serialize_json(value: CreateMultiRegionEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMultiRegionEndpointResponse:
     out: CreateMultiRegionEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sesv2.types.status
 
         out["status"] = capo_sesv2.types.status.deserialize_json(data["Status"])
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
     return out

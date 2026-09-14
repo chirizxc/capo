@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AnalyticsBinByList:
 
     out: AnalyticsBinByList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.analytics_bin_by_specification.deserialize_json(
                 item

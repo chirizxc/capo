@@ -153,7 +153,7 @@ class AsyncCodeCatalystClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.get_user_details_request.GetUserDetailsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codecatalyst.types.get_user_details_request.GetUserDetailsRequest = {}
         if id is not None:
             input_["id"] = id
         if user_name is not None:
@@ -164,6 +164,7 @@ class AsyncCodeCatalystClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def verify_session(
@@ -203,6 +204,7 @@ class AsyncCodeCatalystClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

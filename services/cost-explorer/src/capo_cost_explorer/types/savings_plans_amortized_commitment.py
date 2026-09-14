@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: SavingsPlansAmortizedCommitment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansAmortizedCommitment:
     out: SavingsPlansAmortizedCommitment = {}  # type: ignore[typeddict-item]
-    if "AmortizedRecurringCommitment" in data:
+    if data.get("AmortizedRecurringCommitment") is not None:
         out["amortized_recurring_commitment"] = data["AmortizedRecurringCommitment"]
-    if "AmortizedUpfrontCommitment" in data:
+    if data.get("AmortizedUpfrontCommitment") is not None:
         out["amortized_upfront_commitment"] = data["AmortizedUpfrontCommitment"]
-    if "TotalAmortizedCommitment" in data:
+    if data.get("TotalAmortizedCommitment") is not None:
         out["total_amortized_commitment"] = data["TotalAmortizedCommitment"]
     return out

@@ -52,20 +52,20 @@ def serialize_json(value: BackupSelectionsListMember) -> dict:
 
 def deserialize_json(data: dict) -> BackupSelectionsListMember:
     out: BackupSelectionsListMember = {}  # type: ignore[typeddict-item]
-    if "SelectionId" in data:
+    if data.get("SelectionId") is not None:
         out["selection_id"] = data["SelectionId"]
-    if "SelectionName" in data:
+    if data.get("SelectionName") is not None:
         out["selection_name"] = data["SelectionName"]
-    if "BackupPlanId" in data:
+    if data.get("BackupPlanId") is not None:
         out["backup_plan_id"] = data["BackupPlanId"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     return out

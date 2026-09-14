@@ -69,31 +69,31 @@ def serialize_json(value: CreateSiteInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSiteInput:
     out: CreateSiteInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateSiteInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_outposts.types.tag_map
 
         out["tags"] = capo_outposts.types.tag_map.deserialize_json(data["Tags"])
-    if "OperatingAddress" in data:
+    if data.get("OperatingAddress") is not None:
         import capo_outposts.types.address
 
         out["operating_address"] = capo_outposts.types.address.deserialize_json(
             data["OperatingAddress"]
         )
-    if "ShippingAddress" in data:
+    if data.get("ShippingAddress") is not None:
         import capo_outposts.types.address
 
         out["shipping_address"] = capo_outposts.types.address.deserialize_json(
             data["ShippingAddress"]
         )
-    if "RackPhysicalProperties" in data:
+    if data.get("RackPhysicalProperties") is not None:
         import capo_outposts.types.rack_physical_properties
 
         out["rack_physical_properties"] = (

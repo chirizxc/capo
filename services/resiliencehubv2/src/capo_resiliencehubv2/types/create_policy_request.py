@@ -91,13 +91,13 @@ def serialize_json(value: CreatePolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePolicyRequest:
     out: CreatePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreatePolicyRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "availabilitySlo" in data:
+    if data.get("availabilitySlo") is not None:
         import capo_resiliencehubv2.types.availability_slo
 
         out["availability_slo"] = (
@@ -105,13 +105,13 @@ def deserialize_json(data: dict) -> CreatePolicyRequest:
                 data["availabilitySlo"]
             )
         )
-    if "multiAz" in data:
+    if data.get("multiAz") is not None:
         import capo_resiliencehubv2.types.multi_az_targets
 
         out["multi_az"] = capo_resiliencehubv2.types.multi_az_targets.deserialize_json(
             data["multiAz"]
         )
-    if "multiRegion" in data:
+    if data.get("multiRegion") is not None:
         import capo_resiliencehubv2.types.multi_region_targets
 
         out["multi_region"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> CreatePolicyRequest:
                 data["multiRegion"]
             )
         )
-    if "dataRecovery" in data:
+    if data.get("dataRecovery") is not None:
         import capo_resiliencehubv2.types.data_recovery_targets
 
         out["data_recovery"] = (
@@ -127,12 +127,12 @@ def deserialize_json(data: dict) -> CreatePolicyRequest:
                 data["dataRecovery"]
             )
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehubv2.types.tag_map
 
         out["tags"] = capo_resiliencehubv2.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

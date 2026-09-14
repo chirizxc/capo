@@ -31,7 +31,7 @@ def serialize_json(value: GetTieringConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetTieringConfigurationOutput:
     out: GetTieringConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "TieringConfiguration" in data:
+    if data.get("TieringConfiguration") is not None:
         import capo_backup.types.tiering_configuration
 
         out["tiering_configuration"] = (

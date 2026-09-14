@@ -56,7 +56,7 @@ def serialize_json(value: BatchDeleteUniqueIdOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteUniqueIdOutput:
     out: BatchDeleteUniqueIdOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_entityresolution.types.delete_unique_id_status
 
         out["status"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> BatchDeleteUniqueIdOutput:
         )
     else:
         raise DeserializationError("BatchDeleteUniqueIdOutput.status required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_entityresolution.types.delete_unique_id_errors_list
 
         out["errors"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> BatchDeleteUniqueIdOutput:
         )
     else:
         raise DeserializationError("BatchDeleteUniqueIdOutput.errors required")
-    if "deleted" in data:
+    if data.get("deleted") is not None:
         import capo_entityresolution.types.deleted_unique_id_list
 
         out["deleted"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> BatchDeleteUniqueIdOutput:
         )
     else:
         raise DeserializationError("BatchDeleteUniqueIdOutput.deleted required")
-    if "disconnectedUniqueIds" in data:
+    if data.get("disconnectedUniqueIds") is not None:
         import capo_entityresolution.types.disconnected_unique_ids_list
 
         out["disconnected_unique_ids"] = (

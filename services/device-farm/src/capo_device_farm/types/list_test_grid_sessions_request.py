@@ -84,11 +84,11 @@ def serialize_aws_json_1_1(value: ListTestGridSessionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionsRequest:
     out: ListTestGridSessionsRequest = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError("ListTestGridSessionsRequest.project_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_device_farm.types.test_grid_session_status
 
         out["status"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionsRequest:
                 data["status"]
             )
         )
-    if "creationTimeAfter" in data:
+    if data.get("creationTimeAfter") is not None:
         import capo_device_farm.types.date_time
 
         out["creation_time_after"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionsRequest:
                 data["creationTimeAfter"]
             )
         )
-    if "creationTimeBefore" in data:
+    if data.get("creationTimeBefore") is not None:
         import capo_device_farm.types.date_time
 
         out["creation_time_before"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionsRequest:
                 data["creationTimeBefore"]
             )
         )
-    if "endTimeAfter" in data:
+    if data.get("endTimeAfter") is not None:
         import capo_device_farm.types.date_time
 
         out["end_time_after"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionsRequest:
                 data["endTimeAfter"]
             )
         )
-    if "endTimeBefore" in data:
+    if data.get("endTimeBefore") is not None:
         import capo_device_farm.types.date_time
 
         out["end_time_before"] = (
@@ -128,8 +128,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListTestGridSessionsRequest:
                 data["endTimeBefore"]
             )
         )
-    if "maxResult" in data:
+    if data.get("maxResult") is not None:
         out["max_result"] = data["maxResult"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: MetadataException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetadataException_:
     out: MetadataException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class MetadataException(ServiceError):
 
     code: str | None = "MetadataException"
 
-    def __init__(self, data: MetadataException_):
+    def __init__(self, data: MetadataException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MetadataException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "MetadataException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "MetadataException":
+        return cls(deserialize_aws_json_1_1(data), message)

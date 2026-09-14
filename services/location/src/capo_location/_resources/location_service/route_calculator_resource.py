@@ -102,9 +102,10 @@ class RouteCalculatorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_route_calculator_request.CreateRouteCalculatorRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
-        input_["data_source"] = data_source
+        input_: capo_location.types.create_route_calculator_request.CreateRouteCalculatorRequest = {
+            "calculator_name": calculator_name,
+            "data_source": data_source,
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -117,6 +118,7 @@ class RouteCalculatorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -154,14 +156,16 @@ class RouteCalculatorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_route_calculator_request.DescribeRouteCalculatorRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
+        input_: capo_location.types.describe_route_calculator_request.DescribeRouteCalculatorRequest = {
+            "calculator_name": calculator_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -205,8 +209,9 @@ class RouteCalculatorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_route_calculator_request.UpdateRouteCalculatorRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
+        input_: capo_location.types.update_route_calculator_request.UpdateRouteCalculatorRequest = {
+            "calculator_name": calculator_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -217,6 +222,7 @@ class RouteCalculatorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -254,14 +260,16 @@ class RouteCalculatorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_route_calculator_request.DeleteRouteCalculatorRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
+        input_: capo_location.types.delete_route_calculator_request.DeleteRouteCalculatorRequest = {
+            "calculator_name": calculator_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -300,7 +308,7 @@ class RouteCalculatorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_route_calculators_request.ListRouteCalculatorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_route_calculators_request.ListRouteCalculatorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -311,6 +319,7 @@ class RouteCalculatorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def calculate_route(
@@ -388,10 +397,11 @@ class RouteCalculatorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.calculate_route_request.CalculateRouteRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
-        input_["departure_position"] = departure_position
-        input_["destination_position"] = destination_position
+        input_: capo_location.types.calculate_route_request.CalculateRouteRequest = {
+            "calculator_name": calculator_name,
+            "departure_position": departure_position,
+            "destination_position": destination_position,
+        }
         if waypoint_positions is not None:
             input_["waypoint_positions"] = waypoint_positions
         if travel_mode is not None:
@@ -420,6 +430,7 @@ class RouteCalculatorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def calculate_route_matrix(
@@ -483,10 +494,11 @@ class RouteCalculatorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.calculate_route_matrix_request.CalculateRouteMatrixRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
-        input_["departure_positions"] = departure_positions
-        input_["destination_positions"] = destination_positions
+        input_: capo_location.types.calculate_route_matrix_request.CalculateRouteMatrixRequest = {
+            "calculator_name": calculator_name,
+            "departure_positions": departure_positions,
+            "destination_positions": destination_positions,
+        }
         if travel_mode is not None:
             input_["travel_mode"] = travel_mode
         if departure_time is not None:
@@ -507,6 +519,7 @@ class RouteCalculatorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -561,9 +574,10 @@ class AsyncRouteCalculatorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_route_calculator_request.CreateRouteCalculatorRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
-        input_["data_source"] = data_source
+        input_: capo_location.types.create_route_calculator_request.CreateRouteCalculatorRequest = {
+            "calculator_name": calculator_name,
+            "data_source": data_source,
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -576,6 +590,7 @@ class AsyncRouteCalculatorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -614,14 +629,16 @@ class AsyncRouteCalculatorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_route_calculator_request.DescribeRouteCalculatorRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
+        input_: capo_location.types.describe_route_calculator_request.DescribeRouteCalculatorRequest = {
+            "calculator_name": calculator_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -666,8 +683,9 @@ class AsyncRouteCalculatorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_route_calculator_request.UpdateRouteCalculatorRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
+        input_: capo_location.types.update_route_calculator_request.UpdateRouteCalculatorRequest = {
+            "calculator_name": calculator_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -678,6 +696,7 @@ class AsyncRouteCalculatorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -716,14 +735,16 @@ class AsyncRouteCalculatorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_route_calculator_request.DeleteRouteCalculatorRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
+        input_: capo_location.types.delete_route_calculator_request.DeleteRouteCalculatorRequest = {
+            "calculator_name": calculator_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -763,7 +784,7 @@ class AsyncRouteCalculatorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_route_calculators_request.ListRouteCalculatorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_route_calculators_request.ListRouteCalculatorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -774,6 +795,7 @@ class AsyncRouteCalculatorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def calculate_route(
@@ -852,10 +874,11 @@ class AsyncRouteCalculatorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.calculate_route_request.CalculateRouteRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
-        input_["departure_position"] = departure_position
-        input_["destination_position"] = destination_position
+        input_: capo_location.types.calculate_route_request.CalculateRouteRequest = {
+            "calculator_name": calculator_name,
+            "departure_position": departure_position,
+            "destination_position": destination_position,
+        }
         if waypoint_positions is not None:
             input_["waypoint_positions"] = waypoint_positions
         if travel_mode is not None:
@@ -884,6 +907,7 @@ class AsyncRouteCalculatorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def calculate_route_matrix(
@@ -948,10 +972,11 @@ class AsyncRouteCalculatorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.calculate_route_matrix_request.CalculateRouteMatrixRequest = {}  # type: ignore[typeddict-item]
-        input_["calculator_name"] = calculator_name
-        input_["departure_positions"] = departure_positions
-        input_["destination_positions"] = destination_positions
+        input_: capo_location.types.calculate_route_matrix_request.CalculateRouteMatrixRequest = {
+            "calculator_name": calculator_name,
+            "departure_positions": departure_positions,
+            "destination_positions": destination_positions,
+        }
         if travel_mode is not None:
             input_["travel_mode"] = travel_mode
         if departure_time is not None:
@@ -972,4 +997,5 @@ class AsyncRouteCalculatorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

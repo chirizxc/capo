@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListGeoMatchSetsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListGeoMatchSetsResponse:
     out: ListGeoMatchSetsResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "GeoMatchSets" in data:
+    if data.get("GeoMatchSets") is not None:
         import capo_waf.types.geo_match_set_summaries
 
         out["geo_match_sets"] = (

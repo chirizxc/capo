@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: MFAOptionType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MFAOptionType:
     out: MFAOptionType = {}  # type: ignore[typeddict-item]
-    if "DeliveryMedium" in data:
+    if data.get("DeliveryMedium") is not None:
         import capo_cognito_identity_provider.types.delivery_medium_type
 
         out["delivery_medium"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> MFAOptionType:
                 data["DeliveryMedium"]
             )
         )
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     return out

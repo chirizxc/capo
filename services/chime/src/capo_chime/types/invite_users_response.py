@@ -25,7 +25,7 @@ def serialize_json(value: InviteUsersResponse) -> dict:
 
 def deserialize_json(data: dict) -> InviteUsersResponse:
     out: InviteUsersResponse = {}  # type: ignore[typeddict-item]
-    if "Invites" in data:
+    if data.get("Invites") is not None:
         import capo_chime.types.invite_list
 
         out["invites"] = capo_chime.types.invite_list.deserialize_json(data["Invites"])

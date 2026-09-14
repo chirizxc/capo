@@ -28,11 +28,11 @@ def serialize_json(value: DeleteFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteFlowRequest:
     out: DeleteFlowRequest = {}  # type: ignore[typeddict-item]
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
     else:
         raise DeserializationError("DeleteFlowRequest.flow_name required")
-    if "forceDelete" in data:
+    if data.get("forceDelete") is not None:
         out["force_delete"] = data["forceDelete"]
     else:
         out["force_delete"] = False

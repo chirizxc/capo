@@ -174,7 +174,7 @@ def serialize_json(value: DescribeAssetBundleExportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAssetBundleExportJobResponse:
     out: DescribeAssetBundleExportJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_quicksight.types.asset_bundle_export_job_status
 
         out["job_status"] = (
@@ -182,9 +182,9 @@ def deserialize_json(data: dict) -> DescribeAssetBundleExportJobResponse:
                 data["JobStatus"]
             )
         )
-    if "DownloadUrl" in data:
+    if data.get("DownloadUrl") is not None:
         out["download_url"] = data["DownloadUrl"]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_quicksight.types.asset_bundle_export_job_error_list
 
         out["errors"] = (
@@ -192,19 +192,19 @@ def deserialize_json(data: dict) -> DescribeAssetBundleExportJobResponse:
                 data["Errors"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "AssetBundleExportJobId" in data:
+    if data.get("AssetBundleExportJobId") is not None:
         out["asset_bundle_export_job_id"] = data["AssetBundleExportJobId"]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "ResourceArns" in data:
+    if data.get("ResourceArns") is not None:
         import capo_quicksight.types.asset_bundle_resource_arns
 
         out["resource_arns"] = (
@@ -212,11 +212,11 @@ def deserialize_json(data: dict) -> DescribeAssetBundleExportJobResponse:
                 data["ResourceArns"]
             )
         )
-    if "IncludeAllDependencies" in data:
+    if data.get("IncludeAllDependencies") is not None:
         out["include_all_dependencies"] = data["IncludeAllDependencies"]
     else:
         out["include_all_dependencies"] = False
-    if "ExportFormat" in data:
+    if data.get("ExportFormat") is not None:
         import capo_quicksight.types.asset_bundle_export_format
 
         out["export_format"] = (
@@ -224,7 +224,7 @@ def deserialize_json(data: dict) -> DescribeAssetBundleExportJobResponse:
                 data["ExportFormat"]
             )
         )
-    if "CloudFormationOverridePropertyConfiguration" in data:
+    if data.get("CloudFormationOverridePropertyConfiguration") is not None:
         import capo_quicksight.types.asset_bundle_cloud_formation_override_property_configuration
 
         out["cloud_formation_override_property_configuration"] = (
@@ -232,17 +232,17 @@ def deserialize_json(data: dict) -> DescribeAssetBundleExportJobResponse:
                 data["CloudFormationOverridePropertyConfiguration"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "IncludePermissions" in data:
+    if data.get("IncludePermissions") is not None:
         out["include_permissions"] = data["IncludePermissions"]
     else:
         out["include_permissions"] = False
-    if "IncludeTags" in data:
+    if data.get("IncludeTags") is not None:
         out["include_tags"] = data["IncludeTags"]
     else:
         out["include_tags"] = False
-    if "ValidationStrategy" in data:
+    if data.get("ValidationStrategy") is not None:
         import capo_quicksight.types.asset_bundle_export_job_validation_strategy
 
         out["validation_strategy"] = (
@@ -250,7 +250,7 @@ def deserialize_json(data: dict) -> DescribeAssetBundleExportJobResponse:
                 data["ValidationStrategy"]
             )
         )
-    if "Warnings" in data:
+    if data.get("Warnings") is not None:
         import capo_quicksight.types.asset_bundle_export_job_warning_list
 
         out["warnings"] = (
@@ -258,11 +258,11 @@ def deserialize_json(data: dict) -> DescribeAssetBundleExportJobResponse:
                 data["Warnings"]
             )
         )
-    if "IncludeFolderMemberships" in data:
+    if data.get("IncludeFolderMemberships") is not None:
         out["include_folder_memberships"] = data["IncludeFolderMemberships"]
     else:
         out["include_folder_memberships"] = False
-    if "IncludeFolderMembers" in data:
+    if data.get("IncludeFolderMembers") is not None:
         import capo_quicksight.types.include_folder_members
 
         out["include_folder_members"] = (

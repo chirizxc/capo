@@ -27,7 +27,7 @@ def serialize_json(value: AudioMonitoringSetting) -> dict:
 
 def deserialize_json(data: dict) -> AudioMonitoringSetting:
     out: AudioMonitoringSetting = {}  # type: ignore[typeddict-item]
-    if "silentAudio" in data:
+    if data.get("silentAudio") is not None:
         import capo_mediaconnect.types.silent_audio
 
         out["silent_audio"] = capo_mediaconnect.types.silent_audio.deserialize_json(

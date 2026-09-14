@@ -71,23 +71,23 @@ def serialize_json(value: DescribeConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeConfigurationResponse:
     out: DescribeConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["creation_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["creationTime"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "kafkaVersions" in data:
+    if data.get("kafkaVersions") is not None:
         import capo_kafka.types.__list_of__string
 
         out["kafka_versions"] = capo_kafka.types.__list_of__string.deserialize_json(
             data["kafkaVersions"]
         )
-    if "latestRevision" in data:
+    if data.get("latestRevision") is not None:
         import capo_kafka.types.configuration_revision
 
         out["latest_revision"] = (
@@ -95,9 +95,9 @@ def deserialize_json(data: dict) -> DescribeConfigurationResponse:
                 data["latestRevision"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_kafka.types.configuration_state
 
         out["state"] = capo_kafka.types.configuration_state.deserialize_json(

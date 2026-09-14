@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: LustreReadCacheConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LustreReadCacheConfiguration:
     out: LustreReadCacheConfiguration = {}  # type: ignore[typeddict-item]
-    if "SizingMode" in data:
+    if data.get("SizingMode") is not None:
         import capo_fsx.types.lustre_read_cache_sizing_mode
 
         out["sizing_mode"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> LustreReadCacheConfiguration:
                 data["SizingMode"]
             )
         )
-    if "SizeGiB" in data:
+    if data.get("SizeGiB") is not None:
         out["size_gi_b"] = data["SizeGiB"]
     return out

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ResourceTypeStatisticsMap) -> dict:
 def deserialize_json(data: dict) -> ResourceTypeStatisticsMap:
     out: ResourceTypeStatisticsMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_accessanalyzer.types.resource_type_details
 
         out[key] = capo_accessanalyzer.types.resource_type_details.deserialize_json(

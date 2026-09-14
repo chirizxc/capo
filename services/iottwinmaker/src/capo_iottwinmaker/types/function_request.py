@@ -45,7 +45,7 @@ def serialize_json(value: FunctionRequest) -> dict:
 
 def deserialize_json(data: dict) -> FunctionRequest:
     out: FunctionRequest = {}  # type: ignore[typeddict-item]
-    if "requiredProperties" in data:
+    if data.get("requiredProperties") is not None:
         import capo_iottwinmaker.types.required_properties
 
         out["required_properties"] = (
@@ -53,9 +53,9 @@ def deserialize_json(data: dict) -> FunctionRequest:
                 data["requiredProperties"]
             )
         )
-    if "scope" in data:
+    if data.get("scope") is not None:
         out["scope"] = data["scope"]
-    if "implementedBy" in data:
+    if data.get("implementedBy") is not None:
         import capo_iottwinmaker.types.data_connector
 
         out["implemented_by"] = capo_iottwinmaker.types.data_connector.deserialize_json(

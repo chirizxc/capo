@@ -45,7 +45,7 @@ def serialize_json(value: ListGroupsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListGroupsOutput:
     out: ListGroupsOutput = {}  # type: ignore[typeddict-item]
-    if "GroupIdentifiers" in data:
+    if data.get("GroupIdentifiers") is not None:
         import capo_resource_groups.types.group_identifier_list
 
         out["group_identifiers"] = (
@@ -53,12 +53,12 @@ def deserialize_json(data: dict) -> ListGroupsOutput:
                 data["GroupIdentifiers"]
             )
         )
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_resource_groups.types.group_list
 
         out["groups"] = capo_resource_groups.types.group_list.deserialize_json(
             data["Groups"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

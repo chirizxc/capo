@@ -72,7 +72,7 @@ def serialize_aws_json_1_1(value: SolutionUpdateSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SolutionUpdateSummary:
     out: SolutionUpdateSummary = {}  # type: ignore[typeddict-item]
-    if "solutionUpdateConfig" in data:
+    if data.get("solutionUpdateConfig") is not None:
         import capo_personalize.types.solution_update_config
 
         out["solution_update_config"] = (
@@ -80,13 +80,13 @@ def deserialize_aws_json_1_1(data: dict) -> SolutionUpdateSummary:
                 data["solutionUpdateConfig"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "performAutoTraining" in data:
+    if data.get("performAutoTraining") is not None:
         out["perform_auto_training"] = data["performAutoTraining"]
-    if "performIncrementalUpdate" in data:
+    if data.get("performIncrementalUpdate") is not None:
         out["perform_incremental_update"] = data["performIncrementalUpdate"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> SolutionUpdateSummary:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -102,6 +102,6 @@ def deserialize_aws_json_1_1(data: dict) -> SolutionUpdateSummary:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
     return out

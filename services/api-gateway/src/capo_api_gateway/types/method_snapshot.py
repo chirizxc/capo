@@ -27,9 +27,9 @@ def serialize_json(value: MethodSnapshot) -> dict:
 
 def deserialize_json(data: dict) -> MethodSnapshot:
     out: MethodSnapshot = {}  # type: ignore[typeddict-item]
-    if "authorizationType" in data:
+    if data.get("authorizationType") is not None:
         out["authorization_type"] = data["authorizationType"]
-    if "apiKeyRequired" in data:
+    if data.get("apiKeyRequired") is not None:
         out["api_key_required"] = data["apiKeyRequired"]
     else:
         out["api_key_required"] = False

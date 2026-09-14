@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Routes:
 
     out: Routes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fms.types.route.deserialize_aws_json_1_1(item))
     return out

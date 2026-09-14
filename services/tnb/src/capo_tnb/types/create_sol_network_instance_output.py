@@ -42,27 +42,27 @@ def serialize_json(value: CreateSolNetworkInstanceOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSolNetworkInstanceOutput:
     out: CreateSolNetworkInstanceOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateSolNetworkInstanceOutput.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateSolNetworkInstanceOutput.arn required")
-    if "nsdInfoId" in data:
+    if data.get("nsdInfoId") is not None:
         out["nsd_info_id"] = data["nsdInfoId"]
     else:
         raise DeserializationError(
             "CreateSolNetworkInstanceOutput.nsd_info_id required"
         )
-    if "nsInstanceName" in data:
+    if data.get("nsInstanceName") is not None:
         out["ns_instance_name"] = data["nsInstanceName"]
     else:
         raise DeserializationError(
             "CreateSolNetworkInstanceOutput.ns_instance_name required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_tnb.types.tag_map
 
         out["tags"] = capo_tnb.types.tag_map.deserialize_json(data["tags"])

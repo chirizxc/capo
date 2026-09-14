@@ -74,13 +74,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListTrainingJobsForHyperParameterTuningJobRequest:
     out: ListTrainingJobsForHyperParameterTuningJobRequest = {}  # type: ignore[typeddict-item]
-    if "HyperParameterTuningJobName" in data:
+    if data.get("HyperParameterTuningJobName") is not None:
         out["hyper_parameter_tuning_job_name"] = data["HyperParameterTuningJobName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "StatusEquals" in data:
+    if data.get("StatusEquals") is not None:
         import capo_sagemaker.types.training_job_status
 
         out["status_equals"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(
                 data["StatusEquals"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.training_job_sort_by_options
 
         out["sort_by"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(

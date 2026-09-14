@@ -58,23 +58,23 @@ def serialize_json(value: TestInvokeAuthorizerRequest) -> dict:
 
 def deserialize_json(data: dict) -> TestInvokeAuthorizerRequest:
     out: TestInvokeAuthorizerRequest = {}  # type: ignore[typeddict-item]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
-    if "tokenSignature" in data:
+    if data.get("tokenSignature") is not None:
         out["token_signature"] = data["tokenSignature"]
-    if "httpContext" in data:
+    if data.get("httpContext") is not None:
         import capo_iot.types.http_context
 
         out["http_context"] = capo_iot.types.http_context.deserialize_json(
             data["httpContext"]
         )
-    if "mqttContext" in data:
+    if data.get("mqttContext") is not None:
         import capo_iot.types.mqtt_context
 
         out["mqtt_context"] = capo_iot.types.mqtt_context.deserialize_json(
             data["mqttContext"]
         )
-    if "tlsContext" in data:
+    if data.get("tlsContext") is not None:
         import capo_iot.types.tls_context
 
         out["tls_context"] = capo_iot.types.tls_context.deserialize_json(

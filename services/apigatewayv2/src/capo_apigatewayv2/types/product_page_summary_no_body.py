@@ -52,7 +52,7 @@ def serialize_json(value: ProductPageSummaryNoBody) -> dict:
 
 def deserialize_json(data: dict) -> ProductPageSummaryNoBody:
     out: ProductPageSummaryNoBody = {}  # type: ignore[typeddict-item]
-    if "lastModified" in data:
+    if data.get("lastModified") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["last_modified"] = (
@@ -60,10 +60,10 @@ def deserialize_json(data: dict) -> ProductPageSummaryNoBody:
                 data["lastModified"]
             )
         )
-    if "pageTitle" in data:
+    if data.get("pageTitle") is not None:
         out["page_title"] = data["pageTitle"]
-    if "productPageArn" in data:
+    if data.get("productPageArn") is not None:
         out["product_page_arn"] = data["productPageArn"]
-    if "productPageId" in data:
+    if data.get("productPageId") is not None:
         out["product_page_id"] = data["productPageId"]
     return out

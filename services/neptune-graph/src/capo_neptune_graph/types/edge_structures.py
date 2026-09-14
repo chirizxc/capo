@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EdgeStructures:
 
     out: EdgeStructures = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_neptune_graph.types.edge_structure.deserialize_json(item))
     return out

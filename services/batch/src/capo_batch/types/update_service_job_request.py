@@ -28,8 +28,8 @@ def serialize_json(value: UpdateServiceJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceJobRequest:
     out: UpdateServiceJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "schedulingPriority" in data:
+    if data.get("schedulingPriority") is not None:
         out["scheduling_priority"] = data["schedulingPriority"]
     return out

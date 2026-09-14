@@ -39,15 +39,18 @@ class RuleNotFoundException(ServiceError):
 
     code: str | None = "RuleNotFoundException"
 
-    def __init__(self, data: RuleNotFoundException_):
+    def __init__(self, data: RuleNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RuleNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "RuleNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "RuleNotFoundException":
+        return cls(deserialize_query(el), message)

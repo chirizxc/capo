@@ -45,9 +45,9 @@ def serialize_json(value: WabaSetupFinalization) -> dict:
 
 def deserialize_json(data: dict) -> WabaSetupFinalization:
     out: WabaSetupFinalization = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "eventDestinations" in data:
+    if data.get("eventDestinations") is not None:
         import capo_socialmessaging.types.whats_app_business_account_event_destinations
 
         out["event_destinations"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> WabaSetupFinalization:
                 data["eventDestinations"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_socialmessaging.types.tag_list
 
         out["tags"] = capo_socialmessaging.types.tag_list.deserialize_json(data["tags"])

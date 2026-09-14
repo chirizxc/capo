@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: IngestedEventsDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IngestedEventsDetail:
     out: IngestedEventsDetail = {}  # type: ignore[typeddict-item]
-    if "ingestedEventsTimeWindow" in data:
+    if data.get("ingestedEventsTimeWindow") is not None:
         import capo_frauddetector.types.ingested_events_time_window
 
         out["ingested_events_time_window"] = (

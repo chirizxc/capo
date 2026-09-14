@@ -23,6 +23,6 @@ def serialize_json(value: VideoSelectorPid) -> dict:
 
 def deserialize_json(data: dict) -> VideoSelectorPid:
     out: VideoSelectorPid = {}  # type: ignore[typeddict-item]
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
     return out

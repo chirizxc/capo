@@ -35,7 +35,7 @@ def serialize_json(value: ListConfigurationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListConfigurationsOutput:
     out: ListConfigurationsOutput = {}  # type: ignore[typeddict-item]
-    if "ConfigurationsList" in data:
+    if data.get("ConfigurationsList") is not None:
         import capo_ssm_quicksetup.types.configurations_list
 
         out["configurations_list"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListConfigurationsOutput:
                 data["ConfigurationsList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

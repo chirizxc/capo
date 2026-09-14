@@ -141,9 +141,9 @@ def serialize_json(value: MatchingBucket) -> dict:
 
 def deserialize_json(data: dict) -> MatchingBucket:
     out: MatchingBucket = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "automatedDiscoveryMonitoringStatus" in data:
+    if data.get("automatedDiscoveryMonitoringStatus") is not None:
         import capo_macie2.types.automated_discovery_monitoring_status
 
         out["automated_discovery_monitoring_status"] = (
@@ -151,13 +151,13 @@ def deserialize_json(data: dict) -> MatchingBucket:
                 data["automatedDiscoveryMonitoringStatus"]
             )
         )
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
-    if "classifiableObjectCount" in data:
+    if data.get("classifiableObjectCount") is not None:
         out["classifiable_object_count"] = data["classifiableObjectCount"]
-    if "classifiableSizeInBytes" in data:
+    if data.get("classifiableSizeInBytes") is not None:
         out["classifiable_size_in_bytes"] = data["classifiableSizeInBytes"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_macie2.types.bucket_metadata_error_code
 
         out["error_code"] = (
@@ -165,15 +165,15 @@ def deserialize_json(data: dict) -> MatchingBucket:
                 data["errorCode"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "jobDetails" in data:
+    if data.get("jobDetails") is not None:
         import capo_macie2.types.job_details
 
         out["job_details"] = capo_macie2.types.job_details.deserialize_json(
             data["jobDetails"]
         )
-    if "lastAutomatedDiscoveryTime" in data:
+    if data.get("lastAutomatedDiscoveryTime") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["last_automated_discovery_time"] = (
@@ -181,9 +181,9 @@ def deserialize_json(data: dict) -> MatchingBucket:
                 data["lastAutomatedDiscoveryTime"]
             )
         )
-    if "objectCount" in data:
+    if data.get("objectCount") is not None:
         out["object_count"] = data["objectCount"]
-    if "objectCountByEncryptionType" in data:
+    if data.get("objectCountByEncryptionType") is not None:
         import capo_macie2.types.object_count_by_encryption_type
 
         out["object_count_by_encryption_type"] = (
@@ -191,13 +191,13 @@ def deserialize_json(data: dict) -> MatchingBucket:
                 data["objectCountByEncryptionType"]
             )
         )
-    if "sensitivityScore" in data:
+    if data.get("sensitivityScore") is not None:
         out["sensitivity_score"] = data["sensitivityScore"]
-    if "sizeInBytes" in data:
+    if data.get("sizeInBytes") is not None:
         out["size_in_bytes"] = data["sizeInBytes"]
-    if "sizeInBytesCompressed" in data:
+    if data.get("sizeInBytesCompressed") is not None:
         out["size_in_bytes_compressed"] = data["sizeInBytesCompressed"]
-    if "unclassifiableObjectCount" in data:
+    if data.get("unclassifiableObjectCount") is not None:
         import capo_macie2.types.object_level_statistics
 
         out["unclassifiable_object_count"] = (
@@ -205,7 +205,7 @@ def deserialize_json(data: dict) -> MatchingBucket:
                 data["unclassifiableObjectCount"]
             )
         )
-    if "unclassifiableObjectSizeInBytes" in data:
+    if data.get("unclassifiableObjectSizeInBytes") is not None:
         import capo_macie2.types.object_level_statistics
 
         out["unclassifiable_object_size_in_bytes"] = (

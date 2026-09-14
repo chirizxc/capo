@@ -87,9 +87,9 @@ def serialize_json(value: CreateBackendAuthOAuthConfig) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackendAuthOAuthConfig:
     out: CreateBackendAuthOAuthConfig = {}  # type: ignore[typeddict-item]
-    if "domainPrefix" in data:
+    if data.get("domainPrefix") is not None:
         out["domain_prefix"] = data["domainPrefix"]
-    if "oAuthGrantType" in data:
+    if data.get("oAuthGrantType") is not None:
         import capo_amplifybackend.types.o_auth_grant_type
 
         out["o_auth_grant_type"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthOAuthConfig:
                 data["oAuthGrantType"]
             )
         )
-    if "oAuthScopes" in data:
+    if data.get("oAuthScopes") is not None:
         import capo_amplifybackend.types.list_of_o_auth_scopes_element
 
         out["o_auth_scopes"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthOAuthConfig:
                 data["oAuthScopes"]
             )
         )
-    if "redirectSignInURIs" in data:
+    if data.get("redirectSignInURIs") is not None:
         import capo_amplifybackend.types.list_of__string
 
         out["redirect_sign_in_ur_is"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthOAuthConfig:
                 data["redirectSignInURIs"]
             )
         )
-    if "redirectSignOutURIs" in data:
+    if data.get("redirectSignOutURIs") is not None:
         import capo_amplifybackend.types.list_of__string
 
         out["redirect_sign_out_ur_is"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthOAuthConfig:
                 data["redirectSignOutURIs"]
             )
         )
-    if "socialProviderSettings" in data:
+    if data.get("socialProviderSettings") is not None:
         import capo_amplifybackend.types.social_provider_settings
 
         out["social_provider_settings"] = (

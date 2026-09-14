@@ -56,17 +56,17 @@ def serialize_json(value: UpdateFilterRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFilterRequest:
     out: UpdateFilterRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_guardduty.types.filter_action
 
         out["action"] = capo_guardduty.types.filter_action.deserialize_json(
             data["action"]
         )
-    if "rank" in data:
+    if data.get("rank") is not None:
         out["rank"] = data["rank"]
-    if "findingCriteria" in data:
+    if data.get("findingCriteria") is not None:
         import capo_guardduty.types.finding_criteria
 
         out["finding_criteria"] = (

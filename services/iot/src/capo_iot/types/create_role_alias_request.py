@@ -41,13 +41,13 @@ def serialize_json(value: CreateRoleAliasRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRoleAliasRequest:
     out: CreateRoleAliasRequest = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateRoleAliasRequest.role_arn required")
-    if "credentialDurationSeconds" in data:
+    if data.get("credentialDurationSeconds") is not None:
         out["credential_duration_seconds"] = data["credentialDurationSeconds"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

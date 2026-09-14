@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> VpcConfigs:
 
     out: VpcConfigs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityagent.types.vpc_config.deserialize_json(item))
     return out

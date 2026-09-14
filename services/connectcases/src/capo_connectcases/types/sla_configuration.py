@@ -71,21 +71,21 @@ def serialize_json(value: SlaConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SlaConfiguration:
     out: SlaConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SlaConfiguration.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("SlaConfiguration.type required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("SlaConfiguration.status required")
-    if "fieldId" in data:
+    if data.get("fieldId") is not None:
         out["field_id"] = data["fieldId"]
-    if "targetFieldValues" in data:
+    if data.get("targetFieldValues") is not None:
         import capo_connectcases.types.sla_field_value_union_list
 
         out["target_field_values"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> SlaConfiguration:
                 data["targetFieldValues"]
             )
         )
-    if "targetTime" in data:
+    if data.get("targetTime") is not None:
         import capo_connectcases.types.sla_target_time
 
         out["target_time"] = capo_connectcases.types.sla_target_time.deserialize_json(
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> SlaConfiguration:
         )
     else:
         raise DeserializationError("SlaConfiguration.target_time required")
-    if "completionTime" in data:
+    if data.get("completionTime") is not None:
         import capo_connectcases.types.sla_completion_time
 
         out["completion_time"] = (

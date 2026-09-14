@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> BuildSummaries:
 
     out: BuildSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codebuild.types.build_summary.deserialize_aws_json_1_1(item))
     return out

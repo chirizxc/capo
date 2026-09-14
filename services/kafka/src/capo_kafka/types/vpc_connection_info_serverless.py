@@ -47,20 +47,20 @@ def serialize_json(value: VpcConnectionInfoServerless) -> dict:
 
 def deserialize_json(data: dict) -> VpcConnectionInfoServerless:
     out: VpcConnectionInfoServerless = {}  # type: ignore[typeddict-item]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["creation_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["creationTime"]
         )
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "userIdentity" in data:
+    if data.get("userIdentity") is not None:
         import capo_kafka.types.user_identity
 
         out["user_identity"] = capo_kafka.types.user_identity.deserialize_json(
             data["userIdentity"]
         )
-    if "vpcConnectionArn" in data:
+    if data.get("vpcConnectionArn") is not None:
         out["vpc_connection_arn"] = data["vpcConnectionArn"]
     return out

@@ -18,6 +18,6 @@ def serialize_json(value: OutputHeaderConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OutputHeaderConfiguration:
     out: OutputHeaderConfiguration = {}  # type: ignore[typeddict-item]
-    if "PublishMQCS" in data:
+    if data.get("PublishMQCS") is not None:
         out["publish_mqcs"] = data["PublishMQCS"]
     return out

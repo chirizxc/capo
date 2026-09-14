@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: GetLabelDetectionRequestMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLabelDetectionRequestMetadata:
     out: GetLabelDetectionRequestMetadata = {}  # type: ignore[typeddict-item]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_rekognition.types.label_detection_sort_by
 
         out["sort_by"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetLabelDetectionRequestMetadata:
                 data["SortBy"]
             )
         )
-    if "AggregateBy" in data:
+    if data.get("AggregateBy") is not None:
         import capo_rekognition.types.label_detection_aggregate_by
 
         out["aggregate_by"] = (

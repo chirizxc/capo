@@ -56,7 +56,7 @@ def serialize_json(value: ListWorkflowsItem) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkflowsItem:
     out: ListWorkflowsItem = {}  # type: ignore[typeddict-item]
-    if "WorkflowType" in data:
+    if data.get("WorkflowType") is not None:
         import capo_customer_profiles.types.workflow_type
 
         out["workflow_type"] = (
@@ -66,11 +66,11 @@ def deserialize_json(data: dict) -> ListWorkflowsItem:
         )
     else:
         raise DeserializationError("ListWorkflowsItem.workflow_type required")
-    if "WorkflowId" in data:
+    if data.get("WorkflowId") is not None:
         out["workflow_id"] = data["WorkflowId"]
     else:
         raise DeserializationError("ListWorkflowsItem.workflow_id required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.status
 
         out["status"] = capo_customer_profiles.types.status.deserialize_json(
@@ -78,11 +78,11 @@ def deserialize_json(data: dict) -> ListWorkflowsItem:
         )
     else:
         raise DeserializationError("ListWorkflowsItem.status required")
-    if "StatusDescription" in data:
+    if data.get("StatusDescription") is not None:
         out["status_description"] = data["StatusDescription"]
     else:
         raise DeserializationError("ListWorkflowsItem.status_description required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ListWorkflowsItem:
         )
     else:
         raise DeserializationError("ListWorkflowsItem.created_at required")
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (

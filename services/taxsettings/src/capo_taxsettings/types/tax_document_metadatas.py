@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TaxDocumentMetadatas:
 
     out: TaxDocumentMetadatas = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_taxsettings.types.tax_document_metadata.deserialize_json(item))
     return out

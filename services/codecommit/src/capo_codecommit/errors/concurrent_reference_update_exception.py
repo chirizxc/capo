@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: ConcurrentReferenceUpdateException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConcurrentReferenceUpdateException_:
     out: ConcurrentReferenceUpdateException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class ConcurrentReferenceUpdateException(ServiceError):
 
     code: str | None = "ConcurrentReferenceUpdateException"
 
-    def __init__(self, data: ConcurrentReferenceUpdateException_):
+    def __init__(
+        self, data: ConcurrentReferenceUpdateException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConcurrentReferenceUpdateException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ConcurrentReferenceUpdateException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ConcurrentReferenceUpdateException":
+        return cls(deserialize_aws_json_1_1(data), message)

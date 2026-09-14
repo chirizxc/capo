@@ -73,15 +73,15 @@ def serialize_aws_json_1_1(value: RateBasedStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RateBasedStatement:
     out: RateBasedStatement = {}  # type: ignore[typeddict-item]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         raise DeserializationError("RateBasedStatement.limit required")
-    if "EvaluationWindowSec" in data:
+    if data.get("EvaluationWindowSec") is not None:
         out["evaluation_window_sec"] = data["EvaluationWindowSec"]
     else:
         out["evaluation_window_sec"] = 0
-    if "AggregateKeyType" in data:
+    if data.get("AggregateKeyType") is not None:
         import capo_wafv2.types.rate_based_statement_aggregate_key_type
 
         out["aggregate_key_type"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatement:
         )
     else:
         raise DeserializationError("RateBasedStatement.aggregate_key_type required")
-    if "ScopeDownStatement" in data:
+    if data.get("ScopeDownStatement") is not None:
         import capo_wafv2.types.statement
 
         out["scope_down_statement"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatement:
                 data["ScopeDownStatement"]
             )
         )
-    if "ForwardedIPConfig" in data:
+    if data.get("ForwardedIPConfig") is not None:
         import capo_wafv2.types.forwarded_ip_config
 
         out["forwarded_ip_config"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatement:
                 data["ForwardedIPConfig"]
             )
         )
-    if "CustomKeys" in data:
+    if data.get("CustomKeys") is not None:
         import capo_wafv2.types.rate_based_statement_custom_keys
 
         out["custom_keys"] = (

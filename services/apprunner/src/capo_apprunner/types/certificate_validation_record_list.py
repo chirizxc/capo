@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> CertificateValidationRecordList:
 
     out: CertificateValidationRecordList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_apprunner.types.certificate_validation_record.deserialize_aws_json_1_0(
                 item

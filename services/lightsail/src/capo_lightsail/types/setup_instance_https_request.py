@@ -50,15 +50,15 @@ def serialize_aws_json_1_1(value: SetupInstanceHttpsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetupInstanceHttpsRequest:
     out: SetupInstanceHttpsRequest = {}  # type: ignore[typeddict-item]
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
     else:
         raise DeserializationError("SetupInstanceHttpsRequest.instance_name required")
-    if "emailAddress" in data:
+    if data.get("emailAddress") is not None:
         out["email_address"] = data["emailAddress"]
     else:
         raise DeserializationError("SetupInstanceHttpsRequest.email_address required")
-    if "domainNames" in data:
+    if data.get("domainNames") is not None:
         import capo_lightsail.types.setup_domain_name_list
 
         out["domain_names"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetupInstanceHttpsRequest:
         )
     else:
         raise DeserializationError("SetupInstanceHttpsRequest.domain_names required")
-    if "certificateProvider" in data:
+    if data.get("certificateProvider") is not None:
         import capo_lightsail.types.certificate_provider
 
         out["certificate_provider"] = (

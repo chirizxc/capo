@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> NotebookInstanceAcceleratorTypes:
 
     out: NotebookInstanceAcceleratorTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.notebook_instance_accelerator_type.deserialize_aws_json_1_1(
                 item

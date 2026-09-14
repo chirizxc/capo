@@ -61,7 +61,7 @@ def serialize_aws_json_1_1(value: ConfigurationTag) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigurationTag:
     out: ConfigurationTag = {}  # type: ignore[typeddict-item]
-    if "configurationType" in data:
+    if data.get("configurationType") is not None:
         import capo_application_discovery_service.types.configuration_item_type
 
         out["configuration_type"] = (
@@ -69,13 +69,13 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationTag:
                 data["configurationType"]
             )
         )
-    if "configurationId" in data:
+    if data.get("configurationId") is not None:
         out["configuration_id"] = data["configurationId"]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "timeOfCreation" in data:
+    if data.get("timeOfCreation") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["time_of_creation"] = (

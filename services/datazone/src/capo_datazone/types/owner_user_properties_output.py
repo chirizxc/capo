@@ -18,6 +18,6 @@ def serialize_json(value: OwnerUserPropertiesOutput) -> dict:
 
 def deserialize_json(data: dict) -> OwnerUserPropertiesOutput:
     out: OwnerUserPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     return out

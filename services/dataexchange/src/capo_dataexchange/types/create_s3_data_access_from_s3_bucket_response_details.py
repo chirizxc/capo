@@ -37,7 +37,7 @@ def serialize_json(value: CreateS3DataAccessFromS3BucketResponseDetails) -> dict
 
 def deserialize_json(data: dict) -> CreateS3DataAccessFromS3BucketResponseDetails:
     out: CreateS3DataAccessFromS3BucketResponseDetails = {}  # type: ignore[typeddict-item]
-    if "AssetSource" in data:
+    if data.get("AssetSource") is not None:
         import capo_dataexchange.types.s3_data_access_asset_source_entry
 
         out["asset_source"] = (
@@ -49,13 +49,13 @@ def deserialize_json(data: dict) -> CreateS3DataAccessFromS3BucketResponseDetail
         raise DeserializationError(
             "CreateS3DataAccessFromS3BucketResponseDetails.asset_source required"
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "CreateS3DataAccessFromS3BucketResponseDetails.data_set_id required"
         )
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError(

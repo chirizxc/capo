@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> BillingAdjustmentSummaryList:
 
     out: BillingAdjustmentSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_agreement.types.billing_adjustment_summary.deserialize_aws_json_1_0(
                 item

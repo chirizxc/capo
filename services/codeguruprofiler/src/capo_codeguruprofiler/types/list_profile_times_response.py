@@ -35,7 +35,7 @@ def serialize_json(value: ListProfileTimesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListProfileTimesResponse:
     out: ListProfileTimesResponse = {}  # type: ignore[typeddict-item]
-    if "profileTimes" in data:
+    if data.get("profileTimes") is not None:
         import capo_codeguruprofiler.types.profile_times
 
         out["profile_times"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListProfileTimesResponse:
         )
     else:
         raise DeserializationError("ListProfileTimesResponse.profile_times required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

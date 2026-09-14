@@ -43,7 +43,7 @@ def serialize_json(value: ExternalAccessFindingsStatistics) -> dict:
 
 def deserialize_json(data: dict) -> ExternalAccessFindingsStatistics:
     out: ExternalAccessFindingsStatistics = {}  # type: ignore[typeddict-item]
-    if "resourceTypeStatistics" in data:
+    if data.get("resourceTypeStatistics") is not None:
         import capo_accessanalyzer.types.resource_type_statistics_map
 
         out["resource_type_statistics"] = (
@@ -51,10 +51,10 @@ def deserialize_json(data: dict) -> ExternalAccessFindingsStatistics:
                 data["resourceTypeStatistics"]
             )
         )
-    if "totalActiveFindings" in data:
+    if data.get("totalActiveFindings") is not None:
         out["total_active_findings"] = data["totalActiveFindings"]
-    if "totalArchivedFindings" in data:
+    if data.get("totalArchivedFindings") is not None:
         out["total_archived_findings"] = data["totalArchivedFindings"]
-    if "totalResolvedFindings" in data:
+    if data.get("totalResolvedFindings") is not None:
         out["total_resolved_findings"] = data["totalResolvedFindings"]
     return out

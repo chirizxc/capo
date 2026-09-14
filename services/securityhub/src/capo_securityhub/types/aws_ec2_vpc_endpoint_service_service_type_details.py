@@ -23,6 +23,6 @@ def serialize_json(value: AwsEc2VpcEndpointServiceServiceTypeDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VpcEndpointServiceServiceTypeDetails:
     out: AwsEc2VpcEndpointServiceServiceTypeDetails = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         out["service_type"] = data["ServiceType"]
     return out

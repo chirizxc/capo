@@ -28,13 +28,13 @@ def serialize_aws_json_1_0(value: SetDefaultSenderIdRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SetDefaultSenderIdRequest:
     out: SetDefaultSenderIdRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     else:
         raise DeserializationError(
             "SetDefaultSenderIdRequest.configuration_set_name required"
         )
-    if "SenderId" in data:
+    if data.get("SenderId") is not None:
         out["sender_id"] = data["SenderId"]
     else:
         raise DeserializationError("SetDefaultSenderIdRequest.sender_id required")

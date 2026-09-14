@@ -41,9 +41,9 @@ def serialize_aws_json_1_0(value: GetHypervisorPropertyMappingsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetHypervisorPropertyMappingsOutput:
     out: GetHypervisorPropertyMappingsOutput = {}  # type: ignore[typeddict-item]
-    if "HypervisorArn" in data:
+    if data.get("HypervisorArn") is not None:
         out["hypervisor_arn"] = data["HypervisorArn"]
-    if "VmwareToAwsTagMappings" in data:
+    if data.get("VmwareToAwsTagMappings") is not None:
         import capo_backup_gateway.types.vmware_to_aws_tag_mappings
 
         out["vmware_to_aws_tag_mappings"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetHypervisorPropertyMappingsOutput:
                 data["VmwareToAwsTagMappings"]
             )
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     return out

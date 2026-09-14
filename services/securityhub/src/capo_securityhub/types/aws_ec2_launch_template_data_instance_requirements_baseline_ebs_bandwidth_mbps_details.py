@@ -33,8 +33,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails:
     out: AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails = {}  # type: ignore[typeddict-item]
-    if "Max" in data:
+    if data.get("Max") is not None:
         out["max"] = data["Max"]
-    if "Min" in data:
+    if data.get("Min") is not None:
         out["min"] = data["Min"]
     return out

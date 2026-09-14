@@ -45,14 +45,14 @@ def serialize_json(value: AwsS3BucketWebsiteConfigurationRoutingRuleRedirect) ->
 
 def deserialize_json(data: dict) -> AwsS3BucketWebsiteConfigurationRoutingRuleRedirect:
     out: AwsS3BucketWebsiteConfigurationRoutingRuleRedirect = {}  # type: ignore[typeddict-item]
-    if "Hostname" in data:
+    if data.get("Hostname") is not None:
         out["hostname"] = data["Hostname"]
-    if "HttpRedirectCode" in data:
+    if data.get("HttpRedirectCode") is not None:
         out["http_redirect_code"] = data["HttpRedirectCode"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
-    if "ReplaceKeyPrefixWith" in data:
+    if data.get("ReplaceKeyPrefixWith") is not None:
         out["replace_key_prefix_with"] = data["ReplaceKeyPrefixWith"]
-    if "ReplaceKeyWith" in data:
+    if data.get("ReplaceKeyWith") is not None:
         out["replace_key_with"] = data["ReplaceKeyWith"]
     return out

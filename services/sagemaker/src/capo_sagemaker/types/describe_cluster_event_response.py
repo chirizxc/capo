@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeClusterEventResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClusterEventResponse:
     out: DescribeClusterEventResponse = {}  # type: ignore[typeddict-item]
-    if "EventDetails" in data:
+    if data.get("EventDetails") is not None:
         import capo_sagemaker.types.cluster_event_detail
 
         out["event_details"] = (

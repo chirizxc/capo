@@ -24,7 +24,7 @@ def serialize_json(value: StartCisSessionMessage) -> dict:
 
 def deserialize_json(data: dict) -> StartCisSessionMessage:
     out: StartCisSessionMessage = {}  # type: ignore[typeddict-item]
-    if "sessionToken" in data:
+    if data.get("sessionToken") is not None:
         out["session_token"] = data["sessionToken"]
     else:
         raise DeserializationError("StartCisSessionMessage.session_token required")

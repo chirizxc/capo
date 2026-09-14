@@ -58,28 +58,28 @@ def serialize_aws_json_1_1(value: UpdateComponentConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateComponentConfigurationRequest:
     out: UpdateComponentConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
     else:
         raise DeserializationError(
             "UpdateComponentConfigurationRequest.resource_group_name required"
         )
-    if "ComponentName" in data:
+    if data.get("ComponentName") is not None:
         out["component_name"] = data["ComponentName"]
     else:
         raise DeserializationError(
             "UpdateComponentConfigurationRequest.component_name required"
         )
-    if "Monitor" in data:
+    if data.get("Monitor") is not None:
         out["monitor"] = data["Monitor"]
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         import capo_application_insights.types.tier
 
         out["tier"] = capo_application_insights.types.tier.deserialize_aws_json_1_1(
             data["Tier"]
         )
-    if "ComponentConfiguration" in data:
+    if data.get("ComponentConfiguration") is not None:
         out["component_configuration"] = data["ComponentConfiguration"]
-    if "AutoConfigEnabled" in data:
+    if data.get("AutoConfigEnabled") is not None:
         out["auto_config_enabled"] = data["AutoConfigEnabled"]
     return out

@@ -37,13 +37,13 @@ def serialize_json(value: PredictAppDefinition) -> dict:
 
 def deserialize_json(data: dict) -> PredictAppDefinition:
     out: PredictAppDefinition = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("PredictAppDefinition.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "appDefinition" in data:
+    if data.get("appDefinition") is not None:
         import capo_qapps.types.app_definition_input
 
         out["app_definition"] = capo_qapps.types.app_definition_input.deserialize_json(

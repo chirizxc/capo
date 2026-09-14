@@ -59,15 +59,15 @@ def serialize_json(value: CreateCommentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCommentRequest:
     out: CreateCommentRequest = {}  # type: ignore[typeddict-item]
-    if "ParentId" in data:
+    if data.get("ParentId") is not None:
         out["parent_id"] = data["ParentId"]
-    if "ThreadId" in data:
+    if data.get("ThreadId") is not None:
         out["thread_id"] = data["ThreadId"]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("CreateCommentRequest.text required")
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_workdocs.types.comment_visibility_type
 
         out["visibility"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> CreateCommentRequest:
                 data["Visibility"]
             )
         )
-    if "NotifyCollaborators" in data:
+    if data.get("NotifyCollaborators") is not None:
         out["notify_collaborators"] = data["NotifyCollaborators"]
     else:
         out["notify_collaborators"] = False

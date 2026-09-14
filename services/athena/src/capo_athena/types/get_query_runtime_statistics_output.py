@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetQueryRuntimeStatisticsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetQueryRuntimeStatisticsOutput:
     out: GetQueryRuntimeStatisticsOutput = {}  # type: ignore[typeddict-item]
-    if "QueryRuntimeStatistics" in data:
+    if data.get("QueryRuntimeStatistics") is not None:
         import capo_athena.types.query_runtime_statistics
 
         out["query_runtime_statistics"] = (

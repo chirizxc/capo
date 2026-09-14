@@ -36,7 +36,7 @@ def serialize_json(value: ManagedLogs) -> dict:
 
 def deserialize_json(data: dict) -> ManagedLogs:
     out: ManagedLogs = {}  # type: ignore[typeddict-item]
-    if "allowAWSToRetainLogs" in data:
+    if data.get("allowAWSToRetainLogs") is not None:
         import capo_emr_containers.types.allow_aws_to_retain_logs
 
         out["allow_aws_to_retain_logs"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ManagedLogs:
                 data["allowAWSToRetainLogs"]
             )
         )
-    if "encryptionKeyArn" in data:
+    if data.get("encryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["encryptionKeyArn"]
     return out

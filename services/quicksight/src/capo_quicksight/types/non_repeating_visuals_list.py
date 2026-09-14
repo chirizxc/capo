@@ -16,4 +16,4 @@ def serialize_json(value: NonRepeatingVisualsList) -> list:
 
 
 def deserialize_json(data: list) -> NonRepeatingVisualsList:
-    return list(data)
+    return [item for item in data if item is not None]

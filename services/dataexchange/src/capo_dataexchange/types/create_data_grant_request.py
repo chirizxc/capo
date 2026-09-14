@@ -61,33 +61,33 @@ def serialize_json(value: CreateDataGrantRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataGrantRequest:
     out: CreateDataGrantRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDataGrantRequest.name required")
-    if "GrantDistributionScope" in data:
+    if data.get("GrantDistributionScope") is not None:
         out["grant_distribution_scope"] = data["GrantDistributionScope"]
     else:
         raise DeserializationError(
             "CreateDataGrantRequest.grant_distribution_scope required"
         )
-    if "ReceiverPrincipal" in data:
+    if data.get("ReceiverPrincipal") is not None:
         out["receiver_principal"] = data["ReceiverPrincipal"]
     else:
         raise DeserializationError("CreateDataGrantRequest.receiver_principal required")
-    if "SourceDataSetId" in data:
+    if data.get("SourceDataSetId") is not None:
         out["source_data_set_id"] = data["SourceDataSetId"]
     else:
         raise DeserializationError("CreateDataGrantRequest.source_data_set_id required")
-    if "EndsAt" in data:
+    if data.get("EndsAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["ends_at"] = capo_dataexchange.types.timestamp.deserialize_json(
             data["EndsAt"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_dataexchange.types.map_of__string
 
         out["tags"] = capo_dataexchange.types.map_of__string.deserialize_json(

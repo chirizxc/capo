@@ -68,7 +68,7 @@ def serialize_json(value: SearchOrganizationInsightsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchOrganizationInsightsRequest:
     out: SearchOrganizationInsightsRequest = {}  # type: ignore[typeddict-item]
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_devops_guru.types.search_insights_account_id_list
 
         out["account_ids"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> SearchOrganizationInsightsRequest:
         raise DeserializationError(
             "SearchOrganizationInsightsRequest.account_ids required"
         )
-    if "StartTimeRange" in data:
+    if data.get("StartTimeRange") is not None:
         import capo_devops_guru.types.start_time_range
 
         out["start_time_range"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> SearchOrganizationInsightsRequest:
         raise DeserializationError(
             "SearchOrganizationInsightsRequest.start_time_range required"
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_devops_guru.types.search_organization_insights_filters
 
         out["filters"] = (
@@ -100,11 +100,11 @@ def deserialize_json(data: dict) -> SearchOrganizationInsightsRequest:
                 data["Filters"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_devops_guru.types.insight_type
 
         out["type"] = capo_devops_guru.types.insight_type.deserialize_json(data["Type"])

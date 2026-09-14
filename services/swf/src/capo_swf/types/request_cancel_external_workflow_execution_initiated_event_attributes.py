@@ -46,18 +46,18 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> RequestCancelExternalWorkflowExecutionInitiatedEventAttributes:
     out: RequestCancelExternalWorkflowExecutionInitiatedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     else:
         raise DeserializationError(
             "RequestCancelExternalWorkflowExecutionInitiatedEventAttributes.workflow_id required"
         )
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0
-    if "control" in data:
+    if data.get("control") is not None:
         out["control"] = data["control"]
     return out

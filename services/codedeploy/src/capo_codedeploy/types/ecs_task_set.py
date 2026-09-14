@@ -44,7 +44,15 @@ def serialize_aws_json_1_1(value: ECSTaskSet) -> dict:
     out["runningCount"] = value.get("running_count", 0)
     if "status" in value:
         out["status"] = value["status"]
-    out["trafficWeight"] = value.get("traffic_weight", 0)
+    out["trafficWeight"] = (
+        "NaN"
+        if value.get("traffic_weight", 0) != value.get("traffic_weight", 0)
+        else "Infinity"
+        if value.get("traffic_weight", 0) == float("inf")
+        else "-Infinity"
+        if value.get("traffic_weight", 0) == float("-inf")
+        else value.get("traffic_weight", 0)
+    )
     if "target_group" in value:
         import capo_codedeploy.types.target_group_info
 
@@ -64,27 +72,27 @@ def serialize_aws_json_1_1(value: ECSTaskSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ECSTaskSet:
     out: ECSTaskSet = {}  # type: ignore[typeddict-item]
-    if "identifer" in data:
+    if data.get("identifer") is not None:
         out["identifer"] = data["identifer"]
-    if "desiredCount" in data:
+    if data.get("desiredCount") is not None:
         out["desired_count"] = data["desiredCount"]
     else:
         out["desired_count"] = 0
-    if "pendingCount" in data:
+    if data.get("pendingCount") is not None:
         out["pending_count"] = data["pendingCount"]
     else:
         out["pending_count"] = 0
-    if "runningCount" in data:
+    if data.get("runningCount") is not None:
         out["running_count"] = data["runningCount"]
     else:
         out["running_count"] = 0
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "trafficWeight" in data:
-        out["traffic_weight"] = data["trafficWeight"]
+    if data.get("trafficWeight") is not None:
+        out["traffic_weight"] = float(data["trafficWeight"])
     else:
         out["traffic_weight"] = 0
-    if "targetGroup" in data:
+    if data.get("targetGroup") is not None:
         import capo_codedeploy.types.target_group_info
 
         out["target_group"] = (
@@ -92,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> ECSTaskSet:
                 data["targetGroup"]
             )
         )
-    if "taskSetLabel" in data:
+    if data.get("taskSetLabel") is not None:
         import capo_codedeploy.types.target_label
 
         out["task_set_label"] = (

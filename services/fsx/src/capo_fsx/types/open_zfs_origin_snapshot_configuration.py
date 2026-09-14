@@ -35,9 +35,9 @@ def serialize_aws_json_1_1(value: OpenZFSOriginSnapshotConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenZFSOriginSnapshotConfiguration:
     out: OpenZFSOriginSnapshotConfiguration = {}  # type: ignore[typeddict-item]
-    if "SnapshotARN" in data:
+    if data.get("SnapshotARN") is not None:
         out["snapshot_arn"] = data["SnapshotARN"]
-    if "CopyStrategy" in data:
+    if data.get("CopyStrategy") is not None:
         import capo_fsx.types.open_zfs_copy_strategy
 
         out["copy_strategy"] = (

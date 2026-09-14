@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SdiSourceMappings:
 
     out: SdiSourceMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.sdi_source_mapping.deserialize_json(item))
     return out

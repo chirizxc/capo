@@ -31,7 +31,7 @@ def serialize_json(value: MetadataConfig) -> dict:
 
 def deserialize_json(data: dict) -> MetadataConfig:
     out: MetadataConfig = {}  # type: ignore[typeddict-item]
-    if "MetadataColumns" in data:
+    if data.get("MetadataColumns") is not None:
         import capo_customer_profiles.types.metadata_columns_list
 
         out["metadata_columns"] = (

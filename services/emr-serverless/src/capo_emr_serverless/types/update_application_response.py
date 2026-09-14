@@ -28,7 +28,7 @@ def serialize_json(value: UpdateApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationResponse:
     out: UpdateApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "application" in data:
+    if data.get("application") is not None:
         import capo_emr_serverless.types.application
 
         out["application"] = capo_emr_serverless.types.application.deserialize_json(

@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_pinpoint._auth._signers
 import capo_pinpoint._auth._sigv4
+import capo_pinpoint._protocol.eventstream
 import capo_pinpoint.errors.bad_request_exception
 import capo_pinpoint.errors.forbidden_exception
 import capo_pinpoint.errors.internal_server_error_exception
@@ -33,31 +34,31 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "BadRequestException":
             raise capo_pinpoint.errors.bad_request_exception.BadRequestException.from_json(
-                data
+                data, message
             )
         case "ForbiddenException":
             raise capo_pinpoint.errors.forbidden_exception.ForbiddenException.from_json(
-                data
+                data, message
             )
         case "InternalServerErrorException":
             raise capo_pinpoint.errors.internal_server_error_exception.InternalServerErrorException.from_json(
-                data
+                data, message
             )
         case "MethodNotAllowedException":
             raise capo_pinpoint.errors.method_not_allowed_exception.MethodNotAllowedException.from_json(
-                data
+                data, message
             )
         case "NotFoundException":
             raise capo_pinpoint.errors.not_found_exception.NotFoundException.from_json(
-                data
+                data, message
             )
         case "PayloadTooLargeException":
             raise capo_pinpoint.errors.payload_too_large_exception.PayloadTooLargeException.from_json(
-                data
+                data, message
             )
         case "TooManyRequestsException":
             raise capo_pinpoint.errors.too_many_requests_exception.TooManyRequestsException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -90,19 +91,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_pinpoint._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_pinpoint._auth._sigv4.build_sigv4_auth_scheme(
-                "mobiletargeting", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_pinpoint._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_pinpoint._auth._sigv4.build_sigv4_auth_scheme(
+                "mobiletargeting", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_pinpoint._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -119,20 +127,22 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/v1/apps"
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     if "create_application_request" in input_:
         body: bytes | None = json.dumps(
             capo_pinpoint.types.create_application_request.serialize_json(
                 input_["create_application_request"]
-            )
+            ),
+            allow_nan=False,
         ).encode()
         headers["content-type"] = "application/json"
     else:
         body = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -144,7 +154,7 @@ def create_app(
 ) -> tuple[capo_pinpoint.types.create_app_response.CreateAppResponse, zapros.Response]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -159,7 +169,7 @@ async def async_create_app(
 ) -> tuple[capo_pinpoint.types.create_app_response.CreateAppResponse, zapros.Response]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

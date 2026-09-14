@@ -38,7 +38,7 @@ def serialize_json(value: PrincipalPermissions) -> dict:
 
 def deserialize_json(data: dict) -> PrincipalPermissions:
     out: PrincipalPermissions = {}  # type: ignore[typeddict-item]
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         import capo_lakeformation.types.data_lake_principal
 
         out["principal"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> PrincipalPermissions:
                 data["Principal"]
             )
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_lakeformation.types.permission_list
 
         out["permissions"] = capo_lakeformation.types.permission_list.deserialize_json(

@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteAvailabilityConfigurationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteAvailabilityConfigurationRequest:
     out: DeleteAvailabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "DeleteAvailabilityConfigurationRequest.organization_id required"
         )
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(

@@ -13,9 +13,9 @@ from capo_route53_recovery_control_config import AsyncRoute53RecoveryControlConf
 
 
 async def main():
-    async with AsyncRoute53RecoveryControlConfigClient() as s3:
+    async with AsyncRoute53RecoveryControlConfigClient() as route53_recovery_control_config:
         # Example: call the create_cluster operation
-        response = await s3.create_cluster()
+        response = await route53_recovery_control_config.create_cluster()
         print(response["cluster"])
 ```
 
@@ -28,9 +28,9 @@ from capo_route53_recovery_control_config import AsyncRoute53RecoveryControlConf
 
 
 async def main():
-    async with AsyncRoute53RecoveryControlConfigClient() as s3:
+    async with AsyncRoute53RecoveryControlConfigClient() as route53_recovery_control_config:
         # Example: paginate over list_associated_route53_health_checks
-        async for item in s3.iter_list_associated_route53_health_checks():
+        async for item in route53_recovery_control_config.iter_list_associated_route53_health_checks():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_route53_recovery_control_config.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncRoute53RecoveryControlConfigClient() as s3:
+    async with AsyncRoute53RecoveryControlConfigClient() as route53_recovery_control_config:
         try:
-            await s3.create_cluster()
+            await route53_recovery_control_config.create_cluster()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_route53_recovery_control_config import AsyncRoute53RecoveryControlConf
 
 
 async def main():
-    async with AsyncRoute53RecoveryControlConfigClient() as s3:
+    async with AsyncRoute53RecoveryControlConfigClient() as route53_recovery_control_config:
         # Default: 3 attempts for every operation
-        response = await s3.create_cluster()
+        response = await route53_recovery_control_config.create_cluster()
 
         # Override per operation
-        response = await s3.create_cluster(config_overrides={"retry_max_attempts": 5})
+        response = await route53_recovery_control_config.create_cluster(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_cluster(config_overrides={"retry_max_attempts": 1})
+        response = await route53_recovery_control_config.create_cluster(config_overrides={"retry_max_attempts": 1})
 ```

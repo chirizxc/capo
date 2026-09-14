@@ -60,19 +60,19 @@ def serialize_aws_json_1_1(value: BuildArtifacts) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BuildArtifacts:
     out: BuildArtifacts = {}  # type: ignore[typeddict-item]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "sha256sum" in data:
+    if data.get("sha256sum") is not None:
         out["sha256sum"] = data["sha256sum"]
-    if "md5sum" in data:
+    if data.get("md5sum") is not None:
         out["md5sum"] = data["md5sum"]
-    if "overrideArtifactName" in data:
+    if data.get("overrideArtifactName") is not None:
         out["override_artifact_name"] = data["overrideArtifactName"]
-    if "encryptionDisabled" in data:
+    if data.get("encryptionDisabled") is not None:
         out["encryption_disabled"] = data["encryptionDisabled"]
-    if "artifactIdentifier" in data:
+    if data.get("artifactIdentifier") is not None:
         out["artifact_identifier"] = data["artifactIdentifier"]
-    if "bucketOwnerAccess" in data:
+    if data.get("bucketOwnerAccess") is not None:
         import capo_codebuild.types.bucket_owner_access
 
         out["bucket_owner_access"] = (

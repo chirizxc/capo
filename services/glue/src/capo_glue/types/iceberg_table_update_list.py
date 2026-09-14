@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> IcebergTableUpdateList:
 
     out: IcebergTableUpdateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.iceberg_table_update.deserialize_aws_json_1_1(item))
     return out

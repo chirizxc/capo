@@ -32,7 +32,7 @@ def serialize_json(value: PrivacyBudgets) -> dict:
 
 
 def deserialize_json(data: dict) -> PrivacyBudgets:
-    if "accessBudgets" in data:
+    if data.get("accessBudgets") is not None:
         import capo_cleanroomsml.types.access_budgets
 
         return {

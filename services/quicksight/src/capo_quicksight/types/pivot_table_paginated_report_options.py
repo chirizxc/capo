@@ -43,7 +43,7 @@ def serialize_json(value: PivotTablePaginatedReportOptions) -> dict:
 
 def deserialize_json(data: dict) -> PivotTablePaginatedReportOptions:
     out: PivotTablePaginatedReportOptions = {}  # type: ignore[typeddict-item]
-    if "VerticalOverflowVisibility" in data:
+    if data.get("VerticalOverflowVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["vertical_overflow_visibility"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> PivotTablePaginatedReportOptions:
                 data["VerticalOverflowVisibility"]
             )
         )
-    if "OverflowColumnHeaderVisibility" in data:
+    if data.get("OverflowColumnHeaderVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["overflow_column_header_visibility"] = (

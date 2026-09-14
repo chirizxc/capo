@@ -293,8 +293,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.batch_update_cluster_request.BatchUpdateClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_names"] = cluster_names
+        input_: capo_memorydb.types.batch_update_cluster_request.BatchUpdateClusterRequest = {
+            "cluster_names": cluster_names
+        }
         if service_update is not None:
             input_["service_update"] = service_update
 
@@ -303,6 +304,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def copy_snapshot(
@@ -354,9 +356,10 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.copy_snapshot_request.CopySnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["source_snapshot_name"] = source_snapshot_name
-        input_["target_snapshot_name"] = target_snapshot_name
+        input_: capo_memorydb.types.copy_snapshot_request.CopySnapshotRequest = {
+            "source_snapshot_name": source_snapshot_name,
+            "target_snapshot_name": target_snapshot_name,
+        }
         if target_bucket is not None:
             input_["target_bucket"] = target_bucket
         if kms_key_id is not None:
@@ -369,6 +372,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_acl(
@@ -415,8 +419,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.create_acl_request.CreateACLRequest = {}  # type: ignore[typeddict-item]
-        input_["acl_name"] = acl_name
+        input_: capo_memorydb.types.create_acl_request.CreateACLRequest = {
+            "acl_name": acl_name
+        }
         if user_names is not None:
             input_["user_names"] = user_names
         if tags is not None:
@@ -427,6 +432,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster(
@@ -544,9 +550,11 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.create_cluster_request.CreateClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["node_type"] = node_type
+        input_: capo_memorydb.types.create_cluster_request.CreateClusterRequest = {
+            "cluster_name": cluster_name,
+            "node_type": node_type,
+            "acl_name": acl_name,
+        }
         if multi_region_cluster_name is not None:
             input_["multi_region_cluster_name"] = multi_region_cluster_name
         if parameter_group_name is not None:
@@ -581,7 +589,6 @@ class AsyncMemoryDBClient:
             input_["tags"] = tags
         if snapshot_window is not None:
             input_["snapshot_window"] = snapshot_window
-        input_["acl_name"] = acl_name
         if engine is not None:
             input_["engine"] = engine
         if engine_version is not None:
@@ -600,6 +607,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_multi_region_cluster(
@@ -661,15 +669,16 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.create_multi_region_cluster_request.CreateMultiRegionClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["multi_region_cluster_name_suffix"] = multi_region_cluster_name_suffix
+        input_: capo_memorydb.types.create_multi_region_cluster_request.CreateMultiRegionClusterRequest = {
+            "multi_region_cluster_name_suffix": multi_region_cluster_name_suffix,
+            "node_type": node_type,
+        }
         if description is not None:
             input_["description"] = description
         if engine is not None:
             input_["engine"] = engine
         if engine_version is not None:
             input_["engine_version"] = engine_version
-        input_["node_type"] = node_type
         if multi_region_parameter_group_name is not None:
             input_["multi_region_parameter_group_name"] = (
                 multi_region_parameter_group_name
@@ -686,6 +695,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_parameter_group(
@@ -732,9 +742,10 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.create_parameter_group_request.CreateParameterGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["parameter_group_name"] = parameter_group_name
-        input_["family"] = family
+        input_: capo_memorydb.types.create_parameter_group_request.CreateParameterGroupRequest = {
+            "parameter_group_name": parameter_group_name,
+            "family": family,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -745,6 +756,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_snapshot(
@@ -792,9 +804,10 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.create_snapshot_request.CreateSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["snapshot_name"] = snapshot_name
+        input_: capo_memorydb.types.create_snapshot_request.CreateSnapshotRequest = {
+            "cluster_name": cluster_name,
+            "snapshot_name": snapshot_name,
+        }
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
@@ -805,6 +818,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_subnet_group(
@@ -851,11 +865,12 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.create_subnet_group_request.CreateSubnetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["subnet_group_name"] = subnet_group_name
+        input_: capo_memorydb.types.create_subnet_group_request.CreateSubnetGroupRequest = {
+            "subnet_group_name": subnet_group_name,
+            "subnet_ids": subnet_ids,
+        }
         if description is not None:
             input_["description"] = description
-        input_["subnet_ids"] = subnet_ids
         if tags is not None:
             input_["tags"] = tags
 
@@ -864,6 +879,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user(
@@ -909,10 +925,11 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_name"] = user_name
-        input_["authentication_mode"] = authentication_mode
-        input_["access_string"] = access_string
+        input_: capo_memorydb.types.create_user_request.CreateUserRequest = {
+            "user_name": user_name,
+            "authentication_mode": authentication_mode,
+            "access_string": access_string,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -921,6 +938,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_acl(
@@ -957,14 +975,16 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.delete_acl_request.DeleteACLRequest = {}  # type: ignore[typeddict-item]
-        input_["acl_name"] = acl_name
+        input_: capo_memorydb.types.delete_acl_request.DeleteACLRequest = {
+            "acl_name": acl_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster(
@@ -1008,8 +1028,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.delete_cluster_request.DeleteClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
+        input_: capo_memorydb.types.delete_cluster_request.DeleteClusterRequest = {
+            "cluster_name": cluster_name
+        }
         if multi_region_cluster_name is not None:
             input_["multi_region_cluster_name"] = multi_region_cluster_name
         if final_snapshot_name is not None:
@@ -1020,6 +1041,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_multi_region_cluster(
@@ -1056,14 +1078,16 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.delete_multi_region_cluster_request.DeleteMultiRegionClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["multi_region_cluster_name"] = multi_region_cluster_name
+        input_: capo_memorydb.types.delete_multi_region_cluster_request.DeleteMultiRegionClusterRequest = {
+            "multi_region_cluster_name": multi_region_cluster_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_parameter_group(
@@ -1102,14 +1126,16 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.delete_parameter_group_request.DeleteParameterGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["parameter_group_name"] = parameter_group_name
+        input_: capo_memorydb.types.delete_parameter_group_request.DeleteParameterGroupRequest = {
+            "parameter_group_name": parameter_group_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_snapshot(
@@ -1148,14 +1174,16 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.delete_snapshot_request.DeleteSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["snapshot_name"] = snapshot_name
+        input_: capo_memorydb.types.delete_snapshot_request.DeleteSnapshotRequest = {
+            "snapshot_name": snapshot_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_subnet_group(
@@ -1192,14 +1220,16 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.delete_subnet_group_request.DeleteSubnetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["subnet_group_name"] = subnet_group_name
+        input_: capo_memorydb.types.delete_subnet_group_request.DeleteSubnetGroupRequest = {
+            "subnet_group_name": subnet_group_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_user(
@@ -1236,14 +1266,16 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_name"] = user_name
+        input_: capo_memorydb.types.delete_user_request.DeleteUserRequest = {
+            "user_name": user_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_ac_ls(
@@ -1285,7 +1317,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_ac_ls_request.DescribeACLsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_ac_ls_request.DescribeACLsRequest = {}
         if acl_name is not None:
             input_["acl_name"] = acl_name
         if max_results is not None:
@@ -1298,6 +1330,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_ac_ls(
@@ -1370,7 +1403,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_clusters_request.DescribeClustersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_clusters_request.DescribeClustersRequest = {}
         if cluster_name is not None:
             input_["cluster_name"] = cluster_name
         if max_results is not None:
@@ -1385,6 +1418,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_clusters(
@@ -1462,7 +1496,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_engine_versions_request.DescribeEngineVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_engine_versions_request.DescribeEngineVersionsRequest = {}
         if engine is not None:
             input_["engine"] = engine
         if engine_version is not None:
@@ -1481,6 +1515,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_engine_versions(
@@ -1564,7 +1599,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_events_request.DescribeEventsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_events_request.DescribeEventsRequest = {}
         if source_name is not None:
             input_["source_name"] = source_name
         if source_type is not None:
@@ -1585,6 +1620,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_events(
@@ -1667,7 +1703,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_multi_region_clusters_request.DescribeMultiRegionClustersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_multi_region_clusters_request.DescribeMultiRegionClustersRequest = {}
         if multi_region_cluster_name is not None:
             input_["multi_region_cluster_name"] = multi_region_cluster_name
         if max_results is not None:
@@ -1682,6 +1718,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_multi_region_clusters(
@@ -1756,7 +1793,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_multi_region_parameter_groups_request.DescribeMultiRegionParameterGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_multi_region_parameter_groups_request.DescribeMultiRegionParameterGroupsRequest = {}
         if multi_region_parameter_group_name is not None:
             input_["multi_region_parameter_group_name"] = (
                 multi_region_parameter_group_name
@@ -1771,6 +1808,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_multi_region_parameters(
@@ -1816,8 +1854,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_multi_region_parameters_request.DescribeMultiRegionParametersRequest = {}  # type: ignore[typeddict-item]
-        input_["multi_region_parameter_group_name"] = multi_region_parameter_group_name
+        input_: capo_memorydb.types.describe_multi_region_parameters_request.DescribeMultiRegionParametersRequest = {
+            "multi_region_parameter_group_name": multi_region_parameter_group_name
+        }
         if source is not None:
             input_["source"] = source
         if max_results is not None:
@@ -1830,6 +1869,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_parameter_groups(
@@ -1873,7 +1913,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_parameter_groups_request.DescribeParameterGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_parameter_groups_request.DescribeParameterGroupsRequest = {}
         if parameter_group_name is not None:
             input_["parameter_group_name"] = parameter_group_name
         if max_results is not None:
@@ -1886,6 +1926,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_parameter_groups(
@@ -1954,8 +1995,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_parameters_request.DescribeParametersRequest = {}  # type: ignore[typeddict-item]
-        input_["parameter_group_name"] = parameter_group_name
+        input_: capo_memorydb.types.describe_parameters_request.DescribeParametersRequest = {
+            "parameter_group_name": parameter_group_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1966,6 +2008,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_parameters(
@@ -2044,7 +2087,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_reserved_nodes_request.DescribeReservedNodesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_reserved_nodes_request.DescribeReservedNodesRequest = {}
         if reservation_id is not None:
             input_["reservation_id"] = reservation_id
         if reserved_nodes_offering_id is not None:
@@ -2065,6 +2108,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_reserved_nodes(
@@ -2151,7 +2195,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_reserved_nodes_offerings_request.DescribeReservedNodesOfferingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_reserved_nodes_offerings_request.DescribeReservedNodesOfferingsRequest = {}
         if reserved_nodes_offering_id is not None:
             input_["reserved_nodes_offering_id"] = reserved_nodes_offering_id
         if node_type is not None:
@@ -2170,6 +2214,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_reserved_nodes_offerings(
@@ -2252,7 +2297,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_service_updates_request.DescribeServiceUpdatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_service_updates_request.DescribeServiceUpdatesRequest = {}
         if service_update_name is not None:
             input_["service_update_name"] = service_update_name
         if cluster_names is not None:
@@ -2269,6 +2314,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_service_updates(
@@ -2353,7 +2399,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_snapshots_request.DescribeSnapshotsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_snapshots_request.DescribeSnapshotsRequest = {}
         if cluster_name is not None:
             input_["cluster_name"] = cluster_name
         if snapshot_name is not None:
@@ -2372,6 +2418,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_snapshots(
@@ -2446,7 +2493,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_subnet_groups_request.DescribeSubnetGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_subnet_groups_request.DescribeSubnetGroupsRequest = {}
         if subnet_group_name is not None:
             input_["subnet_group_name"] = subnet_group_name
         if max_results is not None:
@@ -2459,6 +2506,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_subnet_groups(
@@ -2527,7 +2575,7 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.describe_users_request.DescribeUsersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_memorydb.types.describe_users_request.DescribeUsersRequest = {}
         if user_name is not None:
             input_["user_name"] = user_name
         if filters is not None:
@@ -2542,6 +2590,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_users(
@@ -2612,15 +2661,17 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.failover_shard_request.FailoverShardRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["shard_name"] = shard_name
+        input_: capo_memorydb.types.failover_shard_request.FailoverShardRequest = {
+            "cluster_name": cluster_name,
+            "shard_name": shard_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_allowed_multi_region_cluster_updates(
@@ -2657,14 +2708,16 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.list_allowed_multi_region_cluster_updates_request.ListAllowedMultiRegionClusterUpdatesRequest = {}  # type: ignore[typeddict-item]
-        input_["multi_region_cluster_name"] = multi_region_cluster_name
+        input_: capo_memorydb.types.list_allowed_multi_region_cluster_updates_request.ListAllowedMultiRegionClusterUpdatesRequest = {
+            "multi_region_cluster_name": multi_region_cluster_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_allowed_node_type_updates(
@@ -2702,14 +2755,16 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.list_allowed_node_type_updates_request.ListAllowedNodeTypeUpdatesRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
+        input_: capo_memorydb.types.list_allowed_node_type_updates_request.ListAllowedNodeTypeUpdatesRequest = {
+            "cluster_name": cluster_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags(
@@ -2754,14 +2809,16 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.list_tags_request.ListTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_memorydb.types.list_tags_request.ListTagsRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def purchase_reserved_nodes_offering(
@@ -2810,8 +2867,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.purchase_reserved_nodes_offering_request.PurchaseReservedNodesOfferingRequest = {}  # type: ignore[typeddict-item]
-        input_["reserved_nodes_offering_id"] = reserved_nodes_offering_id
+        input_: capo_memorydb.types.purchase_reserved_nodes_offering_request.PurchaseReservedNodesOfferingRequest = {
+            "reserved_nodes_offering_id": reserved_nodes_offering_id
+        }
         if reservation_id is not None:
             input_["reservation_id"] = reservation_id
         if node_count is not None:
@@ -2824,6 +2882,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_parameter_group(
@@ -2870,8 +2929,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.reset_parameter_group_request.ResetParameterGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["parameter_group_name"] = parameter_group_name
+        input_: capo_memorydb.types.reset_parameter_group_request.ResetParameterGroupRequest = {
+            "parameter_group_name": parameter_group_name
+        }
         if all_parameters is not None:
             input_["all_parameters"] = all_parameters
         if parameter_names is not None:
@@ -2882,6 +2942,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2930,15 +2991,17 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_memorydb.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2987,15 +3050,17 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_memorydb.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_acl(
@@ -3044,8 +3109,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.update_acl_request.UpdateACLRequest = {}  # type: ignore[typeddict-item]
-        input_["acl_name"] = acl_name
+        input_: capo_memorydb.types.update_acl_request.UpdateACLRequest = {
+            "acl_name": acl_name
+        }
         if user_names_to_add is not None:
             input_["user_names_to_add"] = user_names_to_add
         if user_names_to_remove is not None:
@@ -3056,6 +3122,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cluster(
@@ -3143,8 +3210,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.update_cluster_request.UpdateClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
+        input_: capo_memorydb.types.update_cluster_request.UpdateClusterRequest = {
+            "cluster_name": cluster_name
+        }
         if description is not None:
             input_["description"] = description
         if security_group_ids is not None:
@@ -3181,6 +3249,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_multi_region_cluster(
@@ -3236,8 +3305,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.update_multi_region_cluster_request.UpdateMultiRegionClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["multi_region_cluster_name"] = multi_region_cluster_name
+        input_: capo_memorydb.types.update_multi_region_cluster_request.UpdateMultiRegionClusterRequest = {
+            "multi_region_cluster_name": multi_region_cluster_name
+        }
         if node_type is not None:
             input_["node_type"] = node_type
         if description is not None:
@@ -3258,6 +3328,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_parameter_group(
@@ -3298,15 +3369,17 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.update_parameter_group_request.UpdateParameterGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["parameter_group_name"] = parameter_group_name
-        input_["parameter_name_values"] = parameter_name_values
+        input_: capo_memorydb.types.update_parameter_group_request.UpdateParameterGroupRequest = {
+            "parameter_group_name": parameter_group_name,
+            "parameter_name_values": parameter_name_values,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_subnet_group(
@@ -3352,8 +3425,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.update_subnet_group_request.UpdateSubnetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["subnet_group_name"] = subnet_group_name
+        input_: capo_memorydb.types.update_subnet_group_request.UpdateSubnetGroupRequest = {
+            "subnet_group_name": subnet_group_name
+        }
         if description is not None:
             input_["description"] = description
         if subnet_ids is not None:
@@ -3364,6 +3438,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user(
@@ -3409,8 +3484,9 @@ class AsyncMemoryDBClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_memorydb.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_name"] = user_name
+        input_: capo_memorydb.types.update_user_request.UpdateUserRequest = {
+            "user_name": user_name
+        }
         if authentication_mode is not None:
             input_["authentication_mode"] = authentication_mode
         if access_string is not None:
@@ -3421,6 +3497,7 @@ class AsyncMemoryDBClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

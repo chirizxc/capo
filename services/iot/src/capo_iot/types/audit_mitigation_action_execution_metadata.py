@@ -78,15 +78,15 @@ def serialize_json(value: AuditMitigationActionExecutionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AuditMitigationActionExecutionMetadata:
     out: AuditMitigationActionExecutionMetadata = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.audit_mitigation_actions_execution_status
 
         out["status"] = (
@@ -94,16 +94,16 @@ def deserialize_json(data: dict) -> AuditMitigationActionExecutionMetadata:
                 data["status"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_iot.types.timestamp
 
         out["start_time"] = capo_iot.types.timestamp.deserialize_json(data["startTime"])
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_iot.types.timestamp
 
         out["end_time"] = capo_iot.types.timestamp.deserialize_json(data["endTime"])
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

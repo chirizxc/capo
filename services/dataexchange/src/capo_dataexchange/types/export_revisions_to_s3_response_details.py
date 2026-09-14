@@ -52,13 +52,13 @@ def serialize_json(value: ExportRevisionsToS3ResponseDetails) -> dict:
 
 def deserialize_json(data: dict) -> ExportRevisionsToS3ResponseDetails:
     out: ExportRevisionsToS3ResponseDetails = {}  # type: ignore[typeddict-item]
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "ExportRevisionsToS3ResponseDetails.data_set_id required"
         )
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_dataexchange.types.export_server_side_encryption
 
         out["encryption"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> ExportRevisionsToS3ResponseDetails:
                 data["Encryption"]
             )
         )
-    if "RevisionDestinations" in data:
+    if data.get("RevisionDestinations") is not None:
         import capo_dataexchange.types.list_of_revision_destination_entry
 
         out["revision_destinations"] = (
@@ -78,6 +78,6 @@ def deserialize_json(data: dict) -> ExportRevisionsToS3ResponseDetails:
         raise DeserializationError(
             "ExportRevisionsToS3ResponseDetails.revision_destinations required"
         )
-    if "EventActionArn" in data:
+    if data.get("EventActionArn") is not None:
         out["event_action_arn"] = data["EventActionArn"]
     return out

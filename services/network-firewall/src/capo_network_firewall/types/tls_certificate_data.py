@@ -43,12 +43,12 @@ def serialize_aws_json_1_0(value: TlsCertificateData) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TlsCertificateData:
     out: TlsCertificateData = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "CertificateSerial" in data:
+    if data.get("CertificateSerial") is not None:
         out["certificate_serial"] = data["CertificateSerial"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

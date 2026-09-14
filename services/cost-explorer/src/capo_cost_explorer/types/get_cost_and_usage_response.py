@@ -64,9 +64,9 @@ def serialize_aws_json_1_1(value: GetCostAndUsageResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageResponse:
     out: GetCostAndUsageResponse = {}  # type: ignore[typeddict-item]
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "GroupDefinitions" in data:
+    if data.get("GroupDefinitions") is not None:
         import capo_cost_explorer.types.group_definitions
 
         out["group_definitions"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageResponse:
                 data["GroupDefinitions"]
             )
         )
-    if "ResultsByTime" in data:
+    if data.get("ResultsByTime") is not None:
         import capo_cost_explorer.types.results_by_time
 
         out["results_by_time"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageResponse:
                 data["ResultsByTime"]
             )
         )
-    if "DimensionValueAttributes" in data:
+    if data.get("DimensionValueAttributes") is not None:
         import capo_cost_explorer.types.dimension_values_with_attributes_list
 
         out["dimension_value_attributes"] = (

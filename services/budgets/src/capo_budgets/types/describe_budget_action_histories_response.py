@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DescribeBudgetActionHistoriesResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBudgetActionHistoriesResponse:
     out: DescribeBudgetActionHistoriesResponse = {}  # type: ignore[typeddict-item]
-    if "ActionHistories" in data:
+    if data.get("ActionHistories") is not None:
         import capo_budgets.types.action_histories
 
         out["action_histories"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeBudgetActionHistoriesRespons
         raise DeserializationError(
             "DescribeBudgetActionHistoriesResponse.action_histories required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -86,33 +86,33 @@ def serialize_aws_json_1_1(value: CreateEnvironmentEC2Request) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEnvironmentEC2Request:
     out: CreateEnvironmentEC2Request = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEnvironmentEC2Request.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     else:
         raise DeserializationError("CreateEnvironmentEC2Request.instance_type required")
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
-    if "imageId" in data:
+    if data.get("imageId") is not None:
         out["image_id"] = data["imageId"]
     else:
         raise DeserializationError("CreateEnvironmentEC2Request.image_id required")
-    if "automaticStopTimeMinutes" in data:
+    if data.get("automaticStopTimeMinutes") is not None:
         out["automatic_stop_time_minutes"] = data["automaticStopTimeMinutes"]
-    if "ownerArn" in data:
+    if data.get("ownerArn") is not None:
         out["owner_arn"] = data["ownerArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cloud9.types.tag_list
 
         out["tags"] = capo_cloud9.types.tag_list.deserialize_aws_json_1_1(data["tags"])
-    if "connectionType" in data:
+    if data.get("connectionType") is not None:
         import capo_cloud9.types.connection_type
 
         out["connection_type"] = (
@@ -120,6 +120,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEnvironmentEC2Request:
                 data["connectionType"]
             )
         )
-    if "dryRun" in data:
+    if data.get("dryRun") is not None:
         out["dry_run"] = data["dryRun"]
     return out

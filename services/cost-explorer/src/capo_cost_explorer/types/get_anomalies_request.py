@@ -73,9 +73,9 @@ def serialize_aws_json_1_1(value: GetAnomaliesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAnomaliesRequest:
     out: GetAnomaliesRequest = {}  # type: ignore[typeddict-item]
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
-    if "DateInterval" in data:
+    if data.get("DateInterval") is not None:
         import capo_cost_explorer.types.anomaly_date_interval
 
         out["date_interval"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAnomaliesRequest:
         )
     else:
         raise DeserializationError("GetAnomaliesRequest.date_interval required")
-    if "Feedback" in data:
+    if data.get("Feedback") is not None:
         import capo_cost_explorer.types.anomaly_feedback_type
 
         out["feedback"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAnomaliesRequest:
                 data["Feedback"]
             )
         )
-    if "TotalImpact" in data:
+    if data.get("TotalImpact") is not None:
         import capo_cost_explorer.types.total_impact_filter
 
         out["total_impact"] = (
@@ -101,8 +101,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetAnomaliesRequest:
                 data["TotalImpact"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

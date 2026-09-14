@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: S3ContentBaseLocationDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ContentBaseLocationDescription:
     out: S3ContentBaseLocationDescription = {}  # type: ignore[typeddict-item]
-    if "BucketARN" in data:
+    if data.get("BucketARN") is not None:
         out["bucket_arn"] = data["BucketARN"]
     else:
         raise DeserializationError(
             "S3ContentBaseLocationDescription.bucket_arn required"
         )
-    if "BasePath" in data:
+    if data.get("BasePath") is not None:
         out["base_path"] = data["BasePath"]
     return out

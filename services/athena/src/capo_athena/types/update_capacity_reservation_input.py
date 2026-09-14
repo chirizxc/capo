@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: UpdateCapacityReservationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCapacityReservationInput:
     out: UpdateCapacityReservationInput = {}  # type: ignore[typeddict-item]
-    if "TargetDpus" in data:
+    if data.get("TargetDpus") is not None:
         out["target_dpus"] = data["TargetDpus"]
     else:
         raise DeserializationError(
             "UpdateCapacityReservationInput.target_dpus required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateCapacityReservationInput.name required")

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ActionSummaries:
 
     out: ActionSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.action_summary.deserialize_json(item))
     return out

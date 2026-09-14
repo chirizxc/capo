@@ -36,9 +36,9 @@ def serialize_json(value: ListSensitivityInspectionTemplatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSensitivityInspectionTemplatesResponse:
     out: ListSensitivityInspectionTemplatesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sensitivityInspectionTemplates" in data:
+    if data.get("sensitivityInspectionTemplates") is not None:
         import capo_macie2.types.__list_of_sensitivity_inspection_templates_entry
 
         out["sensitivity_inspection_templates"] = (

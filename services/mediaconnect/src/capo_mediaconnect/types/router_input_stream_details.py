@@ -90,7 +90,7 @@ def serialize_json(value: RouterInputStreamDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> RouterInputStreamDetails:
-    if "standard" in data:
+    if data.get("standard") is not None:
         import capo_mediaconnect.types.standard_router_input_stream_details
 
         return {
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> RouterInputStreamDetails:
                 data["standard"]
             )
         }
-    elif "mediaLiveChannel" in data:
+    elif data.get("mediaLiveChannel") is not None:
         import capo_mediaconnect.types.media_live_channel_router_input_stream_details
 
         return {
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> RouterInputStreamDetails:
                 data["mediaLiveChannel"]
             )
         }
-    elif "failover" in data:
+    elif data.get("failover") is not None:
         import capo_mediaconnect.types.failover_router_input_stream_details
 
         return {
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> RouterInputStreamDetails:
                 data["failover"]
             )
         }
-    elif "mediaConnectFlow" in data:
+    elif data.get("mediaConnectFlow") is not None:
         import capo_mediaconnect.types.media_connect_flow_router_input_stream_details
 
         return {
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> RouterInputStreamDetails:
                 data["mediaConnectFlow"]
             )
         }
-    elif "merge" in data:
+    elif data.get("merge") is not None:
         import capo_mediaconnect.types.merge_router_input_stream_details
 
         return {

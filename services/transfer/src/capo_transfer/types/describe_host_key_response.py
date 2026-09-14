@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DescribeHostKeyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHostKeyResponse:
     out: DescribeHostKeyResponse = {}  # type: ignore[typeddict-item]
-    if "HostKey" in data:
+    if data.get("HostKey") is not None:
         import capo_transfer.types.described_host_key
 
         out["host_key"] = (

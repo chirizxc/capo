@@ -60,13 +60,13 @@ def serialize_aws_json_1_1(value: AdminScope) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminScope:
     out: AdminScope = {}  # type: ignore[typeddict-item]
-    if "AccountScope" in data:
+    if data.get("AccountScope") is not None:
         import capo_fms.types.account_scope
 
         out["account_scope"] = capo_fms.types.account_scope.deserialize_aws_json_1_1(
             data["AccountScope"]
         )
-    if "OrganizationalUnitScope" in data:
+    if data.get("OrganizationalUnitScope") is not None:
         import capo_fms.types.organizational_unit_scope
 
         out["organizational_unit_scope"] = (
@@ -74,13 +74,13 @@ def deserialize_aws_json_1_1(data: dict) -> AdminScope:
                 data["OrganizationalUnitScope"]
             )
         )
-    if "RegionScope" in data:
+    if data.get("RegionScope") is not None:
         import capo_fms.types.region_scope
 
         out["region_scope"] = capo_fms.types.region_scope.deserialize_aws_json_1_1(
             data["RegionScope"]
         )
-    if "PolicyTypeScope" in data:
+    if data.get("PolicyTypeScope") is not None:
         import capo_fms.types.policy_type_scope
 
         out["policy_type_scope"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: QuerySpatialCoverage) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QuerySpatialCoverage:
     out: QuerySpatialCoverage = {}  # type: ignore[typeddict-item]
-    if "Max" in data:
+    if data.get("Max") is not None:
         import capo_timestream_query.types.query_spatial_coverage_max
 
         out["max"] = (

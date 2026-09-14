@@ -37,13 +37,13 @@ def serialize_json(value: IconImageInput) -> dict:
 
 
 def deserialize_json(data: dict) -> IconImageInput:
-    if "blob" in data:
+    if data.get("blob") is not None:
         import capo_workspaces_web.types.icon_image
 
         return {
             "blob": capo_workspaces_web.types.icon_image.deserialize_json(data["blob"])
         }
-    elif "s3Uri" in data:
+    elif data.get("s3Uri") is not None:
         return {"s3Uri": data["s3Uri"]}
     else:
         raise DeserializationError("IconImageInput: no recognized variant key")

@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: DeleteContainerGroupDefinitionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteContainerGroupDefinitionInput:
     out: DeleteContainerGroupDefinitionInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
-    if "VersionCountToRetain" in data:
+    if data.get("VersionCountToRetain") is not None:
         out["version_count_to_retain"] = data["VersionCountToRetain"]
     return out

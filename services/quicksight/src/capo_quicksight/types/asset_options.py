@@ -71,15 +71,15 @@ def serialize_json(value: AssetOptions) -> dict:
 
 def deserialize_json(data: dict) -> AssetOptions:
     out: AssetOptions = {}  # type: ignore[typeddict-item]
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
-    if "WeekStart" in data:
+    if data.get("WeekStart") is not None:
         import capo_quicksight.types.day_of_the_week
 
         out["week_start"] = capo_quicksight.types.day_of_the_week.deserialize_json(
             data["WeekStart"]
         )
-    if "QBusinessInsightsStatus" in data:
+    if data.get("QBusinessInsightsStatus") is not None:
         import capo_quicksight.types.q_business_insights_status
 
         out["q_business_insights_status"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> AssetOptions:
                 data["QBusinessInsightsStatus"]
             )
         )
-    if "ExcludedDataSetArns" in data:
+    if data.get("ExcludedDataSetArns") is not None:
         import capo_quicksight.types.data_set_arns_list
 
         out["excluded_data_set_arns"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> AssetOptions:
                 data["ExcludedDataSetArns"]
             )
         )
-    if "CustomActionDefaults" in data:
+    if data.get("CustomActionDefaults") is not None:
         import capo_quicksight.types.visual_custom_action_defaults
 
         out["custom_action_defaults"] = (

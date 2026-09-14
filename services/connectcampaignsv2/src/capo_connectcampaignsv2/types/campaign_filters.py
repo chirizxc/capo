@@ -30,7 +30,7 @@ def serialize_json(value: CampaignFilters) -> dict:
 
 def deserialize_json(data: dict) -> CampaignFilters:
     out: CampaignFilters = {}  # type: ignore[typeddict-item]
-    if "instanceIdFilter" in data:
+    if data.get("instanceIdFilter") is not None:
         import capo_connectcampaignsv2.types.instance_id_filter
 
         out["instance_id_filter"] = (

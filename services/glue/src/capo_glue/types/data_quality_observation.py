@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: DataQualityObservation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityObservation:
     out: DataQualityObservation = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "MetricBasedObservation" in data:
+    if data.get("MetricBasedObservation") is not None:
         import capo_glue.types.metric_based_observation
 
         out["metric_based_observation"] = (

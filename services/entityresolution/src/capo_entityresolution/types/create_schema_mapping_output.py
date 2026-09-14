@@ -44,19 +44,19 @@ def serialize_json(value: CreateSchemaMappingOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSchemaMappingOutput:
     out: CreateSchemaMappingOutput = {}  # type: ignore[typeddict-item]
-    if "schemaName" in data:
+    if data.get("schemaName") is not None:
         out["schema_name"] = data["schemaName"]
     else:
         raise DeserializationError("CreateSchemaMappingOutput.schema_name required")
-    if "schemaArn" in data:
+    if data.get("schemaArn") is not None:
         out["schema_arn"] = data["schemaArn"]
     else:
         raise DeserializationError("CreateSchemaMappingOutput.schema_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("CreateSchemaMappingOutput.description required")
-    if "mappedInputFields" in data:
+    if data.get("mappedInputFields") is not None:
         import capo_entityresolution.types.schema_input_attributes
 
         out["mapped_input_fields"] = (

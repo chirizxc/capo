@@ -61,17 +61,17 @@ def serialize_json(value: FlowDefinition) -> dict:
 
 def deserialize_json(data: dict) -> FlowDefinition:
     out: FlowDefinition = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FlowName" in data:
+    if data.get("FlowName") is not None:
         out["flow_name"] = data["FlowName"]
     else:
         raise DeserializationError("FlowDefinition.flow_name required")
-    if "KmsArn" in data:
+    if data.get("KmsArn") is not None:
         out["kms_arn"] = data["KmsArn"]
     else:
         raise DeserializationError("FlowDefinition.kms_arn required")
-    if "SourceFlowConfig" in data:
+    if data.get("SourceFlowConfig") is not None:
         import capo_customer_profiles.types.source_flow_config
 
         out["source_flow_config"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> FlowDefinition:
         )
     else:
         raise DeserializationError("FlowDefinition.source_flow_config required")
-    if "Tasks" in data:
+    if data.get("Tasks") is not None:
         import capo_customer_profiles.types.tasks
 
         out["tasks"] = capo_customer_profiles.types.tasks.deserialize_json(
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> FlowDefinition:
         )
     else:
         raise DeserializationError("FlowDefinition.tasks required")
-    if "TriggerConfig" in data:
+    if data.get("TriggerConfig") is not None:
         import capo_customer_profiles.types.trigger_config
 
         out["trigger_config"] = (

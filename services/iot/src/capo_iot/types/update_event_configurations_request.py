@@ -29,7 +29,7 @@ def serialize_json(value: UpdateEventConfigurationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEventConfigurationsRequest:
     out: UpdateEventConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "eventConfigurations" in data:
+    if data.get("eventConfigurations") is not None:
         import capo_iot.types.event_configurations
 
         out["event_configurations"] = (

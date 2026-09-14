@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: UpdateHubContentReferenceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateHubContentReferenceResponse:
     out: UpdateHubContentReferenceResponse = {}  # type: ignore[typeddict-item]
-    if "HubArn" in data:
+    if data.get("HubArn") is not None:
         out["hub_arn"] = data["HubArn"]
-    if "HubContentArn" in data:
+    if data.get("HubContentArn") is not None:
         out["hub_content_arn"] = data["HubContentArn"]
     return out

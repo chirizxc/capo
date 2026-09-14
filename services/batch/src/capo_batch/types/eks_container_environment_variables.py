@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EksContainerEnvironmentVariables:
 
     out: EksContainerEnvironmentVariables = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.eks_container_environment_variable.deserialize_json(item)
         )

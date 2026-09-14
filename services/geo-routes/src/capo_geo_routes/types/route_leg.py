@@ -125,7 +125,7 @@ def serialize_json(value: RouteLeg) -> dict:
 
 def deserialize_json(data: dict) -> RouteLeg:
     out: RouteLeg = {}  # type: ignore[typeddict-item]
-    if "FerryLegDetails" in data:
+    if data.get("FerryLegDetails") is not None:
         import capo_geo_routes.types.route_ferry_leg_details
 
         out["ferry_leg_details"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> RouteLeg:
                 data["FerryLegDetails"]
             )
         )
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_geo_routes.types.route_leg_geometry
 
         out["geometry"] = capo_geo_routes.types.route_leg_geometry.deserialize_json(
@@ -141,9 +141,9 @@ def deserialize_json(data: dict) -> RouteLeg:
         )
     else:
         raise DeserializationError("RouteLeg.geometry required")
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "PedestrianLegDetails" in data:
+    if data.get("PedestrianLegDetails") is not None:
         import capo_geo_routes.types.route_pedestrian_leg_details
 
         out["pedestrian_leg_details"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> RouteLeg:
                 data["PedestrianLegDetails"]
             )
         )
-    if "TravelMode" in data:
+    if data.get("TravelMode") is not None:
         import capo_geo_routes.types.route_leg_travel_mode
 
         out["travel_mode"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> RouteLeg:
         )
     else:
         raise DeserializationError("RouteLeg.travel_mode required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_geo_routes.types.route_leg_type
 
         out["type"] = capo_geo_routes.types.route_leg_type.deserialize_json(
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> RouteLeg:
         )
     else:
         raise DeserializationError("RouteLeg.type required")
-    if "VehicleLegDetails" in data:
+    if data.get("VehicleLegDetails") is not None:
         import capo_geo_routes.types.route_vehicle_leg_details
 
         out["vehicle_leg_details"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> RouteLeg:
                 data["VehicleLegDetails"]
             )
         )
-    if "RentalLegDetails" in data:
+    if data.get("RentalLegDetails") is not None:
         import capo_geo_routes.types.route_rental_leg_details
 
         out["rental_leg_details"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> RouteLeg:
                 data["RentalLegDetails"]
             )
         )
-    if "TaxiLegDetails" in data:
+    if data.get("TaxiLegDetails") is not None:
         import capo_geo_routes.types.route_taxi_leg_details
 
         out["taxi_leg_details"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> RouteLeg:
                 data["TaxiLegDetails"]
             )
         )
-    if "TransitLegDetails" in data:
+    if data.get("TransitLegDetails") is not None:
         import capo_geo_routes.types.route_transit_leg_details
 
         out["transit_leg_details"] = (

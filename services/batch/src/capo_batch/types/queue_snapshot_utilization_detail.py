@@ -62,7 +62,7 @@ def serialize_json(value: QueueSnapshotUtilizationDetail) -> dict:
 
 def deserialize_json(data: dict) -> QueueSnapshotUtilizationDetail:
     out: QueueSnapshotUtilizationDetail = {}  # type: ignore[typeddict-item]
-    if "totalCapacityUsage" in data:
+    if data.get("totalCapacityUsage") is not None:
         import capo_batch.types.queue_snapshot_capacity_usage_list
 
         out["total_capacity_usage"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> QueueSnapshotUtilizationDetail:
                 data["totalCapacityUsage"]
             )
         )
-    if "fairshareUtilization" in data:
+    if data.get("fairshareUtilization") is not None:
         import capo_batch.types.fairshare_utilization_detail
 
         out["fairshare_utilization"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> QueueSnapshotUtilizationDetail:
                 data["fairshareUtilization"]
             )
         )
-    if "quotaShareUtilization" in data:
+    if data.get("quotaShareUtilization") is not None:
         import capo_batch.types.quota_share_utilization_detail
 
         out["quota_share_utilization"] = (
@@ -86,6 +86,6 @@ def deserialize_json(data: dict) -> QueueSnapshotUtilizationDetail:
                 data["quotaShareUtilization"]
             )
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         out["last_updated_at"] = data["lastUpdatedAt"]
     return out

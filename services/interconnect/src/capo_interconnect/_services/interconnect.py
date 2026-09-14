@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.interconnect#Interconnect``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -201,21 +202,24 @@ class InterconnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_interconnect.types.accept_connection_proposal_request.AcceptConnectionProposalRequest = {}  # type: ignore[typeddict-item]
-        input_["attach_point"] = attach_point
-        input_["activation_key"] = activation_key
+        input_: capo_interconnect.types.accept_connection_proposal_request.AcceptConnectionProposalRequest = {
+            "attach_point": attach_point,
+            "activation_key": activation_key,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_connection_proposal(
@@ -260,14 +264,16 @@ class InterconnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_interconnect.types.describe_connection_proposal_request.DescribeConnectionProposalRequest = {}  # type: ignore[typeddict-item]
-        input_["activation_key"] = activation_key
+        input_: capo_interconnect.types.describe_connection_proposal_request.DescribeConnectionProposalRequest = {
+            "activation_key": activation_key
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_attach_points(
@@ -316,8 +322,9 @@ class InterconnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_interconnect.types.list_attach_points_request.ListAttachPointsRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
+        input_: capo_interconnect.types.list_attach_points_request.ListAttachPointsRequest = {
+            "environment_id": environment_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -328,6 +335,7 @@ class InterconnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_attach_points(
@@ -395,14 +403,16 @@ class InterconnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_interconnect.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_interconnect.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -449,15 +459,17 @@ class InterconnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_interconnect.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tags"] = tags
+        input_: capo_interconnect.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -504,15 +516,17 @@ class InterconnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_interconnect.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_interconnect.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

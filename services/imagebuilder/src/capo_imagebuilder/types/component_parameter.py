@@ -34,11 +34,11 @@ def serialize_json(value: ComponentParameter) -> dict:
 
 def deserialize_json(data: dict) -> ComponentParameter:
     out: ComponentParameter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ComponentParameter.name required")
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_imagebuilder.types.component_parameter_value_list
 
         out["value"] = (

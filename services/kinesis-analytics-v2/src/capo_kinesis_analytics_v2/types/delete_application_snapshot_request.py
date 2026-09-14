@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: DeleteApplicationSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteApplicationSnapshotRequest:
     out: DeleteApplicationSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError(
             "DeleteApplicationSnapshotRequest.application_name required"
         )
-    if "SnapshotName" in data:
+    if data.get("SnapshotName") is not None:
         out["snapshot_name"] = data["SnapshotName"]
     else:
         raise DeserializationError(
             "DeleteApplicationSnapshotRequest.snapshot_name required"
         )
-    if "SnapshotCreationTimestamp" in data:
+    if data.get("SnapshotCreationTimestamp") is not None:
         import capo_kinesis_analytics_v2.types.timestamp
 
         out["snapshot_creation_timestamp"] = (

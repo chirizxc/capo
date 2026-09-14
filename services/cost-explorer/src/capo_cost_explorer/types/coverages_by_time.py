@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CoveragesByTime:
 
     out: CoveragesByTime = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.coverage_by_time.deserialize_aws_json_1_1(item)
         )

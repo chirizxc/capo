@@ -47,13 +47,13 @@ def serialize_json(value: WorkflowStepOutput) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowStepOutput:
     out: WorkflowStepOutput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         out["data_type"] = data["dataType"]
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_migrationhuborchestrator.types.workflow_step_output_union
 
         out["value"] = (

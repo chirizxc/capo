@@ -52,9 +52,9 @@ def serialize_aws_json_1_1(value: LastActiveDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LastActiveDefinition:
     out: LastActiveDefinition = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["last_modified_on"] = (
@@ -62,10 +62,10 @@ def deserialize_aws_json_1_1(data: dict) -> LastActiveDefinition:
                 data["LastModifiedOn"]
             )
         )
-    if "ParameterSpec" in data:
+    if data.get("ParameterSpec") is not None:
         out["parameter_spec"] = data["ParameterSpec"]
-    if "BlueprintLocation" in data:
+    if data.get("BlueprintLocation") is not None:
         out["blueprint_location"] = data["BlueprintLocation"]
-    if "BlueprintServiceLocation" in data:
+    if data.get("BlueprintServiceLocation") is not None:
         out["blueprint_service_location"] = data["BlueprintServiceLocation"]
     return out

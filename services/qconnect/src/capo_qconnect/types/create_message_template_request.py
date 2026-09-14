@@ -105,9 +105,9 @@ def serialize_json(value: CreateMessageTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMessageTemplateRequest:
     out: CreateMessageTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_qconnect.types.message_template_content_provider
 
         out["content"] = (
@@ -115,17 +115,17 @@ def deserialize_json(data: dict) -> CreateMessageTemplateRequest:
                 data["content"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "channelSubtype" in data:
+    if data.get("channelSubtype") is not None:
         out["channel_subtype"] = data["channelSubtype"]
     else:
         raise DeserializationError(
             "CreateMessageTemplateRequest.channel_subtype required"
         )
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
-    if "sourceConfiguration" in data:
+    if data.get("sourceConfiguration") is not None:
         import capo_qconnect.types.message_template_source_configuration
 
         out["source_configuration"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> CreateMessageTemplateRequest:
                 data["sourceConfiguration"]
             )
         )
-    if "defaultAttributes" in data:
+    if data.get("defaultAttributes") is not None:
         import capo_qconnect.types.message_template_attributes
 
         out["default_attributes"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> CreateMessageTemplateRequest:
                 data["defaultAttributes"]
             )
         )
-    if "groupingConfiguration" in data:
+    if data.get("groupingConfiguration") is not None:
         import capo_qconnect.types.grouping_configuration
 
         out["grouping_configuration"] = (
@@ -149,9 +149,9 @@ def deserialize_json(data: dict) -> CreateMessageTemplateRequest:
                 data["groupingConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

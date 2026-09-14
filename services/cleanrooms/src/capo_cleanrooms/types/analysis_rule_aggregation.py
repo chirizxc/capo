@@ -104,7 +104,7 @@ def serialize_json(value: AnalysisRuleAggregation) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisRuleAggregation:
     out: AnalysisRuleAggregation = {}  # type: ignore[typeddict-item]
-    if "aggregateColumns" in data:
+    if data.get("aggregateColumns") is not None:
         import capo_cleanrooms.types.aggregate_column_list
 
         out["aggregate_columns"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> AnalysisRuleAggregation:
         )
     else:
         raise DeserializationError("AnalysisRuleAggregation.aggregate_columns required")
-    if "joinColumns" in data:
+    if data.get("joinColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["join_columns"] = (
@@ -124,9 +124,9 @@ def deserialize_json(data: dict) -> AnalysisRuleAggregation:
         )
     else:
         raise DeserializationError("AnalysisRuleAggregation.join_columns required")
-    if "joinRequired" in data:
+    if data.get("joinRequired") is not None:
         out["join_required"] = data["joinRequired"]
-    if "allowedJoinOperators" in data:
+    if data.get("allowedJoinOperators") is not None:
         import capo_cleanrooms.types.join_operators_list
 
         out["allowed_join_operators"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> AnalysisRuleAggregation:
                 data["allowedJoinOperators"]
             )
         )
-    if "dimensionColumns" in data:
+    if data.get("dimensionColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["dimension_columns"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> AnalysisRuleAggregation:
         )
     else:
         raise DeserializationError("AnalysisRuleAggregation.dimension_columns required")
-    if "scalarFunctions" in data:
+    if data.get("scalarFunctions") is not None:
         import capo_cleanrooms.types.scalar_functions_list
 
         out["scalar_functions"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> AnalysisRuleAggregation:
         )
     else:
         raise DeserializationError("AnalysisRuleAggregation.scalar_functions required")
-    if "outputConstraints" in data:
+    if data.get("outputConstraints") is not None:
         import capo_cleanrooms.types.aggregation_constraints
 
         out["output_constraints"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> AnalysisRuleAggregation:
         raise DeserializationError(
             "AnalysisRuleAggregation.output_constraints required"
         )
-    if "additionalAnalyses" in data:
+    if data.get("additionalAnalyses") is not None:
         import capo_cleanrooms.types.additional_analyses
 
         out["additional_analyses"] = (

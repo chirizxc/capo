@@ -43,15 +43,15 @@ def serialize_aws_json_1_1(value: ListMonitorEvaluationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMonitorEvaluationsRequest:
     out: ListMonitorEvaluationsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
     else:
         raise DeserializationError("ListMonitorEvaluationsRequest.monitor_arn required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_forecast.types.filters
 
         out["filters"] = capo_forecast.types.filters.deserialize_aws_json_1_1(

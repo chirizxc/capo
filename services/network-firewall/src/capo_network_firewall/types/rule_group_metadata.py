@@ -33,10 +33,10 @@ def serialize_aws_json_1_0(value: RuleGroupMetadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleGroupMetadata:
     out: RuleGroupMetadata = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "VendorName" in data:
+    if data.get("VendorName") is not None:
         out["vendor_name"] = data["VendorName"]
     return out

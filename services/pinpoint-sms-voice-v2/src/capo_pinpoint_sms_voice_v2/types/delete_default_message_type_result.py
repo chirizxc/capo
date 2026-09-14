@@ -36,10 +36,10 @@ def serialize_aws_json_1_0(value: DeleteDefaultMessageTypeResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteDefaultMessageTypeResult:
     out: DeleteDefaultMessageTypeResult = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetArn" in data:
+    if data.get("ConfigurationSetArn") is not None:
         out["configuration_set_arn"] = data["ConfigurationSetArn"]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         out["message_type"] = data["MessageType"]
     return out

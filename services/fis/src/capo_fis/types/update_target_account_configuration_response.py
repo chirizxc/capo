@@ -31,7 +31,7 @@ def serialize_json(value: UpdateTargetAccountConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTargetAccountConfigurationResponse:
     out: UpdateTargetAccountConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "targetAccountConfiguration" in data:
+    if data.get("targetAccountConfiguration") is not None:
         import capo_fis.types.target_account_configuration
 
         out["target_account_configuration"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: GetSuiteRunReportResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSuiteRunReportResponse:
     out: GetSuiteRunReportResponse = {}  # type: ignore[typeddict-item]
-    if "qualificationReportDownloadUrl" in data:
+    if data.get("qualificationReportDownloadUrl") is not None:
         out["qualification_report_download_url"] = data[
             "qualificationReportDownloadUrl"
         ]

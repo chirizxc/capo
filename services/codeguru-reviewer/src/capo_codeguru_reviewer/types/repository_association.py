@@ -124,17 +124,17 @@ def serialize_json(value: RepositoryAssociation) -> dict:
 
 def deserialize_json(data: dict) -> RepositoryAssociation:
     out: RepositoryAssociation = {}  # type: ignore[typeddict-item]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "AssociationArn" in data:
+    if data.get("AssociationArn") is not None:
         out["association_arn"] = data["AssociationArn"]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_codeguru_reviewer.types.provider_type
 
         out["provider_type"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> RepositoryAssociation:
                 data["ProviderType"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_codeguru_reviewer.types.repository_association_state
 
         out["state"] = (
@@ -150,9 +150,9 @@ def deserialize_json(data: dict) -> RepositoryAssociation:
                 data["State"]
             )
         )
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
-    if "LastUpdatedTimeStamp" in data:
+    if data.get("LastUpdatedTimeStamp") is not None:
         import capo_codeguru_reviewer.types.time_stamp
 
         out["last_updated_time_stamp"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> RepositoryAssociation:
                 data["LastUpdatedTimeStamp"]
             )
         )
-    if "CreatedTimeStamp" in data:
+    if data.get("CreatedTimeStamp") is not None:
         import capo_codeguru_reviewer.types.time_stamp
 
         out["created_time_stamp"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> RepositoryAssociation:
                 data["CreatedTimeStamp"]
             )
         )
-    if "KMSKeyDetails" in data:
+    if data.get("KMSKeyDetails") is not None:
         import capo_codeguru_reviewer.types.kms_key_details
 
         out["kms_key_details"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> RepositoryAssociation:
                 data["KMSKeyDetails"]
             )
         )
-    if "S3RepositoryDetails" in data:
+    if data.get("S3RepositoryDetails") is not None:
         import capo_codeguru_reviewer.types.s3_repository_details
 
         out["s3_repository_details"] = (

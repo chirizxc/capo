@@ -27,7 +27,7 @@ def serialize_json(value: TimestampForCollection) -> dict:
 
 def deserialize_json(data: dict) -> TimestampForCollection:
     out: TimestampForCollection = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_detective.types.timestamp
 
         out["timestamp"] = capo_detective.types.timestamp.deserialize_json(

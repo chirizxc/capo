@@ -49,7 +49,7 @@ def serialize_json(value: LogSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> LogSettingsRequest:
     out: LogSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "logType" in data:
+    if data.get("logType") is not None:
         import capo_lex_model_building_service.types.log_type
 
         out["log_type"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> LogSettingsRequest:
         )
     else:
         raise DeserializationError("LogSettingsRequest.log_type required")
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_lex_model_building_service.types.destination
 
         out["destination"] = (
@@ -69,9 +69,9 @@ def deserialize_json(data: dict) -> LogSettingsRequest:
         )
     else:
         raise DeserializationError("LogSettingsRequest.destination required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("LogSettingsRequest.resource_arn required")

@@ -43,7 +43,7 @@ def serialize_json(value: PutGeofenceRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutGeofenceRequest:
     out: PutGeofenceRequest = {}  # type: ignore[typeddict-item]
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_location.types.geofence_geometry
 
         out["geometry"] = capo_location.types.geofence_geometry.deserialize_json(
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> PutGeofenceRequest:
         )
     else:
         raise DeserializationError("PutGeofenceRequest.geometry required")
-    if "GeofenceProperties" in data:
+    if data.get("GeofenceProperties") is not None:
         import capo_location.types.property_map
 
         out["geofence_properties"] = capo_location.types.property_map.deserialize_json(

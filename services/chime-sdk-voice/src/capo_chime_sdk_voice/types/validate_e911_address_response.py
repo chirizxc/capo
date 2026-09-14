@@ -49,19 +49,19 @@ def serialize_json(value: ValidateE911AddressResponse) -> dict:
 
 def deserialize_json(data: dict) -> ValidateE911AddressResponse:
     out: ValidateE911AddressResponse = {}  # type: ignore[typeddict-item]
-    if "ValidationResult" in data:
+    if data.get("ValidationResult") is not None:
         out["validation_result"] = data["ValidationResult"]
     else:
         out["validation_result"] = 0
-    if "AddressExternalId" in data:
+    if data.get("AddressExternalId") is not None:
         out["address_external_id"] = data["AddressExternalId"]
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_chime_sdk_voice.types.address
 
         out["address"] = capo_chime_sdk_voice.types.address.deserialize_json(
             data["Address"]
         )
-    if "CandidateAddressList" in data:
+    if data.get("CandidateAddressList") is not None:
         import capo_chime_sdk_voice.types.candidate_address_list
 
         out["candidate_address_list"] = (

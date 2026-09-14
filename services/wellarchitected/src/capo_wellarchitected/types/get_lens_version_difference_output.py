@@ -58,17 +58,17 @@ def serialize_json(value: GetLensVersionDifferenceOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetLensVersionDifferenceOutput:
     out: GetLensVersionDifferenceOutput = {}  # type: ignore[typeddict-item]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "BaseLensVersion" in data:
+    if data.get("BaseLensVersion") is not None:
         out["base_lens_version"] = data["BaseLensVersion"]
-    if "TargetLensVersion" in data:
+    if data.get("TargetLensVersion") is not None:
         out["target_lens_version"] = data["TargetLensVersion"]
-    if "LatestLensVersion" in data:
+    if data.get("LatestLensVersion") is not None:
         out["latest_lens_version"] = data["LatestLensVersion"]
-    if "VersionDifferences" in data:
+    if data.get("VersionDifferences") is not None:
         import capo_wellarchitected.types.version_differences
 
         out["version_differences"] = (

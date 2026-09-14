@@ -66,11 +66,11 @@ def serialize_aws_json_1_0(value: Connection) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Connection:
     out: Connection = {}  # type: ignore[typeddict-item]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_codeconnections.types.provider_type
 
         out["provider_type"] = (
@@ -78,9 +78,9 @@ def deserialize_aws_json_1_0(data: dict) -> Connection:
                 data["ProviderType"]
             )
         )
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "ConnectionStatus" in data:
+    if data.get("ConnectionStatus") is not None:
         import capo_codeconnections.types.connection_status
 
         out["connection_status"] = (
@@ -88,6 +88,6 @@ def deserialize_aws_json_1_0(data: dict) -> Connection:
                 data["ConnectionStatus"]
             )
         )
-    if "HostArn" in data:
+    if data.get("HostArn") is not None:
         out["host_arn"] = data["HostArn"]
     return out

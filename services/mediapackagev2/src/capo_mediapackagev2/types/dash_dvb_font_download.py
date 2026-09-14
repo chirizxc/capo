@@ -26,10 +26,10 @@ def serialize_json(value: DashDvbFontDownload) -> dict:
 
 def deserialize_json(data: dict) -> DashDvbFontDownload:
     out: DashDvbFontDownload = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "MimeType" in data:
+    if data.get("MimeType") is not None:
         out["mime_type"] = data["MimeType"]
-    if "FontFamily" in data:
+    if data.get("FontFamily") is not None:
         out["font_family"] = data["FontFamily"]
     return out

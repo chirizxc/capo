@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: ExternalMetricStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExternalMetricStatus:
     out: ExternalMetricStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         import capo_compute_optimizer.types.external_metric_status_code
 
         out["status_code"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(data: dict) -> ExternalMetricStatus:
                 data["statusCode"]
             )
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

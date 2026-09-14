@@ -66,15 +66,15 @@ def serialize_aws_json_1_0(value: EvaluateSessionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EvaluateSessionResponse:
     out: EvaluateSessionResponse = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
-    if "SessionName" in data:
+    if data.get("SessionName") is not None:
         out["session_name"] = data["SessionName"]
-    if "StreamingStatus" in data:
+    if data.get("StreamingStatus") is not None:
         out["streaming_status"] = data["StreamingStatus"]
-    if "AuthenticationResult" in data:
+    if data.get("AuthenticationResult") is not None:
         import capo_voice_id.types.authentication_result
 
         out["authentication_result"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> EvaluateSessionResponse:
                 data["AuthenticationResult"]
             )
         )
-    if "FraudDetectionResult" in data:
+    if data.get("FraudDetectionResult") is not None:
         import capo_voice_id.types.fraud_detection_result
 
         out["fraud_detection_result"] = (

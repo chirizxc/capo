@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: DescribeServiceActionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeServiceActionInput:
     out: DescribeServiceActionInput = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DescribeServiceActionInput.id required")
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
     return out

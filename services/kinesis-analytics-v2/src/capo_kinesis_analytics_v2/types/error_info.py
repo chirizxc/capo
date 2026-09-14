@@ -24,6 +24,6 @@ def serialize_aws_json_1_1(value: ErrorInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ErrorInfo:
     out: ErrorInfo = {}  # type: ignore[typeddict-item]
-    if "ErrorString" in data:
+    if data.get("ErrorString") is not None:
         out["error_string"] = data["ErrorString"]
     return out

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: GetTestResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTestResult:
     out: GetTestResult = {}  # type: ignore[typeddict-item]
-    if "test" in data:
+    if data.get("test") is not None:
         import capo_device_farm.types.test
 
         out["test"] = capo_device_farm.types.test.deserialize_aws_json_1_1(data["test"])

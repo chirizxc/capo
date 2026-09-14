@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: DeleteObservabilityConfigurationRequest) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteObservabilityConfigurationRequest:
     out: DeleteObservabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ObservabilityConfigurationArn" in data:
+    if data.get("ObservabilityConfigurationArn") is not None:
         out["observability_configuration_arn"] = data["ObservabilityConfigurationArn"]
     else:
         raise DeserializationError(

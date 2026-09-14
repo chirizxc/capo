@@ -71,19 +71,19 @@ def serialize_json(value: MovSettings) -> dict:
 
 def deserialize_json(data: dict) -> MovSettings:
     out: MovSettings = {}  # type: ignore[typeddict-item]
-    if "clapAtom" in data:
+    if data.get("clapAtom") is not None:
         import capo_mediaconvert.types.mov_clap_atom
 
         out["clap_atom"] = capo_mediaconvert.types.mov_clap_atom.deserialize_json(
             data["clapAtom"]
         )
-    if "cslgAtom" in data:
+    if data.get("cslgAtom") is not None:
         import capo_mediaconvert.types.mov_cslg_atom
 
         out["cslg_atom"] = capo_mediaconvert.types.mov_cslg_atom.deserialize_json(
             data["cslgAtom"]
         )
-    if "mpeg2FourCCControl" in data:
+    if data.get("mpeg2FourCCControl") is not None:
         import capo_mediaconvert.types.mov_mpeg2_four_cc_control
 
         out["mpeg2_four_cc_control"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> MovSettings:
                 data["mpeg2FourCCControl"]
             )
         )
-    if "paddingControl" in data:
+    if data.get("paddingControl") is not None:
         import capo_mediaconvert.types.mov_padding_control
 
         out["padding_control"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> MovSettings:
                 data["paddingControl"]
             )
         )
-    if "reference" in data:
+    if data.get("reference") is not None:
         import capo_mediaconvert.types.mov_reference
 
         out["reference"] = capo_mediaconvert.types.mov_reference.deserialize_json(

@@ -65,15 +65,15 @@ def serialize_json(value: StartVectorEnrichmentJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartVectorEnrichmentJobInput:
     out: StartVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("StartVectorEnrichmentJobInput.name required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "InputConfig" in data:
+    if data.get("InputConfig") is not None:
         import capo_sagemaker_geospatial.types.vector_enrichment_job_input_config
 
         out["input_config"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> StartVectorEnrichmentJobInput:
         raise DeserializationError(
             "StartVectorEnrichmentJobInput.input_config required"
         )
-    if "JobConfig" in data:
+    if data.get("JobConfig") is not None:
         import capo_sagemaker_geospatial.types.vector_enrichment_job_config
 
         out["job_config"] = (
@@ -95,13 +95,13 @@ def deserialize_json(data: dict) -> StartVectorEnrichmentJobInput:
         )
     else:
         raise DeserializationError("StartVectorEnrichmentJobInput.job_config required")
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     else:
         raise DeserializationError(
             "StartVectorEnrichmentJobInput.execution_role_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker_geospatial.types.tags
 
         out["tags"] = capo_sagemaker_geospatial.types.tags.deserialize_json(

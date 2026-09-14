@@ -43,14 +43,14 @@ def serialize_aws_json_1_1(value: TagOptionDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagOptionDetail:
     out: TagOptionDetail = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Active" in data:
+    if data.get("Active") is not None:
         out["active"] = data["Active"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
     return out

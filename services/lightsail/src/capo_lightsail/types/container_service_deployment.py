@@ -67,9 +67,9 @@ def serialize_aws_json_1_1(value: ContainerServiceDeployment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerServiceDeployment:
     out: ContainerServiceDeployment = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.container_service_deployment_state
 
         out["state"] = (
@@ -77,13 +77,13 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerServiceDeployment:
                 data["state"]
             )
         )
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_lightsail.types.container_map
 
         out["containers"] = capo_lightsail.types.container_map.deserialize_aws_json_1_1(
             data["containers"]
         )
-    if "publicEndpoint" in data:
+    if data.get("publicEndpoint") is not None:
         import capo_lightsail.types.container_service_endpoint
 
         out["public_endpoint"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerServiceDeployment:
                 data["publicEndpoint"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(

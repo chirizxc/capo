@@ -39,11 +39,11 @@ def serialize_json(value: GetClassificationScopeResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetClassificationScopeResponse:
     out: GetClassificationScopeResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_macie2.types.s3_classification_scope
 
         out["s3"] = capo_macie2.types.s3_classification_scope.deserialize_json(

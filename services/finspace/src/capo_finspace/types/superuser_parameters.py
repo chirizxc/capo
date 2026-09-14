@@ -31,15 +31,15 @@ def serialize_json(value: SuperuserParameters) -> dict:
 
 def deserialize_json(data: dict) -> SuperuserParameters:
     out: SuperuserParameters = {}  # type: ignore[typeddict-item]
-    if "emailAddress" in data:
+    if data.get("emailAddress") is not None:
         out["email_address"] = data["emailAddress"]
     else:
         raise DeserializationError("SuperuserParameters.email_address required")
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
     else:
         raise DeserializationError("SuperuserParameters.first_name required")
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
     else:
         raise DeserializationError("SuperuserParameters.last_name required")

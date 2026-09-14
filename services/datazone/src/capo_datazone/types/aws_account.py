@@ -33,9 +33,9 @@ def serialize_json(value: AwsAccount) -> dict:
 
 
 def deserialize_json(data: dict) -> AwsAccount:
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         return {"awsAccountId": data["awsAccountId"]}
-    elif "awsAccountIdPath" in data:
+    elif data.get("awsAccountIdPath") is not None:
         return {"awsAccountIdPath": data["awsAccountIdPath"]}
     else:
         raise DeserializationError("AwsAccount: no recognized variant key")

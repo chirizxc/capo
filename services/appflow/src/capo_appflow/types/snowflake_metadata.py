@@ -27,7 +27,7 @@ def serialize_json(value: SnowflakeMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SnowflakeMetadata:
     out: SnowflakeMetadata = {}  # type: ignore[typeddict-item]
-    if "supportedRegions" in data:
+    if data.get("supportedRegions") is not None:
         import capo_appflow.types.region_list
 
         out["supported_regions"] = capo_appflow.types.region_list.deserialize_json(

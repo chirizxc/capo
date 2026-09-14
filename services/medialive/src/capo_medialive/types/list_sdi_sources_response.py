@@ -34,9 +34,9 @@ def serialize_json(value: ListSdiSourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSdiSourcesResponse:
     out: ListSdiSourcesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sdiSources" in data:
+    if data.get("sdiSources") is not None:
         import capo_medialive.types.__list_of_sdi_source_summary
 
         out["sdi_sources"] = (

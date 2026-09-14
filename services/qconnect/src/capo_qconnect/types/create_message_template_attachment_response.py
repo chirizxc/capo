@@ -31,7 +31,7 @@ def serialize_json(value: CreateMessageTemplateAttachmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMessageTemplateAttachmentResponse:
     out: CreateMessageTemplateAttachmentResponse = {}  # type: ignore[typeddict-item]
-    if "attachment" in data:
+    if data.get("attachment") is not None:
         import capo_qconnect.types.message_template_attachment
 
         out["attachment"] = (

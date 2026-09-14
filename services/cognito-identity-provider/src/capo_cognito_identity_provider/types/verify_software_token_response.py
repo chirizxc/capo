@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: VerifySoftwareTokenResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VerifySoftwareTokenResponse:
     out: VerifySoftwareTokenResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cognito_identity_provider.types.verify_software_token_response_type
 
         out["status"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> VerifySoftwareTokenResponse:
                 data["Status"]
             )
         )
-    if "Session" in data:
+    if data.get("Session") is not None:
         out["session"] = data["Session"]
     return out

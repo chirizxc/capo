@@ -33,9 +33,9 @@ def serialize_json(value: Definition) -> dict:
 
 
 def deserialize_json(data: dict) -> Definition:
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         return {"s3Location": data["s3Location"]}
-    elif "content" in data:
+    elif data.get("content") is not None:
         return {"content": data["content"]}
     else:
         raise DeserializationError("Definition: no recognized variant key")

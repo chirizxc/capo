@@ -94,15 +94,15 @@ def serialize_json(value: RouteVehiclePlace) -> dict:
 
 def deserialize_json(data: dict) -> RouteVehiclePlace:
     out: RouteVehiclePlace = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OriginalPosition" in data:
+    if data.get("OriginalPosition") is not None:
         import capo_geo_routes.types.position23
 
         out["original_position"] = capo_geo_routes.types.position23.deserialize_json(
             data["OriginalPosition"]
         )
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_routes.types.position23
 
         out["position"] = capo_geo_routes.types.position23.deserialize_json(
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> RouteVehiclePlace:
         )
     else:
         raise DeserializationError("RouteVehiclePlace.position required")
-    if "SideOfStreet" in data:
+    if data.get("SideOfStreet") is not None:
         import capo_geo_routes.types.route_side_of_street
 
         out["side_of_street"] = (
@@ -118,9 +118,9 @@ def deserialize_json(data: dict) -> RouteVehiclePlace:
                 data["SideOfStreet"]
             )
         )
-    if "WaypointIndex" in data:
+    if data.get("WaypointIndex") is not None:
         out["waypoint_index"] = data["WaypointIndex"]
-    if "AccessPointDetails" in data:
+    if data.get("AccessPointDetails") is not None:
         import capo_geo_routes.types.route_access_point_details
 
         out["access_point_details"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> RouteVehiclePlace:
                 data["AccessPointDetails"]
             )
         )
-    if "StationDetails" in data:
+    if data.get("StationDetails") is not None:
         import capo_geo_routes.types.route_station_details
 
         out["station_details"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> RouteVehiclePlace:
                 data["StationDetails"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_geo_routes.types.route_vehicle_place_type
 
         out["type"] = capo_geo_routes.types.route_vehicle_place_type.deserialize_json(

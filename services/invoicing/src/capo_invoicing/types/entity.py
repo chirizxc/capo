@@ -34,9 +34,9 @@ def serialize_aws_json_1_0(value: Entity) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Entity:
     out: Entity = {}  # type: ignore[typeddict-item]
-    if "InvoicingEntity" in data:
+    if data.get("InvoicingEntity") is not None:
         out["invoicing_entity"] = data["InvoicingEntity"]
-    if "BillingEntity" in data:
+    if data.get("BillingEntity") is not None:
         import capo_invoicing.types.billing_entity
 
         out["billing_entity"] = (

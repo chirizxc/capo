@@ -16,4 +16,4 @@ def serialize_json(value: ParentHoursOfOperationIdList) -> list:
 
 
 def deserialize_json(data: list) -> ParentHoursOfOperationIdList:
-    return list(data)
+    return [item for item in data if item is not None]

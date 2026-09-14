@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DrillDownFilterList:
 
     out: DrillDownFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.drill_down_filter.deserialize_json(item))
     return out

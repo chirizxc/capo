@@ -23,6 +23,6 @@ def serialize_json(value: DeleteConsoleAuthorizationConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteConsoleAuthorizationConfigurationInput:
     out: DeleteConsoleAuthorizationConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "targetId" in data:
+    if data.get("targetId") is not None:
         out["target_id"] = data["targetId"]
     return out

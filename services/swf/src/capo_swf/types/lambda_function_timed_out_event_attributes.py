@@ -38,15 +38,15 @@ def serialize_aws_json_1_0(value: LambdaFunctionTimedOutEventAttributes) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionTimedOutEventAttributes:
     out: LambdaFunctionTimedOutEventAttributes = {}  # type: ignore[typeddict-item]
-    if "scheduledEventId" in data:
+    if data.get("scheduledEventId") is not None:
         out["scheduled_event_id"] = data["scheduledEventId"]
     else:
         out["scheduled_event_id"] = 0
-    if "startedEventId" in data:
+    if data.get("startedEventId") is not None:
         out["started_event_id"] = data["startedEventId"]
     else:
         out["started_event_id"] = 0
-    if "timeoutType" in data:
+    if data.get("timeoutType") is not None:
         import capo_swf.types.lambda_function_timeout_type
 
         out["timeout_type"] = (

@@ -42,7 +42,7 @@ def serialize_json(value: RuleGroupDetails) -> dict:
 
 def deserialize_json(data: dict) -> RuleGroupDetails:
     out: RuleGroupDetails = {}  # type: ignore[typeddict-item]
-    if "RuleVariables" in data:
+    if data.get("RuleVariables") is not None:
         import capo_securityhub.types.rule_group_variables
 
         out["rule_variables"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> RuleGroupDetails:
                 data["RuleVariables"]
             )
         )
-    if "RulesSource" in data:
+    if data.get("RulesSource") is not None:
         import capo_securityhub.types.rule_group_source
 
         out["rules_source"] = capo_securityhub.types.rule_group_source.deserialize_json(

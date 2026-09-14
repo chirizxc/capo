@@ -84,7 +84,16 @@ def serialize_aws_json_1_1(value: EndpointInput) -> dict:
     if "probability_attribute" in value:
         out["ProbabilityAttribute"] = value["probability_attribute"]
     if "probability_threshold_attribute" in value:
-        out["ProbabilityThresholdAttribute"] = value["probability_threshold_attribute"]
+        out["ProbabilityThresholdAttribute"] = (
+            "NaN"
+            if value["probability_threshold_attribute"]
+            != value["probability_threshold_attribute"]
+            else "Infinity"
+            if value["probability_threshold_attribute"] == float("inf")
+            else "-Infinity"
+            if value["probability_threshold_attribute"] == float("-inf")
+            else value["probability_threshold_attribute"]
+        )
     if "start_time_offset" in value:
         out["StartTimeOffset"] = value["start_time_offset"]
     if "end_time_offset" in value:
@@ -96,11 +105,11 @@ def serialize_aws_json_1_1(value: EndpointInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointInput:
     out: EndpointInput = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "LocalPath" in data:
+    if data.get("LocalPath") is not None:
         out["local_path"] = data["LocalPath"]
-    if "S3InputMode" in data:
+    if data.get("S3InputMode") is not None:
         import capo_sagemaker.types.processing_s3_input_mode
 
         out["s3_input_mode"] = (
@@ -108,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointInput:
                 data["S3InputMode"]
             )
         )
-    if "S3DataDistributionType" in data:
+    if data.get("S3DataDistributionType") is not None:
         import capo_sagemaker.types.processing_s3_data_distribution_type
 
         out["s3_data_distribution_type"] = (
@@ -116,18 +125,20 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointInput:
                 data["S3DataDistributionType"]
             )
         )
-    if "FeaturesAttribute" in data:
+    if data.get("FeaturesAttribute") is not None:
         out["features_attribute"] = data["FeaturesAttribute"]
-    if "InferenceAttribute" in data:
+    if data.get("InferenceAttribute") is not None:
         out["inference_attribute"] = data["InferenceAttribute"]
-    if "ProbabilityAttribute" in data:
+    if data.get("ProbabilityAttribute") is not None:
         out["probability_attribute"] = data["ProbabilityAttribute"]
-    if "ProbabilityThresholdAttribute" in data:
-        out["probability_threshold_attribute"] = data["ProbabilityThresholdAttribute"]
-    if "StartTimeOffset" in data:
+    if data.get("ProbabilityThresholdAttribute") is not None:
+        out["probability_threshold_attribute"] = float(
+            data["ProbabilityThresholdAttribute"]
+        )
+    if data.get("StartTimeOffset") is not None:
         out["start_time_offset"] = data["StartTimeOffset"]
-    if "EndTimeOffset" in data:
+    if data.get("EndTimeOffset") is not None:
         out["end_time_offset"] = data["EndTimeOffset"]
-    if "ExcludeFeaturesAttribute" in data:
+    if data.get("ExcludeFeaturesAttribute") is not None:
         out["exclude_features_attribute"] = data["ExcludeFeaturesAttribute"]
     return out

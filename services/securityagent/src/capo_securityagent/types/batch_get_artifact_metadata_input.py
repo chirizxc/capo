@@ -32,13 +32,13 @@ def serialize_json(value: BatchGetArtifactMetadataInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetArtifactMetadataInput:
     out: BatchGetArtifactMetadataInput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError(
             "BatchGetArtifactMetadataInput.agent_space_id required"
         )
-    if "artifactIds" in data:
+    if data.get("artifactIds") is not None:
         import capo_securityagent.types.artifact_ids
 
         out["artifact_ids"] = capo_securityagent.types.artifact_ids.deserialize_json(

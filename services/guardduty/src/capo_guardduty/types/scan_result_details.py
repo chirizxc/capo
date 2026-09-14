@@ -27,7 +27,7 @@ def serialize_json(value: ScanResultDetails) -> dict:
 
 def deserialize_json(data: dict) -> ScanResultDetails:
     out: ScanResultDetails = {}  # type: ignore[typeddict-item]
-    if "scanResult" in data:
+    if data.get("scanResult") is not None:
         import capo_guardduty.types.scan_result
 
         out["scan_result"] = capo_guardduty.types.scan_result.deserialize_json(

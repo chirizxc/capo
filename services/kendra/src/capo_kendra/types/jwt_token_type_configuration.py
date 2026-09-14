@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: JwtTokenTypeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JwtTokenTypeConfiguration:
     out: JwtTokenTypeConfiguration = {}  # type: ignore[typeddict-item]
-    if "KeyLocation" in data:
+    if data.get("KeyLocation") is not None:
         import capo_kendra.types.key_location
 
         out["key_location"] = capo_kendra.types.key_location.deserialize_aws_json_1_1(
@@ -70,16 +70,16 @@ def deserialize_aws_json_1_1(data: dict) -> JwtTokenTypeConfiguration:
         )
     else:
         raise DeserializationError("JwtTokenTypeConfiguration.key_location required")
-    if "URL" in data:
+    if data.get("URL") is not None:
         out["url"] = data["URL"]
-    if "SecretManagerArn" in data:
+    if data.get("SecretManagerArn") is not None:
         out["secret_manager_arn"] = data["SecretManagerArn"]
-    if "UserNameAttributeField" in data:
+    if data.get("UserNameAttributeField") is not None:
         out["user_name_attribute_field"] = data["UserNameAttributeField"]
-    if "GroupAttributeField" in data:
+    if data.get("GroupAttributeField") is not None:
         out["group_attribute_field"] = data["GroupAttributeField"]
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         out["issuer"] = data["Issuer"]
-    if "ClaimRegex" in data:
+    if data.get("ClaimRegex") is not None:
         out["claim_regex"] = data["ClaimRegex"]
     return out

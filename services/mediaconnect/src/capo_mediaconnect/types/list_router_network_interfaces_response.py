@@ -34,7 +34,7 @@ def serialize_json(value: ListRouterNetworkInterfacesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRouterNetworkInterfacesResponse:
     out: ListRouterNetworkInterfacesResponse = {}  # type: ignore[typeddict-item]
-    if "routerNetworkInterfaces" in data:
+    if data.get("routerNetworkInterfaces") is not None:
         import capo_mediaconnect.types.listed_router_network_interface_list
 
         out["router_network_interfaces"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListRouterNetworkInterfacesResponse:
         raise DeserializationError(
             "ListRouterNetworkInterfacesResponse.router_network_interfaces required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

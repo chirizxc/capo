@@ -41,7 +41,7 @@ def serialize_json(value: RegionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RegionConfiguration:
     out: RegionConfiguration = {}  # type: ignore[typeddict-item]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_controlcatalog.types.control_scope
 
         out["scope"] = capo_controlcatalog.types.control_scope.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> RegionConfiguration:
         )
     else:
         raise DeserializationError("RegionConfiguration.scope required")
-    if "DeployableRegions" in data:
+    if data.get("DeployableRegions") is not None:
         import capo_controlcatalog.types.deployable_regions
 
         out["deployable_regions"] = (

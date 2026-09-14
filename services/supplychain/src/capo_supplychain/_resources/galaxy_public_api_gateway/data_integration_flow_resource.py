@@ -102,12 +102,13 @@ class DataIntegrationFlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.create_data_integration_flow_request.CreateDataIntegrationFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
-        input_["sources"] = sources
-        input_["transformation"] = transformation
-        input_["target"] = target
+        input_: capo_supplychain.types.create_data_integration_flow_request.CreateDataIntegrationFlowRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "sources": sources,
+            "transformation": transformation,
+            "target": target,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -116,6 +117,7 @@ class DataIntegrationFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -162,15 +164,17 @@ class DataIntegrationFlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.get_data_integration_flow_request.GetDataIntegrationFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.get_data_integration_flow_request.GetDataIntegrationFlowRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -232,9 +236,10 @@ class DataIntegrationFlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.update_data_integration_flow_request.UpdateDataIntegrationFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.update_data_integration_flow_request.UpdateDataIntegrationFlowRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
         if sources is not None:
             input_["sources"] = sources
         if transformation is not None:
@@ -247,6 +252,7 @@ class DataIntegrationFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -293,15 +299,17 @@ class DataIntegrationFlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.delete_data_integration_flow_request.DeleteDataIntegrationFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.delete_data_integration_flow_request.DeleteDataIntegrationFlowRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -354,8 +362,9 @@ class DataIntegrationFlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.list_data_integration_flows_request.ListDataIntegrationFlowsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_supplychain.types.list_data_integration_flows_request.ListDataIntegrationFlowsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -366,6 +375,7 @@ class DataIntegrationFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -429,12 +439,13 @@ class AsyncDataIntegrationFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.create_data_integration_flow_request.CreateDataIntegrationFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
-        input_["sources"] = sources
-        input_["transformation"] = transformation
-        input_["target"] = target
+        input_: capo_supplychain.types.create_data_integration_flow_request.CreateDataIntegrationFlowRequest = {
+            "instance_id": instance_id,
+            "name": name,
+            "sources": sources,
+            "transformation": transformation,
+            "target": target,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -443,6 +454,7 @@ class AsyncDataIntegrationFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -490,15 +502,17 @@ class AsyncDataIntegrationFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.get_data_integration_flow_request.GetDataIntegrationFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.get_data_integration_flow_request.GetDataIntegrationFlowRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -561,9 +575,10 @@ class AsyncDataIntegrationFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.update_data_integration_flow_request.UpdateDataIntegrationFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.update_data_integration_flow_request.UpdateDataIntegrationFlowRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
         if sources is not None:
             input_["sources"] = sources
         if transformation is not None:
@@ -576,6 +591,7 @@ class AsyncDataIntegrationFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -623,15 +639,17 @@ class AsyncDataIntegrationFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.delete_data_integration_flow_request.DeleteDataIntegrationFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.delete_data_integration_flow_request.DeleteDataIntegrationFlowRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -685,8 +703,9 @@ class AsyncDataIntegrationFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.list_data_integration_flows_request.ListDataIntegrationFlowsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_supplychain.types.list_data_integration_flows_request.ListDataIntegrationFlowsRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -697,4 +716,5 @@ class AsyncDataIntegrationFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

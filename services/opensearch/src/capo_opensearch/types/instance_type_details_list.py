@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InstanceTypeDetailsList:
 
     out: InstanceTypeDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.instance_type_details.deserialize_json(item))
     return out

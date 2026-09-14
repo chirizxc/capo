@@ -31,7 +31,7 @@ def serialize_json(value: ExperimentTemplateReportConfigurationOutputs) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentTemplateReportConfigurationOutputs:
     out: ExperimentTemplateReportConfigurationOutputs = {}  # type: ignore[typeddict-item]
-    if "s3Configuration" in data:
+    if data.get("s3Configuration") is not None:
         import capo_fis.types.report_configuration_s3_output
 
         out["s3_configuration"] = (

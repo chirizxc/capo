@@ -58,17 +58,17 @@ def serialize_aws_json_1_1(value: DescribeAccessControlConfigurationResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAccessControlConfigurationResponse:
     out: DescribeAccessControlConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "DescribeAccessControlConfigurationResponse.name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "AccessControlList" in data:
+    if data.get("AccessControlList") is not None:
         import capo_kendra.types.principal_list
 
         out["access_control_list"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAccessControlConfigurationRe
                 data["AccessControlList"]
             )
         )
-    if "HierarchicalAccessControlList" in data:
+    if data.get("HierarchicalAccessControlList") is not None:
         import capo_kendra.types.hierarchical_principal_list
 
         out["hierarchical_access_control_list"] = (

@@ -64,7 +64,7 @@ def serialize_json(value: WaypointOptimizationAvoidanceOptions) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationAvoidanceOptions:
     out: WaypointOptimizationAvoidanceOptions = {}  # type: ignore[typeddict-item]
-    if "Areas" in data:
+    if data.get("Areas") is not None:
         import capo_geo_routes.types.waypoint_optimization_avoidance_area_list
 
         out["areas"] = (
@@ -72,18 +72,18 @@ def deserialize_json(data: dict) -> WaypointOptimizationAvoidanceOptions:
                 data["Areas"]
             )
         )
-    if "CarShuttleTrains" in data:
+    if data.get("CarShuttleTrains") is not None:
         out["car_shuttle_trains"] = data["CarShuttleTrains"]
-    if "ControlledAccessHighways" in data:
+    if data.get("ControlledAccessHighways") is not None:
         out["controlled_access_highways"] = data["ControlledAccessHighways"]
-    if "DirtRoads" in data:
+    if data.get("DirtRoads") is not None:
         out["dirt_roads"] = data["DirtRoads"]
-    if "Ferries" in data:
+    if data.get("Ferries") is not None:
         out["ferries"] = data["Ferries"]
-    if "TollRoads" in data:
+    if data.get("TollRoads") is not None:
         out["toll_roads"] = data["TollRoads"]
-    if "Tunnels" in data:
+    if data.get("Tunnels") is not None:
         out["tunnels"] = data["Tunnels"]
-    if "UTurns" in data:
+    if data.get("UTurns") is not None:
         out["u_turns"] = data["UTurns"]
     return out

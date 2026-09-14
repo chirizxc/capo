@@ -64,7 +64,7 @@ def serialize_json(value: CreateIdNamespaceAssociationInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateIdNamespaceAssociationInput:
     out: CreateIdNamespaceAssociationInput = {}  # type: ignore[typeddict-item]
-    if "inputReferenceConfig" in data:
+    if data.get("inputReferenceConfig") is not None:
         import capo_cleanrooms.types.id_namespace_association_input_reference_config
 
         out["input_reference_config"] = (
@@ -76,17 +76,17 @@ def deserialize_json(data: dict) -> CreateIdNamespaceAssociationInput:
         raise DeserializationError(
             "CreateIdNamespaceAssociationInput.input_reference_config required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanrooms.types.tag_map
 
         out["tags"] = capo_cleanrooms.types.tag_map.deserialize_json(data["tags"])
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateIdNamespaceAssociationInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "idMappingConfig" in data:
+    if data.get("idMappingConfig") is not None:
         import capo_cleanrooms.types.id_mapping_config
 
         out["id_mapping_config"] = (

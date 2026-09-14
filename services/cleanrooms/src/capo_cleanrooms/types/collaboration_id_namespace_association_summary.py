@@ -87,13 +87,13 @@ def serialize_json(value: CollaborationIdNamespaceAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> CollaborationIdNamespaceAssociationSummary:
     out: CollaborationIdNamespaceAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError(
             "CollaborationIdNamespaceAssociationSummary.arn required"
         )
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -103,13 +103,13 @@ def deserialize_json(data: dict) -> CollaborationIdNamespaceAssociationSummary:
         raise DeserializationError(
             "CollaborationIdNamespaceAssociationSummary.create_time required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError(
             "CollaborationIdNamespaceAssociationSummary.id required"
         )
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -119,25 +119,25 @@ def deserialize_json(data: dict) -> CollaborationIdNamespaceAssociationSummary:
         raise DeserializationError(
             "CollaborationIdNamespaceAssociationSummary.update_time required"
         )
-    if "collaborationArn" in data:
+    if data.get("collaborationArn") is not None:
         out["collaboration_arn"] = data["collaborationArn"]
     else:
         raise DeserializationError(
             "CollaborationIdNamespaceAssociationSummary.collaboration_arn required"
         )
-    if "collaborationId" in data:
+    if data.get("collaborationId") is not None:
         out["collaboration_id"] = data["collaborationId"]
     else:
         raise DeserializationError(
             "CollaborationIdNamespaceAssociationSummary.collaboration_id required"
         )
-    if "creatorAccountId" in data:
+    if data.get("creatorAccountId") is not None:
         out["creator_account_id"] = data["creatorAccountId"]
     else:
         raise DeserializationError(
             "CollaborationIdNamespaceAssociationSummary.creator_account_id required"
         )
-    if "inputReferenceConfig" in data:
+    if data.get("inputReferenceConfig") is not None:
         import capo_cleanrooms.types.id_namespace_association_input_reference_config
 
         out["input_reference_config"] = (
@@ -149,15 +149,15 @@ def deserialize_json(data: dict) -> CollaborationIdNamespaceAssociationSummary:
         raise DeserializationError(
             "CollaborationIdNamespaceAssociationSummary.input_reference_config required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "CollaborationIdNamespaceAssociationSummary.name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "inputReferenceProperties" in data:
+    if data.get("inputReferenceProperties") is not None:
         import capo_cleanrooms.types.id_namespace_association_input_reference_properties_summary
 
         out["input_reference_properties"] = (

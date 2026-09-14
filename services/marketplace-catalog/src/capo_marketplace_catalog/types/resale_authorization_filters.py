@@ -187,7 +187,7 @@ def serialize_json(value: ResaleAuthorizationFilters) -> dict:
 
 def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
     out: ResaleAuthorizationFilters = {}  # type: ignore[typeddict-item]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         import capo_marketplace_catalog.types.resale_authorization_entity_id_filter
 
         out["entity_id"] = (
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["EntityId"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_marketplace_catalog.types.resale_authorization_name_filter
 
         out["name"] = (
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["Name"]
             )
         )
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         import capo_marketplace_catalog.types.resale_authorization_product_id_filter
 
         out["product_id"] = (
@@ -211,7 +211,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["ProductId"]
             )
         )
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_marketplace_catalog.types.resale_authorization_created_date_filter
 
         out["created_date"] = (
@@ -219,7 +219,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["CreatedDate"]
             )
         )
-    if "AvailabilityEndDate" in data:
+    if data.get("AvailabilityEndDate") is not None:
         import capo_marketplace_catalog.types.resale_authorization_availability_end_date_filter
 
         out["availability_end_date"] = (
@@ -227,7 +227,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["AvailabilityEndDate"]
             )
         )
-    if "ManufacturerAccountId" in data:
+    if data.get("ManufacturerAccountId") is not None:
         import capo_marketplace_catalog.types.resale_authorization_manufacturer_account_id_filter
 
         out["manufacturer_account_id"] = (
@@ -235,7 +235,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["ManufacturerAccountId"]
             )
         )
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         import capo_marketplace_catalog.types.resale_authorization_product_name_filter
 
         out["product_name"] = (
@@ -243,7 +243,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["ProductName"]
             )
         )
-    if "ManufacturerLegalName" in data:
+    if data.get("ManufacturerLegalName") is not None:
         import capo_marketplace_catalog.types.resale_authorization_manufacturer_legal_name_filter
 
         out["manufacturer_legal_name"] = (
@@ -251,7 +251,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["ManufacturerLegalName"]
             )
         )
-    if "ResellerAccountID" in data:
+    if data.get("ResellerAccountID") is not None:
         import capo_marketplace_catalog.types.resale_authorization_reseller_account_id_filter
 
         out["reseller_account_id"] = (
@@ -259,7 +259,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["ResellerAccountID"]
             )
         )
-    if "ResellerLegalName" in data:
+    if data.get("ResellerLegalName") is not None:
         import capo_marketplace_catalog.types.resale_authorization_reseller_legal_name_filter
 
         out["reseller_legal_name"] = (
@@ -267,7 +267,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["ResellerLegalName"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_marketplace_catalog.types.resale_authorization_status_filter
 
         out["status"] = (
@@ -275,7 +275,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["Status"]
             )
         )
-    if "OfferExtendedStatus" in data:
+    if data.get("OfferExtendedStatus") is not None:
         import capo_marketplace_catalog.types.resale_authorization_offer_extended_status_filter
 
         out["offer_extended_status"] = (
@@ -283,7 +283,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
                 data["OfferExtendedStatus"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_marketplace_catalog.types.resale_authorization_last_modified_date_filter
 
         out["last_modified_date"] = (

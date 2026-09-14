@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CustomLineItemVersionList:
 
     out: CustomLineItemVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_billingconductor.types.custom_line_item_version_list_element.deserialize_json(
                 item

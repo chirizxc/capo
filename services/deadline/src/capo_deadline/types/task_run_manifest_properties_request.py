@@ -27,8 +27,8 @@ def serialize_json(value: TaskRunManifestPropertiesRequest) -> dict:
 
 def deserialize_json(data: dict) -> TaskRunManifestPropertiesRequest:
     out: TaskRunManifestPropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "outputManifestPath" in data:
+    if data.get("outputManifestPath") is not None:
         out["output_manifest_path"] = data["outputManifestPath"]
-    if "outputManifestHash" in data:
+    if data.get("outputManifestHash") is not None:
         out["output_manifest_hash"] = data["outputManifestHash"]
     return out

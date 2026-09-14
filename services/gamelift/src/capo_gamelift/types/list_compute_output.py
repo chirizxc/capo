@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: ListComputeOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListComputeOutput:
     out: ListComputeOutput = {}  # type: ignore[typeddict-item]
-    if "ComputeList" in data:
+    if data.get("ComputeList") is not None:
         import capo_gamelift.types.compute_list
 
         out["compute_list"] = capo_gamelift.types.compute_list.deserialize_aws_json_1_1(
             data["ComputeList"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

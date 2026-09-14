@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ReputationEntitiesList:
 
     out: ReputationEntitiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.reputation_entity.deserialize_json(item))
     return out

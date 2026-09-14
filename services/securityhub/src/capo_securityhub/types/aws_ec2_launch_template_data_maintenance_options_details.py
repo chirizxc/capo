@@ -23,6 +23,6 @@ def serialize_json(value: AwsEc2LaunchTemplateDataMaintenanceOptionsDetails) -> 
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataMaintenanceOptionsDetails:
     out: AwsEc2LaunchTemplateDataMaintenanceOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "AutoRecovery" in data:
+    if data.get("AutoRecovery") is not None:
         out["auto_recovery"] = data["AutoRecovery"]
     return out

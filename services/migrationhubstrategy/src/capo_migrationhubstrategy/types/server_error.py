@@ -25,6 +25,6 @@ def serialize_json(value: ServerError) -> dict:
 
 def deserialize_json(data: dict) -> ServerError:
     out: ServerError = {}  # type: ignore[typeddict-item]
-    if "serverErrorCategory" in data:
+    if data.get("serverErrorCategory") is not None:
         out["server_error_category"] = data["serverErrorCategory"]
     return out

@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: ResourceCostCalculation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceCostCalculation:
     out: ResourceCostCalculation = {}  # type: ignore[typeddict-item]
-    if "usages" in data:
+    if data.get("usages") is not None:
         import capo_cost_optimization_hub.types.usage_list
 
         out["usages"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceCostCalculation:
                 data["usages"]
             )
         )
-    if "pricing" in data:
+    if data.get("pricing") is not None:
         import capo_cost_optimization_hub.types.resource_pricing
 
         out["pricing"] = (

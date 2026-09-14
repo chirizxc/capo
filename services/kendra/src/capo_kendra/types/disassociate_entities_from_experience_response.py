@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DisassociateEntitiesFromExperienceResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateEntitiesFromExperienceResponse:
     out: DisassociateEntitiesFromExperienceResponse = {}  # type: ignore[typeddict-item]
-    if "FailedEntityList" in data:
+    if data.get("FailedEntityList") is not None:
         import capo_kendra.types.failed_entity_list
 
         out["failed_entity_list"] = (

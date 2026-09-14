@@ -11,6 +11,7 @@ from typing_extensions import Never
 
 import capo_wickr._auth._signers
 import capo_wickr._auth._sigv4
+import capo_wickr._protocol.eventstream
 import capo_wickr.errors.bad_request_error
 import capo_wickr.errors.forbidden_error
 import capo_wickr.errors.internal_server_error
@@ -34,23 +35,33 @@ def handle_error(response: zapros.Response) -> Never:
     code, message = parse_error_metadata_json(response, data)
     match code:
         case "BadRequestError":
-            raise capo_wickr.errors.bad_request_error.BadRequestError.from_json(data)
+            raise capo_wickr.errors.bad_request_error.BadRequestError.from_json(
+                data, message
+            )
         case "ForbiddenError":
-            raise capo_wickr.errors.forbidden_error.ForbiddenError.from_json(data)
+            raise capo_wickr.errors.forbidden_error.ForbiddenError.from_json(
+                data, message
+            )
         case "InternalServerError":
             raise capo_wickr.errors.internal_server_error.InternalServerError.from_json(
-                data
+                data, message
             )
         case "RateLimitError":
-            raise capo_wickr.errors.rate_limit_error.RateLimitError.from_json(data)
+            raise capo_wickr.errors.rate_limit_error.RateLimitError.from_json(
+                data, message
+            )
         case "ResourceNotFoundError":
             raise capo_wickr.errors.resource_not_found_error.ResourceNotFoundError.from_json(
-                data
+                data, message
             )
         case "UnauthorizedError":
-            raise capo_wickr.errors.unauthorized_error.UnauthorizedError.from_json(data)
+            raise capo_wickr.errors.unauthorized_error.UnauthorizedError.from_json(
+                data, message
+            )
         case "ValidationError":
-            raise capo_wickr.errors.validation_error.ValidationError.from_json(data)
+            raise capo_wickr.errors.validation_error.ValidationError.from_json(
+                data, message
+            )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
 
@@ -82,17 +93,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_wickr._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_wickr._auth._sigv4.build_sigv4_auth_scheme("wickr", options.region)
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_wickr._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_wickr._auth._sigv4.build_sigv4_auth_scheme(
+                "wickr", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_wickr._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -108,32 +128,48 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_wickr.types.sort_direction
+    import capo_wickr.types.user_status
+
     url = endpoint.url.rstrip("/") + "/networks/{networkId}/users"
-    url = url.replace("{networkId}", quote(str(input_["network_id"]), safe=""))
-    params: dict[str, str] = {}
+    url = url.replace("{networkId}", quote(input_["network_id"], safe=""))
+    params: list[tuple[str, str]] = []
     if "next_token" in input_:
-        params["nextToken"] = str(input_["next_token"])
+        params.append(("nextToken", input_["next_token"]))
     if "max_results" in input_:
-        params["maxResults"] = str(input_["max_results"])
+        params.append(("maxResults", str(input_["max_results"])))
     if "sort_fields" in input_:
-        params["sortFields"] = str(input_["sort_fields"])
+        params.append(("sortFields", input_["sort_fields"]))
     if "sort_direction" in input_:
-        params["sortDirection"] = str(input_["sort_direction"])
+        params.append(
+            (
+                "sortDirection",
+                capo_wickr.types.sort_direction.serialize_json(
+                    input_["sort_direction"]
+                ),
+            )
+        )
     if "first_name" in input_:
-        params["firstName"] = str(input_["first_name"])
+        params.append(("firstName", input_["first_name"]))
     if "last_name" in input_:
-        params["lastName"] = str(input_["last_name"])
+        params.append(("lastName", input_["last_name"]))
     if "username" in input_:
-        params["username"] = str(input_["username"])
+        params.append(("username", input_["username"]))
     if "status" in input_:
-        params["status"] = str(input_["status"])
+        params.append(
+            (
+                "status",
+                str(capo_wickr.types.user_status.serialize_json(input_["status"])),
+            )
+        )
     if "group_id" in input_:
-        params["groupId"] = str(input_["group_id"])
+        params.append(("groupId", input_["group_id"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "GET", headers=headers, body=body, context={"signer": signer}
     )
@@ -145,7 +181,7 @@ def list_users(
 ) -> tuple[capo_wickr.types.list_users_response.ListUsersResponse, zapros.Response]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -160,7 +196,7 @@ async def async_list_users(
 ) -> tuple[capo_wickr.types.list_users_response.ListUsersResponse, zapros.Response]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

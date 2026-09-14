@@ -51,23 +51,23 @@ def serialize_aws_json_1_0(value: CreateEngagementContextRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEngagementContextRequest:
     out: CreateEngagementContextRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("CreateEngagementContextRequest.catalog required")
-    if "EngagementIdentifier" in data:
+    if data.get("EngagementIdentifier") is not None:
         out["engagement_identifier"] = data["EngagementIdentifier"]
     else:
         raise DeserializationError(
             "CreateEngagementContextRequest.engagement_identifier required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(
             "CreateEngagementContextRequest.client_token required"
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_partnercentral_selling.types.engagement_context_type
 
         out["type"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEngagementContextRequest:
         )
     else:
         raise DeserializationError("CreateEngagementContextRequest.type required")
-    if "Payload" in data:
+    if data.get("Payload") is not None:
         import capo_partnercentral_selling.types.engagement_context_payload
 
         out["payload"] = (

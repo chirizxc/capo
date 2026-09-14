@@ -35,7 +35,7 @@ def serialize_json(value: EvaluateDataTableValuesResponse) -> dict:
 
 def deserialize_json(data: dict) -> EvaluateDataTableValuesResponse:
     out: EvaluateDataTableValuesResponse = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.data_table_evaluated_value_list
 
         out["values"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> EvaluateDataTableValuesResponse:
         )
     else:
         raise DeserializationError("EvaluateDataTableValuesResponse.values required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

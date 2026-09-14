@@ -73,19 +73,19 @@ def serialize_aws_json_1_0(value: CreateProxyRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateProxyRequest:
     out: CreateProxyRequest = {}  # type: ignore[typeddict-item]
-    if "ProxyName" in data:
+    if data.get("ProxyName") is not None:
         out["proxy_name"] = data["ProxyName"]
     else:
         raise DeserializationError("CreateProxyRequest.proxy_name required")
-    if "NatGatewayId" in data:
+    if data.get("NatGatewayId") is not None:
         out["nat_gateway_id"] = data["NatGatewayId"]
     else:
         raise DeserializationError("CreateProxyRequest.nat_gateway_id required")
-    if "ProxyConfigurationName" in data:
+    if data.get("ProxyConfigurationName") is not None:
         out["proxy_configuration_name"] = data["ProxyConfigurationName"]
-    if "ProxyConfigurationArn" in data:
+    if data.get("ProxyConfigurationArn") is not None:
         out["proxy_configuration_arn"] = data["ProxyConfigurationArn"]
-    if "ListenerProperties" in data:
+    if data.get("ListenerProperties") is not None:
         import capo_network_firewall.types.listener_properties_request
 
         out["listener_properties"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProxyRequest:
                 data["ListenerProperties"]
             )
         )
-    if "TlsInterceptProperties" in data:
+    if data.get("TlsInterceptProperties") is not None:
         import capo_network_firewall.types.tls_intercept_properties_request
 
         out["tls_intercept_properties"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProxyRequest:
         raise DeserializationError(
             "CreateProxyRequest.tls_intercept_properties required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(

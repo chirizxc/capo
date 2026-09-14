@@ -53,22 +53,22 @@ def serialize_json(value: Framework) -> dict:
 
 def deserialize_json(data: dict) -> Framework:
     out: Framework = {}  # type: ignore[typeddict-item]
-    if "FrameworkName" in data:
+    if data.get("FrameworkName") is not None:
         out["framework_name"] = data["FrameworkName"]
-    if "FrameworkArn" in data:
+    if data.get("FrameworkArn") is not None:
         out["framework_arn"] = data["FrameworkArn"]
-    if "FrameworkDescription" in data:
+    if data.get("FrameworkDescription") is not None:
         out["framework_description"] = data["FrameworkDescription"]
-    if "NumberOfControls" in data:
+    if data.get("NumberOfControls") is not None:
         out["number_of_controls"] = data["NumberOfControls"]
     else:
         out["number_of_controls"] = 0
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types.timestamp
 
         out["creation_time"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "DeploymentStatus" in data:
+    if data.get("DeploymentStatus") is not None:
         out["deployment_status"] = data["DeploymentStatus"]
     return out

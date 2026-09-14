@@ -25,7 +25,7 @@ def serialize_json(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_quicksetup.types.tags
 
         out["tags"] = capo_ssm_quicksetup.types.tags.deserialize_json(data["Tags"])

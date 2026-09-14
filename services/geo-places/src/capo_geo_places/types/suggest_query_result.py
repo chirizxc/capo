@@ -28,8 +28,8 @@ def serialize_json(value: SuggestQueryResult) -> dict:
 
 def deserialize_json(data: dict) -> SuggestQueryResult:
     out: SuggestQueryResult = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
-    if "QueryType" in data:
+    if data.get("QueryType") is not None:
         out["query_type"] = data["QueryType"]
     return out

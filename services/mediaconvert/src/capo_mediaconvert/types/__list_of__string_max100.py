@@ -16,4 +16,4 @@ def serialize_json(value: __listOf__stringMax100) -> list:
 
 
 def deserialize_json(data: list) -> __listOf__stringMax100:
-    return list(data)
+    return [item for item in data if item is not None]

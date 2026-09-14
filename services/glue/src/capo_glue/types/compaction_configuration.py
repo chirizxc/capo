@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CompactionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CompactionConfiguration:
     out: CompactionConfiguration = {}  # type: ignore[typeddict-item]
-    if "icebergConfiguration" in data:
+    if data.get("icebergConfiguration") is not None:
         import capo_glue.types.iceberg_compaction_configuration
 
         out["iceberg_configuration"] = (

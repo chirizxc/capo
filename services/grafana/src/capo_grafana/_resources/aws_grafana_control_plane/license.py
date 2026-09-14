@@ -71,9 +71,10 @@ class License:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.associate_license_request.AssociateLicenseRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["license_type"] = license_type
+        input_: capo_grafana.types.associate_license_request.AssociateLicenseRequest = {
+            "workspace_id": workspace_id,
+            "license_type": license_type,
+        }
         if grafana_token is not None:
             input_["grafana_token"] = grafana_token
 
@@ -82,6 +83,7 @@ class License:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_license(
@@ -121,15 +123,17 @@ class License:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.disassociate_license_request.DisassociateLicenseRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["license_type"] = license_type
+        input_: capo_grafana.types.disassociate_license_request.DisassociateLicenseRequest = {
+            "workspace_id": workspace_id,
+            "license_type": license_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -177,9 +181,10 @@ class AsyncLicense:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.associate_license_request.AssociateLicenseRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["license_type"] = license_type
+        input_: capo_grafana.types.associate_license_request.AssociateLicenseRequest = {
+            "workspace_id": workspace_id,
+            "license_type": license_type,
+        }
         if grafana_token is not None:
             input_["grafana_token"] = grafana_token
 
@@ -188,6 +193,7 @@ class AsyncLicense:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_license(
@@ -228,13 +234,15 @@ class AsyncLicense:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.disassociate_license_request.DisassociateLicenseRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["license_type"] = license_type
+        input_: capo_grafana.types.disassociate_license_request.DisassociateLicenseRequest = {
+            "workspace_id": workspace_id,
+            "license_type": license_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

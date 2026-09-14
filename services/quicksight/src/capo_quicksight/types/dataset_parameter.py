@@ -70,7 +70,7 @@ def serialize_json(value: DatasetParameter) -> dict:
 
 def deserialize_json(data: dict) -> DatasetParameter:
     out: DatasetParameter = {}  # type: ignore[typeddict-item]
-    if "StringDatasetParameter" in data:
+    if data.get("StringDatasetParameter") is not None:
         import capo_quicksight.types.string_dataset_parameter
 
         out["string_dataset_parameter"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> DatasetParameter:
                 data["StringDatasetParameter"]
             )
         )
-    if "DecimalDatasetParameter" in data:
+    if data.get("DecimalDatasetParameter") is not None:
         import capo_quicksight.types.decimal_dataset_parameter
 
         out["decimal_dataset_parameter"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> DatasetParameter:
                 data["DecimalDatasetParameter"]
             )
         )
-    if "IntegerDatasetParameter" in data:
+    if data.get("IntegerDatasetParameter") is not None:
         import capo_quicksight.types.integer_dataset_parameter
 
         out["integer_dataset_parameter"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> DatasetParameter:
                 data["IntegerDatasetParameter"]
             )
         )
-    if "DateTimeDatasetParameter" in data:
+    if data.get("DateTimeDatasetParameter") is not None:
         import capo_quicksight.types.date_time_dataset_parameter
 
         out["date_time_dataset_parameter"] = (

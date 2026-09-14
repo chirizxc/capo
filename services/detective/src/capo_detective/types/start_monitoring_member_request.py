@@ -28,11 +28,11 @@ def serialize_json(value: StartMonitoringMemberRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartMonitoringMemberRequest:
     out: StartMonitoringMemberRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError("StartMonitoringMemberRequest.graph_arn required")
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("StartMonitoringMemberRequest.account_id required")

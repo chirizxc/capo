@@ -66,37 +66,37 @@ def serialize_json(value: CreateMultipartReadSetUploadRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMultipartReadSetUploadRequest:
     out: CreateMultipartReadSetUploadRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "sourceFileType" in data:
+    if data.get("sourceFileType") is not None:
         out["source_file_type"] = data["sourceFileType"]
     else:
         raise DeserializationError(
             "CreateMultipartReadSetUploadRequest.source_file_type required"
         )
-    if "subjectId" in data:
+    if data.get("subjectId") is not None:
         out["subject_id"] = data["subjectId"]
     else:
         raise DeserializationError(
             "CreateMultipartReadSetUploadRequest.subject_id required"
         )
-    if "sampleId" in data:
+    if data.get("sampleId") is not None:
         out["sample_id"] = data["sampleId"]
     else:
         raise DeserializationError(
             "CreateMultipartReadSetUploadRequest.sample_id required"
         )
-    if "generatedFrom" in data:
+    if data.get("generatedFrom") is not None:
         out["generated_from"] = data["generatedFrom"]
-    if "referenceArn" in data:
+    if data.get("referenceArn") is not None:
         out["reference_arn"] = data["referenceArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateMultipartReadSetUploadRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])

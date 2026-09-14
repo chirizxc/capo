@@ -27,7 +27,7 @@ def serialize_json(value: SdkTypes) -> dict:
 
 def deserialize_json(data: dict) -> SdkTypes:
     out: SdkTypes = {}  # type: ignore[typeddict-item]
-    if "item" in data:
+    if data.get("item") is not None:
         import capo_api_gateway.types.list_of_sdk_type
 
         out["items"] = capo_api_gateway.types.list_of_sdk_type.deserialize_json(

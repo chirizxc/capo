@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: TargetInstances) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetInstances:
     out: TargetInstances = {}  # type: ignore[typeddict-item]
-    if "tagFilters" in data:
+    if data.get("tagFilters") is not None:
         import capo_codedeploy.types.ec2_tag_filter_list
 
         out["tag_filters"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetInstances:
                 data["tagFilters"]
             )
         )
-    if "autoScalingGroups" in data:
+    if data.get("autoScalingGroups") is not None:
         import capo_codedeploy.types.auto_scaling_group_name_list
 
         out["auto_scaling_groups"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetInstances:
                 data["autoScalingGroups"]
             )
         )
-    if "ec2TagSet" in data:
+    if data.get("ec2TagSet") is not None:
         import capo_codedeploy.types.ec2_tag_set
 
         out["ec2_tag_set"] = capo_codedeploy.types.ec2_tag_set.deserialize_aws_json_1_1(

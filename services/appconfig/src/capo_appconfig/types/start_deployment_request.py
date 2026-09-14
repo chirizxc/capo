@@ -70,33 +70,33 @@ def serialize_json(value: StartDeploymentRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDeploymentRequest:
     out: StartDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "DeploymentStrategyId" in data:
+    if data.get("DeploymentStrategyId") is not None:
         out["deployment_strategy_id"] = data["DeploymentStrategyId"]
     else:
         raise DeserializationError(
             "StartDeploymentRequest.deployment_strategy_id required"
         )
-    if "ConfigurationProfileId" in data:
+    if data.get("ConfigurationProfileId") is not None:
         out["configuration_profile_id"] = data["ConfigurationProfileId"]
     else:
         raise DeserializationError(
             "StartDeploymentRequest.configuration_profile_id required"
         )
-    if "ConfigurationVersion" in data:
+    if data.get("ConfigurationVersion") is not None:
         out["configuration_version"] = data["ConfigurationVersion"]
     else:
         raise DeserializationError(
             "StartDeploymentRequest.configuration_version required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appconfig.types.tag_map
 
         out["tags"] = capo_appconfig.types.tag_map.deserialize_json(data["Tags"])
-    if "KmsKeyIdentifier" in data:
+    if data.get("KmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["KmsKeyIdentifier"]
-    if "DynamicExtensionParameters" in data:
+    if data.get("DynamicExtensionParameters") is not None:
         import capo_appconfig.types.dynamic_parameter_map
 
         out["dynamic_extension_parameters"] = (

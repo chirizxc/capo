@@ -36,7 +36,7 @@ def serialize_json(value: PredictionTimeRange) -> dict:
 
 def deserialize_json(data: dict) -> PredictionTimeRange:
     out: PredictionTimeRange = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["start_time"] = capo_devops_guru.types.timestamp.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> PredictionTimeRange:
         )
     else:
         raise DeserializationError("PredictionTimeRange.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["end_time"] = capo_devops_guru.types.timestamp.deserialize_json(

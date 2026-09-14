@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> PropertyGroups:
 
     out: PropertyGroups = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kinesis_analytics_v2.types.property_group.deserialize_aws_json_1_1(
                 item

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DeploymentEvents:
 
     out: DeploymentEvents = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appconfig.types.deployment_event.deserialize_json(item))
     return out

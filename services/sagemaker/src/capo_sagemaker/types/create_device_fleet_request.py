@@ -64,13 +64,13 @@ def serialize_aws_json_1_1(value: CreateDeviceFleetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDeviceFleetRequest:
     out: CreateDeviceFleetRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.edge_output_config
 
         out["output_config"] = (
@@ -78,12 +78,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeviceFleetRequest:
                 data["OutputConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "EnableIotRoleAlias" in data:
+    if data.get("EnableIotRoleAlias") is not None:
         out["enable_iot_role_alias"] = data["EnableIotRoleAlias"]
     return out

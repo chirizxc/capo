@@ -28,8 +28,8 @@ def serialize_json(value: ListTenantsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListTenantsRequest:
     out: ListTenantsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     return out

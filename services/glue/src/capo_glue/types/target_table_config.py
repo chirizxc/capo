@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: TargetTableConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetTableConfig:
     out: TargetTableConfig = {}  # type: ignore[typeddict-item]
-    if "UnnestSpec" in data:
+    if data.get("UnnestSpec") is not None:
         import capo_glue.types.unnest_spec
 
         out["unnest_spec"] = capo_glue.types.unnest_spec.deserialize_aws_json_1_1(
             data["UnnestSpec"]
         )
-    if "PartitionSpec" in data:
+    if data.get("PartitionSpec") is not None:
         import capo_glue.types.integration_partition_spec_list
 
         out["partition_spec"] = (
@@ -59,6 +59,6 @@ def deserialize_aws_json_1_1(data: dict) -> TargetTableConfig:
                 data["PartitionSpec"]
             )
         )
-    if "TargetTableName" in data:
+    if data.get("TargetTableName") is not None:
         out["target_table_name"] = data["TargetTableName"]
     return out

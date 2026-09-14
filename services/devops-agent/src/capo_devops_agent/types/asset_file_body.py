@@ -39,7 +39,7 @@ def serialize_json(value: AssetFileBody) -> dict:
 
 
 def deserialize_json(data: dict) -> AssetFileBody:
-    if "bytes" in data:
+    if data.get("bytes") is not None:
         import capo_devops_agent.types.asset_file_bytes
 
         return {
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> AssetFileBody:
                 data["bytes"]
             )
         }
-    elif "text" in data:
+    elif data.get("text") is not None:
         return {"text": data["text"]}
     else:
         raise DeserializationError("AssetFileBody: no recognized variant key")

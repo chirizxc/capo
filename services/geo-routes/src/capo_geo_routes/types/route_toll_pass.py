@@ -53,15 +53,15 @@ def serialize_json(value: RouteTollPass) -> dict:
 
 def deserialize_json(data: dict) -> RouteTollPass:
     out: RouteTollPass = {}  # type: ignore[typeddict-item]
-    if "IncludesReturnTrip" in data:
+    if data.get("IncludesReturnTrip") is not None:
         out["includes_return_trip"] = data["IncludesReturnTrip"]
-    if "SeniorPass" in data:
+    if data.get("SeniorPass") is not None:
         out["senior_pass"] = data["SeniorPass"]
-    if "TransferCount" in data:
+    if data.get("TransferCount") is not None:
         out["transfer_count"] = data["TransferCount"]
-    if "TripCount" in data:
+    if data.get("TripCount") is not None:
         out["trip_count"] = data["TripCount"]
-    if "ValidityPeriod" in data:
+    if data.get("ValidityPeriod") is not None:
         import capo_geo_routes.types.route_toll_pass_validity_period
 
         out["validity_period"] = (

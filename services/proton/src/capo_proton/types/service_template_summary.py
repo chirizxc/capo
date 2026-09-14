@@ -66,15 +66,15 @@ def serialize_aws_json_1_0(value: ServiceTemplateSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServiceTemplateSummary:
     out: ServiceTemplateSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ServiceTemplateSummary.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ServiceTemplateSummary.arn required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> ServiceTemplateSummary:
         )
     else:
         raise DeserializationError("ServiceTemplateSummary.created_at required")
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_modified_at"] = (
@@ -94,12 +94,12 @@ def deserialize_aws_json_1_0(data: dict) -> ServiceTemplateSummary:
         )
     else:
         raise DeserializationError("ServiceTemplateSummary.last_modified_at required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "recommendedVersion" in data:
+    if data.get("recommendedVersion") is not None:
         out["recommended_version"] = data["recommendedVersion"]
-    if "pipelineProvisioning" in data:
+    if data.get("pipelineProvisioning") is not None:
         out["pipeline_provisioning"] = data["pipelineProvisioning"]
     return out

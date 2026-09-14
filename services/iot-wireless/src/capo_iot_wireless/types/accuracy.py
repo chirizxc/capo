@@ -24,16 +24,32 @@ class Accuracy(TypedDict, closed=True):
 def serialize_json(value: Accuracy) -> dict:
     out: dict = {}
     if "horizontal_accuracy" in value:
-        out["HorizontalAccuracy"] = value["horizontal_accuracy"]
+        out["HorizontalAccuracy"] = (
+            "NaN"
+            if value["horizontal_accuracy"] != value["horizontal_accuracy"]
+            else "Infinity"
+            if value["horizontal_accuracy"] == float("inf")
+            else "-Infinity"
+            if value["horizontal_accuracy"] == float("-inf")
+            else value["horizontal_accuracy"]
+        )
     if "vertical_accuracy" in value:
-        out["VerticalAccuracy"] = value["vertical_accuracy"]
+        out["VerticalAccuracy"] = (
+            "NaN"
+            if value["vertical_accuracy"] != value["vertical_accuracy"]
+            else "Infinity"
+            if value["vertical_accuracy"] == float("inf")
+            else "-Infinity"
+            if value["vertical_accuracy"] == float("-inf")
+            else value["vertical_accuracy"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Accuracy:
     out: Accuracy = {}  # type: ignore[typeddict-item]
-    if "HorizontalAccuracy" in data:
-        out["horizontal_accuracy"] = data["HorizontalAccuracy"]
-    if "VerticalAccuracy" in data:
-        out["vertical_accuracy"] = data["VerticalAccuracy"]
+    if data.get("HorizontalAccuracy") is not None:
+        out["horizontal_accuracy"] = float(data["HorizontalAccuracy"])
+    if data.get("VerticalAccuracy") is not None:
+        out["vertical_accuracy"] = float(data["VerticalAccuracy"])
     return out

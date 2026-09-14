@@ -47,17 +47,17 @@ def serialize_json(value: Thumbnail) -> dict:
 
 def deserialize_json(data: dict) -> Thumbnail:
     out: Thumbnail = {}  # type: ignore[typeddict-item]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
-    if "thumbnailType" in data:
+    if data.get("thumbnailType") is not None:
         import capo_medialive.types.thumbnail_type
 
         out["thumbnail_type"] = capo_medialive.types.thumbnail_type.deserialize_json(
             data["thumbnailType"]
         )
-    if "timeStamp" in data:
+    if data.get("timeStamp") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["time_stamp"] = capo_medialive.types.__timestamp_iso8601.deserialize_json(

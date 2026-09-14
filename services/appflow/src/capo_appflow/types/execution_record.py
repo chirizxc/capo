@@ -85,43 +85,43 @@ def serialize_json(value: ExecutionRecord) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionRecord:
     out: ExecutionRecord = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
-    if "executionStatus" in data:
+    if data.get("executionStatus") is not None:
         import capo_appflow.types.execution_status
 
         out["execution_status"] = capo_appflow.types.execution_status.deserialize_json(
             data["executionStatus"]
         )
-    if "executionResult" in data:
+    if data.get("executionResult") is not None:
         import capo_appflow.types.execution_result
 
         out["execution_result"] = capo_appflow.types.execution_result.deserialize_json(
             data["executionResult"]
         )
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_appflow.types.date
 
         out["started_at"] = capo_appflow.types.date.deserialize_json(data["startedAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_appflow.types.date
 
         out["last_updated_at"] = capo_appflow.types.date.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "dataPullStartTime" in data:
+    if data.get("dataPullStartTime") is not None:
         import capo_appflow.types.date
 
         out["data_pull_start_time"] = capo_appflow.types.date.deserialize_json(
             data["dataPullStartTime"]
         )
-    if "dataPullEndTime" in data:
+    if data.get("dataPullEndTime") is not None:
         import capo_appflow.types.date
 
         out["data_pull_end_time"] = capo_appflow.types.date.deserialize_json(
             data["dataPullEndTime"]
         )
-    if "metadataCatalogDetails" in data:
+    if data.get("metadataCatalogDetails") is not None:
         import capo_appflow.types.metadata_catalog_details
 
         out["metadata_catalog_details"] = (

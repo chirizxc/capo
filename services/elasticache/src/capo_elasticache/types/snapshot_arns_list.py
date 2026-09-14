@@ -14,6 +14,9 @@ SnapshotArnsList: TypeAlias = list["capo_elasticache.types.string.String"]
 def serialize_query(
     value: SnapshotArnsList, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.SnapshotArn.{n}", str(item)))
 
@@ -28,6 +31,9 @@ def deserialize_query(el: Element) -> SnapshotArnsList:
 def serialize_query_flat(
     value: SnapshotArnsList, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.{n}", str(item)))
 

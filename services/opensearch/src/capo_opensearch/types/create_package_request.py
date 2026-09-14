@@ -91,11 +91,11 @@ def serialize_json(value: CreatePackageRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePackageRequest:
     out: CreatePackageRequest = {}  # type: ignore[typeddict-item]
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
     else:
         raise DeserializationError("CreatePackageRequest.package_name required")
-    if "PackageType" in data:
+    if data.get("PackageType") is not None:
         import capo_opensearch.types.package_type
 
         out["package_type"] = capo_opensearch.types.package_type.deserialize_json(
@@ -103,9 +103,9 @@ def deserialize_json(data: dict) -> CreatePackageRequest:
         )
     else:
         raise DeserializationError("CreatePackageRequest.package_type required")
-    if "PackageDescription" in data:
+    if data.get("PackageDescription") is not None:
         out["package_description"] = data["PackageDescription"]
-    if "PackageSource" in data:
+    if data.get("PackageSource") is not None:
         import capo_opensearch.types.package_source
 
         out["package_source"] = capo_opensearch.types.package_source.deserialize_json(
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> CreatePackageRequest:
         )
     else:
         raise DeserializationError("CreatePackageRequest.package_source required")
-    if "PackageConfiguration" in data:
+    if data.get("PackageConfiguration") is not None:
         import capo_opensearch.types.package_configuration
 
         out["package_configuration"] = (
@@ -121,9 +121,9 @@ def deserialize_json(data: dict) -> CreatePackageRequest:
                 data["PackageConfiguration"]
             )
         )
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "PackageVendingOptions" in data:
+    if data.get("PackageVendingOptions") is not None:
         import capo_opensearch.types.package_vending_options
 
         out["package_vending_options"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> CreatePackageRequest:
                 data["PackageVendingOptions"]
             )
         )
-    if "PackageEncryptionOptions" in data:
+    if data.get("PackageEncryptionOptions") is not None:
         import capo_opensearch.types.package_encryption_options
 
         out["package_encryption_options"] = (

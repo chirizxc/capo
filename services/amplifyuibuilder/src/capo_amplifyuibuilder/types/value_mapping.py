@@ -42,7 +42,7 @@ def serialize_json(value: ValueMapping) -> dict:
 
 def deserialize_json(data: dict) -> ValueMapping:
     out: ValueMapping = {}  # type: ignore[typeddict-item]
-    if "displayValue" in data:
+    if data.get("displayValue") is not None:
         import capo_amplifyuibuilder.types.form_input_value_property
 
         out["display_value"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> ValueMapping:
                 data["displayValue"]
             )
         )
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_amplifyuibuilder.types.form_input_value_property
 
         out["value"] = (

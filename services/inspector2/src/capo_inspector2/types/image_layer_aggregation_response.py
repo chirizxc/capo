@@ -43,23 +43,23 @@ def serialize_json(value: ImageLayerAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> ImageLayerAggregationResponse:
     out: ImageLayerAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "repository" in data:
+    if data.get("repository") is not None:
         out["repository"] = data["repository"]
     else:
         raise DeserializationError("ImageLayerAggregationResponse.repository required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("ImageLayerAggregationResponse.resource_id required")
-    if "layerHash" in data:
+    if data.get("layerHash") is not None:
         out["layer_hash"] = data["layerHash"]
     else:
         raise DeserializationError("ImageLayerAggregationResponse.layer_hash required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("ImageLayerAggregationResponse.account_id required")
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(

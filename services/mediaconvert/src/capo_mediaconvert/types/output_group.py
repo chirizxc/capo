@@ -63,7 +63,7 @@ def serialize_json(value: OutputGroup) -> dict:
 
 def deserialize_json(data: dict) -> OutputGroup:
     out: OutputGroup = {}  # type: ignore[typeddict-item]
-    if "automatedEncodingSettings" in data:
+    if data.get("automatedEncodingSettings") is not None:
         import capo_mediaconvert.types.automated_encoding_settings
 
         out["automated_encoding_settings"] = (
@@ -71,11 +71,11 @@ def deserialize_json(data: dict) -> OutputGroup:
                 data["automatedEncodingSettings"]
             )
         )
-    if "customName" in data:
+    if data.get("customName") is not None:
         out["custom_name"] = data["customName"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "outputGroupSettings" in data:
+    if data.get("outputGroupSettings") is not None:
         import capo_mediaconvert.types.output_group_settings
 
         out["output_group_settings"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> OutputGroup:
                 data["outputGroupSettings"]
             )
         )
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_mediaconvert.types.__list_of_output
 
         out["outputs"] = capo_mediaconvert.types.__list_of_output.deserialize_json(

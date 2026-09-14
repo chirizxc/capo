@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: ModelInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelInput:
     out: ModelInput = {}  # type: ignore[typeddict-item]
-    if "DataInputConfig" in data:
+    if data.get("DataInputConfig") is not None:
         out["data_input_config"] = data["DataInputConfig"]
     return out

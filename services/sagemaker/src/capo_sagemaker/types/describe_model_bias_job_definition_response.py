@@ -134,17 +134,17 @@ def serialize_aws_json_1_1(value: DescribeModelBiasJobDefinitionResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeModelBiasJobDefinitionResponse:
     out: DescribeModelBiasJobDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "JobDefinitionArn" in data:
+    if data.get("JobDefinitionArn") is not None:
         out["job_definition_arn"] = data["JobDefinitionArn"]
-    if "JobDefinitionName" in data:
+    if data.get("JobDefinitionName") is not None:
         out["job_definition_name"] = data["JobDefinitionName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "ModelBiasBaselineConfig" in data:
+    if data.get("ModelBiasBaselineConfig") is not None:
         import capo_sagemaker.types.model_bias_baseline_config
 
         out["model_bias_baseline_config"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelBiasJobDefinitionRespon
                 data["ModelBiasBaselineConfig"]
             )
         )
-    if "ModelBiasAppSpecification" in data:
+    if data.get("ModelBiasAppSpecification") is not None:
         import capo_sagemaker.types.model_bias_app_specification
 
         out["model_bias_app_specification"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelBiasJobDefinitionRespon
                 data["ModelBiasAppSpecification"]
             )
         )
-    if "ModelBiasJobInput" in data:
+    if data.get("ModelBiasJobInput") is not None:
         import capo_sagemaker.types.model_bias_job_input
 
         out["model_bias_job_input"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelBiasJobDefinitionRespon
                 data["ModelBiasJobInput"]
             )
         )
-    if "ModelBiasJobOutputConfig" in data:
+    if data.get("ModelBiasJobOutputConfig") is not None:
         import capo_sagemaker.types.monitoring_output_config
 
         out["model_bias_job_output_config"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelBiasJobDefinitionRespon
                 data["ModelBiasJobOutputConfig"]
             )
         )
-    if "JobResources" in data:
+    if data.get("JobResources") is not None:
         import capo_sagemaker.types.monitoring_resources
 
         out["job_resources"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelBiasJobDefinitionRespon
                 data["JobResources"]
             )
         )
-    if "NetworkConfig" in data:
+    if data.get("NetworkConfig") is not None:
         import capo_sagemaker.types.monitoring_network_config
 
         out["network_config"] = (
@@ -192,9 +192,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelBiasJobDefinitionRespon
                 data["NetworkConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "StoppingCondition" in data:
+    if data.get("StoppingCondition") is not None:
         import capo_sagemaker.types.monitoring_stopping_condition
 
         out["stopping_condition"] = (

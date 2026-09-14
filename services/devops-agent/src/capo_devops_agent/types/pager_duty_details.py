@@ -38,7 +38,7 @@ def serialize_json(value: PagerDutyDetails) -> dict:
 
 def deserialize_json(data: dict) -> PagerDutyDetails:
     out: PagerDutyDetails = {}  # type: ignore[typeddict-item]
-    if "scopes" in data:
+    if data.get("scopes") is not None:
         import capo_devops_agent.types.pager_duty_scopes
 
         out["scopes"] = capo_devops_agent.types.pager_duty_scopes.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> PagerDutyDetails:
         )
     else:
         raise DeserializationError("PagerDutyDetails.scopes required")
-    if "authorizationConfig" in data:
+    if data.get("authorizationConfig") is not None:
         import capo_devops_agent.types.pager_duty_authorization_config
 
         out["authorization_config"] = (

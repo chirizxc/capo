@@ -32,9 +32,9 @@ def serialize_json(value: JobAlbumArt) -> dict:
 
 def deserialize_json(data: dict) -> JobAlbumArt:
     out: JobAlbumArt = {}  # type: ignore[typeddict-item]
-    if "MergePolicy" in data:
+    if data.get("MergePolicy") is not None:
         out["merge_policy"] = data["MergePolicy"]
-    if "Artwork" in data:
+    if data.get("Artwork") is not None:
         import capo_elastic_transcoder.types.artworks
 
         out["artwork"] = capo_elastic_transcoder.types.artworks.deserialize_json(

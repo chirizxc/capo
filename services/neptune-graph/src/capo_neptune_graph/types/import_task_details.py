@@ -50,11 +50,11 @@ def serialize_json(value: ImportTaskDetails) -> dict:
 
 def deserialize_json(data: dict) -> ImportTaskDetails:
     out: ImportTaskDetails = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ImportTaskDetails.status required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_neptune_graph.types._prelude.timestamp
 
         out["start_time"] = (
@@ -64,25 +64,25 @@ def deserialize_json(data: dict) -> ImportTaskDetails:
         )
     else:
         raise DeserializationError("ImportTaskDetails.start_time required")
-    if "timeElapsedSeconds" in data:
+    if data.get("timeElapsedSeconds") is not None:
         out["time_elapsed_seconds"] = data["timeElapsedSeconds"]
     else:
         raise DeserializationError("ImportTaskDetails.time_elapsed_seconds required")
-    if "progressPercentage" in data:
+    if data.get("progressPercentage") is not None:
         out["progress_percentage"] = data["progressPercentage"]
     else:
         raise DeserializationError("ImportTaskDetails.progress_percentage required")
-    if "errorCount" in data:
+    if data.get("errorCount") is not None:
         out["error_count"] = data["errorCount"]
     else:
         raise DeserializationError("ImportTaskDetails.error_count required")
-    if "errorDetails" in data:
+    if data.get("errorDetails") is not None:
         out["error_details"] = data["errorDetails"]
-    if "statementCount" in data:
+    if data.get("statementCount") is not None:
         out["statement_count"] = data["statementCount"]
     else:
         raise DeserializationError("ImportTaskDetails.statement_count required")
-    if "dictionaryEntryCount" in data:
+    if data.get("dictionaryEntryCount") is not None:
         out["dictionary_entry_count"] = data["dictionaryEntryCount"]
     else:
         raise DeserializationError("ImportTaskDetails.dictionary_entry_count required")

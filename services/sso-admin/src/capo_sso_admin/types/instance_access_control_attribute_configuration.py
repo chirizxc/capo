@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: InstanceAccessControlAttributeConfiguration) -
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceAccessControlAttributeConfiguration:
     out: InstanceAccessControlAttributeConfiguration = {}  # type: ignore[typeddict-item]
-    if "AccessControlAttributes" in data:
+    if data.get("AccessControlAttributes") is not None:
         import capo_sso_admin.types.access_control_attribute_list
 
         out["access_control_attributes"] = (

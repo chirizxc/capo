@@ -165,23 +165,23 @@ def serialize_json(value: MonitorTopContributorsRow) -> dict:
 
 def deserialize_json(data: dict) -> MonitorTopContributorsRow:
     out: MonitorTopContributorsRow = {}  # type: ignore[typeddict-item]
-    if "localIp" in data:
+    if data.get("localIp") is not None:
         out["local_ip"] = data["localIp"]
-    if "snatIp" in data:
+    if data.get("snatIp") is not None:
         out["snat_ip"] = data["snatIp"]
-    if "localInstanceId" in data:
+    if data.get("localInstanceId") is not None:
         out["local_instance_id"] = data["localInstanceId"]
-    if "localVpcId" in data:
+    if data.get("localVpcId") is not None:
         out["local_vpc_id"] = data["localVpcId"]
-    if "localRegion" in data:
+    if data.get("localRegion") is not None:
         out["local_region"] = data["localRegion"]
-    if "localAz" in data:
+    if data.get("localAz") is not None:
         out["local_az"] = data["localAz"]
-    if "localSubnetId" in data:
+    if data.get("localSubnetId") is not None:
         out["local_subnet_id"] = data["localSubnetId"]
-    if "targetPort" in data:
+    if data.get("targetPort") is not None:
         out["target_port"] = data["targetPort"]
-    if "destinationCategory" in data:
+    if data.get("destinationCategory") is not None:
         import capo_networkflowmonitor.types.destination_category
 
         out["destination_category"] = (
@@ -189,23 +189,23 @@ def deserialize_json(data: dict) -> MonitorTopContributorsRow:
                 data["destinationCategory"]
             )
         )
-    if "remoteVpcId" in data:
+    if data.get("remoteVpcId") is not None:
         out["remote_vpc_id"] = data["remoteVpcId"]
-    if "remoteRegion" in data:
+    if data.get("remoteRegion") is not None:
         out["remote_region"] = data["remoteRegion"]
-    if "remoteAz" in data:
+    if data.get("remoteAz") is not None:
         out["remote_az"] = data["remoteAz"]
-    if "remoteSubnetId" in data:
+    if data.get("remoteSubnetId") is not None:
         out["remote_subnet_id"] = data["remoteSubnetId"]
-    if "remoteInstanceId" in data:
+    if data.get("remoteInstanceId") is not None:
         out["remote_instance_id"] = data["remoteInstanceId"]
-    if "remoteIp" in data:
+    if data.get("remoteIp") is not None:
         out["remote_ip"] = data["remoteIp"]
-    if "dnatIp" in data:
+    if data.get("dnatIp") is not None:
         out["dnat_ip"] = data["dnatIp"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "traversedConstructs" in data:
+    if data.get("traversedConstructs") is not None:
         import capo_networkflowmonitor.types.traversed_constructs_list
 
         out["traversed_constructs"] = (
@@ -213,7 +213,7 @@ def deserialize_json(data: dict) -> MonitorTopContributorsRow:
                 data["traversedConstructs"]
             )
         )
-    if "kubernetesMetadata" in data:
+    if data.get("kubernetesMetadata") is not None:
         import capo_networkflowmonitor.types.kubernetes_metadata
 
         out["kubernetes_metadata"] = (
@@ -221,16 +221,16 @@ def deserialize_json(data: dict) -> MonitorTopContributorsRow:
                 data["kubernetesMetadata"]
             )
         )
-    if "localInstanceArn" in data:
+    if data.get("localInstanceArn") is not None:
         out["local_instance_arn"] = data["localInstanceArn"]
-    if "localSubnetArn" in data:
+    if data.get("localSubnetArn") is not None:
         out["local_subnet_arn"] = data["localSubnetArn"]
-    if "localVpcArn" in data:
+    if data.get("localVpcArn") is not None:
         out["local_vpc_arn"] = data["localVpcArn"]
-    if "remoteInstanceArn" in data:
+    if data.get("remoteInstanceArn") is not None:
         out["remote_instance_arn"] = data["remoteInstanceArn"]
-    if "remoteSubnetArn" in data:
+    if data.get("remoteSubnetArn") is not None:
         out["remote_subnet_arn"] = data["remoteSubnetArn"]
-    if "remoteVpcArn" in data:
+    if data.get("remoteVpcArn") is not None:
         out["remote_vpc_arn"] = data["remoteVpcArn"]
     return out

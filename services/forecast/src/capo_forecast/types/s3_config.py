@@ -33,14 +33,14 @@ def serialize_aws_json_1_1(value: S3Config) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3Config:
     out: S3Config = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     else:
         raise DeserializationError("S3Config.path required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("S3Config.role_arn required")
-    if "KMSKeyArn" in data:
+    if data.get("KMSKeyArn") is not None:
         out["kms_key_arn"] = data["KMSKeyArn"]
     return out

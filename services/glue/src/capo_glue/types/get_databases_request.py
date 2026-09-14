@@ -61,13 +61,13 @@ def serialize_aws_json_1_1(value: GetDatabasesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDatabasesRequest:
     out: GetDatabasesRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ResourceShareType" in data:
+    if data.get("ResourceShareType") is not None:
         import capo_glue.types.resource_share_type
 
         out["resource_share_type"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDatabasesRequest:
                 data["ResourceShareType"]
             )
         )
-    if "AttributesToGet" in data:
+    if data.get("AttributesToGet") is not None:
         import capo_glue.types.database_attributes_list
 
         out["attributes_to_get"] = (

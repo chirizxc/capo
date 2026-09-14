@@ -33,7 +33,7 @@ def serialize_json(value: EncryptionContext) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionContext:
     out: EncryptionContext = {}  # type: ignore[typeddict-item]
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_connecthealth.types.encryption_type
 
         out["encryption_type"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> EncryptionContext:
         )
     else:
         raise DeserializationError("EncryptionContext.encryption_type required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

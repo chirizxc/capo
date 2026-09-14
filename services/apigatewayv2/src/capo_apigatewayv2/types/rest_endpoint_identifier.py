@@ -31,7 +31,7 @@ def serialize_json(value: RestEndpointIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> RestEndpointIdentifier:
     out: RestEndpointIdentifier = {}  # type: ignore[typeddict-item]
-    if "identifierParts" in data:
+    if data.get("identifierParts") is not None:
         import capo_apigatewayv2.types.identifier_parts
 
         out["identifier_parts"] = (

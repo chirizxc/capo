@@ -83,13 +83,13 @@ def serialize_aws_json_1_1(value: CreateDataRepositoryTaskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataRepositoryTaskRequest:
     out: CreateDataRepositoryTaskRequest = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_fsx.types.data_repository_task_type
 
         out["type"] = capo_fsx.types.data_repository_task_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Paths" in data:
+    if data.get("Paths") is not None:
         import capo_fsx.types.data_repository_task_paths
 
         out["paths"] = (
@@ -97,23 +97,23 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataRepositoryTaskRequest:
                 data["Paths"]
             )
         )
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "Report" in data:
+    if data.get("Report") is not None:
         import capo_fsx.types.completion_report
 
         out["report"] = capo_fsx.types.completion_report.deserialize_aws_json_1_1(
             data["Report"]
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "CapacityToRelease" in data:
+    if data.get("CapacityToRelease") is not None:
         out["capacity_to_release"] = data["CapacityToRelease"]
-    if "ReleaseConfiguration" in data:
+    if data.get("ReleaseConfiguration") is not None:
         import capo_fsx.types.release_configuration
 
         out["release_configuration"] = (

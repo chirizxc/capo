@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfSchemaChangeDetails:
 
     out: ListOfSchemaChangeDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dataexchange.types.schema_change_details.deserialize_json(item))
     return out

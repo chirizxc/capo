@@ -67,7 +67,7 @@ def serialize_aws_json_1_0(value: DescribeVerifiedDestinationNumbersRequest) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeVerifiedDestinationNumbersRequest:
     out: DescribeVerifiedDestinationNumbersRequest = {}  # type: ignore[typeddict-item]
-    if "VerifiedDestinationNumberIds" in data:
+    if data.get("VerifiedDestinationNumberIds") is not None:
         import capo_pinpoint_sms_voice_v2.types.verified_destination_number_id_list
 
         out["verified_destination_number_ids"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeVerifiedDestinationNumbersRe
                 data["VerifiedDestinationNumberIds"]
             )
         )
-    if "DestinationPhoneNumbers" in data:
+    if data.get("DestinationPhoneNumbers") is not None:
         import capo_pinpoint_sms_voice_v2.types.destination_phone_number_list
 
         out["destination_phone_numbers"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeVerifiedDestinationNumbersRe
                 data["DestinationPhoneNumbers"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_pinpoint_sms_voice_v2.types.verified_destination_number_filter_list
 
         out["filters"] = (
@@ -91,8 +91,8 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeVerifiedDestinationNumbersRe
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

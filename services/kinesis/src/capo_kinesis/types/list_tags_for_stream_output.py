@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: ListTagsForStreamOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTagsForStreamOutput:
     out: ListTagsForStreamOutput = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis.types.tag_list
 
         out["tags"] = capo_kinesis.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
     else:
         raise DeserializationError("ListTagsForStreamOutput.tags required")
-    if "HasMoreTags" in data:
+    if data.get("HasMoreTags") is not None:
         out["has_more_tags"] = data["HasMoreTags"]
     else:
         raise DeserializationError("ListTagsForStreamOutput.has_more_tags required")

@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: GetExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetExecutionRequest:
     out: GetExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "ExportArn" in data:
+    if data.get("ExportArn") is not None:
         out["export_arn"] = data["ExportArn"]
     else:
         raise DeserializationError("GetExecutionRequest.export_arn required")
-    if "ExecutionId" in data:
+    if data.get("ExecutionId") is not None:
         out["execution_id"] = data["ExecutionId"]
     else:
         raise DeserializationError("GetExecutionRequest.execution_id required")

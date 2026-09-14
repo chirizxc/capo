@@ -31,7 +31,7 @@ def serialize_json(value: GetAccountLevelServiceConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetAccountLevelServiceConfigurationOutput:
     out: GetAccountLevelServiceConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "OrgConfiguration" in data:
+    if data.get("OrgConfiguration") is not None:
         import capo_resource_explorer_2.types.org_configuration
 
         out["org_configuration"] = (

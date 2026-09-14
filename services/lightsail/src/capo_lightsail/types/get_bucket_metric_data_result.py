@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: GetBucketMetricDataResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBucketMetricDataResult:
     out: GetBucketMetricDataResult = {}  # type: ignore[typeddict-item]
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         import capo_lightsail.types.bucket_metric_name
 
         out["metric_name"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetBucketMetricDataResult:
                 data["metricName"]
             )
         )
-    if "metricData" in data:
+    if data.get("metricData") is not None:
         import capo_lightsail.types.metric_datapoint_list
 
         out["metric_data"] = (

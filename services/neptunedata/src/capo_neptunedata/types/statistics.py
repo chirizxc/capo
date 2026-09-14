@@ -37,11 +37,9 @@ def serialize_json(value: Statistics) -> dict:
     if "statistics_id" in value:
         out["statisticsId"] = value["statistics_id"]
     if "date" in value:
-        import capo_neptunedata.types._prelude.timestamp
+        import capo_neptunedata._protocol.serialize
 
-        out["date"] = capo_neptunedata.types._prelude.timestamp.serialize_json(
-            value["date"]
-        )
+        out["date"] = capo_neptunedata._protocol.serialize.fmt_date_time(value["date"])
     if "note" in value:
         out["note"] = value["note"]
     if "signature_info" in value:
@@ -55,21 +53,21 @@ def serialize_json(value: Statistics) -> dict:
 
 def deserialize_json(data: dict) -> Statistics:
     out: Statistics = {}  # type: ignore[typeddict-item]
-    if "autoCompute" in data:
+    if data.get("autoCompute") is not None:
         out["auto_compute"] = data["autoCompute"]
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
-    if "statisticsId" in data:
+    if data.get("statisticsId") is not None:
         out["statistics_id"] = data["statisticsId"]
-    if "date" in data:
-        import capo_neptunedata.types._prelude.timestamp
+    if data.get("date") is not None:
+        import datetime
 
-        out["date"] = capo_neptunedata.types._prelude.timestamp.deserialize_json(
-            data["date"]
+        out["date"] = datetime.datetime.fromisoformat(
+            data["date"].replace("Z", "+00:00")
         )
-    if "note" in data:
+    if data.get("note") is not None:
         out["note"] = data["note"]
-    if "signatureInfo" in data:
+    if data.get("signatureInfo") is not None:
         import capo_neptunedata.types.statistics_summary
 
         out["signature_info"] = (

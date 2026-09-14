@@ -23,6 +23,6 @@ def serialize_json(value: Backend) -> dict:
 
 def deserialize_json(data: dict) -> Backend:
     out: Backend = {}  # type: ignore[typeddict-item]
-    if "stackArn" in data:
+    if data.get("stackArn") is not None:
         out["stack_arn"] = data["stackArn"]
     return out

@@ -36,9 +36,9 @@ def serialize_json(value: PipeEnrichmentParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeEnrichmentParameters:
     out: PipeEnrichmentParameters = {}  # type: ignore[typeddict-item]
-    if "InputTemplate" in data:
+    if data.get("InputTemplate") is not None:
         out["input_template"] = data["InputTemplate"]
-    if "HttpParameters" in data:
+    if data.get("HttpParameters") is not None:
         import capo_pipes.types.pipe_enrichment_http_parameters
 
         out["http_parameters"] = (

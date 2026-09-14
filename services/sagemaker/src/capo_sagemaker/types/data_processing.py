@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: DataProcessing) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataProcessing:
     out: DataProcessing = {}  # type: ignore[typeddict-item]
-    if "InputFilter" in data:
+    if data.get("InputFilter") is not None:
         out["input_filter"] = data["InputFilter"]
-    if "OutputFilter" in data:
+    if data.get("OutputFilter") is not None:
         out["output_filter"] = data["OutputFilter"]
-    if "JoinSource" in data:
+    if data.get("JoinSource") is not None:
         import capo_sagemaker.types.join_source
 
         out["join_source"] = capo_sagemaker.types.join_source.deserialize_aws_json_1_1(

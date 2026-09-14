@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.sagemakerjobruntime#AgenticRFTRuntimeService``."""
 
+import uuid
 import warnings
 from collections.abc import Generator
 from contextlib import contextmanager
@@ -181,19 +182,22 @@ class SagemakerJobRuntimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemakerjobruntime.types.complete_rollout_request.CompleteRolloutRequest = {}  # type: ignore[typeddict-item]
-        input_["job_arn"] = job_arn
-        input_["trajectory_id"] = trajectory_id
+        input_: capo_sagemakerjobruntime.types.complete_rollout_request.CompleteRolloutRequest = {
+            "job_arn": job_arn,
+            "trajectory_id": trajectory_id,
+        }
         if status is not None:
             input_["status"] = status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def sample(
@@ -242,16 +246,18 @@ class SagemakerJobRuntimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemakerjobruntime.types.sample_request.SampleRequest = {}  # type: ignore[typeddict-item]
-        input_["job_arn"] = job_arn
-        input_["trajectory_id"] = trajectory_id
-        input_["body"] = body
+        input_: capo_sagemakerjobruntime.types.sample_request.SampleRequest = {
+            "job_arn": job_arn,
+            "trajectory_id": trajectory_id,
+            "body": body,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -301,17 +307,21 @@ class SagemakerJobRuntimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemakerjobruntime.types.sample_with_response_stream_request.SampleWithResponseStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["job_arn"] = job_arn
-        input_["trajectory_id"] = trajectory_id
-        input_["body"] = body
+        input_: capo_sagemakerjobruntime.types.sample_with_response_stream_request.SampleWithResponseStreamRequest = {
+            "job_arn": job_arn,
+            "trajectory_id": trajectory_id,
+            "body": body,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def update_reward(
         self,
@@ -362,18 +372,21 @@ class SagemakerJobRuntimeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemakerjobruntime.types.update_reward_request.UpdateRewardRequest = {}  # type: ignore[typeddict-item]
-        input_["job_arn"] = job_arn
-        input_["trajectory_id"] = trajectory_id
-        input_["rewards"] = rewards
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_sagemakerjobruntime.types.update_reward_request.UpdateRewardRequest = {
+            "job_arn": job_arn,
+            "trajectory_id": trajectory_id,
+            "rewards": rewards,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

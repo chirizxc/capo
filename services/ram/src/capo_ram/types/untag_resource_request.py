@@ -35,14 +35,14 @@ def serialize_json(value: UntagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UntagResourceRequest:
     out: UntagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
-    if "tagKeys" in data:
+    if data.get("tagKeys") is not None:
         import capo_ram.types.tag_key_list
 
         out["tag_keys"] = capo_ram.types.tag_key_list.deserialize_json(data["tagKeys"])
     else:
         raise DeserializationError("UntagResourceRequest.tag_keys required")
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     return out

@@ -88,11 +88,11 @@ def serialize_aws_json_1_1(value: CreateAccountStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAccountStatus:
     out: CreateAccountStatus = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "AccountName" in data:
+    if data.get("AccountName") is not None:
         out["account_name"] = data["AccountName"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_organizations.types.create_account_state
 
         out["state"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAccountStatus:
                 data["State"]
             )
         )
-    if "RequestedTimestamp" in data:
+    if data.get("RequestedTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["requested_timestamp"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAccountStatus:
                 data["RequestedTimestamp"]
             )
         )
-    if "CompletedTimestamp" in data:
+    if data.get("CompletedTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["completed_timestamp"] = (
@@ -116,11 +116,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAccountStatus:
                 data["CompletedTimestamp"]
             )
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "GovCloudAccountId" in data:
+    if data.get("GovCloudAccountId") is not None:
         out["gov_cloud_account_id"] = data["GovCloudAccountId"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         import capo_organizations.types.create_account_failure_reason
 
         out["failure_reason"] = (

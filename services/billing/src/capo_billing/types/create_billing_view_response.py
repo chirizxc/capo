@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: CreateBillingViewResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateBillingViewResponse:
     out: CreateBillingViewResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateBillingViewResponse.arn required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_billing.types._prelude.timestamp
 
         out["created_at"] = (

@@ -45,25 +45,25 @@ def serialize_aws_json_1_0(value: CountryLaunchStatusInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CountryLaunchStatusInformation:
     out: CountryLaunchStatusInformation = {}  # type: ignore[typeddict-item]
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
     else:
         raise DeserializationError(
             "CountryLaunchStatusInformation.iso_country_code required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("CountryLaunchStatusInformation.status required")
-    if "RcsPlatformId" in data:
+    if data.get("RcsPlatformId") is not None:
         out["rcs_platform_id"] = data["RcsPlatformId"]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(
             "CountryLaunchStatusInformation.registration_id required"
         )
-    if "CarrierStatus" in data:
+    if data.get("CarrierStatus") is not None:
         import capo_pinpoint_sms_voice_v2.types.carrier_status_information_list
 
         out["carrier_status"] = (

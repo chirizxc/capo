@@ -47,17 +47,17 @@ def serialize_aws_json_1_1(value: AssessmentTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentTarget:
     out: AssessmentTarget = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AssessmentTarget.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AssessmentTarget.name required")
-    if "resourceGroupArn" in data:
+    if data.get("resourceGroupArn") is not None:
         out["resource_group_arn"] = data["resourceGroupArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_inspector.types.timestamp
 
         out["created_at"] = capo_inspector.types.timestamp.deserialize_aws_json_1_1(
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentTarget:
         )
     else:
         raise DeserializationError("AssessmentTarget.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_inspector.types.timestamp
 
         out["updated_at"] = capo_inspector.types.timestamp.deserialize_aws_json_1_1(

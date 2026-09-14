@@ -30,7 +30,7 @@ def serialize_json(value: BatchCreateFirewallRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateFirewallRuleInput:
     out: BatchCreateFirewallRuleInput = {}  # type: ignore[typeddict-item]
-    if "firewallRules" in data:
+    if data.get("firewallRules") is not None:
         import capo_route53globalresolver.types.batch_create_firewall_rule_input_items
 
         out["firewall_rules"] = (

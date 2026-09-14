@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: Relationship) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Relationship:
     out: Relationship = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_config_service.types.resource_type
 
         out["resource_type"] = (
@@ -54,10 +54,10 @@ def deserialize_aws_json_1_1(data: dict) -> Relationship:
                 data["resourceType"]
             )
         )
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "relationshipName" in data:
+    if data.get("relationshipName") is not None:
         out["relationship_name"] = data["relationshipName"]
     return out

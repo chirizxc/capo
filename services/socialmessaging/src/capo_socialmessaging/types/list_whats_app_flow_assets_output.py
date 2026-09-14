@@ -33,7 +33,7 @@ def serialize_json(value: ListWhatsAppFlowAssetsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListWhatsAppFlowAssetsOutput:
     out: ListWhatsAppFlowAssetsOutput = {}  # type: ignore[typeddict-item]
-    if "flowAssets" in data:
+    if data.get("flowAssets") is not None:
         import capo_socialmessaging.types.meta_flow_asset_list
 
         out["flow_assets"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListWhatsAppFlowAssetsOutput:
         )
     else:
         raise DeserializationError("ListWhatsAppFlowAssetsOutput.flow_assets required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

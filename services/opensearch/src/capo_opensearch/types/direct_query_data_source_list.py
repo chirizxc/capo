@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> DirectQueryDataSourceList:
 
     out: DirectQueryDataSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_opensearch.types.direct_query_data_source.deserialize_json(item)
         )

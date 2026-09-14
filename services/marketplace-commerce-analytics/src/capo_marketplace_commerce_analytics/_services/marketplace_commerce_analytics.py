@@ -183,14 +183,15 @@ class MarketplaceCommerceAnalyticsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_commerce_analytics.types.generate_data_set_request.GenerateDataSetRequest = {}  # type: ignore[typeddict-item]
-        input_["data_set_type"] = data_set_type
-        input_["data_set_publication_date"] = data_set_publication_date
-        input_["role_name_arn"] = role_name_arn
-        input_["destination_s3_bucket_name"] = destination_s3_bucket_name
+        input_: capo_marketplace_commerce_analytics.types.generate_data_set_request.GenerateDataSetRequest = {
+            "data_set_type": data_set_type,
+            "data_set_publication_date": data_set_publication_date,
+            "role_name_arn": role_name_arn,
+            "destination_s3_bucket_name": destination_s3_bucket_name,
+            "sns_topic_arn": sns_topic_arn,
+        }
         if destination_s3_prefix is not None:
             input_["destination_s3_prefix"] = destination_s3_prefix
-        input_["sns_topic_arn"] = sns_topic_arn
         if customer_defined_values is not None:
             input_["customer_defined_values"] = customer_defined_values
 
@@ -199,6 +200,7 @@ class MarketplaceCommerceAnalyticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_support_data_export(
@@ -248,14 +250,15 @@ class MarketplaceCommerceAnalyticsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_commerce_analytics.types.start_support_data_export_request.StartSupportDataExportRequest = {}  # type: ignore[typeddict-item]
-        input_["data_set_type"] = data_set_type
-        input_["from_date"] = from_date
-        input_["role_name_arn"] = role_name_arn
-        input_["destination_s3_bucket_name"] = destination_s3_bucket_name
+        input_: capo_marketplace_commerce_analytics.types.start_support_data_export_request.StartSupportDataExportRequest = {
+            "data_set_type": data_set_type,
+            "from_date": from_date,
+            "role_name_arn": role_name_arn,
+            "destination_s3_bucket_name": destination_s3_bucket_name,
+            "sns_topic_arn": sns_topic_arn,
+        }
         if destination_s3_prefix is not None:
             input_["destination_s3_prefix"] = destination_s3_prefix
-        input_["sns_topic_arn"] = sns_topic_arn
         if customer_defined_values is not None:
             input_["customer_defined_values"] = customer_defined_values
 
@@ -264,6 +267,7 @@ class MarketplaceCommerceAnalyticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: HybridUpdateActivities) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HybridUpdateActivities:
     out: HybridUpdateActivities = {}  # type: ignore[typeddict-item]
-    if "SelfManagedInstances" in data:
+    if data.get("SelfManagedInstances") is not None:
         import capo_directory_service.types.hybrid_update_info_entries
 
         out["self_managed_instances"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> HybridUpdateActivities:
                 data["SelfManagedInstances"]
             )
         )
-    if "HybridAdministratorAccount" in data:
+    if data.get("HybridAdministratorAccount") is not None:
         import capo_directory_service.types.hybrid_update_info_entries
 
         out["hybrid_administrator_account"] = (

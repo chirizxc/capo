@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: GetRateBasedRuleManagedKeysResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRateBasedRuleManagedKeysResponse:
     out: GetRateBasedRuleManagedKeysResponse = {}  # type: ignore[typeddict-item]
-    if "ManagedKeys" in data:
+    if data.get("ManagedKeys") is not None:
         import capo_waf_regional.types.managed_keys
 
         out["managed_keys"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetRateBasedRuleManagedKeysResponse:
                 data["ManagedKeys"]
             )
         )
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: AvcIntraUhdSettings) -> dict:
 
 def deserialize_json(data: dict) -> AvcIntraUhdSettings:
     out: AvcIntraUhdSettings = {}  # type: ignore[typeddict-item]
-    if "qualityTuningLevel" in data:
+    if data.get("qualityTuningLevel") is not None:
         import capo_mediaconvert.types.avc_intra_uhd_quality_tuning_level
 
         out["quality_tuning_level"] = (

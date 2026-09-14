@@ -51,7 +51,7 @@ def serialize_json(value: WorkloadJiraConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> WorkloadJiraConfigurationInput:
     out: WorkloadJiraConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "IssueManagementStatus" in data:
+    if data.get("IssueManagementStatus") is not None:
         import capo_wellarchitected.types.workload_issue_management_status
 
         out["issue_management_status"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> WorkloadJiraConfigurationInput:
                 data["IssueManagementStatus"]
             )
         )
-    if "IssueManagementType" in data:
+    if data.get("IssueManagementType") is not None:
         import capo_wellarchitected.types.issue_management_type
 
         out["issue_management_type"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> WorkloadJiraConfigurationInput:
                 data["IssueManagementType"]
             )
         )
-    if "JiraProjectKey" in data:
+    if data.get("JiraProjectKey") is not None:
         out["jira_project_key"] = data["JiraProjectKey"]
     return out

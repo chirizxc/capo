@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MatterCapabilityReportEndpoints:
 
     out: MatterCapabilityReportEndpoints = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.matter_capability_report_endpoint.deserialize_json(
                 item

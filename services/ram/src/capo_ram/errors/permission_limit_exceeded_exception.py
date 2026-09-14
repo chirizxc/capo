@@ -23,7 +23,7 @@ def serialize_json(value: PermissionLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> PermissionLimitExceededException_:
     out: PermissionLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("PermissionLimitExceededException_.message required")
@@ -35,15 +35,20 @@ class PermissionLimitExceededException(ServiceError):
 
     code: str | None = "PermissionLimitExceededException"
 
-    def __init__(self, data: PermissionLimitExceededException_):
+    def __init__(
+        self, data: PermissionLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PermissionLimitExceededException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "PermissionLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "PermissionLimitExceededException":
+        return cls(deserialize_json(data), message)

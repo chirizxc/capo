@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteIntegrationTablePropertiesRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteIntegrationTablePropertiesRequest:
     out: DeleteIntegrationTablePropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "DeleteIntegrationTablePropertiesRequest.resource_arn required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(

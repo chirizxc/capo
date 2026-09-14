@@ -26,7 +26,7 @@ def serialize_json(value: CustomInstructions) -> dict:
 
 def deserialize_json(data: dict) -> CustomInstructions:
     out: CustomInstructions = {}  # type: ignore[typeddict-item]
-    if "CustomInstructionsString" in data:
+    if data.get("CustomInstructionsString") is not None:
         out["custom_instructions_string"] = data["CustomInstructionsString"]
     else:
         raise DeserializationError(

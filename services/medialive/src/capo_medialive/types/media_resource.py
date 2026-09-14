@@ -46,7 +46,7 @@ def serialize_json(value: MediaResource) -> dict:
 
 def deserialize_json(data: dict) -> MediaResource:
     out: MediaResource = {}  # type: ignore[typeddict-item]
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_medialive.types.__list_of_media_resource_neighbor
 
         out["destinations"] = (
@@ -54,9 +54,9 @@ def deserialize_json(data: dict) -> MediaResource:
                 data["destinations"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_medialive.types.__list_of_media_resource_neighbor
 
         out["sources"] = (

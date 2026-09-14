@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> RecommendedActions:
 
     out: RecommendedActions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_recommended_actions.types.recommended_action.deserialize_aws_json_1_0(
                 item

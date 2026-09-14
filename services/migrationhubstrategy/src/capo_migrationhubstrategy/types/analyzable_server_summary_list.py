@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AnalyzableServerSummaryList:
 
     out: AnalyzableServerSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhubstrategy.types.analyzable_server_summary.deserialize_json(
                 item

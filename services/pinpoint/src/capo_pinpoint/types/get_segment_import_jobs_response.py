@@ -30,7 +30,7 @@ def serialize_json(value: GetSegmentImportJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSegmentImportJobsResponse:
     out: GetSegmentImportJobsResponse = {}  # type: ignore[typeddict-item]
-    if "ImportJobsResponse" in data:
+    if data.get("ImportJobsResponse") is not None:
         import capo_pinpoint.types.import_jobs_response
 
         out["import_jobs_response"] = (

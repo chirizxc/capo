@@ -13,9 +13,9 @@ from capo_iotthingsgraph import AsyncIoTThingsGraphClient
 
 
 async def main():
-    async with AsyncIoTThingsGraphClient() as s3:
+    async with AsyncIoTThingsGraphClient() as io_t_things_graph:
         # Example: call the associate_entity_to_thing operation
-        response = await s3.associate_entity_to_thing()
+        response = await io_t_things_graph.associate_entity_to_thing()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_iotthingsgraph import AsyncIoTThingsGraphClient
 
 
 async def main():
-    async with AsyncIoTThingsGraphClient() as s3:
+    async with AsyncIoTThingsGraphClient() as io_t_things_graph:
         # Example: paginate over get_flow_template_revisions
-        async for item in s3.iter_get_flow_template_revisions():
+        async for item in io_t_things_graph.iter_get_flow_template_revisions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_iotthingsgraph.error import InternalFailureException
 
 
 async def main():
-    async with AsyncIoTThingsGraphClient() as s3:
+    async with AsyncIoTThingsGraphClient() as io_t_things_graph:
         try:
-            await s3.associate_entity_to_thing()
+            await io_t_things_graph.associate_entity_to_thing()
         except InternalFailureException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_iotthingsgraph import AsyncIoTThingsGraphClient
 
 
 async def main():
-    async with AsyncIoTThingsGraphClient() as s3:
+    async with AsyncIoTThingsGraphClient() as io_t_things_graph:
         # Default: 3 attempts for every operation
-        response = await s3.associate_entity_to_thing()
+        response = await io_t_things_graph.associate_entity_to_thing()
 
         # Override per operation
-        response = await s3.associate_entity_to_thing(config_overrides={"retry_max_attempts": 5})
+        response = await io_t_things_graph.associate_entity_to_thing(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_entity_to_thing(config_overrides={"retry_max_attempts": 1})
+        response = await io_t_things_graph.associate_entity_to_thing(config_overrides={"retry_max_attempts": 1})
 ```

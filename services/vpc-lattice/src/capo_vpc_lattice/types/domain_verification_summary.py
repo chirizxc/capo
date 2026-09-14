@@ -72,23 +72,23 @@ def serialize_json(value: DomainVerificationSummary) -> dict:
 
 def deserialize_json(data: dict) -> DomainVerificationSummary:
     out: DomainVerificationSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DomainVerificationSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DomainVerificationSummary.arn required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("DomainVerificationSummary.domain_name required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("DomainVerificationSummary.status required")
-    if "txtMethodConfig" in data:
+    if data.get("txtMethodConfig") is not None:
         import capo_vpc_lattice.types.txt_method_config
 
         out["txt_method_config"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> DomainVerificationSummary:
                 data["txtMethodConfig"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
@@ -104,13 +104,13 @@ def deserialize_json(data: dict) -> DomainVerificationSummary:
         )
     else:
         raise DeserializationError("DomainVerificationSummary.created_at required")
-    if "lastVerifiedTime" in data:
+    if data.get("lastVerifiedTime") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_verified_time"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["lastVerifiedTime"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])

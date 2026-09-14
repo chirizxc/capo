@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ShuffleConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShuffleConfig:
     out: ShuffleConfig = {}  # type: ignore[typeddict-item]
-    if "Seed" in data:
+    if data.get("Seed") is not None:
         out["seed"] = data["Seed"]
     return out

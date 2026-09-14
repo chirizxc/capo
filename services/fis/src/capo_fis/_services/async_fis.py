@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.fis#FaultInjectionSimulator``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -278,14 +279,15 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.create_experiment_template_request.CreateExperimentTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["description"] = description
-        input_["stop_conditions"] = stop_conditions
+        input_: capo_fis.types.create_experiment_template_request.CreateExperimentTemplateRequest = {
+            "client_token": client_token,
+            "description": description,
+            "stop_conditions": stop_conditions,
+            "actions": actions,
+            "role_arn": role_arn,
+        }
         if targets is not None:
             input_["targets"] = targets
-        input_["actions"] = actions
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if log_configuration is not None:
@@ -300,6 +302,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_target_account_configuration(
@@ -347,12 +350,14 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.create_target_account_configuration_request.CreateTargetAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["experiment_template_id"] = experiment_template_id
-        input_["account_id"] = account_id
-        input_["role_arn"] = role_arn
+        input_: capo_fis.types.create_target_account_configuration_request.CreateTargetAccountConfigurationRequest = {
+            "experiment_template_id": experiment_template_id,
+            "account_id": account_id,
+            "role_arn": role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
 
@@ -361,6 +366,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_experiment_template(
@@ -396,14 +402,16 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.delete_experiment_template_request.DeleteExperimentTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_fis.types.delete_experiment_template_request.DeleteExperimentTemplateRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_target_account_configuration(
@@ -441,15 +449,17 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.delete_target_account_configuration_request.DeleteTargetAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["experiment_template_id"] = experiment_template_id
-        input_["account_id"] = account_id
+        input_: capo_fis.types.delete_target_account_configuration_request.DeleteTargetAccountConfigurationRequest = {
+            "experiment_template_id": experiment_template_id,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_action(
@@ -485,14 +495,14 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.get_action_request.GetActionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_fis.types.get_action_request.GetActionRequest = {"id": id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_experiment(
@@ -528,14 +538,14 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.get_experiment_request.GetExperimentRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_fis.types.get_experiment_request.GetExperimentRequest = {"id": id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_experiment_target_account_configuration(
@@ -573,15 +583,17 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.get_experiment_target_account_configuration_request.GetExperimentTargetAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["experiment_id"] = experiment_id
-        input_["account_id"] = account_id
+        input_: capo_fis.types.get_experiment_target_account_configuration_request.GetExperimentTargetAccountConfigurationRequest = {
+            "experiment_id": experiment_id,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_experiment_template(
@@ -619,14 +631,16 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.get_experiment_template_request.GetExperimentTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_fis.types.get_experiment_template_request.GetExperimentTemplateRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_safety_lever(
@@ -661,14 +675,16 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.get_safety_lever_request.GetSafetyLeverRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_fis.types.get_safety_lever_request.GetSafetyLeverRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_target_account_configuration(
@@ -706,15 +722,17 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.get_target_account_configuration_request.GetTargetAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["experiment_template_id"] = experiment_template_id
-        input_["account_id"] = account_id
+        input_: capo_fis.types.get_target_account_configuration_request.GetTargetAccountConfigurationRequest = {
+            "experiment_template_id": experiment_template_id,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_target_resource_type(
@@ -752,14 +770,16 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.get_target_resource_type_request.GetTargetResourceTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
+        input_: capo_fis.types.get_target_resource_type_request.GetTargetResourceTypeRequest = {
+            "resource_type": resource_type
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_actions(
@@ -798,7 +818,7 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.list_actions_request.ListActionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fis.types.list_actions_request.ListActionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -809,6 +829,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_actions(
@@ -875,8 +896,9 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.list_experiment_resolved_targets_request.ListExperimentResolvedTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["experiment_id"] = experiment_id
+        input_: capo_fis.types.list_experiment_resolved_targets_request.ListExperimentResolvedTargetsRequest = {
+            "experiment_id": experiment_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -889,6 +911,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_experiment_resolved_targets(
@@ -958,7 +981,7 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.list_experiments_request.ListExperimentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fis.types.list_experiments_request.ListExperimentsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -971,6 +994,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_experiments(
@@ -1035,8 +1059,9 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.list_experiment_target_account_configurations_request.ListExperimentTargetAccountConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["experiment_id"] = experiment_id
+        input_: capo_fis.types.list_experiment_target_account_configurations_request.ListExperimentTargetAccountConfigurationsRequest = {
+            "experiment_id": experiment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1045,6 +1070,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_experiment_templates(
@@ -1083,7 +1109,7 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.list_experiment_templates_request.ListExperimentTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fis.types.list_experiment_templates_request.ListExperimentTemplatesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1094,6 +1120,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_experiment_templates(
@@ -1150,14 +1177,16 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_fis.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_target_account_configurations(
@@ -1199,8 +1228,9 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.list_target_account_configurations_request.ListTargetAccountConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["experiment_template_id"] = experiment_template_id
+        input_: capo_fis.types.list_target_account_configurations_request.ListTargetAccountConfigurationsRequest = {
+            "experiment_template_id": experiment_template_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1211,6 +1241,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_target_account_configurations(
@@ -1274,7 +1305,7 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.list_target_resource_types_request.ListTargetResourceTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fis.types.list_target_resource_types_request.ListTargetResourceTypesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1285,6 +1316,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_target_resource_types(
@@ -1353,9 +1385,10 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.start_experiment_request.StartExperimentRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["experiment_template_id"] = experiment_template_id
+        input_: capo_fis.types.start_experiment_request.StartExperimentRequest = {
+            "client_token": client_token,
+            "experiment_template_id": experiment_template_id,
+        }
         if experiment_options is not None:
             input_["experiment_options"] = experiment_options
         if tags is not None:
@@ -1366,6 +1399,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_experiment(
@@ -1401,14 +1435,16 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.stop_experiment_request.StopExperimentRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_fis.types.stop_experiment_request.StopExperimentRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1444,15 +1480,17 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_fis.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1488,8 +1526,9 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_fis.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -1498,6 +1537,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_experiment_template(
@@ -1564,8 +1604,9 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.update_experiment_template_request.UpdateExperimentTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_fis.types.update_experiment_template_request.UpdateExperimentTemplateRequest = {
+            "id": id
+        }
         if description is not None:
             input_["description"] = description
         if stop_conditions is not None:
@@ -1588,6 +1629,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_safety_lever_state(
@@ -1626,15 +1668,17 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.update_safety_lever_state_request.UpdateSafetyLeverStateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["state"] = state
+        input_: capo_fis.types.update_safety_lever_state_request.UpdateSafetyLeverStateRequest = {
+            "id": id,
+            "state": state,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_target_account_configuration(
@@ -1678,9 +1722,10 @@ class AsyncfisClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fis.types.update_target_account_configuration_request.UpdateTargetAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["experiment_template_id"] = experiment_template_id
-        input_["account_id"] = account_id
+        input_: capo_fis.types.update_target_account_configuration_request.UpdateTargetAccountConfigurationRequest = {
+            "experiment_template_id": experiment_template_id,
+            "account_id": account_id,
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if description is not None:
@@ -1691,6 +1736,7 @@ class AsyncfisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

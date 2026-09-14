@@ -45,7 +45,7 @@ def serialize_json(value: FormatOptions) -> dict:
 
 
 def deserialize_json(data: dict) -> FormatOptions:
-    if "tsvOptions" in data:
+    if data.get("tsvOptions") is not None:
         import capo_omics.types.tsv_options
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> FormatOptions:
                 data["tsvOptions"]
             )
         }
-    elif "vcfOptions" in data:
+    elif data.get("vcfOptions") is not None:
         import capo_omics.types.vcf_options
 
         return {

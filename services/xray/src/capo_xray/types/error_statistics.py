@@ -31,10 +31,10 @@ def serialize_json(value: ErrorStatistics) -> dict:
 
 def deserialize_json(data: dict) -> ErrorStatistics:
     out: ErrorStatistics = {}  # type: ignore[typeddict-item]
-    if "ThrottleCount" in data:
+    if data.get("ThrottleCount") is not None:
         out["throttle_count"] = data["ThrottleCount"]
-    if "OtherCount" in data:
+    if data.get("OtherCount") is not None:
         out["other_count"] = data["OtherCount"]
-    if "TotalCount" in data:
+    if data.get("TotalCount") is not None:
         out["total_count"] = data["TotalCount"]
     return out

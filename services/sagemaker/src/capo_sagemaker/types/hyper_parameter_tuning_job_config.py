@@ -112,7 +112,7 @@ def serialize_aws_json_1_1(value: HyperParameterTuningJobConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobConfig:
     out: HyperParameterTuningJobConfig = {}  # type: ignore[typeddict-item]
-    if "Strategy" in data:
+    if data.get("Strategy") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_strategy_type
 
         out["strategy"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobConfig:
                 data["Strategy"]
             )
         )
-    if "StrategyConfig" in data:
+    if data.get("StrategyConfig") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_strategy_config
 
         out["strategy_config"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobConfig:
                 data["StrategyConfig"]
             )
         )
-    if "HyperParameterTuningJobObjective" in data:
+    if data.get("HyperParameterTuningJobObjective") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_objective
 
         out["hyper_parameter_tuning_job_objective"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobConfig:
                 data["HyperParameterTuningJobObjective"]
             )
         )
-    if "ResourceLimits" in data:
+    if data.get("ResourceLimits") is not None:
         import capo_sagemaker.types.resource_limits
 
         out["resource_limits"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobConfig:
                 data["ResourceLimits"]
             )
         )
-    if "ParameterRanges" in data:
+    if data.get("ParameterRanges") is not None:
         import capo_sagemaker.types.parameter_ranges
 
         out["parameter_ranges"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobConfig:
                 data["ParameterRanges"]
             )
         )
-    if "TrainingJobEarlyStoppingType" in data:
+    if data.get("TrainingJobEarlyStoppingType") is not None:
         import capo_sagemaker.types.training_job_early_stopping_type
 
         out["training_job_early_stopping_type"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobConfig:
                 data["TrainingJobEarlyStoppingType"]
             )
         )
-    if "TuningJobCompletionCriteria" in data:
+    if data.get("TuningJobCompletionCriteria") is not None:
         import capo_sagemaker.types.tuning_job_completion_criteria
 
         out["tuning_job_completion_criteria"] = (
@@ -168,6 +168,6 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobConfig:
                 data["TuningJobCompletionCriteria"]
             )
         )
-    if "RandomSeed" in data:
+    if data.get("RandomSeed") is not None:
         out["random_seed"] = data["RandomSeed"]
     return out

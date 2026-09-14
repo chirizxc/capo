@@ -53,19 +53,19 @@ def serialize_aws_json_1_1(value: S3CatalogDeltaSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3CatalogDeltaSource:
     out: S3CatalogDeltaSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3CatalogDeltaSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("S3CatalogDeltaSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("S3CatalogDeltaSource.table required")
-    if "AdditionalDeltaOptions" in data:
+    if data.get("AdditionalDeltaOptions") is not None:
         import capo_glue.types.additional_options
 
         out["additional_delta_options"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3CatalogDeltaSource:
                 data["AdditionalDeltaOptions"]
             )
         )
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

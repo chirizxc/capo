@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListOutpostResolversResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListOutpostResolversResponse:
     out: ListOutpostResolversResponse = {}  # type: ignore[typeddict-item]
-    if "OutpostResolvers" in data:
+    if data.get("OutpostResolvers") is not None:
         import capo_route53resolver.types.outpost_resolver_list
 
         out["outpost_resolvers"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListOutpostResolversResponse:
                 data["OutpostResolvers"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

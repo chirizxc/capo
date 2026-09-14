@@ -57,7 +57,15 @@ def serialize_json(value: NumericEqualityFilter) -> dict:
         value["column"]
     )
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     if "select_all_options" in value:
         import capo_quicksight.types.numeric_filter_select_all_options
 
@@ -101,11 +109,11 @@ def serialize_json(value: NumericEqualityFilter) -> dict:
 
 def deserialize_json(data: dict) -> NumericEqualityFilter:
     out: NumericEqualityFilter = {}  # type: ignore[typeddict-item]
-    if "FilterId" in data:
+    if data.get("FilterId") is not None:
         out["filter_id"] = data["FilterId"]
     else:
         raise DeserializationError("NumericEqualityFilter.filter_id required")
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -113,9 +121,9 @@ def deserialize_json(data: dict) -> NumericEqualityFilter:
         )
     else:
         raise DeserializationError("NumericEqualityFilter.column required")
-    if "Value" in data:
-        out["value"] = data["Value"]
-    if "SelectAllOptions" in data:
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
+    if data.get("SelectAllOptions") is not None:
         import capo_quicksight.types.numeric_filter_select_all_options
 
         out["select_all_options"] = (
@@ -123,7 +131,7 @@ def deserialize_json(data: dict) -> NumericEqualityFilter:
                 data["SelectAllOptions"]
             )
         )
-    if "MatchOperator" in data:
+    if data.get("MatchOperator") is not None:
         import capo_quicksight.types.numeric_equality_match_operator
 
         out["match_operator"] = (
@@ -133,7 +141,7 @@ def deserialize_json(data: dict) -> NumericEqualityFilter:
         )
     else:
         raise DeserializationError("NumericEqualityFilter.match_operator required")
-    if "AggregationFunction" in data:
+    if data.get("AggregationFunction") is not None:
         import capo_quicksight.types.aggregation_function
 
         out["aggregation_function"] = (
@@ -141,9 +149,9 @@ def deserialize_json(data: dict) -> NumericEqualityFilter:
                 data["AggregationFunction"]
             )
         )
-    if "ParameterName" in data:
+    if data.get("ParameterName") is not None:
         out["parameter_name"] = data["ParameterName"]
-    if "NullOption" in data:
+    if data.get("NullOption") is not None:
         import capo_quicksight.types.filter_null_option
 
         out["null_option"] = capo_quicksight.types.filter_null_option.deserialize_json(
@@ -151,7 +159,7 @@ def deserialize_json(data: dict) -> NumericEqualityFilter:
         )
     else:
         raise DeserializationError("NumericEqualityFilter.null_option required")
-    if "DefaultFilterControlConfiguration" in data:
+    if data.get("DefaultFilterControlConfiguration") is not None:
         import capo_quicksight.types.default_filter_control_configuration
 
         out["default_filter_control_configuration"] = (

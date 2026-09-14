@@ -70,11 +70,11 @@ def serialize_json(value: SmallMultiplesOptions) -> dict:
 
 def deserialize_json(data: dict) -> SmallMultiplesOptions:
     out: SmallMultiplesOptions = {}  # type: ignore[typeddict-item]
-    if "MaxVisibleRows" in data:
+    if data.get("MaxVisibleRows") is not None:
         out["max_visible_rows"] = data["MaxVisibleRows"]
-    if "MaxVisibleColumns" in data:
+    if data.get("MaxVisibleColumns") is not None:
         out["max_visible_columns"] = data["MaxVisibleColumns"]
-    if "PanelConfiguration" in data:
+    if data.get("PanelConfiguration") is not None:
         import capo_quicksight.types.panel_configuration
 
         out["panel_configuration"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> SmallMultiplesOptions:
                 data["PanelConfiguration"]
             )
         )
-    if "XAxis" in data:
+    if data.get("XAxis") is not None:
         import capo_quicksight.types.small_multiples_axis_properties
 
         out["x_axis"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> SmallMultiplesOptions:
                 data["XAxis"]
             )
         )
-    if "YAxis" in data:
+    if data.get("YAxis") is not None:
         import capo_quicksight.types.small_multiples_axis_properties
 
         out["y_axis"] = (

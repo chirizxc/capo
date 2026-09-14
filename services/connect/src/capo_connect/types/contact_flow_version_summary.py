@@ -35,10 +35,10 @@ def serialize_json(value: ContactFlowVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ContactFlowVersionSummary:
     out: ContactFlowVersionSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

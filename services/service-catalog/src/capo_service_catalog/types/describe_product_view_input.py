@@ -31,9 +31,9 @@ def serialize_aws_json_1_1(value: DescribeProductViewInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProductViewInput:
     out: DescribeProductViewInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DescribeProductViewInput.id required")

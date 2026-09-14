@@ -43,28 +43,36 @@ def serialize_aws_json_1_1(value: PerformanceInsightsMetric) -> dict:
             value["filter"]
         )
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> PerformanceInsightsMetric:
     out: PerformanceInsightsMetric = {}  # type: ignore[typeddict-item]
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         out["metric"] = data["Metric"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pi.types.descriptive_map
 
         out["dimensions"] = capo_pi.types.descriptive_map.deserialize_aws_json_1_1(
             data["Dimensions"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_pi.types.descriptive_map
 
         out["filter"] = capo_pi.types.descriptive_map.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     return out

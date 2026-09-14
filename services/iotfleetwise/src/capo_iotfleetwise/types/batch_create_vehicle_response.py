@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: BatchCreateVehicleResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchCreateVehicleResponse:
     out: BatchCreateVehicleResponse = {}  # type: ignore[typeddict-item]
-    if "vehicles" in data:
+    if data.get("vehicles") is not None:
         import capo_iotfleetwise.types.create_vehicle_responses
 
         out["vehicles"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchCreateVehicleResponse:
                 data["vehicles"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_iotfleetwise.types.create_vehicle_errors
 
         out["errors"] = (

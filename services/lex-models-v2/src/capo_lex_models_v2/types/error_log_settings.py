@@ -24,7 +24,7 @@ def serialize_json(value: ErrorLogSettings) -> dict:
 
 def deserialize_json(data: dict) -> ErrorLogSettings:
     out: ErrorLogSettings = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("ErrorLogSettings.enabled required")

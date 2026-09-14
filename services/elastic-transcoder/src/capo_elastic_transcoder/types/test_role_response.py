@@ -36,9 +36,9 @@ def serialize_json(value: TestRoleResponse) -> dict:
 
 def deserialize_json(data: dict) -> TestRoleResponse:
     out: TestRoleResponse = {}  # type: ignore[typeddict-item]
-    if "Success" in data:
+    if data.get("Success") is not None:
         out["success"] = data["Success"]
-    if "Messages" in data:
+    if data.get("Messages") is not None:
         import capo_elastic_transcoder.types.exception_messages
 
         out["messages"] = (

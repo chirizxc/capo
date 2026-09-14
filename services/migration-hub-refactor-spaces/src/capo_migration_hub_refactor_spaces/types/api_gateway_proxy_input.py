@@ -32,8 +32,8 @@ def serialize_json(value: ApiGatewayProxyInput) -> dict:
 
 def deserialize_json(data: dict) -> ApiGatewayProxyInput:
     out: ApiGatewayProxyInput = {}  # type: ignore[typeddict-item]
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         out["endpoint_type"] = data["EndpointType"]
-    if "StageName" in data:
+    if data.get("StageName") is not None:
         out["stage_name"] = data["StageName"]
     return out

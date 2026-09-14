@@ -73,19 +73,19 @@ def serialize_json(value: ProductV2) -> dict:
 
 def deserialize_json(data: dict) -> ProductV2:
     out: ProductV2 = {}  # type: ignore[typeddict-item]
-    if "ProductV2Name" in data:
+    if data.get("ProductV2Name") is not None:
         out["product_v2_name"] = data["ProductV2Name"]
-    if "CompanyName" in data:
+    if data.get("CompanyName") is not None:
         out["company_name"] = data["CompanyName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_securityhub.types.category_list
 
         out["categories"] = capo_securityhub.types.category_list.deserialize_json(
             data["Categories"]
         )
-    if "IntegrationV2Types" in data:
+    if data.get("IntegrationV2Types") is not None:
         import capo_securityhub.types.integration_v2_type_list
 
         out["integration_v2_types"] = (
@@ -93,10 +93,10 @@ def deserialize_json(data: dict) -> ProductV2:
                 data["IntegrationV2Types"]
             )
         )
-    if "MarketplaceUrl" in data:
+    if data.get("MarketplaceUrl") is not None:
         out["marketplace_url"] = data["MarketplaceUrl"]
-    if "ActivationUrl" in data:
+    if data.get("ActivationUrl") is not None:
         out["activation_url"] = data["ActivationUrl"]
-    if "MarketplaceProductId" in data:
+    if data.get("MarketplaceProductId") is not None:
         out["marketplace_product_id"] = data["MarketplaceProductId"]
     return out

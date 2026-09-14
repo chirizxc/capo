@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: BatchGetOnPremisesInstancesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetOnPremisesInstancesInput:
     out: BatchGetOnPremisesInstancesInput = {}  # type: ignore[typeddict-item]
-    if "instanceNames" in data:
+    if data.get("instanceNames") is not None:
         import capo_codedeploy.types.instance_name_list
 
         out["instance_names"] = (

@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: PutApplicationSessionConfigurationRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> PutApplicationSessionConfigurationRequest:
     out: PutApplicationSessionConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     else:
         raise DeserializationError(
             "PutApplicationSessionConfigurationRequest.application_arn required"
         )
-    if "UserBackgroundSessionApplicationStatus" in data:
+    if data.get("UserBackgroundSessionApplicationStatus") is not None:
         import capo_sso_admin.types.user_background_session_application_status
 
         out["user_background_session_application_status"] = (

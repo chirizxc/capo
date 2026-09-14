@@ -33,14 +33,14 @@ def serialize_json(value: DeleteMessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteMessageRequest:
     out: DeleteMessageRequest = {}  # type: ignore[typeddict-item]
-    if "roomIdentifier" in data:
+    if data.get("roomIdentifier") is not None:
         out["room_identifier"] = data["roomIdentifier"]
     else:
         raise DeserializationError("DeleteMessageRequest.room_identifier required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeleteMessageRequest.id required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

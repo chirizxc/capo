@@ -88,8 +88,9 @@ class ReportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.get_report_metadata_request.GetReportMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_artifact.types.get_report_metadata_request.GetReportMetadataRequest = {
+            "report_id": report_id
+        }
         if report_version is not None:
             input_["report_version"] = report_version
 
@@ -98,6 +99,7 @@ class ReportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -148,7 +150,7 @@ class ReportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.list_reports_request.ListReportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_artifact.types.list_reports_request.ListReportsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -159,6 +161,7 @@ class ReportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_report(
@@ -213,17 +216,19 @@ class ReportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.get_report_request.GetReportRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_artifact.types.get_report_request.GetReportRequest = {
+            "report_id": report_id,
+            "term_token": term_token,
+        }
         if report_version is not None:
             input_["report_version"] = report_version
-        input_["term_token"] = term_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_term_for_report(
@@ -274,8 +279,9 @@ class ReportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.get_term_for_report_request.GetTermForReportRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_artifact.types.get_term_for_report_request.GetTermForReportRequest = {
+            "report_id": report_id
+        }
         if report_version is not None:
             input_["report_version"] = report_version
 
@@ -284,6 +290,7 @@ class ReportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_report_versions(
@@ -337,8 +344,9 @@ class ReportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.list_report_versions_request.ListReportVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_artifact.types.list_report_versions_request.ListReportVersionsRequest = {
+            "report_id": report_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -349,6 +357,7 @@ class ReportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -404,8 +413,9 @@ class AsyncReportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.get_report_metadata_request.GetReportMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_artifact.types.get_report_metadata_request.GetReportMetadataRequest = {
+            "report_id": report_id
+        }
         if report_version is not None:
             input_["report_version"] = report_version
 
@@ -414,6 +424,7 @@ class AsyncReportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -465,7 +476,7 @@ class AsyncReportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.list_reports_request.ListReportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_artifact.types.list_reports_request.ListReportsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -476,6 +487,7 @@ class AsyncReportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_report(
@@ -531,17 +543,19 @@ class AsyncReportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.get_report_request.GetReportRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_artifact.types.get_report_request.GetReportRequest = {
+            "report_id": report_id,
+            "term_token": term_token,
+        }
         if report_version is not None:
             input_["report_version"] = report_version
-        input_["term_token"] = term_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_term_for_report(
@@ -593,8 +607,9 @@ class AsyncReportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.get_term_for_report_request.GetTermForReportRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_artifact.types.get_term_for_report_request.GetTermForReportRequest = {
+            "report_id": report_id
+        }
         if report_version is not None:
             input_["report_version"] = report_version
 
@@ -603,6 +618,7 @@ class AsyncReportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_report_versions(
@@ -657,8 +673,9 @@ class AsyncReportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_artifact.types.list_report_versions_request.ListReportVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_artifact.types.list_report_versions_request.ListReportVersionsRequest = {
+            "report_id": report_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -669,4 +686,5 @@ class AsyncReportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

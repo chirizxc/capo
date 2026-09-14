@@ -49,7 +49,7 @@ def serialize_json(value: PathOptions) -> dict:
 
 def deserialize_json(data: dict) -> PathOptions:
     out: PathOptions = {}  # type: ignore[typeddict-item]
-    if "LastModifiedDateCondition" in data:
+    if data.get("LastModifiedDateCondition") is not None:
         import capo_databrew.types.filter_expression
 
         out["last_modified_date_condition"] = (
@@ -57,13 +57,13 @@ def deserialize_json(data: dict) -> PathOptions:
                 data["LastModifiedDateCondition"]
             )
         )
-    if "FilesLimit" in data:
+    if data.get("FilesLimit") is not None:
         import capo_databrew.types.files_limit
 
         out["files_limit"] = capo_databrew.types.files_limit.deserialize_json(
             data["FilesLimit"]
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_databrew.types.path_parameters_map
 
         out["parameters"] = capo_databrew.types.path_parameters_map.deserialize_json(

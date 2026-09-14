@@ -108,17 +108,17 @@ def serialize_json(value: ResourceConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ResourceConfigurationSummary:
     out: ResourceConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "resourceGatewayId" in data:
+    if data.get("resourceGatewayId") is not None:
         out["resource_gateway_id"] = data["resourceGatewayId"]
-    if "resourceConfigurationGroupId" in data:
+    if data.get("resourceConfigurationGroupId") is not None:
         out["resource_configuration_group_id"] = data["resourceConfigurationGroupId"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_vpc_lattice.types.resource_configuration_type
 
         out["type"] = (
@@ -126,26 +126,26 @@ def deserialize_json(data: dict) -> ResourceConfigurationSummary:
                 data["type"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "amazonManaged" in data:
+    if data.get("amazonManaged") is not None:
         out["amazon_managed"] = data["amazonManaged"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "domainVerificationId" in data:
+    if data.get("domainVerificationId") is not None:
         out["domain_verification_id"] = data["domainVerificationId"]
-    if "groupDomain" in data:
+    if data.get("groupDomain") is not None:
         out["group_domain"] = data["groupDomain"]
     return out

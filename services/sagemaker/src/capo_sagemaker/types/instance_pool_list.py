@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> InstancePoolList:
 
     out: InstancePoolList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker.types.instance_pool.deserialize_aws_json_1_1(item))
     return out

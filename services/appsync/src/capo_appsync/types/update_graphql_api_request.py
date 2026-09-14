@@ -137,17 +137,17 @@ def serialize_json(value: UpdateGraphqlApiRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGraphqlApiRequest:
     out: UpdateGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateGraphqlApiRequest.name required")
-    if "logConfig" in data:
+    if data.get("logConfig") is not None:
         import capo_appsync.types.log_config
 
         out["log_config"] = capo_appsync.types.log_config.deserialize_json(
             data["logConfig"]
         )
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         import capo_appsync.types.authentication_type
 
         out["authentication_type"] = (
@@ -159,13 +159,13 @@ def deserialize_json(data: dict) -> UpdateGraphqlApiRequest:
         raise DeserializationError(
             "UpdateGraphqlApiRequest.authentication_type required"
         )
-    if "userPoolConfig" in data:
+    if data.get("userPoolConfig") is not None:
         import capo_appsync.types.user_pool_config
 
         out["user_pool_config"] = capo_appsync.types.user_pool_config.deserialize_json(
             data["userPoolConfig"]
         )
-    if "openIDConnectConfig" in data:
+    if data.get("openIDConnectConfig") is not None:
         import capo_appsync.types.open_id_connect_config
 
         out["open_id_connect_config"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> UpdateGraphqlApiRequest:
                 data["openIDConnectConfig"]
             )
         )
-    if "additionalAuthenticationProviders" in data:
+    if data.get("additionalAuthenticationProviders") is not None:
         import capo_appsync.types.additional_authentication_providers
 
         out["additional_authentication_providers"] = (
@@ -181,11 +181,11 @@ def deserialize_json(data: dict) -> UpdateGraphqlApiRequest:
                 data["additionalAuthenticationProviders"]
             )
         )
-    if "xrayEnabled" in data:
+    if data.get("xrayEnabled") is not None:
         out["xray_enabled"] = data["xrayEnabled"]
     else:
         out["xray_enabled"] = False
-    if "lambdaAuthorizerConfig" in data:
+    if data.get("lambdaAuthorizerConfig") is not None:
         import capo_appsync.types.lambda_authorizer_config
 
         out["lambda_authorizer_config"] = (
@@ -193,11 +193,11 @@ def deserialize_json(data: dict) -> UpdateGraphqlApiRequest:
                 data["lambdaAuthorizerConfig"]
             )
         )
-    if "mergedApiExecutionRoleArn" in data:
+    if data.get("mergedApiExecutionRoleArn") is not None:
         out["merged_api_execution_role_arn"] = data["mergedApiExecutionRoleArn"]
-    if "ownerContact" in data:
+    if data.get("ownerContact") is not None:
         out["owner_contact"] = data["ownerContact"]
-    if "introspectionConfig" in data:
+    if data.get("introspectionConfig") is not None:
         import capo_appsync.types.graph_ql_api_introspection_config
 
         out["introspection_config"] = (
@@ -205,15 +205,15 @@ def deserialize_json(data: dict) -> UpdateGraphqlApiRequest:
                 data["introspectionConfig"]
             )
         )
-    if "queryDepthLimit" in data:
+    if data.get("queryDepthLimit") is not None:
         out["query_depth_limit"] = data["queryDepthLimit"]
     else:
         out["query_depth_limit"] = 0
-    if "resolverCountLimit" in data:
+    if data.get("resolverCountLimit") is not None:
         out["resolver_count_limit"] = data["resolverCountLimit"]
     else:
         out["resolver_count_limit"] = 0
-    if "enhancedMetricsConfig" in data:
+    if data.get("enhancedMetricsConfig") is not None:
         import capo_appsync.types.enhanced_metrics_config
 
         out["enhanced_metrics_config"] = (

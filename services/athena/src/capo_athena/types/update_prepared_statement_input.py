@@ -37,22 +37,22 @@ def serialize_aws_json_1_1(value: UpdatePreparedStatementInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePreparedStatementInput:
     out: UpdatePreparedStatementInput = {}  # type: ignore[typeddict-item]
-    if "StatementName" in data:
+    if data.get("StatementName") is not None:
         out["statement_name"] = data["StatementName"]
     else:
         raise DeserializationError(
             "UpdatePreparedStatementInput.statement_name required"
         )
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     else:
         raise DeserializationError("UpdatePreparedStatementInput.work_group required")
-    if "QueryStatement" in data:
+    if data.get("QueryStatement") is not None:
         out["query_statement"] = data["QueryStatement"]
     else:
         raise DeserializationError(
             "UpdatePreparedStatementInput.query_statement required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

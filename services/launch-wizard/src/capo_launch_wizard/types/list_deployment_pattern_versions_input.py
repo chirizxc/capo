@@ -51,23 +51,23 @@ def serialize_json(value: ListDeploymentPatternVersionsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListDeploymentPatternVersionsInput:
     out: ListDeploymentPatternVersionsInput = {}  # type: ignore[typeddict-item]
-    if "workloadName" in data:
+    if data.get("workloadName") is not None:
         out["workload_name"] = data["workloadName"]
     else:
         raise DeserializationError(
             "ListDeploymentPatternVersionsInput.workload_name required"
         )
-    if "deploymentPatternName" in data:
+    if data.get("deploymentPatternName") is not None:
         out["deployment_pattern_name"] = data["deploymentPatternName"]
     else:
         raise DeserializationError(
             "ListDeploymentPatternVersionsInput.deployment_pattern_name required"
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_launch_wizard.types.filter_list
 
         out["filters"] = capo_launch_wizard.types.filter_list.deserialize_json(

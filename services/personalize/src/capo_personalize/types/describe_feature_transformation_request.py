@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeFeatureTransformationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureTransformationRequest:
     out: DescribeFeatureTransformationRequest = {}  # type: ignore[typeddict-item]
-    if "featureTransformationArn" in data:
+    if data.get("featureTransformationArn") is not None:
         out["feature_transformation_arn"] = data["featureTransformationArn"]
     else:
         raise DeserializationError(

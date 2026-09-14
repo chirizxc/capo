@@ -39,10 +39,10 @@ def serialize_aws_json_1_0(value: ProvisionedResource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProvisionedResource:
     out: ProvisionedResource = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
-    if "provisioningEngine" in data:
+    if data.get("provisioningEngine") is not None:
         out["provisioning_engine"] = data["provisioningEngine"]
     return out

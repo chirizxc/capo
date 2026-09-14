@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsS3BucketServerSideEncryptionRules:
 
     out: AwsS3BucketServerSideEncryptionRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_s3_bucket_server_side_encryption_rule.deserialize_json(
                 item

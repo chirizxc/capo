@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UpdateReportGroupOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateReportGroupOutput:
     out: UpdateReportGroupOutput = {}  # type: ignore[typeddict-item]
-    if "reportGroup" in data:
+    if data.get("reportGroup") is not None:
         import capo_codebuild.types.report_group
 
         out["report_group"] = (

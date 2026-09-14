@@ -27,12 +27,12 @@ def serialize_json(value: AmazonQPropertiesInput) -> dict:
 
 def deserialize_json(data: dict) -> AmazonQPropertiesInput:
     out: AmazonQPropertiesInput = {}  # type: ignore[typeddict-item]
-    if "isEnabled" in data:
+    if data.get("isEnabled") is not None:
         out["is_enabled"] = data["isEnabled"]
     else:
         raise DeserializationError("AmazonQPropertiesInput.is_enabled required")
-    if "profileArn" in data:
+    if data.get("profileArn") is not None:
         out["profile_arn"] = data["profileArn"]
-    if "authMode" in data:
+    if data.get("authMode") is not None:
         out["auth_mode"] = data["authMode"]
     return out

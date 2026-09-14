@@ -50,15 +50,15 @@ def serialize_json(value: VectorBucket) -> dict:
 
 def deserialize_json(data: dict) -> VectorBucket:
     out: VectorBucket = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
     else:
         raise DeserializationError("VectorBucket.vector_bucket_name required")
-    if "vectorBucketArn" in data:
+    if data.get("vectorBucketArn") is not None:
         out["vector_bucket_arn"] = data["vectorBucketArn"]
     else:
         raise DeserializationError("VectorBucket.vector_bucket_arn required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_s3vectors.types._prelude.timestamp
 
         out["creation_time"] = capo_s3vectors.types._prelude.timestamp.deserialize_json(
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> VectorBucket:
         )
     else:
         raise DeserializationError("VectorBucket.creation_time required")
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_s3vectors.types.encryption_configuration
 
         out["encryption_configuration"] = (

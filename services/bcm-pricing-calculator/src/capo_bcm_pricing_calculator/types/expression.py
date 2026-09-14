@@ -89,7 +89,7 @@ def serialize_aws_json_1_0(value: Expression) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Expression:
     out: Expression = {}  # type: ignore[typeddict-item]
-    if "and" in data:
+    if data.get("and") is not None:
         import capo_bcm_pricing_calculator.types.expression_list
 
         out["and"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> Expression:
                 data["and"]
             )
         )
-    if "or" in data:
+    if data.get("or") is not None:
         import capo_bcm_pricing_calculator.types.expression_list
 
         out["or"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> Expression:
                 data["or"]
             )
         )
-    if "not" in data:
+    if data.get("not") is not None:
         import capo_bcm_pricing_calculator.types.expression
 
         out["not"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_0(data: dict) -> Expression:
                 data["not"]
             )
         )
-    if "costCategories" in data:
+    if data.get("costCategories") is not None:
         import capo_bcm_pricing_calculator.types.expression_filter
 
         out["cost_categories"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> Expression:
                 data["costCategories"]
             )
         )
-    if "dimensions" in data:
+    if data.get("dimensions") is not None:
         import capo_bcm_pricing_calculator.types.expression_filter
 
         out["dimensions"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(data: dict) -> Expression:
                 data["dimensions"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_bcm_pricing_calculator.types.expression_filter
 
         out["tags"] = (

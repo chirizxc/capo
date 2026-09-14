@@ -125,15 +125,15 @@ def serialize_aws_json_1_0(value: RelationshipDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RelationshipDetail:
     out: RelationshipDetail = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         import capo_partnercentral_channel.types.association_type
 
         out["association_type"] = (
@@ -141,13 +141,13 @@ def deserialize_aws_json_1_0(data: dict) -> RelationshipDetail:
                 data["associationType"]
             )
         )
-    if "programManagementAccountId" in data:
+    if data.get("programManagementAccountId") is not None:
         out["program_management_account_id"] = data["programManagementAccountId"]
-    if "associatedAccountId" in data:
+    if data.get("associatedAccountId") is not None:
         out["associated_account_id"] = data["associatedAccountId"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "resaleAccountModel" in data:
+    if data.get("resaleAccountModel") is not None:
         import capo_partnercentral_channel.types.resale_account_model
 
         out["resale_account_model"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_0(data: dict) -> RelationshipDetail:
                 data["resaleAccountModel"]
             )
         )
-    if "sector" in data:
+    if data.get("sector") is not None:
         import capo_partnercentral_channel.types.sector
 
         out["sector"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_0(data: dict) -> RelationshipDetail:
                 data["sector"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["created_at"] = (
@@ -171,7 +171,7 @@ def deserialize_aws_json_1_0(data: dict) -> RelationshipDetail:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["updated_at"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_0(data: dict) -> RelationshipDetail:
                 data["updatedAt"]
             )
         )
-    if "startDate" in data:
+    if data.get("startDate") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["start_date"] = (

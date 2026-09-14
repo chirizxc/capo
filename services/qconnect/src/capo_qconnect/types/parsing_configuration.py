@@ -37,11 +37,11 @@ def serialize_json(value: ParsingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ParsingConfiguration:
     out: ParsingConfiguration = {}  # type: ignore[typeddict-item]
-    if "parsingStrategy" in data:
+    if data.get("parsingStrategy") is not None:
         out["parsing_strategy"] = data["parsingStrategy"]
     else:
         raise DeserializationError("ParsingConfiguration.parsing_strategy required")
-    if "bedrockFoundationModelConfiguration" in data:
+    if data.get("bedrockFoundationModelConfiguration") is not None:
         import capo_qconnect.types.bedrock_foundation_model_configuration_for_parsing
 
         out["bedrock_foundation_model_configuration"] = (

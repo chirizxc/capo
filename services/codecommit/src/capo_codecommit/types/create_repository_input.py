@@ -45,18 +45,18 @@ def serialize_aws_json_1_1(value: CreateRepositoryInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRepositoryInput:
     out: CreateRepositoryInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("CreateRepositoryInput.repository_name required")
-    if "repositoryDescription" in data:
+    if data.get("repositoryDescription") is not None:
         out["repository_description"] = data["repositoryDescription"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codecommit.types.tags_map
 
         out["tags"] = capo_codecommit.types.tags_map.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

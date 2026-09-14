@@ -35,7 +35,7 @@ def serialize_json(value: CreateSubscriberNotificationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSubscriberNotificationRequest:
     out: CreateSubscriberNotificationRequest = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_securitylake.types.notification_configuration
 
         out["configuration"] = (

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeComplianceByConfigRuleResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeComplianceByConfigRuleResponse:
     out: DescribeComplianceByConfigRuleResponse = {}  # type: ignore[typeddict-item]
-    if "ComplianceByConfigRules" in data:
+    if data.get("ComplianceByConfigRules") is not None:
         import capo_config_service.types.compliance_by_config_rules
 
         out["compliance_by_config_rules"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeComplianceByConfigRuleRespon
                 data["ComplianceByConfigRules"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

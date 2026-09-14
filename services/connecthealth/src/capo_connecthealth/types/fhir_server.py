@@ -31,10 +31,10 @@ def serialize_json(value: FHIRServer) -> dict:
 
 def deserialize_json(data: dict) -> FHIRServer:
     out: FHIRServer = {}  # type: ignore[typeddict-item]
-    if "fhirEndpoint" in data:
+    if data.get("fhirEndpoint") is not None:
         out["fhir_endpoint"] = data["fhirEndpoint"]
     else:
         raise DeserializationError("FHIRServer.fhir_endpoint required")
-    if "oauthToken" in data:
+    if data.get("oauthToken") is not None:
         out["oauth_token"] = data["oauthToken"]
     return out

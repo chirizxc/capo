@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SnapshotS3DestinationConfigurationList:
 
     out: SnapshotS3DestinationConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.snapshot_s3_destination_configuration.deserialize_json(
                 item

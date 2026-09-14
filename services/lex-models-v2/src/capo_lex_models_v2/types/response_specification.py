@@ -33,7 +33,7 @@ def serialize_json(value: ResponseSpecification) -> dict:
 
 def deserialize_json(data: dict) -> ResponseSpecification:
     out: ResponseSpecification = {}  # type: ignore[typeddict-item]
-    if "messageGroups" in data:
+    if data.get("messageGroups") is not None:
         import capo_lex_models_v2.types.message_groups_list
 
         out["message_groups"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ResponseSpecification:
         )
     else:
         raise DeserializationError("ResponseSpecification.message_groups required")
-    if "allowInterrupt" in data:
+    if data.get("allowInterrupt") is not None:
         out["allow_interrupt"] = data["allowInterrupt"]
     return out

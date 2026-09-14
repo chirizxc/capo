@@ -27,7 +27,7 @@ def serialize_json(value: UpdateRecordsResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecordsResponse:
     out: UpdateRecordsResponse = {}  # type: ignore[typeddict-item]
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_cognito_sync.types.record_list
 
         out["records"] = capo_cognito_sync.types.record_list.deserialize_json(

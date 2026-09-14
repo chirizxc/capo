@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> IcebergPartitionFieldList:
 
     out: IcebergPartitionFieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_s3tables.types.iceberg_partition_field.deserialize_json(item))
     return out

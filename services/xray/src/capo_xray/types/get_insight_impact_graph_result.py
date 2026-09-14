@@ -70,31 +70,31 @@ def serialize_json(value: GetInsightImpactGraphResult) -> dict:
 
 def deserialize_json(data: dict) -> GetInsightImpactGraphResult:
     out: GetInsightImpactGraphResult = {}  # type: ignore[typeddict-item]
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])
-    if "ServiceGraphStartTime" in data:
+    if data.get("ServiceGraphStartTime") is not None:
         import capo_xray.types.timestamp
 
         out["service_graph_start_time"] = capo_xray.types.timestamp.deserialize_json(
             data["ServiceGraphStartTime"]
         )
-    if "ServiceGraphEndTime" in data:
+    if data.get("ServiceGraphEndTime") is not None:
         import capo_xray.types.timestamp
 
         out["service_graph_end_time"] = capo_xray.types.timestamp.deserialize_json(
             data["ServiceGraphEndTime"]
         )
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_xray.types.insight_impact_graph_service_list
 
         out["services"] = (
@@ -102,6 +102,6 @@ def deserialize_json(data: dict) -> GetInsightImpactGraphResult:
                 data["Services"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

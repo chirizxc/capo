@@ -70,15 +70,15 @@ def serialize_aws_json_1_1(value: CreateDatasetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
     out: CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
     else:
         raise DeserializationError("CreateDatasetRequest.flywheel_arn required")
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
     else:
         raise DeserializationError("CreateDatasetRequest.dataset_name required")
-    if "DatasetType" in data:
+    if data.get("DatasetType") is not None:
         import capo_comprehend.types.dataset_type
 
         out["dataset_type"] = (
@@ -86,9 +86,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
                 data["DatasetType"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_comprehend.types.dataset_input_data_config
 
         out["input_data_config"] = (
@@ -98,9 +98,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
         )
     else:
         raise DeserializationError("CreateDatasetRequest.input_data_config required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_comprehend.types.tag_list
 
         out["tags"] = capo_comprehend.types.tag_list.deserialize_aws_json_1_1(

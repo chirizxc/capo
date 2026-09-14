@@ -99,23 +99,23 @@ def serialize_aws_json_1_0(value: ComponentSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ComponentSummary:
     out: ComponentSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ComponentSummary.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ComponentSummary.arn required")
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError("ComponentSummary.environment_name required")
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "serviceInstanceName" in data:
+    if data.get("serviceInstanceName") is not None:
         out["service_instance_name"] = data["serviceInstanceName"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> ComponentSummary:
         )
     else:
         raise DeserializationError("ComponentSummary.created_at required")
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_modified_at"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> ComponentSummary:
         )
     else:
         raise DeserializationError("ComponentSummary.last_modified_at required")
-    if "lastDeploymentAttemptedAt" in data:
+    if data.get("lastDeploymentAttemptedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_deployment_attempted_at"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(data: dict) -> ComponentSummary:
                 data["lastDeploymentAttemptedAt"]
             )
         )
-    if "lastDeploymentSucceededAt" in data:
+    if data.get("lastDeploymentSucceededAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_deployment_succeeded_at"] = (
@@ -151,14 +151,14 @@ def deserialize_aws_json_1_0(data: dict) -> ComponentSummary:
                 data["lastDeploymentSucceededAt"]
             )
         )
-    if "deploymentStatus" in data:
+    if data.get("deploymentStatus") is not None:
         out["deployment_status"] = data["deploymentStatus"]
     else:
         raise DeserializationError("ComponentSummary.deployment_status required")
-    if "deploymentStatusMessage" in data:
+    if data.get("deploymentStatusMessage") is not None:
         out["deployment_status_message"] = data["deploymentStatusMessage"]
-    if "lastAttemptedDeploymentId" in data:
+    if data.get("lastAttemptedDeploymentId") is not None:
         out["last_attempted_deployment_id"] = data["lastAttemptedDeploymentId"]
-    if "lastSucceededDeploymentId" in data:
+    if data.get("lastSucceededDeploymentId") is not None:
         out["last_succeeded_deployment_id"] = data["lastSucceededDeploymentId"]
     return out

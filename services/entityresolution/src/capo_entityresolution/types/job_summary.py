@@ -49,11 +49,11 @@ def serialize_json(value: JobSummary) -> dict:
 
 def deserialize_json(data: dict) -> JobSummary:
     out: JobSummary = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("JobSummary.job_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_entityresolution.types.job_status
 
         out["status"] = capo_entityresolution.types.job_status.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> JobSummary:
         )
     else:
         raise DeserializationError("JobSummary.status required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["start_time"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> JobSummary:
         )
     else:
         raise DeserializationError("JobSummary.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["end_time"] = (

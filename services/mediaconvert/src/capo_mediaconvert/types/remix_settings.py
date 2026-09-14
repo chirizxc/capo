@@ -54,11 +54,11 @@ def serialize_json(value: RemixSettings) -> dict:
 
 def deserialize_json(data: dict) -> RemixSettings:
     out: RemixSettings = {}  # type: ignore[typeddict-item]
-    if "audioDescriptionAudioChannel" in data:
+    if data.get("audioDescriptionAudioChannel") is not None:
         out["audio_description_audio_channel"] = data["audioDescriptionAudioChannel"]
-    if "audioDescriptionDataChannel" in data:
+    if data.get("audioDescriptionDataChannel") is not None:
         out["audio_description_data_channel"] = data["audioDescriptionDataChannel"]
-    if "channelMapping" in data:
+    if data.get("channelMapping") is not None:
         import capo_mediaconvert.types.channel_mapping
 
         out["channel_mapping"] = (
@@ -66,8 +66,8 @@ def deserialize_json(data: dict) -> RemixSettings:
                 data["channelMapping"]
             )
         )
-    if "channelsIn" in data:
+    if data.get("channelsIn") is not None:
         out["channels_in"] = data["channelsIn"]
-    if "channelsOut" in data:
+    if data.get("channelsOut") is not None:
         out["channels_out"] = data["channelsOut"]
     return out

@@ -33,9 +33,9 @@ def serialize_json(value: DataStoreResponse) -> dict:
 
 def deserialize_json(data: dict) -> DataStoreResponse:
     out: DataStoreResponse = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "Readiness" in data:
+    if data.get("Readiness") is not None:
         import capo_customer_profiles.types.readiness
 
         out["readiness"] = capo_customer_profiles.types.readiness.deserialize_json(

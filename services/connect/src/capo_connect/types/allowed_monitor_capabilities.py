@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AllowedMonitorCapabilities:
 
     out: AllowedMonitorCapabilities = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.monitor_capability.deserialize_json(item))
     return out

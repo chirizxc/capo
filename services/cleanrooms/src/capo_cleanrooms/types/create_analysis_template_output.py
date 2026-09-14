@@ -28,7 +28,7 @@ def serialize_json(value: CreateAnalysisTemplateOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAnalysisTemplateOutput:
     out: CreateAnalysisTemplateOutput = {}  # type: ignore[typeddict-item]
-    if "analysisTemplate" in data:
+    if data.get("analysisTemplate") is not None:
         import capo_cleanrooms.types.analysis_template
 
         out["analysis_template"] = (

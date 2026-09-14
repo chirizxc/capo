@@ -160,11 +160,11 @@ def serialize_json(value: CoreNetworkChangeValues) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkChangeValues:
     out: CoreNetworkChangeValues = {}  # type: ignore[typeddict-item]
-    if "SegmentName" in data:
+    if data.get("SegmentName") is not None:
         out["segment_name"] = data["SegmentName"]
-    if "NetworkFunctionGroupName" in data:
+    if data.get("NetworkFunctionGroupName") is not None:
         out["network_function_group_name"] = data["NetworkFunctionGroupName"]
-    if "EdgeLocations" in data:
+    if data.get("EdgeLocations") is not None:
         import capo_networkmanager.types.external_region_code_list
 
         out["edge_locations"] = (
@@ -172,13 +172,13 @@ def deserialize_json(data: dict) -> CoreNetworkChangeValues:
                 data["EdgeLocations"]
             )
         )
-    if "Asn" in data:
+    if data.get("Asn") is not None:
         out["asn"] = data["Asn"]
-    if "Cidr" in data:
+    if data.get("Cidr") is not None:
         out["cidr"] = data["Cidr"]
-    if "DestinationIdentifier" in data:
+    if data.get("DestinationIdentifier") is not None:
         out["destination_identifier"] = data["DestinationIdentifier"]
-    if "InsideCidrBlocks" in data:
+    if data.get("InsideCidrBlocks") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["inside_cidr_blocks"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> CoreNetworkChangeValues:
                 data["InsideCidrBlocks"]
             )
         )
-    if "SharedSegments" in data:
+    if data.get("SharedSegments") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["shared_segments"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> CoreNetworkChangeValues:
                 data["SharedSegments"]
             )
         )
-    if "ServiceInsertionActions" in data:
+    if data.get("ServiceInsertionActions") is not None:
         import capo_networkmanager.types.service_insertion_action_list
 
         out["service_insertion_actions"] = (
@@ -202,21 +202,21 @@ def deserialize_json(data: dict) -> CoreNetworkChangeValues:
                 data["ServiceInsertionActions"]
             )
         )
-    if "VpnEcmpSupport" in data:
+    if data.get("VpnEcmpSupport") is not None:
         out["vpn_ecmp_support"] = data["VpnEcmpSupport"]
     else:
         out["vpn_ecmp_support"] = False
-    if "DnsSupport" in data:
+    if data.get("DnsSupport") is not None:
         out["dns_support"] = data["DnsSupport"]
     else:
         out["dns_support"] = False
-    if "SecurityGroupReferencingSupport" in data:
+    if data.get("SecurityGroupReferencingSupport") is not None:
         out["security_group_referencing_support"] = data[
             "SecurityGroupReferencingSupport"
         ]
     else:
         out["security_group_referencing_support"] = False
-    if "RoutingPolicyDirection" in data:
+    if data.get("RoutingPolicyDirection") is not None:
         import capo_networkmanager.types.routing_policy_direction
 
         out["routing_policy_direction"] = (
@@ -224,9 +224,9 @@ def deserialize_json(data: dict) -> CoreNetworkChangeValues:
                 data["RoutingPolicyDirection"]
             )
         )
-    if "RoutingPolicy" in data:
+    if data.get("RoutingPolicy") is not None:
         out["routing_policy"] = data["RoutingPolicy"]
-    if "PeerEdgeLocations" in data:
+    if data.get("PeerEdgeLocations") is not None:
         import capo_networkmanager.types.external_region_code_list
 
         out["peer_edge_locations"] = (
@@ -234,9 +234,9 @@ def deserialize_json(data: dict) -> CoreNetworkChangeValues:
                 data["PeerEdgeLocations"]
             )
         )
-    if "AttachmentId" in data:
+    if data.get("AttachmentId") is not None:
         out["attachment_id"] = data["AttachmentId"]
-    if "RoutingPolicyAssociationDetails" in data:
+    if data.get("RoutingPolicyAssociationDetails") is not None:
         import capo_networkmanager.types.routing_policy_association_details_list
 
         out["routing_policy_association_details"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetFirewallRuleGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetFirewallRuleGroupRequest:
     out: GetFirewallRuleGroupRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallRuleGroupId" in data:
+    if data.get("FirewallRuleGroupId") is not None:
         out["firewall_rule_group_id"] = data["FirewallRuleGroupId"]
     else:
         raise DeserializationError(

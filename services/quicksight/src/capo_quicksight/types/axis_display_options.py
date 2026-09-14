@@ -75,7 +75,7 @@ def serialize_json(value: AxisDisplayOptions) -> dict:
 
 def deserialize_json(data: dict) -> AxisDisplayOptions:
     out: AxisDisplayOptions = {}  # type: ignore[typeddict-item]
-    if "TickLabelOptions" in data:
+    if data.get("TickLabelOptions") is not None:
         import capo_quicksight.types.axis_tick_label_options
 
         out["tick_label_options"] = (
@@ -83,25 +83,25 @@ def deserialize_json(data: dict) -> AxisDisplayOptions:
                 data["TickLabelOptions"]
             )
         )
-    if "AxisLineVisibility" in data:
+    if data.get("AxisLineVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["axis_line_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["AxisLineVisibility"]
         )
-    if "GridLineVisibility" in data:
+    if data.get("GridLineVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["grid_line_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["GridLineVisibility"]
         )
-    if "DataOptions" in data:
+    if data.get("DataOptions") is not None:
         import capo_quicksight.types.axis_data_options
 
         out["data_options"] = capo_quicksight.types.axis_data_options.deserialize_json(
             data["DataOptions"]
         )
-    if "ScrollbarOptions" in data:
+    if data.get("ScrollbarOptions") is not None:
         import capo_quicksight.types.scroll_bar_options
 
         out["scrollbar_options"] = (
@@ -109,6 +109,6 @@ def deserialize_json(data: dict) -> AxisDisplayOptions:
                 data["ScrollbarOptions"]
             )
         )
-    if "AxisOffset" in data:
+    if data.get("AxisOffset") is not None:
         out["axis_offset"] = data["AxisOffset"]
     return out

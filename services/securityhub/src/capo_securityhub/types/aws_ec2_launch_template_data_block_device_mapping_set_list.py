@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEc2LaunchTemplateDataBlockDeviceMappingSe
 
     out: AwsEc2LaunchTemplateDataBlockDeviceMappingSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_launch_template_data_block_device_mapping_set_details.deserialize_json(
                 item

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: OidcMemberDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OidcMemberDefinition:
     out: OidcMemberDefinition = {}  # type: ignore[typeddict-item]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_sagemaker.types.groups
 
         out["groups"] = capo_sagemaker.types.groups.deserialize_aws_json_1_1(

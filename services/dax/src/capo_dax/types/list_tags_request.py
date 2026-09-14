@@ -28,10 +28,10 @@ def serialize_aws_json_1_1(value: ListTagsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTagsRequest:
     out: ListTagsRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     else:
         raise DeserializationError("ListTagsRequest.resource_name required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

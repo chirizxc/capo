@@ -105,23 +105,23 @@ def serialize_json(value: StartJobRunRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartJobRunRequest:
     out: StartJobRunRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("StartJobRunRequest.client_token required")
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
-    if "jobDriver" in data:
+    if data.get("jobDriver") is not None:
         import capo_emr_containers.types.job_driver
 
         out["job_driver"] = capo_emr_containers.types.job_driver.deserialize_json(
             data["jobDriver"]
         )
-    if "configurationOverrides" in data:
+    if data.get("configurationOverrides") is not None:
         import capo_emr_containers.types.configuration_overrides
 
         out["configuration_overrides"] = (
@@ -129,13 +129,13 @@ def deserialize_json(data: dict) -> StartJobRunRequest:
                 data["configurationOverrides"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_containers.types.tag_map
 
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])
-    if "jobTemplateId" in data:
+    if data.get("jobTemplateId") is not None:
         out["job_template_id"] = data["jobTemplateId"]
-    if "jobTemplateParameters" in data:
+    if data.get("jobTemplateParameters") is not None:
         import capo_emr_containers.types.template_parameter_input_map
 
         out["job_template_parameters"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> StartJobRunRequest:
                 data["jobTemplateParameters"]
             )
         )
-    if "retryPolicyConfiguration" in data:
+    if data.get("retryPolicyConfiguration") is not None:
         import capo_emr_containers.types.retry_policy_configuration
 
         out["retry_policy_configuration"] = (

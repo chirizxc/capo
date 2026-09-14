@@ -81,8 +81,9 @@ class DataExport:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.create_export_request.CreateExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export"] = export
+        input_: capo_bcm_data_exports.types.create_export_request.CreateExportRequest = {
+            "export": export
+        }
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
 
@@ -91,6 +92,7 @@ class DataExport:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -127,14 +129,16 @@ class DataExport:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.get_export_request.GetExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_arn"] = export_arn
+        input_: capo_bcm_data_exports.types.get_export_request.GetExportRequest = {
+            "export_arn": export_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -173,15 +177,17 @@ class DataExport:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.update_export_request.UpdateExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_arn"] = export_arn
-        input_["export"] = export
+        input_: capo_bcm_data_exports.types.update_export_request.UpdateExportRequest = {
+            "export_arn": export_arn,
+            "export": export,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -218,14 +224,16 @@ class DataExport:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.delete_export_request.DeleteExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_arn"] = export_arn
+        input_: capo_bcm_data_exports.types.delete_export_request.DeleteExportRequest = {
+            "export_arn": export_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -267,7 +275,7 @@ class DataExport:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.list_exports_request.ListExportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_data_exports.types.list_exports_request.ListExportsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -278,6 +286,7 @@ class DataExport:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -325,8 +334,9 @@ class AsyncDataExport:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.create_export_request.CreateExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export"] = export
+        input_: capo_bcm_data_exports.types.create_export_request.CreateExportRequest = {
+            "export": export
+        }
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
 
@@ -335,6 +345,7 @@ class AsyncDataExport:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -372,14 +383,16 @@ class AsyncDataExport:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.get_export_request.GetExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_arn"] = export_arn
+        input_: capo_bcm_data_exports.types.get_export_request.GetExportRequest = {
+            "export_arn": export_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -419,15 +432,17 @@ class AsyncDataExport:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.update_export_request.UpdateExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_arn"] = export_arn
-        input_["export"] = export
+        input_: capo_bcm_data_exports.types.update_export_request.UpdateExportRequest = {
+            "export_arn": export_arn,
+            "export": export,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -465,14 +480,16 @@ class AsyncDataExport:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.delete_export_request.DeleteExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_arn"] = export_arn
+        input_: capo_bcm_data_exports.types.delete_export_request.DeleteExportRequest = {
+            "export_arn": export_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -515,7 +532,7 @@ class AsyncDataExport:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_data_exports.types.list_exports_request.ListExportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_data_exports.types.list_exports_request.ListExportsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -526,4 +543,5 @@ class AsyncDataExport:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

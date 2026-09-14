@@ -35,19 +35,19 @@ def serialize_json(value: DTMFSpecification) -> dict:
 
 def deserialize_json(data: dict) -> DTMFSpecification:
     out: DTMFSpecification = {}  # type: ignore[typeddict-item]
-    if "maxLength" in data:
+    if data.get("maxLength") is not None:
         out["max_length"] = data["maxLength"]
     else:
         raise DeserializationError("DTMFSpecification.max_length required")
-    if "endTimeoutMs" in data:
+    if data.get("endTimeoutMs") is not None:
         out["end_timeout_ms"] = data["endTimeoutMs"]
     else:
         raise DeserializationError("DTMFSpecification.end_timeout_ms required")
-    if "deletionCharacter" in data:
+    if data.get("deletionCharacter") is not None:
         out["deletion_character"] = data["deletionCharacter"]
     else:
         raise DeserializationError("DTMFSpecification.deletion_character required")
-    if "endCharacter" in data:
+    if data.get("endCharacter") is not None:
         out["end_character"] = data["endCharacter"]
     else:
         raise DeserializationError("DTMFSpecification.end_character required")

@@ -69,13 +69,13 @@ def serialize_aws_json_1_1(value: BatchAddClusterNodesError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchAddClusterNodesError:
     out: BatchAddClusterNodesError = {}  # type: ignore[typeddict-item]
-    if "InstanceGroupName" in data:
+    if data.get("InstanceGroupName") is not None:
         out["instance_group_name"] = data["InstanceGroupName"]
     else:
         raise DeserializationError(
             "BatchAddClusterNodesError.instance_group_name required"
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_sagemaker.types.batch_add_cluster_nodes_error_code
 
         out["error_code"] = (
@@ -85,11 +85,11 @@ def deserialize_aws_json_1_1(data: dict) -> BatchAddClusterNodesError:
         )
     else:
         raise DeserializationError("BatchAddClusterNodesError.error_code required")
-    if "FailedCount" in data:
+    if data.get("FailedCount") is not None:
         out["failed_count"] = data["FailedCount"]
     else:
         raise DeserializationError("BatchAddClusterNodesError.failed_count required")
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_sagemaker.types.cluster_availability_zones
 
         out["availability_zones"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchAddClusterNodesError:
                 data["AvailabilityZones"]
             )
         )
-    if "InstanceTypes" in data:
+    if data.get("InstanceTypes") is not None:
         import capo_sagemaker.types.cluster_instance_types
 
         out["instance_types"] = (
@@ -105,6 +105,6 @@ def deserialize_aws_json_1_1(data: dict) -> BatchAddClusterNodesError:
                 data["InstanceTypes"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

@@ -48,15 +48,15 @@ def serialize_json(value: HlsInputSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsInputSettings:
     out: HlsInputSettings = {}  # type: ignore[typeddict-item]
-    if "bandwidth" in data:
+    if data.get("bandwidth") is not None:
         out["bandwidth"] = data["bandwidth"]
-    if "bufferSegments" in data:
+    if data.get("bufferSegments") is not None:
         out["buffer_segments"] = data["bufferSegments"]
-    if "retries" in data:
+    if data.get("retries") is not None:
         out["retries"] = data["retries"]
-    if "retryInterval" in data:
+    if data.get("retryInterval") is not None:
         out["retry_interval"] = data["retryInterval"]
-    if "scte35Source" in data:
+    if data.get("scte35Source") is not None:
         import capo_medialive.types.hls_scte35_source_type
 
         out["scte35_source"] = (

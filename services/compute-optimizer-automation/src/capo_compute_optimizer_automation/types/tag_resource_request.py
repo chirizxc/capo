@@ -44,15 +44,15 @@ def serialize_aws_json_1_0(value: TagResourceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("TagResourceRequest.resource_arn required")
-    if "ruleRevision" in data:
+    if data.get("ruleRevision") is not None:
         out["rule_revision"] = data["ruleRevision"]
     else:
         raise DeserializationError("TagResourceRequest.rule_revision required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_compute_optimizer_automation.types.tag_list
 
         out["tags"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_0(data: dict) -> TagResourceRequest:
         )
     else:
         raise DeserializationError("TagResourceRequest.tags required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ResetDistributionCacheRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResetDistributionCacheRequest:
     out: ResetDistributionCacheRequest = {}  # type: ignore[typeddict-item]
-    if "distributionName" in data:
+    if data.get("distributionName") is not None:
         out["distribution_name"] = data["distributionName"]
     return out

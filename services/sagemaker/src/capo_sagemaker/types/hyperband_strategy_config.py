@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: HyperbandStrategyConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HyperbandStrategyConfig:
     out: HyperbandStrategyConfig = {}  # type: ignore[typeddict-item]
-    if "MinResource" in data:
+    if data.get("MinResource") is not None:
         out["min_resource"] = data["MinResource"]
-    if "MaxResource" in data:
+    if data.get("MaxResource") is not None:
         out["max_resource"] = data["MaxResource"]
     return out

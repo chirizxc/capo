@@ -35,9 +35,9 @@ def serialize_json(value: ListSlackChannelConfigurationsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListSlackChannelConfigurationsResult:
     out: ListSlackChannelConfigurationsResult = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "slackChannelConfigurations" in data:
+    if data.get("slackChannelConfigurations") is not None:
         import capo_support_app.types.slack_channel_configuration_list
 
         out["slack_channel_configurations"] = (

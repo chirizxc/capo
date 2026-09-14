@@ -31,7 +31,7 @@ def serialize_json(value: InternalAccessConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InternalAccessConfiguration:
     out: InternalAccessConfiguration = {}  # type: ignore[typeddict-item]
-    if "analysisRule" in data:
+    if data.get("analysisRule") is not None:
         import capo_accessanalyzer.types.internal_access_analysis_rule
 
         out["analysis_rule"] = (

@@ -59,15 +59,15 @@ def serialize_aws_json_1_1(value: PickupDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PickupDetails:
     out: PickupDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "IdentificationNumber" in data:
+    if data.get("IdentificationNumber") is not None:
         out["identification_number"] = data["IdentificationNumber"]
-    if "IdentificationExpirationDate" in data:
+    if data.get("IdentificationExpirationDate") is not None:
         import capo_snowball.types.timestamp
 
         out["identification_expiration_date"] = (
@@ -75,8 +75,8 @@ def deserialize_aws_json_1_1(data: dict) -> PickupDetails:
                 data["IdentificationExpirationDate"]
             )
         )
-    if "IdentificationIssuingOrg" in data:
+    if data.get("IdentificationIssuingOrg") is not None:
         out["identification_issuing_org"] = data["IdentificationIssuingOrg"]
-    if "DevicePickupId" in data:
+    if data.get("DevicePickupId") is not None:
         out["device_pickup_id"] = data["DevicePickupId"]
     return out

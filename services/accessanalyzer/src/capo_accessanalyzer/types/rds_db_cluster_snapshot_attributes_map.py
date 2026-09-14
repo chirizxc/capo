@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: RdsDbClusterSnapshotAttributesMap) -> dic
 def deserialize_json(data: dict) -> RdsDbClusterSnapshotAttributesMap:
     out: RdsDbClusterSnapshotAttributesMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_accessanalyzer.types.rds_db_cluster_snapshot_attribute_value
 
         out[key] = (

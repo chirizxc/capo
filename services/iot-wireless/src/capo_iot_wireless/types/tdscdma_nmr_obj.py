@@ -43,18 +43,18 @@ def serialize_json(value: TdscdmaNmrObj) -> dict:
 
 def deserialize_json(data: dict) -> TdscdmaNmrObj:
     out: TdscdmaNmrObj = {}  # type: ignore[typeddict-item]
-    if "Uarfcn" in data:
+    if data.get("Uarfcn") is not None:
         out["uarfcn"] = data["Uarfcn"]
     else:
         raise DeserializationError("TdscdmaNmrObj.uarfcn required")
-    if "CellParams" in data:
+    if data.get("CellParams") is not None:
         out["cell_params"] = data["CellParams"]
     else:
         raise DeserializationError("TdscdmaNmrObj.cell_params required")
-    if "UtranCid" in data:
+    if data.get("UtranCid") is not None:
         out["utran_cid"] = data["UtranCid"]
-    if "Rscp" in data:
+    if data.get("Rscp") is not None:
         out["rscp"] = data["Rscp"]
-    if "PathLoss" in data:
+    if data.get("PathLoss") is not None:
         out["path_loss"] = data["PathLoss"]
     return out

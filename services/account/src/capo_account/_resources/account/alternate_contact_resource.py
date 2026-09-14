@@ -77,12 +77,13 @@ class AlternateContactResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.put_alternate_contact_request.PutAlternateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["title"] = title
-        input_["email_address"] = email_address
-        input_["phone_number"] = phone_number
-        input_["alternate_contact_type"] = alternate_contact_type
+        input_: capo_account.types.put_alternate_contact_request.PutAlternateContactRequest = {
+            "name": name,
+            "title": title,
+            "email_address": email_address,
+            "phone_number": phone_number,
+            "alternate_contact_type": alternate_contact_type,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -91,6 +92,7 @@ class AlternateContactResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -132,8 +134,9 @@ class AlternateContactResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_alternate_contact_request.GetAlternateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["alternate_contact_type"] = alternate_contact_type
+        input_: capo_account.types.get_alternate_contact_request.GetAlternateContactRequest = {
+            "alternate_contact_type": alternate_contact_type
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -142,6 +145,7 @@ class AlternateContactResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -179,8 +183,9 @@ class AlternateContactResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.delete_alternate_contact_request.DeleteAlternateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["alternate_contact_type"] = alternate_contact_type
+        input_: capo_account.types.delete_alternate_contact_request.DeleteAlternateContactRequest = {
+            "alternate_contact_type": alternate_contact_type
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -189,6 +194,7 @@ class AlternateContactResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -239,12 +245,13 @@ class AsyncAlternateContactResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.put_alternate_contact_request.PutAlternateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["title"] = title
-        input_["email_address"] = email_address
-        input_["phone_number"] = phone_number
-        input_["alternate_contact_type"] = alternate_contact_type
+        input_: capo_account.types.put_alternate_contact_request.PutAlternateContactRequest = {
+            "name": name,
+            "title": title,
+            "email_address": email_address,
+            "phone_number": phone_number,
+            "alternate_contact_type": alternate_contact_type,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -253,6 +260,7 @@ class AsyncAlternateContactResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -295,8 +303,9 @@ class AsyncAlternateContactResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_alternate_contact_request.GetAlternateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["alternate_contact_type"] = alternate_contact_type
+        input_: capo_account.types.get_alternate_contact_request.GetAlternateContactRequest = {
+            "alternate_contact_type": alternate_contact_type
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -305,6 +314,7 @@ class AsyncAlternateContactResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -343,8 +353,9 @@ class AsyncAlternateContactResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.delete_alternate_contact_request.DeleteAlternateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["alternate_contact_type"] = alternate_contact_type
+        input_: capo_account.types.delete_alternate_contact_request.DeleteAlternateContactRequest = {
+            "alternate_contact_type": alternate_contact_type
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -353,4 +364,5 @@ class AsyncAlternateContactResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -105,9 +105,9 @@ def serialize_json(value: UpdateNodeStateResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNodeStateResponse:
     out: UpdateNodeStateResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "channelPlacementGroups" in data:
+    if data.get("channelPlacementGroups") is not None:
         import capo_medialive.types.__list_of__string
 
         out["channel_placement_groups"] = (
@@ -115,9 +115,9 @@ def deserialize_json(data: dict) -> UpdateNodeStateResponse:
                 data["channelPlacementGroups"]
             )
         )
-    if "clusterId" in data:
+    if data.get("clusterId") is not None:
         out["cluster_id"] = data["clusterId"]
-    if "connectionState" in data:
+    if data.get("connectionState") is not None:
         import capo_medialive.types.node_connection_state
 
         out["connection_state"] = (
@@ -125,13 +125,13 @@ def deserialize_json(data: dict) -> UpdateNodeStateResponse:
                 data["connectionState"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "instanceArn" in data:
+    if data.get("instanceArn") is not None:
         out["instance_arn"] = data["instanceArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "nodeInterfaceMappings" in data:
+    if data.get("nodeInterfaceMappings") is not None:
         import capo_medialive.types.__list_of_node_interface_mapping
 
         out["node_interface_mappings"] = (
@@ -139,15 +139,15 @@ def deserialize_json(data: dict) -> UpdateNodeStateResponse:
                 data["nodeInterfaceMappings"]
             )
         )
-    if "role" in data:
+    if data.get("role") is not None:
         import capo_medialive.types.node_role
 
         out["role"] = capo_medialive.types.node_role.deserialize_json(data["role"])
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.node_state
 
         out["state"] = capo_medialive.types.node_state.deserialize_json(data["state"])
-    if "sdiSourceMappings" in data:
+    if data.get("sdiSourceMappings") is not None:
         import capo_medialive.types.sdi_source_mappings
 
         out["sdi_source_mappings"] = (

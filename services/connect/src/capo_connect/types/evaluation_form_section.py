@@ -41,23 +41,31 @@ def serialize_json(value: EvaluationFormSection) -> dict:
     out["Items"] = capo_connect.types.evaluation_form_items_list.serialize_json(
         value["items"]
     )
-    out["Weight"] = value.get("weight", 0)
+    out["Weight"] = (
+        "NaN"
+        if value.get("weight", 0) != value.get("weight", 0)
+        else "Infinity"
+        if value.get("weight", 0) == float("inf")
+        else "-Infinity"
+        if value.get("weight", 0) == float("-inf")
+        else value.get("weight", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> EvaluationFormSection:
     out: EvaluationFormSection = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("EvaluationFormSection.title required")
-    if "RefId" in data:
+    if data.get("RefId") is not None:
         out["ref_id"] = data["RefId"]
     else:
         raise DeserializationError("EvaluationFormSection.ref_id required")
-    if "Instructions" in data:
+    if data.get("Instructions") is not None:
         out["instructions"] = data["Instructions"]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_connect.types.evaluation_form_items_list
 
         out["items"] = capo_connect.types.evaluation_form_items_list.deserialize_json(
@@ -65,8 +73,8 @@ def deserialize_json(data: dict) -> EvaluationFormSection:
         )
     else:
         raise DeserializationError("EvaluationFormSection.items required")
-    if "Weight" in data:
-        out["weight"] = data["Weight"]
+    if data.get("Weight") is not None:
+        out["weight"] = float(data["Weight"])
     else:
         out["weight"] = 0
     return out

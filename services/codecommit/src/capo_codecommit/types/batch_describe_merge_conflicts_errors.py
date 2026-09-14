@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchDescribeMergeConflictsErrors:
 
     out: BatchDescribeMergeConflictsErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecommit.types.batch_describe_merge_conflicts_error.deserialize_aws_json_1_1(
                 item

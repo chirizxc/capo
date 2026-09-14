@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListOfRecommenderConfigurationResponse:
 
     out: ListOfRecommenderConfigurationResponse = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pinpoint.types.recommender_configuration_response.deserialize_json(
                 item

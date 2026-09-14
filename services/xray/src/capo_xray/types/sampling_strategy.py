@@ -26,18 +26,26 @@ def serialize_json(value: SamplingStrategy) -> dict:
             value["name"]
         )
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> SamplingStrategy:
     out: SamplingStrategy = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_xray.types.sampling_strategy_name
 
         out["name"] = capo_xray.types.sampling_strategy_name.deserialize_json(
             data["Name"]
         )
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     return out

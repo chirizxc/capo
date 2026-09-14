@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UpdateJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateJobRequest:
     out: UpdateJobRequest = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
     else:
         raise DeserializationError("UpdateJobRequest.job_name required")
-    if "JobUpdate" in data:
+    if data.get("JobUpdate") is not None:
         import capo_glue.types.job_update
 
         out["job_update"] = capo_glue.types.job_update.deserialize_aws_json_1_1(

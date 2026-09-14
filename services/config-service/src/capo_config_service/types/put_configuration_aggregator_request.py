@@ -72,13 +72,13 @@ def serialize_aws_json_1_1(value: PutConfigurationAggregatorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutConfigurationAggregatorRequest:
     out: PutConfigurationAggregatorRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationAggregatorName" in data:
+    if data.get("ConfigurationAggregatorName") is not None:
         out["configuration_aggregator_name"] = data["ConfigurationAggregatorName"]
     else:
         raise DeserializationError(
             "PutConfigurationAggregatorRequest.configuration_aggregator_name required"
         )
-    if "AccountAggregationSources" in data:
+    if data.get("AccountAggregationSources") is not None:
         import capo_config_service.types.account_aggregation_source_list
 
         out["account_aggregation_sources"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutConfigurationAggregatorRequest:
                 data["AccountAggregationSources"]
             )
         )
-    if "OrganizationAggregationSource" in data:
+    if data.get("OrganizationAggregationSource") is not None:
         import capo_config_service.types.organization_aggregation_source
 
         out["organization_aggregation_source"] = (
@@ -94,13 +94,13 @@ def deserialize_aws_json_1_1(data: dict) -> PutConfigurationAggregatorRequest:
                 data["OrganizationAggregationSource"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_config_service.types.tags_list
 
         out["tags"] = capo_config_service.types.tags_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "AggregatorFilters" in data:
+    if data.get("AggregatorFilters") is not None:
         import capo_config_service.types.aggregator_filters
 
         out["aggregator_filters"] = (

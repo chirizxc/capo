@@ -37,11 +37,11 @@ def serialize_json(value: ExternalUrlConfig) -> dict:
 
 def deserialize_json(data: dict) -> ExternalUrlConfig:
     out: ExternalUrlConfig = {}  # type: ignore[typeddict-item]
-    if "AccessUrl" in data:
+    if data.get("AccessUrl") is not None:
         out["access_url"] = data["AccessUrl"]
     else:
         raise DeserializationError("ExternalUrlConfig.access_url required")
-    if "ApprovedOrigins" in data:
+    if data.get("ApprovedOrigins") is not None:
         import capo_appintegrations.types.application_approved_origins
 
         out["approved_origins"] = (

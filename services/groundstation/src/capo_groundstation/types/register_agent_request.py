@@ -43,7 +43,7 @@ def serialize_json(value: RegisterAgentRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterAgentRequest:
     out: RegisterAgentRequest = {}  # type: ignore[typeddict-item]
-    if "discoveryData" in data:
+    if data.get("discoveryData") is not None:
         import capo_groundstation.types.discovery_data
 
         out["discovery_data"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> RegisterAgentRequest:
         )
     else:
         raise DeserializationError("RegisterAgentRequest.discovery_data required")
-    if "agentDetails" in data:
+    if data.get("agentDetails") is not None:
         import capo_groundstation.types.agent_details
 
         out["agent_details"] = capo_groundstation.types.agent_details.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> RegisterAgentRequest:
         )
     else:
         raise DeserializationError("RegisterAgentRequest.agent_details required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_groundstation.types.tags_map
 
         out["tags"] = capo_groundstation.types.tags_map.deserialize_json(data["tags"])

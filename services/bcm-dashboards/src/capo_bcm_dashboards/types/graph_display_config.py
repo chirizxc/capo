@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: GraphDisplayConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GraphDisplayConfig:
     out: GraphDisplayConfig = {}  # type: ignore[typeddict-item]
-    if "visualType" in data:
+    if data.get("visualType") is not None:
         import capo_bcm_dashboards.types.visual_type
 
         out["visual_type"] = (

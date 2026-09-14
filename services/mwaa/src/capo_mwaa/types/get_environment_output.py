@@ -27,7 +27,7 @@ def serialize_json(value: GetEnvironmentOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetEnvironmentOutput:
     out: GetEnvironmentOutput = {}  # type: ignore[typeddict-item]
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_mwaa.types.environment
 
         out["environment"] = capo_mwaa.types.environment.deserialize_json(

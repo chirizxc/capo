@@ -70,7 +70,7 @@ def serialize_json(value: AwsRoute53HostedZoneDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRoute53HostedZoneDetails:
     out: AwsRoute53HostedZoneDetails = {}  # type: ignore[typeddict-item]
-    if "HostedZone" in data:
+    if data.get("HostedZone") is not None:
         import capo_securityhub.types.aws_route53_hosted_zone_object_details
 
         out["hosted_zone"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> AwsRoute53HostedZoneDetails:
                 data["HostedZone"]
             )
         )
-    if "Vpcs" in data:
+    if data.get("Vpcs") is not None:
         import capo_securityhub.types.aws_route53_hosted_zone_vpcs_list
 
         out["vpcs"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> AwsRoute53HostedZoneDetails:
                 data["Vpcs"]
             )
         )
-    if "NameServers" in data:
+    if data.get("NameServers") is not None:
         import capo_securityhub.types.aws_route53_hosted_zone_name_servers_list
 
         out["name_servers"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> AwsRoute53HostedZoneDetails:
                 data["NameServers"]
             )
         )
-    if "QueryLoggingConfig" in data:
+    if data.get("QueryLoggingConfig") is not None:
         import capo_securityhub.types.aws_route53_query_logging_config_details
 
         out["query_logging_config"] = (

@@ -34,9 +34,9 @@ def serialize_json(value: CascadingControlSource) -> dict:
 
 def deserialize_json(data: dict) -> CascadingControlSource:
     out: CascadingControlSource = {}  # type: ignore[typeddict-item]
-    if "SourceSheetControlId" in data:
+    if data.get("SourceSheetControlId") is not None:
         out["source_sheet_control_id"] = data["SourceSheetControlId"]
-    if "ColumnToMatch" in data:
+    if data.get("ColumnToMatch") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column_to_match"] = (

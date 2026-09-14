@@ -45,15 +45,15 @@ def serialize_json(value: ChannelFlowCallbackRequest) -> dict:
 
 def deserialize_json(data: dict) -> ChannelFlowCallbackRequest:
     out: ChannelFlowCallbackRequest = {}  # type: ignore[typeddict-item]
-    if "CallbackId" in data:
+    if data.get("CallbackId") is not None:
         out["callback_id"] = data["CallbackId"]
     else:
         raise DeserializationError("ChannelFlowCallbackRequest.callback_id required")
-    if "DeleteResource" in data:
+    if data.get("DeleteResource") is not None:
         out["delete_resource"] = data["DeleteResource"]
     else:
         out["delete_resource"] = False
-    if "ChannelMessage" in data:
+    if data.get("ChannelMessage") is not None:
         import capo_chime_sdk_messaging.types.channel_message_callback
 
         out["channel_message"] = (

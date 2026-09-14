@@ -53,11 +53,11 @@ def serialize_aws_json_1_1(value: EntityRecognizerMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerMetadata:
     out: EntityRecognizerMetadata = {}  # type: ignore[typeddict-item]
-    if "NumberOfTrainedDocuments" in data:
+    if data.get("NumberOfTrainedDocuments") is not None:
         out["number_of_trained_documents"] = data["NumberOfTrainedDocuments"]
-    if "NumberOfTestDocuments" in data:
+    if data.get("NumberOfTestDocuments") is not None:
         out["number_of_test_documents"] = data["NumberOfTestDocuments"]
-    if "EvaluationMetrics" in data:
+    if data.get("EvaluationMetrics") is not None:
         import capo_comprehend.types.entity_recognizer_evaluation_metrics
 
         out["evaluation_metrics"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerMetadata:
                 data["EvaluationMetrics"]
             )
         )
-    if "EntityTypes" in data:
+    if data.get("EntityTypes") is not None:
         import capo_comprehend.types.entity_recognizer_metadata_entity_types_list
 
         out["entity_types"] = (

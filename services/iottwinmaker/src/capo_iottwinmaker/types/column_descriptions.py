@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ColumnDescriptions:
 
     out: ColumnDescriptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iottwinmaker.types.column_description.deserialize_json(item))
     return out

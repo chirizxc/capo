@@ -45,11 +45,11 @@ def serialize_json(value: ComponentCandidate) -> dict:
 
 def deserialize_json(data: dict) -> ComponentCandidate:
     out: ComponentCandidate = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "componentVersion" in data:
+    if data.get("componentVersion") is not None:
         out["component_version"] = data["componentVersion"]
-    if "versionRequirements" in data:
+    if data.get("versionRequirements") is not None:
         import capo_greengrassv2.types.component_version_requirement_map
 
         out["version_requirements"] = (

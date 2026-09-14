@@ -25,6 +25,6 @@ def serialize_json(value: CreateNodeOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateNodeOutput:
     out: CreateNodeOutput = {}  # type: ignore[typeddict-item]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
     return out

@@ -33,14 +33,14 @@ def serialize_json(value: ActivateReadSetSourceItem) -> dict:
 
 def deserialize_json(data: dict) -> ActivateReadSetSourceItem:
     out: ActivateReadSetSourceItem = {}  # type: ignore[typeddict-item]
-    if "readSetId" in data:
+    if data.get("readSetId") is not None:
         out["read_set_id"] = data["readSetId"]
     else:
         raise DeserializationError("ActivateReadSetSourceItem.read_set_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ActivateReadSetSourceItem.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

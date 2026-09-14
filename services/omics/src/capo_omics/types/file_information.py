@@ -39,13 +39,13 @@ def serialize_json(value: FileInformation) -> dict:
 
 def deserialize_json(data: dict) -> FileInformation:
     out: FileInformation = {}  # type: ignore[typeddict-item]
-    if "totalParts" in data:
+    if data.get("totalParts") is not None:
         out["total_parts"] = data["totalParts"]
-    if "partSize" in data:
+    if data.get("partSize") is not None:
         out["part_size"] = data["partSize"]
-    if "contentLength" in data:
+    if data.get("contentLength") is not None:
         out["content_length"] = data["contentLength"]
-    if "s3Access" in data:
+    if data.get("s3Access") is not None:
         import capo_omics.types.read_set_s3_access
 
         out["s3_access"] = capo_omics.types.read_set_s3_access.deserialize_json(

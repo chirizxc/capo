@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> Dimensions:
     for key, value in data.items():
         import capo_sesv2.types.metric_dimension_name
 
+        if value is None:
+            continue
         out[capo_sesv2.types.metric_dimension_name.deserialize_json(key)] = value
     return out

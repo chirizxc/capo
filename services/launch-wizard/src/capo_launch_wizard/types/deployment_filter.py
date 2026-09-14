@@ -42,13 +42,13 @@ def serialize_json(value: DeploymentFilter) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentFilter:
     out: DeploymentFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_launch_wizard.types.deployment_filter_key
 
         out["name"] = capo_launch_wizard.types.deployment_filter_key.deserialize_json(
             data["name"]
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_launch_wizard.types.deployment_filter_values
 
         out["values"] = (

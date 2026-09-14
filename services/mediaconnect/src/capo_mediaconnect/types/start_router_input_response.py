@@ -59,15 +59,15 @@ def serialize_json(value: StartRouterInputResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartRouterInputResponse:
     out: StartRouterInputResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("StartRouterInputResponse.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StartRouterInputResponse.name required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_mediaconnect.types.router_input_state
 
         out["state"] = capo_mediaconnect.types.router_input_state.deserialize_json(
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> StartRouterInputResponse:
         )
     else:
         raise DeserializationError("StartRouterInputResponse.state required")
-    if "maintenanceScheduleType" in data:
+    if data.get("maintenanceScheduleType") is not None:
         import capo_mediaconnect.types.maintenance_schedule_type
 
         out["maintenance_schedule_type"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> StartRouterInputResponse:
         raise DeserializationError(
             "StartRouterInputResponse.maintenance_schedule_type required"
         )
-    if "maintenanceSchedule" in data:
+    if data.get("maintenanceSchedule") is not None:
         import capo_mediaconnect.types.maintenance_schedule
 
         out["maintenance_schedule"] = (

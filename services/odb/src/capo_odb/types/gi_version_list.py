@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> GiVersionList:
 
     out: GiVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_odb.types.gi_version_summary.deserialize_aws_json_1_0(item))
     return out

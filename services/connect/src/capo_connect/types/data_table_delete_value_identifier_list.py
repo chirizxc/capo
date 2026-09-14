@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DataTableDeleteValueIdentifierList:
 
     out: DataTableDeleteValueIdentifierList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.data_table_delete_value_identifier.deserialize_json(item)
         )

@@ -48,22 +48,22 @@ def serialize_json(value: SectionalElement) -> dict:
 
 def deserialize_json(data: dict) -> SectionalElement:
     out: SectionalElement = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("SectionalElement.type required")
-    if "position" in data:
+    if data.get("position") is not None:
         import capo_amplifyuibuilder.types.field_position
 
         out["position"] = capo_amplifyuibuilder.types.field_position.deserialize_json(
             data["position"]
         )
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
-    if "level" in data:
+    if data.get("level") is not None:
         out["level"] = data["level"]
-    if "orientation" in data:
+    if data.get("orientation") is not None:
         out["orientation"] = data["orientation"]
-    if "excluded" in data:
+    if data.get("excluded") is not None:
         out["excluded"] = data["excluded"]
     return out

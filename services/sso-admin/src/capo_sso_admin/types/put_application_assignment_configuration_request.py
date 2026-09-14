@@ -30,13 +30,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> PutApplicationAssignmentConfigurationRequest:
     out: PutApplicationAssignmentConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     else:
         raise DeserializationError(
             "PutApplicationAssignmentConfigurationRequest.application_arn required"
         )
-    if "AssignmentRequired" in data:
+    if data.get("AssignmentRequired") is not None:
         out["assignment_required"] = data["AssignmentRequired"]
     else:
         out["assignment_required"] = True

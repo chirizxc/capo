@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AutoMLPartialFailureReasons:
 
     out: AutoMLPartialFailureReasons = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.auto_ml_partial_failure_reason.deserialize_aws_json_1_1(
                 item

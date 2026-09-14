@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataflowList:
 
     out: DataflowList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_groundstation.types.dataflow_detail.deserialize_json(item))
     return out

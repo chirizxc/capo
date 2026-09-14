@@ -29,8 +29,8 @@ def serialize_json(value: AwsElasticBeanstalkEnvironmentEnvironmentLink) -> dict
 
 def deserialize_json(data: dict) -> AwsElasticBeanstalkEnvironmentEnvironmentLink:
     out: AwsElasticBeanstalkEnvironmentEnvironmentLink = {}  # type: ignore[typeddict-item]
-    if "EnvironmentName" in data:
+    if data.get("EnvironmentName") is not None:
         out["environment_name"] = data["EnvironmentName"]
-    if "LinkName" in data:
+    if data.get("LinkName") is not None:
         out["link_name"] = data["LinkName"]
     return out

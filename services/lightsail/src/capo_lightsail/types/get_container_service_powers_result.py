@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetContainerServicePowersResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContainerServicePowersResult:
     out: GetContainerServicePowersResult = {}  # type: ignore[typeddict-item]
-    if "powers" in data:
+    if data.get("powers") is not None:
         import capo_lightsail.types.container_service_power_list
 
         out["powers"] = (

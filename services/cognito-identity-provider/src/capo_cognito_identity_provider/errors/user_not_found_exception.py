@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UserNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserNotFoundException_:
     out: UserNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -37,15 +37,18 @@ class UserNotFoundException(ServiceError):
 
     code: str | None = "UserNotFoundException"
 
-    def __init__(self, data: UserNotFoundException_):
+    def __init__(self, data: UserNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UserNotFoundException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "UserNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "UserNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

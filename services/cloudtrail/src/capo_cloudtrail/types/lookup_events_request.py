@@ -69,7 +69,7 @@ def serialize_aws_json_1_1(value: LookupEventsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LookupEventsRequest:
     out: LookupEventsRequest = {}  # type: ignore[typeddict-item]
-    if "LookupAttributes" in data:
+    if data.get("LookupAttributes") is not None:
         import capo_cloudtrail.types.lookup_attributes_list
 
         out["lookup_attributes"] = (
@@ -77,19 +77,19 @@ def deserialize_aws_json_1_1(data: dict) -> LookupEventsRequest:
                 data["LookupAttributes"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_cloudtrail.types.date
 
         out["start_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_cloudtrail.types.date
 
         out["end_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "EventCategory" in data:
+    if data.get("EventCategory") is not None:
         import capo_cloudtrail.types.event_category
 
         out["event_category"] = (
@@ -97,8 +97,8 @@ def deserialize_aws_json_1_1(data: dict) -> LookupEventsRequest:
                 data["EventCategory"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

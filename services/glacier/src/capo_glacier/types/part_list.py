@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PartList:
 
     out: PartList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glacier.types.part_list_element.deserialize_json(item))
     return out

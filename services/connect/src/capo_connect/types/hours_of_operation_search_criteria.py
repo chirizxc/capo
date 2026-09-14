@@ -52,7 +52,7 @@ def serialize_json(value: HoursOfOperationSearchCriteria) -> dict:
 
 def deserialize_json(data: dict) -> HoursOfOperationSearchCriteria:
     out: HoursOfOperationSearchCriteria = {}  # type: ignore[typeddict-item]
-    if "OrConditions" in data:
+    if data.get("OrConditions") is not None:
         import capo_connect.types.hours_of_operation_search_condition_list
 
         out["or_conditions"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> HoursOfOperationSearchCriteria:
                 data["OrConditions"]
             )
         )
-    if "AndConditions" in data:
+    if data.get("AndConditions") is not None:
         import capo_connect.types.hours_of_operation_search_condition_list
 
         out["and_conditions"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> HoursOfOperationSearchCriteria:
                 data["AndConditions"]
             )
         )
-    if "StringCondition" in data:
+    if data.get("StringCondition") is not None:
         import capo_connect.types.string_condition
 
         out["string_condition"] = capo_connect.types.string_condition.deserialize_json(

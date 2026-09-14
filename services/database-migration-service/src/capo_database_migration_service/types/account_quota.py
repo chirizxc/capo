@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: AccountQuota) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountQuota:
     out: AccountQuota = {}  # type: ignore[typeddict-item]
-    if "AccountQuotaName" in data:
+    if data.get("AccountQuotaName") is not None:
         out["account_quota_name"] = data["AccountQuotaName"]
-    if "Used" in data:
+    if data.get("Used") is not None:
         out["used"] = data["Used"]
     else:
         out["used"] = 0
-    if "Max" in data:
+    if data.get("Max") is not None:
         out["max"] = data["Max"]
     else:
         out["max"] = 0

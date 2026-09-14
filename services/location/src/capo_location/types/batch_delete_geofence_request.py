@@ -31,7 +31,7 @@ def serialize_json(value: BatchDeleteGeofenceRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteGeofenceRequest:
     out: BatchDeleteGeofenceRequest = {}  # type: ignore[typeddict-item]
-    if "GeofenceIds" in data:
+    if data.get("GeofenceIds") is not None:
         import capo_location.types.id_list
 
         out["geofence_ids"] = capo_location.types.id_list.deserialize_json(

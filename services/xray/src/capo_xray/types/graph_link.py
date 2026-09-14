@@ -36,11 +36,11 @@ def serialize_json(value: GraphLink) -> dict:
 
 def deserialize_json(data: dict) -> GraphLink:
     out: GraphLink = {}  # type: ignore[typeddict-item]
-    if "ReferenceType" in data:
+    if data.get("ReferenceType") is not None:
         out["reference_type"] = data["ReferenceType"]
-    if "SourceTraceId" in data:
+    if data.get("SourceTraceId") is not None:
         out["source_trace_id"] = data["SourceTraceId"]
-    if "DestinationTraceIds" in data:
+    if data.get("DestinationTraceIds") is not None:
         import capo_xray.types.trace_id_list
 
         out["destination_trace_ids"] = capo_xray.types.trace_id_list.deserialize_json(

@@ -74,7 +74,7 @@ def serialize_json(value: StringParameterDeclaration) -> dict:
 
 def deserialize_json(data: dict) -> StringParameterDeclaration:
     out: StringParameterDeclaration = {}  # type: ignore[typeddict-item]
-    if "ParameterValueType" in data:
+    if data.get("ParameterValueType") is not None:
         import capo_quicksight.types.parameter_value_type
 
         out["parameter_value_type"] = (
@@ -86,11 +86,11 @@ def deserialize_json(data: dict) -> StringParameterDeclaration:
         raise DeserializationError(
             "StringParameterDeclaration.parameter_value_type required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("StringParameterDeclaration.name required")
-    if "DefaultValues" in data:
+    if data.get("DefaultValues") is not None:
         import capo_quicksight.types.string_default_values
 
         out["default_values"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> StringParameterDeclaration:
                 data["DefaultValues"]
             )
         )
-    if "ValueWhenUnset" in data:
+    if data.get("ValueWhenUnset") is not None:
         import capo_quicksight.types.string_value_when_unset_configuration
 
         out["value_when_unset"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> StringParameterDeclaration:
                 data["ValueWhenUnset"]
             )
         )
-    if "MappedDataSetParameters" in data:
+    if data.get("MappedDataSetParameters") is not None:
         import capo_quicksight.types.mapped_data_set_parameters
 
         out["mapped_data_set_parameters"] = (

@@ -47,7 +47,7 @@ def serialize_json(value: UpdateSecurityRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSecurityRequest:
     out: UpdateSecurityRequest = {}  # type: ignore[typeddict-item]
-    if "clientAuthentication" in data:
+    if data.get("clientAuthentication") is not None:
         import capo_kafka.types.client_authentication
 
         out["client_authentication"] = (
@@ -55,9 +55,9 @@ def deserialize_json(data: dict) -> UpdateSecurityRequest:
                 data["clientAuthentication"]
             )
         )
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "encryptionInfo" in data:
+    if data.get("encryptionInfo") is not None:
         import capo_kafka.types.encryption_info
 
         out["encryption_info"] = capo_kafka.types.encryption_info.deserialize_json(

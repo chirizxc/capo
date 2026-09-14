@@ -46,13 +46,13 @@ def serialize_json(value: PropertygraphRecord) -> dict:
 
 def deserialize_json(data: dict) -> PropertygraphRecord:
     out: PropertygraphRecord = {}  # type: ignore[typeddict-item]
-    if "commitTimestamp" in data:
+    if data.get("commitTimestamp") is not None:
         out["commit_timestamp_in_millis"] = data["commitTimestamp"]
     else:
         raise DeserializationError(
             "PropertygraphRecord.commit_timestamp_in_millis required"
         )
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         import capo_neptunedata.types.string_valued_map
 
         out["event_id"] = capo_neptunedata.types.string_valued_map.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> PropertygraphRecord:
         )
     else:
         raise DeserializationError("PropertygraphRecord.event_id required")
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_neptunedata.types.propertygraph_data
 
         out["data"] = capo_neptunedata.types.propertygraph_data.deserialize_json(
@@ -68,10 +68,10 @@ def deserialize_json(data: dict) -> PropertygraphRecord:
         )
     else:
         raise DeserializationError("PropertygraphRecord.data required")
-    if "op" in data:
+    if data.get("op") is not None:
         out["op"] = data["op"]
     else:
         raise DeserializationError("PropertygraphRecord.op required")
-    if "isLastOp" in data:
+    if data.get("isLastOp") is not None:
         out["is_last_op"] = data["isLastOp"]
     return out

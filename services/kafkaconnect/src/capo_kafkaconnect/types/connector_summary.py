@@ -157,21 +157,21 @@ def serialize_json(value: ConnectorSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorSummary:
     out: ConnectorSummary = {}  # type: ignore[typeddict-item]
-    if "capacity" in data:
+    if data.get("capacity") is not None:
         import capo_kafkaconnect.types.capacity_description
 
         out["capacity"] = capo_kafkaconnect.types.capacity_description.deserialize_json(
             data["capacity"]
         )
-    if "connectorArn" in data:
+    if data.get("connectorArn") is not None:
         out["connector_arn"] = data["connectorArn"]
-    if "connectorDescription" in data:
+    if data.get("connectorDescription") is not None:
         out["connector_description"] = data["connectorDescription"]
-    if "connectorName" in data:
+    if data.get("connectorName") is not None:
         out["connector_name"] = data["connectorName"]
-    if "connectorState" in data:
+    if data.get("connectorState") is not None:
         out["connector_state"] = data["connectorState"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafkaconnect.types.__timestamp_iso8601
 
         out["creation_time"] = (
@@ -179,9 +179,9 @@ def deserialize_json(data: dict) -> ConnectorSummary:
                 data["creationTime"]
             )
         )
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "kafkaCluster" in data:
+    if data.get("kafkaCluster") is not None:
         import capo_kafkaconnect.types.kafka_cluster_description
 
         out["kafka_cluster"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> ConnectorSummary:
                 data["kafkaCluster"]
             )
         )
-    if "kafkaClusterClientAuthentication" in data:
+    if data.get("kafkaClusterClientAuthentication") is not None:
         import capo_kafkaconnect.types.kafka_cluster_client_authentication_description
 
         out["kafka_cluster_client_authentication"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> ConnectorSummary:
                 data["kafkaClusterClientAuthentication"]
             )
         )
-    if "kafkaClusterEncryptionInTransit" in data:
+    if data.get("kafkaClusterEncryptionInTransit") is not None:
         import capo_kafkaconnect.types.kafka_cluster_encryption_in_transit_description
 
         out["kafka_cluster_encryption_in_transit"] = (
@@ -205,9 +205,9 @@ def deserialize_json(data: dict) -> ConnectorSummary:
                 data["kafkaClusterEncryptionInTransit"]
             )
         )
-    if "kafkaConnectVersion" in data:
+    if data.get("kafkaConnectVersion") is not None:
         out["kafka_connect_version"] = data["kafkaConnectVersion"]
-    if "logDelivery" in data:
+    if data.get("logDelivery") is not None:
         import capo_kafkaconnect.types.log_delivery_description
 
         out["log_delivery"] = (
@@ -215,9 +215,9 @@ def deserialize_json(data: dict) -> ConnectorSummary:
                 data["logDelivery"]
             )
         )
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         out["network_type"] = data["networkType"]
-    if "plugins" in data:
+    if data.get("plugins") is not None:
         import capo_kafkaconnect.types.__list_of_plugin_description
 
         out["plugins"] = (
@@ -225,9 +225,9 @@ def deserialize_json(data: dict) -> ConnectorSummary:
                 data["plugins"]
             )
         )
-    if "serviceExecutionRoleArn" in data:
+    if data.get("serviceExecutionRoleArn") is not None:
         out["service_execution_role_arn"] = data["serviceExecutionRoleArn"]
-    if "workerConfiguration" in data:
+    if data.get("workerConfiguration") is not None:
         import capo_kafkaconnect.types.worker_configuration_description
 
         out["worker_configuration"] = (

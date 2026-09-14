@@ -45,7 +45,7 @@ def serialize_json(value: HoursOfOperationConfig) -> dict:
 
 def deserialize_json(data: dict) -> HoursOfOperationConfig:
     out: HoursOfOperationConfig = {}  # type: ignore[typeddict-item]
-    if "Day" in data:
+    if data.get("Day") is not None:
         import capo_connect.types.hours_of_operation_days
 
         out["day"] = capo_connect.types.hours_of_operation_days.deserialize_json(
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> HoursOfOperationConfig:
         )
     else:
         raise DeserializationError("HoursOfOperationConfig.day required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_connect.types.hours_of_operation_time_slice
 
         out["start_time"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> HoursOfOperationConfig:
         )
     else:
         raise DeserializationError("HoursOfOperationConfig.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_connect.types.hours_of_operation_time_slice
 
         out["end_time"] = (

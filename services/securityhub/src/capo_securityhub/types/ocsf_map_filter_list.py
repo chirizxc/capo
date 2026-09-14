@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> OcsfMapFilterList:
 
     out: OcsfMapFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.ocsf_map_filter.deserialize_json(item))
     return out

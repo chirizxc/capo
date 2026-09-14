@@ -27,7 +27,7 @@ def serialize_json(value: ListTagsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsResponse:
     out: ListTagsResponse = {}  # type: ignore[typeddict-item]
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_elasticsearch_service.types.tag_list
 
         out["tag_list"] = capo_elasticsearch_service.types.tag_list.deserialize_json(

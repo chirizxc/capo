@@ -57,13 +57,13 @@ def serialize_json(value: CreateEnvironmentBlueprintInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentBlueprintInput:
     out: CreateEnvironmentBlueprintInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEnvironmentBlueprintInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "provisioningProperties" in data:
+    if data.get("provisioningProperties") is not None:
         import capo_datazone.types.provisioning_properties
 
         out["provisioning_properties"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> CreateEnvironmentBlueprintInput:
         raise DeserializationError(
             "CreateEnvironmentBlueprintInput.provisioning_properties required"
         )
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.custom_parameter_list
 
         out["user_parameters"] = (

@@ -81,21 +81,21 @@ def serialize_json(value: ServiceFunction) -> dict:
 
 def deserialize_json(data: dict) -> ServiceFunction:
     out: ServiceFunction = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("ServiceFunction.service_arn required")
-    if "serviceFunctionId" in data:
+    if data.get("serviceFunctionId") is not None:
         out["service_function_id"] = data["serviceFunctionId"]
     else:
         raise DeserializationError("ServiceFunction.service_function_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ServiceFunction.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "criticality" in data:
+    if data.get("criticality") is not None:
         import capo_resiliencehubv2.types.service_function_criticality
 
         out["criticality"] = (
@@ -105,9 +105,9 @@ def deserialize_json(data: dict) -> ServiceFunction:
         )
     else:
         raise DeserializationError("ServiceFunction.criticality required")
-    if "resourceCount" in data:
+    if data.get("resourceCount") is not None:
         out["resource_count"] = data["resourceCount"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_resiliencehubv2.types.service_function_source
 
         out["source"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> ServiceFunction:
                 data["source"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> ServiceFunction:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["updated_at"] = (

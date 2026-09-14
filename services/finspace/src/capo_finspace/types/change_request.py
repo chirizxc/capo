@@ -37,7 +37,7 @@ def serialize_json(value: ChangeRequest) -> dict:
 
 def deserialize_json(data: dict) -> ChangeRequest:
     out: ChangeRequest = {}  # type: ignore[typeddict-item]
-    if "changeType" in data:
+    if data.get("changeType") is not None:
         import capo_finspace.types.change_type
 
         out["change_type"] = capo_finspace.types.change_type.deserialize_json(
@@ -45,9 +45,9 @@ def deserialize_json(data: dict) -> ChangeRequest:
         )
     else:
         raise DeserializationError("ChangeRequest.change_type required")
-    if "s3Path" in data:
+    if data.get("s3Path") is not None:
         out["s3_path"] = data["s3Path"]
-    if "dbPath" in data:
+    if data.get("dbPath") is not None:
         out["db_path"] = data["dbPath"]
     else:
         raise DeserializationError("ChangeRequest.db_path required")

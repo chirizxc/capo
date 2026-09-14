@@ -31,7 +31,7 @@ def serialize_json(value: AssociateManagedNotificationAccountContactRequest) -> 
 
 def deserialize_json(data: dict) -> AssociateManagedNotificationAccountContactRequest:
     out: AssociateManagedNotificationAccountContactRequest = {}  # type: ignore[typeddict-item]
-    if "managedNotificationConfigurationArn" in data:
+    if data.get("managedNotificationConfigurationArn") is not None:
         out["managed_notification_configuration_arn"] = data[
             "managedNotificationConfigurationArn"
         ]

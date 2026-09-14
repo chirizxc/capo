@@ -44,21 +44,21 @@ def serialize_aws_json_1_1(value: OverrideStageConditionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OverrideStageConditionInput:
     out: OverrideStageConditionInput = {}  # type: ignore[typeddict-item]
-    if "pipelineName" in data:
+    if data.get("pipelineName") is not None:
         out["pipeline_name"] = data["pipelineName"]
     else:
         raise DeserializationError("OverrideStageConditionInput.pipeline_name required")
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
     else:
         raise DeserializationError("OverrideStageConditionInput.stage_name required")
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
     else:
         raise DeserializationError(
             "OverrideStageConditionInput.pipeline_execution_id required"
         )
-    if "conditionType" in data:
+    if data.get("conditionType") is not None:
         import capo_codepipeline.types.condition_type
 
         out["condition_type"] = (

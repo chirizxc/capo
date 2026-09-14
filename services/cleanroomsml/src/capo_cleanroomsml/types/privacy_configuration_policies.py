@@ -57,7 +57,7 @@ def serialize_json(value: PrivacyConfigurationPolicies) -> dict:
 
 def deserialize_json(data: dict) -> PrivacyConfigurationPolicies:
     out: PrivacyConfigurationPolicies = {}  # type: ignore[typeddict-item]
-    if "trainedModels" in data:
+    if data.get("trainedModels") is not None:
         import capo_cleanroomsml.types.trained_models_configuration_policy
 
         out["trained_models"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> PrivacyConfigurationPolicies:
                 data["trainedModels"]
             )
         )
-    if "trainedModelExports" in data:
+    if data.get("trainedModelExports") is not None:
         import capo_cleanroomsml.types.trained_model_exports_configuration_policy
 
         out["trained_model_exports"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> PrivacyConfigurationPolicies:
                 data["trainedModelExports"]
             )
         )
-    if "trainedModelInferenceJobs" in data:
+    if data.get("trainedModelInferenceJobs") is not None:
         import capo_cleanroomsml.types.trained_model_inference_jobs_configuration_policy
 
         out["trained_model_inference_jobs"] = (

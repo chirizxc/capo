@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StartApplicationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartApplicationResponse:
     out: StartApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     return out

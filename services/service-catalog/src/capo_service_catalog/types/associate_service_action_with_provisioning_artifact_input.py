@@ -48,26 +48,26 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AssociateServiceActionWithProvisioningArtifactInput:
     out: AssociateServiceActionWithProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
     else:
         raise DeserializationError(
             "AssociateServiceActionWithProvisioningArtifactInput.product_id required"
         )
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
     else:
         raise DeserializationError(
             "AssociateServiceActionWithProvisioningArtifactInput.provisioning_artifact_id required"
         )
-    if "ServiceActionId" in data:
+    if data.get("ServiceActionId") is not None:
         out["service_action_id"] = data["ServiceActionId"]
     else:
         raise DeserializationError(
             "AssociateServiceActionWithProvisioningArtifactInput.service_action_id required"
         )
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

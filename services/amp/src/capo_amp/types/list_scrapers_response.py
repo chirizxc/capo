@@ -33,7 +33,7 @@ def serialize_json(value: ListScrapersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListScrapersResponse:
     out: ListScrapersResponse = {}  # type: ignore[typeddict-item]
-    if "scrapers" in data:
+    if data.get("scrapers") is not None:
         import capo_amp.types.scraper_summary_list
 
         out["scrapers"] = capo_amp.types.scraper_summary_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListScrapersResponse:
         )
     else:
         raise DeserializationError("ListScrapersResponse.scrapers required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

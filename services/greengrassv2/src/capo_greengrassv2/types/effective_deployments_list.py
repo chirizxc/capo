@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EffectiveDeploymentsList:
 
     out: EffectiveDeploymentsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrassv2.types.effective_deployment.deserialize_json(item))
     return out

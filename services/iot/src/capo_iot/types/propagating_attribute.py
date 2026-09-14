@@ -37,10 +37,10 @@ def serialize_json(value: PropagatingAttribute) -> dict:
 
 def deserialize_json(data: dict) -> PropagatingAttribute:
     out: PropagatingAttribute = {}  # type: ignore[typeddict-item]
-    if "userPropertyKey" in data:
+    if data.get("userPropertyKey") is not None:
         out["user_property_key"] = data["userPropertyKey"]
-    if "thingAttribute" in data:
+    if data.get("thingAttribute") is not None:
         out["thing_attribute"] = data["thingAttribute"]
-    if "connectionAttribute" in data:
+    if data.get("connectionAttribute") is not None:
         out["connection_attribute"] = data["connectionAttribute"]
     return out

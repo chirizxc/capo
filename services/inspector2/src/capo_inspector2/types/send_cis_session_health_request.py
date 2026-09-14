@@ -27,11 +27,11 @@ def serialize_json(value: SendCisSessionHealthRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendCisSessionHealthRequest:
     out: SendCisSessionHealthRequest = {}  # type: ignore[typeddict-item]
-    if "scanJobId" in data:
+    if data.get("scanJobId") is not None:
         out["scan_job_id"] = data["scanJobId"]
     else:
         raise DeserializationError("SendCisSessionHealthRequest.scan_job_id required")
-    if "sessionToken" in data:
+    if data.get("sessionToken") is not None:
         out["session_token"] = data["sessionToken"]
     else:
         raise DeserializationError("SendCisSessionHealthRequest.session_token required")

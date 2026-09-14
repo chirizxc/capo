@@ -28,8 +28,8 @@ def serialize_json(value: StaticImageDeactivateScheduleActionSettings) -> dict:
 
 def deserialize_json(data: dict) -> StaticImageDeactivateScheduleActionSettings:
     out: StaticImageDeactivateScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "fadeOut" in data:
+    if data.get("fadeOut") is not None:
         out["fade_out"] = data["fadeOut"]
-    if "layer" in data:
+    if data.get("layer") is not None:
         out["layer"] = data["layer"]
     return out

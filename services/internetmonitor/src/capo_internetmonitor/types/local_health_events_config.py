@@ -25,21 +25,38 @@ def serialize_json(value: LocalHealthEventsConfig) -> dict:
     out: dict = {}
     if "status" in value:
         out["Status"] = value["status"]
-    out["HealthScoreThreshold"] = value.get("health_score_threshold", 0)
-    out["MinTrafficImpact"] = value.get("min_traffic_impact", 0)
+    out["HealthScoreThreshold"] = (
+        "NaN"
+        if value.get("health_score_threshold", 0)
+        != value.get("health_score_threshold", 0)
+        else "Infinity"
+        if value.get("health_score_threshold", 0) == float("inf")
+        else "-Infinity"
+        if value.get("health_score_threshold", 0) == float("-inf")
+        else value.get("health_score_threshold", 0)
+    )
+    out["MinTrafficImpact"] = (
+        "NaN"
+        if value.get("min_traffic_impact", 0) != value.get("min_traffic_impact", 0)
+        else "Infinity"
+        if value.get("min_traffic_impact", 0) == float("inf")
+        else "-Infinity"
+        if value.get("min_traffic_impact", 0) == float("-inf")
+        else value.get("min_traffic_impact", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> LocalHealthEventsConfig:
     out: LocalHealthEventsConfig = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "HealthScoreThreshold" in data:
-        out["health_score_threshold"] = data["HealthScoreThreshold"]
+    if data.get("HealthScoreThreshold") is not None:
+        out["health_score_threshold"] = float(data["HealthScoreThreshold"])
     else:
         out["health_score_threshold"] = 0
-    if "MinTrafficImpact" in data:
-        out["min_traffic_impact"] = data["MinTrafficImpact"]
+    if data.get("MinTrafficImpact") is not None:
+        out["min_traffic_impact"] = float(data["MinTrafficImpact"])
     else:
         out["min_traffic_impact"] = 0
     return out

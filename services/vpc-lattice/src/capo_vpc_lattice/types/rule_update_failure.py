@@ -37,10 +37,10 @@ def serialize_json(value: RuleUpdateFailure) -> dict:
 
 def deserialize_json(data: dict) -> RuleUpdateFailure:
     out: RuleUpdateFailure = {}  # type: ignore[typeddict-item]
-    if "ruleIdentifier" in data:
+    if data.get("ruleIdentifier") is not None:
         out["rule_identifier"] = data["ruleIdentifier"]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
     return out

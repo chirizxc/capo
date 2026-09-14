@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ApprovalStatuses) -> dict:
 def deserialize_json(data: dict) -> ApprovalStatuses:
     out: ApprovalStatuses = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_cleanrooms.types.approval_status_details
 
         out[key] = capo_cleanrooms.types.approval_status_details.deserialize_json(value)

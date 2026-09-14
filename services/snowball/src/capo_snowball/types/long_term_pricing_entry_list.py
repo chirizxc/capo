@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> LongTermPricingEntryList:
 
     out: LongTermPricingEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_snowball.types.long_term_pricing_list_entry.deserialize_aws_json_1_1(
                 item

@@ -36,12 +36,12 @@ def serialize_json(value: AwsEc2VolumeAttachment) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VolumeAttachment:
     out: AwsEc2VolumeAttachment = {}  # type: ignore[typeddict-item]
-    if "AttachTime" in data:
+    if data.get("AttachTime") is not None:
         out["attach_time"] = data["AttachTime"]
-    if "DeleteOnTermination" in data:
+    if data.get("DeleteOnTermination") is not None:
         out["delete_on_termination"] = data["DeleteOnTermination"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

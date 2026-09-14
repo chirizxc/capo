@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LanguageCodeList:
 
     out: LanguageCodeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_polly.types.language_code.deserialize_json(item))
     return out

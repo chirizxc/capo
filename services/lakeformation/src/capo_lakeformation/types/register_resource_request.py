@@ -59,22 +59,22 @@ def serialize_json(value: RegisterResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterResourceRequest:
     out: RegisterResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("RegisterResourceRequest.resource_arn required")
-    if "UseServiceLinkedRole" in data:
+    if data.get("UseServiceLinkedRole") is not None:
         out["use_service_linked_role"] = data["UseServiceLinkedRole"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "WithFederation" in data:
+    if data.get("WithFederation") is not None:
         out["with_federation"] = data["WithFederation"]
-    if "HybridAccessEnabled" in data:
+    if data.get("HybridAccessEnabled") is not None:
         out["hybrid_access_enabled"] = data["HybridAccessEnabled"]
-    if "WithPrivilegedAccess" in data:
+    if data.get("WithPrivilegedAccess") is not None:
         out["with_privileged_access"] = data["WithPrivilegedAccess"]
     else:
         out["with_privileged_access"] = False
-    if "ExpectedResourceOwnerAccount" in data:
+    if data.get("ExpectedResourceOwnerAccount") is not None:
         out["expected_resource_owner_account"] = data["ExpectedResourceOwnerAccount"]
     return out

@@ -48,7 +48,7 @@ def serialize_json(value: DataPrepConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataPrepConfiguration:
     out: DataPrepConfiguration = {}  # type: ignore[typeddict-item]
-    if "SourceTableMap" in data:
+    if data.get("SourceTableMap") is not None:
         import capo_quicksight.types.source_table_map
 
         out["source_table_map"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> DataPrepConfiguration:
         )
     else:
         raise DeserializationError("DataPrepConfiguration.source_table_map required")
-    if "TransformStepMap" in data:
+    if data.get("TransformStepMap") is not None:
         import capo_quicksight.types.transform_step_map
 
         out["transform_step_map"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> DataPrepConfiguration:
         )
     else:
         raise DeserializationError("DataPrepConfiguration.transform_step_map required")
-    if "DestinationTableMap" in data:
+    if data.get("DestinationTableMap") is not None:
         import capo_quicksight.types.destination_table_map
 
         out["destination_table_map"] = (

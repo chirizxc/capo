@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RouterInputFilterList:
 
     out: RouterInputFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconnect.types.router_input_filter.deserialize_json(item))
     return out

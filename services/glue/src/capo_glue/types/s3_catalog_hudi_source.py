@@ -53,19 +53,19 @@ def serialize_aws_json_1_1(value: S3CatalogHudiSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3CatalogHudiSource:
     out: S3CatalogHudiSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3CatalogHudiSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("S3CatalogHudiSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("S3CatalogHudiSource.table required")
-    if "AdditionalHudiOptions" in data:
+    if data.get("AdditionalHudiOptions") is not None:
         import capo_glue.types.additional_options
 
         out["additional_hudi_options"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3CatalogHudiSource:
                 data["AdditionalHudiOptions"]
             )
         )
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

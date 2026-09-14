@@ -39,9 +39,9 @@ def serialize_json(value: SearchCasesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchCasesResponse:
     out: SearchCasesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "cases" in data:
+    if data.get("cases") is not None:
         import capo_connectcases.types.search_cases_response_item_list
 
         out["cases"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> SearchCasesResponse:
         )
     else:
         raise DeserializationError("SearchCasesResponse.cases required")
-    if "totalCount" in data:
+    if data.get("totalCount") is not None:
         out["total_count"] = data["totalCount"]
     else:
         out["total_count"] = 0

@@ -55,19 +55,19 @@ def serialize_aws_json_1_1(value: LineageGroupSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LineageGroupSummary:
     out: LineageGroupSummary = {}  # type: ignore[typeddict-item]
-    if "LineageGroupArn" in data:
+    if data.get("LineageGroupArn") is not None:
         out["lineage_group_arn"] = data["LineageGroupArn"]
-    if "LineageGroupName" in data:
+    if data.get("LineageGroupName") is not None:
         out["lineage_group_name"] = data["LineageGroupName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

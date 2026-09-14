@@ -34,12 +34,12 @@ def serialize_json(value: S3Location) -> dict:
 
 def deserialize_json(data: dict) -> S3Location:
     out: S3Location = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
     else:
         raise DeserializationError("S3Location.bucket required")
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "BucketOwner" in data:
+    if data.get("BucketOwner") is not None:
         out["bucket_owner"] = data["BucketOwner"]
     return out

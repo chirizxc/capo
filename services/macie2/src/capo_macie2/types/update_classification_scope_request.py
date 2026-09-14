@@ -32,7 +32,7 @@ def serialize_json(value: UpdateClassificationScopeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClassificationScopeRequest:
     out: UpdateClassificationScopeRequest = {}  # type: ignore[typeddict-item]
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_macie2.types.s3_classification_scope_update
 
         out["s3"] = capo_macie2.types.s3_classification_scope_update.deserialize_json(

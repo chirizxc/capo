@@ -32,7 +32,7 @@ def serialize_json(value: UpdateTieringInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTieringInput:
     out: UpdateTieringInput = {}  # type: ignore[typeddict-item]
-    if "FreeTier" in data:
+    if data.get("FreeTier") is not None:
         import capo_billingconductor.types.update_free_tier_config
 
         out["free_tier"] = (

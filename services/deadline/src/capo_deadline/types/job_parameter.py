@@ -49,13 +49,13 @@ def serialize_json(value: JobParameter) -> dict:
 
 
 def deserialize_json(data: dict) -> JobParameter:
-    if "int" in data:
+    if data.get("int") is not None:
         return {"int": data["int"]}
-    elif "float" in data:
+    elif data.get("float") is not None:
         return {"float": data["float"]}
-    elif "string" in data:
+    elif data.get("string") is not None:
         return {"string": data["string"]}
-    elif "path" in data:
+    elif data.get("path") is not None:
         return {"path": data["path"]}
     else:
         raise DeserializationError("JobParameter: no recognized variant key")

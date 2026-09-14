@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOf__PeriodTriggersElement:
 
     out: __listOf__PeriodTriggersElement = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediapackage.types.__period_triggers_element.deserialize_json(item)
         )

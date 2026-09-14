@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: DeactivatePipelineInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeactivatePipelineInput:
     out: DeactivatePipelineInput = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
     else:
         raise DeserializationError("DeactivatePipelineInput.pipeline_id required")
-    if "cancelActive" in data:
+    if data.get("cancelActive") is not None:
         out["cancel_active"] = data["cancelActive"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> GroupFilterList:
 
     out: GroupFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resource_groups.types.group_filter.deserialize_json(item))
     return out

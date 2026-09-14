@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ResolveCaseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolveCaseRequest:
     out: ResolveCaseRequest = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
     return out

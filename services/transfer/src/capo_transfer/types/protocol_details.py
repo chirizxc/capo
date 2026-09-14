@@ -58,9 +58,9 @@ def serialize_aws_json_1_1(value: ProtocolDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProtocolDetails:
     out: ProtocolDetails = {}  # type: ignore[typeddict-item]
-    if "PassiveIp" in data:
+    if data.get("PassiveIp") is not None:
         out["passive_ip"] = data["PassiveIp"]
-    if "TlsSessionResumptionMode" in data:
+    if data.get("TlsSessionResumptionMode") is not None:
         import capo_transfer.types.tls_session_resumption_mode
 
         out["tls_session_resumption_mode"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProtocolDetails:
                 data["TlsSessionResumptionMode"]
             )
         )
-    if "SetStatOption" in data:
+    if data.get("SetStatOption") is not None:
         import capo_transfer.types.set_stat_option
 
         out["set_stat_option"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProtocolDetails:
                 data["SetStatOption"]
             )
         )
-    if "As2Transports" in data:
+    if data.get("As2Transports") is not None:
         import capo_transfer.types.as2_transports
 
         out["as2_transports"] = (

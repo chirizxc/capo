@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: Plan) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Plan:
     out: Plan = {}  # type: ignore[typeddict-item]
-    if "Stages" in data:
+    if data.get("Stages") is not None:
         import capo_ssm_contacts.types.stages_list
 
         out["stages"] = capo_ssm_contacts.types.stages_list.deserialize_aws_json_1_1(
             data["Stages"]
         )
-    if "RotationIds" in data:
+    if data.get("RotationIds") is not None:
         import capo_ssm_contacts.types.ssm_contacts_arn_list
 
         out["rotation_ids"] = (

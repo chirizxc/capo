@@ -52,24 +52,24 @@ def serialize_aws_json_1_0(value: DynamoDbReservedCapacityConfiguration) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> DynamoDbReservedCapacityConfiguration:
     out: DynamoDbReservedCapacityConfiguration = {}  # type: ignore[typeddict-item]
-    if "accountScope" in data:
+    if data.get("accountScope") is not None:
         out["account_scope"] = data["accountScope"]
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
-    if "term" in data:
+    if data.get("term") is not None:
         out["term"] = data["term"]
-    if "paymentOption" in data:
+    if data.get("paymentOption") is not None:
         out["payment_option"] = data["paymentOption"]
-    if "reservedInstancesRegion" in data:
+    if data.get("reservedInstancesRegion") is not None:
         out["reserved_instances_region"] = data["reservedInstancesRegion"]
-    if "upfrontCost" in data:
+    if data.get("upfrontCost") is not None:
         out["upfront_cost"] = data["upfrontCost"]
-    if "monthlyRecurringCost" in data:
+    if data.get("monthlyRecurringCost") is not None:
         out["monthly_recurring_cost"] = data["monthlyRecurringCost"]
-    if "numberOfCapacityUnitsToPurchase" in data:
+    if data.get("numberOfCapacityUnitsToPurchase") is not None:
         out["number_of_capacity_units_to_purchase"] = data[
             "numberOfCapacityUnitsToPurchase"
         ]
-    if "capacityUnits" in data:
+    if data.get("capacityUnits") is not None:
         out["capacity_units"] = data["capacityUnits"]
     return out

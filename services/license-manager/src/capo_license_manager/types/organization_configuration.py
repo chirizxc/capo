@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: OrganizationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationConfiguration:
     out: OrganizationConfiguration = {}  # type: ignore[typeddict-item]
-    if "EnableIntegration" in data:
+    if data.get("EnableIntegration") is not None:
         out["enable_integration"] = data["EnableIntegration"]
     else:
         out["enable_integration"] = False

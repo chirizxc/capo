@@ -41,7 +41,7 @@ def serialize_json(value: CalendarInterval) -> dict:
 
 def deserialize_json(data: dict) -> CalendarInterval:
     out: CalendarInterval = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["start_time"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> CalendarInterval:
         )
     else:
         raise DeserializationError("CalendarInterval.start_time required")
-    if "DurationUnit" in data:
+    if data.get("DurationUnit") is not None:
         import capo_application_signals.types.duration_unit
 
         out["duration_unit"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> CalendarInterval:
         )
     else:
         raise DeserializationError("CalendarInterval.duration_unit required")
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         raise DeserializationError("CalendarInterval.duration required")

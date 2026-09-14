@@ -32,19 +32,19 @@ def serialize_aws_json_1_0(value: DisassociateBenefitApplicationResourceInput) -
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateBenefitApplicationResourceInput:
     out: DisassociateBenefitApplicationResourceInput = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError(
             "DisassociateBenefitApplicationResourceInput.catalog required"
         )
-    if "BenefitApplicationIdentifier" in data:
+    if data.get("BenefitApplicationIdentifier") is not None:
         out["benefit_application_identifier"] = data["BenefitApplicationIdentifier"]
     else:
         raise DeserializationError(
             "DisassociateBenefitApplicationResourceInput.benefit_application_identifier required"
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(

@@ -31,8 +31,8 @@ def serialize_json(value: MotionImageInsertionOffset) -> dict:
 
 def deserialize_json(data: dict) -> MotionImageInsertionOffset:
     out: MotionImageInsertionOffset = {}  # type: ignore[typeddict-item]
-    if "imageX" in data:
+    if data.get("imageX") is not None:
         out["image_x"] = data["imageX"]
-    if "imageY" in data:
+    if data.get("imageY") is not None:
         out["image_y"] = data["imageY"]
     return out

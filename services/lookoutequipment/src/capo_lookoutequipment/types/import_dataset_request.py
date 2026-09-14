@@ -49,19 +49,19 @@ def serialize_aws_json_1_0(value: ImportDatasetRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportDatasetRequest:
     out: ImportDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "SourceDatasetArn" in data:
+    if data.get("SourceDatasetArn") is not None:
         out["source_dataset_arn"] = data["SourceDatasetArn"]
     else:
         raise DeserializationError("ImportDatasetRequest.source_dataset_arn required")
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("ImportDatasetRequest.client_token required")
-    if "ServerSideKmsKeyId" in data:
+    if data.get("ServerSideKmsKeyId") is not None:
         out["server_side_kms_key_id"] = data["ServerSideKmsKeyId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_lookoutequipment.types.tag_list
 
         out["tags"] = capo_lookoutequipment.types.tag_list.deserialize_aws_json_1_0(

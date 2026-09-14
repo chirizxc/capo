@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: ContainerServiceEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerServiceEndpoint:
     out: ContainerServiceEndpoint = {}  # type: ignore[typeddict-item]
-    if "containerName" in data:
+    if data.get("containerName") is not None:
         out["container_name"] = data["containerName"]
-    if "containerPort" in data:
+    if data.get("containerPort") is not None:
         out["container_port"] = data["containerPort"]
-    if "healthCheck" in data:
+    if data.get("healthCheck") is not None:
         import capo_lightsail.types.container_service_health_check_config
 
         out["health_check"] = (

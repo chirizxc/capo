@@ -19,7 +19,7 @@ def serialize_json(value: DeviceOfflineException_) -> dict:
 
 def deserialize_json(data: dict) -> DeviceOfflineException_:
     out: DeviceOfflineException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -29,15 +29,18 @@ class DeviceOfflineException(ServiceError):
 
     code: str | None = "DeviceOfflineException"
 
-    def __init__(self, data: DeviceOfflineException_):
+    def __init__(self, data: DeviceOfflineException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DeviceOfflineException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DeviceOfflineException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DeviceOfflineException":
+        return cls(deserialize_json(data), message)

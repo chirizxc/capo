@@ -42,23 +42,23 @@ def serialize_aws_json_1_1(value: CreateDatasetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
     out: CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDatasetRequest.name required")
-    if "schemaArn" in data:
+    if data.get("schemaArn") is not None:
         out["schema_arn"] = data["schemaArn"]
     else:
         raise DeserializationError("CreateDatasetRequest.schema_arn required")
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
     else:
         raise DeserializationError("CreateDatasetRequest.dataset_group_arn required")
-    if "datasetType" in data:
+    if data.get("datasetType") is not None:
         out["dataset_type"] = data["datasetType"]
     else:
         raise DeserializationError("CreateDatasetRequest.dataset_type required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])

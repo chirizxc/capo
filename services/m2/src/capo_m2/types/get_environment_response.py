@@ -150,41 +150,41 @@ def serialize_json(value: GetEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEnvironmentResponse:
     out: GetEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetEnvironmentResponse.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "environmentArn" in data:
+    if data.get("environmentArn") is not None:
         out["environment_arn"] = data["environmentArn"]
     else:
         raise DeserializationError("GetEnvironmentResponse.environment_arn required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("GetEnvironmentResponse.environment_id required")
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     else:
         raise DeserializationError("GetEnvironmentResponse.instance_type required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetEnvironmentResponse.status required")
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         out["engine_type"] = data["engineType"]
     else:
         raise DeserializationError("GetEnvironmentResponse.engine_type required")
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
     else:
         raise DeserializationError("GetEnvironmentResponse.engine_version required")
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("GetEnvironmentResponse.vpc_id required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_m2.types.string50_list
 
         out["subnet_ids"] = capo_m2.types.string50_list.deserialize_json(
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> GetEnvironmentResponse:
         )
     else:
         raise DeserializationError("GetEnvironmentResponse.subnet_ids required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_m2.types.string50_list
 
         out["security_group_ids"] = capo_m2.types.string50_list.deserialize_json(
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> GetEnvironmentResponse:
         )
     else:
         raise DeserializationError("GetEnvironmentResponse.security_group_ids required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_m2.types.timestamp
 
         out["creation_time"] = capo_m2.types.timestamp.deserialize_json(
@@ -208,7 +208,7 @@ def deserialize_json(data: dict) -> GetEnvironmentResponse:
         )
     else:
         raise DeserializationError("GetEnvironmentResponse.creation_time required")
-    if "storageConfigurations" in data:
+    if data.get("storageConfigurations") is not None:
         import capo_m2.types.storage_configuration_list
 
         out["storage_configurations"] = (
@@ -216,11 +216,11 @@ def deserialize_json(data: dict) -> GetEnvironmentResponse:
                 data["storageConfigurations"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_m2.types.tag_map
 
         out["tags"] = capo_m2.types.tag_map.deserialize_json(data["tags"])
-    if "highAvailabilityConfig" in data:
+    if data.get("highAvailabilityConfig") is not None:
         import capo_m2.types.high_availability_config
 
         out["high_availability_config"] = (
@@ -228,26 +228,26 @@ def deserialize_json(data: dict) -> GetEnvironmentResponse:
                 data["highAvailabilityConfig"]
             )
         )
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
     else:
         out["publicly_accessible"] = False
-    if "actualCapacity" in data:
+    if data.get("actualCapacity") is not None:
         out["actual_capacity"] = data["actualCapacity"]
-    if "loadBalancerArn" in data:
+    if data.get("loadBalancerArn") is not None:
         out["load_balancer_arn"] = data["loadBalancerArn"]
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "preferredMaintenanceWindow" in data:
+    if data.get("preferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["preferredMaintenanceWindow"]
-    if "pendingMaintenance" in data:
+    if data.get("pendingMaintenance") is not None:
         import capo_m2.types.pending_maintenance
 
         out["pending_maintenance"] = capo_m2.types.pending_maintenance.deserialize_json(
             data["pendingMaintenance"]
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         out["network_type"] = data["networkType"]
     return out

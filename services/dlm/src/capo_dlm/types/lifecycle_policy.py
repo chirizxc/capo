@@ -94,44 +94,44 @@ def serialize_json(value: LifecyclePolicy) -> dict:
 
 def deserialize_json(data: dict) -> LifecyclePolicy:
     out: LifecyclePolicy = {}  # type: ignore[typeddict-item]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_dlm.types.gettable_policy_state_values
 
         out["state"] = capo_dlm.types.gettable_policy_state_values.deserialize_json(
             data["State"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "DateCreated" in data:
+    if data.get("DateCreated") is not None:
         import capo_dlm.types.timestamp
 
         out["date_created"] = capo_dlm.types.timestamp.deserialize_json(
             data["DateCreated"]
         )
-    if "DateModified" in data:
+    if data.get("DateModified") is not None:
         import capo_dlm.types.timestamp
 
         out["date_modified"] = capo_dlm.types.timestamp.deserialize_json(
             data["DateModified"]
         )
-    if "PolicyDetails" in data:
+    if data.get("PolicyDetails") is not None:
         import capo_dlm.types.policy_details
 
         out["policy_details"] = capo_dlm.types.policy_details.deserialize_json(
             data["PolicyDetails"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_dlm.types.tag_map
 
         out["tags"] = capo_dlm.types.tag_map.deserialize_json(data["Tags"])
-    if "PolicyArn" in data:
+    if data.get("PolicyArn") is not None:
         out["policy_arn"] = data["PolicyArn"]
-    if "DefaultPolicy" in data:
+    if data.get("DefaultPolicy") is not None:
         out["default_policy"] = data["DefaultPolicy"]
     return out

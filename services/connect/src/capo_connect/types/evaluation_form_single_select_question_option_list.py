@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> EvaluationFormSingleSelectQuestionOptionList
 
     out: EvaluationFormSingleSelectQuestionOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.evaluation_form_single_select_question_option.deserialize_json(
                 item

@@ -49,7 +49,7 @@ def serialize_json(value: ReportOutput) -> dict:
 
 
 def deserialize_json(data: dict) -> ReportOutput:
-    if "s3ReportOutput" in data:
+    if data.get("s3ReportOutput") is not None:
         import capo_resiliencehubv2.types.s3_report_output
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> ReportOutput:
                 data["s3ReportOutput"]
             )
         }
-    elif "failedReportOutput" in data:
+    elif data.get("failedReportOutput") is not None:
         import capo_resiliencehubv2.types.failed_report_output
 
         return {

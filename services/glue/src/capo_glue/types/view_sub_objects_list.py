@@ -14,4 +14,4 @@ def serialize_aws_json_1_1(value: ViewSubObjectsList) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> ViewSubObjectsList:
-    return list(data)
+    return [item for item in data if item is not None]

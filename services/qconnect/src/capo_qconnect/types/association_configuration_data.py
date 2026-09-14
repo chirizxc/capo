@@ -36,7 +36,7 @@ def serialize_json(value: AssociationConfigurationData) -> dict:
 
 
 def deserialize_json(data: dict) -> AssociationConfigurationData:
-    if "knowledgeBaseAssociationConfigurationData" in data:
+    if data.get("knowledgeBaseAssociationConfigurationData") is not None:
         import capo_qconnect.types.knowledge_base_association_configuration_data
 
         return {

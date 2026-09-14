@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DatumList:
 
     out: DatumList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotsitewise.types.datum.deserialize_json(item))
     return out

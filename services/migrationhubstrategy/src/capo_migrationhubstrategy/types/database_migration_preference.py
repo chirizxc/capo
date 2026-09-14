@@ -62,7 +62,7 @@ def serialize_json(value: DatabaseMigrationPreference) -> dict:
 
 
 def deserialize_json(data: dict) -> DatabaseMigrationPreference:
-    if "heterogeneous" in data:
+    if data.get("heterogeneous") is not None:
         import capo_migrationhubstrategy.types.heterogeneous
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> DatabaseMigrationPreference:
                 data["heterogeneous"]
             )
         }
-    elif "homogeneous" in data:
+    elif data.get("homogeneous") is not None:
         import capo_migrationhubstrategy.types.homogeneous
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> DatabaseMigrationPreference:
                 data["homogeneous"]
             )
         }
-    elif "noPreference" in data:
+    elif data.get("noPreference") is not None:
         import capo_migrationhubstrategy.types.no_database_migration_preference
 
         return {

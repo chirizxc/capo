@@ -39,16 +39,16 @@ def serialize_json(value: EksMetadata) -> dict:
 
 def deserialize_json(data: dict) -> EksMetadata:
     out: EksMetadata = {}  # type: ignore[typeddict-item]
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_batch.types.eks_labels_map
 
         out["labels"] = capo_batch.types.eks_labels_map.deserialize_json(data["labels"])
-    if "annotations" in data:
+    if data.get("annotations") is not None:
         import capo_batch.types.eks_annotations_map
 
         out["annotations"] = capo_batch.types.eks_annotations_map.deserialize_json(
             data["annotations"]
         )
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     return out

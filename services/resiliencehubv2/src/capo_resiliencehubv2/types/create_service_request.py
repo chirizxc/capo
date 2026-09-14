@@ -100,13 +100,13 @@ def serialize_json(value: CreateServiceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateServiceRequest:
     out: CreateServiceRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateServiceRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "associatedSystems" in data:
+    if data.get("associatedSystems") is not None:
         import capo_resiliencehubv2.types.associated_system_list
 
         out["associated_systems"] = (
@@ -114,9 +114,9 @@ def deserialize_json(data: dict) -> CreateServiceRequest:
                 data["associatedSystems"]
             )
         )
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_resiliencehubv2.types.region_list
 
         out["regions"] = capo_resiliencehubv2.types.region_list.deserialize_json(
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> CreateServiceRequest:
         )
     else:
         raise DeserializationError("CreateServiceRequest.regions required")
-    if "permissionModel" in data:
+    if data.get("permissionModel") is not None:
         import capo_resiliencehubv2.types.permission_model
 
         out["permission_model"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> CreateServiceRequest:
         )
     else:
         raise DeserializationError("CreateServiceRequest.permission_model required")
-    if "dependencyDiscovery" in data:
+    if data.get("dependencyDiscovery") is not None:
         import capo_resiliencehubv2.types.dependency_discovery_input
 
         out["dependency_discovery"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> CreateServiceRequest:
                 data["dependencyDiscovery"]
             )
         )
-    if "reportConfiguration" in data:
+    if data.get("reportConfiguration") is not None:
         import capo_resiliencehubv2.types.service_report_configuration
 
         out["report_configuration"] = (
@@ -150,12 +150,12 @@ def deserialize_json(data: dict) -> CreateServiceRequest:
                 data["reportConfiguration"]
             )
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehubv2.types.tag_map
 
         out["tags"] = capo_resiliencehubv2.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

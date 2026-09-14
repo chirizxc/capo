@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: OperationNotSupportedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OperationNotSupportedException_:
     out: OperationNotSupportedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out
 
@@ -42,15 +42,20 @@ class OperationNotSupportedException(ServiceError):
 
     code: str | None = "OperationNotSupportedException"
 
-    def __init__(self, data: OperationNotSupportedException_):
+    def __init__(
+        self, data: OperationNotSupportedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OperationNotSupportedException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "OperationNotSupportedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "OperationNotSupportedException":
+        return cls(deserialize_aws_json_1_1(data), message)

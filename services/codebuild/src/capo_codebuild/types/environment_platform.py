@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: EnvironmentPlatform) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnvironmentPlatform:
     out: EnvironmentPlatform = {}  # type: ignore[typeddict-item]
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_codebuild.types.platform_type
 
         out["platform"] = capo_codebuild.types.platform_type.deserialize_aws_json_1_1(
             data["platform"]
         )
-    if "languages" in data:
+    if data.get("languages") is not None:
         import capo_codebuild.types.environment_languages
 
         out["languages"] = (

@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: DeleteHsmRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteHsmRequest:
     out: DeleteHsmRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
     else:
         raise DeserializationError("DeleteHsmRequest.cluster_id required")
-    if "HsmId" in data:
+    if data.get("HsmId") is not None:
         out["hsm_id"] = data["HsmId"]
-    if "EniId" in data:
+    if data.get("EniId") is not None:
         out["eni_id"] = data["EniId"]
-    if "EniIp" in data:
+    if data.get("EniIp") is not None:
         out["eni_ip"] = data["EniIp"]
     return out

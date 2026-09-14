@@ -66,11 +66,11 @@ def serialize_json(value: StartScanJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartScanJobInput:
     out: StartScanJobInput = {}  # type: ignore[typeddict-item]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
     else:
         raise DeserializationError("StartScanJobInput.backup_vault_name required")
-    if "ContinuousScanEndTime" in data:
+    if data.get("ContinuousScanEndTime") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["continuous_scan_end_time"] = (
@@ -78,13 +78,13 @@ def deserialize_json(data: dict) -> StartScanJobInput:
                 data["ContinuousScanEndTime"]
             )
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("StartScanJobInput.iam_role_arn required")
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "MalwareScanner" in data:
+    if data.get("MalwareScanner") is not None:
         import capo_backup.types.malware_scanner
 
         out["malware_scanner"] = capo_backup.types.malware_scanner.deserialize_json(
@@ -92,13 +92,13 @@ def deserialize_json(data: dict) -> StartScanJobInput:
         )
     else:
         raise DeserializationError("StartScanJobInput.malware_scanner required")
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
     else:
         raise DeserializationError("StartScanJobInput.recovery_point_arn required")
-    if "ScanBaseRecoveryPointArn" in data:
+    if data.get("ScanBaseRecoveryPointArn") is not None:
         out["scan_base_recovery_point_arn"] = data["ScanBaseRecoveryPointArn"]
-    if "ScanMode" in data:
+    if data.get("ScanMode") is not None:
         import capo_backup.types.scan_mode
 
         out["scan_mode"] = capo_backup.types.scan_mode.deserialize_json(
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> StartScanJobInput:
         )
     else:
         raise DeserializationError("StartScanJobInput.scan_mode required")
-    if "ScannerRoleArn" in data:
+    if data.get("ScannerRoleArn") is not None:
         out["scanner_role_arn"] = data["ScannerRoleArn"]
     else:
         raise DeserializationError("StartScanJobInput.scanner_role_arn required")

@@ -24,7 +24,7 @@ def serialize_json(value: DeleteStreamKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteStreamKeyRequest:
     out: DeleteStreamKeyRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteStreamKeyRequest.arn required")

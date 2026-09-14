@@ -115,14 +115,14 @@ def serialize_json(value: TrainedModelInferenceJobSummary) -> dict:
         out["mlModelInferencePayerAccountId"] = value[
             "ml_model_inference_payer_account_id"
         ]
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     return out
@@ -130,37 +130,37 @@ def serialize_json(value: TrainedModelInferenceJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> TrainedModelInferenceJobSummary:
     out: TrainedModelInferenceJobSummary = {}  # type: ignore[typeddict-item]
-    if "trainedModelInferenceJobArn" in data:
+    if data.get("trainedModelInferenceJobArn") is not None:
         out["trained_model_inference_job_arn"] = data["trainedModelInferenceJobArn"]
     else:
         raise DeserializationError(
             "TrainedModelInferenceJobSummary.trained_model_inference_job_arn required"
         )
-    if "configuredModelAlgorithmAssociationArn" in data:
+    if data.get("configuredModelAlgorithmAssociationArn") is not None:
         out["configured_model_algorithm_association_arn"] = data[
             "configuredModelAlgorithmAssociationArn"
         ]
-    if "membershipIdentifier" in data:
+    if data.get("membershipIdentifier") is not None:
         out["membership_identifier"] = data["membershipIdentifier"]
     else:
         raise DeserializationError(
             "TrainedModelInferenceJobSummary.membership_identifier required"
         )
-    if "trainedModelArn" in data:
+    if data.get("trainedModelArn") is not None:
         out["trained_model_arn"] = data["trainedModelArn"]
     else:
         raise DeserializationError(
             "TrainedModelInferenceJobSummary.trained_model_arn required"
         )
-    if "trainedModelVersionIdentifier" in data:
+    if data.get("trainedModelVersionIdentifier") is not None:
         out["trained_model_version_identifier"] = data["trainedModelVersionIdentifier"]
-    if "collaborationIdentifier" in data:
+    if data.get("collaborationIdentifier") is not None:
         out["collaboration_identifier"] = data["collaborationIdentifier"]
     else:
         raise DeserializationError(
             "TrainedModelInferenceJobSummary.collaboration_identifier required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanroomsml.types.trained_model_inference_job_status
 
         out["status"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> TrainedModelInferenceJobSummary:
         )
     else:
         raise DeserializationError("TrainedModelInferenceJobSummary.status required")
-    if "outputConfiguration" in data:
+    if data.get("outputConfiguration") is not None:
         import capo_cleanroomsml.types.inference_output_configuration
 
         out["output_configuration"] = (
@@ -182,51 +182,47 @@ def deserialize_json(data: dict) -> TrainedModelInferenceJobSummary:
         raise DeserializationError(
             "TrainedModelInferenceJobSummary.output_configuration required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("TrainedModelInferenceJobSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "metricsStatus" in data:
+    if data.get("metricsStatus") is not None:
         import capo_cleanroomsml.types.metrics_status
 
         out["metrics_status"] = capo_cleanroomsml.types.metrics_status.deserialize_json(
             data["metricsStatus"]
         )
-    if "metricsStatusDetails" in data:
+    if data.get("metricsStatusDetails") is not None:
         out["metrics_status_details"] = data["metricsStatusDetails"]
-    if "logsStatus" in data:
+    if data.get("logsStatus") is not None:
         import capo_cleanroomsml.types.logs_status
 
         out["logs_status"] = capo_cleanroomsml.types.logs_status.deserialize_json(
             data["logsStatus"]
         )
-    if "logsStatusDetails" in data:
+    if data.get("logsStatusDetails") is not None:
         out["logs_status_details"] = data["logsStatusDetails"]
-    if "mlModelInferencePayerAccountId" in data:
+    if data.get("mlModelInferencePayerAccountId") is not None:
         out["ml_model_inference_payer_account_id"] = data[
             "mlModelInferencePayerAccountId"
         ]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "TrainedModelInferenceJobSummary.create_time required"
         )
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(

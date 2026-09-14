@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PhysicalResourceList:
 
     out: PhysicalResourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.physical_resource.deserialize_json(item))
     return out

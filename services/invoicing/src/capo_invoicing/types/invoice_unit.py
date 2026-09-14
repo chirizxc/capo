@@ -73,23 +73,23 @@ def serialize_aws_json_1_0(value: InvoiceUnit) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvoiceUnit:
     out: InvoiceUnit = {}  # type: ignore[typeddict-item]
-    if "InvoiceUnitArn" in data:
+    if data.get("InvoiceUnitArn") is not None:
         out["invoice_unit_arn"] = data["InvoiceUnitArn"]
-    if "InvoiceReceiver" in data:
+    if data.get("InvoiceReceiver") is not None:
         out["invoice_receiver"] = data["InvoiceReceiver"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TaxInheritanceDisabled" in data:
+    if data.get("TaxInheritanceDisabled") is not None:
         out["tax_inheritance_disabled"] = data["TaxInheritanceDisabled"]
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_invoicing.types.invoice_unit_rule
 
         out["rule"] = capo_invoicing.types.invoice_unit_rule.deserialize_aws_json_1_0(
             data["Rule"]
         )
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         import capo_invoicing.types.last_modified_timestamp
 
         out["last_modified"] = (

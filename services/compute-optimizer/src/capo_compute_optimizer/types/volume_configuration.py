@@ -52,28 +52,28 @@ def serialize_aws_json_1_0(value: VolumeConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VolumeConfiguration:
     out: VolumeConfiguration = {}  # type: ignore[typeddict-item]
-    if "volumeType" in data:
+    if data.get("volumeType") is not None:
         out["volume_type"] = data["volumeType"]
-    if "volumeSize" in data:
+    if data.get("volumeSize") is not None:
         out["volume_size"] = data["volumeSize"]
     else:
         out["volume_size"] = 0
-    if "volumeBaselineIOPS" in data:
+    if data.get("volumeBaselineIOPS") is not None:
         out["volume_baseline_iops"] = data["volumeBaselineIOPS"]
     else:
         out["volume_baseline_iops"] = 0
-    if "volumeBurstIOPS" in data:
+    if data.get("volumeBurstIOPS") is not None:
         out["volume_burst_iops"] = data["volumeBurstIOPS"]
     else:
         out["volume_burst_iops"] = 0
-    if "volumeBaselineThroughput" in data:
+    if data.get("volumeBaselineThroughput") is not None:
         out["volume_baseline_throughput"] = data["volumeBaselineThroughput"]
     else:
         out["volume_baseline_throughput"] = 0
-    if "volumeBurstThroughput" in data:
+    if data.get("volumeBurstThroughput") is not None:
         out["volume_burst_throughput"] = data["volumeBurstThroughput"]
     else:
         out["volume_burst_throughput"] = 0
-    if "rootVolume" in data:
+    if data.get("rootVolume") is not None:
         out["root_volume"] = data["rootVolume"]
     return out

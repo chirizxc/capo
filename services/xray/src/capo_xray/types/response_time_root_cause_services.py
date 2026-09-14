@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ResponseTimeRootCauseServices:
 
     out: ResponseTimeRootCauseServices = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_xray.types.response_time_root_cause_service.deserialize_json(item)
         )

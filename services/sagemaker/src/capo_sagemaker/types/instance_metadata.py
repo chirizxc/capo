@@ -74,9 +74,9 @@ def serialize_aws_json_1_1(value: InstanceMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceMetadata:
     out: InstanceMetadata = {}  # type: ignore[typeddict-item]
-    if "CustomerEni" in data:
+    if data.get("CustomerEni") is not None:
         out["customer_eni"] = data["CustomerEni"]
-    if "AdditionalEnis" in data:
+    if data.get("AdditionalEnis") is not None:
         import capo_sagemaker.types.additional_enis
 
         out["additional_enis"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceMetadata:
                 data["AdditionalEnis"]
             )
         )
-    if "InstanceRequirementsEniConfigurations" in data:
+    if data.get("InstanceRequirementsEniConfigurations") is not None:
         import capo_sagemaker.types.instance_requirements_eni_configurations
 
         out["instance_requirements_eni_configurations"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceMetadata:
                 data["InstanceRequirementsEniConfigurations"]
             )
         )
-    if "CapacityReservation" in data:
+    if data.get("CapacityReservation") is not None:
         import capo_sagemaker.types.capacity_reservation
 
         out["capacity_reservation"] = (
@@ -100,10 +100,10 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceMetadata:
                 data["CapacityReservation"]
             )
         )
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
-    if "LcsExecutionState" in data:
+    if data.get("LcsExecutionState") is not None:
         out["lcs_execution_state"] = data["LcsExecutionState"]
-    if "NodeLogicalId" in data:
+    if data.get("NodeLogicalId") is not None:
         out["node_logical_id"] = data["NodeLogicalId"]
     return out

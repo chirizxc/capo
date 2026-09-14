@@ -28,11 +28,11 @@ def serialize_json(value: PrimaryValue) -> dict:
 
 def deserialize_json(data: dict) -> PrimaryValue:
     out: PrimaryValue = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError("PrimaryValue.attribute_name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("PrimaryValue.value required")

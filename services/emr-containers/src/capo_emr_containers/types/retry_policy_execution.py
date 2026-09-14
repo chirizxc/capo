@@ -24,7 +24,7 @@ def serialize_json(value: RetryPolicyExecution) -> dict:
 
 def deserialize_json(data: dict) -> RetryPolicyExecution:
     out: RetryPolicyExecution = {}  # type: ignore[typeddict-item]
-    if "currentAttemptCount" in data:
+    if data.get("currentAttemptCount") is not None:
         out["current_attempt_count"] = data["currentAttemptCount"]
     else:
         raise DeserializationError(

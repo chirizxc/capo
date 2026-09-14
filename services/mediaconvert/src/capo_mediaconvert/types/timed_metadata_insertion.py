@@ -31,7 +31,7 @@ def serialize_json(value: TimedMetadataInsertion) -> dict:
 
 def deserialize_json(data: dict) -> TimedMetadataInsertion:
     out: TimedMetadataInsertion = {}  # type: ignore[typeddict-item]
-    if "id3Insertions" in data:
+    if data.get("id3Insertions") is not None:
         import capo_mediaconvert.types.__list_of_id3_insertion
 
         out["id3_insertions"] = (

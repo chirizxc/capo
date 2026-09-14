@@ -40,9 +40,9 @@ def serialize_json(value: DocumentationPart) -> dict:
 
 def deserialize_json(data: dict) -> DocumentationPart:
     out: DocumentationPart = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_api_gateway.types.documentation_part_location
 
         out["location"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> DocumentationPart:
                 data["location"]
             )
         )
-    if "properties" in data:
+    if data.get("properties") is not None:
         out["properties"] = data["properties"]
     return out

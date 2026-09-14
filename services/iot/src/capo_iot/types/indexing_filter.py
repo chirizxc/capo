@@ -49,7 +49,7 @@ def serialize_json(value: IndexingFilter) -> dict:
 
 def deserialize_json(data: dict) -> IndexingFilter:
     out: IndexingFilter = {}  # type: ignore[typeddict-item]
-    if "namedShadowNames" in data:
+    if data.get("namedShadowNames") is not None:
         import capo_iot.types.named_shadow_names_filter
 
         out["named_shadow_names"] = (
@@ -57,13 +57,13 @@ def deserialize_json(data: dict) -> IndexingFilter:
                 data["namedShadowNames"]
             )
         )
-    if "geoLocations" in data:
+    if data.get("geoLocations") is not None:
         import capo_iot.types.geo_locations_filter
 
         out["geo_locations"] = capo_iot.types.geo_locations_filter.deserialize_json(
             data["geoLocations"]
         )
-    if "connectivity" in data:
+    if data.get("connectivity") is not None:
         import capo_iot.types.connectivity_filter
 
         out["connectivity"] = capo_iot.types.connectivity_filter.deserialize_json(

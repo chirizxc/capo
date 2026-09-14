@@ -16,4 +16,4 @@ def serialize_json(value: ListOfLFPermissions) -> list:
 
 
 def deserialize_json(data: list) -> ListOfLFPermissions:
-    return list(data)
+    return [item for item in data if item is not None]

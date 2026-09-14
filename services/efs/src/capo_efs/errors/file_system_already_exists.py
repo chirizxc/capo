@@ -30,13 +30,13 @@ def serialize_json(value: FileSystemAlreadyExists_) -> dict:
 
 def deserialize_json(data: dict) -> FileSystemAlreadyExists_:
     out: FileSystemAlreadyExists_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError("FileSystemAlreadyExists_.error_code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
     else:
         raise DeserializationError("FileSystemAlreadyExists_.file_system_id required")
@@ -48,15 +48,18 @@ class FileSystemAlreadyExists(ServiceError):
 
     code: str | None = "FileSystemAlreadyExists"
 
-    def __init__(self, data: FileSystemAlreadyExists_):
+    def __init__(self, data: FileSystemAlreadyExists_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="FileSystemAlreadyExists",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "FileSystemAlreadyExists":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "FileSystemAlreadyExists":
+        return cls(deserialize_json(data), message)

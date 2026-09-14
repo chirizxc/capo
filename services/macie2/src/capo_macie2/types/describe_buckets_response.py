@@ -34,12 +34,12 @@ def serialize_json(value: DescribeBucketsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBucketsResponse:
     out: DescribeBucketsResponse = {}  # type: ignore[typeddict-item]
-    if "buckets" in data:
+    if data.get("buckets") is not None:
         import capo_macie2.types.__list_of_bucket_metadata
 
         out["buckets"] = capo_macie2.types.__list_of_bucket_metadata.deserialize_json(
             data["buckets"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

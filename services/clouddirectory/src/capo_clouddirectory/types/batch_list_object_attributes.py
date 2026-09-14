@@ -47,7 +47,7 @@ def serialize_json(value: BatchListObjectAttributes) -> dict:
 
 def deserialize_json(data: dict) -> BatchListObjectAttributes:
     out: BatchListObjectAttributes = {}  # type: ignore[typeddict-item]
-    if "ObjectReference" in data:
+    if data.get("ObjectReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["object_reference"] = (
@@ -59,11 +59,11 @@ def deserialize_json(data: dict) -> BatchListObjectAttributes:
         raise DeserializationError(
             "BatchListObjectAttributes.object_reference required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "FacetFilter" in data:
+    if data.get("FacetFilter") is not None:
         import capo_clouddirectory.types.schema_facet
 
         out["facet_filter"] = capo_clouddirectory.types.schema_facet.deserialize_json(

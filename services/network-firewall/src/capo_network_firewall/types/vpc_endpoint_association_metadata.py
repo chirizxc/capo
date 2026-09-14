@@ -25,6 +25,6 @@ def serialize_aws_json_1_0(value: VpcEndpointAssociationMetadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VpcEndpointAssociationMetadata:
     out: VpcEndpointAssociationMetadata = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointAssociationArn" in data:
+    if data.get("VpcEndpointAssociationArn") is not None:
         out["vpc_endpoint_association_arn"] = data["VpcEndpointAssociationArn"]
     return out

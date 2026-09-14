@@ -32,7 +32,7 @@ def serialize_json(value: CreateIdNamespaceAssociationOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateIdNamespaceAssociationOutput:
     out: CreateIdNamespaceAssociationOutput = {}  # type: ignore[typeddict-item]
-    if "idNamespaceAssociation" in data:
+    if data.get("idNamespaceAssociation") is not None:
         import capo_cleanrooms.types.id_namespace_association
 
         out["id_namespace_association"] = (

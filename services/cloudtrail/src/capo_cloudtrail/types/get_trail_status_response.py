@@ -133,13 +133,13 @@ def serialize_aws_json_1_1(value: GetTrailStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTrailStatusResponse:
     out: GetTrailStatusResponse = {}  # type: ignore[typeddict-item]
-    if "IsLogging" in data:
+    if data.get("IsLogging") is not None:
         out["is_logging"] = data["IsLogging"]
-    if "LatestDeliveryError" in data:
+    if data.get("LatestDeliveryError") is not None:
         out["latest_delivery_error"] = data["LatestDeliveryError"]
-    if "LatestNotificationError" in data:
+    if data.get("LatestNotificationError") is not None:
         out["latest_notification_error"] = data["LatestNotificationError"]
-    if "LatestDeliveryTime" in data:
+    if data.get("LatestDeliveryTime") is not None:
         import capo_cloudtrail.types.date
 
         out["latest_delivery_time"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetTrailStatusResponse:
                 data["LatestDeliveryTime"]
             )
         )
-    if "LatestNotificationTime" in data:
+    if data.get("LatestNotificationTime") is not None:
         import capo_cloudtrail.types.date
 
         out["latest_notification_time"] = (
@@ -155,23 +155,23 @@ def deserialize_aws_json_1_1(data: dict) -> GetTrailStatusResponse:
                 data["LatestNotificationTime"]
             )
         )
-    if "StartLoggingTime" in data:
+    if data.get("StartLoggingTime") is not None:
         import capo_cloudtrail.types.date
 
         out["start_logging_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["StartLoggingTime"]
         )
-    if "StopLoggingTime" in data:
+    if data.get("StopLoggingTime") is not None:
         import capo_cloudtrail.types.date
 
         out["stop_logging_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["StopLoggingTime"]
         )
-    if "LatestCloudWatchLogsDeliveryError" in data:
+    if data.get("LatestCloudWatchLogsDeliveryError") is not None:
         out["latest_cloud_watch_logs_delivery_error"] = data[
             "LatestCloudWatchLogsDeliveryError"
         ]
-    if "LatestCloudWatchLogsDeliveryTime" in data:
+    if data.get("LatestCloudWatchLogsDeliveryTime") is not None:
         import capo_cloudtrail.types.date
 
         out["latest_cloud_watch_logs_delivery_time"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetTrailStatusResponse:
                 data["LatestCloudWatchLogsDeliveryTime"]
             )
         )
-    if "LatestDigestDeliveryTime" in data:
+    if data.get("LatestDigestDeliveryTime") is not None:
         import capo_cloudtrail.types.date
 
         out["latest_digest_delivery_time"] = (
@@ -187,22 +187,22 @@ def deserialize_aws_json_1_1(data: dict) -> GetTrailStatusResponse:
                 data["LatestDigestDeliveryTime"]
             )
         )
-    if "LatestDigestDeliveryError" in data:
+    if data.get("LatestDigestDeliveryError") is not None:
         out["latest_digest_delivery_error"] = data["LatestDigestDeliveryError"]
-    if "LatestDeliveryAttemptTime" in data:
+    if data.get("LatestDeliveryAttemptTime") is not None:
         out["latest_delivery_attempt_time"] = data["LatestDeliveryAttemptTime"]
-    if "LatestNotificationAttemptTime" in data:
+    if data.get("LatestNotificationAttemptTime") is not None:
         out["latest_notification_attempt_time"] = data["LatestNotificationAttemptTime"]
-    if "LatestNotificationAttemptSucceeded" in data:
+    if data.get("LatestNotificationAttemptSucceeded") is not None:
         out["latest_notification_attempt_succeeded"] = data[
             "LatestNotificationAttemptSucceeded"
         ]
-    if "LatestDeliveryAttemptSucceeded" in data:
+    if data.get("LatestDeliveryAttemptSucceeded") is not None:
         out["latest_delivery_attempt_succeeded"] = data[
             "LatestDeliveryAttemptSucceeded"
         ]
-    if "TimeLoggingStarted" in data:
+    if data.get("TimeLoggingStarted") is not None:
         out["time_logging_started"] = data["TimeLoggingStarted"]
-    if "TimeLoggingStopped" in data:
+    if data.get("TimeLoggingStopped") is not None:
         out["time_logging_stopped"] = data["TimeLoggingStopped"]
     return out

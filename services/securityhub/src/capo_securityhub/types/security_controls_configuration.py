@@ -57,7 +57,7 @@ def serialize_json(value: SecurityControlsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SecurityControlsConfiguration:
     out: SecurityControlsConfiguration = {}  # type: ignore[typeddict-item]
-    if "EnabledSecurityControlIdentifiers" in data:
+    if data.get("EnabledSecurityControlIdentifiers") is not None:
         import capo_securityhub.types.enabled_security_control_identifier_list
 
         out["enabled_security_control_identifiers"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> SecurityControlsConfiguration:
                 data["EnabledSecurityControlIdentifiers"]
             )
         )
-    if "DisabledSecurityControlIdentifiers" in data:
+    if data.get("DisabledSecurityControlIdentifiers") is not None:
         import capo_securityhub.types.disabled_security_control_identifier_list
 
         out["disabled_security_control_identifiers"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> SecurityControlsConfiguration:
                 data["DisabledSecurityControlIdentifiers"]
             )
         )
-    if "SecurityControlCustomParameters" in data:
+    if data.get("SecurityControlCustomParameters") is not None:
         import capo_securityhub.types.security_control_custom_parameters_list
 
         out["security_control_custom_parameters"] = (

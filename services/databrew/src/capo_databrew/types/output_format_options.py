@@ -25,7 +25,7 @@ def serialize_json(value: OutputFormatOptions) -> dict:
 
 def deserialize_json(data: dict) -> OutputFormatOptions:
     out: OutputFormatOptions = {}  # type: ignore[typeddict-item]
-    if "Csv" in data:
+    if data.get("Csv") is not None:
         import capo_databrew.types.csv_output_options
 
         out["csv"] = capo_databrew.types.csv_output_options.deserialize_json(

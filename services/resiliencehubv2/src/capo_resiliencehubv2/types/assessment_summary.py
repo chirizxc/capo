@@ -118,15 +118,15 @@ def serialize_json(value: AssessmentSummary) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentSummary:
     out: AssessmentSummary = {}  # type: ignore[typeddict-item]
-    if "assessmentId" in data:
+    if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
     else:
         raise DeserializationError("AssessmentSummary.assessment_id required")
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("AssessmentSummary.service_arn required")
-    if "assessmentStatus" in data:
+    if data.get("assessmentStatus") is not None:
         import capo_resiliencehubv2.types.assessment_status
 
         out["assessment_status"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["assessmentStatus"]
             )
         )
-    if "assessmentStep" in data:
+    if data.get("assessmentStep") is not None:
         import capo_resiliencehubv2.types.assessment_step
 
         out["assessment_step"] = (
@@ -142,9 +142,9 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["assessmentStep"]
             )
         )
-    if "totalFindings" in data:
+    if data.get("totalFindings") is not None:
         out["total_findings"] = data["totalFindings"]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["started_at"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["startedAt"]
             )
         )
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["ended_at"] = (
@@ -160,9 +160,9 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["endedAt"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_resiliencehubv2.types.assessment_error_code
 
         out["error_code"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["errorCode"]
             )
         )
-    if "assessmentCost" in data:
+    if data.get("assessmentCost") is not None:
         import capo_resiliencehubv2.types.assessment_cost
 
         out["assessment_cost"] = (
@@ -178,9 +178,9 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["assessmentCost"]
             )
         )
-    if "billableAssessmentUnitCount" in data:
+    if data.get("billableAssessmentUnitCount") is not None:
         out["billable_assessment_unit_count"] = data["billableAssessmentUnitCount"]
-    if "achievability" in data:
+    if data.get("achievability") is not None:
         import capo_resiliencehubv2.types.achievability
 
         out["achievability"] = (

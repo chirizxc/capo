@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> Dashboards:
 
     out: Dashboards = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cloudtrail.types.dashboard_detail.deserialize_aws_json_1_1(item)
         )

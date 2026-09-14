@@ -31,7 +31,7 @@ def serialize_json(value: BatchUpdateAutomatedDiscoveryAccountsResponse) -> dict
 
 def deserialize_json(data: dict) -> BatchUpdateAutomatedDiscoveryAccountsResponse:
     out: BatchUpdateAutomatedDiscoveryAccountsResponse = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_macie2.types.__list_of_automated_discovery_account_update_error
 
         out["errors"] = (

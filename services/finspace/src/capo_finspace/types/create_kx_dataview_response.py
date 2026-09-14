@@ -103,21 +103,21 @@ def serialize_json(value: CreateKxDataviewResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxDataviewResponse:
     out: CreateKxDataviewResponse = {}  # type: ignore[typeddict-item]
-    if "dataviewName" in data:
+    if data.get("dataviewName") is not None:
         out["dataview_name"] = data["dataviewName"]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "azMode" in data:
+    if data.get("azMode") is not None:
         import capo_finspace.types.kx_az_mode
 
         out["az_mode"] = capo_finspace.types.kx_az_mode.deserialize_json(data["azMode"])
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "changesetId" in data:
+    if data.get("changesetId") is not None:
         out["changeset_id"] = data["changesetId"]
-    if "segmentConfigurations" in data:
+    if data.get("segmentConfigurations") is not None:
         import capo_finspace.types.kx_dataview_segment_configuration_list
 
         out["segment_configurations"] = (
@@ -125,29 +125,29 @@ def deserialize_json(data: dict) -> CreateKxDataviewResponse:
                 data["segmentConfigurations"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "autoUpdate" in data:
+    if data.get("autoUpdate") is not None:
         out["auto_update"] = data["autoUpdate"]
     else:
         out["auto_update"] = False
-    if "readWrite" in data:
+    if data.get("readWrite") is not None:
         out["read_write"] = data["readWrite"]
     else:
         out["read_write"] = False
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createdTimestamp"]
         )
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["lastModifiedTimestamp"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.kx_dataview_status
 
         out["status"] = capo_finspace.types.kx_dataview_status.deserialize_json(

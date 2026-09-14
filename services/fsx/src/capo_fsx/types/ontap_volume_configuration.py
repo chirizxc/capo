@@ -142,7 +142,7 @@ def serialize_aws_json_1_1(value: OntapVolumeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OntapVolumeConfiguration:
     out: OntapVolumeConfiguration = {}  # type: ignore[typeddict-item]
-    if "FlexCacheEndpointType" in data:
+    if data.get("FlexCacheEndpointType") is not None:
         import capo_fsx.types.flex_cache_endpoint_type
 
         out["flex_cache_endpoint_type"] = (
@@ -150,31 +150,31 @@ def deserialize_aws_json_1_1(data: dict) -> OntapVolumeConfiguration:
                 data["FlexCacheEndpointType"]
             )
         )
-    if "JunctionPath" in data:
+    if data.get("JunctionPath") is not None:
         out["junction_path"] = data["JunctionPath"]
-    if "SecurityStyle" in data:
+    if data.get("SecurityStyle") is not None:
         import capo_fsx.types.security_style
 
         out["security_style"] = capo_fsx.types.security_style.deserialize_aws_json_1_1(
             data["SecurityStyle"]
         )
-    if "SizeInMegabytes" in data:
+    if data.get("SizeInMegabytes") is not None:
         out["size_in_megabytes"] = data["SizeInMegabytes"]
-    if "StorageEfficiencyEnabled" in data:
+    if data.get("StorageEfficiencyEnabled") is not None:
         out["storage_efficiency_enabled"] = data["StorageEfficiencyEnabled"]
-    if "StorageVirtualMachineId" in data:
+    if data.get("StorageVirtualMachineId") is not None:
         out["storage_virtual_machine_id"] = data["StorageVirtualMachineId"]
-    if "StorageVirtualMachineRoot" in data:
+    if data.get("StorageVirtualMachineRoot") is not None:
         out["storage_virtual_machine_root"] = data["StorageVirtualMachineRoot"]
-    if "TieringPolicy" in data:
+    if data.get("TieringPolicy") is not None:
         import capo_fsx.types.tiering_policy
 
         out["tiering_policy"] = capo_fsx.types.tiering_policy.deserialize_aws_json_1_1(
             data["TieringPolicy"]
         )
-    if "UUID" in data:
+    if data.get("UUID") is not None:
         out["uuid"] = data["UUID"]
-    if "OntapVolumeType" in data:
+    if data.get("OntapVolumeType") is not None:
         import capo_fsx.types.ontap_volume_type
 
         out["ontap_volume_type"] = (
@@ -182,11 +182,11 @@ def deserialize_aws_json_1_1(data: dict) -> OntapVolumeConfiguration:
                 data["OntapVolumeType"]
             )
         )
-    if "SnapshotPolicy" in data:
+    if data.get("SnapshotPolicy") is not None:
         out["snapshot_policy"] = data["SnapshotPolicy"]
-    if "CopyTagsToBackups" in data:
+    if data.get("CopyTagsToBackups") is not None:
         out["copy_tags_to_backups"] = data["CopyTagsToBackups"]
-    if "SnaplockConfiguration" in data:
+    if data.get("SnaplockConfiguration") is not None:
         import capo_fsx.types.snaplock_configuration
 
         out["snaplock_configuration"] = (
@@ -194,13 +194,13 @@ def deserialize_aws_json_1_1(data: dict) -> OntapVolumeConfiguration:
                 data["SnaplockConfiguration"]
             )
         )
-    if "VolumeStyle" in data:
+    if data.get("VolumeStyle") is not None:
         import capo_fsx.types.volume_style
 
         out["volume_style"] = capo_fsx.types.volume_style.deserialize_aws_json_1_1(
             data["VolumeStyle"]
         )
-    if "AggregateConfiguration" in data:
+    if data.get("AggregateConfiguration") is not None:
         import capo_fsx.types.aggregate_configuration
 
         out["aggregate_configuration"] = (
@@ -208,6 +208,6 @@ def deserialize_aws_json_1_1(data: dict) -> OntapVolumeConfiguration:
                 data["AggregateConfiguration"]
             )
         )
-    if "SizeInBytes" in data:
+    if data.get("SizeInBytes") is not None:
         out["size_in_bytes"] = data["SizeInBytes"]
     return out

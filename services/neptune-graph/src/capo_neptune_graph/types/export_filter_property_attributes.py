@@ -44,11 +44,11 @@ def serialize_json(value: ExportFilterPropertyAttributes) -> dict:
 
 def deserialize_json(data: dict) -> ExportFilterPropertyAttributes:
     out: ExportFilterPropertyAttributes = {}  # type: ignore[typeddict-item]
-    if "outputType" in data:
+    if data.get("outputType") is not None:
         out["output_type"] = data["outputType"]
-    if "sourcePropertyName" in data:
+    if data.get("sourcePropertyName") is not None:
         out["source_property_name"] = data["sourcePropertyName"]
-    if "multiValueHandling" in data:
+    if data.get("multiValueHandling") is not None:
         import capo_neptune_graph.types.multi_value_handling_type
 
         out["multi_value_handling"] = (

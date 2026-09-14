@@ -84,11 +84,11 @@ def serialize_aws_json_1_1(value: ApplicationResourceAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationResourceAssociation:
     out: ApplicationResourceAssociation = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "AssociatedResourceId" in data:
+    if data.get("AssociatedResourceId") is not None:
         out["associated_resource_id"] = data["AssociatedResourceId"]
-    if "AssociatedResourceType" in data:
+    if data.get("AssociatedResourceType") is not None:
         import capo_workspaces.types.application_associated_resource_type
 
         out["associated_resource_type"] = (
@@ -96,13 +96,13 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationResourceAssociation:
                 data["AssociatedResourceType"]
             )
         )
-    if "Created" in data:
+    if data.get("Created") is not None:
         import capo_workspaces.types.timestamp
 
         out["created"] = capo_workspaces.types.timestamp.deserialize_aws_json_1_1(
             data["Created"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_workspaces.types.timestamp
 
         out["last_updated_time"] = (
@@ -110,13 +110,13 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationResourceAssociation:
                 data["LastUpdatedTime"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.association_state
 
         out["state"] = capo_workspaces.types.association_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         import capo_workspaces.types.association_state_reason
 
         out["state_reason"] = (

@@ -103,9 +103,9 @@ def serialize_aws_json_1_1(value: ContinuousExportDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContinuousExportDescription:
     out: ContinuousExportDescription = {}  # type: ignore[typeddict-item]
-    if "exportId" in data:
+    if data.get("exportId") is not None:
         out["export_id"] = data["exportId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_application_discovery_service.types.continuous_export_status
 
         out["status"] = (
@@ -113,11 +113,11 @@ def deserialize_aws_json_1_1(data: dict) -> ContinuousExportDescription:
                 data["status"]
             )
         )
-    if "statusDetail" in data:
+    if data.get("statusDetail") is not None:
         out["status_detail"] = data["statusDetail"]
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["start_time"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContinuousExportDescription:
                 data["startTime"]
             )
         )
-    if "stopTime" in data:
+    if data.get("stopTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["stop_time"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContinuousExportDescription:
                 data["stopTime"]
             )
         )
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_application_discovery_service.types.data_source
 
         out["data_source"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContinuousExportDescription:
                 data["dataSource"]
             )
         )
-    if "schemaStorageConfig" in data:
+    if data.get("schemaStorageConfig") is not None:
         import capo_application_discovery_service.types.schema_storage_config
 
         out["schema_storage_config"] = (

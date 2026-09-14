@@ -50,11 +50,11 @@ def serialize_json(value: DisassociateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateUserRequest:
     out: DisassociateUserRequest = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "IdentityProvider" in data:
+    if data.get("IdentityProvider") is not None:
         import capo_license_manager_user_subscriptions.types.identity_provider
 
         out["identity_provider"] = (
@@ -62,8 +62,8 @@ def deserialize_json(data: dict) -> DisassociateUserRequest:
                 data["IdentityProvider"]
             )
         )
-    if "InstanceUserArn" in data:
+    if data.get("InstanceUserArn") is not None:
         out["instance_user_arn"] = data["InstanceUserArn"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     return out

@@ -19,16 +19,32 @@ class WeightedQuantileLoss(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: WeightedQuantileLoss) -> dict:
     out: dict = {}
     if "quantile" in value:
-        out["Quantile"] = value["quantile"]
+        out["Quantile"] = (
+            "NaN"
+            if value["quantile"] != value["quantile"]
+            else "Infinity"
+            if value["quantile"] == float("inf")
+            else "-Infinity"
+            if value["quantile"] == float("-inf")
+            else value["quantile"]
+        )
     if "loss_value" in value:
-        out["LossValue"] = value["loss_value"]
+        out["LossValue"] = (
+            "NaN"
+            if value["loss_value"] != value["loss_value"]
+            else "Infinity"
+            if value["loss_value"] == float("inf")
+            else "-Infinity"
+            if value["loss_value"] == float("-inf")
+            else value["loss_value"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> WeightedQuantileLoss:
     out: WeightedQuantileLoss = {}  # type: ignore[typeddict-item]
-    if "Quantile" in data:
-        out["quantile"] = data["Quantile"]
-    if "LossValue" in data:
-        out["loss_value"] = data["LossValue"]
+    if data.get("Quantile") is not None:
+        out["quantile"] = float(data["Quantile"])
+    if data.get("LossValue") is not None:
+        out["loss_value"] = float(data["LossValue"])
     return out

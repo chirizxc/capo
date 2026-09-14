@@ -34,9 +34,9 @@ def serialize_json(value: PipelineInfo) -> dict:
 
 def deserialize_json(data: dict) -> PipelineInfo:
     out: PipelineInfo = {}  # type: ignore[typeddict-item]
-    if "pipelineType" in data:
+    if data.get("pipelineType") is not None:
         out["pipeline_type"] = data["pipelineType"]
-    if "pipelineConfigurationTimeStamp" in data:
+    if data.get("pipelineConfigurationTimeStamp") is not None:
         out["pipeline_configuration_time_stamp"] = data[
             "pipelineConfigurationTimeStamp"
         ]

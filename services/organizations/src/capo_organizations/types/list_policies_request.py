@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ListPoliciesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPoliciesRequest:
     out: ListPoliciesRequest = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_organizations.types.policy_type
 
         out["filter"] = capo_organizations.types.policy_type.deserialize_aws_json_1_1(
@@ -46,8 +46,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListPoliciesRequest:
         )
     else:
         raise DeserializationError("ListPoliciesRequest.filter required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -25,6 +25,6 @@ def serialize_json(value: UspsZipPlus4) -> dict:
 
 def deserialize_json(data: dict) -> UspsZipPlus4:
     out: UspsZipPlus4 = {}  # type: ignore[typeddict-item]
-    if "RecordTypeCode" in data:
+    if data.get("RecordTypeCode") is not None:
         out["record_type_code"] = data["RecordTypeCode"]
     return out

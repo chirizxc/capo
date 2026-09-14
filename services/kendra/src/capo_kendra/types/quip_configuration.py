@@ -122,33 +122,33 @@ def serialize_aws_json_1_1(value: QuipConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QuipConfiguration:
     out: QuipConfiguration = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     else:
         raise DeserializationError("QuipConfiguration.domain required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("QuipConfiguration.secret_arn required")
-    if "CrawlFileComments" in data:
+    if data.get("CrawlFileComments") is not None:
         out["crawl_file_comments"] = data["CrawlFileComments"]
     else:
         out["crawl_file_comments"] = False
-    if "CrawlChatRooms" in data:
+    if data.get("CrawlChatRooms") is not None:
         out["crawl_chat_rooms"] = data["CrawlChatRooms"]
     else:
         out["crawl_chat_rooms"] = False
-    if "CrawlAttachments" in data:
+    if data.get("CrawlAttachments") is not None:
         out["crawl_attachments"] = data["CrawlAttachments"]
     else:
         out["crawl_attachments"] = False
-    if "FolderIds" in data:
+    if data.get("FolderIds") is not None:
         import capo_kendra.types.folder_id_list
 
         out["folder_ids"] = capo_kendra.types.folder_id_list.deserialize_aws_json_1_1(
             data["FolderIds"]
         )
-    if "ThreadFieldMappings" in data:
+    if data.get("ThreadFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["thread_field_mappings"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> QuipConfiguration:
                 data["ThreadFieldMappings"]
             )
         )
-    if "MessageFieldMappings" in data:
+    if data.get("MessageFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["message_field_mappings"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_1(data: dict) -> QuipConfiguration:
                 data["MessageFieldMappings"]
             )
         )
-    if "AttachmentFieldMappings" in data:
+    if data.get("AttachmentFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["attachment_field_mappings"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_1(data: dict) -> QuipConfiguration:
                 data["AttachmentFieldMappings"]
             )
         )
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_1(data: dict) -> QuipConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> QuipConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (

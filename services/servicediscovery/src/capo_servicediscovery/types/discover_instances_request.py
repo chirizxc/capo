@@ -78,17 +78,17 @@ def serialize_aws_json_1_1(value: DiscoverInstancesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiscoverInstancesRequest:
     out: DiscoverInstancesRequest = {}  # type: ignore[typeddict-item]
-    if "NamespaceName" in data:
+    if data.get("NamespaceName") is not None:
         out["namespace_name"] = data["NamespaceName"]
     else:
         raise DeserializationError("DiscoverInstancesRequest.namespace_name required")
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
     else:
         raise DeserializationError("DiscoverInstancesRequest.service_name required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "QueryParameters" in data:
+    if data.get("QueryParameters") is not None:
         import capo_servicediscovery.types.attributes
 
         out["query_parameters"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInstancesRequest:
                 data["QueryParameters"]
             )
         )
-    if "OptionalParameters" in data:
+    if data.get("OptionalParameters") is not None:
         import capo_servicediscovery.types.attributes
 
         out["optional_parameters"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInstancesRequest:
                 data["OptionalParameters"]
             )
         )
-    if "HealthStatus" in data:
+    if data.get("HealthStatus") is not None:
         import capo_servicediscovery.types.health_status_filter
 
         out["health_status"] = (
@@ -112,6 +112,6 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInstancesRequest:
                 data["HealthStatus"]
             )
         )
-    if "OwnerAccount" in data:
+    if data.get("OwnerAccount") is not None:
         out["owner_account"] = data["OwnerAccount"]
     return out

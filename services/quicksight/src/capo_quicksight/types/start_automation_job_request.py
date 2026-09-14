@@ -33,6 +33,6 @@ def serialize_json(value: StartAutomationJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAutomationJobRequest:
     out: StartAutomationJobRequest = {}  # type: ignore[typeddict-item]
-    if "InputPayload" in data:
+    if data.get("InputPayload") is not None:
         out["input_payload"] = data["InputPayload"]
     return out

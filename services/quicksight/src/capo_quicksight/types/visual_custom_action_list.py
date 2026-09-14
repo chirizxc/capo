@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> VisualCustomActionList:
 
     out: VisualCustomActionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.visual_custom_action.deserialize_json(item))
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: AutomationRulesActionTypeObjectV2) -> dict:
 
 def deserialize_json(data: dict) -> AutomationRulesActionTypeObjectV2:
     out: AutomationRulesActionTypeObjectV2 = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_securityhub.types.automation_rules_action_type_v2
 
         out["type"] = (

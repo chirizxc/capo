@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PITPolicy:
 
     out: PITPolicy = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_drs.types.pit_policy_rule.deserialize_json(item))
     return out

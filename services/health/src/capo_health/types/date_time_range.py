@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: DateTimeRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DateTimeRange:
     out: DateTimeRange = {}  # type: ignore[typeddict-item]
-    if "from" in data:
+    if data.get("from") is not None:
         import capo_health.types.timestamp
 
         out["from"] = capo_health.types.timestamp.deserialize_aws_json_1_1(data["from"])
-    if "to" in data:
+    if data.get("to") is not None:
         import capo_health.types.timestamp
 
         out["to"] = capo_health.types.timestamp.deserialize_aws_json_1_1(data["to"])

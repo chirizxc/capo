@@ -23,5 +23,7 @@ def serialize_json(input_to_serialize: ApplicationTag) -> dict:
 def deserialize_json(data: dict) -> ApplicationTag:
     out: ApplicationTag = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

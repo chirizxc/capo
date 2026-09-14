@@ -25,7 +25,7 @@ def serialize_json(value: GetFormResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFormResponse:
     out: GetFormResponse = {}  # type: ignore[typeddict-item]
-    if "form" in data:
+    if data.get("form") is not None:
         import capo_amplifyuibuilder.types.form
 
         out["form"] = capo_amplifyuibuilder.types.form.deserialize_json(data["form"])

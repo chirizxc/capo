@@ -53,20 +53,20 @@ def serialize_aws_json_1_1(value: VolumeInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VolumeInfo:
     out: VolumeInfo = {}  # type: ignore[typeddict-item]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "GatewayId" in data:
+    if data.get("GatewayId") is not None:
         out["gateway_id"] = data["GatewayId"]
-    if "VolumeType" in data:
+    if data.get("VolumeType") is not None:
         out["volume_type"] = data["VolumeType"]
-    if "VolumeSizeInBytes" in data:
+    if data.get("VolumeSizeInBytes") is not None:
         out["volume_size_in_bytes"] = data["VolumeSizeInBytes"]
     else:
         out["volume_size_in_bytes"] = 0
-    if "VolumeAttachmentStatus" in data:
+    if data.get("VolumeAttachmentStatus") is not None:
         out["volume_attachment_status"] = data["VolumeAttachmentStatus"]
     return out

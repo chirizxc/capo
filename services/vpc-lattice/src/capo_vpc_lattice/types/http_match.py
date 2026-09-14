@@ -43,15 +43,15 @@ def serialize_json(value: HttpMatch) -> dict:
 
 def deserialize_json(data: dict) -> HttpMatch:
     out: HttpMatch = {}  # type: ignore[typeddict-item]
-    if "method" in data:
+    if data.get("method") is not None:
         out["method"] = data["method"]
-    if "pathMatch" in data:
+    if data.get("pathMatch") is not None:
         import capo_vpc_lattice.types.path_match
 
         out["path_match"] = capo_vpc_lattice.types.path_match.deserialize_json(
             data["pathMatch"]
         )
-    if "headerMatches" in data:
+    if data.get("headerMatches") is not None:
         import capo_vpc_lattice.types.header_match_list
 
         out["header_matches"] = (

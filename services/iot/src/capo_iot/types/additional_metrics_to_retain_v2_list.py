@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AdditionalMetricsToRetainV2List:
 
     out: AdditionalMetricsToRetainV2List = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.metric_to_retain.deserialize_json(item))
     return out

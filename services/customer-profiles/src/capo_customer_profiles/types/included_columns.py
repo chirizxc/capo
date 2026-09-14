@@ -23,6 +23,8 @@ def serialize_json(input_to_serialize: IncludedColumns) -> dict:
 def deserialize_json(data: dict) -> IncludedColumns:
     out: IncludedColumns = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_customer_profiles.types.column_names_list
 
         out[key] = capo_customer_profiles.types.column_names_list.deserialize_json(

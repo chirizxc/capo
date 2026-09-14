@@ -75,10 +75,10 @@ def serialize_aws_json_1_1(value: Snapshot) -> dict:
     if "snapshot_name" in value:
         out["snapshotName"] = value["snapshot_name"]
     if "snapshot_create_time" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
         out["snapshotCreateTime"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
+            capo_redshift_serverless._protocol.serialize.fmt_date_time(
                 value["snapshot_create_time"]
             )
         )
@@ -91,17 +91,49 @@ def serialize_aws_json_1_1(value: Snapshot) -> dict:
     if "owner_account" in value:
         out["ownerAccount"] = value["owner_account"]
     if "total_backup_size_in_mega_bytes" in value:
-        out["totalBackupSizeInMegaBytes"] = value["total_backup_size_in_mega_bytes"]
+        out["totalBackupSizeInMegaBytes"] = (
+            "NaN"
+            if value["total_backup_size_in_mega_bytes"]
+            != value["total_backup_size_in_mega_bytes"]
+            else "Infinity"
+            if value["total_backup_size_in_mega_bytes"] == float("inf")
+            else "-Infinity"
+            if value["total_backup_size_in_mega_bytes"] == float("-inf")
+            else value["total_backup_size_in_mega_bytes"]
+        )
     if "actual_incremental_backup_size_in_mega_bytes" in value:
-        out["actualIncrementalBackupSizeInMegaBytes"] = value[
-            "actual_incremental_backup_size_in_mega_bytes"
-        ]
+        out["actualIncrementalBackupSizeInMegaBytes"] = (
+            "NaN"
+            if value["actual_incremental_backup_size_in_mega_bytes"]
+            != value["actual_incremental_backup_size_in_mega_bytes"]
+            else "Infinity"
+            if value["actual_incremental_backup_size_in_mega_bytes"] == float("inf")
+            else "-Infinity"
+            if value["actual_incremental_backup_size_in_mega_bytes"] == float("-inf")
+            else value["actual_incremental_backup_size_in_mega_bytes"]
+        )
     if "backup_progress_in_mega_bytes" in value:
-        out["backupProgressInMegaBytes"] = value["backup_progress_in_mega_bytes"]
+        out["backupProgressInMegaBytes"] = (
+            "NaN"
+            if value["backup_progress_in_mega_bytes"]
+            != value["backup_progress_in_mega_bytes"]
+            else "Infinity"
+            if value["backup_progress_in_mega_bytes"] == float("inf")
+            else "-Infinity"
+            if value["backup_progress_in_mega_bytes"] == float("-inf")
+            else value["backup_progress_in_mega_bytes"]
+        )
     if "current_backup_rate_in_mega_bytes_per_second" in value:
-        out["currentBackupRateInMegaBytesPerSecond"] = value[
-            "current_backup_rate_in_mega_bytes_per_second"
-        ]
+        out["currentBackupRateInMegaBytesPerSecond"] = (
+            "NaN"
+            if value["current_backup_rate_in_mega_bytes_per_second"]
+            != value["current_backup_rate_in_mega_bytes_per_second"]
+            else "Infinity"
+            if value["current_backup_rate_in_mega_bytes_per_second"] == float("inf")
+            else "-Infinity"
+            if value["current_backup_rate_in_mega_bytes_per_second"] == float("-inf")
+            else value["current_backup_rate_in_mega_bytes_per_second"]
+        )
     if "estimated_seconds_to_completion" in value:
         out["estimatedSecondsToCompletion"] = value["estimated_seconds_to_completion"]
     if "elapsed_time_in_seconds" in value:
@@ -111,10 +143,10 @@ def serialize_aws_json_1_1(value: Snapshot) -> dict:
     if "snapshot_remaining_days" in value:
         out["snapshotRemainingDays"] = value["snapshot_remaining_days"]
     if "snapshot_retention_start_time" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
         out["snapshotRetentionStartTime"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
+            capo_redshift_serverless._protocol.serialize.fmt_date_time(
                 value["snapshot_retention_start_time"]
             )
         )
@@ -145,59 +177,57 @@ def serialize_aws_json_1_1(value: Snapshot) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Snapshot:
     out: Snapshot = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "namespaceArn" in data:
+    if data.get("namespaceArn") is not None:
         out["namespace_arn"] = data["namespaceArn"]
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
-    if "snapshotCreateTime" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("snapshotCreateTime") is not None:
+        import datetime
 
-        out["snapshot_create_time"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["snapshotCreateTime"]
-            )
+        out["snapshot_create_time"] = datetime.datetime.fromisoformat(
+            data["snapshotCreateTime"].replace("Z", "+00:00")
         )
-    if "adminUsername" in data:
+    if data.get("adminUsername") is not None:
         out["admin_username"] = data["adminUsername"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "totalBackupSizeInMegaBytes" in data:
-        out["total_backup_size_in_mega_bytes"] = data["totalBackupSizeInMegaBytes"]
-    if "actualIncrementalBackupSizeInMegaBytes" in data:
-        out["actual_incremental_backup_size_in_mega_bytes"] = data[
-            "actualIncrementalBackupSizeInMegaBytes"
-        ]
-    if "backupProgressInMegaBytes" in data:
-        out["backup_progress_in_mega_bytes"] = data["backupProgressInMegaBytes"]
-    if "currentBackupRateInMegaBytesPerSecond" in data:
-        out["current_backup_rate_in_mega_bytes_per_second"] = data[
-            "currentBackupRateInMegaBytesPerSecond"
-        ]
-    if "estimatedSecondsToCompletion" in data:
-        out["estimated_seconds_to_completion"] = data["estimatedSecondsToCompletion"]
-    if "elapsedTimeInSeconds" in data:
-        out["elapsed_time_in_seconds"] = data["elapsedTimeInSeconds"]
-    if "snapshotRetentionPeriod" in data:
-        out["snapshot_retention_period"] = data["snapshotRetentionPeriod"]
-    if "snapshotRemainingDays" in data:
-        out["snapshot_remaining_days"] = data["snapshotRemainingDays"]
-    if "snapshotRetentionStartTime" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
-
-        out["snapshot_retention_start_time"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["snapshotRetentionStartTime"]
-            )
+    if data.get("totalBackupSizeInMegaBytes") is not None:
+        out["total_backup_size_in_mega_bytes"] = float(
+            data["totalBackupSizeInMegaBytes"]
         )
-    if "snapshotArn" in data:
+    if data.get("actualIncrementalBackupSizeInMegaBytes") is not None:
+        out["actual_incremental_backup_size_in_mega_bytes"] = float(
+            data["actualIncrementalBackupSizeInMegaBytes"]
+        )
+    if data.get("backupProgressInMegaBytes") is not None:
+        out["backup_progress_in_mega_bytes"] = float(data["backupProgressInMegaBytes"])
+    if data.get("currentBackupRateInMegaBytesPerSecond") is not None:
+        out["current_backup_rate_in_mega_bytes_per_second"] = float(
+            data["currentBackupRateInMegaBytesPerSecond"]
+        )
+    if data.get("estimatedSecondsToCompletion") is not None:
+        out["estimated_seconds_to_completion"] = data["estimatedSecondsToCompletion"]
+    if data.get("elapsedTimeInSeconds") is not None:
+        out["elapsed_time_in_seconds"] = data["elapsedTimeInSeconds"]
+    if data.get("snapshotRetentionPeriod") is not None:
+        out["snapshot_retention_period"] = data["snapshotRetentionPeriod"]
+    if data.get("snapshotRemainingDays") is not None:
+        out["snapshot_remaining_days"] = data["snapshotRemainingDays"]
+    if data.get("snapshotRetentionStartTime") is not None:
+        import datetime
+
+        out["snapshot_retention_start_time"] = datetime.datetime.fromisoformat(
+            data["snapshotRetentionStartTime"].replace("Z", "+00:00")
+        )
+    if data.get("snapshotArn") is not None:
         out["snapshot_arn"] = data["snapshotArn"]
-    if "accountsWithRestoreAccess" in data:
+    if data.get("accountsWithRestoreAccess") is not None:
         import capo_redshift_serverless.types.account_id_list
 
         out["accounts_with_restore_access"] = (
@@ -205,7 +235,7 @@ def deserialize_aws_json_1_1(data: dict) -> Snapshot:
                 data["accountsWithRestoreAccess"]
             )
         )
-    if "accountsWithProvisionedRestoreAccess" in data:
+    if data.get("accountsWithProvisionedRestoreAccess") is not None:
         import capo_redshift_serverless.types.account_id_list
 
         out["accounts_with_provisioned_restore_access"] = (
@@ -213,8 +243,8 @@ def deserialize_aws_json_1_1(data: dict) -> Snapshot:
                 data["accountsWithProvisionedRestoreAccess"]
             )
         )
-    if "adminPasswordSecretArn" in data:
+    if data.get("adminPasswordSecretArn") is not None:
         out["admin_password_secret_arn"] = data["adminPasswordSecretArn"]
-    if "adminPasswordSecretKmsKeyId" in data:
+    if data.get("adminPasswordSecretKmsKeyId") is not None:
         out["admin_password_secret_kms_key_id"] = data["adminPasswordSecretKmsKeyId"]
     return out

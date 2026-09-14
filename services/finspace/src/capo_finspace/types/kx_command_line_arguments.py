@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> KxCommandLineArguments:
 
     out: KxCommandLineArguments = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_finspace.types.kx_command_line_argument.deserialize_json(item))
     return out

@@ -37,7 +37,7 @@ def serialize_json(value: ListWorkflowRunsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkflowRunsResponse:
     out: ListWorkflowRunsResponse = {}  # type: ignore[typeddict-item]
-    if "workflowRunSummaries" in data:
+    if data.get("workflowRunSummaries") is not None:
         import capo_nova_act.types.workflow_run_summaries
 
         out["workflow_run_summaries"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListWorkflowRunsResponse:
         raise DeserializationError(
             "ListWorkflowRunsResponse.workflow_run_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

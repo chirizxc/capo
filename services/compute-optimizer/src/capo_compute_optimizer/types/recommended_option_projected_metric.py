@@ -42,13 +42,13 @@ def serialize_aws_json_1_0(value: RecommendedOptionProjectedMetric) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecommendedOptionProjectedMetric:
     out: RecommendedOptionProjectedMetric = {}  # type: ignore[typeddict-item]
-    if "recommendedInstanceType" in data:
+    if data.get("recommendedInstanceType") is not None:
         out["recommended_instance_type"] = data["recommendedInstanceType"]
-    if "rank" in data:
+    if data.get("rank") is not None:
         out["rank"] = data["rank"]
     else:
         out["rank"] = 0
-    if "projectedMetrics" in data:
+    if data.get("projectedMetrics") is not None:
         import capo_compute_optimizer.types.projected_metrics
 
         out["projected_metrics"] = (

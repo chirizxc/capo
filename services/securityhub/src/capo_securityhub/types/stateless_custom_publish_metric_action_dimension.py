@@ -23,6 +23,6 @@ def serialize_json(value: StatelessCustomPublishMetricActionDimension) -> dict:
 
 def deserialize_json(data: dict) -> StatelessCustomPublishMetricActionDimension:
     out: StatelessCustomPublishMetricActionDimension = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

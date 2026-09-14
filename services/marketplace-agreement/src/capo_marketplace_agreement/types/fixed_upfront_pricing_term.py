@@ -59,17 +59,17 @@ def serialize_aws_json_1_0(value: FixedUpfrontPricingTerm) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FixedUpfrontPricingTerm:
     out: FixedUpfrontPricingTerm = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "price" in data:
+    if data.get("price") is not None:
         out["price"] = data["price"]
-    if "grants" in data:
+    if data.get("grants") is not None:
         import capo_marketplace_agreement.types.grant_list
 
         out["grants"] = (

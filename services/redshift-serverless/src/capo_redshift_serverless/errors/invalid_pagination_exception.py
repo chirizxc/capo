@@ -18,7 +18,7 @@ def serialize_aws_json_1_1(value: InvalidPaginationException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidPaginationException_:
     out: InvalidPaginationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("InvalidPaginationException_.message required")
@@ -30,15 +30,18 @@ class InvalidPaginationException(ServiceError):
 
     code: str | None = "InvalidPaginationException"
 
-    def __init__(self, data: InvalidPaginationException_):
+    def __init__(self, data: InvalidPaginationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidPaginationException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidPaginationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidPaginationException":
+        return cls(deserialize_aws_json_1_1(data), message)

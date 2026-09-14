@@ -62,23 +62,23 @@ def serialize_json(value: DatasetDetailOrgAttributes) -> dict:
 
 
 def deserialize_json(data: dict) -> DatasetDetailOrgAttributes:
-    if "vsam" in data:
+    if data.get("vsam") is not None:
         import capo_m2.types.vsam_detail_attributes
 
         return {
             "vsam": capo_m2.types.vsam_detail_attributes.deserialize_json(data["vsam"])
         }
-    elif "gdg" in data:
+    elif data.get("gdg") is not None:
         import capo_m2.types.gdg_detail_attributes
 
         return {
             "gdg": capo_m2.types.gdg_detail_attributes.deserialize_json(data["gdg"])
         }
-    elif "po" in data:
+    elif data.get("po") is not None:
         import capo_m2.types.po_detail_attributes
 
         return {"po": capo_m2.types.po_detail_attributes.deserialize_json(data["po"])}
-    elif "ps" in data:
+    elif data.get("ps") is not None:
         import capo_m2.types.ps_detail_attributes
 
         return {"ps": capo_m2.types.ps_detail_attributes.deserialize_json(data["ps"])}

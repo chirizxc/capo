@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: TlsAuthConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TlsAuthConfiguration:
     out: TlsAuthConfiguration = {}  # type: ignore[typeddict-item]
-    if "TrustStore" in data:
+    if data.get("TrustStore") is not None:
         import capo_mailmanager.types.trust_store
 
         out["trust_store"] = (

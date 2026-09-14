@@ -23,6 +23,6 @@ def serialize_json(value: ListAnnotationStoresFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListAnnotationStoresFilter:
     out: ListAnnotationStoresFilter = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

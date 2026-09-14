@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ParsedQueryComponentList:
 
     out: ParsedQueryComponentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_places.types.parsed_query_component.deserialize_json(item))
     return out

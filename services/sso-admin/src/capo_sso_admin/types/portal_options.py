@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: PortalOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PortalOptions:
     out: PortalOptions = {}  # type: ignore[typeddict-item]
-    if "SignInOptions" in data:
+    if data.get("SignInOptions") is not None:
         import capo_sso_admin.types.sign_in_options
 
         out["sign_in_options"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> PortalOptions:
                 data["SignInOptions"]
             )
         )
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_sso_admin.types.application_visibility
 
         out["visibility"] = (

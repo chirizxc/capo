@@ -100,15 +100,15 @@ def serialize_json(value: WorkflowStepMetadata) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowStepMetadata:
     out: WorkflowStepMetadata = {}  # type: ignore[typeddict-item]
-    if "stepExecutionId" in data:
+    if data.get("stepExecutionId") is not None:
         out["step_execution_id"] = data["stepExecutionId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.workflow_step_execution_status
 
         out["status"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> WorkflowStepMetadata:
                 data["status"]
             )
         )
-    if "rollbackStatus" in data:
+    if data.get("rollbackStatus") is not None:
         import capo_imagebuilder.types.workflow_step_execution_rollback_status
 
         out["rollback_status"] = (
@@ -124,14 +124,14 @@ def deserialize_json(data: dict) -> WorkflowStepMetadata:
                 data["rollbackStatus"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "inputs" in data:
+    if data.get("inputs") is not None:
         out["inputs"] = data["inputs"]
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         out["outputs"] = data["outputs"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         out["end_time"] = data["endTime"]
     return out

@@ -40,13 +40,13 @@ def serialize_aws_json_1_0(value: DimensionValues) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DimensionValues:
     out: DimensionValues = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         import capo_freetier.types.dimension
 
         out["key"] = capo_freetier.types.dimension.deserialize_aws_json_1_0(data["Key"])
     else:
         raise DeserializationError("DimensionValues.key required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_freetier.types.values
 
         out["values"] = capo_freetier.types.values.deserialize_aws_json_1_0(
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_0(data: dict) -> DimensionValues:
         )
     else:
         raise DeserializationError("DimensionValues.values required")
-    if "MatchOptions" in data:
+    if data.get("MatchOptions") is not None:
         import capo_freetier.types.match_options
 
         out["match_options"] = (

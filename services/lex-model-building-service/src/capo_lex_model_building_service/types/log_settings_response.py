@@ -61,7 +61,7 @@ def serialize_json(value: LogSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> LogSettingsResponse:
     out: LogSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "logType" in data:
+    if data.get("logType") is not None:
         import capo_lex_model_building_service.types.log_type
 
         out["log_type"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> LogSettingsResponse:
                 data["logType"]
             )
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_lex_model_building_service.types.destination
 
         out["destination"] = (
@@ -77,10 +77,10 @@ def deserialize_json(data: dict) -> LogSettingsResponse:
                 data["destination"]
             )
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "resourcePrefix" in data:
+    if data.get("resourcePrefix") is not None:
         out["resource_prefix"] = data["resourcePrefix"]
     return out

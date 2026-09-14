@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> EnvironmentBlueprintConfigurations:
 
     out: EnvironmentBlueprintConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.environment_blueprint_configuration_item.deserialize_json(
                 item

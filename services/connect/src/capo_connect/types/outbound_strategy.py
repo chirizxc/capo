@@ -39,7 +39,7 @@ def serialize_json(value: OutboundStrategy) -> dict:
 
 def deserialize_json(data: dict) -> OutboundStrategy:
     out: OutboundStrategy = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.outbound_strategy_type
 
         out["type"] = capo_connect.types.outbound_strategy_type.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> OutboundStrategy:
         )
     else:
         raise DeserializationError("OutboundStrategy.type required")
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_connect.types.outbound_strategy_config
 
         out["config"] = capo_connect.types.outbound_strategy_config.deserialize_json(

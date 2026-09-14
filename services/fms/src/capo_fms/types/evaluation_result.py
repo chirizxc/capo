@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: EvaluationResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluationResult:
     out: EvaluationResult = {}  # type: ignore[typeddict-item]
-    if "ComplianceStatus" in data:
+    if data.get("ComplianceStatus") is not None:
         import capo_fms.types.policy_compliance_status_type
 
         out["compliance_status"] = (
@@ -47,11 +47,11 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluationResult:
                 data["ComplianceStatus"]
             )
         )
-    if "ViolatorCount" in data:
+    if data.get("ViolatorCount") is not None:
         out["violator_count"] = data["ViolatorCount"]
     else:
         out["violator_count"] = 0
-    if "EvaluationLimitExceeded" in data:
+    if data.get("EvaluationLimitExceeded") is not None:
         out["evaluation_limit_exceeded"] = data["EvaluationLimitExceeded"]
     else:
         out["evaluation_limit_exceeded"] = False

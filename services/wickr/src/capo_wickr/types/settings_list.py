@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SettingsList:
 
     out: SettingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wickr.types.setting.deserialize_json(item))
     return out

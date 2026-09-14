@@ -29,7 +29,7 @@ def serialize_json(value: UpdateIndexRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIndexRequest:
     out: UpdateIndexRequest = {}  # type: ignore[typeddict-item]
-    if "IndexSchema" in data:
+    if data.get("IndexSchema") is not None:
         out["index_schema"] = data["IndexSchema"]
     else:
         raise DeserializationError("UpdateIndexRequest.index_schema required")

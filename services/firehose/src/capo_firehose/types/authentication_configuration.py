@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: AuthenticationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthenticationConfiguration:
     out: AuthenticationConfiguration = {}  # type: ignore[typeddict-item]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError("AuthenticationConfiguration.role_arn required")
-    if "Connectivity" in data:
+    if data.get("Connectivity") is not None:
         import capo_firehose.types.connectivity
 
         out["connectivity"] = capo_firehose.types.connectivity.deserialize_aws_json_1_1(

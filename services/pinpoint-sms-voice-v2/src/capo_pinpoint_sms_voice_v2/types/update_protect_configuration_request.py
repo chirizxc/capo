@@ -28,12 +28,12 @@ def serialize_aws_json_1_0(value: UpdateProtectConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateProtectConfigurationRequest:
     out: UpdateProtectConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     else:
         raise DeserializationError(
             "UpdateProtectConfigurationRequest.protect_configuration_id required"
         )
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     return out

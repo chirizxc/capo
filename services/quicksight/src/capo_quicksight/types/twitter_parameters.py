@@ -28,11 +28,11 @@ def serialize_json(value: TwitterParameters) -> dict:
 
 def deserialize_json(data: dict) -> TwitterParameters:
     out: TwitterParameters = {}  # type: ignore[typeddict-item]
-    if "Query" in data:
+    if data.get("Query") is not None:
         out["query"] = data["Query"]
     else:
         raise DeserializationError("TwitterParameters.query required")
-    if "MaxRows" in data:
+    if data.get("MaxRows") is not None:
         out["max_rows"] = data["MaxRows"]
     else:
         raise DeserializationError("TwitterParameters.max_rows required")

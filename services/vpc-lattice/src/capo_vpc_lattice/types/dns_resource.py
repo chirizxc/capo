@@ -30,8 +30,8 @@ def serialize_json(value: DnsResource) -> dict:
 
 def deserialize_json(data: dict) -> DnsResource:
     out: DnsResource = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         out["ip_address_type"] = data["ipAddressType"]
     return out

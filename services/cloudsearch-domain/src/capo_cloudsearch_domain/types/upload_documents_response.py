@@ -44,17 +44,17 @@ def serialize_json(value: UploadDocumentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> UploadDocumentsResponse:
     out: UploadDocumentsResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "adds" in data:
+    if data.get("adds") is not None:
         out["adds"] = data["adds"]
     else:
         out["adds"] = 0
-    if "deletes" in data:
+    if data.get("deletes") is not None:
         out["deletes"] = data["deletes"]
     else:
         out["deletes"] = 0
-    if "warnings" in data:
+    if data.get("warnings") is not None:
         import capo_cloudsearch_domain.types.document_service_warnings
 
         out["warnings"] = (

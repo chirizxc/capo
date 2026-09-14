@@ -34,10 +34,10 @@ def serialize_json(value: TemplateInput) -> dict:
 
 def deserialize_json(data: dict) -> TemplateInput:
     out: TemplateInput = {}  # type: ignore[typeddict-item]
-    if "inputName" in data:
+    if data.get("inputName") is not None:
         out["input_name"] = data["inputName"]
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         out["data_type"] = data["dataType"]
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
     return out

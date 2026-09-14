@@ -24,7 +24,7 @@ def serialize_json(value: EnvironmentEnterSessionActionDefinitionSummary) -> dic
 
 def deserialize_json(data: dict) -> EnvironmentEnterSessionActionDefinitionSummary:
     out: EnvironmentEnterSessionActionDefinitionSummary = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError(

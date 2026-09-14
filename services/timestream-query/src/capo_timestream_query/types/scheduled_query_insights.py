@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: ScheduledQueryInsights) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduledQueryInsights:
     out: ScheduledQueryInsights = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_timestream_query.types.scheduled_query_insights_mode
 
         out["mode"] = (

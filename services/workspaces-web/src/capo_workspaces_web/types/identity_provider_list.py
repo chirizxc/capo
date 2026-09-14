@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IdentityProviderList:
 
     out: IdentityProviderList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_web.types.identity_provider_summary.deserialize_json(item)
         )

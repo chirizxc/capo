@@ -38,13 +38,13 @@ def serialize_json(value: EcsCluster) -> dict:
 
 def deserialize_json(data: dict) -> EcsCluster:
     out: EcsCluster = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.ecs_cluster_status
 
         out["status"] = capo_guardduty.types.ecs_cluster_status.deserialize_json(
             data["status"]
         )
-    if "ec2InstanceUids" in data:
+    if data.get("ec2InstanceUids") is not None:
         import capo_guardduty.types.ec2_instance_uids
 
         out["ec2_instance_uids"] = (

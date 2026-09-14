@@ -35,15 +35,15 @@ def serialize_json(value: AWSConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AWSConfiguration:
     out: AWSConfiguration = {}  # type: ignore[typeddict-item]
-    if "assumableRoleArn" in data:
+    if data.get("assumableRoleArn") is not None:
         out["assumable_role_arn"] = data["assumableRoleArn"]
     else:
         raise DeserializationError("AWSConfiguration.assumable_role_arn required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("AWSConfiguration.account_id required")
-    if "accountType" in data:
+    if data.get("accountType") is not None:
         import capo_devops_agent.types.monitor_account_type
 
         out["account_type"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FieldSelectors:
 
     out: FieldSelectors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_observabilityadmin.types.advanced_field_selector.deserialize_json(item)
         )

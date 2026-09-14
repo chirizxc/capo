@@ -44,11 +44,11 @@ def serialize_aws_json_1_0(value: ImportDatasetResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportDatasetResponse:
     out: ImportDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.dataset_status
 
         out["status"] = (
@@ -56,6 +56,6 @@ def deserialize_aws_json_1_0(data: dict) -> ImportDatasetResponse:
                 data["Status"]
             )
         )
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     return out

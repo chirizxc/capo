@@ -28,11 +28,11 @@ def serialize_json(value: EntityRequest) -> dict:
 
 def deserialize_json(data: dict) -> EntityRequest:
     out: EntityRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("EntityRequest.catalog required")
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError("EntityRequest.entity_id required")

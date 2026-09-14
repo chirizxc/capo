@@ -32,9 +32,9 @@ def serialize_json(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_marketplace_catalog.types.tag_list
 
         out["tags"] = capo_marketplace_catalog.types.tag_list.deserialize_json(

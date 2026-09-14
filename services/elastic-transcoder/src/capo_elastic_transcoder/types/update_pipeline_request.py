@@ -79,15 +79,15 @@ def serialize_json(value: UpdatePipelineRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePipelineRequest:
     out: UpdatePipelineRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "InputBucket" in data:
+    if data.get("InputBucket") is not None:
         out["input_bucket"] = data["InputBucket"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "AwsKmsKeyArn" in data:
+    if data.get("AwsKmsKeyArn") is not None:
         out["aws_kms_key_arn"] = data["AwsKmsKeyArn"]
-    if "Notifications" in data:
+    if data.get("Notifications") is not None:
         import capo_elastic_transcoder.types.notifications
 
         out["notifications"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> UpdatePipelineRequest:
                 data["Notifications"]
             )
         )
-    if "ContentConfig" in data:
+    if data.get("ContentConfig") is not None:
         import capo_elastic_transcoder.types.pipeline_output_config
 
         out["content_config"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> UpdatePipelineRequest:
                 data["ContentConfig"]
             )
         )
-    if "ThumbnailConfig" in data:
+    if data.get("ThumbnailConfig") is not None:
         import capo_elastic_transcoder.types.pipeline_output_config
 
         out["thumbnail_config"] = (

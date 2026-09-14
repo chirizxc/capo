@@ -25,5 +25,7 @@ def deserialize_aws_json_1_0(data: list) -> CgroupCustomSettings:
 
     out: CgroupCustomSettings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pcs.types.cgroup_custom_setting.deserialize_aws_json_1_0(item))
     return out

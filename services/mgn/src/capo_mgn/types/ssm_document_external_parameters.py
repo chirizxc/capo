@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: SsmDocumentExternalParameters) -> dict:
 def deserialize_json(data: dict) -> SsmDocumentExternalParameters:
     out: SsmDocumentExternalParameters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_mgn.types.ssm_external_parameter
 
         out[key] = capo_mgn.types.ssm_external_parameter.deserialize_json(value)

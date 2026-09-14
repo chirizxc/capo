@@ -33,7 +33,7 @@ def serialize_json(value: ListContentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListContentsResponse:
     out: ListContentsResponse = {}  # type: ignore[typeddict-item]
-    if "contentSummaries" in data:
+    if data.get("contentSummaries") is not None:
         import capo_qconnect.types.content_summary_list
 
         out["content_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListContentsResponse:
         )
     else:
         raise DeserializationError("ListContentsResponse.content_summaries required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

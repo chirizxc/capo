@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.iot#AWSIotService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -1008,8 +1009,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.accept_certificate_transfer_request.AcceptCertificateTransferRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_iot.types.accept_certificate_transfer_request.AcceptCertificateTransferRequest = {
+            "certificate_id": certificate_id
+        }
         if set_as_active is not None:
             input_["set_as_active"] = set_as_active
 
@@ -1018,6 +1020,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_thing_to_billing_group(
@@ -1064,7 +1067,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.add_thing_to_billing_group_request.AddThingToBillingGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.add_thing_to_billing_group_request.AddThingToBillingGroupRequest = {}
         if billing_group_name is not None:
             input_["billing_group_name"] = billing_group_name
         if billing_group_arn is not None:
@@ -1079,6 +1082,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_thing_to_thing_group(
@@ -1131,7 +1135,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.add_thing_to_thing_group_request.AddThingToThingGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.add_thing_to_thing_group_request.AddThingToThingGroupRequest = {}
         if thing_group_name is not None:
             input_["thing_group_name"] = thing_group_name
         if thing_group_arn is not None:
@@ -1148,6 +1152,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_sbom_with_package_version(
@@ -1191,18 +1196,21 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.associate_sbom_with_package_version_request.AssociateSbomWithPackageVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
-        input_["version_name"] = version_name
-        input_["sbom"] = sbom
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iot.types.associate_sbom_with_package_version_request.AssociateSbomWithPackageVersionRequest = {
+            "package_name": package_name,
+            "version_name": version_name,
+            "sbom": sbom,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_targets_with_job(
@@ -1246,9 +1254,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.associate_targets_with_job_request.AssociateTargetsWithJobRequest = {}  # type: ignore[typeddict-item]
-        input_["targets"] = targets
-        input_["job_id"] = job_id
+        input_: capo_iot.types.associate_targets_with_job_request.AssociateTargetsWithJobRequest = {
+            "targets": targets,
+            "job_id": job_id,
+        }
         if comment is not None:
             input_["comment"] = comment
         if namespace_id is not None:
@@ -1259,6 +1268,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_policy(
@@ -1298,15 +1308,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.attach_policy_request.AttachPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["target"] = target
+        input_: capo_iot.types.attach_policy_request.AttachPolicyRequest = {
+            "policy_name": policy_name,
+            "target": target,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_principal_policy(
@@ -1346,15 +1358,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.attach_principal_policy_request.AttachPrincipalPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["principal"] = principal
+        input_: capo_iot.types.attach_principal_policy_request.AttachPrincipalPolicyRequest = {
+            "policy_name": policy_name,
+            "principal": principal,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_security_profile(
@@ -1397,15 +1411,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.attach_security_profile_request.AttachSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_name"] = security_profile_name
-        input_["security_profile_target_arn"] = security_profile_target_arn
+        input_: capo_iot.types.attach_security_profile_request.AttachSecurityProfileRequest = {
+            "security_profile_name": security_profile_name,
+            "security_profile_target_arn": security_profile_target_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_thing_principal(
@@ -1450,9 +1466,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.attach_thing_principal_request.AttachThingPrincipalRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
-        input_["principal"] = principal
+        input_: capo_iot.types.attach_thing_principal_request.AttachThingPrincipalRequest = {
+            "thing_name": thing_name,
+            "principal": principal,
+        }
         if thing_principal_type is not None:
             input_["thing_principal_type"] = thing_principal_type
 
@@ -1461,6 +1478,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_audit_mitigation_actions_task(
@@ -1497,14 +1515,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.cancel_audit_mitigation_actions_task_request.CancelAuditMitigationActionsTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_iot.types.cancel_audit_mitigation_actions_task_request.CancelAuditMitigationActionsTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_audit_task(
@@ -1541,14 +1561,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.cancel_audit_task_request.CancelAuditTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_iot.types.cancel_audit_task_request.CancelAuditTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_certificate_transfer(
@@ -1586,14 +1608,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.cancel_certificate_transfer_request.CancelCertificateTransferRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_iot.types.cancel_certificate_transfer_request.CancelCertificateTransferRequest = {
+            "certificate_id": certificate_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_detect_mitigation_actions_task(
@@ -1630,14 +1654,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.cancel_detect_mitigation_actions_task_request.CancelDetectMitigationActionsTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_iot.types.cancel_detect_mitigation_actions_task_request.CancelDetectMitigationActionsTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_job(
@@ -1679,8 +1705,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.cancel_job_request.CancelJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_iot.types.cancel_job_request.CancelJobRequest = {"job_id": job_id}
         if reason_code is not None:
             input_["reason_code"] = reason_code
         if comment is not None:
@@ -1693,6 +1718,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_job_execution(
@@ -1739,9 +1765,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.cancel_job_execution_request.CancelJobExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
-        input_["thing_name"] = thing_name
+        input_: capo_iot.types.cancel_job_execution_request.CancelJobExecutionRequest = {
+            "job_id": job_id,
+            "thing_name": thing_name,
+        }
         if force is not None:
             input_["force"] = force
         if expected_version is not None:
@@ -1754,6 +1781,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def clear_default_authorizer(
@@ -1786,13 +1814,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.clear_default_authorizer_request.ClearDefaultAuthorizerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.clear_default_authorizer_request.ClearDefaultAuthorizerRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def confirm_topic_rule_destination(
@@ -1830,14 +1859,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.confirm_topic_rule_destination_request.ConfirmTopicRuleDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["confirmation_token"] = confirmation_token
+        input_: capo_iot.types.confirm_topic_rule_destination_request.ConfirmTopicRuleDestinationRequest = {
+            "confirmation_token": confirmation_token
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_audit_suppression(
@@ -1887,22 +1918,24 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_audit_suppression_request.CreateAuditSuppressionRequest = {}  # type: ignore[typeddict-item]
-        input_["check_name"] = check_name
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_iot.types.create_audit_suppression_request.CreateAuditSuppressionRequest = {
+            "check_name": check_name,
+            "resource_identifier": resource_identifier,
+            "client_request_token": client_request_token,
+        }
         if expiration_date is not None:
             input_["expiration_date"] = expiration_date
         if suppress_indefinitely is not None:
             input_["suppress_indefinitely"] = suppress_indefinitely
         if description is not None:
             input_["description"] = description
-        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_authorizer(
@@ -1960,9 +1993,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_authorizer_request.CreateAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["authorizer_name"] = authorizer_name
-        input_["authorizer_function_arn"] = authorizer_function_arn
+        input_: capo_iot.types.create_authorizer_request.CreateAuthorizerRequest = {
+            "authorizer_name": authorizer_name,
+            "authorizer_function_arn": authorizer_function_arn,
+        }
         if token_key_name is not None:
             input_["token_key_name"] = token_key_name
         if token_signing_public_keys is not None:
@@ -1981,6 +2015,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_billing_group(
@@ -2023,8 +2058,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_billing_group_request.CreateBillingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["billing_group_name"] = billing_group_name
+        input_: capo_iot.types.create_billing_group_request.CreateBillingGroupRequest = {
+            "billing_group_name": billing_group_name
+        }
         if billing_group_properties is not None:
             input_["billing_group_properties"] = billing_group_properties
         if tags is not None:
@@ -2035,6 +2071,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_certificate_from_csr(
@@ -2074,8 +2111,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_certificate_from_csr_request.CreateCertificateFromCsrRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_signing_request"] = certificate_signing_request
+        input_: capo_iot.types.create_certificate_from_csr_request.CreateCertificateFromCsrRequest = {
+            "certificate_signing_request": certificate_signing_request
+        }
         if set_as_active is not None:
             input_["set_as_active"] = set_as_active
 
@@ -2084,6 +2122,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_certificate_provider(
@@ -2131,12 +2170,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_certificate_provider_request.CreateCertificateProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_provider_name"] = certificate_provider_name
-        input_["lambda_function_arn"] = lambda_function_arn
-        input_["account_default_for_operations"] = account_default_for_operations
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iot.types.create_certificate_provider_request.CreateCertificateProviderRequest = {
+            "certificate_provider_name": certificate_provider_name,
+            "lambda_function_arn": lambda_function_arn,
+            "account_default_for_operations": account_default_for_operations,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -2145,6 +2186,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_command(
@@ -2208,8 +2250,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_command_request.CreateCommandRequest = {}  # type: ignore[typeddict-item]
-        input_["command_id"] = command_id
+        input_: capo_iot.types.create_command_request.CreateCommandRequest = {
+            "command_id": command_id
+        }
         if namespace is not None:
             input_["namespace"] = namespace
         if display_name is not None:
@@ -2234,6 +2277,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_custom_metric(
@@ -2281,20 +2325,22 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_custom_metric_request.CreateCustomMetricRequest = {}  # type: ignore[typeddict-item]
-        input_["metric_name"] = metric_name
+        input_: capo_iot.types.create_custom_metric_request.CreateCustomMetricRequest = {
+            "metric_name": metric_name,
+            "metric_type": metric_type,
+            "client_request_token": client_request_token,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
-        input_["metric_type"] = metric_type
         if tags is not None:
             input_["tags"] = tags
-        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dimension(
@@ -2340,19 +2386,21 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_dimension_request.CreateDimensionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
-        input_["string_values"] = string_values
+        input_: capo_iot.types.create_dimension_request.CreateDimensionRequest = {
+            "name": name,
+            "type": type,
+            "string_values": string_values,
+            "client_request_token": client_request_token,
+        }
         if tags is not None:
             input_["tags"] = tags
-        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain_configuration(
@@ -2429,8 +2477,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_domain_configuration_request.CreateDomainConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_configuration_name"] = domain_configuration_name
+        input_: capo_iot.types.create_domain_configuration_request.CreateDomainConfigurationRequest = {
+            "domain_configuration_name": domain_configuration_name
+        }
         if domain_name is not None:
             input_["domain_name"] = domain_name
         if server_certificate_arns is not None:
@@ -2459,6 +2508,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dynamic_thing_group(
@@ -2510,13 +2560,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_dynamic_thing_group_request.CreateDynamicThingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_group_name"] = thing_group_name
+        input_: capo_iot.types.create_dynamic_thing_group_request.CreateDynamicThingGroupRequest = {
+            "thing_group_name": thing_group_name,
+            "query_string": query_string,
+        }
         if thing_group_properties is not None:
             input_["thing_group_properties"] = thing_group_properties
         if index_name is not None:
             input_["index_name"] = index_name
-        input_["query_string"] = query_string
         if query_version is not None:
             input_["query_version"] = query_version
         if tags is not None:
@@ -2527,6 +2578,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_fleet_metric(
@@ -2590,12 +2642,13 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_fleet_metric_request.CreateFleetMetricRequest = {}  # type: ignore[typeddict-item]
-        input_["metric_name"] = metric_name
-        input_["query_string"] = query_string
-        input_["aggregation_type"] = aggregation_type
-        input_["period"] = period
-        input_["aggregation_field"] = aggregation_field
+        input_: capo_iot.types.create_fleet_metric_request.CreateFleetMetricRequest = {
+            "metric_name": metric_name,
+            "query_string": query_string,
+            "aggregation_type": aggregation_type,
+            "period": period,
+            "aggregation_field": aggregation_field,
+        }
         if description is not None:
             input_["description"] = description
         if query_version is not None:
@@ -2612,6 +2665,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_job(
@@ -2698,9 +2752,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_job_request.CreateJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
-        input_["targets"] = targets
+        input_: capo_iot.types.create_job_request.CreateJobRequest = {
+            "job_id": job_id,
+            "targets": targets,
+        }
         if document_source is not None:
             input_["document_source"] = document_source
         if document is not None:
@@ -2737,6 +2792,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_job_template(
@@ -2807,15 +2863,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_job_template_request.CreateJobTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["job_template_id"] = job_template_id
+        input_: capo_iot.types.create_job_template_request.CreateJobTemplateRequest = {
+            "job_template_id": job_template_id,
+            "description": description,
+        }
         if job_arn is not None:
             input_["job_arn"] = job_arn
         if document_source is not None:
             input_["document_source"] = document_source
         if document is not None:
             input_["document"] = document
-        input_["description"] = description
         if presigned_url_config is not None:
             input_["presigned_url_config"] = presigned_url_config
         if job_executions_rollout_config is not None:
@@ -2838,6 +2895,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_keys_and_certificate(
@@ -2875,7 +2933,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_keys_and_certificate_request.CreateKeysAndCertificateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.create_keys_and_certificate_request.CreateKeysAndCertificateRequest = {}
         if set_as_active is not None:
             input_["set_as_active"] = set_as_active
 
@@ -2884,6 +2942,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_mitigation_action(
@@ -2927,10 +2986,11 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_mitigation_action_request.CreateMitigationActionRequest = {}  # type: ignore[typeddict-item]
-        input_["action_name"] = action_name
-        input_["role_arn"] = role_arn
-        input_["action_params"] = action_params
+        input_: capo_iot.types.create_mitigation_action_request.CreateMitigationActionRequest = {
+            "action_name": action_name,
+            "role_arn": role_arn,
+            "action_params": action_params,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -2939,6 +2999,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_ota_update(
@@ -3017,11 +3078,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_ota_update_request.CreateOTAUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["ota_update_id"] = ota_update_id
+        input_: capo_iot.types.create_ota_update_request.CreateOTAUpdateRequest = {
+            "ota_update_id": ota_update_id,
+            "targets": targets,
+            "files": files,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["targets"] = targets
         if protocols is not None:
             input_["protocols"] = protocols
         if target_selection is not None:
@@ -3036,8 +3100,6 @@ class IoTClient:
             input_["aws_job_abort_config"] = aws_job_abort_config
         if aws_job_timeout_config is not None:
             input_["aws_job_timeout_config"] = aws_job_timeout_config
-        input_["files"] = files
-        input_["role_arn"] = role_arn
         if additional_parameters is not None:
             input_["additional_parameters"] = additional_parameters
         if tags is not None:
@@ -3048,6 +3110,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_package(
@@ -3093,20 +3156,23 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_package_request.CreatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
+        input_: capo_iot.types.create_package_request.CreatePackageRequest = {
+            "package_name": package_name
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_package_version(
@@ -3166,9 +3232,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_package_version_request.CreatePackageVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
-        input_["version_name"] = version_name
+        input_: capo_iot.types.create_package_version_request.CreatePackageVersionRequest = {
+            "package_name": package_name,
+            "version_name": version_name,
+        }
         if description is not None:
             input_["description"] = description
         if attributes is not None:
@@ -3179,14 +3246,16 @@ class IoTClient:
             input_["recipe"] = recipe
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_policy(
@@ -3230,9 +3299,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_policy_request.CreatePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["policy_document"] = policy_document
+        input_: capo_iot.types.create_policy_request.CreatePolicyRequest = {
+            "policy_name": policy_name,
+            "policy_document": policy_document,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -3241,6 +3311,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_policy_version(
@@ -3285,9 +3356,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_policy_version_request.CreatePolicyVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["policy_document"] = policy_document
+        input_: capo_iot.types.create_policy_version_request.CreatePolicyVersionRequest = {
+            "policy_name": policy_name,
+            "policy_document": policy_document,
+        }
         if set_as_default is not None:
             input_["set_as_default"] = set_as_default
 
@@ -3296,6 +3368,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_provisioning_claim(
@@ -3334,14 +3407,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_provisioning_claim_request.CreateProvisioningClaimRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_iot.types.create_provisioning_claim_request.CreateProvisioningClaimRequest = {
+            "template_name": template_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_provisioning_template(
@@ -3398,14 +3473,15 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_provisioning_template_request.CreateProvisioningTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_iot.types.create_provisioning_template_request.CreateProvisioningTemplateRequest = {
+            "template_name": template_name,
+            "template_body": template_body,
+            "provisioning_role_arn": provisioning_role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["template_body"] = template_body
         if enabled is not None:
             input_["enabled"] = enabled
-        input_["provisioning_role_arn"] = provisioning_role_arn
         if pre_provisioning_hook is not None:
             input_["pre_provisioning_hook"] = pre_provisioning_hook
         if tags is not None:
@@ -3418,6 +3494,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_provisioning_template_version(
@@ -3461,9 +3538,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_provisioning_template_version_request.CreateProvisioningTemplateVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_body"] = template_body
+        input_: capo_iot.types.create_provisioning_template_version_request.CreateProvisioningTemplateVersionRequest = {
+            "template_name": template_name,
+            "template_body": template_body,
+        }
         if set_as_default is not None:
             input_["set_as_default"] = set_as_default
 
@@ -3472,6 +3550,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_role_alias(
@@ -3519,9 +3598,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_role_alias_request.CreateRoleAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["role_alias"] = role_alias
-        input_["role_arn"] = role_arn
+        input_: capo_iot.types.create_role_alias_request.CreateRoleAliasRequest = {
+            "role_alias": role_alias,
+            "role_arn": role_arn,
+        }
         if credential_duration_seconds is not None:
             input_["credential_duration_seconds"] = credential_duration_seconds
         if tags is not None:
@@ -3532,6 +3612,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_scheduled_audit(
@@ -3579,14 +3660,15 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_scheduled_audit_request.CreateScheduledAuditRequest = {}  # type: ignore[typeddict-item]
-        input_["frequency"] = frequency
+        input_: capo_iot.types.create_scheduled_audit_request.CreateScheduledAuditRequest = {
+            "frequency": frequency,
+            "target_check_names": target_check_names,
+            "scheduled_audit_name": scheduled_audit_name,
+        }
         if day_of_month is not None:
             input_["day_of_month"] = day_of_month
         if day_of_week is not None:
             input_["day_of_week"] = day_of_week
-        input_["target_check_names"] = target_check_names
-        input_["scheduled_audit_name"] = scheduled_audit_name
         if tags is not None:
             input_["tags"] = tags
 
@@ -3595,6 +3677,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_security_profile(
@@ -3655,8 +3738,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_security_profile_request.CreateSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_name"] = security_profile_name
+        input_: capo_iot.types.create_security_profile_request.CreateSecurityProfileRequest = {
+            "security_profile_name": security_profile_name
+        }
         if security_profile_description is not None:
             input_["security_profile_description"] = security_profile_description
         if behaviors is not None:
@@ -3677,6 +3761,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_stream(
@@ -3727,12 +3812,13 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_stream_request.CreateStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["stream_id"] = stream_id
+        input_: capo_iot.types.create_stream_request.CreateStreamRequest = {
+            "stream_id": stream_id,
+            "files": files,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["files"] = files
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -3741,6 +3827,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_thing(
@@ -3792,8 +3879,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_thing_request.CreateThingRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_iot.types.create_thing_request.CreateThingRequest = {
+            "thing_name": thing_name
+        }
         if thing_type_name is not None:
             input_["thing_type_name"] = thing_type_name
         if attribute_payload is not None:
@@ -3806,6 +3894,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_thing_group(
@@ -3852,8 +3941,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_thing_group_request.CreateThingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_group_name"] = thing_group_name
+        input_: capo_iot.types.create_thing_group_request.CreateThingGroupRequest = {
+            "thing_group_name": thing_group_name
+        }
         if parent_group_name is not None:
             input_["parent_group_name"] = parent_group_name
         if thing_group_properties is not None:
@@ -3866,6 +3956,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_thing_type(
@@ -3910,8 +4001,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_thing_type_request.CreateThingTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_type_name"] = thing_type_name
+        input_: capo_iot.types.create_thing_type_request.CreateThingTypeRequest = {
+            "thing_type_name": thing_type_name
+        }
         if thing_type_properties is not None:
             input_["thing_type_properties"] = thing_type_properties
         if tags is not None:
@@ -3922,6 +4014,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_topic_rule(
@@ -3963,9 +4056,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_topic_rule_request.CreateTopicRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_name"] = rule_name
-        input_["topic_rule_payload"] = topic_rule_payload
+        input_: capo_iot.types.create_topic_rule_request.CreateTopicRuleRequest = {
+            "rule_name": rule_name,
+            "topic_rule_payload": topic_rule_payload,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -3974,6 +4068,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_topic_rule_destination(
@@ -4012,14 +4107,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.create_topic_rule_destination_request.CreateTopicRuleDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["destination_configuration"] = destination_configuration
+        input_: capo_iot.types.create_topic_rule_destination_request.CreateTopicRuleDestinationRequest = {
+            "destination_configuration": destination_configuration
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_account_audit_configuration(
@@ -4058,7 +4155,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_account_audit_configuration_request.DeleteAccountAuditConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.delete_account_audit_configuration_request.DeleteAccountAuditConfigurationRequest = {}
         if delete_scheduled_audits is not None:
             input_["delete_scheduled_audits"] = delete_scheduled_audits
 
@@ -4067,6 +4164,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_audit_suppression(
@@ -4100,15 +4198,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_audit_suppression_request.DeleteAuditSuppressionRequest = {}  # type: ignore[typeddict-item]
-        input_["check_name"] = check_name
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_iot.types.delete_audit_suppression_request.DeleteAuditSuppressionRequest = {
+            "check_name": check_name,
+            "resource_identifier": resource_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_authorizer(
@@ -4148,14 +4248,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_authorizer_request.DeleteAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["authorizer_name"] = authorizer_name
+        input_: capo_iot.types.delete_authorizer_request.DeleteAuthorizerRequest = {
+            "authorizer_name": authorizer_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_billing_group(
@@ -4196,8 +4298,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_billing_group_request.DeleteBillingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["billing_group_name"] = billing_group_name
+        input_: capo_iot.types.delete_billing_group_request.DeleteBillingGroupRequest = {
+            "billing_group_name": billing_group_name
+        }
         if expected_version is not None:
             input_["expected_version"] = expected_version
 
@@ -4206,6 +4309,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_ca_certificate(
@@ -4245,14 +4349,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_ca_certificate_request.DeleteCACertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_iot.types.delete_ca_certificate_request.DeleteCACertificateRequest = {
+            "certificate_id": certificate_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_certificate(
@@ -4293,8 +4399,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_certificate_request.DeleteCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_iot.types.delete_certificate_request.DeleteCertificateRequest = {
+            "certificate_id": certificate_id
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -4303,6 +4410,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_certificate_provider(
@@ -4342,14 +4450,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_certificate_provider_request.DeleteCertificateProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_provider_name"] = certificate_provider_name
+        input_: capo_iot.types.delete_certificate_provider_request.DeleteCertificateProviderRequest = {
+            "certificate_provider_name": certificate_provider_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_command(
@@ -4386,14 +4496,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_command_request.DeleteCommandRequest = {}  # type: ignore[typeddict-item]
-        input_["command_id"] = command_id
+        input_: capo_iot.types.delete_command_request.DeleteCommandRequest = {
+            "command_id": command_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_command_execution(
@@ -4432,15 +4544,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_command_execution_request.DeleteCommandExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["execution_id"] = execution_id
-        input_["target_arn"] = target_arn
+        input_: capo_iot.types.delete_command_execution_request.DeleteCommandExecutionRequest = {
+            "execution_id": execution_id,
+            "target_arn": target_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_custom_metric(
@@ -4476,14 +4590,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_custom_metric_request.DeleteCustomMetricRequest = {}  # type: ignore[typeddict-item]
-        input_["metric_name"] = metric_name
+        input_: capo_iot.types.delete_custom_metric_request.DeleteCustomMetricRequest = {
+            "metric_name": metric_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dimension(
@@ -4519,14 +4635,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_dimension_request.DeleteDimensionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot.types.delete_dimension_request.DeleteDimensionRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain_configuration(
@@ -4565,14 +4683,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_domain_configuration_request.DeleteDomainConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_configuration_name"] = domain_configuration_name
+        input_: capo_iot.types.delete_domain_configuration_request.DeleteDomainConfigurationRequest = {
+            "domain_configuration_name": domain_configuration_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dynamic_thing_group(
@@ -4613,8 +4733,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_dynamic_thing_group_request.DeleteDynamicThingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_group_name"] = thing_group_name
+        input_: capo_iot.types.delete_dynamic_thing_group_request.DeleteDynamicThingGroupRequest = {
+            "thing_group_name": thing_group_name
+        }
         if expected_version is not None:
             input_["expected_version"] = expected_version
 
@@ -4623,6 +4744,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_fleet_metric(
@@ -4663,8 +4785,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_fleet_metric_request.DeleteFleetMetricRequest = {}  # type: ignore[typeddict-item]
-        input_["metric_name"] = metric_name
+        input_: capo_iot.types.delete_fleet_metric_request.DeleteFleetMetricRequest = {
+            "metric_name": metric_name
+        }
         if expected_version is not None:
             input_["expected_version"] = expected_version
 
@@ -4673,6 +4796,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_job(
@@ -4713,8 +4837,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_job_request.DeleteJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_iot.types.delete_job_request.DeleteJobRequest = {"job_id": job_id}
         if force is not None:
             input_["force"] = force
         if namespace_id is not None:
@@ -4725,6 +4848,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_job_execution(
@@ -4768,10 +4892,11 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_job_execution_request.DeleteJobExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
-        input_["thing_name"] = thing_name
-        input_["execution_number"] = execution_number
+        input_: capo_iot.types.delete_job_execution_request.DeleteJobExecutionRequest = {
+            "job_id": job_id,
+            "thing_name": thing_name,
+            "execution_number": execution_number,
+        }
         if force is not None:
             input_["force"] = force
         if namespace_id is not None:
@@ -4782,6 +4907,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_job_template(
@@ -4816,14 +4942,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_job_template_request.DeleteJobTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["job_template_id"] = job_template_id
+        input_: capo_iot.types.delete_job_template_request.DeleteJobTemplateRequest = {
+            "job_template_id": job_template_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_mitigation_action(
@@ -4859,14 +4987,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_mitigation_action_request.DeleteMitigationActionRequest = {}  # type: ignore[typeddict-item]
-        input_["action_name"] = action_name
+        input_: capo_iot.types.delete_mitigation_action_request.DeleteMitigationActionRequest = {
+            "action_name": action_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_ota_update(
@@ -4912,8 +5042,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_ota_update_request.DeleteOTAUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["ota_update_id"] = ota_update_id
+        input_: capo_iot.types.delete_ota_update_request.DeleteOTAUpdateRequest = {
+            "ota_update_id": ota_update_id
+        }
         if delete_stream is not None:
             input_["delete_stream"] = delete_stream
         if force_delete_aws_job is not None:
@@ -4924,6 +5055,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_package(
@@ -4961,16 +5093,19 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_package_request.DeletePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iot.types.delete_package_request.DeletePackageRequest = {
+            "package_name": package_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_package_version(
@@ -5010,17 +5145,20 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_package_version_request.DeletePackageVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
-        input_["version_name"] = version_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iot.types.delete_package_version_request.DeletePackageVersionRequest = {
+            "package_name": package_name,
+            "version_name": version_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_policy(
@@ -5058,14 +5196,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_policy_request.DeletePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
+        input_: capo_iot.types.delete_policy_request.DeletePolicyRequest = {
+            "policy_name": policy_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_policy_version(
@@ -5105,15 +5245,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_policy_version_request.DeletePolicyVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["policy_version_id"] = policy_version_id
+        input_: capo_iot.types.delete_policy_version_request.DeletePolicyVersionRequest = {
+            "policy_name": policy_name,
+            "policy_version_id": policy_version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_provisioning_template(
@@ -5153,14 +5295,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_provisioning_template_request.DeleteProvisioningTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_iot.types.delete_provisioning_template_request.DeleteProvisioningTemplateRequest = {
+            "template_name": template_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_provisioning_template_version(
@@ -5202,15 +5346,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_provisioning_template_version_request.DeleteProvisioningTemplateVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["version_id"] = version_id
+        input_: capo_iot.types.delete_provisioning_template_version_request.DeleteProvisioningTemplateVersionRequest = {
+            "template_name": template_name,
+            "version_id": version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_registration_code(
@@ -5242,13 +5388,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_registration_code_request.DeleteRegistrationCodeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.delete_registration_code_request.DeleteRegistrationCodeRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_role_alias(
@@ -5288,14 +5435,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_role_alias_request.DeleteRoleAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["role_alias"] = role_alias
+        input_: capo_iot.types.delete_role_alias_request.DeleteRoleAliasRequest = {
+            "role_alias": role_alias
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_scheduled_audit(
@@ -5332,14 +5481,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_scheduled_audit_request.DeleteScheduledAuditRequest = {}  # type: ignore[typeddict-item]
-        input_["scheduled_audit_name"] = scheduled_audit_name
+        input_: capo_iot.types.delete_scheduled_audit_request.DeleteScheduledAuditRequest = {
+            "scheduled_audit_name": scheduled_audit_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_security_profile(
@@ -5382,8 +5533,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_security_profile_request.DeleteSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_name"] = security_profile_name
+        input_: capo_iot.types.delete_security_profile_request.DeleteSecurityProfileRequest = {
+            "security_profile_name": security_profile_name
+        }
         if expected_version is not None:
             input_["expected_version"] = expected_version
 
@@ -5392,6 +5544,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_stream(
@@ -5431,14 +5584,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_stream_request.DeleteStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["stream_id"] = stream_id
+        input_: capo_iot.types.delete_stream_request.DeleteStreamRequest = {
+            "stream_id": stream_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_thing(
@@ -5482,8 +5637,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_thing_request.DeleteThingRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_iot.types.delete_thing_request.DeleteThingRequest = {
+            "thing_name": thing_name
+        }
         if expected_version is not None:
             input_["expected_version"] = expected_version
 
@@ -5492,6 +5648,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_thing_group(
@@ -5532,8 +5689,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_thing_group_request.DeleteThingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_group_name"] = thing_group_name
+        input_: capo_iot.types.delete_thing_group_request.DeleteThingGroupRequest = {
+            "thing_group_name": thing_group_name
+        }
         if expected_version is not None:
             input_["expected_version"] = expected_version
 
@@ -5542,6 +5700,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_thing_type(
@@ -5580,14 +5739,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_thing_type_request.DeleteThingTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_type_name"] = thing_type_name
+        input_: capo_iot.types.delete_thing_type_request.DeleteThingTypeRequest = {
+            "thing_type_name": thing_type_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_topic_rule(
@@ -5623,14 +5784,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_topic_rule_request.DeleteTopicRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_name"] = rule_name
+        input_: capo_iot.types.delete_topic_rule_request.DeleteTopicRuleRequest = {
+            "rule_name": rule_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_topic_rule_destination(
@@ -5668,14 +5831,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_topic_rule_destination_request.DeleteTopicRuleDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_iot.types.delete_topic_rule_destination_request.DeleteTopicRuleDestinationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_v2_logging_level(
@@ -5711,15 +5876,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.delete_v2_logging_level_request.DeleteV2LoggingLevelRequest = {}  # type: ignore[typeddict-item]
-        input_["target_type"] = target_type
-        input_["target_name"] = target_name
+        input_: capo_iot.types.delete_v2_logging_level_request.DeleteV2LoggingLevelRequest = {
+            "target_type": target_type,
+            "target_name": target_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deprecate_thing_type(
@@ -5760,8 +5927,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.deprecate_thing_type_request.DeprecateThingTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_type_name"] = thing_type_name
+        input_: capo_iot.types.deprecate_thing_type_request.DeprecateThingTypeRequest = {
+            "thing_type_name": thing_type_name
+        }
         if undo_deprecate is not None:
             input_["undo_deprecate"] = undo_deprecate
 
@@ -5770,6 +5938,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_account_audit_configuration(
@@ -5798,13 +5967,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_account_audit_configuration_request.DescribeAccountAuditConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.describe_account_audit_configuration_request.DescribeAccountAuditConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_audit_finding(
@@ -5841,14 +6011,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_audit_finding_request.DescribeAuditFindingRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_id"] = finding_id
+        input_: capo_iot.types.describe_audit_finding_request.DescribeAuditFindingRequest = {
+            "finding_id": finding_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_audit_mitigation_actions_task(
@@ -5885,14 +6057,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_audit_mitigation_actions_task_request.DescribeAuditMitigationActionsTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_iot.types.describe_audit_mitigation_actions_task_request.DescribeAuditMitigationActionsTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_audit_suppression(
@@ -5927,15 +6101,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_audit_suppression_request.DescribeAuditSuppressionRequest = {}  # type: ignore[typeddict-item]
-        input_["check_name"] = check_name
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_iot.types.describe_audit_suppression_request.DescribeAuditSuppressionRequest = {
+            "check_name": check_name,
+            "resource_identifier": resource_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_audit_task(
@@ -5972,14 +6148,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_audit_task_request.DescribeAuditTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_iot.types.describe_audit_task_request.DescribeAuditTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_authorizer(
@@ -6018,14 +6196,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_authorizer_request.DescribeAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["authorizer_name"] = authorizer_name
+        input_: capo_iot.types.describe_authorizer_request.DescribeAuthorizerRequest = {
+            "authorizer_name": authorizer_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_billing_group(
@@ -6062,14 +6242,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_billing_group_request.DescribeBillingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["billing_group_name"] = billing_group_name
+        input_: capo_iot.types.describe_billing_group_request.DescribeBillingGroupRequest = {
+            "billing_group_name": billing_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_ca_certificate(
@@ -6110,14 +6292,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_ca_certificate_request.DescribeCACertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_iot.types.describe_ca_certificate_request.DescribeCACertificateRequest = {
+            "certificate_id": certificate_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_certificate(
@@ -6156,14 +6340,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_certificate_request.DescribeCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_iot.types.describe_certificate_request.DescribeCertificateRequest = {
+            "certificate_id": certificate_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_certificate_provider(
@@ -6202,14 +6388,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_certificate_provider_request.DescribeCertificateProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_provider_name"] = certificate_provider_name
+        input_: capo_iot.types.describe_certificate_provider_request.DescribeCertificateProviderRequest = {
+            "certificate_provider_name": certificate_provider_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_custom_metric(
@@ -6246,14 +6434,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_custom_metric_request.DescribeCustomMetricRequest = {}  # type: ignore[typeddict-item]
-        input_["metric_name"] = metric_name
+        input_: capo_iot.types.describe_custom_metric_request.DescribeCustomMetricRequest = {
+            "metric_name": metric_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_default_authorizer(
@@ -6286,13 +6476,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_default_authorizer_request.DescribeDefaultAuthorizerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.describe_default_authorizer_request.DescribeDefaultAuthorizerRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_detect_mitigation_actions_task(
@@ -6329,14 +6520,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_detect_mitigation_actions_task_request.DescribeDetectMitigationActionsTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_iot.types.describe_detect_mitigation_actions_task_request.DescribeDetectMitigationActionsTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_dimension(
@@ -6373,14 +6566,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_dimension_request.DescribeDimensionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iot.types.describe_dimension_request.DescribeDimensionRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domain_configuration(
@@ -6419,14 +6614,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_domain_configuration_request.DescribeDomainConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_configuration_name"] = domain_configuration_name
+        input_: capo_iot.types.describe_domain_configuration_request.DescribeDomainConfigurationRequest = {
+            "domain_configuration_name": domain_configuration_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_encryption_configuration(
@@ -6458,13 +6655,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_encryption_configuration_request.DescribeEncryptionConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.describe_encryption_configuration_request.DescribeEncryptionConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_endpoint(
@@ -6501,7 +6699,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_endpoint_request.DescribeEndpointRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.describe_endpoint_request.DescribeEndpointRequest = {}
         if endpoint_type is not None:
             input_["endpoint_type"] = endpoint_type
 
@@ -6510,6 +6708,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_event_configurations(
@@ -6538,13 +6737,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_event_configurations_request.DescribeEventConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.describe_event_configurations_request.DescribeEventConfigurationsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_fleet_metric(
@@ -6583,14 +6783,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_fleet_metric_request.DescribeFleetMetricRequest = {}  # type: ignore[typeddict-item]
-        input_["metric_name"] = metric_name
+        input_: capo_iot.types.describe_fleet_metric_request.DescribeFleetMetricRequest = {
+            "metric_name": metric_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_index(
@@ -6629,14 +6831,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_index_request.DescribeIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
+        input_: capo_iot.types.describe_index_request.DescribeIndexRequest = {
+            "index_name": index_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_job(
@@ -6677,8 +6881,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_job_request.DescribeJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_iot.types.describe_job_request.DescribeJobRequest = {
+            "job_id": job_id
+        }
         if before_substitution is not None:
             input_["before_substitution"] = before_substitution
 
@@ -6687,6 +6892,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_job_execution(
@@ -6729,9 +6935,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_job_execution_request.DescribeJobExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
-        input_["thing_name"] = thing_name
+        input_: capo_iot.types.describe_job_execution_request.DescribeJobExecutionRequest = {
+            "job_id": job_id,
+            "thing_name": thing_name,
+        }
         if execution_number is not None:
             input_["execution_number"] = execution_number
 
@@ -6740,6 +6947,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_job_template(
@@ -6776,14 +6984,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_job_template_request.DescribeJobTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["job_template_id"] = job_template_id
+        input_: capo_iot.types.describe_job_template_request.DescribeJobTemplateRequest = {
+            "job_template_id": job_template_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_managed_job_template(
@@ -6824,8 +7034,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_managed_job_template_request.DescribeManagedJobTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_iot.types.describe_managed_job_template_request.DescribeManagedJobTemplateRequest = {
+            "template_name": template_name
+        }
         if template_version is not None:
             input_["template_version"] = template_version
 
@@ -6834,6 +7045,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_mitigation_action(
@@ -6870,14 +7082,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_mitigation_action_request.DescribeMitigationActionRequest = {}  # type: ignore[typeddict-item]
-        input_["action_name"] = action_name
+        input_: capo_iot.types.describe_mitigation_action_request.DescribeMitigationActionRequest = {
+            "action_name": action_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_provisioning_template(
@@ -6915,14 +7129,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_provisioning_template_request.DescribeProvisioningTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_iot.types.describe_provisioning_template_request.DescribeProvisioningTemplateRequest = {
+            "template_name": template_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_provisioning_template_version(
@@ -6962,15 +7178,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_provisioning_template_version_request.DescribeProvisioningTemplateVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["version_id"] = version_id
+        input_: capo_iot.types.describe_provisioning_template_version_request.DescribeProvisioningTemplateVersionRequest = {
+            "template_name": template_name,
+            "version_id": version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_role_alias(
@@ -7009,14 +7227,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_role_alias_request.DescribeRoleAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["role_alias"] = role_alias
+        input_: capo_iot.types.describe_role_alias_request.DescribeRoleAliasRequest = {
+            "role_alias": role_alias
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_scheduled_audit(
@@ -7053,14 +7273,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_scheduled_audit_request.DescribeScheduledAuditRequest = {}  # type: ignore[typeddict-item]
-        input_["scheduled_audit_name"] = scheduled_audit_name
+        input_: capo_iot.types.describe_scheduled_audit_request.DescribeScheduledAuditRequest = {
+            "scheduled_audit_name": scheduled_audit_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_security_profile(
@@ -7097,14 +7319,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_security_profile_request.DescribeSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_name"] = security_profile_name
+        input_: capo_iot.types.describe_security_profile_request.DescribeSecurityProfileRequest = {
+            "security_profile_name": security_profile_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_stream(
@@ -7143,14 +7367,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_stream_request.DescribeStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["stream_id"] = stream_id
+        input_: capo_iot.types.describe_stream_request.DescribeStreamRequest = {
+            "stream_id": stream_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_thing(
@@ -7189,14 +7415,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_thing_request.DescribeThingRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_iot.types.describe_thing_request.DescribeThingRequest = {
+            "thing_name": thing_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_thing_group(
@@ -7233,14 +7461,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_thing_group_request.DescribeThingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_group_name"] = thing_group_name
+        input_: capo_iot.types.describe_thing_group_request.DescribeThingGroupRequest = {
+            "thing_group_name": thing_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_thing_registration_task(
@@ -7278,14 +7508,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_thing_registration_task_request.DescribeThingRegistrationTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_iot.types.describe_thing_registration_task_request.DescribeThingRegistrationTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_thing_type(
@@ -7324,14 +7556,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.describe_thing_type_request.DescribeThingTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_type_name"] = thing_type_name
+        input_: capo_iot.types.describe_thing_type_request.DescribeThingTypeRequest = {
+            "thing_type_name": thing_type_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_policy(
@@ -7370,15 +7604,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.detach_policy_request.DetachPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["target"] = target
+        input_: capo_iot.types.detach_policy_request.DetachPolicyRequest = {
+            "policy_name": policy_name,
+            "target": target,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_principal_policy(
@@ -7417,15 +7653,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.detach_principal_policy_request.DetachPrincipalPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["principal"] = principal
+        input_: capo_iot.types.detach_principal_policy_request.DetachPrincipalPolicyRequest = {
+            "policy_name": policy_name,
+            "principal": principal,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_security_profile(
@@ -7466,15 +7704,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.detach_security_profile_request.DetachSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_name"] = security_profile_name
-        input_["security_profile_target_arn"] = security_profile_target_arn
+        input_: capo_iot.types.detach_security_profile_request.DetachSecurityProfileRequest = {
+            "security_profile_name": security_profile_name,
+            "security_profile_target_arn": security_profile_target_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_thing_principal(
@@ -7515,15 +7755,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.detach_thing_principal_request.DetachThingPrincipalRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
-        input_["principal"] = principal
+        input_: capo_iot.types.detach_thing_principal_request.DetachThingPrincipalRequest = {
+            "thing_name": thing_name,
+            "principal": principal,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_topic_rule(
@@ -7559,14 +7801,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.disable_topic_rule_request.DisableTopicRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_name"] = rule_name
+        input_: capo_iot.types.disable_topic_rule_request.DisableTopicRuleRequest = {
+            "rule_name": rule_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_sbom_from_package_version(
@@ -7608,17 +7852,20 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.disassociate_sbom_from_package_version_request.DisassociateSbomFromPackageVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
-        input_["version_name"] = version_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iot.types.disassociate_sbom_from_package_version_request.DisassociateSbomFromPackageVersionRequest = {
+            "package_name": package_name,
+            "version_name": version_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_topic_rule(
@@ -7654,14 +7901,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.enable_topic_rule_request.EnableTopicRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_name"] = rule_name
+        input_: capo_iot.types.enable_topic_rule_request.EnableTopicRuleRequest = {
+            "rule_name": rule_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_behavior_model_training_summaries(
@@ -7704,7 +7953,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_behavior_model_training_summaries_request.GetBehaviorModelTrainingSummariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_behavior_model_training_summaries_request.GetBehaviorModelTrainingSummariesRequest = {}
         if security_profile_name is not None:
             input_["security_profile_name"] = security_profile_name
         if max_results is not None:
@@ -7717,6 +7966,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_behavior_model_training_summaries(
@@ -7793,20 +8043,22 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_buckets_aggregation_request.GetBucketsAggregationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_buckets_aggregation_request.GetBucketsAggregationRequest = {
+            "query_string": query_string,
+            "aggregation_field": aggregation_field,
+            "buckets_aggregation_type": buckets_aggregation_type,
+        }
         if index_name is not None:
             input_["index_name"] = index_name
-        input_["query_string"] = query_string
-        input_["aggregation_field"] = aggregation_field
         if query_version is not None:
             input_["query_version"] = query_version
-        input_["buckets_aggregation_type"] = buckets_aggregation_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cardinality(
@@ -7856,10 +8108,11 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_cardinality_request.GetCardinalityRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_cardinality_request.GetCardinalityRequest = {
+            "query_string": query_string
+        }
         if index_name is not None:
             input_["index_name"] = index_name
-        input_["query_string"] = query_string
         if aggregation_field is not None:
             input_["aggregation_field"] = aggregation_field
         if query_version is not None:
@@ -7870,6 +8123,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_command(
@@ -7906,14 +8160,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_command_request.GetCommandRequest = {}  # type: ignore[typeddict-item]
-        input_["command_id"] = command_id
+        input_: capo_iot.types.get_command_request.GetCommandRequest = {
+            "command_id": command_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_command_execution(
@@ -7956,9 +8212,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_command_execution_request.GetCommandExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["execution_id"] = execution_id
-        input_["target_arn"] = target_arn
+        input_: capo_iot.types.get_command_execution_request.GetCommandExecutionRequest = {
+            "execution_id": execution_id,
+            "target_arn": target_arn,
+        }
         if include_result is not None:
             input_["include_result"] = include_result
 
@@ -7967,6 +8224,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_effective_policies(
@@ -8012,7 +8270,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_effective_policies_request.GetEffectivePoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_effective_policies_request.GetEffectivePoliciesRequest = {}
         if principal is not None:
             input_["principal"] = principal
         if cognito_identity_pool_id is not None:
@@ -8025,6 +8283,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_indexing_configuration(
@@ -8056,13 +8315,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_indexing_configuration_request.GetIndexingConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_indexing_configuration_request.GetIndexingConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_job_document(
@@ -8103,8 +8363,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_job_document_request.GetJobDocumentRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_iot.types.get_job_document_request.GetJobDocumentRequest = {
+            "job_id": job_id
+        }
         if before_substitution is not None:
             input_["before_substitution"] = before_substitution
 
@@ -8113,6 +8374,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_logging_options(
@@ -8142,13 +8404,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_logging_options_request.GetLoggingOptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_logging_options_request.GetLoggingOptionsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ota_update(
@@ -8187,14 +8450,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_ota_update_request.GetOTAUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["ota_update_id"] = ota_update_id
+        input_: capo_iot.types.get_ota_update_request.GetOTAUpdateRequest = {
+            "ota_update_id": ota_update_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_package(
@@ -8231,14 +8496,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_package_request.GetPackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
+        input_: capo_iot.types.get_package_request.GetPackageRequest = {
+            "package_name": package_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_package_configuration(
@@ -8267,13 +8534,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_package_configuration_request.GetPackageConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_package_configuration_request.GetPackageConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_package_version(
@@ -8312,15 +8580,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_package_version_request.GetPackageVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
-        input_["version_name"] = version_name
+        input_: capo_iot.types.get_package_version_request.GetPackageVersionRequest = {
+            "package_name": package_name,
+            "version_name": version_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_percentiles(
@@ -8372,10 +8642,11 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_percentiles_request.GetPercentilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_percentiles_request.GetPercentilesRequest = {
+            "query_string": query_string
+        }
         if index_name is not None:
             input_["index_name"] = index_name
-        input_["query_string"] = query_string
         if aggregation_field is not None:
             input_["aggregation_field"] = aggregation_field
         if query_version is not None:
@@ -8388,6 +8659,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_policy(
@@ -8424,14 +8696,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_policy_request.GetPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
+        input_: capo_iot.types.get_policy_request.GetPolicyRequest = {
+            "policy_name": policy_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_policy_version(
@@ -8472,15 +8746,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_policy_version_request.GetPolicyVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["policy_version_id"] = policy_version_id
+        input_: capo_iot.types.get_policy_version_request.GetPolicyVersionRequest = {
+            "policy_name": policy_name,
+            "policy_version_id": policy_version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_registration_code(
@@ -8512,13 +8788,14 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_registration_code_request.GetRegistrationCodeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_registration_code_request.GetRegistrationCodeRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_statistics(
@@ -8568,10 +8845,11 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_statistics_request.GetStatisticsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_statistics_request.GetStatisticsRequest = {
+            "query_string": query_string
+        }
         if index_name is not None:
             input_["index_name"] = index_name
-        input_["query_string"] = query_string
         if aggregation_field is not None:
             input_["aggregation_field"] = aggregation_field
         if query_version is not None:
@@ -8582,6 +8860,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_thing_connectivity_data(
@@ -8623,8 +8902,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_thing_connectivity_data_request.GetThingConnectivityDataRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_iot.types.get_thing_connectivity_data_request.GetThingConnectivityDataRequest = {
+            "thing_name": thing_name
+        }
         if include_socket_information is not None:
             input_["include_socket_information"] = include_socket_information
 
@@ -8633,6 +8913,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_topic_rule(
@@ -8669,14 +8950,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_topic_rule_request.GetTopicRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_name"] = rule_name
+        input_: capo_iot.types.get_topic_rule_request.GetTopicRuleRequest = {
+            "rule_name": rule_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_topic_rule_destination(
@@ -8713,14 +8996,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_topic_rule_destination_request.GetTopicRuleDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_iot.types.get_topic_rule_destination_request.GetTopicRuleDestinationRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_v2_logging_options(
@@ -8756,7 +9041,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.get_v2_logging_options_request.GetV2LoggingOptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.get_v2_logging_options_request.GetV2LoggingOptionsRequest = {}
         if verbose is not None:
             input_["verbose"] = verbose
 
@@ -8765,6 +9050,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_active_violations(
@@ -8823,7 +9109,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_active_violations_request.ListActiveViolationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_active_violations_request.ListActiveViolationsRequest = {}
         if thing_name is not None:
             input_["thing_name"] = thing_name
         if security_profile_name is not None:
@@ -8844,6 +9130,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_active_violations(
@@ -8930,8 +9217,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_attached_policies_request.ListAttachedPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["target"] = target
+        input_: capo_iot.types.list_attached_policies_request.ListAttachedPoliciesRequest = {
+            "target": target
+        }
         if recursive is not None:
             input_["recursive"] = recursive
         if marker is not None:
@@ -8944,6 +9232,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_attached_policies(
@@ -9022,7 +9311,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_audit_findings_request.ListAuditFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_audit_findings_request.ListAuditFindingsRequest = {}
         if task_id is not None:
             input_["task_id"] = task_id
         if check_name is not None:
@@ -9045,6 +9334,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_audit_findings(
@@ -9127,11 +9417,12 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_audit_mitigation_actions_executions_request.ListAuditMitigationActionsExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_iot.types.list_audit_mitigation_actions_executions_request.ListAuditMitigationActionsExecutionsRequest = {
+            "task_id": task_id,
+            "finding_id": finding_id,
+        }
         if action_status is not None:
             input_["action_status"] = action_status
-        input_["finding_id"] = finding_id
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -9142,6 +9433,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_audit_mitigation_actions_executions(
@@ -9220,7 +9512,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_audit_mitigation_actions_tasks_request.ListAuditMitigationActionsTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_audit_mitigation_actions_tasks_request.ListAuditMitigationActionsTasksRequest = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if audit_task_id is not None:
             input_["audit_task_id"] = audit_task_id
         if finding_id is not None:
@@ -9231,14 +9526,13 @@ class IoTClient:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_audit_mitigation_actions_tasks(
@@ -9319,7 +9613,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_audit_suppressions_request.ListAuditSuppressionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_audit_suppressions_request.ListAuditSuppressionsRequest = {}
         if check_name is not None:
             input_["check_name"] = check_name
         if resource_identifier is not None:
@@ -9336,6 +9630,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_audit_suppressions(
@@ -9414,9 +9709,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_audit_tasks_request.ListAuditTasksRequest = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_iot.types.list_audit_tasks_request.ListAuditTasksRequest = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if task_type is not None:
             input_["task_type"] = task_type
         if task_status is not None:
@@ -9431,6 +9727,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_audit_tasks(
@@ -9507,7 +9804,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_authorizers_request.ListAuthorizersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_authorizers_request.ListAuthorizersRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if marker is not None:
@@ -9522,6 +9819,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_authorizers(
@@ -9593,7 +9891,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_billing_groups_request.ListBillingGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_billing_groups_request.ListBillingGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -9606,6 +9904,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_billing_groups(
@@ -9678,7 +9977,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_ca_certificates_request.ListCACertificatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_ca_certificates_request.ListCACertificatesRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if marker is not None:
@@ -9693,6 +9992,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_ca_certificates(
@@ -9761,7 +10061,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_certificate_providers_request.ListCertificateProvidersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_certificate_providers_request.ListCertificateProvidersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if ascending_order is not None:
@@ -9772,6 +10072,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_certificates(
@@ -9815,7 +10116,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_certificates_request.ListCertificatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_certificates_request.ListCertificatesRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if marker is not None:
@@ -9828,6 +10129,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_certificates(
@@ -9898,8 +10200,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_certificates_by_ca_request.ListCertificatesByCARequest = {}  # type: ignore[typeddict-item]
-        input_["ca_certificate_id"] = ca_certificate_id
+        input_: capo_iot.types.list_certificates_by_ca_request.ListCertificatesByCARequest = {
+            "ca_certificate_id": ca_certificate_id
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if marker is not None:
@@ -9912,6 +10215,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_certificates_by_ca(
@@ -9997,7 +10301,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_command_executions_request.ListCommandExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_command_executions_request.ListCommandExecutionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -10022,6 +10326,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_command_executions(
@@ -10108,7 +10413,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_commands_request.ListCommandsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_commands_request.ListCommandsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -10125,6 +10430,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_commands(
@@ -10193,7 +10499,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_custom_metrics_request.ListCustomMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_custom_metrics_request.ListCustomMetricsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -10204,6 +10510,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_custom_metrics(
@@ -10276,7 +10583,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_detect_mitigation_actions_executions_request.ListDetectMitigationActionsExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_detect_mitigation_actions_executions_request.ListDetectMitigationActionsExecutionsRequest = {}
         if task_id is not None:
             input_["task_id"] = task_id
         if violation_id is not None:
@@ -10297,6 +10604,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_detect_mitigation_actions_executions(
@@ -10373,19 +10681,21 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_detect_mitigation_actions_tasks_request.ListDetectMitigationActionsTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_detect_mitigation_actions_tasks_request.ListDetectMitigationActionsTasksRequest = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_detect_mitigation_actions_tasks(
@@ -10448,7 +10758,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_dimensions_request.ListDimensionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_dimensions_request.ListDimensionsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -10459,6 +10769,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_dimensions(
@@ -10521,7 +10832,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_domain_configurations_request.ListDomainConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_domain_configurations_request.ListDomainConfigurationsRequest = {}
         if marker is not None:
             input_["marker"] = marker
         if page_size is not None:
@@ -10534,6 +10845,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_domain_configurations(
@@ -10596,7 +10908,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_fleet_metrics_request.ListFleetMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_fleet_metrics_request.ListFleetMetricsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -10607,6 +10919,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_fleet_metrics(
@@ -10669,7 +10982,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_indices_request.ListIndicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_indices_request.ListIndicesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -10680,6 +10993,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_indices(
@@ -10749,8 +11063,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_job_executions_for_job_request.ListJobExecutionsForJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_iot.types.list_job_executions_for_job_request.ListJobExecutionsForJobRequest = {
+            "job_id": job_id
+        }
         if status is not None:
             input_["status"] = status
         if max_results is not None:
@@ -10763,6 +11078,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_job_executions_for_job(
@@ -10842,8 +11158,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_job_executions_for_thing_request.ListJobExecutionsForThingRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_iot.types.list_job_executions_for_thing_request.ListJobExecutionsForThingRequest = {
+            "thing_name": thing_name
+        }
         if status is not None:
             input_["status"] = status
         if namespace_id is not None:
@@ -10860,6 +11177,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_job_executions_for_thing(
@@ -10945,7 +11263,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_jobs_request.ListJobsRequest = {}
         if status is not None:
             input_["status"] = status
         if target_selection is not None:
@@ -10966,6 +11284,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_jobs(
@@ -11042,7 +11361,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_job_templates_request.ListJobTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_job_templates_request.ListJobTemplatesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -11053,6 +11372,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_job_templates(
@@ -11120,7 +11440,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_managed_job_templates_request.ListManagedJobTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_managed_job_templates_request.ListManagedJobTemplatesRequest = {}
         if template_name is not None:
             input_["template_name"] = template_name
         if max_results is not None:
@@ -11133,6 +11453,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_managed_job_templates(
@@ -11212,15 +11533,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_metric_values_request.ListMetricValuesRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
-        input_["metric_name"] = metric_name
+        input_: capo_iot.types.list_metric_values_request.ListMetricValuesRequest = {
+            "thing_name": thing_name,
+            "metric_name": metric_name,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if dimension_name is not None:
             input_["dimension_name"] = dimension_name
         if dimension_value_operator is not None:
             input_["dimension_value_operator"] = dimension_value_operator
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -11231,6 +11553,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_metric_values(
@@ -11309,7 +11632,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_mitigation_actions_request.ListMitigationActionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_mitigation_actions_request.ListMitigationActionsRequest = {}
         if action_type is not None:
             input_["action_type"] = action_type
         if max_results is not None:
@@ -11322,6 +11645,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_mitigation_actions(
@@ -11390,7 +11714,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_ota_updates_request.ListOTAUpdatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_ota_updates_request.ListOTAUpdatesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -11403,6 +11727,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_ota_updates(
@@ -11471,7 +11796,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_outgoing_certificates_request.ListOutgoingCertificatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_outgoing_certificates_request.ListOutgoingCertificatesRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if marker is not None:
@@ -11484,6 +11809,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_outgoing_certificates(
@@ -11548,7 +11874,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_packages_request.ListPackagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_packages_request.ListPackagesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -11559,6 +11885,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_packages(
@@ -11627,8 +11954,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_package_versions_request.ListPackageVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
+        input_: capo_iot.types.list_package_versions_request.ListPackageVersionsRequest = {
+            "package_name": package_name
+        }
         if status is not None:
             input_["status"] = status
         if max_results is not None:
@@ -11641,6 +11969,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_package_versions(
@@ -11713,7 +12042,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_policies_request.ListPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_policies_request.ListPoliciesRequest = {}
         if marker is not None:
             input_["marker"] = marker
         if page_size is not None:
@@ -11726,6 +12055,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_policies(
@@ -11797,8 +12127,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_policy_principals_request.ListPolicyPrincipalsRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
+        input_: capo_iot.types.list_policy_principals_request.ListPolicyPrincipalsRequest = {
+            "policy_name": policy_name
+        }
         if marker is not None:
             input_["marker"] = marker
         if page_size is not None:
@@ -11811,6 +12142,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_policy_principals(
@@ -11876,14 +12208,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_policy_versions_request.ListPolicyVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
+        input_: capo_iot.types.list_policy_versions_request.ListPolicyVersionsRequest = {
+            "policy_name": policy_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_principal_policies(
@@ -11932,8 +12266,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_principal_policies_request.ListPrincipalPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["principal"] = principal
+        input_: capo_iot.types.list_principal_policies_request.ListPrincipalPoliciesRequest = {
+            "principal": principal
+        }
         if marker is not None:
             input_["marker"] = marker
         if page_size is not None:
@@ -11946,6 +12281,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_principal_policies(
@@ -12017,18 +12353,20 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_principal_things_request.ListPrincipalThingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_principal_things_request.ListPrincipalThingsRequest = {
+            "principal": principal
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["principal"] = principal
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_principal_things(
@@ -12104,12 +12442,13 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_principal_things_v2_request.ListPrincipalThingsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_principal_things_v2_request.ListPrincipalThingsV2Request = {
+            "principal": principal
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["principal"] = principal
         if thing_principal_type is not None:
             input_["thing_principal_type"] = thing_principal_type
 
@@ -12118,6 +12457,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_principal_things_v2(
@@ -12185,7 +12525,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_provisioning_templates_request.ListProvisioningTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_provisioning_templates_request.ListProvisioningTemplatesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -12196,6 +12536,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_provisioning_templates(
@@ -12258,8 +12599,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_provisioning_template_versions_request.ListProvisioningTemplateVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_iot.types.list_provisioning_template_versions_request.ListProvisioningTemplateVersionsRequest = {
+            "template_name": template_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -12270,6 +12612,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_provisioning_template_versions(
@@ -12333,8 +12676,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_related_resources_for_audit_finding_request.ListRelatedResourcesForAuditFindingRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_id"] = finding_id
+        input_: capo_iot.types.list_related_resources_for_audit_finding_request.ListRelatedResourcesForAuditFindingRequest = {
+            "finding_id": finding_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12345,6 +12689,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_related_resources_for_audit_finding(
@@ -12411,7 +12756,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_role_aliases_request.ListRoleAliasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_role_aliases_request.ListRoleAliasesRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if marker is not None:
@@ -12424,6 +12769,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_role_aliases(
@@ -12497,9 +12843,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_sbom_validation_results_request.ListSbomValidationResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
-        input_["version_name"] = version_name
+        input_: capo_iot.types.list_sbom_validation_results_request.ListSbomValidationResultsRequest = {
+            "package_name": package_name,
+            "version_name": version_name,
+        }
         if validation_result is not None:
             input_["validation_result"] = validation_result
         if max_results is not None:
@@ -12512,6 +12859,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_sbom_validation_results(
@@ -12580,7 +12928,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_scheduled_audits_request.ListScheduledAuditsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_scheduled_audits_request.ListScheduledAuditsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12591,6 +12939,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_scheduled_audits(
@@ -12654,7 +13003,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_security_profiles_request.ListSecurityProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_security_profiles_request.ListSecurityProfilesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -12669,6 +13018,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_security_profiles(
@@ -12738,20 +13088,22 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_security_profiles_for_target_request.ListSecurityProfilesForTargetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_security_profiles_for_target_request.ListSecurityProfilesForTargetRequest = {
+            "security_profile_target_arn": security_profile_target_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
         if recursive is not None:
             input_["recursive"] = recursive
-        input_["security_profile_target_arn"] = security_profile_target_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_security_profiles_for_target(
@@ -12820,7 +13172,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_streams_request.ListStreamsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_streams_request.ListStreamsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -12833,6 +13185,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_streams(
@@ -12896,8 +13249,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_iot.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -12906,6 +13260,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags_for_resource(
@@ -12970,8 +13325,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_targets_for_policy_request.ListTargetsForPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
+        input_: capo_iot.types.list_targets_for_policy_request.ListTargetsForPolicyRequest = {
+            "policy_name": policy_name
+        }
         if marker is not None:
             input_["marker"] = marker
         if page_size is not None:
@@ -12982,6 +13338,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_targets_for_policy(
@@ -13045,8 +13402,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_targets_for_security_profile_request.ListTargetsForSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_name"] = security_profile_name
+        input_: capo_iot.types.list_targets_for_security_profile_request.ListTargetsForSecurityProfileRequest = {
+            "security_profile_name": security_profile_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13057,6 +13415,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_targets_for_security_profile(
@@ -13130,7 +13489,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_thing_groups_request.ListThingGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_thing_groups_request.ListThingGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13147,6 +13506,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_thing_groups(
@@ -13222,8 +13582,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_thing_groups_for_thing_request.ListThingGroupsForThingRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_iot.types.list_thing_groups_for_thing_request.ListThingGroupsForThingRequest = {
+            "thing_name": thing_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13234,6 +13595,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_thing_groups_for_thing(
@@ -13303,18 +13665,20 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_thing_principals_request.ListThingPrincipalsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_thing_principals_request.ListThingPrincipalsRequest = {
+            "thing_name": thing_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["thing_name"] = thing_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_thing_principals(
@@ -13390,12 +13754,13 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_thing_principals_v2_request.ListThingPrincipalsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_thing_principals_v2_request.ListThingPrincipalsV2Request = {
+            "thing_name": thing_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["thing_name"] = thing_name
         if thing_principal_type is not None:
             input_["thing_principal_type"] = thing_principal_type
 
@@ -13404,6 +13769,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_thing_principals_v2(
@@ -13477,9 +13843,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_thing_registration_task_reports_request.ListThingRegistrationTaskReportsRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
-        input_["report_type"] = report_type
+        input_: capo_iot.types.list_thing_registration_task_reports_request.ListThingRegistrationTaskReportsRequest = {
+            "task_id": task_id,
+            "report_type": report_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13490,6 +13857,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_thing_registration_task_reports(
@@ -13559,7 +13927,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_thing_registration_tasks_request.ListThingRegistrationTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_thing_registration_tasks_request.ListThingRegistrationTasksRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13572,6 +13940,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_thing_registration_tasks(
@@ -13652,7 +14021,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_things_request.ListThingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_things_request.ListThingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13671,6 +14040,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_things(
@@ -13750,8 +14120,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_things_in_billing_group_request.ListThingsInBillingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["billing_group_name"] = billing_group_name
+        input_: capo_iot.types.list_things_in_billing_group_request.ListThingsInBillingGroupRequest = {
+            "billing_group_name": billing_group_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13762,6 +14133,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_things_in_billing_group(
@@ -13831,8 +14203,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_things_in_thing_group_request.ListThingsInThingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_group_name"] = thing_group_name
+        input_: capo_iot.types.list_things_in_thing_group_request.ListThingsInThingGroupRequest = {
+            "thing_group_name": thing_group_name
+        }
         if recursive is not None:
             input_["recursive"] = recursive
         if next_token is not None:
@@ -13845,6 +14218,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_things_in_thing_group(
@@ -13917,7 +14291,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_thing_types_request.ListThingTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_thing_types_request.ListThingTypesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -13930,6 +14304,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_thing_types(
@@ -13997,7 +14372,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_topic_rule_destinations_request.ListTopicRuleDestinationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_topic_rule_destinations_request.ListTopicRuleDestinationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -14008,6 +14383,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_topic_rule_destinations(
@@ -14075,7 +14451,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_topic_rules_request.ListTopicRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_topic_rules_request.ListTopicRulesRequest = {}
         if topic is not None:
             input_["topic"] = topic
         if max_results is not None:
@@ -14090,6 +14466,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_topic_rules(
@@ -14159,7 +14536,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_v2_logging_levels_request.ListV2LoggingLevelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.list_v2_logging_levels_request.ListV2LoggingLevelsRequest = {}
         if target_type is not None:
             input_["target_type"] = target_type
         if next_token is not None:
@@ -14172,6 +14549,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_v2_logging_levels(
@@ -14258,9 +14636,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.list_violation_events_request.ListViolationEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_iot.types.list_violation_events_request.ListViolationEventsRequest = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if thing_name is not None:
             input_["thing_name"] = thing_name
         if security_profile_name is not None:
@@ -14281,6 +14660,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_violation_events(
@@ -14367,9 +14747,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.put_verification_state_on_violation_request.PutVerificationStateOnViolationRequest = {}  # type: ignore[typeddict-item]
-        input_["violation_id"] = violation_id
-        input_["verification_state"] = verification_state
+        input_: capo_iot.types.put_verification_state_on_violation_request.PutVerificationStateOnViolationRequest = {
+            "violation_id": violation_id,
+            "verification_state": verification_state,
+        }
         if verification_state_description is not None:
             input_["verification_state_description"] = verification_state_description
 
@@ -14378,6 +14759,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_ca_certificate(
@@ -14442,8 +14824,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.register_ca_certificate_request.RegisterCACertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["ca_certificate"] = ca_certificate
+        input_: capo_iot.types.register_ca_certificate_request.RegisterCACertificateRequest = {
+            "ca_certificate": ca_certificate
+        }
         if verification_certificate is not None:
             input_["verification_certificate"] = verification_certificate
         if set_as_active is not None:
@@ -14462,6 +14845,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_certificate(
@@ -14513,8 +14897,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.register_certificate_request.RegisterCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_pem"] = certificate_pem
+        input_: capo_iot.types.register_certificate_request.RegisterCertificateRequest = {
+            "certificate_pem": certificate_pem
+        }
         if ca_certificate_pem is not None:
             input_["ca_certificate_pem"] = ca_certificate_pem
         if set_as_active is not None:
@@ -14527,6 +14912,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_certificate_without_ca(
@@ -14569,8 +14955,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.register_certificate_without_ca_request.RegisterCertificateWithoutCARequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_pem"] = certificate_pem
+        input_: capo_iot.types.register_certificate_without_ca_request.RegisterCertificateWithoutCARequest = {
+            "certificate_pem": certificate_pem
+        }
         if status is not None:
             input_["status"] = status
 
@@ -14579,6 +14966,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_thing(
@@ -14620,8 +15008,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.register_thing_request.RegisterThingRequest = {}  # type: ignore[typeddict-item]
-        input_["template_body"] = template_body
+        input_: capo_iot.types.register_thing_request.RegisterThingRequest = {
+            "template_body": template_body
+        }
         if parameters is not None:
             input_["parameters"] = parameters
 
@@ -14630,6 +15019,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_certificate_transfer(
@@ -14669,8 +15059,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.reject_certificate_transfer_request.RejectCertificateTransferRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_iot.types.reject_certificate_transfer_request.RejectCertificateTransferRequest = {
+            "certificate_id": certificate_id
+        }
         if reject_reason is not None:
             input_["reject_reason"] = reject_reason
 
@@ -14679,6 +15070,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_thing_from_billing_group(
@@ -14725,7 +15117,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.remove_thing_from_billing_group_request.RemoveThingFromBillingGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.remove_thing_from_billing_group_request.RemoveThingFromBillingGroupRequest = {}
         if billing_group_name is not None:
             input_["billing_group_name"] = billing_group_name
         if billing_group_arn is not None:
@@ -14740,6 +15132,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_thing_from_thing_group(
@@ -14786,7 +15179,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.remove_thing_from_thing_group_request.RemoveThingFromThingGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.remove_thing_from_thing_group_request.RemoveThingFromThingGroupRequest = {}
         if thing_group_name is not None:
             input_["thing_group_name"] = thing_group_name
         if thing_group_arn is not None:
@@ -14801,6 +15194,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def replace_topic_rule(
@@ -14839,15 +15233,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.replace_topic_rule_request.ReplaceTopicRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_name"] = rule_name
-        input_["topic_rule_payload"] = topic_rule_payload
+        input_: capo_iot.types.replace_topic_rule_request.ReplaceTopicRuleRequest = {
+            "rule_name": rule_name,
+            "topic_rule_payload": topic_rule_payload,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_index(
@@ -14898,10 +15294,11 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.search_index_request.SearchIndexRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.search_index_request.SearchIndexRequest = {
+            "query_string": query_string
+        }
         if index_name is not None:
             input_["index_name"] = index_name
-        input_["query_string"] = query_string
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -14914,6 +15311,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_default_authorizer(
@@ -14953,14 +15351,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.set_default_authorizer_request.SetDefaultAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["authorizer_name"] = authorizer_name
+        input_: capo_iot.types.set_default_authorizer_request.SetDefaultAuthorizerRequest = {
+            "authorizer_name": authorizer_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_default_policy_version(
@@ -14999,15 +15399,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.set_default_policy_version_request.SetDefaultPolicyVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
-        input_["policy_version_id"] = policy_version_id
+        input_: capo_iot.types.set_default_policy_version_request.SetDefaultPolicyVersionRequest = {
+            "policy_name": policy_name,
+            "policy_version_id": policy_version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_logging_options(
@@ -15041,14 +15443,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.set_logging_options_request.SetLoggingOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["logging_options_payload"] = logging_options_payload
+        input_: capo_iot.types.set_logging_options_request.SetLoggingOptionsRequest = {
+            "logging_options_payload": logging_options_payload
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_v2_logging_level(
@@ -15086,15 +15490,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.set_v2_logging_level_request.SetV2LoggingLevelRequest = {}  # type: ignore[typeddict-item]
-        input_["log_target"] = log_target
-        input_["log_level"] = log_level
+        input_: capo_iot.types.set_v2_logging_level_request.SetV2LoggingLevelRequest = {
+            "log_target": log_target,
+            "log_level": log_level,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_v2_logging_options(
@@ -15138,7 +15544,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.set_v2_logging_options_request.SetV2LoggingOptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.set_v2_logging_options_request.SetV2LoggingOptionsRequest = {}
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if default_log_level is not None:
@@ -15153,6 +15559,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_audit_mitigation_actions_task(
@@ -15196,17 +15603,19 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.start_audit_mitigation_actions_task_request.StartAuditMitigationActionsTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
-        input_["target"] = target
-        input_["audit_check_to_actions_mapping"] = audit_check_to_actions_mapping
-        input_["client_request_token"] = client_request_token
+        input_: capo_iot.types.start_audit_mitigation_actions_task_request.StartAuditMitigationActionsTaskRequest = {
+            "task_id": task_id,
+            "target": target,
+            "audit_check_to_actions_mapping": audit_check_to_actions_mapping,
+            "client_request_token": client_request_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_detect_mitigation_actions_task(
@@ -15262,10 +15671,12 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.start_detect_mitigation_actions_task_request.StartDetectMitigationActionsTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
-        input_["target"] = target
-        input_["actions"] = actions
+        input_: capo_iot.types.start_detect_mitigation_actions_task_request.StartDetectMitigationActionsTaskRequest = {
+            "task_id": task_id,
+            "target": target,
+            "actions": actions,
+            "client_request_token": client_request_token,
+        }
         if violation_event_occurrence_range is not None:
             input_["violation_event_occurrence_range"] = (
                 violation_event_occurrence_range
@@ -15274,13 +15685,13 @@ class IoTClient:
             input_["include_only_active_violations"] = include_only_active_violations
         if include_suppressed_alerts is not None:
             input_["include_suppressed_alerts"] = include_suppressed_alerts
-        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_on_demand_audit_task(
@@ -15317,14 +15728,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.start_on_demand_audit_task_request.StartOnDemandAuditTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["target_check_names"] = target_check_names
+        input_: capo_iot.types.start_on_demand_audit_task_request.StartOnDemandAuditTaskRequest = {
+            "target_check_names": target_check_names
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_thing_registration_task(
@@ -15367,17 +15780,19 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.start_thing_registration_task_request.StartThingRegistrationTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["template_body"] = template_body
-        input_["input_file_bucket"] = input_file_bucket
-        input_["input_file_key"] = input_file_key
-        input_["role_arn"] = role_arn
+        input_: capo_iot.types.start_thing_registration_task_request.StartThingRegistrationTaskRequest = {
+            "template_body": template_body,
+            "input_file_bucket": input_file_bucket,
+            "input_file_key": input_file_key,
+            "role_arn": role_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_thing_registration_task(
@@ -15415,14 +15830,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.stop_thing_registration_task_request.StopThingRegistrationTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_iot.types.stop_thing_registration_task_request.StopThingRegistrationTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -15462,15 +15879,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_iot.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_authorization(
@@ -15524,12 +15943,13 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.test_authorization_request.TestAuthorizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.test_authorization_request.TestAuthorizationRequest = {
+            "auth_infos": auth_infos
+        }
         if principal is not None:
             input_["principal"] = principal
         if cognito_identity_pool_id is not None:
             input_["cognito_identity_pool_id"] = cognito_identity_pool_id
-        input_["auth_infos"] = auth_infos
         if client_id is not None:
             input_["client_id"] = client_id
         if policy_names_to_add is not None:
@@ -15542,6 +15962,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_invoke_authorizer(
@@ -15593,8 +16014,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.test_invoke_authorizer_request.TestInvokeAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["authorizer_name"] = authorizer_name
+        input_: capo_iot.types.test_invoke_authorizer_request.TestInvokeAuthorizerRequest = {
+            "authorizer_name": authorizer_name
+        }
         if token is not None:
             input_["token"] = token
         if token_signature is not None:
@@ -15611,6 +16033,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def transfer_certificate(
@@ -15655,9 +16078,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.transfer_certificate_request.TransferCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
-        input_["target_aws_account"] = target_aws_account
+        input_: capo_iot.types.transfer_certificate_request.TransferCertificateRequest = {
+            "certificate_id": certificate_id,
+            "target_aws_account": target_aws_account,
+        }
         if transfer_message is not None:
             input_["transfer_message"] = transfer_message
 
@@ -15666,6 +16090,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -15704,15 +16129,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_iot.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_account_audit_configuration(
@@ -15756,7 +16183,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_account_audit_configuration_request.UpdateAccountAuditConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.update_account_audit_configuration_request.UpdateAccountAuditConfigurationRequest = {}
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if audit_notification_target_configurations is not None:
@@ -15771,6 +16198,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_audit_suppression(
@@ -15817,9 +16245,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_audit_suppression_request.UpdateAuditSuppressionRequest = {}  # type: ignore[typeddict-item]
-        input_["check_name"] = check_name
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_iot.types.update_audit_suppression_request.UpdateAuditSuppressionRequest = {
+            "check_name": check_name,
+            "resource_identifier": resource_identifier,
+        }
         if expiration_date is not None:
             input_["expiration_date"] = expiration_date
         if suppress_indefinitely is not None:
@@ -15832,6 +16261,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_authorizer(
@@ -15887,8 +16317,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_authorizer_request.UpdateAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["authorizer_name"] = authorizer_name
+        input_: capo_iot.types.update_authorizer_request.UpdateAuthorizerRequest = {
+            "authorizer_name": authorizer_name
+        }
         if authorizer_function_arn is not None:
             input_["authorizer_function_arn"] = authorizer_function_arn
         if token_key_name is not None:
@@ -15905,6 +16336,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_billing_group(
@@ -15948,9 +16380,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_billing_group_request.UpdateBillingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["billing_group_name"] = billing_group_name
-        input_["billing_group_properties"] = billing_group_properties
+        input_: capo_iot.types.update_billing_group_request.UpdateBillingGroupRequest = {
+            "billing_group_name": billing_group_name,
+            "billing_group_properties": billing_group_properties,
+        }
         if expected_version is not None:
             input_["expected_version"] = expected_version
 
@@ -15959,6 +16392,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_ca_certificate(
@@ -16011,8 +16445,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_ca_certificate_request.UpdateCACertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_iot.types.update_ca_certificate_request.UpdateCACertificateRequest = {
+            "certificate_id": certificate_id
+        }
         if new_status is not None:
             input_["new_status"] = new_status
         if new_auto_registration_status is not None:
@@ -16027,6 +16462,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_certificate(
@@ -16066,15 +16502,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_certificate_request.UpdateCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
-        input_["new_status"] = new_status
+        input_: capo_iot.types.update_certificate_request.UpdateCertificateRequest = {
+            "certificate_id": certificate_id,
+            "new_status": new_status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_certificate_provider(
@@ -16121,8 +16559,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_certificate_provider_request.UpdateCertificateProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_provider_name"] = certificate_provider_name
+        input_: capo_iot.types.update_certificate_provider_request.UpdateCertificateProviderRequest = {
+            "certificate_provider_name": certificate_provider_name
+        }
         if lambda_function_arn is not None:
             input_["lambda_function_arn"] = lambda_function_arn
         if account_default_for_operations is not None:
@@ -16133,6 +16572,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_command(
@@ -16178,8 +16618,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_command_request.UpdateCommandRequest = {}  # type: ignore[typeddict-item]
-        input_["command_id"] = command_id
+        input_: capo_iot.types.update_command_request.UpdateCommandRequest = {
+            "command_id": command_id
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -16192,6 +16633,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_custom_metric(
@@ -16230,15 +16672,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_custom_metric_request.UpdateCustomMetricRequest = {}  # type: ignore[typeddict-item]
-        input_["metric_name"] = metric_name
-        input_["display_name"] = display_name
+        input_: capo_iot.types.update_custom_metric_request.UpdateCustomMetricRequest = {
+            "metric_name": metric_name,
+            "display_name": display_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_dimension(
@@ -16277,15 +16721,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_dimension_request.UpdateDimensionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["string_values"] = string_values
+        input_: capo_iot.types.update_dimension_request.UpdateDimensionRequest = {
+            "name": name,
+            "string_values": string_values,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_domain_configuration(
@@ -16355,8 +16801,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_domain_configuration_request.UpdateDomainConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_configuration_name"] = domain_configuration_name
+        input_: capo_iot.types.update_domain_configuration_request.UpdateDomainConfigurationRequest = {
+            "domain_configuration_name": domain_configuration_name
+        }
         if authorizer_config is not None:
             input_["authorizer_config"] = authorizer_config
         if domain_configuration_status is not None:
@@ -16379,6 +16826,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_dynamic_thing_group(
@@ -16429,9 +16877,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_dynamic_thing_group_request.UpdateDynamicThingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_group_name"] = thing_group_name
-        input_["thing_group_properties"] = thing_group_properties
+        input_: capo_iot.types.update_dynamic_thing_group_request.UpdateDynamicThingGroupRequest = {
+            "thing_group_name": thing_group_name,
+            "thing_group_properties": thing_group_properties,
+        }
         if expected_version is not None:
             input_["expected_version"] = expected_version
         if index_name is not None:
@@ -16446,6 +16895,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_encryption_configuration(
@@ -16495,8 +16945,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_encryption_configuration_request.UpdateEncryptionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["encryption_type"] = encryption_type
+        input_: capo_iot.types.update_encryption_configuration_request.UpdateEncryptionConfigurationRequest = {
+            "encryption_type": encryption_type
+        }
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
         if kms_access_role_arn is not None:
@@ -16507,6 +16958,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_event_configurations(
@@ -16544,7 +16996,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_event_configurations_request.UpdateEventConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.update_event_configurations_request.UpdateEventConfigurationsRequest = {}
         if event_configurations is not None:
             input_["event_configurations"] = event_configurations
 
@@ -16553,6 +17005,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_fleet_metric(
@@ -16619,8 +17072,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_fleet_metric_request.UpdateFleetMetricRequest = {}  # type: ignore[typeddict-item]
-        input_["metric_name"] = metric_name
+        input_: capo_iot.types.update_fleet_metric_request.UpdateFleetMetricRequest = {
+            "metric_name": metric_name,
+            "index_name": index_name,
+        }
         if query_string is not None:
             input_["query_string"] = query_string
         if aggregation_type is not None:
@@ -16633,7 +17088,6 @@ class IoTClient:
             input_["description"] = description
         if query_version is not None:
             input_["query_version"] = query_version
-        input_["index_name"] = index_name
         if unit is not None:
             input_["unit"] = unit
         if expected_version is not None:
@@ -16644,6 +17098,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_indexing_configuration(
@@ -16687,7 +17142,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_indexing_configuration_request.UpdateIndexingConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.update_indexing_configuration_request.UpdateIndexingConfigurationRequest = {}
         if thing_indexing_configuration is not None:
             input_["thing_indexing_configuration"] = thing_indexing_configuration
         if thing_group_indexing_configuration is not None:
@@ -16700,6 +17155,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_job(
@@ -16754,8 +17210,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_job_request.UpdateJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_iot.types.update_job_request.UpdateJobRequest = {"job_id": job_id}
         if description is not None:
             input_["description"] = description
         if presigned_url_config is not None:
@@ -16776,6 +17231,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_mitigation_action(
@@ -16818,8 +17274,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_mitigation_action_request.UpdateMitigationActionRequest = {}  # type: ignore[typeddict-item]
-        input_["action_name"] = action_name
+        input_: capo_iot.types.update_mitigation_action_request.UpdateMitigationActionRequest = {
+            "action_name": action_name
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if action_params is not None:
@@ -16830,6 +17287,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_package(
@@ -16881,22 +17339,25 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_package_request.UpdatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
+        input_: capo_iot.types.update_package_request.UpdatePackageRequest = {
+            "package_name": package_name
+        }
         if description is not None:
             input_["description"] = description
         if default_version_name is not None:
             input_["default_version_name"] = default_version_name
         if unset_default_version is not None:
             input_["unset_default_version"] = unset_default_version
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_package_configuration(
@@ -16937,17 +17398,19 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_package_configuration_request.UpdatePackageConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.update_package_configuration_request.UpdatePackageConfigurationRequest = {}
         if version_update_by_jobs_config is not None:
             input_["version_update_by_jobs_config"] = version_update_by_jobs_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_package_version(
@@ -17009,9 +17472,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_package_version_request.UpdatePackageVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
-        input_["version_name"] = version_name
+        input_: capo_iot.types.update_package_version_request.UpdatePackageVersionRequest = {
+            "package_name": package_name,
+            "version_name": version_name,
+        }
         if description is not None:
             input_["description"] = description
         if attributes is not None:
@@ -17022,14 +17486,16 @@ class IoTClient:
             input_["action"] = action
         if recipe is not None:
             input_["recipe"] = recipe
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_provisioning_template(
@@ -17087,8 +17553,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_provisioning_template_request.UpdateProvisioningTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_iot.types.update_provisioning_template_request.UpdateProvisioningTemplateRequest = {
+            "template_name": template_name
+        }
         if description is not None:
             input_["description"] = description
         if enabled is not None:
@@ -17107,6 +17574,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_role_alias(
@@ -17151,8 +17619,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_role_alias_request.UpdateRoleAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["role_alias"] = role_alias
+        input_: capo_iot.types.update_role_alias_request.UpdateRoleAliasRequest = {
+            "role_alias": role_alias
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if credential_duration_seconds is not None:
@@ -17163,6 +17632,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_scheduled_audit(
@@ -17209,7 +17679,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_scheduled_audit_request.UpdateScheduledAuditRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.update_scheduled_audit_request.UpdateScheduledAuditRequest = {
+            "scheduled_audit_name": scheduled_audit_name
+        }
         if frequency is not None:
             input_["frequency"] = frequency
         if day_of_month is not None:
@@ -17218,13 +17690,13 @@ class IoTClient:
             input_["day_of_week"] = day_of_week
         if target_check_names is not None:
             input_["target_check_names"] = target_check_names
-        input_["scheduled_audit_name"] = scheduled_audit_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_security_profile(
@@ -17304,8 +17776,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_security_profile_request.UpdateSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["security_profile_name"] = security_profile_name
+        input_: capo_iot.types.update_security_profile_request.UpdateSecurityProfileRequest = {
+            "security_profile_name": security_profile_name
+        }
         if security_profile_description is not None:
             input_["security_profile_description"] = security_profile_description
         if behaviors is not None:
@@ -17336,6 +17809,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_stream(
@@ -17383,8 +17857,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_stream_request.UpdateStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["stream_id"] = stream_id
+        input_: capo_iot.types.update_stream_request.UpdateStreamRequest = {
+            "stream_id": stream_id
+        }
         if description is not None:
             input_["description"] = description
         if files is not None:
@@ -17397,6 +17872,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_thing(
@@ -17452,8 +17928,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_thing_request.UpdateThingRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_iot.types.update_thing_request.UpdateThingRequest = {
+            "thing_name": thing_name
+        }
         if thing_type_name is not None:
             input_["thing_type_name"] = thing_type_name
         if attribute_payload is not None:
@@ -17468,6 +17945,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_thing_group(
@@ -17511,9 +17989,10 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_thing_group_request.UpdateThingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_group_name"] = thing_group_name
-        input_["thing_group_properties"] = thing_group_properties
+        input_: capo_iot.types.update_thing_group_request.UpdateThingGroupRequest = {
+            "thing_group_name": thing_group_name,
+            "thing_group_properties": thing_group_properties,
+        }
         if expected_version is not None:
             input_["expected_version"] = expected_version
 
@@ -17522,6 +18001,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_thing_groups_for_thing(
@@ -17570,7 +18050,7 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_thing_groups_for_thing_request.UpdateThingGroupsForThingRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot.types.update_thing_groups_for_thing_request.UpdateThingGroupsForThingRequest = {}
         if thing_name is not None:
             input_["thing_name"] = thing_name
         if thing_groups_to_add is not None:
@@ -17585,6 +18065,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_thing_type(
@@ -17626,8 +18107,9 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_thing_type_request.UpdateThingTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_type_name"] = thing_type_name
+        input_: capo_iot.types.update_thing_type_request.UpdateThingTypeRequest = {
+            "thing_type_name": thing_type_name
+        }
         if thing_type_properties is not None:
             input_["thing_type_properties"] = thing_type_properties
 
@@ -17636,6 +18118,7 @@ class IoTClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_topic_rule_destination(
@@ -17675,15 +18158,17 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.update_topic_rule_destination_request.UpdateTopicRuleDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["status"] = status
+        input_: capo_iot.types.update_topic_rule_destination_request.UpdateTopicRuleDestinationRequest = {
+            "arn": arn,
+            "status": status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def validate_security_profile_behaviors(
@@ -17719,14 +18204,16 @@ class IoTClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot.types.validate_security_profile_behaviors_request.ValidateSecurityProfileBehaviorsRequest = {}  # type: ignore[typeddict-item]
-        input_["behaviors"] = behaviors
+        input_: capo_iot.types.validate_security_profile_behaviors_request.ValidateSecurityProfileBehaviorsRequest = {
+            "behaviors": behaviors
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

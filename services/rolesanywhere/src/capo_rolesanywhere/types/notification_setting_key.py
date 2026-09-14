@@ -31,10 +31,10 @@ def serialize_json(value: NotificationSettingKey) -> dict:
 
 def deserialize_json(data: dict) -> NotificationSettingKey:
     out: NotificationSettingKey = {}  # type: ignore[typeddict-item]
-    if "event" in data:
+    if data.get("event") is not None:
         out["event"] = data["event"]
     else:
         raise DeserializationError("NotificationSettingKey.event required")
-    if "channel" in data:
+    if data.get("channel") is not None:
         out["channel"] = data["channel"]
     return out

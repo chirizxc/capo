@@ -223,15 +223,17 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.batch_get_service_level_objective_budget_report_input.BatchGetServiceLevelObjectiveBudgetReportInput = {}  # type: ignore[typeddict-item]
-        input_["timestamp"] = timestamp
-        input_["slo_ids"] = slo_ids
+        input_: capo_application_signals.types.batch_get_service_level_objective_budget_report_input.BatchGetServiceLevelObjectiveBudgetReportInput = {
+            "timestamp": timestamp,
+            "slo_ids": slo_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_exclusion_windows(
@@ -276,8 +278,9 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.batch_update_exclusion_windows_input.BatchUpdateExclusionWindowsInput = {}  # type: ignore[typeddict-item]
-        input_["slo_ids"] = slo_ids
+        input_: capo_application_signals.types.batch_update_exclusion_windows_input.BatchUpdateExclusionWindowsInput = {
+            "slo_ids": slo_ids
+        }
         if add_exclusion_windows is not None:
             input_["add_exclusion_windows"] = add_exclusion_windows
         if remove_exclusion_windows is not None:
@@ -288,6 +291,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_grouping_configuration(
@@ -324,6 +328,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_service(
@@ -363,16 +368,18 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.get_service_input.GetServiceInput = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["key_attributes"] = key_attributes
+        input_: capo_application_signals.types.get_service_input.GetServiceInput = {
+            "start_time": start_time,
+            "end_time": end_time,
+            "key_attributes": key_attributes,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_audit_findings(
@@ -426,12 +433,13 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_audit_findings_input.ListAuditFindingsInput = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_application_signals.types.list_audit_findings_input.ListAuditFindingsInput = {
+            "start_time": start_time,
+            "end_time": end_time,
+            "audit_targets": audit_targets,
+        }
         if auditors is not None:
             input_["auditors"] = auditors
-        input_["audit_targets"] = audit_targets
         if detail_level is not None:
             input_["detail_level"] = detail_level
         if next_token is not None:
@@ -444,6 +452,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_entity_events(
@@ -491,10 +500,11 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_entity_events_input.ListEntityEventsInput = {}  # type: ignore[typeddict-item]
-        input_["entity"] = entity
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_application_signals.types.list_entity_events_input.ListEntityEventsInput = {
+            "entity": entity,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -505,6 +515,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_entity_events(
@@ -580,7 +591,7 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_grouping_attribute_definitions_input.ListGroupingAttributeDefinitionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_application_signals.types.list_grouping_attribute_definitions_input.ListGroupingAttributeDefinitionsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if aws_account_id is not None:
@@ -593,6 +604,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_service_dependencies(
@@ -640,10 +652,11 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_service_dependencies_input.ListServiceDependenciesInput = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["key_attributes"] = key_attributes
+        input_: capo_application_signals.types.list_service_dependencies_input.ListServiceDependenciesInput = {
+            "start_time": start_time,
+            "end_time": end_time,
+            "key_attributes": key_attributes,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -654,6 +667,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_service_dependencies(
@@ -732,10 +746,11 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_service_dependents_input.ListServiceDependentsInput = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["key_attributes"] = key_attributes
+        input_: capo_application_signals.types.list_service_dependents_input.ListServiceDependentsInput = {
+            "start_time": start_time,
+            "end_time": end_time,
+            "key_attributes": key_attributes,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -746,6 +761,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_service_dependents(
@@ -821,8 +837,9 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_service_level_objective_exclusion_windows_input.ListServiceLevelObjectiveExclusionWindowsInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_application_signals.types.list_service_level_objective_exclusion_windows_input.ListServiceLevelObjectiveExclusionWindowsInput = {
+            "id": id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -833,6 +850,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_service_level_objective_exclusion_windows(
@@ -909,10 +927,11 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_service_operations_input.ListServiceOperationsInput = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["key_attributes"] = key_attributes
+        input_: capo_application_signals.types.list_service_operations_input.ListServiceOperationsInput = {
+            "start_time": start_time,
+            "end_time": end_time,
+            "key_attributes": key_attributes,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -923,6 +942,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_service_operations(
@@ -1005,9 +1025,10 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_services_input.ListServicesInput = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_application_signals.types.list_services_input.ListServicesInput = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1022,6 +1043,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_services(
@@ -1112,9 +1134,10 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_service_states_input.ListServiceStatesInput = {}  # type: ignore[typeddict-item]
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_application_signals.types.list_service_states_input.ListServiceStatesInput = {
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1131,6 +1154,7 @@ class AsyncApplicationSignalsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_service_states(
@@ -1205,14 +1229,16 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_application_signals.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_grouping_configuration(
@@ -1249,14 +1275,16 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.put_grouping_configuration_input.PutGroupingConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["grouping_attribute_definitions"] = grouping_attribute_definitions
+        input_: capo_application_signals.types.put_grouping_configuration_input.PutGroupingConfigurationInput = {
+            "grouping_attribute_definitions": grouping_attribute_definitions
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_discovery(
@@ -1287,13 +1315,14 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.start_discovery_input.StartDiscoveryInput = {}  # type: ignore[typeddict-item]
+        input_: capo_application_signals.types.start_discovery_input.StartDiscoveryInput = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1332,15 +1361,17 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_application_signals.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1378,15 +1409,17 @@ class AsyncApplicationSignalsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_signals.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_application_signals.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

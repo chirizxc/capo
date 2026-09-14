@@ -51,7 +51,7 @@ def serialize_json(value: TranslateKeyMaterialInput) -> dict:
 
 def deserialize_json(data: dict) -> TranslateKeyMaterialInput:
     out: TranslateKeyMaterialInput = {}  # type: ignore[typeddict-item]
-    if "IncomingKeyMaterial" in data:
+    if data.get("IncomingKeyMaterial") is not None:
         import capo_payment_cryptography_data.types.incoming_key_material
 
         out["incoming_key_material"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> TranslateKeyMaterialInput:
         raise DeserializationError(
             "TranslateKeyMaterialInput.incoming_key_material required"
         )
-    if "OutgoingKeyMaterial" in data:
+    if data.get("OutgoingKeyMaterial") is not None:
         import capo_payment_cryptography_data.types.outgoing_key_material
 
         out["outgoing_key_material"] = (
@@ -75,6 +75,6 @@ def deserialize_json(data: dict) -> TranslateKeyMaterialInput:
         raise DeserializationError(
             "TranslateKeyMaterialInput.outgoing_key_material required"
         )
-    if "KeyCheckValueAlgorithm" in data:
+    if data.get("KeyCheckValueAlgorithm") is not None:
         out["key_check_value_algorithm"] = data["KeyCheckValueAlgorithm"]
     return out

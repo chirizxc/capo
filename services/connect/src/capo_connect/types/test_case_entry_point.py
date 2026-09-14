@@ -55,13 +55,13 @@ def serialize_json(value: TestCaseEntryPoint) -> dict:
 
 def deserialize_json(data: dict) -> TestCaseEntryPoint:
     out: TestCaseEntryPoint = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.test_case_entry_point_type
 
         out["type"] = capo_connect.types.test_case_entry_point_type.deserialize_json(
             data["Type"]
         )
-    if "VoiceCallEntryPointParameters" in data:
+    if data.get("VoiceCallEntryPointParameters") is not None:
         import capo_connect.types.voice_call_entry_point_parameters
 
         out["voice_call_entry_point_parameters"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> TestCaseEntryPoint:
                 data["VoiceCallEntryPointParameters"]
             )
         )
-    if "ChatEntryPointParameters" in data:
+    if data.get("ChatEntryPointParameters") is not None:
         import capo_connect.types.chat_entry_point_parameters
 
         out["chat_entry_point_parameters"] = (

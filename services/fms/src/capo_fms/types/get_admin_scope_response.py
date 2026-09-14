@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: GetAdminScopeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAdminScopeResponse:
     out: GetAdminScopeResponse = {}  # type: ignore[typeddict-item]
-    if "AdminScope" in data:
+    if data.get("AdminScope") is not None:
         import capo_fms.types.admin_scope
 
         out["admin_scope"] = capo_fms.types.admin_scope.deserialize_aws_json_1_1(
             data["AdminScope"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_fms.types.organization_status
 
         out["status"] = capo_fms.types.organization_status.deserialize_aws_json_1_1(

@@ -27,8 +27,8 @@ def serialize_json(value: PlatformScriptKey) -> dict:
 
 def deserialize_json(data: dict) -> PlatformScriptKey:
     out: PlatformScriptKey = {}  # type: ignore[typeddict-item]
-    if "linux" in data:
+    if data.get("linux") is not None:
         out["linux"] = data["linux"]
-    if "windows" in data:
+    if data.get("windows") is not None:
         out["windows"] = data["windows"]
     return out

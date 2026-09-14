@@ -57,13 +57,13 @@ def serialize_json(value: GetRecommendationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRecommendationsResponse:
     out: GetRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "profilingGroupName" in data:
+    if data.get("profilingGroupName") is not None:
         out["profiling_group_name"] = data["profilingGroupName"]
     else:
         raise DeserializationError(
             "GetRecommendationsResponse.profiling_group_name required"
         )
-    if "profileStartTime" in data:
+    if data.get("profileStartTime") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["profile_start_time"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> GetRecommendationsResponse:
         raise DeserializationError(
             "GetRecommendationsResponse.profile_start_time required"
         )
-    if "profileEndTime" in data:
+    if data.get("profileEndTime") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["profile_end_time"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> GetRecommendationsResponse:
         raise DeserializationError(
             "GetRecommendationsResponse.profile_end_time required"
         )
-    if "recommendations" in data:
+    if data.get("recommendations") is not None:
         import capo_codeguruprofiler.types.recommendations
 
         out["recommendations"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> GetRecommendationsResponse:
         raise DeserializationError(
             "GetRecommendationsResponse.recommendations required"
         )
-    if "anomalies" in data:
+    if data.get("anomalies") is not None:
         import capo_codeguruprofiler.types.anomalies
 
         out["anomalies"] = capo_codeguruprofiler.types.anomalies.deserialize_json(

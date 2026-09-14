@@ -45,20 +45,20 @@ def serialize_json(value: DataflowEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> DataflowEndpoint:
     out: DataflowEndpoint = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "address" in data:
+    if data.get("address") is not None:
         import capo_groundstation.types.socket_address
 
         out["address"] = capo_groundstation.types.socket_address.deserialize_json(
             data["address"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_groundstation.types.endpoint_status
 
         out["status"] = capo_groundstation.types.endpoint_status.deserialize_json(
             data["status"]
         )
-    if "mtu" in data:
+    if data.get("mtu") is not None:
         out["mtu"] = data["mtu"]
     return out

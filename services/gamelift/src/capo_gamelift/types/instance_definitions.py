@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> InstanceDefinitions:
 
     out: InstanceDefinitions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gamelift.types.instance_definition.deserialize_aws_json_1_1(item)
         )

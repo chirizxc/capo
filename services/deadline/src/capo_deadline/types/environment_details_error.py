@@ -40,15 +40,15 @@ def serialize_json(value: EnvironmentDetailsError) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentDetailsError:
     out: EnvironmentDetailsError = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("EnvironmentDetailsError.job_id required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("EnvironmentDetailsError.environment_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_deadline.types.job_entity_error_code
 
         out["code"] = capo_deadline.types.job_entity_error_code.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> EnvironmentDetailsError:
         )
     else:
         raise DeserializationError("EnvironmentDetailsError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("EnvironmentDetailsError.message required")

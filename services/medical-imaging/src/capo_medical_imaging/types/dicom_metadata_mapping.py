@@ -37,13 +37,13 @@ def serialize_json(value: DicomMetadataMapping) -> dict:
 
 def deserialize_json(data: dict) -> DicomMetadataMapping:
     out: DicomMetadataMapping = {}  # type: ignore[typeddict-item]
-    if "studyInstanceUID" in data:
+    if data.get("studyInstanceUID") is not None:
         out["study_instance_uid"] = data["studyInstanceUID"]
     else:
         raise DeserializationError("DicomMetadataMapping.study_instance_uid required")
-    if "seriesInstanceUID" in data:
+    if data.get("seriesInstanceUID") is not None:
         out["series_instance_uid"] = data["seriesInstanceUID"]
-    if "metadataFilePath" in data:
+    if data.get("metadataFilePath") is not None:
         out["metadata_file_path"] = data["metadataFilePath"]
     else:
         raise DeserializationError("DicomMetadataMapping.metadata_file_path required")

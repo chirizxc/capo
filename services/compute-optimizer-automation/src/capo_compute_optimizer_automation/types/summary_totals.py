@@ -34,9 +34,9 @@ def serialize_aws_json_1_0(value: SummaryTotals) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SummaryTotals:
     out: SummaryTotals = {}  # type: ignore[typeddict-item]
-    if "automationEventCount" in data:
+    if data.get("automationEventCount") is not None:
         out["automation_event_count"] = data["automationEventCount"]
-    if "estimatedMonthlySavings" in data:
+    if data.get("estimatedMonthlySavings") is not None:
         import capo_compute_optimizer_automation.types.estimated_monthly_savings
 
         out["estimated_monthly_savings"] = (

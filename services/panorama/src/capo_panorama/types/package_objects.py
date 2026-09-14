@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PackageObjects:
 
     out: PackageObjects = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_panorama.types.package_object.deserialize_json(item))
     return out

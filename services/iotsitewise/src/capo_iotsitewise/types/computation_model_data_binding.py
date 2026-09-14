@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: ComputationModelDataBinding) -> dict:
 def deserialize_json(data: dict) -> ComputationModelDataBinding:
     out: ComputationModelDataBinding = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iotsitewise.types.computation_model_data_binding_value
 
         out[key] = (

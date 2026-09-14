@@ -35,7 +35,7 @@ def serialize_json(value: ListAccountIntegrationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAccountIntegrationsRequest:
     out: ListAccountIntegrationsRequest = {}  # type: ignore[typeddict-item]
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
     else:
         raise DeserializationError("ListAccountIntegrationsRequest.uri required")

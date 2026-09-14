@@ -35,12 +35,12 @@ def serialize_json(value: CreateAccountSubscriptionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccountSubscriptionResponse:
     out: CreateAccountSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "SignupResponse" in data:
+    if data.get("SignupResponse") is not None:
         import capo_quicksight.types.signup_response
 
         out["signup_response"] = capo_quicksight.types.signup_response.deserialize_json(
             data["SignupResponse"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

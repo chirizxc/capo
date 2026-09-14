@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RoutingPolicyAssociationDetailsList:
 
     out: RoutingPolicyAssociationDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmanager.types.routing_policy_association_detail.deserialize_json(
                 item

@@ -35,7 +35,7 @@ def serialize_json(value: ListVectorEnrichmentJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListVectorEnrichmentJobOutput:
     out: ListVectorEnrichmentJobOutput = {}  # type: ignore[typeddict-item]
-    if "VectorEnrichmentJobSummaries" in data:
+    if data.get("VectorEnrichmentJobSummaries") is not None:
         import capo_sagemaker_geospatial.types.vector_enrichment_job_list
 
         out["vector_enrichment_job_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListVectorEnrichmentJobOutput:
         raise DeserializationError(
             "ListVectorEnrichmentJobOutput.vector_enrichment_job_summaries required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -27,8 +27,8 @@ def serialize_json(value: AwsRdsDbClusterAssociatedRole) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbClusterAssociatedRole:
     out: AwsRdsDbClusterAssociatedRole = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

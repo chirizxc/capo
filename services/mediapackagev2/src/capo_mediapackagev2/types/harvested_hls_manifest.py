@@ -24,7 +24,7 @@ def serialize_json(value: HarvestedHlsManifest) -> dict:
 
 def deserialize_json(data: dict) -> HarvestedHlsManifest:
     out: HarvestedHlsManifest = {}  # type: ignore[typeddict-item]
-    if "ManifestName" in data:
+    if data.get("ManifestName") is not None:
         out["manifest_name"] = data["ManifestName"]
     else:
         raise DeserializationError("HarvestedHlsManifest.manifest_name required")

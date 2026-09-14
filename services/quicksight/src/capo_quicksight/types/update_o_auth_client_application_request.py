@@ -90,21 +90,21 @@ def serialize_json(value: UpdateOAuthClientApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOAuthClientApplicationRequest:
     out: UpdateOAuthClientApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateOAuthClientApplicationRequest.name required")
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "ClientSecret" in data:
+    if data.get("ClientSecret") is not None:
         out["client_secret"] = data["ClientSecret"]
-    if "OAuthTokenEndpointUrl" in data:
+    if data.get("OAuthTokenEndpointUrl") is not None:
         out["o_auth_token_endpoint_url"] = data["OAuthTokenEndpointUrl"]
-    if "OAuthAuthorizationEndpointUrl" in data:
+    if data.get("OAuthAuthorizationEndpointUrl") is not None:
         out["o_auth_authorization_endpoint_url"] = data["OAuthAuthorizationEndpointUrl"]
-    if "OAuthScopes" in data:
+    if data.get("OAuthScopes") is not None:
         out["o_auth_scopes"] = data["OAuthScopes"]
-    if "DataSourceType" in data:
+    if data.get("DataSourceType") is not None:
         import capo_quicksight.types.data_source_type
 
         out["data_source_type"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> UpdateOAuthClientApplicationRequest:
                 data["DataSourceType"]
             )
         )
-    if "IdentityProviderVpcConnectionProperties" in data:
+    if data.get("IdentityProviderVpcConnectionProperties") is not None:
         import capo_quicksight.types.vpc_connection_properties
 
         out["identity_provider_vpc_connection_properties"] = (

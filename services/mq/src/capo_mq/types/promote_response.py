@@ -23,6 +23,6 @@ def serialize_json(value: PromoteResponse) -> dict:
 
 def deserialize_json(data: dict) -> PromoteResponse:
     out: PromoteResponse = {}  # type: ignore[typeddict-item]
-    if "brokerId" in data:
+    if data.get("brokerId") is not None:
         out["broker_id"] = data["brokerId"]
     return out

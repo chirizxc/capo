@@ -48,17 +48,17 @@ def serialize_json(value: CreateRestoreAccessBackupVaultOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateRestoreAccessBackupVaultOutput:
     out: CreateRestoreAccessBackupVaultOutput = {}  # type: ignore[typeddict-item]
-    if "RestoreAccessBackupVaultArn" in data:
+    if data.get("RestoreAccessBackupVaultArn") is not None:
         out["restore_access_backup_vault_arn"] = data["RestoreAccessBackupVaultArn"]
-    if "VaultState" in data:
+    if data.get("VaultState") is not None:
         import capo_backup.types.vault_state
 
         out["vault_state"] = capo_backup.types.vault_state.deserialize_json(
             data["VaultState"]
         )
-    if "RestoreAccessBackupVaultName" in data:
+    if data.get("RestoreAccessBackupVaultName") is not None:
         out["restore_access_backup_vault_name"] = data["RestoreAccessBackupVaultName"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(

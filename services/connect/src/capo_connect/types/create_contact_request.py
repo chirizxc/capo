@@ -120,33 +120,33 @@ def serialize_json(value: CreateContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateContactRequest:
     out: CreateContactRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("CreateContactRequest.instance_id required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "RelatedContactId" in data:
+    if data.get("RelatedContactId") is not None:
         out["related_contact_id"] = data["RelatedContactId"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes
 
         out["attributes"] = capo_connect.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "References" in data:
+    if data.get("References") is not None:
         import capo_connect.types.contact_references
 
         out["references"] = capo_connect.types.contact_references.deserialize_json(
             data["References"]
         )
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
     else:
         raise DeserializationError("CreateContactRequest.channel required")
-    if "InitiationMethod" in data:
+    if data.get("InitiationMethod") is not None:
         import capo_connect.types.contact_initiation_method
 
         out["initiation_method"] = (
@@ -156,25 +156,25 @@ def deserialize_json(data: dict) -> CreateContactRequest:
         )
     else:
         raise DeserializationError("CreateContactRequest.initiation_method required")
-    if "ExpiryDurationInMinutes" in data:
+    if data.get("ExpiryDurationInMinutes") is not None:
         out["expiry_duration_in_minutes"] = data["ExpiryDurationInMinutes"]
-    if "UserInfo" in data:
+    if data.get("UserInfo") is not None:
         import capo_connect.types.user_info
 
         out["user_info"] = capo_connect.types.user_info.deserialize_json(
             data["UserInfo"]
         )
-    if "InitiateAs" in data:
+    if data.get("InitiateAs") is not None:
         import capo_connect.types.initiate_as
 
         out["initiate_as"] = capo_connect.types.initiate_as.deserialize_json(
             data["InitiateAs"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SegmentAttributes" in data:
+    if data.get("SegmentAttributes") is not None:
         import capo_connect.types.segment_attributes
 
         out["segment_attributes"] = (
@@ -182,6 +182,6 @@ def deserialize_json(data: dict) -> CreateContactRequest:
                 data["SegmentAttributes"]
             )
         )
-    if "PreviousContactId" in data:
+    if data.get("PreviousContactId") is not None:
         out["previous_contact_id"] = data["PreviousContactId"]
     return out

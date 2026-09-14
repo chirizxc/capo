@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StreamProcessorSettingsForUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamProcessorSettingsForUpdate:
     out: StreamProcessorSettingsForUpdate = {}  # type: ignore[typeddict-item]
-    if "ConnectedHomeForUpdate" in data:
+    if data.get("ConnectedHomeForUpdate") is not None:
         import capo_rekognition.types.connected_home_settings_for_update
 
         out["connected_home_for_update"] = (

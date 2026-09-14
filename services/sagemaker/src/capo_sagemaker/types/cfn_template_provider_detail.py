@@ -57,13 +57,13 @@ def serialize_aws_json_1_1(value: CfnTemplateProviderDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CfnTemplateProviderDetail:
     out: CfnTemplateProviderDetail = {}  # type: ignore[typeddict-item]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "TemplateURL" in data:
+    if data.get("TemplateURL") is not None:
         out["template_url"] = data["TemplateURL"]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_sagemaker.types.cfn_stack_parameters
 
         out["parameters"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> CfnTemplateProviderDetail:
                 data["Parameters"]
             )
         )
-    if "StackDetail" in data:
+    if data.get("StackDetail") is not None:
         import capo_sagemaker.types.cfn_stack_detail
 
         out["stack_detail"] = (

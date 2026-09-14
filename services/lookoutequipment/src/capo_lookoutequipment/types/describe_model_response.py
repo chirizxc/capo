@@ -411,17 +411,17 @@ def serialize_aws_json_1_0(value: DescribeModelResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
     out: DescribeModelResponse = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
-    if "LabelsInputConfiguration" in data:
+    if data.get("LabelsInputConfiguration") is not None:
         import capo_lookoutequipment.types.labels_input_configuration
 
         out["labels_input_configuration"] = (
@@ -429,7 +429,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["LabelsInputConfiguration"]
             )
         )
-    if "TrainingDataStartTime" in data:
+    if data.get("TrainingDataStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["training_data_start_time"] = (
@@ -437,7 +437,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["TrainingDataStartTime"]
             )
         )
-    if "TrainingDataEndTime" in data:
+    if data.get("TrainingDataEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["training_data_end_time"] = (
@@ -445,7 +445,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["TrainingDataEndTime"]
             )
         )
-    if "EvaluationDataStartTime" in data:
+    if data.get("EvaluationDataStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["evaluation_data_start_time"] = (
@@ -453,7 +453,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["EvaluationDataStartTime"]
             )
         )
-    if "EvaluationDataEndTime" in data:
+    if data.get("EvaluationDataEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["evaluation_data_end_time"] = (
@@ -461,9 +461,9 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["EvaluationDataEndTime"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "DataPreProcessingConfiguration" in data:
+    if data.get("DataPreProcessingConfiguration") is not None:
         import capo_lookoutequipment.types.data_pre_processing_configuration
 
         out["data_pre_processing_configuration"] = (
@@ -471,7 +471,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["DataPreProcessingConfiguration"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.model_status
 
         out["status"] = (
@@ -479,7 +479,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["Status"]
             )
         )
-    if "TrainingExecutionStartTime" in data:
+    if data.get("TrainingExecutionStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["training_execution_start_time"] = (
@@ -487,7 +487,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["TrainingExecutionStartTime"]
             )
         )
-    if "TrainingExecutionEndTime" in data:
+    if data.get("TrainingExecutionEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["training_execution_end_time"] = (
@@ -495,11 +495,11 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["TrainingExecutionEndTime"]
             )
         )
-    if "FailedReason" in data:
+    if data.get("FailedReason") is not None:
         out["failed_reason"] = data["FailedReason"]
-    if "ModelMetrics" in data:
+    if data.get("ModelMetrics") is not None:
         out["model_metrics"] = data["ModelMetrics"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["last_updated_time"] = (
@@ -507,7 +507,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["LastUpdatedTime"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at"] = (
@@ -515,13 +515,13 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["CreatedAt"]
             )
         )
-    if "ServerSideKmsKeyId" in data:
+    if data.get("ServerSideKmsKeyId") is not None:
         out["server_side_kms_key_id"] = data["ServerSideKmsKeyId"]
-    if "OffCondition" in data:
+    if data.get("OffCondition") is not None:
         out["off_condition"] = data["OffCondition"]
-    if "SourceModelVersionArn" in data:
+    if data.get("SourceModelVersionArn") is not None:
         out["source_model_version_arn"] = data["SourceModelVersionArn"]
-    if "ImportJobStartTime" in data:
+    if data.get("ImportJobStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["import_job_start_time"] = (
@@ -529,7 +529,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["ImportJobStartTime"]
             )
         )
-    if "ImportJobEndTime" in data:
+    if data.get("ImportJobEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["import_job_end_time"] = (
@@ -537,11 +537,11 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["ImportJobEndTime"]
             )
         )
-    if "ActiveModelVersion" in data:
+    if data.get("ActiveModelVersion") is not None:
         out["active_model_version"] = data["ActiveModelVersion"]
-    if "ActiveModelVersionArn" in data:
+    if data.get("ActiveModelVersionArn") is not None:
         out["active_model_version_arn"] = data["ActiveModelVersionArn"]
-    if "ModelVersionActivatedAt" in data:
+    if data.get("ModelVersionActivatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["model_version_activated_at"] = (
@@ -549,11 +549,11 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["ModelVersionActivatedAt"]
             )
         )
-    if "PreviousActiveModelVersion" in data:
+    if data.get("PreviousActiveModelVersion") is not None:
         out["previous_active_model_version"] = data["PreviousActiveModelVersion"]
-    if "PreviousActiveModelVersionArn" in data:
+    if data.get("PreviousActiveModelVersionArn") is not None:
         out["previous_active_model_version_arn"] = data["PreviousActiveModelVersionArn"]
-    if "PreviousModelVersionActivatedAt" in data:
+    if data.get("PreviousModelVersionActivatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["previous_model_version_activated_at"] = (
@@ -561,13 +561,13 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["PreviousModelVersionActivatedAt"]
             )
         )
-    if "PriorModelMetrics" in data:
+    if data.get("PriorModelMetrics") is not None:
         out["prior_model_metrics"] = data["PriorModelMetrics"]
-    if "LatestScheduledRetrainingFailedReason" in data:
+    if data.get("LatestScheduledRetrainingFailedReason") is not None:
         out["latest_scheduled_retraining_failed_reason"] = data[
             "LatestScheduledRetrainingFailedReason"
         ]
-    if "LatestScheduledRetrainingStatus" in data:
+    if data.get("LatestScheduledRetrainingStatus") is not None:
         import capo_lookoutequipment.types.model_version_status
 
         out["latest_scheduled_retraining_status"] = (
@@ -575,11 +575,11 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["LatestScheduledRetrainingStatus"]
             )
         )
-    if "LatestScheduledRetrainingModelVersion" in data:
+    if data.get("LatestScheduledRetrainingModelVersion") is not None:
         out["latest_scheduled_retraining_model_version"] = data[
             "LatestScheduledRetrainingModelVersion"
         ]
-    if "LatestScheduledRetrainingStartTime" in data:
+    if data.get("LatestScheduledRetrainingStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["latest_scheduled_retraining_start_time"] = (
@@ -587,11 +587,11 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["LatestScheduledRetrainingStartTime"]
             )
         )
-    if "LatestScheduledRetrainingAvailableDataInDays" in data:
+    if data.get("LatestScheduledRetrainingAvailableDataInDays") is not None:
         out["latest_scheduled_retraining_available_data_in_days"] = data[
             "LatestScheduledRetrainingAvailableDataInDays"
         ]
-    if "NextScheduledRetrainingStartDate" in data:
+    if data.get("NextScheduledRetrainingStartDate") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["next_scheduled_retraining_start_date"] = (
@@ -599,7 +599,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["NextScheduledRetrainingStartDate"]
             )
         )
-    if "AccumulatedInferenceDataStartTime" in data:
+    if data.get("AccumulatedInferenceDataStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["accumulated_inference_data_start_time"] = (
@@ -607,7 +607,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["AccumulatedInferenceDataStartTime"]
             )
         )
-    if "AccumulatedInferenceDataEndTime" in data:
+    if data.get("AccumulatedInferenceDataEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["accumulated_inference_data_end_time"] = (
@@ -615,7 +615,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["AccumulatedInferenceDataEndTime"]
             )
         )
-    if "RetrainingSchedulerStatus" in data:
+    if data.get("RetrainingSchedulerStatus") is not None:
         import capo_lookoutequipment.types.retraining_scheduler_status
 
         out["retraining_scheduler_status"] = (
@@ -623,7 +623,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["RetrainingSchedulerStatus"]
             )
         )
-    if "ModelDiagnosticsOutputConfiguration" in data:
+    if data.get("ModelDiagnosticsOutputConfiguration") is not None:
         import capo_lookoutequipment.types.model_diagnostics_output_configuration
 
         out["model_diagnostics_output_configuration"] = (
@@ -631,7 +631,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeModelResponse:
                 data["ModelDiagnosticsOutputConfiguration"]
             )
         )
-    if "ModelQuality" in data:
+    if data.get("ModelQuality") is not None:
         import capo_lookoutequipment.types.model_quality
 
         out["model_quality"] = (

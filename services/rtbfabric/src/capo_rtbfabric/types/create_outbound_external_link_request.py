@@ -54,25 +54,25 @@ def serialize_json(value: CreateOutboundExternalLinkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateOutboundExternalLinkRequest:
     out: CreateOutboundExternalLinkRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(
             "CreateOutboundExternalLinkRequest.client_token required"
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_rtbfabric.types.link_attributes
 
         out["attributes"] = capo_rtbfabric.types.link_attributes.deserialize_json(
             data["attributes"]
         )
-    if "publicEndpoint" in data:
+    if data.get("publicEndpoint") is not None:
         out["public_endpoint"] = data["publicEndpoint"]
     else:
         raise DeserializationError(
             "CreateOutboundExternalLinkRequest.public_endpoint required"
         )
-    if "logSettings" in data:
+    if data.get("logSettings") is not None:
         import capo_rtbfabric.types.link_log_settings
 
         out["log_settings"] = capo_rtbfabric.types.link_log_settings.deserialize_json(
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> CreateOutboundExternalLinkRequest:
         raise DeserializationError(
             "CreateOutboundExternalLinkRequest.log_settings required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_rtbfabric.types.tags_map
 
         out["tags"] = capo_rtbfabric.types.tags_map.deserialize_json(data["tags"])

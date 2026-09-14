@@ -26,10 +26,10 @@ def serialize_json(value: KeyUsagePropertyFlags) -> dict:
 
 def deserialize_json(data: dict) -> KeyUsagePropertyFlags:
     out: KeyUsagePropertyFlags = {}  # type: ignore[typeddict-item]
-    if "Decrypt" in data:
+    if data.get("Decrypt") is not None:
         out["decrypt"] = data["Decrypt"]
-    if "KeyAgreement" in data:
+    if data.get("KeyAgreement") is not None:
         out["key_agreement"] = data["KeyAgreement"]
-    if "Sign" in data:
+    if data.get("Sign") is not None:
         out["sign"] = data["Sign"]
     return out

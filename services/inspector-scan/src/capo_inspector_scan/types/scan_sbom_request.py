@@ -33,11 +33,11 @@ def serialize_json(value: ScanSbomRequest) -> dict:
 
 def deserialize_json(data: dict) -> ScanSbomRequest:
     out: ScanSbomRequest = {}  # type: ignore[typeddict-item]
-    if "sbom" in data:
+    if data.get("sbom") is not None:
         out["sbom"] = data["sbom"]
     else:
         raise DeserializationError("ScanSbomRequest.sbom required")
-    if "outputFormat" in data:
+    if data.get("outputFormat") is not None:
         import capo_inspector_scan.types.output_format
 
         out["output_format"] = capo_inspector_scan.types.output_format.deserialize_json(

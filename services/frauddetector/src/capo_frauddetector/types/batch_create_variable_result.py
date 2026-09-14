@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: BatchCreateVariableResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchCreateVariableResult:
     out: BatchCreateVariableResult = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_frauddetector.types.batch_create_variable_error_list
 
         out["errors"] = (

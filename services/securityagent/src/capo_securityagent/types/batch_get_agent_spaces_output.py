@@ -40,7 +40,7 @@ def serialize_json(value: BatchGetAgentSpacesOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAgentSpacesOutput:
     out: BatchGetAgentSpacesOutput = {}  # type: ignore[typeddict-item]
-    if "agentSpaces" in data:
+    if data.get("agentSpaces") is not None:
         import capo_securityagent.types.agent_space_list
 
         out["agent_spaces"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> BatchGetAgentSpacesOutput:
                 data["agentSpaces"]
             )
         )
-    if "notFound" in data:
+    if data.get("notFound") is not None:
         import capo_securityagent.types.agent_space_id_list
 
         out["not_found"] = (

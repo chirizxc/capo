@@ -23,5 +23,7 @@ def serialize_aws_json_1_0(input_to_serialize: RuntimeEnvironmentSecrets) -> dic
 def deserialize_aws_json_1_0(data: dict) -> RuntimeEnvironmentSecrets:
     out: RuntimeEnvironmentSecrets = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

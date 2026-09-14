@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: PutRecordOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRecordOutput:
     out: PutRecordOutput = {}  # type: ignore[typeddict-item]
-    if "RecordId" in data:
+    if data.get("RecordId") is not None:
         out["record_id"] = data["RecordId"]
     else:
         raise DeserializationError("PutRecordOutput.record_id required")
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
     return out

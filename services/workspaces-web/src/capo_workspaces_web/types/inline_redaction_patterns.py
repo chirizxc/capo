@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> InlineRedactionPatterns:
 
     out: InlineRedactionPatterns = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_web.types.inline_redaction_pattern.deserialize_json(item)
         )

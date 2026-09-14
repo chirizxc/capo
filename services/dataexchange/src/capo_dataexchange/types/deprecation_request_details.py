@@ -28,7 +28,7 @@ def serialize_json(value: DeprecationRequestDetails) -> dict:
 
 def deserialize_json(data: dict) -> DeprecationRequestDetails:
     out: DeprecationRequestDetails = {}  # type: ignore[typeddict-item]
-    if "DeprecationAt" in data:
+    if data.get("DeprecationAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["deprecation_at"] = capo_dataexchange.types.timestamp.deserialize_json(

@@ -45,15 +45,15 @@ def serialize_aws_json_1_0(value: MpaStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MpaStatus:
     out: MpaStatus = {}  # type: ignore[typeddict-item]
-    if "MpaSessionArn" in data:
+    if data.get("MpaSessionArn") is not None:
         out["mpa_session_arn"] = data["MpaSessionArn"]
     else:
         raise DeserializationError("MpaStatus.mpa_session_arn required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("MpaStatus.status required")
-    if "InitiationDate" in data:
+    if data.get("InitiationDate") is not None:
         import capo_payment_cryptography.types.timestamp
 
         out["initiation_date"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_0(data: dict) -> MpaStatus:
         )
     else:
         raise DeserializationError("MpaStatus.initiation_date required")
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

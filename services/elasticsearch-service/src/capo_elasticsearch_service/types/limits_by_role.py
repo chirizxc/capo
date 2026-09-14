@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: LimitsByRole) -> dict:
 def deserialize_json(data: dict) -> LimitsByRole:
     out: LimitsByRole = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_elasticsearch_service.types.limits
 
         out[key] = capo_elasticsearch_service.types.limits.deserialize_json(value)

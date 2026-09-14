@@ -32,12 +32,12 @@ def serialize_json(value: ListOrganizationAdminAccountsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListOrganizationAdminAccountsResponse:
     out: ListOrganizationAdminAccountsResponse = {}  # type: ignore[typeddict-item]
-    if "adminAccounts" in data:
+    if data.get("adminAccounts") is not None:
         import capo_guardduty.types.admin_accounts
 
         out["admin_accounts"] = capo_guardduty.types.admin_accounts.deserialize_json(
             data["adminAccounts"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -48,11 +48,11 @@ def serialize_json(value: ListUsersResult) -> dict:
 
 def deserialize_json(data: dict) -> ListUsersResult:
     out: ListUsersResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "Realm" in data:
+    if data.get("Realm") is not None:
         out["realm"] = data["Realm"]
-    if "Users" in data:
+    if data.get("Users") is not None:
         import capo_directory_service_data.types.user_summary_list
 
         out["users"] = (
@@ -60,6 +60,6 @@ def deserialize_json(data: dict) -> ListUsersResult:
                 data["Users"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

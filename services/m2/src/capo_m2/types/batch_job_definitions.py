@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchJobDefinitions:
 
     out: BatchJobDefinitions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_m2.types.batch_job_definition.deserialize_json(item))
     return out

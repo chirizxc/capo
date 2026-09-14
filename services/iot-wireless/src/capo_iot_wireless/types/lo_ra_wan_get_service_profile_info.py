@@ -135,70 +135,70 @@ def serialize_json(value: LoRaWANGetServiceProfileInfo) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANGetServiceProfileInfo:
     out: LoRaWANGetServiceProfileInfo = {}  # type: ignore[typeddict-item]
-    if "UlRate" in data:
+    if data.get("UlRate") is not None:
         out["ul_rate"] = data["UlRate"]
-    if "UlBucketSize" in data:
+    if data.get("UlBucketSize") is not None:
         out["ul_bucket_size"] = data["UlBucketSize"]
-    if "UlRatePolicy" in data:
+    if data.get("UlRatePolicy") is not None:
         out["ul_rate_policy"] = data["UlRatePolicy"]
-    if "DlRate" in data:
+    if data.get("DlRate") is not None:
         out["dl_rate"] = data["DlRate"]
-    if "DlBucketSize" in data:
+    if data.get("DlBucketSize") is not None:
         out["dl_bucket_size"] = data["DlBucketSize"]
-    if "DlRatePolicy" in data:
+    if data.get("DlRatePolicy") is not None:
         out["dl_rate_policy"] = data["DlRatePolicy"]
-    if "AddGwMetadata" in data:
+    if data.get("AddGwMetadata") is not None:
         out["add_gw_metadata"] = data["AddGwMetadata"]
     else:
         out["add_gw_metadata"] = False
-    if "DevStatusReqFreq" in data:
+    if data.get("DevStatusReqFreq") is not None:
         out["dev_status_req_freq"] = data["DevStatusReqFreq"]
-    if "ReportDevStatusBattery" in data:
+    if data.get("ReportDevStatusBattery") is not None:
         out["report_dev_status_battery"] = data["ReportDevStatusBattery"]
     else:
         out["report_dev_status_battery"] = False
-    if "ReportDevStatusMargin" in data:
+    if data.get("ReportDevStatusMargin") is not None:
         out["report_dev_status_margin"] = data["ReportDevStatusMargin"]
     else:
         out["report_dev_status_margin"] = False
-    if "DrMin" in data:
+    if data.get("DrMin") is not None:
         out["dr_min"] = data["DrMin"]
     else:
         out["dr_min"] = 0
-    if "DrMax" in data:
+    if data.get("DrMax") is not None:
         out["dr_max"] = data["DrMax"]
     else:
         out["dr_max"] = 0
-    if "ChannelMask" in data:
+    if data.get("ChannelMask") is not None:
         out["channel_mask"] = data["ChannelMask"]
-    if "PrAllowed" in data:
+    if data.get("PrAllowed") is not None:
         out["pr_allowed"] = data["PrAllowed"]
     else:
         out["pr_allowed"] = False
-    if "HrAllowed" in data:
+    if data.get("HrAllowed") is not None:
         out["hr_allowed"] = data["HrAllowed"]
     else:
         out["hr_allowed"] = False
-    if "RaAllowed" in data:
+    if data.get("RaAllowed") is not None:
         out["ra_allowed"] = data["RaAllowed"]
     else:
         out["ra_allowed"] = False
-    if "NwkGeoLoc" in data:
+    if data.get("NwkGeoLoc") is not None:
         out["nwk_geo_loc"] = data["NwkGeoLoc"]
     else:
         out["nwk_geo_loc"] = False
-    if "TargetPer" in data:
+    if data.get("TargetPer") is not None:
         out["target_per"] = data["TargetPer"]
     else:
         out["target_per"] = 0
-    if "MinGwDiversity" in data:
+    if data.get("MinGwDiversity") is not None:
         out["min_gw_diversity"] = data["MinGwDiversity"]
-    if "TxPowerIndexMin" in data:
+    if data.get("TxPowerIndexMin") is not None:
         out["tx_power_index_min"] = data["TxPowerIndexMin"]
-    if "TxPowerIndexMax" in data:
+    if data.get("TxPowerIndexMax") is not None:
         out["tx_power_index_max"] = data["TxPowerIndexMax"]
-    if "NbTransMin" in data:
+    if data.get("NbTransMin") is not None:
         out["nb_trans_min"] = data["NbTransMin"]
-    if "NbTransMax" in data:
+    if data.get("NbTransMax") is not None:
         out["nb_trans_max"] = data["NbTransMax"]
     return out

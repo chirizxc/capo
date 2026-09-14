@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Reactions:
 
     out: Reactions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeguru_reviewer.types.reaction.deserialize_json(item))
     return out

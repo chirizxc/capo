@@ -25,6 +25,6 @@ def serialize_json(value: AwsEc2InstanceNetworkInterfacesDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2InstanceNetworkInterfacesDetails:
     out: AwsEc2InstanceNetworkInterfacesDetails = {}  # type: ignore[typeddict-item]
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
     return out

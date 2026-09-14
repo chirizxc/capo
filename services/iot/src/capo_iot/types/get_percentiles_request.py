@@ -46,17 +46,17 @@ def serialize_json(value: GetPercentilesRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetPercentilesRequest:
     out: GetPercentilesRequest = {}  # type: ignore[typeddict-item]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
     else:
         raise DeserializationError("GetPercentilesRequest.query_string required")
-    if "aggregationField" in data:
+    if data.get("aggregationField") is not None:
         out["aggregation_field"] = data["aggregationField"]
-    if "queryVersion" in data:
+    if data.get("queryVersion") is not None:
         out["query_version"] = data["queryVersion"]
-    if "percents" in data:
+    if data.get("percents") is not None:
         import capo_iot.types.percent_list
 
         out["percents"] = capo_iot.types.percent_list.deserialize_json(data["percents"])

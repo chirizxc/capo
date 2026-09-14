@@ -28,11 +28,11 @@ def serialize_json(value: TdscdmaLocalId) -> dict:
 
 def deserialize_json(data: dict) -> TdscdmaLocalId:
     out: TdscdmaLocalId = {}  # type: ignore[typeddict-item]
-    if "Uarfcn" in data:
+    if data.get("Uarfcn") is not None:
         out["uarfcn"] = data["Uarfcn"]
     else:
         raise DeserializationError("TdscdmaLocalId.uarfcn required")
-    if "CellParams" in data:
+    if data.get("CellParams") is not None:
         out["cell_params"] = data["CellParams"]
     else:
         raise DeserializationError("TdscdmaLocalId.cell_params required")

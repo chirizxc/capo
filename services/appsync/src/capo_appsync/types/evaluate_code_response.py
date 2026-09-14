@@ -53,20 +53,20 @@ def serialize_json(value: EvaluateCodeResponse) -> dict:
 
 def deserialize_json(data: dict) -> EvaluateCodeResponse:
     out: EvaluateCodeResponse = {}  # type: ignore[typeddict-item]
-    if "evaluationResult" in data:
+    if data.get("evaluationResult") is not None:
         out["evaluation_result"] = data["evaluationResult"]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_appsync.types.evaluate_code_error_detail
 
         out["error"] = capo_appsync.types.evaluate_code_error_detail.deserialize_json(
             data["error"]
         )
-    if "logs" in data:
+    if data.get("logs") is not None:
         import capo_appsync.types.logs
 
         out["logs"] = capo_appsync.types.logs.deserialize_json(data["logs"])
-    if "stash" in data:
+    if data.get("stash") is not None:
         out["stash"] = data["stash"]
-    if "outErrors" in data:
+    if data.get("outErrors") is not None:
         out["out_errors"] = data["outErrors"]
     return out

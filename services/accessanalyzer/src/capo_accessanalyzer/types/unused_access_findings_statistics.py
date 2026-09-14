@@ -56,7 +56,7 @@ def serialize_json(value: UnusedAccessFindingsStatistics) -> dict:
 
 def deserialize_json(data: dict) -> UnusedAccessFindingsStatistics:
     out: UnusedAccessFindingsStatistics = {}  # type: ignore[typeddict-item]
-    if "unusedAccessTypeStatistics" in data:
+    if data.get("unusedAccessTypeStatistics") is not None:
         import capo_accessanalyzer.types.unused_access_type_statistics_list
 
         out["unused_access_type_statistics"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UnusedAccessFindingsStatistics:
                 data["unusedAccessTypeStatistics"]
             )
         )
-    if "topAccounts" in data:
+    if data.get("topAccounts") is not None:
         import capo_accessanalyzer.types.account_aggregations
 
         out["top_accounts"] = (
@@ -72,10 +72,10 @@ def deserialize_json(data: dict) -> UnusedAccessFindingsStatistics:
                 data["topAccounts"]
             )
         )
-    if "totalActiveFindings" in data:
+    if data.get("totalActiveFindings") is not None:
         out["total_active_findings"] = data["totalActiveFindings"]
-    if "totalArchivedFindings" in data:
+    if data.get("totalArchivedFindings") is not None:
         out["total_archived_findings"] = data["totalArchivedFindings"]
-    if "totalResolvedFindings" in data:
+    if data.get("totalResolvedFindings") is not None:
         out["total_resolved_findings"] = data["totalResolvedFindings"]
     return out

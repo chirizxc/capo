@@ -113,9 +113,9 @@ def serialize_aws_json_1_1(value: CreateFileCacheRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFileCacheRequest:
     out: CreateFileCacheRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "FileCacheType" in data:
+    if data.get("FileCacheType") is not None:
         import capo_fsx.types.file_cache_type
 
         out["file_cache_type"] = (
@@ -123,17 +123,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileCacheRequest:
                 data["FileCacheType"]
             )
         )
-    if "FileCacheTypeVersion" in data:
+    if data.get("FileCacheTypeVersion") is not None:
         out["file_cache_type_version"] = data["FileCacheTypeVersion"]
-    if "StorageCapacity" in data:
+    if data.get("StorageCapacity") is not None:
         out["storage_capacity"] = data["StorageCapacity"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_fsx.types.subnet_ids
 
         out["subnet_ids"] = capo_fsx.types.subnet_ids.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_fsx.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -141,17 +141,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileCacheRequest:
                 data["SecurityGroupIds"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "CopyTagsToDataRepositoryAssociations" in data:
+    if data.get("CopyTagsToDataRepositoryAssociations") is not None:
         out["copy_tags_to_data_repository_associations"] = data[
             "CopyTagsToDataRepositoryAssociations"
         ]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "LustreConfiguration" in data:
+    if data.get("LustreConfiguration") is not None:
         import capo_fsx.types.create_file_cache_lustre_configuration
 
         out["lustre_configuration"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileCacheRequest:
                 data["LustreConfiguration"]
             )
         )
-    if "DataRepositoryAssociations" in data:
+    if data.get("DataRepositoryAssociations") is not None:
         import capo_fsx.types.create_file_cache_data_repository_associations
 
         out["data_repository_associations"] = (

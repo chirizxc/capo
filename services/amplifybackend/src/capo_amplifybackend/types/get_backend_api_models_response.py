@@ -36,14 +36,14 @@ def serialize_json(value: GetBackendAPIModelsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBackendAPIModelsResponse:
     out: GetBackendAPIModelsResponse = {}  # type: ignore[typeddict-item]
-    if "models" in data:
+    if data.get("models") is not None:
         out["models"] = data["models"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amplifybackend.types.status
 
         out["status"] = capo_amplifybackend.types.status.deserialize_json(
             data["status"]
         )
-    if "modelIntrospectionSchema" in data:
+    if data.get("modelIntrospectionSchema") is not None:
         out["model_introspection_schema"] = data["modelIntrospectionSchema"]
     return out

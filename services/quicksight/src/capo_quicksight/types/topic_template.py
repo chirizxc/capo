@@ -30,9 +30,9 @@ def serialize_json(value: TopicTemplate) -> dict:
 
 def deserialize_json(data: dict) -> TopicTemplate:
     out: TopicTemplate = {}  # type: ignore[typeddict-item]
-    if "TemplateType" in data:
+    if data.get("TemplateType") is not None:
         out["template_type"] = data["TemplateType"]
-    if "Slots" in data:
+    if data.get("Slots") is not None:
         import capo_quicksight.types.slots
 
         out["slots"] = capo_quicksight.types.slots.deserialize_json(data["Slots"])

@@ -64,29 +64,29 @@ def serialize_aws_json_1_1(value: ActivateGatewayInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActivateGatewayInput:
     out: ActivateGatewayInput = {}  # type: ignore[typeddict-item]
-    if "ActivationKey" in data:
+    if data.get("ActivationKey") is not None:
         out["activation_key"] = data["ActivationKey"]
     else:
         raise DeserializationError("ActivateGatewayInput.activation_key required")
-    if "GatewayName" in data:
+    if data.get("GatewayName") is not None:
         out["gateway_name"] = data["GatewayName"]
     else:
         raise DeserializationError("ActivateGatewayInput.gateway_name required")
-    if "GatewayTimezone" in data:
+    if data.get("GatewayTimezone") is not None:
         out["gateway_timezone"] = data["GatewayTimezone"]
     else:
         raise DeserializationError("ActivateGatewayInput.gateway_timezone required")
-    if "GatewayRegion" in data:
+    if data.get("GatewayRegion") is not None:
         out["gateway_region"] = data["GatewayRegion"]
     else:
         raise DeserializationError("ActivateGatewayInput.gateway_region required")
-    if "GatewayType" in data:
+    if data.get("GatewayType") is not None:
         out["gateway_type"] = data["GatewayType"]
-    if "TapeDriveType" in data:
+    if data.get("TapeDriveType") is not None:
         out["tape_drive_type"] = data["TapeDriveType"]
-    if "MediumChangerType" in data:
+    if data.get("MediumChangerType") is not None:
         out["medium_changer_type"] = data["MediumChangerType"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(

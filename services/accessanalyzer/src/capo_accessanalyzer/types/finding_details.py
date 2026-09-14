@@ -112,7 +112,7 @@ def serialize_json(value: FindingDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> FindingDetails:
-    if "internalAccessDetails" in data:
+    if data.get("internalAccessDetails") is not None:
         import capo_accessanalyzer.types.internal_access_details
 
         return {
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> FindingDetails:
                 data["internalAccessDetails"]
             )
         }
-    elif "externalAccessDetails" in data:
+    elif data.get("externalAccessDetails") is not None:
         import capo_accessanalyzer.types.external_access_details
 
         return {
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> FindingDetails:
                 data["externalAccessDetails"]
             )
         }
-    elif "unusedPermissionDetails" in data:
+    elif data.get("unusedPermissionDetails") is not None:
         import capo_accessanalyzer.types.unused_permission_details
 
         return {
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> FindingDetails:
                 data["unusedPermissionDetails"]
             )
         }
-    elif "unusedIamUserAccessKeyDetails" in data:
+    elif data.get("unusedIamUserAccessKeyDetails") is not None:
         import capo_accessanalyzer.types.unused_iam_user_access_key_details
 
         return {
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> FindingDetails:
                 data["unusedIamUserAccessKeyDetails"]
             )
         }
-    elif "unusedIamRoleDetails" in data:
+    elif data.get("unusedIamRoleDetails") is not None:
         import capo_accessanalyzer.types.unused_iam_role_details
 
         return {
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> FindingDetails:
                 data["unusedIamRoleDetails"]
             )
         }
-    elif "unusedIamUserPasswordDetails" in data:
+    elif data.get("unusedIamUserPasswordDetails") is not None:
         import capo_accessanalyzer.types.unused_iam_user_password_details
 
         return {

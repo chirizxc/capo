@@ -36,7 +36,7 @@ def serialize_json(value: GetDedicatedIpsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDedicatedIpsResponse:
     out: GetDedicatedIpsResponse = {}  # type: ignore[typeddict-item]
-    if "DedicatedIps" in data:
+    if data.get("DedicatedIps") is not None:
         import capo_pinpoint_email.types.dedicated_ip_list
 
         out["dedicated_ips"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetDedicatedIpsResponse:
                 data["DedicatedIps"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

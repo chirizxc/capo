@@ -43,7 +43,7 @@ def serialize_json(value: ListIdentityPoolUsageResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIdentityPoolUsageResponse:
     out: ListIdentityPoolUsageResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolUsages" in data:
+    if data.get("IdentityPoolUsages") is not None:
         import capo_cognito_sync.types.identity_pool_usage_list
 
         out["identity_pool_usages"] = (
@@ -51,14 +51,14 @@ def deserialize_json(data: dict) -> ListIdentityPoolUsageResponse:
                 data["IdentityPoolUsages"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     else:
         out["count"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

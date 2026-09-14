@@ -53,7 +53,7 @@ def serialize_json(value: GetQueryStatisticsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetQueryStatisticsResponse:
     out: GetQueryStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "ExecutionStatistics" in data:
+    if data.get("ExecutionStatistics") is not None:
         import capo_lakeformation.types.execution_statistics
 
         out["execution_statistics"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> GetQueryStatisticsResponse:
                 data["ExecutionStatistics"]
             )
         )
-    if "PlanningStatistics" in data:
+    if data.get("PlanningStatistics") is not None:
         import capo_lakeformation.types.planning_statistics
 
         out["planning_statistics"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> GetQueryStatisticsResponse:
                 data["PlanningStatistics"]
             )
         )
-    if "QuerySubmissionTime" in data:
+    if data.get("QuerySubmissionTime") is not None:
         import capo_lakeformation.types.date_time
 
         out["query_submission_time"] = (

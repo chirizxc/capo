@@ -102,27 +102,27 @@ def serialize_json(value: ScraperDescription) -> dict:
 
 def deserialize_json(data: dict) -> ScraperDescription:
     out: ScraperDescription = {}  # type: ignore[typeddict-item]
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "scraperId" in data:
+    if data.get("scraperId") is not None:
         out["scraper_id"] = data["scraperId"]
     else:
         raise DeserializationError("ScraperDescription.scraper_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ScraperDescription.arn required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("ScraperDescription.role_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.scraper_status
 
         out["status"] = capo_amp.types.scraper_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("ScraperDescription.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["created_at"] = capo_amp.types._prelude.timestamp.deserialize_json(
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> ScraperDescription:
         )
     else:
         raise DeserializationError("ScraperDescription.created_at required")
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["last_modified_at"] = capo_amp.types._prelude.timestamp.deserialize_json(
@@ -138,13 +138,13 @@ def deserialize_json(data: dict) -> ScraperDescription:
         )
     else:
         raise DeserializationError("ScraperDescription.last_modified_at required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "scrapeConfiguration" in data:
+    if data.get("scrapeConfiguration") is not None:
         import capo_amp.types.scrape_configuration
 
         out["scrape_configuration"] = (
@@ -154,13 +154,13 @@ def deserialize_json(data: dict) -> ScraperDescription:
         )
     else:
         raise DeserializationError("ScraperDescription.scrape_configuration required")
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_amp.types.source
 
         out["source"] = capo_amp.types.source.deserialize_json(data["source"])
     else:
         raise DeserializationError("ScraperDescription.source required")
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_amp.types.destination
 
         out["destination"] = capo_amp.types.destination.deserialize_json(
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> ScraperDescription:
         )
     else:
         raise DeserializationError("ScraperDescription.destination required")
-    if "roleConfiguration" in data:
+    if data.get("roleConfiguration") is not None:
         import capo_amp.types.role_configuration
 
         out["role_configuration"] = capo_amp.types.role_configuration.deserialize_json(

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MonitorTopContributorsRowList:
 
     out: MonitorTopContributorsRowList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkflowmonitor.types.monitor_top_contributors_row.deserialize_json(
                 item

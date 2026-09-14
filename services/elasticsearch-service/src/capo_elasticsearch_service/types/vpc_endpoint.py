@@ -68,13 +68,13 @@ def serialize_json(value: VpcEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> VpcEndpoint:
     out: VpcEndpoint = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "VpcEndpointOwner" in data:
+    if data.get("VpcEndpointOwner") is not None:
         out["vpc_endpoint_owner"] = data["VpcEndpointOwner"]
-    if "DomainArn" in data:
+    if data.get("DomainArn") is not None:
         out["domain_arn"] = data["DomainArn"]
-    if "VpcOptions" in data:
+    if data.get("VpcOptions") is not None:
         import capo_elasticsearch_service.types.vpc_derived_info
 
         out["vpc_options"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> VpcEndpoint:
                 data["VpcOptions"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_elasticsearch_service.types.vpc_endpoint_status
 
         out["status"] = (
@@ -90,6 +90,6 @@ def deserialize_json(data: dict) -> VpcEndpoint:
                 data["Status"]
             )
         )
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
     return out

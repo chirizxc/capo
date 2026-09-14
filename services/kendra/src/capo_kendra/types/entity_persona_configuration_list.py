@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> EntityPersonaConfigurationList:
 
     out: EntityPersonaConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.entity_persona_configuration.deserialize_aws_json_1_1(
                 item

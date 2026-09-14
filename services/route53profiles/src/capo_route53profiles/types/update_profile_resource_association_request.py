@@ -33,8 +33,8 @@ def serialize_json(value: UpdateProfileResourceAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProfileResourceAssociationRequest:
     out: UpdateProfileResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ResourceProperties" in data:
+    if data.get("ResourceProperties") is not None:
         out["resource_properties"] = data["ResourceProperties"]
     return out

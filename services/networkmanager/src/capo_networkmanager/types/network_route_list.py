@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NetworkRouteList:
 
     out: NetworkRouteList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_networkmanager.types.network_route.deserialize_json(item))
     return out

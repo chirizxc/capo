@@ -59,15 +59,15 @@ def serialize_aws_json_1_0(value: RoutingControl) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RoutingControl:
     out: RoutingControl = {}  # type: ignore[typeddict-item]
-    if "ControlPanelArn" in data:
+    if data.get("ControlPanelArn") is not None:
         out["control_panel_arn"] = data["ControlPanelArn"]
-    if "ControlPanelName" in data:
+    if data.get("ControlPanelName") is not None:
         out["control_panel_name"] = data["ControlPanelName"]
-    if "RoutingControlArn" in data:
+    if data.get("RoutingControlArn") is not None:
         out["routing_control_arn"] = data["RoutingControlArn"]
-    if "RoutingControlName" in data:
+    if data.get("RoutingControlName") is not None:
         out["routing_control_name"] = data["RoutingControlName"]
-    if "RoutingControlState" in data:
+    if data.get("RoutingControlState") is not None:
         import capo_route53_recovery_cluster.types.routing_control_state
 
         out["routing_control_state"] = (
@@ -75,6 +75,6 @@ def deserialize_aws_json_1_0(data: dict) -> RoutingControl:
                 data["RoutingControlState"]
             )
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
     return out

@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: ListFlowDefinitionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFlowDefinitionsRequest:
     out: ListFlowDefinitionsRequest = {}  # type: ignore[typeddict-item]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListFlowDefinitionsRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -74,14 +74,14 @@ def deserialize_aws_json_1_1(data: dict) -> ListFlowDefinitionsRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

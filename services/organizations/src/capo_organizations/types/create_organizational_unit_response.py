@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateOrganizationalUnitResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateOrganizationalUnitResponse:
     out: CreateOrganizationalUnitResponse = {}  # type: ignore[typeddict-item]
-    if "OrganizationalUnit" in data:
+    if data.get("OrganizationalUnit") is not None:
         import capo_organizations.types.organizational_unit
 
         out["organizational_unit"] = (

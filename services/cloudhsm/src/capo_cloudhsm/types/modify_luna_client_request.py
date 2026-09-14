@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: ModifyLunaClientRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyLunaClientRequest:
     out: ModifyLunaClientRequest = {}  # type: ignore[typeddict-item]
-    if "ClientArn" in data:
+    if data.get("ClientArn") is not None:
         out["client_arn"] = data["ClientArn"]
     else:
         raise DeserializationError("ModifyLunaClientRequest.client_arn required")
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         out["certificate"] = data["Certificate"]
     else:
         raise DeserializationError("ModifyLunaClientRequest.certificate required")

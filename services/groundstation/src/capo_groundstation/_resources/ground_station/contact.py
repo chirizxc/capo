@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_groundstation._auth._signers
@@ -106,13 +107,14 @@ class Contact:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.reserve_contact_request.ReserveContactRequest = {}  # type: ignore[typeddict-item]
-        input_["mission_profile_arn"] = mission_profile_arn
+        input_: capo_groundstation.types.reserve_contact_request.ReserveContactRequest = {
+            "mission_profile_arn": mission_profile_arn,
+            "start_time": start_time,
+            "end_time": end_time,
+            "ground_station": ground_station,
+        }
         if satellite_arn is not None:
             input_["satellite_arn"] = satellite_arn
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["ground_station"] = ground_station
         if tags is not None:
             input_["tags"] = tags
         if tracking_overrides is not None:
@@ -123,6 +125,7 @@ class Contact:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -158,14 +161,16 @@ class Contact:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.describe_contact_request.DescribeContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_groundstation.types.describe_contact_request.DescribeContactRequest = {
+            "contact_id": contact_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -213,10 +218,12 @@ class Contact:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.update_contact_request.UpdateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_groundstation.types.update_contact_request.UpdateContactRequest = {
+            "contact_id": contact_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tracking_overrides is not None:
             input_["tracking_overrides"] = tracking_overrides
         if satellite_arn is not None:
@@ -227,6 +234,7 @@ class Contact:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -262,14 +270,16 @@ class Contact:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.cancel_contact_request.CancelContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_groundstation.types.cancel_contact_request.CancelContactRequest = {
+            "contact_id": contact_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -333,14 +343,15 @@ class Contact:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_contacts_request.ListContactsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_contacts_request.ListContactsRequest = {
+            "status_list": status_list,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["status_list"] = status_list
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
         if ground_station is not None:
             input_["ground_station"] = ground_station
         if satellite_arn is not None:
@@ -355,6 +366,7 @@ class Contact:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_contact_version(
@@ -392,15 +404,17 @@ class Contact:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.describe_contact_version_request.DescribeContactVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        input_["version_id"] = version_id
+        input_: capo_groundstation.types.describe_contact_version_request.DescribeContactVersionRequest = {
+            "contact_id": contact_id,
+            "version_id": version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_contact_versions(
@@ -444,8 +458,9 @@ class Contact:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_contact_versions_request.ListContactVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_groundstation.types.list_contact_versions_request.ListContactVersionsRequest = {
+            "contact_id": contact_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -456,6 +471,7 @@ class Contact:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -514,13 +530,14 @@ class AsyncContact:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.reserve_contact_request.ReserveContactRequest = {}  # type: ignore[typeddict-item]
-        input_["mission_profile_arn"] = mission_profile_arn
+        input_: capo_groundstation.types.reserve_contact_request.ReserveContactRequest = {
+            "mission_profile_arn": mission_profile_arn,
+            "start_time": start_time,
+            "end_time": end_time,
+            "ground_station": ground_station,
+        }
         if satellite_arn is not None:
             input_["satellite_arn"] = satellite_arn
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["ground_station"] = ground_station
         if tags is not None:
             input_["tags"] = tags
         if tracking_overrides is not None:
@@ -531,6 +548,7 @@ class AsyncContact:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -567,14 +585,16 @@ class AsyncContact:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.describe_contact_request.DescribeContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_groundstation.types.describe_contact_request.DescribeContactRequest = {
+            "contact_id": contact_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -623,10 +643,12 @@ class AsyncContact:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.update_contact_request.UpdateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_groundstation.types.update_contact_request.UpdateContactRequest = {
+            "contact_id": contact_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tracking_overrides is not None:
             input_["tracking_overrides"] = tracking_overrides
         if satellite_arn is not None:
@@ -637,6 +659,7 @@ class AsyncContact:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -673,14 +696,16 @@ class AsyncContact:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.cancel_contact_request.CancelContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_groundstation.types.cancel_contact_request.CancelContactRequest = {
+            "contact_id": contact_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -745,14 +770,15 @@ class AsyncContact:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_contacts_request.ListContactsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_contacts_request.ListContactsRequest = {
+            "status_list": status_list,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["status_list"] = status_list
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
         if ground_station is not None:
             input_["ground_station"] = ground_station
         if satellite_arn is not None:
@@ -767,6 +793,7 @@ class AsyncContact:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_contact_version(
@@ -805,15 +832,17 @@ class AsyncContact:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.describe_contact_version_request.DescribeContactVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        input_["version_id"] = version_id
+        input_: capo_groundstation.types.describe_contact_version_request.DescribeContactVersionRequest = {
+            "contact_id": contact_id,
+            "version_id": version_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_contact_versions(
@@ -858,8 +887,9 @@ class AsyncContact:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_contact_versions_request.ListContactVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_groundstation.types.list_contact_versions_request.ListContactVersionsRequest = {
+            "contact_id": contact_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -870,4 +900,5 @@ class AsyncContact:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

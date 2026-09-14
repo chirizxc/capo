@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: ActionTypeExecutor) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionTypeExecutor:
     out: ActionTypeExecutor = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_codepipeline.types.executor_configuration
 
         out["configuration"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionTypeExecutor:
         )
     else:
         raise DeserializationError("ActionTypeExecutor.configuration required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codepipeline.types.executor_type
 
         out["type"] = capo_codepipeline.types.executor_type.deserialize_aws_json_1_1(
@@ -70,8 +70,8 @@ def deserialize_aws_json_1_1(data: dict) -> ActionTypeExecutor:
         )
     else:
         raise DeserializationError("ActionTypeExecutor.type required")
-    if "policyStatementsTemplate" in data:
+    if data.get("policyStatementsTemplate") is not None:
         out["policy_statements_template"] = data["policyStatementsTemplate"]
-    if "jobTimeout" in data:
+    if data.get("jobTimeout") is not None:
         out["job_timeout"] = data["jobTimeout"]
     return out

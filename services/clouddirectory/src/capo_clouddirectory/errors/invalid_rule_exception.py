@@ -24,7 +24,7 @@ def serialize_json(value: InvalidRuleException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidRuleException_:
     out: InvalidRuleException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidRuleException(ServiceError):
 
     code: str | None = "InvalidRuleException"
 
-    def __init__(self, data: InvalidRuleException_):
+    def __init__(self, data: InvalidRuleException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidRuleException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidRuleException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidRuleException":
+        return cls(deserialize_json(data), message)

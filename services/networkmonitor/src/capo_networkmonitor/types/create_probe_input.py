@@ -40,7 +40,7 @@ def serialize_json(value: CreateProbeInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateProbeInput:
     out: CreateProbeInput = {}  # type: ignore[typeddict-item]
-    if "probe" in data:
+    if data.get("probe") is not None:
         import capo_networkmonitor.types.probe_input
 
         out["probe"] = capo_networkmonitor.types.probe_input.deserialize_json(
@@ -48,9 +48,9 @@ def deserialize_json(data: dict) -> CreateProbeInput:
         )
     else:
         raise DeserializationError("CreateProbeInput.probe required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_networkmonitor.types.tag_map
 
         out["tags"] = capo_networkmonitor.types.tag_map.deserialize_json(data["tags"])

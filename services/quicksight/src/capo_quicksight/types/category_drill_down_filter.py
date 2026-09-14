@@ -36,7 +36,7 @@ def serialize_json(value: CategoryDrillDownFilter) -> dict:
 
 def deserialize_json(data: dict) -> CategoryDrillDownFilter:
     out: CategoryDrillDownFilter = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> CategoryDrillDownFilter:
         )
     else:
         raise DeserializationError("CategoryDrillDownFilter.column required")
-    if "CategoryValues" in data:
+    if data.get("CategoryValues") is not None:
         import capo_quicksight.types.category_value_list
 
         out["category_values"] = (

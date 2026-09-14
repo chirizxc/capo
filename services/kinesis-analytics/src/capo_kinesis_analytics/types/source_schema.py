@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: SourceSchema) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceSchema:
     out: SourceSchema = {}  # type: ignore[typeddict-item]
-    if "RecordFormat" in data:
+    if data.get("RecordFormat") is not None:
         import capo_kinesis_analytics.types.record_format
 
         out["record_format"] = (
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_1(data: dict) -> SourceSchema:
         )
     else:
         raise DeserializationError("SourceSchema.record_format required")
-    if "RecordEncoding" in data:
+    if data.get("RecordEncoding") is not None:
         out["record_encoding"] = data["RecordEncoding"]
-    if "RecordColumns" in data:
+    if data.get("RecordColumns") is not None:
         import capo_kinesis_analytics.types.record_columns
 
         out["record_columns"] = (

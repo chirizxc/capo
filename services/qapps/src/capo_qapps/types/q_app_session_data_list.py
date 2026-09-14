@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> QAppSessionDataList:
 
     out: QAppSessionDataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qapps.types.q_app_session_data.deserialize_json(item))
     return out

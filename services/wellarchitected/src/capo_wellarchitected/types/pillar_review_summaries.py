@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PillarReviewSummaries:
 
     out: PillarReviewSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.pillar_review_summary.deserialize_json(item)
         )

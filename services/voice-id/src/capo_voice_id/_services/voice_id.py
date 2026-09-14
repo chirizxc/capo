@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.voiceid#VoiceID``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -241,16 +242,18 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.associate_fraudster_request.AssociateFraudsterRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["watchlist_id"] = watchlist_id
-        input_["fraudster_id"] = fraudster_id
+        input_: capo_voice_id.types.associate_fraudster_request.AssociateFraudsterRequest = {
+            "domain_id": domain_id,
+            "watchlist_id": watchlist_id,
+            "fraudster_id": fraudster_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_watchlist(
@@ -300,19 +303,22 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.create_watchlist_request.CreateWatchlistRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
+        input_: capo_voice_id.types.create_watchlist_request.CreateWatchlistRequest = {
+            "domain_id": domain_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_fraudster(
@@ -351,15 +357,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.delete_fraudster_request.DeleteFraudsterRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["fraudster_id"] = fraudster_id
+        input_: capo_voice_id.types.delete_fraudster_request.DeleteFraudsterRequest = {
+            "domain_id": domain_id,
+            "fraudster_id": fraudster_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_speaker(
@@ -398,15 +406,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.delete_speaker_request.DeleteSpeakerRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["speaker_id"] = speaker_id
+        input_: capo_voice_id.types.delete_speaker_request.DeleteSpeakerRequest = {
+            "domain_id": domain_id,
+            "speaker_id": speaker_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_watchlist(
@@ -445,15 +455,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.delete_watchlist_request.DeleteWatchlistRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["watchlist_id"] = watchlist_id
+        input_: capo_voice_id.types.delete_watchlist_request.DeleteWatchlistRequest = {
+            "domain_id": domain_id,
+            "watchlist_id": watchlist_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_fraudster(
@@ -493,15 +505,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.describe_fraudster_request.DescribeFraudsterRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["fraudster_id"] = fraudster_id
+        input_: capo_voice_id.types.describe_fraudster_request.DescribeFraudsterRequest = {
+            "domain_id": domain_id,
+            "fraudster_id": fraudster_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_fraudster_registration_job(
@@ -541,15 +555,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.describe_fraudster_registration_job_request.DescribeFraudsterRegistrationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["job_id"] = job_id
+        input_: capo_voice_id.types.describe_fraudster_registration_job_request.DescribeFraudsterRegistrationJobRequest = {
+            "domain_id": domain_id,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_speaker(
@@ -589,15 +605,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.describe_speaker_request.DescribeSpeakerRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["speaker_id"] = speaker_id
+        input_: capo_voice_id.types.describe_speaker_request.DescribeSpeakerRequest = {
+            "domain_id": domain_id,
+            "speaker_id": speaker_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_speaker_enrollment_job(
@@ -637,15 +655,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.describe_speaker_enrollment_job_request.DescribeSpeakerEnrollmentJobRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["job_id"] = job_id
+        input_: capo_voice_id.types.describe_speaker_enrollment_job_request.DescribeSpeakerEnrollmentJobRequest = {
+            "domain_id": domain_id,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_watchlist(
@@ -685,15 +705,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.describe_watchlist_request.DescribeWatchlistRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["watchlist_id"] = watchlist_id
+        input_: capo_voice_id.types.describe_watchlist_request.DescribeWatchlistRequest = {
+            "domain_id": domain_id,
+            "watchlist_id": watchlist_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_fraudster(
@@ -736,16 +758,18 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.disassociate_fraudster_request.DisassociateFraudsterRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["watchlist_id"] = watchlist_id
-        input_["fraudster_id"] = fraudster_id
+        input_: capo_voice_id.types.disassociate_fraudster_request.DisassociateFraudsterRequest = {
+            "domain_id": domain_id,
+            "watchlist_id": watchlist_id,
+            "fraudster_id": fraudster_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def evaluate_session(
@@ -786,15 +810,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.evaluate_session_request.EvaluateSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["session_name_or_id"] = session_name_or_id
+        input_: capo_voice_id.types.evaluate_session_request.EvaluateSessionRequest = {
+            "domain_id": domain_id,
+            "session_name_or_id": session_name_or_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_fraudster_registration_jobs(
@@ -842,8 +868,9 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.list_fraudster_registration_jobs_request.ListFraudsterRegistrationJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_voice_id.types.list_fraudster_registration_jobs_request.ListFraudsterRegistrationJobsRequest = {
+            "domain_id": domain_id
+        }
         if job_status is not None:
             input_["job_status"] = job_status
         if max_results is not None:
@@ -856,6 +883,7 @@ class VoiceIDClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_fraudster_registration_jobs(
@@ -930,8 +958,9 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.list_fraudsters_request.ListFraudstersRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_voice_id.types.list_fraudsters_request.ListFraudstersRequest = {
+            "domain_id": domain_id
+        }
         if watchlist_id is not None:
             input_["watchlist_id"] = watchlist_id
         if max_results is not None:
@@ -944,6 +973,7 @@ class VoiceIDClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_fraudsters(
@@ -1018,8 +1048,9 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.list_speaker_enrollment_jobs_request.ListSpeakerEnrollmentJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_voice_id.types.list_speaker_enrollment_jobs_request.ListSpeakerEnrollmentJobsRequest = {
+            "domain_id": domain_id
+        }
         if job_status is not None:
             input_["job_status"] = job_status
         if max_results is not None:
@@ -1032,6 +1063,7 @@ class VoiceIDClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_speaker_enrollment_jobs(
@@ -1104,8 +1136,9 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.list_speakers_request.ListSpeakersRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_voice_id.types.list_speakers_request.ListSpeakersRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1116,6 +1149,7 @@ class VoiceIDClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_speakers(
@@ -1178,14 +1212,16 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_voice_id.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_watchlists(
@@ -1229,8 +1265,9 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.list_watchlists_request.ListWatchlistsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_voice_id.types.list_watchlists_request.ListWatchlistsRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1241,6 +1278,7 @@ class VoiceIDClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_watchlists(
@@ -1307,15 +1345,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.opt_out_speaker_request.OptOutSpeakerRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["speaker_id"] = speaker_id
+        input_: capo_voice_id.types.opt_out_speaker_request.OptOutSpeakerRequest = {
+            "domain_id": domain_id,
+            "speaker_id": speaker_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_fraudster_registration_job(
@@ -1371,23 +1411,26 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.start_fraudster_registration_job_request.StartFraudsterRegistrationJobRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_voice_id.types.start_fraudster_registration_job_request.StartFraudsterRegistrationJobRequest = {
+            "domain_id": domain_id,
+            "data_access_role_arn": data_access_role_arn,
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["domain_id"] = domain_id
-        input_["data_access_role_arn"] = data_access_role_arn
         if registration_config is not None:
             input_["registration_config"] = registration_config
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_speaker_enrollment_job(
@@ -1443,23 +1486,26 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.start_speaker_enrollment_job_request.StartSpeakerEnrollmentJobRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_voice_id.types.start_speaker_enrollment_job_request.StartSpeakerEnrollmentJobRequest = {
+            "domain_id": domain_id,
+            "data_access_role_arn": data_access_role_arn,
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["domain_id"] = domain_id
-        input_["data_access_role_arn"] = data_access_role_arn
         if enrollment_config is not None:
             input_["enrollment_config"] = enrollment_config
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1500,15 +1546,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_voice_id.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1549,15 +1597,17 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_voice_id.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_watchlist(
@@ -1604,9 +1654,10 @@ class VoiceIDClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_voice_id.types.update_watchlist_request.UpdateWatchlistRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["watchlist_id"] = watchlist_id
+        input_: capo_voice_id.types.update_watchlist_request.UpdateWatchlistRequest = {
+            "domain_id": domain_id,
+            "watchlist_id": watchlist_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1617,6 +1668,7 @@ class VoiceIDClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

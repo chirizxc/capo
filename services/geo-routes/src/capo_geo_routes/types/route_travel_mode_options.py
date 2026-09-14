@@ -84,13 +84,13 @@ def serialize_json(value: RouteTravelModeOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteTravelModeOptions:
     out: RouteTravelModeOptions = {}  # type: ignore[typeddict-item]
-    if "Car" in data:
+    if data.get("Car") is not None:
         import capo_geo_routes.types.route_car_options
 
         out["car"] = capo_geo_routes.types.route_car_options.deserialize_json(
             data["Car"]
         )
-    if "Pedestrian" in data:
+    if data.get("Pedestrian") is not None:
         import capo_geo_routes.types.route_pedestrian_options
 
         out["pedestrian"] = (
@@ -98,19 +98,19 @@ def deserialize_json(data: dict) -> RouteTravelModeOptions:
                 data["Pedestrian"]
             )
         )
-    if "Scooter" in data:
+    if data.get("Scooter") is not None:
         import capo_geo_routes.types.route_scooter_options
 
         out["scooter"] = capo_geo_routes.types.route_scooter_options.deserialize_json(
             data["Scooter"]
         )
-    if "Truck" in data:
+    if data.get("Truck") is not None:
         import capo_geo_routes.types.route_truck_options
 
         out["truck"] = capo_geo_routes.types.route_truck_options.deserialize_json(
             data["Truck"]
         )
-    if "Intermodal" in data:
+    if data.get("Intermodal") is not None:
         import capo_geo_routes.types.route_intermodal_options
 
         out["intermodal"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> RouteTravelModeOptions:
                 data["Intermodal"]
             )
         )
-    if "Transit" in data:
+    if data.get("Transit") is not None:
         import capo_geo_routes.types.route_transit_options
 
         out["transit"] = capo_geo_routes.types.route_transit_options.deserialize_json(

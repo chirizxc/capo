@@ -81,8 +81,7 @@ class DeploymentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_deployment_input.GetDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.get_deployment_input.GetDeploymentInput = {"id": id}
         if environment_name is not None:
             input_["environment_name"] = environment_name
         if service_name is not None:
@@ -97,6 +96,7 @@ class DeploymentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -134,14 +134,16 @@ class DeploymentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_deployment_input.DeleteDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.delete_deployment_input.DeleteDeploymentInput = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -195,7 +197,7 @@ class DeploymentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_deployments_input.ListDeploymentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_deployments_input.ListDeploymentsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if environment_name is not None:
@@ -214,6 +216,7 @@ class DeploymentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -269,8 +272,7 @@ class AsyncDeploymentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_deployment_input.GetDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.get_deployment_input.GetDeploymentInput = {"id": id}
         if environment_name is not None:
             input_["environment_name"] = environment_name
         if service_name is not None:
@@ -285,6 +287,7 @@ class AsyncDeploymentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -323,14 +326,16 @@ class AsyncDeploymentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_deployment_input.DeleteDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_proton.types.delete_deployment_input.DeleteDeploymentInput = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -385,7 +390,7 @@ class AsyncDeploymentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_deployments_input.ListDeploymentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_deployments_input.ListDeploymentsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if environment_name is not None:
@@ -404,4 +409,5 @@ class AsyncDeploymentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

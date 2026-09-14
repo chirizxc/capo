@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: JobNodeDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobNodeDetails:
     out: JobNodeDetails = {}  # type: ignore[typeddict-item]
-    if "JobRuns" in data:
+    if data.get("JobRuns") is not None:
         import capo_glue.types.job_run_list
 
         out["job_runs"] = capo_glue.types.job_run_list.deserialize_aws_json_1_1(

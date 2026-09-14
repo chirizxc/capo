@@ -58,23 +58,23 @@ def serialize_json(value: WebExperience) -> dict:
 
 def deserialize_json(data: dict) -> WebExperience:
     out: WebExperience = {}  # type: ignore[typeddict-item]
-    if "webExperienceId" in data:
+    if data.get("webExperienceId") is not None:
         out["web_experience_id"] = data["webExperienceId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "defaultEndpoint" in data:
+    if data.get("defaultEndpoint") is not None:
         out["default_endpoint"] = data["defaultEndpoint"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.web_experience_status
 
         out["status"] = capo_qbusiness.types.web_experience_status.deserialize_json(

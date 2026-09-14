@@ -64,32 +64,32 @@ def serialize_json(value: FontConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FontConfiguration:
     out: FontConfiguration = {}  # type: ignore[typeddict-item]
-    if "FontSize" in data:
+    if data.get("FontSize") is not None:
         import capo_quicksight.types.font_size
 
         out["font_size"] = capo_quicksight.types.font_size.deserialize_json(
             data["FontSize"]
         )
-    if "FontDecoration" in data:
+    if data.get("FontDecoration") is not None:
         import capo_quicksight.types.font_decoration
 
         out["font_decoration"] = capo_quicksight.types.font_decoration.deserialize_json(
             data["FontDecoration"]
         )
-    if "FontColor" in data:
+    if data.get("FontColor") is not None:
         out["font_color"] = data["FontColor"]
-    if "FontWeight" in data:
+    if data.get("FontWeight") is not None:
         import capo_quicksight.types.font_weight
 
         out["font_weight"] = capo_quicksight.types.font_weight.deserialize_json(
             data["FontWeight"]
         )
-    if "FontStyle" in data:
+    if data.get("FontStyle") is not None:
         import capo_quicksight.types.font_style
 
         out["font_style"] = capo_quicksight.types.font_style.deserialize_json(
             data["FontStyle"]
         )
-    if "FontFamily" in data:
+    if data.get("FontFamily") is not None:
         out["font_family"] = data["FontFamily"]
     return out

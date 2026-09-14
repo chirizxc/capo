@@ -13,9 +13,9 @@ from capo_internetmonitor import AsyncInternetMonitorClient
 
 
 async def main():
-    async with AsyncInternetMonitorClient() as s3:
+    async with AsyncInternetMonitorClient() as internet_monitor:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await internet_monitor.list_tags_for_resource()
         print(response["tags"])
 ```
 
@@ -29,9 +29,9 @@ from capo_internetmonitor.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncInternetMonitorClient() as s3:
+    async with AsyncInternetMonitorClient() as internet_monitor:
         try:
-            await s3.list_tags_for_resource()
+            await internet_monitor.list_tags_for_resource()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_internetmonitor import AsyncInternetMonitorClient
 
 
 async def main():
-    async with AsyncInternetMonitorClient() as s3:
+    async with AsyncInternetMonitorClient() as internet_monitor:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await internet_monitor.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await internet_monitor.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await internet_monitor.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

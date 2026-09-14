@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: RealTimeContactAnalysisTranscriptItemsWithCharacterOffsets = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.real_time_contact_analysis_transcript_item_with_character_offsets.deserialize_json(
                 item

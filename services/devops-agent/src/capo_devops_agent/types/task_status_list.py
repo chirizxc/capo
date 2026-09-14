@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TaskStatusList:
 
     out: TaskStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_agent.types.task_status.deserialize_json(item))
     return out

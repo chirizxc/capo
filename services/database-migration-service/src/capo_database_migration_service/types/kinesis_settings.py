@@ -91,9 +91,9 @@ def serialize_aws_json_1_1(value: KinesisSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KinesisSettings:
     out: KinesisSettings = {}  # type: ignore[typeddict-item]
-    if "StreamArn" in data:
+    if data.get("StreamArn") is not None:
         out["stream_arn"] = data["StreamArn"]
-    if "MessageFormat" in data:
+    if data.get("MessageFormat") is not None:
         import capo_database_migration_service.types.message_format_value
 
         out["message_format"] = (
@@ -101,22 +101,22 @@ def deserialize_aws_json_1_1(data: dict) -> KinesisSettings:
                 data["MessageFormat"]
             )
         )
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "IncludeTransactionDetails" in data:
+    if data.get("IncludeTransactionDetails") is not None:
         out["include_transaction_details"] = data["IncludeTransactionDetails"]
-    if "IncludePartitionValue" in data:
+    if data.get("IncludePartitionValue") is not None:
         out["include_partition_value"] = data["IncludePartitionValue"]
-    if "PartitionIncludeSchemaTable" in data:
+    if data.get("PartitionIncludeSchemaTable") is not None:
         out["partition_include_schema_table"] = data["PartitionIncludeSchemaTable"]
-    if "IncludeTableAlterOperations" in data:
+    if data.get("IncludeTableAlterOperations") is not None:
         out["include_table_alter_operations"] = data["IncludeTableAlterOperations"]
-    if "IncludeControlDetails" in data:
+    if data.get("IncludeControlDetails") is not None:
         out["include_control_details"] = data["IncludeControlDetails"]
-    if "IncludeNullAndEmpty" in data:
+    if data.get("IncludeNullAndEmpty") is not None:
         out["include_null_and_empty"] = data["IncludeNullAndEmpty"]
-    if "NoHexPrefix" in data:
+    if data.get("NoHexPrefix") is not None:
         out["no_hex_prefix"] = data["NoHexPrefix"]
-    if "UseLargeIntegerValue" in data:
+    if data.get("UseLargeIntegerValue") is not None:
         out["use_large_integer_value"] = data["UseLargeIntegerValue"]
     return out

@@ -27,8 +27,8 @@ def serialize_json(value: MultiplexProgramPipelineDetail) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexProgramPipelineDetail:
     out: MultiplexProgramPipelineDetail = {}  # type: ignore[typeddict-item]
-    if "activeChannelPipeline" in data:
+    if data.get("activeChannelPipeline") is not None:
         out["active_channel_pipeline"] = data["activeChannelPipeline"]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
     return out

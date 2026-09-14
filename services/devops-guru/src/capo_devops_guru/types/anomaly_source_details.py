@@ -44,7 +44,7 @@ def serialize_json(value: AnomalySourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> AnomalySourceDetails:
     out: AnomalySourceDetails = {}  # type: ignore[typeddict-item]
-    if "CloudWatchMetrics" in data:
+    if data.get("CloudWatchMetrics") is not None:
         import capo_devops_guru.types.cloud_watch_metrics_details
 
         out["cloud_watch_metrics"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AnomalySourceDetails:
                 data["CloudWatchMetrics"]
             )
         )
-    if "PerformanceInsightsMetrics" in data:
+    if data.get("PerformanceInsightsMetrics") is not None:
         import capo_devops_guru.types.performance_insights_metrics_details
 
         out["performance_insights_metrics"] = (

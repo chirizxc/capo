@@ -42,13 +42,13 @@ def serialize_json(value: AudioChannelTaggingSettings) -> dict:
 
 def deserialize_json(data: dict) -> AudioChannelTaggingSettings:
     out: AudioChannelTaggingSettings = {}  # type: ignore[typeddict-item]
-    if "channelTag" in data:
+    if data.get("channelTag") is not None:
         import capo_mediaconvert.types.audio_channel_tag
 
         out["channel_tag"] = capo_mediaconvert.types.audio_channel_tag.deserialize_json(
             data["channelTag"]
         )
-    if "channelTags" in data:
+    if data.get("channelTags") is not None:
         import capo_mediaconvert.types.__list_of_audio_channel_tag
 
         out["channel_tags"] = (

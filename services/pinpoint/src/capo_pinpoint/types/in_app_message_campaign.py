@@ -64,28 +64,28 @@ def serialize_json(value: InAppMessageCampaign) -> dict:
 
 def deserialize_json(data: dict) -> InAppMessageCampaign:
     out: InAppMessageCampaign = {}  # type: ignore[typeddict-item]
-    if "CampaignId" in data:
+    if data.get("CampaignId") is not None:
         out["campaign_id"] = data["CampaignId"]
-    if "DailyCap" in data:
+    if data.get("DailyCap") is not None:
         out["daily_cap"] = data["DailyCap"]
-    if "InAppMessage" in data:
+    if data.get("InAppMessage") is not None:
         import capo_pinpoint.types.in_app_message
 
         out["in_app_message"] = capo_pinpoint.types.in_app_message.deserialize_json(
             data["InAppMessage"]
         )
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_pinpoint.types.in_app_campaign_schedule
 
         out["schedule"] = capo_pinpoint.types.in_app_campaign_schedule.deserialize_json(
             data["Schedule"]
         )
-    if "SessionCap" in data:
+    if data.get("SessionCap") is not None:
         out["session_cap"] = data["SessionCap"]
-    if "TotalCap" in data:
+    if data.get("TotalCap") is not None:
         out["total_cap"] = data["TotalCap"]
-    if "TreatmentId" in data:
+    if data.get("TreatmentId") is not None:
         out["treatment_id"] = data["TreatmentId"]
     return out

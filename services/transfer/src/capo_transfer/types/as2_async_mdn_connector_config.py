@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: As2AsyncMdnConnectorConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> As2AsyncMdnConnectorConfig:
     out: As2AsyncMdnConnectorConfig = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "ServerIds" in data:
+    if data.get("ServerIds") is not None:
         import capo_transfer.types.as2_async_mdn_server_ids
 
         out["server_ids"] = (

@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: PendingModifiedServiceUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PendingModifiedServiceUpdate:
     out: PendingModifiedServiceUpdate = {}  # type: ignore[typeddict-item]
-    if "ServiceUpdateName" in data:
+    if data.get("ServiceUpdateName") is not None:
         out["service_update_name"] = data["ServiceUpdateName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_memorydb.types.service_update_status
 
         out["status"] = (

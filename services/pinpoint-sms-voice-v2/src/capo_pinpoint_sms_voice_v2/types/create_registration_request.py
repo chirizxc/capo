@@ -42,13 +42,13 @@ def serialize_aws_json_1_0(value: CreateRegistrationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRegistrationRequest:
     out: CreateRegistrationRequest = {}  # type: ignore[typeddict-item]
-    if "RegistrationType" in data:
+    if data.get("RegistrationType") is not None:
         out["registration_type"] = data["RegistrationType"]
     else:
         raise DeserializationError(
             "CreateRegistrationRequest.registration_type required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -56,6 +56,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRegistrationRequest:
                 data["Tags"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

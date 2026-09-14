@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ClaimFilterOption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClaimFilterOption:
     out: ClaimFilterOption = {}  # type: ignore[typeddict-item]
-    if "InstanceStatuses" in data:
+    if data.get("InstanceStatuses") is not None:
         import capo_gamelift.types.filter_instance_statuses
 
         out["instance_statuses"] = (

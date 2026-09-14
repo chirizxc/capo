@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: UpdateFlowTemplateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFlowTemplateRequest:
     out: UpdateFlowTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateFlowTemplateRequest.id required")
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_iotthingsgraph.types.definition_document
 
         out["definition"] = (
@@ -55,6 +55,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFlowTemplateRequest:
         )
     else:
         raise DeserializationError("UpdateFlowTemplateRequest.definition required")
-    if "compatibleNamespaceVersion" in data:
+    if data.get("compatibleNamespaceVersion") is not None:
         out["compatible_namespace_version"] = data["compatibleNamespaceVersion"]
     return out

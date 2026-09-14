@@ -19,16 +19,32 @@ class ArcAxisDisplayRange(TypedDict, closed=True):
 def serialize_json(value: ArcAxisDisplayRange) -> dict:
     out: dict = {}
     if "min" in value:
-        out["Min"] = value["min"]
+        out["Min"] = (
+            "NaN"
+            if value["min"] != value["min"]
+            else "Infinity"
+            if value["min"] == float("inf")
+            else "-Infinity"
+            if value["min"] == float("-inf")
+            else value["min"]
+        )
     if "max" in value:
-        out["Max"] = value["max"]
+        out["Max"] = (
+            "NaN"
+            if value["max"] != value["max"]
+            else "Infinity"
+            if value["max"] == float("inf")
+            else "-Infinity"
+            if value["max"] == float("-inf")
+            else value["max"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> ArcAxisDisplayRange:
     out: ArcAxisDisplayRange = {}  # type: ignore[typeddict-item]
-    if "Min" in data:
-        out["min"] = data["Min"]
-    if "Max" in data:
-        out["max"] = data["Max"]
+    if data.get("Min") is not None:
+        out["min"] = float(data["Min"])
+    if data.get("Max") is not None:
+        out["max"] = float(data["Max"])
     return out

@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: DetectFacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectFacesRequest:
     out: DetectFacesRequest = {}  # type: ignore[typeddict-item]
-    if "Image" in data:
+    if data.get("Image") is not None:
         import capo_rekognition.types.image
 
         out["image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -43,7 +43,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectFacesRequest:
         )
     else:
         raise DeserializationError("DetectFacesRequest.image required")
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_rekognition.types.attributes
 
         out["attributes"] = capo_rekognition.types.attributes.deserialize_aws_json_1_1(

@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: DomainSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainSummary:
     out: DomainSummary = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "AutoRenew" in data:
+    if data.get("AutoRenew") is not None:
         out["auto_renew"] = data["AutoRenew"]
-    if "TransferLock" in data:
+    if data.get("TransferLock") is not None:
         out["transfer_lock"] = data["TransferLock"]
-    if "Expiry" in data:
+    if data.get("Expiry") is not None:
         import capo_route_53_domains.types.timestamp
 
         out["expiry"] = capo_route_53_domains.types.timestamp.deserialize_aws_json_1_1(

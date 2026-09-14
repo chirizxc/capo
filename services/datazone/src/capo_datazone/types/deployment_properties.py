@@ -22,8 +22,8 @@ def serialize_json(value: DeploymentProperties) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentProperties:
     out: DeploymentProperties = {}  # type: ignore[typeddict-item]
-    if "startTimeoutMinutes" in data:
+    if data.get("startTimeoutMinutes") is not None:
         out["start_timeout_minutes"] = data["startTimeoutMinutes"]
-    if "endTimeoutMinutes" in data:
+    if data.get("endTimeoutMinutes") is not None:
         out["end_timeout_minutes"] = data["endTimeoutMinutes"]
     return out

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: GetRunResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRunResult:
     out: GetRunResult = {}  # type: ignore[typeddict-item]
-    if "run" in data:
+    if data.get("run") is not None:
         import capo_device_farm.types.run
 
         out["run"] = capo_device_farm.types.run.deserialize_aws_json_1_1(data["run"])

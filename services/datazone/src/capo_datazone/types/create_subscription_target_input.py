@@ -92,15 +92,15 @@ def serialize_json(value: CreateSubscriptionTargetInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSubscriptionTargetInput:
     out: CreateSubscriptionTargetInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateSubscriptionTargetInput.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("CreateSubscriptionTargetInput.type required")
-    if "subscriptionTargetConfig" in data:
+    if data.get("subscriptionTargetConfig") is not None:
         import capo_datazone.types.subscription_target_forms
 
         out["subscription_target_config"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> CreateSubscriptionTargetInput:
         raise DeserializationError(
             "CreateSubscriptionTargetInput.subscription_target_config required"
         )
-    if "authorizedPrincipals" in data:
+    if data.get("authorizedPrincipals") is not None:
         import capo_datazone.types.authorized_principal_identifiers
 
         out["authorized_principals"] = (
@@ -124,13 +124,13 @@ def deserialize_json(data: dict) -> CreateSubscriptionTargetInput:
         raise DeserializationError(
             "CreateSubscriptionTargetInput.authorized_principals required"
         )
-    if "manageAccessRole" in data:
+    if data.get("manageAccessRole") is not None:
         out["manage_access_role"] = data["manageAccessRole"]
     else:
         raise DeserializationError(
             "CreateSubscriptionTargetInput.manage_access_role required"
         )
-    if "applicableAssetTypes" in data:
+    if data.get("applicableAssetTypes") is not None:
         import capo_datazone.types.applicable_asset_types
 
         out["applicable_asset_types"] = (
@@ -142,11 +142,11 @@ def deserialize_json(data: dict) -> CreateSubscriptionTargetInput:
         raise DeserializationError(
             "CreateSubscriptionTargetInput.applicable_asset_types required"
         )
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "subscriptionGrantCreationMode" in data:
+    if data.get("subscriptionGrantCreationMode") is not None:
         import capo_datazone.types.subscription_grant_creation_mode
 
         out["subscription_grant_creation_mode"] = (

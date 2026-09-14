@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: UpdateInferenceComponentOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateInferenceComponentOutput:
     out: UpdateInferenceComponentOutput = {}  # type: ignore[typeddict-item]
-    if "InferenceComponentArn" in data:
+    if data.get("InferenceComponentArn") is not None:
         out["inference_component_arn"] = data["InferenceComponentArn"]
     return out

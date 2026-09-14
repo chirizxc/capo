@@ -24,7 +24,7 @@ def serialize_json(value: PayloadTooLargeException_) -> dict:
 
 def deserialize_json(data: dict) -> PayloadTooLargeException_:
     out: PayloadTooLargeException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class PayloadTooLargeException(ServiceError):
 
     code: str | None = "PayloadTooLargeException"
 
-    def __init__(self, data: PayloadTooLargeException_):
+    def __init__(self, data: PayloadTooLargeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PayloadTooLargeException",
+            message=message if message is not None else data.get("message"),
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "PayloadTooLargeException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "PayloadTooLargeException":
+        return cls(deserialize_json(data), message)

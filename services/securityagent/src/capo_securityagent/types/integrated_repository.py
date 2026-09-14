@@ -22,11 +22,11 @@ def serialize_json(value: IntegratedRepository) -> dict:
 
 def deserialize_json(data: dict) -> IntegratedRepository:
     out: IntegratedRepository = {}  # type: ignore[typeddict-item]
-    if "integrationId" in data:
+    if data.get("integrationId") is not None:
         out["integration_id"] = data["integrationId"]
     else:
         raise DeserializationError("IntegratedRepository.integration_id required")
-    if "providerResourceId" in data:
+    if data.get("providerResourceId") is not None:
         out["provider_resource_id"] = data["providerResourceId"]
     else:
         raise DeserializationError("IntegratedRepository.provider_resource_id required")

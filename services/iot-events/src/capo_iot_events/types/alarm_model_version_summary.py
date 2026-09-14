@@ -77,27 +77,27 @@ def serialize_json(value: AlarmModelVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> AlarmModelVersionSummary:
     out: AlarmModelVersionSummary = {}  # type: ignore[typeddict-item]
-    if "alarmModelName" in data:
+    if data.get("alarmModelName") is not None:
         out["alarm_model_name"] = data["alarmModelName"]
-    if "alarmModelArn" in data:
+    if data.get("alarmModelArn") is not None:
         out["alarm_model_arn"] = data["alarmModelArn"]
-    if "alarmModelVersion" in data:
+    if data.get("alarmModelVersion") is not None:
         out["alarm_model_version"] = data["alarmModelVersion"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iot_events.types.timestamp
 
         out["creation_time"] = capo_iot_events.types.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdateTime" in data:
+    if data.get("lastUpdateTime") is not None:
         import capo_iot_events.types.timestamp
 
         out["last_update_time"] = capo_iot_events.types.timestamp.deserialize_json(
             data["lastUpdateTime"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot_events.types.alarm_model_version_status
 
         out["status"] = (
@@ -105,6 +105,6 @@ def deserialize_json(data: dict) -> AlarmModelVersionSummary:
                 data["status"]
             )
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

@@ -83,9 +83,10 @@ class ProfileResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_profile_request.CreateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["as2_id"] = as2_id
-        input_["profile_type"] = profile_type
+        input_: capo_transfer.types.create_profile_request.CreateProfileRequest = {
+            "as2_id": as2_id,
+            "profile_type": profile_type,
+        }
         if certificate_ids is not None:
             input_["certificate_ids"] = certificate_ids
         if tags is not None:
@@ -96,6 +97,7 @@ class ProfileResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -132,14 +134,16 @@ class ProfileResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_profile_request.DescribeProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_transfer.types.describe_profile_request.DescribeProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -181,8 +185,9 @@ class ProfileResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_profile_request.UpdateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_transfer.types.update_profile_request.UpdateProfileRequest = {
+            "profile_id": profile_id
+        }
         if certificate_ids is not None:
             input_["certificate_ids"] = certificate_ids
 
@@ -191,6 +196,7 @@ class ProfileResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -225,14 +231,16 @@ class ProfileResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_profile_request.DeleteProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_transfer.types.delete_profile_request.DeleteProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -274,7 +282,7 @@ class ProfileResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_profiles_request.ListProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_profiles_request.ListProfilesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -287,6 +295,7 @@ class ProfileResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -338,9 +347,10 @@ class AsyncProfileResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_profile_request.CreateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["as2_id"] = as2_id
-        input_["profile_type"] = profile_type
+        input_: capo_transfer.types.create_profile_request.CreateProfileRequest = {
+            "as2_id": as2_id,
+            "profile_type": profile_type,
+        }
         if certificate_ids is not None:
             input_["certificate_ids"] = certificate_ids
         if tags is not None:
@@ -351,6 +361,7 @@ class AsyncProfileResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -388,14 +399,16 @@ class AsyncProfileResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_profile_request.DescribeProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_transfer.types.describe_profile_request.DescribeProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -438,8 +451,9 @@ class AsyncProfileResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_profile_request.UpdateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_transfer.types.update_profile_request.UpdateProfileRequest = {
+            "profile_id": profile_id
+        }
         if certificate_ids is not None:
             input_["certificate_ids"] = certificate_ids
 
@@ -448,6 +462,7 @@ class AsyncProfileResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -483,14 +498,16 @@ class AsyncProfileResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_profile_request.DeleteProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_transfer.types.delete_profile_request.DeleteProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -533,7 +550,7 @@ class AsyncProfileResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_profiles_request.ListProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_profiles_request.ListProfilesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -546,4 +563,5 @@ class AsyncProfileResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

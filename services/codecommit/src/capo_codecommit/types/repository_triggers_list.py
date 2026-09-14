@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> RepositoryTriggersList:
 
     out: RepositoryTriggersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecommit.types.repository_trigger.deserialize_aws_json_1_1(item)
         )

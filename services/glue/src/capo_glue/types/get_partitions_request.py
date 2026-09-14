@@ -87,39 +87,39 @@ def serialize_aws_json_1_1(value: GetPartitionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPartitionsRequest:
     out: GetPartitionsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("GetPartitionsRequest.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("GetPartitionsRequest.table_name required")
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Segment" in data:
+    if data.get("Segment") is not None:
         import capo_glue.types.segment
 
         out["segment"] = capo_glue.types.segment.deserialize_aws_json_1_1(
             data["Segment"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ExcludeColumnSchema" in data:
+    if data.get("ExcludeColumnSchema") is not None:
         out["exclude_column_schema"] = data["ExcludeColumnSchema"]
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
-    if "QueryAsOfTime" in data:
+    if data.get("QueryAsOfTime") is not None:
         import capo_glue.types.timestamp
 
         out["query_as_of_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["QueryAsOfTime"]
         )
-    if "AuditContext" in data:
+    if data.get("AuditContext") is not None:
         import capo_glue.types.audit_context
 
         out["audit_context"] = capo_glue.types.audit_context.deserialize_aws_json_1_1(

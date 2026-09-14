@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UpdateOutputList:
 
     out: UpdateOutputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_elementalinference.types.update_output.deserialize_json(item))
     return out

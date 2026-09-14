@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetAccountLinkRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAccountLinkRequest:
     out: GetAccountLinkRequest = {}  # type: ignore[typeddict-item]
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
-    if "LinkedAccountId" in data:
+    if data.get("LinkedAccountId") is not None:
         out["linked_account_id"] = data["LinkedAccountId"]
     return out

@@ -43,21 +43,21 @@ def serialize_aws_json_1_0(value: CreateRepositoryInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRepositoryInput:
     out: CreateRepositoryInput = {}  # type: ignore[typeddict-item]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("CreateRepositoryInput.provider required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateRepositoryInput.name required")
-    if "connectionArn" in data:
+    if data.get("connectionArn") is not None:
         out["connection_arn"] = data["connectionArn"]
     else:
         raise DeserializationError("CreateRepositoryInput.connection_arn required")
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         out["encryption_key"] = data["encryptionKey"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_proton.types.tag_list
 
         out["tags"] = capo_proton.types.tag_list.deserialize_aws_json_1_0(data["tags"])

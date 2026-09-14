@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ConvergenceDetected) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConvergenceDetected:
     out: ConvergenceDetected = {}  # type: ignore[typeddict-item]
-    if "CompleteOnConvergence" in data:
+    if data.get("CompleteOnConvergence") is not None:
         import capo_sagemaker.types.complete_on_convergence
 
         out["complete_on_convergence"] = (

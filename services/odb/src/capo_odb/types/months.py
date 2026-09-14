@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> Months:
 
     out: Months = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_odb.types.month.deserialize_aws_json_1_0(item))
     return out

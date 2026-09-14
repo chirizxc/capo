@@ -228,15 +228,17 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.associate_attribute_group_request.AssociateAttributeGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
-        input_["attribute_group"] = attribute_group
+        input_: capo_service_catalog_appregistry.types.associate_attribute_group_request.AssociateAttributeGroupRequest = {
+            "application": application,
+            "attribute_group": attribute_group,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_resource(
@@ -283,10 +285,11 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.associate_resource_request.AssociateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
-        input_["resource_type"] = resource_type
-        input_["resource"] = resource
+        input_: capo_service_catalog_appregistry.types.associate_resource_request.AssociateResourceRequest = {
+            "application": application,
+            "resource_type": resource_type,
+            "resource": resource,
+        }
         if options is not None:
             input_["options"] = options
 
@@ -295,6 +298,7 @@ class ServiceCatalogAppRegistryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_application(
@@ -340,19 +344,21 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_service_catalog_appregistry.types.create_application_request.CreateApplicationRequest = {
+            "name": name,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_attribute_group(
@@ -399,20 +405,22 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.create_attribute_group_request.CreateAttributeGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_service_catalog_appregistry.types.create_attribute_group_request.CreateAttributeGroupRequest = {
+            "name": name,
+            "attributes": attributes,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["attributes"] = attributes
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_application(
@@ -448,14 +456,16 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
+        input_: capo_service_catalog_appregistry.types.delete_application_request.DeleteApplicationRequest = {
+            "application": application
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_attribute_group(
@@ -491,14 +501,16 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.delete_attribute_group_request.DeleteAttributeGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["attribute_group"] = attribute_group
+        input_: capo_service_catalog_appregistry.types.delete_attribute_group_request.DeleteAttributeGroupRequest = {
+            "attribute_group": attribute_group
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_attribute_group(
@@ -536,15 +548,17 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.disassociate_attribute_group_request.DisassociateAttributeGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
-        input_["attribute_group"] = attribute_group
+        input_: capo_service_catalog_appregistry.types.disassociate_attribute_group_request.DisassociateAttributeGroupRequest = {
+            "application": application,
+            "attribute_group": attribute_group,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_resource(
@@ -585,16 +599,18 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.disassociate_resource_request.DisassociateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
-        input_["resource_type"] = resource_type
-        input_["resource"] = resource
+        input_: capo_service_catalog_appregistry.types.disassociate_resource_request.DisassociateResourceRequest = {
+            "application": application,
+            "resource_type": resource_type,
+            "resource": resource,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_application(
@@ -631,14 +647,16 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
+        input_: capo_service_catalog_appregistry.types.get_application_request.GetApplicationRequest = {
+            "application": application
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_associated_resource(
@@ -690,10 +708,11 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.get_associated_resource_request.GetAssociatedResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
-        input_["resource_type"] = resource_type
-        input_["resource"] = resource
+        input_: capo_service_catalog_appregistry.types.get_associated_resource_request.GetAssociatedResourceRequest = {
+            "application": application,
+            "resource_type": resource_type,
+            "resource": resource,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if resource_tag_status is not None:
@@ -706,6 +725,7 @@ class ServiceCatalogAppRegistryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_attribute_group(
@@ -742,14 +762,16 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.get_attribute_group_request.GetAttributeGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["attribute_group"] = attribute_group
+        input_: capo_service_catalog_appregistry.types.get_attribute_group_request.GetAttributeGroupRequest = {
+            "attribute_group": attribute_group
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_configuration(
@@ -785,6 +807,7 @@ class ServiceCatalogAppRegistryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_applications(
@@ -825,7 +848,7 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog_appregistry.types.list_applications_request.ListApplicationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -836,6 +859,7 @@ class ServiceCatalogAppRegistryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_applications(
@@ -904,8 +928,9 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.list_associated_attribute_groups_request.ListAssociatedAttributeGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
+        input_: capo_service_catalog_appregistry.types.list_associated_attribute_groups_request.ListAssociatedAttributeGroupsRequest = {
+            "application": application
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -916,6 +941,7 @@ class ServiceCatalogAppRegistryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_associated_attribute_groups(
@@ -986,8 +1012,9 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.list_associated_resources_request.ListAssociatedResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
+        input_: capo_service_catalog_appregistry.types.list_associated_resources_request.ListAssociatedResourcesRequest = {
+            "application": application
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -998,6 +1025,7 @@ class ServiceCatalogAppRegistryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_associated_resources(
@@ -1065,7 +1093,7 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.list_attribute_groups_request.ListAttributeGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog_appregistry.types.list_attribute_groups_request.ListAttributeGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1076,6 +1104,7 @@ class ServiceCatalogAppRegistryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_attribute_groups(
@@ -1144,8 +1173,9 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.list_attribute_groups_for_application_request.ListAttributeGroupsForApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
+        input_: capo_service_catalog_appregistry.types.list_attribute_groups_for_application_request.ListAttributeGroupsForApplicationRequest = {
+            "application": application
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1156,6 +1186,7 @@ class ServiceCatalogAppRegistryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_attribute_groups_for_application(
@@ -1218,14 +1249,16 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_service_catalog_appregistry.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_configuration(
@@ -1259,14 +1292,16 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.put_configuration_request.PutConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration"] = configuration
+        input_: capo_service_catalog_appregistry.types.put_configuration_request.PutConfigurationRequest = {
+            "configuration": configuration
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def sync_resource(
@@ -1306,15 +1341,17 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.sync_resource_request.SyncResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
-        input_["resource"] = resource
+        input_: capo_service_catalog_appregistry.types.sync_resource_request.SyncResourceRequest = {
+            "resource_type": resource_type,
+            "resource": resource,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1352,15 +1389,17 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_service_catalog_appregistry.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1398,15 +1437,17 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_service_catalog_appregistry.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_application(
@@ -1450,8 +1491,9 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application"] = application
+        input_: capo_service_catalog_appregistry.types.update_application_request.UpdateApplicationRequest = {
+            "application": application
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1462,6 +1504,7 @@ class ServiceCatalogAppRegistryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_attribute_group(
@@ -1508,8 +1551,9 @@ class ServiceCatalogAppRegistryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog_appregistry.types.update_attribute_group_request.UpdateAttributeGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["attribute_group"] = attribute_group
+        input_: capo_service_catalog_appregistry.types.update_attribute_group_request.UpdateAttributeGroupRequest = {
+            "attribute_group": attribute_group
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1522,6 +1566,7 @@ class ServiceCatalogAppRegistryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

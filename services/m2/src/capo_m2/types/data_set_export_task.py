@@ -40,15 +40,15 @@ def serialize_json(value: DataSetExportTask) -> dict:
 
 def deserialize_json(data: dict) -> DataSetExportTask:
     out: DataSetExportTask = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("DataSetExportTask.task_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("DataSetExportTask.status required")
-    if "summary" in data:
+    if data.get("summary") is not None:
         import capo_m2.types.data_set_export_summary
 
         out["summary"] = capo_m2.types.data_set_export_summary.deserialize_json(
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> DataSetExportTask:
         )
     else:
         raise DeserializationError("DataSetExportTask.summary required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

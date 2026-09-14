@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis_analytics.types.tags
 
         out["tags"] = capo_kinesis_analytics.types.tags.deserialize_aws_json_1_1(

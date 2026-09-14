@@ -29,7 +29,7 @@ def serialize_json(value: PositionSolverDetails) -> dict:
 
 def deserialize_json(data: dict) -> PositionSolverDetails:
     out: PositionSolverDetails = {}  # type: ignore[typeddict-item]
-    if "SemtechGnss" in data:
+    if data.get("SemtechGnss") is not None:
         import capo_iot_wireless.types.semtech_gnss_detail
 
         out["semtech_gnss"] = (

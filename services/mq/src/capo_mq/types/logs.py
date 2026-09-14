@@ -27,8 +27,8 @@ def serialize_json(value: Logs) -> dict:
 
 def deserialize_json(data: dict) -> Logs:
     out: Logs = {}  # type: ignore[typeddict-item]
-    if "audit" in data:
+    if data.get("audit") is not None:
         out["audit"] = data["audit"]
-    if "general" in data:
+    if data.get("general") is not None:
         out["general"] = data["general"]
     return out

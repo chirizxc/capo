@@ -32,12 +32,12 @@ def serialize_json(value: InsightStatus) -> dict:
 
 def deserialize_json(data: dict) -> InsightStatus:
     out: InsightStatus = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_eks.types.insight_status_value
 
         out["status"] = capo_eks.types.insight_status_value.deserialize_json(
             data["status"]
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

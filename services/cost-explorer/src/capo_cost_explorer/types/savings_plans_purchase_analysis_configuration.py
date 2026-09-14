@@ -86,7 +86,7 @@ def serialize_aws_json_1_1(value: SavingsPlansPurchaseAnalysisConfiguration) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseAnalysisConfiguration:
     out: SavingsPlansPurchaseAnalysisConfiguration = {}  # type: ignore[typeddict-item]
-    if "AccountScope" in data:
+    if data.get("AccountScope") is not None:
         import capo_cost_explorer.types.account_scope
 
         out["account_scope"] = (
@@ -94,9 +94,9 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseAnalysisConfigur
                 data["AccountScope"]
             )
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "AnalysisType" in data:
+    if data.get("AnalysisType") is not None:
         import capo_cost_explorer.types.analysis_type
 
         out["analysis_type"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseAnalysisConfigur
         raise DeserializationError(
             "SavingsPlansPurchaseAnalysisConfiguration.analysis_type required"
         )
-    if "SavingsPlansToAdd" in data:
+    if data.get("SavingsPlansToAdd") is not None:
         import capo_cost_explorer.types.savings_plans_to_add
 
         out["savings_plans_to_add"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseAnalysisConfigur
         raise DeserializationError(
             "SavingsPlansPurchaseAnalysisConfiguration.savings_plans_to_add required"
         )
-    if "SavingsPlansToExclude" in data:
+    if data.get("SavingsPlansToExclude") is not None:
         import capo_cost_explorer.types.savings_plans_to_exclude
 
         out["savings_plans_to_exclude"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseAnalysisConfigur
                 data["SavingsPlansToExclude"]
             )
         )
-    if "LookBackTimePeriod" in data:
+    if data.get("LookBackTimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["look_back_time_period"] = (
@@ -140,6 +140,6 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseAnalysisConfigur
         raise DeserializationError(
             "SavingsPlansPurchaseAnalysisConfiguration.look_back_time_period required"
         )
-    if "SavingsPlansTargetCoverage" in data:
+    if data.get("SavingsPlansTargetCoverage") is not None:
         out["savings_plans_target_coverage"] = data["SavingsPlansTargetCoverage"]
     return out

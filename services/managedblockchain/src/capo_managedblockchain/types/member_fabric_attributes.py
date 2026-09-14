@@ -30,8 +30,8 @@ def serialize_json(value: MemberFabricAttributes) -> dict:
 
 def deserialize_json(data: dict) -> MemberFabricAttributes:
     out: MemberFabricAttributes = {}  # type: ignore[typeddict-item]
-    if "AdminUsername" in data:
+    if data.get("AdminUsername") is not None:
         out["admin_username"] = data["AdminUsername"]
-    if "CaEndpoint" in data:
+    if data.get("CaEndpoint") is not None:
         out["ca_endpoint"] = data["CaEndpoint"]
     return out

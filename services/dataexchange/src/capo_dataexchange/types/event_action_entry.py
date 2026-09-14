@@ -55,17 +55,17 @@ def serialize_json(value: EventActionEntry) -> dict:
 
 def deserialize_json(data: dict) -> EventActionEntry:
     out: EventActionEntry = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_dataexchange.types.action
 
         out["action"] = capo_dataexchange.types.action.deserialize_json(data["Action"])
     else:
         raise DeserializationError("EventActionEntry.action required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("EventActionEntry.arn required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["created_at"] = capo_dataexchange.types.timestamp.deserialize_json(
@@ -73,17 +73,17 @@ def deserialize_json(data: dict) -> EventActionEntry:
         )
     else:
         raise DeserializationError("EventActionEntry.created_at required")
-    if "Event" in data:
+    if data.get("Event") is not None:
         import capo_dataexchange.types.event
 
         out["event"] = capo_dataexchange.types.event.deserialize_json(data["Event"])
     else:
         raise DeserializationError("EventActionEntry.event required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("EventActionEntry.id required")
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["updated_at"] = capo_dataexchange.types.timestamp.deserialize_json(

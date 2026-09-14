@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateAIBenchmarkJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAIBenchmarkJobResponse:
     out: CreateAIBenchmarkJobResponse = {}  # type: ignore[typeddict-item]
-    if "AIBenchmarkJobArn" in data:
+    if data.get("AIBenchmarkJobArn") is not None:
         out["ai_benchmark_job_arn"] = data["AIBenchmarkJobArn"]
     return out

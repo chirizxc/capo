@@ -210,7 +210,15 @@ def serialize_json(value: DashIsoGroupSettings) -> dict:
     if "min_buffer_time" in value:
         out["minBufferTime"] = value["min_buffer_time"]
     if "min_final_segment_length" in value:
-        out["minFinalSegmentLength"] = value["min_final_segment_length"]
+        out["minFinalSegmentLength"] = (
+            "NaN"
+            if value["min_final_segment_length"] != value["min_final_segment_length"]
+            else "Infinity"
+            if value["min_final_segment_length"] == float("inf")
+            else "-Infinity"
+            if value["min_final_segment_length"] == float("-inf")
+            else value["min_final_segment_length"]
+        )
     if "mpd_manifest_bandwidth_type" in value:
         import capo_mediaconvert.types.dash_iso_mpd_manifest_bandwidth_type
 
@@ -272,7 +280,7 @@ def serialize_json(value: DashIsoGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> DashIsoGroupSettings:
     out: DashIsoGroupSettings = {}  # type: ignore[typeddict-item]
-    if "additionalManifests" in data:
+    if data.get("additionalManifests") is not None:
         import capo_mediaconvert.types.__list_of_dash_additional_manifest
 
         out["additional_manifests"] = (
@@ -280,7 +288,7 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["additionalManifests"]
             )
         )
-    if "audioChannelConfigSchemeIdUri" in data:
+    if data.get("audioChannelConfigSchemeIdUri") is not None:
         import capo_mediaconvert.types.dash_iso_group_audio_channel_config_scheme_id_uri
 
         out["audio_channel_config_scheme_id_uri"] = (
@@ -288,13 +296,13 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["audioChannelConfigSchemeIdUri"]
             )
         )
-    if "baseUrl" in data:
+    if data.get("baseUrl") is not None:
         out["base_url"] = data["baseUrl"]
-    if "dashIFrameTrickPlayNameModifier" in data:
+    if data.get("dashIFrameTrickPlayNameModifier") is not None:
         out["dash_i_frame_trick_play_name_modifier"] = data[
             "dashIFrameTrickPlayNameModifier"
         ]
-    if "dashManifestStyle" in data:
+    if data.get("dashManifestStyle") is not None:
         import capo_mediaconvert.types.dash_manifest_style
 
         out["dash_manifest_style"] = (
@@ -302,9 +310,9 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["dashManifestStyle"]
             )
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
-    if "destinationSettings" in data:
+    if data.get("destinationSettings") is not None:
         import capo_mediaconvert.types.destination_settings
 
         out["destination_settings"] = (
@@ -312,7 +320,7 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["destinationSettings"]
             )
         )
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediaconvert.types.dash_iso_encryption_settings
 
         out["encryption"] = (
@@ -320,9 +328,9 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["encryption"]
             )
         )
-    if "fragmentLength" in data:
+    if data.get("fragmentLength") is not None:
         out["fragment_length"] = data["fragmentLength"]
-    if "hbbtvCompliance" in data:
+    if data.get("hbbtvCompliance") is not None:
         import capo_mediaconvert.types.dash_iso_hbbtv_compliance
 
         out["hbbtv_compliance"] = (
@@ -330,7 +338,7 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["hbbtvCompliance"]
             )
         )
-    if "imageBasedTrickPlay" in data:
+    if data.get("imageBasedTrickPlay") is not None:
         import capo_mediaconvert.types.dash_iso_image_based_trick_play
 
         out["image_based_trick_play"] = (
@@ -338,7 +346,7 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["imageBasedTrickPlay"]
             )
         )
-    if "imageBasedTrickPlaySettings" in data:
+    if data.get("imageBasedTrickPlaySettings") is not None:
         import capo_mediaconvert.types.dash_iso_image_based_trick_play_settings
 
         out["image_based_trick_play_settings"] = (
@@ -346,7 +354,7 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["imageBasedTrickPlaySettings"]
             )
         )
-    if "imageBasedTrickPlayVariants" in data:
+    if data.get("imageBasedTrickPlayVariants") is not None:
         import capo_mediaconvert.types.__list_of_dash_iso_image_based_trick_play_variant
 
         out["image_based_trick_play_variants"] = (
@@ -354,11 +362,11 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["imageBasedTrickPlayVariants"]
             )
         )
-    if "minBufferTime" in data:
+    if data.get("minBufferTime") is not None:
         out["min_buffer_time"] = data["minBufferTime"]
-    if "minFinalSegmentLength" in data:
-        out["min_final_segment_length"] = data["minFinalSegmentLength"]
-    if "mpdManifestBandwidthType" in data:
+    if data.get("minFinalSegmentLength") is not None:
+        out["min_final_segment_length"] = float(data["minFinalSegmentLength"])
+    if data.get("mpdManifestBandwidthType") is not None:
         import capo_mediaconvert.types.dash_iso_mpd_manifest_bandwidth_type
 
         out["mpd_manifest_bandwidth_type"] = (
@@ -366,7 +374,7 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["mpdManifestBandwidthType"]
             )
         )
-    if "mpdProfile" in data:
+    if data.get("mpdProfile") is not None:
         import capo_mediaconvert.types.dash_iso_mpd_profile
 
         out["mpd_profile"] = (
@@ -374,7 +382,7 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["mpdProfile"]
             )
         )
-    if "ptsOffsetHandlingForBFrames" in data:
+    if data.get("ptsOffsetHandlingForBFrames") is not None:
         import capo_mediaconvert.types.dash_iso_pts_offset_handling_for_b_frames
 
         out["pts_offset_handling_for_b_frames"] = (
@@ -382,7 +390,7 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["ptsOffsetHandlingForBFrames"]
             )
         )
-    if "segmentControl" in data:
+    if data.get("segmentControl") is not None:
         import capo_mediaconvert.types.dash_iso_segment_control
 
         out["segment_control"] = (
@@ -390,9 +398,9 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["segmentControl"]
             )
         )
-    if "segmentLength" in data:
+    if data.get("segmentLength") is not None:
         out["segment_length"] = data["segmentLength"]
-    if "segmentLengthControl" in data:
+    if data.get("segmentLengthControl") is not None:
         import capo_mediaconvert.types.dash_iso_segment_length_control
 
         out["segment_length_control"] = (
@@ -400,7 +408,7 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["segmentLengthControl"]
             )
         )
-    if "videoCompositionOffsets" in data:
+    if data.get("videoCompositionOffsets") is not None:
         import capo_mediaconvert.types.dash_iso_video_composition_offsets
 
         out["video_composition_offsets"] = (
@@ -408,7 +416,7 @@ def deserialize_json(data: dict) -> DashIsoGroupSettings:
                 data["videoCompositionOffsets"]
             )
         )
-    if "writeSegmentTimelineInRepresentation" in data:
+    if data.get("writeSegmentTimelineInRepresentation") is not None:
         import capo_mediaconvert.types.dash_iso_write_segment_timeline_in_representation
 
         out["write_segment_timeline_in_representation"] = (

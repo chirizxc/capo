@@ -28,11 +28,11 @@ def serialize_json(value: CreateTaskTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateTaskTemplateResponse:
     out: CreateTaskTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("CreateTaskTemplateResponse.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("CreateTaskTemplateResponse.arn required")

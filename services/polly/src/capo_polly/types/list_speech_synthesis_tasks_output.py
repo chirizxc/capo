@@ -32,9 +32,9 @@ def serialize_json(value: ListSpeechSynthesisTasksOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListSpeechSynthesisTasksOutput:
     out: ListSpeechSynthesisTasksOutput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SynthesisTasks" in data:
+    if data.get("SynthesisTasks") is not None:
         import capo_polly.types.synthesis_tasks
 
         out["synthesis_tasks"] = capo_polly.types.synthesis_tasks.deserialize_json(

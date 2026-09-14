@@ -51,11 +51,11 @@ def serialize_aws_json_1_1(value: GetEntitlementsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEntitlementsRequest:
     out: GetEntitlementsRequest = {}  # type: ignore[typeddict-item]
-    if "ProductCode" in data:
+    if data.get("ProductCode") is not None:
         out["product_code"] = data["ProductCode"]
     else:
         raise DeserializationError("GetEntitlementsRequest.product_code required")
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_marketplace_entitlement_service.types.get_entitlement_filters
 
         out["filter"] = (
@@ -63,8 +63,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetEntitlementsRequest:
                 data["Filter"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -44,7 +44,7 @@ def serialize_json(value: InputIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> InputIdentifier:
     out: InputIdentifier = {}  # type: ignore[typeddict-item]
-    if "iotEventsInputIdentifier" in data:
+    if data.get("iotEventsInputIdentifier") is not None:
         import capo_iot_events.types.iot_events_input_identifier
 
         out["iot_events_input_identifier"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> InputIdentifier:
                 data["iotEventsInputIdentifier"]
             )
         )
-    if "iotSiteWiseInputIdentifier" in data:
+    if data.get("iotSiteWiseInputIdentifier") is not None:
         import capo_iot_events.types.iot_site_wise_input_identifier
 
         out["iot_site_wise_input_identifier"] = (

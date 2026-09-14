@@ -32,13 +32,13 @@ def serialize_json(value: AuditLogProcessingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AuditLogProcessingConfiguration:
     out: AuditLogProcessingConfiguration = {}  # type: ignore[typeddict-item]
-    if "schema" in data:
+    if data.get("schema") is not None:
         import capo_appfabric.types.schema
 
         out["schema"] = capo_appfabric.types.schema.deserialize_json(data["schema"])
     else:
         raise DeserializationError("AuditLogProcessingConfiguration.schema required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_appfabric.types.format
 
         out["format"] = capo_appfabric.types.format.deserialize_json(data["format"])

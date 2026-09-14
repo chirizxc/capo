@@ -40,20 +40,20 @@ def serialize_aws_json_1_0(value: UpdateProgramManagementAccountRequest) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateProgramManagementAccountRequest:
     out: UpdateProgramManagementAccountRequest = {}  # type: ignore[typeddict-item]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError(
             "UpdateProgramManagementAccountRequest.catalog required"
         )
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError(
             "UpdateProgramManagementAccountRequest.identifier required"
         )
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     return out

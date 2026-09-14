@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.kendra#AWSKendraFrontendService``."""
 
+import uuid
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_kendra._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_kendra._auth._zapros_handler import AuthMiddleware
+from capo_kendra._pagination import resolve_path as _resolve_path
 from capo_kendra._services._aws_config import aws_config
 from capo_kendra._services._pipeline import (
     Interceptor,
@@ -375,16 +378,18 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.associate_entities_to_experience_request.AssociateEntitiesToExperienceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
-        input_["entity_list"] = entity_list
+        input_: capo_kendra.types.associate_entities_to_experience_request.AssociateEntitiesToExperienceRequest = {
+            "id": id,
+            "index_id": index_id,
+            "entity_list": entity_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_personas_to_entities(
@@ -427,16 +432,18 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.associate_personas_to_entities_request.AssociatePersonasToEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
-        input_["personas"] = personas
+        input_: capo_kendra.types.associate_personas_to_entities_request.AssociatePersonasToEntitiesRequest = {
+            "id": id,
+            "index_id": index_id,
+            "personas": personas,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_document(
@@ -480,9 +487,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.batch_delete_document_request.BatchDeleteDocumentRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["document_id_list"] = document_id_list
+        input_: capo_kendra.types.batch_delete_document_request.BatchDeleteDocumentRequest = {
+            "index_id": index_id,
+            "document_id_list": document_id_list,
+        }
         if data_source_sync_job_metric_target is not None:
             input_["data_source_sync_job_metric_target"] = (
                 data_source_sync_job_metric_target
@@ -493,6 +501,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_featured_results_set(
@@ -532,15 +541,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.batch_delete_featured_results_set_request.BatchDeleteFeaturedResultsSetRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["featured_results_set_ids"] = featured_results_set_ids
+        input_: capo_kendra.types.batch_delete_featured_results_set_request.BatchDeleteFeaturedResultsSetRequest = {
+            "index_id": index_id,
+            "featured_results_set_ids": featured_results_set_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_document_status(
@@ -581,15 +592,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.batch_get_document_status_request.BatchGetDocumentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["document_info_list"] = document_info_list
+        input_: capo_kendra.types.batch_get_document_status_request.BatchGetDocumentStatusRequest = {
+            "index_id": index_id,
+            "document_info_list": document_info_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_put_document(
@@ -637,11 +650,12 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.batch_put_document_request.BatchPutDocumentRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.batch_put_document_request.BatchPutDocumentRequest = {
+            "index_id": index_id,
+            "documents": documents,
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
-        input_["documents"] = documents
         if custom_document_enrichment_configuration is not None:
             input_["custom_document_enrichment_configuration"] = (
                 custom_document_enrichment_configuration
@@ -652,6 +666,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def clear_query_suggestions(
@@ -688,14 +703,16 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.clear_query_suggestions_request.ClearQuerySuggestionsRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.clear_query_suggestions_request.ClearQuerySuggestionsRequest = {
+            "index_id": index_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_access_control_configuration(
@@ -751,9 +768,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.create_access_control_configuration_request.CreateAccessControlConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["name"] = name
+        input_: capo_kendra.types.create_access_control_configuration_request.CreateAccessControlConfigurationRequest = {
+            "index_id": index_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if access_control_list is not None:
@@ -762,14 +780,16 @@ class kendraClient:
             input_["hierarchical_access_control_list"] = (
                 hierarchical_access_control_list
             )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_source(
@@ -840,10 +860,11 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.create_data_source_request.CreateDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["index_id"] = index_id
-        input_["type"] = type
+        input_: capo_kendra.types.create_data_source_request.CreateDataSourceRequest = {
+            "name": name,
+            "index_id": index_id,
+            "type": type,
+        }
         if configuration is not None:
             input_["configuration"] = configuration
         if vpc_configuration is not None:
@@ -856,8 +877,9 @@ class kendraClient:
             input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if language_code is not None:
             input_["language_code"] = language_code
         if custom_document_enrichment_configuration is not None:
@@ -870,6 +892,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_experience(
@@ -923,23 +946,26 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.create_experience_request.CreateExperienceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.create_experience_request.CreateExperienceRequest = {
+            "name": name,
+            "index_id": index_id,
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if configuration is not None:
             input_["configuration"] = configuration
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_faq(
@@ -997,19 +1023,21 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.create_faq_request.CreateFaqRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["name"] = name
+        input_: capo_kendra.types.create_faq_request.CreateFaqRequest = {
+            "index_id": index_id,
+            "name": name,
+            "s3_path": s3_path,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["s3_path"] = s3_path
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if file_format is not None:
             input_["file_format"] = file_format
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if language_code is not None:
             input_["language_code"] = language_code
 
@@ -1018,6 +1046,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_featured_results_set(
@@ -1079,9 +1108,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.create_featured_results_set_request.CreateFeaturedResultsSetRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["featured_results_set_name"] = featured_results_set_name
+        input_: capo_kendra.types.create_featured_results_set_request.CreateFeaturedResultsSetRequest = {
+            "index_id": index_id,
+            "featured_results_set_name": featured_results_set_name,
+        }
         if description is not None:
             input_["description"] = description
         if client_token is not None:
@@ -1100,6 +1130,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_index(
@@ -1167,19 +1198,21 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.create_index_request.CreateIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_kendra.types.create_index_request.CreateIndexRequest = {
+            "name": name,
+            "role_arn": role_arn,
+        }
         if edition is not None:
             input_["edition"] = edition
-        input_["role_arn"] = role_arn
         if server_side_encryption_configuration is not None:
             input_["server_side_encryption_configuration"] = (
                 server_side_encryption_configuration
             )
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if user_token_configurations is not None:
@@ -1196,6 +1229,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_query_suggestions_block_list(
@@ -1249,15 +1283,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.create_query_suggestions_block_list_request.CreateQuerySuggestionsBlockListRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["name"] = name
+        input_: capo_kendra.types.create_query_suggestions_block_list_request.CreateQuerySuggestionsBlockListRequest = {
+            "index_id": index_id,
+            "name": name,
+            "source_s3_path": source_s3_path,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["source_s3_path"] = source_s3_path
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["role_arn"] = role_arn
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1266,6 +1302,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_thesaurus(
@@ -1319,23 +1356,26 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.create_thesaurus_request.CreateThesaurusRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["name"] = name
+        input_: capo_kendra.types.create_thesaurus_request.CreateThesaurusRequest = {
+            "index_id": index_id,
+            "name": name,
+            "role_arn": role_arn,
+            "source_s3_path": source_s3_path,
+        }
         if description is not None:
             input_["description"] = description
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
-        input_["source_s3_path"] = source_s3_path
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_access_control_configuration(
@@ -1376,15 +1416,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.delete_access_control_configuration_request.DeleteAccessControlConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["id"] = id
+        input_: capo_kendra.types.delete_access_control_configuration_request.DeleteAccessControlConfigurationRequest = {
+            "index_id": index_id,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_data_source(
@@ -1423,15 +1465,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.delete_data_source_request.DeleteDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.delete_data_source_request.DeleteDataSourceRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_experience(
@@ -1472,15 +1516,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.delete_experience_request.DeleteExperienceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.delete_experience_request.DeleteExperienceRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_faq(
@@ -1519,15 +1565,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.delete_faq_request.DeleteFaqRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.delete_faq_request.DeleteFaqRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_index(
@@ -1564,14 +1612,14 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.delete_index_request.DeleteIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_kendra.types.delete_index_request.DeleteIndexRequest = {"id": id}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_principal_mapping(
@@ -1618,11 +1666,12 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.delete_principal_mapping_request.DeletePrincipalMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.delete_principal_mapping_request.DeletePrincipalMappingRequest = {
+            "index_id": index_id,
+            "group_id": group_id,
+        }
         if data_source_id is not None:
             input_["data_source_id"] = data_source_id
-        input_["group_id"] = group_id
         if ordering_id is not None:
             input_["ordering_id"] = ordering_id
 
@@ -1631,6 +1680,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_query_suggestions_block_list(
@@ -1669,15 +1719,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.delete_query_suggestions_block_list_request.DeleteQuerySuggestionsBlockListRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["id"] = id
+        input_: capo_kendra.types.delete_query_suggestions_block_list_request.DeleteQuerySuggestionsBlockListRequest = {
+            "index_id": index_id,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_thesaurus(
@@ -1716,15 +1768,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.delete_thesaurus_request.DeleteThesaurusRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.delete_thesaurus_request.DeleteThesaurusRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_access_control_configuration(
@@ -1764,15 +1818,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.describe_access_control_configuration_request.DescribeAccessControlConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["id"] = id
+        input_: capo_kendra.types.describe_access_control_configuration_request.DescribeAccessControlConfigurationRequest = {
+            "index_id": index_id,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_data_source(
@@ -1812,15 +1868,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.describe_data_source_request.DescribeDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.describe_data_source_request.DescribeDataSourceRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_experience(
@@ -1860,15 +1918,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.describe_experience_request.DescribeExperienceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.describe_experience_request.DescribeExperienceRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_faq(
@@ -1908,15 +1968,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.describe_faq_request.DescribeFaqRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.describe_faq_request.DescribeFaqRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_featured_results_set(
@@ -1956,15 +2018,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.describe_featured_results_set_request.DescribeFeaturedResultsSetRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["featured_results_set_id"] = featured_results_set_id
+        input_: capo_kendra.types.describe_featured_results_set_request.DescribeFeaturedResultsSetRequest = {
+            "index_id": index_id,
+            "featured_results_set_id": featured_results_set_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_index(
@@ -2002,14 +2066,16 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.describe_index_request.DescribeIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_kendra.types.describe_index_request.DescribeIndexRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_principal_mapping(
@@ -2053,17 +2119,19 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.describe_principal_mapping_request.DescribePrincipalMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.describe_principal_mapping_request.DescribePrincipalMappingRequest = {
+            "index_id": index_id,
+            "group_id": group_id,
+        }
         if data_source_id is not None:
             input_["data_source_id"] = data_source_id
-        input_["group_id"] = group_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_query_suggestions_block_list(
@@ -2103,15 +2171,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.describe_query_suggestions_block_list_request.DescribeQuerySuggestionsBlockListRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["id"] = id
+        input_: capo_kendra.types.describe_query_suggestions_block_list_request.DescribeQuerySuggestionsBlockListRequest = {
+            "index_id": index_id,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_query_suggestions_config(
@@ -2149,14 +2219,16 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.describe_query_suggestions_config_request.DescribeQuerySuggestionsConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.describe_query_suggestions_config_request.DescribeQuerySuggestionsConfigRequest = {
+            "index_id": index_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_thesaurus(
@@ -2196,15 +2268,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.describe_thesaurus_request.DescribeThesaurusRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.describe_thesaurus_request.DescribeThesaurusRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_entities_from_experience(
@@ -2246,16 +2320,18 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.disassociate_entities_from_experience_request.DisassociateEntitiesFromExperienceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
-        input_["entity_list"] = entity_list
+        input_: capo_kendra.types.disassociate_entities_from_experience_request.DisassociateEntitiesFromExperienceRequest = {
+            "id": id,
+            "index_id": index_id,
+            "entity_list": entity_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_personas_from_entities(
@@ -2297,16 +2373,18 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.disassociate_personas_from_entities_request.DisassociatePersonasFromEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
-        input_["entity_ids"] = entity_ids
+        input_: capo_kendra.types.disassociate_personas_from_entities_request.DisassociatePersonasFromEntitiesRequest = {
+            "id": id,
+            "index_id": index_id,
+            "entity_ids": entity_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_suggestions(
@@ -2358,9 +2436,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.get_query_suggestions_request.GetQuerySuggestionsRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["query_text"] = query_text
+        input_: capo_kendra.types.get_query_suggestions_request.GetQuerySuggestionsRequest = {
+            "index_id": index_id,
+            "query_text": query_text,
+        }
         if max_suggestions_count is not None:
             input_["max_suggestions_count"] = max_suggestions_count
         if suggestion_types is not None:
@@ -2373,6 +2452,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_snapshots(
@@ -2417,10 +2497,11 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.get_snapshots_request.GetSnapshotsRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["interval"] = interval
-        input_["metric_type"] = metric_type
+        input_: capo_kendra.types.get_snapshots_request.GetSnapshotsRequest = {
+            "index_id": index_id,
+            "interval": interval,
+            "metric_type": metric_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2431,7 +2512,33 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_snapshots(
+        self,
+        index_id: "capo_kendra.types.index_id.IndexId",
+        interval: "capo_kendra.types.interval.Interval",
+        metric_type: "capo_kendra.types.metric_type.MetricType",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_kendra.types.integer.Integer"] = None,
+    ) -> "Iterator[capo_kendra.types.get_snapshots_response.GetSnapshotsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_snapshots(
+                index_id,
+                interval,
+                metric_type,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_access_control_configurations(
         self,
@@ -2474,8 +2581,9 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_access_control_configurations_request.ListAccessControlConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_access_control_configurations_request.ListAccessControlConfigurationsRequest = {
+            "index_id": index_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2486,7 +2594,31 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_access_control_configurations(
+        self,
+        index_id: "capo_kendra.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.string.String"] = None,
+        max_results: Optional[
+            "capo_kendra.types.max_results_integer_for_list_access_control_configurations_request.MaxResultsIntegerForListAccessControlConfigurationsRequest"
+        ] = None,
+    ) -> "Iterator[capo_kendra.types.list_access_control_configurations_response.ListAccessControlConfigurationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_access_control_configurations(
+                index_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_data_sources(
         self,
@@ -2529,8 +2661,9 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_data_sources_request.ListDataSourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_data_sources_request.ListDataSourcesRequest = {
+            "index_id": index_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2541,7 +2674,33 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_data_sources(
+        self,
+        index_id: "capo_kendra.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kendra.types.max_results_integer_for_list_data_sources_request.MaxResultsIntegerForListDataSourcesRequest"
+        ] = None,
+    ) -> (
+        "Iterator[capo_kendra.types.list_data_sources_response.ListDataSourcesResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_data_sources(
+                index_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_data_source_sync_jobs(
         self,
@@ -2593,9 +2752,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_data_source_sync_jobs_request.ListDataSourceSyncJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_data_source_sync_jobs_request.ListDataSourceSyncJobsRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2610,7 +2770,39 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_data_source_sync_jobs(
+        self,
+        id: "capo_kendra.types.data_source_id.DataSourceId",
+        index_id: "capo_kendra.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kendra.types.max_results_integer_for_list_data_source_sync_jobs_request.MaxResultsIntegerForListDataSourceSyncJobsRequest"
+        ] = None,
+        start_time_filter: Optional["capo_kendra.types.time_range.TimeRange"] = None,
+        status_filter: Optional[
+            "capo_kendra.types.data_source_sync_job_status.DataSourceSyncJobStatus"
+        ] = None,
+    ) -> "Iterator[capo_kendra.types.list_data_source_sync_jobs_response.ListDataSourceSyncJobsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_data_source_sync_jobs(
+                id,
+                index_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                start_time_filter=start_time_filter,
+                status_filter=status_filter,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_entity_personas(
         self,
@@ -2655,9 +2847,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_entity_personas_request.ListEntityPersonasRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_entity_personas_request.ListEntityPersonasRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2668,7 +2861,33 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_entity_personas(
+        self,
+        id: "capo_kendra.types.experience_id.ExperienceId",
+        index_id: "capo_kendra.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kendra.types.max_results_integer_for_list_entity_personas_request.MaxResultsIntegerForListEntityPersonasRequest"
+        ] = None,
+    ) -> "Iterator[capo_kendra.types.list_entity_personas_response.ListEntityPersonasResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_entity_personas(
+                id,
+                index_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_experience_entities(
         self,
@@ -2709,9 +2928,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_experience_entities_request.ListExperienceEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_experience_entities_request.ListExperienceEntitiesRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2720,7 +2940,29 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_experience_entities(
+        self,
+        id: "capo_kendra.types.experience_id.ExperienceId",
+        index_id: "capo_kendra.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_kendra.types.list_experience_entities_response.ListExperienceEntitiesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_experience_entities(
+                id,
+                index_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_experiences(
         self,
@@ -2763,8 +3005,9 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_experiences_request.ListExperiencesRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_experiences_request.ListExperiencesRequest = {
+            "index_id": index_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2775,7 +3018,33 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_experiences(
+        self,
+        index_id: "capo_kendra.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kendra.types.max_results_integer_for_list_experiences_request.MaxResultsIntegerForListExperiencesRequest"
+        ] = None,
+    ) -> (
+        "Iterator[capo_kendra.types.list_experiences_response.ListExperiencesResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_experiences(
+                index_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_faqs(
         self,
@@ -2816,8 +3085,9 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_faqs_request.ListFaqsRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_faqs_request.ListFaqsRequest = {
+            "index_id": index_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2828,7 +3098,31 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_faqs(
+        self,
+        index_id: "capo_kendra.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kendra.types.max_results_integer_for_list_faqs_request.MaxResultsIntegerForListFaqsRequest"
+        ] = None,
+    ) -> "Iterator[capo_kendra.types.list_faqs_response.ListFaqsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_faqs(
+                index_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_featured_results_sets(
         self,
@@ -2871,8 +3165,9 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_featured_results_sets_request.ListFeaturedResultsSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_featured_results_sets_request.ListFeaturedResultsSetsRequest = {
+            "index_id": index_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2883,6 +3178,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_groups_older_than_ordering_id(
@@ -2933,11 +3229,12 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_groups_older_than_ordering_id_request.ListGroupsOlderThanOrderingIdRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_groups_older_than_ordering_id_request.ListGroupsOlderThanOrderingIdRequest = {
+            "index_id": index_id,
+            "ordering_id": ordering_id,
+        }
         if data_source_id is not None:
             input_["data_source_id"] = data_source_id
-        input_["ordering_id"] = ordering_id
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2948,7 +3245,37 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_groups_older_than_ordering_id(
+        self,
+        index_id: "capo_kendra.types.index_id.IndexId",
+        ordering_id: "capo_kendra.types.principal_ordering_id.PrincipalOrderingId",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        data_source_id: Optional[
+            "capo_kendra.types.data_source_id.DataSourceId"
+        ] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kendra.types.max_results_integer_for_list_principals_request.MaxResultsIntegerForListPrincipalsRequest"
+        ] = None,
+    ) -> "Iterator[capo_kendra.types.list_groups_older_than_ordering_id_response.ListGroupsOlderThanOrderingIdResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_groups_older_than_ordering_id(
+                index_id,
+                ordering_id,
+                config_overrides=config_overrides,
+                data_source_id=data_source_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_indices(
         self,
@@ -2988,7 +3315,7 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_indices_request.ListIndicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kendra.types.list_indices_request.ListIndicesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2999,7 +3326,29 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_indices(
+        self,
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kendra.types.max_results_integer_for_list_indices_request.MaxResultsIntegerForListIndicesRequest"
+        ] = None,
+    ) -> "Iterator[capo_kendra.types.list_indices_response.ListIndicesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_indices(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_query_suggestions_block_lists(
         self,
@@ -3042,8 +3391,9 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_query_suggestions_block_lists_request.ListQuerySuggestionsBlockListsRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_query_suggestions_block_lists_request.ListQuerySuggestionsBlockListsRequest = {
+            "index_id": index_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3054,7 +3404,31 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_query_suggestions_block_lists(
+        self,
+        index_id: "capo_kendra.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kendra.types.max_results_integer_for_list_query_suggestions_block_lists.MaxResultsIntegerForListQuerySuggestionsBlockLists"
+        ] = None,
+    ) -> "Iterator[capo_kendra.types.list_query_suggestions_block_lists_response.ListQuerySuggestionsBlockListsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_query_suggestions_block_lists(
+                index_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -3093,14 +3467,16 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_kendra.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_thesauri(
@@ -3144,8 +3520,9 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.list_thesauri_request.ListThesauriRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.list_thesauri_request.ListThesauriRequest = {
+            "index_id": index_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3156,7 +3533,31 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_thesauri(
+        self,
+        index_id: "capo_kendra.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[kendraClientConfig] = None,
+        next_token: Optional["capo_kendra.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kendra.types.max_results_integer_for_list_thesauri_request.MaxResultsIntegerForListThesauriRequest"
+        ] = None,
+    ) -> "Iterator[capo_kendra.types.list_thesauri_response.ListThesauriResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_thesauri(
+                index_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def put_principal_mapping(
         self,
@@ -3207,12 +3608,13 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.put_principal_mapping_request.PutPrincipalMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.put_principal_mapping_request.PutPrincipalMappingRequest = {
+            "index_id": index_id,
+            "group_id": group_id,
+            "group_members": group_members,
+        }
         if data_source_id is not None:
             input_["data_source_id"] = data_source_id
-        input_["group_id"] = group_id
-        input_["group_members"] = group_members
         if ordering_id is not None:
             input_["ordering_id"] = ordering_id
         if role_arn is not None:
@@ -3223,6 +3625,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def query(
@@ -3304,8 +3707,7 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.query_request.QueryRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.query_request.QueryRequest = {"index_id": index_id}
         if query_text is not None:
             input_["query_text"] = query_text
         if attribute_filter is not None:
@@ -3342,6 +3744,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def retrieve(
@@ -3399,9 +3802,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.retrieve_request.RetrieveRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["query_text"] = query_text
+        input_: capo_kendra.types.retrieve_request.RetrieveRequest = {
+            "index_id": index_id,
+            "query_text": query_text,
+        }
         if attribute_filter is not None:
             input_["attribute_filter"] = attribute_filter
         if requested_document_attributes is not None:
@@ -3422,6 +3826,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_data_source_sync_job(
@@ -3463,15 +3868,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.start_data_source_sync_job_request.StartDataSourceSyncJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.start_data_source_sync_job_request.StartDataSourceSyncJobRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_data_source_sync_job(
@@ -3509,15 +3916,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.stop_data_source_sync_job_request.StopDataSourceSyncJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.stop_data_source_sync_job_request.StopDataSourceSyncJobRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def submit_feedback(
@@ -3564,9 +3973,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.submit_feedback_request.SubmitFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["query_id"] = query_id
+        input_: capo_kendra.types.submit_feedback_request.SubmitFeedbackRequest = {
+            "index_id": index_id,
+            "query_id": query_id,
+        }
         if click_feedback_items is not None:
             input_["click_feedback_items"] = click_feedback_items
         if relevance_feedback_items is not None:
@@ -3577,6 +3987,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -3616,15 +4027,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_kendra.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -3664,15 +4077,17 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_kendra.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_access_control_configuration(
@@ -3728,9 +4143,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.update_access_control_configuration_request.UpdateAccessControlConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["id"] = id
+        input_: capo_kendra.types.update_access_control_configuration_request.UpdateAccessControlConfigurationRequest = {
+            "index_id": index_id,
+            "id": id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -3747,6 +4163,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_data_source(
@@ -3807,11 +4224,12 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.update_data_source_request.UpdateDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_kendra.types.update_data_source_request.UpdateDataSourceRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
         if name is not None:
             input_["name"] = name
-        input_["index_id"] = index_id
         if configuration is not None:
             input_["configuration"] = configuration
         if vpc_configuration is not None:
@@ -3834,6 +4252,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_experience(
@@ -3882,11 +4301,12 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.update_experience_request.UpdateExperienceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_kendra.types.update_experience_request.UpdateExperienceRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
         if name is not None:
             input_["name"] = name
-        input_["index_id"] = index_id
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if configuration is not None:
@@ -3899,6 +4319,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_featured_results_set(
@@ -3957,9 +4378,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.update_featured_results_set_request.UpdateFeaturedResultsSetRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["featured_results_set_id"] = featured_results_set_id
+        input_: capo_kendra.types.update_featured_results_set_request.UpdateFeaturedResultsSetRequest = {
+            "index_id": index_id,
+            "featured_results_set_id": featured_results_set_id,
+        }
         if featured_results_set_name is not None:
             input_["featured_results_set_name"] = featured_results_set_name
         if description is not None:
@@ -3976,6 +4398,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_index(
@@ -4039,8 +4462,7 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.update_index_request.UpdateIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_kendra.types.update_index_request.UpdateIndexRequest = {"id": id}
         if name is not None:
             input_["name"] = name
         if role_arn is not None:
@@ -4067,6 +4489,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_query_suggestions_block_list(
@@ -4115,9 +4538,10 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.update_query_suggestions_block_list_request.UpdateQuerySuggestionsBlockListRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
-        input_["id"] = id
+        input_: capo_kendra.types.update_query_suggestions_block_list_request.UpdateQuerySuggestionsBlockListRequest = {
+            "index_id": index_id,
+            "id": id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -4132,6 +4556,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_query_suggestions_config(
@@ -4190,8 +4615,9 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.update_query_suggestions_config_request.UpdateQuerySuggestionsConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["index_id"] = index_id
+        input_: capo_kendra.types.update_query_suggestions_config_request.UpdateQuerySuggestionsConfigRequest = {
+            "index_id": index_id
+        }
         if mode is not None:
             input_["mode"] = mode
         if query_log_look_back_window_in_days is not None:
@@ -4216,6 +4642,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_thesaurus(
@@ -4261,11 +4688,12 @@ class kendraClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kendra.types.update_thesaurus_request.UpdateThesaurusRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_kendra.types.update_thesaurus_request.UpdateThesaurusRequest = {
+            "id": id,
+            "index_id": index_id,
+        }
         if name is not None:
             input_["name"] = name
-        input_["index_id"] = index_id
         if description is not None:
             input_["description"] = description
         if role_arn is not None:
@@ -4278,6 +4706,7 @@ class kendraClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

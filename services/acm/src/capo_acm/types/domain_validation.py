@@ -79,11 +79,11 @@ def serialize_aws_json_1_1(value: DomainValidation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainValidation:
     out: DomainValidation = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("DomainValidation.domain_name required")
-    if "ValidationEmails" in data:
+    if data.get("ValidationEmails") is not None:
         import capo_acm.types.validation_email_list
 
         out["validation_emails"] = (
@@ -91,9 +91,9 @@ def deserialize_aws_json_1_1(data: dict) -> DomainValidation:
                 data["ValidationEmails"]
             )
         )
-    if "ValidationDomain" in data:
+    if data.get("ValidationDomain") is not None:
         out["validation_domain"] = data["ValidationDomain"]
-    if "ValidationStatus" in data:
+    if data.get("ValidationStatus") is not None:
         import capo_acm.types.domain_status
 
         out["validation_status"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainValidation:
                 data["ValidationStatus"]
             )
         )
-    if "ResourceRecord" in data:
+    if data.get("ResourceRecord") is not None:
         import capo_acm.types.resource_record
 
         out["resource_record"] = (
@@ -109,13 +109,13 @@ def deserialize_aws_json_1_1(data: dict) -> DomainValidation:
                 data["ResourceRecord"]
             )
         )
-    if "HttpRedirect" in data:
+    if data.get("HttpRedirect") is not None:
         import capo_acm.types.http_redirect
 
         out["http_redirect"] = capo_acm.types.http_redirect.deserialize_aws_json_1_1(
             data["HttpRedirect"]
         )
-    if "ValidationMethod" in data:
+    if data.get("ValidationMethod") is not None:
         import capo_acm.types.validation_method
 
         out["validation_method"] = (

@@ -36,11 +36,11 @@ def serialize_json(value: UpdateDatasourcePackagesRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDatasourcePackagesRequest:
     out: UpdateDatasourcePackagesRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError("UpdateDatasourcePackagesRequest.graph_arn required")
-    if "DatasourcePackages" in data:
+    if data.get("DatasourcePackages") is not None:
         import capo_detective.types.datasource_package_list
 
         out["datasource_packages"] = (

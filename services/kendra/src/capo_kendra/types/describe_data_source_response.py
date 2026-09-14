@@ -132,19 +132,19 @@ def serialize_aws_json_1_1(value: DescribeDataSourceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDataSourceResponse:
     out: DescribeDataSourceResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kendra.types.data_source_type
 
         out["type"] = capo_kendra.types.data_source_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_kendra.types.data_source_configuration
 
         out["configuration"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDataSourceResponse:
                 data["Configuration"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -160,35 +160,35 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDataSourceResponse:
                 data["VpcConfiguration"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["UpdatedAt"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.data_source_status
 
         out["status"] = capo_kendra.types.data_source_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         out["schedule"] = data["Schedule"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "CustomDocumentEnrichmentConfiguration" in data:
+    if data.get("CustomDocumentEnrichmentConfiguration") is not None:
         import capo_kendra.types.custom_document_enrichment_configuration
 
         out["custom_document_enrichment_configuration"] = (

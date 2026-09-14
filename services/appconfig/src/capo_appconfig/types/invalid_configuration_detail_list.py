@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> InvalidConfigurationDetailList:
 
     out: InvalidConfigurationDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appconfig.types.invalid_configuration_detail.deserialize_json(item)
         )

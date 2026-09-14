@@ -26,7 +26,7 @@ def serialize_json(value: BatchGetChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetChannelRequest:
     out: BatchGetChannelRequest = {}  # type: ignore[typeddict-item]
-    if "arns" in data:
+    if data.get("arns") is not None:
         import capo_ivs.types.channel_arn_list
 
         out["arns"] = capo_ivs.types.channel_arn_list.deserialize_json(data["arns"])

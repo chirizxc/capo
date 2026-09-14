@@ -303,13 +303,13 @@ def serialize_aws_json_1_1(value: OracleSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OracleSettings:
     out: OracleSettings = {}  # type: ignore[typeddict-item]
-    if "AddSupplementalLogging" in data:
+    if data.get("AddSupplementalLogging") is not None:
         out["add_supplemental_logging"] = data["AddSupplementalLogging"]
-    if "ArchivedLogDestId" in data:
+    if data.get("ArchivedLogDestId") is not None:
         out["archived_log_dest_id"] = data["ArchivedLogDestId"]
-    if "AdditionalArchivedLogDestId" in data:
+    if data.get("AdditionalArchivedLogDestId") is not None:
         out["additional_archived_log_dest_id"] = data["AdditionalArchivedLogDestId"]
-    if "ExtraArchivedLogDestIds" in data:
+    if data.get("ExtraArchivedLogDestIds") is not None:
         import capo_database_migration_service.types.integer_list
 
         out["extra_archived_log_dest_ids"] = (
@@ -317,35 +317,35 @@ def deserialize_aws_json_1_1(data: dict) -> OracleSettings:
                 data["ExtraArchivedLogDestIds"]
             )
         )
-    if "AllowSelectNestedTables" in data:
+    if data.get("AllowSelectNestedTables") is not None:
         out["allow_select_nested_tables"] = data["AllowSelectNestedTables"]
-    if "ParallelAsmReadThreads" in data:
+    if data.get("ParallelAsmReadThreads") is not None:
         out["parallel_asm_read_threads"] = data["ParallelAsmReadThreads"]
-    if "ReadAheadBlocks" in data:
+    if data.get("ReadAheadBlocks") is not None:
         out["read_ahead_blocks"] = data["ReadAheadBlocks"]
-    if "AccessAlternateDirectly" in data:
+    if data.get("AccessAlternateDirectly") is not None:
         out["access_alternate_directly"] = data["AccessAlternateDirectly"]
-    if "UseAlternateFolderForOnline" in data:
+    if data.get("UseAlternateFolderForOnline") is not None:
         out["use_alternate_folder_for_online"] = data["UseAlternateFolderForOnline"]
-    if "OraclePathPrefix" in data:
+    if data.get("OraclePathPrefix") is not None:
         out["oracle_path_prefix"] = data["OraclePathPrefix"]
-    if "UsePathPrefix" in data:
+    if data.get("UsePathPrefix") is not None:
         out["use_path_prefix"] = data["UsePathPrefix"]
-    if "ReplacePathPrefix" in data:
+    if data.get("ReplacePathPrefix") is not None:
         out["replace_path_prefix"] = data["ReplacePathPrefix"]
-    if "EnableHomogenousTablespace" in data:
+    if data.get("EnableHomogenousTablespace") is not None:
         out["enable_homogenous_tablespace"] = data["EnableHomogenousTablespace"]
-    if "DirectPathNoLog" in data:
+    if data.get("DirectPathNoLog") is not None:
         out["direct_path_no_log"] = data["DirectPathNoLog"]
-    if "ArchivedLogsOnly" in data:
+    if data.get("ArchivedLogsOnly") is not None:
         out["archived_logs_only"] = data["ArchivedLogsOnly"]
-    if "AsmPassword" in data:
+    if data.get("AsmPassword") is not None:
         out["asm_password"] = data["AsmPassword"]
-    if "AsmServer" in data:
+    if data.get("AsmServer") is not None:
         out["asm_server"] = data["AsmServer"]
-    if "AsmUser" in data:
+    if data.get("AsmUser") is not None:
         out["asm_user"] = data["AsmUser"]
-    if "CharLengthSemantics" in data:
+    if data.get("CharLengthSemantics") is not None:
         import capo_database_migration_service.types.char_length_semantics
 
         out["char_length_semantics"] = (
@@ -353,63 +353,63 @@ def deserialize_aws_json_1_1(data: dict) -> OracleSettings:
                 data["CharLengthSemantics"]
             )
         )
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "DirectPathParallelLoad" in data:
+    if data.get("DirectPathParallelLoad") is not None:
         out["direct_path_parallel_load"] = data["DirectPathParallelLoad"]
-    if "FailTasksOnLobTruncation" in data:
+    if data.get("FailTasksOnLobTruncation") is not None:
         out["fail_tasks_on_lob_truncation"] = data["FailTasksOnLobTruncation"]
-    if "NumberDatatypeScale" in data:
+    if data.get("NumberDatatypeScale") is not None:
         out["number_datatype_scale"] = data["NumberDatatypeScale"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "ReadTableSpaceName" in data:
+    if data.get("ReadTableSpaceName") is not None:
         out["read_table_space_name"] = data["ReadTableSpaceName"]
-    if "RetryInterval" in data:
+    if data.get("RetryInterval") is not None:
         out["retry_interval"] = data["RetryInterval"]
-    if "SecurityDbEncryption" in data:
+    if data.get("SecurityDbEncryption") is not None:
         out["security_db_encryption"] = data["SecurityDbEncryption"]
-    if "SecurityDbEncryptionName" in data:
+    if data.get("SecurityDbEncryptionName") is not None:
         out["security_db_encryption_name"] = data["SecurityDbEncryptionName"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "SpatialDataOptionToGeoJsonFunctionName" in data:
+    if data.get("SpatialDataOptionToGeoJsonFunctionName") is not None:
         out["spatial_data_option_to_geo_json_function_name"] = data[
             "SpatialDataOptionToGeoJsonFunctionName"
         ]
-    if "StandbyDelayTime" in data:
+    if data.get("StandbyDelayTime") is not None:
         out["standby_delay_time"] = data["StandbyDelayTime"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "UseBFile" in data:
+    if data.get("UseBFile") is not None:
         out["use_b_file"] = data["UseBFile"]
-    if "UseDirectPathFullLoad" in data:
+    if data.get("UseDirectPathFullLoad") is not None:
         out["use_direct_path_full_load"] = data["UseDirectPathFullLoad"]
-    if "UseLogminerReader" in data:
+    if data.get("UseLogminerReader") is not None:
         out["use_logminer_reader"] = data["UseLogminerReader"]
-    if "SecretsManagerAccessRoleArn" in data:
+    if data.get("SecretsManagerAccessRoleArn") is not None:
         out["secrets_manager_access_role_arn"] = data["SecretsManagerAccessRoleArn"]
-    if "SecretsManagerSecretId" in data:
+    if data.get("SecretsManagerSecretId") is not None:
         out["secrets_manager_secret_id"] = data["SecretsManagerSecretId"]
-    if "SecretsManagerOracleAsmAccessRoleArn" in data:
+    if data.get("SecretsManagerOracleAsmAccessRoleArn") is not None:
         out["secrets_manager_oracle_asm_access_role_arn"] = data[
             "SecretsManagerOracleAsmAccessRoleArn"
         ]
-    if "SecretsManagerOracleAsmSecretId" in data:
+    if data.get("SecretsManagerOracleAsmSecretId") is not None:
         out["secrets_manager_oracle_asm_secret_id"] = data[
             "SecretsManagerOracleAsmSecretId"
         ]
-    if "TrimSpaceInChar" in data:
+    if data.get("TrimSpaceInChar") is not None:
         out["trim_space_in_char"] = data["TrimSpaceInChar"]
-    if "ConvertTimestampWithZoneToUTC" in data:
+    if data.get("ConvertTimestampWithZoneToUTC") is not None:
         out["convert_timestamp_with_zone_to_utc"] = data[
             "ConvertTimestampWithZoneToUTC"
         ]
-    if "OpenTransactionWindow" in data:
+    if data.get("OpenTransactionWindow") is not None:
         out["open_transaction_window"] = data["OpenTransactionWindow"]
-    if "AuthenticationMethod" in data:
+    if data.get("AuthenticationMethod") is not None:
         import capo_database_migration_service.types.oracle_authentication_method
 
         out["authentication_method"] = (

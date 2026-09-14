@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_route53globalresolver._auth._signers
@@ -112,11 +113,13 @@ class DNSView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.create_dns_view_input.CreateDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["global_resolver_id"] = global_resolver_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_route53globalresolver.types.create_dns_view_input.CreateDNSViewInput = {
+            "global_resolver_id": global_resolver_id,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if dnssec_validation is not None:
             input_["dnssec_validation"] = dnssec_validation
         if edns_client_subnet is not None:
@@ -133,6 +136,7 @@ class DNSView:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -170,14 +174,16 @@ class DNSView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_dns_view_input.GetDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.get_dns_view_input.GetDNSViewInput = {
+            "dns_view_id": dns_view_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -237,8 +243,9 @@ class DNSView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_dns_view_input.UpdateDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.update_dns_view_input.UpdateDNSViewInput = {
+            "dns_view_id": dns_view_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -255,6 +262,7 @@ class DNSView:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -293,14 +301,16 @@ class DNSView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.delete_dns_view_input.DeleteDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.delete_dns_view_input.DeleteDNSViewInput = {
+            "dns_view_id": dns_view_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -342,18 +352,20 @@ class DNSView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_dns_views_input.ListDNSViewsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_dns_views_input.ListDNSViewsInput = {
+            "global_resolver_id": global_resolver_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["global_resolver_id"] = global_resolver_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_dns_view(
@@ -395,14 +407,16 @@ class DNSView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.disable_dns_view_input.DisableDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.disable_dns_view_input.DisableDNSViewInput = {
+            "dns_view_id": dns_view_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_dns_view(
@@ -442,14 +456,16 @@ class DNSView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.enable_dns_view_input.EnableDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.enable_dns_view_input.EnableDNSViewInput = {
+            "dns_view_id": dns_view_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -519,11 +535,13 @@ class AsyncDNSView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.create_dns_view_input.CreateDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["global_resolver_id"] = global_resolver_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_route53globalresolver.types.create_dns_view_input.CreateDNSViewInput = {
+            "global_resolver_id": global_resolver_id,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if dnssec_validation is not None:
             input_["dnssec_validation"] = dnssec_validation
         if edns_client_subnet is not None:
@@ -540,6 +558,7 @@ class AsyncDNSView:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -578,14 +597,16 @@ class AsyncDNSView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_dns_view_input.GetDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.get_dns_view_input.GetDNSViewInput = {
+            "dns_view_id": dns_view_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -646,8 +667,9 @@ class AsyncDNSView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_dns_view_input.UpdateDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.update_dns_view_input.UpdateDNSViewInput = {
+            "dns_view_id": dns_view_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -664,6 +686,7 @@ class AsyncDNSView:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -703,14 +726,16 @@ class AsyncDNSView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.delete_dns_view_input.DeleteDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.delete_dns_view_input.DeleteDNSViewInput = {
+            "dns_view_id": dns_view_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -753,18 +778,20 @@ class AsyncDNSView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_dns_views_input.ListDNSViewsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_dns_views_input.ListDNSViewsInput = {
+            "global_resolver_id": global_resolver_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["global_resolver_id"] = global_resolver_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_dns_view(
@@ -807,14 +834,16 @@ class AsyncDNSView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.disable_dns_view_input.DisableDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.disable_dns_view_input.DisableDNSViewInput = {
+            "dns_view_id": dns_view_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_dns_view(
@@ -855,12 +884,14 @@ class AsyncDNSView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.enable_dns_view_input.EnableDNSViewInput = {}  # type: ignore[typeddict-item]
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.enable_dns_view_input.EnableDNSViewInput = {
+            "dns_view_id": dns_view_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> EdgeDeploymentPlanSummaries:
 
     out: EdgeDeploymentPlanSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.edge_deployment_plan_summary.deserialize_aws_json_1_1(
                 item

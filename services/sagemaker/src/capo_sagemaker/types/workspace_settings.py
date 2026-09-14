@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: WorkspaceSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspaceSettings:
     out: WorkspaceSettings = {}  # type: ignore[typeddict-item]
-    if "S3ArtifactPath" in data:
+    if data.get("S3ArtifactPath") is not None:
         out["s3_artifact_path"] = data["S3ArtifactPath"]
-    if "S3KmsKeyId" in data:
+    if data.get("S3KmsKeyId") is not None:
         out["s3_kms_key_id"] = data["S3KmsKeyId"]
     return out

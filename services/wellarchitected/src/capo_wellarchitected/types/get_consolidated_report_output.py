@@ -39,7 +39,7 @@ def serialize_json(value: GetConsolidatedReportOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetConsolidatedReportOutput:
     out: GetConsolidatedReportOutput = {}  # type: ignore[typeddict-item]
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_wellarchitected.types.consolidated_report_metrics
 
         out["metrics"] = (
@@ -47,8 +47,8 @@ def deserialize_json(data: dict) -> GetConsolidatedReportOutput:
                 data["Metrics"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Base64String" in data:
+    if data.get("Base64String") is not None:
         out["base64_string"] = data["Base64String"]
     return out

@@ -34,9 +34,9 @@ def serialize_json(value: SeverityLevel) -> dict:
 
 def deserialize_json(data: dict) -> SeverityLevel:
     out: SeverityLevel = {}  # type: ignore[typeddict-item]
-    if "occurrencesThreshold" in data:
+    if data.get("occurrencesThreshold") is not None:
         out["occurrences_threshold"] = data["occurrencesThreshold"]
-    if "severity" in data:
+    if data.get("severity") is not None:
         import capo_macie2.types.data_identifier_severity
 
         out["severity"] = capo_macie2.types.data_identifier_severity.deserialize_json(

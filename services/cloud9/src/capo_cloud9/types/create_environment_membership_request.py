@@ -36,19 +36,19 @@ def serialize_aws_json_1_1(value: CreateEnvironmentMembershipRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEnvironmentMembershipRequest:
     out: CreateEnvironmentMembershipRequest = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError(
             "CreateEnvironmentMembershipRequest.environment_id required"
         )
-    if "userArn" in data:
+    if data.get("userArn") is not None:
         out["user_arn"] = data["userArn"]
     else:
         raise DeserializationError(
             "CreateEnvironmentMembershipRequest.user_arn required"
         )
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_cloud9.types.member_permissions
 
         out["permissions"] = (

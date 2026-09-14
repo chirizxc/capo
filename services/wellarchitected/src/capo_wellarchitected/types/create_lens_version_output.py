@@ -28,8 +28,8 @@ def serialize_json(value: CreateLensVersionOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateLensVersionOutput:
     out: CreateLensVersionOutput = {}  # type: ignore[typeddict-item]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "LensVersion" in data:
+    if data.get("LensVersion") is not None:
         out["lens_version"] = data["LensVersion"]
     return out

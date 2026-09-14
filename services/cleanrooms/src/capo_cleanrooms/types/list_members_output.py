@@ -33,9 +33,9 @@ def serialize_json(value: ListMembersOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListMembersOutput:
     out: ListMembersOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "memberSummaries" in data:
+    if data.get("memberSummaries") is not None:
         import capo_cleanrooms.types.member_summary_list
 
         out["member_summaries"] = (

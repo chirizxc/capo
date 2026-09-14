@@ -34,19 +34,19 @@ def serialize_aws_json_1_1(value: DescribeSupportedLanguagesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSupportedLanguagesRequest:
     out: DescribeSupportedLanguagesRequest = {}  # type: ignore[typeddict-item]
-    if "issueType" in data:
+    if data.get("issueType") is not None:
         out["issue_type"] = data["issueType"]
     else:
         raise DeserializationError(
             "DescribeSupportedLanguagesRequest.issue_type required"
         )
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
     else:
         raise DeserializationError(
             "DescribeSupportedLanguagesRequest.service_code required"
         )
-    if "categoryCode" in data:
+    if data.get("categoryCode") is not None:
         out["category_code"] = data["categoryCode"]
     else:
         raise DeserializationError(
